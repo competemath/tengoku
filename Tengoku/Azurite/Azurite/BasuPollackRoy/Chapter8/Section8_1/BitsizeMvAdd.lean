@@ -28,7 +28,9 @@ and `|a + b| ≤ |a| + |b| < 2^τ + 2^τ = 2^{τ + 1}`.
 
 namespace Azurite.BPR
 
-/-- `bitsize(a + b) ≤ τ + 1` when `bitsize a ≤ τ` and `bitsize b ≤ τ`.-/
+/-- `bitsize(a + b) ≤ τ + 1` when `bitsize a ≤ τ` and `bitsize b ≤ τ`.
+@isnad1 id=le.2h3v.s5.290251a0189e from=translated src=- shape=d20e6168 vocab=caeb028e
+-/
 theorem Int.size_add_le (a b : ℤ) (τ : ℕ)
     (ha : a.natAbs.size ≤ τ) (hb : b.natAbs.size ≤ τ) :
     (a + b).natAbs.size ≤ τ + 1 := by

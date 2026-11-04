@@ -63,13 +63,18 @@ noncomputable def stirlingApprox (m : ℕ) (x : ℝ) : ℝ :=
 /-- The remainder `R_m(x) = ln Γ(x) − (expansion with m − 1 terms)`.-/
 noncomputable def stirlingRem (m : ℕ) (x : ℝ) : ℝ := Real.log (Real.Gamma x) - stirlingApprox m x
 
+/--
+@isnad1 id=eq.0h2v.s4.256fc15f53a4 from=translated src=- shape=a3ca11a9 vocab=92712363
+-/
 theorem log_Gamma_eq_stirlingApprox_add (m : ℕ) (x : ℝ) :
     Real.log (Real.Gamma x) = stirlingApprox m x + stirlingRem m x := by
   unfold stirlingRem; ring
 
 /-! ### The Bernoulli numbers through the even zeta values -/
 
-/-- `ζ(2k) = (−1)^(k+1) 2^(2k−1) π^(2k) B_{2k} / (2k)!` (Mathlib's `hasSum_zeta_nat`).-/
+/-- `ζ(2k) = (−1)^(k+1) 2^(2k−1) π^(2k) B_{2k} / (2k)!` (Mathlib's `hasSum_zeta_nat`).
+@isnad1 id=eq.1h1v.s7.cb7ed826d3fc from=translated src=- shape=544972f5 vocab=36e32b1a
+-/
 theorem zetaReal_two_mul_eq {k : ℕ} (hk : 1 ≤ k) :
     zetaReal (2 * k) = (-1) ^ (k + 1) * 2 ^ (2 * k - 1) * π ^ (2 * k) * bernoulli (2 * k)
       / (2 * k).factorial := by
@@ -79,7 +84,9 @@ theorem zetaReal_two_mul_eq {k : ℕ} (hk : 1 ≤ k) :
   funext n
   rw [show (2 : ℝ) * (k : ℝ) = ((2 * k : ℕ) : ℝ) by push_cast; ring, Real.rpow_natCast, one_div]
 
-/-- `1 ≤ ζ(2k)`: the `n = 1` term.-/
+/-- `1 ≤ ζ(2k)`: the `n = 1` term.
+@isnad1 id=le.1h1v.s5.3ea357f6b15a from=translated src=- shape=4e005a47 vocab=409bd3c8
+-/
 theorem one_le_zetaReal_two_mul {k : ℕ} (hk : 1 ≤ k) : 1 ≤ zetaReal (2 * k) := by
   unfold zetaReal
   have hk1 : (1 : ℝ) ≤ k := by exact_mod_cast hk
@@ -88,7 +95,9 @@ theorem one_le_zetaReal_two_mul {k : ℕ} (hk : 1 ≤ k) : 1 ≤ zetaReal (2 * k
   have h := hs.le_tsum 1 fun n _ => by positivity
   simpa using h
 
-/-- `ζ(2k) ≤ ζ(2) = π²/6` for `k ≥ 1`.-/
+/-- `ζ(2k) ≤ ζ(2) = π²/6` for `k ≥ 1`.
+@isnad1 id=le.1h1v.s6.15804f517054 from=translated src=- shape=5abeb21b vocab=4da46594
+-/
 theorem zetaReal_two_mul_le {k : ℕ} (hk : 1 ≤ k) : zetaReal (2 * k) ≤ π ^ 2 / 6 := by
   unfold zetaReal
   rw [← hasSum_zeta_two.tsum_eq]
@@ -102,7 +111,9 @@ theorem zetaReal_two_mul_le {k : ℕ} (hk : 1 ≤ k) : zetaReal (2 * k) ≤ π ^
   · have hn1 : (1 : ℝ) ≤ n := by exact_mod_cast hn
     exact inv_anti₀ (by positivity) (pow_le_pow_right₀ hn1 (by omega))
 
-/-- `B_{2k} = (−1)^(k+1) · 2 (2k)! ζ(2k) / (2π)^(2k)`.-/
+/-- `B_{2k} = (−1)^(k+1) · 2 (2k)! ζ(2k) / (2π)^(2k)`.
+@isnad1 id=eq.1h1v.s7.b91ae87b272f from=translated src=- shape=875c71d3 vocab=0c23597c
+-/
 theorem bernoulli_two_mul_eq_zeta {k : ℕ} (hk : 1 ≤ k) :
     (bernoulli (2 * k) : ℝ)
       = (-1) ^ (k + 1) * 2 * (2 * k).factorial * zetaReal (2 * k) / (2 * π) ^ (2 * k) := by
@@ -122,7 +133,9 @@ theorem bernoulli_two_mul_eq_zeta {k : ℕ} (hk : 1 ≤ k) :
     _ = ε * 2 * (zetaReal (2 * k) * (2 * k).factorial) := by rw [hζF]; ring
     _ = ε * 2 * (2 * k).factorial * zetaReal (2 * k) := by ring
 
-/-- `B_{2k}` has the sign `(−1)^(k+1)`.-/
+/-- `B_{2k}` has the sign `(−1)^(k+1)`.
+@isnad1 id=lt.1h1v.s6.5a58ff2f9f6c from=translated src=- shape=f16bbfad vocab=c458bfb2
+-/
 theorem sign_bernoulli_two_mul {k : ℕ} (hk : 1 ≤ k) :
     0 < (-1) ^ (k + 1) * (bernoulli (2 * k) : ℝ) := by
   rw [bernoulli_two_mul_eq_zeta hk]
@@ -139,7 +152,9 @@ theorem sign_bernoulli_two_mul {k : ℕ} (hk : 1 ≤ k) :
 
 /-! ### The size of the terms -/
 
-/-- `|t_k(x)| = 2 (2k−2)! ζ(2k) / ((2π)^(2k) x^(2k−1))` for `k ≥ 1`, `x > 0`.-/
+/-- `|t_k(x)| = 2 (2k−2)! ζ(2k) / ((2π)^(2k) x^(2k−1))` for `k ≥ 1`, `x > 0`.
+@isnad1 id=eq.2h2v.s7.c96edcbef9f9 from=translated src=- shape=fd7c3f11 vocab=fb7b8c83
+-/
 theorem abs_stirlingTerm_eq {k : ℕ} (hk : 1 ≤ k) {x : ℝ} (hx : 0 < x) :
     |stirlingTerm k x|
       = 2 * (2 * k - 2).factorial * zetaReal (2 * k) / ((2 * π) ^ (2 * k) * x ^ (2 * k - 1)) := by
@@ -167,7 +182,9 @@ theorem abs_stirlingTerm_eq {k : ℕ} (hk : 1 ≤ k) {x : ℝ} (hx : 0 < x) :
   field_simp
 
 /-- The ratio of successive term magnitudes is `(2k)(2k−1) ζ(2k+2) / (ζ(2k) (2πx)²)`: between
-`(2k)(2k−1) / (2 (2πx)²)` and `2 (2k)(2k−1) / (2πx)²`, the text's `≈ (k/(πx))²`.-/
+`(2k)(2k−1) / (2 (2πx)²)` and `2 (2k)(2k−1) / (2πx)²`, the text's `≈ (k/(πx))²`.
+@isnad1 id=and.2h2v.s8.7ad5216fdb68 from=translated src=- shape=ff7f3610 vocab=ccd62be4
+-/
 theorem stirlingTerm_ratio_bounds {k : ℕ} (hk : 1 ≤ k) {x : ℝ} (hx : 0 < x) :
     (2 * k) * (2 * k - 1) / (2 * (2 * π * x) ^ 2) * |stirlingTerm k x| ≤ |stirlingTerm (k + 1) x| ∧
       |stirlingTerm (k + 1) x|
@@ -204,7 +221,9 @@ theorem stirlingTerm_ratio_bounds {k : ℕ} (hk : 1 ≤ k) {x : ℝ} (hx : 0 < x
     rw [div_mul_div_comm, div_le_div_iff₀ (by positivity) (by positivity)]
     nlinarith [mul_le_mul_of_nonneg_left hζ hQ]
 
-/-- The terms of (4.38) start to grow once `2 (2πx)² < (2k)(2k−1)` (about `k > 2.8 πx`).-/
+/-- The terms of (4.38) start to grow once `2 (2πx)² < (2k)(2k−1)` (about `k > 2.8 πx`).
+@isnad1 id=lt.3h2v.s7.8fcf2ede360a from=translated src=- shape=c613da07 vocab=92c18d47
+-/
 theorem abs_stirlingTerm_lt_succ {k : ℕ} (hk : 1 ≤ k) {x : ℝ} (hx : 0 < x)
     (h : 2 * (2 * π * x) ^ 2 < (2 * k) * (2 * k - 1)) :
     |stirlingTerm k x| < |stirlingTerm (k + 1) x| := by
@@ -217,7 +236,9 @@ theorem abs_stirlingTerm_lt_succ {k : ℕ} (hk : 1 ≤ k) {x : ℝ} (hx : 0 < x)
     rw [lt_div_iff₀ (by positivity)]; linarith
   nlinarith
 
-/-- `y ln y ≥ −1/e` for `y > 0`.-/
+/-- `y ln y ≥ −1/e` for `y > 0`.
+@isnad1 id=le.1h1v.s5.b21072a33681 from=translated src=- shape=19ac3df4 vocab=90639cb6
+-/
 theorem mul_log_ge_neg_inv_exp {y : ℝ} (hy : 0 < y) : -(exp 1)⁻¹ ≤ y * Real.log y := by
   have h := Real.log_le_sub_one_of_pos (by positivity : 0 < (exp 1 * y)⁻¹)
   rw [Real.log_inv, Real.log_mul (exp_pos 1).ne' hy.ne', Real.log_exp] at h
@@ -229,7 +250,9 @@ theorem mul_log_ge_neg_inv_exp {y : ℝ} (hy : 0 < y) : -(exp 1)⁻¹ ≤ y * Re
   rw [show -(exp 1)⁻¹ = (-1) / exp 1 by ring, div_le_iff₀ he]
   linarith
 
-/-- `(u / c)^u ≥ e^(−c/e)` for `u : ℕ` and `c > 0`: the minimum of `u ↦ (u/c)^u`.-/
+/-- `(u / c)^u ≥ e^(−c/e)` for `u : ℕ` and `c > 0`: the minimum of `u ↦ (u/c)^u`.
+@isnad1 id=le.1h2v.s6.2c7d3bcf284f from=translated src=- shape=cc4f6504 vocab=81a5ebba
+-/
 theorem div_pow_self_ge {c : ℝ} (hc : 0 < c) (u : ℕ) : exp (-(c / exp 1)) ≤ ((u : ℝ) / c) ^ u := by
   rcases Nat.eq_zero_or_pos u with rfl | hu
   · simp only [Nat.cast_zero, zero_div, pow_zero]
@@ -246,7 +269,9 @@ theorem div_pow_self_ge {c : ℝ} (hc : 0 < c) (u : ℕ) : exp (-(c / exp 1)) �
     exact mul_le_mul_of_nonneg_left h hc.le
 
 /-- Every term of the divergent series is at least `e^(−2πx) / (2π² x)`: the smallest term, and
-with it the accuracy attainable from (4.38) without shifting the argument, is about `2πx` nats.-/
+with it the accuracy attainable from (4.38) without shifting the argument, is about `2πx` nats.
+@isnad1 id=le.2h2v.s6.d3bb0c0c4c4f from=translated src=- shape=5ec30104 vocab=82ede946
+-/
 theorem abs_stirlingTerm_ge {k : ℕ} (hk : 1 ≤ k) {x : ℝ} (hx : 0 < x) :
     exp (-(2 * π * x)) / (2 * π ^ 2 * x) ≤ |stirlingTerm k x| := by
   rw [abs_stirlingTerm_eq hk hx]
@@ -287,7 +312,9 @@ theorem abs_stirlingTerm_ge {k : ℕ} (hk : 1 ≤ k) {x : ℝ} (hx : 0 < x) :
 
 /-! ### Shifting the argument -/
 
-/-- `ln Γ(x) = ln Γ(x + δ) − ∑_{i<δ} ln(x + i)` for `x > 0`, from `Γ(x + 1) = x Γ(x)`.-/
+/-- `ln Γ(x) = ln Γ(x + δ) − ∑_{i<δ} ln(x + i)` for `x > 0`, from `Γ(x + 1) = x Γ(x)`.
+@isnad1 id=eq.1h2v.s5.b8c50163d4e6 from=translated src=- shape=d4898a06 vocab=23b0cc68
+-/
 theorem log_Gamma_eq_log_Gamma_add_sub {x : ℝ} (hx : 0 < x) (δ : ℕ) :
     Real.log (Real.Gamma x) = Real.log (Real.Gamma (x + δ)) - ∑ i ∈ range δ, Real.log (x + i) := by
   rw [Gamma_add_nat hx δ, Real.log_mul (Gamma_pos_of_pos hx).ne', Real.log_prod]

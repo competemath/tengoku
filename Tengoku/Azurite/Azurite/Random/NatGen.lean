@@ -89,6 +89,9 @@ def PositiveNatRandomGen.next {G : Type} [RandomGen G UInt64]
 instance {G : Type} [RandomGen G UInt64] : RandomGen (PositiveNatRandomGen G) Nat where
   next := PositiveNatRandomGen.next
 
+/--
+@isnad1 id=match1.0h2v.s5.64eb6e4634d0 from=translated src=- shape=f03d123f vocab=b2b4f011
+-/
 theorem positive_nat_random_gen_positive {G : Type} [RandomGen G UInt64]
     (ng : PositiveNatRandomGen G) :
     let (v, _) := PositiveNatRandomGen.next ng

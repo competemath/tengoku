@@ -34,7 +34,9 @@ open Azurite.BPR.Chapter4 (ε)
 
 variable {K : Type*} [Field K]
 
-/-- The quotient `P / Q` has degree at most `deg P - deg Q`.-/
+/-- The quotient `P / Q` has degree at most `deg P - deg Q`.
+@isnad1 id=le.2h3v.s7.e5e1ee7f3c7f from=translated src=- shape=a701fb53 vocab=683f60a0
+-/
 theorem quotient_natDegree_le (P Q : K[X]) (hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDegree) :
     (P / Q).natDegree ≤ P.natDegree - Q.natDegree := by
   rcases eq_or_ne (P / Q) 0 with hC | hC
@@ -51,7 +53,9 @@ theorem quotient_natDegree_le (P Q : K[X]) (hQ : Q ≠ 0) (hpq : Q.natDegree < P
 
 /-- **Key identity for the `P → R` replacement.** Each shift `X^e·(P % Q)` of the remainder
     equals the corresponding shift `X^e·P` plus a `K`-linear combination of the shifts
-    `X^{e+i}·Q` of `Q` (the coefficients being `-(P/Q).coeff i`).-/
+    `X^{e+i}·Q` of `Q` (the coefficients being `-(P/Q).coeff i`).
+@isnad1 id=eq.2h4v.s9.6a2276a4d162 from=translated src=- shape=2e193cd1 vocab=731f0ac9
+-/
 theorem rem_shift_eq (P Q : K[X]) (hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDegree) (e : ℕ) :
     X ^ e * (P % Q)
       = X ^ e * P + ∑ i ∈ Finset.range (P.natDegree - Q.natDegree + 1),
@@ -73,7 +77,9 @@ theorem rem_shift_eq (P Q : K[X]) (hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDegre
   rw [hPR, hsum]; ring
 
 /-- The euclidean remainder is `K`-linear in its first argument:
-    `Rem(c·P, Q) = c·Rem(P, Q)`.-/
+    `Rem(c·P, Q) = c·Rem(P, Q)`.
+@isnad1 id=eq.0h4v.s8.e34183162231 from=translated src=- shape=a49ad48b vocab=45202ee0
+-/
 theorem rem_C_mul (c : K) (P Q : K[X]) : (C c * P) % Q = C c * (P % Q) := by
   rcases eq_or_ne Q 0 with rfl | hQ
   · simp
@@ -97,7 +103,9 @@ private noncomputable def replaceUpTo (P Q : K[X]) (j k : ℕ) :
   else X ^ ((r : ℕ) - (Q.natDegree - j)) * Q
 
 /-- **Lemma 8.39, step 1 (`P → R` replacement).** Replacing the `P`-block rows of the
-    `sResP`-sequence by the corresponding `R`-block rows does not change `pdet`.-/
+    `sResP`-sequence by the corresponding `R`-block rows does not change `pdet`.
+@isnad1 id=eq.3h4v.s8.db837d82774d from=translated src=- shape=3ad18613 vocab=98494c5d
+-/
 theorem pdetRing_replaceUpTo_eq (P Q : K[X]) (hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDegree)
     (j : ℕ) (hj : j < Q.natDegree) :
     pdetRing (P.natDegree + Q.natDegree - j) (replaceUpTo P Q j (Q.natDegree - j))
@@ -178,7 +186,9 @@ private noncomputable def Aseq (P Q : K[X]) (j : ℕ) :
 
 /-- **Lemma 8.39, steps 1–3.** `sResP_j(P,Q) = ε_{p-q} · A_j`, where `A_j` is the
     determinant of the `A_j`-sequence (the `(R,Q)`-sequence reversed and with its
-    `R`-block negated).-/
+    `R`-block negated).
+@isnad1 id=eq.3h4v.s8.f41089518768 from=translated src=- shape=5ddb7c01 vocab=e1eaca8e
+-/
 theorem sResP_eq_eps_smul_Aseq (P Q : K[X]) (hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDegree)
     (j : ℕ) (hj : j < Q.natDegree) :
     sResP P Q j
@@ -256,7 +266,9 @@ private theorem aux_condneg (p q j r i : ℕ) (hjr : j ≤ r) (hrq : r < q) (_hq
 private theorem aux_prodcond (p q j r i : ℕ) (hi : i < p - r) (hjr : j ≤ r) (_hqp : q < p) :
     i < p - j := by omega
 
-/-- **Lemma 8.39, step 4 (triangular peel), case `j ≤ r`.** `A_j = b_q^{p-r} · sResP_j(Q,-R)`.-/
+/-- **Lemma 8.39, step 4 (triangular peel), case `j ≤ r`.** `A_j = b_q^{p-r} · sResP_j(Q,-R)`.
+@isnad1 id=eq.5h4v.s9.2aba8fa5b86c from=translated src=- shape=34af1aa9 vocab=10bdf647
+-/
 theorem Aseq_triangular (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (j : ℕ) (_hj : j < Q.natDegree - 1)
     (hjr : j ≤ (P % Q).natDegree) :
@@ -322,7 +334,9 @@ private theorem aux_hd2z (p q j r i k : ℕ) (hi : p - j ≤ i) (hik : i < p + q
 private theorem aux_zfin (p q j i : ℕ) (hi : i < p + q - 2 * j - (p - j)) (hjq : j < q)
     (hqp : q < p) : p - j + i < p + q - 2 * j := by omega
 
-/-- **Lemma 8.39, step 4 (triangular peel), case `r < j`.** `A_j = 0`.-/
+/-- **Lemma 8.39, step 4 (triangular peel), case `r < j`.** `A_j = 0`.
+@isnad1 id=eq.5h4v.s8.aa7781890587 from=translated src=- shape=7d507544 vocab=e82d5780
+-/
 theorem Aseq_zero (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (j : ℕ) (hj : j < Q.natDegree - 1)
     (hjr : (P % Q).natDegree < j) :
@@ -360,7 +374,9 @@ theorem Aseq_zero (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
 private theorem aux_qm1card (p q : ℕ) (hqp : q < p) (hq1 : 1 ≤ q) : p - (q - 1) = p - q + 1 := by omega
 
 /-- **Theorem 8.34, base case ingredient.** The `A_{q-1}`-determinant: peel the whole
-    `Q`-block, leaving the single `-R` row. `A_{q-1} = -b_q^{p-q+1} · R`.-/
+    `Q`-block, leaving the single `-R` row. `A_{q-1} = -b_q^{p-q+1} · R`.
+@isnad1 id=eq.4h3v.s9.3b8a4b65564f from=translated src=- shape=3f6799dd vocab=c879151e
+-/
 theorem Aseq_qm1 (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) :
     pdetRing (P.natDegree + Q.natDegree - (Q.natDegree - 1)) (Aseq P Q (Q.natDegree - 1))
@@ -408,7 +424,9 @@ theorem Aseq_qm1 (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
   rw [hprod, pdetRing_single_of_eq (by omega) (by omega) _ (by rw [htail0, natDegree_neg]; omega),
     htail0, mul_neg, smul_eq_C_mul]
 
-/-- **Theorem 8.34, base-case formula.** `sResP_{q-1}(P,Q) = -ε_{p-q} · b_q^{p-q+1} · R`.-/
+/-- **Theorem 8.34, base-case formula.** `sResP_{q-1}(P,Q) = -ε_{p-q} · b_q^{p-q+1} · R`.
+@isnad1 id=eq.4h3v.s8.7649ac89c693 from=translated src=- shape=7ba79094 vocab=a9d27785
+-/
 theorem sResP_natDegree_sub_one (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) :
     sResP P Q (Q.natDegree - 1)
@@ -419,7 +437,9 @@ theorem sResP_natDegree_sub_one (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
 
 /-- **Theorem 8.34, base case (BPR phrasing).** With `s_q = sRes_q(P,Q)`,
     `t_{p-1} = lcof(sResP_{p-1}(P,Q))`, `sResP_p = P`, `sResP_{p-1} = Q`,
-    `sResP_{q-1}(P,Q) = -Rem(s_q · t_{p-1} · sResP_p, sResP_{p-1})`.-/
+    `sResP_{q-1}(P,Q) = -Rem(s_q · t_{p-1} · sResP_p, sResP_{p-1})`.
+@isnad1 id=eq.4h3v.s9.d3347b805849 from=translated src=- shape=125ce267 vocab=de73356d
+-/
 theorem sResP_natDegree_sub_one_rem (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree + 1 < P.natDegree) (hq1 : 1 ≤ Q.natDegree) :
     sResP P Q (Q.natDegree - 1)
@@ -433,7 +453,9 @@ theorem sResP_natDegree_sub_one_rem (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠
   ring
 
 /-- **BPR Proposition 8.39.** `sResP_j(P,Q) = ε_{p-q} · b_q^{p-r} · sResP_j(Q,-R)` for
-    `j < q-1`, with `R = P % Q` and `r = deg R`.-/
+    `j < q-1`, with `R = P % Q` and `r = deg R`.
+@isnad1 id=eq.4h4v.s9.e28fc8fd1631 from=translated src=- shape=3f9191ae vocab=c2c32e17
+-/
 theorem proposition_8_39 (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (j : ℕ) (hj : j < Q.natDegree - 1) :
     sResP P Q j = (ε (P.natDegree - Q.natDegree) : ℤ)

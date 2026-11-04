@@ -40,7 +40,9 @@ open Azurite.BPR.Chapter4 (ε)
 variable {D : Type*} [CommRing D]
 
 /-- The polynomial determinant `pdet_{m,n}(𝒫)` has degree at most `n - m`, since
-    it is a sum of `mᵢ · Xⁱ` over `i ≤ n - m`.-/
+    it is a sum of `mᵢ · Xⁱ` over `i ≤ n - m`.
+@isnad1 id=le.0h4v.s5.501eb30de19f from=translated src=- shape=eea0597c vocab=7f27a29d
+-/
 theorem pdetRing_degree_le {m n : ℕ} (P : Fin m → D[X]) :
     (pdetRing n P).degree ≤ (↑(n - m) : WithBot ℕ) := by
   rw [pdetRing]
@@ -49,7 +51,9 @@ theorem pdetRing_degree_le {m n : ℕ} (P : Fin m → D[X]) :
   exact_mod_cast Nat.lt_succ_iff.mp i.isLt
 
 /-- Permuting the polynomial family by `σ` multiplies the polynomial determinant
-    by `sign σ` (each minor is a determinant whose rows get permuted).-/
+    by `sign σ` (each minor is a determinant whose rows get permuted).
+@isnad1 id=eq.0h5v.s7.dcd199811ff3 from=translated src=- shape=ba7e408d vocab=15b2859b
+-/
 theorem pdetRing_comp_perm {m n : ℕ} (P : Fin m → D[X]) (σ : Equiv.Perm (Fin m)) :
     pdetRing n (P ∘ σ) = (Equiv.Perm.sign σ : ℤ) • pdetRing n P := by
   have hmr : ∀ i : ℕ, pdetMinorRing n (P ∘ σ) i
@@ -69,7 +73,9 @@ theorem pdetRing_comp_perm {m n : ℕ} (P : Fin m → D[X]) (σ : Equiv.Perm (Fi
   exact Finset.sum_congr rfl (fun i _ => by rw [hmr, smul_assoc])
 
 /-- The polynomial determinant of a single polynomial `R` of degree `< n` is `R`
-    (the `m = 1` case of `pdet`).-/
+    (the `m = 1` case of `pdet`).
+@isnad1 id=eq.2h3v.s6.983d19693d16 from=translated src=- shape=e4b9467f vocab=67eeb341
+-/
 theorem pdetRing_single {n : ℕ} (hn : 0 < n) (R : D[X]) (hR : R.natDegree < n) :
     pdetRing n (fun _ : Fin 1 => R) = R := by
   have hmr : ∀ i : ℕ, pdetMinorRing n (fun _ : Fin 1 => R) i = R.coeff i := by
@@ -84,7 +90,9 @@ theorem pdetRing_single {n : ℕ} (hn : 0 < n) (R : D[X]) (hR : R.natDegree < n)
   rw [hmr, smul_eq_C_mul, ← C_mul_X_pow_eq_monomial]
 
 /-- The `m = 1` case of `pdet`, stated for a family on `Fin m` with `m = 1`
-    (so it can absorb a `Fin (m - (m-1))` tail without transporting the type).-/
+    (so it can absorb a `Fin (m - (m-1))` tail without transporting the type).
+@isnad1 id=eq.3h4v.s6.a45cbf6a511c from=translated src=- shape=7110a4d8 vocab=fe5706d4
+-/
 theorem pdetRing_single_of_eq {m n : ℕ} (hm : m = 1) (hn : 0 < n) (R : Fin m → D[X])
     (hR : (R ⟨0, by omega⟩).natDegree < n) : pdetRing n R = R ⟨0, by omega⟩ := by
   subst hm
@@ -93,7 +101,9 @@ theorem pdetRing_single_of_eq {m n : ℕ} (hm : m = 1) (hn : 0 < n) (R : Fin m �
   exact pdetRing_single hn (R 0) hR
 
 /-- The polynomial determinant of the increasing shift family `Q, XQ, …, X^{m-1}Q`
-    (degrees `q, q+1, …, q+m-1 = n-1`) is `ε_m · b_q^{m-1} · Q`.-/
+    (degrees `q, q+1, …, q+m-1 = n-1`) is `ε_m · b_q^{m-1} · Q`.
+@isnad1 id=eq.4h4v.s8.fd04119a9336 from=translated src=- shape=996f6469 vocab=164a1581
+-/
 theorem pdetRing_Q_shifts {m n : ℕ} (hm : 0 < m) (hmn : m ≤ n) (Q : D[X]) (hQ0 : Q ≠ 0)
     (hq : Q.natDegree + m = n) :
     pdetRing n (fun r : Fin m => X ^ (r : ℕ) * Q)
@@ -153,7 +163,9 @@ noncomputable def sResP (P Q : D[X]) (j : ℕ) : D[X] :=
   else if j = P.natDegree - 1 then Q
   else 0
 
-/-- `deg(sResP_j(P, Q)) ≤ j` for `0 ≤ j ≤ q` (BPR's "Clearly …").-/
+/-- `deg(sResP_j(P, Q)) ≤ j` for `0 ≤ j ≤ q` (BPR's "Clearly …").
+@isnad1 id=le.2h4v.s6.efd4808e538a from=translated src=- shape=2e9a9dbf vocab=bb9fcd7d
+-/
 theorem sResP_degree_le (P Q : D[X]) (hpq : Q.natDegree < P.natDegree)
     {j : ℕ} (hj : j ≤ Q.natDegree) :
     (sResP P Q j).degree ≤ (j : WithBot ℕ) := by
@@ -162,24 +174,32 @@ theorem sResP_degree_le (P Q : D[X]) (hpq : Q.natDegree < P.natDegree)
   exact_mod_cast
     (show P.natDegree + Q.natDegree - j - (P.natDegree + Q.natDegree - 2 * j) ≤ j by omega)
 
-/-- Convention: `sResP_p(P, Q) = P`.-/
+/-- Convention: `sResP_p(P, Q) = P`.
+@isnad1 id=eq.1h3v.s5.ff3d2614ea82 from=translated src=- shape=a7bd4f6d vocab=5be88a48
+-/
 theorem sResP_eq_self (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) :
     sResP P Q P.natDegree = P := by
   rw [sResP, ite_eq_right (by omega), ite_eq_left rfl]
 
-/-- Convention: `sResP_{p-1}(P, Q) = Q` (in the proper gap `q < p - 1`).-/
+/-- Convention: `sResP_{p-1}(P, Q) = Q` (in the proper gap `q < p - 1`).
+@isnad1 id=eq.1h3v.s6.32de497ceae2 from=translated src=- shape=f51446f8 vocab=d3335f33
+-/
 theorem sResP_eq_self_Q (P Q : D[X]) (hpq : Q.natDegree + 1 < P.natDegree) :
     sResP P Q (P.natDegree - 1) = Q := by
   rw [sResP, ite_eq_right (by omega), ite_eq_right (by omega), ite_eq_left rfl]
 
 /-- Convention: `sResP_j(P, Q) = 0` for `q < j` with `j ∉ {p-1, p}` (the defective
-    subresultants in the degree gap vanish).-/
+    subresultants in the degree gap vanish).
+@isnad1 id=eq.3h4v.s6.c2f53af80351 from=translated src=- shape=bc5bcad7 vocab=7d0aaf12
+-/
 theorem sResP_eq_zero (P Q : D[X]) {j : ℕ} (h1 : Q.natDegree < j)
     (h2 : j ≠ P.natDegree) (h3 : j ≠ P.natDegree - 1) :
     sResP P Q j = 0 := by
   rw [sResP, ite_eq_right (by omega), ite_eq_right h2, ite_eq_right h3]
 
-/-- The coefficient of `Xⁱ` in `pdet_{m,n}(𝒫)` is the minor `mᵢ`, for `i ≤ n - m`.-/
+/-- The coefficient of `Xⁱ` in `pdet_{m,n}(𝒫)` is the minor `mᵢ`, for `i ≤ n - m`.
+@isnad1 id=eq.1h5v.s5.add82feffeef from=translated src=- shape=fc5a460c vocab=185cf0ca
+-/
 theorem pdetRing_coeff {m n : ℕ} (P : Fin m → D[X]) {i₀ : ℕ} (hi₀ : i₀ ≤ n - m) :
     (pdetRing n P).coeff i₀ = pdetMinorRing n P i₀ := by
   rw [pdetRing, Polynomial.finsetSum_coeff,
@@ -193,7 +213,9 @@ theorem pdetRing_coeff {m n : ℕ} (P : Fin m → D[X]) {i₀ : ℕ} (hi₀ : i�
 
 /-- **The signed subresultant coefficient is the coefficient of `Xʲ` in `sResP_j`.**
     `sRes_j(P, Q)` (Notation 4.22) equals the coefficient of `Xʲ` in
-    `sResP_j(P, Q)`, for `j ≤ p`.-/
+    `sResP_j(P, Q)`, for `j ≤ p`.
+@isnad1 id=eq.2h4v.s6.92202e2e117d from=translated src=- shape=ea9a7522 vocab=67904219
+-/
 theorem coeff_sResP (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : ℕ}
     (hj : j ≤ P.natDegree) :
     (sResP P Q j).coeff j = Azurite.BPR.Chapter4.sRes P Q j := by
@@ -232,7 +254,9 @@ def IsNonDefective (P Q : D[X]) (j : ℕ) : Prop := (sResP P Q j).degree = (j : 
 def IsDefectiveOfDegree (P Q : D[X]) (j k : ℕ) : Prop :=
   (sResP P Q j).degree = (k : WithBot ℕ) ∧ k < j
 
-/-- For `0 ≤ j ≤ q`, `sResP_j(P, Q)` is non-defective iff `sRes_j(P, Q) ≠ 0`.-/
+/-- For `0 ≤ j ≤ q`, `sResP_j(P, Q)` is non-defective iff `sRes_j(P, Q) ≠ 0`.
+@isnad1 id=iff.2h4v.s6.a5ad10c5992a from=translated src=- shape=e8313aed vocab=3e38eb7c
+-/
 theorem isNonDefective_iff_sRes_ne_zero (P Q : D[X]) (hpq : Q.natDegree < P.natDegree)
     {j : ℕ} (hj : j ≤ Q.natDegree) :
     IsNonDefective P Q j ↔ Azurite.BPR.Chapter4.sRes P Q j ≠ 0 := by
@@ -245,13 +269,17 @@ theorem isNonDefective_iff_sRes_ne_zero (P Q : D[X]) (hpq : Q.natDegree < P.natD
 
 /-- **Theorem 8.34 (notation).** When `sResP_j(P, Q)` is non-defective (degree exactly
     `j`), its leading coefficient `t_j` equals the signed subresultant coefficient
-    `s_j = sRes_j(P, Q)`.-/
+    `s_j = sRes_j(P, Q)`.
+@isnad1 id=eq.3h4v.s6.88909c13b40c from=translated src=- shape=5fa456bd vocab=38a50b02
+-/
 theorem leadingCoeff_sResP_eq_sRes (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : ℕ}
     (hj : j ≤ Q.natDegree) (hnd : IsNonDefective P Q j) :
     (sResP P Q j).leadingCoeff = Azurite.BPR.Chapter4.sRes P Q j := by
   rw [Polynomial.leadingCoeff, natDegree_eq_of_degree_eq_some hnd, coeff_sResP P Q hpq (by omega)]
 
-/-- **BPR Notation 8.33 (closing note).** `sResP_q(P, Q) = ε_{p-q} · b_q^{p-q-1} · Q`.-/
+/-- **BPR Notation 8.33 (closing note).** `sResP_q(P, Q) = ε_{p-q} · b_q^{p-q-1} · Q`.
+@isnad1 id=eq.2h3v.s8.14028999e5c0 from=translated src=- shape=2f95764f vocab=3bbdc7d3
+-/
 theorem sResP_eq_of_natDegree (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) (hQ0 : Q ≠ 0) :
     sResP P Q Q.natDegree
       = (ε (P.natDegree - Q.natDegree) : ℤ)
@@ -267,7 +295,9 @@ theorem sResP_eq_of_natDegree (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) (hQ
     show P.natDegree + Q.natDegree - 2 * Q.natDegree = P.natDegree - Q.natDegree from by omega]
 
 /-- **The signed subresultant coefficient `s_q = sRes_q(P, Q) = ε_{p-q} · b_q^{p-q}`**:
-    the coefficient of `X^q` in the closing-note value of `sResP_q(P, Q)`.-/
+    the coefficient of `X^q` in the closing-note value of `sResP_q(P, Q)`.
+@isnad1 id=eq.2h3v.s7.ce2d8f88b224 from=translated src=- shape=ccc2341c vocab=06ddb9da
+-/
 theorem sRes_natDegree (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) (hQ0 : Q ≠ 0) :
     Azurite.BPR.Chapter4.sRes P Q Q.natDegree
       = (ε (P.natDegree - Q.natDegree) : ℤ) • Q.leadingCoeff ^ (P.natDegree - Q.natDegree) := by

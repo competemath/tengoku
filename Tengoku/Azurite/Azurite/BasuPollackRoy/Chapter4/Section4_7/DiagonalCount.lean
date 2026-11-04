@@ -40,7 +40,9 @@ noncomputable def affineSystem (d : Fin k → ℕ) (i : Fin k) : MvPolynomial (F
   affineFactor (d i) i
 
 set_option linter.unusedSectionVars false in
-/-- **Step 1.** Evaluation of the diagonal factor at a point `v ∈ Cᵏ⁺¹`.-/
+/-- **Step 1.** Evaluation of the diagonal factor at a point `v ∈ Cᵏ⁺¹`.
+@isnad1 id=eq.0h5v.s12.332e02b912b5 from=translated src=- shape=584a4766 vocab=13ef454d
+-/
 theorem aeval_diagFactor (d : ℕ) (i : Fin k) (v : Fin (k + 1) → Ri R) :
     aeval v (diagFactor (R := R) d i)
       = ∏ n ∈ Finset.Icc 1 d, (v i.succ - (n : Ri R) * v 0) := by
@@ -50,7 +52,9 @@ theorem aeval_diagFactor (d : ℕ) (i : Fin k) (v : Fin (k + 1) → Ri R) :
 
 set_option linter.unusedSectionVars false in
 /-- **Step 4.** The dehomogenization `Dᵢ(1, X₁, …, X_k)` of the diagonal factor is the affine
-factor `∏ (Xᵢ − n)`.-/
+factor `∏ (Xᵢ − n)`.
+@isnad1 id=eq.0h4v.s12.1d6c9171b7fa from=translated src=- shape=12b2e911 vocab=91e0a6ea
+-/
 theorem aeval_cons_one_diagFactor (d : ℕ) (i : Fin k) :
     aeval (Fin.cons (1 : MvPolynomial (Fin k) (Ri R)) X) (diagFactor (R := R) d i)
       = affineFactor d i := by
@@ -59,7 +63,9 @@ theorem aeval_cons_one_diagFactor (d : ℕ) (i : Fin k) :
   rw [map_sub, aeval_X, map_mul, aeval_C, aeval_X, Fin.cons_succ, Fin.cons_zero, mul_one]; rfl
 
 set_option linter.unusedSectionVars false in
-/-- Evaluation of the affine factor at `g ∈ Cᵏ`.-/
+/-- Evaluation of the affine factor at `g ∈ Cᵏ`.
+@isnad1 id=eq.0h5v.s12.e50dac6637fd from=translated src=- shape=4fb80403 vocab=c3d75e4a
+-/
 theorem aeval_affineFactor (d : ℕ) (i : Fin k) (g : Fin k → Ri R) :
     aeval g (affineFactor (R := R) d i) = ∏ n ∈ Finset.Icc 1 d, (g i - (n : Ri R)) := by
   rw [affineFactor, map_prod]
@@ -68,7 +74,9 @@ theorem aeval_affineFactor (d : ℕ) (i : Fin k) (g : Fin k → Ri R) :
 
 set_option linter.unusedSectionVars false in
 /-- **Step 2 (no zeros at infinity).** A common projective zero of the diagonal system has nonzero
-`0`-th homogeneous coordinate.-/
+`0`-th homogeneous coordinate.
+@isnad1 id=ne.2h4v.s12.33d7dac58ee5 from=translated src=- shape=6cf91750 vocab=f4ca11bb
+-/
 theorem diagSystem_rep_zero_ne_zero (d : Fin k → ℕ) (hd : ∀ i, 1 ≤ d i)
     (x : complexProjectiveSpace R k)
     (hx : ∀ i, aeval x.rep (diagSystem (R := R) d i) = 0) : x.rep 0 ≠ 0 := by
@@ -91,7 +99,9 @@ theorem diagSystem_rep_zero_ne_zero (d : Fin k → ℕ) (hd : ∀ i, 1 ≤ d i)
 
 set_option linter.unusedSectionVars false in
 /-- **Step 5 (zero condition).** `g` is a zero of the `i`-th affine factor iff its `i`-th
-coordinate is one of `1, …, d`.-/
+coordinate is one of `1, …, d`.
+@isnad1 id=iff.0h5v.s12.6faff546b52c from=translated src=- shape=bc5e58ef vocab=b0c32094
+-/
 theorem aeval_affineFactor_eq_zero_iff (d : ℕ) (i : Fin k) (g : Fin k → Ri R) :
     aeval g (affineFactor (R := R) d i) = 0 ↔ ∃ n ∈ Finset.Icc 1 d, g i = (n : Ri R) := by
   rw [aeval_affineFactor, Finset.prod_eq_zero_iff]
@@ -99,7 +109,9 @@ theorem aeval_affineFactor_eq_zero_iff (d : ℕ) (i : Fin k) (g : Fin k → Ri R
   rw [sub_eq_zero]
 
 set_option linter.unusedSectionVars false in
-/-- A derivation `D` killing every factor of a product kills the product.-/
+/-- A derivation `D` killing every factor of a product kills the product.
+@isnad1 id=eq.1h6v.s9.01c25ffcb0d5 from=translated src=- shape=f3bb26a2 vocab=26e80df5
+-/
 theorem pderiv_prod_eq_zero {ι : Type*} {C : Type*} [CommRing C] {m : ℕ} (j : Fin m)
     (s : Finset ι) (p : ι → MvPolynomial (Fin m) C) (hp : ∀ a ∈ s, pderiv j (p a) = 0) :
     pderiv j (∏ a ∈ s, p a) = 0 := by
@@ -113,7 +125,9 @@ theorem pderiv_prod_eq_zero {ι : Type*} {C : Type*} [CommRing C] {m : ℕ} (j :
 
 set_option linter.unusedSectionVars false in
 /-- **Step 5 (off-diagonal).** The affine factor `∏ (Xᵢ − n)` only involves the variable `Xᵢ`:
-its partial derivative in any other variable vanishes.-/
+its partial derivative in any other variable vanishes.
+@isnad1 id=eq.1h5v.s12.66d2fb040521 from=translated src=- shape=9b1b5695 vocab=1ff8d5ee
+-/
 theorem pderiv_affineFactor_of_ne (d : ℕ) (i j : Fin k) (hij : j ≠ i) :
     pderiv j (affineFactor (R := R) d i) = 0 := by
   rw [affineFactor]
@@ -123,7 +137,9 @@ theorem pderiv_affineFactor_of_ne (d : ℕ) (i j : Fin k) (hij : j ≠ i) :
 set_option linter.unusedSectionVars false in
 /-- **Step 5 (diagonal entry, nonzero).** At a common zero `g` with `g i = (n₀ : Ri R)`,
 `n₀ ∈ Icc 1 d`, the diagonal partial derivative `(∂/∂Xᵢ) ∏ (Xᵢ − n)` evaluates to the nonzero
-product `∏_{n ≠ n₀} (n₀ − n)`.-/
+product `∏_{n ≠ n₀} (n₀ − n)`.
+@isnad1 id=ne.2h6v.s13.01018b990356 from=translated src=- shape=c4c2486f vocab=532e0038
+-/
 theorem aeval_pderiv_affineFactor_ne_zero (d : ℕ) (i : Fin k) (g : Fin k → Ri R)
     {n₀ : ℕ} (hn₀ : n₀ ∈ Finset.Icc 1 d) (hgi : g i = (n₀ : Ri R)) :
     aeval g (pderiv i (affineFactor (R := R) d i)) ≠ 0 := by
@@ -160,7 +176,9 @@ theorem aeval_pderiv_affineFactor_ne_zero (d : ℕ) (i : Fin k) (g : Fin k → R
 
 set_option linter.unusedSectionVars false in
 /-- **Step 5 (nonsingularity).** Every common affine zero of the affine system is a non-singular
-zero: its Jacobian is diagonal with nonzero diagonal entries.-/
+zero: its Jacobian is diagonal with nonzero diagonal entries.
+@isnad1 id=isnonsin.1h4v.s12.d8f7a8b3b292 from=translated src=- shape=ad6872a5 vocab=3082c6db
+-/
 theorem isNonsingularZero_affineSystem (d : Fin k → ℕ) (g : Fin k → Ri R)
     (hg : ∀ i, aeval g (affineSystem (R := R) d i) = 0) :
     IsNonsingularZero (affineSystem d) g := by
@@ -187,7 +205,9 @@ theorem isNonsingularZero_affineSystem (d : Fin k → ℕ) (g : Fin k → Ri R)
   exact aeval_pderiv_affineFactor_ne_zero (d i) i g (hn₀mem i) (hn₀eq i)
 
 set_option linter.unusedSectionVars false in
-/-- Inserting `1` in coordinate `0` is `Fin.cons 1`.-/
+/-- Inserting `1` in coordinate `0` is `Fin.cons 1`.
+@isnad1 id=eq.0h3v.s9.7f61d06be1eb from=translated src=- shape=d0500dbd vocab=90917822
+-/
 theorem insertNth_zero_eq_cons (g : Fin k → Ri R) :
     Fin.insertNth 0 (1 : Ri R) g = (Fin.cons (1 : Ri R) g : Fin (k + 1) → Ri R) := by
   funext m
@@ -196,7 +216,9 @@ theorem insertNth_zero_eq_cons (g : Fin k → Ri R) :
   · rw [Fin.cons_succ, ← Fin.succAbove_zero, Fin.insertNth_apply_succAbove]
 
 set_option linter.unusedSectionVars false in
-/-- A common projective zero in chart `0` gives a common affine zero of the affine system.-/
+/-- A common projective zero in chart `0` gives a common affine zero of the affine system.
+@isnad1 id=eq.2h5v.s13.860fa21746e0 from=translated src=- shape=0adcf2c1 vocab=79a748bf
+-/
 theorem affineSystem_common_zero_of_projective (d : Fin k → ℕ)
     (x : complexProjectiveSpace R k) (hx0 : x.rep 0 ≠ 0)
     (hx : ∀ i, aeval x.rep (diagSystem (R := R) d i) = 0) :
@@ -224,7 +246,9 @@ theorem affineSystem_common_zero_of_projective (d : Fin k → ℕ)
   exact hcz
 
 /-- **BPR Proposition 4.106 (non-singularity).** Every common projective zero of the diagonal
-system is a non-singular projective zero.-/
+system is a non-singular projective zero.
+@isnad1 id=isnonsin.2h4v.s12.7e2983e00388 from=translated src=- shape=e0c94680 vocab=afb92558
+-/
 theorem diagSystem_common_zero_isNonsingular (d : Fin k → ℕ) (hd : ∀ i, 1 ≤ d i)
     (x : complexProjectiveSpace R k)
     (hx : ∀ i, MvPolynomial.aeval x.rep (diagSystem (R := R) d i) = 0) :
@@ -256,7 +280,9 @@ theorem diagSystem_common_zero_isNonsingular (d : Fin k → ℕ) (hd : ∀ i, 1 
   exact hns
 
 set_option linter.unusedSectionVars false in
-/-- The chart-`0` embedding `g ↦ (1 : g₁ : ⋯ : g_k)` is injective.-/
+/-- The chart-`0` embedding `g ↦ (1 : g₁ : ⋯ : g_k)` is injective.
+@isnad1 id=injectiv.0h2v.s8.7ad60aa73720 from=translated src=- shape=1f3852d5 vocab=f20d1a2f
+-/
 theorem mkLine_cons_one_injective :
     Function.Injective (fun g : Fin k → Ri R => mkLine (Fin.cons (1 : Ri R) g) (cons_one_ne_zero g))
     := by
@@ -272,7 +298,9 @@ theorem mkLine_cons_one_injective :
 
 set_option linter.unusedSectionVars false in
 /-- A non-singular projective zero of the affine-system embedding is exactly the image of a common
-affine zero.-/
+affine zero.
+@isnad1 id=iff.1h4v.s12.8479cc86e67c from=translated src=- shape=03fd4555 vocab=0d6a0417
+-/
 theorem isNonsingularProjectiveZero_diagSystem_iff (d : Fin k → ℕ) (hd : ∀ i, 1 ≤ d i)
     (x : complexProjectiveSpace R k) :
     IsNonsingularProjectiveZero (diagSystem (R := R) d) x
@@ -301,7 +329,9 @@ theorem isNonsingularProjectiveZero_diagSystem_iff (d : Fin k → ℕ) (hd : ∀
     exact hns
 
 set_option linter.unusedSectionVars false in
-/-- The common-zero set of the affine system is the grid `{1,…,d₁} × ⋯ × {1,…,d_k}`.-/
+/-- The common-zero set of the affine system is the grid `{1,…,d₁} × ⋯ × {1,…,d_k}`.
+@isnad1 id=eq.0h3v.s12.5940fcd10628 from=translated src=- shape=cf3bb150 vocab=a7e73f0e
+-/
 theorem affineSystem_common_zero_eq_piFinset (d : Fin k → ℕ) :
     {g : Fin k → Ri R | ∀ i, aeval g (affineSystem (R := R) d i) = 0}
       = ↑(Fintype.piFinset
@@ -316,7 +346,9 @@ theorem affineSystem_common_zero_eq_piFinset (d : Fin k → ℕ) :
 
 set_option linter.unusedSectionVars false in
 /-- **BPR Proposition 4.106 (count).** The diagonal system has exactly `d₁·d₂·…·d_k` non-singular
-projective zeros.-/
+projective zeros.
+@isnad1 id=eq.1h3v.s6.c62aaff8c5d5 from=translated src=- shape=ebf28d4d vocab=b423c77f
+-/
 theorem diagSystem_nonsingularZero_ncard (d : Fin k → ℕ) (hd : ∀ i, 1 ≤ d i) :
     {x : complexProjectiveSpace R k | IsNonsingularProjectiveZero (diagSystem d) x}.ncard
       = ∏ i, d i := by

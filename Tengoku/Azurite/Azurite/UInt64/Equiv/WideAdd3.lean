@@ -17,7 +17,9 @@ import Tengoku.Azurite.Azurite.UInt64.WideAdd3
 namespace UInt64
 
 /-- Correctness of `wideAdd3`: the returned triple represents the sum of the two
-192-bit inputs modulo `2^192`.-/
+192-bit inputs modulo `2^192`.
+@isnad1 id=eq.0h2v.s8.90ceb8c498a7 from=translated src=- shape=89bfea73 vocab=a3d5f306
+-/
 theorem toNat_wideAdd3 (x y : UInt64 × UInt64 × UInt64) :
     (wideAdd3 x y).1.toNat * 2 ^ 128 + (wideAdd3 x y).2.1.toNat * 2 ^ 64
         + (wideAdd3 x y).2.2.toNat

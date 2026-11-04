@@ -71,16 +71,27 @@ attribute [local instance] algebraLocalizationAtPoint
 /-- Componentwise conjugation of a tuple `x : Fin k → Ri R`.-/
 noncomputable def conjTuple (x : Fin k → Ri R) : Fin k → Ri R := fun i => Ri.conj R (x i)
 
+/--
+@isnad1 id=eq.0h4v.s10.60298b74f5e0 from=translated src=- shape=81d9eb19 vocab=c70937c9
+-/
 @[simp] theorem conjTuple_apply (x : Fin k → Ri R) (i : Fin k) :
     conjTuple x i = Ri.conj R (x i) := rfl
 
+/--
+@isnad1 id=involuti.0h2v.s5.836518e7c6d2 from=translated src=- shape=b6a0f4e0 vocab=c965d5c5
+-/
 theorem conjTuple_involutive : Function.Involutive (conjTuple (R := R) (k := k)) := by
   intro x; funext i; simp [conjTuple, Ri.conj_conj]
 
+/--
+@isnad1 id=eq.0h3v.s5.a9f80ca3e955 from=translated src=- shape=f114c5ea vocab=d74b385a
+-/
 @[simp] theorem conjTuple_conjTuple (x : Fin k → Ri R) : conjTuple (conjTuple x) = x :=
   conjTuple_involutive x
 
-/-- `aeval (conjTuple x) P = conj (aeval x P)` for a polynomial `P` with `R`-coefficients.-/
+/-- `aeval (conjTuple x) P = conj (aeval x P)` for a polynomial `P` with `R`-coefficients.
+@isnad1 id=eq.0h4v.s11.52f766752cfe from=translated src=- shape=118a525c vocab=b5a3f5a3
+-/
 theorem aeval_conjTuple (P : MvPolynomial (Fin k) R) (x : Fin k → Ri R) :
     aeval (conjTuple x) P = Ri.conj R (aeval x P) := by
   have hcomp : (Ri.conj R).comp (aeval x) = aeval (conjTuple x) := by
@@ -92,12 +103,17 @@ theorem aeval_conjTuple (P : MvPolynomial (Fin k) R) (x : Fin k → Ri R) :
   rw [AlgHom.comp_apply] at this
   exact this.symm
 
-/-- The conjugate of a zero is a zero (the members of `𝒫` have `R`-coefficients).-/
+/-- The conjugate of a zero is a zero (the members of `𝒫` have `R`-coefficients).
+@isnad1 id=mem.1h4v.s9.a1c3008286b3 from=translated src=- shape=e4adcffb vocab=ac5ede15
+-/
 theorem conjTuple_mem_zer {Ps : Finset (MvPolynomial (Fin k) R)} {x : Fin k → Ri R}
     (hx : x ∈ zerOfFinset (Ri R) Ps) : conjTuple x ∈ zerOfFinset (Ri R) Ps := by
   intro p hp
   rw [aeval_conjTuple, hx p hp, map_zero]
 
+/--
+@isnad1 id=mem.2h4v.s10.55b804b488be from=translated src=- shape=d7d01a73 vocab=114587a3
+-/
 theorem conjTuple_mem_toFinset {Ps : Finset (MvPolynomial (Fin k) R)}
     (hfin : (zerOfFinset (Ri R) Ps).Finite) {x : Fin k → Ri R}
     (hx : x ∈ hfin.toFinset) : conjTuple x ∈ hfin.toFinset :=
@@ -118,6 +134,9 @@ noncomputable def mvHerRoots (Ps : Finset (MvPolynomial (Fin k) R))
     Finset (Fin k → Ri R) :=
   hfin.toFinset.filter (fun x => MvPolynomial.aeval x Q ≠ 0)
 
+/--
+@isnad1 id=iff.1h5v.s11.1ce17747002a from=translated src=- shape=30ac4219 vocab=fe8fc7cc
+-/
 theorem mem_mvHerRoots_iff {Ps : Finset (MvPolynomial (Fin k) R)}
     {Q : MvPolynomial (Fin k) R} {hfin : (zerOfFinset (Ri R) Ps).Finite} {x : Fin k → Ri R} :
     x ∈ mvHerRoots Ps Q hfin ↔ x ∈ zerOfFinset (Ri R) Ps ∧ MvPolynomial.aeval x Q ≠ 0 := by
@@ -127,6 +146,9 @@ theorem mem_mvHerRoots_iff {Ps : Finset (MvPolynomial (Fin k) R)}
 
 /-! ### Real/imaginary arithmetic in `Ri R` (helpers; mirror §4.3) -/
 
+/--
+@isnad1 id=eq.1h2v.s12.b15280c0a3de from=translated src=- shape=3bcbbdbc vocab=cbb8d9f3
+-/
 theorem algebraMap_reL_of_conj_fixed {z : Ri R} (hz : Ri.conj R z = z) :
     algebraMap R (Ri R) (Ri.reL z) = z := by
   obtain ⟨a, hra⟩ := Ri.conj_fixed_mem_range_ordered z hz
@@ -135,6 +157,9 @@ theorem algebraMap_reL_of_conj_fixed {z : Ri R} (hz : Ri.conj R z = z) :
       Ri.reL_of]
   rw [hreL, hra]
 
+/--
+@isnad1 id=eq.0h3v.s12.7da6584932ad from=translated src=- shape=0ad65bb7 vocab=d68a30dc
+-/
 theorem reL_mul (c d : Ri R) :
     Ri.reL (c * d) = Ri.reL c * Ri.reL d - Ri.imL c * Ri.imL d := by
   have hi2 : Ri.i R ^ 2 = -1 := Ri.i_sq R
@@ -151,6 +176,9 @@ theorem reL_mul (c d : Ri R) :
           * AdjoinRoot.of (Polynomial.X ^ 2 + 1 : Polynomial R) (Ri.imL d)) * hi2]
   rw [Ri.reL_lin]
 
+/--
+@isnad1 id=eq.0h3v.s12.d21c6b43fc9e from=translated src=- shape=062b6080 vocab=8bf67038
+-/
 theorem imL_mul (c d : Ri R) :
     Ri.imL (c * d) = Ri.reL c * Ri.imL d + Ri.imL c * Ri.reL d := by
   have hi2 : Ri.i R ^ 2 = -1 := Ri.i_sq R
@@ -167,6 +195,9 @@ theorem imL_mul (c d : Ri R) :
           * AdjoinRoot.of (Polynomial.X ^ 2 + 1 : Polynomial R) (Ri.imL d)) * hi2]
   rw [Ri.imL_lin]
 
+/--
+@isnad1 id=eq.0h2v.s12.cf1bce9a3f0d from=translated src=- shape=2d70ef43 vocab=10fbb0df
+-/
 theorem conj_add_self (c : Ri R) :
     c + Ri.conj R c = algebraMap R (Ri R) (2 * Ri.reL c) := by
   obtain ⟨a, b, hab⟩ := Ri.repr_exists c
@@ -176,9 +207,15 @@ theorem conj_add_self (c : Ri R) :
   rw [hreL, hab, Ri.conj_repr, two_mul, map_add]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s11.65bd50ce1581 from=translated src=- shape=2bcdabf6 vocab=2718bc3e
+-/
 theorem reL_sq (c : Ri R) : Ri.reL (c ^ 2) = Ri.reL c ^ 2 - Ri.imL c ^ 2 := by
   rw [show (c : Ri R) ^ 2 = c * c from pow_two c, reL_mul]; ring
 
+/--
+@isnad1 id=eq.0h2v.s11.b691ae76812c from=translated src=- shape=7633a0ce vocab=70de2984
+-/
 theorem reL_conj (c : Ri R) : Ri.reL (Ri.conj R c) = Ri.reL c := by
   obtain ⟨a, b, hab⟩ := Ri.repr_exists c
   have hreL : Ri.reL c = a := by
@@ -190,6 +227,9 @@ theorem reL_conj (c : Ri R) : Ri.reL (Ri.conj R c) = Ri.reL c := by
   rw [sub_eq_add_neg, ← neg_mul, ← map_neg]
   rw [Ri.reL_lin a (-b)]
 
+/--
+@isnad1 id=eq.0h2v.s11.79b60d7ce8de from=translated src=- shape=e0fb0bb3 vocab=3875d030
+-/
 theorem imL_conj (x : Ri R) : Ri.imL (Ri.conj R x) = - Ri.imL x := by
   obtain ⟨a, b, hab⟩ := Ri.repr_exists x
   rw [hab, Ri.conj_repr]
@@ -198,6 +238,9 @@ theorem imL_conj (x : Ri R) : Ri.imL (Ri.conj R x) = - Ri.imL x := by
   rw [sub_eq_add_neg, ← neg_mul, ← map_neg]
   rw [Ri.imL_lin a b, Ri.imL_lin a (-b)]
 
+/--
+@isnad1 id=ne.1h2v.s11.278f04654acb from=translated src=- shape=654a8285 vocab=45409256
+-/
 theorem imL_ne_zero_of_not_real {x : Ri R} (hx : Ri.conj R x ≠ x) : Ri.imL x ≠ 0 := by
   intro h
   apply hx
@@ -216,7 +259,9 @@ noncomputable def sepElt (Ps : Finset (MvPolynomial (Fin k) R))
     [CharZero R] (hfin : (zerOfFinset (Ri R) Ps).Finite) : MvPolynomial (Fin k) R :=
   linearForm (K := R) (lemma_4_90 (K := R) (Ri R) Ps hfin).choose
 
-/-- The chosen separating element separates the zeros: distinct zeros get distinct values.-/
+/-- The chosen separating element separates the zeros: distinct zeros get distinct values.
+@isnad1 id=eq.4h5v.s11.9893f8a2ad5c from=translated src=- shape=c6371b68 vocab=bcd3792e
+-/
 theorem sepElt_separating (Ps : Finset (MvPolynomial (Fin k) R)) [CharZero R]
     (hfin : (zerOfFinset (Ri R) Ps).Finite) {x y : Fin k → Ri R}
     (hx : x ∈ zerOfFinset (Ri R) Ps) (hy : y ∈ zerOfFinset (Ri R) Ps)
@@ -233,7 +278,9 @@ noncomputable def posRep (Ps : Finset (MvPolynomial (Fin k) R)) [CharZero R]
     (hfin : (zerOfFinset (Ri R) Ps).Finite) (x : Fin k → Ri R) : Prop :=
   0 < Ri.imL (MvPolynomial.aeval x (sepElt Ps hfin))
 
-/-- For a non-real zero `x`, the separating value `a(x)` is non-real.-/
+/-- For a non-real zero `x`, the separating value `a(x)` is non-real.
+@isnad1 id=ne.3h4v.s11.2a56bdf88beb from=translated src=- shape=b79ac889 vocab=2d29bf63
+-/
 theorem imL_sepVal_ne_zero (Ps : Finset (MvPolynomial (Fin k) R)) [CharZero R]
     (hfin : (zerOfFinset (Ri R) Ps).Finite) {x : Fin k → Ri R}
     (hx : x ∈ zerOfFinset (Ri R) Ps) (hxr : conjTuple x ≠ x) :
@@ -248,7 +295,9 @@ theorem imL_sepVal_ne_zero (Ps : Finset (MvPolynomial (Fin k) R)) [CharZero R]
     rw [aeval_conjTuple, hfix]
   exact sepElt_separating Ps hfin hcx hx hval
 
-/-- The selector splits a non-real conjugate pair: `posRep x ↔ ¬ posRep (conjTuple x)`.-/
+/-- The selector splits a non-real conjugate pair: `posRep x ↔ ¬ posRep (conjTuple x)`.
+@isnad1 id=iff.3h4v.s9.ea8dc2c67481 from=translated src=- shape=5f6bf0a1 vocab=b8276487
+-/
 theorem posRep_conjTuple_iff (Ps : Finset (MvPolynomial (Fin k) R)) [CharZero R]
     (hfin : (zerOfFinset (Ri R) Ps).Finite) {x : Fin k → Ri R}
     (hx : x ∈ zerOfFinset (Ri R) Ps) (hxr : conjTuple x ≠ x) :
@@ -278,19 +327,26 @@ noncomputable def mvRep (Ps : Finset (MvPolynomial (Fin k) R))
     [Module.Finite R (quotPolys Ps)] (j : Fin (mvN Ps)) : MvPolynomial (Fin k) R :=
   (Ideal.Quotient.mk_surjective (mvBasis Ps j)).choose
 
+/--
+@isnad1 id=eq.0h4v.s10.9d4a84f79a67 from=translated src=- shape=69beec84 vocab=2000c535
+-/
 theorem mvRep_spec (Ps : Finset (MvPolynomial (Fin k) R))
     [Module.Finite R (quotPolys Ps)] (j : Fin (mvN Ps)) :
     Ideal.Quotient.mk (idealOfPolys Ps) (mvRep Ps j) = mvBasis Ps j :=
   (Ideal.Quotient.mk_surjective (mvBasis Ps j)).choose_spec
 
-/-- `valueAt (B j) x = aeval x (ω j)`.-/
+/-- `valueAt (B j) x = aeval x (ω j)`.
+@isnad1 id=eq.1h5v.s11.47cd03b1bd95 from=translated src=- shape=5515d27c vocab=27e85cb9
+-/
 theorem valueAt_mvBasis (Ps : Finset (MvPolynomial (Fin k) R))
     [Module.Finite R (quotPolys Ps)] {x : Fin k → Ri R} (hx : x ∈ zerOfFinset (Ri R) Ps)
     (j : Fin (mvN Ps)) :
     valueAt (Ri R) Ps (mvBasis Ps j) x hx = MvPolynomial.aeval x (mvRep Ps j) := by
   rw [← mvRep_spec Ps j, valueAt_mk]
 
-/-- `valueAt` of any `g ∈ A` expands over the basis: `g(x) = ∑_j (B.repr g j) · ω_j(x)`.-/
+/-- `valueAt` of any `g ∈ A` expands over the basis: `g(x) = ∑_j (B.repr g j) · ω_j(x)`.
+@isnad1 id=eq.1h5v.s12.ca752b7f5f67 from=translated src=- shape=7901641f vocab=cd28ab95
+-/
 theorem valueAt_eq_sum (Ps : Finset (MvPolynomial (Fin k) R))
     [Module.Finite R (quotPolys Ps)] {x : Fin k → Ri R} (hx : x ∈ zerOfFinset (Ri R) Ps)
     (g : quotPolys Ps) :
@@ -349,11 +405,16 @@ def mvHerDotLM {N : ℕ} (v : Fin N → R) : (Fin N → R) →ₗ[R] R where
   map_add' := dotProduct_add v
   map_smul' c f := by simp [dotProduct_smul]
 
+/--
+@isnad1 id=eq.0h4v.s8.c3044151ae0b from=translated src=- shape=5d7c26cd vocab=27f87ee8
+-/
 theorem mvHerDotLM_apply {N : ℕ} (v f : Fin N → R) : mvHerDotLM v f = v ⬝ᵥ f := rfl
 
 /-! ### Conjugation facts on `mvHerRoots` -/
 
-/-- Conjugation maps `mvHerRoots` to itself.-/
+/-- Conjugation maps `mvHerRoots` to itself.
+@isnad1 id=mem.2h5v.s9.c55ae02209ad from=translated src=- shape=0867b59e vocab=6ea0105d
+-/
 theorem conjTuple_mem_mvHerRoots {Ps : Finset (MvPolynomial (Fin k) R)}
     {Q : MvPolynomial (Fin k) R} {hfin : (zerOfFinset (Ri R) Ps).Finite} {x : Fin k → Ri R}
     (hx : x ∈ mvHerRoots Ps Q hfin) : conjTuple x ∈ mvHerRoots Ps Q hfin := by
@@ -365,7 +426,9 @@ theorem conjTuple_mem_mvHerRoots {Ps : Finset (MvPolynomial (Fin k) R)}
 
 /-! ### Independence via a separating element -/
 
-/-- The number of distinct zeros in `mvHerRoots` is at most `#zeros = n`.-/
+/-- The number of distinct zeros in `mvHerRoots` is at most `#zeros = n`.
+@isnad1 id=le.1h4v.s9.485d75c913bf from=translated src=- shape=71b58f3b vocab=5e6d4de7
+-/
 theorem card_mvHerRoots_le (Ps : Finset (MvPolynomial (Fin k) R))
     (Q : MvPolynomial (Fin k) R) (hfin : (zerOfFinset (Ri R) Ps).Finite) :
     (mvHerRoots Ps Q hfin).card ≤ hfin.toFinset.card := by
@@ -374,7 +437,9 @@ theorem card_mvHerRoots_le (Ps : Finset (MvPolynomial (Fin k) R))
 
 /-- **Independence of the evaluation vectors.** The vectors `(j ↦ ω_j(x))` for the distinct zeros
 `x ∈ mvHerRoots` are `Ri R`-linearly independent. (Separation makes the values `a(x)` distinct, so
-a Vandermonde argument in `a(x)` forces all coefficients to vanish.)-/
+a Vandermonde argument in `a(x)` forces all coefficients to vanish.)
+@isnad1 id=linearin.1h4v.s11.e6ef63ef3651 from=translated src=- shape=1b5a684d vocab=55724a56
+-/
 theorem mvEval_indep (Ps : Finset (MvPolynomial (Fin k) R)) [CharZero R]
     [Module.Finite R (quotPolys Ps)] (Q : MvPolynomial (Fin k) R)
     (hfin : (zerOfFinset (Ri R) Ps).Finite) :
@@ -450,19 +515,25 @@ noncomputable def mvHerQuad (Ps : Finset (MvPolynomial (Fin k) R))
     QuadraticForm R (Fin (mvN Ps) → R) :=
   (hermiteQuad Ps (Ideal.Quotient.mk (idealOfPolys Ps) Q)).basisRepr (mvBasis Ps)
 
-/-- `hermiteQuad Ps Q' g = hermiteBilin Ps Q' g g`.-/
+/-- `hermiteQuad Ps Q' g = hermiteBilin Ps Q' g g`.
+@isnad1 id=eq.0h5v.s11.409d23aeb9b3 from=translated src=- shape=f1b68d00 vocab=9d5385aa
+-/
 theorem hermiteQuad_eq_bilin (Ps : Finset (MvPolynomial (Fin k) R)) (Q' g : quotPolys Ps) :
     hermiteQuad Ps Q' g = hermiteBilin Ps Q' g g := by
   rw [hermiteQuad, LinearMap.BilinMap.toQuadraticMap_apply]
 
-/-- The isometry between `hermiteQuad Ps (mk Q)` and its basis representation `mvHerQuad`.-/
+/-- The isometry between `hermiteQuad Ps (mk Q)` and its basis representation `mvHerQuad`.
+@isnad1 id=equivale.0h4v.s10.2fdc373951e8 from=translated src=- shape=5d02f9cc vocab=38e3ff6b
+-/
 theorem mvHerQuad_equiv (Ps : Finset (MvPolynomial (Fin k) R))
     [Module.Finite R (quotPolys Ps)] (Q : MvPolynomial (Fin k) R) :
     QuadraticMap.Equivalent (hermiteQuad Ps (Ideal.Quotient.mk (idealOfPolys Ps) Q))
       (mvHerQuad Ps Q) :=
   ⟨QuadraticMap.isometryEquivBasisRepr _ (mvBasis Ps)⟩
 
-/-- Reindexing helper (local copy of §4.3 `card_filter_equivFin`).-/
+/-- Reindexing helper (local copy of §4.3 `card_filter_equivFin`).
+@isnad1 id=eq.0h3v.s8.9873fb4213b0 from=translated src=- shape=4663cf80 vocab=d5b744fe
+-/
 theorem card_filter_equivFin {α : Type*} (s : Finset α) (P : α → Prop) [DecidablePred P] :
     (Finset.univ.filter (fun j : Fin s.card => P (s.equivFin.symm j : α))).card
       = (s.filter P).card := by
@@ -482,7 +553,9 @@ theorem card_filter_equivFin {α : Type*} (s : Finset α) (P : α → Prop) [Dec
   · intro a ha
     simp
 
-/-- Local copy of §4.3 `card_pos_sub_card_neg_eq_sum_sign`.-/
+/-- Local copy of §4.3 `card_pos_sub_card_neg_eq_sum_sign`.
+@isnad1 id=eq.1h4v.s8.d512016295b6 from=translated src=- shape=66ff54ed vocab=eb8c9fff
+-/
 theorem card_pos_sub_card_neg_eq_sum_sign {α : Type*} (s : Finset α) (c : α → R)
     (hc : ∀ x ∈ s, c x ≠ 0) :
     ((s.filter (fun x => 0 < c x)).card : ℤ) - (s.filter (fun x => c x < 0)).card
@@ -496,7 +569,9 @@ theorem card_pos_sub_card_neg_eq_sum_sign {α : Type*} (s : Finset α) (c : α �
 
 /-! ### The signature sum equals the Tarski query -/
 
-/-- A conj-fixed tuple has each coordinate conj-fixed, hence comes from a real point.-/
+/-- A conj-fixed tuple has each coordinate conj-fixed, hence comes from a real point.
+@isnad1 id=eq.1h4v.s11.60b391810c13 from=translated src=- shape=209c1793 vocab=9af18ce1
+-/
 theorem algebraMap_reL_tuple_of_conj_fixed {x : Fin k → Ri R} (hxr : conjTuple x = x) (i : Fin k) :
     algebraMap R (Ri R) (Ri.reL (x i)) = x i := by
   apply algebraMap_reL_of_conj_fixed
@@ -504,7 +579,9 @@ theorem algebraMap_reL_tuple_of_conj_fixed {x : Fin k → Ri R} (hxr : conjTuple
   rwa [conjTuple_apply] at this
 
 omit [IsRealClosed R] in
-/-- `aeval (algebraMap ∘ y) P = algebraMap (aeval y P)` for `y : Fin k → R`.-/
+/-- `aeval (algebraMap ∘ y) P = algebraMap (aeval y P)` for `y : Fin k → R`.
+@isnad1 id=eq.0h4v.s12.cf681fd099c7 from=translated src=- shape=a6eb14e9 vocab=1d02820e
+-/
 theorem aeval_algebraMap_tuple (P : MvPolynomial (Fin k) R) (y : Fin k → R) :
     MvPolynomial.aeval (fun i => algebraMap R (Ri R) (y i)) P
       = algebraMap R (Ri R) (MvPolynomial.aeval y P) := by
@@ -518,7 +595,9 @@ theorem aeval_algebraMap_tuple (P : MvPolynomial (Fin k) R) (y : Fin k → R) :
   rw [AlgHom.comp_apply, IsScalarTower.toAlgHom_apply] at this
   exact this.symm
 
-/-- A real zero `y` over `R` gives a conj-fixed zero `algebraMap ∘ y` over `C`.-/
+/-- A real zero `y` over `R` gives a conj-fixed zero `algebraMap ∘ y` over `C`.
+@isnad1 id=mem.1h4v.s11.131f93a76c67 from=translated src=- shape=62c00c83 vocab=a4c98a53
+-/
 theorem algebraMap_tuple_mem_zer {Ps : Finset (MvPolynomial (Fin k) R)} {y : Fin k → R}
     (hy : y ∈ zerOfFinset R Ps) :
     (fun i => algebraMap R (Ri R) (y i)) ∈ zerOfFinset (Ri R) Ps := by
@@ -530,7 +609,9 @@ end MvHermite
 /-- **Finiteness of the complex zero set from finite-dimensionality.** When `A = R[X]/Ideal(𝒫, R)`
 is finite-dimensional, the set `Zer(𝒫, Cᵏ)` of zeros over the algebraic closure `C = Ri R` is
 finite. This is the `R`-finiteness direction of Theorem 4.86 (`FiniteDimensional R A ↔
-Zer(𝒫, Cᵏ).Finite`), so `hfinC` need not be assumed separately.-/
+Zer(𝒫, Cᵏ).Finite`), so `hfinC` need not be assumed separately.
+@isnad1 id=finite.0h3v.s9.cab442aa73fa from=translated src=- shape=20db9345 vocab=f686441c
+-/
 theorem zerOfFinset_finite_of_moduleFinite (Ps : Finset (MvPolynomial (Fin k) R))
     [Module.Finite R (quotPolys Ps)] : (zerOfFinset (Ri R) Ps).Finite := by
   have : IsAlgClosed (Ri R) := isAlgClosed_Ri

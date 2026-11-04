@@ -68,17 +68,26 @@ private theorem hcond_of_mem (hp : p ∈ (q - 1).primeFactors) :
   have hle := Nat.le_of_dvd (by omega) hdvd
   omega
 
+/--
+@isnad1 id=eq.1h2v.s6.a3cd80a03d0e from=translated src=- shape=4778476b vocab=4536df66
+-/
 theorem val_zetaPQUnit (hp : p ∈ (q - 1).primeFactors) :
     ((zetaPQUnit p q : (CycPQ p q)ˣ) : CycPQ p q) = zetaP p q := by
   rw [zetaPQUnit, dite_eq_left (hcond_of_mem hp)]
   exact IsUnit.unit_spec _
 
+/--
+@isnad1 id=isprimit.1h2v.s7.7cb954a94dc8 from=translated src=- shape=62d82dc5 vocab=599ee36e
+-/
 theorem isPrimitiveRoot_zetaPQUnit (hp : p ∈ (q - 1).primeFactors) :
     IsPrimitiveRoot (zetaPQUnit p q) p := by
   rw [← IsPrimitiveRoot.coe_units_iff, val_zetaPQUnit hp]
   have : Fact p.Prime := ⟨(hcond_of_mem hp).1⟩
   exact isPrimitiveRoot_zetaP p q (hcond_of_mem hp).2.2
 
+/--
+@isnad1 id=mem.1h2v.s8.cb07c3619bd3 from=translated src=- shape=1c3743c0 vocab=9dfd5f14
+-/
 theorem zetaPQUnit_mem (hp : p ∈ (q - 1).primeFactors) :
     zetaPQUnit p q ∈ rootsOfUnity (Fintype.card (ZMod q)ˣ) (CycPQ p q) := by
   refine mem_rootsOfUnity_card_units_of_dvd ?_
@@ -88,6 +97,9 @@ theorem zetaPQUnit_mem (hp : p ∈ (q - 1).primeFactors) :
   have : Fact p.Prime := ⟨(hcond_of_mem hp).1⟩
   exact (isPrimitiveRoot_zetaP p q (hcond_of_mem hp).2.2).pow_eq_one
 
+/--
+@isnad1 id=isprimit.1h2v.s6.5cde2a2c60c8 from=translated src=- shape=1b0f004e vocab=bd196c63
+-/
 theorem isPrimitiveRoot_zetaQPQ (hp : p ∈ (q - 1).primeFactors) :
     IsPrimitiveRoot (zetaQ p q) q := by
   have : Fact p.Prime := ⟨(hcond_of_mem hp).1⟩
@@ -125,6 +137,9 @@ noncomputable def towerToCycM (hp : p ∈ (q - 1).primeFactors) :
     exact eval₂_cyclotomic_int' (Fact.out (p := q.Prime)).pos
       isPrimitiveRoot_zetaQFam)
 
+/--
+@isnad1 id=eq.1h2v.s9.73ac0d844e94 from=translated src=- shape=3107f463 vocab=38e3be10
+-/
 @[simp] theorem towerToCycM_zetaP (hp : p ∈ (q - 1).primeFactors) :
     towerToCycM hp (zetaP p q)
       = ((zetaPFam q p : (CycM ((q - 1) * q))ˣ) : CycM ((q - 1) * q)) := by
@@ -133,11 +148,16 @@ noncomputable def towerToCycM (hp : p ∈ (q - 1).primeFactors) :
       = AdjoinRoot.of _ (AdjoinRoot.root _) from rfl,
     AdjoinRoot.lift_of, towerToCycMP, AdjoinRoot.lift_root]
 
+/--
+@isnad1 id=eq.1h2v.s8.e63f068bb19b from=translated src=- shape=6c85e6cc vocab=8713c740
+-/
 @[simp] theorem towerToCycM_zetaQ (hp : p ∈ (q - 1).primeFactors) :
     towerToCycM hp (zetaQ p q) = zetaQFam q := by
   rw [zetaQ, towerToCycM, AdjoinRoot.lift_root]
 
-/-- The character construction commutes with the transfer.-/
+/-- The character construction commutes with the transfer.
+@isnad1 id=eq.2h3v.s9.799f7ef290c0 from=translated src=- shape=3d18e05a vocab=0dc65b49
+-/
 theorem towerToCycM_char (hp : p ∈ (q - 1).primeFactors)
     {g : (ZMod q)ˣ} (hg : ∀ x, x ∈ Subgroup.zpowers g) :
     (MulChar.ofRootOfUnity (zetaPQUnit_mem hp) hg).ringHomComp
@@ -147,7 +167,9 @@ theorem towerToCycM_char (hp : p ∈ (q - 1).primeFactors)
     MulChar.ofRootOfUnity_spec, MulChar.ofRootOfUnity_spec,
     val_zetaPQUnit hp, towerToCycM_zetaP hp]
 
-/-- The Gauss sum commutes with the transfer.-/
+/-- The Gauss sum commutes with the transfer.
+@isnad1 id=eq.2h3v.s9.50c52bbf76be from=translated src=- shape=8b5544c0 vocab=2f3bfe7f
+-/
 theorem towerToCycM_gaussSum (hp : p ∈ (q - 1).primeFactors)
     {g : (ZMod q)ˣ} (hg : ∀ x, x ∈ Subgroup.zpowers g) :
     towerToCycM hp (gaussSum
@@ -174,7 +196,9 @@ congruence in a pair tower `ℤ[ζ_p, ζ_q]`, where Algorithm 4.4.5
 computes.  The per-`p` order climbing and the per-pair character
 pinning run in the towers; the character values transfer to
 `ℤ[ζ_((q−1)q)]`, where the per-`q` product-character step and the
-final CRT/divisor-search argument conclude.-/
+final CRT/divisor-search argument conclude.
+@isnad1 id=ex.15h10v.s10.80abb7ea4966 from=translated src=- shape=80588faa vocab=156140f6
+-/
 theorem theorem_4_4_6_composite_tower
     {n I F : ℕ} (hn1 : 1 < n) (hncomp : ¬n.Prime)
     (hI : Squarefree I) (hF : Squarefree F)

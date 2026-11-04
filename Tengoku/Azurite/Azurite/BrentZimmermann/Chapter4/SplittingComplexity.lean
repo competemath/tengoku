@@ -54,15 +54,23 @@ open Real
 /-- `T(n) = (n/d) M + √d M + d n`: argument reduction, non-scalar and scalar multiplications.-/
 noncomputable def splitCost (n d M : ℝ) : ℝ := n / d * M + Real.sqrt d * M + d * n
 
+/--
+@isnad1 id=eq.1h1v.s6.273c4b37a5d3 from=translated src=- shape=2a8f9aee vocab=c0c964ed
+-/
 theorem rpow_two_thirds_sqrt {n : ℝ} (hn : 0 ≤ n) :
     Real.sqrt (n ^ (2 / 3 : ℝ)) = n ^ (1 / 3 : ℝ) := by
   rw [Real.sqrt_eq_rpow, ← Real.rpow_mul hn]; norm_num
 
+/--
+@isnad1 id=eq.1h1v.s6.12bb08e007aa from=translated src=- shape=a72160b4 vocab=ffba070c
+-/
 theorem div_rpow_two_thirds {n : ℝ} (hn : 0 < n) : n / n ^ (2 / 3 : ℝ) = n ^ (1 / 3 : ℝ) := by
   rw [div_eq_iff (by positivity), ← Real.rpow_add hn]; norm_num
 
 /-- For every `d ≥ 1` the cost is at least `n^(1/3) M`: below `d = n^(2/3)` the reduction term
-is already that large, above it the non-scalar term is.-/
+is already that large, above it the non-scalar term is.
+@isnad1 id=le.3h3v.s6.35280b0db560 from=translated src=- shape=22842baa vocab=b445e8ee
+-/
 theorem splitCost_ge {n d M : ℝ} (hn : 1 ≤ n) (hd : 1 ≤ d) (hM : 0 ≤ M) :
     n ^ (1 / 3 : ℝ) * M ≤ splitCost n d M := by
   have hn0 : 0 < n := by linarith
@@ -79,7 +87,9 @@ theorem splitCost_ge {n d M : ℝ} (hn : 1 ≤ n) (hd : 1 ≤ d) (hM : 0 ≤ M) 
     have h1 : 0 ≤ n / d * M := by positivity
     nlinarith [mul_le_mul_of_nonneg_right this hM]
 
-/-- Case 1, `M ≥ n^(4/3)`, with `d = n^(2/3)`: `T ≤ 3 n^(1/3) M`, i.e. `T = O(n^(1/3) M(n))`.-/
+/-- Case 1, `M ≥ n^(4/3)`, with `d = n^(2/3)`: `T ≤ 3 n^(1/3) M`, i.e. `T = O(n^(1/3) M(n))`.
+@isnad1 id=le.2h2v.s7.bc022b02651f from=translated src=- shape=273d8e0d vocab=b445e8ee
+-/
 theorem splitCost_le_case1 {n M : ℝ} (hn : 1 ≤ n) (hM : n ^ (4 / 3 : ℝ) ≤ M) :
     splitCost n (n ^ (2 / 3 : ℝ)) M ≤ 3 * n ^ (1 / 3 : ℝ) * M := by
   have hn0 : 0 < n := by linarith
@@ -92,7 +102,9 @@ theorem splitCost_le_case1 {n M : ℝ} (hn : 1 ≤ n) (hM : n ^ (4 / 3 : ℝ) �
   rw [h3]
   nlinarith [mul_le_mul_of_nonneg_left hM h13]
 
-/-- Case 2, `n ≤ M ≤ n^(4/3)`, with `d = √M`: `T ≤ 3 n √M`, i.e. `T = Θ(n √M(n))`.-/
+/-- Case 2, `n ≤ M ≤ n^(4/3)`, with `d = √M`: `T ≤ 3 n √M`, i.e. `T = Θ(n √M(n))`.
+@isnad1 id=le.3h2v.s6.e49bee876571 from=translated src=- shape=85833f26 vocab=a8271e9a
+-/
 theorem splitCost_le_case2 {n M : ℝ} (hn : 1 ≤ n) (hnM : n ≤ M) (hM : M ≤ n ^ (4 / 3 : ℝ)) :
     splitCost n (Real.sqrt M) M ≤ 3 * n * Real.sqrt M := by
   have hn0 : 0 < n := by linarith
@@ -130,7 +142,9 @@ theorem splitCost_le_case2 {n M : ℝ} (hn : 1 ≤ n) (hnM : n ≤ M) (hM : M �
   rw [h1, h3]
   linarith
 
-/-- `n √M ≥ n^(3/2)` once `M ≥ n`: case 2 is still well above `n^(3/2)`.-/
+/-- `n √M ≥ n^(3/2)` once `M ≥ n`: case 2 is still well above `n^(3/2)`.
+@isnad1 id=le.2h2v.s6.5290e06e0520 from=translated src=- shape=62fce0aa vocab=72659d50
+-/
 theorem rpow_three_halves_le_mul_sqrt {n M : ℝ} (hn : 1 ≤ n) (hnM : n ≤ M) :
     n ^ (3 / 2 : ℝ) ≤ n * Real.sqrt M := by
   have hn0 : 0 < n := by linarith
@@ -143,7 +157,9 @@ theorem rpow_three_halves_le_mul_sqrt {n M : ℝ} (hn : 1 ≤ n) (hnM : n ≤ M)
 
 /-! ### Which multiplication algorithms fall in case 1 -/
 
-/-- `4/3 < log_b a ↔ b⁴ < a³` for `b > 1`, `a > 0`.-/
+/-- `4/3 < log_b a ↔ b⁴ < a³` for `b > 1`, `a > 0`.
+@isnad1 id=iff.2h2v.s6.2a4da86f4fbd from=translated src=- shape=e6dadc0b vocab=4d5819a4
+-/
 theorem four_thirds_lt_logb_iff {a b : ℝ} (hb : 1 < b) (ha : 0 < a) :
     4 / 3 < Real.logb b a ↔ b ^ 4 < a ^ 3 := by
   have hlb : 0 < Real.log b := Real.log_pos hb
@@ -159,27 +175,39 @@ theorem four_thirds_lt_logb_iff {a b : ℝ} (hb : 1 < b) (ha : 0 < a) :
     rw [h4, h3] at this
     linarith
 
-/-- Karatsuba: `lg 3 > 4/3` (`27 > 16`).-/
+/-- Karatsuba: `lg 3 > 4/3` (`27 > 16`).
+@isnad1 id=lt.0h0v.s5.3f5fdb6b3492 from=translated src=- shape=bec3b7c0 vocab=7a5c2475
+-/
 theorem karatsuba_exponent : 4 / 3 < Real.logb 2 3 :=
   (four_thirds_lt_logb_iff (by norm_num) (by norm_num)).mpr (by norm_num)
 
-/-- Toom–Cook 3: `log_3 5 > 4/3` (`125 > 81`).-/
+/-- Toom–Cook 3: `log_3 5 > 4/3` (`125 > 81`).
+@isnad1 id=lt.0h0v.s5.bea40763b541 from=translated src=- shape=bec3b7c0 vocab=7a5c2475
+-/
 theorem toom3_exponent : 4 / 3 < Real.logb 3 5 :=
   (four_thirds_lt_logb_iff (by norm_num) (by norm_num)).mpr (by norm_num)
 
-/-- Toom–Cook 4: `log_4 7 > 4/3` (`343 > 256`).-/
+/-- Toom–Cook 4: `log_4 7 > 4/3` (`343 > 256`).
+@isnad1 id=lt.0h0v.s5.8733992eca21 from=translated src=- shape=bec3b7c0 vocab=7a5c2475
+-/
 theorem toom4_exponent : 4 / 3 < Real.logb 4 7 :=
   (four_thirds_lt_logb_iff (by norm_num) (by norm_num)).mpr (by norm_num)
 
-/-- Toom–Cook 5: `log_5 9 > 4/3` (`729 > 625`).-/
+/-- Toom–Cook 5: `log_5 9 > 4/3` (`729 > 625`).
+@isnad1 id=lt.0h0v.s5.8a308a6f6eec from=translated src=- shape=bec3b7c0 vocab=7a5c2475
+-/
 theorem toom5_exponent : 4 / 3 < Real.logb 5 9 :=
   (four_thirds_lt_logb_iff (by norm_num) (by norm_num)).mpr (by norm_num)
 
-/-- Toom–Cook 6: `log_6 11 > 4/3` (`1331 > 1296`, barely).-/
+/-- Toom–Cook 6: `log_6 11 > 4/3` (`1331 > 1296`, barely).
+@isnad1 id=lt.0h0v.s5.7ed2839ec7b1 from=translated src=- shape=bec3b7c0 vocab=7a5c2475
+-/
 theorem toom6_exponent : 4 / 3 < Real.logb 6 11 :=
   (four_thirds_lt_logb_iff (by norm_num) (by norm_num)).mpr (by norm_num)
 
-/-- Toom–Cook 7: `log_7 13 < 4/3` (`2197 < 2401`), so it falls in case 2.-/
+/-- Toom–Cook 7: `log_7 13 < 4/3` (`2197 < 2401`), so it falls in case 2.
+@isnad1 id=lt.0h0v.s5.a69cfe981a6e from=translated src=- shape=08acc9bc vocab=7a5c2475
+-/
 theorem toom7_exponent : Real.logb 7 13 < 4 / 3 := by
   have hlb : 0 < Real.log 7 := Real.log_pos (by norm_num)
   rw [Real.logb, div_lt_iff₀ hlb]

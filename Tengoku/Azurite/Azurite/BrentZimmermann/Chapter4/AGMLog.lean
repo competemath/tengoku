@@ -55,7 +55,9 @@ noncomputable def agmLog (x : ℝ) : ℝ := (π / 2) / AGM 1 (4 / x)
 
 variable {x : ℝ}
 
-/-- `agmLog x = K'(4/x)` exactly, for `x ≥ 4`.-/
+/-- `agmLog x = K'(4/x)` exactly, for `x ≥ 4`.
+@isnad1 id=eq.1h1v.s6.81b48097108d from=translated src=- shape=3cb52acd vocab=52b0e1a6
+-/
 theorem agmLog_eq_ellipticK (hx : 4 ≤ x) : agmLog x = ellipticK (Real.sqrt (1 - (4 / x) ^ 2)) := by
   have hx0 : 0 < x := by linarith
   have hk : 0 < 4 / x := by positivity
@@ -66,7 +68,9 @@ theorem agmLog_eq_ellipticK (hx : 4 ≤ x) : agmLog x = ellipticK (Real.sqrt (1 
   rw [div_eq_mul_one_div, h]
   field_simp
 
-/-- `agmLog x = ∫_0^{π/2} dθ/√(cos²θ + (4/x)² sin²θ)` for `x > 0`.-/
+/-- `agmLog x = ∫_0^{π/2} dθ/√(cos²θ + (4/x)² sin²θ)` for `x > 0`.
+@isnad1 id=eq.1h1v.s7.d5ac82b56279 from=translated src=- shape=da1d3552 vocab=abd4f187
+-/
 theorem agmLog_eq_integral (hx : 0 < x) :
     agmLog x = ∫ θ in (0 : ℝ)..(π / 2),
       (Real.sqrt (Real.cos θ ^ 2 + (4 / x) ^ 2 * Real.sin θ ^ 2))⁻¹ := by
@@ -76,14 +80,22 @@ theorem agmLog_eq_integral (hx : 0 < x) :
 
 /-! ### Argument expansion -/
 
+/--
+@isnad1 id=eq.1h2v.s6.17cb4e1dd8d5 from=translated src=- shape=a198a058 vocab=3f3b3cad
+-/
 theorem log_two_pow_mul (ℓ : ℕ) (hx : 0 < x) :
     Real.log (2 ^ ℓ * x) = ℓ * Real.log 2 + Real.log x := by
   rw [Real.log_mul (by positivity) hx.ne', Real.log_pow]
 
+/--
+@isnad1 id=eq.0h2v.s6.d9127c26b069 from=translated src=- shape=75d59d44 vocab=7002209a
+-/
 theorem log_pow_two_pow (ℓ : ℕ) : Real.log (x ^ 2 ^ ℓ) = 2 ^ ℓ * Real.log x := by
   rw [Real.log_pow]; push_cast; ring
 
-/-- Shifting the argument by `2^ℓ`: the error of `agmLog` is unchanged, `ℓ ln 2` is subtracted.-/
+/-- Shifting the argument by `2^ℓ`: the error of `agmLog` is unchanged, `ℓ ln 2` is subtracted.
+@isnad1 id=le.2h3v.s7.f2d393df96e0 from=translated src=- shape=f3a644a7 vocab=8cb46f06
+-/
 theorem abs_agmLog_two_pow_mul_sub (ℓ : ℕ) (hx : 0 < x) {ε : ℝ}
     (h : |agmLog (2 ^ ℓ * x) - Real.log (2 ^ ℓ * x)| ≤ ε) :
     |agmLog (2 ^ ℓ * x) - ℓ * Real.log 2 - Real.log x| ≤ ε := by
@@ -91,7 +103,9 @@ theorem abs_agmLog_two_pow_mul_sub (ℓ : ℕ) (hx : 0 < x) {ε : ℝ}
   convert h using 2
   ring
 
-/-- Squaring `ℓ` times: `ln x = agmLog(x^(2^ℓ))/2^ℓ`, with the error divided by `2^ℓ`.-/
+/-- Squaring `ℓ` times: `ln x = agmLog(x^(2^ℓ))/2^ℓ`, with the error divided by `2^ℓ`.
+@isnad1 id=le.1h3v.s7.f71c7b4c7f67 from=translated src=- shape=0a70b6bf vocab=dc2f4d54
+-/
 theorem abs_agmLog_pow_sub (ℓ : ℕ) {ε : ℝ}
     (h : |agmLog (x ^ 2 ^ ℓ) - Real.log (x ^ 2 ^ ℓ)| ≤ ε) :
     |agmLog (x ^ 2 ^ ℓ) / 2 ^ ℓ - Real.log x| ≤ ε / 2 ^ ℓ := by
@@ -105,7 +119,9 @@ theorem abs_agmLog_pow_sub (ℓ : ℕ) {ε : ℝ}
 
 variable {a b : ℝ}
 
-/-- The ratio `b_j/a_j` at least square-roots at each step: `√(b_j/a_j) ≤ b_{j+1}/a_{j+1}`.-/
+/-- The ratio `b_j/a_j` at least square-roots at each step: `√(b_j/a_j) ≤ b_{j+1}/a_{j+1}`.
+@isnad1 id=le.3h3v.s6.584af40b803b from=translated src=- shape=c116c54b vocab=e3d3ff58
+-/
 theorem agm_ratio_succ (ha : 0 < a) (hb : 0 < b) (j : ℕ) (hle : agmB a b j ≤ agmA a b j) :
     Real.sqrt (agmB a b j / agmA a b j) ≤ agmB a b (j + 1) / agmA a b (j + 1) := by
   obtain ⟨hA, hB⟩ := agm_pos ha hb j
@@ -115,7 +131,9 @@ theorem agm_ratio_succ (ha : 0 < a) (hb : 0 < b) (j : ℕ) (hle : agmB a b j ≤
   have hsB := Real.sqrt_nonneg (agmB a b j)
   nlinarith [mul_le_mul_of_nonneg_left hle hsB]
 
-/-- `(b/a)^(1/2^j) ≤ b_j/a_j` for `b ≤ a`.-/
+/-- `(b/a)^(1/2^j) ≤ b_j/a_j` for `b ≤ a`.
+@isnad1 id=le.3h3v.s6.46e1c39492da from=translated src=- shape=6f757a47 vocab=9a63344e
+-/
 theorem agm_ratio_rpow_le (ha : 0 < a) (hb : 0 < b) (hab : b ≤ a) (j : ℕ) :
     (b / a) ^ ((1 / 2 : ℝ) ^ j) ≤ agmB a b j / agmA a b j := by
   induction j with
@@ -131,7 +149,9 @@ theorem agm_ratio_rpow_le (ha : 0 < a) (hb : 0 < b) (hab : b ≤ a) (j : ℕ) :
       _ ≤ Real.sqrt (agmB a b j / agmA a b j) := Real.sqrt_le_sqrt ih
       _ ≤ agmB a b (j + 1) / agmA a b (j + 1) := agm_ratio_succ ha hb j hle
 
-/-- Shifting the start: the AGM sequence of `(a_m, b_m)` is the tail of that of `(a, b)`.-/
+/-- Shifting the start: the AGM sequence of `(a_m, b_m)` is the tail of that of `(a, b)`.
+@isnad1 id=eq.0h4v.s5.e20674c3ed67 from=translated src=- shape=749988c3 vocab=d910ad37
+-/
 theorem agmSeq_shift (a b : ℝ) (m : ℕ) :
     ∀ j, agmSeq (agmA a b m) (agmB a b m) j = agmSeq a b (j + m) := by
   intro j
@@ -142,7 +162,9 @@ theorem agmSeq_shift (a b : ℝ) (m : ℕ) :
     rw [ih, show j + 1 + m = j + m + 1 by omega]
     rfl
 
-/-- `a_j ≤ 1` for `j ≥ 1` when starting from `(1, k)` with `k ≤ 1`.-/
+/-- `a_j ≤ 1` for `j ≥ 1` when starting from `(1, k)` with `k ≤ 1`.
+@isnad1 id=le.3h2v.s5.959f1c25a632 from=translated src=- shape=3aa03458 vocab=f7c1bd68
+-/
 theorem agmA_one_le {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) {j : ℕ} (hj : 1 ≤ j) : agmA 1 k j ≤ 1 := by
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
   calc agmA 1 k (j + 1) ≤ agmA 1 k (0 + 1) := agmA_antitone one_pos hk (Nat.zero_le j)
@@ -150,7 +172,9 @@ theorem agmA_one_le {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) {j : ℕ} (hj : 1 ≤
     _ ≤ 1 := by linarith
 
 /-- For `AGM(1, k)` with `2^(−n) ≤ k ≤ 1`: after `m + 1` steps with `n ≤ 2^m`, the ratio
-`b/a` is at least `1/2`, so the iteration is in its quadratic regime.-/
+`b/a` is at least `1/2`, so the iteration is in its quadratic regime.
+@isnad1 id=le.4h3v.s7.3635b35057c0 from=translated src=- shape=5b31b66c vocab=08eabdd1
+-/
 theorem agm_ratio_one_half_le {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) {n m : ℕ} (hn : n ≤ 2 ^ m)
     (hkn : (1 / 2 : ℝ) ^ n ≤ k) : 1 / 2 ≤ agmB 1 k (m + 1) / agmA 1 k (m + 1) := by
   have h := agm_ratio_rpow_le one_pos hk hk1 (m + 1)
@@ -172,7 +196,9 @@ theorem agm_ratio_one_half_le {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) {n m : ℕ}
     _ ≤ k ^ e := Real.rpow_le_rpow (by positivity) hkn he0
 
 /-- The iteration count for `AGM(1, k)`, `2^(−n) ≤ k ≤ 1`: after `2 ⌈lg n⌉ + 1` steps the gap
-is at most `8/2^n` — "about `2 lg n` iterations" for `x = 4/k ∈ [2^(n/2), 2^n]`.-/
+is at most `8/2^n` — "about `2 lg n` iterations" for `x = 4/k ∈ [2^(n/2), 2^n]`.
+@isnad1 id=le.3h2v.s7.75102de3ea54 from=translated src=- shape=dc44a8f5 vocab=ccb64609
+-/
 theorem agm_log_iterations {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) (n : ℕ)
     (hkn : (1 / 2 : ℝ) ^ n ≤ k) :
     agmA 1 k (2 * Nat.clog 2 n + 1) - agmB 1 k (2 * Nat.clog 2 n + 1) ≤ 8 / 2 ^ n := by

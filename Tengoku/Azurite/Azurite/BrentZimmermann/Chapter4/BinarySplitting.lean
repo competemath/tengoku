@@ -66,6 +66,9 @@ variable {x : ℝ}
 /-- The `j`-th term `(−1)^j x^(2j+1)/(2j+1)` of the arctan series.-/
 noncomputable def arctanTerm (x : ℝ) (j : ℕ) : ℝ := (-1) ^ j * x ^ (2 * j + 1) / (2 * j + 1)
 
+/--
+@isnad1 id=hassum.1h1v.s5.5bd1ffc40aea from=translated src=- shape=2c56d81b vocab=f832cd9f
+-/
 theorem hasSum_arctanTerm (hx : |x| < 1) : HasSum (arctanTerm x) (Real.arctan x) := by
   have h := Real.hasSum_arctan (x := x) (by rwa [Real.norm_eq_abs])
   have e : arctanTerm x = fun n : ℕ => (-1) ^ n * x ^ (2 * n + 1) / ((2 * n + 1 : ℕ) : ℝ) := by
@@ -74,7 +77,9 @@ theorem hasSum_arctanTerm (hx : |x| < 1) : HasSum (arctanTerm x) (Real.arctan x)
   rw [e]
   exact h
 
-/-- `|arctan x − ∑_{j<N} (−1)^j x^(2j+1)/(2j+1)| ≤ |x|^(2N+1)/((2N+1)(1 − x²))` for `|x| < 1`.-/
+/-- `|arctan x − ∑_{j<N} (−1)^j x^(2j+1)/(2j+1)| ≤ |x|^(2N+1)/((2N+1)(1 − x²))` for `|x| < 1`.
+@isnad1 id=le.1h2v.s7.ae23d75d06c4 from=translated src=- shape=a9008c19 vocab=8718adfe
+-/
 theorem abs_arctan_sub_sum_le (hx : |x| < 1) (N : ℕ) :
     |Real.arctan x - ∑ j ∈ range N, arctanTerm x j|
       ≤ |x| ^ (2 * N + 1) / ((2 * N + 1) * (1 - x ^ 2)) := by
@@ -106,7 +111,9 @@ theorem abs_arctan_sub_sum_le (hx : |x| < 1) (N : ℕ) :
         rw [tsum_mul_left, tsum_geometric_of_lt_one hx2' hx2]
     _ = _ := by rw [← div_eq_mul_inv, div_div]
 
-/-- For `|x| ≤ 1/2`, the `n/2 + 1` terms `j ≤ n/2` give `arctan x` to within `2^(−n)`.-/
+/-- For `|x| ≤ 1/2`, the `n/2 + 1` terms `j ≤ n/2` give `arctan x` to within `2^(−n)`.
+@isnad1 id=le.1h2v.s6.04e873650bd1 from=translated src=- shape=11b174dd vocab=0851e694
+-/
 theorem abs_arctan_sub_sum_le_two_pow (hx : |x| ≤ 1 / 2) (n : ℕ) :
     |Real.arctan x - ∑ j ∈ range (n / 2 + 1), arctanTerm x j| ≤ (1 / 2) ^ n := by
   have hx1 : |x| < 1 := by linarith
@@ -135,11 +142,16 @@ def arctanNum (p : ℤ) (q N : ℕ) : ℤ :=
   ∑ j ∈ range N, (-1) ^ j * p ^ (2 * j + 1) * (q : ℤ) ^ (2 * N - 2 * j)
     * ∏ i ∈ (range N).erase j, (2 * (i : ℤ) + 1)
 
+/--
+@isnad1 id=lt.1h2v.s4.57516e73bfd6 from=translated src=- shape=334a1355 vocab=02971bf1
+-/
 theorem arctanDen_pos {q N : ℕ} (hq : 0 < q) : 0 < arctanDen q N := by
   unfold arctanDen
   exact mul_pos (pow_pos hq _) (prod_pos fun j _ => by omega)
 
-/-- The first `N` terms of the arctan series at `p/q` sum to `P/Q`.-/
+/-- The first `N` terms of the arctan series at `p/q` sum to `P/Q`.
+@isnad1 id=eq.1h3v.s6.84cab0a35f5e from=translated src=- shape=c0766193 vocab=92be03f4
+-/
 theorem sum_arctanTerm_div_eq {p : ℤ} {q : ℕ} (hq : 0 < q) (N : ℕ) :
     ∑ j ∈ range N, arctanTerm ((p : ℝ) / q) j = (arctanNum p q N : ℝ) / (arctanDen q N : ℝ) := by
   have hq' : (0 : ℝ) < q := by exact_mod_cast hq
@@ -157,7 +169,9 @@ theorem sum_arctanTerm_div_eq {p : ℤ} {q : ℕ} (hq : 0 < q) (N : ℕ) :
   field_simp
   ring
 
-/-- For `exp`: the denominator `N! q^N` has `log(N! q^N) ≤ N log N + N log q`.-/
+/-- For `exp`: the denominator `N! q^N` has `log(N! q^N) ≤ N log N + N log q`.
+@isnad1 id=le.2h2v.s6.27fbf0a04e1d from=translated src=- shape=5bfa3afd vocab=8b27b30b
+-/
 theorem log_factorial_mul_pow_le {q N : ℕ} (hq : 1 ≤ q) (hN : 1 ≤ N) :
     Real.log ((N.factorial : ℝ) * (q : ℝ) ^ N) ≤ N * Real.log N + N * Real.log q := by
   have hq' : (0 : ℝ) < q := by exact_mod_cast hq
@@ -168,7 +182,9 @@ theorem log_factorial_mul_pow_le {q N : ℕ} (hq : 1 ≤ q) (hN : 1 ≤ N) :
   rw [Real.log_pow] at this
   linarith
 
-/-- With `N log N ≤ n` terms (`N ∼ n/ln n`), the `exp` denominator has `log Q ≤ n + N log q`.-/
+/-- With `N log N ≤ n` terms (`N ∼ n/ln n`), the `exp` denominator has `log Q ≤ n + N log q`.
+@isnad1 id=le.3h3v.s6.9bf7865b9ade from=translated src=- shape=472a4e81 vocab=8b27b30b
+-/
 theorem log_factorial_mul_pow_le' {q N : ℕ} {n : ℝ} (hq : 1 ≤ q) (hN : 1 ≤ N)
     (h : (N : ℝ) * Real.log N ≤ n) :
     Real.log ((N.factorial : ℝ) * (q : ℝ) ^ N) ≤ n + N * Real.log q :=
@@ -176,13 +192,17 @@ theorem log_factorial_mul_pow_le' {q N : ℕ} {n : ℝ} (hq : 1 ≤ q) (hN : 1 �
 
 /-! ### Divide and conquer -/
 
-/-- Combining two partial fractions: `P₁/Q₁ + P₂/Q₂ = (P₁Q₂ + P₂Q₁)/(Q₁Q₂)`.-/
+/-- Combining two partial fractions: `P₁/Q₁ + P₂/Q₂ = (P₁Q₂ + P₂Q₁)/(Q₁Q₂)`.
+@isnad1 id=eq.2h5v.s7.a0bbffb7a7bd from=translated src=- shape=b08e037c vocab=87fc680f
+-/
 theorem div_add_div_eq {K : Type*} [Field K] {P₁ P₂ Q₁ Q₂ : K} (h₁ : Q₁ ≠ 0) (h₂ : Q₂ ≠ 0) :
     P₁ / Q₁ + P₂ / Q₂ = (P₁ * Q₂ + P₂ * Q₁) / (Q₁ * Q₂) := by
   rw [div_add_div _ _ h₁ h₂]
   ring
 
-/-- Binary splitting on a finite family: `∑ num_i/den_i = (∑ num_i ∏_{j≠i} den_j)/∏ den_j`.-/
+/-- Binary splitting on a finite family: `∑ num_i/den_i = (∑ num_i ∏_{j≠i} den_j)/∏ den_j`.
+@isnad1 id=eq.1h5v.s7.78c6ee5a9f8a from=translated src=- shape=b636bf91 vocab=d0ac8682
+-/
 theorem sum_div_eq_sum_mul_prod_erase_div {ι K : Type*} [DecidableEq ι] [Field K] (s : Finset ι)
     (num den : ι → K) (hden : ∀ i ∈ s, den i ≠ 0) :
     ∑ i ∈ s, num i / den i = (∑ i ∈ s, num i * ∏ j ∈ s.erase i, den j) / ∏ j ∈ s, den j := by
@@ -199,7 +219,9 @@ theorem sum_div_eq_sum_mul_prod_erase_div {ι K : Type*} [DecidableEq ι] [Field
 /-- The quasi-linear cost model `M(m) = m lg m`.-/
 noncomputable def quasiLinearCost (m : ℝ) : ℝ := m * Real.logb 2 m
 
-/-- `2^k M(m/2^k) ≤ M(m)` for `m ≥ 1`.-/
+/-- `2^k M(m/2^k) ≤ M(m)` for `m ≥ 1`.
+@isnad1 id=le.1h2v.s6.d68f1c270237 from=translated src=- shape=f2004e95 vocab=866ec000
+-/
 theorem two_pow_mul_quasiLinearCost_div_le {m : ℝ} (hm : 1 ≤ m) (k : ℕ) :
     2 ^ k * quasiLinearCost (m / 2 ^ k) ≤ quasiLinearCost m := by
   unfold quasiLinearCost
@@ -209,13 +231,17 @@ theorem two_pow_mul_quasiLinearCost_div_le {m : ℝ} (hm : 1 ≤ m) (k : ℕ) :
     field_simp]
   nlinarith [(Nat.cast_nonneg k : (0 : ℝ) ≤ k)]
 
-/-- `lg n ≤ n`.-/
+/-- `lg n ≤ n`.
+@isnad1 id=le.1h1v.s5.3fcb51529679 from=translated src=- shape=74f917f7 vocab=5b61d28c
+-/
 theorem logb_two_natCast_le_self {n : ℕ} (hn : 1 ≤ n) : Real.logb 2 n ≤ n := by
   rw [Real.logb_le_iff_le_rpow one_lt_two (by exact_mod_cast hn), Real.rpow_natCast]
   exact_mod_cast Nat.lt_two_pow_self.le
 
 /-- Each level of the binary splitting costs at most `2 lg n · M(n)`, so `L` levels cost at most
-`L · 2 lg n · M(n)`.-/
+`L · 2 lg n · M(n)`.
+@isnad1 id=le.1h2v.s7.230cf38b82f8 from=translated src=- shape=7a64b213 vocab=83ea7d37
+-/
 theorem binary_splitting_cost_le {n : ℕ} (hn : 2 ≤ n) (L : ℕ) :
     ∑ k ∈ Icc 1 L, 2 ^ k * quasiLinearCost (n * Real.logb 2 n / 2 ^ k)
       ≤ L * (2 * Real.logb 2 n * quasiLinearCost n) := by
@@ -236,7 +262,9 @@ theorem binary_splitting_cost_le {n : ℕ} (hn : 2 ≤ n) (L : ℕ) :
   calc _ ≤ ∑ _k ∈ Icc 1 L, 2 * Real.logb 2 n * quasiLinearCost n := sum_le_sum hterm
     _ = _ := by rw [sum_const, Nat.card_Icc, Nat.add_sub_cancel, nsmul_eq_mul]
 
-/-- `⌈lg n⌉ ≤ lg n + 1`.-/
+/-- `⌈lg n⌉ ≤ lg n + 1`.
+@isnad1 id=le.1h1v.s5.2552860139c8 from=translated src=- shape=eae79495 vocab=9f6a3c2e
+-/
 theorem clog_le_logb_add_one {n : ℕ} (hn : 2 ≤ n) : (Nat.clog 2 n : ℝ) ≤ Real.logb 2 n + 1 := by
   have h := Nat.pow_pred_clog_lt_self (b := 2) one_lt_two (by omega : 1 < n)
   have hpos : 0 < Nat.clog 2 n := Nat.clog_pos one_lt_two (by omega)
@@ -248,7 +276,9 @@ theorem clog_le_logb_add_one {n : ℕ} (hn : 2 ≤ n) : (Nat.clog 2 n : ℝ) ≤
   linarith
 
 /-- (4.80) with `α = 2`: in the quasi-linear model, `∑_{k=1}^{⌈lg n⌉} 2^k M(n lg n/2^k) ≤
-4 (lg n)² M(n)`.-/
+4 (lg n)² M(n)`.
+@isnad1 id=le.1h1v.s7.d10def88a0f4 from=translated src=- shape=6e0d734f vocab=3a30f5f1
+-/
 theorem binary_splitting_cost {n : ℕ} (hn : 2 ≤ n) :
     ∑ k ∈ Icc 1 (Nat.clog 2 n), 2 ^ k * quasiLinearCost (n * Real.logb 2 n / 2 ^ k)
       ≤ 4 * Real.logb 2 n ^ 2 * quasiLinearCost n := by

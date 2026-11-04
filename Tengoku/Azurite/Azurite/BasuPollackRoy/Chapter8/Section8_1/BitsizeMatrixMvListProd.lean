@@ -64,6 +64,9 @@ def Matrix.polyCoeff (d : ℕ) (M : Matrix ν ν (Polynomial R)) : Matrix ν ν 
   M.map (fun p => p.coeff d)
 
 omit [Fintype ν] [DecidableEq ν] in
+/--
+@isnad1 id=eq.0h6v.s5.f66124d5f16a from=translated src=- shape=c3e9ca6b vocab=5720b8e7
+-/
 @[simp]
 theorem Matrix.polyCoeff_apply (d : ℕ) (M : Matrix ν ν (Polynomial R)) (i j : ν) :
     Matrix.polyCoeff d M i j = (M i j).coeff d := rfl
@@ -83,6 +86,9 @@ def Matrix.polyCoeffList (Ms : List (Matrix ν ν (Polynomial R)))
   List.ofFn (fun l : Fin Ms.length => Matrix.polyCoeff (ds l) (Ms.get l))
 
 omit [Fintype ν] [DecidableEq ν] in
+/--
+@isnad1 id=eq.0h2v.s5.4b7d752e18e8 from=translated src=- shape=a102ed75 vocab=117b57c3
+-/
 @[simp]
 theorem Matrix.polyCoeffList_nil :
     Matrix.polyCoeffList (R := R) (ν := ν) [] (fun _ => 0) = [] := by
@@ -96,7 +102,9 @@ section FinSuccEquivTransport
 
 variable {ν : Type _} [Fintype ν] [DecidableEq ν]
 
-/-- Ring-hom transport of a matrix list product.-/
+/-- Ring-hom transport of a matrix list product.
+@isnad1 id=eq.0h5v.s7.d1953f90f88b from=translated src=- shape=51c64c7d vocab=9a6afc99
+-/
 theorem Matrix.map_list_prod {R S : Type _} [Semiring R] [Semiring S] (f : R →+* S)
     (Ms : List (Matrix ν ν R)) :
     (Ms.prod).map f = (Ms.map (Matrix.map · f)).prod := by
@@ -111,7 +119,9 @@ end FinSuccEquivTransport
 
 /-- The total degree of an entry of a matrix list product over
     `MvPolynomial (Fin k) ℤ` is bounded by `ps.sum`, where each `p_l` bounds
-    every entry of `M_l`.-/
+    every entry of `M_l`.
+@isnad1 id=le.2h6v.s7.88371a051689 from=translated src=- shape=e857e693 vocab=3a73a734
+-/
 theorem Matrix.totalDegree_mvList_prod_le_per_matrix
     {k : ℕ} {ν : Type _} [Fintype ν] [DecidableEq ν] :
     ∀ (Ms : List (Matrix ν ν (MvPolynomial (Fin k) ℤ))) (ps : List ℕ),
@@ -147,7 +157,9 @@ theorem Matrix.totalDegree_mvList_prod_le_per_matrix
 
 /-- A refinement of `Matrix.bitsize_list_prod_le` that allows each matrix in the
     list to have its own bitsize bound `τ_l`, matching BPR's per-matrix bound
-    for `A = ℤ`. We use `List.Forall₂` to avoid length-juggling.-/
+    for `A = ℤ`. We use `List.Forall₂` to avoid length-juggling.
+@isnad1 id=le.2h5v.s7.289d4e9bcbdb from=translated src=- shape=1334d1d2 vocab=fc19c8e3
+-/
 theorem Matrix.bitsize_list_prod_per_matrix_le {ν : Type _} [Fintype ν] [DecidableEq ν] :
     ∀ (Ms : List (Matrix ν ν ℤ)) (τs : List ℕ),
       Ms ≠ [] →
@@ -273,7 +285,9 @@ section CoeffListProd
 variable {R : Type _} [CommSemiring R]
 
 /-- The `X^d`-coefficient of a polynomial list product equals the sum, over
-    tuples summing to `d`, of products of single coefficients.-/
+    tuples summing to `d`, of products of single coefficients.
+@isnad1 id=eq.0h3v.s7.95f50b05e203 from=translated src=- shape=05355547 vocab=26dc2df8
+-/
 theorem coeff_list_prod (d : ℕ) (Ps : List (Polynomial R)) :
     (Ps.prod).coeff d =
       ∑ ds ∈ antidiagonalTuple Ps.length d,
@@ -350,7 +364,9 @@ end CoeffListProd
 /-! ## Integer base case: bitsize of a list product of integers -/
 
 /-- Per-element bitsize bound for a (non-empty) list product of integers. The
-    bound is `τs.sum` (no `m · bit(n)` term as in the matrix case).-/
+    bound is `τs.sum` (no `m · bit(n)` term as in the matrix case).
+@isnad1 id=le.2h2v.s5.41e0b3eadd3c from=translated src=- shape=9ace31d5 vocab=99cdab3a
+-/
 theorem Int.bitsize_list_prod_le :
     ∀ (Ps : List ℤ) (τs : List ℕ),
       Ps ≠ [] →
@@ -378,7 +394,9 @@ theorem Int.bitsize_list_prod_le :
     `P_l ∈ ℤ[Y_1, …, Y_k]`, with `P_l` having total degree bounded by `p_l`
     (in `Y`) and coefficient bitsizes bounded by `τ_l`, produces coefficients
     bounded by `(τ_1 + ⋯ + τ_m) + k · (bit(p_1) + ⋯ + bit(p_m))`. This is
-    BPR's exact bound.-/
+    BPR's exact bound.
+@isnad1 id=le.3h5v.s7.d7296dacce81 from=translated src=- shape=c9ec1638 vocab=f024d9e8
+-/
 theorem MvPolynomial.bitsize_coeff_list_prod_le_bpr_exact :
     ∀ (k : ℕ) (Ps : List (MvPolynomial (Fin k) ℤ)) (τs ps : List ℕ),
     Ps ≠ [] →
@@ -573,7 +591,9 @@ set_option maxHeartbeats 800000 in
     This is BPR's exact bound. Encoded with `Y` as the outer variable block
     and `X` as the inner block: `MvPolynomial (Fin ℓ) (MvPolynomial (Fin k) ℤ)`.
     The proof is by induction on `ℓ`, with the base case `ℓ = 0` reducing to
-    `MvPolynomial.bitsize_coeff_list_prod_le_bpr_exact` (Remark 8.10).-/
+    `MvPolynomial.bitsize_coeff_list_prod_le_bpr_exact` (Remark 8.10).
+@isnad1 id=le.4h8v.s9.b1057cfb2178 from=translated src=- shape=cfccf44d vocab=5a3b6cfe
+-/
 theorem MvPolynomial.bitsize_coeff_list_prod_le_bpr_8_2 :
     ∀ (ℓ k : ℕ) (Ps : List (MvPolynomial (Fin ℓ) (MvPolynomial (Fin k) ℤ)))
       (τ p q : ℕ),

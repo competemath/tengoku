@@ -59,6 +59,9 @@ noncomputable def quadCast : QuadRing (ZMod n) u a →+* QuadRing (ZMod r) u' a'
     rw [hmap]
     exact AdjoinRoot.eval₂_root _)
 
+/--
+@isnad1 id=eq.3h8v.s11.c8d49fb234c6 from=translated src=- shape=be6f785d vocab=9c36ead5
+-/
 theorem quadCast_quadElt (x₀ x₁ : ZMod n) :
     quadCast hrn u a u' a' hu ha (quadElt u a x₀ x₁)
       = quadElt u' a' (ZMod.castHom hrn (ZMod r) x₀) (ZMod.castHom hrn (ZMod r) x₁) := by
@@ -67,7 +70,9 @@ theorem quadCast_quadElt (x₀ x₁ : ZMod n) :
 
 omit hu ha in
 /-- **A unit coordinate survives reduction**: for prime `r ∣ n`, if `x₀`
-or `x₁` is a unit of `ℤ/nℤ` then `x₀ + x₁α ≠ 0` in `A_r`.-/
+or `x₁` is a unit of `ℤ/nℤ` then `x₀ + x₁α ≠ 0` in `A_r`.
+@isnad1 id=ne.2h6v.s9.9c44a0ec6f0f from=translated src=- shape=be4f4c2d vocab=a51a9aab
+-/
 theorem quadElt_cast_ne_zero [Fact r.Prime] {x₀ x₁ : ZMod n} (hunit : IsUnit x₀ ∨ IsUnit x₁) :
     quadElt u' a' (ZMod.castHom hrn (ZMod r) x₀) (ZMod.castHom hrn (ZMod r) x₁) ≠ 0 := by
   intro h0
@@ -88,7 +93,9 @@ section Field
 
 variable {r : ℕ} [hr : Fact r.Prime] (u a : ZMod r)
 
-/-- Every element of `A_r` is `x₀ + x₁α`.-/
+/-- Every element of `A_r` is `x₀ + x₁α`.
+@isnad1 id=ex.0h4v.s5.d719862577dc from=translated src=- shape=5a0882ce vocab=e3010796
+-/
 theorem exists_quadElt (y : QuadRing (ZMod r) u a) :
     ∃ x₀ x₁ : ZMod r, y = quadElt u a x₀ x₁ := by
   induction y using AdjoinRoot.induction_on with
@@ -126,7 +133,9 @@ theorem exists_quadElt (y : QuadRing (ZMod r) u a) :
     rw [hmk, hrep', quadElt, AdjoinRoot.algebraMap_eq]
     ring
 
-/-- `algebraMap` is injective, so `A_r` has characteristic `r`.-/
+/-- `algebraMap` is injective, so `A_r` has characteristic `r`.
+@isnad1 id=injectiv.0h3v.s12.399878e525aa from=translated src=- shape=a1acf186 vocab=bfb79958
+-/
 theorem algebraMap_quadRing_injective :
     Function.Injective (algebraMap (ZMod r) (QuadRing (ZMod r) u a)) := by
   intro c d h
@@ -135,6 +144,9 @@ theorem algebraMap_quadRing_injective :
     exact h
   exact (quadElt_injective u a h').1
 
+/--
+@isnad1 id=charp.0h3v.s9.fa1413214bf7 from=translated src=- shape=596c9c8e vocab=87b4686f
+-/
 instance instCharPQuadRing : CharP (QuadRing (ZMod r) u a) r :=
   charP_of_injective_algebraMap (algebraMap_quadRing_injective u a) r
 
@@ -147,6 +159,9 @@ noncomputable def evAt {c : ZMod r} (hc : c ^ 2 - u * c - a = 0) :
     simp only [eval₂_sub, eval₂_mul, eval₂_pow, eval₂_X, eval₂_C, RingHom.id_apply]
     exact hc)
 
+/--
+@isnad1 id=eq.1h6v.s10.fa8ade18d788 from=translated src=- shape=4c87b059 vocab=ad621a32
+-/
 theorem evAt_quadElt {c : ZMod r} (hc : c ^ 2 - u * c - a = 0) (x₀ x₁ : ZMod r) :
     evAt u a hc (quadElt u a x₀ x₁) = x₀ + x₁ * c := by
   simp only [quadElt, map_add, map_mul, evAt, AdjoinRoot.lift_root, AdjoinRoot.algebraMap_eq,
@@ -170,14 +185,18 @@ theorem eq_zero_of_evAt_eq_zero {c₁ c₂ : ZMod r} (hc₁ : c₁ ^ 2 - u * c�
   simp [quadElt]
 
 /-- **The product of the two evaluations is the norm** when the roots are
-`α₁, α₂` with `α₁ + α₂ = u`, `α₁α₂ = −a`.-/
+`α₁, α₂` with `α₁ + α₂ = u`, `α₁α₂ = −a`.
+@isnad1 id=eq.4h7v.s11.97592e779cad from=translated src=- shape=3b7294ea vocab=ec5183c0
+-/
 theorem evAt_mul_evAt {c₁ c₂ : ZMod r} (hc₁ : c₁ ^ 2 - u * c₁ - a = 0)
     (hc₂ : c₂ ^ 2 - u * c₂ - a = 0) (hsum : c₁ + c₂ = u) (hprod : c₁ * c₂ = -a) (x₀ x₁ : ZMod r) :
     evAt u a hc₁ (quadElt u a x₀ x₁) * evAt u a hc₂ (quadElt u a x₀ x₁) = quadNorm u a x₀ x₁ := by
   rw [evAt_quadElt, evAt_quadElt, quadNorm]
   linear_combination (x₀ * x₁) * hsum + (x₁ ^ 2) * hprod
 
-/-- **Split case**: a norm-one element satisfies `x^(r−1) = 1`.-/
+/-- **Split case**: a norm-one element satisfies `x^(r−1) = 1`.
+@isnad1 id=eq.6h7v.s10.4984e91a37a4 from=translated src=- shape=97019da2 vocab=147ef3d4
+-/
 theorem quadElt_pow_card_sub_one_eq_one {c₁ c₂ : ZMod r} (hc₁ : c₁ ^ 2 - u * c₁ - a = 0)
     (hc₂ : c₂ ^ 2 - u * c₂ - a = 0) (hsum : c₁ + c₂ = u) (hprod : c₁ * c₂ = -a) (hne : c₁ ≠ c₂)
     {x₀ x₁ : ZMod r} (hN : quadNorm u a x₀ x₁ = 1) :
@@ -191,13 +210,18 @@ theorem quadElt_pow_card_sub_one_eq_one {c₁ c₂ : ZMod r} (hc₁ : c₁ ^ 2 -
   · rw [map_sub, map_pow, map_one, ZMod.pow_card_sub_one_eq_one h₁, sub_self]
   · rw [map_sub, map_pow, map_one, ZMod.pow_card_sub_one_eq_one h₂, sub_self]
 
-/-- `2 ≠ 0` in `𝔽_r` for an odd prime `r`.-/
+/-- `2 ≠ 0` in `𝔽_r` for an odd prime `r`.
+@isnad1 id=ne.1h1v.s6.9ef57fbfb6e9 from=translated src=- shape=0da77854 vocab=dac35cc4
+-/
 theorem two_ne_zero_zmod (hr2 : r ≠ 2) : (2 : ZMod r) ≠ 0 := by
   intro h
   have h' : ((2 : ℕ) : ZMod r) = 0 := by exact_mod_cast h
   have := (CharP.cast_eq_zero_iff (ZMod r) r 2).mp h'
   exact hr2 ((Nat.prime_dvd_prime_iff_eq hr.out Nat.prime_two).mp this)
 
+/--
+@isnad1 id=ne.1h1v.s6.52e4406f04a1 from=translated src=- shape=0da77854 vocab=dac35cc4
+-/
 theorem four_ne_zero_zmod (hr2 : r ≠ 2) : (4 : ZMod r) ≠ 0 := by
   rw [show (4 : ZMod r) = 2 * 2 by norm_num]
   exact mul_ne_zero (two_ne_zero_zmod hr2) (two_ne_zero_zmod hr2)
@@ -205,7 +229,9 @@ theorem four_ne_zero_zmod (hr2 : r ≠ 2) : (4 : ZMod r) ≠ 0 := by
 /-! #### The ramified case -/
 
 /-- **Ramified case** (`u² + 4a = 0`, `r` odd): with `ε = α − u/2` nilpotent,
-`x = c + dε` with `c = x₀ + x₁·u/2`, and `x^r = c^r = c` in characteristic `r`.-/
+`x = c + dε` with `c = x₀ + x₁·u/2`, and `x^r = c^r = c` in characteristic `r`.
+@isnad1 id=eq.2h5v.s12.ea2692aa0583 from=translated src=- shape=77188e6a vocab=80ab9497
+-/
 theorem quadElt_pow_card_ramified (hr2 : r ≠ 2) (hΔ : u ^ 2 + 4 * a = 0) (x₀ x₁ : ZMod r) :
     quadElt u a x₀ x₁ ^ r = algebraMap (ZMod r) (QuadRing (ZMod r) u a) (x₀ + x₁ * (u / 2)) := by
   have hr' := hr.out
@@ -242,7 +268,9 @@ theorem quadElt_pow_card_ramified (hr2 : r ≠ 2) (hΔ : u ^ 2 + 4 * a = 0) (x�
   have hεr : ε ^ r = 0 := pow_eq_zero_of_le hr'.two_le hε2
   rw [hεr, mul_zero, add_zero]
 
-/-- In the ramified case `N(x) = (x₀ + x₁·u/2)²`.-/
+/-- In the ramified case `N(x) = (x₀ + x₁·u/2)²`.
+@isnad1 id=eq.2h5v.s8.9bb623f05c30 from=translated src=- shape=e9b2692e vocab=ebb6a433
+-/
 theorem quadNorm_ramified (hr2 : r ≠ 2) (hΔ : u ^ 2 + 4 * a = 0) (x₀ x₁ : ZMod r) :
     quadNorm u a x₀ x₁ = (x₀ + x₁ * (u / 2)) ^ 2 := by
   have h2 : (2 : ZMod r) ≠ 0 := two_ne_zero_zmod hr2
@@ -255,13 +283,17 @@ theorem quadNorm_ramified (hr2 : r ≠ 2) (hΔ : u ^ 2 + 4 * a = 0) (x₀ x₁ :
   rw [this, hΔ]
   ring
 
-/-- **Ramified case**: `x^(2r) = N(x)`.-/
+/-- **Ramified case**: `x^(2r) = N(x)`.
+@isnad1 id=eq.2h5v.s12.e1c6f56a8a2f from=translated src=- shape=4713a171 vocab=3d03bcaf
+-/
 theorem quadElt_pow_two_mul_card_eq_norm (hr2 : r ≠ 2) (hΔ : u ^ 2 + 4 * a = 0)
     (x₀ x₁ : ZMod r) :
     quadElt u a x₀ x₁ ^ (2 * r) = algebraMap (ZMod r) (QuadRing (ZMod r) u a) (quadNorm u a x₀ x₁) := by
   rw [pow_mul', quadElt_pow_card_ramified u a hr2 hΔ, ← map_pow, quadNorm_ramified u a hr2 hΔ]
 
-/-- **Ramified case**: a norm-one element satisfies `x^(2r) = 1`.-/
+/-- **Ramified case**: a norm-one element satisfies `x^(2r) = 1`.
+@isnad1 id=eq.3h5v.s10.ce63663a3383 from=translated src=- shape=3467f042 vocab=0aeaa02d
+-/
 theorem quadElt_pow_two_mul_card_eq_one (hr2 : r ≠ 2) (hΔ : u ^ 2 + 4 * a = 0)
     {x₀ x₁ : ZMod r} (hN : quadNorm u a x₀ x₁ = 1) :
     quadElt u a x₀ x₁ ^ (2 * r) = 1 := by
@@ -271,7 +303,9 @@ theorem quadElt_pow_two_mul_card_eq_one (hr2 : r ≠ 2) (hΔ : u ^ 2 + 4 * a = 0
 
 /-- **The structure theorem for norm-one elements of `A_r`** (`r` an odd
 prime): according to the discriminant `Δ = u² + 4a`,
-`x^(r+1) = 1` (inert), `x^(r−1) = 1` (split), or `x^(2r) = 1` (ramified).-/
+`x^(r+1) = 1` (inert), `x^(r−1) = 1` (split), or `x^(2r) = 1` (ramified).
+@isnad1 id=or.2h5v.s12.234031557605 from=translated src=- shape=953bb239 vocab=75307eb1
+-/
 theorem normOne_pow_cases (hr2 : r ≠ 2) {x₀ x₁ : ZMod r} (hN : quadNorm u a x₀ x₁ = 1) :
     (¬ IsSquare (u ^ 2 + 4 * a) ∧ quadElt u a x₀ x₁ ^ (r + 1) = 1)
       ∨ (IsSquare (u ^ 2 + 4 * a) ∧ u ^ 2 + 4 * a ≠ 0 ∧ quadElt u a x₀ x₁ ^ (r - 1) = 1)
@@ -307,7 +341,9 @@ section Confinement
 
 variable {n r p : ℕ}
 
-/-- `castHom` carries the norm form.-/
+/-- `castHom` carries the norm form.
+@isnad1 id=eq.1h6v.s8.4761b610b6ce from=translated src=- shape=d7a9832f vocab=085d6a79
+-/
 theorem castHom_quadNorm (hrn : r ∣ n) (u a x₀ x₁ : ZMod n) :
     ZMod.castHom hrn (ZMod r) (quadNorm u a x₀ x₁)
       = quadNorm (ZMod.castHom hrn (ZMod r) u) (ZMod.castHom hrn (ZMod r) a)
@@ -329,7 +365,9 @@ Remark (4.5) and of (5.3)).  For a prime `r ∣ n` (`n` odd), an odd prime
 `x̄^(n+1) = 1`, and `x̄^((n+1)/p) ≠ 1`, so `p^v ∣ ord(x̄)`; by
 `normOne_pow_cases`, `ord(x̄)` divides `r + 1` (inert: `r ≡ −1 ≡ n`),
 `r − 1` (split: `r ≡ 1`), or `2r` (ramified: then `p ∣ r`, impossible as
-`p ∣ n + 1`).-/
+`p ∣ n + 1`).
+@isnad1 id=modeq.10h8v.s11.1d0857d6c0d1 from=translated src=- shape=7c9666b3 vocab=ab76a197
+-/
 theorem test_4_3_confinement (hn2 : ¬ 2 ∣ n) (hr : r.Prime) (hrn : r ∣ n) (hp : p.Prime)
     (hp2 : p ≠ 2) {v : ℕ} (hv : 0 < v) (hpv : p ^ v ∣ n + 1) {u a x₀ x₁ : ZMod n}
     (hN : quadNorm u a x₀ x₁ = 1) (hx1 : quadElt u a x₀ x₁ ^ (n + 1) = 1)
@@ -411,7 +449,9 @@ section TwoAdic
 
 variable {n r : ℕ}
 
-/-- `IsSquare (4a) ↔ IsSquare a` in `𝔽_r`, `r` odd.-/
+/-- `IsSquare (4a) ↔ IsSquare a` in `𝔽_r`, `r` odd.
+@isnad1 id=iff.1h2v.s6.3b5823b4f38f from=translated src=- shape=9e23b553 vocab=4dde2c69
+-/
 theorem isSquare_four_mul_iff {r : ℕ} [hr : Fact r.Prime] (hr2 : r ≠ 2) (a : ZMod r) :
     IsSquare (4 * a) ↔ IsSquare a := by
   have h2 : (2 : ZMod r) ≠ 0 := two_ne_zero_zmod hr2
@@ -425,7 +465,9 @@ theorem isSquare_four_mul_iff {r : ℕ} [hr : Fact r.Prime] (hr2 : r ≠ 2) (a :
 
 /-- **(c1) and the splitting type** (`u = 0`, `Δ = 4a`): for prime `n ≡ 1 (mod 4)`,
 `a^((n−1)/2) ≡ −1` and `r ∣ n` prime, `2^v ∣ r − 1` with `v = v₂(n − 1)`, and
-`r ≢ 1 (mod 2^(v+1))` exactly when `T² − a` is inert modulo `r`.-/
+`r ≢ 1 (mod 2^(v+1))` exactly when `T² − a` is inert modulo `r`.
+@isnad1 id=and.4h3v.s9.0e33396215b9 from=translated src=- shape=9112dc20 vocab=def44fdc
+-/
 theorem c1_two_adic (hn : Odd n) (hr : r.Prime) (hrn : r ∣ n) {a : ℤ}
     (ha : Int.ModEq (n : ℤ) (a ^ ((n - 1) / 2)) (-1)) :
     2 ^ (n - 1).factorization 2 ∣ r - 1
@@ -444,7 +486,9 @@ theorem c1_two_adic (hn : Odd n) (hr : r.Prime) (hrn : r ∣ n) {a : ℤ}
 open Classical in
 /-- **(c2) and the splitting type** (`a = 1`): for `n ≡ 3 (mod 4)`, `α^(n+1) = −1`
 in `A`, and `r ∣ n` prime, with `2^v ∣ n + 1`, `v ≥ 2`:
-`r ≡ n^(ε(r)) (mod 2^v)`; moreover in the split case `r ≡ 1 (mod 2^(v+1))`.-/
+`r ≡ n^(ε(r)) (mod 2^v)`; moreover in the split case `r ≡ 1 (mod 2^(v+1))`.
+@isnad1 id=and.6h4v.s13.33587f57dec2 from=translated src=- shape=1c1b02a3 vocab=07e4d9d4
+-/
 theorem c2_two_adic (hn3 : n % 4 = 3) (hr : r.Prime) (hrn : r ∣ n) {u : ZMod n}
     (hα : (AdjoinRoot.root (X ^ 2 - C u * X - C (1 : ZMod n) : Polynomial (ZMod n))) ^ (n + 1)
       = -1) {v : ℕ} (hv : 2 ≤ v) (h2v : 2 ^ v ∣ n + 1) :

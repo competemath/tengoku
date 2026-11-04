@@ -37,6 +37,9 @@ variable {b s : ℕ}
 /-- The integer coordinate `m` of an element `m / b^s` of `scaleSet b s`. Noncomputable.-/
 noncomputable def toScaled (a : ↥(scaleSet b s)) : ℤ := Classical.choose a.property
 
+/--
+@isnad1 id=eq.0h3v.s5.d6b894d594e2 from=translated src=- shape=9a9275e6 vocab=5c0177e3
+-/
 lemma toScaled_spec (a : ↥(scaleSet b s)) :
     (((toScaled a : ℝ) / (b : ℝ) ^ s : ℝ) : EReal) = a.val :=
   Classical.choose_spec a.property
@@ -44,6 +47,9 @@ lemma toScaled_spec (a : ↥(scaleSet b s)) :
 /-- An integer as an element of `intSet`.-/
 noncomputable def ofIntSet (z : ℤ) : ↥intSet := ⟨((z : ℝ) : EReal), ⟨z, rfl⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.fed689adf2b8 from=translated src=- shape=47dcad53 vocab=d4cb5806
+-/
 @[simp] lemma toInt_ofIntSet (z : ℤ) : toInt (ofIntSet z) = z :=
   toInt_eq_of_val rfl
 
@@ -51,6 +57,9 @@ noncomputable def ofIntSet (z : ℤ) : ↥intSet := ⟨((z : ℝ) : EReal), ⟨z
 noncomputable def ofScaled (b s : ℕ) (m : ℤ) : ↥(scaleSet b s) :=
   ⟨(((m : ℝ) / (b : ℝ) ^ s : ℝ) : EReal), ⟨m, rfl⟩⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.29d2c5e5a181 from=translated src=- shape=53a9dd1f vocab=85b015c1
+-/
 lemma toScaled_eq_of_val [NeZero b] {a : ↥(scaleSet b s)} {m : ℤ}
     (h : (((m : ℝ) / (b : ℝ) ^ s : ℝ) : EReal) = a.val) : toScaled a = m := by
   have hb : (0 : ℝ) < (b : ℝ) ^ s := by
@@ -62,6 +71,9 @@ lemma toScaled_eq_of_val [NeZero b] {a : ↥(scaleSet b s)} {m : ℤ}
   have := (div_left_inj' hb.ne').mp heq'
   exact_mod_cast this
 
+/--
+@isnad1 id=eq.0h3v.s4.beac808e254a from=translated src=- shape=34d52ae2 vocab=f32705b7
+-/
 @[simp] lemma toScaled_ofScaled [NeZero b] (m : ℤ) : toScaled (ofScaled b s m) = m :=
   toScaled_eq_of_val rfl
 
@@ -121,7 +133,9 @@ noncomputable instance scaleRoundingTarget : RoundingTarget (scaleSet b s) where
         = (((toInt (intTiebreak (ofIntSet (toScaled a)) (ofIntSet (toScaled c))) : ℝ)
           / (b : ℝ) ^ s : ℝ) : EReal) from rfl, h, toInt_ofIntSet, toScaled_spec]
 
-/-- The floor in `scaleSet b s` is `⌊x b^s⌋ / b^s`.-/
+/-- The floor in `scaleSet b s` is `⌊x b^s⌋ / b^s`.
+@isnad1 id=eq.0h3v.s6.95065eaaa231 from=translated src=- shape=f893e809 vocab=acf5d6d2
+-/
 lemma val_roundFloor_scaleSet (x : ℝ) :
     (roundFloor (scaleSet b s) x).val = (((⌊x * (b : ℝ) ^ s⌋ : ℝ) / (b : ℝ) ^ s : ℝ) : EReal) := by
   apply (isGreatest_roundFloor (scaleSet b s) x).unique
@@ -133,7 +147,9 @@ lemma val_roundFloor_scaleSet (x : ℝ) :
     have hleR : (m : ℝ) ≤ ((⌊x * (b : ℝ) ^ s⌋ : ℤ) : ℝ) := by exact_mod_cast hle
     exact EReal.coe_le_coe_iff.mpr (div_le_div_of_nonneg_right hleR (b_pow_pos b s).le)
 
-/-- The ceiling in `scaleSet b s` is `⌈x b^s⌉ / b^s`.-/
+/-- The ceiling in `scaleSet b s` is `⌈x b^s⌉ / b^s`.
+@isnad1 id=eq.0h3v.s6.c578a9a87e66 from=translated src=- shape=f893e809 vocab=69206df9
+-/
 lemma val_roundCeiling_scaleSet (x : ℝ) :
     (roundCeiling (scaleSet b s) x).val
       = (((⌈x * (b : ℝ) ^ s⌉ : ℝ) / (b : ℝ) ^ s : ℝ) : EReal) := by
@@ -162,7 +178,9 @@ private lemma compare_coe_coe (u v : ℝ) :
   · rw [h, compare_eq_iff_eq.mpr rfl, compare_eq_iff_eq.mpr rfl]
   · rw [compare_gt_iff_gt.mpr h, compare_gt_iff_gt.mpr (EReal.coe_lt_coe_iff.mpr h)]
 
-/-- **Rounding to `scaleSet b s` is rounding `x · b^s` to an integer, scaled back.**-/
+/-- **Rounding to `scaleSet b s` is rounding `x · b^s` to an integer, scaled back.**
+@isnad1 id=eq.0h4v.s6.70ed96a8d9ff from=translated src=- shape=5667df2a vocab=6962dcae
+-/
 theorem val_round_scaleSet (mode : RoundingMode) (x : ℝ) :
     (round (scaleSet b s) mode x).val
       = (((toInt (round intSet mode (x * (b : ℝ) ^ s)) : ℝ) / (b : ℝ) ^ s : ℝ) : EReal) := by

@@ -32,7 +32,9 @@ open Polynomial
 
 variable {K : Type*} [Field K]
 
-/-- From `C a · x = C b · y` with `a, b ≠ 0`, the polynomials `x` and `y` are associate.-/
+/-- From `C a · x = C b · y` with `a, b ≠ 0`, the polynomials `x` and `y` are associate.
+@isnad1 id=associat.3h5v.s8.b70bef9c218c from=translated src=- shape=06b356ae vocab=87c04e90
+-/
 theorem associated_of_C_mul_eq {a b : K} (ha : a ≠ 0) (hb : b ≠ 0) {x y : K[X]}
     (h : C a * x = C b * y) : Associated x y := by
   have hx : x = C (a⁻¹ * b) * y := by
@@ -42,7 +44,9 @@ theorem associated_of_C_mul_eq {a b : K} (ha : a ≠ 0) (hb : b ≠ 0) {x y : K[
     (isUnit_C.mpr (isUnit_iff_ne_zero.mpr (mul_ne_zero (inv_ne_zero ha) hb)))
 
 /-- Proportionality is preserved by the Euclidean remainder: if `a ~ a'` and `b ~ b'`, then
-    `a % b ~ a' % b'` (units of `K[X]` are nonzero constants, which factor through `%`).-/
+    `a % b ~ a' % b'` (units of `K[X]` are nonzero constants, which factor through `%`).
+@isnad1 id=associat.2h5v.s7.0c65501fabe5 from=translated src=- shape=1fbb7c78 vocab=ab48524e
+-/
 theorem Associated.rem {a a' b b' : K[X]} (ha : Associated a a') (hb : Associated b b') :
     Associated (a % b) (a' % b') := by
   obtain ⟨u, rfl⟩ := ha
@@ -53,11 +57,15 @@ theorem Associated.rem {a a' b b' : K[X]} (ha : Associated a a') (hb : Associate
     mod_C_mul_right _ _ hcv0.ne_zero]
   exact (associated_unit_mul_left (a % b) (C cu) (isUnit_C.mpr hcu0)).symm
 
-/-- A polynomial is associate to its negation.-/
+/-- A polynomial is associate to its negation.
+@isnad1 id=associat.0h2v.s5.9431120184c5 from=translated src=- shape=0277d7a9 vocab=429d1c71
+-/
 theorem associated_neg (a : K[X]) : Associated (-a) a := by
   rw [← neg_one_mul]; exact associated_unit_mul_left a (-1) isUnit_one.neg
 
-/-- For a non-defective index `j ≤ q`, the signed subresultant coefficient `s_j` is nonzero.-/
+/-- For a non-defective index `j ≤ q`, the signed subresultant coefficient `s_j` is nonzero.
+@isnad1 id=ne.4h4v.s7.8b0d8782c857 from=translated src=- shape=6d40f623 vocab=7e84631a
+-/
 theorem sBPR_ne_of_nondef (P Q : K[X]) (hpq : Q.natDegree < P.natDegree) {j : ℕ}
     (hjq : j ≤ Q.natDegree) (hne : sResP P Q j ≠ 0) (hnd : (sResP P Q j).natDegree = j) :
     sBPR P Q j ≠ 0 := by
@@ -67,7 +75,9 @@ theorem sBPR_ne_of_nondef (P Q : K[X]) (hpq : Q.natDegree < P.natDegree) {j : �
         rw [Polynomial.degree_eq_natDegree hne, hnd])]
   exact Polynomial.leadingCoeff_ne_zero.mpr hne
 
-/-- For `j ≠ p` with `sResP_j ≠ 0`, the leading coefficient `t_j` is nonzero.-/
+/-- For `j ≠ p` with `sResP_j ≠ 0`, the leading coefficient `t_j` is nonzero.
+@isnad1 id=ne.2h4v.s6.fbe1b929a788 from=translated src=- shape=4517f3bf vocab=6ef520f8
+-/
 theorem tBPR_ne_of_ne (P Q : K[X]) {j : ℕ} (hjp : j ≠ P.natDegree) (hne : sResP P Q j ≠ 0) :
     tBPR P Q j ≠ 0 := by
   rw [tBPR, ite_eq_right hjp]; exact Polynomial.leadingCoeff_ne_zero.mpr hne
@@ -75,7 +85,9 @@ theorem tBPR_ne_of_ne (P Q : K[X]) {j : ℕ} (hjp : j ≠ P.natDegree) (hne : sR
 /-- **BPR Corollary 8.38.**  If `SRemS_{ℓ-1}(P,Q)` and `SRemS_ℓ(P,Q)` are two successive
     nonzero polynomials of the signed remainder sequence, of degrees `d(ℓ-1)` and `d(ℓ)`,
     then both `sResP_{d(ℓ-1)-1}(P,Q)` and `sResP_{d(ℓ)}(P,Q)` are proportional to
-    `SRemS_ℓ(P,Q)`.-/
+    `SRemS_ℓ(P,Q)`.
+@isnad1 id=and.6h4v.s8.e2bcb81152f1 from=translated src=- shape=a82642d7 vocab=e26a8f5c
+-/
 theorem corollary_8_38 (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree)
     {ℓ : ℕ} (hℓ1 : 1 ≤ ℓ) (hℓne : SRemS P Q ℓ ≠ 0) :

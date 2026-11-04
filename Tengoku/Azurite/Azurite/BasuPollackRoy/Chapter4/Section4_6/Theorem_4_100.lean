@@ -52,6 +52,9 @@ noncomputable def radHermite (Ps : Finset (MvPolynomial (Fin k) K)) :
     Submodule K (quotPolys Ps) := LinearMap.ker (hermiteBilinOne Ps)
 
 omit [CharZero K] in
+/--
+@isnad1 id=iff.0h4v.s11.185c373b3b66 from=translated src=- shape=e0698d1c vocab=13d192b8
+-/
 theorem mem_radHermite (Ps : Finset (MvPolynomial (Fin k) K)) (f : quotPolys Ps) :
     f ∈ radHermite Ps ↔ ∀ g, hermiteBilinOne Ps f g = 0 := by
   rw [radHermite, LinearMap.mem_ker]; constructor

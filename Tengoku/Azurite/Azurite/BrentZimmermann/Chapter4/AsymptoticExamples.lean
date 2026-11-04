@@ -60,7 +60,9 @@ namespace BZ
 open Real Filter Topology Finset MeasureTheory Set
 
 /-- One step of the comparison between `H_N` and `ln N`: for `m ≥ 4`,
-`ln m − ln(m − 1) − 1/m ≥ 1/(8m(m+1))` (from `−ln(1 − x) ≥ x + x²/2 − x³/(1 − x)`).-/
+`ln m − ln(m − 1) − 1/m ≥ 1/(8m(m+1))` (from `−ln(1 − x) ≥ x + x²/2 − x³/(1 − x)`).
+@isnad1 id=le.1h1v.s7.60dc68e4c4e2 from=translated src=- shape=607eaf41 vocab=2a91c7a8
+-/
 theorem log_sub_log_sub_inv_ge {m : ℕ} (hm : 4 ≤ m) :
     1 / (8 * (m : ℝ) * (m + 1)) ≤ Real.log m - Real.log (m - 1) - 1 / m := by
   have hm0 : (0 : ℝ) < m := by exact_mod_cast (by omega : 0 < m)
@@ -89,7 +91,9 @@ theorem log_sub_log_sub_inv_ge {m : ℕ} (hm : 4 ≤ m) :
   linarith
 
 /-- The finite telescoping: for `N ≥ 3` and every `M`,
-`(H_N − ln N) − (H_{N+M} − ln(N+M)) ≥ (1/8)(1/(N+1) − 1/(N+M+1))`.-/
+`(H_N − ln N) − (H_{N+M} − ln(N+M)) ≥ (1/8)(1/(N+1) − 1/(N+M+1))`.
+@isnad1 id=le.1h2v.s7.a6920d694ea2 from=translated src=- shape=8d5ba67b vocab=4d8b8a3b
+-/
 theorem harmonic_sub_log_diff_ge {N : ℕ} (hN : 3 ≤ N) (M : ℕ) :
     1 / 8 * (1 / ((N : ℝ) + 1) - 1 / (((N + M : ℕ) : ℝ) + 1))
       ≤ ((harmonic N : ℝ) - Real.log N) - ((harmonic (N + M) : ℝ) - Real.log (N + M)) := by
@@ -110,7 +114,9 @@ theorem harmonic_sub_log_diff_ge {N : ℕ} (hN : 3 ≤ N) (M : ℕ) :
     linarith
 
 /-- The convergence in (4.31) is genuinely `Θ(1/N)`: `H_N − ln N − γ ≥ 1/(8(N+1))` for `N ≥ 3`
-(the matching upper bound `≤ 1/N` is `harmonic_sub_log_sub_gamma_bounds`).-/
+(the matching upper bound `≤ 1/N` is `harmonic_sub_log_sub_gamma_bounds`).
+@isnad1 id=le.1h1v.s6.bfbdc46dfe77 from=translated src=- shape=d30d7da7 vocab=ed58f2e3
+-/
 theorem harmonic_sub_log_sub_gamma_ge {N : ℕ} (hN : 3 ≤ N) :
     1 / (8 * ((N : ℝ) + 1)) ≤ (harmonic N : ℝ) - Real.log N - eulerMascheroniConstant := by
   have hlim : Tendsto (fun M : ℕ =>
@@ -137,12 +143,16 @@ theorem harmonic_sub_log_sub_gamma_ge {N : ℕ} (hN : 3 ≤ N) :
 
 /-! ### Euler's constant, (4.31) -/
 
-/-- (4.31): `γ = lim (H_N − ln N)`.-/
+/-- (4.31): `γ = lim (H_N − ln N)`.
+@isnad1 id=tendsto.0h0v.s5.f8bf6ca668f7 from=translated src=- shape=4e12a720 vocab=01d3ca0c
+-/
 theorem tendsto_harmonic_sub_log' :
     Tendsto (fun N : ℕ => (harmonic N : ℝ) - Real.log N) atTop (𝓝 eulerMascheroniConstant) :=
   Real.tendsto_harmonic_sub_log
 
-/-- The convergence of (4.31) is slow: `0 < H_N − ln N − γ ≤ 1/N`.-/
+/-- The convergence of (4.31) is slow: `0 < H_N − ln N − γ ≤ 1/N`.
+@isnad1 id=and.1h1v.s6.40974553adf4 from=translated src=- shape=daeb5d8d vocab=678863bd
+-/
 theorem harmonic_sub_log_sub_gamma_bounds {N : ℕ} (hN : 1 ≤ N) :
     0 < (harmonic N : ℝ) - Real.log N - eulerMascheroniConstant ∧
       (harmonic N : ℝ) - Real.log N - eulerMascheroniConstant ≤ 1 / N := by
@@ -165,7 +175,9 @@ theorem harmonic_sub_log_sub_gamma_bounds {N : ℕ} (hN : 1 ≤ N) :
 /-- `ζ(s) = ∑ n^(−s)` for real `s > 1` (the `n = 0` term is `0`).-/
 noncomputable def zetaReal (s : ℝ) : ℝ := ∑' n : ℕ, ((n : ℝ) ^ s)⁻¹
 
-/-- `zetaReal` is Mathlib's `riemannZeta` on the real axis `s > 1`.-/
+/-- `zetaReal` is Mathlib's `riemannZeta` on the real axis `s > 1`.
+@isnad1 id=eq.1h1v.s4.8a6b35512159 from=translated src=- shape=6ea1ebf4 vocab=a492cbce
+-/
 theorem zetaReal_eq_riemannZeta {s : ℝ} (hs : 1 < s) : (zetaReal s : ℂ) = riemannZeta s := by
   rw [zeta_eq_tsum_one_div_nat_cpow (by simpa using hs), zetaReal, Complex.ofReal_tsum]
   congr 1
@@ -177,29 +189,40 @@ theorem zetaReal_eq_riemannZeta {s : ℝ} (hs : 1 < s) : (zetaReal s : ℂ) = ri
 /-- The tail `∑_{j≥p} j^(−s)`.-/
 noncomputable def zetaTail (s : ℝ) (p : ℕ) : ℝ := ∑' j : ℕ, (((j + p : ℕ) : ℝ) ^ s)⁻¹
 
+/--
+@isnad1 id=summable.1h2v.s5.32ef62afdd7a from=translated src=- shape=f9dab371 vocab=c5df6935
+-/
 theorem summable_zetaTail {s : ℝ} (hs : 1 < s) (p : ℕ) :
     Summable (fun j : ℕ => (((j + p : ℕ) : ℝ) ^ s)⁻¹) :=
   (Real.summable_nat_rpow_inv.mpr hs).comp_injective (add_left_injective p)
 
-/-- Splitting the series at `p`: `ζ(s) = ∑_{j<p} j^(−s) + ∑_{j≥p} j^(−s)`.-/
+/-- Splitting the series at `p`: `ζ(s) = ∑_{j<p} j^(−s) + ∑_{j≥p} j^(−s)`.
+@isnad1 id=eq.1h2v.s5.ac80f43e8d9c from=translated src=- shape=8e2eb5ad vocab=ee97a6e3
+-/
 theorem zetaReal_eq_sum_add_tail {s : ℝ} (hs : 1 < s) (p : ℕ) :
     zetaReal s = ∑ j ∈ range p, ((j : ℝ) ^ s)⁻¹ + zetaTail s p := by
   unfold zetaReal zetaTail
   exact (Summable.sum_add_tsum_nat_add' (f := fun n : ℕ => ((n : ℝ) ^ s)⁻¹) (k := p)
     (summable_zetaTail hs p)).symm
 
-/-- `x ↦ x^(−s)` is antitone on the positive reals.-/
+/-- `x ↦ x^(−s)` is antitone on the positive reals.
+@isnad1 id=antitone.1h1v.s5.e191af5b8d04 from=translated src=- shape=56a013b2 vocab=2f9c68f2
+-/
 theorem antitoneOn_rpow_neg {s : ℝ} (hs : 0 ≤ s) : AntitoneOn (fun x : ℝ => x ^ (-s)) (Ioi 0) :=
   fun x hx _ _ hxy => Real.rpow_le_rpow_of_nonpos hx hxy (by linarith)
 
-/-- `∫_p^∞ x^(−s) dx = p^(1−s)/(s−1)`.-/
+/-- `∫_p^∞ x^(−s) dx = p^(1−s)/(s−1)`.
+@isnad1 id=eq.2h2v.s6.37bed7b50f93 from=translated src=- shape=c4bdbb69 vocab=0368310e
+-/
 theorem integral_Ioi_rpow_neg {s : ℝ} (hs : 1 < s) {p : ℝ} (hp : 0 < p) :
     ∫ x in Ioi p, x ^ (-s) = p ^ (1 - s) / (s - 1) := by
   rw [integral_Ioi_rpow_of_lt (by linarith) hp]
   rw [show -s + 1 = 1 - s by ring, neg_div, ← div_neg, neg_sub]
 
 /-- The integral bracket for the tail: `p^(1−s)/(s−1) ≤ ∑_{j≥p} j^(−s) ≤ p^(1−s)/(s−1) + p^(−s)`,
-for `s > 1`, `p ≥ 1`.-/
+for `s > 1`, `p ≥ 1`.
+@isnad1 id=and.2h2v.s7.fae325206e07 from=translated src=- shape=151ed16c vocab=50cb37fb
+-/
 theorem zetaTail_bounds {s : ℝ} (hs : 1 < s) {p : ℕ} (hp : 1 ≤ p) :
     (p : ℝ) ^ (1 - s) / (s - 1) ≤ zetaTail s p ∧
       zetaTail s p ≤ (p : ℝ) ^ (1 - s) / (s - 1) + ((p : ℝ) ^ s)⁻¹ := by
@@ -253,7 +276,9 @@ theorem zetaTail_bounds {s : ℝ} (hs : 1 < s) {p : ℕ} (hp : 1 ≤ p) :
   · have := le_of_tendsto_of_tendsto hsum2 hint (Eventually.of_forall hlow)
     linarith
 
-/-- (4.34) at `m = 0`: `|ζ(s) − (∑_{j<p} j^(−s) + p^(−s)/2 + p^(1−s)/(s−1))| ≤ p^(−s)/2`.-/
+/-- (4.34) at `m = 0`: `|ζ(s) − (∑_{j<p} j^(−s) + p^(−s)/2 + p^(1−s)/(s−1))| ≤ p^(−s)/2`.
+@isnad1 id=le.2h2v.s7.951305fd6b7f from=translated src=- shape=43540c8c vocab=ab4bb1a6
+-/
 theorem abs_zetaReal_sub_euler_maclaurin_zero_le {s : ℝ} (hs : 1 < s) {p : ℕ} (hp : 1 ≤ p) :
     |zetaReal s - (∑ j ∈ range p, ((j : ℝ) ^ s)⁻¹ + ((p : ℝ) ^ s)⁻¹ / 2
       + (p : ℝ) ^ (1 - s) / (s - 1))| ≤ ((p : ℝ) ^ s)⁻¹ / 2 := by
@@ -263,7 +288,9 @@ theorem abs_zetaReal_sub_euler_maclaurin_zero_le {s : ℝ} (hs : 1 < s) {p : ℕ
   constructor <;> linarith
 
 /-- With `m` fixed, precision `n` needs `p` exponential in `n`: `p ≥ 2^(n/s)` gives
-`p^(−s) ≤ 2^(−n)`.-/
+`p^(−s) ≤ 2^(−n)`.
+@isnad1 id=le.2h3v.s6.e12270e14113 from=translated src=- shape=4609aec1 vocab=96563627
+-/
 theorem zeta_tail_le_of_pow {s : ℝ} (hs : 1 < s) {n : ℕ} {p : ℝ}
     (hp : (2 : ℝ) ^ ((n : ℝ) / s) ≤ p) :
     (p ^ s)⁻¹ ≤ (2 : ℝ) ^ (-(n : ℝ)) := by
@@ -285,7 +312,9 @@ noncomputable def zetaEMTerm (k p : ℕ) (s : ℝ) : ℝ :=
   (bernoulli (2 * k) : ℝ) / (2 * k).factorial * (p : ℝ) ^ (1 - s - 2 * k)
     * ∏ j ∈ range (2 * k - 1), (s + j)
 
-/-- `T_{1,p}(s) = s · p^(−s−1) / 12`.-/
+/-- `T_{1,p}(s) = s · p^(−s−1) / 12`.
+@isnad1 id=eq.0h2v.s6.fc32d7b1e2d9 from=translated src=- shape=33a8f339 vocab=440fd18b
+-/
 theorem zetaEMTerm_one (p : ℕ) (s : ℝ) : zetaEMTerm 1 p s = s * (p : ℝ) ^ (-s - 1) / 12 := by
   unfold zetaEMTerm
   norm_num [bernoulli_two, Nat.factorial]

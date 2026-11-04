@@ -48,7 +48,9 @@ variable {a b : ℤ} {n F : ℕ}
 prime `p ∣ n` satisfies `p ≡ (Δ/p) (mod F)`.  The symbol in the
 conclusion is stated as a Jacobi symbol — which agrees with the
 Legendre symbol at the prime `p` — so that the statement needs no
-`Fact p.Prime` instance.-/
+`Fact p.Prime` instance.
+@isnad1 id=dvd.8h5v.s7.0400dbd634ca from=translated src=- shape=c95ae455 vocab=6200c5b3
+-/
 theorem theorem_4_2_3 (hn : 0 < n) (hcop : IsCoprime (n : ℤ) (2 * b))
     (hjac : jacobiSym (a ^ 2 - 4 * b) n = -1) (hF : F ∣ n + 1)
     (hU : (n : ℤ) ∣ lucasU a b (n + 1))
@@ -147,7 +149,9 @@ theorem theorem_4_2_3 (hn : 0 < n) (hcop : IsCoprime (n : ℤ) (2 * b))
 
 /-- **The Morrison `n + 1` primality test** (Crandall–Pomerance
 Theorem 4.2.3, second part): if in addition `F > √n + 1` — stated in
-integers as `n < (F − 1)²` — then `n` is prime.-/
+integers as `n < (F − 1)²` — then `n` is prime.
+@isnad1 id=prime.7h4v.s7.830edef47563 from=translated src=- shape=15c9425e vocab=6200c5b3
+-/
 theorem morrison_test (hn : 0 < n) (hcop : IsCoprime (n : ℤ) (2 * b))
     (hjac : jacobiSym (a ^ 2 - 4 * b) n = -1) (hF : F ∣ n + 1)
     (hU : (n : ℤ) ∣ lucasU a b (n + 1))

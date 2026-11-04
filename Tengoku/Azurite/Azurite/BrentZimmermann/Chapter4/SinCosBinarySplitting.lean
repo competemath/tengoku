@@ -59,7 +59,9 @@ variable {x : ℝ}
 
 /-! ### The block decomposition of `x` -/
 
-/-- `2^m ⌊y⌋ ≤ ⌊2^m y⌋ < 2^m (⌊y⌋ + 1)`.-/
+/-- `2^m ⌊y⌋ ≤ ⌊2^m y⌋ < 2^m (⌊y⌋ + 1)`.
+@isnad1 id=and.0h2v.s7.a14f020f8312 from=translated src=- shape=f763ad04 vocab=1eb4fee4
+-/
 theorem floor_mul_pow_bounds (y : ℝ) (m : ℕ) :
     2 ^ m * ⌊y⌋ ≤ ⌊(2 : ℝ) ^ m * y⌋ ∧ ⌊(2 : ℝ) ^ m * y⌋ < 2 ^ m * (⌊y⌋ + 1) := by
   constructor
@@ -75,9 +77,15 @@ theorem floor_mul_pow_bounds (y : ℝ) (m : ℕ) :
 noncomputable def sinCosDigit (x : ℝ) (i : ℕ) : ℤ :=
   ⌊x * 2 ^ 2 ^ (i + 1)⌋ - 2 ^ 2 ^ i * ⌊x * 2 ^ 2 ^ i⌋
 
+/--
+@isnad1 id=eq.0h1v.s7.4ae71865bd61 from=translated src=- shape=24b84d85 vocab=99cc8cf3
+-/
 theorem two_pow_two_pow_succ (i : ℕ) : (2 : ℝ) ^ 2 ^ (i + 1) = 2 ^ 2 ^ i * 2 ^ 2 ^ i := by
   rw [← pow_add, pow_succ, mul_two]
 
+/--
+@isnad1 id=le.0h2v.s3.86528902da82 from=translated src=- shape=0d4521f5 vocab=1339537c
+-/
 theorem sinCosDigit_nonneg (x : ℝ) (i : ℕ) : 0 ≤ sinCosDigit x i := by
   unfold sinCosDigit
   have h := (floor_mul_pow_bounds (x * 2 ^ 2 ^ i) (2 ^ i)).1
@@ -85,6 +93,9 @@ theorem sinCosDigit_nonneg (x : ℝ) (i : ℕ) : 0 ≤ sinCosDigit x i := by
     rw [two_pow_two_pow_succ]; ring] at h
   linarith
 
+/--
+@isnad1 id=lt.0h2v.s5.36ccc2945fb3 from=translated src=- shape=25f9d977 vocab=d69be0ce
+-/
 theorem sinCosDigit_lt (x : ℝ) (i : ℕ) : sinCosDigit x i < 2 ^ 2 ^ i := by
   unfold sinCosDigit
   have h := (floor_mul_pow_bounds (x * 2 ^ 2 ^ i) (2 ^ i)).2
@@ -92,7 +103,9 @@ theorem sinCosDigit_lt (x : ℝ) (i : ℕ) : sinCosDigit x i < 2 ^ 2 ^ i := by
     rw [two_pow_two_pow_succ]; ring] at h
   linarith
 
-/-- The blocks reassemble the truncation of `x` to `2^(k+1)` bits (for `0 ≤ x < 1/2`).-/
+/-- The blocks reassemble the truncation of `x` to `2^(k+1)` bits (for `0 ≤ x < 1/2`).
+@isnad1 id=eq.2h2v.s7.4ceb2a2cd0ee from=translated src=- shape=55033562 vocab=7d2b606f
+-/
 theorem sum_sinCosDigit_div (hx0 : 0 ≤ x) (hx : x < 1 / 2) (k : ℕ) :
     ∑ i ∈ range (k + 1), (sinCosDigit x i : ℝ) / 2 ^ 2 ^ (i + 1)
       = (⌊x * 2 ^ 2 ^ (k + 1)⌋ : ℝ) / 2 ^ 2 ^ (k + 1) := by
@@ -108,7 +121,9 @@ theorem sum_sinCosDigit_div (hx0 : 0 ≤ x) (hx : x < 1 / 2) (k : ℕ) :
   have h0 : ⌊x * 2⌋ = 0 := Int.floor_eq_zero_iff.mpr ⟨by positivity, by linarith⟩
   simp [h0]
 
-/-- `0 ≤ x − ∑_{i≤k} p_i/2^(2^(i+1)) < 2^(−2^(k+1))`.-/
+/-- `0 ≤ x − ∑_{i≤k} p_i/2^(2^(i+1)) < 2^(−2^(k+1))`.
+@isnad1 id=and.2h2v.s8.08c4bcc4c4da from=translated src=- shape=97f56acc vocab=0cfd200a
+-/
 theorem sub_sum_sinCosDigit_bounds (hx0 : 0 ≤ x) (hx : x < 1 / 2) (k : ℕ) :
     0 ≤ x - ∑ i ∈ range (k + 1), (sinCosDigit x i : ℝ) / 2 ^ 2 ^ (i + 1)
       ∧ x - ∑ i ∈ range (k + 1), (sinCosDigit x i : ℝ) / 2 ^ 2 ^ (i + 1)
@@ -123,7 +138,9 @@ theorem sub_sum_sinCosDigit_bounds (hx0 : 0 ≤ x) (hx : x < 1 / 2) (k : ℕ) :
   · rw [sub_lt_iff_lt_add, ← add_div, lt_div_iff₀ hM]
     linarith
 
-/-- With `n ≤ 2^(k+1)` (so `k = ⌈lg n⌉ − 1`), the truncation error is below `2^(−n)`.-/
+/-- With `n ≤ 2^(k+1)` (so `k = ⌈lg n⌉ − 1`), the truncation error is below `2^(−n)`.
+@isnad1 id=lt.3h3v.s7.56928c1f1c91 from=translated src=- shape=9ff34f9b vocab=0cfd200a
+-/
 theorem sub_sum_sinCosDigit_lt_two_pow (hx0 : 0 ≤ x) (hx : x < 1 / 2) {k n : ℕ}
     (hn : n ≤ 2 ^ (k + 1)) :
     x - ∑ i ∈ range (k + 1), (sinCosDigit x i : ℝ) / 2 ^ 2 ^ (i + 1) < (1 / 2) ^ n := by
@@ -136,15 +153,23 @@ theorem sub_sum_sinCosDigit_lt_two_pow (hx0 : 0 ≤ x) (hx : x < 1 / 2) {k n : �
 /-- `x_j = ∑_{i=j}^{k} y_i`.-/
 def tailSum (y : ℕ → ℝ) (k j : ℕ) : ℝ := ∑ i ∈ Ico j (k + 1), y i
 
+/--
+@isnad1 id=eq.0h2v.s4.39582282f10f from=translated src=- shape=90d7448c vocab=adb96361
+-/
 theorem tailSum_top (y : ℕ → ℝ) (k : ℕ) : tailSum y k (k + 1) = 0 := by
   simp [tailSum]
 
+/--
+@isnad1 id=eq.1h3v.s5.deb6ba082ec2 from=translated src=- shape=4133ca3b vocab=4b38cd0a
+-/
 theorem tailSum_eq_add (y : ℕ → ℝ) {k j : ℕ} (hj : j ≤ k) :
     tailSum y k j = y j + tailSum y k (j + 1) := by
   unfold tailSum
   rw [sum_eq_sum_Ico_succ_bot (by omega)]
 
-/-- Step 6 as the addition formulae.-/
+/-- Step 6 as the addition formulae.
+@isnad1 id=and.0h2v.s6.8bb33bcea67d from=translated src=- shape=7cd9fe53 vocab=d14a56b2
+-/
 theorem sin_cos_add_step (a b : ℝ) :
     Real.sin (a + b) = Real.sin a * Real.cos b + Real.cos a * Real.sin b
       ∧ Real.cos (a + b) = Real.cos a * Real.cos b - Real.sin a * Real.sin b :=
@@ -157,22 +182,32 @@ where `c_i, s_i` approximate `cos y_i, sin y_i`.-/
 noncomputable def sinCosProd (c s : ℕ → ℝ) (k j : ℕ) : ℂ :=
   ∏ i ∈ Ico j (k + 1), ((c i : ℂ) + s i * I)
 
+/--
+@isnad1 id=eq.0h3v.s5.f857b599b3aa from=translated src=- shape=6a12b7be vocab=f914a5b9
+-/
 theorem sinCosProd_top (c s : ℕ → ℝ) (k : ℕ) : sinCosProd c s k (k + 1) = 1 := by
   simp [sinCosProd]
 
+/--
+@isnad1 id=eq.1h4v.s6.cb6833113f51 from=translated src=- shape=609685a1 vocab=a9850ab9
+-/
 theorem sinCosProd_succ (c s : ℕ → ℝ) {k j : ℕ} (hj : j ≤ k) :
     sinCosProd c s k j = ((c j : ℂ) + s j * I) * sinCosProd c s k (j + 1) := by
   unfold sinCosProd
   rw [prod_eq_prod_Ico_succ_bot (by omega)]
 
-/-- Step 6, the cosine: `C_j = c_j C_{j+1} − s_j S_{j+1}`.-/
+/-- Step 6, the cosine: `C_j = c_j C_{j+1} − s_j S_{j+1}`.
+@isnad1 id=eq.1h4v.s6.f28e6f425ec3 from=translated src=- shape=4235daf3 vocab=276f806e
+-/
 theorem sinCosProd_re (c s : ℕ → ℝ) {k j : ℕ} (hj : j ≤ k) :
     (sinCosProd c s k j).re
       = c j * (sinCosProd c s k (j + 1)).re - s j * (sinCosProd c s k (j + 1)).im := by
   rw [sinCosProd_succ c s hj]
   simp
 
-/-- Step 6, the sine: `S_j = s_j C_{j+1} + c_j S_{j+1}`.-/
+/-- Step 6, the sine: `S_j = s_j C_{j+1} + c_j S_{j+1}`.
+@isnad1 id=eq.1h4v.s6.873b605cc65d from=translated src=- shape=0b213d79 vocab=100f1ced
+-/
 theorem sinCosProd_im (c s : ℕ → ℝ) {k j : ℕ} (hj : j ≤ k) :
     (sinCosProd c s k j).im
       = s j * (sinCosProd c s k (j + 1)).re + c j * (sinCosProd c s k (j + 1)).im := by
@@ -180,7 +215,9 @@ theorem sinCosProd_im (c s : ℕ → ℝ) {k j : ℕ} (hj : j ≤ k) :
   simp
   ring
 
-/-- With exact `cos y_i, sin y_i`, the product is `exp(i x_j)`.-/
+/-- With exact `cos y_i, sin y_i`, the product is `exp(i x_j)`.
+@isnad1 id=eq.0h3v.s5.5d7d6b89b806 from=translated src=- shape=0ed95eca vocab=9dbc6184
+-/
 theorem sinCosProd_exact (y : ℕ → ℝ) (k j : ℕ) :
     sinCosProd (fun i => Real.cos (y i)) (fun i => Real.sin (y i)) k j
       = Complex.exp (tailSum y k j * I) := by
@@ -188,13 +225,17 @@ theorem sinCosProd_exact (y : ℕ → ℝ) (k j : ℕ) :
   rw [Complex.ofReal_sum, sum_mul, Complex.exp_sum]
   exact prod_congr rfl fun i _ => (exp_mul_I_eq (y i)).symm
 
-/-- The invariant `S_j = sin x_j`.-/
+/-- The invariant `S_j = sin x_j`.
+@isnad1 id=eq.0h3v.s4.4bd75f072030 from=translated src=- shape=aabfbb23 vocab=ca7a63b7
+-/
 theorem sinCosProd_exact_im (y : ℕ → ℝ) (k j : ℕ) :
     (sinCosProd (fun i => Real.cos (y i)) (fun i => Real.sin (y i)) k j).im
       = Real.sin (tailSum y k j) := by
   rw [sinCosProd_exact, exp_ofReal_mul_I_im]
 
-/-- The invariant `C_j = cos x_j`.-/
+/-- The invariant `C_j = cos x_j`.
+@isnad1 id=eq.0h3v.s4.a02272d58494 from=translated src=- shape=50207879 vocab=d6c0579b
+-/
 theorem sinCosProd_exact_re (y : ℕ → ℝ) (k j : ℕ) :
     (sinCosProd (fun i => Real.cos (y i)) (fun i => Real.sin (y i)) k j).re
       = Real.cos (tailSum y k j) := by
@@ -203,7 +244,9 @@ theorem sinCosProd_exact_re (y : ℕ → ℝ) (k j : ℕ) :
 /-! ### Error propagation through the rotations -/
 
 /-- Perturbing `m` unimodular factors by at most `ε` each perturbs the product by at most
-`m ε (1 + ε)^m`.-/
+`m ε (1 + ε)^m`.
+@isnad1 id=le.3h4v.s7.06407d446de9 from=translated src=- shape=10772b95 vocab=30b85389
+-/
 theorem norm_prod_sub_prod_le {a b : ℕ → ℂ} {ε : ℝ} (hε : 0 ≤ ε) (hb : ∀ i, ‖b i‖ = 1)
     (hab : ∀ i, ‖a i - b i‖ ≤ ε) (m : ℕ) :
     ‖∏ i ∈ range m, a i - ∏ i ∈ range m, b i‖ ≤ m * ε * (1 + ε) ^ m := by
@@ -237,7 +280,9 @@ theorem norm_prod_sub_prod_le {a b : ℕ → ℂ} {ε : ℝ} (hε : 0 ≤ ε) (h
           nlinarith
 
 /-- Algorithm SinCos with `sin y_i, cos y_i` computed to within `ε` returns `sin x`, `cos x` to
-within `2(k+1) ε (1 + 2ε)^(k+1)`, `x = x₀ = ∑_{i≤k} y_i`.-/
+within `2(k+1) ε (1 + 2ε)^(k+1)`, `x = x₀ = ∑_{i≤k} y_i`.
+@isnad1 id=and.3h5v.s8.df4c21dba83a from=translated src=- shape=50a26d11 vocab=199046e5
+-/
 theorem sinCos_error (y c s : ℕ → ℝ) (k : ℕ) {ε : ℝ} (hε : 0 ≤ ε)
     (hc : ∀ i, |c i - Real.cos (y i)| ≤ ε) (hs : ∀ i, |s i - Real.sin (y i)| ≤ ε) :
     |(sinCosProd c s k 0).im - Real.sin (tailSum y k 0)|
@@ -278,7 +323,9 @@ theorem sinCos_error (y c s : ℕ → ℝ) (k : ℕ) {ε : ℝ} (hε : 0 ≤ ε)
 /-! ### The powers in the binary splitting of `sin y_j` -/
 
 /-- With `p < 2^(2^j)`, `p^N < 2^(2^j N)`: the powers needed for `sin y_j` have at most
-`2^j N` bits, below `n` when `2^j N ≤ n`.-/
+`2^j N` bits, below `n` when `2^j N ≤ n`.
+@isnad1 id=lt.2h3v.s6.bd1842b7416b from=translated src=- shape=eb3a8b2b vocab=f12631c6
+-/
 theorem pow_lt_two_pow_of_digit {p : ℕ} {j : ℕ} (hp : p < 2 ^ 2 ^ j) (N : ℕ) (hN : 0 < N) :
     p ^ N < 2 ^ (2 ^ j * N) := by
   rw [pow_mul]

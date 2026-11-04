@@ -52,7 +52,9 @@ open Finset Real
 
 /-! ### `n + k` bits in `1 + t`, and what the working precision keeps -/
 
-/-- `|(1 + t(1 + ε)) − (1 + t)| = |t| |ε| ≤ 2^(−k) · 2^(−n)`.-/
+/-- `|(1 + t(1 + ε)) − (1 + t)| = |t| |ε| ≤ 2^(−k) · 2^(−n)`.
+@isnad1 id=le.2h4v.s7.b70899379b80 from=translated src=- shape=6c23a2d7 vocab=54d332fb
+-/
 theorem abs_one_add_mul_sub_le {t ε : ℝ} {n k : ℕ} (ht : |t| ≤ (2 : ℝ) ^ (-(k : ℤ)))
     (hε : |ε| ≤ (2 : ℝ) ^ (-(n : ℤ))) :
     |(1 + t * (1 + ε)) - (1 + t)| ≤ (2 : ℝ) ^ (-((n + k : ℕ) : ℤ)) := by
@@ -61,7 +63,9 @@ theorem abs_one_add_mul_sub_le {t ε : ℝ} {n k : ℕ} (ht : |t| ≤ (2 : ℝ) 
     _ = (2 : ℝ) ^ (-((n + k : ℕ) : ℤ)) := by rw [← zpow_add₀ (by norm_num)]; push_cast; ring_nf
 
 /-- The relative error of `1 + t(1 + ε)` against `1 + t` is at most `2^(1−(n+k))` for `k ≥ 1`:
-`1 + t` is accurate to `n + k` bits (up to one bit) when `t` is accurate to `n`.-/
+`1 + t` is accurate to `n + k` bits (up to one bit) when `t` is accurate to `n`.
+@isnad1 id=le.3h4v.s7.7293daf1dba1 from=translated src=- shape=d81d447a vocab=54d332fb
+-/
 theorem relError_one_add_le {t ε : ℝ} {n k : ℕ} (hk : 1 ≤ k) (ht : |t| ≤ (2 : ℝ) ^ (-(k : ℤ)))
     (hε : |ε| ≤ (2 : ℝ) ^ (-(n : ℤ))) :
     |(1 + t * (1 + ε)) - (1 + t)| ≤ (2 : ℝ) ^ (1 - ((n + k : ℕ) : ℤ)) * |1 + t| := by
@@ -83,7 +87,9 @@ theorem relError_one_add_le {t ε : ℝ} {n k : ℕ} (hk : 1 ≤ k) (ht : |t| �
 
 /-- Two relative perturbations compound to `|δ₁| + |δ₂| + |δ₁||δ₂|`: rounding the sum at
 precision `n` (`|δ₂| ≤ 2^(−n)`) leaves a relative error of order `2^(−n)` however accurate the
-sum was.-/
+sum was.
+@isnad1 id=le.0h2v.s6.312d1e3113bb from=translated src=- shape=819a7e68 vocab=7729d30c
+-/
 theorem abs_mul_one_add_sub_one_le (δ₁ δ₂ : ℝ) :
     |(1 + δ₁) * (1 + δ₂) - 1| ≤ |δ₁| + |δ₂| + |δ₁| * |δ₂| := by
   rw [show (1 + δ₁) * (1 + δ₂) - 1 = δ₁ + δ₂ + δ₁ * δ₂ by ring]
@@ -98,18 +104,24 @@ theorem abs_mul_one_add_sub_one_le (δ₁ δ₂ : ℝ) :
 noncomputable def expm1 (x : ℝ) : ℝ := exp x - 1
 
 /-- The doubling formula `expm1 (2x) = expm1 x · (expm1 x + 2)`, which stays in terms of
-`expm1` and never forms `exp x − 1` from `exp x`.-/
+`expm1` and never forms `exp x − 1` from `exp x`.
+@isnad1 id=eq.0h1v.s5.82d61bf32e9e from=translated src=- shape=6b25e51b vocab=f6ffd493
+-/
 theorem expm1_two_mul (x : ℝ) : expm1 (2 * x) = expm1 x * (expm1 x + 2) := by
   unfold expm1
   rw [two_mul, exp_add]
   ring
 
-/-- `expm1 x > −1`, so `expm1 x + 2 > 1`.-/
+/-- `expm1 x > −1`, so `expm1 x + 2 > 1`.
+@isnad1 id=lt.0h1v.s4.6da76983793e from=translated src=- shape=1c79714a vocab=168650e0
+-/
 theorem expm1_add_two_pos (x : ℝ) : 0 < expm1 x + 2 := by
   unfold expm1; linarith [exp_pos x]
 
 /-- The doubling formula applied to `expm1 x (1 + ε)`: the result is `expm1 (2x)` times
-`1 + ε (2(e + 1) + e ε) / (e + 2)` with `e = expm1 x`.-/
+`1 + ε (2(e + 1) + e ε) / (e + 2)` with `e = expm1 x`.
+@isnad1 id=eq.0h2v.s7.fc8726661cde from=translated src=- shape=45a23f37 vocab=556ad092
+-/
 theorem expm1_two_mul_perturbed (x ε : ℝ) :
     expm1 x * (1 + ε) * (expm1 x * (1 + ε) + 2)
       = expm1 (2 * x) * (1 + ε * (2 * (expm1 x + 1) + expm1 x * ε) / (expm1 x + 2)) := by
@@ -119,7 +131,9 @@ theorem expm1_two_mul_perturbed (x ε : ℝ) :
   ring
 
 /-- For `x ≥ 0` the relative error of the doubling step is at most `2|ε| + ε²`: about one bit
-per doubling, with no cancellation.-/
+per doubling, with no cancellation.
+@isnad1 id=le.1h2v.s7.c0c86eb1e6f0 from=translated src=- shape=89e3e84a vocab=97bd2e89
+-/
 theorem abs_expm1_two_mul_relError_le {x : ℝ} (hx : 0 ≤ x) (ε : ℝ) :
     |ε * (2 * (expm1 x + 1) + expm1 x * ε) / (expm1 x + 2)| ≤ 2 * |ε| + ε ^ 2 := by
   have he : 0 ≤ expm1 x := by unfold expm1; linarith [one_le_exp_iff.mpr hx]
@@ -135,11 +149,15 @@ theorem abs_expm1_two_mul_relError_le {x : ℝ} (hx : 0 ≤ x) (ε : ℝ) :
         rw [← sq_abs ε]; nlinarith [abs_nonneg ε, sq_nonneg |ε|]
 
 /-- Computing `exp x − 1` from a rounded exponential `exp x (1 + ρ)` makes an absolute error
-`ρ exp x`.-/
+`ρ exp x`.
+@isnad1 id=eq.0h2v.s5.e7a3125febb2 from=translated src=- shape=0b5a444d vocab=f1ecf003
+-/
 theorem expm1_of_exp_perturbed (x ρ : ℝ) : (exp x * (1 + ρ) - 1) - expm1 x = ρ * exp x := by
   unfold expm1; ring
 
-/-- `expm1 x ≤ x exp x` (from `1 − x ≤ exp (−x)`).-/
+/-- `expm1 x ≤ x exp x` (from `1 − x ≤ exp (−x)`).
+@isnad1 id=le.0h1v.s4.60e92006bbdd from=translated src=- shape=1b4eab40 vocab=2633b98e
+-/
 theorem expm1_le_mul_exp (x : ℝ) : expm1 x ≤ x * exp x := by
   unfold expm1
   have h := add_one_le_exp (-x)
@@ -151,7 +169,9 @@ theorem expm1_le_mul_exp (x : ℝ) : expm1 x ≤ x * exp x := by
   nlinarith
 
 /-- The loss of significance: for `0 < x`, the relative error of `exp x − 1` computed from an
-exponential with relative error `ρ` is at least `|ρ| / x`, unbounded as `x → 0`.-/
+exponential with relative error `ρ` is at least `|ρ| / x`, unbounded as `x → 0`.
+@isnad1 id=le.1h2v.s6.2b011518a683 from=translated src=- shape=61d65448 vocab=afe37435
+-/
 theorem relError_expm1_of_exp_ge {x : ℝ} (hx : 0 < x) (ρ : ℝ) :
     |ρ| / x ≤ |(exp x * (1 + ρ) - 1) - expm1 x| / expm1 x := by
   rw [expm1_of_exp_perturbed, abs_mul, abs_of_pos (exp_pos x)]

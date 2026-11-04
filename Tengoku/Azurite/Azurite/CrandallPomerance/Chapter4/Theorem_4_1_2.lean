@@ -43,7 +43,9 @@ private theorem four_pow_succ_mod_twelve : ∀ m : ℕ, 4 ^ (m + 1) % 12 = 4
     have ih := four_pow_succ_mod_twelve m
     rw [pow_succ, Nat.mul_mod, ih]
 
-/-- For `k ≥ 1`, the Fermat number `F_k` is `5` mod `12`.-/
+/-- For `k ≥ 1`, the Fermat number `F_k` is `5` mod `12`.
+@isnad1 id=eq.1h1v.s5.2cce50f21b1d from=translated src=- shape=e6091715 vocab=dfdac6bb
+-/
 theorem fermatNumber_mod_twelve {k : ℕ} (hk : 1 ≤ k) :
     Nat.fermatNumber k % 12 = 5 := by
   obtain ⟨m, hm⟩ : ∃ m, 2 ^ (k - 1) = m + 1 :=
@@ -62,7 +64,9 @@ theorem fermatNumber_mod_twelve {k : ℕ} (hk : 1 ≤ k) :
 "only if"): if `F_k` is prime with `k ≥ 1`, then
 `3^((F_k − 1)/2) ≡ −1 (mod F_k)`.  By quadratic reciprocity `3` is a
 nonresidue mod `F_k` (as `F_k ≡ 5 (mod 12)`), so Euler's criterion pins
-the half-exponent power to `−1`.-/
+the half-exponent power to `−1`.
+@isnad1 id=eq.2h1v.s7.57a3cf82e616 from=translated src=- shape=656b4e88 vocab=b7a87c61
+-/
 theorem pepin_necessity {k : ℕ} (hk : 1 ≤ k)
     (hp : (Nat.fermatNumber k).Prime) :
     3 ^ ((Nat.fermatNumber k - 1) / 2) = (-1 : ZMod (Nat.fermatNumber k)) := by
@@ -89,7 +93,9 @@ theorem pepin_necessity {k : ℕ} (hk : 1 ≤ k)
 the Fermat number `F_k = 2^(2^k) + 1` is prime if and only if
 `3^((F_k − 1)/2) ≡ −1 (mod F_k)`.  Sufficiency is Mathlib's
 `Nat.pepin_primality'` (Lucas with witness `3`); necessity is
-`pepin_necessity`.-/
+`pepin_necessity`.
+@isnad1 id=iff.1h1v.s7.5b5207fbb5b8 from=translated src=- shape=ea84a9b3 vocab=b7a87c61
+-/
 theorem theorem_4_1_2 {k : ℕ} (hk : 1 ≤ k) :
     (Nat.fermatNumber k).Prime ↔
       3 ^ ((Nat.fermatNumber k - 1) / 2) = (-1 : ZMod (Nat.fermatNumber k)) :=

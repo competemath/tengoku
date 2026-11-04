@@ -54,7 +54,9 @@ namespace Azurite
 namespace CP
 
 /-- The linear congruence `N·k ≡ c (mod h)` is solvable when
-`gcd(N, h) ∣ c` (Bézout).-/
+`gcd(N, h) ∣ c` (Bézout).
+@isnad1 id=ex.2h3v.s5.c50320b01d31 from=translated src=- shape=ae534df0 vocab=2ce5661c
+-/
 theorem exists_mul_modEq (h N c : ℕ) (hh : 0 < h)
     (hdvd : Nat.gcd N h ∣ c) : ∃ k : ℕ, N * k ≡ c [MOD h] := by
   obtain ⟨c', rfl⟩ := hdvd

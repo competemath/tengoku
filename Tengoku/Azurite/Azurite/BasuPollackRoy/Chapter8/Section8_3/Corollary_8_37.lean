@@ -37,7 +37,9 @@ variable {K : Type*} [Field K]
     are both non-defective (`2 ≤ j ≤ p`), the recurrence has a square on each side:
     `s_j² sResP_{j-2} = -Rem(s_{j-1}² sResP_j, sResP_{j-1})`.  (In the non-defective case
     `t_{j-1} = s_{j-1}`, turning the mixed `s_{j-1} t_{j-1}` of Corollary 8.35 into
-    `s_{j-1}²`.)-/
+    `s_{j-1}²`.)
+@isnad1 id=eq.9h4v.s9.e2a055cb3474 from=translated src=- shape=6f2186ca vocab=50b9235a
+-/
 theorem corollary_8_35_nondefective (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree)
     {j : ℕ} (hj2 : 2 ≤ j) (hjp : j ≤ P.natDegree) (hj1q : j - 1 ≤ Q.natDegree)
@@ -62,7 +64,9 @@ theorem corollary_8_35_nondefective (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
 /-- **BPR Corollary 8.37.**  When every signed subresultant `sResP_j(P,Q)` (`j = 0, …, p`)
     is non-defective, the signed subresultant polynomials are proportional, *up to a square*,
     to the signed remainder sequence: for `ℓ ≤ p` there is a nonzero `a` with
-    `sResP_{p-ℓ}(P,Q) = a² · SRemS_ℓ(P,Q)`.-/
+    `sResP_{p-ℓ}(P,Q) = a² · SRemS_ℓ(P,Q)`.
+@isnad1 id=ex.5h4v.s8.70a621bfa303 from=translated src=- shape=cc2d02a6 vocab=7f2ca566
+-/
 theorem corollary_8_37 (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree)
     (hnd : ∀ j, j ≤ P.natDegree → IsNonDefective P Q j)

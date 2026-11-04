@@ -54,7 +54,9 @@ variable {x : ℝ}
 
 /-! ### One reduction step -/
 
-/-- `arctan a − arctan b = arctan((a − b)/(1 + ab))` for `ab > −1`.-/
+/-- `arctan a − arctan b = arctan((a − b)/(1 + ab))` for `ab > −1`.
+@isnad1 id=eq.1h2v.s6.8cb6ef34c1a1 from=translated src=- shape=fa94a09e vocab=b1767407
+-/
 theorem arctan_sub_arctan {a b : ℝ} (h : -1 < a * b) :
     Real.arctan a - Real.arctan b = Real.arctan ((a - b) / (1 + a * b)) := by
   have := Real.arctan_add (x := a) (y := -b) (by nlinarith)
@@ -63,7 +65,9 @@ theorem arctan_sub_arctan {a b : ℝ} (h : -1 < a * b) :
   congr 1
   ring
 
-/-- The reduction: `arctan x = arctan(p/q) + arctan((qx − p)/(q + px))` for `p, x ≥ 0`, `q > 0`.-/
+/-- The reduction: `arctan x = arctan(p/q) + arctan((qx − p)/(q + px))` for `p, x ≥ 0`, `q > 0`.
+@isnad1 id=eq.3h3v.s6.6afbe1620e6f from=translated src=- shape=753e3220 vocab=e8c6f5ff
+-/
 theorem arctan_eq_arctan_rat_add {p : ℤ} {q : ℕ} (hp : 0 ≤ p) (hq : 0 < q) (hx : 0 ≤ x) :
     Real.arctan x = Real.arctan (p / q) + Real.arctan ((q * x - p) / (q + p * x)) := by
   have hq' : (0 : ℝ) < q := by exact_mod_cast hq
@@ -75,7 +79,9 @@ theorem arctan_eq_arctan_rat_add {p : ℤ} {q : ℕ} (hp : 0 ≤ p) (hq : 0 < q)
   rw [e] at h
   linarith
 
-/-- `0 ≤ δ ≤ x − p/q` when `p/q ≤ x`.-/
+/-- `0 ≤ δ ≤ x − p/q` when `p/q ≤ x`.
+@isnad1 id=and.4h3v.s7.0c5047b6758f from=translated src=- shape=8a8b375c vocab=be5ee298
+-/
 theorem delta_nonneg_le {p : ℤ} {q : ℕ} (hp : 0 ≤ p) (hq : 0 < q) (hx : 0 ≤ x)
     (hpx : (p : ℝ) / q ≤ x) :
     0 ≤ (q * x - p) / (q + p * x) ∧ (q * x - p) / (q + p * x) ≤ x - p / q := by
@@ -89,7 +95,9 @@ theorem delta_nonneg_le {p : ℤ} {q : ℕ} (hp : 0 ≤ p) (hq : 0 < q) (hx : 0 
           div_le_div_of_nonneg_left hnum hq' hden
       _ = x - p / q := by field_simp
 
-/-- `δ < 1/q` when `p/q ≤ x < (p+1)/q`.-/
+/-- `δ < 1/q` when `p/q ≤ x < (p+1)/q`.
+@isnad1 id=lt.5h3v.s7.a35b3f44b1a6 from=translated src=- shape=e5c3d600 vocab=be5ee298
+-/
 theorem delta_lt_inv {p : ℤ} {q : ℕ} (hp : 0 ≤ p) (hq : 0 < q) (hx : 0 ≤ x)
     (hpx : (p : ℝ) / q ≤ x) (hx1 : x < (p + 1) / q) :
     (q * x - p) / (q + p * x) < 1 / q := by
@@ -103,8 +111,14 @@ theorem delta_lt_inv {p : ℤ} {q : ℕ} (hp : 0 ≤ p) (hq : 0 < q) (hx : 0 ≤
 /-- `Q_i = 2^(2^(i+1))`: `Q₀ = 4`, `Q₁ = 16`, …, `Q_{i+1} = Q_i²`.-/
 def bitBurstQ (i : ℕ) : ℕ := 2 ^ 2 ^ (i + 1)
 
+/--
+@isnad1 id=lt.0h1v.s3.137b05c2def2 from=translated src=- shape=8a62b088 vocab=7f58ea8d
+-/
 theorem bitBurstQ_pos (i : ℕ) : 0 < bitBurstQ i := by unfold bitBurstQ; positivity
 
+/--
+@isnad1 id=eq.0h1v.s5.48560711b029 from=translated src=- shape=530baa75 vocab=297bd67c
+-/
 theorem bitBurstQ_succ (i : ℕ) : bitBurstQ (i + 1) = bitBurstQ i ^ 2 := by
   unfold bitBurstQ
   rw [← pow_mul, pow_succ 2 (i + 1), mul_comm]
@@ -120,13 +134,21 @@ noncomputable def bitBurstRem (x : ℝ) : ℕ → ℝ
 /-- The numerators `p_i = ⌊Q_{i+1} r_i⌋`.-/
 noncomputable def bitBurstNum (x : ℝ) (i : ℕ) : ℤ := ⌊(bitBurstQ (i + 1) : ℝ) * bitBurstRem x i⌋
 
+/--
+@isnad1 id=eq.0h1v.s3.8a7acea209cf from=translated src=- shape=bb0110a5 vocab=a7809004
+-/
 theorem bitBurstRem_zero : bitBurstRem x 0 = x := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.d62dee5af2eb from=translated src=- shape=67d7d69a vocab=592715f6
+-/
 theorem bitBurstRem_succ (i : ℕ) :
     bitBurstRem x (i + 1) = ((bitBurstQ (i + 1) : ℝ) * bitBurstRem x i - bitBurstNum x i)
       / (bitBurstQ (i + 1) + bitBurstNum x i * bitBurstRem x i) := rfl
 
-/-- The invariant `0 ≤ r_i < 1/Q_i` for `0 ≤ x < 1/4`.-/
+/-- The invariant `0 ≤ r_i < 1/Q_i` for `0 ≤ x < 1/4`.
+@isnad1 id=and.2h2v.s6.1e20069817d9 from=translated src=- shape=d40d281b vocab=ee7a8b13
+-/
 theorem bitBurstRem_bounds (hx0 : 0 ≤ x) (hx : x < 1 / 4) (i : ℕ) :
     0 ≤ bitBurstRem x i ∧ bitBurstRem x i < 1 / (bitBurstQ i : ℝ) := by
   induction i with
@@ -145,10 +167,15 @@ theorem bitBurstRem_bounds (hx0 : 0 ≤ x) (hx : x < 1 / 4) (i : ℕ) :
     rw [bitBurstRem_succ]
     exact ⟨(delta_nonneg_le hp hq h0 hpx).1, delta_lt_inv hp hq h0 hpx hx1⟩
 
+/--
+@isnad1 id=le.2h2v.s5.7832bda72b7d from=translated src=- shape=ed98bbce vocab=faf97f41
+-/
 theorem bitBurstNum_nonneg (hx0 : 0 ≤ x) (hx : x < 1 / 4) (i : ℕ) : 0 ≤ bitBurstNum x i :=
   Int.floor_nonneg.mpr (mul_nonneg (by positivity) (bitBurstRem_bounds hx0 hx i).1)
 
-/-- `p_i < Q_i = √Q_{i+1}`: the numerator has at most `2^(i+1)` bits.-/
+/-- `p_i < Q_i = √Q_{i+1}`: the numerator has at most `2^(i+1)` bits.
+@isnad1 id=lt.2h2v.s5.32eae1c610ce from=translated src=- shape=d6951382 vocab=fb6d50a7
+-/
 theorem bitBurstNum_lt (hx0 : 0 ≤ x) (hx : x < 1 / 4) (i : ℕ) :
     bitBurstNum x i < bitBurstQ i := by
   have hQ : (0 : ℝ) < bitBurstQ i := by exact_mod_cast bitBurstQ_pos i
@@ -161,7 +188,9 @@ theorem bitBurstNum_lt (hx0 : 0 ≤ x) (hx : x < 1 / 4) (i : ℕ) :
     nlinarith
   exact_mod_cast h1.trans_lt h2
 
-/-- The value `p_i/Q_{i+1} < 1/Q_i = 2^(−2^(i+1))`.-/
+/-- The value `p_i/Q_{i+1} < 1/Q_i = 2^(−2^(i+1))`.
+@isnad1 id=lt.2h2v.s6.7a98432eaae2 from=translated src=- shape=e4839171 vocab=81c1b426
+-/
 theorem bitBurstNum_div_lt (hx0 : 0 ≤ x) (hx : x < 1 / 4) (i : ℕ) :
     (bitBurstNum x i : ℝ) / bitBurstQ (i + 1) < 1 / bitBurstQ i := by
   have hq' : (0 : ℝ) < bitBurstQ (i + 1) := by exact_mod_cast bitBurstQ_pos (i + 1)
@@ -170,7 +199,9 @@ theorem bitBurstNum_div_lt (hx0 : 0 ≤ x) (hx : x < 1 / 4) (i : ℕ) :
         exact Int.floor_le _
     _ < 1 / bitBurstQ i := (bitBurstRem_bounds hx0 hx i).2
 
-/-- `arctan x = ∑_{i<L} arctan(p_i/Q_{i+1}) + arctan r_L`.-/
+/-- `arctan x = ∑_{i<L} arctan(p_i/Q_{i+1}) + arctan r_L`.
+@isnad1 id=eq.2h2v.s6.9e2443274ad7 from=translated src=- shape=7c99feee vocab=4dad08f4
+-/
 theorem arctan_eq_sum_bitBurst (hx0 : 0 ≤ x) (hx : x < 1 / 4) (L : ℕ) :
     Real.arctan x = ∑ i ∈ range L, Real.arctan ((bitBurstNum x i : ℝ) / bitBurstQ (i + 1))
       + Real.arctan (bitBurstRem x L) := by
@@ -182,18 +213,24 @@ theorem arctan_eq_sum_bitBurst (hx0 : 0 ≤ x) (hx : x < 1 / 4) (L : ℕ) :
     exact arctan_eq_arctan_rat_add (bitBurstNum_nonneg hx0 hx L) (bitBurstQ_pos (L + 1))
       (bitBurstRem_bounds hx0 hx L).1
 
-/-- `arctan t ≤ t` for `t ≥ 0`.-/
+/-- `arctan t ≤ t` for `t ≥ 0`.
+@isnad1 id=le.1h1v.s4.bf98c4bdb9e3 from=translated src=- shape=71fa8a4a vocab=41269e44
+-/
 theorem arctan_le_self {t : ℝ} (ht : 0 ≤ t) : Real.arctan t ≤ t := by
   have h1 : 0 ≤ Real.arctan t := Real.arctan_nonneg.mpr ht
   have h2 := Real.le_tan h1 (Real.arctan_lt_pi_div_two t)
   rwa [Real.tan_arctan] at h2
 
-/-- `arctan r_L < 1/Q_L = 2^(−2^(L+1))`.-/
+/-- `arctan r_L < 1/Q_L = 2^(−2^(L+1))`.
+@isnad1 id=lt.2h2v.s6.e5b4284b6fa6 from=translated src=- shape=ac20bb96 vocab=fdf6b9b1
+-/
 theorem arctan_bitBurstRem_lt (hx0 : 0 ≤ x) (hx : x < 1 / 4) (L : ℕ) :
     Real.arctan (bitBurstRem x L) < 1 / (bitBurstQ L : ℝ) :=
   lt_of_le_of_lt (arctan_le_self (bitBurstRem_bounds hx0 hx L).1) (bitBurstRem_bounds hx0 hx L).2
 
-/-- With `n ≤ 2^(L+1)`, the `L` rationals give `arctan x` to within `2^(−n)`.-/
+/-- With `n ≤ 2^(L+1)`, the `L` rationals give `arctan x` to within `2^(−n)`.
+@isnad1 id=le.3h3v.s7.e6c19ddeb9a5 from=translated src=- shape=b18e33a4 vocab=3f680fd9
+-/
 theorem abs_arctan_sub_sum_bitBurst_le (hx0 : 0 ≤ x) (hx : x < 1 / 4) {L n : ℕ}
     (hn : n ≤ 2 ^ (L + 1)) :
     |Real.arctan x - ∑ i ∈ range L, Real.arctan ((bitBurstNum x i : ℝ) / bitBurstQ (i + 1))|
@@ -208,7 +245,9 @@ theorem abs_arctan_sub_sum_bitBurst_le (hx0 : 0 ≤ x) (hx : x < 1 / 4) {L n : �
   rw [← inv_pow, ← one_div]
   exact pow_le_pow_of_le_one (by norm_num) (by norm_num) hn
 
-/-- About `lg n` rationals suffice: with `L = ⌈lg n⌉`, the error is `≤ 2^(−n)`.-/
+/-- About `lg n` rationals suffice: with `L = ⌈lg n⌉`, the error is `≤ 2^(−n)`.
+@isnad1 id=le.2h2v.s7.a2e2e28e754b from=translated src=- shape=f9295f6f vocab=ae0a364d
+-/
 theorem abs_arctan_sub_sum_bitBurst_clog_le (hx0 : 0 ≤ x) (hx : x < 1 / 4) (n : ℕ) :
     |Real.arctan x - ∑ i ∈ range (Nat.clog 2 n),
         Real.arctan ((bitBurstNum x i : ℝ) / bitBurstQ (i + 1))| ≤ (1 / 2) ^ n :=
@@ -218,7 +257,9 @@ theorem abs_arctan_sub_sum_bitBurst_clog_le (hx0 : 0 ≤ x) (hx : x < 1 / 4) (n 
 /-! ### The `α + 1` cost -/
 
 /-- `⌈lg n⌉` binary splittings of cost `4 (lg n)² M(n)` each cost at most `8 (lg n)³ M(n)`:
-`α + 1 = 3` in the quasi-linear model.-/
+`α + 1 = 3` in the quasi-linear model.
+@isnad1 id=le.1h1v.s7.cd5694b6fa0b from=translated src=- shape=dd5f0011 vocab=7e616a17
+-/
 theorem repeated_binary_splitting_cost {n : ℕ} (hn : 2 ≤ n) :
     (Nat.clog 2 n : ℝ) * (4 * Real.logb 2 n ^ 2 * quasiLinearCost n)
       ≤ 8 * Real.logb 2 n ^ 3 * quasiLinearCost n := by

@@ -89,21 +89,32 @@ noncomputable def sigmaN (hm : 0 < m) (hco : Nat.Coprime n m) :
     rw [eval₂_eq_eval_map, map_cyclotomic]
     exact hroot
 
+/--
+@isnad1 id=eq.2h2v.s7.4b8fb3550499 from=translated src=- shape=6a230bbc vocab=24768eb4
+-/
 theorem sigmaN_zetaM (hm : 0 < m) (hco : Nat.Coprime n m) :
     sigmaN hm hco (zetaM m) = zetaM m ^ n :=
   AdjoinRoot.lift_root _
 
+/--
+@isnad1 id=eq.2h4v.s8.aef285a5a5b8 from=translated src=- shape=7891c916 vocab=3a755367
+-/
 theorem sigmaN_aeval (hm : 0 < m) (hco : Nat.Coprime n m)
     (x : CycM m) (U : Polynomial ℤ) :
     sigmaN hm hco (aeval x U) = aeval (sigmaN hm hco x) U :=
   (Polynomial.aeval_algHom_apply (sigmaN hm hco).toIntAlgHom x U).symm
 
-/-- Every element of the model is a polynomial in `ζ_m`.-/
+/-- Every element of the model is a polynomial in `ζ_m`.
+@isnad1 id=ex.0h2v.s7.ac34a9102fbd from=translated src=- shape=780ea81f vocab=4c4f3a42
+-/
 theorem exists_aeval_rep (α : CycM m) :
     ∃ U : Polynomial ℤ, α = aeval (zetaM m) U := by
   obtain ⟨U, rfl⟩ := AdjoinRoot.mk_surjective α
   exact ⟨U, (AdjoinRoot.aeval_eq U).symm⟩
 
+/--
+@isnad1 id=eq.2h3v.s7.ee1d99b43523 from=translated src=- shape=a694f41d vocab=afd7c120
+-/
 theorem sigmaN_iterate_zetaM (hm : 0 < m) (hco : Nat.Coprime n m)
     (i : ℕ) :
     (⇑(sigmaN hm hco))^[i] (zetaM m) = zetaM m ^ n ^ i := by
@@ -118,7 +129,9 @@ theorem sigmaN_iterate_zetaM (hm : 0 < m) (hco : Nat.Coprime n m)
 
 /-- **The finite-order upgrade**: a `σ_n`-stability *inclusion* for
 an ideal of `ℤ[ζ_m]` is automatically the (10.1)-*equality*, because
-`σ_n^(φ(m)) = id` (Euler).-/
+`σ_n^(φ(m)) = id` (Euler).
+@isnad1 id=eq.3h3v.s8.88ed35a052ed from=translated src=- shape=96224c81 vocab=c8ce7fce
+-/
 theorem map_sigmaN_eq_of_mem (hm : 0 < m) (hco : Nat.Coprime n m)
     (I : Ideal (CycM m))
     (hstep : ∀ x ∈ I, sigmaN hm hco x ∈ I) :
@@ -179,10 +192,16 @@ theorem map_sigmaN_eq_of_mem (hm : 0 < m) (hco : Nat.Coprime n m)
 noncomputable def mIdeal (m n : ℕ) (h : Polynomial ℤ) : Ideal (CycM m) :=
   Ideal.span {(n : CycM m), aeval (zetaM m) h}
 
+/--
+@isnad1 id=mem.0h3v.s6.2f8d1e9fbbe8 from=translated src=- shape=ed54adcd vocab=0608ba1f
+-/
 theorem natCast_mem_mIdeal (m n : ℕ) (h : Polynomial ℤ) :
     ((n : ℕ) : CycM m) ∈ mIdeal m n h :=
   Ideal.subset_span (by simp)
 
+/--
+@isnad1 id=mem.0h3v.s7.68032198890b from=translated src=- shape=e9117d6b vocab=91165eec
+-/
 theorem aeval_mem_mIdeal (m n : ℕ) (h : Polynomial ℤ) :
     aeval (zetaM m) h ∈ mIdeal m n h :=
   Ideal.subset_span (by simp)
@@ -190,7 +209,9 @@ theorem aeval_mem_mIdeal (m n : ℕ) (h : Polynomial ℤ) :
 /-- **`𝔪 ∩ ℤ = nℤ`** (the first (10.1)-condition, in the
 `hIZ`-shape of Theorem (7.8)): an integer lying in `𝔪` is divisible
 by `n`.  Needs only that `(h mod n)` is monic of positive degree and
-divides `(Φ_m mod n)`.-/
+divides `(Φ_m mod n)`.
+@isnad1 id=dvd.5h4v.s8.d532dfe97212 from=translated src=- shape=9483866c vocab=1da21776
+-/
 theorem mIdeal_natCast_imp_dvd (hn : 1 < n)
     (hmonic : h.Monic) (hdeg : 0 < h.natDegree)
     (hdvd : h.map (Int.castRingHom (ZMod n))
@@ -261,7 +282,9 @@ theorem mIdeal_natCast_imp_dvd (hn : 1 < n)
 
 /-- **σ-stability of `𝔪` from the checkable condition** "`ζ̄^n` is a
 zero of `(h mod n)`", rendered as `h(ζ^n) ∈ 𝔪` — the inclusion
-step, in the `hσI`-shape of Theorem (7.8).-/
+step, in the `hσI`-shape of Theorem (7.8).
+@isnad1 id=mem.4h4v.s9.ad0b20a051fb from=translated src=- shape=f9074271 vocab=acb35161
+-/
 theorem mIdeal_sigmaN_mem (hm : 0 < m) (hco : Nat.Coprime n m)
     (hcheck : aeval (zetaM m ^ n) h ∈ mIdeal m n h) :
     ∀ x ∈ mIdeal m n h, sigmaN hm hco x ∈ mIdeal m n h := by
@@ -278,7 +301,9 @@ theorem mIdeal_sigmaN_mem (hm : 0 < m) (hco : Nat.Coprime n m)
     (Ideal.mul_mem_left _ _ hcheck)
 
 /-- **The second (10.1)-condition**: `σ_n[𝔪] = 𝔪`, from the
-checkable `ζ̄^n`-condition.-/
+checkable `ζ̄^n`-condition.
+@isnad1 id=eq.3h3v.s8.137c0892aa34 from=translated src=- shape=d24bb71b vocab=72b215b6
+-/
 theorem mIdeal_sigmaN_map_eq (hm : 0 < m) (hco : Nat.Coprime n m)
     (hcheck : aeval (zetaM m ^ n) h ∈ mIdeal m n h) :
     Ideal.map (sigmaN hm hco) (mIdeal m n h) = mIdeal m n h :=
@@ -288,7 +313,9 @@ theorem mIdeal_sigmaN_map_eq (hm : 0 < m) (hco : Nat.Coprime n m)
 
 /-- **The (1.3)-Frobenius congruence in the model**: for prime `n`
 (coprime to `m`), `σ_n(α) ≡ α^n mod nℤ[ζ_m]` — freshman's dream in
-`(ℤ/n)[X]` pulled back along `aeval ζ`.-/
+`(ℤ/n)[X]` pulled back along `aeval ζ`.
+@isnad1 id=mem.3h3v.s8.5f8336ae2ad5 from=translated src=- shape=b4bd3c75 vocab=8aa351e8
+-/
 theorem sigmaN_sub_pow_mem (hm : 0 < m) (hn : n.Prime)
     (hco : Nat.Coprime n m) (α : CycM m) :
     sigmaN hm hco α - α ^ n ∈ Ideal.span {((n : ℕ) : CycM m)} := by
@@ -324,7 +351,9 @@ theorem sigmaN_sub_pow_mem (hm : 0 < m) (hn : n.Prime)
   exact Ideal.mem_span_singleton.mpr ⟨aeval (zetaM m) D, rfl⟩
 
 /-- **The paper's remark**: for *prime* `n`, `σ_n[𝔪] = 𝔪` holds for
-*every* ideal `𝔪` of `ℤ[ζ_m]` containing `n`.-/
+*every* ideal `𝔪` of `ℤ[ζ_m]` containing `n`.
+@isnad1 id=eq.4h3v.s8.f3e843a4b06f from=translated src=- shape=e3c666ab vocab=c58ab87f
+-/
 theorem map_sigmaN_eq_of_prime (hm : 0 < m) (hn : n.Prime)
     (hco : Nat.Coprime n m) (I : Ideal (CycM m))
     (hnI : ((n : ℕ) : CycM m) ∈ I) :
@@ -343,7 +372,9 @@ theorem map_sigmaN_eq_of_prime (hm : 0 < m) (hn : n.Prime)
 /-- **The paper's closing observation**: if `deg h = φ(m)` (the
 paper's `f = (p−1)p^(k−1)` case) then `(h mod n) = (Φ_m mod n)` and
 the method degenerates to `𝔪 = nℤ[ζ_m]`.  (That this is then the
-*only* ideal satisfying (10.1) awaits (10.5).)-/
+*only* ideal satisfying (10.1) awaits (10.5).)
+@isnad1 id=eq.4h3v.s7.aef152bc9018 from=translated src=- shape=e5627ade vocab=3d455319
+-/
 theorem mIdeal_eq_span_natCast (hn : 1 < n) (hmonic : h.Monic)
     (hdvd : h.map (Int.castRingHom (ZMod n))
       ∣ (cyclotomic m ℤ).map (Int.castRingHom (ZMod n)))

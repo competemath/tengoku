@@ -48,6 +48,9 @@ private lemma mulWithCarry_aux (hi lo c : UInt64)
       by_contra h; exact hcarry (h_cmp.mpr (Nat.not_lt.mp h))
     rw [h_add_lo, Nat.mod_eq_of_lt hlt]; ring
 
+/--
+@isnad1 id=eq.0h3v.s6.6fae43f0c664 from=translated src=- shape=aec3aa8b vocab=05bb5fff
+-/
 theorem mulWithCarry_eq (a b c : UInt64) :
     (mulWithCarry a b c).1.toNat * 2^64 + (mulWithCarry a b c).2.toNat
       = a.toNat * b.toNat + c.toNat := by

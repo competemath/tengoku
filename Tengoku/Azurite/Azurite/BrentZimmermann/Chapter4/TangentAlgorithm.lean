@@ -93,7 +93,9 @@ def tangentOuter (m : ℕ) (a : ℕ → ℕ) : ℕ → (ℕ → ℕ)
 def tangentNumbersModel (m : ℕ) : ℕ → ℕ := tangentOuter m tangentInit (m - 1)
 
 /-- The invariant of pass `k`: entries below `k` are finished tangent numbers, entries
-`j < k + s` hold `p_{j+k−2, j−k+1}`, entries `j ≥ k + s` still hold `p_{j+k−3, j−k+2}`.-/
+`j < k + s` hold `p_{j+k−2, j−k+1}`, entries `j ≥ k + s` still hold `p_{j+k−3, j−k+2}`.
+@isnad1 id=and.3h4v.s8.f239093e3dd5 from=translated src=- shape=3ec7ea78 vocab=27e8d020
+-/
 theorem tangentPass_spec {k m : ℕ} (hk : 2 ≤ k) (a : ℕ → ℕ)
     (hfin : ∀ j, 1 ≤ j → j < k → (a j : ℤ) = tangentNumber j)
     (hrow : ∀ j, k ≤ j → j ≤ m → (a j : ℤ) = (tanDerivPoly (j + k - 3)).coeff (j - k + 2))
@@ -130,7 +132,9 @@ theorem tangentPass_spec {k m : ℕ} (hk : 2 ≤ k) (a : ℕ → ℕ)
       exact ih3 j (by omega) hjm
 
 /-- After `r` passes (`k = 2, …, r + 1`): the entries `j ≤ r + 1` are tangent numbers, the rest
-hold `p_{j+r−1, j−r}`.-/
+hold `p_{j+r−1, j−r}`.
+@isnad1 id=and.1h2v.s7.f9970254b37e from=translated src=- shape=f5aae97f vocab=4d1f7841
+-/
 theorem tangentOuter_spec (m : ℕ) : ∀ r, r + 1 ≤ m →
     (∀ j, 1 ≤ j → j < r + 2 → (tangentOuter m tangentInit r j : ℤ) = tangentNumber j)
       ∧ (∀ j, r + 2 ≤ j → j ≤ m →
@@ -163,11 +167,16 @@ theorem tangentOuter_spec (m : ℕ) : ∀ r, r + 1 ≤ m →
     · rw [h2 j (by omega) (by omega) hjm, show j + (r + 2) - 2 = j + (r + 1 + 2) - 3 by omega,
         show j - (r + 2) + 1 = j - (r + 1 + 2) + 2 by omega]
 
-/-- Correctness of Algorithm 4.3: the model computes the tangent numbers.-/
+/-- Correctness of Algorithm 4.3: the model computes the tangent numbers.
+@isnad1 id=eq.3h2v.s5.2a73b0c6f7dc from=translated src=- shape=210baa05 vocab=61ce5e8f
+-/
 theorem tangentNumbersModel_eq {m : ℕ} (hm : 1 ≤ m) {j : ℕ} (h1 : 1 ≤ j) (hjm : j ≤ m) :
     (tangentNumbersModel m j : ℤ) = tangentNumber j :=
   (tangentOuter_spec m (m - 1) (by omega)).1 j h1 (by omega)
 
+/--
+@isnad1 id=and.0h0v.s5.baac76bf6167 from=translated src=- shape=6752216f vocab=31889996
+-/
 theorem tangentNumbersModel_three :
     tangentNumbersModel 3 1 = 1 ∧ tangentNumbersModel 3 2 = 2 ∧ tangentNumbersModel 3 3 = 16 := by
   have h1 := tangentNumbersModel_eq (m := 3) (by norm_num) (j := 1) (by norm_num) (by norm_num)
@@ -183,6 +192,9 @@ theorem tangentNumbersModel_three :
 /-- The odd zeta function `∑_{n≥0} (2n+1)^(−s) = (1 − 2^(−s)) ζ(s)`.-/
 noncomputable def oddZeta (s : ℝ) : ℝ := ∑' n : ℕ, (((2 * n + 1 : ℕ) : ℝ) ^ s)⁻¹
 
+/--
+@isnad1 id=eq.1h1v.s5.6ae57ef638b1 from=translated src=- shape=925ff2c3 vocab=922bdbfa
+-/
 theorem one_sub_two_rpow_neg_mul_zetaReal {s : ℝ} (hs : 1 < s) :
     (1 - (2 : ℝ) ^ (-s)) * zetaReal s = oddZeta s := by
   have hsum : Summable fun n : ℕ => ((n : ℝ) ^ s)⁻¹ := Real.summable_nat_rpow_inv.mpr hs
@@ -197,7 +209,9 @@ theorem one_sub_two_rpow_neg_mul_zetaReal {s : ℝ} (hs : 1 < s) :
   have h2 : zetaReal s = (2 : ℝ) ^ (-s) * zetaReal s + oddZeta s := hsum.hasSum.unique h
   linear_combination h2
 
-/-- (4.65): `(−1)^(k−1) B_{2k} / (2k)! = 2 ζ(2k) / (2π)^(2k)` for `k ≥ 1`.-/
+/-- (4.65): `(−1)^(k−1) B_{2k} / (2k)! = 2 ζ(2k) / (2π)^(2k)` for `k ≥ 1`.
+@isnad1 id=eq.1h1v.s7.dbae0d227d55 from=translated src=- shape=74f750b0 vocab=ffaade6d
+-/
 theorem neg_one_pow_mul_bernoulli_div_factorial {k : ℕ} (hk : 1 ≤ k) :
     (-1) ^ (k - 1) * (bernoulli (2 * k) : ℝ) / (2 * k).factorial
       = 2 * zetaReal (2 * k) / (2 * Real.pi) ^ (2 * k) := by
@@ -215,7 +229,9 @@ theorem neg_one_pow_mul_bernoulli_div_factorial {k : ℕ} (hk : 1 ≤ k) :
 
 /-! ### (4.64) and the growth of the tangent numbers -/
 
-/-- The tail `∑_{n≥2} n^(−2)` is at most `2`.-/
+/-- The tail `∑_{n≥2} n^(−2)` is at most `2`.
+@isnad1 id=le.0h0v.s6.a86af11f9bc2 from=translated src=- shape=7d039a7d vocab=d41dca1e
+-/
 theorem tsum_inv_sq_add_two_le : ∑' n : ℕ, 1 / ((n + 2 : ℕ) : ℝ) ^ 2 ≤ 2 := by
   have h2 := hasSum_zeta_two
   have h := Summable.sum_add_tsum_nat_add' (f := fun n : ℕ => 1 / (n : ℝ) ^ 2) (k := 2)
@@ -225,7 +241,9 @@ theorem tsum_inv_sq_add_two_le : ∑' n : ℕ, 1 / ((n + 2 : ℕ) : ℝ) ^ 2 ≤
   have hpi : Real.pi ^ 2 / 6 ≤ 2 := by nlinarith [Real.pi_lt_d2, Real.pi_pos]
   linarith
 
-/-- Termwise: `(n+2)^(−2(k+1)) ≤ 4^(−k) (n+2)^(−2)`.-/
+/-- Termwise: `(n+2)^(−2(k+1)) ≤ 4^(−k) (n+2)^(−2)`.
+@isnad1 id=le.0h2v.s7.8c85a4411818 from=translated src=- shape=39df14b3 vocab=da962dc8
+-/
 theorem inv_pow_add_two_le (k n : ℕ) :
     ((((n + 2 : ℕ) : ℝ)) ^ (2 * (k + 1)))⁻¹ ≤ 4 / 4 ^ (k + 1) * (1 / ((n + 2 : ℕ) : ℝ) ^ 2) := by
   have hN : (2 : ℝ) ≤ ((n + 2 : ℕ) : ℝ) := by push_cast; linarith [Nat.cast_nonneg (α := ℝ) n]
@@ -240,7 +258,9 @@ theorem inv_pow_add_two_le (k n : ℕ) :
   rw [show 2 * (k + 1) = 2 * k + 2 by ring, pow_add, heq]
   exact inv_anti₀ (by positivity) (mul_le_mul_of_nonneg_right h4 (by positivity))
 
-/-- `ζ(2(k+1)) = 1 + ∑_{n≥2} n^(−2(k+1))`.-/
+/-- `ζ(2(k+1)) = 1 + ∑_{n≥2} n^(−2(k+1))`.
+@isnad1 id=eq.0h1v.s6.321de3e28c1d from=translated src=- shape=21eadbb3 vocab=1a6c76c8
+-/
 theorem zetaReal_two_mul_succ_eq (k : ℕ) :
     zetaReal (2 * ((k + 1 : ℕ) : ℝ))
       = 1 + ∑' n : ℕ, ((((n + 2 : ℕ) : ℝ)) ^ (2 * (k + 1)))⁻¹ := by
@@ -254,7 +274,9 @@ theorem zetaReal_two_mul_succ_eq (k : ℕ) :
   simp only [hcast, Real.rpow_natCast, Nat.cast_zero, Nat.cast_one, one_pow, inv_one]
   rw [zero_pow (by omega), inv_zero, zero_add]
 
-/-- `ζ(2k) − 1 ≤ 8 / 4^k` for `k ≥ 1` (the `O(4^(−k))` in the text).-/
+/-- `ζ(2k) − 1 ≤ 8 / 4^k` for `k ≥ 1` (the `O(4^(−k))` in the text).
+@isnad1 id=le.1h1v.s6.ec0722a21b04 from=translated src=- shape=2c7f3c0e vocab=cb657d1b
+-/
 theorem zetaReal_two_mul_sub_one_le {k : ℕ} (hk : 1 ≤ k) : zetaReal (2 * k) - 1 ≤ 8 / 4 ^ k := by
   obtain ⟨k', rfl⟩ : ∃ k', k = k' + 1 := ⟨k - 1, by omega⟩
   rw [zetaReal_two_mul_succ_eq, add_sub_cancel_left]
@@ -275,7 +297,9 @@ theorem zetaReal_two_mul_sub_one_le {k : ℕ} (hk : 1 ≤ k) : zetaReal (2 * k) 
     _ ≤ 4 / 4 ^ (k' + 1) * 2 := by gcongr; exact tsum_inv_sq_add_two_le
     _ = 8 / 4 ^ (k' + 1) := by ring
 
-/-- `ζ(2k) → 1` as `k → ∞`.-/
+/-- `ζ(2k) → 1` as `k → ∞`.
+@isnad1 id=tendsto.0h0v.s5.acee6f793a75 from=translated src=- shape=166c575d vocab=c420977f
+-/
 theorem tendsto_zetaReal_two_mul : Tendsto (fun k : ℕ => zetaReal (2 * k)) atTop (𝓝 1) := by
   have h8 : Tendsto (fun k : ℕ => 1 + 8 / (4 : ℝ) ^ k) atTop (𝓝 (1 + 8 * 0)) := by
     refine tendsto_const_nhds.add ?_

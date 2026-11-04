@@ -46,7 +46,9 @@ namespace CL
 
 /-- **The (11.4)(b) character-value fact**: for `χ` of order `p^k`
 mod `q` and `q ∤ n`, condition (11.3) — `n^((q−1)/p) ≢ 1 (mod q)`
-— makes `χ(n)` a primitive `p^k`-th root of unity.-/
+— makes `χ(n)` a primitive `p^k`-th root of unity.
+@isnad1 id=isprimit.5h6v.s8.4eb92a513b42 from=translated src=- shape=cfa20033 vocab=89a6cc17
+-/
 theorem isPrimitiveRoot_chi_natCast {R : Type _} [CommRing R]
     [IsDomain R] {q p k n : ℕ} [Fact q.Prime]
     {χ : MulChar (ZMod q) R}

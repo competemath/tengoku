@@ -95,7 +95,9 @@ noncomputable def cycBasisModN :
     Basis (Fin (p - 1) × Fin (q - 1)) (ZMod n) (CycPQModN n p q) :=
   (cycPBasisModN n p).smulTower (cycQBasisModN n p q)
 
-/-- The basis vectors are the monomials.-/
+/-- The basis vectors are the monomials.
+@isnad1 id=eq.0h5v.s9.9348c3ac4155 from=translated src=- shape=00b7af55 vocab=b4f24e59
+-/
 theorem cycBasisModN_apply (i : Fin (p - 1)) (k : Fin (q - 1)) :
     cycBasisModN n p q (i, k)
       = zetaPModN n p q ^ (i : ℕ) * zetaQModN n p q ^ (k : ℕ) := by
@@ -151,6 +153,9 @@ noncomputable def reduceModN : CycPQ p q →+* CycPQModN n p q :=
       have h := AdjoinRoot.isRoot_root (cyclotomic q (CycPModN n p))
       rwa [map_cyclotomic] at h)
 
+/--
+@isnad1 id=eq.0h3v.s7.93943c5f912a from=translated src=- shape=0dda6096 vocab=5caf6437
+-/
 @[simp] theorem reduceModN_zetaP :
     reduceModN n p q (zetaP p q) = zetaPModN n p q := by
   rw [zetaP, reduceModN]
@@ -160,11 +165,16 @@ noncomputable def reduceModN : CycPQ p q →+* CycPQModN n p q :=
     AdjoinRoot.lift_root]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.d0a32aa908d2 from=translated src=- shape=0dda6096 vocab=6e159061
+-/
 @[simp] theorem reduceModN_zetaQ :
     reduceModN n p q (zetaQ p q) = zetaQModN n p q := by
   rw [zetaQ, reduceModN, AdjoinRoot.lift_root]
 
-/-- `n` vanishes in the mod-`n` tower.-/
+/-- `n` vanishes in the mod-`n` tower.
+@isnad1 id=eq.0h3v.s7.adf76540a4c1 from=translated src=- shape=0739f841 vocab=dc649215
+-/
 theorem natCast_self_reduceModN : ((n : ℕ) : CycPQModN n p q) = 0 := by
   have h : ((n : ℕ) : CycPQModN n p q)
       = algebraMap (ZMod n) (CycPQModN n p q) ((n : ℕ) : ZMod n) := by
@@ -177,7 +187,9 @@ variable [Fact (1 < n)] [Fact p.Prime] [Fact q.Prime]
 
 /-- **The kernel theorem**: `n` divides `x` in `ℤ[ζ_p, ζ_q]` exactly
 when the mod-`n` reduction of `x` vanishes — the semantic content of
-the algorithm's coefficientwise computations.-/
+the algorithm's coefficientwise computations.
+@isnad1 id=iff.0h4v.s8.a82d194e62db from=translated src=- shape=d64c8e3a vocab=f07e321a
+-/
 theorem natCast_dvd_iff_reduceModN (x : CycPQ p q) :
     (n : CycPQ p q) ∣ x ↔ reduceModN n p q x = 0 := by
   have : NeZero n := ⟨by have := Fact.out (p := 1 < n); omega⟩

@@ -30,7 +30,9 @@ namespace Azurite.BPR.Chapter4
 variable {A : Type*} [CommRing A] {S : Submonoid A}
 
 /-- **The defining equivalence relation.** `a/s = a'/s'` in `S⁻¹A` iff there is `t ∈ S` with
-`t (a s' − a' s) = 0`.-/
+`t (a s' − a' s) = 0`.
+@isnad1 id=iff.0h6v.s8.9bcec02cf450 from=translated src=- shape=55d07449 vocab=8303596b
+-/
 theorem localization_mk_eq_iff (a a' : A) (s s' : S) :
     Localization.mk a s = Localization.mk a' s' ↔
       ∃ t : S, (t : A) * (a * (s' : A) - a' * (s : A)) = 0 := by
@@ -45,14 +47,18 @@ theorem localization_mk_eq_iff (a a' : A) (s s' : S) :
     dsimp only
     linear_combination ht
 
-/-- **Addition in `S⁻¹A`**: `a/s + a'/s' = (a s' + a' s)/(s s')`.-/
+/-- **Addition in `S⁻¹A`**: `a/s + a'/s' = (a s' + a' s)/(s s')`.
+@isnad1 id=eq.0h6v.s9.7c7e8ba61df6 from=translated src=- shape=ab1d9146 vocab=0763a9d0
+-/
 theorem localization_add (a a' : A) (s s' : S) :
     Localization.mk a s + Localization.mk a' s'
       = Localization.mk (a * (s' : A) + a' * (s : A)) (s * s') := by
   rw [Localization.add_mk, Localization.mk_eq_mk_iff, Localization.r_iff_exists]
   exact ⟨1, by dsimp only; push_cast; ring⟩
 
-/-- **Multiplication in `S⁻¹A`**: `(a/s)(a'/s') = (a a')/(s s')`.-/
+/-- **Multiplication in `S⁻¹A`**: `(a/s)(a'/s') = (a a')/(s s')`.
+@isnad1 id=eq.0h6v.s8.5d7eb287ac56 from=translated src=- shape=8cade253 vocab=89e494c9
+-/
 theorem localization_mul (a a' : A) (s s' : S) :
     Localization.mk a s * Localization.mk a' s' = Localization.mk (a * a') (s * s') :=
   Localization.mk_mul a a' s s'

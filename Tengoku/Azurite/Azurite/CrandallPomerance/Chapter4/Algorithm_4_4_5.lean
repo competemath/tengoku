@@ -45,7 +45,9 @@ namespace CP
 /-- **The step-2 composite verdict is sound**: `gcd(n, IF) > 1` for
 `n` not a prime factor of `IF` (checked first) forces `n`
 composite — a prime `n` with nontrivial gcd would divide `IF` and
-so BE a prime factor.-/
+so BE a prime factor.
+@isnad1 id=not.3h3v.s6.02d63a5a7a75 from=translated src=- shape=53c57623 vocab=e76ab786
+-/
 theorem step2_composite_of_gcd {n I F : ℕ} (hIF : I * F ≠ 0)
     (hg : 1 < Nat.gcd n (I * F)) (hmem : n ∉ (I * F).primeFactors) :
     ¬n.Prime := by
@@ -59,7 +61,9 @@ theorem step2_composite_of_gcd {n I F : ℕ} (hIF : I * F ≠ 0)
 /-- **The primitive-root verification is sound**: `g^((q−1)/r) ≠ 1`
 for every prime `r ∣ q − 1` forces `ord g = q − 1 = #(Z_q)ˣ`, so `g`
 generates — the `hgen` hypothesis of the correctness theorem from
-finitely many computable power checks.-/
+finitely many computable power checks.
+@isnad1 id=mem.1h3v.s8.e567b70f2010 from=translated src=- shape=00f974d8 vocab=b8f1ee33
+-/
 theorem forall_mem_zpowers_of_pow_div_prime {q : ℕ} [Fact q.Prime]
     {g : (ZMod q)ˣ}
     (h : ∀ r ∈ (q - 1).primeFactors, g ^ ((q - 1) / r) ≠ 1) :
@@ -88,7 +92,9 @@ theorem forall_mem_zpowers_of_pow_div_prime {q : ℕ} [Fact q.Prime]
 divisor-quantified non-divisibility hypothesis `h5` of the
 correctness theorem, for ALL `j : ℕ` — the `ζ_p`-powers cycle with
 period `p`, and a common divisor of `n` and the ring element would
-divide the content.-/
+divide the content.
+@isnad1 id=not.4h6v.s8.7817b5a228c3 from=translated src=- shape=867ff9b8 vocab=2731c163
+-/
 theorem h5_of_forall_coprime_content {q p : ℕ} [Fact q.Prime]
     [Fact p.Prime] (hp : p ∈ (q - 1).primeFactors) {n : ℕ} (x : CycPQ p q)
     (h : ∀ j < p, Nat.Coprime n (content p q (x - zetaP p q ^ j))) :

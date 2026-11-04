@@ -34,7 +34,9 @@ variable {K : Type*} [Field K]
 
 /-- The adjugate of `B_{j,i}` is the explicit polynomial matrix
     `[ sResV_{j-1}, -sResV_{i-1}; -sResU_{j-1}, sResU_{i-1} ]` (the `2×2` adjugate of
-    `[ sResU_{i-1}, sResV_{i-1}; sResU_{j-1}, sResV_{j-1} ]`).-/
+    `[ sResU_{i-1}, sResV_{i-1}; sResU_{j-1}, sResV_{j-1} ]`).
+@isnad1 id=eq.0h5v.s9.6d73febb4dde from=translated src=- shape=0b4e6c17 vocab=2d318227
+-/
 theorem adjugate_cofactorMat (P Q : K[X]) (i j : ℕ) :
     Matrix.adjugate (cofactorMat P Q i j)
       = !![sResV P Q (j - 1), -sResV P Q (i - 1); -sResU P Q (j - 1), sResU P Q (i - 1)] := by

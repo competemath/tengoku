@@ -54,16 +54,23 @@ variable {k t : ℝ}
 
 /-! ### Pointwise estimates -/
 
+/--
+@isnad1 id=le.0h1v.s5.14bd03c30230 from=translated src=- shape=2f69cd06 vocab=a02c13be
+-/
 theorem one_le_sqrt_one_add_sq (t : ℝ) : 1 ≤ Real.sqrt (1 + t ^ 2) := by
   rw [Real.le_sqrt zero_le_one (by positivity)]
   nlinarith [sq_nonneg t]
 
-/-- `√(1 + t²) ≤ 1 + t²/2`.-/
+/-- `√(1 + t²) ≤ 1 + t²/2`.
+@isnad1 id=le.0h1v.s6.1570e58b565f from=translated src=- shape=3d1948e2 vocab=4cd8cb85
+-/
 theorem sqrt_one_add_sq_le (t : ℝ) : Real.sqrt (1 + t ^ 2) ≤ 1 + t ^ 2 / 2 := by
   rw [Real.sqrt_le_left (by positivity)]
   nlinarith [sq_nonneg (t ^ 2)]
 
-/-- `1 − 1/√(1 + t²) ≤ t²/2`.-/
+/-- `1 − 1/√(1 + t²) ≤ t²/2`.
+@isnad1 id=le.0h1v.s6.d4154d622cbb from=translated src=- shape=635b8066 vocab=0e733e26
+-/
 theorem one_sub_inv_sqrt_le (t : ℝ) : 1 - (Real.sqrt (1 + t ^ 2))⁻¹ ≤ t ^ 2 / 2 := by
   set s := Real.sqrt (1 + t ^ 2) with hs_def
   have hs2 : s ^ 2 = 1 + t ^ 2 := Real.sq_sqrt (by positivity)
@@ -75,19 +82,29 @@ theorem one_sub_inv_sqrt_le (t : ℝ) : 1 - (Real.sqrt (1 + t ^ 2))⁻¹ ≤ t ^
   nlinarith [mul_nonneg (mul_nonneg (sub_nonneg.mpr h1) (sub_nonneg.mpr h1))
     (by linarith : (0 : ℝ) ≤ s + 2)]
 
+/--
+@isnad1 id=le.0h1v.s5.306debc78832 from=translated src=- shape=177231c0 vocab=e3feb533
+-/
 theorem one_sub_inv_sqrt_nonneg (t : ℝ) : 0 ≤ 1 - (Real.sqrt (1 + t ^ 2))⁻¹ :=
   sub_nonneg.mpr (inv_le_one_of_one_le₀ (one_le_sqrt_one_add_sq t))
 
-/-- `t ≤ √(k² + t²)`.-/
+/-- `t ≤ √(k² + t²)`.
+@isnad1 id=le.1h2v.s5.e6cfa536b6f9 from=translated src=- shape=f96e2da4 vocab=a02c13be
+-/
 theorem le_sqrt_sq_add_sq (ht : 0 ≤ t) : t ≤ Real.sqrt (k ^ 2 + t ^ 2) := by
   rw [Real.le_sqrt ht (by positivity)]
   nlinarith
 
+/--
+@isnad1 id=le.1h2v.s6.9d8dba9098ff from=translated src=- shape=f0ca02d3 vocab=5f2e2f63
+-/
 theorem inv_sub_inv_sqrt_nonneg (ht : 0 < t) :
     0 ≤ t⁻¹ - (Real.sqrt (k ^ 2 + t ^ 2))⁻¹ :=
   sub_nonneg.mpr (inv_anti₀ ht (le_sqrt_sq_add_sq ht.le))
 
-/-- `1/t − 1/√(k² + t²) ≤ k²/(2t³)` for `t > 0`.-/
+/-- `1/t − 1/√(k² + t²) ≤ k²/(2t³)` for `t > 0`.
+@isnad1 id=le.2h2v.s7.1beb02a6019d from=translated src=- shape=476e0f44 vocab=5f4d76e2
+-/
 theorem inv_sub_inv_sqrt_le (hk : 0 < k) (ht : 0 < t) :
     t⁻¹ - (Real.sqrt (k ^ 2 + t ^ 2))⁻¹ ≤ k ^ 2 / (2 * t ^ 3) := by
   set u := Real.sqrt (k ^ 2 + t ^ 2) with hu_def
@@ -100,13 +117,18 @@ theorem inv_sub_inv_sqrt_le (hk : 0 < k) (ht : 0 < t) :
   nlinarith [mul_nonneg (mul_nonneg (mul_self_nonneg (u - t)) ht.le)
     (by linarith : (0 : ℝ) ≤ u + 2 * t)]
 
-/-- The kernel `1/√((t² + 1)(t² + k²))` factored.-/
+/-- The kernel `1/√((t² + 1)(t² + k²))` factored.
+@isnad1 id=eq.0h2v.s6.d07d207802cd from=translated src=- shape=035c8253 vocab=c96c33ea
+-/
 theorem agmKernel_one_eq (k t : ℝ) :
     agmKernel 1 k t = (Real.sqrt (1 + t ^ 2))⁻¹ * (Real.sqrt (k ^ 2 + t ^ 2))⁻¹ := by
   unfold agmKernel
   rw [Real.sqrt_mul (by positivity : (0 : ℝ) ≤ t ^ 2 + 1 ^ 2) (t ^ 2 + k ^ 2), mul_inv, one_pow,
     add_comm (t ^ 2) 1, add_comm (t ^ 2) (k ^ 2)]
 
+/--
+@isnad1 id=continuo.1h1v.s6.551ca1aeb8de from=translated src=- shape=97f51cec vocab=6af089fe
+-/
 theorem continuous_inv_sqrt_sq_add (hk : 0 < k) :
     Continuous fun t : ℝ => (Real.sqrt (k ^ 2 + t ^ 2))⁻¹ :=
   (continuous_const.add (continuous_id.pow 2)).sqrt.inv₀ fun t =>
@@ -119,11 +141,17 @@ antiderivative is `ln(1 + √(1+t²))`.-/
 noncomputable def agmLogPhi (t : ℝ) : ℝ :=
   t / (Real.sqrt (1 + t ^ 2) * (1 + Real.sqrt (1 + t ^ 2)))
 
+/--
+@isnad1 id=continuo.0h0v.s3.06f0c41b9f58 from=translated src=- shape=e3d48bcb vocab=a6fcf33b
+-/
 theorem continuous_agmLogPhi : Continuous agmLogPhi := by
   have hs : Continuous fun t : ℝ => Real.sqrt (1 + t ^ 2) :=
     (continuous_const.add (continuous_id.pow 2)).sqrt
   exact continuous_id.div (hs.mul (continuous_const.add hs)) fun t => by positivity
 
+/--
+@isnad1 id=eq.1h1v.s6.b066be98a1db from=translated src=- shape=4d51763b vocab=d62b8bc1
+-/
 theorem agmLogPhi_eq (ht : 0 < t) :
     agmLogPhi t = (1 - (Real.sqrt (1 + t ^ 2))⁻¹) * t⁻¹ := by
   set s := Real.sqrt (1 + t ^ 2) with hs_def
@@ -137,24 +165,38 @@ theorem agmLogPhi_eq (ht : 0 < t) :
 noncomputable def agmLogRem (k t : ℝ) : ℝ :=
   agmKernel 1 k t - (Real.sqrt (k ^ 2 + t ^ 2))⁻¹ + agmLogPhi t
 
+/--
+@isnad1 id=continuo.1h1v.s4.76475cebdfed from=translated src=- shape=e217721d vocab=a5842634
+-/
 theorem continuous_agmLogRem (hk : 0 < k) : Continuous (agmLogRem k) :=
   ((continuous_agmKernel one_pos hk).sub (continuous_inv_sqrt_sq_add hk)).add continuous_agmLogPhi
 
+/--
+@isnad1 id=eq.1h2v.s7.9b6b1dc77a76 from=translated src=- shape=85460d02 vocab=af867aff
+-/
 theorem agmLogRem_eq (ht : 0 < t) :
     agmLogRem k t = (1 - (Real.sqrt (1 + t ^ 2))⁻¹) * (t⁻¹ - (Real.sqrt (k ^ 2 + t ^ 2))⁻¹) := by
   rw [agmLogRem, agmKernel_one_eq, agmLogPhi_eq ht]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s4.f99b002eb518 from=translated src=- shape=1d838610 vocab=f960bb66
+-/
 theorem agmLogRem_zero (k : ℝ) : agmLogRem k 0 = 0 := by
   simp [agmLogRem, agmKernel, agmLogPhi]
 
+/--
+@isnad1 id=le.1h2v.s4.f9d8290698f2 from=translated src=- shape=61bdc3e7 vocab=688a3bb0
+-/
 theorem agmLogRem_nonneg (ht : 0 ≤ t) : 0 ≤ agmLogRem k t := by
   rcases ht.eq_or_lt with rfl | ht
   · rw [agmLogRem_zero]
   · rw [agmLogRem_eq ht]
     exact mul_nonneg (one_sub_inv_sqrt_nonneg t) (inv_sub_inv_sqrt_nonneg ht)
 
-/-- `r₂(t) ≤ t/2`.-/
+/-- `r₂(t) ≤ t/2`.
+@isnad1 id=le.1h2v.s5.c5fa640825f0 from=translated src=- shape=a7e98af0 vocab=88aa9e8c
+-/
 theorem agmLogRem_le_half (ht : 0 ≤ t) : agmLogRem k t ≤ t / 2 := by
   rcases ht.eq_or_lt with rfl | ht
   · rw [agmLogRem_zero]; simp
@@ -165,7 +207,9 @@ theorem agmLogRem_le_half (ht : 0 ≤ t) : agmLogRem k t ≤ t / 2 := by
           mul_le_mul (one_sub_inv_sqrt_le t) h2 (inv_sub_inv_sqrt_nonneg ht) (by positivity)
       _ = t / 2 := by field_simp
 
-/-- `r₂(t) ≤ k²/(4t)` for `t > 0`.-/
+/-- `r₂(t) ≤ k²/(4t)` for `t > 0`.
+@isnad1 id=le.2h2v.s6.2f44148a10a8 from=translated src=- shape=6a38aa32 vocab=544bda6e
+-/
 theorem agmLogRem_le_div (hk : 0 < k) (ht : 0 < t) : agmLogRem k t ≤ k ^ 2 / (4 * t) := by
   rw [agmLogRem_eq ht]
   calc _ ≤ t ^ 2 / 2 * (k ^ 2 / (2 * t ^ 3)) :=
@@ -175,7 +219,9 @@ theorem agmLogRem_le_div (hk : 0 < k) (ht : 0 < t) : agmLogRem k t ≤ k ^ 2 / (
 
 /-! ### The exact integrals -/
 
-/-- `∫_0^1 dt/√(k² + t²) = arsinh(1/k)`.-/
+/-- `∫_0^1 dt/√(k² + t²) = arsinh(1/k)`.
+@isnad1 id=eq.1h1v.s6.50ce66c016f5 from=translated src=- shape=abf27201 vocab=e239d8f6
+-/
 theorem integral_inv_sqrt_sq_add (hk : 0 < k) :
     ∫ t in (0 : ℝ)..1, (Real.sqrt (k ^ 2 + t ^ 2))⁻¹ = arsinh (1 / k) := by
   have hk0 : k ≠ 0 := hk.ne'
@@ -192,7 +238,9 @@ theorem integral_inv_sqrt_sq_add (hk : 0 < k) :
     ((continuous_inv_sqrt_sq_add hk).intervalIntegrable 0 1)]
   simp
 
-/-- `∫_0^1 φ = ln(1 + √2) − ln 2`.-/
+/-- `∫_0^1 φ = ln(1 + √2) − ln 2`.
+@isnad1 id=eq.0h0v.s6.239bfc8a3df8 from=translated src=- shape=64696c29 vocab=bbb0c207
+-/
 theorem integral_agmLogPhi :
     ∫ t in (0 : ℝ)..1, agmLogPhi t = Real.log (1 + Real.sqrt 2) - Real.log 2 := by
   have hderiv : ∀ x ∈ uIcc (0 : ℝ) 1,
@@ -209,6 +257,9 @@ theorem integral_agmLogPhi :
     (continuous_agmLogPhi.intervalIntegrable 0 1)]
   norm_num
 
+/--
+@isnad1 id=hasderiv.1h1v.s6.7d18d4b50d56 from=translated src=- shape=38d03112 vocab=5e7a2fbe
+-/
 theorem hasDerivAt_neg_arsinh_inv {x : ℝ} (hx : 0 < x) :
     HasDerivAt (fun y : ℝ => -arsinh y⁻¹) ((x * Real.sqrt (1 + x ^ 2))⁻¹) x := by
   have hx0 : x ≠ 0 := hx.ne'
@@ -220,10 +271,16 @@ theorem hasDerivAt_neg_arsinh_inv {x : ℝ} (hx : 0 < x) :
   rw [this, smul_eq_mul]
   field_simp
 
+/--
+@isnad1 id=tendsto.0h0v.s4.06b427c4f628 from=translated src=- shape=b373dd8f vocab=9115f16e
+-/
 theorem tendsto_neg_arsinh_inv :
     Filter.Tendsto (fun y : ℝ => -arsinh y⁻¹) Filter.atTop (nhds 0) := by
   simpa using (tendsto_inv_atTop_zero (𝕜 := ℝ)).arsinh.neg
 
+/--
+@isnad1 id=integrab.0h0v.s6.91c2029c8530 from=translated src=- shape=4452a876 vocab=81ddb01b
+-/
 theorem integrableOn_inv_mul_sqrt_Ioi :
     IntegrableOn (fun t : ℝ => (t * Real.sqrt (1 + t ^ 2))⁻¹) (Ioi 1) :=
   integrableOn_Ioi_deriv_of_nonneg' (g := fun y : ℝ => -arsinh y⁻¹) (l := 0)
@@ -233,7 +290,9 @@ theorem integrableOn_inv_mul_sqrt_Ioi :
       positivity)
     tendsto_neg_arsinh_inv
 
-/-- `∫_1^∞ dt/(t√(1 + t²)) = arsinh 1 = ln(1 + √2)`.-/
+/-- `∫_1^∞ dt/(t√(1 + t²)) = arsinh 1 = ln(1 + √2)`.
+@isnad1 id=eq.0h0v.s6.035a1547f6ee from=translated src=- shape=715a5864 vocab=e7f32e5c
+-/
 theorem integral_inv_mul_sqrt_Ioi :
     ∫ t in Ioi (1 : ℝ), (t * Real.sqrt (1 + t ^ 2))⁻¹ = arsinh 1 := by
   have h := integral_Ioi_of_hasDerivAt_of_nonneg' (a := 1) (g := fun y : ℝ => -arsinh y⁻¹)
@@ -247,7 +306,9 @@ theorem integral_inv_mul_sqrt_Ioi :
 
 /-! ### The two remainders -/
 
-/-- On `[1, ∞)`: `∫_1^∞ dt/√((1+t²)(k²+t²)) = arsinh 1 − R₁` with `0 ≤ R₁ ≤ k²/4`.-/
+/-- On `[1, ∞)`: `∫_1^∞ dt/√((1+t²)(k²+t²)) = arsinh 1 − R₁` with `0 ≤ R₁ ≤ k²/4`.
+@isnad1 id=ex.1h1v.s7.36dddefb60ca from=translated src=- shape=6523f435 vocab=e49c18fb
+-/
 theorem integral_agmKernel_Ioi (hk : 0 < k) :
     ∃ R₁, 0 ≤ R₁ ∧ R₁ ≤ k ^ 2 / 4 ∧ ∫ t in Ioi (1 : ℝ), agmKernel 1 k t = arsinh 1 - R₁ := by
   have hint : IntegrableOn (agmKernel 1 k) (Ioi 1) := (integrable_agmKernel one_pos hk).integrableOn
@@ -281,7 +342,9 @@ theorem integral_agmKernel_Ioi (hk : 0 < k) :
     ring
 
 /-- On `[0, 1]`: `∫_0^1 dt/√((1+t²)(k²+t²)) = arsinh(1/k) − (ln(1+√2) − ln 2) + R₂` with
-`0 ≤ R₂ ≤ (k²/4)(1 − ln k)`.-/
+`0 ≤ R₂ ≤ (k²/4)(1 − ln k)`.
+@isnad1 id=ex.2h1v.s7.cd469ad35e74 from=translated src=- shape=c127d7dd vocab=3873a1d8
+-/
 theorem integral_agmKernel_Ioc (hk : 0 < k) (hk1 : k ≤ 1) :
     ∃ R₂, 0 ≤ R₂ ∧ R₂ ≤ k ^ 2 / 4 * (1 - Real.log k) ∧
       ∫ t in (0 : ℝ)..1, agmKernel 1 k t
@@ -327,7 +390,9 @@ theorem integral_agmKernel_Ioc (hk : 0 < k) (hk1 : k ≤ 1) :
 /-! ### The bound (4.73) -/
 
 /-- The error of the AGM approximation to the logarithm: for `0 < k ≤ 1`,
-`|(π/2)/AGM(1, k) − ln(4/k)| ≤ (k²/4)(2 − ln k)`.-/
+`|(π/2)/AGM(1, k) − ln(4/k)| ≤ (k²/4)(2 − ln k)`.
+@isnad1 id=le.2h1v.s7.c9a533eb1271 from=translated src=- shape=db5d26cd vocab=5be8f623
+-/
 theorem abs_pi_div_AGM_sub_log_le (hk : 0 < k) (hk1 : k ≤ 1) :
     |(π / 2) / AGM 1 k - Real.log (4 / k)| ≤ k ^ 2 / 4 * (2 - Real.log k) := by
   obtain ⟨R₁, hR₁0, hR₁, h1⟩ := integral_agmKernel_Ioi hk
@@ -365,7 +430,9 @@ theorem abs_pi_div_AGM_sub_log_le (hk : 0 < k) (hk1 : k ≤ 1) :
   rw [hsplit, h1, h2, harsinh1, abs_le]
   constructor <;> linarith
 
-/-- (4.73) in the textbook's form: `|(π/2)/AGM(1, k) − ln(4/k)| ≤ 4k² (8 − ln k)` on `(0, 1]`.-/
+/-- (4.73) in the textbook's form: `|(π/2)/AGM(1, k) − ln(4/k)| ≤ 4k² (8 − ln k)` on `(0, 1]`.
+@isnad1 id=le.2h1v.s7.c6b39b428a81 from=translated src=- shape=1a0e2d02 vocab=5be8f623
+-/
 theorem abs_pi_div_AGM_sub_log_le_bz (hk : 0 < k) (hk1 : k ≤ 1) :
     |(π / 2) / AGM 1 k - Real.log (4 / k)| ≤ 4 * k ^ 2 * (8 - Real.log k) := by
   refine (abs_pi_div_AGM_sub_log_le hk hk1).trans ?_
@@ -373,7 +440,9 @@ theorem abs_pi_div_AGM_sub_log_le_bz (hk : 0 < k) (hk1 : k ≤ 1) :
   have := mul_nonneg (sq_nonneg k) (neg_nonneg.mpr hlog)
   nlinarith [sq_nonneg k]
 
-/-- The error of `agmLog`: `|agmLog x − ln x| ≤ (4/x²)(2 + ln(x/4))` for `x ≥ 4`.-/
+/-- The error of `agmLog`: `|agmLog x − ln x| ≤ (4/x²)(2 + ln(x/4))` for `x ≥ 4`.
+@isnad1 id=le.1h1v.s6.49351de2fcb2 from=translated src=- shape=baea0054 vocab=0c2da09a
+-/
 theorem abs_agmLog_sub_log_le {x : ℝ} (hx : 4 ≤ x) :
     |agmLog x - Real.log x| ≤ 4 / x ^ 2 * (2 + Real.log (x / 4)) := by
   have hx0 : 0 < x := by linarith
@@ -387,7 +456,9 @@ theorem abs_agmLog_sub_log_le {x : ℝ} (hx : 4 ≤ x) :
   ring
 
 /-- (4.71) in explicit form: `(π/2)/AGM(1, k) = ln(4/k)(1 + ε)` with `|ε| ≤ k²/2`, for
-`0 < k ≤ 1`.-/
+`0 < k ≤ 1`.
+@isnad1 id=ex.2h1v.s7.841b236fa1d0 from=translated src=- shape=3161721e vocab=b9e81dde
+-/
 theorem pi_div_AGM_eq_log_mul (hk : 0 < k) (hk1 : k ≤ 1) :
     ∃ ε : ℝ, |ε| ≤ k ^ 2 / 2 ∧ (π / 2) / AGM 1 k = Real.log (4 / k) * (1 + ε) := by
   have hL : 0 < Real.log (4 / k) := Real.log_pos (by rw [lt_div_iff₀ hk]; linarith)
@@ -408,7 +479,9 @@ theorem pi_div_AGM_eq_log_mul (hk : 0 < k) (hk1 : k ≤ 1) :
 
 /-- (4.70) to first order: with `k' = √(1 − k²)`, `|K(k') − ln(4/k)| ≤ (k²/4)(2 − ln k)` for
 `0 < k ≤ 1`, i.e. `K'(k) = ln(4/k) + O(k² ln(1/k))` as `k → 0` (Gauss's theorem turns
-`abs_pi_div_AGM_sub_log_le` into a statement about `K`).-/
+`abs_pi_div_AGM_sub_log_le` into a statement about `K`).
+@isnad1 id=le.2h1v.s7.8cf65d72467f from=translated src=- shape=40c0824e vocab=37a841fb
+-/
 theorem abs_ellipticK_sqrt_sub_log_le (hk : 0 < k) (hk1 : k ≤ 1) :
     |ellipticK (Real.sqrt (1 - k ^ 2)) - Real.log (4 / k)| ≤ k ^ 2 / 4 * (2 - Real.log k) := by
   have h : (π / 2) / AGM 1 k = ellipticK (Real.sqrt (1 - k ^ 2)) := by

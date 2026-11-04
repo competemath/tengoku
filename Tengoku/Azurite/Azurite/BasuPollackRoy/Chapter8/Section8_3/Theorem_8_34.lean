@@ -38,7 +38,9 @@ variable {K : Type*} [Field K]
 
 /-- `sResP_{p-1}(P,Q) = Q` for **all** `q < p` (not just `q+1 < p`): defective top via the
     `sResP_{p-1} =` (second argument) convention, non-defective top (`q = p-1`) via the
-    closing-note value `ε₁ b⁰ Q = Q`.-/
+    closing-note value `ε₁ b⁰ Q = Q`.
+@isnad1 id=eq.2h3v.s7.5eefc72d11fb from=translated src=- shape=6bc520f4 vocab=6f476a94
+-/
 theorem sResP_pm1_eq_Q (P Q : K[X]) (hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDegree) :
     sResP P Q (P.natDegree - 1) = Q := by
   rcases eq_or_lt_of_le (Nat.succ_le_of_lt hpq) with h | h
@@ -49,7 +51,9 @@ theorem sResP_pm1_eq_Q (P Q : K[X]) (hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDeg
   · exact sResP_eq_self_Q P Q h
 
 /-- **Extended base case** (`q < p`, including the non-defective top `q = p-1`):
-    `sResP_{q-1}(P,Q) = -Rem(s_q · t_{p-1} · P, Q)`.-/
+    `sResP_{q-1}(P,Q) = -Rem(s_q · t_{p-1} · P, Q)`.
+@isnad1 id=eq.4h3v.s9.3d315a89e4cd from=translated src=- shape=f314f9f1 vocab=cdc157ee
+-/
 theorem sResP_natDegree_sub_one_rem' (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) :
     sResP P Q (Q.natDegree - 1)
@@ -63,7 +67,9 @@ theorem sResP_natDegree_sub_one_rem' (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q �
   ring
 
 /-- Scaling the divisor by a nonzero constant does not change the remainder:
-    `A % (C c * B) = A % B` for `c ≠ 0` (`C c` is a unit).-/
+    `A % (C c * B) = A % B` for `c ≠ 0` (`C c` is a unit).
+@isnad1 id=eq.1h4v.s8.ed0a4928d5de from=translated src=- shape=d102eb82 vocab=45202ee0
+-/
 theorem mod_C_mul_right (A B : K[X]) {c : K} (hc : c ≠ 0) : A % (C c * B) = A % B := by
   rcases eq_or_ne B 0 with rfl | hB
   · simp
@@ -76,14 +82,18 @@ theorem mod_C_mul_right (A B : K[X]) {c : K} (hc : c ≠ 0) : A % (C c * B) = A 
   rw [Polynomial.add_mod, EuclideanDomain.mod_eq_zero.mpr hdvd, zero_add,
     (mod_eq_self_iff hCB).mpr hdeg]
 
-/-- Combined remainder scaling: `(α • A) % (β • B) = α • (A % B)` for `β ≠ 0`.-/
+/-- Combined remainder scaling: `(α • A) % (β • B) = α • (A % B)` for `β ≠ 0`.
+@isnad1 id=eq.1h5v.s8.abdc64572f41 from=translated src=- shape=68fcf445 vocab=428407b9
+-/
 theorem mod_smul_smul (A B : K[X]) (α : K) {β : K} (hβ : β ≠ 0) :
     (α • A) % (β • B) = α • (A % B) := by
   rw [smul_eq_C_mul α, smul_eq_C_mul β, mod_C_mul_right (C α * A) B hβ, rem_C_mul,
     ← smul_eq_C_mul]
 
 /-- `Chapter4.sRes Q (-R) Q.natDegree = Q.leadingCoeff` (BPR's `s'_q`; the top-index
-    signed subresultant of the first polynomial is its leading coefficient).-/
+    signed subresultant of the first polynomial is its leading coefficient).
+@isnad1 id=eq.1h3v.s6.7619b72f661d from=translated src=- shape=ce5bfef8 vocab=8204863f
+-/
 theorem sRes_top_eq_leadingCoeff (P Q : K[X]) (hqp : Q.natDegree < P.natDegree) :
     Azurite.BPR.Chapter4.sRes P Q P.natDegree = P.leadingCoeff := by
   rw [Azurite.BPR.Chapter4.sRes, ite_eq_right (by omega), ite_eq_left hqp, ite_eq_left rfl]
@@ -91,7 +101,9 @@ theorem sRes_top_eq_leadingCoeff (P Q : K[X]) (hqp : Q.natDegree < P.natDegree) 
 /-- **Boundary value for the swapped pair.** For `R ≠ 0` with `deg R < deg Q`, the
     `(q-1)`-st signed subresultant of `Q, -R` is `-R`: it is `-R` by the
     `sResP_{p-1} = ` (second argument) convention when `deg R < q-1`, and by the
-    closing-note value (`ε₁ b^0 (-R) = -R`) when `deg R = q-1`.-/
+    closing-note value (`ε₁ b^0 (-R) = -R`) when `deg R = q-1`.
+@isnad1 id=eq.2h3v.s7.ae2a02d372e0 from=translated src=- shape=458e83f8 vocab=aeb0e8aa
+-/
 theorem sResP_negR_natDegree_sub_one (Q R : K[X]) (hR0 : R ≠ 0)
     (hrq : R.natDegree < Q.natDegree) :
     sResP Q (-R) (Q.natDegree - 1) = -R := by
@@ -108,7 +120,9 @@ theorem sResP_negR_natDegree_sub_one (Q R : K[X]) (hR0 : R ≠ 0)
 
 /-- **Boundary proportionality (inductive step).**
     `sResP_{q-1}(P,Q) = ε_{p-q} b_q^{p-q+1} · sResP_{q-1}(Q,-R)`, with `R = P % Q`.
-    The two sides are `±` of the base-case value `ε_{p-q} b_q^{p-q+1} R`.-/
+    The two sides are `±` of the base-case value `ε_{p-q} b_q^{p-q+1} R`.
+@isnad1 id=eq.4h3v.s9.2f34a2587456 from=translated src=- shape=40d71011 vocab=a9d27785
+-/
 theorem sResP_natDegree_sub_one_propto (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) :
     sResP P Q (Q.natDegree - 1)
@@ -124,7 +138,9 @@ theorem sResP_natDegree_sub_one_propto (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q 
 /-- **Unified `j ≤ r` proportionality (BPR's first half of the inductive step).**
     For `j ≤ r := deg(P % Q)`, the `P,Q`- and `Q,-R`-subresultants are proportional with
     factor `ε_{p-q} b_q^{p-r}`. This subsumes `proposition_8_39` (`j < q-1`) and the
-    boundary case `j = q-1` (which forces `r = q-1`, via `sResP_natDegree_sub_one_propto`).-/
+    boundary case `j = q-1` (which forces `r = q-1`, via `sResP_natDegree_sub_one_propto`).
+@isnad1 id=eq.4h4v.s9.611df9256eb6 from=translated src=- shape=4701e33c vocab=d2be161d
+-/
 theorem sResP_propto_le_r (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j : ℕ} (hj : j ≤ (P % Q).natDegree) :
     sResP P Q j
@@ -143,7 +159,9 @@ theorem sResP_propto_le_r (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
 
 /-- **Bridge `t_{q-1} = ε_{p-q} b_q^{p-q+1} t'_{q-1}`** (leading coefficients of the
     boundary proportionality `sResP_natDegree_sub_one_propto`). Here `t'_{q-1}` is the
-    leading coefficient of `sResP_{q-1}(Q,-R)`.-/
+    leading coefficient of `sResP_{q-1}(Q,-R)`.
+@isnad1 id=eq.4h3v.s8.ac3d7a7d3faa from=translated src=- shape=3d9aa21f vocab=a9d27785
+-/
 theorem leadingCoeff_sResP_natDegree_sub_one_swap (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) :
     (sResP P Q (Q.natDegree - 1)).leadingCoeff
@@ -161,7 +179,9 @@ theorem leadingCoeff_sResP_natDegree_sub_one_swap (P Q : K[X]) (hQ : Q ≠ 0) (h
 
 /-- **Transport of `t_j = lcof(sResP_j)` across a Euclidean step**, for interior indices
     `j < q-1`: `t_j(P,Q) = ε_{p-q} b_q^{p-r} t_j(Q,-R)` (leading coefficients of the `j ≤ r`
-    proportionality, Proposition 8.39).-/
+    proportionality, Proposition 8.39).
+@isnad1 id=eq.4h4v.s8.6ae16d5c2b4f from=translated src=- shape=4822b4a2 vocab=c2c32e17
+-/
 theorem leadingCoeff_sResP_swap (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j : ℕ} (hj : j < Q.natDegree - 1) :
     (sResP P Q j).leadingCoeff
@@ -179,7 +199,9 @@ theorem leadingCoeff_sResP_swap (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
 
 /-- **Bridge `s_r = ε_{p-q} b_q^{p-r} s'_r`** (coefficient at `X^r` of the `j ≤ r`
     proportionality `sResP_propto_le_r`, at `j = r := deg(P % Q)`). Here `s'_r` is
-    `sRes_r(Q,-R)`.-/
+    `sRes_r(Q,-R)`.
+@isnad1 id=eq.3h3v.s9.9a92258dbc57 from=translated src=- shape=ac8471a0 vocab=5d79639b
+-/
 theorem sRes_swap_natDegree_mod (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) :
     Azurite.BPR.Chapter4.sRes P Q (P % Q).natDegree
@@ -195,7 +217,9 @@ theorem sRes_swap_natDegree_mod (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
 
 /-- **Theorem 8.34, inductive-step identity (generic case `r < j ≤ q`).**
     `s_q · t_{p-1} · sResP_{r-1}(P,Q) = -Rem(s_r · t_{q-1} · sResP_{p-1}(P,Q), sResP_{q-1}(P,Q))`,
-    with `R = P % Q`, `r = deg R`. Both sides equal `b_q^{2p-q-r+1} · sResP_{r-1}(Q,-R)`.-/
+    with `R = P % Q`, `r = deg R`. Both sides equal `b_q^{2p-q-r+1} · sResP_{r-1}(Q,-R)`.
+@isnad1 id=eq.5h3v.s10.3ff1f8441206 from=translated src=- shape=ef6db97b vocab=cdc157ee
+-/
 theorem sResP_inductive_step_identity (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree)
     (hr1 : 1 ≤ (P % Q).natDegree)
@@ -292,7 +316,9 @@ section DvdPdetRing
 variable {D : Type*} [CommRing D]
 
 /-- If a polynomial `d` divides every member of the family, it divides `pdet_{m,n}`
-    (which is, by Remark 8.30, a `D`-linear combination of the family).-/
+    (which is, by Remark 8.30, a `D`-linear combination of the family).
+@isnad1 id=dvd.4h5v.s7.ed7e34a84f04 from=translated src=- shape=0f764192 vocab=fe828ab9
+-/
 theorem dvd_pdetRing {m n : ℕ} (hm : 0 < m) (hmn : m ≤ n) (F : Fin m → D[X])
     (hF : ∀ r, (F r).degree < (n : WithBot ℕ)) (d : D[X]) (hd : ∀ r, d ∣ F r) :
     d ∣ pdetRing n F := by
@@ -305,7 +331,9 @@ theorem dvd_pdetRing {m n : ℕ} (hm : 0 < m) (hmn : m ≤ n) (F : Fin m → D[X
 end DvdPdetRing
 
 /-- **`gcd P Q ∣ sResP P Q ℓ`** for `ℓ ≤ q`: each row of the Sylvester–Habicht family
-    is a multiple of `P` or of `Q`, hence of `gcd P Q`.-/
+    is a multiple of `P` or of `Q`, hence of `gcd P Q`.
+@isnad1 id=dvd.4h4v.s8.8ba44e5c14d4 from=translated src=- shape=771465b7 vocab=5b05e585
+-/
 theorem gcd_dvd_sResP (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {ℓ : ℕ} (hℓ : ℓ ≤ Q.natDegree) :
     gcd P Q ∣ sResP P Q ℓ := by
@@ -332,7 +360,9 @@ theorem gcd_dvd_sResP (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     · rw [ite_eq_right hr]; exact (gcd_dvd_right P Q).mul_left _
 
 /-- **Theorem 8.34, gcd branch — vanishing below the gcd degree.** For `ℓ < deg(gcd)`,
-    `sResP P Q ℓ = 0` (it is divisible by `gcd` yet has degree `≤ ℓ < deg gcd`).-/
+    `sResP P Q ℓ = 0` (it is divisible by `gcd` yet has degree `≤ ℓ < deg gcd`).
+@isnad1 id=eq.5h4v.s7.de3abf29dd63 from=translated src=- shape=3c0b6466 vocab=2e245cd0
+-/
 theorem sResP_eq_zero_of_lt_gcd (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {ℓ : ℕ} (hℓ : ℓ ≤ Q.natDegree)
     (hlt : ℓ < (gcd P Q).natDegree) : sResP P Q ℓ = 0 := by
@@ -344,7 +374,9 @@ theorem sResP_eq_zero_of_lt_gcd (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
   omega
 
 /-- **Theorem 8.34, gcd branch — identification.** When `deg(gcd P Q) = j`, the `j`-th
-    signed subresultant is associate to `gcd P Q` (and has degree exactly `j`).-/
+    signed subresultant is associate to `gcd P Q` (and has degree exactly `j`).
+@isnad1 id=associat.4h4v.s7.67be0cdca5ce from=translated src=- shape=592da77e vocab=f612978d
+-/
 theorem associated_sResP_gcd (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j : ℕ} (hj : (gcd P Q).natDegree = j) :
     Associated (sResP P Q j) (gcd P Q) := by
@@ -380,7 +412,9 @@ via Proposition 8.39, with no induction. -/
 
 /-- **Theorem 8.34, defective gap — vanishing.** For `r := deg(P % Q) < ℓ < q-1`,
     `sResP_ℓ(P,Q) = 0`: by Proposition 8.39 it is proportional to `sResP_ℓ(Q,-R)`, which
-    lies in the convention gap of `(Q,-R)` (`q' = r < ℓ < q-1 = p'-1`) and so vanishes.-/
+    lies in the convention gap of `(Q,-R)` (`q' = r < ℓ < q-1 = p'-1`) and so vanishes.
+@isnad1 id=eq.5h4v.s8.20f3613b1686 from=translated src=- shape=fa0b9123 vocab=9d647709
+-/
 theorem sResP_eq_zero_of_step_gap (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {ℓ : ℕ}
     (hlo : (P % Q).natDegree < ℓ) (hhi : ℓ < Q.natDegree - 1) : sResP P Q ℓ = 0 := by
@@ -388,7 +422,9 @@ theorem sResP_eq_zero_of_step_gap (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0
     sResP_eq_zero Q (-(P % Q)) (by rw [natDegree_neg]; exact hlo) (by omega) (by omega)]
   simp
 
-/-- A nonzero scalar multiple is associate to the original polynomial.-/
+/-- A nonzero scalar multiple is associate to the original polynomial.
+@isnad1 id=associat.1h3v.s7.7c8e9bd1ce5e from=translated src=- shape=8c1f0ace vocab=6bba82dc
+-/
 theorem associated_smul_left (x : K[X]) {s : K} (hs : s ≠ 0) : Associated (s • x) x := by
   rw [smul_eq_C_mul, mul_comm]
   exact associated_mul_unit_left x (C s) (isUnit_C.mpr (isUnit_iff_ne_zero.mpr hs))
@@ -397,7 +433,9 @@ theorem associated_smul_left (x : K[X]) {s : K} (hs : s ≠ 0) : Associated (s �
     (`r := deg(P % Q) < q-1`), the subresultants `sResP_r(P,Q)` and `sResP_{q-1}(P,Q)`
     are proportional: both are nonzero scalar multiples of `R = P % Q`
     (`sResP_{q-1}` by the base-case value; `sResP_r` by Proposition 8.39 plus the
-    closing-note value of `sResP_r(Q,-R)`), hence associate.-/
+    closing-note value of `sResP_r(Q,-R)`), hence associate.
+@isnad1 id=associat.4h3v.s8.4c80f15469fe from=translated src=- shape=b8847ed2 vocab=1fc3d531
+-/
 theorem sResP_step_proportional (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hdef : (P % Q).natDegree < Q.natDegree - 1) :
     Associated (sResP P Q (P % Q).natDegree) (sResP P Q (Q.natDegree - 1)) := by
@@ -435,7 +473,9 @@ built on the remainder sequence.) -/
 
 /-- `gcd P Q` divides `sResP P Q m` for **every** index `m`: in the determinant range
     `m ≤ q` by `gcd_dvd_sResP`; at the conventional top indices `m = p` (`= P`) and
-    `m = p-1` (`= Q`); and in the top gap (`sResP_m = 0`).-/
+    `m = p-1` (`= Q`); and in the top gap (`sResP_m = 0`).
+@isnad1 id=dvd.3h4v.s7.267e44a8322e from=translated src=- shape=9bc1d705 vocab=ea72f30a
+-/
 theorem gcd_dvd_sResP_all (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (m : ℕ) : gcd P Q ∣ sResP P Q m := by
   rcases Nat.lt_or_ge m (Q.natDegree + 1) with hm | hm
@@ -446,14 +486,18 @@ theorem gcd_dvd_sResP_all (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
       · rw [hmp1, sResP_eq_self_Q P Q (by omega)]; exact gcd_dvd_right P Q
       · rw [sResP_eq_zero P Q (by omega) hmp hmp1]; exact dvd_zero _
 
-/-- Every nonzero signed subresultant has degree at least `deg(gcd P Q)`.-/
+/-- Every nonzero signed subresultant has degree at least `deg(gcd P Q)`.
+@isnad1 id=le.4h4v.s7.4fbe97639d0d from=translated src=- shape=8a386ecf vocab=2e245cd0
+-/
 theorem natDegree_gcd_le_natDegree_sResP (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {m : ℕ} (hm : sResP P Q m ≠ 0) :
     (gcd P Q).natDegree ≤ (sResP P Q m).natDegree :=
   Polynomial.natDegree_le_of_dvd (gcd_dvd_sResP_all P Q hP hQ hpq m) hm
 
 /-- The subresultant at index `deg(gcd P Q)` is nonzero (it is associate to `gcd P Q`):
-    the bottom of the chain is attained.-/
+    the bottom of the chain is attained.
+@isnad1 id=ne.3h3v.s7.d48f295de229 from=translated src=- shape=b439a212 vocab=ee327819
+-/
 theorem sResP_natDegree_gcd_ne_zero (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) : sResP P Q (gcd P Q).natDegree ≠ 0 := by
   have hgcd_ne : gcd P Q ≠ 0 := fun h => hP (by simpa using (gcd_eq_zero_iff P Q).mp h |>.1)
@@ -462,7 +506,9 @@ theorem sResP_natDegree_gcd_ne_zero (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
 /-- **Top-step termination criterion.** The chain terminates at the top index `q-1`
     (`sResP_{q-1} = 0`) iff `Q ∣ P`: the forward direction is the base-case value
     `sResP_{q-1} = -ε_{p-q} b_q^{p-q+1} (P % Q)` (nonzero when `P % Q ≠ 0`); the converse
-    is `Q ∣ P ⟹ deg(gcd) = q ⟹ q-1 < deg(gcd)`, so `sResP_{q-1}` vanishes below the gcd.-/
+    is `Q ∣ P ⟹ deg(gcd) = q ⟹ q-1 < deg(gcd)`, so `sResP_{q-1}` vanishes below the gcd.
+@isnad1 id=iff.4h3v.s8.d7a77b82f7ee from=translated src=- shape=6ee82c50 vocab=04d48200
+-/
 theorem sResP_natDegree_sub_one_eq_zero_iff (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) :
     sResP P Q (Q.natDegree - 1) = 0 ↔ Q ∣ P := by
@@ -491,7 +537,9 @@ theorem sResP_natDegree_sub_one_eq_zero_iff (P Q : K[X]) (hP : P ≠ 0) (hQ : Q 
 well-founded induction on `deg Q`.  The Euclidean step `P,Q → Q,-R` transports both the
 vanishing pattern (Proposition 8.39, scaling by a nonzero constant) and the gcd degree. -/
 
-/-- `deg(sResP_{q-1}(P,Q)) = deg(P % Q)` (the base-case value `-ε b^{p-q+1} (P%Q)`).-/
+/-- `deg(sResP_{q-1}(P,Q)) = deg(P % Q)` (the base-case value `-ε b^{p-q+1} (P%Q)`).
+@isnad1 id=eq.4h3v.s8.3f88ab20c0d9 from=translated src=- shape=44455560 vocab=209b6924
+-/
 theorem natDegree_sResP_natDegree_sub_one (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) :
     (sResP P Q (Q.natDegree - 1)).natDegree = (P % Q).natDegree := by
@@ -502,7 +550,9 @@ theorem natDegree_sResP_natDegree_sub_one (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P %
 
 /-- The signed subresultant coefficient `sRes_j(P,Q)` vanishes in the gap `r < j < q`
     (`r = deg(P % Q)`): for `r < j < q-1` because `sResP_j = 0`, and for `j = q-1` because
-    `deg(sResP_{q-1}) = r < q-1`.-/
+    `deg(sResP_{q-1}) = r < q-1`.
+@isnad1 id=eq.5h4v.s8.92b0639e0c15 from=translated src=- shape=9159721b vocab=462fac67
+-/
 theorem sRes_eq_zero_of_step_gap (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j : ℕ} (hlo : (P % Q).natDegree < j)
     (hhi : j < Q.natDegree) : Azurite.BPR.Chapter4.sRes P Q j = 0 := by
@@ -523,7 +573,9 @@ theorem sRes_eq_zero_of_step_gap (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     simp
 
 /-- `deg(gcd(P,Q)) = deg(gcd(Q,-R))` — the gcd degree is invariant under one Euclidean
-    step (`gcd(P,Q) ~ gcd(Q, P % Q) ~ gcd(Q, -(P % Q))`).-/
+    step (`gcd(P,Q) ~ gcd(Q, P % Q) ~ gcd(Q, -(P % Q))`).
+@isnad1 id=eq.2h3v.s7.62538ccfcea5 from=translated src=- shape=64828200 vocab=745625a7
+-/
 theorem natDegree_gcd_step (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0) :
     (gcd P Q).natDegree = (gcd Q (-(P % Q))).natDegree := by
   have hgcd1 : gcd P Q ≠ 0 := fun h => hP (by simpa using (gcd_eq_zero_iff P Q).mp h |>.1)
@@ -542,7 +594,9 @@ theorem natDegree_gcd_step (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0) :
     rwa [EuclideanDomain.div_add_mod P Q] at key
 
 /-- **Transport of `sRes_j` across a Euclidean step**, for `j ≤ r := deg(P % Q)`:
-    `sRes_j(P,Q) = ε_{p-q} b_q^{p-r} sRes_j(Q,-R)`.-/
+    `sRes_j(P,Q) = ε_{p-q} b_q^{p-r} sRes_j(Q,-R)`.
+@isnad1 id=eq.4h4v.s8.26e12342a06f from=translated src=- shape=a5639658 vocab=a06b595f
+-/
 theorem sRes_swap_le (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j : ℕ} (hj : j ≤ (P % Q).natDegree) :
     Azurite.BPR.Chapter4.sRes P Q j
@@ -557,7 +611,9 @@ theorem sRes_swap_le (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     coeff_sResP Q (-(P % Q)) (by rw [natDegree_neg]; exact hrq) (by omega)]
 
 /-- `sResP_q(P,Q)` is non-defective: `deg(sResP_q) = q` (the closing-note value
-    `ε b^{p-q-1} Q` has degree `deg Q = q`).-/
+    `ε b^{p-q-1} Q` has degree `deg Q = q`).
+@isnad1 id=eq.2h3v.s7.970f94e9f402 from=translated src=- shape=f2be5a1c vocab=f164ef86
+-/
 theorem natDegree_sResP_natDegree (P Q : K[X]) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) : (sResP P Q Q.natDegree).natDegree = Q.natDegree := by
   have hεne : ((ε (P.natDegree - Q.natDegree) : ℤ) : K) ≠ 0 := by
@@ -569,7 +625,9 @@ theorem natDegree_sResP_natDegree (P Q : K[X]) (hQ : Q ≠ 0)
     `sResP_m(P,Q) ≠ 0`, the subresultant `sResP_m` is associate to the non-defective
     representative `sResP_{deg(sResP_m)}` at its own degree.  By well-founded induction on
     `deg Q`: trivial when non-defective; the single-step block (`m = q-1`) is
-    `sResP_step_proportional`; the gap is excluded; and `m ≤ r` transports to `Q,-R`.-/
+    `sResP_step_proportional`; the gap is excluded; and `m ≤ r` transports to `Q,-R`.
+@isnad1 id=associat.5h4v.s8.9083a9e446b0 from=translated src=- shape=794f9773 vocab=cf188041
+-/
 theorem sResP_block_associated (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {m : ℕ} (hmq : m ≤ Q.natDegree) (hm : sResP P Q m ≠ 0) :
     Associated (sResP P Q (sResP P Q m).natDegree) (sResP P Q m) := by
@@ -629,7 +687,9 @@ theorem sResP_block_associated (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     `sResP_{j-1}(P,Q) = 0 ⟺ deg(gcd P Q) = j`.  Proved by well-founded induction on `deg Q`:
     `j = q` is the top-step criterion; `r < j < q` is vacuous (`sRes_j = 0`); and `j ≤ r`
     transports to `Q,-R` (vanishing by Proposition 8.39, gcd degree by `natDegree_gcd_step`)
-    and applies the induction hypothesis.-/
+    and applies the induction hypothesis.
+@isnad1 id=iff.6h4v.s8.73e77c54e556 from=translated src=- shape=b21af626 vocab=b809400a
+-/
 theorem sResP_pred_eq_zero_iff (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j : ℕ} (hj1 : 1 ≤ j) (hjq : j ≤ Q.natDegree)
     (hsRes : Azurite.BPR.Chapter4.sRes P Q j ≠ 0) :
@@ -697,7 +757,9 @@ theorem sResP_pred_eq_zero_iff (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (`sRes_j ≠ 0`), if the predecessor subresultant vanishes (`sResP_{j-1} = 0`), then
     `sResP_j` is associate to `gcd P Q` and all lower subresultants vanish — BPR's
     "`sResP_{j-1} = 0 ⟹ sResP_{i-1} = gcd ∧ sResP_ℓ = 0` for `ℓ ≤ j-1`".  The chain
-    induction (`sResP_pred_eq_zero_iff`) supplies the missing link `deg gcd = j`.-/
+    induction (`sResP_pred_eq_zero_iff`) supplies the missing link `deg gcd = j`.
+@isnad1 id=and.7h4v.s8.fc6e1f92166a from=translated src=- shape=79f47c53 vocab=f1fa6dad
+-/
 theorem theorem_8_34_gcd_branch (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j : ℕ} (hj1 : 1 ≤ j) (hjq : j ≤ Q.natDegree)
     (hsRes : Azurite.BPR.Chapter4.sRes P Q j ≠ 0) (hzero : sResP P Q (j - 1) = 0) :
@@ -713,7 +775,9 @@ theorem theorem_8_34_gcd_branch (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (defective or not) is associate to `gcd P Q`, and all lower subresultants vanish.  This
     is BPR's gcd branch verbatim, with `m = i-1`: the block proportionality
     (`sResP_block_associated`) relates `sResP_m` to its non-defective representative
-    `sResP_j` (whence `sRes_j ≠ 0`), and the chain induction gives `deg gcd = j`.-/
+    `sResP_j` (whence `sRes_j ≠ 0`), and the chain induction gives `deg gcd = j`.
+@isnad1 id=and.8h5v.s8.c52e30617ef2 from=translated src=- shape=e5f9dac3 vocab=e8c32be0
+-/
 theorem theorem_8_34_gcd_branch_general (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {m j : ℕ} (hmq : m ≤ Q.natDegree) (hm : sResP P Q m ≠ 0)
     (hdeg : (sResP P Q m).natDegree = j) (hj1 : 1 ≤ j) (hzero : sResP P Q (j - 1) = 0) :
@@ -742,6 +806,9 @@ theorem theorem_8_34_gcd_branch_general (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 
 
 /-! ### Depth-general recurrence: transporting `(★)` through a Euclidean step -/
 
+/--
+@isnad1 id=eq.5h3v.s10.15d5a9b13cc2 from=translated src=- shape=8be3cc0b vocab=f8d00c2c
+-/
 theorem recurrence_lhs_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree)
     (hr'lt : (Q % (-(P % Q))).natDegree - 1 < Q.natDegree - 1) :
@@ -772,6 +839,9 @@ theorem recurrence_lhs_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     * Azurite.BPR.Chapter4.sRes Q (-(P % Q)) (P % Q).natDegree
     * (sResP Q (-(P % Q)) (Q.natDegree - 1)).leadingCoeff) * he
 
+/--
+@isnad1 id=eq.6h3v.s11.45a805d1ad66 from=translated src=- shape=7944144f vocab=f8d00c2c
+-/
 theorem recurrence_rhs_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree)
     (hr'r : (Q % (-(P % Q))).natDegree ≤ (P % Q).natDegree)
@@ -815,7 +885,9 @@ theorem recurrence_rhs_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     `s_r t_{q-1} sResP_{r'-1}(P,Q) = -Rem(s_{r'} t_{r-1} sResP_{q-1}(P,Q), sResP_{r-1}(P,Q))`.
     Both sides scale by `ε_{p-q}² b^{...}` relative to the `Q,-R` recurrence (Proposition 8.39
     and the boundary/coefficient bridges).  Iterating from the base recurrence
-    `sResP_inductive_step_identity` realizes BPR's recurrence at every depth.-/
+    `sResP_inductive_step_identity` realizes BPR's recurrence at every depth.
+@isnad1 id=eq.8h3v.s11.5ba097741280 from=translated src=- shape=ad41bc10 vocab=cdc157ee
+-/
 theorem recurrence_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree)
     (hr'r : (Q % (-(P % Q))).natDegree ≤ (P % Q).natDegree)
@@ -844,7 +916,9 @@ theorem recurrence_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     with `r = deg(P % Q)`, `r' = deg(Q % -R)`.  Obtained by transporting the base recurrence
     (`sResP_inductive_step_identity`) for `Q, -R` through one step (`recurrence_transport`).
     Applying this — and the base recurrence — to every pair of the remainder sequence
-    realizes BPR's recurrence at all depths.-/
+    realizes BPR's recurrence at all depths.
+@isnad1 id=eq.10h3v.s11.e398e26cb695 from=translated src=- shape=41c83529 vocab=de73356d
+-/
 theorem sResP_recurrence_step (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree)
     (hR'0 : Q % (-(P % Q)) ≠ 0) (hr1 : 1 ≤ (P % Q).natDegree)
@@ -866,7 +940,9 @@ theorem sResP_recurrence_step (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
 
 /-- LHS of a recurrence at a deep triple (`j, k ≤ r` and `i-1, k-1 < q-1`) transports by the
     uniform factor `ε_{p-q} b_q^{3(p-r)}` (all three factors use Proposition 8.39's interior
-    bridges).-/
+    bridges).
+@isnad1 id=eq.6h6v.s10.72b9392c946f from=translated src=- shape=4783d67b vocab=794f80f8
+-/
 theorem general_lhs_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {i j k : ℕ} (hjr : j ≤ (P % Q).natDegree)
     (hi1 : i - 1 < Q.natDegree - 1) (hk1 : k - 1 < Q.natDegree - 1) :
@@ -892,7 +968,9 @@ theorem general_lhs_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     * Azurite.BPR.Chapter4.sRes Q (-(P % Q)) j
     * (sResP Q (-(P % Q)) (i - 1)).leadingCoeff) * he
 
-/-- RHS of a recurrence at a deep triple transports by the same uniform factor.-/
+/-- RHS of a recurrence at a deep triple transports by the same uniform factor.
+@isnad1 id=eq.6h6v.s10.f4d35be1d10a from=translated src=- shape=17b99663 vocab=794f80f8
+-/
 theorem general_rhs_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {i j k : ℕ} (hkr : k ≤ (P % Q).natDegree)
     (hj1 : j - 1 < Q.natDegree - 1) (hi1 : i - 1 < Q.natDegree - 1) :
@@ -925,7 +1003,9 @@ theorem general_rhs_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     * (sResP Q (-(P % Q)) (j - 1)).leadingCoeff) * he
 
 /-- The deep recurrence transports: given the `(Q,-R)` recurrence at a deep triple, the
-    `(P,Q)` recurrence at the same triple holds (uniform scaling, both sides).-/
+    `(P,Q)` recurrence at the same triple holds (uniform scaling, both sides).
+@isnad1 id=eq.9h6v.s11.532951f397e7 from=translated src=- shape=67c3301a vocab=cdc157ee
+-/
 theorem general_recurrence_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {i j k : ℕ}
     (hjr : j ≤ (P % Q).natDegree) (hkr : k ≤ (P % Q).natDegree)
@@ -946,7 +1026,9 @@ theorem general_recurrence_transport (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q �
     `d < ℓ < m` of the defective block has `sResP_ℓ(P,Q) = 0`.  Same well-founded
     induction on `deg Q` as `sResP_block_associated`: vacuous when non-defective, the
     top step (`m = q-1`) is `sResP_eq_zero_of_step_gap`, the range `r < m < q-1` is
-    excluded (it would force `sResP_m = 0`), and `m ≤ r` transports to `Q,-R`.-/
+    excluded (it would force `sResP_m = 0`), and `m ≤ r` transports to `Q,-R`.
+@isnad1 id=eq.7h5v.s8.074fc951d5cd from=translated src=- shape=f649b8e4 vocab=4d93fdd5
+-/
 theorem sResP_block_gap (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {m : ℕ} (hmq : m ≤ Q.natDegree) (hm : sResP P Q m ≠ 0)
     {ℓ : ℕ} (hlo : (sResP P Q m).natDegree < ℓ) (hhi : ℓ < m) : sResP P Q ℓ = 0 := by
@@ -1010,7 +1092,9 @@ noncomputable def tBPR (P Q : K[X]) (j : ℕ) : K :=
     * **recurrence branch** — if `sResP_{j-1}(P,Q) ≠ 0` of degree `k`, then
       `s_j t_{i-1} sResP_{k-1}(P,Q) = -Rem(s_k t_{j-1} sResP_{i-1}(P,Q), sResP_{j-1}(P,Q))`,
       and moreover if `k < j-1` the gap subresultants vanish (`sResP_ℓ = 0` for `k < ℓ < j-1`)
-      and `sResP_k(P,Q)` is proportional (associate) to `sResP_{j-1}(P,Q)`.-/
+      and `sResP_k(P,Q)` is proportional (associate) to `sResP_{j-1}(P,Q)`.
+@isnad1 id=and.9h5v.s10.40fad4d87a22 from=translated src=- shape=6f32d191 vocab=ecf5785a
+-/
 theorem theorem_8_34_monolithic (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) {i j : ℕ} (hj1 : 1 ≤ j) (hji : j < i)
     (hip : i ≤ P.natDegree + 1) (hne : sResP P Q (i - 1) ≠ 0)
@@ -1318,7 +1402,9 @@ theorem theorem_8_34_monolithic (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
 
   This is the `i = p, j = q` specialization of `theorem_8_34_monolithic`; the only hypothesis
   on the recurrence branch is `P % Q ≠ 0` (it needs neither `1 ≤ r` nor `Q % (-R) ≠ 0` —
-  both the coprime terminus `r = 0` and the terminal `Q % (-R) = 0` are covered).-/
+  both the coprime terminus `r = 0` and the terminal `Q % (-R) = 0` are covered).
+@isnad1 id=and.3h3v.s10.b9ea3781b7f3 from=translated src=- shape=16f965b7 vocab=ebac8c96
+-/
 theorem theorem_8_34 (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) :
     -- gcd branch (unconditional):

@@ -61,6 +61,9 @@ def NonzeroRatRandomGen.next (rg : NonzeroRatRandomGen) : Rat × NonzeroRatRando
 instance : RandomGen NonzeroRatRandomGen Rat where
   next := NonzeroRatRandomGen.next
 
+/--
+@isnad1 id=match1.0h1v.s4.c54d5dceb02f from=translated src=- shape=014f1214 vocab=934e1dd6
+-/
 theorem nonzero_rat_random_gen_nonzero (rg : NonzeroRatRandomGen) :
     let (v, _) := NonzeroRatRandomGen.next rg
     v ≠ 0 := by

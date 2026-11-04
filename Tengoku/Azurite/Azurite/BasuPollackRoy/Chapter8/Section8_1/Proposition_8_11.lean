@@ -62,7 +62,9 @@ noncomputable def substitute
     MvPolynomial (Fin ℓ) (MvPolynomial (Fin m) ℤ) :=
   MvPolynomial.eval₂Hom (MvPolynomial.map MvPolynomial.C) Q P
 
-/-- Expansion of `substitute` as a sum over the support of `P`.-/
+/-- Expansion of `substitute` as a sum over the support of `P`.
+@isnad1 id=eq.0h5v.s9.47a973ed4351 from=translated src=- shape=a73cdf95 vocab=abb39840
+-/
 theorem substitute_eq_sum
     (P : MvPolynomial (Fin k) (MvPolynomial (Fin ℓ) ℤ))
     (Q : Fin k → MvPolynomial (Fin ℓ) (MvPolynomial (Fin m) ℤ)) :

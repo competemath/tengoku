@@ -34,7 +34,9 @@ Proved by induction on `k` using `MvPolynomial.finSuccEquiv` to view a
 
 namespace Azurite.BPR
 
-/-- `bitsize(a * b) ≤ τ + σ` when `bitsize a ≤ τ` and `bitsize b ≤ σ`.-/
+/-- `bitsize(a * b) ≤ τ + σ` when `bitsize a ≤ τ` and `bitsize b ≤ σ`.
+@isnad1 id=le.2h4v.s5.c9eb68fbeb1b from=translated src=- shape=9142e638 vocab=1aebc42c
+-/
 theorem Int.size_mul_le (a b : ℤ) (τ σ : ℕ)
     (ha : a.natAbs.size ≤ τ) (hb : b.natAbs.size ≤ σ) :
     (a * b).natAbs.size ≤ τ + σ := by
@@ -42,7 +44,9 @@ theorem Int.size_mul_le (a b : ℤ) (τ σ : ℕ)
   rw [Int.natAbs_mul, show 2 ^ (τ + σ) = 2 ^ τ * 2 ^ σ from pow_add 2 τ σ]
   exact Nat.mul_lt_mul_of_lt_of_lt ha hb
 
-/-- Triangle inequality for `Finset` sums of integers (`natAbs`).-/
+/-- Triangle inequality for `Finset` sums of integers (`natAbs`).
+@isnad1 id=le.0h3v.s5.9c4f96cd38c8 from=translated src=- shape=b60f948b vocab=6bc6d9fb
+-/
 theorem Int.natAbs_finset_sum_le {ι : Type _} (s : Finset ι) (f : ι → ℤ) :
     (∑ i ∈ s, f i).natAbs ≤ ∑ i ∈ s, (f i).natAbs := by
   induction s using Finset.cons_induction with
@@ -51,7 +55,9 @@ theorem Int.natAbs_finset_sum_le {ι : Type _} (s : Finset ι) (f : ι → ℤ) 
     rw [Finset.sum_cons, Finset.sum_cons]
     exact le_trans (Int.natAbs_add_le _ _) (Nat.add_le_add_left ihs _)
 
-/-- Bitsize of a `Finset` sum of integers, bounded by element bound + `Nat.size` of card.-/
+/-- Bitsize of a `Finset` sum of integers, bounded by element bound + `Nat.size` of card.
+@isnad1 id=le.1h4v.s5.36d46af0006b from=translated src=- shape=ba0a413c vocab=75da55b7
+-/
 theorem Int.size_finset_sum_le {ι : Type _} {s : Finset ι} {f : ι → ℤ} {B : ℕ}
     (hB : ∀ i ∈ s, (f i).natAbs.size ≤ B) :
     (∑ i ∈ s, f i).natAbs.size ≤ B + Nat.size s.card := by
@@ -67,7 +73,9 @@ theorem Int.size_finset_sum_le {ι : Type _} {s : Finset ι} {f : ι → ℤ} {B
 
 /-- Sharper variant of `Int.size_finset_sum_le` using `Nat.size (s.card - 1)`
     instead of `Nat.size s.card`. Saves one bit when `s.card` is a power of two
-    (e.g., for `s.card = 1` we get `B + 0` instead of `B + 1`).-/
+    (e.g., for `s.card = 1` we get `B + 0` instead of `B + 1`).
+@isnad1 id=le.1h4v.s6.73f8138908b1 from=translated src=- shape=b4d89fbe vocab=52b167e9
+-/
 theorem Int.size_finset_sum_le' {ι : Type _} {s : Finset ι} {f : ι → ℤ} {B : ℕ}
     (hB : ∀ i ∈ s, (f i).natAbs.size ≤ B) :
     (∑ i ∈ s, f i).natAbs.size ≤ B + Nat.size (s.card - 1) := by
@@ -128,7 +136,9 @@ private theorem Finset.antidiag_filter_snd_le (l q : ℕ) :
     coefficient bitsizes bounded by `τ` and `σ` respectively, and
     `totalDegree Q ≤ q`, then the coefficient bitsizes of `P * Q` are
     bounded by `τ + σ + k * Nat.size (q + 1)`. Proved by induction on `k`
-    using `MvPolynomial.finSuccEquiv`.-/
+    using `MvPolynomial.finSuccEquiv`.
+@isnad1 id=le.3h7v.s7.16dd7dfd3193 from=translated src=- shape=feab10b1 vocab=bdc00a58
+-/
 theorem MvPolynomial.bitsize_coeff_mul_le :
     ∀ (k : ℕ) (P Q : MvPolynomial (Fin k) ℤ) (τ σ q : ℕ),
     (∀ m, (P.coeff m).natAbs.size ≤ τ) →

@@ -66,20 +66,30 @@ noncomputable def agmE (x : ℝ) : ℝ :=
 
 variable {x : ℝ}
 
-/-- `cos²θ + x² sin²θ = 1 − k² sin²θ` for `k = √(1 − x²)`, `x² ≤ 1`.-/
+/-- `cos²θ + x² sin²θ = 1 − k² sin²θ` for `k = √(1 − x²)`, `x² ≤ 1`.
+@isnad1 id=eq.1h2v.s7.a33b5898151f from=translated src=- shape=2c7aea86 vocab=f4c8959c
+-/
 theorem cos_sq_add_mul_sin_sq (hx : x ^ 2 ≤ 1) (θ : ℝ) :
     Real.cos θ ^ 2 + x ^ 2 * Real.sin θ ^ 2
       = 1 - Real.sqrt (1 - x ^ 2) ^ 2 * Real.sin θ ^ 2 := by
   rw [Real.sq_sqrt (by linarith)]
   linear_combination Real.cos_sq_add_sin_sq θ
 
+/--
+@isnad1 id=eq.1h1v.s6.6adcd0281858 from=translated src=- shape=14d7c218 vocab=affe51f6
+-/
 theorem agmK_eq_ellipticK (hx : x ^ 2 ≤ 1) : agmK x = ellipticK (Real.sqrt (1 - x ^ 2)) :=
   intervalIntegral.integral_congr fun θ _ => by rw [cos_sq_add_mul_sin_sq hx]
 
+/--
+@isnad1 id=eq.1h1v.s6.4ac92f557549 from=translated src=- shape=14d7c218 vocab=182c015e
+-/
 theorem agmE_eq_ellipticE (hx : x ^ 2 ≤ 1) : agmE x = ellipticE (Real.sqrt (1 - x ^ 2)) :=
   intervalIntegral.integral_congr fun θ _ => by rw [cos_sq_add_mul_sin_sq hx]
 
-/-- Gauss's theorem for `f`: `f(x) = π/(2 AGM(1, x))`.-/
+/-- Gauss's theorem for `f`: `f(x) = π/(2 AGM(1, x))`.
+@isnad1 id=eq.1h1v.s5.4c9b30074087 from=translated src=- shape=b90eb09f vocab=eb248a8c
+-/
 theorem agmK_eq_pi_div_AGM (hx : 0 < x) : agmK x = π / (2 * AGM 1 x) := by
   have h := integral_inv_sqrt_eq_pi_div_AGM one_pos hx
   simp only [one_pow, one_mul] at h
@@ -90,8 +100,14 @@ theorem agmK_eq_pi_div_AGM (hx : 0 < x) : agmK x = π / (2 * AGM 1 x) := by
 /-- The Landen map `ℓ(x) = 2√x/(1 + x)`.-/
 noncomputable def landenMap (x : ℝ) : ℝ := 2 * Real.sqrt x / (1 + x)
 
+/--
+@isnad1 id=lt.1h1v.s4.e935919966ba from=translated src=- shape=35bd48ee vocab=90758aef
+-/
 theorem landenMap_pos (hx : 0 < x) : 0 < landenMap x := by unfold landenMap; positivity
 
+/--
+@isnad1 id=lt.2h1v.s5.938ea0df5a0f from=translated src=- shape=d34e1a3e vocab=90758aef
+-/
 theorem landenMap_lt_one (hx0 : 0 < x) (hx1 : x ≠ 1) : landenMap x < 1 := by
   unfold landenMap
   rw [div_lt_one (by linarith)]
@@ -99,10 +115,15 @@ theorem landenMap_lt_one (hx0 : 0 < x) (hx1 : x ≠ 1) : landenMap x < 1 := by
   have hne : Real.sqrt x - 1 ≠ 0 := fun h => hx1 (by rw [← hs, sub_eq_zero.mp h, one_pow])
   nlinarith [sq_pos_of_ne_zero hne]
 
+/--
+@isnad1 id=lt.1h1v.s4.4c6f303a9a91 from=translated src=- shape=de552f97 vocab=28fef1f8
+-/
 theorem AGM_one_pos (hx : 0 < x) : 0 < AGM 1 x :=
   lt_of_lt_of_le (lt_min one_pos hx) (min_le_AGM one_pos hx)
 
-/-- Landen: `f(x) = (2/(1 + x)) f(2√x/(1 + x))`, from the AGM step and homogeneity.-/
+/-- Landen: `f(x) = (2/(1 + x)) f(2√x/(1 + x))`, from the AGM step and homogeneity.
+@isnad1 id=eq.1h1v.s5.844c7a658110 from=translated src=- shape=ebd1a2ba vocab=d882d65c
+-/
 theorem agmK_landen (hx : 0 < x) : agmK x = 2 / (1 + x) * agmK (landenMap x) := by
   have hs0 : 0 < Real.sqrt x := Real.sqrt_pos.mpr hx
   have h1x : 0 < 1 + x := by linarith
@@ -127,11 +148,16 @@ noncomputable def agmJ (a b : ℝ) : ℝ :=
 
 variable {a b : ℝ}
 
+/--
+@isnad1 id=continuo.0h2v.s6.9efa88290f98 from=translated src=- shape=66557bbd vocab=b6afd3f3
+-/
 theorem continuous_agmJ_integrand (a b : ℝ) :
     Continuous fun θ : ℝ => Real.sqrt (a ^ 2 * Real.cos θ ^ 2 + b ^ 2 * Real.sin θ ^ 2) :=
   Real.continuous_sqrt.comp (by fun_prop)
 
-/-- Scaling: `J(a, b) = a · g(b/a)` for `a > 0`.-/
+/-- Scaling: `J(a, b) = a · g(b/a)` for `a > 0`.
+@isnad1 id=eq.1h2v.s5.1d712bfee606 from=translated src=- shape=f853ea64 vocab=c87e5c32
+-/
 theorem agmJ_eq_mul_agmE (ha : 0 < a) (b : ℝ) : agmJ a b = a * agmE (b / a) := by
   unfold agmJ agmE
   rw [← intervalIntegral.integral_const_mul]
@@ -140,13 +166,18 @@ theorem agmJ_eq_mul_agmE (ha : 0 < a) (b : ℝ) : agmJ a b = a * agmE (b / a) :=
       = a ^ 2 * (Real.cos θ ^ 2 + (b / a) ^ 2 * Real.sin θ ^ 2) by field_simp,
     Real.sqrt_mul (sq_nonneg a), Real.sqrt_sq ha.le]
 
+/--
+@isnad1 id=eq.1h1v.s5.3da8aa91baae from=translated src=- shape=17115975 vocab=04131010
+-/
 theorem agmJ_self (ha : 0 ≤ a) : agmJ a a = π / 2 * a := by
   unfold agmJ
   have : ∀ θ : ℝ, Real.sqrt (a ^ 2 * Real.cos θ ^ 2 + a ^ 2 * Real.sin θ ^ 2) = a := fun θ => by
     rw [← mul_add, Real.cos_sq_add_sin_sq, mul_one, Real.sqrt_sq ha]
   simp only [this, intervalIntegral.integral_const, sub_zero, smul_eq_mul]
 
-/-- `(π/2) b ≤ J(a, b) ≤ (π/2) a` for `0 < b ≤ a`.-/
+/-- `(π/2) b ≤ J(a, b) ≤ (π/2) a` for `0 < b ≤ a`.
+@isnad1 id=and.2h2v.s6.4120c076ecb2 from=translated src=- shape=1d1638e7 vocab=4fc8ece8
+-/
 theorem agmJ_bounds (hb : 0 < b) (hab : b ≤ a) :
     π / 2 * b ≤ agmJ a b ∧ agmJ a b ≤ π / 2 * a := by
   have ha : 0 < a := hb.trans_le hab
@@ -175,7 +206,9 @@ theorem agmJ_bounds (hb : 0 < b) (hab : b ≤ a) :
 
 /-! ### Telescoping along the AGM sequence -/
 
-/-- The AGM is constant along its own iteration.-/
+/-- The AGM is constant along its own iteration.
+@isnad1 id=eq.2h3v.s5.c5cf2c84ce23 from=translated src=- shape=5240bf6d vocab=cbcd0ead
+-/
 theorem AGM_agmSeq (ha : 0 < a) (hb : 0 < b) (j : ℕ) : AGM (agmA a b j) (agmB a b j) = AGM a b := by
   induction j with
   | zero => rfl
@@ -183,6 +216,9 @@ theorem AGM_agmSeq (ha : 0 < a) (hb : 0 < b) (j : ℕ) : AGM (agmA a b j) (agmB 
     obtain ⟨hA, hB⟩ := agm_pos ha hb j
     rw [agmA_succ, agmB_succ, ← AGM_step hA hB, ih]
 
+/--
+@isnad1 id=le.3h3v.s5.a5e6a7928c98 from=translated src=- shape=c29eebe0 vocab=74930250
+-/
 theorem agmB_le_agmA' (ha : 0 < a) (hb : 0 < b) (hab : b ≤ a) (n : ℕ) :
     agmB a b n ≤ agmA a b n := by
   rcases n with _ | n
@@ -193,7 +229,9 @@ theorem agmB_le_agmA' (ha : 0 < a) (hb : 0 < b) (hab : b ≤ a) (n : ℕ) :
 noncomputable def agmDeficit (a b : ℝ) (n : ℕ) : ℝ :=
   agmJ (agmA a b n) (agmB a b n) - agmA a b n ^ 2 * (π / (2 * AGM a b))
 
-/-- `−(π/2)(1 + a_1/b_1)(a_n − b_n) ≤ E_n ≤ 0` for `n ≥ 1`.-/
+/-- `−(π/2)(1 + a_1/b_1)(a_n − b_n) ≤ E_n ≤ 0` for `n ≥ 1`.
+@isnad1 id=and.3h3v.s7.74da385e575d from=translated src=- shape=034b4f29 vocab=790bf4f6
+-/
 theorem agmDeficit_bounds (ha : 0 < a) (hb : 0 < b) {n : ℕ} (hn : 1 ≤ n) :
     -(π / 2 * (1 + agmA a b 1 / agmB a b 1) * (agmA a b n - agmB a b n)) ≤ agmDeficit a b n ∧
       agmDeficit a b n ≤ 0 := by
@@ -244,7 +282,9 @@ theorem agmDeficit_bounds (ha : 0 < a) (hb : 0 < b) {n : ℕ} (hn : 1 ≤ n) :
 
 /-! ### The gap `2^n (a_n − b_n) → 0` -/
 
-/-- Once `a_j − b_j ≤ 2 b_1` (`j ≥ 1`), the gap shrinks by a factor `4` per step.-/
+/-- Once `a_j − b_j ≤ 2 b_1` (`j ≥ 1`), the gap shrinks by a factor `4` per step.
+@isnad1 id=le.4h3v.s7.5c6b9d48ca11 from=translated src=- shape=227267a8 vocab=f1716127
+-/
 theorem agm_gap_succ_le_quarter (ha : 0 < a) (hb : 0 < b) {j : ℕ} (hj : 1 ≤ j)
     (h : agmA a b j - agmB a b j ≤ 2 * agmB a b 1) :
     agmA a b (j + 1) - agmB a b (j + 1) ≤ (agmA a b j - agmB a b j) / 4 := by
@@ -258,7 +298,9 @@ theorem agm_gap_succ_le_quarter (ha : 0 < a) (hb : 0 < b) {j : ℕ} (hj : 1 ≤ 
     h.trans (by linarith)
   nlinarith [mul_le_mul_of_nonneg_left h2 hg0]
 
-/-- Some `a_m − b_m ≤ 2 b_1` with `m ≥ 1`.-/
+/-- Some `a_m − b_m ≤ 2 b_1` with `m ≥ 1`.
+@isnad1 id=ex.2h2v.s6.b7f9423bb7a1 from=translated src=- shape=50e336e6 vocab=043f062c
+-/
 theorem exists_agm_gap_le (ha : 0 < a) (hb : 0 < b) :
     ∃ m, 1 ≤ m ∧ agmA a b m - agmB a b m ≤ 2 * agmB a b 1 := by
   obtain ⟨hA1, hB1⟩ := agm_pos ha hb 1
@@ -269,7 +311,9 @@ theorem exists_agm_gap_le (ha : 0 < a) (hb : 0 < b) :
   have h2 : (N : ℝ) ≤ 2 ^ N := by exact_mod_cast Nat.lt_two_pow_self.le
   nlinarith [mul_le_mul_of_nonneg_left h2 (by positivity : (0 : ℝ) ≤ 2 * agmB a b 1)]
 
-/-- From such an `m` on, `a_{m+k} − b_{m+k} ≤ (a_m − b_m)/4^k`.-/
+/-- From such an `m` on, `a_{m+k} − b_{m+k} ≤ (a_m − b_m)/4^k`.
+@isnad1 id=le.4h4v.s7.650653895145 from=translated src=- shape=92042152 vocab=1e5ebf55
+-/
 theorem agm_gap_add_le (ha : 0 < a) (hb : 0 < b) {m : ℕ} (hm : 1 ≤ m)
     (h : agmA a b m - agmB a b m ≤ 2 * agmB a b 1) (k : ℕ) :
     agmA a b (m + k) - agmB a b (m + k) ≤ (agmA a b m - agmB a b m) / 4 ^ k := by
@@ -284,7 +328,9 @@ theorem agm_gap_add_le (ha : 0 < a) (hb : 0 < b) {m : ℕ} (hm : 1 ≤ m)
     rw [pow_succ, ← div_div]
     exact div_le_div_of_nonneg_right ih (by norm_num)
 
-/-- `2^(m+k) (a_{m+k} − b_{m+k}) ≤ 2^m (a_m − b_m) (1/2)^k`.-/
+/-- `2^(m+k) (a_{m+k} − b_{m+k}) ≤ 2^m (a_m − b_m) (1/2)^k`.
+@isnad1 id=le.4h4v.s7.af90813253d3 from=translated src=- shape=82428be9 vocab=1e5ebf55
+-/
 theorem two_pow_mul_agm_gap_le (ha : 0 < a) (hb : 0 < b) {m : ℕ} (hm : 1 ≤ m)
     (h : agmA a b m - agmB a b m ≤ 2 * agmB a b 1) (k : ℕ) :
     2 ^ (k + m) * (agmA a b (k + m) - agmB a b (k + m))
@@ -298,7 +344,9 @@ theorem two_pow_mul_agm_gap_le (ha : 0 < a) (hb : 0 < b) {m : ℕ} (hm : 1 ≤ m
     _ = 2 ^ m * (agmA a b m - agmB a b m) * (1 / 2 : ℝ) ^ k := by
         rw [pow_add, h4, one_div_pow]; field_simp
 
-/-- `2^n (a_n − b_n) → 0`.-/
+/-- `2^n (a_n − b_n) → 0`.
+@isnad1 id=tendsto.2h2v.s6.b9d8161bd9ad from=translated src=- shape=c9bfd05c vocab=23de8d9f
+-/
 theorem tendsto_two_pow_mul_agm_gap (ha : 0 < a) (hb : 0 < b) :
     Tendsto (fun n => 2 ^ n * (agmA a b n - agmB a b n)) atTop (𝓝 0) := by
   obtain ⟨m, hm, h⟩ := exists_agm_gap_le ha hb
@@ -310,7 +358,9 @@ theorem tendsto_two_pow_mul_agm_gap (ha : 0 < a) (hb : 0 < b) :
   refine squeeze_zero (fun k => ?_) (fun k => two_pow_mul_agm_gap_le ha hb hm h k) hlim
   exact mul_nonneg (by positivity) (sub_nonneg.mpr (agmB_le_agmA ha hb (by omega)))
 
-/-- `∑ 2^n (a_n − b_n)` converges.-/
+/-- `∑ 2^n (a_n − b_n)` converges.
+@isnad1 id=summable.2h2v.s6.4c81c17b9e81 from=translated src=- shape=81a40fcd vocab=e2a15a2e
+-/
 theorem summable_two_pow_mul_agm_gap (ha : 0 < a) (hb : 0 < b) :
     Summable fun n => 2 ^ n * (agmA a b n - agmB a b n) := by
   obtain ⟨m, hm, h⟩ := exists_agm_gap_le ha hb
@@ -319,7 +369,9 @@ theorem summable_two_pow_mul_agm_gap (ha : 0 < a) (hb : 0 < b) :
     ((summable_geometric_of_lt_one (by norm_num) (by norm_num)).mul_left _)
   exact mul_nonneg (by positivity) (sub_nonneg.mpr (agmB_le_agmA ha hb (by omega)))
 
-/-- `∑ 2^j/2 · c_j²` converges (`c_j² = (a_j − b_j)(a_j + b_j) ≤ 2 a_1 (a_j − b_j)`).-/
+/-- `∑ 2^j/2 · c_j²` converges (`c_j² = (a_j − b_j)(a_j + b_j) ≤ 2 a_1 (a_j − b_j)`).
+@isnad1 id=summable.3h2v.s7.d24bd92606b3 from=translated src=- shape=78f1c71f vocab=fc7e43ed
+-/
 theorem summable_agm_c_sq (ha : 0 < a) (hb : 0 < b) (hab : b ≤ a) :
     Summable fun j : ℕ => 2 ^ j / 2 * (agmA a b j ^ 2 - agmB a b j ^ 2) := by
   refine Summable.of_nonneg_of_le (fun j => ?_) (fun j => ?_)

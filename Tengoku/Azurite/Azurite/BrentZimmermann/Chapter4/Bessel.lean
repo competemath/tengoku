@@ -75,7 +75,9 @@ noncomputable def besselJTerm (ν : ℤ) (x : ℝ) (j : ℕ) : ℝ :=
 /-- The Bessel function of the first kind `J_ν(x)`, `ν ∈ ℤ`, by the power series (4.48).-/
 noncomputable def besselJ (ν : ℤ) (x : ℝ) : ℝ := (x / 2) ^ ν * ∑' j, besselJTerm ν x j
 
-/-- At integer arguments `Γ` is `0` or a factorial, so `|1/Γ| ≤ 1`.-/
+/-- At integer arguments `Γ` is `0` or a factorial, so `|1/Γ| ≤ 1`.
+@isnad1 id=le.0h1v.s4.3a6ce3f512ab from=translated src=- shape=b59a4658 vocab=cf491fcb
+-/
 theorem abs_inv_Gamma_int_le_one (k : ℤ) : |(Real.Gamma k)⁻¹| ≤ 1 := by
   rcases k with n | n
   · rcases n with _ | m
@@ -86,6 +88,9 @@ theorem abs_inv_Gamma_int_le_one (k : ℤ) : |(Real.Gamma k)⁻¹| ≤ 1 := by
   · rw [Int.cast_negSucc, Real.Gamma_neg_nat_eq_zero]
     simp
 
+/--
+@isnad1 id=le.0h3v.s6.30e65682d3d2 from=translated src=- shape=f6d29ea2 vocab=61b797a9
+-/
 theorem abs_besselJTerm_le (ν : ℤ) (x : ℝ) (j : ℕ) :
     |besselJTerm ν x j| ≤ (x ^ 2 / 4) ^ j / j.factorial := by
   unfold besselJTerm
@@ -100,6 +105,9 @@ theorem abs_besselJTerm_le (ν : ℤ) (x : ℝ) (j : ℕ) :
       ≤ (x ^ 2 / 4) ^ j / (j.factorial : ℝ) * 1 := by gcongr
     _ = (x ^ 2 / 4) ^ j / j.factorial := mul_one _
 
+/--
+@isnad1 id=summable.0h2v.s4.bb4d96dcedad from=translated src=- shape=e944138b vocab=32e38cc1
+-/
 theorem summable_besselJTerm (ν : ℤ) (x : ℝ) : Summable (besselJTerm ν x) :=
   (Real.summable_pow_div_factorial (x ^ 2 / 4)).of_norm_bounded fun j => by
     rw [Real.norm_eq_abs]; exact abs_besselJTerm_le ν x j
@@ -113,6 +121,9 @@ noncomputable def besselCoeff (n j : ℕ) : ℝ := (-1) ^ j / (j.factorial * (n 
 noncomputable def besselJNat (n : ℕ) (x : ℝ) : ℝ :=
   ∑' j, besselCoeff n j * (x / 2) ^ (2 * j + n)
 
+/--
+@isnad1 id=eq.0h2v.s6.226706b66295 from=translated src=- shape=d1269695 vocab=072445e0
+-/
 theorem besselCoeff_succ (n j : ℕ) :
     besselCoeff n (j + 1) = -besselCoeff n j / ((j + 1) * (n + j + 1)) := by
   unfold besselCoeff
@@ -123,6 +134,9 @@ theorem besselCoeff_succ (n j : ℕ) :
 /-- A majorant: `(4(R+1))^(2j+n) / j!`.-/
 noncomputable def besselBound (R : ℝ) (n j : ℕ) : ℝ := (4 * (R + 1)) ^ (2 * j + n) / j.factorial
 
+/--
+@isnad1 id=summable.0h2v.s4.b9d6da4652c8 from=translated src=- shape=a6ef3357 vocab=67231c39
+-/
 theorem summable_besselBound (R : ℝ) (n : ℕ) : Summable (besselBound R n) := by
   have : besselBound R n
       = fun j => (4 * (R + 1)) ^ n * (((4 * (R + 1)) ^ 2) ^ j / j.factorial) := by
@@ -133,12 +147,17 @@ theorem summable_besselBound (R : ℝ) (n : ℕ) : Summable (besselBound R n) :=
   rw [this]
   exact (Real.summable_pow_div_factorial _).mul_left _
 
+/--
+@isnad1 id=eq.0h2v.s5.542524848d2b from=translated src=- shape=3e295cb3 vocab=9a4ab4e8
+-/
 theorem abs_besselCoeff_eq (n j : ℕ) :
     |besselCoeff n j| = 1 / (j.factorial * (n + j).factorial) := by
   unfold besselCoeff
   rw [abs_div, abs_pow, abs_neg, abs_one, one_pow, abs_of_pos (by positivity)]
 
-/-- `m^k ≤ 4^m` for `k ≤ 2`.-/
+/-- `m^k ≤ 4^m` for `k ≤ 2`.
+@isnad1 id=le.1h2v.s5.15c87a48cfe3 from=translated src=- shape=bcaae709 vocab=74f5fafa
+-/
 theorem pow_le_four_pow (m k : ℕ) (hk : k ≤ 2) : m ^ k ≤ 4 ^ m := by
   rcases Nat.eq_zero_or_pos m with rfl | hm
   · rcases k with _ | k
@@ -149,7 +168,9 @@ theorem pow_le_four_pow (m k : ℕ) (hk : k ≤ 2) : m ^ k ≤ 4 ^ m := by
       _ = 4 ^ m := by rw [← pow_mul, mul_comm, pow_mul]; norm_num
 
 /-- The common bound on the series terms and their first two derivatives: for `|x| ≤ R` and
-`k ≤ 2`, `|c_j| (2j+n)^k |x/2|^(2j+n−k) ≤ besselBound R n j`.-/
+`k ≤ 2`, `|c_j| (2j+n)^k |x/2|^(2j+n−k) ≤ besselBound R n j`.
+@isnad1 id=le.3h5v.s7.a2692b91481d from=translated src=- shape=ebde91cc vocab=e3bc6c10
+-/
 theorem abs_besselCoeff_mul_le {R x : ℝ} (hR : 0 ≤ R) (hx : |x| ≤ R) (n j k : ℕ) (hk : k ≤ 2) :
     |besselCoeff n j| * ((2 * j + n : ℕ) : ℝ) ^ k * |x / 2| ^ (2 * j + n - k)
       ≤ besselBound R n j := by
@@ -173,6 +194,9 @@ theorem abs_besselCoeff_mul_le {R x : ℝ} (hR : 0 ≤ R) (hx : |x| ≤ R) (n j 
       ≤ 1 / (j.factorial : ℝ) * 4 ^ m * (R + 1) ^ m := by gcongr
     _ = (4 * (R + 1)) ^ m / j.factorial := by rw [mul_pow]; ring
 
+/--
+@isnad1 id=le.2h4v.s6.b2540bb47e31 from=translated src=- shape=25e8ea48 vocab=937c31ab
+-/
 theorem norm_besselCoeff_mul_pow_le {R x : ℝ} (hR : 0 ≤ R) (hx : |x| ≤ R) (n j : ℕ) :
     ‖besselCoeff n j * (x / 2) ^ (2 * j + n)‖ ≤ besselBound R n j := by
   have := abs_besselCoeff_mul_le hR hx n j 0 (by norm_num)
@@ -180,12 +204,17 @@ theorem norm_besselCoeff_mul_pow_le {R x : ℝ} (hR : 0 ≤ R) (hx : |x| ≤ R) 
   rw [Real.norm_eq_abs, abs_mul, abs_pow]
   exact this
 
+/--
+@isnad1 id=summable.0h2v.s6.4ea267133070 from=translated src=- shape=c7d85dbb vocab=bd463f84
+-/
 theorem summable_besselJNat_term (n : ℕ) (x : ℝ) :
     Summable fun j => besselCoeff n j * (x / 2) ^ (2 * j + n) :=
   (summable_besselBound |x| n).of_norm_bounded fun j =>
     norm_besselCoeff_mul_pow_le (abs_nonneg x) le_rfl n j
 
-/-- Term by term, (4.48) at `ν = n ∈ ℕ` is the factorial series.-/
+/-- Term by term, (4.48) at `ν = n ∈ ℕ` is the factorial series.
+@isnad1 id=eq.0h3v.s6.525aedb2ec9c from=translated src=- shape=b62f23da vocab=bea2bfe9
+-/
 theorem besselJTerm_natCast (n : ℕ) (x : ℝ) (j : ℕ) :
     (x / 2) ^ n * besselJTerm n x j = besselCoeff n j * (x / 2) ^ (2 * j + n) := by
   unfold besselJTerm besselCoeff
@@ -196,12 +225,17 @@ theorem besselJTerm_natCast (n : ℕ) (x : ℝ) (j : ℕ) :
     pow_add, pow_mul]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s3.441578dd761f from=translated src=- shape=ae697d51 vocab=1bc02f0c
+-/
 theorem besselJ_natCast (n : ℕ) (x : ℝ) : besselJ n x = besselJNat n x := by
   unfold besselJ besselJNat
   rw [zpow_natCast, ← tsum_mul_left]
   exact tsum_congr (besselJTerm_natCast n x)
 
-/-- The terms of (4.48) at `ν = −n` vanish for `j < n`.-/
+/-- The terms of (4.48) at `ν = −n` vanish for `j < n`.
+@isnad1 id=eq.1h3v.s4.fe9af1a3b8a9 from=translated src=- shape=4009cc36 vocab=8eec46a2
+-/
 theorem besselJTerm_neg_of_lt (n : ℕ) (x : ℝ) {j : ℕ} (hj : j < n) :
     besselJTerm (-n) x j = 0 := by
   have hΓ : Real.Gamma (((-(n : ℤ) : ℤ) : ℝ) + j + 1) = 0 := by
@@ -214,7 +248,9 @@ theorem besselJTerm_neg_of_lt (n : ℕ) (x : ℝ) {j : ℕ} (hj : j < n) :
   rw [hΓ]
   simp
 
-/-- The terms of (4.48) at `ν = −n`, shifted by `n`, are `(−x²/4)^n` times those at `ν = n`.-/
+/-- The terms of (4.48) at `ν = −n`, shifted by `n`, are `(−x²/4)^n` times those at `ν = n`.
+@isnad1 id=eq.0h3v.s6.32b3d55a9e0d from=translated src=- shape=e64f3a62 vocab=6ce8f10d
+-/
 theorem besselJTerm_neg_add (n : ℕ) (x : ℝ) (i : ℕ) :
     besselJTerm (-n) x (i + n) = (-x ^ 2 / 4) ^ n * besselJTerm n x i := by
   have hΓ1 : Real.Gamma (((-(n : ℤ) : ℤ) : ℝ) + ((i + n : ℕ) : ℝ) + 1) = i.factorial := by
@@ -227,7 +263,9 @@ theorem besselJTerm_neg_add (n : ℕ) (x : ℝ) (i : ℕ) :
   rw [hΓ1, hΓ2, pow_add, add_comm i n]
   ring
 
-/-- `J_{−n}(x) = (−1)^n J_n(x)` (4.48 with the `1/Γ = 0` convention).-/
+/-- `J_{−n}(x) = (−1)^n J_n(x)` (4.48 with the `1/Γ = 0` convention).
+@isnad1 id=eq.0h2v.s5.3f7e2b19d30b from=translated src=- shape=75c8b198 vocab=1ae5d203
+-/
 theorem besselJ_neg (n : ℕ) (x : ℝ) : besselJ (-n) x = (-1) ^ n * besselJ n x := by
   unfold besselJ
   have hsum : ∑' j, besselJTerm (-n) x j = (-x ^ 2 / 4) ^ n * ∑' j, besselJTerm n x j := by
@@ -247,12 +285,18 @@ theorem besselJ_neg (n : ℕ) (x : ℝ) : besselJ (-n) x = (-1) ^ n * besselJ n 
       rw [show -x ^ 2 / 4 = -1 * (x / 2) ^ 2 by ring, mul_pow, ← pow_mul, mul_comm 2 n, pow_mul]]
     linear_combination ((-1) ^ n * (x / 2) ^ n * ∑' j, besselJTerm n x j) * h
 
+/--
+@isnad1 id=eq.0h0v.s4.ae889cd185ad from=translated src=- shape=11536466 vocab=9c8f73e8
+-/
 theorem besselJ_zero_left : besselJ 0 0 = 1 := by
   rw [show (0 : ℤ) = ((0 : ℕ) : ℤ) by rfl, besselJ_natCast]
   unfold besselJNat
   rw [tsum_eq_single 0 fun j hj => by simp [hj]]
   simp [besselCoeff]
 
+/--
+@isnad1 id=eq.1h1v.s4.1f1d212da81d from=translated src=- shape=be06c720 vocab=9c8f73e8
+-/
 theorem besselJ_zero_of_ne {ν : ℤ} (hν : ν ≠ 0) : besselJ ν 0 = 0 := by
   unfold besselJ
   rw [zero_div, zero_zpow _ hν, zero_mul]
@@ -273,15 +317,23 @@ def pairEquiv : ℕ × ℕ ≃ ℤ × ℕ where
     simp only [Prod.mk.injEq]
     omega
 
+/--
+@isnad1 id=eq.0h2v.s6.94ea72958f35 from=translated src=- shape=b9da98e2 vocab=b996ba55
+-/
 theorem pairEquiv_symm_natCast (n i : ℕ) : pairEquiv.symm ((n : ℤ), i) = (i + n, i) := by
   simp [pairEquiv]
 
+/--
+@isnad1 id=eq.0h2v.s6.15a641512dd2 from=translated src=- shape=cdd4425d vocab=c6dcab50
+-/
 theorem pairEquiv_symm_negSucc (n i : ℕ) :
     pairEquiv.symm (Int.negSucc n, i) = (i, i + (n + 1)) := by
   simp [pairEquiv]
 
 /-- The fiber over `n ≥ 0` of the Cauchy product of `exp(ut)` and `exp(−u/t)`, summed over the
-minimum `i`: `t^n ∑ c_j u^(2j+n)`.-/
+minimum `i`: `t^n ∑ c_j u^(2j+n)`.
+@isnad1 id=hassum.1h3v.s7.25030301b0d6 from=translated src=- shape=ea4d6569 vocab=5657a367
+-/
 theorem hasSum_fiber_nonneg {t : ℝ} (ht : t ≠ 0) (u : ℝ) (n : ℕ) :
     HasSum (fun i : ℕ => (u * t) ^ (i + n) / (i + n).factorial * ((-u / t) ^ i / i.factorial))
       (t ^ n * ∑' j, besselCoeff n j * u ^ (2 * j + n)) := by
@@ -296,7 +348,9 @@ theorem hasSum_fiber_nonneg {t : ℝ} (ht : t ≠ 0) (u : ℝ) (n : ℕ) :
   linear_combination (u ^ i * u ^ n * t ^ n * (-1) ^ i * u ^ i
     / ((i + n).factorial * i.factorial)) * h
 
-/-- The fiber over `−(n+1)`: `t^{−(n+1)} (−1)^(n+1) ∑ c_j u^(2j+n+1)`.-/
+/-- The fiber over `−(n+1)`: `t^{−(n+1)} (−1)^(n+1) ∑ c_j u^(2j+n+1)`.
+@isnad1 id=hassum.1h3v.s8.20d2c36475e0 from=translated src=- shape=8ba01943 vocab=f8c6aed0
+-/
 theorem hasSum_fiber_neg {t : ℝ} (ht : t ≠ 0) (u : ℝ) (n : ℕ) :
     HasSum (fun i : ℕ => (u * t) ^ i / i.factorial *
       ((-u / t) ^ (i + (n + 1)) / (i + (n + 1)).factorial))
@@ -324,6 +378,9 @@ noncomputable def besselJNat'' (n : ℕ) (x : ℝ) : ℝ :=
   ∑' j, besselCoeff n j * (((2 * j + n : ℕ) : ℝ) *
     (((2 * j + n - 1 : ℕ) : ℝ) * (x / 2) ^ (2 * j + n - 1 - 1) * (1 / 2)) * (1 / 2))
 
+/--
+@isnad1 id=le.2h4v.s7.66930b4d2c84 from=translated src=- shape=583ce0c1 vocab=174ca181
+-/
 theorem norm_besselCoeff_mul_deriv_le {R x : ℝ} (hR : 0 ≤ R) (hx : |x| ≤ R) (n j : ℕ) :
     ‖besselCoeff n j * (((2 * j + n : ℕ) : ℝ) * (x / 2) ^ (2 * j + n - 1) * (1 / 2))‖
       ≤ besselBound R n j := by
@@ -337,6 +394,9 @@ theorem norm_besselCoeff_mul_deriv_le {R x : ℝ} (hR : 0 ≤ R) (hx : |x| ≤ R
     _ = |besselCoeff n j| * ((2 * j + n : ℕ) : ℝ) * |x / 2| ^ (2 * j + n - 1) := by ring
     _ ≤ besselBound R n j := this
 
+/--
+@isnad1 id=le.2h4v.s8.544d5c1bd76c from=translated src=- shape=2a1ddee2 vocab=174ca181
+-/
 theorem norm_besselCoeff_mul_deriv2_le {R x : ℝ} (hR : 0 ≤ R) (hx : |x| ≤ R) (n j : ℕ) :
     ‖besselCoeff n j * (((2 * j + n : ℕ) : ℝ) *
       (((2 * j + n - 1 : ℕ) : ℝ) * (x / 2) ^ (2 * j + n - 1 - 1) * (1 / 2)) * (1 / 2))‖
@@ -354,20 +414,30 @@ theorem norm_besselCoeff_mul_deriv2_le {R x : ℝ} (hR : 0 ≤ R) (hx : |x| ≤ 
     _ = |besselCoeff n j| * ((2 * j + n : ℕ) : ℝ) ^ 2 * |x / 2| ^ (2 * j + n - 1 - 1) := by ring
     _ ≤ besselBound R n j := this
 
-/-- `d/dx (x/2)^m = m (x/2)^(m−1) · (1/2)`.-/
+/-- `d/dx (x/2)^m = m (x/2)^(m−1) · (1/2)`.
+@isnad1 id=hasderiv.0h2v.s7.9c7d44a09105 from=translated src=- shape=12f4b4cb vocab=8b1f85f3
+-/
 theorem hasDerivAt_half_pow (m : ℕ) (x : ℝ) :
     HasDerivAt (fun y : ℝ => (y / 2) ^ m) (((m : ℕ) : ℝ) * (x / 2) ^ (m - 1) * (1 / 2)) x := by
   have h : HasDerivAt (fun y : ℝ => y / 2) (1 / 2) x := by
     simpa using (hasDerivAt_id x).div_const 2
   exact h.pow m
 
+/--
+@isnad1 id=mem.0h1v.s5.a31b0242708c from=translated src=- shape=8875732a vocab=455e6616
+-/
 theorem mem_ball_abs_add_one (x : ℝ) : x ∈ ball (0 : ℝ) (|x| + 1) := by
   rw [mem_ball_zero_iff, Real.norm_eq_abs]; linarith
 
+/--
+@isnad1 id=le.1h2v.s6.b59de5a52507 from=translated src=- shape=ef84fda8 vocab=f48af817
+-/
 theorem abs_le_of_mem_ball {x y : ℝ} (hy : y ∈ ball (0 : ℝ) (|x| + 1)) : |y| ≤ |x| + 1 := by
   rw [← Real.norm_eq_abs]; exact (mem_ball_zero_iff.mp hy).le
 
-/-- `J_n` is differentiable with derivative the termwise derivative.-/
+/-- `J_n` is differentiable with derivative the termwise derivative.
+@isnad1 id=hasderiv.0h2v.s5.2bc9d2ae54a6 from=translated src=- shape=f4cbe5c8 vocab=36b85050
+-/
 theorem hasDerivAt_besselJNat (n : ℕ) (x : ℝ) :
     HasDerivAt (besselJNat n) (besselJNat' n x) x :=
   hasDerivAt_tsum_of_isPreconnected (summable_besselBound (|x| + 1) n) isOpen_ball
@@ -376,7 +446,9 @@ theorem hasDerivAt_besselJNat (n : ℕ) (x : ℝ) :
     (fun j y hy => norm_besselCoeff_mul_deriv_le (by positivity) (abs_le_of_mem_ball hy) n j)
     (mem_ball_abs_add_one x) (summable_besselJNat_term n x) (mem_ball_abs_add_one x)
 
-/-- The termwise derivative is differentiable with derivative the termwise second derivative.-/
+/-- The termwise derivative is differentiable with derivative the termwise second derivative.
+@isnad1 id=hasderiv.0h2v.s5.d7b3ca363145 from=translated src=- shape=f4cbe5c8 vocab=bbe1a278
+-/
 theorem hasDerivAt_besselJNat' (n : ℕ) (x : ℝ) :
     HasDerivAt (besselJNat' n) (besselJNat'' n x) x := by
   have hsum : Summable fun j =>
@@ -391,7 +463,9 @@ theorem hasDerivAt_besselJNat' (n : ℕ) (x : ℝ) :
     (mem_ball_abs_add_one x) hsum (mem_ball_abs_add_one x)
 
 /-- The termwise identity behind (4.50): with `m = 2j+n` and `u = x/2`,
-`c_j (m(m−1) u^(m−2)/4 · x² + m u^(m−1)/2 · x − n² u^m) = 4j(j+n) c_j u^m`.-/
+`c_j (m(m−1) u^(m−2)/4 · x² + m u^(m−1)/2 · x − n² u^m) = 4j(j+n) c_j u^m`.
+@isnad1 id=eq.0h3v.s9.505038a6c6b0 from=translated src=- shape=156dd175 vocab=a54bcf28
+-/
 theorem bessel_ode_term (n j : ℕ) (x : ℝ) :
     x ^ 2 * (besselCoeff n j * (((2 * j + n : ℕ) : ℝ) *
         (((2 * j + n - 1 : ℕ) : ℝ) * (x / 2) ^ (2 * j + n - 1 - 1) * (1 / 2)) * (1 / 2)))
@@ -418,7 +492,9 @@ theorem bessel_ode_term (n j : ℕ) (x : ℝ) :
     linear_combination (besselCoeff n j * (2 * j + n) * (2 * j + n - 1)) * hp
       + (besselCoeff n j * (2 * j + n)) * hq
 
-/-- The series identity `x² S₂ + x S₁ − n² S₀ = −x² S₀` for the termwise sums.-/
+/-- The series identity `x² S₂ + x S₁ − n² S₀ = −x² S₀` for the termwise sums.
+@isnad1 id=eq.0h2v.s6.57f39e52ec75 from=translated src=- shape=210a42e9 vocab=e21aa879
+-/
 theorem bessel_ode_series (n : ℕ) (x : ℝ) :
     x ^ 2 * besselJNat'' n x + x * besselJNat' n x - (n : ℝ) ^ 2 * besselJNat n x
       = -(x ^ 2 * besselJNat n x) := by
@@ -454,7 +530,9 @@ theorem bessel_ode_series (n : ℕ) (x : ℝ) :
   field_simp
   ring
 
-/-- Bessel's equation (4.50) for `J_n`, `n ∈ ℕ`: `x² J'' + x J' + (x² − n²) J = 0`.-/
+/-- Bessel's equation (4.50) for `J_n`, `n ∈ ℕ`: `x² J'' + x J' + (x² − n²) J = 0`.
+@isnad1 id=eq.0h2v.s7.6a26d3934911 from=translated src=- shape=6e034f92 vocab=3ba65dc8
+-/
 theorem besselJNat_ode (n : ℕ) (x : ℝ) :
     x ^ 2 * deriv (deriv (besselJNat n)) x + x * deriv (besselJNat n) x
       + (x ^ 2 - (n : ℝ) ^ 2) * besselJNat n x = 0 := by
@@ -463,7 +541,9 @@ theorem besselJNat_ode (n : ℕ) (x : ℝ) :
   rw [hd, (hasDerivAt_besselJNat' n x).deriv]
   linear_combination bessel_ode_series n x
 
-/-- Bessel's equation (4.50) for `J_ν`, `ν ∈ ℤ`.-/
+/-- Bessel's equation (4.50) for `J_ν`, `ν ∈ ℤ`.
+@isnad1 id=eq.0h2v.s7.6451e955bbc6 from=translated src=- shape=70403c10 vocab=10b8e41c
+-/
 theorem besselJ_ode (ν : ℤ) (x : ℝ) :
     x ^ 2 * deriv (deriv (besselJ ν)) x + x * deriv (besselJ ν) x
       + (x ^ 2 - (ν : ℝ) ^ 2) * besselJ ν x = 0 := by
@@ -486,6 +566,9 @@ theorem besselJ_ode (ν : ℤ) (x : ℝ) :
 noncomputable def besselJReal (μ x : ℝ) : ℝ :=
   (x / 2) ^ μ * ∑' j : ℕ, (-x ^ 2 / 4) ^ j / (j.factorial * Real.Gamma (μ + j + 1))
 
+/--
+@isnad1 id=eq.0h2v.s3.379de86ae558 from=translated src=- shape=2dd5e614 vocab=c7879005
+-/
 theorem besselJReal_intCast (ν : ℤ) (x : ℝ) : besselJReal ν x = besselJ ν x := by
   unfold besselJReal besselJ besselJTerm
   rw [Real.rpow_intCast]

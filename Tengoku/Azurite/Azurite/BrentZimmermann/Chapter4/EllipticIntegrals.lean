@@ -68,28 +68,45 @@ noncomputable def ellipticK (k : ℝ) : ℝ :=
 noncomputable def ellipticE (k : ℝ) : ℝ :=
   ∫ θ in (0 : ℝ)..(π / 2), Real.sqrt (1 - k ^ 2 * Real.sin θ ^ 2)
 
+/--
+@isnad1 id=lt.1h2v.s6.4d0a61b3812d from=translated src=- shape=3bf0cfe8 vocab=cbb9fe85
+-/
 theorem one_sub_mul_sin_sq_pos {k : ℝ} (hk : k ^ 2 < 1) (θ : ℝ) :
     0 < 1 - k ^ 2 * Real.sin θ ^ 2 := by
   have h1 := Real.sin_sq_le_one θ
   have h2 : k ^ 2 * Real.sin θ ^ 2 ≤ k ^ 2 := mul_le_of_le_one_right (sq_nonneg k) h1
   linarith
 
+/--
+@isnad1 id=continuo.1h1v.s6.948236e567c4 from=translated src=- shape=28eda69e vocab=0a2e40af
+-/
 theorem continuous_ellipticK_integrand {k : ℝ} (hk : k ^ 2 < 1) :
     Continuous fun θ : ℝ => (Real.sqrt (1 - k ^ 2 * Real.sin θ ^ 2))⁻¹ :=
   (Real.continuous_sqrt.comp (by fun_prop)).inv₀ fun θ =>
     (Real.sqrt_pos.mpr (one_sub_mul_sin_sq_pos hk θ)).ne'
 
+/--
+@isnad1 id=continuo.0h1v.s6.5bea935599cf from=translated src=- shape=15819ed6 vocab=2416373b
+-/
 theorem continuous_ellipticE_integrand (k : ℝ) :
     Continuous fun θ : ℝ => Real.sqrt (1 - k ^ 2 * Real.sin θ ^ 2) :=
   Real.continuous_sqrt.comp (by fun_prop)
 
+/--
+@isnad1 id=eq.0h0v.s4.798e398e8e86 from=translated src=- shape=8f25dea7 vocab=89f9c5a5
+-/
 theorem ellipticK_zero : ellipticK 0 = π / 2 := by
   simp [ellipticK]
 
+/--
+@isnad1 id=eq.0h0v.s4.9a8297c74d79 from=translated src=- shape=8f25dea7 vocab=88f584c7
+-/
 theorem ellipticE_zero : ellipticE 0 = π / 2 := by
   simp [ellipticE]
 
-/-- `E(k) ≤ π/2`.-/
+/-- `E(k) ≤ π/2`.
+@isnad1 id=le.0h1v.s4.f6141bc11948 from=translated src=- shape=1b783c5f vocab=12a15242
+-/
 theorem ellipticE_le_pi_div_two (k : ℝ) : ellipticE k ≤ π / 2 := by
   unfold ellipticE
   have h : ∫ θ in (0 : ℝ)..(π / 2), (1 : ℝ) = π / 2 := by simp
@@ -104,7 +121,9 @@ theorem ellipticE_le_pi_div_two (k : ℝ) : ellipticE k ≤ π / 2 := by
         nlinarith [sq_nonneg k, sq_nonneg (Real.sin θ)]
     _ = π / 2 := h
 
-/-- `π/2 ≤ K(k)` for `k² < 1`.-/
+/-- `π/2 ≤ K(k)` for `k² < 1`.
+@isnad1 id=le.1h1v.s5.3061f42a6dcf from=translated src=- shape=d5e2a457 vocab=de081fb8
+-/
 theorem pi_div_two_le_ellipticK {k : ℝ} (hk : k ^ 2 < 1) : π / 2 ≤ ellipticK k := by
   unfold ellipticK
   have h : ∫ θ in (0 : ℝ)..(π / 2), (1 : ℝ) = π / 2 := by simp
@@ -118,7 +137,9 @@ theorem pi_div_two_le_ellipticK {k : ℝ} (hk : k ^ 2 < 1) : π / 2 ≤ elliptic
         rw [one_le_inv₀ (Real.sqrt_pos.mpr (one_sub_mul_sin_sq_pos hk θ)), Real.sqrt_le_one]
         nlinarith [sq_nonneg k, sq_nonneg (Real.sin θ)]
 
-/-- `1 + x/2 ≤ 1/√(1−x) ≤ 1 + x/2 + x²` for `0 ≤ x ≤ 1/2`.-/
+/-- `1 + x/2 ≤ 1/√(1−x) ≤ 1 + x/2 + x²` for `0 ≤ x ≤ 1/2`.
+@isnad1 id=and.2h1v.s7.4515071e503e from=translated src=- shape=a137bb4b vocab=0e733e26
+-/
 theorem inv_sqrt_one_sub_bounds {x : ℝ} (hx0 : 0 ≤ x) (hx : x ≤ 1 / 2) :
     1 + x / 2 ≤ (Real.sqrt (1 - x))⁻¹ ∧ (Real.sqrt (1 - x))⁻¹ ≤ 1 + x / 2 + x ^ 2 := by
   have h1x : 0 < 1 - x := by linarith
@@ -146,11 +167,17 @@ theorem inv_sqrt_one_sub_bounds {x : ℝ} (hx0 : 0 ≤ x) (hx : x ≤ 1 / 2) :
     rw [e]
     linarith [sq_nonneg x]
 
+/--
+@isnad1 id=eq.0h0v.s6.85a1d4836812 from=translated src=- shape=3aa56835 vocab=b0285397
+-/
 theorem integral_sin_sq_pi_div_two : ∫ θ in (0 : ℝ)..(π / 2), Real.sin θ ^ 2 = π / 4 := by
   rw [integral_sin_sq]
   simp
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.10b9d0a0e256 from=translated src=- shape=a44e4059 vocab=889627a3
+-/
 theorem integral_sin_pow_four_pi_div_two :
     ∫ θ in (0 : ℝ)..(π / 2), Real.sin θ ^ 4 = 3 * π / 16 := by
   rw [show (4 : ℕ) = 2 + 2 from rfl, integral_sin_pow, integral_sin_sq_pi_div_two]
@@ -158,7 +185,9 @@ theorem integral_sin_pow_four_pi_div_two :
   ring
 
 /-- (4.69) with explicit constants: `(π/2)(1 + k²/4) ≤ K(k) ≤ (π/2)(1 + k²/4 + 3k⁴/8)` for
-`k² ≤ 1/2`.-/
+`k² ≤ 1/2`.
+@isnad1 id=and.1h1v.s8.53a9701907e4 from=translated src=- shape=17de5697 vocab=1bea8711
+-/
 theorem ellipticK_bounds {k : ℝ} (hk : k ^ 2 ≤ 1 / 2) :
     π / 2 * (1 + k ^ 2 / 4) ≤ ellipticK k
       ∧ ellipticK k ≤ π / 2 * (1 + k ^ 2 / 4 + 3 / 8 * k ^ 4) := by
@@ -211,21 +240,35 @@ noncomputable def agmIntegral (a b : ℝ) : ℝ := ∫ t in Ioi (0 : ℝ), agmKe
 
 variable {a b : ℝ}
 
+/--
+@isnad1 id=lt.2h3v.s5.339db0ad5cdc from=translated src=- shape=e9a55a0f vocab=701d944c
+-/
 theorem agmKernel_pos (ha : 0 < a) (hb : 0 < b) (t : ℝ) : 0 < agmKernel a b t := by
   unfold agmKernel
   exact inv_pos.mpr (Real.sqrt_pos.mpr (by positivity))
 
+/--
+@isnad1 id=eq.0h3v.s4.2e3df323198c from=translated src=- shape=eaf4a99a vocab=859e3960
+-/
 theorem agmKernel_neg (a b t : ℝ) : agmKernel a b (-t) = agmKernel a b t := by
   simp [agmKernel]
 
+/--
+@isnad1 id=continuo.2h2v.s5.00f393ba5431 from=translated src=- shape=c8626b2f vocab=8cda1e54
+-/
 theorem continuous_agmKernel (ha : 0 < a) (hb : 0 < b) : Continuous (agmKernel a b) :=
   (Real.continuous_sqrt.comp (by fun_prop)).inv₀ fun t =>
     (Real.sqrt_pos.mpr (by positivity)).ne'
 
+/--
+@isnad1 id=eq.0h3v.s4.128d3a0c291e from=translated src=- shape=6521bf80 vocab=1665447a
+-/
 theorem agmKernel_comm (a b t : ℝ) : agmKernel a b t = agmKernel b a t := by
   unfold agmKernel; rw [mul_comm]
 
-/-- `kernel ≤ (t² + min(a,b)²)⁻¹`.-/
+/-- `kernel ≤ (t² + min(a,b)²)⁻¹`.
+@isnad1 id=le.2h3v.s6.2636a862414a from=translated src=- shape=2c2ea96a vocab=cefc05e5
+-/
 theorem agmKernel_le (ha : 0 < a) (hb : 0 < b) (t : ℝ) :
     agmKernel a b t ≤ (t ^ 2 + min a b ^ 2)⁻¹ := by
   unfold agmKernel
@@ -240,7 +283,9 @@ theorem agmKernel_le (ha : 0 < a) (hb : 0 < b) (t : ℝ) :
   calc (t ^ 2 + min a b ^ 2) ^ 2 = (t ^ 2 + min a b ^ 2) * (t ^ 2 + min a b ^ 2) := sq _
     _ ≤ (t ^ 2 + a ^ 2) * (t ^ 2 + b ^ 2) := by gcongr
 
-/-- Monotonicity of the kernel in the parameters.-/
+/-- Monotonicity of the kernel in the parameters.
+@isnad1 id=le.4h5v.s5.dedd0c28e520 from=translated src=- shape=6988d680 vocab=e3307e26
+-/
 theorem agmKernel_anti (ha : 0 < a) (hb : 0 < b) {a' b' : ℝ} (ha' : a ≤ a') (hb' : b ≤ b') (t : ℝ) :
     agmKernel a' b' t ≤ agmKernel a b t := by
   unfold agmKernel
@@ -254,6 +299,9 @@ theorem agmKernel_anti (ha : 0 < a) (hb : 0 < b) {a' b' : ℝ} (ha' : a ≤ a') 
   have h2 : b ^ 2 ≤ b' ^ 2 := pow_le_pow_left₀ hb.le hb' 2
   gcongr
 
+/--
+@isnad1 id=integrab.2h2v.s5.3d495b3a07d6 from=translated src=- shape=743a1cb3 vocab=0aa7aa6a
+-/
 theorem integrable_agmKernel (ha : 0 < a) (hb : 0 < b) : Integrable (agmKernel a b) := by
   set m := min (min a b) 1 with hm
   have hm0 : 0 < m := lt_min (lt_min ha hb) one_pos
@@ -270,7 +318,9 @@ theorem integrable_agmKernel (ha : 0 < a) (hb : 0 < b) : Integrable (agmKernel a
   have := mul_le_mul_of_nonneg_right hm2 (sq_nonneg t)
   nlinarith
 
-/-- `J(c, c) = ∫_0^∞ dt/(t² + c²) = π/(2c)`.-/
+/-- `J(c, c) = ∫_0^∞ dt/(t² + c²) = π/(2c)`.
+@isnad1 id=eq.1h1v.s5.ae94eff75fd7 from=translated src=- shape=b0e86ed5 vocab=e64b20b8
+-/
 theorem agmIntegral_self {c : ℝ} (hc : 0 < c) : agmIntegral c c = π / (2 * c) := by
   unfold agmIntegral
   have h1 : ∀ t : ℝ, agmKernel c c t = (c⁻¹) ^ 2 * (1 + (c⁻¹ * t) ^ 2)⁻¹ := by
@@ -285,7 +335,9 @@ theorem agmIntegral_self {c : ℝ} (hc : 0 < c) : agmIntegral c c = π / (2 * c)
     inv_inv, smul_eq_mul]
   field_simp
 
-/-- `J` is antitone in each parameter.-/
+/-- `J` is antitone in each parameter.
+@isnad1 id=le.4h4v.s5.9679077a6b85 from=translated src=- shape=9ef8e3b0 vocab=1bc85dbc
+-/
 theorem agmIntegral_anti (ha : 0 < a) (hb : 0 < b) {a' b' : ℝ} (ha' : a ≤ a') (hb' : b ≤ b') :
     agmIntegral a' b' ≤ agmIntegral a b :=
   setIntegral_mono_on (integrable_agmKernel (ha.trans_le ha') (hb.trans_le hb')).integrableOn
@@ -297,6 +349,9 @@ theorem agmIntegral_anti (ha : 0 < a) (hb : 0 < b) {a' b' : ℝ} (ha' : a ≤ a'
 /-- The Landen map `t ↦ (t − ab/t)/2`.-/
 noncomputable def landen (a b t : ℝ) : ℝ := (t - a * b * t⁻¹) / 2
 
+/--
+@isnad1 id=hasderiv.1h3v.s6.64928402c789 from=translated src=- shape=66b6c6d2 vocab=41e1a918
+-/
 theorem hasDerivAt_landen (a b : ℝ) {t : ℝ} (ht : t ≠ 0) :
     HasDerivAt (landen a b) ((1 + a * b * (t ^ 2)⁻¹) / 2) t := by
   have h := ((hasDerivAt_id t).sub ((hasDerivAt_inv ht).const_mul (a * b))).div_const 2
@@ -304,6 +359,9 @@ theorem hasDerivAt_landen (a b : ℝ) {t : ℝ} (ht : t ≠ 0) :
   field_simp
   ring
 
+/--
+@isnad1 id=injon.2h2v.s5.0e52f94a7569 from=translated src=- shape=84391714 vocab=29975abc
+-/
 theorem landen_injOn (ha : 0 < a) (hb : 0 < b) : InjOn (landen a b) (Ioi 0) := by
   intro s hs t ht h
   simp only [mem_Ioi] at hs ht
@@ -317,6 +375,9 @@ theorem landen_injOn (ha : 0 < a) (hb : 0 < b) : InjOn (landen a b) (Ioi 0) := b
   · linarith
   · nlinarith [mul_pos hs ht, mul_pos ha hb]
 
+/--
+@isnad1 id=eq.2h2v.s5.eacaff7c1e16 from=translated src=- shape=d44ea860 vocab=680e7dc7
+-/
 theorem landen_image (ha : 0 < a) (hb : 0 < b) : landen a b '' Ioi 0 = univ := by
   refine eq_univ_of_forall fun u => ?_
   have hr : 0 ≤ u ^ 2 + a * b := by positivity
@@ -332,7 +393,9 @@ theorem landen_image (ha : 0 < a) (hb : 0 < b) : landen a b '' Ioi 0 = univ := b
   nlinarith [hr2]
 
 /-- The pointwise identity behind the Landen step: `|f'(t)| · kernel((a+b)/2, √(ab))(f t)
-= 2 · kernel(a, b)(t)`.-/
+= 2 · kernel(a, b)(t)`.
+@isnad1 id=eq.3h3v.s7.18e3d14e395c from=translated src=- shape=eac185b6 vocab=fe4190d1
+-/
 theorem landen_kernel (ha : 0 < a) (hb : 0 < b) {t : ℝ} (ht : 0 < t) :
     |(1 + a * b * (t ^ 2)⁻¹) / 2| * agmKernel ((a + b) / 2) (Real.sqrt (a * b)) (landen a b t)
       = 2 * agmKernel a b t := by
@@ -352,7 +415,9 @@ theorem landen_kernel (ha : 0 < a) (hb : 0 < b) {t : ℝ} (ht : 0 < t) :
   field_simp
   ring
 
-/-- Evenness: `∫_ℝ kernel = 2 J`.-/
+/-- Evenness: `∫_ℝ kernel = 2 J`.
+@isnad1 id=eq.2h2v.s6.ff3889353e93 from=translated src=- shape=ae3f1440 vocab=e479c83c
+-/
 theorem integral_agmKernel (ha : 0 < a) (hb : 0 < b) :
     ∫ t, agmKernel a b t = 2 * agmIntegral a b := by
   have hint := integrable_agmKernel ha hb
@@ -364,7 +429,9 @@ theorem integral_agmKernel (ha : 0 < a) (hb : 0 < b) :
   unfold agmIntegral
   ring
 
-/-- The Landen–Gauss transformation: `J((a+b)/2, √(ab)) = J(a, b)`.-/
+/-- The Landen–Gauss transformation: `J((a+b)/2, √(ab)) = J(a, b)`.
+@isnad1 id=eq.2h2v.s6.91d3b0428a42 from=translated src=- shape=c64feeb2 vocab=7c6621b6
+-/
 theorem agmIntegral_landen (ha : 0 < a) (hb : 0 < b) :
     agmIntegral ((a + b) / 2) (Real.sqrt (a * b)) = agmIntegral a b := by
   have ha1 : 0 < (a + b) / 2 := by positivity
@@ -383,6 +450,9 @@ theorem agmIntegral_landen (ha : 0 < a) (hb : 0 < b) :
   unfold agmIntegral at hcov ⊢
   linarith
 
+/--
+@isnad1 id=eq.2h3v.s5.91d8d77ba9ad from=translated src=- shape=5240bf6d vocab=33323fc6
+-/
 theorem agmIntegral_agmSeq (ha : 0 < a) (hb : 0 < b) (j : ℕ) :
     agmIntegral (agmA a b j) (agmB a b j) = agmIntegral a b := by
   induction j with
@@ -391,7 +461,9 @@ theorem agmIntegral_agmSeq (ha : 0 < a) (hb : 0 < b) (j : ℕ) :
     obtain ⟨hA, hB⟩ := agm_pos ha hb j
     rw [agmA_succ, agmB_succ, agmIntegral_landen hA hB, ih]
 
-/-- Gauss: `J(a, b) = π/(2 AGM(a, b))`.-/
+/-- Gauss: `J(a, b) = π/(2 AGM(a, b))`.
+@isnad1 id=eq.2h2v.s5.4213f38483dc from=translated src=- shape=36e0a28d vocab=5a982889
+-/
 theorem agmIntegral_eq_pi_div_AGM (ha : 0 < a) (hb : 0 < b) :
     agmIntegral a b = π / (2 * AGM a b) := by
   have hAGM : 0 < AGM a b := lt_of_lt_of_le (lt_min ha hb) (min_le_AGM ha hb)
@@ -412,6 +484,9 @@ theorem agmIntegral_eq_pi_div_AGM (ha : 0 < a) (hb : 0 < b) :
 
 /-! ### The substitution `t = tan θ` and Gauss's theorem (4.68) -/
 
+/--
+@isnad1 id=eq.0h0v.s5.38fd3fbe4782 from=translated src=- shape=b3742e3b vocab=73faf83f
+-/
 theorem tan_image_Ioo : Real.tan '' Ioo 0 (π / 2) = Ioi 0 := by
   ext u
   constructor
@@ -421,7 +496,9 @@ theorem tan_image_Ioo : Real.tan '' Ioo 0 (π / 2) = Ioi 0 := by
     refine ⟨Real.arctan u, ⟨Real.arctan_pos.mpr hu, Real.arctan_lt_pi_div_two u⟩,
       Real.tan_arctan u⟩
 
-/-- The pointwise identity for `t = tan θ`, `0 < θ < π/2`.-/
+/-- The pointwise identity for `t = tan θ`, `0 < θ < π/2`.
+@isnad1 id=eq.1h2v.s7.319e22bc0d34 from=translated src=- shape=99e1630d vocab=62e08a05
+-/
 theorem tan_kernel {k : ℝ} {θ : ℝ} (hθ : θ ∈ Ioo 0 (π / 2)) :
     |1 / Real.cos θ ^ 2| * agmKernel 1 k (Real.tan θ)
       = (Real.sqrt (Real.sin θ ^ 2 + k ^ 2 * Real.cos θ ^ 2))⁻¹ := by
@@ -440,7 +517,9 @@ theorem tan_kernel {k : ℝ} {θ : ℝ} (hθ : θ ∈ Ioo 0 (π / 2)) :
     Real.sqrt_pos.mpr (by positivity)
   field_simp
 
-/-- `J(1, k) = ∫_0^{π/2} dθ/√(cos²θ + k² sin²θ)`.-/
+/-- `J(1, k) = ∫_0^{π/2} dθ/√(cos²θ + k² sin²θ)`.
+@isnad1 id=eq.0h1v.s7.3740467bebae from=translated src=- shape=d96673da vocab=39ac49b6
+-/
 theorem agmIntegral_one_eq (k : ℝ) :
     agmIntegral 1 k = ∫ θ in (0 : ℝ)..(π / 2),
       (Real.sqrt (Real.cos θ ^ 2 + k ^ 2 * Real.sin θ ^ 2))⁻¹ := by
@@ -462,7 +541,9 @@ theorem agmIntegral_one_eq (k : ℝ) :
   refine integral_congr fun θ _ => ?_
   simp only [Real.sin_pi_div_two_sub, Real.cos_pi_div_two_sub]
 
-/-- Gauss's theorem in the `θ`-form: `∫_0^{π/2} dθ/√(a² cos²θ + b² sin²θ) = π/(2 AGM(a, b))`.-/
+/-- Gauss's theorem in the `θ`-form: `∫_0^{π/2} dθ/√(a² cos²θ + b² sin²θ) = π/(2 AGM(a, b))`.
+@isnad1 id=eq.2h2v.s7.bd94c295329c from=translated src=- shape=fd5c6f35 vocab=5cc6ea1e
+-/
 theorem integral_inv_sqrt_eq_pi_div_AGM (ha : 0 < a) (hb : 0 < b) :
     ∫ θ in (0 : ℝ)..(π / 2), (Real.sqrt (a ^ 2 * Real.cos θ ^ 2 + b ^ 2 * Real.sin θ ^ 2))⁻¹
       = π / (2 * AGM a b) := by
@@ -481,7 +562,9 @@ theorem integral_inv_sqrt_eq_pi_div_AGM (ha : 0 < a) (hb : 0 < b) :
   have : 0 < AGM 1 (b / a) := lt_of_lt_of_le (lt_min one_pos hk) (min_le_AGM one_pos hk)
   field_simp
 
-/-- Gauss (4.68): `1/AGM(1, k) = (2/π) K'(k)` with `K'(k) = K(√(1 − k²))`, for `0 < k ≤ 1`.-/
+/-- Gauss (4.68): `1/AGM(1, k) = (2/π) K'(k)` with `K'(k) = K(√(1 − k²))`, for `0 < k ≤ 1`.
+@isnad1 id=eq.2h1v.s6.657ace4a6342 from=translated src=- shape=e9ec4638 vocab=1695f6b5
+-/
 theorem one_div_AGM_one {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) :
     1 / AGM 1 k = 2 / π * ellipticK (Real.sqrt (1 - k ^ 2)) := by
   have hK : ellipticK (Real.sqrt (1 - k ^ 2)) = agmIntegral 1 k := by

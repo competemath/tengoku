@@ -29,7 +29,9 @@ namespace Azurite.BPR.Chapter4
 variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] {k : ℕ}
 
 set_option linter.unusedSectionVars false in
-/-- Inserting a `1` in coordinate `i` gives a nonzero vector.-/
+/-- Inserting a `1` in coordinate `i` gives a nonzero vector.
+@isnad1 id=ne.0h4v.s9.e9208165013a from=translated src=- shape=b7af7011 vocab=389062b3
+-/
 theorem insertNth_one_ne_zero (i : Fin (k + 1)) (x : Fin k → Ri R) :
     (Fin.insertNth i (1 : Ri R) x : Fin (k + 1) → Ri R) ≠ 0 := by
   intro h
@@ -52,19 +54,25 @@ noncomputable def chartInv (i : Fin (k + 1)) (p : complexProjectiveSpace R k) : 
   fun j => p.rep (i.succAbove j) / p.rep i
 
 set_option linter.unusedSectionVars false in
-/-- The canonical representative gives back the point.-/
+/-- The canonical representative gives back the point.
+@isnad1 id=eq.0h3v.s10.0860107cbde1 from=translated src=- shape=45026d29 vocab=393cf28a
+-/
 theorem mkLine_rep (p : complexProjectiveSpace R k) :
     mkLine p.rep p.rep_nonzero = p :=
   Projectivization.mk_rep p
 
 set_option linter.unusedSectionVars false in
-/-- A representative of `mkLine v` is a nonzero scalar multiple of `v`.-/
+/-- A representative of `mkLine v` is a nonzero scalar multiple of `v`.
+@isnad1 id=ex.1h3v.s10.8c5d346363c5 from=translated src=- shape=aac401db vocab=d06ea06a
+-/
 theorem exists_rep_smul (v : Fin (k + 1) → Ri R) (hv : v ≠ 0) :
     ∃ c : Ri R, c ≠ 0 ∧ (mkLine v hv).rep = c • v :=
   (mkLine_eq_mkLine_iff _ _ _ _).mp (mkLine_rep (mkLine v hv))
 
 set_option linter.unusedSectionVars false in
-/-- `φᵢ` is injective with `φᵢ⁻¹` as a left inverse: `φᵢ⁻¹(φᵢ(x)) = x`.-/
+/-- `φᵢ` is injective with `φᵢ⁻¹` as a left inverse: `φᵢ⁻¹(φᵢ(x)) = x`.
+@isnad1 id=eq.0h4v.s6.9755cdd468b7 from=translated src=- shape=b521980b vocab=350a4b25
+-/
 theorem chartInv_chartMap (i : Fin (k + 1)) (x : Fin k → Ri R) :
     chartInv i (chartMap i x) = x := by
   obtain ⟨c, hc, hrep⟩ := exists_rep_smul (Fin.insertNth i 1 x) (insertNth_one_ne_zero i x)
@@ -75,7 +83,9 @@ theorem chartInv_chartMap (i : Fin (k + 1)) (x : Fin k → Ri R) :
 
 set_option linter.unusedSectionVars false in
 /-- On `𝒰ᵢ` (where the `i`-th coordinate is nonzero), `φᵢ` recovers the point from `φᵢ⁻¹`:
-`φᵢ(φᵢ⁻¹(p)) = p`.-/
+`φᵢ(φᵢ⁻¹(p)) = p`.
+@isnad1 id=eq.1h4v.s10.ff4c202aecd7 from=translated src=- shape=30cc3add vocab=46231582
+-/
 theorem chartMap_chartInv (i : Fin (k + 1)) (p : complexProjectiveSpace R k) (h : p.rep i ≠ 0) :
     chartMap i (chartInv i p) = p := by
   have heq : Fin.insertNth i (1 : Ri R) (chartInv i p) = (p.rep i)⁻¹ • p.rep := by
@@ -90,7 +100,9 @@ theorem chartMap_chartInv (i : Fin (k + 1)) (p : complexProjectiveSpace R k) (h 
 
 set_option linter.unusedSectionVars false in
 /-- **BPR §4.7 (Note).** `𝒰ᵢ = φᵢ(Cᵏ)` is exactly the set of points whose `i`-th homogeneous
-coordinate is nonzero.-/
+coordinate is nonzero.
+@isnad1 id=eq.0h3v.s10.826b5d18859d from=translated src=- shape=f6777490 vocab=8794bb76
+-/
 theorem chartSet_eq (i : Fin (k + 1)) :
     chartSet i = {p : complexProjectiveSpace R k | p.rep i ≠ 0} := by
   ext p
@@ -104,7 +116,9 @@ theorem chartSet_eq (i : Fin (k + 1)) :
     exact ⟨chartInv i p, chartMap_chartInv i p h⟩
 
 set_option linter.unusedSectionVars false in
-/-- **BPR §4.7 (Note).** The affine charts cover projective space: `⋃ᵢ 𝒰ᵢ = ℙ_k(C)`.-/
+/-- **BPR §4.7 (Note).** The affine charts cover projective space: `⋃ᵢ 𝒰ᵢ = ℙ_k(C)`.
+@isnad1 id=eq.0h2v.s6.7760c675a0bb from=translated src=- shape=58d7c77c vocab=7f4ef9c7
+-/
 theorem iUnion_chartSet :
     (⋃ i : Fin (k + 1), chartSet i) = (Set.univ : Set (complexProjectiveSpace R k)) := by
   rw [Set.eq_univ_iff_forall]

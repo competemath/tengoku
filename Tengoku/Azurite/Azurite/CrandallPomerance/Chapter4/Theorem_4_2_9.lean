@@ -240,7 +240,9 @@ approximate `c₁/F` with `v²n < F⁴` and `(uF − c₁v)²F² ≤ n`, and let
 `d = ⌊c₄v/F + 1/2⌋`.  Then `n` is prime iff (1) the eleven shifted
 discriminants `(c₁ + tF)² − 4t + 4c₄` (`|t| ≤ 5`) are non-squares, and
 (2) neither cubic has an integral root producing a nontrivial factor
-`xF + 1` resp. `xF − 1` of `n`.-/
+`xF + 1` resp. `xF − 1` of `n`.
+@isnad1 id=iff.12h9v.s10.e26d59d76b58 from=translated src=- shape=3bb8cb59 vocab=bd958ab3
+-/
 theorem theorem_4_2_9 {a b : ℤ} {n F c₁ c₄ u v d : ℕ} (hn : 214 ≤ n)
     (hcop : IsCoprime (n : ℤ) (2 * b))
     (hjac : jacobiSym (a ^ 2 - 4 * b) n = -1)

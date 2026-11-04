@@ -17,7 +17,9 @@ import Tengoku.Azurite.Azurite.UInt64.Equiv.Basic
 namespace UInt64
 
 /-- Shifting a nonzero `d : UInt64` left by `leadingZeros d` bits brings it into
-    the normalized range `[2^63, 2^64)`.-/
+    the normalized range `[2^63, 2^64)`.
+@isnad1 id=le.1h1v.s5.98919ad89e13 from=translated src=- shape=36b2b6bf vocab=7af9eb08
+-/
 theorem two_pow_63_le_toNat_shiftLeft_leadingZeros (d : UInt64) (hd : d ≠ 0) :
     2 ^ 63 ≤ (d <<< _root_.UInt64.ofNat (leadingZeros d)).toNat := by
   have hd_nat_ne : d.toNat ≠ 0 := fun h => hd (_root_.UInt64.eq_of_toNat_eq (h.trans rfl))

@@ -53,7 +53,9 @@ variable {K : Type} [Field K] [Fintype K] [DecidableEq K]
 omit [Fintype K] in
 /-- **Frobenius fixed points are the prime field**: any `x` with
 `x^p = x` lies in the image of `ZMod p` — `X^p − X` has at most `p`
-roots, and the prime field supplies all of them.-/
+roots, and the prime field supplies all of them.
+@isnad1 id=ex.1h3v.s7.54183607ab37 from=translated src=- shape=1d474ca0 vocab=cc09e0e7
+-/
 theorem mem_range_algebraMap_of_pow_card {x : K} (hx : x ^ p = x) :
     ∃ c : ZMod p, algebraMap (ZMod p) K c = x := by
   by_contra hno
@@ -108,7 +110,9 @@ theorem mem_range_algebraMap_of_pow_card {x : K} (hx : x ^ p = x) :
 omit [DecidableEq K] in
 /-- **Root existence**: every monic irreducible quadratic over `ZMod p`
 has a root in a field of order `p²` (via GG's divisibility criterion
-`f ∣ X^(q²) − X` and the splitting of `X^(card K) − X`).-/
+`f ∣ X^(q²) − X` and the splitting of `X^(card K) − X`).
+@isnad1 id=ex.3h3v.s8.674f64ba3e96 from=translated src=- shape=e3e7295a vocab=c4cd3ea1
+-/
 theorem exists_root_of_irreducible_quadratic
     (hcard : Fintype.card K = p ^ 2) {g : (ZMod p)[X]}
     (hirr : Irreducible g) (hdeg : g.natDegree = 2) :
@@ -158,14 +162,18 @@ theorem exists_root_of_irreducible_quadratic
 /-! ### The rank of appearance as a multiplicative order -/
 
 omit [Fact (Nat.Prime p)] [DecidableEq K] [Algebra (ZMod p) K] in
-/-- Every element of a field of order `p²` satisfies `x^(p²) = x`.-/
+/-- Every element of a field of order `p²` satisfies `x^(p²) = x`.
+@isnad1 id=eq.1h3v.s6.ac61bf91c050 from=translated src=- shape=bc916628 vocab=3ad55457
+-/
 theorem pow_card_sq (hcard : Fintype.card K = p ^ 2) (x : K) :
     x ^ p ^ 2 = x := by
   have := FiniteField.pow_card x
   rwa [hcard] at this
 
 omit [DecidableEq K] in
-/-- Traces `x + x^p` are Frobenius-stable.-/
+/-- Traces `x + x^p` are Frobenius-stable.
+@isnad1 id=eq.1h3v.s7.61f8541d6fa7 from=translated src=- shape=042b8c51 vocab=55c93d5c
+-/
 theorem trace_pow_card (hcard : Fintype.card K = p ^ 2) {x : K} :
     (x + x ^ p) ^ p = x + x ^ p := by
   have : CharP K p :=
@@ -174,7 +182,9 @@ theorem trace_pow_card (hcard : Fintype.card K = p ^ 2) {x : K} :
   ring
 
 omit [Fact (Nat.Prime p)] [DecidableEq K] [Algebra (ZMod p) K] in
-/-- Norms `x · x^p` are Frobenius-stable.-/
+/-- Norms `x · x^p` are Frobenius-stable.
+@isnad1 id=eq.1h3v.s7.a528308ad3ee from=translated src=- shape=8be652ed vocab=bf8b9c78
+-/
 theorem norm_pow_card (hcard : Fintype.card K = p ^ 2) {x : K} :
     (x * x ^ p) ^ p = x * x ^ p := by
   rw [mul_pow, ← pow_mul, ← pow_two, pow_card_sq hcard]
@@ -183,7 +193,9 @@ theorem norm_pow_card (hcard : Fintype.card K = p ^ 2) {x : K} :
 omit [DecidableEq K] in
 /-- **The rank of appearance is a multiplicative order**: if the values
 of `a, b` match the trace and norm of a unit `u` with `(u:K)^p ≠ u`,
-then `r_f(p) = orderOf (u^(p−1))⁻¹`.-/
+then `r_f(p) = orderOf (u^(p−1))⁻¹`.
+@isnad1 id=eq.3h5v.s8.00cda2961986 from=translated src=- shape=eae68fe4 vocab=7406fc2e
+-/
 theorem rankApp_eq_orderOf {u : Kˣ} (hu : (u : K) ^ p ≠ (u : K))
     {a b : ℤ} (ha : ((a : ℤ) : K) = (u : K) + (u : K) ^ p)
     (hb : ((b : ℤ) : K) = (u : K) * (u : K) ^ p) :
@@ -259,7 +271,9 @@ theorem rankApp_eq_orderOf {u : Kˣ} (hu : (u : K) ^ p ≠ (u : K))
 omit [DecidableEq K] in
 /-- **The discriminant is a nonsquare**: for a unit `u` with
 `(u:K)^p ≠ u` and `(a, b)` matching its trace and norm,
-`(Δ/p) = −1` — Euler's criterion via `(α−β)^(p−1) = −1`.-/
+`(Δ/p) = −1` — Euler's criterion via `(α−β)^(p−1) = −1`.
+@isnad1 id=eq.5h5v.s8.75d0c6d60534 from=translated src=- shape=d998e8db vocab=34327f85
+-/
 theorem legendreSym_disc_eq_neg_one (hcard : Fintype.card K = p ^ 2)
     (hp2 : p ≠ 2) {u : Kˣ} (hu : (u : K) ^ p ≠ (u : K))
     {a b : ℤ} (ha : ((a : ℤ) : K) = (u : K) + (u : K) ^ p)
@@ -319,7 +333,9 @@ theorem legendreSym_disc_eq_neg_one (hcard : Fintype.card K = p ^ 2)
 
 /-! ### Counting units by the order of their `(p−1)`-th power -/
 
-/-- Coprimes to `k` in `range (m·k)`: there are `m·φ(k)` of them.-/
+/-- Coprimes to `k` in `range (m·k)`: there are `m·φ(k)` of them.
+@isnad1 id=eq.1h2v.s5.12f3f24fd2e0 from=translated src=- shape=1e0cc85b vocab=72d591d8
+-/
 theorem card_range_mul_filter_coprime {k : ℕ} (hk : 0 < k) (m : ℕ) :
     ((Finset.range (m * k)).filter (fun i => Nat.Coprime k i)).card
       = m * k.totient := by
@@ -342,7 +358,9 @@ theorem card_range_mul_filter_coprime {k : ℕ} (hk : 0 < k) (m : ℕ) :
 
 omit [Algebra (ZMod p) K] in
 /-- **The unit count**: in a field of order `p²`, the units `u` with
-`orderOf (u^(p−1)) = p + 1` number exactly `(p−1)·φ(p+1)`.-/
+`orderOf (u^(p−1)) = p + 1` number exactly `(p−1)·φ(p+1)`.
+@isnad1 id=eq.1h2v.s8.99f49cecd60d from=translated src=- shape=6f3d6df5 vocab=3af3cedc
+-/
 theorem card_units_orderOf_pow_sub_one (hcard : Fintype.card K = p ^ 2) :
     ((Finset.univ : Finset Kˣ).filter
       (fun u => orderOf (u ^ (p - 1)) = p + 1)).card
@@ -414,7 +432,9 @@ end FieldK
 open scoped Classical in
 /-- **Crandall–Pomerance Theorem 4.2.4** (their exercise): for an odd
 prime `p`, the number `N` of pairs `a, b ∈ {0, …, p−1}` with
-`(Δ/p) = −1` and `r_f(p) = p + 1` satisfies `2N = (p−1)·φ(p+1)`.-/
+`(Δ/p) = −1` and `r_f(p) = p + 1` satisfies `2N = (p−1)·φ(p+1)`.
+@isnad1 id=eq.1h1v.s8.1bf6b30c7f6b from=translated src=- shape=85e53485 vocab=367af66a
+-/
 theorem theorem_4_2_4 (hp2 : p ≠ 2) :
     2 * ((Finset.univ : Finset (ZMod p × ZMod p)).filter (fun ab =>
         legendreSym p ((ab.1.val : ℤ) ^ 2 - 4 * (ab.2.val : ℤ)) = -1 ∧

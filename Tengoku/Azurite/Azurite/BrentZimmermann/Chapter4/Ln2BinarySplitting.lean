@@ -61,9 +61,14 @@ noncomputable def atanhInv (q : ℝ) : ℝ := ∑' k : ℕ, atanhTerm q k
 
 variable {q : ℝ}
 
+/--
+@isnad1 id=lt.1h2v.s4.d68990ce67b8 from=translated src=- shape=9141f3a7 vocab=c21b2c7e
+-/
 theorem atanhTerm_pos (hq : 0 < q) (k : ℕ) : 0 < atanhTerm q k := by unfold atanhTerm; positivity
 
-/-- `atanh(1/q) = (1/2) ln((q+1)/(q−1))` as a sum, for `q > 1`.-/
+/-- `atanh(1/q) = (1/2) ln((q+1)/(q−1))` as a sum, for `q > 1`.
+@isnad1 id=hassum.1h1v.s6.059cc6870820 from=translated src=- shape=f233fb89 vocab=903453c0
+-/
 theorem hasSum_atanhTerm (hq : 1 < q) :
     HasSum (atanhTerm q) (Real.log ((q + 1) / (q - 1)) / 2) := by
   have ha : 0 < (q - 1) / 2 := by linarith
@@ -77,14 +82,22 @@ theorem hasSum_atanhTerm (hq : 1 < q) :
   rw [atanhTerm, one_div_pow]
   field_simp
 
+/--
+@isnad1 id=summable.1h1v.s4.6279f43e8319 from=translated src=- shape=2a9d7336 vocab=62f3fbcf
+-/
 theorem summable_atanhTerm (hq : 1 < q) : Summable (atanhTerm q) := (hasSum_atanhTerm hq).summable
 
+/--
+@isnad1 id=eq.1h1v.s6.3f66b65b18e2 from=translated src=- shape=19077cff vocab=b3ca2147
+-/
 theorem atanhInv_eq (hq : 1 < q) : atanhInv q = Real.log ((q + 1) / (q - 1)) / 2 :=
   (hasSum_atanhTerm hq).tsum_eq
 
 /-! ### The exact bracket -/
 
-/-- `t_{N+i} ≤ t_N / 4^i` for `q ≥ 2`.-/
+/-- `t_{N+i} ≤ t_N / 4^i` for `q ≥ 2`.
+@isnad1 id=le.1h3v.s6.d830e951fe57 from=translated src=- shape=c1e76325 vocab=97ccee0b
+-/
 theorem atanhTerm_add_le (hq : 2 ≤ q) (N i : ℕ) : atanhTerm q (N + i) ≤ atanhTerm q N / 4 ^ i := by
   have hq0 : 0 < q := by linarith
   unfold atanhTerm
@@ -99,12 +112,16 @@ theorem atanhTerm_add_le (hq : 2 ≤ q) (N i : ℕ) : atanhTerm q (N + i) ≤ at
     _ = (2 * ((N + i : ℕ) : ℝ) + 1) * q ^ (2 * (N + i) + 1) := by
         rw [mul_assoc, ← pow_add, show 2 * N + 1 + 2 * i = 2 * (N + i) + 1 by ring]
 
-/-- The partial sums are lower bounds: `∑_{k<N} t_k ≤ atanh(1/q)`.-/
+/-- The partial sums are lower bounds: `∑_{k<N} t_k ≤ atanh(1/q)`.
+@isnad1 id=le.1h2v.s5.111081351412 from=translated src=- shape=b404bace vocab=bb14751f
+-/
 theorem sum_le_atanhInv (hq : 2 ≤ q) (N : ℕ) : ∑ k ∈ range N, atanhTerm q k ≤ atanhInv q :=
   Summable.sum_le_tsum (range N) (fun k _ => (atanhTerm_pos (by linarith) k).le)
     (summable_atanhTerm (by linarith))
 
-/-- The tail is at most `(4/3) t_N`: `atanh(1/q) − ∑_{k<N} t_k ≤ (4/3) t_N` for `q ≥ 2`.-/
+/-- The tail is at most `(4/3) t_N`: `atanh(1/q) − ∑_{k<N} t_k ≤ (4/3) t_N` for `q ≥ 2`.
+@isnad1 id=le.1h2v.s6.fe7a04ca5308 from=translated src=- shape=5829adff vocab=dc0042f9
+-/
 theorem atanhInv_sub_sum_le (hq : 2 ≤ q) (N : ℕ) :
     atanhInv q - ∑ k ∈ range N, atanhTerm q k ≤ 4 / 3 * atanhTerm q N := by
   have hs := summable_atanhTerm (by linarith : 1 < q)
@@ -122,7 +139,9 @@ theorem atanhInv_sub_sum_le (hq : 2 ≤ q) (N : ℕ) :
     _ = 4 / 3 * atanhTerm q N := by
         rw [tsum_geometric_of_lt_one (by norm_num) (by norm_num)]; norm_num; ring
 
-/-- `t_N ≤ (1/q)^(2N+1)` for `q ≥ 1`.-/
+/-- `t_N ≤ (1/q)^(2N+1)` for `q ≥ 1`.
+@isnad1 id=le.1h2v.s6.fce50edb5ff0 from=translated src=- shape=f9448648 vocab=00050c38
+-/
 theorem atanhTerm_le (hq : 1 ≤ q) (N : ℕ) : atanhTerm q N ≤ (1 / q) ^ (2 * N + 1) := by
   have hq0 : 0 < q := by linarith
   rw [atanhTerm, one_div_pow]
@@ -135,8 +154,14 @@ theorem atanhTerm_le (hq : 1 ≤ q) (N : ℕ) : atanhTerm q N ≤ (1 / q) ^ (2 *
 /-- `∏_{j<N} (2j+1)`.-/
 def oddProd (N : ℕ) : ℕ := ∏ j ∈ range N, (2 * j + 1)
 
+/--
+@isnad1 id=lt.0h1v.s3.b1cb5e82aada from=translated src=- shape=8a62b088 vocab=078f9ff6
+-/
 theorem oddProd_pos (N : ℕ) : 0 < oddProd N := prod_pos fun j _ => by omega
 
+/--
+@isnad1 id=dvd.1h2v.s5.c0715c1337c5 from=translated src=- shape=dfb50a1c vocab=2af14392
+-/
 theorem dvd_oddProd {k N : ℕ} (hk : k < N) : 2 * k + 1 ∣ oddProd N :=
   dvd_prod_of_mem _ (mem_range.mpr hk)
 
@@ -146,10 +171,15 @@ def atanhDen (q N : ℕ) : ℕ := q ^ (2 * N + 1) * oddProd N
 /-- The numerator `∑_{k<N} q^(2(N−k)) · (∏_{j<N}(2j+1))/(2k+1)` of `∑_{k<N} t_k`.-/
 def atanhNum (q N : ℕ) : ℕ := ∑ k ∈ range N, q ^ (2 * (N - k)) * (oddProd N / (2 * k + 1))
 
+/--
+@isnad1 id=lt.1h2v.s4.2fb532ba3c42 from=translated src=- shape=d58f95ac vocab=8a20b331
+-/
 theorem atanhDen_pos {q : ℕ} (hq : 0 < q) (N : ℕ) : 0 < atanhDen q N := by
   unfold atanhDen; have := oddProd_pos N; positivity
 
-/-- `∑_{k<N} t_k(q) = atanhNum q N / atanhDen q N` for natural `q > 0`.-/
+/-- `∑_{k<N} t_k(q) = atanhNum q N / atanhDen q N` for natural `q > 0`.
+@isnad1 id=eq.1h2v.s5.1b78fcd77eed from=translated src=- shape=d0515e8d vocab=357e4243
+-/
 theorem sum_atanhTerm_eq_div {q : ℕ} (hq : 0 < q) (N : ℕ) :
     ∑ k ∈ range N, atanhTerm q k = (atanhNum q N : ℝ) / atanhDen q N := by
   unfold atanhNum atanhDen
@@ -169,7 +199,9 @@ theorem sum_atanhTerm_eq_div {q : ℕ} (hq : 0 < q) (N : ℕ) :
 /-! ### The Machin-like formula -/
 
 /-- `ln 2 = 9 ln(27/25) − ln(4802/4800) + 4 ln(8750/8748)`: the rational identity
-`(27/25)^9 (8750/8748)^4 / (4802/4800) = 2` under `ln`.-/
+`(27/25)^9 (8750/8748)^4 / (4802/4800) = 2` under `ln`.
+@isnad1 id=eq.0h0v.s7.f09c46d142c1 from=translated src=- shape=4d91aefd vocab=f9d87a84
+-/
 theorem log_two_eq_machin :
     Real.log 2 = 9 * Real.log (27 / 25) - Real.log (4802 / 4800) + 4 * Real.log (8750 / 8748) := by
   have h : ((27 : ℝ) / 25) ^ 9 * (8750 / 8748) ^ 4 / (4802 / 4800) = 2 := by norm_num
@@ -178,7 +210,9 @@ theorem log_two_eq_machin :
   push_cast
   ring
 
-/-- **`ln 2 = 18 atanh(1/26) − 2 atanh(1/4801) + 8 atanh(1/8749)`.**-/
+/-- **`ln 2 = 18 atanh(1/26) − 2 atanh(1/4801) + 8 atanh(1/8749)`.**
+@isnad1 id=eq.0h0v.s6.4a5013eaf7ab from=translated src=- shape=86d90491 vocab=445f7f11
+-/
 theorem log_two_eq_atanh :
     Real.log 2 = 18 * atanhInv 26 - 2 * atanhInv 4801 + 8 * atanhInv 8749 := by
   rw [atanhInv_eq (by norm_num), atanhInv_eq (by norm_num), atanhInv_eq (by norm_num),
@@ -187,7 +221,9 @@ theorem log_two_eq_atanh :
   ring
 
 /-- **The exact bracket for `ln 2`**: with `S_q = ∑_{k<N_q} t_k(q)` and `t_q = t_{N_q}(q)`,
-`18 S₁ − 2 (S₂ + (4/3) t₂) + 8 S₃ ≤ ln 2 ≤ 18 (S₁ + (4/3) t₁) − 2 S₂ + 8 (S₃ + (4/3) t₃)`.-/
+`18 S₁ − 2 (S₂ + (4/3) t₂) + 8 S₃ ≤ ln 2 ≤ 18 (S₁ + (4/3) t₁) − 2 S₂ + 8 (S₃ + (4/3) t₃)`.
+@isnad1 id=mem.0h3v.s8.e5ab81d3ad68 from=translated src=- shape=baa509b7 vocab=0426d84b
+-/
 theorem log_two_mem_Icc (N₁ N₂ N₃ : ℕ) :
     Real.log 2 ∈ Set.Icc
       (18 * ∑ k ∈ range N₁, atanhTerm 26 k
@@ -205,7 +241,9 @@ theorem log_two_mem_Icc (N₁ N₂ N₃ : ℕ) :
   have h3u := atanhInv_sub_sum_le (by norm_num : (2 : ℝ) ≤ 8749) N₃
   constructor <;> linarith
 
-/-- The width of the bracket: `(4/3)(18 t₁ + 2 t₂ + 8 t₃)`.-/
+/-- The width of the bracket: `(4/3)(18 t₁ + 2 t₂ + 8 t₃)`.
+@isnad1 id=eq.0h3v.s8.ac2541bc4056 from=translated src=- shape=5957ce10 vocab=991fdc09
+-/
 theorem log_two_bracket_width (N₁ N₂ N₃ : ℕ) :
     (18 * (∑ k ∈ range N₁, atanhTerm 26 k + 4 / 3 * atanhTerm 26 N₁)
         - 2 * ∑ k ∈ range N₂, atanhTerm 4801 k

@@ -35,7 +35,9 @@ open scoped Classical
 
 variable {k : ℕ} {K : Type*} [Field K]
 
-/-- Evaluating the image of a constant `c ∈ C` in `Ā` returns `c`.-/
+/-- Evaluating the image of a constant `c ∈ C` in `Ā` returns `c`.
+@isnad1 id=eq.1h6v.s8.6bbc45cc144c from=translated src=- shape=991d5d58 vocab=18f395d9
+-/
 theorem evalBar_algebraMap {C : Type*} [Field C] [Algebra K C]
     (Ps : Finset (MvPolynomial (Fin k) K)) (z : Fin k → C) (hz : z ∈ zerOfFinset C Ps) (c : C) :
     evalBar C Ps z hz (algebraMap C (quotPolysExt C Ps) c) = c := by
@@ -45,7 +47,9 @@ theorem evalBar_algebraMap {C : Type*} [Field C] [Algebra K C]
   rfl
 
 /-- **Nilpotency criterion.** If `w ∈ Ā` evaluates to `0` at every zero of `𝒫`, then `w` is
-nilpotent.-/
+nilpotent.
+@isnad1 id=isnilpot.1h5v.s8.98faac8c95c7 from=translated src=- shape=4bedd0b0 vocab=ceaf74ab
+-/
 theorem nilpotent_of_eval_zero {C : Type*} [Field C] [IsAlgClosed C] [Algebra K C]
     (Ps : Finset (MvPolynomial (Fin k) K)) (w : quotPolysExt C Ps)
     (h : ∀ (z : Fin k → C) (hz : z ∈ zerOfFinset C Ps), evalBar C Ps z hz w = 0) :

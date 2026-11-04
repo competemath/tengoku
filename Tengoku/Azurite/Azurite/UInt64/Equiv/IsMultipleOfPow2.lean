@@ -30,6 +30,9 @@ private lemma lowMask_toNat (k : Nat) (hk : k < 64) :
   rw [show 2 ^ 64 - 1 + 2 ^ k = 2 ^ 64 + (2 ^ k - 1) from by omega]
   omega
 
+/--
+@isnad1 id=iff.0h2v.s5.853267bd3b79 from=translated src=- shape=40c2a8e4 vocab=6926ceac
+-/
 theorem isMultipleOfPow2_iff (u : UInt64) (k : Nat) :
     u.isMultipleOfPow2 k = true ↔ 2 ^ k ∣ u.toNat := by
   unfold isMultipleOfPow2

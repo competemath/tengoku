@@ -50,6 +50,9 @@ noncomputable def basisB (n : ℕ) (i : Fin n) : K[X] := X ^ (n - 1 - (i : ℕ))
 noncomputable def Mat (n : ℕ) (P : Fin m → K[X]) : Matrix (Fin m) (Fin n) K :=
   fun i j => (P i).coeff (n - 1 - (j : ℕ))
 
+/--
+@isnad1 id=eq.0h6v.s5.1559a3cced1b from=translated src=- shape=d7fc43f2 vocab=931641a6
+-/
 @[simp] theorem Mat_apply (P : Fin m → K[X]) (i : Fin m) (j : Fin n) :
     Mat n P i j = (P i).coeff (n - 1 - (j : ℕ)) := rfl
 

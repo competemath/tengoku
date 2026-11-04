@@ -43,7 +43,9 @@ variable {a b : ℤ} {n F : ℕ}
 
 /-- **Theorem 4.2.5 (Morrison, `V`-form), main implication**: under
 (4.15), every prime `p ∣ n` satisfies `p ≡ (Δ/p) (mod F)` (the symbol
-in the conclusion is a Jacobi symbol, agreeing with Legendre at `p`).-/
+in the conclusion is a Jacobi symbol, agreeing with Legendre at `p`).
+@isnad1 id=dvd.9h5v.s8.7f13ae85e5ec from=translated src=- shape=1a262934 vocab=9cf2c174
+-/
 theorem theorem_4_2_5 (hn : 0 < n) (hcop : IsCoprime (n : ℤ) (2 * b))
     (hjac : jacobiSym (a ^ 2 - 4 * b) n = -1) (hF : F ∣ n + 1)
     (hFeven : 2 ∣ F)
@@ -184,7 +186,9 @@ theorem theorem_4_2_5 (hn : 0 < n) (hcop : IsCoprime (n : ℤ) (2 * b))
 
 /-- **The Morrison `n + 1` test, `V`-form** (Crandall–Pomerance
 Theorem 4.2.5, second part): if in addition `F > √n + 1` — in integers,
-`n < (F − 1)²` — then `n` is prime.-/
+`n < (F − 1)²` — then `n` is prime.
+@isnad1 id=prime.8h4v.s7.56db5ce82d46 from=translated src=- shape=3af9900b vocab=9cf2c174
+-/
 theorem morrison_test_V (hn : 0 < n) (hcop : IsCoprime (n : ℤ) (2 * b))
     (hjac : jacobiSym (a ^ 2 - 4 * b) n = -1) (hF : F ∣ n + 1)
     (hFeven : 2 ∣ F)

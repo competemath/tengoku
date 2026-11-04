@@ -39,7 +39,9 @@ variable {K : Type*} [Field K]
 
 /-- **BPR Lemma 8.43.**  If `sResP_{i-1}(P,Q)` is nonzero of degree `j` (in the Structure
     Theorem setting, with `1 ≤ j < i ≤ q+1`), then `det(B_{j,i}) = s_j · t_{i-1}`, where
-    `s_j = sRes_j(P,Q)` (`= sBPR`) and `t_{i-1} = lcof(sResP_{i-1}(P,Q))` (`= tBPR (i-1)`).-/
+    `s_j = sRes_j(P,Q)` (`= sBPR`) and `t_{i-1} = lcof(sResP_{i-1}(P,Q))` (`= tBPR (i-1)`).
+@isnad1 id=eq.9h5v.s8.019647874ca2 from=translated src=- shape=a498b0cd vocab=60c71d5f
+-/
 theorem det_cofactorMat (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) {i j : ℕ}
     (hj1 : 1 ≤ j) (hji : j < i) (hiq : i ≤ Q.natDegree + 1)
@@ -132,7 +134,9 @@ theorem det_cofactorMat (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     stated with `Chapter4.sRes` and `leadingCoeff` (both `CommRing`-expressible) in place of the
     Field-only `sBPR`/`tBPR`: `det(B_{j,i}) = C(sRes_j · lcof(sResP_{i-1}))`.  The non-defectiveness
     `sRes_j ≠ 0` is taken as a hypothesis (the caller — here the `signedSubresultant` induction —
-    has it directly), avoiding the Field-only `sResP_natDegree_realized`.-/
+    has it directly), avoiding the Field-only `sResP_natDegree_realized`.
+@isnad1 id=eq.9h5v.s8.2f6f09e701a3 from=translated src=- shape=e31358bc vocab=159f755a
+-/
 theorem det_cofactorMat_domain {D : Type*} [CommRing D] [IsDomain D] (P Q : D[X])
     (hP : P ≠ 0) (hpq : Q.natDegree < P.natDegree) {i j : ℕ}
     (hj1 : 1 ≤ j) (hji : j < i) (hiq : i ≤ Q.natDegree + 1)
@@ -206,7 +210,9 @@ theorem det_cofactorMat_domain {D : Type*} [CommRing D] [IsDomain D] (P Q : D[X]
 /-- **Cleared-denominator recurrence in cofactor form (over a CommRing).**  The `hX` ring identity
     underlying `transC_eq_cofactors`, kept over a `CommRing` by writing the scalar coefficients as
     the cofactor determinants `det(B_{j,i})`, `det(B_{k,j})` (which `det_cofactorMat_domain`
-    identifies with `C(sRes·lcof)`).  Pure Bézout algebra — no field, no `transC`.-/
+    identifies with `C(sRes·lcof)`).  Pure Bézout algebra — no field, no `transC`.
+@isnad1 id=eq.5h6v.s9.b09edfd27738 from=translated src=- shape=329c99f9 vocab=8d501c7f
+-/
 theorem sResP_cofactor_recurrence {D : Type*} [CommRing D] (P Q : D[X]) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {i j k : ℕ} (hi1 : i - 1 ≤ Q.natDegree)
     (hj1 : j - 1 ≤ Q.natDegree) (hk1 : k - 1 ≤ Q.natDegree) :
@@ -229,7 +235,9 @@ theorem sResP_cofactor_recurrence {D : Type*} [CommRing D] (P Q : D[X]) (hQ : Q 
 /-- **Cofactor recurrence for `sResU`** (the `P`-cofactor track of Algorithm 8.22).  Identical in
     shape to `sResP_cofactor_recurrence` with `sResU` in place of `sResP`, but it is a *pure*
     2×2-minor (Plücker) identity among the cofactor determinants — provable by `ring` from the
-    `cofactorMat` definitions, with no Bézout relation and no hypotheses.-/
+    `cofactorMat` definitions, with no Bézout relation and no hypotheses.
+@isnad1 id=eq.0h6v.s8.87650ea63666 from=translated src=- shape=0ede635a vocab=a261a212
+-/
 theorem sResU_cofactor_recurrence {D : Type*} [CommRing D] (P Q : D[X]) (i j k : ℕ) :
     (cofactorMat P Q j k).det * sResU P Q (i - 1)
       = (sResU P Q (i - 1) * sResV P Q (k - 1) - sResV P Q (i - 1) * sResU P Q (k - 1))
@@ -244,7 +252,9 @@ theorem sResU_cofactor_recurrence {D : Type*} [CommRing D] (P Q : D[X]) (i j k :
   ring
 
 /-- **Cofactor recurrence for `sResV`** (the `Q`-cofactor track of Algorithm 8.22).  Same Plücker
-    identity, with `sResV` in place of `sResP`.-/
+    identity, with `sResV` in place of `sResP`.
+@isnad1 id=eq.0h6v.s8.e358662ace7c from=translated src=- shape=2e0571e5 vocab=a261a212
+-/
 theorem sResV_cofactor_recurrence {D : Type*} [CommRing D] (P Q : D[X]) (i j k : ℕ) :
     (cofactorMat P Q j k).det * sResV P Q (i - 1)
       = (sResU P Q (i - 1) * sResV P Q (k - 1) - sResV P Q (i - 1) * sResU P Q (k - 1))
@@ -264,7 +274,9 @@ theorem sResV_cofactor_recurrence {D : Type*} [CommRing D] (P Q : D[X]) (i j k :
     of `sResU_{q-1}·P` (constant `× P`) and `sResV_{q-1}·Q` (degree `(p-q)+q = p`, leading coeff
     `a_p·s_q·b_q` via Prop 8.42(c)) cancel, giving `sResU_{q-1}·a_p + a_p·s_q·b_q = 0`, hence
     `sResU_{q-1} = -s_q·b_q` after cancelling `a_p ≠ 0`.  This is the boundary analogue of
-    `det_cofactorMat_domain`, used where `i = p` (`i-1 > q`) so the matrix det formula does not apply.-/
+    `det_cofactorMat_domain`, used where `i = p` (`i-1 > q`) so the matrix det formula does not apply.
+@isnad1 id=eq.5h3v.s8.8dad83073293 from=translated src=- shape=0df8de88 vocab=ce244886
+-/
 theorem sResU_sub_one_eq {D : Type*} [CommRing D] [IsDomain D] (P Q : D[X]) (hP : P ≠ 0)
     (hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree)
     (hsRes : Azurite.BPR.Chapter4.sRes P Q Q.natDegree ≠ 0) :
@@ -312,7 +324,9 @@ theorem sResU_sub_one_eq {D : Type*} [CommRing D] [IsDomain D] (P Q : D[X]) (hP 
     where the matrix cofactor `det(B_{p,q})` is unavailable.  Obtained by Cramer-eliminating `P` from
     the Bézout relations at `q-1` and `k-1` (both `≤ q`), with quotient `-sResU_{k-1}` and remainder
     `sResU_{q-1}·sResP_{k-1}` (degree `< k = deg sResP_{q-1}`); the coefficient of `Q` is identified
-    via `det_cofactorMat_domain` at `(q,k)`.-/
+    via `det_cofactorMat_domain` at `(q,k)`.
+@isnad1 id=eq.9h5v.s9.b9f086d35c17 from=translated src=- shape=3bb15c47 vocab=1d081a94
+-/
 theorem boundary_recurrence {D : Type*} [CommRing D] [IsDomain D] (P Q : D[X]) (hP : P ≠ 0)
     (hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDegree) {q k : ℕ} (hq : q = Q.natDegree)
     (hk1 : 1 ≤ k) (hkq : k < q) (hne : sResP P Q (q - 1) ≠ 0)

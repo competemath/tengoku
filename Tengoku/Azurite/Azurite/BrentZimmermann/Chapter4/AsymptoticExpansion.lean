@@ -67,15 +67,23 @@ noncomputable def expTail (k : ℕ) (x : ℝ) : ℝ := ∫ u in Ioi x, exp (-u) 
 /-- The exponential integral `E₁(x) = ∫_x^∞ e^(−u)/u du` (4.25).-/
 noncomputable def expIntegral (x : ℝ) : ℝ := expTail 0 x
 
+/--
+@isnad1 id=eq.0h1v.s5.622e6cfb66db from=translated src=- shape=b22dd33f vocab=3635c471
+-/
 theorem expIntegral_eq (x : ℝ) : expIntegral x = ∫ u in Ioi x, exp (-u) / u := by
   simp [expIntegral, expTail]
 
+/--
+@isnad1 id=continuo.1h2v.s6.3c247c253ade from=translated src=- shape=161ac6f3 vocab=778a71ac
+-/
 theorem continuousOn_expTail_integrand {x : ℝ} (hx : 0 < x) (k : ℕ) :
     ContinuousOn (fun u : ℝ => exp (-u) / u ^ (k + 1)) (Ioi x) :=
   (continuous_exp.comp continuous_neg).continuousOn.div (continuousOn_pow _)
     fun _ hu => pow_ne_zero _ (lt_trans hx hu).ne'
 
-/-- The integrand is dominated by `e^(−u) x^(−(k+1))` on `Ioi x`.-/
+/-- The integrand is dominated by `e^(−u) x^(−(k+1))` on `Ioi x`.
+@isnad1 id=integrab.1h2v.s6.75413eb55859 from=translated src=- shape=8a006c74 vocab=8a613e64
+-/
 theorem integrableOn_expTail {x : ℝ} (hx : 0 < x) (k : ℕ) :
     IntegrableOn (fun u : ℝ => exp (-u) / u ^ (k + 1)) (Ioi x) := by
   have hg : IntegrableOn (fun u : ℝ => exp (-u) * (x ^ (k + 1))⁻¹) (Ioi x) :=
@@ -88,11 +96,17 @@ theorem integrableOn_expTail {x : ℝ} (hx : 0 < x) (k : ℕ) :
   gcongr
   exact le_of_lt hu
 
+/--
+@isnad1 id=le.1h2v.s4.f57aff7915ee from=translated src=- shape=ed4df5cc vocab=7ee6a98b
+-/
 theorem expTail_nonneg {x : ℝ} (hx : 0 < x) (k : ℕ) : 0 ≤ expTail k x :=
   setIntegral_nonneg measurableSet_Ioi fun u hu => by
     have : 0 < u := lt_trans hx hu
     positivity
 
+/--
+@isnad1 id=lt.1h2v.s4.b39822db08f3 from=translated src=- shape=5df0cd53 vocab=8e3f94ea
+-/
 theorem expTail_pos {x : ℝ} (hx : 0 < x) (k : ℕ) : 0 < expTail k x := by
   unfold expTail
   rw [setIntegral_pos_iff_support_of_nonneg_ae]
@@ -106,7 +120,9 @@ theorem expTail_pos {x : ℝ} (hx : 0 < x) (k : ℕ) : 0 < expTail k x := by
     positivity
   · exact integrableOn_expTail hx k
 
-/-- `I_k(x) ≤ e^(−x) / x^(k+1)`.-/
+/-- `I_k(x) ≤ e^(−x) / x^(k+1)`.
+@isnad1 id=le.1h2v.s5.8c3a0e405e5d from=translated src=- shape=4d0aac26 vocab=0fe84bab
+-/
 theorem expTail_le {x : ℝ} (hx : 0 < x) (k : ℕ) : expTail k x ≤ exp (-x) / x ^ (k + 1) := by
   unfold expTail
   calc ∫ u in Ioi x, exp (-u) / u ^ (k + 1)
@@ -120,7 +136,9 @@ theorem expTail_le {x : ℝ} (hx : 0 < x) (k : ℕ) : expTail k x ≤ exp (-x) /
     _ = exp (-x) / x ^ (k + 1) := by
         rw [integral_mul_const, integral_exp_neg_Ioi, div_eq_mul_inv]
 
-/-- Integration by parts: `I_k(x) = e^(−x)/x^(k+1) − (k+1) I_{k+1}(x)`.-/
+/-- Integration by parts: `I_k(x) = e^(−x)/x^(k+1) − (k+1) I_{k+1}(x)`.
+@isnad1 id=eq.1h2v.s6.cb8d56261fc0 from=translated src=- shape=deb69a56 vocab=5d5cfea4
+-/
 theorem expTail_succ {x : ℝ} (hx : 0 < x) (k : ℕ) :
     expTail k x = exp (-x) / x ^ (k + 1) - (k + 1) * expTail (k + 1) x := by
   -- `u t = (t^(k+1))⁻¹`, `v t = −e^(−t)`
@@ -189,7 +207,9 @@ noncomputable def asymptoticTerm (j : ℕ) (x : ℝ) : ℝ := j.factorial * (-1)
 noncomputable def asymptoticRemainder (k : ℕ) (x : ℝ) : ℝ :=
   k.factorial * (-1) ^ k * exp x * expTail k x
 
-/-- One step of the expansion: `R_k = t_k + R_{k+1}`.-/
+/-- One step of the expansion: `R_k = t_k + R_{k+1}`.
+@isnad1 id=eq.1h2v.s5.e021d491b90e from=translated src=- shape=f8404ca8 vocab=dc52dfd9
+-/
 theorem asymptoticRemainder_succ {x : ℝ} (hx : 0 < x) (k : ℕ) :
     asymptoticRemainder k x = asymptoticTerm k x + asymptoticRemainder (k + 1) x := by
   unfold asymptoticRemainder asymptoticTerm
@@ -198,14 +218,18 @@ theorem asymptoticRemainder_succ {x : ℝ} (hx : 0 < x) (k : ℕ) :
   have : exp x * exp (-x) = 1 := by rw [← exp_add]; simp
   linear_combination ((k.factorial : ℝ) * (-1) ^ k / x ^ (k + 1)) * this
 
-/-- (4.27): `e^x E₁(x) = ∑_{j<k} j! (−1)^j / x^(j+1) + R_k(x)`.-/
+/-- (4.27): `e^x E₁(x) = ∑_{j<k} j! (−1)^j / x^(j+1) + R_k(x)`.
+@isnad1 id=eq.1h2v.s5.b2346153eb1f from=translated src=- shape=027537a9 vocab=5b58db3d
+-/
 theorem exp_mul_expIntegral_eq {x : ℝ} (hx : 0 < x) (k : ℕ) :
     exp x * expIntegral x = ∑ j ∈ range k, asymptoticTerm j x + asymptoticRemainder k x := by
   induction k with
   | zero => simp [asymptoticRemainder, expIntegral]
   | succ k ih => rw [sum_range_succ, ih, asymptoticRemainder_succ hx k]; ring
 
-/-- `|R_k(x)| ≤ k! / x^(k+1)`, the first omitted term.-/
+/-- `|R_k(x)| ≤ k! / x^(k+1)`, the first omitted term.
+@isnad1 id=le.1h2v.s6.a8ff0e37eb67 from=translated src=- shape=6cda74d2 vocab=4690fba4
+-/
 theorem abs_asymptoticRemainder_le {x : ℝ} (hx : 0 < x) (k : ℕ) :
     |asymptoticRemainder k x| ≤ k.factorial / x ^ (k + 1) := by
   unfold asymptoticRemainder
@@ -218,14 +242,18 @@ theorem abs_asymptoticRemainder_le {x : ℝ} (hx : 0 < x) (k : ℕ) :
         have : exp x * exp (-x) = 1 := by rw [← exp_add]; simp
         rw [mul_assoc, ← mul_div_assoc, this, mul_one_div]
 
-/-- The error is bounded by the first omitted term.-/
+/-- The error is bounded by the first omitted term.
+@isnad1 id=le.1h2v.s5.b4c174675509 from=translated src=- shape=965973b5 vocab=10605f51
+-/
 theorem abs_asymptoticRemainder_le_abs_term {x : ℝ} (hx : 0 < x) (k : ℕ) :
     |asymptoticRemainder k x| ≤ |asymptoticTerm k x| := by
   rw [asymptoticTerm, abs_div, abs_mul, abs_pow, abs_neg, abs_one, one_pow, mul_one,
     abs_of_pos (by positivity : (0 : ℝ) < k.factorial), abs_of_pos (pow_pos hx (k + 1))]
   exact abs_asymptoticRemainder_le hx k
 
-/-- For fixed `k`, `R_k(x) → 0` as `x → +∞`.-/
+/-- For fixed `k`, `R_k(x) → 0` as `x → +∞`.
+@isnad1 id=tendsto.0h1v.s4.4203d4ce742d from=translated src=- shape=d082a43e vocab=c5ca195a
+-/
 theorem tendsto_asymptoticRemainder_atTop (k : ℕ) :
     Tendsto (asymptoticRemainder k) atTop (𝓝 0) := by
   rw [tendsto_zero_iff_norm_tendsto_zero]
@@ -237,7 +265,9 @@ theorem tendsto_asymptoticRemainder_atTop (k : ℕ) :
   rw [Real.norm_eq_abs, ← div_eq_mul_inv]
   exact abs_asymptoticRemainder_le hx k
 
-/-- The series (4.29) diverges for every `x > 0`: it is only asymptotic.-/
+/-- The series (4.29) diverges for every `x > 0`: it is only asymptotic.
+@isnad1 id=not.1h1v.s4.1d4936290cfc from=translated src=- shape=6ef8ef41 vocab=a8c39c88
+-/
 theorem not_summable_asymptoticTerm {x : ℝ} (hx : 0 < x) :
     ¬ Summable (fun j => asymptoticTerm j x) := by
   have habs : ∀ j, ‖asymptoticTerm j x‖ = j.factorial / x ^ (j + 1) := fun j => by
@@ -253,7 +283,9 @@ theorem not_summable_asymptoticTerm {x : ℝ} (hx : 0 < x) :
   have hf : (0 : ℝ) ≤ j.factorial * x ^ (j + 1) := by positivity
   nlinarith [hf]
 
-/-- `R_k(x)` has the sign `(−1)^k`.-/
+/-- `R_k(x)` has the sign `(−1)^k`.
+@isnad1 id=lt.1h2v.s5.5fd201a0dc0d from=translated src=- shape=77aba72e vocab=7286b063
+-/
 theorem sign_asymptoticRemainder {x : ℝ} (hx : 0 < x) (k : ℕ) :
     0 < (-1) ^ k * asymptoticRemainder k x := by
   unfold asymptoticRemainder
@@ -265,7 +297,9 @@ theorem sign_asymptoticRemainder {x : ℝ} (hx : 0 < x) (k : ℕ) :
         linear_combination (-(k.factorial : ℝ) * exp x * expTail k x) * this
 
 /-- The value lies strictly between the partial sums with `k` and `k + 1` terms: the two
-remainders have opposite signs.-/
+remainders have opposite signs.
+@isnad1 id=lt.1h2v.s6.8f76a0ed3b37 from=translated src=- shape=b49d0c5d vocab=e55a6b0a
+-/
 theorem between_partialSums {x : ℝ} (hx : 0 < x) (k : ℕ) :
     (exp x * expIntegral x - ∑ j ∈ range k, asymptoticTerm j x)
       * (exp x * expIntegral x - ∑ j ∈ range (k + 1), asymptoticTerm j x) < 0 := by
@@ -285,7 +319,9 @@ theorem between_partialSums {x : ℝ} (hx : 0 < x) (k : ℕ) :
 /-! ### (4.30): the error at `k = x` -/
 
 /-- The upper Stirling bound `k! ≤ e √k (k/e)^k`, from the antitone Stirling sequence
-(`stirlingSeq k ≤ stirlingSeq 1 = e/√2`).-/
+(`stirlingSeq k ≤ stirlingSeq 1 = e/√2`).
+@isnad1 id=le.1h1v.s6.7c058a4eb155 from=translated src=- shape=2e96da16 vocab=22097817
+-/
 theorem factorial_le_stirling_upper {k : ℕ} (hk : 1 ≤ k) :
     (k.factorial : ℝ) ≤ exp 1 * Real.sqrt k * (k / exp 1) ^ k := by
   have hanti := Stirling.stirlingSeq'_antitone (Nat.sub_le_sub_right hk 1)
@@ -302,7 +338,9 @@ theorem factorial_le_stirling_upper {k : ℕ} (hk : 1 ≤ k) :
         field_simp
 
 /-- (4.30): `|R_k(k)| ≤ k!/k^(k+1) ≤ e · e^(−k) / √k`, so the expansion with `k = ⌊x⌋` terms has
-error `O(k^(−1/2) e^(−k))`.-/
+error `O(k^(−1/2) e^(−k))`.
+@isnad1 id=le.1h1v.s5.68434c4f4cd9 from=translated src=- shape=645abf69 vocab=ba88b45a
+-/
 theorem abs_asymptoticRemainder_self_le {k : ℕ} (hk : 1 ≤ k) :
     |asymptoticRemainder k k| ≤ exp 1 * exp (-(k : ℝ)) / Real.sqrt k := by
   have hk0 : (0 : ℝ) < k := by exact_mod_cast hk

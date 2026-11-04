@@ -47,7 +47,9 @@ open Set Filter Topology
 
 /-! ### Taylor's theorem with the Lagrange remainder, in either direction -/
 
-/-- The Cauchy mean value theorem between two distinct points in either order.-/
+/-- The Cauchy mean value theorem between two distinct points in either order.
+@isnad1 id=ex.3h6v.s7.1a4f40448fbe from=translated src=- shape=af804107 vocab=5ec5064a
+-/
 theorem exists_uIoo_ratio_eq {g g' h h' : ℝ → ℝ} {a b : ℝ} (hab : a ≠ b)
     (hg : ∀ t ∈ uIcc a b, HasDerivAt g (g' t) t) (hh : ∀ t ∈ uIcc a b, HasDerivAt h (h' t) t) :
     ∃ c ∈ uIoo a b, (h b - h a) * g' c = (g b - g a) * h' c := by
@@ -70,7 +72,9 @@ theorem exists_uIoo_ratio_eq {g g' h h' : ℝ → ℝ} {a b : ℝ} (hab : a ≠ 
     obtain ⟨c, hc, h⟩ := exists_ratio_hasDerivAt_eq_ratio_slope g g' hlt hgc hg' h h' hhc hh'
     exact ⟨c, hc, by linear_combination -h⟩
 
-/-- The mean value theorem: `f b = f a + (b − a) f'(ξ)`.-/
+/-- The mean value theorem: `f b = f a + (b − a) f'(ξ)`.
+@isnad1 id=ex.2h4v.s6.717933853060 from=translated src=- shape=04219ce6 vocab=6723878a
+-/
 theorem taylor_one {f f' : ℝ → ℝ} {a b : ℝ} (hab : a ≠ b)
     (hf : ∀ t ∈ uIcc a b, HasDerivAt f (f' t) t) :
     ∃ ξ ∈ uIoo a b, f b = f a + (b - a) * f' ξ := by
@@ -78,7 +82,9 @@ theorem taylor_one {f f' : ℝ → ℝ} {a b : ℝ} (hab : a ≠ b)
     (fun t _ => hasDerivAt_id t)
   exact ⟨c, hc, by simp only [id] at h; linear_combination -h⟩
 
-/-- Taylor's theorem to order two (MCA (4.1)): `f b = f a + (b − a) f'(a) + (b − a)²/2 f''(ξ)`.-/
+/-- Taylor's theorem to order two (MCA (4.1)): `f b = f a + (b − a) f'(a) + (b − a)²/2 f''(ξ)`.
+@isnad1 id=ex.3h5v.s7.53e61e0cf161 from=translated src=- shape=b5de1cf6 vocab=3c59d225
+-/
 theorem taylor_two {f f' f'' : ℝ → ℝ} {a b : ℝ} (hab : a ≠ b)
     (hf : ∀ t ∈ uIcc a b, HasDerivAt f (f' t) t)
     (hf' : ∀ t ∈ uIcc a b, HasDerivAt f' (f'' t) t) :
@@ -112,7 +118,9 @@ theorem taylor_two {f f' f'' : ℝ → ℝ} {a b : ℝ} (hab : a ≠ b)
   · linear_combination h3
 
 /-- Taylor's theorem to order three:
-`f b = f a + (b − a) f'(a) + (b − a)²/2 f''(a) + (b − a)³/6 f'''(ξ)`.-/
+`f b = f a + (b − a) f'(a) + (b − a)²/2 f''(a) + (b − a)³/6 f'''(ξ)`.
+@isnad1 id=ex.4h6v.s8.8792bd08ddc0 from=translated src=- shape=aa957ab9 vocab=3c59d225
+-/
 theorem taylor_three {f f' f'' f''' : ℝ → ℝ} {a b : ℝ} (hab : a ≠ b)
     (hf : ∀ t ∈ uIcc a b, HasDerivAt f (f' t) t)
     (hf' : ∀ t ∈ uIcc a b, HasDerivAt f' (f'' t) t)
@@ -161,18 +169,28 @@ noncomputable def newtonSeq (f f' : ℝ → ℝ) (x₀ : ℝ) : ℕ → ℝ
   | 0 => x₀
   | n + 1 => newtonStep f f' (newtonSeq f f' x₀ n)
 
+/--
+@isnad1 id=eq.0h3v.s4.7d637be03165 from=translated src=- shape=fc87a127 vocab=7008171a
+-/
 @[simp] theorem newtonSeq_zero (f f' : ℝ → ℝ) (x₀ : ℝ) : newtonSeq f f' x₀ 0 = x₀ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.73c4b6a02e4f from=translated src=- shape=ac6af763 vocab=aabbde65
+-/
 @[simp] theorem newtonSeq_succ (f f' : ℝ → ℝ) (x₀ : ℝ) (n : ℕ) :
     newtonSeq f f' x₀ (n + 1) = newtonStep f f' (newtonSeq f f' x₀ n) := rfl
 
 /-- A zero is a fixed point of the step (when `f'` does not vanish there, or indeed always,
-since `0 / f'(ζ) = 0`).-/
+since `0 / f'(ζ) = 0`).
+@isnad1 id=eq.1h3v.s4.e54cef25f50e from=translated src=- shape=97852658 vocab=f6b45c69
+-/
 theorem newtonStep_root {f f' : ℝ → ℝ} {ζ : ℝ} (hζ : f ζ = 0) : newtonStep f f' ζ = ζ := by
   simp [newtonStep, hζ]
 
 /-- (4.1) rearranged: the error after one Newton step from `x₀ ≠ ζ`,
-`x_1 − ζ = (x_0 − ζ)² f''(ξ) / (2 f'(x_0))` for some `ξ` strictly between `x_0` and `ζ`.-/
+`x_1 − ζ = (x_0 − ζ)² f''(ξ) / (2 f'(x_0))` for some `ξ` strictly between `x_0` and `ζ`.
+@isnad1 id=ex.5h5v.s7.be927a2312e0 from=translated src=- shape=263b8f2e vocab=9ab88b24
+-/
 theorem newtonStep_sub_root {f f' f'' : ℝ → ℝ} {x₀ ζ : ℝ} (hne : x₀ ≠ ζ) (hζ : f ζ = 0)
     (hd : f' x₀ ≠ 0) (hf : ∀ t ∈ uIcc x₀ ζ, HasDerivAt f (f' t) t)
     (hf' : ∀ t ∈ uIcc x₀ ζ, HasDerivAt f' (f'' t) t) :
@@ -187,7 +205,9 @@ theorem newtonStep_sub_root {f f' f'' : ℝ → ℝ} {x₀ ζ : ℝ} (hne : x₀
   ring
 
 /-- The quadratic error bound `|e_1| ≤ K e_0²`, `K = M / (2m)`, on the closed interval of radius
-`r` about the zero, where `|f''| ≤ M` and `|f'| ≥ m > 0`.-/
+`r` about the zero, where `|f''| ≤ M` and `|f'| ≥ m > 0`.
+@isnad1 id=le.7h8v.s8.68165880d7d4 from=translated src=- shape=69fc1297 vocab=e46a203f
+-/
 theorem abs_newtonStep_sub_root_le {f f' f'' : ℝ → ℝ} {ζ r M m : ℝ} (hm : 0 < m) (hζ : f ζ = 0)
     (hf : ∀ t ∈ Icc (ζ - r) (ζ + r), HasDerivAt f (f' t) t)
     (hf' : ∀ t ∈ Icc (ζ - r) (ζ + r), HasDerivAt f' (f'' t) t)
@@ -223,7 +243,9 @@ theorem abs_newtonStep_sub_root_le {f f' f'' : ℝ → ℝ} {ζ r M m : ℝ} (hm
 
 /-- Newton's iteration from a start within `r` of the zero with `K |e_0| ≤ 1/2`, `K = M / (2m)`:
 every iterate stays within `r`, every error at least halves (the text's
-`|x_1 − ζ| ≤ |x_0 − ζ| / 2`), and `K |e_n| ≤ (K |e_0|)^(2^n)` (quadratic convergence).-/
+`|x_1 − ζ| ≤ |x_0 − ζ| / 2`), and `K |e_n| ≤ (K |e_0|)^(2^n)` (quadratic convergence).
+@isnad1 id=and.8h9v.s9.c9072aa26d3b from=translated src=- shape=e9b96d1c vocab=63749402
+-/
 theorem newtonSeq_bounds {f f' f'' : ℝ → ℝ} {ζ r M m : ℝ} (hm : 0 < m) (hζ : f ζ = 0)
     (hf : ∀ t ∈ Icc (ζ - r) (ζ + r), HasDerivAt f (f' t) t)
     (hf' : ∀ t ∈ Icc (ζ - r) (ζ + r), HasDerivAt f' (f'' t) t)
@@ -291,7 +313,9 @@ theorem newtonSeq_bounds {f f' f'' : ℝ → ℝ} {ζ r M m : ℝ} (hm : 0 < m) 
   rw [newtonSeq_succ]
   exact half _ h1 (h2.trans hpow)
 
-/-- Under the hypotheses of `newtonSeq_bounds`, `|e_n| ≤ |e_0| / 2^n`.-/
+/-- Under the hypotheses of `newtonSeq_bounds`, `|e_n| ≤ |e_0| / 2^n`.
+@isnad1 id=le.8h9v.s8.2f492abeda09 from=translated src=- shape=654ae3f2 vocab=63749402
+-/
 theorem abs_newtonSeq_sub_root_le {f f' f'' : ℝ → ℝ} {ζ r M m : ℝ} (hm : 0 < m) (hζ : f ζ = 0)
     (hf : ∀ t ∈ Icc (ζ - r) (ζ + r), HasDerivAt f (f' t) t)
     (hf' : ∀ t ∈ Icc (ζ - r) (ζ + r), HasDerivAt f' (f'' t) t)
@@ -307,7 +331,9 @@ theorem abs_newtonSeq_sub_root_le {f f' f'' : ℝ → ℝ} {ζ r M m : ℝ} (hm 
       _ ≤ |x₀ - ζ| / 2 ^ n / 2 := by gcongr
       _ = |x₀ - ζ| / 2 ^ (n + 1) := by rw [pow_succ]; ring
 
-/-- Under the hypotheses of `newtonSeq_bounds`, the iterates converge to the zero.-/
+/-- Under the hypotheses of `newtonSeq_bounds`, the iterates converge to the zero.
+@isnad1 id=tendsto.8h8v.s8.8e5ede542791 from=translated src=- shape=5790c90e vocab=b1c4a2c3
+-/
 theorem tendsto_newtonSeq {f f' f'' : ℝ → ℝ} {ζ r M m : ℝ} (hm : 0 < m) (hζ : f ζ = 0)
     (hf : ∀ t ∈ Icc (ζ - r) (ζ + r), HasDerivAt f (f' t) t)
     (hf' : ∀ t ∈ Icc (ζ - r) (ζ + r), HasDerivAt f' (f'' t) t)
@@ -326,7 +352,9 @@ theorem tendsto_newtonSeq {f f' f'' : ℝ → ℝ} {ζ r M m : ℝ} (hm : 0 < m)
 /-- (4.3) with an explicit constant: for `f` three times differentiable between `x₀` and `ζ`,
 with `|f''| ≤ M₂`, `|f'''| ≤ M₃` and `|f'| ≥ m > 0` there,
 `|e_1 − f''(ζ) / (2 f'(ζ)) · e_0²| ≤ (7 M₃ / (6 m) + M₂² / (2 m²)) |e_0|³`.  In particular the
-order of convergence is exactly two when `f''(ζ) ≠ 0`.-/
+order of convergence is exactly two when `f''(ζ) ≠ 0`.
+@isnad1 id=le.9h9v.s9.4ef2dd3f2db2 from=translated src=- shape=761a4824 vocab=947d748f
+-/
 theorem newtonStep_sub_root_cubic {f f' f'' f''' : ℝ → ℝ} {x₀ ζ M₂ M₃ m : ℝ} (hne : x₀ ≠ ζ)
     (hm : 0 < m) (hζ : f ζ = 0)
     (hf : ∀ t ∈ uIcc x₀ ζ, HasDerivAt f (f' t) t)

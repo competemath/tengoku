@@ -39,7 +39,9 @@ namespace Azurite
 namespace CP
 
 /-- The combined exponent exists: CRT across a finset of distinct
-primes.-/
+primes.
+@isnad1 id=ex.1h2v.s5.3a472598c220 from=translated src=- shape=10e6720b vocab=89693b17
+-/
 theorem exists_forall_modEq_primes {s : Finset ℕ} (hs : ∀ p ∈ s, p.Prime)
     (v : ℕ → ℕ) : ∃ a, ∀ p ∈ s, a ≡ v p [MOD p] := by
   have hpair : s.toList.Pairwise (Function.onFun Nat.Coprime id) := by
@@ -51,7 +53,9 @@ theorem exists_forall_modEq_primes {s : Finset ℕ} (hs : ∀ p ∈ s, p.Prime)
   exact ⟨a, fun p hp => ha p (Finset.mem_toList.mpr hp)⟩
 
 /-- The step-6 residue satisfies `l^I ≡ 1 (mod F)`: mod each prime
-`q ∣ F` it is a unit, whose order divides `#(Z_q)ˣ = q − 1 ∣ I`.-/
+`q ∣ F` it is a unit, whose order divides `#(Z_q)ˣ = q − 1 ∣ I`.
+@isnad1 id=modeq.3h3v.s6.cef4df19ac2e from=translated src=- shape=45e9c4da vocab=79cf148b
+-/
 theorem l_pow_I_modEq_one {F I l : ℕ} (hFsq : Squarefree F)
     (hqI : ∀ q ∈ F.primeFactors, (q - 1) ∣ I)
     (hunit : ∀ q ∈ F.primeFactors, IsUnit ((l : ℕ) : ZMod q)) :
@@ -72,7 +76,9 @@ theorem l_pow_I_modEq_one {F I l : ℕ} (hFsq : Squarefree F)
 /-- **The step-6 catch**: for composite `n < F²` whose least prime
 factor is `≡ l^a (mod F)`, with `l^I ≡ 1 (mod F)`, the residue
 `l^(a mod I) mod F` IS the least prime factor — a nontrivial divisor
-of `n` found by the scan over `1 ≤ j < I`.-/
+of `n` found by the scan over `1 ≤ j < I`.
+@isnad1 id=ex.6h5v.s7.f66e56c5c97d from=translated src=- shape=6fd24103 vocab=69e7804f
+-/
 theorem step6_finds_factor {n I F l a : ℕ} (hn1 : 1 < n)
     (hncomp : ¬n.Prime) (hI : 0 < I) (hnF : n < F ^ 2)
     (hpow : l ^ I ≡ 1 [MOD F])
@@ -111,7 +117,9 @@ theorem step6_finds_factor {n I F l a : ℕ} (hn1 : 1 < n)
 search always succeeds — `w = s_p` works, since
 `G^(p^(s_p) u_p) = G^(n^(p−1)−1) ≡ χ(n) (mod n)` by Lemma 4.4.2 and
 `χ(n)` is a `ζ_p`-power.  (Its contrapositive is the soundness of
-the step-3 "composite" verdict.)-/
+the step-3 "composite" verdict.)
+@isnad1 id=ex.8h9v.s9.93784e72ea51 from=translated src=- shape=1b74be40 vocab=d49a89c7
+-/
 theorem step3_succeeds_of_prime {q p n s u : ℕ} [Fact q.Prime]
     (hp : p.Prime) (hn : n.Prime) (hgcd : Nat.Coprime (p * q) n)
     {R : Type _} [CommRing R] [IsDomain R]
@@ -138,7 +146,9 @@ engines and (4.22) produce `a_p, b_p` (at `q₀(p)`); the CRT picks
 `a ≡ a_p (mod p)`; per pair the character value is pinned
 (`eq_4_23_char`); per `q` the product-character engine gives
 `r ≡ l^a (mod q)` (`eq_4_23_mod_q`); the congruences combine over
-the squarefree `F`; and `step6_finds_factor` reports the factor.-/
+the squarefree `F`; and `step6_finds_factor` reports the factor.
+@isnad1 id=ex.12h13v.s11.4ef7ae1a2f05 from=translated src=- shape=6fe51a95 vocab=799225d1
+-/
 theorem theorem_4_4_6_composite
     {n I F : ℕ} (hn1 : 1 < n) (hncomp : ¬n.Prime)
     (hI : Squarefree I) (hF : Squarefree F)

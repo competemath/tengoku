@@ -119,7 +119,9 @@ private lemma antidiagonal_card_le_pow_sum {k : ℕ} (r : Fin k →₀ ℕ) :
 
 /-- **BPR §8.1 (unnumbered lemma, degree part).** Entrywise total degrees
     of a product of two matrices over `MvPolynomial (Fin k) ℤ` are bounded
-    by the sum of the entrywise total-degree bounds on the factors.-/
+    by the sum of the entrywise total-degree bounds on the factors.
+@isnad1 id=le.2h10v.s7.362815870410 from=translated src=- shape=c74649f7 vocab=190c95d1
+-/
 theorem Matrix.totalDegree_mvMul_le {k : ℕ} {l m n : Type _} [Fintype m]
     {M : Matrix l m (MvPolynomial (Fin k) ℤ)}
     {N : Matrix m n (MvPolynomial (Fin k) ℤ)}
@@ -138,7 +140,9 @@ theorem Matrix.totalDegree_mvMul_le {k : ℕ} {l m n : Type _} [Fintype m]
     bitsizes of a product of two matrices over `MvPolynomial (Fin k) ℤ`
     are bounded by `τ + σ + k * Nat.size (p + q) + Nat.size (Fintype.card m)`
     when the entrywise coefficient bitsizes are bounded by `τ` and `σ`
-    and the entrywise total degrees are bounded by `p` and `q`.-/
+    and the entrywise total degrees are bounded by `p` and `q`.
+@isnad1 id=le.4h13v.s8.b5dadd6abba9 from=translated src=- shape=2eb19b7e vocab=630af129
+-/
 theorem Matrix.bitsize_coeff_mvMul_le {k : ℕ} {l m n : Type _} [Fintype m]
     {M : Matrix l m (MvPolynomial (Fin k) ℤ)}
     {N : Matrix m n (MvPolynomial (Fin k) ℤ)}

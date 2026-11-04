@@ -63,7 +63,9 @@ open Polynomial Azurite.CP
 variable {F : Type _} [CommRing F] {m n : ℕ}
 
 /-- Any ring homomorphism commutes with evaluation of an integer
-polynomial.-/
+polynomial.
+@isnad1 id=eq.0h5v.s8.4bed001e2937 from=translated src=- shape=f7fefd29 vocab=99ad6856
+-/
 theorem ringHom_aeval {A B : Type _} [CommRing A] [CommRing B]
     (φ : A →+* B) (x : A) (U : Polynomial ℤ) :
     φ (aeval x U) = aeval (φ x) U :=
@@ -72,7 +74,9 @@ theorem ringHom_aeval {A B : Type _} [CommRing A] [CommRing B]
 /-- **The `ζ̄`-root lemma of (10.3)**: if `β^N = 1` and
 `β^(N/P) − 1` is a *unit* (`P^k ∣ N`), then `ζ̄ = β^(N/P^k)` is a
 zero of `Φ_(P^k)`: the geometric sum
-`Σ_{i<P} ζ̄^(i·P^(k−1))` times the unit is `ζ̄^(P^k) − 1 = 0`.-/
+`Σ_{i<P} ζ̄^(i·P^(k−1))` times the unit is `ζ̄^(P^k) − 1 = 0`.
+@isnad1 id=eq.5h5v.s7.d9ea96a49a37 from=translated src=- shape=a922a965 vocab=d2aa6e97
+-/
 theorem eval₂_cyclotomic_prime_pow_eq_zero {P k N : ℕ} (hp : P.Prime)
     (hk : 0 < k) {β : F} (hdvd : P ^ k ∣ N) (hβN : β ^ N = 1)
     (hunit : IsUnit (β ^ (N / P) - 1)) :
@@ -131,6 +135,9 @@ noncomputable def lambdaHom (m : ℕ) {z : F}
 variable {z : F}
   {hz : Polynomial.eval₂ (Int.castRingHom F) z (cyclotomic m ℤ) = 0}
 
+/--
+@isnad1 id=eq.1h3v.s6.7b9757ec580a from=translated src=- shape=984ec4ef vocab=f40be649
+-/
 theorem lambdaHom_zetaM
     (hz : Polynomial.eval₂ (Int.castRingHom F) z (cyclotomic m ℤ) = 0) :
     lambdaHom m hz (zetaM m) = z :=
@@ -143,7 +150,9 @@ noncomputable def mKernel (m : ℕ) {z : F}
     Ideal (CycM m) :=
   RingHom.ker (lambdaHom m hz)
 
-/-- `n ∈ 𝔪`, from `(n : F) = 0` (i.e. `ℤ/nℤ ⊆ F`).-/
+/-- `n ∈ 𝔪`, from `(n : F) = 0` (i.e. `ℤ/nℤ ⊆ F`).
+@isnad1 id=mem.2h4v.s7.f321c716487f from=translated src=- shape=0864130e vocab=e6a3b2b8
+-/
 theorem natCast_mem_mKernel
     (hz : Polynomial.eval₂ (Int.castRingHom F) z (cyclotomic m ℤ) = 0)
     (hn0 : ((n : ℕ) : F) = 0) :
@@ -153,7 +162,9 @@ theorem natCast_mem_mKernel
 
 /-- **`𝔪 ∩ ℤ = nℤ`** (the first (10.1)-condition, in the
 `hIZ`-shape of Theorem (7.8)), from the faithfulness of
-`ℤ/nℤ ⊆ F`.-/
+`ℤ/nℤ ⊆ F`.
+@isnad1 id=dvd.3h5v.s7.ab0402644cb4 from=translated src=- shape=bb14c712 vocab=dc6c44d5
+-/
 theorem mKernel_natCast_imp_dvd
     (hz : Polynomial.eval₂ (Int.castRingHom F) z (cyclotomic m ℤ) = 0)
     (hchar : ∀ a : ℕ, ((a : ℕ) : F) = 0 → n ∣ a) :
@@ -162,12 +173,16 @@ theorem mKernel_natCast_imp_dvd
   rw [mKernel, RingHom.mem_ker, map_natCast] at ha
   exact hchar a ha
 
-/-- `ρ(β) = β^n` propagates to every power of `β`.-/
+/-- `ρ(β) = β^n` propagates to every power of `β`.
+@isnad1 id=eq.1h5v.s7.cefb085f4db4 from=translated src=- shape=6b2c06e0 vocab=fcbe2e1f
+-/
 theorem rho_pow (ρ : F →+* F) {β : F} (hρβ : ρ β = β ^ n) (s : ℕ) :
     ρ (β ^ s) = (β ^ s) ^ n := by
   rw [map_pow, hρβ, ← pow_mul, ← pow_mul, mul_comm]
 
-/-- **The intertwining `λ ∘ σ_n = ρ ∘ λ`**, from `ρ(z) = z^n`.-/
+/-- **The intertwining `λ ∘ σ_n = ρ ∘ λ`**, from `ρ(z) = z^n`.
+@isnad1 id=eq.4h6v.s8.1d80c040e42b from=translated src=- shape=ced2c4a2 vocab=c4a2d00d
+-/
 theorem lambdaHom_sigmaN (hm : 0 < m) (hco : Nat.Coprime n m)
     (hz : Polynomial.eval₂ (Int.castRingHom F) z (cyclotomic m ℤ) = 0)
     (ρ : F →+* F) (hρz : ρ z = z ^ n) (α : CycM m) :
@@ -182,7 +197,9 @@ theorem lambdaHom_sigmaN (hm : 0 < m) (hco : Nat.Coprime n m)
     h3, hρz]
 
 /-- σ-stability of `𝔪 = ker λ` (the `hσI`-shape of
-Theorem (7.8)).-/
+Theorem (7.8)).
+@isnad1 id=mem.5h6v.s8.a749dd6ebee2 from=translated src=- shape=be09196e vocab=6ff32154
+-/
 theorem mKernel_sigmaN_mem (hm : 0 < m) (hco : Nat.Coprime n m)
     (hz : Polynomial.eval₂ (Int.castRingHom F) z (cyclotomic m ℤ) = 0)
     (ρ : F →+* F) (hρz : ρ z = z ^ n) :
@@ -192,7 +209,9 @@ theorem mKernel_sigmaN_mem (hm : 0 < m) (hco : Nat.Coprime n m)
   rw [lambdaHom_sigmaN hm hco hz ρ hρz, hx, map_zero]
 
 /-- **The second (10.1)-condition** `σ_n[𝔪] = 𝔪` for `𝔪 = ker λ`,
-by the finite-order upgrade.-/
+by the finite-order upgrade.
+@isnad1 id=eq.4h5v.s8.c8b0b1855fae from=translated src=- shape=ccac7b9f vocab=c5139d20
+-/
 theorem mKernel_sigmaN_map_eq (hm : 0 < m) (hco : Nat.Coprime n m)
     (hz : Polynomial.eval₂ (Int.castRingHom F) z (cyclotomic m ℤ) = 0)
     (ρ : F →+* F) (hρz : ρ z = z ^ n) :

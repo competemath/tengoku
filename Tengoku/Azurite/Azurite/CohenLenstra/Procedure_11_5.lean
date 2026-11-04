@@ -70,7 +70,9 @@ open Polynomial
 /-- **The (11.5) verdict for `n ≡ 1 (mod 4)`** (the paper's appeal
 to (1.2)): for *prime* `n` and Jacobi symbol `(a/n) = −1`, Euler's
 criterion forces `a^((n−1)/2) ≡ −1 (mod n)`.  Contrapositive: a
-witnessed failure proves `n` composite.-/
+witnessed failure proves `n` composite.
+@isnad1 id=eq.3h2v.s7.567d56550b1d from=translated src=- shape=1312a089 vocab=d7127304
+-/
 theorem euler_verdict_of_prime {n : ℕ} (hn : n.Prime)
     (hodd : n % 2 = 1) {a : ℤ} (hJ : jacobiSym a n = -1) :
     ((a : ZMod n)) ^ ((n - 1) / 2) = (-1 : ZMod n) := by
@@ -90,7 +92,9 @@ preceding (10.8)): for *prime* `n` and `((u²+4)/n) = −1`, the ring
 `F = (ℤ/n)[T]/(T² − uT − 1)` is the field `𝔽_(n²)` and
 `ξ^(n+1) = −1` — stated polynomial-level as
 `(X² − uX − 1) ∣ X^(n+1) + 1`, matching Proposition (10.8).
-Contrapositive: a witnessed failure proves `n` composite.-/
+Contrapositive: a witnessed failure proves `n` composite.
+@isnad1 id=dvd.3h2v.s9.fdb606a1c5b2 from=translated src=- shape=4c38a47a vocab=162baa7a
+-/
 theorem xi_pow_eq_neg_one_of_prime {n : ℕ} (hn : n.Prime)
     (hn3 : n % 4 = 3) {u : ℤ} (hJ : jacobiSym (u ^ 2 + 4) n = -1) :
     (X ^ 2 - C ((u : ZMod n)) * X - 1 : Polynomial (ZMod n))

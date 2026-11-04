@@ -56,7 +56,9 @@ open Polynomial
 
 /-- **The (4.2) `prod`-verdict**: over a prime modulus, a product
 of nonzero residues is nonzero — so `prod = 0` proves `n`
-composite (the old `prod` shared a factor with `n`).-/
+composite (the old `prod` shared a factor with `n`).
+@isnad1 id=ne.3h3v.s6.c31abed69924 from=translated src=- shape=015dbd8d vocab=fa7ccbad
+-/
 theorem zmod_mul_ne_zero_of_prime {n : ℕ} (hn : n.Prime)
     {a b : ZMod n} (ha : a ≠ 0) (hb : b ≠ 0) : a * b ≠ 0 := by
   have : Fact n.Prime := ⟨hn⟩
@@ -67,7 +69,9 @@ Test (4.2) — `p^l ∣ n − 1`, `x^(n−1) = 1`, and the unit condition
 `x^((n−1)/p) − 1 ∈ (ℤ/n)^*` (from the `prod`-mechanism) — makes
 `β_{p^l} = x^((n−1)/p^l)` a zero of `Φ_{p^l}` in `ℤ/nℤ`: exactly
 the `lambdaHom`-input of Method (10.3) at `f = 1`, by the root
-lemma `eval₂_cyclotomic_prime_pow_eq_zero`.-/
+lemma `eval₂_cyclotomic_prime_pow_eq_zero`.
+@isnad1 id=eq.5h4v.s8.d7c57cc125b6 from=translated src=- shape=302e9cd0 vocab=917a5893
+-/
 theorem beta_zero_of_cyclotomic {n p l : ℕ} (hp : p.Prime)
     (hl : 0 < l) {x : ZMod n} (hdvd : p ^ l ∣ n - 1)
     (hx1 : x ^ (n - 1) = 1)

@@ -48,7 +48,9 @@ namespace CP
 
 variable {R : Type _} [CommRing R]
 
-/-- Images agree in `R/(r)` iff `r` divides the difference.-/
+/-- Images agree in `R/(r)` iff `r` divides the difference.
+@isnad1 id=iff.0h4v.s9.064eda1575b4 from=translated src=- shape=24303a81 vocab=7ba7b88b
+-/
 theorem quotientMk_eq_iff_dvd {r : ℕ} (x y : R) :
     Ideal.Quotient.mk (Ideal.span {(r : R)}) x
       = Ideal.Quotient.mk (Ideal.span {(r : R)}) y ↔ (r : R) ∣ x - y := by
@@ -56,7 +58,9 @@ theorem quotientMk_eq_iff_dvd {r : ℕ} (x y : R) :
 
 /-- A primitive `p`-th root of unity keeps order exactly `p` in the
 quotient `R/(r)` when `r ∤ p` (via Lemma 4.4.3): the `orderOf`
-hypothesis of the (4.21) engines.-/
+hypothesis of the (4.21) engines.
+@isnad1 id=eq.3h4v.s9.1cb8ee96b289 from=translated src=- shape=93fea047 vocab=d74c8f16
+-/
 theorem orderOf_quotientMk_zeta [IsDomain R] {r p : ℕ} {ζ : R}
     (hp : p.Prime) (hζ : IsPrimitiveRoot ζ p) (hrp : ¬(r : R) ∣ (p : R)) :
     orderOf (Ideal.Quotient.mk (Ideal.span {(r : R)}) ζ) = p := by
@@ -176,7 +180,9 @@ variable {q p r : ℕ} [Fact q.Prime]
 from the step-3/4 congruence at `q₀(p)` and (when `l ≡ 0`) the
 step-5 coprime check, Lemma 4.4.2 and the (4.21) engines produce
 `p^w ∣ r^(p−1) − 1`, and (4.22) turns it into the exponent identity
-`(r^(p−1) − 1) b = p^w u a` with `b ≡ 1 (mod p)`.-/
+`(r^(p−1) − 1) b = p^w u a` with `b ≡ 1 (mod p)`.
+@isnad1 id=ex.12h10v.s9.d55543a9217c from=translated src=- shape=93795da9 vocab=17a5cd85
+-/
 theorem exists_eq_4_22_data (hp : p.Prime) (hr : r.Prime)
     (hgcd : Nat.Coprime (p * q) r)
     {R : Type _} [CommRing R] [IsDomain R]
@@ -280,7 +286,9 @@ theorem eq_4_23_mod_q {q : ℕ} [Fact q.Prime] (hsq : Squarefree (q - 1))
   rwa [ZMod.natCast_eq_natCast_iff] at heq
 
 /-- Congruence modulo each of a set of distinct primes combines to
-congruence modulo their product.-/
+congruence modulo their product.
+@isnad1 id=modeq.2h3v.s5.5e1164ad284c from=translated src=- shape=7103f05f vocab=c6868b3c
+-/
 theorem modEq_prod_primes {s : Finset ℕ} (hs : ∀ p ∈ s, p.Prime)
     {x y : ℕ} (h : ∀ p ∈ s, x ≡ y [MOD p]) :
     x ≡ y [MOD ∏ p ∈ s, p] := by
@@ -301,7 +309,9 @@ theorem modEq_prod_primes {s : Finset ℕ} (hs : ∀ p ∈ s, p.Prime)
 /-- **Equation (4.23)**: `r ≡ l^a (mod F)` — the per-`q` congruences
 (from `eq_4_23_mod_q`) combine over the squarefree `F`.  With
 `F > √n ≥ r` and `F ≠ r` this pins `r` as the least positive
-residue of `l^a mod F`, so the step-6 divisor search finds it.-/
+residue of `l^a mod F`, so the step-6 divisor search finds it.
+@isnad1 id=modeq.2h3v.s5.eb30d94c520e from=translated src=- shape=a103216a vocab=9c84f994
+-/
 theorem modEq_of_forall_primeFactor {F x y : ℕ} (hsq : Squarefree F)
     (h : ∀ q ∈ F.primeFactors, x ≡ y [MOD q]) : x ≡ y [MOD F] := by
   rw [← Nat.prod_primeFactors_of_squarefree hsq]

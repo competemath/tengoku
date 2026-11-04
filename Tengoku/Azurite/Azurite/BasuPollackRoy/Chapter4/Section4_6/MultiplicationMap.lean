@@ -36,6 +36,9 @@ map `g ↦ f g`.-/
 noncomputable def mulMap (f : quotPolys Ps) : quotPolys Ps →ₗ[K] quotPolys Ps :=
   LinearMap.mulLeft K f
 
+/--
+@isnad1 id=eq.0h5v.s10.e8d27c779edd from=translated src=- shape=71accd9c vocab=0e0cace2
+-/
 @[simp] theorem mulMap_apply (f g : quotPolys Ps) : mulMap Ps f g = f * g := rfl
 
 /-- **BPR Notation 4.96 (multiplication map on `Ā`).** For `f ∈ Ā`, `L_f : Ā → Ā` is the `C`-linear
@@ -44,6 +47,9 @@ noncomputable def mulMapExt (f : quotPolysExt C Ps) :
     quotPolysExt C Ps →ₗ[C] quotPolysExt C Ps :=
   LinearMap.mulLeft C f
 
+/--
+@isnad1 id=eq.0h6v.s10.242f2e6f6cc9 from=translated src=- shape=5dbc5c85 vocab=1faf9d4b
+-/
 @[simp] theorem mulMapExt_apply (f g : quotPolysExt C Ps) : mulMapExt C Ps f g = f * g := rfl
 
 /-- **BPR Notation 4.96 (multiplication on `Ā` by `f ∈ A`).** Using `A ⊂ Ā` (Lemma 4.87), for
@@ -52,6 +58,9 @@ noncomputable def mulMapBaseExt (f : quotPolys Ps) :
     quotPolysExt C Ps →ₗ[C] quotPolysExt C Ps :=
   LinearMap.mulLeft C (inclExt C Ps f)
 
+/--
+@isnad1 id=eq.0h6v.s10.7b105da51dda from=translated src=- shape=378aec3d vocab=06ae44b9
+-/
 @[simp] theorem mulMapBaseExt_apply (f : quotPolys Ps) (g : quotPolysExt C Ps) :
     mulMapBaseExt C Ps f g = inclExt C Ps f * g := rfl
 
@@ -64,6 +73,9 @@ noncomputable def mulMapLoc (x : Fin k → C) (hx : x ∈ zerOfFinset C Ps)
     localizationAtPoint C Ps x hx →ₗ[C] localizationAtPoint C Ps x hx :=
   LinearMap.mulLeft C (algebraMap (quotPolysExt C Ps) (localizationAtPoint C Ps x hx) f)
 
+/--
+@isnad1 id=eq.1h7v.s10.e1f2620ea808 from=translated src=- shape=e34b268a vocab=1ca82836
+-/
 @[simp] theorem mulMapLoc_apply (x : Fin k → C) (hx : x ∈ zerOfFinset C Ps)
     (f : quotPolysExt C Ps) (z : localizationAtPoint C Ps x hx) :
     mulMapLoc C Ps x hx f z

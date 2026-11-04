@@ -48,7 +48,9 @@ namespace CL
 open Finset
 
 /-- Congruences multiply: a common divisor of the differences
-`f i − g i` divides the difference of the products.-/
+`f i − g i` divides the difference of the products.
+@isnad1 id=dvd.1h6v.s7.b0dfbada560c from=translated src=- shape=11e96abd vocab=aae99420
+-/
 theorem dvd_prod_sub_prod {ι R : Type _} [CommRing R] {c : R}
     {f g : ι → R} : ∀ {S : Finset ι}, (∀ i ∈ S, c ∣ f i - g i) →
       c ∣ ∏ i ∈ S, f i - ∏ i ∈ S, g i := by
@@ -76,7 +78,9 @@ prime `n` not divisible by `q`,
 `∏_x (χ^x(n)^n · τ(χ^x,ψ)^n)^ν(x) ≡ ∏_x τ((χ^x)^n, ψ)^ν(x)
   (mod nR)`.
 
-The indices `x` need not be coprime to the order of `χ`.-/
+The indices `x` need not be coprime to the order of `χ`.
+@isnad1 id=dvd.2h7v.s9.bb7e8878211e from=translated src=- shape=0570597f vocab=f0d4dc00
+-/
 theorem corollary_7_5 {R : Type _} [CommRing R] {q n : ℕ}
     [Fact q.Prime] (hn : n.Prime) (hqn : ¬ q ∣ n)
     (χ : MulChar (ZMod q) R) (ψ : AddChar (ZMod q) R)
@@ -90,7 +94,9 @@ theorem corollary_7_5 {R : Type _} [CommRing R] {q n : ℕ}
 
 /-- **Corollary (7.5) modulo an ideal**: the same congruence holds in
 any ideal of `R` containing `n` — the paper's "any ideal `𝔫` of `B`
-with `n ∈ 𝔫`".-/
+with `n ∈ 𝔫`".
+@isnad1 id=mem.3h8v.s9.2f190868fe2b from=translated src=- shape=b9482aad vocab=5e93be8e
+-/
 theorem corollary_7_5_mem {R : Type _} [CommRing R] {q n : ℕ}
     [Fact q.Prime] (hn : n.Prime) (hqn : ¬ q ∣ n)
     (χ : MulChar (ZMod q) R) (ψ : AddChar (ZMod q) R)

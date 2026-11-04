@@ -39,7 +39,9 @@ variable {K : Type*} [Field K]
     then the subresultant at its own degree, `sResP_{deg(sResP_n)}`, has degree exactly
     `deg(sResP_n)` and is itself nonzero (it is the non-defective top of the block containing
     `sResP_n`).  By block proportionality for `n ≤ q`; for `n > q` a nonzero `sResP_n` forces
-    `n ∈ {p-1, p}` (else it would be in a degree gap), where it is `Q`/`P` directly.-/
+    `n ∈ {p-1, p}` (else it would be in a degree gap), where it is `Q`/`P` directly.
+@isnad1 id=and.5h4v.s8.a3614f31cc20 from=translated src=- shape=db4ede50 vocab=4d93fdd5
+-/
 theorem sResP_natDegree_realized (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) {n : ℕ}
     (hn : sResP P Q n ≠ 0) :
@@ -68,7 +70,9 @@ theorem sResP_natDegree_realized (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     Immediate from Theorem 8.34: the realized degree `j` is non-defective
     (`sResP_natDegree_realized`), so its regular representative `sResP_j` has leading
     coefficient `t_j = s_j`; applying the monolithic recurrence at `i = j+1` (where
-    `sResP_{i-1} = sResP_j`) turns `s_j t_{i-1}` into `s_j²`.-/
+    `sResP_{i-1} = sResP_j`) turns `s_j t_{i-1}` into `s_j²`.
+@isnad1 id=eq.12h6v.s10.e182786b45af from=translated src=- shape=80b880bb vocab=00e3435f
+-/
 theorem corollary_8_35 (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree)
     {i j : ℕ} (hj1 : 1 ≤ j) (hji : j < i) (hip : i ≤ P.natDegree + 1)

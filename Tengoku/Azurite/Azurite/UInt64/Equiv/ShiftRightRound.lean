@@ -19,7 +19,9 @@ namespace UInt64
 open Azurite Azurite.RoundingTarget
 
 /-- Correctness of `shiftRightSat`: acts as `u.toNat / 2^sh`, saturating to `0` for
-shifts past the word size.-/
+shifts past the word size.
+@isnad1 id=eq.0h2v.s5.99352b86f238 from=translated src=- shape=f16f25b5 vocab=ff0fdfed
+-/
 theorem toNat_shiftRightSat (u : UInt64) (sh : Nat) :
     (shiftRightSat u sh).toNat = u.toNat / 2 ^ sh := by
   unfold shiftRightSat
@@ -38,7 +40,9 @@ theorem toNat_shiftRightSat (u : UInt64) (sh : Nat) :
     rw [Nat.div_eq_of_lt hu_lt]
 
 /-- For `sh ≥ 1`, `shiftRightSat u sh + 1` does not overflow, and matches
-`u.toNat / 2 ^ sh + 1`.-/
+`u.toNat / 2 ^ sh + 1`.
+@isnad1 id=eq.1h2v.s6.4c001fd940d3 from=translated src=- shape=1590179e vocab=1fdabb4e
+-/
 theorem toNat_shiftRightSat_add_one (u : UInt64) (sh : Nat) (hsh : 0 < sh) :
     ((shiftRightSat u sh) + 1).toNat = u.toNat / 2 ^ sh + 1 := by
   rw [_root_.UInt64.toNat_add, toNat_shiftRightSat,
@@ -67,7 +71,9 @@ theorem toNat_shiftRightSat_add_one (u : UInt64) (sh : Nat) (hsh : 0 < sh) :
 
 /-- The value component of `shiftRightRound` (ignoring the ordering tag).
 Agrees with the original shift-and-round logic: floor/down give the saturating shift,
-ceil/up add `1` if not divisible, nearest rounds to even on ties.-/
+ceil/up add `1` if not divisible, nearest rounds to even on ties.
+@isnad1 id=eq.0h3v.s8.c9967fe4a056 from=translated src=- shape=f7d85c9d vocab=2950a19f
+-/
 theorem shiftRightRound_fst (u : UInt64) (mode : RoundingMode) (sh : Nat) :
     (u.shiftRightRound mode sh).1 =
       match mode with
@@ -92,7 +98,9 @@ theorem shiftRightRound_fst (u : UInt64) (mode : RoundingMode) (sh : Nat) :
 
 For any rounding mode and shift amount, the word-level `shiftRightRound` on `UInt64`
 agrees with the abstract `round` of `u.toNat / 2^sh` against the rounding target
-`natBotSet ⊆ EReal`.-/
+`natBotSet ⊆ EReal`.
+@isnad1 id=eq.0h3v.s6.28cd902c0352 from=translated src=- shape=e8dcc15a vocab=0d604c49
+-/
 theorem toNat_shiftRightRound (u : UInt64) (mode : RoundingMode) (sh : Nat) :
     (((u.shiftRightRound mode sh).1).toNat : EReal) =
       (round natBotSet mode ((u.toNat : ℝ) / ((2 : ℝ) ^ sh))).val := by
@@ -421,7 +429,9 @@ private lemma compare_nat_mul_pow_eq_compare_real_div (n m sh : ℕ) :
 
 /-- The ordering component of `shiftRightRound`, expressed case-by-case. Mirrors
 `shiftRightRound_fst` — the pair of these lemmas recovers the original match form
-of `shiftRightRound` after the `UInt64 × Ordering` refactor.-/
+of `shiftRightRound` after the `UInt64 × Ordering` refactor.
+@isnad1 id=eq.0h3v.s8.7256bbfd632f from=translated src=- shape=db2f27cf vocab=5d37c27b
+-/
 theorem shiftRightRound_snd (u : UInt64) (mode : RoundingMode) (sh : Nat) :
     (u.shiftRightRound mode sh).2 =
       match mode with
@@ -440,7 +450,9 @@ theorem shiftRightRound_snd (u : UInt64) (mode : RoundingMode) (sh : Nat) :
   cases mode <;> simp only [] <;> split_ifs <;> rfl
 
 /-- When we return `shiftRightSat u sh`, the scaled-back comparison is `.eq` when
-`u` is divisible by `2^sh` and `.lt` otherwise.-/
+`u` is divisible by `2^sh` and `.lt` otherwise.
+@isnad1 id=eq.0h2v.s5.6b17afd67ea3 from=translated src=- shape=3b0bcbad vocab=21b80077
+-/
 theorem compare_shiftRightSat_mul (u : UInt64) (sh : Nat) :
     compare ((shiftRightSat u sh).toNat * 2 ^ sh) u.toNat =
       (if u.isMultipleOfPow2 sh = true then Ordering.eq else Ordering.lt) := by
@@ -467,7 +479,9 @@ theorem compare_shiftRightSat_mul (u : UInt64) (sh : Nat) :
     rw [compareOfLessAndEq, ite_eq_left hlt]
 
 /-- When we return `shiftRightSat u sh + 1` (with `sh > 0`, so no overflow), the
-scaled-back comparison is always `.gt`.-/
+scaled-back comparison is always `.gt`.
+@isnad1 id=eq.1h2v.s5.1440011f35ca from=translated src=- shape=951ebc81 vocab=2e5dd280
+-/
 theorem compare_shiftRightSat_add_one_mul (u : UInt64) (sh : Nat) (hsh : 0 < sh) :
     compare ((shiftRightSat u sh + 1).toNat * 2 ^ sh) u.toNat = Ordering.gt := by
   rw [toNat_shiftRightSat_add_one u sh hsh]
@@ -499,7 +513,9 @@ private theorem not_isMultipleOfPow2_of_testBit {u : UInt64} {sh : Nat}
 /-- **Ordering tag correctness for `shiftRightRound`.**
 
 The ordering in `(shiftRightRound u mode sh).2` records the relation between the
-rounded value and the true real value `u.toNat / 2^sh`.-/
+rounded value and the true real value `u.toNat / 2^sh`.
+@isnad1 id=eq.0h3v.s6.409a7137734a from=translated src=- shape=241e294f vocab=6d25fd9c
+-/
 theorem snd_shiftRightRound (u : UInt64) (mode : RoundingMode) (sh : Nat) :
     (u.shiftRightRound mode sh).2 =
       compare (((u.shiftRightRound mode sh).1.toNat : ℕ) : ℝ)

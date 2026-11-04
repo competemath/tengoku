@@ -33,6 +33,9 @@ noncomputable def lemniscate : ℝ := 2 * ∫ t in (0 : ℝ)..1, lemnIntegrand t
 
 /-! ### Integrability: `1/√(1 − t⁴) ≤ (1 − t)^(−1/2)` on `[0, 1]` -/
 
+/--
+@isnad1 id=le.2h1v.s6.402a4a81bb7a from=translated src=- shape=a24d72b2 vocab=a097394e
+-/
 theorem lemnIntegrand_le {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     |lemnIntegrand t| ≤ (1 - t) ^ (-(1 / (2 : ℝ))) := by
   rcases eq_or_lt_of_le ht1 with rfl | hlt
@@ -49,10 +52,16 @@ theorem lemnIntegrand_le {t : ℝ} (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
       ← Real.sqrt_eq_rpow]
     exact inv_anti₀ (Real.sqrt_pos.mpr h1) (Real.sqrt_le_sqrt h4)
 
+/--
+@isnad1 id=measurab.0h0v.s2.77e8e5bbb51c from=translated src=- shape=e3d48bcb vocab=6ba21a7f
+-/
 theorem measurable_lemnIntegrand : Measurable lemnIntegrand := by
   unfold lemnIntegrand
   fun_prop
 
+/--
+@isnad1 id=interval.0h0v.s4.471da75b17f6 from=translated src=- shape=aefc7754 vocab=bb9e0822
+-/
 theorem intervalIntegrable_lemnIntegrand : IntervalIntegrable lemnIntegrand volume 0 1 := by
   have hg : IntervalIntegrable (fun t : ℝ => (1 - t) ^ (-(1 / (2 : ℝ)))) volume 0 1 := by
     have h := (intervalIntegrable_rpow' (a := 0) (b := 1)
@@ -68,17 +77,26 @@ theorem intervalIntegrable_lemnIntegrand : IntervalIntegrable lemnIntegrand volu
 
 /-! ### The substitution `t = cos φ` -/
 
+/--
+@isnad1 id=eq.0h1v.s6.7b3d5d16e505 from=translated src=- shape=3437455c vocab=427182f9
+-/
 theorem sqrt_one_sub_cos_pow_four (x : ℝ) :
     Real.sqrt (1 - Real.cos x ^ 4) = |Real.sin x| * Real.sqrt (1 + Real.cos x ^ 2) := by
   have h : 1 - Real.cos x ^ 4 = Real.sin x ^ 2 * (1 + Real.cos x ^ 2) := by
     rw [Real.sin_sq]; ring
   rw [h, Real.sqrt_mul (sq_nonneg _), Real.sqrt_sq_eq_abs]
 
+/--
+@isnad1 id=eq.1h1v.s6.a34ce81af6b5 from=translated src=- shape=ad719deb vocab=e09ade6a
+-/
 theorem lemnIntegrand_cos_mul_sin_of_pos {x : ℝ} (hs : 0 < Real.sin x) :
     lemnIntegrand (Real.cos x) * Real.sin x = (Real.sqrt (1 + Real.cos x ^ 2))⁻¹ := by
   rw [lemnIntegrand, sqrt_one_sub_cos_pow_four, abs_of_pos hs, mul_inv, mul_comm, ← mul_assoc,
     mul_inv_cancel₀ hs.ne', one_mul]
 
+/--
+@isnad1 id=le.0h1v.s4.4df92f254a87 from=translated src=- shape=5f09ad28 vocab=c41ef14a
+-/
 theorem abs_lemnIntegrand_cos_mul_sin_le (x : ℝ) :
     |lemnIntegrand (Real.cos x) * Real.sin x| ≤ 1 := by
   rw [lemnIntegrand, sqrt_one_sub_cos_pow_four, abs_mul, abs_inv, abs_mul, abs_abs,
@@ -91,22 +109,34 @@ theorem abs_lemnIntegrand_cos_mul_sin_le (x : ℝ) :
     rw [mul_inv, mul_comm, ← mul_assoc, mul_inv_cancel₀ hs.ne', one_mul]
     exact inv_le_one_of_one_le₀ hr
 
+/--
+@isnad1 id=le.0h0v.s5.09dd8980616c from=translated src=- shape=7bca14e7 vocab=1e64f0c1
+-/
 theorem cos_image_Ioo_subset : Real.cos '' Ioo 0 (π / 2) ⊆ Ico 0 1 := by
   rintro _ ⟨x, hx, rfl⟩
   refine ⟨(Real.cos_pos_of_mem_Ioo ⟨by linarith [hx.1, Real.pi_pos], hx.2⟩).le, ?_⟩
   have := Real.cos_lt_cos_of_nonneg_of_le_pi_div_two le_rfl hx.2.le hx.1
   rwa [Real.cos_zero] at this
 
+/--
+@isnad1 id=le.0h0v.s5.0db94647a4ed from=translated src=- shape=48488843 vocab=ac951e78
+-/
 theorem cos_image_Icc_subset : Real.cos '' Icc 0 (π / 2) ⊆ Icc 0 1 := by
   rintro _ ⟨x, hx, rfl⟩
   exact ⟨Real.cos_nonneg_of_mem_Icc ⟨by linarith [hx.1, Real.pi_pos], hx.2⟩, Real.cos_le_one x⟩
 
+/--
+@isnad1 id=continuo.0h0v.s4.184e7385d73d from=translated src=- shape=6c3888e7 vocab=9bd9812b
+-/
 theorem continuousOn_lemnIntegrand : ContinuousOn lemnIntegrand (Ico 0 1) := by
   refine ContinuousOn.inv₀ ?_ fun t ht => ?_
   · exact (Real.continuous_sqrt.comp (continuous_const.sub (continuous_pow 4))).continuousOn
   · have : t ^ 4 < 1 := pow_lt_one₀ ht.1 ht.2 (by norm_num)
     exact (Real.sqrt_pos.mpr (by linarith)).ne'
 
+/--
+@isnad1 id=eq.0h0v.s6.9ac550b5887b from=translated src=- shape=4ffdc925 vocab=27c4792b
+-/
 theorem integral_lemnIntegrand :
     ∫ t in (0 : ℝ)..1, lemnIntegrand t
       = ∫ x in (0 : ℝ)..(π / 2), lemnIntegrand (Real.cos x) * Real.sin x := by
@@ -141,6 +171,9 @@ theorem integral_lemnIntegrand :
 
 /-! ### `ϖ = √2 K(1/√2) = π/AGM(1, √2)` -/
 
+/--
+@isnad1 id=eq.0h0v.s4.dcc8a4f2ce26 from=translated src=- shape=251bfef7 vocab=2a04ad03
+-/
 theorem lemniscate_eq_sqrt_two_mul_ellipticK :
     lemniscate = Real.sqrt 2 * ellipticK salaminB0 := by
   have h2 : ∫ x in (0 : ℝ)..(π / 2), lemnIntegrand (Real.cos x) * Real.sin x
@@ -166,14 +199,18 @@ theorem lemniscate_eq_sqrt_two_mul_ellipticK :
         (Real.sqrt (1 - salaminB0 ^ 2 * Real.sin θ ^ 2))⁻¹ := by
         rw [mul_assoc (Real.sqrt 2), mul_inv_cancel₀ hs, mul_one]
 
-/-- `AGM(1, √2) = √2 · AGM(1, 1/√2)`.-/
+/-- `AGM(1, √2) = √2 · AGM(1, 1/√2)`.
+@isnad1 id=eq.0h0v.s5.0435edf1b67f from=translated src=- shape=080183ab vocab=cd5cd345
+-/
 theorem AGM_one_sqrt_two : AGM 1 (Real.sqrt 2) = Real.sqrt 2 * AGM 1 salaminB0 := by
   have hs2 : (0 : ℝ) < Real.sqrt 2 := by positivity
   have hb0 := salaminB0_pos
   rw [AGM_comm 1 salaminB0, ← AGM_smul hs2 hb0 one_pos, mul_one, salaminB0,
     mul_one_div_cancel hs2.ne', AGM_comm]
 
-/-- **Gauss**: `ϖ = π/AGM(1, √2)`.-/
+/-- **Gauss**: `ϖ = π/AGM(1, √2)`.
+@isnad1 id=eq.0h0v.s4.fb8fb9202e59 from=translated src=- shape=98d4f69e vocab=40ba0eb5
+-/
 theorem lemniscate_eq_pi_div_AGM : lemniscate = π / AGM 1 (Real.sqrt 2) := by
   rw [lemniscate_eq_sqrt_two_mul_ellipticK, ellipticK_salaminB0, AGM_one_sqrt_two]
   have hM : 0 < AGM 1 salaminB0 := AGM_one_pos salaminB0_pos
@@ -183,10 +220,15 @@ theorem lemniscate_eq_pi_div_AGM : lemniscate = π / AGM 1 (Real.sqrt 2) := by
       = (Real.sqrt 2 * Real.sqrt 2) * AGM 1 salaminB0 * (π / (2 * AGM 1 salaminB0)) := by ring
     _ = π := by rw [hsq]; field_simp
 
-/-- `ϖ = π · G` with `G = 1/AGM(1, √2)` Gauss's constant.-/
+/-- `ϖ = π · G` with `G = 1/AGM(1, √2)` Gauss's constant.
+@isnad1 id=eq.0h0v.s4.e828c872592a from=translated src=- shape=e081ebac vocab=d7aa2ab2
+-/
 theorem lemniscate_eq_pi_mul_gauss : lemniscate = π * (AGM 1 (Real.sqrt 2))⁻¹ := by
   rw [lemniscate_eq_pi_div_AGM, div_eq_mul_inv]
 
+/--
+@isnad1 id=lt.0h0v.s3.f06ab02fcd14 from=translated src=- shape=ff3a10fc vocab=580dcff8
+-/
 theorem lemniscate_pos : 0 < lemniscate := by
   rw [lemniscate_eq_pi_div_AGM]
   exact div_pos Real.pi_pos (AGM_one_pos (by positivity))

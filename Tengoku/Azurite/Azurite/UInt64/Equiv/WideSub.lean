@@ -15,7 +15,9 @@ import Tengoku.Azurite.Azurite.UInt64.WideSub
 namespace UInt64
 
 /-- Correctness of `wideSub`: the returned `(hi, lo)` pair represents the difference of
-the two 128-bit inputs modulo `2^128`.-/
+the two 128-bit inputs modulo `2^128`.
+@isnad1 id=eq.0h2v.s7.dde41a4d4317 from=translated src=- shape=f769adc0 vocab=c27a1f49
+-/
 theorem toNat_wideSub (x y : UInt64 × UInt64) :
     (wideSub x y).1.toNat * 2 ^ 64 + (wideSub x y).2.toNat
       = (2 ^ 128 - (y.1.toNat * 2 ^ 64 + y.2.toNat) + (x.1.toNat * 2 ^ 64 + x.2.toNat))

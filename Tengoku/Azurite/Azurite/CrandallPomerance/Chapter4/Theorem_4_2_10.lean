@@ -47,7 +47,9 @@ namespace CP
 /-- **Crandall–Pomerance Theorem 4.2.10 (Brillhart–Lehmer–Selfridge),
 congruence form**: under the Pocklington conditions at `F₁ ∣ n − 1`
 and the Morrison conditions at `F₂ ∣ n + 1`, every prime factor of `n`
-is `≡ 1` or `≡ n (mod lcm(F₁, F₂))`.-/
+is `≡ 1` or `≡ n (mod lcm(F₁, F₂))`.
+@isnad1 id=or.11h8v.s8.6f460fa848cb from=translated src=- shape=bc77bc34 vocab=a767e3ba
+-/
 theorem theorem_4_2_10 {a b : ℤ} {n F₁ R₁ F₂ : ℕ} (hn : 0 < n)
     (hsplit : n - 1 = F₁ * R₁) (a₁ : ZMod n) (ha₁ : a₁ ^ (n - 1) = 1)
     (hunit : ∀ q : ℕ, q.Prime → q ∣ F₁ → IsUnit (a₁ ^ ((n - 1) / q) - 1))
@@ -126,7 +128,9 @@ assertion of Theorem 4.2.10): with the hypotheses above,
 `lcm(F₁, F₂) > √n` (in integers, `n < lcm(F₁, F₂)²`), and
 `n mod lcm(F₁, F₂)` not a nontrivial factor of `n`, the number `n` is
 prime.  This doubles the reach of the one-sided √-tests: partial
-factorizations of `n − 1` and `n + 1` past `n^(1/4)` each suffice.-/
+factorizations of `n − 1` and `n + 1` past `n^(1/4)` each suffice.
+@isnad1 id=prime.11h7v.s8.1bba9e9ecfd3 from=translated src=- shape=43a238d0 vocab=3f209291
+-/
 theorem bls_combined_test {a b : ℤ} {n F₁ R₁ F₂ : ℕ} (hn : 0 < n)
     (hsplit : n - 1 = F₁ * R₁) (a₁ : ZMod n) (ha₁ : a₁ ^ (n - 1) = 1)
     (hunit : ∀ q : ℕ, q.Prime → q ∣ F₁ → IsUnit (a₁ ^ ((n - 1) / q) - 1))

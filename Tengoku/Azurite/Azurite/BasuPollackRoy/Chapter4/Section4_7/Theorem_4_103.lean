@@ -48,15 +48,27 @@ def σequiv (k : Fin 2 → ℕ) :
   right_inv := by
     rintro (j | j) <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.4c85d102f8e5 from=translated src=- shape=a761b1e1 vocab=00591611
+-/
 @[simp] theorem σequiv_symm_inl (k : Fin 2 → ℕ) (j : Fin (k 0 + 1)) :
     (σequiv k).symm (Sum.inl j) = ⟨0, j⟩ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.3b96b40afb6f from=translated src=- shape=a761b1e1 vocab=2a349479
+-/
 @[simp] theorem σequiv_symm_inr (k : Fin 2 → ℕ) (j : Fin (k 1 + 1)) :
     (σequiv k).symm (Sum.inr j) = ⟨1, j⟩ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.0b0bc68baff6 from=translated src=- shape=276b8919 vocab=441bd181
+-/
 @[simp] theorem σequiv_apply_zero (k : Fin 2 → ℕ) (j : Fin (k 0 + 1)) :
     σequiv k ⟨0, j⟩ = Sum.inl j := rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.9fb3ba67b2ab from=translated src=- shape=276b8919 vocab=94bf1468
+-/
 theorem σequiv_apply_one (k : Fin 2 → ℕ) (j : Fin (k 1 + 1)) :
     σequiv k ⟨1, j⟩ = Sum.inr j := by
   apply (σequiv k).symm.injective
@@ -65,7 +77,9 @@ theorem σequiv_apply_one (k : Fin 2 → ℕ) (j : Fin (k 1 + 1)) :
 omit [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] in
 /-- The vector reconstruction: given block-coordinate functions `a` (block 0) and `b` (block 1),
 the assignment `s ↦ (Sum.elim a b) (σequiv s)` recovers the block-indexed assignment
-`s ↦ v s.1 s.2` where `v 0 = a`, `v 1 = b`.-/
+`s ↦ v s.1 s.2` where `v 0 = a`, `v 1 = b`.
+@isnad1 id=eq.2h5v.s9.9a167805c463 from=translated src=- shape=d2073d71 vocab=51488638
+-/
 theorem sumElim_σequiv (k : Fin 2 → ℕ) (a : Fin (k 0 + 1) → Ri R) (b : Fin (k 1 + 1) → Ri R)
     (v : (i : Fin 2) → (Fin (k i + 1) → Ri R)) (ha : v 0 = a) (hb : v 1 = b) :
     (fun s : (i : Fin 2) × Fin (k i + 1) => (Sum.elim a b) (σequiv k s)) = fun s => v s.1 s.2 := by
@@ -85,7 +99,9 @@ variable {C : Type*} [CommRing C]
 
 /-- **Eval bridge for `sumToIter`.** Evaluating the iterated polynomial `sumRingEquiv P` first in the
 inner variables at `b` and then in the outer variables at `a` equals evaluating `P` at the combined
-assignment `Sum.elim a b`.-/
+assignment `Sum.elim a b`.
+@isnad1 id=eq.0h6v.s10.7e7d41604ed6 from=translated src=- shape=8099cb06 vocab=971a273c
+-/
 theorem eval_sumToIter {S₁ S₂ : Type*} (a : S₁ → C) (b : S₂ → C)
     (P : MvPolynomial (S₁ ⊕ S₂) C) :
     eval a (map (eval b) (sumRingEquiv C S₁ S₂ P)) = eval (Sum.elim a b) P := by
@@ -109,7 +125,9 @@ noncomputable def split (k : Fin 2 → ℕ)
   sumRingEquiv (Ri R) (Fin (k 0 + 1)) (Fin (k 1 + 1)) (rename (σequiv k) P)
 
 /-- **The eval-coords bridge.** Evaluating the split polynomial first in the inner (block-1) variables
-at `v 1` and then in the outer (block-0) variables at `v 0` recovers `evalCoords P v`.-/
+at `v 1` and then in the outer (block-0) variables at `v 0` recovers `evalCoords P v`.
+@isnad1 id=eq.0h4v.s12.eb01da3e74f3 from=translated src=- shape=b3f63239 vocab=6ddb1dbb
+-/
 theorem eval_split (k : Fin 2 → ℕ) (P : MvPolynomial ((i : Fin 2) × Fin (k i + 1)) (Ri R))
     (v : (i : Fin 2) → (Fin (k i + 1) → Ri R)) :
     eval (v 0) (map (eval (v 1)) (split k P)) = evalCoords P v := by
@@ -129,10 +147,15 @@ def e1 (n : ℕ) : Fin (n + 1) ≃ ((_ : Fin 1) × Fin (n + 1)) where
   left_inv _ := rfl
   right_inv := by rintro ⟨i, j⟩; obtain rfl : i = 0 := Subsingleton.elim _ _; rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.9393299c24de from=translated src=- shape=396a7808 vocab=b1fbdca6
+-/
 @[simp] theorem e1_apply (n : ℕ) (j : Fin (n + 1)) : e1 n j = ⟨0, j⟩ := rfl
 
 /-- `ProjVanishes` of the single-block renamed polynomial reduces to ordinary evaluation at the
-representative of the (single) projective coordinate.-/
+representative of the (single) projective coordinate.
+@isnad1 id=iff.0h4v.s13.5d855be0bc15 from=translated src=- shape=82192ecf vocab=ea13eb0f
+-/
 theorem projVanishes_rename_e1 {n : ℕ} (Q : MvPolynomial (Fin (n + 1)) (Ri R))
     (y : (i : Fin 1) → complexProjectiveSpace R n) :
     ProjVanishes (k := fun _ : Fin 1 => n) (rename (e1 n) Q) y ↔ eval (y 0).rep Q = 0 := by
@@ -150,15 +173,23 @@ def blockVec (k : Fin 2 → ℕ) (a : Fin (k 0 + 1) → Ri R) (b : Fin (k 1 + 1)
   Fin.cases a (fun i' => (Fin.eq_zero i' ▸ b : Fin (k (Fin.succ i') + 1) → Ri R))
 
 omit [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] in
+/--
+@isnad1 id=eq.0h4v.s7.e39db789186e from=translated src=- shape=22098457 vocab=a6bfe3cc
+-/
 @[simp] theorem blockVec_zero (k : Fin 2 → ℕ) (a : Fin (k 0 + 1) → Ri R)
     (b : Fin (k 1 + 1) → Ri R) : blockVec k a b 0 = a := rfl
 
 omit [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R] in
+/--
+@isnad1 id=eq.0h4v.s7.763ccb9a8be1 from=translated src=- shape=2ec603b5 vocab=a6bfe3cc
+-/
 @[simp] theorem blockVec_one (k : Fin 2 → ℕ) (a : Fin (k 0 + 1) → Ri R)
     (b : Fin (k 1 + 1) → Ri R) : blockVec k a b 1 = b := rfl
 
 omit [IsRealClosed R] in
-/-- Each block of a block vector built from nonzero vectors is nonzero.-/
+/-- Each block of a block vector built from nonzero vectors is nonzero.
+@isnad1 id=ne.2h5v.s10.cf770b280433 from=translated src=- shape=2c19c1eb vocab=bd7b8865
+-/
 theorem blockVec_ne_zero (k : Fin 2 → ℕ) (a : Fin (k 0 + 1) → Ri R) (b : Fin (k 1 + 1) → Ri R)
     (i : Fin 2) (ha : a ≠ 0) (hb : b ≠ 0) : blockVec k a b i ≠ 0 := by
   refine Fin.cases ?_ (fun i' => ?_) i
@@ -166,14 +197,18 @@ theorem blockVec_ne_zero (k : Fin 2 → ℕ) (a : Fin (k 0 + 1) → Ri R) (b : F
   · obtain rfl : i' = 0 := Fin.eq_zero i'
     exact hb
 
-/-- The split evaluation at `(a, b)` equals `evalCoords P` at the block vector `blockVec a b`.-/
+/-- The split evaluation at `(a, b)` equals `evalCoords P` at the block vector `blockVec a b`.
+@isnad1 id=eq.0h5v.s12.ad319964540d from=translated src=- shape=ff2b83e1 vocab=7da410aa
+-/
 theorem eval_split_blockVec {k : Fin 2 → ℕ}
     (P : MvPolynomial ((i : Fin 2) × Fin (k i + 1)) (Ri R)) (a : Fin (k 0 + 1) → Ri R)
     (b : Fin (k 1 + 1) → Ri R) :
     eval a (map (eval b) (split k P)) = evalCoords P (blockVec k a b) := by
   rw [← eval_split k P (blockVec k a b), blockVec_zero, blockVec_one]
 
-/-- `ProjVanishes P x` unfolds, via the split, to the two-stage evaluation of `split P`.-/
+/-- `ProjVanishes P x` unfolds, via the split, to the two-stage evaluation of `split P`.
+@isnad1 id=iff.0h4v.s13.87619f43126e from=translated src=- shape=c7e136fe vocab=950aba9b
+-/
 theorem projVanishes_iff_eval_split {k : Fin 2 → ℕ}
     (P : MvPolynomial ((i : Fin 2) × Fin (k i + 1)) (Ri R))
     (x : (i : Fin 2) → complexProjectiveSpace R (k i)) :
@@ -184,7 +219,9 @@ theorem projVanishes_iff_eval_split {k : Fin 2 → ℕ}
 /-- **Rep-independence transfer for block 0.** Fixing the block-1 coordinate `y₁` (a line) and a
 finite multihomogeneous family `Ps`, the existence of a block-0 line `x₀` whose representative makes
 all `split`-evaluations vanish is equivalent to the existence of an arbitrary nonzero block-0 vector
-`z` doing the same.-/
+`z` doing the same.
+@isnad1 id=iff.1h4v.s14.08edf5c91c1a from=translated src=- shape=e4d9b695 vocab=d97d6b83
+-/
 theorem exists_line_iff_exists_nonzero {k : Fin 2 → ℕ}
     (Ps : Finset (MvPolynomial ((i : Fin 2) × Fin (k i + 1)) (Ri R)))
     (hPs : ∀ P ∈ Ps, ∃ dd : Fin 2 → ℕ, IsMultihomogeneous P dd)
@@ -222,10 +259,16 @@ def blockVecPt (k : Fin 2 → ℕ) (x₀ : complexProjectiveSpace R (k 0))
   Fin.cases x₀ (fun i' => (Fin.eq_zero i' ▸ y₁ : complexProjectiveSpace R (k (Fin.succ i'))))
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h4v.s6.049799fb51e1 from=translated src=- shape=907ed5a4 vocab=2245b441
+-/
 @[simp] theorem blockVecPt_zero (k : Fin 2 → ℕ) (x₀ : complexProjectiveSpace R (k 0))
     (y₁ : complexProjectiveSpace R (k 1)) : blockVecPt k x₀ y₁ 0 = x₀ := rfl
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
+/--
+@isnad1 id=eq.0h4v.s6.b20d82fbb5d8 from=translated src=- shape=7e3a5dc5 vocab=2245b441
+-/
 @[simp] theorem blockVecPt_one (k : Fin 2 → ℕ) (x₀ : complexProjectiveSpace R (k 0))
     (y₁ : complexProjectiveSpace R (k 1)) : blockVecPt k x₀ y₁ 1 = y₁ := rfl
 

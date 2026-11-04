@@ -67,14 +67,18 @@ open Finset Real
 
 /-! ### The expansions -/
 
-/-- `exp x = ∑ x^j / j!`.-/
+/-- `exp x = ∑ x^j / j!`.
+@isnad1 id=hassum.0h1v.s5.2478f7ade1d5 from=translated src=- shape=63bf745d vocab=827d1423
+-/
 theorem hasSum_exp_series (x : ℝ) : HasSum (fun j : ℕ => x ^ j / j.factorial) (exp x) := by
   rw [Real.exp_eq_exp_ℝ]
   exact NormedSpace.expSeries_div_hasSum_exp x
 
 /-! ### The remainder of the exponential series, (4.21) -/
 
-/-- The remainder bound `|exp x − ∑_{j<d} x^j/j!| ≤ |x|^d / d! · exp |x|`, for every `x`.-/
+/-- The remainder bound `|exp x − ∑_{j<d} x^j/j!| ≤ |x|^d / d! · exp |x|`, for every `x`.
+@isnad1 id=le.0h2v.s6.3ff3f415a5d0 from=translated src=- shape=9f01ab06 vocab=7d3ec52a
+-/
 theorem abs_exp_sub_sum_le (x : ℝ) (d : ℕ) :
     |exp x - ∑ j ∈ range d, x ^ j / j.factorial| ≤ |x| ^ d / d.factorial * exp |x| := by
   have hs := hasSum_exp_series x
@@ -115,7 +119,9 @@ theorem abs_exp_sub_sum_le (x : ℝ) (d : ℕ) :
         hsh.abs.tsum_le_tsum hb hsb
     _ = |x| ^ d / d.factorial * exp |x| := by rw [tsum_mul_left, hsa.tsum_eq]
 
-/-- For `|x| ≤ 1`, `|R_d(x)| ≤ e / d!`.-/
+/-- For `|x| ≤ 1`, `|R_d(x)| ≤ e / d!`.
+@isnad1 id=le.1h2v.s6.201930922610 from=translated src=- shape=64bfe1e6 vocab=99e81f53
+-/
 theorem abs_exp_sub_sum_le_of_abs_le_one {x : ℝ} (hx : |x| ≤ 1) (d : ℕ) :
     |exp x - ∑ j ∈ range d, x ^ j / j.factorial| ≤ exp 1 / d.factorial := by
   refine (abs_exp_sub_sum_le x d).trans ?_
@@ -123,7 +129,9 @@ theorem abs_exp_sub_sum_le_of_abs_le_one {x : ℝ} (hx : |x| ≤ 1) (d : ℕ) :
   calc |x| ^ d / d.factorial * exp |x| ≤ 1 ^ d / d.factorial * exp 1 := by gcongr
     _ = exp 1 / d.factorial := by ring
 
-/-- `d` terms suffice for `n` bits as soon as `2^n e ≤ d!`.-/
+/-- `d` terms suffice for `n` bits as soon as `2^n e ≤ d!`.
+@isnad1 id=le.2h3v.s7.0d2ef3cfb4e8 from=translated src=- shape=0fa60e12 vocab=bf9a3929
+-/
 theorem exp_series_terms_suffice {x : ℝ} (hx : |x| ≤ 1) {d n : ℕ}
     (hd : (2 : ℝ) ^ n * exp 1 ≤ d.factorial) :
     |exp x - ∑ j ∈ range d, x ^ j / j.factorial| ≤ (2 : ℝ) ^ (-(n : ℤ)) := by
@@ -135,7 +143,9 @@ theorem exp_series_terms_suffice {x : ℝ} (hx : |x| ≤ 1) {d n : ℕ}
     _ = ((2 : ℝ) ^ n)⁻¹ * d.factorial := by ring
 
 /-- The stopping rule of forward summation: for `|x| ≤ 1`, once the next term satisfies
-`|t_d| < 2^(−n) / e`, the remainder is below `2^(−n)`.-/
+`|t_d| < 2^(−n) / e`, the remainder is below `2^(−n)`.
+@isnad1 id=lt.2h3v.s7.9867d10f3f7f from=translated src=- shape=9d824f00 vocab=0cf41f6f
+-/
 theorem exp_series_stop {x : ℝ} (hx : |x| ≤ 1) {d n : ℕ}
     (ht : |expTerm x d| < (2 : ℝ) ^ (-(n : ℤ)) / exp 1) :
     |exp x - ∑ j ∈ range d, x ^ j / j.factorial| < (2 : ℝ) ^ (-(n : ℤ)) := by
@@ -155,6 +165,9 @@ theorem exp_series_stop {x : ℝ} (hx : |x| ≤ 1) {d n : ℕ}
 /-- The partial sums `S_j = ∑_{i≤j} t_i`.-/
 noncomputable def expPartial (x : ℝ) (j : ℕ) : ℝ := ∑ i ∈ range (j + 1), expTerm x i
 
+/--
+@isnad1 id=eq.0h2v.s5.41b430212c83 from=translated src=- shape=3fcbc603 vocab=dbdae342
+-/
 theorem expPartial_succ (x : ℝ) (j : ℕ) :
     expPartial x (j + 1) = expPartial x j + expTerm x (j + 1) := by
   unfold expPartial; rw [sum_range_succ]
@@ -165,7 +178,9 @@ noncomputable def roundedExpTerm (x : ℝ) (θ : ℕ → ℝ) : ℕ → ℝ
   | 0 => 1
   | j + 1 => roundedExpTerm x θ j * x / (j + 1) * (1 + θ (j + 1))
 
-/-- `tc_j = t_j ∏_{i<j} (1 + θ_{i+1})`.-/
+/-- `tc_j = t_j ∏_{i<j} (1 + θ_{i+1})`.
+@isnad1 id=eq.0h3v.s5.368e57e92e6f from=translated src=- shape=e9e33be3 vocab=3e44e29c
+-/
 theorem roundedExpTerm_eq (x : ℝ) (θ : ℕ → ℝ) (j : ℕ) :
     roundedExpTerm x θ j = expTerm x j * ∏ i ∈ range j, (1 + θ (i + 1)) := by
   induction j with
@@ -181,7 +196,9 @@ noncomputable def roundedSum (tc σ : ℕ → ℝ) : ℕ → ℝ
 
 /-- The generic forward-summation error: with `|σ_j| ≤ ε`, `|tc_j − t_j| ≤ η |t_j|`,
 `|∑_{i≤j} t_i| ≤ M` and `|t_j| ≤ T` for all `j`,
-`|Ŝ_d − S_d| ≤ (1 + ε)^d (η ∑_{j≤d} |t_j| + d ε (M + (1 + η) T))`.-/
+`|Ŝ_d − S_d| ≤ (1 + ε)^d (η ∑_{j≤d} |t_j| + d ε (M + (1 + η) T))`.
+@isnad1 id=le.5h8v.s8.d70aa9bd771b from=translated src=- shape=62391c27 vocab=1f63f446
+-/
 theorem roundedSum_sub_le (t tc σ : ℕ → ℝ) {ε η M T : ℝ} (hη0 : 0 ≤ η) (hσ : ∀ j, |σ j| ≤ ε)
     (htc : ∀ j, |tc j - t j| ≤ η * |t j|) (hM : ∀ j, |∑ i ∈ range (j + 1), t i| ≤ M)
     (hT : ∀ j, |t j| ≤ T) (d : ℕ) :
@@ -246,7 +263,9 @@ theorem roundedSum_sub_le (t tc σ : ℕ → ℝ) {ε η M T : ℝ} (hη0 : 0 �
           rw [sum_range_succ _ (d + 1), hX]; push_cast; ring
 
 /-- The guard digits lost to cancellation for negative `x` (§4.3.2): the factor `exp (2|x|)` is
-`2|x| / log 2` bits.-/
+`2|x| / log 2` bits.
+@isnad1 id=eq.0h1v.s6.eb4dbddfdc83 from=translated src=- shape=20b81df4 vocab=8419b314
+-/
 theorem guard_digits_of_neg (x : ℝ) : Real.logb 2 (exp (2 * |x|)) = 2 * |x| / Real.log 2 := by
   rw [Real.logb, Real.log_exp]
 

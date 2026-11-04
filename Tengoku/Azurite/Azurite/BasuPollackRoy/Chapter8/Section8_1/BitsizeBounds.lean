@@ -36,7 +36,9 @@ Each `|aᵢ| < 2^τ`, so the triangle inequality gives
 whence `bitsize(∑ aᵢ) ≤ τ + bit(n)`.
 -/
 
-/-- Triangle inequality for integer list sums: `|∑ aᵢ| ≤ ∑ |aᵢ|`.-/
+/-- Triangle inequality for integer list sums: `|∑ aᵢ| ≤ ∑ |aᵢ|`.
+@isnad1 id=le.0h1v.s4.93576951fe78 from=translated src=- shape=22588f5d vocab=8b2a2930
+-/
 theorem Int.natAbs_list_sum_le (l : List ℤ) :
     l.sum.natAbs ≤ (l.map Int.natAbs).sum := by
   induction l with
@@ -45,7 +47,9 @@ theorem Int.natAbs_list_sum_le (l : List ℤ) :
     simp only [List.map_cons, List.sum_cons]
     exact le_trans (Int.natAbs_add_le a as.sum) (Nat.add_le_add_left ih _)
 
-/-- If every element of a list is `≤ b`, then the sum is `≤ length · b`.-/
+/-- If every element of a list is `≤ b`, then the sum is `≤ length · b`.
+@isnad1 id=le.1h2v.s5.81d7d8b5506c from=translated src=- shape=4392e86d vocab=00107b7e
+-/
 theorem List.sum_le_length_mul {l : List ℕ} {b : ℕ}
     (h : ∀ x ∈ l, x ≤ b) : l.sum ≤ l.length * b := by
   induction l with
@@ -55,7 +59,9 @@ theorem List.sum_le_length_mul {l : List ℕ} {b : ℕ}
     exact Nat.add_le_add (h a (by simp)) (ih (fun x hx => h x (by simp [hx])))
 
 /-- Adding `n` integers each of bitsize `≤ τ` yields an integer of bitsize
-    `≤ τ + bit(n)`. BPR §8.1.-/
+    `≤ τ + bit(n)`. BPR §8.1.
+@isnad1 id=le.1h2v.s5.43c16d88d786 from=translated src=- shape=8afa13f0 vocab=56a14f44
+-/
 theorem Int.size_list_sum_le (l : List ℤ) (τ : ℕ)
     (hτ : ∀ x ∈ l, Int.size x ≤ τ) :
     Int.size l.sum ≤ τ + Nat.size l.length := by
@@ -84,7 +90,9 @@ Note: this requires `n ≥ 1`, since for `n = 0` the empty product is
 `1` and `bitsize(1) = 1 > 0 = 0 · τ`.
 -/
 
-/-- `|∏ aᵢ| = ∏ |aᵢ|` for integer lists.-/
+/-- `|∏ aᵢ| = ∏ |aᵢ|` for integer lists.
+@isnad1 id=eq.0h1v.s4.50c06c9ba675 from=translated src=- shape=22588f5d vocab=912ba513
+-/
 theorem Int.natAbs_list_prod (l : List ℤ) :
     l.prod.natAbs = (l.map Int.natAbs).prod := by
   induction l with
@@ -118,7 +126,9 @@ private theorem list_prod_lt_pow {l : List ℕ} {b : ℕ}
       _ < b * b ^ as.length := Nat.mul_lt_mul_of_pos_right ha (Nat.pow_pos hb)
 
 /-- Multiplying `n ≥ 1` integers each of bitsize `≤ τ` yields an integer of
-    bitsize `≤ n · τ`. BPR §8.1.-/
+    bitsize `≤ n · τ`. BPR §8.1.
+@isnad1 id=le.2h2v.s5.5ca5bfc165d8 from=translated src=- shape=c8fceaf7 vocab=302ff03c
+-/
 theorem Int.size_list_prod_le (l : List ℤ) (τ : ℕ)
     (hl : l ≠ [])
     (hτ : ∀ x ∈ l, Int.size x ≤ τ) :

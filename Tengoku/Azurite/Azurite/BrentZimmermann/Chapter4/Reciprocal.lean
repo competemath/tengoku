@@ -58,12 +58,20 @@ def reciprocalSeq (y x₀ : ℝ) : ℕ → ℝ
   | 0 => x₀
   | n + 1 => reciprocalStep y (reciprocalSeq y x₀ n)
 
+/--
+@isnad1 id=eq.0h2v.s3.f73cb963b353 from=translated src=- shape=cc48e823 vocab=704ebc3a
+-/
 @[simp] theorem reciprocalSeq_zero (y x₀ : ℝ) : reciprocalSeq y x₀ 0 = x₀ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.636526e319c4 from=translated src=- shape=3524b51e vocab=4fc6ebad
+-/
 @[simp] theorem reciprocalSeq_succ (y x₀ : ℝ) (n : ℕ) :
     reciprocalSeq y x₀ (n + 1) = reciprocalStep y (reciprocalSeq y x₀ n) := rfl
 
-/-- (4.5) is (4.4) with `m = 1`.-/
+/-- (4.5) is (4.4) with `m = 1`.
+@isnad1 id=eq.0h2v.s4.ff4c8fde4aa3 from=translated src=- shape=722e53ee vocab=ad57a656
+-/
 theorem reciprocalStep_eq_inverseRootStep (y x : ℝ) :
     reciprocalStep y x = inverseRootStep 1 y x := by
   simp [reciprocalStep, inverseRootStep]
@@ -71,6 +79,9 @@ theorem reciprocalStep_eq_inverseRootStep (y x : ℝ) :
 /-- `u = 1 − x y`, which vanishes iff `x = 1/y`.-/
 def recipError (y x : ℝ) : ℝ := 1 - x * y
 
+/--
+@isnad1 id=iff.1h2v.s5.b499f05e02a9 from=translated src=- shape=7d3bd6f3 vocab=cf3e0307
+-/
 theorem recipError_eq_zero_iff {y : ℝ} (hy : y ≠ 0) (x : ℝ) : recipError y x = 0 ↔ x = y⁻¹ := by
   unfold recipError
   rw [sub_eq_zero, eq_comm]
@@ -82,20 +93,26 @@ theorem eq_of_recipError {y : ℝ} (hy : y ≠ 0) (x : ℝ) : x = (1 - recipErro
   field_simp
   ring
 
-/-- (4.6): `u_{j+1} = u_j²`.-/
+/-- (4.6): `u_{j+1} = u_j²`.
+@isnad1 id=eq.0h2v.s4.b6de2e03ddff from=translated src=- shape=9862f300 vocab=a772b8c9
+-/
 theorem recipError_reciprocalStep (y x : ℝ) :
     recipError y (reciprocalStep y x) = recipError y x ^ 2 := by
   unfold recipError reciprocalStep
   ring
 
-/-- (4.7): `u_j = u_0^(2^j)`.-/
+/-- (4.7): `u_j = u_0^(2^j)`.
+@isnad1 id=eq.0h3v.s5.a11cc4d8999e from=translated src=- shape=835de1ea vocab=97e07f01
+-/
 theorem recipError_reciprocalSeq (y x₀ : ℝ) (j : ℕ) :
     recipError y (reciprocalSeq y x₀ j) = recipError y x₀ ^ (2 ^ j) := by
   induction j with
   | zero => simp
   | succ j ih => rw [reciprocalSeq_succ, recipError_reciprocalStep, ih, ← pow_mul, pow_succ]
 
-/-- The error of the `j`-th iterate: `x_j − 1/y = −u_0^(2^j) / y`.-/
+/-- The error of the `j`-th iterate: `x_j − 1/y = −u_0^(2^j) / y`.
+@isnad1 id=eq.1h3v.s6.cf5fd7ac8ef1 from=translated src=- shape=6a7f8168 vocab=5e17f951
+-/
 theorem reciprocalSeq_sub_inv {y : ℝ} (hy : y ≠ 0) (x₀ : ℝ) (j : ℕ) :
     reciprocalSeq y x₀ j - y⁻¹ = -(recipError y x₀ ^ (2 ^ j)) / y := by
   have h := recipError_reciprocalSeq y x₀ j
@@ -104,13 +121,17 @@ theorem reciprocalSeq_sub_inv {y : ℝ} (hy : y ≠ 0) (x₀ : ℝ) (j : ℕ) :
   field_simp
   ring
 
-/-- `|u_0| < 1` iff `x_0 y ∈ (0, 2)`.-/
+/-- `|u_0| < 1` iff `x_0 y ∈ (0, 2)`.
+@isnad1 id=iff.0h2v.s5.0c569c6caea2 from=translated src=- shape=ed0a5cfa vocab=6daba6e7
+-/
 theorem abs_recipError_lt_one_iff (y x₀ : ℝ) : |recipError y x₀| < 1 ↔ x₀ * y ∈ Ioo 0 2 := by
   unfold recipError
   rw [abs_lt, mem_Ioo]
   constructor <;> intro h <;> constructor <;> linarith [h.1, h.2]
 
-/-- `u_j → 0` iff `x_j → 1/y`.-/
+/-- `u_j → 0` iff `x_j → 1/y`.
+@isnad1 id=iff.1h2v.s5.9132eaac92ac from=translated src=- shape=bb7314a7 vocab=ba1ed087
+-/
 theorem tendsto_recipError_iff {y : ℝ} (hy : y ≠ 0) (x : ℕ → ℝ) :
     Tendsto (fun j => recipError y (x j)) atTop (𝓝 0) ↔ Tendsto x atTop (𝓝 y⁻¹) := by
   constructor
@@ -125,7 +146,9 @@ theorem tendsto_recipError_iff {y : ℝ} (hy : y ≠ 0) (x : ℕ → ℝ) :
     rwa [inv_mul_cancel₀ hy, sub_self] at h'
 
 /-- The iteration (4.5) converges to `1/y` iff `|u_0| < 1` (iff `x_0 y ∈ (0, 2)`); the
-convergence is doubly exponential, (4.7).-/
+convergence is doubly exponential, (4.7).
+@isnad1 id=iff.1h2v.s5.c7ece5cefab3 from=translated src=- shape=036bb3c0 vocab=63e46b3f
+-/
 theorem tendsto_reciprocalSeq_iff {y : ℝ} (hy : y ≠ 0) (x₀ : ℝ) :
     Tendsto (reciprocalSeq y x₀) atTop (𝓝 y⁻¹) ↔ |recipError y x₀| < 1 := by
   rw [← tendsto_recipError_iff hy]
@@ -144,7 +167,9 @@ theorem tendsto_reciprocalSeq_iff {y : ℝ} (hy : y ≠ 0) (x₀ : ℝ) :
     exact (tendsto_pow_atTop_nhds_zero_of_abs_lt_one h).comp
       (tendsto_pow_atTop_atTop_of_one_lt one_lt_two)
 
-/-- Bit doubling: `|u_0| ≤ 2^(−k)` gives `|u_j| ≤ 2^(−k · 2^j)`.-/
+/-- Bit doubling: `|u_0| ≤ 2^(−k)` gives `|u_j| ≤ 2^(−k · 2^j)`.
+@isnad1 id=le.1h4v.s6.2b45b16deda4 from=translated src=- shape=37e4c48d vocab=da078e0d
+-/
 theorem abs_recipError_reciprocalSeq_le {y x₀ : ℝ} {k : ℕ}
     (h : |recipError y x₀| ≤ (2 : ℝ) ^ (-(k : ℤ))) (j : ℕ) :
     |recipError y (reciprocalSeq y x₀ j)| ≤ (2 : ℝ) ^ (-((k * 2 ^ j : ℕ) : ℤ)) := by
@@ -155,7 +180,9 @@ theorem abs_recipError_reciprocalSeq_le {y x₀ : ℝ} {k : ℕ}
         rw [← zpow_natCast, ← zpow_mul]; congr 1; push_cast; ring
 
 /-- Predicting the number of iterations: `n` correct bits of `u` after `j` iterations as soon as
-`n ≤ k · 2^j`, from `k` correct bits at the start.-/
+`n ≤ k · 2^j`, from `k` correct bits at the start.
+@isnad1 id=le.2h5v.s6.01dc537c8f7d from=translated src=- shape=5321a763 vocab=da078e0d
+-/
 theorem abs_recipError_reciprocalSeq_le_of_le {y x₀ : ℝ} {k n j : ℕ}
     (h : |recipError y x₀| ≤ (2 : ℝ) ^ (-(k : ℤ))) (hn : n ≤ k * 2 ^ j) :
     |recipError y (reciprocalSeq y x₀ j)| ≤ (2 : ℝ) ^ (-(n : ℤ)) :=
@@ -163,7 +190,9 @@ theorem abs_recipError_reciprocalSeq_le_of_le {y x₀ : ℝ} {k n j : ℕ}
     (zpow_le_zpow_right₀ (by norm_num) (by omega))
 
 /-- For a normalized `y ∈ [1/2, 1)` the trivial start `x_0 = 1` already has `u_0 ∈ (0, 1/2]`, so
-(4.5) converges from it with `|u_j| ≤ 2^(−2^j)`.-/
+(4.5) converges from it with `|u_j| ≤ 2^(−2^j)`.
+@isnad1 id=and.1h1v.s6.64f6cddb0d4b from=translated src=- shape=47a7eee2 vocab=375f6a6d
+-/
 theorem recipError_one_le_half {y : ℝ} (hy : y ∈ Ico (1 / 2 : ℝ) 1) :
     0 < recipError y 1 ∧ recipError y 1 ≤ 1 / 2 := by
   unfold recipError
@@ -174,14 +203,18 @@ theorem recipError_one_le_half {y : ℝ} (hy : y ∈ Ico (1 / 2 : ℝ) 1) :
 /-- The factored form (4.8), `x (2 − x y)`.-/
 def reciprocalStep' (y x : ℝ) : ℝ := x * (2 - x * y)
 
-/-- (4.5) and (4.8) are mathematically equivalent.-/
+/-- (4.5) and (4.8) are mathematically equivalent.
+@isnad1 id=eq.0h2v.s3.424368434101 from=translated src=- shape=6c8684e5 vocab=10865beb
+-/
 theorem reciprocalStep'_eq (y x : ℝ) : reciprocalStep' y x = reciprocalStep y x := by
   unfold reciprocalStep' reciprocalStep
   ring
 
 /-- (4.5) with the correction product `x (1 − x y)` computed with relative error `θ`:
 `1 − x̃ y = u² − θ u (x y)`.  The perturbation enters multiplied by `u`, so a relative error
-`θ = O(2^(−n/2))` on the product still leaves `u_{j+1} = O(2^(−n))`.-/
+`θ = O(2^(−n/2))` on the product still leaves `u_{j+1} = O(2^(−n))`.
+@isnad1 id=eq.0h3v.s6.10e0616eeae2 from=translated src=- shape=50d93bdc vocab=02d0a8a1
+-/
 theorem recipError_reciprocalStep_perturbed (y x θ : ℝ) :
     recipError y (x + x * (1 - x * y) * (1 + θ))
       = recipError y x ^ 2 - θ * recipError y x * (x * y) := by
@@ -189,7 +222,9 @@ theorem recipError_reciprocalStep_perturbed (y x θ : ℝ) :
   ring
 
 /-- (4.8) with the product computed with relative error `θ`: `1 − x̃ y = u² − θ (1 − u²)`.  The
-perturbation enters at full size, so `θ` must be `O(2^(−n))` for `u_{j+1} = O(2^(−n))`.-/
+perturbation enters at full size, so `θ` must be `O(2^(−n))` for `u_{j+1} = O(2^(−n))`.
+@isnad1 id=eq.0h3v.s7.db8004e73659 from=translated src=- shape=7520bec3 vocab=02d0a8a1
+-/
 theorem recipError_reciprocalStep'_perturbed (y x θ : ℝ) :
     recipError y (x * (2 - x * y) * (1 + θ))
       = recipError y x ^ 2 - θ * (1 - recipError y x ^ 2) := by
@@ -197,7 +232,9 @@ theorem recipError_reciprocalStep'_perturbed (y x θ : ℝ) :
   ring
 
 /-- The quantitative form for (4.5): `|u| ≤ ε`, `|θ| ≤ ε` and `ε ≤ 1` give `|u_{j+1}| ≤ 3 ε²`, so
-the correction product may be computed with the same (half) precision as the current error.-/
+the correction product may be computed with the same (half) precision as the current error.
+@isnad1 id=le.3h4v.s7.f4f8b96fa089 from=translated src=- shape=532f8671 vocab=2e7bc57e
+-/
 theorem abs_recipError_reciprocalStep_perturbed_le {y x θ ε : ℝ} (hε : ε ≤ 1)
     (hu : |recipError y x| ≤ ε) (hθ : |θ| ≤ ε) :
     |recipError y (x + x * (1 - x * y) * (1 + θ))| ≤ 3 * ε ^ 2 := by

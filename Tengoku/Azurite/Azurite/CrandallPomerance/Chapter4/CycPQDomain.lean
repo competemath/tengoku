@@ -268,7 +268,9 @@ private theorem monomials_linearIndependent :
     simpa using hab)
 
 include hpq in
-/-- **The embedding is injective** — the model is faithful.-/
+/-- **The embedding is injective** — the model is faithful.
+@isnad1 id=injectiv.1h2v.s8.eca1bc40ba81 from=translated src=- shape=d737fa60 vocab=564aec66
+-/
 theorem cycEmb_injective : Function.Injective (cycEmb p q) := by
   have hmap : ∀ ik : Fin (p - 1) × Fin (q - 1),
       cycEmb p q (cycBasis p q ik)
@@ -306,19 +308,25 @@ variable (hpq : p ≠ q)
 
 include hpq in
 /-- **The model is an integral domain** (distinct primes): it embeds
-into the cyclotomic field `ℚ(ζ_pq)`.-/
+into the cyclotomic field `ℚ(ζ_pq)`.
+@isnad1 id=isdomain.1h2v.s5.a019779993d3 from=translated src=- shape=3c3ec89b vocab=69546574
+-/
 theorem isDomain_cycPQ : IsDomain (CycPQ p q) :=
   Function.Injective.isDomain (cycEmb p q) (cycEmb_injective p q hpq)
 
 include hpq in
-/-- `ζ_p` is a genuine primitive `p`-th root of unity in the model.-/
+/-- `ζ_p` is a genuine primitive `p`-th root of unity in the model.
+@isnad1 id=isprimit.1h2v.s5.00ffd44b2ffd from=translated src=- shape=efc8b793 vocab=24f688cb
+-/
 theorem isPrimitiveRoot_zetaP : IsPrimitiveRoot (zetaP p q) p := by
   refine IsPrimitiveRoot.of_map_of_injective ?_ (cycEmb_injective p q hpq)
   rw [cycEmb_zetaP]
   exact etaQ_pow_spec p q
 
 include hpq in
-/-- `ζ_q` is a genuine primitive `q`-th root of unity in the model.-/
+/-- `ζ_q` is a genuine primitive `q`-th root of unity in the model.
+@isnad1 id=isprimit.1h2v.s5.a67aa377e953 from=translated src=- shape=57601afd vocab=3400deda
+-/
 theorem isPrimitiveRoot_zetaQ : IsPrimitiveRoot (zetaQ p q) q := by
   refine IsPrimitiveRoot.of_map_of_injective ?_ (cycEmb_injective p q hpq)
   rw [cycEmb_zetaQ]
@@ -327,7 +335,9 @@ theorem isPrimitiveRoot_zetaQ : IsPrimitiveRoot (zetaQ p q) q := by
 /-- **Integers are faithful in the model**: divisibility of integer
 constants in `ℤ[ζ_p, ζ_q]` is ordinary divisibility — this converts
 Lemma 4.4.3's ring-form hypothesis into the book's `n ∤ m`.  (No
-distinctness of `p, q` needed: this is pure content bookkeeping.)-/
+distinctness of `p, q` needed: this is pure content bookkeeping.)
+@isnad1 id=iff.0h4v.s7.2382b52b2277 from=translated src=- shape=77d523b0 vocab=c1684ca0
+-/
 theorem natCast_dvd_natCast_iff (n m : ℕ) :
     (n : CycPQ p q) ∣ (m : CycPQ p q) ↔ n ∣ m := by
   constructor

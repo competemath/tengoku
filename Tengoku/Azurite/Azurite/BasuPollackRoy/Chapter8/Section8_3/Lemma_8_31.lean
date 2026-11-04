@@ -36,7 +36,9 @@ variable {D : Type*} [CommRing D]
 
 private theorem sub_sub_add_aux (n ℓ j : ℕ) : n - 1 - (ℓ + j) = n - ℓ - 1 - j := by omega
 
-/-- **BPR Lemma 8.31.** Triangular reduction of `pdet`.-/
+/-- **BPR Lemma 8.31.** Triangular reduction of `pdet`.
+@isnad1 id=eq.4h5v.s8.a50c7804c309 from=translated src=- shape=658e4102 vocab=a2c30e8f
+-/
 theorem pdetRing_triangular {m n ℓ : ℕ} (hℓm : ℓ < m) (hmn : m ≤ n) (P : Fin m → D[X])
     (hdeg1 : ∀ r : Fin m, (r : ℕ) < ℓ → ∀ j, n - 1 - (r : ℕ) < j → (P r).coeff j = 0)
     (hdeg2 : ∀ r : Fin m, ℓ ≤ (r : ℕ) → ∀ j, n - 1 - ℓ < j → (P r).coeff j = 0) :

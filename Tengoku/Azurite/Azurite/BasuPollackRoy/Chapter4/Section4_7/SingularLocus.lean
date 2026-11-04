@@ -46,6 +46,9 @@ abbrev Sig (k : ℕ) : Type := (i : Fin 2) × Fin (kk k i + 1)
 /-- The block-`0` variable embedding `Fin (k+1) → Sig`, `j ↦ ⟨0, j⟩`.-/
 def emb0 (k : ℕ) : Fin (k + 1) → Sig k := fun j => ⟨0, j⟩
 
+/--
+@isnad1 id=injectiv.0h1v.s4.b13b2745d186 from=translated src=- shape=704cff23 vocab=8725f3f2
+-/
 theorem emb0_injective (k : ℕ) : Function.Injective (emb0 k) := by
   intro a b h
   simpa [emb0] using (Sigma.mk.inj_iff.mp h).2
@@ -82,16 +85,25 @@ section Generic
 
 variable {A : Type*} [CommSemiring A] {m : ℕ} {κ : Fin m → ℕ}
 
+/--
+@isnad1 id=ismultih.0h4v.s7.0163f22bd681 from=translated src=- shape=c82084d7 vocab=430dbd1b
+-/
 theorem isMultihomogeneous_zero (d : Fin m → ℕ) :
     IsMultihomogeneous (0 : MvPolynomial ((i : Fin m) × Fin (κ i + 1)) A) d := by
   intro i c hc
   simp [MvPolynomial.support_zero] at hc
 
+/--
+@isnad1 id=ismultih.2h6v.s7.5bf813f1816e from=translated src=- shape=c252a1a4 vocab=ed13319f
+-/
 theorem IsMultihomogeneous.of_support_subset
     {P Q : MvPolynomial ((i : Fin m) × Fin (κ i + 1)) A} {d : Fin m → ℕ}
     (h : Q.support ⊆ P.support) (hP : IsMultihomogeneous P d) : IsMultihomogeneous Q d :=
   fun i c hc => hP i c (h hc)
 
+/--
+@isnad1 id=ismultih.0h3v.s7.d597792d9117 from=translated src=- shape=ca786965 vocab=430dbd1b
+-/
 theorem isMultihomogeneous_one :
     IsMultihomogeneous (1 : MvPolynomial ((i : Fin m) × Fin (κ i + 1)) A) (fun _ : Fin m => 0) := by
   classical
@@ -101,6 +113,9 @@ theorem isMultihomogeneous_one :
     by_contra h; rw [ite_eq_right h] at hc; exact hc rfl
   simp
 
+/--
+@isnad1 id=ismultih.1h7v.s7.d0d02edf8a5e from=translated src=- shape=fc513fb6 vocab=bfc888bd
+-/
 theorem IsMultihomogeneous.sum {ι : Type*} (s : Finset ι)
     (f : ι → MvPolynomial ((i : Fin m) × Fin (κ i + 1)) A) (d : Fin m → ℕ)
     (h : ∀ i ∈ s, IsMultihomogeneous (f i) d) :
@@ -113,6 +128,9 @@ theorem IsMultihomogeneous.sum {ι : Type*} (s : Finset ι)
     exact (h a (Finset.mem_insert_self a s)).add
       (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
+/--
+@isnad1 id=ismultih.1h7v.s7.186a931e9857 from=translated src=- shape=ce468ea6 vocab=c668c4e7
+-/
 theorem IsMultihomogeneous.prod {ι : Type*} (s : Finset ι)
     (f : ι → MvPolynomial ((i : Fin m) × Fin (κ i + 1)) A) (D : ι → (Fin m → ℕ))
     (h : ∀ i ∈ s, IsMultihomogeneous (f i) (D i)) :
@@ -128,7 +146,9 @@ theorem IsMultihomogeneous.prod {ι : Type*} (s : Finset ι)
       (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
 /-- The determinant of a matrix of multihomogeneous entries, with the multidegree constant along
-each row, is multihomogeneous of the summed multidegree.-/
+each row, is multihomogeneous of the summed multidegree.
+@isnad1 id=ismultih.1h6v.s7.ee102bb4f2b5 from=translated src=- shape=76b1a774 vocab=61a4ae8b
+-/
 theorem isMultihomogeneous_det {B : Type*} [CommRing B] {n : ℕ}
     (N : Matrix (Fin n) (Fin n) (MvPolynomial ((i : Fin m) × Fin (κ i + 1)) B))
     (D : Fin n → (Fin m → ℕ)) (hN : ∀ i a, IsMultihomogeneous (N i a) (D i)) :
@@ -160,7 +180,9 @@ end Generic
 
 set_option linter.unusedSectionVars false in
 /-- Evaluating a renamed block-`0` polynomial at a sigma assignment reduces to evaluating the
-original at the block-`0` representative.-/
+original at the block-`0` representative.
+@isnad1 id=eq.0h4v.s13.39ca960d99ba from=translated src=- shape=986789a2 vocab=122f0b5f
+-/
 theorem eval_rename_emb0 (xp : (i : Fin 2) → complexProjectiveSpace R (kk k i))
     (Q : MvPolynomial (Fin (k + 1)) (Ri R)) :
     eval (fun s : Sig k => (xp s.1).rep s.2) (rename (emb0 k) Q)
@@ -169,11 +191,17 @@ theorem eval_rename_emb0 (xp : (i : Fin 2) → complexProjectiveSpace R (kk k i)
   rfl
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h4v.s12.5cce236abeda from=translated src=- shape=126d01ad vocab=3e70c6c5
+-/
 theorem aeval_eq_eval (x : Fin (k + 1) → Ri R) (Q : MvPolynomial (Fin (k + 1)) (Ri R)) :
     aeval x Q = eval x Q :=
   DFunLike.congr_fun (MvPolynomial.coe_aeval_eq_eval x) Q
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h6v.s13.bfaaab41838d from=translated src=- shape=1f68cb9b vocab=a9a238f8
+-/
 theorem evalCoords_Hpoly (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)) (d : Fin k → ℕ)
     (xp : (i : Fin 2) → complexProjectiveSpace R (kk k i)) (i : Fin k) :
     evalCoords (Hpoly P d i) (fun i => (xp i).rep)
@@ -192,6 +220,9 @@ theorem evalCoords_Hpoly (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)) (d : 
   rfl
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h7v.s11.2b55ede18a8c from=translated src=- shape=9236c314 vocab=a147e21a
+-/
 theorem evalCoords_entryPoly (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)) (d : Fin k → ℕ)
     (xp : (i : Fin 2) → complexProjectiveSpace R (kk k i)) (i : Fin k) (j : Fin (k + 1)) :
     evalCoords (entryPoly P d i j) (fun i => (xp i).rep)
@@ -217,6 +248,9 @@ theorem evalCoords_entryPoly (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)) (
   rfl
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h6v.s11.8270f4590e81 from=translated src=- shape=6c4c9f86 vocab=68eb6d18
+-/
 theorem evalCoords_minorPoly (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)) (d : Fin k → ℕ)
     (xp : (i : Fin 2) → complexProjectiveSpace R (kk k i)) (c : Fin (k + 1)) :
     evalCoords (minorPoly P d c) (fun i => (xp i).rep)
@@ -244,6 +278,9 @@ def singularLocus (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)) (d : Fin k �
   {xp | (∀ i, aeval (xp 0).rep (homotopyPoly P d ((xp 1).rep 0) ((xp 1).rep 1) i) = 0)
         ∧ (projJacobian (homotopyPoly P d ((xp 1).rep 0) ((xp 1).rep 1)) (xp 0)).rank < k}
 
+/--
+@isnad1 id=eq.1h4v.s8.e158268e76c0 from=translated src=- shape=bada456e vocab=ee1ffe43
+-/
 theorem singularLocus_eq_projZerOfFinset (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R))
     (d : Fin k → ℕ) (hP : ∀ i, (P i).IsHomogeneous (d i)) :
     singularLocus P d = projZerOfFinset (Ps P d) := by

@@ -66,7 +66,9 @@ open Polynomial
 of `Φ_(P^k)` and `l ≥ (P−1)P^(k−1)`,
 `z^l = −Σ_{i=1}^{P−1} z^(l − i·P^(k−1))` — adding `ζ^l` to the
 coefficient vector means decrementing the `P − 1` positions
-`l − i·P^(k−1)`.-/
+`l − i·P^(k−1)`.
+@isnad1 id=eq.4h5v.s8.036eb92a9f33 from=translated src=- shape=86574cef vocab=a2954842
+-/
 theorem zeta_pow_eq_neg_sum {R : Type _} [CommRing R] {P k : ℕ}
     (hp : P.Prime) (hk : 0 < k) {z : R}
     (hz : Polynomial.eval₂ (Int.castRingHom R) z

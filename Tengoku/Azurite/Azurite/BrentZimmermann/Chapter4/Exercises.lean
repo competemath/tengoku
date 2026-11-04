@@ -552,25 +552,36 @@ section Exercise41
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h1v.s5.8ba98794d78f from=translated src=- shape=e9d7c1c6 vocab=ff455fce
+-/
 theorem integral_zero : integral (0 : K⟦X⟧) = 0 := by
   ext n
   cases n with
   | zero => simp [coeff_integral_zero]
   | succ n => simp [coeff_integral_succ]
 
+/--
+@isnad1 id=eq.0h3v.s6.beba15d45240 from=translated src=- shape=667c5061 vocab=05e1d807
+-/
 theorem integral_add (F G : K⟦X⟧) : integral (F + G) = integral F + integral G := by
   ext n
   cases n with
   | zero => rw [coeff_integral_zero, map_add, coeff_integral_zero, coeff_integral_zero, add_zero]
   | succ n => simp only [map_add, coeff_integral_succ]; ring
 
+/--
+@isnad1 id=eq.0h3v.s6.9375439c9d75 from=translated src=- shape=667c5061 vocab=708dc17f
+-/
 theorem integral_sub (F G : K⟦X⟧) : integral (F - G) = integral F - integral G := by
   ext n
   cases n with
   | zero => rw [coeff_integral_zero, map_sub, coeff_integral_zero, coeff_integral_zero, sub_zero]
   | succ n => simp only [map_sub, coeff_integral_succ]; ring
 
-/-- Integration raises the order of vanishing by one.-/
+/-- Integration raises the order of vanishing by one.
+@isnad1 id=dvd.1h3v.s7.ff921791356c from=translated src=- shape=911cd138 vocab=15d8b119
+-/
 theorem X_pow_dvd_integral {n : ℕ} {F : K⟦X⟧} (h : X ^ n ∣ F) : X ^ (n + 1) ∣ integral F := by
   rw [X_pow_dvd_iff] at h ⊢
   intro m hm
@@ -579,7 +590,9 @@ theorem X_pow_dvd_integral {n : ℕ} {F : K⟦X⟧} (h : X ^ n ∣ F) : X ^ (n +
   | succ m => rw [coeff_integral_succ, h m (by omega), zero_div]
 
 /-- The Newton doubling cost: if `M(2m) ≥ 2M(m)` (the "reasonable smoothness condition"), the
-precisions `1, 2, 4, …, 2^(L−1)` together cost at most `M(2^L)`.-/
+precisions `1, 2, 4, …, 2^(L−1)` together cost at most `M(2^L)`.
+@isnad1 id=le.2h2v.s6.260d21881273 from=translated src=- shape=58e0b155 vocab=b4536cdd
+-/
 theorem sum_cost_le (M : ℕ → ℝ) (hM0 : ∀ m, 0 ≤ M m) (hM : ∀ m, 2 * M m ≤ M (2 * m)) (L : ℕ) :
     ∑ k ∈ Finset.range L, M (2 ^ k) ≤ M (2 ^ L) := by
   induction L with
@@ -594,7 +607,9 @@ section Exercise42
 
 variable {K : Type*} [Field K] [CharZero K]
 
-/-- The odd coefficients of `s(x) s(−x)` vanish.-/
+/-- The odd coefficients of `s(x) s(−x)` vanish.
+@isnad1 id=eq.0h3v.s8.3dbbb7e470d8 from=translated src=- shape=9faa706c vocab=52a8f9a5
+-/
 theorem coeff_odd_mul_rescale_neg_one (s : K⟦X⟧) (j : ℕ) :
     coeff (2 * j + 1) (s * rescale (-1) s) = 0 := by
   rw [coeff_mul]
@@ -624,17 +639,25 @@ theorem coeff_odd_mul_rescale_neg_one (s : K⟦X⟧) (j : ℕ) :
 noncomputable def oddEvenT (s : K⟦X⟧) : K⟦X⟧ := mk fun j => coeff (2 * j) (s * rescale (-1) s)
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h3v.s9.a6b2aa4f4fcf from=translated src=- shape=e90073e4 vocab=da2752b4
+-/
 theorem coeff_oddEvenT (s : K⟦X⟧) (j : ℕ) :
     coeff j (oddEvenT s) = coeff (2 * j) (s * rescale (-1) s) :=
   coeff_mk _ _
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h3v.s7.32e485a87cef from=translated src=- shape=bd2401f0 vocab=ffcd67be
+-/
 theorem constantCoeff_rescale' (a : K) (f : K⟦X⟧) :
     constantCoeff (rescale a f) = constantCoeff f := by
   rw [← coeff_zero_eq_constantCoeff_apply, coeff_rescale, pow_zero, one_mul,
     coeff_zero_eq_constantCoeff_apply]
 
-/-- `s(x) s(−x) = t(x²)`.-/
+/-- `s(x) s(−x) = t(x²)`.
+@isnad1 id=eq.0h2v.s8.33793ad71779 from=translated src=- shape=37dc4178 vocab=e697b456
+-/
 theorem mul_rescale_neg_one_eq_expand (s : K⟦X⟧) :
     s * rescale (-1) s = expand 2 two_ne_zero (oddEvenT s) := by
   ext n
@@ -646,11 +669,16 @@ theorem mul_rescale_neg_one_eq_expand (s : K⟦X⟧) :
     exact coeff_odd_mul_rescale_neg_one s j
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h2v.s7.9d4e30a0aef0 from=translated src=- shape=f6fb16f9 vocab=8f8b0a4e
+-/
 theorem constantCoeff_oddEvenT (s : K⟦X⟧) : constantCoeff (oddEvenT s) = constantCoeff s ^ 2 := by
   rw [← coeff_zero_eq_constantCoeff_apply, coeff_oddEvenT, mul_zero, coeff_zero_eq_constantCoeff,
     map_mul, constantCoeff_rescale', sq]
 
-/-- The odd–even reciprocal: `1/s = s(−x) · (1/t)(x²)`.-/
+/-- The odd–even reciprocal: `1/s = s(−x) · (1/t)(x²)`.
+@isnad1 id=eq.1h2v.s8.3168be3248df from=translated src=- shape=7efe68b5 vocab=20e6eeb9
+-/
 theorem inv_eq_rescale_mul_expand_inv {s : K⟦X⟧} (hs : constantCoeff s ≠ 0) :
     s⁻¹ = rescale (-1) s * expand 2 two_ne_zero (oddEvenT s)⁻¹ := by
   have ht : constantCoeff (oddEvenT s) ≠ 0 := by rw [constantCoeff_oddEvenT]; exact pow_ne_zero 2 hs
@@ -661,7 +689,9 @@ theorem inv_eq_rescale_mul_expand_inv {s : K⟦X⟧} (hs : constantCoeff s ≠ 0
         rw [hW, mul_one]
     _ = _ := by rw [← mul_assoc, PowerSeries.inv_mul_cancel s hs, one_mul]
 
-/-- Precision doubling: an approximation of `1/t` modulo `x^m` yields `1/s` modulo `x^(2m)`.-/
+/-- Precision doubling: an approximation of `1/t` modulo `x^m` yields `1/s` modulo `x^(2m)`.
+@isnad1 id=dvd.2h4v.s9.a9cd20cab7a0 from=translated src=- shape=c8b54235 vocab=75d513ea
+-/
 theorem X_pow_dvd_inv_sub_oddEven {s u : K⟦X⟧} (hs : constantCoeff s ≠ 0) {m : ℕ}
     (hu : X ^ m ∣ (oddEvenT s)⁻¹ - u) :
     X ^ (2 * m) ∣ s⁻¹ - rescale (-1) s * expand 2 two_ne_zero u := by
@@ -671,7 +701,9 @@ theorem X_pow_dvd_inv_sub_oddEven {s u : K⟦X⟧} (hs : constantCoeff s ≠ 0) 
   exact h.mul_left _
 
 /-- The cost recurrence of a halving scheme: if `T(2^(k+1)) ≤ T(2^k) + c M(2^(k+1))` and
-`M(2^(k+1)) ≥ 2 M(2^k)` (smoothness), then `T(2^L) ≤ T(1) + 2c M(2^L)`.-/
+`M(2^(k+1)) ≥ 2 M(2^k)` (smoothness), then `T(2^L) ≤ T(1) + 2c M(2^L)`.
+@isnad1 id=le.4h4v.s8.4688ac41aca4 from=translated src=- shape=a71e67f8 vocab=cef4cf1d
+-/
 theorem cost_recurrence_le (T M : ℕ → ℝ) {c : ℝ} (hc : 0 ≤ c) (hM0 : ∀ m, 0 ≤ M m)
     (hM : ∀ k, 2 * M (2 ^ k) ≤ M (2 ^ (k + 1)))
     (hT : ∀ k, T (2 ^ (k + 1)) ≤ T (2 ^ k) + c * M (2 ^ (k + 1))) (L : ℕ) :
@@ -694,7 +726,9 @@ noncomputable def taylorInverseStep (g h : ℝ → ℝ) (y : ℝ) (k : ℕ) (xj 
   xj + ∑ m ∈ Finset.Ico 1 k, (y - h xj) ^ m * iteratedDeriv m g (h xj) / m.factorial
 
 /-- The step is the degree-`(k−1)` Taylor polynomial of `g` at `y_j`, evaluated at `y`
-(`g(y_j) = x_j` supplies the constant term).-/
+(`g(y_j) = x_j` supplies the constant term).
+@isnad1 id=eq.4h5v.s6.d3831141aa30 from=translated src=- shape=1263e639 vocab=50a1d247
+-/
 theorem taylorInverseStep_eq_taylor {g h : ℝ → ℝ} {y xj : ℝ} {k : ℕ} (hg : ContDiff ℝ k g)
     (hgh : g (h xj) = xj) (hk : 1 ≤ k) (hne : h xj ≠ y) :
     taylorInverseStep g h y k xj = taylorWithinEval g (k - 1) (uIcc (h xj) y) (h xj) y := by
@@ -714,7 +748,9 @@ theorem taylorInverseStep_eq_taylor {g h : ℝ → ℝ} {y xj : ℝ} {k : ℕ} (
   exact Finset.sum_congr rfl fun m hm => by rw [hw m hm, smul_eq_mul]; ring
 
 /-- The Lagrange remainder: `g(y) − x_{j+1} = g^{(k)}(ξ) (y − y_j)^k / k!` for some `ξ` strictly
-between `y_j` and `y`.-/
+between `y_j` and `y`.
+@isnad1 id=ex.4h5v.s7.ba8260c5b860 from=translated src=- shape=2896a52b vocab=03edb1d4
+-/
 theorem taylorInverseStep_sub {g h : ℝ → ℝ} {y xj : ℝ} {k : ℕ} (hg : ContDiff ℝ k g)
     (hgh : g (h xj) = xj) (hk : 1 ≤ k) (hne : h xj ≠ y) :
     ∃ ξ ∈ uIoo (h xj) y,
@@ -726,7 +762,9 @@ theorem taylorInverseStep_sub {g h : ℝ → ℝ} {y xj : ℝ} {k : ℕ} (hg : C
   rw [taylorInverseStep_eq_taylor hg hgh hk hne, Nat.add_sub_cancel]
   exact h
 
-/-- `|g(y) − x_{j+1}| ≤ M |y − y_j|^k / k!` when `|g^{(k)}| ≤ M` between `y_j` and `y`.-/
+/-- `|g(y) − x_{j+1}| ≤ M |y − y_j|^k / k!` when `|g^{(k)}| ≤ M` between `y_j` and `y`.
+@isnad1 id=le.4h6v.s7.606f6e032910 from=translated src=- shape=4f7dc3f0 vocab=408224f7
+-/
 theorem abs_sub_taylorInverseStep_le {g h : ℝ → ℝ} {y xj M : ℝ} {k : ℕ} (hg : ContDiff ℝ k g)
     (hgh : g (h xj) = xj) (hk : 1 ≤ k)
     (hM : ∀ ξ ∈ uIcc (h xj) y, |iteratedDeriv k g ξ| ≤ M) :
@@ -747,7 +785,9 @@ theorem abs_sub_taylorInverseStep_le {g h : ℝ → ℝ} {y xj M : ℝ} {k : ℕ
     exact hM ξ hξ'
 
 /-- Order `k`: with `x = g(y)`, `y = h(x)`, and `h` Lipschitz with constant `L` between `x` and
-`x_j`, `|x − x_{j+1}| ≤ (M L^k / k!) |x − x_j|^k`.-/
+`x_j`, `|x − x_{j+1}| ≤ (M L^k / k!) |x − x_j|^k`.
+@isnad1 id=le.6h7v.s8.4dcdee5cf5e1 from=translated src=- shape=588860de vocab=408224f7
+-/
 theorem taylorInverseStep_order {g h : ℝ → ℝ} {x xj M L : ℝ} {k : ℕ} (hg : ContDiff ℝ k g)
     (hgx : g (h x) = x) (hgh : g (h xj) = xj) (hk : 1 ≤ k)
     (hLip : |h x - h xj| ≤ L * |x - xj|)
@@ -764,7 +804,9 @@ theorem taylorInverseStep_order {g h : ℝ → ℝ} {x xj M L : ℝ} {k : ℕ} (
     _ = M * L ^ k / k.factorial * |x - xj| ^ k := by ring
 
 /-- Convergence of a `k`-th order iteration: if `e_{j+1} ≤ C e_j^k` whenever `e_j ≤ r`, with
-`C r^(k−1) ≤ 1/2` and `e₀ ≤ r`, then `e_j ≤ r / 2^j`.-/
+`C r^(k−1) ≤ 1/2` and `e₀ ≤ r`, then `e_j ≤ r / 2^j`.
+@isnad1 id=le.7h5v.s7.40892628388d from=translated src=- shape=5638d98e vocab=5df71cf7
+-/
 theorem iterate_le_of_order {e : ℕ → ℝ} {C r : ℝ} {k : ℕ} (hk : 1 ≤ k) (hC : 0 ≤ C) (hr : 0 ≤ r)
     (he0 : ∀ j, 0 ≤ e j) (hstep : ∀ j, e j ≤ r → e (j + 1) ≤ C * e j ^ k)
     (hCr : C * r ^ (k - 1) ≤ 1 / 2) (h0 : e 0 ≤ r) (j : ℕ) : e j ≤ r / 2 ^ j := by
@@ -799,11 +841,20 @@ def forwardHorner (a : ℕ → K) (y : K) : ℕ → K
   | 0 => a 0
   | j + 1 => forwardHorner a y j * y + a (j + 1)
 
+/--
+@isnad1 id=eq.0h3v.s4.131bfc36c483 from=translated src=- shape=f9d4a09f vocab=2ade4e8b
+-/
 theorem forwardHorner_zero (a : ℕ → K) (y : K) : forwardHorner a y 0 = a 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.358e4597e192 from=translated src=- shape=05a618b0 vocab=7b136f61
+-/
 theorem forwardHorner_succ (a : ℕ → K) (y : K) (j : ℕ) :
     forwardHorner a y (j + 1) = forwardHorner a y j * y + a (j + 1) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.d7550df7f889 from=translated src=- shape=2c625041 vocab=5be47940
+-/
 theorem forwardHorner_eq_sum (a : ℕ → K) (y : K) (j : ℕ) :
     forwardHorner a y j = ∑ i ∈ range (j + 1), a i * y ^ (j - i) := by
   induction j with
@@ -816,7 +867,9 @@ theorem forwardHorner_eq_sum (a : ℕ → K) (y : K) (j : ℕ) :
     have : i ≤ j := Nat.lt_succ_iff.mp (mem_range.mp hi)
     rw [mul_assoc, ← pow_succ, show j + 1 - i = j - i + 1 by omega]
 
-/-- The partial sum of the series is `x^j T_j` with `y = 1/x`.-/
+/-- The partial sum of the series is `x^j T_j` with `y = 1/x`.
+@isnad1 id=eq.1h4v.s7.4631e4bc6f2e from=translated src=- shape=ef981f52 vocab=3494b3fa
+-/
 theorem sum_eq_pow_mul_forwardHorner (a : ℕ → K) {x : K} (hx : x ≠ 0) (j : ℕ) :
     ∑ i ∈ range (j + 1), a i * x ^ i = x ^ j * forwardHorner a x⁻¹ j := by
   rw [forwardHorner_eq_sum, mul_sum]
@@ -826,7 +879,9 @@ theorem sum_eq_pow_mul_forwardHorner (a : ℕ → K) {x : K} (hx : x ≠ 0) (j :
   have h := mul_inv_cancel₀ (pow_ne_zero (j - i) hx)
   linear_combination (-(a i * x ^ i)) * h
 
-/-- The series converges absolutely for `|x| < 1` and bounded coefficients.-/
+/-- The series converges absolutely for `|x| < 1` and bounded coefficients.
+@isnad1 id=summable.2h2v.s6.794d4123dac8 from=translated src=- shape=6244bf74 vocab=43dcd265
+-/
 theorem summable_abs_term {a : ℕ → ℝ} {x : ℝ} (hx : |x| < 1) (ha : Antitone fun i => |a i|) :
     Summable fun i => |a i * x ^ i| :=
   ((summable_geometric_of_lt_one (abs_nonneg x) hx).mul_left |a 0|).of_nonneg_of_le
@@ -835,7 +890,9 @@ theorem summable_abs_term {a : ℕ → ℝ} {x : ℝ} (hx : |x| < 1) (ha : Antit
       exact mul_le_mul_of_nonneg_right (ha (Nat.zero_le i)) (by positivity)
 
 /-- The tail after `j` terms: `|∑_{i>j} a_i x^i| ≤ 2|a_{j+1}||x|^(j+1)` for decreasing `|a_i|` and
-`|x| < 1/2`.-/
+`|x| < 1/2`.
+@isnad1 id=le.2h3v.s7.9e3e0444dbd2 from=translated src=- shape=f03991a0 vocab=539d4992
+-/
 theorem abs_tsum_sub_sum_le_two_mul {a : ℕ → ℝ} {x : ℝ} (hx : |x| < 1 / 2)
     (ha : Antitone fun i => |a i|) (j : ℕ) :
     |∑' i, a i * x ^ i - ∑ i ∈ range (j + 1), a i * x ^ i| ≤ 2 * |a (j + 1)| * |x| ^ (j + 1) := by
@@ -869,7 +926,9 @@ theorem abs_tsum_sub_sum_le_two_mul {a : ℕ → ℝ} {x : ℝ} (hx : |x| < 1 / 
         linarith
     _ = 2 * |a (j + 1)| * |x| ^ (j + 1) := by ring
 
-/-- The tail is at most the last term added: `|∑_{i>j} a_i x^i| ≤ |a_j x^j|`.-/
+/-- The tail is at most the last term added: `|∑_{i>j} a_i x^i| ≤ |a_j x^j|`.
+@isnad1 id=le.2h3v.s7.e75ee75e5b2d from=translated src=- shape=82b9b610 vocab=539d4992
+-/
 theorem abs_tsum_sub_sum_le_term {a : ℕ → ℝ} {x : ℝ} (hx : |x| < 1 / 2)
     (ha : Antitone fun i => |a i|) (j : ℕ) :
     |∑' i, a i * x ^ i - ∑ i ∈ range (j + 1), a i * x ^ i| ≤ |a j * x ^ j| := by
@@ -881,13 +940,17 @@ theorem abs_tsum_sub_sum_le_term {a : ℕ → ℝ} {x : ℝ} (hx : |x| < 1 / 2)
   have h4 := mul_le_mul_of_nonneg_left hx.le (mul_nonneg (abs_nonneg (a j)) h2)
   nlinarith [h3, h4]
 
-/-- The dynamic test in terms of `y = 1/x`: `|a_j| ≤ ε |y|^j` means `|a_j x^j| ≤ ε`.-/
+/-- The dynamic test in terms of `y = 1/x`: `|a_j| ≤ ε |y|^j` means `|a_j x^j| ≤ ε`.
+@isnad1 id=iff.1h4v.s6.d8217b7e0321 from=translated src=- shape=5d514cf7 vocab=1e0521a7
+-/
 theorem stop_criterion_iff {a : ℕ → ℝ} {x ε : ℝ} (hx : x ≠ 0) (j : ℕ) :
     |a j| ≤ ε * |x⁻¹| ^ j ↔ |a j * x ^ j| ≤ ε := by
   have hpos : 0 < |x| ^ j := by positivity
   rw [abs_inv, inv_pow, abs_mul, abs_pow, ← div_eq_mul_inv, le_div_iff₀ hpos]
 
-/-- Stopping when `|a_j x^j| ≤ ε` returns `x^j T_j` within `ε` of the series.-/
+/-- Stopping when `|a_j x^j| ≤ ε` returns `x^j T_j` within `ε` of the series.
+@isnad1 id=le.4h4v.s7.443d5b777565 from=translated src=- shape=81c99583 vocab=81be6c57
+-/
 theorem abs_tsum_sub_forwardHorner_le {a : ℕ → ℝ} {x ε : ℝ} (hx0 : x ≠ 0) (hx : |x| < 1 / 2)
     (ha : Antitone fun i => |a i|) {j : ℕ} (hstop : |a j * x ^ j| ≤ ε) :
     |∑' i, a i * x ^ i - x ^ j * forwardHorner a x⁻¹ j| ≤ ε := by
@@ -901,7 +964,9 @@ section Exercise45
 open Finset
 
 /-- With `|r| ≤ 2^(−m)`, `d` terms of the exponential series with `m·d ≥ n + 2` give
-`exp r` to within `2^(−n)`.-/
+`exp r` to within `2^(−n)`.
+@isnad1 id=le.2h4v.s7.4e44d48e661c from=translated src=- shape=7fe25f27 vocab=6720c14f
+-/
 theorem exp_series_terms_of_small {r : ℝ} {m d n : ℕ} (hr : |r| ≤ (1 / 2) ^ m)
     (hd : n + 2 ≤ m * d) :
     |Real.exp r - ∑ i ∈ range d, r ^ i / i.factorial| ≤ (1 / 2) ^ n := by
@@ -922,12 +987,16 @@ theorem exp_series_terms_of_small {r : ℝ} {m d n : ℕ} (hr : |r| ≤ (1 / 2) 
         linarith
 
 /-- The cost model: `k` doublings plus `d ≈ n/(k − j)` series terms, each one multiplication;
-`n/m + m ≥ 2√n` for `m = k − j > 0`.-/
+`n/m + m ≥ 2√n` for `m = k − j > 0`.
+@isnad1 id=le.2h2v.s6.673113c5b19d from=translated src=- shape=8ade4d81 vocab=71e7111e
+-/
 theorem doubling_cost_ge {n m : ℝ} (hn : 0 ≤ n) (hm : 0 < m) : 2 * Real.sqrt n ≤ n / m + m := by
   have := two_sqrt_le_add_div hn hm
   linarith
 
-/-- Equality at `m = √n`: the optimal reduction is to `x/2^k ≈ 2^(−√n)`.-/
+/-- Equality at `m = √n`: the optimal reduction is to `x/2^k ≈ 2^(−√n)`.
+@isnad1 id=eq.0h1v.s5.d6fb8846a07e from=translated src=- shape=9d6b586a vocab=1090eb45
+-/
 theorem doubling_cost_sqrt (n : ℝ) : n / Real.sqrt n + Real.sqrt n = 2 * Real.sqrt n := by
   rw [Real.div_sqrt, two_mul]
 
@@ -937,6 +1006,9 @@ section Exercise46
 
 open Finset Set
 
+/--
+@isnad1 id=eq.0h1v.s4.7be34e97ff9b from=translated src=- shape=33022f64 vocab=98adcde0
+-/
 theorem iteratedDeriv_exp (m : ℕ) : iteratedDeriv m Real.exp = Real.exp := by
   induction m with
   | zero => exact iteratedDeriv_zero
@@ -946,7 +1018,9 @@ theorem iteratedDeriv_exp (m : ℕ) : iteratedDeriv m Real.exp = Real.exp := by
 noncomputable def expViaLogStep (k : ℕ) (x z : ℝ) : ℝ :=
   z * ∑ m ∈ range k, (x - Real.log z) ^ m / m.factorial
 
-/-- It is Exercise 4.3's iteration with `g = exp`, `h = ln` (for `z > 0`).-/
+/-- It is Exercise 4.3's iteration with `g = exp`, `h = ln` (for `z > 0`).
+@isnad1 id=eq.2h3v.s5.37813ccc80f2 from=translated src=- shape=65d33f35 vocab=bc0209a5
+-/
 theorem expViaLogStep_eq_taylorInverseStep {k : ℕ} (hk : 1 ≤ k) {x z : ℝ} (hz : 0 < z) :
     expViaLogStep k x z = taylorInverseStep Real.exp Real.log x k z := by
   unfold expViaLogStep taylorInverseStep
@@ -957,7 +1031,9 @@ theorem expViaLogStep_eq_taylorInverseStep {k : ℕ} (hk : 1 ≤ k) {x z : ℝ} 
   rw [iteratedDeriv_exp, Real.exp_log hz]
   ring
 
-/-- `|ln a − ln b| ≤ |a − b| / min a b` for `a, b > 0`.-/
+/-- `|ln a − ln b| ≤ |a − b| / min a b` for `a, b > 0`.
+@isnad1 id=le.2h2v.s6.0b7303500589 from=translated src=- shape=17077720 vocab=7e7d80af
+-/
 theorem abs_log_sub_log_le {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     |Real.log a - Real.log b| ≤ |a - b| / min a b := by
   wlog hab : a ≤ b generalizing a b
@@ -971,7 +1047,9 @@ theorem abs_log_sub_log_le {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
   exact this
 
 /-- The relative error of one step: with `ρ = |exp x − z| / exp x ≤ 1/2`,
-`|exp x − z'| / exp x ≤ (3·2^(k−1)/k!) ρ^k`.-/
+`|exp x − z'| / exp x ≤ (3·2^(k−1)/k!) ρ^k`.
+@isnad1 id=le.2h3v.s7.ae378e8c0cc8 from=translated src=- shape=59adeade vocab=40923e95
+-/
 theorem expViaLogStep_relative_error {k : ℕ} (hk : 1 ≤ k) {x z : ℝ}
     (hz : |Real.exp x - z| ≤ Real.exp x / 2) :
     |Real.exp x - expViaLogStep k x z| / Real.exp x
@@ -1010,7 +1088,9 @@ theorem expViaLogStep_relative_error {k : ℕ} (hk : 1 ≤ k) {x z : ℝ}
   ring
 
 /-- Precision doubling by a factor `k`: with `k·T(m/k) ≤ T(m)` (smoothness), the costs at
-precisions `n, n/k, n/k², …` sum to at most `T(n) · k/(k−1)`.-/
+precisions `n, n/k, n/k², …` sum to at most `T(n) · k/(k−1)`.
+@isnad1 id=le.3h4v.s7.dc6b467d03f7 from=translated src=- shape=f9714513 vocab=a7bdb361
+-/
 theorem geometric_cost_le (T : ℝ → ℝ) {k : ℝ} (hk : 1 < k) (hT0 : ∀ m, 0 ≤ T m)
     (hT : ∀ m, k * T (m / k) ≤ T m) (n : ℝ) (L : ℕ) :
     ∑ i ∈ range L, T (n / k ^ i) ≤ T n * (k / (k - 1)) := by
@@ -1042,14 +1122,18 @@ end Exercise46
 
 section Exercise47
 
-/-- Bernoulli: a relative error `ε ≥ 0` is amplified at least `2^k`-fold by `k` squarings.-/
+/-- Bernoulli: a relative error `ε ≥ 0` is amplified at least `2^k`-fold by `k` squarings.
+@isnad1 id=le.1h2v.s6.96c4753ff202 from=translated src=- shape=67b029d7 vocab=c0564ed8
+-/
 theorem two_pow_mul_le_one_add_pow_sub_one {ε : ℝ} (hε : 0 ≤ ε) (k : ℕ) :
     2 ^ k * ε ≤ (1 + ε) ^ 2 ^ k - 1 := by
   have h := one_add_mul_le_pow (show (-2 : ℝ) ≤ ε by linarith) (2 ^ k)
   push_cast at h
   linarith
 
-/-- … and at most `2·2^k`-fold while `2^k ε ≤ 1`.-/
+/-- … and at most `2·2^k`-fold while `2^k ε ≤ 1`.
+@isnad1 id=le.2h2v.s7.9bab720777eb from=translated src=- shape=f4e513fd vocab=c0564ed8
+-/
 theorem one_add_pow_sub_one_le_two_mul {ε : ℝ} (hε : 0 ≤ ε) {k : ℕ} (hk : 2 ^ k * ε ≤ 1) :
     (1 + ε) ^ 2 ^ k - 1 ≤ 2 * (2 ^ k * ε) := by
   have h1 : (1 + ε) ^ 2 ^ k ≤ Real.exp (2 ^ k * ε) := by
@@ -1059,7 +1143,9 @@ theorem one_add_pow_sub_one_le_two_mul {ε : ℝ} (hε : 0 ≤ ε) {k : ℕ} (hk
   linarith
 
 /-- In bits: if `exp(x/2^k)` carries a relative error `ε`, the result carries at least
-`2^k ε`, so `log₂(1/error) ≤ log₂(1/ε) − k`: `k` bits are lost.-/
+`2^k ε`, so `log₂(1/error) ≤ log₂(1/ε) − k`: `k` bits are lost.
+@isnad1 id=le.1h2v.s6.01a6c09aba3a from=translated src=- shape=c7a72c99 vocab=380dafce
+-/
 theorem logb_one_add_pow_sub_one_ge {ε : ℝ} (hε : 0 < ε) (k : ℕ) :
     (k : ℝ) + Real.logb 2 ε ≤ Real.logb 2 ((1 + ε) ^ 2 ^ k - 1) := by
   have h := two_pow_mul_le_one_add_pow_sub_one hε.le k
@@ -1076,7 +1162,9 @@ section Exercise48
 open Finset
 
 /-- The sharp one-step bound: for `x ≥ 0` and `|ε| ≤ 1`, the relative error after one `expm1`
-doubling is at most `|ε|(1 + expm1 x)` (compare `abs_expm1_two_mul_relError_le`).-/
+doubling is at most `|ε|(1 + expm1 x)` (compare `abs_expm1_two_mul_relError_le`).
+@isnad1 id=le.2h2v.s7.900500b638ec from=translated src=- shape=3053f6ba vocab=4b78e76f
+-/
 theorem abs_expm1_relError_step_le {x ε : ℝ} (hx : 0 ≤ x) (hε : |ε| ≤ 1) :
     |ε * (2 * (expm1 x + 1) + expm1 x * ε) / (expm1 x + 2)| ≤ |ε| * (1 + expm1 x) := by
   have he : 0 ≤ expm1 x := by unfold expm1; linarith [Real.one_le_exp_iff.mpr hx]
@@ -1097,7 +1185,9 @@ def expm1DoublingSeq (t : ℝ) : ℕ → ℝ
   | 0 => t
   | i + 1 => expm1DoublingSeq t i * (expm1DoublingSeq t i + 2)
 
-/-- Started exactly, the chain computes `expm1 (r 2^k)`.-/
+/-- Started exactly, the chain computes `expm1 (r 2^k)`.
+@isnad1 id=eq.0h2v.s5.e749ed39ad8b from=translated src=- shape=b6c89900 vocab=ca927ced
+-/
 theorem expm1DoublingSeq_exact (r : ℝ) (k : ℕ) :
     expm1DoublingSeq (expm1 r) k = expm1 (r * 2 ^ k) := by
   induction k with
@@ -1105,7 +1195,9 @@ theorem expm1DoublingSeq_exact (r : ℝ) (k : ℕ) :
   | succ k ih =>
     rw [expm1DoublingSeq, ih, pow_succ, ← mul_assoc, mul_comm (r * 2 ^ k) 2, expm1_two_mul]
 
-/-- `∑_{i<k} expm1 (r 2^i) ≤ r 2^k exp(r 2^k)` for `r ≥ 0` (so `≤ x eˣ` with `x = r 2^k`).-/
+/-- `∑_{i<k} expm1 (r 2^i) ≤ r 2^k exp(r 2^k)` for `r ≥ 0` (so `≤ x eˣ` with `x = r 2^k`).
+@isnad1 id=le.1h2v.s6.f8d0f8a63e4d from=translated src=- shape=59cd4b32 vocab=bc60128a
+-/
 theorem sum_expm1_two_pow_le {r : ℝ} (hr : 0 ≤ r) (k : ℕ) :
     ∑ i ∈ range k, expm1 (r * 2 ^ i) ≤ r * 2 ^ k * Real.exp (r * 2 ^ k) := by
   have hterm : ∀ i ∈ range k, expm1 (r * 2 ^ i) ≤ r * 2 ^ i * Real.exp (r * 2 ^ k) := by
@@ -1129,7 +1221,9 @@ section Exercise49
 /-- `log1p x = ln(1 + x)`.-/
 noncomputable def log1p (x : ℝ) : ℝ := Real.log (1 + x)
 
-/-- The reduced argument in cancellation-free form: `x/(1 + √(1+x)) = √(1+x) − 1`.-/
+/-- The reduced argument in cancellation-free form: `x/(1 + √(1+x)) = √(1+x) − 1`.
+@isnad1 id=eq.1h1v.s6.47b7445450e4 from=translated src=- shape=afd28e9b vocab=2761902b
+-/
 theorem div_one_add_sqrt_eq {x : ℝ} (hx : -1 < x) :
     x / (1 + Real.sqrt (1 + x)) = Real.sqrt (1 + x) - 1 := by
   have h1 : 0 ≤ 1 + x := by linarith
@@ -1137,7 +1231,9 @@ theorem div_one_add_sqrt_eq {x : ℝ} (hx : -1 < x) :
   rw [div_eq_iff (by positivity)]
   linear_combination -hs2
 
-/-- Exercise 4.9: `log1p x = 2 log1p (x/(1 + √(1+x)))` for `x > −1`.-/
+/-- Exercise 4.9: `log1p x = 2 log1p (x/(1 + √(1+x)))` for `x > −1`.
+@isnad1 id=eq.1h1v.s6.12a890b6d4e8 from=translated src=- shape=90a6a964 vocab=bcd5ef7e
+-/
 theorem log1p_reduction {x : ℝ} (hx : -1 < x) :
     log1p x = 2 * log1p (x / (1 + Real.sqrt (1 + x))) := by
   rw [div_one_add_sqrt_eq hx]
@@ -1147,19 +1243,26 @@ theorem log1p_reduction {x : ℝ} (hx : -1 < x) :
   calc Real.log (1 + x) = Real.log (Real.sqrt (1 + x) ^ 2) := by rw [Real.sq_sqrt h1.le]
     _ = 2 * Real.log (Real.sqrt (1 + x)) := by rw [Real.log_pow]; norm_num
 
-/-- The reduced argument is at most half the original (for `x ≥ 0`).-/
+/-- The reduced argument is at most half the original (for `x ≥ 0`).
+@isnad1 id=le.1h1v.s5.ba74875d03f0 from=translated src=- shape=3020a3ba vocab=e206b883
+-/
 theorem sqrt_sub_one_le_half {x : ℝ} (hx : 0 ≤ x) : Real.sqrt (1 + x) - 1 ≤ x / 2 := by
   have : Real.sqrt (1 + x) ≤ 1 + x / 2 := by
     rw [Real.sqrt_le_left (by positivity)]
     nlinarith
   linarith
 
+/--
+@isnad1 id=le.1h1v.s5.ae8a0b304554 from=translated src=- shape=a7df263e vocab=c24bb1bf
+-/
 theorem one_le_sqrt_one_add {x : ℝ} (hx : 0 ≤ x) : 1 ≤ Real.sqrt (1 + x) := by
   rw [Real.le_sqrt zero_le_one (by positivity)]
   linarith
 
 /-- The reduction does not amplify relative errors: for `0 < x ≤ y`,
-`(r(y) − r(x))/r(x) ≤ (y − x)/x` with `r(x) = √(1+x) − 1`.-/
+`(r(y) − r(x))/r(x) ≤ (y − x)/x` with `r(x) = √(1+x) − 1`.
+@isnad1 id=le.2h2v.s7.ab075cbc3fa6 from=translated src=- shape=7eb43e95 vocab=e89f89bd
+-/
 theorem reduced_relError_le {x y : ℝ} (hx : 0 < x) (hxy : x ≤ y) :
     ((Real.sqrt (1 + y) - 1) - (Real.sqrt (1 + x) - 1)) / (Real.sqrt (1 + x) - 1)
       ≤ (y - x) / x := by
@@ -1182,7 +1285,9 @@ theorem reduced_relError_le {x y : ℝ} (hx : 0 < x) (hxy : x ≤ y) :
   nlinarith [h0]
 
 /-- Forming `y − 1` from a rounded `y(1 + ε)` turns the relative error `ε` into `ε·y/(y − 1)`:
-for `y = 1 + x` with small `x`, a loss of `−log₂ x` bits.-/
+for `y = 1 + x` with small `x`, a loss of `−log₂ x` bits.
+@isnad1 id=eq.1h2v.s6.c9aebf199165 from=translated src=- shape=1bac488f vocab=335f4d48
+-/
 theorem relError_sub_one {y ε : ℝ} (hy : y ≠ 1) :
     ((y * (1 + ε) - 1) - (y - 1)) / (y - 1) = ε * (y / (y - 1)) := by
   have : y - 1 ≠ 0 := sub_ne_zero.mpr hy
@@ -1196,7 +1301,9 @@ section Exercise410
 /-- `sinh |x|` as a function of `u = expm1 |x|`: `u(2 + u)/(2(1 + u))`.-/
 noncomputable def sinhExpm1 (u : ℝ) : ℝ := u * (2 + u) / (2 * (1 + u))
 
-/-- `sinh x = u(2 + u)/(2(1 + u))` with `u = expm1 x`; valid for every `x`.-/
+/-- `sinh x = u(2 + u)/(2(1 + u))` with `u = expm1 x`; valid for every `x`.
+@isnad1 id=eq.0h1v.s3.ea7750e10538 from=translated src=- shape=5dad4736 vocab=92b9a13d
+-/
 theorem sinh_eq_sinhExpm1 (x : ℝ) : Real.sinh x = sinhExpm1 (expm1 x) := by
   unfold sinhExpm1 expm1
   have he : 0 < Real.exp x := Real.exp_pos x
@@ -1204,18 +1311,25 @@ theorem sinh_eq_sinhExpm1 (x : ℝ) : Real.sinh x = sinhExpm1 (expm1 x) := by
   field_simp
   ring
 
-/-- The cancellation-free arrangement: `(u + u/(1 + u))/2`.-/
+/-- The cancellation-free arrangement: `(u + u/(1 + u))/2`.
+@isnad1 id=eq.1h1v.s6.45e7987ee5c6 from=translated src=- shape=65a4d2e3 vocab=7babe4af
+-/
 theorem sinhExpm1_eq {u : ℝ} (hu : 0 ≤ u) : sinhExpm1 u = (u + u / (1 + u)) / 2 := by
   unfold sinhExpm1
   have : (1 : ℝ) + u ≠ 0 := by positivity
   field_simp
   ring
 
+/--
+@isnad1 id=le.1h1v.s4.e6a44dbc3232 from=translated src=- shape=35bd48ee vocab=8051aefc
+-/
 theorem sinhExpm1_nonneg {u : ℝ} (hu : 0 ≤ u) : 0 ≤ sinhExpm1 u := by
   unfold sinhExpm1; positivity
 
 /-- Exercise 4.10: `sinh x = ±sinh |x|`, and `sinh |x| = sinhExpm1 (expm1 |x|)` with
-`expm1 |x| ≥ 0`.-/
+`expm1 |x| ≥ 0`.
+@isnad1 id=eq.0h1v.s5.b5b105fb3733 from=translated src=- shape=648f9f9b vocab=48ebdc5b
+-/
 theorem sinh_eq_sign_mul_sinh_abs (x : ℝ) :
     Real.sinh x = (if 0 ≤ x then 1 else -1) * sinhExpm1 (expm1 |x|) := by
   rw [← sinh_eq_sinhExpm1]
@@ -1223,10 +1337,15 @@ theorem sinh_eq_sign_mul_sinh_abs (x : ℝ) :
   · rw [abs_of_nonneg h, one_mul]
   · rw [abs_of_neg (not_le.mp h), Real.sinh_neg]; ring
 
+/--
+@isnad1 id=le.0h1v.s4.661a1202551b from=translated src=- shape=2139bacf vocab=fbb27b2b
+-/
 theorem expm1_abs_nonneg (x : ℝ) : 0 ≤ expm1 |x| := by
   unfold expm1; linarith [Real.one_le_exp_iff.mpr (abs_nonneg x)]
 
-/-- `cosh x = 1 + u²/(2(1 + u))` with `u = expm1 x`.-/
+/-- `cosh x = 1 + u²/(2(1 + u))` with `u = expm1 x`.
+@isnad1 id=eq.0h1v.s6.5a903b7d12a5 from=translated src=- shape=fd7543ff vocab=c437128c
+-/
 theorem cosh_eq_expm1 (x : ℝ) : Real.cosh x = 1 + expm1 x ^ 2 / (2 * (1 + expm1 x)) := by
   unfold expm1
   have he : 0 < Real.exp x := Real.exp_pos x
@@ -1235,7 +1354,9 @@ theorem cosh_eq_expm1 (x : ℝ) : Real.cosh x = 1 + expm1 x ^ 2 / (2 * (1 + expm
   ring
 
 /-- Monotonicity in the form `u · sinhExpm1 v ≤ v · sinhExpm1 u` for `0 ≤ u ≤ v`: the relative
-growth of the formula is at most that of its argument.-/
+growth of the formula is at most that of its argument.
+@isnad1 id=le.2h2v.s5.d3cb65b21f90 from=translated src=- shape=76725eac vocab=f448825e
+-/
 theorem mul_sinhExpm1_le {u v : ℝ} (hu : 0 ≤ u) (huv : u ≤ v) :
     u * sinhExpm1 v ≤ v * sinhExpm1 u := by
   unfold sinhExpm1
@@ -1244,6 +1365,9 @@ theorem mul_sinhExpm1_le {u v : ℝ} (hu : 0 ≤ u) (huv : u ≤ v) :
   nlinarith [mul_nonneg hu (sub_nonneg.mpr huv), mul_nonneg (mul_nonneg hu hu) (sub_nonneg.mpr huv),
     mul_nonneg (mul_nonneg hu (hu.trans huv)) (sub_nonneg.mpr huv)]
 
+/--
+@isnad1 id=le.2h2v.s4.6efaca5347d2 from=translated src=- shape=994278ac vocab=8051aefc
+-/
 theorem sinhExpm1_mono {u v : ℝ} (hu : 0 ≤ u) (huv : u ≤ v) : sinhExpm1 u ≤ sinhExpm1 v := by
   rw [sinhExpm1_eq hu, sinhExpm1_eq (hu.trans huv)]
   have h1 : u / (1 + u) ≤ v / (1 + v) := by
@@ -1251,7 +1375,9 @@ theorem sinhExpm1_mono {u v : ℝ} (hu : 0 ≤ u) (huv : u ≤ v) : sinhExpm1 u 
   linarith
 
 /-- The `sinh` formula is well conditioned in `u`: for `0 < u ≤ v`,
-`0 ≤ (sinhExpm1 v − sinhExpm1 u)/sinhExpm1 u ≤ (v − u)/u`.-/
+`0 ≤ (sinhExpm1 v − sinhExpm1 u)/sinhExpm1 u ≤ (v − u)/u`.
+@isnad1 id=and.2h2v.s6.158e8e081b1f from=translated src=- shape=2eafe0cd vocab=b73ca2c7
+-/
 theorem sinhExpm1_relError_le {u v : ℝ} (hu : 0 < u) (huv : u ≤ v) :
     0 ≤ (sinhExpm1 v - sinhExpm1 u) / sinhExpm1 u ∧
       (sinhExpm1 v - sinhExpm1 u) / sinhExpm1 u ≤ (v - u) / u := by
@@ -1264,12 +1390,16 @@ end Exercise410
 
 section Exercise411
 
-/-- White's formula: `exp x = sinh x + √(1 + sinh² x)`.-/
+/-- White's formula: `exp x = sinh x + √(1 + sinh² x)`.
+@isnad1 id=eq.0h1v.s5.230417b6f7e4 from=translated src=- shape=446dcc61 vocab=d8dd5a4a
+-/
 theorem exp_eq_sinh_add_sqrt (x : ℝ) :
     Real.exp x = Real.sinh x + Real.sqrt (1 + Real.sinh x ^ 2) := by
   rw [← Real.cosh_sq', Real.sqrt_sq (Real.cosh_pos x).le, Real.sinh_add_cosh]
 
-/-- The odd part of the exponential series: `sinh x = ∑ x^(2k+1)/(2k+1)!`.-/
+/-- The odd part of the exponential series: `sinh x = ∑ x^(2k+1)/(2k+1)!`.
+@isnad1 id=hassum.0h1v.s6.ce92824bd1c8 from=translated src=- shape=790521a7 vocab=066dba46
+-/
 theorem hasSum_sinh_series (x : ℝ) :
     HasSum (fun k : ℕ => x ^ (2 * k + 1) / ((2 * k + 1).factorial : ℝ)) (Real.sinh x) := by
   have h : HasSum (fun n : ℕ => (x ^ n / (n.factorial : ℝ) - (-x) ^ n / (n.factorial : ℝ)) / 2)
@@ -1292,7 +1422,9 @@ theorem hasSum_sinh_series (x : ℝ) :
     rw [Even.neg_pow ⟨m, hm⟩]
     ring
 
-/-- The same series organised in powers of `x²`: `sinh x = x ∑ (x²)^k/(2k+1)!`.-/
+/-- The same series organised in powers of `x²`: `sinh x = x ∑ (x²)^k/(2k+1)!`.
+@isnad1 id=hassum.0h1v.s6.5fc4a4b7c357 from=translated src=- shape=7f17770e vocab=066dba46
+-/
 theorem hasSum_sinh_series' (x : ℝ) :
     HasSum (fun k : ℕ => x * (x ^ 2) ^ k / ((2 * k + 1).factorial : ℝ)) (Real.sinh x) := by
   convert hasSum_sinh_series x using 1
@@ -1300,7 +1432,9 @@ theorem hasSum_sinh_series' (x : ℝ) :
   rw [pow_succ x (2 * k), pow_mul]
   ring
 
-/-- The cancelling difference for negative arguments: `√(1 + s²) − s = 1/(s + √(1 + s²))`.-/
+/-- The cancelling difference for negative arguments: `√(1 + s²) − s = 1/(s + √(1 + s²))`.
+@isnad1 id=eq.0h1v.s6.21be4e5d01b2 from=translated src=- shape=10cdda1d vocab=3365170a
+-/
 theorem sqrt_sub_eq_inv (s : ℝ) :
     Real.sqrt (1 + s ^ 2) - s = 1 / (s + Real.sqrt (1 + s ^ 2)) := by
   have hs2 : Real.sqrt (1 + s ^ 2) ^ 2 = 1 + s ^ 2 := Real.sq_sqrt (by positivity)
@@ -1311,7 +1445,9 @@ theorem sqrt_sub_eq_inv (s : ℝ) :
   rw [eq_div_iff hpos.ne']
   linear_combination hs2
 
-/-- The stable form for every sign: `exp x = 1/(sinh |x| + √(1 + sinh² |x|))` for `x ≤ 0`.-/
+/-- The stable form for every sign: `exp x = 1/(sinh |x| + √(1 + sinh² |x|))` for `x ≤ 0`.
+@isnad1 id=eq.1h1v.s6.4a8add41c9a3 from=translated src=- shape=63a68daa vocab=486fb503
+-/
 theorem exp_eq_inv_sinh_abs_add_sqrt {x : ℝ} (hx : x ≤ 0) :
     Real.exp x = 1 / (Real.sinh |x| + Real.sqrt (1 + Real.sinh |x| ^ 2)) := by
   rw [abs_of_nonpos hx, Real.sinh_neg, ← sqrt_sub_eq_inv, neg_sq, sub_neg_eq_add,
@@ -1319,7 +1455,9 @@ theorem exp_eq_inv_sinh_abs_add_sqrt {x : ℝ} (hx : x ≤ 0) :
   ring
 
 /-- `s ↦ s + √(1 + s²)` does not amplify relative errors for `s ≥ 0`: for `0 < s ≤ t`,
-`(f t − f s)/f s ≤ (t − s)/s`.-/
+`(f t − f s)/f s ≤ (t − s)/s`.
+@isnad1 id=le.2h2v.s7.3f0bbdcf6feb from=translated src=- shape=2570461c vocab=1ca93653
+-/
 theorem sinh_add_sqrt_relError_le {s t : ℝ} (hs : 0 < s) (hst : s ≤ t) :
     ((t + Real.sqrt (1 + t ^ 2)) - (s + Real.sqrt (1 + s ^ 2))) / (s + Real.sqrt (1 + s ^ 2))
       ≤ (t - s) / s := by
@@ -1333,7 +1471,9 @@ theorem sinh_add_sqrt_relError_le {s t : ℝ} (hs : 0 < s) (hst : s ≤ t) :
     nlinarith [mul_nonneg hs.le (sub_nonneg.mpr hst)]
   nlinarith [key]
 
-/-- Another even/odd pair: `exp x = (1 + tanh(x/2))/(1 − tanh(x/2))`.-/
+/-- Another even/odd pair: `exp x = (1 + tanh(x/2))/(1 − tanh(x/2))`.
+@isnad1 id=eq.0h1v.s6.c2292b1adb41 from=translated src=- shape=b0334fdf vocab=97ffb49c
+-/
 theorem exp_eq_tanh_half (x : ℝ) :
     Real.exp x = (1 + Real.tanh (x / 2)) / (1 - Real.tanh (x / 2)) := by
   rw [Real.tanh_eq_sinh_div_cosh]
@@ -1379,12 +1519,30 @@ instance : Monad Counted where
   pure a := ⟨a, 0, 0⟩
   bind := Counted.bind
 
+/--
+@isnad1 id=eq.0h2v.s4.ee4cd19c6cdc from=translated src=- shape=e92a028c vocab=655f47f2
+-/
 @[simp] theorem val_pure (a : α) : (pure a : Counted α).val = a := rfl
+/--
+@isnad1 id=eq.0h2v.s4.3b471dd0510b from=translated src=- shape=65a89909 vocab=d79d3794
+-/
 @[simp] theorem mul_pure (a : α) : (pure a : Counted α).mul = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.99f4831f65e1 from=translated src=- shape=65a89909 vocab=d1d4b54a
+-/
 @[simp] theorem sq_pure (a : α) : (pure a : Counted α).sq = 0 := rfl
+/--
+@isnad1 id=eq.0h4v.s5.7b74d5fd4e8e from=translated src=- shape=ce3eb5ed vocab=258968ab
+-/
 @[simp] theorem val_bind (m : Counted α) (f : α → Counted β) : (m >>= f).val = (f m.val).val := rfl
+/--
+@isnad1 id=eq.0h4v.s5.e8e00abb266c from=translated src=- shape=5666fd41 vocab=a521ff63
+-/
 @[simp] theorem mul_bind (m : Counted α) (f : α → Counted β) :
     (m >>= f).mul = m.mul + (f m.val).mul := rfl
+/--
+@isnad1 id=eq.0h4v.s5.aa7d4c3a11c4 from=translated src=- shape=5666fd41 vocab=db9e6566
+-/
 @[simp] theorem sq_bind (m : Counted α) (f : α → Counted β) :
     (m >>= f).sq = m.sq + (f m.val).sq := rfl
 
@@ -1394,11 +1552,29 @@ def nsMul [Mul α] (a b : α) : Counted α := ⟨a * b, 1, 0⟩
 /-- A squaring.-/
 def nsSq [Monoid α] (a : α) : Counted α := ⟨a ^ 2, 0, 1⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.ba4b0f1d924e from=translated src=- shape=8a8fa687 vocab=e9e2853b
+-/
 @[simp] theorem val_nsMul [Mul α] (a b : α) : (nsMul a b).val = a * b := rfl
+/--
+@isnad1 id=eq.0h3v.s4.f80dfcb156d5 from=translated src=- shape=3e74c1ce vocab=951b9eb9
+-/
 @[simp] theorem mul_nsMul [Mul α] (a b : α) : (nsMul a b).mul = 1 := rfl
+/--
+@isnad1 id=eq.0h3v.s4.c6cefbd53ebd from=translated src=- shape=3e74c1ce vocab=ba067e84
+-/
 @[simp] theorem sq_nsMul [Mul α] (a b : α) : (nsMul a b).sq = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s5.c0d480c5cb8a from=translated src=- shape=2c16e55d vocab=8e29d2db
+-/
 @[simp] theorem val_nsSq [Monoid α] (a : α) : (nsSq a).val = a ^ 2 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.3020223d7750 from=translated src=- shape=8eeced41 vocab=40282373
+-/
 @[simp] theorem mul_nsSq [Monoid α] (a : α) : (nsSq a).mul = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.5e16432644e7 from=translated src=- shape=8eeced41 vocab=190ca663
+-/
 @[simp] theorem sq_nsSq [Monoid α] (a : α) : (nsSq a).sq = 1 := rfl
 
 end Counted
@@ -1416,6 +1592,9 @@ def powersC (x : α) : ℕ → Counted (List α)
     let p ← if (m + 2) % 2 = 0 then nsSq (L.getD ((m + 2) / 2) 0) else nsMul (L.getD (m + 1) 0) x
     pure (L ++ [p])
 
+/--
+@isnad1 id=eq.0h3v.s5.004fe09f7670 from=translated src=- shape=ef7b5f8d vocab=46d6e92c
+-/
 theorem powersC_length (x : α) (k : ℕ) : (powersC x k).val.length = k + 1 := by
   induction k using Nat.strong_induction_on with
   | _ k ih =>
@@ -1426,6 +1605,9 @@ theorem powersC_length (x : α) (k : ℕ) : (powersC x k).val.length = k + 1 := 
       simp only [powersC, val_bind]
       split_ifs <;> simp [List.length_append, ih (m + 1) (by omega)]
 
+/--
+@isnad1 id=eq.1h4v.s5.2090e7e26955 from=translated src=- shape=99fc04d9 vocab=cd7c7d55
+-/
 theorem powersC_getD (x : α) (k : ℕ) : ∀ i ≤ k, (powersC x k).val.getD i 0 = x ^ i := by
   induction k using Nat.strong_induction_on with
   | _ k ih =>
@@ -1451,6 +1633,9 @@ theorem powersC_getD (x : α) (k : ℕ) : ∀ i ≤ k, (powersC x k).val.getD i 
           simp only [hlen, Nat.sub_self, List.getElem?_cons_zero, Option.getD_some]
           rw [ih (m + 1) (by omega) _ (by omega), ← pow_succ]
 
+/--
+@isnad1 id=eq.0h3v.s5.8c52a9d62ee0 from=translated src=- shape=d368e91c vocab=f10a3ee1
+-/
 theorem powersC_sq (x : α) (k : ℕ) : (powersC x k).sq = k / 2 := by
   induction k using Nat.strong_induction_on with
   | _ k ih =>
@@ -1462,6 +1647,9 @@ theorem powersC_sq (x : α) (k : ℕ) : (powersC x k).sq = k / 2 := by
         ih (m + 1) (by omega)]
       split_ifs with he <;> omega
 
+/--
+@isnad1 id=eq.0h3v.s5.cde262d6c3ec from=translated src=- shape=ada90e5f vocab=ced1e46f
+-/
 theorem powersC_mul (x : α) (k : ℕ) : (powersC x k).mul = (k + 1) / 2 - 1 := by
   induction k using Nat.strong_induction_on with
   | _ k ih =>
@@ -1481,6 +1669,9 @@ def hornerC (c : ℕ → α) (y : α) : ℕ → Counted α
     let p ← nsMul y r
     pure (c 0 + p)
 
+/--
+@isnad1 id=eq.0h4v.s6.6051c0d41547 from=translated src=- shape=529a6994 vocab=78123ce9
+-/
 theorem hornerC_val (c : ℕ → α) (y : α) (n : ℕ) :
     (hornerC c y n).val = ∑ i ∈ range (n + 1), c i * y ^ i := by
   induction n generalizing c with
@@ -1491,11 +1682,17 @@ theorem hornerC_val (c : ℕ → α) (y : α) (n : ℕ) :
     congr 1
     exact sum_congr rfl fun i _ => by ring
 
+/--
+@isnad1 id=eq.0h4v.s4.4ecd9dd1bce2 from=translated src=- shape=85c13160 vocab=f899ce84
+-/
 theorem hornerC_mul (c : ℕ → α) (y : α) (n : ℕ) : (hornerC c y n).mul = n := by
   induction n generalizing c with
   | zero => rfl
   | succ n ih => simp [hornerC, ih]
 
+/--
+@isnad1 id=eq.0h4v.s4.46261a9c0e41 from=translated src=- shape=abb5a0d4 vocab=890580f3
+-/
 theorem hornerC_sq (c : ℕ → α) (y : α) (n : ℕ) : (hornerC c y n).sq = 0 := by
   induction n generalizing c with
   | zero => rfl
@@ -1512,6 +1709,9 @@ def binPowC (x : α) : ℕ → Counted α
     if (j + 2) % 2 = 1 then nsMul s x else pure s
   decreasing_by omega
 
+/--
+@isnad1 id=eq.0h3v.s5.2427cb5780d7 from=translated src=- shape=a4d2edee vocab=dfc867ef
+-/
 theorem binPowC_val (x : α) (j : ℕ) : (binPowC x j).val = x ^ j := by
   induction j using Nat.strong_induction_on with
   | _ j ih =>
@@ -1529,6 +1729,9 @@ theorem binPowC_val (x : α) (j : ℕ) : (binPowC x j).val = x ^ j := by
         rw [← pow_mul]
         congr 1; omega
 
+/--
+@isnad1 id=eq.0h3v.s4.edc38d3302b4 from=translated src=- shape=0b89f55b vocab=9d2a10d3
+-/
 theorem binPowC_sq (x : α) (j : ℕ) : (binPowC x j).sq = Nat.log 2 j := by
   induction j using Nat.strong_induction_on with
   | _ j ih =>
@@ -1542,7 +1745,9 @@ theorem binPowC_sq (x : α) (j : ℕ) : (binPowC x j).sq = Nat.log 2 j := by
       simp only [sq_bind, sq_nsSq, ih ((j + 2) / 2) (by omega)]
       split_ifs <;> simp only [sq_nsMul, sq_pure] <;> omega
 
-/-- The products of binary powering: one fewer than the number of one-bits of `j`.-/
+/-- The products of binary powering: one fewer than the number of one-bits of `j`.
+@isnad1 id=eq.1h3v.s5.d3d099365674 from=translated src=- shape=f583b6fa vocab=7d65719b
+-/
 theorem binPowC_mul (x : α) {j : ℕ} (hj : 0 < j) :
     (binPowC x j).mul + 1 = (Nat.digits 2 j).sum := by
   induction j using Nat.strong_induction_on with
@@ -1562,6 +1767,9 @@ def classicalEvalC (a : ℕ → α) (j k : ℕ) (x : α) : Counted α := do
   let T ← powersC x k
   hornerC (fun ℓ => ∑ m ∈ range k, a (k * ℓ + m) * T.getD m 0) (T.getD k 0) (j - 1)
 
+/--
+@isnad1 id=eq.1h5v.s5.53a69185b5bc from=translated src=- shape=a6928e5d vocab=28350b95
+-/
 theorem classicalEvalC_val (a : ℕ → α) {j : ℕ} (hj : 0 < j) (k : ℕ) (x : α) :
     (classicalEvalC a j k x).val = polyEval a (j * k) x := by
   simp only [classicalEvalC, val_bind, hornerC_val, powersC_getD x k k le_rfl]
@@ -1572,15 +1780,23 @@ theorem classicalEvalC_val (a : ℕ → α) {j : ℕ} (hj : 0 < j) (k : ℕ) (x 
   refine sum_congr rfl fun m hm => ?_
   rw [powersC_getD x k m (by simpa using (mem_range.mp hm).le)]
 
+/--
+@isnad1 id=eq.0h5v.s6.baee7d56bdae from=translated src=- shape=b66a6482 vocab=f0eb3531
+-/
 theorem classicalEvalC_mul (a : ℕ → α) (j k : ℕ) (x : α) :
     (classicalEvalC a j k x).mul = ((k + 1) / 2 - 1) + (j - 1) := by
   simp [classicalEvalC, hornerC_mul, powersC_mul]
 
+/--
+@isnad1 id=eq.0h5v.s5.88e44459a87d from=translated src=- shape=6b4c8bf2 vocab=a6b2a157
+-/
 theorem classicalEvalC_sq (a : ℕ → α) (j k : ℕ) (x : α) :
     (classicalEvalC a j k x).sq = k / 2 := by
   simp [classicalEvalC, hornerC_sq, powersC_sq]
 
-/-- Classical splitting: `j + k − 2` non-scalar products in all (`j, k ≥ 1`).-/
+/-- Classical splitting: `j + k − 2` non-scalar products in all (`j, k ≥ 1`).
+@isnad1 id=eq.2h5v.s6.db6e586f3fc5 from=translated src=- shape=054784ef vocab=d22eef79
+-/
 theorem classicalEvalC_total (a : ℕ → α) {j k : ℕ} (hj : 0 < j) (hk : 0 < k) (x : α) :
     (classicalEvalC a j k x).mul + (classicalEvalC a j k x).sq = j + k - 2 := by
   rw [classicalEvalC_mul, classicalEvalC_sq]; omega
@@ -1592,6 +1808,9 @@ def modularEvalC (a : ℕ → α) (j k : ℕ) (x : α) : Counted α := do
   let T ← powersC y (k - 1)
   hornerC (fun ℓ => ∑ m ∈ range k, a (j * m + ℓ) * T.getD m 0) x (j - 1)
 
+/--
+@isnad1 id=eq.2h5v.s5.01633a181258 from=translated src=- shape=dc7d9fd3 vocab=72b096c7
+-/
 theorem modularEvalC_val (a : ℕ → α) {j k : ℕ} (hj : 0 < j) (hk : 0 < k) (x : α) :
     (modularEvalC a j k x).val = polyEval a (j * k) x := by
   simp only [modularEvalC, val_bind, hornerC_val, binPowC_val]
@@ -1602,10 +1821,16 @@ theorem modularEvalC_val (a : ℕ → α) {j k : ℕ} (hj : 0 < j) (hk : 0 < k) 
   refine sum_congr rfl fun m hm => ?_
   rw [powersC_getD _ (k - 1) m (by have := mem_range.mp hm; omega)]
 
+/--
+@isnad1 id=eq.0h5v.s6.67510037f08d from=translated src=- shape=634f35f0 vocab=7b964c21
+-/
 theorem modularEvalC_sq (a : ℕ → α) (j k : ℕ) (x : α) :
     (modularEvalC a j k x).sq = Nat.log 2 j + (k - 1) / 2 := by
   simp [modularEvalC, hornerC_sq, powersC_sq, binPowC_sq]
 
+/--
+@isnad1 id=eq.1h5v.s6.50855a6af2dc from=translated src=- shape=048e74ce vocab=726d6649
+-/
 theorem modularEvalC_mul (a : ℕ → α) {j : ℕ} (hj : 0 < j) (k : ℕ) (x : α) :
     (modularEvalC a j k x).mul + 1 = (Nat.digits 2 j).sum + (k / 2 - 1) + (j - 1) := by
   simp only [modularEvalC, mul_bind, hornerC_mul, powersC_mul]
@@ -1613,7 +1838,9 @@ theorem modularEvalC_mul (a : ℕ → α) {j : ℕ} (hj : 0 < j) (k : ℕ) (x : 
   omega
 
 /-- Modular splitting: `j + k − 3 + ℓ(j)` non-scalar products in all (`j ≥ 1`, `k ≥ 2`), where
-`ℓ(j) = ⌊log₂ j⌋ + popcount(j) − 1` is the length of the binary addition chain for `x^j`.-/
+`ℓ(j) = ⌊log₂ j⌋ + popcount(j) − 1` is the length of the binary addition chain for `x^j`.
+@isnad1 id=eq.2h5v.s7.4d5968471b74 from=translated src=- shape=7c68475e vocab=e17cedd9
+-/
 theorem modularEvalC_total (a : ℕ → α) {j k : ℕ} (hj : 0 < j) (hk : 2 ≤ k) (x : α) :
     (modularEvalC a j k x).mul + (modularEvalC a j k x).sq
       = (Nat.log 2 j + (Nat.digits 2 j).sum - 1) + (k - 2) + (j - 1) := by
@@ -1623,7 +1850,9 @@ theorem modularEvalC_total (a : ℕ → α) {j k : ℕ} (hj : 0 < j) (hk : 2 ≤
   omega
 
 /-- The binary addition chain never beats repeated multiplication's `j − 1` by a negative
-amount: `⌊log₂ j⌋ + popcount(j) ≤ j`.-/
+amount: `⌊log₂ j⌋ + popcount(j) ≤ j`.
+@isnad1 id=le.0h1v.s5.fb547d323455 from=translated src=- shape=da04b8c9 vocab=88d308c3
+-/
 theorem log_add_digits_sum_le (j : ℕ) : Nat.log 2 j + (Nat.digits 2 j).sum ≤ j := by
   induction j using Nat.strong_induction_on with
   | _ j ih =>
@@ -1637,6 +1866,9 @@ theorem log_add_digits_sum_le (j : ℕ) : Nat.log 2 j + (Nat.digits 2 j).sum ≤
       have := ih ((j + 2) / 2) (by omega)
       omega
 
+/--
+@isnad1 id=le.1h3v.s5.1eb95105a1a4 from=translated src=- shape=2eb5c824 vocab=e8b97a4d
+-/
 theorem binPowC_total_le (x : α) {j : ℕ} (hj : 0 < j) :
     (binPowC x j).mul + (binPowC x j).sq ≤ j - 1 := by
   have h1 := binPowC_mul x hj
@@ -1646,7 +1878,9 @@ theorem binPowC_total_le (x : α) {j : ℕ} (hj : 0 < j) :
 
 /-- The derived modular count is at most the `(j − 1) + (k − 2) + (j − 1)` of
 `modularNonscalar` (which powers `x^j` naively), and exceeds the classical count by
-`ℓ(j) − 1 ≤ 2⌊log₂ j⌋ − 1 = O(log d)`: "almost the same".-/
+`ℓ(j) − 1 ≤ 2⌊log₂ j⌋ − 1 = O(log d)`: "almost the same".
+@isnad1 id=le.2h5v.s6.92c345ab79cd from=translated src=- shape=71cc6caf vocab=5aab6672
+-/
 theorem modularEvalC_total_le (a : ℕ → α) {j k : ℕ} (hj : 0 < j) (hk : 2 ≤ k) (x : α) :
     (modularEvalC a j k x).mul + (modularEvalC a j k x).sq ≤ modularNonscalar j k := by
   rw [modularEvalC_total a hj hk, modularNonscalar]
@@ -1655,7 +1889,9 @@ theorem modularEvalC_total_le (a : ℕ → α) {j k : ℕ} (hj : 0 < j) (hk : 2 
 
 /-- The example `d = 12 = 3 · 4`: classical `5` (one product `x³`, two squarings `x², x⁴`, two
 Horner products), modular `6` (`x³`: one squaring and one product; `y², y³`: one squaring and one
-product; two Horner products).-/
+product; two Horner products).
+@isnad1 id=and.0h3v.s6.120db3bb040d from=translated src=- shape=f0da30a9 vocab=ac69281c
+-/
 theorem splitting_example (a : ℕ → α) (x : α) :
     (classicalEvalC a 3 4 x).mul = 3 ∧ (classicalEvalC a 3 4 x).sq = 2 ∧
       (modularEvalC a 3 4 x).mul = 4 ∧ (modularEvalC a 3 4 x).sq = 2 := by
@@ -1683,6 +1919,9 @@ def ratioHorner (r pw : ℕ → α) : ℕ → α
   | 0 => 0
   | k + 1 => pw 0 + r 0 * ratioHorner (fun i => r (i + 1)) (fun i => pw (i + 1)) k
 
+/--
+@isnad1 id=eq.0h4v.s6.542cc716955f from=translated src=- shape=8bc4e51d vocab=2b305122
+-/
 theorem ratioHorner_eq (r pw : ℕ → α) (k : ℕ) :
     ratioHorner r pw k = ∑ m ∈ range k, pw m * ∏ i ∈ range m, r i := by
   induction k generalizing r pw with
@@ -1694,20 +1933,27 @@ theorem ratioHorner_eq (r pw : ℕ → α) (k : ℕ) :
     rw [prod_range_succ']
     ring
 
-/-- Coefficients with ratios `r`: `a_i = a_0 ∏_{i'<i} r_{i'}`.-/
+/-- Coefficients with ratios `r`: `a_i = a_0 ∏_{i'<i} r_{i'}`.
+@isnad1 id=eq.1h4v.s6.2b14c9009ca8 from=translated src=- shape=32b2d0ad vocab=c3a67609
+-/
 theorem coeff_eq_prod_ratio {a r : ℕ → α} (ha : ∀ i, a (i + 1) = r i * a i) (i : ℕ) :
     a i = a 0 * ∏ i' ∈ range i, r i' := by
   induction i with
   | zero => simp
   | succ i ih => rw [ha, ih, prod_range_succ]; ring
 
+/--
+@isnad1 id=eq.1h5v.s6.3f261f40864d from=translated src=- shape=20ad7cfd vocab=c3a67609
+-/
 theorem coeff_shift_eq_prod_ratio {a r : ℕ → α} (ha : ∀ i, a (i + 1) = r i * a i) (n m : ℕ) :
     a (n + m) = a n * ∏ i ∈ range m, r (n + i) := by
   induction m with
   | zero => simp
   | succ m ih => rw [← add_assoc, ha, ih, prod_range_succ]; ring
 
-/-- The inner polynomial of the classical splitting via the ratio Horner rule.-/
+/-- The inner polynomial of the classical splitting via the ratio Horner rule.
+@isnad1 id=eq.1h6v.s7.5db1b5d13609 from=translated src=- shape=9aa09e0b vocab=1d55f275
+-/
 theorem innerPoly_eq_ratioHorner {a r : ℕ → α} (ha : ∀ i, a (i + 1) = r i * a i) (k ℓ : ℕ)
     (x : α) :
     innerPoly a k ℓ x = a (k * ℓ) * ratioHorner (fun i => r (k * ℓ + i)) (fun m => x ^ m) k := by
@@ -1724,6 +1970,9 @@ def scaledHornerC (c R : ℕ → α) (y : α) : ℕ → Counted α
     let p ← nsMul y w
     pure (c 0 + R 0 * p)
 
+/--
+@isnad1 id=eq.0h5v.s6.b9118e8629d4 from=translated src=- shape=8650ecc3 vocab=6e190094
+-/
 theorem scaledHornerC_val (c R : ℕ → α) (y : α) (n : ℕ) :
     (scaledHornerC c R y n).val = ∑ ℓ ∈ range (n + 1), c ℓ * y ^ ℓ * ∏ i ∈ range ℓ, R i := by
   induction n generalizing c R with
@@ -1737,11 +1986,17 @@ theorem scaledHornerC_val (c R : ℕ → α) (y : α) (n : ℕ) :
     rw [prod_range_succ']
     ring
 
+/--
+@isnad1 id=eq.0h5v.s4.101649999616 from=translated src=- shape=217b3215 vocab=ccb0d511
+-/
 theorem scaledHornerC_mul (c R : ℕ → α) (y : α) (n : ℕ) : (scaledHornerC c R y n).mul = n := by
   induction n generalizing c R with
   | zero => rfl
   | succ n ih => simp [scaledHornerC, ih]
 
+/--
+@isnad1 id=eq.0h5v.s5.05093a669591 from=translated src=- shape=25a234ae vocab=69fb32e7
+-/
 theorem scaledHornerC_sq (c R : ℕ → α) (y : α) (n : ℕ) : (scaledHornerC c R y n).sq = 0 := by
   induction n generalizing c R with
   | zero => rfl
@@ -1757,12 +2012,18 @@ def ratioEvalC (r : ℕ → α) (a0 : α) (j k : ℕ) (x : α) : Counted α := d
     (fun ℓ => ∏ i ∈ range k, r (k * ℓ + i)) (T.getD k 0) (j - 1)
   pure (a0 * w)
 
+/--
+@isnad1 id=eq.0h4v.s6.34efdb77dfcd from=translated src=- shape=58d5481e vocab=c3a67609
+-/
 theorem prod_range_mul_eq (f : ℕ → α) (k ℓ : ℕ) :
     ∏ i ∈ range ℓ, ∏ i' ∈ range k, f (k * i + i') = ∏ i' ∈ range (k * ℓ), f i' := by
   induction ℓ with
   | zero => simp
   | succ ℓ ih => rw [prod_range_succ, ih, Nat.mul_succ, prod_range_add]
 
+/--
+@isnad1 id=eq.2h6v.s6.ecc323a3efdd from=translated src=- shape=c989a094 vocab=222c3547
+-/
 theorem ratioEvalC_val {a r : ℕ → α} (ha : ∀ i, a (i + 1) = r i * a i) {j : ℕ} (hj : 0 < j)
     (k : ℕ) (x : α) : (ratioEvalC r (a 0) j k x).val = polyEval a (j * k) x := by
   simp only [ratioEvalC, val_bind, val_pure, scaledHornerC_val, powersC_getD x k k le_rfl]
@@ -1776,11 +2037,16 @@ theorem ratioEvalC_val {a r : ℕ → α} (ha : ∀ i, a (i + 1) = r i * a i) {j
   rw [hU, innerPoly_eq_ratioHorner ha, coeff_eq_prod_ratio ha (k * ℓ), prod_range_mul_eq]
   ring
 
-/-- The ratio-driven scheme has exactly the non-scalar cost of the classical splitting.-/
+/-- The ratio-driven scheme has exactly the non-scalar cost of the classical splitting.
+@isnad1 id=eq.0h6v.s5.eacb5a649424 from=translated src=- shape=f58e4ffb vocab=bc845c1c
+-/
 theorem ratioEvalC_mul (r : ℕ → α) (a0 : α) (j k : ℕ) (x : α) :
     (ratioEvalC r a0 j k x).mul = (classicalEvalC (fun _ => a0) j k x).mul := by
   simp [ratioEvalC, scaledHornerC_mul, powersC_mul, classicalEvalC_mul]
 
+/--
+@isnad1 id=eq.0h6v.s5.017d722b0a50 from=translated src=- shape=f58e4ffb vocab=eec86933
+-/
 theorem ratioEvalC_sq (r : ℕ → α) (a0 : α) (j k : ℕ) (x : α) :
     (ratioEvalC r a0 j k x).sq = (classicalEvalC (fun _ => a0) j k x).sq := by
   simp [ratioEvalC, scaledHornerC_sq, powersC_sq, classicalEvalC_sq]
@@ -1792,6 +2058,9 @@ section Exercise414
 /-- Machine words needed for `b` bits with word size `w`: `⌈b/w⌉`.-/
 def wordsOf (w b : ℕ) : ℕ := (b + w - 1) / w
 
+/--
+@isnad1 id=eq.3h2v.s5.a7a2e0d3a3d0 from=translated src=- shape=6e0fe5fb vocab=777afc69
+-/
 theorem wordsOf_eq_one {w b : ℕ} (hw : 0 < w) (hb : 0 < b) (h : b ≤ w) : wordsOf w b = 1 := by
   unfold wordsOf
   refine le_antisymm (Nat.lt_succ_iff.mp ((Nat.div_lt_iff_lt_mul hw).mpr (by omega))) ?_
@@ -1806,17 +2075,23 @@ def ratioScalarWords (w d : ℕ) : ℕ := wordsOf w (Nat.size d)
 def naiveScalarWords (w d : ℕ) : ℕ := wordsOf w (Nat.size (Nat.factorial d))
 
 /-- The multipliers of the exponential series' ratios `1/(i + 1)`, `i < d`, fit in `size d`
-bits.-/
+bits.
+@isnad1 id=le.1h2v.s4.f7ff214a5265 from=translated src=- shape=124fbf68 vocab=96c6de81
+-/
 theorem ratio_multiplier_size {i d : ℕ} (hi : i < d) : Nat.size (i + 1) ≤ Nat.size d :=
   Nat.size_le_size hi
 
 /-- Exercise 4.14: with ratios, `c(d) = 1` word as long as `d < 2^w` (so for every `d` that
-fits a machine word, e.g. `d < 2^64`); in bit terms `c(d) = size d = O(log d)`.-/
+fits a machine word, e.g. `d < 2^64`); in bit terms `c(d) = size d = O(log d)`.
+@isnad1 id=eq.3h2v.s5.c50dc714585c from=translated src=- shape=50cff893 vocab=86eb6ea4
+-/
 theorem ratioScalarWords_eq_one {w d : ℕ} (hw : 0 < w) (hd : 0 < d) (h : d < 2 ^ w) :
     ratioScalarWords w d = 1 :=
   wordsOf_eq_one hw (Nat.size_pos.mpr hd) (Nat.size_le.mpr h)
 
-/-- Without ratios the coefficient `1/d!` has more than `(d/2) · log₂(d/2 + 1)` bits.-/
+/-- Without ratios the coefficient `1/d!` has more than `(d/2) · log₂(d/2 + 1)` bits.
+@isnad1 id=lt.0h1v.s5.b874bafc67eb from=translated src=- shape=a5cc1a52 vocab=ba5f8a5f
+-/
 theorem size_factorial_gt (d : ℕ) :
     d / 2 * Nat.log 2 (d / 2 + 1) < Nat.size (Nat.factorial d) := by
   rw [Nat.lt_size, pow_mul']
@@ -1831,7 +2106,9 @@ theorem size_factorial_gt (d : ℕ) :
   calc (2 ^ Nat.log 2 (d / 2 + 1)) ^ (d / 2) ≤ (d / 2 + 1) ^ (d / 2) := Nat.pow_le_pow_left h1 _
     _ ≤ Nat.factorial d := h2.trans (h3.trans h4)
 
-/-- …and at most `d · (log₂ d + 1)` bits: `size(d!) = Θ(d log d)`.-/
+/-- …and at most `d · (log₂ d + 1)` bits: `size(d!) = Θ(d log d)`.
+@isnad1 id=le.1h1v.s5.2013499eac54 from=translated src=- shape=9e3e62d4 vocab=00becf8b
+-/
 theorem size_factorial_le {d : ℕ} (hd : 0 < d) :
     Nat.size (Nat.factorial d) ≤ d * (Nat.log 2 d + 1) := by
   rw [Nat.size_le, pow_mul']
@@ -1845,7 +2122,9 @@ section Exercise415
 
 open Finset
 
-/-- (4.27) in the text's indexing: `e^x E₁(x) = ∑_{j=1}^k (j−1)! (−1)^(j−1)/x^j + R_k(x)`.-/
+/-- (4.27) in the text's indexing: `e^x E₁(x) = ∑_{j=1}^k (j−1)! (−1)^(j−1)/x^j + R_k(x)`.
+@isnad1 id=eq.1h2v.s7.2d3f1370a175 from=translated src=- shape=a92858d5 vocab=befb40bb
+-/
 theorem exp_mul_expIntegral_eq_text {x : ℝ} (hx : 0 < x) (k : ℕ) :
     Real.exp x * expIntegral x
       = ∑ j ∈ Icc 1 k, ((j - 1).factorial : ℝ) * (-1) ^ (j - 1) / x ^ j
@@ -1856,14 +2135,18 @@ theorem exp_mul_expIntegral_eq_text {x : ℝ} (hx : 0 < x) (k : ℕ) :
   refine sum_congr rfl fun j _ => ?_
   rw [asymptoticTerm, add_comm 1 j, Nat.add_sub_cancel]
 
-/-- The strict form of `expTail_le`: `I_k(x) < e^(−x)/x^(k+1)`, since `I_{k+1}(x) > 0`.-/
+/-- The strict form of `expTail_le`: `I_k(x) < e^(−x)/x^(k+1)`, since `I_{k+1}(x) > 0`.
+@isnad1 id=lt.1h2v.s5.a8e4f069c235 from=translated src=- shape=f50b8f52 vocab=ce5499ff
+-/
 theorem expTail_lt {x : ℝ} (hx : 0 < x) (k : ℕ) : expTail k x < Real.exp (-x) / x ^ (k + 1) := by
   rw [expTail_succ hx k]
   have := expTail_pos hx (k + 1)
   have hk : (0 : ℝ) < k + 1 := by positivity
   nlinarith
 
-/-- (4.28), strict: `|R_k(x)| < k!/x^(k+1)`.-/
+/-- (4.28), strict: `|R_k(x)| < k!/x^(k+1)`.
+@isnad1 id=lt.1h2v.s6.d41d48c47bb2 from=translated src=- shape=fc83d5f4 vocab=05eaee0e
+-/
 theorem abs_asymptoticRemainder_lt {x : ℝ} (hx : 0 < x) (k : ℕ) :
     |asymptoticRemainder k x| < k.factorial / x ^ (k + 1) := by
   unfold asymptoticRemainder
@@ -1890,6 +2173,9 @@ noncomputable def EinTerm (n : ℕ) (z : ℂ) : ℂ :=
 /-- The entire function `Ein z = ∫_0^z (1 − e^(−t))/t dt = ∑_{j≥1} (−1)^(j−1) z^j/(j! j)`.-/
 noncomputable def Ein (z : ℂ) : ℂ := ∑' n, EinTerm n z
 
+/--
+@isnad1 id=le.0h2v.s6.9cd6a64426f8 from=translated src=- shape=137d2d3d vocab=a3b45dc9
+-/
 theorem norm_EinTerm_le (n : ℕ) (z : ℂ) :
     ‖EinTerm n z‖ ≤ ‖z‖ ^ (n + 1) / (n + 1).factorial := by
   unfold EinTerm
@@ -1899,18 +2185,30 @@ theorem norm_EinTerm_le (n : ℕ) (z : ℂ) :
   apply div_le_div_of_nonneg_left (by positivity) (by positivity)
   exact le_mul_of_one_le_right (by positivity) (by linarith [(Nat.cast_nonneg n : (0:ℝ) ≤ n)])
 
+/--
+@isnad1 id=summable.0h1v.s4.247a8d7b2524 from=translated src=- shape=0b46e227 vocab=4e25ad7f
+-/
 theorem summable_EinTerm (z : ℂ) : Summable fun n => EinTerm n z := by
   refine Summable.of_norm_bounded (g := fun n => ‖z‖ ^ (n + 1) / (n + 1).factorial) ?_
     fun n => norm_EinTerm_le n z
   exact (summable_nat_add_iff 1).mpr (Real.summable_pow_div_factorial ‖z‖)
 
+/--
+@isnad1 id=eq.0h1v.s4.dfe36fc4a6ed from=translated src=- shape=9b4d794a vocab=4331d686
+-/
 theorem EinTerm_zero (n : ℕ) : EinTerm n 0 = 0 := by simp [EinTerm]
 
+/--
+@isnad1 id=eq.0h0v.s3.e07396c738c5 from=translated src=- shape=3c26ae4f vocab=6f4c1f0f
+-/
 theorem Ein_zero : Ein 0 = 0 := by simp [Ein, EinTerm_zero]
 
 /-- The termwise derivative `(−1)^n z^n/(n+1)!`.-/
 noncomputable def EinDerivTerm (n : ℕ) (z : ℂ) : ℂ := (-1) ^ n * z ^ n / ((n + 1).factorial : ℂ)
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.ac4330b7ead4 from=translated src=- shape=f4cbe5c8 vocab=6476686f
+-/
 theorem hasDerivAt_EinTerm (n : ℕ) (z : ℂ) : HasDerivAt (EinTerm n) (EinDerivTerm n z) z := by
   have h := (((hasDerivAt_pow (n + 1) z).const_mul ((-1 : ℂ) ^ n)).div_const
     (((n + 1).factorial * (n + 1) : ℕ) : ℂ))
@@ -1921,6 +2219,9 @@ theorem hasDerivAt_EinTerm (n : ℕ) (z : ℂ) : HasDerivAt (EinTerm n) (EinDeri
   have : ((n : ℂ) + 1) ≠ 0 := by exact_mod_cast Nat.succ_ne_zero n
   field_simp
 
+/--
+@isnad1 id=le.1h3v.s5.61bc5afc4cc2 from=translated src=- shape=e249257c vocab=6e2adf7b
+-/
 theorem norm_EinDerivTerm_le {R : ℝ} (n : ℕ) {y : ℂ} (hy : ‖y‖ ≤ R) :
     ‖EinDerivTerm n y‖ ≤ R ^ n / n.factorial := by
   unfold EinDerivTerm
@@ -1936,6 +2237,9 @@ theorem norm_EinDerivTerm_le {R : ℝ} (n : ℕ) {y : ℂ} (hy : ‖y‖ ≤ R) 
 /-- `Ein' z = (1 − e^(−z))/z`, with the removable value `1` at `0`.-/
 noncomputable def EinDeriv (z : ℂ) : ℂ := if z = 0 then 1 else (1 - exp (-z)) / z
 
+/--
+@isnad1 id=hassum.0h1v.s5.ef400e9d88dd from=translated src=- shape=63bf745d vocab=4840847c
+-/
 theorem hasSum_cexp_series (w : ℂ) : HasSum (fun n => w ^ n / (n.factorial : ℂ)) (exp w) := by
   rw [Complex.exp_eq_exp_ℂ]
   exact NormedSpace.expSeries_div_hasSum_exp w
@@ -1943,6 +2247,9 @@ theorem hasSum_cexp_series (w : ℂ) : HasSum (fun n => w ^ n / (n.factorial : �
 /-- `Ein` restricted to the real axis.-/
 noncomputable def EinR (x : ℝ) : ℝ := (Ein x).re
 
+/--
+@isnad1 id=eq.0h1v.s3.c8ea3adf3c7a from=translated src=- shape=c14c2a45 vocab=a203eaba
+-/
 theorem Ein_ofReal (x : ℝ) : Ein x = (EinR x : ℂ) := by
   have : Ein x = ((∑' n, ((-1) ^ n * x ^ (n + 1) / (((n + 1).factorial * (n + 1) : ℕ) : ℝ))
       : ℝ) : ℂ) := by
@@ -1951,23 +2258,34 @@ theorem Ein_ofReal (x : ℝ) : Ein x = (EinR x : ℂ) := by
     congr 1; ext n; push_cast; ring
   rw [EinR, this, Complex.ofReal_re]
 
+/--
+@isnad1 id=eq.0h0v.s3.143811c439dc from=translated src=- shape=3c26ae4f vocab=9224361f
+-/
 theorem EinR_zero : EinR 0 = 0 := by simp [EinR, Ein_zero]
 
 /-- `EinR' x = (1 − e^(−x))/x`, `EinR' 0 = 1`.-/
 noncomputable def EinDerivR (x : ℝ) : ℝ := if x = 0 then 1 else (1 - Real.exp (-x)) / x
 
+/--
+@isnad1 id=eq.0h1v.s3.5214ddfa2cde from=translated src=- shape=c14c2a45 vocab=c10a068f
+-/
 theorem EinDeriv_ofReal (x : ℝ) : EinDeriv x = (EinDerivR x : ℂ) := by
   unfold EinDeriv EinDerivR
   simp only [Complex.ofReal_eq_zero]
   split_ifs <;> push_cast <;> simp
 
-/-- The integrand `(1 − e^(−t))/t` is bounded by `1` on `(0, x]`.-/
+/-- The integrand `(1 − e^(−t))/t` is bounded by `1` on `(0, x]`.
+@isnad1 id=le.1h1v.s5.13c667c68ccb from=translated src=- shape=235865b6 vocab=02526580
+-/
 theorem abs_one_sub_exp_neg_div_le {t : ℝ} (ht : 0 < t) : |(1 - Real.exp (-t)) / t| ≤ 1 := by
   have h1 : Real.exp (-t) ≤ 1 := Real.exp_le_one_iff.mpr (by linarith)
   have h2 : 1 - t ≤ Real.exp (-t) := by linarith [Real.add_one_le_exp (-t)]
   rw [abs_div, abs_of_pos ht, abs_of_nonneg (by linarith), div_le_one ht]
   linarith
 
+/--
+@isnad1 id=interval.1h1v.s6.ec53b48b3654 from=translated src=- shape=bd151be5 vocab=4bc1f329
+-/
 theorem intervalIntegrable_one_sub_exp_neg_div {x : ℝ} (hx : 0 ≤ x) :
     IntervalIntegrable (fun t : ℝ => (1 - Real.exp (-t)) / t) MeasureTheory.volume 0 x := by
   rw [intervalIntegrable_iff_integrableOn_Ioc_of_le hx]
@@ -1989,7 +2307,9 @@ end Exercise416
 
 section Exercise417
 
-/-- Exercise 4.17: `1/x − 1/x² < e^x E₁(x) < 1/x` for `x > 0`.-/
+/-- Exercise 4.17: `1/x − 1/x² < e^x E₁(x) < 1/x` for `x > 0`.
+@isnad1 id=and.1h1v.s6.9ace8573fb32 from=translated src=- shape=ddfaa7dc vocab=5e9a125d
+-/
 theorem exp_mul_expIntegral_bounds {x : ℝ} (hx : 0 < x) :
     1 / x - 1 / x ^ 2 < Real.exp x * expIntegral x ∧ Real.exp x * expIntegral x < 1 / x := by
   have h := exp_mul_expIntegral_eq hx 1
@@ -2016,11 +2336,16 @@ noncomputable def egf (a : ℕ → A) : A⟦X⟧ :=
 /-- The binomial transform `A_n = ∑_{j≤n} C(n, j) a_j`.-/
 def binomialTransform (a : ℕ → A) (n : ℕ) : A := ∑ j ∈ range (n + 1), (n.choose j : A) * a j
 
+/--
+@isnad1 id=eq.0h3v.s8.b9ed4a9496a1 from=translated src=- shape=d82b86c9 vocab=c22f57a2
+-/
 theorem coeff_egf (a : ℕ → A) (n : ℕ) :
     PowerSeries.coeff n (egf a) = algebraMap ℚ A (1 / n.factorial) * a n := by
   simp [egf]
 
-/-- `C(n,j)/n! = 1/j! · 1/(n−j)!` in any `ℚ`-algebra.-/
+/-- `C(n,j)/n! = 1/j! · 1/(n−j)!` in any `ℚ`-algebra.
+@isnad1 id=eq.1h3v.s8.08c0b8635010 from=translated src=- shape=d34d0e1b vocab=c522863f
+-/
 theorem algebraMap_inv_factorial_mul_choose {n j : ℕ} (hj : j ≤ n) :
     algebraMap ℚ A (1 / n.factorial) * (n.choose j : A)
       = algebraMap ℚ A (1 / j.factorial) * algebraMap ℚ A (1 / (n - j).factorial) := by
@@ -2032,7 +2357,9 @@ theorem algebraMap_inv_factorial_mul_choose {n j : ℕ} (hj : j ≤ n) :
   have h3 : ((n - j).factorial : ℚ) ≠ 0 := by positivity
   field_simp
 
-/-- Exercise 4.18: `S(z) = e^z s(z)`.-/
+/-- Exercise 4.18: `S(z) = e^z s(z)`.
+@isnad1 id=eq.0h2v.s5.59e12461de3a from=translated src=- shape=79f8b20e vocab=7d9f9510
+-/
 theorem egf_binomialTransform (a : ℕ → A) : egf (binomialTransform a) = exp A * egf a := by
   rw [mul_comm]
   ext n
@@ -2044,7 +2371,9 @@ theorem egf_binomialTransform (a : ℕ → A) : egf (binomialTransform a) = exp 
   rw [coeff_egf, coeff_exp, ← mul_assoc, algebraMap_inv_factorial_mul_choose hjn]
   ring
 
-/-- The inverse transform: `s(z) = e^(−z) S(z)`, i.e. `a_n = ∑_{j≤n} (−1)^(n−j) C(n,j) A_j`.-/
+/-- The inverse transform: `s(z) = e^(−z) S(z)`, i.e. `a_n = ∑_{j≤n} (−1)^(n−j) C(n,j) A_j`.
+@isnad1 id=eq.0h2v.s6.8bf5778182b2 from=translated src=- shape=5b18570f vocab=6cb6cb52
+-/
 theorem egf_eq_exp_neg_mul (a : ℕ → A) :
     egf a = evalNegHom (exp A) * egf (binomialTransform a) := by
   rw [egf_binomialTransform, ← mul_assoc, mul_comm (evalNegHom (exp A)), exp_mul_exp_neg_eq_one,
@@ -2056,7 +2385,9 @@ section Exercise419
 
 open Finset
 
-/-- `C(m,l)/(l+1) = C(m+1,l+1)/(m+1)` for `l ≤ m`.-/
+/-- `C(m,l)/(l+1) = C(m+1,l+1)/(m+1)` for `l ≤ m`.
+@isnad1 id=eq.1h2v.s6.accd97c1b5a3 from=translated src=- shape=bab8afe6 vocab=eda0509f
+-/
 theorem choose_div_succ_eq {m l : ℕ} (hl : l ≤ m) :
     (m.choose l : ℚ) / (l + 1) = ((m + 1).choose (l + 1) : ℚ) / (m + 1) := by
   rw [Nat.cast_choose ℚ hl, Nat.cast_choose ℚ (by omega : l + 1 ≤ m + 1),
@@ -2067,7 +2398,9 @@ theorem choose_div_succ_eq {m l : ℕ} (hl : l ≤ m) :
   have h3 : ((m - l).factorial : ℚ) ≠ 0 := by positivity
   field_simp
 
-/-- `∑_{l≤m} C(m,l) (−1)^l/(l+1) = 1/(m+1)`.-/
+/-- `∑_{l≤m} C(m,l) (−1)^l/(l+1) = 1/(m+1)`.
+@isnad1 id=eq.0h1v.s6.a8f74b44a387 from=translated src=- shape=35502ef6 vocab=bc829e4d
+-/
 theorem sum_choose_alt_div_succ (m : ℕ) :
     ∑ l ∈ range (m + 1), (m.choose l : ℚ) * (-1) ^ l / (l + 1) = 1 / (m + 1) := by
   have h : ∀ l ∈ range (m + 1), (m.choose l : ℚ) * (-1) ^ l / (l + 1)
@@ -2090,7 +2423,9 @@ theorem sum_choose_alt_div_succ (m : ℕ) :
   linarith
 
 /-- The binomial transform of `(−1)^(j−1)/j` is the harmonic number: in the shifted form,
-`∑_{l<m} C(m,l+1) (−1)^l/(l+1) = H_m`.-/
+`∑_{l<m} C(m,l+1) (−1)^l/(l+1) = H_m`.
+@isnad1 id=eq.0h1v.s6.9560c1d4095e from=translated src=- shape=75de4874 vocab=e6b7cb1b
+-/
 theorem sum_choose_alt_div_eq_harmonic (m : ℕ) :
     ∑ l ∈ range m, (m.choose (l + 1) : ℚ) * (-1) ^ l / (l + 1) = harmonic m := by
   induction m with
@@ -2108,26 +2443,36 @@ theorem sum_choose_alt_div_eq_harmonic (m : ℕ) :
 /-- The coefficients `a_j = (−1)^(j−1)/j` of `Ein`, with `a_0 = 0`.-/
 noncomputable def einCoeff (j : ℕ) : ℚ := if j = 0 then 0 else (-1) ^ (j - 1) / j
 
+/--
+@isnad1 id=eq.0h1v.s3.39fca459ce5d from=translated src=- shape=f3e3f808 vocab=8e3a125d
+-/
 theorem binomialTransform_einCoeff (n : ℕ) : binomialTransform einCoeff n = harmonic n := by
   rw [← sum_choose_alt_div_eq_harmonic, binomialTransform, sum_range_succ']
   simp only [einCoeff, Nat.add_eq_zero_iff, one_ne_zero, and_false, ↓reduceIte,
     Nat.add_sub_cancel, mul_zero, add_zero, Nat.cast_add, Nat.cast_one]
   exact sum_congr rfl fun l _ => by ring
 
-/-- Exercise 4.19 as formal power series: `e^z Ein(z) = ∑ H_j z^j/j!`.-/
+/-- Exercise 4.19 as formal power series: `e^z Ein(z) = ∑ H_j z^j/j!`.
+@isnad1 id=eq.0h0v.s5.33aa4a3b49ca from=translated src=- shape=f54e780a vocab=62a8c358
+-/
 theorem exp_mul_egf_ein : exp ℚ * egf einCoeff = egf (fun n => harmonic n) := by
   rw [← egf_binomialTransform]
   congr 1
   ext n
   exact binomialTransform_einCoeff n
 
+/--
+@isnad1 id=le.0h1v.s3.b59764b4a206 from=translated src=- shape=c2c80315 vocab=4298bc67
+-/
 theorem harmonic_le_self (n : ℕ) : harmonic n ≤ n := by
   unfold harmonic
   calc ∑ i ∈ range n, ((i + 1 : ℕ) : ℚ)⁻¹ ≤ ∑ _i ∈ range n, (1 : ℚ) :=
         sum_le_sum fun i _ => inv_le_one_of_one_le₀ (by exact_mod_cast Nat.succ_pos i)
     _ = n := by simp
 
-/-- The Cauchy product term: `∑_{k+l=n} z^k/k! · EinTerm l z = H_{n+1} z^(n+1)/(n+1)!`.-/
+/-- The Cauchy product term: `∑_{k+l=n} z^k/k! · EinTerm l z = H_{n+1} z^(n+1)/(n+1)!`.
+@isnad1 id=eq.0h2v.s7.4203783b48cc from=translated src=- shape=2a2d300a vocab=821463f3
+-/
 theorem sum_antidiagonal_exp_EinTerm (z : ℂ) (n : ℕ) :
     ∑ kl ∈ antidiagonal n, z ^ kl.1 / (kl.1.factorial : ℂ) * EinTerm kl.2 z
       = (harmonic (n + 1) : ℂ) * z ^ (n + 1) / ((n + 1).factorial : ℂ) := by
@@ -2153,7 +2498,9 @@ theorem sum_antidiagonal_exp_EinTerm (z : ℂ) (n : ℕ) :
   rw [h5, ← hz]
   field_simp
 
-/-- Exercise 4.19 as functions: `e^z Ein(z) = ∑_{j≥1} H_j z^j/j!` for every complex `z`.-/
+/-- Exercise 4.19 as functions: `e^z Ein(z) = ∑_{j≥1} H_j z^j/j!` for every complex `z`.
+@isnad1 id=hassum.0h1v.s6.18c19f99a519 from=translated src=- shape=331052f4 vocab=2923f896
+-/
 theorem hasSum_exp_mul_Ein (z : ℂ) :
     HasSum (fun n => (harmonic n : ℂ) * z ^ n / (n.factorial : ℂ)) (Complex.exp z * Ein z) := by
   have hf : Summable fun n => ‖z ^ n / (n.factorial : ℂ)‖ := by
@@ -2182,9 +2529,14 @@ open Finset
 noncomputable def altOddSum (n : ℕ) (s : ℚ) : ℚ :=
   ∑ j ∈ range (n + 1), (n.choose j : ℚ) * (-1) ^ j / (2 * j + s)
 
+/--
+@isnad1 id=eq.0h1v.s4.65ffd22424eb from=translated src=- shape=3dc58682 vocab=0b588601
+-/
 theorem altOddSum_zero (s : ℚ) : altOddSum 0 s = 1 / s := by simp [altOddSum]
 
-/-- The recurrence `altOddSum (n+1) s = altOddSum n s − altOddSum n (s+2)` (Pascal's rule).-/
+/-- The recurrence `altOddSum (n+1) s = altOddSum n s − altOddSum n (s+2)` (Pascal's rule).
+@isnad1 id=eq.0h2v.s5.5658447f433d from=translated src=- shape=3d83845a vocab=872d3e06
+-/
 theorem altOddSum_succ (n : ℕ) (s : ℚ) :
     altOddSum (n + 1) s = altOddSum n s - altOddSum n (s + 2) := by
   unfold altOddSum
@@ -2205,7 +2557,9 @@ theorem altOddSum_succ (n : ℕ) (s : ℚ) :
     zero_add]
   ring
 
-/-- Closed form: `altOddSum n s = 2^n n! / ∏_{i≤n} (s + 2i)` for `s > 0`.-/
+/-- Closed form: `altOddSum n s = 2^n n! / ∏_{i≤n} (s + 2i)` for `s > 0`.
+@isnad1 id=eq.1h2v.s6.89dc3c51834e from=translated src=- shape=bfa65d4a vocab=0b9f8e69
+-/
 theorem altOddSum_eq (n : ℕ) {s : ℚ} (hs : 0 < s) :
     altOddSum n s = 2 ^ n * n.factorial / ∏ i ∈ range (n + 1), (s + 2 * i) := by
   induction n generalizing s with
@@ -2228,7 +2582,9 @@ theorem altOddSum_eq (n : ℕ) {s : ℚ} (hs : 0 < s) :
     field_simp
     ring
 
-/-- `∏_{i≤n} (1 + 2i) = (2n+1)‼`.-/
+/-- `∏_{i≤n} (1 + 2i) = (2n+1)‼`.
+@isnad1 id=eq.0h1v.s6.8d1bdf4feb9c from=translated src=- shape=71f7406e vocab=dddebba8
+-/
 theorem prod_odd_eq_doubleFactorial (n : ℕ) :
     ∏ i ∈ range (n + 1), ((1 : ℚ) + 2 * i) = ((2 * n + 1).doubleFactorial : ℚ) := by
   induction n with
@@ -2239,12 +2595,16 @@ theorem prod_odd_eq_doubleFactorial (n : ℕ) :
     push_cast
     ring
 
-/-- `∑_{j≤n} C(n,j)(−1)^j/(2j+1) = 2^n n!/(2n+1)‼`.-/
+/-- `∑_{j≤n} C(n,j)(−1)^j/(2j+1) = 2^n n!/(2n+1)‼`.
+@isnad1 id=eq.0h1v.s6.f4c9be006f87 from=translated src=- shape=48246ac6 vocab=32fb8abd
+-/
 theorem altOddSum_one (n : ℕ) :
     altOddSum n 1 = 2 ^ n * n.factorial / ((2 * n + 1).doubleFactorial : ℚ) := by
   rw [altOddSum_eq n one_pos, prod_odd_eq_doubleFactorial]
 
-/-- The formal statement: `e^t · ∑ (−1)^j t^j/(j!(2j+1)) = ∑ 2^n t^n/(2n+1)‼`.-/
+/-- The formal statement: `e^t · ∑ (−1)^j t^j/(j!(2j+1)) = ∑ 2^n t^n/(2n+1)‼`.
+@isnad1 id=eq.0h0v.s7.38a27da83b6c from=translated src=- shape=ba85e1e5 vocab=2c3a3c22
+-/
 theorem exp_mul_egf_erf :
     exp ℚ * egf (fun j : ℕ => ((-1 : ℚ) ^ j / (2 * j + 1)))
       = egf (fun n : ℕ => (2 : ℚ) ^ n * n.factorial / ((2 * n + 1).doubleFactorial : ℚ)) := by
@@ -2255,7 +2615,9 @@ theorem exp_mul_egf_erf :
   exact sum_congr rfl fun j _ => by ring
 
 /-- The Cauchy product coefficient: `∑_{j+k=n} (−1)^j x^(2j+1)/(j!(2j+1)) · (x²)^k/k!
-= c_n x^(2n+1)` with `c_n = 2^n/(2n+1)‼`.-/
+= c_n x^(2n+1)` with `c_n = 2^n/(2n+1)‼`.
+@isnad1 id=eq.0h2v.s8.63a67226bd20 from=translated src=- shape=30fdc84f vocab=13d06b40
+-/
 theorem sum_antidiagonal_erf_exp (x : ℝ) (n : ℕ) :
     ∑ kl ∈ antidiagonal n, ((-1) ^ kl.1 * x ^ (2 * kl.1 + 1) / (kl.1.factorial * (2 * kl.1 + 1)))
       * ((x ^ 2) ^ kl.2 / (kl.2.factorial : ℝ))
@@ -2288,7 +2650,9 @@ theorem sum_antidiagonal_erf_exp (x : ℝ) (n : ℕ) :
   field_simp
 
 /-- Exercise 4.20: (4.23) derived from (4.22) by the Cauchy product with `e^(x²)`
-(no differential equation, unlike `erf_eq_exp_mul_erfExpSum`).-/
+(no differential equation, unlike `erf_eq_exp_mul_erfExpSum`).
+@isnad1 id=eq.0h1v.s5.08c8eba512bc from=translated src=- shape=560cf0e4 vocab=965141c9
+-/
 theorem erf_eq_exp_mul_erfExpSum' (x : ℝ) :
     erf x = 2 / Real.sqrt Real.pi * Real.exp (-x ^ 2) * erfExpSum x := by
   set c : ℝ := 2 / Real.sqrt Real.pi with hc
@@ -2338,7 +2702,9 @@ section Exercise421
 open Finset
 
 /-- The exact identity behind the algorithm: `Γ(x) = e^(L + R) / ∏_{i<δ} (x + i)` with
-`L = stirlingApprox m (x + δ)` and `R = stirlingRem m (x + δ)`.-/
+`L = stirlingApprox m (x + δ)` and `R = stirlingRem m (x + δ)`.
+@isnad1 id=eq.1h3v.s6.ec54541391b8 from=translated src=- shape=71407b37 vocab=ddd33dee
+-/
 theorem Gamma_eq_exp_stirling_div {x : ℝ} (hx : 0 < x) (m δ : ℕ) :
     Real.Gamma x = Real.exp (stirlingApprox m (x + δ) + stirlingRem m (x + δ))
       / ∏ i ∈ range δ, (x + i) := by
@@ -2354,7 +2720,9 @@ theorem Gamma_eq_exp_stirling_div {x : ℝ} (hx : 0 < x) (m δ : ℕ) :
   congr 1
   ring
 
-/-- Dropping the remainder `R` with `|R| ≤ ε ≤ 1` changes `Γ(x)` by a relative error `≤ 2ε`.-/
+/-- Dropping the remainder `R` with `|R| ≤ ε ≤ 1` changes `Γ(x)` by a relative error `≤ 2ε`.
+@isnad1 id=le.3h4v.s7.b8361c0ee369 from=translated src=- shape=02ac06e9 vocab=cc6d7207
+-/
 theorem Gamma_stirling_relError {x : ℝ} (hx : 0 < x) (m δ : ℕ) {ε : ℝ}
     (hR : |stirlingRem m (x + δ)| ≤ ε) (hε : ε ≤ 1) :
     |Real.exp (stirlingApprox m (x + δ)) / (∏ i ∈ range δ, (x + i)) - Real.Gamma x|
@@ -2377,7 +2745,9 @@ theorem Gamma_stirling_relError {x : ℝ} (hx : 0 < x) (m δ : ℕ) {ε : ℝ}
     _ = 2 * ε * Real.Gamma x := by ring
 
 /-- Necessity of the shift: a term of (4.38) at `x'` can be `≤ 2^(−n)` only if
-`n ln 2 ≤ 2πx' + ln(2π² x')`, i.e. `x' ≳ n ln 2/(2π)`; so `δ ≈ n ln 2/(2π) ≈ 0.11 n`.-/
+`n ln 2 ≤ 2πx' + ln(2π² x')`, i.e. `x' ≳ n ln 2/(2π)`; so `δ ≈ n ln 2/(2π) ≈ 0.11 n`.
+@isnad1 id=le.3h3v.s7.602f56770af6 from=translated src=- shape=b59ea2c3 vocab=782035ca
+-/
 theorem shift_necessary {k : ℕ} (hk : 1 ≤ k) {x' : ℝ} (hx : 0 < x') {n : ℕ}
     (h : |stirlingTerm k x'| ≤ (1 / 2) ^ n) :
     n * Real.log 2 ≤ 2 * Real.pi * x' + Real.log (2 * Real.pi ^ 2 * x') := by
@@ -2396,7 +2766,9 @@ section Exercise422
 open Finset
 
 /-- The shift for the entire function `1/Γ`, valid for every `z` (at a pole both sides vanish):
-`1/Γ(z) = (∏_{i<δ} (z + i)) / Γ(z + δ)`.-/
+`1/Γ(z) = (∏_{i<δ} (z + i)) / Γ(z + δ)`.
+@isnad1 id=eq.0h2v.s5.5a7b78e2a1d6 from=translated src=- shape=9b4ff5ab vocab=b483072b
+-/
 theorem inv_Gamma_eq_prod_mul_inv_Gamma_add (z : ℂ) (δ : ℕ) :
     (Complex.Gamma z)⁻¹ = (∏ i ∈ range δ, (z + i)) * (Complex.Gamma (z + δ))⁻¹ := by
   induction δ with
@@ -2407,7 +2779,9 @@ theorem inv_Gamma_eq_prod_mul_inv_Gamma_add (z : ℂ) (δ : ℕ) :
     ring
 
 /-- The reflection formula as a formula for `1/Γ`, for `z` not an integer (`sin(πz) ≠ 0`):
-`1/Γ(z) = Γ(1 − z) sin(πz)/π`.-/
+`1/Γ(z) = Γ(1 − z) sin(πz)/π`.
+@isnad1 id=eq.1h1v.s6.839b6840964f from=translated src=- shape=4e67bdb1 vocab=b120c982
+-/
 theorem inv_Gamma_eq_Gamma_one_sub_mul_sin {z : ℂ} (hz : Complex.sin (Real.pi * z) ≠ 0) :
     (Complex.Gamma z)⁻¹ = Complex.Gamma (1 - z) * Complex.sin (Real.pi * z) / Real.pi := by
   have h := Complex.Gamma_mul_Gamma_one_sub z
@@ -2422,7 +2796,9 @@ theorem inv_Gamma_eq_Gamma_one_sub_mul_sin {z : ℂ} (hz : Complex.sin (Real.pi 
   linear_combination (-1 : ℂ) * h'
 
 /-- An error `ε ≤ 1` in the logarithm `L` of `Γ(z')` gives a relative error at most `2ε` in
-`1/Γ(z) = P e^(−L)`.-/
+`1/Γ(z) = P e^(−L)`.
+@isnad1 id=le.2h4v.s6.6aa37e04fea6 from=translated src=- shape=7d980ce5 vocab=0658f9eb
+-/
 theorem inv_Gamma_approx_relError (P L L' : ℂ) {ε : ℝ} (hL : ‖L' - L‖ ≤ ε) (hε : ε ≤ 1) :
     ‖P * Complex.exp (-L') - P * Complex.exp (-L)‖ ≤ 2 * ε * ‖P * Complex.exp (-L)‖ := by
   have h1 : P * Complex.exp (-L') - P * Complex.exp (-L)
@@ -2436,7 +2812,9 @@ theorem inv_Gamma_approx_relError (P L L' : ℂ) {ε : ℝ} (hL : ‖L' - L‖ �
     _ ≤ ‖P * Complex.exp (-L)‖ * (2 * ε) := by gcongr
     _ = 2 * ε * ‖P * Complex.exp (-L)‖ := by ring
 
-/-- `‖∏ (1 + e_i) − 1‖ ≤ ∏ (1 + ‖e_i‖) − 1`.-/
+/-- `‖∏ (1 + e_i) − 1‖ ≤ ∏ (1 + ‖e_i‖) − 1`.
+@isnad1 id=le.0h2v.s6.97f6ce7758d5 from=translated src=- shape=445f35b5 vocab=568613e2
+-/
 theorem norm_prod_one_add_sub_one_le_prod (e : ℕ → ℂ) (δ : ℕ) :
     ‖∏ i ∈ range δ, (1 + e i) - 1‖ ≤ ∏ i ∈ range δ, (1 + ‖e i‖) - 1 := by
   induction δ with
@@ -2456,7 +2834,9 @@ theorem norm_prod_one_add_sub_one_le_prod (e : ℕ → ℂ) (δ : ℕ) :
             rfl |> fun h => by simpa only [add_comm] using h
       _ = (∏ i ∈ range δ, (1 + ‖e i‖)) * (1 + ‖e δ‖) - 1 := by ring
 
-/-- `Γ(iy) Γ(−iy) = π/(y sinh(πy))` for real `y ≠ 0`.-/
+/-- `Γ(iy) Γ(−iy) = π/(y sinh(πy))` for real `y ≠ 0`.
+@isnad1 id=eq.1h1v.s6.dfc9b419d81e from=translated src=- shape=1fca7875 vocab=e7a02549
+-/
 theorem Gamma_I_mul_mul_Gamma_neg {y : ℝ} (hy : y ≠ 0) :
     Complex.Gamma (y * Complex.I) * Complex.Gamma (-(y * Complex.I))
       = Real.pi / (y * Real.sinh (Real.pi * y)) := by
@@ -2481,7 +2861,9 @@ theorem Gamma_I_mul_mul_Gamma_neg {y : ℝ} (hy : y ≠ 0) :
   congr 1
   linear_combination (-((Real.sinh (Real.pi * y) : ℂ) * y)) * Complex.I_sq
 
-/-- `|Γ(iy)|² = π/(y sinh(πy))` for real `y ≠ 0`: `|Γ(iy)|` is exponentially small in `|y|`.-/
+/-- `|Γ(iy)|² = π/(y sinh(πy))` for real `y ≠ 0`: `|Γ(iy)|` is exponentially small in `|y|`.
+@isnad1 id=eq.1h1v.s6.17064f090f7a from=translated src=- shape=503a2968 vocab=12d90ef8
+-/
 theorem norm_Gamma_I_mul_sq {y : ℝ} (hy : y ≠ 0) :
     ‖Complex.Gamma (y * Complex.I)‖ ^ 2 = Real.pi / (y * Real.sinh (Real.pi * y)) := by
   have hconj : (starRingEnd ℂ) (Complex.Gamma (y * Complex.I))
@@ -2491,7 +2873,9 @@ theorem norm_Gamma_I_mul_sq {y : ℝ} (hy : y ≠ 0) :
   rw [← hconj, Complex.mul_conj, Complex.normSq_eq_norm_sq] at h
   exact_mod_cast h
 
-/-- For `πy ≥ 1`: `|Γ(iy)|² ≤ 4π e^(−πy)/y`, the `≈ e^(−π|y|)` of the text.-/
+/-- For `πy ≥ 1`: `|Γ(iy)|² ≤ 4π e^(−πy)/y`, the `≈ e^(−π|y|)` of the text.
+@isnad1 id=le.1h1v.s6.46f91ebed778 from=translated src=- shape=e44a6fe1 vocab=d3542566
+-/
 theorem norm_Gamma_I_mul_sq_le {y : ℝ} (hy : 1 ≤ Real.pi * y) :
     ‖Complex.Gamma (y * Complex.I)‖ ^ 2 ≤ 4 * Real.pi * Real.exp (-(Real.pi * y)) / y := by
   have hy0 : 0 < y := by nlinarith [Real.pi_pos]
@@ -2511,7 +2895,9 @@ theorem norm_Gamma_I_mul_sq_le {y : ℝ} (hy : 1 ≤ Real.pi * y) :
         field_simp
     _ ≤ 4 * Real.pi * (Real.exp (Real.pi * y))⁻¹ * (y * Real.sinh (Real.pi * y)) := by gcongr
 
-/-- `|Γ(1/2 + iy)|² = π/cosh(πy)`.-/
+/-- `|Γ(1/2 + iy)|² = π/cosh(πy)`.
+@isnad1 id=eq.0h1v.s6.514f383ad4f9 from=translated src=- shape=9585841f vocab=74311b14
+-/
 theorem norm_Gamma_half_add_I_mul_sq (y : ℝ) :
     ‖Complex.Gamma (((1 / 2 : ℝ) : ℂ) + y * Complex.I)‖ ^ 2
       = Real.pi / Real.cosh (Real.pi * y) := by
@@ -2542,6 +2928,9 @@ def stirling1 : ℕ → ℕ → ℕ
   | n + 1, 0 => n * stirling1 n 0
   | n + 1, j + 1 => stirling1 n j + n * stirling1 n (j + 1)
 
+/--
+@isnad1 id=eq.1h2v.s4.60a1cb0e97c0 from=translated src=- shape=429d2d77 vocab=8aed087a
+-/
 theorem stirling1_eq_zero_of_lt : ∀ {n j : ℕ}, n < j → stirling1 n j = 0
   | 0, 0, h => absurd h (lt_irrefl 0)
   | 0, _ + 1, _ => rfl
@@ -2551,12 +2940,17 @@ theorem stirling1_eq_zero_of_lt : ∀ {n j : ℕ}, n < j → stirling1 n j = 0
       stirling1_eq_zero_of_lt (by omega : n < j + 1)]
     simp
 
+/--
+@isnad1 id=eq.1h1v.s4.b0a58e9ba46c from=translated src=- shape=cb752352 vocab=c5598455
+-/
 theorem stirling1_zero_right : ∀ {n : ℕ}, 1 ≤ n → stirling1 n 0 = 0
   | 0, h => absurd h (by norm_num)
   | 1, _ => rfl
   | n + 2, _ => by rw [stirling1, stirling1_zero_right (by omega : 1 ≤ n + 1), mul_zero]
 
-/-- The generating function: `∑_{j≤n} |s(n,j)| x^j = ∏_{i<n} (x + i)`.-/
+/-- The generating function: `∑_{j≤n} |s(n,j)| x^j = ∏_{i<n} (x + i)`.
+@isnad1 id=eq.0h3v.s6.72e419e3fd7f from=translated src=- shape=52fb4b1f vocab=7e3e4e5e
+-/
 theorem sum_stirling1_mul_pow {R : Type*} [CommSemiring R] (n : ℕ) (x : R) :
     ∑ j ∈ range (n + 1), (stirling1 n j : R) * x ^ j = ∏ i ∈ range n, (x + i) := by
   induction n with
@@ -2580,12 +2974,17 @@ theorem sum_stirling1_mul_pow {R : Type*} [CommSemiring R] (n : ℕ) (x : R) :
     · exact sum_congr rfl fun j _ => by ring
     · ring
 
+/--
+@isnad1 id=eq.0h1v.s4.582011a8ac9f from=translated src=- shape=78821126 vocab=d804f259
+-/
 theorem prod_one_add_range_eq_factorial (n : ℕ) : ∏ i ∈ range n, (1 + i) = n.factorial := by
   induction n with
   | zero => simp
   | succ n ih => rw [prod_range_succ, ih, Nat.factorial_succ]; ring
 
-/-- `∑_j |s(n,j)| = n!`.-/
+/-- `∑_j |s(n,j)| = n!`.
+@isnad1 id=eq.0h1v.s4.634eeea6f56b from=translated src=- shape=a1fad9a3 vocab=bc1bfcda
+-/
 theorem sum_stirling1 (n : ℕ) : ∑ j ∈ range (n + 1), stirling1 n j = n.factorial := by
   have h := sum_stirling1_mul_pow n (1 : ℕ)
   simp only [one_pow, mul_one, Nat.cast_id] at h
@@ -2596,12 +2995,16 @@ term vanishes, so the sum may run from `0`).-/
 def stirlingC (k : ℕ) : ℚ :=
   1 / (2 * k) * ∑ j ∈ range (k + 1), (j : ℚ) * stirling1 k j / ((j + 1) * (j + 2))
 
-/-- `c_1 = 1/12`, matching the first term `B_2/2 = 1/12` of (4.38).-/
+/-- `c_1 = 1/12`, matching the first term `B_2/2 = 1/12` of (4.38).
+@isnad1 id=eq.0h0v.s4.c6c2238287f8 from=translated src=- shape=4683683d vocab=c0fc20ce
+-/
 theorem stirlingC_one : stirlingC 1 = 1 / 12 := by
   simp [stirlingC, stirling1, sum_range_succ]
   norm_num
 
-/-- `c_k ≥ k!/(4k(k+2))`: the coefficients grow factorially, like the Bernoulli numbers.-/
+/-- `c_k ≥ k!/(4k(k+2))`: the coefficients grow factorially, like the Bernoulli numbers.
+@isnad1 id=le.1h1v.s6.fbc0ef83a6f1 from=translated src=- shape=c95f2559 vocab=0d9db3c0
+-/
 theorem stirlingC_ge {k : ℕ} (hk : 1 ≤ k) :
     (k.factorial : ℚ) / (4 * k * (k + 2)) ≤ stirlingC k := by
   have hterm : ∀ j ∈ range (k + 1),
@@ -2633,6 +3036,9 @@ theorem stirlingC_ge {k : ℕ} (hk : 1 ≤ k) :
 noncomputable def convergentTerm (k N : ℕ) : ℝ :=
   (stirlingC k : ℝ) / ∏ i ∈ range k, ((N : ℝ) + i + 1)
 
+/--
+@isnad1 id=lt.1h2v.s4.1128ad7adbac from=translated src=- shape=c62f519e vocab=4707af3f
+-/
 theorem convergentTerm_pos {k : ℕ} (hk : 1 ≤ k) (N : ℕ) : 0 < convergentTerm k N := by
   unfold convergentTerm
   have h := stirlingC_ge hk
@@ -2640,7 +3046,9 @@ theorem convergentTerm_pos {k : ℕ} (hk : 1 ≤ k) (N : ℕ) : 0 < convergentTe
   have : (0 : ℝ) < (stirlingC k : ℝ) := by exact_mod_cast hc
   positivity
 
-/-- `(K/(2eN))^K ≥ e^(−2N)` for every `K ≥ 1`: `K ln(2eN/K) ≤ 2N`, since `1 + ln u ≤ u`.-/
+/-- `(K/(2eN))^K ≥ e^(−2N)` for every `K ≥ 1`: `K ln(2eN/K) ≤ 2N`, since `1 + ln u ≤ u`.
+@isnad1 id=le.2h2v.s6.88ba94dab033 from=translated src=- shape=ebdf7bc0 vocab=69eedb8c
+-/
 theorem pow_div_ge_exp_neg {K : ℕ} (hK : 1 ≤ K) {N : ℝ} (hN : 0 < N) :
     Real.exp (-(2 * N)) ≤ ((K : ℝ) / (2 * Real.exp 1 * N)) ^ K := by
   have hK0 : (0 : ℝ) < K := by exact_mod_cast hK
@@ -2660,19 +3068,25 @@ end Exercise423
 section Exercise425
 
 /-- (4.43) in the text's form: for `b₀ = 0` and positive `a_j, b_j`,
-`a₁/b₁+ a₂/b₂+ ⋯ a_k/b_k = a₁ R₁ / R₀`.-/
+`a₁/b₁+ a₂/b₂+ ⋯ a_k/b_k = a₁ R₁ / R₀`.
+@isnad1 id=eq.3h3v.s6.3496ec61bdd6 from=translated src=- shape=bfa737ae vocab=81ea9ab4
+-/
 theorem finiteFrac_eq_backR {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (hb0 : b 0 = 0)
     {k : ℕ} (hk : 1 ≤ k) : approximant a b k = a 1 * backR a b k 1 / backR a b k 0 := by
   rw [approximant_eq_backR hpos hk, hb0, zero_add]
 
 /-- The first genuine step of the recurrence:
-`R_{k−2} = b_{k−1} R_{k−1} + a_k R_k = b_{k−1} b_k + a_k`.-/
+`R_{k−2} = b_{k−1} R_{k−1} + a_k R_k = b_{k−1} b_k + a_k`.
+@isnad1 id=eq.1h3v.s6.da867bec9915 from=translated src=- shape=65b05d2c vocab=c2105667
+-/
 theorem backR_sub_two (a b : ℕ → ℝ) {k : ℕ} (hk : 2 ≤ k) :
     backR a b k (k - 2) = b (k - 1) * b k + a k := by
   rw [backR_of_lt a b (by omega), show k - 2 + 1 = k - 1 by omega, show k - 2 + 2 = k by omega,
     backR_pred_self a b (by omega), backR_self, mul_one]
 
-/-- Sanity check at `k = 2`: `a₁/(b₁ + a₂/b₂) = a₁ b₂/(b₁ b₂ + a₂) = a₁ R₁/R₀`.-/
+/-- Sanity check at `k = 2`: `a₁/(b₁ + a₂/b₂) = a₁ b₂/(b₁ b₂ + a₂) = a₁ R₁/R₀`.
+@isnad1 id=eq.2h2v.s7.fec98277bd4c from=translated src=- shape=df08b770 vocab=1b1fe8e0
+-/
 theorem finiteFrac_two_eq {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (hb0 : b 0 = 0) :
     approximant a b 2 = a 1 * b 2 / (b 1 * b 2 + a 2) := by
   have h := backR_sub_two a b (k := 2) le_rfl
@@ -2689,15 +3103,23 @@ noncomputable def tailFracX (a b : ℕ → ℝ) (k : ℕ) (x : ℝ) (j : ℕ) : 
   if k < j then x else a j / (b j + tailFracX a b k x (j + 1))
 termination_by k + 1 - j
 
+/--
+@isnad1 id=eq.1h5v.s4.cfc0648a669e from=translated src=- shape=791eb028 vocab=0bb720a8
+-/
 theorem tailFracX_of_lt (a b : ℕ → ℝ) (k : ℕ) (x : ℝ) {j : ℕ} (h : k < j) :
     tailFracX a b k x j = x := by
   rw [tailFracX, ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h5v.s6.df215f02f950 from=translated src=- shape=ff9cca48 vocab=abf8fbfe
+-/
 theorem tailFracX_of_le (a b : ℕ → ℝ) (k : ℕ) (x : ℝ) {j : ℕ} (h : j ≤ k) :
     tailFracX a b k x j = a j / (b j + tailFracX a b k x (j + 1)) := by
   rw [tailFracX, ite_eq_right (not_lt.mpr h)]
 
-/-- `x = 0` recovers the plain tail.-/
+/-- `x = 0` recovers the plain tail.
+@isnad1 id=eq.0h4v.s4.c54119c9e184 from=translated src=- shape=4742ce50 vocab=759f607e
+-/
 theorem tailFracX_zero (a b : ℕ → ℝ) (k j : ℕ) : tailFracX a b k 0 j = tailFrac a b k j := by
   by_cases h : k < j
   · rw [tailFracX_of_lt _ _ _ _ h, tailFrac_of_lt _ _ h]
@@ -2706,7 +3128,9 @@ theorem tailFracX_zero (a b : ℕ → ℝ) (k j : ℕ) : tailFracX a b k 0 j = t
 termination_by k + 1 - j
 
 /-- Peeling from the back: `y_{k+1}(x) = y_k(a_{k+1}/(b_{k+1} + x))`, at every start index
-`j ≤ k + 1`.-/
+`j ≤ k + 1`.
+@isnad1 id=eq.1h5v.s6.c67cce3185df from=translated src=- shape=faa14d94 vocab=abf8fbfe
+-/
 theorem tailFracX_succ (a b : ℕ → ℝ) (k : ℕ) (x : ℝ) {j : ℕ} (hj : j ≤ k + 1) :
     tailFracX a b (k + 1) x j = tailFracX a b k (a (k + 1) / (b (k + 1) + x)) j := by
   rcases eq_or_lt_of_le hj with rfl | hlt
@@ -2717,6 +3141,9 @@ theorem tailFracX_succ (a b : ℕ → ℝ) (k : ℕ) (x : ℝ) {j : ℕ} (hj : j
       tailFracX_succ a b k x (j := j + 1) (by omega)]
 termination_by k + 1 - j
 
+/--
+@isnad1 id=le.3h5v.s6.e18d171052c4 from=translated src=- shape=ba454cbb vocab=d7b3b842
+-/
 theorem tailFracX_nonneg {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (k : ℕ) {x : ℝ}
     (hx : 0 ≤ x) {j : ℕ} (hj : 1 ≤ j) : 0 ≤ tailFracX a b k x j := by
   by_cases h : k < j
@@ -2728,7 +3155,9 @@ theorem tailFracX_nonneg {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j 
 termination_by k + 1 - j
 
 /-- The hint: `b₀ + y_{k+1}(x) = (P_{k+1} + P_k x)/(Q_{k+1} + Q_k x)` for `x ≥ 0`, by induction
-on `k`, where `P = nums`, `Q = dens` are the continuants of (4.44).-/
+on `k`, where `P = nums`, `Q = dens` are the continuants of (4.44).
+@isnad1 id=eq.2h4v.s7.7a70cb8724bd from=translated src=- shape=5a7fb46d vocab=8bdc4f73
+-/
 theorem tailFracX_eq_nums_dens {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (k : ℕ)
     {x : ℝ} (hx : 0 ≤ x) :
     b 0 + tailFracX a b (k + 1) x 1
@@ -2757,7 +3186,9 @@ theorem tailFracX_eq_nums_dens {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 
     field_simp
     ring
 
-/-- (4.44): `f_k = P_k / Q_k`, the forward recurrence, from the hint at `x = 0`.-/
+/-- (4.44): `f_k = P_k / Q_k`, the forward recurrence, from the hint at `x = 0`.
+@isnad1 id=eq.1h3v.s6.b14f77ad3785 from=translated src=- shape=4e0d9614 vocab=caca4d9f
+-/
 theorem approximant_eq_nums_div_dens {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j)
     (k : ℕ) : approximant a b k = (contFrac a b).nums k / (contFrac a b).dens k := by
   rcases Nat.eq_zero_or_pos k with rfl | hk
@@ -2782,7 +3213,9 @@ noncomputable def cfProdRange (a b : ℕ → ℝ) (i : ℕ) : ℕ → Matrix (Fi
 noncomputable def cfProd (a b : ℕ → ℝ) (k : ℕ) : Matrix (Fin 2) (Fin 2) ℝ := cfProdRange a b 0 k
 
 /-- Segments compose: the product over `(i, i+m+n]` is the product over `(i, i+m]` times the
-product over `(i+m, i+m+n]` — the basis of a parallel or binary-splitting evaluation.-/
+product over `(i+m, i+m+n]` — the basis of a parallel or binary-splitting evaluation.
+@isnad1 id=eq.0h5v.s7.fad172d437a3 from=translated src=- shape=a96f35fa vocab=f836587c
+-/
 theorem cfProdRange_add (a b : ℕ → ℝ) (i m n : ℕ) :
     cfProdRange a b i (m + n) = cfProdRange a b i m * cfProdRange a b (i + m) n := by
   induction n with
@@ -2792,14 +3225,18 @@ theorem cfProdRange_add (a b : ℕ → ℝ) (i m n : ℕ) :
       show i + m + n + 1 = i + (m + n) + 1 by ring]
 
 /-- `k = 0`: the empty product is the identity, `[[Q₀, Q_{−1}], [P₀, P_{−1}]]` with the
-convention `P_{−1} = 1`, `Q_{−1} = 0` (and `P₀ = b₀ = 0`, `Q₀ = 1`).-/
+convention `P_{−1} = 1`, `Q_{−1} = 0` (and `P₀ = b₀ = 0`, `Q₀ = 1`).
+@isnad1 id=eq.1h2v.s8.2bc06aeaef48 from=translated src=- shape=45febc61 vocab=ddb89823
+-/
 theorem cfProd_zero (a b : ℕ → ℝ) (hb0 : b 0 = 0) :
     cfProd a b 0 = !![(contFrac a b).dens 0, 0; (contFrac a b).nums 0, 1] := by
   rw [cfProd, cfProdRange, dens_zero, nums_zero, hb0]
   ext i j
   fin_cases i <;> fin_cases j <;> rfl
 
-/-- Exercise 4.27: `M_1 ⋯ M_k = [[Q_k, Q_{k−1}], [P_k, P_{k−1}]]` for `k ≥ 1` (with `b₀ = 0`).-/
+/-- Exercise 4.27: `M_1 ⋯ M_k = [[Q_k, Q_{k−1}], [P_k, P_{k−1}]]` for `k ≥ 1` (with `b₀ = 0`).
+@isnad1 id=eq.1h3v.s8.14f46662ca73 from=translated src=- shape=e6093748 vocab=4f6d12a5
+-/
 theorem cfProd_eq (a b : ℕ → ℝ) (hb0 : b 0 = 0) (k : ℕ) :
     cfProd a b (k + 1) = !![(contFrac a b).dens (k + 1), (contFrac a b).dens k;
       (contFrac a b).nums (k + 1), (contFrac a b).nums k] := by
@@ -2814,7 +3251,9 @@ theorem cfProd_eq (a b : ℕ → ℝ) (hb0 : b 0 = 0) (k : ℕ) :
     ext i j
     fin_cases i <;> fin_cases j <;> simp [Matrix.mul_apply, Fin.sum_univ_two] <;> ring
 
-/-- `f_k` is the ratio of the first-column entries of the product.-/
+/-- `f_k` is the ratio of the first-column entries of the product.
+@isnad1 id=eq.2h3v.s7.d02213a88c59 from=translated src=- shape=ab1fbf4d vocab=07f54a81
+-/
 theorem approximant_eq_cfProd {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j)
     (hb0 : b 0 = 0) (k : ℕ) :
     approximant a b (k + 1) = cfProd a b (k + 1) 1 0 / cfProd a b (k + 1) 0 0 := by
@@ -2827,22 +3266,32 @@ section Exercise428
 
 open Finset
 
+/--
+@isnad1 id=eq.0h3v.s5.24f2787a34c4 from=translated src=- shape=c06a06dd vocab=1f7573ff
+-/
 theorem det_cfStep (a b : ℕ → ℝ) (j : ℕ) : (cfStep a b j).det = -a j := by
   rw [cfStep, Matrix.det_fin_two_of]; ring
 
+/--
+@isnad1 id=eq.0h4v.s6.a801a28c2257 from=translated src=- shape=1dc9faa8 vocab=7218e290
+-/
 theorem det_cfProdRange (a b : ℕ → ℝ) (i n : ℕ) :
     (cfProdRange a b i n).det = ∏ j ∈ range n, (-a (i + j + 1)) := by
   induction n with
   | zero => simp [cfProdRange]
   | succ n ih => rw [cfProdRange, Matrix.det_mul, ih, det_cfStep, prod_range_succ]
 
-/-- `det (M_1 ⋯ M_k) = (−1)^k a_1 a_2 ⋯ a_k`.-/
+/-- `det (M_1 ⋯ M_k) = (−1)^k a_1 a_2 ⋯ a_k`.
+@isnad1 id=eq.0h3v.s6.4edf3294bc05 from=translated src=- shape=df47b8cc vocab=1e9d50ea
+-/
 theorem det_cfProd (a b : ℕ → ℝ) (k : ℕ) :
     (cfProd a b k).det = (-1) ^ k * ∏ j ∈ range k, a (j + 1) := by
   rw [cfProd, det_cfProdRange, prod_neg, card_range]
   simp
 
-/-- Exercise 4.28: `Q_k P_{k−1} − P_k Q_{k−1} = (−1)^k a_1 ⋯ a_k` for `k ≥ 1` (with `b₀ = 0`).-/
+/-- Exercise 4.28: `Q_k P_{k−1} − P_k Q_{k−1} = (−1)^k a_1 ⋯ a_k` for `k ≥ 1` (with `b₀ = 0`).
+@isnad1 id=eq.1h3v.s7.41d5a55a6552 from=translated src=- shape=1036aaf7 vocab=eecb5e92
+-/
 theorem det_continuants (a b : ℕ → ℝ) (hb0 : b 0 = 0) (k : ℕ) :
     (contFrac a b).dens (k + 1) * (contFrac a b).nums k
       - (contFrac a b).dens k * (contFrac a b).nums (k + 1)
@@ -2858,7 +3307,9 @@ section Exercise429
 open Finset
 
 /-- The closed form of (4.45): `D_{k+1} = (−1)^k a_1 ⋯ a_{k+1} / (Q_{k+1} Q_k)` (positive
-coefficients, `b₀ = 0`).-/
+coefficients, `b₀ = 0`).
+@isnad1 id=eq.2h3v.s7.2bfca8de627b from=translated src=- shape=411937e5 vocab=f89539a1
+-/
 theorem diff_eq_prod_div {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (hb0 : b 0 = 0)
     (k : ℕ) :
     diff a b (k + 1) = (-1) ^ k * (∏ j ∈ range (k + 1), a (j + 1))
@@ -2869,7 +3320,9 @@ theorem diff_eq_prod_div {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j 
   rw [pow_succ] at h
   linear_combination -h
 
-/-- (4.46) rederived from the closed form: `D_{k+2}/D_{k+1} = −a_{k+2} Q_k / Q_{k+2}`.-/
+/-- (4.46) rederived from the closed form: `D_{k+2}/D_{k+1} = −a_{k+2} Q_k / Q_{k+2}`.
+@isnad1 id=eq.2h3v.s7.9c29a11c55e6 from=translated src=- shape=f1816b04 vocab=c8495a0a
+-/
 theorem diff_succ' {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (hb0 : b 0 = 0)
     (k : ℕ) :
     diff a b (k + 2)
@@ -2885,7 +3338,9 @@ end Exercise429
 
 section Exercise430
 
-/-- The value lies strictly between any two consecutive approximants.-/
+/-- The value lies strictly between any two consecutive approximants.
+@isnad1 id=and.2h4v.s6.feed44a0a785 from=translated src=- shape=b4e4a443 vocab=e6bee614
+-/
 theorem approximant_between_consecutive {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j)
     {f : ℝ} (hf : HasContFracValue a b f) (m : ℕ) :
     min (approximant a b m) (approximant a b (m + 1)) < f ∧
@@ -2903,7 +3358,9 @@ theorem approximant_between_consecutive {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤
 /-- Theorem 4.1 (Exercise 4.30): for positive `a_j, b_j`, the even approximants increase
 strictly, the odd ones decrease strictly, the value `f` lies strictly between every even and
 every odd approximant, and the midpoint of two consecutive approximants is within half their
-distance of `f`.-/
+distance of `f`.
+@isnad1 id=and.2h3v.s8.0e02d2b812ab from=translated src=- shape=c99eb23a vocab=eb402e81
+-/
 theorem theorem_4_1 {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) {f : ℝ}
     (hf : HasContFracValue a b f) :
     StrictMono (fun k => approximant a b (2 * k)) ∧
@@ -2922,7 +3379,9 @@ section Exercise431
 
 open Finset
 
-/-- The coefficients of (4.40) are positive for `x > 0`.-/
+/-- The coefficients of (4.40) are positive for `x > 0`.
+@isnad1 id=and.2h2v.s5.fa1e73226e5e from=translated src=- shape=2b7513e7 vocab=48f21c64
+-/
 theorem erfcCF_pos {x : ℝ} (hx : 0 < x) : ∀ j, 1 ≤ j → 0 < erfcCFNum j ∧ 0 < erfcCFDen x j := by
   intro j hj
   refine ⟨?_, ?_⟩
@@ -2935,9 +3394,14 @@ theorem erfcCF_pos {x : ℝ} (hx : 0 < x) : ∀ j, 1 ≤ j → 0 < erfcCFNum j �
     rw [ite_eq_right (by omega)]
     exact hx
 
+/--
+@isnad1 id=eq.0h1v.s4.c08eda1dd480 from=translated src=- shape=0e0c2bda vocab=6de30a09
+-/
 theorem erfcCFDen_zero (x : ℝ) : erfcCFDen x 0 = 0 := by simp [erfcCFDen]
 
-/-- `a₁ a₂ ⋯ a_{k+1} = 1 · (1/2) · (2/2) ⋯ (k/2) = k!/2^k`.-/
+/-- `a₁ a₂ ⋯ a_{k+1} = 1 · (1/2) · (2/2) ⋯ (k/2) = k!/2^k`.
+@isnad1 id=eq.0h1v.s6.1ee345d63b9b from=translated src=- shape=8b2253ee vocab=4ba76e6c
+-/
 theorem erfcCF_prod_num (k : ℕ) :
     ∏ j ∈ range (k + 1), erfcCFNum (j + 1) = (k.factorial : ℝ) / 2 ^ k := by
   induction k with
@@ -2948,7 +3412,9 @@ theorem erfcCF_prod_num (k : ℕ) :
     field_simp
     ring
 
-/-- `Q_j ≥ x^j`: each step multiplies by at least `x`.-/
+/-- `Q_j ≥ x^j`: each step multiplies by at least `x`.
+@isnad1 id=le.1h2v.s5.fa05295d582e from=translated src=- shape=6d605283 vocab=9e182101
+-/
 theorem erfcCF_dens_ge {x : ℝ} (hx : 0 < x) (j : ℕ) :
     x ^ j ≤ (contFrac erfcCFNum (erfcCFDen x)).dens j := by
   induction j using Nat.strong_induction_on with
@@ -2965,7 +3431,9 @@ theorem erfcCF_dens_ge {x : ℝ} (hx : 0 < x) (j : ℕ) :
         _ ≤ x * (contFrac erfcCFNum (erfcCFDen x)).dens (j + 1) := by gcongr
         _ ≤ _ := by nlinarith
 
-/-- The step `|D_{k+1}| = |f_{k+1} − f_k| ≤ k!/(2^k x^(2k+1))` of the normalized fraction (4.40).-/
+/-- The step `|D_{k+1}| = |f_{k+1} − f_k| ≤ k!/(2^k x^(2k+1))` of the normalized fraction (4.40).
+@isnad1 id=le.1h2v.s6.e767405130ff from=translated src=- shape=46c7102e vocab=be1e57eb
+-/
 theorem erfcCF_abs_diff_le {x : ℝ} (hx : 0 < x) (k : ℕ) :
     |diff erfcCFNum (erfcCFDen x) (k + 1)| ≤ k.factorial / (2 ^ k * x ^ (2 * k + 1)) := by
   rw [diff_eq_prod_div (erfcCF_pos hx) (erfcCFDen_zero x) k, erfcCF_prod_num, abs_div, abs_mul,
@@ -2983,7 +3451,9 @@ theorem erfcCF_abs_diff_le {x : ℝ} (hx : 0 < x) (k : ℕ) :
     (mul_le_mul_of_nonneg_left hprod (by positivity))
 
 /-- `(k!)² 2^k ≤ (2k)!`, i.e. `k!/2^k ≤ (2k)!/(k! 4^k)`: the fraction's step is below the
-asymptotic series' term coefficient.-/
+asymptotic series' term coefficient.
+@isnad1 id=le.0h1v.s5.6c7c6f001d1d from=translated src=- shape=74770096 vocab=bf88f0e0
+-/
 theorem factorial_sq_mul_two_pow_le_factorial (k : ℕ) :
     k.factorial ^ 2 * 2 ^ k ≤ (2 * k).factorial := by
   induction k with
@@ -3000,7 +3470,9 @@ theorem factorial_sq_mul_two_pow_le_factorial (k : ℕ) :
       _ = (2 * k + 2) * ((2 * k + 1) * (2 * k).factorial) := by ring
 
 /-- The `(k+1)`-th step of (4.40) is at most the `k`-th term of the asymptotic series (4.37),
-both normalized by the common prefactor `e^(−x²)/√π`.-/
+both normalized by the common prefactor `e^(−x²)/√π`.
+@isnad1 id=le.1h2v.s5.7104e7c40bd8 from=translated src=- shape=42eef3ad vocab=4dca0026
+-/
 theorem erfcCF_abs_diff_le_erfcTermMag {x : ℝ} (hx : 0 < x) (k : ℕ) :
     |diff erfcCFNum (erfcCFDen x) (k + 1)| ≤ erfcTermMag k x / x := by
   refine (erfcCF_abs_diff_le hx k).trans ?_
@@ -3024,13 +3496,17 @@ section Exercise432
 
 open Finset
 
-/-- The entries of a step matrix are bounded by `B ≥ 1` when `|a_j|, |b_j| ≤ B`.-/
+/-- The entries of a step matrix are bounded by `B ≥ 1` when `|a_j|, |b_j| ≤ B`.
+@isnad1 id=le.3h6v.s6.22c39a5599c1 from=translated src=- shape=d39fb42a vocab=51e3eac5
+-/
 theorem cfStep_entry_le {a b : ℕ → ℝ} {B : ℝ} (hB : 1 ≤ B) {j : ℕ} (ha : |a j| ≤ B)
     (hb : |b j| ≤ B) (r s : Fin 2) : |cfStep a b j r s| ≤ B := by
   fin_cases r <;> fin_cases s <;> simp [cfStep] <;> linarith
 
 /-- The entries of a product of `n` step matrices are bounded by `(2B)^n`: they have
-`O(n log B)` bits.-/
+`O(n log B)` bits.
+@isnad1 id=le.3h7v.s6.3336294094b7 from=translated src=- shape=6a3f2f90 vocab=1cd22071
+-/
 theorem cfProdRange_entry_le {a b : ℕ → ℝ} {B : ℝ} (hB : 1 ≤ B) (i : ℕ)
     (ha : ∀ j, |a j| ≤ B) (hb : ∀ j, |b j| ≤ B) (n : ℕ) (r s : Fin 2) :
     |cfProdRange a b i n r s| ≤ (2 * B) ^ n := by
@@ -3055,7 +3531,9 @@ theorem cfProdRange_entry_le {a b : ℕ → ℝ} {B : ℝ} (hB : 1 ≤ B) (i : �
 /-- The product tree: level `ℓ` of the splitting forms `2^ℓ` products of matrices whose entries
 have `m/2^ℓ` bits (`m = O(k log B)` at the root); in the quasi-linear model `M(x) = x lg x` each
 level costs at most `8 M(m)` (eight multiplications per `2×2` product), so `L` levels cost at most
-`8 L M(m)`.-/
+`8 L M(m)`.
+@isnad1 id=le.1h2v.s7.c272d824516d from=translated src=- shape=093e9e19 vocab=5acb9f24
+-/
 theorem splitting_levels_cost_le {m : ℝ} (hm : 1 ≤ m) (L : ℕ) :
     ∑ ℓ ∈ range L, 2 ^ ℓ * (8 * quasiLinearCost (m / 2 ^ ℓ)) ≤ L * (8 * quasiLinearCost m) := by
   have hterm : ∀ ℓ ∈ range L,
@@ -3073,7 +3551,9 @@ section Exercise433
 open Finset
 
 /-- A linear normalization sum whose terms carry relative errors `|e_i| ≤ ε` is off by at most
-`ε ∑|t_i|`: the error is amplified by `κ₁ = ∑|t_i| / |∑ t_i|` relative to the sum.-/
+`ε ∑|t_i|`: the error is amplified by `κ₁ = ∑|t_i| / |∑ t_i|` relative to the sum.
+@isnad1 id=le.1h5v.s6.db7eba6997c3 from=translated src=- shape=64e5f152 vocab=96237ae9
+-/
 theorem abs_sum_perturbed_sub_le {ι : Type*} (s : Finset ι) (t e : ι → ℝ) {ε : ℝ}
     (he : ∀ i ∈ s, |e i| ≤ ε) :
     |∑ i ∈ s, t i * (1 + e i) - ∑ i ∈ s, t i| ≤ ε * ∑ i ∈ s, |t i| := by
@@ -3087,7 +3567,9 @@ theorem abs_sum_perturbed_sub_le {ι : Type*} (s : Finset ι) (t e : ι → ℝ)
     _ = ε * ∑ i ∈ s, |t i| := by rw [← sum_mul, mul_comm]
 
 /-- A sum of squares of nonnegative terms with relative errors `|e_i| ≤ ε` has relative error at
-most `2ε + ε²`: no amplification.-/
+most `2ε + ε²`: no amplification.
+@isnad1 id=le.2h5v.s7.e5b802195575 from=translated src=- shape=ac7a6958 vocab=809b22e9
+-/
 theorem abs_sum_sq_perturbed_sub_le {ι : Type*} (s : Finset ι) (t e : ι → ℝ)
     (ht : ∀ i ∈ s, 0 ≤ t i) {ε : ℝ} (he : ∀ i ∈ s, |e i| ≤ ε) :
     |∑ i ∈ s, t i * (1 + e i) ^ 2 - ∑ i ∈ s, t i| ≤ (2 * ε + ε ^ 2) * ∑ i ∈ s, t i := by
@@ -3109,7 +3591,9 @@ theorem abs_sum_sq_perturbed_sub_le {ι : Type*} (s : Finset ι) (t e : ι → �
     _ = (2 * ε + ε ^ 2) * ∑ i ∈ s, t i := by rw [← sum_mul, mul_comm]
 
 /-- Cauchy–Schwarz: `∑|t_i| ≤ √(N ∑ t_i²)` over `N` terms; so when `∑ t_i² ≤ 1` (as in (4.89))
-the amplification of a linear normalization sum is at most `√N`.-/
+the amplification of a linear normalization sum is at most `√N`.
+@isnad1 id=le.0h3v.s6.fe88cc85f1bb from=translated src=- shape=04af1cb2 vocab=4e67d1cb
+-/
 theorem sum_abs_le_sqrt_card_mul_sum_sq {ι : Type*} (s : Finset ι) (t : ι → ℝ) :
     ∑ i ∈ s, |t i| ≤ Real.sqrt (s.card * ∑ i ∈ s, t i ^ 2) := by
   rw [Real.le_sqrt (sum_nonneg fun i _ => abs_nonneg _) (by positivity)]
@@ -3124,17 +3608,25 @@ section Exercise434
 /-- The constant-coefficient model `f_ν + f_{ν+2} = 2K f_{ν+1}` of (4.53) near `ν ≈ Kx`.-/
 def IsConstRecSol (K : ℂ) (f : ℕ → ℂ) : Prop := ∀ ν, f ν + f (ν + 2) = 2 * K * f (ν + 1)
 
-/-- `λ^ν` is a solution iff `λ² − 2Kλ + 1 = 0`.-/
+/-- `λ^ν` is a solution iff `λ² − 2Kλ + 1 = 0`.
+@isnad1 id=isconstr.1h2v.s6.50c7398454bd from=translated src=- shape=b86b0497 vocab=545cbb38
+-/
 theorem isConstRecSol_pow {K lam : ℂ} (h : lam ^ 2 - 2 * K * lam + 1 = 0) :
     IsConstRecSol K (fun ν => lam ^ ν) := by
   intro ν
   simp only
   linear_combination lam ^ ν * h
 
+/--
+@isnad1 id=isconstr.2h3v.s5.e04beda40b1d from=translated src=- shape=2a352ecb vocab=9a6ef20e
+-/
 theorem IsConstRecSol.add {K : ℂ} {f g : ℕ → ℂ} (hf : IsConstRecSol K f) (hg : IsConstRecSol K g) :
     IsConstRecSol K (fun ν => f ν + g ν) := by
   intro ν; simp only; linear_combination hf ν + hg ν
 
+/--
+@isnad1 id=isconstr.1h3v.s4.b277b8748a18 from=translated src=- shape=63dcfe7c vocab=5ebe6f75
+-/
 theorem IsConstRecSol.smul {K : ℂ} {f : ℕ → ℂ} (hf : IsConstRecSol K f) (c : ℂ) :
     IsConstRecSol K (fun ν => c * f ν) := by
   intro ν; simp only; linear_combination c * hf ν
@@ -3152,7 +3644,9 @@ theorem IsConstRecSol.eq_of_init {K : ℂ} {f g : ℕ → ℂ} (hf : IsConstRecS
     linear_combination hfν - hgν - ih0 + 2 * K * ih1
 
 /-- Exercise 4.34: for distinct roots `λ ≠ μ` of `x² − 2Kx + 1`, every solution is
-`A λ^ν + B μ^ν` with `A = (f₁ − μ f₀)/(λ − μ)`, `B = (λ f₀ − f₁)/(λ − μ)`.-/
+`A λ^ν + B μ^ν` with `A = (f₁ − μ f₀)/(λ − μ)`, `B = (λ f₀ − f₁)/(λ − μ)`.
+@isnad1 id=ex.4h4v.s7.2433a08556da from=translated src=- shape=27114ed1 vocab=545cbb38
+-/
 theorem IsConstRecSol.exists_eq_comb {K lam mu : ℂ} (hl : lam ^ 2 - 2 * K * lam + 1 = 0)
     (hm : mu ^ 2 - 2 * K * mu + 1 = 0) (hne : lam ≠ mu) {f : ℕ → ℂ} (hf : IsConstRecSol K f) :
     ∃ A B : ℂ, ∀ ν, f ν = A * lam ^ ν + B * mu ^ ν := by
@@ -3163,7 +3657,9 @@ theorem IsConstRecSol.exists_eq_comb {K lam mu : ℂ} (hl : lam ^ 2 - 2 * K * la
     ((isConstRecSol_pow hl).smul _).add ((isConstRecSol_pow hm).smul _)
   exact hf.eq_of_init hg (by simp; field_simp; ring) (by simp; field_simp; ring)
 
-/-- `K > 1`: two real roots `K ± √(K² − 1)`, with product `1` and `λ > 1 > μ > 0`.-/
+/-- `K > 1`: two real roots `K ± √(K² − 1)`, with product `1` and `λ > 1 > μ > 0`.
+@isnad1 id=other.1h1v.s8.92d9c543c74f from=translated src=- shape=dd34aa91 vocab=7f43cf3f
+-/
 theorem roots_of_one_lt {K : ℝ} (hK : 1 < K) :
     let s := Real.sqrt (K ^ 2 - 1)
     (K + s) ^ 2 - 2 * K * (K + s) + 1 = 0 ∧ (K - s) ^ 2 - 2 * K * (K - s) + 1 = 0 ∧
@@ -3177,7 +3673,9 @@ theorem roots_of_one_lt {K : ℝ} (hK : 1 < K) :
     by linarith, by linarith, ?_⟩
   nlinarith
 
-/-- `0 < K < 1`: the roots `K ± i√(1 − K²)` are complex conjugates of modulus `1`.-/
+/-- `0 < K < 1`: the roots `K ± i√(1 − K²)` are complex conjugates of modulus `1`.
+@isnad1 id=other.2h1v.s8.abdbeb51132e from=translated src=- shape=5853e89b vocab=039b3f9a
+-/
 theorem roots_of_lt_one {K : ℝ} (hK0 : 0 < K) (hK : K < 1) :
     let lam : ℂ := K + Real.sqrt (1 - K ^ 2) * Complex.I
     lam ^ 2 - 2 * (K : ℂ) * lam + 1 = 0 ∧
@@ -3217,12 +3715,17 @@ open Finset PowerSeries
 coefficient of `x^(2k)` in `x/sinh x = 2S(x) − S(2x)`.-/
 def bernoulliKernel (k : ℕ) : ℚ := (2 - 4 ^ k) * scaledBernoulli k
 
+/--
+@isnad1 id=ne.0h0v.s4.e64e5017a3cf from=translated src=- shape=7f334061 vocab=405b5013
+-/
 theorem exp_ne_zero' : (exp ℚ : ℚ⟦X⟧) ≠ 0 := fun h => by
   have := congrArg (coeff 0) h
   rw [coeff_exp, map_zero] at this
   simp at this
 
-/-- `x/sinh x = 2S(x) − S(2x)`: `(2S − S(2x))(e^x − e^(−x)) = 2x` in `ℚ⟦X⟧`.-/
+/-- `x/sinh x = 2S(x) − S(2x)`: `(2S − S(2x))(e^x − e^(−x)) = 2x` in `ℚ⟦X⟧`.
+@isnad1 id=eq.0h0v.s8.69bce9fb4787 from=translated src=- shape=be29f359 vocab=e2483463
+-/
 theorem kernel_mul_sinh :
     (2 * scaledBernoulliPowerSeries - rescale (2 : ℚ) scaledBernoulliPowerSeries)
       * (exp ℚ - evalNegHom (exp ℚ)) = 2 * X := by
@@ -3245,6 +3748,9 @@ theorem kernel_mul_sinh :
   linear_combination (2 * (E + 1)) * h1 - h2 - (X + C (1 / 2 : ℚ) * X * (E * E - 1)) * hc2
     - (2 * S - rescale (2 : ℚ) S) * hEi
 
+/--
+@isnad1 id=eq.0h1v.s7.36e986dcf328 from=translated src=- shape=f8494462 vocab=a1a4b889
+-/
 theorem coeff_kernelSeries_even (j : ℕ) :
     coeff (2 * j) (2 * scaledBernoulliPowerSeries - rescale (2 : ℚ) scaledBernoulliPowerSeries)
       = bernoulliKernel j := by
@@ -3254,6 +3760,9 @@ theorem coeff_kernelSeries_even (j : ℕ) :
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h1v.s7.5bca3d29ad5d from=translated src=- shape=2c843f33 vocab=1464f7d0
+-/
 theorem coeff_kernelSeries_odd (j : ℕ) :
     coeff (2 * j + 1) (2 * scaledBernoulliPowerSeries - rescale (2 : ℚ) scaledBernoulliPowerSeries)
       = 0 := by
@@ -3262,7 +3771,9 @@ theorem coeff_kernelSeries_odd (j : ℕ) :
     coeff_scaledBernoulliPowerSeries_odd]
   ring
 
-/-- The coefficient of `x^(2k+1)` in `φ ψ` for an even series `φ`.-/
+/-- The coefficient of `x^(2k+1)` in `φ ψ` for an even series `φ`.
+@isnad1 id=eq.1h3v.s8.6233178697e6 from=translated src=- shape=3ec1c756 vocab=7947357d
+-/
 theorem coeff_even_mul (φ ψ : ℚ⟦X⟧) (hodd : ∀ j, coeff (2 * j + 1) φ = 0) (k : ℕ) :
     coeff (2 * k + 1) (φ * ψ)
       = ∑ j ∈ range (k + 1), coeff (2 * j) φ * coeff (2 * k + 1 - 2 * j) ψ := by
@@ -3271,6 +3782,9 @@ theorem coeff_even_mul (φ ψ : ℚ⟦X⟧) (hodd : ∀ j, coeff (2 * j + 1) φ 
     show ∑ j ∈ range (k + 1), coeff (2 * j + 1) φ * coeff (2 * k + 1 - (2 * j + 1)) ψ = 0 from
       sum_eq_zero fun j _ => by rw [hodd, zero_mul], add_zero]
 
+/--
+@isnad1 id=eq.0h1v.s7.81284a10edef from=translated src=- shape=f6fc0a83 vocab=c9b43c7c
+-/
 theorem coeff_sinhSeries (m : ℕ) :
     coeff (2 * m + 1) (exp ℚ - evalNegHom (exp ℚ)) = 2 / ((2 * m + 1).factorial : ℚ) := by
   rw [map_sub, coeff_exp, algebraMap_rat_rat, show evalNegHom (exp ℚ) = rescale (-1 : ℚ) (exp ℚ)
@@ -3278,7 +3792,9 @@ theorem coeff_sinhSeries (m : ℕ) :
   ring
 
 /-- The kernel inverts `T_m = 1/(2m+1)!` under convolution:
-`∑_{j≤k} κ_j/(2(k−j)+1)! = [k = 0]`.-/
+`∑_{j≤k} κ_j/(2(k−j)+1)! = [k = 0]`.
+@isnad1 id=eq.0h1v.s6.f6bfe34fde68 from=translated src=- shape=2754f59a vocab=30bc41e7
+-/
 theorem kernel_conv_eq (k : ℕ) :
     ∑ j ∈ range (k + 1), bernoulliKernel j / ((2 * (k - j) + 1).factorial : ℚ)
       = if k = 0 then 1 else 0 := by
@@ -3305,7 +3821,9 @@ theorem kernel_conv_eq (k : ℕ) :
   · rw [ite_eq_right (by omega)] at h ⊢; linarith
 
 /-- Error propagation through (4.59): if the computed `e_k` satisfy the perturbed recurrence
-`e_k + ∑_{j<k} e_j/(2(k−j)+1)! = ρ_k`, then `e_k = ∑_{j≤k} ρ_j κ_{k−j}`.-/
+`e_k + ∑_{j<k} e_j/(2(k−j)+1)! = ρ_k`, then `e_k = ∑_{j≤k} ρ_j κ_{k−j}`.
+@isnad1 id=eq.1h3v.s7.481dda93d6fa from=translated src=- shape=60e13a6d vocab=b0894fc4
+-/
 theorem error_propagation (e ρ : ℕ → ℚ)
     (h : ∀ k, e k + ∑ j ∈ range k, e j / ((2 * (k - j) + 1).factorial : ℚ) = ρ k) (k : ℕ) :
     e k = ∑ j ∈ range (k + 1), ρ j * bernoulliKernel (k - j) := by
@@ -3332,7 +3850,9 @@ theorem error_propagation (e ρ : ℕ → ℚ)
   rw [coeff_mk, coeff_mul, Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk] at this
   simpa only [coeff_mk, Nat.succ_eq_add_one] using this
 
-/-- `|C_k| ≥ 2/(2π)^(2k)` for `k ≥ 1` (from `ζ(2k) ≥ 1`).-/
+/-- `|C_k| ≥ 2/(2π)^(2k)` for `k ≥ 1` (from `ζ(2k) ≥ 1`).
+@isnad1 id=le.1h1v.s6.d6a06e413f7c from=translated src=- shape=89b77940 vocab=1022417e
+-/
 theorem abs_scaledBernoulli_ge {k : ℕ} (hk : 1 ≤ k) :
     2 / (2 * Real.pi) ^ (2 * k) ≤ |(scaledBernoulli k : ℝ)| := by
   rw [scaledBernoulli_eq_zeta hk, abs_div, abs_mul, abs_mul, abs_pow, abs_neg, abs_one, one_pow,
@@ -3343,6 +3863,9 @@ theorem abs_scaledBernoulli_ge {k : ℕ} (hk : 1 ≤ k) :
   rw [div_le_div_iff_of_pos_right hp]
   linarith
 
+/--
+@isnad1 id=eq.1h1v.s6.f9220d2b7ac6 from=translated src=- shape=ca73a11e vocab=f875a9b0
+-/
 theorem abs_bernoulliKernel_eq {k : ℕ} (hk : 1 ≤ k) :
     |(bernoulliKernel k : ℝ)| = (4 ^ k - 2) * |(scaledBernoulli k : ℝ)| := by
   have h4 : (4 : ℝ) ≤ 4 ^ k := by
@@ -3353,7 +3876,9 @@ theorem abs_bernoulliKernel_eq {k : ℕ} (hk : 1 ≤ k) :
   rw [abs_mul, abs_of_neg (by linarith), neg_sub]
 
 /-- (a): the kernel amplifies a relative perturbation of `C_0` into `C_k` by at least
-`(4^k − 2)·6/π²`, i.e. `≍ 4^k`.-/
+`(4^k − 2)·6/π²`, i.e. `≍ 4^k`.
+@isnad1 id=le.1h1v.s6.0544e38cb13b from=translated src=- shape=8191353b vocab=25b7ce04
+-/
 theorem kernel_amplification_ge {k : ℕ} (hk : 1 ≤ k) :
     (4 ^ k - 2) * (6 / Real.pi ^ 2) * |(scaledBernoulli k : ℝ)| ≤ |(bernoulliKernel k : ℝ)| := by
   rw [abs_bernoulliKernel_eq hk]
@@ -3373,7 +3898,9 @@ theorem kernel_amplification_ge {k : ℕ} (hk : 1 ≤ k) :
       = (4 ^ k - 2) * (6 / Real.pi ^ 2 * |(scaledBernoulli k : ℝ)|) := by ring
     _ ≤ (4 ^ k - 2) * |(scaledBernoulli k : ℝ)| := mul_le_mul_of_nonneg_left h6 (by linarith)
 
-/-- `|κ_m| ≤ 4^m |C_m| = |D_m|`, the size of the terms of the stable recurrence (4.60).-/
+/-- `|κ_m| ≤ 4^m |C_m| = |D_m|`, the size of the terms of the stable recurrence (4.60).
+@isnad1 id=le.0h1v.s5.0dbfd58efe85 from=translated src=- shape=5aa3f9f9 vocab=a9eb8948
+-/
 theorem abs_bernoulliKernel_le (m : ℕ) :
     |(bernoulliKernel m : ℝ)| ≤ 4 ^ m * |(scaledBernoulli m : ℝ)| := by
   rw [bernoulliKernel]
@@ -3385,7 +3912,9 @@ theorem abs_bernoulliKernel_le (m : ℕ) :
   exact mul_le_mul_of_nonneg_right this (abs_nonneg _)
 
 /-- (b): in the stable recurrence, a relative perturbation of `D_j = 4^j C_j` reaches `D_k`
-through `κ_{k−j}` with amplification at most `π⁴/18 = O(1)` (`1 ≤ j < k`).-/
+through `κ_{k−j}` with amplification at most `π⁴/18 = O(1)` (`1 ≤ j < k`).
+@isnad1 id=le.2h2v.s7.6dcc414a0c88 from=translated src=- shape=9becd0f7 vocab=45f6859b
+-/
 theorem kernel_amplification_le {j k : ℕ} (hj : 1 ≤ j) (hjk : j < k) :
     |(bernoulliKernel (k - j) : ℝ)| * (4 ^ j * |(scaledBernoulli j : ℝ)|)
       ≤ Real.pi ^ 4 / 18 * (4 ^ k * |(scaledBernoulli k : ℝ)|) := by
@@ -3416,7 +3945,9 @@ section Exercise436
 open PowerSeries
 
 /-- The function `x/(e^x − 1) + x/2` of (4.57) is even: this is why the odd Bernoulli numbers
-beyond `B_1 = −1/2` vanish.-/
+beyond `B_1 = −1/2` vanish.
+@isnad1 id=eq.0h1v.s6.c555e95411d8 from=translated src=- shape=ebf7c83b vocab=d27d8e0a
+-/
 theorem div_exp_sub_one_add_half_even (x : ℝ) :
     (-x) / (Real.exp (-x) - 1) + (-x) / 2 = x / (Real.exp x - 1) + x / 2 := by
   rcases eq_or_ne x 0 with rfl | hx
@@ -3431,12 +3962,16 @@ theorem div_exp_sub_one_add_half_even (x : ℝ) :
   field_simp
   ring
 
-/-- The odd Bernoulli numbers beyond `B_1` vanish (Mathlib's `bernoulli_eq_zero_of_odd`).-/
+/-- The odd Bernoulli numbers beyond `B_1` vanish (Mathlib's `bernoulli_eq_zero_of_odd`).
+@isnad1 id=eq.0h1v.s5.d7ad8608255b from=translated src=- shape=2df47cae vocab=c2915b70
+-/
 theorem bernoulli_odd_eq_zero' (j : ℕ) : bernoulli (2 * j + 3) = 0 :=
   bernoulli_eq_zero_of_odd ⟨j + 1, by ring⟩ (by omega)
 
 /-- (4.57) as a formal power series: `x/(e^x − 1) + x/2 = ∑_k C_k x^(2k)`, i.e. the series has
-coefficient `C_k = B_{2k}/(2k)!` at `x^(2k)` and `0` at `x^(2k+1)`.-/
+coefficient `C_k = B_{2k}/(2k)!` at `x^(2k)` and `0` at `x^(2k+1)`.
+@isnad1 id=and.0h0v.s8.d1f5fdf109a2 from=translated src=- shape=91185c28 vocab=86c27db4
+-/
 theorem scaledBernoulliPowerSeries_eq :
     scaledBernoulliPowerSeries = bernoulliPowerSeries ℚ + C (1 / 2 : ℚ) * X ∧
       (∀ k, coeff (2 * k) scaledBernoulliPowerSeries = bernoulli (2 * k) / (2 * k).factorial) ∧
@@ -3448,7 +3983,9 @@ end Exercise436
 
 section Exercise437
 
-/-- `|B_{2k}| = 2 (2k)! ζ(2k) / (2π)^(2k)` for `k ≥ 1`.-/
+/-- `|B_{2k}| = 2 (2k)! ζ(2k) / (2π)^(2k)` for `k ≥ 1`.
+@isnad1 id=eq.1h1v.s7.775dff288e22 from=translated src=- shape=0ee4ed18 vocab=c2691e79
+-/
 theorem abs_bernoulli_two_mul_eq {k : ℕ} (hk : 1 ≤ k) :
     |(bernoulli (2 * k) : ℝ)|
       = 2 * (2 * k).factorial * zetaReal (2 * k) / (2 * Real.pi) ^ (2 * k) := by
@@ -3458,7 +3995,9 @@ theorem abs_bernoulli_two_mul_eq {k : ℕ} (hk : 1 ≤ k) :
     abs_of_pos (by positivity : (0 : ℝ) < (2 * Real.pi) ^ (2 * k)),
     abs_of_nonneg (by linarith [one_le_zetaReal_two_mul hk] : (0 : ℝ) ≤ zetaReal (2 * k))]
 
-/-- Stirling: `m ln m − m ≤ ln m! ≤ m ln m − m + 1 + (ln m)/2` for `m ≥ 1`.-/
+/-- Stirling: `m ln m − m ≤ ln m! ≤ m ln m − m + 1 + (ln m)/2` for `m ≥ 1`.
+@isnad1 id=and.1h1v.s6.f80284902b6e from=translated src=- shape=445d1565 vocab=009f3b13
+-/
 theorem log_factorial_bounds {m : ℕ} (hm : 1 ≤ m) :
     m * Real.log m - m ≤ Real.log m.factorial ∧
       Real.log m.factorial ≤ m * Real.log m - m + 1 + Real.log m / 2 := by
@@ -3494,13 +4033,18 @@ section Exercise439
 
 open Finset Polynomial
 
+/--
+@isnad1 id=le.0h1v.s4.3a64a91a1cfe from=translated src=- shape=a5ab67ea vocab=949b8828
+-/
 theorem eval_one_tanDerivPoly_nonneg (n : ℕ) : 0 ≤ (tanDerivPoly n).eval 1 := by
   have hdeg : (tanDerivPoly n).natDegree < n + 2 := by rw [natDegree_tanDerivPoly]; omega
   rw [eval_eq_sum_range' hdeg]
   exact sum_nonneg fun i _ => by simpa using coeff_tanDerivPoly_nonneg n i
 
 /-- `P_n(1) ≤ 2^n (n+1)!`: from `P_{n+1} = P_n' (1 + X²)`, `P_{n+1}(1) = 2 P_n'(1)`, and
-`P_n'(1) = ∑ i p_{n,i} ≤ (n+1) P_n(1)`.-/
+`P_n'(1) = ∑ i p_{n,i} ≤ (n+1) P_n(1)`.
+@isnad1 id=le.0h1v.s5.ed19cb3bca53 from=translated src=- shape=fc451b5c vocab=0660008a
+-/
 theorem eval_one_tanDerivPoly_le (n : ℕ) :
     (tanDerivPoly n).eval 1 ≤ 2 ^ n * ((n + 1).factorial : ℤ) := by
   induction n with
@@ -3548,13 +4092,21 @@ noncomputable def secDerivPoly : ℕ → ℤ[X]
   | n + 1 => Polynomial.X * secDerivPoly n
     + (1 + Polynomial.X ^ 2) * Polynomial.derivative (secDerivPoly n)
 
+/--
+@isnad1 id=eq.0h0v.s4.fa9285c31d86 from=translated src=- shape=249d2cad vocab=00fe9a36
+-/
 theorem secDerivPoly_zero : secDerivPoly 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.727eaf9a5d8b from=translated src=- shape=317ce0bc vocab=f165b3ed
+-/
 theorem secDerivPoly_succ (n : ℕ) :
     secDerivPoly (n + 1) = Polynomial.X * secDerivPoly n
       + (1 + Polynomial.X ^ 2) * Polynomial.derivative (secDerivPoly n) := rfl
 
-/-- `Dⁿ sec x = Q_n(tan x) sec x` wherever `cos x ≠ 0`.-/
+/-- `Dⁿ sec x = Q_n(tan x) sec x` wherever `cos x ≠ 0`.
+@isnad1 id=eq.1h2v.s6.d36ce2e1f6ee from=translated src=- shape=2d75bb38 vocab=64860527
+-/
 theorem iteratedDeriv_sec (n : ℕ) : ∀ x : ℝ, Real.cos x ≠ 0 →
     iteratedDeriv n (fun y => (Real.cos y)⁻¹) x
       = ((secDerivPoly n).map (Int.castRingHom ℝ)).eval (Real.tan x) * (Real.cos x)⁻¹ := by
@@ -3614,6 +4166,9 @@ def secantOuter (m : ℕ) (a : ℕ → ℕ) : ℕ → (ℕ → ℕ)
 /-- Algorithm SecantNumbers: the row after the passes `k = 1, …, m`.-/
 def secantNumbersModel (m : ℕ) : ℕ → ℕ := secantOuter m secantInit m
 
+/--
+@isnad1 id=and.0h0v.s6.4b8f6b8e5e3f from=translated src=- shape=25d43e19 vocab=18dafd27
+-/
 theorem secantNumbersModel_three :
     secantNumbersModel 3 0 = 1 ∧ secantNumbersModel 3 1 = 1 ∧ secantNumbersModel 3 2 = 5 ∧
       secantNumbersModel 3 3 = 61 := by
@@ -3628,23 +4183,33 @@ open PowerSeries
 /-- `E(x) = ∑ x^k/(k+1)! = (e^x − 1)/x`, the series whose reciprocal is `∑ B_k x^k/k!`.-/
 noncomputable def recipSeries : ℚ⟦X⟧ := mk fun k => 1 / ((k + 1).factorial : ℚ)
 
+/--
+@isnad1 id=eq.0h0v.s5.01cf26d9bb18 from=translated src=- shape=b6039f99 vocab=b057245a
+-/
 theorem X_mul_recipSeries : X * recipSeries = exp ℚ - 1 := by
   ext n
   rcases n with _ | n
   · rw [coeff_zero_X_mul, coeff_exp_sub_one]; simp
   · rw [coeff_succ_X_mul, recipSeries, coeff_mk, coeff_exp_sub_one, ite_eq_right (by omega)]
 
-/-- (4.56) as a reciprocal: `∑ B_k x^k/k! · ∑ x^k/(k+1)! = 1`.-/
+/-- (4.56) as a reciprocal: `∑ B_k x^k/k! · ∑ x^k/(k+1)! = 1`.
+@isnad1 id=eq.0h0v.s5.23c7b57f03f9 from=translated src=- shape=94b39aaf vocab=5d127c20
+-/
 theorem bernoulliPowerSeries_mul_recipSeries : bernoulliPowerSeries ℚ * recipSeries = 1 := by
   apply mul_right_cancel₀ (X_ne_zero (R := ℚ))
   rw [mul_assoc, mul_comm recipSeries, X_mul_recipSeries, bernoulliPowerSeries_mul_exp_sub_one,
     one_mul]
 
 /-- One Newton step for a reciprocal: `R' = R(2 − ER)` satisfies `1 − ER' = (1 − ER)²`, so if
-`R` is correct modulo `x^m` then `R'` is correct modulo `x^(2m)`.-/
+`R` is correct modulo `x^m` then `R'` is correct modulo `x^(2m)`.
+@isnad1 id=eq.0h2v.s7.64fec36e20ba from=translated src=- shape=91a0646b vocab=48bc7b0a
+-/
 theorem newton_reciprocal_step (E R : ℚ⟦X⟧) :
     1 - E * (R * (2 - E * R)) = (1 - E * R) ^ 2 := by ring
 
+/--
+@isnad1 id=dvd.1h3v.s8.1b973882200f from=translated src=- shape=65b8e213 vocab=c43f52f2
+-/
 theorem newton_reciprocal_step_dvd {E R : ℚ⟦X⟧} {m : ℕ} (h : X ^ m ∣ 1 - E * R) :
     X ^ (2 * m) ∣ 1 - E * (R * (2 - E * R)) := by
   rw [newton_reciprocal_step, pow_two, two_mul, pow_add]
@@ -3652,14 +4217,18 @@ theorem newton_reciprocal_step_dvd {E R : ℚ⟦X⟧} {m : ℕ} (h : X ^ m ∣ 1
 
 /-- The coefficients `B_k/k!` of the reciprocal become the integers `num B_k` after scaling by
 `k! · den B_k`: the series can be handled over `ℤ` with `O(k log k)`-bit coefficients
-(Exercise 4.37).-/
+(Exercise 4.37).
+@isnad1 id=eq.0h1v.s5.21673a2c4127 from=translated src=- shape=ea0633ea vocab=9593caf0
+-/
 theorem scaled_coeff_eq_num (k : ℕ) :
     bernoulli k / k.factorial * (k.factorial * (bernoulli k).den) = (bernoulli k).num := by
   have hf : (k.factorial : ℚ) ≠ 0 := by positivity
   rw [div_mul_eq_mul_div, mul_comm (k.factorial : ℚ), ← mul_assoc, mul_div_assoc, div_self hf,
     mul_one, Rat.mul_den_eq_num]
 
-/-- `lg y ≤ y` for real `y ≥ 1` (via `y < ⌊y⌋ + 1 ≤ 2^⌊y⌋`).-/
+/-- `lg y ≤ y` for real `y ≥ 1` (via `y < ⌊y⌋ + 1 ≤ 2^⌊y⌋`).
+@isnad1 id=le.1h1v.s4.2319ed2ef800 from=translated src=- shape=9ab21742 vocab=838c6dd3
+-/
 theorem logb_two_le_self {y : ℝ} (hy : 1 ≤ y) : Real.logb 2 y ≤ y := by
   rw [Real.logb_le_iff_le_rpow one_lt_two (by linarith)]
   have hm : (⌊y⌋₊ : ℝ) ≤ y := Nat.floor_le (by linarith)
@@ -3674,7 +4243,9 @@ theorem logb_two_le_self {y : ℝ} (hy : 1 ≤ y) : Real.logb 2 y ≤ y := by
 
 /-- In the quasi-linear model, one multiplication of `n² lg n`-bit integers (the Kronecker
 substitution of two length-`n` polynomials with `O(n lg n)`-bit coefficients) costs at most
-`3 n² (lg n)²`.-/
+`3 n² (lg n)²`.
+@isnad1 id=le.1h1v.s6.7e6a043ef7bf from=translated src=- shape=81d1d890 vocab=7114c588
+-/
 theorem quasiLinearCost_sq_log_le {n : ℝ} (hn : 2 ≤ n) :
     quasiLinearCost (n ^ 2 * Real.logb 2 n) ≤ 3 * n ^ 2 * Real.logb 2 n ^ 2 := by
   have hlg : 1 ≤ Real.logb 2 n := by
@@ -3701,13 +4272,22 @@ noncomputable def seriesExp (a : ℕ → ℚ) : ℕ → ℚ
 termination_by k => k
 decreasing_by omega
 
+/--
+@isnad1 id=eq.0h1v.s4.b823079a66ab from=translated src=- shape=777ad2f6 vocab=1ca383f6
+-/
 theorem seriesExp_zero (a : ℕ → ℚ) : seriesExp a 0 = 1 := by rw [seriesExp]
 
+/--
+@isnad1 id=eq.0h2v.s6.22820765ae92 from=translated src=- shape=25c9c722 vocab=099025ef
+-/
 theorem seriesExp_succ (a : ℕ → ℚ) (k : ℕ) :
     seriesExp a (k + 1)
       = (∑ i ∈ range (k + 1), ((i + 1 : ℕ) : ℚ) * a (i + 1) * seriesExp a (k - i)) / (k + 1) := by
   rw [seriesExp]
 
+/--
+@isnad1 id=eq.0h1v.s5.94ce056df778 from=translated src=- shape=84c35550 vocab=dbe21853
+-/
 theorem constantCoeff_mk_seriesExp (a : ℕ → ℚ) : constantCoeff (mk (seriesExp a)) = 1 := by
   rw [← coeff_zero_eq_constantCoeff_apply, coeff_mk, seriesExp_zero]
 
@@ -3716,7 +4296,9 @@ theorem constantCoeff_mk_seriesExp (a : ℕ → ℚ) : constantCoeff (mk (series
 noncomputable def stirlingLogCoeff (j : ℕ) : ℚ :=
   if j % 2 = 1 then bernoulli (j + 1) / ((j + 1) * j) else 0
 
-/-- The terms of (4.38) are `a_j / x^j`.-/
+/-- The terms of (4.38) are `a_j / x^j`.
+@isnad1 id=eq.0h2v.s6.6625eb5f45d8 from=translated src=- shape=3bfafa03 vocab=2e9e7a49
+-/
 theorem stirlingTerm_eq_stirlingLogCoeff (m : ℕ) (x : ℝ) :
     stirlingTerm (m + 1) x = (stirlingLogCoeff (2 * m + 1) : ℝ) / x ^ (2 * m + 1) := by
   rw [stirlingTerm, stirlingLogCoeff, ite_eq_left (by omega),
@@ -3729,23 +4311,44 @@ theorem stirlingTerm_eq_stirlingLogCoeff (m : ℕ) (x : ℝ) :
 /-- The coefficients `b_k` of `n! ∼ (n/e)^n √(2πn) ∑ b_k/n^k`.-/
 noncomputable def stirlingCoeff : ℕ → ℚ := seriesExp stirlingLogCoeff
 
+/--
+@isnad1 id=eq.0h0v.s4.3fa57e7b2913 from=translated src=- shape=4683683d vocab=926f7412
+-/
 theorem stirlingLogCoeff_one : stirlingLogCoeff 1 = 1 / 12 := by
   simp [stirlingLogCoeff, bernoulli_two]; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s3.c7f4f5cfba6a from=translated src=- shape=1ac31801 vocab=753c0e01
+-/
 theorem stirlingLogCoeff_two : stirlingLogCoeff 2 = 0 := by simp [stirlingLogCoeff]
 
+/--
+@isnad1 id=eq.0h0v.s4.73dad4d2ed36 from=translated src=- shape=1f14c584 vocab=b8af7fdb
+-/
 theorem bernoulli_four' : bernoulli 4 = -1 / 30 := by
   rw [bernoulli_eq_bernoulli'_of_ne_one (by norm_num), bernoulli'_four]
 
+/--
+@isnad1 id=eq.0h0v.s4.c23f4ef3990a from=translated src=- shape=1f14c584 vocab=8f62749b
+-/
 theorem stirlingLogCoeff_three : stirlingLogCoeff 3 = -1 / 360 := by
   simp [stirlingLogCoeff, bernoulli_four']; norm_num
 
+/--
+@isnad1 id=eq.0h0v.s3.81e45773f66a from=translated src=- shape=1ac31801 vocab=0ca1188a
+-/
 theorem stirlingCoeff_zero : stirlingCoeff 0 = 1 := seriesExp_zero _
 
+/--
+@isnad1 id=eq.0h0v.s4.6f74ecca779f from=translated src=- shape=4683683d vocab=3d6241f9
+-/
 theorem stirlingCoeff_one : stirlingCoeff 1 = 1 / 12 := by
   rw [stirlingCoeff, seriesExp_succ]
   simp [stirlingLogCoeff_one, seriesExp_zero]
 
+/--
+@isnad1 id=eq.0h0v.s4.2a58d0f2d524 from=translated src=- shape=4683683d vocab=3d6241f9
+-/
 theorem stirlingCoeff_two : stirlingCoeff 2 = 1 / 288 := by
   have h1 := stirlingCoeff_one
   rw [stirlingCoeff] at h1 ⊢
@@ -3753,6 +4356,9 @@ theorem stirlingCoeff_two : stirlingCoeff 2 = 1 / 288 := by
   simp [sum_range_succ, stirlingLogCoeff_one, stirlingLogCoeff_two, seriesExp_zero, h1]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s4.2c1c60bca2b2 from=translated src=- shape=1f14c584 vocab=4d866d89
+-/
 theorem stirlingCoeff_three : stirlingCoeff 3 = -139 / 51840 := by
   have h1 := stirlingCoeff_one
   have h2 := stirlingCoeff_two
@@ -3769,7 +4375,9 @@ section Exercise443
 /-- The algebraic deduction: if `K = (π/2)(1 + k²/4) + ε₁`, `|ε₁| ≤ A k⁴` (4.69), and
 `K' = (2/π) ln(4/k) K − k²/4 + ε₂`, `|ε₂| ≤ B k⁴` (4.70), then
 `ln(4/k) = (1 − k²/4) K' + k²/4 + E` with `|E| ≤ k⁴ ((1/16 + 2A/π) ln(4/k) + 1/16 + B)`.
-Exactly, `E = (ln(4/k) − 1) k⁴/16 − (1 − k²/4)((2/π) ln(4/k) ε₁ + ε₂)`.-/
+Exactly, `E = (ln(4/k) − 1) k⁴/16 − (1 − k²/4)((2/π) ln(4/k) ε₁ + ε₂)`.
+@isnad1 id=le.4h5v.s9.c00b51af529c from=translated src=- shape=939a99a0 vocab=614ea824
+-/
 theorem second_order_deduction {k K K' A B : ℝ} (hk : 0 < k) (hk1 : k ≤ 1)
     (h69 : |K - Real.pi / 2 * (1 + k ^ 2 / 4)| ≤ A * k ^ 4)
     (h70 : |K' - (2 / Real.pi * Real.log (4 / k) * K - k ^ 2 / 4)| ≤ B * k ^ 4) :
@@ -3819,7 +4427,9 @@ theorem second_order_deduction {k K K' A B : ℝ} (hk : 0 < k) (hk1 : k ≤ 1)
 /-- The expansion with the proven (4.69) constant `A = 3π/16` (`ellipticK_bounds`, `k² ≤ 1/2`):
 `ln(4/k) = (1 − k²/4) (π/2)/AGM(1,k) + k²/4 + O(k⁴ ln(4/k))`, with
 `|O(·)| ≤ k⁴ ((7/16) ln(4/k) + 1/16 + B)` where `B` is the second-order constant of (4.70)
-(an assumption here; numerically `B ≈ 21/128`).-/
+(an assumption here; numerically `B ≈ 21/128`).
+@isnad1 id=le.3h2v.s8.586f1d2ababa from=translated src=- shape=18e03c91 vocab=d2b2f7e7
+-/
 theorem second_order_expansion {k B : ℝ} (hk : 0 < k) (hk2 : k ^ 2 ≤ 1 / 2)
     (h70 : |Real.pi / 2 / AGM 1 k
       - (2 / Real.pi * Real.log (4 / k) * ellipticK k - k ^ 2 / 4)| ≤ B * k ^ 4) :
@@ -3842,7 +4452,9 @@ noncomputable def agmLog2 (x : ℝ) : ℝ := (1 - 4 / x ^ 2) * agmLog x + 4 / x 
 
 /-- Transport of an effective bound `|ln(4/k) − ((1 − k²/4) K' + k²/4)| ≤ k⁴ (c₁ ln(4/k) + c₂)`
 (valid for `0 < k ≤ 1/2`) to `agmLog2`: `|agmLog2 x − ln x| ≤ (4/x)⁴ (c₁ ln x + c₂)` for `x ≥ 8`.
-Numerically (see the ledger) `c₁ = 5/64`, `c₂ = 0` work.-/
+Numerically (see the ledger) `c₁ = 5/64`, `c₂ = 0` work.
+@isnad1 id=le.2h3v.s8.41c5dc3631ce from=translated src=- shape=c1d43fbc vocab=beb598b0
+-/
 theorem abs_agmLog2_sub_log_le {c₁ c₂ : ℝ}
     (hE : ∀ k : ℝ, 0 < k → k ≤ 1 / 2 →
       |Real.log (4 / k) - ((1 - k ^ 2 / 4) * (Real.pi / 2 / AGM 1 k) + k ^ 2 / 4)|
@@ -3860,7 +4472,9 @@ theorem abs_agmLog2_sub_log_le {c₁ c₂ : ℝ}
   exact h
 
 /-- Sufficient condition for `n` bits: `x⁴ ≥ 256 (c₁ ln x + c₂) 2^n` (so `x ≳ 2^(n/4)`), given
-the transported bound.-/
+the transported bound.
+@isnad1 id=le.3h4v.s7.4ec61148a3ac from=translated src=- shape=910a7ab0 vocab=d1bae77e
+-/
 theorem agmLog2_precision {c₁ c₂ x : ℝ} {n : ℕ} (hx : 8 ≤ x)
     (hbound : |agmLog2 x - Real.log x| ≤ (4 / x) ^ 4 * (c₁ * Real.log x + c₂))
     (hn : 256 * (c₁ * Real.log x + c₂) * 2 ^ n ≤ x ^ 4) :
@@ -3875,7 +4489,9 @@ end Exercise443
 
 section Exercise444
 
-/-- (4.71) turned around: `|2 ln(4/k) AGM(1,k) − π| ≤ (k²/2)(2 − ln k)` for `0 < k ≤ 1`.-/
+/-- (4.71) turned around: `|2 ln(4/k) AGM(1,k) − π| ≤ (k²/2)(2 − ln k)` for `0 < k ≤ 1`.
+@isnad1 id=le.2h1v.s7.94ff44414e3f from=translated src=- shape=229878bd vocab=5be8f623
+-/
 theorem abs_two_mul_log_mul_AGM_sub_pi {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) :
     |2 * Real.log (4 / k) * AGM 1 k - Real.pi| ≤ k ^ 2 / 2 * (2 - Real.log k) := by
   have hA : 0 < AGM 1 k := lt_of_lt_of_le (lt_min one_pos hk) (min_le_AGM one_pos hk)
@@ -3894,7 +4510,9 @@ theorem abs_two_mul_log_mul_AGM_sub_pi {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) :
     _ = k ^ 2 / 2 * (2 - Real.log k) := by ring
 
 /-- `π` from (4.71) with a logarithm known exactly: at `4/k = e^j`,
-`|2j · AGM(1, 4e^(−j)) − π| ≤ 8 e^(−2j) (j + 2 − ln 4)` for `j ≥ ln 4`.-/
+`|2j · AGM(1, 4e^(−j)) − π| ≤ 8 e^(−2j) (j + 2 − ln 4)` for `j ≥ ln 4`.
+@isnad1 id=le.1h1v.s7.89d4d5d8b630 from=translated src=- shape=79f1bda2 vocab=42ed40a0
+-/
 theorem abs_pi_approx_exp {j : ℝ} (hj : Real.log 4 ≤ j) :
     |2 * j * AGM 1 (4 * Real.exp (-j)) - Real.pi|
       ≤ 8 * Real.exp (-(2 * j)) * (j + 2 - Real.log 4) := by
@@ -3918,7 +4536,9 @@ theorem abs_pi_approx_exp {j : ℝ} (hj : Real.log 4 ≤ j) :
         ring_nf
 
 /-- `ln 2` from (4.71) at `x = 2^m`:
-`|(π/2)/(m AGM(1, 2^(2−m))) − ln 2| ≤ 4^(2−m)(2 + (m−2) ln 2)/(4m)` for `m ≥ 2`.-/
+`|(π/2)/(m AGM(1, 2^(2−m))) − ln 2| ≤ 4^(2−m)(2 + (m−2) ln 2)/(4m)` for `m ≥ 2`.
+@isnad1 id=le.1h1v.s8.7abf6c996c26 from=translated src=- shape=f32d0526 vocab=e6434eb7
+-/
 theorem abs_log_two_approx {m : ℕ} (hm : 2 ≤ m) :
     |Real.pi / 2 / AGM 1 (4 / 2 ^ m) / m - Real.log 2|
       ≤ (4 / 2 ^ m) ^ 2 / 4 * (2 + (m - 2) * Real.log 2) / m := by
@@ -3945,7 +4565,9 @@ theorem abs_log_two_approx {m : ℕ} (hm : 2 ≤ m) :
     _ = (4 / 2 ^ m) ^ 2 / 4 * (2 + (m - 2) * Real.log 2) := by ring
 
 /-- The lower bound `AGM(1,k) ≥ (π/2)/(ln(4/k) + (k²/4)(2 − ln k))` used to propagate an error
-in `π` through `ln 2 ≈ (π/2)/(m AGM)`.-/
+in `π` through `ln 2 ≈ (π/2)/(m AGM)`.
+@isnad1 id=le.2h1v.s7.f2c79e7495ba from=translated src=- shape=2eabeaf5 vocab=babcb207
+-/
 theorem pi_div_two_div_le_AGM {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) :
     Real.pi / 2 / (Real.log (4 / k) + k ^ 2 / 4 * (2 - Real.log k)) ≤ AGM 1 k := by
   have hA : 0 < AGM 1 k := lt_of_lt_of_le (lt_min one_pos hk) (min_le_AGM one_pos hk)
@@ -3961,7 +4583,9 @@ theorem pi_div_two_div_le_AGM {k : ℝ} (hk : 0 < k) (hk1 : k ≤ 1) :
 
 /-- An approximate `π̃` with `|π̃ − π| ≤ δ` gives `ln 2` to within the (4.71) error plus
 `δ/(2m AGM(1, 2^(2−m)))`; the `AGM` is bounded below by `pi_div_two_div_le_AGM`, so this is
-`≈ δ (m ln 2)/(π m) = O(δ)`.-/
+`≈ δ (m ln 2)/(π m) = O(δ)`.
+@isnad1 id=le.2h3v.s8.b11142b86a2f from=translated src=- shape=4f4c4242 vocab=e6434eb7
+-/
 theorem abs_log_two_approx_of_pi {m : ℕ} (hm : 2 ≤ m) {p δ : ℝ} (hp : |p - Real.pi| ≤ δ) :
     |p / 2 / AGM 1 (4 / 2 ^ m) / m - Real.log 2|
       ≤ δ / (2 * AGM 1 (4 / 2 ^ m) * m)
@@ -3989,18 +4613,24 @@ end Exercise444
 
 section Exercise445
 
-/-- Method (A): `2θ₂θ₃ = 2v`, `θ₂² + θ₃² = u − 2v` with `u = (θ₂+θ₃)²`, `v = θ₂θ₃`.-/
+/-- Method (A): `2θ₂θ₃ = 2v`, `θ₂² + θ₃² = u − 2v` with `u = (θ₂+θ₃)²`, `v = θ₂θ₃`.
+@isnad1 id=and.0h2v.s7.50623ee7e00f from=translated src=- shape=807b4161 vocab=3f072e55
+-/
 theorem methodA_eq (a b : ℝ) :
     2 * a * b = 2 * (a * b) ∧ a ^ 2 + b ^ 2 = (a + b) ^ 2 - 2 * (a * b) := ⟨by ring, by ring⟩
 
-/-- Method (B): `θ₂² + θ₃² = (u + w)/2`, `2θ₂θ₃ = (u − w)/2` with `w = (θ₂−θ₃)²`.-/
+/-- Method (B): `θ₂² + θ₃² = (u + w)/2`, `2θ₂θ₃ = (u − w)/2` with `w = (θ₂−θ₃)²`.
+@isnad1 id=and.0h2v.s7.966b80385653 from=translated src=- shape=7af82fad vocab=4d09f77c
+-/
 theorem methodB_eq (a b : ℝ) :
     a ^ 2 + b ^ 2 = ((a + b) ^ 2 + (a - b) ^ 2) / 2 ∧
       2 * a * b = ((a + b) ^ 2 - (a - b) ^ 2) / 2 :=
   ⟨sq_add_sq_eq_half_add a b, two_mul_mul_eq_half_sub a b⟩
 
 /-- (A) is well conditioned: with relative errors `|ε₁|, |ε₂| ≤ ε` in `u` and `v` (`a, b ≥ 0`),
-the computed `u(1+ε₁) − 2v(1+ε₂)` is within `3ε(a² + b²)` of `a² + b²`.-/
+the computed `u(1+ε₁) − 2v(1+ε₂)` is within `3ε(a² + b²)` of `a² + b²`.
+@isnad1 id=le.4h5v.s8.7f11097dec01 from=translated src=- shape=1cfe2ac4 vocab=394e9a09
+-/
 theorem methodA_relError_le {a b ε ε₁ ε₂ : ℝ} (ha : 0 ≤ a) (hb : 0 ≤ b) (h₁ : |ε₁| ≤ ε)
     (h₂ : |ε₂| ≤ ε) :
     |(a + b) ^ 2 * (1 + ε₁) - 2 * (a * b) * (1 + ε₂) - (a ^ 2 + b ^ 2)|
@@ -4021,7 +4651,9 @@ theorem methodA_relError_le {a b ε ε₁ ε₂ : ℝ} (ha : 0 ≤ a) (hb : 0 �
 
 /-- (B) is ill conditioned for `2ab = (u − w)/2`: relative errors `ε` in `u` and `w` give an
 absolute error up to `ε(a² + b²)` (attained for `ε₁ = ε = −ε₂`), i.e. a relative error
-`ε (a² + b²)/(2ab) ≥ ε · b/(2a)` — unbounded as `a/b → 0`.-/
+`ε (a² + b²)/(2ab) ≥ ε · b/(2a)` — unbounded as `a/b → 0`.
+@isnad1 id=and.3h3v.s8.3f21a9e6e867 from=translated src=- shape=47fadb4d vocab=643a27f2
+-/
 theorem methodB_amplification {a b ε : ℝ} (ha : 0 < a) (hb : 0 < b) (hε : 0 ≤ ε) :
     |((a + b) ^ 2 * (1 + ε) - (a - b) ^ 2 * (1 - ε)) / 2 - 2 * a * b| = ε * (a ^ 2 + b ^ 2) ∧
       ε * (a ^ 2 + b ^ 2) / (2 * a * b) ≥ ε * b / (2 * a) := by
@@ -4033,7 +4665,9 @@ theorem methodB_amplification {a b ε : ℝ} (ha : 0 < a) (hb : 0 < b) (hε : 0 
     nlinarith
 
 /-- `θ₂(q) ≤ 2 q^(1/4)/(1 − q)` for `0 < q < 1`: the small factor in (B)'s amplification
-`θ₃/(2θ₂) ≥ (1 − q)/(4 q^(1/4))`.-/
+`θ₃/(2θ₂) ≥ (1 − q)/(4 q^(1/4))`.
+@isnad1 id=le.2h1v.s6.2b9aa55495df from=translated src=- shape=90346697 vocab=418e6370
+-/
 theorem theta2_le_two_rpow_div {q : ℝ} (hq0 : 0 < q) (hq1 : q < 1) :
     theta2 q ≤ 2 * q ^ (1 / 4 : ℝ) / (1 - q) := by
   rw [theta2_eq_rpow_mul hq0.le hq1, theta2Int_eq_two_mul_tsum hq0 hq1]
@@ -4050,36 +4684,54 @@ end Exercise445
 section Exercise446
 
 /-- The doubling principle: a complex product costs exactly twice a real one in transforms
-(`4 + 2` against `2 + 1`).-/
+(`4 + 2` against `2 + 1`).
+@isnad1 id=eq.0h0v.s5.4e8bcedbdc4a from=translated src=- shape=ad4498e6 vocab=41f7651a
+-/
 theorem fftCost_complex_mul_eq_two_mul : fftCost 4 2 = 2 * fftCost 2 1 := by norm_num [fftCost]
 
-/-- …and a complex squaring exactly twice a real one (`2 + 2` against `1 + 1`).-/
+/-- …and a complex squaring exactly twice a real one (`2 + 2` against `1 + 1`).
+@isnad1 id=eq.0h0v.s5.599182f7ea09 from=translated src=- shape=ad4498e6 vocab=41f7651a
+-/
 theorem fftCost_complex_sq_eq_two_mul : fftCost 2 2 = 2 * fftCost 1 1 := by norm_num [fftCost]
 
 /-- Table 4.1's complex reciprocal through `1/z = z̄/|z|²`: `|z|² = a² + b²` with the transforms
 of `a, b` shared (`2` forward, `1` backward, `1`), a real reciprocal (`13/9`), then `a r`, `b r`
-with the stored transforms and one transform of `r` (`1` forward, `2` backward, `1`): `31/9`.-/
+with the stored transforms and one transform of `r` (`1` forward, `2` backward, `1`): `31/9`.
+@isnad1 id=eq.0h0v.s6.d5d08c572d5e from=translated src=- shape=20f5b3ad vocab=337bb4e3
+-/
 theorem complex_reciprocal_via_norm : fftCost 2 1 + 13 / 9 + fftCost 1 2 = 31 / 9 := by
   norm_num [fftCost]
 
 /-- Table 4.1's complex square root through `x = √((|z| + a)/2)`, `y = b/(2x)`: `|z|² (1)`, three
-real square roots or two square roots and a division: `1 + 4/3 + 4/3 + 5/3 = 16/3`.-/
+real square roots or two square roots and a division: `1 + 4/3 + 4/3 + 5/3 = 16/3`.
+@isnad1 id=eq.0h0v.s6.e8f2965bab7a from=translated src=- shape=e4ae0838 vocab=7592adeb
+-/
 theorem complex_sqrt_via_norm : (1 : ℚ) + 4 / 3 + 4 / 3 + 5 / 3 = 16 / 3 := by norm_num
 
-/-- Improved: the real Newton reciprocal (`13/9 M`) run over `ℂ` costs twice, `26/9 < 31/9`.-/
+/-- Improved: the real Newton reciprocal (`13/9 M`) run over `ℂ` costs twice, `26/9 < 31/9`.
+@isnad1 id=lt.0h0v.s5.6c30ea9fd519 from=translated src=- shape=308ac54c vocab=0cb97c88
+-/
 theorem complex_reciprocal_improved : (2 : ℚ) * (13 / 9) < 31 / 9 := by norm_num
 
-/-- Improved: complex division as a complex Newton iteration, `2 · 5/3 = 10/3 < 43/9`.-/
+/-- Improved: complex division as a complex Newton iteration, `2 · 5/3 = 10/3 < 43/9`.
+@isnad1 id=lt.0h0v.s5.a57d89c3cdbe from=translated src=- shape=308ac54c vocab=0cb97c88
+-/
 theorem complex_division_improved : (2 : ℚ) * (5 / 3) < 43 / 9 := by norm_num
 
-/-- Improved: the complex square root as a complex Newton iteration, `2 · 4/3 = 8/3 < 16/3`.-/
+/-- Improved: the complex square root as a complex Newton iteration, `2 · 4/3 = 8/3 < 16/3`.
+@isnad1 id=lt.0h0v.s5.c0a4983a1781 from=translated src=- shape=308ac54c vocab=0cb97c88
+-/
 theorem complex_sqrt_improved : (2 : ℚ) * (4 / 3) < 16 / 3 := by norm_num
 
 /-- Improved: a complex AGM iteration (one complex product and one complex square root, with the
-same transform reuse as the real `2M` iteration) costs `2 · 2 = 4 < 20/3`.-/
+same transform reuse as the real `2M` iteration) costs `2 · 2 = 4 < 20/3`.
+@isnad1 id=lt.0h0v.s5.05ac4cd19cc0 from=translated src=- shape=f1d7dae4 vocab=0cb97c88
+-/
 theorem complex_agm_iteration_improved : (2 : ℚ) * 2 < 20 / 3 := by norm_num
 
-/-- Improved: `ln z` by the complex AGM, `2 lg n` iterations of cost `4`, `8 lg n < (40/3) lg n`.-/
+/-- Improved: `ln z` by the complex AGM, `2 lg n` iterations of cost `4`, `8 lg n < (40/3) lg n`.
+@isnad1 id=lt.1h1v.s6.d82dc0c9ddc1 from=translated src=- shape=b26bb00c vocab=79a93376
+-/
 theorem complex_log_improved {n : ℝ} (hn : 0 < Real.logb 2 n) :
     2 * 2 * (2 * Real.logb 2 n) < 40 / 3 * Real.logb 2 n := by linarith
 
@@ -4089,7 +4741,9 @@ section Exercise447
 
 open Finset
 
-/-- One level of the splitting tree under `M(m) = m^c`: `2^k (N/2^k)^c = N^c (2^(1−c))^k`.-/
+/-- One level of the splitting tree under `M(m) = m^c`: `2^k (N/2^k)^c = N^c (2^(1−c))^k`.
+@isnad1 id=eq.1h3v.s7.4d48b7b54263 from=translated src=- shape=bd595c56 vocab=5ce83074
+-/
 theorem two_pow_mul_div_rpow {N c : ℝ} (hN : 0 ≤ N) (k : ℕ) :
     (2 : ℝ) ^ k * (N / 2 ^ k) ^ c = N ^ c * ((2 : ℝ) ^ (1 - c)) ^ k := by
   have h2k : (0 : ℝ) < 2 ^ k := by positivity
@@ -4099,7 +4753,9 @@ theorem two_pow_mul_div_rpow {N c : ℝ} (hN : 0 ≤ N) (k : ℕ) :
   ring
 
 /-- (4.80) for `M(m) = m^c`, `c > 1`: the level costs are geometric, so
-`∑_{k=1}^{L} 2^k (N/2^k)^c ≤ N^c · 2^(1−c)/(1 − 2^(1−c))` for every `L`.-/
+`∑_{k=1}^{L} 2^k (N/2^k)^c ≤ N^c · 2^(1−c)/(1 − 2^(1−c))` for every `L`.
+@isnad1 id=le.2h3v.s7.227c5cd2f24b from=translated src=- shape=dbd2aa1e vocab=44b7d221
+-/
 theorem binary_splitting_cost_pow {N c : ℝ} (hN : 0 ≤ N) (hc : 1 < c) (L : ℕ) :
     ∑ k ∈ Icc 1 L, (2 : ℝ) ^ k * (N / 2 ^ k) ^ c
       ≤ N ^ c * ((2 : ℝ) ^ (1 - c) / (1 - 2 ^ (1 - c))) := by
@@ -4115,7 +4771,9 @@ theorem binary_splitting_cost_pow {N c : ℝ} (hN : 0 ≤ N) (hc : 1 < c) (L : �
     _ ≤ N ^ c * (r / (1 - r)) := by gcongr
 
 /-- With `N = n lg n` and `M(n) = n^c`: the bound is `(lg n)^c · M(n) · 2^(1−c)/(1 − 2^(1−c))`,
-i.e. `α = c`.-/
+i.e. `α = c`.
+@isnad1 id=le.2h3v.s8.9888200b26c1 from=translated src=- shape=969b141a vocab=8eb87244
+-/
 theorem binary_splitting_cost_pow_eq {n c : ℝ} (hn : 1 ≤ n) (hc : 1 < c) (L : ℕ) :
     ∑ k ∈ Icc 1 L, (2 : ℝ) ^ k * (n * Real.logb 2 n / 2 ^ k) ^ c
       ≤ Real.logb 2 n ^ c * n ^ c * ((2 : ℝ) ^ (1 - c) / (1 - 2 ^ (1 - c))) := by
@@ -4123,7 +4781,9 @@ theorem binary_splitting_cost_pow_eq {n c : ℝ} (hn : 1 ≤ n) (hc : 1 < c) (L 
   have h := binary_splitting_cost_pow (N := n * Real.logb 2 n) (by positivity) hc L
   rwa [Real.mul_rpow (by linarith) hlg, mul_comm (n ^ c)] at h
 
-/-- `α = c ≤ 2`: `(lg n)^c ≤ (lg n)²` for `n ≥ 2`.-/
+/-- `α = c ≤ 2`: `(lg n)^c ≤ (lg n)²` for `n ≥ 2`.
+@isnad1 id=le.2h2v.s6.bbd77fefbcd4 from=translated src=- shape=695776ca vocab=2bd71313
+-/
 theorem rpow_logb_le_sq {n c : ℝ} (hn : 2 ≤ n) (hc : c ≤ 2) :
     Real.logb 2 n ^ c ≤ Real.logb 2 n ^ 2 := by
   have hlg : 1 ≤ Real.logb 2 n := by
@@ -4155,12 +4815,16 @@ noncomputable def salvyFun' (x : ℝ) : ℝ :=
 noncomputable def salvyFun'' (x : ℝ) : ℝ :=
   (2 + 4 * x ^ 2) * Real.exp (x ^ 2) + 2 * x * (3 + x ^ 2) / (1 - x ^ 2) ^ 3
 
-/-- `exp(x²)` is holonomic: `f' − 2x f = 0`.-/
+/-- `exp(x²)` is holonomic: `f' − 2x f = 0`.
+@isnad1 id=eq.0h1v.s6.2fdab4d7f6e3 from=translated src=- shape=d0e99f6d vocab=1d1909e7
+-/
 theorem exp_sq_ode (x : ℝ) :
     deriv (fun y => Real.exp (y ^ 2)) x - 2 * x * Real.exp (x ^ 2) = 0 := by
   rw [((hasDerivAt_pow 2 x).exp).deriv]; ring
 
-/-- `x/(1 − x²)` is holonomic: `x(1 − x²) g' − (1 + x²) g = 0` away from `x² = 1`.-/
+/-- `x/(1 − x²)` is holonomic: `x(1 − x²) g' − (1 + x²) g = 0` away from `x² = 1`.
+@isnad1 id=eq.1h1v.s7.a6d7278db350 from=translated src=- shape=f94349e5 vocab=8571c82a
+-/
 theorem ratPart_ode {x : ℝ} (hx : x ^ 2 ≠ 1) :
     x * (1 - x ^ 2) * deriv (fun y => y / (1 - y ^ 2)) x - (1 + x ^ 2) * (x / (1 - x ^ 2)) = 0 := by
   have hne : 1 - x ^ 2 ≠ 0 := sub_ne_zero.mpr (Ne.symm hx)
@@ -4172,6 +4836,9 @@ theorem ratPart_ode {x : ℝ} (hx : x ^ 2 ≠ 1) :
   field_simp
   ring
 
+/--
+@isnad1 id=hasderiv.1h1v.s5.8e692e8ba97f from=translated src=- shape=fdc623f1 vocab=0e6a427f
+-/
 theorem hasDerivAt_salvyFun {x : ℝ} (hx : x ^ 2 ≠ 1) : HasDerivAt salvyFun (salvyFun' x) x := by
   have hne : 1 - x ^ 2 ≠ 0 := sub_ne_zero.mpr (Ne.symm hx)
   have h := ((hasDerivAt_pow 2 x).exp).add
@@ -4181,6 +4848,9 @@ theorem hasDerivAt_salvyFun {x : ℝ} (hx : x ^ 2 ≠ 1) : HasDerivAt salvyFun (
   field_simp
   ring
 
+/--
+@isnad1 id=hasderiv.1h1v.s5.43429043c3e0 from=translated src=- shape=fdc623f1 vocab=ff8fad8d
+-/
 theorem hasDerivAt_salvyFun' {x : ℝ} (hx : x ^ 2 ≠ 1) :
     HasDerivAt salvyFun' (salvyFun'' x) x := by
   have hne : 1 - x ^ 2 ≠ 0 := sub_ne_zero.mpr (Ne.symm hx)
@@ -4192,12 +4862,21 @@ theorem hasDerivAt_salvyFun' {x : ℝ} (hx : x ^ 2 ≠ 1) :
   field_simp
   ring
 
+/--
+@isnad1 id=isopen.0h0v.s5.32a70927b3d7 from=translated src=- shape=92ee4ab8 vocab=b5e13c48
+-/
 theorem isOpen_sq_ne_one : IsOpen {x : ℝ | x ^ 2 ≠ 1} :=
   isOpen_ne_fun (continuous_pow 2) continuous_const
 
+/--
+@isnad1 id=eq.1h1v.s5.0f87d4d5ed03 from=translated src=- shape=2f52f395 vocab=405bf4ac
+-/
 theorem deriv_salvyFun {x : ℝ} (hx : x ^ 2 ≠ 1) : deriv salvyFun x = salvyFun' x :=
   (hasDerivAt_salvyFun hx).deriv
 
+/--
+@isnad1 id=eq.1h1v.s6.80a224c31fca from=translated src=- shape=a969ba15 vocab=14b18efd
+-/
 theorem deriv_deriv_salvyFun {x : ℝ} (hx : x ^ 2 ≠ 1) :
     deriv (deriv salvyFun) x = salvyFun'' x := by
   have hev : deriv salvyFun =ᶠ[nhds x] salvyFun' :=
@@ -4205,7 +4884,9 @@ theorem deriv_deriv_salvyFun {x : ℝ} (hx : x ^ 2 ≠ 1) :
   rw [hev.deriv_eq, (hasDerivAt_salvyFun' hx).deriv]
 
 /-- The explicit annihilating operator of `exp(x²) + x/(1 − x²)`:
-`(1−x²)(1−x²+2x⁴) h'' − 2x(2+x²+3x⁴−2x⁶) h' + 2(2x⁶+3x⁴+4x²−1) h = 0`.-/
+`(1−x²)(1−x²+2x⁴) h'' − 2x(2+x²+3x⁴−2x⁶) h' + 2(2x⁶+3x⁴+4x²−1) h = 0`.
+@isnad1 id=eq.1h1v.s8.8ae47e4767fc from=translated src=- shape=ff447971 vocab=47defa81
+-/
 theorem salvyFun_ode {x : ℝ} (hx : x ^ 2 ≠ 1) :
     (1 - x ^ 2) * (1 - x ^ 2 + 2 * x ^ 4) * salvyFun'' x
       - 2 * x * (2 + x ^ 2 + 3 * x ^ 4 - 2 * x ^ 6) * salvyFun' x
@@ -4215,7 +4896,9 @@ theorem salvyFun_ode {x : ℝ} (hx : x ^ 2 ≠ 1) :
   field_simp
   ring
 
-/-- The answer to Exercise 4.48: Salvy's function is holonomic on `{x | x² ≠ 1}`.-/
+/-- The answer to Exercise 4.48: Salvy's function is holonomic on `{x | x² ≠ 1}`.
+@isnad1 id=isholono.0h0v.s5.adeef24a8975 from=translated src=- shape=3b3b543c vocab=26897c84
+-/
 theorem salvyFun_isHolonomicOn : IsHolonomicOn salvyFun {x | x ^ 2 ≠ 1} := by
   refine ⟨2, ![Polynomial.C 2 * (2 * Polynomial.X ^ 6 + 3 * Polynomial.X ^ 4
       + 4 * Polynomial.X ^ 2 - 1),
@@ -4247,21 +4930,31 @@ each with `2^i + O(lg n)`-bit recurrence coefficients, so `S_i = n + n lg n/2^i`
 Theorem 4.2 used the uniform bound `n lg n` for every step.)-/
 noncomputable def burstStepSize (n i : ℕ) : ℝ := n + n * Real.logb 2 n / 2 ^ i
 
-/-- Binary splitting with `L` levels on an `S`-bit product costs at most `L · M(S)`.-/
+/-- Binary splitting with `L` levels on an `S`-bit product costs at most `L · M(S)`.
+@isnad1 id=le.1h2v.s6.95ac3f55a324 from=translated src=- shape=b3d26d3e vocab=e934dff2
+-/
 theorem binary_splitting_levels_le {S : ℝ} (hS : 1 ≤ S) (L : ℕ) :
     ∑ k ∈ Icc 1 L, 2 ^ k * quasiLinearCost (S / 2 ^ k) ≤ L * quasiLinearCost S := by
   calc _ ≤ ∑ _k ∈ Icc 1 L, quasiLinearCost S :=
         sum_le_sum fun k _ => two_pow_mul_quasiLinearCost_div_le hS k
     _ = _ := by rw [sum_const, Nat.card_Icc, Nat.add_sub_cancel, nsmul_eq_mul]
 
+/--
+@isnad1 id=le.1h1v.s4.1b8801b93b36 from=translated src=- shape=35bd48ee vocab=694ab3bd
+-/
 theorem quasiLinearCost_nonneg {a : ℝ} (ha : 1 ≤ a) : 0 ≤ quasiLinearCost a :=
   mul_nonneg (by linarith) (Real.logb_nonneg one_lt_two ha)
 
+/--
+@isnad1 id=eq.1h1v.s5.0ad86b50a5ed from=translated src=- shape=671ff5f3 vocab=5cc546a1
+-/
 theorem logb_two_mul {a : ℝ} (ha : 0 < a) : Real.logb 2 (2 * a) = 1 + Real.logb 2 a := by
   rw [Real.logb_mul (by norm_num) ha.ne', Real.logb_self_eq_one one_lt_two]
 
 /-- `M(a + b) ≤ 4 (M(a) + M(b))` for `a ≥ 2`, `b ≥ 1`: `a + b ≤ 2 max(a, b)` and
-`M(2m) = 2m(1 + lg m) ≤ 4 M(m)` for `m ≥ 2`.-/
+`M(2m) = 2m(1 + lg m) ≤ 4 M(m)` for `m ≥ 2`.
+@isnad1 id=le.2h2v.s6.8661a71c2cce from=translated src=- shape=b30a28b5 vocab=0631443e
+-/
 theorem quasiLinearCost_add_le {a b : ℝ} (ha : 2 ≤ a) (hb : 1 ≤ b) :
     quasiLinearCost (a + b) ≤ 4 * quasiLinearCost a + 4 * quasiLinearCost b := by
   unfold quasiLinearCost
@@ -4286,13 +4979,17 @@ theorem quasiLinearCost_add_le {a b : ℝ} (ha : 2 ≤ a) (hb : 1 ≤ b) :
       mul_nonneg (sub_nonneg.mpr hab.le) (by linarith : (0 : ℝ) ≤ 1 + Real.logb 2 b),
       mul_nonneg (by linarith : (0 : ℝ) ≤ b) (sub_nonneg.mpr hlgb1)]
 
-/-- `M(m/2^k) ≤ M(m)/2^k` for `m ≥ 1`.-/
+/-- `M(m/2^k) ≤ M(m)/2^k` for `m ≥ 1`.
+@isnad1 id=le.1h2v.s6.98cbc58c9bd2 from=translated src=- shape=34de6293 vocab=2abffdd1
+-/
 theorem quasiLinearCost_div_two_pow_le {m : ℝ} (hm : 1 ≤ m) (k : ℕ) :
     quasiLinearCost (m / 2 ^ k) ≤ quasiLinearCost m / 2 ^ k := by
   rw [le_div_iff₀ (by positivity)]
   linarith [two_pow_mul_quasiLinearCost_div_le hm k]
 
-/-- `M(n lg n) ≤ 2 lg n · M(n)` for `n ≥ 2`.-/
+/-- `M(n lg n) ≤ 2 lg n · M(n)` for `n ≥ 2`.
+@isnad1 id=le.1h1v.s6.770692fdb659 from=translated src=- shape=493a1d52 vocab=6d00cabf
+-/
 theorem quasiLinearCost_natCast_mul_logb_le {n : ℕ} (hn : 2 ≤ n) :
     quasiLinearCost (n * Real.logb 2 n) ≤ 2 * Real.logb 2 n * quasiLinearCost n := by
   have hn1 : (1 : ℝ) ≤ n := by exact_mod_cast (by omega : 1 ≤ n)
@@ -4306,7 +5003,9 @@ theorem quasiLinearCost_natCast_mul_logb_le {n : ℕ} (hn : 2 ≤ n) :
   nlinarith [mul_le_mul_of_nonneg_left hlglg (by positivity : (0 : ℝ) ≤ n * Real.logb 2 n)]
 
 /-- The per-step sizes sum geometrically: for `2^L ≤ n lg n`,
-`∑_{i≤L} M(S_i) ≤ (4(L+1) + 16 lg n) M(n)`.-/
+`∑_{i≤L} M(S_i) ≤ (4(L+1) + 16 lg n) M(n)`.
+@isnad1 id=le.2h2v.s7.c73921b5fc6a from=translated src=- shape=4d4ded40 vocab=91bd78ec
+-/
 theorem sum_quasiLinearCost_burstStepSize_le {n : ℕ} (hn : 2 ≤ n) {L : ℕ}
     (hL : (2 : ℝ) ^ L ≤ n * Real.logb 2 n) :
     ∑ i ∈ range (L + 1), quasiLinearCost (burstStepSize n i)
@@ -4347,7 +5046,9 @@ theorem sum_quasiLinearCost_burstStepSize_le {n : ℕ} (hn : 2 ≤ n) {L : ℕ}
 
 /-- Exercise 4.49: with the per-step sizes `S_i`, the whole bit-burst algorithm (`⌈lg n⌉ + 1`
 steps, each a binary splitting of at most `lg n + 1` levels) costs at most `56 (lg n)² M(n)`,
-i.e. `O(M(n) log² n)` instead of Theorem 4.2's `O(M(n) log³ n)`.-/
+i.e. `O(M(n) log² n)` instead of Theorem 4.2's `O(M(n) log³ n)`.
+@isnad1 id=le.1h1v.s7.004cdfab2cd8 from=translated src=- shape=2faf722c vocab=958edb7b
+-/
 theorem bit_burst_cost {n : ℕ} (hn : 4 ≤ n) :
     ∑ i ∈ range (Nat.clog 2 n + 1), (Real.logb 2 n + 1) * quasiLinearCost (burstStepSize n i)
       ≤ 56 * Real.logb 2 n ^ 2 * quasiLinearCost n := by
@@ -4382,7 +5083,9 @@ section Exercise450
 open Finset Complex
 
 /-- Partial fractions: for a primitive `k`-th root of unity `ζ` and `z^k ≠ 1`,
-`∑_{m<k} ζ^m/(z − ζ^m) = k/(z^k − 1)`.-/
+`∑_{m<k} ζ^m/(z − ζ^m) = k/(z^k − 1)`.
+@isnad1 id=eq.3h3v.s7.021d0d36da22 from=translated src=- shape=bfee82ea vocab=35578b4f
+-/
 theorem sum_primitiveRoot_div_eq {ζ : ℂ} {k : ℕ} (hζ : IsPrimitiveRoot ζ k) (hk : 0 < k) {z : ℂ}
     (hz : z ^ k ≠ 1) : ∑ m ∈ range k, ζ ^ m / (z - ζ ^ m) = k / (z ^ k - 1) := by
   have hzk : z ^ k - 1 ≠ 0 := sub_ne_zero.mpr hz
@@ -4427,11 +5130,15 @@ noncomputable def aliasSumFun (f : ℂ → ℂ) (j k : ℕ) : ℂ :=
   (1 / k : ℂ) * ∑ m ∈ range k,
     f (exp (2 * Real.pi * I / k) ^ m) * (exp (2 * Real.pi * I / k))⁻¹ ^ (j * m)
 
-/-- `aliasSum` (the series form of `ContourIntegration.lean`) is `aliasSumFun` of the sum.-/
+/-- `aliasSum` (the series form of `ContourIntegration.lean`) is `aliasSumFun` of the sum.
+@isnad1 id=eq.0h3v.s6.64714998723e from=translated src=- shape=52c171b0 vocab=c9c54c1f
+-/
 theorem aliasSum_eq_aliasSumFun (a : ℕ → ℂ) (j k : ℕ) :
     aliasSum a j k = aliasSumFun (fun z => ∑' l : ℕ, a l * z ^ l) j k := rfl
 
-/-- A finite sum of circle integrals.-/
+/-- A finite sum of circle integrals.
+@isnad1 id=eq.1h5v.s6.e32a197491e5 from=translated src=- shape=586a4ff3 vocab=9baf02c8
+-/
 theorem circleIntegral_sum {ι : Type*} (s : Finset ι) (F : ι → ℂ → ℂ) (c : ℂ) (R : ℝ)
     (hF : ∀ i ∈ s, CircleIntegrable (F i) c R) :
     (∮ z in C(c, R), ∑ i ∈ s, F i z) = ∑ i ∈ s, ∮ z in C(c, R), F i z := by
@@ -4440,7 +5147,9 @@ theorem circleIntegral_sum {ι : Type*} (s : Finset ι) (F : ι → ℂ → ℂ)
 
 /-- `S_{j,k} = (2πi)⁻¹ ∮_{|z|=R} z^(k−j−1)/(z^k − 1) f(z) dz` for `j < k`, `f` holomorphic on
 `|z| ≤ R`, `R > 1`: each partial fraction `ζ^m/(z − ζ^m)` contributes `ζ^m · ζ^(m(k−j−1)) f(ζ^m)`
-by Cauchy's integral formula.-/
+by Cauchy's integral formula.
+@isnad1 id=eq.3h4v.s8.87b47a15356f from=translated src=- shape=d3f39117 vocab=859759c9
+-/
 theorem aliasSumFun_eq_circleIntegral {f : ℂ → ℂ} {R : ℝ} (hR : 1 < R)
     (hf : DifferentiableOn ℂ f (Metric.closedBall 0 R)) {j k : ℕ} (hjk : j < k) :
     aliasSumFun f j k
@@ -4517,7 +5226,9 @@ theorem aliasSumFun_eq_circleIntegral {f : ℂ → ℂ} {R : ℝ} (hR : 1 < R)
 noncomputable def cauchyCoeff (f : ℂ → ℂ) (R : ℝ) (i : ℕ) : ℂ :=
   (2 * Real.pi * I)⁻¹ * ∮ z in C(0, R), f z / z ^ (i + 1)
 
-/-- `S_{j,k} − a_j = (2πi)⁻¹ ∮_{|z|=R} f(z)/(z^(j+1)(z^k − 1)) dz` for `j < k`.-/
+/-- `S_{j,k} − a_j = (2πi)⁻¹ ∮_{|z|=R} f(z)/(z^(j+1)(z^k − 1)) dz` for `j < k`.
+@isnad1 id=eq.3h4v.s8.e6afddbcd74b from=translated src=- shape=f6a6bd87 vocab=639840f8
+-/
 theorem aliasSumFun_sub_cauchyCoeff {f : ℂ → ℂ} {R : ℝ} (hR : 1 < R)
     (hf : DifferentiableOn ℂ f (Metric.closedBall 0 R)) {j k : ℕ} (hjk : j < k) :
     aliasSumFun f j k - cauchyCoeff f R j
@@ -4564,7 +5275,9 @@ open Finset Complex ComplexConjugate
 
 variable {g : ℂ → ℂ}
 
-/-- `conj (e^(2πi/k)) = (e^(2πi/k))⁻¹`.-/
+/-- `conj (e^(2πi/k)) = (e^(2πi/k))⁻¹`.
+@isnad1 id=eq.0h1v.s6.40c12d8cef11 from=translated src=- shape=4c4d38aa vocab=72f278dc
+-/
 theorem conj_exp_two_pi_div (k : ℕ) :
     conj (exp (2 * Real.pi * I / k)) = (exp (2 * Real.pi * I / k))⁻¹ := by
   rw [← Complex.exp_conj, ← Complex.exp_neg]
@@ -4572,7 +5285,9 @@ theorem conj_exp_two_pi_div (k : ℕ) :
   simp only [map_div₀, map_mul, map_ofNat, Complex.conj_ofReal, Complex.conj_I, map_natCast]
   ring
 
-/-- For even `k`, `(e^(2πi/k))^(k/2) = −1`.-/
+/-- For even `k`, `(e^(2πi/k))^(k/2) = −1`.
+@isnad1 id=eq.2h1v.s6.c9797e865a12 from=translated src=- shape=c395e2f7 vocab=e1529ab3
+-/
 theorem exp_two_pi_div_pow_half {k : ℕ} (hk : k % 2 = 0) (hk0 : 0 < k) :
     exp (2 * Real.pi * I / k) ^ (k / 2) = -1 := by
   have hk2 : ((k / 2 : ℕ) : ℂ) * 2 = (k : ℂ) := by
@@ -4584,7 +5299,9 @@ theorem exp_two_pi_div_pow_half {k : ℕ} (hk : k % 2 = 0) (hk0 : 0 < k) :
   field_simp
 
 /-- Conjugation symmetry alone: if `g(conj z) = conj g(z)`, every sample `g(w^m)`, `m < k`, is
-`g(w^r)` or `conj g(w^r)` for some `r ≤ k/2` — about `k/2` evaluations suffice.-/
+`g(w^r)` or `conj g(w^r)` for some `r ≤ k/2` — about `k/2` evaluations suffice.
+@isnad1 id=ex.3h3v.s8.8d6b231c64d9 from=translated src=- shape=c2db2f7a vocab=b5c516a6
+-/
 theorem sample_reduce_conj (hg : ∀ z, g (conj z) = conj (g z)) {k : ℕ} (hk0 : 0 < k) {m : ℕ}
     (hm : m < k) :
     ∃ r ≤ k / 2, g (exp (2 * Real.pi * I / k) ^ m) = g (exp (2 * Real.pi * I / k) ^ r)
@@ -4599,7 +5316,9 @@ theorem sample_reduce_conj (hg : ∀ z, g (conj z) = conj (g z)) {k : ℕ} (hk0 
     rw [← pow_add, Nat.add_sub_cancel' hm.le, hζ.pow_eq_one]
 
 /-- Even `k`, `g` even and conjugation-symmetric: every sample `g(w^m)` is `g(w^r)` or
-`conj g(w^r)` for some `r ≤ k/4` — about `k/4` evaluations suffice.-/
+`conj g(w^r)` for some `r ≤ k/4` — about `k/4` evaluations suffice.
+@isnad1 id=ex.5h3v.s8.96ba2e6f018b from=translated src=- shape=890a975f vocab=719d9c45
+-/
 theorem sample_reduce_even (hg : ∀ z, g (conj z) = conj (g z)) (hge : ∀ z, g (-z) = g z)
     {k : ℕ} (hk : k % 2 = 0) (hk0 : 0 < k) {m : ℕ} (hm : m < k) :
     ∃ r ≤ k / 4, g (exp (2 * Real.pi * I / k) ^ m) = g (exp (2 * Real.pi * I / k) ^ r)
@@ -4624,12 +5343,16 @@ theorem sample_reduce_even (hg : ∀ z, g (conj z) = conj (g z)) (hge : ∀ z, g
 
 /-- The function (4.86) is even and conjugation-symmetric, so both reductions apply; in the
 series form this is `bernoulliCoeff_odd` (odd coefficients vanish) and the coefficients are real
-(`bernoulliCoeff` is a rational cast).-/
+(`bernoulliCoeff` is a rational cast).
+@isnad1 id=eq.0h1v.s5.d440c6c62e5e from=translated src=- shape=f68c6383 vocab=182e28d9
+-/
 theorem bernoulliCoeff_conj (l : ℕ) : conj (bernoulliCoeff l) = bernoulliCoeff l := by
   rw [bernoulliCoeff, ← Complex.ofReal_ratCast, Complex.conj_ofReal]
 
 /-- For odd `k`, the aliased coefficients `a_{2j+lk}` with `l` odd vanish, so the `k`-point sum
-equals the `2k`-point sum: `S_{2j,k} = S_{2j,2k}`.-/
+equals the `2k`-point sum: `S_{2j,k} = S_{2j,2k}`.
+@isnad1 id=eq.2h2v.s6.ddeabc32460c from=translated src=- shape=2eee88d5 vocab=9c199242
+-/
 theorem bernoulli_aliasSum_odd {j k : ℕ} (hk : k % 2 = 1) (hjk : 2 * j < k) :
     aliasSum bernoulliCoeff (2 * j) k = aliasSum bernoulliCoeff (2 * j) (2 * k) := by
   have ha : Summable fun l => ‖bernoulliCoeff l‖ :=
@@ -4660,7 +5383,9 @@ theorem bernoulli_aliasSum_odd {j k : ℕ} (hk : k % 2 = 1) (hjk : 2 * j < k) :
   simp only [hz, tsum_zero, zero_add] at hsplit
   linear_combination h1 - h2 - hsplit
 
-/-- The improved error bound for odd `k`: `O((2π)^(−2k))` instead of `O((2π)^(−k))`.-/
+/-- The improved error bound for odd `k`: `O((2π)^(−2k))` instead of `O((2π)^(−k))`.
+@isnad1 id=le.3h2v.s8.cdfc1ee79ef8 from=translated src=- shape=9ddbd4e4 vocab=2d1fc75d
+-/
 theorem norm_bernoulli_aliasSum_sub_le_odd {j k : ℕ} (hj : 1 ≤ j) (hk : k % 2 = 1)
     (hjk : 2 * j < k) :
     ‖aliasSum bernoulliCoeff (2 * j) k - (scaledBernoulli j : ℂ)‖

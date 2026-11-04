@@ -56,12 +56,16 @@ private theorem hm_pos : 0 < (q - 1) * q := by
   have := (Fact.out (p := q.Prime)).two_le
   exact Nat.mul_pos (by omega) (by omega)
 
-/-- `ζ_q` is a genuine primitive `q`-th root in the common ring.-/
+/-- `ζ_q` is a genuine primitive `q`-th root in the common ring.
+@isnad1 id=isprimit.0h1v.s6.e90f0c64bdc6 from=translated src=- shape=05ae21e9 vocab=ef0b5704
+-/
 theorem isPrimitiveRoot_zetaQFam : IsPrimitiveRoot (zetaQFam q) q :=
   (isPrimitiveRoot_zetaM hm_pos).pow hm_pos rfl
 
 /-- The whole family lies in the `(q−1)`-th roots of unity — the
-membership hypothesis of the character construction.-/
+membership hypothesis of the character construction.
+@isnad1 id=mem.0h2v.s9.dd4e271938e0 from=translated src=- shape=f3d631e3 vocab=eed3f194
+-/
 theorem zetaPFam_mem (p : ℕ) :
     zetaPFam q p ∈ rootsOfUnity (Fintype.card (ZMod q)ˣ)
       (CycM ((q - 1) * q)) := by
@@ -75,7 +79,9 @@ theorem zetaPFam_mem (p : ℕ) :
     exact mem_rootsOfUnity_card_units_of_dvd (one_pow 1) (one_dvd _)
 
 /-- The family members at prime factors of `q − 1` are genuine
-primitive `p`-th roots.-/
+primitive `p`-th roots.
+@isnad1 id=isprimit.1h2v.s8.2fc9fe212a1b from=translated src=- shape=574221dd vocab=6b0df7ad
+-/
 theorem isPrimitiveRoot_zetaPFam {p : ℕ} (hp : p ∈ (q - 1).primeFactors) :
     IsPrimitiveRoot (zetaPFam q p) p := by
   have hd : p ∣ q - 1 := Nat.dvd_of_mem_primeFactors hp
@@ -90,7 +96,9 @@ end Prime
 the abstract certificate hypotheses discharged at `ℤ[ζ_((q−1)q)]`,
 leaving only the algorithm's own data — the generator `g_q`, the
 step-3/4 congruences, the step-5 coprime check at `q₀(p)`, and the
-step-6 tables.-/
+step-6 tables.
+@isnad1 id=ex.15h10v.s11.9a60e581f843 from=translated src=- shape=47cf60ae vocab=9fe21913
+-/
 theorem theorem_4_4_6_composite_cycM
     {n I F : ℕ} (hn1 : 1 < n) (hncomp : ¬n.Prime)
     (hI : Squarefree I) (hF : Squarefree F)

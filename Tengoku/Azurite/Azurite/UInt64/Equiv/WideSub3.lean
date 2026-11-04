@@ -17,7 +17,9 @@ import Tengoku.Azurite.Azurite.UInt64.WideSub3
 namespace UInt64
 
 /-- Correctness of `wideSub3`: the returned triple represents the difference of
-the two 192-bit inputs modulo `2^192`.-/
+the two 192-bit inputs modulo `2^192`.
+@isnad1 id=eq.0h2v.s8.93fdd2aafc87 from=translated src=- shape=a71bf96e vocab=186b44d9
+-/
 theorem toNat_wideSub3 (x y : UInt64 × UInt64 × UInt64) :
     (wideSub3 x y).1.toNat * 2 ^ 128 + (wideSub3 x y).2.1.toNat * 2 ^ 64
         + (wideSub3 x y).2.2.toNat

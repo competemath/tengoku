@@ -45,6 +45,9 @@ def intPrecisionSet (p : ℕ) : Set EReal :=
 variable {p : ℕ} [NeZero p]
 
 omit [NeZero p] in
+/--
+@isnad1 id=mem.1h2v.s5.bd6abbf289b5 from=translated src=- shape=add0b2f7 vocab=4ebf2378
+-/
 theorem int_mem_precisionSet (n : ℤ) (hn : |n| < 2 ^ p) :
     ((n : ℝ) : EReal) ∈ precisionSet 2 p := by
   rcases eq_or_ne n 0 with rfl | h0
@@ -52,22 +55,34 @@ theorem int_mem_precisionSet (n : ℤ) (hn : |n| < 2 ^ p) :
   · exact Or.inr ⟨n, 0, h0, by exact_mod_cast hn, by simp⟩
 
 omit [NeZero p] in
+/--
+@isnad1 id=mem.1h2v.s5.0eb20a13cae5 from=translated src=- shape=97e85a9a vocab=0a4a0727
+-/
 theorem int_mem_intPrecisionSet (n : ℤ) (hn : |n| < 2 ^ p) :
     ((n : ℝ) : EReal) ∈ intPrecisionSet p :=
   ⟨int_mem_precisionSet n hn, n, rfl⟩
 
 omit [NeZero p] in
+/--
+@isnad1 id=eq.1h1v.s6.be6d999e6c9d from=translated src=- shape=7c4b2d18 vocab=8e229761
+-/
 theorem two_zpow_pred_eq (hp : 1 ≤ p) :
     (2 : ℝ) ^ ((p : ℤ) - 1) = ((2 ^ (p - 1) : ℤ) : ℝ) := by
   rw [show (p : ℤ) - 1 = ((p - 1 : ℕ) : ℤ) by omega, zpow_natCast]
   norm_cast
 
 omit [NeZero p] in
+/--
+@isnad1 id=lt.1h1v.s5.1d5ac1780acb from=translated src=- shape=8924eb61 vocab=36eae2ef
+-/
 theorem two_pow_pred_lt (hp : 1 ≤ p) : (2 : ℤ) ^ (p - 1) < 2 ^ p :=
   pow_lt_pow_right₀ (by norm_num) (by omega)
 
 /-! ### Floor and ceiling below `2^(p−1)` -/
 
+/--
+@isnad1 id=isgreate.1h2v.s6.dae3485f9080 from=translated src=- shape=669a69a1 vocab=6c2536c9
+-/
 theorem isGreatest_intPrecision_small (x : ℝ) (hx : |x| < (2 : ℝ) ^ ((p : ℤ) - 1)) :
     IsGreatest {s | s ∈ intPrecisionSet p ∧ s ≤ (x : EReal)} ((⌊x⌋ : ℝ) : EReal) := by
   have hp : 1 ≤ p := Nat.pos_of_ne_zero (NeZero.ne p)
@@ -84,6 +99,9 @@ theorem isGreatest_intPrecision_small (x : ℝ) (hx : |x| < (2 : ℝ) ^ ((p : �
   have : (z : ℝ) ≤ x := by exact_mod_cast hz
   exact_mod_cast Int.le_floor.mpr this
 
+/--
+@isnad1 id=isleast.1h2v.s6.6fb9f7cd28e7 from=translated src=- shape=b788cf5c vocab=59c9d013
+-/
 theorem isLeast_intPrecision_small (x : ℝ) (hx : |x| < (2 : ℝ) ^ ((p : ℤ) - 1)) :
     IsLeast {s | s ∈ intPrecisionSet p ∧ (x : EReal) ≤ s} ((⌈x⌉ : ℝ) : EReal) := by
   have hp : 1 ≤ p := Nat.pos_of_ne_zero (NeZero.ne p)
@@ -102,7 +120,9 @@ theorem isLeast_intPrecision_small (x : ℝ) (hx : |x| < (2 : ℝ) ^ ((p : ℤ) 
 /-! ### Floor and ceiling from `2^(p−1)` on -/
 
 omit [NeZero p] in
-/-- From `2^(p−1)` on, the local scale of `precisionSet 2 p` is a natural power of two.-/
+/-- From `2^(p−1)` on, the local scale of `precisionSet 2 p` is a natural power of two.
+@isnad1 id=ex.1h2v.s6.3bd50f2899b6 from=translated src=- shape=6effda6c vocab=894e29fb
+-/
 theorem precScale_eq_pow (x : ℝ) (hx : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |x|) :
     ∃ k : ℕ, precScale 2 p x = (2 : ℝ) ^ k := by
   have hx0 : 0 < |x| := lt_of_lt_of_le (zpow_pos (by norm_num) _) hx
@@ -114,11 +134,17 @@ theorem precScale_eq_pow (x : ℝ) (hx : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |x|) :
   norm_num
 
 omit [NeZero p] in
+/--
+@isnad1 id=ne.1h2v.s5.8b0462e8c80a from=translated src=- shape=1ec1eac7 vocab=f43cc2a8
+-/
 theorem ne_zero_of_two_zpow_le {x : ℝ} (hx : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |x|) : x ≠ 0 := by
   intro h
   rw [h, abs_zero] at hx
   exact absurd hx (not_le.mpr (zpow_pos (by norm_num) _))
 
+/--
+@isnad1 id=isgreate.1h2v.s7.d60a95fdd6f0 from=translated src=- shape=475f16c1 vocab=52263cf9
+-/
 theorem isGreatest_intPrecision_large (x : ℝ) (hx : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |x|) :
     IsGreatest {s | s ∈ intPrecisionSet p ∧ s ≤ (x : EReal)}
       ((((⌊x / precScale 2 p x⌋ : ℝ) * precScale 2 p x : ℝ) : EReal)) := by
@@ -129,6 +155,9 @@ theorem isGreatest_intPrecision_large (x : ℝ) (hx : (2 : ℝ) ^ ((p : ℤ) - 1
   · rintro s ⟨⟨hs, -⟩, hsx⟩
     exact hge ⟨hs, hsx⟩
 
+/--
+@isnad1 id=isleast.1h2v.s7.07b47490b362 from=translated src=- shape=45c9c7d9 vocab=43fc8c47
+-/
 theorem isLeast_intPrecision_large (x : ℝ) (hx : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |x|) :
     IsLeast {s | s ∈ intPrecisionSet p ∧ (x : EReal) ≤ s}
       ((((⌈x / precScale 2 p x⌉ : ℝ) * precScale 2 p x : ℝ) : EReal)) := by
@@ -146,10 +175,16 @@ noncomputable def ipToReal (a : ↥(intPrecisionSet p)) : ℝ :=
   precToReal (⟨a.val, a.2.1⟩ : ↥(precisionSet 2 p))
 
 omit [NeZero p] in
+/--
+@isnad1 id=eq.0h2v.s4.cc498279c6f2 from=translated src=- shape=919eb358 vocab=a287699f
+-/
 theorem ipToReal_spec (a : ↥(intPrecisionSet p)) : ((ipToReal a : ℝ) : EReal) = a.val :=
   precToReal_spec _
 
 omit [NeZero p] in
+/--
+@isnad1 id=eq.1h3v.s5.38ca47af4230 from=translated src=- shape=d5259dc4 vocab=19d6f8ad
+-/
 theorem ipToReal_eq_of_val {a : ↥(intPrecisionSet p)} {r : ℝ}
     (h : ((r : ℝ) : EReal) = a.val) :
     ipToReal a = r :=
@@ -169,6 +204,9 @@ noncomputable def ipTiebreak (a c : ↥(intPrecisionSet p)) : ↥(intPrecisionSe
   else a
 
 omit [NeZero p] in
+/--
+@isnad1 id=or.0h3v.s5.5d1b7ea83095 from=translated src=- shape=f9cac110 vocab=7c351c77
+-/
 theorem ipTiebreak_mem (a c : ↥(intPrecisionSet p)) :
     ipTiebreak a c = a ∨ ipTiebreak a c = c := by
   unfold ipTiebreak
@@ -188,15 +226,23 @@ noncomputable instance intPrecisionRoundingTarget : RoundingTarget (intPrecision
 
 /-! ### Rounding below `2^(p−1)`: integer rounding -/
 
+/--
+@isnad1 id=eq.1h2v.s6.95b4c2596a3d from=translated src=- shape=1ce86ef2 vocab=04bf13de
+-/
 theorem val_roundFloor_intPrecision_small (x : ℝ) (hx : |x| < (2 : ℝ) ^ ((p : ℤ) - 1)) :
     (roundFloor (intPrecisionSet p) x).val = ((⌊x⌋ : ℝ) : EReal) :=
   (isGreatest_roundFloor _ x).unique (isGreatest_intPrecision_small x hx)
 
+/--
+@isnad1 id=eq.1h2v.s6.0148c8973cb2 from=translated src=- shape=1ce86ef2 vocab=476553ba
+-/
 theorem val_roundCeiling_intPrecision_small (x : ℝ) (hx : |x| < (2 : ℝ) ^ ((p : ℤ) - 1)) :
     (roundCeiling (intPrecisionSet p) x).val = ((⌈x⌉ : ℝ) : EReal) :=
   (isLeast_roundCeiling _ x).unique (isLeast_intPrecision_small x hx)
 
-/-- Below `2^(p−1)`, `ipScale` is `1`.-/
+/-- Below `2^(p−1)`, `ipScale` is `1`.
+@isnad1 id=eq.1h3v.s6.974cde2d1128 from=translated src=- shape=e624f701 vocab=3934e20a
+-/
 theorem ipScale_eq_one (a c : ↥(intPrecisionSet p))
     (h : min |ipToReal a| |ipToReal c| < (2 : ℝ) ^ ((p : ℤ) - 1)) : ipScale a c = 1 := by
   unfold ipScale
@@ -214,7 +260,9 @@ theorem ipScale_eq_one (a c : ↥(intPrecisionSet p))
       ≤ ((2 : ℕ) : ℝ) ^ (0 : ℤ) := zpow_le_zpow_right₀ (by norm_num) (by omega)
     _ = 1 := zpow_zero _
 
-/-- On a tie between consecutive integers below `2^(p−1)`, the tiebreak picks the even one.-/
+/-- On a tie between consecutive integers below `2^(p−1)`, the tiebreak picks the even one.
+@isnad1 id=eq.3h4v.s7.25d99ed89505 from=translated src=- shape=be1348e6 vocab=7f99706e
+-/
 theorem ipTiebreak_consecutive (a c : ↥(intPrecisionSet p)) (n : ℤ)
     (ha : a.val = ((n : ℝ) : EReal)) (hc : c.val = (((n + 1 : ℤ) : ℝ) : EReal))
     (hn : (n : ℝ) + 1 / 2 ∈
@@ -252,7 +300,9 @@ theorem ipTiebreak_consecutive (a c : ↥(intPrecisionSet p)) (n : ℤ)
       ite_eq_left ⟨hev'.mpr (Int.even_add_one.mpr he), fun h => he (hev.mp h)⟩, hc,
       ite_eq_right he]
 
-/-- `intTiebreak` on consecutive integers picks the even one.-/
+/-- `intTiebreak` on consecutive integers picks the even one.
+@isnad1 id=eq.2h3v.s6.b03ce95512fa from=translated src=- shape=1e903359 vocab=4a33e582
+-/
 theorem intTiebreak_consecutive (a c : ↥intSet) (n : ℤ)
     (ha : a.val = ((n : ℝ) : EReal)) (hc : c.val = (((n + 1 : ℤ) : ℝ) : EReal)) :
     (intTiebreak a c).val
@@ -266,7 +316,9 @@ theorem intTiebreak_consecutive (a c : ↥intSet) (n : ℤ)
   · rw [ite_eq_right (fun h => he h.1), ite_eq_left ⟨Int.even_add_one.mpr he, he⟩, hc,
       ite_eq_right he]
 
-/-- Below `2^(p−1)`, rounding to `intPrecisionSet p` is integer rounding.-/
+/-- Below `2^(p−1)`, rounding to `intPrecisionSet p` is integer rounding.
+@isnad1 id=eq.1h3v.s6.baf5f5a49f90 from=translated src=- shape=67bf6265 vocab=c0eefb49
+-/
 theorem val_round_intPrecision_small (mode : RoundingMode) (x : ℝ)
     (hx : |x| < (2 : ℝ) ^ ((p : ℤ) - 1)) :
     (round (intPrecisionSet p) mode x).val = (round intSet mode x).val := by
@@ -345,18 +397,26 @@ theorem val_round_intPrecision_small (mode : RoundingMode) (x : ℝ)
 
 /-! ### Rounding from `2^(p−1)` on: `p`-bit rounding -/
 
+/--
+@isnad1 id=eq.1h2v.s6.09b668696c2c from=translated src=- shape=536880b2 vocab=17bce632
+-/
 theorem val_roundFloor_intPrecision_large (x : ℝ) (hx : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |x|) :
     (roundFloor (intPrecisionSet p) x).val = (roundFloor (precisionSet 2 p) x).val := by
   rw [val_roundFloor_precision x (ne_zero_of_two_zpow_le hx)]
   exact (isGreatest_roundFloor _ x).unique (isGreatest_intPrecision_large x hx)
 
+/--
+@isnad1 id=eq.1h2v.s6.208e6cbee016 from=translated src=- shape=536880b2 vocab=5c53e9e7
+-/
 theorem val_roundCeiling_intPrecision_large (x : ℝ) (hx : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |x|) :
     (roundCeiling (intPrecisionSet p) x).val = (roundCeiling (precisionSet 2 p) x).val := by
   rw [val_roundCeiling_precision x (ne_zero_of_two_zpow_le hx)]
   exact (isLeast_roundCeiling _ x).unique (isLeast_intPrecision_large x hx)
 
 omit [NeZero p] in
-/-- From `2^(p−1)` on, `ipScale` is the local scale.-/
+/-- From `2^(p−1)` on, `ipScale` is the local scale.
+@isnad1 id=eq.1h3v.s6.29e862488b2f from=translated src=- shape=e5a1d1e7 vocab=cdabcb57
+-/
 theorem ipScale_eq_precScale (a c : ↥(intPrecisionSet p))
     (h : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ min |ipToReal a| |ipToReal c|) :
     ipScale a c = precScale 2 p (min |ipToReal a| |ipToReal c|) := by
@@ -371,7 +431,9 @@ theorem ipScale_eq_precScale (a c : ↥(intPrecisionSet p))
     _ ≤ ((2 : ℕ) : ℝ) ^ (Int.log 2 (min |ipToReal a| |ipToReal c|) - p + 1) :=
       zpow_le_zpow_right₀ (by norm_num) (by omega)
 
-/-- From `2^(p−1)` on, the floor and ceiling have magnitude at least `2^(p−1)`.-/
+/-- From `2^(p−1)` on, the floor and ceiling have magnitude at least `2^(p−1)`.
+@isnad1 id=and.1h2v.s7.45d090921260 from=translated src=- shape=4cc9454b vocab=0705dc75
+-/
 theorem two_zpow_le_floor_ceil (x : ℝ) (hx : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |x|) :
     (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |ipToReal (roundFloor (intPrecisionSet p) x)| ∧
       (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |ipToReal (roundCeiling (intPrecisionSet p) x)| := by
@@ -412,7 +474,9 @@ theorem two_zpow_le_floor_ceil (x : ℝ) (hx : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |
     · rw [abs_of_nonpos (by linarith [zpow_pos (show (0 : ℝ) < 2 by norm_num) ((p : ℤ) - 1)])]
       linarith
 
-/-- From `2^(p−1)` on, rounding to `intPrecisionSet p` is rounding to `precisionSet 2 p`.-/
+/-- From `2^(p−1)` on, rounding to `intPrecisionSet p` is rounding to `precisionSet 2 p`.
+@isnad1 id=eq.1h3v.s6.5bd8ba417c9a from=translated src=- shape=a9c7e356 vocab=aafac00c
+-/
 theorem val_round_intPrecision_large (mode : RoundingMode) (x : ℝ)
     (hx : (2 : ℝ) ^ ((p : ℤ) - 1) ≤ |x|) :
     (round (intPrecisionSet p) mode x).val = (round (precisionSet 2 p) mode x).val := by

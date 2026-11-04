@@ -51,7 +51,9 @@ namespace CL
 
 open Finset
 
-/-- `X² ∣ (1 + X)^j − 1 − j·X`: the first-order binomial expansion.-/
+/-- `X² ∣ (1 + X)^j − 1 − j·X`: the first-order binomial expansion.
+@isnad1 id=dvd.0h2v.s6.421492e55962 from=translated src=- shape=4364adfe vocab=a081b9df
+-/
 theorem sq_dvd_one_add_pow (X : ℤ) (j : ℕ) :
     X ^ 2 ∣ (1 + X) ^ j - 1 - j * X := by
   induction j with
@@ -65,7 +67,9 @@ theorem sq_dvd_one_add_pow (X : ℤ) (j : ℕ) :
     exact dvd_add (Dvd.dvd.mul_left ih _) (Dvd.dvd.mul_left dvd_rfl _)
 
 /-- **Lifting the exponent, one step** (odd `p`): if `v_p(A − 1) = c`
-exactly, with `c ≥ 1`, then `v_p(A^p − 1) = c + 1` exactly.-/
+exactly, with `c ≥ 1`, then `v_p(A^p − 1) = c + 1` exactly.
+@isnad1 id=and.5h3v.s7.b3615e77c4dc from=translated src=- shape=597d3fe1 vocab=17445187
+-/
 theorem dvd_pow_p_sub_one_step {p : ℕ} (hp : p.Prime) (hp3 : 2 < p)
     {c : ℕ} (hc : 1 ≤ c) {A : ℤ}
     (h1 : (p : ℤ) ^ c ∣ A - 1) (h2 : ¬ (p : ℤ) ^ (c + 1) ∣ A - 1) :
@@ -158,7 +162,9 @@ theorem dvd_pow_p_sub_one_step {p : ℕ} (hp : p.Prime) (hp3 : 2 < p)
       exact mul_left_cancel₀ hpne this
     exact hpt this
 
-/-- **The LTE iterate**: `v_p(A^(p^j) − 1) = c + j` exactly.-/
+/-- **The LTE iterate**: `v_p(A^(p^j) − 1) = c + j` exactly.
+@isnad1 id=and.5h4v.s8.9795683ab4ee from=translated src=- shape=46c477af vocab=17445187
+-/
 theorem dvd_pow_p_pow_sub_one {p : ℕ} (hp : p.Prime) (hp3 : 2 < p)
     {c : ℕ} (hc : 1 ≤ c) {A : ℤ}
     (h1 : (p : ℤ) ^ c ∣ A - 1) (h2 : ¬ (p : ℤ) ^ (c + 1) ∣ A - 1) :
@@ -179,7 +185,9 @@ theorem dvd_pow_p_pow_sub_one {p : ℕ} (hp : p.Prime) (hp3 : 2 < p)
         rwa [show c + j + 2 = c + (j + 1) + 1 by omega] at this⟩
 
 /-- The `p`-part of an order: if `ω ∣ M·p` but `ω ∤ M`, then
-`v_p(ω) = v_p(M) + 1`.-/
+`v_p(ω) = v_p(M) + 1`.
+@isnad1 id=eq.5h3v.s6.bf9a032a88f7 from=translated src=- shape=f19f0539 vocab=3c99af39
+-/
 theorem factorization_eq_succ_of_dvd_mul_prime {ω M p : ℕ}
     (hp : p.Prime) (hM0 : M ≠ 0) (hω0 : ω ≠ 0) (h1 : ω ∣ M * p)
     (h2 : ¬ ω ∣ M) : ω.factorization p = M.factorization p + 1 := by
@@ -205,7 +213,9 @@ theorem factorization_eq_succ_of_dvd_mul_prime {ω M p : ℕ}
     simp only [Finsupp.coe_add, Pi.add_apply] at h3
     omega
 
-/-- Exact `p`-valuation from exact integer divisibilities.-/
+/-- Exact `p`-valuation from exact integer divisibilities.
+@isnad1 id=eq.4h3v.s6.7eb6cbaf6bd1 from=translated src=- shape=a89f11d1 vocab=c9ae820b
+-/
 theorem factorization_eq_of_int_dvd {p M e : ℕ} (hp : p.Prime)
     (hM0 : M ≠ 0) (h1 : (p : ℤ) ^ e ∣ (M : ℤ))
     (h2 : ¬ (p : ℤ) ^ (e + 1) ∣ (M : ℤ)) : M.factorization p = e := by
@@ -306,7 +316,9 @@ private theorem exists_pow_modEq_core {p a b c : ℕ} (hp : p.Prime)
 
 /-- **The finite (5.1) engine** (odd `p`): if `v_p(a − 1) = c ≥ 1`
 exactly, then every `b ≡ 1 (mod p^c)` is a power of `a` modulo `p^D`
-for every depth `D`.-/
+for every depth `D`.
+@isnad1 id=ex.7h5v.s7.a2d33e0b94f4 from=translated src=- shape=68209e6a vocab=f2c4733b
+-/
 theorem exists_pow_modEq_of_exact {p a b c : ℕ} (hp : p.Prime)
     (hp3 : 2 < p) (hc : 1 ≤ c) (hpa : ¬ p ∣ a)
     (ha1 : (p : ℤ) ^ c ∣ (a : ℤ) - 1)
@@ -318,7 +330,9 @@ theorem exists_pow_modEq_of_exact {p a b c : ℕ} (hp : p.Prime)
 
 /-- **Lifting the exponent at `p = 2`, one step**: if
 `v_2(A − 1) = c ≥ 2` exactly, then `v_2(A² − 1) = c + 1` exactly —
-via `A² − 1 = (A − 1)(A + 1)` with `v_2(A + 1) = 1`.-/
+via `A² − 1 = (A − 1)(A + 1)` with `v_2(A + 1) = 1`.
+@isnad1 id=and.3h2v.s7.1db0aa58fff2 from=translated src=- shape=26efe54b vocab=32a52f78
+-/
 theorem dvd_two_pow_sub_one_step {c : ℕ} (hc : 2 ≤ c) {A : ℤ}
     (h1 : (2 : ℤ) ^ c ∣ A - 1) (h2 : ¬ (2 : ℤ) ^ (c + 1) ∣ A - 1) :
     (2 : ℤ) ^ (c + 1) ∣ A ^ 2 - 1 ∧ ¬ (2 : ℤ) ^ (c + 2) ∣ A ^ 2 - 1 := by
@@ -360,7 +374,9 @@ theorem dvd_two_pow_sub_one_step {c : ℕ} (hc : 2 ≤ c) {A : ℤ}
     exact hodd ⟨w, hcan⟩
 
 /-- **The LTE iterate at `p = 2`**: `v_2(A^(2^j) − 1) = c + j`
-exactly, for `c ≥ 2`.-/
+exactly, for `c ≥ 2`.
+@isnad1 id=and.3h3v.s8.8eb81c9b78e1 from=translated src=- shape=c55b2364 vocab=32a52f78
+-/
 theorem dvd_two_pow_pow_sub_one {c : ℕ} (hc : 2 ≤ c) {A : ℤ}
     (h1 : (2 : ℤ) ^ c ∣ A - 1) (h2 : ¬ (2 : ℤ) ^ (c + 1) ∣ A - 1) :
     ∀ j, (2 : ℤ) ^ (c + j) ∣ A ^ 2 ^ j - 1
@@ -381,7 +397,9 @@ theorem dvd_two_pow_pow_sub_one {c : ℕ} (hc : 2 ≤ c) {A : ℤ}
 
 /-- **The finite (5.1) engine at `p = 2`**: if `v_2(a − 1) = c ≥ 2`
 exactly (the paper's "`m ≥ 2` in the case `p = 2`"), then every
-`b ≡ 1 (mod 2^c)` is a power of `a` modulo `2^D` for every `D`.-/
+`b ≡ 1 (mod 2^c)` is a power of `a` modulo `2^D` for every `D`.
+@isnad1 id=ex.5h4v.s7.f5bc03aa13a2 from=translated src=- shape=f86b4d9f vocab=686cff43
+-/
 theorem exists_pow_modEq_of_exact_two {a b c : ℕ} (hc : 2 ≤ c)
     (ha0 : ¬ 2 ∣ a)
     (ha1 : (2 : ℤ) ^ c ∣ (a : ℤ) - 1)
@@ -395,7 +413,9 @@ theorem exists_pow_modEq_of_exact_two {a b c : ℕ} (hc : 2 ≤ c)
 `n^(p−1) ≢ 1 (mod p²)`, then condition (6.4) is satisfied — at
 finite level: for every `r` coprime to `p` (in particular every
 divisor of `n`) and every depth `D`, there is an exponent `l` with
-`r^(p−1) ≡ (n^(p−1))^l (mod p^D)`.-/
+`r^(p−1) ≡ (n^(p−1))^l (mod p^D)`.
+@isnad1 id=ex.5h4v.s7.8dee38007576 from=translated src=- shape=75103454 vocab=18daec1f
+-/
 theorem proposition_7_18 {p n r : ℕ} (hp : p.Prime) (hp3 : 2 < p)
     (hpn : ¬ p ∣ n) (hn2 : ¬ n ^ (p - 1) ≡ 1 [MOD p ^ 2])
     (hpr : ¬ p ∣ r) :

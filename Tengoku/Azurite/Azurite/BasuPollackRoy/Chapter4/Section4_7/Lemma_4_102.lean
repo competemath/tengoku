@@ -28,17 +28,23 @@ open MvPolynomial
 variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealClosed R]
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
-/-- The vector `![0, 1]` is nonzero.-/
+/-- The vector `![0, 1]` is nonzero.
+@isnad1 id=ne.0h1v.s9.bcb895bd789f from=translated src=- shape=a77632da vocab=5a4d5d82
+-/
 theorem vec01_ne_zero : (![0, 1] : Fin 2 → Ri R) ≠ 0 := by
   intro h; simpa using congrFun h 1
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
-/-- The vector `![1, t]` is nonzero.-/
+/-- The vector `![1, t]` is nonzero.
+@isnad1 id=ne.0h2v.s9.9d723f8e17b6 from=translated src=- shape=0d89157f vocab=5a4d5d82
+-/
 theorem vec1t_ne_zero (t : Ri R) : (![1, t] : Fin 2 → Ri R) ≠ 0 := by
   intro h; simpa using congrFun h 0
 
 /-- Every point of `ℙ₁(C)` lies in one of the two standard charts: either it is `(0 : 1)` or it is
-`(1 : t)` for some `t`.-/
+`(1 : t)` for some `t`.
+@isnad1 id=or.0h2v.s11.04e31d305faa from=translated src=- shape=4639cc8c vocab=f6c4c6cf
+-/
 theorem proj_line_chart (p : Projectivization (Ri R) (Fin 2 → Ri R)) :
     p = mkLine ![0, 1] vec01_ne_zero
     ∨ ∃ t : Ri R, p = mkLine ![1, t] (vec1t_ne_zero t) := by
@@ -80,7 +86,9 @@ noncomputable def dehomPoly (P : MvPolynomial LineVar (Ri R)) : Polynomial (Ri R
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
 /-- **Naturality.** Evaluating `P` at the affine chart point `(1 : t)` equals evaluating the
-dehomogenization `P(1, T)` at `T = t`.-/
+dehomogenization `P(1, T)` at `T = t`.
+@isnad1 id=eq.0h3v.s9.ac5b15c3c23b from=translated src=- shape=1f2bc168 vocab=886ed467
+-/
 theorem evalCoords_eq_eval_dehomPoly
     (P : MvPolynomial LineVar (Ri R)) (t : Ri R) :
     evalCoords (m := 1) (k := fun _ => 1) P (fun _ => ![1, t])
@@ -102,7 +110,9 @@ noncomputable def lineMonom (d j : ℕ) : LineVar →₀ ℕ :=
   Finsupp.single ⟨0, 0⟩ (d - j) + Finsupp.single ⟨0, 1⟩ j
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
-/-- The dehomogenization as an explicit sum over the support.-/
+/-- The dehomogenization as an explicit sum over the support.
+@isnad1 id=eq.0h2v.s12.8f49db961f27 from=translated src=- shape=e5fc8513 vocab=b77c5845
+-/
 theorem dehomPoly_eq_sum (P : MvPolynomial LineVar (Ri R)) :
     dehomPoly P = ∑ u ∈ P.support, Polynomial.C (P.coeff u) * Polynomial.X ^ (u ⟨0, 1⟩) := by
   rw [dehomPoly, MvPolynomial.aeval_def, MvPolynomial.eval₂_eq]
@@ -117,7 +127,9 @@ theorem dehomPoly_eq_sum (P : MvPolynomial LineVar (Ri R)) :
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
 /-- A monomial `u` in the support of a homogeneous `P` of multidegree `d` is determined by its
-`X₁`-exponent: it equals `lineMonom (d 0) (u ⟨0,1⟩)`.-/
+`X₁`-exponent: it equals `lineMonom (d 0) (u ⟨0,1⟩)`.
+@isnad1 id=eq.2h4v.s9.9dbd205b8392 from=translated src=- shape=2fd99638 vocab=319d9f1b
+-/
 theorem support_eq_lineMonom {P : MvPolynomial LineVar (Ri R)} {d : Fin 1 → ℕ}
     (hP : IsMultihomogeneous P d) {u : LineVar →₀ ℕ} (hu : u ∈ P.support) :
     u = lineMonom (d 0) (u ⟨0, 1⟩) := by

@@ -76,7 +76,9 @@ by the second method via Theorem 4.3.3 — then the finite (5.1)
 engine yields the full condition (6.4) for `p`: `r` is a power of
 `n` mod `p^D` for every depth `D`.  For `p = 2` the engine needs
 `v_2(n^f − 1) ≥ 2` (the paper's `k ≥ 2` proviso for
-`n ≡ 3 mod 4`).-/
+`n ≡ 3 mod 4`).
+@isnad1 id=ex.7h5v.s7.6f49b39a6a81 from=translated src=- shape=5c457c57 vocab=67196c19
+-/
 theorem proposition_10_7 {p n f : ℕ} (hp : p.Prime) (hn1 : 1 < n)
     (hpn : ¬ p ∣ n) (hf : 0 < f) (hpd : p ∣ n ^ f - 1)
     (hc2 : p = 2 → 2 ≤ (n ^ f - 1).factorization p)
@@ -161,7 +163,9 @@ any `u`, if `ξ^(n+1) = −1` in `(ℤ/n)[T]/(T² − uT − 1)` — stated
 polynomial-level as `(X² − uX − 1) ∣ X^(n+1) + 1` — then `p = 2`
 satisfies condition (6.4): every prime `r ∣ n` is a power of `n`
 mod `2^D` at every depth.  This covers `n ≡ 7 (mod 8)`, the
-residue left open by Propositions (7.24)/(7.25).-/
+residue left open by Propositions (7.24)/(7.25).
+@isnad1 id=ex.4h4v.s9.e113f0c1fd57 from=translated src=- shape=7067aa55 vocab=5897e865
+-/
 theorem proposition_10_8 {n : ℕ} {u : ZMod n} (hn3 : n % 4 = 3)
     (hxi : (X ^ 2 - C u * X - 1 : Polynomial (ZMod n))
       ∣ X ^ (n + 1) + 1) :

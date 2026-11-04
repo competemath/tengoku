@@ -46,7 +46,9 @@ variable {n k : ℕ}
 /-- **BPR Proposition 8.15.** For an `n × n` matrix (`n ≥ 1`) of polynomials in
 `Y₁, …, Y_k` of total degree `≤ d` with integer coefficients of bitsize `≤ τ`, the
 determinant has total degree `≤ d·n` and coefficient bitsizes
-`≤ n (τ + bit(n) + k·bit(d+1))`.-/
+`≤ n (τ + bit(n) + k·bit(d+1))`.
+@isnad1 id=and.3h5v.s7.0377a9000017 from=translated src=- shape=6aac2c59 vocab=1a5648f9
+-/
 theorem proposition_8_15 (M : Matrix (Fin n) (Fin n) (MvPolynomial (Fin k) ℤ)) {d τ : ℕ}
     (hn : 0 < n)
     (hd : ∀ i j, (M i j).totalDegree ≤ d)

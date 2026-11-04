@@ -97,7 +97,9 @@ private theorem exists_sq_eq_zero {R : Type*} [CommRing R]
 /-- If `R[X]` is a principal ideal ring then `R` is reduced: for a
 square-zero `ε ≠ 0` the ideal `(ε, X)` cannot be principal.  (This is
 the mathematical content behind the corrected book remark, over an
-arbitrary commutative ring.)-/
+arbitrary commutative ring.)
+@isnad1 id=isreduce.0h1v.s5.260cc6c83fbd from=translated src=- shape=cc9ba778 vocab=cc882687
+-/
 theorem isReduced_of_polynomial_isPrincipalIdealRing (R : Type*)
     [CommRing R] [IsPrincipalIdealRing R[X]] : IsReduced R := by
   by_contra hred
@@ -278,7 +280,9 @@ private theorem pir_of_squarefree :
 is a principal ideal ring IF AND ONLY IF `n` is squarefree — not, as
 the book states, iff `n` is prime (`Z_6[x]` is a principal ideal
 ring: `(2, x) = (3x + 4)`).  Compare Mathlib's
-`isReduced_zmod : IsReduced (ZMod n) ↔ Squarefree n ∨ n = 0`.-/
+`isReduced_zmod : IsReduced (ZMod n) ↔ Squarefree n ∨ n = 0`.
+@isnad1 id=iff.0h1v.s4.cf047ec07790 from=translated src=- shape=effc9076 vocab=e0b60b8f
+-/
 theorem polynomial_zmod_isPrincipalIdealRing_iff (n : ℕ) :
     IsPrincipalIdealRing (Polynomial (ZMod n)) ↔ Squarefree n := by
   constructor

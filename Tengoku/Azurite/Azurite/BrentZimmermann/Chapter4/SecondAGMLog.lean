@@ -56,11 +56,16 @@ variable {q x : ℝ}
 
 /-! ### Every `q ∈ (0, 1)` is a nome -/
 
+/--
+@isnad1 id=eq.1h1v.s5.a9447592ecd1 from=translated src=- shape=db120035 vocab=4cc1676f
+-/
 theorem nome_log (hq0 : 0 < q) : nome (-Real.log q / Real.pi) = q := by
   unfold nome
   rw [show -(Real.pi * (-Real.log q / Real.pi)) = Real.log q by field_simp, Real.exp_log hq0]
 
-/-- Sasaki–Kanada (4.79) for every `0 < q < 1`.-/
+/-- Sasaki–Kanada (4.79) for every `0 < q < 1`.
+@isnad1 id=eq.2h1v.s6.63d9550f6514 from=translated src=- shape=55a7826c vocab=0f649a79
+-/
 theorem sasaki_kanada' (hq0 : 0 < q) (hq1 : q < 1) :
     Real.log (1 / q) = Real.pi / AGM (theta2 q ^ 2) (theta3 q ^ 2) := by
   have hs : 0 < -Real.log q / Real.pi :=
@@ -68,7 +73,9 @@ theorem sasaki_kanada' (hq0 : 0 < q) (hq1 : q < 1) :
   have h := sasaki_kanada hs
   rwa [nome_log hq0] at h
 
-/-- The second AGM algorithm: `ln x = (π/4)/AGM(θ₂²(q⁴), θ₃²(q⁴))` with `q = 1/x`, `x > 1`.-/
+/-- The second AGM algorithm: `ln x = (π/4)/AGM(θ₂²(q⁴), θ₃²(q⁴))` with `q = 1/x`, `x > 1`.
+@isnad1 id=eq.1h1v.s7.9fc007c33fef from=translated src=- shape=ecc15ffd vocab=0f649a79
+-/
 theorem log_eq_pi_div_four_div_AGM (hx : 1 < x) :
     Real.log x = (Real.pi / 4) / AGM (theta2 ((1 / x) ^ 4) ^ 2) (theta3 ((1 / x) ^ 4) ^ 2) := by
   have hx0 : 0 < x := by linarith
@@ -85,11 +92,16 @@ theorem log_eq_pi_div_four_div_AGM (hx : 1 < x) :
 
 /-! ### `θ₂(q⁴)` without the fractional power -/
 
+/--
+@isnad1 id=eq.2h1v.s6.27b6e0e44edb from=translated src=- shape=d779c192 vocab=67de2d8a
+-/
 theorem theta2_pow_four (hq0 : 0 ≤ q) (hq1 : q < 1) : theta2 (q ^ 4) = q * theta2Int (q ^ 4) := by
   rw [theta2_eq_rpow_mul (by positivity) (pow_lt_one₀ hq0 hq1 (by norm_num)),
     show (1 / 4 : ℝ) = ((4 : ℕ) : ℝ)⁻¹ by norm_num, Real.pow_rpow_inv_natCast hq0 (by norm_num)]
 
-/-- `θ₂Int(q) = 2 ∑_{n≥0} q^(n(n+1))` for `0 < q < 1`.-/
+/-- `θ₂Int(q) = 2 ∑_{n≥0} q^(n(n+1))` for `0 < q < 1`.
+@isnad1 id=eq.2h1v.s6.84470753c08b from=translated src=- shape=c5dbd371 vocab=040b874f
+-/
 theorem theta2Int_eq_two_mul_tsum (hq0 : 0 < q) (hq1 : q < 1) :
     theta2Int q = 2 * ∑' n : ℕ, q ^ (n * (n + 1)) := by
   have h1 := theta2_eq_rpow_mul hq0.le hq1
@@ -101,7 +113,9 @@ theorem theta2Int_eq_two_mul_tsum (hq0 : 0 < q) (hq1 : q < 1) :
 
 /-! ### Tails of sparse series -/
 
-/-- If the exponents satisfy `e n ≥ M + n`, the series `∑ q^(e n)` is at most `q^M/(1 − q)`.-/
+/-- If the exponents satisfy `e n ≥ M + n`, the series `∑ q^(e n)` is at most `q^M/(1 − q)`.
+@isnad1 id=summable.3h3v.s6.8541643016e7 from=translated src=- shape=1ff9e50d vocab=5fdf2633
+-/
 theorem summable_pow_of_le (hq0 : 0 ≤ q) (hq1 : q < 1) {e : ℕ → ℕ} {M : ℕ}
     (he : ∀ n, M + n ≤ e n) : Summable fun n : ℕ => q ^ e n :=
   ((summable_geometric_of_lt_one hq0 hq1).mul_left (q ^ M)).of_nonneg_of_le
@@ -109,6 +123,9 @@ theorem summable_pow_of_le (hq0 : 0 ≤ q) (hq1 : q < 1) {e : ℕ → ℕ} {M : 
       rw [← pow_add]
       exact pow_le_pow_of_le_one hq0 hq1.le (he n)
 
+/--
+@isnad1 id=le.3h3v.s6.a40ee534577f from=translated src=- shape=8a0ef127 vocab=b21514c9
+-/
 theorem tsum_pow_le_of_le (hq0 : 0 ≤ q) (hq1 : q < 1) {e : ℕ → ℕ} {M : ℕ}
     (he : ∀ n, M + n ≤ e n) : ∑' n : ℕ, q ^ e n ≤ q ^ M / (1 - q) := by
   have hg := (summable_geometric_of_lt_one hq0 hq1).mul_left (q ^ M)
@@ -117,7 +134,9 @@ theorem tsum_pow_le_of_le (hq0 : 0 ≤ q) (hq1 : q < 1) {e : ℕ → ℕ} {M : �
           rw [← pow_add]; exact pow_le_pow_of_le_one hq0 hq1.le (he n)) hg
     _ = q ^ M / (1 - q) := by rw [tsum_mul_left, tsum_geometric_of_lt_one hq0 hq1, div_eq_mul_inv]
 
-/-- `θ₃(q) = 1 + 2∑_{n<N} q^((n+1)²) + R` with `0 ≤ R ≤ 2q^((N+1)²)/(1 − q)`.-/
+/-- `θ₃(q) = 1 + 2∑_{n<N} q^((n+1)²) + R` with `0 ≤ R ≤ 2q^((N+1)²)/(1 − q)`.
+@isnad1 id=and.2h2v.s8.4f572e60e29e from=translated src=- shape=c184d286 vocab=e8daa4e0
+-/
 theorem theta3_trunc (hq0 : 0 ≤ q) (hq1 : q < 1) (N : ℕ) :
     0 ≤ theta3 q - (1 + 2 * ∑ n ∈ range N, q ^ ((n + 1) ^ 2))
       ∧ theta3 q - (1 + 2 * ∑ n ∈ range N, q ^ ((n + 1) ^ 2))
@@ -137,7 +156,9 @@ theorem theta3_trunc (hq0 : 0 ≤ q) (hq1 : q < 1) (N : ℕ) :
   · rw [mul_div_assoc]
     linarith
 
-/-- `θ₂Int(q) = 2∑_{n<N} q^(n(n+1)) + R` with `0 ≤ R ≤ 2q^(N(N+1))/(1 − q)`, `0 < q < 1`.-/
+/-- `θ₂Int(q) = 2∑_{n<N} q^(n(n+1)) + R` with `0 ≤ R ≤ 2q^(N(N+1))/(1 − q)`, `0 < q < 1`.
+@isnad1 id=and.2h2v.s7.690ea25f104d from=translated src=- shape=0a960a22 vocab=573923a0
+-/
 theorem theta2Int_trunc (hq0 : 0 < q) (hq1 : q < 1) (N : ℕ) :
     0 ≤ theta2Int q - 2 * ∑ n ∈ range N, q ^ (n * (n + 1))
       ∧ theta2Int q - 2 * ∑ n ∈ range N, q ^ (n * (n + 1)) ≤ 2 * q ^ (N * (N + 1)) / (1 - q) := by
@@ -154,7 +175,9 @@ theorem theta2Int_trunc (hq0 : 0 < q) (hq1 : q < 1) (N : ℕ) :
   · rw [mul_div_assoc]
     linarith
 
-/-- `θ₃(q⁴) = 1 + 2q⁴ + 2q¹⁶ + R₃` with `0 ≤ R₃ ≤ 2q³⁶/(1 − q⁴)`.-/
+/-- `θ₃(q⁴) = 1 + 2q⁴ + 2q¹⁶ + R₃` with `0 ≤ R₃ ≤ 2q³⁶/(1 − q⁴)`.
+@isnad1 id=and.2h1v.s8.e48d6c0bcf76 from=translated src=- shape=14a88c46 vocab=59a60379
+-/
 theorem theta3_pow_four_trunc (hq0 : 0 ≤ q) (hq1 : q < 1) :
     0 ≤ theta3 (q ^ 4) - (1 + 2 * q ^ 4 + 2 * q ^ 16)
       ∧ theta3 (q ^ 4) - (1 + 2 * q ^ 4 + 2 * q ^ 16) ≤ 2 * q ^ 36 / (1 - q ^ 4) := by
@@ -165,7 +188,9 @@ theorem theta3_pow_four_trunc (hq0 : 0 ≤ q) (hq1 : q < 1) :
   · linarith [h.1]
   · linarith [h.2]
 
-/-- `θ₂(q⁴) = 2q + 2q⁹ + 2q²⁵ + R₂` with `0 ≤ R₂ ≤ 2q⁴⁹/(1 − q⁴)`.-/
+/-- `θ₂(q⁴) = 2q + 2q⁹ + 2q²⁵ + R₂` with `0 ≤ R₂ ≤ 2q⁴⁹/(1 − q⁴)`.
+@isnad1 id=and.2h1v.s8.f4ace63665de from=translated src=- shape=17834ff6 vocab=9a20b2b2
+-/
 theorem theta2_pow_four_trunc (hq0 : 0 < q) (hq1 : q < 1) :
     0 ≤ theta2 (q ^ 4) - (2 * q + 2 * q ^ 9 + 2 * q ^ 25)
       ∧ theta2 (q ^ 4) - (2 * q + 2 * q ^ 9 + 2 * q ^ 25) ≤ 2 * q ^ 49 / (1 - q ^ 4) := by
@@ -185,7 +210,9 @@ theorem theta2_pow_four_trunc (hq0 : 0 < q) (hq1 : q < 1) :
 
 /-! ### The precision condition `x ≥ 2^(n/36)` -/
 
-/-- `x ≥ 2^(n/36)` gives `(1/x)^36 ≤ 2^(−n)`.-/
+/-- `x ≥ 2^(n/36)` gives `(1/x)^36 ≤ 2^(−n)`.
+@isnad1 id=le.1h2v.s6.014cb8e7093f from=translated src=- shape=bdfb898f vocab=e9fe8c4f
+-/
 theorem inv_pow_le_of_two_rpow_le {n : ℕ} (hx : (2 : ℝ) ^ ((n : ℝ) / 36) ≤ x) :
     (1 / x) ^ 36 ≤ (2 : ℝ) ^ (-(n : ℝ)) := by
   have h2 : (0 : ℝ) < 2 ^ ((n : ℝ) / 36) := Real.rpow_pos_of_pos two_pos _
@@ -197,6 +224,9 @@ theorem inv_pow_le_of_two_rpow_le {n : ℕ} (hx : (2 : ℝ) ^ ((n : ℝ) / 36) �
   rw [one_div, inv_pow, Real.rpow_neg zero_le_two]
   exact inv_anti₀ (by positivity) hpow
 
+/--
+@isnad1 id=le.2h2v.s8.986a29fafbeb from=translated src=- shape=dfab28df vocab=e7f1572f
+-/
 theorem theta3_pow_four_error_le {n : ℕ} (hx1 : 1 < x) (hx : (2 : ℝ) ^ ((n : ℝ) / 36) ≤ x) :
     theta3 ((1 / x) ^ 4) - (1 + 2 * (1 / x) ^ 4 + 2 * (1 / x) ^ 16)
       ≤ 2 * (2 : ℝ) ^ (-(n : ℝ)) / (1 - (1 / x) ^ 4) := by
@@ -208,6 +238,9 @@ theorem theta3_pow_four_error_le {n : ℕ} (hx1 : 1 < x) (hx : (2 : ℝ) ^ ((n :
   gcongr
   exact inv_pow_le_of_two_rpow_le hx
 
+/--
+@isnad1 id=le.2h2v.s8.e2be2bc30169 from=translated src=- shape=cfb3886d vocab=4e19e830
+-/
 theorem theta2_pow_four_error_le {n : ℕ} (hx1 : 1 < x) (hx : (2 : ℝ) ^ ((n : ℝ) / 36) ≤ x) :
     theta2 ((1 / x) ^ 4) - (2 * (1 / x) + 2 * (1 / x) ^ 9 + 2 * (1 / x) ^ 25)
       ≤ 2 * (2 : ℝ) ^ (-(n : ℝ)) / (1 - (1 / x) ^ 4) := by
@@ -222,7 +255,9 @@ theorem theta2_pow_four_error_le {n : ℕ} (hx1 : 1 < x) (hx : (2 : ℝ) ^ ((n :
 
 /-! ### Starting the AGM from `θ₂`, `θ₃` without the first square root -/
 
-/-- `AGM(a², b²) = AGM(a² + b², 2ab)/2` for `a, b > 0`.-/
+/-- `AGM(a², b²) = AGM(a² + b², 2ab)/2` for `a, b > 0`.
+@isnad1 id=eq.2h2v.s7.24a1eaf7f704 from=translated src=- shape=7ab36c83 vocab=119849bc
+-/
 theorem AGM_sq_sq {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     AGM (a ^ 2) (b ^ 2) = AGM (a ^ 2 + b ^ 2) (2 * a * b) / 2 := by
   rw [AGM_step (by positivity) (by positivity),
@@ -233,9 +268,14 @@ theorem AGM_sq_sq {a b : ℝ} (ha : 0 < a) (hb : 0 < b) :
     AGM_smul (by norm_num) (by positivity) (by positivity)]
   ring
 
-/-- Exercise 4.45's identities: `a² + b²` and `2ab` from the two squares `(a ± b)²`.-/
+/-- Exercise 4.45's identities: `a² + b²` and `2ab` from the two squares `(a ± b)²`.
+@isnad1 id=eq.0h2v.s6.79f29dd62726 from=translated src=- shape=dca03f59 vocab=bf2b7f92
+-/
 theorem sq_add_sq_eq_half_add (a b : ℝ) : a ^ 2 + b ^ 2 = ((a + b) ^ 2 + (a - b) ^ 2) / 2 := by ring
 
+/--
+@isnad1 id=eq.0h2v.s6.95817c94d6a6 from=translated src=- shape=1ba185d7 vocab=4d09f77c
+-/
 theorem two_mul_mul_eq_half_sub (a b : ℝ) : 2 * a * b = ((a + b) ^ 2 - (a - b) ^ 2) / 2 := by ring
 
 end BZ

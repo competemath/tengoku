@@ -128,7 +128,9 @@ noncomputable def Minor
 noncomputable def minors : Finset (MvPolynomial (Fin (k₂ + 1)) C) := by
   classical exact Finset.image (Minor d p) Finset.univ
 
-/-- Specializing a minor at `y` is the determinant of the specialized submatrix.-/
+/-- Specializing a minor at `y` is the determinant of the specialized submatrix.
+@isnad1 id=eq.0h8v.s9.12444020c615 from=translated src=- shape=c4239dc1 vocab=e73212df
+-/
 theorem eval_minor (y : Fin (k₂ + 1) → C)
     (f : Mon k₁ (bigDeg k₁ d) ↪ (Σ i : Fin s, Mon k₁ (bigDeg k₁ d - d i))) :
     eval y (Minor d p f) = ((elimMatrixAt d p y).submatrix id f).det := by
@@ -182,14 +184,18 @@ private theorem surjective_mulVecLin_iff_exists_isUnit
     exact top_le_iff.1 hle
 
 /-- **Bridge C** (determinantal-rank characterization). `M_N(y)` is *not* surjective exactly when
-every maximal minor vanishes at `y`.-/
+every maximal minor vanishes at `y`.
+@isnad1 id=iff.0h7v.s8.1ca93c18de4b from=translated src=- shape=dfb56519 vocab=3b61d214
+-/
 theorem not_surjAt_iff_forall_minor (y : Fin (k₂ + 1) → C) :
     ¬ SurjAt d p y ↔ ∀ f, eval y (Minor d p f) = 0 := by
   rw [SurjAt, surjective_mulVecLin_iff_exists_isUnit, not_exists]
   refine forall_congr' fun f => ?_
   rw [eval_minor, isUnit_iff_ne_zero, not_not]
 
-/-- Each `X`-degree `d i` is at most the uniform exponent bound.-/
+/-- Each `X`-degree `d i` is at most the uniform exponent bound.
+@isnad1 id=le.0h4v.s4.9cd0c34a2c8a from=translated src=- shape=1d690bee vocab=683abc0b
+-/
 theorem d_le_bound (i : Fin s) : d i ≤ bound k₁ d := by
   have h1 : d i ≤ Finset.univ.sup d := Finset.le_sup (Finset.mem_univ i)
   have h2 : Finset.univ.sup d ≤ max (Finset.univ.sup d) 1 := le_max_left _ _
@@ -197,15 +203,21 @@ theorem d_le_bound (i : Fin s) : d i ≤ bound k₁ d := by
     rw [bound]; exact Nat.le_self_pow (by positivity) _
   omega
 
-/-- The bound is at most the big degree `N = (k₁+1)·bound`.-/
+/-- The bound is at most the big degree `N = (k₁+1)·bound`.
+@isnad1 id=le.0h3v.s4.08bbd5395cae from=translated src=- shape=bed1d2d3 vocab=89d05933
+-/
 theorem bound_le_bigDeg : bound k₁ d ≤ bigDeg k₁ d := by
   rw [bigDeg]; exact Nat.le_mul_of_pos_left _ (Nat.succ_pos k₁)
 
-/-- Each `X`-degree `d i` is at most the big degree `N`.-/
+/-- Each `X`-degree `d i` is at most the big degree `N`.
+@isnad1 id=le.0h4v.s4.418cd00aa3c6 from=translated src=- shape=1d690bee vocab=7c7e5649
+-/
 theorem d_le_bigDeg (i : Fin s) : d i ≤ bigDeg k₁ d := (d_le_bound d i).trans (bound_le_bigDeg d)
 
 /-- Specializing `p i` at `y` preserves homogeneity in `X`: `P_i(·, y) = map (eval y) (p i)` is
-homogeneous of degree `d i`.-/
+homogeneous of degree `d i`.
+@isnad1 id=ishomoge.1h8v.s10.c51c6d8526f5 from=translated src=- shape=fe395c19 vocab=06c707a6
+-/
 theorem map_eval_isHomogeneous (hd : ∀ i, (p i).IsHomogeneous (d i)) (y : Fin (k₂ + 1) → C)
     (i : Fin s) : (map (eval y) (p i)).IsHomogeneous (d i) := by
   intro c hc
@@ -218,14 +230,18 @@ noncomputable def gen (y : Fin (k₂ + 1) → C) :
     (Σ i : Fin s, Mon k₁ (bigDeg k₁ d - d i)) → MvPolynomial (Fin (k₁ + 1)) C :=
   fun cc => monomial cc.2.val 1 * map (eval y) (p cc.1)
 
-/-- The specialized matrix entry is the `X^α`-coefficient of the generator `gen (i, β)`.-/
+/-- The specialized matrix entry is the `X^α`-coefficient of the generator `gen (i, β)`.
+@isnad1 id=eq.0h9v.s8.897e1e0b52e4 from=translated src=- shape=d8544f97 vocab=18c62148
+-/
 theorem elimMatrixAt_apply (y : Fin (k₂ + 1) → C) (α : Mon k₁ (bigDeg k₁ d))
     (cc : Σ i : Fin s, Mon k₁ (bigDeg k₁ d - d i)) :
     elimMatrixAt d p y α cc = (gen d p y cc).coeff α.val := by
   rw [elimMatrixAt, Matrix.map_apply, elimMatrix, gen, ← coeff_map, map_mul, map_monomial, map_one]
 
 /-- **The coefficient dictionary.** Applying the specialized matrix `M_N(y)` to a coordinate vector
-`c` computes the `X^α`-coefficient of the corresponding combination `∑ c_{i,β} · X^β · P_i(·, y)`.-/
+`c` computes the `X^α`-coefficient of the corresponding combination `∑ c_{i,β} · X^β · P_i(·, y)`.
+@isnad1 id=eq.0h9v.s10.f91facf12435 from=translated src=- shape=ccd6768a vocab=a863b670
+-/
 theorem mulVecLin_eq (y : Fin (k₂ + 1) → C)
     (c : (Σ i : Fin s, Mon k₁ (bigDeg k₁ d - d i)) → C) (α : Mon k₁ (bigDeg k₁ d)) :
     (elimMatrixAt d p y).mulVecLin c α = (∑ cc, c cc • gen d p y cc).coeff α.val := by
@@ -235,7 +251,9 @@ theorem mulVecLin_eq (y : Fin (k₂ + 1) → C)
   refine Finset.sum_congr rfl fun cc _ => ?_
   rw [elimMatrixAt_apply, coeff_smul, smul_eq_mul, mul_comm]
 
-/-- Each generator `gen (i, β) = X^β · P_i(·, y)` is homogeneous of degree `N` in `X`.-/
+/-- Each generator `gen (i, β) = X^β · P_i(·, y)` is homogeneous of degree `N` in `X`.
+@isnad1 id=ishomoge.1h8v.s8.42e9097d0add from=translated src=- shape=aaee8799 vocab=27c51c73
+-/
 theorem gen_isHomogeneous (hd : ∀ i, (p i).IsHomogeneous (d i)) (y : Fin (k₂ + 1) → C)
     (cc : Σ i : Fin s, Mon k₁ (bigDeg k₁ d - d i)) :
     (gen d p y cc).IsHomogeneous (bigDeg k₁ d) := by
@@ -245,7 +263,9 @@ theorem gen_isHomogeneous (hd : ∀ i, (p i).IsHomogeneous (d i)) (y : Fin (k₂
   have h2 := h1.mul (map_eval_isHomogeneous d p hd y cc.1)
   rwa [Nat.sub_add_cancel (d_le_bigDeg d cc.1)] at h2
 
-/-- Any combination `∑ c_{i,β} · gen (i, β)` is homogeneous of degree `N`.-/
+/-- Any combination `∑ c_{i,β} · gen (i, β)` is homogeneous of degree `N`.
+@isnad1 id=ishomoge.1h8v.s9.5bcef0913b44 from=translated src=- shape=4f54da18 vocab=c4c44303
+-/
 theorem sum_gen_isHomogeneous (hd : ∀ i, (p i).IsHomogeneous (d i)) (y : Fin (k₂ + 1) → C)
     (c : (Σ i : Fin s, Mon k₁ (bigDeg k₁ d - d i)) → C) :
     (∑ cc, c cc • gen d p y cc).IsHomogeneous (bigDeg k₁ d) := by
@@ -256,7 +276,9 @@ theorem sum_gen_isHomogeneous (hd : ∀ i, (p i).IsHomogeneous (d i)) (y : Fin (
   rw [mem_homogeneousSubmodule]
   exact gen_isHomogeneous d p hd y cc
 
-/-- Two homogeneous polynomials of degree `N` that agree on every degree-`N` monomial are equal.-/
+/-- Two homogeneous polynomials of degree `N` that agree on every degree-`N` monomial are equal.
+@isnad1 id=eq.3h5v.s9.15729af4b88f from=translated src=- shape=58b30a9c vocab=23fa9aea
+-/
 theorem homog_coeff_ext {N : ℕ} {H₁ H₂ : MvPolynomial (Fin (k₁ + 1)) C}
     (h₁ : H₁.IsHomogeneous N) (h₂ : H₂.IsHomogeneous N)
     (h : ∀ α : Mon k₁ N, H₁.coeff α.val = H₂.coeff α.val) : H₁ = H₂ := by
@@ -270,6 +292,9 @@ monomials.-/
 noncomputable def polyOfVec {N : ℕ} (t : Mon k₁ N → C) : MvPolynomial (Fin (k₁ + 1)) C :=
   ∑ α : Mon k₁ N, t α • monomial α.val 1
 
+/--
+@isnad1 id=eq.0h5v.s8.d8ae17a7c39c from=translated src=- shape=2c9cfdca vocab=10f6d844
+-/
 theorem coeff_polyOfVec {N : ℕ} (t : Mon k₁ N → C) (β : Mon k₁ N) :
     (polyOfVec t).coeff β.val = t β := by
   rw [polyOfVec, MvPolynomial.coeff_sum,
@@ -279,6 +304,9 @@ theorem coeff_polyOfVec {N : ℕ} (t : Mon k₁ N → C) (β : Mon k₁ N) :
       (fun h => absurd (Finset.mem_univ β) h)]
   rw [coeff_smul, coeff_monomial, ite_eq_left rfl, smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=ishomoge.0h4v.s5.535d18361269 from=translated src=- shape=92d4d820 vocab=e054c881
+-/
 theorem polyOfVec_isHomogeneous {N : ℕ} (t : Mon k₁ N → C) :
     (polyOfVec t).IsHomogeneous N := by
   rw [← mem_homogeneousSubmodule]
@@ -291,7 +319,9 @@ theorem polyOfVec_isHomogeneous {N : ℕ} (t : Mon k₁ N → C) :
 /-- **Bridge A** (coefficient↔polynomial dictionary). `M_N(y)` is surjective exactly when every
 degree-`N` homogeneous polynomial in `X` lies in the `C`-span of the generators
 `{X^β · P_i(·, y)}` — equivalently, in the degree-`N` part of the ideal generated by the
-`P_i(·, y)`.-/
+`P_i(·, y)`.
+@isnad1 id=iff.1h7v.s9.1fa81db710a6 from=translated src=- shape=a55913cd vocab=658c9351
+-/
 theorem surjAt_iff_homog_le (hd : ∀ i, (p i).IsHomogeneous (d i)) (y : Fin (k₂ + 1) → C) :
     SurjAt d p y ↔
       homogeneousSubmodule (Fin (k₁ + 1)) C (bigDeg k₁ d) ≤
@@ -316,16 +346,22 @@ theorem surjAt_iff_homog_le (hd : ∀ i, (p i).IsHomogeneous (d i)) (y : Fin (k�
     funext α
     rw [mulVecLin_eq, hc, coeff_polyOfVec]
 
-/-- The uniform bound is positive.-/
+/-- The uniform bound is positive.
+@isnad1 id=lt.0h3v.s4.e480fb7e5cc6 from=translated src=- shape=d108d653 vocab=7e2f413a
+-/
 theorem bound_pos : 0 < bound k₁ d := by rw [bound]; positivity
 
-/-- The big degree `N` is positive.-/
+/-- The big degree `N` is positive.
+@isnad1 id=lt.0h3v.s4.00b65b694568 from=translated src=- shape=d108d653 vocab=927bd0a5
+-/
 theorem bigDeg_pos : 0 < bigDeg k₁ d := by
   rw [bigDeg]; exact Nat.mul_pos (Nat.succ_pos k₁) (bound_pos d)
 
 /-- **Bridge B, easy direction.** If every degree-`N` homogeneous polynomial lies in the span of the
 generators, then the only common zero of the `P_i(·, y)` is the origin: each coordinate power
-`X_{i'}^N` lies in the ideal generated by the `P_i(·, y)`, so vanishes at any common zero.-/
+`X_{i'}^N` lies in the ideal generated by the `P_i(·, y)`, so vanishes at any common zero.
+@isnad1 id=eq.2h8v.s10.9435c6f1b352 from=translated src=- shape=c90d8265 vocab=27c56c40
+-/
 theorem only_zero_of_homog_le (y : Fin (k₂ + 1) → C)
     (hle : homogeneousSubmodule (Fin (k₁ + 1)) C (bigDeg k₁ d) ≤
         Submodule.span C (Set.range (gen d p y)))
@@ -350,7 +386,9 @@ theorem only_zero_of_homog_le (y : Fin (k₂ + 1) → C)
   exact (pow_eq_zero_iff (bigDeg_pos d).ne').mp hev
 
 /-- A homogeneous polynomial `Q` of degree `N - d j` times `P_j(·, y)` lies in the span of the
-generators: expand `Q` into degree-`(N - d j)` monomials, each `X^β · P_j(·, y)` being a generator.-/
+generators: expand `Q` into degree-`(N - d j)` monomials, each `X^β · P_j(·, y)` being a generator.
+@isnad1 id=mem.1h9v.s10.7265796b7064 from=translated src=- shape=e36a573c vocab=9fc07864
+-/
 theorem poly_mul_Pval_mem (y : Fin (k₂ + 1) → C) (Q : MvPolynomial (Fin (k₁ + 1)) C) (j : Fin s)
     (hQ : Q.IsHomogeneous (bigDeg k₁ d - d j)) :
     Q * map (eval y) (p j) ∈ Submodule.span C (Set.range (gen d p y)) := by
@@ -367,7 +405,9 @@ theorem poly_mul_Pval_mem (y : Fin (k₂ + 1) → C) (Q : MvPolynomial (Fin (k�
   rw [heq]
   exact Submodule.smul_mem _ _ (Submodule.subset_span ⟨⟨j, ⟨β, hβdeg⟩⟩, rfl⟩)
 
-/-- Every entry of the elimination matrix is homogeneous in `Y` of degree `e (c.1)`.-/
+/-- Every entry of the elimination matrix is homogeneous in `Y` of degree `e (c.1)`.
+@isnad1 id=ishomoge.1h9v.s8.6126726ce63d from=translated src=- shape=57179369 vocab=8f62e69e
+-/
 theorem elimMatrix_isHomogeneous (e : Fin s → ℕ)
     (he : ∀ i γ, ((p i).coeff γ).IsHomogeneous (e i))
     (α : Mon k₁ (bigDeg k₁ d)) (c : Σ i : Fin s, Mon k₁ (bigDeg k₁ d - d i)) :
@@ -379,7 +419,9 @@ theorem elimMatrix_isHomogeneous (e : Fin s → ℕ)
   · exact isHomogeneous_zero _ _ _
 
 /-- Each maximal minor is homogeneous in `Y`: column `(i, β)` contributes entries homogeneous of
-degree `e i`, so a fixed maximal minor is homogeneous of degree `∑` of the selected columns' `e i`.-/
+degree `e i`, so a fixed maximal minor is homogeneous of degree `∑` of the selected columns' `e i`.
+@isnad1 id=ex.2h8v.s8.1976ae3b145d from=translated src=- shape=ee3e23b8 vocab=93f5ab87
+-/
 theorem minors_homogeneous (e : Fin s → ℕ)
     (he : ∀ i γ, ((p i).coeff γ).IsHomogeneous (e i)) :
     ∀ Q ∈ minors d p, ∃ m, Q.IsHomogeneous m := by
@@ -399,7 +441,9 @@ theorem minors_homogeneous (e : Fin s → ℕ)
   rw [Matrix.submatrix_apply, id]
   exact elimMatrix_isHomogeneous d p e he _ _
 
-/-- Unfold `minors` as a `∀` over embeddings.-/
+/-- Unfold `minors` as a `∀` over embeddings.
+@isnad1 id=iff.0h7v.s9.98f774bdfd13 from=translated src=- shape=f17cf264 vocab=4163a6a2
+-/
 theorem forall_mem_minors_iff (y : Fin (k₂ + 1) → C) :
     (∀ Q ∈ minors d p, eval y Q = 0) ↔ ∀ f, eval y (Minor d p f) = 0 := by
   classical

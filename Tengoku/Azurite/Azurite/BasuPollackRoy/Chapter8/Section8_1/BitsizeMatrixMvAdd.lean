@@ -35,7 +35,9 @@ namespace Azurite.BPR
 
 /-- **BPR §8.1 (unnumbered lemma, degree part).** Entrywise total degrees
     of a sum of two matrices over `MvPolynomial σ ℤ` are bounded by the
-    common entrywise total-degree bound on the summands.-/
+    common entrywise total-degree bound on the summands.
+@isnad1 id=le.2h8v.s7.188760239cdf from=translated src=- shape=9357ca0b vocab=db2f35af
+-/
 theorem Matrix.totalDegree_mvAdd_le {σ m n : Type _}
     {M N : Matrix m n (MvPolynomial σ ℤ)} {c : ℕ}
     (hM : ∀ i j, (M i j).totalDegree ≤ c)

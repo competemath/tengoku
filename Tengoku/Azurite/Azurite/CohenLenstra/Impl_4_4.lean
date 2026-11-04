@@ -74,14 +74,18 @@ namespace CL
 open Polynomial
 
 /-- **The (f) extraction, monoid level**: every factor of a unit
-product is a unit.-/
+product is a unit.
+@isnad1 id=isunit.2h5v.s5.462e97b182d1 from=translated src=- shape=1612e0b5 vocab=9b3b58b1
+-/
 theorem isUnit_of_isUnit_prod {M ι : Type _} [CommMonoid M]
     {s : Finset ι} {f : ι → M} (h : IsUnit (∏ i ∈ s, f i)) {i : ι}
     (hi : i ∈ s) : IsUnit (f i) :=
   isUnit_of_dvd_unit (Finset.dvd_prod_of_mem f hi) h
 
 /-- **The (f) check**: `gcd(prod, n) = 1` makes `prod` a unit of
-`ℤ/nℤ`.-/
+`ℤ/nℤ`.
+@isnad1 id=isunit.1h2v.s5.4af09a4c363e from=translated src=- shape=f2fa700b vocab=98c427ed
+-/
 theorem isUnit_of_val_coprime {n : ℕ} [NeZero n] {x : ZMod n}
     (h : Nat.Coprime x.val n) : IsUnit x := by
   have := (ZMod.isUnit_iff_coprime x.val n).mpr h
@@ -90,7 +94,9 @@ theorem isUnit_of_val_coprime {n : ℕ} [NeZero n] {x : ZMod n}
 /-- **(c1) meets the (4.3) hypothesis**: for prime `n ≡ 1 (mod 4)`,
 `a^((n−1)/2) ≡ −1 (mod n)` forces the Jacobi symbol
 `((0² + 4a)/n) = −1` (Euler's criterion for `(a/n)`, and
-`(4/n) = 1`).-/
+`(4/n) = 1`).
+@isnad1 id=eq.3h2v.s7.c30f7e73863e from=translated src=- shape=7a292a35 vocab=6ba423be
+-/
 theorem jacobiSym_c1_of_euler {n : ℕ} (hn : n.Prime) (hn1 : n % 4 = 1)
     {a : ℤ} (ha : ((a : ZMod n)) ^ ((n - 1) / 2) = -1) :
     jacobiSym ((0 : ℤ) ^ 2 + 4 * a) n = -1 := by
@@ -142,7 +148,9 @@ theorem jacobiSym_c1_of_euler {n : ℕ} (hn : n.Prime) (hn1 : n % 4 = 1)
 /-- **(c1) hands over the `p = 2` flag data**: for odd `n` with
 `2^l ∣ n − 1` and `a^((n−1)/2) = −1`, the element
 `β_{2^l} = a^((n−1)/2^l)` is a zero of `Φ_{2^l}` in `ℤ/nℤ` — no
-`prod`/gcd needed, since `a^((n−1)/2) − 1 = −2` is a unit.-/
+`prod`/gcd needed, since `a^((n−1)/2) − 1 = −2` is a unit.
+@isnad1 id=eq.4h3v.s8.319ca33ce32c from=translated src=- shape=408b32fc vocab=d63e3a96
+-/
 theorem beta_two_zero_of_cyclotomic {n l : ℕ} (hodd : n % 2 = 1)
     (hl : 0 < l) {x : ZMod n} (hdvd : 2 ^ l ∣ n - 1)
     (hx : x ^ ((n - 1) / 2) = -1) :
@@ -161,7 +169,9 @@ theorem beta_two_zero_of_cyclotomic {n l : ℕ} (hodd : n % 2 = 1)
 
 /-- **The (c2) verdict**: for prime `n` and a nonsquare discriminant,
 `α^(n+1) = N(α) = −a` in `A`; so (at `a = 1`) `α^(n+1) ≠ −1`
-proves `n` composite.-/
+proves `n` composite.
+@isnad1 id=eq.2h3v.s13.9c35957e57f5 from=translated src=- shape=a90548d9 vocab=0b526c50
+-/
 theorem root_pow_card_succ_eq_neg {n : ℕ} (hn : n.Prime) {u a : ZMod n}
     (hns : ¬ IsSquare (u ^ 2 + 4 * a)) :
     (AdjoinRoot.root (X ^ 2 - C u * X - C a : Polynomial (ZMod n))) ^ (n + 1)
@@ -174,7 +184,9 @@ theorem root_pow_card_succ_eq_neg {n : ℕ} (hn : n.Prime) {u a : ZMod n}
 
 /-- **(c2) passes ⟹ Proposition (10.8) applies**: `α^m = −1` in
 `R[T]/(T² − uT − 1)` iff `T² − uT − 1 ∣ T^m + 1` — the hypothesis
-`hxi` of `proposition_10_8` is exactly the (c2) check.-/
+`hxi` of `proposition_10_8` is exactly the (c2) check.
+@isnad1 id=iff.0h3v.s13.517a585c879f from=translated src=- shape=d17a0114 vocab=0a938d31
+-/
 theorem root_pow_eq_neg_one_iff_dvd {R : Type _} [CommRing R] (u : R)
     (m : ℕ) :
     (AdjoinRoot.root (X ^ 2 - C u * X - C (1 : R) : Polynomial R)) ^ m

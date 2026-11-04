@@ -53,7 +53,9 @@ open Complex
 
 /-! ### Inverse trigonometric functions through the complex logarithm -/
 
-/-- `arctan x = ℑ ln(1 + ix)`.-/
+/-- `arctan x = ℑ ln(1 + ix)`.
+@isnad1 id=eq.0h1v.s4.9ec4ab236600 from=translated src=- shape=480edb5c vocab=53e9d5a5
+-/
 theorem arctan_eq_im_log (x : ℝ) : Real.arctan x = (Complex.log (1 + x * I)).im := by
   rw [Complex.log_im]
   have hre : 0 < (1 + (x : ℂ) * I).re := by simp
@@ -64,23 +66,31 @@ theorem arctan_eq_im_log (x : ℝ) : Real.arctan x = (Complex.log (1 + x * I)).i
   conv_lhs => rw [← htan]
   exact Real.arctan_tan (abs_lt.mp harg).1 (abs_lt.mp harg).2
 
-/-- `arcsin x = arctan(x/√(1 − x²))` for `|x| < 1`.-/
+/-- `arcsin x = arctan(x/√(1 − x²))` for `|x| < 1`.
+@isnad1 id=eq.1h1v.s6.9e5925d1b080 from=translated src=- shape=042d4afe vocab=b0b80df8
+-/
 theorem arcsin_eq_arctan' {x : ℝ} (hx : |x| < 1) :
     Real.arcsin x = Real.arctan (x / Real.sqrt (1 - x ^ 2)) :=
   Real.arcsin_eq_arctan (abs_lt.mp hx)
 
-/-- `arccos x = π/2 − arctan(x/√(1 − x²))` for `|x| < 1`.-/
+/-- `arccos x = π/2 − arctan(x/√(1 − x²))` for `|x| < 1`.
+@isnad1 id=eq.1h1v.s6.7ccd71cc4f16 from=translated src=- shape=59569871 vocab=0412059c
+-/
 theorem arccos_eq_arctan {x : ℝ} (hx : |x| < 1) :
     Real.arccos x = Real.pi / 2 - Real.arctan (x / Real.sqrt (1 - x ^ 2)) := by
   rw [Real.arccos_eq_pi_div_two_sub_arcsin, arcsin_eq_arctan' hx]
 
-/-- Euler: `exp(ix) = cos x + i sin x` for real `x`.-/
+/-- Euler: `exp(ix) = cos x + i sin x` for real `x`.
+@isnad1 id=eq.0h1v.s5.889290f99560 from=translated src=- shape=82057669 vocab=1785c7b3
+-/
 theorem exp_mul_I_eq (x : ℝ) : Complex.exp (x * I) = Real.cos x + Real.sin x * I := by
   rw [Complex.exp_mul_I, Complex.ofReal_cos, Complex.ofReal_sin]
 
 /-! ### Karatsuba for complex products and squares -/
 
-/-- `(a + ib)(c + id) = (ac − bd) + i((a + b)(c + d) − ac − bd)`: three real products.-/
+/-- `(a + ib)(c + id) = (ac − bd) + i((a + b)(c + d) − ac − bd)`: three real products.
+@isnad1 id=eq.0h4v.s7.e6e3396dbb6e from=translated src=- shape=bb351f52 vocab=a5df5863
+-/
 theorem complex_mul_three_products (a b c d : ℝ) :
     ((a : ℂ) + b * I) * (c + d * I)
       = ((a * c - b * d : ℝ) : ℂ) + (((a + b) * (c + d) - a * c - b * d : ℝ) : ℂ) * I := by
@@ -89,7 +99,9 @@ theorem complex_mul_three_products (a b c d : ℝ) :
   rw [I_sq]
   ring
 
-/-- `(a + ib)² = (a + b)(a − b) + i(2ab)`: two real products.-/
+/-- `(a + ib)² = (a + b)(a − b) + i(2ab)`: two real products.
+@isnad1 id=eq.0h2v.s6.2478541ed797 from=translated src=- shape=4aaf97fd vocab=dfb30506
+-/
 theorem complex_sq_two_products (a b : ℝ) :
     ((a : ℂ) + b * I) ^ 2 = (((a + b) * (a - b) : ℝ) : ℂ) + ((2 * a * b : ℝ) : ℂ) * I := by
   push_cast
@@ -103,16 +115,24 @@ theorem complex_sq_two_products (a b : ℝ) :
 model where one multiplication is three transforms.-/
 def fftCost (f b : ℕ) : ℚ := (f + b : ℚ) / 3
 
-/-- A real squaring: one forward, one backward transform, `2M(n)/3`.-/
+/-- A real squaring: one forward, one backward transform, `2M(n)/3`.
+@isnad1 id=eq.0h0v.s4.65eec080d8fa from=translated src=- shape=0cc596d4 vocab=241dedb7
+-/
 theorem fftCost_real_sq : fftCost 1 1 = 2 / 3 := by norm_num [fftCost]
 
-/-- A real multiplication: two forward, one backward transform, `M(n)`.-/
+/-- A real multiplication: two forward, one backward transform, `M(n)`.
+@isnad1 id=eq.0h0v.s4.1d007e5f382f from=translated src=- shape=8640e5ff vocab=30ffb30d
+-/
 theorem fftCost_real_mul : fftCost 2 1 = 1 := by norm_num [fftCost]
 
-/-- A complex multiplication `(ac − bd) + i(ad + bc)`: four forward, two backward, `2M(n)`.-/
+/-- A complex multiplication `(ac − bd) + i(ad + bc)`: four forward, two backward, `2M(n)`.
+@isnad1 id=eq.0h0v.s4.cca0a17e8494 from=translated src=- shape=8640e5ff vocab=30ffb30d
+-/
 theorem fftCost_complex_mul : fftCost 4 2 = 2 := by norm_num [fftCost]
 
-/-- A complex squaring `(a + b)(a − b) + i(2ab)`: two forward, two backward, `4M(n)/3`.-/
+/-- A complex squaring `(a + b)(a − b) + i(2ab)`: two forward, two backward, `4M(n)/3`.
+@isnad1 id=eq.0h0v.s4.5cbf17f20cc1 from=translated src=- shape=0cc596d4 vocab=241dedb7
+-/
 theorem fftCost_complex_sq : fftCost 2 2 = 4 / 3 := by norm_num [fftCost]
 
 end BZ

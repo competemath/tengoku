@@ -32,7 +32,9 @@ open MvPolynomial
 
 variable {k : ℕ} {K : Type*} [Field K]
 
-/-- The trace of the multiplication map `L_z` is the algebra trace of `z`.-/
+/-- The trace of the multiplication map `L_z` is the algebra trace of `z`.
+@isnad1 id=eq.0h4v.s12.d43f59a86b58 from=translated src=- shape=019cc924 vocab=0e7fdcc9
+-/
 theorem trace_mulMap (Ps : Finset (MvPolynomial (Fin k) K)) (z : quotPolys Ps) :
     LinearMap.trace K (quotPolys Ps) (mulMap Ps z) = Algebra.trace K (quotPolys Ps) z := by
   rw [Algebra.trace_apply]; rfl
@@ -43,6 +45,9 @@ noncomputable def hermiteBilin (Ps : Finset (MvPolynomial (Fin k) K)) (Q : quotP
     LinearMap.BilinForm K (quotPolys Ps) :=
   (Algebra.traceForm K (quotPolys Ps)).compl₂ (LinearMap.mulRight K Q)
 
+/--
+@isnad1 id=eq.0h6v.s13.a880d8b087e4 from=translated src=- shape=d90bbc7d vocab=7232d654
+-/
 @[simp] theorem hermiteBilin_apply (Ps : Finset (MvPolynomial (Fin k) K))
     (Q f g : quotPolys Ps) :
     hermiteBilin Ps Q f g = LinearMap.trace K (quotPolys Ps) (mulMap Ps (f * g * Q)) := by
@@ -55,6 +60,9 @@ noncomputable def hermiteQuad (Ps : Finset (MvPolynomial (Fin k) K)) (Q : quotPo
     QuadraticForm K (quotPolys Ps) :=
   (hermiteBilin Ps Q).toQuadraticMap
 
+/--
+@isnad1 id=eq.0h5v.s12.617320792857 from=translated src=- shape=bc7c856a vocab=a091a0ac
+-/
 @[simp] theorem hermiteQuad_apply (Ps : Finset (MvPolynomial (Fin k) K)) (Q f : quotPolys Ps) :
     hermiteQuad Ps Q f = LinearMap.trace K (quotPolys Ps) (mulMap Ps (f ^ 2 * Q)) := by
   rw [hermiteQuad, LinearMap.BilinMap.toQuadraticMap_apply, hermiteBilin_apply, sq]
@@ -69,10 +77,16 @@ noncomputable def hermiteQuadOne (Ps : Finset (MvPolynomial (Fin k) K)) :
     QuadraticForm K (quotPolys Ps) :=
   hermiteQuad Ps 1
 
+/--
+@isnad1 id=eq.0h5v.s13.7b3dda8a6a30 from=translated src=- shape=7fb2363f vocab=ad25fc3b
+-/
 theorem hermiteBilinOne_apply (Ps : Finset (MvPolynomial (Fin k) K)) (f g : quotPolys Ps) :
     hermiteBilinOne Ps f g = LinearMap.trace K (quotPolys Ps) (mulMap Ps (f * g)) := by
   rw [hermiteBilinOne, hermiteBilin_apply, mul_one]
 
+/--
+@isnad1 id=eq.0h4v.s12.88762e4de541 from=translated src=- shape=9810037f vocab=6f199aeb
+-/
 theorem hermiteQuadOne_apply (Ps : Finset (MvPolynomial (Fin k) K)) (f : quotPolys Ps) :
     hermiteQuadOne Ps f = LinearMap.trace K (quotPolys Ps) (mulMap Ps (f ^ 2)) := by
   rw [hermiteQuadOne, hermiteQuad_apply, mul_one]

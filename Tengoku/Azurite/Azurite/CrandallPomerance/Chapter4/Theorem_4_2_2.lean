@@ -52,7 +52,9 @@ open Polynomial
 variable {a b : ℤ} {p : ℕ} [Fact p.Prime]
 
 /-- **The split case of Theorem 3.6.3**: if `Δ` is a nonzero square
-mod `p` (and `p ∤ 2b`), then `p ∣ U_{p−1}`.-/
+mod `p` (and `p ∤ 2b`), then `p ∣ U_{p−1}`.
+@isnad1 id=dvd.4h3v.s7.79aef1f7b236 from=translated src=- shape=d0f7a081 vocab=10f2bf22
+-/
 theorem lucasU_card_sub_one (hp2 : p ≠ 2) (hb : ¬(p : ℤ) ∣ b)
     (hsq : IsSquare ((a ^ 2 - 4 * b : ℤ) : ZMod p))
     (hΔ0 : ((a ^ 2 - 4 * b : ℤ) : ZMod p) ≠ 0) :
@@ -111,7 +113,9 @@ theorem lucasU_card_sub_one (hp2 : p ≠ 2) (hb : ¬(p : ℤ) ∣ b)
   · exact absurd h0 hαβ
 
 /-- **The inert case of Theorem 3.6.3**: if `Δ` is not a square mod `p`
-(and `p ∤ 2b`), then `p ∣ U_{p+1}` — via Frobenius in `GF(p²)`.-/
+(and `p ∤ 2b`), then `p ∣ U_{p+1}` — via Frobenius in `GF(p²)`.
+@isnad1 id=dvd.1h3v.s6.623ceef38808 from=translated src=- shape=1e2b0dfa vocab=d8ad96f5
+-/
 theorem lucasU_card_add_one
     (hnsq : ¬IsSquare ((a ^ 2 - 4 * b : ℤ) : ZMod p)) :
     (p : ℤ) ∣ lucasU a b (p + 1) := by
@@ -299,7 +303,9 @@ theorem lucasU_card_add_one
 
 /-- **Crandall–Pomerance Theorem 3.6.3** (the Lucas analogue of Fermat's
 little theorem): for a prime `p` not dividing `2bΔ`,
-`p ∣ U_{p − (Δ/p)}`.-/
+`p ∣ U_{p − (Δ/p)}`.
+@isnad1 id=dvd.1h3v.s7.69dd7dac6892 from=translated src=- shape=cad89f28 vocab=3bdad498
+-/
 theorem theorem_3_6_3 (h : ¬(p : ℤ) ∣ 2 * b * (a ^ 2 - 4 * b)) :
     (p : ℤ) ∣
       lucasU a b ((p : ℤ) - legendreSym p (a ^ 2 - 4 * b)).toNat := by
@@ -325,7 +331,9 @@ theorem theorem_3_6_3 (h : ¬(p : ℤ) ∣ 2 * b * (a ^ 2 - 4 * b)) :
 
 /-- **Crandall–Pomerance Theorem 4.2.2**: with `f, Δ` as in (4.12) and
 `p` a prime not dividing `2bΔ`, the rank of appearance satisfies
-`r_f(p) ∣ p − (Δ/p)`.-/
+`r_f(p) ∣ p − (Δ/p)`.
+@isnad1 id=dvd.1h3v.s7.1c872d82761a from=translated src=- shape=404067d3 vocab=cf374778
+-/
 theorem theorem_4_2_2 (h : ¬(p : ℤ) ∣ 2 * b * (a ^ 2 - 4 * b)) :
     ((rankApp a b p : ℕ) : ℤ)
       ∣ (p : ℤ) - legendreSym p (a ^ 2 - 4 * b) := by

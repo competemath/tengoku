@@ -51,7 +51,9 @@ namespace CP
 open Polynomial
 
 /-- The Lucas–Lehmer sequence is `V` at powers of two:
-`V_{2^k}(4, 1) = v_k`.-/
+`V_{2^k}(4, 1) = v_k`.
+@isnad1 id=eq.0h1v.s5.8c70eb94d0f1 from=translated src=- shape=c58adf83 vocab=31411f80
+-/
 theorem lucasV_two_pow_eq_s (k : ℕ) :
     lucasV 4 1 (2 ^ k) = LucasLehmer.s k := by
   induction k with
@@ -61,7 +63,9 @@ theorem lucasV_two_pow_eq_s (k : ℕ) :
     rw [pow_succ, mul_comm, lucasV_two_mul, ih, one_pow, LucasLehmer.s]
     ring
 
-/-- `(12/M) = −1` whenever `M ≡ 3 (mod 4)` and `M ≡ 1 (mod 3)`.-/
+/-- `(12/M) = −1` whenever `M ≡ 3 (mod 4)` and `M ≡ 1 (mod 3)`.
+@isnad1 id=eq.2h1v.s5.9a018bfdc556 from=translated src=- shape=6c57a604 vocab=9287b0f3
+-/
 theorem jacobiSym_twelve {M : ℕ} (h4 : M % 4 = 3) (h3 : M % 3 = 1) :
     jacobiSym 12 M = -1 := by
   have hModd : M % 2 = 1 := by omega
@@ -113,7 +117,9 @@ private theorem mersenne_facts :
   omega
 
 /-- **Sufficiency**: if `M_p ∣ v_{p−2}`, then `M_p` is prime — by
-Morrison's `V`-test with `F = 2^(p−1)`.-/
+Morrison's `V`-test with `F = 2^(p−1)`.
+@isnad1 id=prime.3h1v.s5.ec3579054519 from=translated src=- shape=8a8a2e48 vocab=ab499e44
+-/
 theorem mersenne_prime_of_s (hdvd : (mersenne p : ℤ) ∣ LucasLehmer.s (p - 2)) :
     (mersenne p).Prime := by
   obtain ⟨hM7, hM2, hM4, hM8, hM3⟩ := mersenne_facts hp hp2
@@ -161,7 +167,9 @@ theorem mersenne_prime_of_s (hdvd : (mersenne p : ℤ) ∣ LucasLehmer.s (p - 2)
     omega
 
 /-- **Necessity**: if `M_p` is prime, then `M_p ∣ v_{p−2}` — the
-converse direction of the Lucas–Lehmer test (absent from Mathlib).-/
+converse direction of the Lucas–Lehmer test (absent from Mathlib).
+@isnad1 id=dvd.3h1v.s5.eb325e1390a9 from=translated src=- shape=622787aa vocab=ab499e44
+-/
 theorem s_of_mersenne_prime (hM : (mersenne p).Prime) :
     (mersenne p : ℤ) ∣ LucasLehmer.s (p - 2) := by
   obtain ⟨hM7, hM2, hM4, hM8, hM3⟩ := mersenne_facts hp hp2
@@ -394,7 +402,9 @@ theorem s_of_mersenne_prime (hM : (mersenne p).Prime) :
 /-- **Crandall–Pomerance Theorem 4.2.6 (the Lucas–Lehmer test)**: for
 an odd prime `p`, the Mersenne number `M_p = 2^p − 1` is prime if and
 only if `v_{p−2} ≡ 0 (mod M_p)`, where `v_0 = 4` and
-`v_{k+1} = v_k² − 2` (Mathlib's `LucasLehmer.s`).-/
+`v_{k+1} = v_k² − 2` (Mathlib's `LucasLehmer.s`).
+@isnad1 id=iff.2h1v.s5.0cfb3e24a89d from=translated src=- shape=c6bf754c vocab=ab499e44
+-/
 theorem theorem_4_2_6 :
     (mersenne p).Prime ↔ (mersenne p : ℤ) ∣ LucasLehmer.s (p - 2) :=
   ⟨s_of_mersenne_prime hp hp2, mersenne_prime_of_s hp hp2⟩

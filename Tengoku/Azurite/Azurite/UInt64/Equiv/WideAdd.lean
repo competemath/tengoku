@@ -15,7 +15,9 @@ import Tengoku.Azurite.Azurite.UInt64.WideAdd
 namespace UInt64
 
 /-- Correctness of `wideAdd`: the returned `(hi, lo)` pair represents the sum of the
-two 128-bit inputs modulo `2^128`.-/
+two 128-bit inputs modulo `2^128`.
+@isnad1 id=eq.0h2v.s7.23c1b7d55c9a from=translated src=- shape=c512deae vocab=56504d3f
+-/
 theorem toNat_wideAdd (x y : UInt64 × UInt64) :
     (wideAdd x y).1.toNat * 2 ^ 64 + (wideAdd x y).2.toNat
       = (x.1.toNat * 2 ^ 64 + x.2.toNat + (y.1.toNat * 2 ^ 64 + y.2.toNat)) % 2 ^ 128 := by

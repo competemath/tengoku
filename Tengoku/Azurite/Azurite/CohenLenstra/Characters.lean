@@ -54,7 +54,9 @@ open Finset
 /-- If a subset of a finite group `G` contains, for each prime `p`
 dividing `|G|`, an element of order `p^(v_p(|G|))`, then it generates
 `G`: each such element forces `p^(v_p(|G|))` to divide the order of
-the generated subgroup, so `|G|` divides it, and Lagrange finishes.-/
+the generated subgroup, so `|G|` divides it, and Lagrange finishes.
+@isnad1 id=eq.1h2v.s6.32c794594260 from=translated src=- shape=6194913c vocab=4e20fe8b
+-/
 theorem closure_eq_top_of_forall_exists_orderOf {G : Type _} [Group G]
     [Finite G] {s : Set G}
     (h : ∀ p ∈ (Nat.card G).primeFactors,
@@ -78,7 +80,9 @@ theorem closure_eq_top_of_forall_exists_orderOf {G : Type _} [Group G]
 /-! ### The character group `X_q` -/
 
 /-- `|X_q| = q − 1`: the group of characters mod `q` has the same
-order as `(ℤ/q)^*`, by finite-abelian duality.-/
+order as `(ℤ/q)^*`, by finite-abelian duality.
+@isnad1 id=eq.0h1v.s5.04a8d6f12916 from=translated src=- shape=888ab2f2 vocab=87f025aa
+-/
 theorem card_mulChar_eq {q : ℕ} [Fact q.Prime] :
     Nat.card (MulChar (ZMod q) ℂ) = q - 1 := by
   rw [MulChar.card_eq_card_units_of_hasEnoughRootsOfUnity (ZMod q) ℂ,
@@ -113,7 +117,9 @@ theorem eq_6_1 {q : ℕ} [Fact q.Prime] {x y : (ZMod q)ˣ}
 /-- **Existence of the `χ_{p,q}` over `ℂ`**: for each prime
 `p ∣ q − 1` there is a character mod `q` of order exactly
 `p^(v_p(q−1))` — send a generator of `(ℤ/q)^*` to a primitive
-`p^(v_p(q−1))`-th root of unity.-/
+`p^(v_p(q−1))`-th root of unity.
+@isnad1 id=ex.1h2v.s7.3ae0f5d0e540 from=translated src=- shape=49302ea5 vocab=6d7cb70b
+-/
 theorem exists_mulChar_orderOf_eq {q p : ℕ} [Fact q.Prime]
     (hp : p ∈ (q - 1).primeFactors) :
     ∃ χ : MulChar (ZMod q) ℂ,
@@ -138,7 +144,9 @@ theorem exists_mulChar_orderOf_eq {q p : ℕ} [Fact q.Prime]
 containing, for each prime `p ∣ q − 1`, a character of order
 `p^(v_p(q−1))` — such as the chosen `χ_{p,q}` of
 `exists_mulChar_orderOf_eq` — generates the full character group
-`X_q`.-/
+`X_q`.
+@isnad1 id=eq.1h2v.s8.fb80da8a7728 from=translated src=- shape=5c0378ea vocab=bcae9332
+-/
 theorem closure_eq_top_of_forall_orderOf {q : ℕ} [Fact q.Prime]
     {Y : Set (MulChar (ZMod q) ℂ)}
     (hY : ∀ p ∈ (q - 1).primeFactors,

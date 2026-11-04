@@ -53,7 +53,9 @@ noncomputable def homotopyPoly (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R))
   C lam * P i + C mu * diagFactor (d i) i
 
 set_option linter.unusedSectionVars false in
-/-- Each linear factor `X_{i+1} − n · X₀` is homogeneous of degree `1`.-/
+/-- Each linear factor `X_{i+1} − n · X₀` is homogeneous of degree `1`.
+@isnad1 id=ishomoge.0h4v.s12.b6ff554763db from=translated src=- shape=a1925d0a vocab=7e30cc0b
+-/
 theorem diagLinearFactor_isHomogeneous (n : ℕ) (i : Fin k) :
     (X i.succ - C ((n : ℕ) : Ri R) * X 0 : MvPolynomial (Fin (k + 1)) (Ri R)).IsHomogeneous 1 := by
   have h1 : (C ((n : ℕ) : Ri R) * X 0 : MvPolynomial (Fin (k + 1)) (Ri R)).IsHomogeneous 1 := by
@@ -63,7 +65,9 @@ theorem diagLinearFactor_isHomogeneous (n : ℕ) (i : Fin k) :
   exact (isHomogeneous_X (Ri R) i.succ).sub h1
 
 set_option linter.unusedSectionVars false in
-/-- The diagonal factor `Dᵢ` is homogeneous of degree `d`.-/
+/-- The diagonal factor `Dᵢ` is homogeneous of degree `d`.
+@isnad1 id=ishomoge.0h4v.s7.cc2d534aa11d from=translated src=- shape=45077ba6 vocab=b7387cba
+-/
 theorem diagFactor_isHomogeneous (d : ℕ) (i : Fin k) :
     (diagFactor (R := R) d i).IsHomogeneous d := by
   rw [diagFactor]
@@ -72,7 +76,9 @@ theorem diagFactor_isHomogeneous (d : ℕ) (i : Fin k) :
   simpa using h
 
 set_option linter.unusedSectionVars false in
-/-- The homotopy pencil `Hᵢ,λ,µ = λ Pᵢ + µ Dᵢ` is homogeneous of degree `dᵢ` whenever `Pᵢ` is.-/
+/-- The homotopy pencil `Hᵢ,λ,µ = λ Pᵢ + µ Dᵢ` is homogeneous of degree `dᵢ` whenever `Pᵢ` is.
+@isnad1 id=ishomoge.1h7v.s9.fe5330a4f058 from=translated src=- shape=3b5d37ec vocab=649e4406
+-/
 theorem homotopyPoly_isHomogeneous (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)) (d : Fin k → ℕ)
     (hP : ∀ i, (P i).IsHomogeneous (d i)) (lam mu : Ri R) (i : Fin k) :
     (homotopyPoly P d lam mu i).IsHomogeneous (d i) := by

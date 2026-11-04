@@ -60,11 +60,20 @@ noncomputable def inverseRootSeq (m : ℕ) (y x₀ : ℝ) : ℕ → ℝ
   | 0 => x₀
   | n + 1 => inverseRootStep m y (inverseRootSeq m y x₀ n)
 
+/--
+@isnad1 id=eq.0h3v.s4.9d3c1dde79e3 from=translated src=- shape=bd04bfdc vocab=99f96e3f
+-/
 @[simp] theorem inverseRootSeq_zero (m : ℕ) (y x₀ : ℝ) : inverseRootSeq m y x₀ 0 = x₀ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.9312591198b3 from=translated src=- shape=baf1f511 vocab=c93a4ad7
+-/
 @[simp] theorem inverseRootSeq_succ (m : ℕ) (y x₀ : ℝ) (n : ℕ) :
     inverseRootSeq m y x₀ (n + 1) = inverseRootStep m y (inverseRootSeq m y x₀ n) := rfl
 
+/--
+@isnad1 id=hasderiv.2h3v.s5.23831ecedaf8 from=translated src=- shape=54102b11 vocab=647e6766
+-/
 theorem hasDerivAt_inverseRootFun {m : ℕ} (hm : 0 < m) (y : ℝ) {x : ℝ} (hx : x ≠ 0) :
     HasDerivAt (inverseRootFun m y) (inverseRootFun' m x) x := by
   obtain ⟨k, rfl⟩ : ∃ k, m = k + 1 := ⟨m - 1, by omega⟩
@@ -78,6 +87,9 @@ theorem hasDerivAt_inverseRootFun {m : ℕ} (hm : 0 < m) (y : ℝ) {x : ℝ} (hx
   field_simp
   ring
 
+/--
+@isnad1 id=hasderiv.1h2v.s5.ab2b6baf9c95 from=translated src=- shape=9cbf29e3 vocab=6757abbf
+-/
 theorem hasDerivAt_inverseRootFun' (m : ℕ) {x : ℝ} (hx : x ≠ 0) :
     HasDerivAt (inverseRootFun' m) (inverseRootFun'' m x) x := by
   have h : HasDerivAt (fun x => (m : ℝ) * (x ^ (m + 1))⁻¹)
@@ -93,7 +105,9 @@ theorem hasDerivAt_inverseRootFun' (m : ℕ) {x : ℝ} (hx : x ≠ 0) :
   field_simp
   ring
 
-/-- (4.4) is Newton's step for `f(x) = y − x^(−m)` at every `x ≠ 0`.-/
+/-- (4.4) is Newton's step for `f(x) = y − x^(−m)` at every `x ≠ 0`.
+@isnad1 id=eq.2h3v.s5.5ba28a6d5517 from=translated src=- shape=657d7da7 vocab=72838746
+-/
 theorem newtonStep_inverseRootFun {m : ℕ} (hm : 0 < m) (y : ℝ) {x : ℝ} (hx : x ≠ 0) :
     newtonStep (inverseRootFun m y) (inverseRootFun' m) x = inverseRootStep m y x := by
   unfold newtonStep inverseRootFun inverseRootFun' inverseRootStep
@@ -101,14 +115,18 @@ theorem newtonStep_inverseRootFun {m : ℕ} (hm : 0 < m) (y : ℝ) {x : ℝ} (hx
   field_simp
   ring
 
-/-- `(y^(−1/m))^m · y = 1` for `y > 0`, `m > 0`.-/
+/-- `(y^(−1/m))^m · y = 1` for `y > 0`, `m > 0`.
+@isnad1 id=eq.2h2v.s6.8b7ca286f681 from=translated src=- shape=e6de17e2 vocab=b461c187
+-/
 theorem rpow_neg_inv_pow_mul {m : ℕ} (hm : 0 < m) {y : ℝ} (hy : 0 < y) :
     (y ^ (-(1 / (m : ℝ)))) ^ m * y = 1 := by
   have hm' : (m : ℝ) ≠ 0 := by exact_mod_cast hm.ne'
   rw [← Real.rpow_natCast, ← Real.rpow_mul hy.le,
     show -(1 / (m : ℝ)) * (m : ℕ) = -1 by field_simp, Real.rpow_neg_one, inv_mul_cancel₀ hy.ne']
 
-/-- `ζ = y^(−1/m)` is a zero of `f`.-/
+/-- `ζ = y^(−1/m)` is a zero of `f`.
+@isnad1 id=eq.2h2v.s6.924aa5ac0a6b from=translated src=- shape=988addbc vocab=86da0109
+-/
 theorem inverseRootFun_root {m : ℕ} (hm : 0 < m) {y : ℝ} (hy : 0 < y) :
     inverseRootFun m y (y ^ (-(1 / (m : ℝ)))) = 0 := by
   unfold inverseRootFun
@@ -117,7 +135,9 @@ theorem inverseRootFun_root {m : ℕ} (hm : 0 < m) {y : ℝ} (hy : 0 < y) :
   exact eq_inv_of_mul_eq_one_left h
 
 /-- The step (4.4) in terms of the relative error: if `ζ^m y = 1` then
-`x = ζ (1 + ε)` is sent to `ζ (1 + ε) (1 + (1 − (1 + ε)^m) / m)`.-/
+`x = ζ (1 + ε)` is sent to `ζ (1 + ε) (1 + (1 − (1 + ε)^m) / m)`.
+@isnad1 id=eq.1h4v.s7.651ce8027739 from=translated src=- shape=c693233d vocab=62e75528
+-/
 theorem inverseRootStep_rel (m : ℕ) {y ζ : ℝ} (hζ : ζ ^ m * y = 1) (ε : ℝ) :
     inverseRootStep m y (ζ * (1 + ε)) = ζ * ((1 + ε) * (1 + (1 - (1 + ε) ^ m) / m)) := by
   have h : (ζ * (1 + ε)) ^ m * y = (1 + ε) ^ m := by rw [mul_pow, mul_right_comm, hζ, one_mul]
@@ -125,13 +145,17 @@ theorem inverseRootStep_rel (m : ℕ) {y ζ : ℝ} (hζ : ζ ^ m * y = 1) (ε : 
   rw [h]
   ring
 
-/-- The zero `ζ = y^(−1/m)` is positive.-/
+/-- The zero `ζ = y^(−1/m)` is positive.
+@isnad1 id=lt.1h2v.s5.78d3d1ee21d5 from=translated src=- shape=30c4e277 vocab=5b79cf0a
+-/
 theorem inverseRoot_pos {m : ℕ} {y : ℝ} (hy : 0 < y) : 0 < y ^ (-(1 / (m : ℝ))) :=
   Real.rpow_pos_of_pos hy _
 
 /-- Local convergence of (4.4): for `y > 0` there is `δ > 0` such that from every start `x₀`
 with `|x₀ − ζ| ≤ δ`, `ζ = y^(−1/m)`, the iterates stay within `ζ/2` of `ζ`, agree with Newton's
-iterates for `f`, and converge to `ζ`.-/
+iterates for `f`, and converge to `ζ`.
+@isnad1 id=ex.2h2v.s8.5d566d6ecd82 from=translated src=- shape=7809fd98 vocab=3a005ad0
+-/
 theorem exists_tendsto_inverseRootSeq {m : ℕ} (hm : 0 < m) {y : ℝ} (hy : 0 < y) :
     ∃ δ > 0, ∀ x₀, |x₀ - y ^ (-(1 / (m : ℝ)))| ≤ δ →
       (∀ n, |inverseRootSeq m y x₀ n - y ^ (-(1 / (m : ℝ)))| ≤ y ^ (-(1 / (m : ℝ))) / 2) ∧

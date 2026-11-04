@@ -68,7 +68,9 @@ open Polynomial
 
 /-- **(4.5), `p = 2`, `n ≡ 1 (mod 4)`**: the (c1) witness
 `a^((n−1)/2) ≡ −1 (mod n)` gives condition (6.4) at `p = 2` for
-every prime `r ∣ n`, by Proposition (7.24).-/
+every prime `r ∣ n`, by Proposition (7.24).
+@isnad1 id=ex.5h4v.s7.e7388e087595 from=translated src=- shape=7e6a85f3 vocab=9f77f4e4
+-/
 theorem cond_6_4_two_of_c1 {n : ℕ} (hn1 : 1 < n) (hmod : n % 4 = 1)
     {a : ℤ} (ha : ((a : ZMod n)) ^ ((n - 1) / 2) = -1) :
     ∀ r : ℕ, r.Prime → r ∣ n → ∀ D : ℕ, ∃ l : ℕ,
@@ -82,7 +84,9 @@ theorem cond_6_4_two_of_c1 {n : ℕ} (hn1 : 1 < n) (hmod : n % 4 = 1)
 
 /-- **(4.5), `p = 2`, `n ≡ 3 (mod 4)`**: the (c2) check
 `α^(n+1) = −1` in `A = (ℤ/n)[T]/(T² − uT − 1)` gives condition
-(6.4) at `p = 2` for every prime `r ∣ n`, by Proposition (10.8).-/
+(6.4) at `p = 2` for every prime `r ∣ n`, by Proposition (10.8).
+@isnad1 id=ex.4h4v.s13.e91fe875a0a1 from=translated src=- shape=244fdc71 vocab=9711acf8
+-/
 theorem cond_6_4_two_of_c2 {n : ℕ} {u : ZMod n} (hn3 : n % 4 = 3)
     (hα : (AdjoinRoot.root (X ^ 2 - C u * X - C (1 : ZMod n)
       : Polynomial (ZMod n))) ^ (n + 1) = -1) :
@@ -94,7 +98,9 @@ theorem cond_6_4_two_of_c2 {n : ℕ} {u : ZMod n} (hn3 : n % 4 = 3)
 prime `p ∣ n − 1` — `x^(n−1) = 1` and `x^((n−1)/p) − 1` a unit (by
 (4.4)(f)) — is a Pocklington certificate for `F = p^(v_p(n−1))`,
 so `r ≡ 1 (mod p^(v_p(n−1)))` for every prime `r ∣ n`, and
-Proposition (10.7) at `f = 1` yields condition (6.4) at `p`.-/
+Proposition (10.7) at `f = 1` yields condition (6.4) at `p`.
+@isnad1 id=ex.8h5v.s8.0d5cb681ef91 from=translated src=- shape=795a95b7 vocab=39bf6a39
+-/
 theorem cond_6_4_of_test_4_2 {n p : ℕ} (hn1 : 1 < n) (hp : p.Prime)
     (hp2 : p ≠ 2) (hpd : p ∣ n - 1) {x : ZMod n}
     (hx1 : x ^ (n - 1) = 1) (hunit : IsUnit (x ^ ((n - 1) / p) - 1)) :

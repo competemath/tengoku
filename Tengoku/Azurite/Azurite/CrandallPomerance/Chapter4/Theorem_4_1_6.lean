@@ -135,7 +135,9 @@ private theorem composite_split {n F : ℕ} (hF : 2 ≤ F) (hn : 1 < n)
   · exact ⟨w₂, w₁, hw₂, hle, by rw [hm, hpw, hmw]; ring⟩
 
 /-- A natural number strictly between consecutive squares is not a square
-(as an integer).-/
+(as an integer).
+@isnad1 id=not.2h2v.s6.758e1ffe3c57 from=translated src=- shape=f16a7ce6 vocab=da152bdf
+-/
 theorem not_isSquare_intCast_of_lt_of_lt {m k : ℕ} (h1 : k ^ 2 < m)
     (h2 : m < (k + 1) ^ 2) : ¬IsSquare ((m : ℕ) : ℤ) := by
   rintro ⟨r, hr⟩
@@ -326,7 +328,9 @@ and let `d = ⌊c₄v/F + 1/2⌋ = (2c₄v + F)/(2F)`.  Then `n` is prime if
 and only if (1) `(c₁ + tF)² + 4t − 4c₄` is not a square for
 `t = 0, …, 5`, and (2) the cubic `vx³ + (uF − c₁v)x² + (c₄v − dF + u)x
 − d` has no integer root `x` with `xF + 1` a nontrivial factor of
-`n`.-/
+`n`.
+@isnad1 id=iff.11h9v.s9.04e74fad9031 from=translated src=- shape=d29cf044 vocab=1eff2a66
+-/
 theorem theorem_4_1_6 {n F R c₁ c₄ u v d : ℕ} (hn : 214 ≤ n)
     (hsplit : n - 1 = F * R) (a : ZMod n) (ha : a ^ (n - 1) = 1)
     (hunit : ∀ q : ℕ, q.Prime → q ∣ F → IsUnit (a ^ ((n - 1) / q) - 1))
@@ -574,7 +578,9 @@ divisor condition its proof actually delivers — no approximation pair
 discriminants are non-squares and (2') `n` has no factor `xF + 1` with
 `0 < x` and `3xF³ < n` (a search range of size about `n^(1/10)`).  This
 is the form a checker can discharge by direct scan; the cubic of
-condition (2) is the sub-linear refinement of that scan.-/
+condition (2) is the sub-linear refinement of that scan.
+@isnad1 id=iff.8h6v.s9.45068be9e330 from=translated src=- shape=ddc680e3 vocab=1eff2a66
+-/
 theorem theorem_4_1_6' {n F R c₁ c₄ : ℕ} (hn : 214 ≤ n)
     (hsplit : n - 1 = F * R) (a : ZMod n) (ha : a ^ (n - 1) = 1)
     (hunit : ∀ q : ℕ, q.Prime → q ∣ F → IsUnit (a ^ ((n - 1) / q) - 1))

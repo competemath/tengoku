@@ -42,7 +42,9 @@ open Polynomial
 variable {D E : Type*} [CommRing D] [CommRing E]
 
 /-- **BPR Proposition 8.52 (specialization of signed subresultants).**  A ring homomorphism `f`
-    commutes with `sResP` whenever it preserves the degrees of both polynomials.-/
+    commutes with `sResP` whenever it preserves the degrees of both polynomials.
+@isnad1 id=eq.2h6v.s7.d4970af852f1 from=translated src=- shape=15160021 vocab=aa427ae9
+-/
 theorem proposition_8_52 (f : D →+* E) (P Q : D[X])
     (hP : (P.map f).natDegree = P.natDegree) (hQ : (Q.map f).natDegree = Q.natDegree) (j : ℕ) :
     sResP (P.map f) (Q.map f) j = (sResP P Q j).map f := by
@@ -65,7 +67,9 @@ theorem proposition_8_52 (f : D →+* E) (P Q : D[X])
 /-- **BPR Proposition 8.52, degenerate case (the "Note").**  If `f` preserves the degree of `P`
     but strictly lowers the degree of `Q`, then for `j ≤ deg(f(Q))`,
     `f(sResP_j(P, Q)) = lcof(f(P))^{deg(Q) - deg(f(Q))} · sResP_j(f(P), f(Q))`.  Proved with the
-    triangular reduction of Lemma 8.31 (`pdetRing_triangular`).-/
+    triangular reduction of Lemma 8.31 (`pdetRing_triangular`).
+@isnad1 id=eq.4h6v.s8.ed83f0f104e5 from=translated src=- shape=39085de3 vocab=7bea89b9
+-/
 theorem proposition_8_52_degenerate (f : D →+* E) (P Q : D[X])
     (hpq : Q.natDegree < P.natDegree) (hP : (P.map f).natDegree = P.natDegree)
     (hQ : (Q.map f).natDegree < Q.natDegree) {j : ℕ} (hj : j ≤ (Q.map f).natDegree) :

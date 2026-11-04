@@ -56,7 +56,9 @@ namespace Azurite
 namespace CL
 
 /-- **Step (11.2)(c)**: a proper power is composite — if
-`n = a^k` with `k ≥ 2` and `n > 1`, then `n` is not prime.-/
+`n = a^k` with `k ≥ 2` and `n > 1`, then `n` is not prime.
+@isnad1 id=not.3h3v.s5.223e46da9a9b from=translated src=- shape=d72b230a vocab=1c5c3814
+-/
 theorem not_prime_of_eq_pow {n a k : ℕ} (hn : 1 < n) (hk : 2 ≤ k)
     (ha : n = a ^ k) : ¬ n.Prime := by
   intro hpr

@@ -32,7 +32,9 @@ def ratSet : Set EReal := {e | ∃ q : ℚ, ((q : ℝ) : EReal) = e}
 
 /-- `{q ∈ ratSet | q ≤ √2}` has no maximum: density of `ℚ` in `ℝ` plus irrationality
 of `√2` means any candidate rational is strictly below `√2`, hence strictly below a
-larger rational that is also `≤ √2`.-/
+larger rational that is also `≤ √2`.
+@isnad1 id=not.0h0v.s5.88767aec615b from=translated src=- shape=5409552e vocab=19c29f3d
+-/
 theorem not_existsGreatestLE_ratSet :
     ¬ ∃ M, IsGreatest {s | s ∈ ratSet ∧ s ≤ ((Real.sqrt 2 : ℝ) : EReal)} M := by
   rintro ⟨M, ⟨⟨q, rfl⟩, hq_le⟩, hM⟩
@@ -49,7 +51,9 @@ theorem not_existsGreatestLE_ratSet :
   linarith
 
 /-- `ratSet` cannot be equipped with a `RoundingTarget` structure: the
-`existsGreatestLE` field has no witness at `x = √2`.-/
+`existsGreatestLE` field has no witness at `x = √2`.
+@isnad1 id=not.0h0v.s2.cc236fe6c75b from=translated src=- shape=ed5d6145 vocab=e4e8f007
+-/
 theorem not_nonempty_roundingTarget_ratSet :
     ¬ Nonempty (RoundingTarget ratSet) := by
   rintro ⟨inst⟩

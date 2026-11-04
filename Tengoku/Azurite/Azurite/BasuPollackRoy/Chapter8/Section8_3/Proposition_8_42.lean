@@ -35,7 +35,9 @@ open Polynomial Matrix
 variable {D : Type*} [CommRing D]
 
 /-- **BPR Proposition 8.42 (a), cofactor identity.**  For `j ≤ q` (with `Q ≠ 0` and
-    `q < p`), `sResP_j(P,Q) = sResU_j(P,Q) · P + sResV_j(P,Q) · Q`.-/
+    `q < p`), `sResP_j(P,Q) = sResU_j(P,Q) · P + sResV_j(P,Q) · Q`.
+@isnad1 id=eq.3h4v.s7.ef7f4ca14863 from=translated src=- shape=4c7c0564 vocab=1b14c2f7
+-/
 theorem sResP_eq_cofactor (P Q : D[X]) (_hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDegree)
     {j : ℕ} (hjq : j ≤ Q.natDegree) :
     sResP P Q j = sResU P Q j * P + sResV P Q j * Q := by
@@ -124,7 +126,9 @@ theorem sResP_eq_cofactor (P Q : D[X]) (_hQ : Q ≠ 0) (hpq : Q.natDegree < P.na
 
 /-- The determinant of a square polynomial matrix all of whose columns except `c₀` are
     constant (`natDegree 0`) and whose `c₀` column has `natDegree ≤ d` has `natDegree ≤ d`:
-    in `det = Σ_σ ± ∏_i M (σ i) i`, exactly one factor (the `c₀` column) is non-constant.-/
+    in `det = Σ_σ ± ∏_i M (σ i) i`, exactly one factor (the `c₀` column) is non-constant.
+@isnad1 id=le.2h5v.s6.9b18d18fbd62 from=translated src=- shape=9d3cdc9d vocab=73daa6cd
+-/
 theorem natDegree_det_le_col {N : ℕ} (M : Matrix (Fin N) (Fin N) D[X]) (c₀ : Fin N) (d : ℕ)
     (hconst : ∀ i c, c ≠ c₀ → (M i c).natDegree = 0)
     (hcol : ∀ i, (M i c₀).natDegree ≤ d) : M.det.natDegree ≤ d := by
@@ -137,7 +141,9 @@ theorem natDegree_det_le_col {N : ℕ} (M : Matrix (Fin N) (Fin N) D[X]) (c₀ :
   exact hcol (σ c₀)
 
 /-- **BPR Proposition 8.42 (a), degree bound for `sResU`.** `deg(sResU_j(P,Q)) ≤ q - 1 - j`
-    (so `deg(sResU_{j-1}) ≤ q - j`).-/
+    (so `deg(sResU_{j-1}) ≤ q - j`).
+@isnad1 id=le.2h4v.s6.e6de990feb44 from=translated src=- shape=3e574a44 vocab=cb3e80f8
+-/
 theorem sResU_natDegree_le (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : ℕ}
     (hjq : j ≤ Q.natDegree) : (sResU P Q j).natDegree ≤ Q.natDegree - 1 - j := by
   rw [sResU]
@@ -155,7 +161,9 @@ theorem sResU_natDegree_le (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : �
     · rw [ite_eq_right hi, Polynomial.natDegree_zero]; omega
 
 /-- **BPR Proposition 8.42 (a), degree bound for `sResV`.** `deg(sResV_j(P,Q)) ≤ p - 1 - j`
-    (so `deg(sResV_{j-1}) ≤ p - j`).-/
+    (so `deg(sResV_{j-1}) ≤ p - j`).
+@isnad1 id=le.2h4v.s6.37408e66646d from=translated src=- shape=8356a739 vocab=1faea43b
+-/
 theorem sResV_natDegree_le (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : ℕ}
     (hjq : j ≤ Q.natDegree) : (sResV P Q j).natDegree ≤ P.natDegree - 1 - j := by
   rw [sResV]
@@ -175,7 +183,9 @@ theorem sResV_natDegree_le (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : �
 
 /-- **BPR Proposition 8.42 (b), cofactor uniqueness.**  Over a field, if `sResP_j(P,Q) ≠ 0`
     and `U·P + V·Q = sResP_j(P,Q)` with `deg U ≤ q-j-1` and `deg V ≤ p-j-1`, then
-    `U = sResU_j(P,Q)` and `V = sResV_j(P,Q)`.-/
+    `U = sResU_j(P,Q)` and `V = sResV_j(P,Q)`.
+@isnad1 id=and.8h6v.s8.8a6774db8a40 from=translated src=- shape=8f2bb2d4 vocab=901b3a60
+-/
 theorem cofactor_unique {K : Type*} [Field K] (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j : ℕ} (hjq : j < Q.natDegree) (hsj : sResP P Q j ≠ 0)
     {U V : K[X]} (hUV : U * P + V * Q = sResP P Q j)
@@ -223,7 +233,9 @@ theorem cofactor_unique {K : Type*} [Field K] (P Q : K[X]) (hP : P ≠ 0) (hQ : 
 
 /-- Expand the determinant of a polynomial matrix `M` whose first `N-1` columns are constants
     `C(A r c)` and whose last column is an arbitrary polynomial vector `V`:
-    `det M = Σ_{r₀} V_{r₀} · C(det(A with last column = e_{r₀}))`.-/
+    `det M = Σ_{r₀} V_{r₀} · C(det(A with last column = e_{r₀}))`.
+@isnad1 id=eq.2h5v.s8.c48d4fb895cf from=translated src=- shape=e5b30019 vocab=b0804b0b
+-/
 theorem det_lastCol_expand {N : ℕ} (hN : 0 < N) (A : Matrix (Fin N) (Fin N) D)
     (V : Fin N → D[X]) (M : Matrix (Fin N) (Fin N) D[X])
     (hM : ∀ r c, M r c = if (c : ℕ) + 1 < N then C (A r c) else V r) :
@@ -262,7 +274,9 @@ theorem det_lastCol_expand {N : ℕ} (hN : 0 < N) (A : Matrix (Fin N) (Fin N) D)
     `X^{p-j}` in `sResV_{j-1}(P,Q)` is the `(N-1, N-1)` cofactor of the Sylvester-Habicht
     determinant: the determinant of `SyHa_{j-1}`'s coefficient columns with the last column
     replaced by the standard basis vector `e_{N-1}`.  (BPR's Proposition 8.42(c) then
-    identifies this minor with `a_p · sRes_j` by a block/`SyHaSquare_j` reduction.)-/
+    identifies this minor with `a_p · sRes_j` by a block/`SyHaSquare_j` reduction.)
+@isnad1 id=eq.3h4v.s10.a060b4ccb8aa from=translated src=- shape=30869ad9 vocab=2f1fcf56
+-/
 theorem sResV_sub_one_coeff_eq_minor (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : ℕ}
     (hj1 : 1 ≤ j) (hjq : j ≤ Q.natDegree) :
     (sResV P Q (j - 1)).coeff (P.natDegree - j)
@@ -301,7 +315,9 @@ theorem sResV_sub_one_coeff_eq_minor (P Q : D[X]) (hpq : Q.natDegree < P.natDegr
 
 /-- The `(N-1,N-1)` cofactor minor of `SyHa_{j-1}` equals `a_p · sRes_j`: expand along the
     last column (a basis vector ⟹ the top-left block determinant), then along the first column
-    (`a_p` times the standard basis ⟹ `a_p · det(SyHaSquare_j)`).-/
+    (`a_p` times the standard basis ⟹ `a_p · det(SyHaSquare_j)`).
+@isnad1 id=eq.3h4v.s10.fa145b9815cc from=translated src=- shape=b3971438 vocab=603b89ef
+-/
 theorem sResV_minor_det_eq (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : ℕ}
     (hj1 : 1 ≤ j) (hjq : j ≤ Q.natDegree) :
     (Matrix.updateCol
@@ -402,7 +418,9 @@ theorem sResV_minor_det_eq (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : �
   rw [htb21, Matrix.det_fromBlocks_zero₂₁, htb11, htb22]
 
 /-- **BPR Proposition 8.42 (c), key coefficient identity.**  The coefficient of `X^{p-j}` in
-    `sResV_{j-1}(P,Q)` is `a_p · sRes_j(P,Q)`.-/
+    `sResV_{j-1}(P,Q)` is `a_p · sRes_j(P,Q)`.
+@isnad1 id=eq.3h4v.s7.33ce7b6e2f96 from=translated src=- shape=dfd34d1b vocab=362f773f
+-/
 theorem sResV_sub_one_coeff (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : ℕ}
     (hj1 : 1 ≤ j) (hjq : j ≤ Q.natDegree) :
     (sResV P Q (j - 1)).coeff (P.natDegree - j)
@@ -411,7 +429,9 @@ theorem sResV_sub_one_coeff (P Q : D[X]) (hpq : Q.natDegree < P.natDegree) {j : 
 
 /-- **BPR Proposition 8.42 (c), `sResV` part.**  Over a field, when `sResP_j(P,Q)` is
     non-defective (`sRes_j(P,Q) ≠ 0`), `deg(sResV_{j-1}(P,Q)) = p - j` and
-    `lcof(sResV_{j-1}(P,Q)) = a_p · sRes_j(P,Q)`.-/
+    `lcof(sResV_{j-1}(P,Q)) = a_p · sRes_j(P,Q)`.
+@isnad1 id=and.5h4v.s7.4ca5480b73a2 from=translated src=- shape=ec086083 vocab=9bf59faf
+-/
 theorem sResV_sub_one_natDegree {K : Type*} [CommRing K] [IsDomain K] (P Q : K[X]) (hP : P ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j : ℕ} (hj1 : 1 ≤ j) (hjq : j ≤ Q.natDegree)
     (hsRes : Azurite.BPR.Chapter4.sRes P Q j ≠ 0) :
@@ -428,7 +448,9 @@ theorem sResV_sub_one_natDegree {K : Type*} [CommRing K] [IsDomain K] (P Q : K[X
 /-- **BPR Proposition 8.42 (c), `sResU` part.**  Over a field, when `sResP_j(P,Q)` is
     non-defective (`sRes_j(P,Q) ≠ 0`), `deg(sResU_{j-1}(P,Q)) = q - j`.  (The top term of
     `sResV_{j-1}·Q` has degree `p+q-j`; since `sResP_{j-1}` has degree `≤ j-1`, the term
-    `sResU_{j-1}·P` must match it, forcing `deg sResU_{j-1} = q-j`.)-/
+    `sResU_{j-1}·P` must match it, forcing `deg sResU_{j-1} = q-j`.)
+@isnad1 id=eq.6h4v.s7.55ae7e29e0a9 from=translated src=- shape=995eb534 vocab=1098c7e9
+-/
 theorem sResU_sub_one_natDegree {K : Type*} [Field K] (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j : ℕ} (hj1 : 1 ≤ j) (hjq : j ≤ Q.natDegree)
     (hsRes : Azurite.BPR.Chapter4.sRes P Q j ≠ 0) :
@@ -458,7 +480,9 @@ noncomputable def cofactorMat (P Q : D[X]) (i j : ℕ) : Matrix (Fin 2) (Fin 2) 
      sResU P Q (j - 1), sResV P Q (j - 1)]
 
 /-- **BPR equation (8.12).** `[sResP_{i-1}, sResP_{j-1}]ᵀ = B_{j,i} · [P, Q]ᵀ`: stacking the
-    `(i-1)`-th and `(j-1)`-th cofactor relations of Proposition 8.42(a).-/
+    `(i-1)`-th and `(j-1)`-th cofactor relations of Proposition 8.42(a).
+@isnad1 id=eq.4h5v.s8.0cf2e6170359 from=translated src=- shape=5782e192 vocab=d8375a58
+-/
 theorem cofactorMat_mulVec (P Q : D[X]) (hQ : Q ≠ 0) (hpq : Q.natDegree < P.natDegree)
     {i j : ℕ} (hiq : i - 1 ≤ Q.natDegree) (hjq : j - 1 ≤ Q.natDegree) :
     (cofactorMat P Q i j).mulVec ![P, Q] = ![sResP P Q (i - 1), sResP P Q (j - 1)] := by

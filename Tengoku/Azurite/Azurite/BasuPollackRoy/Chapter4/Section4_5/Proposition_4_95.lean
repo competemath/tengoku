@@ -182,7 +182,9 @@ end NonsingularImpCotangent
 
 /-- **BPR Proposition 4.95, implication (a) ⟹ (c).** If `x` is a non-singular zero of the
 extended system `map(P₁), …, map(P_k)` over `C`, then the maximal ideal `M_x` of `x` is contained
-in `Ideal(𝒫, C) + M_x²`. (No `IsAlgClosed`/`CharZero` is needed for this direction.)-/
+in `Ideal(𝒫, C) + M_x²`. (No `IsAlgClosed`/`CharZero` is needed for this direction.)
+@isnad1 id=le.1h5v.s10.191328684cfa from=translated src=- shape=72d7e523 vocab=44789a47
+-/
 theorem nonsingular_imp_cotangent {C : Type*} [Field C] [Algebra K C]
     (P : Fin k → MvPolynomial (Fin k) K) (x : Fin k → C)
     (ha : IsNonsingularZero (fun i => MvPolynomial.map (algebraMap K C) (P i)) x) :

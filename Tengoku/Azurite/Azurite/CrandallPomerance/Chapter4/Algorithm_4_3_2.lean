@@ -166,7 +166,9 @@ decreasing_by
 /-! ### The specification -/
 
 /-- A factor verdict of Algorithm 4.3.2 is a nontrivial divisor of
-`n`.-/
+`n`.
+@isnad1 id=and.2h4v.s6.5542002b92bf from=translated src=- shape=257ef7b0 vocab=05340fa0
+-/
 theorem gcdOrFactor_factor {n : ℕ} (hn : 1 < n)
     {f g : Polynomial (ZMod n)} {d : ℕ}
     (hd : gcdOrFactor n f g = .inl d) : d ∣ n ∧ 1 < d ∧ d < n := by
@@ -195,7 +197,9 @@ theorem gcdOrFactor_factor {n : ℕ} (hn : 1 < n)
     exact ⟨hdvdn, by omega, by omega⟩
 
 /-- A gcd verdict of Algorithm 4.3.2 is monic and generates the pair
-ideal — it IS `gcd(f, g)` in the sense of Definition 4.3.1.-/
+ideal — it IS `gcd(f, g)` in the sense of Definition 4.3.1.
+@isnad1 id=and.2h4v.s8.538cd6b75709 from=translated src=- shape=01b6c6a1 vocab=8e47f0a5
+-/
 theorem gcdOrFactor_gcd {n : ℕ} {f g : Polynomial (ZMod n)}
     (hg : g.Monic) {h : Polynomial (ZMod n)}
     (hh : gcdOrFactor n f g = .inr h) :
@@ -219,7 +223,9 @@ theorem gcdOrFactor_gcd {n : ℕ} {f g : Polynomial (ZMod n)}
     exact absurd hh (by simp)
 
 /-- Definition 4.3.1 through the algorithm: `f` and `g` are coprime in
-`Z_n[x]` exactly when the computed principal generator is a unit.-/
+`Z_n[x]` exactly when the computed principal generator is a unit.
+@isnad1 id=iff.2h4v.s7.b3965d92896e from=translated src=- shape=07c38b41 vocab=48cb39d0
+-/
 theorem isCoprime_iff_of_gcdOrFactor {n : ℕ}
     {f g h : Polynomial (ZMod n)} (hg : g.Monic)
     (hh : gcdOrFactor n f g = .inr h) : IsCoprime f g ↔ IsUnit h := by
@@ -228,7 +234,9 @@ theorem isCoprime_iff_of_gcdOrFactor {n : ℕ}
     Ideal.span_singleton_eq_top]
 
 /-- Over a prime modulus the algorithm never fails: every nonzero
-leading coefficient is invertible.-/
+leading coefficient is invertible.
+@isnad1 id=ne.1h4v.s5.398f7e20dd92 from=translated src=- shape=05814d23 vocab=70f552bd
+-/
 theorem gcdOrFactor_ne_inl_of_prime {p : ℕ} (hp : p.Prime)
     (f g : Polynomial (ZMod p)) (d : ℕ) :
     gcdOrFactor p f g ≠ .inl d := by

@@ -39,7 +39,9 @@ open Finset
 /-- **Cohen–Lenstra Lemma (7.17)**: a power of a primitive `M`-th
 root of unity congruent to `1` modulo `I ⊔ (r)` equals `1`, provided
 `n ∈ I`, integers in `I` are multiples of `n`, `r ∣ n`, and
-`¬ r ∣ M`.-/
+`¬ r ∣ M`.
+@isnad1 id=eq.8h7v.s8.a9b0a63ddb74 from=translated src=- shape=896b8a73 vocab=5d37dc39
+-/
 theorem lemma_7_17 {R : Type _} [CommRing R] [IsDomain R] {M n r : ℕ}
     {ζ : R} (hζ : IsPrimitiveRoot ζ M) (hM : M ≠ 0) (hn0 : n ≠ 0)
     {I : Ideal R} (hnI : (n : R) ∈ I)

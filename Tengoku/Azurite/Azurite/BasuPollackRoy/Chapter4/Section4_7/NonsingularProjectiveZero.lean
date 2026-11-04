@@ -53,14 +53,18 @@ def IsNonsingularProjectiveZero (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)
   (∀ i, aeval x.rep (P i) = 0) ∧ (projJacobian P x).rank = k
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
-/-- A nonzero first coordinate keeps the coordinate vector nonzero.-/
+/-- A nonzero first coordinate keeps the coordinate vector nonzero.
+@isnad1 id=ne.0h3v.s9.fa5f51df64a8 from=translated src=- shape=4c3b185e vocab=27579275
+-/
 theorem cons_one_ne_zero (x : Fin k → Ri R) :
     (Fin.cons (1 : Ri R) x : Fin (k + 1) → Ri R) ≠ 0 := by
   intro h; have := congrFun h 0; simp [Fin.cons_zero] at this
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
 /-- Evaluating a homogeneous polynomial of degree `n` at a scaled point `c • w` scales the value
-by `c ^ n`.-/
+by `c ^ n`.
+@isnad1 id=eq.1h6v.s13.45b8ed7bd3d1 from=translated src=- shape=22bf00ff vocab=6700769f
+-/
 theorem aeval_smul_isHomogeneous {φ : MvPolynomial (Fin (k + 1)) (Ri R)} {n : ℕ}
     (hφ : MvPolynomial.IsHomogeneous φ n) (c : Ri R) (w : Fin (k + 1) → Ri R) :
     aeval (c • w) φ = c ^ n * aeval w φ := by
@@ -77,7 +81,9 @@ theorem aeval_smul_isHomogeneous {φ : MvPolynomial (Fin (k + 1)) (Ri R)} {n : �
 omit [LinearOrder R] [IsStrictOrderedRing R] in
 /-- Chain rule for the dehomogenizing substitution `X₀ ↦ 1`, `X_{a+1} ↦ X_a`: differentiating the
 dehomogenization in the affine variable `a` equals dehomogenizing the partial derivative in
-`X_{a+1}`.-/
+`X_{a+1}`.
+@isnad1 id=eq.0h4v.s14.26a7c9979000 from=translated src=- shape=c251b56d vocab=57e11f39
+-/
 theorem pderiv_aeval_cons_one
     (p : MvPolynomial (Fin (k + 1)) (Ri R)) (a : Fin k) :
     pderiv a (aeval (Fin.cons (1 : MvPolynomial (Fin k) (Ri R)) X) p)
@@ -94,7 +100,9 @@ theorem pderiv_aeval_cons_one
       by_cases hab : b = a <;> simp [hab]
 
 omit [LinearOrder R] [IsStrictOrderedRing R] in
-/-- Evaluating the dehomogenization at `x` equals evaluating the original at `(1, x₁, …, x_k)`.-/
+/-- Evaluating the dehomogenization at `x` equals evaluating the original at `(1, x₁, …, x_k)`.
+@isnad1 id=eq.0h4v.s13.77e4597ddcdc from=translated src=- shape=50b94eb2 vocab=0b88d758
+-/
 theorem aeval_aeval_cons_one (p : MvPolynomial (Fin (k + 1)) (Ri R)) (x : Fin k → Ri R) :
     aeval x (aeval (Fin.cons (1 : MvPolynomial (Fin k) (Ri R)) X) p)
       = aeval (Fin.cons (1 : Ri R) x) p := by
@@ -110,7 +118,9 @@ theorem aeval_aeval_cons_one (p : MvPolynomial (Fin (k + 1)) (Ri R)) (x : Fin k 
 
 /-- For a `k × (k+1)` matrix over a field whose `0`-th column lies in the span of the remaining
 columns, full rank `k` is equivalent to nonvanishing of the determinant of the `k × k` block
-obtained by deleting column `0`.-/
+obtained by deleting column `0`.
+@isnad1 id=iff.1h3v.s8.2c07042893ad from=translated src=- shape=5a44da5a vocab=7db2bf13
+-/
 theorem rank_eq_iff_det_submatrix_succ_ne_zero {F : Type*} [Field F]
     (M : Matrix (Fin k) (Fin (k + 1)) F)
     (hcol : M.col 0 ∈ Submodule.span F (Set.range (M.submatrix id Fin.succ).col)) :
@@ -149,7 +159,9 @@ theorem rank_eq_iff_det_submatrix_succ_ne_zero {F : Type*} [Field F]
     rw [Matrix.rank_of_isUnit Maff this, Fintype.card_fin]
 
 /-- **BPR §4.7 (the Note).** `(x₁, …, x_k)` is a non-singular (affine) zero of the dehomogenizations
-`Pᵢ(1, X₁, …, X_k)` iff `(1 : x₁ : ⋯ : x_k)` is a non-singular projective zero of `P₁, …, P_k`.-/
+`Pᵢ(1, X₁, …, X_k)` iff `(1 : x₁ : ⋯ : x_k)` is a non-singular projective zero of `P₁, …, P_k`.
+@isnad1 id=iff.1h5v.s13.6c0f9b3f68cc from=translated src=- shape=d61ad6f9 vocab=f8a5f6cf
+-/
 theorem isNonsingularZero_dehom_iff_isNonsingularProjectiveZero
     (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)) (d : Fin k → ℕ)
     (hP : ∀ i, MvPolynomial.IsHomogeneous (P i) (d i)) (x : Fin k → Ri R) :

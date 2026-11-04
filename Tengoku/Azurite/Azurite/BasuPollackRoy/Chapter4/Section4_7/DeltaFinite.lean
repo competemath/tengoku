@@ -32,7 +32,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealCl
 
 /-- At the parameter `(0 : 1)` the pencil is `c · Dᵢ` (`c ≠ 0`), the diagonal system up to a unit. By
 Lemma B all its common zeros are non-singular, so it has **no** singular projective zero: a common
-zero with rank-deficient Jacobian is impossible.-/
+zero with rank-deficient Jacobian is impossible.
+@isnad1 id=false.4h6v.s12.d1969af59429 from=translated src=- shape=0c6f666d vocab=71002955
+-/
 theorem not_singular_at_diag (P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)) (d : Fin k → ℕ)
     (hd : ∀ i, 1 ≤ d i) (x : complexProjectiveSpace R k) (c : Ri R) (hc : c ≠ 0)
     (hcz : ∀ i, aeval x.rep (homotopyPoly P d 0 c i) = 0)

@@ -53,7 +53,9 @@ variable {F : Type*} [Field F] [Fintype F]
 /-- The reverse direction of the criterion (GG's second half): an
 irreducible polynomial whose degree divides `d` divides `X^(q^d) − X`.
 Fermat's little theorem in `F[x]/⟨f⟩` plus minimality over the base
-field.-/
+field.
+@isnad1 id=dvd.2h3v.s8.f1328ee0f674 from=translated src=- shape=b6bd19d9 vocab=0b3758c7
+-/
 theorem dvd_X_pow_card_pow_sub_X_of_natDegree_dvd {d : ℕ} {f : F[X]}
     (hf : Irreducible f) (hdvd : f.natDegree ∣ d) :
     f ∣ X ^ Fintype.card F ^ d - X := by
@@ -82,7 +84,9 @@ theorem dvd_X_pow_card_pow_sub_X_of_natDegree_dvd {d : ℕ} {f : F[X]}
 
 /-- **The divisibility criterion** (the working form of GG Theorem 14.2):
 an irreducible `f` divides `X^(q^d) − X` exactly when `deg f` divides `d`.
-(At `d = 0` both sides hold trivially: the polynomial is `0`.)-/
+(At `d = 0` both sides hold trivially: the polynomial is `0`.)
+@isnad1 id=iff.1h3v.s8.be9ee493bd25 from=translated src=- shape=391a11b7 vocab=0b3758c7
+-/
 theorem irreducible_dvd_X_pow_card_pow_sub_X_iff {d : ℕ} {f : F[X]}
     (hf : Irreducible f) :
     f ∣ X ^ Fintype.card F ^ d - X ↔ f.natDegree ∣ d := by
@@ -93,7 +97,9 @@ theorem irreducible_dvd_X_pow_card_pow_sub_X_iff {d : ℕ} {f : F[X]}
   · exact dvd_X_pow_card_pow_sub_X_of_natDegree_dvd hf
 
 /-- `X^(q^d) − X` is squarefree for `d ≥ 1`: it is separable (its
-derivative is `−1` in characteristic `p ∣ q^d`).-/
+derivative is `−1` in characteristic `p ∣ q^d`).
+@isnad1 id=squarefr.1h2v.s7.203ca29eaf62 from=translated src=- shape=614634bd vocab=d61a99d0
+-/
 theorem squarefree_X_pow_card_pow_sub_X {d : ℕ} (hd : d ≠ 0) :
     Squarefree (X ^ Fintype.card F ^ d - X : F[X]) := by
   obtain ⟨p, hchar⟩ := CharP.exists F
@@ -103,7 +109,9 @@ theorem squarefree_X_pow_card_pow_sub_X {d : ℕ} (hd : d ≠ 0) :
   rw [hcard]
   exact dvd_pow (dvd_pow_self p k.2.ne') hd
 
-/-- `X^(q^d) − X` is monic for `d ≥ 1`.-/
+/-- `X^(q^d) − X` is monic for `d ≥ 1`.
+@isnad1 id=monic.1h2v.s7.0d37a8b7ede2 from=translated src=- shape=5204d905 vocab=b0c27114
+-/
 theorem monic_X_pow_card_pow_sub_X {d : ℕ} (hd : d ≠ 0) :
     (X ^ Fintype.card F ^ d - X : F[X]).Monic := by
   have h2 : 2 ≤ Fintype.card F ^ d :=
@@ -114,7 +122,9 @@ theorem monic_X_pow_card_pow_sub_X {d : ℕ} (hd : d ≠ 0) :
 
 /-- The factor set of GG Theorem 14.2: membership in the (duplicate-free)
 factor multiset of `X^(q^d) − X` is exactly "monic, irreducible, degree
-dividing `d`".-/
+dividing `d`".
+@isnad1 id=iff.1h3v.s8.73016167581d from=translated src=- shape=89440dd0 vocab=c59295a7
+-/
 theorem mem_normalizedFactors_X_pow_card_pow_sub_X_iff [DecidableEq F]
     {d : ℕ} (hd : d ≠ 0) {f : F[X]} :
     f ∈ normalizedFactors (X ^ Fintype.card F ^ d - X : F[X])
@@ -132,7 +142,9 @@ theorem mem_normalizedFactors_X_pow_card_pow_sub_X_iff [DecidableEq F]
       (irreducible_dvd_X_pow_card_pow_sub_X_iff hirr).mpr hdeg⟩
 
 /-- The factor multiset is duplicate-free (squarefreeness), so it is
-honestly a SET of polynomials.-/
+honestly a SET of polynomials.
+@isnad1 id=nodup.1h2v.s7.9cfc17308495 from=translated src=- shape=e663f6bc vocab=3ed859f5
+-/
 theorem nodup_normalizedFactors_X_pow_card_pow_sub_X [DecidableEq F] {d : ℕ}
     (hd : d ≠ 0) :
     (normalizedFactors (X ^ Fintype.card F ^ d - X : F[X])).Nodup :=
@@ -143,7 +155,9 @@ theorem nodup_normalizedFactors_X_pow_card_pow_sub_X [DecidableEq F] {d : ℕ}
 /-- **GG Theorem 14.2.** For `d ≥ 1`, `X^(q^d) − X` is the product of all
 monic irreducible polynomials over `F` whose degree divides `d` — stated as
 the product over its (duplicate-free) factor set, whose membership is
-characterized by `mem_normalizedFactors_X_pow_card_pow_sub_X_iff`.-/
+characterized by `mem_normalizedFactors_X_pow_card_pow_sub_X_iff`.
+@isnad1 id=eq.1h2v.s8.c3e8c4f61443 from=translated src=- shape=4e80d3fe vocab=958b4314
+-/
 theorem X_pow_card_pow_sub_X_eq_prod [DecidableEq F] {d : ℕ} (hd : d ≠ 0) :
     (X ^ Fintype.card F ^ d - X : F[X])
       = (normalizedFactors (X ^ Fintype.card F ^ d - X : F[X])).toFinset.prod id := by
@@ -172,7 +186,9 @@ irreducible exactly when `X^(q^i) − X` is coprime to `f` for every
 `i` up to half the degree.  A reducible `f` has an irreducible factor
 `g` of degree at most `(deg f)/2`, which divides both `f` and
 `X^(q^(deg g)) − X`; conversely an irreducible `f` divides no
-`X^(q^i) − X` with `0 < i < deg f`.-/
+`X^(q^i) − X` with `0 < i < deg f`.
+@isnad1 id=iff.2h2v.s8.71ebce44a79a from=translated src=- shape=9021d4a8 vocab=b480429d
+-/
 theorem irreducible_iff_isCoprime_X_pow_card_pow_sub_X {f : F[X]}
     (hf : f.Monic) (hdeg : 0 < f.natDegree) :
     Irreducible f ↔ ∀ i : ℕ, 1 ≤ i → 2 * i ≤ f.natDegree →

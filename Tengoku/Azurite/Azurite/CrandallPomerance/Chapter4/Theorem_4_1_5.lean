@@ -116,7 +116,9 @@ private theorem digit_uniqueness {F P s c₁ c₂ : ℕ} (hF : 2 ≤ F)
 Theorem 4.1.5): suppose `n − 1 = F·R`, the witness `a` satisfies the
 Pocklington conditions, and `n^(1/3) ≤ F < n^(1/2)` (in integers:
 `F² < n ≤ F³`).  Write `n = c₂F² + c₁F + 1` in base `F` (`c₁ < F`).
-Then `n` is prime if and only if `c₁² − 4c₂` is not a square.-/
+Then `n` is prime if and only if `c₁² − 4c₂` is not a square.
+@isnad1 id=iff.8h6v.s8.c0de228cf5c8 from=translated src=- shape=8f4da105 vocab=1eff2a66
+-/
 theorem theorem_4_1_5 {n F R c₁ c₂ : ℕ} (hn : 1 < n)
     (hsplit : n - 1 = F * R) (a : ZMod n) (ha : a ^ (n - 1) = 1)
     (hunit : ∀ q : ℕ, q.Prime → q ∣ F → IsUnit (a ^ ((n - 1) / q) - 1))

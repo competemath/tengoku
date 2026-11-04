@@ -52,7 +52,9 @@ variable {M : Type _} [CommMonoid M] {R : Type _} [CommMonoidWithZero R]
 
 /-- The order of a character on a monoid with cyclic unit group is
 the order of its value at a generator (the abstract form of
-`orderOf_ofRootOfUnity`).-/
+`orderOf_ofRootOfUnity`).
+@isnad1 id=eq.1h4v.s7.115a4133a174 from=translated src=- shape=b2a274ea vocab=21603c1e
+-/
 theorem orderOf_mulChar_eq {g : Mˣ} (hg : ∀ x, x ∈ Subgroup.zpowers g)
     (χ : MulChar M R) : orderOf χ = orderOf (χ (g : M)) := by
   rw [orderOf_eq_orderOf_iff]
@@ -71,7 +73,9 @@ variable {q : ℕ} [Fact q.Prime] {R : Type _} [CommMonoidWithZero R]
   [NoZeroDivisors R] [Nontrivial R]
 
 /-- **Exercise 4.24**: a character mod `q` of order `q − 1` is
-one-to-one on `Z_q`.-/
+one-to-one on `Z_q`.
+@isnad1 id=injectiv.1h3v.s7.a4bf678619de from=translated src=- shape=6245559c vocab=d0fe106e
+-/
 theorem exercise_4_24 (χ : MulChar (ZMod q) R)
     (hχ : orderOf χ = q - 1) : Function.Injective χ := by
   have hq := Fact.out (p := q.Prime)
@@ -133,7 +137,9 @@ theorem exercise_4_24 (χ : MulChar (ZMod q) R)
     rw [hx, hy]
 
 /-- The order of a product of commuting elements of pairwise distinct
-prime orders is the product of the orders.-/
+prime orders is the product of the orders.
+@isnad1 id=eq.2h3v.s6.6df048ed2546 from=translated src=- shape=b85fee0e vocab=540d23c8
+-/
 theorem orderOf_prod_primes {M : Type _} [CommMonoid M] (s : Finset ℕ)
     (hs : ∀ p ∈ s, p.Prime) (f : ℕ → M)
     (hord : ∀ p ∈ s, orderOf (f p) = p) :
@@ -157,7 +163,9 @@ theorem orderOf_prod_primes {M : Type _} [CommMonoid M] (s : Finset ℕ)
 omit [NoZeroDivisors R] [Nontrivial R] in
 /-- Evaluating a product of characters at a unit is the product of
 the values.  (False at nonunits for the empty product: the trivial
-character sends nonunits to `0`.)-/
+character sends nonunits to `0`.)
+@isnad1 id=eq.1h6v.s7.701186fc4493 from=translated src=- shape=6a44bb3a vocab=87701590
+-/
 theorem prod_mulChar_apply_isUnit {ι : Type _} [DecidableEq ι] (s : Finset ι)
     (χ : ι → MulChar (ZMod q) R) {x : ZMod q} (hx : IsUnit x) :
     (∏ p ∈ s, χ p) x = ∏ p ∈ s, χ p x := by

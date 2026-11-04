@@ -45,12 +45,17 @@ noncomputable def blockEnd {ι : Type*} (M : ι → Type*)
   LinearMap.pi (fun i => (g i).comp (LinearMap.proj i))
 
 omit [IsDomain R] in
+/--
+@isnad1 id=eq.0h6v.s8.93a6e2223ce8 from=translated src=- shape=89e1748b vocab=48146ab8
+-/
 theorem blockEnd_apply {ι : Type*} (M : ι → Type*)
     [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)] (g : ∀ i, Module.End R (M i))
     (z : ∀ i, M i) (i : ι) : blockEnd M g z i = g i (z i) := rfl
 
 /-- Characteristic polynomial of a block-diagonal endomorphism of a finite product of
-finite free modules equals the product of the characteristic polynomials of the blocks.-/
+finite free modules equals the product of the characteristic polynomials of the blocks.
+@isnad1 id=eq.0h4v.s7.142a519af40e from=translated src=- shape=29dbadc4 vocab=56ce039f
+-/
 theorem charpoly_pi_eq_prod {ι : Type*} [Fintype ι] (M : ι → Type*)
     [∀ i, AddCommGroup (M i)] [∀ i, Module R (M i)] [∀ i, Module.Finite R (M i)]
     [∀ i, Module.Free R (M i)] (g : ∀ i, Module.End R (M i)) :
@@ -127,7 +132,9 @@ variable [CharZero K] {C : Type*} [Field C] [IsAlgClosed C] [Algebra K C]
 attribute [local instance] algebraLocalizationAtPoint
 
 omit [CharZero K] [IsAlgClosed C] in
-/-- `Ā` is an Artinian ring (being a finite-dimensional `C`-algebra over the field `C`).-/
+/-- `Ā` is an Artinian ring (being a finite-dimensional `C`-algebra over the field `C`).
+@isnad1 id=isartini.0h4v.s8.f370a8181093 from=translated src=- shape=0993e124 vocab=a15ea33e
+-/
 theorem isArtinianRing_quotPolysExt [Module.Finite C (quotPolysExt C Ps)] :
     IsArtinianRing (quotPolysExt C Ps) :=
   IsArtinianRing.of_finite C (quotPolysExt C Ps)

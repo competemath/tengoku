@@ -49,13 +49,22 @@ open scoped Nat
 /-- `∏_{k<n} (X − (k+1)) ∈ ℤ[X]`, with roots `1, …, n`.-/
 noncomputable def rootsPoly (n : ℕ) : ℤ[X] := ∏ k ∈ range n, (X - C ((k : ℤ) + 1))
 
+/--
+@isnad1 id=ne.0h1v.s4.b2758ca74eb2 from=translated src=- shape=1c4b48a7 vocab=87c66b13
+-/
 theorem rootsPoly_ne_zero (n : ℕ) : rootsPoly n ≠ 0 :=
   prod_ne_zero_iff.mpr fun _ _ => X_sub_C_ne_zero _
 
+/--
+@isnad1 id=ne.0h1v.s4.94a5c7448a14 from=translated src=- shape=5b6b9bf4 vocab=865739e8
+-/
 theorem rootsPoly_eval_zero_ne (n : ℕ) : (rootsPoly n).eval 0 ≠ 0 := by
   rw [rootsPoly, eval_prod]
   exact prod_ne_zero_iff.mpr fun _k _ => by simp; omega
 
+/--
+@isnad1 id=mem.1h2v.s5.67d95f17bc9c from=translated src=- shape=79f6630d vocab=5cce1496
+-/
 theorem mem_aroots_rootsPoly {n k : ℕ} (hk : k < n) :
     ((k : ℂ) + 1) ∈ (rootsPoly n).aroots ℂ := by
   rw [mem_aroots]
@@ -65,7 +74,9 @@ theorem mem_aroots_rootsPoly {n k : ℕ} (hk : k < n) :
 
 /-! ### Hermite's theorem -/
 
-/-- No integer polynomial with nonzero constant term vanishes at `e`.-/
+/-- No integer polynomial with nonzero constant term vanishes at `e`.
+@isnad1 id=ne.1h1v.s6.a5a5c8436d01 from=translated src=- shape=7e355aff vocab=a5183288
+-/
 theorem aeval_exp_one_ne_zero {Q : ℤ[X]} (hQ0 : Q.eval 0 ≠ 0) : aeval (Real.exp 1) Q ≠ 0 := by
   intro hQe
   set n := Q.natDegree with hn
@@ -148,7 +159,9 @@ theorem aeval_exp_one_ne_zero {Q : ℤ[X]} (hQ0 : Q.eval 0 ≠ 0) : aeval (Real.
     omega
   · exact hnp h
 
-/-- **Hermite's theorem**: `e` is transcendental over `ℤ`.-/
+/-- **Hermite's theorem**: `e` is transcendental over `ℤ`.
+@isnad1 id=transcen.0h0v.s3.77160aca2ed7 from=translated src=- shape=a23deb2c vocab=104dc1b5
+-/
 theorem transcendental_exp_one_int : Transcendental ℤ (Real.exp 1) := by
   rintro ⟨P, hP0, hPe⟩
   obtain ⟨Q, hPQ, hQ⟩ := exists_eq_pow_rootMultiplicity_mul_and_not_dvd P hP0 0
@@ -159,18 +172,24 @@ theorem transcendental_exp_one_int : Transcendental ℤ (Real.exp 1) := by
     exact (mul_eq_zero.mp hPe).resolve_left (pow_ne_zero _ (Real.exp_pos 1).ne')
   exact aeval_exp_one_ne_zero hQ0 hQe
 
-/-- **Hermite's theorem**: `e` is transcendental over `ℚ`.-/
+/-- **Hermite's theorem**: `e` is transcendental over `ℚ`.
+@isnad1 id=transcen.0h0v.s4.f439c32deb57 from=translated src=- shape=a23deb2c vocab=2364169e
+-/
 theorem transcendental_exp_one : Transcendental ℚ (Real.exp 1) := fun h =>
   transcendental_exp_one_int ((IsFractionRing.isAlgebraic_iff ℤ ℚ ℝ).mpr h)
 
-/-- `e^m` is transcendental for every positive natural `m`.-/
+/-- `e^m` is transcendental for every positive natural `m`.
+@isnad1 id=transcen.1h1v.s4.ae45d6bfa7fd from=translated src=- shape=02ee15c4 vocab=8f099afe
+-/
 theorem transcendental_exp_nat {m : ℕ} (hm : 0 < m) : Transcendental ℚ (Real.exp m) := by
   intro h
   apply transcendental_exp_one
   refine IsAlgebraic.of_pow hm ?_
   rwa [← Real.exp_nat_mul, mul_one]
 
-/-- `e^q` is transcendental for every nonzero rational `q`.-/
+/-- `e^q` is transcendental for every nonzero rational `q`.
+@isnad1 id=transcen.1h1v.s4.86e7a29298cc from=translated src=- shape=1f7246f4 vocab=83b454f9
+-/
 theorem transcendental_exp_rat {q : ℚ} (hq : q ≠ 0) : Transcendental ℚ (Real.exp q) := by
   intro h
   have hnum : q.num ≠ 0 := Rat.num_ne_zero.mpr hq
@@ -192,12 +211,20 @@ theorem transcendental_exp_rat {q : ℚ} (hq : q ≠ 0) : Transcendental ℚ (Re
 
 /-! ### Irrationality -/
 
+/--
+@isnad1 id=irration.0h0v.s3.3aad5af5ecd1 from=translated src=- shape=8d7dbbf6 vocab=7a3280dc
+-/
 theorem irrational_exp_one : Irrational (Real.exp 1) := transcendental_exp_one.irrational
 
+/--
+@isnad1 id=irration.1h1v.s4.e9068f35e7c9 from=translated src=- shape=6063f671 vocab=51001fbb
+-/
 theorem irrational_exp_rat {q : ℚ} (hq : q ≠ 0) : Irrational (Real.exp q) :=
   (transcendental_exp_rat hq).irrational
 
-/-- `ln r` is irrational for every positive rational `r ≠ 1`.-/
+/-- `ln r` is irrational for every positive rational `r ≠ 1`.
+@isnad1 id=irration.2h1v.s4.e91fbfec1908 from=translated src=- shape=21bcb23f vocab=5c437f69
+-/
 theorem irrational_log_rat {r : ℚ} (hr : 0 < r) (hr1 : r ≠ 1) : Irrational (Real.log r) := by
   rintro ⟨q, hq⟩
   have hq0 : q ≠ 0 := by
@@ -213,7 +240,9 @@ theorem irrational_log_rat {r : ℚ} (hr : 0 < r) (hr1 : r ≠ 1) : Irrational (
   rw [hq, Real.exp_log (by exact_mod_cast hr)]
   exact isAlgebraic_algebraMap r
 
-/-- **`ln 2` is irrational.**-/
+/-- **`ln 2` is irrational.**
+@isnad1 id=irration.0h0v.s3.978f89885933 from=translated src=- shape=8d7dbbf6 vocab=6d03c9eb
+-/
 theorem irrational_log_two : Irrational (Real.log 2) := by
   simpa using irrational_log_rat (r := 2) (by norm_num) (by norm_num)
 

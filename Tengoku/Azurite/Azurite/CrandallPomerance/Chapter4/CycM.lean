@@ -48,7 +48,9 @@ abbrev CycM (m : ℕ) := AdjoinRoot (cyclotomic m ℤ)
 noncomputable def zetaM (m : ℕ) : CycM m := AdjoinRoot.root _
 
 /-- **The model is an integral domain**: `Φ_m` is irreducible over
-`ℤ`, hence prime.-/
+`ℤ`, hence prime.
+@isnad1 id=isdomain.1h1v.s4.464ee5042b4e from=translated src=- shape=c1538fc1 vocab=e259385f
+-/
 theorem isDomain_cycM {m : ℕ} (hm : 0 < m) : IsDomain (CycM m) :=
   AdjoinRoot.isDomain_of_prime
     (UniqueFactorizationMonoid.irreducible_iff_prime.mp
@@ -64,7 +66,9 @@ noncomputable def cycMBasis : Basis (Fin m.totient) ℤ (CycM m) :=
   (AdjoinRoot.powerBasis' (cyclotomic.monic m ℤ)).basis.reindex
     (finCongr (by rw [AdjoinRoot.powerBasis'_dim, natDegree_cyclotomic]))
 
-/-- The basis vectors are the monomials `ζ_m^i`.-/
+/-- The basis vectors are the monomials `ζ_m^i`.
+@isnad1 id=eq.0h2v.s7.673b39569f15 from=translated src=- shape=2f6d8f8b vocab=e550ae57
+-/
 theorem cycMBasis_apply (i : Fin m.totient) :
     cycMBasis m i = zetaM m ^ (i : ℕ) := by
   rw [cycMBasis, Basis.reindex_apply, PowerBasis.basis_eq_pow,
@@ -76,7 +80,9 @@ noncomputable def contentM (α : CycM m) : ℕ :=
   Finset.univ.gcd fun i => ((cycMBasis m).repr α i).natAbs
 
 /-- **Congruence mod `n` is coefficientwise** in `ℤ[ζ_m]`:
-divisibility by `n` in the ring is divisibility of the content.-/
+divisibility by `n` in the ring is divisibility of the content.
+@isnad1 id=iff.0h3v.s6.0492d0ea2b34 from=translated src=- shape=c9e1deca vocab=a1cd7268
+-/
 theorem natCast_dvd_iff_dvd_contentM (n : ℕ) (α : CycM m) :
     (n : CycM m) ∣ α ↔ n ∣ contentM m α := by
   constructor
@@ -111,7 +117,9 @@ theorem natCast_dvd_iff_dvd_contentM (n : ℕ) (α : CycM m) :
 
 variable {m}
 
-/-- Nonzero integers stay nonzero in the model.-/
+/-- Nonzero integers stay nonzero in the model.
+@isnad1 id=ne.2h2v.s6.22a40c958b1d from=translated src=- shape=adb0c915 vocab=d39c4bd9
+-/
 theorem natCast_ne_zero_cycM (hm : 0 < m) {n : ℕ} (hn : n ≠ 0) :
     (n : CycM m) ≠ 0 := by
   have hpos : 0 < m.totient := Nat.totient_pos.mpr hm
@@ -130,7 +138,9 @@ theorem natCast_ne_zero_cycM (hm : 0 < m) {n : ℕ} (hn : n ≠ 0) :
   exact_mod_cast hn (by exact_mod_cast hrepr)
 
 /-- **The integers are faithful in the model**: divisibility of
-integer constants in `ℤ[ζ_m]` is ordinary divisibility.-/
+integer constants in `ℤ[ζ_m]` is ordinary divisibility.
+@isnad1 id=iff.1h3v.s6.94927e2a0d23 from=translated src=- shape=c2afc859 vocab=763fc1ea
+-/
 theorem natCast_dvd_natCast_iff_cycM (hm : 0 < m) (n k : ℕ) :
     (n : CycM m) ∣ (k : CycM m) ↔ n ∣ k := by
   constructor
@@ -150,7 +160,9 @@ theorem natCast_dvd_natCast_iff_cycM (hm : 0 < m) (n k : ℕ) :
   · intro h
     exact_mod_cast Nat.cast_dvd_cast (α := CycM m) h
 
-/-- **The symbol is a genuine primitive `m`-th root of unity.**-/
+/-- **The symbol is a genuine primitive `m`-th root of unity.**
+@isnad1 id=isprimit.1h1v.s4.fd5771b738b2 from=translated src=- shape=cec73ec2 vocab=be8c5a05
+-/
 theorem isPrimitiveRoot_zetaM (hm : 0 < m) :
     IsPrimitiveRoot (zetaM m) m := by
   have := isDomain_cycM hm
@@ -164,10 +176,16 @@ theorem isPrimitiveRoot_zetaM (hm : 0 < m) :
 noncomputable def zetaMUnit (hm : 0 < m) : (CycM m)ˣ :=
   ((isPrimitiveRoot_zetaM hm).isUnit hm.ne').unit
 
+/--
+@isnad1 id=eq.1h1v.s5.aef31b26b041 from=translated src=- shape=b73d56ab vocab=5afcac36
+-/
 @[simp] theorem val_zetaMUnit (hm : 0 < m) :
     ((zetaMUnit hm : (CycM m)ˣ) : CycM m) = zetaM m :=
   IsUnit.unit_spec _
 
+/--
+@isnad1 id=eq.1h1v.s7.9a39e7a4e49c from=translated src=- shape=8a96602a vocab=96680ee3
+-/
 theorem zetaMUnit_pow_eq_one (hm : 0 < m) : zetaMUnit hm ^ m = 1 := by
   ext
   rw [Units.val_pow_eq_pow_val, val_zetaMUnit, Units.val_one]

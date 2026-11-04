@@ -72,16 +72,25 @@ noncomputable def erfc (x : ℝ) : ℝ := 2 / Real.sqrt π * gaussTail 0 x
 /-- `erf x = 1 − erfc x`.-/
 noncomputable def erf (x : ℝ) : ℝ := 1 - erfc x
 
+/--
+@isnad1 id=integrab.0h1v.s5.3c133034b488 from=translated src=- shape=bc5b7d5c vocab=aab92d2e
+-/
 theorem integrableOn_exp_neg_sq_Ioi (x : ℝ) : IntegrableOn (fun u : ℝ => exp (-u ^ 2)) (Ioi x) := by
   have := (integrable_exp_neg_mul_sq (b := 1) one_pos).integrableOn (s := Ioi x)
   refine this.congr_fun (fun u _ => ?_) measurableSet_Ioi
   simp
 
+/--
+@isnad1 id=continuo.1h2v.s6.47e0385b7a98 from=translated src=- shape=fff4a83e vocab=92e39e9e
+-/
 theorem continuousOn_gaussTail_integrand {x : ℝ} (hx : 0 < x) (k : ℕ) :
     ContinuousOn (fun u : ℝ => exp (-u ^ 2) / u ^ (2 * k)) (Ioi x) :=
   (continuous_exp.comp (continuous_pow 2).neg).continuousOn.div (continuousOn_pow _)
     fun _ hu => pow_ne_zero _ (lt_trans hx hu).ne'
 
+/--
+@isnad1 id=integrab.1h2v.s6.33af2d6c27a7 from=translated src=- shape=cda54c82 vocab=872dcf54
+-/
 theorem integrableOn_gaussTail {x : ℝ} (hx : 0 < x) (k : ℕ) :
     IntegrableOn (fun u : ℝ => exp (-u ^ 2) / u ^ (2 * k)) (Ioi x) := by
   have hg : IntegrableOn (fun u : ℝ => exp (-u ^ 2) * (x ^ (2 * k))⁻¹) (Ioi x) :=
@@ -94,11 +103,17 @@ theorem integrableOn_gaussTail {x : ℝ} (hx : 0 < x) (k : ℕ) :
   gcongr
   exact le_of_lt hu
 
+/--
+@isnad1 id=le.1h2v.s4.c03369d64baa from=translated src=- shape=ed4df5cc vocab=f169dcd4
+-/
 theorem gaussTail_nonneg {x : ℝ} (hx : 0 < x) (k : ℕ) : 0 ≤ gaussTail k x :=
   setIntegral_nonneg measurableSet_Ioi fun u hu => by
     have : 0 < u := lt_trans hx hu
     positivity
 
+/--
+@isnad1 id=lt.1h2v.s4.59ee02471360 from=translated src=- shape=5df0cd53 vocab=76b6d2f8
+-/
 theorem gaussTail_pos {x : ℝ} (hx : 0 < x) (k : ℕ) : 0 < gaussTail k x := by
   unfold gaussTail
   rw [setIntegral_pos_iff_support_of_nonneg_ae]
@@ -112,7 +127,9 @@ theorem gaussTail_pos {x : ℝ} (hx : 0 < x) (k : ℕ) : 0 < gaussTail k x := by
     positivity
   · exact integrableOn_gaussTail hx k
 
-/-- Integration by parts: `J_k(x) = e^(−x²)/(2 x^(2k+1)) − (2k+1)/2 · J_{k+1}(x)`.-/
+/-- Integration by parts: `J_k(x) = e^(−x²)/(2 x^(2k+1)) − (2k+1)/2 · J_{k+1}(x)`.
+@isnad1 id=eq.1h2v.s7.44479694f65c from=translated src=- shape=65d87ca3 vocab=1c93059c
+-/
 theorem gaussTail_succ {x : ℝ} (hx : 0 < x) (k : ℕ) :
     gaussTail k x
       = exp (-x ^ 2) / (2 * x ^ (2 * k + 1)) - (2 * k + 1) / 2 * gaussTail (k + 1) x := by
@@ -187,7 +204,9 @@ theorem gaussTail_succ {x : ℝ} (hx : 0 < x) (k : ℕ) :
   rw [key]
   ring
 
-/-- `J_k(x) ≤ e^(−x²) / (2 x^(2k+1))`.-/
+/-- `J_k(x) ≤ e^(−x²) / (2 x^(2k+1))`.
+@isnad1 id=le.1h2v.s6.2ca58edb15a6 from=translated src=- shape=a46afd4f vocab=db80b7c7
+-/
 theorem gaussTail_le {x : ℝ} (hx : 0 < x) (k : ℕ) :
     gaussTail k x ≤ exp (-x ^ 2) / (2 * x ^ (2 * k + 1)) := by
   have h := gaussTail_succ hx k
@@ -200,9 +219,14 @@ theorem gaussTail_le {x : ℝ} (hx : 0 < x) (k : ℕ) :
 /-- `c_j = (2j)! / (j! 4^j) = (2j−1)!! / 2^j`, the magnitude of the `j`-th coefficient of (4.37).-/
 noncomputable def erfcCoeff (j : ℕ) : ℝ := (2 * j).factorial / (j.factorial * 4 ^ j)
 
+/--
+@isnad1 id=lt.0h1v.s3.a81d2da0cbdf from=translated src=- shape=b9369acb vocab=c32b9880
+-/
 theorem erfcCoeff_pos (j : ℕ) : 0 < erfcCoeff j := by unfold erfcCoeff; positivity
 
-/-- `c_{j+1} = c_j (2j+1)/2`.-/
+/-- `c_{j+1} = c_j (2j+1)/2`.
+@isnad1 id=eq.0h1v.s6.195ee3c70083 from=translated src=- shape=73d195e5 vocab=33f9bb67
+-/
 theorem erfcCoeff_succ (j : ℕ) : erfcCoeff (j + 1) = erfcCoeff j * ((2 * j + 1) / 2) := by
   unfold erfcCoeff
   rw [show 2 * (j + 1) = 2 * j + 1 + 1 by ring, Nat.factorial_succ, Nat.factorial_succ,
@@ -211,6 +235,9 @@ theorem erfcCoeff_succ (j : ℕ) : erfcCoeff (j + 1) = erfcCoeff j * ((2 * j + 1
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h0v.s3.a384084f46dd from=translated src=- shape=1ac31801 vocab=880cc91e
+-/
 theorem erfcCoeff_zero : erfcCoeff 0 = 1 := by simp [erfcCoeff]
 
 /-- The `j`-th term of (4.37): `(−1)^j c_j e^(−x²) / (√π x^(2j+1))`.-/
@@ -221,6 +248,9 @@ noncomputable def erfcTerm (j : ℕ) (x : ℝ) : ℝ :=
 noncomputable def erfcRem (k : ℕ) (x : ℝ) : ℝ :=
   2 / Real.sqrt π * ((-1) ^ k * erfcCoeff k) * gaussTail k x
 
+/--
+@isnad1 id=eq.1h2v.s5.8e8117748fce from=translated src=- shape=f8404ca8 vocab=0d252e12
+-/
 theorem erfcRem_succ {x : ℝ} (hx : 0 < x) (k : ℕ) :
     erfcRem k x = erfcTerm k x + erfcRem (k + 1) x := by
   unfold erfcRem erfcTerm
@@ -229,14 +259,18 @@ theorem erfcRem_succ {x : ℝ} (hx : 0 < x) (k : ℕ) :
   field_simp
   ring
 
-/-- (4.37): `erfc x = ∑_{j<k} (−1)^j c_j e^(−x²)/(√π x^(2j+1)) + R_k(x)`.-/
+/-- (4.37): `erfc x = ∑_{j<k} (−1)^j c_j e^(−x²)/(√π x^(2j+1)) + R_k(x)`.
+@isnad1 id=eq.1h2v.s5.32d6998f6bc2 from=translated src=- shape=21a99238 vocab=750a96fe
+-/
 theorem erfc_eq_sum_add_rem {x : ℝ} (hx : 0 < x) (k : ℕ) :
     erfc x = ∑ j ∈ range k, erfcTerm j x + erfcRem k x := by
   induction k with
   | zero => simp [erfc, erfcRem, erfcCoeff_zero]
   | succ k ih => rw [sum_range_succ, ih, erfcRem_succ hx k]; ring
 
-/-- The error is bounded by the next term: `|R_k(x)| ≤ |t_k(x)|`.-/
+/-- The error is bounded by the next term: `|R_k(x)| ≤ |t_k(x)|`.
+@isnad1 id=le.1h2v.s5.c0453b9c6b34 from=translated src=- shape=965973b5 vocab=d2f596b3
+-/
 theorem abs_erfcRem_le_abs_term {x : ℝ} (hx : 0 < x) (k : ℕ) :
     |erfcRem k x| ≤ |erfcTerm k x| := by
   have hπ : 0 < Real.sqrt π := Real.sqrt_pos.mpr pi_pos
@@ -257,7 +291,9 @@ theorem abs_erfcRem_le_abs_term {x : ℝ} (hx : 0 < x) (k : ℕ) :
     _ = erfcCoeff k * exp (-x ^ 2) / (Real.sqrt π * x ^ (2 * k + 1)) := by
         field_simp
 
-/-- `R_k(x)` has the sign `(−1)^k`.-/
+/-- `R_k(x)` has the sign `(−1)^k`.
+@isnad1 id=lt.1h2v.s5.1dab1165ac0e from=translated src=- shape=77aba72e vocab=54818587
+-/
 theorem sign_erfcRem {x : ℝ} (hx : 0 < x) (k : ℕ) : 0 < (-1) ^ k * erfcRem k x := by
   unfold erfcRem
   have hsq : ((-1 : ℝ) ^ k) * ((-1) ^ k) = 1 := by rw [← mul_pow]; simp
@@ -268,7 +304,9 @@ theorem sign_erfcRem {x : ℝ} (hx : 0 < x) (k : ℕ) : 0 < (-1) ^ k * erfcRem k
     _ = (-1) ^ k * (2 / Real.sqrt π * ((-1) ^ k * erfcCoeff k) * gaussTail k x) := by
         linear_combination (-(2 / Real.sqrt π * erfcCoeff k * gaussTail k x)) * hsq
 
-/-- `erfc x ≤ e^(−x²) / (x √π)`: the leading term is an upper bound.-/
+/-- `erfc x ≤ e^(−x²) / (x √π)`: the leading term is an upper bound.
+@isnad1 id=le.1h1v.s5.1e2a60c762ce from=translated src=- shape=59600ba2 vocab=d22efbf5
+-/
 theorem erfc_le_leading {x : ℝ} (hx : 0 < x) : erfc x ≤ exp (-x ^ 2) / (x * Real.sqrt π) := by
   have h := gaussTail_le hx 0
   have hπ : 0 < Real.sqrt π := Real.sqrt_pos.mpr pi_pos
@@ -277,7 +315,9 @@ theorem erfc_le_leading {x : ℝ} (hx : 0 < x) : erfc x ≤ exp (-x ^ 2) / (x * 
   calc 2 / Real.sqrt π * gaussTail 0 x ≤ 2 / Real.sqrt π * (exp (-x ^ 2) / (2 * x)) := by gcongr
     _ = exp (-x ^ 2) / (x * Real.sqrt π) := by field_simp
 
-/-- `erfc x ≥ e^(−x²)/(x√π) · (1 − 1/(2x²))`: two terms of (4.37) bracket `erfc x`.-/
+/-- `erfc x ≥ e^(−x²)/(x√π) · (1 − 1/(2x²))`: two terms of (4.37) bracket `erfc x`.
+@isnad1 id=le.1h1v.s6.28f04b5ecb66 from=translated src=- shape=bbeda945 vocab=40e5e477
+-/
 theorem leading_mul_le_erfc {x : ℝ} (hx : 0 < x) :
     exp (-x ^ 2) / (x * Real.sqrt π) * (1 - 1 / (2 * x ^ 2)) ≤ erfc x := by
   have h := erfc_eq_sum_add_rem hx 2
@@ -301,7 +341,9 @@ theorem leading_mul_le_erfc {x : ℝ} (hx : 0 < x) :
 `c_j / x^(2j) = (2j)! / (j! (2x)^(2j))`.-/
 noncomputable def erfcTermMag (j : ℕ) (x : ℝ) : ℝ := erfcCoeff j / x ^ (2 * j)
 
-/-- The terms of (4.37) decrease while `2j + 1 < 2x²` (i.e. `j + 1 < x² + 1/2`).-/
+/-- The terms of (4.37) decrease while `2j + 1 < 2x²` (i.e. `j + 1 < x² + 1/2`).
+@isnad1 id=lt.2h2v.s6.54042ca0523e from=translated src=- shape=33612bf5 vocab=abb5e706
+-/
 theorem erfcTermMag_succ_lt {x : ℝ} (hx : 0 < x) {j : ℕ} (hj : 2 * (j : ℝ) + 1 < 2 * x ^ 2) :
     erfcTermMag (j + 1) x < erfcTermMag j x := by
   unfold erfcTermMag
@@ -312,7 +354,9 @@ theorem erfcTermMag_succ_lt {x : ℝ} (hx : 0 < x) {j : ℕ} (hj : 2 * (j : ℝ)
   have hcx := mul_pos hc hxj
   nlinarith [hcx, hj]
 
-/-- The terms `x^(2j)/j!` of (4.22) increase while `j + 1 ≤ x²`.-/
+/-- The terms `x^(2j)/j!` of (4.22) increase while `j + 1 ≤ x²`.
+@isnad1 id=le.1h2v.s7.c88d047b21a2 from=translated src=- shape=275170f9 vocab=975ff2ed
+-/
 theorem pow_div_factorial_le_succ {x : ℝ} {j : ℕ} (hj : (j : ℝ) + 1 ≤ x ^ 2) :
     x ^ (2 * j) / j.factorial ≤ x ^ (2 * (j + 1)) / (j + 1).factorial := by
   rw [Nat.factorial_succ, show 2 * (j + 1) = 2 * j + 2 by ring, pow_add]
@@ -323,7 +367,9 @@ theorem pow_div_factorial_le_succ {x : ℝ} {j : ℕ} (hj : (j : ℝ) + 1 ≤ x 
   have hx2 : 0 ≤ x ^ (2 * j) := Even.pow_nonneg (even_two_mul j) x
   nlinarith [mul_nonneg hx2 hf.le]
 
-/-- Stirling: `c_j ≤ (e/√π) (j/e)^j` for `j ≥ 1`.-/
+/-- Stirling: `c_j ≤ (e/√π) (j/e)^j` for `j ≥ 1`.
+@isnad1 id=le.1h1v.s6.13367892a419 from=translated src=- shape=effd4638 vocab=85598d90
+-/
 theorem erfcCoeff_le_stirling {j : ℕ} (hj : 1 ≤ j) :
     erfcCoeff j ≤ exp 1 / Real.sqrt π * (j / exp 1) ^ j := by
   unfold erfcCoeff
@@ -350,7 +396,9 @@ theorem erfcCoeff_le_stirling {j : ℕ} (hj : 1 ≤ j) :
     _ ≤ exp 1 / Real.sqrt π * (j / exp 1) ^ j * (j.factorial * 4 ^ j) := by gcongr
 
 /-- The terms of (4.37) are at most `(e/√π) (j / (e x²))^j`, and at most `(e/√π) e^(−j)` for
-`j ≤ x²`: the smallest term is of order `e^(−x²)`.-/
+`j ≤ x²`: the smallest term is of order `e^(−x²)`.
+@isnad1 id=and.2h2v.s7.de3d591b9515 from=translated src=- shape=09331243 vocab=c851bc68
+-/
 theorem erfcTermMag_le {x : ℝ} (hx : 0 < x) {j : ℕ} (hj : 1 ≤ j) :
     erfcTermMag j x ≤ exp 1 / Real.sqrt π * (j / (exp 1 * x ^ 2)) ^ j ∧
       ((j : ℝ) ≤ x ^ 2 → erfcTermMag j x ≤ exp 1 / Real.sqrt π * exp (-(j : ℝ))) := by
@@ -375,7 +423,9 @@ theorem erfcTermMag_le {x : ℝ} (hx : 0 < x) {j : ℕ} (hj : 1 ≤ j) :
 /-! ### Algorithm 4.2 `Erf`: the bookkeeping -/
 
 /-- The `j₀` criterion for the series (4.22)/(4.23): if `n ln 2 ≤ j (ln j − 2 ln x − 1)` then
-`x^(2j)/j! ≤ 2^(−n)` (Stirling's lower bound `j! ≥ (j/e)^j`).-/
+`x^(2j)/j! ≤ 2^(−n)` (Stirling's lower bound `j! ≥ (j/e)^j`).
+@isnad1 id=le.3h3v.s7.b70b88e02009 from=translated src=- shape=2b397d1e vocab=d1541f87
+-/
 theorem erfSeriesTerm_le_two_pow {x : ℝ} (hx : 0 < x) {j : ℕ} (hj : 1 ≤ j) {n : ℕ}
     (h : (n : ℝ) * Real.log 2 ≤ j * (Real.log j - 2 * Real.log x - 1)) :
     x ^ (2 * j) / j.factorial ≤ (2 : ℝ) ^ (-(n : ℤ)) := by
@@ -410,14 +460,18 @@ theorem erfSeriesTerm_le_two_pow {x : ℝ} (hx : 0 < x) {j : ℕ} (hj : 1 ≤ j)
         exact exp_le_exp.mpr (by linarith)
 
 /-- `m` bits of `erfc x` give `n` bits of `erf x = 1 − erfc x`: an approximation `t` of `erfc x`
-with absolute error `ε` gives `1 − t` with the same absolute error.-/
+with absolute error `ε` gives `1 − t` with the same absolute error.
+@isnad1 id=le.1h3v.s5.8b432cb5a0d2 from=translated src=- shape=414b5717 vocab=5136cdef
+-/
 theorem erf_error_of_erfc (x t ε : ℝ) (h : |t - erfc x| ≤ ε) : |(1 - t) - erf x| ≤ ε := by
   unfold erf
   rw [show (1 - t) - (1 - erfc x) = -(t - erfc x) by ring, abs_neg]
   exact h
 
 /-- The condition of Algorithm `Erf` (with a cruder constant): if `(m + 4) ln 2 ≤ x²` then (4.37)
-with `k = ⌊x²⌋` terms has relative error at most `2^(−m)`.-/
+with `k = ⌊x²⌋` terms has relative error at most `2^(−m)`.
+@isnad1 id=le.2h2v.s7.9ca58ec63bbc from=translated src=- shape=a6c693f9 vocab=b8e09c64
+-/
 theorem asymptotic_gives_bits {x : ℝ} (hx : 1 ≤ x) {m : ℕ}
     (hm : ((m : ℝ) + 4) * Real.log 2 ≤ x ^ 2) :
     |erfcRem ⌊x ^ 2⌋₊ x| ≤ (2 : ℝ) ^ (-(m : ℤ)) * erfc x := by

@@ -62,6 +62,9 @@ def NonzeroIntRandomGen.next (ig : NonzeroIntRandomGen) : Int × NonzeroIntRando
 instance : RandomGen NonzeroIntRandomGen Int where
   next := NonzeroIntRandomGen.next
 
+/--
+@isnad1 id=match1.0h1v.s4.034ebe7d92c1 from=translated src=- shape=014f1214 vocab=316d149c
+-/
 theorem nonzero_int_random_gen_nonzero (ig : NonzeroIntRandomGen) :
     let (v, _) := NonzeroIntRandomGen.next ig
     v ≠ 0 := by

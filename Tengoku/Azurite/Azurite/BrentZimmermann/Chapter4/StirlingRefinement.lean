@@ -33,7 +33,9 @@ namespace BZ
 open Real Filter Topology Finset
 
 /-- `log s_{n+1} − log s_{n+2} ≤ 1/(12(n+1)) − 1/(12(n+2))` for the Stirling sequence
-`s_n = n!/(√(2n) (n/e)^n)`.-/
+`s_n = n!/(√(2n) (n/e)^n)`.
+@isnad1 id=le.0h1v.s7.f576edc2ce9a from=translated src=- shape=609869ce vocab=bb48763b
+-/
 theorem log_stirlingSeq_sdiff_le_telescoping (n : ℕ) :
     Real.log (Stirling.stirlingSeq (n + 1)) - Real.log (Stirling.stirlingSeq (n + 2))
       ≤ 1 / (12 * ((n : ℝ) + 1)) - 1 / (12 * ((n : ℝ) + 2)) := by
@@ -77,7 +79,9 @@ theorem log_stirlingSeq_sdiff_le_telescoping (n : ℕ) :
     push_cast
     ring
 
-/-- `log s_{n+1} − log √π ≤ 1/(12(n+1))`.-/
+/-- `log s_{n+1} − log √π ≤ 1/(12(n+1))`.
+@isnad1 id=le.0h1v.s6.41dc58bfbefe from=translated src=- shape=4d67b32f vocab=086461fc
+-/
 theorem log_stirlingSeq_sub_log_sqrt_pi_le (n : ℕ) :
     Real.log (Stirling.stirlingSeq (n + 1)) - Real.log (Real.sqrt π)
       ≤ 1 / (12 * ((n : ℝ) + 1)) := by
@@ -109,7 +113,9 @@ theorem log_stirlingSeq_sub_log_sqrt_pi_le (n : ℕ) :
   linarith [hfin M]
 
 /-- Stirling's formula with the `e^(1/(12n))` refinement: `n! ≤ √(2πn) (n/e)^n e^(1/(12n))` for
-`n ≥ 1` (the matching lower bound is Mathlib's `Stirling.le_factorial_stirling`).-/
+`n ≥ 1` (the matching lower bound is Mathlib's `Stirling.le_factorial_stirling`).
+@isnad1 id=le.1h1v.s7.a4204d4a3801 from=translated src=- shape=75641bd5 vocab=6e9004b1
+-/
 theorem factorial_le_stirling_refined {n : ℕ} (hn : 1 ≤ n) :
     (n.factorial : ℝ) ≤ Real.sqrt (2 * π * n) * (n / exp 1) ^ n * exp (1 / (12 * n)) := by
   obtain ⟨m, rfl⟩ : ∃ m, n = m + 1 := ⟨n - 1, by omega⟩

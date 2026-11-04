@@ -52,7 +52,9 @@ open Finset
 
 /-- **Cohen–Lenstra Lemma (7.23)** (prime-divisor form): if
 `a^((n−1)/2) ≡ −1 (mod n)` then every prime `r ∣ n` satisfies
-`v_2(r − 1) ≥ v_2(n − 1)`, with equality iff `(a/r) = −1`.-/
+`v_2(r − 1) ≥ v_2(n − 1)`, with equality iff `(a/r) = −1`.
+@isnad1 id=and.3h3v.s7.abac57b43585 from=translated src=- shape=d562f401 vocab=34fab6a2
+-/
 theorem lemma_7_23 {n r : ℕ} [hrF : Fact r.Prime] {a : ℤ}
     (hodd : Odd n)
     (ha : Int.ModEq (n : ℤ) (a ^ ((n - 1) / 2)) (-1))
@@ -195,7 +197,9 @@ theorem lemma_7_23 {n r : ℕ} [hrF : Fact r.Prime] {a : ℤ}
 /-- **Cohen–Lenstra Proposition (7.24)**: if `n ≡ 1 (mod 4)` and
 some `a` satisfies `a^((n−1)/2) ≡ −1 (mod n)`, then condition (6.4)
 holds for `p = 2` — at finite level, every prime `r ∣ n` is a power
-of `n` modulo `2^D` for every depth `D`.-/
+of `n` modulo `2^D` for every depth `D`.
+@isnad1 id=ex.5h4v.s7.ab4e33398d8b from=translated src=- shape=05ed8573 vocab=db1d0b16
+-/
 theorem proposition_7_24 {n : ℕ} (hn1 : 1 < n) (hmod : n % 4 = 1)
     {a : ℤ} (ha : Int.ModEq (n : ℤ) (a ^ ((n - 1) / 2)) (-1))
     {r : ℕ} (hr : r.Prime) (hrn : r ∣ n) :
@@ -242,7 +246,9 @@ theorem proposition_7_24 {n : ℕ} (hn1 : 1 < n) (hmod : n % 4 = 1)
 `2^((n−1)/2) ≡ −1 (mod n)`, then condition (6.4) holds for `p = 2`.
 Every prime `r ∣ n` is `≡ 1` or `≡ n (mod 8)` (by (7.23) and the
 supplementary law), and the `2`-adic engine with base `n²` (whose
-`v_2(n² − 1) = 3` exactly) captures `r` or `r·n`.-/
+`v_2(n² − 1) = 3` exactly) captures `r` or `r·n`.
+@isnad1 id=ex.4h3v.s7.0634a2668074 from=translated src=- shape=d4be2aca vocab=b278b4b6
+-/
 theorem proposition_7_25 {n : ℕ} (hmod : n % 8 = 3)
     (ha : Int.ModEq (n : ℤ) ((2 : ℤ) ^ ((n - 1) / 2)) (-1))
     {r : ℕ} (hr : r.Prime) (hrn : r ∣ n) :

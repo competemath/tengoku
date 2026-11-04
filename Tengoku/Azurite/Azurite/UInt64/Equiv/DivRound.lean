@@ -53,7 +53,9 @@ private lemma ceil_nat_div_nat_of_not_dvd (v n : ℕ) (hn : 0 < n) (h : ¬ n ∣
       · exact hn_real_pos
     linarith
 
-/-- Value component of `divRound`.-/
+/-- Value component of `divRound`.
+@isnad1 id=eq.0h3v.s8.e7d2d07b7660 from=translated src=- shape=788565b2 vocab=5335f1a0
+-/
 theorem divRound_fst (x y : UInt64) (mode : RoundingMode) :
     (x.divRound y mode).1 =
       if x % y == 0 then x / y
@@ -72,7 +74,9 @@ theorem divRound_fst (x y : UInt64) (mode : RoundingMode) :
   cases mode <;> simp only [] <;> split_ifs <;>
     first | rfl | (cases compare (y >>> 1) (x % y) <;> rfl)
 
-/-- Ordering component of `divRound`.-/
+/-- Ordering component of `divRound`.
+@isnad1 id=eq.0h3v.s7.19eefe98e3b3 from=translated src=- shape=84e33798 vocab=61bc4c1c
+-/
 theorem divRound_snd (x y : UInt64) (mode : RoundingMode) :
     (x.divRound y mode).2 =
       if x % y == 0 then .eq
@@ -140,7 +144,9 @@ private lemma compare_uint64_eq {a b : UInt64} (h : a = b) : compare a b = .eq :
 
 For any rounding mode and nonzero divisor, the word-level `divRound` on `UInt64`
 agrees with the abstract `round` of `x.toNat / y.toNat` against the rounding
-target `natBotSet ⊆ EReal`.-/
+target `natBotSet ⊆ EReal`.
+@isnad1 id=eq.1h3v.s6.0b0cc53bdd56 from=translated src=- shape=3c6a8fe9 vocab=1fd8cfff
+-/
 theorem toNat_divRound (x y : UInt64) (mode : RoundingMode) (hy : 0 < y.toNat) :
     (((x.divRound y mode).1).toNat : EReal) =
       (round natBotSet mode ((x.toNat : ℝ) / (y.toNat : ℝ))).val := by
@@ -463,7 +469,9 @@ private lemma compare_nat_mul_div_eq_compare_real_div (n m yn : ℕ) (hyn : 0 < 
 /-- **Ordering tag correctness for `UInt64.divRound`.**
 
 The ordering in `(x.divRound y mode).2` records the relation between the rounded
-value and the true real value `x.toNat / y.toNat`.-/
+value and the true real value `x.toNat / y.toNat`.
+@isnad1 id=eq.1h3v.s5.62626165403b from=translated src=- shape=47ccc059 vocab=5c34abb7
+-/
 theorem snd_divRound (x y : UInt64) (mode : RoundingMode) (hy : 0 < y.toNat) :
     (x.divRound y mode).2 =
       compare (((x.divRound y mode).1.toNat : ℕ) : ℝ)

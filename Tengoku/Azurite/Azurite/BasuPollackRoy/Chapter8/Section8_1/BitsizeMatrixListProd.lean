@@ -34,7 +34,9 @@ namespace Azurite.BPR
 /-- **BPR §8.1 (unnumbered lemma).** The product of `m ≥ 1` matrices
     over `ℤ` of size `n × n`, each with entry bitsizes bounded by `τ`,
     has every entry bounded in bitsize by `m * (τ + Nat.size n)`, where
-    `n := Fintype.card ν` is the matrix dimension.-/
+    `n := Fintype.card ν` is the matrix dimension.
+@isnad1 id=le.2h5v.s7.d9a8b8237c26 from=translated src=- shape=2937a676 vocab=79e7ad86
+-/
 theorem Matrix.bitsize_list_prod_le {ν : Type _} [Fintype ν] [DecidableEq ν]
     {Ms : List (Matrix ν ν ℤ)} {τ : ℕ}
     (h_ne : Ms ≠ [])

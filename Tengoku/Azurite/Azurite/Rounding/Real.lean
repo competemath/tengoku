@@ -30,11 +30,15 @@ def realSet : Set EReal := {e | ∃ x : ℝ, (x : EReal) = e}
 /-- Given `a : ↥realSet`, recover the underlying real. Noncomputable.-/
 noncomputable def toReal (a : ↥realSet) : ℝ := Classical.choose a.property
 
-/-- The defining spec of `toReal`: its real-cast equals the underlying value.-/
+/-- The defining spec of `toReal`: its real-cast equals the underlying value.
+@isnad1 id=eq.0h1v.s4.3c7fc9742c5f from=translated src=- shape=4e86b38d vocab=aa65bb76
+-/
 lemma toReal_spec (a : ↥realSet) : ((toReal a : ℝ) : EReal) = a.val :=
   Classical.choose_spec a.property
 
-/-- If `a : ↥realSet` has value `((x : ℝ) : EReal)`, then `toReal a = x`.-/
+/-- If `a : ↥realSet` has value `((x : ℝ) : EReal)`, then `toReal a = x`.
+@isnad1 id=eq.1h2v.s4.5690fa98d7fb from=translated src=- shape=f6072553 vocab=64ce87f8
+-/
 lemma toReal_eq_of_val {a : ↥realSet} {x : ℝ} (h : ((x : ℝ) : EReal) = a.val) :
     toReal a = x := by
   have hsp := toReal_spec a

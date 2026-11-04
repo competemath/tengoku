@@ -51,7 +51,9 @@ noncomputable def pdetRing (n : ℕ) (P : Fin m → D[X]) : D[X] :=
 
 /-- **The polynomial determinant commutes with any ring homomorphism.** Mapping
     the coefficients of each `P_i` through `φ : D →+* E` and then taking the
-    determinant equals taking the determinant and then mapping the result.-/
+    determinant equals taking the determinant and then mapping the result.
+@isnad1 id=eq.0h6v.s6.3f764740f34b from=translated src=- shape=9bf97a15 vocab=24803251
+-/
 theorem pdetRing_map {E : Type*} [CommRing E] (φ : D →+* E) (n : ℕ) (P : Fin m → D[X]) :
     pdetRing n (fun r => (P r).map φ) = (pdetRing n P).map φ := by
   rw [pdetRing, pdetRing, Polynomial.map_sum]
@@ -68,7 +70,9 @@ theorem pdetRing_map {E : Type*} [CommRing E] (φ : D →+* E) (n : ℕ) (P : Fi
 end Ring
 
 /-- The polynomial determinant of integer polynomials, mapped into `ℚ[X]`, is the
-    polynomial determinant of the corresponding rational polynomials.-/
+    polynomial determinant of the corresponding rational polynomials.
+@isnad1 id=eq.0h3v.s6.456ebaa74285 from=translated src=- shape=85684c04 vocab=e837b4ae
+-/
 theorem pdetRing_intCast_rat (n : ℕ) (P : Fin m → ℤ[X]) :
     pdetRing n (fun r => (P r).map (Int.castRingHom ℚ))
       = (pdetRing n P).map (Int.castRingHom ℚ) :=

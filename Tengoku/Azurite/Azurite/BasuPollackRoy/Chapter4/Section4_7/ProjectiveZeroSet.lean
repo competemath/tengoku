@@ -44,7 +44,9 @@ set_option linter.unusedSectionVars false in
 /-- **Well-definedness of `P(x) = 0`.** For a multihomogeneous `P`, vanishing at a tuple of
 homogeneous coordinates depends only on the point of `∏ᵢ ℙ_{k_i}(C)` it represents, not on the
 choice of coordinates: if `v i` and `w i` span the same line for every `i`, then `P` vanishes at
-`v` iff it vanishes at `w`.-/
+`v` iff it vanishes at `w`.
+@isnad1 id=iff.4h7v.s10.54551237236b from=translated src=- shape=b4d1ade8 vocab=3c501f65
+-/
 theorem evalCoords_eq_zero_iff_of_mkLine_eq
     {P : MvPolynomial ((i : Fin m) × Fin (k i + 1)) (Ri R)} {d : Fin m → ℕ}
     (hP : IsMultihomogeneous P d) {v w : (i : Fin m) → (Fin (k i + 1) → Ri R)}

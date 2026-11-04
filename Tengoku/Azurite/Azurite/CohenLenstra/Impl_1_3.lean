@@ -90,7 +90,9 @@ namespace CL
 /-- **The (1.3)(f) claim**: `n^t ≡ 1 (mod s₁·s₂)` for even `t`,
 `s₁ ∣ (n−1)(n+1)` (the `f^−·f^+`-side, where `n² ≡ 1`), and the
 `s₂`-side congruence supplied by Proposition (4.1).  The even-`t`
-requirement of (1.1)(a) is exactly what the `n+1`-side needs.-/
+requirement of (1.1)(a) is exactly what the `n+1`-side needs.
+@isnad1 id=modeq.5h4v.s6.1aed2da9c309 from=translated src=- shape=1bd06274 vocab=24923039
+-/
 theorem pow_even_modEq_one_mul {n t s₁ s₂ : ℕ} (hn : 1 ≤ n)
     (ht : 2 ∣ t) (hs1 : s₁ ∣ (n - 1) * (n + 1))
     (hs2 : n ^ t ≡ 1 [MOD s₂]) (hco : Nat.Coprime s₁ s₂) :
@@ -116,7 +118,9 @@ theorem pow_even_modEq_one_mul {n t s₁ s₂ : ℕ} (hn : 1 ≤ n)
 `n = 4u + 3`, the corrected table `j₀ = j²q, j₃ = j²` yields
 `j₀^u·j₃ = j^(2u+2)·q^u` with exponents `(n+1)/2` and `(n−3)/4` —
 matching test (9.6) (our Theorem (9.5)); the 1984 entry `j₃ = j`
-would give the wrong exponent `2u + 1`.-/
+would give the wrong exponent `2u + 1`.
+@isnad1 id=and.1h1v.s7.fbbae5789938 from=translated src=- shape=5aa85e15 vocab=699d7eb5
+-/
 theorem b2e_erratum_exponents {n : ℕ} (hn : n % 4 = 3) :
     2 * (n / 4) + 2 = (n + 1) / 2 ∧ n / 4 = (n - 3) / 4 := by
   omega

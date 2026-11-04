@@ -66,7 +66,9 @@ noncomputable def aliasSum (a : ℕ → ℂ) (j k : ℕ) : ℂ :=
   (1 / k : ℂ) * ∑ m ∈ range k,
     (∑' l : ℕ, a l * (exp (2 * Real.pi * I / k) ^ m) ^ l) * (exp (2 * Real.pi * I / k))⁻¹ ^ (j * m)
 
-/-- Orthogonality of the roots of unity: `∑_{m<k} (ζ^d)^m = k` if `k ∣ d`, else `0`.-/
+/-- Orthogonality of the roots of unity: `∑_{m<k} (ζ^d)^m = k` if `k ∣ d`, else `0`.
+@isnad1 id=eq.1h3v.s6.8d05f3635f56 from=translated src=- shape=025067c8 vocab=7a3e4e63
+-/
 theorem sum_zpow_primitiveRoot {ζ : ℂ} {k : ℕ} (hζ : IsPrimitiveRoot ζ k) (d : ℤ) :
     ∑ m ∈ range k, (ζ ^ d) ^ m = if (k : ℤ) ∣ d then (k : ℂ) else 0 := by
   split_ifs with h
@@ -76,12 +78,17 @@ theorem sum_zpow_primitiveRoot {ζ : ℂ} {k : ℕ} (hζ : IsPrimitiveRoot ζ k)
     rw [geom_sum_eq hne, ← zpow_natCast, ← zpow_mul, mul_comm, zpow_mul, zpow_natCast,
       hζ.pow_eq_one, one_zpow, sub_self, zero_div]
 
+/--
+@isnad1 id=summable.2h4v.s6.20102a5066ba from=translated src=- shape=7f051083 vocab=0e37dc9f
+-/
 theorem summable_mul_zpow_pow (ha : Summable fun l => ‖a l‖) {ζ : ℂ} (hζ : ‖ζ‖ = 1) (d : ℤ)
     (m : ℕ) : Summable fun l : ℕ => a l * (ζ ^ ((l : ℤ) - d)) ^ m :=
   Summable.of_norm_bounded ha fun l => by
     rw [norm_mul, norm_pow, norm_zpow, hζ, one_zpow, one_pow, mul_one]
 
-/-- `S_{j,k} = ∑_{m≥0} a_{j+mk}` for `j < k`: the discrete sum aliases the coefficients.-/
+/-- `S_{j,k} = ∑_{m≥0} a_{j+mk}` for `j < k`: the discrete sum aliases the coefficients.
+@isnad1 id=eq.2h3v.s6.89dd4982c0b9 from=translated src=- shape=ab7540c9 vocab=415389a3
+-/
 theorem aliasSum_eq_tsum (ha : Summable fun l => ‖a l‖) {j k : ℕ} (hjk : j < k) :
     aliasSum a j k = ∑' m : ℕ, a (j + m * k) := by
   have hk : 0 < k := by omega
@@ -146,7 +153,9 @@ theorem aliasSum_eq_tsum (ha : Summable fun l => ‖a l‖) {j k : ℕ} (hjk : j
           exact ⟨m, by ring⟩
     _ = _ := hinj.tsum_eq hsupp
 
-/-- (4.85): `S_{j,k} − a_j = ∑_{m≥1} a_{j+mk}` for `j < k`.-/
+/-- (4.85): `S_{j,k} − a_j = ∑_{m≥1} a_{j+mk}` for `j < k`.
+@isnad1 id=eq.2h3v.s6.a511e492f747 from=translated src=- shape=5fed9f0c vocab=4b8a7325
+-/
 theorem aliasSum_sub_eq (ha : Summable fun l => ‖a l‖) {j k : ℕ} (hjk : j < k) :
     aliasSum a j k - a j = ∑' m : ℕ, a (j + (m + 1) * k) := by
   have hk : 0 < k := by omega
@@ -159,13 +168,17 @@ theorem aliasSum_sub_eq (ha : Summable fun l => ‖a l‖) {j k : ℕ} (hjk : j 
   simp only [zero_mul, add_zero]
   ring
 
-/-- Coefficients bounded by `C r^l` are absolutely summable (`r < 1`).-/
+/-- Coefficients bounded by `C r^l` are absolutely summable (`r < 1`).
+@isnad1 id=summable.3h3v.s6.92c8e12d6c97 from=translated src=- shape=94fb38fe vocab=17881ecb
+-/
 theorem summable_norm_of_le {C r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1) (hC : ∀ l, ‖a l‖ ≤ C * r ^ l) :
     Summable fun l => ‖a l‖ :=
   ((summable_geometric_of_lt_one hr0 hr1).mul_left C).of_nonneg_of_le (fun _ => norm_nonneg _) hC
 
 /-- The error of (4.84): with `‖a_l‖ ≤ C r^l`, `r < 1`, `‖S_{j,k} − a_j‖ ≤ C r^(j+k)/(1 − r^k)`
-(the text's `O((R − δ)^(−(j+k)))` with `r = 1/(R − δ)`).-/
+(the text's `O((R − δ)^(−(j+k)))` with `r = 1/(R − δ)`).
+@isnad1 id=le.4h5v.s7.71c2a3742ea4 from=translated src=- shape=5e6f41c6 vocab=514d80ae
+-/
 theorem norm_aliasSum_sub_le {C r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1)
     (hC : ∀ l, ‖a l‖ ≤ C * r ^ l) {j k : ℕ} (hjk : j < k) :
     ‖aliasSum a j k - a j‖ ≤ C * r ^ (j + k) / (1 - r ^ k) := by
@@ -197,14 +210,22 @@ theorem norm_aliasSum_sub_le {C r : ℝ} (hr0 : 0 ≤ r) (hr1 : r < 1)
 noncomputable def bernoulliCoeff (l : ℕ) : ℂ :=
   ((PowerSeries.coeff l scaledBernoulliPowerSeries : ℚ) : ℂ)
 
+/--
+@isnad1 id=eq.0h1v.s4.704f58754339 from=translated src=- shape=b0d2f409 vocab=b76e34fe
+-/
 theorem bernoulliCoeff_two_mul (j : ℕ) : bernoulliCoeff (2 * j) = (scaledBernoulli j : ℂ) := by
   rw [bernoulliCoeff, coeff_scaledBernoulliPowerSeries_even]
 
+/--
+@isnad1 id=eq.0h1v.s5.b6397da449c0 from=translated src=- shape=2df47cae vocab=f01f1f13
+-/
 theorem bernoulliCoeff_odd (j : ℕ) : bernoulliCoeff (2 * j + 1) = 0 := by
   rw [bernoulliCoeff, coeff_scaledBernoulliPowerSeries_odd]
   simp
 
-/-- `a_l = B_l/l!` for `l ≠ 1` (the odd Bernoulli numbers beyond `B₁` vanish).-/
+/-- `a_l = B_l/l!` for `l ≠ 1` (the odd Bernoulli numbers beyond `B₁` vanish).
+@isnad1 id=eq.1h1v.s5.1a7872409757 from=translated src=- shape=5aa742eb vocab=60561e54
+-/
 theorem bernoulliCoeff_eq {l : ℕ} (hl : l ≠ 1) :
     bernoulliCoeff l = ((bernoulli l / l.factorial : ℚ) : ℂ) := by
   obtain ⟨j, rfl | rfl⟩ := Nat.even_or_odd' l
@@ -212,7 +233,9 @@ theorem bernoulliCoeff_eq {l : ℕ} (hl : l ≠ 1) :
   · rw [bernoulliCoeff_odd, bernoulli_eq_zero_of_odd ⟨j, by ring⟩ (by omega)]
     simp
 
-/-- The Cauchy-type bound `‖a_l‖ ≤ (π²/3) (2π)^(−l)` (radius of convergence `2π`).-/
+/-- The Cauchy-type bound `‖a_l‖ ≤ (π²/3) (2π)^(−l)` (radius of convergence `2π`).
+@isnad1 id=le.0h1v.s6.a553907352b9 from=translated src=- shape=03ea4901 vocab=00d9156f
+-/
 theorem norm_bernoulliCoeff_le (l : ℕ) :
     ‖bernoulliCoeff l‖ ≤ Real.pi ^ 2 / 3 * (1 / (2 * Real.pi)) ^ l := by
   have hpi := Real.pi_gt_three
@@ -230,7 +253,9 @@ theorem norm_bernoulliCoeff_le (l : ℕ) :
   · rw [bernoulliCoeff_odd, norm_zero]
     positivity
 
-/-- (4.87): `S_{2j,k} − B_{2j}/(2j)! = ∑_{m≥1} a_{2j+mk}` for `2j < k`.-/
+/-- (4.87): `S_{2j,k} − B_{2j}/(2j)! = ∑_{m≥1} a_{2j+mk}` for `2j < k`.
+@isnad1 id=eq.1h2v.s6.736c86437a2a from=translated src=- shape=3784eb09 vocab=91983881
+-/
 theorem bernoulli_aliasSum_sub_eq {j k : ℕ} (hjk : 2 * j < k) :
     aliasSum bernoulliCoeff (2 * j) k - (scaledBernoulli j : ℂ)
       = ∑' m : ℕ, bernoulliCoeff (2 * j + (m + 1) * k) := by
@@ -238,7 +263,9 @@ theorem bernoulli_aliasSum_sub_eq {j k : ℕ} (hjk : 2 * j < k) :
   exact aliasSum_sub_eq (summable_norm_of_le (by positivity)
     (by rw [div_lt_one (by positivity)]; linarith [Real.pi_gt_three]) norm_bernoulliCoeff_le) hjk
 
-/-- `‖B_{2j}/(2j)!‖ ≥ 2 (2π)^(−2j)` for `j ≥ 1`.-/
+/-- `‖B_{2j}/(2j)!‖ ≥ 2 (2π)^(−2j)` for `j ≥ 1`.
+@isnad1 id=le.1h1v.s6.94bf00ff6b98 from=translated src=- shape=03dc0be1 vocab=18e1a8fa
+-/
 theorem two_mul_le_norm_scaledBernoulli {j : ℕ} (hj : 1 ≤ j) :
     2 * (1 / (2 * Real.pi)) ^ (2 * j) ≤ ‖(scaledBernoulli j : ℂ)‖ := by
   rw [← Complex.ofReal_ratCast, Complex.norm_real, Real.norm_eq_abs, scaledBernoulli_eq_zeta hj,
@@ -251,7 +278,9 @@ theorem two_mul_le_norm_scaledBernoulli {j : ℕ} (hj : 1 ≤ j) :
   rw [one_mul, mul_assoc, one_div_mul_cancel hpos.ne', mul_one]
   linarith
 
-/-- The relative error of the contour method for `B_{2j}`: `O((2π)^(−k))`.-/
+/-- The relative error of the contour method for `B_{2j}`: `O((2π)^(−k))`.
+@isnad1 id=le.2h2v.s7.4b536d6e90cc from=translated src=- shape=39834b3d vocab=3189f811
+-/
 theorem norm_bernoulli_aliasSum_sub_le {j k : ℕ} (hj : 1 ≤ j) (hjk : 2 * j < k) :
     ‖aliasSum bernoulliCoeff (2 * j) k - (scaledBernoulli j : ℂ)‖
       ≤ Real.pi ^ 2 / 6 * (1 / (2 * Real.pi)) ^ k / (1 - (1 / (2 * Real.pi)) ^ k)

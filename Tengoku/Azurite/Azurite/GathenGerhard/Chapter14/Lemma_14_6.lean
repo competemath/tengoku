@@ -53,12 +53,17 @@ assertion of the lemma — is the type.-/
 def kthPowers (F : Type*) [Field F] (k : ℕ) : Subgroup Fˣ :=
   (powMonoidHom k : Fˣ →* Fˣ).range
 
+/--
+@isnad1 id=iff.0h3v.s7.54d345c0371d from=translated src=- shape=001171cc vocab=a33edec2
+-/
 theorem mem_kthPowers {k : ℕ} {a : Fˣ} :
     a ∈ kthPowers F k ↔ ∃ b : Fˣ, b ^ k = a :=
   Iff.rfl
 
 /-- The kernel of the `k`-th power homomorphism is the group of `k`-th
-roots of unity.-/
+roots of unity.
+@isnad1 id=eq.0h2v.s6.115fab751a85 from=translated src=- shape=1ecad5c7 vocab=ea06dec1
+-/
 theorem ker_powMonoidHom_eq_rootsOfUnity (k : ℕ) :
     (powMonoidHom k : Fˣ →* Fˣ).ker = rootsOfUnity k F := by
   ext a
@@ -89,7 +94,9 @@ private theorem nat_sandwich {a b k m : ℕ} (hk : 0 < k) (hm : 0 < m)
 /-- **GG Lemma 14.6.**  For `k ∣ q − 1`, the `k`-th powers `S ≤ F_q^×`
 satisfy: `#S = (q−1)/k` (part i, with `#ker σ_k = k` as the byproduct of
 the book's counting), and `S` is exactly the group of `(q−1)/k`-th roots
-of unity, i.e. `{a : a^((q−1)/k) = 1}` (part ii).-/
+of unity, i.e. `{a : a^((q−1)/k) = 1}` (part ii).
+@isnad1 id=and.2h2v.s8.a728080f0899 from=translated src=- shape=0ab161db vocab=d9b33edd
+-/
 theorem lemma_14_6 [Fintype F] {k : ℕ} (hk0 : k ≠ 0)
     (hk : k ∣ Fintype.card F - 1) :
     Nat.card (kthPowers F k) = (Fintype.card F - 1) / k ∧
@@ -136,14 +143,18 @@ theorem lemma_14_6 [Fintype F] {k : ℕ} (hk0 : k ≠ 0)
     (le_trans (card_rootsOfUnity (R := F) (k := (Fintype.card F - 1) / k))
       hS_eq.ge)
 
-/-- Part (i): the `k`-th powers form a subgroup of order `(q − 1)/k`.-/
+/-- Part (i): the `k`-th powers form a subgroup of order `(q − 1)/k`.
+@isnad1 id=eq.2h2v.s7.b31b4aaa918d from=translated src=- shape=0833ef2a vocab=220a62c9
+-/
 theorem card_kthPowers [Fintype F] {k : ℕ} (hk0 : k ≠ 0)
     (hk : k ∣ Fintype.card F - 1) :
     Nat.card (kthPowers F k) = (Fintype.card F - 1) / k :=
   (lemma_14_6 hk0 hk).1
 
 /-- The byproduct of the counting: the `k`-th roots of unity number
-exactly `k` (the root bound is attained).-/
+exactly `k` (the root bound is attained).
+@isnad1 id=eq.2h2v.s7.0d7871d7e034 from=translated src=- shape=62c7d711 vocab=bb10d76c
+-/
 theorem card_rootsOfUnity_eq [Fintype F] {k : ℕ} (hk0 : k ≠ 0)
     (hk : k ∣ Fintype.card F - 1) :
     Nat.card (rootsOfUnity k F) = k := by
@@ -151,7 +162,9 @@ theorem card_rootsOfUnity_eq [Fintype F] {k : ℕ} (hk0 : k ≠ 0)
   exact (lemma_14_6 hk0 hk).2.2
 
 /-- Part (ii): an element of `F_q^×` is a `k`-th power exactly when its
-`(q−1)/k`-th power is `1`.-/
+`(q−1)/k`-th power is `1`.
+@isnad1 id=iff.2h3v.s8.4bae1acb5598 from=translated src=- shape=68b34fd7 vocab=d9c885a5
+-/
 theorem mem_kthPowers_iff_pow_eq_one [Fintype F] {k : ℕ} (hk0 : k ≠ 0)
     (hk : k ∣ Fintype.card F - 1) {a : Fˣ} :
     a ∈ kthPowers F k ↔ a ^ ((Fintype.card F - 1) / k) = 1 := by
@@ -159,7 +172,9 @@ theorem mem_kthPowers_iff_pow_eq_one [Fintype F] {k : ℕ} (hk0 : k ≠ 0)
 
 /-- Part (ii) at the field level: a nonzero `a : F_q` is a `k`-th power
 exactly when `a^((q−1)/k) = 1` (the power-residue test of equal-degree
-splitting).-/
+splitting).
+@isnad1 id=iff.3h3v.s7.f0bc42a1dc8c from=translated src=- shape=34f71b46 vocab=c8660831
+-/
 theorem exists_pow_eq_iff_pow_card_sub_one_div_eq_one [Fintype F] {k : ℕ}
     (hk0 : k ≠ 0) (hk : k ∣ Fintype.card F - 1) {a : F} (ha : a ≠ 0) :
     (∃ b : F, b ≠ 0 ∧ b ^ k = a)

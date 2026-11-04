@@ -96,7 +96,9 @@ noncomputable def cycBasis :
     Basis (Fin (p - 1) × Fin (q - 1)) ℤ (CycPQ p q) :=
   (cycPBasis p).smulTower (cycQBasis p q)
 
-/-- The basis vectors are the book's monomials.-/
+/-- The basis vectors are the book's monomials.
+@isnad1 id=eq.0h4v.s9.8f040a19a380 from=translated src=- shape=e8c15649 vocab=3270195b
+-/
 theorem cycBasis_apply (i : Fin (p - 1)) (k : Fin (q - 1)) :
     cycBasis p q (i, k) = zetaP p q ^ (i : ℕ) * zetaQ p q ^ (k : ℕ) := by
   rw [cycBasis, Basis.smulTower_apply]
@@ -118,7 +120,9 @@ noncomputable def content (α : CycPQ p q) : ℕ :=
 /-- **Congruence mod `n` is coefficientwise**: divisibility by `n` in
 the ring `ℤ[ζ_p, ζ_q]` is divisibility of the content — the bridge
 between the ring-divisibility congruences of Lemmas 4.4.1–4.4.3 and
-the book's coefficientwise congruence.-/
+the book's coefficientwise congruence.
+@isnad1 id=iff.0h4v.s6.3f15e874c77f from=translated src=- shape=38929732 vocab=fc51e133
+-/
 theorem natCast_dvd_iff_dvd_content (n : ℕ) (α : CycPQ p q) :
     (n : CycPQ p q) ∣ α ↔ n ∣ content p q α := by
   constructor

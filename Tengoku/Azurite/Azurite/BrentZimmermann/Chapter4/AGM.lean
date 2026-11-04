@@ -70,14 +70,29 @@ noncomputable def agmB (a b : ℝ) (j : ℕ) : ℝ := (agmSeq a b j).2
 
 variable {a b : ℝ}
 
+/--
+@isnad1 id=eq.0h2v.s3.4e94a2cfd1a6 from=translated src=- shape=f56bb0f5 vocab=c0b1119d
+-/
 theorem agmA_zero : agmA a b 0 = a := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.3ece23629b4d from=translated src=- shape=cc48e823 vocab=2599fefb
+-/
 theorem agmB_zero : agmB a b 0 = b := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.2da32b9f8464 from=translated src=- shape=7faf75a5 vocab=85e7d207
+-/
 theorem agmA_succ (j : ℕ) : agmA a b (j + 1) = (agmA a b j + agmB a b j) / 2 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.6e52d3c78734 from=translated src=- shape=27ea787d vocab=a6d3d3b6
+-/
 theorem agmB_succ (j : ℕ) : agmB a b (j + 1) = Real.sqrt (agmA a b j * agmB a b j) := rfl
 
+/--
+@isnad1 id=and.2h3v.s5.b9ac6374702b from=translated src=- shape=1430affd vocab=14dd7ac6
+-/
 theorem agm_pos (ha : 0 < a) (hb : 0 < b) : ∀ j, 0 < agmA a b j ∧ 0 < agmB a b j := by
   intro j
   induction j with
@@ -87,24 +102,33 @@ theorem agm_pos (ha : 0 < a) (hb : 0 < b) : ∀ j, 0 < agmA a b j ∧ 0 < agmB a
     · rw [agmA_succ]; linarith [ih.1, ih.2]
     · rw [agmB_succ]; exact Real.sqrt_pos.mpr (mul_pos ih.1 ih.2)
 
-/-- AM–GM: `b_{j+1} ≤ a_{j+1}`.-/
+/-- AM–GM: `b_{j+1} ≤ a_{j+1}`.
+@isnad1 id=le.2h3v.s5.324ca5c5611e from=translated src=- shape=2a000365 vocab=d35bd83b
+-/
 theorem agmB_le_agmA_succ (ha : 0 < a) (hb : 0 < b) (j : ℕ) :
     agmB a b (j + 1) ≤ agmA a b (j + 1) := by
   obtain ⟨hA, hB⟩ := agm_pos ha hb j
   rw [agmA_succ, agmB_succ]
   exact Real.sqrt_le_iff.mpr ⟨by positivity, by nlinarith [sq_nonneg (agmA a b j - agmB a b j)]⟩
 
+/--
+@isnad1 id=le.3h3v.s5.8827516e6890 from=translated src=- shape=f410dfdd vocab=74930250
+-/
 theorem agmB_le_agmA (ha : 0 < a) (hb : 0 < b) {j : ℕ} (hj : 1 ≤ j) : agmB a b j ≤ agmA a b j := by
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
   exact agmB_le_agmA_succ ha hb j
 
-/-- `a` is antitone from index `1`.-/
+/-- `a` is antitone from index `1`.
+@isnad1 id=antitone.2h2v.s5.6c4e65e3b2bd from=translated src=- shape=32058250 vocab=5dff1cbb
+-/
 theorem agmA_antitone (ha : 0 < a) (hb : 0 < b) : Antitone fun j => agmA a b (j + 1) :=
   antitone_nat_of_succ_le fun j => by
     rw [agmA_succ (j + 1)]
     linarith [agmB_le_agmA_succ ha hb j]
 
-/-- `b` is monotone from index `1`.-/
+/-- `b` is monotone from index `1`.
+@isnad1 id=monotone.2h2v.s5.94708a8db0b8 from=translated src=- shape=32058250 vocab=9f592cd3
+-/
 theorem agmB_monotone (ha : 0 < a) (hb : 0 < b) : Monotone fun j => agmB a b (j + 1) :=
   monotone_nat_of_le_succ fun j => by
     obtain ⟨hA, hB⟩ := agm_pos ha hb (j + 1)
@@ -114,7 +138,9 @@ theorem agmB_monotone (ha : 0 < a) (hb : 0 < b) : Monotone fun j => agmB a b (j 
 
 /-! ### The gap `a_j − b_j` -/
 
-/-- `a_{j+1} − b_{j+1} = (√a_j − √b_j)²/2`.-/
+/-- `a_{j+1} − b_{j+1} = (√a_j − √b_j)²/2`.
+@isnad1 id=eq.2h3v.s6.0c23e59bb4c7 from=translated src=- shape=66ee778a vocab=8bd1f13a
+-/
 theorem agm_gap_succ (ha : 0 < a) (hb : 0 < b) (j : ℕ) :
     agmA a b (j + 1) - agmB a b (j + 1)
       = (Real.sqrt (agmA a b j) - Real.sqrt (agmB a b j)) ^ 2 / 2 := by
@@ -124,7 +150,9 @@ theorem agm_gap_succ (ha : 0 < a) (hb : 0 < b) (j : ℕ) :
   have h2 := Real.sq_sqrt hB.le
   linear_combination (-1 / 2 : ℝ) * h1 + (-1 / 2 : ℝ) * h2
 
-/-- The linear bound `a_{j+1} − b_{j+1} ≤ (a_j − b_j)/2` once `b_j ≤ a_j`.-/
+/-- The linear bound `a_{j+1} − b_{j+1} ≤ (a_j − b_j)/2` once `b_j ≤ a_j`.
+@isnad1 id=le.3h3v.s6.4b205a888a4f from=translated src=- shape=1b80a3b2 vocab=c35ee143
+-/
 theorem agm_gap_succ_le_half (ha : 0 < a) (hb : 0 < b) {j : ℕ} (hj : 1 ≤ j) :
     agmA a b (j + 1) - agmB a b (j + 1) ≤ (agmA a b j - agmB a b j) / 2 := by
   obtain ⟨hA, hB⟩ := agm_pos ha hb j
@@ -136,7 +164,9 @@ theorem agm_gap_succ_le_half (ha : 0 < a) (hb : 0 < b) {j : ℕ} (hj : 1 ≤ j) 
   have ht0 := Real.sqrt_nonneg (agmB a b j)
   nlinarith [mul_le_mul_of_nonneg_left hst ht0]
 
-/-- The quadratic bound `a_{j+1} − b_{j+1} ≤ (a_j − b_j)²/(8 b_j)` once `b_j ≤ a_j`.-/
+/-- The quadratic bound `a_{j+1} − b_{j+1} ≤ (a_j − b_j)²/(8 b_j)` once `b_j ≤ a_j`.
+@isnad1 id=le.3h3v.s7.86cbf28ed462 from=translated src=- shape=9bb43014 vocab=1e5ebf55
+-/
 theorem agm_gap_succ_le_sq (ha : 0 < a) (hb : 0 < b) {j : ℕ} (hj : 1 ≤ j) :
     agmA a b (j + 1) - agmB a b (j + 1) ≤ (agmA a b j - agmB a b j) ^ 2 / (8 * agmB a b j) := by
   obtain ⟨hA, hB⟩ := agm_pos ha hb j
@@ -153,7 +183,9 @@ theorem agm_gap_succ_le_sq (ha : 0 < a) (hb : 0 < b) {j : ℕ} (hj : 1 ≤ j) :
     mul_nonneg (sq_nonneg _) (mul_nonneg hst (by positivity))
   nlinarith [hkey]
 
-/-- `a_{j+1} − b_{j+1} ≤ (a_1 − b_1)/2^j`.-/
+/-- `a_{j+1} − b_{j+1} ≤ (a_1 − b_1)/2^j`.
+@isnad1 id=le.2h3v.s6.a57c61a28757 from=translated src=- shape=2b83d4d4 vocab=5ae715a0
+-/
 theorem agm_gap_le_half_pow (ha : 0 < a) (hb : 0 < b) (j : ℕ) :
     agmA a b (j + 1) - agmB a b (j + 1) ≤ (agmA a b 1 - agmB a b 1) / 2 ^ j := by
   induction j with
@@ -164,7 +196,9 @@ theorem agm_gap_le_half_pow (ha : 0 < a) (hb : 0 < b) (j : ℕ) :
       _ ≤ (agmA a b 1 - agmB a b 1) / 2 ^ j / 2 := by gcongr
       _ = (agmA a b 1 - agmB a b 1) / 2 ^ (j + 1) := by rw [pow_succ]; ring
 
-/-- Quadratic decay: if `e_{j+1} ≤ C e_j²` with `e ≥ 0`, then `C e_j ≤ (C e_0)^(2^j)`.-/
+/-- Quadratic decay: if `e_{j+1} ≤ C e_j²` with `e ≥ 0`, then `C e_j ≤ (C e_0)^(2^j)`.
+@isnad1 id=le.3h3v.s7.48a294bd3459 from=translated src=- shape=70883014 vocab=cef4cf1d
+-/
 theorem quadratic_decay {e : ℕ → ℝ} {C : ℝ} (hC : 0 ≤ C) (he : ∀ j, 0 ≤ e j)
     (h : ∀ j, e (j + 1) ≤ C * e j ^ 2) : ∀ j, C * e j ≤ (C * e 0) ^ (2 ^ j) := by
   intro j
@@ -176,7 +210,9 @@ theorem quadratic_decay {e : ℕ → ℝ} {C : ℝ} (hC : 0 ≤ C) (he : ∀ j, 
       _ ≤ ((C * e 0) ^ (2 ^ j)) ^ 2 := pow_le_pow_left₀ (mul_nonneg hC (he j)) ih 2
       _ = (C * e 0) ^ (2 ^ (j + 1)) := by rw [← pow_mul, pow_succ]
 
-/-- Quadratic convergence: `a_{j+1} − b_{j+1} ≤ 8 b_1 ((a_1 − b_1)/(8 b_1))^(2^j)`.-/
+/-- Quadratic convergence: `a_{j+1} − b_{j+1} ≤ 8 b_1 ((a_1 − b_1)/(8 b_1))^(2^j)`.
+@isnad1 id=le.2h3v.s7.5885cfe512d3 from=translated src=- shape=c2e89deb vocab=1e5ebf55
+-/
 theorem agm_gap_le (ha : 0 < a) (hb : 0 < b) (j : ℕ) :
     agmA a b (j + 1) - agmB a b (j + 1)
       ≤ 8 * agmB a b 1 * ((agmA a b 1 - agmB a b 1) / (8 * agmB a b 1)) ^ (2 ^ j) := by
@@ -206,22 +242,36 @@ theorem agm_gap_le (ha : 0 < a) (hb : 0 < b) (j : ℕ) :
 /-- `AGM(a, b)`, as the infimum of the antitone sequence `a_{j+1}`.-/
 noncomputable def AGM (a b : ℝ) : ℝ := ⨅ j : ℕ, agmA a b (j + 1)
 
+/--
+@isnad1 id=le.2h3v.s5.cbbe47163c09 from=translated src=- shape=86b94121 vocab=d35bd83b
+-/
 theorem agmB_one_le_agmA_succ (ha : 0 < a) (hb : 0 < b) (j : ℕ) :
     agmB a b 1 ≤ agmA a b (j + 1) :=
   (agmB_monotone ha hb (Nat.zero_le j)).trans (agmB_le_agmA_succ ha hb j)
 
+/--
+@isnad1 id=bddbelow.2h2v.s5.ce3f9f080556 from=translated src=- shape=06af889d vocab=7b396a94
+-/
 theorem bddBelow_agmA (ha : 0 < a) (hb : 0 < b) :
     BddBelow (Set.range fun j => agmA a b (j + 1)) :=
   ⟨agmB a b 1, fun _ ⟨j, hj⟩ => hj ▸ agmB_one_le_agmA_succ ha hb j⟩
 
+/--
+@isnad1 id=tendsto.2h2v.s5.d1a724312fcf from=translated src=- shape=f660e035 vocab=9e0ad60f
+-/
 theorem tendsto_agmA_succ (ha : 0 < a) (hb : 0 < b) :
     Tendsto (fun j => agmA a b (j + 1)) atTop (𝓝 (AGM a b)) :=
   tendsto_atTop_ciInf (agmA_antitone ha hb) (bddBelow_agmA ha hb)
 
+/--
+@isnad1 id=tendsto.2h2v.s5.15b433f861f1 from=translated src=- shape=2f6dae85 vocab=1a4e325e
+-/
 theorem tendsto_agmA (ha : 0 < a) (hb : 0 < b) : Tendsto (agmA a b) atTop (𝓝 (AGM a b)) :=
   (tendsto_add_atTop_iff_nat 1).mp (tendsto_agmA_succ ha hb)
 
-/-- The gap tends to `0`.-/
+/-- The gap tends to `0`.
+@isnad1 id=tendsto.2h2v.s6.78692a07d7a2 from=translated src=- shape=00bd47ea vocab=cb1a208b
+-/
 theorem tendsto_agm_gap (ha : 0 < a) (hb : 0 < b) :
     Tendsto (fun j => agmA a b (j + 1) - agmB a b (j + 1)) atTop (𝓝 0) := by
   have h : Tendsto (fun j : ℕ => (agmA a b 1 - agmB a b 1) / 2 ^ j) atTop (𝓝 0) :=
@@ -229,6 +279,9 @@ theorem tendsto_agm_gap (ha : 0 < a) (hb : 0 < b) :
   exact tendsto_of_tendsto_of_tendsto_of_le_of_le tendsto_const_nhds h
     (fun j => by linarith [agmB_le_agmA_succ ha hb j]) (fun j => agm_gap_le_half_pow ha hb j)
 
+/--
+@isnad1 id=tendsto.2h2v.s5.4aba3949d120 from=translated src=- shape=f660e035 vocab=c7265e32
+-/
 theorem tendsto_agmB_succ (ha : 0 < a) (hb : 0 < b) :
     Tendsto (fun j => agmB a b (j + 1)) atTop (𝓝 (AGM a b)) := by
   have := (tendsto_agmA_succ ha hb).sub (tendsto_agm_gap ha hb)
@@ -236,15 +289,22 @@ theorem tendsto_agmB_succ (ha : 0 < a) (hb : 0 < b) :
   refine this.congr fun j => ?_
   ring
 
+/--
+@isnad1 id=tendsto.2h2v.s5.84c088f73bb3 from=translated src=- shape=2f6dae85 vocab=ca9405a4
+-/
 theorem tendsto_agmB (ha : 0 < a) (hb : 0 < b) : Tendsto (agmB a b) atTop (𝓝 (AGM a b)) :=
   (tendsto_add_atTop_iff_nat 1).mp (tendsto_agmB_succ ha hb)
 
-/-- `AGM a b ≤ a_j` for `j ≥ 1`.-/
+/-- `AGM a b ≤ a_j` for `j ≥ 1`.
+@isnad1 id=le.3h3v.s5.95aa0d46d6f6 from=translated src=- shape=b9e83429 vocab=a778648b
+-/
 theorem AGM_le_agmA (ha : 0 < a) (hb : 0 < b) {j : ℕ} (hj : 1 ≤ j) : AGM a b ≤ agmA a b j := by
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
   exact ciInf_le (bddBelow_agmA ha hb) j
 
-/-- `b_j ≤ AGM a b` for `j ≥ 1`.-/
+/-- `b_j ≤ AGM a b` for `j ≥ 1`.
+@isnad1 id=le.3h3v.s5.38a2eb140d24 from=translated src=- shape=0c387beb vocab=66c0a873
+-/
 theorem agmB_le_AGM (ha : 0 < a) (hb : 0 < b) {j : ℕ} (hj : 1 ≤ j) : agmB a b j ≤ AGM a b := by
   obtain ⟨j, rfl⟩ : ∃ j', j = j' + 1 := ⟨j - 1, by omega⟩
   refine le_ciInf fun i => ?_
@@ -252,6 +312,9 @@ theorem agmB_le_AGM (ha : 0 < a) (hb : 0 < b) {j : ℕ} (hj : 1 ≤ j) : agmB a 
   · exact (agmB_monotone ha hb hji).trans (agmB_le_agmA_succ ha hb i)
   · exact (agmB_le_agmA_succ ha hb j).trans (agmA_antitone ha hb hij.le)
 
+/--
+@isnad1 id=le.2h2v.s5.6d8d08ec0f0a from=translated src=- shape=d4544b10 vocab=bcef9b8a
+-/
 theorem min_le_AGM (ha : 0 < a) (hb : 0 < b) : min a b ≤ AGM a b := by
   refine le_trans ?_ (agmB_le_AGM ha hb le_rfl)
   rw [agmB_succ, agmA_zero, agmB_zero]
@@ -260,6 +323,9 @@ theorem min_le_AGM (ha : 0 < a) (hb : 0 < b) : min a b ≤ AGM a b := by
   · rw [min_eq_left h]; nlinarith
   · rw [min_eq_right h]; nlinarith
 
+/--
+@isnad1 id=le.2h2v.s5.376c1b330cf1 from=translated src=- shape=4503a8e8 vocab=e1725814
+-/
 theorem AGM_le_max (ha : 0 < a) (hb : 0 < b) : AGM a b ≤ max a b := by
   refine (AGM_le_agmA ha hb le_rfl).trans ?_
   rw [agmA_succ, agmA_zero, agmB_zero]
@@ -269,6 +335,9 @@ theorem AGM_le_max (ha : 0 < a) (hb : 0 < b) : AGM a b ≤ max a b := by
 
 /-! ### Symmetry, invariance, homogeneity -/
 
+/--
+@isnad1 id=eq.0h3v.s5.2c61b1cdddf1 from=translated src=- shape=007d13db vocab=65a4f91e
+-/
 theorem agmSeq_comm_succ (a b : ℝ) : ∀ j, agmSeq a b (j + 1) = agmSeq b a (j + 1) := by
   intro j
   induction j with
@@ -278,10 +347,16 @@ theorem agmSeq_comm_succ (a b : ℝ) : ∀ j, agmSeq a b (j + 1) = agmSeq b a (j
     exact ⟨by ring, by rw [mul_comm]⟩
   | succ j ih => show agmStep (agmSeq a b (j + 1)) = agmStep (agmSeq b a (j + 1)); rw [ih]
 
+/--
+@isnad1 id=eq.0h2v.s3.87d56c945647 from=translated src=- shape=1013c0ce vocab=4abe4084
+-/
 theorem AGM_comm (a b : ℝ) : AGM a b = AGM b a := by
   unfold AGM agmA
   simp only [agmSeq_comm_succ]
 
+/--
+@isnad1 id=eq.1h2v.s4.ddbee124ba8d from=translated src=- shape=f370a1a7 vocab=035e3245
+-/
 theorem agmSeq_self (ha : 0 ≤ a) : ∀ j, agmSeq a a j = (a, a) := by
   intro j
   induction j with
@@ -292,17 +367,25 @@ theorem agmSeq_self (ha : 0 ≤ a) : ∀ j, agmSeq a a j = (a, a) := by
     simp only [agmStep, Prod.mk.injEq]
     exact ⟨by ring, Real.sqrt_mul_self ha⟩
 
+/--
+@isnad1 id=eq.1h1v.s4.cd36c939e8ba from=translated src=- shape=8883a4d6 vocab=3d7c5093
+-/
 theorem AGM_self (ha : 0 ≤ a) : AGM a a = a := by
   unfold AGM agmA
   simp only [agmSeq_self ha, ciInf_const]
 
+/--
+@isnad1 id=eq.0h3v.s6.374d3c97cdba from=translated src=- shape=bf1f0a0c vocab=be1fce73
+-/
 theorem agmSeq_step (a b : ℝ) (j : ℕ) :
     agmSeq ((a + b) / 2) (Real.sqrt (a * b)) j = agmSeq a b (j + 1) := by
   induction j with
   | zero => rfl
   | succ j ih => show agmStep _ = agmStep _; rw [ih]
 
-/-- The AGM is invariant under one step: `AGM(a, b) = AGM((a+b)/2, √(ab))`.-/
+/-- The AGM is invariant under one step: `AGM(a, b) = AGM((a+b)/2, √(ab))`.
+@isnad1 id=eq.2h2v.s6.cab291bc5dee from=translated src=- shape=775c771d vocab=160756bb
+-/
 theorem AGM_step (ha : 0 < a) (hb : 0 < b) : AGM a b = AGM ((a + b) / 2) (Real.sqrt (a * b)) := by
   have h1 : Tendsto (agmA ((a + b) / 2) (Real.sqrt (a * b))) atTop (𝓝 (AGM a b)) := by
     have := tendsto_agmA_succ ha hb
@@ -311,6 +394,9 @@ theorem AGM_step (ha : 0 < a) (hb : 0 < b) : AGM a b = AGM ((a + b) / 2) (Real.s
   exact tendsto_nhds_unique h1
     (tendsto_agmA (by positivity) (Real.sqrt_pos.mpr (mul_pos ha hb)))
 
+/--
+@isnad1 id=eq.1h4v.s6.8cd95e7ba6ce from=translated src=- shape=a2a70a02 vocab=0c263f3a
+-/
 theorem agmSeq_smul {c : ℝ} (hc : 0 ≤ c) (a b : ℝ) :
     ∀ j, agmSeq (c * a) (c * b) j = (c * agmA a b j, c * agmB a b j) := by
   intro j
@@ -324,7 +410,9 @@ theorem agmSeq_smul {c : ℝ} (hc : 0 ≤ c) (a b : ℝ) :
     rw [show c * agmA a b j * (c * agmB a b j) = c ^ 2 * (agmA a b j * agmB a b j) by ring,
       Real.sqrt_mul (sq_nonneg c), Real.sqrt_sq hc]
 
-/-- Homogeneity: `AGM(ca, cb) = c · AGM(a, b)` for `c > 0`.-/
+/-- Homogeneity: `AGM(ca, cb) = c · AGM(a, b)` for `c > 0`.
+@isnad1 id=eq.3h3v.s6.ca145375ed03 from=translated src=- shape=8d47d01e vocab=c1c276b3
+-/
 theorem AGM_smul {c : ℝ} (hc : 0 < c) (ha : 0 < a) (hb : 0 < b) :
     AGM (c * a) (c * b) = c * AGM a b := by
   have h1 : Tendsto (agmA (c * a) (c * b)) atTop (𝓝 (c * AGM a b)) := by
@@ -335,7 +423,9 @@ theorem AGM_smul {c : ℝ} (hc : 0 < c) (ha : 0 < a) (hb : 0 < b) :
 
 /-! ### Strictness for distinct starting values -/
 
-/-- `a_n ≠ b_n` for all `n` when `a ≠ b`: the gap `(√a_n − √b_n)²/2` never vanishes.-/
+/-- `a_n ≠ b_n` for all `n` when `a ≠ b`: the gap `(√a_n − √b_n)²/2` never vanishes.
+@isnad1 id=ne.3h3v.s5.0f2e5ca5f060 from=translated src=- shape=1a77b8fd vocab=14dd7ac6
+-/
 theorem agmA_ne_agmB (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) : ∀ n, agmA a b n ≠ agmB a b n
   | 0 => hab
   | n + 1 => by
@@ -347,11 +437,16 @@ theorem agmA_ne_agmB (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) : ∀ n, agmA a b
     have := sub_eq_zero.mp (pow_eq_zero_iff two_ne_zero |>.mp hsq)
     exact agmA_ne_agmB ha hb hab n ((Real.sqrt_inj hA.le hB.le).mp this)
 
+/--
+@isnad1 id=lt.4h3v.s5.e06035fd24c8 from=translated src=- shape=f98b8473 vocab=74930250
+-/
 theorem agmB_lt_agmA (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) {n : ℕ} (hn : 1 ≤ n) :
     agmB a b n < agmA a b n :=
   lt_of_le_of_ne (agmB_le_agmA ha hb hn) (agmA_ne_agmB ha hb hab n).symm
 
-/-- `b_n < AGM(a, b)` strictly for `n ≥ 1` when `a ≠ b`.-/
+/-- `b_n < AGM(a, b)` strictly for `n ≥ 1` when `a ≠ b`.
+@isnad1 id=lt.4h3v.s5.9a53fdef0bbe from=translated src=- shape=a73d2946 vocab=66c0a873
+-/
 theorem agmB_lt_AGM (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) {n : ℕ} (hn : 1 ≤ n) :
     agmB a b n < AGM a b := by
   obtain ⟨hA, hB⟩ := agm_pos ha hb n
@@ -360,7 +455,9 @@ theorem agmB_lt_AGM (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) {n : ℕ} (hn : 1 
     nlinarith [agmB_lt_agmA ha hb hab hn]
   exact h1.trans_le (agmB_le_AGM ha hb (by omega))
 
-/-- `AGM(a, b) < a_n` strictly for `n ≥ 1` when `a ≠ b`.-/
+/-- `AGM(a, b) < a_n` strictly for `n ≥ 1` when `a ≠ b`.
+@isnad1 id=lt.4h3v.s5.6e877c9f14b5 from=translated src=- shape=e66eb873 vocab=a778648b
+-/
 theorem AGM_lt_agmA (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) {n : ℕ} (hn : 1 ≤ n) :
     AGM a b < agmA a b n := by
   have h1 : agmA a b (n + 1) < agmA a b n := by
@@ -370,7 +467,9 @@ theorem AGM_lt_agmA (ha : 0 < a) (hb : 0 < b) (hab : a ≠ b) {n : ℕ} (hn : 1 
 /-! ### The number of iterations -/
 
 /-- Once `a_1 ≤ 5 b_1`, `n ≤ 2^j` gives `a_{j+1} − b_{j+1} ≤ 8 b_1 / 2^n`: the number of correct
-bits doubles at each step.-/
+bits doubles at each step.
+@isnad1 id=le.4h4v.s7.68238d588492 from=translated src=- shape=5f9a6749 vocab=1e5ebf55
+-/
 theorem agm_gap_le_two_pow (ha : 0 < a) (hb : 0 < b) (h : agmA a b 1 - agmB a b 1 ≤ 4 * agmB a b 1)
     {j n : ℕ} (hn : n ≤ 2 ^ j) :
     agmA a b (j + 1) - agmB a b (j + 1) ≤ 8 * agmB a b 1 / 2 ^ n := by
@@ -391,7 +490,9 @@ theorem agm_gap_le_two_pow (ha : 0 < a) (hb : 0 < b) (h : agmA a b 1 - agmB a b 
     _ = 8 * agmB a b 1 / 2 ^ n := by rw [one_div_pow]; ring
 
 /-- `⌈log₂ n⌉ + 1` iterations give `n` bits (after the linear phase `a_1 ≤ 5 b_1`): the
-`O(log n)` iterations of the text.-/
+`O(log n)` iterations of the text.
+@isnad1 id=le.3h3v.s7.cf2d58a82fbb from=translated src=- shape=96c4baff vocab=ccb64609
+-/
 theorem agm_iterations (ha : 0 < a) (hb : 0 < b) (h : agmA a b 1 - agmB a b 1 ≤ 4 * agmB a b 1)
     (n : ℕ) :
     agmA a b (Nat.clog 2 n + 1) - agmB a b (Nat.clog 2 n + 1) ≤ 8 * agmB a b 1 / 2 ^ n :=

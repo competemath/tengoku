@@ -66,33 +66,47 @@ def ringReciprocalSeq (y x₀ : α) : ℕ → α
   | 0 => x₀
   | n + 1 => ringReciprocalStep y (ringReciprocalSeq y x₀ n)
 
+/--
+@isnad1 id=eq.0h3v.s4.7f75ff338370 from=translated src=- shape=3b0788dd vocab=e8d1adb6
+-/
 @[simp] theorem ringReciprocalSeq_zero (y x₀ : α) : ringReciprocalSeq y x₀ 0 = x₀ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.267ae04f41de from=translated src=- shape=e86c3071 vocab=893682f7
+-/
 @[simp] theorem ringReciprocalSeq_succ (y x₀ : α) (n : ℕ) :
     ringReciprocalSeq y x₀ (n + 1) = ringReciprocalStep y (ringReciprocalSeq y x₀ n) := rfl
 
 /-- `u = 1 − x y`.-/
 def ringRecipError (y x : α) : α := 1 - x * y
 
-/-- (4.6) over a commutative ring.-/
+/-- (4.6) over a commutative ring.
+@isnad1 id=eq.0h3v.s5.66762f204c6b from=translated src=- shape=592dee20 vocab=a076c194
+-/
 theorem ringRecipError_step (y x : α) :
     ringRecipError y (ringReciprocalStep y x) = ringRecipError y x ^ 2 := by
   unfold ringRecipError ringReciprocalStep
   ring
 
-/-- (4.7) over a commutative ring.-/
+/-- (4.7) over a commutative ring.
+@isnad1 id=eq.0h4v.s6.b13f99ae5ee9 from=translated src=- shape=ea0343a1 vocab=92c8dba4
+-/
 theorem ringRecipError_seq (y x₀ : α) (j : ℕ) :
     ringRecipError y (ringReciprocalSeq y x₀ j) = ringRecipError y x₀ ^ (2 ^ j) := by
   induction j with
   | zero => simp
   | succ j ih => rw [ringReciprocalSeq_succ, ringRecipError_step, ih, ← pow_mul, pow_succ]
 
-/-- The real iteration of §4.2.2 is the ring one at `α = ℝ`.-/
+/-- The real iteration of §4.2.2 is the ring one at `α = ℝ`.
+@isnad1 id=eq.0h2v.s3.e8003cd33916 from=translated src=- shape=42e73927 vocab=5de03cfa
+-/
 theorem reciprocalStep_eq_ringReciprocalStep (y x : ℝ) :
     reciprocalStep y x = ringReciprocalStep y x := rfl
 
 /-- The example of the text: with `y = 1 − z` and `x_0 = 1`, `u_0 = z`, `u_j = z^(2^j)`, and the
-`j`-th iterate is the partial geometric sum `∑_{n < 2^j} z^n`, with `(1 − z) x_j = 1 − z^(2^j)`.-/
+`j`-th iterate is the partial geometric sum `∑_{n < 2^j} z^n`, with `(1 − z) x_j = 1 − z^(2^j)`.
+@isnad1 id=and.0h3v.s8.3ebfcc76cf08 from=translated src=- shape=d20a34ec vocab=071b85a4
+-/
 theorem ringReciprocalSeq_one_sub (z : α) (j : ℕ) :
     ringReciprocalSeq (1 - z) 1 j = ∑ n ∈ range (2 ^ j), z ^ n ∧
       (1 - z) * ringReciprocalSeq (1 - z) 1 j = 1 - z ^ (2 ^ j) := by
@@ -123,7 +137,9 @@ section PowerSeries
 
 variable {R : Type*} [CommRing R]
 
-/-- In `R⟦X⟧`, the error of the `j`-th iterate for `(1 − X)^(−1) = ∑ X^n` is `−X^(2^j) ∑ X^n`.-/
+/-- In `R⟦X⟧`, the error of the `j`-th iterate for `(1 − X)^(−1) = ∑ X^n` is `−X^(2^j) ∑ X^n`.
+@isnad1 id=eq.0h2v.s8.14b3e29f9be9 from=translated src=- shape=663e6fa9 vocab=591bdff4
+-/
 theorem powerSeriesReciprocalSeq_sub_inv (j : ℕ) :
     ringReciprocalSeq (1 - X : R⟦X⟧) 1 j - mk 1 = -(X ^ (2 ^ j) * mk 1) := by
   have h := (ringReciprocalSeq_one_sub (X : R⟦X⟧) j).2
@@ -135,7 +151,9 @@ theorem powerSeriesReciprocalSeq_sub_inv (j : ℕ) :
   linear_combination h - (1 - X ^ (2 ^ j)) * hinv
 
 /-- Quadratic convergence for formal power series: the error of the `j`-th iterate has order
-exactly `2^j`.-/
+exactly `2^j`.
+@isnad1 id=eq.0h2v.s7.1d52bac3ce77 from=translated src=- shape=ba1a2f9b vocab=40c5477c
+-/
 theorem order_powerSeriesReciprocalSeq_sub_inv [Nontrivial R] (j : ℕ) :
     order (ringReciprocalSeq (1 - X : R⟦X⟧) 1 j - mk 1) = ((2 ^ j : ℕ) : ℕ∞) := by
   rw [powerSeriesReciprocalSeq_sub_inv, order_eq_nat]
@@ -155,13 +173,22 @@ variable {K : Type*} [Field K]
 noncomputable def integral (A : K⟦X⟧) : K⟦X⟧ :=
   mk fun n => if n = 0 then 0 else coeff (n - 1) A / n
 
+/--
+@isnad1 id=eq.0h2v.s7.ee766bde5523 from=translated src=- shape=6360d35b vocab=71591273
+-/
 theorem coeff_integral_zero (A : K⟦X⟧) : coeff 0 (integral A) = 0 := by
   simp [integral]
 
+/--
+@isnad1 id=eq.0h3v.s8.d77c977256bb from=translated src=- shape=04edee64 vocab=41946f34
+-/
 theorem coeff_integral_succ (A : K⟦X⟧) (j : ℕ) :
     coeff (j + 1) (integral A) = coeff j A / (j + 1) := by
   simp [integral]
 
+/--
+@isnad1 id=eq.0h2v.s6.40edc0aa2ab0 from=translated src=- shape=cf7f1d42 vocab=45e51db2
+-/
 theorem constantCoeff_integral (A : K⟦X⟧) : constantCoeff (integral A) = 0 := by
   rw [← coeff_zero_eq_constantCoeff_apply, coeff_integral_zero]
 

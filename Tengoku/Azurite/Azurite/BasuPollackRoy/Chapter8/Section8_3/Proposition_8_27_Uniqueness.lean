@@ -59,6 +59,9 @@ noncomputable def toALT (Φ : (Fin m → degreeLT K n) → degreeLT K (n - m + 1
 noncomputable def monoBasis : Module.Basis (Fin n) K (degreeLT K n) :=
   (Pi.basisFun K (Fin n)).map (degreeLTEquiv K n).symm
 
+/--
+@isnad1 id=eq.0h3v.s10.9b1c0be22311 from=translated src=- shape=4bf2bdab vocab=d0a97a75
+-/
 theorem monoBasis_apply (c : Fin n) : (monoBasis (K := K) (n := n)) c = monoElt c := by
   rw [monoBasis, Module.Basis.map_apply, Pi.basisFun_apply]
   apply (degreeLTEquiv K n).injective
@@ -69,15 +72,23 @@ theorem monoBasis_apply (c : Fin n) : (monoBasis (K := K) (n := n)) c = monoElt 
   rw [coeff_X_pow]
   by_cases h : i = c <;> simp [h, Fin.val_inj]
 
+/--
+@isnad1 id=eq.1h5v.s11.822ecec2fe4c from=translated src=- shape=7a563d3d vocab=419e978a
+-/
 @[simp] theorem toMLM_apply (Φ : (Fin m → degreeLT K n) → degreeLT K (n - m + 1))
     (hΦ : IsMultilinear Φ) (v : Fin m → degreeLT K n) : toMLM Φ hΦ v = Φ v := rfl
 
+/--
+@isnad1 id=eq.2h5v.s11.f4e7e093f91f from=translated src=- shape=99e7728e vocab=539b4018
+-/
 @[simp] theorem toALT_apply (Φ : (Fin m → degreeLT K n) → degreeLT K (n - m + 1))
     (hΦm : IsMultilinear Φ) (hΦa : IsAlternating Φ) (v : Fin m → degreeLT K n) :
     toALT Φ hΦm hΦa v = Φ v := rfl
 
 /-- Any injective `f : Fin m → ℕ` has a permutation sorting it strictly
-    decreasing.-/
+    decreasing.
+@isnad1 id=ex.1h2v.s5.871bf8595375 from=translated src=- shape=a7cccdd5 vocab=1e0837b6
+-/
 theorem exists_strictAnti_perm {m : ℕ} (f : Fin m → ℕ) (hf : Function.Injective f) :
     ∃ σ : Equiv.Perm (Fin m), StrictAnti (f ∘ ⇑σ) := by
   refine ⟨(Equiv.mk Fin.rev Fin.rev Fin.rev_rev Fin.rev_rev).trans (Tuple.sort f), ?_⟩
@@ -114,7 +125,9 @@ theorem eq_of_multilinear_alternating
   funext v
   simpa using DFunLike.congr_fun hbasis v
 
-/-- The last exponent of a strictly-decreasing tuple in `[0,n)` is `≤ n-m`.-/
+/-- The last exponent of a strictly-decreasing tuple in `[0,n)` is `≤ n-m`.
+@isnad1 id=le.3h4v.s6.5587135c80b2 from=translated src=- shape=cf44917b vocab=e1d08fb5
+-/
 theorem strictAnti_last_le {e : Fin m → ℕ} (hAnti : StrictAnti e) (he : ∀ r, e r < n)
     (last : Fin m) (hlast : (last : ℕ) + 1 = m) : e last ≤ n - m := by
   have hsub : Finset.univ.image e ⊆ Finset.Ico (e last) n := by
@@ -141,14 +154,18 @@ def Normalized (Φ : (Fin m → degreeLT K n) → degreeLT K (n - m + 1)) : Prop
     (∃ r₀ : Fin m, (r₀ : ℕ) + 1 < m ∧ e r₀ ≠ n - 1 - (r₀ : ℕ)) →
     Φ (monoFamily e he) = 0)
 
-/-- `pdet` is normalized.-/
+/-- `pdet` is normalized.
+@isnad1 id=normaliz.1h3v.s4.2c25b9436083 from=translated src=- shape=1fcde893 vocab=a26e41af
+-/
 theorem normalized_pdet (hmn : m ≤ n) :
     Normalized (pdet : (Fin m → degreeLT K n) → degreeLT K (n - m + 1)) :=
   ⟨fun e he last hlast hcond hi => normalization_pdet_pos e hmn last hlast he hcond hi,
    fun e he hAnti hne => normalization_pdet_zero e hmn he hAnti hne⟩
 
 /-- A multilinear alternating normalized map agrees with another such map on
-    strictly-decreasing monomial tuples; hence the two are equal.-/
+    strictly-decreasing monomial tuples; hence the two are equal.
+@isnad1 id=eq.7h5v.s10.bbfdd2320988 from=translated src=- shape=06b38cde vocab=f41df73e
+-/
 theorem proposition_8_27_uniqueness (hm : 0 < m)
     {Φ Ψ : (Fin m → degreeLT K n) → degreeLT K (n - m + 1)}
     (hΦm : IsMultilinear Φ) (hΦa : IsAlternating Φ) (hΦn : Normalized Φ)
@@ -171,7 +188,9 @@ theorem proposition_8_27_uniqueness (hm : 0 < m)
 
 /-- **BPR Proposition 8.27.** There is a unique multilinear alternating mapping
     `(𝓕_n)^m → 𝓕_{n-m+1}` with the normalization values of Proposition 8.27, namely
-    the polynomial determinant `pdet`.-/
+    the polynomial determinant `pdet`.
+@isnad1 id=existsun.2h3v.s10.37f0a58e10e8 from=translated src=- shape=e4cead55 vocab=7fa571d4
+-/
 theorem proposition_8_27 (hm : 0 < m) (hmn : m ≤ n) :
     ∃! Φ : (Fin m → degreeLT K n) → degreeLT K (n - m + 1),
       IsMultilinear Φ ∧ IsAlternating Φ ∧ Normalized Φ := by

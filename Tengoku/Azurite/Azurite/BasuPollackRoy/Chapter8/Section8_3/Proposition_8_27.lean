@@ -37,7 +37,9 @@ noncomputable def monoFamily (e : Fin m → ℕ) (he : ∀ r, e r < n) :
 
 /-- The column-index map `pdetColIdx n i` is injective on `Fin m` when
     `m ≤ n` and `i ≤ n - m` (the last column `i` is distinct from the top
-    columns `n-1, …, n-m+1`).-/
+    columns `n-1, …, n-m+1`).
+@isnad1 id=injectiv.2h3v.s5.2abbd45bd645 from=translated src=- shape=ad9b628e vocab=1e04dd47
+-/
 theorem pdetColIdx_injective (hmn : m ≤ n) (i : ℕ) (hi : i ≤ n - m) :
     Function.Injective (fun c : Fin m => pdetColIdx n i c) := by
   intro c c' h
@@ -50,7 +52,9 @@ theorem pdetColIdx_injective (hmn : m ≤ n) (i : ℕ) (hi : i ≤ n - m) :
 
 /-- **Positive normalization (BPR Proposition 8.27).** On the top-monomial tuple
     `(X^{n-1}, …, X^{n-m+1}, X^i)` (so `e r = n-1-r` for `r < m-1`),
-    `pdet` returns `X^i` where `i = e (m-1)`.-/
+    `pdet` returns `X^i` where `i = e (m-1)`.
+@isnad1 id=eq.5h5v.s8.e05e50af38c4 from=translated src=- shape=d2e2205e vocab=6dd797e0
+-/
 theorem normalization_pdet_pos (e : Fin m → ℕ) (hmn : m ≤ n)
     (last : Fin m) (hlast : (last : ℕ) + 1 = m)
     (he : ∀ r, e r < n)
@@ -106,7 +110,9 @@ theorem normalization_pdet_pos (e : Fin m → ℕ) (hmn : m ≤ n)
     intro hbi; exact hb (Fin.ext hbi)
   · intro hcontra; exact absurd (Finset.mem_univ _) hcontra
 
-/-- Two strictly-decreasing functions `Fin m → ℕ` with the same image are equal.-/
+/-- Two strictly-decreasing functions `Fin m → ℕ` with the same image are equal.
+@isnad1 id=eq.3h3v.s5.c45dcd76057a from=translated src=- shape=93234677 vocab=c192d655
+-/
 theorem fin_strictAnti_eq {m : ℕ} {f g : Fin m → ℕ} (hf : StrictAnti f) (hg : StrictAnti g)
     (himg : ∀ r, ∃ s, g s = f r) : f = g := by
   -- The reverse inclusion of images, by finiteness.
@@ -153,7 +159,9 @@ theorem fin_strictAnti_eq {m : ℕ} {f g : Fin m → ℕ} (hf : StrictAnti f) (h
   exact key (r : ℕ) r rfl
 
 /-- `pdetColIdx n k` is strictly decreasing on `Fin m` when `m ≤ n` and `k ≤ n-m`
-    (the columns read `n-1 > n-2 > ⋯ > n-m+1 > k`).-/
+    (the columns read `n-1 > n-2 > ⋯ > n-m+1 > k`).
+@isnad1 id=strictan.2h3v.s5.f135a1ff710e from=translated src=- shape=ad9b628e vocab=98226217
+-/
 theorem pdetColIdx_strictAnti (hmn : m ≤ n) (k : ℕ) (hk : k ≤ n - m) :
     StrictAnti (fun c : Fin m => pdetColIdx n k c) := by
   intro c c' hcc
@@ -166,7 +174,9 @@ theorem pdetColIdx_strictAnti (hmn : m ≤ n) (k : ℕ) (hk : k ≤ n - m) :
 
 /-- **Vanishing normalization (BPR Proposition 8.27).** On a strictly-decreasing
     monomial tuple that is *not* `(X^{n-1}, …, X^{n-m+1}, X^i)` (some `e r` with
-    `r < m-1` differs from `n-1-r`), `pdet` returns `0`.-/
+    `r < m-1` differs from `n-1-r`), `pdet` returns `0`.
+@isnad1 id=eq.4h4v.s9.b69e2674ca35 from=translated src=- shape=227956ba vocab=c5b56750
+-/
 theorem normalization_pdet_zero (e : Fin m → ℕ) (hmn : m ≤ n)
     (he : ∀ r, e r < n) (hAnti : StrictAnti e)
     (hne : ∃ r₀ : Fin m, (r₀ : ℕ) + 1 < m ∧ e r₀ ≠ n - 1 - (r₀ : ℕ)) :
@@ -201,7 +211,9 @@ theorem normalization_pdet_zero (e : Fin m → ℕ) (hmn : m ≤ n)
     mapping `(𝓕_n)^m → 𝓕_{n-m+1}` with the normalization values of Proposition
     8.27, namely `pdet`: it is multilinear and alternating, returns `X^{e last}`
     on the top-monomial tuple `(X^{n-1}, …, X^{n-m+1}, X^{e last})`, and `0` on any
-    other strictly-decreasing monomial tuple.-/
+    other strictly-decreasing monomial tuple.
+@isnad1 id=ex.1h3v.s11.2176bf209773 from=translated src=- shape=7d33589d vocab=1115b6b1
+-/
 theorem proposition_8_27_existence (hmn : m ≤ n) :
     ∃ Φ : (Fin m → degreeLT K n) → degreeLT K (n - m + 1),
       IsMultilinear Φ ∧ IsAlternating Φ ∧

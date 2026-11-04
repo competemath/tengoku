@@ -89,7 +89,9 @@ private theorem pdetMinor_update (v : Fin m → degreeLT K n) (k : Fin m) (a b :
   rw [pdetMinorMat_update, pdetMinorMat_update, pdetMinorMat_update, hcomb,
     Matrix.det_updateRow_add, Matrix.det_updateRow_smul, Matrix.det_updateRow_smul]
 
-/-- **`pdet` is multilinear** (BPR Proposition 8.27, existence).-/
+/-- **`pdet` is multilinear** (BPR Proposition 8.27, existence).
+@isnad1 id=ismultil.0h3v.s4.57f064fde2d0 from=translated src=- shape=963a3a65 vocab=a904c42c
+-/
 theorem isMultilinear_pdet :
     IsMultilinear (pdet : (Fin m → degreeLT K n) → degreeLT K (n - m + 1)) := by
   intro v k a b A B
@@ -99,7 +101,9 @@ theorem isMultilinear_pdet :
   intro i _
   rw [pdetMinor_update, add_smul, mul_smul, mul_smul]
 
-/-- **`pdet` is alternating** (BPR Proposition 8.27, existence).-/
+/-- **`pdet` is alternating** (BPR Proposition 8.27, existence).
+@isnad1 id=isaltern.0h3v.s4.9d42999e7f75 from=translated src=- shape=963a3a65 vocab=004c37cb
+-/
 theorem isAlternating_pdet :
     IsAlternating (pdet : (Fin m → degreeLT K n) → degreeLT K (n - m + 1)) := by
   intro v k l hkl hvkl

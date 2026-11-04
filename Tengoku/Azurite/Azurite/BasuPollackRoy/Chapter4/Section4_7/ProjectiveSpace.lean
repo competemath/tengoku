@@ -40,7 +40,9 @@ noncomputable def mkLine (x : Fin (k + 1) → Ri R) (hx : x ≠ 0) : complexProj
 
 set_option linter.unusedSectionVars false in
 /-- **BPR §4.7 (homogeneous coordinates agree up to a scalar).**
-`(x₀ : ⋯ : x_k) = (y₀ : ⋯ : y_k)` if and only if there is a nonzero `λ ∈ C` with `xᵢ = λ yᵢ`.-/
+`(x₀ : ⋯ : x_k) = (y₀ : ⋯ : y_k)` if and only if there is a nonzero `λ ∈ C` with `xᵢ = λ yᵢ`.
+@isnad1 id=iff.2h4v.s10.35bc836b8523 from=translated src=- shape=6df47e77 vocab=943519e7
+-/
 theorem mkLine_eq_mkLine_iff (x y : Fin (k + 1) → Ri R) (hx : x ≠ 0) (hy : y ≠ 0) :
     mkLine x hx = mkLine y hy ↔ ∃ c : Ri R, c ≠ 0 ∧ x = c • y := by
   rw [mkLine, mkLine, Projectivization.mk_eq_mk_iff]

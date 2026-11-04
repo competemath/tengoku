@@ -76,7 +76,9 @@ variable {M : Type _} [CommMonoid M] [Fintype M] [DecidableEq M]
 /-- **The order of the constructed character is the order of `ζ`**:
 `χ(g^k) = ζ^k` defines a character of the same order as `ζ`.  (The
 book's argument for `χ_{p,q}`: `χ^p = 1` pointwise since `ζ_p^p = 1`,
-and `χ(g) = ζ_p ≠ 1`.)-/
+and `χ(g) = ζ_p ≠ 1`.)
+@isnad1 id=eq.2h4v.s7.4d64844c1e58 from=translated src=- shape=0c24b640 vocab=e6d06b0b
+-/
 theorem orderOf_ofRootOfUnity {ζ : Rˣ}
     (hζ : ζ ∈ rootsOfUnity (Fintype.card Mˣ) R)
     {g : Mˣ} (hg : ∀ x, x ∈ Subgroup.zpowers g) :
@@ -97,7 +99,9 @@ theorem orderOf_ofRootOfUnity {ζ : Rˣ}
 
 /-- "As a character mod `q`, the order of `χ` is a divisor of
 `q − 1`" — generically, the order of the constructed character
-divides the order of the unit group.-/
+divides the order of the unit group.
+@isnad1 id=dvd.2h4v.s7.9764b85885db from=translated src=- shape=efa1ddad vocab=25584d66
+-/
 theorem orderOf_ofRootOfUnity_dvd {ζ : Rˣ}
     (hζ : ζ ∈ rootsOfUnity (Fintype.card Mˣ) R)
     {g : Mˣ} (hg : ∀ x, x ∈ Subgroup.zpowers g) :
@@ -112,7 +116,9 @@ section ChiPQ
 variable {R : Type _} [CommMonoidWithZero R]
 
 /-- A `p`-th root of unity qualifies for the character construction
-mod `q` whenever `p ∣ q − 1` — the setup of the book's `χ_{p,q}`.-/
+mod `q` whenever `p ∣ q − 1` — the setup of the book's `χ_{p,q}`.
+@isnad1 id=mem.2h4v.s7.dc37f5ae8901 from=translated src=- shape=84e2fd96 vocab=f8092d5a
+-/
 theorem mem_rootsOfUnity_card_units_of_dvd {q p : ℕ} [Fact q.Prime]
     {ζ : Rˣ} (h1 : ζ ^ p = 1) (hdvd : p ∣ q - 1) :
     ζ ∈ rootsOfUnity (Fintype.card (ZMod q)ˣ) R := by
@@ -125,7 +131,9 @@ theorem mem_rootsOfUnity_card_units_of_dvd {q p : ℕ} [Fact q.Prime]
 
 /-- **The book's `χ_{p,q}` has order exactly `p`**: the character
 sending a primitive root mod `q` to a primitive `p`-th root of
-unity, for `p ∣ q − 1`.-/
+unity, for `p ∣ q − 1`.
+@isnad1 id=eq.3h5v.s8.66a36d626742 from=translated src=- shape=c546b6fc vocab=303ea46b
+-/
 theorem orderOf_ofRootOfUnity_eq {q p : ℕ} [Fact q.Prime]
     {ζ : Rˣ} (hζp : IsPrimitiveRoot ζ p)
     (hζ : ζ ∈ rootsOfUnity (Fintype.card (ZMod q)ˣ) R)
@@ -143,7 +151,9 @@ variable {q : ℕ} [Fact q.Prime] {R : Type _} [CommRing R]
 `τ(χ) = ∑_k χ(g)^k · ζ_q^(g^k)` — summing over the powers of a
 primitive root `g` mod `q` instead of over all residues (the zero
 residue contributes nothing, and the nonzero residues are exactly
-`g^0, …, g^(q−2)`).-/
+`g^0, …, g^(q−2)`).
+@isnad1 id=eq.2h5v.s9.7ebf61c7dcaa from=translated src=- shape=a36d6c3e vocab=fd651f80
+-/
 theorem gaussSum_eq_sum_range {ζq : R} (hζq : ζq ^ q = 1)
     (χ : MulChar (ZMod q) R) {g : (ZMod q)ˣ}
     (hg : ∀ x, x ∈ Subgroup.zpowers g) :
@@ -192,7 +202,9 @@ theorem gaussSum_eq_sum_range {ζq : R} (hζq : ζq ^ q = 1)
     rw [AddChar.zmodChar_apply, Units.val_pow_eq_pow_val, map_pow]
 
 /-- A character constructed from a root of unity of order `> 1` is
-nontrivial.-/
+nontrivial.
+@isnad1 id=ne.3h4v.s7.78e5e90575f0 from=translated src=- shape=e7e32c29 vocab=5892ab68
+-/
 theorem ofRootOfUnity_ne_one {M : Type _} [CommMonoid M] [Fintype M]
     [DecidableEq M] {R' : Type _} [CommMonoidWithZero R'] {ζ : R'ˣ}
     (hζ : ζ ∈ rootsOfUnity (Fintype.card Mˣ) R')
@@ -215,7 +227,9 @@ geometric sum, and kill the remaining character sum by the book's
 instantiation at the order-`p` character `χ_{p,q}`: nontriviality
 comes from `1 < p` (the book takes `p` prime).  The hypothesis
 `p ∣ q − 1` is carried by the root-of-unity membership `hζmem`
-(see `mem_rootsOfUnity_card_units_of_dvd`).-/
+(see `mem_rootsOfUnity_card_units_of_dvd`).
+@isnad1 id=eq.5h6v.s9.cf4413c09cd7 from=translated src=- shape=5d968df6 vocab=3b364b68
+-/
 theorem lemma_4_4_1 {q p : ℕ} [Fact q.Prime] (hp : 1 < p)
     {R : Type _} [CommRing R] [IsDomain R]
     {ζp : Rˣ} (hζp : IsPrimitiveRoot ζp p)
@@ -252,7 +266,9 @@ trivial), so the multinomial step is the Frobenius
 `χ(n)^p = 1`; this yields `G^(n^(p−1)) ≡ χ(n)·G`.  Multiplying by
 `conj G` and using Lemma 4.4.1 turns both sides into multiples of
 `q`, which is invertible mod `n` by Bézout, and the cancellation
-gives the result.-/
+gives the result.
+@isnad1 id=dvd.7h7v.s9.88f56efb0414 from=translated src=- shape=b18fc4fd vocab=9aac824c
+-/
 theorem lemma_4_4_2 {q p n : ℕ} [Fact q.Prime] (hp : p.Prime)
     (hn : n.Prime) (hgcd : Nat.Coprime (p * q) n)
     {R : Type _} [CommRing R] [IsDomain R]
@@ -413,7 +429,9 @@ book's: multiplying by `ζ^((m−1)k)` reduces to a congruence
 `ζ^e ≡ 1`; if `ζ^e ≠ 1`, then `1 − ζ^(e mod m)` is one of the
 factors of `∏_(l=1)^(m−1) (1 − ζ^l) = m` (Mathlib's
 `IsPrimitiveRoot.prod_one_sub_pow_eq_order`), so `n` would divide
-`m`.-/
+`m`.
+@isnad1 id=eq.3h6v.s7.7c66205f4f90 from=translated src=- shape=38bd3b61 vocab=1f1c7843
+-/
 theorem lemma_4_4_3 {m n : ℕ} {R : Type _} [CommRing R] [IsDomain R]
     {ζ : R} (hζ : IsPrimitiveRoot ζ m) (hnm : ¬(n : R) ∣ (m : R))
     {j k : ℕ} (hcong : (n : R) ∣ ζ ^ j - ζ ^ k) :
@@ -482,7 +500,9 @@ Lemma 4.4.2's congruence `G^(n^(p−1)−1) ≡ χ(n) (mod n)` becomes the
 variable {q : ℕ} [Fact q.Prime] {R : Type _} [CommMonoidWithZero R]
 
 /-- The defining values of the constructed character:
-`χ(g^k) = ζ^k`.-/
+`χ(g^k) = ζ^k`.
+@isnad1 id=eq.2h5v.s9.f799e966e2b8 from=translated src=- shape=dd317e14 vocab=6f89cf79
+-/
 theorem ofRootOfUnity_apply_pow {ζ : Rˣ}
     (hζ : ζ ∈ rootsOfUnity (Fintype.card (ZMod q)ˣ) R)
     {g : (ZMod q)ˣ} (hg : ∀ x, x ∈ Subgroup.zpowers g) (k : ℕ) :
@@ -490,7 +510,9 @@ theorem ofRootOfUnity_apply_pow {ζ : Rˣ}
       = (ζ : R) ^ k := by
   rw [Units.val_pow_eq_pow_val, map_pow, MulChar.ofRootOfUnity_spec]
 
-/-- Every unit value of the constructed character is a `ζ`-power.-/
+/-- Every unit value of the constructed character is a `ζ`-power.
+@isnad1 id=ex.3h5v.s8.33e6fec7a15a from=translated src=- shape=3582de38 vocab=008e00e4
+-/
 theorem exists_ofRootOfUnity_apply_eq {ζ : Rˣ}
     (hζ : ζ ∈ rootsOfUnity (Fintype.card (ZMod q)ˣ) R)
     {g : (ZMod q)ˣ} (hg : ∀ x, x ∈ Subgroup.zpowers g)
@@ -505,7 +527,9 @@ theorem exists_ofRootOfUnity_apply_eq {ζ : Rˣ}
 
 /-- **Lemma 4.4.2 in root-of-unity form** — the `h42` hypothesis of
 the (4.21)/(4.23) machinery: there is `j₀` with
-`G^(n^(p−1)−1) ≡ ζ_p^(j₀) (mod n)`.-/
+`G^(n^(p−1)−1) ≡ ζ_p^(j₀) (mod n)`.
+@isnad1 id=ex.7h7v.s9.9349176645ac from=translated src=- shape=8be7d569 vocab=d49a89c7
+-/
 theorem lemma_4_4_2_zeta_pow {p n : ℕ} (hp : p.Prime)
     (hn : n.Prime) (hgcd : Nat.Coprime (p * q) n)
     {R : Type _} [CommRing R] [IsDomain R]

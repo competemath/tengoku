@@ -47,6 +47,9 @@ variable {k : ℝ}
 
 /-! ### Derivatives of the integrands with respect to the modulus -/
 
+/--
+@isnad1 id=hasderiv.0h2v.s6.237eb452abb7 from=translated src=- shape=bab26e52 vocab=62e7d8c5
+-/
 theorem hasDerivAt_one_sub_sq_mul (x c : ℝ) :
     HasDerivAt (fun x : ℝ => 1 - x ^ 2 * c) (-(2 * x * c)) x := by
   have := ((hasDerivAt_pow 2 x).mul_const c).const_sub 1
@@ -54,7 +57,9 @@ theorem hasDerivAt_one_sub_sq_mul (x c : ℝ) :
   push_cast
   ring
 
-/-- `∂/∂x (1 − x² sin²θ)^(−1/2) = x sin²θ (1 − x² sin²θ)^(−3/2)`.-/
+/-- `∂/∂x (1 − x² sin²θ)^(−1/2) = x sin²θ (1 − x² sin²θ)^(−3/2)`.
+@isnad1 id=hasderiv.1h2v.s7.5be1f35d6d2a from=translated src=- shape=32a23f4f vocab=34513a59
+-/
 theorem hasDerivAt_ellipticK_integrand {x : ℝ} (hx : x ^ 2 < 1) (θ : ℝ) :
     HasDerivAt (fun x : ℝ => (Real.sqrt (1 - x ^ 2 * Real.sin θ ^ 2))⁻¹)
       (x * Real.sin θ ^ 2 / Real.sqrt (1 - x ^ 2 * Real.sin θ ^ 2) ^ 3) x := by
@@ -64,7 +69,9 @@ theorem hasDerivAt_ellipticK_integrand {x : ℝ} (hx : x ^ 2 < 1) (θ : ℝ) :
   refine h.congr_deriv ?_
   field_simp
 
-/-- `∂/∂x (1 − x² sin²θ)^(1/2) = −x sin²θ (1 − x² sin²θ)^(−1/2)`.-/
+/-- `∂/∂x (1 − x² sin²θ)^(1/2) = −x sin²θ (1 − x² sin²θ)^(−1/2)`.
+@isnad1 id=hasderiv.1h2v.s7.7db7aa57ce42 from=translated src=- shape=2ef545f5 vocab=c38777ba
+-/
 theorem hasDerivAt_ellipticE_integrand {x : ℝ} (hx : x ^ 2 < 1) (θ : ℝ) :
     HasDerivAt (fun x : ℝ => Real.sqrt (1 - x ^ 2 * Real.sin θ ^ 2))
       (-(x * Real.sin θ ^ 2) / Real.sqrt (1 - x ^ 2 * Real.sin θ ^ 2)) x := by
@@ -73,17 +80,25 @@ theorem hasDerivAt_ellipticE_integrand {x : ℝ} (hx : x ^ 2 < 1) (θ : ℝ) :
   refine ((hasDerivAt_one_sub_sq_mul x (Real.sin θ ^ 2)).sqrt hΔ.ne').congr_deriv ?_
   field_simp
 
+/--
+@isnad1 id=continuo.1h1v.s7.c73e4287e91b from=translated src=- shape=a5f9e5b1 vocab=ddc2733b
+-/
 theorem continuous_ellipticK_deriv_integrand (hk : k ^ 2 < 1) :
     Continuous fun θ : ℝ => k * Real.sin θ ^ 2 / Real.sqrt (1 - k ^ 2 * Real.sin θ ^ 2) ^ 3 :=
   Continuous.div (by fun_prop) ((Real.continuous_sqrt.comp (by fun_prop)).pow 3) fun θ =>
     pow_ne_zero 3 (Real.sqrt_pos.mpr (one_sub_mul_sin_sq_pos hk θ)).ne'
 
+/--
+@isnad1 id=continuo.1h1v.s7.bcd5c480ece1 from=translated src=- shape=cb07575c vocab=1a58249d
+-/
 theorem continuous_ellipticE_deriv_integrand (hk : k ^ 2 < 1) :
     Continuous fun θ : ℝ => -(k * Real.sin θ ^ 2) / Real.sqrt (1 - k ^ 2 * Real.sin θ ^ 2) :=
   Continuous.div (by fun_prop) (Real.continuous_sqrt.comp (by fun_prop)) fun θ =>
     (Real.sqrt_pos.mpr (one_sub_mul_sin_sq_pos hk θ)).ne'
 
-/-- A uniform lower bound for `1 − x² sin²θ` when `|x| ≤ m`.-/
+/-- A uniform lower bound for `1 − x² sin²θ` when `|x| ≤ m`.
+@isnad1 id=le.1h3v.s6.546666ed08bf from=translated src=- shape=31f7d8ba vocab=3d9f8041
+-/
 theorem one_sub_sq_mul_sin_sq_ge {x m : ℝ} (hxm : |x| ≤ m) (θ : ℝ) :
     1 - m ^ 2 ≤ 1 - x ^ 2 * Real.sin θ ^ 2 := by
   have h1 := Real.sin_sq_le_one θ
@@ -94,7 +109,9 @@ theorem one_sub_sq_mul_sin_sq_ge {x m : ℝ} (hxm : |x| ≤ m) (θ : ℝ) :
 
 /-! ### The two classical identities -/
 
-/-- `k ∂E/∂k = E − K`.-/
+/-- `k ∂E/∂k = E − K`.
+@isnad1 id=eq.1h1v.s7.1d81f646c078 from=translated src=- shape=144bdcf3 vocab=2010193f
+-/
 theorem mul_ellipticE_deriv (hk : k ^ 2 < 1) :
     k * ∫ θ in (0 : ℝ)..(π / 2), -(k * Real.sin θ ^ 2) / Real.sqrt (1 - k ^ 2 * Real.sin θ ^ 2)
       = ellipticE k - ellipticK k := by
@@ -109,7 +126,9 @@ theorem mul_ellipticE_deriv (hk : k ^ 2 < 1) :
   field_simp
   linear_combination -hs2
 
-/-- The derivative of `sin θ cos θ/√(1 − k² sin²θ)`.-/
+/-- The derivative of `sin θ cos θ/√(1 − k² sin²θ)`.
+@isnad1 id=hasderiv.1h2v.s8.1aa999b61a1b from=translated src=- shape=f9b7f193 vocab=b40888b8
+-/
 theorem hasDerivAt_sin_mul_cos_div_sqrt (hk : k ^ 2 < 1) (θ : ℝ) :
     HasDerivAt (fun θ => Real.sin θ * Real.cos θ / Real.sqrt (1 - k ^ 2 * Real.sin θ ^ 2))
       ((1 - 2 * Real.sin θ ^ 2 + k ^ 2 * Real.sin θ ^ 4)
@@ -136,13 +155,18 @@ theorem hasDerivAt_sin_mul_cos_div_sqrt (hk : k ^ 2 < 1) (θ : ℝ) :
   field_simp
   linear_combination (1 - 2 * Real.sin θ ^ 2) * hs2 + (Real.sin θ ^ 2 * k ^ 2 + D ^ 2) * hcos
 
+/--
+@isnad1 id=continuo.1h1v.s7.64b0c5ccd7a1 from=translated src=- shape=0e56c353 vocab=a034df9b
+-/
 theorem continuous_sin_cos_deriv (hk : k ^ 2 < 1) :
     Continuous fun θ : ℝ => (1 - 2 * Real.sin θ ^ 2 + k ^ 2 * Real.sin θ ^ 4)
       / Real.sqrt (1 - k ^ 2 * Real.sin θ ^ 2) ^ 3 :=
   Continuous.div (by fun_prop) ((Real.continuous_sqrt.comp (by fun_prop)).pow 3) fun θ =>
     pow_ne_zero 3 (Real.sqrt_pos.mpr (one_sub_mul_sin_sq_pos hk θ)).ne'
 
-/-- `k (1 − k²) ∂K/∂k = E − (1 − k²) K`.-/
+/-- `k (1 − k²) ∂K/∂k = E − (1 − k²) K`.
+@isnad1 id=eq.1h1v.s8.dba160c4bf9c from=translated src=- shape=6c7032aa vocab=112ece54
+-/
 theorem ellipticK_deriv_identity (hk : k ^ 2 < 1) :
     k * (1 - k ^ 2) * ∫ θ in (0 : ℝ)..(π / 2),
         k * Real.sin θ ^ 2 / Real.sqrt (1 - k ^ 2 * Real.sin θ ^ 2) ^ 3
@@ -190,6 +214,9 @@ noncomputable def legendreL (k : ℝ) : ℝ :=
 
 /-! ### The limit `k → 0⁺` -/
 
+/--
+@isnad1 id=eq.0h0v.s3.ec390b98a539 from=translated src=- shape=3c26ae4f vocab=9a8f10f2
+-/
 theorem ellipticE_one : ellipticE 1 = 1 := by
   unfold ellipticE
   have : ∫ θ in (0 : ℝ)..(π / 2), Real.sqrt (1 - 1 ^ 2 * Real.sin θ ^ 2)
@@ -202,7 +229,9 @@ theorem ellipticE_one : ellipticE 1 = 1 := by
     rw [← Real.cos_sq', Real.sqrt_sq hcos]
   rw [this, integral_cos, Real.sin_pi_div_two, Real.sin_zero, sub_zero]
 
-/-- `0 ≤ E(√(1 − k²)) − 1 ≤ (π/2) k` for `0 ≤ k ≤ 1`.-/
+/-- `0 ≤ E(√(1 − k²)) − 1 ≤ (π/2) k` for `0 ≤ k ≤ 1`.
+@isnad1 id=and.2h1v.s7.6d400780a01b from=translated src=- shape=acd8d43b vocab=451bd864
+-/
 theorem ellipticE_sqrt_sub_one_bounds (hk0 : 0 ≤ k) (hk1 : k ≤ 1) :
     0 ≤ ellipticE (Real.sqrt (1 - k ^ 2)) - 1
       ∧ ellipticE (Real.sqrt (1 - k ^ 2)) - 1 ≤ π / 2 * k := by
@@ -255,7 +284,9 @@ theorem ellipticE_sqrt_sub_one_bounds (hk0 : 0 ≤ k) (hk1 : k ≤ 1) :
             intervalIntegrable_const fun θ hθ => (hpt θ hθ).2
       _ = π / 2 * k := by simp [mul_comm]
 
-/-- `0 ≤ K − E ≤ k² K` for `k² < 1`.-/
+/-- `0 ≤ K − E ≤ k² K` for `k² < 1`.
+@isnad1 id=and.1h1v.s6.5c096cd87cad from=translated src=- shape=347494d5 vocab=49b59319
+-/
 theorem ellipticK_sub_ellipticE_bounds (hk : k ^ 2 < 1) :
     0 ≤ ellipticK k - ellipticE k ∧ ellipticK k - ellipticE k ≤ k ^ 2 * ellipticK k := by
   have hE : IntervalIntegrable (fun θ : ℝ => Real.sqrt (1 - k ^ 2 * Real.sin θ ^ 2)) volume 0
@@ -291,7 +322,9 @@ theorem ellipticK_sub_ellipticE_bounds (hk : k ^ 2 < 1) :
             (hK.const_mul _) fun θ _ => (hpt θ).2
       _ = k ^ 2 * ellipticK k := by rw [intervalIntegral.integral_const_mul, ellipticK]
 
-/-- `K(k) → π/2` as `k → 0⁺`.-/
+/-- `K(k) → π/2` as `k → 0⁺`.
+@isnad1 id=tendsto.0h0v.s5.a05746330711 from=translated src=- shape=9a1ab5e9 vocab=03f39f96
+-/
 theorem tendsto_ellipticK_nhdsGT_zero : Tendsto ellipticK (𝓝[>] 0) (𝓝 (π / 2)) := by
   have hmem : Ioo (0 : ℝ) (1 / 2) ∈ 𝓝[>] (0 : ℝ) := Ioo_mem_nhdsGT (by norm_num)
   have hlo : Tendsto (fun k : ℝ => π / 2 * (1 + k ^ 2 / 4)) (𝓝[>] 0) (𝓝 (π / 2)) := by
@@ -309,7 +342,9 @@ theorem tendsto_ellipticK_nhdsGT_zero : Tendsto ellipticK (𝓝[>] 0) (𝓝 (π 
   · filter_upwards [hmem] with k hk
     exact (ellipticK_bounds (by nlinarith [hk.1, hk.2])).2
 
-/-- `E(√(1 − k²)) → 1` as `k → 0⁺`.-/
+/-- `E(√(1 − k²)) → 1` as `k → 0⁺`.
+@isnad1 id=tendsto.0h0v.s6.ccc4bde3c8de from=translated src=- shape=904a99ee vocab=c01cc51f
+-/
 theorem tendsto_ellipticE_sqrt_nhdsGT_zero :
     Tendsto (fun k : ℝ => ellipticE (Real.sqrt (1 - k ^ 2))) (𝓝[>] 0) (𝓝 1) := by
   have hmem : Ioo (0 : ℝ) 1 ∈ 𝓝[>] (0 : ℝ) := Ioo_mem_nhdsGT one_pos
@@ -323,7 +358,9 @@ theorem tendsto_ellipticE_sqrt_nhdsGT_zero :
   · filter_upwards [hmem] with k hk
     linarith [(ellipticE_sqrt_sub_one_bounds hk.1.le hk.2.le).2]
 
-/-- `K(√(1 − k²)) (E(k) − K(k)) → 0` as `k → 0⁺`.-/
+/-- `K(√(1 − k²)) (E(k) − K(k)) → 0` as `k → 0⁺`.
+@isnad1 id=tendsto.0h0v.s6.507483347fdf from=translated src=- shape=17952307 vocab=dd780959
+-/
 theorem tendsto_ellipticK_sqrt_mul_sub_nhdsGT_zero :
     Tendsto (fun k : ℝ => ellipticK (Real.sqrt (1 - k ^ 2)) * (ellipticE k - ellipticK k))
       (𝓝[>] 0) (𝓝 0) := by
@@ -370,7 +407,9 @@ theorem tendsto_ellipticK_sqrt_mul_sub_nhdsGT_zero :
     _ = π * Real.log 4 * k ^ 2 - π * (Real.log k * k ^ 2)
       + π / 2 * (k ^ 2 * k ^ 2) - π / 4 * (k ^ 2 * (Real.log k * k ^ 2)) := by ring
 
-/-- `L(k) → π/2` as `k → 0⁺`.-/
+/-- `L(k) → π/2` as `k → 0⁺`.
+@isnad1 id=tendsto.0h0v.s5.fcec244d77db from=translated src=- shape=9a1ab5e9 vocab=ad6fb747
+-/
 theorem tendsto_legendreL_nhdsGT_zero : Tendsto legendreL (𝓝[>] 0) (𝓝 (π / 2)) := by
   have h := tendsto_ellipticK_sqrt_mul_sub_nhdsGT_zero.add
     (tendsto_ellipticE_sqrt_nhdsGT_zero.mul tendsto_ellipticK_nhdsGT_zero)

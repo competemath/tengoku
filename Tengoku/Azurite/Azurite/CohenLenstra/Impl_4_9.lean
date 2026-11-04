@@ -81,7 +81,9 @@ noncomputable def quadElt {R : Type _} [CommRing R] (u a x₀ x₁ : R) : QuadRi
     + algebraMap R (QuadRing R u a) x₁
       * AdjoinRoot.root (X ^ 2 - C u * X - C a : Polynomial R)
 
-/-- **The general product formula** of (4.9).-/
+/-- **The general product formula** of (4.9).
+@isnad1 id=eq.0h7v.s9.08134ec3732a from=translated src=- shape=87744965 vocab=3ddc4052
+-/
 theorem quadElt_mul {R : Type _} [CommRing R] (u a x₀ x₁ y₀ y₁ : R) :
     quadElt u a x₀ x₁ * quadElt u a y₀ y₁
       = quadElt u a (x₀ * y₀ + a * (x₁ * y₁))
@@ -93,7 +95,9 @@ theorem quadElt_mul {R : Type _} [CommRing R] (u a x₀ x₁ y₀ y₁ : R) :
 
 /-- **(4.9), `n ≡ 1 (mod 4)`, `u = 0`**: the three-multiplication
 scheme `p₀ = x₀y₀`, `p₁ = x₁y₁`, `s₀ = x₀ + x₁`, `s₁ = y₀ + y₁`,
-`z₀ = p₀ + a·p₁`, `z₁ = s₀s₁ − p₀ − p₁`.-/
+`z₀ = p₀ + a·p₁`, `z₁ = s₀s₁ − p₀ − p₁`.
+@isnad1 id=eq.0h6v.s9.9ce268ec3bb9 from=translated src=- shape=903c3afc vocab=3ddc4052
+-/
 theorem quadElt_mul_c1 {R : Type _} [CommRing R] (a x₀ x₁ y₀ y₁ : R) :
     quadElt 0 a x₀ x₁ * quadElt 0 a y₀ y₁
       = quadElt 0 a (x₀ * y₀ + a * (x₁ * y₁))
@@ -103,7 +107,9 @@ theorem quadElt_mul_c1 {R : Type _} [CommRing R] (a x₀ x₁ y₀ y₁ : R) :
   ring
 
 /-- **(4.9), `n ≡ 3 (mod 4)`, `a = 1`**: `z₀ = p₀ + p₁`,
-`z₁ = s₀s₁ + (u − 1)p₁ − p₀`.-/
+`z₁ = s₀s₁ + (u − 1)p₁ − p₀`.
+@isnad1 id=eq.0h6v.s9.5d207596b36a from=translated src=- shape=d2f6b521 vocab=3ddc4052
+-/
 theorem quadElt_mul_c2 {R : Type _} [CommRing R] (u x₀ x₁ y₀ y₁ : R) :
     quadElt u 1 x₀ x₁ * quadElt u 1 y₀ y₁
       = quadElt u 1 (x₀ * y₀ + x₁ * y₁)
@@ -112,7 +118,9 @@ theorem quadElt_mul_c2 {R : Type _} [CommRing R] (u x₀ x₁ y₀ y₁ : R) :
   congr 1 <;> ring
 
 /-- **The norm is multiplicative** on coordinates — so norm-one
-elements stay norm-one along an exponentiation.-/
+elements stay norm-one along an exponentiation.
+@isnad1 id=eq.0h7v.s7.aa33642958fc from=translated src=- shape=fed60742 vocab=c897ef8e
+-/
 theorem quadNorm_mul_coords {R : Type _} [CommRing R] (u a x₀ x₁ y₀ y₁ : R) :
     quadNorm u a (x₀ * y₀ + a * (x₁ * y₁))
         (x₀ * y₁ + x₁ * y₀ + u * (x₁ * y₁))
@@ -121,7 +129,9 @@ theorem quadNorm_mul_coords {R : Type _} [CommRing R] (u a x₀ x₁ y₀ y₁ :
   ring
 
 /-- **(4.9) combined squaring for norm-one elements**: with
-`s = u·x₁ + 2x₀`, `(x₀ + x₁α)² = (x₀s − 1) + (x₁s)α`.-/
+`s = u·x₁ + 2x₀`, `(x₀ + x₁α)² = (x₀s − 1) + (x₁s)α`.
+@isnad1 id=eq.1h5v.s9.fb535f84f048 from=translated src=- shape=ab13699b vocab=bcb02d58
+-/
 theorem quadElt_sq_of_quadNorm_one {R : Type _} [CommRing R]
     {u a x₀ x₁ : R} (h : quadNorm u a x₀ x₁ = 1) :
     quadElt u a x₀ x₁ ^ 2
@@ -133,19 +143,25 @@ theorem quadElt_sq_of_quadNorm_one {R : Type _} [CommRing R]
   · linear_combination -h
   · ring
 
-/-- **(4.9), `α^(n+1)` in (4.4)(c2)**: `α² = uα + 1` has norm one.-/
+/-- **(4.9), `α^(n+1)` in (4.4)(c2)**: `α² = uα + 1` has norm one.
+@isnad1 id=eq.0h2v.s5.f1603ecc82bc from=translated src=- shape=c0d2b1f7 vocab=96653fb8
+-/
 theorem quadNorm_root_sq_c2 {R : Type _} [CommRing R] (u : R) :
     quadNorm u 1 1 u = 1 := by
   simp only [quadNorm]
   ring
 
-/-- `α² = a + uα` as a coordinate element.-/
+/-- `α² = a + uα` as a coordinate element.
+@isnad1 id=eq.0h3v.s11.e9f2d84a13ee from=translated src=- shape=5f779399 vocab=11848c95
+-/
 theorem root_sq_eq_quadElt {R : Type _} [CommRing R] (u a : R) :
     (AdjoinRoot.root (X ^ 2 - C u * X - C a : Polynomial R)) ^ 2
       = quadElt u a a u := by
   rw [quadRing_root_sq, quadElt, add_comm]
 
-/-- **(4.9)**: for odd `n`, `α^(n+1) = (α²)^((n+1)/2)`.-/
+/-- **(4.9)**: for odd `n`, `α^(n+1) = (α²)^((n+1)/2)`.
+@isnad1 id=eq.1h4v.s13.aaa1ddaa9e27 from=translated src=- shape=45fe77db vocab=4c44cae7
+-/
 theorem root_pow_succ_eq_sq_pow {R : Type _} [CommRing R] (u a : R)
     {n : ℕ} (hodd : n % 2 = 1) :
     (AdjoinRoot.root (X ^ 2 - C u * X - C a : Polynomial R)) ^ (n + 1)
@@ -153,7 +169,9 @@ theorem root_pow_succ_eq_sq_pow {R : Type _} [CommRing R] (u a : R)
           ^ ((n + 1) / 2) := by
   rw [← pow_mul, Nat.mul_div_cancel' (by omega : 2 ∣ n + 1)]
 
-/-- **(4.10)**: `N(m + α) = m(m + u) − a`, the denominator.-/
+/-- **(4.10)**: `N(m + α) = m(m + u) − a`, the denominator.
+@isnad1 id=eq.0h4v.s6.59550f7e43b8 from=translated src=- shape=632ad216 vocab=f585995b
+-/
 theorem quadNorm_m_one {R : Type _} [CommRing R] (u a m : R) :
     quadNorm u a m 1 = m * (m + u) - a := by
   simp only [quadNorm]
@@ -161,7 +179,9 @@ theorem quadNorm_m_one {R : Type _} [CommRing R] (u a m : R) :
 
 /-- **(4.10), the candidate identity** (denominators cleared):
 `(ᾱ + m)·((m² + a) + (2m + u)α) = (m(m + u) − a)·(α + m)` with
-`ᾱ = u − α`; so `(α + m)/(ᾱ + m) = ((m² + a) + (2m + u)α)/(m(m+u) − a)`.-/
+`ᾱ = u − α`; so `(α + m)/(ᾱ + m) = ((m² + a) + (2m + u)α)/(m(m+u) − a)`.
+@isnad1 id=eq.0h4v.s14.d2dfce9f3457 from=translated src=- shape=9181ede1 vocab=f9fc8c3f
+-/
 theorem norm_one_candidate_spec {R : Type _} [CommRing R] (u a m : R) :
     (algebraMap R (QuadRing R u a) u
         - AdjoinRoot.root (X ^ 2 - C u * X - C a : Polynomial R)
@@ -176,7 +196,9 @@ theorem norm_one_candidate_spec {R : Type _} [CommRing R] (u a m : R) :
     + algebraMap R (QuadRing R u a) u)) * hrel
 
 /-- **(4.10), norm one**: with `d` inverse to `m(m + u) − a`, the
-element `(m² + a)d + (2m + u)d·α` has norm one.-/
+element `(m² + a)d + (2m + u)d·α` has norm one.
+@isnad1 id=eq.1h5v.s7.f3e092a7f8a4 from=translated src=- shape=79df0148 vocab=d90cdf47
+-/
 theorem quadNorm_norm_one_candidate {R : Type _} [CommRing R]
     (u a m d : R) (hd : d * (m * (m + u) - a) = 1) :
     quadNorm u a ((m ^ 2 + a) * d) ((2 * m + u) * d) = 1 := by
@@ -186,7 +208,9 @@ theorem quadNorm_norm_one_candidate {R : Type _} [CommRing R]
 /-- **(4.10), "unless `n` is composite"**: for prime `n` with a
 nonsquare discriminant, the denominator `m(m + u) − a` is a unit of
 `ℤ/nℤ` for every `m` — it vanishes only if `u² + 4a = (2m + u)²`
-were a square.  Contrapositive: a non-unit denominator convicts `n`.-/
+were a square.  Contrapositive: a non-unit denominator convicts `n`.
+@isnad1 id=isunit.2h4v.s7.18c7c74475b1 from=translated src=- shape=9f16a671 vocab=a607cfa5
+-/
 theorem norm_one_denominator_isUnit {n : ℕ} (hn : n.Prime) {u a : ZMod n}
     (hns : ¬ IsSquare (u ^ 2 + 4 * a)) (m : ZMod n) :
     IsUnit (m * (m + u) - a) := by
@@ -198,7 +222,9 @@ theorem norm_one_denominator_isUnit {n : ℕ} (hn : n.Prime) {u a : ZMod n}
   linear_combination (-4 : ZMod n) * h0
 
 /-- **Injectivity of the coordinate representation** `x₀ + x₁α` in
-`R[T]/(T² − uT − a)`: the power basis `1, α` of a monic quadratic.-/
+`R[T]/(T² − uT − a)`: the power basis `1, α` of a monic quadratic.
+@isnad1 id=and.1h7v.s5.25152d98d75a from=translated src=- shape=49646777 vocab=793b2c30
+-/
 theorem quadElt_injective {R : Type _} [CommRing R] [Nontrivial R] (u a : R)
     {x₀ x₁ y₀ y₁ : R} (h : quadElt u a x₀ x₁ = quadElt u a y₀ y₁) :
     x₀ = y₀ ∧ x₁ = y₁ := by

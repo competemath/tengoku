@@ -41,7 +41,9 @@ def IsMultihomogeneous (P : MvPolynomial ((i : Fin m) × Fin (k i + 1)) A) (d : 
   ∀ i : Fin m, ∀ c ∈ P.support, ∑ j : Fin (k i + 1), c ⟨i, j⟩ = d i
 
 /-- A single variable `X_{i₀,j₀}` is multihomogeneous of multidegree `e_{i₀}` (degree `1` in its
-own block, `0` in every other block).-/
+own block, `0` in every other block).
+@isnad1 id=ismultih.0h4v.s7.283685061a98 from=translated src=- shape=bf9ab856 vocab=3bd9d379
+-/
 theorem isMultihomogeneous_X [Nontrivial A] (s : (i : Fin m) × Fin (k i + 1)) :
     IsMultihomogeneous (X s : MvPolynomial ((i : Fin m) × Fin (k i + 1)) A)
       (fun i => if i = s.1 then 1 else 0) := by
@@ -61,7 +63,9 @@ theorem isMultihomogeneous_X [Nontrivial A] (s : (i : Fin m) × Fin (k i + 1)) :
     refine Finset.sum_eq_zero fun j _ => ?_
     exact Finsupp.single_eq_of_ne fun h => hi (Sigma.mk.inj_iff.mp h).1
 
-/-- A product of multihomogeneous polynomials is multihomogeneous, with multidegrees adding.-/
+/-- A product of multihomogeneous polynomials is multihomogeneous, with multidegrees adding.
+@isnad1 id=ismultih.2h7v.s8.bc1e30676b47 from=translated src=- shape=b192687c vocab=38ace8be
+-/
 theorem IsMultihomogeneous.mul {P Q : MvPolynomial ((i : Fin m) × Fin (k i + 1)) A}
     {d e : Fin m → ℕ} (hP : IsMultihomogeneous P d) (hQ : IsMultihomogeneous Q e) :
     IsMultihomogeneous (P * Q) (d + e) := by
@@ -71,7 +75,9 @@ theorem IsMultihomogeneous.mul {P Q : MvPolynomial ((i : Fin m) × Fin (k i + 1)
   rw [Finset.sum_add_distrib, hP i a ha, hQ i b hb, Pi.add_apply]
 
 /-- A sum of two multihomogeneous polynomials of the same multidegree is multihomogeneous of that
-multidegree.-/
+multidegree.
+@isnad1 id=ismultih.2h6v.s8.4f4d93dce779 from=translated src=- shape=6b9198ec vocab=430dbd1b
+-/
 theorem IsMultihomogeneous.add {P Q : MvPolynomial ((i : Fin m) × Fin (k i + 1)) A}
     {d : Fin m → ℕ} (hP : IsMultihomogeneous P d) (hQ : IsMultihomogeneous Q d) :
     IsMultihomogeneous (P + Q) d := by
@@ -83,7 +89,9 @@ theorem IsMultihomogeneous.add {P Q : MvPolynomial ((i : Fin m) × Fin (k i + 1)
 /-- **Scaling a multihomogeneous polynomial.** If `P` is multihomogeneous of multidegree `d`, then
 rescaling the `i`-th block of variables by a scalar `c i` multiplies the value of `P` by
 `∏ i, (c i) ^ (d i)`. This is the algebraic core of the well-definedness of `P(x) = 0` over a
-product of projective spaces.-/
+product of projective spaces.
+@isnad1 id=eq.1h7v.s9.98f6e7307533 from=translated src=- shape=73d4996e vocab=e1bb584e
+-/
 theorem IsMultihomogeneous.eval_blockScale {P : MvPolynomial ((i : Fin m) × Fin (k i + 1)) A}
     {d : Fin m → ℕ} (hP : IsMultihomogeneous P d) (c : Fin m → A)
     (v : (i : Fin m) × Fin (k i + 1) → A) :

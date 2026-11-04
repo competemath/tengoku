@@ -44,7 +44,9 @@ private lemma mem_of_coord (m k : ℤ) (hm : m ≠ 0) (hlt : |m| < (b : ℤ) ^ p
     (((m : ℝ) * (b : ℝ) ^ k : ℝ) : EReal) ∈ precisionSet b p :=
   Or.inr ⟨m, k, hm, hlt, rfl⟩
 
-/-- Every element of the set is a real number.-/
+/-- Every element of the set is a real number.
+@isnad1 id=ex.0h3v.s5.5793667d4bf4 from=translated src=- shape=28129567 vocab=44355d25
+-/
 lemma precisionSet_exists_real (a : ↥(precisionSet b p)) : ∃ r : ℝ, ((r : ℝ) : EReal) = a.val := by
   rcases a.property with h | ⟨m, k, _, _, h⟩
   · exact ⟨0, by rw [h]; rfl⟩
@@ -54,9 +56,15 @@ lemma precisionSet_exists_real (a : ↥(precisionSet b p)) : ∃ r : ℝ, ((r : 
 noncomputable def precToReal (a : ↥(precisionSet b p)) : ℝ :=
   Classical.choose (precisionSet_exists_real a)
 
+/--
+@isnad1 id=eq.0h3v.s5.973aaad9628f from=translated src=- shape=824f4a41 vocab=f02155a2
+-/
 lemma precToReal_spec (a : ↥(precisionSet b p)) : ((precToReal a : ℝ) : EReal) = a.val :=
   Classical.choose_spec (precisionSet_exists_real a)
 
+/--
+@isnad1 id=eq.1h4v.s5.b15822262087 from=translated src=- shape=5935303a vocab=b0b45db2
+-/
 lemma precToReal_eq_of_val {a : ↥(precisionSet b p)} {r : ℝ} (h : ((r : ℝ) : EReal) = a.val) :
     precToReal a = r :=
   EReal.coe_eq_coe_iff.mp ((precToReal_spec a).trans h.symm)
@@ -94,7 +102,9 @@ private lemma one_le_b_pow_pm1 : (1 : ℝ) ≤ (b : ℝ) ^ ((p : ℤ) - 1) :=
   one_le_zpow₀ (hbR b).le (by have := hp0 p; omega)
 
 omit [NeZero p] in
-/-- `|x / u|` lies in `[b^(p−1), b^p)` for `x ≠ 0`, where `u = precScale b p x`.-/
+/-- `|x / u|` lies in `[b^(p−1), b^p)` for `x ≠ 0`, where `u = precScale b p x`.
+@isnad1 id=and.1h3v.s6.f83b516b9c40 from=translated src=- shape=cc1a0b71 vocab=ec889732
+-/
 lemma abs_div_precScale_bounds (x : ℝ) (hx : x ≠ 0) :
     (b : ℝ) ^ ((p : ℤ) - 1) ≤ |x / precScale b p x| ∧
       |x / precScale b p x| < (b : ℝ) ^ (p : ℤ) := by
@@ -103,7 +113,9 @@ lemma abs_div_precScale_bounds (x : ℝ) (hx : x ≠ 0) :
   rw [show precScale b p |x| = precScale b p x from by unfold precScale; rw [abs_abs]] at h
   rwa [abs_div, abs_of_pos hu]
 
-/-- For `x > 0`, the greatest element `≤ x` is `⌊x / u⌋ · u`.-/
+/-- For `x > 0`, the greatest element `≤ x` is `⌊x / u⌋ · u`.
+@isnad1 id=isgreate.1h3v.s6.4778ded32627 from=translated src=- shape=de0c8f43 vocab=54400dd2
+-/
 lemma isGreatest_precision_pos (x : ℝ) (hx : 0 < x) :
     IsGreatest {s | s ∈ precisionSet b p ∧ s ≤ (x : EReal)}
       ((((⌊x / precScale b p x⌋ : ℝ) * precScale b p x : ℝ) : EReal)) := by
@@ -186,7 +198,9 @@ lemma isGreatest_precision_pos (x : ℝ) (hx : 0 < x) :
             rw [← hcast]; exact_mod_cast hint
           linarith
 
-/-- For `x > 0`, the least element `≥ x` is `⌈x / u⌉ · u`.-/
+/-- For `x > 0`, the least element `≥ x` is `⌈x / u⌉ · u`.
+@isnad1 id=isleast.1h3v.s6.3dda456316f3 from=translated src=- shape=4401aaf8 vocab=e94ebb21
+-/
 lemma isLeast_precision_pos (x : ℝ) (hx : 0 < x) :
     IsLeast {s | s ∈ precisionSet b p ∧ (x : EReal) ≤ s}
       ((((⌈x / precScale b p x⌉ : ℝ) * precScale b p x : ℝ) : EReal)) := by
@@ -252,7 +266,9 @@ lemma isLeast_precision_pos (x : ℝ) (hx : 0 < x) :
         linarith
 
 omit [Fact (1 < b)] [NeZero p] in
-/-- `precisionSet` is closed under negation.-/
+/-- `precisionSet` is closed under negation.
+@isnad1 id=mem.1h3v.s4.4d21d816d449 from=translated src=- shape=1a457016 vocab=467dfd0b
+-/
 lemma precisionSet_neg_mem {e : EReal} (h : e ∈ precisionSet b p) : -e ∈ precisionSet b p := by
   rcases h with h0 | ⟨m, k, hm, hlt, rfl⟩
   · left; rw [h0]; simp
@@ -261,7 +277,9 @@ lemma precisionSet_neg_mem {e : EReal} (h : e ∈ precisionSet b p) : -e ∈ pre
     rw [← EReal.coe_neg]; congr 1; push_cast; ring
 
 omit [Fact (1 < b)] [NeZero p] in
-/-- `precScale` only depends on `|x|`.-/
+/-- `precScale` only depends on `|x|`.
+@isnad1 id=eq.0h3v.s4.61a37af61c7c from=translated src=- shape=9f96e5fb vocab=817b738a
+-/
 lemma precScale_neg (x : ℝ) : precScale b p (-x) = precScale b p x := by
   unfold precScale; rw [abs_neg]
 
@@ -305,7 +323,9 @@ private lemma isLeast_of_isGreatest_neg (x G : ℝ)
     have h2 : -((G : ℝ) : EReal) ≤ -(-s) := EReal.neg_le_neg_iff.mpr this
     rwa [neg_neg] at h2
 
-/-- The floor in `precisionSet b p` of `x ≠ 0` is `⌊x / u⌋ · u`.-/
+/-- The floor in `precisionSet b p` of `x ≠ 0` is `⌊x / u⌋ · u`.
+@isnad1 id=isgreate.1h3v.s6.3194ba059e8f from=translated src=- shape=a504d233 vocab=54400dd2
+-/
 lemma isGreatest_precision (x : ℝ) (hx : x ≠ 0) :
     IsGreatest {s | s ∈ precisionSet b p ∧ s ≤ (x : EReal)}
       ((((⌊x / precScale b p x⌋ : ℝ) * precScale b p x : ℝ) : EReal)) := by
@@ -319,7 +339,9 @@ lemma isGreatest_precision (x : ℝ) (hx : x ≠ 0) :
     exact h'
   · exact isGreatest_precision_pos x hpos
 
-/-- The ceiling in `precisionSet b p` of `x ≠ 0` is `⌈x / u⌉ · u`.-/
+/-- The ceiling in `precisionSet b p` of `x ≠ 0` is `⌈x / u⌉ · u`.
+@isnad1 id=isleast.1h3v.s6.ae4c582b126b from=translated src=- shape=d75a75aa vocab=e94ebb21
+-/
 lemma isLeast_precision (x : ℝ) (hx : x ≠ 0) :
     IsLeast {s | s ∈ precisionSet b p ∧ (x : EReal) ≤ s}
       ((((⌈x / precScale b p x⌉ : ℝ) * precScale b p x : ℝ) : EReal)) := by
@@ -368,6 +390,9 @@ noncomputable instance precisionRoundingTarget : RoundingTarget (precisionSet b 
     split_ifs <;> first | exact Or.inl rfl | exact Or.inr rfl
 
 omit [Fact (1 < b)] [NeZero p] in
+/--
+@isnad1 id=eq.0h3v.s5.277923689d13 from=translated src=- shape=b6c204d8 vocab=2d8155c7
+-/
 lemma precToReal_neg (a : ↥(precisionSet b p)) :
     precToReal (⟨-a.val, precisionSet_neg_mem a.property⟩ : ↥(precisionSet b p))
       = -precToReal a :=
@@ -413,13 +438,17 @@ noncomputable instance precisionSymmetricRoundingTarget :
             show (-a.val : EReal) = -c.val
             rw [← precToReal_spec a, ← precToReal_spec c, ← hA, ← hC, hAC']
 
-/-- The floor of `x ≠ 0` in `precisionSet b p`.-/
+/-- The floor of `x ≠ 0` in `precisionSet b p`.
+@isnad1 id=eq.1h3v.s6.29b45c7b58ab from=translated src=- shape=d4c1cf74 vocab=055e67e8
+-/
 lemma val_roundFloor_precision (x : ℝ) (hx : x ≠ 0) :
     (roundFloor (precisionSet b p) x).val
       = (((⌊x / precScale b p x⌋ : ℝ) * precScale b p x : ℝ) : EReal) :=
   (isGreatest_roundFloor (precisionSet b p) x).unique (isGreatest_precision x hx)
 
-/-- The ceiling of `x ≠ 0` in `precisionSet b p`.-/
+/-- The ceiling of `x ≠ 0` in `precisionSet b p`.
+@isnad1 id=eq.1h3v.s6.95f53979a792 from=translated src=- shape=d4c1cf74 vocab=15db7fc5
+-/
 lemma val_roundCeiling_precision (x : ℝ) (hx : x ≠ 0) :
     (roundCeiling (precisionSet b p) x).val
       = (((⌈x / precScale b p x⌉ : ℝ) * precScale b p x : ℝ) : EReal) :=
@@ -531,7 +560,9 @@ private lemma toInt_intTiebreak_consecutive (n m : ℤ) (h : m = n ∨ m = n + 1
       have h2 : Even (n + 1) ∧ ¬ Even n := ⟨Int.even_add_one.mpr hn, hn⟩
       rw [ite_eq_right h1, ite_eq_left h2, ite_eq_right hn, toInt_ofIntSet]
 
-/-- **Rounding `x ≠ 0` to `precisionSet b p` is integer rounding at the local scale.**-/
+/-- **Rounding `x ≠ 0` to `precisionSet b p` is integer rounding at the local scale.**
+@isnad1 id=eq.1h4v.s6.974df361c0bb from=translated src=- shape=1b2c9dd8 vocab=addb923a
+-/
 theorem val_round_precisionSet (mode : RoundingMode) (x : ℝ) (hx : x ≠ 0) :
     (round (precisionSet b p) mode x).val
       = (((toInt (round intSet mode (x / precScale b p x)) : ℝ) * precScale b p x : ℝ) : EReal) := by

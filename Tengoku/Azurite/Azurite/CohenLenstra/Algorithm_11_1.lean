@@ -60,7 +60,9 @@ variable {m n : ℕ}
 /-- **The (11.1)(a) fallback, first (10.1)-condition**: the trivial
 ideal `nℤ[ζ_m]` meets `ℤ` in `nℤ` — in the `hIZ`-shape of
 Theorem (7.8), via the faithfulness of the integers in the
-model.-/
+model.
+@isnad1 id=dvd.2h3v.s7.8e07a8fb90d1 from=translated src=- shape=2fbeced7 vocab=79ebfb9e
+-/
 theorem span_natCast_natCast_imp_dvd (hm : 0 < m) :
     ∀ a : ℕ, ((a : ℕ) : CycM m) ∈ Ideal.span {((n : ℕ) : CycM m)}
       → n ∣ a := by
@@ -69,7 +71,9 @@ theorem span_natCast_natCast_imp_dvd (hm : 0 < m) :
   exact (natCast_dvd_natCast_iff_cycM hm n a).mp ha
 
 /-- **The (11.1)(a) fallback, σ-stability inclusion**: `σ_n` maps
-`nℤ[ζ_m]` into itself.-/
+`nℤ[ζ_m]` into itself.
+@isnad1 id=mem.3h3v.s8.4318ed665c88 from=translated src=- shape=e637b8c4 vocab=64a90f10
+-/
 theorem span_natCast_sigmaN_mem (hm : 0 < m) (hco : Nat.Coprime n m) :
     ∀ x ∈ Ideal.span {((n : ℕ) : CycM m)},
       sigmaN hm hco x ∈ Ideal.span {((n : ℕ) : CycM m)} := by
@@ -81,7 +85,9 @@ theorem span_natCast_sigmaN_mem (hm : 0 < m) (hco : Nat.Coprime n m) :
 
 /-- **The (11.1)(a) fallback, second (10.1)-condition**:
 `σ_n[nℤ[ζ_m]] = nℤ[ζ_m]`, by the finite-order upgrade of
-Method (10.2).-/
+Method (10.2).
+@isnad1 id=eq.2h2v.s7.13ba32b9736b from=translated src=- shape=76b4232a vocab=0924a112
+-/
 theorem span_natCast_sigmaN_map_eq (hm : 0 < m)
     (hco : Nat.Coprime n m) :
     Ideal.map (sigmaN hm hco) (Ideal.span {((n : ℕ) : CycM m)})

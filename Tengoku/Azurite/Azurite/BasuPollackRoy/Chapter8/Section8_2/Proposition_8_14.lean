@@ -36,7 +36,9 @@ open MvPolynomial
 variable {R : Type*} [CommRing R] {n k : ℕ}
 
 /-- **BPR Proposition 8.14.** The determinant of an `n × n` matrix whose entries
-are polynomials in `Y₁, …, Y_k` of total degree `≤ d` has total degree `≤ d · n`.-/
+are polynomials in `Y₁, …, Y_k` of total degree `≤ d` has total degree `≤ d · n`.
+@isnad1 id=le.1h5v.s6.370249800ba1 from=translated src=- shape=388115db vocab=d759c28c
+-/
 theorem proposition_8_14 (M : Matrix (Fin n) (Fin n) (MvPolynomial (Fin k) R)) {d : ℕ}
     (hd : ∀ i j, (M i j).totalDegree ≤ d) :
     M.det.totalDegree ≤ d * n := by

@@ -47,7 +47,9 @@ open Finset Real
 /-! ### §4.3.1: faster convergence at the reduced argument -/
 
 /-- At the reduced argument `x / 2^k` the series of `exp` with `N ≥ 1` terms has error at most
-`(|x| / 2^k)^N (N + 1) / (N! N)`, as long as `|x| / 2^k ≤ 1`.-/
+`(|x| / 2^k)^N (N + 1) / (N! N)`, as long as `|x| / 2^k ≤ 1`.
+@isnad1 id=le.2h3v.s8.c43baf6285aa from=translated src=- shape=76de4196 vocab=1bf6030a
+-/
 theorem abs_exp_sub_sum_div_two_pow_le {x : ℝ} {k N : ℕ} (hN : 0 < N) (hx : |x| / 2 ^ k ≤ 1) :
     |exp (x / 2 ^ k) - ∑ m ∈ range N, (x / 2 ^ k) ^ m / m.factorial|
       ≤ (|x| / 2 ^ k) ^ N * ((N + 1 : ℕ) / (N.factorial * N : ℝ)) := by
@@ -58,7 +60,9 @@ theorem abs_exp_sub_sum_div_two_pow_le {x : ℝ} {k N : ℕ} (hN : 0 < N) (hx : 
 
 /-! ### §4.3.1: the error of the `k` squarings -/
 
-/-- `|(1 + a)^e − 1| ≤ (1 + |a|)^e − 1`.-/
+/-- `|(1 + a)^e − 1| ≤ (1 + |a|)^e − 1`.
+@isnad1 id=le.0h2v.s6.46184f705fa3 from=translated src=- shape=5b3c8344 vocab=7b61e1eb
+-/
 theorem abs_one_add_pow_sub_one_le (a : ℝ) (e : ℕ) : |(1 + a) ^ e - 1| ≤ (1 + |a|) ^ e - 1 := by
   induction e with
   | zero => simp
@@ -73,7 +77,9 @@ theorem abs_one_add_pow_sub_one_le (a : ℝ) (e : ℕ) : |(1 + a) ^ e - 1| ≤ (
           exact sub_nonneg.mpr (one_le_pow₀ (by linarith [abs_nonneg a]))
       _ = (1 + |a|) ^ (e + 1) - 1 := by ring
 
-/-- `∏_{i<n} (1 + |a_i|)^(e_i) ≤ exp (∑_{i<n} e_i |a_i|)`.-/
+/-- `∏_{i<n} (1 + |a_i|)^(e_i) ≤ exp (∑_{i<n} e_i |a_i|)`.
+@isnad1 id=le.0h3v.s6.e3549b919726 from=translated src=- shape=1e9c47cf vocab=276772c2
+-/
 theorem prod_one_add_abs_pow_le_exp (a : ℕ → ℝ) (e : ℕ → ℕ) (n : ℕ) :
     ∏ i ∈ range n, (1 + |a i|) ^ e i ≤ exp (∑ i ∈ range n, (e i : ℝ) * |a i|) := by
   rw [Real.exp_sum]
@@ -81,7 +87,9 @@ theorem prod_one_add_abs_pow_le_exp (a : ℕ → ℝ) (e : ℕ → ℕ) (n : ℕ
   rw [Real.exp_nat_mul]
   exact pow_le_pow_left₀ (by positivity) (by linarith [add_one_le_exp |a i|]) _
 
-/-- `exp S − 1 ≤ 2 S` for `0 ≤ S ≤ 1`.-/
+/-- `exp S − 1 ≤ 2 S` for `0 ≤ S ≤ 1`.
+@isnad1 id=le.2h1v.s5.cd3e5c745f70 from=translated src=- shape=fc8f18cb vocab=8993b609
+-/
 theorem exp_sub_one_le_two_mul {S : ℝ} (h0 : 0 ≤ S) (h1 : S ≤ 1) : exp S - 1 ≤ 2 * S := by
   have h := Real.exp_bound' h0 h1 (n := 1) one_pos
   simp at h
@@ -93,7 +101,9 @@ def squareSeq (t : ℝ) (θ : ℕ → ℝ) : ℕ → ℝ
   | 0 => t
   | i + 1 => squareSeq t θ i ^ 2 * (1 + θ i)
 
-/-- Closed form: `s_k = t^(2^k) ∏_{i<k} (1 + θ_i)^(2^(k−1−i))`.-/
+/-- Closed form: `s_k = t^(2^k) ∏_{i<k} (1 + θ_i)^(2^(k−1−i))`.
+@isnad1 id=eq.0h3v.s6.ba9c96747e8a from=translated src=- shape=86027787 vocab=d6d492c5
+-/
 theorem squareSeq_eq (t : ℝ) (θ : ℕ → ℝ) (k : ℕ) :
     squareSeq t θ k = t ^ (2 ^ k) * ∏ i ∈ range k, (1 + θ i) ^ (2 ^ (k - 1 - i)) := by
   induction k with
@@ -114,6 +124,9 @@ theorem squareSeq_eq (t : ℝ) (θ : ℕ → ℝ) (k : ℕ) :
 /-- The `m`-th term of the exponential series.-/
 noncomputable def expTerm (x : ℝ) (m : ℕ) : ℝ := x ^ m / m.factorial
 
+/--
+@isnad1 id=eq.0h2v.s5.ed8a567bb5c5 from=translated src=- shape=fae04786 vocab=481e26d1
+-/
 theorem expTerm_succ (x : ℝ) (m : ℕ) : expTerm x (m + 1) = expTerm x m * (x / (m + 1)) := by
   unfold expTerm
   rw [Nat.factorial_succ]
@@ -121,7 +134,9 @@ theorem expTerm_succ (x : ℝ) (m : ℕ) : expTerm x (m + 1) = expTerm x m * (x 
   field_simp
   ring
 
-/-- The terms grow in magnitude while `m + 1 ≤ |x|`.-/
+/-- The terms grow in magnitude while `m + 1 ≤ |x|`.
+@isnad1 id=le.1h2v.s5.6e9e46dcc4cc from=translated src=- shape=1c8c6cc6 vocab=48335b6d
+-/
 theorem expTerm_le_succ {x : ℝ} {m : ℕ} (h : (m : ℝ) + 1 ≤ |x|) :
     |expTerm x m| ≤ |expTerm x (m + 1)| := by
   rw [expTerm_succ, abs_mul, abs_div, abs_of_pos (by positivity : (0 : ℝ) < m + 1)]
@@ -129,7 +144,9 @@ theorem expTerm_le_succ {x : ℝ} {m : ℕ} (h : (m : ℝ) + 1 ≤ |x|) :
   calc |expTerm x m| = |expTerm x m| * 1 := (mul_one _).symm
     _ ≤ |expTerm x m| * (|x| / (m + 1)) := mul_le_mul_of_nonneg_left this (abs_nonneg _)
 
-/-- The terms decrease in magnitude once `|x| ≤ m + 1`.-/
+/-- The terms decrease in magnitude once `|x| ≤ m + 1`.
+@isnad1 id=le.1h2v.s5.c05d5df4f614 from=translated src=- shape=8a6f76ac vocab=48335b6d
+-/
 theorem expTerm_succ_le {x : ℝ} {m : ℕ} (h : |x| ≤ (m : ℝ) + 1) :
     |expTerm x (m + 1)| ≤ |expTerm x m| := by
   rw [expTerm_succ, abs_mul, abs_div, abs_of_pos (by positivity : (0 : ℝ) < m + 1)]
@@ -138,19 +155,25 @@ theorem expTerm_succ_le {x : ℝ} {m : ℕ} (h : |x| ≤ (m : ℝ) + 1) :
         mul_le_mul_of_nonneg_left this (abs_nonneg _)
     _ = |expTerm x m| := mul_one _
 
-/-- The terms alternate in sign for `x < 0`: `expTerm x m` has the sign of `(−1)^m`.-/
+/-- The terms alternate in sign for `x < 0`: `expTerm x m` has the sign of `(−1)^m`.
+@isnad1 id=eq.0h2v.s5.6249df9f9340 from=translated src=- shape=254c88f7 vocab=c68c8bec
+-/
 theorem expTerm_neg_eq (x : ℝ) (m : ℕ) : expTerm (-x) m = (-1) ^ m * expTerm x m := by
   unfold expTerm
   rw [neg_pow, mul_div_assoc]
 
-/-- A sum whose terms each carry a relative perturbation `η` moves by at most `η ∑ |t_m|`.-/
+/-- A sum whose terms each carry a relative perturbation `η` moves by at most `η ∑ |t_m|`.
+@isnad1 id=le.1h5v.s6.0fe5f023e633 from=translated src=- shape=41de89dc vocab=96237ae9
+-/
 theorem abs_sum_perturbed_le {ι : Type*} (s : Finset ι) (t δ : ι → ℝ) {η : ℝ}
     (hδ : ∀ i ∈ s, |δ i| ≤ η * |t i|) :
     |∑ i ∈ s, (t i + δ i) - ∑ i ∈ s, t i| ≤ η * ∑ i ∈ s, |t i| := by
   rw [sum_add_distrib, add_sub_cancel_left, mul_sum]
   exact (abs_sum_le_sum_abs _ _).trans (sum_le_sum hδ)
 
-/-- The sum of the magnitudes of the terms is at most `exp |x|`.-/
+/-- The sum of the magnitudes of the terms is at most `exp |x|`.
+@isnad1 id=le.0h2v.s4.23c49ae138a8 from=translated src=- shape=8585f680 vocab=1452944e
+-/
 theorem sum_abs_expTerm_le (x : ℝ) (N : ℕ) : ∑ m ∈ range N, |expTerm x m| ≤ exp |x| := by
   have : ∀ m, |expTerm x m| = |x| ^ m / m.factorial := fun m => by
     unfold expTerm
@@ -159,7 +182,9 @@ theorem sum_abs_expTerm_le (x : ℝ) (N : ℕ) : ∑ m ∈ range N, |expTerm x m
   exact Real.sum_le_exp_of_nonneg (abs_nonneg x) N
 
 /-- For `x ≥ 0` the series has no sign changes and the perturbed sum stays within relative
-error `η` of the exact partial sum.-/
+error `η` of the exact partial sum.
+@isnad1 id=le.2h4v.s7.99eadf10cfc8 from=translated src=- shape=140949c8 vocab=0be42ef3
+-/
 theorem abs_sum_perturbed_le_of_nonneg {x : ℝ} (hx : 0 ≤ x) (N : ℕ) (δ : ℕ → ℝ) {η : ℝ}
     (hδ : ∀ m ∈ range N, |δ m| ≤ η * |expTerm x m|) :
     |∑ m ∈ range N, (expTerm x m + δ m) - ∑ m ∈ range N, expTerm x m|
@@ -169,14 +194,18 @@ theorem abs_sum_perturbed_le_of_nonneg {x : ℝ} (hx : 0 ≤ x) (N : ℕ) (δ : 
   exact sum_congr rfl fun m _ => abs_of_nonneg (by unfold expTerm; positivity)
 
 /-- For `x < 0` the cancellation costs a factor `exp (2|x|)`: the perturbation bound
-`η exp |x|` is `η exp(2|x|)` times the value `exp x`.-/
+`η exp |x|` is `η exp(2|x|)` times the value `exp x`.
+@isnad1 id=eq.1h1v.s5.83d5e83e178d from=translated src=- shape=c86820ef vocab=5ba906ad
+-/
 theorem relative_loss_of_neg {x : ℝ} (hx : x ≤ 0) : exp |x| = exp (2 * |x|) * exp x := by
   rw [← exp_add, abs_of_nonpos hx]
   congr 1
   ring
 
 /-- The example `x = −10`: the amplification factor exceeds `10^8`, so ten working digits
-leave at most two or three.-/
+leave at most two or three.
+@isnad1 id=lt.0h0v.s5.3f2ef42df89f from=translated src=- shape=365a1932 vocab=28e30c31
+-/
 theorem exp_twenty_gt : (10 : ℝ) ^ 8 < exp 20 := by
   have h := Real.exp_one_gt_d9
   have h2 : (2.7 : ℝ) ^ 20 ≤ exp 1 ^ 20 := pow_le_pow_left₀ (by norm_num) (by linarith) 20
@@ -186,7 +215,9 @@ theorem exp_twenty_gt : (10 : ℝ) ^ 8 < exp 20 := by
   calc (10 : ℝ) ^ 8 < 2.7 ^ 20 := by norm_num
     _ ≤ exp 20 := h2
 
-/-- The cure: `exp x = 1 / exp (−x)`, so the series summed is the one without sign changes.-/
+/-- The cure: `exp x = 1 / exp (−x)`, so the series summed is the one without sign changes.
+@isnad1 id=eq.0h1v.s3.61d36aa9267f from=translated src=- shape=4aa538aa vocab=eec1b801
+-/
 theorem exp_eq_inv_exp_neg (x : ℝ) : exp x = (exp (-x))⁻¹ := by
   rw [exp_neg, inv_inv]
 

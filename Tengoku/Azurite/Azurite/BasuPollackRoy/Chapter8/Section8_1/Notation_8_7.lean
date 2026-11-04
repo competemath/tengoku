@@ -52,14 +52,18 @@ noncomputable def Polynomial.horner (P : R[X]) : ℕ → R[X]
   | 0 => C (P.coeff P.natDegree)
   | i + 1 => X * P.horner i + C (P.coeff (P.natDegree - (i + 1)))
 
-/-- The base case: `Hor₀(P, X) = C(leadingCoeff P)`.-/
+/-- The base case: `Hor₀(P, X) = C(leadingCoeff P)`.
+@isnad1 id=eq.0h2v.s6.a13487e1960e from=translated src=- shape=9c9c96e4 vocab=b892c16d
+-/
 theorem Polynomial.horner_zero (P : R[X]) :
     P.horner 0 = C P.leadingCoeff := by
   unfold Polynomial.horner; rw [leadingCoeff]
 
 /-- **Closed-form characterization.**
     `Horᵢ(P, X) = ∑ j ∈ range (i+1), C(aₚ₋ⱼ) · X^{i−j}`
-    `         = aₚ Xⁱ + aₚ₋₁ Xⁱ⁻¹ + ⋯ + aₚ₋ᵢ`.-/
+    `         = aₚ Xⁱ + aₚ₋₁ Xⁱ⁻¹ + ⋯ + aₚ₋ᵢ`.
+@isnad1 id=eq.0h3v.s8.77ff4c14a0ed from=translated src=- shape=59eb7dc8 vocab=6c350c6c
+-/
 theorem Polynomial.horner_eq_sum (P : R[X]) (i : ℕ) :
     P.horner i = ∑ j ∈ range (i + 1),
       C (P.coeff (P.natDegree - j)) * X ^ (i - j) := by
@@ -77,7 +81,9 @@ theorem Polynomial.horner_eq_sum (P : R[X]) (i : ℕ) :
     rw [mul_comm X (C _ * X ^ _), mul_assoc, ← pow_succ,
         show n - j + 1 = n + 1 - j from by omega]
 
-/-- **`Horₚ(P, X) = P`.** The last Horner polynomial recovers `P`.-/
+/-- **`Horₚ(P, X) = P`.** The last Horner polynomial recovers `P`.
+@isnad1 id=eq.0h2v.s5.edd52f011681 from=translated src=- shape=205427ac vocab=0e60c85c
+-/
 theorem Polynomial.horner_natDegree (P : R[X]) :
     P.horner P.natDegree = P := by
   rw [Polynomial.horner_eq_sum]

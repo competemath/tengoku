@@ -32,9 +32,14 @@ class RandomGen (G : Type u) (α : Type v) where
 /-- The mixing constant used in SplitMix64 state advancement.-/
 def SplitMix64.gamma : Nat := 0x9e3779b97f4a7c15
 
+/--
+@isnad1 id=odd.0h0v.s2.c3a9d4ae1729 from=translated src=- shape=25b03439 vocab=35e14d7f
+-/
 lemma SplitMix64.gamma_odd : Odd SplitMix64.gamma := by decide
 
-/-- Proves that the gamma multiplier is coprime to the $2^{64}$ maximum state bounds.-/
+/-- Proves that the gamma multiplier is coprime to the $2^{64}$ maximum state bounds.
+@isnad1 id=coprime.0h0v.s4.749906f65ed3 from=translated src=- shape=57a0e96a vocab=06536520
+-/
 lemma SplitMix64.gamma_coprime_2_64 : Nat.Coprime SplitMix64.gamma (2^64) := by
   have h_pow : Nat.Coprime SplitMix64.gamma (2^64) ↔ Nat.Coprime SplitMix64.gamma 2 :=
     Nat.coprime_pow_right_iff (by decide) SplitMix64.gamma 2
@@ -72,6 +77,9 @@ def valSeq (seed : Nat) (n : Nat) : Nat :=
 def eventually_constant (seed : Nat) :=
   ∃ c N, ∀ n ≥ N, valSeq seed n = c
 
+/--
+@isnad1 id=ne.0h0v.s3.9ef035cd9905 from=translated src=- shape=fe96b7c9 vocab=d66cac75
+-/
 lemma mix_not_constant : mix_nat 0 ≠ mix_nat 1 := by decide
 
 /-- Derive a new `UInt64` seed from a base seed and a string tag, by XORing with the tag's hash.

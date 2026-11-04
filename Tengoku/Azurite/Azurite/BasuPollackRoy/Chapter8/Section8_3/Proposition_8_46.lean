@@ -149,7 +149,9 @@ private theorem natDegree_sResP_scale (P Q : K[X]) (hQ : Q ≠ 0) (hR0 : P % Q �
     `sRes_k · sRes_j^{j-k-1} = (-1)^{(j-k-1)(j-k)/2} · t_{j-1}^{j-k}`.  Proved by strong induction
     on `deg Q`: trivial when `k = j-1`, the explicit `star_base` when `j = q`, and the Euclidean
     reduction `(P,Q) → (Q,-R)` (where every factor scales by the common `μ`, so the identity is
-    preserved) otherwise.-/
+    preserved) otherwise.
+@isnad1 id=eq.8h5v.s9.ca6d0af0c5cf from=translated src=- shape=4c38f37b vocab=cdd74f9e
+-/
 theorem sRes_block_identity (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) {j k : ℕ} (hjq : j ≤ Q.natDegree) (hj1 : 1 ≤ j)
     (hjnd : (sResP P Q j).natDegree = j) (hk0 : sResP P Q (j - 1) ≠ 0)
@@ -226,7 +228,9 @@ theorem sRes_block_identity (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
 /-- **BPR Proposition 8.46 (proportionality core).**  If `sResP_{j-1}(P,Q)` is nonzero of degree
     `k`, then the non-defective representative `sResP_k(P,Q)` at the bottom of its block satisfies
     `sResP_k = C(s_k / t_{j-1}) · sResP_{j-1}`, with `s_k = sRes_k(P,Q)` and
-    `t_{j-1} = lcof(sResP_{j-1}(P,Q))`.-/
+    `t_{j-1} = lcof(sResP_{j-1}(P,Q))`.
+@isnad1 id=eq.8h5v.s8.0d48ee7db647 from=translated src=- shape=f44e1bfb vocab=0ac0831b
+-/
 theorem sResP_realized_eq (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) {j k : ℕ}
     (hjq : j ≤ Q.natDegree) (hj1 : 1 ≤ j)
@@ -259,7 +263,9 @@ theorem sResP_realized_eq (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     non-defective of degree `j`, `sResP_{j-1}(P,Q)` nonzero of degree `k`), the non-defective
     representative `sResP_k(P,Q)` at the bottom equals `S_k`:
     `sResP_k = (-1)^{(j-k-1)(j-k)/2} · (t_{j-1}/s_j)^{j-k-1} · sResP_{j-1}`,
-    with `t_{j-1} = lcof(sResP_{j-1})` and `s_j = sRes_j`.-/
+    with `t_{j-1} = lcof(sResP_{j-1})` and `s_j = sRes_j`.
+@isnad1 id=eq.9h5v.s9.da2c62230de8 from=translated src=- shape=a12a6c26 vocab=1340804c
+-/
 theorem proposition_8_46 (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree) (hq1 : 1 ≤ Q.natDegree) {j k : ℕ}
     (hjq : j ≤ Q.natDegree) (hj1 : 1 ≤ j) (hjnd : (sResP P Q j).natDegree = j)

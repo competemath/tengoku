@@ -39,7 +39,9 @@ noncomputable def evalAtPointSubmonoid : Submonoid (quotPolysExt C Ps) :=
   letI := RingHom.ker_isPrime (evalBar C Ps x hx)
   (RingHom.ker (evalBar C Ps x hx)).primeCompl
 
-/-- An element of `Ā` lies in `S_x` exactly when it does not vanish at `x`.-/
+/-- An element of `Ā` lies in `S_x` exactly when it does not vanish at `x`.
+@isnad1 id=iff.1h6v.s8.ec20c3e85230 from=translated src=- shape=503de433 vocab=6b205691
+-/
 theorem mem_evalAtPointSubmonoid (Q : quotPolysExt C Ps) :
     Q ∈ evalAtPointSubmonoid C Ps x hx ↔ evalBar C Ps x hx Q ≠ 0 := by
   show Q ∉ RingHom.ker (evalBar C Ps x hx) ↔ evalBar C Ps x hx Q ≠ 0

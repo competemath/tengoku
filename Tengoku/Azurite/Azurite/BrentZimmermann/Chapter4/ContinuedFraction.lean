@@ -64,12 +64,20 @@ open Filter Topology GenContFract
 noncomputable def contFrac (a b : ℕ → ℝ) : GenContFract ℝ :=
   ⟨b 0, Stream'.Seq.ofStream fun n => ⟨a (n + 1), b (n + 1)⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.b6562caf7cfc from=translated src=- shape=0e463845 vocab=316261a2
+-/
 theorem contFrac_get? (a b : ℕ → ℝ) (n : ℕ) :
     (contFrac a b).s.get? n = some ⟨a (n + 1), b (n + 1)⟩ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.5c5b97754a8f from=translated src=- shape=5efa35f5 vocab=34dbfc05
+-/
 theorem contFrac_head (a b : ℕ → ℝ) : (contFrac a b).s.head = some ⟨a 1, b 1⟩ := rfl
 
-/-- The tail of the sequence is the sequence of the shifted coefficients.-/
+/-- The tail of the sequence is the sequence of the shifted coefficients.
+@isnad1 id=eq.0h2v.s5.e4a02c588b31 from=translated src=- shape=9e9173cd vocab=a4614578
+-/
 theorem contFrac_tail (a b : ℕ → ℝ) :
     (contFrac a b).s.tail = (contFrac (fun j => a (j + 1)) (fun j => b (j + 1))).s := rfl
 
@@ -79,12 +87,17 @@ noncomputable def approximant (a b : ℕ → ℝ) (k : ℕ) : ℝ := (contFrac a
 /-- The value of a continued fraction: the limit of its approximants, when it exists.-/
 def HasContFracValue (a b : ℕ → ℝ) (f : ℝ) : Prop := Tendsto (approximant a b) atTop (𝓝 f)
 
+/--
+@isnad1 id=eq.0h2v.s4.3cf7b9152250 from=translated src=- shape=df9b3ed1 vocab=556a801e
+-/
 @[simp] theorem approximant_zero (a b : ℕ → ℝ) : approximant a b 0 = b 0 := by
   unfold approximant convs'
   simp [convs'Aux]
   rfl
 
-/-- `f_{k+1}(a, b) = b₀ + a₁ / f_k(a', b')` where `a' j = a (j+1)`, `b' j = b (j+1)`.-/
+/-- `f_{k+1}(a, b) = b₀ + a₁ / f_k(a', b')` where `a' j = a (j+1)`, `b' j = b (j+1)`.
+@isnad1 id=eq.0h3v.s6.81521051355e from=translated src=- shape=70a7ca6c vocab=574a1e6c
+-/
 theorem approximant_succ (a b : ℕ → ℝ) (k : ℕ) :
     approximant a b (k + 1)
       = b 0 + a 1 / approximant (fun j => a (j + 1)) (fun j => b (j + 1)) k := by
@@ -92,34 +105,55 @@ theorem approximant_succ (a b : ℕ → ℝ) (k : ℕ) :
   rw [convs', convs'Aux_succ_some (contFrac_head a b), contFrac_tail, convs']
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.8429201b6b0f from=translated src=- shape=b8c2b2f6 vocab=574a1e6c
+-/
 theorem approximant_one (a b : ℕ → ℝ) : approximant a b 1 = b 0 + a 1 / b 1 := by
   rw [approximant_succ, approximant_zero]
 
 /-! ### Continuants -/
 
+/--
+@isnad1 id=eq.0h2v.s4.e8abd7ce91b3 from=translated src=- shape=1f7cd19d vocab=20e00ddf
+-/
 theorem nums_zero (a b : ℕ → ℝ) : (contFrac a b).nums 0 = b 0 := zeroth_num_eq_h
 
+/--
+@isnad1 id=eq.0h2v.s4.635f27e42a12 from=translated src=- shape=ba58dfec vocab=35707766
+-/
 theorem dens_zero (a b : ℕ → ℝ) : (contFrac a b).dens 0 = 1 := zeroth_den_eq_one
 
+/--
+@isnad1 id=eq.0h2v.s5.92f2cefcae97 from=translated src=- shape=746c8da8 vocab=3e09b96c
+-/
 theorem nums_one (a b : ℕ → ℝ) : (contFrac a b).nums 1 = b 1 * b 0 + a 1 :=
   first_num_eq (contFrac_get? a b 0)
 
+/--
+@isnad1 id=eq.0h2v.s4.a96b2f97159e from=translated src=- shape=1f7cd19d vocab=35707766
+-/
 theorem dens_one (a b : ℕ → ℝ) : (contFrac a b).dens 1 = b 1 := first_den_eq (contFrac_get? a b 0)
 
-/-- `A_{n+2} = b_{n+2} A_{n+1} + a_{n+2} A_n`.-/
+/-- `A_{n+2} = b_{n+2} A_{n+1} + a_{n+2} A_n`.
+@isnad1 id=eq.0h3v.s6.fe240884a0e8 from=translated src=- shape=329ce479 vocab=3e09b96c
+-/
 theorem nums_recurrence' (a b : ℕ → ℝ) (n : ℕ) :
     (contFrac a b).nums (n + 2)
       = b (n + 2) * (contFrac a b).nums (n + 1) + a (n + 2) * (contFrac a b).nums n :=
   nums_recurrence (contFrac_get? a b (n + 1)) rfl rfl
 
-/-- `B_{n+2} = b_{n+2} B_{n+1} + a_{n+2} B_n`.-/
+/-- `B_{n+2} = b_{n+2} B_{n+1} + a_{n+2} B_n`.
+@isnad1 id=eq.0h3v.s6.67b2d079aa3d from=translated src=- shape=329ce479 vocab=5f24eb8d
+-/
 theorem dens_recurrence' (a b : ℕ → ℝ) (n : ℕ) :
     (contFrac a b).dens (n + 2)
       = b (n + 2) * (contFrac a b).dens (n + 1) + a (n + 2) * (contFrac a b).dens n :=
   dens_recurrence (contFrac_get? a b (n + 1)) rfl rfl
 
 /-- For positive coefficients the nested approximant is the quotient of continuants
-`A_k / B_k` (Mathlib's `convs_eq_convs'`).-/
+`A_k / B_k` (Mathlib's `convs_eq_convs'`).
+@isnad1 id=eq.1h3v.s5.48677d10d9ac from=translated src=- shape=07e6dbfa vocab=3f68e466
+-/
 theorem approximant_eq_convs {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (k : ℕ) :
     approximant a b k = (contFrac a b).convs k := by
   unfold approximant
@@ -139,9 +173,15 @@ noncomputable def eulerNum (j : ℕ) : ℝ := (max 1 (j / 2) : ℕ)
 /-- The partial denominators of (4.39): `b₀ = 0`, then `x, 1, x, 1, …`.-/
 noncomputable def eulerDen (x : ℝ) (j : ℕ) : ℝ := if j = 0 then 0 else if j % 2 = 1 then x else 1
 
+/--
+@isnad1 id=eq.0h1v.s4.76c18981174a from=translated src=- shape=a8c559ca vocab=1df87d21
+-/
 theorem eulerE1_approximant_one (x : ℝ) : approximant eulerNum (eulerDen x) 1 = 1 / x := by
   rw [approximant_one]; simp [eulerNum, eulerDen]
 
+/--
+@isnad1 id=eq.0h1v.s5.c8f9ba1d44ee from=translated src=- shape=343f314d vocab=96b6c490
+-/
 theorem eulerE1_approximant_two (x : ℝ) : approximant eulerNum (eulerDen x) 2 = 1 / (x + 1) := by
   rw [approximant_succ, approximant_one]; simp [eulerNum, eulerDen]
 
@@ -151,15 +191,23 @@ noncomputable def erfcCFNum (j : ℕ) : ℝ := if j = 1 then 1 else ((j : ℝ) -
 /-- The partial denominators of (4.40): `b₀ = 0`, then `x, x, x, …`.-/
 noncomputable def erfcCFDen (x : ℝ) (j : ℕ) : ℝ := if j = 0 then 0 else x
 
+/--
+@isnad1 id=eq.0h1v.s4.f125b2b4cbdf from=translated src=- shape=a8c559ca vocab=502ec324
+-/
 theorem erfcCF_approximant_one (x : ℝ) : approximant erfcCFNum (erfcCFDen x) 1 = 1 / x := by
   rw [approximant_one]; simp [erfcCFNum, erfcCFDen]
 
+/--
+@isnad1 id=eq.0h1v.s6.96516cd75da9 from=translated src=- shape=617dee2c vocab=58f2587f
+-/
 theorem erfcCF_approximant_two (x : ℝ) :
     approximant erfcCFNum (erfcCFDen x) 2 = 1 / (x + 1 / 2 / x) := by
   rw [approximant_succ, approximant_one]; simp [erfcCFNum, erfcCFDen]; norm_num
 
 /-- Consistency with the asymptotic expansion: the second approximant of (4.40), times the
-prefactor `e^(−x²)/√π`, lies in the bracket `[L(1 − 1/(2x²)), L]` of (4.37), `L = e^(−x²)/(x√π)`.-/
+prefactor `e^(−x²)/√π`, lies in the bracket `[L(1 − 1/(2x²)), L]` of (4.37), `L = e^(−x²)/(x√π)`.
+@isnad1 id=and.1h1v.s8.cd7bee54d437 from=translated src=- shape=6b257b3d vocab=b01f4521
+-/
 theorem erfcCF_approximant_two_mem {x : ℝ} (hx : 0 < x) :
     Real.exp (-x ^ 2) / (x * Real.sqrt Real.pi) * (1 - 1 / (2 * x ^ 2))
         ≤ Real.exp (-x ^ 2) / Real.sqrt Real.pi * approximant erfcCFNum (erfcCFDen x) 2 ∧

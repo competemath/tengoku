@@ -45,7 +45,9 @@ namespace CP
 /-- **Pocklington's theorem** (Crandall–Pomerance Theorem 4.1.3): if
 `n − 1 = F·R` and the witness `a` satisfies `a^(n−1) = 1` in `ZMod n`
 with `a^((n−1)/q) − 1` a unit of `ZMod n` for every prime `q ∣ F`, then
-every prime factor of `n` is congruent to `1` mod `F`.-/
+every prime factor of `n` is congruent to `1` mod `F`.
+@isnad1 id=modeq.6h5v.s7.3eb99ee7c39f from=translated src=- shape=040b49b8 vocab=d018c222
+-/
 theorem pocklington {n F R : ℕ} (hn : 1 < n) (hsplit : n - 1 = F * R)
     (a : ZMod n) (ha : a ^ (n - 1) = 1)
     (hunit : ∀ q : ℕ, q.Prime → q ∣ F → IsUnit (a ^ ((n - 1) / q) - 1)) :

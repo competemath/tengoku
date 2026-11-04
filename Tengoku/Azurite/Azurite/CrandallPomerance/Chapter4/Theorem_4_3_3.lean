@@ -61,7 +61,9 @@ open Polynomial
 
 /-- **The Pocklington order climb, monoid form**: if `a^N = 1` but
 `a^(N/q) ≠ 1` for every prime `q` dividing `F ∣ N`, then the order of
-`a` is a multiple of `F`.-/
+`a` is a multiple of `F`.
+@isnad1 id=dvd.5h4v.s6.f2feda263d0d from=translated src=- shape=03a75a7b vocab=c84091c0
+-/
 theorem dvd_orderOf_of_pow_eq_one {M : Type _} [Monoid M] {a : M} {N F : ℕ}
     (hN : 0 < N) (hF : 0 < F) (hFN : F ∣ N) (haN : a ^ N = 1)
     (hq : ∀ q : ℕ, q.Prime → q ∣ F → a ^ (N / q) ≠ 1) :
@@ -111,7 +113,9 @@ theorem dvd_orderOf_of_pow_eq_one {M : Type _} [Monoid M] {a : M} {N F : ℕ}
         rw [← hcord]
         exact orderOf_pow_dvd m
 
-/-- Elementary symmetric functions commute with ring homomorphisms.-/
+/-- Elementary symmetric functions commute with ring homomorphisms.
+@isnad1 id=eq.0h5v.s6.7c6eed7cf5b8 from=translated src=- shape=4d3ecba2 vocab=83457a3e
+-/
 theorem esymm_map {R S : Type _} [CommSemiring R] [CommSemiring S]
     (φ : R →+* S) (s : Multiset R) (k : ℕ) :
     (s.map φ).esymm k = φ (s.esymm k) := by
@@ -128,7 +132,9 @@ theorem esymm_map {R S : Type _} [CommSemiring R] [CommSemiring S]
 (3) each of the `I` elementary symmetric polynomials in
 `g, g^n, …, g^(n^(I−1))` is congruent mod `f` to a constant, every
 prime factor `p` of `n` satisfies `p ≡ n^j (mod F)` for some
-`j < I`.-/
+`j < I`.
+@isnad1 id=ex.11h6v.s10.32b3c7cf906a from=translated src=- shape=2656b12a vocab=29b47967
+-/
 theorem theorem_4_3_3 {n I F : ℕ} (hn : 1 < n) (hI : 0 < I) (hF : 0 < F)
     (hFN : F ∣ n ^ I - 1) {f g : Polynomial (ZMod n)}
     (hf : f.Monic) (hfdeg : 0 < f.natDegree)

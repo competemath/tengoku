@@ -36,7 +36,9 @@ variable {m n : ℕ} {D : Type*} [CommRing D]
 noncomputable def matStar (n : ℕ) (P : Fin m → D[X]) : Matrix (Fin m) (Fin m) D[X] :=
   fun r c => if (c : ℕ) + 1 < m then C ((P r).coeff (n - 1 - (c : ℕ))) else P r
 
-/-- The determinant is linear in a fixed column over a finite sum of columns.-/
+/-- The determinant is linear in a fixed column over a finite sum of columns.
+@isnad1 id=eq.0h7v.s7.a751d2b2f6b0 from=translated src=- shape=a3a5ba1d vocab=101d865b
+-/
 theorem det_updateCol_finsetSum {ι : Type*} (M : Matrix (Fin m) (Fin m) D[X]) (j : Fin m)
     (s : Finset ι) (f : ι → (Fin m → D[X])) :
     (M.updateCol j (∑ k ∈ s, f k)).det = ∑ k ∈ s, (M.updateCol j (f k)).det := by
@@ -53,7 +55,9 @@ private theorem matStar_aux_bound {m n k : ℕ} (hm : 0 < m) (hmn : m ≤ n) (hk
     n - 1 - k < m ∧ n - 1 - k + 1 < m ∧ n - 1 - (n - 1 - k) = k ∧ n - 1 - k ≠ m - 1 :=
   ⟨by omega, by omega, by omega, by omega⟩
 
-/-- **BPR Lemma 8.29.** `pdet_{m,n}(𝒫) = det(Mat(𝒫)*)`.-/
+/-- **BPR Lemma 8.29.** `pdet_{m,n}(𝒫) = det(Mat(𝒫)*)`.
+@isnad1 id=eq.2h4v.s9.430a6e2ba031 from=translated src=- shape=70e2ca4c vocab=b71a38b8
+-/
 theorem pdetRing_eq_det_matStar (hm : 0 < m) (hmn : m ≤ n) (P : Fin m → degreeLT D n) :
     pdetRing n (fun r => (P r : D[X])) = (matStar n (fun r => (P r : D[X]))).det := by
   set Q : Fin m → D[X] := fun r => (P r : D[X]) with hQ
@@ -129,7 +133,9 @@ theorem pdetRing_eq_det_matStar (hm : 0 < m) (hmn : m ≤ n) (P : Fin m → degr
 /-- **BPR Remark 8.30.** Expanding `det(Mat(𝒫)*)` along its last column shows that
     `pdet_{m,n}(𝒫)` is a `D`-linear combination of the `P_i`: the coefficients are
     (up to sign) the `(m-1) × (m-1)` minors extracted on the first `m-1` columns of
-    `Mat(𝒫)`. Concretely, `pdet_{m,n}(𝒫) = Σ_i C(c_i) · P_i` with `c_i ∈ D`.-/
+    `Mat(𝒫)`. Concretely, `pdet_{m,n}(𝒫) = Σ_i C(c_i) · P_i` with `c_i ∈ D`.
+@isnad1 id=ex.2h4v.s9.d8d571a9a614 from=translated src=- shape=efb6586f vocab=efaf16da
+-/
 theorem pdetRing_eq_linear_combination (hm : 0 < m) (hmn : m ≤ n) (P : Fin m → degreeLT D n) :
     ∃ c : Fin m → D, pdetRing n (fun r => (P r : D[X]))
       = ∑ i, C (c i) * (P i : D[X]) := by

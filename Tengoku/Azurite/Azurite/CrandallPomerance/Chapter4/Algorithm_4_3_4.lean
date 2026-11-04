@@ -67,7 +67,9 @@ open Polynomial
 /-- **Condition (1) holds for a prime modulus**: if `n` is prime, `f`
 is irreducible, and `g` is not a multiple of `f`, then
 `f ∣ g^(n^(deg f)−1) − 1` — Lagrange's theorem in the multiplicative
-group of `K = Z_n[x]/(f)`.-/
+group of `K = Z_n[x]/(f)`.
+@isnad1 id=dvd.3h4v.s9.75a1c595826d from=translated src=- shape=2e22c861 vocab=d1a83db4
+-/
 theorem cond1_of_prime {n I : ℕ} [Fact n.Prime] {f g : Polynomial (ZMod n)}
     (hirr : Irreducible f) (hdeg : f.natDegree = I) (hg : ¬f ∣ g) :
     f ∣ g ^ (n ^ I - 1) - 1 := by
@@ -124,7 +126,9 @@ private theorem range_map_succ_mod {I : ℕ} (hI : 0 < I) :
 symmetric polynomial in `g, g^n, …, g^(n^(I−1))` is congruent mod `f`
 to a constant.  The Frobenius map permutes the powers cyclically (it
 has order dividing `I` on `K`), so the symmetric functions are
-Frobenius-fixed, hence in the prime field.-/
+Frobenius-fixed, hence in the prime field.
+@isnad1 id=ex.5h5v.s9.248660b16d57 from=translated src=- shape=fe636c2e vocab=4008d2ef
+-/
 theorem cond3_of_prime {n I : ℕ} [Fact n.Prime] (hI : 0 < I)
     {f : Polynomial (ZMod n)} (hirr : Irreducible f)
     (hdeg : f.natDegree = I) (g : Polynomial (ZMod n)) :
@@ -191,7 +195,9 @@ theorem cond3_of_prime {n I : ℕ} [Fact n.Prime] (hI : 0 < I)
 `f` of degree `I`, the degree-`< I` representative of a cyclic
 generator of `K*` satisfies condition (1) and condition (2) for EVERY
 prime `q ∣ n^I − 1` (condition (3) holds for every `g` by
-`cond3_of_prime`).-/
+`cond3_of_prime`).
+@isnad1 id=ex.4h3v.s9.a0a23d08425d from=translated src=- shape=8b5527b2 vocab=52889c75
+-/
 theorem exists_lenstra_witness {n I : ℕ} [Fact n.Prime] (hI : 0 < I)
     {f : Polynomial (ZMod n)} (hf : f.Monic) (hirr : Irreducible f)
     (hdeg : f.natDegree = I) :
@@ -262,7 +268,9 @@ theorem exists_lenstra_witness {n I : ℕ} [Fact n.Prime] (hI : 0 < I)
 /-- **Algorithm 4.3.4's "prime" verdict is sound**: if `F ≥ √n` (as
 `n ≤ F²`), the verified conditions (1), (2), (3) hold, and the step-4
 divisor search finds no proper factor of `n` among the residues
-`n^j mod F` for `1 ≤ j < I`, then `n` is prime.-/
+`n^j mod F` for `1 ≤ j < I`, then `n` is prime.
+@isnad1 id=prime.11h5v.s10.c0de7764512a from=translated src=- shape=eb79609e vocab=90d71ad4
+-/
 theorem prime_of_lenstra_conditions {n I F : ℕ} (hn : 1 < n) (hI : 0 < I)
     (hF : 0 < F) (hFN : F ∣ n ^ I - 1) (hF2 : n ≤ F ^ 2)
     {f g : Polynomial (ZMod n)} (hf : f.Monic) (hfdeg : 0 < f.natDegree)
@@ -332,7 +340,9 @@ theorem prime_of_lenstra_conditions {n I F : ℕ} (hn : 1 < n) (hI : 0 < I)
 /-- **Irreducible polynomials of every degree exist over `Z_p`** (the
 book's "Are there irreducible polynomials in `Z_n[x]` of degree `I`?
 Yes."): the minimal polynomial of a primitive element of
-`GF(p^I)`.-/
+`GF(p^I)`.
+@isnad1 id=ex.1h2v.s7.f6a7012e2e99 from=translated src=- shape=e1e42042 vocab=9ee70a67
+-/
 theorem exists_monic_irreducible_of_degree (p I : ℕ) [Fact p.Prime]
     (hI : 0 < I) :
     ∃ f : Polynomial (ZMod p), f.Monic ∧ Irreducible f

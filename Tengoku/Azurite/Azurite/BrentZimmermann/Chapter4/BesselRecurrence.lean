@@ -81,7 +81,9 @@ open Filter Topology Finset
 
 /-! ### The recurrence (4.51) -/
 
-/-- The coefficient identity behind (4.51), for the shifted terms `j + 1`.-/
+/-- The coefficient identity behind (4.51), for the shifted terms `j + 1`.
+@isnad1 id=eq.0h3v.s8.720d762be935 from=translated src=- shape=5e042b03 vocab=e930a632
+-/
 theorem bessel_rec_term (n j : ℕ) (x : ℝ) :
     x / 2 * (besselCoeff n (j + 1) * (x / 2) ^ (2 * (j + 1) + n))
       + x / 2 * (besselCoeff (n + 2) j * (x / 2) ^ (2 * j + (n + 2)))
@@ -97,7 +99,9 @@ theorem bessel_rec_term (n j : ℕ) (x : ℝ) :
   field_simp
   ring
 
-/-- The `j = 0` term of (4.51).-/
+/-- The `j = 0` term of (4.51).
+@isnad1 id=eq.0h2v.s7.93605c7da31c from=translated src=- shape=052f12ea vocab=e930a632
+-/
 theorem bessel_rec_term_zero (n : ℕ) (x : ℝ) :
     x / 2 * (besselCoeff n 0 * (x / 2) ^ (2 * 0 + n))
       = (n + 1) * (besselCoeff (n + 1) 0 * (x / 2) ^ (2 * 0 + (n + 1))) := by
@@ -108,7 +112,9 @@ theorem bessel_rec_term_zero (n : ℕ) (x : ℝ) :
   push_cast
   field_simp
 
-/-- (4.51) in the factorial form: `(x/2)(J_n + J_{n+2}) = (n+1) J_{n+1}`.-/
+/-- (4.51) in the factorial form: `(x/2)(J_n + J_{n+2}) = (n+1) J_{n+1}`.
+@isnad1 id=eq.0h2v.s6.8906d268e027 from=translated src=- shape=b73bc618 vocab=b5052da4
+-/
 theorem besselJNat_recurrence (n : ℕ) (x : ℝ) :
     x / 2 * (besselJNat n x + besselJNat (n + 2) x) = (n + 1) * besselJNat (n + 1) x := by
   have h0 := summable_besselJNat_term n x
@@ -132,7 +138,9 @@ theorem besselJNat_recurrence (n : ℕ) (x : ℝ) :
   have h00 := bessel_rec_term_zero n x
   linear_combination -huniq + h00
 
-/-- (4.51) for all `ν ∈ ℤ`, product form: `x (J_{ν−1} + J_{ν+1}) = 2ν J_ν`.-/
+/-- (4.51) for all `ν ∈ ℤ`, product form: `x (J_{ν−1} + J_{ν+1}) = 2ν J_ν`.
+@isnad1 id=eq.0h2v.s6.b1378375199c from=translated src=- shape=e52de58f vocab=6337a301
+-/
 theorem besselJ_recurrence (ν : ℤ) (x : ℝ) :
     x * (besselJ (ν - 1) x + besselJ (ν + 1) x) = 2 * ν * besselJ ν x := by
   rcases ν with n | n
@@ -158,7 +166,9 @@ theorem besselJ_recurrence (ν : ℤ) (x : ℝ) :
     push_cast
     linear_combination 2 * (-1 : ℝ) ^ n * this
 
-/-- (4.51): `J_{ν−1} + J_{ν+1} = (2ν/x) J_ν` for `x ≠ 0`.-/
+/-- (4.51): `J_{ν−1} + J_{ν+1} = (2ν/x) J_ν` for `x ≠ 0`.
+@isnad1 id=eq.1h2v.s6.98d60ac9fdeb from=translated src=- shape=1823a75e vocab=2c6c6035
+-/
 theorem besselJ_recurrence' {x : ℝ} (hx : x ≠ 0) (ν : ℤ) :
     besselJ (ν - 1) x + besselJ (ν + 1) x = 2 * ν / x * besselJ ν x := by
   have h := besselJ_recurrence ν x
@@ -168,7 +178,9 @@ theorem besselJ_recurrence' {x : ℝ} (hx : x ≠ 0) (ν : ℤ) :
 
 /-! ### The continued fraction (4.52) -/
 
-/-- The one-step identity behind (4.52): `J_ν/J_{ν−1} = 1/(2ν/x − J_{ν+1}/J_ν)`.-/
+/-- The one-step identity behind (4.52): `J_ν/J_{ν−1} = 1/(2ν/x − J_{ν+1}/J_ν)`.
+@isnad1 id=eq.2h2v.s7.6b60f1abac9c from=translated src=- shape=44a6890e vocab=2c6c6035
+-/
 theorem besselJ_ratio_step {x : ℝ} (hx : x ≠ 0) {ν : ℤ} (h1 : besselJ ν x ≠ 0) :
     besselJ ν x / besselJ (ν - 1) x = 1 / (2 * ν / x - besselJ (ν + 1) x / besselJ ν x) := by
   have h := besselJ_recurrence' hx ν
@@ -184,7 +196,9 @@ noncomputable def besselRatioCF (x : ℝ) : ℤ → ℕ → ℝ → ℝ
   | ν, k + 1, r => 1 / (2 * ν / x - besselRatioCF x (ν + 1) k r)
 
 /-- (4.52) as an exact finite identity: if `J_ν, …, J_{ν+k−1}` do not vanish at `x ≠ 0`, then
-`J_ν/J_{ν−1}` is the `k`-fold fraction closed by the true tail `J_{ν+k}/J_{ν+k−1}`.-/
+`J_ν/J_{ν−1}` is the `k`-fold fraction closed by the true tail `J_{ν+k}/J_{ν+k−1}`.
+@isnad1 id=eq.2h3v.s7.51dbc14698d2 from=translated src=- shape=9bb5448d vocab=4913e10d
+-/
 theorem besselJ_ratio_eq_cf {x : ℝ} (hx : x ≠ 0) (ν : ℤ) (k : ℕ)
     (hJ : ∀ i : ℕ, i < k → besselJ (ν + i) x ≠ 0) :
     besselJ ν x / besselJ (ν - 1) x
@@ -209,7 +223,9 @@ noncomputable def besselCFDen (x : ℝ) (ν : ℤ) (j : ℕ) : ℝ :=
   if j = 0 then 0 else 2 * (ν + j - 1) / x
 
 /-- The inner fractions of (4.52): with all partial numerators `−1`,
-`2ν/x + (−1)/(2(ν+1)/x + (−1)/…) = 2ν/x − besselRatioCF x (ν+1) k 0`.-/
+`2ν/x + (−1)/(2(ν+1)/x + (−1)/…) = 2ν/x − besselRatioCF x (ν+1) k 0`.
+@isnad1 id=eq.1h4v.s7.ea3cbf55dd38 from=translated src=- shape=a3504d1b vocab=3523918b
+-/
 theorem approximant_besselCF_inner {a : ℕ → ℝ} (ha : ∀ j, 1 ≤ j → a j = -1) (x : ℝ) (ν : ℤ)
     (k : ℕ) :
     approximant a (fun j : ℕ => 2 * ((ν : ℝ) + j) / x) k
@@ -225,7 +241,9 @@ theorem approximant_besselCF_inner {a : ℕ → ℝ} (ha : ∀ j, 1 ≤ j → a 
     push_cast
     ring
 
-/-- The `k`-th approximant of (4.52) is the `k`-fold fraction with tail `0`.-/
+/-- The `k`-th approximant of (4.52) is the `k`-fold fraction with tail `0`.
+@isnad1 id=eq.0h3v.s4.29ccdb527944 from=translated src=- shape=05e128e3 vocab=837fb169
+-/
 theorem approximant_besselCF (x : ℝ) (ν : ℤ) (k : ℕ) :
     approximant besselCFNum (besselCFDen x ν) k = besselRatioCF x ν k 0 := by
   rcases k with _ | k
@@ -253,17 +271,28 @@ noncomputable def millerSeq (x : ℝ) (N : ℕ) (ν : ℕ) : ℝ :=
   else 2 * (ν + 1) / x * millerSeq x N (ν + 1) - millerSeq x N (ν + 2)
 termination_by N + 1 - ν
 
+/--
+@isnad1 id=eq.1h3v.s5.d5f00fe5c740 from=translated src=- shape=5ba98c36 vocab=1bc1fe7d
+-/
 theorem millerSeq_of_le (x : ℝ) {N ν : ℕ} (h : N + 1 ≤ ν) : millerSeq x N ν = 0 := by
   rw [millerSeq, ite_eq_left h]
 
+/--
+@isnad1 id=eq.0h2v.s4.b48e9d4d5587 from=translated src=- shape=8124fa46 vocab=c5529ad8
+-/
 theorem millerSeq_self (x : ℝ) (N : ℕ) : millerSeq x N N = 1 := by
   rw [millerSeq, ite_eq_right (by omega), ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.1h3v.s6.892a9452a1aa from=translated src=- shape=c5206143 vocab=1a5e99a6
+-/
 theorem millerSeq_of_lt (x : ℝ) {N ν : ℕ} (h : ν < N) :
     millerSeq x N ν = 2 * (ν + 1) / x * millerSeq x N (ν + 1) - millerSeq x N (ν + 2) := by
   rw [millerSeq, ite_eq_right (by omega), ite_eq_right (by omega)]
 
-/-- The Miller sequence satisfies (4.53) for `1 ≤ μ ≤ N`.-/
+/-- The Miller sequence satisfies (4.53) for `1 ≤ μ ≤ N`.
+@isnad1 id=eq.2h3v.s6.e9ec35d49ee3 from=translated src=- shape=a0b577d7 vocab=ae62374c
+-/
 theorem millerSeq_rec (x : ℝ) {N μ : ℕ} (hμ : 1 ≤ μ) (hμN : μ ≤ N) :
     millerSeq x N (μ - 1) + millerSeq x N (μ + 1) = 2 * μ / x * millerSeq x N μ := by
   have h := millerSeq_of_lt x (N := N) (ν := μ - 1) (by omega)
@@ -272,7 +301,9 @@ theorem millerSeq_rec (x : ℝ) {N μ : ℕ} (hμ : 1 ≤ μ) (hμN : μ ≤ N) 
   ring
 
 /-- The Casoratian of the Miller sequence against `J`: `f_ν J_{ν+1} − f_{ν+1} J_ν = J_{N+1}(x)`
-for all `ν ≤ N`.  So `f` is proportional to `J` up to a defect of size `J_{N+1}(x)`.-/
+for all `ν ≤ N`.  So `f` is proportional to `J` up to a defect of size `J_{N+1}(x)`.
+@isnad1 id=eq.2h3v.s6.42fca257d59a from=translated src=- shape=1d552c6d vocab=42b5cf96
+-/
 theorem millerSeq_casoratian {x : ℝ} (hx : x ≠ 0) (N : ℕ) :
     ∀ ν, ν ≤ N →
       millerSeq x N ν * besselJ (ν + 1) x - millerSeq x N (ν + 1) * besselJ ν x
@@ -299,7 +330,9 @@ theorem millerSeq_casoratian {x : ℝ} (hx : x ≠ 0) (N : ℕ) :
     linear_combination (-millerSeq x N (ν + 1)) * hJ + hν'
 
 /-- The ratio form of the Casoratian identity:
-`f_ν/J_ν − f_{ν+1}/J_{ν+1} = J_{N+1}/(J_ν J_{ν+1})`.-/
+`f_ν/J_ν − f_{ν+1}/J_{ν+1} = J_{N+1}/(J_ν J_{ν+1})`.
+@isnad1 id=eq.4h3v.s7.7c250b25caa0 from=translated src=- shape=fc4685aa vocab=49721ba1
+-/
 theorem millerSeq_div_sub {x : ℝ} (hx : x ≠ 0) {N ν : ℕ} (hν : ν ≤ N)
     (h0 : besselJ ν x ≠ 0) (h1 : besselJ (ν + 1) x ≠ 0) :
     millerSeq x N ν / besselJ ν x - millerSeq x N (ν + 1) / besselJ (ν + 1) x
@@ -313,6 +346,9 @@ theorem millerSeq_div_sub {x : ℝ} (hx : x ≠ 0) {N ν : ℕ} (hν : ν ≤ N)
 def IsBesselRecSol (x : ℝ) (f : ℕ → ℝ) : Prop :=
   ∀ μ : ℕ, 1 ≤ μ → f (μ - 1) + f (μ + 1) = 2 * μ / x * f μ
 
+/--
+@isnad1 id=isbessel.1h1v.s4.0e74a50741ab from=translated src=- shape=bccdc5c9 vocab=77f756c6
+-/
 theorem isBesselRecSol_besselJ {x : ℝ} (hx : x ≠ 0) :
     IsBesselRecSol x fun n : ℕ => besselJ n x := by
   intro μ hμ
@@ -322,17 +358,25 @@ theorem isBesselRecSol_besselJ {x : ℝ} (hx : x ≠ 0) :
   rw [Nat.cast_pred hμ, Nat.cast_succ]
   exact this
 
+/--
+@isnad1 id=isbessel.2h3v.s5.84e18e907397 from=translated src=- shape=ebf4bd7b vocab=e440ae49
+-/
 theorem IsBesselRecSol.add {x : ℝ} {f g : ℕ → ℝ} (hf : IsBesselRecSol x f)
     (hg : IsBesselRecSol x g) : IsBesselRecSol x (f + g) := fun μ hμ => by
   simp only [Pi.add_apply]
   linear_combination hf μ hμ + hg μ hμ
 
+/--
+@isnad1 id=isbessel.1h3v.s5.565f0619d457 from=translated src=- shape=2e383521 vocab=d85ca4a9
+-/
 theorem IsBesselRecSol.smul {x : ℝ} {f : ℕ → ℝ} (hf : IsBesselRecSol x f) (c : ℝ) :
     IsBesselRecSol x (c • f) := fun μ hμ => by
   simp only [Pi.smul_apply, smul_eq_mul]
   linear_combination c * hf μ hμ
 
-/-- The Casoratian `f_n g_{n+1} − f_{n+1} g_n` of two solutions is constant.-/
+/-- The Casoratian `f_n g_{n+1} − f_{n+1} g_n` of two solutions is constant.
+@isnad1 id=eq.2h4v.s7.e275c983cb25 from=translated src=- shape=cddc0790 vocab=a5f35420
+-/
 theorem IsBesselRecSol.casoratian {x : ℝ} {f g : ℕ → ℝ} (hf : IsBesselRecSol x f)
     (hg : IsBesselRecSol x g) (n : ℕ) :
     f n * g (n + 1) - f (n + 1) * g n = f 0 * g 1 - f 1 * g 0 := by
@@ -359,7 +403,9 @@ theorem IsBesselRecSol.eq_of_init {x : ℝ} {f g : ℕ → ℝ} (hf : IsBesselRe
     linear_combination hf' - hg' - ih0 + (2 * ((n + 1 : ℕ) : ℝ) / x) * ih1
 
 /-- Every solution is a linear combination of two solutions with nonzero Casoratian (the
-"general solution" of the text; with `g = J_ν`, `h = Y_ν` once `Y` is known to solve (4.53)).-/
+"general solution" of the text; with `g = J_ν`, `h = Y_ν` once `Y` is known to solve (4.53)).
+@isnad1 id=ex.4h4v.s7.68131e52a140 from=translated src=- shape=7a2987e0 vocab=a5f35420
+-/
 theorem IsBesselRecSol.exists_eq_comb {x : ℝ} {f g h : ℕ → ℝ} (hg : IsBesselRecSol x g)
     (hh : IsBesselRecSol x h) (hW : g 0 * h 1 - g 1 * h 0 ≠ 0) (hf : IsBesselRecSol x f) :
     ∃ a b : ℝ, f = fun n => a * g n + b * h n := by
@@ -376,7 +422,9 @@ theorem IsBesselRecSol.exists_eq_comb {x : ℝ} {f g h : ℕ → ℝ} (hg : IsBe
 
 /-! ### Size of `J_n(x)` for large `n` (the `J` half of (4.55)) -/
 
-/-- `|J_n(x)| ≤ (|x|/2)^n / n! · e^(x²/4)`.-/
+/-- `|J_n(x)| ≤ (|x|/2)^n / n! · e^(x²/4)`.
+@isnad1 id=le.0h2v.s6.f5bd84908c9c from=translated src=- shape=6f42332e vocab=7acbe90b
+-/
 theorem abs_besselJNat_le (n : ℕ) (x : ℝ) :
     |besselJNat n x| ≤ (|x| / 2) ^ n / n.factorial * Real.exp (x ^ 2 / 4) := by
   have hnorm : Summable fun j => ‖besselCoeff n j * (x / 2) ^ (2 * j + n)‖ :=
@@ -410,7 +458,9 @@ theorem abs_besselJNat_le (n : ℕ) (x : ℝ) :
   exact h1.trans h2
 
 /-- The Stirling form: `|J_n(x)| ≤ e^(x²/4)/√(2πn) · (e|x|/(2n))^n` for `n ≥ 1` — the upper-bound
-half of `J_ν(x) ~ (ex/(2ν))^ν/√(2πν)` in (4.55).-/
+half of `J_ν(x) ~ (ex/(2ν))^ν/√(2πν)` in (4.55).
+@isnad1 id=le.1h2v.s7.bbc7c8a3b483 from=translated src=- shape=922f2290 vocab=0cb55b82
+-/
 theorem abs_besselJNat_le_stirling {n : ℕ} (hn : 1 ≤ n) (x : ℝ) :
     |besselJNat n x|
       ≤ Real.exp (x ^ 2 / 4) / Real.sqrt (2 * Real.pi * n) * (Real.exp 1 * |x| / (2 * n)) ^ n := by
@@ -425,7 +475,9 @@ theorem abs_besselJNat_le_stirling {n : ℕ} (hn : 1 ≤ n) (x : ℝ) :
         rw [div_pow, div_pow, div_pow, mul_pow, mul_pow]
         field_simp
 
-/-- `J_n(x) → 0` as `n → ∞` for fixed `x`.-/
+/-- `J_n(x) → 0` as `n → ∞` for fixed `x`.
+@isnad1 id=tendsto.0h1v.s4.e10457f444fa from=translated src=- shape=d4144bed vocab=8f7c3d0b
+-/
 theorem tendsto_besselJNat_atTop (x : ℝ) : Tendsto (fun n => besselJNat n x) atTop (𝓝 0) := by
   have h : Tendsto (fun n : ℕ => (|x| / 2) ^ n / n.factorial * Real.exp (x ^ 2 / 4)) atTop
       (𝓝 (0 * Real.exp (x ^ 2 / 4))) :=

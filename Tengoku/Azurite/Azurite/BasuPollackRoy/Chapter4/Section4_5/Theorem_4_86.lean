@@ -37,7 +37,9 @@ open MvPolynomial
 
 variable {k : ℕ} {K : Type*} [Field K]
 
-/-- **Bridge B1.** `Zer(𝒫, Cᵏ) = zeroLocus C (Ideal(𝒫, C))`.-/
+/-- **Bridge B1.** `Zer(𝒫, Cᵏ) = zeroLocus C (Ideal(𝒫, C))`.
+@isnad1 id=eq.0h4v.s6.7928c6bbba2c from=translated src=- shape=68f51309 vocab=f64433f0
+-/
 theorem zerOfFinset_eq_zeroLocus (C : Type*) [Field C] [Algebra K C]
     (Ps : Finset (MvPolynomial (Fin k) K)) :
     zerOfFinset C Ps = MvPolynomial.zeroLocus C (idealOfPolysExt C Ps) := by
@@ -64,11 +66,16 @@ variable (C : Type*) [Field C] [Algebra K C]
 noncomputable def xiExt (Ps : Finset (MvPolynomial (Fin k) K)) (i : Fin k) : quotPolysExt C Ps :=
   Ideal.Quotient.mk (idealOfPolysExt C Ps) (X i)
 
+/--
+@isnad1 id=eq.0h5v.s10.cdd8bd60f146 from=translated src=- shape=d64be9d3 vocab=59661515
+-/
 theorem mkₐ_X (Ps : Finset (MvPolynomial (Fin k) K)) (i : Fin k) :
     (Ideal.Quotient.mkₐ C (idealOfPolysExt C Ps)) (X i) = xiExt C Ps i := by
   rw [xiExt, Ideal.Quotient.mkₐ_eq_mk]
 
-/-- **Bridge B3.** The images of the variables generate `Ā` as a `C`-algebra.-/
+/-- **Bridge B3.** The images of the variables generate `Ā` as a `C`-algebra.
+@isnad1 id=eq.0h4v.s11.f8d4f8a5b4d2 from=translated src=- shape=1e78badb vocab=6e9a3139
+-/
 theorem adjoin_range_xiExt (Ps : Finset (MvPolynomial (Fin k) K)) :
     Algebra.adjoin C (Set.range (fun i => xiExt C Ps i)) = ⊤ := by
   have hxi : Set.range (fun i => xiExt C Ps i)
@@ -78,7 +85,9 @@ theorem adjoin_range_xiExt (Ps : Finset (MvPolynomial (Fin k) K)) :
   rw [hxi, ← AlgHom.map_adjoin, MvPolynomial.adjoin_range_X, Algebra.map_top]
   exact (AlgHom.range_eq_top _).mpr (Ideal.Quotient.mkₐ_surjective C (idealOfPolysExt C Ps))
 
-/-- **Bridge B4.** `Ā` is finite-dimensional over `C` iff every variable image is integral.-/
+/-- **Bridge B4.** `Ā` is finite-dimensional over `C` iff every variable image is integral.
+@isnad1 id=iff.0h4v.s8.261198e62553 from=translated src=- shape=0c5fa851 vocab=b2c20c81
+-/
 theorem finiteDimensional_ext_iff_isIntegral (Ps : Finset (MvPolynomial (Fin k) K)) :
     FiniteDimensional C (quotPolysExt C Ps) ↔ ∀ i, IsIntegral C (xiExt C Ps i) := by
   constructor
@@ -95,7 +104,9 @@ theorem finiteDimensional_ext_iff_isIntegral (Ps : Finset (MvPolynomial (Fin k) 
 end Ext
 
 /-- Naturality: an `AlgHom` `f : C[X] →ₐ B` commutes with substituting `X i` into a univariate
-polynomial.-/
+polynomial.
+@isnad1 id=eq.0h6v.s9.8c8010d4fbd8 from=translated src=- shape=95b6f59d vocab=70e66a95
+-/
 theorem algHom_aeval_X {C : Type*} [CommRing C] {B : Type*} [CommRing B] [Algebra C B]
     (f : MvPolynomial (Fin k) C →ₐ[C] B) (i : Fin k) (Q : Polynomial C) :
     f (Polynomial.aeval (X i) Q) = Polynomial.aeval (f (X i)) Q :=
@@ -105,7 +116,9 @@ section IntegralFinite
 
 variable (C : Type*) [Field C] [IsAlgClosed C] [Algebra K C]
 
-/-- **Bridge B5.** Every variable image is integral over `C` iff `Zer(𝒫, Cᵏ)` is finite.-/
+/-- **Bridge B5.** Every variable image is integral over `C` iff `Zer(𝒫, Cᵏ)` is finite.
+@isnad1 id=iff.0h4v.s7.39696d7978f5 from=translated src=- shape=fc17c90a vocab=48f70cb1
+-/
 theorem isIntegral_iff_finite [CharZero K] (Ps : Finset (MvPolynomial (Fin k) K)) :
     (∀ i, IsIntegral C (xiExt C Ps i)) ↔ (zerOfFinset C Ps).Finite := by
   classical

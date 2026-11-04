@@ -49,19 +49,25 @@ noncomputable def realEquiv : (Fin k → Ri R) ≃ (Fin (k + k) → R) where
     · simp only [Fin.append_right, Ri.imL_lin]
 
 set_option linter.unusedSectionVars false in
-/-- The real part of coordinate `j` sits in the `castAdd` (first) block.-/
+/-- The real part of coordinate `j` sits in the `castAdd` (first) block.
+@isnad1 id=eq.0h4v.s10.cfc1833a0e86 from=translated src=- shape=2ae8e5c2 vocab=239511d5
+-/
 @[simp] theorem realEquiv_apply_castAdd (z : Fin k → Ri R) (j : Fin k) :
     realEquiv z (Fin.castAdd k j) = Ri.reL (z j) := by
   simp only [realEquiv, Equiv.coe_fn_mk, Fin.append_left]
 
 set_option linter.unusedSectionVars false in
-/-- The imaginary part of coordinate `j` sits in the `natAdd` (last) block.-/
+/-- The imaginary part of coordinate `j` sits in the `natAdd` (last) block.
+@isnad1 id=eq.0h4v.s10.0fd0c7eb15fd from=translated src=- shape=2ae8e5c2 vocab=c59aad1c
+-/
 @[simp] theorem realEquiv_apply_natAdd (z : Fin k → Ri R) (j : Fin k) :
     realEquiv z (Fin.natAdd k j) = Ri.imL (z j) := by
   simp only [realEquiv, Equiv.coe_fn_mk, Fin.append_right]
 
 set_option linter.unusedSectionVars false in
-/-- The inverse reconstructs each complex coordinate from its real/imaginary parts.-/
+/-- The inverse reconstructs each complex coordinate from its real/imaginary parts.
+@isnad1 id=eq.0h4v.s12.bd492d0088c7 from=translated src=- shape=c714369b vocab=2dbbd978
+-/
 theorem realEquiv_symm_apply (w : Fin (k + k) → R) (j : Fin k) :
     (realEquiv.symm w) j =
       AdjoinRoot.of (X ^ 2 + 1 : R[X]) (w (Fin.castAdd k j))

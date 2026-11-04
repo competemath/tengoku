@@ -20,7 +20,9 @@ namespace UInt64
 def leadingZeros (d : UInt64) : Nat :=
   if d = 0 then 64 else 63 - d.toNat.log2
 
-/-- For nonzero `d`, `leadingZeros d ≤ 63`.-/
+/-- For nonzero `d`, `leadingZeros d ≤ 63`.
+@isnad1 id=le.1h1v.s4.5069ee9690eb from=translated src=- shape=eed96abc vocab=795917cc
+-/
 theorem leadingZeros_le (d : UInt64) (hd : d ≠ 0) :
     leadingZeros d ≤ 63 := by
   unfold leadingZeros

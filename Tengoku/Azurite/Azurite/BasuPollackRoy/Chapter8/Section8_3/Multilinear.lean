@@ -61,7 +61,9 @@ def IsAntisymmetric (Φ : (Fin m → degreeLT K n) → degreeLT K (n - m + 1)) :
     Proof: fixing all but two slots `i ≠ j`, the form `g X Y := Φ(…, X, …, Y, …)`
     is bilinear (multilinearity) and vanishes on the diagonal `g X X = 0`
     (alternating). Hence `0 = g(A+B, A+B) = g A B + g B A`, i.e. swapping the two
-    slots negates the value (`A = v i`, `B = v j`).-/
+    slots negates the value (`A = v i`, `B = v j`).
+@isnad1 id=isantisy.2h4v.s9.22a2ec1dfe4d from=translated src=- shape=790bbacc vocab=768b6ff5
+-/
 theorem isAntisymmetric_of_isMultilinear_of_isAlternating
     {Φ : (Fin m → degreeLT K n) → degreeLT K (n - m + 1)}
     (hM : IsMultilinear Φ) (hA : IsAlternating Φ) : IsAntisymmetric Φ := by

@@ -95,6 +95,9 @@ private lemma nextLoop_lower_bound {G : Type} [RandomGen G UInt64]
     · -- bool = false: recurse with count + 1
       exact Nat.le_of_succ_le (ih (count + 1) _)
 
+/--
+@isnad1 id=match1.0h2v.s5.46b95ddae5dc from=translated src=- shape=f03d123f vocab=f6cb37e4
+-/
 theorem positive_nat_geometric_positive {G : Type} [RandomGen G UInt64]
     (bg : PositiveNatGeometricRandomGen G) :
     let (v, _) := PositiveNatGeometricRandomGen.next bg

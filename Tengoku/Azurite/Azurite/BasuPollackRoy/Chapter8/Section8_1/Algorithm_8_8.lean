@@ -54,13 +54,17 @@ noncomputable def Polynomial.horSpecial (P : R[X]) (b c : R) : ℕ → R
   | 0 => P.coeff P.natDegree
   | i + 1 => b * P.horSpecial b c i + c ^ (i + 1) * P.coeff (P.natDegree - (i + 1))
 
-/-- The base case: `horSpecial P b c 0 = leadingCoeff P`.-/
+/-- The base case: `horSpecial P b c 0 = leadingCoeff P`.
+@isnad1 id=eq.0h4v.s5.3cf5d19952dc from=translated src=- shape=603b2c73 vocab=8541ce49
+-/
 theorem Polynomial.horSpecial_zero (P : R[X]) (b c : R) :
     P.horSpecial b c 0 = P.leadingCoeff := by
   unfold Polynomial.horSpecial; rw [leadingCoeff]
 
 /-- **Closed-form characterization.**
-    `horSpecial P b c i = ∑ j ∈ range (i+1), aₚ₋ⱼ · b^{i−j} · c^j`.-/
+    `horSpecial P b c i = ∑ j ∈ range (i+1), aₚ₋ⱼ · b^{i−j} · c^j`.
+@isnad1 id=eq.0h5v.s7.20b989837b0c from=translated src=- shape=cc541888 vocab=da3730c6
+-/
 theorem Polynomial.horSpecial_eq_sum (P : R[X]) (b c : R) (i : ℕ) :
     P.horSpecial b c i = ∑ j ∈ range (i + 1),
       P.coeff (P.natDegree - j) * b ^ (i - j) * c ^ j := by
@@ -77,7 +81,9 @@ theorem Polynomial.horSpecial_eq_sum (P : R[X]) (b c : R) (i : ℕ) :
     · ring
 
 /-- **Reindexed closed form at `i = natDegree P`.**
-    `horSpecial P b c p = ∑ k ∈ range (p+1), aₖ · bᵏ · c^{p−k}`.-/
+    `horSpecial P b c p = ∑ k ∈ range (p+1), aₖ · bᵏ · c^{p−k}`.
+@isnad1 id=eq.0h4v.s7.fe8f73ed5c74 from=translated src=- shape=0007cedb vocab=da3730c6
+-/
 theorem Polynomial.horSpecial_natDegree_eq_sum (P : R[X]) (b c : R) :
     P.horSpecial b c P.natDegree = ∑ k ∈ range (P.natDegree + 1),
       P.coeff k * b ^ k * c ^ (P.natDegree - k) := by
@@ -87,7 +93,9 @@ theorem Polynomial.horSpecial_natDegree_eq_sum (P : R[X]) (b c : R) :
   rw [show P.natDegree - (P.natDegree - j) = j from by omega]
 
 /-- **BPR Algorithm 8.8 (main result, over a field).**
-    `horSpecial P b c p = cᵖ · P.eval(b · c⁻¹)` when `c ≠ 0`.-/
+    `horSpecial P b c p = cᵖ · P.eval(b · c⁻¹)` when `c ≠ 0`.
+@isnad1 id=eq.1h4v.s7.fc33e4a65e58 from=translated src=- shape=dae1af27 vocab=3e10b56c
+-/
 theorem Polynomial.horSpecial_natDegree_eq_eval {K : Type*} [Field K]
     (P : K[X]) (b c : K) (hc : c ≠ 0) :
     P.horSpecial b c P.natDegree = c ^ P.natDegree * P.eval (b * c⁻¹) := by

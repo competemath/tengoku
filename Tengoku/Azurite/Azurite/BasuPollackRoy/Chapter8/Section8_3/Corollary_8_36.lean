@@ -34,7 +34,9 @@ variable {K : Type*} [Field K]
 
 /-- **BPR Corollary 8.36.**  If `sResP_j(P,Q) ≠ 0` and `sResP_ℓ(P,Q) = 0` for all `ℓ < j`
     (so `sResP_j` is the last nonzero signed subresultant), then `sResP_j(P,Q)` is
-    non-defective (degree exactly `j`) and is a greatest common divisor of `P` and `Q`.-/
+    non-defective (degree exactly `j`) and is a greatest common divisor of `P` and `Q`.
+@isnad1 id=and.5h4v.s8.297fc8786e85 from=translated src=- shape=23d0c3e0 vocab=21de9464
+-/
 theorem corollary_8_36 (P Q : K[X]) (hP : P ≠ 0) (hQ : Q ≠ 0)
     (hpq : Q.natDegree < P.natDegree)
     {j : ℕ} (hsj : sResP P Q j ≠ 0) (hlow : ∀ ℓ, ℓ < j → sResP P Q ℓ = 0) :

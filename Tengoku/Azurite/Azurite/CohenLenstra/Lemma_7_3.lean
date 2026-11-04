@@ -61,7 +61,9 @@ not divisible by `q`, and any characters `χ` (multiplicative) and `ψ`
 `χ(n)^n · τ(χ,ψ)^n ≡ τ(χ^n, ψ)  (mod nR)`.
 
 The paper's `τ(χ)^(n−σ_n) ≡ χ(n)^(−n) (mod nB)` follows by dividing
-by the unit `χ(n)^n · τ(χ)^{σ_n}` in `B`, since `σ_n(τ(χ)) = τ(χ^n)`.-/
+by the unit `χ(n)^n · τ(χ)^{σ_n}` in `B`, since `σ_n(τ(χ)) = τ(χ^n)`.
+@isnad1 id=dvd.2h5v.s8.0c821aee36d0 from=translated src=- shape=c141695d vocab=5ce3fe7e
+-/
 theorem lemma_7_3 {R : Type _} [CommRing R] {q n : ℕ} [Fact q.Prime]
     (hn : n.Prime) (hqn : ¬ q ∣ n)
     (χ : MulChar (ZMod q) R) (ψ : AddChar (ZMod q) R) :

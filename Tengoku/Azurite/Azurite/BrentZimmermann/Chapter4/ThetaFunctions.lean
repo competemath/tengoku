@@ -80,12 +80,17 @@ noncomputable def theta2 (q : ℝ) : ℝ := 2 * q ^ (1 / 4 : ℝ) * ∑' n : ℕ
 
 variable {q : ℝ}
 
-/-- `|q|^(m²) ≤ |q|^|m|` for `|q| ≤ 1`.-/
+/-- `|q|^(m²) ≤ |q|^|m|` for `|q| ≤ 1`.
+@isnad1 id=le.1h2v.s6.ddd4d5a01c9f from=translated src=- shape=79f6bec6 vocab=b35db661
+-/
 theorem abs_pow_natAbs_sq_le (hq : |q| < 1) (m : ℤ) :
     |q ^ (m.natAbs ^ 2)| ≤ |q| ^ m.natAbs := by
   rw [abs_pow]
   exact pow_le_pow_of_le_one (abs_nonneg q) hq.le (Nat.le_self_pow two_ne_zero _)
 
+/--
+@isnad1 id=summable.1h1v.s5.5cb5523bfe6a from=translated src=- shape=91f41af0 vocab=70761d17
+-/
 theorem summable_abs_pow_natAbs (hq : |q| < 1) : Summable fun m : ℤ => |q| ^ m.natAbs := by
   have h := Summable.int_rec (f := fun n : ℕ => |q| ^ n) (g := fun n : ℕ => |q| ^ (n + 1))
     (summable_geometric_of_lt_one (abs_nonneg q) hq)
@@ -94,21 +99,33 @@ theorem summable_abs_pow_natAbs (hq : |q| < 1) : Summable fun m : ℤ => |q| ^ m
   refine h.congr fun m => ?_
   rcases m with n | n <;> rfl
 
+/--
+@isnad1 id=summable.1h1v.s5.f390cab063e2 from=translated src=- shape=43a1520e vocab=70761d17
+-/
 theorem summable_theta3_term (hq : |q| < 1) : Summable fun m : ℤ => q ^ (m.natAbs ^ 2) :=
   (summable_abs_pow_natAbs hq).of_norm_bounded fun m => by
     rw [Real.norm_eq_abs]; exact abs_pow_natAbs_sq_le hq m
 
+/--
+@isnad1 id=summable.1h1v.s6.af9e14c7be67 from=translated src=- shape=da9f2a00 vocab=15599a61
+-/
 theorem summable_theta4_term (hq : |q| < 1) :
     Summable fun m : ℤ => (-1) ^ m.natAbs * q ^ (m.natAbs ^ 2) :=
   (summable_abs_pow_natAbs hq).of_norm_bounded fun m => by
     rw [Real.norm_eq_abs, abs_mul, abs_pow, abs_neg, abs_one, one_pow, one_mul]
     exact abs_pow_natAbs_sq_le hq m
 
+/--
+@isnad1 id=summable.1h1v.s6.51feef579a39 from=translated src=- shape=22143cb8 vocab=4e0b428d
+-/
 theorem summable_norm_theta3_term (hq : |q| < 1) :
     Summable fun m : ℤ => ‖q ^ (m.natAbs ^ 2)‖ :=
   (summable_abs_pow_natAbs hq).of_nonneg_of_le (fun _ => norm_nonneg _) fun m => by
     rw [Real.norm_eq_abs]; exact abs_pow_natAbs_sq_le hq m
 
+/--
+@isnad1 id=summable.1h1v.s6.135c46890cee from=translated src=- shape=7d08790b vocab=d9e5bbca
+-/
 theorem summable_norm_theta4_term (hq : |q| < 1) :
     Summable fun m : ℤ => ‖(-1) ^ m.natAbs * q ^ (m.natAbs ^ 2)‖ :=
   (summable_abs_pow_natAbs hq).of_nonneg_of_le (fun _ => norm_nonneg _) fun m => by
@@ -117,13 +134,18 @@ theorem summable_norm_theta4_term (hq : |q| < 1) :
 
 /-! ### One-sided forms -/
 
+/--
+@isnad1 id=summable.1h1v.s6.b30716307d7a from=translated src=- shape=9fa54e6d vocab=ec801cdf
+-/
 theorem summable_pow_succ_sq (hq : |q| < 1) : Summable fun n : ℕ => q ^ ((n + 1) ^ 2) :=
   ((summable_nat_add_iff (f := fun n : ℕ => |q| ^ n) 1).mpr
     (summable_geometric_of_lt_one (abs_nonneg q) hq)).of_norm_bounded fun n => by
       rw [Real.norm_eq_abs, abs_pow]
       exact pow_le_pow_of_le_one (abs_nonneg q) hq.le (Nat.le_self_pow two_ne_zero _)
 
-/-- (4.75): `θ₃(q) = 1 + 2 ∑_{n ≥ 1} q^(n²)`.-/
+/-- (4.75): `θ₃(q) = 1 + 2 ∑_{n ≥ 1} q^(n²)`.
+@isnad1 id=eq.1h1v.s6.301d72a7cfde from=translated src=- shape=dfb4b268 vocab=fd051181
+-/
 theorem theta3_eq_one_add (hq : |q| < 1) : theta3 q = 1 + 2 * ∑' n : ℕ, q ^ ((n + 1) ^ 2) := by
   have hf : Summable fun n : ℕ => q ^ (n ^ 2) :=
     (summable_theta3_term hq).comp_injective (i := fun n : ℕ => (n : ℤ)) Int.ofNat_injective
@@ -135,7 +157,9 @@ theorem theta3_eq_one_add (hq : |q| < 1) : theta3 q = 1 + 2 * ∑' n : ℕ, q ^ 
   rw [heq, tsum_int_rec hf hg, hf.tsum_eq_zero_add]
   ring
 
-/-- (4.76): `θ₄(q) = 1 + 2 ∑_{n ≥ 1} (−1)^n q^(n²)`.-/
+/-- (4.76): `θ₄(q) = 1 + 2 ∑_{n ≥ 1} (−1)^n q^(n²)`.
+@isnad1 id=eq.1h1v.s7.348d86e8b83e from=translated src=- shape=063af113 vocab=ab7f62cf
+-/
 theorem theta4_eq_one_add (hq : |q| < 1) :
     theta4 q = 1 + 2 * ∑' n : ℕ, (-1) ^ (n + 1) * q ^ ((n + 1) ^ 2) := by
   have hf : Summable fun n : ℕ => (-1 : ℝ) ^ n * q ^ (n ^ 2) :=
@@ -152,7 +176,9 @@ theorem theta4_eq_one_add (hq : |q| < 1) :
   simp only [pow_zero, one_mul]
   ring
 
-/-- `θ₄(q) = θ₃(−q)`.-/
+/-- `θ₄(q) = θ₃(−q)`.
+@isnad1 id=eq.0h1v.s3.0e1e615b7237 from=translated src=- shape=98cb13d8 vocab=d3674eda
+-/
 theorem theta4_eq_theta3_neg (q : ℝ) : theta4 q = theta3 (-q) := by
   unfold theta3 theta4
   refine tsum_congr fun m => ?_
@@ -162,12 +188,17 @@ theorem theta4_eq_theta3_neg (q : ℝ) : theta4 q = theta3 (-q) := by
   · rw [h.neg_one_pow, (Nat.even_pow.mpr ⟨h, two_ne_zero⟩).neg_one_pow]
   · rw [h.neg_one_pow, (Odd.pow h).neg_one_pow]
 
+/--
+@isnad1 id=summable.2h1v.s6.435598279027 from=translated src=- shape=6e3a9741 vocab=6c0d0766
+-/
 theorem summable_pow_mul_succ (hq0 : 0 ≤ q) (hq1 : q < 1) :
     Summable fun n : ℕ => q ^ (n * (n + 1)) :=
   (summable_geometric_of_lt_one hq0 hq1).of_nonneg_of_le (fun n => by positivity) fun n =>
     pow_le_pow_of_le_one hq0 hq1.le (Nat.le_mul_of_pos_right n n.succ_pos)
 
-/-- (4.74) in the `ℤ`-form: `θ₂(q) = ∑_{n ∈ ℤ} q^((n + 1/2)²)` for `0 < q < 1`.-/
+/-- (4.74) in the `ℤ`-form: `θ₂(q) = ∑_{n ∈ ℤ} q^((n + 1/2)²)` for `0 < q < 1`.
+@isnad1 id=eq.2h1v.s6.446dc1df82dc from=translated src=- shape=f45cd917 vocab=e8bd8088
+-/
 theorem theta2_eq_tsum_int (hq0 : 0 < q) (hq1 : q < 1) :
     theta2 q = ∑' n : ℤ, q ^ (((n : ℝ) + 1 / 2) ^ 2) := by
   have hterm : ∀ n : ℕ, q ^ (((n : ℝ) + 1 / 2) ^ 2) = q ^ (1 / 4 : ℝ) * q ^ (n * (n + 1)) := by
@@ -231,7 +262,9 @@ def oddEquiv : ℤ × ℤ ≃ (evenPairsᶜ : Set (ℤ × ℤ)) where
       exact Int.odd_iff.mp this
     ext <;> simp only <;> omega
 
-/-- A summable double series over `ℤ²` splits by the parity of `m + n`.-/
+/-- A summable double series over `ℤ²` splits by the parity of `m + n`.
+@isnad1 id=eq.1h1v.s7.fe67db9fb0cd from=translated src=- shape=e990397f vocab=966dbb1a
+-/
 theorem tsum_prod_int_split {f : ℤ × ℤ → ℝ} (hf : Summable f) :
     ∑' p, f p = ∑' p : ℤ × ℤ, f (p.1 + p.2, p.1 - p.2)
       + ∑' p : ℤ × ℤ, f (p.1 + p.2 + 1, p.1 - p.2) := by
@@ -246,7 +279,9 @@ def flipEquiv : ℤ × ℤ ≃ ℤ × ℤ where
   left_inv p := Prod.ext rfl (by show -(-p.2 - 1) - 1 = p.2; omega)
   right_inv p := Prod.ext rfl (by show -(-p.2 - 1) - 1 = p.2; omega)
 
-/-- A series that is negated by an involution sums to zero.-/
+/-- A series that is negated by an involution sums to zero.
+@isnad1 id=eq.1h1v.s6.a4b0e3039f54 from=translated src=- shape=cf2700a2 vocab=acbec171
+-/
 theorem tsum_eq_zero_of_neg_comp {g : ℤ × ℤ → ℝ} (h : ∀ p, g (flipEquiv p) = -g p) :
     ∑' p, g p = 0 := by
   have h1 : ∑' p, g p = ∑' p, g (flipEquiv p) := (flipEquiv.tsum_eq g).symm
@@ -256,6 +291,9 @@ theorem tsum_eq_zero_of_neg_comp {g : ℤ × ℤ → ℝ} (h : ∀ p, g (flipEqu
 
 /-! ### Parity and exponent identities -/
 
+/--
+@isnad1 id=eq.0h2v.s6.7994d426286c from=translated src=- shape=40ce51ed vocab=30930677
+-/
 theorem neg_one_pow_natAbs_mul (m n : ℤ) :
     (-1 : ℝ) ^ m.natAbs * (-1) ^ n.natAbs = if Even (m + n) then 1 else -1 := by
   rw [← pow_add]
@@ -265,6 +303,9 @@ theorem neg_one_pow_natAbs_mul (m n : ℤ) :
   · exact (this.mpr h).neg_one_pow
   · exact (Nat.not_even_iff_odd.mp (this.not.mpr h)).neg_one_pow
 
+/--
+@isnad1 id=eq.0h2v.s6.980d212348e4 from=translated src=- shape=ac6afc54 vocab=7c1bdc00
+-/
 theorem natAbs_sq_add_sub (a b : ℤ) :
     (a + b).natAbs ^ 2 + (a - b).natAbs ^ 2 = 2 * (a.natAbs ^ 2 + b.natAbs ^ 2) := by
   zify
@@ -273,7 +314,9 @@ theorem natAbs_sq_add_sub (a b : ℤ) :
 
 /-! ### The two AGM identities -/
 
-/-- `θ₃(q) θ₄(q) = θ₄(q²)²`.-/
+/-- `θ₃(q) θ₄(q) = θ₄(q²)²`.
+@isnad1 id=eq.1h1v.s6.625b51208b7f from=translated src=- shape=b36851df vocab=271cdf52
+-/
 theorem theta3_mul_theta4 (hq : |q| < 1) : theta3 q * theta4 q = theta4 (q ^ 2) ^ 2 := by
   have hq2 : |q ^ 2| < 1 := by rw [abs_pow]; exact pow_lt_one₀ (abs_nonneg q) hq two_ne_zero
   unfold theta3 theta4
@@ -317,7 +360,9 @@ theorem theta3_mul_theta4 (hq : |q| < 1) : theta3 q * theta4 q = theta4 (q ^ 2) 
   rw [hpar]
   linear_combination ((-1 : ℝ) ^ a.natAbs * (-1) ^ b.natAbs) * hexp
 
-/-- `(θ₃(q)² + θ₄(q)²)/2 = θ₃(q²)²`.-/
+/-- `(θ₃(q)² + θ₄(q)²)/2 = θ₃(q²)²`.
+@isnad1 id=eq.1h1v.s6.b72eb2414f71 from=translated src=- shape=9b4481ee vocab=9b5ad54a
+-/
 theorem theta3_sq_add_theta4_sq (hq : |q| < 1) :
     (theta3 q ^ 2 + theta4 q ^ 2) / 2 = theta3 (q ^ 2) ^ 2 := by
   have hq2 : |q ^ 2| < 1 := by rw [abs_pow]; exact pow_lt_one₀ (abs_nonneg q) hq two_ne_zero
@@ -353,6 +398,9 @@ theorem theta3_sq_add_theta4_sq (hq : |q| < 1) :
 
 /-! ### Bounds for `0 ≤ q < 1` -/
 
+/--
+@isnad1 id=le.2h1v.s6.719d86e76b3c from=translated src=- shape=bdadff7d vocab=b21514c9
+-/
 theorem tsum_pow_succ_sq_le (hq0 : 0 ≤ q) (hq1 : q < 1) :
     ∑' n : ℕ, q ^ ((n + 1) ^ 2) ≤ q / (1 - q) := by
   have hq : |q| < 1 := by rw [abs_of_nonneg hq0]; exact hq1
@@ -364,16 +412,28 @@ theorem tsum_pow_succ_sq_le (hq0 : 0 ≤ q) (hq1 : q < 1) :
     _ = q * ∑' n : ℕ, q ^ n := by simp_rw [pow_succ, mul_comm (q ^ _) q]; exact tsum_mul_left
     _ = q / (1 - q) := by rw [tsum_geometric_of_lt_one hq0 hq1, div_eq_mul_inv]
 
+/--
+@isnad1 id=le.1h1v.s6.3ff2842ac81b from=translated src=- shape=373b6479 vocab=dd481a4c
+-/
 theorem tsum_pow_succ_sq_nonneg (hq0 : 0 ≤ q) : 0 ≤ ∑' n : ℕ, q ^ ((n + 1) ^ 2) :=
   tsum_nonneg fun n => by positivity
 
+/--
+@isnad1 id=le.2h1v.s5.6ea7102b1f23 from=translated src=- shape=91c05246 vocab=494980cb
+-/
 theorem one_le_theta3 (hq0 : 0 ≤ q) (hq1 : q < 1) : 1 ≤ theta3 q := by
   rw [theta3_eq_one_add (by rw [abs_of_nonneg hq0]; exact hq1)]
   linarith [tsum_pow_succ_sq_nonneg hq0]
 
+/--
+@isnad1 id=lt.2h1v.s5.a96494d7bdcc from=translated src=- shape=536e06c9 vocab=494980cb
+-/
 theorem theta3_pos (hq0 : 0 ≤ q) (hq1 : q < 1) : 0 < theta3 q :=
   lt_of_lt_of_le one_pos (one_le_theta3 hq0 hq1)
 
+/--
+@isnad1 id=le.2h1v.s6.aa3574b337d5 from=translated src=- shape=12092055 vocab=040996dd
+-/
 theorem theta3_sub_one_le (hq0 : 0 ≤ q) (hq1 : q < 1) : theta3 q - 1 ≤ 2 * q / (1 - q) := by
   rw [theta3_eq_one_add (by rw [abs_of_nonneg hq0]; exact hq1)]
   have h := tsum_pow_succ_sq_le hq0 hq1
@@ -381,6 +441,9 @@ theorem theta3_sub_one_le (hq0 : 0 ≤ q) (hq1 : q < 1) : theta3 q - 1 ≤ 2 * q
   rw [e]
   linarith
 
+/--
+@isnad1 id=le.2h1v.s7.0eb7cca9cd0c from=translated src=- shape=c95394f5 vocab=51d0f623
+-/
 theorem abs_tsum_neg_one_pow_le (hq0 : 0 ≤ q) (hq1 : q < 1) :
     |∑' n : ℕ, (-1 : ℝ) ^ (n + 1) * q ^ ((n + 1) ^ 2)| ≤ ∑' n : ℕ, q ^ ((n + 1) ^ 2) := by
   have hq : |q| < 1 := by rw [abs_of_nonneg hq0]; exact hq1
@@ -395,6 +458,9 @@ theorem abs_tsum_neg_one_pow_le (hq0 : 0 ≤ q) (hq1 : q < 1) :
         rw [Real.norm_eq_abs, abs_mul, abs_pow, abs_neg, abs_one, one_pow, one_mul,
           abs_of_nonneg (by positivity)]
 
+/--
+@isnad1 id=le.2h1v.s6.79386d1707ad from=translated src=- shape=91a62a31 vocab=4e752c06
+-/
 theorem one_sub_theta4_le (hq0 : 0 ≤ q) (hq1 : q < 1) : 1 - theta4 q ≤ 2 * q / (1 - q) := by
   rw [theta4_eq_one_add (by rw [abs_of_nonneg hq0]; exact hq1)]
   have h1 := abs_tsum_neg_one_pow_le hq0 hq1
@@ -404,6 +470,9 @@ theorem one_sub_theta4_le (hq0 : 0 ≤ q) (hq1 : q < 1) : 1 - theta4 q ≤ 2 * q
   rw [e]
   linarith [h1.1]
 
+/--
+@isnad1 id=le.2h1v.s4.72130df688e2 from=translated src=- shape=3abebf8d vocab=92cb3a70
+-/
 theorem theta4_le_theta3 (hq0 : 0 ≤ q) (hq1 : q < 1) : theta4 q ≤ theta3 q := by
   have hq : |q| < 1 := by rw [abs_of_nonneg hq0]; exact hq1
   unfold theta3 theta4
@@ -413,6 +482,9 @@ theorem theta4_le_theta3 (hq0 : 0 ≤ q) (hq1 : q < 1) : theta4 q ≤ theta3 q :
   · rw [h.neg_one_pow, neg_one_mul]
     linarith [pow_nonneg hq0 (m.natAbs ^ 2)]
 
+/--
+@isnad1 id=le.2h1v.s5.6251e8f3dece from=translated src=- shape=91c05246 vocab=0a62633a
+-/
 theorem theta4_nonneg (hq0 : 0 ≤ q) (hq1 : q < 1) : 0 ≤ theta4 q := by
   have hq : |q| < 1 := by rw [abs_of_nonneg hq0]; exact hq1
   have h := theta3_mul_theta4 hq
@@ -422,18 +494,26 @@ theorem theta4_nonneg (hq0 : 0 ≤ q) (hq1 : q < 1) : 0 ≤ theta4 q := by
   have hneg' : theta4 q < 0 := lt_of_not_ge hneg
   nlinarith [mul_pos h3 (neg_pos.mpr hneg')]
 
+/--
+@isnad1 id=ne.2h1v.s5.d535642e192d from=translated src=- shape=50c3c46f vocab=45c20023
+-/
 theorem theta4_ne_zero_of_sq (hq : |q| < 1) (h : theta4 (q ^ 2) ≠ 0) : theta4 q ≠ 0 := by
   intro h0
   have := theta3_mul_theta4 hq
   rw [h0, mul_zero] at this
   exact h (pow_eq_zero_iff two_ne_zero |>.mp this.symm)
 
-/-- `θ₄(r) > 0` for `0 ≤ r < 1/3`, from the series bound.-/
+/-- `θ₄(r) > 0` for `0 ≤ r < 1/3`, from the series bound.
+@isnad1 id=lt.2h1v.s5.fb0fe848a316 from=translated src=- shape=a515fac2 vocab=f86c8ecd
+-/
 theorem theta4_pos_of_lt_third (hr0 : 0 ≤ q) (hr : q < 1 / 3) : 0 < theta4 q := by
   have h := one_sub_theta4_le hr0 (by linarith)
   have : 2 * q / (1 - q) < 1 := by rw [div_lt_one (by linarith)]; linarith
   linarith
 
+/--
+@isnad1 id=lt.2h1v.s5.ddfcbe0e4f39 from=translated src=- shape=536e06c9 vocab=0a62633a
+-/
 theorem theta4_pos (hq0 : 0 ≤ q) (hq1 : q < 1) : 0 < theta4 q := by
   -- `0 < θ₄(q^(2^k))` propagates down to `0 < θ₄(q)`
   have key : ∀ k : ℕ, ∀ q : ℝ, 0 ≤ q → q < 1 → 0 < theta4 (q ^ 2 ^ k) → 0 < theta4 q := by
@@ -455,7 +535,9 @@ theorem theta4_pos (hq0 : 0 ≤ q) (hq1 : q < 1) : 0 < theta4 q := by
 
 /-! ### The AGM parameterization -/
 
-/-- One AGM step on `(θ₃²(q), θ₄²(q))` gives `(θ₃²(q²), θ₄²(q²))`.-/
+/-- One AGM step on `(θ₃²(q), θ₄²(q))` gives `(θ₃²(q²), θ₄²(q²))`.
+@isnad1 id=eq.2h1v.s7.ea0603998d83 from=translated src=- shape=6aa828de vocab=13a4ee09
+-/
 theorem AGM_theta_step (hq0 : 0 ≤ q) (hq1 : q < 1) :
     AGM (theta3 q ^ 2) (theta4 q ^ 2) = AGM (theta3 (q ^ 2) ^ 2) (theta4 (q ^ 2) ^ 2) := by
   have hq : |q| < 1 := by rw [abs_of_nonneg hq0]; exact hq1
@@ -465,6 +547,9 @@ theorem AGM_theta_step (hq0 : 0 ≤ q) (hq1 : q < 1) :
     show theta3 q ^ 2 * theta4 q ^ 2 = (theta3 q * theta4 q) ^ 2 by ring,
     Real.sqrt_sq (by positivity), theta3_mul_theta4 hq]
 
+/--
+@isnad1 id=eq.2h2v.s7.9690ed503e19 from=translated src=- shape=29d25238 vocab=13a4ee09
+-/
 theorem AGM_theta_pow (hq0 : 0 ≤ q) (hq1 : q < 1) (k : ℕ) :
     AGM (theta3 q ^ 2) (theta4 q ^ 2) = AGM (theta3 (q ^ 2 ^ k) ^ 2) (theta4 (q ^ 2 ^ k) ^ 2) := by
   induction k with
@@ -473,7 +558,9 @@ theorem AGM_theta_pow (hq0 : 0 ≤ q) (hq1 : q < 1) (k : ℕ) :
     rw [ih, AGM_theta_step (by positivity) (pow_lt_one₀ hq0 hq1 (by positivity)), ← pow_mul,
       ← pow_succ]
 
-/-- `AGM(θ₃²(q), θ₄²(q)) = 1` for `0 ≤ q < 1`.-/
+/-- `AGM(θ₃²(q), θ₄²(q)) = 1` for `0 ≤ q < 1`.
+@isnad1 id=eq.2h1v.s6.0addabfa7b53 from=translated src=- shape=9b315002 vocab=13a4ee09
+-/
 theorem AGM_theta (hq0 : 0 ≤ q) (hq1 : q < 1) : AGM (theta3 q ^ 2) (theta4 q ^ 2) = 1 := by
   have hr : Tendsto (fun k : ℕ => q ^ 2 ^ k) atTop (𝓝 0) :=
     (tendsto_pow_atTop_nhds_zero_of_lt_one hq0 hq1).comp
@@ -530,12 +617,18 @@ noncomputable def nomeK' (q : ℝ) : ℝ := theta4 q ^ 2 / theta3 q ^ 2
 `k² + k'² = 1`; not proven here).-/
 noncomputable def nomeK (q : ℝ) : ℝ := theta2 q ^ 2 / theta3 q ^ 2
 
+/--
+@isnad1 id=lt.2h1v.s5.cb548a5285cc from=translated src=- shape=536e06c9 vocab=4d864334
+-/
 theorem nomeK'_pos (hq0 : 0 ≤ q) (hq1 : q < 1) : 0 < nomeK' q := by
   unfold nomeK'
   have := theta4_pos hq0 hq1
   have := theta3_pos hq0 hq1
   positivity
 
+/--
+@isnad1 id=le.2h1v.s5.07dca5655ecb from=translated src=- shape=d34e1a3e vocab=4d864334
+-/
 theorem nomeK'_le_one (hq0 : 0 ≤ q) (hq1 : q < 1) : nomeK' q ≤ 1 := by
   unfold nomeK'
   have h3 := theta3_pos hq0 hq1
@@ -543,7 +636,9 @@ theorem nomeK'_le_one (hq0 : 0 ≤ q) (hq1 : q < 1) : nomeK' q ≤ 1 := by
   rw [div_le_one (by positivity)]
   exact pow_le_pow_left₀ h4.le (theta4_le_theta3 hq0 hq1) 2
 
-/-- `AGM(1, k') = 1/θ₃²(q)`.-/
+/-- `AGM(1, k') = 1/θ₃²(q)`.
+@isnad1 id=eq.2h1v.s6.1b164348626c from=translated src=- shape=cec22192 vocab=914fa6d7
+-/
 theorem AGM_one_nomeK' (hq0 : 0 ≤ q) (hq1 : q < 1) : AGM 1 (nomeK' q) = 1 / theta3 q ^ 2 := by
   have h3 := theta3_pos hq0 hq1
   have hk := nomeK'_pos hq0 hq1
@@ -553,7 +648,9 @@ theorem AGM_one_nomeK' (hq0 : 0 ≤ q) (hq1 : q < 1) : AGM 1 (nomeK' q) = 1 / th
   rw [eq_div_iff (by positivity)]
   linarith
 
-/-- (4.77): `K(k) = (π/2) θ₃²(q)`, where `k = √(1 − k'²)`, `k' = θ₄²(q)/θ₃²(q)`.-/
+/-- (4.77): `K(k) = (π/2) θ₃²(q)`, where `k = √(1 − k'²)`, `k' = θ₄²(q)/θ₃²(q)`.
+@isnad1 id=eq.2h1v.s6.8a07d1694d93 from=translated src=- shape=570449a0 vocab=57896913
+-/
 theorem ellipticK_nome (hq0 : 0 ≤ q) (hq1 : q < 1) :
     ellipticK (Real.sqrt (1 - nomeK' q ^ 2)) = Real.pi / 2 * theta3 q ^ 2 := by
   have h := one_div_AGM_one (nomeK'_pos hq0 hq1) (nomeK'_le_one hq0 hq1)

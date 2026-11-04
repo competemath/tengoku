@@ -63,31 +63,46 @@ noncomputable def inverseSeq (g g' : ℝ → ℝ) (y x₀ : ℝ) : ℕ → ℝ
   | 0 => x₀
   | n + 1 => inverseStep g g' y (inverseSeq g g' y x₀ n)
 
+/--
+@isnad1 id=eq.0h4v.s4.b0dee8a41ad3 from=translated src=- shape=444253e6 vocab=fbf52f60
+-/
 @[simp] theorem inverseSeq_zero (g g' : ℝ → ℝ) (y x₀ : ℝ) : inverseSeq g g' y x₀ 0 = x₀ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.157000ce01b2 from=translated src=- shape=2997490e vocab=f4e1abfb
+-/
 @[simp] theorem inverseSeq_succ (g g' : ℝ → ℝ) (y x₀ : ℝ) (n : ℕ) :
     inverseSeq g g' y x₀ (n + 1) = inverseStep g g' y (inverseSeq g g' y x₀ n) := rfl
 
-/-- The functional-inverse step is Newton's step for `f = y − g`, whose derivative is `−g'`.-/
+/-- The functional-inverse step is Newton's step for `f = y − g`, whose derivative is `−g'`.
+@isnad1 id=eq.0h4v.s5.445364493d5a from=translated src=- shape=c39b6fa5 vocab=23e75a80
+-/
 theorem inverseStep_eq_newtonStep (g g' : ℝ → ℝ) (y x : ℝ) :
     inverseStep g g' y x = newtonStep (fun x => y - g x) (fun x => -g' x) x := by
   unfold inverseStep newtonStep
   rw [div_neg, sub_neg_eq_add]
 
+/--
+@isnad1 id=eq.0h5v.s5.648b177b634c from=translated src=- shape=eed49701 vocab=30719eda
+-/
 theorem inverseSeq_eq_newtonSeq (g g' : ℝ → ℝ) (y x₀ : ℝ) (n : ℕ) :
     inverseSeq g g' y x₀ n = newtonSeq (fun x => y - g x) (fun x => -g' x) x₀ n := by
   induction n with
   | zero => rfl
   | succ n ih => rw [inverseSeq_succ, newtonSeq_succ, ih, inverseStep_eq_newtonStep]
 
-/-- The preimage `ζ` of `y` is a fixed point.-/
+/-- The preimage `ζ` of `y` is a fixed point.
+@isnad1 id=eq.1h4v.s4.4e8d29306d0f from=translated src=- shape=d1fa308a vocab=3fb7ff14
+-/
 theorem inverseStep_root {g g' : ℝ → ℝ} {y ζ : ℝ} (hζ : g ζ = y) : inverseStep g g' y ζ = ζ := by
   simp [inverseStep, hζ]
 
 /-- Local quadratic convergence to the functional inverse: if `g ζ = y`, `g` has derivatives `g'`
 and `g''` on the interval of radius `r` about `ζ` with `|g''| ≤ M` and `|g'| ≥ m > 0` there, then
 from `x₀` within `r` with `M/(2m) · |x₀ − ζ| ≤ 1/2` the iterates stay within `r`, halve their
-error at every step, and converge to `ζ`.-/
+error at every step, and converge to `ζ`.
+@isnad1 id=and.8h9v.s8.444409bf394a from=translated src=- shape=d9251ab0 vocab=0a49146f
+-/
 theorem tendsto_inverseSeq {g g' g'' : ℝ → ℝ} {y ζ r M m : ℝ} (hm : 0 < m) (hζ : g ζ = y)
     (hg : ∀ t ∈ Icc (ζ - r) (ζ + r), HasDerivAt g (g' t) t)
     (hg' : ∀ t ∈ Icc (ζ - r) (ζ + r), HasDerivAt g' (g'' t) t)
@@ -125,18 +140,28 @@ noncomputable def expSeq (y x₀ : ℝ) : ℕ → ℝ
   | 0 => x₀
   | n + 1 => expStep y (expSeq y x₀ n)
 
+/--
+@isnad1 id=eq.0h2v.s3.e2ee00eb3640 from=translated src=- shape=cc48e823 vocab=b69b2ef8
+-/
 @[simp] theorem expSeq_zero (y x₀ : ℝ) : expSeq y x₀ 0 = x₀ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.858662d0548c from=translated src=- shape=3524b51e vocab=8f14027a
+-/
 @[simp] theorem expSeq_succ (y x₀ : ℝ) (n : ℕ) : expSeq y x₀ (n + 1) = expStep y (expSeq y x₀ n) :=
   rfl
 
-/-- (4.11) is the functional-inverse step for `g = ln`, `g' = 1/x`.-/
+/-- (4.11) is the functional-inverse step for `g = ln`, `g' = 1/x`.
+@isnad1 id=eq.0h2v.s4.1f821dbef104 from=translated src=- shape=a2f8bf3a vocab=a7467228
+-/
 theorem inverseStep_log (y x : ℝ) : inverseStep log (fun x => x⁻¹) y x = expStep y x := by
   unfold inverseStep expStep
   rw [div_inv_eq_mul, mul_comm]
 
 /-- The second-order Taylor bound for the logarithm: `|ln(1 + ε) − (ε − ε²/2)| ≤ 2 |ε|³` for
-`|ε| ≤ 1/2`.-/
+`|ε| ≤ 1/2`.
+@isnad1 id=le.1h1v.s7.097d7fa66373 from=translated src=- shape=0c4d5197 vocab=569808be
+-/
 theorem abs_log_one_add_sub_le {ε : ℝ} (hε : |ε| ≤ 1 / 2) :
     |log (1 + ε) - (ε - ε ^ 2 / 2)| ≤ 2 * |ε| ^ 3 := by
   have h := Real.abs_log_sub_add_sum_range_le (x := -ε) (by rw [abs_neg]; linarith) 2
@@ -152,7 +177,9 @@ theorem abs_log_one_add_sub_le {ε : ℝ} (hε : |ε| ≤ 1 / 2) :
   nlinarith
 
 /-- The relative error of (4.11): `x = e^y (1 + ε)` (with `1 + ε > 0`) is sent to
-`e^y (1 + ε)(1 − ln(1 + ε))`.-/
+`e^y (1 + ε)(1 − ln(1 + ε))`.
+@isnad1 id=eq.1h2v.s6.13cb61edbb9e from=translated src=- shape=bfa55659 vocab=c8bb6d98
+-/
 theorem expStep_rel (y : ℝ) {ε : ℝ} (hε : 0 < 1 + ε) :
     expStep y (exp y * (1 + ε)) = exp y * ((1 + ε) * (1 - log (1 + ε))) := by
   unfold expStep
@@ -160,7 +187,9 @@ theorem expStep_rel (y : ℝ) {ε : ℝ} (hε : 0 < 1 + ε) :
   ring
 
 /-- Quadratic convergence of (4.11) in relative terms: for `|ε| ≤ 1/2`,
-`|(1 + ε)(1 − ln(1 + ε)) − 1| ≤ (9/4) ε²`.-/
+`|(1 + ε)(1 − ln(1 + ε)) − 1| ≤ (9/4) ε²`.
+@isnad1 id=le.1h1v.s7.505e74eb17ea from=translated src=- shape=bbfe0219 vocab=569808be
+-/
 theorem abs_expStep_relError_le {ε : ℝ} (hε : |ε| ≤ 1 / 2) :
     |(1 + ε) * (1 - log (1 + ε)) - 1| ≤ 9 / 4 * ε ^ 2 := by
   have hL := abs_log_one_add_sub_le hε
@@ -191,7 +220,9 @@ theorem abs_expStep_relError_le {ε : ℝ} (hε : |ε| ≤ 1 / 2) :
 /-- One `LiftExp` step with its roundings modelled as perturbations: the logarithm is computed
 with absolute error `δ` and the correction `x (y − t)` with relative error `θ`.  From
 `x = e^y (1 + ε)` the result is `e^y (1 + ε')` with
-`ε' = ε − (1 + ε)(1 + θ)(ln(1 + ε) + δ)`.-/
+`ε' = ε − (1 + ε)(1 + θ)(ln(1 + ε) + δ)`.
+@isnad1 id=eq.1h4v.s7.473ba9ac7493 from=translated src=- shape=96301a10 vocab=259dd94b
+-/
 theorem liftExp_rel (y δ θ : ℝ) {ε : ℝ} (hε : 0 < 1 + ε) :
     exp y * (1 + ε) + exp y * (1 + ε) * (y - (log (exp y * (1 + ε)) + δ)) * (1 + θ)
       = exp y * (1 + (ε - (1 + ε) * (1 + θ) * (log (1 + ε) + δ))) := by
@@ -201,7 +232,9 @@ theorem liftExp_rel (y δ θ : ℝ) {ε : ℝ} (hε : 0 < 1 + ε) :
 /-- The precision claim of `LiftExp`: from an approximation with relative error `|ε| ≤ η ≤ 1/2`,
 a logarithm with absolute error `|δ| ≤ η²` and a correction product with relative error
 `|θ| ≤ η`, the result has relative error at most `9 η²`.  With `η = 2^(−n/2)` this is the
-`n`-bit result from `n/2`-bit `u` and `v` and an `n`-bit `t`, up to the constant.-/
+`n`-bit result from `n/2`-bit `u` and `v` and an `n`-bit `t`, up to the constant.
+@isnad1 id=le.4h4v.s7.d176cc06b5c3 from=translated src=- shape=a825ae1e vocab=569808be
+-/
 theorem abs_liftExp_relError_le {ε δ θ η : ℝ} (hη : η ≤ 1 / 2) (hε : |ε| ≤ η) (hδ : |δ| ≤ η ^ 2)
     (hθ : |θ| ≤ η) :
     |ε - (1 + ε) * (1 + θ) * (log (1 + ε) + δ)| ≤ 9 * η ^ 2 := by

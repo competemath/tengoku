@@ -65,7 +65,9 @@ abbrev QuadRing (R : Type _) [CommRing R] (u a : R) : Type _ :=
 def quadNorm {R : Type _} [CommRing R] (u a x₀ x₁ : R) : R :=
   x₀ ^ 2 + u * x₀ * x₁ - a * x₁ ^ 2
 
-/-- The defining relation `α² = uα + a` in `QuadRing R u a`.-/
+/-- The defining relation `α² = uα + a` in `QuadRing R u a`.
+@isnad1 id=eq.0h3v.s13.920842e32c4e from=translated src=- shape=603df3d5 vocab=a82749d0
+-/
 theorem quadRing_root_sq {R : Type _} [CommRing R] (u a : R) :
     (AdjoinRoot.root (X ^ 2 - C u * X - C a : Polynomial R)) ^ 2
       = algebraMap R (QuadRing R u a) u
@@ -79,7 +81,9 @@ theorem quadRing_root_sq {R : Type _} [CommRing R] (u a : R) :
   linear_combination h0
 
 /-- **Norm = product with the conjugate**: with `ᾱ = u − α`,
-`(x₀ + x₁α)(x₀ + x₁ᾱ) = N(x₀ + x₁α)`.-/
+`(x₀ + x₁α)(x₀ + x₁ᾱ) = N(x₀ + x₁α)`.
+@isnad1 id=eq.0h5v.s14.4f8b5257c79e from=translated src=- shape=6c70f4e7 vocab=33a7303f
+-/
 theorem mul_conj_eq_quadNorm {R : Type _} [CommRing R] (u a x₀ x₁ : R) :
     (algebraMap R (QuadRing R u a) x₀
         + algebraMap R (QuadRing R u a) x₁
@@ -95,7 +99,9 @@ theorem mul_conj_eq_quadNorm {R : Type _} [CommRing R] (u a x₀ x₁ : R) :
   linear_combination (-(algebraMap R (QuadRing R u a) x₁) ^ 2) * hrel
 
 /-- **The Jacobi-symbol form of the hypothesis**: `((u² + 4a)/n) = −1`
-for prime `n` makes the discriminant a nonsquare mod `n`.-/
+for prime `n` makes the discriminant a nonsquare mod `n`.
+@isnad1 id=not.2h3v.s7.b5c54db11925 from=translated src=- shape=2623f746 vocab=289b1ddd
+-/
 theorem not_isSquare_disc {n : ℕ} (hn : n.Prime) {u a : ℤ}
     (hJ : jacobiSym (u ^ 2 + 4 * a) n = -1) :
     ¬ IsSquare ((u : ZMod n) ^ 2 + 4 * (a : ZMod n)) := by
@@ -113,7 +119,9 @@ theorem not_isSquare_disc {n : ℕ} (hn : n.Prime) {u a : ℤ}
 /-- **Irreducibility of `T² − uT − a` over `𝔽_n`** for a nonsquare
 discriminant `u² + 4a` (the Jacobi-symbol form `((u² + 4a)/n) = −1`
 gives this via `not_isSquare_disc`): there is no root, and a rootless
-quadratic is irreducible.-/
+quadratic is irreducible.
+@isnad1 id=irreduci.2h3v.s9.4a6ded27c022 from=translated src=- shape=cb732f5d vocab=01ac326e
+-/
 theorem quad_irreducible {n : ℕ} (hn : n.Prime) {u a : ZMod n}
     (hns : ¬ IsSquare (u ^ 2 + 4 * a)) :
     Irreducible (X ^ 2 - C u * X - C a : Polynomial (ZMod n)) := by
@@ -149,7 +157,9 @@ theorem quad_irreducible {n : ℕ} (hn : n.Prime) {u a : ZMod n}
 
 /-- **The Frobenius swaps the roots**: for prime `n` and
 a nonsquare discriminant, `α^n = u − α` in `A = 𝔽_(n²)`.  (The `a = 1`
-case is the engine of `xi_pow_eq_neg_one_of_prime`.)-/
+case is the engine of `xi_pow_eq_neg_one_of_prime`.)
+@isnad1 id=eq.2h3v.s13.9983ce8f9ebe from=translated src=- shape=66181e6a vocab=67dd06ae
+-/
 theorem root_pow_card_eq_conj {n : ℕ} (hn : n.Prime) {u a : ZMod n}
     (hns : ¬ IsSquare (u ^ 2 + 4 * a)) :
     (AdjoinRoot.root (X ^ 2 - C u * X - C a : Polynomial (ZMod n))) ^ n
@@ -247,7 +257,9 @@ theorem root_pow_card_eq_conj {n : ℕ} (hn : n.Prime) {u a : ZMod n}
 
 /-- **The `n + 1` Fermat analogue of Test (4.3)**: for prime `n`
 and a nonsquare discriminant, every `x = x₀ + x₁α ∈ A` satisfies
-`x^(n+1) = N(x)` — Frobenius gives `x^n = x̄`, and `x·x̄ = N(x)`.-/
+`x^(n+1) = N(x)` — Frobenius gives `x^n = x̄`, and `x·x̄ = N(x)`.
+@isnad1 id=eq.2h5v.s14.52598fbc1349 from=translated src=- shape=52d8af23 vocab=6d9887af
+-/
 theorem pow_card_succ_eq_quadNorm {n : ℕ} (hn : n.Prime) {u a : ZMod n}
     (hns : ¬ IsSquare (u ^ 2 + 4 * a)) (x₀ x₁ : ZMod n) :
     (algebraMap (ZMod n) (QuadRing (ZMod n) u a) x₀
@@ -281,7 +293,9 @@ theorem pow_card_succ_eq_quadNorm {n : ℕ} (hn : n.Prime) {u a : ZMod n}
 /-- **The (4.3) composite verdict**: for prime `n` and
 a nonsquare discriminant, a norm-one `x ∈ A` has `x^(n+1) = 1`.
 Contrapositive: a norm-one `x` with `x^(n+1) ≠ 1` proves `n`
-composite.-/
+composite.
+@isnad1 id=eq.3h5v.s13.8eb8920c52bc from=translated src=- shape=d8031b0c vocab=6d9887af
+-/
 theorem quadNorm_one_pow_eq_one {n : ℕ} (hn : n.Prime) {u a : ZMod n}
     (hns : ¬ IsSquare (u ^ 2 + 4 * a)) {x₀ x₁ : ZMod n}
     (hN : quadNorm u a x₀ x₁ = 1) :

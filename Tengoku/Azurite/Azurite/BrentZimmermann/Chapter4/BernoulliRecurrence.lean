@@ -74,12 +74,20 @@ open Finset PowerSeries
 /-- The scaled Bernoulli numbers `C_k = B_{2k}/(2k)!`.-/
 def scaledBernoulli (k : ℕ) : ℚ := bernoulli (2 * k) / (2 * k).factorial
 
+/--
+@isnad1 id=eq.0h0v.s3.e4c4cde70156 from=translated src=- shape=1ac31801 vocab=5132e4ce
+-/
 theorem scaledBernoulli_zero : scaledBernoulli 0 = 1 := by simp [scaledBernoulli]
 
+/--
+@isnad1 id=eq.0h0v.s4.628716aee4d9 from=translated src=- shape=4683683d vocab=ef43d173
+-/
 theorem scaledBernoulli_one : scaledBernoulli 1 = 1 / 12 := by
   simp [scaledBernoulli, bernoulli_two]; norm_num
 
-/-- Even/odd split of a sum over `range (2m)`.-/
+/-- Even/odd split of a sum over `range (2m)`.
+@isnad1 id=eq.0h3v.s6.6459e780909c from=translated src=- shape=30381c34 vocab=d361aece
+-/
 theorem sum_range_two_mul {M : Type*} [AddCommMonoid M] (f : ℕ → M) (m : ℕ) :
     ∑ i ∈ range (2 * m), f i = ∑ j ∈ range m, f (2 * j) + ∑ j ∈ range m, f (2 * j + 1) := by
   induction m with
@@ -89,6 +97,9 @@ theorem sum_range_two_mul {M : Type*} [AddCommMonoid M] (f : ℕ → M) (m : ℕ
       sum_range_succ, sum_range_succ]
     abel
 
+/--
+@isnad1 id=eq.0h1v.s5.1e237739dd36 from=translated src=- shape=75427f1e vocab=97dc305a
+-/
 theorem algebraMap_rat_rat (q : ℚ) : algebraMap ℚ ℚ q = q := rfl
 
 /-- (4.57) as a formal power series: `x/(e^x − 1) + x/2`, whose coefficients are
@@ -96,12 +107,18 @@ theorem algebraMap_rat_rat (q : ℚ) : algebraMap ℚ ℚ q = q := rfl
 noncomputable def scaledBernoulliPowerSeries : PowerSeries ℚ :=
   bernoulliPowerSeries ℚ + C (1 / 2 : ℚ) * X
 
+/--
+@isnad1 id=eq.0h1v.s6.a817f289b32c from=translated src=- shape=5ae914d3 vocab=210c9b73
+-/
 theorem coeff_scaledBernoulliPowerSeries_even (j : ℕ) :
     coeff (2 * j) scaledBernoulliPowerSeries = scaledBernoulli j := by
   unfold scaledBernoulliPowerSeries bernoulliPowerSeries scaledBernoulli
   rw [map_add, coeff_mk, coeff_C_mul, coeff_X, ite_eq_right (by omega), mul_zero, add_zero,
     algebraMap_rat_rat]
 
+/--
+@isnad1 id=eq.0h1v.s6.b05d2befe669 from=translated src=- shape=27834d4a vocab=a4994240
+-/
 theorem coeff_scaledBernoulliPowerSeries_odd (j : ℕ) :
     coeff (2 * j + 1) scaledBernoulliPowerSeries = 0 := by
   unfold scaledBernoulliPowerSeries bernoulliPowerSeries
@@ -112,13 +129,17 @@ theorem coeff_scaledBernoulliPowerSeries_odd (j : ℕ) :
   · rw [bernoulli_eq_zero_of_odd ⟨j, rfl⟩ (by omega), ite_eq_right (by omega)]
     simp
 
-/-- (4.57) times `e^x − 1`: `S (e^x − 1) = x + (x/2)(e^x − 1)` (from (4.56)).-/
+/-- (4.57) times `e^x − 1`: `S (e^x − 1) = x + (x/2)(e^x − 1)` (from (4.56)).
+@isnad1 id=eq.0h0v.s7.b96a14fdfeea from=translated src=- shape=706b018a vocab=cbca0b39
+-/
 theorem scaledBernoulliPowerSeries_mul_exp_sub_one :
     scaledBernoulliPowerSeries * (exp ℚ - 1) = X + C (1 / 2 : ℚ) * X * (exp ℚ - 1) := by
   unfold scaledBernoulliPowerSeries
   rw [add_mul, bernoulliPowerSeries_mul_exp_sub_one]
 
-/-- `tanh(x/2) = (e^x − 1)/(e^x + 1)`.-/
+/-- `tanh(x/2) = (e^x − 1)/(e^x + 1)`.
+@isnad1 id=eq.0h1v.s5.96f9939bea5e from=translated src=- shape=10ee740c vocab=97ffb49c
+-/
 theorem tanh_half_eq (x : ℝ) : Real.tanh (x / 2) = (Real.exp x - 1) / (Real.exp x + 1) := by
   rw [Real.tanh_eq_sinh_div_cosh, Real.sinh_eq, Real.cosh_eq, Real.exp_neg]
   have hu : 0 < Real.exp (x / 2) := Real.exp_pos _
@@ -127,7 +148,9 @@ theorem tanh_half_eq (x : ℝ) : Real.tanh (x / 2) = (Real.exp x - 1) / (Real.ex
   rw [hx]
   field_simp
 
-/-- The closed form in (4.57): `x/(e^x − 1) + x/2 = (x/2)/tanh(x/2)` for `x ≠ 0`.-/
+/-- The closed form in (4.57): `x/(e^x − 1) + x/2 = (x/2)/tanh(x/2)` for `x ≠ 0`.
+@isnad1 id=eq.1h1v.s6.774bf253aa2a from=translated src=- shape=780117bd vocab=97ffb49c
+-/
 theorem div_exp_sub_one_add_half {x : ℝ} (hx : x ≠ 0) :
     x / (Real.exp x - 1) + x / 2 = (x / 2) / Real.tanh (x / 2) := by
   have h1 : Real.exp x - 1 ≠ 0 := by
@@ -140,18 +163,24 @@ theorem div_exp_sub_one_add_half {x : ℝ} (hx : x ≠ 0) :
 
 /-! ### The recurrences (4.58) and (4.59) -/
 
-/-- (4.58): `∑_{j=0}^{k} C(k+1, j) B_j = 0` for `k > 0` (Mathlib's `sum_bernoulli`).-/
+/-- (4.58): `∑_{j=0}^{k} C(k+1, j) B_j = 0` for `k > 0` (Mathlib's `sum_bernoulli`).
+@isnad1 id=eq.1h1v.s6.e67077ee47ff from=translated src=- shape=2ec7f80b vocab=6775a68c
+-/
 theorem bernoulli_recurrence {k : ℕ} (hk : 0 < k) :
     ∑ j ∈ range (k + 1), ((k + 1).choose j : ℚ) * bernoulli j = 0 := by
   rw [sum_bernoulli, ite_eq_right (by omega)]
 
-/-- The coefficients of `e^x − 1`.-/
+/-- The coefficients of `e^x − 1`.
+@isnad1 id=eq.0h1v.s7.3b5116a006ed from=translated src=- shape=c1e88841 vocab=83cee4a4
+-/
 theorem coeff_exp_sub_one (m : ℕ) :
     coeff m (exp ℚ - 1) = if m = 0 then 0 else 1 / (m.factorial : ℚ) := by
   rw [map_sub, coeff_exp, coeff_one, algebraMap_rat_rat]
   split_ifs with h <;> simp [h]
 
-/-- The coefficient of `x^(2k+1)` in `S ψ`: only the even coefficients `C_j` of `S` enter.-/
+/-- The coefficient of `x^(2k+1)` in `S ψ`: only the even coefficients `C_j` of `S` enter.
+@isnad1 id=eq.0h2v.s8.138239cca86b from=translated src=- shape=9fd4bacd vocab=9563480b
+-/
 theorem coeff_scaledBernoulliPowerSeries_mul (ψ : PowerSeries ℚ) (k : ℕ) :
     coeff (2 * k + 1) (scaledBernoulliPowerSeries * ψ)
       = ∑ j ∈ range (k + 1), scaledBernoulli j * coeff (2 * k + 1 - 2 * j) ψ := by
@@ -162,7 +191,9 @@ theorem coeff_scaledBernoulliPowerSeries_mul (ψ : PowerSeries ℚ) (k : ℕ) :
       sum_eq_zero fun j _ => by rw [coeff_scaledBernoulliPowerSeries_odd, zero_mul], add_zero]
   exact sum_congr rfl fun j _ => by rw [coeff_scaledBernoulliPowerSeries_even]
 
-/-- (4.59): `∑_{j=0}^{k} C_j/(2k+1−2j)! = 1/(2 (2k)!)` for `k ≥ 1`.-/
+/-- (4.59): `∑_{j=0}^{k} C_j/(2k+1−2j)! = 1/(2 (2k)!)` for `k ≥ 1`.
+@isnad1 id=eq.1h1v.s7.870f8bada709 from=translated src=- shape=920ae098 vocab=dc6faad2
+-/
 theorem scaledBernoulli_rec {k : ℕ} (hk : 1 ≤ k) :
     ∑ j ∈ range (k + 1), scaledBernoulli j / ((2 * k + 1 - 2 * j).factorial : ℚ)
       = 1 / (2 * (2 * k).factorial) := by
@@ -179,12 +210,17 @@ theorem scaledBernoulli_rec {k : ℕ} (hk : 1 ≤ k) :
 
 /-! ### The stable recurrence (4.60) -/
 
+/--
+@isnad1 id=eq.0h2v.s7.8b80bdfea1d7 from=translated src=- shape=0fa91d1d vocab=35fe87cd
+-/
 theorem coeff_rescale_exp (a : ℚ) (m : ℕ) :
     coeff m (rescale a (exp ℚ)) = a ^ m / m.factorial := by
   rw [coeff_rescale, coeff_exp, algebraMap_rat_rat]
   ring
 
-/-- `(e^x − 1) e^(−x/2) = e^(x/2) − e^(−x/2)`.-/
+/-- `(e^x − 1) e^(−x/2) = e^(x/2) − e^(−x/2)`.
+@isnad1 id=eq.0h0v.s8.421433967f8b from=translated src=- shape=cc1f3895 vocab=b572217b
+-/
 theorem exp_sub_one_mul_rescale_neg_half :
     (exp ℚ - 1) * rescale (-1 / 2 : ℚ) (exp ℚ)
       = rescale (1 / 2 : ℚ) (exp ℚ) - rescale (-1 / 2 : ℚ) (exp ℚ) := by
@@ -193,7 +229,9 @@ theorem exp_sub_one_mul_rescale_neg_half :
   rw [sub_mul, one_mul, h]
 
 /-- (4.57) times `2 sinh(x/2)`: `S (e^(x/2) − e^(−x/2)) = (x/2)(e^(x/2) + e^(−x/2))`, i.e.
-`(x/2)/tanh(x/2) · 2 sinh(x/2) = x cosh(x/2)`.-/
+`(x/2)/tanh(x/2) · 2 sinh(x/2) = x cosh(x/2)`.
+@isnad1 id=eq.0h0v.s8.744eb60cf3c9 from=translated src=- shape=bb6801be vocab=ec7986da
+-/
 theorem scaledBernoulliPowerSeries_mul_sinh :
     scaledBernoulliPowerSeries * (rescale (1 / 2 : ℚ) (exp ℚ) - rescale (-1 / 2 : ℚ) (exp ℚ))
       = C (1 / 2 : ℚ) * X * (rescale (1 / 2 : ℚ) (exp ℚ) + rescale (-1 / 2 : ℚ) (exp ℚ)) := by
@@ -207,7 +245,9 @@ theorem scaledBernoulliPowerSeries_mul_sinh :
   set Em := rescale (-1 / 2 : ℚ) (exp ℚ)
   linear_combination Em * h1 + (C (1 / 2 : ℚ) * X - S) * h2 - X * Em * hc
 
-/-- (4.60): `∑_{j=0}^{k} C_j/((2k+1−2j)! 4^(k−j)) = 1/((2k)! 4^k)`, for all `k`.-/
+/-- (4.60): `∑_{j=0}^{k} C_j/((2k+1−2j)! 4^(k−j)) = 1/((2k)! 4^k)`, for all `k`.
+@isnad1 id=eq.0h1v.s7.ee243bd61f95 from=translated src=- shape=7ff67884 vocab=ea7dc406
+-/
 theorem scaledBernoulli_rec_stable (k : ℕ) :
     ∑ j ∈ range (k + 1), scaledBernoulli j / (((2 * k + 1 - 2 * j).factorial : ℚ) * 4 ^ (k - j))
       = 1 / (((2 * k).factorial : ℚ) * 4 ^ k) := by
@@ -231,7 +271,9 @@ theorem scaledBernoulli_rec_stable (k : ℕ) :
 
 /-! ### The size of `C_k` -/
 
-/-- `C_k = (−1)^(k+1) · 2 ζ(2k) / (2π)^(2k)` for `k ≥ 1` (from `B_{2k}` in terms of `ζ(2k)`).-/
+/-- `C_k = (−1)^(k+1) · 2 ζ(2k) / (2π)^(2k)` for `k ≥ 1` (from `B_{2k}` in terms of `ζ(2k)`).
+@isnad1 id=eq.1h1v.s7.a217333ebe0f from=translated src=- shape=989c48ba vocab=1db488dd
+-/
 theorem scaledBernoulli_eq_zeta {k : ℕ} (hk : 1 ≤ k) :
     (scaledBernoulli k : ℝ)
       = (-1) ^ (k + 1) * 2 * zetaReal (2 * k) / (2 * Real.pi) ^ (2 * k) := by
@@ -242,7 +284,9 @@ theorem scaledBernoulli_eq_zeta {k : ℕ} (hk : 1 ≤ k) :
   field_simp
 
 /-- `|C_k| ≤ (π²/3)/(2π)^(2k)` for `k ≥ 1`: the scaled Bernoulli numbers decay like `(2π)^(−2k)`,
-which is what makes the forward recurrences (4.58)/(4.59) ill-conditioned.-/
+which is what makes the forward recurrences (4.58)/(4.59) ill-conditioned.
+@isnad1 id=le.1h1v.s6.860bc60bb78a from=translated src=- shape=c57d2874 vocab=1022417e
+-/
 theorem abs_scaledBernoulli_le {k : ℕ} (hk : 1 ≤ k) :
     |(scaledBernoulli k : ℝ)| ≤ (Real.pi ^ 2 / 3) / (2 * Real.pi) ^ (2 * k) := by
   rw [scaledBernoulli_eq_zeta hk, abs_div, abs_mul, abs_mul, abs_pow, abs_neg, abs_one, one_pow,

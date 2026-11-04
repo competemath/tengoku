@@ -56,13 +56,17 @@ noncomputable def Polynomial.specialTrans (P : R[X]) (b c : R) : ℕ → R[X]
   | i + 1 => (C c * X - C b) * P.specialTrans b c i +
       C (c ^ (i + 1) * P.coeff (P.natDegree - (i + 1)))
 
-/-- The base case: `specialTrans P b c 0 = C(leadingCoeff P)`.-/
+/-- The base case: `specialTrans P b c 0 = C(leadingCoeff P)`.
+@isnad1 id=eq.0h4v.s6.f8e460837d67 from=translated src=- shape=47f22a51 vocab=53499db6
+-/
 theorem Polynomial.specialTrans_zero (P : R[X]) (b c : R) :
     P.specialTrans b c 0 = C P.leadingCoeff := by
   unfold Polynomial.specialTrans; rw [leadingCoeff]
 
 /-- **Closed-form characterization.**
-    `specialTrans P b c i = ∑ j ∈ range (i+1), C(aₚ₋ⱼ · cʲ) · (cX − b)^{i−j}`.-/
+    `specialTrans P b c i = ∑ j ∈ range (i+1), C(aₚ₋ⱼ · cʲ) · (cX − b)^{i−j}`.
+@isnad1 id=eq.0h5v.s9.1a128dad1132 from=translated src=- shape=f3c683f0 vocab=b62fed3f
+-/
 theorem Polynomial.specialTrans_eq_sum (P : R[X]) (b c : R) (i : ℕ) :
     P.specialTrans b c i = ∑ j ∈ range (i + 1),
       C (P.coeff (P.natDegree - j) * c ^ j) * (C c * X - C b) ^ (i - j) := by
@@ -95,7 +99,9 @@ private theorem cx_sub_b_eq {K : Type*} [Field K] (b c : K) (hc : c ≠ 0) :
 
     `specialTrans P b c i = C(cⁱ) · Horᵢ(P, X − b·c⁻¹)`,
 
-    i.e. `SpecialTransᵢ = cⁱ (aₚ(X − b/c)ⁱ + ⋯ + aₚ₋ᵢ)`.-/
+    i.e. `SpecialTransᵢ = cⁱ (aₚ(X − b/c)ⁱ + ⋯ + aₚ₋ᵢ)`.
+@isnad1 id=eq.1h5v.s8.bebef64a2a63 from=translated src=- shape=797b0bce vocab=6478332c
+-/
 theorem Polynomial.specialTrans_eq_horner_comp {K : Type*} [Field K]
     (P : K[X]) (b c : K) (hc : c ≠ 0) (i : ℕ) :
     P.specialTrans b c i =

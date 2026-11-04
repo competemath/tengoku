@@ -35,7 +35,9 @@ namespace Azurite.BPR
     whose entry bitsizes are bounded by `τ` and `σ` respectively
     produces a matrix whose entry bitsizes are bounded by
     `τ + σ + Nat.size (Fintype.card m)`, where `m` is the shared
-    middle dimension.-/
+    middle dimension.
+@isnad1 id=le.2h9v.s6.6c9c37d7f9c3 from=translated src=- shape=2b2a5224 vocab=e916827a
+-/
 theorem Matrix.bitsize_mul_le {l m n : Type _} [Fintype m]
     {M : Matrix l m ℤ} {N : Matrix m n ℤ} {τ σ : ℕ}
     (hM : ∀ i j, (M i j).natAbs.size ≤ τ)

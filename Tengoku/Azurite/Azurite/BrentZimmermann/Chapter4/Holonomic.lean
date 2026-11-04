@@ -71,22 +71,30 @@ def IsPRecursive (u : ℕ → ℝ) : Prop :=
   ∃ (s : ℕ) (c : Fin (s + 1) → ℝ[X]), (∃ j, c j ≠ 0) ∧
     ∀ k : ℕ, ∑ j, (c j).eval (k : ℝ) * u (k + j) = 0
 
-/-- `exp′ − exp = 0`.-/
+/-- `exp′ − exp = 0`.
+@isnad1 id=isholono.0h0v.s1.882c1755bec0 from=translated src=- shape=49959d42 vocab=4077d30a
+-/
 theorem isHolonomic_exp : IsHolonomic Real.exp := by
   refine ⟨1, ![C (-1), C 1], ⟨1, by simp⟩, fun x => ?_⟩
   simp [Fin.sum_univ_two, iteratedDeriv_one, Real.deriv_exp]
 
-/-- `sin″ + sin = 0`.-/
+/-- `sin″ + sin = 0`.
+@isnad1 id=isholono.0h0v.s1.0b6e13ad489f from=translated src=- shape=49959d42 vocab=dcec2d11
+-/
 theorem isHolonomic_sin : IsHolonomic Real.sin := by
   refine ⟨2, ![C 1, 0, C 1], ⟨0, by simp⟩, fun x => ?_⟩
   simp [Fin.sum_univ_three, iteratedDeriv_succ, Real.deriv_sin, Real.deriv_cos']
 
-/-- `cos″ + cos = 0`.-/
+/-- `cos″ + cos = 0`.
+@isnad1 id=isholono.0h0v.s1.eae15731590f from=translated src=- shape=49959d42 vocab=9fe25dcd
+-/
 theorem isHolonomic_cos : IsHolonomic Real.cos := by
   refine ⟨2, ![C 1, 0, C 1], ⟨0, by simp⟩, fun x => ?_⟩
   simp [Fin.sum_univ_three, iteratedDeriv_succ, Real.deriv_sin, Real.deriv_cos']
 
-/-- `x log″ + log′ = 0` (everywhere, with Lean's `log` and `0⁻¹ = 0`).-/
+/-- `x log″ + log′ = 0` (everywhere, with Lean's `log` and `0⁻¹ = 0`).
+@isnad1 id=isholono.0h0v.s1.3a2c02fc88f4 from=translated src=- shape=49959d42 vocab=f9b0f525
+-/
 theorem isHolonomic_log : IsHolonomic Real.log := by
   refine ⟨2, ![0, C 1, X], ⟨1, by simp⟩, fun x => ?_⟩
   have h2 : iteratedDeriv 2 Real.log = fun x => -(x ^ 2)⁻¹ := by
@@ -100,7 +108,9 @@ theorem isHolonomic_log : IsHolonomic Real.log := by
     ring
 
 /-- A hypergeometric coefficient sequence (`a(k+δ) = P(k)/Q(k) · a(k)`, §4.4) is P-recursive:
-`Q(k) a(k+δ) − P(k) a(k) = 0`.-/
+`Q(k) a(k+δ) − P(k) a(k) = 0`.
+@isnad1 id=isprecur.1h3v.s4.0b6ebf5e7df0 from=translated src=- shape=a7114757 vocab=dc975ec9
+-/
 theorem RationalRatio.isPRecursive {a : ℕ → ℝ} {δ : ℕ} (h : RationalRatio a δ) (hδ : 0 < δ) :
     IsPRecursive a := by
   obtain ⟨m, rfl⟩ : ∃ m, δ = m + 1 := ⟨δ - 1, by omega⟩
@@ -151,28 +161,44 @@ variable {A B : Type*} [Field A] [Field B] [Algebra A B] [Differential A] [Diffe
 /-- The `n`-th derivative `b^{(n)}`.-/
 def iterDeriv (n : ℕ) (b : B) : B := (fun x : B => x′)^[n] b
 
+/--
+@isnad1 id=eq.0h2v.s4.115230103db9 from=translated src=- shape=67dc05e9 vocab=eae4ec72
+-/
 theorem iterDeriv_zero (b : B) : iterDeriv 0 b = b := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.902e4e815a7d from=translated src=- shape=e6abc41e vocab=9e1c1429
+-/
 theorem iterDeriv_succ (n : ℕ) (b : B) : iterDeriv (n + 1) b = (iterDeriv n b)′ :=
   Function.iterate_succ_apply' _ _ _
 
+/--
+@isnad1 id=eq.0h4v.s6.d7c41a871e3b from=translated src=- shape=ceac57f3 vocab=d63c19c9
+-/
 theorem iterDeriv_add (n : ℕ) (a b : B) : iterDeriv n (a + b) = iterDeriv n a + iterDeriv n b := by
   induction n with
   | zero => rfl
   | succ n ih => rw [iterDeriv_succ, iterDeriv_succ, iterDeriv_succ, ih, map_add]
 
+/--
+@isnad1 id=eq.0h2v.s5.ab01d65b4a5b from=translated src=- shape=6dec58e9 vocab=eae4ec72
+-/
 theorem iterDeriv_zero_right (n : ℕ) : iterDeriv n (0 : B) = 0 := by
   induction n with
   | zero => rfl
   | succ n ih => rw [iterDeriv_succ, ih, map_zero]
 
-/-- `(c • x)′ = c′ • x + c • x′` for `c ∈ A`.-/
+/-- `(c • x)′ = c′ • x + c • x′` for `c ∈ A`.
+@isnad1 id=eq.0h4v.s8.e1c55b769d01 from=translated src=- shape=d0d0ad5d vocab=62b161a5
+-/
 theorem deriv_smul_coeff (c : A) (x : B) : (c • x)′ = c′ • x + c • x′ := by
   rw [Algebra.smul_def, Derivation.leibniz, deriv_algebraMap, smul_eq_mul, smul_eq_mul,
     Algebra.smul_def, Algebra.smul_def]
   ring
 
-/-- A span whose generators have derivatives in the span is closed under `′`.-/
+/-- A span whose generators have derivatives in the span is closed under `′`.
+@isnad1 id=mem.2h4v.s9.255202271fa2 from=translated src=- shape=05cba13a vocab=2a969568
+-/
 theorem span_deriv_closed {s : Set B} (hs : ∀ x ∈ s, x′ ∈ Submodule.span A s) :
     ∀ x ∈ Submodule.span A s, x′ ∈ Submodule.span A s := by
   intro x hx
@@ -193,9 +219,15 @@ variable (A) in
 def IsDFinite (b : B) : Prop := (derivSpan A b).FG
 
 omit [Differential A] [DifferentialAlgebra A B] in
+/--
+@isnad1 id=mem.0h4v.s7.78f326585203 from=translated src=- shape=2eea7fae vocab=e75edabc
+-/
 theorem iterDeriv_mem_derivSpan (b : B) (n : ℕ) : iterDeriv n b ∈ derivSpan A b :=
   Submodule.subset_span ⟨n, rfl⟩
 
+/--
+@isnad1 id=mem.1h4v.s8.c6235f5446fd from=translated src=- shape=4bb5d4c4 vocab=557a54b4
+-/
 theorem derivSpan_deriv_closed (b : B) : ∀ x ∈ derivSpan A b, x′ ∈ derivSpan A b :=
   span_deriv_closed (by
     rintro _ ⟨n, rfl⟩
@@ -204,13 +236,17 @@ theorem derivSpan_deriv_closed (b : B) : ∀ x ∈ derivSpan A b, x′ ∈ deriv
     exact iterDeriv_mem_derivSpan b (n + 1))
 
 omit [Differential A] [Differential B] [DifferentialAlgebra A B] in
-/-- Over a field, a submodule of a finitely generated submodule is finitely generated.-/
+/-- Over a field, a submodule of a finitely generated submodule is finitely generated.
+@isnad1 id=fg.2h4v.s8.a87b7f703e4c from=translated src=- shape=8d9f33be vocab=4f713aec
+-/
 theorem fg_of_le_fg {U V : Submodule A B} (h : U ≤ V) (hV : V.FG) : U.FG := by
   rw [Submodule.fg_iff_finiteDimensional] at hV ⊢
   exact Submodule.finiteDimensional_of_le h
 
 omit [Differential A] [DifferentialAlgebra A B] in
-/-- Holonomic functions are closed under addition.-/
+/-- Holonomic functions are closed under addition.
+@isnad1 id=isdfinit.2h4v.s6.34c85ff54d63 from=translated src=- shape=11de8b3d vocab=9cc80e86
+-/
 theorem IsDFinite.add {a b : B} (ha : IsDFinite A a) (hb : IsDFinite A b) :
     IsDFinite A (a + b) := by
   refine fg_of_le_fg ?_ (ha.sup hb)
@@ -220,7 +256,9 @@ theorem IsDFinite.add {a b : B} (ha : IsDFinite A a) (hb : IsDFinite A b) :
   rw [iterDeriv_add]
   exact Submodule.add_mem_sup (iterDeriv_mem_derivSpan a n) (iterDeriv_mem_derivSpan b n)
 
-/-- Holonomic functions are closed under multiplication.-/
+/-- Holonomic functions are closed under multiplication.
+@isnad1 id=isdfinit.2h4v.s6.d8a14c398a49 from=translated src=- shape=0ca90076 vocab=b12b5e08
+-/
 theorem IsDFinite.mul {a b : B} (ha : IsDFinite A a) (hb : IsDFinite A b) :
     IsDFinite A (a * b) := by
   have hclosed : ∀ x ∈ derivSpan A a * derivSpan A b, x′ ∈ derivSpan A a * derivSpan A b := by
@@ -247,7 +285,9 @@ theorem IsDFinite.mul {a b : B} (ha : IsDFinite A a) (hb : IsDFinite A b) :
 
 omit [Differential A] [DifferentialAlgebra A B] in
 /-- A D-finite element satisfies a linear ODE over `A`: `∑_{i≤r} c_i b^{(i)} = 0`, not all
-`c_i` zero (here `r = dim`).-/
+`c_i` zero (here `r = dim`).
+@isnad1 id=ex.1h3v.s8.093cc051e36d from=translated src=- shape=cfe12300 vocab=0fd6c663
+-/
 theorem IsDFinite.exists_relation {b : B} (hb : IsDFinite A b) :
     ∃ (r : ℕ) (c : Fin (r + 1) → A), (∃ i, c i ≠ 0) ∧ ∑ i, c i • iterDeriv (i : ℕ) b = 0 := by
   have hfd : FiniteDimensional A (derivSpan A b) :=
@@ -266,7 +306,9 @@ theorem IsDFinite.exists_relation {b : B} (hb : IsDFinite A b) :
     _ = ((∑ i ∈ s, g i • v i : derivSpan A b) : B) := by simp [v]
     _ = 0 := by rw [hsum]; rfl
 
-/-- Conversely, a linear ODE over `A` makes `b` D-finite.-/
+/-- Conversely, a linear ODE over `A` makes `b` D-finite.
+@isnad1 id=isdfinit.2h5v.s8.80cc86196ac3 from=translated src=- shape=03bca6d9 vocab=46c19df9
+-/
 theorem isDFinite_of_relation {b : B} :
     ∀ (r : ℕ) (c : Fin (r + 1) → A), (∃ i, c i ≠ 0) →
       ∑ i, c i • iterDeriv (i : ℕ) b = 0 → IsDFinite A b := by

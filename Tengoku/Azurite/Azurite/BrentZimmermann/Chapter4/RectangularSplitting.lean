@@ -66,7 +66,9 @@ def polyEval (a : ℕ → α) (d : ℕ) (x : α) : α := ∑ i ∈ range d, a i 
 /-- The inner polynomials `P_ℓ(x) = ∑_{m<k} a_{kℓ+m} x^m`.-/
 def innerPoly (a : ℕ → α) (k ℓ : ℕ) (x : α) : α := ∑ m ∈ range k, a (k * ℓ + m) * x ^ m
 
-/-- The classical splitting: for `d = jk`, `P(x) = ∑_{ℓ<j} (x^k)^ℓ P_ℓ(x)`.-/
+/-- The classical splitting: for `d = jk`, `P(x) = ∑_{ℓ<j} (x^k)^ℓ P_ℓ(x)`.
+@isnad1 id=eq.0h5v.s6.93b8e419175d from=translated src=- shape=c3f3d9bc vocab=8be6764c
+-/
 theorem polyEval_split (a : ℕ → α) (j k : ℕ) (x : α) :
     polyEval a (j * k) x = ∑ ℓ ∈ range j, (x ^ k) ^ ℓ * innerPoly a k ℓ x := by
   induction j with
@@ -84,6 +86,9 @@ def hornerEval (c : ℕ → α) : ℕ → α → α
   | 0, _ => 0
   | n + 1, y => c 0 + y * hornerEval (fun i => c (i + 1)) n y
 
+/--
+@isnad1 id=eq.0h4v.s6.145b1875bb8d from=translated src=- shape=f3d3e642 vocab=6b37cec0
+-/
 theorem hornerEval_eq (c : ℕ → α) (n : ℕ) (y : α) :
     hornerEval c n y = ∑ i ∈ range n, c i * y ^ i := by
   induction n generalizing c with
@@ -93,20 +98,26 @@ theorem hornerEval_eq (c : ℕ → α) (n : ℕ) (y : α) :
     congr 1
     exact sum_congr rfl fun i _ => by ring
 
-/-- The splitting evaluated by Horner in `y = x^k` on the inner values.-/
+/-- The splitting evaluated by Horner in `y = x^k` on the inner values.
+@isnad1 id=eq.0h5v.s5.bcd52e4da2f3 from=translated src=- shape=e8f5da8f vocab=28f986c2
+-/
 theorem polyEval_eq_horner (a : ℕ → α) (j k : ℕ) (x : α) :
     polyEval a (j * k) x = hornerEval (fun ℓ => innerPoly a k ℓ x) j (x ^ k) := by
   rw [polyEval_split, hornerEval_eq]
   exact sum_congr rfl fun ℓ _ => mul_comm _ _
 
-/-- Even powers by squaring: `x^(2m) = (x^m)²`.-/
+/-- Even powers by squaring: `x^(2m) = (x^m)²`.
+@isnad1 id=eq.0h3v.s6.777f6f3a5d81 from=translated src=- shape=4975e31e vocab=be818bce
+-/
 theorem pow_two_mul_eq_sq (x : α) (m : ℕ) : x ^ (2 * m) = (x ^ m) ^ 2 := by
   rw [← pow_mul, mul_comm]
 
 /-- The row polynomials of the modular splitting, `P_ℓ(y) = ∑_{m<k} a_{jm+ℓ} y^m`.-/
 def modularPoly (a : ℕ → α) (j k ℓ : ℕ) (y : α) : α := ∑ m ∈ range k, a (j * m + ℓ) * y ^ m
 
-/-- The modular splitting: for `d = jk`, `P(x) = ∑_{ℓ<j} x^ℓ P_ℓ(x^j)`.-/
+/-- The modular splitting: for `d = jk`, `P(x) = ∑_{ℓ<j} x^ℓ P_ℓ(x^j)`.
+@isnad1 id=eq.0h5v.s6.4b627014dfad from=translated src=- shape=0f7277c2 vocab=78ecf9b0
+-/
 theorem polyEval_modular_split (a : ℕ → α) (j k : ℕ) (x : α) :
     polyEval a (j * k) x = ∑ ℓ ∈ range j, x ^ ℓ * modularPoly a j k ℓ (x ^ j) := by
   induction k with
@@ -119,7 +130,9 @@ theorem polyEval_modular_split (a : ℕ → α) (j k : ℕ) (x : α) :
     rw [← pow_mul, pow_add]
     ring
 
-/-- The modular splitting finished by Horner in `x` on the row sums.-/
+/-- The modular splitting finished by Horner in `x` on the row sums.
+@isnad1 id=eq.0h5v.s5.ecfcede4fb5d from=translated src=- shape=a10652aa vocab=c2147e47
+-/
 theorem polyEval_eq_horner_modular (a : ℕ → α) (j k : ℕ) (x : α) :
     polyEval a (j * k) x = hornerEval (fun ℓ => modularPoly a j k ℓ (x ^ j)) j x := by
   rw [polyEval_modular_split, hornerEval_eq]
@@ -127,7 +140,9 @@ theorem polyEval_eq_horner_modular (a : ℕ → α) (j k : ℕ) (x : α) :
 
 /-- The transposition behind the modular splitting: the classical scheme (inner polynomials of
 length `k`, outer sum over `j` of them) and the modular scheme with the roles of `j` and `k`
-exchanged add up the same `j × k` array `a_{kℓ+m} x^{kℓ+m}`, row by row and column by column.-/
+exchanged add up the same `j × k` array `a_{kℓ+m} x^{kℓ+m}`, row by row and column by column.
+@isnad1 id=eq.0h5v.s7.a98921de68d8 from=translated src=- shape=15efe1fd vocab=246e9b4e
+-/
 theorem classical_split_eq_modular_transpose (a : ℕ → α) (j k : ℕ) (x : α) :
     ∑ ℓ ∈ range j, (x ^ k) ^ ℓ * innerPoly a k ℓ x
       = ∑ ℓ ∈ range k, x ^ ℓ * modularPoly a k j ℓ (x ^ k) := by
@@ -145,18 +160,24 @@ end Splitting
 def classicalNonscalar (j k : ℕ) : ℕ := (k - 1) + (j - 1)
 
 /-- For `j, k ≥ 2` the splitting uses at most the `d − 2` non-scalar products of Horner's rule
-on `P` (whose first product `a_{d−1} x` is scalar).-/
+on `P` (whose first product `a_{d−1} x` is scalar).
+@isnad1 id=le.2h2v.s5.1de37e744d0e from=translated src=- shape=f671b2f8 vocab=439a031d
+-/
 theorem classicalNonscalar_le_horner {j k : ℕ} (hj : 2 ≤ j) (hk : 2 ≤ k) :
     classicalNonscalar j k ≤ j * k - 2 := by
   unfold classicalNonscalar
   have : j + k ≤ j * k := by nlinarith
   omega
 
-/-- The example `d = 12 = 3 · 4`: five non-scalar products against ten.-/
+/-- The example `d = 12 = 3 · 4`: five non-scalar products against ten.
+@isnad1 id=and.0h0v.s5.d0375b9290af from=translated src=- shape=0b88aff2 vocab=755c1f10
+-/
 theorem classicalNonscalar_example : classicalNonscalar 3 4 = 5 ∧ 3 * 4 - 2 = 10 := by decide
 
 /-- The count is at least `2√d − 2`, with `d = jk`: the optimum is near `j = k = √d`, giving
-`O(√d) = O(√n)` non-scalar products.-/
+`O(√d) = O(√n)` non-scalar products.
+@isnad1 id=le.2h2v.s6.6c9e38546196 from=translated src=- shape=4979939e vocab=fe665e5b
+-/
 theorem two_sqrt_le_classicalNonscalar_add_two {j k : ℕ} (hj : 1 ≤ j) (hk : 1 ≤ k) :
     2 * Real.sqrt ((j * k : ℕ) : ℝ) ≤ (classicalNonscalar j k : ℝ) + 2 := by
   unfold classicalNonscalar
@@ -174,11 +195,15 @@ theorem two_sqrt_le_classicalNonscalar_add_two {j k : ℕ} (hj : 1 ≤ j) (hk : 
 `y², …, y^(k−1)`, and `j − 1` for the final Horner rule in `x`.-/
 def modularNonscalar (j k : ℕ) : ℕ := (j - 1) + (k - 2) + (j - 1)
 
-/-- The example `d = 12 = 3 · 4`: six non-scalar products.-/
+/-- The example `d = 12 = 3 · 4`: six non-scalar products.
+@isnad1 id=eq.0h0v.s4.12ab097bd130 from=translated src=- shape=7226d0ee vocab=000c3c31
+-/
 theorem modularNonscalar_example : modularNonscalar 3 4 = 6 := by decide
 
 /-- The two counts differ by `j − 2` (modular has it extra); each splitting can be taken with
-the roles of `j` and `k` exchanged, which is why the complexities are "almost the same".-/
+the roles of `j` and `k` exchanged, which is why the complexities are "almost the same".
+@isnad1 id=eq.2h2v.s5.c43bc1b6c6b4 from=translated src=- shape=5169577a vocab=0eaf5015
+-/
 theorem modularNonscalar_eq (j k : ℕ) (hj : 2 ≤ j) (hk : 2 ≤ k) :
     modularNonscalar j k = classicalNonscalar j k + (j - 2) := by
   unfold modularNonscalar classicalNonscalar

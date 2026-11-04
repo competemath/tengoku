@@ -32,7 +32,9 @@ variable {R : Type*} [Field R] [LinearOrder R] [IsStrictOrderedRing R] [IsRealCl
 
 /-- **Generalized column-drop rank criterion.** For a `k × (k+1)` matrix over a field whose `c`-th
 column lies in the span of the remaining columns, full rank `k` is equivalent to non-vanishing of
-the determinant of the `k × k` block obtained by deleting column `c`.-/
+the determinant of the `k × k` block obtained by deleting column `c`.
+@isnad1 id=iff.1h4v.s8.79386d278088 from=translated src=- shape=c00ef00a vocab=562f8fd9
+-/
 theorem rank_eq_iff_det_submatrix_succAbove_ne_zero {F : Type*} [Field F]
     (M : Matrix (Fin k) (Fin (k + 1)) F) (c : Fin (k + 1))
     (hcol : M.col c ∈ Submodule.span F (Set.range (M.submatrix id c.succAbove).col)) :
@@ -80,7 +82,9 @@ theorem rank_eq_iff_det_submatrix_succAbove_ne_zero {F : Type*} [Field F]
 set_option linter.unusedSectionVars false in
 /-- **Euler relation at a common zero.** If `x` is a common projective zero of the homogeneous
 polynomials `P` and `x.rep c ≠ 0`, then column `c` of the projective Jacobian lies in the span of the
-remaining columns (the columns of the `c`-dropped block).-/
+remaining columns (the columns of the `c`-dropped block).
+@isnad1 id=mem.3h6v.s13.bf70d60a8687 from=translated src=- shape=4b94dd1c vocab=9871878b
+-/
 theorem projJacobian_col_mem_span_of_common_zero
     {P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)} {d : Fin k → ℕ}
     (hP : ∀ i, (P i).IsHomogeneous (d i)) {x : complexProjectiveSpace R k}
@@ -119,7 +123,9 @@ theorem projJacobian_col_mem_span_of_common_zero
 set_option linter.unusedSectionVars false in
 /-- **The singular condition is "all maximal minors vanish".** For a *common* projective zero `x`,
 the projective Jacobian is rank-deficient (`rank < k`) iff every `k × k` maximal minor (obtained by
-deleting one column) vanishes.-/
+deleting one column) vanishes.
+@isnad1 id=iff.2h5v.s12.55847660fde5 from=translated src=- shape=f35730c1 vocab=65705103
+-/
 theorem projJacobian_rank_lt_iff_forall_det_eq_zero
     {P : Fin k → MvPolynomial (Fin (k + 1)) (Ri R)} {d : Fin k → ℕ}
     (hP : ∀ i, (P i).IsHomogeneous (d i)) {x : complexProjectiveSpace R k}

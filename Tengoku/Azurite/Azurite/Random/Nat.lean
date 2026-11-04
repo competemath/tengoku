@@ -54,6 +54,9 @@ def NatWithBitsRandomGen.next {G : Type} [RandomGen G UInt64] (bg : NatWithBitsR
 
     (final, { bg with gen := g' })
 
+/--
+@isnad1 id=match1.1h2v.s6.c88bc13a9991 from=translated src=- shape=d21154fc vocab=d0263cc3
+-/
 theorem NatWithBitsRandomGen.next_bounds {G : Type} [RandomGen G UInt64] (bg : NatWithBitsRandomGen G) (hb : bg.b ≠ 0) :
   let (v, _) := NatWithBitsRandomGen.next bg
   2^(bg.b - 1) ≤ v ∧ v < 2^bg.b := by
@@ -130,6 +133,9 @@ def NatUpToBitsRandomGen.next {G : Type} [RandomGen G UInt64] (bg : NatUpToBitsR
     let final := raw &&& mask
     (final, { bg with gen := g' })
 
+/--
+@isnad1 id=match1.1h2v.s6.02e8e94bd558 from=translated src=- shape=50c3f8b0 vocab=6e129d42
+-/
 theorem NatUpToBitsRandomGen.next_bounds {G : Type} [RandomGen G UInt64] (bg : NatUpToBitsRandomGen G) (hb : bg.b ≠ 0) :
   let (v, _) := NatUpToBitsRandomGen.next bg
   v < 2^bg.b := by
@@ -192,6 +198,9 @@ def NatLessThanRandomGen.next {G : Type} [RandomGen G UInt64] (bg : NatLessThanR
     let (val, g') := NatLessThanRandomGen.nextLoop 1024 bg.k bg.b bg.gen
     (val, { bg with gen := g' })
 
+/--
+@isnad1 id=match1.1h5v.s5.427f89e56fbc from=translated src=- shape=5c136443 vocab=6facd547
+-/
 theorem NatLessThanRandomGen.nextLoop_bounds {G : Type} [RandomGen G UInt64] (fuel k b : Nat) (g : G) (hk : k ≠ 0) :
   let (v, _) := NatLessThanRandomGen.nextLoop fuel k b g
   v < k := by
@@ -208,6 +217,9 @@ theorem NatLessThanRandomGen.nextLoop_bounds {G : Type} [RandomGen G UInt64] (fu
     · rename_i h_not_lt
       exact ih _
 
+/--
+@isnad1 id=match1.1h2v.s5.04afa9a671f8 from=translated src=- shape=2bceffcd vocab=da28d427
+-/
 theorem NatLessThanRandomGen.next_bounds {G : Type} [RandomGen G UInt64] (bg : NatLessThanRandomGen G) (hk : bg.k ≠ 0) :
   let (v, _) := NatLessThanRandomGen.next bg
   v < bg.k := by

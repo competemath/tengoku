@@ -40,7 +40,9 @@ section Part1
 
 variable (C : Type*) [Field C] [Algebra K C]
 
-/-- Bridge A: the `C`-algebra equivalence `C ⊗_K A ≅ Ā` sends `1 ⊗ a` to the image of `a` in `Ā`.-/
+/-- Bridge A: the `C`-algebra equivalence `C ⊗_K A ≅ Ā` sends `1 ⊗ a` to the image of `a` in `Ā`.
+@isnad1 id=eq.0h5v.s11.adf9d9e39605 from=translated src=- shape=14ed18c6 vocab=d7579426
+-/
 theorem algEquivExt_one_tmul (Ps : Finset (MvPolynomial (Fin k) K)) (a : quotPolys Ps) :
     algEquivExt C Ps (1 ⊗ₜ[K] a) = inclExt C Ps a := by
   obtain ⟨p, rfl⟩ := Ideal.Quotient.mk_surjective a
@@ -57,7 +59,9 @@ section Part2
 variable {ι : Type*} [Fintype ι] [DecidableEq ι]
 
 /-- Every entry of the matrix of `L_f` in the basis `B` lies in `D`, given the multiplication
-table and the coordinates of `f` lie in `D`.-/
+table and the coordinates of `f` lie in `D`.
+@isnad1 id=mem.2h9v.s13.4ce1963f8ab9 from=translated src=- shape=87abb12a vocab=49cb13e2
+-/
 theorem toMatrix_mulMap_mem (Ps : Finset (MvPolynomial (Fin k) K)) (f : quotPolys Ps)
     (B : Module.Basis ι K (quotPolys Ps)) (D : Subring K)
     (hmul : ∀ i j l, B.repr (B i * B j) l ∈ D) (hf : ∀ i, B.repr f i ∈ D) (l j : ι) :
@@ -71,6 +75,9 @@ theorem toMatrix_mulMap_mem (Ps : Finset (MvPolynomial (Fin k) K)) (f : quotPoly
   rw [map_smul, Finsupp.smul_apply, smul_eq_mul]
   exact Subring.mul_mem _ (hf i) (hmul i j l)
 
+/--
+@isnad1 id=mem.2h7v.s13.ec11acb8b996 from=translated src=- shape=faa9cf4d vocab=88ff48d9
+-/
 theorem remark_4_99_trace_mem (Ps : Finset (MvPolynomial (Fin k) K)) (f : quotPolys Ps)
     (B : Module.Basis ι K (quotPolys Ps)) (D : Subring K)
     (hmul : ∀ i j l, B.repr (B i * B j) l ∈ D) (hf : ∀ i, B.repr f i ∈ D) :
@@ -79,6 +86,9 @@ theorem remark_4_99_trace_mem (Ps : Finset (MvPolynomial (Fin k) K)) (f : quotPo
   refine Subring.sum_mem _ fun i _ => ?_
   exact toMatrix_mulMap_mem Ps f B D hmul hf i i
 
+/--
+@isnad1 id=mem.2h7v.s13.d8cf887cc9ec from=translated src=- shape=d6fb625c vocab=ec2e6841
+-/
 theorem remark_4_99_det_mem (Ps : Finset (MvPolynomial (Fin k) K)) (f : quotPolys Ps)
     (B : Module.Basis ι K (quotPolys Ps)) (D : Subring K)
     (hmul : ∀ i j l, B.repr (B i * B j) l ∈ D) (hf : ∀ i, B.repr f i ∈ D) :

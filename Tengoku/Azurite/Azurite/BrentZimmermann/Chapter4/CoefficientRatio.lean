@@ -72,6 +72,9 @@ variable {a : ℕ → ℝ} {δ : ℕ}
 /-- The ratio `R(j)`.-/
 noncomputable def R (h : RationalRatio a δ) (j : ℕ) : ℝ := h.num.eval (j : ℝ) / h.den.eval (j : ℝ)
 
+/--
+@isnad1 id=eq.0h4v.s5.89bed974a221 from=translated src=- shape=38668477 vocab=bbe217b9
+-/
 theorem ratio' (h : RationalRatio a δ) (j : ℕ) : a (j + δ) = h.R j * a j := h.ratio j
 
 /-- Sequential evaluation: `a (δ k + r) = a r · ∏_{i<k} R(δ i + r)`.-/
@@ -89,12 +92,16 @@ theorem eq_mul_prod_one (h : RationalRatio a 1) (j : ℕ) :
   have := h.eq_mul_prod 0 j
   simpa using this
 
-/-- If `deg num < deg den`, the ratio tends to `0` (the entire case).-/
+/-- If `deg num < deg den`, the ratio tends to `0` (the entire case).
+@isnad1 id=tendsto.1h3v.s5.ceb07a8a0942 from=translated src=- shape=4c85b473 vocab=11f8b7cb
+-/
 theorem tendsto_zero_of_degree_lt (h : RationalRatio a δ) (hdeg : h.num.degree < h.den.degree) :
     Tendsto h.R atTop (𝓝 0) :=
   (div_tendsto_atTop_zero_of_degree_lt h.num h.den hdeg).comp tendsto_natCast_atTop_atTop
 
-/-- If `deg num = deg den`, the ratio tends to the quotient of the leading coefficients.-/
+/-- If `deg num = deg den`, the ratio tends to the quotient of the leading coefficients.
+@isnad1 id=tendsto.1h3v.s6.eab8c12b40ca from=translated src=- shape=136ab862 vocab=d8221d7a
+-/
 theorem tendsto_leadingCoeff_div_of_degree_eq (h : RationalRatio a δ)
     (hdeg : h.num.degree = h.den.degree) :
     Tendsto h.R atTop (𝓝 (h.num.leadingCoeff / h.den.leadingCoeff)) :=
@@ -158,14 +165,18 @@ noncomputable def arctanRatio : RationalRatio arctanCoeff 2 where
 /-! ### The ratio test: radius of convergence `1/|L|` -/
 
 /-- For `δ = 1` and nonvanishing coefficients, `a (j+1) / a j = R j`, so the ratio tends to the
-quotient of the leading coefficients when the degrees agree.-/
+quotient of the leading coefficients when the degrees agree.
+@isnad1 id=tendsto.2h2v.s6.fb391024dc4b from=translated src=- shape=a6cbd70d vocab=8ac92b8b
+-/
 theorem RationalRatio.tendsto_ratio_of_degree_eq {a : ℕ → ℝ} (h : RationalRatio a 1)
     (ha : ∀ j, a j ≠ 0) (hdeg : h.num.degree = h.den.degree) :
     Tendsto (fun j => a (j + 1) / a j) atTop (𝓝 (h.num.leadingCoeff / h.den.leadingCoeff)) := by
   refine (h.tendsto_leadingCoeff_div_of_degree_eq hdeg).congr fun j => ?_
   rw [h.ratio', mul_div_assoc, div_self (ha j), mul_one]
 
-/-- The term ratio of `∑ a_j x^j` in absolute value: `|x| |a (j+1) / a j|`.-/
+/-- The term ratio of `∑ a_j x^j` in absolute value: `|x| |a (j+1) / a j|`.
+@isnad1 id=eq.2h2v.s7.5bc01dd9db9d from=translated src=- shape=8989781a vocab=dd343d4c
+-/
 theorem norm_term_ratio_eq {a : ℕ → ℝ} (ha : ∀ j, a j ≠ 0) {x : ℝ} (hx : x ≠ 0) :
     (fun j => ‖a (j + 1) * x ^ (j + 1)‖ / ‖a j * x ^ j‖) = fun j => |x| * |a (j + 1) / a j| := by
   funext j
@@ -174,7 +185,9 @@ theorem norm_term_ratio_eq {a : ℕ → ℝ} (ha : ∀ j, a j ≠ 0) {x : ℝ} (
   have := abs_ne_zero.mpr (ha j)
   field_simp
 
-/-- If `a_{j+1}/a_j → L` with all `a_j ≠ 0`, the series `∑ a_j x^j` converges for `|x| |L| < 1`.-/
+/-- If `a_{j+1}/a_j → L` with all `a_j ≠ 0`, the series `∑ a_j x^j` converges for `|x| |L| < 1`.
+@isnad1 id=summable.3h3v.s7.3567446d4a94 from=translated src=- shape=040ea72e vocab=49b7568b
+-/
 theorem summable_of_ratio_tendsto {a : ℕ → ℝ} {L : ℝ} (ha : ∀ j, a j ≠ 0)
     (hL : Tendsto (fun j => a (j + 1) / a j) atTop (𝓝 L)) {x : ℝ} (hx : |x| * |L| < 1) :
     Summable (fun j => a j * x ^ j) := by
@@ -188,7 +201,9 @@ theorem summable_of_ratio_tendsto {a : ℕ → ℝ} {L : ℝ} (ha : ∀ j, a j �
   rw [norm_term_ratio_eq ha hx0]
   exact hL.abs.const_mul |x|
 
-/-- If `a_{j+1}/a_j → L`, the series `∑ a_j x^j` diverges for `|x| |L| > 1`.-/
+/-- If `a_{j+1}/a_j → L`, the series `∑ a_j x^j` diverges for `|x| |L| > 1`.
+@isnad1 id=not.3h3v.s7.cc0f5be40d6d from=translated src=- shape=f1a5a9d0 vocab=49b7568b
+-/
 theorem not_summable_of_ratio_tendsto {a : ℕ → ℝ} {L : ℝ} (ha : ∀ j, a j ≠ 0)
     (hL : Tendsto (fun j => a (j + 1) / a j) atTop (𝓝 L)) {x : ℝ} (hx : 1 < |x| * |L|) :
     ¬ Summable (fun j => a j * x ^ j) := by
@@ -197,7 +212,9 @@ theorem not_summable_of_ratio_tendsto {a : ℕ → ℝ} {L : ℝ} (ha : ∀ j, a
   rw [norm_term_ratio_eq ha hx0]
   exact hL.abs.const_mul |x|
 
-/-- The entire case: if the ratio tends to `0`, the series converges for every `x`.-/
+/-- The entire case: if the ratio tends to `0`, the series converges for every `x`.
+@isnad1 id=summable.2h2v.s6.f8e09bfe0846 from=translated src=- shape=0d0d994e vocab=e9e424fe
+-/
 theorem summable_of_ratio_tendsto_zero {a : ℕ → ℝ} (ha : ∀ j, a j ≠ 0)
     (hL : Tendsto (fun j => a (j + 1) / a j) atTop (𝓝 0)) (x : ℝ) :
     Summable (fun j => a j * x ^ j) :=
@@ -205,12 +222,17 @@ theorem summable_of_ratio_tendsto_zero {a : ℕ → ℝ} (ha : ∀ j, a j ≠ 0)
 
 /-! ### Radius `1` for `ln(1 + x)` and `arctan` -/
 
+/--
+@isnad1 id=ne.0h1v.s3.c213a390437d from=translated src=- shape=a311c14d vocab=598edf1e
+-/
 theorem logCoeff_ne_zero (j : ℕ) : logCoeff j ≠ 0 := by
   unfold logCoeff
   have : ((j : ℝ) + 1) ≠ 0 := by positivity
   exact div_ne_zero (pow_ne_zero _ (by norm_num)) this
 
-/-- The ratio of the `ln(1 + x)` coefficients tends to `−1`.-/
+/-- The ratio of the `ln(1 + x)` coefficients tends to `−1`.
+@isnad1 id=tendsto.0h0v.s5.7df5dd0cb928 from=translated src=- shape=7889963f vocab=4a9b4cdb
+-/
 theorem tendsto_logCoeff_ratio :
     Tendsto (fun j => logCoeff (j + 1) / logCoeff j) atTop (𝓝 (-1)) := by
   have hn : logRatio.num = -(X + C 1) := rfl
@@ -222,18 +244,24 @@ theorem tendsto_logCoeff_ratio :
   rw [hn, hd, hlc] at h
   exact h
 
-/-- The series of `ln(1 + x)` converges for `|x| < 1`.-/
+/-- The series of `ln(1 + x)` converges for `|x| < 1`.
+@isnad1 id=summable.1h1v.s5.511fb9e4a6fa from=translated src=- shape=377dcba5 vocab=ed0336d5
+-/
 theorem summable_logCoeff_of_abs_lt_one {x : ℝ} (hx : |x| < 1) :
     Summable (fun j => logCoeff j * x ^ j) :=
   summable_of_ratio_tendsto logCoeff_ne_zero tendsto_logCoeff_ratio (by simpa using hx)
 
-/-- … and diverges for `|x| > 1`: the radius of convergence is `1`.-/
+/-- … and diverges for `|x| > 1`: the radius of convergence is `1`.
+@isnad1 id=not.1h1v.s5.0af7d320f244 from=translated src=- shape=89f8cbd4 vocab=ed0336d5
+-/
 theorem not_summable_logCoeff_of_one_lt_abs {x : ℝ} (hx : 1 < |x|) :
     ¬ Summable (fun j => logCoeff j * x ^ j) :=
   not_summable_of_ratio_tendsto logCoeff_ne_zero tendsto_logCoeff_ratio (by simpa using hx)
 
 /-- At `x = −1` the series of `ln(1 + x)` is the harmonic series: it diverges (the singularity
-of `ln` at the origin).-/
+of `ln` at the origin).
+@isnad1 id=not.0h0v.s5.cb16b2b7a973 from=translated src=- shape=16bee12b vocab=852a8938
+-/
 theorem not_summable_logCoeff_neg_one : ¬ Summable (fun j => logCoeff j * (-1) ^ j) := by
   have hfun : (fun j => logCoeff j * (-1 : ℝ) ^ j) = fun j : ℕ => 1 / ((j + 1 : ℕ) : ℝ) := by
     funext j
@@ -248,6 +276,9 @@ theorem not_summable_logCoeff_neg_one : ¬ Summable (fun j => logCoeff j * (-1) 
 /-- The `arctan` series in `y = x²`: `arctan x = x ∑ (−1)^k y^k / (2k + 1)`.-/
 noncomputable def arctanCompressedCoeff (k : ℕ) : ℝ := (-1) ^ k / (2 * k + 1)
 
+/--
+@isnad1 id=ne.0h1v.s3.e8c7316d816d from=translated src=- shape=a311c14d vocab=19a3d03b
+-/
 theorem arctanCompressedCoeff_ne_zero (k : ℕ) : arctanCompressedCoeff k ≠ 0 := by
   unfold arctanCompressedCoeff
   exact div_ne_zero (pow_ne_zero _ (by norm_num)) (by positivity)
@@ -264,7 +295,9 @@ noncomputable def arctanCompressedRatio : RationalRatio arctanCompressedCoeff 1 
     ring
 
 /-- The radius of convergence of the `arctan` series is `1`: the compressed series diverges for
-`|y| > 1`, although `arctan` is bounded on the real line.-/
+`|y| > 1`, although `arctan` is bounded on the real line.
+@isnad1 id=not.1h1v.s5.e43955ce82d1 from=translated src=- shape=89f8cbd4 vocab=a6d13a1e
+-/
 theorem not_summable_arctanCompressedCoeff_of_one_lt_abs {y : ℝ} (hy : 1 < |y|) :
     ¬ Summable (fun k => arctanCompressedCoeff k * y ^ k) := by
   have hn : arctanCompressedRatio.num = -(X + C (1 / 2)) := rfl

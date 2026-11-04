@@ -149,7 +149,9 @@ cube-root-sized `F`.  Under the Morrison hypotheses (4.14) with
 `n < (F − 1)³`), `n` is prime if and only if neither `x² + r₀x − r₁`
 nor `x² + (r₀ − F)x − r₁ − 1` has a positive integral root.  When
 `R = (n+1)/F < F` the quadratics trivially have no positive roots, so
-this contains `morrison_test`.-/
+this contains `morrison_test`.
+@isnad1 id=iff.8h6v.s8.4f611834825a from=translated src=- shape=70492105 vocab=6200c5b3
+-/
 theorem theorem_4_2_8 {a b : ℤ} {n F r₁ r₀ : ℕ} (hn : 0 < n)
     (hcop : IsCoprime (n : ℤ) (2 * b))
     (hjac : jacobiSym (a ^ 2 - 4 * b) n = -1)

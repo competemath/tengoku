@@ -35,6 +35,9 @@ open scoped Interval
 
 /-! ### The integral representation -/
 
+/--
+@isnad1 id=eq.0h1v.s6.1702a844eb9d from=translated src=- shape=afd9be4a vocab=38336f4c
+-/
 theorem gaussTail_zero_eq (x : ℝ) :
     gaussTail 0 x = Real.sqrt π / 2 - ∫ u in (0 : ℝ)..x, exp (-u ^ 2) := by
   unfold gaussTail
@@ -46,16 +49,23 @@ theorem gaussTail_zero_eq (x : ℝ) :
     simpa using this
   linarith
 
-/-- `erf x = (2/√π) ∫_0^x e^(−u²) du`.-/
+/-- `erf x = (2/√π) ∫_0^x e^(−u²) du`.
+@isnad1 id=eq.0h1v.s6.3142bb3055fd from=translated src=- shape=ef8aeaba vocab=186accab
+-/
 theorem erf_eq_integral (x : ℝ) : erf x = 2 / Real.sqrt π * ∫ u in (0 : ℝ)..x, exp (-u ^ 2) := by
   rw [erf, erfc, gaussTail_zero_eq]
   have hpi : Real.sqrt π ≠ 0 := (Real.sqrt_pos.mpr pi_pos).ne'
   field_simp
   ring
 
+/--
+@isnad1 id=eq.0h0v.s3.777869ab4391 from=translated src=- shape=3c26ae4f vocab=172c396c
+-/
 theorem erf_zero : erf 0 = 0 := by simp [erf_eq_integral]
 
-/-- `erf` is odd.-/
+/-- `erf` is odd.
+@isnad1 id=eq.0h1v.s3.fe5b128ba0fb from=translated src=- shape=c7188113 vocab=09c59d6f
+-/
 theorem erf_neg (x : ℝ) : erf (-x) = -erf x := by
   rw [erf_eq_integral, erf_eq_integral]
   have h := intervalIntegral.integral_comp_neg (a := (0 : ℝ)) (b := x) (fun u : ℝ => exp (-u ^ 2))
@@ -66,6 +76,9 @@ theorem erf_neg (x : ℝ) : erf (-x) = -erf x := by
 
 /-! ### (4.22): the alternating series -/
 
+/--
+@isnad1 id=eq.0h2v.s7.f1a349240825 from=translated src=- shape=e77383a3 vocab=737c6f2a
+-/
 theorem integral_neg_sq_pow_div_factorial (x : ℝ) (j : ℕ) :
     ∫ u in (0 : ℝ)..x, (-u ^ 2) ^ j / j.factorial
       = (-1) ^ j * x ^ (2 * j + 1) / (j.factorial * (2 * j + 1)) := by
@@ -79,14 +92,18 @@ theorem integral_neg_sq_pow_div_factorial (x : ℝ) (j : ℕ) :
   field_simp
   ring
 
-/-- `t² ≤ x²` for `t ∈ Ι 0 x`.-/
+/-- `t² ≤ x²` for `t ∈ Ι 0 x`.
+@isnad1 id=le.1h2v.s5.c2e9ef9830af from=translated src=- shape=45f782d3 vocab=95899ea8
+-/
 theorem sq_le_sq_of_mem_uIoc {x t : ℝ} (ht : t ∈ Ι (0 : ℝ) x) : t ^ 2 ≤ x ^ 2 := by
   rcases Set.mem_uIoc.mp ht with ⟨h1, h2⟩ | ⟨h1, h2⟩
   · exact pow_le_pow_left₀ h1.le h2 2
   · have h := sq_le_sq' (a := t) (b := -x) (by linarith) (by linarith)
     rwa [neg_sq] at h
 
-/-- (4.22): `erf x = (2/√π) ∑_{j≥0} (−1)^j x^(2j+1)/(j! (2j+1))`.-/
+/-- (4.22): `erf x = (2/√π) ∑_{j≥0} (−1)^j x^(2j+1)/(j! (2j+1))`.
+@isnad1 id=hassum.0h1v.s7.5f4bf143163a from=translated src=- shape=1f24a1af vocab=95fcf283
+-/
 theorem hasSum_erf_series (x : ℝ) :
     HasSum
       (fun j : ℕ => 2 / Real.sqrt π * ((-1) ^ j * x ^ (2 * j + 1) / (j.factorial * (2 * j + 1))))
@@ -116,16 +133,24 @@ theorem hasSum_erf_series (x : ℝ) :
 /-- The coefficients of (4.23): `c_j = 2^j/(1·3·5⋯(2j+1)) = 2^j/(2j+1)‼`.-/
 noncomputable def erfExpCoeff (j : ℕ) : ℝ := 2 ^ j / (2 * j + 1).doubleFactorial
 
+/--
+@isnad1 id=lt.0h1v.s3.29ca7c970842 from=translated src=- shape=b9369acb vocab=ccbda483
+-/
 theorem erfExpCoeff_pos (j : ℕ) : 0 < erfExpCoeff j := by
   unfold erfExpCoeff
   have := Nat.doubleFactorial_pos (2 * j + 1)
   positivity
 
+/--
+@isnad1 id=eq.0h0v.s3.1fa3dc5e8b82 from=translated src=- shape=1ac31801 vocab=bdc0d094
+-/
 theorem erfExpCoeff_zero : erfExpCoeff 0 = 1 := by
   unfold erfExpCoeff
   norm_num [Nat.doubleFactorial]
 
-/-- `c_{j+1} (2j+3) = 2 c_j`.-/
+/-- `c_{j+1} (2j+3) = 2 c_j`.
+@isnad1 id=eq.0h1v.s6.f7f3ed6b07b6 from=translated src=- shape=edee2163 vocab=4ee03fed
+-/
 theorem erfExpCoeff_succ (j : ℕ) : erfExpCoeff (j + 1) * (2 * j + 3) = 2 * erfExpCoeff j := by
   unfold erfExpCoeff
   rw [show 2 * (j + 1) + 1 = 2 * j + 1 + 2 by ring, Nat.doubleFactorial_add_two]
@@ -140,6 +165,9 @@ noncomputable def erfExpTerm (j : ℕ) (x : ℝ) : ℝ := erfExpCoeff j * x ^ (2
 /-- Its derivative `c_j (2j+1) x^(2j)`.-/
 noncomputable def erfExpTerm' (j : ℕ) (x : ℝ) : ℝ := erfExpCoeff j * (2 * j + 1) * x ^ (2 * j)
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.b11749c97595 from=translated src=- shape=f4cbe5c8 vocab=75244520
+-/
 theorem hasDerivAt_erfExpTerm (j : ℕ) (x : ℝ) :
     HasDerivAt (erfExpTerm j) (erfExpTerm' j x) x := by
   have h := (hasDerivAt_pow (2 * j + 1) x).const_mul (erfExpCoeff j)
@@ -152,6 +180,9 @@ theorem hasDerivAt_erfExpTerm (j : ℕ) (x : ℝ) :
 /-- The uniform bound on a ball of radius `R`: `|c_j (2j+1) x^(2j)| ≤ c_j (2j+1) R^(2j)`.-/
 noncomputable def erfExpBound (R : ℝ) (j : ℕ) : ℝ := erfExpCoeff j * (2 * j + 1) * R ^ (2 * j)
 
+/--
+@isnad1 id=eq.0h2v.s6.bf5371640a51 from=translated src=- shape=103e9089 vocab=2a96ed68
+-/
 theorem erfExpBound_succ (R : ℝ) (j : ℕ) :
     erfExpBound R (j + 1) = erfExpBound R j * (2 * R ^ 2 / (2 * j + 1)) := by
   unfold erfExpBound
@@ -164,11 +195,17 @@ theorem erfExpBound_succ (R : ℝ) (j : ℕ) :
   push_cast
   linear_combination (R ^ (2 * j) * R ^ 2) * h
 
+/--
+@isnad1 id=le.0h2v.s4.bdd8fb3d9b99 from=translated src=- shape=25b8bdde vocab=e5eb8b64
+-/
 theorem erfExpBound_nonneg (R : ℝ) (j : ℕ) : 0 ≤ erfExpBound R j := by
   unfold erfExpBound
   have := erfExpCoeff_pos j
   exact mul_nonneg (by positivity) (Even.pow_nonneg (even_two_mul j) R)
 
+/--
+@isnad1 id=summable.0h1v.s3.cc1e2c7d4d1e from=translated src=- shape=07cc7679 vocab=b8132002
+-/
 theorem summable_erfExpBound (R : ℝ) : Summable (erfExpBound R) := by
   refine summable_of_ratio_norm_eventually_le (r := 1 / 2) (by norm_num) ?_
   rw [Filter.eventually_atTop]
@@ -181,6 +218,9 @@ theorem summable_erfExpBound (R : ℝ) : Summable (erfExpBound R) := by
   rw [div_le_iff₀ (by positivity)]
   linarith
 
+/--
+@isnad1 id=le.1h3v.s4.2dd2515eb13d from=translated src=- shape=6ff8ecba vocab=aef540dd
+-/
 theorem abs_erfExpTerm'_le {R x : ℝ} (hx : |x| ≤ R) (j : ℕ) :
     ‖erfExpTerm' j x‖ ≤ erfExpBound R j := by
   rw [Real.norm_eq_abs, erfExpTerm', erfExpBound, abs_mul, abs_pow,
@@ -188,6 +228,9 @@ theorem abs_erfExpTerm'_le {R x : ℝ} (hx : |x| ≤ R) (j : ℕ) :
   refine mul_le_mul_of_nonneg_left ?_ (by have := erfExpCoeff_pos j; positivity)
   exact pow_le_pow_left₀ (abs_nonneg x) hx _
 
+/--
+@isnad1 id=summable.0h1v.s4.cb8e24657c79 from=translated src=- shape=0b46e227 vocab=26d3cabf
+-/
 theorem summable_erfExpTerm (x : ℝ) : Summable fun j => erfExpTerm j x := by
   refine Summable.of_norm_bounded ((summable_erfExpBound (|x| + 1)).mul_left (|x| + 1)) fun j => ?_
   rw [Real.norm_eq_abs, erfExpTerm, erfExpBound, abs_mul, abs_pow,
@@ -205,9 +248,15 @@ theorem summable_erfExpTerm (x : ℝ) : Summable fun j => erfExpTerm j x := by
 /-- `S(x) = ∑_{j≥0} c_j x^(2j+1)`.-/
 noncomputable def erfExpSum (x : ℝ) : ℝ := ∑' j, erfExpTerm j x
 
+/--
+@isnad1 id=eq.0h0v.s3.176f644e2ba1 from=translated src=- shape=3c26ae4f vocab=e6b0d103
+-/
 theorem erfExpSum_zero : erfExpSum 0 = 0 := by
   simp [erfExpSum, erfExpTerm]
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.9f4685fced68 from=translated src=- shape=4c625f43 vocab=5659ff7a
+-/
 theorem hasDerivAt_erfExpSum (x : ℝ) :
     HasDerivAt erfExpSum (∑' j, erfExpTerm' j x) x := by
   set R := |x| + 1 with hR
@@ -221,7 +270,9 @@ theorem hasDerivAt_erfExpSum (x : ℝ) :
       rw [Metric.mem_ball, Real.dist_eq, sub_zero] at hy; exact hy.le) j) h0
     (summable_erfExpTerm 0) hball
 
-/-- The differential equation `S'(x) = 1 + 2x S(x)`.-/
+/-- The differential equation `S'(x) = 1 + 2x S(x)`.
+@isnad1 id=eq.0h1v.s5.df54c78f6bd5 from=translated src=- shape=c859fa73 vocab=556eb6c8
+-/
 theorem tsum_erfExpTerm' (x : ℝ) : ∑' j, erfExpTerm' j x = 1 + 2 * x * erfExpSum x := by
   have hs : Summable fun j => erfExpTerm' j x :=
     Summable.of_norm_bounded (summable_erfExpBound (|x| + 1))
@@ -238,7 +289,9 @@ theorem tsum_erfExpTerm' (x : ℝ) : ∑' j, erfExpTerm' j x = 1 + 2 * x * erfEx
   rw [show 2 * (j + 1) = 2 * j + 1 + 1 by ring, pow_succ]
   linear_combination x ^ (2 * j + 1) * x * h
 
-/-- (4.23) as an identity for the Gaussian integral: `∫_0^x e^(−u²) du = e^(−x²) S(x)`.-/
+/-- (4.23) as an identity for the Gaussian integral: `∫_0^x e^(−u²) du = e^(−x²) S(x)`.
+@isnad1 id=eq.0h1v.s6.d4313e0a8b67 from=translated src=- shape=57c14b4f vocab=dd0446c7
+-/
 theorem integral_exp_neg_sq_eq (x : ℝ) :
     ∫ u in (0 : ℝ)..x, exp (-u ^ 2) = exp (-x ^ 2) * erfExpSum x := by
   set G : ℝ → ℝ := fun y => exp (-y ^ 2) * erfExpSum y - ∫ u in (0 : ℝ)..y, exp (-u ^ 2) with hG
@@ -263,11 +316,16 @@ theorem integral_exp_neg_sq_eq (x : ℝ) :
   simp only [hG] at hGx
   linarith
 
-/-- (4.23): `erf x = (2/√π) e^(−x²) ∑_{j≥0} 2^j x^(2j+1)/(1·3·5⋯(2j+1))`.-/
+/-- (4.23): `erf x = (2/√π) e^(−x²) ∑_{j≥0} 2^j x^(2j+1)/(1·3·5⋯(2j+1))`.
+@isnad1 id=eq.0h1v.s5.08c8eba512bc from=translated src=- shape=560cf0e4 vocab=965141c9
+-/
 theorem erf_eq_exp_mul_erfExpSum (x : ℝ) :
     erf x = 2 / Real.sqrt π * exp (-x ^ 2) * erfExpSum x := by
   rw [erf_eq_integral, integral_exp_neg_sq_eq, mul_assoc]
 
+/--
+@isnad1 id=hassum.0h1v.s6.5fcb75d6d83d from=translated src=- shape=ede89b5d vocab=c1c4ac22
+-/
 theorem hasSum_erf_exp_series (x : ℝ) :
     HasSum (fun j : ℕ => 2 / Real.sqrt π * exp (-x ^ 2) * (erfExpCoeff j * x ^ (2 * j + 1)))
       (erf x) := by

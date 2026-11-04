@@ -62,14 +62,22 @@ noncomputable def tailFrac (a b : ℕ → ℝ) (k j : ℕ) : ℝ :=
   if k < j then 0 else a j / (b j + tailFrac a b k (j + 1))
 termination_by k + 1 - j
 
+/--
+@isnad1 id=eq.1h4v.s4.e1e0590dfa20 from=translated src=- shape=bcdb2197 vocab=755fd640
+-/
 theorem tailFrac_of_lt (a b : ℕ → ℝ) {k j : ℕ} (h : k < j) : tailFrac a b k j = 0 := by
   rw [tailFrac, ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h4v.s6.f1cec13a0372 from=translated src=- shape=96115282 vocab=b99737eb
+-/
 theorem tailFrac_of_le (a b : ℕ → ℝ) {k j : ℕ} (h : j ≤ k) :
     tailFrac a b k j = a j / (b j + tailFrac a b k (j + 1)) := by
   rw [tailFrac, ite_eq_right (not_lt.mpr h)]
 
-/-- Shifting the sequences shifts the tail.-/
+/-- Shifting the sequences shifts the tail.
+@isnad1 id=eq.0h4v.s6.fbea6f366f24 from=translated src=- shape=29a2bb27 vocab=ee8409f5
+-/
 theorem tailFrac_shift (a b : ℕ → ℝ) (k j : ℕ) :
     tailFrac a b (k + 1) (j + 1) = tailFrac (fun i => a (i + 1)) (fun i => b (i + 1)) k j := by
   by_cases hj : k < j
@@ -78,7 +86,9 @@ theorem tailFrac_shift (a b : ℕ → ℝ) (k j : ℕ) :
       tailFrac_shift a b k (j + 1)]
 termination_by k + 1 - j
 
-/-- The approximant is the head plus the tail from `j = 1`.-/
+/-- The approximant is the head plus the tail from `j = 1`.
+@isnad1 id=eq.0h3v.s5.63b734a0e96f from=translated src=- shape=72404039 vocab=995bbe00
+-/
 theorem approximant_eq_tailFrac (a b : ℕ → ℝ) (k : ℕ) :
     approximant a b k = b 0 + tailFrac a b k 1 := by
   induction k generalizing a b with
@@ -87,7 +97,9 @@ theorem approximant_eq_tailFrac (a b : ℕ → ℝ) (k : ℕ) :
     rw [approximant_succ, ih, tailFrac_of_le a b (k := k + 1) (j := 1) (by omega),
       tailFrac_shift a b k 1]
 
-/-- Nonnegativity of the tails for positive coefficients.-/
+/-- Nonnegativity of the tails for positive coefficients.
+@isnad1 id=le.2h4v.s6.362a22be15da from=translated src=- shape=dd32d51c vocab=622e3263
+-/
 theorem tailFrac_nonneg {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (k : ℕ) {j : ℕ}
     (hj : 1 ≤ j) : 0 ≤ tailFrac a b k j := by
   by_cases hkj : k < j
@@ -106,18 +118,29 @@ noncomputable def backR (a b : ℕ → ℝ) (k j : ℕ) : ℝ :=
   else b (j + 1) * backR a b k (j + 1) + a (j + 2) * backR a b k (j + 2)
 termination_by k - j
 
+/--
+@isnad1 id=eq.0h3v.s4.3e7736c2f221 from=translated src=- shape=b2e15250 vocab=e6fe6f6e
+-/
 theorem backR_self (a b : ℕ → ℝ) (k : ℕ) : backR a b k k = 1 := by
   rw [backR, ite_eq_left le_rfl]
 
+/--
+@isnad1 id=eq.1h3v.s5.5f9dfd5844d8 from=translated src=- shape=c2b914b6 vocab=bb56a976
+-/
 theorem backR_pred_self (a b : ℕ → ℝ) {k : ℕ} (hk : 1 ≤ k) : backR a b k (k - 1) = b k := by
   rw [backR, ite_eq_right (by omega), ite_eq_left (by omega)]
 
+/--
+@isnad1 id=eq.1h4v.s6.8b544f0145a3 from=translated src=- shape=50781358 vocab=7c9d3389
+-/
 theorem backR_of_lt (a b : ℕ → ℝ) {k j : ℕ} (h : j + 2 ≤ k) :
     backR a b k j = b (j + 1) * backR a b k (j + 1) + a (j + 2) * backR a b k (j + 2) := by
   rw [backR, ite_eq_right (by omega), ite_eq_right (by omega)]
 
 /-- The invariant in product form: `R_{j−1} = (b_j + T_{j+1}) R_j` for `1 ≤ j ≤ k`, where
-`T_{j+1} = a_{j+1}/b_{j+1}+ … a_k/b_k`.-/
+`T_{j+1} = a_{j+1}/b_{j+1}+ … a_k/b_k`.
+@isnad1 id=eq.3h4v.s6.22ad2cae90bc from=translated src=- shape=246c4fa2 vocab=3b3ca9dd
+-/
 theorem backR_pred {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) {k j : ℕ} (hj : 1 ≤ j)
     (hjk : j ≤ k) :
     backR a b k (j - 1) = (b j + tailFrac a b k (j + 1)) * backR a b k j := by
@@ -138,6 +161,9 @@ theorem backR_pred {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 
     field_simp
 termination_by k - j
 
+/--
+@isnad1 id=lt.1h4v.s6.c53bd85c7478 from=translated src=- shape=9f45221c vocab=a77db0ad
+-/
 theorem backR_pos {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (k : ℕ) (j : ℕ) :
     0 < backR a b k j := by
   by_cases hkj : k ≤ j
@@ -152,7 +178,9 @@ theorem backR_pos {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 <
       positivity
 termination_by k - j
 
-/-- The text's invariant: `R_j / R_{j−1} = 1/b_j+ a_{j+1}/b_{j+1}+ … a_k/b_k`.-/
+/-- The text's invariant: `R_j / R_{j−1} = 1/b_j+ a_{j+1}/b_{j+1}+ … a_k/b_k`.
+@isnad1 id=eq.3h4v.s7.37508db7d655 from=translated src=- shape=cfa112df vocab=9ed95d88
+-/
 theorem backR_div {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) {k j : ℕ} (hj : 1 ≤ j)
     (hjk : j ≤ k) :
     backR a b k j / backR a b k (j - 1) = 1 / (b j + tailFrac a b k (j + 1)) := by
@@ -164,7 +192,9 @@ theorem backR_div {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 <
     linarith
   field_simp
 
-/-- The backward recurrence evaluates the fraction: `y = b₀ + a₁ R₁ / R₀`.-/
+/-- The backward recurrence evaluates the fraction: `y = b₀ + a₁ R₁ / R₀`.
+@isnad1 id=eq.2h3v.s6.f35595e1ec4f from=translated src=- shape=6d3f8c6d vocab=3754c672
+-/
 theorem approximant_eq_backR {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) {k : ℕ}
     (hk : 1 ≤ k) : approximant a b k = b 0 + a 1 * backR a b k 1 / backR a b k 0 := by
   rw [approximant_eq_tailFrac, tailFrac_of_le _ _ hk]
@@ -180,7 +210,9 @@ theorem approximant_eq_backR {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < 
 
 /-! ### The forward recurrence and the differences `D_k` -/
 
-/-- The denominators `Q_j` are positive for positive coefficients.-/
+/-- The denominators `Q_j` are positive for positive coefficients.
+@isnad1 id=lt.1h3v.s6.171c9a4d1a2b from=translated src=- shape=22b755d0 vocab=4aef660d
+-/
 theorem dens_pos {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (n : ℕ) :
     0 < (contFrac a b).dens n := by
   induction n using Nat.strong_induction_on with
@@ -200,7 +232,9 @@ noncomputable def diff (a b : ℕ → ℝ) : ℕ → ℝ
   | 0 => 0
   | k + 1 => approximant a b (k + 1) - approximant a b k
 
-/-- The determinant `Δ_j = P_j Q_{j−1} − P_{j−1} Q_j` satisfies `Δ_{j+1} = −a_{j+1} Δ_j`.-/
+/-- The determinant `Δ_j = P_j Q_{j−1} − P_{j−1} Q_j` satisfies `Δ_{j+1} = −a_{j+1} Δ_j`.
+@isnad1 id=eq.0h3v.s7.262ec2231ff9 from=translated src=- shape=f5e0e2a9 vocab=014c0a27
+-/
 theorem det_succ (a b : ℕ → ℝ) (j : ℕ) :
     (contFrac a b).nums (j + 2) * (contFrac a b).dens (j + 1)
         - (contFrac a b).nums (j + 1) * (contFrac a b).dens (j + 2)
@@ -209,7 +243,9 @@ theorem det_succ (a b : ℕ → ℝ) (j : ℕ) :
   rw [nums_recurrence', dens_recurrence']
   ring
 
-/-- `D_{j+1} = Δ_{j+1} / (Q_{j+1} Q_j)` for positive coefficients.-/
+/-- `D_{j+1} = Δ_{j+1} / (Q_{j+1} Q_j)` for positive coefficients.
+@isnad1 id=eq.1h3v.s7.e42269717f74 from=translated src=- shape=0a07b44d vocab=b64ea351
+-/
 theorem diff_eq_det_div {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (j : ℕ) :
     diff a b (j + 1) = ((contFrac a b).nums (j + 1) * (contFrac a b).dens j
       - (contFrac a b).nums j * (contFrac a b).dens (j + 1))
@@ -219,11 +255,15 @@ theorem diff_eq_det_div {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j �
   have h2 := dens_pos hpos (j + 1)
   field_simp
 
-/-- `D₁ = a₁ / b₁`.-/
+/-- `D₁ = a₁ / b₁`.
+@isnad1 id=eq.0h2v.s5.b4016fd6f39f from=translated src=- shape=e7d59356 vocab=55256e54
+-/
 theorem diff_one (a b : ℕ → ℝ) : diff a b 1 = a 1 / b 1 := by
   rw [diff, approximant_one, approximant_zero]; ring
 
-/-- (4.46): `D_{j+2} = −a_{j+2} Q_j D_{j+1} / Q_{j+2}`.-/
+/-- (4.46): `D_{j+2} = −a_{j+2} Q_j D_{j+1} / Q_{j+2}`.
+@isnad1 id=eq.1h3v.s7.ea8683282c9b from=translated src=- shape=a14ac1c3 vocab=c8495a0a
+-/
 theorem diff_succ {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (j : ℕ) :
     diff a b (j + 2)
       = -a (j + 2) * (contFrac a b).dens j * diff a b (j + 1) / (contFrac a b).dens (j + 2) := by
@@ -235,7 +275,9 @@ theorem diff_succ {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 <
 
 /-! ### Theorem 4.1 -/
 
-/-- `D_{j+1}` has the sign `(−1)^j`: `D₁ > 0`, `D₂ < 0`, ….-/
+/-- `D_{j+1}` has the sign `(−1)^j`: `D₁ > 0`, `D₂ < 0`, ….
+@isnad1 id=lt.1h3v.s6.3f5ce973d18e from=translated src=- shape=70a7cfba vocab=a05eda5b
+-/
 theorem sign_diff {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (j : ℕ) :
     0 < (-1) ^ j * diff a b (j + 1) := by
   induction j with
@@ -255,7 +297,9 @@ theorem sign_diff {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 <
     rw [this]
     positivity
 
-/-- `|D_{j+2}| < |D_{j+1}|`: the differences shrink strictly.-/
+/-- `|D_{j+2}| < |D_{j+1}|`: the differences shrink strictly.
+@isnad1 id=lt.1h3v.s6.867668ec89be from=translated src=- shape=832c1e6c vocab=8a57d808
+-/
 theorem abs_diff_succ_lt {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (j : ℕ) :
     |diff a b (j + 2)| < |diff a b (j + 1)| := by
   rw [diff_succ hpos j, abs_div, abs_mul, abs_mul, abs_neg, abs_of_pos (hpos (j + 2) (by omega)).1,
@@ -272,13 +316,17 @@ theorem abs_diff_succ_lt {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j 
       < (contFrac a b).dens (j + 2) * |diff a b (j + 1)| := by gcongr
     _ = |diff a b (j + 1)| * (contFrac a b).dens (j + 2) := mul_comm _ _
 
-/-- `D_{2k+1} > 0`.-/
+/-- `D_{2k+1} > 0`.
+@isnad1 id=lt.1h3v.s6.3c7c988f4aee from=translated src=- shape=b65e05ff vocab=63846323
+-/
 theorem diff_odd_pos {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (k : ℕ) :
     0 < diff a b (2 * k + 1) := by
   have := sign_diff hpos (2 * k)
   rwa [pow_mul, neg_one_sq, one_pow, one_mul] at this
 
-/-- `D_{2k+2} < 0`.-/
+/-- `D_{2k+2} < 0`.
+@isnad1 id=lt.1h3v.s6.4aef7207a7d8 from=translated src=- shape=ad94976a vocab=63846323
+-/
 theorem diff_even_neg {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (k : ℕ) :
     diff a b (2 * k + 2) < 0 := by
   have := sign_diff hpos (2 * k + 1)
@@ -286,7 +334,9 @@ theorem diff_even_neg {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧
     neg_one_mul] at this
   exact neg_pos.mp this
 
-/-- Even approximants increase strictly.-/
+/-- Even approximants increase strictly.
+@isnad1 id=lt.1h3v.s6.727826596d35 from=translated src=- shape=5d226942 vocab=3bc1045e
+-/
 theorem approximant_even_lt_succ {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (k : ℕ) :
     approximant a b (2 * k) < approximant a b (2 * k + 2) := by
   have h1 := diff_odd_pos hpos k
@@ -297,7 +347,9 @@ theorem approximant_even_lt_succ {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 
   rw [abs_of_neg h2, abs_of_pos h1] at h3
   linarith
 
-/-- Odd approximants decrease strictly.-/
+/-- Odd approximants decrease strictly.
+@isnad1 id=lt.1h3v.s6.0285ca044546 from=translated src=- shape=c98055ba vocab=3bc1045e
+-/
 theorem approximant_odd_succ_lt {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (k : ℕ) :
     approximant a b (2 * k + 3) < approximant a b (2 * k + 1) := by
   have h1 := diff_even_neg hpos k
@@ -311,17 +363,25 @@ theorem approximant_odd_succ_lt {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0
   have hd2 : diff a b (2 * k + 3) = approximant a b (2 * k + 3) - approximant a b (2 * k + 2) := rfl
   linarith
 
+/--
+@isnad1 id=strictmo.1h2v.s6.08af95a6cf94 from=translated src=- shape=0278520d vocab=e0078fc8
+-/
 theorem approximant_even_strictMono {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) :
     StrictMono (fun k => approximant a b (2 * k)) :=
   strictMono_nat_of_lt_succ fun k => by
     simpa [show 2 * (k + 1) = 2 * k + 2 by ring] using approximant_even_lt_succ hpos k
 
+/--
+@isnad1 id=strictan.1h2v.s6.e54990a90d37 from=translated src=- shape=0ea6ed57 vocab=61b0da71
+-/
 theorem approximant_odd_strictAnti {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) :
     StrictAnti (fun k => approximant a b (2 * k + 1)) :=
   strictAnti_nat_of_succ_lt fun k => by
     simpa [show 2 * (k + 1) + 1 = 2 * k + 3 by ring] using approximant_odd_succ_lt hpos k
 
-/-- Every even approximant is below every odd one.-/
+/-- Every even approximant is below every odd one.
+@isnad1 id=lt.1h4v.s6.2bc9fb1575ea from=translated src=- shape=93b63082 vocab=3bc1045e
+-/
 theorem approximant_even_lt_odd {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) (k m : ℕ) :
     approximant a b (2 * k) < approximant a b (2 * m + 1) := by
   have hE := approximant_even_strictMono hpos
@@ -337,7 +397,9 @@ theorem approximant_even_lt_odd {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0
     hO.antitone (le_max_right _ _)
   linarith
 
-/-- Theorem 4.1, the bracket: if the fraction converges to `f`, then `f_{2k} < f < f_{2k+1}`.-/
+/-- Theorem 4.1, the bracket: if the fraction converges to `f`, then `f_{2k} < f < f_{2k+1}`.
+@isnad1 id=lt.2h4v.s6.2676a2db0c6d from=translated src=- shape=ecf7bcbb vocab=64ff052f
+-/
 theorem approximant_even_lt {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) {f : ℝ}
     (hf : HasContFracValue a b f) (k : ℕ) : approximant a b (2 * k) < f := by
   have hE := approximant_even_strictMono hpos
@@ -346,6 +408,9 @@ theorem approximant_even_lt {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a
   have hle := hE.monotone.ge_of_tendsto htend (k + 1)
   exact lt_of_lt_of_le (hE (Nat.lt_succ_self k)) hle
 
+/--
+@isnad1 id=lt.2h4v.s6.14ebf7854011 from=translated src=- shape=2adff70f vocab=d302af10
+-/
 theorem lt_approximant_odd {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) {f : ℝ}
     (hf : HasContFracValue a b f) (k : ℕ) : f < approximant a b (2 * k + 1) := by
   have hO := approximant_odd_strictAnti hpos
@@ -354,7 +419,9 @@ theorem lt_approximant_odd {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a 
   have hle := hO.antitone.le_of_tendsto htend (k + 1)
   exact lt_of_le_of_lt hle (hO (Nat.lt_succ_self k))
 
-/-- Theorem 4.1, the error bound: `|f − (f_{m−1} + f_m)/2| < |f_m − f_{m−1}| / 2` for `m ≥ 1`.-/
+/-- Theorem 4.1, the error bound: `|f − (f_{m−1} + f_m)/2| < |f_m − f_{m−1}| / 2` for `m ≥ 1`.
+@isnad1 id=lt.3h4v.s7.170d00c20ac8 from=translated src=- shape=6c8a0fb8 vocab=021606c9
+-/
 theorem abs_sub_midpoint_lt {a b : ℕ → ℝ} (hpos : ∀ j, 1 ≤ j → 0 < a j ∧ 0 < b j) {f : ℝ}
     (hf : HasContFracValue a b f) {m : ℕ} (hm : 1 ≤ m) :
     |f - (approximant a b (m - 1) + approximant a b m) / 2|

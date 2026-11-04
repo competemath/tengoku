@@ -76,7 +76,9 @@ theorem eq_8_2 {R : Type _} [CommRing R] [IsDomain R]
 order `p^k` and a primitive `p^k`-th root of unity `μ` in a domain
 `R`, every `j(χ^a, χ^b)` lies in the subring `ℤ[μ]` — the structural
 fact that makes the Jacobi-sum reformulation computable without
-`ζ_q`.-/
+`ζ_q`.
+@isnad1 id=mem.2h8v.s9.a9324d8a14d0 from=translated src=- shape=6c9878e0 vocab=f977e629
+-/
 theorem jacobiSum_pow_mem {R : Type _} [CommRing R] [IsDomain R]
     {q p k : ℕ} [Fact q.Prime] [NeZero (p ^ k)]
     {χ : MulChar (ZMod q) R} (hord : orderOf χ = p ^ k)

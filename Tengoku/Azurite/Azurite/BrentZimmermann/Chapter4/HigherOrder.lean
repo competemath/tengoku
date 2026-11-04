@@ -68,7 +68,9 @@ second-order Taylor approximation (4.12).-/
 noncomputable def cubicStep (f f' f'' : ℝ → ℝ) (x : ℝ) : ℝ :=
   x - f x / f' x - f x ^ 2 * f'' x / (2 * f' x ^ 3)
 
-/-- For the reciprocal, `f(x) = y − 1/x`, the cubic step is (4.13).-/
+/-- For the reciprocal, `f(x) = y − 1/x`, the cubic step is (4.13).
+@isnad1 id=eq.1h2v.s7.d3ecf6b2eb3b from=translated src=- shape=b612af5e vocab=9ae49b2d
+-/
 theorem cubicStep_inverseRootFun_one (y : ℝ) {x : ℝ} (hx : x ≠ 0) :
     cubicStep (inverseRootFun 1 y) (inverseRootFun' 1) (inverseRootFun'' 1) x
       = x + x * (1 - x * y) + x * (1 - x * y) ^ 2 := by
@@ -77,7 +79,9 @@ theorem cubicStep_inverseRootFun_one (y : ℝ) {x : ℝ} (hx : x ≠ 0) :
   field_simp
   ring
 
-/-- For the exponential by functional inversion, `f(x) = y − ln x`, the cubic step is (4.14).-/
+/-- For the exponential by functional inversion, `f(x) = y − ln x`, the cubic step is (4.14).
+@isnad1 id=eq.1h2v.s7.5070302e0481 from=translated src=- shape=40048956 vocab=2e2af569
+-/
 theorem cubicStep_log (y : ℝ) {x : ℝ} (hx : x ≠ 0) :
     cubicStep (fun x => y - log x) (fun x => -x⁻¹) (fun x => (x ^ 2)⁻¹) x
       = x + x * (y - log x) + x * (y - log x) ^ 2 / 2 := by
@@ -99,25 +103,33 @@ def recipOrderSeq (k : ℕ) (y x₀ : α) : ℕ → α
   | 0 => x₀
   | n + 1 => recipOrderStep k y (recipOrderSeq k y x₀ n)
 
-/-- `k = 2` is Newton's iteration (4.5).-/
+/-- `k = 2` is Newton's iteration (4.5).
+@isnad1 id=eq.0h3v.s4.ed8a3dcdd409 from=translated src=- shape=8244e162 vocab=da8f7b9d
+-/
 theorem recipOrderStep_two (y x : α) : recipOrderStep 2 y x = ringReciprocalStep y x := by
   simp [recipOrderStep, ringReciprocalStep, Finset.sum_range_succ]
   ring
 
-/-- `k = 3` is the cubic iteration (4.13).-/
+/-- `k = 3` is the cubic iteration (4.13).
+@isnad1 id=eq.0h3v.s7.8e7d8d72841f from=translated src=- shape=f85cfe95 vocab=b35e68a5
+-/
 theorem recipOrderStep_three (y x : α) :
     recipOrderStep 3 y x = x + x * (1 - x * y) + x * (1 - x * y) ^ 2 := by
   simp [recipOrderStep, Finset.sum_range_succ]
   ring
 
-/-- The `k`-th order step has order exactly `k`: `ε' = ε^k`.-/
+/-- The `k`-th order step has order exactly `k`: `ε' = ε^k`.
+@isnad1 id=eq.0h4v.s5.ac658fabf322 from=translated src=- shape=69c75756 vocab=e1d7e37d
+-/
 theorem ringRecipError_recipOrderStep (k : ℕ) (y x : α) :
     ringRecipError y (recipOrderStep k y x) = ringRecipError y x ^ k := by
   unfold ringRecipError recipOrderStep
   have h := mul_neg_geom_sum (1 - x * y) k
   linear_combination -h
 
-/-- `ε_j = ε_0^(k^j)`.-/
+/-- `ε_j = ε_0^(k^j)`.
+@isnad1 id=eq.0h5v.s5.97548ec23d91 from=translated src=- shape=56ebe5c9 vocab=7de9a000
+-/
 theorem ringRecipError_recipOrderSeq (k : ℕ) (y x₀ : α) (j : ℕ) :
     ringRecipError y (recipOrderSeq k y x₀ j) = ringRecipError y x₀ ^ (k ^ j) := by
   induction j with
@@ -128,7 +140,9 @@ theorem ringRecipError_recipOrderSeq (k : ℕ) (y x₀ : α) (j : ℕ) :
 
 end Ring
 
-/-- The identity behind (4.15): for `|ε| < 1`, `1/y = x ∑ ε^m` with `ε = 1 − x y`.-/
+/-- The identity behind (4.15): for `|ε| < 1`, `1/y = x ∑ ε^m` with `ε = 1 − x y`.
+@isnad1 id=eq.2h2v.s6.b45a53ee890f from=translated src=- shape=709a4221 vocab=dc653991
+-/
 theorem inv_eq_mul_tsum_geometric {y x : ℝ} (hy : y ≠ 0) (hε : |1 - x * y| < 1) :
     y⁻¹ = x * ∑' m : ℕ, (1 - x * y) ^ m := by
   rw [tsum_geometric_of_abs_lt_one hε, sub_sub_cancel]
@@ -143,28 +157,38 @@ theorem inv_eq_mul_tsum_geometric {y x : ℝ} (hy : y ≠ 0) (hε : |1 - x * y| 
 noncomputable def expOrderStep (k : ℕ) (y x : ℝ) : ℝ :=
   x * ∑ m ∈ range k, (y - log x) ^ m / m.factorial
 
-/-- `k = 2` is Newton's iteration (4.11).-/
+/-- `k = 2` is Newton's iteration (4.11).
+@isnad1 id=eq.0h2v.s4.6f22349f7ced from=translated src=- shape=2d6fab64 vocab=b9e72f41
+-/
 theorem expOrderStep_two (y x : ℝ) : expOrderStep 2 y x = expStep y x := by
   simp [expOrderStep, expStep, Finset.sum_range_succ]
   ring
 
-/-- `k = 3` is the cubic iteration (4.14).-/
+/-- `k = 3` is the cubic iteration (4.14).
+@isnad1 id=eq.0h2v.s6.0605d1232b0c from=translated src=- shape=86a9aa36 vocab=50684dcb
+-/
 theorem expOrderStep_three (y x : ℝ) :
     expOrderStep 3 y x = x + x * (y - log x) + x * (y - log x) ^ 2 / 2 := by
   simp [expOrderStep, Finset.sum_range_succ, Nat.factorial]
   ring
 
-/-- `e^y / x = exp(y − ln x)` for `x > 0`.-/
+/-- `e^y / x = exp(y − ln x)` for `x > 0`.
+@isnad1 id=eq.1h2v.s5.146de651ffff from=translated src=- shape=56071972 vocab=772be7db
+-/
 theorem exp_eq_mul_exp_sub_log (y : ℝ) {x : ℝ} (hx : 0 < x) : exp y = x * exp (y - log x) := by
   rw [exp_sub, exp_log hx, mul_div_cancel₀ _ hx.ne']
 
-/-- The identity behind (4.16): `e^y = x ∑ ε^m / m!` with `ε = y − ln x`.-/
+/-- The identity behind (4.16): `e^y = x ∑ ε^m / m!` with `ε = y − ln x`.
+@isnad1 id=eq.1h2v.s6.cd5ecd935b9a from=translated src=- shape=f51c2af6 vocab=11bc6587
+-/
 theorem exp_eq_mul_tsum (y : ℝ) {x : ℝ} (hx : 0 < x) :
     exp y = x * ∑' m : ℕ, (y - log x) ^ m / m.factorial := by
   rw [exp_eq_mul_exp_sub_log y hx, Real.exp_eq_exp_ℝ, NormedSpace.exp_eq_tsum_div]
 
 /-- The error of the `k`-th order exponential step: for `x > 0`, `k > 0` and `|ε| ≤ 1`,
-`|x_{j+1} − e^y| ≤ x_j |ε|^k (k + 1) / (k! · k)` — order `k`.-/
+`|x_{j+1} − e^y| ≤ x_j |ε|^k (k + 1) / (k! · k)` — order `k`.
+@isnad1 id=le.3h3v.s7.4682293c7069 from=translated src=- shape=d346896b vocab=27f46d56
+-/
 theorem abs_expOrderStep_sub_exp_le {k : ℕ} (hk : 0 < k) (y : ℝ) {x : ℝ} (hx : 0 < x)
     (hε : |y - log x| ≤ 1) :
     |expOrderStep k y x - exp y|

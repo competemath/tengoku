@@ -33,7 +33,9 @@ variable {D : Type*} [CommRing D]
 
 /-- **BPR Lemma 8.32.** If `m ≥ 2` and every polynomial of the family has degree
     `< n - 1`, then `pdet_{m,n}(𝒫) = 0`: the first coefficient column of every minor
-    (the `X^{n-1}`-coefficients) is zero.-/
+    (the `X^{n-1}`-coefficients) is zero.
+@isnad1 id=eq.2h4v.s6.49af7fc59f67 from=translated src=- shape=2279d44a vocab=d676d253
+-/
 theorem pdetRing_eq_zero_of_degree_lt {m n : ℕ} (hm : 2 ≤ m) (P : Fin m → D[X])
     (hdeg : ∀ r, (P r).degree < (↑(n - 1) : WithBot ℕ)) : pdetRing n P = 0 := by
   rw [pdetRing]
@@ -46,7 +48,9 @@ theorem pdetRing_eq_zero_of_degree_lt {m n : ℕ} (hm : 2 ≤ m) (P : Fin m → 
   rw [Matrix.det_eq_zero_of_column_eq_zero _ hzero, zero_smul]
 
 /-- **Ring Lemma 8.28 (row addition).** Adding a `D`-multiple of one row of the family
-    to another, distinct row does not change the polynomial determinant.-/
+    to another, distinct row does not change the polynomial determinant.
+@isnad1 id=eq.1h7v.s7.c21fa735e7d3 from=translated src=- shape=cbd8d57f vocab=01b2fce7
+-/
 theorem pdetRing_update_add_smul {m n : ℕ} (P : Fin m → D[X]) {i j : Fin m} (hij : i ≠ j)
     (c : D) : pdetRing n (Function.update P i (P i + c • P j)) = pdetRing n P := by
   rw [pdetRing, pdetRing]
@@ -65,7 +69,9 @@ theorem pdetRing_update_add_smul {m n : ℕ} (P : Fin m → D[X]) {i j : Fin m} 
   rw [hmat, Matrix.det_updateRow_add_smul_self (pdetMinorMatRing n P (k : ℕ)) hij c]
 
 /-- Adding a `D`-linear combination of other (distinct from `j`) rows of the family to
-    row `j` does not change the polynomial determinant (iterated ring Lemma 8.28).-/
+    row `j` does not change the polynomial determinant (iterated ring Lemma 8.28).
+@isnad1 id=eq.1h7v.s7.aefc1fa4f58e from=translated src=- shape=1e0cf4ec vocab=aaa4dcbd
+-/
 theorem pdetRing_update_add_combination {m n : ℕ} (P : Fin m → D[X]) (j : Fin m)
     (s : Finset (Fin m)) (lam : Fin m → D) :
     j ∉ s → pdetRing n (Function.update P j (P j + ∑ i ∈ s, lam i • P i)) = pdetRing n P := by
@@ -87,7 +93,9 @@ theorem pdetRing_update_add_combination {m n : ℕ} (P : Fin m → D[X]) (j : Fi
     exact ih hj.2
 
 /-- Index-function form of `pdetRing_update_add_combination`: adding
-    `∑_{a ∈ t} lam a • P (idx a)` to row `j` (all `idx a ≠ j`) leaves `pdet` unchanged.-/
+    `∑_{a ∈ t} lam a • P (idx a)` to row `j` (all `idx a ≠ j`) leaves `pdet` unchanged.
+@isnad1 id=eq.1h9v.s7.6a460624df3d from=translated src=- shape=0e3bae78 vocab=aaa4dcbd
+-/
 theorem pdetRing_update_add_combination' {m n : ℕ} {ι : Type*} (P : Fin m → D[X]) (j : Fin m)
     (t : Finset ι) (idx : ι → Fin m) (lam : ι → D) :
     (∀ a ∈ t, idx a ≠ j) →
@@ -109,7 +117,9 @@ theorem pdetRing_update_add_combination' {m n : ℕ} {ι : Type*} (P : Fin m →
     exact ih hj.2
 
 /-- **Ring Lemma 8.28 (row scaling).** Scaling a row of the family by `s : D` multiplies
-    the polynomial determinant by `s`.-/
+    the polynomial determinant by `s`.
+@isnad1 id=eq.0h6v.s7.b7a8059c0da5 from=translated src=- shape=5b23f90d vocab=e442827d
+-/
 theorem pdetRing_update_smul {m n : ℕ} (P : Fin m → D[X]) (j : Fin m) (s : D) :
     pdetRing n (Function.update P j (s • P j)) = s • pdetRing n P := by
   have hmr : ∀ k : ℕ, pdetMinorRing n (Function.update P j (s • P j)) k
@@ -134,21 +144,27 @@ theorem pdetRing_update_smul {m n : ℕ} (P : Fin m → D[X]) (j : Fin m) (s : D
   exact Finset.sum_congr rfl (fun k _ => by rw [hmr, mul_smul])
 
 /-- **Ring Lemma 8.28 (row negation).** Negating a row of the family negates the
-    polynomial determinant.-/
+    polynomial determinant.
+@isnad1 id=eq.0h5v.s6.fc409dd44a1d from=translated src=- shape=f325fb8a vocab=173fc172
+-/
 theorem pdetRing_update_neg {m n : ℕ} (P : Fin m → D[X]) (j : Fin m) :
     pdetRing n (Function.update P j (-P j)) = -pdetRing n P := by
   have h := pdetRing_update_smul (n := n) P j (-1 : D)
   rw [neg_one_smul, neg_one_smul] at h
   exact h
 
-/-- Transport `pdetRing` across an equality of the (index) cardinality.-/
+/-- Transport `pdetRing` across an equality of the (index) cardinality.
+@isnad1 id=eq.2h6v.s6.7bfce25af484 from=translated src=- shape=da96fc1a vocab=03ae5436
+-/
 theorem pdetRing_congr_cast {m m' n : ℕ} (hm : m = m') (f : Fin m → D[X]) (g : Fin m' → D[X])
     (h : ∀ i : Fin m, f i = g (Fin.cast hm i)) : pdetRing n f = pdetRing n g := by
   subst hm
   exact congrArg (pdetRing n) (funext h)
 
 /-- Negating the rows of the family indexed by a finite set `s` multiplies the
-    polynomial determinant by `(-1)^{|s|}`.-/
+    polynomial determinant by `(-1)^{|s|}`.
+@isnad1 id=eq.0h5v.s7.7c44f03cdc49 from=translated src=- shape=fc8d8c97 vocab=c34f5599
+-/
 theorem pdetRing_neg_rows {m n : ℕ} (P : Fin m → D[X]) (s : Finset (Fin m)) :
     pdetRing n (fun r => if r ∈ s then -(P r) else P r) = (-1 : ℤ) ^ s.card • pdetRing n P := by
   classical

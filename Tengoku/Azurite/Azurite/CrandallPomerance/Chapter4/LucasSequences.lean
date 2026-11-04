@@ -62,13 +62,31 @@ def lucasV (a b : ℤ) : ℕ → ℤ
   | 1 => a
   | k + 2 => a * lucasV a b (k + 1) - b * lucasV a b k
 
+/--
+@isnad1 id=eq.0h2v.s4.447f4fc3abfd from=translated src=- shape=4f096759 vocab=c9529704
+-/
 @[simp] theorem lucasU_zero (a b : ℤ) : lucasU a b 0 = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.d6985cd27a01 from=translated src=- shape=4f096759 vocab=c9529704
+-/
 @[simp] theorem lucasU_one (a b : ℤ) : lucasU a b 1 = 1 := rfl
+/--
+@isnad1 id=eq.0h3v.s6.3d9f30fb144a from=translated src=- shape=67776b0e vocab=db739ac2
+-/
 theorem lucasU_add_two (a b : ℤ) (k : ℕ) :
     lucasU a b (k + 2) = a * lucasU a b (k + 1) - b * lucasU a b k := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.3cb41cf5960a from=translated src=- shape=4f096759 vocab=f3d7c998
+-/
 @[simp] theorem lucasV_zero (a b : ℤ) : lucasV a b 0 = 2 := rfl
+/--
+@isnad1 id=eq.0h2v.s3.529ba0bbe52e from=translated src=- shape=f56bb0f5 vocab=f3d7c998
+-/
 @[simp] theorem lucasV_one (a b : ℤ) : lucasV a b 1 = a := rfl
+/--
+@isnad1 id=eq.0h3v.s6.00b596b1bc67 from=translated src=- shape=67776b0e vocab=6f09cbb9
+-/
 theorem lucasV_add_two (a b : ℤ) (k : ℕ) :
     lucasV a b (k + 2) = a * lucasV a b (k + 1) - b * lucasV a b k := rfl
 
@@ -77,14 +95,18 @@ section GenericRing
 variable {R : Type*} [CommRing R] {a b : ℤ} {α β : R}
 
 /-- The discriminant identity: if `α + β = a` and `αβ = b`, then
-`(α − β)² = Δ = a² − 4b`.-/
+`(α − β)² = Δ = a² − 4b`.
+@isnad1 id=eq.2h5v.s7.5e7251d3a830 from=translated src=- shape=9975dc48 vocab=912e5d05
+-/
 theorem sub_sq_eq_disc (hs : α + β = (a : R)) (hp : α * β = (b : R)) :
     (α - β) ^ 2 = ((a ^ 2 - 4 * b : ℤ) : R) := by
   push_cast
   linear_combination (α + β + (a : R)) * hs - 4 * hp
 
 /-- **Binet in an arbitrary commutative ring** (`V` half): if
-`α + β = a` and `αβ = b`, then `V_k = α^k + β^k`.-/
+`α + β = a` and `αβ = b`, then `V_k = α^k + β^k`.
+@isnad1 id=eq.2h6v.s7.99ccfc559954 from=translated src=- shape=c5cdf76b vocab=6d2671f8
+-/
 theorem lucasV_spec (hs : α + β = (a : R)) (hp : α * β = (b : R)) :
     ∀ k : ℕ, ((lucasV a b k : ℤ) : R) = α ^ k + β ^ k := by
   intro k
@@ -105,7 +127,9 @@ theorem lucasV_spec (hs : α + β = (a : R)) (hp : α * β = (b : R)) :
 
 /-- **Binet in an arbitrary commutative ring** (`U` half), in exact
 multiplicative form: if `α + β = a` and `αβ = b`, then
-`U_k · (α − β) = α^k − β^k`.-/
+`U_k · (α − β) = α^k − β^k`.
+@isnad1 id=eq.2h6v.s7.9672a15e57c2 from=translated src=- shape=e4bc77f4 vocab=82c403dd
+-/
 theorem lucasU_spec (hs : α + β = (a : R)) (hp : α * β = (b : R)) :
     ∀ k : ℕ, ((lucasU a b k : ℤ) : R) * (α - β) = α ^ k - β ^ k := by
   intro k
@@ -139,14 +163,18 @@ noncomputable def lucasPoly : ℤ[X] := X ^ 2 - C a * X + C b
 noncomputable def lucasRoot : AdjoinRoot (lucasPoly a b) :=
   AdjoinRoot.root _
 
-/-- In `ℤ[x]/(f)`, the images of `x` and `a − x` sum to `a`.-/
+/-- In `ℤ[x]/(f)`, the images of `x` and `a − x` sum to `a`.
+@isnad1 id=eq.0h2v.s7.46b339aaa8c5 from=translated src=- shape=f2a93a0b vocab=dc8165a9
+-/
 theorem lucasRoot_add (a b : ℤ) :
     lucasRoot a b + ((a : AdjoinRoot (lucasPoly a b)) - lucasRoot a b)
       = (a : AdjoinRoot (lucasPoly a b)) := by
   ring
 
 /-- In `ℤ[x]/(f)`, the images of `x` and `a − x` multiply to `b`
-(the content of `x·(a − x) ≡ b (mod x² − ax + b)`).-/
+(the content of `x·(a − x) ≡ b (mod x² − ax + b)`).
+@isnad1 id=eq.0h2v.s7.bc4caf80a7de from=translated src=- shape=52141bf9 vocab=e8d7144f
+-/
 theorem lucasRoot_mul (a b : ℤ) :
     lucasRoot a b * ((a : AdjoinRoot (lucasPoly a b)) - lucasRoot a b)
       = (b : AdjoinRoot (lucasPoly a b)) := by
@@ -158,7 +186,9 @@ theorem lucasRoot_mul (a b : ℤ) :
   linear_combination -h0
 
 /-- **The book's (4.13), `V` half**: in `ℤ[x]/(f)`,
-`V_k = x^k + (a − x)^k`.-/
+`V_k = x^k + (a − x)^k`.
+@isnad1 id=eq.0h3v.s8.0052430c1a5c from=translated src=- shape=d71936f3 vocab=fd64de57
+-/
 theorem lucasV_eq_adjoinRoot (k : ℕ) :
     ((lucasV a b k : ℤ) : AdjoinRoot (lucasPoly a b))
       = (lucasRoot a b) ^ k
@@ -167,7 +197,9 @@ theorem lucasV_eq_adjoinRoot (k : ℕ) :
 
 /-- **The book's (4.13), `U` half**, with the division by `x − (a − x)`
 realized as an exact multiplicative identity: in `ℤ[x]/(f)`,
-`U_k · (x − (a − x)) = x^k − (a − x)^k`.-/
+`U_k · (x − (a − x)) = x^k − (a − x)^k`.
+@isnad1 id=eq.0h3v.s9.e81b3b526c90 from=translated src=- shape=076e68e9 vocab=3a5ef076
+-/
 theorem lucasU_mul_adjoinRoot (k : ℕ) :
     ((lucasU a b k : ℤ) : AdjoinRoot (lucasPoly a b))
         * (lucasRoot a b
@@ -186,25 +218,34 @@ noncomputable def rankApp (a b : ℤ) (n : ℕ) : ℕ :=
   sInf {r : ℕ | 0 < r ∧ (n : ℤ) ∣ lucasU a b r}
 
 /-- When some positive rank exists, the rank of appearance is positive
-and `n ∣ U_{r_f(n)}`.-/
+and `n ∣ U_{r_f(n)}`.
+@isnad1 id=and.1h3v.s5.d320517dc421 from=translated src=- shape=e5cd819e vocab=bffbc434
+-/
 theorem rankApp_mem {a b : ℤ} {n : ℕ}
     (h : ∃ r : ℕ, 0 < r ∧ (n : ℤ) ∣ lucasU a b r) :
     0 < rankApp a b n ∧ (n : ℤ) ∣ lucasU a b (rankApp a b n) :=
   Nat.sInf_mem h
 
-/-- Minimality: no smaller positive index works.-/
+/-- Minimality: no smaller positive index works.
+@isnad1 id=le.2h4v.s5.576d45be043e from=translated src=- shape=2bfbbae9 vocab=de07852e
+-/
 theorem rankApp_min {a b : ℤ} {n r : ℕ} (hr : 0 < r)
     (hdvd : (n : ℤ) ∣ lucasU a b r) : rankApp a b n ≤ r :=
   Nat.sInf_le ⟨hr, hdvd⟩
 
 /-! ### The addition formula and the divisibility-sequence property -/
 
+/--
+@isnad1 id=eq.0h2v.s3.40d3f63d1d9d from=translated src=- shape=f56bb0f5 vocab=c9529704
+-/
 theorem lucasU_two (a b : ℤ) : lucasU a b 2 = a := by
   rw [show 2 = 0 + 2 from rfl, lucasU_add_two]
   simp
 
 /-- The addition formula
-`U_{m+1+n} = U_{m+1}·U_{n+1} − b·U_m·U_n`.-/
+`U_{m+1+n} = U_{m+1}·U_{n+1} − b·U_m·U_n`.
+@isnad1 id=eq.0h4v.s6.8638eb6a122a from=translated src=- shape=874fba18 vocab=db739ac2
+-/
 theorem lucasU_addition (a b : ℤ) (m n : ℕ) :
     lucasU a b (m + 1 + n) = lucasU a b (m + 1) * lucasU a b (n + 1)
       - b * lucasU a b m * lucasU a b n := by
@@ -223,7 +264,9 @@ theorem lucasU_addition (a b : ℤ) (m n : ℕ) :
     ring
 
 /-- **`(U_k)` is a divisibility sequence**: `k ∣ j → U_k ∣ U_j`
-(allowing `U_k = U_j = 0`).-/
+(allowing `U_k = U_j = 0`).
+@isnad1 id=dvd.1h4v.s4.4591b210983b from=translated src=- shape=88ded936 vocab=6780861c
+-/
 theorem lucasU_dvd_lucasU (a b : ℤ) {k j : ℕ} (h : k ∣ j) :
     lucasU a b k ∣ lucasU a b j := by
   obtain ⟨m, rfl⟩ := h
@@ -239,7 +282,9 @@ theorem lucasU_dvd_lucasU (a b : ℤ) {k j : ℕ} (h : k ∣ j) :
       · exact Dvd.dvd.mul_left (dvd_refl _) _
 
 /-- A common divisor of two consecutive `U`'s that is coprime to `b`
-is a unit (descend the recurrence to `U_1 = 1`).-/
+is a unit (descend the recurrence to `U_1 = 1`).
+@isnad1 id=isunit.3h4v.s5.ec6822f45cd6 from=translated src=- shape=29364e05 vocab=ae2d3cdb
+-/
 theorem isUnit_of_dvd_lucasU_consecutive {a b d : ℤ}
     (hb : IsCoprime d b) :
     ∀ k : ℕ, d ∣ lucasU a b k → d ∣ lucasU a b (k + 1) → IsUnit d := by
@@ -262,7 +307,9 @@ theorem isUnit_of_dvd_lucasU_consecutive {a b d : ℤ}
 
 /-- **The rank-divisibility characterization** (the book's remark after
 Definition 4.2.1): if `gcd(n, b) = 1` and some positive rank exists,
-then `U_j ≡ 0 (mod n)` if and only if `r_f(n) ∣ j`.-/
+then `U_j ≡ 0 (mod n)` if and only if `r_f(n) ∣ j`.
+@isnad1 id=iff.2h4v.s5.12963139d80b from=translated src=- shape=facb8d25 vocab=ac3593ec
+-/
 theorem dvd_lucasU_iff_rankApp_dvd {a b : ℤ} {n : ℕ}
     (hb : IsCoprime (n : ℤ) b)
     (hex : ∃ r : ℕ, 0 < r ∧ (n : ℤ) ∣ lucasU a b r) (j : ℕ) :
@@ -326,7 +373,9 @@ theorem dvd_lucasU_iff_rankApp_dvd {a b : ℤ} {n : ℕ}
 /-! ### `U`–`V` identities: the norm invariant, `V² − ΔU² = 4bᵐ`, and
 the doubling formula -/
 
-/-- `V_m = 2U_{m+1} − a·U_m`.-/
+/-- `V_m = 2U_{m+1} − a·U_m`.
+@isnad1 id=eq.0h3v.s5.3a2449ca7fa3 from=translated src=- shape=71064e5b vocab=356c16a3
+-/
 theorem lucasV_eq_two_mul_sub (a b : ℤ) (m : ℕ) :
     lucasV a b m = 2 * lucasU a b (m + 1) - a * lucasU a b m := by
   induction m using Nat.twoStepInduction with
@@ -340,7 +389,9 @@ theorem lucasV_eq_two_mul_sub (a b : ℤ) (m : ℕ) :
     ring
 
 /-- The norm invariant `U_{m+1}² − a·U_{m+1}U_m + b·U_m² = bᵐ` (the
-norm of `α^m` in disguise).-/
+norm of `α^m` in disguise).
+@isnad1 id=eq.0h3v.s7.11b69f8e574b from=translated src=- shape=42cac797 vocab=b6e6c5ea
+-/
 theorem lucasU_norm (a b : ℤ) (m : ℕ) :
     lucasU a b (m + 1) ^ 2 - a * lucasU a b (m + 1) * lucasU a b m
       + b * lucasU a b m ^ 2 = b ^ m := by
@@ -350,14 +401,18 @@ theorem lucasU_norm (a b : ℤ) (m : ℕ) :
     rw [show m + 1 + 1 = m + 2 from rfl, lucasU_add_two, pow_succ]
     linear_combination b * ih
 
-/-- **`V_m² − Δ·U_m² = 4bᵐ`** — the fundamental quadratic relation.-/
+/-- **`V_m² − Δ·U_m² = 4bᵐ`** — the fundamental quadratic relation.
+@isnad1 id=eq.0h3v.s7.ee8daf372610 from=translated src=- shape=1835da3e vocab=fd0da91c
+-/
 theorem lucasV_sq_sub_disc_mul_sq (a b : ℤ) (m : ℕ) :
     lucasV a b m ^ 2 - (a ^ 2 - 4 * b) * lucasU a b m ^ 2
       = 4 * b ^ m := by
   rw [lucasV_eq_two_mul_sub]
   linear_combination 4 * lucasU_norm a b m
 
-/-- **The doubling formula** `U_{2m} = U_m · V_m`.-/
+/-- **The doubling formula** `U_{2m} = U_m · V_m`.
+@isnad1 id=eq.0h3v.s5.dcca47e3cdae from=translated src=- shape=94c5212f vocab=4ce5c5b1
+-/
 theorem lucasU_two_mul (a b : ℤ) (m : ℕ) :
     lucasU a b (2 * m) = lucasU a b m * lucasV a b m := by
   rcases Nat.eq_zero_or_pos m with rfl | hm
@@ -368,7 +423,9 @@ theorem lucasU_two_mul (a b : ℤ) (m : ℕ) :
     lucasU_add_two]
   ring
 
-/-- **The `V`-doubling formula** `V_{2m} = V_m² − 2bᵐ`.-/
+/-- **The `V`-doubling formula** `V_{2m} = V_m² − 2bᵐ`.
+@isnad1 id=eq.0h3v.s6.57a1abc0551f from=translated src=- shape=324cfbef vocab=62c37580
+-/
 theorem lucasV_two_mul (a b : ℤ) (m : ℕ) :
     lucasV a b (2 * m) = lucasV a b m ^ 2 - 2 * b ^ m := by
   have h1 := lucasU_addition a b m m

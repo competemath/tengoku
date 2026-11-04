@@ -37,7 +37,9 @@ namespace GG
 
 variable {F : Type*} [Field F]
 
-/-- The `2`-nd powers are the squares in Mathlib's `IsSquare` sense.-/
+/-- The `2`-nd powers are the squares in Mathlib's `IsSquare` sense.
+@isnad1 id=iff.0h2v.s7.870def1a10c8 from=translated src=- shape=8b78c4c5 vocab=38835171
+-/
 theorem mem_kthPowers_two_iff_isSquare {a : Fˣ} :
     a ∈ kthPowers F 2 ↔ IsSquare a := by
   rw [mem_kthPowers]
@@ -55,13 +57,17 @@ private theorem two_dvd_card_sub_one [Fintype F]
   omega
 
 /-- **GG Lemma 14.7 (i).**  For odd `q`, the squares form a subgroup of
-`F_q^×` of order `(q − 1)/2`.-/
+`F_q^×` of order `(q − 1)/2`.
+@isnad1 id=eq.1h1v.s7.6adfededc444 from=translated src=- shape=dfd40c76 vocab=a743956f
+-/
 theorem lemma_14_7_card [Fintype F] (hq : Odd (Fintype.card F)) :
     Nat.card (kthPowers F 2) = (Fintype.card F - 1) / 2 :=
   card_kthPowers two_ne_zero (two_dvd_card_sub_one hq)
 
 /-- **GG Lemma 14.7 (ii).**  For odd `q`, the squares are exactly the
-elements with `a^((q−1)/2) = 1`.-/
+elements with `a^((q−1)/2) = 1`.
+@isnad1 id=iff.1h2v.s7.56516fb6e729 from=translated src=- shape=d8502f96 vocab=19c24425
+-/
 theorem lemma_14_7_mem [Fintype F] (hq : Odd (Fintype.card F)) {a : Fˣ} :
     IsSquare a ↔ a ^ ((Fintype.card F - 1) / 2) = 1 := by
   rw [← mem_kthPowers_two_iff_isSquare]
@@ -69,7 +75,9 @@ theorem lemma_14_7_mem [Fintype F] (hq : Odd (Fintype.card F)) {a : Fˣ} :
 
 /-- **GG Lemma 14.7 (iii).**  For odd `q`, every `a ∈ F_q^×` has
 `a^((q−1)/2) ∈ {1, −1}`: its square is `a^(q−1) = 1` by Fermat, and `±1`
-are the only square roots of `1` over a field.-/
+are the only square roots of `1` over a field.
+@isnad1 id=or.1h2v.s8.4aed24982c8b from=translated src=- shape=900d53a0 vocab=29ec2f9d
+-/
 theorem lemma_14_7_pow_eq_one_or_neg_one [Fintype F]
     (hq : Odd (Fintype.card F)) (a : Fˣ) :
     a ^ ((Fintype.card F - 1) / 2) = 1
@@ -89,7 +97,9 @@ theorem lemma_14_7_pow_eq_one_or_neg_one [Fintype F]
     exact Units.ext (by rw [h, Units.val_neg, Units.val_one])
 
 /-- Part (ii) at the field level — **Euler's criterion**, GG form: for odd
-`q`, a nonzero `a : F_q` is a square exactly when `a^((q−1)/2) = 1`.-/
+`q`, a nonzero `a : F_q` is a square exactly when `a^((q−1)/2) = 1`.
+@isnad1 id=iff.2h2v.s6.8bd560b3688c from=translated src=- shape=34bd60ea vocab=cd594843
+-/
 theorem isSquare_iff_pow_card_sub_one_div_two_eq_one [Fintype F]
     (hq : Odd (Fintype.card F)) {a : F} (ha : a ≠ 0) :
     IsSquare a ↔ a ^ ((Fintype.card F - 1) / 2) = 1 := by
@@ -106,7 +116,9 @@ theorem isSquare_iff_pow_card_sub_one_div_two_eq_one [Fintype F]
     exact ⟨b, pow_two b⟩
 
 /-- Part (iii) at the field level: for odd `q`, every nonzero `a : F_q`
-has `a^((q−1)/2) = ±1` (the split tested by equal-degree splitting).-/
+has `a^((q−1)/2) = ±1` (the split tested by equal-degree splitting).
+@isnad1 id=or.2h2v.s7.474b6a485914 from=translated src=- shape=9ec49187 vocab=772c708c
+-/
 theorem pow_card_sub_one_div_two_eq_one_or_neg_one [Fintype F]
     (hq : Odd (Fintype.card F)) {a : F} (ha : a ≠ 0) :
     a ^ ((Fintype.card F - 1) / 2) = 1

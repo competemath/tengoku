@@ -52,7 +52,9 @@ open Polynomial Azurite.CP
 
 variable {m n : ℕ}
 
-/-- The `hIZ`-condition extends from `ℕ` to `ℤ`.-/
+/-- The `hIZ`-condition extends from `ℕ` to `ℤ`.
+@isnad1 id=dvd.2h4v.s8.89e69ce2b9fe from=translated src=- shape=6e2afa9e vocab=3de72329
+-/
 theorem intCast_mem_imp_dvd {𝔪 : Ideal (CycM m)}
     (hIZ : ∀ a : ℕ, ((a : ℕ) : CycM m) ∈ 𝔪 → n ∣ a) :
     ∀ b : ℤ, ((b : ℤ) : CycM m) ∈ 𝔪 → (n : ℤ) ∣ b := by
@@ -68,7 +70,9 @@ theorem intCast_mem_imp_dvd {𝔪 : Ideal (CycM m)}
     exact (Int.natCast_dvd_natCast.mpr (hIZ b.natAbs hb')).neg_right
 
 /-- **`1 − ζ̄^x` is a unit mod `𝔪` for `m ∤ x`** — from
-`∏_{0<x<m} (1 − ζ^x) = m` and the invertibility of `m` mod `n`.-/
+`∏_{0<x<m} (1 − ζ^x) = m` and the invertibility of `m` mod `n`.
+@isnad1 id=isunit.5h4v.s10.9f21f54608c1 from=translated src=- shape=53d78e17 vocab=cdde2af9
+-/
 theorem isUnit_one_sub_zetaBar_pow (hm : 0 < m) (hco : Nat.Coprime n m)
     (hn1 : 1 < n) {𝔪 : Ideal (CycM m)}
     (hnI : ((n : ℕ) : CycM m) ∈ 𝔪) {x : ℕ} (hx : ¬ m ∣ x) :
@@ -139,7 +143,9 @@ quotient, where the powers `n^j`, `j < f`, are distinct mod `m`
 (e.g. `f` = the order of `n` mod `m`): an integer combination
 `Σ_{i<f} a_i ζ^i ∈ 𝔪` forces `n ∣ a_i` for all `i`.  Hence
 `#(ℤ[ζ_m]/𝔪) ≥ n^f`, and the ideals of Methods (10.2)/(10.3) are
-largest possible.-/
+largest possible.
+@isnad1 id=dvd.8h6v.s9.cd07f8094e48 from=translated src=- shape=f2b0c1a6 vocab=84e025b4
+-/
 theorem proposition_10_5 (hm : 0 < m) (hco : Nat.Coprime n m)
     (hn1 : 1 < n) {𝔪 : Ideal (CycM m)}
     (hnI : ((n : ℕ) : CycM m) ∈ 𝔪)

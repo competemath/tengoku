@@ -33,7 +33,9 @@ namespace CP
 Corollary 4.1.4): if `n − 1 = F·R`, the witness `a` satisfies
 `a^(n−1) = 1` in `ZMod n` and `a^((n−1)/q) − 1` is a unit of `ZMod n`
 for every prime `q ∣ F`, and `n ≤ F²` (i.e. `F ≥ √n`), then `n` is
-prime.-/
+prime.
+@isnad1 id=prime.5h4v.s8.19f48922496d from=translated src=- shape=395c0be4 vocab=160caff2
+-/
 theorem corollary_4_1_4 {n F R : ℕ} (hn : 1 < n) (hsplit : n - 1 = F * R)
     (a : ZMod n) (ha : a ^ (n - 1) = 1)
     (hunit : ∀ q : ℕ, q.Prime → q ∣ F → IsUnit (a ^ ((n - 1) / q) - 1))

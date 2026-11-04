@@ -86,21 +86,34 @@ noncomputable def tanDerivPoly : ℕ → ℤ[X]
   | 0 => X
   | n + 1 => derivative (tanDerivPoly n) * (1 + X ^ 2)
 
+/--
+@isnad1 id=eq.0h0v.s3.72f06e0357a9 from=translated src=- shape=58b8d025 vocab=d8497b11
+-/
 theorem tanDerivPoly_zero : tanDerivPoly 0 = X := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.0492250edcf5 from=translated src=- shape=3be6658d vocab=1b3f8683
+-/
 theorem tanDerivPoly_succ (n : ℕ) :
     tanDerivPoly (n + 1) = derivative (tanDerivPoly n) * (1 + X ^ 2) := rfl
 
+/--
+@isnad1 id=eq.0h0v.s6.be856dcdf26e from=translated src=- shape=8c20346b vocab=445f892f
+-/
 theorem tanDerivPoly_one : tanDerivPoly 1 = 1 + X ^ 2 := by
   rw [tanDerivPoly_succ, tanDerivPoly_zero, derivative_X, one_mul]
 
-/-- (4.63) at `j = 0`: `p_{n+1,0} = p_{n,1}`.-/
+/-- (4.63) at `j = 0`: `p_{n+1,0} = p_{n,1}`.
+@isnad1 id=eq.0h1v.s5.e96efe4476ae from=translated src=- shape=f97ad734 vocab=7faa0a8f
+-/
 theorem coeff_tanDerivPoly_succ_zero (n : ℕ) :
     (tanDerivPoly (n + 1)).coeff 0 = (tanDerivPoly n).coeff 1 := by
   rw [tanDerivPoly_succ, mul_add, mul_one, coeff_add, coeff_mul_X_pow', coeff_derivative]
   simp
 
-/-- (4.63): `p_{n+1,j+1} = j p_{n,j} + (j+2) p_{n,j+2}`.-/
+/-- (4.63): `p_{n+1,j+1} = j p_{n,j} + (j+2) p_{n,j+2}`.
+@isnad1 id=eq.0h2v.s6.c317579875ce from=translated src=- shape=0714c0f6 vocab=0e4b7b25
+-/
 theorem coeff_tanDerivPoly_succ (n j : ℕ) :
     (tanDerivPoly (n + 1)).coeff (j + 1)
       = j * (tanDerivPoly n).coeff j + (j + 2) * (tanDerivPoly n).coeff (j + 2) := by
@@ -113,6 +126,9 @@ theorem coeff_tanDerivPoly_succ (n j : ℕ) :
     push_cast
     ring
 
+/--
+@isnad1 id=le.0h2v.s4.2fca2d8160d1 from=translated src=- shape=5e4deb02 vocab=5cabc276
+-/
 theorem coeff_tanDerivPoly_nonneg (n j : ℕ) : 0 ≤ (tanDerivPoly n).coeff j := by
   induction n generalizing j with
   | zero =>
@@ -126,6 +142,9 @@ theorem coeff_tanDerivPoly_nonneg (n j : ℕ) : 0 ≤ (tanDerivPoly n).coeff j :
       have h2 := ih (j + 2)
       positivity
 
+/--
+@isnad1 id=eq.1h2v.s5.7bd677ee51f0 from=translated src=- shape=8b3414a5 vocab=8a6c36a9
+-/
 theorem coeff_tanDerivPoly_eq_zero_of_lt (n : ℕ) : ∀ j, n + 1 < j →
     (tanDerivPoly n).coeff j = 0 := by
   induction n with
@@ -139,7 +158,9 @@ theorem coeff_tanDerivPoly_eq_zero_of_lt (n : ℕ) : ∀ j, n + 1 < j →
     · rw [coeff_tanDerivPoly_succ, ih j (by omega), ih (j + 2) (by omega)]
       ring
 
-/-- The leading coefficient: `p_{n,n+1} = n!`.-/
+/-- The leading coefficient: `p_{n,n+1} = n!`.
+@isnad1 id=eq.0h1v.s4.a60513eaf69c from=translated src=- shape=ebabd384 vocab=4c6f6521
+-/
 theorem coeff_tanDerivPoly_top (n : ℕ) : (tanDerivPoly n).coeff (n + 1) = n.factorial := by
   induction n with
   | zero => simp [tanDerivPoly_zero, coeff_X]
@@ -149,7 +170,9 @@ theorem coeff_tanDerivPoly_top (n : ℕ) : (tanDerivPoly n).coeff (n + 1) = n.fa
     push_cast
     ring
 
-/-- `deg P_n = n + 1`.-/
+/-- `deg P_n = n + 1`.
+@isnad1 id=eq.0h1v.s4.7cadf1ef3e05 from=translated src=- shape=73ed59bb vocab=aefcb1c5
+-/
 theorem natDegree_tanDerivPoly (n : ℕ) : (tanDerivPoly n).natDegree = n + 1 :=
   natDegree_eq_of_le_of_coeff_ne_zero
     (natDegree_le_iff_coeff_eq_zero.mpr fun N hN => coeff_tanDerivPoly_eq_zero_of_lt n N hN)
@@ -157,7 +180,9 @@ theorem natDegree_tanDerivPoly (n : ℕ) : (tanDerivPoly n).natDegree = n + 1 :=
 
 /-! ### The Leibniz identity -/
 
-/-- Pascal's rule, summed: the inductive step of a binomial-type identity.-/
+/-- Pascal's rule, summed: the inductive step of a binomial-type identity.
+@isnad1 id=eq.0h3v.s7.15057f1eb425 from=translated src=- shape=40fe3ccc vocab=d3181fca
+-/
 theorem pascal_sum {R : Type*} [CommSemiring R] (q : ℕ → ℕ → R) (n : ℕ) :
     ∑ a ∈ range (n + 1), (n.choose a : R) * (q (a + 1) (n - a) + q a (n - a + 1))
       = ∑ a ∈ range (n + 2), ((n + 1).choose a : R) * q a (n + 1 - a) := by
@@ -174,7 +199,9 @@ theorem pascal_sum {R : Type*} [CommSemiring R] (q : ℕ → ℕ → R) (n : ℕ
   rw [sum_congr rfl this]
   ring
 
-/-- `P_{n+1} = [n = 0] + ∑_{a ≤ n} C(n, a) P_a P_{n−a}`: the Leibniz rule for `Dⁿ(1 + t²)`.-/
+/-- `P_{n+1} = [n = 0] + ∑_{a ≤ n} C(n, a) P_a P_{n−a}`: the Leibniz rule for `Dⁿ(1 + t²)`.
+@isnad1 id=eq.0h1v.s7.5235e9203464 from=translated src=- shape=66448fa4 vocab=b30830cf
+-/
 theorem tanDerivPoly_succ_eq_sum (n : ℕ) :
     tanDerivPoly (n + 1)
       = (if n = 0 then 1 else 0)
@@ -200,7 +227,9 @@ theorem tanDerivPoly_succ_eq_sum (n : ℕ) :
 
 /-! ### `Dⁿ tan = P_n(tan)` -/
 
-/-- `Dⁿ tan x = P_n(tan x)` wherever `cos x ≠ 0`.-/
+/-- `Dⁿ tan x = P_n(tan x)` wherever `cos x ≠ 0`.
+@isnad1 id=eq.1h2v.s5.8750f60ac1e9 from=translated src=- shape=9d4e7891 vocab=c08c8309
+-/
 theorem iteratedDeriv_tan (n : ℕ) : ∀ x : ℝ, Real.cos x ≠ 0 →
     iteratedDeriv n Real.tan x
       = ((tanDerivPoly n).map (Int.castRingHom ℝ)).eval (Real.tan x) := by
@@ -226,14 +255,23 @@ theorem iteratedDeriv_tan (n : ℕ) : ∀ x : ℝ, Real.cos x ≠ 0 →
 /-- The tangent numbers `T_j = p_{2j−1,0} = D^(2j−1) tan 0` (`j ≥ 1`).-/
 noncomputable def tangentNumber (j : ℕ) : ℤ := (tanDerivPoly (2 * j - 1)).coeff 0
 
+/--
+@isnad1 id=eq.0h0v.s3.56deaf8297e3 from=translated src=- shape=1ac31801 vocab=41809480
+-/
 theorem tangentNumber_one : tangentNumber 1 = 1 := by
   simp [tangentNumber, tanDerivPoly_one]
 
+/--
+@isnad1 id=eq.0h0v.s3.96ab7904a515 from=translated src=- shape=1ac31801 vocab=41809480
+-/
 theorem tangentNumber_two : tangentNumber 2 = 2 := by
   rw [tangentNumber, show 2 * 2 - 1 = 2 + 1 by rfl, coeff_tanDerivPoly_succ_zero,
     coeff_tanDerivPoly_succ, tanDerivPoly_one]
   simp [coeff_X_pow, coeff_one]
 
+/--
+@isnad1 id=eq.0h0v.s3.02ce90a62150 from=translated src=- shape=1ac31801 vocab=41809480
+-/
 theorem tangentNumber_three : tangentNumber 3 = 16 := by
   rw [tangentNumber, show 2 * 3 - 1 = 4 + 1 by rfl, coeff_tanDerivPoly_succ_zero,
     show (4 : ℕ) = 3 + 1 by rfl, coeff_tanDerivPoly_succ, show (3 : ℕ) = 2 + 1 by rfl,
@@ -259,6 +297,9 @@ noncomputable def tanDerivSeries : PowerSeries ℚ :=
 /-- `e^(−x)`.-/
 noncomputable def expNeg : PowerSeries ℚ := rescale (-1 : ℚ) (exp ℚ)
 
+/--
+@isnad1 id=eq.0h0v.s5.4626c21f38db from=translated src=- shape=94b39aaf vocab=0193eabb
+-/
 theorem exp_mul_expNeg : exp ℚ * expNeg = 1 := exp_mul_exp_neg_eq_one (A := ℚ)
 
 /-- `cosh x = (e^x + e^(−x))/2`.-/
@@ -270,6 +311,9 @@ noncomputable def sinhSeries : PowerSeries ℚ := C (1 / 2 : ℚ) * (exp ℚ - e
 /-- `tanh x = sinh x / cosh x`.-/
 noncomputable def tanhSeries : PowerSeries ℚ := sinhSeries * coshSeries⁻¹
 
+/--
+@isnad1 id=eq.0h0v.s6.7e7166fd11f9 from=translated src=- shape=3b67fda6 vocab=76c1db3f
+-/
 theorem coshSeries_sq_sub_sinhSeries_sq : coshSeries ^ 2 - sinhSeries ^ 2 = 1 := by
   unfold coshSeries sinhSeries
   have hc : C (1 / 2 : ℚ) * 2 = (1 : PowerSeries ℚ) := by
@@ -278,27 +322,41 @@ theorem coshSeries_sq_sub_sinhSeries_sq : coshSeries ^ 2 - sinhSeries ^ 2 = 1 :=
   have h := exp_mul_expNeg
   linear_combination (C (1 / 2 : ℚ) * 2) ^ 2 * h + (C (1 / 2 : ℚ) * 2 + 1) * hc
 
+/--
+@isnad1 id=eq.0h0v.s5.a97e859b8294 from=translated src=- shape=8b3e5d3e vocab=08310f37
+-/
 theorem constantCoeff_coshSeries : constantCoeff coshSeries = 1 := by
   unfold coshSeries expNeg
   simp only [map_mul, map_add, ← coeff_zero_eq_constantCoeff_apply, coeff_rescale, coeff_exp,
     algebraMap_rat_rat]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s5.a0e79e41face from=translated src=- shape=3b3ebab3 vocab=58d55846
+-/
 theorem coshSeries_mul_inv : coshSeries * coshSeries⁻¹ = 1 :=
   PowerSeries.mul_inv_cancel _ (by rw [constantCoeff_coshSeries]; exact one_ne_zero)
 
+/--
+@isnad1 id=eq.0h0v.s5.195b69e3c338 from=translated src=- shape=8b3e5d3e vocab=141eb8e7
+-/
 theorem constantCoeff_tanhSeries : constantCoeff tanhSeries = 0 := by
   unfold tanhSeries sinhSeries expNeg
   simp only [map_mul, map_sub, ← coeff_zero_eq_constantCoeff_apply, coeff_rescale, coeff_exp,
     algebraMap_rat_rat]
   norm_num
 
+/--
+@isnad1 id=eq.0h2v.s7.a63e3b5da6f4 from=translated src=- shape=c33bfcba vocab=3341c6dc
+-/
 theorem rescale_C' (a r : ℚ) : rescale a (C r : PowerSeries ℚ) = C r := by
   ext n
   rw [coeff_rescale, coeff_C]
   split_ifs with h <;> simp [h]
 
-/-- (4.57) rescaled by `2`: `S(2x) (e^x − e^(−x)) = x (e^x + e^(−x))`.-/
+/-- (4.57) rescaled by `2`: `S(2x) (e^x − e^(−x)) = x (e^x + e^(−x))`.
+@isnad1 id=eq.0h0v.s7.8a5a9e169be5 from=translated src=- shape=242c1e07 vocab=aaa9d04a
+-/
 theorem rescale_two_scaledBernoulliPowerSeries_mul :
     rescale (2 : ℚ) scaledBernoulliPowerSeries * (exp ℚ - expNeg) = X * (exp ℚ + expNeg) := by
   have h := congrArg (rescale (2 : ℚ)) scaledBernoulliPowerSeries_mul_sinh
@@ -310,7 +368,9 @@ theorem rescale_two_scaledBernoulliPowerSeries_mul :
   unfold expNeg
   linear_combination h + (X * (exp ℚ + rescale (-1 : ℚ) (exp ℚ))) * hc
 
-/-- (4.57) rescaled by `4`: `S(4x) (e^(2x) − e^(−2x)) = 2x (e^(2x) + e^(−2x))`.-/
+/-- (4.57) rescaled by `4`: `S(4x) (e^(2x) − e^(−2x)) = 2x (e^(2x) + e^(−2x))`.
+@isnad1 id=eq.0h0v.s8.0be636210d54 from=translated src=- shape=8955fad7 vocab=5f00662c
+-/
 theorem rescale_four_scaledBernoulliPowerSeries_mul :
     rescale (4 : ℚ) scaledBernoulliPowerSeries * (exp ℚ ^ 2 - expNeg ^ 2)
       = C 2 * X * (exp ℚ ^ 2 + expNeg ^ 2) := by
@@ -323,7 +383,9 @@ theorem rescale_four_scaledBernoulliPowerSeries_mul :
   unfold expNeg
   linear_combination h + (X * (exp ℚ ^ 2 + rescale (-1 : ℚ) (exp ℚ) ^ 2)) * hc
 
-/-- `x tanh x = S(4x) − S(2x) = ∑ (16^k − 4^k) C_k x^(2k)`, i.e. `tanh x = 2 coth 2x − coth x`.-/
+/-- `x tanh x = S(4x) − S(2x) = ∑ (16^k − 4^k) C_k x^(2k)`, i.e. `tanh x = 2 coth 2x − coth x`.
+@isnad1 id=eq.0h0v.s7.43b31335ae1b from=translated src=- shape=63f81a6e vocab=8b2140b9
+-/
 theorem X_mul_tanhSeries :
     X * tanhSeries = rescale (4 : ℚ) scaledBernoulliPowerSeries
       - rescale (2 : ℚ) scaledBernoulliPowerSeries := by
@@ -358,6 +420,9 @@ theorem X_mul_tanhSeries :
       = (S₄ - S₂) * coshSeries * coshSeries⁻¹ := by rw [hcosh']; ring
     _ = S₄ - S₂ := by rw [mul_assoc, hinv, mul_one]
 
+/--
+@isnad1 id=eq.0h1v.s7.11b94a2818e1 from=translated src=- shape=0a3eb880 vocab=36c82e58
+-/
 theorem coeff_tanhSeries_odd (k : ℕ) :
     coeff (2 * k + 1) tanhSeries
       = (4 ^ (2 * (k + 1)) - 2 ^ (2 * (k + 1))) * scaledBernoulli (k + 1) := by
@@ -368,6 +433,9 @@ theorem coeff_tanhSeries_odd (k : ℕ) :
   rw [h]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.a1d79a87ca02 from=translated src=- shape=2c1fb0fa vocab=34e733dc
+-/
 theorem coeff_tanhSeries_even (k : ℕ) : coeff (2 * k) tanhSeries = 0 := by
   rcases k with _ | k
   · rw [mul_zero, coeff_zero_eq_constantCoeff_apply, constantCoeff_tanhSeries]
@@ -384,10 +452,15 @@ theorem coeff_tanhSeries_even (k : ℕ) : coeff (2 * k) tanhSeries = 0 := by
 noncomputable def tanSeries : PowerSeries ℚ :=
   PowerSeries.mk fun n => (-1) ^ (n / 2) * coeff n tanhSeries
 
+/--
+@isnad1 id=eq.0h1v.s7.292c57f7057f from=translated src=- shape=532594db vocab=a5078ad2
+-/
 theorem coeff_tanSeries (n : ℕ) : coeff n tanSeries = (-1) ^ (n / 2) * coeff n tanhSeries :=
   coeff_mk _ _
 
-/-- Products of two odd coefficients: the twist contributes `−(−1)^k` on the antidiagonal of `2k`.-/
+/-- Products of two odd coefficients: the twist contributes `−(−1)^k` on the antidiagonal of `2k`.
+@isnad1 id=eq.1h2v.s8.e6127e7c41d3 from=translated src=- shape=a6bb885f vocab=2134a990
+-/
 theorem tanSeries_mul_term {k : ℕ} {p : ℕ × ℕ} (hp : p ∈ antidiagonal (2 * k)) :
     coeff p.1 tanSeries * coeff p.2 tanSeries
       = -(-1) ^ k * (coeff p.1 tanhSeries * coeff p.2 tanhSeries) := by
