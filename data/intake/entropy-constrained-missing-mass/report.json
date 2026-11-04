@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "8d514bd764db350c97012254f1213f3ef64ae6524264785c64cc2dd909bf4d53",
+ "gate2_unjudged": [],
+ "library": "entropy-constrained-missing-mass",
+ "lint_mode": "proposed",
+ "modules": 63,
+ "part": 1,
+ "theorems": 528
+}

@@ -21,6 +21,7 @@ import Tengoku.T3ModelCompanion
 import Tengoku.GibbsMeasure
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
+import Tengoku.EntropyConstrainedMissingMass
 import Tengoku.AddCombi
 import Tengoku.LanaFormalSchemes
 import Tengoku.DescriptiveComplexity

@@ -1,0 +1,24 @@
+import Tengoku.Seed.Analysis.Calculus.DerivativeTest
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+namespace EntropyConstrainedMissingMass
+open Filter
+open scoped Topology
+
+/-- A continuous scalar function has nonpositive second derivative at a local maximum.
+@isnad1 id=le.2h2v.s6.23a4b151b976 from=translated src=- shape=e887a513 vocab=39e969d3
+-/
+theorem second_derivative_nonpos_of_localMax {f : ℝ → ℝ} {a : ℝ}
+    (hc : ContinuousAt f a) (hm : IsLocalMax f a) : deriv (deriv f) a ≤ 0 := by
+  by_contra h
+  have hp : 0 < deriv (deriv f) a := lt_of_not_ge h
+  have hmin := isLocalMin_of_deriv_deriv_pos hp hm.deriv_eq_zero hc
+  have heq : f =ᶠ[𝓝 a] fun _ => f a := by
+    filter_upwards [hm, hmin] with x hx hy
+    exact le_antisymm hx hy
+  have hz := heq.deriv.deriv_eq
+  simp only [deriv_const', deriv_const] at hz
+  linarith
+
+end EntropyConstrainedMissingMass
