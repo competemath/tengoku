@@ -38,6 +38,7 @@ import Tengoku.KuroshProblemAtGkDimensionTwo
 import Tengoku.Flt
 import Tengoku.HasseMinkowski
 import Tengoku.Toric
+import Tengoku.Jsp000937Lean
 import Tengoku.LanaGenl
 import Tengoku.MiscYd
 import Tengoku.Vcvio
