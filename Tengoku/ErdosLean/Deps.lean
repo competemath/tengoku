@@ -1,0 +1,1 @@
+-- ErdosLean: a factory bundle (data/intake/erdos-lean). This file only marks the library for Tengoku/All.lean.

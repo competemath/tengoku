@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "27e85a660da14a4dd93d13855869a4792190555b63b5dda15d013917ba4aa137",
+ "gate2_unjudged": [],
+ "library": "erdos-lean",
+ "lint_mode": "proposed",
+ "modules": 215,
+ "part": 1,
+ "theorems": 1122
+}
