@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "fc3dc4a65101448ff8c61fee2ad875147bc51104ab9aebf2be7c2e3aca554b2a",
+ "gate2_unjudged": [],
+ "library": "general-stoch-to-det",
+ "lint_mode": "proposed",
+ "modules": 62,
+ "part": 1,
+ "theorems": 610
+}
