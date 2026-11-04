@@ -49,6 +49,7 @@ import Tengoku.AtPalomar
 import Tengoku.EpsilonSml
 import Tengoku.Causalean
 import Tengoku.ErdosUnitDistance1
+import Tengoku.ErdosLean
 import Tengoku.Certifyinginvariantsnf
 import Tengoku.LanaOrbicurveCores
 import Tengoku.Primenumbertheoremand

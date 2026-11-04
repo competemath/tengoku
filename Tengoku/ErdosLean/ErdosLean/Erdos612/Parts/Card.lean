@@ -1,0 +1,57 @@
+import Tengoku.ErdosLean.ErdosLean.Erdos612.Defs
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Erdős 612, part: order of the blow-up and length/weight of periodic families
+
+Proof plan: `Fintype.card_sigma` twice, then `Fin.sum_univ_eq_sum_range` /
+`List.sum_ofFn`-style rewriting of `∑ j : Fin (cnt ℓ), wt ℓ j` to `(L.lay ℓ).sum` and of
+`∑ ℓ : Fin L.length, tot ℓ` to `(L.map List.sum).sum`.
+-/
+
+namespace Erdos612
+
+private theorem sum_fin_getD (l : List ℕ) :
+    ∑ j : Fin l.length, l.getD (j : ℕ) 0 = l.sum := by
+  have : ∀ j : Fin l.length, l.getD (j : ℕ) 0 = l[(j : ℕ)] := fun j =>
+    List.getD_eq_getElem _ _ j.2
+  simp only [this]
+  exact Fin.sum_univ_getElem l
+
+private theorem sum_fin_lay (L : Layers) :
+    ∑ ℓ : Fin L.length, (L.lay ℓ).sum = L.total := by
+  have : ∀ ℓ : Fin L.length, (L.lay ℓ).sum = (L.map List.sum)[(ℓ : ℕ)]'(by simp) := by
+    intro ℓ
+    simp [Layers.lay]
+  simp only [this, Layers.total]
+  rw [← Fin.sum_univ_getElem (L.map List.sum)]
+  exact (Fintype.sum_equiv (finCongr (by simp)) _ _ (fun _ => rfl))
+
+/--
+@isnad1 id=eq.0h1v.s7.4c95a41a206c from=translated src=- shape=7718e021 vocab=8e6f8d7c
+-/
+theorem card_vtx (L : Layers) : Fintype.card (Vtx L) = L.total := by
+  rw [Fintype.card_sigma]
+  simp only [Fintype.card_fin]
+  rw [Fintype.sum_sigma]
+  rw [← sum_fin_lay]
+  refine Finset.sum_congr rfl fun ℓ _ => ?_
+  exact sum_fin_getD (L.lay ℓ)
+
+/--
+@isnad1 id=eq.0h4v.s5.0cea1d85414b from=translated src=- shape=cac51d86 vocab=86e69488
+-/
+theorem length_fam (pre per suf : Layers) (p : ℕ) :
+    (fam pre per suf p).length = pre.length + p * per.length + suf.length := by
+  simp [fam, List.length_flatten, List.sum_replicate]; ring
+
+/--
+@isnad1 id=eq.0h4v.s5.3181beb932eb from=translated src=- shape=66586438 vocab=3d4abf26
+-/
+theorem total_fam (pre per suf : Layers) (p : ℕ) :
+    (fam pre per suf p).total = pre.total + p * per.total + suf.total := by
+  simp [fam, Layers.total, List.map_flatten, List.sum_flatten, List.map_replicate,
+    List.sum_replicate]; ring
+
+end Erdos612
