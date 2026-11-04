@@ -477,6 +477,15 @@ class Workflows(unittest.TestCase):
             if "download-artifact" in x.get("uses", "") or x.get("name") == "The tags, onto the PR's branch":
                 self.assertEqual(x.get("if"), "steps.has.outputs.any == 'true'", x.get("name") or x["uses"])
 
+    def test_the_tag_lane_builds_the_prs_modules_and_never_the_whole_tree(self):
+        # `lake build Tengoku.All` replayed the whole tree (28,650 jobs, 31 minutes) for azurite part 3's 214 modules, which alone take 7 (3 Nov 2026)
+        job = self.load("autotag-build.yml")["jobs"]["tag"]
+        for x in job["steps"]:
+            self.assertNotIn("Tengoku.All", x.get("run", ""), x.get("name"))
+        first = next(x for x in job["steps"] if x.get("name") == "The PR's modules on top of it")
+        self.assertIn('json.load(open("plan.json"))["modules"]', first["run"])
+        self.assertIn('lake build "${mods[@]}"', first["run"])
+
     def test_no_token_is_in_the_environment_of_the_step_that_builds_the_prs_modules(self):
         doc = self.load("autotag-build.yml")
         job = doc["jobs"]["tag"]
