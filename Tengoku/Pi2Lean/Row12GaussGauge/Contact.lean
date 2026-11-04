@@ -11,12 +11,18 @@ open Row12
 
 namespace Row12GaussGauge
 
+/--
+@isnad1 id=eq.0h0v.s6.8048d7aaf697 from=translated src=- shape=933ba716 vocab=bba983b1
+-/
 theorem gauss_contact_value :
     gaussA (1-gaussP (27/125:ℝ)) = Real.sqrt 2*gaussG (27/125) := by
   have he := gauge_transformation (1/64:ℝ) (by norm_num) (by norm_num)
   simpa only [gaugeY1, gaugeY2, gaugeP1_contact, gaugeP2_contact,
     gaugeL_contact, gaussG] using he
 
+/--
+@isnad1 id=hasderiv.0h0v.s7.28e7e125e6c4 from=translated src=- shape=7a0b5ca9 vocab=3a6cf0dd
+-/
 theorem gauss_complement_hasDerivAt_contact :
     HasDerivAt (fun q : ℝ => gaussA (1-gaussP q))
       (-deriv gaussA (1-gaussP (27/125:ℝ))/(4*Real.sqrt (1-27/125)))
@@ -29,12 +35,18 @@ theorem gauss_complement_hasDerivAt_contact :
   apply hd.congr_deriv
   ring
 
+/--
+@isnad1 id=eq.0h0v.s7.70665e0e3c58 from=translated src=- shape=c72231af vocab=6b0224d1
+-/
 theorem gauss_complement_nativeTheta_contact :
     nativeTheta (fun q : ℝ => gaussA (1-gaussP q)) (27/125) =
       -(27/125:ℝ)*deriv gaussA (1-gaussP (27/125))/(4*Real.sqrt (1-27/125)) := by
   rw [nativeTheta, gauss_complement_hasDerivAt_contact.deriv]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s7.d0a563e72696 from=translated src=- shape=7cb8aa50 vocab=45758ba2
+-/
 theorem gauss_contact_nativeTheta :
     nativeTheta (fun q : ℝ => gaussA (1-gaussP q)) (27/125) =
       -Real.sqrt 2*nativeTheta gaussG (27/125)-

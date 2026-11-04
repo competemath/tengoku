@@ -19,6 +19,9 @@ open scoped ENNReal NNReal
 
 namespace Row12
 
+/--
+@isnad1 id=hasfpowe.0h0v.s5.103d22c2653b from=translated src=- shape=c725b35e vocab=8db7dfa5
+-/
 theorem nativeF_hasFPowerSeriesAt :
     HasFPowerSeriesAt (nativeF : ℂ → ℂ) (nativeSeries ℂ) 0 := by
   have hr : (0 : ℝ≥0∞) < (nativeSeries ℂ).radius :=
@@ -33,12 +36,18 @@ theorem nativeF_hasFPowerSeriesAt :
   rw [hfun] at hp
   exact hp.hasFPowerSeriesAt
 
+/--
+@isnad1 id=differen.1h1v.s6.8c4e33337f02 from=translated src=- shape=2e491443 vocab=773618df
+-/
 theorem nativeF_differentiableOn_closedBall {r : ℝ} (hr1 : r < 1) :
     DifferentiableOn ℂ (nativeF : ℂ → ℂ) (closedBall 0 r) := by
   intro z hz
   have hzr : ‖z‖ ≤ r := by simpa using (mem_closedBall.mp hz)
   exact (nativeF_analyticAt z (hzr.trans_lt hr1)).differentiableAt.differentiableWithinAt
 
+/--
+@isnad1 id=eq.2h1v.s6.9ea0a7487b9f from=translated src=- shape=c5fdd50a vocab=4ded92c8
+-/
 theorem nativeF_cauchySeries_eq {r : ℝ} (hr : 0 < r) (hr1 : r < 1) :
     cauchyPowerSeries (nativeF : ℂ → ℂ) 0 r = nativeSeries ℂ := by
   let R : ℝ≥0 := ⟨r, hr.le⟩
@@ -47,6 +56,9 @@ theorem nativeF_cauchySeries_eq {r : ℝ} (hr : 0 < r) (hr1 : r < 1) :
   have hp := (hd.hasFPowerSeriesOnBall (show 0 < R from hr)).hasFPowerSeriesAt
   exact hp.eq_formalMultilinearSeries nativeF_hasFPowerSeriesAt
 
+/--
+@isnad1 id=eq.2h3v.s7.6c3adfe886e3 from=translated src=- shape=c254483e vocab=290d3151
+-/
 theorem nativeF_cauchyCoefficient {r : ℝ} (hr : 0 < r) (hr1 : r < 1)
     (n : ℕ) (w : ℂ) :
     cauchyPowerSeries (nativeF : ℂ → ℂ) 0 r n (fun _ => w) =
@@ -58,6 +70,9 @@ noncomputable def hadamardEulerIntegral (k : ℕ) (lambda r : ℝ) : ℂ :=
   (2 * Real.pi * I : ℂ)⁻¹ •
     ∮ s in C(0, r), nativeF s * nativeEuler k ((lambda : ℂ) / s) / s
 
+/--
+@isnad1 id=hassum.3h3v.s7.3d83fa98d902 from=translated src=- shape=92708da4 vocab=e0709af3
+-/
 theorem hadamardEuler_hasSum (k : ℕ) {lambda r : ℝ}
     (hlambda : 0 < lambda) (hlr : lambda < r) (hr1 : r < 1) :
     HasSum (fun n : ℕ => (coefficient3 n : ℂ) ^ 2 * (n : ℂ) ^ k * (lambda : ℂ) ^ n)
@@ -161,18 +176,27 @@ theorem hadamardEuler_hasSum (k : ℕ) {lambda r : ℝ}
   rw [heq] at hresult
   exact hresult
 
+/--
+@isnad1 id=hassum.3h2v.s6.fae269d59131 from=translated src=- shape=fa75e935 vocab=bc9b0f38
+-/
 theorem hadamard_hasSum {lambda r : ℝ}
     (hlambda : 0 < lambda) (hlr : lambda < r) (hr1 : r < 1) :
     HasSum (fun n : ℕ => (coefficient3 n : ℂ) ^ 2 * (lambda : ℂ) ^ n)
       (hadamardEulerIntegral 0 lambda r) := by
   simpa only [pow_zero, mul_one] using hadamardEuler_hasSum 0 hlambda hlr hr1
 
+/--
+@isnad1 id=eq.3h2v.s6.f6167f381f2c from=translated src=- shape=7b29a0a3 vocab=7c500b78
+-/
 theorem hadamard_tsum {lambda r : ℝ}
     (hlambda : 0 < lambda) (hlr : lambda < r) (hr1 : r < 1) :
     (∑' n : ℕ, (coefficient3 n : ℂ) ^ 2 * (lambda : ℂ) ^ n) =
       hadamardEulerIntegral 0 lambda r :=
   (hadamard_hasSum hlambda hlr hr1).tsum_eq
 
+/--
+@isnad1 id=eq.5h4v.s5.8a9c7d532cfd from=translated src=- shape=21cbec1e vocab=12e9cd48
+-/
 theorem hadamardEuler_radius_independent (k : ℕ) {lambda r r' : ℝ}
     (hlambda : 0 < lambda) (hlr : lambda < r) (hr1 : r < 1)
     (hlr' : lambda < r') (hr1' : r' < 1) :

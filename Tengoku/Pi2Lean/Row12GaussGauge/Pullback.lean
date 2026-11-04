@@ -23,6 +23,9 @@ open Row12
 
 namespace Row12GaussGauge
 
+/--
+@isnad1 id=eq.2h1v.s7.8fa5a1bebee3 from=translated src=- shape=5bd7b618 vocab=02a74876
+-/
 theorem gaugeK1_sq (z : ℝ) (hS : 0 < 1+64*z) (hD : 0 < 1+16*z) :
     gaugeK1 z ^ 2 = 746496*z^2/((1+64*z)*(1+16*z)^5) := by
   have hr := gaugeRatio_sq 16 z hS hD
@@ -31,6 +34,9 @@ theorem gaugeK1_sq (z : ℝ) (hS : 0 < 1+64*z) (hD : 0 < 1+16*z) :
   field_simp [ne_of_gt hS, ne_of_gt hD]
   ring
 
+/--
+@isnad1 id=eq.2h1v.s7.2ad0e4cb0da3 from=translated src=- shape=8845e782 vocab=0b61c70b
+-/
 theorem gaugeK2_sq (z : ℝ) (hS : 0 < 1+64*z) (hD : 0 < 1+256*z) :
     gaugeK2 z ^ 2 = 186624/((1+64*z)*(1+256*z)^5) := by
   have hr := gaugeRatio_sq 256 z hS hD
@@ -39,14 +45,23 @@ theorem gaugeK2_sq (z : ℝ) (hS : 0 < 1+64*z) (hD : 0 < 1+256*z) :
   field_simp [ne_of_gt hS, ne_of_gt hD]
   ring
 
+/--
+@isnad1 id=eq.2h1v.s7.60eec5c4bb0c from=translated src=- shape=72d4ff6b vocab=67334456
+-/
 theorem gaugeP1_product (z : ℝ) (hS : 0 < 1+64*z) (hD : 0 < 1+16*z) :
     gaugeP1 z*(1-gaugeP1 z) = 432*z^2/(1+16*z)^3 := by
   linear_combination gaugeP1_quadratic z hS hD / 4
 
+/--
+@isnad1 id=eq.2h1v.s7.1f75d0ed66e4 from=translated src=- shape=cc668f8c vocab=bd677304
+-/
 theorem gaugeP2_product (z : ℝ) (hS : 0 < 1+64*z) (hD : 0 < 1+256*z) :
     gaugeP2 z*(1-gaugeP2 z) = 432*z/(1+256*z)^3 := by
   linear_combination gaugeP2_quadratic z hS hD / 4
 
+/--
+@isnad1 id=eq.2h1v.s8.dbd004ebe29e from=translated src=- shape=43f1fe84 vocab=d8577247
+-/
 theorem gaugeP1_pullback_first (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     gaugeP1 z*(1-gaugeP1 z)*
         (z*gaugeK1 z+z^2*(gaugeK1 z*(1/z+gaugeT 16 z))+
@@ -60,6 +75,9 @@ theorem gaugeP1_pullback_first (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
   field_simp [ne_of_gt hz, ne_of_gt hS, ne_of_gt hD, ht]
   ring
 
+/--
+@isnad1 id=eq.2h1v.s7.746c36f7963e from=translated src=- shape=3ceb2d9b vocab=b04625ec
+-/
 theorem gaugeP2_pullback_first (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     gaugeP2 z*(1-gaugeP2 z)*
         (z*gaugeK2 z+z^2*(gaugeK2 z*gaugeT 256 z)+
@@ -73,6 +91,9 @@ theorem gaugeP2_pullback_first (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
   field_simp [ne_of_gt hz, ne_of_gt hS, ne_of_gt hD, ht]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.1dc44c175c8b from=translated src=- shape=1f40eff0 vocab=fe9cbefd
+-/
 theorem gaugeP1_pullback_constant (z : ℝ) (hz : 0 < z) :
     gaugeP1 z*(1-gaugeP1 z)*gaugeC1 z = -(5/36:ℝ)*z^2*gaugeK1 z^2 := by
   have hS : 0 < 1+64*z := by positivity
@@ -82,6 +103,9 @@ theorem gaugeP1_pullback_constant (z : ℝ) (hz : 0 < z) :
   field_simp [ne_of_gt hS, ne_of_gt hD]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.ab466f8beb6d from=translated src=- shape=1f40eff0 vocab=b63d501e
+-/
 theorem gaugeP2_pullback_constant (z : ℝ) (hz : 0 < z) :
     gaugeP2 z*(1-gaugeP2 z)*gaugeC2 z = -(5/36:ℝ)*z^2*gaugeK2 z^2 := by
   have hS : 0 < 1+64*z := by positivity
@@ -91,16 +115,25 @@ theorem gaugeP2_pullback_constant (z : ℝ) (hz : 0 < z) :
   field_simp [ne_of_gt hS, ne_of_gt hD]
   ring
 
+/--
+@isnad1 id=hasderiv.2h1v.s6.34e0703a968b from=translated src=- shape=7017ca3e vocab=af02c7ca
+-/
 theorem gaugeY1_hasDerivAt (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     HasDerivAt gaugeY1 (deriv gaussA (gaugeP1 z)*gaugeK1 z) z := by
   exact (gaussA_analyticAt (gaugeP1 z) (gaugeP1_norm_lt_one z hz hz1)).differentiableAt.hasDerivAt.comp z
       (gaugeP1_hasDerivAt z (by positivity) (by positivity))
 
+/--
+@isnad1 id=hasderiv.2h1v.s6.4548b6d93e21 from=translated src=- shape=7017ca3e vocab=f24dd48b
+-/
 theorem gaugeY2_hasDerivAt (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     HasDerivAt gaugeY2 (deriv gaussA (gaugeP2 z)*gaugeK2 z) z := by
   exact (gaussA_analyticAt (gaugeP2 z) (gaugeP2_norm_lt_one z hz hz1)).differentiableAt.hasDerivAt.comp z
       (gaugeP2_hasDerivAt z (by positivity) (by positivity))
 
+/--
+@isnad1 id=eq.2h1v.s8.797ebdc5fb94 from=translated src=- shape=c6f59ca4 vocab=f25bfa3f
+-/
 theorem gaugeY1_second_deriv (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     deriv (deriv gaugeY1) z =
       deriv (deriv gaussA) (gaugeP1 z)*gaugeK1 z^2+
@@ -116,6 +149,9 @@ theorem gaugeY1_second_deriv (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
   simp only [Function.comp_apply]
   ring
 
+/--
+@isnad1 id=eq.2h1v.s7.368e0d489a83 from=translated src=- shape=9ead88d2 vocab=11b11492
+-/
 theorem gaugeY2_second_deriv (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     deriv (deriv gaugeY2) z =
       deriv (deriv gaussA) (gaugeP2 z)*gaugeK2 z^2+
@@ -131,6 +167,9 @@ theorem gaugeY2_second_deriv (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
   simp only [Function.comp_apply]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s7.aa78c89e13c7 from=translated src=- shape=e63c2e83 vocab=937fc1bd
+-/
 theorem theta_second_eq {f : ℝ → ℝ} {z : ℝ} (hf : AnalyticAt ℝ f z) :
     nativeTheta (nativeTheta f) z = z*deriv f z+z^2*deriv (deriv f) z := by
   have hd := (hasDerivAt_id z).mul hf.deriv.differentiableAt.hasDerivAt
@@ -141,6 +180,9 @@ theorem theta_second_eq {f : ℝ → ℝ} {z : ℝ} (hf : AnalyticAt ℝ f z) :
   rw [he]
   ring
 
+/--
+@isnad1 id=eq.2h1v.s6.2d82fa4f11fc from=translated src=- shape=f86e5d60 vocab=f555dd57
+-/
 theorem gaugeY1_equation (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     nativeTheta (nativeTheta gaugeY1) z+gaugeB1 z*nativeTheta gaugeY1 z+
       gaugeC1 z*gaugeY1 z = 0 := by
@@ -159,6 +201,9 @@ theorem gaugeY1_equation (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
   linear_combination (z^2*gaugeK1 z^2)*he+
     deriv gaussA (gaugeP1 z)*hl+gaussA (gaugeP1 z)*hc
 
+/--
+@isnad1 id=eq.2h1v.s6.72c2faa613d5 from=translated src=- shape=f86e5d60 vocab=1492f03f
+-/
 theorem gaugeY2_equation (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     nativeTheta (nativeTheta gaugeY2) z+gaugeB2 z*nativeTheta gaugeY2 z+
       gaugeC2 z*gaugeY2 z = 0 := by

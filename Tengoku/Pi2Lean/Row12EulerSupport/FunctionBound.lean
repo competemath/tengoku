@@ -18,6 +18,9 @@ private theorem functionIntegralBase_lower {p x : ℝ} (hp1 : p < 1)
   have hm := mul_le_mul_of_nonneg_left hx.2 (show 0 ≤ 1 - p by linarith)
   nlinarith
 
+/--
+@isnad1 id=interval.2h1v.s7.0e97fed9b1c1 from=translated src=- shape=6984fb86 vocab=b0fe41ae
+-/
 theorem eulerFunctionIntegrand_integrable {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
     IntervalIntegrable
       (fun x : ℝ => Row12.betaDensity (5 / 6) x *
@@ -31,6 +34,9 @@ theorem eulerFunctionIntegrand_integrable {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
   rw [uIcc_of_le zero_le_one] at hx
   exact Or.inl (ne_of_gt (lt_of_lt_of_le hp (functionIntegralBase_lower hp1 hx)))
 
+/--
+@isnad1 id=le.2h1v.s7.40e426881327 from=translated src=- shape=1c22aa1e vocab=eb5c703f
+-/
 theorem eulerFunctionIntegral_nonneg {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
     0 ≤ ∫ x : ℝ in 0..1, Row12.betaDensity (5 / 6) x *
       (1 - (1 - p) * x) ^ (-1 / 6 : ℝ) := by
@@ -40,6 +46,9 @@ theorem eulerFunctionIntegral_nonneg {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
   · exact Row12.betaDensity_nonneg (by norm_num) (by norm_num) hx.1 hx.2
   · exact Real.rpow_nonneg (le_trans hp.le (functionIntegralBase_lower hp1 hx)) _
 
+/--
+@isnad1 id=le.2h1v.s7.0afbb87a6032 from=translated src=- shape=4d18e0ac vocab=eb5c703f
+-/
 theorem eulerFunctionIntegral_le {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
     (∫ x : ℝ in 0..1, Row12.betaDensity (5 / 6) x *
       (1 - (1 - p) * x) ^ (-1 / 6 : ℝ)) ≤ p ^ (-1 / 6 : ℝ) := by
@@ -54,6 +63,9 @@ theorem eulerFunctionIntegral_le {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
   simpa only [intervalIntegral.integral_mul_const,
     Row12.betaDensity_integral (a := (5 / 6 : ℝ)) (by norm_num) (by norm_num), one_mul] using hm
 
+/--
+@isnad1 id=and.2h1v.s8.8a7824e86627 from=translated src=- shape=d0c3006c vocab=eb5c703f
+-/
 theorem eulerFunctionIntegral_bound {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
     (0 ≤ ∫ x : ℝ in 0..1, Row12.betaDensity (5 / 6) x *
       (1 - (1 - p) * x) ^ (-1 / 6 : ℝ)) ∧
@@ -61,6 +73,9 @@ theorem eulerFunctionIntegral_bound {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
       (1 - (1 - p) * x) ^ (-1 / 6 : ℝ)) ≤ p ^ (-1 / 6 : ℝ) :=
   ⟨eulerFunctionIntegral_nonneg hp hp1, eulerFunctionIntegral_le hp hp1⟩
 
+/--
+@isnad1 id=tendsto.0h0v.s7.9dfe4e167a67 from=translated src=- shape=b89ccab8 vocab=f64ffa4a
+-/
 theorem functionIntegralEndpoint_tendsto :
     Tendsto
       (fun p : ℝ => p * (∫ x : ℝ in 0..1, Row12.betaDensity (5 / 6) x *

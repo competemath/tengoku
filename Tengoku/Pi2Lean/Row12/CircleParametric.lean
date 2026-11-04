@@ -13,6 +13,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=hasderiv.5h6v.s8.965f7138683e from=translated src=- shape=db4609a1 vocab=4e358b5f
+-/
 theorem circleParametric_hasDerivAt
     (F F' : ℂ → ℂ → ℂ) (a c : ℂ) (r ε : ℝ) (hr : 0 ≤ r) (hε : 0 < ε)
     (hF : ContinuousOn (fun p : ℂ × ℂ => F p.1 p.2)
@@ -65,6 +68,9 @@ theorem circleParametric_hasDerivAt
     (hJI a hac) hJ'm hbound hconst hdiff).2
   simpa only [circleIntegral, smul_eq_mul, intervalIntegral.integral_of_le hpi, J,J'] using hh
 
+/--
+@isnad1 id=eq.2h4v.s6.e3767e0243aa from=translated src=- shape=04529806 vocab=7ca3aa9d
+-/
 theorem circleIntegral_exactDerivative (P P' : ℂ → ℂ) {c : ℂ} {r : ℝ}
     (hr : 0 ≤ r) (hP : ∀ s ∈ sphere c r, HasDerivAt P (P' s) s) :
     (∮ s in C(c,r), P' s) = 0 := by

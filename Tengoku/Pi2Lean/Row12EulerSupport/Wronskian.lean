@@ -26,6 +26,9 @@ noncomputable def gaussScaledWronskian (p : ℝ) : ℝ :=
     (Row12.gaussA p * (-deriv Row12.gaussA (1 - p)) -
       Row12.gaussA (1 - p) * deriv Row12.gaussA p)
 
+/--
+@isnad1 id=hasderiv.2h1v.s5.b16077b9e393 from=translated src=- shape=a1b846c6 vocab=02b6ed78
+-/
 theorem gaussScaledWronskian_hasDerivAt_zero (p : ℝ) (hp0 : 0 < p) (hp1 : p < 1) :
     HasDerivAt gaussScaledWronskian 0 p := by
   have hp : ‖p‖ < 1 := by simpa only [Real.norm_eq_abs, abs_of_pos hp0] using hp1
@@ -65,6 +68,9 @@ theorem gaussScaledWronskian_hasDerivAt_zero (p : ℝ) (hp0 : 0 < p) (hp1 : p < 
   apply hd.congr_deriv
   linear_combination Row12.gaussA p * her - Row12.gaussA (1 - p) * he
 
+/--
+@isnad1 id=eq.4h2v.s5.558092e8a932 from=translated src=- shape=2dd859db vocab=60f9fd9b
+-/
 theorem gaussScaledWronskian_eq (p r : ℝ)
     (hp0 : 0 < p) (hp1 : p < 1) (hr0 : 0 < r) (hr1 : r < 1) :
     gaussScaledWronskian p = gaussScaledWronskian r := by
@@ -73,7 +79,9 @@ theorem gaussScaledWronskian_eq (p r : ℝ)
     (fun x hx => (gaussScaledWronskian_hasDerivAt_zero x hx.1 hx.2).deriv)
     ⟨hp0, hp1⟩ ⟨hr0, hr1⟩
 
-/-- A calculus helper. Its limit premise is discharged by the actual endpoint proofs.-/
+/-- A calculus helper. Its limit premise is discharged by the actual endpoint proofs.
+@isnad1 id=eq.3h2v.s6.9308ea22e8fa from=translated src=- shape=3eb6ac61 vocab=04372217
+-/
 theorem gaussScaledWronskian_eq_of_limit (p K : ℝ) (hp0 : 0 < p) (hp1 : p < 1)
     (hl : Tendsto gaussScaledWronskian (𝓝[>] (0 : ℝ)) (𝓝 K)) :
     gaussScaledWronskian p = K := by
@@ -86,7 +94,9 @@ theorem gaussScaledWronskian_eq_of_limit (p K : ℝ) (hp0 : 0 < p) (hp1 : p < 1)
       (𝓝 (gaussScaledWronskian p)) := tendsto_const_nhds.congr' he.symm
   exact tendsto_nhds_unique hc hl
 
-/-- A conditional endpoint assembly helper; this is not the final normalized theorem.-/
+/-- A conditional endpoint assembly helper; this is not the final normalized theorem.
+@isnad1 id=tendsto.2h1v.s7.ac1c1523be71 from=translated src=- shape=9978d1e7 vocab=ca530e01
+-/
 theorem gaussScaledWronskian_tendsto_of_endpoints (K : ℝ)
     (hd : Tendsto (fun p : ℝ => -p * deriv Row12.gaussA (1 - p))
       (𝓝[>] (0 : ℝ)) (𝓝 K))
@@ -113,7 +123,9 @@ theorem gaussScaledWronskian_tendsto_of_endpoints (K : ℝ)
     ring
   simpa only [he, one_mul, mul_zero, sub_zero] using ht
 
-/-- The remaining native-coordinate chain rule, without a normalization premise.-/
+/-- The remaining native-coordinate chain rule, without a normalization premise.
+@isnad1 id=hasderiv.2h1v.s7.eb3ff731b9b9 from=translated src=- shape=ec2afb12 vocab=6065d7e9
+-/
 theorem gaussReflected_hasDerivAt (q : ℝ) (hq0 : 0 < q) (hq1 : q < 1) :
     HasDerivAt (fun x : ℝ => Row12.gaussA (1 - Row12.gaussP x))
       (-deriv Row12.gaussA (1 - Row12.gaussP q) / (4 * Real.sqrt (1 - q))) q := by
@@ -130,6 +142,9 @@ theorem gaussReflected_hasDerivAt (q : ℝ) (hq0 : 0 < q) (hq1 : q < 1) :
   apply hd.congr_deriv
   ring
 
+/--
+@isnad1 id=eq.2h1v.s6.51bb254e0fc5 from=translated src=- shape=03dbe084 vocab=f0664da5
+-/
 theorem gaussNativeWronskian_eq_scaled (q : ℝ) (hq0 : 0 < q) (hq1 : q < 1) :
     Row12.gaussG q * Row12.nativeTheta
       (fun x => Row12.gaussA (1 - Row12.gaussP x)) q -
@@ -143,16 +158,25 @@ theorem gaussNativeWronskian_eq_scaled (q : ℝ) (hq0 : 0 < q) (hq1 : q < 1) :
   rw [Row12.gaussP_quadratic q hq1]
   field_simp [hs]
 
+/--
+@isnad1 id=tendsto.0h0v.s6.6e693e6f2c77 from=translated src=- shape=e4ca2e4a vocab=b8c35c5a
+-/
 theorem gaussScaledWronskian_tendsto :
     Tendsto gaussScaledWronskian (𝓝[>] (0 : ℝ)) (𝓝 (-1 / (2 * Real.pi))) :=
   gaussScaledWronskian_tendsto_of_endpoints (-1 / (2 * Real.pi))
     derivativeEndpoint functionEndpoint
 
+/--
+@isnad1 id=eq.2h1v.s5.a815e71d9016 from=translated src=- shape=bcace877 vocab=2cb935a0
+-/
 theorem gaussScaledWronskian_normalized (p : ℝ) (hp0 : 0 < p) (hp1 : p < 1) :
     gaussScaledWronskian p = -1 / (2 * Real.pi) :=
   gaussScaledWronskian_eq_of_limit p (-1 / (2 * Real.pi)) hp0 hp1
     gaussScaledWronskian_tendsto
 
+/--
+@isnad1 id=eq.2h1v.s7.98ae2024b6e9 from=translated src=- shape=2abe9351 vocab=84725d4b
+-/
 theorem gaussWronskian_normalized (p : ℝ) (hp0 : 0 < p) (hp1 : p < 1) :
     Row12.gaussA p * (-deriv Row12.gaussA (1 - p)) -
       Row12.gaussA (1 - p) * deriv Row12.gaussA p =
@@ -164,7 +188,9 @@ theorem gaussWronskian_normalized (p : ℝ) (hp0 : 0 < p) (hp1 : p < 1) :
   simp only [gaussScaledWronskian, mul_div_cancel_left₀ _ hp] at h
   simpa only [div_div, mul_assoc] using h
 
-/-- The literal native Gauss Wronskian, normalized by the actual differentiated endpoints.-/
+/-- The literal native Gauss Wronskian, normalized by the actual differentiated endpoints.
+@isnad1 id=eq.2h1v.s7.d89b7f89654e from=translated src=- shape=8047726b vocab=893d643b
+-/
 theorem gaussNativeWronskian (q : ℝ) (hq0 : 0 < q) (hq1 : q < 1) :
     Row12.gaussG q * Row12.nativeTheta
       (fun x => Row12.gaussA (1 - Row12.gaussP x)) q -

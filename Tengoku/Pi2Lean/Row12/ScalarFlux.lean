@@ -19,6 +19,9 @@ namespace Row12
 noncomputable def scalarTotalFlux (U : ℝ) : ℝ :=
   (betaFluxBalanced U+outerPrimitiveFlux (U:ℂ)).re
 
+/--
+@isnad1 id=hasderiv.3h1v.s6.7f83849cc5c4 from=translated src=- shape=b94a405d vocab=d3b0c687
+-/
 theorem scalarTotalFlux_hasDerivAt {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
     (hE : 99*scalarPathX U-50 ≠ 0) :
     HasDerivAt scalarTotalFlux (-scalarIntegrand U/3375) U := by

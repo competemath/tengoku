@@ -24,6 +24,9 @@ noncomputable def contactSourceMatrix : Matrix (Fin 3) (Fin 3) ℝ :=
 noncomputable def contactResidueMatrix : Matrix (Fin 3) (Fin 3) ℝ :=
   !![-1/750, 1/150, 98/1125; 1/150, 98/1125, 0; 98/1125, 0, 0]
 
+/--
+@isnad1 id=eq.0h0v.s7.47ed37fe5add from=translated src=- shape=6e785a8e vocab=1f15a298
+-/
 theorem contact_matrix_product :
     contactStateMatrix * contactSourceMatrix * contactStateMatrix.transpose =
       contactResidueMatrix := by
@@ -35,12 +38,18 @@ theorem contact_matrix_product :
 noncomputable def residueForm (F DF D2F : ℝ) : ℝ :=
   dotProduct ![F, DF, D2F] (Matrix.mulVec contactResidueMatrix ![F, DF, D2F])
 
+/--
+@isnad1 id=eq.0h3v.s7.7dd0cbd0b6ac from=translated src=- shape=93d7e136 vocab=85e7182d
+-/
 theorem residueForm_eq (F DF D2F : ℝ) :
     residueForm F DF D2F = -F^2/750 + F*DF/75 +
       196*F*D2F/1125 + 98*DF^2/1125 := by
   simp [residueForm, contactResidueMatrix, dotProduct, Matrix.mulVec, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s8.d8b29c000fa2 from=translated src=- shape=6666d6f8 vocab=e60a579b
+-/
 theorem residue_perfectSquare (g dg : ℝ) :
     residueForm (g^2) (2*g*dg)
       (2*dg^2+2*g*((27/196)*dg+(15/1568)*g)) =
@@ -48,6 +57,9 @@ theorem residue_perfectSquare (g dg : ℝ) :
   rw [residueForm_eq]
   ring
 
+/--
+@isnad1 id=eq.3h4v.s8.2910c34f4953 from=translated src=- shape=05ef25ac vocab=2dcfb519
+-/
 theorem wronskian_contact_square (g dg Z dZ : ℝ)
     (hZ : Z = Real.sqrt 2 * g)
     (hdZ : dZ = -Real.sqrt 2 * dg - (3*Real.sqrt 2/28)*g)
@@ -70,6 +82,9 @@ theorem wronskian_contact_square (g dg Z dZ : ℝ)
     (3*g^2+56*g*dg)^2 = 392*(g*dZ-Z*dg)^2 := by rw [hleft]; ring
     _ = 125/Real.pi^2 := by rw [hW, hright]; ring
 
+/--
+@isnad1 id=eq.3h4v.s8.30ce3d8030d8 from=translated src=- shape=421160de vocab=9be6c06f
+-/
 theorem residue_at_wronskian (g dg Z dZ : ℝ)
     (hZ : Z = Real.sqrt 2 * g)
     (hdZ : dZ = -Real.sqrt 2 * dg - (3*Real.sqrt 2/28)*g)

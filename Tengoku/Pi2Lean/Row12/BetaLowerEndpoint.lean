@@ -11,6 +11,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=eventual.0h0v.s6.22989e29322d from=translated src=- shape=60ae3507 vocab=b2185f56
+-/
 theorem beta_lower_deformation_eventually :
     betaFluxBalanced =ᶠ[nhdsWithin 0 (Ioi 0)] (fun U : ℝ =>
       betaFluxCircle (U:ℂ) (1/10)+
@@ -54,6 +57,9 @@ theorem beta_lower_deformation_eventually :
   rw [sub_eq_iff_eq_add] at he
   exact he.trans (add_comm _ _)
 
+/--
+@isnad1 id=tendsto.0h0v.s6.c1e0aac9c35f from=translated src=- shape=fd20c6c2 vocab=9d3837a8
+-/
 theorem betaFluxBalanced_lowerEndpoint :
     Tendsto betaFluxBalanced (nhdsWithin 0 (Ioi 0))
       (nhds ((1/(36*Real.pi^2):ℝ):ℂ)) := by

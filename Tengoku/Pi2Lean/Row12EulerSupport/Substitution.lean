@@ -27,11 +27,17 @@ noncomputable def derivativeKernel (p x : ℝ) : ℝ :=
   x ^ (5 / 6 : ℝ) * (1 - x) ^ (-5 / 6 : ℝ) *
     (1 - (1 - p) * x) ^ (-7 / 6 : ℝ)
 
+/--
+@isnad1 id=lt.3h2v.s6.57c93cd77c3e from=translated src=- shape=41b93f15 vocab=85d98899
+-/
 theorem endpointMapDenominator_pos {p y : ℝ} (hp : 0 < p) (hp1 : p < 1)
     (hy : y ∈ Icc (0 : ℝ) 1) : 0 < 1 - (1 - p) * y := by
   have h := mul_le_mul_of_nonneg_left hy.2 (by linarith : 0 ≤ 1 - p)
   nlinarith
 
+/--
+@isnad1 id=mem.3h2v.s6.d959d83599c9 from=translated src=- shape=7b146767 vocab=87c4301c
+-/
 theorem endpointMap_mem_Ioo {p y : ℝ} (hp : 0 < p) (hp1 : p < 1)
     (hy : y ∈ Ioo (0 : ℝ) 1) : endpointMap p y ∈ Ioo (0 : ℝ) 1 := by
   have hd := endpointMapDenominator_pos hp hp1 ⟨hy.1.le, hy.2.le⟩
@@ -42,6 +48,9 @@ theorem endpointMap_mem_Ioo {p y : ℝ} (hp : 0 < p) (hp1 : p < 1)
   · apply (div_lt_one hd).2
     nlinarith [hy.1]
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.76e37afee603 from=translated src=- shape=a0b79abd vocab=cc6ed23c
+-/
 theorem endpointMap_hasDerivAt {p y : ℝ} (hd : 1 - (1 - p) * y ≠ 0) :
     HasDerivAt (endpointMap p)
       (-p / (1 - (1 - p) * y) ^ 2) y := by
@@ -53,6 +62,9 @@ theorem endpointMap_hasDerivAt {p y : ℝ} (hd : 1 - (1 - p) * y ≠ 0) :
     ring
   convert! h.congr_deriv he using 1
 
+/--
+@isnad1 id=continuo.2h1v.s5.e0e20b5532ae from=translated src=- shape=3b83f5f5 vocab=c77f549e
+-/
 theorem endpointMap_continuousOn {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
     ContinuousOn (endpointMap p) (Icc (0 : ℝ) 1) := by
   apply (continuous_const.sub continuous_id).continuousOn.div
@@ -60,12 +72,21 @@ theorem endpointMap_continuousOn {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
   intro y hy
   exact (endpointMapDenominator_pos hp hp1 hy).ne'
 
+/--
+@isnad1 id=eq.0h1v.s4.72793072f9bc from=translated src=- shape=1d838610 vocab=0e0fa011
+-/
 theorem endpointMap_zero {p : ℝ} : endpointMap p 0 = 1 := by
   simp [endpointMap]
 
+/--
+@isnad1 id=eq.0h1v.s4.e7832ad26e2d from=translated src=- shape=1d838610 vocab=0e0fa011
+-/
 theorem endpointMap_one {p : ℝ} : endpointMap p 1 = 0 := by
   simp [endpointMap]
 
+/--
+@isnad1 id=and.1h2v.s7.87855c0ee54f from=translated src=- shape=3872acd4 vocab=def3af93
+-/
 theorem endpointMap_factors {p y : ℝ} (hd : 1 - (1 - p) * y ≠ 0) :
     1 - endpointMap p y = (p / (1 - (1 - p) * y)) * y ∧
     1 - (1 - p) * endpointMap p y = p / (1 - (1 - p) * y) := by
@@ -89,6 +110,9 @@ theorem endpointMap_factors {p y : ℝ} (hd : 1 - (1 - p) * y ≠ 0) :
         congr 1
         ring
 
+/--
+@isnad1 id=eq.3h2v.s7.d54fe244af52 from=translated src=- shape=4c476fd6 vocab=05725534
+-/
 theorem derivativeKernel_power_cancel {p y : ℝ} (hp : 0 < p) (hp1 : p < 1)
     (hy : y ∈ Ioo (0 : ℝ) 1) :
     derivativeKernel p (endpointMap p y) *
@@ -115,6 +139,9 @@ theorem derivativeKernel_power_cancel {p y : ℝ} (hp : 0 < p) (hp1 : p < 1)
       dsimp only [t]
       field_simp [hp.ne', hd.ne']
 
+/--
+@isnad1 id=eq.2h1v.s7.37c3c1c252e9 from=translated src=- shape=5aed363b vocab=6fd38484
+-/
 theorem derivativeKernel_substitution {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
     p * (∫ x : ℝ in 0..1, derivativeKernel p x) =
       ∫ y : ℝ in 0..1, y ^ (-5 / 6 : ℝ) * endpointMap p y ^ (5 / 6 : ℝ) := by

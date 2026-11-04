@@ -15,9 +15,15 @@ open scoped Topology
 
 namespace Row12EulerSupport
 
+/--
+@isnad1 id=eq.0h0v.s5.dd8c6e0b3495 from=translated src=- shape=4683683d vocab=f5564a90
+-/
 theorem upperNativeCoefficient_one : Row12.coefficient3 1 = 5 / 72 := by
   norm_num [Row12.coefficient3]
 
+/--
+@isnad1 id=eq.0h1v.s5.c6eb93b4cc76 from=translated src=- shape=b120aee3 vocab=c6dff851
+-/
 theorem upperNativeEuler_zero (k : ℕ) :
     Row12.nativeEuler k (0 : ℂ) = (0 : ℂ) ^ k := by
   unfold Row12.nativeEuler
@@ -26,6 +32,9 @@ theorem upperNativeEuler_zero (k : ℕ) :
   · intro n hn
     simp [zero_pow hn]
 
+/--
+@isnad1 id=eq.0h1v.s6.4579818a6b9a from=translated src=- shape=cbeee473 vocab=fd1589d9
+-/
 theorem upperNativeEuler_deriv_zero (k : ℕ) :
     deriv (Row12.nativeEuler k : ℂ → ℂ) 0 = 5 / 72 := by
   rw [(Row12.nativeEuler_hasDerivAt k (0 : ℂ) (by simp)).deriv]
@@ -43,11 +52,17 @@ theorem upperNativeEuler_deriv_zero (k : ℕ) :
           | succ n => simp
     _ = 5 / 72 := by simp [upperNativeCoefficient_one]
 
+/--
+@isnad1 id=hasderiv.0h1v.s6.d73e3bf7392c from=translated src=- shape=f78d252f vocab=fefb1478
+-/
 theorem upperNativeEuler_hasDerivAt_zero (k : ℕ) :
     HasDerivAt (Row12.nativeEuler k : ℂ → ℂ) (5 / 72) 0 :=
   (Row12.nativeEuler_hasDerivAt k (0 : ℂ) (by simp)).differentiableAt.hasDerivAt.congr_deriv
     (upperNativeEuler_deriv_zero k)
 
+/--
+@isnad1 id=analytic.0h1v.s5.df3056515fe4 from=translated src=- shape=05571486 vocab=73238876
+-/
 theorem upperNativeEuler_analyticAt_zero (k : ℕ) :
     AnalyticAt ℂ (Row12.nativeEuler k : ℂ → ℂ) 0 := by
   induction k with
@@ -59,11 +74,17 @@ theorem upperNativeEuler_analyticAt_zero (k : ℕ) :
     filter_upwards [Metric.ball_mem_nhds (0 : ℂ) (by norm_num : (0 : ℝ) < 1)] with q hq
     exact (Row12.nativeEuler_succ_eq k q (by simpa using hq)).symm
 
+/--
+@isnad1 id=eq.0h0v.s5.5b48d7858f76 from=translated src=- shape=e459036d vocab=3cd9e08e
+-/
 theorem upperDualState_zero : (Row12.dualState (0 : ℂ)) = 0 := by
   ext i
   rw [Row12.dual_state_formula]
   fin_cases i <;> simp [upperNativeEuler_zero, Row12.nativeF]
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.e5764643b04d from=translated src=- shape=0536ee8a vocab=df36525f
+-/
 theorem upperDualState_component_hasDerivAt_zero (i : Fin 3) :
     HasDerivAt (fun q : ℂ => Row12.dualState q i) 0 0 := by
   have hid := hasDerivAt_id (0 : ℂ)
@@ -91,14 +112,23 @@ theorem upperDualState_component_hasDerivAt_zero (i : Fin 3) :
       simp [Row12.dual_state_formula]
     · simp
 
+/--
+@isnad1 id=hasderiv.0h0v.s7.db18b86786b2 from=translated src=- shape=b55ce312 vocab=df36525f
+-/
 theorem upperDualState_hasDerivAt_zero :
     HasDerivAt (Row12.dualState : ℂ → Fin 3 → ℂ) 0 0 := by
   exact hasDerivAt_pi.2 upperDualState_component_hasDerivAt_zero
 
+/--
+@isnad1 id=eq.0h0v.s7.ee349fb7176f from=translated src=- shape=8978d8ec vocab=4e35e28c
+-/
 theorem upperDualState_deriv_zero :
     deriv (Row12.dualState : ℂ → Fin 3 → ℂ) 0 = 0 :=
   upperDualState_hasDerivAt_zero.deriv
 
+/--
+@isnad1 id=analytic.0h0v.s7.be17fbca62f7 from=translated src=- shape=e7a57465 vocab=0e5310a1
+-/
 theorem upperDualState_analyticAt_zero :
     AnalyticAt ℂ (Row12.dualState : ℂ → Fin 3 → ℂ) 0 := by
   apply AnalyticAt.pi
@@ -109,6 +139,9 @@ theorem upperDualState_analyticAt_zero :
   have hE2 := upperNativeEuler_analyticAt_zero 2
   fin_cases i <;> simp [Row12.dual_state_formula] <;> fun_prop
 
+/--
+@isnad1 id=ex.0h0v.s6.19cfee04b57f from=translated src=- shape=505cb2a5 vocab=592a03f6
+-/
 theorem upperDualState_eventually_quadratic_bound :
     ∃ C > 0, ∀ᶠ q : ℂ in 𝓝 0, ‖Row12.dualState q‖ ≤ C * ‖q‖ ^ 2 := by
   have horder : (2 : ℕ) ≤ analyticOrderAt (Row12.dualState : ℂ → Fin 3 → ℂ) 0 := by
@@ -126,6 +159,9 @@ theorem upperDualState_eventually_quadratic_bound :
   simp only [sub_zero, norm_smul, norm_pow]
   exact (mul_le_mul_of_nonneg_left hnorm.le (sq_nonneg ‖q‖)).trans_eq (mul_comm _ _)
 
+/--
+@isnad1 id=isbigo.0h0v.s6.5302c48bd8e1 from=translated src=- shape=6bf9f5b5 vocab=2c118509
+-/
 theorem upperDualState_isBigO_sq :
     (Row12.dualState : ℂ → Fin 3 → ℂ) =O[𝓝 0] (fun q : ℂ => ‖q‖ ^ 2) := by
   obtain ⟨C, _, hC⟩ := upperDualState_eventually_quadratic_bound
@@ -133,6 +169,9 @@ theorem upperDualState_isBigO_sq :
   filter_upwards [hC] with q hq
   simpa only [Real.norm_eq_abs, abs_of_nonneg (sq_nonneg ‖q‖)] using hq
 
+/--
+@isnad1 id=ex.0h0v.s6.c7d5270bec91 from=translated src=- shape=2d77c071 vocab=17b0202c
+-/
 theorem upperDualState_quadratic_bound :
     ∃ C > 0, ∃ δ > 0, δ ≤ (1 / 2 : ℝ) ∧
       ∀ q : ℂ, ‖q‖ ≤ δ → ∀ i : Fin 3, ‖Row12.dualState q i‖ ≤ C * ‖q‖ ^ 2 := by

@@ -22,13 +22,22 @@ noncomputable def coefficient3 (n : ℕ) : ℝ :=
   (Nat.factorial (6 * n) : ℝ) /
     ((Nat.factorial (3 * n) : ℝ) * (Nat.factorial n : ℝ) ^ 3 * (1728 : ℝ) ^ n)
 
+/--
+@isnad1 id=interval.0h1v.s6.f5817f2049b5 from=translated src=- shape=262b43a3 vocab=049ddd3a
+-/
 theorem uniformMoment_integrable (m : ℕ) :
     IntervalIntegrable (fun u : ℝ => (1 - u ^ 2) ^ m) MeasureTheory.volume 0 1 := by
   exact (continuous_const.sub (continuous_id.pow 2)).pow m |>.intervalIntegrable 0 1
 
+/--
+@isnad1 id=eq.0h0v.s3.9591c5538a5b from=translated src=- shape=1ac31801 vocab=ad0acbe6
+-/
 theorem uniformMoment_zero : uniformMoment 0 = 1 := by
   simp [uniformMoment, intervalIntegral.integral_const]
 
+/--
+@isnad1 id=hasderiv.0h2v.s8.39480e776ff5 from=translated src=- shape=cca6554b vocab=7bc098e7
+-/
 theorem uniformPrimitive_hasDerivAt (m : ℕ) (u : ℝ) :
     HasDerivAt (fun u : ℝ => u * (1 - u ^ 2) ^ (m + 1))
       ((2 * (m : ℝ) + 3) * (1 - u ^ 2) ^ (m + 1) -
@@ -41,6 +50,9 @@ theorem uniformPrimitive_hasDerivAt (m : ℕ) (u : ℝ) :
   rw [pow_succ]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.cb67cb0d5b48 from=translated src=- shape=2b05ea03 vocab=506f71e1
+-/
 theorem uniformMoment_succ_mul (m : ℕ) :
     (2 * (m : ℝ) + 3) * uniformMoment (m + 1) =
       (2 * (m : ℝ) + 2) * uniformMoment m := by
@@ -54,6 +66,9 @@ theorem uniformMoment_succ_mul (m : ℕ) :
   simp only [one_pow, sub_self, zero_pow (Nat.succ_ne_zero m), mul_zero, zero_mul] at hftc
   exact sub_eq_zero.mp hftc
 
+/--
+@isnad1 id=eq.0h1v.s6.bfe1075e455e from=translated src=- shape=e797ef09 vocab=3d8a341b
+-/
 theorem uniformMoment_eq_factorial (m : ℕ) :
     uniformMoment m =
       (4 : ℝ) ^ m * (Nat.factorial m : ℝ) ^ 2 / (Nat.factorial (2 * m + 1) : ℝ) := by
@@ -76,6 +91,9 @@ theorem uniformMoment_eq_factorial (m : ℕ) :
     field_simp [hf, h2, h3]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s7.3502011cd233 from=translated src=- shape=8cba2358 vocab=6b668c19
+-/
 theorem coefficient3_sq_mul_uniformMoment (n : ℕ) :
     coefficient3 n ^ 2 * uniformMoment (3 * n) =
       ((Nat.factorial (6 * n) : ℝ) /

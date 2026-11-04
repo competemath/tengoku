@@ -15,6 +15,9 @@ open Filter Set Row12
 
 namespace Row12GaussGauge
 
+/--
+@isnad1 id=eventual.0h0v.s4.a693e826bb6c from=translated src=- shape=3b141450 vocab=0db8c344
+-/
 theorem gauge_normalized_eq_eventually : gaugeY2 =ᶠ[nhds 0] gaugeW := by
   apply normalized_regularSecond_eq_eventually (fun _ => 1) gaugeB2 gaugeC2
     continuousAt_const gaugeB2_continuousAt_zero gaugeC2_continuousAt_zero
@@ -26,6 +29,9 @@ theorem gauge_normalized_eq_eventually : gaugeY2 =ᶠ[nhds 0] gaugeW := by
   · filter_upwards [gaugeW_equation_eventually] with z hz
     simpa only [regularSecond, one_mul] using hz
 
+/--
+@isnad1 id=eq.2h1v.s5.c1e76fc51fb1 from=translated src=- shape=db3cee81 vocab=44037bf5
+-/
 theorem gauge_transformation (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     gaugeY2 z = gaugeL z*gaugeY1 z := by
   have hf : AnalyticOnNhd ℝ gaugeY2 (Ioo (0:ℝ) (1/8)) := by
@@ -44,11 +50,17 @@ theorem gauge_transformation (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
   obtain ⟨q0,hq0,heq⟩ := hlocal.exists
   exact hf.eqOn_of_preconnected_of_eventuallyEq hg isPreconnected_Ioo hq0 heq ⟨hz,hz1⟩
 
+/--
+@isnad1 id=eventual.2h1v.s5.726521bb3fb6 from=translated src=- shape=56b0c9d0 vocab=73851dc7
+-/
 theorem gauge_transformation_eventually (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     gaugeY2 =ᶠ[nhds z] gaugeW := by
   filter_upwards [isOpen_Ioo.mem_nhds (show z ∈ Ioo (0:ℝ) (1/8) from ⟨hz,hz1⟩)] with q hq
   exact gauge_transformation q hq.1 hq.2
 
+/--
+@isnad1 id=eq.2h1v.s7.604590455e9a from=translated src=- shape=56fa3179 vocab=357ebc1d
+-/
 theorem gauge_transformation_derivative (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     deriv gaussA (gaugeP2 z)*gaugeK2 z =
       gaugeL z*gaugeMu z*gaussA (gaugeP1 z)+
@@ -60,6 +72,9 @@ theorem gauge_transformation_derivative (z : ℝ) (hz : 0 < z) (hz1 : z < 1/8) :
     _ = deriv gaugeW z := (gauge_transformation_eventually z hz hz1).deriv_eq
     _ = _ := hd.deriv
 
+/--
+@isnad1 id=eq.1h1v.s5.9652b69b076f from=translated src=- shape=9dded77f vocab=842a4d06
+-/
 theorem signed_gauss_transformation (h : ℝ) (hh : 8 < h) :
     gaussA (hP2 h) = hL h*gaussA (hP1 h) := by
   have hh0 : 0 < h := by linarith
@@ -69,6 +84,9 @@ theorem signed_gauss_transformation (h : ℝ) (hh : 8 < h) :
   rw [hP2_eq_gauge h hh, hP1_eq_gauge h hh, hL_eq_gauge h hh]
   exact gauge_transformation (1/h) hz hz1
 
+/--
+@isnad1 id=eq.1h1v.s6.c82870e57d18 from=translated src=- shape=2c1d8538 vocab=1ed293e7
+-/
 theorem signed_gauss_transformation_derivative (h : ℝ) (hh : 8 < h) :
     deriv (fun x => gaussA (hP2 x)) h =
       deriv (fun x => hL x*gaussA (hP1 x)) h := by

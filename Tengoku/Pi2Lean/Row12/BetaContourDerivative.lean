@@ -17,6 +17,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=ex.4h2v.s7.b4e17810be6d from=translated src=- shape=f1a679d2 vocab=7daf886a
+-/
 theorem betaFlux_regular_tube (U : ℂ) {r : ℝ}
     (hr : 0 < r) (hr1 : r < 1) (hl : ‖betaFrameLambda (betaFrameX U)‖ < r)
     (hH : ∀ s ∈ sphere (0:ℂ) r, betaFrameH U s ≠ 0) :
@@ -43,6 +46,9 @@ theorem betaFlux_regular_tube (U : ℂ) {r : ℝ}
   intro V hV s hs
   exact hball (mem_ball.mpr ((mem_closedBall.mp hV).trans_lt (by linarith))) s hs
 
+/--
+@isnad1 id=hasderiv.5h2v.s7.f2a79c9bb289 from=translated src=- shape=478eb033 vocab=8f7afc60
+-/
 theorem betaFluxCircle_hasDerivAt (U : ℂ) {r : ℝ}
     (hr : 0 < r) (hr1 : r < 1) (hl : ‖betaFrameLambda (betaFrameX U)‖ < r)
     (hl0 : betaFrameLambda (betaFrameX U) ≠ 0)

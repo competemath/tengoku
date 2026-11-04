@@ -40,7 +40,9 @@ namespace Row12
 
 attribute [local fun_prop] analyticAt_fst analyticAt_snd
 
-/-- A joint analytic tube gives the actual analytic parameter circle integral.-/
+/-- A joint analytic tube gives the actual analytic parameter circle integral.
+@isnad1 id=analytic.3h5v.s7.d1e6fdf437a6 from=translated src=- shape=e1c5a5cc vocab=d3a1a0fc
+-/
 theorem circleIntegral_analyticAt_of_joint_analyticOnTube
     (F : ℂ → ℂ → ℂ) (a c : ℂ) (r ε : ℝ) (hr : 0 ≤ r) (hε : 0 < ε)
     (hF : ∀ p ∈ closedBall a ε ×ˢ sphere c r,
@@ -111,28 +113,43 @@ noncomputable def escapeClearedOuterFlux (U : ℂ) : ℂ :=
 noncomputable def escapeClearedTotal (U : ℂ) : ℂ :=
   escapeClearedBetaCircle U escapeRadius+escapeClearedOuterFlux U
 
+/--
+@isnad1 id=eq.0h0v.s5.131e3e4a51d1 from=translated src=- shape=bce64568 vocab=fed0670f
+-/
 theorem escapePoint_sq : escapePoint^2=(49/99:ℝ) := by
   have hs : (Real.sqrt (11:ℝ))^2=11 := Real.sq_sqrt (by norm_num)
   unfold escapePoint
   rw [div_pow,mul_pow,hs]
   norm_num
 
+/--
+@isnad1 id=and.0h0v.s4.b697d9d6654f from=translated src=- shape=149fafef vocab=f30e41c0
+-/
 theorem escapePoint_mem : 0<escapePoint ∧ escapePoint<1 := by
   have hp : 0<escapePoint := div_pos (by norm_num)
     (mul_pos (by norm_num) (Real.sqrt_pos.2 (by norm_num)))
   refine ⟨hp,?_⟩
   nlinarith [escapePoint_sq]
 
+/--
+@isnad1 id=eq.0h0v.s4.4383445cf628 from=translated src=- shape=c29dca45 vocab=2fe95dd9
+-/
 theorem escape_path_x : scalarPathX escapePoint=(50/99:ℝ) := by
   rw [scalarPathX,escapePoint_sq]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s4.2592551fa9b5 from=translated src=- shape=c896535a vocab=91a9be75
+-/
 theorem escape_complex_x : betaFrameX (escapePoint:ℂ)=(50/99:ℂ) := by
   have hx : betaFrameX (escapePoint:ℂ)=(scalarPathX escapePoint:ℂ) := by
     simp [betaFrameX,scalarPathX]
   rw [hx,escape_path_x]
   norm_num
 
+/--
+@isnad1 id=and.0h0v.s5.836a2b389fa7 from=translated src=- shape=bafac9fe vocab=8f06486a
+-/
 theorem escape_radius_domain :
     0<escapeRadius ∧ escapeRadius<1 ∧
       ‖betaFrameLambda (betaFrameX (escapePoint:ℂ))‖<escapeRadius := by
@@ -151,6 +168,9 @@ theorem escape_radius_domain :
   rw [hx,hlambda,Complex.norm_of_nonneg hl0.le]
   nlinarith
 
+/--
+@isnad1 id=and.1h1v.s6.383ac0639e6f from=translated src=- shape=c9ba71bc vocab=27b38374
+-/
 theorem escape_circle_regular (s : ℂ) (hs : s ∈ sphere (0:ℂ) escapeRadius) :
     escapeBetaDenominator (escapePoint:ℂ) s ≠ 0 ∧ s ≠ 0 ∧ ‖s‖<1 ∧
       ‖betaFrameB (escapePoint:ℂ) s‖<1 := by
@@ -179,16 +199,25 @@ theorem escape_circle_regular (s : ℂ) (hs : s ∈ sphere (0:ℂ) escapeRadius)
   refine ⟨mul_ne_zero (mul_ne_zero (pow_ne_zero 4 hx) hM) hF,hs0,hs1,?_⟩
   simpa only [betaFrameB] using hb
 
+/--
+@isnad1 id=continuo.0h0v.s5.3d99612e640f from=translated src=- shape=1c9bbd5f vocab=103b8c88
+-/
 theorem escapeBetaDenominator_continuous :
     Continuous (fun p : ℂ × ℂ => escapeBetaDenominator p.1 p.2) := by
   unfold escapeBetaDenominator betaFrameX betaFrameM betaFrameF betaFrameMid betaFrameLambda
   fun_prop
 
+/--
+@isnad1 id=continuo.1h1v.s6.49b5c753194b from=translated src=- shape=9f2c3121 vocab=f395fc7b
+-/
 theorem escape_B_continuousAt (p : ℂ × ℂ) (hs0 : p.2 ≠ 0) :
     ContinuousAt (fun q : ℂ × ℂ => betaFrameB q.1 q.2) p := by
   unfold betaFrameB betaFrameLambda betaFrameX
   fun_prop (disch := assumption)
 
+/--
+@isnad1 id=ex.0h0v.s6.949f2904fd4f from=translated src=- shape=30bdefc3 vocab=1a9b4206
+-/
 theorem escape_regular_tube :
     ∃ ε > 0, ∀ U ∈ closedBall (escapePoint:ℂ) ε, ∀ s ∈ sphere (0:ℂ) escapeRadius,
       escapeBetaDenominator U s ≠ 0 ∧ s ≠ 0 ∧ ‖s‖<1 ∧ ‖betaFrameB U s‖<1 := by
@@ -213,6 +242,9 @@ theorem escape_regular_tube :
   intro U hU s hs
   exact hball (mem_ball.mpr ((mem_closedBall.mp hU).trans_lt (by linarith))) s hs
 
+/--
+@isnad1 id=analytic.4h1v.s7.bcae6c08f53b from=translated src=- shape=f287aa3e vocab=51627c35
+-/
 theorem escapeClearedBetaIntegrand_joint_analyticAt (p : ℂ × ℂ)
     (hD : escapeBetaDenominator p.1 p.2 ≠ 0) (hs0 : p.2 ≠ 0)
     (hs : ‖p.2‖<1) (hb : ‖betaFrameB p.1 p.2‖<1) :
@@ -241,6 +273,9 @@ theorem escapeClearedBetaIntegrand_joint_analyticAt (p : ℂ × ℂ)
   exact Finset.analyticAt_fun_sum _ (fun i _ => Finset.analyticAt_fun_sum _ (fun j _ =>
     ((hX i).mul (hR i j)).mul (hZ j)))
 
+/--
+@isnad1 id=analytic.0h0v.s5.768699a41fbe from=translated src=- shape=3e436b0a vocab=763d04b6
+-/
 theorem escapeClearedBetaCircle_analyticAt :
     AnalyticAt ℂ (fun U => escapeClearedBetaCircle U escapeRadius) (escapePoint:ℂ) := by
   obtain ⟨ε,hε,hreg⟩ := escape_regular_tube
@@ -254,6 +289,9 @@ theorem escapeClearedBetaCircle_analyticAt :
       escapeClearedBetaIntegrand (escapePoint:ℂ) 0 escapeRadius ε
       escape_radius_domain.1.le hε hjoint)
 
+/--
+@isnad1 id=eq.2h4v.s6.879d9ef59a36 from=translated src=- shape=cdf74a71 vocab=33a4e9ee
+-/
 theorem escape_cleared_beta_entry_eq (U s : ℂ)
     (hD : escapeBetaDenominator U s ≠ 0) (hE : escapeFactor U ≠ 0) (i j : Fin 3) :
     escapeClearedBetaMatrix U s i j=escapeFactor U^2*scalarBetaSFull U s i j := by
@@ -273,6 +311,9 @@ theorem escape_cleared_beta_entry_eq (U s : ℂ)
   generalize he : 99*betaFrameX U-50 = E at hEn ⊢
   field_simp [hx,hM,hF,hEn]
 
+/--
+@isnad1 id=eq.2h2v.s5.0648d33b8d55 from=translated src=- shape=bfa563f1 vocab=34e32c3b
+-/
 theorem escape_cleared_beta_integrand_eq (U s : ℂ)
     (hD : escapeBetaDenominator U s ≠ 0) (hE : escapeFactor U ≠ 0) :
     escapeClearedBetaIntegrand U s=escapeFactor U^2*betaFluxIntegrand U s := by
@@ -286,6 +327,9 @@ theorem escape_cleared_beta_integrand_eq (U s : ℂ)
   rw [escape_cleared_beta_entry_eq U s hD hE i j]
   ring
 
+/--
+@isnad1 id=eq.3h2v.s6.42186f776007 from=translated src=- shape=529d7e1d vocab=ab84a5be
+-/
 theorem escape_cleared_beta_circle_eq (U : ℂ) {r : ℝ} (hr : 0 ≤ r)
     (hD : ∀ s ∈ sphere (0:ℂ) r, escapeBetaDenominator U s ≠ 0)
     (hE : escapeFactor U ≠ 0) :
@@ -297,6 +341,9 @@ theorem escape_cleared_beta_circle_eq (U : ℂ) {r : ℝ} (hr : 0 ≤ r)
   rw [hi,circleIntegral.integral_const_mul]
   ring
 
+/--
+@isnad1 id=eq.2h2v.s6.8d00460f66a4 from=translated src=- shape=35528bf4 vocab=84e28ac8
+-/
 theorem escape_cleared_outer_basis_eq (x : ℂ) (hx : x ≠ 0)
     (hE : 99*x-50 ≠ 0) (k : Fin 15) :
     escapeClearedOuterBasis x k=(99*x-50)^2*outerPrimitiveBasis x k := by
@@ -347,6 +394,9 @@ theorem escape_cleared_outer_basis_eq (x : ℂ) (hx : x ≠ 0)
     generalize he : 99*x-50 = E at hE ⊢
     field_simp [hx,hE]
 
+/--
+@isnad1 id=eq.2h2v.s6.1e955eb78037 from=translated src=- shape=35528bf4 vocab=10c84cbf
+-/
 theorem escape_cleared_outer_row_eq (x : ℂ) (hx : x ≠ 0) (hE : 99*x-50 ≠ 0) (j : Fin 6) :
     escapeClearedOuterRow x j=(99*x-50)^2*outerPrimitiveRow x j := by
   unfold escapeClearedOuterRow outerPrimitiveRow
@@ -356,6 +406,9 @@ theorem escape_cleared_outer_row_eq (x : ℂ) (hx : x ≠ 0) (hE : 99*x-50 ≠ 0
   rw [escape_cleared_outer_basis_eq x hx hE k]
   ring
 
+/--
+@isnad1 id=eq.2h1v.s5.1f3dd13a5d90 from=translated src=- shape=815b5722 vocab=08d4466b
+-/
 theorem escape_cleared_outer_flux_eq (U : ℂ)
     (hx : betaFrameX U ≠ 0) (hE : escapeFactor U ≠ 0) :
     escapeClearedOuterFlux U=escapeFactor U^2*outerPrimitiveFlux U := by
@@ -375,6 +428,9 @@ theorem escape_cleared_outer_flux_eq (U : ℂ)
   change _=(99*(1-U^2)-50)^2*_
   ring
 
+/--
+@isnad1 id=analytic.1h2v.s5.3ca8cb556056 from=translated src=- shape=1a031d3a vocab=fcfa1659
+-/
 theorem escape_cleared_outer_basis_analyticAt (k : Fin 15) (x : ℂ) (hx : x ≠ 0) :
     AnalyticAt ℂ (fun z => escapeClearedOuterBasis z k) x := by
   fin_cases k
@@ -409,18 +465,27 @@ theorem escape_cleared_outer_basis_analyticAt (k : Fin 15) (x : ℂ) (hx : x ≠
   · change AnalyticAt ℂ (fun z : ℂ => (99*z-50)^2*z^8) x
     fun_prop (disch := first | assumption | exact pow_ne_zero _ hx)
 
+/--
+@isnad1 id=analytic.1h2v.s5.05b73430a881 from=translated src=- shape=1a031d3a vocab=4766cd44
+-/
 theorem escape_cleared_outer_row_analyticAt (j : Fin 6) (x : ℂ) (hx : x ≠ 0) :
     AnalyticAt ℂ (fun z => escapeClearedOuterRow z j) x := by
   unfold escapeClearedOuterRow
   exact Finset.analyticAt_fun_sum _ (fun k _ => analyticAt_const.mul
     (escape_cleared_outer_basis_analyticAt k x hx))
 
+/--
+@isnad1 id=analytic.1h2v.s5.61ec5fbf0a36 from=translated src=- shape=d4daed34 vocab=d4128771
+-/
 theorem sixthNormalState_entry_analyticAt (j : Fin 6) (q : ℂ) (hq : ‖q‖<1) :
     AnalyticAt ℂ (fun z => sixthNormalState z j) q := by
   unfold sixthNormalState Matrix.mulVec dotProduct
   exact Finset.analyticAt_fun_sum _ (fun k _ => analyticAt_const.mul
     (sixth_state_analyticAt k q hq))
 
+/--
+@isnad1 id=analytic.2h1v.s5.b581912f772c from=translated src=- shape=72008e51 vocab=040d6e82
+-/
 theorem escape_cleared_outer_flux_analyticAt (U : ℂ) (hx : betaFrameX U ≠ 0)
     (hlambda : ‖outerPrimitiveLambda (betaFrameX U)‖<1) :
     AnalyticAt ℂ escapeClearedOuterFlux U := by
@@ -437,6 +502,9 @@ theorem escape_cleared_outer_flux_analyticAt (U : ℂ) (hx : betaFrameX U ≠ 0)
   unfold escapeClearedOuterFlux dotProduct
   exact analyticAt_id.mul (Finset.analyticAt_fun_sum _ (fun j _ => (hR j).mul (hY j)))
 
+/--
+@isnad1 id=analytic.0h0v.s5.851227cbeb9f from=translated src=- shape=f9ffc11e vocab=879e1ed0
+-/
 theorem escapeClearedTotal_analyticAt : AnalyticAt ℂ escapeClearedTotal (escapePoint:ℂ) := by
   have hx : betaFrameX (escapePoint:ℂ) ≠ 0 := by rw [escape_complex_x]; norm_num
   have hlambda : ‖outerPrimitiveLambda (betaFrameX (escapePoint:ℂ))‖<1 := by
@@ -445,6 +513,9 @@ theorem escapeClearedTotal_analyticAt : AnalyticAt ℂ escapeClearedTotal (escap
   exact escapeClearedBetaCircle_analyticAt.add
     (escape_cleared_outer_flux_analyticAt (escapePoint:ℂ) hx hlambda)
 
+/--
+@isnad1 id=eq.3h1v.s6.74ad4c5b2b55 from=translated src=- shape=a15c0d79 vocab=e1bc4b8a
+-/
 theorem escapeClearedTotal_eq (U : ℂ) (hx : betaFrameX U ≠ 0)
     (hE : escapeFactor U ≠ 0)
     (hD : ∀ s ∈ sphere (0:ℂ) escapeRadius, escapeBetaDenominator U s ≠ 0) :
@@ -454,6 +525,9 @@ theorem escapeClearedTotal_eq (U : ℂ) (hx : betaFrameX U ≠ 0)
     escape_cleared_outer_flux_eq U hx hE]
   ring
 
+/--
+@isnad1 id=eventual.0h0v.s6.68c05142c8ae from=translated src=- shape=27ca7f94 vocab=19cae577
+-/
 theorem escapeClearedTotal_clears_near :
     ∀ᶠ U : ℂ in 𝓝 (escapePoint:ℂ), escapeFactor U ≠ 0 →
       escapeClearedTotal U=escapeFactor U^2*(betaFluxCircle U escapeRadius+outerPrimitiveFlux U) := by

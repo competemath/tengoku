@@ -15,6 +15,9 @@ open scoped Interval
 
 namespace Row12
 
+/--
+@isnad1 id=eq.0h1v.s6.9674560a13fc from=translated src=- shape=9ea51e18 vocab=b7fc5020
+-/
 theorem coefficient_eq_uniformMoment (n : ℕ) :
     coefficient n = rho ^ n * (6*(n : ℝ)+1) * coefficient3 n ^ 2 * uniformMoment (3*n) := by
   have hrp : rho ^ n = (6 : ℝ) ^ (6*n) / (10 : ℝ) ^ (6*n) := by
@@ -31,10 +34,16 @@ noncomputable def angularWeight (n : ℕ) : ℝ := (6*(n : ℝ)+1) * weight n
 noncomputable def angularLoaded (q : ℝ) : ℝ :=
   ∑' n : ℕ, coefficient3 n ^ 2 * angularWeight n * q ^ n
 
+/--
+@isnad1 id=le.0h1v.s3.72e1df4dde56 from=translated src=- shape=b9369acb vocab=b3be67eb
+-/
 theorem angularWeight_nonneg (n : ℕ) : 0 ≤ angularWeight n := by
   unfold angularWeight weight
   positivity
 
+/--
+@isnad1 id=summable.1h1v.s5.39364c2d9fde from=translated src=- shape=377dcba5 vocab=4f21ffb3
+-/
 theorem angularMajorant_summable {q : ℝ} (hq : |q| < 1) :
     Summable (fun n : ℕ => angularWeight n * q ^ n) := by
   have h3 := (summable_pow_mul_geometric_of_norm_lt_one 3 hq).mul_left (3192 : ℝ)
@@ -45,6 +54,9 @@ theorem angularMajorant_summable {q : ℝ} (hq : |q| < 1) :
     simp only [angularWeight, weight, pow_one]
     ring)
 
+/--
+@isnad1 id=summable.2h1v.s6.7e406ee69c35 from=translated src=- shape=db21445c vocab=d62488b3
+-/
 theorem angularLoaded_summable {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) :
     Summable (fun n : ℕ => coefficient3 n ^ 2 * angularWeight n * q ^ n) := by
   have hq : |q| < 1 := by rwa [abs_of_nonneg hq0]
@@ -59,6 +71,9 @@ theorem angularLoaded_summable {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q < 1) :
       exact angularWeight_nonneg n
     _ = angularWeight n * q ^ n := by ring
 
+/--
+@isnad1 id=hassum.0h0v.s6.1a011382f614 from=translated src=- shape=c9783c0d vocab=dd340ced
+-/
 theorem term_hasSum_uniformIntegral :
     HasSum term (∫ u : ℝ in 0..1, angularLoaded (rho*(1-u^2)^3)) := by
   have hr0 : 0 ≤ rho := by norm_num [rho]
@@ -109,6 +124,9 @@ theorem term_hasSum_uniformIntegral :
   unfold angularWeight
   ring
 
+/--
+@isnad1 id=eq.0h0v.s6.48d2c66b390b from=translated src=- shape=52d3579d vocab=6c39b397
+-/
 theorem term_tsum_uniformIntegral :
     (∑' n : ℕ, term n) = ∫ u : ℝ in 0..1, angularLoaded (rho*(1-u^2)^3) :=
   term_hasSum_uniformIntegral.tsum_eq

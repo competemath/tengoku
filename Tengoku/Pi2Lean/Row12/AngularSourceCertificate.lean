@@ -186,6 +186,9 @@ noncomputable def angularLiteralPrimitiveDerivative (x s : ℂ) : Matrix (Fin 3)
       angularSourcePolynomial (angularPrimitiveCoefficients x i j) s) /
     (angularPrimitiveScale x i j * s ^ (angularPrimitivePole i j+1))
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.041aa25a0698 from=translated src=- shape=fc36b416 vocab=94c283a5
+-/
 theorem angular_source_polynomial_hasDerivAt (c : Fin 6 → ℂ) (s : ℂ) :
     HasDerivAt (angularSourcePolynomial c) (angularSourcePolynomialDerivative c s) s := by
   have h := HasDerivAt.sum (u := Finset.univ) (fun k _ =>
@@ -197,12 +200,18 @@ theorem angular_source_polynomial_hasDerivAt (c : Fin 6 → ℂ) (s : ℂ) :
   rw [hf] at h
   simpa only [angularSourcePolynomialDerivative, id_eq, mul_one, mul_assoc] using h
 
+/--
+@isnad1 id=ne.3h3v.s6.a5b9e6416fe1 from=translated src=- shape=7ad4bf16 vocab=d1646ee4
+-/
 theorem angular_source_scale_ne_zero (x : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0) (i j : Fin 3) :
     angularPrimitiveScale x i j ≠ 0 := by
   fin_cases i <;> fin_cases j <;>
     simp [angularPrimitiveScale, hx0, hx25, hx50]
 
+/--
+@isnad1 id=hasderiv.3h4v.s7.448a831a9984 from=translated src=- shape=24c94597 vocab=1d21d106
+-/
 theorem angular_source_laurent_hasDerivAt (c : Fin 6 → ℂ) (d s : ℂ) (p : ℕ)
     (hp : 0 < p) (hd : d ≠ 0) (hs : s ≠ 0) :
     HasDerivAt (fun z => angularSourcePolynomial c z / (d*z^p))
@@ -218,6 +227,9 @@ theorem angular_source_laurent_hasDerivAt (c : Fin 6 → ℂ) (d s : ℂ) (p : �
     simp only [id_eq, mul_one, Nat.add_sub_cancel, pow_succ]
     field_simp [hd, hs]
 
+/--
+@isnad1 id=hasderiv.4h4v.s7.eca464a2b1e7 from=translated src=- shape=1fe48efc vocab=2203500e
+-/
 theorem angular_source_primitive_entry_hasDerivAt (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0) (hs0 : s ≠ 0) (i j : Fin 3) :
     HasDerivAt (fun z => angularLiteralPrimitive x z i j)
@@ -228,6 +240,9 @@ theorem angular_source_primitive_entry_hasDerivAt (x s : ℂ) (hx0 : x ≠ 0)
     (angularPrimitiveScale x i j) s (angularPrimitivePole i j) hp
     (angular_source_scale_ne_zero x hx0 hx25 hx50 i j) hs0
 
+/--
+@isnad1 id=eq.1h1v.s9.437bc24df9b3 from=translated src=- shape=337e0923 vocab=5382643d
+-/
 theorem angular_source_first_connection (s : ℂ) (hs1 : s ≠ 1) :
     nativeEulerConnection s =
       !![0, 1, 0; 0, 0, 1;
@@ -237,6 +252,9 @@ theorem angular_source_first_connection (s : ℂ) (hs1 : s ≠ 1) :
     simp [nativeEulerConnection] <;>
     field_simp [sub_ne_zero.mpr hs1, sub_ne_zero.mpr hs1.symm] <;> ring
 
+/--
+@isnad1 id=eq.2h2v.s9.227ee7a0365d from=translated src=- shape=63c08ac8 vocab=859730cb
+-/
 theorem angular_source_second_connection (lambda s : ℂ)
     (hs0 : s ≠ 0) (hsl : s ≠ lambda) :
     nativeEulerConnection (lambda/s) =
@@ -251,12 +269,18 @@ theorem angular_source_second_connection (lambda s : ℂ)
     simp [nativeEulerConnection] <;>
     field_simp [hs0, sub_ne_zero.mpr hsl, sub_ne_zero.mpr hb1.symm]
 
+/--
+@isnad1 id=eq.0h3v.s6.9742de7ffcc0 from=translated src=- shape=2b8ee26e vocab=b9fa3e90
+-/
 theorem angular_source_cons_val_five {α : Type*} (a : α) (v : Fin 5 → α) :
     Matrix.vecCons a v (5 : Fin 6) =
       Matrix.vecHead (Matrix.vecTail (Matrix.vecTail (Matrix.vecTail (Matrix.vecTail v)))) :=
   rfl
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.6h2v.s8.08653d2fb728 from=translated src=- shape=8be24fdf vocab=52af11cc
+-/
 theorem angular_source_identity_00 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x) :
@@ -294,6 +318,9 @@ theorem angular_source_identity_00 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.6h2v.s8.5b159926dff7 from=translated src=- shape=8be24fdf vocab=52af11cc
+-/
 theorem angular_source_identity_01 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x) :
@@ -331,6 +358,9 @@ theorem angular_source_identity_01 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.6h2v.s8.f48250a82afa from=translated src=- shape=8be24fdf vocab=52af11cc
+-/
 theorem angular_source_identity_02 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x) :
@@ -368,6 +398,9 @@ theorem angular_source_identity_02 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.6h2v.s8.7a60375ab9f7 from=translated src=- shape=8be24fdf vocab=52af11cc
+-/
 theorem angular_source_identity_10 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x) :
@@ -405,6 +438,9 @@ theorem angular_source_identity_10 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.6h2v.s8.a362fdcde962 from=translated src=- shape=8be24fdf vocab=52af11cc
+-/
 theorem angular_source_identity_11 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x) :
@@ -442,6 +478,9 @@ theorem angular_source_identity_11 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.6h2v.s8.cf67b76ad1e4 from=translated src=- shape=8be24fdf vocab=52af11cc
+-/
 theorem angular_source_identity_12 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x) :
@@ -479,6 +518,9 @@ theorem angular_source_identity_12 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.6h2v.s8.c8907ac82a18 from=translated src=- shape=8be24fdf vocab=52af11cc
+-/
 theorem angular_source_identity_20 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x) :
@@ -516,6 +558,9 @@ theorem angular_source_identity_20 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.6h2v.s8.bd1c5a3d1af5 from=translated src=- shape=8be24fdf vocab=52af11cc
+-/
 theorem angular_source_identity_21 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x) :
@@ -553,6 +598,9 @@ theorem angular_source_identity_21 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.6h2v.s8.ea87d7f9f9be from=translated src=- shape=8be24fdf vocab=52af11cc
+-/
 theorem angular_source_identity_22 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x) :
@@ -589,6 +637,9 @@ theorem angular_source_identity_22 (x s : ℂ) (hx0 : x ≠ 0)
   simp only [angularSourceLambda]
   ring
 
+/--
+@isnad1 id=eq.6h2v.s8.8d4a2fa3bd78 from=translated src=- shape=310a7cbd vocab=52af11cc
+-/
 theorem angular_source_identity (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x) :
@@ -608,6 +659,9 @@ theorem angular_source_identity (x s : ℂ) (hx0 : x ≠ 0)
   · exact angular_source_identity_21 x s hx0 hx25 hx50 hs0 hs1 hsl
   · exact angular_source_identity_22 x s hx0 hx25 hx50 hs0 hs1 hsl
 
+/--
+@isnad1 id=ne.1h1v.s4.617fe4b102dc from=translated src=- shape=5aedd577 vocab=79d66b13
+-/
 theorem angular_source_lambda_ne_zero (x : ℂ) (hx0 : x ≠ 0) :
     angularSourceLambda x ≠ 0 := by
   simp [angularSourceLambda, hx0]
@@ -620,6 +674,9 @@ noncomputable def angularSourcePrimitivePair (x s : ℂ) : ℂ :=
   angularTensorPair (angularLiteralPrimitive x s) (nativeState s)
     (nativeState ((angularSourceLambda x)/s))
 
+/--
+@isnad1 id=hasderiv.6h2v.s7.80542634ff78 from=translated src=- shape=3aa8d107 vocab=1a363e11
+-/
 theorem angular_source_primitive_pair_hasDerivAt (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0) (hs0 : s ≠ 0)
     (hs : ‖s‖ < 1) (hb : ‖(angularSourceLambda x)/s‖ < 1) :
@@ -637,6 +694,9 @@ theorem angular_source_primitive_pair_hasDerivAt (x s : ℂ) (hx0 : x ≠ 0)
     (angular_source_lambda_ne_zero x hx0) hs0 hs hb
     (angular_source_primitive_entry_hasDerivAt x s hx0 hx25 hx50 hs0)
 
+/--
+@isnad1 id=eq.8h2v.s7.a74e0de3a6d9 from=translated src=- shape=4187af31 vocab=b8483262
+-/
 theorem angular_source_actual_identity (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ angularSourceLambda x)

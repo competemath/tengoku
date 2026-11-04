@@ -11,6 +11,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=eq.7h5v.s8.dd8e8b35b253 from=translated src=- shape=280912da vocab=785b914f
+-/
 theorem singlePole_annulus_integral (F : ℂ → ℂ) (a : ℂ) (r R : ℝ) (V : Set ℂ)
     (hr : 0 < r) (har : r < ‖a‖) (haR : ‖a‖ < R)
     (hV : IsOpen V) (ha : a ∈ V)

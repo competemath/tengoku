@@ -14,6 +14,9 @@ open Set Filter intervalIntegral Topology
 
 namespace Row12EulerSupport
 
+/--
+@isnad1 id=eq.2h1v.s7.ad7a5cd1b199 from=translated src=- shape=e61f64dd vocab=3c1c4d4a
+-/
 theorem gaussDerivative_kernel {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
     deriv (Row12.gaussA : ℝ → ℝ) (1 - p) =
       (1 / (12 * Real.pi)) * (∫ x : ℝ in 0..1, derivativeKernel p x) := by
@@ -34,6 +37,9 @@ theorem gaussDerivative_kernel {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
       ring
     _ = _ := by rw [hxpow]; ring
 
+/--
+@isnad1 id=eq.2h1v.s7.a9b58e710a19 from=translated src=- shape=a97bc6e3 vocab=2777b6c1
+-/
 theorem gaussDerivative_transformed {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
     -p * deriv (Row12.gaussA : ℝ → ℝ) (1 - p) =
       -(1 / (12 * Real.pi)) * (∫ y : ℝ in 0..1, endpointIntegrand p y) := by
@@ -45,6 +51,9 @@ theorem gaussDerivative_transformed {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
       rw [derivativeKernel_substitution hp hp1]
       rfl
 
+/--
+@isnad1 id=tendsto.0h0v.s6.c10dacee284f from=translated src=- shape=91e0919a vocab=4784d507
+-/
 theorem derivativeEndpoint :
     Tendsto (fun p : ℝ => -p * deriv (Row12.gaussA : ℝ → ℝ) (1 - p))
       (𝓝[Ioi 0] 0) (𝓝 (-1 / (2 * Real.pi))) := by
@@ -60,6 +69,9 @@ theorem derivativeEndpoint :
   filter_upwards [hp, hp1] with p hp hp1
   exact (gaussDerivative_transformed hp hp1).symm
 
+/--
+@isnad1 id=tendsto.0h0v.s6.512fa35c7411 from=translated src=- shape=bfb68c7b vocab=1ecc83fa
+-/
 theorem functionEndpoint :
     Tendsto (fun p : ℝ => p * Row12.gaussA (1 - p))
       (𝓝[Ioi 0] 0) (𝓝 0) := by

@@ -13,6 +13,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=eq.3h3v.s6.cf45ea47d99c from=translated src=- shape=e26a847b vocab=4531226a
+-/
 theorem angular_nf_integral_linear (v : Fin 6 → ℂ) (lambda : ℂ) {r : ℝ}
     (hr : 0 < r) (hr1 : r < 1) (hl : ‖lambda‖ < r) :
     angularNFIntegral v lambda r = dotProduct v (angularContourState lambda r) := by
@@ -32,6 +35,9 @@ theorem angular_nf_integral_linear (v : Fin 6 → ℂ) (lambda : ℂ) {r : ℝ}
   intro i _
   ring
 
+/--
+@isnad1 id=eq.5h3v.s6.5ad3bac50d56 from=translated src=- shape=caa77270 vocab=6008b85e
+-/
 theorem angular_nf_integral_cyclic (n : ℕ) (hn : n < 6) (lambda : ℂ) {r : ℝ}
     (hl0 : lambda ≠ 0) (hr : 0 < r) (hr1 : r < 1) (hl : ‖lambda‖ < r) :
     angularNFIntegral (sixthCyclicMatrix ⟨n,hn⟩) lambda r =
@@ -61,6 +67,9 @@ theorem angular_nf_integral_cyclic (n : ℕ) (hn : n < 6) (lambda : ℂ) {r : �
     rw [hj] at ha
     exact ha.trans (squaredNativeEuler_succ_eq n lambda (hl.trans hr1)).symm
 
+/--
+@isnad1 id=eq.4h2v.s6.1e9bb36df50f from=translated src=- shape=912a085e vocab=b96c2701
+-/
 theorem angular_contour_cyclic_frame (lambda : ℂ) {r : ℝ}
     (hl0 : lambda ≠ 0) (hr : 0 < r) (hr1 : r < 1) (hl : ‖lambda‖ < r) :
     sixthCyclicMatrix.mulVec (angularContourState lambda r) = sixthState lambda := by
@@ -70,6 +79,9 @@ theorem angular_contour_cyclic_frame (lambda : ℂ) {r : ℝ}
   have hh := angular_nf_integral_cyclic i.val i.isLt lambda hl0 hr hr1 hl
   fin_cases i <;> simpa [sixthState] using hh
 
+/--
+@isnad1 id=eq.4h2v.s5.b015a9c674ad from=translated src=- shape=454b6ef3 vocab=88913988
+-/
 theorem angular_contour_state_eq_actual (lambda : ℂ) {r : ℝ}
     (hl0 : lambda ≠ 0) (hr : 0 < r) (hr1 : r < 1) (hl : ‖lambda‖ < r) :
     angularContourState lambda r = sixthNormalState lambda := by
@@ -78,6 +90,9 @@ theorem angular_contour_state_eq_actual (lambda : ℂ) {r : ℝ}
   rw [Matrix.mulVec_mulVec, sixth_cyclic_inverse_left, Matrix.one_mulVec] at hh
   exact hh
 
+/--
+@isnad1 id=eq.4h3v.s6.517a53c7acd5 from=translated src=- shape=3dc1c72f vocab=0ed464e0
+-/
 theorem angular_nf_integral_eq_actual (v : Fin 6 → ℂ) (lambda : ℂ) {r : ℝ}
     (hl0 : lambda ≠ 0) (hr : 0 < r) (hr1 : r < 1) (hl : ‖lambda‖ < r) :
     angularNFIntegral v lambda r = dotProduct v (sixthNormalState lambda) := by

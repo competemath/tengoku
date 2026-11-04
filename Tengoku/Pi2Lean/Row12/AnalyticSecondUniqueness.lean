@@ -33,11 +33,17 @@ namespace Row12
 noncomputable def realNativeSecond (f : ℝ → ℝ) (q : ℝ) : ℝ :=
   144*(1-q)*nativeTheta (nativeTheta f) q-72*q*nativeTheta f q-5*q*f q
 
+/--
+@isnad1 id=eventual.1h3v.s5.1b4cdb157d0a from=translated src=- shape=b298d5df vocab=224b8d24
+-/
 theorem nativeTheta_eventually_congr {f g : ℝ → ℝ} {q : ℝ}
     (he : f =ᶠ[nhds q] g) : nativeTheta f =ᶠ[nhds q] nativeTheta g := by
   filter_upwards [he.deriv] with z hz
   simp only [nativeTheta, hz]
 
+/--
+@isnad1 id=eventual.1h3v.s5.9e3a82766029 from=translated src=- shape=0c744481 vocab=d058b7d2
+-/
 theorem realNativeSecond_eventually_congr {f g : ℝ → ℝ} {q : ℝ}
     (he : f =ᶠ[nhds q] g) : realNativeSecond f =ᶠ[nhds q] realNativeSecond g := by
   have ht := nativeTheta_eventually_congr he
@@ -45,6 +51,9 @@ theorem realNativeSecond_eventually_congr {f g : ℝ → ℝ} {q : ℝ}
   filter_upwards [he, ht, htt] with z hz htz httz
   simp only [realNativeSecond, hz, htz, httz]
 
+/--
+@isnad1 id=eq.1h3v.s7.633d719c6509 from=translated src=- shape=de7e92d3 vocab=d20fcb4f
+-/
 theorem nativeTheta_pow_mul (n : ℕ) (H : ℝ → ℝ) (q : ℝ)
     (hH : DifferentiableAt ℝ H q) :
     nativeTheta (fun z => z^n*H z) q = q^n*((n:ℝ)*H q+q*deriv H q) := by
@@ -57,6 +66,9 @@ theorem nativeTheta_pow_mul (n : ℕ) (H : ℝ → ℝ) (q : ℝ)
     simp only [Nat.add_sub_cancel, Nat.cast_add, Nat.cast_one, pow_succ]
     ring
 
+/--
+@isnad1 id=eq.1h3v.s8.924a3d90a155 from=translated src=- shape=8ff68ce0 vocab=6ee826f9
+-/
 theorem nativeTheta_second_pow_mul (n : ℕ) (H : ℝ → ℝ) (q : ℝ)
     (hH : AnalyticAt ℝ H q) :
     nativeTheta (nativeTheta (fun z => z^n*H z)) q =
@@ -81,6 +93,9 @@ noncomputable def secondLeadingFactor (n : ℕ) (H : ℝ → ℝ) (q : ℝ) : �
   144*(1-q)*((n:ℝ)^2*H q+(2*(n:ℝ)+1)*q*deriv H q+q^2*deriv (deriv H) q)-
     72*q*((n:ℝ)*H q+q*deriv H q)-5*q*H q
 
+/--
+@isnad1 id=eq.1h3v.s6.2de23bfd4fad from=translated src=- shape=9b5b0e43 vocab=eb61629c
+-/
 theorem realNativeSecond_pow_mul (n : ℕ) (H : ℝ → ℝ) (q : ℝ)
     (hH : AnalyticAt ℝ H q) :
     realNativeSecond (fun z => z^n*H z) q = q^n*secondLeadingFactor n H q := by
@@ -89,6 +104,9 @@ theorem realNativeSecond_pow_mul (n : ℕ) (H : ℝ → ℝ) (q : ℝ)
   dsimp only [secondLeadingFactor]
   ring
 
+/--
+@isnad1 id=eventual.3h1v.s7.6197d36808f6 from=translated src=- shape=08561cbd vocab=b393788e
+-/
 theorem analytic_nativeSecond_zero {f : ℝ → ℝ} (ha : AnalyticAt ℝ f 0)
     (h0 : f 0 = 0) (he : realNativeSecond f =ᶠ[nhds 0] 0) :
     f =ᶠ[nhds 0] 0 := by
@@ -126,6 +144,9 @@ theorem analytic_nativeSecond_zero {f : ℝ → ℝ} (ha : AnalyticAt ℝ f 0)
   apply hproduct
   simpa [secondLeadingFactor, mul_assoc] using hz
 
+/--
+@isnad1 id=eventual.2h2v.s7.fcc7946cbf23 from=translated src=- shape=edc5ea41 vocab=f91d0f1c
+-/
 theorem realNativeSecond_eventually_sub {f g : ℝ → ℝ}
     (hf : AnalyticAt ℝ f 0) (hg : AnalyticAt ℝ g 0) :
     realNativeSecond (fun q => f q-g q) =ᶠ[nhds 0]
@@ -150,6 +171,9 @@ theorem realNativeSecond_eventually_sub {f g : ℝ → ℝ}
   simp only [realNativeSecond, hq, hqq]
   ring
 
+/--
+@isnad1 id=eventual.5h2v.s7.739697467026 from=translated src=- shape=d6a6fca1 vocab=b393788e
+-/
 theorem normalized_nativeSecond_eq_eventually {f g : ℝ → ℝ}
     (hf : AnalyticAt ℝ f 0) (hg : AnalyticAt ℝ g 0) (h0 : f 0 = g 0)
     (heF : realNativeSecond f =ᶠ[nhds 0] 0)
@@ -161,6 +185,9 @@ theorem normalized_nativeSecond_eq_eventually {f g : ℝ → ℝ}
   filter_upwards [hz] with q hq
   exact sub_eq_zero.mp hq
 
+/--
+@isnad1 id=eq.1h2v.s7.aa78c89e13c7 from=translated src=- shape=e63c2e83 vocab=937fc1bd
+-/
 theorem nativeTheta_second_eq {f : ℝ → ℝ} {q : ℝ} (hf : AnalyticAt ℝ f q) :
     nativeTheta (nativeTheta f) q = q*deriv f q+q^2*deriv (deriv f) q := by
   have hd := (hasDerivAt_id q).fun_mul hf.deriv.differentiableAt.hasDerivAt
@@ -169,12 +196,18 @@ theorem nativeTheta_second_eq {f : ℝ → ℝ} {q : ℝ} (hf : AnalyticAt ℝ f
   rw [hd.deriv]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s4.8746ec72eef1 from=translated src=- shape=15fd321b vocab=08de6df9
+-/
 theorem halfGauss_nativeSecond (q : ℝ) (hq : ‖q‖ < 1) :
     realNativeSecond halfGauss q = 0 := by
   rw [realNativeSecond, nativeTheta_second_eq (halfGauss_analyticAt q hq)]
   dsimp only [nativeTheta]
   linear_combination (144*q)*halfGauss_equation q hq
 
+/--
+@isnad1 id=eventual.0h0v.s4.71466601abe6 from=translated src=- shape=8a0c861d vocab=c5d2b59d
+-/
 theorem gaussG_eq_halfGauss_eventually : (gaussG : ℝ → ℝ) =ᶠ[nhds 0] halfGauss := by
   apply normalized_nativeSecond_eq_eventually
     (gaussG_analyticAt 0 (by norm_num) (by norm_num))
@@ -187,6 +220,9 @@ theorem gaussG_eq_halfGauss_eventually : (gaussG : ℝ → ℝ) =ᶠ[nhds 0] hal
     filter_upwards [hb] with q hq
     exact halfGauss_nativeSecond q (by simpa only [Real.norm_eq_abs, abs_lt, mem_Ioo] using hq)
 
+/--
+@isnad1 id=eq.1h1v.s4.b18215d9c848 from=translated src=- shape=2d5ccd95 vocab=3ce647e4
+-/
 theorem gaussG_eq_halfGauss (q : ℝ) (hq : ‖q‖ < 1) : gaussG q = halfGauss q := by
   have hf : AnalyticOnNhd ℝ gaussG (Ioo (-1:ℝ) 1) := by
     intro z hz
@@ -198,12 +234,18 @@ theorem gaussG_eq_halfGauss (q : ℝ) (hq : ‖q‖ < 1) : gaussG q = halfGauss 
     (by norm_num : (0:ℝ) ∈ Ioo (-1:ℝ) 1) gaussG_eq_halfGauss_eventually
     (by simpa only [Real.norm_eq_abs, abs_lt, mem_Ioo] using hq)
 
+/--
+@isnad1 id=eq.1h1v.s5.b156be70ccb8 from=translated src=- shape=6fb540e7 vocab=b7fc4ae1
+-/
 theorem nativeF_eq_gaussG_square (q : ℝ) (hq : ‖q‖ < 1) : nativeF q = gaussG q^2 := by
   rw [nativeF_eq_halfGauss_square q hq, gaussG_eq_halfGauss q hq]
 
 noncomputable def regularSecond (a b c f : ℝ → ℝ) (q : ℝ) : ℝ :=
   a q*nativeTheta (nativeTheta f) q+b q*nativeTheta f q+c q*f q
 
+/--
+@isnad1 id=eventual.1h5v.s6.db4470f8cd81 from=translated src=- shape=780374a7 vocab=8f947b4f
+-/
 theorem regularSecond_eventually_congr (a b c : ℝ → ℝ) {f g : ℝ → ℝ}
     (he : f =ᶠ[nhds 0] g) : regularSecond a b c f =ᶠ[nhds 0] regularSecond a b c g := by
   have ht := nativeTheta_eventually_congr he
@@ -215,6 +257,9 @@ noncomputable def regularLeadingFactor (a b c : ℝ → ℝ) (n : ℕ) (H : ℝ 
   a q*((n:ℝ)^2*H q+(2*(n:ℝ)+1)*q*deriv H q+q^2*deriv (deriv H) q)+
     b q*((n:ℝ)*H q+q*deriv H q)+c q*H q
 
+/--
+@isnad1 id=eq.1h6v.s6.bb1602792cb6 from=translated src=- shape=edcad44b vocab=06b7aecc
+-/
 theorem regularSecond_pow_mul (a b c : ℝ → ℝ) (n : ℕ) (H : ℝ → ℝ) (q : ℝ)
     (hH : AnalyticAt ℝ H q) :
     regularSecond a b c (fun z => z^n*H z) q = q^n*regularLeadingFactor a b c n H q := by
@@ -223,6 +268,9 @@ theorem regularSecond_pow_mul (a b c : ℝ → ℝ) (n : ℕ) (H : ℝ → ℝ) 
   dsimp only [regularLeadingFactor]
   ring
 
+/--
+@isnad1 id=eventual.9h4v.s8.64cd49596f0a from=translated src=- shape=2536bfad vocab=b11399a8
+-/
 theorem analytic_regularSecond_zero (a b c : ℝ → ℝ)
     (ha : ContinuousAt a 0) (hb : ContinuousAt b 0) (hc : ContinuousAt c 0)
     (ha0 : a 0 ≠ 0) (hb0 : b 0 = 0) (hc0 : c 0 = 0)
@@ -261,6 +309,9 @@ theorem analytic_regularSecond_zero (a b c : ℝ → ℝ)
   apply hproduct
   simpa [regularLeadingFactor, hb0, hc0, mul_assoc] using hz
 
+/--
+@isnad1 id=eventual.2h2v.s7.69c5b3b36dcd from=translated src=- shape=42feb013 vocab=13e8504b
+-/
 theorem nativeTheta_eventually_sub {f g : ℝ → ℝ}
     (hf : AnalyticAt ℝ f 0) (hg : AnalyticAt ℝ g 0) :
     nativeTheta (fun q => f q-g q) =ᶠ[nhds 0]
@@ -269,6 +320,9 @@ theorem nativeTheta_eventually_sub {f g : ℝ → ℝ}
   rw [nativeTheta, (hfq.differentiableAt.hasDerivAt.fun_sub hgq.differentiableAt.hasDerivAt).deriv]
   simp only [nativeTheta, mul_sub]
 
+/--
+@isnad1 id=eventual.2h5v.s7.f329b346ee3a from=translated src=- shape=0128e759 vocab=187d9d20
+-/
 theorem regularSecond_eventually_sub (a b c : ℝ → ℝ) {f g : ℝ → ℝ}
     (hf : AnalyticAt ℝ f 0) (hg : AnalyticAt ℝ g 0) :
     regularSecond a b c (fun q => f q-g q) =ᶠ[nhds 0]
@@ -281,6 +335,9 @@ theorem regularSecond_eventually_sub (a b c : ℝ → ℝ) {f g : ℝ → ℝ}
   simp only [regularSecond, hq, hqq]
   ring
 
+/--
+@isnad1 id=eventual.11h5v.s8.61441d565568 from=translated src=- shape=24d356ab vocab=b11399a8
+-/
 theorem normalized_regularSecond_eq_eventually (a b c : ℝ → ℝ)
     (ha : ContinuousAt a 0) (hb : ContinuousAt b 0) (hc : ContinuousAt c 0)
     (ha0 : a 0 ≠ 0) (hb0 : b 0 = 0) (hc0 : c 0 = 0) {f g : ℝ → ℝ}

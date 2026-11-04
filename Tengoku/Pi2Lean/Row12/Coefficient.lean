@@ -21,9 +21,15 @@ noncomputable def successorProduct (n : ℕ) : ℝ :=
 noncomputable def risingProduct (n : ℕ) : ℝ :=
   ∏ j ∈ Finset.Icc (1 : ℕ) 5, (ascPochhammer ℝ n).eval ((j : ℝ) / 6)
 
+/--
+@isnad1 id=eq.0h0v.s3.75ef1957fe4c from=translated src=- shape=1ac31801 vocab=edf8a514
+-/
 theorem coefficient_zero : coefficient 0 = 1 := by
   norm_num [coefficient]
 
+/--
+@isnad1 id=eq.0h1v.s7.dc712cac6bdd from=translated src=- shape=2f2e8481 vocab=f0d6b58d
+-/
 theorem successorProduct_eq (n : ℕ) :
     successorProduct n =
       ((n : ℝ) + 1 / 6) * ((n : ℝ) + 2 / 6) * ((n : ℝ) + 3 / 6) *
@@ -31,6 +37,9 @@ theorem successorProduct_eq (n : ℕ) :
   unfold successorProduct
   norm_num [Finset.prod_Icc_succ_top]
 
+/--
+@isnad1 id=eq.0h1v.s8.584a800f51c1 from=translated src=- shape=cfeead11 vocab=3c69b864
+-/
 theorem factorial_six_step (n : ℕ) :
     (Nat.factorial (6 * (n + 1)) : ℝ) =
       (Nat.factorial (6 * n) : ℝ) * (6 * (n : ℝ) + 1) * (6 * (n : ℝ) + 2) *
@@ -47,6 +56,9 @@ theorem factorial_six_step (n : ℕ) :
   norm_num [Nat.ascFactorial]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.763a97f19407 from=translated src=- shape=ab71693f vocab=a77d9bee
+-/
 theorem coefficient_succ_mul (n : ℕ) :
     ((n : ℝ) + 1) ^ 5 * coefficient (n + 1) =
       rho * successorProduct n * coefficient n := by
@@ -60,6 +72,9 @@ theorem coefficient_succ_mul (n : ℕ) :
   field_simp [hf, hn]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.c9e3b0650f31 from=translated src=- shape=4b9b1e0b vocab=4737c936
+-/
 theorem coefficient_succ (n : ℕ) :
     coefficient (n + 1) =
       rho * successorProduct n / ((n : ℝ) + 1) ^ 5 * coefficient n := by
@@ -68,9 +83,15 @@ theorem coefficient_succ (n : ℕ) :
   rw [coefficient_succ_mul]
   field_simp
 
+/--
+@isnad1 id=eq.0h0v.s3.39cd5684492d from=translated src=- shape=1ac31801 vocab=d1c5ccfc
+-/
 theorem risingProduct_zero : risingProduct 0 = 1 := by
   simp [risingProduct]
 
+/--
+@isnad1 id=eq.0h1v.s4.7d83e6582920 from=translated src=- shape=61b74864 vocab=3e34bb44
+-/
 theorem risingProduct_succ (n : ℕ) :
     risingProduct (n + 1) = risingProduct n * successorProduct n := by
   unfold risingProduct successorProduct
@@ -81,6 +102,9 @@ theorem risingProduct_succ (n : ℕ) :
   intro j hj
   ring
 
+/--
+@isnad1 id=eq.0h1v.s5.4947c6feb317 from=translated src=- shape=07bcad43 vocab=01eb7665
+-/
 theorem coefficient_eq_risingProduct (n : ℕ) :
     coefficient n = rho ^ n * risingProduct n / (Nat.factorial n : ℝ) ^ 5 := by
   induction n with

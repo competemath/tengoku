@@ -28,16 +28,25 @@ noncomputable def betaBalanced (U : ℝ) : ℂ :=
       Row12.betaPair (Row12.scalarBetaSFull (U : ℂ) s)
         (Row12.dualState s) (Row12.dualState (Row12.betaFrameB (U : ℂ) s))
 
+/--
+@isnad1 id=eq.0h1v.s3.5fc04e91d880 from=translated src=- shape=c14c2a45 vocab=47ec4f90
+-/
 theorem upperPathX_complex (U : ℝ) :
     Row12.betaFrameX (U : ℂ) = (Row12.scalarPathX U : ℂ) := by
   simp [Row12.betaFrameX, Row12.scalarPathX]
 
+/--
+@isnad1 id=eq.0h2v.s4.3e34dc212da2 from=translated src=- shape=9f7c8672 vocab=4345d2cc
+-/
 theorem upperBetaB_agreement (U : ℝ) (s : ℂ) :
     Row12.betaFrameB (U : ℂ) s = (Row12.scalarLambda (Row12.scalarPathX U) : ℂ) / s := by
   unfold Row12.betaFrameB
   rw [upperPathX_complex]
   simp [Row12.betaFrameLambda, Row12.betaFrameRho, Row12.scalarLambda, Row12.rho]
 
+/--
+@isnad1 id=eq.0h1v.s7.bfbc6125e20f from=translated src=- shape=6c84cba0 vocab=9ee410fe
+-/
 theorem betaBalanced_formula (U : ℝ) :
     betaBalanced U = (2 * Real.pi * Complex.I : ℂ)⁻¹ •
       ∮ s in C(0, Real.sqrt (Row12.scalarLambda (1 - U ^ 2))),
@@ -47,6 +56,9 @@ theorem betaBalanced_formula (U : ℝ) :
   unfold betaBalanced
   simp only [upperBetaB_agreement, Row12.scalarPathX]
 
+/--
+@isnad1 id=le.2h3v.s7.a3a320b402bd from=translated src=- shape=87fa6d9e vocab=f45419cb
+-/
 theorem upperNormalizedCircle_norm_le {f : ℂ → ℂ} {r M : ℝ} (hr : 0 ≤ r)
     (hf : ∀ s ∈ sphere (0 : ℂ) r, ‖f s‖ ≤ M) :
     ‖(2 * Real.pi * Complex.I : ℂ)⁻¹ • ∮ s in C(0, r), f s‖ ≤ r * M := by
@@ -59,6 +71,9 @@ theorem upperNormalizedCircle_norm_le {f : ℂ → ℂ} {r M : ℝ} (hr : 0 ≤ 
         (circleIntegral.norm_integral_le_of_norm_le_const hr hf) (by positivity)
     _ = r * M := by field_simp [Real.pi_ne_zero]
 
+/--
+@isnad1 id=le.5h5v.s7.0c00434484f7 from=translated src=- shape=cfc2005f vocab=30ad696e
+-/
 theorem upperBetaPair_norm_le {B : Matrix (Fin 3) (Fin 3) ℂ}
     {v w : Fin 3 → ℂ} {A L : ℝ} (hA : 0 ≤ A) (hL : 0 ≤ L)
     (hv : ∀ i, ‖v i‖ ≤ A) (hw : ∀ j, ‖w j‖ ≤ A)
@@ -79,6 +94,9 @@ theorem upperBetaPair_norm_le {B : Matrix (Fin 3) (Fin 3) ℂ}
         (hw j) (norm_nonneg _) (mul_nonneg hA hL)
     _ = _ := by simp; ring
 
+/--
+@isnad1 id=circlein.3h1v.s6.611890ded6dc from=translated src=- shape=71653d54 vocab=1eff97e8
+-/
 theorem betaBalanced_circleIntegrable {U : ℝ} (hU0 : 0 < U) (hU1 : U < 1)
     (hxsmall : Row12.scalarPathX U ≤ 1 / 100) :
     CircleIntegrable
@@ -87,6 +105,9 @@ theorem betaBalanced_circleIntegrable {U : ℝ} (hU0 : 0 < U) (hU1 : U < 1)
       0 (Real.sqrt (Row12.scalarLambda (Row12.scalarPathX U))) := by
   exact upperBeta_circleIntegrable hU0 hU1 hxsmall
 
+/--
+@isnad1 id=other.1h3v.s7.90a6ce050966 from=translated src=- shape=fd8a7934 vocab=13c3ffc7
+-/
 theorem upperRadius_cancel {x : ℝ} (hx : 0 < x) (C K : ℝ) :
     let r := Real.sqrt (Row12.scalarLambda x)
     r * (9 * ((C * r ^ 2) * ((K * x) / (x ^ 5 * r)) * (C * r ^ 2))) =
@@ -104,6 +125,9 @@ theorem upperRadius_cancel {x : ℝ} (hx : 0 < x) (C K : ℝ) :
       rw [show r ^ 4 = (r ^ 2) ^ 2 by ring, hs]
       field_simp [hx.ne']
 
+/--
+@isnad1 id=ex.0h0v.s6.d0cf979a435e from=translated src=- shape=0bda5645 vocab=4f612505
+-/
 theorem betaBalanced_quadratic_bound :
     ∃ M > 0, ∃ η > 0, ∀ U : ℝ, 0 < U → U < 1 →
       Row12.scalarPathX U ≤ η → ‖betaBalanced U‖ ≤ M * (Row12.scalarPathX U) ^ 2 := by
@@ -171,6 +195,9 @@ theorem betaBalanced_quadratic_bound :
     (9 * ((C * r ^ 2) * ((K * x) / (x ^ 5 * r)) * (C * r ^ 2))) at hn
   exact hn.trans_eq (upperRadius_cancel hx.1 C K)
 
+/--
+@isnad1 id=tendsto.0h0v.s5.688c3650f609 from=translated src=- shape=d3219ae7 vocab=7b1ad7de
+-/
 theorem betaBalanced_tendsto :
     Tendsto betaBalanced (𝓝[Iio 1] (1 : ℝ)) (𝓝 (0 : ℂ)) := by
   obtain ⟨M, hM, η, hη, hbound⟩ := betaBalanced_quadratic_bound

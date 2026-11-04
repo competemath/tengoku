@@ -23,13 +23,22 @@ variable {𝕜 : Type*} [RCLike 𝕜]
 noncomputable def halfEuler (k : ℕ) (p : 𝕜) : 𝕜 :=
   ∑' n : ℕ, (halfGaussCoefficient n : 𝕜) * (n : 𝕜) ^ k * p ^ n
 
+/--
+@isnad1 id=eq.0h1v.s4.41c14d59eaba from=translated src=- shape=34e168dd vocab=cce326f0
+-/
 theorem halfEuler_zero_eq : halfEuler 0 = (halfGauss : 𝕜 → 𝕜) := by
   funext p
   simp [halfEuler, halfGauss_eq_tsum]
 
+/--
+@isnad1 id=eq.0h1v.s5.249b18659d23 from=translated src=- shape=84c99b5b vocab=13cf8c0a
+-/
 theorem halfGauss_zero : halfGauss (0 : 𝕜) = 1 := by
   simp [halfGauss]
 
+/--
+@isnad1 id=summable.1h3v.s7.04534acb63cf from=translated src=- shape=cf44f60e vocab=b1609692
+-/
 theorem halfEuler_summable (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
     Summable (fun n : ℕ => (halfGaussCoefficient n : 𝕜) * (n : 𝕜) ^ k * p ^ n) := by
   have hr : ‖‖p‖‖ < 1 := by simpa only [Real.norm_eq_abs, abs_norm] using hp
@@ -43,6 +52,9 @@ theorem halfEuler_summable (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
       exact halfGaussCoefficient_le_one n
     _ = (n : ℝ) ^ k * ‖p‖ ^ n := by ring
 
+/--
+@isnad1 id=le.0h1v.s8.696e5ffde53f from=translated src=- shape=956040a0 vocab=6ea384ff
+-/
 theorem halfGaussSeries_radius : (1 : ℝ≥0∞) ≤
     (ordinaryHypergeometricSeries 𝕜 (1 / 12 : 𝕜) (5 / 12) 1).radius := by
   apply (ordinaryHypergeometricSeries 𝕜 (1 / 12 : 𝕜) (5 / 12) 1).le_radius_of_bound
@@ -53,6 +65,9 @@ theorem halfGaussSeries_radius : (1 : ℝ≥0∞) ≤
     RCLike.norm_of_nonneg (halfGaussCoefficient_pos n).le]
   exact halfGaussCoefficient_le_one n
 
+/--
+@isnad1 id=analytic.1h2v.s6.3d926fe4df39 from=translated src=- shape=8c2744f8 vocab=6fb0016d
+-/
 theorem halfGauss_analyticAt (p : 𝕜) (hp : ‖p‖ < 1) : AnalyticAt 𝕜 halfGauss p := by
   let s := ordinaryHypergeometricSeries 𝕜 (1 / 12 : 𝕜) (5 / 12) 1
   have hr : (0 : ℝ≥0∞) < s.radius := lt_of_lt_of_le (by norm_num) halfGaussSeries_radius
@@ -63,6 +78,9 @@ theorem halfGauss_analyticAt (p : 𝕜) (hp : ‖p‖ < 1) : AnalyticAt 𝕜 hal
   exact (s.hasFPowerSeriesOnBall hr).analyticAt_of_mem
     (show p ∈ Metric.eball (0 : 𝕜) s.radius by simpa using hpr)
 
+/--
+@isnad1 id=hasderiv.0h4v.s8.02b2a5a1ce60 from=translated src=- shape=e80f6a33 vocab=19f9eec0
+-/
 theorem halfTerm_hasDerivAt (k n : ℕ) (p : 𝕜) :
     HasDerivAt (fun p : 𝕜 => (halfGaussCoefficient n : 𝕜) * (n : 𝕜) ^ k * p ^ n)
       ((halfGaussCoefficient n : 𝕜) * (n : 𝕜) ^ (k + 1) * p ^ (n - 1)) p := by
@@ -72,6 +90,9 @@ theorem halfTerm_hasDerivAt (k n : ℕ) (p : 𝕜) :
   rw [pow_succ]
   ring
 
+/--
+@isnad1 id=le.2h5v.s8.a6e3f63b2142 from=translated src=- shape=f55f08fe vocab=8284fe15
+-/
 theorem halfDerivative_bound (k n : ℕ) {r : ℝ} (hr : 0 < r) (p : 𝕜) (hp : ‖p‖ ≤ r) :
     ‖(halfGaussCoefficient n : 𝕜) * (n : 𝕜) ^ (k + 1) * p ^ (n - 1)‖ ≤
       r⁻¹ * ((n : ℝ) ^ (k + 1) * r ^ n) := by
@@ -89,6 +110,9 @@ theorem halfDerivative_bound (k n : ℕ) {r : ℝ} (hr : 0 < r) (p : 𝕜) (hp :
         simp only [Nat.add_sub_cancel, pow_succ]
         field_simp
 
+/--
+@isnad1 id=hasderiv.1h3v.s8.79cf314067d4 from=translated src=- shape=bd0adece vocab=1f32e938
+-/
 theorem halfEuler_hasDerivAt (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
     HasDerivAt (halfEuler k)
       (∑' n : ℕ, (halfGaussCoefficient n : 𝕜) * (n : 𝕜) ^ (k + 1) * p ^ (n - 1)) p := by
@@ -108,6 +132,9 @@ theorem halfEuler_hasDerivAt (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
   · exact halfEuler_summable k 0 (by simp)
   · simpa using hpr
 
+/--
+@isnad1 id=eq.1h3v.s7.17d8a499e88f from=translated src=- shape=f6a938f2 vocab=538b3763
+-/
 theorem halfEuler_succ_eq (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
     halfEuler (k + 1) p = p * deriv (halfEuler k) p := by
   rw [(halfEuler_hasDerivAt k p hp).deriv, ← tsum_mul_left]
@@ -120,6 +147,9 @@ theorem halfEuler_succ_eq (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
     simp only [Nat.add_sub_cancel, pow_succ]
     ring
 
+/--
+@isnad1 id=eq.1h2v.s8.f73a90f63281 from=translated src=- shape=82f3df50 vocab=0c8475b2
+-/
 theorem halfEuler_quadratic (p : 𝕜) (hp : ‖p‖ < 1) :
     halfEuler 2 p = p * (halfEuler 2 p + (1/2:𝕜)*halfEuler 1 p +
       (5/144:𝕜)*halfEuler 0 p) := by
@@ -160,6 +190,9 @@ theorem halfEuler_quadratic (p : 𝕜) (hp : ‖p‖ < 1) :
             h2.tsum_add (h1.mul_left (1/2:𝕜)), tsum_mul_left, tsum_mul_left]
           rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.eeabe8a9d5bb from=translated src=- shape=990dc544 vocab=d1a5fa6e
+-/
 theorem halfGauss_deriv_zero : deriv (halfGauss : 𝕜 → 𝕜) 0 = 5/144 := by
   have hd := halfEuler_hasDerivAt 0 (0:𝕜) (by simp)
   rw [halfEuler_zero_eq] at hd
@@ -180,6 +213,9 @@ theorem halfGauss_deriv_zero : deriv (halfGauss : 𝕜 → 𝕜) 0 = 5/144 := by
         norm_num [ordinaryHypergeometricCoefficient]
       simp [hcoef, map_ofNat]
 
+/--
+@isnad1 id=eq.1h2v.s9.1dc1b17f11dc from=translated src=- shape=a3aec96c vocab=91ff825e
+-/
 theorem halfGauss_equation (p : 𝕜) (hp : ‖p‖ < 1) :
     p*(1-p)*deriv (deriv halfGauss) p+
       (1-(3/2:𝕜)*p)*deriv halfGauss p-(5/144:𝕜)*halfGauss p = 0 := by

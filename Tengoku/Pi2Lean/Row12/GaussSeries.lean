@@ -31,6 +31,9 @@ namespace Row12
 noncomputable def gaussCoefficient (n : ℕ) : ℝ :=
   gammaMoment (1 / 6) n * gammaMoment (5 / 6) n
 
+/--
+@isnad1 id=eq.0h1v.s6.60a89470ecd2 from=translated src=- shape=513b4e81 vocab=e4220f1c
+-/
 theorem gaussCoefficient_eq (n : ℕ) :
     gaussCoefficient n = ordinaryHypergeometricCoefficient (1 / 6 : ℝ) (5 / 6) 1 n := by
   unfold gaussCoefficient ordinaryHypergeometricCoefficient
@@ -38,22 +41,37 @@ theorem gaussCoefficient_eq (n : ℕ) :
     gammaMoment_eq_ascPochhammer (by norm_num : (0 : ℝ) < 5 / 6), ascPochhammer_eval_one]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s3.b565a9e995d2 from=translated src=- shape=1ac31801 vocab=2efaf64d
+-/
 theorem gaussCoefficient_zero : gaussCoefficient 0 = 1 := by
   norm_num [gaussCoefficient, gammaMoment_zero]
 
+/--
+@isnad1 id=eq.0h0v.s5.86c029cd0a36 from=translated src=- shape=4683683d vocab=8398156f
+-/
 theorem gaussCoefficient_one : gaussCoefficient 1 = 5 / 36 := by
   rw [gaussCoefficient_eq]
   norm_num [ordinaryHypergeometricCoefficient]
 
+/--
+@isnad1 id=lt.0h1v.s3.9ca101381995 from=translated src=- shape=b9369acb vocab=43af9b9b
+-/
 theorem gaussCoefficient_pos (n : ℕ) : 0 < gaussCoefficient n := by
   exact mul_pos (gammaMoment_pos (by norm_num) n) (gammaMoment_pos (by norm_num) n)
 
+/--
+@isnad1 id=le.0h1v.s3.f0004c1dac16 from=translated src=- shape=a311c14d vocab=0358ac49
+-/
 theorem gaussCoefficient_le_one (n : ℕ) : gaussCoefficient n ≤ 1 := by
   have ha := gammaMoment_le_one (by norm_num : (0 : ℝ) < 1 / 6) (by norm_num) n
   have hb := gammaMoment_le_one (by norm_num : (0 : ℝ) < 5 / 6) (by norm_num) n
   simpa only [gaussCoefficient, one_mul] using
     mul_le_mul ha hb (gammaMoment_pos (by norm_num) n).le zero_le_one
 
+/--
+@isnad1 id=eq.0h1v.s7.d6744aaa5914 from=translated src=- shape=512baa57 vocab=f0d014fb
+-/
 theorem gaussCoefficient_succ_mul (n : ℕ) :
     ((n : ℝ) + 1) ^ 2 * gaussCoefficient (n + 1) =
       ((n : ℝ) + 1 / 6) * ((n : ℝ) + 5 / 6) * gaussCoefficient n := by
@@ -74,6 +92,9 @@ private theorem gaussPochhammer_cast (a : ℝ) (n : ℕ) :
       (ascPochhammer 𝕜 n).eval ((algebraMap ℝ 𝕜) a) := by
   rw [ascPochhammer_eval₂ (algebraMap ℝ 𝕜), Polynomial.eval₂_at_apply]
 
+/--
+@isnad1 id=eq.0h2v.s7.7c8bcc747c94 from=translated src=- shape=3afe36e0 vocab=036ce559
+-/
 theorem gaussCoefficient_cast (n : ℕ) :
     (gaussCoefficient n : 𝕜) =
       ordinaryHypergeometricCoefficient (1 / 6 : 𝕜) (5 / 6) 1 n := by
@@ -90,19 +111,31 @@ noncomputable def gaussA (p : 𝕜) : 𝕜 := ordinaryHypergeometric (1 / 6 : �
 noncomputable def gaussEuler (k : ℕ) (p : 𝕜) : 𝕜 :=
   ∑' n : ℕ, (gaussCoefficient n : 𝕜) * (n : 𝕜) ^ k * p ^ n
 
+/--
+@isnad1 id=eq.0h2v.s6.7be1a8d421b3 from=translated src=- shape=bdc1796d vocab=c887f09c
+-/
 theorem gaussA_eq_tsum (p : 𝕜) : gaussA p = ∑' n : ℕ, (gaussCoefficient n : 𝕜) * p ^ n := by
   simp only [gaussA, ordinaryHypergeometric_eq_tsum, smul_eq_mul]
   apply tsum_congr
   intro n
   rw [gaussCoefficient_cast]
 
+/--
+@isnad1 id=eq.0h1v.s4.7faef976b78d from=translated src=- shape=34e168dd vocab=f4161659
+-/
 theorem gaussEuler_zero_eq : gaussEuler 0 = (gaussA : 𝕜 → 𝕜) := by
   funext p
   simp [gaussEuler, gaussA_eq_tsum]
 
+/--
+@isnad1 id=eq.0h1v.s5.438b0213f7dd from=translated src=- shape=84c99b5b vocab=d9c7eaff
+-/
 theorem gaussA_zero : gaussA (0 : 𝕜) = 1 := by
   simp [gaussA]
 
+/--
+@isnad1 id=summable.1h3v.s7.b86fd0bb64ab from=translated src=- shape=cf44f60e vocab=0fc1626f
+-/
 theorem gaussEuler_summable (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
     Summable (fun n : ℕ => (gaussCoefficient n : 𝕜) * (n : 𝕜) ^ k * p ^ n) := by
   have hr : ‖‖p‖‖ < 1 := by simpa only [Real.norm_eq_abs, abs_norm] using hp
@@ -116,6 +149,9 @@ theorem gaussEuler_summable (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
       exact gaussCoefficient_le_one n
     _ = (n : ℝ) ^ k * ‖p‖ ^ n := by ring
 
+/--
+@isnad1 id=le.0h1v.s8.00dce6f230d4 from=translated src=- shape=956040a0 vocab=6ea384ff
+-/
 theorem gaussSeries_radius : (1 : ℝ≥0∞) ≤
     (ordinaryHypergeometricSeries 𝕜 (1 / 6 : 𝕜) (5 / 6) 1).radius := by
   apply (ordinaryHypergeometricSeries 𝕜 (1 / 6 : 𝕜) (5 / 6) 1).le_radius_of_bound
@@ -126,6 +162,9 @@ theorem gaussSeries_radius : (1 : ℝ≥0∞) ≤
     RCLike.norm_of_nonneg (gaussCoefficient_pos n).le]
   exact gaussCoefficient_le_one n
 
+/--
+@isnad1 id=analytic.1h2v.s6.6b9510ca2c72 from=translated src=- shape=8c2744f8 vocab=8fcceb9e
+-/
 theorem gaussA_analyticAt (p : 𝕜) (hp : ‖p‖ < 1) : AnalyticAt 𝕜 gaussA p := by
   let s := ordinaryHypergeometricSeries 𝕜 (1 / 6 : 𝕜) (5 / 6) 1
   have hr : (0 : ℝ≥0∞) < s.radius := lt_of_lt_of_le (by norm_num) gaussSeries_radius
@@ -136,6 +175,9 @@ theorem gaussA_analyticAt (p : 𝕜) (hp : ‖p‖ < 1) : AnalyticAt 𝕜 gaussA
   exact (s.hasFPowerSeriesOnBall hr).analyticAt_of_mem
     (show p ∈ Metric.eball (0 : 𝕜) s.radius by simpa using hpr)
 
+/--
+@isnad1 id=hasderiv.0h4v.s8.098a6eaf3859 from=translated src=- shape=e80f6a33 vocab=f2311fec
+-/
 theorem gaussTerm_hasDerivAt (k n : ℕ) (p : 𝕜) :
     HasDerivAt (fun p : 𝕜 => (gaussCoefficient n : 𝕜) * (n : 𝕜) ^ k * p ^ n)
       ((gaussCoefficient n : 𝕜) * (n : 𝕜) ^ (k + 1) * p ^ (n - 1)) p := by
@@ -145,6 +187,9 @@ theorem gaussTerm_hasDerivAt (k n : ℕ) (p : 𝕜) :
   rw [pow_succ]
   ring
 
+/--
+@isnad1 id=le.2h5v.s8.0737bf8cbf87 from=translated src=- shape=f55f08fe vocab=d924305e
+-/
 theorem gaussDerivative_bound (k n : ℕ) {r : ℝ} (hr : 0 < r) (p : 𝕜) (hp : ‖p‖ ≤ r) :
     ‖(gaussCoefficient n : 𝕜) * (n : 𝕜) ^ (k + 1) * p ^ (n - 1)‖ ≤
       r⁻¹ * ((n : ℝ) ^ (k + 1) * r ^ n) := by
@@ -162,6 +207,9 @@ theorem gaussDerivative_bound (k n : ℕ) {r : ℝ} (hr : 0 < r) (p : 𝕜) (hp 
         simp only [Nat.add_sub_cancel, pow_succ]
         field_simp
 
+/--
+@isnad1 id=hasderiv.1h3v.s8.33148c4a1883 from=translated src=- shape=bd0adece vocab=2c4155bc
+-/
 theorem gaussEuler_hasDerivAt (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
     HasDerivAt (gaussEuler k)
       (∑' n : ℕ, (gaussCoefficient n : 𝕜) * (n : 𝕜) ^ (k + 1) * p ^ (n - 1)) p := by
@@ -181,6 +229,9 @@ theorem gaussEuler_hasDerivAt (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
   · exact gaussEuler_summable k 0 (by simp)
   · simpa using hpr
 
+/--
+@isnad1 id=eq.1h3v.s7.47d11b3d5a95 from=translated src=- shape=f6a938f2 vocab=3882cf0e
+-/
 theorem gaussEuler_succ_eq (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
     gaussEuler (k + 1) p = p * deriv (gaussEuler k) p := by
   rw [(gaussEuler_hasDerivAt k p hp).deriv, ← tsum_mul_left]
@@ -193,6 +244,9 @@ theorem gaussEuler_succ_eq (k : ℕ) (p : 𝕜) (hp : ‖p‖ < 1) :
     simp only [Nat.add_sub_cancel, pow_succ]
     ring
 
+/--
+@isnad1 id=eq.1h2v.s7.91eea791dbad from=translated src=- shape=25784bf9 vocab=6d134656
+-/
 theorem gaussEuler_quadratic (p : 𝕜) (hp : ‖p‖ < 1) :
     gaussEuler 2 p = p * (gaussEuler 2 p + gaussEuler 1 p + (5 / 36 : 𝕜) * gaussEuler 0 p) := by
   have h0 := gaussEuler_summable 0 p hp
@@ -231,6 +285,9 @@ theorem gaussEuler_quadratic (p : 𝕜) (hp : ‖p‖ < 1) :
           rw [(h2.add h1).tsum_add (h0.mul_left (5 / 36 : 𝕜)), h2.tsum_add h1, tsum_mul_left]
           rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.c720ca2350b2 from=translated src=- shape=990dc544 vocab=3e9f12d9
+-/
 theorem gaussA_deriv_zero : deriv (gaussA : 𝕜 → 𝕜) 0 = 5 / 36 := by
   have hd := gaussEuler_hasDerivAt 0 (0 : 𝕜) (by simp)
   rw [gaussEuler_zero_eq] at hd
@@ -248,6 +305,9 @@ theorem gaussA_deriv_zero : deriv (gaussA : 𝕜 → 𝕜) 0 = 5 / 36 := by
         | succ n => simp
     _ = 5 / 36 := by simp [gaussCoefficient_one, map_ofNat]
 
+/--
+@isnad1 id=eq.1h2v.s9.3b2d388b2072 from=translated src=- shape=28ff212c vocab=e393d95d
+-/
 theorem gaussA_equation (p : 𝕜) (hp : ‖p‖ < 1) :
     p * (1 - p) * deriv (deriv gaussA) p +
       (1 - 2 * p) * deriv gaussA p - (5 / 36 : 𝕜) * gaussA p = 0 := by

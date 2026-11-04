@@ -31,6 +31,9 @@ noncomputable def betaBranchNumerator (B : Matrix (Fin 3) (Fin 3) ℂ)
     (lambda s : ℂ) : ℂ :=
   betaPair B (dualState s) (dualState (lambda/s))
 
+/--
+@isnad1 id=analytic.1h2v.s5.915d3f59ce77 from=translated src=- shape=bce11dd8 vocab=3d331c11
+-/
 theorem dualState_entry_analyticAt (i : Fin 3) (q : ℂ) (hq : ‖q‖ < 1) :
     AnalyticAt ℂ (fun z => dualState z i) q := by
   have hM (j : Fin 3) : AnalyticAt ℂ (fun z => dualStateMatrix z j i) q := by
@@ -43,6 +46,9 @@ theorem dualState_entry_analyticAt (i : Fin 3) (q : ℂ) (hq : ‖q‖ < 1) :
   convert! Finset.analyticAt_sum (Finset.univ : Finset (Fin 3))
     (fun j _ => (hM j).mul (nativeState_entry_analyticAt j q hq)) using 1
 
+/--
+@isnad1 id=analytic.3h3v.s6.6462cb800b0f from=translated src=- shape=d948ede8 vocab=1688084b
+-/
 theorem betaBranchNumerator_analyticAt (B : Matrix (Fin 3) (Fin 3) ℂ)
     (lambda s : ℂ) (hs0 : s ≠ 0) (hs : ‖s‖ < 1) (hb : ‖lambda/s‖ < 1) :
     AnalyticAt ℂ (betaBranchNumerator B lambda) s := by
@@ -57,6 +63,9 @@ theorem betaBranchNumerator_analyticAt (B : Matrix (Fin 3) (Fin 3) ℂ)
         ((dualState_entry_analyticAt j (lambda/s) hb).comp hquot))) using 1
   convert! Finset.analyticAt_sum (Finset.univ : Finset (Fin 3)) (fun i _ => hi i) using 1
 
+/--
+@isnad1 id=differen.1h3v.s7.ed9943772b89 from=translated src=- shape=6e85b12a vocab=b1757158
+-/
 theorem betaBranchNumerator_differentiableOn (B : Matrix (Fin 3) (Fin 3) ℂ)
     (lambda : ℂ) (V : Set ℂ)
     (hV : ∀ s ∈ V, s ≠ 0 ∧ ‖s‖ < 1 ∧ ‖lambda/s‖ < 1) :
@@ -65,6 +74,9 @@ theorem betaBranchNumerator_differentiableOn (B : Matrix (Fin 3) (Fin 3) ℂ)
   obtain ⟨hs0,hs1,hb⟩ := hV s hs
   exact (betaBranchNumerator_analyticAt B lambda s hs0 hs1 hb).differentiableAt.differentiableWithinAt
 
+/--
+@isnad1 id=eq.5h2v.s7.5d14944c2450 from=translated src=- shape=e66c3b84 vocab=6e7db272
+-/
 theorem betaFluxIntegrand_partialFractions {U : ℝ} (hU : 0 < U) (hU1 : U < 1) (s : ℂ)
     (hd : betaFrameDenom (scalarPathX U:ℂ) ≠ 0)
     (hsa : s-(scalarPolePlus U:ℂ) ≠ 0) (hsb : s-(scalarPoleMinus U:ℂ) ≠ 0) :
@@ -84,6 +96,9 @@ theorem betaFluxIntegrand_partialFractions {U : ℝ} (hU : 0 < U) (hU1 : U < 1) 
   congr 1 <;> apply Finset.sum_congr rfl <;> intro i _
   all_goals apply Finset.sum_congr rfl; intro j _; ring
 
+/--
+@isnad1 id=and.4h4v.s7.a4a13355055e from=translated src=- shape=5196edcd vocab=49969ada
+-/
 theorem betaBranch_annulus_domain (lambda s : ℂ) {r R : ℝ}
     (hr : 0 < r) (hl : ‖lambda‖ < r) (hR : R < 1)
     (hs : s ∈ closedBall (0:ℂ) R \ ball (0:ℂ) r) :
@@ -95,6 +110,9 @@ theorem betaBranch_annulus_domain (lambda s : ℂ) {r R : ℝ}
   rw [norm_div]
   exact (div_lt_one hspos).2 (hl.trans_le hsr)
 
+/--
+@isnad1 id=eq.5h5v.s7.ca3416302c45 from=translated src=- shape=9105664f vocab=17222eb5
+-/
 theorem betaBranch_polefree_annulus_integral (B : Matrix (Fin 3) (Fin 3) ℂ)
     (lambda a : ℂ) {r R : ℝ} (hr : 0 < r) (hrR : r ≤ R)
     (hl : ‖lambda‖ < r) (hR : R < 1)
@@ -112,6 +130,9 @@ theorem betaBranch_polefree_annulus_integral (B : Matrix (Fin 3) (Fin 3) ℂ)
       exact hh s ⟨ball_subset_closedBall hs.1.1,
         fun he => hs.1.2 (ball_subset_closedBall he)⟩)
 
+/--
+@isnad1 id=eq.9h3v.s6.5886b967a334 from=translated src=- shape=48c49604 vocab=e45903c2
+-/
 theorem betaFluxCircle_singlePole_deformation {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
     {r R : ℝ} (hr : 0 < r) (hl : ‖(scalarLambda (scalarPathX U):ℂ)‖ < r)
     (ha : r < scalarPolePlus U) (haR : scalarPolePlus U < R)

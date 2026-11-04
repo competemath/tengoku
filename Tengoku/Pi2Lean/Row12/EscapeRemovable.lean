@@ -11,6 +11,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=eq.2h3v.s7.9bff7e102a70 from=translated src=- shape=abb0fd63 vocab=15859724
+-/
 theorem negativePole_derivative_leading (H : ℝ → ℝ) (m : ℕ) (q : ℝ)
     (hH : AnalyticAt ℝ H q) (hq : q ≠ 0) :
     q^(m+2)*deriv (fun z => H z/z^(m+1)) q =
@@ -22,6 +25,9 @@ theorem negativePole_derivative_leading (H : ℝ → ℝ) (m : ℕ) (q : ℝ)
   simp only [pow_succ]
   field_simp [hq,pow_ne_zero m hq]
 
+/--
+@isnad1 id=not.2h3v.s7.1b36fc5fff2f from=translated src=- shape=78b02a9b vocab=f2c84410
+-/
 theorem negativePole_derivative_no_finite_limit (H : ℝ → ℝ) (m : ℕ) (L : ℝ)
     (hH : AnalyticAt ℝ H 0) (hH0 : H 0 ≠ 0) :
     ¬Tendsto (deriv (fun z => H z/z^(m+1))) (nhdsWithin 0 (Ioi 0)) (nhds L) := by
@@ -49,6 +55,9 @@ theorem negativePole_derivative_no_finite_limit (H : ℝ → ℝ) (m : ℕ) (L :
   have hm : -((m:ℝ)+1) ≠ 0 := by have hm0 : (0:ℝ) ≤ m := Nat.cast_nonneg m; linarith
   exact (mul_ne_zero hm hH0) hz.symm
 
+/--
+@isnad1 id=ex.2h2v.s7.5d1005d9e317 from=translated src=- shape=31a4e281 vocab=4182794a
+-/
 theorem finitePoleTwo_removable (g : ℝ → ℝ) (L : ℝ) (hg : AnalyticAt ℝ g 0)
     (hd : Tendsto (deriv (fun q => g q/q^2)) (nhdsWithin 0 (Ioi 0)) (nhds L)) :
     ∃ G : ℝ → ℝ, AnalyticAt ℝ G 0 ∧

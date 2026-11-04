@@ -15,18 +15,30 @@ namespace Row12
 
 set_option maxHeartbeats 1000000
 
+/--
+@isnad1 id=continuo.0h0v.s3.8d4c0eb04900 from=translated src=- shape=e3d48bcb vocab=2a557081
+-/
 theorem scalarPolePlus_continuous : Continuous scalarPolePlus := by
   unfold scalarPolePlus scalarPathX scalarMid scalarEll scalarM
   fun_prop
 
+/--
+@isnad1 id=continuo.0h0v.s3.088b108f5c9e from=translated src=- shape=e3d48bcb vocab=98a3f11e
+-/
 theorem scalarPoleMinus_continuous : Continuous scalarPoleMinus := by
   unfold scalarPoleMinus scalarPathX scalarMid scalarEll scalarM
   fun_prop
 
+/--
+@isnad1 id=continuo.0h0v.s4.31a6df457c8c from=translated src=- shape=18759164 vocab=2f75d0ff
+-/
 theorem scalarLambda_path_continuous : Continuous (fun U => scalarLambda (scalarPathX U)) := by
   unfold scalarLambda scalarPathX
   fun_prop
 
+/--
+@isnad1 id=continuo.0h2v.s5.e740f55aa335 from=translated src=- shape=2071d655 vocab=584c626c
+-/
 theorem scalarBetaPositiveResidue_continuousAt_zero (i j : Fin 3) :
     ContinuousAt (fun U : ℝ => scalarBetaPositiveResidue U i j) 0 := by
   have hX : ContinuousAt (fun U : ℝ => (scalarPathX U:ℂ)) 0 := by
@@ -46,6 +58,9 @@ theorem scalarBetaPositiveResidue_continuousAt_zero (i j : Fin 3) :
     norm_num [betaFrameDenom,betaFrameM,scalarPathX]
   exact ((Complex.continuous_ofReal.continuousAt.mul hLP).add (hS.mul hRP)).div hD hD0
 
+/--
+@isnad1 id=tendsto.0h0v.s6.79b7ee5648ea from=translated src=- shape=54d32a47 vocab=256dfe80
+-/
 theorem beta_positive_residue_limit :
     Tendsto (fun U : ℝ =>
       betaBranchNumerator (scalarBetaPositiveResidue U) (scalarLambda (scalarPathX U))

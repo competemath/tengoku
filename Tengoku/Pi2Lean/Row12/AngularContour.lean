@@ -20,6 +20,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=analytic.1h2v.s5.eb517671600d from=translated src=- shape=762b3809 vocab=6ab02d3c
+-/
 theorem nativeEuler_complex_analyticAt (k : ℕ) (q : ℂ) (hq : ‖q‖ < 1) :
     AnalyticAt ℂ (nativeEuler k) q := by
   have hd : DifferentiableOn ℂ (nativeEuler k) (ball (0:ℂ) 1) := by
@@ -27,11 +30,17 @@ theorem nativeEuler_complex_analyticAt (k : ℕ) (q : ℂ) (hq : ‖q‖ < 1) :
     exact (nativeEuler_hasDerivAt k z (by simpa using hz)).differentiableAt.differentiableWithinAt
   exact hd.analyticAt (isOpen_ball.mem_nhds (by simpa using hq))
 
+/--
+@isnad1 id=analytic.1h2v.s5.22d970e5eaef from=translated src=- shape=bce11dd8 vocab=8e99e502
+-/
 theorem nativeState_entry_analyticAt (i : Fin 3) (q : ℂ) (hq : ‖q‖ < 1) :
     AnalyticAt ℂ (fun z => nativeState z i) q := by
   fin_cases i <;> change AnalyticAt ℂ (nativeEuler _) q <;>
     exact nativeEuler_complex_analyticAt _ q hq
 
+/--
+@isnad1 id=continuo.3h5v.s8.72a238754a29 from=translated src=- shape=e48133d5 vocab=f00ae2ad
+-/
 theorem angular_tensor_pair_continuousWithinAt
     {K : Set (ℂ × ℂ)} {p : ℂ × ℂ}
     (R : ℂ × ℂ → Matrix (Fin 3) (Fin 3) ℂ)
@@ -50,6 +59,9 @@ noncomputable def angularNFParameterValue (v : Fin 6 → ℂ) (lambda s : ℂ) :
       angularNFRow v lambda s * nativeEulerConnection (lambda/s))
     (nativeState s) (nativeState (lambda/s))
 
+/--
+@isnad1 id=continuo.1h2v.s7.6de5b0cfd94b from=translated src=- shape=6ad7f950 vocab=8293c097
+-/
 theorem angular_nf_continuousOn (v : Fin 6 → ℂ) (K : Set (ℂ × ℂ))
     (hK : ∀ p ∈ K, p.2 ≠ 0 ∧ p.2 ≠ 1 ∧ p.2 ≠ p.1 ∧
       ‖p.2‖ < 1 ∧ ‖p.1/p.2‖ < 1) :
@@ -72,6 +84,9 @@ theorem angular_nf_continuousOn (v : Fin 6 → ℂ) (K : Set (ℂ × ℂ))
   unfold angularNFRow
   fun_prop (disch := assumption)
 
+/--
+@isnad1 id=continuo.1h2v.s7.e27e57fb78be from=translated src=- shape=3c6b0165 vocab=b7960da0
+-/
 theorem angular_nf_parameter_continuousOn (v : Fin 6 → ℂ) (K : Set (ℂ × ℂ))
     (hK : ∀ p ∈ K, p.1 ≠ 0 ∧ p.2 ≠ 0 ∧ p.2 ≠ 1 ∧ p.2 ≠ p.1 ∧
       ‖p.2‖ < 1 ∧ ‖p.1/p.2‖ < 1) :
@@ -134,6 +149,9 @@ noncomputable def angularNFIntegral (v : Fin 6 → ℂ) (lambda : ℂ) (r : ℝ)
 noncomputable def angularContourState (lambda : ℂ) (r : ℝ) : Fin 6 → ℂ :=
   fun i => angularNFIntegral (Pi.single i 1) lambda r
 
+/--
+@isnad1 id=and.4h3v.s6.f3a9e27371a6 from=translated src=- shape=7c30536e vocab=c90cfe7c
+-/
 theorem angular_circle_domain {lambda s : ℂ} {r : ℝ}
     (hr : 0 < r) (hr1 : r < 1) (hl : ‖lambda‖ < r) (hs : s ∈ sphere 0 r) :
     s ≠ 0 ∧ s ≠ 1 ∧ s ≠ lambda ∧ ‖s‖ < 1 ∧ ‖lambda/s‖ < 1 := by
@@ -146,6 +164,9 @@ theorem angular_circle_domain {lambda s : ℂ} {r : ℝ}
   rw [norm_div, hsr]
   exact (div_lt_one hr).2 hl
 
+/--
+@isnad1 id=circlein.3h3v.s5.713f45a720a7 from=translated src=- shape=0f740ac8 vocab=3dfb7312
+-/
 theorem angular_nf_circleIntegrable (v : Fin 6 → ℂ) (lambda : ℂ) {r : ℝ}
     (hr : 0 < r) (hr1 : r < 1) (hl : ‖lambda‖ < r) :
     CircleIntegrable (angularNFIntegrand v lambda) 0 r := by
@@ -175,6 +196,9 @@ theorem angular_nf_circleIntegrable (v : Fin 6 → ℂ) (lambda : ℂ) {r : ℝ}
         (continuousOn_id.sub continuousOn_const) hsubl)
   exact hc.circleIntegrable hr.le
 
+/--
+@isnad1 id=eq.4h2v.s6.8eef545b528b from=translated src=- shape=57563708 vocab=8208ed3e
+-/
 theorem angular_nf_integral_anchor (lambda : ℂ) {r : ℝ}
     (hl0 : lambda ≠ 0) (hr : 0 < r) (hr1 : r < 1) (hl : ‖lambda‖ < r) :
     angularNFIntegral (sixthCyclicMatrix 0) lambda r = squaredNativeEuler 0 lambda := by
@@ -226,6 +250,9 @@ theorem angular_nf_integral_anchor (lambda : ℂ) {r : ℝ}
   rw [hi] at hh
   exact hh
 
+/--
+@isnad1 id=ex.2h2v.s6.609482fb0339 from=translated src=- shape=3c53f549 vocab=bfbfc047
+-/
 theorem angular_parameter_closedBall {lambda : ℂ} {r : ℝ}
     (hl0 : lambda ≠ 0) (hl : ‖lambda‖ < r) :
     ∃ ε > 0, ∀ z ∈ closedBall lambda ε, z ≠ 0 ∧ ‖z‖ < r := by
@@ -239,6 +266,9 @@ theorem angular_parameter_closedBall {lambda : ℂ} {r : ℝ}
   exact mem_ball.mpr ((mem_closedBall.mp hz).trans_lt (by linarith))
 
 set_option maxHeartbeats 1200000 in
+/--
+@isnad1 id=hasderiv.4h3v.s7.bfba85e9a192 from=translated src=- shape=bc48859c vocab=426a99bf
+-/
 theorem angular_nf_integral_hasDerivAt (v : Fin 6 → ℂ) (lambda : ℂ) {r : ℝ}
     (hl0 : lambda ≠ 0) (hr : 0 < r) (hr1 : r < 1) (hl : ‖lambda‖ < r) :
     HasDerivAt (fun z => angularNFIntegral v z r)

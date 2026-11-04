@@ -102,6 +102,9 @@ private theorem upper_polynomial_bounds :
         ((norm_le_pi_norm (fun i j : Fin 3 => Row12.betaFrameRP (x : ℂ) i j) i).trans
           ((hb (mem_image_of_mem _ hx)).trans hbC))
 
+/--
+@isnad1 id=ex.0h0v.s7.636895d608a0 from=translated src=- shape=9531c4f9 vocab=004db8d0
+-/
 theorem upperBetaNumerator_bound :
     ∃ K : ℝ, 0 < K ∧ ∀ x : ℝ, 0 ≤ x → x ≤ 1 →
       ∀ s : ℂ, ‖s‖ ≤ x → ∀ i j : Fin 3,
@@ -153,6 +156,9 @@ theorem upperBetaNumerator_bound :
         · positivity
     _ = (2 * C * (1 + C) + 2 * C * C) * x := by ring
 
+/--
+@isnad1 id=ex.0h0v.s8.b062a49352de from=translated src=- shape=eb1afe8a vocab=b23e8ee4
+-/
 theorem upperBetaFullNumerator_bound :
     ∃ K : ℝ, 0 < K ∧ ∀ U : ℝ, 0 ≤ U → U ≤ 1 →
       ∀ s : ℂ, ‖s‖ ≤ 1 - U ^ 2 → ∀ i j : Fin 3,

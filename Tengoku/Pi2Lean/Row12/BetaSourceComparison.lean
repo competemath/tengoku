@@ -83,18 +83,27 @@ noncomputable def betaSourceUS (x s : ℂ) : Matrix (Fin 3) (Fin 3) ℂ := fun i
     betaSourceNU x s i j*(betaFrameDenom x*(2*s-2*betaFrameMid x)))/
       (betaFrameDenom x*betaFrameF x s)^2
 
+/--
+@isnad1 id=eq.0h3v.s6.aa989e471490 from=translated src=- shape=e39ae7eb vocab=7132ba59
+-/
 theorem betaSourceLP_deriv (x : ℂ) (i j : Fin 3) :
     deriv (fun z => betaFrameLP z i j) x=betaSourceLPX x i j := by
   fin_cases i <;> fin_cases j <;>
     simp (disch := fun_prop) [betaFrameLP, betaSourceLPX, deriv_fun_mul,
       deriv_fun_sub, deriv_fun_pow, deriv_fun_add, deriv_div_const] <;> ring
 
+/--
+@isnad1 id=eq.0h3v.s6.25003f2a0eb7 from=translated src=- shape=e39ae7eb vocab=03ae7662
+-/
 theorem betaSourceRP_deriv (x : ℂ) (i j : Fin 3) :
     deriv (fun z => betaFrameRP z i j) x=betaSourceRPX x i j := by
   fin_cases i <;> fin_cases j <;>
     simp (disch := fun_prop) [betaFrameRP, betaSourceRPX, deriv_fun_mul,
       deriv_fun_sub, deriv_fun_pow, deriv_fun_add, deriv_div_const] <;> ring
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.92dba7df5293 from=translated src=- shape=475e04ea vocab=a19a9c08
+-/
 theorem betaSourceDenom_hasDerivAt (x : ℂ) :
     HasDerivAt betaFrameDenom (betaSourceDX x) x := by
   have hm := ((hasDerivAt_const x (25 : ℂ)).fun_sub
@@ -104,6 +113,9 @@ theorem betaSourceDenom_hasDerivAt (x : ℂ) :
   change HasDerivAt betaFrameDenom _ x at h
   exact h.congr_deriv (by norm_num [betaSourceDX, betaFrameM]; ring)
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.3a10b7aa7a34 from=translated src=- shape=f2d8674b vocab=4347d6db
+-/
 theorem betaSourceNS_hasDerivAt (x s : ℂ) (i j : Fin 3) :
     HasDerivAt (fun z => betaSourceNS z s i j) (betaSourceNSX x s i j) x := by
   have hl := (betaFrameLP_differentiableAt x i j).hasDerivAt
@@ -118,6 +130,9 @@ theorem betaSourceNS_hasDerivAt (x s : ℂ) (i j : Fin 3) :
   change HasDerivAt (fun z => betaSourceNS z s i j) _ x at h
   exact h.congr_deriv (by norm_num [betaSourceNSX, betaFrameM]; ring)
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.910965629498 from=translated src=- shape=7d5007d5 vocab=bfd4cea7
+-/
 theorem betaSourceNU_hasDerivAt (x s : ℂ) (i j : Fin 3) :
     HasDerivAt (fun z => betaSourceNU x z i j) (betaSourceNUS x i j) s := by
   have hfx := ((hasDerivAt_id s).const_mul (-2*betaFrameMidX x)).fun_add
@@ -132,12 +147,18 @@ theorem betaSourceNU_hasDerivAt (x s : ℂ) (i j : Fin 3) :
   change HasDerivAt (fun z => betaSourceNU x z i j) _ s at h
   exact h.congr_deriv (by norm_num [betaSourceNUS]; ring)
 
+/--
+@isnad1 id=hasderiv.1h4v.s6.fa872ef245c7 from=translated src=- shape=5d2d6188 vocab=d45e7634
+-/
 theorem scalarBetaSChart_hasDerivAt_x (x s : ℂ)
     (hH : betaFrameDenom x*betaFrameF x s ≠ 0) (i j : Fin 3) :
     HasDerivAt (fun z => scalarBetaSChart z s i j) (betaSourceSX x s i j) x := by
   exact (betaSourceNS_hasDerivAt x s i j).fun_div
     ((betaSourceDenom_hasDerivAt x).fun_mul (betaFrameF_hasDerivAt_x x s)) hH
 
+/--
+@isnad1 id=hasderiv.1h4v.s6.a39d8dd33d25 from=translated src=- shape=30c60ad4 vocab=bdbb4461
+-/
 theorem scalarBetaUChart_hasDerivAt_s (x s : ℂ)
     (hH : betaFrameDenom x*betaFrameF x s ≠ 0) (i j : Fin 3) :
     HasDerivAt (fun z => scalarBetaUChart x z i j) (betaSourceUS x s i j) s := by
@@ -149,6 +170,9 @@ theorem scalarBetaUChart_hasDerivAt_s (x s : ℂ)
   exact ((betaSourceNU_hasDerivAt x s i j).fun_div hd hH).congr_deriv
     (by norm_num [betaSourceUS])
 
+/--
+@isnad1 id=eq.1h2v.s7.41b313d22c9b from=translated src=- shape=9987143a vocab=ddfe0ab1
+-/
 theorem scalarBetaSFull_derivU (U s : ℂ) (hH : betaFrameH U s ≠ 0) :
     betaPartialU scalarBetaSFull U s=
       scalarBetaS U s-(2*U^2) • betaSourceSX (betaFrameX U) s := by
@@ -162,6 +186,9 @@ theorem scalarBetaSFull_derivU (U s : ℂ) (hH : betaFrameH U s ≠ 0) :
   dsimp only [Function.comp_apply, id_eq]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s5.aa62d7d0e3d0 from=translated src=- shape=8a600037 vocab=7ec0deb9
+-/
 theorem scalarBetaU_derivS (U s : ℂ) (hH : betaFrameH U s ≠ 0) :
     betaPartialS scalarBetaU U s=betaSourceUS (betaFrameX U) s := by
   ext i j
@@ -175,6 +202,9 @@ noncomputable def betaSourceRational (x s : ℂ) : Matrix (Fin 3) (Fin 3) ℂ :=
     (betaFrameLambda x/s^2) •
       (scalarBetaUChart x s*(ordinarySymmetricConnection ((betaFrameLambda x)/s)).transpose)
 
+/--
+@isnad1 id=eq.1h2v.s5.10099d4e242b from=translated src=- shape=6782e96d vocab=44c94fcf
+-/
 theorem scalarBetaSource_rational (U s : ℂ) (hH : betaFrameH U s ≠ 0) :
     scalarBetaSource U s=betaSourceRational (betaFrameX U) s := by
   rw [scalarBetaSource, betaCovariantU, betaCovariantS,
@@ -187,6 +217,9 @@ theorem scalarBetaSource_rational (U s : ℂ) (hH : betaFrameH U s ≠ 0) :
   rw [show 1-betaFrameX U=U^2 by unfold betaFrameX; ring]
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.35b00e10ab25 from=translated src=- shape=16559f85 vocab=6e320ab6
+-/
 theorem betaSource_discriminant (x : ℂ) :
     betaFrameMid x^2-betaFrameLambda x=(1-x)*betaFrameEll x^2*betaFrameM x := by
   norm_num only [betaFrameMid, betaFrameLambda, betaFrameEll, betaFrameM, betaFrameRho]
@@ -195,6 +228,9 @@ theorem betaSource_discriminant (x : ℂ) :
 noncomputable def betaSourceNativeConnection (q : ℂ) : Matrix (Fin 3) (Fin 3) ℂ :=
   !![0,0,6*q^2-4*q; -5/72,1-2*q,2*q*(q-1); 0,1-q,0]
 
+/--
+@isnad1 id=eq.2h1v.s6.2980a41376a5 from=translated src=- shape=2b95d424 vocab=4e6ac2d3
+-/
 theorem betaSource_connection_polynomial (q : ℂ) (hq0 : q ≠ 0) (hq1 : q ≠ 1) :
     dualStateMatrix q*ordinarySymmetricConnection q=betaSourceNativeConnection q := by
   ext i j
@@ -214,6 +250,9 @@ noncomputable def betaSourceNativeRational (x s : ℂ) : Matrix (Fin 3) (Fin 3) 
     (betaFrameLambda x/s^2) •
       (dualStateMatrix s*scalarBetaUChart x s*(betaSourceNativeConnection (betaFrameLambda x/s)).transpose)
 
+/--
+@isnad1 id=eq.4h2v.s7.4fc7c4e7ec40 from=translated src=- shape=1977a0d4 vocab=156f6bb9
+-/
 theorem betaSourceRational_pullback (x s : ℂ) (hx0 : x ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ betaFrameLambda x) :
     dualStateMatrix s*betaSourceRational x s*(dualStateMatrix (betaFrameLambda x/s)).transpose=
@@ -242,6 +281,9 @@ theorem betaSourceRational_pullback (x s : ℂ) (hx0 : x ≠ 0)
     Matrix.sub_mul, Matrix.neg_mul, Matrix.smul_mul, hf, hg]
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.5h2v.s7.395d8c0b1abc from=translated src=- shape=d3cd8559 vocab=4691607f
+-/
 theorem betaSourceRational_native_00 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hF : betaFrameF x s ≠ 0) (hs0 : s ≠ 0) :
@@ -270,6 +312,9 @@ theorem betaSourceRational_native_00 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.5h2v.s7.c8fb1e976c21 from=translated src=- shape=d3cd8559 vocab=4691607f
+-/
 theorem betaSourceRational_native_01 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hF : betaFrameF x s ≠ 0) (hs0 : s ≠ 0) :
@@ -298,6 +343,9 @@ theorem betaSourceRational_native_01 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.5h2v.s7.2d903a9f446f from=translated src=- shape=d3cd8559 vocab=4691607f
+-/
 theorem betaSourceRational_native_02 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hF : betaFrameF x s ≠ 0) (hs0 : s ≠ 0) :
@@ -326,6 +374,9 @@ theorem betaSourceRational_native_02 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.5h2v.s7.3cd4718c2545 from=translated src=- shape=d3cd8559 vocab=4691607f
+-/
 theorem betaSourceRational_native_10 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hF : betaFrameF x s ≠ 0) (hs0 : s ≠ 0) :
@@ -354,6 +405,9 @@ theorem betaSourceRational_native_10 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.5h2v.s7.f1ea1d62fe94 from=translated src=- shape=d3cd8559 vocab=4691607f
+-/
 theorem betaSourceRational_native_11 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hF : betaFrameF x s ≠ 0) (hs0 : s ≠ 0) :
@@ -382,6 +436,9 @@ theorem betaSourceRational_native_11 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.5h2v.s7.2d292535a697 from=translated src=- shape=d3cd8559 vocab=4691607f
+-/
 theorem betaSourceRational_native_12 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hF : betaFrameF x s ≠ 0) (hs0 : s ≠ 0) :
@@ -410,6 +467,9 @@ theorem betaSourceRational_native_12 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.5h2v.s7.626560c42490 from=translated src=- shape=d3cd8559 vocab=4691607f
+-/
 theorem betaSourceRational_native_20 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hF : betaFrameF x s ≠ 0) (hs0 : s ≠ 0) :
@@ -438,6 +498,9 @@ theorem betaSourceRational_native_20 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.5h2v.s7.653f235563e4 from=translated src=- shape=d3cd8559 vocab=4691607f
+-/
 theorem betaSourceRational_native_21 (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hF : betaFrameF x s ≠ 0) (hs0 : s ≠ 0) :
@@ -466,6 +529,9 @@ theorem betaSourceRational_native_21 (x s : ℂ) (hx0 : x ≠ 0)
   ring
 
 set_option maxHeartbeats 2000000 in
+/--
+@isnad1 id=eq.5h2v.s7.463d4bc7f285 from=translated src=- shape=d3cd8559 vocab=4691607f
+-/
 theorem betaSourceRational_native_22 (x s : ℂ) (_hx0 : x ≠ 0)
     (_hx25 : 9*x-25 ≠ 0) (_hx50 : 99*x-50 ≠ 0)
     (_hF : betaFrameF x s ≠ 0) (_hs0 : s ≠ 0) :
@@ -481,6 +547,9 @@ theorem betaSourceRational_native_22 (x s : ℂ) (_hx0 : x ≠ 0)
     Matrix.head_cons, Matrix.tail_cons,
     Fin.sum_univ_succ, Fin.sum_univ_zero, add_zero, zero_add, mul_zero,
     zero_mul, zero_div, zero_sub, sub_zero, neg_zero]
+/--
+@isnad1 id=eq.7h2v.s8.4118c41d117c from=translated src=- shape=18e41995 vocab=6826cb30
+-/
 theorem betaSourceRational_native (x s : ℂ) (hx0 : x ≠ 0)
     (hx25 : 9*x-25 ≠ 0) (hx50 : 99*x-50 ≠ 0)
     (hF : betaFrameF x s ≠ 0) (hs0 : s ≠ 0) (hs1 : s ≠ 1)
@@ -500,6 +569,9 @@ theorem betaSourceRational_native (x s : ℂ) (hx0 : x ≠ 0)
   · exact betaSourceRational_native_21 x s hx0 hx25 hx50 hF hs0
   · exact betaSourceRational_native_22 x s hx0 hx25 hx50 hF hs0
 
+/--
+@isnad1 id=eq.4h2v.s7.c092c2fd0832 from=translated src=- shape=81404ac7 vocab=b66e2248
+-/
 theorem scalarBetaSource_native (U s : ℂ) (hH : betaFrameH U s ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ betaFrameLambda (betaFrameX U)) :
     dualStateMatrix s*scalarBetaSource U s*(dualStateMatrix (betaFrameB U s)).transpose=
@@ -521,6 +593,9 @@ theorem scalarBetaSource_native (U s : ℂ) (hH : betaFrameH U s ≠ 0)
   rw [scalarBetaSource_rational U s hH]
   exact betaSourceRational_native (betaFrameX U) s hx0 hx25 hx50 hF hs0 hs1 hsl
 
+/--
+@isnad1 id=eq.0h3v.s7.d6b968bb1ddd from=translated src=- shape=01d6a87c vocab=b031e999
+-/
 theorem betaPair_dual_pullback (B : Matrix (Fin 3) (Fin 3) ℂ) (s b : ℂ) :
     betaPair B (dualState s) (dualState b)=
       angularTensorPair (dualStateMatrix s*B*(dualStateMatrix b).transpose)
@@ -529,6 +604,9 @@ theorem betaPair_dual_pullback (B : Matrix (Fin 3) (Fin 3) ℂ) (s b : ℂ) :
     Matrix.transpose_apply, dotProduct, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.4h2v.s5.972a9d2860df from=translated src=- shape=066c4728 vocab=0bd6d370
+-/
 theorem scalarBetaSource_actual_integrand (U s : ℂ) (hH : betaFrameH U s ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ betaFrameLambda (betaFrameX U)) :
     betaPair (scalarBetaSource U s) (dualState s) (dualState (betaFrameB U s))=
@@ -536,6 +614,9 @@ theorem scalarBetaSource_actual_integrand (U s : ℂ) (hH : betaFrameH U s ≠ 0
   rw [betaPair_dual_pullback, scalarBetaSource_native U s hH hs0 hs1 hsl]
   rfl
 
+/--
+@isnad1 id=eq.6h2v.s7.cd8c81eeb95c from=translated src=- shape=986cd165 vocab=891d9add
+-/
 theorem angularSource_actual_beta_derivatives (U s : ℂ) (hH : betaFrameH U s ≠ 0)
     (hs : ‖s‖ < 1) (hs0 : s ≠ 0) (hsl : s ≠ betaFrameLambda (betaFrameX U))
     (hb : ‖betaFrameB U s‖ < 1) (hb0 : betaFrameB U s ≠ 0) :

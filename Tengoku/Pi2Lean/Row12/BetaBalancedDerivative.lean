@@ -13,6 +13,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=hasderiv.3h1v.s7.63dcd07759d2 from=translated src=- shape=e4ebe51f vocab=77ee6d7a
+-/
 theorem betaFluxBalanced_hasDerivAt {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
     (hE : 99*scalarPathX U-50 ≠ 0) :
     HasDerivAt betaFluxBalanced

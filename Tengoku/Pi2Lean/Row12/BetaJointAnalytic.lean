@@ -14,6 +14,9 @@ namespace Row12
 
 attribute [local fun_prop] analyticAt_fst analyticAt_snd
 
+/--
+@isnad1 id=analytic.4h1v.s7.c90a89079ff9 from=translated src=- shape=f287aa3e vocab=b4ff643d
+-/
 theorem betaFluxIntegrand_joint_analyticAt (p : ℂ × ℂ)
     (hH : betaFrameH p.1 p.2 ≠ 0) (hs0 : p.2 ≠ 0)
     (hs : ‖p.2‖ < 1) (hb : ‖betaFrameB p.1 p.2‖ < 1) :
@@ -48,6 +51,9 @@ theorem betaFluxIntegrand_joint_analyticAt (p : ℂ × ℂ)
 noncomputable def betaFluxParameterValue (U s : ℂ) : ℂ :=
   (fderiv ℂ (fun p : ℂ × ℂ => betaFluxIntegrand p.1 p.2) (U,s)) (1,0)
 
+/--
+@isnad1 id=hasderiv.4h2v.s6.5d35b94e9357 from=translated src=- shape=72161e36 vocab=9a5e9ee3
+-/
 theorem betaFluxIntegrand_parameter_hasDerivAt (U s : ℂ)
     (hH : betaFrameH U s ≠ 0) (hs0 : s ≠ 0)
     (hs : ‖s‖ < 1) (hb : ‖betaFrameB U s‖ < 1) :
@@ -56,6 +62,9 @@ theorem betaFluxIntegrand_parameter_hasDerivAt (U s : ℂ)
   have hh := (ha.differentiableAt.hasFDerivAt.comp U (hasFDerivAt_prodMk_left U s)).hasDerivAt
   convert! hh using 1
 
+/--
+@isnad1 id=continuo.4h1v.s7.aca1cdc51641 from=translated src=- shape=e4ebf5d5 vocab=f55d9844
+-/
 theorem betaFluxParameterValue_joint_continuousAt (p : ℂ × ℂ)
     (hH : betaFrameH p.1 p.2 ≠ 0) (hs0 : p.2 ≠ 0)
     (hs : ‖p.2‖ < 1) (hb : ‖betaFrameB p.1 p.2‖ < 1) :

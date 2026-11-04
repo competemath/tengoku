@@ -15,6 +15,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=ne.2h1v.s5.99dc8bad29b8 from=translated src=- shape=ffb2a59b vocab=31d4e828
+-/
 theorem scalar_escape_factor_ne_zero {U : ℝ} (hU : 0 < U) (hne : U ≠ escapePoint) :
     99*scalarPathX U-50 ≠ 0 := by
   intro h
@@ -31,6 +34,9 @@ noncomputable def escapeRealNumerator (q : ℝ) : ℝ :=
   (escapeClearedTotal ((escapePoint+q:ℝ):ℂ)).re /
     (9801*(2*escapePoint+q)^2)
 
+/--
+@isnad1 id=analytic.0h0v.s5.3801c6e32718 from=translated src=- shape=7489677a vocab=afd732a1
+-/
 theorem escapeRealNumerator_analyticAt : AnalyticAt ℝ escapeRealNumerator 0 := by
   have hc : AnalyticAt ℝ escapeClearedTotal (escapePoint:ℂ) :=
     escapeClearedTotal_analyticAt.restrictScalars
@@ -48,6 +54,9 @@ theorem escapeRealNumerator_analyticAt : AnalyticAt ℝ escapeRealNumerator 0 :=
     have hp := escapePoint_mem.1
     exact mul_ne_zero (by norm_num) (pow_ne_zero 2 (by linarith)))
 
+/--
+@isnad1 id=eventual.0h0v.s6.9a45f238912a from=translated src=- shape=c29434cb vocab=764b728a
+-/
 theorem escapeRealNumerator_quotient_eventually :
     (fun q : ℝ => escapeRealNumerator q/q^2) =ᶠ[nhdsWithin 0 {0}ᶜ]
       (fun q => scalarTotalFlux (escapePoint+q)) := by
@@ -101,6 +110,9 @@ theorem escapeRealNumerator_quotient_eventually :
   rw [hr]
   field_simp [hq0,hunit]
 
+/--
+@isnad1 id=tendsto.0h0v.s6.f979041811f9 from=translated src=- shape=c11db5c7 vocab=8da48c49
+-/
 theorem scalarTotalFlux_shift_derivative_limit :
     Tendsto (deriv (fun q : ℝ => scalarTotalFlux (escapePoint+q)))
       (nhdsWithin 0 (Ioi 0)) (nhds (-scalarIntegrand escapePoint/3375)) := by
@@ -125,6 +137,9 @@ theorem scalarTotalFlux_shift_derivative_limit :
     simpa only [Function.comp_def,id_eq,zero_add,mul_one] using hh.deriv.symm
   exact ht.congr' hEq
 
+/--
+@isnad1 id=ex.0h0v.s5.4df2d4a3abb3 from=translated src=- shape=dd97fe46 vocab=8ff01e65
+-/
 theorem scalarTotalFlux_escape_limit :
     ∃ L : ℝ, Tendsto scalarTotalFlux (nhdsWithin escapePoint {escapePoint}ᶜ) (nhds L) := by
   have hmono : nhdsWithin (0:ℝ) (Ioi 0) ≤ nhdsWithin 0 {0}ᶜ :=

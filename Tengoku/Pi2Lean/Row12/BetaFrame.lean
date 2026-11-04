@@ -99,6 +99,9 @@ noncomputable def scalarBetaSource (U s : ℂ) : Matrix (Fin 3) (Fin 3) ℂ :=
 noncomputable def betaPair (B : Matrix (Fin 3) (Fin 3) ℂ) (v w : Fin 3 → ℂ) : ℂ :=
   ∑ i : Fin 3, ∑ j : Fin 3, v i*B i j*w j
 
+/--
+@isnad1 id=and.0h1v.s6.776e08fea106 from=translated src=- shape=6c1cd1e9 vocab=c702d590
+-/
 theorem betaFrame_real_agreement (x : ℝ) :
     betaFrameLP (x : ℂ)=(scalarLP x).map Complex.ofReal ∧
     betaFrameRP (x : ℂ)=(scalarRP x).map Complex.ofReal ∧
@@ -114,6 +117,9 @@ theorem betaFrame_real_agreement (x : ℝ) :
   simp [betaFrameM, scalarM, betaFrameMid, scalarMid, betaFrameEll, scalarEll,
     betaFrameDenom, scalarDenom, betaFrameLambda, scalarLambda, betaFrameRho, rho]
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.c78e3bce343c from=translated src=- shape=475e04ea vocab=35f4a7f7
+-/
 theorem betaFrameMid_hasDerivAt (x : ℂ) :
     HasDerivAt betaFrameMid (betaFrameMidX x) x := by
   have h := ((((hasDerivAt_id x).const_mul (80 : ℂ)).fun_sub
@@ -126,6 +132,9 @@ theorem betaFrameMid_hasDerivAt (x : ℂ) :
   rw [heq]
   exact h.congr_deriv (by norm_num [betaFrameMidX]; ring)
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.4c3e2866d834 from=translated src=- shape=475e04ea vocab=c858c6e7
+-/
 theorem betaFrameEll_hasDerivAt (x : ℂ) :
     HasDerivAt betaFrameEll (betaFrameEllX x) x := by
   have h := ((((hasDerivAt_id x).fun_pow 2).const_mul (9 : ℂ)).fun_sub
@@ -137,17 +146,26 @@ theorem betaFrameEll_hasDerivAt (x : ℂ) :
   rw [heq]
   exact h.congr_deriv (by norm_num [betaFrameEllX]; ring)
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.318608ea4948 from=translated src=- shape=197c9558 vocab=43aaa542
+-/
 theorem betaFrameX_hasDerivAt (U : ℂ) : HasDerivAt betaFrameX (-2*U) U := by
   unfold betaFrameX
   exact ((hasDerivAt_const U (1 : ℂ)).fun_sub ((hasDerivAt_id U).fun_pow 2)).congr_deriv
     (by norm_num)
 
+/--
+@isnad1 id=hasderiv.0h1v.s5.89d859a44a0f from=translated src=- shape=ef4ab573 vocab=7a3097cd
+-/
 theorem betaFrameLambda_path_hasDerivAt (U : ℂ) :
     HasDerivAt (fun V => betaFrameLambda (betaFrameX V)) (betaFrameLambdaU U) U := by
   have h := ((betaFrameX_hasDerivAt U).fun_pow 3).const_mul (betaFrameRho : ℂ)
   change HasDerivAt (fun V => betaFrameRho*(betaFrameX V)^3) (betaFrameLambdaU U) U
   exact h.congr_deriv (by norm_num [betaFrameLambdaU]; ring)
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.40da55a99fdd from=translated src=- shape=04d1a23c vocab=7d905ee8
+-/
 theorem betaFrameF_hasDerivAt_x (x s : ℂ) :
     HasDerivAt (fun z => betaFrameF z s) (betaFrameFX x s) x := by
   have h := ((hasDerivAt_const x (s^2)).fun_sub
@@ -161,6 +179,9 @@ theorem betaFrameF_hasDerivAt_x (x s : ℂ) :
   rw [heq]
   exact h.congr_deriv (by norm_num [betaFrameFX]; ring)
 
+/--
+@isnad1 id=eq.0h4v.s8.d9a9bf6075f1 from=translated src=- shape=abafbf7e vocab=24e1f2fd
+-/
 theorem scalarBetaU_frozen_recipe (U s : ℂ) (i j : Fin 3) :
     scalarBetaU U s i j =
       (U*betaFrameLP (betaFrameX U) i j*(betaFrameFX (betaFrameX U) s*(-2*U))-
@@ -176,24 +197,39 @@ theorem scalarBetaU_frozen_recipe (U s : ℂ) (i j : Fin 3) :
   congr 1
   ring
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.400c4eafb4ab from=translated src=- shape=bea5bd13 vocab=37185a6c
+-/
 theorem betaFrameB_hasDerivAt_U (U s : ℂ) :
     HasDerivAt (fun V => betaFrameB V s) (betaFrameLambdaU U/s) U := by
   simpa [betaFrameB] using (betaFrameLambda_path_hasDerivAt U).div_const s
 
+/--
+@isnad1 id=hasderiv.1h2v.s6.4055ca2cfeef from=translated src=- shape=2ae0e57b vocab=307e8dc1
+-/
 theorem betaFrameB_hasDerivAt_s (U s : ℂ) (hs : s ≠ 0) :
     HasDerivAt (betaFrameB U) (-betaFrameLambda (betaFrameX U)/s^2) s := by
   unfold betaFrameB
   exact ((hasDerivAt_const s (betaFrameLambda (betaFrameX U))).fun_div
     (hasDerivAt_id s) hs).congr_deriv (by simp)
 
+/--
+@isnad1 id=differen.0h3v.s6.43308d006e15 from=translated src=- shape=7f17b9db vocab=f3d3d0c0
+-/
 @[fun_prop] theorem betaFrameLP_differentiableAt (x : ℂ) (i j : Fin 3) :
     DifferentiableAt ℂ (fun z => betaFrameLP z i j) x := by
   fin_cases i <;> fin_cases j <;> simp [betaFrameLP] <;> fun_prop
 
+/--
+@isnad1 id=differen.0h3v.s6.d210c369b1bc from=translated src=- shape=7f17b9db vocab=1f3b1876
+-/
 @[fun_prop] theorem betaFrameRP_differentiableAt (x : ℂ) (i j : Fin 3) :
     DifferentiableAt ℂ (fun z => betaFrameRP z i j) x := by
   fin_cases i <;> fin_cases j <;> simp [betaFrameRP] <;> fun_prop
 
+/--
+@isnad1 id=differen.1h4v.s6.bb74d5f331d5 from=translated src=- shape=fb677e25 vocab=e031df5a
+-/
 theorem scalarBetaSChart_differentiableAt_x (x s : ℂ)
     (hH : betaFrameDenom x*betaFrameF x s ≠ 0) (i j : Fin 3) :
     DifferentiableAt ℂ (fun z => scalarBetaSChart z s i j) x := by
@@ -205,6 +241,9 @@ theorem scalarBetaSChart_differentiableAt_x (x s : ℂ)
     fun_prop
   · exact hH
 
+/--
+@isnad1 id=hasderiv.1h4v.s6.2d5ccdf26b00 from=translated src=- shape=3972f842 vocab=653abdd3
+-/
 theorem scalarBetaSFull_entry_hasDerivAt_U (U s : ℂ) (hH : betaFrameH U s ≠ 0)
     (i j : Fin 3) : HasDerivAt (fun V => scalarBetaSFull V s i j)
       (betaPartialU scalarBetaSFull U s i j) U := by
@@ -213,6 +252,9 @@ theorem scalarBetaSFull_entry_hasDerivAt_U (U s : ℂ) (hH : betaFrameH U s ≠ 
     (betaFrameX_hasDerivAt U).differentiableAt
   convert differentiableAt_id.mul hc using 1 <;> rfl
 
+/--
+@isnad1 id=hasderiv.1h4v.s6.09405cab0b10 from=translated src=- shape=888d0b55 vocab=7c0a0873
+-/
 theorem scalarBetaU_entry_hasDerivAt_s (U s : ℂ) (hH : betaFrameH U s ≠ 0)
     (i j : Fin 3) : HasDerivAt (fun z => scalarBetaU U z i j)
       (betaPartialS scalarBetaU U s i j) s := by
@@ -285,10 +327,16 @@ private theorem betaPair_connection_rules (A B : Matrix (Fin 3) (Fin 3) ℂ)
     simp [betaPair, Matrix.mul_apply, Matrix.mulVec, Matrix.transpose_apply,
       dotProduct, Fin.sum_univ_succ] <;> ring
 
+/--
+@isnad1 id=eq.0h4v.s5.de5496e53974 from=translated src=- shape=6417c2bb vocab=2d4fb934
+-/
 theorem scalarBetaSFull_pair_factor (U s : ℂ) (v w : Fin 3 → ℂ) :
     betaPair (scalarBetaSFull U s) v w=U*betaPair (scalarBetaS U s) v w :=
   betaPair_smul U _ v w
 
+/--
+@isnad1 id=hasderiv.3h2v.s6.f93e1d1f5cd5 from=translated src=- shape=f8e2cae2 vocab=f70b0f7f
+-/
 theorem scalarBetaSFull_pair_hasDerivAt_U (U s : ℂ)
     (hH : betaFrameH U s ≠ 0) (hb : ‖betaFrameB U s‖ < 1) (hb0 : betaFrameB U s ≠ 0) :
     HasDerivAt (fun V => betaPair (scalarBetaSFull V s) (dualState s) (dualState (betaFrameB V s)))
@@ -309,6 +357,9 @@ theorem scalarBetaSFull_pair_hasDerivAt_U (U s : ℂ)
   simp only [betaPair_zero_left, betaPair_smul_right, betaPair_neg_right,
     mul_neg, add_zero, sub_eq_add_neg]
 
+/--
+@isnad1 id=hasderiv.5h2v.s7.09a34d4fa2b7 from=translated src=- shape=d8f57b89 vocab=9aac280e
+-/
 theorem scalarBetaU_pair_hasDerivAt_s (U s : ℂ) (hH : betaFrameH U s ≠ 0)
     (hs : ‖s‖ < 1) (hs0 : s ≠ 0) (hb : ‖betaFrameB U s‖ < 1) (hb0 : betaFrameB U s ≠ 0) :
     HasDerivAt (fun z => betaPair (scalarBetaU U z) (dualState z) (dualState (betaFrameB U z)))
@@ -331,6 +382,9 @@ theorem scalarBetaU_pair_hasDerivAt_s (U s : ℂ) (hH : betaFrameH U s ≠ 0)
     neg_div, mul_neg, sub_eq_add_neg]
   ring
 
+/--
+@isnad1 id=eq.5h2v.s7.adfec4a3031f from=translated src=- shape=76ac1eb0 vocab=4207be1d
+-/
 theorem scalarBetaSource_pair_identity (U s : ℂ) (hH : betaFrameH U s ≠ 0)
     (hs : ‖s‖ < 1) (hs0 : s ≠ 0) (hb : ‖betaFrameB U s‖ < 1) (hb0 : betaFrameB U s ≠ 0) :
     betaPair (scalarBetaSource U s) (dualState s) (dualState (betaFrameB U s)) =

@@ -62,6 +62,9 @@ noncomputable def angularAnchorRow : Matrix (Fin 3) (Fin 3) ℂ :=
 noncomputable def angularHolomorphicRow (s : ℂ) : Matrix (Fin 3) (Fin 3) ℂ :=
   !![s⁻¹, 0, 0; 0, 0, 0; 0, 0, 0]
 
+/--
+@isnad1 id=hasderiv.1h5v.s6.844d81445a94 from=translated src=- shape=741403f2 vocab=929d0a3f
+-/
 theorem angular_nf_parameter_entry_hasDerivAt (v : Fin 6 → ℂ) (lambda s : ℂ)
     (hsl : s ≠ lambda) (i j : Fin 3) :
     HasDerivAt (fun z => angularNFRow v z s i j)
@@ -72,6 +75,9 @@ theorem angular_nf_parameter_entry_hasDerivAt (v : Fin 6 → ℂ) (lambda s : �
       ((hasDerivAt_const lambda s).fun_sub (hasDerivAt_id lambda)) hden)
   exact h.congr_deriv (by simp [angularNFParameterDerivative])
 
+/--
+@isnad1 id=hasderiv.1h5v.s6.5d0200fc5dbe from=translated src=- shape=aed15916 vocab=ae13df1c
+-/
 theorem angular_nf_primitive_entry_hasDerivAt (v : Fin 6 → ℂ) (lambda s : ℂ)
     (hsl : s ≠ lambda) (i j : Fin 3) :
     HasDerivAt (fun z => angularNFPrimitiveRow v lambda z i j)
@@ -90,6 +96,9 @@ theorem angular_nf_primitive_entry_hasDerivAt (v : Fin 6 → ℂ) (lambda s : �
   exact h.congr_deriv (by simp [angularNFPrimitiveDerivative,
     angularNFParameterDerivative, smul_eq_mul, c]; ring)
 
+/--
+@isnad1 id=eq.3h2v.s7.113762c360d5 from=translated src=- shape=d755440f vocab=2f781c2d
+-/
 theorem angular_nf_anchor (lambda s : ℂ) (hs0 : s ≠ 0) (hs1 : s ≠ 1)
     (hsl : s ≠ lambda) :
     angularHolomorphicRow s = angularNFRow (sixthCyclicMatrix 0) lambda s +
@@ -107,6 +116,9 @@ theorem angular_nf_anchor (lambda s : ℂ) (hs0 : s ≠ 0) (hs1 : s ≠ 1)
     field_simp [hs0, sub_ne_zero.mpr hs1, sub_ne_zero.mpr hsl,
       sub_ne_zero.mpr (Ne.symm hs1), sub_ne_zero.mpr (Ne.symm hb1)] <;> ring
 
+/--
+@isnad1 id=eq.4h3v.s8.281676d517b1 from=translated src=- shape=83262cd8 vocab=29dadb68
+-/
 theorem angular_nf_euler_action (v : Fin 6 → ℂ) (lambda s : ℂ)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ lambda) (hl1 : lambda ≠ 1) :
     lambda • angularNFParameterDerivative v lambda s +
@@ -131,26 +143,41 @@ theorem angular_nf_euler_action (v : Fin 6 → ℂ) (lambda s : ℂ)
 noncomputable def angularTensorPair (R : Matrix (Fin 3) (Fin 3) ℂ)
     (X Z : Fin 3 → ℂ) : ℂ := ∑ i : Fin 3, ∑ j : Fin 3, R i j * X i * Z j
 
+/--
+@isnad1 id=eq.0h4v.s7.9fbd7a631e2e from=translated src=- shape=39e0a82c vocab=cd84694f
+-/
 theorem angular_tensor_pair_add (R S : Matrix (Fin 3) (Fin 3) ℂ) (X Z : Fin 3 → ℂ) :
     angularTensorPair (R+S) X Z = angularTensorPair R X Z + angularTensorPair S X Z := by
   simp [angularTensorPair, add_mul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s6.106657e95da2 from=translated src=- shape=fbc2f888 vocab=e211c523
+-/
 theorem angular_tensor_pair_smul (c : ℂ) (R : Matrix (Fin 3) (Fin 3) ℂ)
     (X Z : Fin 3 → ℂ) :
     angularTensorPair (c • R) X Z = c * angularTensorPair R X Z := by
   simp [angularTensorPair, smul_eq_mul, Finset.mul_sum, mul_assoc]
 
+/--
+@isnad1 id=eq.0h4v.s7.c7b74b1c9c84 from=translated src=- shape=9280cae9 vocab=22ff4eb5
+-/
 theorem angular_tensor_pair_left (A R : Matrix (Fin 3) (Fin 3) ℂ) (X Z : Fin 3 → ℂ) :
     angularTensorPair (A.transpose*R) X Z = angularTensorPair R (A.mulVec X) Z := by
   simp [angularTensorPair, Matrix.mul_apply, Matrix.transpose_apply,
     Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s7.045fd1788680 from=translated src=- shape=4c17ce64 vocab=dd17a8c7
+-/
 theorem angular_tensor_pair_right (A R : Matrix (Fin 3) (Fin 3) ℂ) (X Z : Fin 3 → ℂ) :
     angularTensorPair (R*A) X Z = angularTensorPair R X (A.mulVec Z) := by
   simp [angularTensorPair, Matrix.mul_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=hasderiv.3h7v.s8.72af376ceb2a from=translated src=- shape=ea8ebe68 vocab=e35b1425
+-/
 theorem angular_tensor_pair_hasDerivAt
     (R : ℂ → Matrix (Fin 3) (Fin 3) ℂ) (R' : Matrix (Fin 3) (Fin 3) ℂ)
     (X Z : ℂ → Fin 3 → ℂ) (X' Z' : Fin 3 → ℂ) (q : ℂ)
@@ -182,6 +209,9 @@ noncomputable def angularSixIntegrands (lambda s : ℂ) : Fin 6 → ℂ := fun k
 noncomputable def angularAnchorPrimitive (lambda s : ℂ) : ℂ :=
   angularTensorPair angularAnchorRow (nativeState s) (nativeState (lambda/s))
 
+/--
+@isnad1 id=eq.0h3v.s7.c9acefbd04d2 from=translated src=- shape=dce59eb1 vocab=9646479a
+-/
 theorem angular_nf_integrand_formula (v : Fin 6 → ℂ) (lambda s : ℂ) :
     angularNFIntegrand v lambda s =
       dotProduct angularNFWeight (nativeState s) *
@@ -192,6 +222,9 @@ theorem angular_nf_integrand_formula (v : Fin 6 → ℂ) (lambda s : ℂ) :
     Fin.sum_univ_succ, div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=hasderiv.3h2v.s8.50ecf03cadfa from=translated src=- shape=d17ac438 vocab=7ea49aae
+-/
 theorem angular_native_second_s_hasDerivAt (lambda s : ℂ) (hl0 : lambda ≠ 0)
     (hs0 : s ≠ 0) (hb : ‖lambda/s‖ < 1) :
     HasDerivAt (fun z : ℂ => nativeState (lambda/z))
@@ -207,6 +240,9 @@ theorem angular_native_second_s_hasDerivAt (lambda s : ℂ) (hl0 : lambda ≠ 0)
   field_simp [hl0, hs0]
   ring
 
+/--
+@isnad1 id=hasderiv.3h2v.s8.383a7b6bc6d8 from=translated src=- shape=8d476a41 vocab=e74f6169
+-/
 theorem angular_native_second_parameter_hasDerivAt (lambda s : ℂ) (hl0 : lambda ≠ 0)
     (hs0 : s ≠ 0) (hb : ‖lambda/s‖ < 1) :
     HasDerivAt (fun z : ℂ => nativeState (z/s))
@@ -221,6 +257,9 @@ theorem angular_native_second_parameter_hasDerivAt (lambda s : ℂ) (hl0 : lambd
   simp only [Pi.smul_apply, smul_eq_mul]
   field_simp [hl0, hs0]
 
+/--
+@isnad1 id=eq.0h5v.s7.ab4f64446210 from=translated src=- shape=6b3e043a vocab=4d5abd99
+-/
 theorem angular_tensor_pair_s_action (R : Matrix (Fin 3) (Fin 3) ℂ)
     (X Z : Fin 3 → ℂ) (lambda s : ℂ) :
     angularTensorPair (angularRowSAction R lambda s) X Z =
@@ -230,6 +269,9 @@ theorem angular_tensor_pair_s_action (R : Matrix (Fin 3) (Fin 3) ℂ)
     Matrix.mulVec, dotProduct, smul_eq_mul, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=hasderiv.5h4v.s8.cd8269342b80 from=translated src=- shape=9e4367e0 vocab=9a5f7ffa
+-/
 theorem angular_native_pair_s_hasDerivAt
     (R : ℂ → Matrix (Fin 3) (Fin 3) ℂ) (R' : Matrix (Fin 3) (Fin 3) ℂ)
     (lambda s : ℂ) (hl0 : lambda ≠ 0) (hs0 : s ≠ 0)
@@ -247,6 +289,9 @@ theorem angular_native_pair_s_hasDerivAt
     (fun z => nativeState (lambda/z)) _ _ s hR hX hZ
   exact h.congr_deriv (by rw [angular_tensor_pair_s_action]; ring)
 
+/--
+@isnad1 id=hasderiv.5h3v.s7.36f24bae0265 from=translated src=- shape=5b79a4b8 vocab=4d8108af
+-/
 theorem angular_nf_primitive_hasDerivAt (v : Fin 6 → ℂ) (lambda s : ℂ)
     (hl0 : lambda ≠ 0) (hs0 : s ≠ 0) (hsl : s ≠ lambda)
     (hs : ‖s‖ < 1) (hb : ‖lambda/s‖ < 1) :
@@ -259,6 +304,9 @@ theorem angular_nf_primitive_hasDerivAt (v : Fin 6 → ℂ) (lambda s : ℂ)
     (angularNFPrimitiveDerivative v lambda s) lambda s hl0 hs0 hs hb
     (angular_nf_primitive_entry_hasDerivAt v lambda s hsl)
 
+/--
+@isnad1 id=hasderiv.4h3v.s8.7e7b74d37a75 from=translated src=- shape=ed543662 vocab=095e3b95
+-/
 theorem angular_nf_integrand_parameter_hasDerivAt (v : Fin 6 → ℂ) (lambda s : ℂ)
     (hl0 : lambda ≠ 0) (hs0 : s ≠ 0) (hsl : s ≠ lambda) (hb : ‖lambda/s‖ < 1) :
     HasDerivAt (fun z => angularNFIntegrand v z s)
@@ -277,6 +325,9 @@ theorem angular_nf_integrand_parameter_hasDerivAt (v : Fin 6 → ℂ) (lambda s 
   simp [angularTensorPair, smul_eq_mul, Fin.sum_univ_succ]
   field_simp [hl0]
 
+/--
+@isnad1 id=eq.7h3v.s7.4dc1073e1525 from=translated src=- shape=c5c8a875 vocab=e099c10c
+-/
 theorem angular_nf_actual_euler_action (v : Fin 6 → ℂ) (lambda s : ℂ)
     (hl0 : lambda ≠ 0) (hl1 : lambda ≠ 1) (hs0 : s ≠ 0)
     (hs1 : s ≠ 1) (hsl : s ≠ lambda) (hs : ‖s‖ < 1) (hb : ‖lambda/s‖ < 1) :
@@ -290,6 +341,9 @@ theorem angular_nf_actual_euler_action (v : Fin 6 → ℂ) (lambda s : ℂ)
     angular_tensor_pair_add, angular_tensor_pair_add]
   simp only [angularNFIntegrand, add_assoc]
 
+/--
+@isnad1 id=hasderiv.4h2v.s6.c60d1f972f5a from=translated src=- shape=413faf58 vocab=d76530de
+-/
 theorem angular_anchor_primitive_hasDerivAt (lambda s : ℂ) (hl0 : lambda ≠ 0)
     (hs0 : s ≠ 0) (hs : ‖s‖ < 1) (hb : ‖lambda/s‖ < 1) :
     HasDerivAt (angularAnchorPrimitive lambda)
@@ -302,6 +356,9 @@ theorem angular_anchor_primitive_hasDerivAt (lambda s : ℂ) (hl0 : lambda ≠ 0
   simpa only [angularAnchorPrimitive, angularTensorPair, Matrix.zero_apply, zero_mul,
     Finset.sum_const_zero, zero_add] using h
 
+/--
+@isnad1 id=eq.6h2v.s7.fe47109b80b0 from=translated src=- shape=1e92e6b9 vocab=8fc841f5
+-/
 theorem angular_nf_actual_anchor (lambda s : ℂ) (hl0 : lambda ≠ 0)
     (hs0 : s ≠ 0) (hs1 : s ≠ 1) (hsl : s ≠ lambda)
     (hs : ‖s‖ < 1) (hb : ‖lambda/s‖ < 1) :
@@ -315,6 +372,9 @@ theorem angular_nf_actual_anchor (lambda s : ℂ) (hl0 : lambda ≠ 0)
   simpa [angularHolomorphicRow, angularTensorPair, nativeState, Fin.sum_univ_succ,
     angularNFIntegrand, div_eq_mul_inv, mul_comm, mul_left_comm] using h
 
+/--
+@isnad1 id=eq.0h2v.s9.c46a9e2f1967 from=translated src=- shape=3f066ba8 vocab=6e8a8011
+-/
 theorem angular_six_integrands_formula (lambda s : ℂ) :
     angularSixIntegrands lambda s =
       ![dotProduct angularNFWeight (nativeState s) * nativeState (lambda/s) 0 / (s-1),
@@ -328,6 +388,9 @@ theorem angular_six_integrands_formula (lambda s : ℂ) :
     simp [angularSixIntegrands, angular_nf_integrand_formula, angularNFFirst,
       angularNFSecond, dotProduct, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h3v.s5.5909736f4122 from=translated src=- shape=4d813a42 vocab=366a0a8d
+-/
 theorem angular_nf_integrand_linear (v : Fin 6 → ℂ) (lambda s : ℂ) :
     angularNFIntegrand v lambda s = dotProduct v (angularSixIntegrands lambda s) := by
   rw [angular_nf_integrand_formula, angular_six_integrands_formula]
@@ -335,6 +398,9 @@ theorem angular_nf_integrand_linear (v : Fin 6 → ℂ) (lambda s : ℂ) :
     div_eq_mul_inv]
   ring
 
+/--
+@isnad1 id=eq.1h2v.s6.9db482155b70 from=translated src=- shape=86db4b98 vocab=87e8bfed
+-/
 theorem angular_cyclic_row_action (j : Fin 5) (lambda : ℂ) (hl1 : lambda ≠ 1) :
     Matrix.vecMul (sixthCyclicMatrix j.castSucc) (sixthB6 lambda) =
       sixthCyclicMatrix j.succ := by
@@ -345,6 +411,9 @@ theorem angular_cyclic_row_action (j : Fin 5) (lambda : ℂ) (hl1 : lambda ≠ 1
     simpa [Matrix.mul_apply, Matrix.vecMul, dotProduct, sixthCompanion,
       Fin.sum_univ_succ] using h
 
+/--
+@isnad1 id=eq.7h3v.s7.7df3777f65f3 from=translated src=- shape=1581e731 vocab=b2a8e954
+-/
 theorem angular_nf_actual_cyclic_action (j : Fin 5) (lambda s : ℂ)
     (hl0 : lambda ≠ 0) (hl1 : lambda ≠ 1) (hs0 : s ≠ 0)
     (hs1 : s ≠ 1) (hsl : s ≠ lambda) (hs : ‖s‖ < 1) (hb : ‖lambda/s‖ < 1) :

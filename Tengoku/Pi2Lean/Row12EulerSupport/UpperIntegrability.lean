@@ -14,7 +14,9 @@ private theorem upperIntegrability_pathX_complex (U : ℝ) :
     Row12.betaFrameX (U : ℂ) = (Row12.scalarPathX U : ℂ) := by
   simp [Row12.betaFrameX, Row12.scalarPathX]
 
-/-- The actual balanced beta integrand is integrable on the shrinking upper-end circle.-/
+/-- The actual balanced beta integrand is integrable on the shrinking upper-end circle.
+@isnad1 id=circlein.3h1v.s6.611890ded6dc from=translated src=- shape=71653d54 vocab=1eff97e8
+-/
 theorem upperBeta_circleIntegrable {U : ℝ} (hU0 : 0 < U) (hU1 : U < 1)
     (hxsmall : Row12.scalarPathX U ≤ 1 / 100) :
     CircleIntegrable

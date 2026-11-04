@@ -69,6 +69,9 @@ noncomputable def outerSelectedRow : Fin 6 → ℂ := fun j =>
   9*sixthCyclicMatrix 0 j+180*sixthCyclicMatrix 1 j+
     1288*sixthCyclicMatrix 2 j+3192*sixthCyclicMatrix 3 j
 
+/--
+@isnad1 id=eq.0h1v.s7.a2656948c7bb from=translated src=- shape=08472320 vocab=e8c0ca40
+-/
 theorem outer_selected_row_eq (j : Fin 6) :
     outerSelectedRow j = 9*(sixthCyclicMatrix 0 j+6*sixthCyclicMatrix 1 j)+
       126*(sixthCyclicMatrix 1 j+6*sixthCyclicMatrix 2 j)+
@@ -76,12 +79,18 @@ theorem outer_selected_row_eq (j : Fin 6) :
   unfold outerSelectedRow
   ring
 
+/--
+@isnad1 id=eq.0h0v.s7.6a374ad4ce06 from=translated src=- shape=66b0f7de vocab=9095790a
+-/
 theorem outer_selected_row_literal :
     outerSelectedRow = ![108904/125,713232/125,358848/125,648/5,34992/25,358848/125] := by
   ext j
   fin_cases j <;> norm_num [outerSelectedRow,sixthCyclicMatrix,outerCyclicMatrix,
     Matrix.map_apply,Matrix.cons_val_two,Matrix.cons_val_three]
 
+/--
+@isnad1 id=hasderiv.1h2v.s7.9c6054b8c06f from=translated src=- shape=730ab22a vocab=0132605e
+-/
 theorem outerInversePower_hasDerivAt (m : ℕ) (x : ℂ) (hx : x ≠ 0) :
     HasDerivAt (fun z : ℂ => 1/z^(m+1)) (-(m+1 : ℂ)/x^(m+2)) x := by
   have hd : HasDerivAt (fun z : ℂ => (z^(m+1))⁻¹)
@@ -96,6 +105,9 @@ theorem outerInversePower_hasDerivAt (m : ℕ) (x : ℂ) (hx : x ≠ 0) :
   funext z
   exact one_div (z^(m+1))
 
+/--
+@isnad1 id=hasderiv.1h2v.s8.cd1a4b2cb6aa from=translated src=- shape=3b25f8bf vocab=68165489
+-/
 theorem outerAffineInversePower_hasDerivAt (m : ℕ) (x : ℂ) (hx : 99*x-50 ≠ 0) :
     HasDerivAt (fun z : ℂ => 1/(99*z-50)^(m+1))
       (-(99*(m+1 : ℂ))/(99*x-50)^(m+2)) x := by
@@ -105,6 +117,9 @@ theorem outerAffineInversePower_hasDerivAt (m : ℕ) (x : ℂ) (hx : 99*x-50 ≠
       -(99*(m+1 : ℂ))/(99*x-50)^(m+2) := by ring
   convert! hd.congr_deriv he using 1
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.5567372251da from=translated src=- shape=fb2df02b vocab=6b3eeb8f
+-/
 theorem outer_basis_hasDerivAt (k : Fin 15) (x : ℂ)
     (hx : x ≠ 0) (hE : 99*x-50 ≠ 0) :
     HasDerivAt (fun z => outerPrimitiveBasis z k) (outerPrimitiveBasisDerivative x k) x := by
@@ -139,6 +154,9 @@ theorem outer_basis_hasDerivAt (k : Fin 15) (x : ℂ)
   · convert! (hasDerivAt_id x).pow 8 using 1
     all_goals norm_num
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.7f1e4c612b79 from=translated src=- shape=fb2df02b vocab=2a0a6cb5
+-/
 theorem outer_primitive_hasDerivAt (j : Fin 6) (x : ℂ)
     (hx : x ≠ 0) (hE : 99*x-50 ≠ 0) :
     HasDerivAt (fun z => outerPrimitiveRow z j) (outerPrimitiveDerivative x j) x :=
@@ -147,6 +165,9 @@ theorem outer_primitive_hasDerivAt (j : Fin 6) (x : ℂ)
 
 set_option maxRecDepth 10000 in
 set_option maxHeartbeats 5000000 in
+ /--
+ @isnad1 id=eq.3h2v.s7.74b87560a609 from=translated src=- shape=f6af20fe vocab=10b912f0
+ -/
  theorem outer_rational_row_identity (x : ℂ) (hx : x ≠ 0)
     (hE : 99*x-50 ≠ 0) (hL : outerPrimitiveLambda x ≠ 1) (j : Fin 6) :
     outerSourceRow x j-outerSelectedRow j/3375 =
@@ -171,6 +192,9 @@ set_option maxHeartbeats 5000000 in
     rw [← he,← hD]
     ring
 
+/--
+@isnad1 id=eq.4h2v.s8.525be3a694e0 from=translated src=- shape=466ed3db vocab=1cc1df6d
+-/
 theorem outer_rational_connection_identity (x : ℂ) (hx : x ≠ 0)
     (hx1 : x ≠ 1) (hE : 99*x-50 ≠ 0) (hL : outerPrimitiveLambda x ≠ 1) (j : Fin 6) :
     -outerSourceRow x j/(2*(1-x)) = -outerSelectedRow j/(3375*2*(1-x))+
@@ -194,10 +218,16 @@ noncomputable def outerPrimitiveFlux (U : ℂ) : ℂ :=
   U*dotProduct (outerPrimitiveRow (1-U^2))
     (sixthNormalState (outerPrimitiveLambda (1-U^2)))
 
+/--
+@isnad1 id=ne.1h1v.s4.0a65b5b4a325 from=translated src=- shape=5aedd577 vocab=703712a3
+-/
 theorem outer_lambda_ne_zero (x : ℂ) (hx : x ≠ 0) : outerPrimitiveLambda x ≠ 0 := by
   unfold outerPrimitiveLambda
   exact mul_ne_zero (by norm_num) (pow_ne_zero 3 hx)
 
+/--
+@isnad1 id=hasderiv.1h1v.s7.b372b9ac7d9b from=translated src=- shape=ccb417dc vocab=8467b050
+-/
 theorem outer_lambda_path_hasDerivAt (U : ℂ) (hx : 1-U^2 ≠ 0) :
     HasDerivAt (fun z : ℂ => outerPrimitiveLambda (1-z^2))
       (-(6*U)*outerPrimitiveLambda (1-U^2)/(1-U^2)) U := by
@@ -208,6 +238,9 @@ theorem outer_lambda_path_hasDerivAt (U : ℂ) (hx : 1-U^2 ≠ 0) :
   field_simp [hx]
   ring
 
+/--
+@isnad1 id=hasderiv.2h2v.s6.78cbb05da468 from=translated src=- shape=ad287789 vocab=90253aca
+-/
 theorem outer_normal_state_hasDerivAt (i : Fin 6) (q : ℂ)
     (hq0 : q ≠ 0) (hq : ‖q‖ < 1) :
     HasDerivAt (fun z => sixthNormalState z i)
@@ -224,6 +257,9 @@ theorem outer_normal_state_hasDerivAt (i : Fin 6) (q : ℂ)
       simpa only [mul_comm] using congrFun (sixth_normal_state_equation q hq) i)
   exact hd.differentiableAt.hasDerivAt.congr_deriv he
 
+/--
+@isnad1 id=eq.0h1v.s7.ffcfe7a7368e from=translated src=- shape=8b65e477 vocab=9b175d64
+-/
 theorem outer_selected_pairing (q : ℂ) :
     dotProduct outerSelectedRow (sixthNormalState q) =
       9*squaredNativeEuler 0 q+180*squaredNativeEuler 1 q+
@@ -243,6 +279,9 @@ theorem outer_selected_pairing (q : ℂ) :
       simp only [sixthState,Matrix.cons_val_zero,Matrix.cons_val_one,
         Matrix.cons_val_two,Matrix.cons_val_three,Matrix.head_cons,Matrix.tail_cons]
 
+/--
+@isnad1 id=eq.3h2v.s8.363280ffaf17 from=translated src=- shape=4561fc45 vocab=1cbfc78b
+-/
 theorem outer_rational_pairing_identity (x : ℂ) (hx : x ≠ 0)
     (hE : 99*x-50 ≠ 0) (hL : outerPrimitiveLambda x ≠ 1)
     (v : Fin 6 → ℂ) :
@@ -261,6 +300,9 @@ theorem outer_rational_pairing_identity (x : ℂ) (hx : x ≠ 0)
   simpa only [dotProduct,sub_mul,div_mul_eq_mul_div,mul_assoc,
     Finset.sum_sub_distrib,Finset.sum_div,Finset.mul_sum] using hr
 
+/--
+@isnad1 id=hasderiv.3h1v.s9.84e3b8af063b from=translated src=- shape=29c37d07 vocab=ed22e828
+-/
 theorem outer_primitive_flux_hasDerivAt (U : ℂ) (hx : 1-U^2 ≠ 0)
     (hE : 99*(1-U^2)-50 ≠ 0) (hq : ‖outerPrimitiveLambda (1-U^2)‖ < 1) :
     HasDerivAt outerPrimitiveFlux
@@ -308,6 +350,9 @@ theorem outer_primitive_flux_hasDerivAt (U : ℂ) (hx : 1-U^2 ≠ 0)
   rw [outer_selected_pairing] at he
   exact hF.congr_deriv he
 
+/--
+@isnad1 id=eq.3h1v.s9.4e28ccdcf5b0 from=translated src=- shape=d2bf5345 vocab=53505cc0
+-/
 theorem outer_primitive_flux_deriv (U : ℂ) (hx : 1-U^2 ≠ 0)
     (hE : 99*(1-U^2)-50 ≠ 0) (hq : ‖outerPrimitiveLambda (1-U^2)‖ < 1) :
     deriv outerPrimitiveFlux U =

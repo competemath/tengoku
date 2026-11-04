@@ -8,6 +8,9 @@ namespace Row12
 noncomputable def weightedKernel (r : ℝ) : ℝ :=
   (9 + 640 * r + 415 * r ^ 2) / (1 - r) ^ 3
 
+/--
+@isnad1 id=hassum.1h1v.s5.212a296adb76 from=translated src=- shape=eed83c29 vocab=2e9db18d
+-/
 theorem weighted_geometric_hasSum {r : ℝ} (hr : |r| < 1) :
     HasSum (fun n : ℕ => weight n * r ^ n) (weightedKernel r) := by
   have hn : ‖r‖ < 1 := hr
@@ -34,10 +37,16 @@ theorem weighted_geometric_hasSum {r : ℝ} (hr : |r| < 1) :
   rw [← hfun, ← hval] at hsum
   exact hsum
 
+/--
+@isnad1 id=summable.1h1v.s5.8c57dc157f3e from=translated src=- shape=377dcba5 vocab=26bb6e29
+-/
 theorem weighted_geometric_summable {r : ℝ} (hr : |r| < 1) :
     Summable (fun n : ℕ => weight n * r ^ n) :=
   (weighted_geometric_hasSum hr).summable
 
+/--
+@isnad1 id=eq.1h1v.s5.1390b1f6bfa7 from=translated src=- shape=b37ebe8f vocab=b25e81d1
+-/
 theorem weighted_geometric_tsum {r : ℝ} (hr : |r| < 1) :
     (∑' n : ℕ, weight n * r ^ n) = weightedKernel r :=
   (weighted_geometric_hasSum hr).tsum_eq

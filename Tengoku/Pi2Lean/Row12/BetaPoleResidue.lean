@@ -9,6 +9,9 @@ import Tengoku.Pi2Lean.Row12.BetaFrame
 
 namespace Row12
 
+/--
+@isnad1 id=eq.2h2v.s5.3dcfaaf93223 from=translated src=- shape=50efab82 vocab=09cdb3e2
+-/
 theorem scalar_beta_pole_factor {U : ℝ} (hU : 0 < U) (hU1 : U < 1) (s : ℂ) :
     betaFrameF (betaFrameX (U:ℂ)) s =
       (s-(scalarPolePlus U:ℂ))*(s-(scalarPoleMinus U:ℂ)) := by
@@ -26,6 +29,9 @@ theorem scalar_beta_pole_factor {U : ℝ} (hU : 0 < U) (hU1 : U < 1) (s : ℂ) :
   simp only [betaFrameF,hx,hh.2.2.2.1,hh.2.2.2.2.2.2] 
   linear_combination s*hs-hp
 
+/--
+@isnad1 id=eq.4h9v.s8.6013cbacabff from=translated src=- shape=75161124 vocab=80516351
+-/
 theorem twoPole_partialFraction (U A B ell M d s m t : ℂ)
     (ht : t^2=M) (hd : d ≠ 0)
     (ha : s-(m+U*ell*t) ≠ 0) (hb : s-(m-U*ell*t) ≠ 0) :
@@ -45,6 +51,9 @@ noncomputable def scalarBetaNegativeResidue (U : ℝ) : Matrix (Fin 3) (Fin 3) �
   fun i j => ((U:ℂ)*betaFrameLP x i j-
     (Real.sqrt (scalarM (scalarPathX U)):ℂ)*betaFrameRP x i j)/betaFrameDenom x
 
+/--
+@isnad1 id=eq.0h0v.s5.45039f4cdded from=translated src=- shape=4ea1014a vocab=e59aeb5f
+-/
 theorem scalar_beta_contact_residue :
     scalarBetaPositiveResidue 0 = contactSourceMatrix.map Complex.ofReal := by
   ext i j
@@ -52,6 +61,9 @@ theorem scalar_beta_contact_residue :
   norm_num [scalarBetaPositiveResidue,scalarPathX,scalarM,betaFrameLP,betaFrameRP,
     betaFrameDenom,betaFrameM,contactSourceMatrix,Matrix.map_apply]
 
+/--
+@isnad1 id=eq.5h2v.s8.328cc67de825 from=translated src=- shape=394e1bc0 vocab=dc05727d
+-/
 theorem scalar_beta_partialFractions {U : ℝ} (hU : 0 < U) (hU1 : U < 1) (s : ℂ)
     (hd : betaFrameDenom (scalarPathX U:ℂ) ≠ 0)
     (hsa : s-(scalarPolePlus U:ℂ) ≠ 0) (hsb : s-(scalarPoleMinus U:ℂ) ≠ 0) :

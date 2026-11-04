@@ -13,6 +13,9 @@ namespace Row12
 noncomputable def betaAverage (a : ℝ) (f : ℝ → ℝ) : ℝ :=
   ∫ x : ℝ in 0..1, f x * betaDensity a x
 
+/--
+@isnad1 id=hassum.4h2v.s6.2fa559ee0a17 from=translated src=- shape=0fe3ba3b vocab=da983eee
+-/
 theorem hasSum_betaAverage {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     (A : ℕ → ℝ) (hA : ∀ n, 0 ≤ A n) (hAsum : Summable A) :
     HasSum (fun n : ℕ => A n * gammaMoment a n)
@@ -71,6 +74,9 @@ noncomputable def nestedKernel : ℕ → ℝ → ℝ
   | k + 1, r => betaAverage (((k + 1 : ℕ) : ℝ) / 6)
       (fun x => nestedKernel k (r * x))
 
+/--
+@isnad1 id=eq.1h3v.s5.296ef54a89bd from=translated src=- shape=dc189875 vocab=4d6579ab
+-/
 theorem betaAverage_congr_Ioo (a : ℝ) {f g : ℝ → ℝ}
     (hfg : ∀ x ∈ Ioo (0 : ℝ) 1, f x = g x) :
     betaAverage a f = betaAverage a g := by
@@ -80,12 +86,18 @@ theorem betaAverage_congr_Ioo (a : ℝ) {f g : ℝ → ℝ}
   dsimp only
   rw [hfg x hx]
 
+/--
+@isnad1 id=le.0h2v.s4.41abdbafdb11 from=translated src=- shape=5ffe46ab vocab=dc213b48
+-/
 theorem momentPrefix_nonneg (k n : ℕ) : 0 ≤ momentPrefix k n := by
   apply Finset.prod_nonneg
   intro j hj
   have hjR : (1 : ℝ) ≤ (j : ℝ) := by exact_mod_cast (Finset.mem_Icc.mp hj).1
   exact (gammaMoment_pos (by linarith : 0 < (j : ℝ) / 6) n).le
 
+/--
+@isnad1 id=le.1h2v.s4.bd69ca5467ee from=translated src=- shape=f2e0dd74 vocab=dc213b48
+-/
 theorem momentPrefix_le_one {k : ℕ} (hk : k ≤ 5) (n : ℕ) :
     momentPrefix k n ≤ 1 := by
   apply Finset.prod_le_one
@@ -97,10 +109,16 @@ theorem momentPrefix_le_one {k : ℕ} (hk : k ≤ 5) (n : ℕ) :
     have hj5 : (j : ℝ) ≤ 5 := by exact_mod_cast ((Finset.mem_Icc.mp hj).2.trans hk)
     exact gammaMoment_le_one (by linarith) (by linarith) n
 
+/--
+@isnad1 id=eq.0h2v.s6.5df3985d69e3 from=translated src=- shape=b997b701 vocab=3946b1b9
+-/
 theorem momentPrefix_succ (k n : ℕ) :
     momentPrefix (k + 1) n = momentPrefix k n * gammaMoment (((k + 1 : ℕ) : ℝ) / 6) n := by
   exact Finset.prod_Icc_succ_top (by omega) _
 
+/--
+@isnad1 id=hassum.3h2v.s6.25f9184e0db5 from=translated src=- shape=a55fb43e vocab=7a4667a2
+-/
 theorem nestedKernel_hasSum (k : ℕ) (hk : k ≤ 5) {r : ℝ}
     (hr0 : 0 ≤ r) (hr1 : r < 1) :
     HasSum (fun n : ℕ => weight n * r ^ n * momentPrefix k n) (nestedKernel k r) := by
@@ -145,6 +163,9 @@ theorem nestedKernel_hasSum (k : ℕ) (hk : k ≤ 5) {r : ℝ}
     rw [momentPrefix_succ]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s5.b103efd8680c from=translated src=- shape=6e3485b0 vocab=bae05cb9
+-/
 theorem coefficient_eq_momentPrefix (n : ℕ) :
     coefficient n = rho ^ n * momentPrefix 5 n := by
   have hprod : momentPrefix 5 n = risingProduct n / (Nat.factorial n : ℝ) ^ 5 := by
@@ -164,6 +185,9 @@ theorem coefficient_eq_momentPrefix (n : ℕ) :
   rw [coefficient_eq_risingProduct, hprod]
   ring
 
+/--
+@isnad1 id=hassum.0h0v.s4.cb97f120b909 from=translated src=- shape=8e033e04 vocab=d7c7cdde
+-/
 theorem term_hasSum_integral : HasSum term (nestedKernel 5 rho) := by
   have h := nestedKernel_hasSum 5 (by omega) (r := rho)
     (by norm_num [rho]) (by norm_num [rho])
@@ -172,6 +196,9 @@ theorem term_hasSum_integral : HasSum term (nestedKernel 5 rho) := by
   rw [term_eq_coefficient_mul_weight, coefficient_eq_momentPrefix]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s4.9d4ba7c800ec from=translated src=- shape=3c2f9c8d vocab=1cf2ef5e
+-/
 theorem term_tsum_integral : (∑' n : ℕ, term n) = nestedKernel 5 rho :=
   term_hasSum_integral.tsum_eq
 

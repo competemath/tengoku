@@ -21,6 +21,9 @@ open scoped ENNReal NNReal Interval
 
 namespace Row12
 
+/--
+@isnad1 id=eq.1h2v.s6.c4848df3a0bc from=translated src=- shape=8ec4cf80 vocab=811ddb36
+-/
 theorem gammaMoment_eq_choose {a : ℝ} (ha : 0 < a) (n : ℕ) :
     gammaMoment a n = Ring.choose (a + n - 1) n := by
   have hf : (Nat.factorial n : ℝ) ≠ 0 := by positivity
@@ -30,6 +33,9 @@ theorem gammaMoment_eq_choose {a : ℝ} (ha : 0 < a) (n : ℕ) :
   apply (div_eq_iff hf).2
   simpa only [mul_comm] using hc.symm
 
+/--
+@isnad1 id=hassum.2h2v.s6.00d71da30c15 from=translated src=- shape=d038871e vocab=52a666f3
+-/
 theorem gammaMoment_binomial_hasSum {a z : ℝ} (ha : 0 < a) (hz : |z| < 1) :
     HasSum (fun n : ℕ => gammaMoment a n * z ^ n) ((1 - z) ^ (-a)) := by
   have hnn : ‖z‖₊ < (1 : ℝ≥0) := by
@@ -43,6 +49,9 @@ theorem gammaMoment_binomial_hasSum {a z : ℝ} (ha : 0 < a) (hz : |z| < 1) :
   rw [← Real.rpow_neg (by linarith [le_abs_self z] : 0 ≤ 1 - z) a] at hs
   exact hs.congr_fun (fun n => by rw [gammaMoment_eq_choose ha n])
 
+/--
+@isnad1 id=eq.1h2v.s5.29305e7cedcf from=translated src=- shape=56edb86f vocab=51666ffe
+-/
 theorem gammaMoment_add_one {a : ℝ} (ha : 0 < a) (n : ℕ) :
     a * gammaMoment (a + 1) n = ((n : ℝ) + a) * gammaMoment a n := by
   have hga : Real.Gamma a ≠ 0 := (Real.Gamma_pos_of_pos ha).ne'
@@ -90,10 +99,16 @@ private theorem shifted_betaAverage_hasSum {a : ℝ} (ha : 0 < a) (ha1 : a < 1)
     simpa [B] using hh
   simpa [B] using ht
 
+/--
+@isnad1 id=eq.0h0v.s5.6bbe75c43d60 from=translated src=- shape=e3ed033b vocab=743ade5b
+-/
 theorem betaNormalizer_five_sixths : betaNormalizer (5 / 6) = 2 * Real.pi := by
   rw [show (5 / 6 : ℝ) = 1 - 1 / 6 by norm_num, betaNormalizer_one_sub,
     betaNormalizer_one_sixth]
 
+/--
+@isnad1 id=eq.0h1v.s7.410cd7308c22 from=translated src=- shape=9786b38e vocab=b525f3ff
+-/
 theorem betaDensity_five_sixths (x : ℝ) :
     betaDensity (5 / 6) x = x ^ (-1 / 6 : ℝ) * (1 - x) ^ (-5 / 6 : ℝ) /
       (2 * Real.pi) := by
@@ -110,6 +125,9 @@ private theorem eulerFactor_continuousOn {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p < 1)
     ((mul_le_mul_of_nonneg_left hx.2 hp0).trans_eq (mul_one p)).trans_lt hp1
   exact Or.inl (sub_pos.mpr hpx).ne'
 
+/--
+@isnad1 id=interval.2h2v.s6.9269a7264015 from=translated src=- shape=2227bcd5 vocab=0714d1ac
+-/
 theorem gaussEulerIntegrand_integrable {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p < 1) (b : ℝ) :
     IntervalIntegrable (fun x : ℝ => betaDensity (5 / 6) x * (1 - p * x) ^ b)
       volume 0 1 := by
@@ -118,6 +136,9 @@ theorem gaussEulerIntegrand_integrable {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p < 1) (
   simp only [pow_zero, one_mul] at hd
   exact hd.mul_continuousOn (eulerFactor_continuousOn hp0 hp1 b)
 
+/--
+@isnad1 id=interval.2h1v.s7.b661403ff5f0 from=translated src=- shape=bf508e7e vocab=27160462
+-/
 theorem gaussDerivativeIntegrand_integrable {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p < 1) :
     IntervalIntegrable (fun x : ℝ =>
       (1 / 6 : ℝ) * x * betaDensity (5 / 6) x * (1 - p * x) ^ (-7 / 6 : ℝ))
@@ -128,6 +149,9 @@ theorem gaussDerivativeIntegrand_integrable {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p <
   simpa only [mul_assoc] using
     (hd.mul_continuousOn (eulerFactor_continuousOn hp0 hp1 (-7 / 6))).const_mul (1 / 6 : ℝ)
 
+/--
+@isnad1 id=eq.2h1v.s7.932a6f5a5fc8 from=translated src=- shape=67bbf9f0 vocab=eac54995
+-/
 theorem gaussA_eq_eulerIntegral {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p < 1) :
     gaussA p = ∫ x : ℝ in 0..1, betaDensity (5 / 6) x * (1 - p * x) ^ (-1 / 6 : ℝ) := by
   have hp : |p| < 1 := by rwa [abs_of_nonneg hp0]
@@ -178,6 +202,9 @@ private theorem gaussDerivative_coefficient (n : ℕ) :
   unfold gaussCoefficient
   ring
 
+/--
+@isnad1 id=eq.2h1v.s7.3d06fd732094 from=translated src=- shape=26245a36 vocab=5abdd649
+-/
 theorem gaussA_deriv_eq_eulerIntegral {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p < 1) :
     deriv (gaussA : ℝ → ℝ) p = ∫ x : ℝ in 0..1,
       (1 / 6 : ℝ) * x * betaDensity (5 / 6) x * (1 - p * x) ^ (-7 / 6 : ℝ) := by
@@ -239,6 +266,9 @@ theorem gaussA_deriv_eq_eulerIntegral {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p < 1) :
     zero_mul, zero_add, Nat.zero_add, Nat.cast_add, Nat.cast_one, pow_one,
     Nat.add_sub_cancel] using ht.tsum_eq
 
+/--
+@isnad1 id=hasderiv.2h1v.s7.931fdeed281d from=translated src=- shape=477d15ec vocab=65d27ba0
+-/
 theorem gaussA_hasDerivAt_eulerIntegral {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p < 1) :
     HasDerivAt (gaussA : ℝ → ℝ)
       (∫ x : ℝ in 0..1,

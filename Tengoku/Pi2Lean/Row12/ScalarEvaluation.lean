@@ -18,6 +18,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=tendsto.0h0v.s5.6e49b76bf457 from=translated src=- shape=d3219ae7 vocab=c4c35f81
+-/
 theorem betaFluxBalanced_upperEndpoint :
     Tendsto betaFluxBalanced (nhdsWithin (1:ℝ) (Iio 1)) (nhds (0:ℂ)) := by
   have he : betaFluxBalanced = Row12EulerSupport.betaBalanced := by
@@ -28,6 +31,9 @@ theorem betaFluxBalanced_upperEndpoint :
   rw [he]
   exact Row12EulerSupport.betaBalanced_tendsto
 
+/--
+@isnad1 id=tendsto.0h0v.s6.fcf263410829 from=translated src=- shape=1b5058d2 vocab=e542aca5
+-/
 theorem scalarTotalFlux_lowerEndpoint :
     Tendsto scalarTotalFlux (nhdsWithin (0:ℝ) (Ioi 0))
       (nhds (1/(36*Real.pi^2))) := by
@@ -38,6 +44,9 @@ theorem scalarTotalFlux_lowerEndpoint :
   have hr := Complex.continuous_re.continuousAt.tendsto.comp hh
   simpa only [Function.comp_def,scalarTotalFlux,add_zero,Complex.ofReal_re] using hr
 
+/--
+@isnad1 id=tendsto.0h0v.s5.9086c8a8329d from=translated src=- shape=7068697d vocab=feebf408
+-/
 theorem scalarTotalFlux_upperEndpoint :
     Tendsto scalarTotalFlux (nhdsWithin (1:ℝ) (Iio 1)) (nhds 0) := by
   change Tendsto (fun U : ℝ => (betaFluxBalanced U+outerPrimitiveFlux (U:ℂ)).re)
@@ -46,6 +55,9 @@ theorem scalarTotalFlux_upperEndpoint :
   have hr := Complex.continuous_re.continuousAt.tendsto.comp hh
   simpa only [Function.comp_def,scalarTotalFlux,zero_add,Complex.zero_re] using hr
 
+/--
+@isnad1 id=eq.0h0v.s6.0cdb78953039 from=translated src=- shape=4cd7897a vocab=66067076
+-/
 theorem scalar_uniform_integral_value :
     (∫ U : ℝ in 0..1, scalarIntegrand U)=375/(4*Real.pi^2) := by
   obtain ⟨L,hL⟩ := scalarTotalFlux_escape_limit
@@ -84,6 +96,9 @@ theorem scalar_uniform_integral_value :
   field_simp [hpi] at hsum ⊢
   nlinarith [hsum]
 
+/--
+@isnad1 id=hassum.0h0v.s7.5040be19cf5e from=translated src=- shape=38e7e9e2 vocab=e9261ee9
+-/
 theorem row12_hasSum :
     HasSum (fun n : ℕ =>
       (Nat.factorial (6*n):ℝ)/(Nat.factorial n:ℝ)^6 *
@@ -94,12 +109,18 @@ theorem row12_hasSum :
   rw [scalar_uniform_integral_value] at hh
   exact hh
 
+/--
+@isnad1 id=summable.0h0v.s7.aae269bb299b from=translated src=- shape=eb04b875 vocab=c623e48e
+-/
 theorem row12_summable :
     Summable (fun n : ℕ =>
       (Nat.factorial (6*n):ℝ)/(Nat.factorial n:ℝ)^6 *
         (532*(n:ℝ)^2+126*(n:ℝ)+9)/(10:ℝ)^(6*n)) :=
   term_summable
 
+/--
+@isnad1 id=eq.0h0v.s7.5071732f4ed7 from=translated src=- shape=94fb2012 vocab=cb5c609d
+-/
 theorem row12_tsum :
     (∑' n : ℕ, (Nat.factorial (6*n):ℝ)/(Nat.factorial n:ℝ)^6 *
       (532*(n:ℝ)^2+126*(n:ℝ)+9)/(10:ℝ)^(6*n)) =

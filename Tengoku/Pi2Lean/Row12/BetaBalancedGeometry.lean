@@ -18,6 +18,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=and.2h1v.s6.03edb9b76937 from=translated src=- shape=5efd154b vocab=996ad8a4
+-/
 theorem scalar_balanced_circle_domain {U : ℝ} (hU : 0 < U) (hU1 : U < 1) :
     0 < Real.sqrt (scalarLambda (scalarPathX U)) ∧
       Real.sqrt (scalarLambda (scalarPathX U)) < 1 ∧
@@ -37,6 +40,9 @@ theorem scalar_balanced_circle_domain {U : ℝ} (hU : 0 < U) (hU1 : U < 1) :
   rw [Complex.norm_of_nonneg hl.le]
   nlinarith
 
+/--
+@isnad1 id=and.0h1v.s4.a2fb2cdfb394 from=translated src=- shape=13e478a1 vocab=ccb25d24
+-/
 theorem betaFrame_real_path_agreement (U : ℝ) :
     betaFrameX (U:ℂ)=(scalarPathX U:ℂ) ∧
       betaFrameLambda (betaFrameX (U:ℂ))=(scalarLambda (scalarPathX U):ℂ) := by
@@ -44,6 +50,9 @@ theorem betaFrame_real_path_agreement (U : ℝ) :
   · simp [betaFrameX,scalarPathX]
   · simp [betaFrameX,scalarPathX,betaFrameLambda,betaFrameRho,scalarLambda,rho]
 
+/--
+@isnad1 id=ne.3h1v.s6.312fdb36f299 from=translated src=- shape=9f498d3f vocab=ac00a24e
+-/
 theorem betaFrameDenom_real_path_ne_zero {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
     (hE : 99*scalarPathX U-50 ≠ 0) :
     betaFrameDenom (betaFrameX (U:ℂ)) ≠ 0 := by
@@ -54,6 +63,9 @@ theorem betaFrameDenom_real_path_ne_zero {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
   exact mul_ne_zero (mul_ne_zero (pow_ne_zero 4 hx.1.ne')
     (scalarM_pos hx.2).ne') (pow_ne_zero 2 hE)
 
+/--
+@isnad1 id=ne.6h3v.s6.9b83edc688b1 from=translated src=- shape=a73fd28a vocab=c57e25f1
+-/
 theorem betaFlux_circle_regular {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
     {r : ℝ} (hplus : scalarPolePlus U < r) (hminus : r < scalarPoleMinus U)
     (hd : betaFrameDenom (betaFrameX (U:ℂ)) ≠ 0) :
@@ -76,6 +88,9 @@ theorem betaFlux_circle_regular {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
   rw [scalar_beta_pole_factor hU hU1]
   exact mul_ne_zero hd (mul_ne_zero hsa hsb)
 
+/--
+@isnad1 id=eq.9h3v.s6.36216fdbda21 from=translated src=- shape=8d792e99 vocab=dd47d0fa
+-/
 theorem betaFluxCircle_eq_of_between_poles {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
     {r R : ℝ} (hr : 0 < r) (hrR : r ≤ R)
     (hl : ‖(scalarLambda (scalarPathX U):ℂ)‖ < r)
@@ -120,6 +135,9 @@ theorem betaFluxCircle_eq_of_between_poles {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
   unfold betaFluxCircle
   rw [he]
 
+/--
+@isnad1 id=eq.13h3v.s7.59f703e13954 from=translated src=- shape=a3a03bda vocab=a6c2ce54
+-/
 theorem betaFluxCircle_between_poles_eq {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
     {r R : ℝ} (hr : 0 < r) (hR : 0 < R) (hr1 : r < 1) (hR1 : R < 1)
     (hlr : ‖(scalarLambda (scalarPathX U):ℂ)‖ < r)
@@ -132,6 +150,9 @@ theorem betaFluxCircle_between_poles_eq {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
   · exact betaFluxCircle_eq_of_between_poles hU hU1 hr hrR hlr har hbR hR1 hd
   · exact (betaFluxCircle_eq_of_between_poles hU hU1 hR hRr hlR haR hbr hr1 hd).symm
 
+/--
+@isnad1 id=eventual.2h1v.s6.d726c685be6e from=translated src=- shape=15b54056 vocab=99ee9a68
+-/
 theorem beta_balanced_fixedCircle_eventually_of_off_pole {U : ℝ}
     (hU : 0 < U) (hU1 : U < 1) :
     ∀ᶠ V in nhds U, 99*scalarPathX V-50 ≠ 0 → betaFluxBalanced V =
@@ -157,6 +178,9 @@ theorem beta_balanced_fixedCircle_eventually_of_off_pole {U : ℝ}
     (scalarPoleMinus_gt_radius hV.1 hV.2)
     (betaFrameDenom_real_path_ne_zero hV.1 hV.2 hEV)
 
+/--
+@isnad1 id=eventual.3h1v.s6.9ec39ad5c6fb from=translated src=- shape=ba5d452e vocab=4042479f
+-/
 theorem beta_balanced_fixedCircle_eventually {U : ℝ} (hU : 0 < U) (hU1 : U < 1)
     (hE : 99*scalarPathX U-50 ≠ 0) :
     betaFluxBalanced =ᶠ[nhds U] (fun V : ℝ =>

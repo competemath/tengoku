@@ -16,11 +16,17 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=eventual.1h1v.s5.8e4c26459152 from=translated src=- shape=4ccb8ba2 vocab=0dec1bfe
+-/
 theorem nativeF_gaussG_eventually (q : ℝ) (hq : ‖q‖ < 1) :
     nativeF =ᶠ[nhds q] (fun z : ℝ => gaussG z^2) := by
   filter_upwards [isOpen_ball.mem_nhds (by simpa using hq : q ∈ ball (0:ℝ) 1)] with z hz
   exact nativeF_eq_gaussG_square z (by simpa using hz)
 
+/--
+@isnad1 id=eq.1h1v.s5.58f78831b670 from=translated src=- shape=3d02deca vocab=be00e94d
+-/
 theorem nativeEuler_one_gaussG (q : ℝ) (hq : ‖q‖ < 1) :
     nativeEuler 1 q = 2*gaussG q*nativeTheta gaussG q := by
   have hqa : -1 < q ∧ q < 1 := by simpa only [Real.norm_eq_abs,abs_lt] using hq
@@ -33,6 +39,9 @@ theorem nativeEuler_one_gaussG (q : ℝ) (hq : ‖q‖ < 1) :
   simp only [nativeTheta]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.2c4881bdd2aa from=translated src=- shape=8e8f03d7 vocab=baa2c4e6
+-/
 theorem nativeEuler_two_gaussG (q : ℝ) (hq : ‖q‖ < 1) :
     nativeEuler 2 q = 2*(nativeTheta gaussG q)^2+
       2*gaussG q*nativeTheta (nativeTheta gaussG) q := by
@@ -49,12 +58,18 @@ theorem nativeEuler_two_gaussG (q : ℝ) (hq : ‖q‖ < 1) :
   simp only [nativeTheta]
   ring
 
+/--
+@isnad1 id=eq.0h0v.s7.ee62c81e2f75 from=translated src=- shape=52c9aa85 vocab=9170f171
+-/
 theorem gaussG_second_contact :
     nativeTheta (nativeTheta gaussG) (27/125) =
       (27/196)*nativeTheta gaussG (27/125)+(15/1568)*gaussG (27/125) := by
   have he := gaussG_nativeSecond (27/125) (by norm_num) (by norm_num)
   linear_combination (125/14112:ℝ)*he
 
+/--
+@isnad1 id=eq.0h0v.s7.77a7f300dbf5 from=translated src=- shape=f39ad361 vocab=603a53b1
+-/
 theorem actual_native_contact_residue :
     residueForm (nativeF (27/125)) (nativeEuler 1 (27/125))
       (nativeEuler 2 (27/125)) = 1/(36*Real.pi^2) := by

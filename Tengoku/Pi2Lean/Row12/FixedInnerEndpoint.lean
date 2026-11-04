@@ -22,6 +22,9 @@ open scoped Topology
 
 namespace Row12
 
+/--
+@isnad1 id=tendsto.3h5v.s7.6f115b34f4a9 from=translated src=- shape=87e7932b vocab=c43c4242
+-/
 theorem fixedCircleIntegral_tendsto_of_continuousOn
     (F : ℂ → ℂ → ℂ) (a c : ℂ) (r ε : ℝ) (hr : 0 ≤ r) (hε : 0 < ε)
     (hF : ContinuousOn (fun p : ℂ × ℂ => F p.1 p.2)
@@ -43,6 +46,9 @@ noncomputable def fixedInnerIntegrand (U s : ℂ) : ℂ :=
 noncomputable def fixedInnerFlux (U : ℝ) : ℂ :=
   (2*Real.pi*I : ℂ)⁻¹ * ∮ s in C(0,(1/10 : ℝ)), fixedInnerIntegrand (U : ℂ) s
 
+/--
+@isnad1 id=and.0h1v.s6.5e1099bedfd4 from=translated src=- shape=1e29143c vocab=c414d06c
+-/
 theorem fixedInner_at_zero (s : ℂ) :
     betaFrameH 0 s=38416*(s-27/125)^2 ∧ betaFrameB 0 s=betaFrameRho/s := by
   constructor
@@ -51,6 +57,9 @@ theorem fixedInner_at_zero (s : ℂ) :
     ring
   · simp [betaFrameB, betaFrameX, betaFrameLambda]
 
+/--
+@isnad1 id=and.1h1v.s7.f8d994d79a1d from=translated src=- shape=7556036a vocab=4d87add8
+-/
 theorem fixedInner_circle_domain (s : ℂ) (hs : s ∈ sphere 0 (1/10 : ℝ)) :
     s ≠ 0 ∧ betaFrameH 0 s ≠ 0 ∧ ‖s‖ < 1 ∧
       ‖betaFrameB 0 s‖=(1458/3125 : ℝ) := by
@@ -67,16 +76,25 @@ theorem fixedInner_circle_domain (s : ℂ) (hs : s ∈ sphere 0 (1/10 : ℝ)) :
   · rw [(fixedInner_at_zero s).2, norm_div, hsn]
     norm_num [betaFrameRho, norm_div]
 
+/--
+@isnad1 id=continuo.0h0v.s5.baebf862d1aa from=translated src=- shape=1c9bbd5f vocab=8bff4fe5
+-/
 theorem fixedInner_H_continuous :
     Continuous (fun p : ℂ × ℂ => betaFrameH p.1 p.2) := by
   unfold betaFrameH betaFrameX betaFrameDenom betaFrameM betaFrameF betaFrameMid betaFrameLambda
   fun_prop
 
+/--
+@isnad1 id=continuo.1h1v.s6.49b5c753194b from=translated src=- shape=9f2c3121 vocab=f395fc7b
+-/
 theorem fixedInner_B_continuousAt (p : ℂ × ℂ) (hs0 : p.2 ≠ 0) :
     ContinuousAt (fun q : ℂ × ℂ => betaFrameB q.1 q.2) p := by
   unfold betaFrameB betaFrameLambda betaFrameX
   fun_prop (disch := assumption)
 
+/--
+@isnad1 id=continuo.1h2v.s5.e9058b5f395c from=translated src=- shape=74a6e4aa vocab=33ae4c3b
+-/
 theorem fixedInner_dual_entry_continuousAt (q : ℂ) (hq : ‖q‖ < 1) (i : Fin 3) :
     ContinuousAt (fun z : ℂ => dualState z i) q := by
   change ContinuousAt (fun z : ℂ => ∑ k : Fin 3,
@@ -85,6 +103,9 @@ theorem fixedInner_dual_entry_continuousAt (q : ℂ) (hq : ‖q‖ < 1) (i : Fin
     (dual_state_matrix_entry_hasDerivAt q k i).continuousAt.mul
       (nativeState_entry_analyticAt k q hq).continuousAt)
 
+/--
+@isnad1 id=continuo.1h3v.s6.2916f4c7f5c3 from=translated src=- shape=1ceffcc4 vocab=31f404e0
+-/
 theorem fixedInner_beta_entry_continuousAt (p : ℂ × ℂ)
     (hH : betaFrameH p.1 p.2 ≠ 0) (i j : Fin 3) :
     ContinuousAt (fun q : ℂ × ℂ => scalarBetaSFull q.1 q.2 i j) p := by
@@ -98,6 +119,9 @@ theorem fixedInner_beta_entry_continuousAt (p : ℂ × ℂ)
     unfold betaFrameLP betaFrameRP betaFrameX betaFrameMid betaFrameEll betaFrameM <;>
     fun_prop
 
+/--
+@isnad1 id=continuo.4h1v.s7.0e16ef23db38 from=translated src=- shape=e4ebf5d5 vocab=4ecab0a2
+-/
 theorem fixedInner_integrand_continuousAt (p : ℂ × ℂ)
     (hH : betaFrameH p.1 p.2 ≠ 0) (hs0 : p.2 ≠ 0)
     (hs : ‖p.2‖ < 1) (hb : ‖betaFrameB p.1 p.2‖ < 1) :
@@ -113,6 +137,9 @@ theorem fixedInner_integrand_continuousAt (p : ℂ × ℂ)
   exact tendsto_finsetSum _ (fun i _ => tendsto_finsetSum _ (fun j _ =>
     ((hX i).mul (fixedInner_beta_entry_continuousAt p hH i j)).mul (hZ j)))
 
+/--
+@isnad1 id=ex.0h0v.s7.9efbbbf206c9 from=translated src=- shape=77f9d6ad vocab=0f3ebec8
+-/
 theorem fixedInner_regular_tube :
     ∃ ε > 0, ∀ U ∈ closedBall (0 : ℂ) ε, ∀ s ∈ sphere 0 (1/10 : ℝ),
       betaFrameH U s ≠ 0 ∧ s ≠ 0 ∧ ‖s‖ < 1 ∧ ‖betaFrameB U s‖ < 1 := by
@@ -138,9 +165,15 @@ theorem fixedInner_regular_tube :
   intro U hU s hs
   exact hball (mem_ball.mpr ((mem_closedBall.mp hU).trans_lt (by linarith))) s hs
 
+/--
+@isnad1 id=eq.0h1v.s4.5845a2bfddcd from=translated src=- shape=fe2c2146 vocab=e75a050d
+-/
 theorem fixedInner_integrand_zero (s : ℂ) : fixedInnerIntegrand 0 s=0 := by
   simp [fixedInnerIntegrand, scalarBetaSFull, betaPair]
 
+/--
+@isnad1 id=tendsto.0h0v.s6.6195927770fe from=translated src=- shape=ccfbf308 vocab=a5d4e971
+-/
 theorem fixedInner_circleIntegral_tendsto_zero :
     Tendsto (fun U : ℂ => ∮ s in C(0,(1/10 : ℝ)), fixedInnerIntegrand U s)
       (𝓝 0) (𝓝 0) := by
@@ -157,6 +190,9 @@ theorem fixedInner_circleIntegral_tendsto_zero :
   rw [hz] at ht
   exact ht
 
+/--
+@isnad1 id=tendsto.0h0v.s5.161b3483fc48 from=translated src=- shape=dcd816cd vocab=8557229a
+-/
 theorem fixedInnerFlux_tendsto_zero : Tendsto fixedInnerFlux (𝓝 0) (𝓝 0) := by
   have ht := fixedInner_circleIntegral_tendsto_zero.comp Complex.continuous_ofReal.continuousAt
   change Tendsto (fun U : ℝ => (2*Real.pi*I : ℂ)⁻¹*

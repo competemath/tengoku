@@ -53,6 +53,9 @@ noncomputable def dualStateEntryDerivative (q : 𝕜) : Matrix (Fin 3) (Fin 3) �
 noncomputable def nativeMetricEntryDerivative (q : 𝕜) : Matrix (Fin 3) (Fin 3) 𝕜 :=
   fun i j => deriv (fun z : 𝕜 => nativeSolutionMetric z i j) q
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.4a9a1111fe5a from=translated src=- shape=6ace6c94 vocab=ad462b52
+-/
 theorem dual_state_matrix_entry_hasDerivAt (q : 𝕜) (i j : Fin 3) :
     HasDerivAt (fun z : 𝕜 => dualStateMatrix z i j)
       (dualStateMatrixDerivative q i j) q := by
@@ -77,6 +80,9 @@ theorem dual_state_matrix_entry_hasDerivAt (q : 𝕜) (i j : Fin 3) :
   · simpa [dualStateMatrix, dualStateMatrixDerivative] using hzero
   · simpa [dualStateMatrix, dualStateMatrixDerivative] using hzero
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.7d8410c94f5b from=translated src=- shape=cc293172 vocab=a83690d2
+-/
 theorem native_solution_metric_entry_hasDerivAt (q : 𝕜) (i j : Fin 3) :
     HasDerivAt (fun z : 𝕜 => nativeSolutionMetric z i j)
       (nativeSolutionMetricDerivative i j) q := by
@@ -101,12 +107,18 @@ theorem native_solution_metric_entry_hasDerivAt (q : 𝕜) (i j : Fin 3) :
   · simpa [nativeSolutionMetric, nativeSolutionMetricDerivative] using hzero
   · simpa [nativeSolutionMetric, nativeSolutionMetricDerivative] using hzero
 
+/--
+@isnad1 id=eq.0h0v.s5.56876acbdd0a from=translated src=- shape=343131bd vocab=5e2aed5d
+-/
 theorem dual_state_contact_matrix :
     dualStateMatrix (27/125 : ℝ) = contactStateMatrix := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     norm_num [dualStateMatrix, contactStateMatrix]
 
+/--
+@isnad1 id=eq.2h2v.s9.0b7b719176e4 from=translated src=- shape=cf42d7e0 vocab=f6a5735d
+-/
 theorem dual_frame_identity (q : 𝕜) (hq0 : q ≠ 0) (hq1 : q ≠ 1) :
     dualStateEntryDerivative q +
       q⁻¹ • ((nativeEulerConnection q).transpose * dualStateMatrix q) +
@@ -123,6 +135,9 @@ theorem dual_frame_identity (q : 𝕜) (hq0 : q ≠ 0) (hq1 : q ≠ 1) :
       Fin.sum_univ_succ] <;>
     field_simp [hq0, hsub] <;> ring
 
+/--
+@isnad1 id=eq.2h2v.s9.326cfdba790c from=translated src=- shape=041b94e8 vocab=71b5ac72
+-/
 theorem native_solution_metric_identity (q : 𝕜) (hq0 : q ≠ 0) (hq1 : q ≠ 1) :
     nativeMetricEntryDerivative q +
       q⁻¹ • ((nativeEulerConnection q).transpose * nativeSolutionMetric q) +
@@ -138,6 +153,9 @@ theorem native_solution_metric_identity (q : 𝕜) (hq0 : q ≠ 0) (hq1 : q ≠ 
       Matrix.mul_apply, Matrix.transpose_apply, smul_eq_mul, Fin.sum_univ_succ] <;>
     field_simp [hq0, hsub] <;> ring
 
+/--
+@isnad1 id=hasderiv.2h3v.s7.a7ba164b5372 from=translated src=- shape=10ad5cc2 vocab=41a4289f
+-/
 theorem nativeEuler_hasDerivAt_div (k : ℕ) (q : 𝕜) (hq : ‖q‖ < 1) (hq0 : q ≠ 0) :
     HasDerivAt (nativeEuler k) (nativeEuler (k+1) q / q) q := by
   have he : deriv (nativeEuler k) q = nativeEuler (k+1) q / q := by
@@ -146,6 +164,9 @@ theorem nativeEuler_hasDerivAt_div (k : ℕ) (q : 𝕜) (hq : ‖q‖ < 1) (hq0 
     exact (nativeEuler_succ_eq k q hq).symm
   exact (nativeEuler_hasDerivAt k q hq).differentiableAt.hasDerivAt.congr_deriv he
 
+/--
+@isnad1 id=eq.2h2v.s8.9e18e1feab94 from=translated src=- shape=7b2504f7 vocab=075e3d6a
+-/
 theorem nativeEuler_three_div (q : 𝕜) (hq : ‖q‖ < 1) (hq0 : q ≠ 0) :
     nativeEuler 3 q / q =
       ((5/72 : 𝕜)*nativeF q + (23/36 : 𝕜)*nativeEuler 1 q +
@@ -169,6 +190,9 @@ noncomputable def nativeStateOrdinaryDerivative (q : 𝕜) : Fin 3 → 𝕜 :=
     ((5/72 : 𝕜)*nativeF q + (23/36 : 𝕜)*nativeEuler 1 q +
       (3/2 : 𝕜)*nativeEuler 2 q)/(1-q)]
 
+/--
+@isnad1 id=hasderiv.2h2v.s7.6ca57fad8d52 from=translated src=- shape=696c8e43 vocab=a5c423cc
+-/
 theorem native_state_hasDerivAt (q : 𝕜) (hq : ‖q‖ < 1) (hq0 : q ≠ 0) :
     HasDerivAt nativeState (nativeStateOrdinaryDerivative q) q := by
   have hd0 := nativeEuler_hasDerivAt_div 0 q hq hq0
@@ -182,6 +206,9 @@ theorem native_state_hasDerivAt (q : 𝕜) (hq : ‖q‖ < 1) (hq0 : q ≠ 0) :
   · simpa [nativeState, nativeStateOrdinaryDerivative] using hd1
   · simpa [nativeState, nativeStateOrdinaryDerivative] using hd2
 
+/--
+@isnad1 id=eq.2h2v.s7.786e0d229f9d from=translated src=- shape=2ad623b4 vocab=fd181f7e
+-/
 theorem native_state_derivative_connection (q : 𝕜) (hq0 : q ≠ 0) (hq1 : q ≠ 1) :
     nativeStateOrdinaryDerivative q = q⁻¹ • (nativeEulerConnection q).mulVec (nativeState q) := by
   have hsub : 1-q ≠ 0 := sub_ne_zero.mpr (Ne.symm hq1)
@@ -198,6 +225,9 @@ noncomputable def dualStateOrdinaryDerivative (q : 𝕜) : Fin 3 → 𝕜 :=
   (dualStateMatrixDerivative q).transpose.mulVec (nativeState q) +
     (dualStateMatrix q).transpose.mulVec (nativeStateOrdinaryDerivative q)
 
+/--
+@isnad1 id=eq.0h2v.s9.8fcd3d5b7b11 from=translated src=- shape=901d6ecd vocab=f79d9f80
+-/
 theorem dual_state_formula (q : 𝕜) :
     dualState q =
       ![((-5/72 : 𝕜)*q)*nativeF q + ((-1/2 : 𝕜)*q)*nativeEuler 1 q +
@@ -209,6 +239,9 @@ theorem dual_state_formula (q : 𝕜) :
       Matrix.transpose_apply, dotProduct, Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=hasderiv.2h2v.s7.9dcd6a9fdcfd from=translated src=- shape=696c8e43 vocab=27beeab6
+-/
 theorem dual_state_hasDerivAt_product (q : 𝕜) (hq : ‖q‖ < 1) (hq0 : q ≠ 0) :
     HasDerivAt dualState (dualStateOrdinaryDerivative q) q := by
   have hY := native_state_hasDerivAt q hq hq0
@@ -225,6 +258,9 @@ theorem dual_state_hasDerivAt_product (q : 𝕜) (hq : ‖q‖ < 1) (hq0 : q ≠
   simpa [dualStateOrdinaryDerivative, Matrix.mulVec,
     Matrix.transpose_apply, dotProduct, Finset.sum_add_distrib] using hs
 
+/--
+@isnad1 id=eq.2h2v.s7.0b82f75ac7a4 from=translated src=- shape=2de39809 vocab=4737bcf1
+-/
 theorem dual_state_derivative_connection (q : 𝕜) (hq0 : q ≠ 0) (hq1 : q ≠ 1) :
     dualStateOrdinaryDerivative q = -((ordinarySymmetricConnection q).transpose.mulVec
       (dualState q)) := by
@@ -238,6 +274,9 @@ theorem dual_state_derivative_connection (q : 𝕜) (hq0 : q ≠ 0) (hq1 : q ≠
       smul_eq_mul, Fin.sum_univ_succ] <;>
     field_simp [hq0, hsub] <;> ring
 
+/--
+@isnad1 id=hasderiv.2h2v.s8.4989de52952a from=translated src=- shape=fdd294a7 vocab=685e7d21
+-/
 theorem dual_state_hasDerivAt (q : 𝕜) (hq : ‖q‖ < 1) (hq0 : q ≠ 0) :
     HasDerivAt dualState (-((ordinarySymmetricConnection q).transpose.mulVec
       (dualState q))) q := by
@@ -247,6 +286,9 @@ theorem dual_state_hasDerivAt (q : 𝕜) (hq : ‖q‖ < 1) (hq0 : q ≠ 0) :
   rw [← dual_state_derivative_connection q hq0 hq1]
   exact dual_state_hasDerivAt_product q hq hq0
 
+/--
+@isnad1 id=eq.2h2v.s8.112486d2bf11 from=translated src=- shape=d75ca4e9 vocab=e9f56fe5
+-/
 theorem dual_state_deriv (q : 𝕜) (hq : ‖q‖ < 1) (hq0 : q ≠ 0) :
     deriv dualState q = -((ordinarySymmetricConnection q).transpose.mulVec (dualState q)) :=
   (dual_state_hasDerivAt q hq hq0).deriv

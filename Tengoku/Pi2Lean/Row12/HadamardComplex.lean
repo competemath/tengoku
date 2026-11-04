@@ -13,6 +13,9 @@ noncomputable def hadamardComplexEulerIntegral (k : ℕ) (lambda : ℂ) (r : ℝ
   (2 * Real.pi * I : ℂ)⁻¹ •
     ∮ s in C(0,r), nativeF s * nativeEuler k (lambda/s) / s
 
+/--
+@isnad1 id=hassum.3h3v.s7.8f8d3b80cec0 from=translated src=- shape=cebdcc2b vocab=c15cf7ab
+-/
 theorem hadamardComplexEuler_hasSum (k : ℕ) lambda {r : ℝ}
     (hr : 0 < r) (hlr : ‖lambda‖ < r) (hr1 : r < 1) :
     HasSum (fun n : ℕ => (coefficient3 n : ℂ) ^ 2 * (n : ℂ) ^ k * lambda ^ n)

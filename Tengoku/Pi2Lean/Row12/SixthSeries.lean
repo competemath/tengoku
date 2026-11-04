@@ -24,6 +24,9 @@ open Filter Matrix
 
 namespace Row12
 
+/--
+@isnad1 id=eq.0h1v.s8.318988bdccfa from=translated src=- shape=0272a8b4 vocab=19c672b3
+-/
 theorem coefficient3_sq_succ_mul (n : ℕ) :
     ((n : ℝ)+1)^6 * coefficient3 (n+1)^2 =
       ((n : ℝ)+1/6)^2 * ((n : ℝ)+1/2)^2 * ((n : ℝ)+5/6)^2 * coefficient3 n^2 := by
@@ -32,11 +35,17 @@ theorem coefficient3_sq_succ_mul (n : ℕ) :
     _ = (((n : ℝ)+1)^3*coefficient3 (n+1))^2 := by ring
     _ = _ := by rw [hc]; ring
 
+/--
+@isnad1 id=eq.0h1v.s8.a910e8902408 from=translated src=- shape=fe92a215 vocab=513af5b5
+-/
 theorem sixthPolynomial_expansion (z : ℂ) :
     (z+1/6)^2*(z+1/2)^2*(z+5/6)^2 =
       z^6+3*z^5+(127/36)*z^4+(37/18)*z^3+(799/1296)*z^2+
         (115/1296)*z+25/5184 := by ring
 
+/--
+@isnad1 id=eq.1h1v.s8.484552114886 from=translated src=- shape=e45f1329 vocab=86a92b2a
+-/
 theorem squaredNativeEuler_sixth (q : ℂ) (hq : ‖q‖ < 1) :
     squaredNativeEuler 6 q = q*(squaredNativeEuler 6 q+3*squaredNativeEuler 5 q+
       (127/36)*squaredNativeEuler 4 q+(37/18)*squaredNativeEuler 3 q+
@@ -87,6 +96,9 @@ noncomputable def squaredNativeThetaIterate : ℕ → ℂ → ℂ
   | 0 => squaredNativeEuler 0
   | k+1 => nativeTheta (squaredNativeThetaIterate k)
 
+/--
+@isnad1 id=eq.1h2v.s4.06a572a1d3a0 from=translated src=- shape=73a7305a vocab=91422799
+-/
 theorem squaredNativeThetaIterate_eq (k : ℕ) (q : ℂ) (hq : ‖q‖ < 1) :
     squaredNativeThetaIterate k q = squaredNativeEuler k q := by
   induction k generalizing q with
@@ -100,6 +112,9 @@ theorem squaredNativeThetaIterate_eq (k : ℕ) (q : ℂ) (hq : ‖q‖ < 1) :
     rw [squaredNativeThetaIterate, nativeTheta, he.deriv_eq,
       ← squaredNativeEuler_succ_eq k q hq]
 
+/--
+@isnad1 id=eq.1h1v.s8.b0c3100d7b8f from=translated src=- shape=e45f1329 vocab=01e08fb8
+-/
 theorem squaredNative_actualSixthODE (q : ℂ) (hq : ‖q‖ < 1) :
     squaredNativeThetaIterate 6 q = q*(squaredNativeThetaIterate 6 q+
       3*squaredNativeThetaIterate 5 q+(127/36)*squaredNativeThetaIterate 4 q+
@@ -117,11 +132,17 @@ noncomputable def sixthShift (a : ℂ) (f : ℂ → ℂ) (q : ℂ) : ℂ :=
 noncomputable def sixthEulerCombination (v : Fin 7 → ℂ) (q : ℂ) : ℂ :=
   ∑ i : Fin 7, v i*squaredNativeEuler i q
 
+/--
+@isnad1 id=eventual.1h4v.s5.830393425495 from=translated src=- shape=e6d52ffd vocab=43d13d69
+-/
 theorem sixthShift_eventually_congr {f g : ℂ → ℂ} {q : ℂ} (a : ℂ)
     (he : f =ᶠ[nhds q] g) : sixthShift a f =ᶠ[nhds q] sixthShift a g := by
   filter_upwards [he, he.deriv] with z hz hdz
   simp only [sixthShift, nativeTheta, hz, hdz]
 
+/--
+@isnad1 id=eq.1h3v.s6.1c0d131249ac from=translated src=- shape=1ecc3d2c vocab=7057f4c9
+-/
 theorem sixthShift_combination (a : ℂ) (v : Fin 7 → ℂ) (q : ℂ) (hq : ‖q‖ < 1) :
     sixthShift a (sixthEulerCombination v) q =
       (∑ i : Fin 7, v i*squaredNativeEuler (i.val+1) q)+a*sixthEulerCombination v q := by
@@ -140,6 +161,9 @@ noncomputable def squaredNativeSixthShift : ℂ → ℂ :=
   sixthShift (1/6) (sixthShift (1/6) (sixthShift (1/2) (sixthShift (1/2)
     (sixthShift (5/6) (sixthShift (5/6) (squaredNativeEuler 0))))))
 
+/--
+@isnad1 id=eq.1h1v.s8.642f34a44697 from=translated src=- shape=92274a05 vocab=5ca8df62
+-/
 theorem squaredNativeSixthShift_expansion (q : ℂ) (hq : ‖q‖ < 1) :
     squaredNativeSixthShift q = squaredNativeEuler 6 q+3*squaredNativeEuler 5 q+
       (127/36)*squaredNativeEuler 4 q+(37/18)*squaredNativeEuler 3 q+
@@ -180,6 +204,9 @@ theorem squaredNativeSixthShift_expansion (q : ℂ) (hq : ‖q‖ < 1) :
   simp [sixthEulerCombination,v6,Fin.sum_univ_succ]
   ring
 
+/--
+@isnad1 id=eq.1h1v.s5.e0f19d19f51e from=translated src=- shape=11ec093c vocab=16f4bde6
+-/
 theorem squaredNative_factoredSixthODE (q : ℂ) (hq : ‖q‖ < 1) :
     squaredNativeThetaIterate 6 q = q*squaredNativeSixthShift q := by
   rw [squaredNativeThetaIterate_eq 6 q hq, squaredNativeSixthShift_expansion q hq]
@@ -209,6 +236,9 @@ noncomputable def sixthCompanion (q : ℂ) : Matrix (Fin 6) (Fin 6) ℂ :=
       (25/5184)*q/(1-q),(115/1296)*q/(1-q),(799/1296)*q/(1-q),
         (37/18)*q/(1-q),(127/36)*q/(1-q),3*q/(1-q)]
 
+/--
+@isnad1 id=eq.1h1v.s7.e69b68e25dc0 from=translated src=- shape=3d1282ac vocab=7dd75159
+-/
 theorem sixth_cyclic_frame (q : ℂ) (hq : q ≠ 1) :
     sixthCyclicMatrix*sixthB6 q = sixthCompanion q*sixthCyclicMatrix := by
   have hd : 1-q ≠ 0 := sub_ne_zero.mpr hq.symm
@@ -226,12 +256,18 @@ noncomputable def sixthCyclicInverse : Matrix (Fin 6) (Fin 6) ℂ :=
       0,5/72,23/36,3/2,1,0;
       0,0,5/72,23/36,3/2,1]
 
+/--
+@isnad1 id=eq.0h0v.s7.bcd1744acec5 from=translated src=- shape=af6c9ceb vocab=62ac1f11
+-/
 theorem sixth_cyclic_inverse_left : sixthCyclicInverse*sixthCyclicMatrix = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     norm_num [sixthCyclicInverse, sixthCyclicMatrix, outerCyclicMatrix,
       Matrix.mul_apply, Fin.sum_univ_succ, Matrix.map_apply]
 
+/--
+@isnad1 id=eq.0h0v.s7.9ee763199557 from=translated src=- shape=af6c9ceb vocab=62ac1f11
+-/
 theorem sixth_cyclic_inverse_right : sixthCyclicMatrix*sixthCyclicInverse = 1 := by
   ext i j
   fin_cases i <;> fin_cases j <;>
@@ -245,6 +281,9 @@ noncomputable def sixthState (q : ℂ) : Fin 6 → ℂ :=
 noncomputable def sixthNormalState (q : ℂ) : Fin 6 → ℂ :=
   sixthCyclicInverse.mulVec (sixthState q)
 
+/--
+@isnad1 id=eq.1h1v.s6.669dba4ce7d2 from=translated src=- shape=3f6ee2aa vocab=a7ff935b
+-/
 theorem sixth_state_companion (q : ℂ) (hq : ‖q‖ < 1) :
     (fun i : Fin 6 => q*deriv (fun z => sixthState z i) q) =
       (sixthCompanion q).mulVec (sixthState q) := by
@@ -274,11 +313,17 @@ theorem sixth_state_companion (q : ℂ) (hq : ‖q‖ < 1) :
     simp [sixthState,sixthCompanion,Matrix.mulVec,dotProduct,Fin.sum_univ_succ]
     ring
 
+/--
+@isnad1 id=analytic.1h2v.s5.f0bbeb216a15 from=translated src=- shape=d4daed34 vocab=f0328c8b
+-/
 theorem sixth_state_analyticAt (i : Fin 6) (q : ℂ) (hq : ‖q‖ < 1) :
     AnalyticAt ℂ (fun z => sixthState z i) q := by
   fin_cases i <;> change AnalyticAt ℂ (squaredNativeEuler _) q <;>
     exact squaredNativeEuler_analyticAt _ q hq
 
+/--
+@isnad1 id=eq.1h1v.s7.9b4e4b5b3268 from=translated src=- shape=3d1282ac vocab=f437056b
+-/
 theorem sixth_inverse_frame (q : ℂ) (hq : q ≠ 1) :
     sixthCyclicInverse*sixthCompanion q = sixthB6 q*sixthCyclicInverse := by
   calc
@@ -290,6 +335,9 @@ theorem sixth_inverse_frame (q : ℂ) (hq : q ≠ 1) :
       rw [sixth_cyclic_frame q hq]
     _ = _ := by rw [← Matrix.mul_assoc, sixth_cyclic_inverse_left, Matrix.one_mul]
 
+/--
+@isnad1 id=eq.1h1v.s6.09347d843dbd from=translated src=- shape=3f6ee2aa vocab=9c76babd
+-/
 theorem sixth_normal_state_equation (q : ℂ) (hq : ‖q‖ < 1) :
     (fun i : Fin 6 => q*deriv (fun z => sixthNormalState z i) q) =
       (sixthB6 q).mulVec (sixthNormalState q) := by

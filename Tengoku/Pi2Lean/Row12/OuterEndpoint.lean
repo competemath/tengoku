@@ -72,6 +72,9 @@ def outerPolynomialZero : OuterEndpointVector :=
 def outerXiZero : OuterEndpointVector := fun i =>
   outerPolynomialZero i - outerEscapeOne i / 50 + outerEscapeTwo i / 2500
 
+/--
+@isnad1 id=eq.0h1v.s9.f323357fb68e from=translated src=- shape=12ff766b vocab=579e83d8
+-/
 theorem outer_cyclic_mulVec_formula (v : OuterEndpointVector) :
     outerCyclicMatrix.mulVec v =
       ![(49456/125) * v 0 + (153648/125) * v 1 + (113472/125) * v 2 +
@@ -84,6 +87,9 @@ theorem outer_cyclic_mulVec_formula (v : OuterEndpointVector) :
   fin_cases i <;>
     simp [outerCyclicMatrix, Matrix.mulVec, dotProduct, Fin.sum_univ_succ] <;> ring
 
+/--
+@isnad1 id=eq.0h0v.s7.4b5b94ed38df from=translated src=- shape=c426e0ab vocab=68cdb179
+-/
 theorem outer_cyclic_v0 :
     outerCyclicMatrix.mulVec outerEndpointV0 = ![1, 0, 0, 0, 0, 0] := by
   ext i
@@ -91,6 +97,9 @@ theorem outer_cyclic_v0 :
     norm_num [outerCyclicMatrix, outerEndpointV0, Matrix.mulVec, dotProduct,
       Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s7.b445eabe70c8 from=translated src=- shape=c426e0ab vocab=0e2efc79
+-/
 theorem outer_cyclic_v1 :
     outerCyclicMatrix.mulVec outerEndpointV1 = ![1, 1, 1, 1, 1, 1] := by
   ext i
@@ -98,6 +107,9 @@ theorem outer_cyclic_v1 :
     norm_num [outerCyclicMatrix, outerEndpointV1, Matrix.mulVec, dotProduct,
       Fin.sum_univ_succ]
 
+/--
+@isnad1 id=injectiv.0h0v.s5.285096690165 from=translated src=- shape=068f5be9 vocab=93f5101e
+-/
 theorem outer_cyclic_mulVec_injective :
     Function.Injective outerCyclicMatrix.mulVec := by
   intro v w h
@@ -134,53 +146,89 @@ theorem outer_cyclic_mulVec_injective :
   · exact h4
   · exact h5
 
+/--
+@isnad1 id=eq.1h1v.s7.b3555a20f620 from=translated src=- shape=f823ed11 vocab=967aa84f
+-/
 theorem outer_cyclic_v0_unique (v : OuterEndpointVector)
     (h : outerCyclicMatrix.mulVec v = ![1, 0, 0, 0, 0, 0]) :
     v = outerEndpointV0 :=
   outer_cyclic_mulVec_injective (h.trans outer_cyclic_v0.symm)
 
+/--
+@isnad1 id=eq.1h1v.s7.af6d972f0ffa from=translated src=- shape=f823ed11 vocab=f74d8fd8
+-/
 theorem outer_cyclic_v1_unique (v : OuterEndpointVector)
     (h : outerCyclicMatrix.mulVec v = ![1, 1, 1, 1, 1, 1]) :
     v = outerEndpointV1 :=
   outer_cyclic_mulVec_injective (h.trans outer_cyclic_v1.symm)
 
+/--
+@isnad1 id=eq.0h0v.s6.621bf9b94e3e from=translated src=- shape=99901237 vocab=438e486c
+-/
 theorem outer_first_coefficient :
     ((5/72 : ℚ)^2) * (729/15625) = 9/40000 := by norm_num
 
+/--
+@isnad1 id=eq.0h0v.s4.54850887d500 from=translated src=- shape=7df33ff6 vocab=549b6f7e
+-/
 theorem outer_xi_neg_four_v0 :
     dotProduct outerXiNegFour outerEndpointV0 = 0 := by
   norm_num [outerXiNegFour, outerEndpointV0, dotProduct, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s4.18188c523aa3 from=translated src=- shape=7df33ff6 vocab=90f4b300
+-/
 theorem outer_xi_neg_three_v0 :
     dotProduct outerXiNegThree outerEndpointV0 = 0 := by
   norm_num [outerXiNegThree, outerEndpointV0, dotProduct, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s4.e56e68144733 from=translated src=- shape=7df33ff6 vocab=8e957dd4
+-/
 theorem outer_xi_neg_two_v0 :
     dotProduct outerXiNegTwo outerEndpointV0 = 0 := by
   norm_num [outerXiNegTwo, outerEndpointV0, dotProduct, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s5.da8439098f2d from=translated src=- shape=e15b2478 vocab=1778d3d1
+-/
 theorem outer_xi_neg_one_v0 :
     dotProduct outerXiNegOne outerEndpointV0 = -105800/459459 := by
   norm_num [outerXiNegOne, outerEndpointV0, dotProduct, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s5.6dda5bb3b53e from=translated src=- shape=ae03e653 vocab=1e31b312
+-/
 theorem outer_xi_neg_four_v1 :
     (9/40000 : ℚ) * dotProduct outerXiNegFour outerEndpointV1 = 105800/459459 := by
   norm_num [outerXiNegFour, outerEndpointV1, dotProduct, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s5.1487c9609986 from=translated src=- shape=fb7e50a8 vocab=edf12cd9
+-/
 theorem outer_xi_zero_v0 :
     dotProduct outerXiZero outerEndpointV0 = 8464/21879 := by
   norm_num [outerXiZero, outerPolynomialZero, outerEscapeOne, outerEscapeTwo, outerEndpointV0, dotProduct, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s6.d71030b4b25b from=translated src=- shape=7d578a50 vocab=ab1f1c62
+-/
 theorem outer_xi_neg_three_v1 :
     (9/40000 : ℚ) * dotProduct outerXiNegThree outerEndpointV1 = -8464/21879 := by
   norm_num [outerXiNegThree, outerEndpointV1, dotProduct, Fin.sum_univ_succ]
 
+/--
+@isnad1 id=eq.0h0v.s6.312b1af53854 from=translated src=- shape=96939c88 vocab=19547246
+-/
 theorem outer_pole_one_cancellation :
     dotProduct outerXiNegOne outerEndpointV0 +
       (9/40000 : ℚ) * dotProduct outerXiNegFour outerEndpointV1 = 0 := by
   rw [outer_xi_neg_one_v0, outer_xi_neg_four_v1]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s6.c5a7d05fb020 from=translated src=- shape=96939c88 vocab=d1676ae8
+-/
 theorem outer_zero_cancellation :
     dotProduct outerXiZero outerEndpointV0 +
       (9/40000 : ℚ) * dotProduct outerXiNegThree outerEndpointV1 = 0 := by

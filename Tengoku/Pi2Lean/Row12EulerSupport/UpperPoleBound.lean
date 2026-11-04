@@ -17,6 +17,9 @@ import Tengoku.Pi2Lean.Row12.BetaFrame
 
 namespace Row12EulerSupport
 
+/--
+@isnad1 id=le.2h1v.s5.0082d2b75879 from=translated src=- shape=8a3ab131 vocab=6052fcad
+-/
 theorem upper_scalarMid_lower {x : ℝ} (hx : 0 < x) (hxsmall : x ≤ 1 / 100) :
     x ≤ Row12.scalarMid x := by
   have hq : (1 : ℝ) ≤ 27 * (80 - 99 * x + 27 * x ^ 2) / 1000 := by
@@ -27,6 +30,9 @@ theorem upper_scalarMid_lower {x : ℝ} (hx : 0 < x) (hxsmall : x ≤ 1 / 100) :
       mul_le_mul_of_nonneg_left hq hx.le
     _ = Row12.scalarMid x := by unfold Row12.scalarMid; ring
 
+/--
+@isnad1 id=le.2h1v.s6.b30456db2d6d from=translated src=- shape=37b57f9a vocab=be4c199b
+-/
 theorem upper_radius_le_quarter {x : ℝ} (hx : 0 < x) (hxsmall : x ≤ 1 / 100) :
     Real.sqrt (Row12.scalarLambda x) ≤ x / 4 := by
   have hx1 : x ≤ 1 := by linarith
@@ -39,6 +45,9 @@ theorem upper_radius_le_quarter {x : ℝ} (hx : 0 < x) (hxsmall : x ≤ 1 / 100)
   have hr := Real.sqrt_nonneg (Row12.scalarLambda x)
   nlinarith
 
+/--
+@isnad1 id=le.2h1v.s6.c14b28f44109 from=translated src=- shape=9d7d8414 vocab=72c26721
+-/
 theorem upper_scalarDenom_lower {x : ℝ} (hx : 0 < x) (hxsmall : x ≤ 1 / 100) :
     57624 * x ^ 4 ≤ Row12.scalarDenom x := by
   have hm : (24 : ℝ) ≤ Row12.scalarM x := by unfold Row12.scalarM; linarith
@@ -53,19 +62,27 @@ theorem upper_scalarDenom_lower {x : ℝ} (hx : 0 < x) (hxsmall : x ≤ 1 / 100)
       mul_le_mul_of_nonneg_left hp (pow_nonneg hx.le 4)
     _ = Row12.scalarDenom x := by unfold Row12.scalarDenom; ring
 
+/--
+@isnad1 id=eq.1h1v.s5.34e60666e759 from=translated src=- shape=0ee19d04 vocab=a1f3bd3f
+-/
 theorem upper_lambda_norm {x : ℝ} (hx : 0 < x) :
     ‖Row12.betaFrameLambda (x : ℂ)‖ = Real.sqrt (Row12.scalarLambda x) ^ 2 := by
   rw [(Row12.betaFrame_real_agreement x).2.2.2.2.2.2, Complex.norm_real,
     Real.norm_of_nonneg (Row12.scalarLambda_pos hx).le,
     Real.sq_sqrt (Row12.scalarLambda_pos hx).le]
 
+/--
+@isnad1 id=ne.2h2v.s5.6f0cd2301ad6 from=translated src=- shape=fcecd1c9 vocab=d96be1d2
+-/
 theorem upper_circle_nonzero {x : ℝ} {s : ℂ} (hx : 0 < x)
     (hs : ‖s‖ = Real.sqrt (Row12.scalarLambda x)) : s ≠ 0 := by
   apply norm_pos_iff.mp
   rw [hs]
   exact Real.sqrt_pos.2 (Row12.scalarLambda_pos hx)
 
-/-- A direct reverse-triangle estimate, with radius and constants fixed numerically.-/
+/-- A direct reverse-triangle estimate, with radius and constants fixed numerically.
+@isnad1 id=le.3h2v.s6.77e118e5c2c4 from=translated src=- shape=59a51c8d vocab=eaf430dd
+-/
 theorem upper_betaFrameF_lower {x : ℝ} {s : ℂ}
     (hx : 0 < x) (hxsmall : x ≤ 1 / 100)
     (hs : ‖s‖ = Real.sqrt (Row12.scalarLambda x)) :
@@ -100,6 +117,9 @@ theorem upper_betaFrameF_lower {x : ℝ} {s : ℂ}
     _ ≤ 2 * (Row12.scalarMid x - r) * r := mul_le_mul_of_nonneg_right hgap hr
     _ ≤ ‖Row12.betaFrameF (x : ℂ) s‖ := by nlinarith
 
+/--
+@isnad1 id=ne.3h2v.s6.63ad41029a45 from=translated src=- shape=ea8f766e vocab=9b808743
+-/
 theorem upper_betaFrameF_nonzero {x : ℝ} {s : ℂ}
     (hx : 0 < x) (hxsmall : x ≤ 1 / 100)
     (hs : ‖s‖ = Real.sqrt (Row12.scalarLambda x)) : Row12.betaFrameF (x : ℂ) s ≠ 0 := by
@@ -107,6 +127,9 @@ theorem upper_betaFrameF_nonzero {x : ℝ} {s : ℂ}
   exact lt_of_lt_of_le (mul_pos hx (Real.sqrt_pos.2 (Row12.scalarLambda_pos hx)))
     (upper_betaFrameF_lower hx hxsmall hs)
 
+/--
+@isnad1 id=le.2h1v.s6.243ce8cafd86 from=translated src=- shape=4ba0140d vocab=6c9ea48a
+-/
 theorem upper_betaFrameDenom_lower {x : ℝ} (hx : 0 < x) (hxsmall : x ≤ 1 / 100) :
     57624 * x ^ 4 ≤ ‖Row12.betaFrameDenom (x : ℂ)‖ := by
   have hd := upper_scalarDenom_lower hx hxsmall
@@ -116,18 +139,27 @@ theorem upper_betaFrameDenom_lower {x : ℝ} (hx : 0 < x) (hxsmall : x ≤ 1 / 1
     Complex.norm_real, Real.norm_of_nonneg hd0]
   exact hd
 
+/--
+@isnad1 id=ne.2h1v.s5.dcf18d3edabb from=translated src=- shape=fdb1408a vocab=f04dfddc
+-/
 theorem upper_betaFrameDenom_nonzero {x : ℝ} (hx : 0 < x) (hxsmall : x ≤ 1 / 100) :
     Row12.betaFrameDenom (x : ℂ) ≠ 0 := by
   apply norm_pos_iff.mp
   exact lt_of_lt_of_le (mul_pos (by norm_num) (pow_pos hx 4))
     (upper_betaFrameDenom_lower hx hxsmall)
 
+/--
+@isnad1 id=eq.2h2v.s5.de0a97df5a73 from=translated src=- shape=19eaf34d vocab=12b5d1de
+-/
 theorem upper_balanced_argument_norm {x : ℝ} {s : ℂ} (hx : 0 < x)
     (hs : ‖s‖ = Real.sqrt (Row12.scalarLambda x)) :
     ‖Row12.betaFrameLambda (x : ℂ) / s‖ = Real.sqrt (Row12.scalarLambda x) := by
   rw [norm_div, upper_lambda_norm hx, hs, pow_two,
     mul_div_cancel_right₀ _ (ne_of_gt (Real.sqrt_pos.2 (Row12.scalarLambda_pos hx)))]
 
+/--
+@isnad1 id=le.3h2v.s6.f471649add5c from=translated src=- shape=17623d81 vocab=5cf75350
+-/
 theorem upper_betaFrame_denominator_lower {x : ℝ} {s : ℂ}
     (hx : 0 < x) (hxsmall : x ≤ 1 / 100)
     (hs : ‖s‖ = Real.sqrt (Row12.scalarLambda x)) :
@@ -140,6 +172,9 @@ theorem upper_betaFrame_denominator_lower {x : ℝ} {s : ℂ}
         (mul_nonneg hx.le (Real.sqrt_nonneg _)) (norm_nonneg _)
     _ = _ := (norm_mul _ _).symm
 
+/--
+@isnad1 id=ne.3h2v.s6.6c59088ee2f1 from=translated src=- shape=b484ae3b vocab=81133d1f
+-/
 theorem upper_betaFrame_denominator_nonzero {x : ℝ} {s : ℂ}
     (hx : 0 < x) (hxsmall : x ≤ 1 / 100)
     (hs : ‖s‖ = Real.sqrt (Row12.scalarLambda x)) :
