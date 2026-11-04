@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "2f18dbc4526fc97cf27011e7b0ab6565b3484db46b49aa632f06016834b1d74c",
+ "gate2_unjudged": [],
+ "library": "at-palomar",
+ "lint_mode": "proposed",
+ "modules": 33,
+ "part": 1,
+ "theorems": 320
+}
