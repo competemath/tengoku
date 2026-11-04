@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "128823c7e909c2a5be3431e8efd108c7074b5e8d3fff80c66878b38a1c7a4bba",
+ "gate2_unjudged": [],
+ "library": "asymptotic-triangle-packing",
+ "lint_mode": "proposed",
+ "modules": 53,
+ "part": 1,
+ "theorems": 800
+}

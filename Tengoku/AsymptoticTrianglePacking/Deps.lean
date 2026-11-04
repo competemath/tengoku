@@ -1,0 +1,1 @@
+-- AsymptoticTrianglePacking: a factory bundle (data/intake/asymptotic-triangle-packing). This file only marks the library for Tengoku/All.lean.
