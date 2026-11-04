@@ -47,7 +47,9 @@ variable {V : Type*} [DecidableEq V] [Fintype V] {Ω : Type*} [MeasureSpace Ω]
   [IsProbabilityMeasure (ℙ : Measure Ω)]
 
 omit [Fintype V] [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- **Lower bound on the exact covering rate.**-/
+/-- **Lower bound on the exact covering rate.**
+@isnad1 id=le.4h6v.s6.6189c2d4fc79 from=translated src=- shape=fa3a8a71 vocab=de08219b
+-/
 theorem coverRate_ge {H : Finset (Finset V)} {p : ℝ} {r Δ : ℕ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (hr : IsUniform H r) (hΔ : ∀ y, degree H y ≤ Δ) (x : V) :
     (degree H x : ℝ) * (p * (1 - p) ^ (r * Δ)) ≤ coverRate H p x := by
@@ -64,7 +66,9 @@ theorem coverRate_ge {H : Finset (Finset V)} {p : ℝ} {r Δ : ℕ} (hp0 : 0 ≤
           (conflicts_card_le_of_uniform hr hΔ (Finset.mem_filter.mp hf).1)
 
 omit [Fintype V] in
-/-- **The pair excess.**  For `x ≠ y`, `ℙ(x,y covered) − q_x q_y ≤ 2rΔ³p³ + κp`.-/
+/-- **The pair excess.**  For `x ≠ y`, `ℙ(x,y covered) − q_x q_y ≤ 2rΔ³p³ + κp`.
+@isnad1 id=le.6h10v.s8.fe888fc34a8b from=translated src=- shape=4b33f595 vocab=84bfcaa6
+-/
 theorem pair_excess_le {H : Finset (Finset V)} {p : ℝ} {r Δ κ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (hr : IsUniform H r) (hΔ : ∀ y, degree H y ≤ Δ)
@@ -135,7 +139,9 @@ theorem pair_excess_le {H : Finset (Finset V)} {p : ℝ} {r Δ κ : ℕ}
     mul_le_mul_of_nonneg_right hcod hp0
   linarith
 
-/-- The total weight of the linear form: `∑_{u ≠ v} codeg(v,u) = (r−1)·deg(v)`.-/
+/-- The total weight of the linear form: `∑_{u ≠ v} codeg(v,u) = (r−1)·deg(v)`.
+@isnad1 id=eq.1h4v.s6.100d5253a4ec from=translated src=- shape=66c27856 vocab=5d04a72b
+-/
 theorem sum_codegree_erase_eq {H : Finset (Finset V)} {r : ℕ} (hr : IsUniform H r) (v : V) :
     ∑ u ∈ (Finset.univ : Finset V).erase v, codegree H v u = (r - 1) * degree H v := by
   classical
@@ -150,7 +156,9 @@ theorem sum_codegree_erase_eq {H : Finset (Finset V)} {r : ℕ} (hr : IsUniform 
   rw [Finset.sum_congr rfl hall, Finset.sum_const, smul_eq_mul, mul_comm]
   rfl
 
-/-- **The quantitative variance bound for the loss weight.**-/
+/-- **The quantitative variance bound for the loss weight.**
+@isnad1 id=le.6h9v.s8.aebddd3f2332 from=translated src=- shape=ee8e8fd9 vocab=c0159321
+-/
 theorem centered_second_moment_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (v : V)
     {κ : ℕ} {qhi ε₂ : ℝ}

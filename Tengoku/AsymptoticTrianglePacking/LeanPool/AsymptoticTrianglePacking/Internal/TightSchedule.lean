@@ -43,7 +43,9 @@ Must be placeholder-free and axiom-clean `[propext, Classical.choice, Quot.sound
 namespace LeanPool.AsymptoticTrianglePacking.Internal
 
 /-- **T3-conv(1) — geometric decay.** If `a (k+1) ≤ λ · a k` for all `k` (with `a` nonnegative and
-`λ ≥ 0`), then `a k ≤ λ^k · a 0`.-/
+`λ ≥ 0`), then `a k ≤ λ^k · a 0`.
+@isnad1 id=le.2h3v.s6.f571b07df360 from=translated src=- shape=c64519ef vocab=cef4cf1d
+-/
 theorem geometric_decay {a : ℕ → ℝ} {lam : ℝ} (hlam : 0 ≤ lam)
     (hstep : ∀ k, a (k + 1) ≤ lam * a k) : ∀ k, a k ≤ lam ^ k * a 0 := by
   intro k
@@ -56,7 +58,9 @@ theorem geometric_decay {a : ℕ → ℝ} {lam : ℝ} (hlam : 0 ≤ lam)
 
 /-- **T3-conv(2) — the uncovered count reaches `β · a 0`.** For a per-round shrink factor
 `0 ≤ λ < 1` and any target fraction `β > 0`, some round count `T` brings the uncovered count down to
-`a T ≤ β · a 0`. (Take `T` with `λ^T < β`.)-/
+`a T ≤ β · a 0`. (Take `T` with `λ^T < β`.)
+@isnad1 id=ex.5h3v.s6.2a59bae4f200 from=translated src=- shape=7f70c1ce vocab=62f9b668
+-/
 theorem exists_round_count_below {a : ℕ → ℝ} {lam β : ℝ} (hlam0 : 0 ≤ lam) (hlam1 : lam < 1)
     (hβ : 0 < β) (ha : ∀ k, 0 ≤ a k) (hstep : ∀ k, a (k + 1) ≤ lam * a k) :
     ∃ T, a T ≤ β * a 0 := by
@@ -66,7 +70,9 @@ theorem exists_round_count_below {a : ℕ → ℝ} {lam β : ℝ} (hlam0 : 0 ≤
 
 /-- **Per-round decrease bridge.** If each round's uncovered count `a` drops by the covered amount
 `b` (`a(k+1) ≤ a k - b k`) and each round covers at least a `(1-λ)` fraction (`(1-λ)·a k ≤ b k`),
-then the uncovered sequence shrinks by factor `λ`: `a(k+1) ≤ λ·a k`.-/
+then the uncovered sequence shrinks by factor `λ`: `a(k+1) ≤ λ·a k`.
+@isnad1 id=le.2h4v.s6.2cd2f03836e0 from=translated src=- shape=74f0bdfd vocab=477b67db
+-/
 theorem uncovered_step {a b : ℕ → ℝ} {lam : ℝ}
     (hstep : ∀ k, a (k + 1) ≤ a k - b k) (hcov : ∀ k, (1 - lam) * a k ≤ b k) :
     ∀ k, a (k + 1) ≤ lam * a k := by
@@ -77,7 +83,9 @@ theorem uncovered_step {a b : ℕ → ℝ} {lam : ℝ}
 
 /-- **T3 convergence chain.** If each round covers at least a `(1-λ)` fraction of the remaining
 uncovered vertices (`0 ≤ λ < 1`), then for any target `β > 0` some round count `T` brings the
-uncovered set down to `≤ β · a 0` — the nibble reaches `(1-β)`-coverage.-/
+uncovered set down to `≤ β · a 0` — the nibble reaches `(1-β)`-coverage.
+@isnad1 id=ex.6h4v.s7.078bbab255ef from=translated src=- shape=669f021e vocab=7435bc9b
+-/
 theorem exists_uncovered_below {a b : ℕ → ℝ} {lam β : ℝ} (hlam0 : 0 ≤ lam) (hlam1 : lam < 1)
     (hβ : 0 < β) (ha : ∀ k, 0 ≤ a k) (hstep : ∀ k, a (k + 1) ≤ a k - b k)
     (hcov : ∀ k, (1 - lam) * a k ≤ b k) :
@@ -91,7 +99,9 @@ fraction degrades (`d_k → 0`), so `(1-λ) ≤ frac_k` cannot hold for all `k`.
 require the decrease/covering only for `k < T`, and take `T` with `λ^T ≤ β` as data — matching the
 real nibble, where the covering holds while the residual is still near-regular (`k < T`). -/
 
-/-- **Bounded geometric decay.** If `a (k+1) ≤ λ·a k` for `k < T`, then `a T ≤ λ^T · a 0`.-/
+/-- **Bounded geometric decay.** If `a (k+1) ≤ λ·a k` for `k < T`, then `a T ≤ λ^T · a 0`.
+@isnad1 id=le.2h3v.s6.dcea6860b953 from=translated src=- shape=73129397 vocab=2e594065
+-/
 theorem geometric_decay_lt {a : ℕ → ℝ} {lam : ℝ} (hlam : 0 ≤ lam) :
     ∀ (T : ℕ), (∀ k, k < T → a (k + 1) ≤ lam * a k) → a T ≤ lam ^ T * a 0 := by
   intro T
@@ -105,7 +115,9 @@ theorem geometric_decay_lt {a : ℕ → ℝ} {lam : ℝ} (hlam : 0 ≤ lam) :
         _ ≤ lam * (lam ^ T * a 0) := mul_le_mul_of_nonneg_left (ih hstep') hlam
         _ = lam ^ (T + 1) * a 0 := by ring
 
-/-- **Bounded per-round decrease bridge.** As `uncovered_step`, but only for `k < T`.-/
+/-- **Bounded per-round decrease bridge.** As `uncovered_step`, but only for `k < T`.
+@isnad1 id=le.3h5v.s7.635d179ef052 from=translated src=- shape=b0b1daaa vocab=7435bc9b
+-/
 theorem uncovered_step_lt {a b : ℕ → ℝ} {lam : ℝ} (T : ℕ)
     (hstep : ∀ k, k < T → a (k + 1) ≤ a k - b k)
     (hcov : ∀ k, k < T → (1 - lam) * a k ≤ b k) :
@@ -116,7 +128,9 @@ theorem uncovered_step_lt {a b : ℕ → ℝ} {lam : ℝ} (T : ℕ)
   nlinarith only [h1, h2]
 
 /-- **Bounded convergence.** For a fixed `T` with `λ^T ≤ β`, if each round `k < T` covers at least a
-`(1-λ)` fraction, then `a T ≤ β · a 0`.-/
+`(1-λ)` fraction, then `a T ≤ β · a 0`.
+@isnad1 id=le.5h5v.s7.bc0e9d037378 from=translated src=- shape=7c1d1117 vocab=d8e6b3e9
+-/
 theorem uncovered_below_lt {a b : ℕ → ℝ} {lam β : ℝ} (hlam0 : 0 ≤ lam) (ha : ∀ k, 0 ≤ a k)
     (T : ℕ) (hT : lam ^ T ≤ β)
     (hstep : ∀ k, k < T → a (k + 1) ≤ a k - b k)
@@ -154,7 +168,9 @@ open Finset
 namespace LeanPool.AsymptoticTrianglePacking.Internal
 
 /-- **Convergence with round-dependent factors.**  If `a (k+1) ≤ lam k · a k` for every `k < T`,
-then `a T ≤ (∏_{k<T} lam k) · a 0`.-/
+then `a T ≤ (∏_{k<T} lam k) · a 0`.
+@isnad1 id=le.2h3v.s6.f0f48b98fe16 from=translated src=- shape=46e82f70 vocab=62b0e409
+-/
 theorem geometric_decay_prod_lt {a : ℕ → ℝ} {lam : ℕ → ℝ} (hlam : ∀ k, 0 ≤ lam k) :
     ∀ (T : ℕ), (∀ k, k < T → a (k + 1) ≤ lam k * a k) →
       a T ≤ (∏ k ∈ Finset.range T, lam k) * a 0 := by
@@ -172,7 +188,9 @@ theorem geometric_decay_prod_lt {a : ℕ → ℝ} {lam : ℕ → ℝ} (hlam : �
             rw [Finset.prod_range_succ]; ring
 
 /-- **Bounded convergence with round-dependent factors.**  If round `k < T` decreases the uncovered
-count by at least a `(1 - lam k)`-fraction, then `a T ≤ (∏_{k<T} lam k) · a 0 ≤ β · a 0`.-/
+count by at least a `(1 - lam k)`-fraction, then `a T ≤ (∏_{k<T} lam k) · a 0 ≤ β · a 0`.
+@isnad1 id=le.5h5v.s7.a7b4507118d8 from=translated src=- shape=69bb544e vocab=a6b6c244
+-/
 theorem uncovered_below_prod_lt {a b : ℕ → ℝ} {lam : ℕ → ℝ} {β : ℝ}
     (hlam0 : ∀ k, 0 ≤ lam k) (ha : ∀ k, 0 ≤ a k)
     (T : ℕ) (hT : (∏ k ∈ Finset.range T, lam k) ≤ β)
@@ -198,7 +216,9 @@ variable {V : Type*} [DecidableEq V]
 /-- **Round-dependent discharge.**  With a sequence of retention strategies and a bounded-rounds
 oracle — round `k < T` covers at least a `(1 - lam k)`-fraction of the vertices still uncovered —
 the accumulated matching after `T` rounds covers at least `(1-β)·|V|`, hence has size at least
-`(1-β)·(|V|/r)`, provided `∏_{k<T} lam k ≤ β`.-/
+`(1-β)·(|V|/r)`, provided `∏_{k<T} lam k ≤ β`.
+@isnad1 id=le.6h7v.s7.a3fafd2c697c from=translated src=- shape=f125d1b2 vocab=c8648b69
+-/
 theorem nibble_matching_card_of_oracle_seq_lt [Fintype V]
     {R : ℕ → Finset (Finset V) → Finset (Finset V)} (hR : ∀ k H', R k H' ⊆ H')
     {H : Finset (Finset V)} {r : ℕ} (hr : IsUniform H r) (hr1 : 1 ≤ r)
@@ -237,7 +257,9 @@ theorem nibble_matching_card_of_oracle_seq_lt [Fintype V]
   rw [← mul_div_assoc, div_le_iff₀ hrpos]
   linarith only [hconv, hsc]
 
-/-- **Round-dependent oracle ⇒ the `NibbleTheorem` per-instance conclusion.**-/
+/-- **Round-dependent oracle ⇒ the `NibbleTheorem` per-instance conclusion.**
+@isnad1 id=ex.6h7v.s7.6f1504d30f6c from=translated src=- shape=9262619e vocab=b2e7582d
+-/
 theorem exists_matching_of_oracle_seq_lt [Fintype V]
     {R : ℕ → Finset (Finset V) → Finset (Finset V)} (hR : ∀ k H', R k H' ⊆ H')
     {H : Finset (Finset V)} {r : ℕ} (hr : IsUniform H r) (hr1 : 1 ≤ r)
@@ -301,7 +323,9 @@ namespace LeanPool.AsymptoticTrianglePacking.Internal
 
 variable {V : Type*} [DecidableEq V]
 
-/-- A matching is its own round matching: every retained edge is isolated.-/
+/-- A matching is its own round matching: every retained edge is isolated.
+@isnad1 id=eq.1h3v.s4.f04735b6d54e from=translated src=- shape=5f488686 vocab=b5237900
+-/
 theorem roundMatching_eq_of_isMatching {H M : Finset (Finset V)} (hM : IsMatching H M) :
     roundMatching M = M := by
   ext e
@@ -320,18 +344,26 @@ noncomputable def uncoveredCount (R : ℕ → Finset (Finset V) → Finset (Fins
     (H : Finset (Finset V)) (k : ℕ) : ℝ :=
   (Fintype.card V : ℝ) - ((support (nibbleMatchingSeq R H k)).card : ℝ)
 
+/--
+@isnad1 id=le.0h4v.s5.518a36de9302 from=translated src=- shape=e3c81233 vocab=55627451
+-/
 theorem uncoveredCount_nonneg (R : ℕ → Finset (Finset V) → Finset (Finset V))
     (H : Finset (Finset V)) (k : ℕ) : 0 ≤ uncoveredCount R H k := by
   have h : ((support (nibbleMatchingSeq R H k)).card : ℝ) ≤ (Fintype.card V : ℝ) := by
     exact_mod_cast Finset.card_le_univ _
   simp only [uncoveredCount]; linarith
 
+/--
+@isnad1 id=eq.0h3v.s5.f6ffd413cc80 from=translated src=- shape=1454a024 vocab=5c6faa11
+-/
 @[simp] theorem uncoveredCount_zero (R : ℕ → Finset (Finset V) → Finset (Finset V))
     (H : Finset (Finset V)) : uncoveredCount R H 0 = (Fintype.card V : ℝ) := by
   simp [uncoveredCount, show nibbleMatchingSeq R H 0 = (∅ : Finset (Finset V)) from rfl,
     support, Finset.biUnion_empty]
 
-/-- One round decreases the uncovered count by exactly the number of vertices it covers.-/
+/-- One round decreases the uncovered count by exactly the number of vertices it covers.
+@isnad1 id=eq.1h4v.s6.c5ced9350958 from=translated src=- shape=f8f4a45b vocab=509a042c
+-/
 theorem uncoveredCount_succ {R : ℕ → Finset (Finset V) → Finset (Finset V)}
     (hR : ∀ k H', R k H' ⊆ H') (H : Finset (Finset V)) (k : ℕ) :
     uncoveredCount R H (k + 1)
@@ -343,6 +375,9 @@ theorem uncoveredCount_succ {R : ℕ → Finset (Finset V) → Finset (Finset V)
     exact_mod_cast nibbleMatchingSeq_support_card_succ hR H k
   simp only [uncoveredCount, h]; ring
 
+/--
+@isnad1 id=le.1h4v.s6.d5309af4daf4 from=translated src=- shape=f05063d1 vocab=d96f7d43
+-/
 theorem uncoveredCount_antitone {R : ℕ → Finset (Finset V) → Finset (Finset V)}
     (hR : ∀ k H', R k H' ⊆ H') (H : Finset (Finset V)) (k : ℕ) :
     uncoveredCount R H (k + 1) ≤ uncoveredCount R H k := by
@@ -369,6 +404,9 @@ noncomputable def canonicalRate (R : ℕ → Finset (Finset V) → Finset (Finse
     (H : Finset (Finset V)) (k : ℕ) : ℝ :=
   if uncoveredCount R H k = 0 then 0 else uncoveredCount R H (k + 1) / uncoveredCount R H k
 
+/--
+@isnad1 id=le.0h4v.s5.f07e2b3f272c from=translated src=- shape=e3c81233 vocab=1bfc2064
+-/
 theorem canonicalRate_nonneg (R : ℕ → Finset (Finset V) → Finset (Finset V))
     (H : Finset (Finset V)) (k : ℕ) :
     0 ≤ canonicalRate R H k := by
@@ -378,7 +416,9 @@ theorem canonicalRate_nonneg (R : ℕ → Finset (Finset V) → Finset (Finset V
   · exact div_nonneg (uncoveredCount_nonneg R H (k + 1))
       (uncoveredCount_nonneg R H k)
 
-/-- The canonical rates telescope exactly.-/
+/-- The canonical rates telescope exactly.
+@isnad1 id=eq.1h4v.s6.16d8cfaf6190 from=translated src=- shape=e3653a77 vocab=42653e65
+-/
 theorem prod_canonicalRate {R : ℕ → Finset (Finset V) → Finset (Finset V)}
     (hR : ∀ k H', R k H' ⊆ H') (H : Finset (Finset V)) (n : ℕ) :
     (∏ k ∈ Finset.range n, canonicalRate R H k) * uncoveredCount R H 0
@@ -401,7 +441,9 @@ theorem prod_canonicalRate {R : ℕ → Finset (Finset V) → Finset (Finset V)}
       · field_simp
 
 /-- The canonical rates satisfy the per-round covering demand — with equality when some vertex is
-still uncovered.-/
+still uncovered.
+@isnad1 id=le.1h4v.s6.5a04abe9d2a5 from=translated src=- shape=ba64ab69 vocab=8c7382a7
+-/
 theorem canonicalRate_cover {R : ℕ → Finset (Finset V) → Finset (Finset V)}
     (hR : ∀ k H', R k H' ⊆ H') (H : Finset (Finset V)) (k : ℕ) :
     (1 - canonicalRate R H k) * uncoveredCount R H k
@@ -417,7 +459,9 @@ theorem canonicalRate_cover {R : ℕ → Finset (Finset V) → Finset (Finset V)
 
 /-- **The rate sequence is never an obstruction.** If after `T` rounds at most a `β`-fraction of the
 vertices is uncovered, then the canonical rates witness the full per-round demand of
-`AdaptiveOracleExistsCeil`.-/
+`AdaptiveOracleExistsCeil`.
+@isnad1 id=ex.3h5v.s7.0379a9da1cc9 from=translated src=- shape=a22c6969 vocab=6242b613
+-/
 theorem exists_adaptive_rates_of_uncovered_le
     {R : ℕ → Finset (Finset V) → Finset (Finset V)} (hR : ∀ k H', R k H' ⊆ H')
     (H : Finset (Finset V)) {β : ℝ} (hβ : 0 ≤ β) (T : ℕ)
@@ -470,11 +514,16 @@ def oracleStrategy (G : Finset (Finset V) → Finset V → Finset (Finset V))
     (H : Finset (Finset V)) : ℕ → Finset (Finset V) → Finset (Finset V) :=
   fun k H' => G H' (support (oracleStateSeq G H k).1)
 
+/--
+@isnad1 id=le.1h5v.s6.f97fc1b81fd1 from=translated src=- shape=daf009c6 vocab=da4fb138
+-/
 theorem oracleStrategy_subset {G : Finset (Finset V) → Finset V → Finset (Finset V)}
     (hG : ∀ H' S, G H' S ⊆ H') (H : Finset (Finset V)) (k : ℕ) (H' : Finset (Finset V)) :
     oracleStrategy G H k H' ⊆ H' := hG _ _
 
-/-- The nibble iteration of `oracleStrategy G H` is exactly the oracle state sequence.-/
+/-- The nibble iteration of `oracleStrategy G H` is exactly the oracle state sequence.
+@isnad1 id=eq.0h4v.s5.34651adf2d08 from=translated src=- shape=06e8deda vocab=c5e6b5e7
+-/
 theorem nibbleIterSeq_oracleStrategy (G : Finset (Finset V) → Finset V → Finset (Finset V))
     (H : Finset (Finset V)) :
     ∀ k, nibbleIterSeq (oracleStrategy G H) H k = oracleStateSeq G H k := by
@@ -490,11 +539,17 @@ theorem nibbleIterSeq_oracleStrategy (G : Finset (Finset V) → Finset V → Fin
       rw [ih]
       rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.fe0ffe3491f8 from=translated src=- shape=66d6a339 vocab=b2ca9eb6
+-/
 theorem nibbleMatchingSeq_oracleStrategy (G : Finset (Finset V) → Finset V → Finset (Finset V))
     (H : Finset (Finset V)) (k : ℕ) :
     nibbleMatchingSeq (oracleStrategy G H) H k = (oracleStateSeq G H k).1 := by
   rw [nibbleMatchingSeq, nibbleIterSeq_oracleStrategy]
 
+/--
+@isnad1 id=eq.0h4v.s5.a859a3de40a7 from=translated src=- shape=66d6a339 vocab=8f6b057b
+-/
 theorem nibbleResidualSeq_oracleStrategy (G : Finset (Finset V) → Finset V → Finset (Finset V))
     (H : Finset (Finset V)) (k : ℕ) :
     nibbleResidualSeq (oracleStrategy G H) H k = (oracleStateSeq G H k).2 := by
@@ -528,7 +583,9 @@ def HasRoundOracle (H : Finset (Finset V)) (c β : ℝ) : Prop :=
           ≤ ((support (roundMatching R')).card : ℝ)
 
 /-- **Iterating the one-round oracle.**  A per-round oracle covering a `c`-fraction of the uncovered
-set drives the uncovered count below `β·|V|` in a bounded number of rounds.-/
+set drives the uncovered count below `β·|V|` in a bounded number of rounds.
+@isnad1 id=ex.4h4v.s7.3fd1d6305eb7 from=translated src=- shape=fd70e407 vocab=461b2dc9
+-/
 theorem exists_uncovered_le_of_roundOracle (H : Finset (Finset V)) {c β : ℝ}
     (hc0 : 0 < c) (hc1 : c ≤ 1) (hβ0 : 0 < β) (hO : HasRoundOracle H c β) :
     ∃ (R : ℕ → Finset (Finset V) → Finset (Finset V)) (T : ℕ), (∀ k H', R k H' ⊆ H') ∧
@@ -613,7 +670,9 @@ theorem exists_uncovered_le_of_roundOracle (H : Finset (Finset V)) {c β : ℝ}
 
 /-- **The per-round oracle produces the full adaptive strategy sequence.**  This is exactly the
 per-instance conclusion demanded by
-`LeanPool.AsymptoticTrianglePacking.Internal.AdaptiveOracleExistsCeil`.-/
+`LeanPool.AsymptoticTrianglePacking.Internal.AdaptiveOracleExistsCeil`.
+@isnad1 id=ex.4h4v.s7.4a911501e71f from=translated src=- shape=d2b9cd91 vocab=1fce155c
+-/
 theorem exists_adaptive_strategy_of_roundOracle (H : Finset (Finset V)) {c β : ℝ}
     (hc0 : 0 < c) (hc1 : c ≤ 1) (hβ0 : 0 < β) (hO : HasRoundOracle H c β) :
     ∃ (R : ℕ → Finset (Finset V) → Finset (Finset V)) (lam : ℕ → ℝ) (T : ℕ),
@@ -634,7 +693,9 @@ bookkeeping: an invariant *indexed by the round counter*, preserved for `T` roun
 covering a `c`-fraction of the uncovered set, already yields a `HasRoundOracle` — because after `T`
 rounds fewer than a `β`-fraction of the vertices is left, so the oracle is never asked to step
 again.  The hypothesis `hdisj` (edges of the current residual avoid the covered set) is the standing
-invariant of the nibble iteration (`nibbleResidualSeq_disjoint_support`).-/
+invariant of the nibble iteration (`nibbleResidualSeq_disjoint_support`).
+@isnad1 id=hasround.5h7v.s8.83cf7e06c643 from=translated src=- shape=edae8774 vocab=49b12fb0
+-/
 theorem hasRoundOracle_of_scheduled_invariant (H : Finset (Finset V)) {c β : ℝ}
     (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (T : ℕ) (hT : (1 - c) ^ T ≤ β)
     (P : ℕ → Finset (Finset V) → Finset V → Prop)
@@ -696,7 +757,9 @@ high-degree vertices to a lower bound on the number of edges (handshake). -/
 omit [Fintype V] in
 /-- **Covering demand from the round matching's cardinality.**  In an `r`-uniform hypergraph the
 round matching covers exactly `r` times its cardinality, so a cardinality bound is a covering
-bound.-/
+bound.
+@isnad1 id=le.3h6v.s6.b0ee862ddd06 from=translated src=- shape=9a11ca98 vocab=2551fdf3
+-/
 theorem round_cover_of_matching_card {H' R' : Finset (Finset V)} {r : ℕ} {c U : ℝ}
     (huni : IsUniform H' r) (hR' : R' ⊆ H')
     (h : c * U ≤ (r : ℝ) * ((roundMatching R').card : ℝ)) :
@@ -708,7 +771,9 @@ theorem round_cover_of_matching_card {H' R' : Finset (Finset V)} {r : ℕ} {c U 
 
 omit [Fintype V] in
 /-- **Handshake lower bound on the edge count.**  Any set `A` of vertices of degree at least `δ`
-forces `δ · |A| ≤ r · |H|`.-/
+forces `δ · |A| ≤ r · |H|`.
+@isnad1 id=le.2h5v.s6.d3d47777a5b5 from=translated src=- shape=08d5f560 vocab=833eb2cf
+-/
 theorem card_mul_le_of_degree_ge [Finite V] {H : Finset (Finset V)} {r : ℕ} (huni : IsUniform H r)
     (A : Finset V) {δ : ℝ} (hA : ∀ v ∈ A, δ ≤ (degree H v : ℝ)) :
     δ * (A.card : ℝ) ≤ (r : ℝ) * (H.card : ℝ) := by
@@ -731,7 +796,9 @@ last bridge a concrete round oracle has to cross.  The nibble bricks deliver a r
 cardinality at least `γ·|H'|` (with `γ = p·(1-p)^{rΔ}` minus the bad-event penalty); the residual
 near-regularity delivers a set `A` of vertices of degree at least `δ` in `H'`; and the exceptional
 (dead) vertices are at most `m`. Then the round covers at least `γ·δ·(U - m)` vertices, where `U` is
-the number of still-uncovered vertices.  Handshake plus `r`-uniformity, nothing else.-/
+the number of still-uncovered vertices.  Handshake plus `r`-uniformity, nothing else.
+@isnad1 id=le.7h9v.s7.98abf378f576 from=translated src=- shape=52cdbeda vocab=8ab01abc
+-/
 theorem round_cover_demand_of_gain [Finite V] {H' R' : Finset (Finset V)} {r : ℕ} {γ δ U m : ℝ}
     (huni : IsUniform H' r) (hR' : R' ⊆ H') (A : Finset V)
     (hA : ∀ v ∈ A, δ ≤ (degree H' v : ℝ)) (hδ : 0 ≤ δ) (hγ : 0 ≤ γ)
@@ -753,7 +820,9 @@ theorem round_cover_demand_of_gain [Finite V] {H' R' : Finset (Finset V)} {r : �
     _ ≤ (r : ℝ) * ((roundMatching R').card : ℝ) := h3
 
 /-- **The one-round oracle is not a strengthening.**  A single matching covering a `(1-β)`-fraction
-of the vertices already realises a one-round oracle with `c = 1 - β`.-/
+of the vertices already realises a one-round oracle with `c = 1 - β`.
+@isnad1 id=hasround.2h4v.s6.bd1a147d89cd from=translated src=- shape=691286d2 vocab=d5a3f6f5
+-/
 theorem hasRoundOracle_of_matching (H : Finset (Finset V)) {β : ℝ}
     {M : Finset (Finset V)} (hM : IsMatching H M)
     (hcard : (1 - β) * (Fintype.card V : ℝ) ≤ ((support M).card : ℝ)) :
@@ -811,7 +880,9 @@ def AdaptiveOracleExistsCeil : Prop :=
                         ((support (roundMatching
                           (R k (nibbleResidualSeq R H k)))).card : ℝ))
 
-/-- The ceiling interface follows from its adaptive oracle.-/
+/-- The ceiling interface follows from its adaptive oracle.
+@isnad1 id=nibbleth.1h0v.s1.884d487fadb8 from=translated src=- shape=1d48f1ac vocab=fa53a9eb
+-/
 theorem nibbleTheoremMostCeil_of_adaptiveOracleCeil (h : AdaptiveOracleExistsCeil) :
     NibbleTheoremMostCeil := by
   intro r hr β hβ
@@ -834,7 +905,9 @@ def RoundOracleExistsCeil : Prop :=
               (∀ x : V, (degree H x : ℝ) ≤ (1 + μ) * d) →
                 HasRoundOracle H c β
 
-/-- Iterating the one-round ceiling oracle yields the adaptive ceiling oracle.-/
+/-- Iterating the one-round ceiling oracle yields the adaptive ceiling oracle.
+@isnad1 id=adaptive.1h0v.s1.375411e77f5f from=translated src=- shape=1d48f1ac vocab=30c6b85c
+-/
 theorem adaptiveOracleExistsCeil_of_roundOracleCeil (h : RoundOracleExistsCeil) :
     AdaptiveOracleExistsCeil := by
   intro r hr β hβ
@@ -844,7 +917,9 @@ theorem adaptiveOracleExistsCeil_of_roundOracleCeil (h : RoundOracleExistsCeil) 
   exact exists_adaptive_strategy_of_roundOracle H hcPositive hcOne hβ
     (hOracle H d hd hd₀ hUniform hRegular hCodegree hCeiling)
 
-/-- The ceiling-carrying theorem entails the strict near-regular theorem.-/
+/-- The ceiling-carrying theorem entails the strict near-regular theorem.
+@isnad1 id=nibbleth.1h0v.s1.64a2cf7801e7 from=translated src=- shape=1d48f1ac vocab=aec3ffef
+-/
 theorem NibbleTheoremMostCeil.nibbleTheorem (h : NibbleTheoremMostCeil) : NibbleTheorem := by
   intro r hr β hβ
   obtain ⟨μ, hμ, η, hη, d₀, hd₀, hMain⟩ := h r hr β hβ
@@ -968,7 +1043,9 @@ structure TightParams (r : ℕ) (β : ℝ) where
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 omit [Fintype V] in
-/-- Pruning kills the degree of the pruned vertices.-/
+/-- Pruning kills the degree of the pruned vertices.
+@isnad1 id=eq.1h4v.s5.09ca5043403d from=translated src=- shape=334fc0dd vocab=50e51618
+-/
 theorem degree_prune_eq_zero {K : Finset (Finset V)} {B : Finset V} {v : V} (hv : v ∈ B) :
     degree (prune K B) v = 0 := by
   classical
@@ -978,19 +1055,25 @@ theorem degree_prune_eq_zero {K : Finset (Finset V)} {B : Finset V} {v : V} (hv 
   exact (Finset.disjoint_left.mp he.2 hve) hv
 
 omit [Fintype V] in
-/-- Degrees are monotone in the hypergraph.-/
+/-- Degrees are monotone in the hypergraph.
+@isnad1 id=le.1h4v.s5.88f59b676bcd from=translated src=- shape=491b505e vocab=69eef054
+-/
 theorem degree_mono {K K' : Finset (Finset V)} (h : K' ⊆ K) (v : V) :
     degree K' v ≤ degree K v :=
   Finset.card_le_card (Finset.filter_subset_filter _ h)
 
 omit [Fintype V] in
-/-- Codegrees are monotone in the hypergraph.-/
+/-- Codegrees are monotone in the hypergraph.
+@isnad1 id=le.1h5v.s5.011ed419a115 from=translated src=- shape=cca2f5b3 vocab=80022d08
+-/
 theorem codegree_mono {K K' : Finset (Finset V)} (h : K' ⊆ K) (x y : V) :
     codegree K' x y ≤ codegree K x y :=
   Finset.card_le_card (Finset.filter_subset_filter _ h)
 
 omit [Fintype V] in
-/-- Only the part of the deleted set that the edges actually meet matters.-/
+/-- Only the part of the deleted set that the edges actually meet matters.
+@isnad1 id=eq.1h5v.s6.752288cd65fc from=translated src=- shape=77c5048a vocab=be1c41ce
+-/
 theorem lostDegree_union_of_disjoint {K : Finset (Finset V)} {S E : Finset V}
     (hS : ∀ e ∈ K, Disjoint e S) (v : V) :
     lostDegree K (S ∪ E) v = lostDegree K E v := by
@@ -1008,7 +1091,9 @@ theorem lostDegree_union_of_disjoint {K : Finset (Finset V)} {S E : Finset V}
     exact (Finset.disjoint_union_right.mp hd).2
 
 omit [Fintype V] in
-/-- A vertex in an edge-avoided set has degree zero.-/
+/-- A vertex in an edge-avoided set has degree zero.
+@isnad1 id=eq.2h4v.s6.8bc0a5191c60 from=translated src=- shape=cec636be vocab=3a7d1405
+-/
 theorem degree_eq_zero_of_disjoint {K : Finset (Finset V)} {S : Finset V}
     (hS : ∀ e ∈ K, Disjoint e S) {v : V} (hv : v ∈ S) : degree K v = 0 := by
   classical
@@ -1017,12 +1102,16 @@ theorem degree_eq_zero_of_disjoint {K : Finset (Finset V)} {S : Finset V}
   exact (Finset.disjoint_left.mp (hS e he) hve) hv
 
 omit [Fintype V] in
-/-- The number of edges meeting `B`, bounded by the degree sum over `B`.-/
+/-- The number of edges meeting `B`, bounded by the degree sum over `B`.
+@isnad1 id=le.0h3v.s6.f8383c26d963 from=translated src=- shape=34622ca6 vocab=a38f0a8c
+-/
 theorem card_edges_meeting_le_sum {K : Finset (Finset V)} (B : Finset V) :
     (K.filter (fun e => ¬ Disjoint e B)).card ≤ ∑ x ∈ B, degree K x := by
   exact Hypergraph.edges_meeting_le_of_not_disjoint K B
 
-/-- The total loss equals the size of the edges meeting `B`.-/
+/-- The total loss equals the size of the edges meeting `B`.
+@isnad1 id=eq.0h3v.s6.1e9ea9577e34 from=translated src=- shape=ca691081 vocab=027d697c
+-/
 theorem sum_lostDegree_eq {K : Finset (Finset V)} (B : Finset V) :
     ∑ v : V, lostDegree K B v = ∑ e ∈ K.filter (fun e => ¬ Disjoint e B), e.card := by
   classical
@@ -1037,7 +1126,9 @@ theorem sum_lostDegree_eq {K : Finset (Finset V)} (B : Finset V) :
   · simp [hd, Finset.sum_ite_mem]
 
 /-- **Few vertices lose many edges (real form).**  At most `r·|B|·Δ/ζ` vertices lose more than `ζ`
-edges when the edges meeting `B` are deleted.-/
+edges when the edges meeting `B` are deleted.
+@isnad1 id=le.2h6v.s6.25664312d821 from=translated src=- shape=49963234 vocab=369fa9ce
+-/
 theorem card_heavyLoss_le_real {K : Finset (Finset V)} {r : ℕ} (hr : IsUniform K r) {Δ : ℝ}
     (hΔ : ∀ x : V, (degree K x : ℝ) ≤ Δ) (B : Finset V) (ζ : ℝ) :
     (((Finset.univ : Finset V).filter (fun v => ζ < (lostDegree K B v : ℝ))).card : ℝ) * ζ
@@ -1078,7 +1169,9 @@ theorem card_heavyLoss_le_real {K : Finset (Finset V)} {r : ℕ} (hr : IsUniform
     _ ≤ (r : ℝ) * ((B.card : ℝ) * Δ) := mul_le_mul_of_nonneg_left hstep5 hr0
 
 /-- **Few vertices lose many edges (ratio form).**  If `r·Δ = psi·ζ` then at most `psi·|B|` vertices
-lose more than `ζ` edges when the edges meeting `B` are deleted.-/
+lose more than `ζ` edges when the edges meeting `B` are deleted.
+@isnad1 id=le.4h7v.s7.1a0914916c2b from=translated src=- shape=e3340633 vocab=369fa9ce
+-/
 theorem card_heavyLoss_le_ratio {K : Finset (Finset V)} {r : ℕ} (hr : IsUniform K r) {Δ ζ psi : ℝ}
     (hΔ : ∀ x : V, (degree K x : ℝ) ≤ Δ) (hζ : 0 < ζ) (hratio : (r : ℝ) * Δ = psi * ζ)
     (B : Finset V) :
@@ -1090,7 +1183,9 @@ theorem card_heavyLoss_le_ratio {K : Finset (Finset V)} {r : ℕ} (hr : IsUnifor
   ring
 
 omit [Fintype V] in
-/-- The cardinality of a five-fold union, in real form.-/
+/-- The cardinality of a five-fold union, in real form.
+@isnad1 id=le.0h6v.s6.b74a945242b8 from=translated src=- shape=589d6c56 vocab=9508ce6f
+-/
 theorem card_union_five_le (A B C D E : Finset V) :
     (((A ∪ B ∪ C ∪ D ∪ E).card : ℝ))
       ≤ (A.card : ℝ) + (B.card : ℝ) + (C.card : ℝ) + (D.card : ℝ) + (E.card : ℝ) := by
@@ -1101,7 +1196,9 @@ theorem card_union_five_le (A B C D E : Finset V) :
     exact Finset.card_union_le _ _
   exact_mod_cast hn
 
-/-- The complement of `S ∪ E` is at least as large as `|V| − |S| − |E|`.-/
+/-- The complement of `S ∪ E` is at least as large as `|V| − |S| − |E|`.
+@isnad1 id=le.0h3v.s6.269a06caaca2 from=translated src=- shape=70a4d962 vocab=b486c33b
+-/
 theorem card_compl_union_ge (S E : Finset V) :
     (Fintype.card V : ℝ) - (S.card : ℝ) - (E.card : ℝ) ≤ (((S ∪ E)ᶜ).card : ℝ) := by
   classical
@@ -1118,7 +1215,9 @@ theorem card_compl_union_ge (S E : Finset V) :
 /-- **The ceiling of the next round.** The drop requested by
 `LeanPool.AsymptoticTrianglePacking.Internal.TightParams.step_hi`, at the
 absolute scale `d` and with an actual loss `l` below the tolerance `εγ·d·hi`, still lands below
-`d·hi₁`.-/
+`d·hi₁`.
+@isnad1 id=le.8h8v.s8.79675cf76e8f from=translated src=- shape=687e0711 vocab=1b82c742
+-/
 theorem tight_ceiling_step_bound {a gam eps lo hi hi1 d l : ℝ}
     (hd : 0 < d) (hhi0 : 0 < hi) (ha0 : 0 ≤ a) (hgam0 : 0 ≤ gam) (hg1 : 0 ≤ 1 - gam)
     (hlo0 : 0 ≤ lo) (hl : l ≤ eps * gam * (d * hi))
@@ -1146,7 +1245,9 @@ theorem tight_ceiling_step_bound {a gam eps lo hi hi1 d l : ℝ}
   linarith only [hmono, heq, hsd]
 
 /-- **Vertex count from the codegree bound.**  A vertex of degree `D` forces
-`(r−1)·D ≤ (|V| − 1)·κ`.-/
+`(r−1)·D ≤ (|V| − 1)·κ`.
+@isnad1 id=le.3h5v.s6.0a296c6e5a16 from=translated src=- shape=76f4bbd5 vocab=171f2f07
+-/
 theorem card_ge_of_codegree {K : Finset (Finset V)} {r : ℕ} (hr : IsUniform K r) (hr1 : 1 ≤ r)
     {κ : ℝ} (hκ : ∀ x y : V, x ≠ y → (codegree K x y : ℝ) ≤ κ) (v : V) :
     ((r : ℝ) - 1) * (degree K v : ℝ) ≤ ((Fintype.card V : ℝ) - 1) * κ := by
@@ -1176,7 +1277,9 @@ theorem card_ge_of_codegree {K : Finset (Finset V)} {r : ℕ} (hr : IsUniform K 
 /-- The arithmetic of the exceptional budget: the new exceptional set is the old one (`e`) plus the
 vertices that left the band (`b`), plus those heavily damaged by the old exceptional set (`h`), plus
 those breaking the new ceiling (`hh ≤ e + b + h`), plus those damaged by pruning the latter
-(`dm ≤ psi·hh`); the total is at most `(2 + psi)²(e + b)`.-/
+(`dm ≤ psi·hh`); the total is at most `(2 + psi)²(e + b)`.
+@isnad1 id=le.10h11v.s7.30ccb2a7a9e6 from=translated src=- shape=4f831c4d vocab=cef4cf1d
+-/
 theorem budget_arith {e b h hh dm tot psi sigj exc sig1 N : ℝ}
     (hpsi0 : 0 ≤ psi) (he : 0 ≤ e) (hb : 0 ≤ b)
     (htot : tot ≤ e + b + h + hh + dm)
@@ -1200,7 +1303,9 @@ theorem budget_arith {e b h hh dm tot psi sigj exc sig1 N : ℝ}
 sub-hypergraph `K` avoiding the covered set `S`, with global degree ceiling `d·hi j`, degree floor
 `d·lo j` off the exceptional set `E`, codegrees `≤ κ` and `|E| ≤ sig j·|V|` — one sharp round
 produces a retained set covering a `γ/(16r)` fraction of the uncovered vertices and re-establishes
-the invariant at stage `j+1`.-/
+the invariant at stage `j+1`.
+@isnad1 id=ex.16h12v.s9.7bdac02ef70b from=translated src=- shape=d2b70117 vocab=29dfcc99
+-/
 theorem tight_round_step {r : ℕ} (hr : 2 ≤ r) {β : ℝ} (Pm : TightParams r β)
     {D₀ c₀ : ℝ} (hc₀ : 0 ≤ c₀) (hround : SharpRoundFor r Pm.gam Pm.eps Pm.exc (β / 2) D₀ c₀)
     {W : Type} [Fintype W] [DecidableEq W]
@@ -1455,7 +1560,9 @@ namespace LeanPool.AsymptoticTrianglePacking.Internal
 /-! ## The two polynomial cores of the band step -/
 
 /-- **Floor step (polynomial core).**  With `ε = 4aγ` and `8γ ≤ n ≤ 1/4`, the quantity by which the
-new floor `q(1 − n(1+8aγ))` falls short of the guaranteed drop is `aγ(6n − 8γ − 8γn − 8aγn) ≥ 0`.-/
+new floor `q(1 − n(1+8aγ))` falls short of the guaranteed drop is `aγ(6n − 8γ − 8γn − 8aγn) ≥ 0`.
+@isnad1 id=le.5h3v.s7.0900db4b2187 from=translated src=- shape=93d48b85 vocab=103e99f5
+-/
 theorem tight_band_step_lo_core {a gam n : ℝ} (ha2 : a ≤ 1)
     (hgam : 0 < gam) (_hgam8 : gam ≤ 1 / 8) (hn : 8 * gam ≤ n) (hn4 : n ≤ 1 / 4) :
     0 ≤ 6 * n - 8 * gam - 8 * gam * n - 8 * a * gam * n := by
@@ -1466,7 +1573,9 @@ theorem tight_band_step_lo_core {a gam n : ℝ} (ha2 : a ≤ 1)
   nlinarith only [hn, hn4, hn0, h2]
 
 /-- **Ceiling step (polynomial core).**  With `ε = 4aγ` and `8γ ≤ n ≤ 1/4`, the first-order gain
-`4an + 8an²` of the ceiling dominates all the correction terms.-/
+`4an + 8an²` of the ceiling dominates all the correction terms.
+@isnad1 id=le.6h3v.s9.a0cb4c510744 from=translated src=- shape=1c830a4d vocab=762a6581
+-/
 theorem tight_band_step_hi_core {a gam n : ℝ} (ha1 : 1 / 2 ≤ a) (ha2 : a ≤ 1)
     (hgam : 0 < gam) (_hgam8 : gam ≤ 1 / 8) (hn : 8 * gam ≤ n) (hn4 : n ≤ 1 / 4) :
     0 ≤ 4 * a * n + 8 * a * n ^ 2 - a * gam * (1 - n) ^ 2 - 8 * a ^ 2 * gam * n * (1 + n)
@@ -1500,7 +1609,9 @@ theorem tight_band_step_hi_core {a gam n : ℝ} (ha1 : 1 / 2 ≤ a) (ha2 : a ≤
 
 /-- **Floor step (scaled).** The polynomial core
 `LeanPool.AsymptoticTrianglePacking.Internal.tight_band_step_lo_core`, multiplied by
-the common factor `q^k` carried by both ends of the band.-/
+the common factor `q^k` carried by both ends of the band.
+@isnad1 id=le.9h6v.s8.3eabd52457eb from=translated src=- shape=c9f894b1 vocab=8b7124b8
+-/
 theorem tight_band_step_lo_scaled {a gam eps q qk n : ℝ} (ha0 : 0 ≤ a) (ha2 : a ≤ 1)
     (hgam : 0 < gam) (hgam8 : gam ≤ 1 / 8) (hn : 8 * gam ≤ n) (hn4 : n ≤ 1 / 4)
     (hqk : 0 < qk) (heps : eps = 4 * a * gam) (hq : q = 1 - a * gam) :
@@ -1520,7 +1631,9 @@ theorem tight_band_step_lo_scaled {a gam eps q qk n : ℝ} (ha0 : 0 ≤ a) (ha2 
 /-- **Ceiling step (scaled).** The polynomial core
 `LeanPool.AsymptoticTrianglePacking.Internal.tight_band_step_hi_core`, after clearing
 the denominator `1 + n` and multiplying by the common factor `q^k` carried by both ends of the
-band.-/
+band.
+@isnad1 id=le.9h6v.s9.6dada4add92f from=translated src=- shape=f5b5f380 vocab=8b7124b8
+-/
 theorem tight_band_step_hi_scaled {a gam eps q qk n : ℝ} (ha1 : 1 / 2 ≤ a) (ha2 : a ≤ 1)
     (hgam : 0 < gam) (hgam8 : gam ≤ 1 / 8) (hn : 8 * gam ≤ n) (hn4 : n ≤ 1 / 4)
     (hqk : 0 < qk) (heps : eps = 4 * a * gam) (hq : q = 1 - a * gam) :
@@ -1570,7 +1683,9 @@ theorem tight_band_step_hi_scaled {a gam eps q qk n : ℝ} (ha1 : 1 / 2 ≤ a) (
     _ = qk * q * (1 + n * (1 + 8 * a * gam)) := by ring
 
 /-- **The band width stays below `1/4`.**  With `γ ≤ exp(−8M−1)/32` and `γT ≤ M + γ`, the relative
-width `n k = 8γ(1 + 8aγ)^k` never exceeds `1/4` before the last round.-/
+width `n k = 8γ(1 + 8aγ)^k` never exceeds `1/4` before the last round.
+@isnad1 id=le.8h5v.s8.8a94cb9b5cf7 from=translated src=- shape=49d30e3b vocab=bc2d8fee
+-/
 theorem tight_band_width_le_quarter {a gam M : ℝ} {T k : ℕ} (ha0 : 0 ≤ a) (ha2 : a ≤ 1)
     (hgam : 0 < gam) (hgam8 : gam ≤ 1 / 8) (hgamE : gam ≤ Real.exp (-(8 * M) - 1) / 32)
     (hM0 : 0 < M) (hgamT_ub : gam * (T : ℝ) ≤ M + gam) (hk : k ≤ T) :
@@ -1611,7 +1726,9 @@ theorem tight_band_width_le_quarter {a gam M : ℝ} {T k : ℕ} (ha0 : 0 ≤ a) 
     _ = 1 / 4 := by rw [hexpprod]
 
 /-- **The total decay of the schedule.**  `γT ≥ M = 16rL + 1` with `L = log(1/β)` gives
-`(1 − γ/(16r))^T ≤ exp(−L) = β`.-/
+`(1 − γ/(16r))^T ≤ exp(−L) = β`.
+@isnad1 id=le.7h6v.s7.c8e859a66921 from=translated src=- shape=0bcbac70 vocab=5cffa8d3
+-/
 theorem tight_schedule_decay_le {gam L M β : ℝ} {r T : ℕ} (hrR : (2 : ℝ) ≤ (r : ℝ))
     (hgam : 0 < gam) (hgam8 : gam ≤ 1 / 8) (hβ0 : 0 < β)
     (hLdef : L = -Real.log β) (hMdef : M = 16 * (r : ℝ) * L + 1) (hgamT_lb : M ≤ gam * (T : ℝ)) :
@@ -1645,7 +1762,9 @@ theorem tight_schedule_decay_le {gam L M β : ℝ} {r T : ℕ} (hrR : (2 : ℝ) 
 
 /-! ## The schedule -/
 
-/-- **The tight-band schedule exists.**-/
+/-- **The tight-band schedule exists.**
+@isnad1 id=nonempty.3h2v.s5.ab82fb787bbe from=translated src=- shape=a74c9fa2 vocab=2de49baa
+-/
 theorem exists_tightParams (r : ℕ) (hr : 2 ≤ r) {β : ℝ} (hβ0 : 0 < β) (hβ1 : β < 1) :
     Nonempty (TightParams r β) := by
   classical

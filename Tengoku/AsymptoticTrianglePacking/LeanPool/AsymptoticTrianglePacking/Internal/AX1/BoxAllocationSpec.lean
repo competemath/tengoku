@@ -61,6 +61,9 @@ namespace Nibble.AX1
 clusters.-/
 def BoxCompat {P : ℕ} (I I' J J' : Finset (Fin P)) : Prop := Disjoint I I' ∨ Disjoint J J'
 
+/--
+@isnad1 id=iff.4h5v.s6.19c1c28c4379 from=translated src=- shape=ae6b6c5f vocab=daa684c1
+-/
 theorem boxCompat_iff_disjoint_product {P : ℕ} (I I' J J' : Finset (Fin P))
     (_hI : I.Nonempty) (_hI' : I'.Nonempty) (_hJ : J.Nonempty) (_hJ' : J'.Nonempty) :
     BoxCompat I I' J J' ↔ Disjoint (I ×ˢ J) (I' ×ˢ J') := by
@@ -87,7 +90,9 @@ theorem boxCompat_iff_disjoint_product {P : ℕ} (I I' J J' : Finset (Fin P))
 /-- **The box allocation is infeasible at general densities.**  A `P × 1` box and a `1 × P` box in
 the same cluster-pair grid — the shapes forced by two cluster triples through the pair whose two
 other densities are opposite extremes — cannot be placed compatibly, although their total area
-`2·P` is a `2/P` fraction of the capacity `P²`.-/
+`2·P` is a `2/P` fraction of the capacity `P²`.
+@isnad1 id=not.4h5v.s6.a4595aa331cb from=translated src=- shape=e2b0d3d4 vocab=25d58061
+-/
 theorem box_allocation_infeasible {P : ℕ} (I I' J J' : Finset (Fin P))
     (hI : #I = P) (hJ : #J = 1) (hI' : #I' = 1) (hJ' : #J' = P) :
     ¬ BoxCompat I I' J J' := by

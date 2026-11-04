@@ -55,7 +55,9 @@ variable {V : Type*} [DecidableEq V] {Ω : Type*} [MeasureSpace Ω]
   [IsProbabilityMeasure (ℙ : Measure Ω)]
 
 /-- **The general retention pattern probability.**  For disjoint families `T, C ⊆ H`, the event
-that every edge of `T` is retained and no edge of `C` is has probability `p^|T|·(1−p)^|C|`.-/
+that every edge of `T` is retained and no edge of `C` is has probability `p^|T|·(1−p)^|C|`.
+@isnad1 id=eq.5h7v.s8.0bf7163bb0f0 from=translated src=- shape=afb4807d vocab=ca45ce6a
+-/
 theorem prob_retain_avoid {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     {T C : Finset (Finset V)} (hT : T ⊆ H) (hC : C ⊆ H) (hTC : Disjoint T C) :
@@ -112,7 +114,9 @@ theorem prob_retain_avoid {H : Finset (Finset V)} {p : ℝ}
     ← ENNReal.ofReal_mul (by positivity)]
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- Two intersecting edges are never both in the round matching.-/
+/-- Two intersecting edges are never both in the round matching.
+@isnad1 id=eq.2h7v.s6.6f3b08546434 from=translated src=- shape=74d300fc vocab=d313d1bc
+-/
 theorem prob_two_matched_of_not_disjoint {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {f g : Finset V} (hne : f ≠ g)
     (hmeet : ¬ Disjoint f g) :
@@ -125,7 +129,9 @@ theorem prob_two_matched_of_not_disjoint {H : Finset (Finset V)} {p : ℝ}
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
 /-- **The joint matching event of two edges.**  Both `f` and `g` are matched exactly when
-both are retained and nothing in `conflicts f ∪ conflicts g` is.-/
+both are retained and nothing in `conflicts f ∪ conflicts g` is.
+@isnad1 id=eq.2h7v.s8.ac92167c51c6 from=translated src=- shape=5b9a4adc vocab=f5a793c3
+-/
 theorem twoMatchedEvent_eq {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {f g : Finset V} (hf : f ∈ H) (hg : g ∈ H) :
     ({ω | f ∈ roundMatching (retainedSet H ρ ω)}
@@ -140,7 +146,9 @@ theorem twoMatchedEvent_eq {H : Finset (Finset V)} {p : ℝ}
   · rintro ⟨⟨h1, h2⟩, h3⟩
     exact ⟨⟨h1, fun h hh => h3 h (Or.inl hh)⟩, ⟨h2, fun h hh => h3 h (Or.inr hh)⟩⟩
 
-/-- **The joint matching probability of two disjoint edges.**-/
+/-- **The joint matching probability of two disjoint edges.**
+@isnad1 id=eq.6h7v.s8.65d8c3b0e0db from=translated src=- shape=0b815ae7 vocab=9eece1f6
+-/
 theorem prob_two_matched_disjoint {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     {f g : Finset V} (hf : f ∈ H) (hg : g ∈ H) (hne : f ≠ g) (hdisj : Disjoint f g) :
@@ -180,7 +188,9 @@ theorem prob_two_matched_disjoint {H : Finset (Finset V)} {p : ℝ}
 
 /-- **The joint matching probability against the product of the individual ones.**  The two differ
 by at most `|conflicts f ∩ conflicts g|·p³` — the brick that produces the codegree factor in the
-variance of the safe degree.-/
+variance of the safe degree.
+@isnad1 id=le.5h7v.s8.f02839345fe9 from=translated src=- shape=a31a1d03 vocab=7ac3aa88
+-/
 theorem prob_two_matched_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     {f g : Finset V} (hf : f ∈ H) (hg : g ∈ H) (hne : f ≠ g) :
@@ -263,13 +273,17 @@ variable {V : Type*} [DecidableEq V]
 def conflictCountAt (H : Finset (Finset V)) (x : V) (h : Finset V) : ℕ :=
   ((H.filter (fun f => x ∈ f)).filter (fun f => h ∈ conflicts H f)).card
 
-/-- `conflictCountAt` is bounded by the degree of `x`.-/
+/-- `conflictCountAt` is bounded by the degree of `x`.
+@isnad1 id=le.0h4v.s4.faf4ab85372b from=translated src=- shape=0b61727c vocab=d8063583
+-/
 theorem conflictCountAt_le_degree (H : Finset (Finset V)) (x : V) (h : Finset V) :
     conflictCountAt H x h ≤ degree H x :=
   Finset.card_le_card (Finset.filter_subset _ _)
 
 /-- If `x ∉ h`, then every edge through `x` conflicting with `h` meets `h` at a vertex `≠ x`, so
-`conflictCountAt` is bounded by a sum of codegrees.-/
+`conflictCountAt` is bounded by a sum of codegrees.
+@isnad1 id=le.0h4v.s5.b5ea70cbf0f9 from=translated src=- shape=e1f019c3 vocab=acfe10fc
+-/
 theorem conflictCountAt_le_sum_codegree (H : Finset (Finset V)) {x : V} {h : Finset V} :
     conflictCountAt H x h ≤ ∑ w ∈ h, codegree H x w := by
   classical
@@ -286,7 +300,9 @@ theorem conflictCountAt_le_sum_codegree (H : Finset (Finset V)) {x : V} {h : Fin
     _ ≤ ∑ w ∈ h, (H.filter (fun f => x ∈ f ∧ w ∈ f)).card := Finset.card_biUnion_le
     _ = ∑ w ∈ h, codegree H x w := rfl
 
-/-- With uniformity and a codegree bound: if `x ∉ h`, then `conflictCountAt H x h ≤ r·κ`.-/
+/-- With uniformity and a codegree bound: if `x ∉ h`, then `conflictCountAt H x h ≤ r·κ`.
+@isnad1 id=le.4h6v.s6.712d05a19d2a from=translated src=- shape=9bdbd19b vocab=13de949c
+-/
 theorem conflictCountAt_le_of_notMem {H : Finset (Finset V)} {r κ : ℕ} (hr : IsUniform H r)
     (hκ : ∀ y z : V, y ≠ z → codegree H y z ≤ κ) {x : V} {h : Finset V} (hh : h ∈ H)
     (hxh : x ∉ h) : conflictCountAt H x h ≤ r * κ := by
@@ -295,7 +311,9 @@ theorem conflictCountAt_le_of_notMem {H : Finset (Finset V)} {r κ : ℕ} (hr : 
     _ = r * κ := by rw [Finset.sum_const, smul_eq_mul, hr h hh]
 
 /-- Double counting: summing `conflictCountAt H x ·` over all edges gives the total conflict count
-of the edges through `x`.-/
+of the edges through `x`.
+@isnad1 id=eq.0h3v.s6.973acb3978e0 from=translated src=- shape=d38156f0 vocab=8322d7d7
+-/
 theorem sum_conflictCountAt (H : Finset (Finset V)) (x : V) :
     ∑ h ∈ H, conflictCountAt H x h
       = ∑ f ∈ H.filter (fun f => x ∈ f), (conflicts H f).card := by
@@ -309,7 +327,9 @@ theorem sum_conflictCountAt (H : Finset (Finset V)) (x : V) :
   simp only [Finset.mem_filter]
   exact ⟨fun hh => hh.2, fun hh => ⟨(Finset.mem_filter.mp hh).1, hh⟩⟩
 
-/-- The total conflict count of the edges through `x` is at most `Δ·rΔ`.-/
+/-- The total conflict count of the edges through `x` is at most `Δ·rΔ`.
+@isnad1 id=le.2h5v.s6.8a1e69664325 from=translated src=- shape=576d45bb vocab=be32ac18
+-/
 theorem sum_conflictCountAt_le {H : Finset (Finset V)} {r Δ : ℕ} (hr : IsUniform H r)
     (hΔ : ∀ y, degree H y ≤ Δ) (x : V) :
     ∑ h ∈ H, conflictCountAt H x h ≤ Δ * (r * Δ) := by
@@ -322,7 +342,9 @@ theorem sum_conflictCountAt_le {H : Finset (Finset V)} {r Δ : ℕ} (hr : IsUnif
     _ = degree H x * (r * Δ) := by rw [Finset.sum_const, smul_eq_mul, degree]
     _ ≤ Δ * (r * Δ) := Nat.mul_le_mul_right _ (hΔ x)
 
-/-- The double sum of conflict overlaps, written as a single sum over edges.-/
+/-- The double sum of conflict overlaps, written as a single sum over edges.
+@isnad1 id=eq.0h4v.s7.f64700bff214 from=translated src=- shape=c640b9ff vocab=e4f485a7
+-/
 theorem sum_sum_conflicts_inter_eq (H : Finset (Finset V)) (u u' : V) :
     ∑ f ∈ H.filter (fun f => u ∈ f), ∑ g ∈ H.filter (fun g => u' ∈ g),
         (conflicts H f ∩ conflicts H g).card
@@ -351,7 +373,9 @@ theorem sum_sum_conflicts_inter_eq (H : Finset (Finset V)) (u u' : V) :
     ← Finset.sum_mul_sum]
 
 /-- **The conflict-overlap count at two DISTINCT vertices.** `∑_{f ∋ u} ∑_{g ∋ u'} |conf f ∩ conf g|
-≤ 4 r² κ Δ²`, where `Δ` bounds the degrees and `κ` the codegrees of distinct pairs.-/
+≤ 4 r² κ Δ²`, where `Δ` bounds the degrees and `κ` the codegrees of distinct pairs.
+@isnad1 id=le.5h7v.s7.d5b0b20f11fa from=translated src=- shape=ea3072bc vocab=2863d397
+-/
 theorem sum_conflicts_inter_card_le {H : Finset (Finset V)} {r Δ κ : ℕ}
     (hr : IsUniform H r) (hr1 : 1 ≤ r) (hΔ : ∀ x, degree H x ≤ Δ)
     (hκ : ∀ x y : V, x ≠ y → codegree H x y ≤ κ)
@@ -486,7 +510,9 @@ variable {V : Type*} [DecidableEq V] [Fintype V] {Ω : Type*} [MeasureSpace Ω]
   [IsProbabilityMeasure (ℙ : Measure Ω)]
 
 omit [Fintype V] in
-/-- The matching event of a single edge has probability `p·(1−p)^{c(e)}`.-/
+/-- The matching event of a single edge has probability `p·(1−p)^{c(e)}`.
+@isnad1 id=eq.3h6v.s7.f712a69a1090 from=translated src=- shape=c73a969a vocab=b1a0592c
+-/
 theorem prob_matchingEvent {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     {e : Finset V} (he : e ∈ H) :
@@ -497,7 +523,9 @@ theorem prob_matchingEvent {H : Finset (Finset V)} {p : ℝ}
 
 omit [Fintype V] [IsProbabilityMeasure (ℙ : Measure Ω)] in
 /-- The joint covering event of two vertices is the union of the joint matching events of the edge
-pairs through them.-/
+pairs through them.
+@isnad1 id=eq.0h7v.s8.f20cca1a6c87 from=translated src=- shape=56621c23 vocab=e2f80eff
+-/
 theorem twoCovered_eq_biUnion {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (u u' : V) :
     ({ω | u ∈ covered (retainedSet H ρ ω)} ∩ {ω | u' ∈ covered (retainedSet H ρ ω)})
@@ -515,7 +543,9 @@ theorem twoCovered_eq_biUnion {H : Finset (Finset V)} {p : ℝ}
 
 omit [Fintype V] in
 /-- **The codegree-tightened joint covering bound.**  For distinct `u, u'`,
-`ℙ(u,u' covered) ≤ q_u q_{u'} + codeg(u,u')·p + (∑_{f ∋ u} ∑_{g ∋ u'} |conf f ∩ conf g|)·p³`.-/
+`ℙ(u,u' covered) ≤ q_u q_{u'} + codeg(u,u')·p + (∑_{f ∋ u} ∑_{g ∋ u'} |conf f ∩ conf g|)·p³`.
+@isnad1 id=le.2h7v.s8.aebbaa0df950 from=translated src=- shape=3be4d4f4 vocab=6a190050
+-/
 theorem prob_two_vertices_covered_le_sum {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (u u' : V) :
     (ℙ : Measure Ω).real
@@ -616,7 +646,9 @@ omit [Fintype V] in
 
 Both summands carry the codegree bound `κ`; in the nibble regime `κ = μΔ`, `p = γ/((r−1)Δ)` this is
 `O(rμγ/(r−1))`, whereas `LeanPool.AsymptoticTrianglePacking.Internal.pair_excess_le` gives only
-`O(rγ³/(r−1)³ + μγ/(r−1))`.-/
+`O(rγ³/(r−1)³ + μγ/(r−1))`.
+@isnad1 id=le.7h10v.s8.9431641d26ce from=translated src=- shape=bf247d79 vocab=84bfcaa6
+-/
 theorem pair_excess_le_codegree {H : Finset (Finset V)} {p : ℝ} {r Δ κ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (hr : IsUniform H r) (hr1 : 1 ≤ r) (hΔ : ∀ y, degree H y ≤ Δ)
@@ -655,7 +687,9 @@ theorem pair_excess_le_codegree {H : Finset (Finset V)} {p : ℝ} {r Δ κ : ℕ
 Compare `LeanPool.AsymptoticTrianglePacking.Internal.centered_second_moment_le_params`, whose second
 factor is `Δ²p² + κp`: the term
 `Δ²p²` (of order `γ²` with `p = γ/((r−1)Δ)`) is replaced by `4r²κΔ²p³` (of order `r²μγ³`), so the
-whole bound acquires the codegree factor `κ`.-/
+whole bound acquires the codegree factor `κ`.
+@isnad1 id=le.6h9v.s8.c8e607b769ec from=translated src=- shape=64c1f6df vocab=6d0c2b7d
+-/
 theorem centered_second_moment_le_codegree {H : Finset (Finset V)} {p : ℝ} {r Δ κ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (hr1 : 1 ≤ r)
     (hr : IsUniform H r) (hΔ : ∀ y : V, degree H y ≤ Δ)
@@ -759,7 +793,9 @@ variable {V : Type*} [DecidableEq V] [Fintype V] {Ω : Type*} [MeasureSpace Ω]
   [IsProbabilityMeasure (ℙ : Measure Ω)]
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The centred covered count is the sum of the centred covering indicators.-/
+/-- The centred covered count is the sum of the centred covering indicators.
+@isnad1 id=eq.0h6v.s6.defa24b62113 from=translated src=- shape=807307fd vocab=ddca5472
+-/
 theorem coveredCount_sub_mean_eq {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (ω : Ω) :
     ((covered (retainedSet H ρ ω)).card : ℝ) - ∑ v : V, coverRate H p v
@@ -767,7 +803,9 @@ theorem coveredCount_sub_mean_eq {H : Finset (Finset V)} {p : ℝ}
   rw [coveredCount_eq_sum ρ ω, ← Finset.sum_sub_distrib]
   rfl
 
-/-- The centred covered count is square integrable.-/
+/-- The centred covered count is square integrable.
+@isnad1 id=integrab.0h5v.s6.6acb1b9d89cb from=translated src=- shape=2a35f093 vocab=3933b22e
+-/
 theorem integrable_sq_centered_coveredCount {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) :
     Integrable (fun ω => (((covered (retainedSet H ρ ω)).card : ℝ)
@@ -781,7 +819,9 @@ theorem integrable_sq_centered_coveredCount {H : Finset (Finset V)} {p : ℝ}
   exact integrable_finsetSum _
     (fun u _ => integrable_finsetSum _ (fun u' _ => integrable_coverIndC_mul ρ u u'))
 
-/-- **The variance of the covered count, as an exact double sum of pair excesses.**-/
+/-- **The variance of the covered count, as an exact double sum of pair excesses.**
+@isnad1 id=eq.2h5v.s7.855b3f1cf8e8 from=translated src=- shape=76d0ee61 vocab=5ea339a9
+-/
 theorem integral_sq_centered_coveredCount {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     ∫ ω, (((covered (retainedSet H ρ ω)).card : ℝ) - ∑ v : V, coverRate H p v) ^ 2
@@ -802,7 +842,9 @@ theorem integral_sq_centered_coveredCount {H : Finset (Finset V)} {p : ℝ}
   exact Finset.sum_congr rfl (fun u' _ => integral_coverIndC_mul ρ hp0 hp1 u u')
 
 /-- **The variance bound for the covered count.**  With covering rates at most `q_hi` and pair
-excesses at most `ε₂`, the covered count has variance at most `N·q_hi + N²·ε₂`.-/
+excesses at most `ε₂`, the covered count has variance at most `N·q_hi + N²·ε₂`.
+@isnad1 id=le.5h7v.s8.512f62c50153 from=translated src=- shape=b7c5b8a9 vocab=11b8d24a
+-/
 theorem coveredCount_variance_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     {qhi ε₂ : ℝ} (hq : ∀ u : V, coverRate H p u ≤ qhi) (hε0 : 0 ≤ ε₂)
@@ -851,7 +893,9 @@ theorem coveredCount_variance_le {H : Finset (Finset V)} {p : ℝ}
 
 /-- **Chebyshev for the coverage.**  If the mean coverage is at least `Q > 0` and the variance is at
 most `Cvar`, the probability that the covered count deviates by `Q/2` or more is at most
-`Cvar/(Q/2)²`.-/
+`Cvar/(Q/2)²`.
+@isnad1 id=le.2h7v.s8.84a64897bad7 from=translated src=- shape=dd9b7b91 vocab=40a38acd
+-/
 theorem prob_coverage_deviation_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {Q Cvar : ℝ} (hQ : 0 < Q)
     (hvar : ∫ ω, (((covered (retainedSet H ρ ω)).card : ℝ) - ∑ v : V, coverRate H p v) ^ 2

@@ -48,7 +48,9 @@ the three edges of each triangle. Its matchings are the edge-disjoint triangle p
 def triangleHypergraphE : Finset (Finset (Finset V)) :=
   (G.cliqueFinset 3).image (fun t => t.powersetCard 2)
 
-/-- **The edge-based triangle hypergraph is 3-uniform** (every triangle has exactly three edges).-/
+/-- **The edge-based triangle hypergraph is 3-uniform** (every triangle has exactly three edges).
+@isnad1 id=isunifor.0h2v.s5.76af27e7b551 from=translated src=- shape=27dfc7c9 vocab=381f1c08
+-/
 theorem triangleHypergraphE_uniform : IsUniform (triangleHypergraphE G) 3 := by
   intro e he
   rw [triangleHypergraphE, Finset.mem_image] at he
@@ -58,7 +60,9 @@ theorem triangleHypergraphE_uniform : IsUniform (triangleHypergraphE G) 3 := by
 
 /-- **Y2 (edge-based) — codegree ≤ 1.** Two distinct edges lie in at most one common triangle (they
 determine its three vertices), so the edge-based triangle hypergraph has codegree `≤ 1`. This is the
-`CodegreeBounded H (μd)` input the nibble wants — here in its sharpest form.-/
+`CodegreeBounded H (μd)` input the nibble wants — here in its sharpest form.
+@isnad1 id=le.1h4v.s5.1209c867fff0 from=translated src=- shape=c488d539 vocab=7c8f7885
+-/
 theorem triangleHypergraphE_codegree_le_one {e e' : Finset V} (hne : e ≠ e') :
     codegree (triangleHypergraphE G) e e' ≤ 1 := by
   rw [codegree]
@@ -94,7 +98,9 @@ theorem triangleHypergraphE_codegree_le_one {e e' : Finset V} (hne : e ≠ e') :
   rw [key T hT, key T' hT']
 
 omit [Fintype V] [DecidableEq V] in
-/-- Membership in a set of card `≥ 2` is witnessed by a `2`-subset.-/
+/-- Membership in a set of card `≥ 2` is witnessed by a `2`-subset.
+@isnad1 id=iff.1h3v.s6.099a44eb1401 from=translated src=- shape=41434bec vocab=bb72805e
+-/
 theorem mem_iff_mem_powersetCard_two {u : Finset V} (hu : 2 ≤ u.card) (x : V) :
     x ∈ u ↔ ∃ e ∈ u.powersetCard 2, x ∈ e := by
   classical
@@ -115,7 +121,9 @@ theorem mem_iff_mem_powersetCard_two {u : Finset V} (hu : 2 ≤ u.card) (x : V) 
 omit [Fintype V] [DecidableEq V] in
 /-- **Faithful representation.** The triangle→edges map `t ↦ t.powersetCard 2` is injective on sets
 of card `≥ 2`; hence distinct triangles give distinct hyperedges, and matchings of
-`triangleHypergraphE` correspond to edge-disjoint triangle packings.-/
+`triangleHypergraphE` correspond to edge-disjoint triangle packings.
+@isnad1 id=eq.3h3v.s5.de69ba34e9ad from=translated src=- shape=05c6a1ac vocab=e085841b
+-/
 theorem powersetCard_two_inj {s t : Finset V} (hs : 2 ≤ s.card) (ht : 2 ≤ t.card)
     (h : s.powersetCard 2 = t.powersetCard 2) : s = t := by
   classical
@@ -126,7 +134,9 @@ theorem powersetCard_two_inj {s t : Finset V} (hs : 2 ≤ s.card) (ht : 2 ≤ t.
 (an edge)
 in the edge-based triangle hypergraph equals the number of triangles of `G` having `e` among their
 three edges. Szemerédi regularity makes these counts (nearly) uniform — the near-regularity input to
-the nibble.-/
+the nibble.
+@isnad1 id=eq.0h3v.s6.af40ffb5b40a from=translated src=- shape=2070c619 vocab=c74c5858
+-/
 theorem triangleHypergraphE_degree (e : Finset V) :
     degree (triangleHypergraphE G) e
       = ((G.cliqueFinset 3).filter (fun t => e ∈ t.powersetCard 2)).card := by
@@ -154,7 +164,9 @@ noncomputable def nu3 (G : SimpleGraph V) [DecidableRel G.Adj] : ℕ := by
 
 /-- **Y4 — the nibble output lower-bounds `ν₃`.** Any matching of the triangle hypergraph
 witnesses a
-lower bound on `ν₃`. `NibbleTheorem` produces a large matching, hence a large `ν₃`.-/
+lower bound on `ν₃`. `NibbleTheorem` produces a large matching, hence a large `ν₃`.
+@isnad1 id=le.1h3v.s5.0ea1e8718355 from=translated src=- shape=da5e1c27 vocab=6e3a2100
+-/
 theorem nu3_ge {M : Finset (Finset (Finset V))}
     (hM : IsMatching (triangleHypergraphE G) M) : M.card ≤ nu3 G := by
   classical
@@ -172,7 +184,9 @@ def IsFracPacking (w : Finset (Finset V) → ℝ) : Prop :=
 noncomputable def nu3star (G : SimpleGraph V) [DecidableRel G.Adj] : ℝ :=
   sSup {x : ℝ | ∃ w, IsFracPacking G w ∧ x = ∑ T ∈ triangleHypergraphE G, w T}
 
-/-- The fractional-packing value set is bounded above by `|H|` (each weight is `≤ 1`).-/
+/-- The fractional-packing value set is bounded above by `|H|` (each weight is `≤ 1`).
+@isnad1 id=bddabove.0h2v.s6.38eb2a3ba574 from=translated src=- shape=60107166 vocab=f1acfe37
+-/
 theorem nu3star_bddAbove :
     BddAbove {x : ℝ | ∃ w, IsFracPacking G w ∧ x = ∑ T ∈ triangleHypergraphE G, w T} := by
   refine ⟨((triangleHypergraphE G).card : ℝ), ?_⟩
@@ -192,7 +206,9 @@ theorem nu3star_bddAbove :
     _ = ((triangleHypergraphE G).card : ℝ) := by rw [Finset.sum_const, nsmul_eq_mul, mul_one]
 
 /-- **Y4 — weak duality `ν₃ ≤ ν₃*`.** The indicator of a maximum matching is a fractional packing of
-value `ν₃`, so `ν₃ ≤ ν₃*`.-/
+value `ν₃`, so `ν₃ ≤ ν₃*`.
+@isnad1 id=le.0h2v.s5.984fd69b6520 from=translated src=- shape=672c0f78 vocab=e6d2d113
+-/
 theorem nu3_le_nu3star : (nu3 G : ℝ) ≤ nu3star G := by
   classical
   -- the maximum matching is attained

@@ -60,11 +60,16 @@ def covered (R : Finset (Finset V)) : Finset V := support (roundMatching R)
 def residual (H R : Finset (Finset V)) : Finset (Finset V) :=
   H.filter (fun e => Disjoint e (covered R))
 
+/--
+@isnad1 id=le.0h2v.s4.f9b56bf8affd from=translated src=- shape=1ee5c842 vocab=01901e0c
+-/
 @[simp] theorem roundMatching_subset (R : Finset (Finset V)) : roundMatching R ⊆ R :=
   Finset.filter_subset _ _
 
 /-- **C1a — the round's matching is a matching.** For `R ⊆ H`, `roundMatching R` is a matching
-of `H`.-/
+of `H`.
+@isnad1 id=ismatchi.1h3v.s5.f02bfb30dffb from=translated src=- shape=86058393 vocab=264f5f93
+-/
 theorem roundMatching_isMatching {H R : Finset (Finset V)} (hRH : R ⊆ H) :
     IsMatching H (roundMatching R) where
   subset := (roundMatching_subset R).trans hRH
@@ -73,15 +78,22 @@ theorem roundMatching_isMatching {H R : Finset (Finset V)} (hRH : R ⊆ H) :
     rw [roundMatching, Finset.mem_filter] at he
     exact he.2 f (roundMatching_subset R hf) (fun h => hef h.symm)
 
+/--
+@isnad1 id=le.0h3v.s5.25b1cb66f739 from=translated src=- shape=6f5ef2f6 vocab=7498675d
+-/
 @[simp] theorem residual_subset (H R : Finset (Finset V)) : residual H R ⊆ H :=
   Finset.filter_subset _ _
 
-/-- **C1b — residual stays `r`-uniform.**-/
+/-- **C1b — residual stays `r`-uniform.**
+@isnad1 id=isunifor.1h4v.s4.c028d4ee487b from=translated src=- shape=928630cc vocab=780e6521
+-/
 theorem residual_uniform {H : Finset (Finset V)} {r : ℕ} (hr : IsUniform H r)
     (R : Finset (Finset V)) : IsUniform (residual H R) r :=
   fun e he => hr e (residual_subset H R he)
 
-/-- **C1c — residual edges avoid the covered vertices.**-/
+/-- **C1c — residual edges avoid the covered vertices.**
+@isnad1 id=disjoint.1h4v.s5.7a8d6b61676f from=translated src=- shape=d01eac55 vocab=5f2d47d4
+-/
 theorem residual_disjoint_covered {H R : Finset (Finset V)} {e : Finset V}
     (he : e ∈ residual H R) : Disjoint e (covered R) := by
   rw [residual, Finset.mem_filter] at he

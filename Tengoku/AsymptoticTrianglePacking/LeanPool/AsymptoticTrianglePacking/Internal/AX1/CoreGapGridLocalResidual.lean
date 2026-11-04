@@ -58,7 +58,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 
 /-- **Few edges have an endpoint at which many edges were deleted — localised version.**  The
 number of vertices at which more than `t` edges were deleted is at most `2|Bad|/t`, and each of them
-lies in at most `D` edges.-/
+lies in at most `D` edges.
+@isnad1 id=le.2h5v.s8.18ca9868f868 from=translated src=- shape=1b6fc121 vocab=7b95be0d
+-/
 theorem card_edges_heavy_deleted_le_of_degree (T : SimpleGraph V) [DecidableRel T.Adj]
     (Bad : Finset (Finset V)) {t : ℝ} (ht : 0 < t) {D : ℕ}
     (hdeg : ∀ v : V, #{z ∈ (univ : Finset V) | T.Adj v z} ≤ D) :
@@ -101,7 +103,9 @@ theorem card_edges_heavy_deleted_le_of_degree (T : SimpleGraph V) [DecidableRel 
 
 /-- **The pruned graph — localised.**  As `Nibble.AX1.prune_near_regular`, but the exceptional set
 is bounded using a degree bound `D` for `T` instead of the number of vertices of the ambient
-graph.-/
+graph.
+@isnad1 id=and.4h7v.s8.80355742112b from=translated src=- shape=68003a3b vocab=5ad8f969
+-/
 theorem prune_near_regular_local (T : SimpleGraph V) [DecidableRel T.Adj]
     (Bad : Finset (Finset V)) {μ d t : ℝ} (ht : 0 < t) {D : ℕ}
     (hdeg : ∀ v : V, #{z ∈ (univ : Finset V) | T.Adj v z} ≤ D)
@@ -136,7 +140,9 @@ theorem prune_near_regular_local (T : SimpleGraph V) [DecidableRel T.Adj]
 
 omit [DecidableEq V] in
 /-- **A tripartite graph has degrees at most `|U| + |W| + |X|`**: all its edges stay inside the
-three parts.-/
+three parts.
+@isnad1 id=le.0h6v.s6.7276ebc5a1c5 from=translated src=- shape=d592b606 vocab=e67c1edc
+-/
 theorem tripleGraph_degree_le (G : SimpleGraph V) (U W X : Finset V) (v : V) :
     #{z ∈ (univ : Finset V) | (tripleGraph G U W X).Adj v z} ≤ #U + #W + #X := by
   classical
@@ -152,7 +158,9 @@ theorem tripleGraph_degree_le (G : SimpleGraph V) (U W X : Finset V) (v : V) :
 
 /-- **A near-regular member of the family from one cluster triple — localised.**  As
 `Nibble.AX1.uniform_triple_member`, but the exceptional edges are bounded by
-`(2|Bad|/t)·(|U| + |W| + |X|)`, which involves only the triple and not the ambient graph.-/
+`(2|Bad|/t)·(|U| + |W| + |X|)`, which involves only the triple and not the ambient graph.
+@isnad1 id=ex.18h9v.s10.855aefcfaeee from=translated src=- shape=b6850722 vocab=36175ae1
+-/
 theorem uniform_triple_member_local (G : SimpleGraph V) [DecidableRel G.Adj] {U W X : Finset V}
     (hUW : Disjoint U W) (hUX : Disjoint U X) (hWX : Disjoint W X) {ε μ d t : ℝ}
     (hε : 0 < ε) (hε1 : ε ≤ 1) (ht : 0 < t)
@@ -235,7 +243,9 @@ def IsSubTripleDesignLocal (G : SimpleGraph V) [DecidableRel G.Adj] (ε μ η d�
 /-- **The bridge from a local sub-triple design to a near-regular family.**  Identical to
 `Nibble.AX1.hasNearRegularFamily_of_subTripleDesign` except that the exceptional edges of each
 member are charged against the support of that member, via
-`Nibble.AX1.uniform_triple_member_local`.-/
+`Nibble.AX1.uniform_triple_member_local`.
+@isnad1 id=hasnearr.1h15v.s6.8aa088d6e738 from=translated src=- shape=d81cd364 vocab=7d2a9823
+-/
 theorem hasNearRegularFamily_of_subTripleDesignLocal (G : SimpleGraph V) [DecidableRel G.Adj]
     {ε μ η d₀ ε₂ μ₂ t : ℝ} {k : ℕ} {A B C : ℕ → Finset V} {d Elo : ℕ → ℝ}
     (h : IsSubTripleDesignLocal G ε μ η d₀ ε₂ μ₂ t k A B C d Elo) :
@@ -349,7 +359,9 @@ def SubTripleDesignResidual : Prop :=
   ∀ ε : ℝ, 0 < ε → ∀ μ : ℝ, 0 < μ → ∀ η : ℝ, 0 < η → ∀ d₀ : ℝ, 0 < d₀ →
     ∃ ε₁ : ℝ, 0 < ε₁ ∧ ε₁ ≤ ε ∧ ε₁ ≤ 1 ∧ SubTripleDesignAt ε μ η d₀ ε₁
 
-/-- **A design gives the reduced family.**-/
+/-- **A design gives the reduced family.**
+@isnad1 id=reducedf.1h5v.s4.df33f0d42c35 from=translated src=- shape=900be632 vocab=3d813c79
+-/
 theorem reducedFamilyAt_of_subTripleDesignAt {ε μ η d₀ ε₁ : ℝ}
     (h : SubTripleDesignAt ε μ η d₀ ε₁) : ReducedFamilyAt ε μ η d₀ ε₁ := by
   obtain ⟨n₀, hmain⟩ := h
@@ -358,14 +370,18 @@ theorem reducedFamilyAt_of_subTripleDesignAt {ε μ η d₀ ε₁ : ℝ}
   obtain ⟨ε₂, μ₂, t, k, A, B, C, d, Elo, hdes⟩ := hmain V G P hV hP hPl hPb hPu hrich
   exact hasNearRegularFamily_of_isSubTripleDesign _ hdes
 
-/-- **The design residual implies the structural residual `Nibble.AX1.ReducedFamilyResidual`.**-/
+/-- **The design residual implies the structural residual `Nibble.AX1.ReducedFamilyResidual`.**
+@isnad1 id=reducedf.1h0v.s1.b9bc41c51ab3 from=translated src=- shape=1d48f1ac vocab=897939b4
+-/
 theorem reducedFamilyResidual_of_subTripleDesign (h : SubTripleDesignResidual) :
     ReducedFamilyResidual := by
   intro ε hε μ hμ η hη d₀ hd₀
   obtain ⟨ε₁, hε₁, hε₁ε, hε₁1, hdes⟩ := h ε hε μ hμ η hη d₀ hd₀
   exact ⟨ε₁, hε₁, hε₁ε, hε₁1, reducedFamilyAt_of_subTripleDesignAt hdes⟩
 
-/-- **AX1 from the design residual.**-/
+/-- **AX1 from the design residual.**
+@isnad1 id=ax1state.1h0v.s1.e85a06bcdae9 from=translated src=- shape=1d48f1ac vocab=84afe75a
+-/
 theorem ax1_of_subTripleDesign (h : SubTripleDesignResidual) : AX1Statement :=
   ax1_of_reducedFamily (reducedFamilyResidual_of_subTripleDesign h)
 
@@ -404,7 +420,9 @@ def SubTripleDesignLocalResidual : Prop :=
   ∀ ε : ℝ, 0 < ε → ∀ μ : ℝ, 0 < μ → ∀ η : ℝ, 0 < η → ∀ d₀ : ℝ, 0 < d₀ →
     ∃ ε₁ : ℝ, 0 < ε₁ ∧ ε₁ ≤ ε ∧ ε₁ ≤ 1 ∧ SubTripleDesignLocalAt ε μ η d₀ ε₁
 
-/-- **A local design gives the reduced family.**-/
+/-- **A local design gives the reduced family.**
+@isnad1 id=reducedf.1h5v.s4.9410de1b83e6 from=translated src=- shape=900be632 vocab=3c6afda9
+-/
 theorem reducedFamilyAt_of_subTripleDesignLocalAt {ε μ η d₀ ε₁ : ℝ}
     (h : SubTripleDesignLocalAt ε μ η d₀ ε₁) : ReducedFamilyAt ε μ η d₀ ε₁ := by
   obtain ⟨n₀, hmain⟩ := h
@@ -414,14 +432,18 @@ theorem reducedFamilyAt_of_subTripleDesignLocalAt {ε μ η d₀ ε₁ : ℝ}
   exact hasNearRegularFamily_of_subTripleDesignLocal _ hdes
 
 /-- **The local design residual implies the structural residual
-`Nibble.AX1.ReducedFamilyResidual`.**-/
+`Nibble.AX1.ReducedFamilyResidual`.**
+@isnad1 id=reducedf.1h0v.s1.f3bcf5e1a8e5 from=translated src=- shape=1d48f1ac vocab=bded2d24
+-/
 theorem reducedFamilyResidual_of_subTripleDesignLocal (h : SubTripleDesignLocalResidual) :
     ReducedFamilyResidual := by
   intro ε hε μ hμ η hη d₀ hd₀
   obtain ⟨ε₁, hε₁, hε₁ε, hε₁1, hdes⟩ := h ε hε μ hμ η hη d₀ hd₀
   exact ⟨ε₁, hε₁, hε₁ε, hε₁1, reducedFamilyAt_of_subTripleDesignLocalAt hdes⟩
 
-/-- **AX1 from the local design residual.**-/
+/-- **AX1 from the local design residual.**
+@isnad1 id=ax1state.1h0v.s1.0f698b2fe9d2 from=translated src=- shape=1d48f1ac vocab=64f0cde0
+-/
 theorem ax1_of_subTripleDesignLocal (h : SubTripleDesignLocalResidual) : AX1Statement :=
   ax1_of_reducedFamily (reducedFamilyResidual_of_subTripleDesignLocal h)
 

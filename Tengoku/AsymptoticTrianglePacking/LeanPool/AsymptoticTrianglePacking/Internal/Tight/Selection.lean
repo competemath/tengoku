@@ -34,7 +34,9 @@ namespace LeanPool.AsymptoticTrianglePacking.Internal
 
 variable {Ω : Type*} [MeasureSpace Ω] [IsProbabilityMeasure (ℙ : Measure Ω)]
 
-/-- If two events have total probability `< 1`, some outcome avoids both.-/
+/-- If two events have total probability `< 1`, some outcome avoids both.
+@isnad1 id=ex.1h3v.s6.653231d89fe3 from=translated src=- shape=43af7386 vocab=dc0a0356
+-/
 theorem exists_notMem_of_measureReal_add_lt_one {A B : Set Ω}
     (h : (ℙ : Measure Ω).real A + (ℙ : Measure Ω).real B < 1) :
     ∃ ω : Ω, ω ∉ A ∧ ω ∉ B := by
@@ -53,7 +55,9 @@ theorem exists_notMem_of_measureReal_add_lt_one {A B : Set Ω}
   linarith only [h, h1, h2]
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- **Markov's inequality**, real-valued form.-/
+/-- **Markov's inequality**, real-valued form.
+@isnad1 id=le.3h3v.s6.511ffb3a55dc from=translated src=- shape=3a2a8381 vocab=160ac6bb
+-/
 theorem measureReal_ge_le_integral_div {f : Ω → ℝ} (hf : ∀ ω, 0 ≤ f ω)
     (hint : Integrable f (ℙ : Measure Ω)) {c : ℝ} (hc : 0 < c) :
     (ℙ : Measure Ω).real {ω | c ≤ f ω} ≤ (∫ ω, f ω ∂(ℙ : Measure Ω)) / c := by
@@ -61,7 +65,9 @@ theorem measureReal_ge_le_integral_div {f : Ω → ℝ} (hf : ∀ ω, 0 ≤ f ω
   rw [le_div_iff₀ hc, mul_comm]
   exact h
 
-/-- **Counting Markov.**  At most `(∑ᵢ gᵢ)/t` indices satisfy `t ≤ gᵢ`.-/
+/-- **Counting Markov.**  At most `(∑ᵢ gᵢ)/t` indices satisfy `t ≤ gᵢ`.
+@isnad1 id=le.1h3v.s6.1e4f2ec5e064 from=translated src=- shape=32fb20d5 vocab=0cf1986e
+-/
 theorem card_filter_mul_le_sum {ι : Type*} [Fintype ι] (g : ι → ℝ)
     (hg : ∀ i, 0 ≤ g i) (t : ℝ) :
     ((Finset.univ.filter (fun i => t ≤ g i)).card : ℝ) * t ≤ ∑ i, g i := by

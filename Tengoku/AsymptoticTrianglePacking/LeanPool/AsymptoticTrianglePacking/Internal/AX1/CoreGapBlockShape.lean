@@ -40,7 +40,9 @@ namespace Nibble.AX1
 
 variable {V : Type} [Fintype V] [DecidableEq V]
 
-/-- **On a good cluster pair the reduced graph agrees with `G`.**-/
+/-- **On a good cluster pair the reduced graph agrees with `G`.**
+@isnad1 id=iff.7h9v.s7.bf935629c373 from=translated src=- shape=0d3d62d2 vocab=d8a39c63
+-/
 theorem regularityReduced_adj_iff_of_goodPair (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {ep de : ℝ} {U W : Finset V}
     (hU : U ∈ P.parts) (hW : W ∈ P.parts) (hUW : U ≠ W)
@@ -53,7 +55,9 @@ theorem regularityReduced_adj_iff_of_goodPair (G : SimpleGraph V) [DecidableRel 
     exact ⟨h, U, hU, W, hW, hx, hy, hUW, hu, hd⟩
 
 /-- The interedges of two sub-blocks of a good cluster pair are the same in `G` and in the reduced
-graph.-/
+graph.
+@isnad1 id=eq.7h9v.s7.42af7305b44f from=translated src=- shape=3f8da26a vocab=6a59869a
+-/
 theorem interedges_regularityReduced (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {ep de : ℝ} {U W A B : Finset V}
     (hU : U ∈ P.parts) (hW : W ∈ P.parts) (hUW : U ≠ W)
@@ -71,7 +75,9 @@ theorem interedges_regularityReduced (G : SimpleGraph V) [DecidableRel G.Adj]
       (regularityReduced_adj_iff_of_goodPair G P hU hW hUW hu hd (hA hx) (hB hy)).mpr hadj⟩
 
 /-- The densities of two sub-blocks of a good cluster pair are the same in `G` and in the reduced
-graph.-/
+graph.
+@isnad1 id=eq.7h9v.s7.91acf64edaf1 from=translated src=- shape=d32228e4 vocab=9b351c02
+-/
 theorem edgeDensity_regularityReduced (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {ep de : ℝ} {U W A B : Finset V}
     (hU : U ∈ P.parts) (hW : W ∈ P.parts) (hUW : U ≠ W)
@@ -81,7 +87,9 @@ theorem edgeDensity_regularityReduced (G : SimpleGraph V) [DecidableRel G.Adj]
   rw [SimpleGraph.edgeDensity_def, SimpleGraph.edgeDensity_def,
     interedges_regularityReduced G P hU hW hUW hu hd hA hB]
 
-/-- **Uniformity of a pair of sub-blocks transfers to the reduced graph.**-/
+/-- **Uniformity of a pair of sub-blocks transfers to the reduced graph.**
+@isnad1 id=isunifor.8h10v.s7.ae6b333fb4d4 from=translated src=- shape=994278fb vocab=d8a39c63
+-/
 theorem isUniform_regularityReduced (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {ep de ε : ℝ} {U W A B : Finset V}
     (hU : U ∈ P.parts) (hW : W ∈ P.parts) (hUW : U ≠ W)
@@ -122,7 +130,9 @@ def IsGridSubTriple (G : SimpleGraph V) [DecidableRel G.Adj]
   |(#C : ℝ) - τ * (G.edgeDensity U W : ℝ)| ≤ 1
 
 /-- **The three pairs of one block sub-triple**: they are disjoint, uniform at scale `ε₁/(8α)` in
-the reduced graph, and their densities are within `ε₁/8` of the densities of the cluster pairs.-/
+the reduced graph, and their densities are within `ε₁/8` of the densities of the cluster pairs.
+@isnad1 id=and.5h13v.s10.e02dab166a1f from=translated src=- shape=8bfec573 vocab=df98e71b
+-/
 theorem gridSubTriple_data (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {δ α τ ε₁ : ℝ} {U W X A B C : Finset V}
     (hε₁ : 0 < ε₁) (hαε : ε₁ / 8 ≤ α) (hα2 : 2 * α ≤ 1) (hde : ε₁ / 4 ≤ δ)
@@ -164,7 +174,9 @@ theorem gridSubTriple_data (G : SimpleGraph V) [DecidableRel G.Adj]
   · rw [edgeDensity_regularityReduced G P hW hX hWX huWX hdWX' hBW hCX]
     exact le_of_lt (edgeDensity_sub_lt_of_isUniform G huWX hBW hCX hαε hrelB hrelC)
 
-/-- The cluster densities of a good triple lie in `[δ, 1]`.-/
+/-- The cluster densities of a good triple lie in `[δ, 1]`.
+@isnad1 id=and.1h13v.s7.44acd9beba3a from=translated src=- shape=406a6fef vocab=579706f0
+-/
 theorem gridSubTriple_density_mem (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {δ α τ ep : ℝ} {U W X A B C : Finset V}
     (h : IsGridSubTriple G P ep δ α τ U W X A B C) :
@@ -177,7 +189,9 @@ theorem gridSubTriple_density_mem (G : SimpleGraph V) [DecidableRel G.Adj]
   · exact_mod_cast G.edgeDensity_le_one U X
   · exact_mod_cast G.edgeDensity_le_one W X
 
-/-- **The local clauses of a design, for a family of block sub-triples.**-/
+/-- **The local clauses of a design, for a family of block sub-triples.**
+@isnad1 id=issubtri.13h15v.s9.18a23dcc3a26 from=translated src=- shape=54181999 vocab=87146057
+-/
 theorem subTripleShape_of_gridSubTriples (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {δ α τ μ₂ ε₁ : ℝ} {k : ℕ}
     (U W X A B C : ℕ → Finset V)

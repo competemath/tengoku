@@ -71,21 +71,36 @@ def wtc (i : ι) (p : ℝ) (ω : ι → Bool) : ℝ :=
 def Exp (p : ℝ) (f : (ι → Bool) → ℝ) : ℝ := ∑ ω, wt p ω * f ω
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=le.2h3v.s5.dfe9052ae64b from=translated src=- shape=87446e00 vocab=fb409371
+-/
 theorem wt_nonneg {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (ω : ι → Bool) : 0 ≤ wt p ω :=
   Finset.prod_nonneg fun i _ => by split_ifs <;> linarith
 
+/--
+@isnad1 id=le.2h4v.s5.49bfa7ef3089 from=translated src=- shape=5feffefb vocab=4cddd37d
+-/
 theorem wtc_nonneg {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (i : ι) (ω : ι → Bool) : 0 ≤ wtc i p ω :=
   Finset.prod_nonneg fun j _ => by split_ifs <;> linarith
 
+/--
+@isnad1 id=eq.0h2v.s5.ae8425216b62 from=translated src=- shape=5130e2c8 vocab=b33b8dce
+-/
 theorem sum_wt {p : ℝ} : ∑ ω : ι → Bool, wt p ω = 1 := by
   change ∑ ω : ι → Bool, ∏ i, (if ω i then p else 1 - p) = 1
   rw [← Fintype.prod_sum (fun (_ : ι) (b : Bool) => if b then p else 1 - p)]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s6.e16d4f3859c8 from=translated src=- shape=bdb8dbad vocab=3781cea9
+-/
 theorem wt_eq (i : ι) (p : ℝ) (ω : ι → Bool) :
     wt p ω = (if ω i then p else 1 - p) * wtc i p ω :=
   (Finset.mul_prod_erase Finset.univ (fun j => if ω j then p else 1 - p) (Finset.mem_univ i)).symm
 
+/--
+@isnad1 id=eq.0h5v.s5.e950e4d04920 from=translated src=- shape=0187d505 vocab=1a0cf142
+-/
 theorem wtc_update (i : ι) (p : ℝ) (ω : ι → Bool) (b : Bool) :
     wtc i p (Function.update ω i b) = wtc i p ω := by
   refine Finset.prod_congr rfl fun j hj => ?_
@@ -102,16 +117,24 @@ def avgOne (p : ℝ) (i : ι) (f : (ι → Bool) → ℝ) (ω : ι → Bool) : �
   p * f (Function.update ω i true) + (1 - p) * f (Function.update ω i false)
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h6v.s5.4241a9526762 from=translated src=- shape=eba211d5 vocab=e08e72ef
+-/
 theorem avgOne_update (p : ℝ) (i : ι) (f : (ι → Bool) → ℝ) (ω : ι → Bool) (b : Bool) :
     avgOne p i f (Function.update ω i b) = avgOne p i f ω := by
   simp [avgOne, Function.update_idem]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.0h5v.s5.307a4b14a4d0 from=translated src=- shape=8c9b91c2 vocab=cac475f3
+-/
 theorem D_update (i : ι) (f : (ι → Bool) → ℝ) (ω : ι → Bool) (b : Bool) :
     D i f (Function.update ω i b) = D i f ω := by
   simp [D, Function.update_idem]
 
-/-- The basic splitting of a cube sum along one coordinate.-/
+/-- The basic splitting of a cube sum along one coordinate.
+@isnad1 id=eq.0h3v.s6.fe669cf59fbd from=translated src=- shape=e03e919b vocab=f10d8832
+-/
 theorem sum_split (i : ι) (g : (ι → Bool) → ℝ) :
     ∑ ω : ι → Bool, g ω
       = ∑ ω ∈ Finset.univ.filter (fun ω : ι → Bool => ω i = false),
@@ -138,7 +161,9 @@ theorem sum_split (i : ι) (g : (ι → Bool) → ℝ) :
     · subst h; simp [ha]
     · simp [h]
 
-/-- The expectation, split along one coordinate.-/
+/-- The expectation, split along one coordinate.
+@isnad1 id=eq.0h4v.s7.7a6e64c428bb from=translated src=- shape=d929c4f9 vocab=e9d91168
+-/
 theorem Exp_split (p : ℝ) (i : ι) (f : (ι → Bool) → ℝ) :
     Exp p f = ∑ ω ∈ Finset.univ.filter (fun ω : ι → Bool => ω i = false),
       wtc i p ω * ((1 - p) * f ω + p * f (Function.update ω i true)) := by
@@ -149,6 +174,9 @@ theorem Exp_split (p : ℝ) (i : ι) (f : (ι → Bool) → ℝ) :
   norm_num
   ring
 
+/--
+@isnad1 id=eq.0h4v.s5.48ffe4f4bd1c from=translated src=- shape=5c2d5a10 vocab=32a85b5a
+-/
 theorem Exp_avgOne (p : ℝ) (i : ι) (f : (ι → Bool) → ℝ) :
     Exp p (avgOne p i f) = Exp p f := by
   rw [Exp_split p i (avgOne p i f), Exp_split p i f]
@@ -163,7 +191,9 @@ theorem Exp_avgOne (p : ℝ) (i : ι) (f : (ι → Bool) → ℝ) :
     rw [avgOne, hupd]
   rw [this]; ring
 
-/-- **The exact one-coordinate variance decomposition.**-/
+/-- **The exact one-coordinate variance decomposition.**
+@isnad1 id=eq.0h4v.s7.6ba191e45937 from=translated src=- shape=bd180ee1 vocab=50341c69
+-/
 theorem Exp_sq_sub_avgOne (p : ℝ) (i : ι) (f : (ι → Bool) → ℝ) :
     Exp p (fun ω => f ω ^ 2) - Exp p (fun ω => avgOne p i f ω ^ 2)
       = p * (1 - p) * Exp p (fun ω => D i f ω ^ 2) := by
@@ -181,6 +211,9 @@ theorem Exp_sq_sub_avgOne (p : ℝ) (i : ι) (f : (ι → Bool) → ℝ) :
   rw [avgOne_update p i f ω true, D_update i f ω true, hA, hD]
   ring
 
+/--
+@isnad1 id=le.2h4v.s6.17e891d00f87 from=translated src=- shape=c26e21e6 vocab=f495202d
+-/
 theorem Exp_sq_avgOne_le {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (i : ι) (f : (ι → Bool) → ℝ) :
     Exp p (fun ω => avgOne p i f ω ^ 2) ≤ Exp p (fun ω => f ω ^ 2) := by
   have h := Exp_sq_sub_avgOne p i f
@@ -190,6 +223,9 @@ theorem Exp_sq_avgOne_le {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (i : ι) (f :
   nlinarith [mul_nonneg hc hnn]
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.1h5v.s5.754404c79229 from=translated src=- shape=87824031 vocab=9d12399b
+-/
 theorem D_avgOne_comm {i j : ι} (hij : i ≠ j) (p : ℝ) (f : (ι → Bool) → ℝ) :
     D i (avgOne p j f) = avgOne p j (D i f) := by
   funext ω
@@ -205,11 +241,17 @@ def avgL (p : ℝ) : List ι → ((ι → Bool) → ℝ) → ((ι → Bool) → 
   | [], f => f
   | i :: t, f => avgOne p i (avgL p t f)
 
+/--
+@isnad1 id=eq.0h4v.s5.67cf8698e5ac from=translated src=- shape=5efbece5 vocab=131b2b1a
+-/
 theorem Exp_avgL (p : ℝ) (l : List ι) (f : (ι → Bool) → ℝ) : Exp p (avgL p l f) = Exp p f := by
   induction l with
   | nil => rfl
   | cons i t ih => rw [avgL, Exp_avgOne, ih]
 
+/--
+@isnad1 id=le.2h4v.s6.e18abd379995 from=translated src=- shape=6bb7f051 vocab=60f90330
+-/
 theorem Exp_sq_avgL_le {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (l : List ι) (f : (ι → Bool) → ℝ) :
     Exp p (fun ω => avgL p l f ω ^ 2) ≤ Exp p (fun ω => f ω ^ 2) := by
   induction l with
@@ -217,6 +259,9 @@ theorem Exp_sq_avgL_le {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (l : List ι) (
   | cons i t ih => exact le_trans (Exp_sq_avgOne_le hp0 hp1 i _) ih
 
 omit [Fintype ι] in
+/--
+@isnad1 id=eq.1h5v.s5.455e97c3aeb6 from=translated src=- shape=5a0ead63 vocab=3006f320
+-/
 theorem D_avgL_comm {i : ι} {l : List ι} (hi : i ∉ l) (p : ℝ) (f : (ι → Bool) → ℝ) :
     D i (avgL p l f) = avgL p l (D i f) := by
   induction l with
@@ -227,7 +272,9 @@ theorem D_avgL_comm {i : ι} {l : List ι} (hi : i ∉ l) (p : ℝ) (f : (ι →
       rw [avgL, D_avgOne_comm hij, ih hit, avgL]
 
 omit [Fintype ι] in
-/-- If `ω` and `ω'` agree off `l`, then `avgL p l f` takes the same value at both.-/
+/-- If `ω` and `ω'` agree off `l`, then `avgL p l f` takes the same value at both.
+@isnad1 id=eq.1h6v.s5.eff19f0849e9 from=translated src=- shape=b9c3a155 vocab=f0a6b077
+-/
 theorem avgL_congr (p : ℝ) (l : List ι) (f : (ι → Bool) → ℝ) {ω ω' : ι → Bool}
     (h : ∀ j, j ∉ l → ω j = ω' j) : avgL p l f ω = avgL p l f ω' := by
   induction l generalizing ω ω' with
@@ -248,10 +295,15 @@ theorem avgL_congr (p : ℝ) (l : List ι) (f : (ι → Bool) → ℝ) {ω ω' :
 
 /-! ## The Efron–Stein inequality -/
 
+/--
+@isnad1 id=eq.0h3v.s4.4235eae7b170 from=translated src=- shape=9a12e284 vocab=14c27b1e
+-/
 theorem Exp_const (p : ℝ) (c : ℝ) : Exp p (fun _ : ι → Bool => c) = c := by
   rw [Exp, ← Finset.sum_mul, sum_wt, one_mul]
 
-/-- Telescoping the one-coordinate decomposition along a duplicate-free list.-/
+/-- Telescoping the one-coordinate decomposition along a duplicate-free list.
+@isnad1 id=le.3h4v.s7.a5637adfb677 from=translated src=- shape=fd84b5ba vocab=2eb6ed23
+-/
 theorem variance_le_of_list {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (l : List ι) (hl : l.Nodup)
     (f : (ι → Bool) → ℝ) :
     Exp p (fun ω => f ω ^ 2) - Exp p (fun ω => avgL p l f ω ^ 2)
@@ -278,7 +330,9 @@ theorem variance_le_of_list {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (l : List 
       linarith only [h1, h2, h4]
 
 /-- **Efron–Stein on the Bernoulli cube.**  The variance of `f` is at most `p(1−p)` times the sum
-over coordinates of the mean square discrete derivative.-/
+over coordinates of the mean square discrete derivative.
+@isnad1 id=le.2h3v.s7.036a3225fb14 from=translated src=- shape=115f7140 vocab=ebf43f51
+-/
 theorem variance_le_sum_sq_diff {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (f : (ι → Bool) → ℝ) :
     Exp p (fun ω => f ω ^ 2) - (Exp p f) ^ 2
       ≤ ∑ i : ι, p * (1 - p) * Exp p (fun ω => D i f ω ^ 2) := by
@@ -309,6 +363,9 @@ theorem variance_le_sum_sq_diff {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (f : (
 
 /-! ## Linearity, products and the variance identity -/
 
+/--
+@isnad1 id=eq.0h3v.s6.d6c2a3cc2fc1 from=translated src=- shape=b6e49f80 vocab=bd66b0b7
+-/
 theorem Exp_prod (p : ℝ) (g : ι → Bool → ℝ) :
     Exp p (fun ω => ∏ i, g i (ω i)) = ∏ i, (p * g i true + (1 - p) * g i false) := by
   rw [Exp]
@@ -320,7 +377,9 @@ theorem Exp_prod (p : ℝ) (g : ι → Bool → ℝ) :
   refine Finset.prod_congr rfl fun i _ => ?_
   simp
 
-/-- The centred second moment of `f` is `Exp f² − (Exp f)²`.-/
+/-- The centred second moment of `f` is `Exp f² − (Exp f)²`.
+@isnad1 id=eq.0h3v.s6.1baa881ddc2f from=translated src=- shape=44187e63 vocab=1ad20df6
+-/
 theorem Exp_centred_sq (p : ℝ) (f : (ι → Bool) → ℝ) :
     Exp p (fun ω => (f ω - Exp p f) ^ 2) = Exp p (fun ω => f ω ^ 2) - (Exp p f) ^ 2 := by
   set c := Exp p f with hc
@@ -333,31 +392,48 @@ theorem Exp_centred_sq (p : ℝ) (f : (ι → Bool) → ℝ) :
   change Exp p (fun ω => f ω ^ 2) - 2 * c * Exp p f + c ^ 2 * 1 = _
   rw [← hc]; ring
 
-/-- **Efron–Stein, in centred form.**-/
+/-- **Efron–Stein, in centred form.**
+@isnad1 id=le.2h3v.s7.55c808dc6f9d from=translated src=- shape=fe78826c vocab=ebf43f51
+-/
 theorem centred_sq_le_sum_sq_diff {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (f : (ι → Bool) → ℝ) :
     Exp p (fun ω => (f ω - Exp p f) ^ 2)
       ≤ ∑ i : ι, p * (1 - p) * Exp p (fun ω => D i f ω ^ 2) := by
   rw [Exp_centred_sq]
   exact variance_le_sum_sq_diff hp0 hp1 f
 
+/--
+@isnad1 id=le.3h4v.s6.f94e65f39633 from=translated src=- shape=e8b0cb42 vocab=30cae4d1
+-/
 theorem Exp_mono {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) {f g : (ι → Bool) → ℝ}
     (h : ∀ ω, f ω ≤ g ω) : Exp p f ≤ Exp p g :=
   Finset.sum_le_sum fun ω _ => mul_le_mul_of_nonneg_left (h ω) (wt_nonneg hp0 hp1 ω)
 
+/--
+@isnad1 id=le.3h3v.s6.1102698e919f from=translated src=- shape=2659aed6 vocab=30cae4d1
+-/
 theorem Exp_nonneg {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) {f : (ι → Bool) → ℝ}
     (h : ∀ ω, 0 ≤ f ω) : 0 ≤ Exp p f :=
   Finset.sum_nonneg fun ω _ => mul_nonneg (wt_nonneg hp0 hp1 ω) (h ω)
 
+/--
+@isnad1 id=eq.0h4v.s6.acaf6d87211f from=translated src=- shape=1e0e18eb vocab=96e93985
+-/
 theorem Exp_add (p : ℝ) (f g : (ι → Bool) → ℝ) :
     Exp p (fun ω => f ω + g ω) = Exp p f + Exp p g := by
   simp only [Exp, mul_add]
   exact Finset.sum_add_distrib
 
+/--
+@isnad1 id=eq.0h4v.s5.a414ac8ffeb6 from=translated src=- shape=227ee69e vocab=05c7d5ea
+-/
 theorem Exp_smul (p c : ℝ) (f : (ι → Bool) → ℝ) :
     Exp p (fun ω => c * f ω) = c * Exp p f := by
   simp only [Exp, Finset.mul_sum]
   exact Finset.sum_congr rfl fun ω _ => by ring
 
+/--
+@isnad1 id=eq.0h5v.s5.0feb07f6e936 from=translated src=- shape=c49a11b8 vocab=38e6ee37
+-/
 theorem Exp_finset_sum {α : Type*} (p : ℝ) (s : Finset α) (g : α → (ι → Bool) → ℝ) :
     Exp p (fun ω => ∑ a ∈ s, g a ω) = ∑ a ∈ s, Exp p (g a) := by
   classical
@@ -369,7 +445,9 @@ theorem Exp_finset_sum {α : Type*} (p : ℝ) (s : Finset α) (g : α → (ι �
 
 /-! ## Second moments of weighted sums of coordinates -/
 
-/-- The pair correlation of two coordinate indicators: `p` on the diagonal, `p²` off it.-/
+/-- The pair correlation of two coordinate indicators: `p` on the diagonal, `p²` off it.
+@isnad1 id=eq.0h4v.s6.da70585c10e6 from=translated src=- shape=20124a52 vocab=bc210a98
+-/
 theorem Exp_coord_mul {p : ℝ} (f g : ι) :
     Exp p (fun ω : ι → Bool =>
         (if ω f then (1 : ℝ) else 0) * (if ω g then (1 : ℝ) else 0))
@@ -410,7 +488,9 @@ theorem Exp_coord_mul {p : ℝ} (f g : ι) :
       Finset.prod_ite_eq' Finset.univ g (fun _ => p)]
     simp [sq]
 
-/-- The second moment of a nonnegatively weighted sum of coordinate indicators.-/
+/-- The second moment of a nonnegatively weighted sum of coordinate indicators.
+@isnad1 id=le.0h4v.s7.408f0f0d2611 from=translated src=- shape=12c2d304 vocab=ecf37470
+-/
 theorem Exp_weighted_sum_sq_le {p : ℝ} (M : Finset ι) (w : ι → ℝ) :
     Exp p (fun ω : ι → Bool => (∑ f ∈ M, if ω f then w f else 0) ^ 2)
       ≤ p * (∑ f ∈ M, w f ^ 2) + p ^ 2 * (∑ f ∈ M, w f) ^ 2 := by
@@ -520,17 +600,25 @@ status of `e`: the edge `e` itself, and the retained edges meeting `e`.-/
 def flipInfluence (R : Finset (Finset V)) (e : Finset V) : Finset (Finset V) :=
   insert e (R.filter (fun f => ¬ Disjoint f e))
 
+/--
+@isnad1 id=ne.1h4v.s5.e9d01c9e5069 from=translated src=- shape=755d893d vocab=371cd67f
+-/
 theorem notMem_flipInfluence_ne {R : Finset (Finset V)} {e f : Finset V}
     (hf : f ∉ flipInfluence R e) : f ≠ e := by
   intro h; exact hf (by simp [flipInfluence, h])
 
+/--
+@isnad1 id=disjoint.2h4v.s6.68cf900216ba from=translated src=- shape=33f4294d vocab=0529d97c
+-/
 theorem notMem_flipInfluence_disjoint {R : Finset (Finset V)} {e f : Finset V}
     (hf : f ∉ flipInfluence R e) (hfR : f ∈ R) : Disjoint f e := by
   by_contra hd
   exact hf (Finset.mem_insert_of_mem (Finset.mem_filter.mpr ⟨hfR, hd⟩))
 
 /-- **Local stability of the round matching.**  An edge outside the influence set of `e` is in the
-round matching of `insert e R` exactly when it is in the round matching of `R.erase e`.-/
+round matching of `insert e R` exactly when it is in the round matching of `R.erase e`.
+@isnad1 id=iff.1h4v.s6.c8551e660aac from=translated src=- shape=f3d0afb2 vocab=e8282602
+-/
 theorem mem_roundMatching_insert_iff_erase {R : Finset (Finset V)} {e f : Finset V}
     (hf : f ∉ flipInfluence R e) :
     f ∈ roundMatching (insert e R) ↔ f ∈ roundMatching (R.erase e) := by
@@ -555,6 +643,9 @@ theorem mem_roundMatching_insert_iff_erase {R : Finset (Finset V)} {e f : Finset
 
 /-! ## Stability of the covered set -/
 
+/--
+@isnad1 id=le.0h3v.s6.2992fe2910e7 from=translated src=- shape=3033d97e vocab=7e7eaa7b
+-/
 theorem covered_insert_sdiff_subset (R : Finset (Finset V)) (e : Finset V) :
     covered (insert e R) \ covered (R.erase e) ⊆ (flipInfluence R e).biUnion id := by
   intro u hu
@@ -565,6 +656,9 @@ theorem covered_insert_sdiff_subset (R : Finset (Finset V)) (e : Finset V) :
   · exact absurd (Finset.mem_biUnion.mpr
       ⟨f, (mem_roundMatching_insert_iff_erase hfl).mp hfM, huf⟩) hu.2
 
+/--
+@isnad1 id=le.0h3v.s6.884b430e6c1a from=translated src=- shape=61a78d12 vocab=7e7eaa7b
+-/
 theorem covered_erase_sdiff_subset (R : Finset (Finset V)) (e : Finset V) :
     covered (R.erase e) \ covered (insert e R) ⊆ (flipInfluence R e).biUnion id := by
   intro u hu
@@ -576,7 +670,9 @@ theorem covered_erase_sdiff_subset (R : Finset (Finset V)) (e : Finset V) :
       ⟨f, (mem_roundMatching_insert_iff_erase hfl).mpr hfM, huf⟩) hu.2
 
 /-- **The flip only moves few vertices.**  For an `r`-uniform hypergraph the influence set of `e`
-spans at most `r·(1 + #{f ∈ R : f meets e})` vertices.-/
+spans at most `r·(1 + #{f ∈ R : f meets e})` vertices.
+@isnad1 id=le.3h5v.s7.744a852d79f7 from=translated src=- shape=25ae72e7 vocab=9152d15a
+-/
 theorem card_biUnion_flipInfluence_le {H : Finset (Finset V)} {r : ℕ} (hunif : IsUniform H r)
     {R : Finset (Finset V)} (hRH : R ⊆ H) {e : Finset V} (he : e ∈ H) :
     ((flipInfluence R e).biUnion id).card
@@ -597,7 +693,9 @@ theorem card_biUnion_flipInfluence_le {H : Finset (Finset V)} {r : ℕ} (hunif :
 /-! ## The safe degree moves by at most a codegree sum -/
 
 /-- If two covered sets differ only inside `D`, the safe degrees at `v` differ by at most the number
-of edges at `v` meeting `D` away from `v`.-/
+of edges at `v` meeting `D` away from `v`.
+@isnad1 id=le.2h6v.s7.bcdea8a19707 from=translated src=- shape=737bc33c vocab=b2ac64fb
+-/
 theorem abs_safeDegree_sub_le_card_meeting {H : Finset (Finset V)} {C C' D : Finset V} {v : V}
     (hCC' : C \ C' ⊆ D) (hC'C : C' \ C ⊆ D) :
     ((safeDegree H C v : ℤ) - (safeDegree H C' v : ℤ)).natAbs
@@ -626,7 +724,9 @@ theorem abs_safeDegree_sub_le_card_meeting {H : Finset (Finset V)} {C C' D : Fin
   simp only [safeDegree]
   omega
 
-/-- The number of edges at `v` meeting a set `D` away from `v` is at most `∑_{u ∈ D} codeg(v,u)`.-/
+/-- The number of edges at `v` meeting a set `D` away from `v` is at most `∑_{u ∈ D} codeg(v,u)`.
+@isnad1 id=le.0h4v.s7.4ac2ed0d9cba from=translated src=- shape=8e25230b vocab=fb12220e
+-/
 theorem card_meeting_le_codegree_sum {H : Finset (Finset V)} {D : Finset V} {v : V} :
     (H.filter (fun e => v ∈ e ∧ ¬ Disjoint (e.erase v) D)).card
       ≤ ∑ u ∈ D.erase v, codegree H v u := by
@@ -644,7 +744,9 @@ theorem card_meeting_le_codegree_sum {H : Finset (Finset V)} {D : Finset V} {v :
   exact Finset.sum_congr rfl fun u _ => rfl
 
 /-- **The bounded-differences estimate for the safe degree.**  If the covered sets `C`, `C'` differ
-only inside `D`, then the safe degrees at `v` differ by at most `∑_{u ∈ D \ {v}} codeg(v,u)`.-/
+only inside `D`, then the safe degrees at `v` differ by at most `∑_{u ∈ D \ {v}} codeg(v,u)`.
+@isnad1 id=le.2h6v.s6.913062d99df1 from=translated src=- shape=c7ac0445 vocab=418e119a
+-/
 theorem abs_safeDegree_sub_le_codegree_sum {H : Finset (Finset V)} {C C' D : Finset V}
     {v : V} (hCC' : C \ C' ⊆ D) (hC'C : C' \ C ⊆ D) :
     ((safeDegree H C v : ℤ) - (safeDegree H C' v : ℤ)).natAbs
@@ -653,7 +755,9 @@ theorem abs_safeDegree_sub_le_codegree_sum {H : Finset (Finset V)} {C C' D : Fin
 
 /-- **The safe degree is stable under a single-edge flip.**  Flipping the retention status of `e`
 changes the safe degree at `v` by at most the codegree sum over the vertices spanned by the
-influence set of `e`.-/
+influence set of `e`.
+@isnad1 id=le.0h5v.s6.66c0664fb6b8 from=translated src=- shape=83fb0a6a vocab=d36bad9a
+-/
 theorem abs_safeDegree_flip_le (H : Finset (Finset V)) (R : Finset (Finset V))
     (e : Finset V) (v : V) :
     ((safeDegree H (covered (insert e R)) v : ℤ)
@@ -663,7 +767,9 @@ theorem abs_safeDegree_flip_le (H : Finset (Finset V)) (R : Finset (Finset V))
     (covered_erase_sdiff_subset R e)
 
 /-- **The squared codegree sum.**  With all codegrees at `v` bounded by `κ`,
-`∑_{u ≠ v} codeg(v,u)² ≤ κ·(r−1)·deg(v)` — the weight that drives the Efron–Stein estimate.-/
+`∑_{u ≠ v} codeg(v,u)² ≤ κ·(r−1)·deg(v)` — the weight that drives the Efron–Stein estimate.
+@isnad1 id=le.2h5v.s6.97bb22b1986e from=translated src=- shape=b82c2b66 vocab=732de20c
+-/
 theorem sum_sq_codegree_le [Fintype V] {H : Finset (Finset V)} {r : ℕ} (hr : IsUniform H r)
     {κ : ℝ} (v : V) (hκ : ∀ u : V, u ≠ v → (codegree H v u : ℝ) ≤ κ) :
     ∑ u ∈ (Finset.univ : Finset V).erase v, (codegree H v u : ℝ) ^ 2
@@ -748,11 +854,17 @@ def flipWeight (H : Finset (Finset V)) (v : V) (k : Finset V) (ω : Finset V →
 /-! ## Elementary bounds on the codegree weight -/
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s4.6a4df646a33a from=translated src=- shape=e7e3c8a0 vocab=2066401b
+-/
 theorem edgeWeight_nonneg (H : Finset (Finset V)) (v : V) (f : Finset V) :
     0 ≤ edgeWeight H v f :=
   Finset.sum_nonneg fun _ _ => Nat.cast_nonneg _
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.3h6v.s6.6b9dd226f1f0 from=translated src=- shape=cd7b425b vocab=dceae5c1
+-/
 theorem edgeWeight_le_of_mem {H : Finset (Finset V)} {r κ : ℕ} (hr : IsUniform H r)
     (hκ : ∀ y z : V, y ≠ z → codegree H y z ≤ κ) (v : V) {f : Finset V} (hf : f ∈ H) :
     edgeWeight H v f ≤ (r : ℝ) * (κ : ℝ) := by
@@ -768,7 +880,9 @@ theorem edgeWeight_le_of_mem {H : Finset (Finset V)} {r κ : ℕ} (hr : IsUnifor
     _ ≤ (r : ℝ) * (κ : ℝ) := by
         exact mul_le_mul_of_nonneg_right (by exact_mod_cast hcard) (Nat.cast_nonneg _)
 
-/-- Double counting: `∑_{f ∈ H} edgeWeight f = ∑_{u ≠ v} codeg(v,u)·deg(u)`.-/
+/-- Double counting: `∑_{f ∈ H} edgeWeight f = ∑_{u ≠ v} codeg(v,u)·deg(u)`.
+@isnad1 id=eq.0h3v.s6.8a8c9b598ef5 from=translated src=- shape=9cc63d7b vocab=6b4255c8
+-/
 theorem sum_edgeWeight_eq (H : Finset (Finset V)) (v : V) :
     ∑ f ∈ H, edgeWeight H v f
       = ∑ u ∈ (Finset.univ : Finset V).erase v, (codegree H v u : ℝ) * (degree H u : ℝ) := by
@@ -787,6 +901,9 @@ theorem sum_edgeWeight_eq (H : Finset (Finset V)) (v : V) :
   ring
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.2h5v.s6.463b4d10919e from=translated src=- shape=aca1bb62 vocab=e98b5c26
+-/
 theorem sum_edgeWeight_le [Finite V] {H : Finset (Finset V)} {r Δ : ℕ} (hr : IsUniform H r)
     (hΔ : ∀ y : V, degree H y ≤ Δ) (v : V) :
     ∑ f ∈ H, edgeWeight H v f ≤ (r : ℝ) * (Δ : ℝ) ^ 2 := by
@@ -811,6 +928,9 @@ theorem sum_edgeWeight_le [Finite V] {H : Finset (Finset V)} {r Δ : ℕ} (hr : 
     _ = (r : ℝ) * (Δ : ℝ) ^ 2 := by ring
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.3h6v.s7.c66930fff286 from=translated src=- shape=8d9cebf8 vocab=85207c22
+-/
 theorem sum_edgeWeight_sq_le [Finite V] {H : Finset (Finset V)} {r Δ κ : ℕ} (hr : IsUniform H r)
     (hΔ : ∀ y : V, degree H y ≤ Δ) (hκ : ∀ y z : V, y ≠ z → codegree H y z ≤ κ) (v : V) :
     ∑ f ∈ H, edgeWeight H v f ^ 2 ≤ (r : ℝ) ^ 2 * (κ : ℝ) * (Δ : ℝ) ^ 2 := by
@@ -828,7 +948,9 @@ theorem sum_edgeWeight_sq_le [Finite V] {H : Finset (Finset V)} {r Δ κ : ℕ} 
     _ = (r : ℝ) ^ 2 * (κ : ℝ) * (Δ : ℝ) ^ 2 := by ring
 
 omit [Fintype V] in
-/-- At most `rΔ` edges meet a given edge.-/
+/-- At most `rΔ` edges meet a given edge.
+@isnad1 id=le.3h5v.s6.60550f338be2 from=translated src=- shape=54c42db5 vocab=5b0dda85
+-/
 theorem card_meets_le {H : Finset (Finset V)} {r Δ : ℕ} (hr : IsUniform H r)
     (hΔ : ∀ y : V, degree H y ≤ Δ) {k : Finset V} (hk : k ∈ H) :
     ((meets H k).card : ℝ) ≤ (r : ℝ) * (Δ : ℝ) := by
@@ -848,6 +970,9 @@ theorem card_meets_le {H : Finset (Finset V)} {r Δ : ℕ} (hr : IsUniform H r)
   exact_mod_cast hcard
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h3v.s5.6b8c55cfe24e from=translated src=- shape=0ead9648 vocab=ad5f64ac
+-/
 theorem meets_comm (H : Finset (Finset V)) (f : Finset V) :
     meets H f = H.filter (fun k => ¬ Disjoint f k) := by
   classical
@@ -856,7 +981,9 @@ theorem meets_comm (H : Finset (Finset V)) (f : Finset V) :
   · intro h hd; exact h (Disjoint.symm hd)
   · intro h hd; exact h (Disjoint.symm hd)
 
-/-- A sum over a `biUnion` is at most the sum of the sums, for a nonnegative summand.-/
+/-- A sum over a `biUnion` is at most the sum of the sums, for a nonnegative summand.
+@isnad1 id=le.1h5v.s6.234b59d2d3ff from=translated src=- shape=67c12f8b vocab=7cb873de
+-/
 theorem sum_biUnion_le_of_nonneg {α β : Type*} [DecidableEq α] (B : Finset β)
     (t : β → Finset α) (g : α → ℝ) (hg : ∀ a, 0 ≤ g a) :
     ∑ u ∈ B.biUnion t, g u ≤ ∑ f ∈ B, ∑ u ∈ t f, g u := by
@@ -872,7 +999,9 @@ theorem sum_biUnion_le_of_nonneg {α β : Type*} [DecidableEq α] (B : Finset β
       linarith only [ih, h1]
 
 omit [Fintype V] in
-/-- Double counting the incidences `k ∈ H`, `f ∈ meets H k`.-/
+/-- Double counting the incidences `k ∈ H`, `f ∈ meets H k`.
+@isnad1 id=eq.0h3v.s6.06339123f262 from=translated src=- shape=bf3d8262 vocab=b3cee185
+-/
 theorem sum_meets_swap (H : Finset (Finset V)) (g : Finset V → ℝ) :
     ∑ k ∈ H, ∑ f ∈ meets H k, g f = ∑ f ∈ H, ((meets H f).card : ℝ) * g f := by
   classical
@@ -889,6 +1018,9 @@ theorem sum_meets_swap (H : Finset (Finset V)) (g : Finset V → ℝ) :
 /-! ## The flip bound -/
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h4v.s6.7a0637c8f435 from=translated src=- shape=82fd958d vocab=9fc0749e
+-/
 theorem retSet_update_true {H : Finset (Finset V)} {k : Finset V} (hk : k ∈ H)
     (ω : Finset V → Bool) : retSet H (Function.update ω k true) = insert k (retSet H ω) := by
   classical
@@ -898,6 +1030,9 @@ theorem retSet_update_true {H : Finset (Finset V)} {k : Finset V} (hk : k ∈ H)
   · simp [retSet, he]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h4v.s6.eebe77e0a806 from=translated src=- shape=4d4bacff vocab=d2977dd2
+-/
 theorem retSet_update_false (H : Finset (Finset V)) (k : Finset V) (ω : Finset V → Bool) :
     retSet H (Function.update ω k false) = (retSet H ω).erase k := by
   classical
@@ -907,6 +1042,9 @@ theorem retSet_update_false (H : Finset (Finset V)) (k : Finset V) (ω : Finset 
   · simp [retSet, he]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h5v.s6.60d59dcb1f0b from=translated src=- shape=4a23bdda vocab=a216c459
+-/
 theorem retSet_update_of_notMem {H : Finset (Finset V)} {k : Finset V} (hk : k ∉ H)
     (ω : Finset V → Bool) (b : Bool) : retSet H (Function.update ω k b) = retSet H ω := by
   classical
@@ -917,7 +1055,9 @@ theorem retSet_update_of_notMem {H : Finset (Finset V)} {k : Finset V} (hk : k �
 
 omit [Fintype V] in
 /-- The codegree weight of the vertices spanned by a family of edges is at most the total
-codegree weight of the family.-/
+codegree weight of the family.
+@isnad1 id=le.0h4v.s5.b69971f0b290 from=translated src=- shape=8624c686 vocab=bd7b5737
+-/
 theorem sum_codegree_biUnion_le (H : Finset (Finset V)) (v : V) (B : Finset (Finset V)) :
     ∑ u ∈ ((B.biUnion id).erase v), (codegree H v u : ℝ) ≤ ∑ f ∈ B, edgeWeight H v f := by
   classical
@@ -934,12 +1074,18 @@ theorem sum_codegree_biUnion_le (H : Finset (Finset V)) (v : V) (B : Finset (Fin
     _ = ∑ f ∈ B, edgeWeight H v f := rfl
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h5v.s5.806e00a8242e from=translated src=- shape=49f6d414 vocab=01bba423
+-/
 theorem flipWeight_nonneg (H : Finset (Finset V)) (v : V) (k : Finset V) (ω : Finset V → Bool) :
     0 ≤ flipWeight H v k ω := by
   refine Finset.sum_nonneg fun f _ => ?_
   by_cases h : ω f <;> simp [h, edgeWeight_nonneg H v f]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h5v.s6.f9494c7d9ed5 from=translated src=- shape=0ab61896 vocab=0101bdc7
+-/
 theorem D_safeDegCube_of_notMem {H : Finset (Finset V)} {k : Finset V} (hk : k ∉ H) (v : V)
     (ω : Finset V → Bool) : Cube.D k (safeDegCube H v) ω = 0 := by
   simp [Cube.D, safeDegCube, retSet_update_of_notMem hk]
@@ -947,6 +1093,9 @@ theorem D_safeDegCube_of_notMem {H : Finset (Finset V)} {k : Finset V} (hk : k �
 /-! **The bounded-differences bound.**  Flipping the retention of `k` moves the safe degree at `v`
 by at most `edgeWeight k + flipWeight k`. -/
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h5v.s6.894c478e79cc from=translated src=- shape=faaac552 vocab=7b1b63b1
+-/
 theorem abs_D_safeDegCube_le (H : Finset (Finset V)) (v : V) (k : Finset V)
     (ω : Finset V → Bool) :
     |Cube.D k (safeDegCube H v) ω| ≤ edgeWeight H v k + flipWeight H v k ω := by
@@ -1004,6 +1153,9 @@ theorem abs_D_safeDegCube_le (H : Finset (Finset V)) (v : V) (k : Finset V)
 
 /-! ## The second moment of the flip weight -/
 
+/--
+@isnad1 id=le.0h5v.s7.7672740ee69d from=translated src=- shape=a1d45802 vocab=9f42e3f1
+-/
 theorem Exp_flipWeight_sq_le {H : Finset (Finset V)} {p : ℝ} (v : V) (k : Finset V) :
     Cube.Exp p (fun ω => flipWeight H v k ω ^ 2)
       ≤ p * (∑ f ∈ meets H k, edgeWeight H v f ^ 2)
@@ -1012,7 +1164,9 @@ theorem Exp_flipWeight_sq_le {H : Finset (Finset V)} {p : ℝ} (v : V) (k : Fins
 
 /-! ## The variance bound -/
 
-/-- **The sharp per-vertex safe-degree variance bound.**-/
+/-- **The sharp per-vertex safe-degree variance bound.**
+@isnad1 id=le.5h7v.s8.73195bf6e9ca from=translated src=- shape=d1ab4604 vocab=4bd7772b
+-/
 theorem safeDegCube_variance_le {H : Finset (Finset V)} {r Δ κ : ℕ} {p : ℝ}
     (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (hr : IsUniform H r) (hΔ : ∀ y : V, degree H y ≤ Δ)
     (hκ : ∀ y z : V, y ≠ z → codegree H y z ≤ κ) (v : V) :
@@ -1167,7 +1321,9 @@ variable {V : Type*} [DecidableEq V] {Ω : Type*} [MeasureSpace Ω]
 /-! ## The covariance of two edge indicators -/
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The product of two safe indicators is the indicator of the intersection of the safe events.-/
+/-- The product of two safe indicators is the indicator of the intersection of the safe events.
+@isnad1 id=eq.0h9v.s8.2e3c50ac30e8 from=translated src=- shape=41b012ff vocab=a01c484c
+-/
 theorem safeIndicator_mul_eq {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (e e' : Finset V) (ω : Ω) :
     safeIndicator ρ v e ω * safeIndicator ρ v e' ω
@@ -1176,6 +1332,9 @@ theorem safeIndicator_mul_eq {H : Finset (Finset V)} {p : ℝ}
   simp only [safeIndicator, Set.mem_inter_iff, Set.mem_ofPred_eq]
   split_ifs with h1 h2 h3 <;> simp_all
 
+/--
+@isnad1 id=integrab.0h8v.s6.63b63a408e21 from=translated src=- shape=6bd28112 vocab=58d0889f
+-/
 theorem integrable_safeIndicator_mul {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (e e' : Finset V) :
     Integrable (fun ω => safeIndicator ρ v e ω * safeIndicator ρ v e' ω) (ℙ : Measure Ω) := by
@@ -1193,7 +1352,9 @@ theorem integrable_safeIndicator_mul {H : Finset (Finset V)} {p : ℝ}
   split_ifs <;> simp
 
 /-- **The covariance of two edge indicators.**
-`𝔼[X_e X_{e'}] = 1 − ℙ(S_e) − ℙ(S_{e'}) + ℙ(S_e ∩ S_{e'})`.-/
+`𝔼[X_e X_{e'}] = 1 − ℙ(S_e) − ℙ(S_{e'}) + ℙ(S_e ∩ S_{e'})`.
+@isnad1 id=eq.0h8v.s8.26e5da08764b from=translated src=- shape=7c75c0e3 vocab=5e5533e5
+-/
 theorem integral_safeIndicator_mul {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (e e' : Finset V) :
     ∫ ω, safeIndicator ρ v e ω * safeIndicator ρ v e' ω ∂(ℙ : Measure Ω)
@@ -1235,7 +1396,9 @@ theorem integral_safeIndicator_mul {H : Finset (Finset V)} {p : ℝ}
   linarith only [hunion]
 
 /-- **The covariance of two edge indicators.**
-`Cov(X_e, X_{e'}) = ℙ(S_e ∩ S_{e'}) − ℙ(S_e)·ℙ(S_{e'})`.-/
+`Cov(X_e, X_{e'}) = ℙ(S_e ∩ S_{e'}) − ℙ(S_e)·ℙ(S_{e'})`.
+@isnad1 id=eq.0h8v.s8.1f796c852a87 from=translated src=- shape=7f99ca66 vocab=6f741e4f
+-/
 theorem safeIndicator_covariance_eq {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (e e' : Finset V) :
     ∫ ω, safeIndicator ρ v e ω * safeIndicator ρ v e' ω ∂(ℙ : Measure Ω)
@@ -1252,7 +1415,9 @@ theorem safeIndicator_covariance_eq {H : Finset (Finset V)} {p : ℝ}
 /-! ## A union bound for the intersection of two unions -/
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- `ℙ((⋃_{i∈s} f i) ∩ (⋃_{j∈t} g j)) ≤ ∑_i ∑_j ℙ(f i ∩ g j)`.-/
+/-- `ℙ((⋃_{i∈s} f i) ∩ (⋃_{j∈t} g j)) ≤ ∑_i ∑_j ℙ(f i ∩ g j)`.
+@isnad1 id=le.0h7v.s7.f248afd5a3cc from=translated src=- shape=f12f1395 vocab=c4cff896
+-/
 theorem measureReal_inter_biUnion_le {ι ι' : Type*} (s : Finset ι) (t : Finset ι')
     (f : ι → Set Ω) (g : ι' → Set Ω) :
     (ℙ : Measure Ω).real ((⋃ i ∈ s, f i) ∩ (⋃ j ∈ t, g j))
@@ -1285,7 +1450,9 @@ excesses at most `ε₂` and at most `n` non-`v` vertices per edge,
   `Cov(X_e, X_{e'}) ≤ n²ε₂ + |(e ∩ e')∖v|·qhi + 2·(n·qhi)·(n²(qhi² + ε₂))`.
 
 The crucial point is that the first-order `Θ(n²qhi²)` terms CANCEL between the pairwise union bound
-for `ℙ(S_e ∩ S_{e'})` and the second-order Bonferroni lower bound for `ℙ(S_e)·ℙ(S_{e'})`.-/
+for `ℙ(S_e ∩ S_{e'})` and the second-order Bonferroni lower bound for `ℙ(S_e)·ℙ(S_{e'})`.
+@isnad1 id=le.7h11v.s9.71270b934133 from=translated src=- shape=2f20633b vocab=ff7c9c96
+-/
 theorem safeIndicator_covariance_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (v : V) (e e' : Finset V)
     {n : ℕ} {qhi ε₂ : ℝ}
@@ -1428,6 +1595,9 @@ noncomputable def safeDegMean {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) : ℝ :=
   ∑ e ∈ H.filter (fun e => v ∈ e), ∫ ω, safeIndicator ρ v e ω ∂(ℙ : Measure Ω)
 
+/--
+@isnad1 id=eq.0h6v.s6.9306bf6246de from=translated src=- shape=766b42dd vocab=2ca99da7
+-/
 theorem integral_safeDegree_eq {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) :
     ∫ ω, (safeDegree H (covered (retainedSet H ρ ω)) v : ℝ) ∂(ℙ : Measure Ω)
@@ -1436,6 +1606,9 @@ theorem integral_safeDegree_eq {H : Finset (Finset V)} {p : ℝ}
   exact Finset.sum_congr rfl fun e _ => (integral_safeIndicator ρ v e).symm
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=eq.0h7v.s7.1e3b8c94f709 from=translated src=- shape=82cfbac6 vocab=0e37a705
+-/
 theorem safeDegree_sub_mean_eq {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (ω : Ω) :
     (safeDegree H (covered (retainedSet H ρ ω)) v : ℝ) - safeDegMean ρ v
@@ -1443,7 +1616,9 @@ theorem safeDegree_sub_mean_eq {H : Finset (Finset V)} {p : ℝ}
           (safeIndicator ρ v e ω - ∫ ω', safeIndicator ρ v e ω' ∂(ℙ : Measure Ω)) := by
   rw [Finset.sum_sub_distrib, ← safeDegree_eq_sum ρ v ω, safeDegMean]
 
-/-- The centred safe degree has an integrable square (it is a bounded random variable).-/
+/-- The centred safe degree has an integrable square (it is a bounded random variable).
+@isnad1 id=integrab.0h6v.s6.ebe86a8c2306 from=translated src=- shape=a3a68fbd vocab=80b077dd
+-/
 theorem integrable_sq_centered_safeDegree {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) :
     Integrable (fun ω =>
@@ -1467,7 +1642,9 @@ theorem integrable_sq_centered_safeDegree {H : Finset (Finset V)} {p : ℝ}
     ((integrable_safeIndicator ρ v e).const_mul (c e'))).sub
     ((integrable_safeIndicator ρ v e').const_mul (c e))).add (integrable_const _)
 
-/-- **The centred second moment of the safe degree as a double sum of covariances.**-/
+/-- **The centred second moment of the safe degree as a double sum of covariances.**
+@isnad1 id=eq.0h6v.s8.808ded50f664 from=translated src=- shape=6f1e9820 vocab=d6d142a2
+-/
 theorem integral_sq_centered_safeDegree {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) :
     ∫ ω, ((safeDegree H (covered (retainedSet H ρ ω)) v : ℝ) - safeDegMean ρ v) ^ 2
@@ -1535,7 +1712,9 @@ theorem integral_sq_centered_safeDegree {H : Finset (Finset V)} {p : ℝ}
 other vertices per edge, covering rates at most `qhi`, pair excesses at most `ε₂`, and the
 codegree-controlled overlap budget `∑_{e,e'∈H_v} |(e ∩ e')∖v| ≤ Ksum`,
 
-  `Var(safeDeg v) ≤ Δ²·(n²ε₂ + 2n³qhi(qhi² + ε₂)) + Ksum·qhi`.-/
+  `Var(safeDeg v) ≤ Δ²·(n²ε₂ + 2n³qhi(qhi² + ε₂)) + Ksum·qhi`.
+@isnad1 id=le.8h11v.s9.2fd63a1819d9 from=translated src=- shape=6fc77351 vocab=e62aa90b
+-/
 theorem safeDegree_variance_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (v : V)
     {Δ n : ℕ} {qhi ε₂ Ksum : ℝ}
@@ -1590,7 +1769,9 @@ theorem safeDegree_variance_le {H : Finset (Finset V)} {p : ℝ}
 /-! ## The codegree budget for the overlap sum -/
 
 /-- `∑_{e,e' ∋ v} |(e ∩ e')∖v| = ∑_{e ∋ v} ∑_{u ∈ e∖v} codeg(v,u) ≤ deg(v)·n·κ`:  the overlap
-budget in `safeDegree_variance_le` is controlled by the codegree, NOT by `Δ²`.-/
+budget in `safeDegree_variance_le` is controlled by the codegree, NOT by `Δ²`.
+@isnad1 id=le.2h5v.s7.e5f9c116bfc8 from=translated src=- shape=c048f562 vocab=b5e58121
+-/
 theorem sum_pair_overlap_le_codegree {H : Finset (Finset V)} (v : V) {n κ : ℕ}
     (hcard : ∀ e ∈ H.filter (fun e => v ∈ e), (e.erase v).card ≤ n)
     (hκ : ∀ u : V, u ≠ v → codegree H v u ≤ κ) :
@@ -1652,7 +1833,9 @@ satisfy (`ε ≤ 1`).  The obstruction is the `2·Q_e·B_{e'}` term, which comes
 first-order union bound for `ℙ(S_e ∩ S_{e'})` with a SECOND-order Bonferroni lower bound for
 `ℙ(S_e)·ℙ(S_{e'})`; the two errors add rather than cancel.  A third-order Bonferroni would replace
 `Θ(γ³Δ²)` by `Θ(γ⁴Δ²)`, making the bad fraction `≈ Cγ²/ε² ≪ γ/(8r)` for all small enough `γ`.
-That refinement is NOT part of this file.-/
+That refinement is NOT part of this file.
+@isnad1 id=le.8h11v.s9.88993615c14f from=translated src=- shape=513b2213 vocab=b34bd121
+-/
 theorem safeDegree_variance_le_codegree {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (v : V)
     {Δ n κ : ℕ} {qhi ε₂ : ℝ}
@@ -1742,10 +1925,16 @@ noncomputable def safeBad {H : Finset (Finset V)} {p : ℝ}
   ∑ v : V, ((safeDegree H (covered (retainedSet H ρ ω)) v : ℝ) - safeDegMean ρ v) ^ 2 / t ^ 2
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=le.0h7v.s5.89331c750dce from=translated src=- shape=58aed445 vocab=6b3b6dcc
+-/
 theorem safeBad_nonneg {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (t : ℝ) (ω : Ω) : 0 ≤ safeBad ρ t ω :=
   Finset.sum_nonneg fun _ _ => div_nonneg (sq_nonneg _) (sq_nonneg _)
 
+/--
+@isnad1 id=integrab.0h6v.s6.79ab89bac29d from=translated src=- shape=f8d288dc vocab=3c7d6971
+-/
 theorem integrable_safeBad {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (t : ℝ) :
     Integrable (safeBad ρ t) (ℙ : Measure Ω) := by
@@ -1756,7 +1945,9 @@ theorem integrable_safeBad {H : Finset (Finset V)} {p : ℝ}
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
 /-- The number of vertices whose safe degree deviates by at least `t` is at most the aggregated
-safe-degree badness.-/
+safe-degree badness.
+@isnad1 id=le.1h7v.s7.7ca631ce9a6b from=translated src=- shape=5e068361 vocab=70b5b241
+-/
 theorem card_safeBadSet_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {t : ℝ} (ht : 0 < t) (ω : Ω) :
     ((Finset.univ.filter (fun v : V =>
@@ -1787,7 +1978,9 @@ theorem card_safeBadSet_le {H : Finset (Finset V)} {p : ℝ}
     _ ≤ ∑ v : V, f v :=
         Finset.sum_le_sum_of_subset_of_nonneg (Finset.filter_subset _ _) (fun v _ _ => hf0 v)
 
-/-- The mean of the aggregated safe-degree badness, from the per-vertex variance bound.-/
+/-- The mean of the aggregated safe-degree badness, from the per-vertex variance bound.
+@isnad1 id=le.2h7v.s7.b985f6947a98 from=translated src=- shape=3022b51a vocab=eba6347b
+-/
 theorem integral_safeBad_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {t Vs : ℝ} (ht : 0 < t)
     (hVs : ∀ v : V, ∫ ω, ((safeDegree H (covered (retainedSet H ρ ω)) v : ℝ) - safeDegMean ρ v) ^ 2
@@ -1814,7 +2007,9 @@ most `Vs`, the covered-count variance at most `Cvar`, the expected coverage at l
   `N·(Vs/t²)/a + Cvar/(Q/2)² < 1`,
 
 then there is an outcome with fewer than `a` exceptional vertices, all remaining vertices having
-their safe degree within `t` of its mean, and at least `Q/2` covered vertices.-/
+their safe degree within `t` of its mean, and at least `Q/2` covered vertices.
+@isnad1 id=ex.7h10v.s8.6906dbdab0ab from=translated src=- shape=8513eb90 vocab=c322f694
+-/
 theorem exists_safe_round_cheb {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p)
     {t a Q Vs Cvar : ℝ} (ht : 0 < t) (ha : 0 < a) (hQ : 0 < Q)
@@ -1908,6 +2103,9 @@ noncomputable def cubeMeasure (p : ℝ) : Measure (ι → Bool) :=
 @[instance_reducible]
 noncomputable def cubeSpace (p : ℝ) : MeasureSpace (ι → Bool) := ⟨cubeMeasure p⟩
 
+/--
+@isnad1 id=eq.2h3v.s7.90cfb9d0b571 from=translated src=- shape=e710d3ec vocab=3bbc797d
+-/
 theorem cubeMeasure_apply {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (A : Set (ι → Bool)) :
     cubeMeasure p A = ENNReal.ofReal (∑ ω, wt p ω * Set.indicator A 1 ω) := by
   classical
@@ -1921,6 +2119,9 @@ theorem cubeMeasure_apply {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (A : Set (ι
   congr 1
   by_cases h : ω ∈ A <;> simp [h]
 
+/--
+@isnad1 id=isprobab.2h2v.s5.63815703b7f8 from=translated src=- shape=ed3d029a vocab=7950d69e
+-/
 theorem isProbabilityMeasure_cubeMeasure {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     IsProbabilityMeasure (cubeMeasure (ι := ι) p) := by
   constructor
@@ -1929,7 +2130,9 @@ theorem isProbabilityMeasure_cubeMeasure {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 
   rw [sum_wt]
   simp
 
-/-- Integrals against the cube measure are the elementary sums `Exp`.-/
+/-- Integrals against the cube measure are the elementary sums `Exp`.
+@isnad1 id=eq.2h3v.s6.9aad09fb0d5e from=translated src=- shape=22089e41 vocab=7064c4cc
+-/
 theorem integral_cubeMeasure {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (f : (ι → Bool) → ℝ) :
     ∫ ω, f ω ∂(cubeMeasure p) = Exp p f := by
   rw [cubeMeasure, integral_finsetSum_measure]
@@ -1942,6 +2145,9 @@ theorem integral_cubeMeasure {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (f : (ι 
 
 /-! ## Independence of the coordinates -/
 
+/--
+@isnad1 id=eq.0h3v.s7.d40cfb53b810 from=translated src=- shape=d13a18b3 vocab=cb29d02f
+-/
 theorem indicator_biInter_eq (S : Finset ι) (ω : ι → Bool) :
     Set.indicator (⋂ e ∈ S, {ω : ι → Bool | ω e = true}) 1 ω
       = ∏ i, (if i ∈ S then (if ω i then (1 : ℝ) else 0) else 1) := by
@@ -1963,6 +2169,9 @@ theorem indicator_biInter_eq (S : Finset ι) (ω : ι → Bool) :
     refine (Finset.prod_eq_zero (Finset.mem_univ e) ?_).symm
     simp [heS, he]
 
+/--
+@isnad1 id=eq.0h3v.s6.f4cc6145ab07 from=translated src=- shape=5f10037b vocab=96968aa8
+-/
 theorem Exp_indicator_biInter (p : ℝ) (S : Finset ι) :
     Exp p (fun ω => Set.indicator (⋂ e ∈ S, {ω : ι → Bool | ω e = true}) 1 ω) = p ^ S.card := by
   classical
@@ -1973,16 +2182,25 @@ theorem Exp_indicator_biInter (p : ℝ) (S : Finset ι) :
     (fun i _ => by by_cases hi : i ∈ S <;> simp [hi]), ← Finset.prod_filter]
   simp
 
+/--
+@isnad1 id=eq.2h3v.s7.0db50f413bf7 from=translated src=- shape=15efb593 vocab=4f2664d2
+-/
 theorem cubeMeasure_biInter {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (S : Finset ι) :
     cubeMeasure p (⋂ e ∈ S, {ω : ι → Bool | ω e = true}) = ENNReal.ofReal (p ^ S.card) := by
   rw [cubeMeasure_apply hp0 hp1]
   exact congrArg ENNReal.ofReal (Exp_indicator_biInter p S)
 
+/--
+@isnad1 id=eq.2h3v.s6.f4476ca6bb47 from=translated src=- shape=90edb6d4 vocab=a5e5ae96
+-/
 theorem cubeMeasure_coord {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (e : ι) :
     cubeMeasure p {ω : ι → Bool | ω e = true} = ENNReal.ofReal p := by
   have h := cubeMeasure_biInter hp0 hp1 ({e} : Finset ι)
   simpa using h
 
+/--
+@isnad1 id=iindepse.2h2v.s6.ffb5c498937d from=translated src=- shape=56ade235 vocab=bc666d1c
+-/
 theorem iIndepSet_cubeCoord {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     iIndepSet (fun e : ι => {ω : ι → Bool | ω e = true}) (cubeMeasure p) := by
   refine (iIndepSet_iff_meas_biInter (fun _ => MeasurableSet.of_discrete)).mpr fun S => ?_
@@ -1992,6 +2210,9 @@ theorem iIndepSet_cubeCoord {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
 
 /-! ## Efron–Stein in integral form -/
 
+/--
+@isnad1 id=le.2h3v.s7.8071c9209470 from=translated src=- shape=98a30387 vocab=64aec7b8
+-/
 theorem cube_centred_sq_le {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (f : (ι → Bool) → ℝ) :
     ∫ ω, (f ω - ∫ ω', f ω' ∂(cubeMeasure p)) ^ 2 ∂(cubeMeasure p)
       ≤ ∑ i : ι, p * (1 - p)
@@ -2020,6 +2241,9 @@ noncomputable def cubeRetention (H : Finset (Finset V)) {p : ℝ} (hp0 : 0 ≤ p
       exact (measurable_pi_apply e) (measurableSet_singleton true))
     (iIndepSet_cubeCoord hp0 hp1) (fun e _ => cubeMeasure_coord hp0 hp1 e)
 
+/--
+@isnad1 id=eq.2h4v.s6.0ff7c62507e8 from=translated src=- shape=e05860b4 vocab=3023e17a
+-/
 theorem retainedSet_cubeRetention (H : Finset (Finset V)) {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (ω : Finset V → Bool) :
     @retainedSet V _ (Finset V → Bool) (cubeSpace p) H p (cubeRetention H hp0 hp1) ω
@@ -2054,7 +2278,9 @@ namespace LeanPool.AsymptoticTrianglePacking.Internal
 
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
-/-- **The sharp per-vertex safe-degree variance, in integral form.**-/
+/-- **The sharp per-vertex safe-degree variance, in integral form.**
+@isnad1 id=le.5h7v.s8.8843b5570979 from=translated src=- shape=7ff08820 vocab=ac9747ff
+-/
 theorem integral_centered_safeDegree_cube_le
     (K : Finset (Finset V)) {r Δ κ : ℕ} {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (hr : IsUniform K r) (hΔ : ∀ y : V, degree K y ≤ Δ)
@@ -2088,6 +2314,9 @@ theorem integral_centered_safeDegree_cube_le
   rw [hrw]
   exact safeDegCube_variance_le hp0 hp1 hr hΔ hκ v
 
+/--
+@isnad1 id=eq.2h4v.s6.1a6e804b8d44 from=translated src=- shape=7c4fe880 vocab=bf058716
+-/
 theorem safeDegMean_cubeRetention (K : Finset (Finset V)) {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (v : V) :
     @safeDegMean V _ (Finset V → Bool) (Cube.cubeSpace p) K p (cubeRetention K hp0 hp1) v
@@ -2117,7 +2346,9 @@ uncovered vertex outside an exceptional set of size `< a` with residual degree i
 
 The variance input is the SHARP Efron–Stein bound
 `LeanPool.AsymptoticTrianglePacking.Internal.safeDegCube_variance_le`:
-`Vs = 2p·r²κΔ²(1 + prΔ + (prΔ)²)`, which carries NO `Δ²` term at `p = γ/(rΔ)`.-/
+`Vs = 2p·r²κΔ²(1 + prΔ + (prΔ)²)`, which carries NO `Δ²` term at `p = γ/(rΔ)`.
+@isnad1 id=ex.14h12v.s10.1b2cafa54bea from=translated src=- shape=b74d01ab vocab=bc90ab76
+-/
 theorem exists_sharp_round_band {K : Finset (Finset V)} (A : Finset V) {r Δ δ κ : ℕ}
     {p t a mlo : ℝ} {mhi : V → ℝ}
     (hp0 : 0 < p) (hp1 : p < 1) (hr1 : 1 ≤ r) (hr : IsUniform K r)
@@ -2197,7 +2428,9 @@ theorem exists_sharp_round_band {K : Finset (Finset V)} (A : Finset V) {r Δ δ 
 
 /-! ## The deterministic mean estimates -/
 
-/-- **Floor for the mean safe degree** (union bound on the covering events).-/
+/-- **Floor for the mean safe degree** (union bound on the covering events).
+@isnad1 id=le.5h6v.s7.b81e832b683c from=translated src=- shape=560758fb vocab=78aa5791
+-/
 theorem Exp_safeDegCube_ge {K : Finset (Finset V)} {r Δ : ℕ} {p : ℝ}
     (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (hr1 : 1 ≤ r) (hr : IsUniform K r)
     (hΔ : ∀ y : V, degree K y ≤ Δ) (v : V) :
@@ -2240,7 +2473,9 @@ theorem Exp_safeDegCube_ge {K : Finset (Finset V)} {r Δ : ℕ} {p : ℝ}
 
 /-- **Ceiling for the mean safe degree** (second Bonferroni inequality), with the degree floor
 used only on the active set `A`: the drop is carried by the `deg(v) − lostDegree K Aᶜ v` edges at
-`v` that stay inside `A`.-/
+`v` that stay inside `A`.
+@isnad1 id=le.7h9v.s8.80f804569968 from=translated src=- shape=ce8e0558 vocab=4e46f69e
+-/
 theorem Exp_safeDegCube_le {K : Finset (Finset V)} (A : Finset V) {r Δ δ κ : ℕ} {p : ℝ}
     (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (hr2 : 2 ≤ r) (hr : IsUniform K r)
     (hΔ : ∀ y : V, degree K y ≤ Δ) (hδA : ∀ y ∈ A, δ ≤ degree K y)
@@ -2426,6 +2661,9 @@ namespace LeanPool.AsymptoticTrianglePacking.Internal
 variable {V : Type*} [Fintype V] [DecidableEq V]
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s4.0803b8c9c948 from=translated src=- shape=ae15e142 vocab=d74f93ea
+-/
 theorem lostDegree_le_degree (K : Finset (Finset V)) (B : Finset V) (v : V) :
     lostDegree K B v ≤ degree K v := by
   classical
@@ -2436,7 +2674,9 @@ theorem lostDegree_le_degree (K : Finset (Finset V)) (B : Finset V) (v : V) :
 
 /-- **Second-order upper bound for `(1 − p)^m`.**  For `0 ≤ p ≤ 1`,
 `(1 − p)^m ≤ 1 − mp + (mp)²/2`; at `mp = γ` this is `1 − γ + γ²/2`, the bound that cancels the
-`(1 − γ)` factor of the requested ceiling drop.-/
+`(1 − γ)` factor of the requested ceiling drop.
+@isnad1 id=le.2h2v.s7.c72e6875a74b from=translated src=- shape=e79b7b2c vocab=a8e1e6c9
+-/
 theorem one_sub_pow_le_quadratic {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (m : ℕ) :
     (1 - p) ^ m ≤ 1 - (m : ℝ) * p + ((m : ℝ) * p) ^ 2 / 2 := by
   induction m with
@@ -2453,7 +2693,9 @@ theorem one_sub_pow_le_quadratic {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (m : 
 
 /-- **The rounding/`(1−p)^{rΔ}` discrepancy of the ceiling drop.**  With `dn = ⌈δ⌉₊`, `Dn = ⌊Δ⌋₊`
 and `L = (1−p)^{rDn} ≤ 1 − γ + γ²/2`, the achieved relative drop `dn·L/Dn` exceeds the requested one
-`δ(1−γ)/Δ` by at most `γ²  + 3/Δ` in relative terms — i.e. `Δ·(dn L/Dn) ≤ δ(1−γ) + γ²Δ + 3`.-/
+`δ(1−γ)/Δ` by at most `γ²  + 3/Δ` in relative terms — i.e. `Δ·(dn L/Dn) ≤ δ(1−γ) + γ²Δ + 3`.
+@isnad1 id=le.10h6v.s8.34a0a98c5ea7 from=translated src=- shape=0514ddc1 vocab=762a6581
+-/
 theorem sharp_drop_ratio_le (γ δ Δ Dn dn L : ℝ)
     (hγ0 : 0 < γ) (hγ1 : γ ≤ 1 / 2) (hδ2 : 2 ≤ δ) (hδΔ : δ ≤ Δ)
     (hDn3 : 3 ≤ Dn) (hΔDn : Δ < Dn + 1)
@@ -2483,7 +2725,9 @@ theorem sharp_drop_ratio_le (γ δ Δ Dn dn L : ℝ)
 
 /-- **The survival factor of one round.**  For `m·p = γ` with `0 ≤ p ≤ 1`, Bernoulli and
 `LeanPool.AsymptoticTrianglePacking.Internal.one_sub_pow_le_quadratic` pin `(1 − p)^m` between `1 −
-γ` and `1 − γ + γ²/2`.-/
+γ` and `1 − γ + γ²/2`.
+@isnad1 id=and.3h3v.s7.bc62fd2ac9da from=translated src=- shape=20b1e8d2 vocab=a8e1e6c9
+-/
 theorem sharp_survival_bounds {p γ : ℝ} {m : ℕ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (hpγ : (m : ℝ) * p = γ) :
     1 - γ ≤ (1 - p) ^ m ∧ (1 - p) ^ m ≤ 1 - γ + γ ^ 2 / 2 := by
@@ -2498,7 +2742,9 @@ theorem sharp_survival_bounds {p γ : ℝ} {m : ℕ} (hp0 : 0 ≤ p) (hp1 : p �
     exact h
 
 /-- **The mean ceiling is monotone in the degree.**  Replacing the degree `D` of a vertex by the
-global ceiling `Dn` and its floor by `dn` can only increase the mean safe degree estimate.-/
+global ceiling `Dn` and its floor by `dn` can only increase the mean safe degree estimate.
+@isnad1 id=le.5h7v.s7.239c78971a4c from=translated src=- shape=ff3bc5f5 vocab=6bfb30e3
+-/
 theorem sharp_mean_ceiling_arith {D Dn dn l W C X : ℝ} (hW : 0 ≤ W) (hC : 0 ≤ C) (hX : 0 ≤ X)
     (h1 : D ≤ Dn) (h2 : dn ≤ D) :
     D - (D - l) * W + D * C * X ≤ Dn - (dn - l) * W + Dn * C * X := by
@@ -2508,7 +2754,9 @@ theorem sharp_mean_ceiling_arith {D Dn dn l W C X : ℝ} (hW : 0 ≤ W) (hC : 0 
   linarith
 
 /-- **The cover rate of one round.**  With `p = γ/(rD)`, a floor `dn ≥ D/2` and a survival factor
-`L ≥ 1/2`, each active vertex is matched with probability at least `γ/(8r)`.-/
+`L ≥ 1/2`, each active vertex is matched with probability at least `γ/(8r)`.
+@isnad1 id=le.6h6v.s7.75b9723d4500 from=translated src=- shape=c8887e8b vocab=c96aef97
+-/
 theorem sharp_cover_rate_le {rr γ Dn dn p L : ℝ} (hR0 : 0 < rr) (hDn0 : 0 < Dn)
     (hdnhalf : Dn / 2 ≤ dn) (hLhalf : 1 / 2 ≤ L) (hp0 : 0 < p) (hpγ : rr * Dn * p = γ) :
     γ / (8 * rr) ≤ dn * (p * L) / 2 := by
@@ -2521,7 +2769,9 @@ theorem sharp_cover_rate_le {rr γ Dn dn p L : ℝ} (hR0 : 0 < rr) (hDn0 : 0 < D
     (show (0 : ℝ) ≤ 4 * rr * p by positivity), hpγ]
 
 /-- **The second-order (Bonferroni) error of the mean safe degree.**  With `p = γ/(rD)` the residue
-`D(r−1)(r−2)(D²p² + κp)` is at most `Δγ² + rκγ`.-/
+`D(r−1)(r−2)(D²p² + κp)` is at most `Δγ² + rκγ`.
+@isnad1 id=le.7h7v.s8.0d9eef6341cb from=translated src=- shape=58c181d8 vocab=d8e6b3e9
+-/
 theorem sharp_bonferroni_error_le {rr γ Δ Dn kn p Err : ℝ} (hR2 : 2 ≤ rr) (hDn0 : 0 ≤ Dn)
     (hkn0 : 0 ≤ kn) (hp0 : 0 < p) (hpγ : rr * Dn * p = γ) (hDn_le : Dn ≤ Δ)
     (hErrdef : Err = Dn * ((rr - 1) * (rr - 2)) * (Dn ^ 2 * p ^ 2 + kn * p)) :
@@ -2538,7 +2788,9 @@ theorem sharp_bonferroni_error_le {rr γ Δ Dn kn p Err : ℝ} (hR2 : 2 ≤ rr) 
   linarith only [h1, mul_le_mul_of_nonneg_right hDn_le (sq_nonneg γ)]
 
 /-- **The codegree share of the tolerance budget.**  At `κ ≤ θε²γα²D/(8192r)` the codegree term
-`rκγ` of the ceiling drop uses at most a `1/32` of the budget `εγΔ`.-/
+`rκγ` of the ceiling drop uses at most a `1/32` of the budget `εγΔ`.
+@isnad1 id=le.12h8v.s8.75764621b16b from=translated src=- shape=7cadd443 vocab=d8b90f1e
+-/
 theorem sharp_codegree_tolerance_le {rr γ ε θ α Δ Dn kn : ℝ} (hR0 : 0 < rr) (hγ0 : 0 < γ)
     (hγ1 : γ ≤ 1 / 2) (hε0 : 0 < ε) (hε1 : ε ≤ 1) (hθ0 : 0 < θ) (hθ1 : θ ≤ 1) (hα0 : 0 < α)
     (hα1 : α ≤ 1) (hDn0 : 0 ≤ Dn) (hDn_le : Dn ≤ Δ)
@@ -2564,7 +2816,9 @@ theorem sharp_codegree_tolerance_le {rr γ ε θ α Δ Dn kn : ℝ} (hR0 : 0 < r
 /-- **The ceiling clause of the round, in arithmetic form.** The mean ceiling `Dn − Sγ(dn−l)d + Err`
 produced by the Chebyshev band, plus the tolerance `t`, still fits below the requested ceiling
 `Δ − Sγ(δ−l)c + εγΔ`, where `c = δ(1−γ)/Δ` is the requested relative drop and `d = dn·L/Dn` the
-achieved one: the five error terms use `1/2 + 1/4 + 1/16 + 1/32 + 1/32 < 1` of the budget.-/
+achieved one: the five error terms use `1/2 + 1/4 + 1/16 + 1/32 + 1/32 < 1` of the budget.
+@isnad1 id=le.20h14v.s9.9fa7ce85af13 from=translated src=- shape=7ebc8978 vocab=762a6581
+-/
 theorem sharp_ceiling_clause_arith {S γ ε δ dn Δ Dn l c d Err t x e : ℝ}
     (hSnn : 0 ≤ S) (hS1 : S ≤ 1) (hγ0 : 0 < γ) (hΔ0 : 0 < Δ) (hδ2 : 2 ≤ δ) (hδdn : δ ≤ dn)
     (hlΔ : l ≤ Δ) (hcd : c ≤ d) (hd0 : 0 ≤ d) (hΔc : Δ * c = δ * (1 - γ))
@@ -2598,7 +2852,9 @@ theorem sharp_ceiling_clause_arith {S γ ε δ dn Δ Dn l c d Err t x e : ℝ}
 `LeanPool.AsymptoticTrianglePacking.Internal.exists_sharp_round_band`, at the
 parameters of `LeanPool.AsymptoticTrianglePacking.Internal.sharpRoundFor_of_two_gamma_le_eps`
 (tolerance `t = εγDn/16`, codegree
-`kn ≤ θε²γα²Dn/(8192r)`).-/
+`kn ≤ θε²γα²Dn/(8192r)`).
+@isnad1 id=lt.20h13v.s9.7e75b24e5196 from=translated src=- shape=801fc82a vocab=341180a7
+-/
 theorem sharp_smallness_numeric (r : ℕ) (hr2 : 2 ≤ r) (γ ε θ α N Dn dn kn Ac p L t : ℝ)
     (hγ0 : 0 < γ) (hγ1 : γ ≤ 1 / 2) (hε0 : 0 < ε) (hε1 : ε ≤ 1)
     (hθ0 : 0 < θ) (hθ1 : θ ≤ 1) (hα0 : 0 < α) (hα1 : α ≤ 1)
@@ -2714,7 +2970,9 @@ theorem sharp_smallness_numeric (r : ℕ) (hr2 : 2 ≤ r) (γ ε θ α N Dn dn k
 /-- **The sharp LeanPool.AsymptoticTrianglePacking.Internal round, assembled**, in the regime `2γ ≤
 ε` — the regime the tight-band
 schedule `LeanPool.AsymptoticTrianglePacking.Internal.exists_tightParams` actually uses (`ε =
-4((r−1)/r)γ ≥ 2γ`).-/
+4((r−1)/r)γ ≥ 2γ`).
+@isnad1 id=sharprou.9h5v.s8.3ded80e5fa06 from=translated src=- shape=72fc56c5 vocab=d42e3b22
+-/
 theorem sharpRoundFor_of_two_gamma_le_eps (r : ℕ) (hr2 : 2 ≤ r) (γ ε θ α : ℝ)
     (hγ0 : 0 < γ) (hγ1 : γ ≤ 1 / 2) (hε1 : ε ≤ 1) (hγε : 2 * γ ≤ ε)
     (hθ0 : 0 < θ) (hθ1 : θ ≤ 1) (hα0 : 0 < α) (hα1 : α ≤ 1) :
@@ -2930,7 +3188,9 @@ that are covered simultaneously), while `SharpRoundFor` allows an absolute error
 some hypothesis of the form `γ = O(ε)` is necessary for a round built from the uniform retention
 `p = γ/(rΔ)`. The constant `2` is below the schedule's own ratio:
 `LeanPool.AsymptoticTrianglePacking.Internal.exists_tightParams`
-sets `ε = 4((r−1)/r)γ ≥ 2γ`.-/
+sets `ε = 4((r−1)/r)γ ≥ 2γ`.
+@isnad1 id=ex.9h5v.s7.c1ef23cf5c30 from=translated src=- shape=989ee5a5 vocab=66a09819
+-/
 theorem sharpRoundHyp_of_two_gamma_le_eps (r : ℕ) (hr2 : 2 ≤ r) (γ ε θ α : ℝ)
     (hγ0 : 0 < γ) (hγ1 : γ ≤ 1 / 2) (hε1 : ε ≤ 1) (hγε : 2 * γ ≤ ε)
     (hθ0 : 0 < θ) (hθ1 : θ ≤ 1) (hα0 : 0 < α) (hα1 : α ≤ 1) :
@@ -2945,7 +3205,9 @@ theorem sharpRoundHyp_of_two_gamma_le_eps (r : ℕ) (hr2 : 2 ≤ r) (γ ε θ α
 
 /-- **`LeanPool.AsymptoticTrianglePacking.Internal.SharpRoundHyp` in the regime `8γ ≤ ε`**, a
 special case of
-`LeanPool.AsymptoticTrianglePacking.Internal.sharpRoundHyp_of_two_gamma_le_eps`.-/
+`LeanPool.AsymptoticTrianglePacking.Internal.sharpRoundHyp_of_two_gamma_le_eps`.
+@isnad1 id=ex.9h5v.s7.693693e67c9d from=translated src=- shape=989ee5a5 vocab=66a09819
+-/
 theorem sharpRoundHyp_of_gamma_le_eps (r : ℕ) (hr2 : 2 ≤ r) (γ ε θ α : ℝ)
     (hγ0 : 0 < γ) (hγ1 : γ ≤ 1 / 2) (hε1 : ε ≤ 1) (hγε : 8 * γ ≤ ε)
     (hθ0 : 0 < θ) (hθ1 : θ ≤ 1) (hα0 : 0 < α) (hα1 : α ≤ 1) :

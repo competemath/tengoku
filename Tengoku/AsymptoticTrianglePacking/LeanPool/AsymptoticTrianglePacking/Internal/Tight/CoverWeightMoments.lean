@@ -57,11 +57,17 @@ noncomputable def coverInd {H : Finset (Finset V)} {p : ℝ}
   if u ∈ covered (retainedSet H ρ ω) then 1 else 0
 
 omit [Fintype V] [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=measurab.0h6v.s5.5fb1261fc4d5 from=translated src=- shape=f2a3039b vocab=ec9ff292
+-/
 theorem measurable_coverInd {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (u : V) : Measurable (coverInd ρ u) :=
   Measurable.ite (measurableSet_vertex_covered ρ u) measurable_const measurable_const
 
 omit [Fintype V] in
+/--
+@isnad1 id=integrab.0h6v.s6.8f376a8ec447 from=translated src=- shape=3fad3433 vocab=bb712b49
+-/
 theorem integrable_coverInd {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (u : V) :
     Integrable (coverInd ρ u) (ℙ : Measure Ω) := by
@@ -70,6 +76,9 @@ theorem integrable_coverInd {H : Finset (Finset V)} {p : ℝ}
   rw [coverInd]; split_ifs <;> simp
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.2h6v.s6.2526ff6b9d42 from=translated src=- shape=f0099462 vocab=9281525a
+-/
 theorem integral_coverInd {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (u : V) :
     ∫ ω, coverInd ρ u ω ∂(ℙ : Measure Ω) = coverRate H p u := by
@@ -80,7 +89,9 @@ theorem integral_coverInd {H : Finset (Finset V)} {p : ℝ}
   rw [hind, integral_indicator_one hm, prob_vertex_covered_eq ρ hp0 hp1 u]
 
 omit [Fintype V] [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The product of two covering indicators is the indicator of the joint event.-/
+/-- The product of two covering indicators is the indicator of the joint event.
+@isnad1 id=eq.0h7v.s7.bfe94dc7724a from=translated src=- shape=b4c83a16 vocab=0914e6f8
+-/
 theorem coverInd_mul {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (u u' : V) :
     (fun ω => coverInd ρ u ω * coverInd ρ u' ω)
@@ -92,6 +103,9 @@ theorem coverInd_mul {H : Finset (Finset V)} {p : ℝ}
     by_cases h2 : u' ∈ covered (retainedSet H ρ ω) <;> simp [h1, h2]
 
 omit [Fintype V] [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=eq.0h7v.s7.9fee82dd7be8 from=translated src=- shape=94691904 vocab=9cfef236
+-/
 theorem integral_coverInd_mul {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (u u' : V) :
     ∫ ω, coverInd ρ u ω * coverInd ρ u' ω ∂(ℙ : Measure Ω)
@@ -104,6 +118,9 @@ theorem integral_coverInd_mul {H : Finset (Finset V)} {p : ℝ}
   rw [coverInd_mul ρ u u', integral_indicator_one (hmu.inter hmu')]
 
 omit [Fintype V] in
+/--
+@isnad1 id=integrab.0h7v.s6.01a8d2a1461c from=translated src=- shape=e7449177 vocab=4b34e9f3
+-/
 theorem integrable_coverInd_mul {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (u u' : V) :
     Integrable (fun ω => coverInd ρ u ω * coverInd ρ u' ω) (ℙ : Measure Ω) := by
@@ -121,6 +138,9 @@ noncomputable def coverIndC {H : Finset (Finset V)} {p : ℝ}
   coverInd ρ u ω - coverRate H p u
 
 omit [Fintype V] in
+/--
+@isnad1 id=integrab.0h7v.s6.1e5847e8ed46 from=translated src=- shape=e7449177 vocab=73abc657
+-/
 theorem integrable_coverIndC_mul {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (u u' : V) :
     Integrable (fun ω => coverIndC ρ u ω * coverIndC ρ u' ω) (ℙ : Measure Ω) := by
@@ -136,7 +156,9 @@ theorem integrable_coverIndC_mul {H : Finset (Finset V)} {p : ℝ}
       ((integrable_coverInd ρ u').const_mul _)).add (integrable_const _)
 
 omit [Fintype V] in
-/-- **The pair covariance.**-/
+/-- **The pair covariance.**
+@isnad1 id=eq.2h7v.s7.77b127293d9e from=translated src=- shape=d596608b vocab=adfe0d85
+-/
 theorem integral_coverIndC_mul {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (u u' : V) :
     ∫ ω, coverIndC ρ u ω * coverIndC ρ u' ω ∂(ℙ : Measure Ω)
@@ -168,7 +190,9 @@ theorem integral_coverIndC_mul {H : Finset (Finset V)} {p : ℝ}
 
 /-! ## The loss weight as a linear form -/
 
-/-- `coverWeight` written as a linear form in the covering indicators.-/
+/-- `coverWeight` written as a linear form in the covering indicators.
+@isnad1 id=eq.0h4v.s6.da49bc14376f from=translated src=- shape=2a2c2719 vocab=4b631f3b
+-/
 theorem coverWeight_eq_linear (H : Finset (Finset V)) (v : V) (C : Finset V) :
     (coverWeight H v C : ℝ)
       = ∑ u ∈ (Finset.univ : Finset V).erase v,
@@ -195,13 +219,18 @@ noncomputable def lossWeightMean (H : Finset (Finset V)) (p : ℝ) (v : V) : ℝ
   ∑ u ∈ (Finset.univ : Finset V).erase v, (codegree H v u : ℝ) * coverRate H p u
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=eq.0h7v.s6.e6d00e6363d4 from=translated src=- shape=d8847c76 vocab=01980ba1
+-/
 theorem lossWeight_eq' {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (ω : Ω) :
     (coverWeight H v (covered (retainedSet H ρ ω)) : ℝ) = lossWeight ρ v ω := by
   rw [coverWeight_eq_linear]
   rfl
 
-/-- **The mean of the loss weight.**-/
+/-- **The mean of the loss weight.**
+@isnad1 id=eq.2h6v.s6.db0b23bd40e0 from=translated src=- shape=da2e5767 vocab=e2e9a977
+-/
 theorem integral_lossWeight {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (v : V) :
     ∫ ω, lossWeight ρ v ω ∂(ℙ : Measure Ω) = lossWeightMean H p v := by
@@ -211,7 +240,9 @@ theorem integral_lossWeight {H : Finset (Finset V)} {p : ℝ}
     rw [integral_const_mul, integral_coverInd ρ hp0 hp1 u])
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The centred loss weight as a linear form in the centred indicators.-/
+/-- The centred loss weight as a linear form in the centred indicators.
+@isnad1 id=eq.0h7v.s6.e6f98bd7ee83 from=translated src=- shape=cd1d70b6 vocab=d5f23f63
+-/
 theorem lossWeight_sub_mean {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (ω : Ω) :
     lossWeight ρ v ω - lossWeightMean H p v
@@ -219,7 +250,9 @@ theorem lossWeight_sub_mean {H : Finset (Finset V)} {p : ℝ}
   rw [lossWeight, lossWeightMean, ← Finset.sum_sub_distrib]
   exact Finset.sum_congr rfl (fun u _ => by rw [coverIndC]; ring)
 
-/-- **The centred second moment of the loss weight**, as an exact double sum.-/
+/-- **The centred second moment of the loss weight**, as an exact double sum.
+@isnad1 id=eq.2h6v.s8.a2aad22d8524 from=translated src=- shape=bfefa5ef vocab=443f67e6
+-/
 theorem integral_sq_centered_lossWeight {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (v : V) :
     ∫ ω, (lossWeight ρ v ω - lossWeightMean H p v) ^ 2 ∂(ℙ : Measure Ω)

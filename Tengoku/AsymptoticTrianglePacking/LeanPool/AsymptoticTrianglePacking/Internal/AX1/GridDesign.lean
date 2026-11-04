@@ -43,7 +43,9 @@ namespace Nibble.AX1
 /-- The shift `f(j,k) = (j+k) mod n`.-/
 def gridShift (n : ℕ) (j k : Fin n) : ℕ := (j.val + k.val) % n
 
-/-- **The `U`–`W` block pair is used at most once**: `(j,k) ↦ (f(j,k), j)` is injective.-/
+/-- **The `U`–`W` block pair is used at most once**: `(j,k) ↦ (f(j,k), j)` is injective.
+@isnad1 id=injectiv.0h1v.s5.098626779d8a from=translated src=- shape=e3e1dd88 vocab=6e0eac6d
+-/
 theorem gridShift_UW_injective {n : ℕ} :
     Function.Injective (fun p : Fin n × Fin n => (gridShift n p.1 p.2, p.1.val)) := by
   rintro ⟨j, k⟩ ⟨j', k'⟩ h
@@ -58,7 +60,9 @@ theorem gridShift_UW_injective {n : ℕ} :
     rwa [Nat.mod_eq_of_lt k.isLt, Nat.mod_eq_of_lt k'.isLt] at hmod
   exact Prod.ext rfl (Fin.ext hk)
 
-/-- **The `U`–`X` block pair is used at most once**: `(j,k) ↦ (f(j,k), k)` is injective.-/
+/-- **The `U`–`X` block pair is used at most once**: `(j,k) ↦ (f(j,k), k)` is injective.
+@isnad1 id=injectiv.0h1v.s5.ba6b4026d002 from=translated src=- shape=02b0761c vocab=6e0eac6d
+-/
 theorem gridShift_UX_injective {n : ℕ} :
     Function.Injective (fun p : Fin n × Fin n => (gridShift n p.1 p.2, p.2.val)) := by
   rintro ⟨j, k⟩ ⟨j', k'⟩ h
@@ -75,7 +79,9 @@ theorem gridShift_UX_injective {n : ℕ} :
     rwa [Nat.mod_eq_of_lt j.isLt, Nat.mod_eq_of_lt j'.isLt] at hmod
   exact Prod.ext (Fin.ext hj) rfl
 
-/-- **The `W`–`X` block pair is used at most once**: `(j,k) ↦ (j,k)` is injective (trivial).-/
+/-- **The `W`–`X` block pair is used at most once**: `(j,k) ↦ (j,k)` is injective (trivial).
+@isnad1 id=injectiv.0h1v.s5.9ee834de6c0b from=translated src=- shape=101cb16d vocab=913959d0
+-/
 theorem gridShift_WX_injective {n : ℕ} :
     Function.Injective (fun p : Fin n × Fin n => (p.1.val, p.2.val)) := by
   rintro ⟨j, k⟩ ⟨j', k'⟩ h
@@ -84,7 +90,9 @@ theorem gridShift_WX_injective {n : ℕ} :
 
 /-- **Consequence: the diagonal grid labelling is injective** — distinct `(j,k)` give distinct
 sub-triples `(f(j,k), j, k)`.  (Immediate from any one of the block-pair injectivities, e.g.
-`WX`.)-/
+`WX`.)
+@isnad1 id=injectiv.0h1v.s5.8fee9663f540 from=translated src=- shape=0bd3654d vocab=6e0eac6d
+-/
 theorem gridShift_label_injective {n : ℕ} :
     Function.Injective (fun p : Fin n × Fin n => (gridShift n p.1 p.2, p.1.val, p.2.val)) := by
   intro p q h
@@ -125,9 +133,15 @@ def gridIdxB (n i : ℕ) : ℕ := i / n
 /-- The `X`-block index of the `i`-th member of the diagonal design.-/
 def gridIdxC (n i : ℕ) : ℕ := i % n
 
+/--
+@isnad1 id=lt.1h2v.s4.50bc46b9b88e from=translated src=- shape=7155da86 vocab=c88598c9
+-/
 theorem gridIdxA_lt {n : ℕ} (hn : 0 < n) (i : ℕ) : gridIdxA n i < n :=
   Nat.mod_lt _ hn
 
+/--
+@isnad1 id=lt.1h2v.s4.7fcac86d31a2 from=translated src=- shape=bfeef426 vocab=f69379a0
+-/
 theorem gridIdxB_lt {n i : ℕ} (hi : i < n * n) : gridIdxB n i < n := by
   have hn : 0 < n := by
     rcases Nat.eq_zero_or_pos n with rfl | h
@@ -135,10 +149,15 @@ theorem gridIdxB_lt {n i : ℕ} (hi : i < n * n) : gridIdxB n i < n := by
     · exact h
   exact Nat.div_lt_of_lt_mul (by omega)
 
+/--
+@isnad1 id=lt.1h2v.s4.e15f349b976c from=translated src=- shape=7155da86 vocab=4c68b6f0
+-/
 theorem gridIdxC_lt {n : ℕ} (hn : 0 < n) (i : ℕ) : gridIdxC n i < n :=
   Nat.mod_lt _ hn
 
-/-- **The `U`–`W` block pair is used at most once.**-/
+/-- **The `U`–`W` block pair is used at most once.**
+@isnad1 id=eq.4h3v.s5.9e3af032fcc5 from=translated src=- shape=8f50acb3 vocab=4ce3b704
+-/
 theorem gridIdx_AB_inj {n i i' : ℕ} (hi : i < n * n) (hi' : i' < n * n)
     (hA : gridIdxA n i = gridIdxA n i') (hB : gridIdxB n i = gridIdxB n i') : i = i' := by
   have hn : 0 < n := by
@@ -156,7 +175,9 @@ theorem gridIdx_AB_inj {n i i' : ℕ} (hi : i < n * n) (hi' : i' < n * n)
     Nat.ModEq.add_left_cancel' (i' / n) (by simpa [Nat.ModEq] using h1)
   rwa [Nat.mod_eq_of_lt hr, Nat.mod_eq_of_lt hr'] at h2
 
-/-- **The `U`–`X` block pair is used at most once.**-/
+/-- **The `U`–`X` block pair is used at most once.**
+@isnad1 id=eq.4h3v.s5.87f4a9aec6e1 from=translated src=- shape=8f50acb3 vocab=a308cb61
+-/
 theorem gridIdx_AC_inj {n i i' : ℕ} (hi : i < n * n) (hi' : i' < n * n)
     (hA : gridIdxA n i = gridIdxA n i') (hC : gridIdxC n i = gridIdxC n i') : i = i' := by
   have hn : 0 < n := by
@@ -174,7 +195,9 @@ theorem gridIdx_AC_inj {n i i' : ℕ} (hi : i < n * n) (hi' : i' < n * n)
   have hdi' : i' / n < n := gridIdxB_lt hi'
   rwa [Nat.mod_eq_of_lt hdi, Nat.mod_eq_of_lt hdi'] at h2
 
-/-- **The `W`–`X` block pair is used at most once.**-/
+/-- **The `W`–`X` block pair is used at most once.**
+@isnad1 id=eq.2h3v.s4.13800c95846a from=translated src=- shape=57398813 vocab=f4abd486
+-/
 theorem gridIdx_BC_inj {n i i' : ℕ}
     (hB : gridIdxB n i = gridIdxB n i') (hC : gridIdxC n i = gridIdxC n i') : i = i' :=
   eq_of_div_mod_eq hB hC
@@ -185,20 +208,27 @@ theorem gridIdx_BC_inj {n i i' : ℕ}
 def pairIn (S T : Finset V) (x y : V) : Prop := (x ∈ S ∧ y ∈ T) ∨ (x ∈ T ∧ y ∈ S)
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=pairin.1h5v.s4.eaf18bb27074 from=translated src=- shape=0f40ecaf vocab=2a7c1312
+-/
 theorem pairIn_symm {S T : Finset V} {x y : V} (h : pairIn S T x y) : pairIn T S x y := by
   rcases h with ⟨h1, h2⟩ | ⟨h1, h2⟩
   · exact Or.inr ⟨h1, h2⟩
   · exact Or.inl ⟨h1, h2⟩
 
 omit [Fintype V] [DecidableEq V] in
-/-- `crossAdj` is exactly the disjunction of the three `pairIn`s.-/
+/-- `crossAdj` is exactly the disjunction of the three `pairIn`s.
+@isnad1 id=iff.0h6v.s5.281097498e8b from=translated src=- shape=a918090a vocab=869032bb
+-/
 theorem crossAdj_iff_pairIn {U W X : Finset V} {x y : V} :
     crossAdj U W X x y ↔ pairIn U W x y ∨ pairIn U X x y ∨ pairIn W X x y := by
   unfold crossAdj pairIn; tauto
 
 omit [Fintype V] [DecidableEq V] in
 /-- **Two different pairs of blocks cannot carry the same edge**, if one of the two blocks of the
-first pair is disjoint from both blocks of the second.-/
+first pair is disjoint from both blocks of the second.
+@isnad1 id=false.4h7v.s5.50338df040e6 from=translated src=- shape=b417e809 vocab=09bc2d20
+-/
 theorem pairIn_absurd {S T S' T' : Finset V} {x y : V} (h : pairIn S T x y)
     (h' : pairIn S' T' x y) (h1 : Disjoint S S') (h2 : Disjoint S T') : False := by
   rcases h with ⟨hx, hy⟩ | ⟨hx, hy⟩ <;> rcases h' with ⟨hx', hy'⟩ | ⟨hx', hy'⟩
@@ -208,7 +238,9 @@ theorem pairIn_absurd {S T S' T' : Finset V} {x y : V} (h : pairIn S T x y)
   · exact (Finset.disjoint_left.mp h1 hy) hy'
 
 omit [Fintype V] [DecidableEq V] in
-/-- **The same pair of clusters carrying the same edge forces the two blocks to meet.**-/
+/-- **The same pair of clusters carrying the same edge forces the two blocks to meet.**
+@isnad1 id=and.4h7v.s6.09e23f7a74fd from=translated src=- shape=bbc3426a vocab=09bc2d20
+-/
 theorem pairIn_match {S T S' T' : Finset V} {x y : V} (h : pairIn S T x y)
     (h' : pairIn S' T' x y) (hST' : Disjoint S T') (hTS' : Disjoint T S') :
     ¬ Disjoint S S' ∧ ¬ Disjoint T T' := by
@@ -237,7 +269,9 @@ disjoint and the sub-blocks of different clusters are disjoint, then two distinc
 diagonal family have no common edge: a common edge determines the pair of blocks that carries it,
 hence — by `Nibble.AX1.gridShift_UW_injective` and its companions, in the form
 `Nibble.AX1.gridIdx_AB_inj`, `Nibble.AX1.gridIdx_AC_inj`, `Nibble.AX1.gridIdx_BC_inj` — the
-member.-/
+member.
+@isnad1 id=not.10h10v.s8.f02b072b3e60 from=translated src=- shape=f07e4bdb vocab=1667ba53
+-/
 theorem gridDesign_pairwise_edgeDisjoint (G : SimpleGraph V) {n : ℕ}
     (Ub Wb Xb : ℕ → Finset V)
     (hUU : ∀ a < n, ∀ b < n, a ≠ b → Disjoint (Ub a) (Ub b))

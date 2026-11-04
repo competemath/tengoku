@@ -43,7 +43,9 @@ variable {V : Type*} [DecidableEq V]
 def support (M : Finset (Finset V)) : Finset V := M.biUnion id
 
 /-- **A3a — support cardinality.** A matching of an `r`-uniform hypergraph covers exactly
-`r * |M|` vertices.-/
+`r * |M|` vertices.
+@isnad1 id=eq.2h4v.s5.dd992d1246b5 from=translated src=- shape=67f52da5 vocab=6c662f47
+-/
 theorem matching_support_card {H M : Finset (Finset V)} {r : ℕ}
     (hr : IsUniform H r) (hM : IsMatching H M) :
     (support M).card = r * M.card := by
@@ -58,7 +60,9 @@ theorem matching_support_card {H M : Finset (Finset V)} {r : ℕ}
     exact hM.disjoint x hx y hy hxy
 
 /-- **A3b — edges meeting a set.** The number of edges of `H` meeting a vertex set `S` is at
-most `∑_{v ∈ S} degree H v`.-/
+most `∑_{v ∈ S} degree H v`.
+@isnad1 id=le.0h3v.s5.6e3292313f39 from=translated src=- shape=af6f94d2 vocab=8bb196b8
+-/
 theorem edges_meeting_le (H : Finset (Finset V)) (S : Finset V) :
     (H.filter (fun e => (e ∩ S).Nonempty)).card ≤ ∑ v ∈ S, degree H v := by
   classical
@@ -75,7 +79,9 @@ theorem edges_meeting_le (H : Finset (Finset V)) (S : Finset V) :
     _ ≤ ∑ v ∈ S, (H.filter (fun e => v ∈ e)).card := Finset.card_biUnion_le
     _ = ∑ v ∈ S, degree H v := rfl
 
-/-- The same incidence bound with meeting expressed as non-disjointness.-/
+/-- The same incidence bound with meeting expressed as non-disjointness.
+@isnad1 id=le.0h3v.s6.f8383c26d963 from=translated src=- shape=34622ca6 vocab=a38f0a8c
+-/
 theorem edges_meeting_le_of_not_disjoint (H : Finset (Finset V)) (S : Finset V) :
     (H.filter (fun e => ¬ Disjoint e S)).card ≤ ∑ v ∈ S, degree H v := by
   classical
@@ -95,7 +101,9 @@ theorem edges_meeting_le_of_not_disjoint (H : Finset (Finset V)) (S : Finset V) 
 
 /-- **A3 — greedy / maximal-matching bound.** If `M` is a matching whose support meets every
 edge of `H` (a *maximal* matching) and every vertex has degree `≤ Δ`, then
-`|H| ≤ r · Δ · |M|`. Equivalently `ν(H) ≥ |E| / (rΔ)`.-/
+`|H| ≤ r · Δ · |M|`. Equivalently `ν(H) ≥ |E| / (rΔ)`.
+@isnad1 id=le.4h5v.s6.3a58768e2265 from=translated src=- shape=f638d22c vocab=5b39594c
+-/
 theorem greedy_bound {H M : Finset (Finset V)} {r Δ : ℕ}
     (hr : IsUniform H r) (hM : IsMatching H M)
     (hcov : ∀ e ∈ H, (e ∩ support M).Nonempty)

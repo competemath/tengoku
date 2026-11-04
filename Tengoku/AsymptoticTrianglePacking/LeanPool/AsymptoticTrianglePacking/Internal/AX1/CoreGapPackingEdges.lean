@@ -38,7 +38,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 
 /-- **The LP weight on the triangles through a set of edges is at most the number of edges.**
 Each triangle counted on the left contains at least one `e ∈ E`, and the packing constraint at `e`
-caps the weight through `e` by `1`.-/
+caps the weight through `e` by `1`.
+@isnad1 id=le.1h4v.s7.f26deec86127 from=translated src=- shape=50c033de vocab=dc28dafd
+-/
 theorem sum_fracPacking_over_edges_le (G : SimpleGraph V) [DecidableRel G.Adj]
     {w : Finset (Finset V) → ℝ} (hw : IsFracPacking G w) (E : Finset (Finset V)) :
     ∑ T ∈ (triangleHypergraphE G).filter (fun T => ∃ e ∈ E, e ∈ T), w T ≤ (#E : ℝ) := by
@@ -73,7 +75,9 @@ theorem sum_fracPacking_over_edges_le (G : SimpleGraph V) [DecidableRel G.Adj]
 
 /-- **A triangle edge cover bounds `ν₃*`.**  If every triangle of `G` uses an edge from `E`, then
 `ν₃*(G) ≤ #E`.  (With `E` the whole edge set this is weaker than `Nibble.YusterE.nu3star_le`; the
-point is the localised version, applied to the edges between two clusters.)-/
+point is the localised version, applied to the edges between two clusters.)
+@isnad1 id=le.1h3v.s6.30bf9bcdcc8f from=translated src=- shape=ab4fe8ed vocab=bca2a058
+-/
 theorem nu3star_le_of_edgeCover (G : SimpleGraph V) [DecidableRel G.Adj] (E : Finset (Finset V))
     (hcov : ∀ T ∈ triangleHypergraphE G, ∃ e ∈ E, e ∈ T) : nu3star G ≤ (#E : ℝ) := by
   classical

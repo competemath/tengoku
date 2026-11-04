@@ -47,7 +47,9 @@ variable {V : Type*} [DecidableEq V] {Ω : Type*} [MeasureSpace Ω]
 
 /-! ## The ordered-pair count -/
 
-/-- The ordered-pair count of a finite set against `C`.-/
+/-- The ordered-pair count of a finite set against `C`.
+@isnad1 id=eq.0h3v.s7.b215c379e8cc from=translated src=- shape=9e794f95 vocab=86d5b75b
+-/
 theorem sum_pair_ind_nat (D C : Finset V) :
     ∑ u ∈ D, ∑ u' ∈ D.erase u, (if u ∈ C then 1 else 0) * (if u' ∈ C then (1 : ℕ) else 0)
       = (D ∩ C).card * ((D ∩ C).card - 1) := by
@@ -74,7 +76,9 @@ theorem sum_pair_ind_nat (D C : Finset V) :
     rw [h1, Finset.card_erase_of_mem hu]
   rw [Finset.sum_congr rfl hcards, Finset.sum_const, smul_eq_mul]
 
-/-- `C(k,2)` is dominated by the ordered-pair count.-/
+/-- `C(k,2)` is dominated by the ordered-pair count.
+@isnad1 id=le.0h3v.s6.840f40cd76bd from=translated src=- shape=31843fa2 vocab=4ac83859
+-/
 theorem choose_two_le_sum_pair_ind (D C : Finset V) :
     Nat.choose ((D ∩ C).card) 2
       ≤ ∑ u ∈ D, ∑ u' ∈ D.erase u, (if u ∈ C then 1 else 0) * (if u' ∈ C then (1 : ℕ) else 0) := by
@@ -90,7 +94,9 @@ noncomputable def pairCount {H : Finset (Finset V)} {p : ℝ}
     coverInd ρ u ω * coverInd ρ u' ω
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- Pathwise, the Bonferroni correction is dominated by the pair count.-/
+/-- Pathwise, the Bonferroni correction is dominated by the pair count.
+@isnad1 id=le.0h7v.s5.589805854593 from=translated src=- shape=ce6197c2 vocab=4567fabf
+-/
 theorem pairWeight_le_pairCount {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (ω : Ω) :
     (pairWeight H v (covered (retainedSet H ρ ω)) : ℝ) ≤ pairCount ρ v ω := by
@@ -107,6 +113,9 @@ theorem pairWeight_le_pairCount {H : Finset (Finset V)} {p : ℝ}
   rw [← hcast]
   exact_mod_cast hnat
 
+/--
+@isnad1 id=integrab.0h6v.s6.8c53e477176a from=translated src=- shape=3fad3433 vocab=f8631551
+-/
 theorem integrable_pairCount {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) :
     Integrable (pairCount ρ v) (ℙ : Measure Ω) := by
@@ -116,7 +125,9 @@ theorem integrable_pairCount {H : Finset (Finset V)} {p : ℝ}
   exact integrable_finsetSum _ (fun e _ => integrable_finsetSum _ (fun u _ =>
     integrable_finsetSum _ (fun u' _ => integrable_coverInd_mul ρ u u')))
 
-/-- **The mean of the pair count.**-/
+/-- **The mean of the pair count.**
+@isnad1 id=le.4h8v.s7.5bdcb7782b1a from=translated src=- shape=e48697dc vocab=489eb77d
+-/
 theorem integral_pairCount_le {H : Finset (Finset V)} {p : ℝ} {r : ℕ} {εpair : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hr : IsUniform H r) (hr1 : 1 ≤ r)
     (hpair : ∀ u u' : V, u ≠ u' →
@@ -208,16 +219,25 @@ variable {V : Type*} [DecidableEq V] [Fintype V] {Ω : Type*} [MeasureSpace Ω]
 /-! ## Basic positivity and integrability -/
 
 omit [Fintype V] [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=le.0h7v.s5.81eb80592d70 from=translated src=- shape=fd839949 vocab=ab00a56f
+-/
 theorem coverInd_nonneg {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (u : V) (ω : Ω) : 0 ≤ coverInd ρ u ω := by
   rw [coverInd]; split_ifs <;> norm_num
 
 omit [Fintype V] [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=le.0h7v.s5.7a96c5e65886 from=translated src=- shape=fd839949 vocab=874bcfdc
+-/
 theorem pairCount_nonneg {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (ω : Ω) : 0 ≤ pairCount ρ v ω :=
   Finset.sum_nonneg (fun _ _ => Finset.sum_nonneg (fun _ _ => Finset.sum_nonneg
     (fun _ _ => mul_nonneg (coverInd_nonneg ρ _ ω) (coverInd_nonneg ρ _ ω))))
 
+/--
+@isnad1 id=integrab.0h6v.s6.3c03db213f79 from=translated src=- shape=b6980a3a vocab=fad3857c
+-/
 theorem integrable_sq_centered_lossWeight {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) :
     Integrable (fun ω => (lossWeight ρ v ω - lossWeightMean H p v) ^ 2) (ℙ : Measure Ω) := by
@@ -236,6 +256,9 @@ theorem integrable_sq_centered_lossWeight {H : Finset (Finset V)} {p : ℝ}
 /-! ## The covered count -/
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=eq.0h6v.s6.f3ed7b8fbfd1 from=translated src=- shape=8732c736 vocab=e336f244
+-/
 theorem coveredCount_eq_sum {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (ω : Ω) :
     ((covered (retainedSet H ρ ω)).card : ℝ) = ∑ v : V, coverInd ρ v ω := by
@@ -250,6 +273,9 @@ theorem coveredCount_eq_sum {H : Finset (Finset V)} {p : ℝ}
   simp
 
 omit [Fintype V] in
+/--
+@isnad1 id=integrab.0h5v.s6.191dec82fe70 from=translated src=- shape=8e341a61 vocab=ecbc578d
+-/
 theorem integrable_coveredCount [Finite V] {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) :
     Integrable (fun ω => ((covered (retainedSet H ρ ω)).card : ℝ)) (ℙ : Measure Ω) := by
@@ -260,6 +286,9 @@ theorem integrable_coveredCount [Finite V] {H : Finset (Finset V)} {p : ℝ}
   rw [h]
   exact integrable_finsetSum _ (fun v _ => integrable_coverInd ρ v)
 
+/--
+@isnad1 id=eq.2h5v.s6.9ea357e0a435 from=translated src=- shape=b671a91b vocab=9f82ca89
+-/
 theorem integral_coveredCount {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     ∫ ω, ((covered (retainedSet H ρ ω)).card : ℝ) ∂(ℙ : Measure Ω)
@@ -278,6 +307,9 @@ noncomputable def tightBad {H : Finset (Finset V)} {p : ℝ}
   ∑ v : V, ((lossWeight ρ v ω - lossWeightMean H p v) ^ 2 / t ^ 2 + pairCount ρ v ω / s)
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=le.2h8v.s6.537b6154a6f8 from=translated src=- shape=966db803 vocab=a8581a1a
+-/
 theorem tightBad_nonneg {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {t s : ℝ} (ht : 0 < t) (hs : 0 < s) (ω : Ω) :
     0 ≤ tightBad ρ t s ω :=
@@ -285,6 +317,9 @@ theorem tightBad_nonneg {H : Finset (Finset V)} {p : ℝ}
     (div_nonneg (sq_nonneg _) (le_of_lt (by positivity)))
     (div_nonneg (pairCount_nonneg ρ v ω) hs.le))
 
+/--
+@isnad1 id=integrab.0h7v.s6.b4a066b43e9b from=translated src=- shape=4f879dfa vocab=bb064e79
+-/
 theorem integrable_tightBad {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (t s : ℝ) :
     Integrable (tightBad ρ t s) (ℙ : Measure Ω) := by
@@ -296,7 +331,9 @@ theorem integrable_tightBad {H : Finset (Finset V)} {p : ℝ}
     ((integrable_pairCount ρ v).div_const _)
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The number of vertices failing either tolerance is at most the aggregated badness.-/
+/-- The number of vertices failing either tolerance is at most the aggregated badness.
+@isnad1 id=le.2h8v.s7.6efdcada4341 from=translated src=- shape=accf5103 vocab=706c2de2
+-/
 theorem card_tightBadSet_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {t s : ℝ} (ht : 0 < t) (hs : 0 < s) (ω : Ω) :
     ((Finset.univ.filter (fun v : V =>
@@ -334,7 +371,9 @@ theorem card_tightBadSet_le {H : Finset (Finset V)} {p : ℝ}
     _ ≤ ∑ v : V, f v :=
         Finset.sum_le_sum_of_subset_of_nonneg (Finset.filter_subset _ _) (fun v _ _ => hf0 v)
 
-/-- The mean of the aggregated badness, from per-vertex bounds.-/
+/-- The mean of the aggregated badness, from per-vertex bounds.
+@isnad1 id=le.4h9v.s8.00db9ddbd4c1 from=translated src=- shape=fe3ff06b vocab=dabc8536
+-/
 theorem integral_tightBad_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {t s Vb Pb : ℝ} (ht : 0 < t) (hs : 0 < s)
     (hVb : ∀ v : V, ∫ ω, (lossWeight ρ v ω - lossWeightMean H p v) ^ 2 ∂(ℙ : Measure Ω) ≤ Vb)
@@ -370,7 +409,9 @@ theorem integral_tightBad_le {H : Finset (Finset V)} {p : ℝ}
 
 /-- **The tight round, relative to a good set.**  Only the vertices of `G` are required to have a
 guaranteed covering rate, and only their number enters the coverage conclusion.  This is the form
-consumed by the iteration, where `G` is the set of vertices still carrying a full degree.-/
+consumed by the iteration, where `G` is the set of vertices still carrying a full degree.
+@isnad1 id=ex.11h12v.s9.ba1d058318ef from=translated src=- shape=d1fa3e07 vocab=03fc4639
+-/
 theorem exists_tight_round_on {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (G : Finset V)
     {t s a Vb Pb qlo : ℝ} (ht : 0 < t) (hs : 0 < s) (ha : 0 < a)
@@ -503,7 +544,9 @@ theorem exists_tight_round_on {H : Finset (Finset V)} {p : ℝ}
 
 /-- **The tight round.**  There is an outcome of the nibble round which covers more than a
 `qlo/2`-fraction of the vertices and, outside an exceptional set of fewer than `a` vertices, leaves
-every safe degree in the two-sided band of width `2t + s` around `deg(v) − 𝔼[loss(v)]`.-/
+every safe degree in the two-sided band of width `2t + s` around `deg(v) − 𝔼[loss(v)]`.
+@isnad1 id=ex.11h11v.s9.0ee2c5d31f96 from=translated src=- shape=9d10cebd vocab=03fc4639
+-/
 theorem exists_tight_round {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     {t s a Vb Pb qlo : ℝ} (ht : 0 < t) (hs : 0 < s) (ha : 0 < a)

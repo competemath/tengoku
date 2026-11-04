@@ -37,7 +37,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 
 /-- **The `A`–`B` edges of `G` are edges of the tripartite graph of `(A, B, C)`.**  They inject
 into its `2`-cliques (injectively, because `A` and `B` are disjoint, so an unordered pair
-determines which endpoint lies in `A`).-/
+determines which endpoint lies in `A`).
+@isnad1 id=le.1h5v.s6.1fdbe41a0f7e from=translated src=- shape=1ad40e9d vocab=38908ede
+-/
 theorem interedges_card_le_tripleGraph_edges (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B C : Finset V) (hAB : Disjoint A B) :
     (#(G.interedges A B) : ℝ) ≤ (#((tripleGraph G A B C).cliqueFinset 2) : ℝ) := by
@@ -69,7 +71,9 @@ theorem interedges_card_le_tripleGraph_edges (G : SimpleGraph V) [DecidableRel G
       · exact absurd hy' (Finset.disjoint_left.mp hAB hx)
   exact_mod_cast hcard
 
-/-- **Density form of `Nibble.AX1.interedges_card_le_tripleGraph_edges`.**-/
+/-- **Density form of `Nibble.AX1.interedges_card_le_tripleGraph_edges`.**
+@isnad1 id=le.1h5v.s6.c608caf965b1 from=translated src=- shape=88569a6e vocab=d0ddf85e
+-/
 theorem edgeDensity_mul_le_tripleGraph_edges (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B C : Finset V) (hAB : Disjoint A B) :
     (G.edgeDensity A B : ℝ) * (#A : ℝ) * (#B : ℝ)
@@ -119,7 +123,9 @@ private theorem mem_crossPairs {G : SimpleGraph V} [DecidableRel G.Adj] {A B C :
   simp only [crossPairs, Finset.mem_union, SimpleGraph.mk_mem_interedges_iff]
   tauto
 
-/-- **All three pairs of a sub-triple contribute to its edge count.**-/
+/-- **All three pairs of a sub-triple contribute to its edge count.**
+@isnad1 id=le.3h5v.s7.4802d4e3f414 from=translated src=- shape=4f2d6213 vocab=2c153443
+-/
 theorem three_interedges_card_le_tripleGraph_edges (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B C : Finset V) (hAB : Disjoint A B) (hAC : Disjoint A C) (hBC : Disjoint B C) :
     #(G.interedges A B) + #(G.interedges A C) + #(G.interedges B C)
@@ -215,7 +221,9 @@ private theorem edgeDensity_mul_le_card_interedges (G : SimpleGraph V) [Decidabl
       = (#(G.interedges A B) : ℝ) := by field_simp
   rw [hdef, hcancel]
 
-/-- **Density form**: the lower bound for the number of edges of a sub-triple used by the design.-/
+/-- **Density form**: the lower bound for the number of edges of a sub-triple used by the design.
+@isnad1 id=le.3h5v.s7.b714b2389ba4 from=translated src=- shape=77cb9038 vocab=d078d27c
+-/
 theorem three_edgeDensity_mul_le_tripleGraph_edges (G : SimpleGraph V) [DecidableRel G.Adj]
     (A B C : Finset V) (hAB : Disjoint A B) (hAC : Disjoint A C) (hBC : Disjoint B C) :
     (G.edgeDensity A B : ℝ) * (#A : ℝ) * (#B : ℝ) + (G.edgeDensity A C : ℝ) * (#A : ℝ) * (#C : ℝ)

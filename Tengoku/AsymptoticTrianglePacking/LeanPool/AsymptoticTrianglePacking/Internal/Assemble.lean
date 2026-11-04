@@ -51,7 +51,9 @@ def nibbleIter (R : Finset (Finset V) → Finset (Finset V)) (H : Finset (Finset
     ℕ → Finset (Finset V) × Finset (Finset V) :=
   nibbleIterSeq (fun _ => R) H
 
-/-- The constant strategy sequence is the fixed-strategy iteration.-/
+/-- The constant strategy sequence is the fixed-strategy iteration.
+@isnad1 id=eq.0h4v.s5.0cfbb267ff4f from=translated src=- shape=cff6a650 vocab=534ea0c0
+-/
 theorem nibbleIterSeq_const (R : Finset (Finset V) → Finset (Finset V)) (H : Finset (Finset V)) :
     ∀ k, nibbleIterSeq (fun _ => R) H k = nibbleIter R H k := by
   intro k
@@ -65,13 +67,17 @@ def nibbleResidual (R : Finset (Finset V) → Finset (Finset V)) (H : Finset (Fi
 def nibbleMatching (R : Finset (Finset V) → Finset (Finset V)) (H : Finset (Finset V)) (k : ℕ) :
     Finset (Finset V) := (nibbleIter R H k).1
 
-/-- **D1a — the residual is a sub-hypergraph of `H`.**-/
+/-- **D1a — the residual is a sub-hypergraph of `H`.**
+@isnad1 id=le.0h4v.s5.d092016f85ae from=translated src=- shape=e33aa955 vocab=948b44d8
+-/
 theorem nibbleResidual_subset (R : Finset (Finset V) → Finset (Finset V))
     (H : Finset (Finset V)) (k : ℕ) : nibbleResidual R H k ⊆ H := by
   change nibbleResidualSeq (fun _ => R) H k ⊆ H
   exact nibbleResidualSeq_subset (fun _ => R) H k
 
-/-- **D1b — the residual stays `r`-uniform.**-/
+/-- **D1b — the residual stays `r`-uniform.**
+@isnad1 id=isunifor.1h5v.s5.b086f3d84397 from=translated src=- shape=744243ac vocab=0cf27391
+-/
 theorem nibbleResidual_uniform {H : Finset (Finset V)} {r : ℕ} (hr : IsUniform H r)
     (R : Finset (Finset V) → Finset (Finset V)) (k : ℕ) :
     IsUniform (nibbleResidual R H k) r := by
@@ -106,7 +112,9 @@ namespace Hypergraph
 
 variable {V : Type*} [DecidableEq V]
 
-/-- **D3a — accumulated matching stays inside `H`.**-/
+/-- **D3a — accumulated matching stays inside `H`.**
+@isnad1 id=le.1h4v.s6.d0897e5215a7 from=translated src=- shape=3acd8b55 vocab=5b06eb87
+-/
 theorem nibbleMatching_subset {R : Finset (Finset V) → Finset (Finset V)}
     (hR : ∀ H', R H' ⊆ H') (H : Finset (Finset V)) (k : ℕ) :
     nibbleMatching R H k ⊆ H := by
@@ -114,7 +122,9 @@ theorem nibbleMatching_subset {R : Finset (Finset V) → Finset (Finset V)}
   exact nibbleMatchingSeq_subset (fun _ H' => hR H') H k
 
 /-- **D3b — cross-round invariant.** Every edge of the residual after `k` rounds is disjoint from
-the support of the accumulated matching.-/
+the support of the accumulated matching.
+@isnad1 id=disjoint.1h5v.s5.50f05f70be4d from=translated src=- shape=899dc0b7 vocab=8a023183
+-/
 theorem nibbleResidual_disjoint_support {R : Finset (Finset V) → Finset (Finset V)}
     (H : Finset (Finset V)) (k : ℕ) :
     ∀ e ∈ nibbleResidual R H k, Disjoint e (support (nibbleMatching R H k)) := by
@@ -122,7 +132,9 @@ theorem nibbleResidual_disjoint_support {R : Finset (Finset V) → Finset (Finse
     Disjoint e (support (nibbleMatchingSeq (fun _ => R) H k))
   exact nibbleResidualSeq_disjoint_support (R := fun _ => R) H k
 
-/-- **D3 — the accumulated matching is a matching of `H`.**-/
+/-- **D3 — the accumulated matching is a matching of `H`.**
+@isnad1 id=ismatchi.1h4v.s5.1b7d2c41dfab from=translated src=- shape=3519de25 vocab=67d19ae6
+-/
 theorem nibbleMatching_isMatching {R : Finset (Finset V) → Finset (Finset V)}
     (hR : ∀ H', R H' ⊆ H') (H : Finset (Finset V)) (k : ℕ) :
     IsMatching H (nibbleMatching R H k) := by

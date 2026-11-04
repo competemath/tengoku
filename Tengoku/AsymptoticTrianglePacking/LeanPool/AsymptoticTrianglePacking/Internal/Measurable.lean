@@ -46,7 +46,9 @@ Hint: `x ∈ support (roundMatching (retainedSet H ρ ω))` unfolds to
 `⋃ e ∈ H.filter (x ∈ ·), (ρ.A e ∩ ⋂ f ∈ H.filter (fun f => f ≠ e ∧ ¬ Disjoint e f), (ρ.A f)ᶜ)`
 (or an equivalent finite Boolean combination), then close by `MeasurableSet.iUnion` /
 `.biUnion` / `.iInter` / `.inter` / `.compl` using `ρ.meas`. All index sets are finite `Finset`s,
-so the combination is finite.-/
+so the combination is finite.
+@isnad1 id=measurab.0h6v.s5.2857238d5cb6 from=translated src=- shape=9dd3e9f4 vocab=51c4aca3
+-/
 theorem measurableSet_vertex_covered {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (x : V) :
     MeasurableSet {ω | x ∈ support (roundMatching (retainedSet H ρ ω))} := by

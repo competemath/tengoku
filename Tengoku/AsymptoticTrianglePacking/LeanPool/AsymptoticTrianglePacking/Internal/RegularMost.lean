@@ -46,7 +46,9 @@ def CodegreeBounded (H : Finset (Finset V)) (C : ℝ) : Prop :=
   ∀ x y : V, x ≠ y → (codegree H x y : ℝ) ≤ C
 
 /-- **A4 — degree-sum squeeze.** If `H` is `(1±μ)`-nearly `d`-regular on a finite vertex type,
-then `∑_v degree v` lies in `[(1-μ)d·|V|, (1+μ)d·|V|]`.-/
+then `∑_v degree v` lies in `[(1-μ)d·|V|, (1+μ)d·|V|]`.
+@isnad1 id=and.1h4v.s7.abc44f732281 from=translated src=- shape=518be64b vocab=1a028853
+-/
 theorem sum_degree_bounds [Fintype V] {H : Finset (Finset V)} {d μ : ℝ}
     (hReg : NearlyRegular H d μ) :
     (1 - μ) * d * (Fintype.card V : ℝ) ≤ (∑ v : V, (degree H v : ℝ)) ∧
@@ -129,7 +131,9 @@ def NearlyRegularMost (H : Finset (Finset V)) (d μ η : ℝ) : Prop :=
   ∃ Exc : Finset V, (Exc.card : ℝ) ≤ η * (Fintype.card V : ℝ) ∧
     ∀ v ∉ Exc, (1 - μ) * d ≤ (degree H v : ℝ) ∧ (degree H v : ℝ) ≤ (1 + μ) * d
 
-/-- Strict near-regularity is majority near-regularity with an empty exceptional set (any `η ≥ 0`).-/
+/-- Strict near-regularity is majority near-regularity with an empty exceptional set (any `η ≥ 0`).
+@isnad1 id=nearlyre.2h5v.s5.70e4f6200a61 from=translated src=- shape=07662fea vocab=d7c3d3bf
+-/
 theorem NearlyRegular.nearlyRegularMost {H : Finset (Finset V)} {d μ η : ℝ} (hη : 0 ≤ η)
     (h : NearlyRegular H d μ) : NearlyRegularMost H d μ η :=
   ⟨∅, by rw [Finset.card_empty, Nat.cast_zero]; exact mul_nonneg hη (Nat.cast_nonneg _),
@@ -182,7 +186,9 @@ def NibbleTheoremMostCeilSized : Prop :=
 /-- **The majority interface implies the strict one.** Since strict `NearlyRegular` is a special
 case
 of `NearlyRegularMost` (empty exceptional set), `NibbleTheoremMost` implies `NibbleTheorem` — so
-discharging the majority form suffices for the entire Layer E chain that consumes `NibbleTheorem`.-/
+discharging the majority form suffices for the entire Layer E chain that consumes `NibbleTheorem`.
+@isnad1 id=nibbleth.1h0v.s1.925ac7c7e249 from=translated src=- shape=1d48f1ac vocab=e254d0ef
+-/
 theorem NibbleTheoremMost.nibbleTheorem (h : NibbleTheoremMost) : NibbleTheorem := by
   intro r hr β hβ
   obtain ⟨μ, hμ, η, hη, d₀, hd₀, hmain⟩ := h r hr β hβ

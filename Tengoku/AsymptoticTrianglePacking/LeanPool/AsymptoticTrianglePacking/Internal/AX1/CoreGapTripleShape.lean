@@ -61,7 +61,9 @@ omit [Fintype V] [DecidableEq V] in
 `IA i`, `IB i`, `IC i` are the indices of the three blocks of the `i`-th sub-triple.  A common edge
 of two members determines which *pair* of clusters carries it, and — the blocks of a cluster being
 pairwise disjoint and blocks of different clusters being disjoint — the two indices of that pair;
-joint injectivity of that pair of index functions then forces the two members to coincide.-/
+joint injectivity of that pair of index functions then forces the two members to coincide.
+@isnad1 id=not.16h16v.s8.617b0f3867de from=translated src=- shape=2673ea40 vocab=3631aff2
+-/
 theorem tripleFamily_pairwise_edgeDisjoint (G : SimpleGraph V) {nA nB nC k : ℕ}
     (Ub Wb Xb : ℕ → Finset V) (IA IB IC : ℕ → ℕ)
     (hIA : ∀ i < k, IA i < nA) (hIB : ∀ i < k, IB i < nB) (hIC : ∀ i < k, IC i < nC)
@@ -135,9 +137,15 @@ def rectIdxB (nC i : ℕ) : ℕ := i / nC
 /-- The `X`-block index of the `i`-th member of the rectangular diagonal design.-/
 def rectIdxC (nC i : ℕ) : ℕ := i % nC
 
+/--
+@isnad1 id=lt.1h3v.s4.22f74d040bcf from=translated src=- shape=b156dcec vocab=2ebc749b
+-/
 theorem rectIdxA_lt {nA nC : ℕ} (hnA : 0 < nA) (i : ℕ) : rectIdxA nA nC i < nA :=
   Nat.mod_lt _ hnA
 
+/--
+@isnad1 id=lt.1h3v.s4.8b95f3724929 from=translated src=- shape=03b6e122 vocab=9d6e1d3c
+-/
 theorem rectIdxB_lt {nB nC i : ℕ} (hi : i < nB * nC) : rectIdxB nC i < nB := by
   have hnC : 0 < nC := by
     rcases Nat.eq_zero_or_pos nC with rfl | h
@@ -145,11 +153,16 @@ theorem rectIdxB_lt {nB nC i : ℕ} (hi : i < nB * nC) : rectIdxB nC i < nB := b
     · exact h
   exact Nat.div_lt_of_lt_mul (by rw [Nat.mul_comm]; exact hi)
 
+/--
+@isnad1 id=lt.1h2v.s4.6ab3420c38b0 from=translated src=- shape=7155da86 vocab=6d9773ec
+-/
 theorem rectIdxC_lt {nC : ℕ} (hnC : 0 < nC) (i : ℕ) : rectIdxC nC i < nC :=
   Nat.mod_lt _ hnC
 
 /-- **The `U`–`W` block pair is used at most once** — provided there are at least as many `U`-blocks
-as `X`-blocks.-/
+as `X`-blocks.
+@isnad1 id=eq.5h5v.s6.db3bb5e500c7 from=translated src=- shape=08368e5f vocab=7fa8db9f
+-/
 theorem rectIdx_AB_inj {nA nB nC i i' : ℕ} (hCA : nC ≤ nA) (hi : i < nB * nC) (hi' : i' < nB * nC)
     (hA : rectIdxA nA nC i = rectIdxA nA nC i') (hB : rectIdxB nC i = rectIdxB nC i') : i = i' := by
   have hnC : 0 < nC := by
@@ -168,7 +181,9 @@ theorem rectIdx_AB_inj {nA nB nC i i' : ℕ} (hCA : nC ≤ nA) (hi : i < nB * nC
   rwa [Nat.mod_eq_of_lt hr, Nat.mod_eq_of_lt hr'] at h2
 
 /-- **The `U`–`X` block pair is used at most once** — provided there are at least as many `U`-blocks
-as `W`-blocks.-/
+as `W`-blocks.
+@isnad1 id=eq.5h5v.s6.1fbea2c9cac7 from=translated src=- shape=6061040e vocab=d99131d3
+-/
 theorem rectIdx_AC_inj {nA nB nC i i' : ℕ} (hBA : nB ≤ nA) (hi : i < nB * nC) (hi' : i' < nB * nC)
     (hA : rectIdxA nA nC i = rectIdxA nA nC i') (hC : rectIdxC nC i = rectIdxC nC i') : i = i' := by
   have hnC : 0 < nC := by
@@ -191,7 +206,9 @@ theorem rectIdx_AC_inj {nA nB nC i i' : ℕ} (hBA : nB ≤ nA) (hi : i < nB * nC
   have hdi' : i' / nC < nA := lt_of_lt_of_le (rectIdxB_lt hi') hBA
   rwa [Nat.mod_eq_of_lt hdi, Nat.mod_eq_of_lt hdi'] at h2
 
-/-- **The `W`–`X` block pair is used at most once.**-/
+/-- **The `W`–`X` block pair is used at most once.**
+@isnad1 id=eq.2h3v.s4.7da8f6cf0e9a from=translated src=- shape=57398813 vocab=78a0e309
+-/
 theorem rectIdx_BC_inj {nC i i' : ℕ}
     (hB : rectIdxB nC i = rectIdxB nC i') (hC : rectIdxC nC i = rectIdxC nC i') : i = i' :=
   eq_of_div_mod_eq hB hC
@@ -201,7 +218,9 @@ theorem rectIdx_BC_inj {nC i i' : ℕ}
 omit [Fintype V] [DecidableEq V] in
 /-- **The rectangular diagonal design is edge-disjoint.**  The clusters `U`, `W`, `X` are split into
 `nA`, `nB`, `nC` pairwise disjoint blocks with `nB, nC ≤ nA`, and the `nB · nC` sub-triples
-`(U_{(j+k) mod nA}, W_j, X_k)` have pairwise no common edge.-/
+`(U_{(j+k) mod nA}, W_j, X_k)` have pairwise no common edge.
+@isnad1 id=not.12h12v.s8.9980968ca95c from=translated src=- shape=adc1adf6 vocab=812662f7
+-/
 theorem rectDesign_pairwise_edgeDisjoint (G : SimpleGraph V) {nA nB nC : ℕ}
     (Ub Wb Xb : ℕ → Finset V) (hBA : nB ≤ nA) (hCA : nC ≤ nA)
     (hUU : ∀ a < nA, ∀ b < nA, a ≠ b → Disjoint (Ub a) (Ub b))
@@ -305,7 +324,9 @@ private theorem window_upper {x y z x' y' s τ μ ε e : ℝ}
 sub-block densities `x', y'` are within `e` of `x, y`, the block size `s` is within `1` of `τ·z`,
 the total error satisfies `e + 2ε ≤ μδ³/12` and the scale satisfies `τ ≥ 2/(μδ³)`, then the
 two-sided codegree count `(x' ∓ ε)(y' ∓ 2ε)·s` lies in the window `(1 ± μ)·d` around the common
-scale `d = τ·x·y·z`.-/
+scale `d = τ·x·y·z`.
+@isnad1 id=and.18h12v.s8.2a41aa33e00c from=translated src=- shape=3cbd2743 vocab=36ea17d5
+-/
 theorem scale_window {x y z x' y' s τ d δ μ ε e : ℝ}
     (hδ0 : 0 < δ) (hδ1 : δ ≤ 1)
     (hx : δ ≤ x) (hx1 : x ≤ 1) (hy : δ ≤ y) (hy1 : y ≤ 1) (hz : δ ≤ z) (hz1 : z ≤ 1)
@@ -367,7 +388,9 @@ namespace Nibble.AX1
 variable {V : Type}
 
 /-- A pair of subsets of relative size at least `α ≥ ε` of an `ε`-uniform pair has density within
-`ε` of the density of the pair.-/
+`ε` of the density of the pair.
+@isnad1 id=lt.6h8v.s7.f3ac356817d3 from=translated src=- shape=93eed7d4 vocab=25970e57
+-/
 theorem edgeDensity_sub_lt_of_isUniform (G : SimpleGraph V) [DecidableRel G.Adj]
     {A B A' B' : Finset V} {ε α : ℝ} (hU : G.IsUniform ε A B) (hA' : A' ⊆ A) (hB' : B' ⊆ B)
     (hεα : ε ≤ α) (hcardA : α * (#A : ℝ) ≤ (#A' : ℝ)) (hcardB : α * (#B : ℝ) ≤ (#B' : ℝ)) :
@@ -389,7 +412,9 @@ have relative size at least `α`, with `ε ≤ α ≤ 1/2`, then `(A', B')` is `
 
 The proof is the obvious one: a subset of `A'` of relative size `ε/α` has absolute size at least
 `ε|A|`, so uniformity of `(A, B)` applies to it and to `(A', B')` itself, and the two densities are
-each within `ε` of `d(A, B)`, hence within `2ε ≤ ε/α` of each other.-/
+each within `ε` of `d(A, B)`, hence within `2ε ≤ ε/α` of each other.
+@isnad1 id=isunifor.8h8v.s7.58ff551e1028 from=translated src=- shape=ae1fe82d vocab=3ebc0915
+-/
 theorem isUniform_subblock (G : SimpleGraph V) [DecidableRel G.Adj]
     {A B A' B' : Finset V} {ε α : ℝ} (hU : G.IsUniform ε A B) (hε : 0 < ε) (hA' : A' ⊆ A)
     (hB' : B' ⊆ B) (hεα : ε ≤ α) (hα : 2 * α ≤ 1)
@@ -465,7 +490,9 @@ def IsSubTripleShape (G : SimpleGraph V) [DecidableRel G.Adj] (ε₂ μ₂ : ℝ
   (∀ i < k, ∀ j < k, i ≠ j → ∀ x y,
     (tripleGraph G (A i) (B i) (C i)).Adj x y → ¬ (tripleGraph G (A j) (B j) (C j)).Adj x y)
 
-/-- **A shape together with the global clauses is a design.**-/
+/-- **A shape together with the global clauses is a design.**
+@isnad1 id=issubtri.12h15v.s8.cada1de31cc5 from=translated src=- shape=a14b2085 vocab=1b8038a2
+-/
 theorem isSubTripleDesign_of_shape (G : SimpleGraph V) [DecidableRel G.Adj]
     {ε μ η d₀ ε₂ μ₂ t : ℝ} {k : ℕ} {A B C : ℕ → Finset V} {d Elo : ℕ → ℝ}
     (hshape : IsSubTripleShape G ε₂ μ₂ k A B C d)
@@ -493,7 +520,9 @@ size `sB ≈ τ·y` and `X` into `nC` blocks of size `sC ≈ τ·x` — each blo
 density of the *opposite* pair, and each block of relative size at least `α` in its cluster — and
 take the `nB·nC` diagonal sub-triples of `Nibble.AX1.rectDesign_pairwise_edgeDisjoint`.  Then, at
 uniformity scale `ε₂ = ε₁/α`, this family is a shape with the single triangle-degree scale
-`d = τ·x·y·z`.-/
+`d = τ·x·y·z`.
+@isnad1 id=issubtri.33h16v.s9.29378b220779 from=translated src=- shape=e4b75ea2 vocab=a839d71f
+-/
 theorem subTripleShape_grid (G : SimpleGraph V) [DecidableRel G.Adj] {U W X : Finset V}
     {δ μ₂ ε₁ α τ : ℝ} {sA sB sC nA nB nC : ℕ}
     (hUW : Disjoint U W) (hUX : Disjoint U X) (hWX : Disjoint W X)

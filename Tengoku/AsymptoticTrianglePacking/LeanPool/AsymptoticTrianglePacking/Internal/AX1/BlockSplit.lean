@@ -41,9 +41,15 @@ variable {V : Type} [DecidableEq V]
 noncomputable def enumIdx (S : Finset V) (x : {y // y ∈ S}) : ℕ := (S.equivFin x).val
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=lt.0h3v.s5.a88a68ba140c from=translated src=- shape=4c168bb9 vocab=39d6af56
+-/
 theorem enumIdx_lt (S : Finset V) (x : {y // y ∈ S}) : enumIdx S x < #S := (S.equivFin x).isLt
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=injectiv.0h2v.s4.1ef3ab2d6f1d from=translated src=- shape=779b5b91 vocab=10d8c00c
+-/
 theorem enumIdx_injective (S : Finset V) : Function.Injective (enumIdx S) := by
   intro x y h
   have : S.equivFin x = S.equivFin y := Fin.ext h
@@ -53,6 +59,9 @@ theorem enumIdx_injective (S : Finset V) : Function.Injective (enumIdx S) := by
 noncomputable def blockOf (S : Finset V) (a i : ℕ) : Finset V :=
   (S.attach.filter (fun x => enumIdx S x / a = i)).image Subtype.val
 
+/--
+@isnad1 id=iff.0h5v.s6.d6fe61bfdcea from=translated src=- shape=75b0f2a8 vocab=6c2eee64
+-/
 theorem mem_blockOf {S : Finset V} {a i : ℕ} {v : V} :
     v ∈ blockOf S a i ↔ ∃ h : v ∈ S, enumIdx S ⟨v, h⟩ / a = i := by
   classical
@@ -67,11 +76,16 @@ theorem mem_blockOf {S : Finset V} {a i : ℕ} {v : V} :
     rw [blockOf, Finset.mem_image]
     exact ⟨⟨v, h⟩, Finset.mem_filter.mpr ⟨Finset.mem_attach _ _, hidx⟩, rfl⟩
 
+/--
+@isnad1 id=le.0h4v.s4.6e85126d4297 from=translated src=- shape=d967d897 vocab=1cf7ebff
+-/
 theorem blockOf_subset (S : Finset V) (a i : ℕ) : blockOf S a i ⊆ S := by
   intro v hv
   exact (mem_blockOf.mp hv).1
 
-/-- Distinct blocks are disjoint.-/
+/-- Distinct blocks are disjoint.
+@isnad1 id=disjoint.1h5v.s5.021a078e63e3 from=translated src=- shape=94f06223 vocab=35b7c266
+-/
 theorem blockOf_disjoint (S : Finset V) (a : ℕ) {i j : ℕ} (hij : i ≠ j) :
     Disjoint (blockOf S a i) (blockOf S a j) := by
   classical
@@ -81,7 +95,9 @@ theorem blockOf_disjoint (S : Finset V) (a : ℕ) {i j : ℕ} (hij : i ≠ j) :
   obtain ⟨h1', h2'⟩ := mem_blockOf.mp hj
   exact hij (by rw [← h2, ← h2'])
 
-/-- The indices lying in the `i`-th block form the interval `[i·a, (i+1)·a)`.-/
+/-- The indices lying in the `i`-th block form the interval `[i·a, (i+1)·a)`.
+@isnad1 id=eq.1h3v.s6.65b5ed99ead1 from=translated src=- shape=39059ecc vocab=e58a7c6b
+-/
 theorem filter_div_eq_range {N a i : ℕ} (ha : 0 < a) :
     {j ∈ Finset.range N | j / a = i} = Finset.Ico (i * a) (min N ((i + 1) * a)) := by
   ext j
@@ -101,7 +117,9 @@ theorem filter_div_eq_range {N a i : ℕ} (ha : 0 < a) :
     omega
 
 /-- **A block has exactly `a` elements**, provided the whole of the interval `[i·a, (i+1)·a)` fits
-inside the index range of `S`.-/
+inside the index range of `S`.
+@isnad1 id=eq.2h4v.s5.d30725a8cdf2 from=translated src=- shape=6a63f8c4 vocab=e3134327
+-/
 theorem card_blockOf (S : Finset V) {a i : ℕ} (ha : 0 < a) (hfit : (i + 1) * a ≤ #S) :
     #(blockOf S a i) = a := by
   classical

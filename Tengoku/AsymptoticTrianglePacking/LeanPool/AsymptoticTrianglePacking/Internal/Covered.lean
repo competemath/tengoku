@@ -48,7 +48,9 @@ noncomputable def retainedSet (H : Finset (Finset V)) {p : ℝ}
   exact H.filter (fun e => ω ∈ ρ.A e)
 
 /-- **C4b-3b(1) — vertex-covered probability bound.** The probability that a vertex `x` is covered
-by the round's matching is at most `deg(x) · p`.-/
+by the round's matching is at most `deg(x) · p`.
+@isnad1 id=le.0h6v.s6.8edf816fa1a2 from=translated src=- shape=10453662 vocab=bb30687d
+-/
 theorem prob_vertex_covered {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (x : V) :
     (ℙ : Measure Ω) {ω | x ∈ support (roundMatching (retainedSet H ρ ω))}
@@ -74,7 +76,9 @@ theorem prob_vertex_covered {H : Finset (Finset V)} {p : ℝ}
 
 /-- **C4b-3b(2) — edge-hit probability.** The probability that an edge `e` loses a vertex to the
 covered set (so it fails to survive into the residual) is at most `∑_{x∈e} deg(x)·p`. Union bound
-over the vertices of `e` of `prob_vertex_covered`.-/
+over the vertices of `e` of `prob_vertex_covered`.
+@isnad1 id=le.0h6v.s7.d2dd5d6e5a1c from=translated src=- shape=8e35ea85 vocab=48a898e7
+-/
 theorem prob_edge_hit {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (e : Finset V) :
     (ℙ : Measure Ω) {ω | ∃ x ∈ e, x ∈ support (roundMatching (retainedSet H ρ ω))}
@@ -95,7 +99,9 @@ theorem prob_edge_hit {H : Finset (Finset V)} {p : ℝ}
         Finset.sum_le_sum (fun x _ => prob_vertex_covered ρ x)
 
 /-- **C4b-3b(2') — edge-hit probability, regular form.** For an `r`-uniform hypergraph with max
-degree `≤ Δ`, an edge is hit with probability at most `r·Δ·p`.-/
+degree `≤ Δ`, an edge is hit with probability at most `r·Δ·p`.
+@isnad1 id=le.3h8v.s7.1267492beeee from=translated src=- shape=5f66d629 vocab=393e263d
+-/
 theorem prob_edge_hit_le {H : Finset (Finset V)} {p : ℝ} {r Δ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hr : IsUniform H r) (hΔ : ∀ x, degree H x ≤ Δ)
     {e : Finset V} (he : e ∈ H) :

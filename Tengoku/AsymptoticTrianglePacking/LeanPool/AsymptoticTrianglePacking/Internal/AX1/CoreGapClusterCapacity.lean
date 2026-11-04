@@ -47,11 +47,16 @@ noncomputable def crossEdges (G : SimpleGraph V) [DecidableRel G.Adj] (U W : Fin
   (G.interedges U W).image (fun p => ({p.1, p.2} : Finset V))
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s5.154ead5fcc32 from=translated src=- shape=54fe40c9 vocab=562eb9f7
+-/
 theorem card_crossEdges_le (G : SimpleGraph V) [DecidableRel G.Adj] (U W : Finset V) :
     #(crossEdges G U W) ≤ #(G.interedges U W) :=
   Finset.card_image_le
 
-/-- An edge of a triangle of `G` joining `U` to `W` is one of the `U–W` edges.-/
+/-- An edge of a triangle of `G` joining `U` to `W` is one of the `U–W` edges.
+@isnad1 id=mem.4h7v.s7.a83c41340d7b from=translated src=- shape=9919edb4 vocab=f4149c82
+-/
 theorem mem_crossEdges_of_mem_triangle (G : SimpleGraph V) [DecidableRel G.Adj]
     {U W : Finset V} {T : Finset (Finset V)} (hT : T ∈ triangleHypergraphE G)
     {x y : V} (hx : x ∈ U) (hy : y ∈ W) (hxy : ({x, y} : Finset V) ∈ T) :
@@ -74,7 +79,9 @@ theorem mem_crossEdges_of_mem_triangle (G : SimpleGraph V) [DecidableRel G.Adj]
   exact ⟨hx, hy, hadj⟩
 
 /-- **The capacity constraint of a cluster pair.**  A fractional triangle packing puts total weight
-at most the number of `U–W` edges on the triangles that use one.-/
+at most the number of `U–W` edges on the triangles that use one.
+@isnad1 id=le.1h5v.s8.213b0e76f3bf from=translated src=- shape=88940a89 vocab=3c0d16de
+-/
 theorem sum_fracPacking_cluster_pair_le (G : SimpleGraph V) [DecidableRel G.Adj]
     {w : Finset (Finset V) → ℝ} (hw : IsFracPacking G w) (U W : Finset V) :
     ∑ T ∈ (triangleHypergraphE G).filter
@@ -101,7 +108,9 @@ theorem sum_fracPacking_cluster_pair_le (G : SimpleGraph V) [DecidableRel G.Adj]
 
 /-- **The `ν₃*` form of the capacity constraint.**  If every triangle of `G` uses an edge crossing
 one of the cluster pairs `(U i, W i)`, `i < k`, then `ν₃*(G)` is at most the total number of edges
-across those pairs.-/
+across those pairs.
+@isnad1 id=le.1h5v.s7.5120acf660b4 from=translated src=- shape=56b1eb8c vocab=0340ecfe
+-/
 theorem nu3star_le_of_clusterPairCover (G : SimpleGraph V) [DecidableRel G.Adj] {k : ℕ}
     (U W : ℕ → Finset V)
     (hcov : ∀ T ∈ triangleHypergraphE G, ∃ i < k, ∃ x ∈ U i, ∃ y ∈ W i,

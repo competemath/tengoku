@@ -53,7 +53,9 @@ conflicting edges is retained has probability `p · (1-p)^{c(e)}`. Proof: the ev
 complements `(A f)ᶜ` for `f ∈ conflicts H e` are jointly independent (all distinct, since
 `conflicts H e` excludes `e`); the measure of their intersection factors as the product
 `ℙ(A e) · ∏_{f} ℙ((A f)ᶜ) = p · (1-p)^{c(e)}` (each conflict `f ∈ H`, so `ρ.prob` applies, and
-`ℙ((A f)ᶜ) = 1 - p`).-/
+`ℙ((A f)ᶜ) = 1 - p`).
+@isnad1 id=eq.3h6v.s7.ce161be74ac9 from=translated src=- shape=a2b756d6 vocab=95dfd892
+-/
 theorem edge_survives_prob {H : Finset (Finset V)} {p : ℝ} (ρ : BernoulliRetention (Ω := Ω) H p)
     (hp0 : 0 ≤ p) (hp1 : p ≤ 1) {e : Finset V} (he : e ∈ H) :
     (ℙ : Measure Ω) (ρ.A e ∩ ⋂ f ∈ conflicts H e, (ρ.A f)ᶜ)

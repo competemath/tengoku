@@ -33,11 +33,15 @@ namespace Nibble.YusterE
 
 variable {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
 
-/-- The all-zero weighting is a fractional packing.-/
+/-- The all-zero weighting is a fractional packing.
+@isnad1 id=isfracpa.0h2v.s5.5535cf9da542 from=translated src=- shape=c142fe6e vocab=b682e037
+-/
 theorem isFracPacking_zero : IsFracPacking G (fun _ => 0) :=
   ⟨fun _ => le_refl 0, fun _ _ => rfl, fun e => by simp⟩
 
-/-- Each hyperedge of `triangleHypergraphE G` is a set of `2`-cliques (edges).-/
+/-- Each hyperedge of `triangleHypergraphE G` is a set of `2`-cliques (edges).
+@isnad1 id=le.1h3v.s6.6be3025c9cdf from=translated src=- shape=bbd66ffa vocab=66702073
+-/
 theorem triangleHypergraphE_subset_edges {T : Finset (Finset V)}
     (hT : T ∈ triangleHypergraphE G) : T ⊆ G.cliqueFinset 2 := by
   rw [triangleHypergraphE, Finset.mem_image] at hT
@@ -45,7 +49,9 @@ theorem triangleHypergraphE_subset_edges {T : Finset (Finset V)}
   exact powersetCard_two_subset_cliqueFinset G ((SimpleGraph.mem_cliqueFinset_iff).mp ht)
 
 /-- **Per-packing bound.** For any fractional packing `w`, the total weight is `≤ |E(G)|/3`. Double
-counting: `3·∑_T w_T = ∑_T ∑_{e∈T} w_T = ∑_e ∑_{T∋e} w_T ≤ ∑_e 1 = |E(G)|`.-/
+counting: `3·∑_T w_T = ∑_T ∑_{e∈T} w_T = ∑_e ∑_{T∋e} w_T ≤ ∑_e 1 = |E(G)|`.
+@isnad1 id=le.1h3v.s6.c07ac7a21541 from=translated src=- shape=70417348 vocab=4a178ce5
+-/
 theorem fracPacking_sum_le {w : Finset (Finset V) → ℝ} (hw : IsFracPacking G w) :
     (∑ T ∈ triangleHypergraphE G, w T) ≤ ((G.cliqueFinset 2).card : ℝ) / 3 := by
   obtain ⟨_, _, hcon⟩ := hw
@@ -71,7 +77,9 @@ theorem fracPacking_sum_le {w : Finset (Finset V) → ℝ} (hw : IsFracPacking G
   linarith only [dc]
 
 /-- **Y6 (upper) — `ν₃* ≤ |E(G)|/3`.** The fractional triangle-packing number is bounded by
-`|E(G)|/3`. Together with `nu3_ge_nibble` this bounds the integrality gap `ν₃* − ν₃`.-/
+`|E(G)|/3`. Together with `nu3_ge_nibble` this bounds the integrality gap `ν₃* − ν₃`.
+@isnad1 id=le.0h2v.s5.636c7bba7f11 from=translated src=- shape=a74c8d21 vocab=9b23b03b
+-/
 theorem nu3star_le : nu3star G ≤ ((G.cliqueFinset 2).card : ℝ) / 3 := by
   refine csSup_le ⟨0, ⟨fun _ => 0, isFracPacking_zero G, by simp⟩⟩ ?_
   rintro x ⟨w, hw, rfl⟩

@@ -58,12 +58,17 @@ noncomputable def coverRate (H : Finset (Finset V)) (p : ℝ) (x : V) : ℝ :=
   ∑ f ∈ H.filter (fun f => x ∈ f), p * (1 - p) ^ (conflicts H f).card
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=le.2h4v.s5.a6451c022f99 from=translated src=- shape=a2e573ba vocab=2c371096
+-/
 theorem coverRate_nonneg {H : Finset (Finset V)} {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (x : V) :
     0 ≤ coverRate H p x :=
   Finset.sum_nonneg fun f _ => mul_nonneg hp0 (pow_nonneg (by linarith) _)
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The covering rate is at most `deg(x)·p`.-/
+/-- The covering rate is at most `deg(x)·p`.
+@isnad1 id=le.2h4v.s5.5fa0229f57d8 from=translated src=- shape=cdadf7b3 vocab=3ad4656d
+-/
 theorem coverRate_le {H : Finset (Finset V)} {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (x : V) :
     coverRate H p x ≤ (degree H x : ℝ) * p := by
   have hterm : ∀ f ∈ H.filter (fun f => x ∈ f), p * (1 - p) ^ (conflicts H f).card ≤ p := by
@@ -76,7 +81,9 @@ theorem coverRate_le {H : Finset (Finset V)} {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p 
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
 /-- The covering event of a vertex is the (disjoint) union of the matching events of the edges
-through it.-/
+through it.
+@isnad1 id=eq.0h6v.s7.907253e56c1c from=translated src=- shape=5ea550b3 vocab=097c6034
+-/
 theorem vertexCovered_eq_biUnion {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (x : V) :
     {ω | x ∈ covered (retainedSet H ρ ω)}
@@ -93,7 +100,9 @@ theorem vertexCovered_eq_biUnion {H : Finset (Finset V)} {p : ℝ}
 
 /-- **The exact per-vertex covering probability.**  `ℙ(x covered) = ∑_{f ∋ x} p(1−p)^{c(f)}`.
 Equality (not just the union bound `prob_vertex_covered`) because the matching events of the edges
-through `x` are pairwise disjoint.-/
+through `x` are pairwise disjoint.
+@isnad1 id=eq.2h6v.s6.61b183c70d8c from=translated src=- shape=e605fc1b vocab=fb4ffc82
+-/
 theorem prob_vertex_covered_eq {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (x : V) :
     (ℙ : Measure Ω).real {ω | x ∈ covered (retainedSet H ρ ω)} = coverRate H p x := by
@@ -122,7 +131,9 @@ theorem prob_vertex_covered_eq {H : Finset (Finset V)} {p : ℝ}
 
 /-- **The second Bonferroni inequality** for a `Finset`-indexed family of measurable sets:
 `ℙ(⋃ᵢ Aᵢ) ≥ ∑ᵢ ℙ(Aᵢ) − ∑ᵢ ∑_{j ≠ i} ℙ(Aᵢ ∩ Aⱼ)`.  (Mathlib has the union bound but not this
-complementary direction.)-/
+complementary direction.)
+@isnad1 id=le.1h4v.s7.1d24cdd88374 from=translated src=- shape=5b19d1c7 vocab=b56b16e6
+-/
 theorem measureReal_biUnion_ge_bonferroni {ι : Type*} [DecidableEq ι] (s : Finset ι)
     (A : ι → Set Ω) (hA : ∀ i, MeasurableSet (A i)) :
     ∑ i ∈ s, (ℙ : Measure Ω).real (A i)
@@ -172,7 +183,9 @@ theorem measureReal_biUnion_ge_bonferroni {ι : Type*} [DecidableEq ι] (s : Fin
 /-! ## Two vertices covered simultaneously -/
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- Two distinct edges are retained simultaneously with probability `p²` (pairwise independence).-/
+/-- Two distinct edges are retained simultaneously with probability `p²` (pairwise independence).
+@isnad1 id=eq.3h7v.s7.0b6627bbb6df from=translated src=- shape=5b22ed4c vocab=bd9781a1
+-/
 theorem prob_two_retained {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {f g : Finset V} (hf : f ∈ H) (hg : g ∈ H)
     (hne : f ≠ g) :
@@ -188,7 +201,9 @@ theorem prob_two_retained {H : Finset (Finset V)} {p : ℝ}
 /-- **A second-order bound on the joint covering probability.**  For `x ≠ y`,
 `ℙ(x covered ∧ y covered) ≤ deg(x)·deg(y)·p² + codeg(x,y)·p`.  In the nibble regime `p = γ/(r d)`
 with degrees `≈ d` and codegree `≤ μd` this is `O(γ²/r² + μγ/r)`, i.e. genuinely of second order
-against the first-order covering rate `≈ γ/r`.-/
+against the first-order covering rate `≈ γ/r`.
+@isnad1 id=le.1h7v.s7.eb60224f5fdd from=translated src=- shape=fa315ac1 vocab=13a27cf6
+-/
 theorem prob_two_vertices_covered_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (x y : V) :
     (ℙ : Measure Ω).real

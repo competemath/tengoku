@@ -83,7 +83,9 @@ near-regularity tolerance `μ > 0` such that, whenever the edge-type triangle hy
 `(1±μ)`-nearly `d`-regular with codegree `≤ μd`, it has a matching (edge-disjoint triangle
 packing) of
 size `≥ (1-β)·|E(G)|/3`. Direct application of `NibbleTheorem` to `triangleHypergraphSub G`, using
-`card_EdgeV` to turn `Fintype.card (EdgeV G)` into `|E(G)| = |cliqueFinset 2|`.-/
+`card_EdgeV` to turn `Fintype.card (EdgeV G)` into `|E(G)| = |cliqueFinset 2|`.
+@isnad1 id=ex.2h3v.s8.cea9235163fa from=translated src=- shape=9cbc67f2 vocab=d1433127
+-/
 theorem nibble_gives_triangleSub_matching (hNibble : NibbleTheorem) {β : ℝ} (hβ : 0 < β) :
     ∃ μ : ℝ, 0 < μ ∧ ∃ d₀ : ℝ, 0 < d₀ ∧ ∀ {d : ℝ}, 0 < d → d₀ ≤ d →
       NearlyRegular (triangleHypergraphSub G) d μ →
@@ -103,7 +105,9 @@ there are tolerances `μ, η > 0` such that whenever the edge-type triangle hype
 `NearlyRegularMost d μ η` (near-`d`-regular outside an `η`-fraction of edges) with codegree `≤
 μd`, it
 has an edge-disjoint triangle packing of size `≥ (1-β)·|E(G)|/3`. This is the version the
-Szemerédi+counting reconstruction (which yields `NearlyRegularMost`, not strict) feeds.-/
+Szemerédi+counting reconstruction (which yields `NearlyRegularMost`, not strict) feeds.
+@isnad1 id=ex.2h3v.s8.653d6bf84c3e from=translated src=- shape=1a9b8a68 vocab=356a927b
+-/
 theorem nibble_gives_triangleSub_matching_most (hNibble : NibbleTheoremMost) {β : ℝ} (hβ : 0 < β) :
     ∃ μ : ℝ, 0 < μ ∧ ∃ η : ℝ, 0 < η ∧ ∃ d₀ : ℝ, 0 < d₀ ∧ ∀ {d : ℝ}, 0 < d → d₀ ≤ d →
       NearlyRegularMost (triangleHypergraphSub G) d μ η →
@@ -138,7 +142,9 @@ mapping each hyperedge `T` by the subtype embedding `EdgeV G ↪ Finset V` (`T �
 matching of `triangleHypergraphSub G` into a matching of `triangleHypergraphE G` of the same
 cardinality (the embedding is injective — preserves card and disjointness — and recovers the
 original
-`2`-subsets of each triangle since they are all `2`-cliques). Then `nu3_ge`.-/
+`2`-subsets of each triangle since they are all `2`-cliques). Then `nu3_ge`.
+@isnad1 id=le.1h3v.s5.7d546ab3a2b3 from=translated src=- shape=1c449c59 vocab=3b8c42cd
+-/
 theorem sub_matching_card_le_nu3 {M : Finset (Finset (EdgeV G))}
     (hM : IsMatching (triangleHypergraphSub G) M) : M.card ≤ nu3 G := by
   set emb : EdgeV G ↪ Finset V := Function.Embedding.subtype (· ∈ G.cliqueFinset 2) with hemb
@@ -179,7 +185,9 @@ near-regularity/codegree
 interface on `triangleHypergraphSub G`, the integral triangle-packing number satisfies
 `(1-β)·|E(G)|/3 ≤ ν₃ G`. Combines Y5 (`nibble_gives_triangleSub_matching`) with the Sub ↦
 `nu3` bridge.
-This is the quantitative half of Y6 (the other half is `ν₃* ≤` an upper bound).-/
+This is the quantitative half of Y6 (the other half is `ν₃* ≤` an upper bound).
+@isnad1 id=ex.2h3v.s8.2abfe93e0113 from=translated src=- shape=08b1f0d0 vocab=c84cf872
+-/
 theorem nu3_ge_nibble (hNibble : NibbleTheorem) {β : ℝ} (hβ : 0 < β) :
     ∃ μ : ℝ, 0 < μ ∧ ∃ d₀ : ℝ, 0 < d₀ ∧ ∀ {d : ℝ}, 0 < d → d₀ ≤ d →
       NearlyRegular (triangleHypergraphSub G) d μ →
@@ -243,7 +251,9 @@ def NibbleGapHyp : Prop :=
 /-- **AX1 REDUCTION.** AX1 follows from the two remaining obligations: cover-side strong duality
 (`τ₃* ≤ ν₃*`) and the unconditional nibble packing gap (`ν₃* − ν₃ ≤ ε n²`). The definitional bridges
 `Nibble.{nu3,nu3star} ↔ PaperIII.{nu3,nu3Star}` (already proven) make these the SAME `ν₃, ν₃*`
-as AX1's.-/
+as AX1's.
+@isnad1 id=ax1state.2h0v.s2.7fa8b1c2d89c from=translated src=- shape=f443e7c7 vocab=cebc349b
+-/
 theorem ax1_of_strongDuality_and_nibbleGap
     (hdual : StrongDualityHyp) (hgap : NibbleGapHyp) : AX1Statement := by
   intro ε hε
@@ -910,7 +920,9 @@ private lemma coverOpt_eq_zero_of_empty_row (inc : O → Finset C) {o : O}
   simp
 
 /-- **THE ATOM — finite LP strong duality (packing = cover).** Machinery-free: pure finite LP.
-This is the only genuinely hard step; everything downstream is instantiation.-/
+This is the only genuinely hard step; everything downstream is instantiation.
+@isnad1 id=le.0h3v.s5.fd6de1bf975d from=translated src=- shape=f2dbed5d vocab=6452842b
+-/
 theorem lp_strong_duality (inc : O → Finset C) :
     coverOpt inc ≤ packOpt inc := by
   by_cases hempty : ∃ o, inc o = ∅
@@ -929,7 +941,9 @@ theorem lp_strong_duality (inc : O → Finset C) :
     have hcover := @coverOpt_le_of_packOpt_lt O C _ _ _ inc hinc a ha
     linarith only [ha_def, ha, hcover]
 
-/-- Every feasible packing value is at most every feasible cover value.-/
+/-- Every feasible packing value is at most every feasible cover value.
+@isnad1 id=le.2h5v.s6.6e1f7f9b05a4 from=translated src=- shape=5ea00bcf vocab=1e71d160
+-/
 theorem weak_duality (inc : O → Finset C) {w : O → ℝ} {y : C → ℝ}
     (hw : IsPacking inc w) (hy : IsCover inc y) :
     ∑ o, w o ≤ ∑ c, y c := by
@@ -953,7 +967,9 @@ theorem weak_duality (inc : O → Finset C) {w : O → ℝ} {y : C → ℝ}
       exact mul_le_mul_of_nonneg_right (hw.2 c) (hy.1 c)
     _ = ∑ c, y c := by simp
 
-/-- Finite packing/cover weak duality at the optimum, when every object meets a constraint.-/
+/-- Finite packing/cover weak duality at the optimum, when every object meets a constraint.
+@isnad1 id=le.1h3v.s5.8c08c5f24bb1 from=translated src=- shape=32ce7ea9 vocab=c2e9fe40
+-/
 theorem packOpt_le_coverOpt (inc : O → Finset C) (hinc : ∀ o, (inc o).Nonempty) :
     packOpt inc ≤ coverOpt inc := by
   classical
@@ -995,7 +1011,9 @@ abbrev Edg := {e : Sym2 V // e ∈ G.edgeFinset}
 noncomputable def triInc (t : Tri G) : Finset (Edg G) :=
   Finset.univ.filter (fun e : Edg G => e.val ∈ edgesIn G t.val)
 
-/-- Every triangle has an incident graph edge.-/
+/-- Every triangle has an incident graph edge.
+@isnad1 id=nonempty.0h3v.s5.5006971e1895 from=translated src=- shape=b8f73b3c vocab=3b288f58
+-/
 theorem triInc_nonempty (t : Tri G) : (triInc G t).Nonempty := by
   classical
   have ht := SimpleGraph.mem_cliqueFinset_iff.mp t.property
@@ -1024,7 +1042,9 @@ theorem triInc_nonempty (t : Tri G) : (triInc G t).Nonempty := by
   exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, heIn⟩
 
 /-- **Bridge 1 (cover side).** The abstract cover optimum over the triangle–edge incidence equals
-`τ₃*`.-/
+`τ₃*`.
+@isnad1 id=eq.0h2v.s5.39c89ae7fe3e from=translated src=- shape=00663349 vocab=0bc7d27b
+-/
 theorem coverOpt_triInc_eq_tau3Star : coverOpt (triInc G) = tau3Star G := by
   -- Helper: edgesIn is nonempty for any triangle
   have edgesIn_ne : ∀ (t : Finset V), G.IsNClique 3 t → (edgesIn G t).Nonempty := fun t ht => by
@@ -1208,7 +1228,9 @@ private theorem edge_toFinset_card (e : Edg G) : #(Sym2.toFinset e.val) = 2 := b
 
 /-- **Bridge 2 (packing side).** The abstract packing optimum over the triangle–edge
 incidence equals
-`ν₃*`.-/
+`ν₃*`.
+@isnad1 id=eq.0h2v.s6.f8b459302780 from=translated src=- shape=00663349 vocab=f5a91cbc
+-/
 theorem packOpt_triInc_eq_nu3star : packOpt (triInc G) = nu3star G := by
   unfold packOpt nu3star
   congr 1
@@ -1438,7 +1460,9 @@ theorem packOpt_triInc_eq_nu3star : packOpt (triInc G) = nu3star G := by
 
 /-- **`StrongDualityHyp` — the instantiation.** `τ₃* ≤ ν₃*` follows from the abstract
 finite LP strong
-duality applied to the triangle–edge incidence, via the two value bridges.-/
+duality applied to the triangle–edge incidence, via the two value bridges.
+@isnad1 id=le.0h2v.s5.346f623ff830 from=translated src=- shape=f4b1dc74 vocab=bd50cc20
+-/
 theorem tau3Star_le_nu3star : tau3Star G ≤ nu3star G := by
   rw [← coverOpt_triInc_eq_tau3Star G, ← packOpt_triInc_eq_nu3star G]
   exact lp_strong_duality (triInc G)
@@ -1446,16 +1470,22 @@ theorem tau3Star_le_nu3star : tau3Star G ≤ nu3star G := by
 /-- **`StrongDualityHyp` DISCHARGED** — the cover-side strong-duality obligation of
 the AX1 chain is now a theorem (via the abstract finite LP duality + the
 triangle–edge encoding bridges). One of the three AX1
-obligations is closed, independently of the nibble.-/
+obligations is closed, independently of the nibble.
+@isnad1 id=strongdu.0h0v.s0.1ed57f996504 from=translated src=- shape=45709ebd vocab=1ed57f99
+-/
 theorem strongDualityHyp_holds : StrongDualityHyp :=
   fun {_} _ _ G _ => tau3Star_le_nu3star G
 
-/-- Weak duality in the reverse direction for the triangle–edge incidence.-/
+/-- Weak duality in the reverse direction for the triangle–edge incidence.
+@isnad1 id=le.0h2v.s5.5f75a9dd4bc0 from=translated src=- shape=f4b1dc74 vocab=bd50cc20
+-/
 theorem nu3star_le_tau3Star : nu3star G ≤ tau3Star G := by
   rw [← packOpt_triInc_eq_nu3star G, ← coverOpt_triInc_eq_tau3Star G]
   exact packOpt_le_coverOpt (triInc G) (triInc_nonempty G)
 
-/-- The cover-side AX1 statement yields the unconditional packing-gap formulation.-/
+/-- The cover-side AX1 statement yields the unconditional packing-gap formulation.
+@isnad1 id=nibblega.1h0v.s1.7b6d0fa1e5bc from=translated src=- shape=1d48f1ac vocab=a653f273
+-/
 theorem nibbleGapHyp_of_ax1 (hAX1 : AX1Statement) : NibbleGapHyp := by
   intro ε hε
   obtain ⟨n₀, hmain⟩ := hAX1 ε hε
@@ -1465,7 +1495,9 @@ theorem nibbleGapHyp_of_ax1 (hAX1 : AX1Statement) : NibbleGapHyp := by
   have hweak := nu3star_le_tau3Star G
   linarith
 
-/-- The remaining AX1 obligation is precisely the unconditional packing gap.-/
+/-- The remaining AX1 obligation is precisely the unconditional packing gap.
+@isnad1 id=ax1state.1h0v.s1.d931d0c0e6dc from=translated src=- shape=1d48f1ac vocab=a653f273
+-/
 theorem ax1_of_nibbleGap (hgap : NibbleGapHyp) : AX1Statement :=
   ax1_of_strongDuality_and_nibbleGap strongDualityHyp_holds hgap
 
@@ -1489,7 +1521,9 @@ variable {V : Type} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRe
 codegree interface on `triangleHypergraphSub G`, the gap between the fractional and integral
 triangle
 packing numbers is at most `β·|E(G)|/3`. Combining `nu3_ge_nibble` and `nu3star_le`. As `β → 0` this
-is `o(n²)` — AX1.-/
+is `o(n²)` — AX1.
+@isnad1 id=ex.2h3v.s8.fa762403c948 from=translated src=- shape=82416eeb vocab=112a2baf
+-/
 theorem nu3star_sub_nu3_le (hNibble : NibbleTheorem) {β : ℝ} (hβ : 0 < β) :
     ∃ μ : ℝ, 0 < μ ∧ ∃ d₀ : ℝ, 0 < d₀ ∧ ∀ {d : ℝ}, 0 < d → d₀ ≤ d →
       NearlyRegular (triangleHypergraphSub G) d μ →
@@ -1524,7 +1558,9 @@ namespace Nibble.YusterE
 variable {V : Type} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
 
 /-- **Edge count bound** `|E(G)| ≤ |V(G)|²`. Each edge is a `2`-subset of the vertex set, so
-`|E| ≤ C(|V|,2) ≤ |V|²`.-/
+`|E| ≤ C(|V|,2) ≤ |V|²`.
+@isnad1 id=le.0h2v.s5.8f3eb36bcc4c from=translated src=- shape=da68d5e2 vocab=62b1cd31
+-/
 theorem edge_card_le_card_sq :
     ((G.cliqueFinset 2).card : ℝ) ≤ (Fintype.card V : ℝ) ^ 2 := by
   have hle : (G.cliqueFinset 2).card ≤ (Fintype.card V).choose 2 := by
@@ -1547,7 +1583,9 @@ theorem edge_card_le_card_sq :
 integrality gap is
 `≤ ε·|V(G)|²` — the shape AX1 states. Takes `β = 3ε` in `nu3star_sub_nu3_le` (so `β·|E|/3 =
 ε·|E|`) and
-bounds `|E| ≤ |V|²`.-/
+bounds `|E| ≤ |V|²`.
+@isnad1 id=ex.2h3v.s8.83920aa5e176 from=translated src=- shape=995b2771 vocab=38995afc
+-/
 theorem nu3star_sub_nu3_le_eps (hNibble : NibbleTheorem) {ε : ℝ} (hε : 0 < ε) :
     ∃ μ : ℝ, 0 < μ ∧ ∃ d₀ : ℝ, 0 < d₀ ∧ ∀ {d : ℝ}, 0 < d → d₀ ≤ d →
       NearlyRegular (triangleHypergraphSub G) d μ →
@@ -1581,7 +1619,9 @@ namespace Nibble.YusterE
 variable {V : Type} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
 
 /-- **Majority `ν₃` lower bound.** `NibbleTheoremMost` + the Y3-majority interface ⇒ `ν₃ ≥
-(1-β)|E|/3`.-/
+(1-β)|E|/3`.
+@isnad1 id=ex.2h3v.s8.999ca4dc4cea from=translated src=- shape=fbd9d10d vocab=aa39fcee
+-/
 theorem nu3_ge_nibble_most (hNibble : NibbleTheoremMost) {β : ℝ} (hβ : 0 < β) :
     ∃ μ : ℝ, 0 < μ ∧ ∃ η : ℝ, 0 < η ∧ ∃ d₀ : ℝ, 0 < d₀ ∧ ∀ {d : ℝ}, 0 < d → d₀ ≤ d →
       NearlyRegularMost (triangleHypergraphSub G) d μ η →
@@ -1592,7 +1632,9 @@ theorem nu3_ge_nibble_most (hNibble : NibbleTheoremMost) {β : ℝ} (hβ : 0 < �
   obtain ⟨M, hM, hcard⟩ := hmain hd hd0 hReg hCod
   exact le_trans hcard (by exact_mod_cast sub_matching_card_le_nu3 G hM)
 
-/-- **Majority integrality-gap bound** `ν₃* − ν₃ ≤ β|E|/3`.-/
+/-- **Majority integrality-gap bound** `ν₃* − ν₃ ≤ β|E|/3`.
+@isnad1 id=ex.2h3v.s8.0553cdafe647 from=translated src=- shape=b45a34f8 vocab=b5bff7e0
+-/
 theorem nu3star_sub_nu3_le_most (hNibble : NibbleTheoremMost) {β : ℝ} (hβ : 0 < β) :
     ∃ μ : ℝ, 0 < μ ∧ ∃ η : ℝ, 0 < η ∧ ∃ d₀ : ℝ, 0 < d₀ ∧ ∀ {d : ℝ}, 0 < d → d₀ ≤ d →
       NearlyRegularMost (triangleHypergraphSub G) d μ η →
@@ -1610,7 +1652,9 @@ theorem nu3star_sub_nu3_le_most (hNibble : NibbleTheoremMost) {β : ℝ} (hβ : 
   rw [hgoal]
   linarith only [h1, h2]
 
-/-- **Majority AX1-form gap** `ν₃* − ν₃ ≤ ε|V|²`.-/
+/-- **Majority AX1-form gap** `ν₃* − ν₃ ≤ ε|V|²`.
+@isnad1 id=ex.2h3v.s8.8a9d0db04301 from=translated src=- shape=78d075cd vocab=9289a2c4
+-/
 theorem nu3star_sub_nu3_le_eps_most (hNibble : NibbleTheoremMost) {ε : ℝ} (hε : 0 < ε) :
     ∃ μ : ℝ, 0 < μ ∧ ∃ η : ℝ, 0 < η ∧ ∃ d₀ : ℝ, 0 < d₀ ∧ ∀ {d : ℝ}, 0 < d → d₀ ≤ d →
       NearlyRegularMost (triangleHypergraphSub G) d μ η →
@@ -1688,7 +1732,9 @@ def NearRegObligationLinearSized (μ η d₀ L : ℝ) : Prop :=
       (Fintype.card V : ℝ) ≤ L * d
 
 /-- The triangle-hypergraph vertex count is quadratically controlled by any linear base-size bound
-`|V(G)| ≤ L d`.-/
+`|V(G)| ≤ L d`.
+@isnad1 id=le.3h4v.s7.3dafc07fedad from=translated src=- shape=cf0eece8 vocab=94cf4597
+-/
 theorem edgeV_card_le_sq_of_base_card_le {V : Type} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] {L d : ℝ}
     (hL : 0 ≤ L) (hd : 0 ≤ d) (hbase : (Fintype.card V : ℝ) ≤ L * d) :
@@ -1706,7 +1752,9 @@ theorem edgeV_card_le_sq_of_base_card_le {V : Type} [Fintype V] [DecidableEq V]
     _ = L ^ 2 * d ^ 2 := by ring
 
 /-- A linear base-size second-stage obligation implies the polynomial hypergraph-size
-obligation consumed by the sized nibble interface.-/
+obligation consumed by the sized nibble interface.
+@isnad1 id=nearrego.2h4v.s5.172b78d97a92 from=translated src=- shape=71293e58 vocab=d61a3dab
+-/
 theorem nearRegSized_of_linearSized {μ η d₀ L : ℝ} (hL : 0 ≤ L)
     (h : NearRegObligationLinearSized μ η d₀ L) :
     NearRegObligationSized μ η d₀ (L ^ 2) := by
@@ -1718,7 +1766,9 @@ theorem nearRegSized_of_linearSized {μ η d₀ L : ℝ} (hL : 0 ≤ L)
   exact edgeV_card_le_sq_of_base_card_le G hL (le_of_lt hd) hbase
 
 /-- Linear size control for every positive constant implies the exact sized obligation for every
-positive `K`, by taking `L = sqrt K`.-/
+positive `K`, by taking `L = sqrt K`.
+@isnad1 id=nearrego.2h4v.s5.d9b76eadd00f from=translated src=- shape=de8bfc8d vocab=1bc449db
+-/
 theorem nearRegSized_of_forall_linearSized {μ η d₀ K : ℝ} (hK : 0 < K)
     (h : ∀ L : ℝ, 0 < L → NearRegObligationLinearSized μ η d₀ L) :
     NearRegObligationSized μ η d₀ K := by
@@ -1729,7 +1779,9 @@ theorem nearRegSized_of_forall_linearSized {μ η d₀ K : ℝ} (hK : 0 < K)
 /-- **NibbleGapHyp reduction.** The unconditional packing gap follows from the
 `G`-uniform nibble gap plus the near-regularity obligation for its tolerances.
 Bottoms the AX1 chain out at `NibbleTheoremMost`
-(via `UniformNibbleGap`) and the second-stage regularization (via `NearRegObligation`).-/
+(via `UniformNibbleGap`) and the second-stage regularization (via `NearRegObligation`).
+@isnad1 id=nibblega.2h0v.s5.8d7a211219da from=translated src=- shape=4f1c5e83 vocab=9013a311
+-/
 theorem nibbleGap_of_uniform_and_regularity
     (hU : UniformNibbleGap)
     (hReg : ∀ μ η d₀ : ℝ, 0 < μ → 0 < η → 0 < d₀ → NearRegObligation μ η d₀) :
@@ -1747,7 +1799,9 @@ theorem nibbleGap_of_uniform_and_regularity
 near-regularity obligation, and inlines the
 packing-gap arithmetic (`ν₃* ≤ |E|/3` and matching `≥ (1-3ε)|E|/3 ≤ ν₃`, so `ν₃*−ν₃ ≤ ε|E| ≤ ε n²`).
 This bottoms the AX1 dependency chain out at exactly `NibbleTheoremMost` plus
-the `second-stage` regularization.-/
+the `second-stage` regularization.
+@isnad1 id=nibblega.2h0v.s5.1a56089c3f54 from=translated src=- shape=4f1c5e83 vocab=acdca160
+-/
 theorem nibbleGap_of_nibbleTheorem (hNib : NibbleTheoremMost)
     (hReg : ∀ μ η d₀ : ℝ, 0 < μ → 0 < η → 0 < d₀ → NearRegObligation μ η d₀) : NibbleGapHyp := by
   intro ε hε
@@ -1770,7 +1824,9 @@ theorem nibbleGap_of_nibbleTheorem (hNib : NibbleTheoremMost)
 
 /-- **NibbleGapHyp from the corrected ceiling-aware nibble theorem.** This is the same accounting as
 `nibbleGap_of_nibbleTheorem`, but it keeps the second-stage global-degree ceiling supplied by
-`NearRegObligation` and passes it into the nibble interface.-/
+`NearRegObligation` and passes it into the nibble interface.
+@isnad1 id=nibblega.2h0v.s5.1e1a929f3491 from=translated src=- shape=4f1c5e83 vocab=675ccd89
+-/
 theorem nibbleGap_of_nibbleTheoremCeil (hNib : NibbleTheoremMostCeil)
     (hReg : ∀ μ η d₀ : ℝ, 0 < μ → 0 < η → 0 < d₀ → NearRegObligation μ η d₀) :
     NibbleGapHyp := by
@@ -1795,7 +1851,9 @@ theorem nibbleGap_of_nibbleTheoremCeil (hNib : NibbleTheoremMostCeil)
 
 /-- **NibbleGapHyp from the sized corrected nibble theorem.** This is the target shape for the
 Freedman parameter route: all probabilistic plumbing is abstract, while the triangle-specific
-regularization supplies both the global ceiling and the size-vs-degree bound.-/
+regularization supplies both the global ceiling and the size-vs-degree bound.
+@isnad1 id=nibblega.2h0v.s5.2505ca4b2037 from=translated src=- shape=da5a95a3 vocab=7bfcc0ae
+-/
 theorem nibbleGap_of_nibbleTheoremCeilSized (hNib : NibbleTheoremMostCeilSized)
     (hReg : ∀ μ η d₀ K : ℝ, 0 < μ → 0 < η → 0 < d₀ → 0 < K →
       NearRegObligationSized μ η d₀ K) :
@@ -1820,7 +1878,9 @@ theorem nibbleGap_of_nibbleTheoremCeilSized (hNib : NibbleTheoremMostCeilSized)
   nlinarith only [h2, hlb, hεE]
 
 /-- Version of `nibbleGap_of_nibbleTheoremCeilSized` consuming the dense-regime linear size
-obligation.-/
+obligation.
+@isnad1 id=nibblega.2h0v.s5.2039b9f6316c from=translated src=- shape=da5a95a3 vocab=5f59a439
+-/
 theorem nibbleGap_of_nibbleTheoremCeilSized_linear (hNib : NibbleTheoremMostCeilSized)
     (hReg : ∀ μ η d₀ L : ℝ, 0 < μ → 0 < η → 0 < d₀ → 0 < L →
       NearRegObligationLinearSized μ η d₀ L) :
@@ -1829,7 +1889,9 @@ theorem nibbleGap_of_nibbleTheoremCeilSized_linear (hNib : NibbleTheoremMostCeil
     (fun μ η d₀ _K hμ hη hd₀ hK =>
       nearRegSized_of_forall_linearSized hK (fun L hL => hReg μ η d₀ L hμ hη hd₀ hL))
 
-/-- **The full AX1 reduction.** AX1 sorry-free follows from the three irreducible obligations.-/
+/-- **The full AX1 reduction.** AX1 sorry-free follows from the three irreducible obligations.
+@isnad1 id=ax1state.3h0v.s5.634e912faae7 from=translated src=- shape=763ed097 vocab=7fafb75d
+-/
 theorem ax1_of_nibbleTheorem_strongDuality_regularity
     (hNib : NibbleTheoremMost) (hdual : StrongDualityHyp)
     (hReg : ∀ μ η d₀ : ℝ, 0 < μ → 0 < η → 0 < d₀ → NearRegObligation μ η d₀) :
@@ -1838,7 +1900,9 @@ theorem ax1_of_nibbleTheorem_strongDuality_regularity
 
 /-- **The full AX1 reduction, ceiling-aware form.** This is the corrected target for the Freedman
 route: the second-stage regularization supplies the global degree ceiling consumed by
-`NibbleTheoremMostCeil`.-/
+`NibbleTheoremMostCeil`.
+@isnad1 id=ax1state.3h0v.s5.1da0f59dbb30 from=translated src=- shape=763ed097 vocab=71bafa2d
+-/
 theorem ax1_of_nibbleTheoremCeil_strongDuality_regularity
     (hNib : NibbleTheoremMostCeil) (hdual : StrongDualityHyp)
     (hReg : ∀ μ η d₀ : ℝ, 0 < μ → 0 < η → 0 < d₀ → NearRegObligation μ η d₀) :
@@ -1846,7 +1910,9 @@ theorem ax1_of_nibbleTheoremCeil_strongDuality_regularity
   ax1_of_strongDuality_and_nibbleGap hdual (nibbleGap_of_nibbleTheoremCeil hNib hReg)
 
 /-- **The full AX1 reduction, sized ceiling-aware form.** This is the version aligned with the
-Freedman parameter atom after exposing the necessary size control.-/
+Freedman parameter atom after exposing the necessary size control.
+@isnad1 id=ax1state.3h0v.s5.1713fd26370e from=translated src=- shape=5af35a7d vocab=4b2b84f9
+-/
 theorem ax1_of_nibbleTheoremCeilSized_strongDuality_regularity
     (hNib : NibbleTheoremMostCeilSized) (hdual : StrongDualityHyp)
     (hReg : ∀ μ η d₀ K : ℝ, 0 < μ → 0 < η → 0 < d₀ → 0 < K →
@@ -1854,7 +1920,9 @@ theorem ax1_of_nibbleTheoremCeilSized_strongDuality_regularity
     AX1Statement :=
   ax1_of_strongDuality_and_nibbleGap hdual (nibbleGap_of_nibbleTheoremCeilSized hNib hReg)
 
-/-- Sized Freedman AX1 reduction consuming the linear dense-regime regularity condition.-/
+/-- Sized Freedman AX1 reduction consuming the linear dense-regime regularity condition.
+@isnad1 id=ax1state.3h0v.s5.732d885d7d0b from=translated src=- shape=5af35a7d vocab=e2c6f803
+-/
 theorem ax1_of_nibbleTheoremCeilSized_strongDuality_linearRegularity
     (hNib : NibbleTheoremMostCeilSized) (hdual : StrongDualityHyp)
     (hReg : ∀ μ η d₀ L : ℝ, 0 < μ → 0 < η → 0 < d₀ → 0 < L →
@@ -1879,7 +1947,9 @@ namespace Nibble
 
 /-- **The one-round covering oracle from the sharp round.**  Running the tight-band schedule
 `Nibble.TightParams r β` gives, for every majority near-regular input with a global degree ceiling
-and low codegree, a `HasRoundOracle H (γ/(16r)) β`.-/
+and low codegree, a `HasRoundOracle H (γ/(16r)) β`.
+@isnad1 id=roundora.0h0v.s0.1b0796b1ad51 from=translated src=- shape=45709ebd vocab=1b0796b1
+-/
 theorem roundOracleExistsCeil_holds : RoundOracleExistsCeil := by
   classical
   intro r hr β hβ
@@ -2000,31 +2070,41 @@ theorem roundOracleExistsCeil_holds : RoundOracleExistsCeil := by
         Hypergraph.residual_disjoint_covered he⟩
     · exact Finset.Subset.trans hK'res (Finset.filter_subset_filter _ hKH')
 
-/-- **`NibbleTheoremMostCeil`, unconditionally.**-/
+/-- **`NibbleTheoremMostCeil`, unconditionally.**
+@isnad1 id=nibbleth.0h0v.s0.211a8124bb65 from=translated src=- shape=45709ebd vocab=211a8124
+-/
 theorem nibbleTheoremMostCeil_holds : NibbleTheoremMostCeil :=
   nibbleTheoremMostCeil_of_adaptiveOracleCeil
     (adaptiveOracleExistsCeil_of_roundOracleCeil roundOracleExistsCeil_holds)
 
 /-- **`NibbleTheoremMostCeilSized`, unconditionally.**  The size hypothesis
-`|V| ≤ K d²` is not needed by the tight-band route, so it is simply discarded.-/
+`|V| ≤ K d²` is not needed by the tight-band route, so it is simply discarded.
+@isnad1 id=nibbleth.0h0v.s0.c904d948773e from=translated src=- shape=45709ebd vocab=c904d948
+-/
 theorem nibbleTheoremMostCeilSized_holds : NibbleTheoremMostCeilSized := by
   intro r hr β hβ
   obtain ⟨μ, hμ, η, hη, d₀, hd₀, hmain⟩ := nibbleTheoremMostCeil_holds r hr β hβ
   exact ⟨μ, hμ, η, hη, d₀, hd₀, 1, one_pos,
     fun H d hd hd0 huni hreg hcod hceil _ => hmain H d hd hd0 huni hreg hcod hceil⟩
 
-/-- **`NibbleTheorem`, unconditionally.**-/
+/-- **`NibbleTheorem`, unconditionally.**
+@isnad1 id=nibbleth.0h0v.s0.45cf6174aadf from=translated src=- shape=45709ebd vocab=45cf6174
+-/
 theorem nibbleTheorem_holds : NibbleTheorem :=
   nibbleTheoremMostCeil_holds.nibbleTheorem
 
-/-- **The nibble gap hypothesis**, via `Nibble.NibbleGapReduction`.-/
+/-- **The nibble gap hypothesis**, via `Nibble.NibbleGapReduction`.
+@isnad1 id=nibblega.1h0v.s5.024faf45aa2d from=translated src=- shape=da2aa2ca vocab=36158035
+-/
 theorem AX1.nibbleGap_holds
     (hReg : ∀ μ η d₀ K : ℝ, 0 < μ → 0 < η → 0 < d₀ → 0 < K →
       AX1.NearRegObligationSized μ η d₀ K) :
     AX1.NibbleGapHyp :=
   AX1.nibbleGap_of_nibbleTheoremCeilSized nibbleTheoremMostCeilSized_holds hReg
 
-/-- **AX1**, from strong duality and the sized near-regularity obligation.-/
+/-- **AX1**, from strong duality and the sized near-regularity obligation.
+@isnad1 id=ax1state.2h0v.s5.12007a8c687f from=translated src=- shape=da5a95a3 vocab=8582fafb
+-/
 theorem AX1.ax1_holds (hdual : AX1.StrongDualityHyp)
     (hReg : ∀ μ η d₀ K : ℝ, 0 < μ → 0 < η → 0 < d₀ → 0 < K →
       AX1.NearRegObligationSized μ η d₀ K) :
@@ -2038,24 +2118,34 @@ The schedule now supplies the sharp round itself (`Nibble.sharpRoundHyp_of_two_g
 regime `2γ ≤ ε` is exactly the schedule's own `ε = 4((r−1)/r)γ`), so `Nibble.SharpRoundHyp` is no
 longer an input.  The following wrappers keep the earlier `_of_sharpRound` interfaces available. -/
 
-/-- **The one-round covering oracle from the sharp round.**-/
+/-- **The one-round covering oracle from the sharp round.**
+@isnad1 id=roundora.1h0v.s1.0efaf702a166 from=translated src=- shape=1d48f1ac vocab=686d3884
+-/
 theorem roundOracleExistsCeil_of_sharpRound (_hSharp : SharpRoundHyp) : RoundOracleExistsCeil :=
   roundOracleExistsCeil_holds
 
-/-- **`NibbleTheoremMostCeil` from the sharp round.**-/
+/-- **`NibbleTheoremMostCeil` from the sharp round.**
+@isnad1 id=nibbleth.1h0v.s1.935940cf0432 from=translated src=- shape=1d48f1ac vocab=7aad9d64
+-/
 theorem nibbleTheoremMostCeil_of_sharpRound (_hSharp : SharpRoundHyp) : NibbleTheoremMostCeil :=
   nibbleTheoremMostCeil_holds
 
-/-- **`NibbleTheoremMostCeilSized` from the sharp round.**-/
+/-- **`NibbleTheoremMostCeilSized` from the sharp round.**
+@isnad1 id=nibbleth.1h0v.s1.30edcc9d619b from=translated src=- shape=1d48f1ac vocab=de3559d6
+-/
 theorem nibbleTheoremMostCeilSized_of_sharpRound (_hSharp : SharpRoundHyp) :
     NibbleTheoremMostCeilSized :=
   nibbleTheoremMostCeilSized_holds
 
-/-- **`NibbleTheorem` from the sharp round.**-/
+/-- **`NibbleTheorem` from the sharp round.**
+@isnad1 id=nibbleth.1h0v.s1.e734ff7296d1 from=translated src=- shape=1d48f1ac vocab=540e5a2f
+-/
 theorem nibbleTheorem_of_sharpRound (_hSharp : SharpRoundHyp) : NibbleTheorem :=
   nibbleTheorem_holds
 
-/-- **The nibble gap hypothesis from the sharp round**, via `Nibble.NibbleGapReduction`.-/
+/-- **The nibble gap hypothesis from the sharp round**, via `Nibble.NibbleGapReduction`.
+@isnad1 id=nibblega.2h0v.s5.7708870a5c5a from=translated src=- shape=da5a95a3 vocab=7aaaebaa
+-/
 theorem AX1.nibbleGap_of_sharpRound (_hSharp : SharpRoundHyp)
     (hReg : ∀ μ η d₀ K : ℝ, 0 < μ → 0 < η → 0 < d₀ → 0 < K →
       AX1.NearRegObligationSized μ η d₀ K) :
@@ -2063,7 +2153,9 @@ theorem AX1.nibbleGap_of_sharpRound (_hSharp : SharpRoundHyp)
   AX1.nibbleGap_holds hReg
 
 /-- **AX1 from the sharp round**, together with strong duality and the sized near-regularity
-obligation.-/
+obligation.
+@isnad1 id=ax1state.3h0v.s5.22015e57202e from=translated src=- shape=5af35a7d vocab=9d05df2e
+-/
 theorem AX1.ax1_of_sharpRound (_hSharp : SharpRoundHyp) (hdual : AX1.StrongDualityHyp)
     (hReg : ∀ μ η d₀ K : ℝ, 0 < μ → 0 < η → 0 < d₀ → 0 < K →
       AX1.NearRegObligationSized μ η d₀ K) :
@@ -2085,7 +2177,9 @@ namespace Nibble.YusterE
 variable {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
 
 /-- **`|triangleHypergraphSub| = #triangles`.** The powerset-subtype map is injective on 3-cliques
-(distinct triangles have distinct edge-sets), so the image has the same cardinality.-/
+(distinct triangles have distinct edge-sets), so the image has the same cardinality.
+@isnad1 id=eq.0h2v.s5.629f7973cda7 from=translated src=- shape=ca2bbf57 vocab=502ecc73
+-/
 theorem triangleHypergraphSub_card :
     (triangleHypergraphSub G).card = (G.cliqueFinset 3).card := by
   rw [triangleHypergraphSub, Finset.card_image_of_injOn]
@@ -2100,7 +2194,9 @@ theorem triangleHypergraphSub_card :
 
 /-- **Degree-sum (handshake) for the edge-based triangle hypergraph.** As `triangleHypergraphSub G`
 is `3`-uniform, `∑_{E} deg_E = 3·|triangleHypergraphSub| = 3·#triangles`. The average edge
-triangle-degree is `3·#triangles / |E(G)|`.-/
+triangle-degree is `3·#triangles / |E(G)|`.
+@isnad1 id=eq.0h2v.s7.0c3b616b0d53 from=translated src=- shape=bd14b5d6 vocab=f79410c4
+-/
 theorem sum_degree_triangleHypergraphSub :
     ∑ E : EdgeV G, degree (triangleHypergraphSub G) E = 3 * (G.cliqueFinset 3).card := by
   rw [Hypergraph.sum_degree (triangleHypergraphSub G) (triangleHypergraphSub_uniform G),
@@ -2155,6 +2251,9 @@ private theorem triple_injOn :
   have := (mem_image_of_triangle G _).mp hmem
   exact this (by simp)
 
+/--
+@isnad1 id=eq.0h3v.s7.b21fbf10ffd3 from=translated src=- shape=dffeb986 vocab=7069cbf6
+-/
 theorem triangleHypergraphSub_degree_eq (E : EdgeV G) :
     Hypergraph.degree (triangleHypergraphSub G) E
       = ((G.cliqueFinset 3).filter (fun t => E.val ⊆ t)).card := by
@@ -2172,7 +2271,9 @@ theorem triangleHypergraphSub_degree_eq (E : EdgeV G) :
   exact (triple_injOn G).mono (Finset.coe_subset.mpr (Finset.filter_subset _ _))
 
 /-- The number of triangles containing edge `E` equals the number of common neighbours `c` of `E`'s
-endpoints (those `c ∉ E.val` with `insert c E.val` a triangle).-/
+endpoints (those `c ∉ E.val` with `insert c E.val` a triangle).
+@isnad1 id=eq.0h3v.s8.f4421849a344 from=translated src=- shape=c7cff74c vocab=5c656b5b
+-/
 theorem triangles_on_edge_eq_commonNbr (E : EdgeV G) :
     ((G.cliqueFinset 3).filter (fun t => E.val ⊆ t)).card
       = (Finset.univ.filter (fun c => c ∉ E.val ∧ G.IsNClique 3 (insert c E.val))).card := by
@@ -2213,7 +2314,9 @@ theorem triangles_on_edge_eq_commonNbr (E : EdgeV G) :
       · rw [htri.card_eq, Finset.card_insert_of_notMem hcnotE, hE2]
 
 /-- **Second-stage bridge, graph form.** The hypergraph-degree of edge `E` in
-`triangleHypergraphSub G` equals the number of common neighbours of its endpoints.-/
+`triangleHypergraphSub G` equals the number of common neighbours of its endpoints.
+@isnad1 id=eq.0h3v.s8.2cdccc7898b1 from=translated src=- shape=16dc4ee9 vocab=9d20a831
+-/
 theorem triangleHypergraphSub_degree_eq_commonNbr (E : EdgeV G) :
     Hypergraph.degree (triangleHypergraphSub G) E
       = (Finset.univ.filter (fun c => c ∉ E.val ∧ G.IsNClique 3 (insert c E.val))).card := by
@@ -2222,7 +2325,9 @@ theorem triangleHypergraphSub_degree_eq_commonNbr (E : EdgeV G) :
 /-- **Second-stage mean codegree.** Summing the per-edge codegree (common-neighbour count)
 over all edges gives
 `3·#triangles`, so the average edge codegree is `3·#triangles / |E(G)|` — the target `d` for the
-second-stage near-regularity window.-/
+second-stage near-regularity window.
+@isnad1 id=eq.0h2v.s8.12b9fe6dbf02 from=translated src=- shape=a6f7ea5a vocab=180752d3
+-/
 theorem sum_commonNbr_eq_three_mul_triangles :
     ∑ E : EdgeV G, (Finset.univ.filter
         (fun c => c ∉ E.val ∧ G.IsNClique 3 (insert c E.val))).card
@@ -2246,7 +2351,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableR
 
 /-- **Codegree side (trivial).** The edge-based triangle hypergraph has hypergraph-codegree `≤
 1`, so it
-is `CodegreeBounded C` for any `C ≥ 1` — in particular `C = μd` once `μd ≥ 1`.-/
+is `CodegreeBounded C` for any `C ≥ 1` — in particular `C = μd` once `μd ≥ 1`.
+@isnad1 id=codegree.1h3v.s6.55f8d4646fa8 from=translated src=- shape=5e858c4b vocab=6e830a63
+-/
 theorem triangleHypergraphSub_codegreeBounded {C : ℝ} (hC : 1 ≤ C) :
     CodegreeBounded (triangleHypergraphSub G) C := by
   intro E E' hEE'
@@ -2258,7 +2365,9 @@ theorem triangleHypergraphSub_codegreeBounded {C : ℝ} (hC : 1 ≤ C) :
 exceptional
 set `Exc` of size `≤ η|E(G)|`, the edge-based triangle hypergraph is `NearlyRegularMost d μ η`. The
 per-edge bounds and the exceptional count are supplied by the edge counting (edge-counting
-substep).-/
+substep).
+@isnad1 id=nearlyre.3h6v.s8.bd5ffa98bb03 from=translated src=- shape=7d1b690a vocab=a5cdef7b
+-/
 theorem triangleHypergraphSub_nearlyRegularMost_of_bounds {d μ η : ℝ}
     (Exc : Finset (EdgeV G))
     (hExc : (Exc.card : ℝ) ≤ η * (Fintype.card (EdgeV G) : ℝ))
@@ -2281,7 +2390,9 @@ namespace Nibble.YusterE
 
 variable {V : Type} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
 
-/-- The triangle-hypergraph degree of an edge `{u,v}` is the number of common neighbours.-/
+/-- The triangle-hypergraph degree of an edge `{u,v}` is the number of common neighbours.
+@isnad1 id=eq.1h5v.s7.a06715acc43b from=translated src=- shape=8384bc3a vocab=3b5ad8c4
+-/
 theorem triangleSub_degree_eq_inter (E : EdgeV G) (u v : V) (huv : E.val = ({u, v} : Finset V)) :
     Hypergraph.degree (triangleHypergraphSub G) E
       = (G.neighborFinset u ∩ G.neighborFinset v).card := by
@@ -2317,7 +2428,9 @@ private theorem edgeV_eq_pair (E : EdgeV G) : ∃ u v : V, E.val = ({u, v} : Fin
   obtain ⟨u, v, _, huv⟩ := Finset.card_eq_two.mp h2
   exact ⟨u, v, huv⟩
 
-/-- **second-stage ceiling (global upper bound).** Every edge lies in at most `|V|` triangles.-/
+/-- **second-stage ceiling (global upper bound).** Every edge lies in at most `|V|` triangles.
+@isnad1 id=le.0h3v.s6.65844b248e0a from=translated src=- shape=e3b735e4 vocab=a8285cc0
+-/
 theorem triangleSub_degree_le_card (E : EdgeV G) :
     Hypergraph.degree (triangleHypergraphSub G) E ≤ Fintype.card V := by
   obtain ⟨u, v, huv⟩ := edgeV_eq_pair G E
@@ -2327,7 +2440,9 @@ theorem triangleSub_degree_le_card (E : EdgeV G) :
     _ = Fintype.card V := Finset.card_univ
 
 /-- **Second-stage floor (from a global min-degree bound).** If every vertex of `G` has degree
-`≥ D`, then every edge lies in at least `2D − |V|` triangles by inclusion–exclusion.-/
+`≥ D`, then every edge lies in at least `2D − |V|` triangles by inclusion–exclusion.
+@isnad1 id=le.1h4v.s7.d15456333aea from=translated src=- shape=7143e4ff vocab=f4fa1bd7
+-/
 theorem triangleSub_degree_ge_of_minDeg (E : EdgeV G) {D : ℕ} (hD : ∀ x, D ≤ G.degree x) :
     2 * D - Fintype.card V ≤ Hypergraph.degree (triangleHypergraphSub G) E := by
   obtain ⟨u, v, huv⟩ := edgeV_eq_pair G E
@@ -2349,7 +2464,9 @@ satisfying `|V| ≤ 2D`
 the window
 covers `[2D−|V|, |V|]`. This is the global (no exceptional set) near-regularity the corrected nibble
 consumes; at `δ ≥ (9/10+ε)|V|`, taking `D = (9/10+ε)|V|`, `d = (9/10)|V|`, `μ = 1/9` satisfies the
-hypotheses.-/
+hypotheses.
+@isnad1 id=and.4h6v.s8.40988ebfc5a2 from=translated src=- shape=fa5893eb vocab=35b08269
+-/
 theorem triangleSub_degree_window (E : EdgeV G) (D : ℕ) (hD : ∀ x, D ≤ G.degree x)
     (h2D : Fintype.card V ≤ 2 * D) {μ d : ℝ}
     (hlo : (1 - μ) * d ≤ 2 * (D : ℝ) - (Fintype.card V : ℝ))
@@ -2370,7 +2487,9 @@ theorem triangleSub_degree_window (E : EdgeV G) (D : ℕ) (hD : ∀ x, D ≤ G.d
 
 /-- Dense-regime package for the corrected nibble input. A global degree window on every graph edge,
 the trivial edge-hypergraph codegree bound, and a linear base-size estimate assemble the exact local
-data required by `NearRegObligationLinearSized`.-/
+data required by `NearRegObligationLinearSized`.
+@isnad1 id=and.4h6v.s9.9c29ab1a9b09 from=translated src=- shape=412de072 vocab=55721172
+-/
 theorem triangleSub_linearSized_data_of_window {μ η d L : ℝ}
     (hη : 0 ≤ η) (hcodeg : 1 ≤ μ * d) (hbase : (Fintype.card V : ℝ) ≤ L * d)
     (hwindow : ∀ E : EdgeV G,
@@ -2391,7 +2510,9 @@ theorem triangleSub_linearSized_data_of_window {μ η d L : ℝ}
     exact (hwindow E).2
 
 /-- Dense-regime package specialized to a minimum-degree floor `D`: the inclusion-exclusion window
-`triangleSub_degree_window` feeds the local linear-sized corrected nibble data.-/
+`triangleSub_degree_window` feeds the local linear-sized corrected nibble data.
+@isnad1 id=and.7h7v.s8.5d2054414a7d from=translated src=- shape=dde22ca9 vocab=520fa24e
+-/
 theorem triangleSub_linearSized_data_of_minDeg (D : ℕ) (hD : ∀ x, D ≤ G.degree x)
     (h2D : Fintype.card V ≤ 2 * D) {μ η d L : ℝ}
     (hη : 0 ≤ η) (hcodeg : 1 ≤ μ * d) (hbase : (Fintype.card V : ℝ) ≤ L * d)
@@ -2423,7 +2544,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 `d = n`, `μ = 1/5`, EMPTY exceptional set, codegree `≤ μd`, global ceiling `≤ (1+μ)d`, and the
 linear
 size bound `n ≤ 1·d`.  This is exactly the local data of `NearRegObligationLinearSized` with
-`μ = 1/5, η = 0, L = 1, d = n`.-/
+`μ = 1/5, η = 0, L = 1, d = n`.
+@isnad1 id=and.3h3v.s8.83ec0b9f53e4 from=translated src=- shape=1f44ea54 vocab=7a7595cd
+-/
 theorem triangleSub_dense_data (G : SimpleGraph V) [DecidableRel G.Adj]
     (D : ℕ) (hD : ∀ x, D ≤ G.degree x) (hDense : 9 * Fintype.card V ≤ 10 * D)
     (hn5 : 5 ≤ Fintype.card V) :
@@ -2460,7 +2583,9 @@ open Finset SimpleGraph Hypergraph Nibble.YusterE
 namespace Nibble.AX1
 
 /-- **Packing-gap accounting.**  A matching of the triangle hypergraph of size at least
-`(1 − 3ε)|E(G)|/3` forces `ν₃* − ν₃ ≤ ε|V|²`, using `ν₃* ≤ |E|/3` and `|E| ≤ |V|²`.-/
+`(1 − 3ε)|E(G)|/3` forces `ν₃* − ν₃ ≤ ε|V|²`, using `ν₃* ≤ |E|/3` and `|E| ≤ |V|²`.
+@isnad1 id=le.3h4v.s7.4bfdab99241c from=translated src=- shape=f2a0927b vocab=1936b75f
+-/
 theorem gap_le_of_sub_matching {V : Type} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] {ε : ℝ} (hε : 0 < ε)
     {M : Finset (Finset (EdgeV G))} (hM : IsMatching (triangleHypergraphSub G) M)
@@ -2482,7 +2607,9 @@ least `θ|V|` satisfies `ν₃* − ν₃ ≤ ε|V|²`.
 At minimum degree `θ|V| = (1 − μ/2)|V|` the common neighbourhood of every edge has size in
 `[(1−μ)|V|, |V|]`, so the triangle hypergraph is near-`|V|`-regular with an *empty* exceptional set,
 bounded codegree and the global degree ceiling — precisely the hypotheses of the unconditional
-nibble theorem `Nibble.nibbleTheoremMostCeil_holds`.-/
+nibble theorem `Nibble.nibbleTheoremMostCeil_holds`.
+@isnad1 id=ex.1h1v.s7.11a794271077 from=translated src=- shape=97463f6d vocab=b4d28dc3
+-/
 theorem nibbleGap_dense (ε : ℝ) (hε : 0 < ε) :
     ∃ θ : ℝ, 0 < θ ∧ θ < 1 ∧ ∃ n₀ : ℕ,
       ∀ (V : Type) [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj],
@@ -2524,7 +2651,9 @@ theorem nibbleGap_dense (ε : ℝ) (hε : 0 < ε) :
   simpa using hMcard
 
 /-- Every fractional triangle packing has total weight at most the number of triangles: each single
-weight is at most `1` by its own edge constraint.-/
+weight is at most `1` by its own edge constraint.
+@isnad1 id=le.1h3v.s6.d266bda55a09 from=translated src=- shape=b176abf0 vocab=b2e08674
+-/
 theorem fracPacking_sum_le_card_triangles {V : Type} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] {w : Finset (Finset V) → ℝ}
     (hw : IsFracPacking G w) :
@@ -2543,7 +2672,9 @@ theorem fracPacking_sum_le_card_triangles {V : Type} [Fintype V] [DecidableEq V]
         exact_mod_cast Finset.card_image_le (s := G.cliqueFinset 3)
           (f := fun t : Finset V => t.powersetCard 2)
 
-/-- **`ν₃*` is at most the number of triangles.**-/
+/-- **`ν₃*` is at most the number of triangles.**
+@isnad1 id=le.0h2v.s5.3b2165ecc665 from=translated src=- shape=d1ee1704 vocab=d28a228e
+-/
 theorem nu3star_le_card_triangles {V : Type} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] :
     nu3star G ≤ ((G.cliqueFinset 3).card : ℝ) := by
@@ -2552,7 +2683,9 @@ theorem nu3star_le_card_triangles {V : Type} [Fintype V] [DecidableEq V]
   exact fracPacking_sum_le_card_triangles G hw
 
 /-- **The triangle-poor branch, unconditionally.**  If `G` has at most `ε|V|²` triangles then the
-packing gap is at most `ε|V|²`, because `ν₃* ≤ #triangles` and `ν₃ ≥ 0`.-/
+packing gap is at most `ε|V|²`, because `ν₃* ≤ #triangles` and `ν₃ ≥ 0`.
+@isnad1 id=le.1h3v.s7.ccb19be67215 from=translated src=- shape=6933e028 vocab=5e35cc0a
+-/
 theorem nibbleGap_fewTriangles {V : Type} [Fintype V] [DecidableEq V]
     (G : SimpleGraph V) [DecidableRel G.Adj] {ε : ℝ}
     (h : ((G.cliqueFinset 3).card : ℝ) ≤ ε * (Fintype.card V : ℝ) ^ 2) :
@@ -2577,7 +2710,9 @@ def NibbleGapResidual : Prop :=
       nu3star G - (nu3 G : ℝ) ≤ ε * (Fintype.card V : ℝ) ^ 2
 
 /-- **The reduction.**  `NibbleGapHyp` follows from the residual alone: the dense case is discharged
-unconditionally by `nibbleGap_dense` and the triangle-poor case by `nibbleGap_fewTriangles`.-/
+unconditionally by `nibbleGap_dense` and the triangle-poor case by `nibbleGap_fewTriangles`.
+@isnad1 id=nibblega.1h0v.s1.edfa4e056ca1 from=translated src=- shape=1d48f1ac vocab=ac51347f
+-/
 theorem nibbleGapHyp_of_residual (h : NibbleGapResidual) : NibbleGapHyp := by
   intro ε hε
   obtain ⟨θ, hθ0, hθ1, n₁, hdense⟩ := nibbleGap_dense ε hε
@@ -2592,7 +2727,9 @@ theorem nibbleGapHyp_of_residual (h : NibbleGapResidual) : NibbleGapHyp := by
   · exact hres V G (le_trans (le_max_right _ _) hV) hmin hmany
 
 /-- **AX1 from the residual.**  Combines the reduction with the proved strong-duality input
-`Nibble.AX1.strongDualityHyp_holds`.-/
+`Nibble.AX1.strongDualityHyp_holds`.
+@isnad1 id=ax1state.1h0v.s1.d168af2cc4fc from=translated src=- shape=1d48f1ac vocab=ea95faca
+-/
 theorem ax1_holds_of_residual (h : NibbleGapResidual) : AX1Statement :=
   ax1_of_strongDuality_and_nibbleGap strongDualityHyp_holds (nibbleGapHyp_of_residual h)
 
@@ -2612,14 +2749,18 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 
 /-! ### Monotonicity of the packing numbers under edge deletion -/
 
-/-- The triangle hypergraph is monotone in the graph.-/
+/-- The triangle hypergraph is monotone in the graph.
+@isnad1 id=le.1h3v.s6.ddf0702b2e74 from=translated src=- shape=9e8cc468 vocab=34265e9a
+-/
 theorem triangleHypergraphE_mono (G G' : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel G'.Adj]
     (h : G' ≤ G) : triangleHypergraphE G' ⊆ triangleHypergraphE G := by
   unfold triangleHypergraphE
   exact Finset.image_subset_image (SimpleGraph.cliqueFinset_mono G h)
 
 /-- **`ν₃` is monotone.**  Every edge-disjoint triangle packing of a spanning subgraph is one of the
-graph itself.-/
+graph itself.
+@isnad1 id=le.1h3v.s5.72a5af8eea60 from=translated src=- shape=c5d38d81 vocab=17588131
+-/
 theorem nu3_mono (G G' : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel G'.Adj] (h : G' ≤ G) :
     nu3 G' ≤ nu3 G := by
   classical
@@ -2630,7 +2771,9 @@ theorem nu3_mono (G G' : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel G'.Ad
   exact nu3_ge G ⟨hM.2.subset.trans (triangleHypergraphE_mono G G' h), hM.2.disjoint⟩
 
 /-- A triangle of `G` that is not a triangle of the spanning subgraph `G'` has one of its three
-edges among the deleted ones.-/
+edges among the deleted ones.
+@isnad1 id=ex.2h4v.s7.82597d7c8b25 from=translated src=- shape=b3db10b6 vocab=bfddc0b8
+-/
 theorem exists_deleted_edge (G G' : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel G'.Adj]
     {T : Finset (Finset V)} (hT : T ∈ triangleHypergraphE G)
     (hT' : T ∉ triangleHypergraphE G') :
@@ -2660,7 +2803,9 @@ theorem exists_deleted_edge (G G' : SimpleGraph V) [DecidableRel G.Adj] [Decidab
 
 /-- **`ν₃*` is stable under edge deletion.**  Deleting a set `D` of edges decreases the fractional
 triangle packing number by at most `|D|`: the weight carried by the triangles that are destroyed is
-at most the total edge load of `D`, which is at most `|D|`.-/
+at most the total edge load of `D`, which is at most `|D|`.
+@isnad1 id=le.1h3v.s6.ced339882a96 from=translated src=- shape=96032234 vocab=c312cbaf
+-/
 theorem nu3star_le_add_deleted (G G' : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel G'.Adj]
     (hle : G' ≤ G) :
     nu3star G ≤ nu3star G' + ((G.cliqueFinset 2 \ G'.cliqueFinset 2).card : ℝ) := by
@@ -2723,7 +2868,9 @@ theorem nu3star_le_add_deleted (G G' : SimpleGraph V) [DecidableRel G.Adj] [Deci
       _ = (D.card : ℝ) := by rw [Finset.sum_const, nsmul_eq_mul, mul_one]
   linarith only [hsplit, heq, hval, hkey]
 
-/-- **The packing gap is stable under edge deletion.**-/
+/-- **The packing gap is stable under edge deletion.**
+@isnad1 id=le.1h3v.s7.328044bd6c7c from=translated src=- shape=a4ae37cc vocab=ffbe339a
+-/
 theorem gap_le_core_gap (G G' : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel G'.Adj]
     (hle : G' ≤ G) :
     nu3star G - (nu3 G : ℝ)
@@ -2745,14 +2892,23 @@ instance instDecidableRelRestrictAway (G : SimpleGraph V) [DecidableRel G.Adj] (
   fun x y => inferInstanceAs (Decidable (G.Adj x y ∧ x ∉ K ∧ y ∉ K))
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=le.0h3v.s4.7ad5a7e06ab2 from=translated src=- shape=cd8a2bb4 vocab=0426493c
+-/
 theorem restrictAway_le (G : SimpleGraph V) (K : Finset V) : restrictAway G K ≤ G :=
   fun _ _ h => h.1
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=le.1h4v.s5.b3d48046a452 from=translated src=- shape=42d4c41b vocab=0426493c
+-/
 theorem restrictAway_mono (G : SimpleGraph V) {K K' : Finset V} (h : K ⊆ K') :
     restrictAway G K' ≤ restrictAway G K :=
   fun _ _ hx => ⟨hx.1, fun hc => hx.2.1 (h hc), fun hc => hx.2.2 (h hc)⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.2a7879db9588 from=translated src=- shape=2140edba vocab=0d801f70
+-/
 theorem cliqueFinset_two_restrictAway_empty (G : SimpleGraph V) [DecidableRel G.Adj] :
     (restrictAway G ∅).cliqueFinset 2 = G.cliqueFinset 2 := by
   ext e
@@ -2763,6 +2919,9 @@ theorem cliqueFinset_two_restrictAway_empty (G : SimpleGraph V) [DecidableRel G.
   · rintro ⟨hc, hcard⟩
     exact ⟨fun a ha b hb hab => ⟨hc ha hb hab, by simp, by simp⟩, hcard⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.13fe2bc88ec3 from=translated src=- shape=94bda198 vocab=2fd926f3
+-/
 theorem restrictAway_degree_eq_zero (G : SimpleGraph V) [DecidableRel G.Adj] {K : Finset V} {v : V}
     (hv : v ∈ K) : (restrictAway G K).degree v = 0 := by
   rw [← SimpleGraph.card_neighborFinset_eq_degree, Finset.card_eq_zero]
@@ -2771,7 +2930,9 @@ theorem restrictAway_degree_eq_zero (G : SimpleGraph V) [DecidableRel G.Adj] {K 
   rintro ⟨-, h, -⟩
   exact h hv
 
-/-- Isolating one more vertex destroys at most `deg v` edges.-/
+/-- Isolating one more vertex destroys at most `deg v` edges.
+@isnad1 id=le.0h4v.s7.967022f24279 from=translated src=- shape=75c26348 vocab=db4221c1
+-/
 theorem deleted_insert_card_le (G : SimpleGraph V) [DecidableRel G.Adj] (K : Finset V) (v : V) :
     ((restrictAway G K).cliqueFinset 2 \ (restrictAway G (insert v K)).cliqueFinset 2).card
       ≤ (restrictAway G K).degree v := by
@@ -2811,17 +2972,25 @@ def posDeg (G : SimpleGraph V) [DecidableRel G.Adj] : Finset V :=
   Finset.univ.filter (fun x => 0 < G.degree x)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h3v.s6.cb32fc876d43 from=translated src=- shape=9b63f163 vocab=f6e4418b
+-/
 theorem mem_posDeg_iff (G : SimpleGraph V) [DecidableRel G.Adj] (x : V) :
     x ∈ posDeg G ↔ 0 < G.degree x := by
   simp only [posDeg, Finset.mem_filter, Finset.mem_univ, true_and]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h2v.s4.2999be127840 from=translated src=- shape=9bf230ce vocab=61e3b507
+-/
 theorem card_posDeg_le (G : SimpleGraph V) [DecidableRel G.Adj] :
     (posDeg G).card ≤ Fintype.card V := Finset.card_le_univ _
 
 /-- **The core.**  Iteratively isolating the vertices of positive degree below `t` produces a
 spanning subgraph in which every vertex is isolated or has degree at least `t`, at a cost of at
-most `t·m` deleted edges, where `m` bounds the number of non-isolated vertices.-/
+most `t·m` deleted edges, where `m` bounds the number of non-isolated vertices.
+@isnad1 id=ex.2h5v.s8.787f87929f95 from=translated src=- shape=e768c8af vocab=70eef2ea
+-/
 theorem exists_core_aux (G : SimpleGraph V) [DecidableRel G.Adj] {t : ℝ} (ht : 0 ≤ t) :
     ∀ (m : ℕ) (K : Finset V), (posDeg (restrictAway G K)).card ≤ m →
     ∃ K' : Finset V, K ⊆ K' ∧
@@ -2899,7 +3068,9 @@ theorem exists_core_aux (G : SimpleGraph V) [DecidableRel G.Adj] {t : ℝ} (ht :
       nlinarith only [hdel, hcard2, hvt]
 
 /-- **The core, unpacked.**  Every graph has a spanning subgraph in which every vertex is isolated
-or of degree at least `t`, obtained by deleting at most `t·|V|` edges.-/
+or of degree at least `t`, obtained by deleting at most `t·|V|` edges.
+@isnad1 id=ex.1h3v.s7.4a69d3f13bcb from=translated src=- shape=3c9041c2 vocab=464bba0d
+-/
 theorem exists_core (G : SimpleGraph V) [DecidableRel G.Adj] {t : ℝ} (ht : 0 ≤ t) :
     ∃ K : Finset V,
       (∀ x, (restrictAway G K).degree x = 0 ∨ t ≤ ((restrictAway G K).degree x : ℝ)) ∧
@@ -2927,7 +3098,9 @@ def CoreGapAt (ε δ : ℝ) : Prop :=
 /-- **The residual.**  The core packing gap at every pair of parameters.-/
 def CoreGapResidual : Prop := ∀ ε : ℝ, 0 < ε → ∀ δ : ℝ, 0 < δ → CoreGapAt ε δ
 
-/-- Raising the error term weakens the statement.-/
+/-- Raising the error term weakens the statement.
+@isnad1 id=coregapa.2h3v.s4.c75323de8d73 from=translated src=- shape=40419e1c vocab=acb6119d
+-/
 theorem CoreGapAt.mono_eps {ε ε' δ : ℝ} (h : CoreGapAt ε δ) (hε : ε ≤ ε') : CoreGapAt ε' δ := by
   obtain ⟨n₀, hmain⟩ := h
   refine ⟨n₀, ?_⟩
@@ -2939,7 +3112,9 @@ theorem CoreGapAt.mono_eps {ε ε' δ : ℝ} (h : CoreGapAt ε δ) (hε : ε ≤
   · have h2 : (0 : ℝ) ≤ (nu3 G : ℝ) := Nat.cast_nonneg _
     nlinarith
 
-/-- **`CoreGapAt` is unconditionally true for `ε ≥ 1/3`**, since `ν₃* ≤ |E|/3 ≤ |V|²/3`.-/
+/-- **`CoreGapAt` is unconditionally true for `ε ≥ 1/3`**, since `ν₃* ≤ |E|/3 ≤ |V|²/3`.
+@isnad1 id=coregapa.1h2v.s5.2287b0f06907 from=translated src=- shape=8736b242 vocab=abbfd087
+-/
 theorem coreGapAt_of_third {ε δ : ℝ} (hε : 1 / 3 ≤ ε) : CoreGapAt ε δ := by
   refine ⟨0, ?_⟩
   intro V _ _ G _ _ _ _
@@ -2953,7 +3128,9 @@ theorem coreGapAt_of_third {ε δ : ℝ} (hε : 1 / 3 ≤ ε) : CoreGapAt ε δ 
 
 /-- **The reduction.**  `NibbleGapResidual` follows from the core residual: delete the edges at all
 vertices of positive degree below `(ε/4)|V|` — this costs at most `(ε/4)|V|²` edges, hence at most
-that much of the packing gap — and apply the core residual to the resulting graph.-/
+that much of the packing gap — and apply the core residual to the resulting graph.
+@isnad1 id=nibblega.1h0v.s1.b69230861ce8 from=translated src=- shape=1d48f1ac vocab=00e82b34
+-/
 theorem nibbleGapResidual_of_coreGapResidual (h : CoreGapResidual) : NibbleGapResidual := by
   intro ε hε θ _ _
   obtain ⟨n₁, hres⟩ := h (ε / 2) (by linarith) (ε / 4) (by linarith)
@@ -2972,7 +3149,9 @@ theorem nibbleGapResidual_of_coreGapResidual (h : CoreGapResidual) : NibbleGapRe
   have hstab := gap_le_core_gap G (restrictAway G K) hle
   nlinarith only [hdel, hstab, hgap']
 
-/-- **AX1 from the core residual**, combining with the proved `strongDualityHyp_holds`.-/
+/-- **AX1 from the core residual**, combining with the proved `strongDualityHyp_holds`.
+@isnad1 id=ax1state.1h0v.s1.dee49d0a33d0 from=translated src=- shape=1d48f1ac vocab=4e6bf108
+-/
 theorem ax1_of_coreGapResidual (h : CoreGapResidual) : AX1Statement :=
   ax1_holds_of_residual (nibbleGapResidual_of_coreGapResidual h)
 

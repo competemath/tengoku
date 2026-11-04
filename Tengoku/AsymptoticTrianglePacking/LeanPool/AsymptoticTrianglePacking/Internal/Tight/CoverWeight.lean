@@ -56,7 +56,9 @@ def coverWeight (H : Finset (Finset V)) (v : V) (C : Finset V) : ℕ :=
 def pairWeight (H : Finset (Finset V)) (v : V) (C : Finset V) : ℕ :=
   ∑ e ∈ H.filter (fun e => v ∈ e), Nat.choose ((e.erase v ∩ C).card) 2
 
-/-- `coverWeight` counted edge-by-edge: `∑_{e ∋ v} |(e∖v) ∩ C|`.-/
+/-- `coverWeight` counted edge-by-edge: `∑_{e ∋ v} |(e∖v) ∩ C|`.
+@isnad1 id=eq.0h4v.s6.c6eb8b85e823 from=translated src=- shape=ae22b825 vocab=9f021fcd
+-/
 theorem coverWeight_eq_sum (H : Finset (Finset V)) (v : V) (C : Finset V) :
     coverWeight H v C = ∑ e ∈ H.filter (fun e => v ∈ e), (e.erase v ∩ C).card := by
   classical
@@ -75,7 +77,9 @@ theorem coverWeight_eq_sum (H : Finset (Finset V)) (v : V) (C : Finset V) :
   simp only [Finset.card_filter]
   exact Finset.sum_comm
 
-/-- The edges at `v` are split by safety.-/
+/-- The edges at `v` are split by safety.
+@isnad1 id=eq.0h4v.s6.e1b1e0c35e6d from=translated src=- shape=13014ca4 vocab=fa44403a
+-/
 theorem degree_eq_safeDegree_add (H : Finset (Finset V)) (v : V) (C : Finset V) :
     degree H v = safeDegree H C v
       + ((H.filter (fun e => v ∈ e)).filter (fun e => ¬ Disjoint (e.erase v) C)).card := by
@@ -86,12 +90,16 @@ theorem degree_eq_safeDegree_add (H : Finset (Finset V)) (v : V) (C : Finset V) 
   rw [hsafe, degree]
   exact (Finset.card_filter_add_card_filter_not _).symm
 
-/-- An edge at `v` is unsafe exactly when it meets `C` outside `v`.-/
+/-- An edge at `v` is unsafe exactly when it meets `C` outside `v`.
+@isnad1 id=iff.0h4v.s5.f5b4e44c96ef from=translated src=- shape=4bf8dcaf vocab=79a0223e
+-/
 theorem unsafe_iff_inter_nonempty {e : Finset V} {v : V} {C : Finset V} :
     ¬ Disjoint (e.erase v) C ↔ 0 < (e.erase v ∩ C).card := by
   rw [Finset.card_pos, Finset.not_disjoint_iff_nonempty_inter]
 
-/-- **Sandwich, lower half.**  `deg(v) ≤ safeDeg(v) + coverWeight`.-/
+/-- **Sandwich, lower half.**  `deg(v) ≤ safeDeg(v) + coverWeight`.
+@isnad1 id=le.0h4v.s5.5fec21566740 from=translated src=- shape=cad42b7c vocab=21fa1e46
+-/
 theorem degree_le_safeDegree_add_coverWeight (H : Finset (Finset V)) (v : V) (C : Finset V) :
     degree H v ≤ safeDegree H C v + coverWeight H v C := by
   classical
@@ -106,7 +114,9 @@ theorem degree_le_safeDegree_add_coverWeight (H : Finset (Finset V)) (v : V) (C 
         · simp [h]
         · simpa [h] using (unsafe_iff_inter_nonempty (e := e) (v := v) (C := C)).mp h
 
-/-- The elementary Bonferroni step: `m ≤ 1[m ≥ 1] + C(m,2)`.-/
+/-- The elementary Bonferroni step: `m ≤ 1[m ≥ 1] + C(m,2)`.
+@isnad1 id=le.0h1v.s5.0fcdce911a5f from=translated src=- shape=ef46c511 vocab=21e65311
+-/
 theorem nat_le_indicator_add_choose_two (m : ℕ) :
     m ≤ (if 0 < m then 1 else 0) + Nat.choose m 2 := by
   match m with
@@ -119,7 +129,9 @@ theorem nat_le_indicator_add_choose_two (m : ℕ) :
       simp only [ite_eq_left (Nat.succ_pos (k + 1))]
       omega
 
-/-- **Sandwich, upper half.**  `safeDeg(v) + coverWeight ≤ deg(v) + pairWeight`.-/
+/-- **Sandwich, upper half.**  `safeDeg(v) + coverWeight ≤ deg(v) + pairWeight`.
+@isnad1 id=le.0h4v.s5.fd01ef880583 from=translated src=- shape=e2959c56 vocab=7a149143
+-/
 theorem safeDegree_add_coverWeight_le (H : Finset (Finset V)) (v : V) (C : Finset V) :
     safeDegree H C v + coverWeight H v C ≤ degree H v + pairWeight H v C := by
   classical

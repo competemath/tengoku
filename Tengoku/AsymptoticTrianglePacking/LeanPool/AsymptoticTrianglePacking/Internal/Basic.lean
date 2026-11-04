@@ -50,7 +50,9 @@ structure IsMatching (H M : Finset (Finset V)) : Prop where
 /-- **A2 — handshake identity.** For an `r`-uniform hypergraph,
 `∑_v degree v = r * |H|`. Proof idea: double count the set of incidences
 `{(v, e) : v ∈ e ∈ H}`; summing over `v` gives `∑ degree`, while summing over
-`e` gives `∑_{e} |e| = r|H|`.-/
+`e` gives `∑_{e} |e| = r|H|`.
+@isnad1 id=eq.1h3v.s5.9003ba21803f from=translated src=- shape=822b4c90 vocab=e50f50d3
+-/
 theorem sum_degree (H : Finset (Finset V)) {r : ℕ} (hr : IsUniform H r) :
     ∑ v : V, degree H v = r * H.card := by
   have hdeg (v : V) : degree H v = ∑ e ∈ H, if v ∈ e then 1 else 0 := by
@@ -72,7 +74,9 @@ theorem sum_degree (H : Finset (Finset V)) {r : ℕ} (hr : IsUniform H r) :
 
 /-- **A2' — codegree double-count.** `∑_v (degree H v).choose 2 = ∑ over unordered pairs …`
 stated here in the convenient ordered form: the number of (edge, ordered pair-in-edge) incidences
-equals `∑_e |e|*(|e|-1) = r*(r-1)*|H|` for an `r`-uniform hypergraph.-/
+equals `∑_e |e|*(|e|-1) = r*(r-1)*|H|` for an `r`-uniform hypergraph.
+@isnad1 id=eq.1h3v.s6.c30e6a4a2f0a from=translated src=- shape=a7f8f1c0 vocab=9f67cc0f
+-/
 theorem sum_codegree (H : Finset (Finset V)) {r : ℕ} (hr : IsUniform H r) :
     ∑ x : V, ∑ y : V, codegree H x y = r * r * H.card := by
   have hcode (x y : V) : codegree H x y =

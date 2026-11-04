@@ -25,7 +25,9 @@ open Finset Hypergraph
 namespace LeanPool.AsymptoticTrianglePacking.Internal
 /-- **The one-round covering oracle from the sharp round.**  Running the tight-band schedule
 `LeanPool.AsymptoticTrianglePacking.Internal.TightParams r β` gives a one-round oracle for every
-majority near-regular input with a global degree ceiling and low codegree.-/
+majority near-regular input with a global degree ceiling and low codegree.
+@isnad1 id=roundora.0h0v.s0.1b0796b1ad51 from=translated src=- shape=45709ebd vocab=1b0796b1
+-/
 theorem roundOracleExistsCeil_holds : RoundOracleExistsCeil := by
   classical
   intro r hr β hβ
@@ -146,20 +148,26 @@ theorem roundOracleExistsCeil_holds : RoundOracleExistsCeil := by
         Hypergraph.residual_disjoint_covered he⟩
     · exact Finset.Subset.trans hK'res (Finset.filter_subset_filter _ hKH')
 
-/-- **`NibbleTheoremMostCeil`, unconditionally.**-/
+/-- **`NibbleTheoremMostCeil`, unconditionally.**
+@isnad1 id=nibbleth.0h0v.s0.211a8124bb65 from=translated src=- shape=45709ebd vocab=211a8124
+-/
 theorem nibbleTheoremMostCeil_holds : NibbleTheoremMostCeil :=
   nibbleTheoremMostCeil_of_adaptiveOracleCeil
     (adaptiveOracleExistsCeil_of_roundOracleCeil roundOracleExistsCeil_holds)
 
 /-- **`NibbleTheoremMostCeilSized`, unconditionally.**  The size hypothesis
-`|V| ≤ K d²` is not needed by the tight-band route, so it is simply discarded.-/
+`|V| ≤ K d²` is not needed by the tight-band route, so it is simply discarded.
+@isnad1 id=nibbleth.0h0v.s0.c904d948773e from=translated src=- shape=45709ebd vocab=c904d948
+-/
 theorem nibbleTheoremMostCeilSized_holds : NibbleTheoremMostCeilSized := by
   intro r hr β hβ
   obtain ⟨μ, hμ, η, hη, d₀, hd₀, hmain⟩ := nibbleTheoremMostCeil_holds r hr β hβ
   exact ⟨μ, hμ, η, hη, d₀, hd₀, 1, one_pos,
     fun H d hd hd0 huni hreg hcod hceil _ => hmain H d hd hd0 huni hreg hcod hceil⟩
 
-/-- **`NibbleTheorem`, unconditionally.**-/
+/-- **`NibbleTheorem`, unconditionally.**
+@isnad1 id=nibbleth.0h0v.s0.45cf6174aadf from=translated src=- shape=45709ebd vocab=45cf6174
+-/
 theorem nibbleTheorem_holds : NibbleTheorem :=
   nibbleTheoremMostCeil_holds.nibbleTheorem
 

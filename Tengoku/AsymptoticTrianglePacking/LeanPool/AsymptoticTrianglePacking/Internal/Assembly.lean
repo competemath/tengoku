@@ -38,7 +38,9 @@ namespace Hypergraph
 
 variable {V : Type*} [DecidableEq V] {ι : Type*} [DecidableEq ι]
 
-/-- Support of a union is the union of supports.-/
+/-- Support of a union is the union of supports.
+@isnad1 id=eq.0h3v.s5.a8545192227a from=translated src=- shape=7e4e7c80 vocab=b2f3e8e5
+-/
 theorem support_union (M₁ M₂ : Finset (Finset V)) :
     support (M₁ ∪ M₂) = support M₁ ∪ support M₂ := by
   ext x
@@ -51,7 +53,9 @@ theorem support_union (M₁ M₂ : Finset (Finset V)) :
     · exact ⟨a, Or.inl ha, hx⟩
     · exact ⟨a, Or.inr ha, hx⟩
 
-/-- An edge of a family is contained in the family's support.-/
+/-- An edge of a family is contained in the family's support.
+@isnad1 id=le.1h3v.s5.cae1a4f42232 from=translated src=- shape=f85ffb36 vocab=8283fcda
+-/
 theorem subset_support {M : Finset (Finset V)} {e : Finset V} (he : e ∈ M) :
     e ⊆ support M := by
   intro x hx
@@ -59,7 +63,9 @@ theorem subset_support {M : Finset (Finset V)} {e : Finset V} (he : e ∈ M) :
   exact ⟨e, he, hx⟩
 
 omit [DecidableEq ι] in
-/-- **D2a — union of disjoint-support matchings is a matching.**-/
+/-- **D2a — union of disjoint-support matchings is a matching.**
+@isnad1 id=ismatchi.2h5v.s6.b691a48ceee6 from=translated src=- shape=d5a1127b vocab=e1a5706f
+-/
 theorem biUnion_isMatching {H : Finset (Finset V)} (T : Finset ι) (M : ι → Finset (Finset V))
     (hM : ∀ i ∈ T, IsMatching H (M i))
     (hdisj : ∀ i ∈ T, ∀ j ∈ T, i ≠ j → Disjoint (support (M i)) (support (M j))) :
@@ -82,7 +88,9 @@ theorem biUnion_isMatching {H : Finset (Finset V)} (T : Finset ι) (M : ι → F
           (subset_support hfj hxf)
 
 omit [DecidableEq ι] in
-/-- **D2b — the union's size is the sum of the per-round sizes** (edges nonempty, e.g. `r ≥ 1`).-/
+/-- **D2b — the union's size is the sum of the per-round sizes** (edges nonempty, e.g. `r ≥ 1`).
+@isnad1 id=eq.3h5v.s7.aeca36e69344 from=translated src=- shape=4fb4f7bd vocab=8b47d663
+-/
 theorem biUnion_card {H : Finset (Finset V)} (T : Finset ι) (M : ι → Finset (Finset V))
     (hM : ∀ i ∈ T, IsMatching H (M i)) (hne : ∀ e ∈ H, e.Nonempty)
     (hdisj : ∀ i ∈ T, ∀ j ∈ T, i ≠ j → Disjoint (support (M i)) (support (M j))) :

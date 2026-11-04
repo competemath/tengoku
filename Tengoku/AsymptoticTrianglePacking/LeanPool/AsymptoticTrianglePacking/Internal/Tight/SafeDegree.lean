@@ -56,7 +56,9 @@ variable {V : Type*} [DecidableEq V] {Ω : Type*} [MeasureSpace Ω]
 def safeDegree (H : Finset (Finset V)) (C : Finset V) (v : V) : ℕ :=
   (H.filter (fun e => v ∈ e ∧ Disjoint (e.erase v) C)).card
 
-/-- On the event that `v` is not covered, the safe degree IS the residual degree.-/
+/-- On the event that `v` is not covered, the safe degree IS the residual degree.
+@isnad1 id=eq.1h4v.s5.9d48ad4f663f from=translated src=- shape=e2b3faf0 vocab=5f031ab9
+-/
 theorem safeDegree_eq_residual_degree_of_not_covered {H R : Finset (Finset V)} {v : V}
     (hv : v ∉ covered R) : safeDegree H (covered R) v = degree (Hypergraph.residual H R) v := by
   unfold safeDegree degree Hypergraph.residual
@@ -75,7 +77,9 @@ theorem safeDegree_eq_residual_degree_of_not_covered {H R : Finset (Finset V)} {
     refine ⟨heH, hve, ?_⟩
     exact Finset.disjoint_of_subset_left (Finset.erase_subset _ _) hdisj
 
-/-- The residual degree never exceeds the safe degree.-/
+/-- The residual degree never exceeds the safe degree.
+@isnad1 id=le.0h4v.s5.dbe942275d62 from=translated src=- shape=69b06bf7 vocab=663be180
+-/
 theorem residual_degree_le_safeDegree {H R : Finset (Finset V)} (v : V) :
     degree (Hypergraph.residual H R) v ≤ safeDegree H (covered R) v := by
   unfold safeDegree degree Hypergraph.residual
@@ -92,7 +96,9 @@ noncomputable def safeIndicator {H : Finset (Finset V)} {p : ℝ}
   if Disjoint (e.erase v) (covered (retainedSet H ρ ω)) then 1 else 0
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The "all other vertices survive" event is the complement of the union of covering events.-/
+/-- The "all other vertices survive" event is the complement of the union of covering events.
+@isnad1 id=eq.0h7v.s7.3c96df6be323 from=translated src=- shape=4a25c604 vocab=d2705d39
+-/
 theorem safeEvent_eq_compl {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (e : Finset V) :
     {ω | Disjoint (e.erase v) (covered (retainedSet H ρ ω))}
@@ -102,12 +108,18 @@ theorem safeEvent_eq_compl {H : Finset (Finset V)} {p : ℝ}
     not_and, Finset.disjoint_left]
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
+/--
+@isnad1 id=measurab.0h7v.s5.d59e448e4bf1 from=translated src=- shape=4337e4af vocab=844619f6
+-/
 theorem measurableSet_safeEvent {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (e : Finset V) :
     MeasurableSet {ω | Disjoint (e.erase v) (covered (retainedSet H ρ ω))} := by
   rw [safeEvent_eq_compl ρ v e]
   exact (Finset.measurableSet_biUnion _ (fun u _ => measurableSet_vertex_covered ρ u)).compl
 
+/--
+@isnad1 id=integrab.0h7v.s6.9966a868f5d7 from=translated src=- shape=7c36c418 vocab=87db7f24
+-/
 theorem integrable_safeIndicator {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (e : Finset V) :
     Integrable (safeIndicator ρ v e) (ℙ : Measure Ω) := by
@@ -117,7 +129,9 @@ theorem integrable_safeIndicator {H : Finset (Finset V)} {p : ℝ}
     (Filter.Eventually.of_forall (fun ω => ?_))
   rw [safeIndicator]; split_ifs <;> simp
 
-/-- The expectation of the safe indicator is `1 − ℙ(some other vertex of `e` is covered)`.-/
+/-- The expectation of the safe indicator is `1 − ℙ(some other vertex of `e` is covered)`.
+@isnad1 id=eq.0h7v.s7.dc192f57adba from=translated src=- shape=30e3a202 vocab=4e933ca3
+-/
 theorem integral_safeIndicator {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (e : Finset V) :
     ∫ ω, safeIndicator ρ v e ω ∂(ℙ : Measure Ω)
@@ -132,7 +146,9 @@ theorem integral_safeIndicator {H : Finset (Finset V)} {p : ℝ}
   simp
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The safe degree is the sum of the safe indicators of the edges through `v`.-/
+/-- The safe degree is the sum of the safe indicators of the edges through `v`.
+@isnad1 id=eq.0h7v.s6.ad66d9749afb from=translated src=- shape=a592fba2 vocab=195aa765
+-/
 theorem safeDegree_eq_sum {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (ω : Ω) :
     (safeDegree H (covered (retainedSet H ρ ω)) v : ℝ)
@@ -146,6 +162,9 @@ theorem safeDegree_eq_sum {H : Finset (Finset V)} {p : ℝ}
   simp only [Finset.mem_filter]
   tauto
 
+/--
+@isnad1 id=integrab.0h6v.s6.c220609bec58 from=translated src=- shape=b4c4620f vocab=c7938ab7
+-/
 theorem integrable_safeDegree {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) :
     Integrable (fun ω => (safeDegree H (covered (retainedSet H ρ ω)) v : ℝ)) (ℙ : Measure Ω) := by
@@ -155,7 +174,9 @@ theorem integrable_safeDegree {H : Finset (Finset V)} {p : ℝ}
   rw [h]
   exact integrable_finsetSum _ (fun e _ => integrable_safeIndicator ρ v e)
 
-/-- The expectation of the safe degree, as a sum over the edges at `v`.-/
+/-- The expectation of the safe degree, as a sum over the edges at `v`.
+@isnad1 id=eq.0h6v.s7.165eac80f669 from=translated src=- shape=04ae087b vocab=e9a4d755
+-/
 theorem safeDegree_expectation_eq {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) :
     ∫ ω, (safeDegree H (covered (retainedSet H ρ ω)) v : ℝ) ∂(ℙ : Measure Ω)
@@ -171,7 +192,9 @@ theorem safeDegree_expectation_eq {H : Finset (Finset V)} {p : ℝ}
 /-! ## The sharp two-sided expectation -/
 
 /-- **Sharp LOWER bound on the expected safe degree** (union bound on the covering events).
-`𝔼[safeDeg(v)] ≥ ∑_{e ∋ v} (1 − ∑_{u ∈ e∖v} q_u)`.-/
+`𝔼[safeDeg(v)] ≥ ∑_{e ∋ v} (1 − ∑_{u ∈ e∖v} q_u)`.
+@isnad1 id=le.2h6v.s7.f285bf537624 from=translated src=- shape=eb2a0587 vocab=93a66fff
+-/
 theorem safeDegree_expectation_ge {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (v : V) :
     ∑ e ∈ H.filter (fun e => v ∈ e), (1 - ∑ u ∈ e.erase v, coverRate H p u)
@@ -187,7 +210,9 @@ theorem safeDegree_expectation_ge {H : Finset (Finset V)} {p : ℝ}
 
 /-- **Sharp UPPER bound on the expected safe degree** (second Bonferroni inequality, with the
 pairwise corrections).
-`𝔼[safeDeg(v)] ≤ ∑_{e ∋ v} (1 − ∑_{u} q_u + ∑_{u ≠ u'} ℙ(u,u' both covered))`.-/
+`𝔼[safeDeg(v)] ≤ ∑_{e ∋ v} (1 − ∑_{u} q_u + ∑_{u ≠ u'} ℙ(u,u' both covered))`.
+@isnad1 id=le.2h6v.s8.f7af52ee124c from=translated src=- shape=f5ed0ed1 vocab=19ed2537
+-/
 theorem safeDegree_expectation_le {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (v : V) :
     ∫ ω, (safeDegree H (covered (retainedSet H ρ ω)) v : ℝ) ∂(ℙ : Measure Ω)

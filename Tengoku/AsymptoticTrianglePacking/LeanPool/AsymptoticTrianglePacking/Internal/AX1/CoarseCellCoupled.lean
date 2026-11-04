@@ -258,6 +258,9 @@ def BlockCoverResidualCoupled : Prop :=
                 + (G.edgeDensity (W i) (X i) : ℝ) * (#(B i) : ℝ) * (#(C i) : ℝ))) / 3
             + ε * (Fintype.card V : ℝ) ^ 2
 
+/--
+@isnad1 id=subtripl.1h0v.s1.15d0fe7b5c16 from=translated src=- shape=1d48f1ac vocab=45f64ca8
+-/
 theorem subTripleDesignLocalResidual_of_blockCoverCoupled (h : BlockCoverResidualCoupled) :
     SubTripleDesignLocalResidual := by
   classical
@@ -464,7 +467,9 @@ theorem subTripleDesignLocalResidual_of_blockCoverCoupled (h : BlockCoverResidua
     simp only [designBad]
     linarith only [hcov, hsum, h2, h3]
 
-/-- **AX1 from the coupled block-allocation residual.**-/
+/-- **AX1 from the coupled block-allocation residual.**
+@isnad1 id=ax1state.1h0v.s1.aa18863120ac from=translated src=- shape=1d48f1ac vocab=77739dfb
+-/
 theorem ax1_of_blockCoverCoupled (h : BlockCoverResidualCoupled) : AX1Statement :=
   ax1_of_subTripleDesignLocal (subTripleDesignLocalResidual_of_blockCoverCoupled h)
 
@@ -490,7 +495,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 
 /-! ### The covering sum of one member -/
 
-/-- A product of two prescribed sizes is the product of the two scaled densities, up to `2τ + 1`.-/
+/-- A product of two prescribed sizes is the product of the two scaled densities, up to `2τ + 1`.
+@isnad1 id=le.7h5v.s7.28ea6362ef2b from=translated src=- shape=3f0c92cc vocab=394e9a09
+-/
 theorem prod_approx_of_sizes {τ y z a b : ℝ} (hτ : 0 ≤ τ) (hy0 : 0 ≤ y) (hy1 : y ≤ 1)
     (hz0 : 0 ≤ z) (hz1 : z ≤ 1) (ha : |a - τ * z| ≤ 1) (hb : |b - τ * y| ≤ 1) :
     |a * b - τ ^ 2 * (y * z)| ≤ 2 * τ + 1 := by
@@ -526,7 +533,9 @@ theorem prod_approx_of_sizes {τ y z a b : ℝ} (hτ : 0 ≤ τ) (hy0 : 0 ≤ y)
 
 /-- **The covering sum of one block sub-triple is balanced.**  With the prescribed sizes of
 `Nibble.AX1.IsGridSubTriple`, the covering sum of a member is three times `τ²` times the product of
-its three cluster densities, up to an additive `6τ + 3`.-/
+its three cluster densities, up to an additive `6τ + 3`.
+@isnad1 id=le.2h13v.s8.cf6091cfe748 from=translated src=- shape=8d37938f vocab=31ee3ab0
+-/
 theorem cover_approx_of_gridSubTriple (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {ep de α τ : ℝ} {U W X A B C : Finset V}
     (hτ : 0 ≤ τ) (h : IsGridSubTriple G P ep de α τ U W X A B C) :
@@ -589,7 +598,9 @@ theorem cover_approx_of_gridSubTriple (G : SimpleGraph V) [DecidableRel G.Adj]
 
 omit [Fintype V] in
 /-- The two coordinates of a point of a rectangle lie in **two different** clusters of the
-triple.-/
+triple.
+@isnad1 id=ex.7h9v.s8.f7523551091a from=translated src=- shape=e119e0cf vocab=0ffacb97
+-/
 theorem exists_clusters_of_mem_tripleRect {U W X A B C : Finset V}
     (hUW : U ≠ W) (hUX : U ≠ X) (hWX : W ≠ X)
     (hA : A ⊆ U) (hB : B ⊆ W) (hC : C ⊆ X) {u v : V} (h : (u, v) ∈ tripleRect A B C) :
@@ -607,7 +618,9 @@ theorem exists_clusters_of_mem_tripleRect {U W X A B C : Finset V}
 
 /-- **Automatic disjointness.**  If the cluster triples of two members share at most one cluster,
 their vertex-pair rectangles are disjoint.  Hence the disjointness clause of the residual only ever
-has to be verified for two members sharing a whole cluster *pair*.-/
+has to be verified for two members sharing a whole cluster *pair*.
+@isnad1 id=disjoint.19h14v.s8.3e81a47747df from=translated src=- shape=683098c4 vocab=a4fc364f
+-/
 theorem tripleRect_disjoint_of_clusters (P : Finpartition (univ : Finset V))
     {U W X U' W' X' A B C A' B' C' : Finset V}
     (hU : U ∈ P.parts) (hW : W ∈ P.parts) (hX : X ∈ P.parts)
@@ -654,7 +667,9 @@ up to `E`, then the covering clause of `Nibble.AX1.BlockCoverResidualFine` holds
 
 This is the *tight bookkeeping* of the block-allocation route: by
 `Nibble.AX1.cover_sum_le_cluster_capacity` the covering sum of a disjoint family can never exceed
-the same capacity LP, so the hypothesis `hval` is not only sufficient but essentially necessary.-/
+the same capacity LP, so the hypothesis `hval` is not only sufficient but essentially necessary.
+@isnad1 id=le.4h18v.s9.afc719943da2 from=translated src=- shape=37a87e96 vocab=28a80a03
+-/
 theorem nu3star_le_cover_of_family_value
     (G : SimpleGraph V) [DecidableRel G.Adj] (P : Finpartition (univ : Finset V))
     {ep de ep₀ de₀ α τ θ E : ℝ} {k : ℕ} (U W X A B C : ℕ → Finset V)
@@ -766,7 +781,9 @@ private theorem sum_fiber_hostTri (G : SimpleGraph V) [DecidableRel G.Adj]
   · rintro ⟨⟨ht, -⟩, hEq⟩; exact ⟨ht, hEq⟩
 
 /-- **The bridge.**  For every slack `η > 0` there is a feasible point of the cluster-triple LP
-whose value is within `η` of `ν₃*` of the regularity-reduced graph.-/
+whose value is within `η` of `ν₃*` of the regularity-reduced graph.
+@isnad1 id=ex.1h6v.s7.579949971510 from=translated src=- shape=c8441ed4 vocab=8db72e94
+-/
 theorem exists_clusterTripleLP (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (ep de : ℝ) {η : ℝ} (hη : 0 < η) :
     ∃ x : Finset {S : Finset V // S ∈ P.parts} → ℝ, IsClusterTripleLP G P ep de x ∧
@@ -874,7 +891,9 @@ private theorem exists_pair_of_support (G : SimpleGraph V) [DecidableRel G.Adj]
   exact ⟨a, b, hab, by simp [triplesThrough]⟩
 
 /-- **Sparsification of the cluster-triple LP.**  A feasible point can be replaced by a feasible
-point of at least the same value whose support has at most `#P.parts ^ 2` triples.-/
+point of at least the same value whose support has at most `#P.parts ^ 2` triples.
+@isnad1 id=ex.1h6v.s8.1a91b052e6f1 from=translated src=- shape=c15abc3e vocab=29d20877
+-/
 theorem exists_sparse_clusterTripleLP (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (ep de : ℝ)
     {x : Finset {S : Finset V // S ∈ P.parts} → ℝ} (hx : IsClusterTripleLP G P ep de x) :
@@ -1029,7 +1048,9 @@ theorem exists_sparse_clusterTripleLP (G : SimpleGraph V) [DecidableRel G.Adj]
 
 /-- **The bridge and the sparsification, combined.**  For every slack `η > 0` there is a feasible
 point of the cluster-triple LP with at most `#P.parts ^ 2` triples in its support whose value is
-within `η` of `ν₃*` of the regularity-reduced graph.-/
+within `η` of `ν₃*` of the regularity-reduced graph.
+@isnad1 id=ex.1h6v.s8.f62784c101a8 from=translated src=- shape=2e6f5b7a vocab=25d43fc1
+-/
 theorem exists_sparse_clusterTripleLP_nu3star (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (ep de : ℝ) {η : ℝ} (hη : 0 < η) :
     ∃ y : Finset {S : Finset V // S ∈ P.parts} → ℝ, IsClusterTripleLP G P ep de y ∧
@@ -1049,7 +1070,9 @@ total error `E + η + k·(2τ + 1)`.
 This is the LP-form replacement of `Nibble.AX1.nu3star_le_cover_of_family_value`, whose right-hand
 side is the *full* cluster capacity: the full capacity is not reachable by a coherent family of
 block sub-triples — a cluster triple with `d(S,T) = 1` and `d(S,Y) = d(T,Y) = θ` cannot tile
-`S × T` — whereas the LP optimum is exactly what the coarse-cell construction realises.-/
+`S × T` — whereas the LP optimum is exactly what the coarse-cell construction realises.
+@isnad1 id=le.4h19v.s9.aa41a14d055e from=translated src=- shape=783e959f vocab=5328d86c
+-/
 theorem nu3star_le_cover_of_family_lp_value
     (G : SimpleGraph V) [DecidableRel G.Adj] (P : Finpartition (univ : Finset V))
     {ep de ep₀ de₀ α τ E η : ℝ} {k : ℕ} (U W X A B C : ℕ → Finset V) (hτ : 0 ≤ τ)
@@ -1103,7 +1126,9 @@ namespace Nibble.AX1
 variable {V : Type} [Fintype V] [DecidableEq V]
 
 /-- **The fibre identity.**  Summing the LP mass through the pairs of a set `F` of ordered cluster
-pairs charges every triple with the number of pairs of `F` it contains.-/
+pairs charges every triple with the number of pairs of `F` it contains.
+@isnad1 id=eq.0h4v.s11.d4c547e3e17e from=translated src=- shape=38e15949 vocab=16c8000e
+-/
 theorem sum_pair_fibers (P : Finpartition (univ : Finset V))
     (y : Finset {S : Finset V // S ∈ P.parts} → ℝ)
     (F : Finset ({S : Finset V // S ∈ P.parts} × {S : Finset V // S ∈ P.parts})) :
@@ -1118,7 +1143,9 @@ theorem sum_pair_fibers (P : Finpartition (univ : Finset V))
   refine Finset.sum_congr rfl fun th _ => ?_
   rw [← Finset.sum_filter, Finset.sum_const, nsmul_eq_mul, mul_comm]
 
-/-- The sizes of two clusters multiply out to at most `|V|²` over all ordered pairs.-/
+/-- The sizes of two clusters multiply out to at most `|V|²` over all ordered pairs.
+@isnad1 id=le.0h2v.s9.2689e5f6efd5 from=translated src=- shape=8d5bee64 vocab=b232ff58
+-/
 theorem sum_card_mul_card_le (P : Finpartition (univ : Finset V)) :
     ∑ p ∈ (univ : Finset ({S : Finset V // S ∈ P.parts} × {S : Finset V // S ∈ P.parts})),
         (#(p.1 : Finset V) : ℝ) * (#(p.2 : Finset V) : ℝ) ≤ (Fintype.card V : ℝ) ^ 2 := by
@@ -1170,7 +1197,9 @@ private theorem filter_pairs_eq_offDiag (P : Finpartition (univ : Finset V))
   simp only [Finset.mem_filter, Finset.mem_univ, true_and, Finset.mem_offDiag]
   tauto
 
-/-- **The value of a feasible point of the cluster-triple LP is at most `|V|²/6`.**-/
+/-- **The value of a feasible point of the cluster-triple LP is at most `|V|²/6`.**
+@isnad1 id=le.1h6v.s7.f99bbd81f734 from=translated src=- shape=05bc046e vocab=bba6b4c0
+-/
 theorem clusterLPValue_le_sq (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (ep de : ℝ)
     {y : Finset {S : Finset V // S ∈ P.parts} → ℝ} (hy : IsClusterTripleLP G P ep de y) :
@@ -1209,7 +1238,9 @@ noncomputable def sparseTriples (G : SimpleGraph V) [DecidableRel G.Adj]
 
 /-- **The mass of the triples using a sparse cluster pair is at most `δ|V|²/2`.**  Every such triple
 contains at least two ordered pairs of density below `δ`, and the capacities of those pairs add up
-to at most `δ|V|²`.-/
+to at most `δ|V|²`.
+@isnad1 id=le.2h7v.s7.7543287114a4 from=translated src=- shape=a4bf9399 vocab=d4d4503f
+-/
 theorem sum_sparse_triples_le (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (ep de : ℝ) {δ : ℝ} (hδ0 : 0 ≤ δ)
     {y : Finset {S : Finset V // S ∈ P.parts} → ℝ} (hy : IsClusterTripleLP G P ep de y) :
@@ -1278,6 +1309,9 @@ noncomputable def takeSub (A : Finset V) (n : ℕ) : Finset V :=
   if h : n ≤ #A then (Finset.exists_subset_card_eq h).choose else A
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h3v.s4.1a04fe4102ae from=translated src=- shape=ec2102fa vocab=a39637c0
+-/
 theorem takeSub_subset (A : Finset V) (n : ℕ) : takeSub A n ⊆ A := by
   unfold takeSub
   split
@@ -1285,6 +1319,9 @@ theorem takeSub_subset (A : Finset V) (n : ℕ) : takeSub A n ⊆ A := by
   · exact Finset.Subset.refl _
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=eq.1h3v.s4.78066ed049a6 from=translated src=- shape=8558e17b vocab=4101f6fd
+-/
 theorem card_takeSub {A : Finset V} {n : ℕ} (h : n ≤ #A) : #(takeSub A n) = n := by
   unfold takeSub
   rw [dite_eq_left h]
@@ -1296,6 +1333,9 @@ theorem card_takeSub {A : Finset V} {n : ℕ} (h : n ≤ #A) : #(takeSub A n) = 
 noncomputable def cellUnion (S : Finset V) (l : ℕ) {P : ℕ} (I : Finset (Fin P)) : Finset V :=
   I.biUnion (fun i => blockOf S l (i : ℕ))
 
+/--
+@isnad1 id=le.0h5v.s5.eb06be9dd6da from=translated src=- shape=c0c3dda7 vocab=30de6b3f
+-/
 theorem cellUnion_subset (S : Finset V) (l : ℕ) {P : ℕ} (I : Finset (Fin P)) :
     cellUnion S l I ⊆ S := by
   intro v hv
@@ -1303,6 +1343,9 @@ theorem cellUnion_subset (S : Finset V) (l : ℕ) {P : ℕ} (I : Finset (Fin P))
   obtain ⟨i, -, hi⟩ := hv
   exact blockOf_subset S l (i : ℕ) hi
 
+/--
+@isnad1 id=eq.2h5v.s6.9a6b754b2502 from=translated src=- shape=55b4441c vocab=96e246ea
+-/
 theorem card_cellUnion (S : Finset V) {l P : ℕ} (hl : 0 < l) (I : Finset (Fin P))
     (hfit : P * l ≤ #S) : #(cellUnion S l I) = #I * l := by
   classical
@@ -1317,6 +1360,9 @@ theorem card_cellUnion (S : Finset V) {l P : ℕ} (hl : 0 < l) (I : Finset (Fin 
   rw [cellUnion, Finset.card_biUnion hdisj,
     Finset.sum_congr rfl (fun i _ => hcell i), Finset.sum_const, smul_eq_mul]
 
+/--
+@isnad1 id=disjoint.1h6v.s5.7a0359650294 from=translated src=- shape=bc6d3969 vocab=e10faffe
+-/
 theorem cellUnion_disjoint (S : Finset V) (l : ℕ) {P : ℕ} {I J : Finset (Fin P)}
     (h : Disjoint I J) : Disjoint (cellUnion S l I) (cellUnion S l J) := by
   classical
@@ -1335,13 +1381,22 @@ theorem cellUnion_disjoint (S : Finset V) (l : ℕ) {P : ℕ} {I J : Finset (Fin
 noncomputable def cellBlock (S : Finset V) (l : ℕ) {P : ℕ} (I : Finset (Fin P)) (n : ℕ) :
     Finset V := takeSub (cellUnion S l I) n
 
+/--
+@isnad1 id=le.0h6v.s5.d5e5681bdb48 from=translated src=- shape=200f0093 vocab=cfacdd05
+-/
 theorem cellBlock_subset_cellUnion (S : Finset V) (l : ℕ) {P : ℕ} (I : Finset (Fin P)) (n : ℕ) :
     cellBlock S l I n ⊆ cellUnion S l I := takeSub_subset _ _
 
+/--
+@isnad1 id=le.0h6v.s5.a4bedc8e567e from=translated src=- shape=9022af48 vocab=8c669be0
+-/
 theorem cellBlock_subset (S : Finset V) (l : ℕ) {P : ℕ} (I : Finset (Fin P)) (n : ℕ) :
     cellBlock S l I n ⊆ S :=
   Finset.Subset.trans (cellBlock_subset_cellUnion S l I n) (cellUnion_subset S l I)
 
+/--
+@isnad1 id=eq.3h6v.s6.07a757277f73 from=translated src=- shape=7777c021 vocab=292c9440
+-/
 theorem card_cellBlock (S : Finset V) {l P : ℕ} (hl : 0 < l) (I : Finset (Fin P)) {n : ℕ}
     (hfit : P * l ≤ #S) (hn : n ≤ #I * l) : #(cellBlock S l I n) = n := by
   refine card_takeSub ?_
@@ -1353,7 +1408,9 @@ theorem card_cellBlock (S : Finset V) {l P : ℕ} (hl : 0 < l) (I : Finset (Fin 
 variable [Fintype V]
 
 omit [Fintype V] in
-/-- The two positions of a vertex pair inside the rectangle of a member.-/
+/-- The two positions of a vertex pair inside the rectangle of a member.
+@isnad1 id=ex.1h4v.s8.642b0393e9c2 from=translated src=- shape=0117dc0e vocab=534490f1
+-/
 theorem exists_positions_of_mem_tripleRect {f : ZMod 3 → Finset V} {x y : V}
     (h : (x, y) ∈ tripleRect (f 0) (f 1) (f 2)) :
     ∃ a b : ZMod 3, a ≠ b ∧ x ∈ f a ∧ y ∈ f b := by
@@ -1369,7 +1426,9 @@ theorem exists_positions_of_mem_tripleRect {f : ZMod 3 → Finset V} {x y : V}
 omit [Fintype V] in
 /-- **The disjointness engine.**  Two members whose blocks sit inside clusters of a partition have
 disjoint vertex-pair rectangles as soon as, whenever they share a cluster pair, one of the two
-blocks carrying it is disjoint from the corresponding block of the other member.-/
+blocks carrying it is disjoint from the corresponding block of the other member.
+@isnad1 id=disjoint.4h5v.s9.35f68d091a8c from=translated src=- shape=32977a5f vocab=de41d1c8
+-/
 theorem tripleRect_disjoint_of_shared_pairs
     {clA clB blkA blkB : ZMod 3 → Finset V}
     (hA : ∀ a, blkA a ⊆ clA a) (hB : ∀ a, blkB a ⊆ clB a)
@@ -1404,7 +1463,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 
 /-- **The block family of a coarse-cell placement.**  Every copy of `Good` becomes a member of the
 family: its block at the position `a` is the prescribed number `bs c a` of vertices inside the union
-of the coarse cells `I c a` of its cluster `cl c a`.-/
+of the coarse cells `I c a` of its cluster `cl c a`.
+@isnad1 id=ex.8h15v.s11.417d4e417791 from=translated src=- shape=bd954986 vocab=b93e7e7a
+-/
 theorem exists_gridSubTriple_family_of_placement
     (G : SimpleGraph V) [DecidableRel G.Adj] (Pp : Finpartition (univ : Finset V))
     {ep de α τ : ℝ} {l Pn : ℕ} (hl : 0 < l)
@@ -1569,29 +1630,40 @@ def triBlock (s v j : ZMod q) : ZMod q := j + triShift s v
 
 /-- **The diagonal offset**: in the cluster pair `{a, b}`, the triple of vertex sum `s` occupies
 the diagonal `{(k, k + (b - a) * (a + b - s))}`.  For `a ≠ b` this offset is an injective function
-of `s`, which is the whole point of the design.-/
+of `s`, which is the whole point of the design.
+@isnad1 id=eq.0h4v.s7.24c2416dac64 from=translated src=- shape=bf5dfb9e vocab=ee08658a
+-/
 theorem triShift_diff (s a b : ZMod q) :
     triShift s b - triShift s a = (b - a) * (a + b - s) := by
   simp only [triShift]; ring
 
 /-- For the triple `{u, w, x}` the offset of the pair `{u, w}` is `-(w - u) * x`: it depends on the
-pair and on the *third* vertex only.-/
+pair and on the *third* vertex only.
+@isnad1 id=eq.0h4v.s7.2570e00f62ac from=translated src=- shape=c6501c69 vocab=e4444ef3
+-/
 theorem triShift_diff_third (u w x : ZMod q) :
     triShift (u + w + x) w - triShift (u + w + x) u = -((w - u) * x) := by
   simp only [triShift]; ring
 
+/--
+@isnad1 id=eq.0h3v.s5.977281b2b768 from=translated src=- shape=600dcf25 vocab=d2db6738
+-/
 @[simp] theorem triBlock_zero_shift (s v : ZMod q) : triBlock s v 0 = triShift s v := by
   simp [triBlock]
 
 /-- Inside one cluster triple, the `q` sub-triples cover every block of every one of the three
-clusters exactly once.-/
+clusters exactly once.
+@isnad1 id=bijectiv.0h3v.s4.821478a1e4ad from=translated src=- shape=8511638d vocab=59f0a1ce
+-/
 theorem triBlock_bijective (s v : ZMod q) : Function.Bijective (triBlock s v) :=
   ⟨fun j j' h => by simpa [triBlock] using h,
    fun k => ⟨k - triShift s v, by simp [triBlock]⟩⟩
 
 /-- The sub-triples of a fixed cluster triple form a *line* in the sense of
 `Nibble.AX1.lineTriple`, re-based at the first cluster: all single-triple facts proved for the
-line design apply.-/
+line design apply.
+@isnad1 id=eq.0h6v.s7.2c4ee9132991 from=translated src=- shape=ec21ab59 vocab=d1e663c9
+-/
 theorem triBlock_eq_lineTriple (s u w x j : ZMod q) :
     (triBlock s u j, triBlock s w j, triBlock s x j)
       = lineTriple (triShift s w - triShift s u) (triShift s x - triShift s u)
@@ -1606,17 +1678,24 @@ variable [NeZero q]
 def triPairSet (s a b : ZMod q) : Finset (ZMod q × ZMod q) :=
   (univ : Finset (ZMod q)).image fun j => (triBlock s a j, triBlock s b j)
 
+/--
+@isnad1 id=iff.0h5v.s6.b781342b7b34 from=translated src=- shape=1489ffb4 vocab=810985f2
+-/
 theorem mem_triPairSet {s a b : ZMod q} {p : ZMod q × ZMod q} :
     p ∈ triPairSet s a b ↔ ∃ j, (triBlock s a j, triBlock s b j) = p := by
   simp [triPairSet]
 
-/-- A block pair of the diagonal is determined by its first coordinate.-/
+/-- A block pair of the diagonal is determined by its first coordinate.
+@isnad1 id=eq.1h5v.s7.462b7265042a from=translated src=- shape=3dd3b3f9 vocab=53210e39
+-/
 theorem triPairSet_snd_eq {s a b : ZMod q} {p : ZMod q × ZMod q} (hp : p ∈ triPairSet s a b) :
     p.2 = p.1 + (triShift s b - triShift s a) := by
   obtain ⟨j, rfl⟩ := mem_triPairSet.1 hp
   simp only [triBlock]; ring
 
-/-- Each cluster triple uses exactly `q` block pairs in each of its three cluster pairs.-/
+/-- Each cluster triple uses exactly `q` block pairs in each of its three cluster pairs.
+@isnad1 id=eq.0h4v.s5.ae9db2fa7823 from=translated src=- shape=0ea880de vocab=4e3a7e62
+-/
 theorem card_triPairSet (s a b : ZMod q) : #(triPairSet s a b) = q := by
   rw [triPairSet, card_image_of_injective _ (fun j j' h => by
     simpa [triBlock, Prod.ext_iff] using h), card_univ, ZMod.card]
@@ -1625,7 +1704,9 @@ variable [Fact (Nat.Prime q)]
 
 /-- **The allocation is consistent**: two cluster triples with different vertex sums use *disjoint*
 sets of block pairs in every cluster pair `{a, b}` they share.  Since the vertex sum is symmetric,
-this holds simultaneously for all three pairs of each triple.-/
+this holds simultaneously for all three pairs of each triple.
+@isnad1 id=disjoint.2h5v.s6.94504df7b2d8 from=translated src=- shape=9bbd58f3 vocab=6efaf768
+-/
 theorem triPairSet_disjoint {s s' a b : ZMod q} (hab : a ≠ b) (hs : s ≠ s') :
     Disjoint (triPairSet s a b) (triPairSet s' a b) := by
   rw [Finset.disjoint_left]
@@ -1638,7 +1719,9 @@ theorem triPairSet_disjoint {s s' a b : ZMod q} (hab : a ≠ b) (hs : s ≠ s') 
   · exact hs (sub_eq_zero.1 h').symm
 
 /-- The form used in the assembly: two cluster triples through the same cluster pair `{a, b}`,
-with different third clusters, never share a block pair.-/
+with different third clusters, never share a block pair.
+@isnad1 id=disjoint.2h5v.s7.3ea29029650a from=translated src=- shape=d24ad683 vocab=1d685a6b
+-/
 theorem triPairSet_disjoint_of_third {a b x x' : ZMod q} (hab : a ≠ b) (hx : x ≠ x') :
     Disjoint (triPairSet (a + b + x) a b) (triPairSet (a + b + x') a b) :=
   triPairSet_disjoint hab fun h => hx (by
@@ -1647,7 +1730,9 @@ theorem triPairSet_disjoint_of_third {a b x x' : ZMod q} (hab : a ≠ b) (hx : x
 /-- **Feasibility of the allocation**: if `S` is a set of third clusters, the triples
 `{a, b, x}`, `x ∈ S`, together use `q * #S` distinct block pairs of the cluster pair `{a, b}`, out
 of the `q ^ 2` block pairs available.  So the design fits as long as the number of cluster triples
-through a pair is at most the number `q` of blocks per cluster.-/
+through a pair is at most the number `q` of blocks per cluster.
+@isnad1 id=eq.1h4v.s7.3a61a80d97bb from=translated src=- shape=07e5f3f3 vocab=72b57f75
+-/
 theorem card_triPairSet_biUnion {a b : ZMod q} (hab : a ≠ b) (S : Finset (ZMod q)) :
     #(S.biUnion fun x => triPairSet (a + b + x) a b) = q * #S := by
   rw [card_biUnion, Finset.sum_congr rfl fun x _ => card_triPairSet _ _ _, sum_const,
@@ -1656,7 +1741,9 @@ theorem card_triPairSet_biUnion {a b : ZMod q} (hab : a ≠ b) (S : Finset (ZMod
   exact triPairSet_disjoint_of_third hab hxy
 
 /-- The block pairs used in a cluster pair are of course among all `q ^ 2` of them, so the count
-above is a genuine packing bound: the design never overflows a cluster pair.-/
+above is a genuine packing bound: the design never overflows a cluster pair.
+@isnad1 id=le.1h4v.s7.a1480766a673 from=translated src=- shape=46319081 vocab=32c4d574
+-/
 theorem card_triPairSet_biUnion_le {a b : ZMod q} (hab : a ≠ b) (S : Finset (ZMod q)) :
     #(S.biUnion fun x => triPairSet (a + b + x) a b) ≤ q ^ 2 := by
   have hS : #S ≤ q := by
@@ -1678,7 +1765,9 @@ open Finset
 namespace Nibble.AX1
 
 /-- A `3`-element set containing two distinct elements `a`, `b` is `{a, b, x}` for a unique third
-element `x`.-/
+element `x`.
+@isnad1 id=ex.4h4v.s6.a2243a9723a8 from=translated src=- shape=712f0aaa vocab=142ff3f3
+-/
 theorem exists_third_of_card_three {α : Type} [DecidableEq α] {T : Finset α} (hT : #T = 3)
     {a b : α} (ha : a ∈ T) (hb : b ∈ T) (hab : a ≠ b) :
     ∃ x, T = {a, b, x} ∧ x ≠ a ∧ x ≠ b := by
@@ -1704,10 +1793,16 @@ indices) with offset `j` occupies, in the cluster `v ∈ T`, the block `triBlock
 def triCells (T : Finset (ZMod q)) (j : ZMod q) : Finset (ZMod q × ZMod q) :=
   T.image fun c => (c, triBlock (∑ v ∈ T, v) c j)
 
+/--
+@isnad1 id=mem.1h4v.s6.745300f92ad2 from=translated src=- shape=3b1b7bab vocab=24a56775
+-/
 theorem mem_triCells {T : Finset (ZMod q)} {j v : ZMod q} (hv : v ∈ T) :
     (v, triBlock (∑ u ∈ T, u) v j) ∈ triCells T j :=
   mem_image_of_mem _ hv
 
+/--
+@isnad1 id=eq.3h4v.s7.97c358f019f7 from=translated src=- shape=4cfccfc1 vocab=2a1ea556
+-/
 theorem sum_triple {a b x : ZMod q} (hab : a ≠ b) (hxa : x ≠ a) (hxb : x ≠ b) :
     ∑ v ∈ ({a, b, x} : Finset (ZMod q)), v = a + b + x := by
   rw [sum_insert (by simp [hab, Ne.symm hxa]), sum_insert (by simp [Ne.symm hxb]),
@@ -1721,7 +1816,9 @@ If the cluster triples differ, or if they agree but the offsets differ, then no 
 common: two common cells lie in two distinct clusters `a ≠ b`, and the identity
 `triShift s b - triShift s a = (b - a) * (a + b - s)` then forces the two vertex sums to be equal,
 hence the offsets to be equal and (both triples being `{a, b, ·}` with the same sum) the triples to
-be equal.-/
+be equal.
+@isnad1 id=eq.7h7v.s7.e88dfd1e13f8 from=translated src=- shape=bdc10f0c vocab=affdccf9
+-/
 theorem triCells_inter_subsingleton {T T' : Finset (ZMod q)} {j j' : ZMod q}
     (hT : #T = 3) (hT' : #T' = 3) (hne : ¬ (T = T' ∧ j = j'))
     {c d : ZMod q × ZMod q} (hc : c ∈ triCells T j) (hc' : c ∈ triCells T' j')
@@ -1763,7 +1860,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 
 omit [Fintype V] in
 /-- A vertex pair of the rectangle of a sub-triple whose three parts sit in the blocks of three
-distinct cells joins the blocks of two distinct cells.-/
+distinct cells joins the blocks of two distinct cells.
+@isnad1 id=ex.10h11v.s7.b3db617cebb9 from=translated src=- shape=e7fa46fa vocab=c05f0ef6
+-/
 theorem tripleRect_cells {ι : Type} (blk : ι → Finset V) (S : Finset ι)
     {A B C : Finset V} {cA cB cC : ι} (hA : A ⊆ blk cA) (hB : B ⊆ blk cB) (hC : C ⊆ blk cC)
     (hcA : cA ∈ S) (hcB : cB ∈ S) (hcC : cC ∈ S)
@@ -1790,7 +1889,9 @@ subsets of the three blocks are used as the parts `A`, `B`, `C`.
 
 Combined with `Nibble.AX1.tripleGraph_edgeDisjoint_of_rect_disjoint` and
 `Nibble.AX1.sum_area_le_of_rect_disjoint` this is the edge-disjointness requirement of
-`Nibble.AX1.BlockCoverResidual` for the whole family of cluster triples at once.-/
+`Nibble.AX1.BlockCoverResidual` for the whole family of cluster triples at once.
+@isnad1 id=disjoint.22h19v.s9.73bf45a55b0e from=translated src=- shape=e6279fe8 vocab=f333fe5a
+-/
 theorem tripleRect_disjoint_of_design (blk : ZMod q × ZMod q → Finset V)
     (hblk : ∀ c d, c ≠ d → Disjoint (blk c) (blk d))
     {T T' : Finset (ZMod q)} {j j' : ZMod q} (hT : #T = 3) (hT' : #T' = 3)
@@ -1847,6 +1948,9 @@ noncomputable def pick3 {ι : Type} [Nonempty ι] [DecidableEq ι] (t : Finset �
     (h.choose, h.choose_spec.choose, h.choose_spec.choose_spec.choose)
   else (Classical.arbitrary ι, Classical.arbitrary ι, Classical.arbitrary ι)
 
+/--
+@isnad1 id=and.1h2v.s7.d805951e1ff5 from=translated src=- shape=5dbd1393 vocab=35d8ca59
+-/
 theorem pick3_spec {ι : Type} [Nonempty ι] [DecidableEq ι] {t : Finset ι} (h3 : #t = 3) :
     (pick3 t).1 ≠ (pick3 t).2.1 ∧ (pick3 t).1 ≠ (pick3 t).2.2 ∧
       (pick3 t).2.1 ≠ (pick3 t).2.2 ∧ t = {(pick3 t).1, (pick3 t).2.1, (pick3 t).2.2} := by
@@ -1854,6 +1958,9 @@ theorem pick3_spec {ι : Type} [Nonempty ι] [DecidableEq ι] {t : Finset ι} (h
   rw [pick3, dite_eq_left h]
   exact h.choose_spec.choose_spec.choose_spec
 
+/--
+@isnad1 id=and.1h2v.s6.84e1deddd5d7 from=translated src=- shape=05953f1c vocab=4a305e26
+-/
 theorem pick3_mem {ι : Type} [Nonempty ι] [DecidableEq ι] {t : Finset ι} (h3 : #t = 3) :
     (pick3 t).1 ∈ t ∧ (pick3 t).2.1 ∈ t ∧ (pick3 t).2.2 ∈ t := by
   obtain ⟨-, -, -, ht⟩ := pick3_spec h3
@@ -1867,7 +1974,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 omit [Fintype V] in
 /-- **The rectangles of two members that share at most one cell are disjoint.**  `blk` assigns a
 block of vertices to each cell, distinct cells getting disjoint blocks; a member is given by three
-distinct cells, and its three parts are subsets of the corresponding blocks.-/
+distinct cells, and its three parts are subsets of the corresponding blocks.
+@isnad1 id=disjoint.20h17v.s8.385a062b712f from=translated src=- shape=71cd4d02 vocab=217b16b6
+-/
 theorem tripleRect_disjoint_of_cells_inter {ι : Type} [DecidableEq ι] (blk : ι → Finset V)
     (hblk : ∀ c d, c ≠ d → Disjoint (blk c) (blk d))
     {t t' : Finset ι} (hint : #(t ∩ t') ≤ 1)
@@ -1906,6 +2015,9 @@ theorem tripleRect_disjoint_of_cells_inter {ι : Type} [DecidableEq ι] (blk : �
 
 /-! ### A crude bound for the fractional triangle packing number -/
 
+/--
+@isnad1 id=le.0h2v.s5.8e55f805e00a from=translated src=- shape=f293f791 vocab=9bac6e02
+-/
 theorem nu3star_le_card_sq {W : Type} [Fintype W] [DecidableEq W] (H : SimpleGraph W)
     [DecidableRel H.Adj] : nu3star H ≤ (Fintype.card W : ℝ) ^ 2 := by
   classical
@@ -1944,7 +2056,9 @@ namespace Nibble.AX1
 
 variable {V : Type} [Fintype V] [DecidableEq V]
 
-/-- Every element of `ZMod 3` is `0`, `1` or `2`.-/
+/-- Every element of `ZMod 3` is `0`, `1` or `2`.
+@isnad1 id=or.0h1v.s7.5178b7552592 from=translated src=- shape=c488c7a3 vocab=c87b9854
+-/
 theorem zmod3_cases (a : ZMod 3) : a = 0 ∨ a = 1 ∨ a = 2 := by revert a; decide
 
 /-! ### Copies -/
@@ -1953,6 +2067,9 @@ theorem zmod3_cases (a : ZMod 3) : a = 0 ∨ a = 1 ∨ a = 2 := by revert a; dec
 def copySet {ι : Type} [DecidableEq ι] (Gd : Finset ι) (n : ι → ℕ) : Finset (ι × ℕ) :=
   Gd.biUnion (fun th => (Finset.range (n th)).image (fun j => (th, j)))
 
+/--
+@isnad1 id=iff.0h4v.s6.644cd9793d90 from=translated src=- shape=6a529c59 vocab=f26fc7bb
+-/
 theorem mem_copySet {ι : Type} [DecidableEq ι] {Gd : Finset ι} {n : ι → ℕ} {p : ι × ℕ} :
     p ∈ copySet Gd n ↔ p.1 ∈ Gd ∧ p.2 < n p.1 := by
   classical
@@ -1966,6 +2083,9 @@ theorem mem_copySet {ι : Type} [DecidableEq ι] {Gd : Finset ι} {n : ι → �
     refine Finset.mem_biUnion.mpr ⟨p.1, h1, Finset.mem_image.mpr ⟨p.2, Finset.mem_range.mpr h2, ?_⟩⟩
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.018064b4c47b from=translated src=- shape=5ffcae98 vocab=b238a247
+-/
 theorem sum_copySet {ι : Type} [DecidableEq ι] {M : Type} [AddCommMonoid M] (Gd : Finset ι)
     (n : ι → ℕ) (f : ι → M) :
     ∑ p ∈ copySet Gd n, f p.1 = ∑ th ∈ Gd, (n th) • f th := by
@@ -1979,6 +2099,9 @@ theorem sum_copySet {ι : Type} [DecidableEq ι] {M : Type} [AddCommMonoid M] (G
     rintro p ⟨j, -, rfl⟩ ⟨j', -, hEq⟩
     exact hne (congrArg Prod.fst hEq).symm
 
+/--
+@isnad1 id=eq.0h3v.s5.b776a296cbde from=translated src=- shape=49f57b4a vocab=9b52bbe0
+-/
 theorem card_copySet {ι : Type} [DecidableEq ι] (Gd : Finset ι) (n : ι → ℕ) :
     #(copySet Gd n) = ∑ th ∈ Gd, n th := by
   have h := sum_copySet (M := ℕ) Gd n (fun _ => 1)
@@ -1992,6 +2115,9 @@ noncomputable def triPos (th : Finset {S : Finset V // S ∈ Pp.parts}) (a : ZMo
     {S : Finset V // S ∈ Pp.parts} :=
   if a = 0 then (pick3 th).1 else if a = 1 then (pick3 th).2.1 else (pick3 th).2.2
 
+/--
+@isnad1 id=mem.1h4v.s8.4909cca3e194 from=translated src=- shape=817114b6 vocab=434e14df
+-/
 theorem triPos_mem {th : Finset {S : Finset V // S ∈ Pp.parts}} (h3 : #th = 3) (a : ZMod 3) :
     triPos Pp th a ∈ th := by
   obtain ⟨h0, h1, h2⟩ := pick3_mem h3
@@ -2002,6 +2128,9 @@ theorem triPos_mem {th : Finset {S : Finset V // S ∈ Pp.parts}} (h3 : #th = 3)
     have h21 : (2 : ZMod 3) ≠ 1 := by decide
     simpa [triPos, h20, h21] using h2
 
+/--
+@isnad1 id=injectiv.1h3v.s7.1f2006fc3445 from=translated src=- shape=f1cecf1e vocab=632e7b48
+-/
 theorem triPos_injective {th : Finset {S : Finset V // S ∈ Pp.parts}} (h3 : #th = 3) :
     Function.Injective (triPos Pp th) := by
   obtain ⟨hab, hac, hbc, -⟩ := pick3_spec h3
@@ -2021,35 +2150,52 @@ noncomputable def dOpp (th : Finset {S : Finset V // S ∈ Pp.parts}) (a : ZMod 
 noncomputable def dProd (th : Finset {S : Finset V // S ∈ Pp.parts}) : ℝ :=
   dOpp G Pp th 0 * dOpp G Pp th 1 * dOpp G Pp th 2
 
+/--
+@isnad1 id=le.0h5v.s7.211572bc3bb0 from=translated src=- shape=6150f707 vocab=c8be4ac7
+-/
 theorem dOpp_nonneg (th : Finset {S : Finset V // S ∈ Pp.parts}) (a : ZMod 3) :
     0 ≤ dOpp G Pp th a := by
   rw [dOpp]
   exact_mod_cast G.edgeDensity_nonneg _ _
 
+/--
+@isnad1 id=le.0h5v.s7.063885877113 from=translated src=- shape=3b8c5018 vocab=c8be4ac7
+-/
 theorem dOpp_le_one (th : Finset {S : Finset V // S ∈ Pp.parts}) (a : ZMod 3) :
     dOpp G Pp th a ≤ 1 := by
   rw [dOpp]
   exact_mod_cast G.edgeDensity_le_one _ _
 
+/--
+@isnad1 id=eq.0h4v.s8.f3870fd36e2b from=translated src=- shape=3e66de7a vocab=fdc7c424
+-/
 theorem dOpp_zero (th : Finset {S : Finset V // S ∈ Pp.parts}) :
     dOpp G Pp th 0
       = (G.edgeDensity (triPos Pp th 1 : Finset V) (triPos Pp th 2 : Finset V) : ℝ) := by
   rw [dOpp, show ((0 : ZMod 3) + 1) = 1 from by decide +kernel,
     show ((0 : ZMod 3) + 2) = 2 from by decide +kernel]
 
+/--
+@isnad1 id=eq.0h4v.s8.1015bb0d95f6 from=translated src=- shape=3e66de7a vocab=fdc7c424
+-/
 theorem dOpp_one (th : Finset {S : Finset V // S ∈ Pp.parts}) :
     dOpp G Pp th 1
       = (G.edgeDensity (triPos Pp th 2 : Finset V) (triPos Pp th 0 : Finset V) : ℝ) := by
   rw [dOpp, show ((1 : ZMod 3) + 1) = 2 from by decide +kernel,
     show ((1 : ZMod 3) + 2) = 0 from by decide +kernel]
 
+/--
+@isnad1 id=eq.0h4v.s8.d49eca4e7d7d from=translated src=- shape=3e66de7a vocab=fdc7c424
+-/
 theorem dOpp_two (th : Finset {S : Finset V // S ∈ Pp.parts}) :
     dOpp G Pp th 2
       = (G.edgeDensity (triPos Pp th 0 : Finset V) (triPos Pp th 1 : Finset V) : ℝ) := by
   rw [dOpp, show ((2 : ZMod 3) + 1) = 0 from by decide +kernel,
     show ((2 : ZMod 3) + 2) = 1 from by decide +kernel]
 
-/-- The density product read off the three positions in their natural order.-/
+/-- The density product read off the three positions in their natural order.
+@isnad1 id=eq.0h4v.s9.e61ce4cafbcd from=translated src=- shape=7314a353 vocab=4ff0c04d
+-/
 theorem dProd_eq (th : Finset {S : Finset V // S ∈ Pp.parts}) :
     dProd G Pp th
       = (G.edgeDensity (triPos Pp th 0 : Finset V) (triPos Pp th 1 : Finset V) : ℝ)
@@ -2063,7 +2209,9 @@ theorem dProd_eq (th : Finset {S : Finset V // S ∈ Pp.parts}) :
 
 /-- **The three opposite densities of a triple, seen from two of its positions.**  For two distinct
 positions `a`, `b` the density of the pair `(a, b)` is the density opposite to the third position,
-so the three factors multiply out to the density product.-/
+so the three factors multiply out to the density product.
+@isnad1 id=eq.1h6v.s8.7cbdc4072eb1 from=translated src=- shape=fdbe556b vocab=707f3823
+-/
 theorem dOpp_mul_dOpp_mul_dens (th : Finset {S : Finset V // S ∈ Pp.parts}) {a b : ZMod 3}
     (hab : a ≠ b) :
     dOpp G Pp th a * dOpp G Pp th b
@@ -3080,7 +3228,9 @@ private theorem bad_copy_mass_bound {V : Type} [Fintype V] [DecidableEq V]
   exact le_trans h1 (mul_le_mul_of_nonneg_left h2 (sq_nonneg _))
 
 /-- **The coarse-cell reduction**: the small-box allocation residual implies the coupled
-block-allocation residual.-/
+block-allocation residual.
+@isnad1 id=blockcov.1h0v.s1.2f501b0836ac from=translated src=- shape=1d48f1ac vocab=f9dd6fef
+-/
 theorem blockCoverResidualCoupled_of_boxAllocation (hbox : BoxAllocationResidual) :
     BlockCoverResidualCoupled := by
   classical
@@ -3292,7 +3442,9 @@ theorem blockCoverResidualCoupled_of_boxAllocation (hbox : BoxAllocationResidual
     hKpos hα0 hαδ he0 he1 heε hCndef hnCn hδε hgrid
 
 /-- **AX1 from the small-box allocation residual.**  Composing the reduction of this file with
-`Nibble.AX1.ax1_of_blockCoverCoupled`.-/
+`Nibble.AX1.ax1_of_blockCoverCoupled`.
+@isnad1 id=ax1state.1h0v.s1.6035843feb62 from=translated src=- shape=1d48f1ac vocab=eeafe506
+-/
 theorem ax1_of_boxAllocation (hbox : BoxAllocationResidual) : AX1Statement :=
   ax1_of_blockCoverCoupled (blockCoverResidualCoupled_of_boxAllocation hbox)
 

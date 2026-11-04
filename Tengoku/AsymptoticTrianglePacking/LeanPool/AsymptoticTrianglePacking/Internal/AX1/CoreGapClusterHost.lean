@@ -52,7 +52,9 @@ rewritten as sums over `cliqueFinset 3`. -/
 /-- The set of vertices covered by a set of edges.-/
 def vtxSet {X : Type} [DecidableEq X] (T : Finset (Finset X)) : Finset X := T.biUnion id
 
-/-- The vertex set of the edge set of a set with at least two elements is the set itself.-/
+/-- The vertex set of the edge set of a set with at least two elements is the set itself.
+@isnad1 id=eq.1h2v.s5.338975f8d4d5 from=translated src=- shape=e714ecee vocab=dbe6d699
+-/
 theorem vtxSet_powersetCard_two {X : Type} [DecidableEq X] {t : Finset X} (ht : 2 ≤ #t) :
     vtxSet (t.powersetCard 2) = t := by
   classical
@@ -77,7 +79,9 @@ theorem vtxSet_powersetCard_two {X : Type} [DecidableEq X] {t : Finset X} (ht : 
       · exact hu
     · rw [Finset.card_insert_of_notMem (by simp [Ne.symm hune]), Finset.card_singleton]
 
-/-- A sum over the triangle hypergraph is a sum over the triangles.-/
+/-- A sum over the triangle hypergraph is a sum over the triangles.
+@isnad1 id=eq.0h3v.s6.53383b03f366 from=translated src=- shape=68c477f3 vocab=29ff7ff8
+-/
 theorem sum_triangleHypergraphE {V : Type} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
     [DecidableRel G.Adj] (f : Finset (Finset V) → ℝ) :
     ∑ T ∈ triangleHypergraphE G, f T = ∑ t ∈ G.cliqueFinset 3, f (t.powersetCard 2) := by
@@ -89,7 +93,9 @@ theorem sum_triangleHypergraphE {V : Type} [Fintype V] [DecidableEq V] (G : Simp
   exact powersetCard_two_inj (by have := hs.card_eq; omega) (by have := ht.card_eq; omega) hst
 
 /-- A sum over the triangle hyperedges through a fixed edge is a sum over the triangles containing
-that edge.-/
+that edge.
+@isnad1 id=eq.1h4v.s7.56186cb2d1dd from=translated src=- shape=c6376d8a vocab=44b22720
+-/
 theorem sum_triangleHypergraphE_filter {V : Type} [Fintype V] [DecidableEq V] (G : SimpleGraph V)
     [DecidableRel G.Adj] {e : Finset V} (he : #e = 2) (f : Finset (Finset V) → ℝ) :
     ∑ T ∈ (triangleHypergraphE G).filter (fun T => e ∈ T), f T
@@ -122,11 +128,16 @@ instance instDecidableRelBlowUpAdj (H : SimpleGraph W) [DecidableRel H.Adj] (q :
     DecidableRel (blowUp H q).Adj := fun x y => inferInstanceAs (Decidable (H.Adj x.1 y.1))
 
 omit [Fintype W] [DecidableEq W] in
+/--
+@isnad1 id=iff.0h5v.s5.5f5c9da995c3 from=translated src=- shape=b0a4e965 vocab=5dab756d
+-/
 @[simp] theorem blowUp_adj {H : SimpleGraph W} {q : ℕ} {x y : W × Fin q} :
     (blowUp H q).Adj x y ↔ H.Adj x.1 y.1 := Iff.rfl
 
 omit [Fintype W] in
-/-- The projection of a triangle of the blow-up is a triangle of `H`.-/
+/-- The projection of a triangle of the blow-up is a triangle of `H`.
+@isnad1 id=isncliqu.1h4v.s5.f1b409144e99 from=translated src=- shape=2ecb628f vocab=d08de802
+-/
 theorem isNClique_image_fst {H : SimpleGraph W} {q : ℕ} {t' : Finset (W × Fin q)}
     (ht' : (blowUp H q).IsNClique 3 t') : H.IsNClique 3 (t'.image Prod.fst) := by
   classical
@@ -146,7 +157,9 @@ theorem isNClique_image_fst {H : SimpleGraph W} {q : ℕ} {t' : Finset (W × Fin
   · rw [Finset.card_image_of_injOn hinj, ht'.card_eq]
 
 /-- **The fibre of the projection has `q³` elements**: a triangle of `H` is the projection of
-exactly `q³` triangles of the blow-up.-/
+exactly `q³` triangles of the blow-up.
+@isnad1 id=eq.1h4v.s7.1cd7c2736930 from=translated src=- shape=fe939757 vocab=c044f3e9
+-/
 theorem card_blowUp_fiber (H : SimpleGraph W) [DecidableRel H.Adj] (q : ℕ) {t : Finset W}
     (ht : H.IsNClique 3 t) :
     #(((blowUp H q).cliqueFinset 3).filter (fun t' => t'.image Prod.fst = t)) = q ^ 3 := by
@@ -237,7 +250,9 @@ theorem card_blowUp_fiber (H : SimpleGraph W) [DecidableRel H.Adj] (q : ℕ) {t 
   rw [himg, Finset.card_image_of_injective _ hinj]
   simp [Finset.card_univ, pow_succ, mul_assoc]
 
-/-- **The fibre of the projection through a fixed blow-up edge has `q` elements.**-/
+/-- **The fibre of the projection through a fixed blow-up edge has `q` elements.**
+@isnad1 id=eq.4h6v.s8.367c0598979f from=translated src=- shape=a9782bc7 vocab=512ea126
+-/
 theorem card_blowUp_fiber_edge (H : SimpleGraph W) [DecidableRel H.Adj] (q : ℕ) {t : Finset W}
     (ht : H.IsNClique 3 t) {x y : W × Fin q} (hne : x.1 ≠ y.1) (hx : x.1 ∈ t) (hy : y.1 ∈ t) :
     #(((blowUp H q).cliqueFinset 3).filter
@@ -341,7 +356,9 @@ noncomputable def liftWeight (H : SimpleGraph W) [DecidableRel H.Adj] (q : ℕ)
   fun T' => if T' ∈ triangleHypergraphE (blowUp H q) then
     w (((vtxSet T').image Prod.fst).powersetCard 2) / q else 0
 
-/-- **The lift of a fractional packing is a fractional packing.**-/
+/-- **The lift of a fractional packing is a fractional packing.**
+@isnad1 id=isfracpa.2h4v.s6.de2416a69fae from=translated src=- shape=f383462b vocab=4e3c2f56
+-/
 theorem isFracPacking_liftWeight (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq : 0 < q)
     {w : Finset (Finset W) → ℝ} (hw : IsFracPacking H w) :
     IsFracPacking (blowUp H q) (liftWeight H q w) := by
@@ -426,7 +443,9 @@ theorem isFracPacking_liftWeight (H : SimpleGraph W) [DecidableRel H.Adj] {q : �
       rw [hcardeq, nsmul_eq_mul]
       field_simp
 
-/-- **The value of the lift is `q²` times the value.**-/
+/-- **The value of the lift is `q²` times the value.**
+@isnad1 id=eq.1h4v.s7.223c3a887f9e from=translated src=- shape=c47f0605 vocab=a3d2067d
+-/
 theorem sum_liftWeight (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq : 0 < q)
     (w : Finset (Finset W) → ℝ) :
     ∑ T' ∈ triangleHypergraphE (blowUp H q), liftWeight H q w T'
@@ -458,7 +477,9 @@ theorem sum_liftWeight (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq : 
   push_cast
   field_simp
 
-/-- **The blow-up bound `q²·ν₃*(H) ≤ ν₃*(H[q])`.**-/
+/-- **The blow-up bound `q²·ν₃*(H) ≤ ν₃*(H[q])`.**
+@isnad1 id=le.1h3v.s6.7d51c3a919f7 from=translated src=- shape=12320685 vocab=71f202bd
+-/
 theorem nu3star_blowUp_ge (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq : 0 < q) :
     (q : ℝ) ^ 2 * nu3star H ≤ nu3star (blowUp H q) := by
   classical
@@ -482,7 +503,9 @@ theorem nu3star_blowUp_ge (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq
 
 omit [Fintype W] in
 /-- A triangle of the blow-up whose projection contains the edge `{a, b}` contains exactly one
-vertex over `a` and one over `b`.-/
+vertex over `a` and one over `b`.
+@isnad1 id=ex.2h6v.s8.538a957a8881 from=translated src=- shape=b17b0762 vocab=433bc56c
+-/
 theorem blowUp_filter_pair {H : SimpleGraph W} {q : ℕ} {a b : W}
     {t' : Finset (W × Fin q)} (ht' : (blowUp H q).IsNClique 3 t')
     (hsub : ({a, b} : Finset W) ⊆ t'.image Prod.fst) :
@@ -534,7 +557,9 @@ noncomputable def projWeight (H : SimpleGraph W) [DecidableRel H.Adj] (q : ℕ)
     (∑ t' ∈ ((blowUp H q).cliqueFinset 3).filter (fun t' => t'.image Prod.fst = vtxSet T),
       w' (t'.powersetCard 2)) / (q : ℝ) ^ 2 else 0
 
-/-- **The projection of a fractional packing is a fractional packing.**-/
+/-- **The projection of a fractional packing is a fractional packing.**
+@isnad1 id=isfracpa.2h4v.s6.12c2bbea8a51 from=translated src=- shape=58fe3251 vocab=61efa8d4
+-/
 theorem isFracPacking_projWeight (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq : 0 < q)
     {w' : Finset (Finset (W × Fin q)) → ℝ} (hw' : IsFracPacking (blowUp H q) w') :
     IsFracPacking H (projWeight H q w') := by
@@ -646,7 +671,9 @@ theorem isFracPacking_projWeight (H : SimpleGraph W) [DecidableRel H.Adj] {q : �
           calc (#E₀ : ℝ) ≤ ((q * q : ℕ) : ℝ) := by exact_mod_cast hcard
             _ = (q:ℝ)^2 := by push_cast; ring
 
-/-- **The value of the projection is `1/q²` of the value.**-/
+/-- **The value of the projection is `1/q²` of the value.**
+@isnad1 id=eq.1h4v.s7.c7a5711d0155 from=translated src=- shape=e9b62b66 vocab=35a7c814
+-/
 theorem sum_projWeight (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq : 0 < q)
     (w' : Finset (Finset (W × Fin q)) → ℝ) :
     (q : ℝ) ^ 2 * ∑ T ∈ triangleHypergraphE H, projWeight H q w' T
@@ -675,7 +702,9 @@ theorem sum_projWeight (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq : 
     rw [projWeight, ite_eq_left hmem, vtxSet_powersetCard_two (by rw [ht.card_eq]; norm_num)]
   rw [Finset.sum_congr rfl hstep, ← Finset.sum_div, hfib, mul_comm, div_mul_cancel₀ _ hq2.ne']
 
-/-- **The blow-up bound `ν₃*(H[q]) ≤ q²·ν₃*(H)`.**-/
+/-- **The blow-up bound `ν₃*(H[q]) ≤ q²·ν₃*(H)`.**
+@isnad1 id=le.1h3v.s6.f513f5eb092e from=translated src=- shape=bb901d8b vocab=71f202bd
+-/
 theorem nu3star_blowUp_le (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq : 0 < q) :
     nu3star (blowUp H q) ≤ (q : ℝ) ^ 2 * nu3star H := by
   classical
@@ -693,7 +722,9 @@ theorem nu3star_blowUp_le (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq
     (le_csSup (nu3star_bddAbove H)
       ⟨projWeight H q w', isFracPacking_projWeight H hq hw', rfl⟩) hq2.le
 
-/-- **The blow-up scaling of the fractional triangle packing number.**-/
+/-- **The blow-up scaling of the fractional triangle packing number.**
+@isnad1 id=eq.1h3v.s6.ec83eae01a90 from=translated src=- shape=bb901d8b vocab=ea9cb169
+-/
 theorem nu3star_blowUp (H : SimpleGraph W) [DecidableRel H.Adj] {q : ℕ} (hq : 0 < q) :
     nu3star (blowUp H q) = (q : ℝ) ^ 2 * nu3star H :=
   le_antisymm (nu3star_blowUp_le H hq) (nu3star_blowUp_ge H hq)
@@ -728,7 +759,9 @@ def IsTriangleFracPacking (w : Finset V → ℝ) : Prop :=
     ∀ e : Finset V, e.card = 2 →
       (∑ t ∈ (G.cliqueFinset 3).filter (fun t => e ⊆ t), w t) ≤ 1
 
-/-- Taking all two-element subsets is injective on triangles.-/
+/-- Taking all two-element subsets is injective on triangles.
+@isnad1 id=injon.0h2v.s5.e045e85e94ee from=translated src=- shape=d810b11d vocab=20d64eb3
+-/
 theorem triangle_powersetCard_two_injOn :
     Set.InjOn (fun t : Finset V => t.powersetCard 2)
       (G.cliqueFinset 3 : Set (Finset V)) := by
@@ -772,7 +805,9 @@ theorem triangle_powersetCard_two_injOn :
     exact hmem.1 (by simp)
 
 omit [Fintype V] [DecidableRel G.Adj] in
-/-- The union of the two-element subsets of a triangle recovers its vertices.-/
+/-- The union of the two-element subsets of a triangle recovers its vertices.
+@isnad1 id=eq.1h3v.s5.75de68a518bc from=translated src=- shape=27a7386d vocab=61dda574
+-/
 theorem triangle_powersetCard_two_sup {t : Finset V} (ht : G.IsNClique 3 t) :
     (t.powersetCard 2).sup id = t := by
   apply Finset.ext
@@ -799,13 +834,17 @@ theorem triangle_powersetCard_two_sup {t : Finset V} (ht : G.IsNClique 3 t) :
 
 omit [Fintype V] [DecidableEq V] in
 /-- For a two-element set `e`, membership among a triangle's edges is inclusion
-in the triangle.-/
+in the triangle.
+@isnad1 id=iff.1h3v.s5.eaec1fece94d from=translated src=- shape=73540b2a vocab=bb72805e
+-/
 theorem mem_powersetCard_two_iff_subset {e t : Finset V} (he : e.card = 2) :
     e ∈ t.powersetCard 2 ↔ e ⊆ t := by
   simp [Finset.mem_powersetCard, he]
 
 /-- Filtering the edge-set triangle hypergraph at an edge is the image of the
-vertex-set triangles containing that edge.-/
+vertex-set triangles containing that edge.
+@isnad1 id=eq.1h3v.s7.f5053372b5c1 from=translated src=- shape=d4fac962 vocab=083ecad8
+-/
 theorem triangleHypergraphE_filter_eq_image (e : Finset V) (he : e.card = 2) :
     (triangleHypergraphE G).filter (fun T => e ∈ T) =
       ((G.cliqueFinset 3).filter (fun t => e ⊆ t)).image
@@ -819,7 +858,9 @@ theorem triangleHypergraphE_filter_eq_image (e : Finset V) (he : e.card = 2) :
     exact ⟨⟨t, ht, rfl⟩, by rw [mem_powersetCard_two_iff_subset he]; exact ht_sub⟩
 
 /-- Reindex the fractional objective from triangle vertex-sets to triangle
-edge-sets.-/
+edge-sets.
+@isnad1 id=eq.0h3v.s6.31d03dd37925 from=translated src=- shape=66b362f3 vocab=cbe7651a
+-/
 theorem sum_triangleHypergraphE_sup (w : Finset V → ℝ) :
     ∑ T ∈ triangleHypergraphE G, w (T.sup id) =
       ∑ t ∈ G.cliqueFinset 3, w t := by
@@ -831,14 +872,18 @@ theorem sum_triangleHypergraphE_sup (w : Finset V → ℝ) :
   · exact triangle_powersetCard_two_injOn G
 
 /-- Reindex the fractional objective from triangle edge-sets to triangle
-vertex-sets.-/
+vertex-sets.
+@isnad1 id=eq.0h3v.s6.ecb7807fa802 from=translated src=- shape=f7114b17 vocab=29ff7ff8
+-/
 theorem sum_clique_powersetCard_two (w : Finset (Finset V) → ℝ) :
     ∑ t ∈ G.cliqueFinset 3, w (t.powersetCard 2) =
       ∑ T ∈ triangleHypergraphE G, w T := by
   rw [triangleHypergraphE, Finset.sum_image (triangle_powersetCard_two_injOn G)]
 
 /-- A fractional packing on triangle edge-sets transports to one on triangle
-vertex-sets, preserving its objective.-/
+vertex-sets, preserving its objective.
+@isnad1 id=and.1h3v.s6.9acfe25b47bb from=translated src=- shape=e16b8393 vocab=5967f553
+-/
 theorem fracPacking_to_triangleFracPacking
     {w' : Finset (Finset V) → ℝ} (hw' : IsFracPacking G w') :
     IsTriangleFracPacking G (fun t => w' (t.powersetCard 2)) ∧
@@ -894,7 +939,9 @@ theorem fracPacking_to_triangleFracPacking
     exact sum_clique_powersetCard_two G w'
 
 /-- A fractional packing on triangle vertex-sets transports to one on triangle
-edge-sets, preserving its objective.-/
+edge-sets, preserving its objective.
+@isnad1 id=other.1h3v.s7.b0222e84bb87 from=translated src=- shape=eb389593 vocab=0b53abc2
+-/
 theorem triangleFracPacking_to_fracPacking
     {w : Finset V → ℝ} (hw : IsTriangleFracPacking G w) :
     let w' : Finset (Finset V) → ℝ :=
@@ -947,7 +994,9 @@ theorem triangleFracPacking_to_fracPacking
     exact sum_triangleHypergraphE_sup G w
 
 /-- The Nibble edge-set fractional triangle-packing optimum is exactly the
-PaperIII-style optimum over weights on triangle vertex-sets.-/
+PaperIII-style optimum over weights on triangle vertex-sets.
+@isnad1 id=eq.0h2v.s6.ecba267b6a96 from=translated src=- shape=ce78da92 vocab=e74e1094
+-/
 theorem nu3star_eq_triangleFrac_sSup :
     nu3star G =
       sSup {x : ℝ | ∃ w : Finset V → ℝ, IsTriangleFracPacking G w ∧
@@ -984,22 +1033,33 @@ triple of distinct parts.-/
 def partClass (P : Finpartition (univ : Finset V)) (t : Finset V) : Finset (Finset V) :=
   t.image P.part
 
+/--
+@isnad1 id=iff.0h4v.s6.478140df962b from=translated src=- shape=876656ac vocab=8a96f77f
+-/
 theorem mem_partClass_iff (P : Finpartition (univ : Finset V)) (t : Finset V) (U : Finset V) :
     U ∈ partClass P t ↔ ∃ x ∈ t, P.part x = U := by
   simp [partClass]
 
+/--
+@isnad1 id=le.0h3v.s5.15d0b0f43bf7 from=translated src=- shape=4ad47b64 vocab=a5a0ae10
+-/
 theorem partClass_subset_parts (P : Finpartition (univ : Finset V)) (t : Finset V) :
     partClass P t ⊆ P.parts := by
   intro U hU
   obtain ⟨x, -, rfl⟩ := (mem_partClass_iff P t U).mp hU
   exact P.part_mem.mpr (mem_univ x)
 
+/--
+@isnad1 id=mem.1h3v.s6.934259fb5104 from=translated src=- shape=5f769b1f vocab=23b39203
+-/
 theorem partClass_mem_powersetCard_three (P : Finpartition (univ : Finset V)) {t : Finset V}
     (h3 : #(partClass P t) = 3) : partClass P t ∈ P.parts.powersetCard 3 :=
   Finset.mem_powersetCard.mpr ⟨partClass_subset_parts P t, h3⟩
 
 /-- In a regularity-reduced graph every triangle meets exactly three parts: this is the hypothesis
-of `Nibble.AX1.sum_split_partClass`, discharged.-/
+of `Nibble.AX1.sum_split_partClass`, discharged.
+@isnad1 id=eq.1h6v.s6.1adbad203c2a from=translated src=- shape=e7edecaa vocab=e018c6fc
+-/
 theorem partClass_card_three_of_isNClique (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (ep de : ℝ) {t : Finset V}
     (ht : (G.regularityReduced P ep de).IsNClique 3 t) : #(partClass P t) = 3 := by
@@ -1022,7 +1082,9 @@ theorem partClass_card_three_of_isNClique (G : SimpleGraph V) [DecidableRel G.Ad
 /-- **The objective splits along the triples of parts.**  If every triangle of `G` meets three
 distinct parts of `P` — which is the case for a regularity-reduced graph, by
 `Nibble.AX1.regularityReduced_triangle_parts` — then the sum of any weight function over the
-triangles is the sum, over triples of parts, of its weight on that triple.-/
+triangles is the sum, over triples of parts, of its weight on that triple.
+@isnad1 id=eq.1h4v.s7.f4613dbec785 from=translated src=- shape=57e4774e vocab=19a8d471
+-/
 theorem sum_split_partClass (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (f : Finset V → ℝ)
     (hdist : ∀ t ∈ G.cliqueFinset 3, #(partClass P t) = 3) :
@@ -1034,7 +1096,9 @@ theorem sum_split_partClass (G : SimpleGraph V) [DecidableRel G.Adj]
 
 /-- **The per-pair LP constraint.**  For two distinct parts `U ≠ W`, a fractional triangle packing
 puts total weight at most `e(U, W)` on the triangles whose triple of parts contains both `U`
-and `W`.-/
+and `W`.
+@isnad1 id=le.3h6v.s8.310ff4526189 from=translated src=- shape=caf06b71 vocab=e0ea6f74
+-/
 theorem sum_pair_classes_le (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {w : Finset (Finset V) → ℝ} (hw : IsFracPacking G w)
     (hdist : ∀ t ∈ G.cliqueFinset 3, #(partClass P t) = 3) {U W : Finset V} (hUW : U ≠ W) :
@@ -1138,13 +1202,18 @@ noncomputable instance hostGraph.instDecidableRelAdj (G : SimpleGraph V) [Decida
     (P : Finpartition (univ : Finset V)) (ep de : ℝ) : DecidableRel (hostGraph G P ep de).Adj :=
   Classical.decRel _
 
+/--
+@isnad1 id=iff.0h7v.s8.80d3fcc431b5 from=translated src=- shape=1b512ec3 vocab=4cf5aca8
+-/
 theorem hostGraph_adj {G : SimpleGraph V} [DecidableRel G.Adj]
     {P : Finpartition (univ : Finset V)} {ep de : ℝ} {S T : {S : Finset V // S ∈ P.parts}} :
     (hostGraph G P ep de).Adj S T ↔ (S : Finset V) ≠ (T : Finset V) ∧
       G.IsUniform ep (S : Finset V) (T : Finset V) ∧
       de ≤ (G.edgeDensity (S : Finset V) (T : Finset V) : ℝ) := Iff.rfl
 
-/-- The number of vertices of the cluster graph is the number of clusters.-/
+/-- The number of vertices of the cluster graph is the number of clusters.
+@isnad1 id=eq.0h2v.s6.55c8c9d74db1 from=translated src=- shape=b4935af0 vocab=b7380776
+-/
 theorem card_hostGraph_vertices (P : Finpartition (univ : Finset V)) :
     Fintype.card {S : Finset V // S ∈ P.parts} = #P.parts := Fintype.card_coe _
 
@@ -1156,6 +1225,9 @@ def clusterOf (P : Finpartition (univ : Finset V)) (v : V) : {S : Finset V // S 
 def hostTri (P : Finpartition (univ : Finset V)) (t : Finset V) :
     Finset {S : Finset V // S ∈ P.parts} := t.image (clusterOf P)
 
+/--
+@isnad1 id=eq.0h3v.s6.1e696261f28b from=translated src=- shape=8ef4b8c5 vocab=e868e468
+-/
 theorem image_hostTri (P : Finpartition (univ : Finset V)) (t : Finset V) :
     (hostTri P t).image Subtype.val = partClass P t := by
   classical
@@ -1163,7 +1235,9 @@ theorem image_hostTri (P : Finpartition (univ : Finset V)) (t : Finset V) :
   rfl
 
 /-- A triangle of a regularity-reduced graph has a cluster triple that is a triangle of the cluster
-graph at the same scales.-/
+graph at the same scales.
+@isnad1 id=mem.1h6v.s8.905980f368bc from=translated src=- shape=770c5ad8 vocab=53b6a7f5
+-/
 theorem hostTri_mem_cliqueFinset (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (ep de : ℝ) {t : Finset V}
     (ht : t ∈ (G.regularityReduced P ep de).cliqueFinset 3) :
@@ -1207,7 +1281,9 @@ theorem hostTri_mem_cliqueFinset (G : SimpleGraph V) [DecidableRel G.Adj]
   · rw [Finset.card_insert_of_notMem (by simp [Subtype.ext_iff, hUW, hUX]),
       Finset.card_insert_of_notMem (by simp [Subtype.ext_iff, hWX]), Finset.card_singleton]
 
-/-- Two clusters of the cluster triple of a triangle are joined by an edge of the triangle.-/
+/-- Two clusters of the cluster triple of a triangle are joined by an edge of the triangle.
+@isnad1 id=ex.3h5v.s9.aa67a9fa4a63 from=translated src=- shape=c47e33ff vocab=78a7c9c9
+-/
 theorem exists_edge_of_mem_hostTri (P : Finpartition (univ : Finset V)) {t : Finset V}
     {S T : {S : Finset V // S ∈ P.parts}} (hST : S ≠ T)
     (hS : S ∈ hostTri P t) (hT : T ∈ hostTri P t) :
@@ -1236,7 +1312,9 @@ most `c` times that of the cluster graph.
 
 The aggregated weighting gives a cluster triple the total weight of the triangles lying on it,
 scaled by `1/c`; the capacity constraint of a cluster pair
-(`Nibble.AX1.sum_fracPacking_cluster_pair_le`) is exactly the edge constraint of the aggregate.-/
+(`Nibble.AX1.sum_fracPacking_cluster_pair_le`) is exactly the edge constraint of the aggregate.
+@isnad1 id=le.2h6v.s8.90a3964a81a1 from=translated src=- shape=57d72858 vocab=f1129111
+-/
 theorem nu3star_regularityReduced_le_host (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (ep de : ℝ) {c : ℝ} (hc : 0 < c)
     (hcap : ∀ S ∈ P.parts, ∀ T ∈ P.parts, S ≠ T → (#(G.interedges S T) : ℝ) ≤ c) :

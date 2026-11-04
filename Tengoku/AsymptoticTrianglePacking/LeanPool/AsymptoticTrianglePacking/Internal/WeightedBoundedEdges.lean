@@ -62,10 +62,16 @@ noncomputable def floating (H : Finset (Finset V)) (y : Finset V → ℝ) : Fins
   H.filter (fun t => y t ≠ 0 ∧ y t ≠ 1)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=le.0h3v.s4.a6ab69e1ef27 from=translated src=- shape=d23aebec vocab=eebdd25a
+-/
 theorem floating_subset (H : Finset (Finset V)) (y : Finset V → ℝ) : floating H y ⊆ H :=
   Finset.filter_subset _ _
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.1h4v.s6.cfae4cc7aea5 from=translated src=- shape=a1194146 vocab=23dd74bf
+-/
 theorem notMem_floating_iff {H : Finset (Finset V)} {y : Finset V → ℝ} {t : Finset V}
     (ht : t ∈ H) : t ∉ floating H y ↔ y t = 0 ∨ y t = 1 := by
   unfold floating
@@ -75,6 +81,9 @@ theorem notMem_floating_iff {H : Finset (Finset V)} {y : Finset V → ℝ} {t : 
 noncomputable def active (F : Finset (Finset V)) (k : ℕ) : Finset V :=
   (F.biUnion id).filter (fun x => k < (F.filter (fun t => x ∈ t)).card)
 
+/--
+@isnad1 id=iff.0h4v.s6.0ab9605bf59e from=translated src=- shape=ce973032 vocab=925f2ff6
+-/
 theorem mem_active_iff {F : Finset (Finset V)} {k : ℕ} {x : V} :
     x ∈ active F k ↔ k < (F.filter (fun t => x ∈ t)).card := by
   unfold active
@@ -88,7 +97,9 @@ theorem mem_active_iff {F : Finset (Finset V)} {k : ℕ} {x : V} :
     exact ⟨t, ht.1, ht.2⟩
 
 /-- **Few active vertices.**  If every edge of the floating family meets at most `k` vertices and
-the family is nonempty, then there are strictly fewer active vertices than floating edges.-/
+the family is nonempty, then there are strictly fewer active vertices than floating edges.
+@isnad1 id=lt.2h3v.s5.e9e4761ac3c6 from=translated src=- shape=65337403 vocab=d014ad94
+-/
 theorem card_active_lt {F : Finset (Finset V)} {k : ℕ} (hk : ∀ t ∈ F, t.card ≤ k)
     (hF : F.Nonempty) : (active F k).card < F.card := by
   have hcount : ∑ x ∈ active F k, (F.filter (fun t => x ∈ t)).card
@@ -117,7 +128,9 @@ theorem card_active_lt {F : Finset (Finset V)} {k : ℕ} (hk : ∀ t ∈ F, t.ca
   have hFpos : 0 < F.card := Finset.card_pos.mpr hF
   nlinarith [hcount, hle, hlow]
 
-/-- Existence of a nonzero vector annihilated by all active constraints.-/
+/-- Existence of a nonzero vector annihilated by all active constraints.
+@isnad1 id=ex.2h3v.s7.424162208b3c from=translated src=- shape=443e7229 vocab=5a7b1169
+-/
 theorem exists_kernel_vector {F : Finset (Finset V)} {k : ℕ} (hk : ∀ t ∈ F, t.card ≤ k)
     (hF : F.Nonempty) :
     ∃ U : Finset V → ℝ, (∀ t, t ∉ F → U t = 0) ∧ (∃ t ∈ F, U t ≠ 0) ∧
@@ -174,7 +187,9 @@ theorem exists_kernel_vector {F : Finset (Finset V)} {k : ℕ} (hk : ∀ t ∈ F
 
 /-- **One rounding step.**  Given a fractional selection with a nonempty floating set, there is
 another one with strictly fewer floating edges, which agrees with the old one off the floating set
-and has exactly the same degree at every active vertex.-/
+and has exactly the same degree at every active vertex.
+@isnad1 id=ex.4h4v.s8.b9792a3977a9 from=translated src=- shape=406d85d1 vocab=990874e0
+-/
 theorem exists_step (k : ℕ) (H : Finset (Finset V)) (hk : ∀ t ∈ H, t.card ≤ k)
     (y : Finset V → ℝ) (hy0 : ∀ t ∈ H, 0 ≤ y t) (hy1 : ∀ t ∈ H, y t ≤ 1)
     (hF : (floating H y).Nonempty) :
@@ -314,7 +329,9 @@ theorem exists_step (k : ℕ) (H : Finset (Finset V)) (hk : ∀ t ∈ H, t.card 
 /-- **Beck–Fiala rounding.**  If every edge of `H` has at most `k` vertices, every fractional
 selection `y : H → [0,1]` can be rounded to a subfamily `S ⊆ H` (keeping the edges of value `1` and
 discarding those of value `0`) whose degree at every vertex differs from the fractional degree by at
-most `k`.-/
+most `k`.
+@isnad1 id=ex.3h4v.s8.2347ef05007a from=translated src=- shape=246051bf vocab=4af78a68
+-/
 theorem exists_rounding (k : ℕ) (H : Finset (Finset V)) (hk : ∀ t ∈ H, t.card ≤ k)
     (y : Finset V → ℝ) (hy0 : ∀ t ∈ H, 0 ≤ y t) (hy1 : ∀ t ∈ H, y t ≤ 1) :
     ∃ S ⊆ H, (∀ t ∈ H, y t = 1 → t ∈ S) ∧ (∀ t ∈ H, y t = 0 → t ∉ S) ∧
@@ -432,10 +449,15 @@ variable {V : Type*} [DecidableEq V]
 def pairClosure (T : Finset V) : Finset (Finset V) := T.powerset.filter (fun s => s.card ≤ 2)
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h3v.s5.452d884765bc from=translated src=- shape=4e4f0da2 vocab=dc7ac079
+-/
 theorem mem_pairClosure {T s : Finset V} : s ∈ pairClosure T ↔ s ⊆ T ∧ s.card ≤ 2 := by
   simp [pairClosure, Finset.mem_filter, Finset.mem_powerset]
 
-/-- `T` is recovered from `pairClosure T` as the union of its members.-/
+/-- `T` is recovered from `pairClosure T` as the union of its members.
+@isnad1 id=eq.0h2v.s4.686f17ec1e00 from=translated src=- shape=2d8951bf vocab=c533bd6b
+-/
 theorem biUnion_pairClosure (T : Finset V) : (pairClosure T).biUnion id = T := by
   ext v
   simp only [Finset.mem_biUnion, id_eq]
@@ -446,6 +468,9 @@ theorem biUnion_pairClosure (T : Finset V) : (pairClosure T).biUnion id = T := b
     exact ⟨{v}, mem_pairClosure.mpr ⟨Finset.singleton_subset_iff.mpr hv, by simp⟩, by simp⟩
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=injectiv.0h1v.s3.628af1078083 from=translated src=- shape=b14ce581 vocab=ddf96087
+-/
 theorem pairClosure_injective :
     Function.Injective (pairClosure : Finset V → Finset (Finset V)) := by
   classical
@@ -453,10 +478,16 @@ theorem pairClosure_injective :
   rw [← biUnion_pairClosure a, hab, biUnion_pairClosure]
 
 omit [DecidableEq V] in
+/--
+@isnad1 id=iff.0h3v.s5.82949018b6fa from=translated src=- shape=113eca51 vocab=6214f431
+-/
 theorem singleton_mem_pairClosure {T : Finset V} {v : V} : {v} ∈ pairClosure T ↔ v ∈ T := by
   rw [mem_pairClosure]
   simp [Finset.singleton_subset_iff]
 
+/--
+@isnad1 id=iff.0h4v.s6.45a9399f2582 from=translated src=- shape=d69fd3ee vocab=d83a8ea8
+-/
 theorem pair_mem_pairClosure {T : Finset V} {x z : V} :
     ({x, z} : Finset V) ∈ pairClosure T ↔ (x ∈ T ∧ z ∈ T) := by
   rw [mem_pairClosure]
@@ -472,7 +503,9 @@ theorem pair_mem_pairClosure {T : Finset V} {x z : V} :
     · exact le_trans (Finset.card_insert_le _ _) (by simp)
 
 omit [DecidableEq V] in
-/-- The auxiliary vertex set of an edge has at most `1 + |T|²` elements.-/
+/-- The auxiliary vertex set of an edge has at most `1 + |T|²` elements.
+@isnad1 id=le.0h2v.s5.c1559a93e185 from=translated src=- shape=7cc971ef vocab=7394970c
+-/
 theorem card_pairClosure_le (T : Finset V) : (pairClosure T).card ≤ 1 + T.card * T.card := by
   classical
   have hsub : pairClosure T ⊆ insert (∅ : Finset V)
@@ -507,7 +540,9 @@ theorem card_pairClosure_le (T : Finset V) : (pairClosure T).card ≤ 1 + T.card
 
 /-- **Beck–Fiala rounding with codegree control.**  Every fractional selection `y : H → [0,1]` of an
 `r`-uniform hypergraph `H` can be rounded to a subhypergraph `S ⊆ H` whose degrees *and* codegrees
-differ from the fractional degrees and codegrees by at most `1 + r²`.-/
+differ from the fractional degrees and codegrees by at most `1 + r²`.
+@isnad1 id=ex.3h4v.s8.a66348b36d7d from=translated src=- shape=58abc355 vocab=78bc37b1
+-/
 theorem exists_rounding_pairs (r : ℕ) (H : Finset (Finset V)) (hunif : ∀ T ∈ H, T.card = r)
     (y : Finset V → ℝ) (hy0 : ∀ T ∈ H, 0 ≤ y T) (hy1 : ∀ T ∈ H, y T ≤ 1) :
     ∃ S ⊆ H,
@@ -641,7 +676,9 @@ def weightedLoad (H : Finset (Finset V)) (w : Finset V → ℝ) (v : V) : ℝ :=
 def weightedCodegree (H : Finset (Finset V)) (w : Finset V → ℝ) (u v : V) : ℝ :=
   ∑ e ∈ H.filter (fun e => u ∈ e ∧ v ∈ e), w e
 
-/-- Weighted handshake for an `r`-uniform finite hypergraph.-/
+/-- Weighted handshake for an `r`-uniform finite hypergraph.
+@isnad1 id=eq.1h4v.s6.acb9fb9bd377 from=translated src=- shape=abfa0fa2 vocab=2fec8f19
+-/
 theorem sum_weightedLoad (H : Finset (Finset V)) (w : Finset V → ℝ) {r : ℕ}
     (hr : IsUniform H r) :
     ∑ v : V, weightedLoad H w v = (r : ℝ) * ∑ e ∈ H, w e := by
@@ -651,7 +688,9 @@ theorem sum_weightedLoad (H : Finset (Finset V)) (w : Finset V → ℝ) {r : ℕ
   refine Finset.sum_congr rfl fun e he => ?_
   rw [Finset.sum_ite_mem, Finset.univ_inter, Finset.sum_const, hr e he, nsmul_eq_mul]
 
-/-- A fractional matching on an `r`-uniform hypergraph has total weight at most `|V|/r`.-/
+/-- A fractional matching on an `r`-uniform hypergraph has total weight at most `|V|/r`.
+@isnad1 id=le.2h4v.s6.fa34d0b0ac9a from=translated src=- shape=75e26262 vocab=d9d9d160
+-/
 theorem weightedSum_le_card (H : Finset (Finset V)) (w : Finset V → ℝ) {r : ℕ}
     (hr : IsUniform H r) (hload : ∀ v : V, weightedLoad H w v ≤ 1) :
     (r : ℝ) * (∑ e ∈ H, w e) ≤ (Fintype.card V : ℝ) := by
@@ -690,7 +729,9 @@ namespace Nibble
 
 /-- **The weighted nibble for spread, near-perfect fractional matchings.**  No regularity and no
 codegree hypothesis is placed on the hypergraph: all the hypotheses are on the fractional matching
-`w`.-/
+`w`.
+@isnad1 id=ex.2h2v.s8.6eb6560eaf3b from=translated src=- shape=beb8066e vocab=5ffd9941
+-/
 theorem fracNibble_spread_weightedCodegree (r : ℕ) (hr : 2 ≤ r) (β : ℝ) (hβ : 0 < β) :
     ∃ δ : ℝ, 0 < δ ∧ ∃ γ : ℝ, 0 < γ ∧ ∃ η : ℝ, 0 < η ∧
       ∀ {W : Type} [Fintype W] [DecidableEq W] (H : Finset (Finset W)) (w : Finset W → ℝ)
@@ -792,7 +833,9 @@ theorem fracNibble_spread_weightedCodegree (r : ℕ) (hr : 2 ≤ r) (β : ℝ) (
     exact le_trans hle0 (Nat.cast_nonneg _)
 
 /-- **The spread hypothesis is redundant.**  Every edge contains a pair `x ≠ z`, so its weight is at
-most the weighted codegree of that pair.-/
+most the weighted codegree of that pair.
+@isnad1 id=le.5h6v.s7.63160b2d4ecc from=translated src=- shape=09baae7e vocab=778876e9
+-/
 theorem weight_le_weightedCodegree {W : Type} [DecidableEq W] {r : ℕ} (hr : 2 ≤ r)
     {H : Finset (Finset W)} {w : Finset W → ℝ} {γ : ℝ} (hunif : IsUniform H r)
     (hwnn : ∀ T, 0 ≤ w T)
@@ -809,7 +852,9 @@ theorem weight_le_weightedCodegree {W : Type} [DecidableEq W] {r : ℕ} (hr : 2 
 
 /-- **The weighted nibble for near-perfect fractional matchings of small weighted codegree.**  The
 spread hypothesis of `Nibble.fracNibble_spread_weightedCodegree` is dropped: it follows from the
-weighted codegree bound.  Still no hypothesis whatsoever on the degrees or codegrees of `H`.-/
+weighted codegree bound.  Still no hypothesis whatsoever on the degrees or codegrees of `H`.
+@isnad1 id=ex.2h2v.s8.99e0e4b383ce from=translated src=- shape=a1d90b08 vocab=5ffd9941
+-/
 theorem fracNibble_weightedCodegree (r : ℕ) (hr : 2 ≤ r) (β : ℝ) (hβ : 0 < β) :
     ∃ γ : ℝ, 0 < γ ∧ ∃ η : ℝ, 0 < η ∧
       ∀ {W : Type} [Fintype W] [DecidableEq W] (H : Finset (Finset W)) (w : Finset W → ℝ)
@@ -840,7 +885,9 @@ fractional matching with all weights at most `δ` on a hypergraph of codegree at
 weighted codegree at most `C·δ`, so `Nibble.fracNibble_spread_weightedCodegree` applies.  This
 generalises `Nibble.exists_matching_of_spread` (the case `C = 1`) to an arbitrary codegree bound,
 and adds the weighted form `(1-β)∑w ≤ |M|` of the conclusion to the covering form
-`(1-β)|W|/r ≤ |M|`.-/
+`(1-β)|W|/r ≤ |M|`.
+@isnad1 id=ex.3h3v.s8.688f65e9360b from=translated src=- shape=39d951b1 vocab=63f6eaf5
+-/
 theorem fracNibble_spread_codegree (r : ℕ) (hr : 2 ≤ r) (β : ℝ) (hβ : 0 < β) (C : ℝ) (hC : 0 < C) :
     ∃ δ : ℝ, 0 < δ ∧ ∃ γ : ℝ, 0 < γ ∧ ∃ η : ℝ, 0 < η ∧
       ∀ {W : Type} [Fintype W] [DecidableEq W] (H : Finset (Finset W)) (w : Finset W → ℝ)
@@ -916,33 +963,57 @@ noncomputable def padWt (K : Finset (Finset X)) (w : Finset X → ℝ) (m : ℕ)
 section
 variable (K : Finset (Finset X)) (w : Finset X → ℝ) (m : ℕ)
 
+/--
+@isnad1 id=eq.0h3v.s6.4e7b861fd466 from=translated src=- shape=a7feb698 vocab=03f30bd0
+-/
 @[simp] lemma toLeft_image_inl (T : Finset X) :
     (T.image (Sum.inl : X → Pad X m)).toLeft = T := by
   ext x; simp
 
+/--
+@isnad1 id=eq.0h3v.s6.db3049d3de86 from=translated src=- shape=e4d1044b vocab=473c0110
+-/
 @[simp] lemma toRight_image_inl (T : Finset X) :
     (T.image (Sum.inl : X → Pad X m)).toRight = (∅ : Finset (Fin m × Bool)) := by
   ext x; simp
 
+/--
+@isnad1 id=eq.0h5v.s5.a648081bd965 from=translated src=- shape=8671c7ad vocab=8161885b
+-/
 @[simp] lemma mixTriple_toLeft (v : X) (i j : Fin m) :
     (mixTriple m v i j).toLeft = {v} := by
   ext x; simp [mixTriple]
 
+/--
+@isnad1 id=eq.0h5v.s6.ea2f2cf89479 from=translated src=- shape=50d3e6c1 vocab=789046f8
+-/
 @[simp] lemma mixTriple_toRight (v : X) (i j : Fin m) :
     (mixTriple m v i j).toRight = {(i, false), (j, true)} := by
   ext x; simp [mixTriple]
 
+/--
+@isnad1 id=eq.0h5v.s5.a6344703426f from=translated src=- shape=7e61bd8e vocab=f9c25c4b
+-/
 lemma mixTriple_card (v : X) (i j : Fin m) : (mixTriple m v i j).card = 3 := by
   simp [mixTriple, Finset.card_insert_of_notMem]
 
+/--
+@isnad1 id=iff.0h6v.s5.accd8d129f09 from=translated src=- shape=e188382b vocab=f2c2be7e
+-/
 lemma mem_mixTriple_inl (v u : X) (i j : Fin m) :
     (Sum.inl u : Pad X m) ∈ mixTriple m v i j ↔ u = v := by
   simp [mixTriple]
 
+/--
+@isnad1 id=iff.0h6v.s6.97eea5809cd3 from=translated src=- shape=165692d0 vocab=0ebff165
+-/
 lemma mem_mixTriple_inr (v : X) (i j : Fin m) (d : Fin m × Bool) :
     (Sum.inr d : Pad X m) ∈ mixTriple m v i j ↔ d = (i, false) ∨ d = (j, true) := by
   simp [mixTriple]
 
+/--
+@isnad1 id=and.1h8v.s5.763b16205e9a from=translated src=- shape=5c8bad4f vocab=a53c5d22
+-/
 lemma mixTriple_inj {v v' : X} {i i' j j' : Fin m}
     (h : mixTriple m v i j = mixTriple m v' i' j') : v = v' ∧ i = i' ∧ j = j' := by
   have hL : ({v} : Finset X) = {v'} := by
@@ -963,13 +1034,22 @@ lemma mixTriple_inj {v v' : X} {i i' j j' : Fin m}
     · exact absurd h1.2 (by simp)
     · exact h2.1
 
+/--
+@isnad1 id=eq.0h5v.s6.f6a64a9573fd from=translated src=- shape=016e3d90 vocab=7c99e6e8
+-/
 lemma padWt_image_inl (T : Finset X) : padWt K w m (T.image Sum.inl) = w T := by
   simp [padWt]
 
+/--
+@isnad1 id=eq.0h7v.s6.b92ab7200aa0 from=translated src=- shape=2f518e58 vocab=dca15b70
+-/
 lemma padWt_mixTriple (v : X) (i j : Fin m) :
     padWt K w m (mixTriple m v i j) = (1 - wLoad K w v) / (m : ℝ) ^ 2 := by
   simp [padWt]
 
+/--
+@isnad1 id=le.2h5v.s6.caf23a7d3876 from=translated src=- shape=9ef57455 vocab=9ee44925
+-/
 lemma padWt_nonneg (hw : ∀ T, 0 ≤ w T) (hload : ∀ v : X, wLoad K w v ≤ 1) (U : Finset (Pad X m)) :
     0 ≤ padWt K w m U := by
   rw [padWt]
@@ -985,7 +1065,9 @@ section
 variable [Fintype X] (K : Finset (Finset X)) (w : Finset X → ℝ) (m : ℕ)
 
 /-- The two halves of the padded family are disjoint, and both index maps are injective: so a sum
-over `padFam` splits into a sum over `K` and a sum over the mixed triples.-/
+over `padFam` splits into a sum over `K` and a sum over the mixed triples.
+@isnad1 id=eq.0h4v.s7.898cf4bb84ac from=translated src=- shape=c54c8c06 vocab=326e4c40
+-/
 lemma sum_padFam (f : Finset (Pad X m) → ℝ) :
     ∑ U ∈ padFam K m, f U
       = (∑ T ∈ K, f (T.image Sum.inl))
@@ -1012,7 +1094,9 @@ lemma sum_padFam (f : Finset (Pad X m) → ℝ) :
       exact Prod.ext h1 (Prod.ext h2 h3)
 
 /-- **Weighted handshake.**  For a `3`-uniform hypergraph the loads add up to `3` times the total
-weight.-/
+weight.
+@isnad1 id=eq.1h3v.s6.4d7fbe6b432f from=translated src=- shape=88353e54 vocab=f33b3fc8
+-/
 lemma sum_wLoad (h3 : IsUniform K 3) : ∑ x : X, wLoad K w x = 3 * ∑ T ∈ K, w T := by
   classical
   simp_rw [wLoad, Finset.sum_filter]
@@ -1024,6 +1108,9 @@ lemma sum_wLoad (h3 : IsUniform K 3) : ∑ x : X, wLoad K w x = 3 * ∑ T ∈ K,
 /-- The total slack of the weighting.-/
 def slackTotal : ℝ := ∑ v : X, (1 - wLoad K w v)
 
+/--
+@isnad1 id=eq.1h5v.s7.17327e5cafd9 from=translated src=- shape=9761cd41 vocab=85260c25
+-/
 lemma padLoad_inl (hm : 0 < m) (v : X) :
     ∑ U ∈ (padFam K m).filter (fun U => (Sum.inl v : Pad X m) ∈ U), padWt K w m U = 1 := by
   classical
@@ -1049,6 +1136,9 @@ lemma padLoad_inl (hm : 0 < m) (v : X) :
     (fun u => 1 - wLoad K w u)]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s7.b8f44a92d3ef from=translated src=- shape=e86131c1 vocab=dad34827
+-/
 lemma padLoad_inr (hm : 0 < m) (d : Fin m × Bool) :
     ∑ U ∈ (padFam K m).filter (fun U => (Sum.inr d : Pad X m) ∈ U), padWt K w m U
       = slackTotal K w / (m : ℝ) := by
@@ -1080,6 +1170,9 @@ lemma padLoad_inr (hm : 0 < m) (d : Fin m × Bool) :
       field_simp
   rw [h1, Finset.sum_congr rfl (fun u _ => h2 u), zero_add, slackTotal, Finset.sum_div]
 
+/--
+@isnad1 id=isunifor.1h3v.s5.da8b24820145 from=translated src=- shape=fe963cfe vocab=6c06333a
+-/
 lemma padFam_uniform (hK : IsUniform K 3) : IsUniform (padFam K m) 3 := by
   intro U hU
   rw [padFam, Finset.mem_union] at hU
@@ -1092,9 +1185,15 @@ lemma padFam_uniform (hK : IsUniform K 3) : IsUniform (padFam K m) 3 := by
     obtain ⟨t, -, rfl⟩ := hU
     exact mixTriple_card m t.1 t.2.1 t.2.2
 
+/--
+@isnad1 id=le.1h3v.s5.3d1806c028d5 from=translated src=- shape=5c8a5178 vocab=3c5fb639
+-/
 lemma slackTotal_nonneg (hload : ∀ v : X, wLoad K w v ≤ 1) : 0 ≤ slackTotal K w :=
   Finset.sum_nonneg fun v _ => by linarith only [hload v]
 
+/--
+@isnad1 id=eq.1h4v.s6.f7754d14507c from=translated src=- shape=f942afa9 vocab=112c5515
+-/
 lemma sum_padWt (hm : 0 < m) :
     ∑ U ∈ padFam K m, padWt K w m U = (∑ T ∈ K, w T) + slackTotal K w := by
   have hm' : (0 : ℝ) < (m : ℝ) := by exact_mod_cast hm
@@ -1106,6 +1205,9 @@ lemma sum_padWt (hm : 0 < m) :
     simp only [padWt_mixTriple, Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
     field_simp
 
+/--
+@isnad1 id=eq.1h6v.s8.5fce04a7f5cb from=translated src=- shape=bd20cd7b vocab=6dbcec7b
+-/
 lemma padCodeg_inl_inl {v v' : X} (hvv : v ≠ v') :
     ∑ U ∈ (padFam K m).filter
         (fun U => (Sum.inl v : Pad X m) ∈ U ∧ (Sum.inl v' : Pad X m) ∈ U), padWt K w m U
@@ -1125,6 +1227,9 @@ lemma padCodeg_inl_inl {v v' : X} (hvv : v ≠ v') :
   refine Finset.sum_congr rfl fun T _ => ?_
   simp [padWt_image_inl]
 
+/--
+@isnad1 id=eq.1h6v.s8.59feea4a7b04 from=translated src=- shape=484e966e vocab=7f0c7de7
+-/
 lemma padCodeg_inl_inr (hm : 0 < m) (v : X) (d : Fin m × Bool) :
     ∑ U ∈ (padFam K m).filter
         (fun U => (Sum.inl v : Pad X m) ∈ U ∧ (Sum.inr d : Pad X m) ∈ U), padWt K w m U
@@ -1168,6 +1273,9 @@ lemma padCodeg_inl_inr (hm : 0 < m) (v : X) (d : Fin m × Bool) :
     Finset.sum_ite_eq' Finset.univ v (fun u => (1 - wLoad K w u) / (m : ℝ))]
   simp
 
+/--
+@isnad1 id=le.3h6v.s8.bc120ce31d03 from=translated src=- shape=03f4f9f3 vocab=f1674e6c
+-/
 lemma padCodeg_inr_inr (hm : 0 < m) (hload : ∀ v : X, wLoad K w v ≤ 1) {d d' : Fin m × Bool}
     (hd : d ≠ d') :
     ∑ U ∈ (padFam K m).filter
@@ -1219,7 +1327,9 @@ lemma padCodeg_inr_inr (hm : 0 < m) (hload : ∀ v : X, wLoad K w v ≤ 1) {d d'
   rw [h1, zero_add, slackTotal, Finset.sum_div]
   exact Finset.sum_le_sum fun u _ => h2 u
 
-/-- A member of the padded family with no dummy vertices comes from `K`.-/
+/-- A member of the padded family with no dummy vertices comes from `K`.
+@isnad1 id=and.2h4v.s7.0049f5b33da3 from=translated src=- shape=89132fd6 vocab=bf93b286
+-/
 lemma mem_padFam_of_toRight_empty {U : Finset (Pad X m)} (hU : U ∈ padFam K m)
     (hR : U.toRight = ∅) : U.toLeft ∈ K ∧ U = U.toLeft.image Sum.inl := by
   rw [padFam, Finset.mem_union] at hU
@@ -1235,7 +1345,9 @@ lemma mem_padFam_of_toRight_empty {U : Finset (Pad X m)} (hU : U ∈ padFam K m)
     rw [hR] at this
     simp at this
 
-/-- A member of the padded family that does use a dummy contains a *left* dummy.-/
+/-- A member of the padded family that does use a dummy contains a *left* dummy.
+@isnad1 id=ex.2h4v.s6.de8d3eeee7ac from=translated src=- shape=96eacdbf vocab=6295e5df
+-/
 lemma exists_left_dummy {U : Finset (Pad X m)} (hU : U ∈ padFam K m) (hR : U.toRight ≠ ∅) :
     ∃ i : Fin m, (Sum.inr (i, false) : Pad X m) ∈ U := by
   rw [padFam, Finset.mem_union] at hU
@@ -1248,7 +1360,9 @@ lemma exists_left_dummy {U : Finset (Pad X m)} (hU : U ∈ padFam K m) (hR : U.t
     exact ⟨t.2.1, by simp [mixTriple]⟩
 
 /-- A matching of the padded family uses at most `m` of the added triples: they are disjoint and
-each contains one of the `m` left dummies.-/
+each contains one of the `m` left dummies.
+@isnad1 id=le.2h4v.s7.c50144dcafe0 from=translated src=- shape=c54abb9e vocab=79776050
+-/
 lemma card_mixedPart_le (hm : 0 < m) {M : Finset (Finset (Pad X m))}
     (hM : IsMatching (padFam K m) M) :
     ((M.filter (fun U => U.toRight ≠ ∅)).card : ℝ) ≤ (m : ℝ) := by
@@ -1283,7 +1397,9 @@ lemma card_mixedPart_le (hm : 0 < m) {M : Finset (Finset (Pad X m))}
   exact_mod_cast hcard
 
 /-- The real part of a matching of the padded family projects to a matching of `K` of the same
-size.-/
+size.
+@isnad1 id=ex.1h4v.s7.28d9d09e0da8 from=translated src=- shape=5e8a5330 vocab=1f0915c3
+-/
 lemma exists_matching_of_padMatching {M : Finset (Finset (Pad X m))}
     (hM : IsMatching (padFam K m) M) :
     ∃ M' : Finset (Finset X), IsMatching K M' ∧
@@ -1314,6 +1430,9 @@ lemma exists_matching_of_padMatching {M : Finset (Finset (Pad X m))}
     exact (Finset.disjoint_left.mp hdisj hx) hx'
   · rw [Finset.card_image_of_injOn hinj]
 
+/--
+@isnad1 id=eq.0h6v.s8.479868f1feab from=translated src=- shape=1ef428ae vocab=484ac6b1
+-/
 lemma padCodeg_comm (x z : Pad X m) :
     ∑ U ∈ (padFam K m).filter (fun U => x ∈ U ∧ z ∈ U), padWt K w m U
       = ∑ U ∈ (padFam K m).filter (fun U => z ∈ U ∧ x ∈ U), padWt K w m U := by
@@ -1360,7 +1479,9 @@ noncomputable def padWtR (K : Finset (Finset X)) (w : Finset X → ℝ) (k m : �
 
 /-! ### Counting the dummy choices -/
 
-/-- The number of choice functions with a prescribed value in one column.-/
+/-- The number of choice functions with a prescribed value in one column.
+@isnad1 id=eq.0h4v.s6.e7afc566d2f2 from=translated src=- shape=a1387797 vocab=1a8fd4f0
+-/
 theorem card_filter_eq_at (k m : ℕ) (j₀ : Fin k) (d : Fin m) :
     #(univ.filter (fun i : Fin k → Fin m => i j₀ = d)) = m ^ (k - 1) := by
   classical
@@ -1378,7 +1499,9 @@ theorem card_filter_eq_at (k m : ℕ) (j₀ : Fin k) (d : Fin m) :
   rw [Finset.prod_congr rfl (fun j hj => by rw [ite_eq_right (Finset.ne_of_mem_erase hj)])]
   simp
 
-/-- The number of choice functions with prescribed values in two distinct columns.-/
+/-- The number of choice functions with prescribed values in two distinct columns.
+@isnad1 id=eq.1h6v.s7.0d2ff50ceacb from=translated src=- shape=83d04705 vocab=1a8fd4f0
+-/
 theorem card_filter_eq_at2 (k m : ℕ) {j₀ j₁ : Fin k} (hj : j₀ ≠ j₁) (d d' : Fin m) :
     #(univ.filter (fun i : Fin k → Fin m => i j₀ = d ∧ i j₁ = d')) = m ^ (k - 2) := by
   classical
@@ -1410,7 +1533,9 @@ theorem card_filter_eq_at2 (k m : ℕ) {j₀ j₁ : Fin k} (hj : j₀ ≠ j₁) 
   rw [ite_eq_left rfl, ite_eq_right (Ne.symm hj), ite_eq_left rfl]
   simp [hcard]
 
-/-- The sum of a constant over the choice functions with a prescribed value in one column.-/
+/-- The sum of a constant over the choice functions with a prescribed value in one column.
+@isnad1 id=eq.0h5v.s6.f048d2a10352 from=translated src=- shape=5637c102 vocab=d61dd11d
+-/
 theorem sum_ite_at (k m : ℕ) (j₀ : Fin k) (d : Fin m) (c : ℝ) :
     ∑ i : (Fin k → Fin m), (if i j₀ = d then c else 0) = c * (m : ℝ) ^ (k - 1) := by
   classical
@@ -1419,7 +1544,9 @@ theorem sum_ite_at (k m : ℕ) (j₀ : Fin k) (d : Fin m) (c : ℝ) :
   push_cast
   ring
 
-/-- The sum of a constant over the choice functions with prescribed values in two columns.-/
+/-- The sum of a constant over the choice functions with prescribed values in two columns.
+@isnad1 id=eq.1h7v.s7.df735aaa30ea from=translated src=- shape=c6eeea7d vocab=d61dd11d
+-/
 theorem sum_ite_at2 (k m : ℕ) {j₀ j₁ : Fin k} (hj : j₀ ≠ j₁) (d d' : Fin m) (c : ℝ) :
     ∑ i : (Fin k → Fin m), (if i j₀ = d ∧ i j₁ = d' then c else 0) = c * (m : ℝ) ^ (k - 2) := by
   classical
@@ -1431,22 +1558,37 @@ theorem sum_ite_at2 (k m : ℕ) {j₀ j₁ : Fin k} (hj : j₀ ≠ j₁) (d d' :
 section
 variable (K : Finset (Finset X)) (w : Finset X → ℝ) (k m : ℕ)
 
+/--
+@isnad1 id=eq.0h4v.s6.758af14490ea from=translated src=- shape=34d92bc1 vocab=c1483646
+-/
 @[simp] lemma toLeft_image_inl (T : Finset X) :
     (T.image (Sum.inl : X → PadR X k m)).toLeft = T := by
   ext x; simp
 
+/--
+@isnad1 id=eq.0h4v.s6.00750f6d854e from=translated src=- shape=44537a6a vocab=cc959d0b
+-/
 @[simp] lemma toRight_image_inl (T : Finset X) :
     (T.image (Sum.inl : X → PadR X k m)).toRight = (∅ : Finset (Fin k × Fin m)) := by
   ext x; simp
 
+/--
+@isnad1 id=eq.0h5v.s5.a1e3d7ce268a from=translated src=- shape=4e0540f9 vocab=4db48194
+-/
 @[simp] lemma mixEdge_toLeft (v : X) (i : Fin k → Fin m) :
     (mixEdge k m v i).toLeft = {v} := by
   ext x; simp [mixEdge]
 
+/--
+@isnad1 id=iff.0h6v.s6.4805451ac0cd from=translated src=- shape=f55a3083 vocab=04ef3ffa
+-/
 @[simp] lemma mem_mixEdge_inl (v u : X) (i : Fin k → Fin m) :
     (Sum.inl u : PadR X k m) ∈ mixEdge k m v i ↔ u = v := by
   simp [mixEdge]
 
+/--
+@isnad1 id=iff.0h7v.s6.9001a7518f65 from=translated src=- shape=53c2e273 vocab=e5f103da
+-/
 @[simp] lemma mem_mixEdge_inr (v : X) (i : Fin k → Fin m) (j : Fin k) (d : Fin m) :
     (Sum.inr (j, d) : PadR X k m) ∈ mixEdge k m v i ↔ i j = d := by
   simp only [mixEdge, Finset.mem_insert, Finset.mem_image, Finset.mem_univ, true_and]
@@ -1458,6 +1600,9 @@ variable (K : Finset (Finset X)) (w : Finset X → ℝ) (k m : ℕ)
       subst h1; exact h2
   · intro h; exact Or.inr ⟨j, by rw [h]⟩
 
+/--
+@isnad1 id=ne.1h5v.s5.4ef89634aabd from=translated src=- shape=67f98a39 vocab=93880070
+-/
 lemma mixEdge_toRight_nonempty (hk : 0 < k) (v : X) (i : Fin k → Fin m) :
     (mixEdge k m v i).toRight ≠ (∅ : Finset (Fin k × Fin m)) := by
   intro h
@@ -1467,6 +1612,9 @@ lemma mixEdge_toRight_nonempty (hk : 0 < k) (v : X) (i : Fin k → Fin m) :
   rw [h] at this
   simp at this
 
+/--
+@isnad1 id=eq.0h5v.s5.eff4e303f8f3 from=translated src=- shape=53b95610 vocab=90f7ada4
+-/
 lemma mixEdge_card (v : X) (i : Fin k → Fin m) : #(mixEdge k m v i) = k + 1 := by
   classical
   have hinj : Set.InjOn
@@ -1480,6 +1628,9 @@ lemma mixEdge_card (v : X) (i : Fin k → Fin m) : #(mixEdge k m v i) = k + 1 :=
   rw [mixEdge, Finset.card_insert_of_notMem hnot, Finset.card_image_of_injOn hinj]
   simp
 
+/--
+@isnad1 id=and.1h7v.s5.61b231d9cb85 from=translated src=- shape=457d52dd vocab=43e85527
+-/
 lemma mixEdge_inj {v v' : X} {i i' : Fin k → Fin m}
     (h : mixEdge k m v i = mixEdge k m v' i') : v = v' ∧ i = i' := by
   constructor
@@ -1491,14 +1642,23 @@ lemma mixEdge_inj {v v' : X} {i i' : Fin k → Fin m}
       rw [← h]; exact (mem_mixEdge_inr k m v i j (i j)).mpr rfl
     exact ((mem_mixEdge_inr k m v' i' j (i j)).mp h1).symm
 
+/--
+@isnad1 id=eq.0h6v.s6.f461918cdf04 from=translated src=- shape=7f9e0a18 vocab=7a43198a
+-/
 lemma padWtR_image_inl (T : Finset X) : padWtR K w k m (T.image Sum.inl) = w T := by
   simp [padWtR]
 
+/--
+@isnad1 id=eq.1h7v.s6.be6b0f53906d from=translated src=- shape=90eff25b vocab=742382a4
+-/
 lemma padWtR_mixEdge (hk : 0 < k) (v : X) (i : Fin k → Fin m) :
     padWtR K w k m (mixEdge k m v i) = (1 - Slack.wLoad K w v) / (m : ℝ) ^ k := by
   rw [padWtR, ite_eq_right (mixEdge_toRight_nonempty k m hk v i)]
   simp
 
+/--
+@isnad1 id=le.2h6v.s6.b1addd40712e from=translated src=- shape=1e5b810b vocab=c9e43a38
+-/
 lemma padWtR_nonneg (hw : ∀ T, 0 ≤ w T) (hload : ∀ v : X, Slack.wLoad K w v ≤ 1)
     (U : Finset (PadR X k m)) : 0 ≤ padWtR K w k m U := by
   rw [padWtR]
@@ -1513,7 +1673,9 @@ end
 section
 variable [Fintype X] (K : Finset (Finset X)) (w : Finset X → ℝ) (k m : ℕ)
 
-/-- A sum over the padded family splits into a sum over `K` and a sum over the mixed edges.-/
+/-- A sum over the padded family splits into a sum over `K` and a sum over the mixed edges.
+@isnad1 id=eq.1h5v.s7.ab988fdfd8ce from=translated src=- shape=07808508 vocab=0b06bfe9
+-/
 lemma sum_padFamR (hk : 0 < k) (f : Finset (PadR X k m) → ℝ) :
     ∑ U ∈ padFamR K k m, f U
       = (∑ T ∈ K, f (T.image Sum.inl))
@@ -1537,6 +1699,9 @@ lemma sum_padFamR (hk : 0 < k) (f : Finset (PadR X k m) → ℝ) :
     · obtain ⟨h1, h2⟩ := mixEdge_inj k m h
       exact Prod.ext h1 h2
 
+/--
+@isnad1 id=isunifor.1h4v.s5.1229d8c7d99b from=translated src=- shape=d9280866 vocab=0a5cdc20
+-/
 lemma padFamR_uniform (hK : IsUniform K (k + 1)) : IsUniform (padFamR K k m) (k + 1) := by
   intro U hU
   rw [padFamR, Finset.mem_union] at hU
@@ -1553,17 +1718,25 @@ end
 
 /-! ### The number of dummy choice functions -/
 
-/-- The number of choice functions of one dummy per column, as a real number.-/
+/-- The number of choice functions of one dummy per column, as a real number.
+@isnad1 id=eq.0h2v.s5.e3b484878b1f from=translated src=- shape=c26ffb90 vocab=04777824
+-/
 theorem card_pi_fun (d m : ℕ) : ((Fintype.card (Fin d → Fin m) : ℕ) : ℝ) = (m : ℝ) ^ d := by
   simp
 
 /-! ### Loads, codegrees and matchings of the padded system -/
 
+/--
+@isnad1 id=eq.1h2v.s6.f0d295b6464c from=translated src=- shape=b5bb71f6 vocab=adb122e5
+-/
 lemma pow_split_one (m k : ℕ) (hk : 0 < k) : (m : ℝ) ^ k = (m : ℝ) ^ (k - 1) * (m : ℝ) := by
   rw [← pow_succ]
   congr 1
   omega
 
+/--
+@isnad1 id=eq.1h2v.s6.a07e48f3ca90 from=translated src=- shape=092ad5b3 vocab=81fe82b2
+-/
 lemma pow_split_two (m k : ℕ) (hk : 2 ≤ k) :
     (m : ℝ) ^ k = (m : ℝ) ^ (k - 2) * (m : ℝ) ^ 2 := by
   rw [← pow_add]
@@ -1573,7 +1746,9 @@ lemma pow_split_two (m k : ℕ) (hk : 2 ≤ k) :
 section
 variable [Fintype X] (K : Finset (Finset X)) (w : Finset X → ℝ) (k m : ℕ)
 
-/-- The total weight of the padded system exceeds that of `K` by exactly the total slack.-/
+/-- The total weight of the padded system exceeds that of `K` by exactly the total slack.
+@isnad1 id=eq.2h5v.s6.5362d1e37054 from=translated src=- shape=7a015f4c vocab=9df18fac
+-/
 lemma sum_padWtR (hk : 0 < k) (hm : 0 < m) :
     ∑ U ∈ padFamR K k m, padWtR K w k m U = (∑ T ∈ K, w T) + Slack.slackTotal K w := by
   classical
@@ -1588,7 +1763,9 @@ lemma sum_padWtR (hk : 0 < k) (hm : 0 < m) :
     rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul, card_pi_fun]
     field_simp
 
-/-- Every real vertex has load exactly `1` in the padded system.-/
+/-- Every real vertex has load exactly `1` in the padded system.
+@isnad1 id=eq.2h6v.s7.8e5f1a779332 from=translated src=- shape=f5aadbaa vocab=eb750f4e
+-/
 lemma padLoad_inl (hk : 0 < k) (hm : 0 < m) (v : X) :
     ∑ U ∈ (padFamR K k m).filter (fun U => (Sum.inl v : PadR X k m) ∈ U), padWtR K w k m U = 1 := by
   classical
@@ -1617,7 +1794,9 @@ lemma padLoad_inl (hk : 0 < k) (hm : 0 < m) (v : X) :
     Finset.sum_ite_eq' Finset.univ v (fun u => 1 - Slack.wLoad K w u)]
   simp
 
-/-- Every dummy has load exactly `S/m`.-/
+/-- Every dummy has load exactly `S/m`.
+@isnad1 id=eq.2h7v.s7.d616fa35318c from=translated src=- shape=a1cac542 vocab=12b714a5
+-/
 lemma padLoad_inr (hk : 0 < k) (hm : 0 < m) (j : Fin k) (e : Fin m) :
     ∑ U ∈ (padFamR K k m).filter (fun U => (Sum.inr (j, e) : PadR X k m) ∈ U), padWtR K w k m U
       = Slack.slackTotal K w / (m : ℝ) := by
@@ -1638,7 +1817,9 @@ lemma padLoad_inr (hk : 0 < k) (hm : 0 < m) (j : Fin k) (e : Fin m) :
     field_simp
   rw [h1, Finset.sum_congr rfl (fun u _ => h2 u), zero_add, Slack.slackTotal, Finset.sum_div]
 
-/-- The weighted codegree of two real vertices is unchanged.-/
+/-- The weighted codegree of two real vertices is unchanged.
+@isnad1 id=eq.2h7v.s8.32d0a5d1bc8e from=translated src=- shape=0f63c7d4 vocab=eb750f4e
+-/
 lemma padCodeg_inl_inl (hk : 0 < k) {v v' : X} (hvv : v ≠ v') :
     ∑ U ∈ (padFamR K k m).filter
         (fun U => (Sum.inl v : PadR X k m) ∈ U ∧ (Sum.inl v' : PadR X k m) ∈ U),
@@ -1658,7 +1839,9 @@ lemma padCodeg_inl_inl (hk : 0 < k) {v v' : X} (hvv : v ≠ v') :
   refine Finset.sum_congr rfl fun T _ => ?_
   simp [padWtR_image_inl]
 
-/-- The weighted codegree of a real vertex and a dummy.-/
+/-- The weighted codegree of a real vertex and a dummy.
+@isnad1 id=eq.2h8v.s8.4fda4f51c7ed from=translated src=- shape=511868e4 vocab=95e03205
+-/
 lemma padCodeg_inl_inr (hk : 0 < k) (hm : 0 < m) (v : X) (j : Fin k) (e : Fin m) :
     ∑ U ∈ (padFamR K k m).filter
         (fun U => (Sum.inl v : PadR X k m) ∈ U ∧ (Sum.inr (j, e) : PadR X k m) ∈ U),
@@ -1692,7 +1875,9 @@ lemma padCodeg_inl_inr (hk : 0 < k) (hm : 0 < m) (v : X) (j : Fin k) (e : Fin m)
     Finset.sum_ite_eq' Finset.univ v (fun u => (1 - Slack.wLoad K w u) / (m : ℝ))]
   simp
 
-/-- The weighted codegree of two distinct dummies is at most `S/m²`.-/
+/-- The weighted codegree of two distinct dummies is at most `S/m²`.
+@isnad1 id=le.4h7v.s8.1561d65f87b0 from=translated src=- shape=db859de1 vocab=3c6a52f5
+-/
 lemma padCodeg_inr_inr (hk : 0 < k) (hm : 0 < m) (hload : ∀ v : X, Slack.wLoad K w v ≤ 1)
     {d d' : Fin k × Fin m} (hd : d ≠ d') :
     ∑ U ∈ (padFamR K k m).filter
@@ -1736,13 +1921,18 @@ lemma padCodeg_inr_inr (hk : 0 < k) (hm : 0 < m) (hload : ∀ v : X, Slack.wLoad
   rw [h1, zero_add, Slack.slackTotal, Finset.sum_div]
   exact Finset.sum_le_sum fun u _ => h2 u
 
+/--
+@isnad1 id=eq.0h7v.s9.0efff6d27140 from=translated src=- shape=19406826 vocab=9ed5f4ed
+-/
 lemma padCodegR_comm (x z : PadR X k m) :
     ∑ U ∈ (padFamR K k m).filter (fun U => x ∈ U ∧ z ∈ U), padWtR K w k m U
       = ∑ U ∈ (padFamR K k m).filter (fun U => z ∈ U ∧ x ∈ U), padWtR K w k m U := by
   refine Finset.sum_congr (Finset.filter_congr fun U _ => ?_) fun _ _ => rfl
   exact ⟨fun h => ⟨h.2, h.1⟩, fun h => ⟨h.2, h.1⟩⟩
 
-/-- A member of the padded family with no dummy vertices comes from `K`.-/
+/-- A member of the padded family with no dummy vertices comes from `K`.
+@isnad1 id=and.3h5v.s7.2301565f25a3 from=translated src=- shape=d0209cdc vocab=1fc6a04f
+-/
 lemma mem_padFamR_of_toRight_empty (hk : 0 < k) {U : Finset (PadR X k m)}
     (hU : U ∈ padFamR K k m) (hR : U.toRight = ∅) :
     U.toLeft ∈ K ∧ U = U.toLeft.image Sum.inl := by
@@ -1756,7 +1946,9 @@ lemma mem_padFamR_of_toRight_empty (hk : 0 < k) {U : Finset (PadR X k m)}
     obtain ⟨t, -, rfl⟩ := hU
     exact absurd hR (mixEdge_toRight_nonempty k m hk t.1 t.2)
 
-/-- A member of the padded family that uses a dummy contains a dummy of the first column.-/
+/-- A member of the padded family that uses a dummy contains a dummy of the first column.
+@isnad1 id=ex.3h5v.s7.958280e0ab14 from=translated src=- shape=13785839 vocab=db4ab4c7
+-/
 lemma exists_col_zero_dummy (hk : 0 < k) {U : Finset (PadR X k m)}
     (hU : U ∈ padFamR K k m) (hR : U.toRight ≠ ∅) :
     ∃ e : Fin m, (Sum.inr (⟨0, hk⟩, e) : PadR X k m) ∈ U := by
@@ -1769,7 +1961,9 @@ lemma exists_col_zero_dummy (hk : 0 < k) {U : Finset (PadR X k m)}
     obtain ⟨t, -, rfl⟩ := hU
     exact ⟨t.2 ⟨0, hk⟩, (mem_mixEdge_inr k m t.1 t.2 _ _).mpr rfl⟩
 
-/-- A matching of the padded family uses at most `m` of the added edges.-/
+/-- A matching of the padded family uses at most `m` of the added edges.
+@isnad1 id=le.3h5v.s7.405287aa1796 from=translated src=- shape=de697a3c vocab=2275ddf7
+-/
 lemma card_mixedPartR_le (hk : 0 < k) (hm : 0 < m) {M : Finset (Finset (PadR X k m))}
     (hM : IsMatching (padFamR K k m) M) :
     ((M.filter (fun U => U.toRight ≠ ∅)).card : ℝ) ≤ (m : ℝ) := by
@@ -1805,7 +1999,9 @@ lemma card_mixedPartR_le (hk : 0 < k) (hm : 0 < m) {M : Finset (Finset (PadR X k
   exact_mod_cast hcard
 
 /-- The real part of a matching of the padded family projects to a matching of `K` of the same
-size.-/
+size.
+@isnad1 id=ex.2h5v.s7.e98974c41be8 from=translated src=- shape=c97e8fe4 vocab=52180bac
+-/
 lemma exists_matching_of_padMatchingR (hk : 0 < k) {M : Finset (Finset (PadR X k m))}
     (hM : IsMatching (padFamR K k m) M) :
     ∃ M' : Finset (Finset X), IsMatching K M' ∧
@@ -1840,7 +2036,9 @@ end
 
 /-- **The weighted nibble with slack, in uniformity `k+1`.**  No near-perfection hypothesis:
 instead the weighting is required to leave a total slack of at least `1/γ`, and the conclusion
-loses `β·S + 1`.-/
+loses `β·S + 1`.
+@isnad1 id=ex.2h2v.s8.0c3de40e65c5 from=translated src=- shape=8d772739 vocab=489b4238
+-/
 theorem fracNibbleR_withSlack (k : ℕ) (hk : 0 < k) (β : ℝ) (hβ : 0 < β) :
     ∃ γ : ℝ, 0 < γ ∧
       ∀ {X : Type} [Fintype X] [DecidableEq X] (K : Finset (Finset X)) (w : Finset X → ℝ),
@@ -1984,10 +2182,16 @@ def padFamLE (r m : ℕ) (K : Finset (Finset X)) : Finset (Finset (PadV X r m)) 
 noncomputable def padWtLE (r m : ℕ) (w : Finset X → ℝ) : Finset (PadV X r m) → ℝ :=
   fun U => w U.toLeft / (m : ℝ) ^ (r - #U.toLeft)
 
+/--
+@isnad1 id=iff.0h6v.s6.147cf9bc1a7e from=translated src=- shape=6a5b73e1 vocab=6a1eb7ba
+-/
 @[simp] lemma mem_padEdgeD_inl {x : X} :
     (Sum.inl x : PadV X r m) ∈ padEdgeD r m T i ↔ x ∈ T := by
   simp [padEdgeD]
 
+/--
+@isnad1 id=iff.0h7v.s7.903f054d697c from=translated src=- shape=527e7cda vocab=34a56323
+-/
 lemma mem_padEdgeD_inr {j : Fin r} {e : Fin m} :
     (Sum.inr (j, e) : PadV X r m) ∈ padEdgeD r m T i ↔
       ∃ j' : Fin (r - #T), (j' : ℕ) = (j : ℕ) ∧ i j' = e := by
@@ -2010,10 +2214,16 @@ lemma mem_padEdgeD_inr {j : Fin r} {e : Fin m} :
     rw [Sum.inr.injEq, Prod.mk.injEq]
     exact ⟨Fin.ext (by simpa using h1), h2⟩
 
+/--
+@isnad1 id=eq.0h5v.s5.a193356e3571 from=translated src=- shape=825fb473 vocab=5534e5cd
+-/
 @[simp] lemma padEdgeD_toLeft : (padEdgeD r m T i).toLeft = T := by
   ext x
   rw [Finset.mem_toLeft, mem_padEdgeD_inl]
 
+/--
+@isnad1 id=disjoint.0h5v.s8.dae3fb006f44 from=translated src=- shape=73959def vocab=31597b60
+-/
 lemma padEdgeD_inl_disj_inr :
     Disjoint (T.image (Sum.inl : X → PadV X r m))
       ((univ : Finset (Fin (r - #T))).image
@@ -2025,6 +2235,9 @@ lemma padEdgeD_inl_disj_inr :
   obtain ⟨b, -, hb⟩ := hx'
   exact absurd hb (by simp)
 
+/--
+@isnad1 id=eq.1h5v.s5.f67e70f2ebd6 from=translated src=- shape=828e625f vocab=ea8bb2cd
+-/
 lemma padEdgeD_card (hT : #T ≤ r) : #(padEdgeD r m T i) = r := by
   have hinj : Function.Injective
       (fun j : Fin (r - #T) => (Sum.inr (Fin.castLE (Nat.sub_le r #T) j, i j) : PadV X r m)) := by
@@ -2036,6 +2249,9 @@ lemma padEdgeD_card (hT : #T ≤ r) : #(padEdgeD r m T i) = r := by
     Finset.card_univ, Fintype.card_fin]
   omega
 
+/--
+@isnad1 id=eq.1h6v.s6.f9a0420c3687 from=translated src=- shape=c79edd0b vocab=316b24c8
+-/
 lemma padEdgeD_inj_i {i' : Fin (r - #T) → Fin m} (h : padEdgeD r m T i = padEdgeD r m T i') :
     i = i' := by
   funext j
@@ -2049,6 +2265,9 @@ lemma padEdgeD_inj_i {i' : Fin (r - #T) → Fin m} (h : padEdgeD r m T i = padEd
   subst this
   exact h2.symm
 
+/--
+@isnad1 id=ex.1h5v.s7.7da29922fab8 from=translated src=- shape=486d48e6 vocab=28cf9306
+-/
 lemma mem_padFamLE {K : Finset (Finset X)} {U : Finset (PadV X r m)} (hU : U ∈ padFamLE r m K) :
     ∃ (T : Finset X) (_ : T ∈ K) (i : Fin (r - #T) → Fin m), U = padEdgeD r m T i := by
   rw [padFamLE, Finset.mem_biUnion] at hU
@@ -2057,6 +2276,9 @@ lemma mem_padFamLE {K : Finset (Finset X)} {U : Finset (PadV X r m)} (hU : U ∈
   obtain ⟨i, -, rfl⟩ := hU
   exact ⟨T, hT, i, rfl⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.4cd84182dd9a from=translated src=- shape=99ed20c3 vocab=462cb35d
+-/
 lemma sum_padFamLE (K : Finset (Finset X)) (f : Finset (PadV X r m) → ℝ) :
     ∑ U ∈ padFamLE r m K, f U
       = ∑ T ∈ K, ∑ i : (Fin (r - #T) → Fin m), f (padEdgeD r m T i) := by
@@ -2077,22 +2299,34 @@ lemma sum_padFamLE (K : Finset (Finset X)) (f : Finset (PadV X r m) → ℝ) :
   refine Finset.sum_congr rfl fun T _ => ?_
   exact Finset.sum_image fun i _ i' _ h => padEdgeD_inj_i h
 
+/--
+@isnad1 id=eq.0h6v.s6.ebf01e0214f7 from=translated src=- shape=b0758302 vocab=5dd10e83
+-/
 lemma padWtLE_edge (w : Finset X → ℝ) :
     padWtLE r m w (padEdgeD r m T i) = w T / (m : ℝ) ^ (r - #T) := by
   rw [padWtLE, padEdgeD_toLeft]
 
 omit [DecidableEq X] in
+/--
+@isnad1 id=le.1h5v.s5.4021b8978abe from=translated src=- shape=1dacace0 vocab=93d10726
+-/
 lemma padWtLE_nonneg (w : Finset X → ℝ) (hw : ∀ T, 0 ≤ w T) (U : Finset (PadV X r m)) :
     0 ≤ padWtLE r m w U := by
   rw [padWtLE]
   exact div_nonneg (hw _) (by positivity)
 
+/--
+@isnad1 id=isunifor.1h4v.s5.d4f53422169f from=translated src=- shape=57d9803d vocab=365f81cf
+-/
 lemma padFamLE_uniform {K : Finset (Finset X)} (hK : ∀ T ∈ K, #T ≤ r) :
     IsUniform (padFamLE r m K) r := by
   intro U hU
   obtain ⟨T, hT, i, rfl⟩ := mem_padFamLE hU
   exact padEdgeD_card (hK T hT)
 
+/--
+@isnad1 id=eq.2h3v.s6.6e8bf132b96c from=translated src=- shape=1c929581 vocab=9a87b1af
+-/
 lemma mul_pow_sub_one_div (x y : ℝ) (hy : 0 < y) (a : ℕ) (ha : 0 < a) :
     x * y ^ (a - 1) / y ^ a = x / y := by
   obtain ⟨a', rfl⟩ : ∃ a', a = a' + 1 := ⟨a - 1, by omega⟩
@@ -2100,6 +2334,9 @@ lemma mul_pow_sub_one_div (x y : ℝ) (hy : 0 < y) (a : ℕ) (ha : 0 < a) :
   have hy' : y ≠ 0 := ne_of_gt hy
   field_simp
 
+/--
+@isnad1 id=eq.2h3v.s6.f06fff8485b2 from=translated src=- shape=194b8bc0 vocab=e7bc5859
+-/
 lemma mul_pow_sub_two_div (x y : ℝ) (hy : 0 < y) (a : ℕ) (ha : 2 ≤ a) :
     x * y ^ (a - 2) / y ^ a = x / y ^ 2 := by
   obtain ⟨a', rfl⟩ : ∃ a', a = a' + 2 := ⟨a - 2, by omega⟩
@@ -2107,7 +2344,9 @@ lemma mul_pow_sub_two_div (x y : ℝ) (hy : 0 < y) (a : ℕ) (ha : 2 ≤ a) :
   have hy' : y ≠ 0 := ne_of_gt hy
   field_simp
 
-/-- One prescribed dummy: the weight `x` spread over `m^d` choices contributes `x/m`.-/
+/-- One prescribed dummy: the weight `x` spread over `m^d` choices contributes `x/m`.
+@isnad1 id=eq.1h5v.s6.d2791d48ba20 from=translated src=- shape=a80cc664 vocab=2ff71f6f
+-/
 lemma sum_col_one (hm : 0 < m) (x : ℝ) {d : ℕ} (j₀ : Fin d) (e : Fin m) :
     ∑ f : (Fin d → Fin m), (if f j₀ = e then x / (m : ℝ) ^ d else 0) = x / (m : ℝ) := by
   have hm' : (0 : ℝ) < (m : ℝ) := by exact_mod_cast hm
@@ -2115,7 +2354,9 @@ lemma sum_col_one (hm : 0 < m) (x : ℝ) {d : ℕ} (j₀ : Fin d) (e : Fin m) :
   rw [SlackR.sum_ite_at d m j₀ e (x / (m : ℝ) ^ d), div_mul_eq_mul_div,
     mul_pow_sub_one_div _ _ hm' d hd]
 
-/-- Two prescribed dummies in different columns contribute `x/m²`.-/
+/-- Two prescribed dummies in different columns contribute `x/m²`.
+@isnad1 id=eq.2h7v.s7.c73ec89a23b0 from=translated src=- shape=4b505e0a vocab=2ff71f6f
+-/
 lemma sum_col_two (hm : 0 < m) (x : ℝ) {d : ℕ} {j₀ j₁ : Fin d} (hj : j₀ ≠ j₁) (e e' : Fin m) :
     ∑ f : (Fin d → Fin m), (if f j₀ = e ∧ f j₁ = e' then x / (m : ℝ) ^ d else 0)
       = x / (m : ℝ) ^ 2 := by
@@ -2130,13 +2371,18 @@ lemma sum_col_two (hm : 0 < m) (x : ℝ) {d : ℕ} {j₀ j₁ : Fin d} (hj : j�
     mul_pow_sub_two_div _ _ hm' d hd]
 
 omit [DecidableEq X] in
-/-- The sum of the padded weight over the padded edges of one `T`.-/
+/-- The sum of the padded weight over the padded edges of one `T`.
+@isnad1 id=eq.1h5v.s7.062d5311f0b7 from=translated src=- shape=b200e8c1 vocab=ce16c1e3
+-/
 lemma sum_over_i (hm : 0 < m) (w : Finset X → ℝ) (T : Finset X) :
     ∑ _i : (Fin (r - #T) → Fin m), w T / (m : ℝ) ^ (r - #T) = w T := by
   have hm' : (0 : ℝ) < (m : ℝ) := by exact_mod_cast hm
   rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul, SlackR.card_pi_fun]
   field_simp
 
+/--
+@isnad1 id=eq.1h5v.s6.704d992693eb from=translated src=- shape=af1521a8 vocab=400a1513
+-/
 lemma sum_padWtLE (hm : 0 < m) (K : Finset (Finset X)) (w : Finset X → ℝ) :
     ∑ U ∈ padFamLE r m K, padWtLE r m w U = ∑ T ∈ K, w T := by
   rw [sum_padFamLE]
@@ -2144,6 +2390,9 @@ lemma sum_padWtLE (hm : 0 < m) (K : Finset (Finset X)) (w : Finset X → ℝ) :
   simp only [padWtLE_edge]
   exact sum_over_i hm w T
 
+/--
+@isnad1 id=eq.1h6v.s6.ed3b3ec053ca from=translated src=- shape=440d57fa vocab=ff65252d
+-/
 lemma padLoad_inl (hm : 0 < m) (K : Finset (Finset X)) (w : Finset X → ℝ) (v : X) :
     Slack.wLoad (padFamLE r m K) (padWtLE r m w) (Sum.inl v) = Slack.wLoad K w v := by
   classical
@@ -2155,6 +2404,9 @@ lemma padLoad_inl (hm : 0 < m) (K : Finset (Finset X)) (w : Finset X → ℝ) (v
     exact sum_over_i hm w T
   · simp [hv]
 
+/--
+@isnad1 id=eq.1h7v.s7.18353e9ee196 from=translated src=- shape=66ae8e0d vocab=aec728b1
+-/
 lemma padLoad_inr (hm : 0 < m) (K : Finset (Finset X)) (w : Finset X → ℝ) (j : Fin r)
     (e : Fin m) :
     Slack.wLoad (padFamLE r m K) (padWtLE r m w) (Sum.inr (j, e))
@@ -2183,6 +2435,9 @@ lemma padLoad_inr (hm : 0 < m) (K : Finset (Finset X)) (w : Finset X → ℝ) (j
     rintro ⟨j', h1, -⟩
     exact hj (h1 ▸ j'.isLt)
 
+/--
+@isnad1 id=eq.1h7v.s8.3899804ca03d from=translated src=- shape=91eecdc2 vocab=340699c1
+-/
 lemma padCodeg_inl_inl (K : Finset (Finset X)) (w : Finset X → ℝ) (hm : 0 < m) {v v' : X} :
     ∑ U ∈ (padFamLE r m K).filter
         (fun U => (Sum.inl v : PadV X r m) ∈ U ∧ (Sum.inl v' : PadV X r m) ∈ U),
@@ -2196,6 +2451,9 @@ lemma padCodeg_inl_inl (K : Finset (Finset X)) (w : Finset X → ℝ) (hm : 0 < 
     exact sum_over_i hm w T
   · simp [hv]
 
+/--
+@isnad1 id=le.2h8v.s8.1a652ca1bd63 from=translated src=- shape=a34d2d80 vocab=b4454d7b
+-/
 lemma padCodeg_inl_inr (hm : 0 < m) (K : Finset (Finset X)) (w : Finset X → ℝ)
     (hw : ∀ T, 0 ≤ w T) (v : X) (j : Fin r) (e : Fin m) :
     ∑ U ∈ (padFamLE r m K).filter
@@ -2238,6 +2496,9 @@ lemma padCodeg_inl_inr (hm : 0 < m) (K : Finset (Finset X)) (w : Finset X → �
       exact hv h
     rw [hzero, ite_eq_right hv, zero_div]
 
+/--
+@isnad1 id=le.3h9v.s8.cbc0e47eaa66 from=translated src=- shape=90d93f34 vocab=43a81b62
+-/
 lemma padCodeg_inr_inr (hm : 0 < m) (K : Finset (Finset X)) (w : Finset X → ℝ)
     (hw : ∀ T, 0 ≤ w T) {j j' : Fin r} {e e' : Fin m} (hne : (j, e) ≠ (j', e')) :
     ∑ U ∈ (padFamLE r m K).filter
@@ -2295,13 +2556,18 @@ lemma padCodeg_inr_inr (hm : 0 < m) (K : Finset (Finset X)) (w : Finset X → �
       rw [hzero]
       exact div_nonneg (hw T) (by positivity)
 
+/--
+@isnad1 id=eq.0h7v.s9.60a580d33e9c from=translated src=- shape=d9550847 vocab=068f21b5
+-/
 lemma padCodegLE_comm (K : Finset (Finset X)) (w : Finset X → ℝ) (x z : PadV X r m) :
     ∑ U ∈ (padFamLE r m K).filter (fun U => x ∈ U ∧ z ∈ U), padWtLE r m w U
       = ∑ U ∈ (padFamLE r m K).filter (fun U => z ∈ U ∧ x ∈ U), padWtLE r m w U := by
   refine Finset.sum_congr (Finset.filter_congr fun U _ => ?_) fun _ _ => rfl
   exact ⟨fun h => ⟨h.2, h.1⟩, fun h => ⟨h.2, h.1⟩⟩
 
-/-- **Weighted handshake.**-/
+/-- **Weighted handshake.**
+@isnad1 id=eq.0h3v.s5.971ea5b3c394 from=translated src=- shape=09cd6c22 vocab=c9184730
+-/
 lemma sum_wLoad_eq [Fintype X] (K : Finset (Finset X)) (w : Finset X → ℝ) :
     ∑ v : X, Slack.wLoad K w v = ∑ T ∈ K, (#T : ℝ) * w T := by
   classical
@@ -2310,7 +2576,9 @@ lemma sum_wLoad_eq [Fintype X] (K : Finset (Finset X)) (w : Finset X → ℝ) :
   refine Finset.sum_congr rfl fun T _ => ?_
   rw [Finset.sum_ite_mem, Finset.univ_inter, Finset.sum_const, nsmul_eq_mul]
 
-/-- A matching of the padded family projects to a matching of `K` of the same size.-/
+/-- A matching of the padded family projects to a matching of `K` of the same size.
+@isnad1 id=ex.2h5v.s6.4a1bfa1085bb from=translated src=- shape=978f4c77 vocab=6c8614f8
+-/
 lemma exists_matching_of_padMatchingLE {K : Finset (Finset X)} (hne : ∀ T ∈ K, T.Nonempty)
     {M : Finset (Finset (PadV X r m))} (hM : IsMatching (padFamLE r m K) M) :
     ∃ M' : Finset (Finset X), IsMatching K M' ∧ (M'.card : ℝ) = (M.card : ℝ) := by
@@ -2351,7 +2619,9 @@ end LEUnif
 and every bound `r` on the edge size there are a codegree threshold `γ` and a constant `C`,
 depending on `β` and `r` alone, such that every weighting of a family of nonempty edges of size at
 most `r` with loads at most `1` and weighted codegrees at most `γ` admits a matching of size at
-least `(1-β)·∑w − β·|X| − C`.-/
+least `(1-β)·∑w − β·|X| − C`.
+@isnad1 id=ex.2h2v.s8.c33a538bec2b from=translated src=- shape=5301dbfd vocab=73765215
+-/
 theorem fracNibble_leUniform (r : ℕ) (hr : 2 ≤ r) (β : ℝ) (hβ : 0 < β) :
     ∃ γ : ℝ, 0 < γ ∧ ∃ C : ℝ, 0 < C ∧
       ∀ {X : Type} [Fintype X] [DecidableEq X] (K : Finset (Finset X)) (w : Finset X → ℝ),

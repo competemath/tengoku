@@ -35,19 +35,30 @@ def plc (P : ℕ) (u : ZMod 3 → ℕ) : Finset (ZMod 3 → Finset (Fin P)) :=
 
 variable {P : ℕ} {u : ZMod 3 → ℕ}
 
+/--
+@isnad1 id=iff.0h3v.s5.03d01e85ba5c from=translated src=- shape=7bf03933 vocab=86a480a2
+-/
 theorem mem_subs {u : ℕ} {A : Finset (Fin P)} : A ∈ subs P u ↔ #A = u := by
   rw [subs, Finset.mem_powersetCard_univ]
 
+/--
+@isnad1 id=eq.0h2v.s4.5306c3371474 from=translated src=- shape=1a44c769 vocab=78254872
+-/
 theorem card_subs (P u : ℕ) : #(subs P u) = Nat.choose P u := by
   rw [subs, Finset.card_powersetCard, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=iff.0h3v.s6.8f28d5d59d15 from=translated src=- shape=0d2e5ec5 vocab=c957ad5a
+-/
 theorem mem_plc {A : ZMod 3 → Finset (Fin P)} : A ∈ plc P u ↔ ∀ a, #(A a) = u a := by
   rw [plc, Fintype.mem_piFinset]
   exact forall_congr' fun a => mem_subs
 
 /-! ### Counting the cell sets of one cluster -/
 
-/-- The subsets of prescribed size containing a prescribed set.-/
+/-- The subsets of prescribed size containing a prescribed set.
+@isnad1 id=eq.1h3v.s6.bba64a884b0e from=translated src=- shape=c0e58f76 vocab=d98087d5
+-/
 theorem card_subs_req {u : ℕ} (B : Finset (Fin P)) (hB : #B ≤ u) :
     #((subs P u).filter (fun A => B ⊆ A)) = Nat.choose (P - #B) (u - #B) := by
   classical
@@ -91,7 +102,9 @@ theorem card_subs_req {u : ℕ} (B : Finset (Fin P)) (hB : #B ≤ u) :
   rw [hkey, Finset.card_powersetCard, Finset.card_sdiff_of_subset (Finset.subset_univ B),
     Finset.card_univ, Fintype.card_fin]
 
-/-- The absorption identity for binomial coefficients, in cleared form.-/
+/-- The absorption identity for binomial coefficients, in cleared form.
+@isnad1 id=eq.2h2v.s6.d12f2552201e from=translated src=- shape=e872a746 vocab=005aed2a
+-/
 theorem choose_mul_step {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n) :
     n * Nat.choose (n - 1) (k - 1) = k * Nat.choose n k := by
   obtain ⟨n', rfl⟩ : ∃ n', n = n' + 1 := ⟨n - 1, by omega⟩
@@ -100,7 +113,9 @@ theorem choose_mul_step {n k : ℕ} (hk : 1 ≤ k) (hkn : k ≤ n) :
   have := Nat.add_one_mul_choose_eq n' k'
   simpa [Nat.mul_comm] using this
 
-/-- **One prescribed cell in one cluster.**-/
+/-- **One prescribed cell in one cluster.**
+@isnad1 id=eq.1h3v.s6.d757349d3513 from=translated src=- shape=bd867b41 vocab=1685ea69
+-/
 theorem subs_one_mul {u : ℕ} (huP : u ≤ P) (i : Fin P) :
     #((subs P u).filter (fun A => ({i} : Finset (Fin P)) ⊆ A)) * P = u * #(subs P u) := by
   rcases Nat.eq_zero_or_pos u with rfl | hu
@@ -115,7 +130,9 @@ theorem subs_one_mul {u : ℕ} (huP : u ≤ P) (i : Fin P) :
     rw [card_subs_req {i} (by omega), card_subs, hB, Nat.mul_comm]
     exact choose_mul_step hu huP
 
-/-- **Two prescribed cells in one cluster.**-/
+/-- **Two prescribed cells in one cluster.**
+@isnad1 id=eq.2h4v.s7.e0691e753d6a from=translated src=- shape=6b4743b4 vocab=c201f811
+-/
 theorem subs_two_mul {u : ℕ} (huP : u ≤ P) {i i' : Fin P} (hii : i ≠ i') :
     #((subs P u).filter (fun A => ({i, i'} : Finset (Fin P)) ⊆ A)) * (P * (P - 1))
       = u * (u - 1) * #(subs P u) := by
@@ -153,15 +170,22 @@ theorem subs_two_mul {u : ℕ} (huP : u ≤ P) {i i' : Fin P} (hii : i ≠ i') :
 
 /-! ### Counting the placements -/
 
+/--
+@isnad1 id=ne.0h1v.s7.f461dc1f10a9 from=translated src=- shape=76787915 vocab=014cf724
+-/
 theorem succ_ne_self (p : ZMod 3) : p ≠ p + 1 := by revert p; decide
 
-/-- Two distinct positions of a copy have a unique third.-/
+/-- Two distinct positions of a copy have a unique third.
+@isnad1 id=ex.1h2v.s5.2ab5437f0b90 from=translated src=- shape=01233e41 vocab=c87b9854
+-/
 theorem exists_third {p q : ZMod 3} (hpq : p ≠ q) : ∃ t : ZMod 3, p ≠ t ∧ q ≠ t := by
   revert hpq
   revert p q
   decide
 
-/-- Three distinct positions exhaust `ZMod 3`.-/
+/-- Three distinct positions exhaust `ZMod 3`.
+@isnad1 id=eq.3h3v.s7.35d088138ca6 from=translated src=- shape=38e287d3 vocab=d5b94d04
+-/
 theorem univ_eq_three {p q t : ZMod 3} (hpq : p ≠ q) (hpt : p ≠ t) (hqt : q ≠ t) :
     (Finset.univ : Finset (ZMod 3)) = {p, q, t} := by
   have hcard : #({p, q, t} : Finset (ZMod 3)) = 3 := by
@@ -170,19 +194,26 @@ theorem univ_eq_three {p q t : ZMod 3} (hpq : p ≠ q) (hpt : p ≠ t) (hqt : q 
   refine (Finset.eq_of_subset_of_card_le (Finset.subset_univ _) ?_).symm
   rw [hcard, Finset.card_univ, ZMod.card]
 
+/--
+@isnad1 id=or.3h4v.s6.62b1c24681ff from=translated src=- shape=194e049c vocab=c87b9854
+-/
 theorem mem_three {p q t : ZMod 3} (hpq : p ≠ q) (hpt : p ≠ t) (hqt : q ≠ t) (a : ZMod 3) :
     a = p ∨ a = q ∨ a = t := by
   have : a ∈ ({p, q, t} : Finset (ZMod 3)) := by
     rw [← univ_eq_three hpq hpt hqt]; exact Finset.mem_univ a
   simpa using this
 
-/-- A product over the three positions of a copy.-/
+/-- A product over the three positions of a copy.
+@isnad1 id=eq.3h5v.s7.9e8060458a48 from=translated src=- shape=6216bd11 vocab=652c1c93
+-/
 theorem prod_three {M : Type*} [CommMonoid M] (f : ZMod 3 → M) {p q t : ZMod 3} (hpq : p ≠ q)
     (hpt : p ≠ t) (hqt : q ≠ t) : ∏ a : ZMod 3, f a = f p * f q * f t := by
   rw [univ_eq_three hpq hpt hqt, Finset.prod_insert (by simp [hpq, hpt]),
     Finset.prod_insert (by simp [hqt]), Finset.prod_singleton, mul_assoc]
 
-/-- **The placements are the products of the cell sets**: a coordinatewise condition splits.-/
+/-- **The placements are the products of the cell sets**: a coordinatewise condition splits.
+@isnad1 id=eq.0h3v.s7.2c1d89c3c94c from=translated src=- shape=399f8bc2 vocab=0ba606ba
+-/
 theorem card_plc_req (req : ZMod 3 → Finset (Fin P)) :
     #((plc P u).filter (fun A => ∀ a, req a ⊆ A a))
       = ∏ a : ZMod 3, #((subs P (u a)).filter (fun A => req a ⊆ A)) := by
@@ -198,7 +229,9 @@ private def req3 (p q _t : ZMod 3) (Bp Bq Bt : Finset (Fin P)) : ZMod 3 → Fins
   fun a => if a = p then Bp else if a = q then Bq else Bt
 
 /-- **The master count**: a coordinatewise requirement splits into a product over the three
-clusters.-/
+clusters.
+@isnad1 id=eq.3h8v.s8.874202c20b59 from=translated src=- shape=2bb53b79 vocab=1893be01
+-/
 theorem card_plc_three {p q t : ZMod 3} (hpq : p ≠ q) (hpt : p ≠ t) (hqt : q ≠ t)
     (Bp Bq Bt : Finset (Fin P)) :
     #((plc P u).filter (fun A => Bp ⊆ A p ∧ Bq ⊆ A q ∧ Bt ⊆ A t))
@@ -224,15 +257,23 @@ theorem card_plc_three {p q t : ZMod 3} (hpq : p ≠ q) (hpt : p ≠ t) (hqt : q
         by have := h t; rwa [ht] at this⟩
   rw [hfil, card_plc_req, prod_three _ hpq hpt hqt, hp, hq, ht]
 
-/-- The empty requirement is no requirement.-/
+/-- The empty requirement is no requirement.
+@isnad1 id=eq.0h2v.s5.f2ca0eb51dc2 from=translated src=- shape=a4d433c5 vocab=7df1d81c
+-/
 theorem filter_empty_req (v : ℕ) :
     ((subs P v).filter (fun A => (∅ : Finset (Fin P)) ⊆ A)) = subs P v :=
   Finset.filter_true_of_mem fun _ _ => Finset.empty_subset _
 
+/--
+@isnad1 id=eq.3h5v.s6.b04f0a413e76 from=translated src=- shape=f75c0888 vocab=3992c6d9
+-/
 theorem card_plc_prod {p q t : ZMod 3} (hpq : p ≠ q) (hpt : p ≠ t) (hqt : q ≠ t) :
     #(plc P u) = #(subs P (u p)) * #(subs P (u q)) * #(subs P (u t)) := by
   rw [plc, Fintype.card_piFinset, prod_three (fun a => #(subs P (u a))) hpq hpt hqt]
 
+/--
+@isnad1 id=lt.1h2v.s5.bb4cb681691d from=translated src=- shape=7612ca5b vocab=44862987
+-/
 theorem card_plc_pos (huP : ∀ a, u a ≤ P) : 0 < #(plc P u) := by
   rw [Finset.card_pos]
   refine ⟨fun a => (Finset.range (u a)).attachFin
@@ -241,6 +282,9 @@ theorem card_plc_pos (huP : ∀ a, u a ≤ P) : 0 < #(plc P u) := by
   intro a
   simp
 
+/--
+@isnad1 id=eq.1h4v.s7.a8cfae62c622 from=translated src=- shape=4fee4fc6 vocab=72276637
+-/
 theorem card_one (huP : ∀ a, u a ≤ P) (p : ZMod 3) (i : Fin P) :
     #((plc P u).filter (fun A => i ∈ A p)) * P = u p * #(plc P u) := by
   classical
@@ -262,6 +306,9 @@ theorem card_one (huP : ∀ a, u a ≤ P) (p : ZMod 3) (i : Fin P) :
         rw [subs_one_mul (huP p) i]
     _ = u p * (#(subs P (u p)) * #(subs P (u q)) * #(subs P (u t))) := by ring
 
+/--
+@isnad1 id=eq.2h6v.s7.fe8e3672b7c7 from=translated src=- shape=c9337d26 vocab=72276637
+-/
 theorem card_two (huP : ∀ a, u a ≤ P) {p q : ZMod 3} (hpq : p ≠ q) (i j : Fin P) :
     #((plc P u).filter (fun A => i ∈ A p ∧ j ∈ A q)) * (P * P) = u p * u q * #(plc P u) := by
   classical
@@ -282,6 +329,9 @@ theorem card_two (huP : ∀ a, u a ≤ P) {p q : ZMod 3} (hpq : p ≠ q) (i j : 
         rw [subs_one_mul (huP p) i, subs_one_mul (huP q) j]
     _ = u p * u q * (#(subs P (u p)) * #(subs P (u q)) * #(subs P (u t))) := by ring
 
+/--
+@isnad1 id=eq.3h7v.s8.54be9b9a0e45 from=translated src=- shape=66966714 vocab=6e2caf3e
+-/
 theorem card_two_one (huP : ∀ a, u a ≤ P) {p q : ZMod 3} (hpq : p ≠ q) {i i' : Fin P}
     (hii : i ≠ i') (j : Fin P) :
     #((plc P u).filter (fun A => i ∈ A p ∧ i' ∈ A p ∧ j ∈ A q)) * (P * (P - 1) * P)
@@ -306,6 +356,9 @@ theorem card_two_one (huP : ∀ a, u a ≤ P) {p q : ZMod 3} (hpq : p ≠ q) {i 
         rw [subs_two_mul (huP p) hii, subs_one_mul (huP q) j]
     _ = u p * (u p - 1) * u q * (#(subs P (u p)) * #(subs P (u q)) * #(subs P (u t))) := by ring
 
+/--
+@isnad1 id=eq.4h8v.s8.de7438133196 from=translated src=- shape=343517ed vocab=72276637
+-/
 theorem card_three (huP : ∀ a, u a ≤ P) {p q t : ZMod 3} (hpq : p ≠ q) (hpt : p ≠ t)
     (hqt : q ≠ t) (i j l : Fin P) :
     #((plc P u).filter (fun A => i ∈ A p ∧ j ∈ A q ∧ l ∈ A t)) * (P * P * P)
@@ -364,17 +417,23 @@ def placeEdge (idx : ι → ℕ) (cl : κ → ZMod 3 → ι) (c : κ) (A : ZMod 
   insert (Sum.inr c) ((Finset.univ : Finset (ZMod 3)).biUnion (rect idx cl c A))
 
 variable {idx : ι → ℕ} {cl : κ → ZMod 3 → ι} {c : κ} {A : ZMod 3 → Finset (Fin P)}
-/-- In `ZMod 3` two distinct positions are consecutive one way or the other.-/
+/-- In `ZMod 3` two distinct positions are consecutive one way or the other.
+@isnad1 id=or.1h2v.s8.79e577433c45 from=translated src=- shape=20aaaea8 vocab=014cf724
+-/
 theorem zmod3_consec {p q : ZMod 3} (hpq : p ≠ q) : q = p + 1 ∨ p = q + 1 := by
   revert hpq; revert p q; decide
 
-/-- Two distinct positions of a copy give two distinct cluster pairs.-/
+/-- Two distinct positions of a copy give two distinct cluster pairs.
+@isnad1 id=not.1h2v.s9.c4532a2dac8d from=translated src=- shape=d1996a9a vocab=014cf724
+-/
 theorem zmod3_pair_ne {a b : ZMod 3} (hab : a ≠ b) :
     ¬ ((a = b ∧ a + 1 = b + 1) ∨ (a = b + 1 ∧ a + 1 = b)) := by
   revert hab; revert a b; decide
 
 omit [DecidableEq ι] in
-/-- The orientation is symmetric on distinct clusters.-/
+/-- The orientation is symmetric on distinct clusters.
+@isnad1 id=eq.1h7v.s5.81dd09a2bc59 from=translated src=- shape=7e26fcfe vocab=ecf2b2d4
+-/
 theorem orient_symm {S T : ι} (h : idx S ≠ idx T) (i j : Fin P) :
     orient idx T S j i = orient idx S T i j := by
   rw [orient, orient]
@@ -384,6 +443,9 @@ theorem orient_symm {S T : ι} (h : idx S ≠ idx T) (i j : Fin P) :
   · rw [ite_eq_left hgt, ite_eq_right (by omega)]
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=injectiv.0h5v.s5.e427c3c2e1a3 from=translated src=- shape=fa3d055f vocab=eba29dd7
+-/
 theorem orient_inj (S T : ι) :
     Function.Injective (fun p : Fin P × Fin P => orient idx S T p.1 p.2) := by
   intro p p' h
@@ -395,6 +457,9 @@ theorem orient_inj (S T : ι) :
     simp only [Prod.mk.injEq] at h
     exact Prod.ext h.2.2.2 h.2.2.1
 
+/--
+@isnad1 id=iff.0h9v.s8.68bdc70a2c57 from=translated src=- shape=ec21ce35 vocab=1b06aad5
+-/
 theorem mem_rect {a : ZMod 3} {x : Slot ι P} :
     (Sum.inl x : PlaceVtx ι κ P) ∈ rect idx cl c A a ↔
       ∃ i ∈ A a, ∃ j ∈ A (a + 1), orient idx (cl c a) (cl c (a + 1)) i j = x := by
@@ -405,11 +470,16 @@ theorem mem_rect {a : ZMod 3} {x : Slot ι P} :
   · rintro ⟨i, hi, j, hj, hx⟩
     exact ⟨(i, j), ⟨hi, hj⟩, hx⟩
 
+/--
+@isnad1 id=not.0h9v.s6.e5eb82e3720c from=translated src=- shape=07b4a857 vocab=6f434f7b
+-/
 theorem inr_notMem_rect {a : ZMod 3} {c' : κ} :
     (Sum.inr c' : PlaceVtx ι κ P) ∉ rect idx cl c A a := by
   simp [rect]
 
-/-- An edge contains exactly one token, that of its copy.-/
+/-- An edge contains exactly one token, that of its copy.
+@isnad1 id=iff.0h8v.s6.d8f84d8ffa3f from=translated src=- shape=bb762884 vocab=a88525de
+-/
 theorem mem_placeEdge_inr (c' : κ) :
     (Sum.inr c' : PlaceVtx ι κ P) ∈ placeEdge idx cl c A ↔ c' = c := by
   rw [placeEdge, Finset.mem_insert]
@@ -421,13 +491,17 @@ theorem mem_placeEdge_inr (c' : κ) :
       exact absurd ha inr_notMem_rect
   · rintro rfl; exact Or.inl rfl
 
-/-- The tokens of an edge: exactly the token of its copy.-/
+/-- The tokens of an edge: exactly the token of its copy.
+@isnad1 id=eq.0h7v.s6.059e4de82659 from=translated src=- shape=2296a8ac vocab=06f62f8e
+-/
 theorem placeEdge_toRight : (placeEdge idx cl c A).toRight = {c} := by
   ext c'
   rw [Finset.mem_toRight, mem_placeEdge_inr, Finset.mem_singleton]
 
 /-- **Occupying a slot.**  The placement `A` of `c` occupies the slot of the cell pair `(i, j)` in
-the cluster pair `(cl c p, cl c q)` whenever `i ∈ A p` and `j ∈ A q`.-/
+the cluster pair `(cl c p, cl c q)` whenever `i ∈ A p` and `j ∈ A q`.
+@isnad1 id=mem.5h11v.s7.630bc47cf744 from=translated src=- shape=0f00d066 vocab=825f2474
+-/
 theorem mem_placeEdge_orient (hidx : Function.Injective idx) (hcl : Function.Injective (cl c))
     {p q : ZMod 3} (hpq : p ≠ q) {i j : Fin P} (hi : i ∈ A p) (hj : j ∈ A q) :
     (Sum.inl (orient idx (cl c p) (cl c q) i j) : PlaceVtx ι κ P) ∈ placeEdge idx cl c A := by
@@ -440,7 +514,9 @@ theorem mem_placeEdge_orient (hidx : Function.Injective idx) (hcl : Function.Inj
 
 /-- **The slots of an edge.**  The placement `A` of `c` occupies the slot `(S, T, i, j)` exactly
 when `S` and `T` are two clusters of `c`, in the orientation prescribed by `idx`, and `i`, `j` are
-cells of the corresponding two sets of `A`.-/
+cells of the corresponding two sets of `A`.
+@isnad1 id=iff.2h11v.s7.cd04544df832 from=translated src=- shape=092a9510 vocab=774ed265
+-/
 theorem mem_placeEdge_inl (hidx : Function.Injective idx) (hcl : Function.Injective (cl c))
     (S T : ι) (i j : Fin P) :
     (Sum.inl (S, T, i, j) : PlaceVtx ι κ P) ∈ placeEdge idx cl c A ↔
@@ -472,7 +548,9 @@ theorem mem_placeEdge_inl (hidx : Function.Injective idx) (hcl : Function.Inject
     have := mem_placeEdge_orient (A := A) hidx hcl hpq hi hj
     rwa [orient, ite_eq_left hlt] at this
 
-/-- **A cell pair of an edge.**-/
+/-- **A cell pair of an edge.**
+@isnad1 id=iff.3h11v.s7.d908b72e749f from=translated src=- shape=a67dd2c8 vocab=825f2474
+-/
 theorem mem_placeEdge_iff (hidx : Function.Injective idx) (hcl : Function.Injective (cl c))
     {p q : ZMod 3} (hpq : p ≠ q) (i j : Fin P) :
     (Sum.inl (orient idx (cl c p) (cl c q) i j) : PlaceVtx ι κ P) ∈ placeEdge idx cl c A ↔
@@ -496,12 +574,18 @@ theorem mem_placeEdge_iff (hidx : Function.Injective idx) (hcl : Function.Inject
   · rintro ⟨hi, hj⟩
     exact mem_placeEdge_orient hidx hcl hpq hi hj
 
+/--
+@isnad1 id=eq.0h8v.s7.07247b20f816 from=translated src=- shape=f3fee172 vocab=e2b5205e
+-/
 theorem card_rect (a : ZMod 3) : #(rect idx cl c A a) = #(A a) * #(A (a + 1)) := by
   have hinj : Function.Injective (fun p : Fin P × Fin P =>
       (Sum.inl (orient idx (cl c a) (cl c (a + 1)) p.1 p.2) : PlaceVtx ι κ P)) :=
     fun p p' h => orient_inj (idx := idx) _ _ (Sum.inl_injective h)
   rw [rect, Finset.card_image_of_injective _ hinj, Finset.card_product]
 
+/--
+@isnad1 id=disjoint.2h9v.s6.297e015e394e from=translated src=- shape=c20b5101 vocab=e9fa457c
+-/
 theorem rect_disjoint (hcl : Function.Injective (cl c)) {a b : ZMod 3} (hab : a ≠ b) :
     Disjoint (rect idx cl c A a) (rect idx cl c A b) := by
   rw [Finset.disjoint_left]
@@ -525,7 +609,9 @@ theorem rect_disjoint (hcl : Function.Injective (cl c)) {a b : ZMod 3} (hab : a 
   · exact Or.inl ⟨hcl h1, hcl h2⟩
   · exact Or.inr ⟨hcl h1, hcl h2⟩
 
-/-- **The size of an edge**: the token plus the three rectangles.-/
+/-- **The size of an edge**: the token plus the three rectangles.
+@isnad1 id=eq.1h7v.s7.55cd765119ba from=translated src=- shape=9ca65a27 vocab=1c88f063
+-/
 theorem placeEdge_card (hcl : Function.Injective (cl c)) :
     #(placeEdge idx cl c A) = 1 + ∑ a : ZMod 3, #(A a) * #(A (a + 1)) := by
   rw [placeEdge, Finset.card_insert_of_notMem (by
@@ -536,7 +622,9 @@ theorem placeEdge_card (hcl : Function.Injective (cl c)) :
   simp only [card_rect]
   omega
 
-/-- **A placement is recoverable from its edge.**-/
+/-- **A placement is recoverable from its edge.**
+@isnad1 id=and.6h9v.s7.d531a6d31c34 from=translated src=- shape=2164c4fc vocab=11907f03
+-/
 theorem placeEdge_inj (hidx : Function.Injective idx) (hcl : Function.Injective (cl c))
     {c' : κ} {A' : ZMod 3 → Finset (Fin P)} (hcl' : Function.Injective (cl c'))
     (hA : ∀ a, (A a).Nonempty) (hA' : ∀ a, (A' a).Nonempty)
@@ -595,7 +683,9 @@ noncomputable def placeWt (P : ℕ) (sz : κ → ZMod 3 → ℕ) : Finset (Place
   fun U => ∑ c : κ, if (Sum.inr c : PlaceVtx ι κ P) ∈ U then ((placeCard P sz c : ℝ))⁻¹ else 0
 
 omit [Fintype ι] in
-/-- The edges of the placement hypergraph are the placements.-/
+/-- The edges of the placement hypergraph are the placements.
+@isnad1 id=ex.1h7v.s7.8f25259655d7 from=translated src=- shape=95f2022d vocab=4aaeaccb
+-/
 theorem mem_placeFam {U : Finset (PlaceVtx ι κ P)} (hU : U ∈ placeFam P idx cl sz) :
     ∃ (c : κ) (A : ZMod 3 → Finset (Fin P)), A ∈ BoxCount.plc P (sz c) ∧
       U = placeEdge idx cl c A := by
@@ -610,10 +700,16 @@ def boxDemandC (cl : κ → ZMod 3 → ι) (sz : κ → ZMod 3 → ℕ) (c : κ)
   ∑ a : ZMod 3, ∑ b : ZMod 3, if cl c a = S ∧ cl c b = T then (sz c a : ℝ) * (sz c b : ℝ) else 0
 
 omit [Fintype ι] [DecidableEq κ] in
+/--
+@isnad1 id=eq.0h6v.s6.f02b8f51575e from=translated src=- shape=ddc9c5ad vocab=2ba55d01
+-/
 theorem boxDemand_eq_sum (S T : ι) :
     boxDemand cl sz S T = ∑ c : κ, boxDemandC cl sz c S T := rfl
 
 omit [Fintype ι] [Fintype κ] [DecidableEq κ] in
+/--
+@isnad1 id=le.0h7v.s5.d6e1f91e5cb1 from=translated src=- shape=5fd3c130 vocab=9e125749
+-/
 theorem boxDemandC_nonneg (c : κ) (S T : ι) : 0 ≤ boxDemandC cl sz c S T := by
   refine Finset.sum_nonneg fun a _ => Finset.sum_nonneg fun b _ => ?_
   split
@@ -621,6 +717,9 @@ theorem boxDemandC_nonneg (c : κ) (S T : ι) : 0 ≤ boxDemandC cl sz c S T := 
   · exact le_rfl
 
 omit [Fintype ι] [Fintype κ] [DecidableEq κ] in
+/--
+@isnad1 id=le.2h9v.s6.9fe56ad75efd from=translated src=- shape=4688ea5f vocab=7f06fe92
+-/
 theorem sz_mul_le_boxDemandC {c : κ} {p q : ZMod 3} {S T : ι} (hp : cl c p = S) (hq : cl c q = T) :
     (sz c p : ℝ) * (sz c q : ℝ) ≤ boxDemandC cl sz c S T := by
   have hterm : ∀ a : ZMod 3, 0 ≤ ∑ b : ZMod 3,
@@ -660,6 +759,9 @@ variable (hidx : Function.Injective idx) (hcl : ∀ c, Function.Injective (cl c)
 
 include hsz1 in
 omit [Fintype κ] [DecidableEq κ] in
+/--
+@isnad1 id=nonempty.2h6v.s6.e967b55a6003 from=translated src=- shape=1ebbda26 vocab=38f1c386
+-/
 theorem plc_nonempty {c : κ} {A : ZMod 3 → Finset (Fin P)} (hA : A ∈ BoxCount.plc P (sz c))
     (a : ZMod 3) : (A a).Nonempty := by
   rw [← Finset.card_pos, BoxCount.mem_plc.mp hA a]
@@ -667,7 +769,9 @@ theorem plc_nonempty {c : κ} {A : ZMod 3 → Finset (Fin P)} (hA : A ∈ BoxCou
 
 include hidx hcl hsz1 in
 omit [Fintype ι] in
-/-- A sum over the placement hypergraph is a sum over copies and placements.-/
+/-- A sum over the placement hypergraph is a sum over copies and placements.
+@isnad1 id=eq.3h7v.s7.435d1d31e771 from=translated src=- shape=d2f5c29c vocab=6eebece7
+-/
 theorem sum_placeFam (f : Finset (PlaceVtx ι κ P) → ℝ) :
     ∑ U ∈ placeFam P idx cl sz, f U
       = ∑ c : κ, ∑ A ∈ BoxCount.plc P (sz c), f (placeEdge idx cl c A) := by
@@ -691,7 +795,9 @@ theorem sum_placeFam (f : Finset (PlaceVtx ι κ P) → ℝ) :
 
 include hidx hcl hsz1 in
 omit [Fintype ι] in
-/-- A filtered sum over the placement hypergraph.-/
+/-- A filtered sum over the placement hypergraph.
+@isnad1 id=eq.3h8v.s7.6be35cbb36e0 from=translated src=- shape=3fd0c7ea vocab=5107f353
+-/
 theorem sum_placeFam_filter (p : Finset (PlaceVtx ι κ P) → Prop) [DecidablePred p]
     (f : Finset (PlaceVtx ι κ P) → ℝ) :
     ∑ U ∈ (placeFam P idx cl sz).filter p, f U
@@ -702,7 +808,9 @@ theorem sum_placeFam_filter (p : Finset (PlaceVtx ι κ P) → Prop) [DecidableP
   exact Finset.sum_congr rfl fun c _ => (Finset.sum_filter _ _).symm
 
 omit [Fintype ι] in
-/-- The weight of a placement of `c` is the reciprocal of the number of placements of `c`.-/
+/-- The weight of a placement of `c` is the reciprocal of the number of placements of `c`.
+@isnad1 id=eq.0h8v.s6.b5c8faab2133 from=translated src=- shape=f1574300 vocab=148a3aab
+-/
 theorem placeWt_edge (c : κ) (A : ZMod 3 → Finset (Fin P)) :
     placeWt P sz (placeEdge idx cl c A) = ((placeCard P sz c : ℝ))⁻¹ := by
   classical
@@ -711,6 +819,9 @@ theorem placeWt_edge (c : κ) (A : ZMod 3 → Finset (Fin P)) :
   simp
 
 omit [Fintype ι] in
+/--
+@isnad1 id=le.0h5v.s5.a7afd08282dc from=translated src=- shape=7f2ba70c vocab=be271b58
+-/
 theorem placeWt_nonneg (U : Finset (PlaceVtx ι κ P)) : 0 ≤ placeWt P sz U := by
   refine Finset.sum_nonneg fun c _ => ?_
   split
@@ -719,12 +830,17 @@ theorem placeWt_nonneg (U : Finset (PlaceVtx ι κ P)) : 0 ≤ placeWt P sz U :=
 
 include hszP in
 omit [Fintype κ] [DecidableEq κ] in
+/--
+@isnad1 id=lt.1h4v.s5.8aba239b283a from=translated src=- shape=f230eff6 vocab=85b7c7c4
+-/
 theorem placeCard_pos (c : κ) : 0 < placeCard P sz c :=
   BoxCount.card_plc_pos (fun a => hszP c a)
 
 include hidx hcl hsz1 hszP in
 omit [Fintype ι] in
-/-- **The total weight is the number of copies.**-/
+/-- **The total weight is the number of copies.**
+@isnad1 id=eq.4h6v.s7.08eb43dfdccf from=translated src=- shape=1c0090e2 vocab=d9d2d456
+-/
 theorem sum_placeWt :
     ∑ U ∈ placeFam P idx cl sz, placeWt P sz U = (Fintype.card κ : ℝ) := by
   classical
@@ -744,7 +860,9 @@ theorem sum_placeWt :
 
 include hcl in
 omit [Fintype ι] in
-/-- Every edge is nonempty and has at most `1 + 3s₀²` vertices.-/
+/-- Every edge is nonempty and has at most `1 + 3s₀²` vertices.
+@isnad1 id=and.3h8v.s7.6b5ac815debe from=translated src=- shape=f2659331 vocab=a797a84c
+-/
 theorem placeFam_edge_size {s₀ : ℕ} (hs : ∀ c a, sz c a ≤ s₀) (U : Finset (PlaceVtx ι κ P))
     (hU : U ∈ placeFam P idx cl sz) : U.Nonempty ∧ #U ≤ 1 + 3 * s₀ ^ 2 := by
   obtain ⟨c, A, hA, rfl⟩ := mem_placeFam hU
@@ -780,6 +898,9 @@ section PerCopy
 variable {c : κ}
 
 omit [Fintype κ] [DecidableEq κ] in
+/--
+@isnad1 id=eq.0h5v.s6.a94c8b7bff55 from=translated src=- shape=ede6adcc vocab=7d6ef2f1
+-/
 theorem sum_inv_const (F : Finset (ZMod 3 → Finset (Fin P))) :
     ∑ _A ∈ F, ((placeCard P sz c : ℝ))⁻¹ = (#F : ℝ) * ((placeCard P sz c : ℝ))⁻¹ := by
   rw [Finset.sum_const, nsmul_eq_mul]
@@ -787,7 +908,9 @@ theorem sum_inv_const (F : Finset (ZMod 3 → Finset (Fin P))) :
 omit [Fintype ι] [Fintype κ] in
 /-- **The placements of `c` occupying a prescribed slot**: either there are none, or the slot is
 the cell pair `(i, j)` of two clusters `cl c p`, `cl c q` of `c`, and then they are at most a
-`sz(c,p)·sz(c,q)/P²` fraction of all placements.-/
+`sz(c,p)·sz(c,q)/P²` fraction of all placements.
+@isnad1 id=or.6h12v.s8.b0b94ca8ed28 from=translated src=- shape=1ce87edb vocab=ce4676fc
+-/
 theorem slot_count_core (hidx : Function.Injective idx) (hcl : Function.Injective (cl c))
     (hszP : ∀ a, sz c a ≤ P) (hP : 0 < P) (S T : ι) (i j : Fin P)
     {F : Finset (ZMod 3 → Finset (Fin P))} (hFsub : F ⊆ BoxCount.plc P (sz c))
@@ -824,7 +947,9 @@ theorem slot_count_core (hidx : Function.Injective idx) (hcl : Function.Injectiv
     exact hex ⟨p, q, hpq, h1, h2, hlt⟩
 
 omit [Fintype ι] [Fintype κ] in
-/-- **The placements of `c` through a slot of `(S,T)` are a `demand/P²` fraction.**-/
+/-- **The placements of `c` through a slot of `(S,T)` are a `demand/P²` fraction.**
+@isnad1 id=le.6h12v.s8.81196c153969 from=translated src=- shape=776df53a vocab=8f07a5fe
+-/
 theorem slot_count_le_demand (hidx : Function.Injective idx) (hcl : Function.Injective (cl c))
     (hszP : ∀ a, sz c a ≤ P) (hP : 0 < P) (S T : ι) (i j : Fin P)
     {F : Finset (ZMod 3 → Finset (Fin P))} (hFsub : F ⊆ BoxCount.plc P (sz c))
@@ -840,7 +965,9 @@ theorem slot_count_le_demand (hidx : Function.Injective idx) (hcl : Function.Inj
     exact sz_mul_le_boxDemandC hp hq
 
 omit [Fintype ι] [Fintype κ] in
-/-- The same count is at most `s₀²/P²`.-/
+/-- The same count is at most `s₀²/P²`.
+@isnad1 id=le.7h13v.s8.a70e3404b5f9 from=translated src=- shape=6774957c vocab=de9bfead
+-/
 theorem slot_count_le_sz (hidx : Function.Injective idx) (hcl : Function.Injective (cl c))
     (hszP : ∀ a, sz c a ≤ P) (hP : 0 < P) {s₀ : ℕ} (hs : ∀ a, sz c a ≤ s₀) (S T : ι)
     (i j : Fin P) {F : Finset (ZMod 3 → Finset (Fin P))} (hFsub : F ⊆ BoxCount.plc P (sz c))
@@ -861,7 +988,9 @@ theorem slot_count_le_sz (hidx : Function.Injective idx) (hcl : Function.Injecti
 
 omit [Fintype ι] [Fintype κ] in
 /-- **Two slots pin a copy down in a third coordinate.**  This is the estimate that makes the
-codegrees of the placement hypergraph small, and it is where the small-box restriction enters.-/
+codegrees of the placement hypergraph small, and it is where the small-box restriction enters.
+@isnad1 id=le.9h17v.s9.fbe95dde176c from=translated src=- shape=cb356e16 vocab=3ba230ca
+-/
 theorem two_slot_count_le (hidx : Function.Injective idx) (hcl : Function.Injective (cl c))
     (hszP : ∀ a, sz c a ≤ P) (hP : 2 ≤ P) {s₀ : ℕ} (hs : ∀ a, sz c a ≤ s₀) {S T S' T' : ι}
     {i j i' j' : Fin P} (hne : (S, T, i, j) ≠ (S', T', i', j'))
@@ -1044,7 +1173,9 @@ variable (hidx : Function.Injective idx) (hcl : ∀ c, Function.Injective (cl c)
 
 include hidx hcl hsz1 hszP in
 omit [Fintype ι] in
-/-- The load of a token is exactly `1`.-/
+/-- The load of a token is exactly `1`.
+@isnad1 id=eq.4h7v.s7.dee2b80e0bc2 from=translated src=- shape=a21ad80e vocab=8c69b329
+-/
 theorem wLoad_inr (c : κ) :
     Slack.wLoad (placeFam P idx cl sz) (placeWt P sz) (Sum.inr c) = 1 := by
   classical
@@ -1080,7 +1211,9 @@ theorem wLoad_inr (c : κ) :
 
 include hidx hcl hsz1 in
 omit [Fintype ι] in
-/-- Only the slots oriented by `idx` are occupied.-/
+/-- Only the slots oriented by `idx` are occupied.
+@isnad1 id=eq.4h10v.s7.4857b8616f4f from=translated src=- shape=0ceda2d8 vocab=e7702b0c
+-/
 theorem wLoad_inl_of_not_lt {S T : ι} (h : ¬ idx S < idx T) (i j : Fin P) :
     Slack.wLoad (placeFam P idx cl sz) (placeWt P sz) (Sum.inl (S, T, i, j)) = 0 := by
   classical
@@ -1094,7 +1227,9 @@ theorem wLoad_inl_of_not_lt {S T : ι} (h : ¬ idx S < idx T) (i j : Fin P) :
 
 include hidx hcl hsz1 hszP in
 omit [Fintype ι] in
-/-- **The load of a slot is at most the normalised demand of its cluster pair.**-/
+/-- **The load of a slot is at most the normalised demand of its cluster pair.**
+@isnad1 id=le.5h10v.s8.9b4c19fd739e from=translated src=- shape=3910b13b vocab=632ec081
+-/
 theorem wLoad_inl_le (hP : 0 < P) (S T : ι) (i j : Fin P) :
     Slack.wLoad (placeFam P idx cl sz) (placeWt P sz) (Sum.inl (S, T, i, j))
       ≤ boxDemand cl sz S T / (P : ℝ) ^ 2 := by
@@ -1113,7 +1248,9 @@ theorem wLoad_inl_le (hP : 0 < P) (S T : ι) (i j : Fin P) :
     (Finset.filter_subset _ _) (fun A hA => (Finset.mem_filter.mp hA).2)
 
 omit [Fintype ι] in
-/-- Two tokens are never together in an edge.-/
+/-- Two tokens are never together in an edge.
+@isnad1 id=eq.1h8v.s8.f67c59b66994 from=translated src=- shape=1ceea71b vocab=426133e6
+-/
 theorem codeg_inr_inr {c c' : κ} (h : c ≠ c') :
     ∑ U ∈ ((placeFam P idx cl sz).filter (fun U => (Sum.inr c : PlaceVtx ι κ P) ∈ U)).filter
         (fun U => (Sum.inr c' : PlaceVtx ι κ P) ∈ U),
@@ -1128,7 +1265,9 @@ theorem codeg_inr_inr {c c' : κ} (h : c ≠ c') :
 
 include hidx hcl hsz1 hszP in
 omit [Fintype ι] in
-/-- **The codegree of a slot and a token** is at most `9 s₀²/P²`.-/
+/-- **The codegree of a slot and a token** is at most `9 s₀²/P²`.
+@isnad1 id=le.6h12v.s9.cf392cd19fe7 from=translated src=- shape=6e05209e vocab=98b1d3f2
+-/
 theorem codeg_inl_inr_le (hP : 0 < P) {s₀ : ℕ} (hs : ∀ c a, sz c a ≤ s₀) (c : κ) (S T : ι)
     (i j : Fin P) :
     ∑ U ∈ ((placeFam P idx cl sz).filter
@@ -1170,7 +1309,9 @@ include hidx hcl hsz1 hszP in
 omit [Fintype ι] in
 /-- **The codegree of two slots** is `O(s₀/P)` times the normalised demand: two placements sharing
 two slots are pinned down in one further coordinate.  This is where the small-box restriction is
-used.-/
+used.
+@isnad1 id=le.7h15v.s9.0b80c04cdbdc from=translated src=- shape=2a3bcbad vocab=b3d3d68f
+-/
 theorem codeg_inl_inl_le (hP : 2 ≤ P) {s₀ : ℕ} (hs : ∀ c a, sz c a ≤ s₀) {S T S' T' : ι}
     {i j i' j' : Fin P} (hne : (S, T, i, j) ≠ (S', T', i', j')) :
     ∑ U ∈ ((placeFam P idx cl sz).filter
@@ -1198,7 +1339,9 @@ theorem codeg_inl_inl_le (hP : 2 ≤ P) {s₀ : ℕ} (hs : ∀ c a, sz c a ≤ s
 
 include hidx hcl hsz1 hszP in
 omit [Fintype ι] in
-/-- **All weighted codegrees are `O(s₀/P)`.**-/
+/-- **All weighted codegrees are `O(s₀/P)`.**
+@isnad1 id=le.9h9v.s9.f0c980ae23ec from=translated src=- shape=99f6b2f2 vocab=a6581ccc
+-/
 theorem codeg_le (hP : 2 ≤ P) {s₀ : ℕ} (hs : ∀ c a, sz c a ≤ s₀) (hsP : s₀ ≤ P)
     (hdem : ∀ S T : ι, S ≠ T → boxDemand cl sz S T ≤ (P : ℝ) ^ 2)
     (x z : PlaceVtx ι κ P) (hxz : x ≠ z) :
@@ -1288,7 +1431,9 @@ variable {ι κ : Type} [Fintype ι] [DecidableEq ι] [Fintype κ] [DecidableEq 
 
 omit [DecidableEq κ] in
 /-- **There are not too many copies.**  Every copy demands at least one cell pair in the cluster
-pair of its first two clusters, so the number of copies is at most the total capacity.-/
+pair of its first two clusters, so the number of copies is at most the total capacity.
+@isnad1 id=le.4h6v.s7.112ad35945c0 from=translated src=- shape=1ceea7d5 vocab=62e44a22
+-/
 theorem card_copies_le {ε : ℝ} (hε0 : 0 ≤ ε) (hcl : ∀ c, Function.Injective (cl c))
     (hsz1 : ∀ c a, 1 ≤ sz c a)
     (hdem : ∀ S T : ι, S ≠ T → boxDemand cl sz S T ≤ (1 - ε) * (P : ℝ) ^ 2) :
@@ -1358,6 +1503,9 @@ def defaultAlloc (P : ℕ) (sz : κ → ZMod 3 → ℕ) (hszP : ∀ c a, sz c a 
     (Finset.range (sz c a)).attachFin (fun _ hm => lt_of_lt_of_le (mem_range.mp hm) (hszP c a))
 
 omit [Fintype κ] [DecidableEq κ] in
+/--
+@isnad1 id=mem.1h4v.s6.70e359a79726 from=translated src=- shape=78fa0043 vocab=4be16643
+-/
 theorem defaultAlloc_mem (hszP : ∀ c a, sz c a ≤ P) (c : κ) :
     defaultAlloc P sz hszP c ∈ BoxCount.plc P (sz c) := by
   rw [BoxCount.mem_plc]
@@ -1429,7 +1577,9 @@ private theorem bad_area_le {κ : Type} [Fintype κ] [DecidableEq κ]
         linarith only [hkey]
     _ = ε * (n : ℝ) ^ 2 * (P : ℝ) ^ 2 := by ring
 
-/-- **The small-box allocation residual, for a fixed accuracy and a fixed box bound.**-/
+/-- **The small-box allocation residual, for a fixed accuracy and a fixed box bound.**
+@isnad1 id=ex.1h2v.s9.4eca562ccd95 from=translated src=- shape=a65a38b8 vocab=04c7cd69
+-/
 theorem boxAllocationResidual_main (ε : ℝ) (hε : 0 < ε) (s₀ : ℕ) :
     ∃ θ : ℝ, 0 < θ ∧ θ ≤ 1 ∧
       ∀ P : ℕ, 0 < P → (s₀ : ℝ) ≤ θ * (P : ℝ) →
@@ -1645,7 +1795,9 @@ theorem boxAllocationResidual_main (ε : ℝ) (hε : 0 < ε) (s₀ : ℕ) :
         exact bad_area_le sz good s₀ P n ε β C θ hs hs0R hθ0 (by linarith) hθC hsP hn1 hC hε
           hβdef hbad
 
-/-- **The small-box allocation residual.**-/
+/-- **The small-box allocation residual.**
+@isnad1 id=boxalloc.0h0v.s0.971a404ad24c from=translated src=- shape=45709ebd vocab=971a404a
+-/
 theorem boxAllocationResidual_holds : BoxAllocationResidual :=
   fun ε hε s₀ => boxAllocationResidual_main ε hε s₀
 
@@ -1659,15 +1811,21 @@ end
 
 namespace Nibble.AX1
 
-/-- The coupled block-cover residual follows from the closed box-allocation theorem.-/
+/-- The coupled block-cover residual follows from the closed box-allocation theorem.
+@isnad1 id=blockcov.0h0v.s0.35a21dfa2010 from=translated src=- shape=45709ebd vocab=35a21dfa
+-/
 theorem blockCoverResidualCoupled_holds : BlockCoverResidualCoupled :=
   blockCoverResidualCoupled_of_boxAllocation boxAllocationResidual_holds
 
-/-- The cover-side AX1 statement holds for every graph.-/
+/-- The cover-side AX1 statement holds for every graph.
+@isnad1 id=ax1state.0h0v.s0.14850b47615c from=translated src=- shape=45709ebd vocab=14850b47
+-/
 theorem ax1Statement_holds : AX1Statement :=
   ax1_of_boxAllocation boxAllocationResidual_holds
 
-/-- The fractional–integral triangle-packing gap is uniformly `o(n²)`.-/
+/-- The fractional–integral triangle-packing gap is uniformly `o(n²)`.
+@isnad1 id=nibblega.0h0v.s0.62827c3ab655 from=translated src=- shape=45709ebd vocab=62827c3a
+-/
 theorem nibbleGapHyp_holds : NibbleGapHyp :=
   nibbleGapHyp_of_ax1 ax1Statement_holds
 
@@ -1706,7 +1864,9 @@ statements.
 
 namespace LeanPool.AsymptoticTrianglePacking
 
-/-- The finite nibble-rounding theorem in the public interface.-/
+/-- The finite nibble-rounding theorem in the public interface.
+@isnad1 id=nearregu.0h0v.s0.43378a3a7a64 from=translated src=- shape=45709ebd vocab=43378a3a
+-/
 theorem nearRegularNibbleTheorem : NearRegularNibbleTheorem :=
   Internal.nibbleTheoremMostCeil_holds
 
@@ -1725,7 +1885,9 @@ Public entry point for the finite, ceiling-carrying near-regular hypergraph nibb
 namespace LeanPool.AsymptoticTrianglePacking
 
 /-- The fractional and integral triangle-packing optima differ by `o(n²)`, uniformly over finite
-graphs.-/
+graphs.
+@isnad1 id=ex.1h1v.s6.b0e8fa66ca81 from=translated src=- shape=6837d78f vocab=6af65930
+-/
 theorem trianglePackingGap (ε : ℝ) (hε : 0 < ε) :
     ∃ n₀ : ℕ, ∀ (V : Type) [Fintype V] [DecidableEq V]
       (G : SimpleGraph V) [DecidableRel G.Adj],
@@ -1735,7 +1897,9 @@ theorem trianglePackingGap (ε : ℝ) (hε : 0 < ε) :
   Nibble.AX1.nibbleGapHyp_holds ε hε
 
 /-- The fractional triangle-cover optimum exceeds the integral triangle-packing optimum by at
-most `o(n²)`, uniformly over finite graphs.-/
+most `o(n²)`, uniformly over finite graphs.
+@isnad1 id=ex.1h1v.s6.fca16345075a from=translated src=- shape=6837d78f vocab=754457a4
+-/
 theorem triangleCoverPackingGap (ε : ℝ) (hε : 0 < ε) :
     ∃ n₀ : ℕ, ∀ (V : Type) [Fintype V] [DecidableEq V]
       (G : SimpleGraph V) [DecidableRel G.Adj],

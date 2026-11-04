@@ -100,7 +100,9 @@ A *design* consists of `k` triples `(A i, B i, C i)` of pairwise disjoint vertex
 
 Then `G` has a near-regular family at `(ε, μ, η, d₀)`.  The members are the pruned tripartite
 graphs `Nibble.AX1.prune (tripleGraph G (A i) (B i) (C i)) Badᵢ` of
-`Nibble.AX1.uniform_triple_member`.-/
+`Nibble.AX1.uniform_triple_member`.
+@isnad1 id=hasnearr.27h15v.s10.86b6848de341 from=translated src=- shape=678bb6fa vocab=aa516881
+-/
 theorem hasNearRegularFamily_of_subTripleDesign
     (G : SimpleGraph V) [DecidableRel G.Adj] {ε μ η d₀ ε₂ μ₂ t : ℝ}
     (k : ℕ) (A B C : ℕ → Finset V) (d Elo : ℕ → ℝ)
@@ -211,7 +213,9 @@ theorem hasNearRegularFamily_of_subTripleDesign
     have := Finset.sum_le_sum hterm
     linarith only [this]
 
-/-- **The bridge, in packaged form.**-/
+/-- **The bridge, in packaged form.**
+@isnad1 id=hasnearr.1h15v.s6.c60cfb2664ee from=translated src=- shape=d81cd364 vocab=a6d16eb2
+-/
 theorem hasNearRegularFamily_of_isSubTripleDesign (G : SimpleGraph V) [DecidableRel G.Adj]
     {ε μ η d₀ ε₂ μ₂ t : ℝ} {k : ℕ} {A B C : ℕ → Finset V} {d Elo : ℕ → ℝ}
     (h : IsSubTripleDesign G ε μ η d₀ ε₂ μ₂ t k A B C d Elo) :

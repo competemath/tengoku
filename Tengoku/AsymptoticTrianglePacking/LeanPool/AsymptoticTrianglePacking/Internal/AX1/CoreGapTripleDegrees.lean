@@ -51,7 +51,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 
 /-! ### Counting edges fibrewise -/
 
-/-- The number of pairs of a product satisfying a predicate, summed fibrewise.-/
+/-- The number of pairs of a product satisfying a predicate, summed fibrewise.
+@isnad1 id=eq.0h5v.s6.2b5d5d9fc9c2 from=translated src=- shape=ee4b6cde vocab=8a653c31
+-/
 theorem card_filter_product {α β : Type*} (s : Finset α) (t : Finset β)
     (P : α × β → Prop) [DecidablePred P] :
     #{e ∈ s ×ˢ t | P e} = ∑ x ∈ s, #{y ∈ t | P (x, y)} := by
@@ -76,7 +78,9 @@ theorem card_filter_product {α β : Type*} (s : Finset α) (t : Finset β)
 
 omit [Fintype V] [DecidableEq V] in
 /-- The number of edges between two finsets is the sum over the first of the degrees into the
-second.-/
+second.
+@isnad1 id=eq.0h4v.s5.4f9c7ecb7f23 from=translated src=- shape=51a77cbb vocab=d1a03766
+-/
 theorem card_interedges_eq_sum (G : SimpleGraph V) [DecidableRel G.Adj] (s t : Finset V) :
     #(G.interedges s t) = ∑ x ∈ s, #{z ∈ t | G.Adj x z} := by
   classical
@@ -84,7 +88,9 @@ theorem card_interedges_eq_sum (G : SimpleGraph V) [DecidableRel G.Adj] (s t : F
     card_filter_product s t (fun e => G.Adj e.1 e.2)
 
 omit [Fintype V] [DecidableEq V] in
-/-- The edge density as a real number.-/
+/-- The edge density as a real number.
+@isnad1 id=eq.0h4v.s6.0042b95988c6 from=translated src=- shape=a2eadaa5 vocab=621668f6
+-/
 theorem edgeDensity_real (G : SimpleGraph V) [DecidableRel G.Adj] (s t : Finset V) :
     (G.edgeDensity s t : ℝ) = (#(G.interedges s t) : ℝ) / ((#s : ℝ) * (#t : ℝ)) := by
   rw [SimpleGraph.edgeDensity_def]
@@ -96,7 +102,9 @@ theorem edgeDensity_real (G : SimpleGraph V) [DecidableRel G.Adj] (s t : Finset 
 omit [Fintype V] [DecidableEq V] in
 /-- **Few vertices have small degree into a large subset.**  If `(B, C)` is `ε`-uniform and
 `C' ⊆ C` has `|C'| ≥ ε|C|`, then at most `ε|B|` vertices `y ∈ B` have fewer than `θ|C'|`
-neighbours in `C'`, for any `θ ≤ d(B,C) − ε`.-/
+neighbours in `C'`, for any `θ ≤ d(B,C) − ε`.
+@isnad1 id=le.5h7v.s7.48fa0c149e66 from=translated src=- shape=058d8d59 vocab=27ffaa85
+-/
 theorem card_filter_lt_le (G : SimpleGraph V) [DecidableRel G.Adj] {B C C' : Finset V} {ε θ : ℝ}
     (hε : 0 < ε) (hu : G.IsUniform ε B C) (hC'sub : C' ⊆ C) (hC'card : (#C : ℝ) * ε ≤ (#C' : ℝ))
     (hθ : θ + ε ≤ (G.edgeDensity B C : ℝ)) :
@@ -146,7 +154,9 @@ theorem card_filter_lt_le (G : SimpleGraph V) [DecidableRel G.Adj] {B C C' : Fin
 
 omit [Fintype V] [DecidableEq V] in
 /-- **Few vertices have large degree into a large subset.**  The mirror image of
-`Nibble.AX1.card_filter_lt_le`.-/
+`Nibble.AX1.card_filter_lt_le`.
+@isnad1 id=le.5h7v.s7.da84d8865894 from=translated src=- shape=f24135b6 vocab=27ffaa85
+-/
 theorem card_filter_gt_le (G : SimpleGraph V) [DecidableRel G.Adj] {B C C' : Finset V} {ε θ : ℝ}
     (hε : 0 < ε) (hu : G.IsUniform ε B C) (hC'sub : C' ⊆ C) (hC'card : (#C : ℝ) * ε ≤ (#C' : ℝ))
     (hθ : (G.edgeDensity B C : ℝ) + ε ≤ θ) :
@@ -197,6 +207,9 @@ def codegreeIn (G : SimpleGraph V) [DecidableRel G.Adj] (C : Finset V) (x y : V)
   #{z ∈ C | G.Adj x z ∧ G.Adj y z}
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=eq.0h5v.s5.3d9c2a1f1bcd from=translated src=- shape=cb5ffc4f vocab=36e69dce
+-/
 theorem codegreeIn_eq_card_filter (G : SimpleGraph V) [DecidableRel G.Adj] (C : Finset V)
     (x y : V) : codegreeIn G C x y = #{z ∈ {z ∈ C | G.Adj x z} | G.Adj y z} := by
   rw [codegreeIn, Finset.filter_filter]
@@ -214,7 +227,9 @@ scale `d(A,C)·d(B,C)·|C|`.
 The proof is the standard two-sided count: all but `2ε|A|` vertices `x ∈ A` have
 `|N(x) ∩ C| = (d(A,C) ± ε)|C|` (`Nibble.AX1.card_filter_lt_le` with `C' = C`), and for such an `x`
 the set `N(x) ∩ C` is large enough that uniformity of `(B, C)` applies to it, so all but `2ε|B|`
-vertices `y ∈ B` have `|N(y) ∩ N(x) ∩ C| = (d(B,C) ± 2ε)|N(x) ∩ C|`.-/
+vertices `y ∈ B` have `|N(y) ∩ N(x) ∩ C| = (d(B,C) ± 2ε)|N(x) ∩ C|`.
+@isnad1 id=le.6h6v.s9.40510439ae98 from=translated src=- shape=11f477dd vocab=b25aa689
+-/
 theorem uniform_triple_codegree (G : SimpleGraph V) [DecidableRel G.Adj] {A B C : Finset V} {ε : ℝ}
     (hε : 0 < ε) (hε1 : ε ≤ 1) (hAC : G.IsUniform ε A C) (hBC : G.IsUniform ε B C)
     (hdAC : 2 * ε ≤ (G.edgeDensity A C : ℝ)) (hdBC : 2 * ε ≤ (G.edgeDensity B C : ℝ)) :
@@ -350,7 +365,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 /-! ### The triangle degree of an edge is a codegree -/
 
 omit [Fintype V] in
-/-- Three distinct vertices form a set of size three.-/
+/-- Three distinct vertices form a set of size three.
+@isnad1 id=eq.3h4v.s5.7f2ade183867 from=translated src=- shape=b0e3f277 vocab=792c0608
+-/
 theorem card_triple (x y z : V) (h1 : x ≠ y) (h2 : x ≠ z) (h3 : y ≠ z) :
     #({x, y, z} : Finset V) = 3 := by
   have hx : x ∉ ({y, z} : Finset V) := by
@@ -359,7 +376,9 @@ theorem card_triple (x y z : V) (h1 : x ≠ y) (h2 : x ≠ z) (h3 : y ≠ z) :
     simp only [Finset.mem_singleton]; exact h3
   rw [Finset.card_insert_of_notMem hx, Finset.card_insert_of_notMem hy, Finset.card_singleton]
 
-/-- **The triangle degree of an edge is the number of common neighbours of its endpoints.**-/
+/-- **The triangle degree of an edge is the number of common neighbours of its endpoints.**
+@isnad1 id=eq.1h4v.s6.2432c29e8988 from=translated src=- shape=8d1f5a95 vocab=60cccd38
+-/
 theorem edgeTriangleDegree_pair (G : SimpleGraph V) [DecidableRel G.Adj] {x y : V}
     (hxy : G.Adj x y) :
     edgeTriangleDegree G {x, y} = #{z ∈ (univ : Finset V) | G.Adj x z ∧ G.Adj y z} := by
@@ -432,6 +451,9 @@ def crossAdj (U W X : Finset V) (x y : V) : Prop :=
     (x ∈ W ∧ y ∈ X) ∨ (x ∈ X ∧ y ∈ W)
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=crossadj.1h6v.s4.af6e0d4246a7 from=translated src=- shape=8c5531e6 vocab=bfb2f5f8
+-/
 theorem crossAdj_symm {U W X : Finset V} {x y : V} (h : crossAdj U W X x y) :
     crossAdj U W X y x := by
   unfold crossAdj at h ⊢; tauto
@@ -449,15 +471,23 @@ noncomputable instance instDecidableRelTripleGraph (G : SimpleGraph V) (U W X : 
     DecidableRel (tripleGraph G U W X).Adj := fun _ _ => Classical.dec _
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=le.0h5v.s4.03bd37161a82 from=translated src=- shape=84de0212 vocab=d7013027
+-/
 theorem tripleGraph_le (G : SimpleGraph V) (U W X : Finset V) : tripleGraph G U W X ≤ G :=
   fun _ _ h => h.1
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=iff.0h7v.s5.0c7a37b2b3e7 from=translated src=- shape=06c82f2e vocab=b344f95a
+-/
 theorem tripleGraph_adj (G : SimpleGraph V) (U W X : Finset V) (x y : V) :
     (tripleGraph G U W X).Adj x y ↔ G.Adj x y ∧ crossAdj U W X x y := Iff.rfl
 
 omit [Fintype V] [DecidableEq V] in
-/-- The tripartite graph does not depend on the order of the three parts.-/
+/-- The tripartite graph does not depend on the order of the three parts.
+@isnad1 id=eq.0h5v.s4.678d913d3747 from=translated src=- shape=5c615f49 vocab=43581d9d
+-/
 theorem tripleGraph_comm₁ (G : SimpleGraph V) (U W X : Finset V) :
     tripleGraph G U W X = tripleGraph G W U X := by
   ext x y
@@ -465,14 +495,18 @@ theorem tripleGraph_comm₁ (G : SimpleGraph V) (U W X : Finset V) :
   tauto
 
 omit [Fintype V] [DecidableEq V] in
-/-- The tripartite graph does not depend on the order of the three parts.-/
+/-- The tripartite graph does not depend on the order of the three parts.
+@isnad1 id=eq.0h5v.s4.3fcb5056b73e from=translated src=- shape=93831251 vocab=43581d9d
+-/
 theorem tripleGraph_comm₂ (G : SimpleGraph V) (U W X : Finset V) :
     tripleGraph G U W X = tripleGraph G U X W := by
   ext x y
   simp only [tripleGraph_adj, crossAdj]
   tauto
 
-/-- **The triangle degree of a `U`–`W` edge of the triple is the codegree into `X`.**-/
+/-- **The triangle degree of a `U`–`W` edge of the triple is the codegree into `X`.**
+@isnad1 id=eq.6h7v.s7.2e4575e06acc from=translated src=- shape=2384da26 vocab=ec69e8c3
+-/
 theorem edgeTriangleDegree_tripleGraph (G : SimpleGraph V) [DecidableRel G.Adj] {U W X : Finset V}
     (hUW : Disjoint U W) (hUX : Disjoint U X) (hWX : Disjoint W X) {x y : V} (hx : x ∈ U)
     (hy : y ∈ W) (hadj : (tripleGraph G U W X).Adj x y) :
@@ -521,7 +555,9 @@ theorem edgeTriangleDegree_tripleGraph (G : SimpleGraph V) [DecidableRel G.Adj] 
 
 /-- **Ingredient 1, in triangle-degree form.**  If the pairs `(U, X)` and `(W, X)` are `ε`-uniform
 of density at least `2ε`, then all but at most `4ε|U||W|` of the edges of `tripleGraph G U W X`
-joining `U` to `W` have triangle degree `(d(U,X) ± ε)(d(W,X) ± 2ε)|X|`.-/
+joining `U` to `W` have triangle degree `(d(U,X) ± ε)(d(W,X) ± 2ε)|X|`.
+@isnad1 id=ex.9h6v.s8.d0b54ebddfde from=translated src=- shape=d5b57cf3 vocab=ee9749c7
+-/
 theorem tripleGraph_near_regular_pair (G : SimpleGraph V) [DecidableRel G.Adj] {U W X : Finset V}
     (hUW : Disjoint U W) (hUX : Disjoint U X) (hWX : Disjoint W X) {ε : ℝ}
     (hε : 0 < ε) (hε1 : ε ≤ 1) (hUXu : G.IsUniform ε U X) (hWXu : G.IsUniform ε W X)
@@ -564,7 +600,9 @@ triangle degree in `[(1−μ)d, (1+μ)d]`.
 
 This is the near-regular member the Haxell–Rödl construction attaches to a cluster triple, before
 the exceptional edges are deleted; the equalisation hypotheses are what the sparsification of the
-three pairs to a common density is for.-/
+three pairs to a common density is for.
+@isnad1 id=ex.17h8v.s10.a2122a665440 from=translated src=- shape=95500ed4 vocab=061943d9
+-/
 theorem tripleGraph_near_regular (G : SimpleGraph V) [DecidableRel G.Adj] {U W X : Finset V}
     (hUW : Disjoint U W) (hUX : Disjoint U X) (hWX : Disjoint W X) {ε μ d : ℝ}
     (hε : 0 < ε) (hε1 : ε ≤ 1)

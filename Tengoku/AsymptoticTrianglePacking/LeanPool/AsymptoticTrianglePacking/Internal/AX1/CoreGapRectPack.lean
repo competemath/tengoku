@@ -43,13 +43,18 @@ def tripleRect (A B C : Finset V) : Finset (V × V) :=
   ((A ×ˢ B) ∪ (B ×ˢ A)) ∪ ((A ×ˢ C) ∪ (C ×ˢ A)) ∪ ((B ×ˢ C) ∪ (C ×ˢ B))
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h6v.s5.bdd758cc1211 from=translated src=- shape=a1229bbe vocab=1bd75f79
+-/
 theorem mem_tripleRect_iff {A B C : Finset V} {x y : V} :
     (x, y) ∈ tripleRect A B C ↔ crossAdj A B C x y := by
   simp only [tripleRect, Finset.mem_union, Finset.mem_product, crossAdj]
   tauto
 
 omit [Fintype V] in
-/-- **Disjoint rectangles give edge-disjoint tripartite graphs.**-/
+/-- **Disjoint rectangles give edge-disjoint tripartite graphs.**
+@isnad1 id=not.2h10v.s6.f71654c3ba8f from=translated src=- shape=b4ee3dd9 vocab=b83fd986
+-/
 theorem tripleGraph_edgeDisjoint_of_rect_disjoint (G : SimpleGraph V) {A B C A' B' C' : Finset V}
     (h : Disjoint (tripleRect A B C) (tripleRect A' B' C')) (x y : V)
     (hxy : (tripleGraph G A B C).Adj x y) : ¬ (tripleGraph G A' B' C').Adj x y := by
@@ -68,7 +73,9 @@ private theorem disjoint_product_left {S T S' T' : Finset V} (h : Disjoint S S')
   exact (Finset.disjoint_left.mp h h1.1) h2.1
 
 omit [Fintype V] in
-/-- The area of the rectangle of a sub-triple with pairwise disjoint parts.-/
+/-- The area of the rectangle of a sub-triple with pairwise disjoint parts.
+@isnad1 id=eq.3h4v.s6.20f596ed23e2 from=translated src=- shape=b1f2937d vocab=9d19e2ee
+-/
 theorem card_tripleRect {A B C : Finset V} (hAB : Disjoint A B) (hAC : Disjoint A C)
     (hBC : Disjoint B C) :
     #(tripleRect A B C) = 2 * (#A * #B + #A * #C + #B * #C) := by
@@ -106,7 +113,9 @@ theorem card_tripleRect {A B C : Finset V} (hAB : Disjoint A B) (hAC : Disjoint 
   simp only [Finset.card_product]
   ring
 
-/-- **The areas of pairwise disjoint rectangles add up to at most `|V|²`** (natural-number form).-/
+/-- **The areas of pairwise disjoint rectangles add up to at most `|V|²`** (natural-number form).
+@isnad1 id=le.4h5v.s8.7b826db6089f from=translated src=- shape=f2c8cf9a vocab=8bf898a4
+-/
 theorem sum_area_le_of_rect_disjoint_nat {k : ℕ} (A B C : ℕ → Finset V)
     (hAB : ∀ i < k, Disjoint (A i) (B i)) (hAC : ∀ i < k, Disjoint (A i) (C i))
     (hBC : ∀ i < k, Disjoint (B i) (C i))
@@ -141,7 +150,9 @@ theorem sum_area_le_of_rect_disjoint_nat {k : ℕ} (A B C : ℕ → Finset V)
     _ ≤ Fintype.card (V × V) := hle
     _ = Fintype.card V ^ 2 := hcard
 
-/-- **The areas of pairwise disjoint rectangles add up to at most `|V|²`.**-/
+/-- **The areas of pairwise disjoint rectangles add up to at most `|V|²`.**
+@isnad1 id=le.4h5v.s8.8da805928e8c from=translated src=- shape=1e802d32 vocab=47c7eb3a
+-/
 theorem sum_area_le_of_rect_disjoint {k : ℕ} (A B C : ℕ → Finset V)
     (hAB : ∀ i < k, Disjoint (A i) (B i)) (hAC : ∀ i < k, Disjoint (A i) (C i))
     (hBC : ∀ i < k, Disjoint (B i) (C i))

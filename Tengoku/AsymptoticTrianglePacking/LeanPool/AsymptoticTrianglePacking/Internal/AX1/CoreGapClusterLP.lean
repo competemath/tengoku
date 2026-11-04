@@ -53,26 +53,44 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 /-! ### The six rectangles of a block sub-triple -/
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s5.83e29c43978e from=translated src=- shape=c4d00fa2 vocab=d35a1329
+-/
 theorem prod_subset_tripleRect_AB (A B C : Finset V) : (A ×ˢ B) ⊆ tripleRect A B C :=
   (Finset.subset_union_left.trans Finset.subset_union_left).trans Finset.subset_union_left
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s5.b62d4b7ade13 from=translated src=- shape=5268c0da vocab=d35a1329
+-/
 theorem prod_subset_tripleRect_BA (A B C : Finset V) : (B ×ˢ A) ⊆ tripleRect A B C :=
   (Finset.subset_union_right.trans Finset.subset_union_left).trans Finset.subset_union_left
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s5.30490fbe6e2d from=translated src=- shape=7616bc13 vocab=d35a1329
+-/
 theorem prod_subset_tripleRect_AC (A B C : Finset V) : (A ×ˢ C) ⊆ tripleRect A B C :=
   (Finset.subset_union_left.trans Finset.subset_union_right).trans Finset.subset_union_left
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s5.0c6e6140ee70 from=translated src=- shape=3f44150c vocab=d35a1329
+-/
 theorem prod_subset_tripleRect_CA (A B C : Finset V) : (C ×ˢ A) ⊆ tripleRect A B C :=
   (Finset.subset_union_right.trans Finset.subset_union_right).trans Finset.subset_union_left
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s5.ff868f3bc2e3 from=translated src=- shape=ee93f3dd vocab=d35a1329
+-/
 theorem prod_subset_tripleRect_BC (A B C : Finset V) : (B ×ˢ C) ⊆ tripleRect A B C :=
   Finset.subset_union_left.trans Finset.subset_union_right
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s5.aa4f07ac3fc0 from=translated src=- shape=07d22642 vocab=d35a1329
+-/
 theorem prod_subset_tripleRect_CB (A B C : Finset V) : (C ×ˢ B) ⊆ tripleRect A B C :=
   Finset.subset_union_right.trans Finset.subset_union_right
 
@@ -85,13 +103,18 @@ noncomputable def pairArea (G : SimpleGraph V) [DecidableRel G.Adj] (R : Finset 
   (G.edgeDensity p.1 p.2 : ℝ) * (#(R ∩ (p.1 ×ˢ p.2)) : ℝ)
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s5.01f1936784e6 from=translated src=- shape=ce302b08 vocab=0d9da4c9
+-/
 theorem pairArea_nonneg (G : SimpleGraph V) [DecidableRel G.Adj] (R : Finset (V × V))
     (p : Finset V × Finset V) : 0 ≤ pairArea G R p := by
   have : (0 : ℝ) ≤ (G.edgeDensity p.1 p.2 : ℝ) := by exact_mod_cast G.edgeDensity_nonneg p.1 p.2
   exact mul_nonneg this (Nat.cast_nonneg _)
 
 omit [Fintype V] in
-/-- A rectangle inside the ordered pair `(S, T)` contributes at most the pair's occupied area.-/
+/-- A rectangle inside the ordered pair `(S, T)` contributes at most the pair's occupied area.
+@isnad1 id=le.3h7v.s7.0668f1faac97 from=translated src=- shape=30051624 vocab=2915f6c5
+-/
 theorem rect_le_pairArea (G : SimpleGraph V) [DecidableRel G.Adj] {R : Finset (V × V)}
     {S T D E : Finset V} (hDS : D ⊆ S) (hET : E ⊆ T) (hDE : (D ×ˢ E) ⊆ R) :
     (G.edgeDensity S T : ℝ) * (#D : ℝ) * (#E : ℝ) ≤ pairArea G R (S, T) := by
@@ -108,7 +131,9 @@ theorem rect_le_pairArea (G : SimpleGraph V) [DecidableRel G.Adj] {R : Finset (V
         exact mul_le_mul_of_nonneg_left hcard hd
 
 omit [Fintype V] in
-/-- **Pairwise disjoint sets meet a fixed set in at most its cardinality.**-/
+/-- **Pairwise disjoint sets meet a fixed set in at most its cardinality.**
+@isnad1 id=le.1h4v.s7.bde6e6a40be9 from=translated src=- shape=478791d8 vocab=f436fd3c
+-/
 theorem sum_card_inter_le (R : ℕ → Finset (V × V)) (F : Finset ℕ) (S : Finset (V × V))
     (hdisj : ∀ i ∈ F, ∀ j ∈ F, i ≠ j → Disjoint (R i) (R j)) :
     ∑ i ∈ F, (#(R i ∩ S) : ℝ) ≤ (#S : ℝ) := by
@@ -125,7 +150,9 @@ theorem sum_card_inter_le (R : ℕ → Finset (V × V)) (F : Finset ℕ) (S : Fi
   exact_mod_cast h
 
 /-- **The six-term lower bound.**  Twice the (undivided) covering sum of one block sub-triple is
-picked up by the six ordered cluster pairs it occupies.-/
+picked up by the six ordered cluster pairs it occupies.
+@isnad1 id=le.9h9v.s8.f8c22dcede8b from=translated src=- shape=d978873c vocab=2ef1e297
+-/
 theorem two_cover_le_sum_pairArea (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {U W X A B C : Finset V}
     (hU : U ∈ P.parts) (hW : W ∈ P.parts) (hX : X ∈ P.parts)
@@ -176,7 +203,9 @@ theorem two_cover_le_sum_pairArea (G : SimpleGraph V) [DecidableRel G.Adj]
 /-- **The conservation law of the fine block-allocation residual.**  A family of block sub-triples
 whose three clusters are distinct parts of `P` and whose vertex-pair rectangles are pairwise
 disjoint has covering sum at most one third of the total capacity `∑ d(S,T)·#S·#T` of the cluster
-pairs (the sum on the right runs over *ordered* pairs, whence the `6`).-/
+pairs (the sum on the right runs over *ordered* pairs, whence the `6`).
+@isnad1 id=le.10h10v.s9.c220d87e1119 from=translated src=- shape=ef51fcf8 vocab=a93fe56c
+-/
 theorem cover_sum_le_cluster_capacity
     (G : SimpleGraph V) [DecidableRel G.Adj] (P : Finpartition (univ : Finset V))
     (k : ℕ) (U W X A B C : ℕ → Finset V)
@@ -247,7 +276,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 /-! ### Two elementary facts about interedges -/
 
 omit [Fintype V] [DecidableEq V] in
-/-- The density-weighted area of a pair is its number of crossing edges.-/
+/-- The density-weighted area of a pair is its number of crossing edges.
+@isnad1 id=eq.0h4v.s6.aa4f3a51e81b from=translated src=- shape=c124db01 vocab=48394426
+-/
 theorem edgeDensity_mul_card_mul_card (G : SimpleGraph V) [DecidableRel G.Adj] (S T : Finset V) :
     (G.edgeDensity S T : ℝ) * (#S : ℝ) * (#T : ℝ) = (#(G.interedges S T) : ℝ) := by
   classical
@@ -271,7 +302,9 @@ theorem edgeDensity_mul_card_mul_card (G : SimpleGraph V) [DecidableRel G.Adj] (
   field_simp
 
 omit [Fintype V] [DecidableEq V] in
-/-- Interedges are monotone in the graph.-/
+/-- Interedges are monotone in the graph.
+@isnad1 id=le.1h5v.s5.73f844c156a8 from=translated src=- shape=fe55893f vocab=be197da1
+-/
 theorem card_interedges_mono {G H : SimpleGraph V} [DecidableRel G.Adj] [DecidableRel H.Adj]
     (h : H ≤ G) (S T : Finset V) : #(H.interedges S T) ≤ #(G.interedges S T) := by
   classical
@@ -282,7 +315,9 @@ theorem card_interedges_mono {G H : SimpleGraph V} [DecidableRel G.Adj] [Decidab
 
 /-! ### Triangles of the reduced graph span three distinct parts -/
 
-/-- Adjacent vertices of the regularity-reduced graph lie in **different** parts.-/
+/-- Adjacent vertices of the regularity-reduced graph lie in **different** parts.
+@isnad1 id=ne.5h9v.s7.fd02a0994a5f from=translated src=- shape=1fe4caea vocab=200200c0
+-/
 theorem regularityReduced_parts_ne (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {ep de : ℝ} {a b : V}
     (hab : (G.regularityReduced P ep de).Adj a b) {A B : Finset V}
@@ -293,7 +328,9 @@ theorem regularityReduced_parts_ne (G : SimpleGraph V) [DecidableRel G.Adj]
   rw [hAU, hBW]
   exact hUW
 
-/-- **Each triangle of the reduced graph is charged to at least six ordered cluster pairs.**-/
+/-- **Each triangle of the reduced graph is charged to at least six ordered cluster pairs.**
+@isnad1 id=le.1h6v.s8.e3bc1f513e98 from=translated src=- shape=b7af998b vocab=5f4990c1
+-/
 theorem six_le_card_partPairs_of_mem_triangleHypergraph (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) {ep de : ℝ} {T : Finset (Finset V)}
     (hT : T ∈ triangleHypergraphE (G.regularityReduced P ep de)) :
@@ -366,7 +403,9 @@ theorem six_le_card_partPairs_of_mem_triangleHypergraph (G : SimpleGraph V) [Dec
 /-- **The cluster capacity LP caps `ν₃*` of the regularity-reduced graph.**  The right-hand side is
 *exactly* the ceiling of the covering sum of a family of block sub-triples with disjoint rectangles
 (`Nibble.AX1.cover_sum_le_cluster_capacity`), so the fine block-allocation residual carries no
-slack.-/
+slack.
+@isnad1 id=le.0h5v.s7.e1ca028f421b from=translated src=- shape=3ae7cbee vocab=2748a8cd
+-/
 theorem nu3star_regularityReduced_le_cluster_capacity
     (G : SimpleGraph V) [DecidableRel G.Adj] (P : Finpartition (univ : Finset V)) (ep de : ℝ) :
     nu3star (G.regularityReduced P ep de)
@@ -420,7 +459,9 @@ theorem nu3star_regularityReduced_le_cluster_capacity
 
 /-! ### Discarding the sparse cluster pairs -/
 
-/-- The total area of the ordered cluster pairs is at most `|V|²`.-/
+/-- The total area of the ordered cluster pairs is at most `|V|²`.
+@isnad1 id=le.0h2v.s6.571f0a888b1a from=translated src=- shape=5c90a2d4 vocab=06980ce7
+-/
 theorem sum_area_offDiag_le (P : Finpartition (univ : Finset V)) :
     ∑ p ∈ P.parts.offDiag, (#p.1 : ℝ) * (#p.2 : ℝ) ≤ (Fintype.card V : ℝ) ^ 2 := by
   classical
@@ -452,7 +493,9 @@ theorem sum_area_offDiag_le (P : Finpartition (univ : Finset V)) :
 /-- **The capacity bound after discarding the sparse cluster pairs.**  Cluster pairs of density
 below `θ` can be thrown away at a total cost of `θ·|V|²/6`: this is why the block-allocation
 construction may assume that all cluster pairs it uses have density in `[θ, 1]`, so that the block
-sizes `τ·d` of `Nibble.AX1.IsGridSubTriple` vary only within the bounded range `[τθ, τ]`.-/
+sizes `τ·d` of `Nibble.AX1.IsGridSubTriple` vary only within the bounded range `[τθ, τ]`.
+@isnad1 id=le.1h6v.s8.28c69386584b from=translated src=- shape=5eb33fda vocab=555945fc
+-/
 theorem nu3star_regularityReduced_le_dense_cluster_capacity
     (G : SimpleGraph V) [DecidableRel G.Adj] (P : Finpartition (univ : Finset V)) (ep de : ℝ)
     {θ : ℝ} (hθ : 0 ≤ θ) :

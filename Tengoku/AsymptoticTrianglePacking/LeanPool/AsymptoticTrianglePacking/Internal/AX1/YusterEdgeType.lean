@@ -43,7 +43,9 @@ variable {V : Type*} [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableR
 `|E(G)|`.-/
 abbrev EdgeV : Type _ := {e : Finset V // e ∈ G.cliqueFinset 2}
 
-/-- The edge vertex type has cardinality `|E(G)|` (the number of edges).-/
+/-- The edge vertex type has cardinality `|E(G)|` (the number of edges).
+@isnad1 id=eq.0h2v.s5.f727a42834c5 from=translated src=- shape=2b60c69b vocab=1db353c9
+-/
 theorem card_EdgeV : Fintype.card (EdgeV G) = (G.cliqueFinset 2).card :=
   Fintype.card_coe _
 
@@ -52,7 +54,9 @@ its three edges (its `2`-subsets, lifted to the edge type).-/
 def triangleHypergraphSub : Finset (Finset (EdgeV G)) :=
   (G.cliqueFinset 3).image (fun t => (t.powersetCard 2).subtype (· ∈ G.cliqueFinset 2))
 
-/-- Every `2`-subset of a `3`-clique is a `2`-clique (an edge).-/
+/-- Every `2`-subset of a `3`-clique is a `2`-clique (an edge).
+@isnad1 id=le.1h3v.s6.1fc25862e81b from=translated src=- shape=9abc953e vocab=423e66ea
+-/
 theorem powersetCard_two_subset_cliqueFinset {t : Finset V} (ht : G.IsNClique 3 t) :
     t.powersetCard 2 ⊆ G.cliqueFinset 2 := by
   intro e he
@@ -60,7 +64,9 @@ theorem powersetCard_two_subset_cliqueFinset {t : Finset V} (ht : G.IsNClique 3 
   rw [SimpleGraph.mem_cliqueFinset_iff]
   exact ⟨ht.isClique.subset he.1, he.2⟩
 
-/-- **The edge-type triangle hypergraph is 3-uniform.**-/
+/-- **The edge-type triangle hypergraph is 3-uniform.**
+@isnad1 id=isunifor.0h2v.s5.afcc8c200428 from=translated src=- shape=366df722 vocab=566bfbd8
+-/
 theorem triangleHypergraphSub_uniform : IsUniform (triangleHypergraphSub G) 3 := by
   intro E hE
   rw [triangleHypergraphSub, Finset.mem_image] at hE
@@ -72,7 +78,9 @@ theorem triangleHypergraphSub_uniform : IsUniform (triangleHypergraphSub G) 3 :=
 
 /-- **Codegree ≤ 1 on the edge-type triangle hypergraph.** Two distinct edges lie in at most one
 common triangle. This is the (sharp) `CodegreeBounded` input for `NibbleTheorem` on the correct
-vertex type.-/
+vertex type.
+@isnad1 id=le.1h4v.s6.3bbc5a253335 from=translated src=- shape=527dabdd vocab=8bedf7d3
+-/
 theorem triangleHypergraphSub_codegree_le_one {E E' : EdgeV G} (hne : E ≠ E') :
     codegree (triangleHypergraphSub G) E E' ≤ 1 := by
   rw [codegree]

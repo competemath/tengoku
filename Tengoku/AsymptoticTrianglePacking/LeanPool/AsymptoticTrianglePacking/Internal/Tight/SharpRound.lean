@@ -53,7 +53,9 @@ variable {V : Type*} [DecidableEq V] [Fintype V] {Ω : Type*} [MeasureSpace Ω]
 
 omit [Fintype V] in
 /-- The uniform pair bound: two vertices are simultaneously covered with probability at most
-`Δ²p² + κp`.-/
+`Δ²p² + κp`.
+@isnad1 id=le.4h9v.s7.5af950d35565 from=translated src=- shape=e1861f65 vocab=13a27cf6
+-/
 theorem prob_two_covered_le_params {H : Finset (Finset V)} {p : ℝ} {Δ κ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p)
     (hΔ : ∀ y : V, degree H y ≤ Δ) (hκ : ∀ y z : V, y ≠ z → codegree H y z ≤ κ)
@@ -72,7 +74,9 @@ theorem prob_two_covered_le_params {H : Finset (Finset V)} {p : ℝ} {Δ κ : �
     mul_le_mul h1 h2 hd2 (le_trans hd1 h1)
   linarith only [mul_le_mul_of_nonneg_right hprod hsq, mul_le_mul_of_nonneg_right h3 hp0]
 
-/-- The variance of the loss weight in terms of the hypergraph parameters.-/
+/-- The variance of the loss weight in terms of the hypergraph parameters.
+@isnad1 id=le.6h9v.s8.ef095260babd from=translated src=- shape=2d6d50b4 vocab=6d0c2b7d
+-/
 theorem centered_second_moment_le_params {H : Finset (Finset V)} {p : ℝ} {r Δ κ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (hr1 : 1 ≤ r)
     (hr : IsUniform H r) (hΔ : ∀ y : V, degree H y ≤ Δ)
@@ -135,7 +139,9 @@ theorem centered_second_moment_le_params {H : Finset (Finset V)} {p : ℝ} {r Δ
   linarith
 
 omit [Fintype V] in
-/-- The mean of the pair count in terms of the hypergraph parameters.-/
+/-- The mean of the pair count in terms of the hypergraph parameters.
+@isnad1 id=le.5h9v.s7.af9beda12979 from=translated src=- shape=567f7570 vocab=da6d5b05
+-/
 theorem integral_pairCount_le_params {H : Finset (Finset V)} {p : ℝ} {r Δ κ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hr1 : 1 ≤ r)
     (hr : IsUniform H r) (hΔ : ∀ y : V, degree H y ≤ Δ)
@@ -166,7 +172,9 @@ one Bernoulli round with retention probability `p` admits an outcome which
 
 All the moment data are explicit functions of `r, Δ, κ, p`; the only requirement is the smallness
 condition `hsmall`, which in the nibble regime `p = γ/Δ` is satisfied for `t ≍ ξ γ Δ`,
-`s ≍ ξ γ Δ` and `a = θ·|V|` once `γ` is small.-/
+`s ≍ ξ γ Δ` and `a = θ·|V|` once `γ` is small.
+@isnad1 id=ex.12h12v.s9.081ed6802b6d from=translated src=- shape=8676b158 vocab=8cf9b132
+-/
 theorem exists_tight_round_of_params {H : Finset (Finset V)} {p : ℝ} {r Δ δ κ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (hr1 : 1 ≤ r)
     (hr : IsUniform H r) (hΔ : ∀ y : V, degree H y ≤ Δ) (hδ : ∀ y : V, δ ≤ degree H y)
@@ -252,7 +260,9 @@ variable {V : Type*} [DecidableEq V] [Fintype V] {Ω : Type*} [MeasureSpace Ω]
 /-! ## Squeezing the mean loss -/
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The mean loss is at most `(r−1)·deg(v)·q_hi`.-/
+/-- The mean loss is at most `(r−1)·deg(v)·q_hi`.
+@isnad1 id=le.3h6v.s6.5c499c899ace from=translated src=- shape=35a73a73 vocab=1ce655e3
+-/
 theorem lossWeightMean_le {H : Finset (Finset V)} {p : ℝ} {r : ℕ} {qhi : ℝ}
     (hr : IsUniform H r) (hr1 : 1 ≤ r) (hqhi : ∀ u : V, coverRate H p u ≤ qhi) (v : V) :
     lossWeightMean H p v ≤ ((r : ℝ) - 1) * (degree H v : ℝ) * qhi := by
@@ -274,7 +284,9 @@ theorem lossWeightMean_le {H : Finset (Finset V)} {p : ℝ} {r : ℕ} {qhi : ℝ
     _ = ((r : ℝ) - 1) * (degree H v : ℝ) * qhi := by rw [hsum]
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The mean loss is at least `(r−1)·deg(v)·q_lo`.-/
+/-- The mean loss is at least `(r−1)·deg(v)·q_lo`.
+@isnad1 id=le.3h6v.s6.51818a91b1a3 from=translated src=- shape=9020aaa5 vocab=1ce655e3
+-/
 theorem lossWeightMean_ge {H : Finset (Finset V)} {p : ℝ} {r : ℕ} {qlo : ℝ}
     (hr : IsUniform H r) (hr1 : 1 ≤ r) (hqlo : ∀ u : V, qlo ≤ coverRate H p u) (v : V) :
     ((r : ℝ) - 1) * (degree H v : ℝ) * qlo ≤ lossWeightMean H p v := by
@@ -307,7 +319,9 @@ hypergraph inside the explicit band
 `δ − (r−1)Δq_hi − t  ≤  deg_res(v)  ≤  Δ − (r−1)δq_lo + t + s`,
 
 with `q_hi = Δp` and `q_lo = δp(1−p)^{rΔ}`; moreover the round covers more than a `q_lo/2`-fraction
-of the vertex set.-/
+of the vertex set.
+@isnad1 id=ex.12h12v.s10.52c0bf91221d from=translated src=- shape=0113a8b3 vocab=79a4616e
+-/
 theorem exists_round_residual_band {H : Finset (Finset V)} {p : ℝ} {r Δ δ κ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1) (hr1 : 1 ≤ r)
     (hr : IsUniform H r) (hΔ : ∀ y : V, degree H y ≤ Δ) (hδ : ∀ y : V, δ ≤ degree H y)
@@ -420,7 +434,9 @@ variable {V : Type*} [DecidableEq V] [Fintype V] {Ω : Type*} [MeasureSpace Ω]
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
 /-- **The deterministic band.**  If the loss weight of `v` is within `t` of its mean and the pair
 count of `v` is below `s`, then the safe degree of `v` lies in the two-sided band of width `2t + s`
-around `deg(v) − 𝔼[loss(v)]`.-/
+around `deg(v) − 𝔼[loss(v)]`.
+@isnad1 id=and.2h9v.s7.91d955c4afaa from=translated src=- shape=ac073f73 vocab=c896cfef
+-/
 theorem safeDegree_band_of_tolerances {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (v : V) (ω : Ω) {t s : ℝ}
     (hloss : |lossWeight ρ v ω - lossWeightMean H p v| < t)
@@ -459,7 +475,9 @@ provided the Markov badness bound `N(Vb/t² + Pb/s)/a` and the Chebyshev coverag
 
 Compared with `LeanPool.AsymptoticTrianglePacking.Internal.exists_tight_round_on`, the coverage
 failure probability is `Cvar/(Q/2)²`
-instead of `1 − q/2`: the badness budget is a constant instead of `O(q)`.-/
+instead of `1 − q/2`: the badness budget is a constant instead of `O(q)`.
+@isnad1 id=ex.9h12v.s9.ff932a07080d from=translated src=- shape=a8665b5e vocab=83938265
+-/
 theorem exists_tight_round_cheb {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p)
     {t s a Vb Pb Q Cvar : ℝ} (ht : 0 < t) (hs : 0 < s) (ha : 0 < a) (hQ : 0 < Q)
@@ -566,7 +584,9 @@ variable {V : Type*} [DecidableEq V] [Fintype V] {Ω : Type*} [MeasureSpace Ω]
 /-- **The Chebyshev tight round in explicit parameters.**  For an `r`-uniform hypergraph with
 degrees in `[δ, Δ]` and codegrees `≤ κ`, one Bernoulli round with retention probability `p` has an
 outcome covering more than `N·q_lo/2` vertices and leaving all but `< a` vertices with a safe degree
-in the band `deg(v) − 𝔼[loss(v)] ± (t, t+s)`.-/
+in the band `deg(v) − 𝔼[loss(v)] ± (t, t+s)`.
+@isnad1 id=ex.13h12v.s10.8a27c477e1cf from=translated src=- shape=3f33e871 vocab=8cf9b132
+-/
 theorem exists_tight_round_cheb_of_params {H : Finset (Finset V)} {p : ℝ} {r Δ δ κ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 < p) (hp1 : p < 1) (hr1 : 1 ≤ r)
     (hr : IsUniform H r) (hΔ : ∀ y : V, degree H y ≤ Δ) (hδ : ∀ y : V, δ ≤ degree H y)
@@ -646,7 +666,9 @@ the band
 
   `δ − (r−1)Δq_hi − t  ≤  deg_res(v)  ≤  Δ − (r−1)δq_lo + t + s`,
 
-and the round covers more than `N·q_lo/2` vertices.-/
+and the round covers more than `N·q_lo/2` vertices.
+@isnad1 id=ex.13h12v.s10.952d6585a791 from=translated src=- shape=7c62ee68 vocab=79a4616e
+-/
 theorem exists_round_residual_band_cheb {H : Finset (Finset V)} {p : ℝ} {r Δ δ κ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 < p) (hp1 : p < 1) (hr1 : 1 ≤ r)
     (hr : IsUniform H r) (hΔ : ∀ y : V, degree H y ≤ Δ) (hδ : ∀ y : V, δ ≤ degree H y)
@@ -741,7 +763,9 @@ namespace LeanPool.AsymptoticTrianglePacking.Internal
 universe u
 
 /-- **Existence of a Bernoulli retention.** For any finite hypergraph `H` on a finite vertex type
-and any `p ∈ [0,1]`, there is a probability space carrying a `BernoulliRetention` on `H` at `p`.-/
+and any `p ∈ [0,1]`, there is a probability space carrying a `BernoulliRetention` on `H` at `p`.
+@isnad1 id=ex.2h3v.s5.ad83f86ce12a from=translated src=- shape=70ed161c vocab=e5f65eae
+-/
 theorem exists_bernoulliRetention {V : Type u} [Finite V] [DecidableEq V]
     (H : Finset (Finset V)) {p : ℝ} (hp0 : 0 ≤ p) (hp1 : p ≤ 1) :
     ∃ (Ω : Type u) (mΩ : MeasureSpace Ω),
@@ -907,7 +931,9 @@ private theorem auxEps {R D k γ : ℝ} (hR : 2 ≤ R) (hD : 1 ≤ D) (hk0 : 0 �
   have h1 : (1 : ℝ) + 4 * γ ^ 2 ≤ 2 := by nlinarith
   nlinarith [mul_nonneg (mul_nonneg hk0 hγ0.le) hRD]
 
-/-- **The covering-rate floor for the explicit parameters:** `δ·p·L ≥ γ/(4r)`.-/
+/-- **The covering-rate floor for the explicit parameters:** `δ·p·L ≥ γ/(4r)`.
+@isnad1 id=le.7h6v.s7.333b01f74efb from=translated src=- shape=d0b089f6 vocab=c96aef97
+-/
 theorem cheb_qlo_explicit {R D dd γ L p : ℝ} (hR : 2 ≤ R) (hD : 1 ≤ D) (hdd1 : 1 ≤ dd)
     (hDdd : D ≤ 2 * dd) (hγ0 : 0 < γ) (hL0 : 1 / 2 ≤ L) (hp : p = γ / (R * D)) :
     γ / (4 * R) ≤ dd * (p * L) := by
@@ -923,7 +949,9 @@ theorem cheb_qlo_explicit {R D dd γ L p : ℝ} (hR : 2 ≤ R) (hD : 1 ≤ D) (h
   rw [h2, h3] at h1
   exact h1
 /-- **The smallness condition of the Chebyshev round holds for the explicit parameter choice.**
-The Markov badness bound is at most `1/4` and the Chebyshev coverage bound at most `1/2`.-/
+The Markov badness bound is at most `1/4` and the Chebyshev coverage bound at most `1/2`.
+@isnad1 id=lt.16h12v.s9.64aff12644c4 from=translated src=- shape=dd0a858c vocab=762a6581
+-/
 theorem cheb_smallness_explicit {R D dd k N γ θ L p t s a : ℝ}
     (hR : 2 ≤ R) (hD : 1 ≤ D) (hdd1 : 1 ≤ dd) (hDdd : D ≤ 2 * dd)
     (hk0 : 0 ≤ k) (hγ0 : 0 < γ) (hγ1 : γ ≤ 1 / 2) (hθ0 : 0 < θ) (hθ1 : θ ≤ 1)
@@ -1020,7 +1048,9 @@ For `r ≥ 2`, `γ ∈ (0,1/2]`, `θ ∈ (0,1]`, an `r`-uniform hypergraph with 
 
 * every vertex outside `B` that the round leaves uncovered has residual degree in
   `[δ − γΔ − γ²Δ, Δ − (r−1)δγ/(4r) + γ²Δ + 16γ²Δ/θ]`, and
-* the round covers more than `|V|γ/(8r)` vertices.-/
+* the round covers more than `|V|γ/(8r)` vertices.
+@isnad1 id=ex.13h8v.s9.83cb872eab87 from=translated src=- shape=984a124b vocab=5c1c7993
+-/
 theorem exists_round_explicit {V : Type u} [Fintype V] [DecidableEq V]
     {H : Finset (Finset V)} {r Δ δ κ : ℕ} {γ θ : ℝ}
     (hr2 : 2 ≤ r) (hγ0 : 0 < γ) (hγ1 : γ ≤ 1 / 2) (hθ0 : 0 < θ) (hθ1 : θ ≤ 1)

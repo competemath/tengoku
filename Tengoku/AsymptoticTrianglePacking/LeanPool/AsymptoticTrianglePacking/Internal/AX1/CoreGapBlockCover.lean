@@ -268,7 +268,9 @@ All the analytic content of the design is discharged here: uniformity of the blo
 (`Nibble.AX1.edgeDensity_sub_lt_of_isUniform`), the transfer to the reduced graph
 (`Nibble.AX1.isUniform_regularityReduced`), the six scale windows (`Nibble.AX1.scale_window`), the
 edge counts (`Nibble.AX1.three_edgeDensity_mul_le_tripleGraph_edges`), the pruning budget and the
-`ν₃*` bookkeeping (`Nibble.AX1.sum_area_le_of_rect_disjoint`).-/
+`ν₃*` bookkeeping (`Nibble.AX1.sum_area_le_of_rect_disjoint`).
+@isnad1 id=subtripl.1h0v.s1.93506ae65851 from=translated src=- shape=1d48f1ac vocab=12b7d7d2
+-/
 theorem subTripleDesignLocalResidual_of_blockCover (h : BlockCoverResidual) :
     SubTripleDesignLocalResidual := by
   classical
@@ -477,7 +479,9 @@ theorem subTripleDesignLocalResidual_of_blockCover (h : BlockCoverResidual) :
     simp only [designBad, hquarter]
     linarith only [hcov, hsum, h2, h3]
 
-/-- **AX1 from the deterministic block-allocation residual.**-/
+/-- **AX1 from the deterministic block-allocation residual.**
+@isnad1 id=ax1state.1h0v.s1.3bd784b7fd41 from=translated src=- shape=1d48f1ac vocab=033d6567
+-/
 theorem ax1_of_blockCover (h : BlockCoverResidual) : AX1Statement :=
   ax1_of_subTripleDesignLocal (subTripleDesignLocalResidual_of_blockCover h)
 
@@ -528,14 +532,18 @@ def BlockCoverResidualFine : Prop :=
           + ε * (Fintype.card V : ℝ) ^ 2
 
 /-- The fine residual is a **special case** of the full one: it is the same statement under two
-extra hypotheses.-/
+extra hypotheses.
+@isnad1 id=blockcov.1h0v.s1.0c760cf865b8 from=translated src=- shape=1d48f1ac vocab=2a842c4d
+-/
 theorem blockCoverResidualFine_of_blockCover (h : BlockCoverResidual) : BlockCoverResidualFine :=
   fun ε δ α T₀ ε₁ hε hδ hδ1 _ hα hαδ _ hT₀ hε₁ hε₁1 => h ε δ α T₀ ε₁ hε hδ hδ1 hα hαδ hT₀ hε₁ hε₁1
 
 /-- **The reduction at the fine parameter range.**  Identical to
 `Nibble.AX1.subTripleDesignLocalResidual_of_blockCover` except that the density threshold is chosen
 as `δ = (min 1 ε) ^ 2 / 8`, which makes the two extra hypotheses of
-`Nibble.AX1.BlockCoverResidualFine` available at the point of use.-/
+`Nibble.AX1.BlockCoverResidualFine` available at the point of use.
+@isnad1 id=subtripl.1h0v.s1.ddcb67ad5f98 from=translated src=- shape=1d48f1ac vocab=424d9ed1
+-/
 theorem subTripleDesignLocalResidual_of_blockCoverFine (h : BlockCoverResidualFine) :
     SubTripleDesignLocalResidual := by
   classical
@@ -745,7 +753,9 @@ theorem subTripleDesignLocalResidual_of_blockCoverFine (h : BlockCoverResidualFi
     simp only [designBad, hquarter]
     linarith only [hcov, hsum, h2, h3]
 
-/-- **AX1 from the deterministic block-allocation residual at fine relative block size.**-/
+/-- **AX1 from the deterministic block-allocation residual at fine relative block size.**
+@isnad1 id=ax1state.1h0v.s1.3da03c6f1f9b from=translated src=- shape=1d48f1ac vocab=e56aa8ff
+-/
 theorem ax1_of_blockCoverFine (h : BlockCoverResidualFine) : AX1Statement :=
   ax1_of_subTripleDesignLocal (subTripleDesignLocalResidual_of_blockCoverFine h)
 

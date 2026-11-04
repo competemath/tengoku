@@ -57,16 +57,27 @@ variable {q : ℕ}
 `j + b` of `X`.-/
 def lineTriple (a b j : ZMod q) : ZMod q × ZMod q × ZMod q := (j, j + a, j + b)
 
+/--
+@isnad1 id=eq.0h4v.s4.88d9b30a0cc4 from=translated src=- shape=ea408660 vocab=35b0a758
+-/
 @[simp] theorem lineTriple_fst (a b j : ZMod q) : (lineTriple a b j).1 = j := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.c1a0fd6ff711 from=translated src=- shape=9bd8bc0a vocab=8ea8e2ec
+-/
 @[simp] theorem lineTriple_snd (a b j : ZMod q) : (lineTriple a b j).2.1 = j + a := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.79793fa9bfe8 from=translated src=- shape=12ea5df8 vocab=0a2f9b93
+-/
 @[simp] theorem lineTriple_thd (a b j : ZMod q) : (lineTriple a b j).2.2 = j + b := rfl
 
 /-- **The `q` diagonals of a cluster pair partition its `q²` block pairs**: the map sending a
 diagonal label `a` and a position `j` to the block pair `(j, j + a)` is a bijection.  This is the
 allocation form of `Nibble.AX1.gridUW_bijective`: a cluster pair shared by several cluster triples
-is exactly covered as soon as the diagonals are distributed among them.-/
+is exactly covered as soon as the diagonals are distributed among them.
+@isnad1 id=bijectiv.0h1v.s6.54159e2f2a43 from=translated src=- shape=ca1faae4 vocab=bb23be52
+-/
 theorem diagIndex_bijective :
     Function.Bijective (fun x : ZMod q × ZMod q => (x.2, x.2 + x.1)) := by
   constructor
@@ -79,7 +90,9 @@ theorem diagIndex_bijective :
     exact ⟨(w - u, u), by simp⟩
 
 /-- Two block sub-triples of a family of lines with **distinct first labels** never use the same
-block pair of the cluster pair `(U, W)`.-/
+block pair of the cluster pair `(U, W)`.
+@isnad1 id=and.2h7v.s6.3785a5ce3720 from=translated src=- shape=e22f5fb4 vocab=af28a5a1
+-/
 theorem lineTriple_UW_unique {a b a' b' j j' : ZMod q}
     (hfst : (lineTriple a b j).1 = (lineTriple a' b' j').1)
     (hsnd : (lineTriple a b j).2.1 = (lineTriple a' b' j').2.1) :
@@ -89,7 +102,9 @@ theorem lineTriple_UW_unique {a b a' b' j j' : ZMod q}
   exact ⟨add_left_cancel hsnd, rfl⟩
 
 /-- Two block sub-triples of a family of lines with **distinct second labels** never use the same
-block pair of the cluster pair `(U, X)`.-/
+block pair of the cluster pair `(U, X)`.
+@isnad1 id=and.2h7v.s6.a4f86c78e4b8 from=translated src=- shape=b4115a5b vocab=af28a5a1
+-/
 theorem lineTriple_UX_unique {a b a' b' j j' : ZMod q}
     (hfst : (lineTriple a b j).1 = (lineTriple a' b' j').1)
     (hthd : (lineTriple a b j).2.2 = (lineTriple a' b' j').2.2) :
@@ -99,7 +114,9 @@ theorem lineTriple_UX_unique {a b a' b' j j' : ZMod q}
   exact ⟨add_left_cancel hthd, rfl⟩
 
 /-- Two block sub-triples of a family of lines with **distinct differences** never use the same
-block pair of the cluster pair `(W, X)`.-/
+block pair of the cluster pair `(W, X)`.
+@isnad1 id=and.2h7v.s7.21aec6c4230f from=translated src=- shape=bda804d8 vocab=06803054
+-/
 theorem lineTriple_WX_unique {a b a' b' j j' : ZMod q}
     (hsnd : (lineTriple a b j).2.1 = (lineTriple a' b' j').2.1)
     (hthd : (lineTriple a b j).2.2 = (lineTriple a' b' j').2.2) :
@@ -111,7 +128,9 @@ theorem lineTriple_WX_unique {a b a' b' j j' : ZMod q}
 
 /-- **The allocation criterion.**  Two cluster triples through the cluster pair `(U, W)` that are
 allocated *disjoint* sets of diagonals never use a common block pair of that cluster pair: the
-rectangles of the two triples inside `U × W` are disjoint.-/
+rectangles of the two triples inside `U × W` are disjoint.
+@isnad1 id=ne.4h9v.s7.bb3c008ba477 from=translated src=- shape=e24881e1 vocab=6cd26ec9
+-/
 theorem lineTriple_pair_disjoint {S T : Finset (ZMod q)} (hST : Disjoint S T)
     {a b a' b' : ZMod q} (ha : a ∈ S) (ha' : a' ∈ T) (j j' : ZMod q)
     (hfst : (lineTriple a b j).1 = (lineTriple a' b' j').1) :
@@ -124,7 +143,9 @@ theorem lineTriple_pair_disjoint {S T : Finset (ZMod q)} (hST : Disjoint S T)
 /-- **The diagonals of one cluster pair are exactly `q`, and each has exactly `q` block pairs.**
 Together with `Nibble.AX1.diagIndex_bijective` this is the counting behind the allocation: the
 diagonals allocated to the cluster triples through a pair tile that pair as soon as they partition
-`ZMod q`.-/
+`ZMod q`.
+@isnad1 id=eq.0h2v.s6.4ca10c27e6e3 from=translated src=- shape=2ced43a9 vocab=7e56c979
+-/
 theorem card_diag_fiber [NeZero q] (a : ZMod q) :
     (Finset.univ.image (fun j : ZMod q => ((j, j + a) : ZMod q × ZMod q))).card = q := by
   classical

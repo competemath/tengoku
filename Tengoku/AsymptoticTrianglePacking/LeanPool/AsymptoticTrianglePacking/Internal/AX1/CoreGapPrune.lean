@@ -54,10 +54,16 @@ noncomputable instance instDecidableRelPrune (T : SimpleGraph V) (Bad : Finset (
     DecidableRel (prune T Bad).Adj := fun _ _ => Classical.dec _
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h3v.s4.ec0c61969132 from=translated src=- shape=3a917305 vocab=26f3c841
+-/
 theorem prune_le (T : SimpleGraph V) (Bad : Finset (Finset V)) : prune T Bad ≤ T :=
   edgeSelect_le _ _
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h5v.s6.83c54dca3bfa from=translated src=- shape=933d1365 vocab=cfa1b1a6
+-/
 theorem prune_adj (T : SimpleGraph V) (Bad : Finset (Finset V)) (x y : V) :
     (prune T Bad).Adj x y ↔ T.Adj x y ∧ ({x, y} : Finset V) ∉ Bad :=
   edgeSelect_adj _ _ _ _
@@ -68,7 +74,9 @@ def deletedDegree (T : SimpleGraph V) [DecidableRel T.Adj] (Bad : Finset (Finset
 
 /-! ### The triangle degree lost by pruning -/
 
-/-- **Pruning costs a surviving edge at most the deleted degrees of its endpoints.**-/
+/-- **Pruning costs a surviving edge at most the deleted degrees of its endpoints.**
+@isnad1 id=le.1h5v.s6.cf4bfd741041 from=translated src=- shape=18d9498d vocab=1660638c
+-/
 theorem edgeTriangleDegree_prune_ge (T : SimpleGraph V) [DecidableRel T.Adj]
     (Bad : Finset (Finset V)) {x y : V} (hadj : (prune T Bad).Adj x y) :
     edgeTriangleDegree T {x, y}
@@ -107,7 +115,9 @@ theorem edgeTriangleDegree_prune_ge (T : SimpleGraph V) [DecidableRel T.Adj]
 
 /-! ### The handshake bound -/
 
-/-- **The total deleted degree is at most twice the number of deleted edges.**-/
+/-- **The total deleted degree is at most twice the number of deleted edges.**
+@isnad1 id=le.0h3v.s5.7e3a334c3594 from=translated src=- shape=cdebf170 vocab=e485f034
+-/
 theorem sum_deletedDegree_le (T : SimpleGraph V) [DecidableRel T.Adj] (Bad : Finset (Finset V)) :
     ∑ v : V, deletedDegree T Bad v ≤ 2 * #Bad := by
   classical
@@ -147,7 +157,9 @@ theorem sum_deletedDegree_le (T : SimpleGraph V) [DecidableRel T.Adj] (Bad : Fin
     _ ≤ 2 * #(S.image (fun p => ({p.1, p.2} : Finset V))) := Finset.card_le_mul_card_image S 2 hfib
     _ ≤ 2 * #Bad := Nat.mul_le_mul_left 2 (Finset.card_le_card himg)
 
-/-- **Markov's inequality for the deleted degrees.**-/
+/-- **Markov's inequality for the deleted degrees.**
+@isnad1 id=le.0h4v.s6.076dc12bbcdd from=translated src=- shape=c0b770ea vocab=2ad1fe63
+-/
 theorem card_vertices_deletedDegree_gt (T : SimpleGraph V) [DecidableRel T.Adj]
     (Bad : Finset (Finset V)) {t : ℝ} :
     ((#{v ∈ (univ : Finset V) | t < (deletedDegree T Bad v : ℝ)} : ℕ) : ℝ) * t
@@ -170,7 +182,9 @@ theorem card_vertices_deletedDegree_gt (T : SimpleGraph V) [DecidableRel T.Adj]
     exact hcast
   linarith
 
-/-- **Few edges have an endpoint at which many edges were deleted.**-/
+/-- **Few edges have an endpoint at which many edges were deleted.**
+@isnad1 id=le.1h4v.s8.604b48201614 from=translated src=- shape=97586ed4 vocab=cf725a94
+-/
 theorem card_edges_heavy_deleted_le (T : SimpleGraph V) [DecidableRel T.Adj]
     (Bad : Finset (Finset V)) {t : ℝ} (ht : 0 < t) :
     ((#{e ∈ T.cliqueFinset 2 | ¬ (∀ v ∈ e, (deletedDegree T Bad v : ℝ) ≤ t)} : ℕ) : ℝ)
@@ -214,7 +228,9 @@ theorem card_edges_heavy_deleted_le (T : SimpleGraph V) [DecidableRel T.Adj]
 
 /-! ### The pruned graph is near-regular with no exceptions above -/
 
-/-- Every edge of the pruned graph is an edge of `T` outside `Bad`.-/
+/-- Every edge of the pruned graph is an edge of `T` outside `Bad`.
+@isnad1 id=and.1h4v.s6.cbf887139675 from=translated src=- shape=bfeba0ec vocab=c538fbca
+-/
 theorem mem_cliqueFinset_two_prune (T : SimpleGraph V) [DecidableRel T.Adj]
     (Bad : Finset (Finset V)) {e : Finset V} (he : e ∈ (prune T Bad).cliqueFinset 2) :
     e ∈ T.cliqueFinset 2 ∧ e ∉ Bad := by
@@ -227,7 +243,9 @@ theorem mem_cliqueFinset_two_prune (T : SimpleGraph V) [DecidableRel T.Adj]
 
 /-- **The pruned graph.**  If the triangle degrees of `T` are between `(1−μ)d` and `(1+μ)d` outside
 `Bad`, then after deleting `Bad` *every* surviving edge has triangle degree at most `(1+μ)d`, and
-all but at most `(2|Bad|/t)|V|` of them have triangle degree at least `(1−μ)d − 2t`.-/
+all but at most `(2|Bad|/t)|V|` of them have triangle degree at least `(1−μ)d − 2t`.
+@isnad1 id=and.3h6v.s8.4539fe90c02d from=translated src=- shape=a131c98c vocab=b1dc85e2
+-/
 theorem prune_near_regular (T : SimpleGraph V) [DecidableRel T.Adj] (Bad : Finset (Finset V))
     {μ d t : ℝ} (ht : 0 < t)
     (hhi : ∀ e ∈ T.cliqueFinset 2, e ∉ Bad → (edgeTriangleDegree T e : ℝ) ≤ (1 + μ) * d)
@@ -266,7 +284,9 @@ theorem prune_near_regular (T : SimpleGraph V) [DecidableRel T.Adj] (Bad : Finse
     have hlo' := hlo {x, y} heT heB
     linarith
 
-/-- Pruning destroys at most `|Bad|` edges.-/
+/-- Pruning destroys at most `|Bad|` edges.
+@isnad1 id=le.0h3v.s6.994b43b23fa6 from=translated src=- shape=eb912caf vocab=4c050f32
+-/
 theorem card_cliqueFinset_two_prune_ge (T : SimpleGraph V) [DecidableRel T.Adj]
     (Bad : Finset (Finset V)) :
     ((#(T.cliqueFinset 2) : ℕ) : ℝ) - ((#Bad : ℕ) : ℝ)
@@ -319,7 +339,9 @@ whose three triangle-degree scales are equalised to `d` within `μ`), deleting t
 * at most `|Bad|` edges of the tripartite graph of the triple were lost.
 
 This is exactly one member of the family `Nibble.AX1.HasNearRegularFamily` asks for; what the
-residual still needs is the *global* assembly of these members — see `RESIDUAL.md`.-/
+residual still needs is the *global* assembly of these members — see `RESIDUAL.md`.
+@isnad1 id=ex.18h9v.s10.fe8c4b241fb1 from=translated src=- shape=67ed6ba8 vocab=49e5f3f0
+-/
 theorem uniform_triple_member (G : SimpleGraph V) [DecidableRel G.Adj] {U W X : Finset V}
     (hUW : Disjoint U W) (hUX : Disjoint U X) (hWX : Disjoint W X) {ε μ d t : ℝ}
     (hε : 0 < ε) (hε1 : ε ≤ 1) (ht : 0 < t)

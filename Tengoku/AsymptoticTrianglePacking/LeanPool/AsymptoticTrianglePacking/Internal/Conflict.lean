@@ -44,7 +44,9 @@ variable {V : Type*} [DecidableEq V]
 def conflicts (H : Finset (Finset V)) (e : Finset V) : Finset (Finset V) :=
   H.filter (fun f => f ≠ e ∧ (e ∩ f).Nonempty)
 
-/-- **C4b-0a — conflict-count bound by degrees.** `|conflicts H e| ≤ ∑_{x∈e} deg x`.-/
+/-- **C4b-0a — conflict-count bound by degrees.** `|conflicts H e| ≤ ∑_{x∈e} deg x`.
+@isnad1 id=le.0h3v.s5.e903e6a77fcc from=translated src=- shape=19995988 vocab=08172260
+-/
 theorem conflicts_card_le (H : Finset (Finset V)) (e : Finset V) :
     (conflicts H e).card ≤ ∑ x ∈ e, degree H x := by
   classical
@@ -61,7 +63,9 @@ theorem conflicts_card_le (H : Finset (Finset V)) (e : Finset V) :
     _ = ∑ x ∈ e, degree H x := rfl
 
 /-- **C4b-0b — conflict-count bound for a regular uniform hypergraph.** If `H` is `r`-uniform and
-every vertex has degree `≤ Δ`, then every edge conflicts with at most `r · Δ` others.-/
+every vertex has degree `≤ Δ`, then every edge conflicts with at most `r · Δ` others.
+@isnad1 id=le.3h5v.s6.6b01aaa44a45 from=translated src=- shape=1743854d vocab=a9a51ddf
+-/
 theorem conflicts_card_le_of_uniform {H : Finset (Finset V)} {r Δ : ℕ}
     (hr : IsUniform H r) (hΔ : ∀ x, degree H x ≤ Δ) {e : Finset V} (he : e ∈ H) :
     (conflicts H e).card ≤ r * Δ := by

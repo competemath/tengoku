@@ -43,7 +43,9 @@ namespace Hypergraph
 variable {V : Type*} [DecidableEq V]
 
 /-- **C4b-0' — survival iff retained with no retained conflict.** For a retained set `R ⊆ H`, an
-edge `e` is in the round's matching iff `e ∈ R` and none of its conflicting edges lies in `R`.-/
+edge `e` is in the round's matching iff `e ∈ R` and none of its conflicting edges lies in `R`.
+@isnad1 id=iff.1h4v.s6.d18239c54b33 from=translated src=- shape=d8b1cc18 vocab=8a23aebf
+-/
 theorem mem_roundMatching_iff_conflicts {H R : Finset (Finset V)} (hRH : R ⊆ H)
     {e : Finset V} :
     e ∈ roundMatching R ↔ e ∈ R ∧ ∀ f ∈ conflicts H e, f ∉ R := by
@@ -99,14 +101,18 @@ noncomputable def matchingIndicator {H : Finset (Finset V)} {p : ℝ}
 
 /-- **covered = r·matching.** The covered set of a retained set `R` has `r · |roundMatching R|`
 vertices, since the round matching is a matching of the `r`-uniform hypergraph `R`... here stated
-for `R ⊆ H` with `H` `r`-uniform.-/
+for `R ⊆ H` with `H` `r`-uniform.
+@isnad1 id=eq.2h4v.s5.0b5d133b30b8 from=translated src=- shape=72fb175c vocab=2461ea37
+-/
 theorem covered_card_eq {H R : Finset (Finset V)} {r : ℕ} (hr : IsUniform H r) (hRH : R ⊆ H) :
     (covered R).card = r * (roundMatching R).card := by
   have hRr : IsUniform R r := fun e he => hr e (hRH he)
   exact matching_support_card hRr (roundMatching_isMatching (le_refl R))
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The matching-membership event equals the survival event of `Survival`.-/
+/-- The matching-membership event equals the survival event of `Survival`.
+@isnad1 id=eq.1h6v.s7.caf8454f3bcb from=translated src=- shape=6fa7b0c0 vocab=bf5405ba
+-/
 theorem matchingEvent_eq {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {e : Finset V} (he : e ∈ H) :
     {ω | e ∈ roundMatching (retainedSet H ρ ω)}
@@ -124,7 +130,9 @@ theorem matchingEvent_eq {H : Finset (Finset V)} {p : ℝ}
     exact hcon g hg hgR.2
 
 omit [IsProbabilityMeasure (ℙ : Measure Ω)] in
-/-- The matching-membership event is measurable.-/
+/-- The matching-membership event is measurable.
+@isnad1 id=measurab.1h6v.s6.0003417803a2 from=translated src=- shape=11535196 vocab=258264e6
+-/
 theorem measurableSet_matchingEvent {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {e : Finset V} (he : e ∈ H) :
     MeasurableSet {ω | e ∈ roundMatching (retainedSet H ρ ω)} := by
@@ -132,7 +140,9 @@ theorem measurableSet_matchingEvent {H : Finset (Finset V)} {p : ℝ}
   exact (ρ.meas e).inter
     (MeasurableSet.biInter (conflicts H e).countable_toSet (fun g _ => (ρ.meas g).compl))
 
-/-- Integral of the matching indicator: `∫ 1[e matched] = p·(1-p)^{c(e)}`.-/
+/-- Integral of the matching indicator: `∫ 1[e matched] = p·(1-p)^{c(e)}`.
+@isnad1 id=eq.3h6v.s7.06d667fbff5f from=translated src=- shape=f6f1f55c vocab=595c6d91
+-/
 theorem integral_matchingIndicator {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     {e : Finset V} (he : e ∈ H) :
@@ -144,7 +154,9 @@ theorem integral_matchingIndicator {H : Finset (Finset V)} {p : ℝ}
     matchingEvent_eq ρ he, measureReal_def, edge_survives_prob ρ hp0 hp1 he,
     ENNReal.toReal_ofReal (mul_nonneg hp0 (pow_nonneg (by linarith) _))]
 
-/-- The matching indicator is integrable (bounded and measurable).-/
+/-- The matching indicator is integrable (bounded and measurable).
+@isnad1 id=integrab.1h6v.s6.1b5028782bde from=translated src=- shape=5248a2cc vocab=a09b5b36
+-/
 theorem matchingIndicator_integrable {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) {e : Finset V} (he : e ∈ H) :
     Integrable (matchingIndicator ρ e) (ℙ : Measure Ω) := by
@@ -156,7 +168,9 @@ theorem matchingIndicator_integrable {H : Finset (Finset V)} {p : ℝ}
 
 /-- **covered-whp — expected matching size lower bound.**
 `E[|roundMatching|] ≥ |H| · p·(1-p)^{rΔ}`. Together with `covered_card_eq` this gives
-`E[|covered|] ≥ r·|H|·p·(1-p)^{rΔ}`: a definite fraction of vertices is covered per round.-/
+`E[|covered|] ≥ r·|H|·p·(1-p)^{rΔ}`: a definite fraction of vertices is covered per round.
+@isnad1 id=le.4h7v.s7.6c4367a0f85c from=translated src=- shape=a352fc89 vocab=dd9ccb25
+-/
 theorem matchingSize_expectation_lower {H : Finset (Finset V)} {p : ℝ} {r Δ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (hr : IsUniform H r) (hΔ : ∀ x, degree H x ≤ Δ) :
@@ -180,7 +194,9 @@ theorem matchingSize_expectation_lower {H : Finset (Finset V)} {p : ℝ} {r Δ :
         exact pow_le_pow_of_le_one (by linarith) (by linarith)
           (conflicts_card_le_of_uniform hr hΔ he)
 
-/-- The matching-size random variable is integrable.-/
+/-- The matching-size random variable is integrable.
+@isnad1 id=integrab.0h5v.s6.fa0e39eb83a1 from=translated src=- shape=a55e84d1 vocab=7c31d08d
+-/
 theorem integrable_matchingSize {H : Finset (Finset V)} {p : ℝ}
     (ρ : BernoulliRetention (Ω := Ω) H p) :
     Integrable (fun ω => ((roundMatching (retainedSet H ρ ω)).card : ℝ)) (ℙ : Measure Ω) := by
@@ -198,7 +214,9 @@ theorem integrable_matchingSize {H : Finset (Finset V)} {p : ℝ}
 /-- **D3 (one-round existence) — probabilistic method.** There is an outcome whose round matching
 has at least `|H|·p·(1-p)^{rΔ}` edges; hence a covered set of `≥ r·|H|·p·(1-p)^{rΔ}` vertices. This
 is the single-round Rödl-nibble lower bound (the iterated `(1-β)` near-perfect version is the
-capstone T3).-/
+capstone T3).
+@isnad1 id=ex.4h7v.s7.bdbb24ac0f44 from=translated src=- shape=eefa0106 vocab=64e08518
+-/
 theorem exists_large_round_matching {H : Finset (Finset V)} {p : ℝ} {r Δ : ℕ}
     (ρ : BernoulliRetention (Ω := Ω) H p) (hp0 : 0 ≤ p) (hp1 : p ≤ 1)
     (hr : IsUniform H r) (hΔ : ∀ x, degree H x ≤ Δ) :

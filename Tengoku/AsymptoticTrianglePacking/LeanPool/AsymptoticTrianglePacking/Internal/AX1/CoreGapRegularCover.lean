@@ -59,10 +59,15 @@ noncomputable instance instDecidableRelTriangleSupport (G : SimpleGraph V)
     [DecidableRel G.Adj] : DecidableRel (triangleSupport G).Adj :=
   instDecidableRelEdgeSelect G _
 
+/--
+@isnad1 id=le.0h2v.s4.3638a1aed644 from=translated src=- shape=4d9cb0be vocab=2bb0b72d
+-/
 theorem triangleSupport_le (G : SimpleGraph V) [DecidableRel G.Adj] : triangleSupport G ≤ G :=
   edgeSelect_le _ _
 
-/-- The triangle support has the same triangles as `G`: each edge of a triangle lies in one.-/
+/-- The triangle support has the same triangles as `G`: each edge of a triangle lies in one.
+@isnad1 id=eq.0h2v.s5.da17885cc9fa from=translated src=- shape=99e7111a vocab=6f5f14ae
+-/
 theorem cliqueFinset_three_triangleSupport (G : SimpleGraph V) [DecidableRel G.Adj] :
     (triangleSupport G).cliqueFinset 3 = G.cliqueFinset 3 := by
   classical
@@ -78,7 +83,9 @@ theorem cliqueFinset_three_triangleSupport (G : SimpleGraph V) [DecidableRel G.A
   simp only [Finset.mem_insert, Finset.mem_singleton] at hx
   rcases hx with rfl | rfl <;> assumption
 
-/-- Equal triangle hypergraphs give equal fractional optima.-/
+/-- Equal triangle hypergraphs give equal fractional optima.
+@isnad1 id=eq.1h3v.s5.e1771b12a7cc from=translated src=- shape=d0ec145a vocab=7914ab18
+-/
 theorem nu3star_congr_hypergraph (G₁ G₂ : SimpleGraph V) [DecidableRel G₁.Adj]
     [DecidableRel G₂.Adj] (h : triangleHypergraphE G₁ = triangleHypergraphE G₂) :
     nu3star G₁ = nu3star G₂ := by
@@ -91,7 +98,9 @@ theorem nu3star_congr_hypergraph (G₁ G₂ : SimpleGraph V) [DecidableRel G₁.
   · rintro ⟨w, ⟨hnn, hzero, hcon⟩, rfl⟩
     exact ⟨w, ⟨hnn, by rwa [← h] at hzero, by rwa [← h] at hcon⟩, by rw [h]⟩
 
-/-- **The triangle support carries the whole fractional optimum.**-/
+/-- **The triangle support carries the whole fractional optimum.**
+@isnad1 id=eq.0h2v.s5.c63b8c3c04b4 from=translated src=- shape=5d89b26e vocab=62de54d2
+-/
 theorem nu3star_triangleSupport (G : SimpleGraph V) [DecidableRel G.Adj] :
     nu3star (triangleSupport G) = nu3star G := by
   refine nu3star_congr_hypergraph _ _ ?_
@@ -114,13 +123,18 @@ noncomputable instance instDecidableRelUnionFamily (H : ℕ → SimpleGraph V) (
     DecidableRel (unionFamily H k).Adj := fun _ _ => Classical.dec _
 
 omit [Fintype V] [DecidableEq V] in
+/--
+@isnad1 id=le.1h4v.s5.ad6a43b1cbc7 from=translated src=- shape=6bafc4bc vocab=fccd20d8
+-/
 theorem unionFamily_le {G : SimpleGraph V} {H : ℕ → SimpleGraph V} {k : ℕ}
     (hle : ∀ i < k, H i ≤ G) : unionFamily H k ≤ G := by
   rintro x y ⟨i, hi, hadj⟩
   exact hle i hi hadj
 
 open Classical in
-/-- The `2`-cliques of a union are the union of the `2`-cliques.-/
+/-- The `2`-cliques of a union are the union of the `2`-cliques.
+@isnad1 id=eq.0h3v.s6.d0f49bb8cccd from=translated src=- shape=3cf7a2da vocab=7cc0be5c
+-/
 theorem cliqueFinset_two_unionFamily (H : ℕ → SimpleGraph V) (k : ℕ) :
     (unionFamily H k).cliqueFinset 2
       = (Finset.range k).biUnion (fun i => (H i).cliqueFinset 2) := by
@@ -141,7 +155,9 @@ theorem cliqueFinset_two_unionFamily (H : ℕ → SimpleGraph V) (k : ℕ) :
       ⟨i, Finset.mem_range.mp hi, (pair_mem_cliqueFinset_two (H i) hxy).mp hei⟩
 
 open Classical in
-/-- For an edge-disjoint family, the edge count of the union is the sum of the edge counts.-/
+/-- For an edge-disjoint family, the edge count of the union is the sum of the edge counts.
+@isnad1 id=eq.1h3v.s6.7ad27f3b2e34 from=translated src=- shape=8a93762d vocab=253d6265
+-/
 theorem card_cliqueFinset_two_unionFamily (H : ℕ → SimpleGraph V) (k : ℕ)
     (hdisj : EdgeDisjointFamily H k) :
     (((unionFamily H k).cliqueFinset 2).card : ℝ)
@@ -173,7 +189,9 @@ Indeed the fractional optimum of `G` is that of its triangle support
 (`Nibble.AX1.nu3star_triangleSupport`); passing from the support to the union of the family costs at
 most the number of uncovered edges (`Nibble.AX1.nu3star_le_add_deleted`); and the fractional optimum
 of the union is at most a third of its edge count (`Nibble.YusterE.nu3star_le`), which for an
-edge-disjoint family is a third of the sum of the members' edge counts.-/
+edge-disjoint family is a third of the sum of the members' edge counts.
+@isnad1 id=hasnearr.7h10v.s9.92e0fa6178ce from=translated src=- shape=b2af4d26 vocab=5d7c534e
+-/
 theorem hasNearRegularFamily_of_cover (G : SimpleGraph V) [DecidableRel G.Adj]
     {ε μ η d₀ : ℝ} {k : ℕ} {H : ℕ → SimpleGraph V} {d : ℕ → ℝ} {D : Finset (Finset V)}
     (hle : ∀ i < k, H i ≤ triangleSupport G)
@@ -226,7 +244,9 @@ def GoodTriple (G : SimpleGraph V) [DecidableRel G.Adj] (P : Finpartition (univ 
     G.IsUniform ep W X ∧ de ≤ G.edgeDensity W X
 
 /-- **Every triangle of a regularity-reduced graph lives on a good triple of clusters**: its three
-vertices lie in three distinct parts, which are pairwise uniform and dense.-/
+vertices lie in three distinct parts, which are pairwise uniform and dense.
+@isnad1 id=ex.3h8v.s7.cfb4521dd089 from=translated src=- shape=7bcc4338 vocab=bc9b08c4
+-/
 theorem regularityReduced_triangle_parts (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (ep de : ℝ) {x y z : V}
     (hxy : (G.regularityReduced P ep de).Adj x y)
@@ -244,7 +264,9 @@ theorem regularityReduced_triangle_parts (G : SimpleGraph V) [DecidableRel G.Adj
 
 /-- **Every edge that the covering residual has to cover lies on a good triple.**  An edge of the
 triangle support of a regularity-reduced graph joins two clusters of a good triple, the third
-cluster containing a common neighbour.-/
+cluster containing a common neighbour.
+@isnad1 id=ex.1h7v.s7.e69ec076805d from=translated src=- shape=ed7a3059 vocab=ffe6e593
+-/
 theorem triangleSupport_regularityReduced_goodTriple (G : SimpleGraph V) [DecidableRel G.Adj]
     (P : Finpartition (univ : Finset V)) (ep de : ℝ) {x y : V}
     (hxy : (triangleSupport (G.regularityReduced P ep de)).Adj x y) :

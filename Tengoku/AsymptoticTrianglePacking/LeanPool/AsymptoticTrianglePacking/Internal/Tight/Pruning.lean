@@ -46,7 +46,9 @@ def prune (H : Finset (Finset V)) (B : Finset V) : Finset (Finset V) :=
   H.filter (fun e => Disjoint e B)
 
 omit [Fintype V] in
-/-- At most `|B|·Δ` edges meet `B`.-/
+/-- At most `|B|·Δ` edges meet `B`.
+@isnad1 id=le.1h4v.s6.062687150689 from=translated src=- shape=9e5a8c3b vocab=ff50d781
+-/
 theorem card_edges_meeting_le {H : Finset (Finset V)} {Δ : ℕ} (hΔ : ∀ x, degree H x ≤ Δ)
     (B : Finset V) : (H.filter (fun e => ¬ Disjoint e B)).card ≤ B.card * Δ := by
   classical
@@ -56,7 +58,9 @@ theorem card_edges_meeting_le {H : Finset (Finset V)} {Δ : ℕ} (hΔ : ∀ x, d
     _ = B.card * Δ := by rw [Finset.sum_const, smul_eq_mul]
 
 omit [Fintype V] in
-/-- **Pruning splits the degree.**-/
+/-- **Pruning splits the degree.**
+@isnad1 id=le.0h4v.s5.99d40e700218 from=translated src=- shape=250dec13 vocab=564ab0a1
+-/
 theorem degree_prune_ge {H : Finset (Finset V)} (B : Finset V) (v : V) :
     degree H v ≤ degree (prune H B) v + lostDegree H B v := by
   classical
@@ -80,7 +84,9 @@ theorem degree_prune_ge {H : Finset (Finset V)} (B : Finset V) (v : V) :
   rfl
 
 /-- **Few vertices lose many edges.**  At most `r·|B|·Δ/t` vertices lose `≥ t` edges when `B` is
-deleted.-/
+deleted.
+@isnad1 id=le.2h6v.s6.d6087841c133 from=translated src=- shape=31f839db vocab=672c59f3
+-/
 theorem card_heavyLoss_le {H : Finset (Finset V)} {r Δ : ℕ} (hr : IsUniform H r)
     (hΔ : ∀ x, degree H x ≤ Δ) (B : Finset V) (t : ℕ) :
     (Finset.univ.filter (fun v => t ≤ lostDegree H B v)).card * t ≤ r * (B.card * Δ) := by

@@ -47,7 +47,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 /-! ### Counting the deleted edges -/
 
 /-- The `2`-cliques lost when passing to a subgraph are at most the edges lost: the endpoint map
-`Sym2 V → Finset V` sends the deleted edges onto the deleted `2`-cliques.-/
+`Sym2 V → Finset V` sends the deleted edges onto the deleted `2`-cliques.
+@isnad1 id=le.1h3v.s6.a1dc1884e504 from=translated src=- shape=dedcf4cd vocab=acfd59a8
+-/
 theorem card_clique2_sdiff_le (G G' : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel G'.Adj]
     (hle : G' ≤ G) :
     ((G.cliqueFinset 2 \ G'.cliqueFinset 2).card : ℝ)
@@ -81,7 +83,9 @@ theorem card_clique2_sdiff_le (G G' : SimpleGraph V) [DecidableRel G.Adj] [Decid
   rw [Nat.cast_sub hle'] at h2
   exact h2
 
-/-- A triangle-free graph has fractional triangle packing number `0`.-/
+/-- A triangle-free graph has fractional triangle packing number `0`.
+@isnad1 id=le.1h2v.s5.a32c55d006e2 from=translated src=- shape=958ecd61 vocab=9e0a2504
+-/
 theorem nu3star_eq_zero_of_cliqueFree (G : SimpleGraph V) [DecidableRel G.Adj]
     (h : G.CliqueFree 3) : nu3star G ≤ 0 := by
   have hemp : G.cliqueFinset 3 = ∅ := SimpleGraph.cliqueFinset_eq_empty_iff.mpr h
@@ -96,7 +100,9 @@ theorem nu3star_eq_zero_of_cliqueFree (G : SimpleGraph V) [DecidableRel G.Adj]
 Mathlib's triangle removal lemma produces a triangle-free spanning subgraph `G'` obtained by
 deleting fewer than `ε|V|²` edges.  Since `G'` has no triangle, *every* triangle of `G` contains a
 deleted edge, so the entire fractional packing is carried by the deleted edges, each of load at
-most `1`.-/
+most `1`.
+@isnad1 id=le.1h3v.s6.fb63aa214c08 from=translated src=- shape=f4c62868 vocab=0b477758
+-/
 theorem nu3star_le_of_few_triangles (G : SimpleGraph V) [DecidableRel G.Adj] {ε : ℝ}
     (hfew : ((G.cliqueFinset 3).card : ℝ)
       < SimpleGraph.triangleRemovalBound ε * (Fintype.card V : ℝ) ^ 3) :
@@ -114,7 +120,9 @@ theorem nu3star_le_of_few_triangles (G : SimpleGraph V) [DecidableRel G.Adj] {ε
   linarith only [hzero, hmain, hcnt, hdel']
 
 /-- **The removal branch, as a packing-gap bound.**  For every `ε > 0` there is `κ > 0` such that
-every graph with fewer than `κ|V|³` triangles has packing gap at most `ε|V|²`.-/
+every graph with fewer than `κ|V|³` triangles has packing gap at most `ε|V|²`.
+@isnad1 id=ex.1h1v.s7.fe2dc7708143 from=translated src=- shape=2018bfe2 vocab=c3bba0aa
+-/
 theorem gap_le_of_few_triangles (ε : ℝ) (hε : 0 < ε) :
     ∃ κ : ℝ, 0 < κ ∧
       ∀ (V : Type) [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj],
@@ -142,7 +150,9 @@ def CoreGapAtRich (ε δ κ : ℝ) : Prop :=
 def CoreGapRichResidual : Prop :=
   ∀ ε : ℝ, 0 < ε → ∀ δ : ℝ, 0 < δ → CoreGapAtRich ε δ (SimpleGraph.triangleRemovalBound ε)
 
-/-- Lowering the richness threshold strengthens the statement.-/
+/-- Lowering the richness threshold strengthens the statement.
+@isnad1 id=coregapa.2h4v.s4.06210cc3a447 from=translated src=- shape=850cede3 vocab=d1899819
+-/
 theorem CoreGapAtRich.mono_kappa {ε δ κ κ' : ℝ} (h : CoreGapAtRich ε δ κ) (hκ : κ ≤ κ') :
     CoreGapAtRich ε δ κ' := by
   obtain ⟨n₀, hmain⟩ := h
@@ -151,7 +161,9 @@ theorem CoreGapAtRich.mono_kappa {ε δ κ κ' : ℝ} (h : CoreGapAtRich ε δ �
   nlinarith only [hκ, hrich, hn]
 
 /-- **The reduction.**  The full core residual follows from its triangle-rich restriction: the
-triangle-poor instances are discharged outright by the removal branch.-/
+triangle-poor instances are discharged outright by the removal branch.
+@isnad1 id=coregapr.1h0v.s1.8771a53c5e50 from=translated src=- shape=1d48f1ac vocab=380291af
+-/
 theorem coreGapResidual_of_rich (h : CoreGapRichResidual) : CoreGapResidual := by
   intro ε hε δ hδ
   obtain ⟨n₀, hmain⟩ := h ε hε δ hδ
@@ -165,13 +177,17 @@ theorem coreGapResidual_of_rich (h : CoreGapRichResidual) : CoreGapResidual := b
   · exact hmain V G hV hdeg hrich hval
 
 /-- **The converse.**  The restricted residual is a weakening of the full one, so the two are
-equivalent: no strength has been smuggled in.-/
+equivalent: no strength has been smuggled in.
+@isnad1 id=coregapr.1h0v.s1.926630bc45ff from=translated src=- shape=1d48f1ac vocab=380291af
+-/
 theorem rich_of_coreGapResidual (h : CoreGapResidual) : CoreGapRichResidual := by
   intro ε hε δ hδ
   obtain ⟨n₀, hmain⟩ := h ε hε δ hδ
   exact ⟨n₀, fun V _ _ G _ hV hdeg _ hval => hmain V G hV hdeg hval⟩
 
-/-- **AX1 from the triangle-rich residual.**-/
+/-- **AX1 from the triangle-rich residual.**
+@isnad1 id=ax1state.1h0v.s1.22c92f7d46f5 from=translated src=- shape=1d48f1ac vocab=e87bc59d
+-/
 theorem ax1_of_coreGapRichResidual (h : CoreGapRichResidual) : AX1Statement :=
   ax1_of_coreGapResidual (coreGapResidual_of_rich h)
 
@@ -190,7 +206,9 @@ namespace Nibble
 variable {V : Type} [Fintype V] [DecidableEq V]
 
 /-- The maximum in the definition of `ν₃` is attained: there is a triangle packing of size
-exactly `ν₃ G`.-/
+exactly `ν₃ G`.
+@isnad1 id=ex.0h2v.s5.9686639573ec from=translated src=- shape=2e395288 vocab=81943050
+-/
 theorem exists_maximum_packing (G : SimpleGraph V) [DecidableRel G.Adj] :
     ∃ M : Finset (Finset (Finset V)), IsMatching (triangleHypergraphE G) M ∧ M.card = nu3 G := by
   classical
@@ -204,7 +222,9 @@ theorem exists_maximum_packing (G : SimpleGraph V) [DecidableRel G.Adj] :
   rw [hS, Finset.mem_filter] at hMS
   exact ⟨M, hMS.2, hsup.symm⟩
 
-/-- Every triangle of `G` shares an edge with a maximum packing: otherwise it could be added.-/
+/-- Every triangle of `G` shares an edge with a maximum packing: otherwise it could be added.
+@isnad1 id=ex.3h4v.s7.396dee514292 from=translated src=- shape=3ad6b49e vocab=320bf3d4
+-/
 theorem exists_mem_of_maximum_packing (G : SimpleGraph V) [DecidableRel G.Adj]
     {M : Finset (Finset (Finset V))} (hM : IsMatching (triangleHypergraphE G) M)
     (hcard : M.card = nu3 G) {T : Finset (Finset V)} (hT : T ∈ triangleHypergraphE G) :
@@ -239,7 +259,9 @@ theorem exists_mem_of_maximum_packing (G : SimpleGraph V) [DecidableRel G.Adj]
   omega
 
 /-- **`ν₃* ≤ 3·ν₃`.**  The `3ν₃` edges covered by a maximum triangle packing form a triangle cover,
-and the total weight of any fractional packing is at most the number of edges in a cover.-/
+and the total weight of any fractional packing is at most the number of edges in a cover.
+@isnad1 id=le.0h2v.s5.d724e3099ff5 from=translated src=- shape=551fffa6 vocab=f9454bb8
+-/
 theorem nu3star_le_three_nu3 (G : SimpleGraph V) [DecidableRel G.Adj] :
     nu3star G ≤ 3 * (nu3 G : ℝ) := by
   classical
@@ -275,7 +297,9 @@ theorem nu3star_le_three_nu3 (G : SimpleGraph V) [DecidableRel G.Adj] :
     _ = (F.card : ℝ) := by rw [Finset.sum_const, nsmul_eq_mul, mul_one]
     _ ≤ 3 * (nu3 G : ℝ) := hFcard
 
-/-- `|E(G)| ≤ |V|²/2`, sharpening `Nibble.YusterE.edge_card_le_card_sq`.-/
+/-- `|E(G)| ≤ |V|²/2`, sharpening `Nibble.YusterE.edge_card_le_card_sq`.
+@isnad1 id=le.0h2v.s6.983ec558776e from=translated src=- shape=444ce3b9 vocab=8b3cb8ed
+-/
 theorem edge_card_le_half_card_sq (G : SimpleGraph V) [DecidableRel G.Adj] :
     ((G.cliqueFinset 2).card : ℝ) ≤ (Fintype.card V : ℝ) ^ 2 / 2 := by
   classical
@@ -301,7 +325,9 @@ theorem edge_card_le_half_card_sq (G : SimpleGraph V) [DecidableRel G.Adj] :
 
 /-- **An unconditional `n²/9` bound on the packing gap.**  Since a maximum packing covers a set of
 `3ν₃` edges meeting every triangle, `ν₃* ≤ 3ν₃`, so the gap is at most `⅔ν₃*`; and
-`ν₃* ≤ |E|/3 ≤ |V|²/6`.-/
+`ν₃* ≤ |E|/3 ≤ |V|²/6`.
+@isnad1 id=le.0h2v.s6.66edfdebd934 from=translated src=- shape=002a436d vocab=b8e09f7b
+-/
 theorem nu3star_sub_nu3_le_ninth (G : SimpleGraph V) [DecidableRel G.Adj] :
     nu3star G - (nu3 G : ℝ) ≤ (Fintype.card V : ℝ) ^ 2 / 9 := by
   have h1 : nu3star G ≤ ((G.cliqueFinset 2).card : ℝ) / 3 := nu3star_le G
@@ -310,7 +336,9 @@ theorem nu3star_sub_nu3_le_ninth (G : SimpleGraph V) [DecidableRel G.Adj] :
   linarith
 
 /-- **`CoreGapAt ε δ` for every `ε ≥ 1/9`**, unconditionally — a genuine extension of the previously
-proved range `ε ≥ 1/3` (`Nibble.AX1.coreGapAt_of_third`).-/
+proved range `ε ≥ 1/3` (`Nibble.AX1.coreGapAt_of_third`).
+@isnad1 id=coregapa.1h2v.s5.129ce7cc8ff7 from=translated src=- shape=8736b242 vocab=abbfd087
+-/
 theorem AX1.coreGapAt_of_ninth {ε δ : ℝ} (hε : 1 / 9 ≤ ε) : AX1.CoreGapAt ε δ := by
   refine ⟨0, ?_⟩
   intro V _ _ G _ _ _ _
@@ -321,7 +349,9 @@ theorem AX1.coreGapAt_of_ninth {ε δ : ℝ} (hε : 1 / 9 ≤ ε) : AX1.CoreGapA
 /-! ### The degree of the edge-based triangle hypergraph -/
 
 /-- **The triangle hypergraph has maximum degree at most `|V|`**: a triangle through a fixed edge
-`e` is `insert v e` for one of the `|V|` vertices `v`.-/
+`e` is `insert v e` for one of the `|V|` vertices `v`.
+@isnad1 id=le.0h3v.s5.869c070b9624 from=translated src=- shape=08495af6 vocab=5f191b35
+-/
 theorem triangleHypergraphE_degree_le_card (G : SimpleGraph V) [DecidableRel G.Adj]
     (e : Finset V) :
     (Hypergraph.degree (triangleHypergraphE G) e : ℝ) ≤ (Fintype.card V : ℝ) := by
@@ -347,13 +377,17 @@ theorem triangleHypergraphE_degree_le_card (G : SimpleGraph V) [DecidableRel G.A
     simpa using Finset.card_image_le (s := (Finset.univ : Finset V)) (f := fun v => insert v e)
   exact_mod_cast le_trans h1 h2
 
-/-- `ν₃* ≥ 0`.-/
+/-- `ν₃* ≥ 0`.
+@isnad1 id=le.0h2v.s5.73a324fd1fe1 from=translated src=- shape=35cec350 vocab=5dcd4e95
+-/
 theorem nu3star_nonneg (G : SimpleGraph V) [DecidableRel G.Adj] : 0 ≤ nu3star G :=
   le_csSup (nu3star_bddAbove G) ⟨fun _ => 0, isFracPacking_zero G, by simp⟩
 
 /-! ### A proved instance of the weighted nibble: the near-regular case -/
 
-/-- **Every fractional matching of an `r`-uniform hypergraph has total weight at most `|W|/r`.**-/
+/-- **Every fractional matching of an `r`-uniform hypergraph has total weight at most `|W|/r`.**
+@isnad1 id=le.2h4v.s6.8efd73f8185e from=translated src=- shape=bfb724c3 vocab=88a75c55
+-/
 theorem fracMatching_sum_le {W : Type} [Fintype W] [DecidableEq W] {H : Finset (Finset W)}
     {r : ℕ} (hr : IsUniform H r) {w : Finset W → ℝ}
     (hcon : ∀ v : W, ∑ T ∈ H.filter (fun T => v ∈ T), w T ≤ 1) :
@@ -376,7 +410,9 @@ theorem fracMatching_sum_le {W : Type} [Fintype W] [DecidableEq W] {H : Finset (
 /-- **The weighted nibble holds for nearly regular hypergraphs**, as an immediate consequence of the
 proved regular nibble `Nibble.nibbleTheoremMostCeil_holds`: the matching it produces already covers
 all but a `β`-fraction of the ground set, and *every* fractional matching has total weight at most
-`|W|/r`. This conclusion relies on the stated near-regularity hypotheses.-/
+`|W|/r`. This conclusion relies on the stated near-regularity hypotheses.
+@isnad1 id=ex.2h2v.s8.678decd14695 from=translated src=- shape=56068cac vocab=e854b94e
+-/
 theorem fracNibble_nearlyRegular (r : ℕ) (hr : 2 ≤ r) (β : ℝ) (hβ : 0 < β) :
     ∃ μ : ℝ, 0 < μ ∧ ∃ η : ℝ, 0 < η ∧ ∃ d₀ : ℝ, 0 < d₀ ∧
       ∀ {W : Type} [Fintype W] [DecidableEq W] (H : Finset (Finset W)) (w : Finset W → ℝ) (d : ℝ),
@@ -418,7 +454,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 
 /-! ### Edge counting -/
 
-/-- The number of `2`-cliques is at most the number of edges.-/
+/-- The number of `2`-cliques is at most the number of edges.
+@isnad1 id=le.0h2v.s5.60af719e138e from=translated src=- shape=1a0c6081 vocab=e9930f4b
+-/
 theorem card_clique2_le_card_edgeFinset (G : SimpleGraph V) [DecidableRel G.Adj] :
     ((G.cliqueFinset 2).card : ℝ) ≤ (G.edgeFinset.card : ℝ) := by
   classical
@@ -436,7 +474,9 @@ theorem card_clique2_le_card_edgeFinset (G : SimpleGraph V) [DecidableRel G.Adj]
 
 omit [DecidableEq V] in
 /-- **Few vertices of low degree in an edge-rich graph.**  With `L` the set of vertices of degree
-below `t`, one has `|L|·(|V| − t) ≤ |V|² − 2|E|`.-/
+below `t`, one has `|L|·(|V| − t) ≤ |V|² − 2|E|`.
+@isnad1 id=le.0h3v.s7.674a0d2ac754 from=translated src=- shape=4dbfed83 vocab=5f7762d6
+-/
 theorem card_lowDeg_mul_le (G : SimpleGraph V) [DecidableRel G.Adj] (t : ℝ) :
     (((univ : Finset V).filter (fun v => (G.degree v : ℝ) < t)).card : ℝ)
         * ((Fintype.card V : ℝ) - t)
@@ -497,7 +537,9 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 def edgeTriangleDegree (G : SimpleGraph V) [DecidableRel G.Adj] (e : Finset V) : ℕ :=
   ((G.cliqueFinset 3).filter (fun t => e ⊆ t)).card
 
-/-- The triangle degree of an edge is its degree in the edge-based triangle hypergraph.-/
+/-- The triangle degree of an edge is its degree in the edge-based triangle hypergraph.
+@isnad1 id=eq.0h3v.s7.2f19a234625c from=translated src=- shape=8635267e vocab=bc44f4eb
+-/
 theorem edgeTriangleDegree_eq (G : SimpleGraph V) [DecidableRel G.Adj] (E : EdgeV G) :
     Hypergraph.degree (triangleHypergraphSub G) E = edgeTriangleDegree G E.val :=
   triangleHypergraphSub_degree_eq G E
@@ -520,7 +562,9 @@ noncomputable instance instDecidableRelDeleteHeavy (G : SimpleGraph V)
     DecidableRel (deleteHeavy G c).Adj :=
   fun x y => inferInstanceAs (Decidable (G.Adj x y ∧ (edgeTriangleDegree G {x, y} : ℝ) ≤ c))
 
-/-- Triangle degrees only decrease when passing to a subgraph.-/
+/-- Triangle degrees only decrease when passing to a subgraph.
+@isnad1 id=le.1h4v.s5.fb1b75eca118 from=translated src=- shape=6407b3b8 vocab=4dbc21f6
+-/
 theorem edgeTriangleDegree_mono (G G' : SimpleGraph V) [DecidableRel G.Adj] [DecidableRel G'.Adj]
     (hle : G' ≤ G) (e : Finset V) : edgeTriangleDegree G' e ≤ edgeTriangleDegree G e :=
   Finset.card_le_card
@@ -555,10 +599,16 @@ noncomputable instance instDecidableRelEdgeSelect (G : SimpleGraph V) (P : Finse
     DecidableRel (edgeSelect G P).Adj := fun _ _ => Classical.dec _
 
 omit [Fintype V] in
+/--
+@isnad1 id=iff.0h5v.s5.0848c491e927 from=translated src=- shape=15c4a2e0 vocab=48b0645f
+-/
 theorem edgeSelect_adj (G : SimpleGraph V) (P : Finset V → Prop) (x y : V) :
     (edgeSelect G P).Adj x y ↔ G.Adj x y ∧ P {x, y} := Iff.rfl
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h3v.s4.203eb69d7311 from=translated src=- shape=3cfa3277 vocab=6442aead
+-/
 theorem edgeSelect_le (G : SimpleGraph V) (P : Finset V → Prop) : edgeSelect G P ≤ G :=
   fun _ _ h => h.1
 
@@ -571,10 +621,15 @@ noncomputable instance instDecidableRelColorPart (G : SimpleGraph V)
   instDecidableRelEdgeSelect G _
 
 omit [Fintype V] in
+/--
+@isnad1 id=le.0h4v.s4.986810c51327 from=translated src=- shape=b4d8a92c vocab=eb25786d
+-/
 theorem colorPart_le (G : SimpleGraph V) (col : Finset V → ℕ) (i : ℕ) : colorPart G col i ≤ G :=
   edgeSelect_le G _
 
-/-- Every edge of a triangle of the `i`-th colour class has colour `i`.-/
+/-- Every edge of a triangle of the `i`-th colour class has colour `i`.
+@isnad1 id=eq.2h6v.s6.4a6043352250 from=translated src=- shape=28b66ad1 vocab=5f97c56c
+-/
 theorem colorPart_hyperedge_color (G : SimpleGraph V) (col : Finset V → ℕ) (i : ℕ)
     {T : Finset (Finset V)} (hT : T ∈ triangleHypergraphE (colorPart G col i)) :
     ∀ e ∈ T, col e = i := by
@@ -589,7 +644,9 @@ theorem colorPart_hyperedge_color (G : SimpleGraph V) (col : Finset V → ℕ) (
     ht.1 (he.1 (by simp)) (he.1 (by simp)) hab
   exact hadj.2
 
-/-- Hyperedges of a triangle hypergraph are nonempty.-/
+/-- Hyperedges of a triangle hypergraph are nonempty.
+@isnad1 id=nonempty.1h3v.s5.20567b2f75b8 from=translated src=- shape=a8e2e013 vocab=a1b4e4db
+-/
 theorem triangleHypergraphE_nonempty_of_mem (G : SimpleGraph V) [DecidableRel G.Adj]
     {T : Finset (Finset V)} (hT : T ∈ triangleHypergraphE G) : T.Nonempty := by
   classical
@@ -601,7 +658,9 @@ theorem triangleHypergraphE_nonempty_of_mem (G : SimpleGraph V) [DecidableRel G.
 
 /-- **Superadditivity of `ν₃` over the colour classes of an edge colouring.**
 The colour classes are
-edge-disjoint, so maximum packings of the classes unite to a packing of `G`.-/
+edge-disjoint, so maximum packings of the classes unite to a packing of `G`.
+@isnad1 id=le.0h4v.s5.2fc9e6a042b1 from=translated src=- shape=656e8249 vocab=acb99a03
+-/
 theorem nu3_sum_colorParts_le (G : SimpleGraph V) [DecidableRel G.Adj] (col : Finset V → ℕ)
     (k : ℕ) : ∑ i ∈ Finset.range k, nu3 (colorPart G col i) ≤ nu3 G := by
   classical
@@ -652,7 +711,9 @@ theorem nu3_sum_colorParts_le (G : SimpleGraph V) [DecidableRel G.Adj] (col : Fi
 
 /-- **The nibble as an integral packing bound.**  For every `β > 0` there are `μ, η > 0` and `d₀`
 such that a graph with near-regular triangle degrees at a scale `d ≥ d₀` has
-`ν₃ ≥ (1−β)|E|/3`.-/
+`ν₃ ≥ (1−β)|E|/3`.
+@isnad1 id=ex.1h1v.s8.c6058d8c1de0 from=translated src=- shape=fdc8626d vocab=5e65ae18
+-/
 theorem nu3_ge_of_regular_triangle_degrees (β : ℝ) (hβ : 0 < β) :
     ∃ μ : ℝ, 0 < μ ∧ ∃ η : ℝ, 0 < η ∧ ∃ d₀ : ℝ, 0 < d₀ ∧
       ∀ (V : Type) [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj]
@@ -735,7 +796,9 @@ def RegularDecompResidual : Prop :=
 /-- **The reduction.**  A near-regular decomposition of every large graph implies the AX1 core
 residual: the nibble packs each colour class up to a `(1−β)`-fraction of its edges
 (`Nibble.AX1.nu3_ge_of_regular_triangle_degrees`), the classes are edge-disjoint so the packings
-unite (`Nibble.AX1.nu3_sum_colorParts_le`), and the decomposition's edge count recovers `ν₃*`.-/
+unite (`Nibble.AX1.nu3_sum_colorParts_le`), and the decomposition's edge count recovers `ν₃*`.
+@isnad1 id=coregapr.1h0v.s1.83cfd174d321 from=translated src=- shape=1d48f1ac vocab=11de4593
+-/
 theorem coreGapResidual_of_regularDecomp (h : RegularDecompResidual) : CoreGapResidual := by
   intro ε hε δ _
   rcases le_or_gt (1 / 3 : ℝ) ε with hbig | hsmall
@@ -783,14 +846,18 @@ theorem coreGapResidual_of_regularDecomp (h : RegularDecompResidual) : CoreGapRe
   have hC : (0 : ℝ) ≤ ε ^ 2 * (Fintype.card V : ℝ) ^ 2 := by positivity
   linarith only [hA, hB, hC]
 
-/-- **AX1 from the structural residual.**-/
+/-- **AX1 from the structural residual.**
+@isnad1 id=ax1state.1h0v.s1.6abf0584f778 from=translated src=- shape=1d48f1ac vocab=0e1a3546
+-/
 theorem ax1_of_regularDecomp (h : RegularDecompResidual) : AX1Statement :=
   ax1_of_coreGapResidual (coreGapResidual_of_regularDecomp h)
 
 /-! ### The residual is satisfiable: the one-colour witness -/
 
 omit [Fintype V] in
-/-- Colouring every edge `0` leaves the graph unchanged.-/
+/-- Colouring every edge `0` leaves the graph unchanged.
+@isnad1 id=eq.0h2v.s4.b2f261dee996 from=translated src=- shape=e1cfaae2 vocab=7cdc5c5e
+-/
 theorem colorPart_const (G : SimpleGraph V) : colorPart G (fun _ => 0) 0 = G := by
   ext x y
   simp [colorPart, edgeSelect_adj]
@@ -799,7 +866,9 @@ theorem colorPart_const (G : SimpleGraph V) : colorPart G (fun _ => 0) 0 = G := 
 `d ≥ d₀` satisfies the requirement of `Nibble.AX1.RegularDecompAt` with the trivial one-colour
 decomposition.  So the structural residual is exactly the assertion that *every* large graph can be
 edge-coloured into near-regular classes without losing more than `ε|V|²` of the fractional optimum:
-it is a genuine statement about colourings, non-vacuous and satisfied by the regular graphs.-/
+it is a genuine statement about colourings, non-vacuous and satisfied by the regular graphs.
+@isnad1 id=ex.5h8v.s9.ab215c9f34f8 from=translated src=- shape=23c56533 vocab=33f7dc6d
+-/
 theorem regularDecomp_witness_of_regular (ε μ η d₀ : ℝ) (hε : 0 ≤ ε)
     (G : SimpleGraph V) [DecidableRel G.Adj] (d : ℝ) (Exc : Finset (Finset V)) (hd : d₀ ≤ d)
     (hExc : (Exc.card : ℝ) ≤ η * ((G.cliqueFinset 2).card : ℝ))
@@ -867,18 +936,24 @@ variable {V : Type} [Fintype V] [DecidableEq V]
 def EdgeDisjointFamily (H : ℕ → SimpleGraph V) (k : ℕ) : Prop :=
   ∀ i < k, ∀ j < k, i ≠ j → ∀ x y, (H i).Adj x y → ¬ (H j).Adj x y
 
-/-- A pair `{x, y}` of distinct vertices is a `2`-clique of `H` iff `x` and `y` are adjacent.-/
+/-- A pair `{x, y}` of distinct vertices is a `2`-clique of `H` iff `x` and `y` are adjacent.
+@isnad1 id=iff.1h4v.s6.abd96c9e4a45 from=translated src=- shape=24001be3 vocab=3d4a1372
+-/
 theorem pair_mem_cliqueFinset_two (H : SimpleGraph V) [DecidableRel H.Adj] {x y : V} (hxy : x ≠ y) :
     ({x, y} : Finset V) ∈ H.cliqueFinset 2 ↔ H.Adj x y := by
   rw [SimpleGraph.mem_cliqueFinset_iff, SimpleGraph.isNClique_iff, Finset.card_pair hxy]
   simp [hxy]
 
-/-- The `2`-cliques of two equal graphs agree, whatever the decidability instances.-/
+/-- The `2`-cliques of two equal graphs agree, whatever the decidability instances.
+@isnad1 id=eq.1h4v.s5.2abb82e025c6 from=translated src=- shape=eb8b8fd5 vocab=a905997e
+-/
 theorem cliqueFinset_congr_graph {G₁ G₂ : SimpleGraph V} [DecidableRel G₁.Adj]
     [DecidableRel G₂.Adj] (h : G₁ = G₂) (n : ℕ) : G₁.cliqueFinset n = G₂.cliqueFinset n := by
   subst h; congr!
 
-/-- Triangle degrees of two equal graphs agree, whatever the decidability instances.-/
+/-- Triangle degrees of two equal graphs agree, whatever the decidability instances.
+@isnad1 id=eq.1h4v.s5.e8fc3cf8ddc0 from=translated src=- shape=efe79622 vocab=0cdb1413
+-/
 theorem edgeTriangleDegree_congr_graph {G₁ G₂ : SimpleGraph V} [DecidableRel G₁.Adj]
     [DecidableRel G₂.Adj] (h : G₁ = G₂) (e : Finset V) :
     edgeTriangleDegree G₁ e = edgeTriangleDegree G₂ e := by
@@ -890,7 +965,9 @@ the family containing it, and the junk colour `k` if there is none.-/
 noncomputable def familyColoring (H : ℕ → SimpleGraph V) (k : ℕ) (e : Finset V) : ℕ :=
   if h : ∃ i, i < k ∧ e ∈ (H i).cliqueFinset 2 then Nat.find h else k
 
-/-- The colour classes of `Nibble.AX1.familyColoring` are exactly the members of the family.-/
+/-- The colour classes of `Nibble.AX1.familyColoring` are exactly the members of the family.
+@isnad1 id=eq.3h5v.s6.95dd50853d10 from=translated src=- shape=b87a7839 vocab=6c2b9bdd
+-/
 theorem colorPart_familyColoring (G : SimpleGraph V) (H : ℕ → SimpleGraph V)
     (k : ℕ) (hle : ∀ i < k, H i ≤ G) (hdisj : EdgeDisjointFamily H k) {i : ℕ} (hi : i < k) :
     colorPart G (familyColoring H k) i = H i := by
@@ -941,7 +1018,9 @@ def HasNearRegularFamily (G : SimpleGraph V) [DecidableRel G.Adj] (ε μ η d₀
     nu3star G ≤ (∑ i ∈ Finset.range k, (((H i).cliqueFinset 2).card : ℝ) / 3)
       + ε * (Fintype.card V : ℝ) ^ 2
 
-/-- Weakening the accuracy of a near-regular family.-/
+/-- Weakening the accuracy of a near-regular family.
+@isnad1 id=hasnearr.2h7v.s5.4c85d0001a8b from=translated src=- shape=2e2da797 vocab=988a8395
+-/
 theorem HasNearRegularFamily.mono_eps {G : SimpleGraph V} [DecidableRel G.Adj] {ε ε' μ η d₀ : ℝ}
     (h : HasNearRegularFamily G ε μ η d₀) (hεε' : ε ≤ ε') :
     HasNearRegularFamily G ε' μ η d₀ := by
@@ -952,7 +1031,9 @@ theorem HasNearRegularFamily.mono_eps {G : SimpleGraph V} [DecidableRel G.Adj] {
 
 /-- **A family for a spanning subgraph is a family for the graph.**  If `G' ≤ G` and the fractional
 optimum drops by at most `c|V|²` when passing to `G'`, a near-regular family for `G'` is one for
-`G` at accuracy `ε + c`.-/
+`G` at accuracy `ε + c`.
+@isnad1 id=hasnearr.3h8v.s7.3eca289aa2ac from=translated src=- shape=2395d088 vocab=62c91bb5
+-/
 theorem HasNearRegularFamily.mono_of_le {G G' : SimpleGraph V} [DecidableRel G.Adj]
     [DecidableRel G'.Adj] {ε c μ η d₀ : ℝ} (hle : G' ≤ G)
     (hgap : nu3star G ≤ nu3star G' + c * (Fintype.card V : ℝ) ^ 2)
@@ -964,7 +1045,9 @@ theorem HasNearRegularFamily.mono_of_le {G G' : SimpleGraph V} [DecidableRel G.A
   nlinarith [hval]
 
 /-- **The triangle-poor branch.**  A graph with fewer than `triangleRemovalBound(ε)·|V|³` triangles
-has `ν₃* ≤ ε|V|²`, so the *empty* family is already a near-regular family.-/
+has `ν₃* ≤ ε|V|²`, so the *empty* family is already a near-regular family.
+@isnad1 id=hasnearr.1h6v.s6.4f2ad3c409f5 from=translated src=- shape=8e045cb7 vocab=3e45331e
+-/
 theorem hasNearRegularFamily_of_few_triangles (G : SimpleGraph V) [DecidableRel G.Adj]
     {ε μ η d₀ : ℝ} (hfew : ((G.cliqueFinset 3).card : ℝ)
       < SimpleGraph.triangleRemovalBound ε * (Fintype.card V : ℝ) ^ 3) :
@@ -979,7 +1062,9 @@ theorem hasNearRegularFamily_of_few_triangles (G : SimpleGraph V) [DecidableRel 
 
 /-! ### From families to colourings -/
 
-/-- A near-regular family gives the data required by `Nibble.AX1.RegularDecompAt`.-/
+/-- A near-regular family gives the data required by `Nibble.AX1.RegularDecompAt`.
+@isnad1 id=ex.1h6v.s8.bb32f4bf13fb from=translated src=- shape=95927593 vocab=3d9626c4
+-/
 theorem regularDecomp_data_of_family (G : SimpleGraph V) [DecidableRel G.Adj] {ε μ η d₀ : ℝ}
     (h : HasNearRegularFamily G ε μ η d₀) :
     ∃ (k : ℕ) (col : Finset V → ℕ) (d : ℕ → ℝ),
@@ -1020,7 +1105,9 @@ theorem regularDecomp_data_of_family (G : SimpleGraph V) [DecidableRel G.Adj] {�
     exact hval
 
 /-- **The reduction to the family form.**  If every large graph has a near-regular family, then the
-structural residual `Nibble.AX1.RegularDecompAt` holds.-/
+structural residual `Nibble.AX1.RegularDecompAt` holds.
+@isnad1 id=regulard.1h4v.s5.2d961cc730cd from=translated src=- shape=cb2edade vocab=d0a07647
+-/
 theorem regularDecompAt_of_family {ε μ η d₀ : ℝ}
     (h : ∃ n₀ : ℕ, ∀ (V : Type) [Fintype V] [DecidableEq V] (G : SimpleGraph V)
       [DecidableRel G.Adj], n₀ ≤ Fintype.card V → HasNearRegularFamily G ε μ η d₀) :
@@ -1029,7 +1116,9 @@ theorem regularDecompAt_of_family {ε μ η d₀ : ℝ}
   exact ⟨n₀, fun V _ _ G _ hV => regularDecomp_data_of_family G (hmain V G hV)⟩
 
 /-- **The converse.**  A colour decomposition *is* an edge-disjoint family, so the family form is
-equivalent to `Nibble.AX1.RegularDecompAt`: nothing has been smuggled in.-/
+equivalent to `Nibble.AX1.RegularDecompAt`: nothing has been smuggled in.
+@isnad1 id=ex.1h4v.s5.ba4780925848 from=translated src=- shape=587214bb vocab=d0a07647
+-/
 theorem hasNearRegularFamily_of_regularDecomp {ε μ η d₀ : ℝ} (h : RegularDecompAt ε μ η d₀) :
     ∃ n₀ : ℕ, ∀ (V : Type) [Fintype V] [DecidableEq V] (G : SimpleGraph V) [DecidableRel G.Adj],
       n₀ ≤ Fintype.card V → HasNearRegularFamily G ε μ η d₀ := by
@@ -1055,7 +1144,9 @@ an `ε₁/8`-uniform pair of parts of density at least `ε₁/4`; for a uniform 
 parts it discards fewer than `ε₁|V|²` edges
 (`SimpleGraph.regularityReduced_edges_card_aux`), and deleting `m` edges costs the fractional
 optimum at most `m` (`Nibble.AX1.nu3star_le_add_deleted`).  So a near-regular family for the reduced
-graph is one for `G`, at accuracy `ε + ε₁`.-/
+graph is one for `G`, at accuracy `ε + ε₁`.
+@isnad1 id=hasnearr.5h8v.s8.c1d537385da7 from=translated src=- shape=e3da677d vocab=c9837b99
+-/
 theorem hasNearRegularFamily_of_reduced [Nonempty V] (G : SimpleGraph V) [DecidableRel G.Adj]
     {ε ε₁ μ η d₀ : ℝ} (hε₁ : 0 < ε₁) (P : Finpartition (univ : Finset V))
     (hP : P.IsEquipartition) (hPl : 4 / ε₁ ≤ (P.parts.card : ℝ))
@@ -1114,7 +1205,9 @@ def ReducedFamilyResidual : Prop :=
 regularity lemma at the scale `ε₁ ≤ ε/2` supplied by the residual; the reduced graph is either
 triangle-poor — and then the empty family already works, by the triangle removal lemma — or
 triangle-rich, and then the reduced residual applies.  Cleaning costs at most `ε₁|V|² ≤ (ε/2)|V|²`
-of the fractional optimum.-/
+of the fractional optimum.
+@isnad1 id=regulard.1h0v.s1.6b4c984a3058 from=translated src=- shape=1d48f1ac vocab=e819f07f
+-/
 theorem regularDecompResidual_of_reducedFamily (h : ReducedFamilyResidual) :
     RegularDecompResidual := by
   classical
@@ -1145,7 +1238,9 @@ theorem regularDecompResidual_of_reducedFamily (h : ReducedFamilyResidual) :
 
 /-- **The converse.**  The reduced residual is a *weakening* of `Nibble.AX1.RegularDecompResidual`
 (reduced graphs are graphs), so by `Nibble.AX1.regularDecompResidual_of_reducedFamily` the two are
-equivalent: the passage to regularity-reduced graphs smuggles in no strength.-/
+equivalent: the passage to regularity-reduced graphs smuggles in no strength.
+@isnad1 id=reducedf.1h0v.s1.3bc793bc7db6 from=translated src=- shape=1d48f1ac vocab=e819f07f
+-/
 theorem reducedFamilyResidual_of_regularDecompResidual (h : RegularDecompResidual) :
     ReducedFamilyResidual := by
   intro ε hε μ hμ η hη d₀ hd₀
@@ -1154,7 +1249,9 @@ theorem reducedFamilyResidual_of_regularDecompResidual (h : RegularDecompResidua
   exact fun V _ _ G _ P hV _ _ _ _ _ =>
     hmain V (G.regularityReduced P (min ε 1 / 8) (min ε 1 / 4)) hV
 
-/-- **AX1 from the reduced residual.**-/
+/-- **AX1 from the reduced residual.**
+@isnad1 id=ax1state.1h0v.s1.f7a1cbb697e7 from=translated src=- shape=1d48f1ac vocab=186557a8
+-/
 theorem ax1_of_reducedFamily (h : ReducedFamilyResidual) : AX1Statement :=
   ax1_of_regularDecomp (regularDecompResidual_of_reducedFamily h)
 
