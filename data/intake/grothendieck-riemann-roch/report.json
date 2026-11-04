@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "8118ad7426b879183766827eb5463f2d2100c2b6ad79f3324cb89f7ecfb6199d",
+ "gate2_unjudged": [],
+ "library": "grothendieck-riemann-roch",
+ "lint_mode": "proposed",
+ "modules": 134,
+ "part": 1,
+ "theorems": 1267
+}

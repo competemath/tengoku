@@ -71,6 +71,7 @@ import Tengoku.LerayHopf
 import Tengoku.Imoshortlist
 import Tengoku.NavierStokesEuler
 import Tengoku.Formalbook
+import Tengoku.GrothendieckRiemannRoch
 import Tengoku.Automatatheory
 import Tengoku.BrownianMotion
 import Tengoku.MeanFourier
