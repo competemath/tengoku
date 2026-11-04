@@ -18,7 +18,9 @@ reachability relation.
 
 namespace Complexity.Planar
 
-/-- Least witness of a predicate on `Nat`.-/
+/-- Least witness of a predicate on `Nat`.
+@isnad1 id=ex.1h1v.s5.85c565ee1850 from=translated src=- shape=52d1329b vocab=7f9bb019
+-/
 theorem exists_least {P : Nat → Prop} (h : ∃ r, P r) : ∃ r, P r ∧ ∀ r', r' < r → ¬ P r' := by
   obtain ⟨r, hr⟩ := h
   have key : ∀ k, ∀ r, r < k → P r → ∃ r, P r ∧ ∀ r', r' < r → ¬ P r' := by
@@ -33,6 +35,9 @@ theorem exists_least {P : Nat → Prop} (h : ∃ r, P r) : ∃ r, P r ∧ ∀ r'
       · exact ⟨r, hr, fun r' hr' hP => hex ⟨r', hr', hP⟩⟩
   exact key (r + 1) r (by omega) hr
 
+/--
+@isnad1 id=nodup.2h4v.s5.16414f712140 from=translated src=- shape=32fff369 vocab=eb4e5a34
+-/
 theorem nodup_map_of_injOn' {α β : Type} (f : α → β) {l : List α} (hl : l.Nodup)
     (hf : ∀ a ∈ l, ∀ b ∈ l, f a = f b → a = b) : (l.map f).Nodup := by
   induction l with
@@ -48,7 +53,9 @@ theorem nodup_map_of_injOn' {α β : Type} (f : α → β) {l : List α} (hl : l
     subst this
     exact hl.1 hb
 
-/-- **Pigeonhole**: `n + 1` values in `Fin n` repeat.-/
+/-- **Pigeonhole**: `n + 1` values in `Fin n` repeat.
+@isnad1 id=ex.0h2v.s5.93c987d1b7ac from=translated src=- shape=af7adb86 vocab=4dfa4bde
+-/
 theorem pigeonhole {n : Nat} (g : Nat → Fin n) : ∃ i j, i < j ∧ j ≤ n ∧ g i = g j := by
   apply Classical.byContradiction
   intro hno
@@ -70,13 +77,18 @@ section perm
 
 variable {n : Nat} {p : Fin n → Fin n}
 
+/--
+@isnad1 id=eq.2h5v.s5.5c8fb0670975 from=translated src=- shape=efbfa70b vocab=322f39f1
+-/
 theorem iterate_inj (hp : ∀ a b, p a = p b → a = b) (k : Nat) {a b : Fin n}
     (h : iterate p k a = iterate p k b) : a = b := by
   induction k generalizing a b with
   | zero => exact h
   | succ k ih => exact hp a b (ih h)
 
-/-- **Periodicity**: an injective map returns to every point within `n` steps.-/
+/-- **Periodicity**: an injective map returns to every point within `n` steps.
+@isnad1 id=ex.1h3v.s5.816182c049ad from=translated src=- shape=fc8be35d vocab=e802a973
+-/
 theorem period (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
     ∃ T, 0 < T ∧ T ≤ n ∧ iterate p T x = x := by
   obtain ⟨i, j, hij, hj, heq⟩ := pigeonhole (fun k => iterate p k x)
@@ -85,13 +97,18 @@ theorem period (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
     rw [← iterate_add, show j - i + i = j by omega]; exact heq.symm
   exact iterate_inj hp i h1
 
+/--
+@isnad1 id=eq.1h5v.s5.3c5c1cb81c89 from=translated src=- shape=15096c0e vocab=fef73a19
+-/
 theorem iterate_period_mul (x : Fin n) (T : Nat) (hT : iterate p T x = x) (c : Nat) :
     iterate p (c * T) x = x := by
   induction c with
   | zero => simp [iterate]
   | succ c ih => rw [Nat.succ_mul, iterate_add, ih, hT]
 
-/-- Iterates beyond `n` repeat the first `n` iterates.-/
+/-- Iterates beyond `n` repeat the first `n` iterates.
+@isnad1 id=ex.1h4v.s5.9f7fd9a41cea from=translated src=- shape=d573c62e vocab=b5c7e1fb
+-/
 theorem iterate_mod (hp : ∀ a b, p a = p b → a = b) (x : Fin n) (k : Nat) :
     ∃ i, i < n ∧ iterate p k x = iterate p i x := by
   obtain ⟨T, hT0, hTn, hT⟩ := period hp x
@@ -101,7 +118,9 @@ theorem iterate_mod (hp : ∀ a b, p a = p b → a = b) (x : Fin n) (k : Nat) :
   conv => lhs; rw [hk]
   rw [iterate_add, iterate_period_mul x T hT]
 
-/-- Going backwards is going forwards: `x` is reached from `p^k x`.-/
+/-- Going backwards is going forwards: `x` is reached from `p^k x`.
+@isnad1 id=ex.1h4v.s5.9a00182608e3 from=translated src=- shape=353aa9ff vocab=322f39f1
+-/
 theorem back (hp : ∀ a b, p a = p b → a = b) (k : Nat) (x : Fin n) :
     ∃ r, iterate p r (iterate p k x) = x := by
   obtain ⟨T, hT0, _, hT⟩ := period hp x
@@ -113,7 +132,9 @@ theorem back (hp : ∀ a b, p a = p b → a = b) (k : Nat) (x : Fin n) :
   rw [this]
   exact iterate_period_mul x T hT k
 
-/-- An injective self-map of `Fin n` is surjective.-/
+/-- An injective self-map of `Fin n` is surjective.
+@isnad1 id=ex.1h3v.s5.f9f14116ecab from=translated src=- shape=4a6ed18a vocab=00dd0f92
+-/
 theorem surj (hp : ∀ a b, p a = p b → a = b) (y : Fin n) : ∃ x, p x = y := by
   obtain ⟨T, hT0, _, hT⟩ := period hp y
   refine ⟨iterate p (T - 1) y, ?_⟩
@@ -121,7 +142,9 @@ theorem surj (hp : ∀ a b, p a = p b → a = b) (y : Fin n) : ∃ x, p x = y :=
   rw [show T - 1 + 1 = T by omega, hT] at this
   exact this.symm
 
-/-- The orbit of `x` meets every value at least as small as some fixed bound.-/
+/-- The orbit of `x` meets every value at least as small as some fixed bound.
+@isnad1 id=ex.0h3v.s5.fdf626fea968 from=translated src=- shape=e2100298 vocab=7061a6f2
+-/
 theorem exists_cycleMin (x : Fin n) :
     ∃ z : Fin n, (∃ i, i < n ∧ iterate p i x = z) ∧
       ∀ i, i < n → z.val ≤ (iterate p i x).val := by
@@ -147,15 +170,24 @@ theorem exists_cycleMin (x : Fin n) :
 noncomputable def cmin (p : Fin n → Fin n) (x : Fin n) : Fin n :=
   Classical.choose (exists_cycleMin (p := p) x)
 
+/--
+@isnad1 id=ex.0h3v.s5.700a7c81864d from=translated src=- shape=d92ab5ff vocab=79f68423
+-/
 theorem cmin_mem (x : Fin n) : ∃ i, i < n ∧ iterate p i x = cmin p x :=
   (Classical.choose_spec (exists_cycleMin (p := p) x)).1
 
+/--
+@isnad1 id=le.1h4v.s5.d3e3d8381109 from=translated src=- shape=43b949ee vocab=8b9ae774
+-/
 theorem cmin_le (hp : ∀ a b, p a = p b → a = b) (x : Fin n) (k : Nat) :
     (cmin p x).val ≤ (iterate p k x).val := by
   obtain ⟨i, hi, he⟩ := iterate_mod hp x k
   rw [he]
   exact (Classical.choose_spec (exists_cycleMin (p := p) x)).2 i hi
 
+/--
+@isnad1 id=eq.1h4v.s5.47b34714de93 from=translated src=- shape=cc1e4e84 vocab=82ab6764
+-/
 theorem cmin_iterate (hp : ∀ a b, p a = p b → a = b) (x : Fin n) (k : Nat) :
     cmin p (iterate p k x) = cmin p x := by
   apply Fin.ext
@@ -170,12 +202,21 @@ theorem cmin_iterate (hp : ∀ a b, p a = p b → a = b) (x : Fin n) (k : Nat) :
     rw [iterate_add, he] at this
     exact this
 
+/--
+@isnad1 id=eq.1h3v.s5.8ed9cb1fde8e from=translated src=- shape=96fc36b4 vocab=ff289213
+-/
 theorem cmin_step (hp : ∀ a b, p a = p b → a = b) (x : Fin n) : cmin p (p x) = cmin p x :=
   cmin_iterate hp x 1
 
+/--
+@isnad1 id=le.1h3v.s5.ff70d101cd4b from=translated src=- shape=b8fe906b vocab=79e530a4
+-/
 theorem cmin_le_self (hp : ∀ a b, p a = p b → a = b) (x : Fin n) : (cmin p x).val ≤ x.val :=
   cmin_le hp x 0
 
+/--
+@isnad1 id=iff.1h3v.s5.ef1e4fbab00e from=translated src=- shape=7b0e28c2 vocab=086ba76b
+-/
 theorem cmin_eq_iff (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
     cmin p x = x ↔ CycleMin p x = true := by
   simp only [CycleMin, List.all_eq_true, List.mem_range, Nat.ble_eq]
@@ -189,7 +230,9 @@ theorem cmin_eq_iff (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
     obtain ⟨i, hi, he⟩ := cmin_mem (p := p) x
     rw [← he]; exact h i hi
 
-/-- `x` is reached from the least dart of its cycle.-/
+/-- `x` is reached from the least dart of its cycle.
+@isnad1 id=ex.1h3v.s5.3df9cfcbc2df from=translated src=- shape=f7c99051 vocab=82ab6764
+-/
 theorem from_cmin (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
     ∃ r, iterate p r (cmin p x) = x := by
   obtain ⟨i, _, he⟩ := cmin_mem (p := p) x
@@ -200,11 +243,17 @@ theorem from_cmin (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
 noncomputable def crank (p : Fin n → Fin n) (hp : ∀ a b, p a = p b → a = b) (x : Fin n) : Nat :=
   Classical.choose (exists_least (from_cmin hp x))
 
+/--
+@isnad1 id=and.1h3v.s6.279d656c1783 from=translated src=- shape=1d127dec vocab=57d18966
+-/
 theorem crank_spec (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
     iterate p (crank p hp x) (cmin p x) = x ∧
       ∀ r, r < crank p hp x → iterate p r (cmin p x) ≠ x :=
   Classical.choose_spec (exists_least (from_cmin hp x))
 
+/--
+@isnad1 id=iff.1h3v.s5.989975a88ac3 from=translated src=- shape=81cc6337 vocab=7ca15cf1
+-/
 theorem crank_zero_iff (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
     crank p hp x = 0 ↔ cmin p x = x := by
   constructor
@@ -216,6 +265,9 @@ theorem crank_zero_iff (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
     intro hne
     exact (crank_spec hp x).2 0 (by omega) h
 
+/--
+@isnad1 id=lt.1h3v.s5.142db54256c3 from=translated src=- shape=10e52eb2 vocab=f476ce07
+-/
 theorem crank_lt (hp : ∀ a b, p a = p b → a = b) (x : Fin n) : crank p hp x < n := by
   apply Classical.byContradiction
   intro hge
@@ -229,7 +281,9 @@ theorem crank_lt (hp : ∀ a b, p a = p b → a = b) (x : Fin n) : crank p hp x 
     rw [← this]; exact h1
   exact (crank_spec hp x).2 _ (by omega) h2
 
-/-- The rank grows by one along the cycle, except when returning to the least dart.-/
+/-- The rank grows by one along the cycle, except when returning to the least dart.
+@isnad1 id=or.1h3v.s6.a92d595f6d2a from=translated src=- shape=44e336df vocab=bdcb1495
+-/
 theorem crank_step (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
     crank p hp (p x) = crank p hp x + 1 ∨ crank p hp (p x) = 0 := by
   by_cases h0 : cmin p (p x) = p x
@@ -260,7 +314,9 @@ theorem crank_step (hp : ∀ a b, p a = p b → a = b) (x : Fin n) :
         exact h3.symm
       exact hx2 _ (by omega) this
 
-/-- Going one step back lowers the rank by one.-/
+/-- Going one step back lowers the rank by one.
+@isnad1 id=eq.3h4v.s6.1a806c98491a from=translated src=- shape=cada5184 vocab=8e9ed2f1
+-/
 theorem crank_pred (hp : ∀ a b, p a = p b → a = b) (q x : Fin n) (hq : p q = x)
     (hpos : 0 < crank p hp x) : crank p hp q + 1 = crank p hp x := by
   rcases crank_step hp q with h | h
@@ -275,6 +331,9 @@ section hypermap
 
 variable {n : Nat} (G : Hypermap n)
 
+/--
+@isnad1 id=eq.1h4v.s4.ed10c42471c5 from=translated src=- shape=79da3f01 vocab=65248f98
+-/
 theorem hm_edge_inj : ∀ a b, G.edge a = G.edge b → a = b := by
   intro a b h
   have ha := G.edgeK a
@@ -282,8 +341,14 @@ theorem hm_edge_inj : ∀ a b, G.edge a = G.edge b → a = b := by
   rw [h] at ha
   rw [ha] at hb; exact hb
 
+/--
+@isnad1 id=ex.0h3v.s4.8dc6825fc834 from=translated src=- shape=3ea6e5c4 vocab=65248f98
+-/
 theorem hm_edge_surj (y : Fin n) : ∃ x, G.edge x = y := surj (hm_edge_inj G) y
 
+/--
+@isnad1 id=eq.1h4v.s4.13de9c0fa876 from=translated src=- shape=79da3f01 vocab=23dea822
+-/
 theorem hm_node_inj : ∀ a b, G.node a = G.node b → a = b := by
   -- `node` has the right inverse `face ∘ edge`, which is injective, hence surjective
   have hr : ∀ a b, G.face (G.edge a) = G.face (G.edge b) → a = b := by
@@ -297,6 +362,9 @@ theorem hm_node_inj : ∀ a b, G.node a = G.node b → a = b := by
   rw [← ha', ← hb', G.edgeK, G.edgeK] at h
   rw [← ha', ← hb', h]
 
+/--
+@isnad1 id=eq.1h4v.s4.d9c5c3014643 from=translated src=- shape=79da3f01 vocab=50d3becf
+-/
 theorem hm_face_inj : ∀ a b, G.face a = G.face b → a = b := by
   intro a b h
   obtain ⟨a', rfl⟩ := hm_edge_surj G a
@@ -307,7 +375,9 @@ theorem hm_face_inj : ∀ a b, G.face a = G.face b → a = b := by
   rw [ha] at hb
   rw [hb]
 
-/-- Every step can be undone by steps.-/
+/-- Every step can be undone by steps.
+@isnad1 id=ex.1h4v.s4.142c18e57ce8 from=translated src=- shape=6cbcbeac vocab=61f8bbd6
+-/
 theorem hm_step_back {x s : Fin n} (h : Linked.Step G x s) : ∃ k, G.linked k s x = true := by
   have viaPerm : ∀ (p : Fin n → Fin n), (∀ a b, p a = p b → a = b) →
       (∀ y, Linked.Step G y (p y)) → p x = s → ∃ k, G.linked k s x = true := by
@@ -330,7 +400,9 @@ theorem hm_step_back {x s : Fin n} (h : Linked.Step G x s) : ∃ k, G.linked k s
   · exact viaPerm G.node (hm_node_inj G) (fun y => Or.inr (Or.inl rfl)) h
   · exact viaPerm G.face (hm_face_inj G) (fun y => Or.inr (Or.inr rfl)) h
 
-/-- Reachability is symmetric.-/
+/-- Reachability is symmetric.
+@isnad1 id=ex.1h5v.s5.e80d620ee9ae from=translated src=- shape=3f0e58ee vocab=3101aecf
+-/
 theorem hm_linked_symm {k : Nat} {x y : Fin n} (h : G.linked k x y = true) :
     ∃ k', G.linked k' y x = true := by
   induction k generalizing y with
@@ -344,7 +416,9 @@ theorem hm_linked_symm {k : Nat} {x y : Fin n} (h : G.linked k x y = true) :
       obtain ⟨k2, h2⟩ := ih hz
       exact ⟨k1 + k2, Linked.linked_trans G h1 h2⟩
 
-/-- First-step decomposition of reachability.-/
+/-- First-step decomposition of reachability.
+@isnad1 id=or.1h5v.s6.d8ee843fd081 from=translated src=- shape=414e2720 vocab=9a7e7a9e
+-/
 theorem hm_linked_first {k : Nat} {x y : Fin n} (h : G.linked (k + 1) x y = true) :
     G.linked k x y = true ∨ ∃ s, Linked.Step G x s ∧ G.linked k s y = true := by
   induction k generalizing y with

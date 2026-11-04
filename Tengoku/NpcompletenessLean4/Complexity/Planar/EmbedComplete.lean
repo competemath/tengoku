@@ -26,9 +26,15 @@ variable {n : Nat} (G : Hypermap n)
 /-- A function on darts, extended by `0` to all numbers.-/
 noncomputable def natOf (f : Fin n → Nat) (d : Nat) : Nat := if h : d < n then f ⟨d, h⟩ else 0
 
+/--
+@isnad1 id=eq.1h3v.s4.c86b7adb3861 from=translated src=- shape=12f53cdf vocab=54f7ce1d
+-/
 theorem natOf_lt (f : Fin n → Nat) {d : Nat} (h : d < n) : natOf f d = f ⟨d, h⟩ := by
   simp [natOf, h]
 
+/--
+@isnad1 id=ex.0h3v.s6.26b54c96e8ff from=translated src=- shape=b7b5dbf9 vocab=0f805be1
+-/
 theorem exists_compMin (x : Fin n) :
     ∃ k, (∃ y : Fin n, y.val = k ∧ G.linked n x y = true) ∧
       ∀ k', k' < k → ¬ ∃ y : Fin n, y.val = k' ∧ G.linked n x y = true :=
@@ -37,6 +43,9 @@ theorem exists_compMin (x : Fin n) :
 /-- The least dart reachable from `x`.-/
 noncomputable def compMin (x : Fin n) : Nat := Classical.choose (exists_compMin G x)
 
+/--
+@isnad1 id=and.0h3v.s5.57b544637e19 from=translated src=- shape=b0fccead vocab=830be8d4
+-/
 theorem compMin_spec (x : Fin n) :
     (∃ y : Fin n, y.val = compMin G x ∧ G.linked n x y = true) ∧
       ∀ y : Fin n, G.linked n x y = true → compMin G x ≤ y.val := by
@@ -46,11 +55,16 @@ theorem compMin_spec (x : Fin n) :
   intro hlt
   exact h2 y.val (by unfold compMin at hlt; omega) ⟨y, rfl, hy⟩
 
+/--
+@isnad1 id=lt.0h3v.s4.bedf31d3dcee from=translated src=- shape=8f00e410 vocab=ba5468f8
+-/
 theorem compMin_lt (x : Fin n) : compMin G x < n := by
   obtain ⟨⟨y, hy, _⟩, _⟩ := compMin_spec G x
   rw [← hy]; exact y.isLt
 
-/-- The reachable sets of the two ends of a step agree.-/
+/-- The reachable sets of the two ends of a step agree.
+@isnad1 id=iff.1h5v.s5.0211bea4a6d0 from=translated src=- shape=bc843746 vocab=61f8bbd6
+-/
 theorem linked_step_iff {x s : Fin n} (hs : Linked.Step G x s) (y : Fin n) :
     G.linked n x y = true ↔ G.linked n s y = true := by
   constructor
@@ -61,6 +75,9 @@ theorem linked_step_iff {x s : Fin n} (hs : Linked.Step G x s) (y : Fin n) :
     have h1 := Linked.linked_step G (Linked.linked_refl G 0 x) hs
     exact Linked.linked_stable G (Linked.linked_trans G h1 h)
 
+/--
+@isnad1 id=eq.1h4v.s4.a9c34f4ad014 from=translated src=- shape=ea8176c7 vocab=e2073e33
+-/
 theorem compMin_step {x s : Fin n} (hs : Linked.Step G x s) : compMin G s = compMin G x := by
   obtain ⟨⟨y1, hy1, hl1⟩, hm1⟩ := compMin_spec G x
   obtain ⟨⟨y2, hy2, hl2⟩, hm2⟩ := compMin_spec G s
@@ -68,7 +85,9 @@ theorem compMin_step {x s : Fin n} (hs : Linked.Step G x s) : compMin G s = comp
   · rw [← hy1]; exact hm2 y1 ((linked_step_iff G hs y1).mp hl1)
   · rw [← hy2]; exact hm1 y2 ((linked_step_iff G hs y2).mpr hl2)
 
-/-- The least number of steps from `x` to its component representative.-/
+/-- The least number of steps from `x` to its component representative.
+@isnad1 id=ex.0h3v.s5.fe4863687256 from=translated src=- shape=5b6a8ba2 vocab=1432685c
+-/
 theorem exists_depth (x : Fin n) :
     ∃ k, (G.linked k x ⟨compMin G x, compMin_lt G x⟩ = true) ∧
       ∀ k', k' < k → ¬ G.linked k' x ⟨compMin G x, compMin_lt G x⟩ = true := by
@@ -80,11 +99,17 @@ theorem exists_depth (x : Fin n) :
 
 noncomputable def depth (x : Fin n) : Nat := Classical.choose (exists_depth G x)
 
+/--
+@isnad1 id=and.0h3v.s5.f1e48d443f0c from=translated src=- shape=871cf3bf vocab=2ca9f710
+-/
 theorem depth_spec (x : Fin n) :
     G.linked (depth G x) x ⟨compMin G x, compMin_lt G x⟩ = true ∧
       ∀ k', k' < depth G x → ¬ G.linked k' x ⟨compMin G x, compMin_lt G x⟩ = true :=
   Classical.choose_spec (exists_depth G x)
 
+/--
+@isnad1 id=le.0h3v.s4.662bc613e5b2 from=translated src=- shape=8f00e410 vocab=3669918e
+-/
 theorem depth_le (x : Fin n) : depth G x ≤ n := by
   apply Classical.byContradiction
   intro hlt
@@ -93,6 +118,9 @@ theorem depth_le (x : Fin n) : depth G x ≤ n := by
   rw [this] at hl
   exact (depth_spec G x).2 n (by omega) hl
 
+/--
+@isnad1 id=iff.0h3v.s4.2cc90fd64ab3 from=translated src=- shape=cf7c3831 vocab=1af68c3d
+-/
 theorem depth_zero_iff (x : Fin n) : depth G x = 0 ↔ compMin G x = x.val := by
   constructor
   · intro h
@@ -108,6 +136,9 @@ theorem depth_zero_iff (x : Fin n) : depth G x = 0 ↔ compMin G x = x.val := by
     rw [Linked.linked_zero]
     exact Fin.ext h.symm
 
+/--
+@isnad1 id=ex.1h3v.s5.64c1fd9353a8 from=translated src=- shape=c51b8fff vocab=56ca4b51
+-/
 theorem exists_succ (x : Fin n) (hpos : 0 < depth G x) :
     ∃ s : Fin n, Linked.Step G x s ∧
       G.linked (depth G x - 1) s ⟨compMin G x, compMin_lt G x⟩ = true := by
@@ -121,6 +152,9 @@ theorem exists_succ (x : Fin n) (hpos : 0 < depth G x) :
 noncomputable def succDart (x : Fin n) : Nat :=
   if h : 0 < depth G x then (Classical.choose (exists_succ G x h)).val else 0
 
+/--
+@isnad1 id=ex.1h3v.s6.6dd91f2798ca from=translated src=- shape=093d5ae4 vocab=39a0f292
+-/
 theorem succDart_spec (x : Fin n) (hpos : 0 < depth G x) :
     ∃ hs : succDart G x < n, Linked.Step G x ⟨succDart G x, hs⟩ ∧
       depth G ⟨succDart G x, hs⟩ + 1 = depth G x ∧
@@ -159,11 +193,17 @@ theorem succDart_spec (x : Fin n) (hpos : 0 < depth G x) :
 /-- Running count of a predicate on numbers.-/
 def runCount (P : Nat → Bool) (d : Nat) : Nat := (List.range d).countP P
 
+/--
+@isnad1 id=eq.0h2v.s5.5531c5e1411f from=translated src=- shape=72396c03 vocab=82ab41f1
+-/
 theorem runCount_succ (P : Nat → Bool) (d : Nat) :
     runCount P (d + 1) = runCount P d + (if P d then 1 else 0) := by
   simp only [runCount, List.range_succ, List.countP_append]
   by_cases h : P d = true <;> simp [h]
 
+/--
+@isnad1 id=le.0h2v.s3.1ad91078c881 from=translated src=- shape=5ba77e19 vocab=428c2941
+-/
 theorem runCount_le (P : Nat → Bool) (d : Nat) : runCount P d ≤ d := by
   have := List.countP_le_length (p := P) (l := List.range d)
   simpa [runCount] using this
@@ -171,7 +211,9 @@ theorem runCount_le (P : Nat → Bool) (d : Nat) : runCount P d ≤ d := by
 end complete
 
 /-- **Completeness of the embedding checks.** Every planar graph has certificate tables, with
-all entries bounded by the number of darts (and the end codes given by `enc`).-/
+all entries bounded by the number of darts (and the end codes given by `enc`).
+@isnad1 id=ex.2h4v.s8.241162260891 from=translated src=- shape=8171f472 vocab=053d76f8
+-/
 theorem embed_complete {V : Type} {es : List (V × V)} (enc : V → Nat) (dec : Nat → V)
     (hde : ∀ v, dec (enc v) = v) (hp : PlanarGraph es) :
     ∃ t : EmbedTables, t.n2 = es.length ∧ EmbedOK t ∧

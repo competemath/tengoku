@@ -23,12 +23,18 @@ establish it without computing any count exactly:
 
 namespace Complexity
 
+/--
+@isnad1 id=eq.0h4v.s5.49a76d1a7e3d from=translated src=- shape=530283d6 vocab=a018625c
+-/
 theorem iterate_succ' {α : Type} (f : α → α) (k : Nat) (x : α) :
     iterate f (k + 1) x = f (iterate f k x) := by
   induction k generalizing x with
   | zero => rfl
   | succ k ih => exact ih (f x)
 
+/--
+@isnad1 id=eq.0h5v.s5.0c04d0aac5f2 from=translated src=- shape=f3b96f5c vocab=a018625c
+-/
 theorem iterate_add {α : Type} (f : α → α) (a b : Nat) (x : α) :
     iterate f (a + b) x = iterate f b (iterate f a x) := by
   induction a generalizing x with
@@ -37,6 +43,9 @@ theorem iterate_add {α : Type} (f : α → α) (a b : Nat) (x : α) :
     rw [Nat.add_right_comm]
     exact ih (f x)
 
+/--
+@isnad1 id=eq.1h6v.s5.060db527fc10 from=translated src=- shape=fe388a7d vocab=e603bb81
+-/
 theorem iterate_invariant {α β : Type} (f : α → α) (φ : α → β) (h : ∀ x, φ (f x) = φ x)
     (k : Nat) (x : α) : φ (iterate f k x) = φ x := by
   induction k generalizing x with
@@ -47,7 +56,9 @@ namespace Planar
 
 /-! ## Counting on `Fin n` -/
 
-/-- A duplicate-free list of darts satisfying `P` is no longer than the number of such darts.-/
+/-- A duplicate-free list of darts satisfying `P` is no longer than the number of such darts.
+@isnad1 id=le.2h3v.s5.a91644742b5a from=translated src=- shape=c1a6c181 vocab=d3623489
+-/
 theorem length_le_countP {n : Nat} (P : Fin n → Bool) (xs : List (Fin n)) (hnd : xs.Nodup)
     (hP : ∀ x ∈ xs, P x = true) : xs.length ≤ (List.finRange n).countP P := by
   rw [List.countP_eq_length_filter]
@@ -55,7 +66,9 @@ theorem length_le_countP {n : Nat} (P : Fin n → Bool) (xs : List (Fin n)) (hnd
   intro x hx
   simp [List.mem_filter, hP x hx]
 
-/-- Every dart has a smallest dart with the same label.-/
+/-- Every dart has a smallest dart with the same label.
+@isnad1 id=ex.0h4v.s5.9ea744fc1258 from=translated src=- shape=425dcbb9 vocab=9683889d
+-/
 theorem exists_least_label {n : Nat} {β : Type} (φ : Fin n → β) (x : Fin n) :
     ∃ m : Fin n, φ m = φ x ∧ ∀ z : Fin n, φ z = φ x → m.val ≤ z.val := by
   have key : ∀ k, ∀ x : Fin n, x.val < k →
@@ -75,6 +88,9 @@ theorem exists_least_label {n : Nat} {β : Type} (φ : Fin n → β) (x : Fin n)
         · omega
   exact key (x.val + 1) x (by omega)
 
+/--
+@isnad1 id=nodup.1h4v.s4.c7131d36f66d from=translated src=- shape=1f586c31 vocab=fec420f4
+-/
 theorem nodup_of_map {α β : Type} (f : α → β) {l : List α} (h : (l.map f).Nodup) : l.Nodup := by
   induction l with
   | nil => exact List.nodup_nil
@@ -87,11 +103,16 @@ theorem nodup_of_map {α β : Type} (f : α → β) {l : List α} (h : (l.map f)
 def CycleMin {n : Nat} (p : Fin n → Fin n) (x : Fin n) : Bool :=
   (List.range n).all fun i => Nat.ble x.val (iterate p i x).val
 
+/--
+@isnad1 id=eq.0h2v.s4.6ba94cafcb9f from=translated src=- shape=08fc244a vocab=d73cc206
+-/
 theorem cycleCount_eq {n : Nat} (p : Fin n → Fin n) :
     cycleCount p = (List.finRange n).countP (CycleMin p) := rfl
 
 /-- **Lower bound on cycles.** If `φ` is invariant under `p`, the darts of a list with pairwise
-different labels lie in pairwise different cycles.-/
+different labels lie in pairwise different cycles.
+@isnad1 id=le.2h5v.s5.e53481780aef from=translated src=- shape=92681b00 vocab=e90c4462
+-/
 theorem cycleCount_ge {n : Nat} {β : Type} (p : Fin n → Fin n) (φ : Fin n → β)
     (hφ : ∀ x, φ (p x) = φ x) (xs : List (Fin n)) (hnd : (xs.map φ).Nodup) :
     xs.length ≤ cycleCount p := by
@@ -126,30 +147,50 @@ variable {n : Nat} (G : Hypermap n)
 /-- One step of `edge`, `node` or `face`.-/
 def Step (z y : Fin n) : Prop := G.edge z = y ∨ G.node z = y ∨ G.face z = y
 
+/--
+@isnad1 id=iff.0h4v.s4.7b779d7d545c from=translated src=- shape=b545547a vocab=3101aecf
+-/
 theorem linked_zero (x y : Fin n) : G.linked 0 x y = true ↔ x = y := by
   simp [Hypermap.linked, Fin.ext_iff]
 
+/--
+@isnad1 id=iff.0h5v.s6.5ab624929ac7 from=translated src=- shape=503b5b98 vocab=9a7e7a9e
+-/
 theorem linked_succ (k : Nat) (x y : Fin n) :
     G.linked (k + 1) x y = true ↔
       G.linked k x y = true ∨ ∃ z, G.linked k x z = true ∧ Step G z y := by
   simp [Hypermap.linked, Step, Fin.ext_iff, Nat.beq_eq, or_assoc]
 
+/--
+@isnad1 id=eq.1h5v.s5.d7b60969eba3 from=translated src=- shape=c17a52c1 vocab=583f7178
+-/
 theorem linked_mono_succ {k : Nat} {x y : Fin n} (h : G.linked k x y = true) :
     G.linked (k + 1) x y = true := (linked_succ G k x y).mpr (Or.inl h)
 
+/--
+@isnad1 id=eq.2h6v.s5.34d0f7f89275 from=translated src=- shape=d07792e7 vocab=444a6be3
+-/
 theorem linked_mono {k k' : Nat} (hk : k ≤ k') {x y : Fin n} (h : G.linked k x y = true) :
     G.linked k' x y = true := by
   induction hk with
   | refl => exact h
   | step _ ih => exact linked_mono_succ G ih
 
+/--
+@isnad1 id=eq.0h4v.s4.b5d9a0ed377b from=translated src=- shape=d8cc2d0b vocab=3101aecf
+-/
 theorem linked_refl (k : Nat) (x : Fin n) : G.linked k x x = true :=
   linked_mono G (Nat.zero_le k) ((linked_zero G x x).mpr rfl)
 
+/--
+@isnad1 id=eq.2h6v.s5.9deedd784e52 from=translated src=- shape=78cebf0e vocab=9a7e7a9e
+-/
 theorem linked_step {k : Nat} {x z y : Fin n} (h : G.linked k x z = true) (hs : Step G z y) :
     G.linked (k + 1) x y = true := (linked_succ G k x y).mpr (Or.inr ⟨z, h, hs⟩)
 
-/-- Concatenation of paths.-/
+/-- Concatenation of paths.
+@isnad1 id=eq.2h7v.s5.fe633c052508 from=translated src=- shape=c65bf639 vocab=583f7178
+-/
 theorem linked_trans {a b : Nat} {x y z : Fin n} (h1 : G.linked a x y = true)
     (h2 : G.linked b y z = true) : G.linked (a + b) x z = true := by
   induction b generalizing z with
@@ -161,7 +202,9 @@ theorem linked_trans {a b : Nat} {x y z : Fin n} (h1 : G.linked a x y = true)
     · exact linked_mono_succ G (ih h)
     · exact linked_step G (ih hw) hs
 
-/-- If the reachable set does not grow at step `k`, it never grows again.-/
+/-- If the reachable set does not grow at step `k`, it never grows again.
+@isnad1 id=eq.1h5v.s6.8b6d4e4df6bf from=translated src=- shape=9e6952ef vocab=44094856
+-/
 theorem stable_succ {x : Fin n} {k : Nat} (h : ∀ y, G.linked (k + 1) x y = G.linked k x y) :
     ∀ y, G.linked (k + 2) x y = G.linked (k + 1) x y := by
   intro y
@@ -175,6 +218,9 @@ theorem stable_succ {x : Fin n} {k : Nat} (h : ∀ y, G.linked (k + 1) x y = G.l
   conv => rhs; rw [e2]
   simp only [h]
 
+/--
+@isnad1 id=eq.1h6v.s6.a0b2c02b9dee from=translated src=- shape=9d1cf7d8 vocab=44094856
+-/
 theorem stable_from {x : Fin n} {k : Nat} (h : ∀ y, G.linked (k + 1) x y = G.linked k x y) :
     ∀ j y, G.linked (k + j + 1) x y = G.linked (k + j) x y := by
   intro j
@@ -185,6 +231,9 @@ theorem stable_from {x : Fin n} {k : Nat} (h : ∀ y, G.linked (k + 1) x y = G.l
     have := stable_succ G (k := k + j) ih y
     simpa [Nat.add_assoc] using this
 
+/--
+@isnad1 id=eq.1h6v.s6.57dadaffd036 from=translated src=- shape=6f5e8e6c vocab=44094856
+-/
 theorem stable_forever {x : Fin n} {k : Nat} (h : ∀ y, G.linked (k + 1) x y = G.linked k x y) :
     ∀ j y, G.linked (k + j) x y = G.linked k x y := by
   intro j
@@ -194,7 +243,9 @@ theorem stable_forever {x : Fin n} {k : Nat} (h : ∀ y, G.linked (k + 1) x y = 
     intro y
     rw [show k + (j + 1) = k + j + 1 by omega, stable_from G h j y, ih y]
 
-/-- A strictly larger subset has a strictly larger count.-/
+/-- A strictly larger subset has a strictly larger count.
+@isnad1 id=lt.4h5v.s6.fdd29e5613f6 from=translated src=- shape=d2be3bdf vocab=d89be3c2
+-/
 theorem countP_lt_of_mono {α : Type} {l : List α} {p q : α → Bool}
     (hpq : ∀ a ∈ l, p a = true → q a = true) {y : α} (hy : y ∈ l) (hqy : q y = true)
     (hpy : p y = false) : l.countP p < l.countP q := by
@@ -214,15 +265,24 @@ theorem countP_lt_of_mono {α : Type} {l : List α} {p q : α → Bool}
 /-- The number of darts reachable within `k` steps.-/
 def reachCount (x : Fin n) (k : Nat) : Nat := (List.finRange n).countP (G.linked k x)
 
+/--
+@isnad1 id=le.0h3v.s4.e9aebc5f28a4 from=translated src=- shape=2faf34fe vocab=fe337909
+-/
 theorem reachCount_zero (x : Fin n) : 1 ≤ reachCount G x 0 := by
   unfold reachCount
   apply List.countP_pos_iff.mpr
   exact ⟨x, List.mem_finRange x, linked_refl G 0 x⟩
 
+/--
+@isnad1 id=le.0h4v.s4.18464861909b from=translated src=- shape=df174ed4 vocab=fe337909
+-/
 theorem reachCount_le (x : Fin n) (k : Nat) : reachCount G x k ≤ n := by
   unfold reachCount
   simpa using (List.countP_le_length (p := G.linked k x) (l := List.finRange n))
 
+/--
+@isnad1 id=lt.1h4v.s6.75a615de04c0 from=translated src=- shape=1e8207f9 vocab=29d2646d
+-/
 theorem reachCount_grows (x : Fin n) (k : Nat)
     (h : ¬ ∀ y, G.linked (k + 1) x y = G.linked k x y) :
     reachCount G x k < reachCount G x (k + 1) := by
@@ -239,7 +299,9 @@ theorem reachCount_grows (x : Fin n) (k : Nat)
   obtain ⟨y, h1, h0⟩ := this
   exact countP_lt_of_mono (fun a _ ha => linked_mono_succ G ha) (List.mem_finRange y) h1 h0
 
-/-- Some step before `n` adds no new dart.-/
+/-- Some step before `n` adds no new dart.
+@isnad1 id=ex.0h3v.s5.b32a2f01d85f from=translated src=- shape=09bc23d0 vocab=a2fbf4a1
+-/
 theorem exists_stable (x : Fin n) :
     ∃ j, j < n ∧ ∀ y, G.linked (j + 1) x y = G.linked j x y := by
   apply Classical.byContradiction
@@ -259,7 +321,9 @@ theorem exists_stable (x : Fin n) :
   have := reachCount_le G x n
   omega
 
-/-- **Reachability stabilizes**: anything reachable is reachable within `n` steps.-/
+/-- **Reachability stabilizes**: anything reachable is reachable within `n` steps.
+@isnad1 id=eq.1h5v.s5.3a91c718e114 from=translated src=- shape=1585d5b1 vocab=3101aecf
+-/
 theorem linked_stable {k : Nat} {x y : Fin n} (h : G.linked k x y = true) :
     G.linked n x y = true := by
   obtain ⟨j, hj, hs⟩ := exists_stable G x
@@ -279,7 +343,9 @@ end Linked
 /-! ## Components -/
 
 /-- **Upper bound on components**: if every non-root dart reaches a smaller dart, there are at
-most as many components as roots.-/
+most as many components as roots.
+@isnad1 id=le.1h3v.s5.0bbc79b72006 from=translated src=- shape=7bc6275e vocab=9318c7df
+-/
 theorem componentCount_le {n : Nat} (G : Hypermap n) (R : Fin n → Bool)
     (h : ∀ x, R x = false → ∃ y : Fin n, y.val < x.val ∧ ∃ k, G.linked k x y = true) :
     G.componentCount ≤ (List.finRange n).countP R := by
@@ -297,12 +363,17 @@ theorem componentCount_le {n : Nat} (G : Hypermap n) (R : Fin n → Bool)
 
 /-! ## The Euler criterion -/
 
+/--
+@isnad1 id=iff.0h2v.s5.fbe53bd92680 from=translated src=- shape=cbefe875 vocab=2a4fdd52
+-/
 theorem planar_iff {n : Nat} (G : Hypermap n) :
     G.Planar ↔ 2 * G.componentCount + n ≤ G.eulerRhs + 1 := by
   unfold Hypermap.Planar Hypermap.genus Hypermap.eulerLhs
   omega
 
-/-- **Planarity from bounds** on the four counts.-/
+/-- **Planarity from bounds** on the four counts.
+@isnad1 id=planar.5h6v.s6.dfae28f4761a from=translated src=- shape=c618baad vocab=347c7a70
+-/
 theorem planar_of_bounds {n : Nat} (G : Hypermap n) (e v f c : Nat)
     (he : e ≤ cycleCount G.edge) (hv : v ≤ cycleCount G.node) (hf : f ≤ cycleCount G.face)
     (hc : G.componentCount ≤ c) (h : 2 * c + n ≤ e + v + f + 1) : G.Planar := by
@@ -312,12 +383,18 @@ theorem planar_of_bounds {n : Nat} (G : Hypermap n) (e v f c : Nat)
 
 /-! ## The edge permutation of a graph -/
 
+/--
+@isnad1 id=eq.0h1v.s3.1f78ffe989fb from=translated src=- shape=c5194543 vocab=77513134
+-/
 theorem map_val_finRange (n : Nat) : (List.finRange n).map Fin.val = List.range n := by
   apply List.ext_getElem
   · simp
   · intro i h1 h2
     simp [List.getElem_finRange]
 
+/--
+@isnad1 id=eq.0h2v.s4.9128c4db37a2 from=translated src=- shape=7c95fc0e vocab=38979f0f
+-/
 theorem countP_finRange_val {n : Nat} (P : Nat → Bool) :
     (List.finRange n).countP (fun x => P x.val) = (List.range n).countP P := by
   rw [← map_val_finRange, List.countP_map]
@@ -327,6 +404,9 @@ theorem countP_finRange_val {n : Nat} (P : Nat → Bool) :
 def IsGraphEdge {n : Nat} (edge : Fin n → Fin n) : Prop :=
   ∀ d, (edge d).val = cond (Nat.beq (d.val % 2) 0) (d.val + 1) (d.val - 1)
 
+/--
+@isnad1 id=or.1h3v.s6.7b84287b3986 from=translated src=- shape=07e66a3e vocab=f2315692
+-/
 theorem graphEdge_val {n : Nat} {edge : Fin n → Fin n} (h : IsGraphEdge edge) (d : Fin n) :
     (d.val % 2 = 0 ∧ (edge d).val = d.val + 1) ∨ (d.val % 2 = 1 ∧ (edge d).val = d.val - 1) := by
   have := h d
@@ -334,10 +414,16 @@ theorem graphEdge_val {n : Nat} {edge : Fin n → Fin n} (h : IsGraphEdge edge) 
   · rw [h2] at this; exact Or.inl ⟨h2, this⟩
   · rw [h2] at this; exact Or.inr ⟨h2, this⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.0806456f1cd7 from=translated src=- shape=2288295c vocab=42c04a21
+-/
 theorem graphEdge_div {n : Nat} {edge : Fin n → Fin n} (h : IsGraphEdge edge) (d : Fin n) :
     (edge d).val / 2 = d.val / 2 := by
   rcases graphEdge_val h d with ⟨h2, he⟩ | ⟨h2, he⟩ <;> omega
 
+/--
+@isnad1 id=le.1h2v.s6.2b3c1314f975 from=translated src=- shape=99e3f2a3 vocab=10ba6fcb
+-/
 theorem cycleCount_graphEdge_ge {E : Nat} {edge : Fin (2 * E) → Fin (2 * E)}
     (h : IsGraphEdge edge) : E ≤ cycleCount edge := by
   let xs : List (Fin (2 * E)) := (List.range E).pmap (fun i hi => ⟨2 * i, by
@@ -352,6 +438,9 @@ theorem cycleCount_graphEdge_ge {E : Nat} {edge : Fin (2 * E) → Fin (2 * E)}
     (by rw [hmap]; exact List.nodup_range)
   omega
 
+/--
+@isnad1 id=eq.0h1v.s5.e46ed129699f from=translated src=- shape=f3fd22c6 vocab=f291ea1b
+-/
 theorem countP_range_even (E : Nat) :
     (List.range (2 * E)).countP (fun d => d % 2 == 0) = E := by
   induction E with
@@ -360,6 +449,9 @@ theorem countP_range_even (E : Nat) :
     rw [show 2 * (E + 1) = 2 * E + 1 + 1 by omega, List.range_succ, List.range_succ]
     simp [List.countP_append, ih] <;> omega
 
+/--
+@isnad1 id=le.1h2v.s6.68a47d698fe6 from=translated src=- shape=f339d73e vocab=10ba6fcb
+-/
 theorem cycleCount_graphEdge_le {E : Nat} {edge : Fin (2 * E) → Fin (2 * E)}
     (h : IsGraphEdge edge) : cycleCount edge ≤ E := by
   rw [cycleCount_eq]

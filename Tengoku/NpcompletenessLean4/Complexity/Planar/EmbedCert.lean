@@ -38,9 +38,15 @@ structure EmbedTables where
 /-- The other end of the edge of dart `d`.-/
 def ed (d : Nat) : Nat := cond (Nat.beq (d % 2) 0) (d + 1) (d - 1)
 
+/--
+@isnad1 id=eq.0h1v.s5.96ab4ef2d442 from=translated src=- shape=84bfa876 vocab=cc2cbfc3
+-/
 theorem ed_even (h : Nat) : ed (2 * h) = 2 * h + 1 := by
   simp [ed, Nat.mul_mod_right]
 
+/--
+@isnad1 id=eq.0h1v.s5.fab92b7f0486 from=translated src=- shape=ff4e2e4d vocab=cc2cbfc3
+-/
 theorem ed_odd (h : Nat) : ed (2 * h + 1) = 2 * h := by
   have : (2 * h + 1) % 2 = 1 := by omega
   simp [ed, this]
@@ -70,11 +76,16 @@ structure EmbedOK (t : EmbedTables) : Prop where
 /-- Decoding a vertex: even codes are `inl`, odd codes are `inr`.-/
 def decodeEnd (k : Nat) : Sum Nat Nat := if k % 2 = 0 then .inl (k / 2) else .inr (k / 2)
 
+/--
+@isnad1 id=eq.1h2v.s4.c47ffa9572e2 from=translated src=- shape=278bfb52 vocab=968f18d9
+-/
 theorem decodeEnd_injective {a b : Nat} (h : decodeEnd a = decodeEnd b) : a = b := by
   unfold decodeEnd at h
   split at h <;> split at h <;> simp at h <;> omega
 
-/-- A running count is the number of indices satisfying the predicate.-/
+/-- A running count is the number of indices satisfying the predicate.
+@isnad1 id=eq.2h3v.s6.1055a3bb3b65 from=translated src=- shape=2a396362 vocab=5128a54c
+-/
 theorem runningCount (c : Nat → Nat) (P : Nat → Bool) (N : Nat) (h0 : c 0 = 0)
     (hs : ∀ d, d < N → c (d + 1) = c d + (if P d then 1 else 0)) :
     c N = (List.finRange N).countP (fun x => P x.val) := by
@@ -85,6 +96,9 @@ theorem runningCount (c : Nat → Nat) (P : Nat → Bool) (N : Nat) (h0 : c 0 = 
     rw [hs N (by omega), ih (fun d hd => hs d (by omega)), List.range_succ, List.countP_append]
     by_cases hp : P N = true <;> simp [hp]
 
+/--
+@isnad1 id=nodup.2h4v.s5.16414f712140 from=translated src=- shape=32fff369 vocab=eb4e5a34
+-/
 theorem nodup_map_of_injOn {α β : Type} (f : α → β) {l : List α} (hl : l.Nodup)
     (hf : ∀ a ∈ l, ∀ b ∈ l, f a = f b → a = b) : (l.map f).Nodup := by
   induction l with
@@ -100,6 +114,9 @@ theorem nodup_map_of_injOn {α β : Type} (f : α → β) {l : List α} (hl : l.
     subst this
     exact hl.1 hb
 
+/--
+@isnad1 id=nodup.0h2v.s4.0aea2503f0c3 from=translated src=- shape=12e96849 vocab=41a97358
+-/
 theorem nodup_filter_finRange (n : Nat) (P : Fin n → Bool) :
     ((List.finRange n).filter P).Nodup :=
   List.Nodup.sublist List.filter_sublist (List.nodup_finRange n)
@@ -130,20 +147,32 @@ def EmbedOK.hypermap : Hypermap (2 * t.n2) where
       rw [hk, ed_odd]
       exact (h.edgeK k (by have := d.isLt; omega)).2
 
+/--
+@isnad1 id=isgraphe.1h1v.s5.7537ba1f6ed3 from=translated src=- shape=10575cdb vocab=b4304a63
+-/
 theorem EmbedOK.isGraphEdge : IsGraphEdge h.hypermap.edge := by
   intro d; rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.ca409282da3b from=translated src=- shape=7e0604ce vocab=7aee8e09
+-/
 theorem EmbedOK.iterate_node (k : Nat) (d : Fin (2 * t.n2)) :
     (iterate h.hypermap.node k d).val = iterate t.N k d.val := by
   induction k generalizing d with
   | zero => rfl
   | succ k ih => exact ih (h.hypermap.node d)
 
+/--
+@isnad1 id=lt.2h3v.s5.5a415a563f4f from=translated src=- shape=b148a91a vocab=b48c8b24
+-/
 theorem EmbedOK.iterate_N_lt (k : Nat) {d : Nat} (hd : d < 2 * t.n2) :
     iterate t.N k d < 2 * t.n2 := by
   have := h.iterate_node k ⟨d, hd⟩
   rw [← this]; exact (iterate h.hypermap.node k ⟨d, hd⟩).isLt
 
+/--
+@isnad1 id=eq.2h3v.s5.867665681b5a from=translated src=- shape=45a96793 vocab=46fd5b5e
+-/
 theorem EmbedOK.iterate_EN (k : Nat) {d : Nat} (hd : d < 2 * t.n2) :
     t.EN (iterate t.N k d) = t.EN d := by
   induction k generalizing d with
@@ -152,7 +181,9 @@ theorem EmbedOK.iterate_EN (k : Nat) {d : Nat} (hd : d < 2 * t.n2) :
     simp only [iterate]
     rw [ih (h.bound d hd).1, h.nodeEnd d hd]
 
-/-- The node predecessor `F (ed d)` lowers the rank.-/
+/-- The node predecessor `F (ed d)` lowers the rank.
+@isnad1 id=and.2h2v.s6.1161096e29db from=translated src=- shape=65541afb vocab=b03d0037
+-/
 theorem EmbedOK.pred_spec {d : Nat} (hd : d < 2 * t.n2) :
     t.F (ed d) < 2 * t.n2 ∧ t.N (t.F (ed d)) = d ∧ t.EN (t.F (ed d)) = t.EN d ∧
       (0 < t.R d → t.R (t.F (ed d)) + 1 = t.R d) := by
@@ -172,7 +203,9 @@ theorem EmbedOK.pred_spec {d : Nat} (hd : d < 2 * t.n2) :
     refine ⟨hb, hN, ?_, (h.rank_prev k hk).2⟩
     rw [← h.nodeEnd _ hb, hN]
 
-/-- Every dart is reached from the rank-0 dart of its vertex in `R d` node steps.-/
+/-- Every dart is reached from the rank-0 dart of its vertex in `R d` node steps.
+@isnad1 id=ex.3h3v.s6.f920f3d0fb10 from=translated src=- shape=5ed37c94 vocab=2c1aa8d3
+-/
 theorem EmbedOK.from_root : ∀ r d, t.R d = r → d < 2 * t.n2 →
     ∃ z, z < 2 * t.n2 ∧ t.R z = 0 ∧ t.EN z = t.EN d ∧ iterate t.N r z = d := by
   intro r
@@ -185,7 +218,9 @@ theorem EmbedOK.from_root : ∀ r d, t.R d = r → d < 2 * t.n2 →
     refine ⟨z, hz, hz0, hzE.trans hE, ?_⟩
     rw [iterate_succ', hzit, hN]
 
-/-- Forward node steps from any dart reach a rank-0 dart.-/
+/-- Forward node steps from any dart reach a rank-0 dart.
+@isnad1 id=ex.3h3v.s6.c7a9d63a5a2a from=translated src=- shape=727ea545 vocab=ac17ce56
+-/
 theorem EmbedOK.to_root : ∀ s d, 2 * t.n2 - t.R d = s → d < 2 * t.n2 →
     ∃ k z, z < 2 * t.n2 ∧ t.R z = 0 ∧ t.EN z = t.EN d ∧ iterate t.N k d = z := by
   intro s
@@ -202,6 +237,9 @@ theorem EmbedOK.to_root : ∀ s d, 2 * t.n2 - t.R d = s → d < 2 * t.n2 →
         exact ⟨k + 1, z, hz, hz0, hzE.trans (h.nodeEnd d hd), hit⟩
       · exact ⟨1, t.N d, hNd, hr, h.nodeEnd d hd, rfl⟩
 
+/--
+@isnad1 id=ex.4h3v.s6.251abb396bb3 from=translated src=- shape=f0ec69ba vocab=46fd5b5e
+-/
 theorem EmbedOK.orbit {d d' : Nat} (hd : d < 2 * t.n2) (hd' : d' < 2 * t.n2)
     (hE : t.EN d = t.EN d') : ∃ k, iterate t.N k d = d' := by
   obtain ⟨k, z, hz, hz0, hzE, hit⟩ := h.to_root _ d rfl hd
@@ -212,6 +250,9 @@ theorem EmbedOK.orbit {d d' : Nat} (hd : d < 2 * t.n2) (hd' : d' < 2 * t.n2)
 
 /-! ### The counts -/
 
+/--
+@isnad1 id=le.1h1v.s5.626732add45b from=translated src=- shape=beb95b04 vocab=06fe9c7d
+-/
 theorem EmbedOK.node_count : t.cR (2 * t.n2) ≤ cycleCount h.hypermap.node := by
   rw [runningCount t.cR (fun d => t.R d == 0) _ h.cntR.1 (fun d hd => by
     rw [h.cntR.2 d hd]; simp)]
@@ -223,12 +264,18 @@ theorem EmbedOK.node_count : t.cR (2 * t.n2) ≤ cycleCount h.hypermap.node := b
     simp only [List.mem_filter, beq_iff_eq] at ha hb
     exact Fin.ext (h.rank_unique a.val a.isLt b.val b.isLt hab ha.2 hb.2)
 
+/--
+@isnad1 id=eq.1h3v.s6.6835d04af1ea from=translated src=- shape=7e0604ce vocab=e2437c77
+-/
 theorem EmbedOK.iterate_face (k : Nat) (d : Fin (2 * t.n2)) :
     (iterate h.hypermap.face k d).val = iterate t.F k d.val := by
   induction k generalizing d with
   | zero => rfl
   | succ k ih => exact ih (h.hypermap.face d)
 
+/--
+@isnad1 id=le.1h1v.s5.6ec94151dc70 from=translated src=- shape=beb95b04 vocab=e0c32cf3
+-/
 theorem EmbedOK.face_count : t.cF (2 * t.n2) ≤ cycleCount h.hypermap.face := by
   rw [runningCount t.cF (fun d => t.FL d == d) _ h.cntF.1 (fun d hd => by
     rw [h.cntF.2 d hd]; simp)]
@@ -247,6 +294,9 @@ theorem EmbedOK.face_count : t.cF (2 * t.n2) ≤ cycleCount h.hypermap.face := b
   rw [hinv i, hd] at this
   exact this
 
+/--
+@isnad1 id=eq.4h3v.s6.1e370fa88502 from=translated src=- shape=2f0f8630 vocab=6fea684f
+-/
 theorem EmbedOK.step_linked {d s : Nat} (hd : d < 2 * t.n2) (hs : s < 2 * t.n2)
     (hstep : s = ed d ∨ s = t.N d ∨ s = t.F d) :
     h.hypermap.linked 1 ⟨d, hd⟩ ⟨s, hs⟩ = true := by
@@ -257,6 +307,9 @@ theorem EmbedOK.step_linked {d s : Nat} (hd : d < 2 * t.n2) (hs : s < 2 * t.n2)
   · exact Or.inr (Or.inl rfl)
   · exact Or.inr (Or.inr rfl)
 
+/--
+@isnad1 id=ex.3h3v.s7.eb018e247973 from=translated src=- shape=f55b7493 vocab=e7c0cc7c
+-/
 theorem EmbedOK.to_component : ∀ k d (hd : d < 2 * t.n2), t.D d = k →
     ∃ hc : t.CL d < 2 * t.n2, h.hypermap.linked k ⟨d, hd⟩ ⟨t.CL d, hc⟩ = true := by
   intro k
@@ -280,6 +333,9 @@ theorem EmbedOK.to_component : ∀ k d (hd : d < 2 * t.n2), t.D d = k →
     rw [he] at this
     exact this
 
+/--
+@isnad1 id=le.1h1v.s5.c3a5846ae963 from=translated src=- shape=9609f873 vocab=d9d78e00
+-/
 theorem EmbedOK.component_count :
     h.hypermap.componentCount ≤ t.cC (2 * t.n2) := by
   rw [runningCount t.cC (fun d => t.CL d == d) _ h.cntC.1 (fun d hd => by
@@ -295,6 +351,9 @@ theorem EmbedOK.component_count :
 
 end sound
 
+/--
+@isnad1 id=ex.3h4v.s8.6c846b0b36bf from=translated src=- shape=a4b36b29 vocab=75a766c3
+-/
 theorem EmbedOK.exists_hypermap {V : Type} {es : List (V × V)} {t : EmbedTables}
     (h : EmbedOK t) (dec : Nat → V) (hdec : ∀ a b, dec a = dec b → a = b)
     (hends : ∀ d, d < 2 * t.n2 → halfEdgeEnd es d = some (dec (t.EN d))) :
@@ -320,7 +379,9 @@ theorem EmbedOK.exists_hypermap {V : Type} {es : List (V × V)} {t : EmbedTables
     have := h.final
     omega
 
-/-- **Soundness of the embedding checks.**-/
+/-- **Soundness of the embedding checks.**
+@isnad1 id=planargr.4h4v.s6.6f61322bb4f2 from=translated src=- shape=2851dfc8 vocab=196d0eb4
+-/
 theorem EmbedOK.planarGraph {V : Type} {es : List (V × V)} {t : EmbedTables} (h : EmbedOK t)
     (hlen : es.length = t.n2) (dec : Nat → V) (hdec : ∀ a b, dec a = dec b → a = b)
     (hends : ∀ d, d < 2 * t.n2 → halfEdgeEnd es d = some (dec (t.EN d))) :
