@@ -265,9 +265,29 @@ class Retries(unittest.TestCase):
         got, n = self.run_with([(1, "", "gh: Not Found (HTTP 404)")])
         self.assertEqual(n, 1)
 
-    def test_a_write_is_never_repeated(self):
-        got, n = self.run_with([(1, "", "gh: HTTP 500")], method="PATCH", path=f"repos/{REPO}/git/refs/heads/x")
-        self.assertEqual(n, 1)
+    def test_a_write_that_is_not_content_addressed_is_never_repeated(self):
+        for method, path in (
+            ("PATCH", f"repos/{REPO}/git/refs/heads/x"),
+            ("POST", f"repos/{REPO}/git/commits"),
+            ("POST", f"repos/{REPO}/issues/7/comments"),
+        ):
+            got, n = self.run_with([(1, "", "gh: HTTP 500")], method=method, path=path)
+            self.assertEqual(n, 1, f"{method} {path}")
+
+    def test_creating_a_blob_or_a_tree_is_repeated_after_a_transient_error(self):
+        # npcompleteness-lean4 #709, 4 Nov 2026: one `POST git/blobs: unexpected end of JSON input` (an empty answer) refused the whole push
+        for path in (f"repos/{REPO}/git/blobs", f"repos/{REPO}/git/trees"):
+            got, n = self.run_with(
+                [(1, "", "gh api POST: unexpected end of JSON input"), (1, "", "gh: HTTP 502"), (0, '{"sha": "abc"}', "")],
+                method="POST",
+                path=path,
+            )
+            self.assertEqual((got, n), ({"sha": "abc"}, 3), path)
+
+    def test_a_blob_that_keeps_failing_is_refused_after_four_tries(self):
+        got, n = self.run_with([(1, "", "gh: HTTP 500")], method="POST", path=f"repos/{REPO}/git/blobs")
+        self.assertEqual(n, 4)
+        self.assertIn("HTTP 500", got)
 
 
 class Plan(unittest.TestCase):
