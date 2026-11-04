@@ -47,7 +47,10 @@ class Refused(Exception):
 
 
 READ_ATTEMPTS = 4
-TRANSIENT = re.compile(r"HTTP 5\d\d|timed out|timeout|connection reset|EOF", re.I)
+TRANSIENT = re.compile(r"HTTP 5\d\d|timed out|timeout|connection reset|EOF|unexpected end of JSON input", re.I)
+# a POST to these creates a content-addressed object: repeating it after a transient error creates the same object (or finds it). A commit, a ref update or a
+# comment is not repeated: done twice, it is two things (npcompleteness-lean4 #709, 4 Nov 2026: `POST git/blobs: unexpected end of JSON input` once refused the push)
+IDEMPOTENT_WRITE = re.compile(r"/git/(blobs|trees)$")
 
 
 def gh_api(method: str, path: str, body: dict | None = None, raw: bool = False) -> object:
@@ -60,11 +63,12 @@ def gh_api(method: str, path: str, body: dict | None = None, raw: bool = False) 
     if body is not None:
         cmd += ["--input", "-"]
     # a read is repeated when GitHub answers with a server error (one HTTP 500 or 504 among the hundreds of reads of a big intake PR refused the whole PR, 3 Nov 2026:
-    # quadratic-number-fields, grothendieck-riemann-roch, derived-alg-geo-lean part 2); a write is never repeated
-    for attempt in range(READ_ATTEMPTS if method == "GET" else 1):
+    # quadratic-number-fields, grothendieck-riemann-roch, derived-alg-geo-lean part 2), and so is the creation of a blob or a tree (IDEMPOTENT_WRITE); any other write is never repeated
+    repeatable = method == "GET" or (method == "POST" and IDEMPOTENT_WRITE.search(path) is not None)
+    for attempt in range(READ_ATTEMPTS if repeatable else 1):
         r = subprocess.run(cmd, input=json.dumps(body) if body is not None else None, capture_output=True, text=not raw, check=False)
         err = r.stderr if not raw else r.stderr.decode("utf-8", "replace")
-        if r.returncode == 0 or not TRANSIENT.search(err) or attempt == READ_ATTEMPTS - 1 or method != "GET":
+        if r.returncode == 0 or not TRANSIENT.search(err) or attempt == READ_ATTEMPTS - 1 or not repeatable:
             break
         time.sleep(2**attempt)
     if r.returncode != 0:
