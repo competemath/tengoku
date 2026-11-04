@@ -17,6 +17,7 @@ import Tengoku.Expdb
 import Tengoku.DerivedAlgGeoLean
 import Tengoku.FltRegular
 import Tengoku.HodgeStructuresLean4
+import Tengoku.T3ModelCompanion
 import Tengoku.GibbsMeasure
 import Tengoku.Leanforcontrol
 import Tengoku.Leanslt
