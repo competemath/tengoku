@@ -10,6 +10,9 @@ Euclidean spheres, and its restricted differential norm. -/
 namespace DuistermaatVanDerKallen
 noncomputable section
 
+/--
+@isnad1 id=ex.0h2v.s7.5cc78497da90 from=translated src=- shape=ace60909 vocab=8d39eb50
+-/
 theorem polynomial_normSq_real {ι : Type*} (p : MvPolynomial ι ℂ) :
     ∃ q : MvPolynomial (ι ⊕ ι) ℝ, ∀ x,
       Complex.normSq (MvPolynomial.eval (complexCoordinates x) p) = MvPolynomial.eval x q := by
@@ -17,6 +20,9 @@ theorem polynomial_normSq_real {ι : Type*} (p : MvPolynomial ι ℂ) :
   refine ⟨r ^ 2 + s ^ 2, fun x => ?_⟩
   simp [Complex.normSq_apply, (hrs x).1, (hrs x).2, pow_two]
 
+/--
+@isnad1 id=iscomple.0h1v.s6.af01db57044a from=translated src=- shape=dd14031a vocab=5bef18c1
+-/
 theorem isComplexSemialgebraic_affineTorus (d : ℕ) :
     IsComplexSemialgebraic {x : (Fin d ⊕ Fin d) → ℂ |
       WithLp.toLp 2 x ∈ affineTorus d} := by
@@ -29,6 +35,9 @@ theorem isComplexSemialgebraic_affineTorus (d : ℕ) :
   exact IsComplexSemialgebraic.forall_finite
     (fun i : Fin d => {x : (Fin d ⊕ Fin d) → ℂ | x (.inl i) * x (.inr i) = 1}) h
 
+/--
+@isnad1 id=iscomple.1h3v.s6.5e2c532e8054 from=translated src=- shape=f7b6cfb2 vocab=974d9ac0
+-/
 theorem isComplexSemialgebraic_ambientDifferentialNorm_le {d : ℕ}
     (g : Fin d → AmbientPolynomial d) {ε : ℝ} (hε : 0 ≤ ε) :
     IsComplexSemialgebraic {x : (Fin d ⊕ Fin d) → ℂ |
@@ -60,6 +69,9 @@ theorem isComplexSemialgebraic_ambientDifferentialNorm_le {d : ℕ}
   rw [ambientDifferentialNorm, ← sq_le_sq₀ (Real.sqrt_nonneg _) hε, Real.sq_sqrt hnn]
   simp only [differentialNormSq, ambientEval, ha, hB]
 
+/--
+@isnad1 id=iscomple.1h2v.s6.570b8b4ee5df from=translated src=- shape=3954b995 vocab=fffa5ea0
+-/
 theorem isComplexSemialgebraic_euclidean_sphere {ι : Type*} [Fintype ι]
     {R : ℝ} (hR : 0 ≤ R) :
     IsComplexSemialgebraic {x : ι → ℂ | ‖WithLp.toLp 2 x‖ = R} := by

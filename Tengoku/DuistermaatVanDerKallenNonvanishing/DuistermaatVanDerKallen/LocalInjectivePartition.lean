@@ -14,7 +14,9 @@ noncomputable section
 open Set MeasureTheory
 
 /-- A measurable subset of a second-countable space has a countable measurable
-injective partition whenever the map is locally injective along that subset.-/
+injective partition whenever the map is locally injective along that subset.
+@isnad1 id=ex.2h4v.s7.d7b98e352112 from=translated src=- shape=55695cf2 vocab=dfc096d0
+-/
 theorem exists_measurable_injective_partition
     {X Y : Type*} [TopologicalSpace X] [SecondCountableTopology X]
     [MeasurableSpace X] [BorelSpace X] (S : Set X) (hS : MeasurableSet S) (f : X → Y)
@@ -55,6 +57,9 @@ theorem exists_measurable_injective_partition
     subst S
     refine ⟨fun _ => ∅, ?_, ?_, ?_, ?_⟩ <;> simp [Set.InjOn, Pairwise]
 
+/--
+@isnad1 id=countabl.1h5v.s6.805715688ade from=translated src=- shape=29b5eb9d vocab=a52624e9
+-/
 theorem countable_fiber_of_local_injectivity
     {X Y : Type*} [TopologicalSpace X] [SecondCountableTopology X]
     (S : Set X) (f : X → Y)
@@ -73,6 +78,9 @@ theorem countable_fiber_of_local_injectivity
       exact ⟨hxU, hx⟩
   exact (isLindelof_iff_lindelofSpace.mpr inferInstance).countable_of_isDiscrete hd
 
+/--
+@isnad1 id=ex.3h4v.s7.0cbb7a9dc30f from=translated src=- shape=32fbab7b vocab=96b1cd1f
+-/
 theorem exists_open_injective_of_contDiffAt_det_ne_zero
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     {f : E → E} {D : E →L[ℝ] E} {x : E}

@@ -17,6 +17,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 open Polynomial
 
+/--
+@isnad1 id=ex.1h4v.s8.c744e105ff1b from=translated src=- shape=ca142979 vocab=1bbf9bd8
+-/
 theorem fraction_polynomial_dvd_clear_denominator
     {R K : Type*} [CommRing R] [IsDomain R] [Field K]
     [Algebra R K] [IsFractionRing R K]
@@ -32,6 +35,9 @@ theorem fraction_polynomial_dvd_clear_denominator
   rw [← algebraMap_smul K c T, smul_eq_C_mul]
   ring
 
+/--
+@isnad1 id=ex.1h3v.s8.7d17ebba5fa7 from=translated src=- shape=50e0e019 vocab=c5d1a5e0
+-/
 theorem exists_generically_separable_polynomial
     {R K : Type*} [CommRing R] [IsDomain R] [Field K] [CharZero K]
     [Algebra R K] [IsFractionRing R K]
@@ -57,6 +63,9 @@ theorem exists_generically_separable_polynomial
   obtain ⟨c, hc, hd⟩ := fraction_polynomial_dvd_clear_denominator P (Q ^ n) hdiv'
   exact ⟨Q, fun h => hQsep.ne_zero (by rw [h, Polynomial.map_zero]), hQsep, c, hc, n, hd⟩
 
+/--
+@isnad1 id=ne.1h3v.s9.688806ba5279 from=translated src=- shape=4cedf1ea vocab=8723ca34
+-/
 theorem fraction_separable_resultant_ne_zero
     {R K : Type*} [CommRing R] [IsDomain R] [Field K]
     [Algebra R K] [IsFractionRing R K]
@@ -69,6 +78,9 @@ theorem fraction_separable_resultant_ne_zero
     Polynomial.resultant_map_map] at h
   exact fun hz => h (by rw [hz, map_zero])
 
+/--
+@isnad1 id=ex.1h1v.s8.088bd5a4b414 from=translated src=- shape=03fe34ee vocab=4ee424bc
+-/
 theorem polynomial_simple_relation_outside_finite
     (P : Polynomial (Polynomial ℝ)) (hP : P ≠ 0) :
     ∃ Q : Polynomial (Polynomial ℝ), Q ≠ 0 ∧ ∃ E : Set ℝ, E.Finite ∧

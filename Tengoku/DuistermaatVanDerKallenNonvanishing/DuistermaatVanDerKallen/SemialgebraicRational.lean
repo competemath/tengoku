@@ -9,6 +9,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 open scoped BigOperators
 
+/--
+@isnad1 id=eq.1h3v.s6.824246a5122d from=translated src=- shape=7ed0045a vocab=ae0f616e
+-/
 theorem sum_div_mul_prod {ι : Type*} [Fintype ι] [DecidableEq ι]
     (a b : ι → ℝ) (hb : ∀ i, b i ≠ 0) :
     (∑ i, a i / b i) * (∏ i, b i) =
@@ -19,6 +22,9 @@ theorem sum_div_mul_prod {ι : Type*} [Fintype ι] [DecidableEq ι]
   rw [← Finset.mul_prod_erase Finset.univ b (Finset.mem_univ i),
     ← mul_assoc, div_mul_cancel₀ _ (hb i)]
 
+/--
+@isnad1 id=issemial.1h5v.s8.de34c4fc1e0f from=translated src=- shape=c4d57938 vocab=b00bcb89
+-/
 theorem IsSemialgebraic.sum_div_le {ι κ : Type*} [Fintype ι] [DecidableEq ι]
     (a b : ι → MvPolynomial κ ℝ) (q : MvPolynomial κ ℝ)
     (hb : ∀ x i, 0 < MvPolynomial.eval x (b i)) :

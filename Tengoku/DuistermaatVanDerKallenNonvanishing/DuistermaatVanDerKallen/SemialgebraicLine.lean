@@ -17,6 +17,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 open Set
 
+/--
+@isnad1 id=finite.0h1v.s4.ae1c24c56351 from=translated src=- shape=8ed27a15 vocab=fa535bf6
+-/
 theorem polynomial_nonneg_finite_frontier (p : Polynomial ℝ) :
     (frontier {t : ℝ | 0 ≤ p.eval t}).Finite := by
   by_cases hp : p = 0
@@ -25,6 +28,9 @@ theorem polynomial_nonneg_finite_frontier (p : Polynomial ℝ) :
     intro t ht
     exact (frontier_le_subset_eq continuous_const p.continuous ht).symm
 
+/--
+@isnad1 id=finite.1h3v.s5.e1b70a9121eb from=translated src=- shape=4ac341fe vocab=a07fc63f
+-/
 theorem IsSemialgebraic.finite_frontier_polynomial_curve {ι : Type*}
     {S : Set (ι → ℝ)} (hS : IsSemialgebraic ι S) (g : ι → Polynomial ℝ) :
     (frontier {t : ℝ | (fun i => (g i).eval t) ∈ S}).Finite := by
@@ -46,6 +52,9 @@ theorem IsSemialgebraic.finite_frontier_polynomial_curve {ι : Type*}
     · exact Or.inr h.2
   | compl h ih => simpa only [Set.mem_compl_iff, ← Set.compl_ofPred, frontier_compl] using ih
 
+/--
+@isnad1 id=le.3h3v.s6.780eb17c0704 from=translated src=- shape=a4688e81 vocab=614e3f50
+-/
 theorem subset_of_preconnected_disjoint_frontier {X : Type*} [TopologicalSpace X]
     {S C : Set X} (hC : IsPreconnected C) (hdisj : Disjoint C (frontier S))
     (hne : (C ∩ S).Nonempty) : C ⊆ S := by
@@ -64,6 +73,9 @@ def realOrderSide (r : ℝ) : Ordering → Set ℝ
   | .eq => {r}
   | .gt => Ioi r
 
+/--
+@isnad1 id=convex.0h2v.s4.64cb107fbf17 from=translated src=- shape=39a012a0 vocab=1c5ee950
+-/
 theorem convex_realOrderSide (r : ℝ) (o : Ordering) : Convex ℝ (realOrderSide r o) := by
   cases o
   · exact convex_Iio r
@@ -73,10 +85,16 @@ theorem convex_realOrderSide (r : ℝ) (o : Ordering) : Convex ℝ (realOrderSid
 def realOrderCell (T : Set ℝ) (label : T → Ordering) : Set ℝ :=
   ⋂ r : T, realOrderSide r.val (label r)
 
+/--
+@isnad1 id=convex.0h2v.s4.9525f73d14ed from=translated src=- shape=e0d1c632 vocab=3f654825
+-/
 theorem convex_realOrderCell (T : Set ℝ) (label : T → Ordering) :
     Convex ℝ (realOrderCell T label) :=
   convex_iInter fun r => convex_realOrderSide r.val (label r)
 
+/--
+@isnad1 id=le.1h3v.s5.ad47c071a0ef from=translated src=- shape=8e9cb1fa vocab=898688a3
+-/
 theorem realOrderCell_subset_singleton {T : Set ℝ} (label : T → Ordering)
     (r : T) (hr : r.val ∈ realOrderCell T label) : realOrderCell T label ⊆ {r.val} := by
   intro x hx
@@ -85,6 +103,9 @@ theorem realOrderCell_subset_singleton {T : Set ℝ} (label : T → Ordering)
   cases ho : label r <;> simp [realOrderSide, ho] at hr' hx' ⊢
   exact hx'
 
+/--
+@isnad1 id=ex.0h2v.s4.fb6b6e603f42 from=translated src=- shape=a657c177 vocab=c2510bbc
+-/
 theorem exists_realOrderCell (T : Set ℝ) (x : ℝ) :
     ∃ label : T → Ordering, x ∈ realOrderCell T label := by
   classical
@@ -97,6 +118,9 @@ theorem exists_realOrderCell (T : Set ℝ) (x : ℝ) :
   · exact heq
   · exact lt_of_le_of_ne (le_of_not_gt hlt) (Ne.symm heq)
 
+/--
+@isnad1 id=le.1h2v.s5.2ae10968fb0f from=translated src=- shape=8b0c54d3 vocab=065b40a2
+-/
 theorem realOrderCell_subset_of_meets (S : Set ℝ) (label : frontier S → Ordering)
     (hne : (realOrderCell (frontier S) label ∩ S).Nonempty) :
     realOrderCell (frontier S) label ⊆ S := by
@@ -109,6 +133,9 @@ theorem realOrderCell_subset_of_meets (S : Set ℝ) (label : frontier S → Orde
     have hxr : x = r := hc hxC
     exact hc.trans (singleton_subset_iff.mpr (hxr ▸ hxS))
 
+/--
+@isnad1 id=ex.1h1v.s6.c4caae958e5b from=translated src=- shape=e74b6306 vocab=e22bf2fe
+-/
 theorem exists_convex_cover_card_le_of_finite_frontier {S : Set ℝ}
     (hS : (frontier S).Finite) :
     ∃ C : Set (Set ℝ), C.Finite ∧ C.ncard ≤ 3 ^ (frontier S).ncard ∧
@@ -141,18 +168,27 @@ theorem exists_convex_cover_card_le_of_finite_frontier {S : Set ℝ}
       simpa [cell, show (realOrderCell (frontier S) label ∩ S).Nonempty from
         ⟨x, hl, hx⟩] using hl
 
+/--
+@isnad1 id=ex.1h1v.s5.219a9201d9e2 from=translated src=- shape=4c898105 vocab=f930f6e4
+-/
 theorem exists_finite_convex_cover_of_finite_frontier {S : Set ℝ}
     (hS : (frontier S).Finite) :
     ∃ C : Set (Set ℝ), C.Finite ∧ (∀ A ∈ C, Convex ℝ A) ∧ ⋃₀ C = S := by
   obtain ⟨C, hC, _, hconv, hcover⟩ := exists_convex_cover_card_le_of_finite_frontier hS
   exact ⟨C, hC, hconv, hcover⟩
 
+/--
+@isnad1 id=ex.1h3v.s6.705aba8e3532 from=translated src=- shape=c33e6436 vocab=ea174698
+-/
 theorem IsSemialgebraic.finite_convex_cover_polynomial_curve {ι : Type*}
     {S : Set (ι → ℝ)} (hS : IsSemialgebraic ι S) (g : ι → Polynomial ℝ) :
     ∃ C : Set (Set ℝ), C.Finite ∧ (∀ A ∈ C, Convex ℝ A) ∧
       ⋃₀ C = {t : ℝ | (fun i => (g i).eval t) ∈ S} :=
   exists_finite_convex_cover_of_finite_frontier (hS.finite_frontier_polynomial_curve g)
 
+/--
+@isnad1 id=finite.3h3v.s5.d153b8fa9505 from=translated src=- shape=9404a5e3 vocab=2bea0b73
+-/
 theorem finite_connectedComponents_of_finite_preconnected_cover
     {X : Type*} [TopologicalSpace X] {S : Set X} {C : Set (Set X)}
     (hC : C.Finite) (hconn : ∀ A ∈ C, IsPreconnected A) (hcover : ⋃₀ C = S) :
@@ -178,6 +214,9 @@ theorem finite_connectedComponents_of_finite_preconnected_cover
   obtain ⟨A, hA, hxA⟩ := hx
   exact mem_iUnion.mpr ⟨A, mem_iUnion.mpr ⟨hA, ⟨x, hxA, rfl⟩⟩⟩
 
+/--
+@isnad1 id=le.3h3v.s6.6bd78010d027 from=translated src=- shape=249863bf vocab=64e81120
+-/
 theorem card_connectedComponents_le_of_finite_preconnected_cover
     {X : Type*} [TopologicalSpace X] {S : Set X} {C : Set (Set X)}
     (hC : C.Finite) (hconn : ∀ A ∈ C, IsPreconnected A) (hcover : ⋃₀ C = S) :
@@ -209,6 +248,9 @@ theorem card_connectedComponents_le_of_finite_preconnected_cover
     _ ≤ ∑ _A : C, 1 := Finset.sum_le_sum (fun A _ => hcard A)
     _ = C.ncard := by simp [← Nat.card_eq_fintype_card]
 
+/--
+@isnad1 id=finite.1h3v.s6.7aa249c0666c from=translated src=- shape=d59a2f53 vocab=a4fc0c48
+-/
 theorem IsSemialgebraic.finite_components_polynomial_curve {ι : Type*}
     {S : Set (ι → ℝ)} (hS : IsSemialgebraic ι S) (g : ι → Polynomial ℝ) :
     Finite (ConnectedComponents {t : ℝ | (fun i => (g i).eval t) ∈ S}) := by
@@ -217,7 +259,9 @@ theorem IsSemialgebraic.finite_components_polynomial_curve {ι : Type*}
     (fun A hA => (hconv A hA).isPreconnected) hcover
 
 /-- Global interval decomposition of a one-dimensional semialgebraic set.
-`OrdConnected` allows singleton, empty, bounded, and unbounded intervals.-/
+`OrdConnected` allows singleton, empty, bounded, and unbounded intervals.
+@isnad1 id=ex.1h1v.s6.a9b85ac12334 from=translated src=- shape=3fc41f6f vocab=27c1d77f
+-/
 theorem IsSemialgebraic.finite_interval_cover {S : Set (Fin 1 → ℝ)}
     (hS : IsSemialgebraic (Fin 1) S) :
     ∃ C : Set (Set ℝ), C.Finite ∧ (∀ A ∈ C, Set.OrdConnected A) ∧

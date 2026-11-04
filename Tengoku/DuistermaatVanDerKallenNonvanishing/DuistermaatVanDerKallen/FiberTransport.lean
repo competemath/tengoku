@@ -23,6 +23,9 @@ def GoodSegment {d : ℕ} (f : MultiLaurent d) (s a : ℂ) : Prop :=
     asymptoticCriticalValues (laurentOnAffineTorus f) (fun x => ‖x.val‖)
       (laurentDifferentialNorm f)
 
+/--
+@isnad1 id=goodsegm.1h4v.s4.66c85b14a84e from=translated src=- shape=ab2706fc vocab=bffc3af3
+-/
 theorem GoodSegment.reverse {d : ℕ} {f : MultiLaurent d} {s a : ℂ}
     (h : GoodSegment f s a) : GoodSegment f (s + a) (-a) := by
   intro t ht

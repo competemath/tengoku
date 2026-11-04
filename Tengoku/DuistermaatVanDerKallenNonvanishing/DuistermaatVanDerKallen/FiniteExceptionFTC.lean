@@ -11,6 +11,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 open Set MeasureTheory
 
+/--
+@isnad1 id=eq.4h6v.s7.7518a5644831 from=translated src=- shape=f035621c vocab=11cd4380
+-/
 theorem integral_eq_sub_of_hasDerivAt_off_finset
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (γ v : ℝ → E) (T : Finset ℝ) {a b : ℝ} (hab : a ≤ b)
@@ -42,6 +45,9 @@ theorem integral_eq_sub_of_hasDerivAt_off_finset
       intro t ht hT
       exact hd t ht (by simp only [Finset.mem_insert, not_or]; exact ⟨fun htc => hc' (htc ▸ ht), hT⟩)
 
+/--
+@isnad1 id=eq.5h6v.s7.0b1e88285a7f from=translated src=- shape=859fd774 vocab=b2a06b30
+-/
 theorem integral_eq_sub_of_hasDerivAt_off_finite
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (γ v : ℝ → E) (T : Set ℝ) (hT : T.Finite) {a b : ℝ} (hab : a ≤ b)
@@ -52,6 +58,9 @@ theorem integral_eq_sub_of_hasDerivAt_off_finite
   exact integral_eq_sub_of_hasDerivAt_off_finset γ v hT.toFinset hab hc
     (fun t ht hn => hd t ht (by simpa only [hT.mem_toFinset] using hn)) hi
 
+/--
+@isnad1 id=le.5h6v.s7.789ee5438989 from=translated src=- shape=01c91bbc vocab=436d0eed
+-/
 theorem eVariationOn_le_integral_speed_off_finite
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (γ v : ℝ → E) (T : Set ℝ) (hT : T.Finite) {a b : ℝ} (hab : a ≤ b)

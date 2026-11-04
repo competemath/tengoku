@@ -13,7 +13,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 
 /-- The proper embedded radius obeys Gronwall with a uniform bound on the
-continuous driving velocity, not the ordinary coordinate-space radius.-/
+continuous driving velocity, not the ordinary coordinate-space radius.
+@isnad1 id=le.7h9v.s9.911e83f917d8 from=translated src=- shape=a6173122 vocab=2ace2f3c
+-/
 theorem laurent_driven_curve_radius_bound {d : ℕ} (f : MultiLaurent d) (v : ℝ → ℂ)
     {γ : ℝ → Fin d → ℂ} {s b c B : ℝ} (hc : 0 < c)
     (hγ : ContinuousOn γ (Icc s b))

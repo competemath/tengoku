@@ -14,6 +14,9 @@ noncomputable section
 open Set MeasureTheory MeasureTheory.Measure
 open scoped ENNReal
 
+/--
+@isnad1 id=issemial.2h6v.s7.c90d48bf7d74 from=translated src=- shape=e291e62c vocab=83c2e84a
+-/
 theorem semialgebraic_domain_of_graph
     (hproj : SemialgebraicProjectionObligation)
     {ι κ ν : Type} [Finite ι] [Fintype κ] [Finite ν]
@@ -45,6 +48,9 @@ theorem semialgebraic_domain_of_graph
   simp only [Set.mem_ofPred_eq, Sum.elim_inl, Sum.elim_inr]
   exact ⟨fun hx => ⟨f a x, hx, rfl⟩, fun ⟨_, hx, _⟩ => hx⟩
 
+/--
+@isnad1 id=eventual.4h7v.s9.ec5b1d32a06e from=translated src=- shape=44a429ab vocab=778f4b39
+-/
 theorem ae_finite_semialgebraic_fibers_of_contDiffAt
     (hproj : SemialgebraicProjectionObligation)
     {ι κ : Type} [Finite ι] [Fintype κ]

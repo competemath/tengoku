@@ -18,6 +18,9 @@ def scalarTargetPolynomialEquiv (ι : Type*) :
   (MvPolynomial.renameEquiv ℝ (Equiv.optionEquivSumPUnit ι).symm).trans
     (MvPolynomial.optionEquivLeft ℝ ι)
 
+/--
+@isnad1 id=eq.0h4v.s8.1c354e53fee6 from=translated src=- shape=9066a49c vocab=09637666
+-/
 theorem eval_scalarTargetPolynomialEquiv {ι : Type*}
     (p : MvPolynomial (ι ⊕ Unit) ℝ) (x : ι → ℝ) (y : ℝ) :
     ((scalarTargetPolynomialEquiv ι p).map (MvPolynomial.eval x)).eval y =
@@ -35,6 +38,9 @@ def bivariatePolynomialEquiv :
   (scalarTargetPolynomialEquiv Unit).toRingEquiv.trans
     (Polynomial.mapEquiv (MvPolynomial.uniqueAlgEquiv ℝ Unit).toRingEquiv)
 
+/--
+@isnad1 id=eq.0h3v.s8.59378003fc81 from=translated src=- shape=3e57ff3b vocab=db1ee6b8
+-/
 theorem eval_bivariatePolynomialEquiv (p : MvPolynomial (Unit ⊕ Unit) ℝ)
     (x y : ℝ) :
     ((bivariatePolynomialEquiv p).map (Polynomial.evalRingHom x)).eval y =
@@ -52,6 +58,9 @@ theorem eval_bivariatePolynomialEquiv (p : MvPolynomial (Unit ⊕ Unit) ℝ)
   rw [he]
   exact eval_scalarTargetPolynomialEquiv p _ y
 
+/--
+@isnad1 id=ex.1h1v.s7.1aeccaf28a01 from=translated src=- shape=6862b264 vocab=fa73d0c4
+-/
 theorem polynomial_specialization_nonzero_outside_finite
     (P : Polynomial (Polynomial ℝ)) (hP : P ≠ 0) :
     ∃ E : Set ℝ, E.Finite ∧ ∀ x ∉ E,

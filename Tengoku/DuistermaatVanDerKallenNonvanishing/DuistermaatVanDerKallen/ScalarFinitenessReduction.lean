@@ -14,7 +14,9 @@ open Filter
 open scoped Topology
 
 /-- An asymptotic sequence gives arbitrarily large radii with the exact
-small-gradient and target-distance constraints.-/
+small-gradient and target-distance constraints.
+@isnad1 id=ex.3h7v.s7.bcd31e42de88 from=translated src=- shape=d4f427bb vocab=8d90b2a6
+-/
 theorem radiusApproximationSet_unbounded_of_asymptotic {d : ℕ} (p : AmbientPolynomial d)
     (g : Fin d → AmbientPolynomial d) {c : ℂ}
     (hc : c ∈ asymptoticCriticalValues (fun x : affineTorus d => ambientEval p x.val)
@@ -31,7 +33,9 @@ theorem radiusApproximationSet_unbounded_of_asymptotic {d : ℕ} (p : AmbientPol
     (le_max_left B 2).trans hn⟩
   linarith [le_max_right B 2]
 
-/-- Normalization uses the full induced ambient norm.-/
+/-- Normalization uses the full induced ambient norm.
+@isnad1 id=mem.4h5v.s7.e78dd13d41a0 from=translated src=- shape=ac06b158 vocab=9b96d239
+-/
 theorem normalize_mem_smallGradientSphere {d : ℕ} (g : Fin d → AmbientPolynomial d)
     {x : TorusAmbient d} {R ε : ℝ} (hR : 0 < R) (hx : x ∈ affineTorus d)
     (hn : ‖x‖ = R) (hg : R * ambientDifferentialNorm g x ≤ ε) :

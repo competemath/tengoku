@@ -20,12 +20,17 @@ def smallGradientTotalFamily {d : ℕ} (g : Fin d → AmbientPolynomial d) :
   {q | 1 < q (.inl 0) ∧ 0 < q (.inl 1) ∧
     radiusFamilyPoint q ∈ smallGradientSphere g (q (.inl 0)) (q (.inl 1))}
 
+/--
+@isnad1 id=eq.0h3v.s6.52800d7041ee from=translated src=- shape=d92ba5c6 vocab=c333bd34
+-/
 theorem complexCoordinates_mul {ι : Type*} (x : (ι ⊕ ι) → ℝ) (R : ℝ) :
     complexCoordinates (fun i => R * x i) = R • complexCoordinates x := by
   funext i
   apply Complex.ext <;> simp [complexCoordinates]
 
-/-- Both the radius and small-gradient threshold are free coordinates.-/
+/-- Both the radius and small-gradient threshold are free coordinates.
+@isnad1 id=issemial.0h2v.s3.1c5e0b0c81f5 from=translated src=- shape=befff756 vocab=b509aae9
+-/
 theorem isSemialgebraic_smallGradientTotalFamily {d : ℕ} (g : Fin d → AmbientPolynomial d) :
     IsSemialgebraic (RadiusFamilyIndex d) (smallGradientTotalFamily g) := by
   let r : MvPolynomial (RadiusFamilyIndex d) ℝ := MvPolynomial.X (.inl 0)
@@ -60,7 +65,9 @@ theorem isSemialgebraic_smallGradientTotalFamily {d : ℕ} (g : Fin d → Ambien
     exact ⟨hr, he, hnorm, ht, hg⟩
 
 /-- Every admissible fiber is the original sphere family, with the induced
-L2 ambient metric and both coordinate directions of escape.-/
+L2 ambient metric and both coordinate directions of escape.
+@isnad1 id=iscomple.2h4v.s6.ab0f1d008b13 from=translated src=- shape=c2c1f0a9 vocab=01eae9bb
+-/
 theorem isComplexSemialgebraic_smallGradientSphere {d : ℕ}
     (g : Fin d → AmbientPolynomial d) {R ε : ℝ} (hR : 1 < R) (hε : 0 < ε) :
     IsComplexSemialgebraic {x : (Fin d ⊕ Fin d) → ℂ |

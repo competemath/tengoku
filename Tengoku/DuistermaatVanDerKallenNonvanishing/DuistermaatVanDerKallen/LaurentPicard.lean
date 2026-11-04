@@ -25,7 +25,9 @@ def constantTorusCurves (d : ℕ) : (Fin d → ℂ) →L[ℝ] TorusCurves d :=
 def torusCurveIntegral (d : ℕ) : TorusCurves d →L[ℝ] TorusCurves d :=
   ContinuousLinearMap.pi (fun i => curvePrimitiveCLM.comp (ContinuousLinearMap.proj i))
 
-/-- Regrouping coordinate curves as a curve in coordinate space is continuous.-/
+/-- Regrouping coordinate curves as a curve in coordinate space is continuous.
+@isnad1 id=continuo.0h1v.s8.a04bb76c8899 from=translated src=- shape=be6121fc vocab=ef04a7bf
+-/
 theorem continuous_torusCurves_pi (d : ℕ) :
     Continuous (ContinuousMap.pi : TorusCurves d → C(CurveTime, Fin d → ℂ)) := by
   apply ContinuousMap.continuous_of_continuous_uncurry
@@ -33,7 +35,9 @@ theorem continuous_torusCurves_pi (d : ℕ) :
   intro i
   exact continuous_eval.comp ((continuous_apply i |>.comp continuous_fst).prodMk continuous_snd)
 
-/-- Curves entirely contained in the regular ODE domain form an open set.-/
+/-- Curves entirely contained in the regular ODE domain form an open set.
+@isnad1 id=isopen.0h2v.s7.4556a34ea828 from=translated src=- shape=630aaba9 vocab=96e96e4e
+-/
 theorem regularTorusCurves_isOpen {d : ℕ} (f : MultiLaurent d) :
     IsOpen {u : TorusCurves d | ∀ t, (fun i => u i t) ∈ laurentRegularDomain f} := by
   have hopen := ContinuousMap.isOpen_setOfPred_range_subset (X := CurveTime)
@@ -44,7 +48,9 @@ theorem regularTorusCurves_isOpen {d : ℕ} (f : MultiLaurent d) :
   rfl
 
 /-- Clamping and then evaluating the lifted field gives exactly the actual
-Laurent field of the clamped coordinate curves.-/
+Laurent field of the clamped coordinate curves.
+@isnad1 id=eq.1h6v.s7.2a169a319355 from=translated src=- shape=71b568f2 vocab=38dc2277
+-/
 theorem extendCurve_vectorField {d : ℕ} (f : MultiLaurent d) (a : ℂ)
     {u : TorusCurves d} (hu : ∀ t, (fun i => u i t) ∈ laurentRegularDomain f)
     (i : Fin d) (s : ℝ) :
@@ -55,7 +61,9 @@ theorem extendCurve_vectorField {d : ℕ} (f : MultiLaurent d) (a : ℂ)
 /-- There is a branch of regular curves solving the actual Laurent Picard
 integral equation for all sufficiently small parameter changes. The branch is
 real smooth at zero time scale, jointly in velocity and the initial point.
-This does not yet identify it with the complete chosen transport curves.-/
+This does not yet identify it with the complete chosen transport curves.
+@isnad1 id=ex.1h4v.s10.e477a59807dc from=translated src=- shape=87ab19b3 vocab=eb7e50fe
+-/
 theorem laurent_exists_smooth_picard_branch {d : ℕ} (f : MultiLaurent d)
     {a : ℂ} {z : Fin d → ℂ} (hz : z ∈ laurentRegularDomain f) :
     ∃ Ψ : ℝ × (ℂ × (Fin d → ℂ)) → TorusCurves d,
@@ -92,7 +100,9 @@ theorem laurent_exists_smooth_picard_branch {d : ℕ} (f : MultiLaurent d)
 
 /-- The differentiability order `⊤` is mathlib's analytic order. Consequently
 one open parameter neighborhood carries an analytic regular Picard branch,
-including nearby nonzero time scales.-/
+including nearby nonzero time scales.
+@isnad1 id=ex.1h4v.s10.0970b1b9b278 from=translated src=- shape=cb5ba80d vocab=5ba9d163
+-/
 theorem laurent_exists_analytic_picard_neighborhood {d : ℕ} (f : MultiLaurent d)
     {a : ℂ} {z : Fin d → ℂ} (hz : z ∈ laurentRegularDomain f) :
     ∃ (Ψ : ℝ × (ℂ × (Fin d → ℂ)) → TorusCurves d)
@@ -110,7 +120,9 @@ theorem laurent_exists_analytic_picard_neighborhood {d : ℕ} (f : MultiLaurent 
     hzero, fun q hq => (hU hq).2⟩
 
 /-- A regular solution of the actual Picard equation gives an ODE trajectory
-with the asserted derivative even at the endpoints of the unit interval.-/
+with the asserted derivative even at the endpoints of the unit interval.
+@isnad1 id=ex.2h6v.s9.854ec4425e56 from=translated src=- shape=452cfcad vocab=d1d75efc
+-/
 theorem laurent_picard_equation_solves_ode {d : ℕ} (f : MultiLaurent d)
     (a : ℂ) (δ : ℝ) (z : Fin d → ℂ) (u : TorusCurves d)
     (hu : ∀ t, (fun i => u i t) ∈ laurentRegularDomain f)

@@ -25,6 +25,9 @@ def extendCurve (u : C(CurveTime, E)) : C(ℝ, E) :=
     u.continuous.Icc_extend'⟩
 
 omit [NormedSpace ℝ E] [CompleteSpace E] in
+/--
+@isnad1 id=eq.0h3v.s7.b3b2541a18d7 from=translated src=- shape=7c72d0ad vocab=4d316c1a
+-/
 @[simp] theorem extendCurve_apply (u : C(CurveTime, E)) (t : CurveTime) :
     extendCurve u t = u t := by
   simp [extendCurve, IccExtend]
@@ -35,6 +38,9 @@ def curvePrimitive (u : C(CurveTime, E)) : C(CurveTime, E) :=
     ((intervalIntegral.differentiable_integral_of_continuous (extendCurve u).continuous).continuous.comp
       continuous_subtype_val)⟩
 
+/--
+@isnad1 id=le.0h2v.s7.3fdac6c1a7c6 from=translated src=- shape=a817e4fd vocab=1ffc185b
+-/
 theorem curvePrimitive_norm_le (u : C(CurveTime, E)) : ‖curvePrimitive u‖ ≤ ‖u‖ := by
   apply (ContinuousMap.norm_le _ (norm_nonneg u)).2
   intro t
@@ -64,15 +70,23 @@ def curvePrimitiveCLM : C(CurveTime, E) →L[ℝ] C(CurveTime, E) :=
         exact intervalIntegral.integral_smul c _ }
     1 (fun u => by simpa using curvePrimitive_norm_le u)
 
+/--
+@isnad1 id=eq.0h3v.s9.5f1eca0effc1 from=translated src=- shape=94815b13 vocab=93313056
+-/
 @[simp] theorem curvePrimitiveCLM_apply (u : C(CurveTime, E)) (t : CurveTime) :
     curvePrimitiveCLM u t = ∫ s in (0 : ℝ)..t.val, extendCurve u s := rfl
 
+/--
+@isnad1 id=le.0h1v.s9.c5cdfb7463d5 from=translated src=- shape=0a3e1d18 vocab=09091844
+-/
 theorem curvePrimitiveCLM_norm_le : ‖curvePrimitiveCLM (E := E)‖ ≤ 1 :=
   ContinuousLinearMap.opNorm_le_bound _ zero_le_one (fun u => by
     simpa only [one_mul, curvePrimitiveCLM, LinearMap.mkContinuous_apply, LinearMap.coe_mk, AddHom.coe_mk] using curvePrimitive_norm_le u)
 
 /-- The primitive satisfies the integral form of the ODE with the original
-curve as derivative, including at the two endpoints via the extension.-/
+curve as derivative, including at the two endpoints via the extension.
+@isnad1 id=hasderiv.0h3v.s7.29dd9cee7d28 from=translated src=- shape=107624f7 vocab=2c6b8349
+-/
 theorem curvePrimitive_hasDerivAt (u : C(CurveTime, E)) (t : CurveTime) :
     HasDerivAt (fun r : ℝ => ∫ s in (0 : ℝ)..r, extendCurve u s) (u t) t.val := by
   simpa only [extendCurve_apply] using

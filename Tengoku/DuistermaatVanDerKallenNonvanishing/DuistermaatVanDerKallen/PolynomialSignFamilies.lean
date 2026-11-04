@@ -7,6 +7,9 @@ import Tengoku.DuistermaatVanDerKallenNonvanishing.DuistermaatVanDerKallen.Affin
 namespace DuistermaatVanDerKallen
 noncomputable section
 
+/--
+@isnad1 id=eq.0h5v.s8.db0ccde22781 from=translated src=- shape=2e423cc0 vocab=b6359ce9
+-/
 theorem eval_real_substitution {ι κ : Type*} (p : MvPolynomial ι ℝ)
     (Z : ι → MvPolynomial κ ℝ) (x : κ → ℝ) :
     MvPolynomial.eval x (MvPolynomial.eval₂ MvPolynomial.C Z p) =
@@ -16,6 +19,9 @@ theorem eval_real_substitution {ι κ : Type*} (p : MvPolynomial ι ℝ)
     simp
   simp [MvPolynomial.eval_eval₂, hc]
 
+/--
+@isnad1 id=ex.0h4v.s8.fb91ff2a877f from=translated src=- shape=20f0b5bb vocab=8d39eb50
+-/
 theorem polynomial_normSq_real_substitution {ι κ : Type*}
     (p : MvPolynomial ι ℂ) (Z : (ι ⊕ ι) → MvPolynomial κ ℝ) :
     ∃ q : MvPolynomial κ ℝ, ∀ x,
@@ -25,7 +31,9 @@ theorem polynomial_normSq_real_substitution {ι κ : Type*}
   exact ⟨MvPolynomial.eval₂ MvPolynomial.C Z q, fun x => by rw [eval_real_substitution, hq]⟩
 
 /-- Squaring and clearing denominators handles a variable weight and threshold.
-Nonnegative weights and thresholds are included as polynomial sign constraints.-/
+Nonnegative weights and thresholds are included as polynomial sign constraints.
+@isnad1 id=issemial.0h6v.s8.f37b06f9bfc4 from=translated src=- shape=8aa20779 vocab=f699e1a1
+-/
 theorem isSemialgebraic_weighted_differential_bound {d : ℕ} {κ : Type*}
     (g : Fin d → AmbientPolynomial d)
     (Z : ((Fin d ⊕ Fin d) ⊕ (Fin d ⊕ Fin d)) → MvPolynomial κ ℝ)
@@ -65,7 +73,9 @@ theorem isSemialgebraic_weighted_differential_bound {d : ℕ} {κ : Type*}
     mul_pow, Real.sq_sqrt hnn]
   simp only [differentialNormSq, ambientEval, ha, hB, Finset.mul_sum, mul_div_assoc]
 
-/-- The norm is the L2 norm of all complex coordinates.-/
+/-- The norm is the L2 norm of all complex coordinates.
+@isnad1 id=issemial.0h4v.s8.580d2e9aaa1b from=translated src=- shape=3fd830d6 vocab=b703d2cf
+-/
 theorem isSemialgebraic_euclidean_norm_eq {ι κ : Type*} [Fintype ι]
     (Z : (ι ⊕ ι) → MvPolynomial κ ℝ) (r : MvPolynomial κ ℝ) :
     IsSemialgebraic κ {x | 0 ≤ MvPolynomial.eval x r ∧
@@ -83,6 +93,9 @@ theorem isSemialgebraic_euclidean_norm_eq {ι κ : Type*} [Fintype ι]
   rw [← sq_eq_sq₀ (norm_nonneg _) hr, EuclideanSpace.norm_sq_eq]
   simp only [Complex.sq_norm, ← ha, MvPolynomial.eval_X]
 
+/--
+@isnad1 id=issemial.0h6v.s8.995113648d5d from=translated src=- shape=5f6ca328 vocab=9ec1e0ef
+-/
 theorem isSemialgebraic_polynomial_dist_lt {ι κ : Type*}
     (p : MvPolynomial ι ℂ) (Z : (ι ⊕ ι) → MvPolynomial κ ℝ)
     (c : ℂ) (e : MvPolynomial κ ℝ) :

@@ -21,12 +21,17 @@ noncomputable def scalarLift {ι : Type*} [Fintype ι]
     (g : ι → ℂ) (h : ι → ℝ) (a : ℂ) (i : ι) : ℂ :=
   a * conj (g i) / ((h i : ℂ) * (differentialNormSq g h : ℂ))
 
+/--
+@isnad1 id=le.1h3v.s5.0b2d459bd038 from=translated src=- shape=946ba290 vocab=ba7e1827
+-/
 theorem differentialNormSq_nonneg {ι : Type*} [Fintype ι]
     (g : ι → ℂ) (h : ι → ℝ) (hh : ∀ i, 0 < h i) :
     0 ≤ differentialNormSq g h := by
   exact Finset.sum_nonneg fun i _ => div_nonneg (Complex.normSq_nonneg _) (hh i).le
 
-/-- Exact right-inverse identity for a scalar complex differential.-/
+/-- Exact right-inverse identity for a scalar complex differential.
+@isnad1 id=eq.1h4v.s5.2f8532b1971e from=translated src=- shape=693b742b vocab=6bbb0e02
+-/
 theorem scalarLift_right_inverse {ι : Type*} [Fintype ι]
     (g : ι → ℂ) (h : ι → ℝ) (a : ℂ)
     (hnorm : differentialNormSq g h ≠ 0) :
@@ -44,7 +49,9 @@ theorem scalarLift_right_inverse {ι : Type*} [Fintype ι]
       simp [differentialNormSq, Finset.sum_div, Finset.mul_sum]
     _ = a := mul_div_cancel_right₀ a hnormc
 
-/-- Squared metric norm of the lift. All weights are positive.-/
+/-- Squared metric norm of the lift. All weights are positive.
+@isnad1 id=eq.2h4v.s7.92fd9744be92 from=translated src=- shape=77c56adc vocab=774a7a3c
+-/
 theorem scalarLift_weighted_normSq {ι : Type*} [Fintype ι]
     (g : ι → ℂ) (h : ι → ℝ) (a : ℂ)
     (hh : ∀ i, 0 < h i) (hnorm : differentialNormSq g h ≠ 0) :
@@ -66,7 +73,9 @@ theorem scalarLift_weighted_normSq {ι : Type*} [Fintype ι]
     _ = Complex.normSq a / differentialNormSq g h := by
       field_simp
 
-/-- The induced torus-coordinate weights are everywhere positive.-/
+/-- The induced torus-coordinate weights are everywhere positive.
+@isnad1 id=lt.0h1v.s5.0f0b8e919091 from=translated src=- shape=d14d45f1 vocab=d7670d10
+-/
 theorem torus_weight_pos (z : ℂ) : 0 < (1 : ℝ) + ‖z‖⁻¹ ^ 4 := by positivity
 
 end DuistermaatVanDerKallen

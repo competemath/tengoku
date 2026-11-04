@@ -14,7 +14,9 @@ noncomputable section
 open Set
 
 /-- A finite geometric simplicial complex has uniformly bounded polygonal
-segment counts within each connected component. Each segment lies in one face.-/
+segment counts within each connected component. Each segment lies in one face.
+@isnad1 id=ex.1h2v.s8.911cccb6a633 from=translated src=- shape=515f5bdf vocab=dfee1a3e
+-/
 theorem finite_simplicial_complex_uniform_segment_chains
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (K : Geometry.SimplicialComplex ℝ E) (hK : K.faces.Finite) :
@@ -37,12 +39,18 @@ theorem finite_simplicial_complex_uniform_segment_chains
   obtain ⟨s, hs⟩ := hseg k hk
   exact ⟨s.val, s.property, hs⟩
 
+/--
+@isnad1 id=iscompac.1h2v.s6.3a13384f553f from=translated src=- shape=6494fa8f vocab=58f5f731
+-/
 theorem finite_simplicial_complex_isCompact
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (K : Geometry.SimplicialComplex ℝ E) (hK : K.faces.Finite) : IsCompact K.space := by
   rw [Geometry.SimplicialComplex.space]
   exact hK.isCompact_biUnion (fun s _ => s.finite_toSet.isCompact_convexHull ℝ)
 
+/--
+@isnad1 id=finite.1h2v.s6.71576c2a45f0 from=translated src=- shape=dd3dd261 vocab=38400088
+-/
 theorem finite_simplicial_complex_finite_components
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (K : Geometry.SimplicialComplex ℝ E) (hK : K.faces.Finite) :
@@ -55,7 +63,9 @@ theorem finite_simplicial_complex_finite_components
   · ext x
     simp [C, Geometry.SimplicialComplex.space]
 
-/-- The number of connected components is at most the number of faces.-/
+/-- The number of connected components is at most the number of faces.
+@isnad1 id=le.1h2v.s7.c1d540a6da22 from=translated src=- shape=221da11a vocab=4e5369ef
+-/
 theorem finite_simplicial_complex_component_card_le
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (K : Geometry.SimplicialComplex ℝ E) (hK : K.faces.Finite) :
@@ -72,7 +82,9 @@ theorem finite_simplicial_complex_component_card_le
     (Set.ncard_image_le hK)
 
 /-- The full uniform C¹-chain conclusion on a fixed finite simplicial model.
-Its compact radius bound is derived, not supplied as an assumption.-/
+Its compact radius bound is derived, not supplied as an assumption.
+@isnad1 id=ex.1h2v.s7.e387259a717c from=translated src=- shape=6b662af5 vocab=b7b887ad
+-/
 theorem finite_simplicial_complex_uniform_C1_chains
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (K : Geometry.SimplicialComplex ℝ E) (hK : K.faces.Finite) :

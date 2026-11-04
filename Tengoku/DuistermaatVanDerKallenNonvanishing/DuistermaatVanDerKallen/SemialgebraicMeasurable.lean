@@ -9,6 +9,9 @@ complex-coordinate counterpart. These facts have no projection or Hardt premise.
 
 namespace DuistermaatVanDerKallen
 
+/--
+@isnad1 id=measurab.1h2v.s4.1812f634eff2 from=translated src=- shape=6d35c55d vocab=820262be
+-/
 theorem IsSemialgebraic.measurableSet {ι : Type*} [Countable ι]
     {S : Set (ι → ℝ)} (hS : IsSemialgebraic ι S) : MeasurableSet S := by
   induction hS with
@@ -17,6 +20,9 @@ theorem IsSemialgebraic.measurableSet {ι : Type*} [Countable ι]
   | union _ _ hs ht => exact hs.union ht
   | compl _ hs => exact hs.compl
 
+/--
+@isnad1 id=measurab.1h2v.s4.240f84a62a00 from=translated src=- shape=6d35c55d vocab=0bb52116
+-/
 theorem IsComplexSemialgebraic.measurableSet {ι : Type*} [Countable ι]
     {S : Set (ι → ℂ)} (hS : IsComplexSemialgebraic S) : MeasurableSet S := by
   have h := (IsSemialgebraic.measurableSet hS).preimage

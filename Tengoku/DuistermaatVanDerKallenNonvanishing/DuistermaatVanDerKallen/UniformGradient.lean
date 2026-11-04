@@ -27,7 +27,9 @@ def asymptoticCriticalValues {X Y : Type*} [TopologicalSpace Y]
     Tendsto (fun n => r (x n) * lam (x n)) atTop (𝓝 0)}
 
 /-- Compact-base lower bound, proved without a finiteness hypothesis on the
-critical-value sets. Only exclusion of those sets and properness are needed.-/
+critical-value sets. Only exclusion of those sets and properness are needed.
+@isnad1 id=ex.7h6v.s7.ac64315aa378 from=translated src=- shape=5a2f0008 vocab=140565fb
+-/
 theorem uniform_gradient_lower_bound {X Y : Type*}
     [TopologicalSpace X] [FirstCountableTopology X]
     [TopologicalSpace Y] [FirstCountableTopology Y] [T2Space Y]
@@ -74,7 +76,9 @@ theorem uniform_gradient_lower_bound {X Y : Type*}
     exact hgood c hc (Or.inl ⟨a, hla, hFa⟩)
 
 /-- A radius bound alone is insufficient for continuation. Combined with the
-uniform gradient bound it gives an explicit distance from the critical locus.-/
+uniform gradient bound it gives an explicit distance from the critical locus.
+@isnad1 id=and.5h4v.s7.e73db868f601 from=translated src=- shape=2a2a5573 vocab=b1824736
+-/
 theorem regular_lower_bound_on_radius_sublevel {c r R lam : ℝ}
     (hc : 0 < c) (hr : 0 ≤ r) (hrR : r ≤ R) (hlam : 0 ≤ lam)
     (hbound : c ≤ (1 + r) * lam) :

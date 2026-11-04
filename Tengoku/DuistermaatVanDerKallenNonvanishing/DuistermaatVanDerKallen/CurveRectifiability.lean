@@ -13,7 +13,9 @@ open Set MeasureTheory
 open scoped ENNReal
 
 /-- The metric variation is bounded by the actual integrated speed. Only
-interior derivatives and continuity at the endpoints are required.-/
+interior derivatives and continuity at the endpoints are required.
+@isnad1 id=le.4h5v.s7.6cc0eea297d0 from=translated src=- shape=d4ffff18 vocab=615854f3
+-/
 theorem eVariationOn_le_integral_speed
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E]
     (γ v : ℝ → E) {a b : ℝ} (hab : a ≤ b)
@@ -26,7 +28,9 @@ theorem eVariationOn_le_integral_speed
 
 /-- A given bounded family of continuous semialgebraic curves, C¹ in the
 interior, has a uniform rectifiable-length bound. The actual derivative is
-used and may be unbounded near the endpoints.-/
+used and may be unbounded near the endpoints.
+@isnad1 id=ex.5h4v.s9.7cfa0e612060 from=translated src=- shape=5a90365e vocab=9aca7c56
+-/
 theorem uniform_semialgebraic_rectifiable_curves
     {ι κ : Type*} [Fintype κ]
     (γ : (ι → ℝ) → ℝ → EuclideanSpace ℝ κ)

@@ -14,7 +14,9 @@ open Filter
 open scoped Topology
 
 /-- Every ordinary critical value occurs at infinity for the dummy extension.
-The new coordinate tends to infinity, while its inverse remains in the model.-/
+The new coordinate tends to infinity, while its inverse remains in the model.
+@isnad1 id=le.0h2v.s9.9a826924a902 from=translated src=- shape=acfb6c74 vocab=c3ebe418
+-/
 theorem ordinaryCriticalValues_subset_dummy_asymptotic {d : ℕ} (p : AmbientPolynomial d) :
     ordinaryCriticalValues (fun x : affineTorus d => ambientEval p x.val)
       (fun x => ambientDifferentialNorm (torusPartial p) x.val) ⊆

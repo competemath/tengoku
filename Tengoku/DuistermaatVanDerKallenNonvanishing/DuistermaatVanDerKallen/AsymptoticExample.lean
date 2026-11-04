@@ -17,18 +17,26 @@ def infinityExamplePolynomial (c : ℂ) : AmbientPolynomial 2 :=
   MvPolynomial.C c + MvPolynomial.X (.inl 0) +
     MvPolynomial.X (.inr 0) * MvPolynomial.X (.inr 1) * (MvPolynomial.X (.inl 1) - 1) ^ 2
 
+/--
+@isnad1 id=eq.0h2v.s10.f0394d1134b1 from=translated src=- shape=110e4196 vocab=69913159
+-/
 theorem infinityExample_eval (c : ℂ) (x : TorusAmbient 2) :
     ambientEval (infinityExamplePolynomial c) x =
       c + x (.inl 0) + x (.inr 0) * x (.inr 1) * (x (.inl 1) - 1) ^ 2 := by
   simp [infinityExamplePolynomial, ambientEval]
 
+/--
+@isnad1 id=eq.0h2v.s10.f2ae76d2ed4c from=translated src=- shape=3bb93be6 vocab=caac971a
+-/
 theorem infinityExample_partial_zero (c : ℂ) (x : TorusAmbient 2) :
     ambientEval (torusPartial (infinityExamplePolynomial c) 0) x =
       1 - x (.inr 0) ^ 2 * x (.inr 1) * (x (.inl 1) - 1) ^ 2 := by
   simp [torusPartial, infinityExamplePolynomial, ambientEval]
   ring
 
-/-- A direct algebraic certificate excludes critical points in the fiber at `c`.-/
+/-- A direct algebraic certificate excludes critical points in the fiber at `c`.
+@isnad1 id=eq.1h2v.s8.78a029065e17 from=translated src=- shape=2cd85219 vocab=dcc3f011
+-/
 theorem infinityExample_regular_identity (c : ℂ) {x : TorusAmbient 2}
     (hx : x ∈ affineTorus 2) :
     ambientEval (torusPartial (infinityExamplePolynomial c) 0) x +
@@ -39,6 +47,9 @@ theorem infinityExample_regular_identity (c : ℂ) {x : TorusAmbient 2}
     _ = 1 + x (.inl 0) * x (.inr 0) := by ring
     _ = 2 := by rw [h]; norm_num
 
+/--
+@isnad1 id=not.0h1v.s7.ae82e2b55e60 from=translated src=- shape=3635e0b8 vocab=0a64fce0
+-/
 theorem infinityExample_not_ordinary (c : ℂ) :
     c ∉ ordinaryCriticalValues
       (fun x : affineTorus 2 => ambientEval (infinityExamplePolynomial c) x.val)
@@ -50,26 +61,41 @@ theorem infinityExample_not_ordinary (c : ℂ) :
   rw [hz, he] at h
   norm_num at h
 
+/--
+@isnad1 id=eq.0h2v.s5.9967dc47f888 from=translated src=- shape=dade6c35 vocab=9274f4bb
+-/
 theorem infinityExample_line_eval (c t : ℂ) :
     ambientEval (infinityExamplePolynomial c) (torusEmbed ![t, 1]) = c + t := by
   simp [infinityExample_eval, torusEmbed]
 
+/--
+@isnad1 id=eq.0h3v.s6.d5a608a9daf0 from=translated src=- shape=19d2a482 vocab=373b267a
+-/
 theorem infinityExample_line_partials (c t : ℂ) (i : Fin 2) :
     ambientEval (torusPartial (infinityExamplePolynomial c) i) (torusEmbed ![t, 1]) =
       if i = 0 then 1 else 0 := by
   fin_cases i <;> simp [torusPartial, infinityExamplePolynomial, ambientEval, torusEmbed]
 
+/--
+@isnad1 id=eq.0h2v.s6.887deeb7608c from=translated src=- shape=43f4a4ac vocab=baeaa1f3
+-/
 theorem infinityExample_line_gradient (c t : ℂ) :
     ambientDifferentialNorm (torusPartial (infinityExamplePolynomial c))
       (torusEmbed ![t, 1]) = Real.sqrt (1 / (1 + ‖t⁻¹‖ ^ 4)) := by
   simp only [ambientDifferentialNorm, differentialNormSq, infinityExample_line_partials]
   simp [Fin.sum_univ_two, torusEmbed]
 
+/--
+@isnad1 id=eq.0h1v.s7.2075142783dd from=translated src=- shape=855246e7 vocab=1a092750
+-/
 theorem infinityExample_line_norm (t : ℂ) :
     ‖torusEmbed ![t, 1]‖ ^ 2 = ‖t‖ ^ 2 + ‖t‖⁻¹ ^ 2 + 2 := by
   simp [torusEmbed_norm_sq, Fin.sum_univ_two]
   ring
 
+/--
+@isnad1 id=and.1h1v.s8.0eff3fd31d99 from=translated src=- shape=d0968aeb vocab=9d848262
+-/
 theorem infinityExample_inverse_norm (a : ℝ) (ha : 1 ≤ a) :
     a ≤ ‖torusEmbed ![(a : ℂ)⁻¹, 1]‖ ∧
       ‖torusEmbed ![(a : ℂ)⁻¹, 1]‖ ≤ 2 * a := by
@@ -86,6 +112,9 @@ theorem infinityExample_inverse_norm (a : ℝ) (ha : 1 ≤ a) :
     have ha2 : 1 ≤ a ^ 2 := by nlinarith
     nlinarith [norm_nonneg (torusEmbed ![(a : ℂ)⁻¹, 1])]
 
+/--
+@isnad1 id=le.1h2v.s6.3ea36be6f0f6 from=translated src=- shape=fc352504 vocab=c7706268
+-/
 theorem infinityExample_inverse_gradient (c : ℂ) (a : ℝ) (ha : 1 ≤ a) :
     ambientDifferentialNorm (torusPartial (infinityExamplePolynomial c))
       (torusEmbed ![(a : ℂ)⁻¹, 1]) ≤ 1 / a ^ 2 := by
@@ -99,7 +128,9 @@ theorem infinityExample_inverse_gradient (c : ℂ) (a : ℝ) (ha : 1 ≤ a) :
     rw [div_pow, one_pow, ← pow_mul]
     exact one_div_le_one_div_of_le (show 0 < a ^ (2 * 2) by positivity) (by norm_num)
 
-/-- The explicit sequence is `(1/(n+1),1)`, including both inverse coordinates.-/
+/-- The explicit sequence is `(1/(n+1),1)`, including both inverse coordinates.
+@isnad1 id=mem.0h1v.s8.1359b2cf2967 from=translated src=- shape=788439c9 vocab=f2822e31
+-/
 theorem infinityExample_asymptotic (c : ℂ) :
     c ∈ asymptoticCriticalValues
       (fun x : affineTorus 2 => ambientEval (infinityExamplePolynomial c) x.val)

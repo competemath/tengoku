@@ -13,6 +13,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 open Set MeasureTheory
 
+/--
+@isnad1 id=issemial.1h5v.s7.1782bf458c45 from=translated src=- shape=cec36585 vocab=cb3bf972
+-/
 theorem semialgebraic_curve_family_individual_graph
     {ι κ : Type*} [Fintype κ] (γ : (ι → ℝ) → ℝ → EuclideanSpace ℝ κ)
     (hgraph : ∀ i, IsSemialgebraic ((ι ⊕ Unit) ⊕ Unit) {q |

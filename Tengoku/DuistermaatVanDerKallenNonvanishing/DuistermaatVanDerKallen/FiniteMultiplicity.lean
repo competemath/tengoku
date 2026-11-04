@@ -13,7 +13,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 open Set
 
-/-- Incidence description of a fiber coordinate projection, retaining parameters.-/
+/-- Incidence description of a fiber coordinate projection, retaining parameters.
+@isnad1 id=issemial.2h4v.s6.fa8fbd24a405 from=translated src=- shape=1e9e0eeb vocab=9b5c06fa
+-/
 theorem semialgebraic_fiber_coordinate_image
     (hproj : SemialgebraicProjectionObligation) {ι κ : Type} [Finite ι] [Finite κ]
     {S : Set ((ι ⊕ κ) → ℝ)} (hS : IsSemialgebraic (ι ⊕ κ) S) (i : κ) :
@@ -40,6 +42,9 @@ theorem semialgebraic_fiber_coordinate_image
   ext q
   simp only [Set.mem_ofPred_eq, T, Sum.elim_inl, Sum.elim_inr]
 
+/--
+@isnad1 id=le.1h2v.s5.2345ff116401 from=translated src=- shape=20ec5492 vocab=365188f9
+-/
 theorem ncard_le_product_coordinate_images {κ : Type*} [Fintype κ]
     (S : Set (κ → ℝ)) (hS : S.Finite) :
     S.ncard ≤ ∏ i, ((fun x : κ → ℝ => x i) '' S).ncard := by

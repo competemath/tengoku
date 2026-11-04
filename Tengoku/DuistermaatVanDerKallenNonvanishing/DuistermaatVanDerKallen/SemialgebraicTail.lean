@@ -10,6 +10,9 @@ namespace DuistermaatVanDerKallen
 open Filter
 noncomputable section
 
+/--
+@isnad1 id=eq.0h4v.s6.30336403aa45 from=translated src=- shape=cff23680 vocab=8880e25e
+-/
 theorem polynomial_curve_eval {ι : Type*} (p : MvPolynomial ι ℝ)
     (g : ι → Polynomial ℝ) (t : ℝ) :
     (MvPolynomial.eval₂ Polynomial.C g p).eval t =
@@ -19,6 +22,9 @@ theorem polynomial_curve_eval {ι : Type*} (p : MvPolynomial ι ℝ)
   | add p q hp hq => simp [MvPolynomial.eval₂_add, hp, hq]
   | mul_X p i hp => simp [MvPolynomial.eval₂_mul, hp]
 
+/--
+@isnad1 id=eventual.1h3v.s5.bff0d4fb3cf8 from=translated src=- shape=4befacb5 vocab=bfb7c7a5
+-/
 theorem IsSemialgebraic.eventuallyConstant_polynomial_curve {ι : Type*}
     {S : Set (ι → ℝ)} (hS : IsSemialgebraic ι S) (g : ι → Polynomial ℝ) :
     EventuallyConstant (fun t => (fun i => (g i).eval t) ∈ S) := by
@@ -43,6 +49,9 @@ theorem IsSemialgebraic.eventuallyConstant_polynomial_curve {ι : Type*}
     · exact Or.inr (h.mono fun t ht hnot => hnot ht)
     · exact Or.inl h
 
+/--
+@isnad1 id=ex.2h1v.s6.38bf1df634e0 from=translated src=- shape=3750c27d vocab=72e7d624
+-/
 theorem IsSemialgebraic.contains_tail_of_unbounded {S : Set (Fin 1 → ℝ)}
     (hS : IsSemialgebraic (Fin 1) S)
     (hU : ∀ B : ℝ, ∃ t, B ≤ t ∧ (fun _ : Fin 1 => t) ∈ S) :

@@ -46,16 +46,24 @@ def sheaf : TopCat.Sheaf (Type _) X := TopCat.subsheafToTypes A.sectionPredicate
 def constantSection (i : A.Index) (v : A.model i) (x : A.domain i) : T x.val :=
   (A.coord i x).symm v
 
+/--
+@isnad1 id=pred.0h5v.s5.7cbe93fec324 from=translated src=- shape=d699a31c vocab=fdbfb4c2
+-/
 theorem constantSection_prelocal (i : A.Index) (v : A.model i) :
     A.prelocal.pred (A.constantSection i v) :=
   ⟨i, le_rfl, v, fun x => (A.coord i x).apply_symm_apply v⟩
 
+/--
+@isnad1 id=pred.0h5v.s5.f79f2c59d315 from=translated src=- shape=b35ea294 vocab=3a5e1fcb
+-/
 theorem constantSection_local (i : A.Index) (v : A.model i) :
     A.sectionPredicate.pred (A.constantSection i v) :=
   A.prelocal.sheafifyOf (A.constantSection_prelocal i v)
 
 /-- Equal constant-coordinate values at one point determine the same section
-throughout an overlap, by the constant transition identity.-/
+throughout an overlap, by the constant transition identity.
+@isnad1 id=eq.5h9v.s8.1266dac0d0b0 from=translated src=- shape=0970fff4 vocab=12340ecf
+-/
 theorem constantSection_eq (i j : A.Index) {x y : X}
     (hxi : x ∈ A.domain i) (hxj : x ∈ A.domain j)
     (hyi : y ∈ A.domain i) (hyj : y ∈ A.domain j)
@@ -68,7 +76,9 @@ theorem constantSection_eq (i j : A.Index) {x y : X}
   exact congrArg (A.coord j ⟨x, hxj⟩) he |>.trans (by simp [constantSection])
 
 /-- Two sections constant in possibly different charts and equal at one
-point agree on their whole overlap.-/
+point agree on their whole overlap.
+@isnad1 id=eq.7h9v.s9.8ba0065ca53c from=translated src=- shape=e61d54c5 vocab=54807403
+-/
 theorem prelocal_eq {U V : Opens X} (f : ∀ x : U, T x.val) (g : ∀ x : V, T x.val)
     (hf : A.prelocal.pred f) (hg : A.prelocal.pred g)
     {x : X} (hxU : x ∈ U) (hxV : x ∈ V) (he : f ⟨x, hxU⟩ = g ⟨x, hxV⟩)
@@ -86,7 +96,9 @@ theorem prelocal_eq {U V : Opens X} (f : ∀ x : U, T x.val) (g : ∀ x : V, T x
   rw [hfi, hgj] at he ⊢
   exact A.constantSection_eq i j (hUi hxU) (hVj hxV) (hUi hyU) (hVj hyV) v w he
 
-/-- Every element of an actual fiber is the value of an allowed local section.-/
+/-- Every element of an actual fiber is the value of an allowed local section.
+@isnad1 id=surjecti.0h4v.s7.ee89f9eb28e7 from=translated src=- shape=18f15a10 vocab=678f9ea1
+-/
 theorem stalkToFiber_surjective (x : X) :
     Function.Surjective (TopCat.stalkToFiber A.sectionPredicate x) := by
   apply TopCat.stalkToFiber_surjective
@@ -96,7 +108,9 @@ theorem stalkToFiber_surjective (x : X) :
     A.constantSection_local i _, ?_⟩
   exact (A.coord i ⟨x, hi⟩).symm_apply_apply t
 
-/-- Equal values of allowed sections determine the same germ.-/
+/-- Equal values of allowed sections determine the same germ.
+@isnad1 id=injectiv.0h4v.s7.6c06e5d566a5 from=translated src=- shape=18f15a10 vocab=056f0798
+-/
 theorem stalkToFiber_injective (x : X) :
     Function.Injective (TopCat.stalkToFiber A.sectionPredicate x) := by
   apply TopCat.stalkToFiber_injective
@@ -115,7 +129,9 @@ def stalkEquiv (x : X) : A.sheaf.presheaf.stalk x ≃ T x :=
     ⟨A.stalkToFiber_injective x, A.stalkToFiber_surjective x⟩
 
 /-- A section constant in one chart has constant coordinates in every chart
-containing its domain.-/
+containing its domain.
+@isnad1 id=eq.2h8v.s10.a1fde651050d from=translated src=- shape=79a30ff0 vocab=b965b14f
+-/
 theorem prelocal_coordinate_constant {U : Opens X} (f : ∀ x : U, T x.val)
     (hf : A.prelocal.pred f) (i : A.Index) (hUi : U ≤ A.domain i) (x y : U) :
     A.coord i ⟨x.val, hUi x.property⟩ (f x) = A.coord i ⟨y.val, hUi y.property⟩ (f y) := by
@@ -128,7 +144,9 @@ theorem prelocal_coordinate_constant {U : Opens X} (f : ∀ x : U, T x.val)
   exact A.transition j i x.val y.val (hUj x.property) (hUi x.property)
     (hUj y.property) (hUi y.property) v
 
-/-- Allowed sections have locally constant coordinates in each chart.-/
+/-- Allowed sections have locally constant coordinates in each chart.
+@isnad1 id=islocall.2h6v.s10.692a5e574ce1 from=translated src=- shape=f6c3c72b vocab=687df6ab
+-/
 theorem coordinate_locallyConstant {U : Opens X} (f : ∀ x : U, T x.val)
     (hf : A.sectionPredicate.pred f) (i : A.Index) (hUi : U ≤ A.domain i) :
     IsLocallyConstant (fun x : U => A.coord i ⟨x.val, hUi x.property⟩ (f x)) := by
@@ -141,7 +159,9 @@ theorem coordinate_locallyConstant {U : Opens X} (f : ∀ x : U, T x.val)
     ⟨y.val, hy⟩ ⟨x.val, hxV⟩
 
 /-- On a connected chart domain, an allowed section is determined by its
-value at any one point.-/
+value at any one point.
+@isnad1 id=injectiv.0h5v.s8.4e8ee24909be from=translated src=- shape=5fc5a3ee vocab=830edf1f
+-/
 theorem section_eval_injective (i : A.Index) [PreconnectedSpace (A.domain i)] (x : A.domain i) :
     Function.Injective (fun f : A.sheaf.presheaf.obj (op (A.domain i)) => f.val x) := by
   intro f g he
@@ -153,14 +173,18 @@ theorem section_eval_injective (i : A.Index) [PreconnectedSpace (A.domain i)] (x
   exact (hf.apply_eq_of_preconnectedSpace y x).trans
     ((congrArg (A.coord i x) he).trans (hg.apply_eq_of_preconnectedSpace x y))
 
-/-- Every element of a fiber extends over its entire chart domain.-/
+/-- Every element of a fiber extends over its entire chart domain.
+@isnad1 id=surjecti.0h5v.s8.7cd80e21fb68 from=translated src=- shape=47a88130 vocab=6b62db9c
+-/
 theorem section_eval_surjective (i : A.Index) (x : A.domain i) :
     Function.Surjective (fun f : A.sheaf.presheaf.obj (op (A.domain i)) => f.val x) := by
   intro t
   exact ⟨⟨A.constantSection i (A.coord i x t), A.constantSection_local i _⟩,
     (A.coord i x).symm_apply_apply t⟩
 
-/-- On a connected chart, every germ extends to one unique section.-/
+/-- On a connected chart, every germ extends to one unique section.
+@isnad1 id=bijectiv.1h5v.s9.f13ebe18e09f from=translated src=- shape=7cc631e2 vocab=7ad15ca4
+-/
 theorem germ_bijective (i : A.Index) [PreconnectedSpace (A.domain i)] (x : X) (hx : x ∈ A.domain i) :
     Function.Bijective (A.sheaf.presheaf.germ (A.domain i) x hx) := by
   constructor
@@ -175,7 +199,9 @@ theorem germ_bijective (i : A.Index) [PreconnectedSpace (A.domain i)] (x : X) (h
     exact (TopCat.stalkToFiber_germ A.sectionPredicate (A.domain i) x hx f).trans hf
 
 /-- Connected domains with constant transitions give an actual covering
-projection from the sheaf's étalé space, with the prescribed fibers as stalks.-/
+projection from the sheaf's étalé space, with the prescribed fibers as stalks.
+@isnad1 id=iscoveri.1h3v.s7.fa68af3b741b from=translated src=- shape=8be6c5df vocab=27972434
+-/
 theorem isCoveringMap_etale (hconnected : ∀ i, PreconnectedSpace (A.domain i)) :
     IsCoveringMap (TopCat.Presheaf.EtaleSpace.base (F := A.sheaf.presheaf)) := by
   apply TopCat.Presheaf.EtaleSpace.isCoveringMap_base

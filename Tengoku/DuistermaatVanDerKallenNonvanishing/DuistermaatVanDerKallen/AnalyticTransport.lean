@@ -14,7 +14,9 @@ namespace DuistermaatVanDerKallen
 
 noncomputable section
 
-/-- Real scaling of the base velocity scales the explicit normalized lift.-/
+/-- Real scaling of the base velocity scales the explicit normalized lift.
+@isnad1 id=eq.0h5v.s7.80cb4022f741 from=translated src=- shape=a73d3c80 vocab=41b22129
+-/
 theorem laurentVectorField_real_smul {d : ℕ} (f : MultiLaurent d)
     (r : ℝ) (a : ℂ) (z : Fin d → ℂ) :
     laurentVectorField f (r • a) z = r • laurentVectorField f a z := by
@@ -23,7 +25,9 @@ theorem laurentVectorField_real_smul {d : ℕ} (f : MultiLaurent d)
     Complex.real_smul]
   ring
 
-/-- Any oriented subsegment of a trajectory can be rescaled to unit time.-/
+/-- Any oriented subsegment of a trajectory can be rescaled to unit time.
+@isnad1 id=and.4h7v.s8.037647bdb6fb from=translated src=- shape=ad1c3abb vocab=89e57a04
+-/
 theorem laurent_rescale_segment {d : ℕ} (f : MultiLaurent d) (a : ℂ)
     {γ : ℝ → Fin d → ℂ}
     (hγ : ∀ r ∈ Icc (0 : ℝ) 1, γ r ∈ laurentRegularDomain f ∧
@@ -43,7 +47,9 @@ theorem laurent_rescale_segment {d : ℕ} (f : MultiLaurent d) (a : ℂ)
     (hγ _ hrt).2.scomp r (((hasDerivAt_id r).const_mul (t - s)).const_add s)
 
 /-- A local analytic endpoint map agrees with every regular solution of the
-scaled ODE with the same initial value.-/
+scaled ODE with the same initial value.
+@isnad1 id=ex.1h4v.s9.76d7cc6e8fea from=translated src=- shape=8c7d8ba9 vocab=ee6cba2b
+-/
 theorem laurent_local_analytic_endpoint {d : ℕ} (f : MultiLaurent d)
     {a : ℂ} {z : Fin d → ℂ} (hz : z ∈ laurentRegularDomain f) :
     ∃ (F : ℝ × (ℂ × (Fin d → ℂ)) → Fin d → ℂ)
@@ -76,7 +82,9 @@ variable {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
 
 /-- Analytic dependence propagates across any subsegment represented by one
 local analytic endpoint map. No regularity of the chosen solutions in their
-parameters is assumed in advance.-/
+parameters is assumed in advance.
+@isnad1 id=contdiff.10h11v.s10.ef6af0311a35 from=translated src=- shape=a7476883 vocab=d3af50d1
+-/
 theorem laurent_family_analytic_step {d : ℕ} (f : MultiLaurent d)
     {S : Set P} {p₀ : P} (hp₀ : p₀ ∈ S) {a : P → ℂ}
     {Γ : P → ℝ → Fin d → ℂ}
@@ -108,7 +116,9 @@ theorem laurent_family_analytic_step {d : ℕ} (f : MultiLaurent d)
 /-- Real analytic parameter dependence of every existing family of complete
 regular segment solutions. This follows from local Picard analyticity and
 uniqueness along the whole connected time interval, not from an assumed smooth
-flow. The parameter set may be a fiber or any other subset of a normed space.-/
+flow. The parameter set may be a fiber or any other subset of a normed space.
+@isnad1 id=contdiff.5h8v.s8.7a3f8c89b3fc from=translated src=- shape=10f25d72 vocab=64665ef5
+-/
 theorem laurent_family_analytic {d : ℕ} (f : MultiLaurent d)
     {S : Set P} {p₀ : P} (hp₀ : p₀ ∈ S) {a : P → ℂ}
     {Γ : P → ℝ → Fin d → ℂ}
@@ -143,7 +153,9 @@ theorem laurent_family_analytic {d : ℕ} (f : MultiLaurent d)
     (fun _ _ _ _ _ _ hst htu => htu ∘ hst) (by simp) ht hinit
 
 /-- Joint analytic dependence on the trajectory parameters and time, including
-both endpoints, by rescaling each requested time to a unit segment.-/
+both endpoints, by rescaling each requested time to a unit segment.
+@isnad1 id=contdiff.5h8v.s9.d6fa62ad06fa from=translated src=- shape=1c3b53d7 vocab=2c44bc4b
+-/
 theorem laurent_family_joint_analytic {d : ℕ} (f : MultiLaurent d)
     {S : Set P} {p₀ : P} (hp₀ : p₀ ∈ S) {a : P → ℂ}
     {Γ : P → ℝ → Fin d → ℂ}

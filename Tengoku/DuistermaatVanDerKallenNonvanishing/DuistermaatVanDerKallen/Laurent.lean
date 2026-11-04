@@ -33,6 +33,9 @@ def newtonPolytope {d : ℕ} (f : MultiLaurent d) : Set (Fin d → ℝ) :=
 section Support
 variable {M : Type*} [AddCommMonoid M] (w : M →+ ℝ)
 
+/--
+@isnad1 id=le.3h7v.s8.2826aad29c35 from=translated src=- shape=f5840273 vocab=870fca19
+-/
 theorem support_mul_lower_bound (f g : AddMonoidAlgebra ℂ M) (a b : ℝ)
     (hf : ∀ x ∈ f.coeff.support, a ≤ w x)
     (hg : ∀ x ∈ g.coeff.support, b ≤ w x) :
@@ -44,6 +47,9 @@ theorem support_mul_lower_bound (f g : AddMonoidAlgebra ℂ M) (a b : ℝ)
   rw [map_add]
   exact add_le_add (hf y hy) (hg z hz)
 
+/--
+@isnad1 id=le.2h6v.s7.d9088b8a37f7 from=translated src=- shape=b3f713ee vocab=0e3b8b47
+-/
 theorem support_pow_lower_bound (f : AddMonoidAlgebra ℂ M) (δ : ℝ)
     (hf : ∀ x ∈ f.coeff.support, δ ≤ w x) (m : ℕ) :
     ∀ x ∈ (f ^ m).coeff.support, m * δ ≤ w x := by
@@ -58,7 +64,9 @@ theorem support_pow_lower_bound (f : AddMonoidAlgebra ℂ M) (δ : ℝ)
       support_mul_lower_bound w (f ^ m) f (m * δ) δ ih hf
 
 /-- An explicit support lower bound is enough to force eventual constant-term
-vanishing, including zero polynomials and arbitrary fixed multipliers.-/
+vanishing, including zero polynomials and arbitrary fixed multipliers.
+@isnad1 id=ex.2h5v.s7.772f81cfabae from=translated src=- shape=ade8d816 vocab=e4d70373
+-/
 theorem eventual_constantTerm_zero_of_lower_bound (f h : AddMonoidAlgebra ℂ M)
     (δ : ℝ) (hδ : 0 < δ) (hf : ∀ x ∈ f.coeff.support, δ ≤ w x) :
     ∃ N : ℕ, ∀ m : ℕ, N ≤ m → (h * f ^ m).coeff 0 = 0 := by
@@ -78,7 +86,9 @@ theorem eventual_constantTerm_zero_of_lower_bound (f h : AddMonoidAlgebra ℂ M)
 
 end Support
 
-/-- Hahn--Banach supplies the support bound whenever the Newton hull avoids zero.-/
+/-- Hahn--Banach supplies the support bound whenever the Newton hull avoids zero.
+@isnad1 id=ex.1h2v.s7.0fc4bec039a7 from=translated src=- shape=c89bdfb1 vocab=6fb1ee0f
+-/
 theorem support_strict_separation {d : ℕ} (f : MultiLaurent d)
     (hf : (0 : Fin d → ℝ) ∉ newtonPolytope f) :
     ∃ w : (Fin d → ℤ) →+ ℝ, ∃ δ : ℝ, 0 < δ ∧
@@ -107,7 +117,9 @@ theorem support_strict_separation {d : ℕ} (f : MultiLaurent d)
   exact (hL _ (subset_convexHull ℝ _ ⟨a, ha, rfl⟩)).le
 
 /-- The full elementary conclusion in the torus proof, with precisely its
-geometric premise. Obtaining this premise from zero moments remains unproved.-/
+geometric premise. Obtaining this premise from zero moments remains unproved.
+@isnad1 id=ex.1h3v.s7.da54a7ec1b96 from=translated src=- shape=a9450f3a vocab=8c141562
+-/
 theorem eventual_constantTerm_zero_of_newton {d : ℕ} (f h : MultiLaurent d)
     (hf : (0 : Fin d → ℝ) ∉ newtonPolytope f) :
     ∃ N : ℕ, ∀ m : ℕ, N ≤ m → constantTerm (h * f ^ m) = 0 := by

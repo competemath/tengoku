@@ -17,7 +17,9 @@ open scoped ENNReal
 
 /-- Deleting finitely many nonsmooth source points needs no semialgebraicity
 or uniform cardinal bound for the exceptional sets. The full graph supplies
-the uniform multiplicity constant.-/
+the uniform multiplicity constant.
+@isnad1 id=ex.5h6v.s8.71452c6f687c from=translated src=- shape=fb9558b8 vocab=9c38ccaf
+-/
 theorem uniform_semialgebraic_scalar_variation_off_finite
     {ι : Type*} (μ : Measure ℝ) [IsAddHaarMeasure μ]
     (S T : (ι → ℝ) → Set ℝ) (hS : ∀ a, MeasurableSet (S a))
@@ -54,7 +56,9 @@ theorem uniform_semialgebraic_scalar_variation_off_finite
       (hN (Sum.elim a (fun _ => y)) hfinite)⟩)
   simpa only [D, ContinuousLinearMap.det_toSpanSingleton] using hb
 
-/-- The no-exception specialization.-/
+/-- The no-exception specialization.
+@isnad1 id=ex.4h5v.s8.ff5c95f5eb95 from=translated src=- shape=92451a78 vocab=911b3ff4
+-/
 theorem uniform_semialgebraic_scalar_variation
     {ι : Type*} (μ : Measure ℝ) [IsAddHaarMeasure μ]
     (E : (ι → ℝ) → Set ℝ) (hE : ∀ a, MeasurableSet (E a))

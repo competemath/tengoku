@@ -17,7 +17,9 @@ open scoped Topology
 namespace DuistermaatVanDerKallen
 
 /-- Points with nearby target values cannot share a component whose image has
-small diameter. The three errors are kept separate for reuse.-/
+small diameter. The three errors are kept separate for reuse.
+@isnad1 id=ne.5h11v.s7.6bcb3a28eff9 from=translated src=- shape=3445e39d vocab=fe946dec
+-/
 theorem distinct_component_of_separation {X Y : Type*} [PseudoMetricSpace Y]
     {F : X → Y} {label : X → ℕ} {x y : X} {c d : Y} {η ε L : ℝ}
     (hsep : η ≤ dist c d) (hx : dist c (F x) < η / 8)
@@ -30,7 +32,9 @@ theorem distinct_component_of_separation {X Y : Type*} [PseudoMetricSpace Y]
   linarith [dist_nonneg (x := c) (y := F x)]
 
 /-- At one common radius, `N+1` separated proposed values contradict `N`
-component labels. Uniformity in both radius and epsilon is in the hypotheses.-/
+component labels. Uniformity in both radius and epsilon is in the hypotheses.
+@isnad1 id=false.5h10v.s8.4aa9b9ebaa67 from=translated src=- shape=b19ffa11 vocab=bc889e19
+-/
 theorem common_radius_contradiction {X Y : Type*} [PseudoMetricSpace Y]
     {N : ℕ} (F : X → Y) (A : ℝ → ℝ → Set X)
     (label : ℝ → ℝ → X → Fin N) (c : Fin (N + 1) → Y)
@@ -55,7 +59,9 @@ theorem common_radius_contradiction {X Y : Type*} [PseudoMetricSpace Y]
   have hj := hclose j
   linarith
 
-/-- Any finite list of distinct metric points has a uniform positive separation.-/
+/-- Any finite list of distinct metric points has a uniform positive separation.
+@isnad1 id=ex.1h3v.s6.4e595fb85fc1 from=translated src=- shape=b6c6d8fe vocab=3e6ba4d5
+-/
 theorem finite_uniform_separation {Y : Type*} [MetricSpace Y] {n : ℕ}
     (c : Fin (n + 1) → Y) (hc : Function.Injective c) :
     ∃ η > (0 : ℝ), ∀ i j, i ≠ j → η ≤ dist (c i) (c j) := by
@@ -77,7 +83,9 @@ theorem finite_uniform_separation {Y : Type*} [MetricSpace Y] {n : ℕ}
 
 /-- Abstract common-radius finiteness. Its hypotheses isolate exactly the two
 geometric inputs: uniformly small component images and a whole tail of radii
-for every proposed limit value. No semialgebraic theorem is hidden here.-/
+for every proposed limit value. No semialgebraic theorem is hidden here.
+@isnad1 id=finite.3h8v.s7.4a0acb4a34c6 from=translated src=- shape=28da1f82 vocab=0093eda1
+-/
 theorem finite_of_common_radius {X Y : Type*} [MetricSpace Y]
     {N : ℕ} (F : X → Y) (A : ℝ → ℝ → Set X)
     (label : ℝ → ℝ → X → Fin N) (K : Set Y) {L : ℝ} (hL : 0 < L)

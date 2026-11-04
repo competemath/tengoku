@@ -28,7 +28,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [CompleteSpace E
 
 omit [CompleteSpace E] in
 /-- Smoothness near a compact set gives one Lipschitz constant on that set,
-without any convexity assumption on the compact set itself.-/
+without any convexity assumption on the compact set itself.
+@isnad1 id=ex.2h3v.s6.b2cc02eb1718 from=translated src=- shape=d37855ed vocab=7cc87dc9
+-/
 theorem smooth_lipschitz_on_compact {V : E → E} {K : Set E}
     (hK : IsCompact K) (hV : ∀ x ∈ K, ContDiffAt ℝ 1 V x) :
     ∃ L, LipschitzOnWith L V K := by
@@ -39,7 +41,9 @@ theorem smooth_lipschitz_on_compact {V : E → E} {K : Set E}
 
 omit [CompleteSpace E] in
 /-- Uniqueness on a closed interval for curves in an open smooth domain.
-Only their compact images are used to obtain a common Lipschitz constant.-/
+Only their compact images are used to obtain a common Lipschitz constant.
+@isnad1 id=eqon.8h7v.s8.1ddaa7a4ab91 from=translated src=- shape=5406b515 vocab=2fb61568
+-/
 theorem ode_unique_on_closed_interval {V : E → E} {U : Set E}
     (hV : ∀ x ∈ U, ContDiffAt ℝ 1 V x)
     {γ η : ℝ → E} {a b : ℝ}
@@ -59,7 +63,9 @@ theorem ode_unique_on_closed_interval {V : E → E} {U : Set E}
     (fun t ht => Or.inr ⟨t, Ico_subset_Icc_self ht, rfl⟩) heq
 
 omit [CompleteSpace E] in
-/-- Uniqueness on an open interval, with any initial time in that interval.-/
+/-- Uniqueness on an open interval, with any initial time in that interval.
+@isnad1 id=eqon.5h8v.s7.abfb3b693017 from=translated src=- shape=df15e113 vocab=5e852986
+-/
 theorem ode_unique_on_open_interval {V : E → E} {U : Set E}
     (hV : ∀ x ∈ U, ContDiffAt ℝ 1 V x)
     {γ η : ℝ → E} {a b t₀ : ℝ} (ht₀ : t₀ ∈ Ioo a b)

@@ -10,6 +10,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 open Set
 
+/--
+@isnad1 id=finite.2h3v.s6.179de3df326d from=translated src=- shape=4f93ec79 vocab=3d028b55
+-/
 theorem IsSemialgebraic.finite_polynomial_preimage_of_countable {ι : Type*}
     {S : Set (ι → ℝ)} (hS : IsSemialgebraic ι S) (g : ι → Polynomial ℝ)
     (hcount : ({t : ℝ | (fun i => (g i).eval t) ∈ S}).Countable) :
@@ -23,6 +26,9 @@ theorem IsSemialgebraic.finite_polynomial_preimage_of_countable {ι : Type*}
     exact subset_sUnion_of_mem hA
   exact (hcount.isTotallyDisconnected A hsub (hconv A hA).isPreconnected).finite
 
+/--
+@isnad1 id=finite.2h3v.s6.2a2a038e79da from=translated src=- shape=eaf1488a vocab=54f87d63
+-/
 theorem IsSemialgebraic.finite_line_fiber_of_countable {ι : Type*}
     {S : Set ((ι ⊕ Unit) → ℝ)} (hS : IsSemialgebraic (ι ⊕ Unit) S) (a : ι → ℝ)
     (hc : ({t : ℝ | Sum.elim a (fun _ => t) ∈ S}).Countable) :
@@ -42,7 +48,9 @@ theorem IsSemialgebraic.finite_line_fiber_of_countable {ι : Type*}
   exact h hc
 
 /-- Countable semialgebraic fibers in arbitrary finite dimension are finite,
-conditional on the explicit coordinate-projection theorem.-/
+conditional on the explicit coordinate-projection theorem.
+@isnad1 id=finite.3h4v.s6.5fe2aa79249e from=translated src=- shape=deb2cc50 vocab=d80941bb
+-/
 theorem IsSemialgebraic.finite_fiber_of_countable_of_projection
     (hproj : SemialgebraicProjectionObligation) {ι κ : Type} [Finite ι] [Fintype κ]
     {S : Set ((ι ⊕ κ) → ℝ)} (hS : IsSemialgebraic (ι ⊕ κ) S) (a : ι → ℝ)

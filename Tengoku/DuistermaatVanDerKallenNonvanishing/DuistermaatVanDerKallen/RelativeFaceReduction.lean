@@ -16,7 +16,9 @@ noncomputable section
 def OriginInSpanInterior {d : ℕ} (P : Set (Fin d → ℝ)) : Prop :=
   (0 : Submodule.span ℝ P) ∈ interior (Subtype.val ⁻¹' P)
 
-/-- A set spans its own linear span when viewed in the subtype.-/
+/-- A set spans its own linear span when viewed in the subtype.
+@isnad1 id=eq.0h2v.s10.31787a3d4911 from=translated src=- shape=d3cad9c9 vocab=ea7c12ee
+-/
 theorem span_preimage_span_eq_top {d : ℕ} (P : Set (Fin d → ℝ)) :
     Submodule.span ℝ (Subtype.val ⁻¹' P : Set (Submodule.span ℝ P)) = ⊤ := by
   apply (Submodule.span_val_image_eq_iff (Submodule.span ℝ P) _).mp
@@ -30,7 +32,9 @@ theorem span_preimage_span_eq_top {d : ℕ} (P : Set (Fin d → ℝ)) :
   rw [he]
 
 /-- A convex set containing zero and not interior at zero in its own span
-admits a proper supporting hyperplane through zero in the ambient space.-/
+admits a proper supporting hyperplane through zero in the ambient space.
+@isnad1 id=ex.3h2v.s9.f216eb818e57 from=translated src=- shape=3e453992 vocab=b5731958
+-/
 theorem exists_proper_supporting_cut {d : ℕ} {P : Set (Fin d → ℝ)}
     (hc : Convex ℝ P) (h0 : (0 : Fin d → ℝ) ∈ P) (hi : ¬ OriginInSpanInterior P) :
     ∃ L : (Fin d → ℝ) →L[ℝ] ℝ,
@@ -72,7 +76,9 @@ theorem exists_proper_supporting_cut {d : ℕ} {P : Set (Fin d → ℝ)}
 
 /-- Supporting cuts terminate, preserving all coefficients that survive and every
 power constant term, with zero interior in the final real span. This is the
-geometric stage of face reduction, before choosing integral lattice coordinates.-/
+geometric stage of face reduction, before choosing integral lattice coordinates.
+@isnad1 id=ex.1h2v.s8.9b94f08e0df1 from=translated src=- shape=e3c2e836 vocab=b07c59ef
+-/
 theorem exists_span_interior_restriction {d : ℕ} (f : MultiLaurent d)
     (hf : (0 : Fin d → ℝ) ∈ newtonPolytope f) :
     ∃ g : MultiLaurent d, g ≠ 0 ∧ g.coeff.support ⊆ f.coeff.support ∧

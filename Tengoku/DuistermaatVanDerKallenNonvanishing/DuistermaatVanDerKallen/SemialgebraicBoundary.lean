@@ -14,6 +14,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 open Set
 
+/--
+@isnad1 id=ex.1h2v.s7.4a2847e3326f from=translated src=- shape=26a2ab85 vocab=dab0bff5
+-/
 theorem IsSemialgebraic.frontier_polynomial {ι : Type*} {S : Set (ι → ℝ)}
     (hS : IsSemialgebraic ι S) :
     ∃ p : MvPolynomial ι ℝ, p ≠ 0 ∧ frontier S ⊆ {x | MvPolynomial.eval x p = 0} := by
@@ -46,6 +49,9 @@ theorem IsSemialgebraic.frontier_polynomial {ι : Type*} {S : Set (ι → ℝ)}
       rw [map_mul, hSq h.2, mul_zero]
   | compl h ih => simpa only [frontier_compl] using ih
 
+/--
+@isnad1 id=ex.2h2v.s7.6b277b8a6c5d from=translated src=- shape=daf6e554 vocab=c3c60271
+-/
 theorem IsSemialgebraic.polynomial_vanishing_of_empty_interior {ι : Type*}
     {S : Set (ι → ℝ)} (hS : IsSemialgebraic ι S) (hI : interior S = ∅) :
     ∃ p : MvPolynomial ι ℝ, p ≠ 0 ∧ ∀ x ∈ S, MvPolynomial.eval x p = 0 := by
@@ -54,6 +60,9 @@ theorem IsSemialgebraic.polynomial_vanishing_of_empty_interior {ι : Type*}
   rw [frontier, hI, sdiff_empty]
   exact subset_closure hx
 
+/--
+@isnad1 id=eq.0h3v.s6.151843d0f634 from=translated src=- shape=675a0a4f vocab=f687569e
+-/
 theorem scalar_graph_empty_interior {ι : Type*} (f : (ι → ℝ) → ℝ) (S : Set (ι → ℝ)) :
     interior {q : (ι ⊕ Unit) → ℝ | (fun i => q (.inl i)) ∈ S ∧
       f (fun i => q (.inl i)) = q (.inr ())} = ∅ := by
@@ -81,6 +90,9 @@ theorem scalar_graph_empty_interior {ι : Type*} (f : (ι → ℝ) → ℝ) (S :
     simpa only [mem_preimage, he] using hq
   simpa only [interior_singleton, mem_empty_iff_false] using hI hmem
 
+/--
+@isnad1 id=ex.1h3v.s8.d5309ccccd79 from=translated src=- shape=4b019f31 vocab=d2561960
+-/
 theorem semialgebraic_scalar_graph_polynomial {ι : Type*}
     (f : (ι → ℝ) → ℝ) (S : Set (ι → ℝ))
     (hf : IsSemialgebraic (ι ⊕ Unit) {q | (fun i => q (.inl i)) ∈ S ∧

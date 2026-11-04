@@ -16,6 +16,9 @@ noncomputable section
 open Set MeasureTheory MeasureTheory.Measure
 open scoped ENNReal
 
+/--
+@isnad1 id=eq.1h4v.s6.cdddb7e822f6 from=translated src=- shape=57bc3e42 vocab=1086a229
+-/
 theorem tsum_indicator_one_eq_ncard {ι X : Type*} (A : ι → Set X) (x : X)
     (hf : ({i | x ∈ A i}).Finite) :
     (∑' i, (A i).indicator (fun _ => (1 : ℝ≥0∞)) x) = ({i | x ∈ A i}).ncard := by
@@ -28,7 +31,9 @@ theorem tsum_indicator_one_eq_ncard {ι X : Type*} (A : ι → Set X) (x : X)
   · intro i hi
     exact Set.indicator_of_notMem (s := A i) (a := x) (fun hx => hi (hf.mem_toFinset.mpr hx)) _
 
-/-- The countable sheet estimate permits an exceptional null set in the target.-/
+/-- The countable sheet estimate permits an exceptional null set in the target.
+@isnad1 id=le.2h5v.s7.b1e69d40d1bb from=translated src=- shape=cd63d0d7 vocab=7d75b8c3
+-/
 theorem tsum_measure_le_mul_measure_union_of_ae_multiplicity
     {ι X : Type*} [Countable ι] [MeasurableSpace X] (μ : Measure X)
     (A : ι → Set X) (hA : ∀ i, MeasurableSet (A i)) (N : ℕ)
@@ -49,6 +54,9 @@ theorem tsum_measure_le_mul_measure_union_of_ae_multiplicity
       exact Set.indicator_of_notMem (fun h => hm (mem_iUnion.mpr ⟨i, h⟩)) _
     simp only [hzero, tsum_zero, le_refl]
 
+/--
+@isnad1 id=and.3h7v.s7.0d261a523873 from=translated src=- shape=362e4d9b vocab=284ad8a3
+-/
 theorem image_membership_count_le_fiber {ι X Y : Type*}
     (A : ι → Set X) (hdisj : Pairwise (fun i j => Disjoint (A i) (A j))) (S : Set X)
     (hAS : ∀ i, A i ⊆ S) (f : X → Y) (y : Y)
@@ -73,7 +81,9 @@ theorem image_membership_count_le_fiber {ι X Y : Type*}
 
 /-- A finite-multiplicity Jacobian estimate for countably many disjoint
 injective pieces. Construction of such pieces for the manuscript strata, and
-the negligible exceptional-target set, are separate geometric obligations.-/
+the negligible exceptional-target set, are separate geometric obligations.
+@isnad1 id=le.5h7v.s8.19377778e2ab from=translated src=- shape=f45e6a9a vocab=a4106113
+-/
 theorem lintegral_abs_det_le_mul_image_of_countable_pieces
     {ι E : Type*} [Countable ι] [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]
@@ -94,7 +104,9 @@ theorem lintegral_abs_det_le_mul_image_of_countable_pieces
     (fun i => measurable_image_of_fderivWithin (hA i) (hderiv i) (hinj i)) N hN
 
 /-- The same analytic estimate with the actual whole-fiber cardinality as input,
-rather than a separately assumed count of images of the injective pieces.-/
+rather than a separately assumed count of images of the injective pieces.
+@isnad1 id=le.5h7v.s8.a2ed27e388e9 from=translated src=- shape=17fc8cb8 vocab=a4106113
+-/
 theorem lintegral_abs_det_le_mul_image_of_ae_finite_fibers
     {ι E : Type*} [Countable ι] [NormedAddCommGroup E] [NormedSpace ℝ E]
     [FiniteDimensional ℝ E] [MeasurableSpace E] [BorelSpace E]

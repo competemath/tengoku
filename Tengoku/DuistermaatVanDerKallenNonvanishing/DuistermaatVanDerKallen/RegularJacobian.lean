@@ -14,6 +14,9 @@ noncomputable section
 open Set MeasureTheory MeasureTheory.Measure
 open scoped ENNReal
 
+/--
+@isnad1 id=eventual.2h5v.s8.b8af21d99692 from=translated src=- shape=14c7ae35 vocab=935f4b23
+-/
 theorem ae_countable_fibers_of_contDiffAt
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E] (μ : Measure E) [IsAddHaarMeasure μ]
@@ -43,6 +46,9 @@ theorem ae_countable_fibers_of_contDiffAt
   rw [he]
   exact countable_fiber_of_local_injectivity R f hloc y
 
+/--
+@isnad1 id=measurab.3h4v.s8.ca55ec2edb2c from=translated src=- shape=b595d154 vocab=780ebc18
+-/
 theorem measurableSet_regular_of_contDiffAt
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E]
@@ -65,7 +71,9 @@ theorem measurableSet_regular_of_contDiffAt
   exact hU.measurableSet.inter hS
 
 /-- The Jacobian vanishes on the singular part; regular points admit a
-countable measurable injective partition. No partition is supplied as input.-/
+countable measurable injective partition. No partition is supplied as input.
+@isnad1 id=le.4h6v.s8.28b986aefb9e from=translated src=- shape=bfb737db vocab=2aa77227
+-/
 theorem lintegral_abs_det_le_mul_image_of_contDiffAt
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [FiniteDimensional ℝ E]
     [MeasurableSpace E] [BorelSpace E] (μ : Measure E) [IsAddHaarMeasure μ]

@@ -35,7 +35,9 @@ def toAtlas : ConstantTransitionAtlas X (fun x => H x) where
   cover := A.cover
   transition := A.transition
 
-/-- Zero is locally constant in the linear coordinates.-/
+/-- Zero is locally constant in the linear coordinates.
+@isnad1 id=pred.0h4v.s8.a26989e1d124 from=translated src=- shape=a787ba3e vocab=35119394
+-/
 theorem section_zero (U : Opens X) : A.toAtlas.sectionPredicate.pred (fun _ : U => 0) := by
   intro x
   obtain ⟨i, hi⟩ := A.cover x.val
@@ -43,7 +45,9 @@ theorem section_zero (U : Opens X) : A.toAtlas.sectionPredicate.pred (fun _ : U 
   intro y
   exact (A.coord i ⟨y.val, y.property.2⟩).map_zero
 
-/-- Local coordinate constancy is preserved by integer scalar multiplication.-/
+/-- Local coordinate constancy is preserved by integer scalar multiplication.
+@isnad1 id=pred.1h6v.s8.2267410b555b from=translated src=- shape=13280982 vocab=c97ac927
+-/
 theorem section_smul {U : Opens X} (r : ℤ) {f : ∀ x : U, H x.val}
     (hf : A.toAtlas.sectionPredicate.pred f) :
     A.toAtlas.sectionPredicate.pred (fun x => r • f x) := by
@@ -60,7 +64,9 @@ theorem section_smul {U : Opens X} (r : ℤ) {f : ∀ x : U, H x.val}
   exact (map_zsmul (A.coord i ⟨x.val, hVi x.property⟩) r (g x)).trans
     (congrArg (r • ·) he')
 
-/-- Addition is local even when the two sections use different charts.-/
+/-- Addition is local even when the two sections use different charts.
+@isnad1 id=pred.2h6v.s9.bd547dc72711 from=translated src=- shape=86ab3cad vocab=36f2d377
+-/
 theorem section_add {U : Opens X} {f g : ∀ x : U, H x.val}
     (hf : A.toAtlas.sectionPredicate.pred f) (hg : A.toAtlas.sectionPredicate.pred g) :
     A.toAtlas.sectionPredicate.pred (fun x => f x + g x) := by
@@ -100,7 +106,9 @@ def presheaf : TopCat.Presheaf (ModuleCat.{0} ℤ) X where
   map_comp _ _ := by ext f x; rfl
 
 /-- Forgetting the module operations gives exactly the sheaf of dependent
-sections already constructed, so its verified gluing applies.-/
+sections already constructed, so its verified gluing applies.
+@isnad1 id=eq.0h3v.s7.cef623e88a67 from=translated src=- shape=427088fd vocab=7846a379
+-/
 theorem presheaf_forget : A.presheaf ⋙ forget (ModuleCat.{0} ℤ) = A.toAtlas.sheaf.presheaf := rfl
 
 /-- The sheaf of modules underlying the integral local system.-/
@@ -136,10 +144,16 @@ def evaluationCocone (x : X) :
 def stalkEval (x : X) : A.presheaf.stalk x ⟶ H x :=
   Limits.colimit.desc _ (A.evaluationCocone x)
 
+/--
+@isnad1 id=eq.1h6v.s12.09e526662a5e from=translated src=- shape=cc0b2ce6 vocab=967ffb5c
+-/
 theorem stalkEval_germ (U : Opens X) (x : X) (hx : x ∈ U) (s : A.sections U) :
     A.stalkEval x (A.presheaf.germ U x hx s) = s.val ⟨x, hx⟩ := by
   exact Limits.colimit.ι_desc_apply (A.evaluationCocone x) (op ⟨U, hx⟩) s
 
+/--
+@isnad1 id=surjecti.0h4v.s8.c9bdc71e7e12 from=translated src=- shape=8ea4723f vocab=b76c462c
+-/
 theorem stalkEval_surjective (x : X) : Function.Surjective (A.stalkEval x) := by
   intro v
   obtain ⟨i, hi⟩ := A.cover x
@@ -148,6 +162,9 @@ theorem stalkEval_surjective (x : X) : Function.Surjective (A.stalkEval x) := by
   refine ⟨A.presheaf.germ (A.domain i) x hi s, ?_⟩
   exact (A.stalkEval_germ _ x hi s).trans ((A.coord i ⟨x, hi⟩).symm_apply_apply v)
 
+/--
+@isnad1 id=injectiv.0h4v.s8.ec6851abbe05 from=translated src=- shape=8ea4723f vocab=ade5aa0b
+-/
 theorem stalkEval_injective (x : X) : Function.Injective (A.stalkEval x) := by
   intro a b hab
   obtain ⟨U, hxU, s, rfl⟩ := A.presheaf.exists_germ_eq a
@@ -168,7 +185,9 @@ def stalkLinearEquiv (x : X) : A.presheaf.stalk x ≃ₗ[ℤ] H x :=
     ⟨A.stalkEval_injective x, A.stalkEval_surjective x⟩
 
 /-- Every germ extends uniquely across a connected coordinate patch, also
-as a statement about the actual module-valued stalk.-/
+as a statement about the actual module-valued stalk.
+@isnad1 id=bijectiv.1h5v.s9.c120fd3e8817 from=translated src=- shape=5fa26559 vocab=030ac568
+-/
 theorem germ_bijective (i : A.Index) [PreconnectedSpace (A.domain i)]
     (x : X) (hx : x ∈ A.domain i) :
     Function.Bijective (A.presheaf.germ (A.domain i) x hx) := by
@@ -189,7 +208,9 @@ def germLinearEquiv (i : A.Index) [PreconnectedSpace (A.domain i)]
     A.sections (A.domain i) ≃ₗ[ℤ] A.presheaf.stalk x :=
   LinearEquiv.ofBijective (A.presheaf.germ (A.domain i) x hx).hom (A.germ_bijective i x hx)
 
-/-- The étalé projection of the module-valued sheaf itself is a covering.-/
+/-- The étalé projection of the module-valued sheaf itself is a covering.
+@isnad1 id=iscoveri.1h3v.s8.6f3f5c3c2c6e from=translated src=- shape=a3306676 vocab=b939de49
+-/
 theorem isCoveringMap_module_etale (hconnected : ∀ i, PreconnectedSpace (A.domain i)) :
     IsCoveringMap (TopCat.Presheaf.EtaleSpace.base (F := A.presheaf)) := by
   apply TopCat.Presheaf.EtaleSpace.isCoveringMap_base
@@ -202,7 +223,9 @@ theorem isCoveringMap_module_etale (hconnected : ∀ i, PreconnectedSpace (A.dom
 def sectionEtaleMap (U : Opens X) (s : A.sections U) : U → A.presheaf.EtaleSpace :=
   fun x => ⟨x.val, A.presheaf.germ U x.val x.property s⟩
 
-/-- A section over a connected atlas chart gives a continuous germ map.-/
+/-- A section over a connected atlas chart gives a continuous germ map.
+@isnad1 id=continuo.0h5v.s11.7637ba0706e7 from=translated src=- shape=f4e220d1 vocab=d564dad2
+-/
 theorem sectionEtaleMap_continuous (i : A.Index) [PreconnectedSpace (A.domain i)]
     (s : A.sections (A.domain i)) : Continuous (A.sectionEtaleMap _ s) := by
   rw [continuous_iff_continuousAt]

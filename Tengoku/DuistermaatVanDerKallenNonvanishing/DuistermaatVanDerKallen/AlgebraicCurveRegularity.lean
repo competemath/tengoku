@@ -18,6 +18,9 @@ open scoped Topology
 def bivariateEval (P : Polynomial (Polynomial ℝ)) (q : ℝ × ℝ) : ℝ :=
   (P.map (Polynomial.evalRingHom q.1)).eval q.2
 
+/--
+@isnad1 id=isinvert.1h1v.s7.336ffa69be60 from=translated src=- shape=b0109325 vocab=82dc5c22
+-/
 theorem realLinearMap_isInvertible {L : ℝ →L[ℝ] ℝ} (hL : L 1 ≠ 0) : L.IsInvertible := by
   have he (a : ℝ) : L a = a * L 1 := by simpa using L.map_smul a (1 : ℝ)
   apply ContinuousLinearMap.IsInvertible.of_inverse

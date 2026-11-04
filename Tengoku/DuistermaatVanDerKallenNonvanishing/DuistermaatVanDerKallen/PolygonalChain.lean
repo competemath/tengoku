@@ -30,6 +30,9 @@ def C1ArcChain.ofNodes {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
   velocity_continuous := fun _ _ => continuousOn_const
   curve_mem := fun i hi t ht => hseg i hi (lineMap_mem_segment ℝ _ _ ht)
 
+/--
+@isnad1 id=eq.2h4v.s7.3befd15967a3 from=translated src=- shape=53fd56b9 vocab=99a71263
+-/
 theorem C1ArcChain.ofNodes_length {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (S : Set E) (n : ℕ) (node : ℕ → E)
     (hnode : ∀ i ≤ n, node i ∈ S)
@@ -38,6 +41,9 @@ theorem C1ArcChain.ofNodes_length {E : Type*} [NormedAddCommGroup E] [NormedSpac
       ∑ i ∈ Finset.range n, dist (node i) (node (i + 1)) := by
   simp [C1ArcChain.length, C1ArcChain.ofNodes, dist_eq_norm', norm_sub_rev]
 
+/--
+@isnad1 id=le.3h5v.s7.5478aff53c62 from=translated src=- shape=81d900bb vocab=47269430
+-/
 theorem C1ArcChain.ofNodes_length_le {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     (S : Set E) (n : ℕ) (node : ℕ → E)
     (hnode : ∀ i ≤ n, node i ∈ S)
@@ -58,7 +64,9 @@ theorem C1ArcChain.ofNodes_length_le {E : Type*} [NormedAddCommGroup E] [NormedS
     _ = _ := by simp
 
 /-- The bounded finite convex model has actual C¹ connecting chains with
-uniform piece count and length. This assertion does not concern a Hardt map.-/
+uniform piece count and length. This assertion does not concern a Hardt map.
+@isnad1 id=ex.4h4v.s8.007650004694 from=translated src=- shape=bf5db287 vocab=69e8c7b9
+-/
 theorem finite_closed_convex_cover_uniform_C1_chains
     {E ι : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E] [Finite ι]
     (C : ι → Set E) (hclosed : ∀ i, IsClosed (C i)) (hconvex : ∀ i, Convex ℝ (C i))

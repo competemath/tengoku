@@ -11,7 +11,9 @@ open Set
 open scoped Pointwise
 namespace DuistermaatVanDerKallen
 
-/-- A uniquely minimizing support exponent survives in every power.-/
+/-- A uniquely minimizing support exponent survives in every power.
+@isnad1 id=eq.3h5v.s8.46155a828e74 from=translated src=- shape=0d86e933 vocab=78716d10
+-/
 theorem coeff_pow_unique_min {M : Type*} [AddCommGroup M]
     (w : M →+ ℝ) (f : AddMonoidAlgebra ℂ M) (v : M)
     (hv : v ∈ f.coeff.support)
@@ -35,16 +37,25 @@ theorem coeff_pow_unique_min {M : Type*} [AddCommGroup M]
       rw [hz, zero_mul]
     · exact fun hnot => (hnot hv).elim
 
+/--
+@isnad1 id=eq.0h3v.s6.3bd5c78ab8ff from=translated src=- shape=6c7d02ab vocab=8b0160ef
+-/
 theorem exponentVector_add {d : ℕ} (a b : Fin d → ℤ) :
     exponentVector (a + b) = exponentVector a + exponentVector b := by
   ext i
   simp [exponentVector]
 
+/--
+@isnad1 id=eq.0h3v.s6.684fac42c786 from=translated src=- shape=a41961a6 vocab=3a67514c
+-/
 theorem exponentVector_nsmul {d : ℕ} (n : ℕ) (a : Fin d → ℤ) :
     exponentVector (n • a) = (n : ℝ) • exponentVector a := by
   ext i
   simp [exponentVector]
 
+/--
+@isnad1 id=le.0h3v.s6.d90feed84228 from=translated src=- shape=949fc64b vocab=ea971f38
+-/
 theorem newtonPolytope_mul_subset {d : ℕ} (f g : MultiLaurent d) :
     newtonPolytope (f * g) ⊆ newtonPolytope f + newtonPolytope g := by
   apply convexHull_min _ ((convex_convexHull ℝ _).add (convex_convexHull ℝ _))
@@ -54,6 +65,9 @@ theorem newtonPolytope_mul_subset {d : ℕ} (f g : MultiLaurent d) :
   exact ⟨exponentVector b, subset_convexHull ℝ _ ⟨b, hb, rfl⟩,
     exponentVector c, subset_convexHull ℝ _ ⟨c, hc, rfl⟩, (exponentVector_add b c).symm⟩
 
+/--
+@isnad1 id=le.1h3v.s6.2f69939a5ae6 from=translated src=- shape=5b049cee vocab=f3819191
+-/
 theorem newtonPolytope_pow_subset {d : ℕ} (f : MultiLaurent d) {n : ℕ} (hn : 1 ≤ n) :
     newtonPolytope (f ^ n) ⊆ (n : ℝ) • newtonPolytope f := by
   have hconv : Convex ℝ (newtonPolytope f) := convex_convexHull ℝ _
@@ -64,7 +78,9 @@ theorem newtonPolytope_pow_subset {d : ℕ} (f : MultiLaurent d) {n : ℕ} (hn :
       hconv.add_smul (Nat.cast_nonneg n) zero_le_one, one_smul]
     exact (newtonPolytope_mul_subset (f ^ n) f).trans (add_subset_add ih Subset.rfl)
 
-/-- Every vertex of a finite convex hull is exposed by a strict minimum.-/
+/-- Every vertex of a finite convex hull is exposed by a strict minimum.
+@isnad1 id=ex.2h3v.s9.e06a00f0dcaa from=translated src=- shape=afbe2aff vocab=ecb538e8
+-/
 theorem finite_extremePoint_exposed {d : ℕ} {S : Set (Fin d → ℝ)} (hS : S.Finite)
     {x : Fin d → ℝ} (hx : x ∈ (convexHull ℝ S).extremePoints ℝ) :
     ∃ L : (Fin d → ℝ) →L[ℝ] ℝ, ∀ y ∈ S, L x ≤ L y ∧ (L y = L x → y = x) := by
@@ -81,7 +97,9 @@ theorem finite_extremePoint_exposed {d : ℕ} {S : Set (Fin d → ℝ)} (hS : S.
   have hlt := hxr.trans (hr y (subset_convexHull ℝ _ ⟨hy, he⟩))
   exact ⟨hlt.le, fun h => (hlt.ne h.symm).elim⟩
 
-/-- An extreme point of the Laurent Newton polytope survives under scaling.-/
+/-- An extreme point of the Laurent Newton polytope survives under scaling.
+@isnad1 id=mem.1h4v.s7.6023de6dae57 from=translated src=- shape=de797902 vocab=99ce6f1a
+-/
 theorem extremePoint_pow_mem {d : ℕ} (f : MultiLaurent d) (n : ℕ)
     {x : Fin d → ℝ} (hx : x ∈ (newtonPolytope f).extremePoints ℝ) :
     (n : ℝ) • x ∈ newtonPolytope (f ^ n) := by
@@ -108,7 +126,9 @@ theorem extremePoint_pow_mem {d : ℕ} (f : MultiLaurent d) (n : ℕ)
   exact subset_convexHull ℝ _ ⟨n • v, Finsupp.mem_support_iff.mpr
     (hcoeff ▸ pow_ne_zero n (Finsupp.mem_support_iff.mp hv)), rfl⟩
 
-/-- Newton polytopes of positive powers are exactly homothetic copies.-/
+/-- Newton polytopes of positive powers are exactly homothetic copies.
+@isnad1 id=eq.1h3v.s6.8cd1dda240b7 from=translated src=- shape=cbca7770 vocab=f3819191
+-/
 theorem newtonPolytope_pow {d : ℕ} (f : MultiLaurent d) {n : ℕ} (hn : 1 ≤ n) :
     newtonPolytope (f ^ n) = (n : ℝ) • newtonPolytope f := by
   apply Subset.antisymm (newtonPolytope_pow_subset f hn)
@@ -129,13 +149,17 @@ theorem newtonPolytope_pow {d : ℕ} (f : MultiLaurent d) {n : ℕ} (hn : 1 ≤ 
       rintro _ ⟨x, hx, rfl⟩
       exact extremePoint_pow_mem f n hx
 
-/-- The previously isolated Newton-power origin-preservation obligation.-/
+/-- The previously isolated Newton-power origin-preservation obligation.
+@isnad1 id=originin.0h0v.s0.a2f0dc63e3f1 from=translated src=- shape=45709ebd vocab=a2f0dc63
+-/
 theorem origin_in_newton_powers : OriginInNewtonPowers := by
   intro d f _ hf n hn
   rw [newtonPolytope_pow f hn]
   exact ⟨0, hf, smul_zero _⟩
 
-/-- Infinite nonvanishing now requires only the still-open minimal theorem.-/
+/-- Infinite nonvanishing now requires only the still-open minimal theorem.
+@isnad1 id=infinite.1h0v.s1.f264a2921953 from=translated src=- shape=1d48f1ac vocab=b1307d40
+-/
 theorem infinite_of_minimal (hminimal : MinimalNonvanishing) : InfiniteNonvanishing :=
   infinite_of_minimal_and_newton_powers hminimal origin_in_newton_powers
 

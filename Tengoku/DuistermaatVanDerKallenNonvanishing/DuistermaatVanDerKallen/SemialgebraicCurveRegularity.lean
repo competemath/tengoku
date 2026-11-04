@@ -14,6 +14,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 open Set
 
+/--
+@isnad1 id=ex.1h2v.s7.3f0d95bf6bc8 from=translated src=- shape=6fe8dc42 vocab=57096b32
+-/
 theorem semialgebraic_scalar_polynomial_relation
     (f : ℝ → ℝ) (S : Set ℝ)
     (hgraph : IsSemialgebraic (Unit ⊕ Unit) {q | q (.inl ()) ∈ S ∧

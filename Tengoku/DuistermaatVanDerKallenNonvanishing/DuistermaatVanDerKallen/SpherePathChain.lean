@@ -32,6 +32,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 def length (γ : C1ArcChain S x y) : ℝ :=
   ∑ i ∈ Finset.range γ.pieces, ∫ t in (0 : ℝ)..1, ‖γ.velocity i t‖
 
+/--
+@isnad1 id=le.0h5v.s5.0c248aa8b658 from=translated src=- shape=5fe4e7a6 vocab=2fb4ba3d
+-/
 theorem length_nonneg (γ : C1ArcChain S x y) : 0 ≤ γ.length := by
   apply Finset.sum_nonneg
   intro i hi

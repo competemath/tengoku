@@ -35,13 +35,21 @@ def torusTangentMap {d : ℕ} (z : Fin d → ℂ) : (Fin d → ℂ) →L[ℂ] To
         intro i
         cases i <;> simp [mul_left_comm] }
 
+/--
+@isnad1 id=eq.0h4v.s9.6b7699fecc71 from=translated src=- shape=4f1e62a9 vocab=e5d0942b
+-/
 @[simp] theorem torusTangentMap_left {d : ℕ} (z v : Fin d → ℂ) (i : Fin d) :
     torusTangentMap z v (.inl i) = v i := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.df2c7d3fbeb6 from=translated src=- shape=b9a36567 vocab=468bdf87
+-/
 @[simp] theorem torusTangentMap_right {d : ℕ} (z v : Fin d → ℂ) (i : Fin d) :
     torusTangentMap z v (.inr i) = -(z i)⁻¹ ^ 2 * v i := rfl
 
-/-- The chart derivative is computed over ℂ at every point of the open torus.-/
+/-- The chart derivative is computed over ℂ at every point of the open torus.
+@isnad1 id=hasfderi.1h2v.s7.9e422599a437 from=translated src=- shape=7cc6652e vocab=15c7be31
+-/
 theorem torusEmbed_hasFDerivAt {d : ℕ} {z : Fin d → ℂ} (hz : ∀ i, z i ≠ 0) :
     HasFDerivAt torusEmbed (torusTangentMap z) z := by
   apply HasFDerivWithinAt.hasFDerivAt (s := Set.univ) _ (by simp)
@@ -66,7 +74,9 @@ theorem torusEmbed_hasFDerivAt {d : ℕ} {z : Fin d → ℂ} (hz : ∀ i, z i �
     rw [heq]
     exact h.hasFDerivWithinAt
 
-/-- The nonvanishing-coordinate chart domain is open.-/
+/-- The nonvanishing-coordinate chart domain is open.
+@isnad1 id=isopen.0h1v.s5.1010caadab99 from=translated src=- shape=eeccade8 vocab=e153a78e
+-/
 theorem torusDomain_isOpen (d : ℕ) :
     IsOpen {z : Fin d → ℂ | ∀ i, z i ≠ 0} := by
   simp only [Set.ofPred_forall]
@@ -74,7 +84,9 @@ theorem torusDomain_isOpen (d : ℕ) :
   intro i
   exact isOpen_ne_fun (continuous_apply i) continuous_const
 
-/-- The global chart is smooth over ℝ, as needed by real ODE theory.-/
+/-- The global chart is smooth over ℝ, as needed by real ODE theory.
+@isnad1 id=contdiff.1h2v.s7.5eab9f6f9415 from=translated src=- shape=85fd8419 vocab=7cfed2dc
+-/
 theorem torusEmbed_contDiffAt_real {d : ℕ} {z : Fin d → ℂ}
     (hz : ∀ i, z i ≠ 0) : ContDiffAt ℝ ⊤ torusEmbed z := by
   rw [contDiffAt_piLp]
@@ -99,6 +111,9 @@ def torusChart (d : ℕ) : {z : Fin d → ℂ // ∀ i, z i ≠ 0} ≃ₜ affine
 def torusTangentSpace {d : ℕ} (z : Fin d → ℂ) : Submodule ℂ (TorusAmbient d) :=
   LinearMap.range (torusTangentMap z).toLinearMap
 
+/--
+@isnad1 id=iff.0h3v.s9.8c2b204e3e04 from=translated src=- shape=ca0f673b vocab=4e2e83e0
+-/
 theorem mem_torusTangentSpace_iff {d : ℕ} (z : Fin d → ℂ) (v : TorusAmbient d) :
     v ∈ torusTangentSpace z ↔ ∀ i, v (.inr i) = -(z i)⁻¹ ^ 2 * v (.inl i) := by
   constructor
@@ -113,7 +128,9 @@ theorem mem_torusTangentSpace_iff {d : ℕ} (z : Fin d → ℂ) (v : TorusAmbien
     | inr i => exact (h i).symm
 
 /-- The derivative image is also the kernel of the linearized defining
-equations `zᵢwᵢ = 1`, so it is the tangent space of the affine variety.-/
+equations `zᵢwᵢ = 1`, so it is the tangent space of the affine variety.
+@isnad1 id=iff.1h3v.s9.a6b3854532da from=translated src=- shape=b7ddd314 vocab=5c8d35bb
+-/
 theorem mem_torusTangentSpace_iff_linearized {d : ℕ} {z : Fin d → ℂ}
     (hz : ∀ i, z i ≠ 0) (v : TorusAmbient d) :
     v ∈ torusTangentSpace z ↔
@@ -133,10 +150,15 @@ theorem mem_torusTangentSpace_iff_linearized {d : ℕ} {z : Fin d → ℂ}
 /-- Positive diagonal coefficients of the induced Hermitian metric.-/
 def torusWeight {d : ℕ} (z : Fin d → ℂ) (i : Fin d) : ℝ := 1 + ‖z i‖⁻¹ ^ 4
 
+/--
+@isnad1 id=lt.0h3v.s4.492cc87dfc89 from=translated src=- shape=beb0885f vocab=1919341c
+-/
 theorem torusWeight_pos {d : ℕ} (z : Fin d → ℂ) (i : Fin d) :
     0 < torusWeight z i := torus_weight_pos _
 
-/-- Manuscript equation `eq:embedding-metric`.-/
+/-- Manuscript equation `eq:embedding-metric`.
+@isnad1 id=eq.0h3v.s9.a3404673d582 from=translated src=- shape=3a6df293 vocab=2fc4cadf
+-/
 theorem torusTangentMap_norm_sq {d : ℕ} (z v : Fin d → ℂ) :
     ‖torusTangentMap z v‖ ^ 2 = ∑ i, torusWeight z i * ‖v i‖ ^ 2 := by
   rw [EuclideanSpace.norm_sq_eq, Fintype.sum_sum_type, ← Finset.sum_add_distrib]
@@ -150,11 +172,16 @@ theorem torusTangentMap_norm_sq {d : ℕ} (z v : Fin d → ℂ) :
 def coordinateDifferential {d : ℕ} (g : Fin d → ℂ) : (Fin d → ℂ) →L[ℂ] ℂ :=
   ∑ i : Fin d, g i • ContinuousLinearMap.proj i
 
+/--
+@isnad1 id=eq.0h3v.s7.e629f8b7472c from=translated src=- shape=622bf701 vocab=5b29e72b
+-/
 @[simp] theorem coordinateDifferential_apply {d : ℕ} (g v : Fin d → ℂ) :
     coordinateDifferential g v = ∑ i, g i * v i := by
   simp [coordinateDifferential, smul_eq_mul]
 
-/-- Every complex linear scalar differential has this coordinate expression.-/
+/-- Every complex linear scalar differential has this coordinate expression.
+@isnad1 id=eq.0h2v.s8.cb7413294c55 from=translated src=- shape=f771a07a vocab=489be706
+-/
 theorem coordinateDifferential_partials {d : ℕ} (D : (Fin d → ℂ) →L[ℂ] ℂ) :
     coordinateDifferential (fun i => D (Pi.single i 1)) = D := by
   ext v
@@ -167,6 +194,9 @@ def restrictedDifferential {d : ℕ} (z g : Fin d → ℂ) : torusTangentSpace z
   (∑ i : Fin d, g i • (PiLp.proj (𝕜 := ℂ) 2 (fun _ : Fin d ⊕ Fin d => ℂ) (.inl i))).comp
     (torusTangentSpace z).subtypeL
 
+/--
+@isnad1 id=eq.0h4v.s11.cba8e5818a7a from=translated src=- shape=7ad4fce0 vocab=8faa212c
+-/
 @[simp] theorem restrictedDifferential_apply {d : ℕ} (z g : Fin d → ℂ)
     (v : torusTangentSpace z) :
     restrictedDifferential z g v = ∑ i, g i * v.val (.inl i) := by
@@ -177,7 +207,9 @@ def tangentRieszVector {d : ℕ} (z g : Fin d → ℂ) : torusTangentSpace z :=
   ⟨torusTangentMap z (fun i => conj (g i) / (torusWeight z i : ℂ)),
     ⟨_, rfl⟩⟩
 
-/-- The tangent Riesz vector represents the restricted coordinate differential.-/
+/-- The tangent Riesz vector represents the restricted coordinate differential.
+@isnad1 id=eq.0h4v.s12.f538779920ea from=translated src=- shape=3d7bf4ef vocab=2afd1164
+-/
 theorem tangentRieszVector_inner {d : ℕ} (z g : Fin d → ℂ)
     (v : torusTangentSpace z) :
     inner ℂ (tangentRieszVector z g) v = restrictedDifferential z g v := by
@@ -203,7 +235,9 @@ theorem tangentRieszVector_inner {d : ℕ} (z g : Fin d → ℂ)
       rw [hw, div_self (by exact_mod_cast (ne_of_gt (torusWeight_pos z i)))]
       ring
 
-/-- Norm of the tangent Riesz representative.-/
+/-- Norm of the tangent Riesz representative.
+@isnad1 id=eq.0h3v.s9.e718ad4a2e24 from=translated src=- shape=0b8a83bd vocab=692b4001
+-/
 theorem tangentRieszVector_norm_sq {d : ℕ} (z g : Fin d → ℂ) :
     ‖tangentRieszVector z g‖ ^ 2 = differentialNormSq g (torusWeight z) := by
   change ‖torusTangentMap z (fun i => conj (g i) / (torusWeight z i : ℂ))‖ ^ 2 = _
@@ -215,26 +249,34 @@ theorem tangentRieszVector_norm_sq {d : ℕ} (z g : Fin d → ℂ) :
     Real.norm_of_nonneg (torusWeight_pos z i).le, Complex.normSq_eq_norm_sq]
   field_simp
 
-/-- Identification with the Riesz map on the tangent Hilbert space.-/
+/-- Identification with the Riesz map on the tangent Hilbert space.
+@isnad1 id=eq.0h3v.s15.a29f0447de64 from=translated src=- shape=67dd2f08 vocab=bfb44aab
+-/
 theorem restrictedDifferential_eq_innerSL {d : ℕ} (z g : Fin d → ℂ) :
     restrictedDifferential z g = innerSL ℂ (tangentRieszVector z g) := by
   ext v
   exact (tangentRieszVector_inner z g v).symm
 
 /-- Manuscript equation `eq:lambda-formula`, as an operator norm on the
-image of the genuine derivative of the proper torus chart.-/
+image of the genuine derivative of the proper torus chart.
+@isnad1 id=eq.0h3v.s10.b69a200d0d4a from=translated src=- shape=0612e3e8 vocab=6190b367
+-/
 theorem restrictedDifferential_norm_sq {d : ℕ} (z g : Fin d → ℂ) :
     ‖restrictedDifferential z g‖ ^ 2 = differentialNormSq g (torusWeight z) := by
   rw [restrictedDifferential_eq_innerSL, innerSL_apply_norm, tangentRieszVector_norm_sq]
 
-/-- The unsquared differential norm, including the zero differential.-/
+/-- The unsquared differential norm, including the zero differential.
+@isnad1 id=eq.0h3v.s10.7345e5666a78 from=translated src=- shape=da4d2556 vocab=1ca4674e
+-/
 theorem restrictedDifferential_norm {d : ℕ} (z g : Fin d → ℂ) :
     ‖restrictedDifferential z g‖ = Real.sqrt (differentialNormSq g (torusWeight z)) := by
   rw [← restrictedDifferential_norm_sq]
   exact (Real.sqrt_sq (norm_nonneg (restrictedDifferential z g))).symm
 
 /-- An ambient differential induces the same scalar differential precisely when
-its pullback by the torus chart has the stated coordinate partials.-/
+its pullback by the torus chart has the stated coordinate partials.
+@isnad1 id=eq.1h4v.s11.19fccb119d08 from=translated src=- shape=35307bd4 vocab=594966ee
+-/
 theorem restrictedDifferential_of_pullback {d : ℕ} (z g : Fin d → ℂ)
     (D : TorusAmbient d →L[ℂ] ℂ)
     (hD : D.comp (torusTangentMap z) = coordinateDifferential g) :
@@ -246,7 +288,9 @@ theorem restrictedDifferential_of_pullback {d : ℕ} (z g : Fin d → ℂ)
   simpa using congrArg (fun A : (Fin d → ℂ) →L[ℂ] ℂ => A w) hD
 
 /-- Chain-rule identification for any differentiable ambient extension. The norm
-in the conclusion belongs to its restriction to the torus tangent space.-/
+in the conclusion belongs to its restriction to the torus tangent space.
+@isnad1 id=eq.3h5v.s11.c34074db2884 from=translated src=- shape=22d2ac01 vocab=4395f3ea
+-/
 theorem restrictedDifferential_of_hasFDerivAt {d : ℕ} {z g : Fin d → ℂ}
     (hz : ∀ i, z i ≠ 0) {F : TorusAmbient d → ℂ} {D : TorusAmbient d →L[ℂ] ℂ}
     (hF : HasFDerivAt F D (torusEmbed z))
@@ -255,7 +299,9 @@ theorem restrictedDifferential_of_hasFDerivAt {d : ℕ} {z g : Fin d → ℂ}
   restrictedDifferential_of_pullback z g D
     ((hF.comp z (torusEmbed_hasFDerivAt hz)).unique hf)
 
-/-- Norm formula for the restriction of an actual ambient derivative.-/
+/-- Norm formula for the restriction of an actual ambient derivative.
+@isnad1 id=eq.3h5v.s11.6b1e5a11855b from=translated src=- shape=24b17169 vocab=1c825a12
+-/
 theorem restricted_fderiv_norm_sq {d : ℕ} {z g : Fin d → ℂ}
     (hz : ∀ i, z i ≠ 0) {F : TorusAmbient d → ℂ} {D : TorusAmbient d →L[ℂ] ℂ}
     (hF : HasFDerivAt F D (torusEmbed z))

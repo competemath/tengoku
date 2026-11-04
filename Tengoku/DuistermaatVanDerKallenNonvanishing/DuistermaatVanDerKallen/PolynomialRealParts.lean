@@ -10,6 +10,9 @@ noncomputable section
 def complexCoordinates {ι : Type*} (x : (ι ⊕ ι) → ℝ) (i : ι) : ℂ :=
   ⟨x (.inl i), x (.inr i)⟩
 
+/--
+@isnad1 id=ex.0h2v.s8.9ed2a61ed616 from=translated src=- shape=94055107 vocab=78735868
+-/
 theorem polynomial_real_parts {ι : Type*} (u : MvPolynomial ι ℂ) :
     ∃ p q : MvPolynomial (ι ⊕ ι) ℝ, ∀ x : (ι ⊕ ι) → ℝ,
       (MvPolynomial.eval (complexCoordinates x) u).re = MvPolynomial.eval x p ∧
@@ -27,16 +30,25 @@ theorem polynomial_real_parts {ι : Type*} (u : MvPolynomial ι ℂ) :
       p * MvPolynomial.X (.inr i) + q * MvPolynomial.X (.inl i), fun x => ?_⟩
     simp [Complex.mul_re, Complex.mul_im, complexCoordinates, (hpq x).1, (hpq x).2]
 
+/--
+@isnad1 id=iff.1h4v.s6.a7e779823ea7 from=translated src=- shape=a0aa10bc vocab=a57f653e
+-/
 theorem complexCoordinates_norm_le {ι : Type*} (x : (ι ⊕ ι) → ℝ) (i : ι) (ε : ℝ) (hε : 0 ≤ ε) :
     ‖complexCoordinates x i‖ ≤ ε ↔ x (.inl i) ^ 2 + x (.inr i) ^ 2 ≤ ε ^ 2 := by
   rw [← sq_le_sq₀ (norm_nonneg _) hε, Complex.sq_norm]
   simp [Complex.normSq_apply, complexCoordinates, pow_two]
 
+/--
+@isnad1 id=iff.1h4v.s6.a3d92ae5ac07 from=translated src=- shape=a28af1c2 vocab=a57f653e
+-/
 theorem complexCoordinates_norm_eq {ι : Type*} (x : (ι ⊕ ι) → ℝ) (i : ι) (ε : ℝ) (hε : 0 ≤ ε) :
     ‖complexCoordinates x i‖ = ε ↔ x (.inl i) ^ 2 + x (.inr i) ^ 2 = ε ^ 2 := by
   rw [← sq_eq_sq₀ (norm_nonneg _) hε, Complex.sq_norm]
   simp [Complex.normSq_apply, complexCoordinates, pow_two]
 
+/--
+@isnad1 id=ex.1h4v.s9.68d2fc2711cb from=translated src=- shape=9dde9952 vocab=c0b54764
+-/
 theorem polynomial_root_locus_real_description {ι : Type*} (u : MvPolynomial ι ℂ) (ε : ℝ) (hε : 0 ≤ ε) (i : ι) :
     ∃ p q : MvPolynomial (ι ⊕ ι) ℝ, ∀ x : (ι ⊕ ι) → ℝ,
       ((∀ j, ‖complexCoordinates x j‖ ≤ ε) ∧

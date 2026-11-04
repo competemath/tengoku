@@ -30,6 +30,9 @@ def fiberSliceInverse (k : LaurentFiberModel d) : LaurentFiber f s := by
       exact congrArg Prod.fst (e.right_inv hk)⟩
   else z
 
+/--
+@isnad1 id=eq.3h6v.s10.0ddd4c226d02 from=translated src=- shape=b37bf896 vocab=09bd4c19
+-/
 theorem fiberSliceInverse_val {k : LaurentFiberModel d} (hk : (s, k) ∈ e.target) :
     (fiberSliceInverse e hreg hfst z k).val = e.symm (s, k) := by
   simp only [fiberSliceInverse, dite_eq_left hk]
@@ -78,22 +81,36 @@ def fiberSliceChart : OpenPartialHomeomorph (LaurentFiber f s) (LaurentFiberMode
   open_source := e.open_source.preimage continuous_subtype_val
   open_target := e.open_target.preimage (continuous_const.prodMk continuous_id)
 
+/--
+@isnad1 id=eq.2h5v.s10.eaec512505a9 from=translated src=- shape=0f06dbfc vocab=8625ffd1
+-/
 theorem fiberSliceChart_source :
     (fiberSliceChart e hreg hfst z).source = {y | y.val ∈ e.source} := rfl
 
+/--
+@isnad1 id=eq.2h5v.s10.6c782402c572 from=translated src=- shape=6bd50dc6 vocab=df4206b7
+-/
 theorem fiberSliceChart_target :
     (fiberSliceChart e hreg hfst z).target = {k | (s, k) ∈ e.target} := rfl
 
+/--
+@isnad1 id=eq.2h6v.s9.1f57476900aa from=translated src=- shape=8c9c463f vocab=667ba488
+-/
 theorem fiberSliceChart_apply (y : LaurentFiber f s) :
     fiberSliceChart e hreg hfst z y = (e y.val).2 := rfl
 
+/--
+@isnad1 id=eq.3h6v.s10.a21f5ffab144 from=translated src=- shape=b7b4a0c3 vocab=c8bb11f5
+-/
 theorem fiberSliceChart_symm_val {k : LaurentFiberModel d}
     (hk : k ∈ (fiberSliceChart e hreg hfst z).target) :
     ((fiberSliceChart e hreg hfst z).symm k).val = e.symm (s, k) :=
   fiberSliceInverse_val e hreg hfst z hk
 
 /-- The inverse fiber chart, viewed in the ambient coordinates, is analytic
-throughout its open model domain.-/
+throughout its open model domain.
+@isnad1 id=contdiff.3h5v.s11.c2baf18f6c31 from=translated src=- shape=e958dfac vocab=b6d23e92
+-/
 theorem fiberSliceChart_inverse_contDiffOn
     (he : ContDiffOn ℝ ⊤ e.symm e.target) :
     ContDiffOn ℝ ⊤ (fun k => ((fiberSliceChart e hreg hfst z).symm k).val)
@@ -112,7 +129,9 @@ explicit property of the Laurent polynomial and value, not an extra axiom.-/
 def RegularLaurentValue {d : ℕ} (f : MultiLaurent d) (s : ℂ) : Prop :=
   ∀ z : LaurentFiber f s, z.val ∈ laurentRegularDomain f
 
-/-- Excluding ordinary critical values suffices for the manifold hypothesis.-/
+/-- Excluding ordinary critical values suffices for the manifold hypothesis.
+@isnad1 id=regularl.1h3v.s5.c7de9293670b from=translated src=- shape=da4289ec vocab=d07db2d9
+-/
 theorem regularLaurentValue_of_not_critical {d : ℕ} (f : MultiLaurent d) {s : ℂ}
     (hs : s ∉ ordinaryCriticalValues (laurentOnAffineTorus f) (laurentDifferentialNorm f)) :
     RegularLaurentValue f s := by

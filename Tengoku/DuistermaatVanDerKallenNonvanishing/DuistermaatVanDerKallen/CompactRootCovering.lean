@@ -37,6 +37,9 @@ def compactRootChartInverse (b : B) : CompactRootSpace P B ε := by
       exact b.property⟩
   else z
 
+/--
+@isnad1 id=eq.3h7v.s9.cf3621c19e83 from=translated src=- shape=b1cdc76f vocab=20a81fdc
+-/
 theorem compactRootChartInverse_val {b : B} (hb : (0, b.val) ∈ e.target) :
     (compactRootChartInverse P B ε e heq hdisc z b).val = e.symm (0, b.val) := by
   simp only [compactRootChartInverse, dite_eq_left hb]
@@ -96,7 +99,9 @@ section Covering
 variable {E : Type*} [NormedAddCommGroup E]
 variable (P : E × ℂ → ℂ) (B : Set E) (ε : ℝ)
 
-/-- Compactness uses the closed disc, before boundary exclusion is applied.-/
+/-- Compactness uses the closed disc, before boundary exclusion is applied.
+@isnad1 id=compacts.2h4v.s7.e417de01a751 from=translated src=- shape=ca555391 vocab=9bb3a7ee
+-/
 theorem compactSpace_compactRootSpace (hB : IsCompact B) (hP : Continuous P) :
     CompactSpace (CompactRootSpace P B ε) := by
   change CompactSpace ↥({q : E × ℂ | q.1 ∈ B ∧ ‖q.2‖ ≤ ε ∧ P q = 0})
@@ -113,7 +118,9 @@ theorem compactSpace_compactRootSpace (hB : IsCompact B) (hP : Continuous P) :
 variable [NormedSpace ℂ E] [CompleteSpace E]
 
 /-- A regular root strictly inside the disc has a chart whose map is precisely
-projection onto the prescribed base subset.-/
+projection onto the prescribed base subset.
+@isnad1 id=ex.3h5v.s10.908eedb42701 from=translated src=- shape=a0d261af vocab=b407b214
+-/
 theorem exists_compactRootChart (z : CompactRootSpace P B ε)
     (hz : ‖z.val.2‖ < ε) (hP : ContDiffAt ℂ 1 P z.val)
     (hinv : (fderiv ℂ P z.val ∘L .inr ℂ E ℂ).IsInvertible) :
@@ -130,7 +137,9 @@ theorem exists_compactRootChart (z : CompactRootSpace P B ε)
   exact ⟨φ.pt_mem_toOpenPartialHomeomorph_source, hz⟩
 
 /-- The compact root projection is a covering map when all roots are interior
-and regular in the selected coordinate. Its degree is not asserted here.-/
+and regular in the selected coordinate. Its degree is not asserted here.
+@isnad1 id=iscoveri.3h4v.s9.cb37c0a71c1c from=translated src=- shape=b661a823 vocab=73ab14cd
+-/
 theorem isCoveringMap_compactRootProjection (hB : IsCompact B) (hP : Continuous P)
     (hreg : ∀ z : CompactRootSpace P B ε, ‖z.val.2‖ < ε ∧
       ContDiffAt ℂ 1 P z.val ∧ (fderiv ℂ P z.val ∘L .inr ℂ E ℂ).IsInvertible) :

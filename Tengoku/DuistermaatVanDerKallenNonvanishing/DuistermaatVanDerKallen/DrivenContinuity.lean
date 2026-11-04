@@ -13,7 +13,9 @@ noncomputable section
 variable {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
 
 /-- Joint continuity in the initial parameter and time for the complete driven
-family, obtained from the local Picard endpoint and ODE uniqueness.-/
+family, obtained from the local Picard endpoint and ODE uniqueness.
+@isnad1 id=continuo.5h8v.s8.c29b384eeb13 from=translated src=- shape=89504eab vocab=0b4f4446
+-/
 theorem laurent_driven_family_joint_continuous {d : ℕ} (f : MultiLaurent d)
     (v : ℝ → ℂ) (hv : Continuous v)
     {S : Set P} {p₀ : P} (hp₀ : p₀ ∈ S) {Γ : P → ℝ → Fin d → ℂ}
@@ -41,7 +43,9 @@ theorem laurent_driven_family_joint_continuous {d : ℕ} (f : MultiLaurent d)
     (laurent_rescale_driven_segment f v (hΓ q.1 hqS.1) ht hqS.2)
   simpa [j, Function.comp_def] using he.symm
 
-/-- Joint dependence needs velocity continuity only on the time interval.-/
+/-- Joint dependence needs velocity continuity only on the time interval.
+@isnad1 id=continuo.5h8v.s8.7b3405bb01f7 from=translated src=- shape=22981517 vocab=74104e32
+-/
 theorem laurent_driven_family_joint_continuous_on {d : ℕ} (f : MultiLaurent d)
     (v : ℝ → ℂ) (hv : ContinuousOn v (Icc (0 : ℝ) 1))
     {S : Set P} {p₀ : P} (hp₀ : p₀ ∈ S) {Γ : P → ℝ → Fin d → ℂ}

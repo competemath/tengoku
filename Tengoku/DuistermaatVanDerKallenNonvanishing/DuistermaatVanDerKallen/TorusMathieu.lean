@@ -16,7 +16,9 @@ def IsFiniteFourierSum {d : ℕ} (F : PhaseTorus d → ℂ) : Prop :=
   ∃ f : MultiLaurent d, F = fun x => laurentEval f (torusPoint (fun _ => 1) x)
 
 /-- The Laurent representation is exactly a finite sum of the standard integer
-characters, so the definition contains no extra analytic restriction.-/
+characters, so the definition contains no extra analytic restriction.
+@isnad1 id=iff.0h2v.s6.536f3e42f4e7 from=translated src=- shape=45fcf18b vocab=dc2bd0e9
+-/
 theorem isFiniteFourierSum_iff_coefficients {d : ℕ} (F : PhaseTorus d → ℂ) :
     IsFiniteFourierSum F ↔ ∃ c : (Fin d → ℤ) →₀ ℂ,
       F = fun x => c.sum (fun a z => z * torusCharacter a x) := by
@@ -30,13 +32,17 @@ theorem isFiniteFourierSum_iff_coefficients {d : ℕ} (F : PhaseTorus d → ℂ)
     funext x
     simp [torusLaurent_expansion, Finsupp.sum]
 
-/-- Every finite Fourier sum is continuous.-/
+/-- Every finite Fourier sum is continuous.
+@isnad1 id=continuo.1h2v.s6.6daca8d5cb87 from=translated src=- shape=0018a448 vocab=767763e9
+-/
 theorem IsFiniteFourierSum.continuous {d : ℕ} {F : PhaseTorus d → ℂ}
     (hF : IsFiniteFourierSum F) : Continuous F := by
   obtain ⟨f, rfl⟩ := hF
   exact torusLaurent_continuous f _
 
-/-- The Haar/constant-term bridge for a product and a power.-/
+/-- The Haar/constant-term bridge for a product and a power.
+@isnad1 id=eq.0h4v.s7.c88b1e6735d5 from=translated src=- shape=6659bd14 vocab=fa1b8293
+-/
 theorem integral_torusLaurent_mul_pow {d : ℕ} (f h : MultiLaurent d) (n : ℕ) :
     (∫ x, laurentEval h (torusPoint (fun _ => 1) x) *
       laurentEval f (torusPoint (fun _ => 1) x) ^ n ∂phaseTorusMeasure d) =
@@ -47,7 +53,9 @@ theorem integral_torusLaurent_mul_pow {d : ℕ} (f h : MultiLaurent d) (n : ℕ)
   exact integral_torusLaurent_eq_constantTerm _ _
 
 /-- The compact-torus Mathieu statement for all finite Fourier sums follows
-from the still-open arbitrary-rank minimal nonvanishing theorem.-/
+from the still-open arbitrary-rank minimal nonvanishing theorem.
+@isnad1 id=ex.4h3v.s7.0c3ca6edfbed from=translated src=- shape=3a522af4 vocab=bf357a20
+-/
 theorem torus_mathieu_of_minimal (hminimal : MinimalNonvanishing) {d : ℕ}
     {F H : PhaseTorus d → ℂ} (hF : IsFiniteFourierSum F) (hH : IsFiniteFourierSum H)
     (hvan : ∀ n : ℕ, 1 ≤ n → (∫ x, F x ^ n ∂phaseTorusMeasure d) = 0) :

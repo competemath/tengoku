@@ -9,6 +9,9 @@ import Tengoku.DuistermaatVanDerKallenNonvanishing.DuistermaatVanDerKallen.Unifo
 namespace DuistermaatVanDerKallen
 noncomputable section
 
+/--
+@isnad1 id=iff.0h3v.s5.5c8a9fe6bc89 from=translated src=- shape=9f222f90 vocab=fe657ade
+-/
 theorem ambientDifferentialNorm_eq_zero_iff {d : ℕ} (g : Fin d → AmbientPolynomial d)
     (x : TorusAmbient d) :
     ambientDifferentialNorm g x = 0 ↔ ∀ i, ambientEval (g i) x = 0 := by
@@ -26,6 +29,9 @@ theorem ambientDifferentialNorm_eq_zero_iff {d : ℕ} (g : Fin d → AmbientPoly
 def criticalTorusLocus {d : ℕ} (p : AmbientPolynomial d) : Set (TorusAmbient d) :=
   {x | x ∈ affineTorus d ∧ ambientDifferentialNorm (torusPartial p) x = 0}
 
+/--
+@isnad1 id=iscomple.0h2v.s6.196d231bf0bd from=translated src=- shape=c6a0d7c2 vocab=d7461b4c
+-/
 theorem isComplexSemialgebraic_criticalTorusLocus {d : ℕ} (p : AmbientPolynomial d) :
     IsComplexSemialgebraic {x : (Fin d ⊕ Fin d) → ℂ |
       WithLp.toLp 2 x ∈ criticalTorusLocus p} := by
@@ -38,6 +44,9 @@ theorem isComplexSemialgebraic_criticalTorusLocus {d : ℕ} (p : AmbientPolynomi
   intro _
   exact ⟨fun h => h.le, fun h => le_antisymm h (Real.sqrt_nonneg _)⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.d53bce0c07b6 from=translated src=- shape=02ad9b44 vocab=5d7100c9
+-/
 theorem ordinaryCriticalValues_eq_criticalTorusLocus_range {d : ℕ} (p : AmbientPolynomial d) :
     ordinaryCriticalValues (fun x : affineTorus d => ambientEval p x.val)
       (fun x => ambientDifferentialNorm (torusPartial p) x.val) =

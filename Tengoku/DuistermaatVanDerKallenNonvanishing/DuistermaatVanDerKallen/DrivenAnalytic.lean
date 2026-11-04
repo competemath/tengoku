@@ -11,7 +11,9 @@ open scoped Topology
 namespace DuistermaatVanDerKallen
 noncomputable section
 
-/-- Rescaling an oriented subinterval retains the same driven equation.-/
+/-- Rescaling an oriented subinterval retains the same driven equation.
+@isnad1 id=and.4h7v.s9.673e5b245a54 from=translated src=- shape=081198e8 vocab=89e57a04
+-/
 theorem laurent_rescale_driven_segment {d : ℕ} (f : MultiLaurent d) (v : ℝ → ℂ)
     {γ : ℝ → Fin d → ℂ}
     (hγ : ∀ r ∈ Icc (0 : ℝ) 1, γ r ∈ laurentRegularDomain f ∧
@@ -32,7 +34,9 @@ theorem laurent_rescale_driven_segment {d : ℕ} (f : MultiLaurent d) (v : ℝ �
     (hγ _ hrt).2.scomp r (((hasDerivAt_id r).const_mul (t - s)).const_add s)
 
 /-- Local endpoint maps are analytic in the initial position even when the
-prescribed scalar velocity is only continuous in time.-/
+prescribed scalar velocity is only continuous in time.
+@isnad1 id=ex.2h5v.s9.f5f665e7c49e from=translated src=- shape=7465a609 vocab=03453f49
+-/
 theorem laurent_driven_local_analytic_endpoint {d : ℕ} (f : MultiLaurent d)
     (v : ℝ → ℂ) (hv : Continuous v) (s : ℝ)
     {z : Fin d → ℂ} (hz : z ∈ laurentRegularDomain f) :
@@ -84,7 +88,9 @@ theorem laurent_driven_local_analytic_endpoint {d : ℕ} (f : MultiLaurent d)
 section Families
 variable {P : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
 
-/-- Initial-point analyticity propagates across a driven local endpoint map.-/
+/-- Initial-point analyticity propagates across a driven local endpoint map.
+@isnad1 id=contdiff.9h11v.s10.b14292fa8bf4 from=translated src=- shape=a2e4100a vocab=337b33b8
+-/
 theorem laurent_driven_family_analytic_step {d : ℕ} (f : MultiLaurent d) (v : ℝ → ℂ)
     {S : Set P} {p₀ : P} (hp₀ : p₀ ∈ S) {Γ : P → ℝ → Fin d → ℂ}
     (hΓ : ∀ p ∈ S, ∀ r ∈ Icc (0 : ℝ) 1, Γ p r ∈ laurentRegularDomain f ∧
@@ -114,7 +120,9 @@ theorem laurent_driven_family_analytic_step {d : ℕ} (f : MultiLaurent d) (v : 
 
 /-- Every existing family of regular driven trajectories inherits analytic
 initial-data dependence at every fixed time. No advance continuity assumption
-on the family of chosen solutions is needed.-/
+on the family of chosen solutions is needed.
+@isnad1 id=contdiff.5h8v.s8.bca45eb97b4d from=translated src=- shape=d889b2ab vocab=9a93637c
+-/
 theorem laurent_driven_family_analytic {d : ℕ} (f : MultiLaurent d)
     (v : ℝ → ℂ) (hv : Continuous v)
     {S : Set P} {p₀ : P} (hp₀ : p₀ ∈ S) {Γ : P → ℝ → Fin d → ℂ}
@@ -147,7 +155,9 @@ theorem laurent_driven_family_analytic {d : ℕ} (f : MultiLaurent d)
   exact isPreconnected_Icc.induction₂' (fun s t => Q s → Q t) hlocal
     (fun _ _ _ _ _ _ hst htu => htu ∘ hst) (by simp) ht hinit
 
-/-- The velocity needs to be continuous only on the closed time interval.-/
+/-- The velocity needs to be continuous only on the closed time interval.
+@isnad1 id=contdiff.5h8v.s8.ba47b31672d3 from=translated src=- shape=7aa27270 vocab=79ee15b0
+-/
 theorem laurent_driven_family_analytic_on {d : ℕ} (f : MultiLaurent d)
     (v : ℝ → ℂ) (hv : ContinuousOn v (Icc (0 : ℝ) 1))
     {S : Set P} {p₀ : P} (hp₀ : p₀ ∈ S) {Γ : P → ℝ → Fin d → ℂ}
@@ -163,7 +173,9 @@ theorem laurent_driven_family_analytic_on {d : ℕ} (f : MultiLaurent d)
 
 end Families
 
-/-- Uniqueness on unit time uses no extension premise on the velocity.-/
+/-- Uniqueness on unit time uses no extension premise on the velocity.
+@isnad1 id=eqon.4h5v.s8.35496c5048b3 from=translated src=- shape=c94b235f vocab=1aa058b4
+-/
 theorem laurent_driven_unit_unique {d : ℕ} (f : MultiLaurent d)
     (v : ℝ → ℂ) (hv : ContinuousOn v (Icc (0 : ℝ) 1))
     {γ η : ℝ → Fin d → ℂ}

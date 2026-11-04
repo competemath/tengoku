@@ -13,7 +13,9 @@ open scoped Topology
 
 namespace DuistermaatVanDerKallen
 
-/-- Properness in the topology of the affine torus itself.-/
+/-- Properness in the topology of the affine torus itself.
+@isnad1 id=iscompac.0h2v.s7.ade3be014375 from=translated src=- shape=3a6fa0f3 vocab=fe43fc71
+-/
 theorem affineTorus_sublevel_isCompact (d : ℕ) (R : ℝ) :
     IsCompact {x : affineTorus d | ‖x.val‖ ≤ R} := by
   simpa [Metric.closedBall, dist_zero_right] using
@@ -21,7 +23,9 @@ theorem affineTorus_sublevel_isCompact (d : ℕ) (R : ℝ) :
       (isCompact_closedBall (0 : TorusAmbient d) R)
 
 /-- The manuscript lower-bound lemma specialized to its proper affine geometry.
-The identification of `lam` with the restricted differential remains explicit.-/
+The identification of `lam` with the restricted differential remains explicit.
+@isnad1 id=ex.5h4v.s8.e9fe612432ed from=translated src=- shape=1f4a0a0c vocab=c4cc437a
+-/
 theorem affineTorus_uniform_gradient {d : ℕ}
     (F : affineTorus d → ℂ) (lam : affineTorus d → ℝ)
     (hF : Continuous F) (hlam : Continuous lam) (hlam0 : ∀ x, 0 ≤ lam x)
@@ -33,7 +37,9 @@ theorem affineTorus_uniform_gradient {d : ℕ}
     (fun _ => norm_nonneg _) hlam0 (affineTorus_sublevel_isCompact d) Q hQ hgood
 
 /-- The controlled region is compact and lies entirely in the regular domain.
-This is stronger than just bounding the radius.-/
+This is stronger than just bounding the radius.
+@isnad1 id=and.5h6v.s9.69280d51807a from=translated src=- shape=bc115ef8 vocab=c8bd6605
+-/
 theorem compact_regular_controlled_region {d : ℕ}
     (F : affineTorus d → ℂ) (lam : affineTorus d → ℝ)
     (hF : Continuous F) (hlam0 : ∀ x, 0 ≤ lam x)
@@ -48,7 +54,9 @@ theorem compact_regular_controlled_region {d : ℕ}
   exact regular_lower_bound_on_radius_sublevel hc (norm_nonneg _) hx
     (hlam0 x) (hbound x hFx)
 
-/-- Grönwall's precise radius bound for a trajectory with linear growth.-/
+/-- Grönwall's precise radius bound for a trajectory with linear growth.
+@isnad1 id=le.4h7v.s7.513711d951e7 from=translated src=- shape=d0a159f3 vocab=1654c538
+-/
 theorem trajectory_radius_bound {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {x v : ℝ → E} {a b C : ℝ}
     (hx : ContinuousOn x (Icc a b))

@@ -28,7 +28,9 @@ def InfiniteNonvanishing : Prop :=
   ∀ (d : ℕ) (f : MultiLaurent d), f ≠ 0 → (0 : Fin d → ℝ) ∈ newtonPolytope f →
     ∀ M : ℕ, ∃ n : ℕ, M < n ∧ constantTerm (f ^ n) ≠ 0
 
-/-- Strict separation proves the vanishing direction of the classification.-/
+/-- Strict separation proves the vanishing direction of the classification.
+@isnad1 id=eq.2h3v.s6.a767d997bc74 from=translated src=- shape=4dabd6eb vocab=8ed8cc16
+-/
 theorem positive_powers_vanish_of_origin_not_mem {d : ℕ} (f : MultiLaurent d)
     (hf : (0 : Fin d → ℝ) ∉ newtonPolytope f) :
     ∀ n : ℕ, 1 ≤ n → constantTerm (f ^ n) = 0 := by
@@ -40,7 +42,9 @@ theorem positive_powers_vanish_of_origin_not_mem {d : ℕ} (f : MultiLaurent d)
   simp only [map_zero] at h
   nlinarith
 
-/-- Conditional classification; the missing minimal theorem is an explicit premise.-/
+/-- Conditional classification; the missing minimal theorem is an explicit premise.
+@isnad1 id=iff.2h2v.s7.119f56e35a3e from=translated src=- shape=cd7fdc46 vocab=ba8d4a9b
+-/
 theorem classification_of_minimal (hminimal : MinimalNonvanishing)
     {d : ℕ} (f : MultiLaurent d) (hf : f ≠ 0) :
     (∀ n : ℕ, 1 ≤ n → constantTerm (f ^ n) = 0) ↔
@@ -50,7 +54,9 @@ theorem classification_of_minimal (hminimal : MinimalNonvanishing)
   obtain ⟨n, hn, hne⟩ := hminimal d f hf hmem
   exact hne (hall n hn)
 
-/-- Conditional Laurent Mathieu corollary, including the zero polynomial.-/
+/-- Conditional Laurent Mathieu corollary, including the zero polynomial.
+@isnad1 id=ex.2h3v.s7.f87f6f927360 from=translated src=- shape=efa7d8f9 vocab=f41427b4
+-/
 theorem mathieu_of_minimal (hminimal : MinimalNonvanishing)
     {d : ℕ} (f h : MultiLaurent d)
     (hf : ∀ n : ℕ, 1 ≤ n → constantTerm (f ^ n) = 0) :
@@ -62,7 +68,9 @@ theorem mathieu_of_minimal (hminimal : MinimalNonvanishing)
       ((classification_of_minimal hminimal f hzero).mp hf)
 
 /-- The two-input implication, retained for compatibility. `NewtonPowers`
-discharges the second premise; minimal nonvanishing remains open.-/
+discharges the second premise; minimal nonvanishing remains open.
+@isnad1 id=infinite.2h0v.s2.13aaca739f05 from=translated src=- shape=f443e7c7 vocab=89f0698f
+-/
 theorem infinite_of_minimal_and_newton_powers (hminimal : MinimalNonvanishing)
     (hpowers : OriginInNewtonPowers) : InfiniteNonvanishing := by
   intro d f hf hnewton M
@@ -73,7 +81,9 @@ theorem infinite_of_minimal_and_newton_powers (hminimal : MinimalNonvanishing)
   · nlinarith
   · simpa [pow_mul] using hct
 
-/-- Every additive lattice automorphism preserves constant terms of all powers.-/
+/-- Every additive lattice automorphism preserves constant terms of all powers.
+@isnad1 id=eq.0h4v.s9.9856e0595d81 from=translated src=- shape=89163773 vocab=49ca312a
+-/
 theorem constantTerm_pow_reindex {d : ℕ} (e : (Fin d → ℤ) ≃+ (Fin d → ℤ))
     (f : MultiLaurent d) (n : ℕ) :
     constantTerm ((AddMonoidAlgebra.mapDomainRingEquiv ℂ e f) ^ n) =
@@ -83,7 +93,9 @@ theorem constantTerm_pow_reindex {d : ℕ} (e : (Fin d → ℤ) ≃+ (Fin d → 
   rw [AddMonoidAlgebra.coeff_mapDomainRingEquiv]
   simp
 
-/-- Rank zero is unconditional: the only exponent is zero.-/
+/-- Rank zero is unconditional: the only exponent is zero.
+@isnad1 id=ex.1h1v.s7.6b34ce966747 from=translated src=- shape=109585f3 vocab=1807e8df
+-/
 theorem minimal_nonvanishing_rank_zero (f : MultiLaurent 0) (hf : f ≠ 0) :
     ∃ n : ℕ, 1 ≤ n ∧ constantTerm (f ^ n) ≠ 0 := by
   refine ⟨1, le_rfl, ?_⟩

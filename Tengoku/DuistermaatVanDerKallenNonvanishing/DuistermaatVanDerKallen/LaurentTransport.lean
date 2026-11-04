@@ -14,7 +14,9 @@ namespace DuistermaatVanDerKallen
 
 noncomputable section
 
-/-- Uniqueness of Laurent segment solutions, including both endpoints.-/
+/-- Uniqueness of Laurent segment solutions, including both endpoints.
+@isnad1 id=eqon.3h5v.s8.aa5e774b396d from=translated src=- shape=1e5200c5 vocab=e07c120c
+-/
 theorem laurent_segment_unique {d : ℕ} (f : MultiLaurent d) (a : ℂ)
     {γ η : ℝ → (Fin d → ℂ)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ t ∈ laurentRegularDomain f ∧
@@ -31,14 +33,18 @@ theorem laurent_segment_unique {d : ℕ} (f : MultiLaurent d) (a : ℂ)
     (fun t ht => (hη t (Ico_subset_Icc_self ht)).2)
     (fun t ht => (hγ t ht).1) (fun t ht => (hη t ht).1) hinit
 
-/-- Reversing the base velocity negates the explicit scalar lift.-/
+/-- Reversing the base velocity negates the explicit scalar lift.
+@isnad1 id=eq.0h4v.s5.0c8e36c068f3 from=translated src=- shape=64b4f7f5 vocab=5c6cebbd
+-/
 theorem laurentVectorField_neg {d : ℕ} (f : MultiLaurent d) (a : ℂ) (z : Fin d → ℂ) :
     laurentVectorField f (-a) z = -laurentVectorField f a z := by
   funext i
   simp only [laurentVectorField, polynomialVectorField, scalarLift, Pi.neg_apply]
   ring
 
-/-- Time reversal of a segment solution solves the reversed normalized-gradient ODE.-/
+/-- Time reversal of a segment solution solves the reversed normalized-gradient ODE.
+@isnad1 id=and.2h5v.s8.d3e75af351c3 from=translated src=- shape=41892b9d vocab=b54d1fdc
+-/
 theorem laurent_segment_reverse {d : ℕ} (f : MultiLaurent d) (a : ℂ)
     {γ : ℝ → (Fin d → ℂ)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ t ∈ laurentRegularDomain f ∧
@@ -53,7 +59,9 @@ theorem laurent_segment_reverse {d : ℕ} (f : MultiLaurent d) (a : ℂ)
     (hγ _ hrev).2.scomp t ((hasDerivAt_id t).const_sub 1)
 
 /-- Any solution of the reversed segment retraces the forward solution.
-This gives the inverse identity without presupposing a chosen global flow.-/
+This gives the inverse identity without presupposing a chosen global flow.
+@isnad1 id=eqon.3h5v.s8.293ec9b88cff from=translated src=- shape=f382e74b vocab=b4ff9059
+-/
 theorem laurent_segment_reverse_inverse {d : ℕ} (f : MultiLaurent d) (a : ℂ)
     {γ η : ℝ → (Fin d → ℂ)}
     (hγ : ∀ t ∈ Icc (0 : ℝ) 1, γ t ∈ laurentRegularDomain f ∧

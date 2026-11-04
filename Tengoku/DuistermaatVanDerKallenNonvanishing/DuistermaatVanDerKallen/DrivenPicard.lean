@@ -18,6 +18,9 @@ def drivenCurveVectorField {d : ℕ} (f : MultiLaurent d) (a : C(X, ℂ))
   fun i => a * curveVectorField (laurentRepresentative f) 1 z i
 
 omit [CompactSpace X] in
+/--
+@isnad1 id=eq.1h7v.s8.8af7ca955479 from=translated src=- shape=57c46c5a vocab=4d905fac
+-/
 theorem drivenCurveVectorField_apply {d : ℕ} (f : MultiLaurent d) (a : C(X, ℂ))
     {z : Fin d → C(X, ℂ)} (hz : ∀ t, (fun i => z i t) ∈ laurentRegularDomain f)
     (i : Fin d) (t : X) :
@@ -27,6 +30,9 @@ theorem drivenCurveVectorField_apply {d : ℕ} (f : MultiLaurent d) (a : C(X, �
     laurentVectorField, polynomialVectorField, scalarLift, one_mul]
   ring
 
+/--
+@isnad1 id=contdiff.1h5v.s9.19c43ee711f7 from=translated src=- shape=bddf1176 vocab=ccfe8086
+-/
 theorem drivenCurveVectorField_contDiffAt {d : ℕ} (f : MultiLaurent d)
     {a : C(X, ℂ)} {z : Fin d → C(X, ℂ)}
     (hz : ∀ t, (fun i => z i t) ∈ laurentRegularDomain f) :
@@ -50,7 +56,9 @@ def torusCurveIntegralFrom (d : ℕ) (τ : CurveTime) : TorusCurves d →L[ℝ] 
   torusCurveIntegral d - (constantTorusCurves d).comp ((torusCurveEval d τ).comp (torusCurveIntegral d))
 
 /-- A regular analytic Picard branch with a continuous velocity curve as a
-Banach-space parameter. No time derivative of that curve is assumed.-/
+Banach-space parameter. No time derivative of that curve is assumed.
+@isnad1 id=ex.1h5v.s12.b7a0fbb3eb49 from=translated src=- shape=6d350974 vocab=7ec1ef35
+-/
 theorem laurent_exists_driven_picard_neighborhood {d : ℕ} (f : MultiLaurent d)
     (τ : CurveTime) (a : C(CurveTime, ℂ)) {z : Fin d → ℂ} (hz : z ∈ laurentRegularDomain f) :
     ∃ (Ψ : ℝ × (C(CurveTime, ℂ) × (Fin d → ℂ)) → TorusCurves d)
@@ -84,7 +92,9 @@ theorem laurent_exists_driven_picard_neighborhood {d : ℕ} (f : MultiLaurent d)
     hzero, fun q hq => ⟨(hU hq).1.2, (hU hq).2⟩⟩
 
 /-- A driven Picard solution yields an actual nonautonomous ODE trajectory,
-with full derivatives at both ends of the unit interval.-/
+with full derivatives at both ends of the unit interval.
+@isnad1 id=ex.2h7v.s11.1f2652b0367a from=translated src=- shape=7ff77e78 vocab=23d82d69
+-/
 theorem laurent_driven_picard_equation_solves_ode {d : ℕ} (f : MultiLaurent d)
     (τ : CurveTime) (a : C(CurveTime, ℂ)) (δ : ℝ) (z : Fin d → ℂ) (u : TorusCurves d)
     (hu : ∀ t, (fun i => u i t) ∈ laurentRegularDomain f)
@@ -119,12 +129,18 @@ def rescaledVelocity (a : ℝ → ℂ) (ha : Continuous a) (τ : CurveTime) (p :
   ⟨fun t => a (p.1 + p.2 * (t.val - τ.val)), ha.comp (continuous_const.add
     (continuous_const.mul (continuous_subtype_val.sub continuous_const)))⟩
 
+/--
+@isnad1 id=continuo.1h2v.s6.206596bececa from=translated src=- shape=e3269e91 vocab=37dce61c
+-/
 theorem rescaledVelocity_continuous (a : ℝ → ℂ) (ha : Continuous a) (τ : CurveTime) :
     Continuous (rescaledVelocity a ha τ) := by
   apply ContinuousMap.continuous_of_continuous_uncurry
   exact ha.comp (continuous_fst.fst.add (continuous_fst.snd.mul
     ((continuous_subtype_val.comp continuous_snd).sub continuous_const)))
 
+/--
+@isnad1 id=eq.1h3v.s6.bf3ab52292b7 from=translated src=- shape=ec21dccd vocab=811eb61a
+-/
 @[simp] theorem rescaledVelocity_zero (a : ℝ → ℂ) (ha : Continuous a) (τ : CurveTime) (s : ℝ) :
     rescaledVelocity a ha τ (s, 0) = ContinuousMap.const CurveTime (a s) := by
   ext t
@@ -132,7 +148,9 @@ theorem rescaledVelocity_continuous (a : ℝ → ℂ) (ha : Continuous a) (τ : 
 
 /-- Around every time and regular initial point, continuous driving velocities
 admit regular scaled Picard solutions. The solutions depend continuously on all
-parameters and analytically on the initial point for fixed start time and scale.-/
+parameters and analytically on the initial point for fixed start time and scale.
+@isnad1 id=ex.2h6v.s11.8ad7dbc1ab0b from=translated src=- shape=b183137b vocab=56185588
+-/
 theorem laurent_driven_local_family {d : ℕ} (f : MultiLaurent d)
     (τ : CurveTime) (a : ℝ → ℂ) (ha : Continuous a) (s : ℝ)
     {z : Fin d → ℂ} (hz : z ∈ laurentRegularDomain f) :

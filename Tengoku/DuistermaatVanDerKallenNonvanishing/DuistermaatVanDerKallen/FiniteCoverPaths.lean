@@ -11,6 +11,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 open Set
 
+/--
+@isnad1 id=refltran.4h7v.s6.b767057b029e from=translated src=- shape=646e2872 vocab=f2e54f13
+-/
 theorem finite_closed_cover_component_chain
     {X ι : Type*} [TopologicalSpace X] [Finite ι]
     (C : ι → Set X) (hC : ∀ i, IsClosed (C i))
@@ -41,7 +44,9 @@ theorem finite_closed_cover_component_chain
   obtain ⟨l, hl⟩ := mem_iUnion.mp hzV
   exact l.property (k.property.tail ⟨z, hk, hl⟩)
 
-/-- An explicit finite index sequence witnessing reflexive-transitive closure.-/
+/-- An explicit finite index sequence witnessing reflexive-transitive closure.
+@isnad1 id=ex.1h4v.s6.5ef070458c8b from=translated src=- shape=5fecf0e0 vocab=9b09f072
+-/
 theorem exists_finite_relation_chain {ι : Type*} {R : ι → ι → Prop} {i j : ι}
     (h : Relation.ReflTransGen R i j) :
     ∃ n : ℕ, ∃ u : ℕ → ι, u 0 = i ∧ u n = j ∧ ∀ k < n, R (u k) (u (k + 1)) := by
@@ -58,7 +63,9 @@ theorem exists_finite_relation_chain {ι : Type*} {R : ι → ι → Prop} {i j 
       exact hik
     | succ k => exact hstep k (by omega)
 
-/-- One finite bound works for all reachable pairs in a finite model.-/
+/-- One finite bound works for all reachable pairs in a finite model.
+@isnad1 id=ex.0h2v.s6.cc4d84f20e36 from=translated src=- shape=40f5835d vocab=bc91ec01
+-/
 theorem uniform_finite_relation_chains {ι : Type*} [Finite ι] (R : ι → ι → Prop) :
     ∃ N : ℕ, ∀ i j, Relation.ReflTransGen R i j →
       ∃ n ≤ N, ∃ u : ℕ → ι, u 0 = i ∧ u n = j ∧ ∀ k < n, R (u k) (u (k + 1)) := by
@@ -70,7 +77,9 @@ theorem uniform_finite_relation_chains {ι : Type*} [Finite ι] (R : ι → ι �
   let p : P := ⟨(i, j), hij⟩
   exact ⟨n p, Finset.le_sup (f := n) (Finset.mem_univ p), u p, h0 p, hn p, hstep p⟩
 
-/-- A chain of overlapping convex cells gives one straight segment per cell.-/
+/-- A chain of overlapping convex cells gives one straight segment per cell.
+@isnad1 id=ex.4h7v.s8.fa4241fa1daa from=translated src=- shape=14746760 vocab=f7e3e8b7
+-/
 theorem convex_cover_segment_chain
     {E ι : Type*} [AddCommGroup E] [Module ℝ E]
     (C : ι → Set E) (hC : ∀ i, Convex ℝ (C i))
@@ -100,7 +109,9 @@ theorem convex_cover_segment_chain
     | succ k => exact hv k (by omega)
 
 /-- The finite model has a uniform bound on polygonal segment count.
-Every segment is contained in a single original cell.-/
+Every segment is contained in a single original cell.
+@isnad1 id=ex.2h3v.s8.90f6657d2e2d from=translated src=- shape=c77c0232 vocab=7c00495c
+-/
 theorem finite_closed_convex_cover_uniform_segment_chains
     {E ι : Type*} [AddCommGroup E] [Module ℝ E] [TopologicalSpace E] [Finite ι]
     (C : ι → Set E) (hclosed : ∀ i, IsClosed (C i)) (hconvex : ∀ i, Convex ℝ (C i)) :

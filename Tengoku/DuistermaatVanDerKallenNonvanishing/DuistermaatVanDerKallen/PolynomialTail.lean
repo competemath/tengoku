@@ -16,7 +16,9 @@ namespace DuistermaatVanDerKallen
 def EventuallyConstant (p : ℝ → Prop) : Prop :=
   (∀ᶠ x in atTop, p x) ∨ (∀ᶠ x in atTop, ¬ p x)
 
-/-- Every polynomial inequality has constant truth value on a tail.-/
+/-- Every polynomial inequality has constant truth value on a tail.
+@isnad1 id=eventual.0h1v.s4.0163dc4e73f8 from=translated src=- shape=939ee034 vocab=c49fcf31
+-/
 theorem polynomial_nonneg_eventuallyConstant (p : Polynomial ℝ) :
     EventuallyConstant (fun x => 0 ≤ p.eval x) := by
   by_cases hd : 0 < p.degree
@@ -45,6 +47,9 @@ def Holds : PolynomialSignFormula → ℝ → Prop
   | .not p, x => ¬ p.Holds x
   | .and p q, x => p.Holds x ∧ q.Holds x
 
+/--
+@isnad1 id=eventual.0h1v.s2.f14b3b1d9eea from=translated src=- shape=76a08d12 vocab=832e05ae
+-/
 theorem eventuallyConstant (p : PolynomialSignFormula) : EventuallyConstant p.Holds := by
   induction p with
   | nonneg p => exact polynomial_nonneg_eventuallyConstant p
@@ -60,7 +65,9 @@ theorem eventuallyConstant (p : PolynomialSignFormula) : EventuallyConstant p.Ho
     · exact Or.inr (hp.mono fun _ hx h => hx h.1)
 
 /-- The precise tail property needed for the common-radius proof, once the
-existentially defined radius set has a quantifier-free polynomial description.-/
+existentially defined radius set has a quantifier-free polynomial description.
+@isnad1 id=ex.1h1v.s5.c01181bd19b3 from=translated src=- shape=97c43d31 vocab=0f8e7f6f
+-/
 theorem contains_tail_of_unbounded (p : PolynomialSignFormula)
     (hunbounded : ∀ B : ℝ, ∃ x, B ≤ x ∧ p.Holds x) :
     ∃ B : ℝ, ∀ x, B ≤ x → p.Holds x := by

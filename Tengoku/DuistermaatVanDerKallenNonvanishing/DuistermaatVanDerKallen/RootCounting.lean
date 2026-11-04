@@ -9,6 +9,9 @@ import Tengoku.Seed.Topology.Homotopy.Lifting
 
 open Polynomial
 namespace DuistermaatVanDerKallen
+/--
+@isnad1 id=eq.2h2v.s5.43a3a1608668 from=translated src=- shape=9489753d vocab=7e7380a8
+-/
 theorem complex_nth_root_card (n : ℕ) (hn : 0 < n) (a : ℂ) (ha : a ≠ 0) :
     Nat.card {z : ℂ // z ^ n = a} = n := by
   classical
@@ -23,6 +26,9 @@ theorem complex_nth_root_card (n : ℕ) (hn : 0 < n) (a : ℂ) (ha : a ≠ 0) :
     (IsAlgClosed.splits _)]
   exact natDegree_X_pow_sub_C
 
+/--
+@isnad1 id=eq.5h4v.s6.7dcfee28d377 from=translated src=- shape=0d8988eb vocab=9f50aae6
+-/
 theorem complex_monomial_root_card_in_disc (n : ℕ) (hn : 0 < n) (A a : ℂ) (hA : A ≠ 0) (ha : a ≠ 0)
     (ε : ℝ) (hε : 0 < ε) (hbound : ‖a‖ < ‖A‖ * ε ^ n) :
     Nat.card {z : ℂ // ‖z‖ ≤ ε ∧ A * z ^ n = a} = n := by
@@ -40,6 +46,9 @@ theorem complex_monomial_root_card_in_disc (n : ℕ) (hn : 0 < n) (A a : ℂ) (h
   rw [Nat.card_congr e]
   exact complex_nth_root_card n hn (a / A) (div_ne_zero ha hA)
 
+/--
+@isnad1 id=eq.1h6v.s5.5e2d1b58c8a9 from=translated src=- shape=0a9e6790 vocab=85c7be40
+-/
 theorem covering_fiber_card_eq_along_path {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     {p : X → Y} (hp : IsCoveringMap p) {a b : Y} (γ : Path a b) :
     Nat.card (p ⁻¹' {a}) = Nat.card (p ⁻¹' {b}) := by

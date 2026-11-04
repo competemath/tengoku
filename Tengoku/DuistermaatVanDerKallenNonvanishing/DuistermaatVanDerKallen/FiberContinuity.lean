@@ -13,7 +13,9 @@ namespace DuistermaatVanDerKallen
 
 noncomputable section
 
-/-- Proper radius is continuous on each Laurent fiber.-/
+/-- Proper radius is continuous on each Laurent fiber.
+@isnad1 id=continuo.0h3v.s7.7407a125350a from=translated src=- shape=bacad535 vocab=9947e025
+-/
 theorem fiberProperRadius_continuous {d : ℕ} (f : MultiLaurent d) (s : ℂ) :
     Continuous (fun z : LaurentFiber f s => ‖torusEmbed z.val‖) := by
   apply Continuous.norm

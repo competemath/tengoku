@@ -22,6 +22,9 @@ def picardResidual (K : B →L[ℝ] B) (V : A × B → B)
   q.2 - q.1.2.2 - q.1.1 • K (V (q.1.2.1, q.2))
 
 omit [CompleteSpace A] [CompleteSpace B] in
+/--
+@isnad1 id=contdiff.1h8v.s8.b4be9e6d1b2a from=translated src=- shape=0a7b1712 vocab=e9cb0ee0
+-/
 theorem picardResidual_contDiffAt (K : B →L[ℝ] B) (V : A × B → B)
     {a : A} {b y : B} {δ : ℝ} (hV : ContDiffAt ℝ ⊤ V (a, y)) :
     ContDiffAt ℝ ⊤ (picardResidual K V) ((δ, (a, b)), y) := by
@@ -34,7 +37,9 @@ theorem picardResidual_contDiffAt (K : B →L[ℝ] B) (V : A × B → B)
 
 omit [CompleteSpace A] [CompleteSpace B] in
 /-- At zero time scale, the partial derivative in the unknown curve is the
-identity, hence invertible without a separate assumption.-/
+identity, hence invertible without a separate assumption.
+@isnad1 id=eq.1h6v.s10.41e806d24aa1 from=translated src=- shape=f0c0209e vocab=ab422e6c
+-/
 theorem picardResidual_partial_zero (K : B →L[ℝ] B) (V : A × B → B)
     {a : A} {b : B} (hV : ContDiffAt ℝ ⊤ V (a, b)) :
     fderiv ℝ (picardResidual K V) ((0, (a, b)), b) ∘L
@@ -57,7 +62,9 @@ theorem picardResidual_partial_zero (K : B →L[ℝ] B) (V : A × B → B)
   exact hh.unique hid
 
 /-- A smooth branch solving the scaled Picard equation near zero time, with
-joint dependence on the field parameter and the initial curve.-/
+joint dependence on the field parameter and the initial curve.
+@isnad1 id=ex.1h6v.s9.beb9b5150340 from=translated src=- shape=7b5770ab vocab=89b129a2
+-/
 theorem exists_smooth_picard_branch (K : B →L[ℝ] B) (V : A × B → B)
     {a : A} {b : B} (hV : ContDiffAt ℝ ⊤ V (a, b)) :
     ∃ Φ : ℝ × (A × B) → B,

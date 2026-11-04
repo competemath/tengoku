@@ -25,7 +25,9 @@ namespace DuistermaatVanDerKallen
 noncomputable section
 
 /-- Spatial Lipschitz control uniform for a continuous velocity on a compact
-time set and positions in a compact subset of the regular torus.-/
+time set and positions in a compact subset of the regular torus.
+@isnad1 id=ex.4h5v.s7.22e482a0aa0b from=translated src=- shape=c121dee5 vocab=639f244c
+-/
 theorem laurent_driven_lipschitz_on_compact {d : ℕ} (f : MultiLaurent d)
     (v : ℝ → ℂ) (hv : Continuous v) {J : Set ℝ} {K : Set (Fin d → ℂ)}
     (hJ : IsCompact J) (hK : IsCompact K) (hKU : K ⊆ laurentRegularDomain f) :
@@ -48,7 +50,9 @@ theorem laurent_driven_lipschitz_on_compact {d : ℕ} (f : MultiLaurent d)
     (v t, y) (show (v t, y) ∈ S from ⟨⟨t, ht, rfl⟩, hy⟩)
   simpa only [V, Prod.dist_eq, dist_self, max_eq_right dist_nonneg] using hh
 
-/-- Uniqueness of regular time-dependent horizontal curves on an open interval.-/
+/-- Uniqueness of regular time-dependent horizontal curves on an open interval.
+@isnad1 id=eqon.5h8v.s8.46d83a405609 from=translated src=- shape=2142eecc vocab=a2882645
+-/
 theorem laurent_driven_unique_on_open_interval {d : ℕ} (f : MultiLaurent d)
     (v : ℝ → ℂ) (hv : Continuous v)
     {γ η : ℝ → Fin d → ℂ} {a b t₀ : ℝ} (ht₀ : t₀ ∈ Ioo a b)
@@ -83,7 +87,9 @@ theorem laurent_driven_unique_on_open_interval {d : ℕ} (f : MultiLaurent d)
     (fun u hu => ⟨(hη u (hsub (Ioo_subset_Icc_self hu))).2,
       Or.inr ⟨u, Ioo_subset_Icc_self hu, rfl⟩⟩) heq ⟨hlt, htr⟩
 
-/-- Uniqueness with initial data at the left end of a closed time interval.-/
+/-- Uniqueness with initial data at the left end of a closed time interval.
+@isnad1 id=eqon.8h7v.s8.adcdf887499a from=translated src=- shape=aedeb566 vocab=b2aa3d13
+-/
 theorem laurent_driven_unique_on_closed_interval {d : ℕ} (f : MultiLaurent d)
     (v : ℝ → ℂ) (hv : Continuous v)
     {γ η : ℝ → Fin d → ℂ} {a b : ℝ}

@@ -22,7 +22,9 @@ def radiusIncidence {d : ℕ} (p : AmbientPolynomial d)
     dist (ambientEval p (radiusIncidencePoint q)) c < δ}
 
 /-- The pre-projection set uses precisely the proper radius and restricted norm
-of `radiusApproximationSet`, with no witnesses or constraints omitted.-/
+of `radiusApproximationSet`, with no witnesses or constraints omitted.
+@isnad1 id=issemial.2h6v.s5.c6f90e434790 from=translated src=- shape=adba0eae vocab=a31901d8
+-/
 theorem isSemialgebraic_radiusIncidence {d : ℕ} (p : AmbientPolynomial d)
     (g : Fin d → AmbientPolynomial d) (c : ℂ) {ε δ : ℝ} (hε : 0 ≤ ε) (hδ : 0 ≤ δ) :
     IsSemialgebraic (RadiusIncidenceIndex d) (radiusIncidence p g c ε δ) := by
@@ -47,7 +49,9 @@ theorem isSemialgebraic_radiusIncidence {d : ℕ} (p : AmbientPolynomial d)
   · rintro ⟨hr, ht, ⟨_, hn⟩, ⟨_, _, hg⟩, _, hp⟩
     exact ⟨hr, ht, hn, hg, hp⟩
 
-/-- Exact real-coordinate elimination formula for the original radius set.-/
+/-- Exact real-coordinate elimination formula for the original radius set.
+@isnad1 id=iff.0h7v.s6.3f8365681ed9 from=translated src=- shape=34667b34 vocab=4732cd01
+-/
 theorem radiusApproximationSet_iff_projection {d : ℕ} (p : AmbientPolynomial d)
     (g : Fin d → AmbientPolynomial d) (c : ℂ) (ε δ R : ℝ) :
     R ∈ radiusApproximationSet p g c ε δ ↔
@@ -74,7 +78,9 @@ def SemialgebraicProjectionObligation : Prop :=
       IsSemialgebraic ι {x | ∃ y : κ → ℝ, Sum.elim x y ∈ S}
 
 /-- Discharges the radius-tail obligation from exactly the stated projection
-input, using the checked incidence set and univariate polynomial tail theorem.-/
+input, using the checked incidence set and univariate polynomial tail theorem.
+@isnad1 id=radiusta.1h0v.s1.1955bfb0d3fe from=translated src=- shape=1d48f1ac vocab=939deca5
+-/
 theorem radiusTail_of_semialgebraic_projection
     (hproj : SemialgebraicProjectionObligation) : RadiusTailObligation := by
   intro d p g c ε δ hε hδ hU

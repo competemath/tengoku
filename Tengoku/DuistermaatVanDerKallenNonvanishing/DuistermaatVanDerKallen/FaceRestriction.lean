@@ -16,11 +16,17 @@ def facePart (w : M →+ ℝ) (f : AddMonoidAlgebra ℂ M) : AddMonoidAlgebra �
   classical
   exact .ofCoeff (f.coeff.filter (fun a => w a = 0))
 
+/--
+@isnad1 id=eq.0h4v.s7.05511f39c2f6 from=translated src=- shape=7c01b10e vocab=56ff656d
+-/
 theorem facePart_coeff (w : M →+ ℝ) (f : AddMonoidAlgebra ℂ M) (a : M) :
     (facePart w f).coeff a = if w a = 0 then f.coeff a else 0 := by
   classical
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s8.407a31902617 from=translated src=- shape=97d4b75d vocab=9fcf5792
+-/
 theorem facePart_mul (w : M →+ ℝ) (f g : AddMonoidAlgebra ℂ M)
     (hf : ∀ a ∈ f.coeff.support, 0 ≤ w a) (hg : ∀ a ∈ g.coeff.support, 0 ≤ w a) :
     facePart w (f * g) = facePart w f * facePart w g := by
@@ -72,6 +78,9 @@ theorem facePart_mul (w : M →+ ℝ) (f g : AddMonoidAlgebra ℂ M)
       · simp [hb0]
     · simp [ha0]
 
+/--
+@isnad1 id=eq.0h2v.s6.9d758dea56db from=translated src=- shape=9c55ec2c vocab=bf19daf0
+-/
 theorem facePart_one (w : M →+ ℝ) : facePart w (1 : AddMonoidAlgebra ℂ M) = 1 := by
   classical
   apply AddMonoidAlgebra.coeff_injective
@@ -81,6 +90,9 @@ theorem facePart_one (w : M →+ ℝ) : facePart w (1 : AddMonoidAlgebra ℂ M) 
   · simp [ha]
   · simp [AddMonoidAlgebra.one_def, ha]
 
+/--
+@isnad1 id=eq.1h4v.s7.bad41a1b16c3 from=translated src=- shape=5c9d8f12 vocab=5e2ab880
+-/
 theorem facePart_pow (w : M →+ ℝ) (f : AddMonoidAlgebra ℂ M)
     (hf : ∀ a ∈ f.coeff.support, 0 ≤ w a) (n : ℕ) :
     facePart w (f ^ n) = facePart w f ^ n := by
@@ -91,6 +103,9 @@ theorem facePart_pow (w : M →+ ℝ) (f : AddMonoidAlgebra ℂ M)
       simpa using support_pow_lower_bound w f 0 hf n
     rw [pow_succ, facePart_mul w (f ^ n) f hn hf, ih, pow_succ]
 
+/--
+@isnad1 id=eq.1h4v.s8.ecbe3b77a8f0 from=translated src=- shape=dc54e3e8 vocab=e2debac5
+-/
 theorem facePart_pow_coeff_zero (w : M →+ ℝ) (f : AddMonoidAlgebra ℂ M)
     (hf : ∀ a ∈ f.coeff.support, 0 ≤ w a) (n : ℕ) :
     (facePart w f ^ n).coeff 0 = (f ^ n).coeff 0 := by
@@ -98,7 +113,9 @@ theorem facePart_pow_coeff_zero (w : M →+ ℝ) (f : AddMonoidAlgebra ℂ M)
   simp
 
 /-- Cutting a finite convex hull by a supporting zero hyperplane commutes
-with taking the convex hull.-/
+with taking the convex hull.
+@isnad1 id=eq.2h3v.s9.3c0ceefbacd3 from=translated src=- shape=a246f429 vocab=667022c0
+-/
 theorem finite_convexHull_inter_zero {d : ℕ} {S : Set (Fin d → ℝ)} (hS : S.Finite)
     (L : (Fin d → ℝ) →L[ℝ] ℝ) (hL : ∀ x ∈ S, 0 ≤ L x) :
     convexHull ℝ (S ∩ {x | L x = 0}) = convexHull ℝ S ∩ {x | L x = 0} := by
@@ -138,13 +155,18 @@ def exponentFunctional {d : ℕ} (L : (Fin d → ℝ) →L[ℝ] ℝ) : (Fin d �
     rw [hz, map_zero]
   map_add' a b := by rw [exponentVector_add, map_add]
 
+/--
+@isnad1 id=iff.0h4v.s7.921faca504c2 from=translated src=- shape=58f80cbb vocab=2ae6dd47
+-/
 theorem mem_support_facePart (w : M →+ ℝ) (f : AddMonoidAlgebra ℂ M) (a : M) :
     a ∈ (facePart w f).coeff.support ↔ a ∈ f.coeff.support ∧ w a = 0 := by
   classical
   simp only [facePart, AddMonoidAlgebra.coeff_ofCoeff, Finsupp.support_filter, Finset.mem_filter]
 
 /-- Face restriction has exactly the intersection polytope, with no extra
-hypothesis excluding coefficient cancellation in products.-/
+hypothesis excluding coefficient cancellation in products.
+@isnad1 id=eq.1h3v.s8.f56a5e760cfa from=translated src=- shape=09c88a1b vocab=f32400ac
+-/
 theorem newtonPolytope_facePart {d : ℕ} (f : MultiLaurent d)
     (L : (Fin d → ℝ) →L[ℝ] ℝ)
     (hL : ∀ a ∈ f.coeff.support, 0 ≤ L (exponentVector a)) :
@@ -164,6 +186,9 @@ theorem newtonPolytope_facePart {d : ℕ} (f : MultiLaurent d)
   exact finite_convexHull_inter_zero (f.coeff.support.finite_toSet.image exponentVector) L
     (by rintro _ ⟨a, ha, rfl⟩; exact hL a ha)
 
+/--
+@isnad1 id=mem.2h3v.s8.f5406c398cf0 from=translated src=- shape=c20bbef0 vocab=c40f4cc4
+-/
 theorem origin_mem_newtonPolytope_facePart {d : ℕ} (f : MultiLaurent d)
     (L : (Fin d → ℝ) →L[ℝ] ℝ)
     (hL : ∀ a ∈ f.coeff.support, 0 ≤ L (exponentVector a))
@@ -172,6 +197,9 @@ theorem origin_mem_newtonPolytope_facePart {d : ℕ} (f : MultiLaurent d)
   rw [newtonPolytope_facePart f L hL]
   exact ⟨hf, map_zero L⟩
 
+/--
+@isnad1 id=ne.2h3v.s8.daf1e77788e1 from=translated src=- shape=229936d8 vocab=fb3cdc05
+-/
 theorem facePart_ne_zero {d : ℕ} (f : MultiLaurent d)
     (L : (Fin d → ℝ) →L[ℝ] ℝ)
     (hL : ∀ a ∈ f.coeff.support, 0 ≤ L (exponentVector a))
@@ -182,14 +210,18 @@ theorem facePart_ne_zero {d : ℕ} (f : MultiLaurent d)
   rw [he] at hm
   simp [newtonPolytope] at hm
 
-/-- Every power constant term is unchanged on a supporting face through zero.-/
+/-- Every power constant term is unchanged on a supporting face through zero.
+@isnad1 id=eq.1h4v.s8.5f027dd77c86 from=translated src=- shape=4c73af4c vocab=1654d247
+-/
 theorem constantTerm_facePart_pow {d : ℕ} (f : MultiLaurent d)
     (L : (Fin d → ℝ) →L[ℝ] ℝ)
     (hL : ∀ a ∈ f.coeff.support, 0 ≤ L (exponentVector a)) (n : ℕ) :
     constantTerm (facePart (exponentFunctional L) f ^ n) = constantTerm (f ^ n) :=
   facePart_pow_coeff_zero (exponentFunctional L) f hL n
 
-/-- A proper supporting cut decreases the number of support exponents.-/
+/-- A proper supporting cut decreases the number of support exponents.
+@isnad1 id=lt.2h4v.s7.bd8b218b6d48 from=translated src=- shape=075f6708 vocab=a8910b08
+-/
 theorem facePart_support_card_lt (w : M →+ ℝ) (f : AddMonoidAlgebra ℂ M)
     {a : M} (ha : a ∈ f.coeff.support) (hwa : w a ≠ 0) :
     (facePart w f).coeff.support.card < f.coeff.support.card := by

@@ -12,6 +12,9 @@ family. The derivative bound uses the restricted induced-metric norm. -/
 namespace DuistermaatVanDerKallen
 noncomputable section
 
+/--
+@isnad1 id=mem.4h5v.s9.28dba4a89d72 from=translated src=- shape=a9f7d22c vocab=3ded53b6
+-/
 theorem curve_derivative_mem_torusTangentSpace {d : ℕ} {γ : ℝ → TorusAmbient d}
     {v : TorusAmbient d} {S : Set ℝ} {t : ℝ} (ht : t ∈ S)
     (hS : UniqueDiffWithinAt ℝ S t) (hγ : HasDerivWithinAt γ v S t)

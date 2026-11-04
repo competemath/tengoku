@@ -12,7 +12,9 @@ open scoped Topology
 namespace DuistermaatVanDerKallen
 
 /-- At each noncritical, non-asymptotic value, the weighted gradient is bounded
-below on the inverse image of a whole base neighborhood.-/
+below on the inverse image of a whole base neighborhood.
+@isnad1 id=ex.6h6v.s7.637af4c2c037 from=translated src=- shape=63c1319d vocab=9b9b6fbc
+-/
 theorem exists_local_gradient_bound {X Y : Type*}
     [TopologicalSpace X] [FirstCountableTopology X] [MetricSpace Y]
     (F : X → Y) (r lam : X → ℝ)
@@ -58,7 +60,9 @@ theorem exists_local_gradient_bound {X Y : Type*}
     exact hc (Or.inl ⟨a, hla, hFa⟩)
 
 /-- A positive weighted-gradient lower bound over an open base set excludes
-both ordinary and asymptotic critical values from that set.-/
+both ordinary and asymptotic critical values from that set.
+@isnad1 id=not.4h8v.s6.d354c09261b3 from=translated src=- shape=13f396e3 vocab=a939d903
+-/
 theorem gradient_bound_excludes_critical {X Y : Type*} [TopologicalSpace Y]
     (F : X → Y) (r lam : X → ℝ)
     {U : Set Y} (hU : IsOpen U) {a : ℝ} (ha : 0 < a)
@@ -78,7 +82,9 @@ theorem gradient_bound_excludes_critical {X Y : Type*} [TopologicalSpace Y]
     nlinarith
 
 /-- The union of ordinary and asymptotic critical values is closed for a
-continuous scalar norm over a space with compact radius sublevels.-/
+continuous scalar norm over a space with compact radius sublevels.
+@isnad1 id=isclosed.5h5v.s7.88ad1f3690bf from=translated src=- shape=39205efc vocab=5181cde7
+-/
 theorem criticalValues_union_isClosed {X Y : Type*}
     [TopologicalSpace X] [FirstCountableTopology X] [MetricSpace Y]
     (F : X → Y) (r lam : X → ℝ)

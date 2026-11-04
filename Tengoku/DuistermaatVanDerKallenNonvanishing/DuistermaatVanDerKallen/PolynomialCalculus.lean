@@ -20,13 +20,18 @@ def polynomialDifferential {d : ℕ} (p : AmbientPolynomial d) (x : TorusAmbient
   ∑ j : Fin d ⊕ Fin d,
     ambientEval (MvPolynomial.pderiv j p) x • PiLp.proj (𝕜 := ℂ) 2 _ j
 
+/--
+@isnad1 id=eq.0h4v.s9.8d3e6e020028 from=translated src=- shape=7b847383 vocab=1cd86f68
+-/
 @[simp] theorem polynomialDifferential_apply {d : ℕ} (p : AmbientPolynomial d)
     (x v : TorusAmbient d) :
     polynomialDifferential p x v =
       ∑ j, ambientEval (MvPolynomial.pderiv j p) x * v j := by
   simp [polynomialDifferential, smul_eq_mul]
 
-/-- Every polynomial representative is real smooth on the entire ambient space.-/
+/-- Every polynomial representative is real smooth on the entire ambient space.
+@isnad1 id=contdiff.0h2v.s7.61603cc93c12 from=translated src=- shape=d971b8fa vocab=6b53734c
+-/
 theorem ambientEval_contDiff_real {d : ℕ} (p : AmbientPolynomial d) :
     ContDiff ℝ ⊤ (ambientEval p) := by
   change ContDiff ℝ ⊤ (fun x : TorusAmbient d => MvPolynomial.eval x p)
@@ -43,7 +48,9 @@ def torusPartial {d : ℕ} (p : AmbientPolynomial d) (i : Fin d) : AmbientPolyno
   MvPolynomial.pderiv (.inl i) p -
     MvPolynomial.X (.inr i) ^ 2 * MvPolynomial.pderiv (.inr i) p
 
-/-- Pullback of the ambient derivative through the proper embedding.-/
+/-- Pullback of the ambient derivative through the proper embedding.
+@isnad1 id=eq.0h3v.s8.58717ec625bf from=translated src=- shape=0c24fba7 vocab=a99f4f7e
+-/
 theorem polynomialDifferential_comp_torusTangentMap {d : ℕ}
     (p : AmbientPolynomial d) (z : Fin d → ℂ) :
     (polynomialDifferential p (torusEmbed z)).comp (torusTangentMap z) =
@@ -58,7 +65,9 @@ theorem polynomialDifferential_comp_torusTangentMap {d : ℕ}
   ring
 
 /-- Regression for extension dependence: a defining relation of the affine torus
-has zero coordinate derivative on the torus, despite its nonzero ambient partials.-/
+has zero coordinate derivative on the torus, despite its nonzero ambient partials.
+@isnad1 id=eq.1h4v.s8.dc76b748eb1f from=translated src=- shape=5ee7035b vocab=2cfc7284
+-/
 theorem torusPartial_constraint_eval {d : ℕ} (i j : Fin d)
     {z : Fin d → ℂ} (hz : ∀ k, z k ≠ 0) :
     ambientEval (torusPartial
@@ -73,7 +82,9 @@ theorem torusPartial_constraint_eval {d : ℕ} (i j : Fin d)
 
 /-- Regression for the induced metric: at the unit point in rank one the
 coordinate differential has squared norm `1/2`, because inverse coordinates
-contribute to the metric.-/
+contribute to the metric.
+@isnad1 id=eq.0h0v.s11.f2c60fb1720a from=translated src=- shape=0887a6ca vocab=274fafd7
+-/
 theorem restrictedDifferential_unit_rank_one :
     ‖restrictedDifferential (fun _ : Fin 1 => (1 : ℂ)) (fun _ => (1 : ℂ))‖ ^ 2 =
       (1 / 2 : ℝ) := by
