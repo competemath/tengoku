@@ -1,0 +1,1 @@
+-- T3ModelCompanion: a factory bundle (data/intake/t3-model-companion). This file only marks the library for Tengoku/All.lean.

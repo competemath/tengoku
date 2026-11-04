@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "6060d9a7a61a46bed8e38ff9563865f123705ce6ed0bc6bbde31c4a038eeba7d",
+ "gate2_unjudged": [],
+ "library": "t3-model-companion",
+ "lint_mode": "proposed",
+ "modules": 113,
+ "part": 1,
+ "theorems": 981
+}
