@@ -1,0 +1,6 @@
+import Tengoku.NpcompletenessLean4.Complexity.Planar.EmbedCert
+import Tengoku.NpcompletenessLean4.Complexity.Planar.EmbedComplete
+import Tengoku.NpcompletenessLean4.Complexity.Planar.Hypermap
+import Tengoku.NpcompletenessLean4.Complexity.Planar.Perm
+import Tengoku.NpcompletenessLean4.Complexity.Planar.Rot
+import Tengoku.NpcompletenessLean4.Complexity.Planarity

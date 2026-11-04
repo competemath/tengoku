@@ -78,6 +78,7 @@ import Tengoku.Formalbook
 import Tengoku.GrothendieckRiemannRoch
 import Tengoku.Automatatheory
 import Tengoku.BrownianMotion
+import Tengoku.NpcompletenessLean4
 import Tengoku.MeanFourier
 import Tengoku.LanaOka
 import Tengoku.DeletionCodesLean

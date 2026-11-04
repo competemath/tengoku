@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "7fa8f5c26c15ffdc5c4c2cc6f99453797cff7c137c066ff35a8d1b3969fffe5d",
+ "gate2_unjudged": [],
+ "library": "npcompleteness-lean4",
+ "lint_mode": "proposed",
+ "modules": 7,
+ "part": 1,
+ "theorems": 111
+}

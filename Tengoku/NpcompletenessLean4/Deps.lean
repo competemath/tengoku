@@ -1,0 +1,1 @@
+-- NpcompletenessLean4: a factory bundle (data/intake/npcompleteness-lean4). This file only marks the library for Tengoku/All.lean.
