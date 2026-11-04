@@ -1,0 +1,87 @@
+import Tengoku.Pi2Lean.Row12EulerSupport.Substitution
+import Tengoku.Pi2Lean.Row12EulerSupport.DominatedLimit
+import Tengoku.Pi2Lean.Row12EulerSupport.FunctionBound
+import Tengoku.Pi2Lean.Row12.GaussEulerIntegral
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! Tengoku repair: removed `#print axioms Row12EulerSupport.gaussDerivative_kernel` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms Row12EulerSupport.gaussDerivative_transformed` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms Row12EulerSupport.derivativeEndpoint` (it only prints; the queue checks the axioms of every declaration). -/
+/-! Tengoku repair: removed `#print axioms Row12EulerSupport.functionEndpoint` (it only prints; the queue checks the axioms of every declaration). -/
+
+open Set Filter intervalIntegral Topology
+
+namespace Row12EulerSupport
+
+/--
+@isnad1 id=eq.2h1v.s7.ad7a5cd1b199 from=translated src=- shape=e61f64dd vocab=3c1c4d4a
+-/
+theorem gaussDerivative_kernel {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
+    deriv (Row12.gaussA : ℝ → ℝ) (1 - p) =
+      (1 / (12 * Real.pi)) * (∫ x : ℝ in 0..1, derivativeKernel p x) := by
+  rw [Row12.gaussA_deriv_eq_eulerIntegral (by linarith : 0 ≤ 1 - p)
+    (by linarith : 1 - p < 1), ← integral_const_mul]
+  apply integral_congr_Ioo_of_le zero_le_one
+  intro x hx
+  dsimp only
+  have hxpow : x * x ^ (-1 / 6 : ℝ) = x ^ (5 / 6 : ℝ) := by
+    rw [show (5 / 6 : ℝ) = 1 + (-1 / 6) by norm_num,
+      Real.rpow_add hx.1, Real.rpow_one]
+  rw [Row12.betaDensity_five_sixths]
+  unfold derivativeKernel
+  calc
+    _ = (1 / (12 * Real.pi)) * (x * x ^ (-1 / 6 : ℝ)) *
+        (1 - x) ^ (-5 / 6 : ℝ) * (1 - (1 - p) * x) ^ (-7 / 6 : ℝ) := by
+      field_simp [Real.pi_ne_zero]
+      ring
+    _ = _ := by rw [hxpow]; ring
+
+/--
+@isnad1 id=eq.2h1v.s7.a9b58e710a19 from=translated src=- shape=a97bc6e3 vocab=2777b6c1
+-/
+theorem gaussDerivative_transformed {p : ℝ} (hp : 0 < p) (hp1 : p < 1) :
+    -p * deriv (Row12.gaussA : ℝ → ℝ) (1 - p) =
+      -(1 / (12 * Real.pi)) * (∫ y : ℝ in 0..1, endpointIntegrand p y) := by
+  rw [gaussDerivative_kernel hp hp1]
+  calc
+    _ = -(1 / (12 * Real.pi)) * (p * ∫ x : ℝ in 0..1, derivativeKernel p x) := by
+      ring
+    _ = _ := by
+      rw [derivativeKernel_substitution hp hp1]
+      rfl
+
+/--
+@isnad1 id=tendsto.0h0v.s6.c10dacee284f from=translated src=- shape=91e0919a vocab=4784d507
+-/
+theorem derivativeEndpoint :
+    Tendsto (fun p : ℝ => -p * deriv (Row12.gaussA : ℝ → ℝ) (1 - p))
+      (𝓝[Ioi 0] 0) (𝓝 (-1 / (2 * Real.pi))) := by
+  have h := endpointIntegral_tendsto.const_mul (-(1 / (12 * Real.pi)))
+  have he : -(1 / (12 * Real.pi)) * 6 = -1 / (2 * Real.pi) := by
+    field_simp [Real.pi_ne_zero]
+    norm_num
+  rw [he] at h
+  apply h.congr'
+  have hp : ∀ᶠ p : ℝ in 𝓝[Ioi 0] 0, 0 < p := self_mem_nhdsWithin
+  have hp1 : ∀ᶠ p : ℝ in 𝓝[Ioi 0] 0, p < 1 :=
+    (eventually_lt_nhds (by norm_num : (0 : ℝ) < 1)).filter_mono nhdsWithin_le_nhds
+  filter_upwards [hp, hp1] with p hp hp1
+  exact (gaussDerivative_transformed hp hp1).symm
+
+/--
+@isnad1 id=tendsto.0h0v.s6.512fa35c7411 from=translated src=- shape=bfb68c7b vocab=1ecc83fa
+-/
+theorem functionEndpoint :
+    Tendsto (fun p : ℝ => p * Row12.gaussA (1 - p))
+      (𝓝[Ioi 0] 0) (𝓝 0) := by
+  apply functionIntegralEndpoint_tendsto.congr'
+  have hp : ∀ᶠ p : ℝ in 𝓝[Ioi 0] 0, 0 < p := self_mem_nhdsWithin
+  have hp1 : ∀ᶠ p : ℝ in 𝓝[Ioi 0] 0, p < 1 :=
+    (eventually_lt_nhds (by norm_num : (0 : ℝ) < 1)).filter_mono nhdsWithin_le_nhds
+  filter_upwards [hp, hp1] with p hp hp1
+  rw [Row12.gaussA_eq_eulerIntegral (by linarith : 0 ≤ 1 - p)
+    (by linarith : 1 - p < 1)]
+
+end Row12EulerSupport
+

@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "1c5f7d40e4b17aa4022a3f0360dfd7fdba727fba9dc98c7be63daeb3e7e9d20a",
+ "gate2_unjudged": [],
+ "library": "pi2-lean",
+ "lint_mode": "proposed",
+ "modules": 69,
+ "part": 1,
+ "theorems": 739
+}
