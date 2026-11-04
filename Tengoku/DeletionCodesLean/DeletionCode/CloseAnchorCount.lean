@@ -35,7 +35,9 @@ def Bad {r n : ℕ} (m B : ℕ) (a : Fin r → Fin n) : Prop :=
   (∃ i, Nat.dist (a i).val m < B) ∨
   (∃ i j, i ≠ j ∧ Nat.dist (a i).val (a j).val < B)
 
-/-- A natural-number ball, intersected with `Fin n`, contains at most `2 * B` points.-/
+/-- A natural-number ball, intersected with `Fin n`, contains at most `2 * B` points.
+@isnad1 id=le.0h3v.s5.abc169ddb49e from=translated src=- shape=db157e07 vocab=0c1a513c
+-/
 theorem near_card_le (n c B : ℕ) :
     (univ.filter (fun x : Fin n => Nat.dist x.val c < B)).card ≤ 2 * B := by
   calc
@@ -58,7 +60,9 @@ theorem near_card_le (n c B : ℕ) :
     _ = 2 * B := card_range _
 
 /-- Omitting one coordinate leaves exactly `n^r` possible records; each record
-admits at most `M` values of the omitted coordinate.-/
+admits at most `M` values of the omitted coordinate.
+@isnad1 id=le.1h5v.s8.1f724e8aee68 from=translated src=- shape=26315f2d vocab=334455b2
+-/
 theorem coordinate_constraint_card_le {r n : ℕ} (i : Fin (r + 1))
     (P : (Fin r → Fin n) → Fin n → Prop) (M : ℕ)
     (hM : ∀ b, (univ.filter (P b)).card ≤ M) :
@@ -82,7 +86,9 @@ theorem coordinate_constraint_card_le {r n : ℕ} (i : Fin (r + 1))
       card_biUnion_le_card_mul _ fibers M (fun b _ => (card_image_le).trans (hM b))
     _ = M * n ^ r := by simp [Nat.mul_comm]
 
-/-- The reference point may depend on every coordinate except the constrained one.-/
+/-- The reference point may depend on every coordinate except the constrained one.
+@isnad1 id=le.0h5v.s8.868ed6b6a941 from=translated src=- shape=290e06aa vocab=b6d812f5
+-/
 theorem coordinate_near_card_le {r n : ℕ} (i : Fin (r + 1))
     (c : (Fin r → Fin n) → ℕ) (B : ℕ) :
     (univ.filter (fun a : Fin (r + 1) → Fin n =>
@@ -146,7 +152,9 @@ private theorem event_card_le {r n : ℕ} (m B : ℕ) (q : EventIndex (r + 1)) :
           rfl
 
 /-- A union bound over all actual endpoint and pair constraints. The exponent
-is `r - 1`, and the theorem also covers `r = 0`, `n = 0`, and `B = 0`.-/
+is `r - 1`, and the theorem also covers `r = 0`, `n = 0`, and `B = 0`.
+@isnad1 id=le.0h4v.s7.08268b741cda from=translated src=- shape=22008fcf vocab=903c0dbc
+-/
 theorem bad_card_le (r n m B : ℕ) :
     (univ.filter (Bad (r := r) (n := n) m B)).card ≤
       r * (r + 2) * (2 * B) * n ^ (r - 1) := by

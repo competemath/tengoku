@@ -34,6 +34,9 @@ structure Geometry {k : ℕ} (bubble : BubbleWord k) : Prop where
     (a = 0 ∧ b = 0) ∨
       (a = windowLength k - bubble.rho + 1 ∧ b = windowLength k - bubble.rho)
 
+/--
+@isnad1 id=and.0h2v.s4.59b6878f2a7a from=translated src=- shape=6f5fcff5 vocab=94bc50cd
+-/
 theorem cut_bounds {k : ℕ} (bubble : BubbleWord k) :
     editOffset k < bubble.longWord.length ∧ editOffset k ≤ bubble.shortWord.length := by
   have hlo := bubble.rho_lower
@@ -42,6 +45,9 @@ theorem cut_bounds {k : ℕ} (bubble : BubbleWord k) :
     BubbleWord.header, editOffset, windowLength]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s4.f2d744b7a84c from=translated src=- shape=17aa7e67 vocab=e5a3e0a3
+-/
 theorem lengths {k : ℕ} (bubble : BubbleWord k) :
     bubble.shortWord.length + 1 = bubble.longWord.length := by
   have hlo := bubble.rho_lower
@@ -50,12 +56,17 @@ theorem lengths {k : ℕ} (bubble : BubbleWord k) :
     BubbleWord.header, windowLength]
   omega
 
+/--
+@isnad1 id=agree.0h3v.s5.fe7a99e04f62 from=translated src=- shape=98cef038 vocab=b7cdd123
+-/
 theorem middle_agree (x p y : List Bool) :
     Agree (listLetters p) 0 (listLetters (x ++ (p ++ y))) x.length p.length := by
   intro i hi
   simpa only [Nat.zero_add] using (listLetters_middle x p y i hi).symm
 
-/-- The fixed canonical run deletion also works inside arbitrary context.-/
+/-- The fixed canonical run deletion also works inside arbitrary context.
+@isnad1 id=eq.0h4v.s6.d3a815a3a596 from=translated src=- shape=e6779666 vocab=7ebbb23a
+-/
 theorem erase_context {k : ℕ} (bubble : BubbleWord k) (x y : List Bool) :
     (x ++ (bubble.longWord ++ y)).eraseIdx (x.length + editOffset k) =
       x ++ (bubble.shortWord ++ y) := by
@@ -63,11 +74,17 @@ theorem erase_context {k : ℕ} (bubble : BubbleWord k) (x y : List Bool) :
   simp only [Nat.add_sub_cancel_left]
   rw [List.eraseIdx_append_of_lt_length (cut_bounds bubble).1, bubble.eraseIdx_longWord]
 
+/--
+@isnad1 id=eq.0h4v.s6.8a540ae759eb from=translated src=- shape=4783e94c vocab=c49791eb
+-/
 theorem delete_context {k : ℕ} (bubble : BubbleWord k) (x y : List Bool) :
     deleteAt (listLetters (x ++ (bubble.longWord ++ y))) (x.length + editOffset k) =
       listLetters (x ++ (bubble.shortWord ++ y)) := by
   rw [← listLetters_eraseIdx, erase_context]
 
+/--
+@isnad1 id=eq.0h4v.s6.77bf9e331b53 from=translated src=- shape=d40f92c8 vocab=18698a14
+-/
 theorem insert_context {k : ℕ} (bubble : BubbleWord k) (x y : List Bool) :
     insertAt (listLetters (x ++ (bubble.shortWord ++ y)))
         (x.length + editOffset k) bubble.bit =
@@ -85,6 +102,9 @@ theorem insert_context {k : ℕ} (bubble : BubbleWord k) (x y : List Bool) :
           rw [delete_context, hbit]
     _ = _ := insert_delete _ _
 
+/--
+@isnad1 id=geometry.4h4v.s6.dc0c3572b30c from=translated src=- shape=4562006f vocab=42db13c6
+-/
 theorem deletion_geometry {k : ℕ} (hk : 1 ≤ k) (bubble : BubbleWord k)
     (hleft : bubble.left.getLast? = some (!bubble.bit))
     (hright : bubble.right.head? = some (!bubble.bit)) (x y : List Bool)
@@ -113,6 +133,9 @@ theorem deletion_geometry {k : ℕ} (hk : 1 ≤ k) (bubble : BubbleWord k)
       (x.length + editOffset k) hpos x.length hl hs
       (middle_agree x bubble.longWord y) hshort a b ha hb hag⟩
 
+/--
+@isnad1 id=geometry.4h4v.s6.293a2606bde5 from=translated src=- shape=4562006f vocab=63f50f7a
+-/
 theorem insertion_geometry {k : ℕ} (hk : 1 ≤ k) (bubble : BubbleWord k)
     (hleft : bubble.left.getLast? = some (!bubble.bit))
     (hright : bubble.right.head? = some (!bubble.bit)) (x y : List Bool)
@@ -143,7 +166,9 @@ theorem insertion_geometry {k : ℕ} (hk : 1 ≤ k) (bubble : BubbleWord k)
       (middle_agree x bubble.shortWord y) a b ha hb hag⟩
 
 /-- In either orientation, source uniqueness and the actual grammar boundary
-bits suffice for both simple paths and the endpoint-only intersection.-/
+bits suffice for both simple paths and the endpoint-only intersection.
+@isnad1 id=geometry.4h4v.s6.46638ca53b83 from=translated src=- shape=4562006f vocab=2f98ce7b
+-/
 theorem context_geometry {k : ℕ} (hk : 1 ≤ k) (bubble : BubbleWord k)
     (hleft : bubble.left.getLast? = some (!bubble.bit))
     (hright : bubble.right.head? = some (!bubble.bit)) (x y : List Bool)

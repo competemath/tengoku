@@ -27,12 +27,21 @@ contributes its original source letters.-/
 def hybrid (trace : Trace) (j : ℕ) : List Bool :=
   Trace.target (trace.take j) ++ Trace.source (trace.drop j)
 
+/--
+@isnad1 id=eq.0h1v.s3.902a2b57695c from=translated src=- shape=f6a3d35a vocab=3a9abc87
+-/
 theorem hybrid_zero (trace : Trace) : hybrid trace 0 = trace.source := by
   simp [hybrid, Trace.target]
 
+/--
+@isnad1 id=eq.0h1v.s3.1c59cebed0a5 from=translated src=- shape=8bf495d2 vocab=11b9e60b
+-/
 theorem hybrid_end (trace : Trace) : hybrid trace trace.length = trace.target := by
   simp [hybrid, Trace.source]
 
+/--
+@isnad1 id=eq.0h2v.s6.14446d1410f7 from=translated src=- shape=c34bb8c1 vocab=8de68a4e
+-/
 theorem hybrid_before (trace : Trace) (i : Fin trace.length) :
     hybrid trace i.val = Trace.target (trace.take i.val) ++
       (Trace.source [trace.get i] ++ Trace.source (trace.drop (i.val + 1))) := by
@@ -43,6 +52,9 @@ theorem hybrid_before (trace : Trace) (i : Fin trace.length) :
   congr 1
   exact Trace.source_append [trace.get i] (trace.drop (i.val + 1))
 
+/--
+@isnad1 id=eq.0h2v.s6.8d8261b8147c from=translated src=- shape=44019093 vocab=8de68a4e
+-/
 theorem hybrid_after (trace : Trace) (i : Fin trace.length) :
     hybrid trace (i.val + 1) =
       (Trace.target (trace.take i.val) ++ Trace.target [trace.get i]) ++
@@ -51,7 +63,9 @@ theorem hybrid_after (trace : Trace) (i : Fin trace.length) :
   rw [List.take_succ_eq_append_getElem i.isLt, Trace.target_append]
   rfl
 
-/-- Matched columns contribute zero, derived from their actual projections.-/
+/-- Matched columns contribute zero, derived from their actual projections.
+@isnad1 id=eq.1h4v.s5.000c97ed26d3 from=translated src=- shape=e1a5c4e1 vocab=a03409ed
+-/
 theorem hybrid_increment_of_not_edit (trace : Trace) (i : Fin trace.length)
     (hnot : ¬ EditIndex trace i) (L : ℕ) (g : Gram L) :
     spectrum (hybrid trace (i.val + 1)) L g - spectrum (hybrid trace i.val) L g = 0 := by
@@ -65,7 +79,9 @@ theorem hybrid_increment_of_not_edit (trace : Trace) (i : Fin trace.length)
     exact False.elim (hnot (by simp only [EditIndex, hc, Column.isEdit]))
 
 /-- A separated edit's hybrid increment equals its actual isolated edit
-on the original source. The common suffix is derived from the trace.-/
+on the original source. The common suffix is derived from the trace.
+@isnad1 id=eq.2h4v.s6.f9ed72f32665 from=translated src=- shape=e2bb9c10 vocab=3bb33584
+-/
 theorem hybrid_increment_of_edit {trace : Trace} {L : ℕ} (hL : 1 ≤ L)
     (hsep : Separated (4 * L) trace) (c : EditColumn trace) (g : Gram L) :
     spectrum (hybrid trace (c.val.val + 1)) L g - spectrum (hybrid trace c.val.val) L g =
@@ -97,7 +113,9 @@ theorem hybrid_increment_of_edit {trace : Trace} {L : ℕ} (hL : 1 ≤ L)
     exact common_suffix_change a b common (sourceSuffix trace c)
       (bit :: sourceSuffix trace c) L hL hcommon g
 
-/-- Exact telescoping over every actual column; no separation is needed yet.-/
+/-- Exact telescoping over every actual column; no separation is needed yet.
+@isnad1 id=eq.0h3v.s6.3482c15a1232 from=translated src=- shape=e5c3bc76 vocab=e090f48b
+-/
 theorem hybrid_telescope (trace : Trace) (L : ℕ) (g : Gram L) :
     spectrum trace.target L g - spectrum trace.source L g =
       ∑ i : Fin trace.length,
@@ -108,7 +126,9 @@ theorem hybrid_telescope (trace : Trace) (L : ℕ) (g : Gram L) :
     (Finset.sum_range_sub (fun i => spectrum (hybrid trace i) L g) trace.length).symm
 
 /-- The full trace's spectrum difference is the sum of isolated edit
-differences, indexed by its actual deletion and insertion columns.-/
+differences, indexed by its actual deletion and insertion columns.
+@isnad1 id=eq.2h3v.s6.a3cbd6eebe17 from=translated src=- shape=12cc8e5a vocab=973e16ce
+-/
 theorem spectrum_sum_apply {trace : Trace} {L : ℕ} (hL : 1 ≤ L)
     (hsep : Separated (4 * L) trace) (g : Gram L) :
     spectrum trace.target L g - spectrum trace.source L g =
@@ -138,7 +158,9 @@ theorem spectrum_sum_apply {trace : Trace} {L : ℕ} (hL : 1 ≤ L)
       exact hybrid_increment_of_edit hL hsep c g
 
 /-- The actual signed integer vector identity used to assemble the
-separated-edit catalogue. No uniqueness or spectrum-sum premise is required.-/
+separated-edit catalogue. No uniqueness or spectrum-sum premise is required.
+@isnad1 id=eq.2h2v.s7.8ca796ae0493 from=translated src=- shape=1f733a98 vocab=b8d22b88
+-/
 theorem spectrum_sum {trace : Trace} {L : ℕ} (hL : 1 ≤ L)
     (hsep : Separated (4 * L) trace) :
     wordSpectrum (CatalogueWords.listLetters trace.target) trace.target.length L -

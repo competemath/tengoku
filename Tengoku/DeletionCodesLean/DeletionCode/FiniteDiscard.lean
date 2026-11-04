@@ -30,7 +30,9 @@ attribute [local instance] Classical.propDecidable
 variable {Ω V : Type*} [MeasurableSpace Ω] [DecidableEq V]
 
 omit [DecidableEq V] in
-/-- The averaging step for measurable bad events.-/
+/-- The averaging step for measurable bad events.
+@isnad1 id=ex.2h5v.s7.88c38b176e21 from=translated src=- shape=d6590889 vocab=2ac0970b
+-/
 theorem exists_half_retained_of_measurable (μ : Measure Ω) [IsProbabilityMeasure μ]
     (s : Finset V) (E : V → Set Ω)
     (hmeas : ∀ v ∈ s, MeasurableSet (E v))
@@ -75,7 +77,9 @@ theorem exists_half_retained_of_measurable (μ : Measure Ω) [IsProbabilityMeasu
 
 omit [DecidableEq V] in
 /-- No measurability hypothesis is imposed on the bad events. A probability
-space supplies an outcome even when the finite vertex set is empty.-/
+space supplies an outcome even when the finite vertex set is empty.
+@isnad1 id=ex.1h5v.s7.73940713f91f from=translated src=- shape=fda52f3e vocab=55d4a307
+-/
 theorem exists_half_retained (μ : Measure Ω) [IsProbabilityMeasure μ]
     (s : Finset V) (E : V → Set Ω)
     (hE : ∀ v ∈ s, μ (E v) ≤ ENNReal.ofReal (1 / 3 : ℝ)) :

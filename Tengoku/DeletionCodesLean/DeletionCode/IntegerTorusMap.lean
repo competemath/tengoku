@@ -36,10 +36,16 @@ noncomputable def jointHash (w : J → I → ℤ) :
       (∑ i, w j i • weights i) + (∑ i, w j i • weights' i)
     simp only [smul_add, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h5v.s8.f042bd41c95f from=translated src=- shape=689f904a vocab=4d877126
+-/
 @[simp] theorem jointHash_apply (w : J → I → ℤ)
     (weights : I → UnitAddCircle) (j : J) :
     jointHash w weights j = weightedHash weights (w j) := rfl
 
+/--
+@isnad1 id=continuo.0h3v.s7.3f3a20b613cf from=translated src=- shape=4ee59c3c vocab=ec70c129
+-/
 theorem continuous_jointHash (w : J → I → ℤ) : Continuous (jointHash w) := by
   apply continuous_pi
   intro j
@@ -48,7 +54,9 @@ theorem continuous_jointHash (w : J → I → ℤ) : Continuous (jointHash w) :=
 
 variable [Fintype J]
 
-/-- Full rational row rank gives a rational right inverse.-/
+/-- Full rational row rank gives a rational right inverse.
+@isnad1 id=ex.1h3v.s6.42b3c6e57ad0 from=translated src=- shape=642bbedb vocab=8a2f016d
+-/
 theorem rational_right_inverse [DecidableEq J] (A : Matrix J I ℚ)
     (h : LinearIndependent ℚ A.row) :
     ∃ B : Matrix I J ℚ, A * B = 1 := by
@@ -63,7 +71,9 @@ theorem rational_right_inverse [DecidableEq J] (A : Matrix J I ℚ)
   exact Matrix.mulVec_surjective_iff_exists_right_inverse.mp hsurj
 
 /-- Cast an actual rational right-inverse identity to the reals. This avoids
-assuming that arbitrary rationally independent real vectors are real-independent.-/
+assuming that arbitrary rationally independent real vectors are real-independent.
+@isnad1 id=ex.1h3v.s7.30ca50bcd081 from=translated src=- shape=6626423f vocab=51e4ec2e
+-/
 theorem real_right_inverse [DecidableEq J] (A : Matrix J I ℚ)
     (h : LinearIndependent ℚ A.row) :
     ∃ B : Matrix I J ℝ, A.map (Rat.castHom ℝ) * B = 1 := by
@@ -76,7 +86,9 @@ theorem real_right_inverse [DecidableEq J] (A : Matrix J I ℚ)
     Matrix.map_one _ (map_zero _) (map_one _)
   exact hmap.trans hone
 
-/-- Simultaneous real weighted sums attain every real vector.-/
+/-- Simultaneous real weighted sums attain every real vector.
+@isnad1 id=surjecti.1h3v.s6.8904c8d950a7 from=translated src=- shape=5b761cea vocab=e3c27f31
+-/
 theorem realWeightedSums_surjective (w : J → I → ℤ)
     (h : LinearIndependent ℚ (fun j => fun i => (w j i : ℚ))) :
     Function.Surjective (fun weights : I → ℝ =>
@@ -96,7 +108,9 @@ theorem realWeightedSums_surjective (w : J → I → ℤ)
   simpa only [Rat.cast_intCast, mul_comm] using hj
 
 /-- Rationally independent integer rule vectors give a surjective joint torus
-hash, with no additional rank or torus-surjectivity premise.-/
+hash, with no additional rank or torus-surjectivity premise.
+@isnad1 id=surjecti.1h3v.s7.b7343d866b80 from=translated src=- shape=7a8ab867 vocab=4b244b37
+-/
 theorem jointHash_surjective (w : J → I → ℤ)
     (h : LinearIndependent ℚ (fun j => fun i => (w j i : ℚ))) :
     Function.Surjective (jointHash w) := by

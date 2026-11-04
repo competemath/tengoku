@@ -21,6 +21,9 @@ noncomputable def spectrum (word : List Bool) (L : ℕ) : Gram L → ℤ :=
 private theorem windowSum_zero (x : Letters) (L start : ℕ) (g : Gram L) :
     windowSum x L start 0 g = 0 := by simp [windowSum]
 
+/--
+@isnad1 id=eq.1h4v.s6.143813cf9a23 from=translated src=- shape=9203cc35 vocab=13eb96f1
+-/
 theorem spectrum_append (pre p : List Bool) (L : ℕ) (hp : L ≤ p.length + 1)
     (g : Gram L) :
     spectrum (pre ++ p) L g =
@@ -30,7 +33,9 @@ theorem spectrum_append (pre p : List Bool) (L : ℕ) (hp : L ≤ p.length + 1)
     (fun i _ => listLetters_append_right pre p i)] at h
   simpa only [spectrum, List.length_append, Nat.add_zero, windowSum_zero, add_zero] using h
 
-/-- Only the first L-1 letters can affect windows starting before a local word.-/
+/-- Only the first L-1 letters can affect windows starting before a local word.
+@isnad1 id=eq.4h5v.s7.ba8a7b84b1e0 from=translated src=- shape=6dbdacdc vocab=78b07197
+-/
 theorem prefix_change (pre p q : List Bool) (L : ℕ) (hL : 1 ≤ L)
     (hp : L ≤ p.length + 1) (hq : L ≤ q.length + 1)
     (hprefix : Agree (listLetters p) 0 (listLetters q) 0 (L - 1)) (g : Gram L) :
@@ -51,6 +56,9 @@ theorem prefix_change (pre p q : List Bool) (L : ℕ) (hL : 1 ≤ L)
   rw [spectrum_append pre q L hq, spectrum_append pre p L hp, hbefore]
   omega
 
+/--
+@isnad1 id=agree.1h4v.s6.f5148288ae33 from=translated src=- shape=b44ff6bd vocab=c9e897b2
+-/
 theorem common_prefix (common p q : List Bool) (L : ℕ)
     (hcommon : L - 1 ≤ common.length) :
     Agree (listLetters (common ++ p)) 0 (listLetters (common ++ q)) 0 (L - 1) := by
@@ -60,7 +68,9 @@ theorem common_prefix (common p q : List Bool) (L : ℕ)
     listLetters_append_left common q i (by omega)]
 
 /-- An edit after a common long enough suffix has the same increment for
-both earlier prefixes. No condition on the words following the edit is needed.-/
+both earlier prefixes. No condition on the words following the edit is needed.
+@isnad1 id=eq.2h7v.s7.f04926c8384e from=translated src=- shape=777f3a8a vocab=13f70d15
+-/
 theorem common_suffix_change (a b common p q : List Bool) (L : ℕ) (hL : 1 ≤ L)
     (hcommon : L - 1 ≤ common.length) (g : Gram L) :
     spectrum ((b ++ common) ++ q) L g - spectrum ((b ++ common) ++ p) L g =

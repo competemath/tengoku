@@ -23,7 +23,9 @@ open Windows
 def Occurs (x : Letters) (n : ℕ) (p : Letters) (i L : ℕ) : Prop :=
   ∃ a, a + L ≤ n ∧ Agree x a p i L
 
-/-- Two consecutive L-windows must occur consecutively in a k-unique x.-/
+/-- Two consecutive L-windows must occur consecutively in a k-unique x.
+@isnad1 id=eq.6h8v.s6.11c370d73b08 from=translated src=- shape=edc2826a vocab=15db1637
+-/
 theorem consecutive_occurrences
     (x p : Letters) (n k L i a b : ℕ)
     (hx : KUnique x n k) (hk : k < L)
@@ -43,7 +45,9 @@ theorem consecutive_occurrences
 
 /--
 All L-windows of p occurring in x forces the whole length-(L+D) word to
-occur in x. This establishes contiguity rather than taking it as a premise.-/
+occur in x. This establishes contiguity rather than taking it as a premise.
+@isnad1 id=ex.3h6v.s6.1fc0ed854f75 from=translated src=- shape=39daccc2 vocab=c3ba0431
+-/
 theorem all_windows_occur_implies_subword
     (x p : Letters) (n k L D : ℕ)
     (hx : KUnique x n k) (hk : k < L)
@@ -84,7 +88,9 @@ theorem all_windows_occur_implies_subword
   have htarget : i + (j - i) = 0 + j := by omega
   simpa only [hsource, htarget] using heq
 
-/-- The full word occurrence is unique; no second root position is needed.-/
+/-- The full word occurrence is unique; no second root position is needed.
+@isnad1 id=eq.6h7v.s6.d4050399c81a from=translated src=- shape=64d49dbd vocab=75c956aa
+-/
 theorem subword_position_unique
     (x p : Letters) (n k m a b : ℕ)
     (hx : KUnique x n k) (hkm : k ≤ m)

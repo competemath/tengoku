@@ -18,7 +18,9 @@ namespace DeletionCode.LargeBlockSelection
 
 open HeaderRecovery SignedSupport SignedRuleCount BlockPartition BlockAdjunction
 
-/-- A new block excluding the adjoined rule consists entirely of old rules.-/
+/-- A new block excluding the adjoined rule consists entirely of old rules.
+@isnad1 id=le.1h4v.s7.426b1bd48a6e from=translated src=- shape=f6c9cd1d vocab=eb5f59ba
+-/
 theorem blockOf_insert_subset_of_not_mem {k : ℕ} (G : RuleSet k)
     (w a : Gram (windowLength k) → ℤ)
     (hw : w ∉ blockOf (insert w G) a) : blockOf (insert w G) a ⊆ G := by
@@ -30,7 +32,9 @@ theorem blockOf_insert_subset_of_not_mem {k : ℕ} (G : RuleSet k)
   · exact hbG
 
 /-- A block that does not contain the new rule is unchanged. No freshness
-assumption on w, or membership assumption on its representative a, is needed.-/
+assumption on w, or membership assumption on its representative a, is needed.
+@isnad1 id=eq.1h4v.s7.f34b01fd77eb from=translated src=- shape=4e78a766 vocab=73c5d8f4
+-/
 theorem blockOf_insert_eq_of_not_mem {k : ℕ} (G : RuleSet k)
     (w a : Gram (windowLength k) → ℤ)
     (hw : w ∉ blockOf (insert w G) a) :
@@ -51,7 +55,9 @@ theorem blockOf_insert_eq_of_not_mem {k : ℕ} (G : RuleSet k)
       ⟨Finset.mem_insert_of_mem hbG,
         connectedIn_mono (Finset.subset_insert w G) hab⟩
 
-/-- Any actual new block excluding w is an actual old block.-/
+/-- Any actual new block excluding w is an actual old block.
+@isnad1 id=mem.2h4v.s7.779b46e3c35a from=translated src=- shape=48da6ee4 vocab=de4a985f
+-/
 theorem block_not_containing_new_is_old {k : ℕ} (G : RuleSet k)
     (w : Gram (windowLength k) → ℤ) (B : RuleSet k)
     (hB : B ∈ blocks (insert w G)) (hw : w ∉ B) : B ∈ blocks G := by
@@ -64,7 +70,9 @@ theorem block_not_containing_new_is_old {k : ℕ} (G : RuleSet k)
   exact (mem_blocks G B).mpr
     ⟨a, haG, (blockOf_insert_eq_of_not_mem G w a hw').symm.trans hvalue⟩
 
-/-- An actual block containing w is the actual block represented by w.-/
+/-- An actual block containing w is the actual block represented by w.
+@isnad1 id=eq.2h4v.s7.61d559386b94 from=translated src=- shape=687ca1db vocab=5a734ec2
+-/
 theorem block_containing_new_eq {k : ℕ} (G : RuleSet k)
     (w : Gram (windowLength k) → ℤ) (B : RuleSet k)
     (hB : B ∈ blocks (insert w G)) (hw : w ∈ B) :
@@ -76,7 +84,9 @@ theorem block_containing_new_eq {k : ℕ} (G : RuleSet k)
   exact hvalue.symm.trans (blockOf_eq_of_connected (insert w G) a w haw)
 
 /-- If every old block has size at most L, an oversized new block must be the
-block of the adjoined rule.-/
+block of the adjoined rule.
+@isnad1 id=eq.3h5v.s7.10bef2d8321a from=translated src=- shape=22331b9f vocab=b1ecd429
+-/
 theorem oversized_block_eq_new_block {k : ℕ} (G : RuleSet k)
     (w : Gram (windowLength k) → ℤ) (L : ℕ)
     (hsize : ∀ B ∈ blocks G, B.card ≤ L)
@@ -89,7 +99,9 @@ theorem oversized_block_eq_new_block {k : ℕ} (G : RuleSet k)
     omega
 
 /-- The stopping condition that some new block is too large gives the lower
-bound on the specific new block used in the witness construction.-/
+bound on the specific new block used in the witness construction.
+@isnad1 id=lt.2h4v.s7.fdfcc05da382 from=translated src=- shape=5eb787b9 vocab=b1ecd429
+-/
 theorem new_block_large_of_exists {k : ℕ} (G : RuleSet k)
     (w : Gram (windowLength k) → ℤ) (L : ℕ)
     (hsize : ∀ B ∈ blocks G, B.card ≤ L)

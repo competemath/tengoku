@@ -22,6 +22,9 @@ open Windows HeaderRecovery GeneratingModel ConcreteDecoder
 
 variable {B : Type*} {k : ℕ}
 
+/--
+@isnad1 id=eq.0h4v.s5.cfaf0d74581c from=translated src=- shape=20340da2 vocab=0af4a332
+-/
 theorem initial_vertices_agree (E : EditedFamily B k) (b : B) :
     SupportComponents.vertex E.family (windowLength k) b false 0 =
       SupportComponents.vertex E.family (windowLength k) b true 0 := by
@@ -56,6 +59,9 @@ noncomputable def rootEquiv (E : EditedFamily B k) (x : Letters) (n : ℕ)
       (Quotient.mk (GeneratingModel.componentSetoid E.family (windowLength k)) b.val) = b.val
     rw [← hC, (selectedRoot_spec E x n hx hg C).1]
 
+/--
+@isnad1 id=eq.2h5v.s5.a54da02760e7 from=translated src=- shape=e5cf4fe0 vocab=994afc32
+-/
 theorem rootCount_eq_components [Fintype B]
     (E : EditedFamily B k) (x : Letters) (n : ℕ)
     (hx : KUnique x n k) (hg : E.family.Generating x n (windowLength k)) :
@@ -66,6 +72,9 @@ theorem rootCount_eq_components [Fintype B]
   rw [← Fintype.card_subtype]
   exact (Fintype.card_congr (rootEquiv E x n hx hg)).symm
 
+/--
+@isnad1 id=eq.2h5v.s5.1c7d40820b59 from=translated src=- shape=9c7a2ea7 vocab=ee725821
+-/
 theorem rootCount_eq_graph_components [Fintype B]
     (E : EditedFamily B k) (x : Letters) (n : ℕ)
     (hx : KUnique x n k) (hg : E.family.Generating x n (windowLength k)) :
@@ -74,7 +83,9 @@ theorem rootCount_eq_graph_components [Fintype B]
   rw [rootCount_eq_components E x n hx hg]
   exact Fintype.card_congr (componentGraphEquiv E)
 
-/-- Every generating edited family has a bounded successful concrete decoding record.-/
+/-- Every generating edited family has a bounded successful concrete decoding record.
+@isnad1 id=ex.2h5v.s7.1662bbe5bb9b from=translated src=- shape=ebdc5935 vocab=6b48b3b3
+-/
 theorem generating_decode_exists [Fintype B] [DecidableEq B]
     (E : EditedFamily B k) (x : Letters) (n : ℕ)
     (hx : KUnique x n k) (hg : E.family.Generating x n (windowLength k)) :

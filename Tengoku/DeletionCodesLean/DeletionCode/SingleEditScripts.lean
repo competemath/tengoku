@@ -18,12 +18,16 @@ script. The realized words agree as complete padded letter functions.
 
 namespace DeletionCode.EditAlignment
 
-/-- A script containing no deletion or insertion leaves its source unchanged.-/
+/-- A script containing no deletion or insertion leaves its source unchanged.
+@isnad1 id=eq.1h2v.s4.69f0a8a744b4 from=translated src=- shape=5b983180 vocab=9170a4c7
+-/
 theorem Script.zero_eq {x y : Word} (h : Script x y 0 0) : x = y := by
   cases h
   rfl
 
-/-- A script of total cost at most one is unchanged, one deletion, or one insertion.-/
+/-- A script of total cost at most one is unchanged, one deletion, or one insertion.
+@isnad1 id=or.2h4v.s6.5de382c2a19c from=translated src=- shape=2e1a0a86 vocab=73cc1196
+-/
 theorem Script.classify_of_le_one {x y : Word} {d i : ℕ}
     (h : Script x y d i) (hcost : d + i ≤ 1) :
     x = y ∨
@@ -52,24 +56,34 @@ namespace DeletionCode.SingleEditScripts
 
 open Windows CatalogueWords EditAlignment SingleEditOrigins
 
+/--
+@isnad1 id=eq.0h3v.s5.9113cc2329d8 from=translated src=- shape=613912db vocab=d778d8db
+-/
 theorem eraseIdx_at_split (pre suffix : List Bool) (bit : Bool) :
     (pre ++ bit :: suffix).eraseIdx pre.length = pre ++ suffix := by
   rw [List.eraseIdx_append_of_length_le (Nat.le_refl _)]
   simp
 
-/-- The actual bit at a list split is the inserted/deleted bit.-/
+/-- The actual bit at a list split is the inserted/deleted bit.
+@isnad1 id=eq.0h3v.s5.eeaa561ad7c2 from=translated src=- shape=6a05a108 vocab=bb8e48fc
+-/
 theorem listLetters_at_split (pre suffix : List Bool) (bit : Bool) :
     listLetters (pre ++ bit :: suffix) pre.length = bit := by
   simp only [listLetters, List.getD_eq_getElem?_getD]
   rw [List.getElem?_append_right (Nat.le_refl _)]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s5.7a17d5d66de0 from=translated src=- shape=b3d9c1f1 vocab=17483558
+-/
 theorem delete_split (pre suffix : List Bool) (bit : Bool) :
     deleteAt (listLetters (pre ++ bit :: suffix)) pre.length =
       listLetters (pre ++ suffix) := by
   rw [← listLetters_eraseIdx, eraseIdx_at_split]
 
-/-- Insertion semantics follow from the already verified inverse edit identity.-/
+/-- Insertion semantics follow from the already verified inverse edit identity.
+@isnad1 id=eq.0h3v.s5.4ddb42118c89 from=translated src=- shape=10112d66 vocab=d493ea82
+-/
 theorem insert_split (pre suffix : List Bool) (bit : Bool) :
     insertAt (listLetters (pre ++ suffix)) pre.length bit =
       listLetters (pre ++ bit :: suffix) := by
@@ -83,7 +97,9 @@ theorem insert_split (pre suffix : List Bool) (bit : Bool) :
     _ = listLetters (pre ++ bit :: suffix) := insert_delete _ _
 
 /-- Every genuine script of cost at most one has a valid concrete edit realization.
-The output length and complete padded word are both derived from the script.-/
+The output length and complete padded word are both derived from the script.
+@isnad1 id=ex.1h2v.s5.a8232c410fa1 from=translated src=- shape=24322fa8 vocab=0c02ee70
+-/
 theorem within_one_realized {x y : List Bool} (h : WithinEdits 1 x y) :
     ∃ e : Edit, e.Valid x.length ∧ e.outputLength x.length = y.length ∧
       e.word (listLetters x) = listLetters y := by

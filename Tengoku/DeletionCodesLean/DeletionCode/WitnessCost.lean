@@ -22,11 +22,16 @@ open HeaderRecovery UniqueWordParameters
 /-- An explicit replacement for the paper's sufficiently large exponent b_t.-/
 def exponent (t : ℕ) : ℕ := 4 * CountExponent.exponent t + 2
 
+/--
+@isnad1 id=le.0h1v.s3.76906e575926 from=translated src=- shape=8a62b088 vocab=073e5731
+-/
 theorem exponent_ge_two (t : ℕ) : 2 ≤ exponent t := by
   unfold exponent
   omega
 
-/-- The elementary Bernoulli bound, including exponent zero.-/
+/-- The elementary Bernoulli bound, including exponent zero.
+@isnad1 id=le.0h2v.s5.05c27de37d7d from=translated src=- shape=4f8a9f80 vocab=f96c6fce
+-/
 theorem linear_le_power (c R : ℕ) : c * R + 1 ≤ (c + 1) ^ R := by
   induction R with
   | zero => simp
@@ -38,7 +43,9 @@ theorem linear_le_power (c R : ℕ) : c * R + 1 ≤ (c + 1) ^ R := by
         _ ≤ (c + 1) ^ R * (c + 1) := Nat.mul_le_mul_right _ ih
         _ = (c + 1) ^ (R + 1) := (pow_succ _ _).symm
 
-/-- Every allowed bounded witness size is at most L cubed.-/
+/-- Every allowed bounded witness size is at most L cubed.
+@isnad1 id=le.2h3v.s6.3a6e45226ca7 from=translated src=- shape=ffc00e91 vocab=f96c6fce
+-/
 theorem size_le_cube (t L R : ℕ) (hL : 4 * t + 2 ≤ L)
     (hR : R ≤ 1 + 4 * t * L ^ 2) : R ≤ L ^ 3 := by
   have hsq : 1 ≤ L ^ 2 := one_le_pow₀ (by omega)
@@ -48,6 +55,9 @@ theorem size_le_cube (t L R : ℕ) (hL : 4 * t + 2 ≤ L)
     _ ≤ L * L ^ 2 := Nat.mul_le_mul_right _ (by omega)
     _ = L ^ 3 := by ring
 
+/--
+@isnad1 id=le.1h3v.s6.c99f2fc7b1a3 from=translated src=- shape=3cf8aea2 vocab=f96c6fce
+-/
 theorem linear_factor_le (t L R : ℕ) (hL : 4 * t + 2 ≤ L) :
     2 * t * R + 1 ≤ L ^ R := by
   calc
@@ -55,7 +65,9 @@ theorem linear_factor_le (t L R : ℕ) (hL : 4 * t + 2 ≤ L) :
     _ ≤ L ^ R := Nat.pow_le_pow_left (by omega) R
 
 /-- All non-position factors in the paper's bounded-witness count fit into
-L^(b_t R), with b_t explicit. This also holds for R = 0 and R = 1.-/
+L^(b_t R), with b_t explicit. This also holds for R = 0 and R = 1.
+@isnad1 id=le.2h3v.s7.b0fd497b3bcf from=translated src=- shape=f953de48 vocab=4d716a8f
+-/
 theorem cost_le (t L R : ℕ) (hL : 4 * t + 2 ≤ L)
     (hR : R ≤ 1 + 4 * t * L ^ 2) :
     2 ^ R * (2 * t * R + 1) * (L * R) ^ (CountExponent.exponent t * R) ≤
@@ -78,7 +90,9 @@ theorem cost_le (t L R : ℕ) (hL : 4 * t + 2 ≤ L)
       unfold exponent
       ring
 
-/-- The paper's actual ceiling-logarithm choice bounds n by 2^L.-/
+/-- The paper's actual ceiling-logarithm choice bounds n by 2^L.
+@isnad1 id=le.0h1v.s4.25a4685a82da from=translated src=- shape=5aafc6f1 vocab=deebb371
+-/
 theorem length_le_two_pow_window (n : ℕ) :
     n ≤ 2 ^ windowLength (uniquenessLength n) := by
   have hclog : Nat.clog 2 n ≤ windowLength (uniquenessLength n) := by
@@ -88,7 +102,9 @@ theorem length_le_two_pow_window (n : ℕ) :
 
 /-- In the large-witness case L < R, the extra factor n costs at most 2^R.
 No asymptotic or logarithmic approximation is assumed. The result even
-includes n = 0; positive n is the manuscript's intended application.-/
+includes n = 0; positive n is the manuscript's intended application.
+@isnad1 id=le.1h2v.s5.50ccaa5347fd from=translated src=- shape=09f30870 vocab=e735b3e4
+-/
 theorem length_le_two_pow_of_window_lt (n R : ℕ)
     (hR : windowLength (uniquenessLength n) < R) : n ≤ 2 ^ R := by
   exact (length_le_two_pow_window n).trans

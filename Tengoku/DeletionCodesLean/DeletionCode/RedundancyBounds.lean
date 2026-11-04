@@ -20,6 +20,9 @@ open HeaderRecovery
 noncomputable def redundancy (n : ℕ) (C : Finset (Bits n)) : ℝ :=
   (n : ℝ) - Real.logb 2 (C.card : ℝ)
 
+/--
+@isnad1 id=lt.1h3v.s6.2bacef248e48 from=translated src=- shape=4f5b6588 vocab=a9fe6ab4
+-/
 theorem card_positive (n Q : ℕ) (C : Finset (Bits n))
     (hcard : 2 ^ n ≤ 8 * Q * C.card) : 0 < C.card := by
   have hp : 0 < (2 : ℕ) ^ n := pow_pos (by decide) _
@@ -28,10 +31,16 @@ theorem card_positive (n Q : ℕ) (C : Finset (Bits n))
   rw [hz, mul_zero] at hcard
   omega
 
+/--
+@isnad1 id=nonempty.1h3v.s5.6efe6b5e192c from=translated src=- shape=f4710149 vocab=85757424
+-/
 theorem code_nonempty (n Q : ℕ) (C : Finset (Bits n))
     (hcard : 2 ^ n ≤ 8 * Q * C.card) : C.Nonempty :=
   Finset.card_pos.mp (card_positive n Q C hcard)
 
+/--
+@isnad1 id=eq.0h0v.s4.cc7c5c1bf0e4 from=translated src=- shape=7226d0ee vocab=601a38d2
+-/
 theorem logb_eight : Real.logb 2 (8 : ℝ) = 3 := by
   calc
     Real.logb 2 (8 : ℝ) = Real.logb 2 ((2 : ℝ) ^ (3 : ℕ)) := by norm_num
@@ -39,7 +48,9 @@ theorem logb_eight : Real.logb 2 (8 : ℝ) = 3 := by
       rw [Real.logb_pow, Real.logb_self_eq_one (by norm_num : (1 : ℝ) < 2)]
       norm_num
 
-/-- The finite counting estimate gives redundancy at most log₂ Q + 3.-/
+/-- The finite counting estimate gives redundancy at most log₂ Q + 3.
+@isnad1 id=le.2h3v.s6.af5c1b34d56a from=translated src=- shape=8b6be69c vocab=72696df8
+-/
 theorem redundancy_le_log_labels (n Q : ℕ) (C : Finset (Bits n))
     (hQ : 1 ≤ Q) (hcard : 2 ^ n ≤ 8 * Q * C.card) :
     redundancy n C ≤ Real.logb 2 (Q : ℝ) + 3 := by
@@ -59,11 +70,17 @@ theorem redundancy_le_log_labels (n Q : ℕ) (C : Finset (Bits n))
 def labelCount (t n : ℕ) : ℕ :=
   8 * n ^ (2 * t - 1) * (PaperParameters.L n) ^ (WitnessCost.exponent t)
 
+/--
+@isnad1 id=lt.1h2v.s4.22073462ed7a from=translated src=- shape=676e8bff vocab=9d157cad
+-/
 theorem labelCount_positive (t n : ℕ) (hn : 1 ≤ n) : 0 < labelCount t n := by
   have hL : 0 < PaperParameters.L n := by have := PaperParameters.nine_le_L n; omega
   unfold labelCount
   exact mul_pos (mul_pos (by decide : 0 < 8) (pow_pos (by omega) _)) (pow_pos hL _)
 
+/--
+@isnad1 id=eq.1h2v.s6.9a5dd268f182 from=translated src=- shape=660ae21e vocab=726ffb41
+-/
 theorem logb_labelCount (t n : ℕ) (hn : 1 ≤ n) :
     Real.logb 2 (labelCount t n : ℝ) =
       3 + ((2 * t - 1 : ℕ) : ℝ) * Real.logb 2 (n : ℝ) +
@@ -80,7 +97,9 @@ theorem logb_labelCount (t n : ℕ) (hn : 1 ≤ n) :
     logb_eight, Real.logb_pow, Real.logb_pow]
 
 /-- Explicit redundancy bound for the actual parameter choice. Its only code
-hypothesis is the established finite cardinality inequality.-/
+hypothesis is the established finite cardinality inequality.
+@isnad1 id=le.2h3v.s7.31a0b572db9a from=translated src=- shape=6a08e64b vocab=00784832
+-/
 theorem paper_redundancy_bound (t n : ℕ) (C : Finset (Bits n)) (hn : 4 ≤ n)
     (hcard : 2 ^ n ≤ 8 * labelCount t n * C.card) :
     redundancy n C ≤

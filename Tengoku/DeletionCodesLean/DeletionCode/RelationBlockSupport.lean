@@ -21,7 +21,9 @@ open SignedSupport RuleSetGraph GeneratingBlocks
 open scoped BigOperators
 
 /-- A finite partial combination of independent rational vectors with at least
-one nonzero coefficient has an actual nonzero coordinate.-/
+one nonzero coefficient has an actual nonzero coordinate.
+@isnad1 id=ex.2h5v.s6.2c871633030a from=translated src=- shape=8170878d vocab=d8097961
+-/
 theorem partial_sum_nonzero {I H : Type*} (G : I → H → ℚ)
     (hG : LinearIndependent ℚ G) (T : Finset I) (a : I → ℚ)
     (hactive : ∃ i ∈ T, a i ≠ 0) :
@@ -36,7 +38,9 @@ theorem partial_sum_nonzero {I H : Type*} (G : I → H → ℚ)
   obtain ⟨i, hi, hai⟩ := hactive
   exact hai ((linearIndependent_iff'.mp hG) T a hzero i hi)
 
-/-- The commonly used nonempty, everywhere nonzero coefficient version.-/
+/-- The commonly used nonempty, everywhere nonzero coefficient version.
+@isnad1 id=ex.3h5v.s6.ca6014cf3745 from=translated src=- shape=b86f25fc vocab=fd9b5462
+-/
 theorem partial_sum_nonzero_of_nonempty {I H : Type*} (G : I → H → ℚ)
     (hG : LinearIndependent ℚ G) (T : Finset I) (a : I → ℚ)
     (hT : T.Nonempty) (ha : ∀ i ∈ T, a i ≠ 0) :
@@ -45,7 +49,9 @@ theorem partial_sum_nonzero_of_nonempty {I H : Type*} (G : I → H → ℚ)
   exact partial_sum_nonzero G hG T a ⟨i, hi, ha i hi⟩
 
 /-- At a coordinate vanishing outside T, the full relation equals its actual
-finite restriction to T.-/
+finite restriction to T.
+@isnad1 id=eq.2h7v.s6.c59a6e429120 from=translated src=- shape=5fd6ce8b vocab=97c8e559
+-/
 theorem restriction_eq_at {I : Type*} [Fintype I] {L : ℕ}
     (G : I → Gram L → ℤ) (w : Gram L → ℤ) (a : I → ℚ)
     (hrel : RelationSupport.Relation G w a) (T : Finset I) (g : Gram L)
@@ -58,7 +64,9 @@ theorem restriction_eq_at {I : Type*} [Fintype I] {L : ℕ}
   intro i _ hi
   simp [houtside i hi]
 
-/-- Every nonzero partial coordinate is supported by an actual selected rule.-/
+/-- Every nonzero partial coordinate is supported by an actual selected rule.
+@isnad1 id=ex.1h6v.s6.5ec0208917a4 from=translated src=- shape=34cc6263 vocab=84e3bc1c
+-/
 theorem partial_support {I : Type*} {L : ℕ}
     (G : I → Gram L → ℤ) (T : Finset I) (a : I → ℚ) (g : Gram L)
     (hne : (∑ i ∈ T, a i * (G i g : ℚ)) ≠ 0) :
@@ -72,7 +80,9 @@ theorem partial_support {I : Type*} {L : ℕ}
   simp [hnone i hi]
 
 /-- An actual gram supported in a whole adjacency block is absent from every
-rule outside that block. The same holds for any union of whole blocks.-/
+rule outside that block. The same holds for any union of whole blocks.
+@isnad1 id=eq.3h6v.s6.975549efda8f from=translated src=- shape=31ac593c vocab=ea8c687e
+-/
 theorem outside_block_vanishes {I : Type*} {L : ℕ}
     (G : I → Gram L → ℤ) (T : Finset I)
     (hclosed : BlockClosed G (↑T : Set I)) (g : Gram L)
@@ -85,7 +95,9 @@ theorem outside_block_vanishes {I : Type*} {L : ℕ}
     (Relation.EqvGen.rel i j (common_gram_adjacent G i j g hgi hgj)))
 
 /-- A block restriction containing an active coefficient has a nonzero actual
-gram that survives in w. Whole-block closure supplies the separation premise.-/
+gram that survives in w. Whole-block closure supplies the separation premise.
+@isnad1 id=ex.4h6v.s7.49e02aa51ef2 from=translated src=- shape=4354cd03 vocab=943dd49c
+-/
 theorem block_restriction_nonzero {I : Type*} [Fintype I] {L : ℕ}
     (G : I → Gram L → ℤ) (w : Gram L → ℤ) (a : I → ℚ)
     (hG : LinearIndependent ℚ (fun i g => (G i g : ℚ)))
@@ -104,7 +116,9 @@ theorem block_restriction_nonzero {I : Type*} [Fintype I] {L : ℕ}
   simpa only [hw, Int.cast_zero] using heq.symm
 
 /-- Each actual EqvGen adjacency block meeting the nonzero coefficient support
-meets the nonzero support of w at a gram of a rule in that same block.-/
+meets the nonzero support of w at a gram of a rule in that same block.
+@isnad1 id=ex.3h6v.s7.800022c42b1b from=translated src=- shape=fe20b170 vocab=c9902637
+-/
 theorem connected_block_nonzero {I : Type*} [Fintype I] {L : ℕ}
     (G : I → Gram L → ℤ) (w : Gram L → ℤ) (a : I → ℚ)
     (hG : LinearIndependent ℚ (fun i g => (G i g : ℚ)))
@@ -126,7 +140,9 @@ theorem connected_block_nonzero {I : Type*} [Fintype I] {L : ℕ}
   exact ⟨g, i, (hmem i).mp hi, hgi, hw⟩
 
 /-- The surviving gram provides an actual incident support vertex shared with
-w, ready for the block/component counting step.-/
+w, ready for the block/component counting step.
+@isnad1 id=ex.3h6v.s7.ecf5732f3772 from=translated src=- shape=9e59cead vocab=0df5fb8a
+-/
 theorem connected_block_meets_relation {I : Type*} [Fintype I] {L : ℕ}
     (G : I → Gram L → ℤ) (w : Gram L → ℤ) (a : I → ℚ)
     (hG : LinearIndependent ℚ (fun i g => (G i g : ℚ)))

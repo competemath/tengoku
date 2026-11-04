@@ -27,7 +27,9 @@ open Windows HeaderRecovery GeneratingModel
 
 def listLetters (word : List Bool) : Letters := fun i => word.getD i false
 
-/-- Deleting a list entry agrees everywhere with deletion of its padded letters.-/
+/-- Deleting a list entry agrees everywhere with deletion of its padded letters.
+@isnad1 id=eq.0h2v.s4.ff4920058451 from=translated src=- shape=6ae44156 vocab=79209934
+-/
 theorem listLetters_eraseIdx (word : List Bool) (ell : ℕ) :
     listLetters (word.eraseIdx ell) = deleteAt (listLetters word) ell := by
   funext i
@@ -69,6 +71,9 @@ def positiveWord (bubble : BubbleWord k) : List Bool :=
   | .deletion => bubble.shortWord
   | .insertion => bubble.longWord
 
+/--
+@isnad1 id=eq.0h2v.s4.fed100e04dbd from=translated src=- shape=e022014e vocab=283291f0
+-/
 theorem longWord_length (bubble : BubbleWord k) :
     bubble.longWord.length = longLength k bubble.header := by
   have hlo := bubble.rho_lower
@@ -77,6 +82,9 @@ theorem longWord_length (bubble : BubbleWord k) :
     bubble.left_length, bubble.right_length, longLength, header, windowLength]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s4.05e945e6ed98 from=translated src=- shape=e022014e vocab=63afb8f3
+-/
 theorem shortWord_length (bubble : BubbleWord k) :
     bubble.shortWord.length = shortLength k bubble.header := by
   have hlo := bubble.rho_lower
@@ -85,6 +93,9 @@ theorem shortWord_length (bubble : BubbleWord k) :
     bubble.left_length, bubble.right_length, shortLength, longLength, header, windowLength]
   omega
 
+/--
+@isnad1 id=eq.0h2v.s4.80b8d9eb7f16 from=translated src=- shape=e022014e vocab=53d550fa
+-/
 theorem negativeWord_length (bubble : BubbleWord k) :
     bubble.negativeWord.length = negativeLength k bubble.header := by
   cases ho : bubble.orientation <;>
@@ -92,6 +103,9 @@ theorem negativeWord_length (bubble : BubbleWord k) :
   · exact bubble.longWord_length
   · exact bubble.shortWord_length
 
+/--
+@isnad1 id=eq.0h2v.s4.5cb52fe9e880 from=translated src=- shape=e022014e vocab=3f15bbeb
+-/
 theorem positiveWord_length (bubble : BubbleWord k) :
     bubble.positiveWord.length = positiveLength k bubble.header := by
   cases ho : bubble.orientation <;>
@@ -99,6 +113,9 @@ theorem positiveWord_length (bubble : BubbleWord k) :
   · exact bubble.shortWord_length
   · exact bubble.longWord_length
 
+/--
+@isnad1 id=and.0h2v.s5.701b8e524860 from=translated src=- shape=8e76600a vocab=ee08e48f
+-/
 theorem edit_in_run (bubble : BubbleWord k) :
     bubble.left.length ≤ editOffset k ∧
       editOffset k - bubble.left.length < bubble.rho := by
@@ -108,7 +125,9 @@ theorem edit_in_run (bubble : BubbleWord k) :
   dsimp [editOffset, windowLength]
   omega
 
-/-- The header bit is derived from the run word at the prescribed edit offset.-/
+/-- The header bit is derived from the run word at the prescribed edit offset.
+@isnad1 id=eq.0h2v.s4.62c70ea71ecd from=translated src=- shape=8368522a vocab=45fdca0c
+-/
 theorem header_bit (bubble : BubbleWord k) :
     listLetters bubble.longWord (editOffset k) = bubble.header.bit := by
   have hleft := bubble.edit_in_run.1
@@ -119,7 +138,9 @@ theorem header_bit (bubble : BubbleWord k) :
   rw [List.getElem?_replicate_of_lt hrun]
   rfl
 
-/-- Removing the indicated run bit gives exactly the shorter grammar word.-/
+/-- Removing the indicated run bit gives exactly the shorter grammar word.
+@isnad1 id=eq.0h2v.s4.39220174b666 from=translated src=- shape=124a2fdf vocab=d45c288e
+-/
 theorem eraseIdx_longWord (bubble : BubbleWord k) :
     bubble.longWord.eraseIdx (editOffset k) = bubble.shortWord := by
   have hleft := bubble.edit_in_run.1
@@ -130,11 +151,16 @@ theorem eraseIdx_longWord (bubble : BubbleWord k) :
     (by simpa only [List.length_replicate] using hrun)]
   rw [List.eraseIdx_replicate, ite_eq_left hrun]
 
-/-- The finite-word edit identity also holds for the complete padded functions.-/
+/-- The finite-word edit identity also holds for the complete padded functions.
+@isnad1 id=eq.0h2v.s4.4a9fc916abfa from=translated src=- shape=98b0ec46 vocab=0adb4834
+-/
 theorem delete_longWord (bubble : BubbleWord k) :
     deleteAt (listLetters bubble.longWord) (editOffset k) = listLetters bubble.shortWord := by
   rw [← listLetters_eraseIdx, bubble.eraseIdx_longWord]
 
+/--
+@isnad1 id=eq.0h2v.s4.ba49e7a618ba from=translated src=- shape=2c154c21 vocab=c1872120
+-/
 theorem negativeWord_semantics (bubble : BubbleWord k) :
     listLetters bubble.negativeWord =
       negativePath k bubble.header (listLetters bubble.longWord) := by
@@ -142,6 +168,9 @@ theorem negativeWord_semantics (bubble : BubbleWord k) :
     simp only [negativeWord, negativePath, header, ho]
   exact bubble.delete_longWord.symm
 
+/--
+@isnad1 id=eq.0h2v.s4.32e3973193c0 from=translated src=- shape=2c154c21 vocab=d85292a3
+-/
 theorem positiveWord_semantics (bubble : BubbleWord k) :
     listLetters bubble.positiveWord =
       positivePath k bubble.header (listLetters bubble.longWord) := by
@@ -149,7 +178,9 @@ theorem positiveWord_semantics (bubble : BubbleWord k) :
     simp only [positiveWord, positivePath, header, ho]
   exact bubble.delete_longWord.symm
 
-/-- Rebuilding from the grammar's negative word recovers the grammar's positive word.-/
+/-- Rebuilding from the grammar's negative word recovers the grammar's positive word.
+@isnad1 id=eq.0h2v.s4.1fdcdd41f9d6 from=translated src=- shape=d9290142 vocab=151692d1
+-/
 theorem rebuild_positiveWord (bubble : BubbleWord k) :
     rebuildPositive k bubble.header (listLetters bubble.negativeWord) =
       listLetters bubble.positiveWord := by
@@ -168,11 +199,17 @@ def editedFamily {B : Type*} {k : ℕ} (bubbles : B → BubbleWord k) (rank : B 
   rho_upper b := (bubbles b).rho_upper
   header_bit b := (bubbles b).header_bit
 
+/--
+@isnad1 id=eq.0h5v.s5.51d59c036576 from=translated src=- shape=9cfb2eca vocab=80e70364
+-/
 theorem editedFamily_negative {B : Type*} {k : ℕ}
     (bubbles : B → BubbleWord k) (rank : B → ℕ) (b : B) :
     (editedFamily bubbles rank).family.path b false = listLetters (bubbles b).negativeWord :=
   (bubbles b).negativeWord_semantics.symm
 
+/--
+@isnad1 id=eq.0h5v.s5.404ed9f9b7e0 from=translated src=- shape=9cfb2eca vocab=2c7f61e7
+-/
 theorem editedFamily_positive {B : Type*} {k : ℕ}
     (bubbles : B → BubbleWord k) (rank : B → ℕ) (b : B) :
     (editedFamily bubbles rank).family.path b true = listLetters (bubbles b).positiveWord :=

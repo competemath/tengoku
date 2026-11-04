@@ -51,7 +51,9 @@ private theorem execute_start (M : Model B x n k)
         ht, Option.map_some]
     · exact ⟨State.start_wellFormed M.schedule s hi.wellFormed dest w, hsound, hreal⟩
 
-/-- Concrete progress with a real seed slot and a successful executable record.-/
+/-- Concrete progress with a real seed slot and a successful executable record.
+@isnad1 id=ex.3h8v.s6.94d1004126d3 from=translated src=- shape=339f8463 vocab=7605d1ed
+-/
 theorem lift_step (M : Model B x n k) (hx : KUnique x n k)
     (s : State B) (mem : Bank B) (hi : M.Invariant s mem)
     {q : State B} (step : Recovery.Step M.schedule s q) :

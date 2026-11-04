@@ -40,12 +40,18 @@ noncomputable def nonuniqueWords (n k : ℕ) : Finset (Bits n) := by
 def RepeatedWindow {n : ℕ} (k : ℕ) (a b : Fin n) (x : Bits n) : Prop :=
   a.val + k ≤ n ∧ b.val + k ≤ n ∧ Agree (padBits x) a.val (padBits x) b.val k
 
+/--
+@isnad1 id=iff.0h3v.s4.779f03201bfe from=translated src=- shape=e71c02c1 vocab=06b214fc
+-/
 theorem mem_uniqueWords {n k : ℕ} (x : Bits n) :
     x ∈ uniqueWords n k ↔ FiniteConflictGraph.Unique k x := by
   classical
   simp only [uniqueWords, Finset.mem_filter, Finset.mem_univ, true_and,
     FiniteConflictGraph.Unique]
 
+/--
+@isnad1 id=iff.1h3v.s5.74e903a5eb32 from=translated src=- shape=26061632 vocab=8f5ccf2f
+-/
 theorem not_unique_iff_pair {n k : ℕ} (hk : 1 ≤ k) (x : Bits n) :
     ¬ KUnique (padBits x) n k ↔
       ∃ a b : Fin n, a < b ∧ RepeatedWindow k a b x := by
@@ -67,6 +73,9 @@ theorem not_unique_iff_pair {n k : ℕ} (hk : 1 ≤ k) (x : Bits n) :
     have heq := hx a.val b.val ha hb hab
     exact (Nat.ne_of_lt hlt) heq
 
+/--
+@isnad1 id=eq.0h2v.s5.754cc134ac70 from=translated src=- shape=550f9dc4 vocab=295cca93
+-/
 theorem family_partition (n k : ℕ) :
     (uniqueWords n k).card + (nonuniqueWords n k).card = 2 ^ n := by
   classical
@@ -75,11 +84,17 @@ theorem family_partition (n k : ℕ) :
   simpa only [uniqueWords, nonuniqueWords, Finset.card_univ, Fintype.card_fun,
     Fintype.card_fin, Fintype.card_bool] using h
 
+/--
+@isnad1 id=kunique.1h3v.s4.f27db85d2e72 from=translated src=- shape=4990cdf5 vocab=d7f2cbdf
+-/
 theorem unique_of_length_lt {n k : ℕ} (hk : n < k) (x : Bits n) :
     KUnique (padBits x) n k := by
   intro a b ha hb hab
   omega
 
+/--
+@isnad1 id=eq.1h2v.s5.ea5a01e3130d from=translated src=- shape=decf9443 vocab=00782487
+-/
 theorem uniqueWords_eq_univ_of_length_lt {n k : ℕ} (hk : n < k) :
     uniqueWords n k = Finset.univ := by
   classical
@@ -87,13 +102,18 @@ theorem uniqueWords_eq_univ_of_length_lt {n k : ℕ} (hk : n < k) :
   simp only [uniqueWords, Finset.mem_filter, Finset.mem_univ, true_and, iff_true]
   exact unique_of_length_lt hk x
 
+/--
+@isnad1 id=eq.1h2v.s5.4696622950ef from=translated src=- shape=40248a01 vocab=36921cbf
+-/
 theorem card_uniqueWords_of_length_lt {n k : ℕ} (hk : n < k) :
     (uniqueWords n k).card = 2 ^ n := by
   rw [uniqueWords_eq_univ_of_length_lt hk]
   simp only [Finset.card_univ, Fintype.card_fun, Fintype.card_fin, Fintype.card_bool]
 
 /-- A fixed pair contributes at most 2^(n-k) words, with overlapping and
-out-of-bounds pairs both handled explicitly.-/
+out-of-bounds pairs both handled explicitly.
+@isnad1 id=le.1h4v.s6.7213015f2328 from=translated src=- shape=df84c88d vocab=81d205df
+-/
 theorem repeatedWindow_card_le (n k : ℕ) (a b : Fin n) (hab : a < b) :
     (Finset.univ.filter (RepeatedWindow k a b)).card ≤ 2 ^ (n - k) := by
   classical
@@ -118,7 +138,9 @@ theorem repeatedWindow_card_le (n k : ℕ) (a b : Fin n) (hab : a < b) :
     rw [hz]
     exact Nat.zero_le _
 
-/-- Union bound on the actual nonunique family, counted once per word.-/
+/-- Union bound on the actual nonunique family, counted once per word.
+@isnad1 id=le.1h2v.s5.5a8c6d4181c3 from=translated src=- shape=224afb52 vocab=3798598c
+-/
 theorem nonunique_card_le (n k : ℕ) (hk : 1 ≤ k) :
     (nonuniqueWords n k).card ≤ n.choose 2 * 2 ^ (n - k) := by
   classical
@@ -126,6 +148,9 @@ theorem nonunique_card_le (n k : ℕ) (hk : 1 ≤ k) :
     (RepeatedWindow k) (repeatedWindow_card_le n k)
   simpa only [nonuniqueWords, not_unique_iff_pair hk] using h
 
+/--
+@isnad1 id=le.1h2v.s6.0e391b937719 from=translated src=- shape=209c7522 vocab=94ba10e6
+-/
 theorem scaled_nonunique_card_le (n k : ℕ) (hk : 1 ≤ k) :
     (nonuniqueWords n k).card * 2 ^ k ≤ n.choose 2 * 2 ^ n := by
   by_cases hkn : k ≤ n
@@ -139,7 +164,9 @@ theorem scaled_nonunique_card_le (n k : ℕ) (hk : 1 ≤ k) :
     simp only [hz, Nat.zero_mul, Nat.zero_le]
 
 /-- The manuscript's union-bound estimate, with the cardinality of the
-actual k-unique family and no assumed collision-probability premise.-/
+actual k-unique family and no assumed collision-probability premise.
+@isnad1 id=le.1h2v.s6.401b401bb0c4 from=translated src=- shape=4c12c6e4 vocab=e316d494
+-/
 theorem card_unique_lower_bound (n k : ℕ) (hk : 1 ≤ k) :
     (1 - (n.choose 2 : ℚ) / (2 : ℚ) ^ k) * (2 : ℚ) ^ n ≤
       (uniqueWords n k).card := by
@@ -155,6 +182,9 @@ theorem card_unique_lower_bound (n k : ℕ) (hk : 1 ≤ k) :
     exact_mod_cast family_partition n k
   nlinarith
 
+/--
+@isnad1 id=le.1h2v.s6.7a9e111d90c6 from=translated src=- shape=4c12c6e4 vocab=77cbe7c2
+-/
 theorem card_unique_lower_bound_real (n k : ℕ) (hk : 1 ≤ k) :
     (1 - (n.choose 2 : ℝ) / (2 : ℝ) ^ k) * (2 : ℝ) ^ n ≤
       (uniqueWords n k).card := by
@@ -165,7 +195,9 @@ theorem card_unique_lower_bound_real (n k : ℕ) (hk : 1 ≤ k) :
     Rat.cast_pow, Rat.cast_natCast, Rat.cast_ofNat] using h
 
 /-- Complete lemma `lem:family`: the paper's parameter retains at least
-seven eighths of all n-bit words, and hence at least 2^(n-1) words.-/
+seven eighths of all n-bit words, and hence at least 2^(n-1) words.
+@isnad1 id=other.1h1v.s8.effd3aaeb4f3 from=translated src=- shape=c7ee274b vocab=7c20a02b
+-/
 theorem most_words_unique (n : ℕ) (hn : 1 ≤ n) :
     let k := UniqueWordParameters.uniquenessLength n
     (1 - (n.choose 2 : ℚ) / (2 : ℚ) ^ k) * (2 : ℚ) ^ n ≤ (uniqueWords n k).card ∧
@@ -178,6 +210,9 @@ theorem most_words_unique (n : ℕ) (hn : 1 ≤ n) :
     UniqueWordParameters.seven_eighths_le_retained n,
     UniqueWordParameters.half_words_le_seven_eighths n hn⟩
 
+/--
+@isnad1 id=other.1h1v.s8.a2131021a513 from=translated src=- shape=e9b7de0c vocab=2c2fa36a
+-/
 theorem most_words_unique_real (n : ℕ) (hn : 1 ≤ n) :
     let k := 2 * ⌈Real.logb 2 (n : ℝ)⌉₊ + 2
     (1 - (n.choose 2 : ℝ) / (2 : ℝ) ^ k) * (2 : ℝ) ^ n ≤ (uniqueWords n k).card ∧
@@ -191,7 +226,9 @@ theorem most_words_unique_real (n : ℕ) (hn : 1 ≤ n) :
     UniqueWordParameters.seven_eighths_le_retained_real n,
     UniqueWordParameters.half_words_le_seven_eighths_real n hn⟩
 
-/-- Natural cardinality version used by subsequent code-size estimates.-/
+/-- Natural cardinality version used by subsequent code-size estimates.
+@isnad1 id=le.1h1v.s5.fd03cd4d0391 from=translated src=- shape=07085bce vocab=e1185b98
+-/
 theorem half_words_le_card_unique (n : ℕ) (hn : 1 ≤ n) :
     2 ^ (n - 1) ≤ (uniqueWords n (UniqueWordParameters.uniquenessLength n)).card := by
   obtain ⟨hcount, hfrac, hhalf⟩ := most_words_unique n hn

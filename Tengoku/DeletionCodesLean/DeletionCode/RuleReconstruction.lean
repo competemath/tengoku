@@ -27,12 +27,18 @@ def recoveredFamily {ν : ℕ} (k : ℕ) (rank : Fin ν → ℕ)
     else negativeLetters data b
   extra b side := PathMemory.pathLength k (data.header b) side - windowLength k
 
+/--
+@isnad1 id=agree.0h4v.s5.b20430a1cd21 from=translated src=- shape=5154bd71 vocab=3230d724
+-/
 theorem negativeLetters_agree {ν k : ℕ} (E : EditedFamily (Fin ν) k) (b : Fin ν) :
     Agree (negativeLetters (dataOfFamily E) b) 0
       (negativePath k (E.header b) (E.long b)) 0 (negativeLength k (E.header b)) := by
   intro i hi
   simp [negativeLetters, dataOfFamily, dataOfOutput, List.getD, hi]
 
+/--
+@isnad1 id=agree.0h6v.s6.36d18d1a66ab from=translated src=- shape=6fd38e97 vocab=fbb16b12
+-/
 theorem recoveredFamily_agree {ν k : ℕ} (E : EditedFamily (Fin ν) k)
     (rank : Fin ν → ℕ) (b : Fin ν) (side : Bool) :
     Agree ((recoveredFamily k rank (dataOfFamily E)).path b side) 0
@@ -45,6 +51,9 @@ theorem recoveredFamily_agree {ν k : ℕ} (E : EditedFamily (Fin ν) k)
       (negativeLetters (dataOfFamily E) b) (E.rho_lower b) (E.rho_upper b)
       (E.header_bit b) (negativeLetters_agree E b)
 
+/--
+@isnad1 id=eq.1h4v.s5.1ae35974c894 from=translated src=- shape=6e43da37 vocab=19f2937a
+-/
 theorem pathSpectrum_congr (p q : Letters) (L D : ℕ)
     (h : Agree p 0 q 0 (L + D)) : pathSpectrum p L D = pathSpectrum q L D := by
   classical
@@ -58,6 +67,9 @@ theorem pathSpectrum_congr (p q : Letters) (L D : ℕ)
     simpa only [gram, Nat.zero_add] using h (i.val + j.val) hbound
   rw [hgram]
 
+/--
+@isnad1 id=eq.0h5v.s5.1ac03c9a4725 from=translated src=- shape=1529f883 vocab=538980fb
+-/
 theorem recovered_bubble_spectrum {ν k : ℕ} (E : EditedFamily (Fin ν) k)
     (rank : Fin ν → ℕ) (b : Fin ν) :
     bubbleSpectrum (recoveredFamily k rank (dataOfFamily E)) (windowLength k) b =
@@ -70,6 +82,9 @@ theorem recovered_bubble_spectrum {ν k : ℕ} (E : EditedFamily (Fin ν) k)
     (recoveredFamily_agree E rank b true)) g
   exact congrArg₂ (fun a b : ℤ => a - b) hp hn
 
+/--
+@isnad1 id=eq.0h5v.s5.a7cc397dc7c8 from=translated src=- shape=8fb1cb0a vocab=cbc8a8fa
+-/
 theorem recovered_rule_spectrum {ν k : ℕ} (E : EditedFamily (Fin ν) k)
     (rank : Fin ν → ℕ) (bubbles : Finset (Fin ν)) :
     ruleSpectrum (recoveredFamily k rank (dataOfFamily E)) (windowLength k) bubbles =
@@ -95,7 +110,9 @@ noncomputable def rulesOfData {ν R : ℕ} (k : ℕ) (group : Fin ν → Fin R)
   exact Finset.univ.image (fun r => ruleSpectrum
     (recoveredFamily k (fun b => (group b).val) data) (windowLength k) (groupBubbles group r))
 
-/-- Recovering finite word data suffices to determine the entire signed rule set.-/
+/-- Recovering finite word data suffices to determine the entire signed rule set.
+@isnad1 id=eq.0h5v.s5.62ef9b8680e3 from=translated src=- shape=f8893dd0 vocab=9c0e2779
+-/
 theorem rules_roundtrip {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
     (group : Fin ν → Fin R) : rulesOfData k group (dataOfFamily E) = rulesOfFamily E group := by
   classical

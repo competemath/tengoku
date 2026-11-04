@@ -52,7 +52,9 @@ def SeparatedCoverage (t k n : ℕ) : Prop :=
     CatalogueRule t k (spectrum k y - spectrum k x)
 
 /-- Exclusion of the explicit exceptional set supplies every input to
-separated coverage. Catalogue membership is not an edge assumption.-/
+separated coverage. Catalogue membership is not an edge assumption.
+@isnad1 id=catalogu.2h7v.s7.a9c361befa8d from=translated src=- shape=59b109c5 vocab=c67c92c0
+-/
 theorem edge_catalogue {t k n Q : ℕ} {H : Spectrum k →+ UnitAddCircle}
     (hcoverage : SeparatedCoverage t k n)
     {x y : Vertex (n := n) t Q H} (hxy : (graph t Q H).Adj x y) :
@@ -61,7 +63,9 @@ theorem edge_catalogue {t k n Q : ℕ} {H : Spectrum k →+ UnitAddCircle}
   exact hcoverage x.val y.val (FiniteConflictGraph.vertex_unique x) trace hs ht hd hi hsep
 
 /-- Equal circle bins imply actual hash survival for each catalogue edge.
-Neither survival nor a norm estimate is assumed of graph edges.-/
+Neither survival nor a norm estimate is assumed of graph edges.
+@isnad1 id=mem.3h7v.s7.8b7d4ecc5f4b from=translated src=- shape=f99343f6 vocab=ebb4f075
+-/
 theorem edge_surviving {t k n Q : ℕ} {H : Spectrum k →+ UnitAddCircle}
     (hQ : 2 ≤ Q) (hcoverage : SeparatedCoverage t k n)
     {x y : Vertex (n := n) t Q H} (hxy : (graph t Q H).Adj x y) :
@@ -70,7 +74,9 @@ theorem edge_surviving {t k n Q : ℕ} {H : Spectrum k →+ UnitAddCircle}
     (spectrum k y.val) hxy.2.2 (edge_catalogue hcoverage hxy)
 
 /-- The bounded-witness conclusion for the manuscript's actual finite
-conflict graph, conditional only on its earlier separated-coverage lemma.-/
+conflict graph, conditional only on its earlier separated-coverage lemma.
+@isnad1 id=ex.4h6v.s8.c0202ef71394 from=translated src=- shape=faf27e17 vocab=d1333bd0
+-/
 theorem bounded_witness_of_coverage {t k n Q : ℕ} (ht : 2 ≤ t) (hQ : 2 ≤ Q)
     (H : Spectrum k →+ UnitAddCircle) (hcoverage : SeparatedCoverage t k n)
     (x : Vertex (n := n) t Q H)

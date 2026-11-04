@@ -21,6 +21,9 @@ open SignedSupport SupportComponents RuleSetGraph
 def CoordinateSupportIncluded {L : ℕ} (Q S : Finset (Gram L → ℤ)) : Prop :=
   ∀ g, (∃ w ∈ Q, w g ≠ 0) → ∃ w ∈ S, w g ≠ 0
 
+/--
+@isnad1 id=rulesete.2h5v.s5.461474023ba0 from=translated src=- shape=448924ea vocab=d19eece8
+-/
 theorem edge_mono {L : ℕ} {Q S : Finset (Gram L → ℤ)}
     (hsub : CoordinateSupportIncluded Q S) {u v : Vertex L}
     (he : RuleSetEdge Q u v) : RuleSetEdge S u v := by
@@ -28,6 +31,9 @@ theorem edge_mono {L : ℕ} {Q S : Finset (Gram L → ℤ)}
   obtain ⟨z, hz, hzg⟩ := hsub g ⟨w, hw, hg⟩
   exact ⟨z, hz, g, hzg, hu, hv⟩
 
+/--
+@isnad1 id=incident.2h4v.s4.ce83f12465e1 from=translated src=- shape=ed39d96e vocab=80e9e532
+-/
 theorem incident_mono {L : ℕ} {Q S : Finset (Gram L → ℤ)}
     (hsub : CoordinateSupportIncluded Q S) {v : Vertex L}
     (hv : Incident Q v) : Incident S v := by
@@ -35,6 +41,9 @@ theorem incident_mono {L : ℕ} {Q S : Finset (Gram L → ℤ)}
   · exact ⟨u, Or.inl (edge_mono hsub hu)⟩
   · exact ⟨u, Or.inr (edge_mono hsub hu)⟩
 
+/--
+@isnad1 id=rulesetc.2h5v.s5.1baabc6b67a0 from=translated src=- shape=448924ea vocab=86130b86
+-/
 theorem connected_mono {L : ℕ} {Q S : Finset (Gram L → ℤ)}
     (hsub : CoordinateSupportIncluded Q S) {u v : Vertex L}
     (hc : RuleSetConnected Q u v) : RuleSetConnected S u v := by
@@ -51,6 +60,9 @@ def supportComponentMap {L : ℕ} {Q S : Finset (Gram L → ℤ)}
   Quotient.map (fun v => ⟨v.val, incident_mono hsub v.property⟩)
     (fun _ _ hc => connected_mono hsub hc)
 
+/--
+@isnad1 id=eq.1h4v.s6.6cdf27c4c3d6 from=translated src=- shape=5ddd56da vocab=613b594a
+-/
 @[simp] theorem supportComponentMap_mk {L : ℕ} {Q S : Finset (Gram L → ℤ)}
     (hsub : CoordinateSupportIncluded Q S) (v : RuleSetVertex Q) :
     supportComponentMap hsub (Quotient.mk (ruleSetSetoid Q) v) =
@@ -61,7 +73,9 @@ noncomputable instance hitComponentsFintype {L : ℕ} (S : Finset (Gram L → �
   Fintype.ofFinite _
 
 /-- Components hit by a smaller support union cannot outnumber that union's
-components. The preimage condition is witnessed at the quotient level.-/
+components. The preimage condition is witnessed at the quotient level.
+@isnad1 id=le.2h4v.s6.be703031a75d from=translated src=- shape=adb8d944 vocab=9eac0eb2
+-/
 theorem hit_component_count_le_of_preimages {L : ℕ}
     {Q S : Finset (Gram L → ℤ)} (hsub : CoordinateSupportIncluded Q S)
     (P : RuleSetComponents S → Prop)
@@ -83,7 +97,9 @@ theorem hit_component_count_le_of_preimages {L : ℕ}
   simpa only [componentCount, Nat.card_eq_fintype_card] using hcard
 
 /-- Vertex witnesses suffice to bound any selected collection of components
-of the larger signed-support graph. No injective assignment is assumed.-/
+of the larger signed-support graph. No injective assignment is assumed.
+@isnad1 id=le.2h4v.s6.b4edd020424c from=translated src=- shape=f16b30ec vocab=088a36cd
+-/
 theorem hit_component_count_le {L : ℕ} {Q S : Finset (Gram L → ℤ)}
     (hsub : CoordinateSupportIncluded Q S) (P : RuleSetComponents S → Prop)
     (hhit : ∀ C, P C → ∃ v : RuleSetVertex Q,

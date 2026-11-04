@@ -34,12 +34,17 @@ noncomputable def fiber {A C : Type*} [Fintype A] (f : A → C) (c : C) : Finset
   classical
   exact Finset.univ.filter (fun a => f a = c)
 
+/--
+@isnad1 id=iff.0h5v.s5.915457772b81 from=translated src=- shape=bcf198b6 vocab=d8e004b1
+-/
 @[simp] theorem mem_fiber {A C : Type*} [Fintype A] (f : A → C) (c : C) (a : A) :
     a ∈ fiber f c ↔ f a = c := by
   classical
   simp [fiber]
 
-/-- The witness-based definition agrees with the cardinality of the actual fiber.-/
+/-- The witness-based definition agrees with the cardinality of the actual fiber.
+@isnad1 id=iff.0h4v.s5.d0796217c3cd from=translated src=- shape=7cffc630 vocab=262fbf1c
+-/
 theorem fiber_card_eq_one_iff {A C : Type*} [Fintype A] (f : A → C) (c : C) :
     (fiber f c).card = 1 ↔ SingletonFiber f c := by
   classical
@@ -62,7 +67,9 @@ theorem fiber_card_eq_one_iff {A C : Type*} [Fintype A] (f : A → C) (c : C) :
     · intro hb
       simpa only [hb] using ha
 
-/-- The total size of the fibers is the number of occurrences.-/
+/-- The total size of the fibers is the number of occurrences.
+@isnad1 id=eq.0h3v.s5.e3c13cfaa83e from=translated src=- shape=25e6e5af vocab=15a9d4cf
+-/
 theorem sum_fiber_card {A C : Type*} [Fintype A] [Fintype C] (f : A → C) :
     (∑ c : C, (fiber f c).card) = Fintype.card A := by
   classical
@@ -71,7 +78,9 @@ theorem sum_fiber_card {A C : Type*} [Fintype A] [Fintype C] (f : A → C) :
       (Finset.univ : Finset C) f
 
 /-- Non-singleton components use at least two occurrences; surjectivity rules
-out empty fibers, rather than assuming this lower bound on the count.-/
+out empty fibers, rather than assuming this lower bound on the count.
+@isnad1 id=le.1h3v.s5.cc8a74956fc5 from=translated src=- shape=c5f916c9 vocab=65c36b84
+-/
 theorem singleton_fiber_count_bound {A C : Type*} [Fintype A] [Fintype C]
     (f : A → C) (hsurj : Function.Surjective f) :
     2 * Fintype.card C ≤ Fintype.card A + Fintype.card {c : C // SingletonFiber f c} := by
@@ -99,7 +108,9 @@ theorem singleton_fiber_count_bound {A C : Type*} [Fintype A] [Fintype C]
     _ = Fintype.card A + Fintype.card {c : C // SingletonFiber f c} := by
       rw [sum_fiber_card, hsingle]
 
-/-- The component bound used in the manuscript's savings-from-a-relation lemma.-/
+/-- The component bound used in the manuscript's savings-from-a-relation lemma.
+@isnad1 id=le.3h5v.s6.296424e72b1e from=translated src=- shape=883cdb9e vocab=65c36b84
+-/
 theorem component_count_bound {A C : Type*} [Fintype A] [Fintype C]
     (f : A → C) (hsurj : Function.Surjective f) (t R : ℕ)
     (hA : Fintype.card A = 2 * t * R)

@@ -18,7 +18,9 @@ namespace DeletionCode.ClosedWalk
 
 open scoped BigOperators
 
-/-- Successive displacements telescope, including both endpoints.-/
+/-- Successive displacements telescope, including both endpoints.
+@isnad1 id=eq.0h3v.s6.d9f5cd30b746 from=translated src=- shape=090476d8 vocab=674d94ff
+-/
 theorem sum_displacements {V : Type*} [AddCommGroup V] {m : ℕ}
     (p : Fin (m + 1) → V) :
     (∑ i : Fin m, (p i.succ - p i.castSucc)) = p (Fin.last m) - p 0 := by
@@ -33,7 +35,9 @@ theorem sum_displacements {V : Type*} [AddCommGroup V] {m : ℕ}
     _ = p (Fin.last m) - p 0 := by
       abel
 
-/-- A closed walk using only signed independent generators has even length.-/
+/-- A closed walk using only signed independent generators has even length.
+@isnad1 id=even.3h6v.s7.caf446f5beb7 from=translated src=- shape=38da6cfa vocab=807b3219
+-/
 theorem signed_independent_closed_walk_even {I V : Type*} [Fintype I]
     [AddCommGroup V] [Module ℚ V] {m : ℕ}
     (G : I → V) (hG : LinearIndependent ℚ G) (p : Fin (m + 1) → V)
@@ -57,7 +61,9 @@ theorem signed_independent_closed_walk_even {I V : Type*} [Fintype I]
     rw [sum_displacements, ← hclosed, sub_self]
   simpa using WitnessAlgebra.signed_sum_even G hG label positive hsum
 
-/-- In particular, an odd closed walk must use a step outside ±G.-/
+/-- In particular, an odd closed walk must use a step outside ±G.
+@isnad1 id=not.3h6v.s7.f7109eaa3b59 from=translated src=- shape=2b1699b2 vocab=6272f07e
+-/
 theorem not_odd_signed_independent_closed_walk {I V : Type*} [Fintype I]
     [AddCommGroup V] [Module ℚ V] {m : ℕ}
     (G : I → V) (hG : LinearIndependent ℚ G) (p : Fin (m + 1) → V)

@@ -37,16 +37,25 @@ def unflatten {α : Type*} (t R : ℕ) (family : Fin (2 * t * R) → α) :
     Fin R → Fin (2 * t) → α :=
   fun r j => family ((indexEquiv t R).symm (r, j))
 
+/--
+@isnad1 id=eq.0h6v.s8.6fdfb132d02d from=translated src=- shape=5fef06b6 vocab=cbee773f
+-/
 theorem flatten_at_pair {α : Type*} (t R : ℕ) (words : Fin R → Fin (2 * t) → α)
     (r : Fin R) (j : Fin (2 * t)) :
     flatten t R words ((indexEquiv t R).symm (r, j)) = words r j := by
   simp [flatten]
 
+/--
+@isnad1 id=eq.0h4v.s5.c1cf97d2ce84 from=translated src=- shape=dba7b00f vocab=f2a3b47a
+-/
 theorem unflatten_flatten {α : Type*} (t R : ℕ) (words : Fin R → Fin (2 * t) → α) :
     unflatten t R (flatten t R words) = words := by
   funext r j
   exact flatten_at_pair t R words r j
 
+/--
+@isnad1 id=eq.0h4v.s6.dc4095bd8fd0 from=translated src=- shape=996c5c1d vocab=f2a3b47a
+-/
 theorem flatten_unflatten {α : Type*} (t R : ℕ) (family : Fin (2 * t * R) → α) :
     flatten t R (unflatten t R family) = family := by
   funext b
@@ -59,6 +68,9 @@ def familyEquiv (α : Type*) (t R : ℕ) :
   left_inv := flatten_unflatten t R
   right_inv := unflatten_flatten t R
 
+/--
+@isnad1 id=ex.0h4v.s6.366d83b1e31c from=translated src=- shape=e79b6d06 vocab=3e694e7d
+-/
 theorem every_family_is_flattened {α : Type*} (t R : ℕ) (family : Fin (2 * t * R) → α) :
     ∃ words : Fin R → Fin (2 * t) → α, flatten t R words = family :=
   ⟨unflatten t R family, flatten_unflatten t R family⟩
@@ -74,16 +86,24 @@ def groupFiberEquiv (t R : ℕ) (r : Fin R) :
     exact Prod.ext b.property.symm rfl
   right_inv j := by simp
 
+/--
+@isnad1 id=eq.0h3v.s7.eacb88efaaab from=translated src=- shape=5f74a621 vocab=cfae01c0
+-/
 theorem group_fiber_card (t R : ℕ) (r : Fin R) :
     Fintype.card {b : Fin (2 * t * R) // group t R b = r} = 2 * t := by
   simpa using Fintype.card_congr (groupFiberEquiv t R r)
 
+/--
+@isnad1 id=eq.0h3v.s7.c388f572ef54 from=translated src=- shape=cf2cbd53 vocab=fd7ed59a
+-/
 theorem group_filter_card (t R : ℕ) (r : Fin R) :
     (Finset.univ.filter (fun b : Fin (2 * t * R) => group t R b = r)).card = 2 * t := by
   rw [← Fintype.card_subtype]
   exact group_fiber_card t R r
 
-/-- Sums over one flat-index group are exactly sums over its within-rule indices.-/
+/-- Sums over one flat-index group are exactly sums over its within-rule indices.
+@isnad1 id=eq.0h5v.s9.4e06950206ef from=translated src=- shape=7e8e3b74 vocab=31d5ccd3
+-/
 theorem group_sum {A : Type*} [AddCommMonoid A] (t R : ℕ) (r : Fin R)
     (f : Fin (2 * t * R) → A) :
     (∑ b ∈ Finset.univ.filter (fun b => group t R b = r), f b) =
@@ -118,11 +138,17 @@ def flatFamily {k : ℕ} (t R : ℕ) (words : Fin R → Fin (2 * t) → BubbleWo
     EditedFamily (Fin (2 * t * R)) k :=
   editedFamily (flatten t R words) (fun b => (group t R b).val)
 
+/--
+@isnad1 id=eq.0h5v.s8.4e3d26016cb5 from=translated src=- shape=22a8b86b vocab=3ae2ba8e
+-/
 theorem flat_bubble_spectrum {k : ℕ} (t R : ℕ)
     (words : Fin R → Fin (2 * t) → BubbleWord k) (b : Fin (2 * t * R)) :
     bubbleSpectrum (flatFamily t R words).family (windowLength k) b =
       bubbleSpectrum (pairFamily t R words).family (windowLength k) (indexEquiv t R b) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.c23a329b0178 from=translated src=- shape=3b5fd7ac vocab=990d2c7f
+-/
 theorem flat_rule_spectrum {k : ℕ} (t R : ℕ)
     (words : Fin R → Fin (2 * t) → BubbleWord k) (r : Fin R) :
     ruleSpectrum (flatFamily t R words).family (windowLength k) (groupBubbles (group t R) r) =
@@ -137,7 +163,9 @@ theorem flat_rule_spectrum {k : ℕ} (t R : ℕ)
   have h := congrFun (flat_bubble_spectrum t R words ((indexEquiv t R).symm (r, j))) g
   simpa only [Equiv.apply_symm_apply] using h
 
-/-- The flattened decoder output determines precisely the set of the R per-rule sums.-/
+/-- The flattened decoder output determines precisely the set of the R per-rule sums.
+@isnad1 id=eq.0h4v.s8.e3d8ce8d319c from=translated src=- shape=ee0f0a55 vocab=59387779
+-/
 theorem rulesOf_flatten {k : ℕ} (t R : ℕ) (words : Fin R → Fin (2 * t) → BubbleWord k) :
     rulesOfFamily (flatFamily t R words) (group t R) =
       Finset.univ.image (fun r : Fin R => fun g =>

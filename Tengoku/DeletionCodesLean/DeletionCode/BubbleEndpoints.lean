@@ -72,7 +72,9 @@ private theorem short_last_left {k : ℕ} (bubble : BubbleWord k)
   rfl
 
 /-- The actual flank mismatches rule out all interior common vertices with
-the displacement furnished by surviving source positions.-/
+the displacement furnished by surviving source positions.
+@isnad1 id=or.6h4v.s7.e36bd975d1d2 from=translated src=- shape=dbc08cf7 vocab=808bae7b
+-/
 theorem endpoints_of_displacement {k : ℕ} (bubble : BubbleWord k)
     (hleft : bubble.left.getLast? = some (!bubble.bit))
     (hright : bubble.right.head? = some (!bubble.bit))
@@ -112,7 +114,9 @@ theorem endpoints_of_displacement {k : ℕ} (bubble : BubbleWord k)
       exact hne hbits
     exact Or.inr ⟨by omega, hbLast⟩
 
-/-- A shared source letter in a source/deletion pair fixes the offset displacement.-/
+/-- A shared source letter in a source/deletion pair fixes the offset displacement.
+@isnad1 id=or.6h7v.s7.bfbfb83bcef6 from=translated src=- shape=a06e4988 vocab=f0161017
+-/
 theorem deletion_window_displacement {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     (hx : KUnique x n k) (pos : ℕ) (hpos : pos < n) (s a b : ℕ)
     (ha : s + a + (windowLength k - 1) ≤ n)
@@ -131,7 +135,9 @@ theorem deletion_window_displacement {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     exact Or.inr (by omega)
 
 /-- The same displacement follows for an insertion/source pair; the matched
-letter cannot be the inserted letter, since its origin would be none.-/
+letter cannot be the inserted letter, since its origin would be none.
+@isnad1 id=or.6h8v.s7.669f0a94ed02 from=translated src=- shape=575554b8 vocab=4da01ec3
+-/
 theorem insertion_window_displacement {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     (hx : KUnique x n k) (pos : ℕ) (bit : Bool) (hpos : pos ≤ n) (s a b : ℕ)
     (ha : s + a + (windowLength k - 1) ≤ n + 1)
@@ -176,7 +182,9 @@ private theorem transfer_equal_windows (p q x y : Letters) (s a b m lenp lenq : 
       simpa only [Nat.zero_add, Nat.add_assoc] using hq (b + i) (by omega)
 
 /-- Actual local grammar words at the same position in a k-unique source
-and its deletion share only their initial and terminal vertices.-/
+and its deletion share only their initial and terminal vertices.
+@isnad1 id=or.12h8v.s8.978528cedac0 from=translated src=- shape=fd9250f7 vocab=871ef627
+-/
 theorem deletion_endpoints {n k : ℕ} (hk : 1 ≤ k) (bubble : BubbleWord k)
     (hleft : bubble.left.getLast? = some (!bubble.bit))
     (hright : bubble.right.head? = some (!bubble.bit))
@@ -197,7 +205,9 @@ theorem deletion_endpoints {n k : ℕ} (hk : 1 ≤ k) (bubble : BubbleWord k)
     (deletion_window_displacement hk x hx pos hpos s a b (by omega) (by omega) hglobal)
 
 /-- The corresponding result when the shorter grammar word lies in the
-source and the longer word lies at the same position after an insertion.-/
+source and the longer word lies at the same position after an insertion.
+@isnad1 id=or.12h9v.s8.b291161c8715 from=translated src=- shape=86cbf41d vocab=5f388195
+-/
 theorem insertion_endpoints {n k : ℕ} (hk : 1 ≤ k) (bubble : BubbleWord k)
     (hleft : bubble.left.getLast? = some (!bubble.bit))
     (hright : bubble.right.head? = some (!bubble.bit))

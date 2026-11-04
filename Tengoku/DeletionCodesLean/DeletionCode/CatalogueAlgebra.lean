@@ -19,20 +19,32 @@ open scoped BigOperators
 
 def rational {L : ℕ} (u : Gram L → ℤ) : Gram L → ℚ := fun g => (u g : ℚ)
 
+/--
+@isnad1 id=injectiv.0h1v.s3.64df97e7acc5 from=translated src=- shape=a63464cb vocab=696b7aff
+-/
 theorem rational_injective {L : ℕ} : Function.Injective (@rational L) := by
   intro u v h
   funext g
   have hg : (u g : ℚ) = (v g : ℚ) := congrFun h g
   exact_mod_cast hg
 
+/--
+@isnad1 id=eq.0h1v.s5.89d4ad37f959 from=translated src=- shape=713ddbf1 vocab=9fb80127
+-/
 @[simp] theorem rational_zero {L : ℕ} : rational (0 : Gram L → ℤ) = 0 := by
   funext g
   simp [rational]
 
+/--
+@isnad1 id=eq.0h2v.s5.2d2a9a3d4b75 from=translated src=- shape=169fcc1f vocab=5e38502a
+-/
 @[simp] theorem rational_neg {L : ℕ} (u : Gram L → ℤ) : rational (-u) = -rational u := by
   funext g
   simp [rational]
 
+/--
+@isnad1 id=signedun.1h3v.s4.dbc47110ce4f from=translated src=- shape=37d3b64c vocab=edd3bb6f
+-/
 theorem catalogue_signed_unit {t k : ℕ} (u : Gram (windowLength k) → ℤ)
     (hu : CatalogueRule t k u) : WitnessAlgebra.SignedUnitVector (rational u) := by
   classical
@@ -44,6 +56,9 @@ theorem catalogue_signed_unit {t k : ℕ} (u : Gram (windowLength k) → ℤ)
   change WitnessAlgebra.SignedUnitVector (fun g => (u g : ℚ))
   simpa only [hvalue] using h
 
+/--
+@isnad1 id=ne.2h3v.s5.26f1f699ab97 from=translated src=- shape=b7166118 vocab=17a96eab
+-/
 theorem catalogue_nonzero {t k : ℕ} (ht : 1 ≤ t)
     (u : Gram (windowLength k) → ℤ) (hu : CatalogueRule t k u) : u ≠ 0 := by
   classical
@@ -63,7 +78,9 @@ theorem catalogue_nonzero {t k : ℕ} (ht : 1 ≤ t)
   norm_num at hneg
 
 /-- Removing zero coefficients gives a genuine finite relation; novelty up to
-sign forces at least two participating rules.-/
+sign forces at least two participating rules.
+@isnad1 id=ex.5h4v.s8.d55ab44e8374 from=translated src=- shape=58119fca vocab=248b873e
+-/
 theorem new_relation_support {t k : ℕ} (ht : 1 ≤ t) (G : RuleSet k)
     (hcat : ∀ u ∈ G, CatalogueRule t k u)
     (w : Gram (windowLength k) → ℤ) (hw : CatalogueRule t k w)

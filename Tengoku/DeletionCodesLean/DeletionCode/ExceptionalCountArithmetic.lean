@@ -21,6 +21,9 @@ open scoped BigOperators
 def exceptionalConstant (t : ℕ) : ℕ :=
   (t + 8 * (2 * t) * (2 * t + 2)) * 4 ^ (2 * t)
 
+/--
+@isnad1 id=lt.1h1v.s4.f49f2ed54d65 from=translated src=- shape=a8dc2df9 vocab=1746f67f
+-/
 theorem exceptionalConstant_pos {t : ℕ} (ht : 1 ≤ t) :
     0 < exceptionalConstant t := by
   unfold exceptionalConstant
@@ -29,7 +32,9 @@ theorem exceptionalConstant_pos {t : ℕ} (ht : 1 ≤ t) :
   · positivity
 
 /-- All smaller balanced edit counts contribute a lower power of n. Including
-the unused zero-edit record is harmless and simplifies the upper bound.-/
+the unused zero-edit record is harmless and simplifies the upper bound.
+@isnad1 id=le.1h2v.s7.2d9106610540 from=translated src=- shape=ce2803d7 vocab=e6f1a7a1
+-/
 theorem short_records_bound (n t : ℕ) (hn : 1 ≤ n) :
     (∑ d ∈ Finset.range t, n ^ (2 * d) * 4 ^ (2 * d)) ≤
       t * 4 ^ (2 * t) * n ^ (2 * t - 1) := by
@@ -48,7 +53,9 @@ theorem short_records_bound (n t : ℕ) (hn : 1 ≤ n) :
     _ = _ := by simp only [Finset.sum_const, Finset.card_range, smul_eq_mul]; ring
 
 /-- The close-anchor saving and the short-trace bound combine into one
-constant times L*n^(2*t-1).-/
+constant times L*n^(2*t-1).
+@isnad1 id=le.2h3v.s8.e7d085e0ed1e from=translated src=- shape=12a8a736 vocab=43d19d56
+-/
 theorem combined_records_bound (n t L : ℕ) (hn : 1 ≤ n) (hL : 1 ≤ L) :
     (∑ d ∈ Finset.range t, n ^ (2 * d) * 4 ^ (2 * d)) +
         (2 * t) * (2 * t + 2) * (2 * (4 * L)) * n ^ (2 * t - 1) * 4 ^ (2 * t) ≤

@@ -43,12 +43,18 @@ def vertices (p : LocalBubble k source target pos orientation) (side : Bool) :
   {v | ∃ offset, offset + (windowLength k - 1) ≤ (pathWord p side).length ∧
     localVertex p side offset = v}
 
+/--
+@isnad1 id=le.0h6v.s5.390806e0a215 from=translated src=- shape=e6cb7f0a vocab=47424f26
+-/
 theorem source_bound (p : LocalBubble k source target pos orientation) :
     p.before.length + p.bubble.negativeWord.length ≤ source.length := by
   have h := congrArg List.length p.source_eq
   simp only [List.length_append] at h
   omega
 
+/--
+@isnad1 id=inside.0h7v.s5.dcd3326fe43e from=translated src=- shape=ba7384ca vocab=b2bd1269
+-/
 theorem canonical_inside (p : LocalBubble k source target pos orientation) (side : Bool) :
     EditLocality.Inside (canonicalEdit p side) p.before.length p.bubble.negativeWord.length := by
   cases side with
@@ -58,6 +64,9 @@ theorem canonical_inside (p : LocalBubble k source target pos orientation) (side
     cases ho : p.bubble.orientation <;>
       simp only [canonicalEdit, ho, EditLocality.Inside, BubbleWord.negativeWord] <;> omega
 
+/--
+@isnad1 id=valid.0h7v.s5.0f3cc36383ea from=translated src=- shape=336aa07c vocab=b8c6fc65
+-/
 theorem canonical_valid (p : LocalBubble k source target pos orientation) (side : Bool) :
     (canonicalEdit p side).Valid source.length := by
   have hinside := canonical_inside p side
@@ -65,6 +74,9 @@ theorem canonical_valid (p : LocalBubble k source target pos orientation) (side 
   cases he : canonicalEdit p side <;>
     simp only [he, EditLocality.Inside, Edit.Valid] at hinside ⊢ <;> omega
 
+/--
+@isnad1 id=eq.0h7v.s5.5fba73b9bd45 from=translated src=- shape=8c918792 vocab=65f5b23f
+-/
 theorem canonical_length (p : LocalBubble k source target pos orientation) (side : Bool) :
     (pathWord p side).length = (canonicalEdit p side).outputLength p.bubble.negativeWord.length := by
   cases side with
@@ -76,7 +88,9 @@ theorem canonical_length (p : LocalBubble k source target pos orientation) (side
         BubbleWord.positiveWord, BubbleWord.negativeWord, Edit.outputLength] <;> omega
 
 /-- The whole output word is reconstructed from the canonical edit and
-the actual source decomposition. No supplied substring realization is used.-/
+the actual source decomposition. No supplied substring realization is used.
+@isnad1 id=eq.0h7v.s6.747ba8c79e80 from=translated src=- shape=efda338b vocab=11203c5c
+-/
 theorem canonical_word (p : LocalBubble k source target pos orientation) (side : Bool) :
     (canonicalEdit p side).word (listLetters source) =
       listLetters (p.before ++ (pathWord p side ++ p.after)) := by
@@ -101,7 +115,9 @@ theorem canonical_word (p : LocalBubble k source target pos orientation) (side :
             insert_context p.bubble p.before p.after
 
 /-- Every bounded actual bubble vertex belongs to the corresponding local
-output vertex set of the canonical edit in source coordinates.-/
+output vertex set of the canonical edit in source coordinates.
+@isnad1 id=mem.1h8v.s6.c0d030bf910d from=translated src=- shape=9d541159 vocab=4fe4ced7
+-/
 theorem localVertex_mem (p : LocalBubble k source target pos orientation) (side : Bool)
     (offset : ℕ) (hbound : offset + (windowLength k - 1) ≤ (pathWord p side).length) :
     localVertex p side offset ∈ EditLocality.localVertices (canonicalEdit p side)
@@ -117,6 +133,9 @@ theorem localVertex_mem (p : LocalBubble k source target pos orientation) (side 
     exact listLetters_middle p.before (pathWord p side) p.after (offset + i.val)
       (by have hi := i.isLt; omega)
 
+/--
+@isnad1 id=le.0h7v.s6.53e846972a25 from=translated src=- shape=03ad8d15 vocab=a17933a4
+-/
 theorem vertices_subset (p : LocalBubble k source target pos orientation) (side : Bool) :
     vertices p side ⊆ EditLocality.localVertices (canonicalEdit p side)
       (listLetters source) p.before.length p.bubble.negativeWord.length (windowLength k) := by
@@ -124,7 +143,9 @@ theorem vertices_subset (p : LocalBubble k source target pos orientation) (side 
   exact localVertex_mem p side offset hbound
 
 /-- Actual cross-bubble vertex disjointness, simultaneously for both path
-sides and including endpoints. Only source interval disjointness is supplied.-/
+sides and including endpoints. Only source interval disjointness is supplied.
+@isnad1 id=disjoint.3h12v.s7.6daf1e175187 from=translated src=- shape=077590df vocab=a8c5b3da
+-/
 theorem vertices_disjoint {a b : ℕ} {target₁ target₂ : List Bool}
     {orientation₁ orientation₂ : Orientation} (hk : 1 ≤ k)
     (hx : KUnique (listLetters source) source.length k)
@@ -141,6 +162,9 @@ theorem vertices_disjoint {a b : ℕ} {target₁ target₂ : List Bool}
     (source_bound p) (source_bound q) hdis).mono
       (vertices_subset p side₁) (vertices_subset q side₂)
 
+/--
+@isnad1 id=ne.5h14v.s7.61cc9b81a5f4 from=translated src=- shape=3849c942 vocab=e6cf7e9f
+-/
 theorem localVertex_ne {a b : ℕ} {target₁ target₂ : List Bool}
     {orientation₁ orientation₂ : Orientation} (hk : 1 ≤ k)
     (hx : KUnique (listLetters source) source.length k)
@@ -155,6 +179,9 @@ theorem localVertex_ne {a b : ℕ} {target₁ target₂ : List Bool}
   exact Set.disjoint_left.mp (vertices_disjoint hk hx p q hdis side₁ side₂)
     ⟨i, hi, rfl⟩ ⟨j, hj, heq.symm⟩
 
+/--
+@isnad1 id=disjoint.3h12v.s7.9afaf9e84c68 from=translated src=- shape=fe4ced6d vocab=6786b07f
+-/
 theorem vertices_disjoint_of_gap {a b : ℕ} {target₁ target₂ : List Bool}
     {orientation₁ orientation₂ : Orientation} (hk : 1 ≤ k)
     (hx : KUnique (listLetters source) source.length k)
@@ -164,6 +191,9 @@ theorem vertices_disjoint_of_gap {a b : ℕ} {target₁ target₂ : List Bool}
     Disjoint (vertices p side₁) (vertices q side₂) :=
   vertices_disjoint hk hx p q (SingleEditBubbles.source_intervals_disjoint p q hgap) side₁ side₂
 
+/--
+@isnad1 id=disjoint.6h12v.s7.e3b2a30238f5 from=translated src=- shape=cce4db87 vocab=716e92de
+-/
 theorem vertices_disjoint_of_trace {trace : AlignmentTrace.Trace} (hk : 1 ≤ k)
     (hx : KUnique (listLetters trace.source) trace.source.length k)
     (hsep : FiniteConflictGraph.Separated (4 * windowLength k) trace)
@@ -176,6 +206,9 @@ theorem vertices_disjoint_of_trace {trace : AlignmentTrace.Trace} (hk : 1 ≤ k)
   vertices_disjoint hk hx p q
     (SingleEditBubbles.source_intervals_disjoint_of_trace hsep i j hi hj hne p q) side₁ side₂
 
+/--
+@isnad1 id=ne.8h14v.s7.dc35cbc86df9 from=translated src=- shape=bcd3e8ae vocab=2cc4de04
+-/
 theorem localVertex_ne_of_trace {trace : AlignmentTrace.Trace} (hk : 1 ≤ k)
     (hx : KUnique (listLetters trace.source) trace.source.length k)
     (hsep : FiniteConflictGraph.Separated (4 * windowLength k) trace)

@@ -44,6 +44,9 @@ def readPath (k : ℕ) (h : Header) (s : Memory) (side : Bool)
         extractBits (rebuildPositiveFinite k h negative) start len hbound
     else none
 
+/--
+@isnad1 id=le.1h7v.s5.0591030a5bc3 from=translated src=- shape=29fe168c vocab=03ec7ad1
+-/
 theorem readPath_bounds (k : ℕ) (h : Header) (s : Memory) (side : Bool)
     (start len : ℕ) (bits : PartialWords.Bits len)
     (hread : readPath k h s side start len = some bits) :
@@ -60,6 +63,9 @@ theorem readPath_bounds (k : ℕ) (h : Header) (s : Memory) (side : Bool)
     · assumption
     · contradiction
 
+/--
+@isnad1 id=matches.5h8v.s6.62fe586f39c7 from=translated src=- shape=0cd3d9b4 vocab=17b93b9e
+-/
 theorem readPath_sound (k : ℕ) (h : Header) (long : Letters) (s : Memory)
     (side : Bool) (start len : ℕ) (bits : PartialWords.Bits len)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)
@@ -97,7 +103,9 @@ theorem readPath_sound (k : ℕ) (h : Header) (long : Letters) (s : Memory)
         exact hpositive ⟨start + i.val, by have := i.isLt; omega⟩
     · contradiction
 
-/-- Once all negative letters are stored, every bounded block on either side is readable.-/
+/-- Once all negative letters are stored, every bounded block on either side is readable.
+@isnad1 id=ex.2h6v.s5.0cc7997faa2a from=translated src=- shape=9c9e0eb0 vocab=699dcbe6
+-/
 theorem readPath_exists_of_complete (k : ℕ) (h : Header) (s : Memory)
     (side : Bool) (start len : ℕ)
     (hknown : WindowKnown s 0 (negativeLength k h))
@@ -115,7 +123,9 @@ theorem readPath_exists_of_complete (k : ℕ) (h : Header) (s : Memory)
     refine ⟨extractBits (rebuildPositiveFinite k h negative) start len hbound', ?_⟩
     simp only [readPath, dite_eq_left hbound', hnegative, Option.map_some]
 
-/-- Completed sound negative memory supplies correct data on either path.-/
+/-- Completed sound negative memory supplies correct data on either path.
+@isnad1 id=ex.6h7v.s6.cea412084466 from=translated src=- shape=84aa99b0 vocab=87b20654
+-/
 theorem readPath_complete (k : ℕ) (h : Header) (long : Letters) (s : Memory)
     (side : Bool) (start len : ℕ)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)
@@ -129,7 +139,9 @@ theorem readPath_complete (k : ℕ) (h : Header) (long : Letters) (s : Memory)
   exact ⟨bits, hread, readPath_sound k h long s side start len bits
     hrho0 hrho1 hbit hs hread⟩
 
-/-- The two actual paths share their entire initial de Bruijn vertex.-/
+/-- The two actual paths share their entire initial de Bruijn vertex.
+@isnad1 id=agree.0h3v.s5.0167aa5adb76 from=translated src=- shape=ca81d2b6 vocab=77ef27c3
+-/
 theorem pathInitialAgreement (k : ℕ) (h : Header) (long : Letters) :
     Agree (negativePath k h long) 0 (positivePath k h long) 0 (windowLength k - 1) := by
   cases ho : h.orientation with

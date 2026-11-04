@@ -17,17 +17,26 @@ namespace DeletionCode.RecordBounds
 
 open Windows PartialWords HeaderRecovery PathMemory ConcreteDecoder RecordCodec
 
+/--
+@isnad1 id=le.0h3v.s4.e572769756d8 from=translated src=- shape=1eaff9e0 vocab=8e1ba3f3
+-/
 theorem pathLength_le (k : ℕ) (h : Header) (side : Bool) :
     pathLength k h side ≤ 2 * windowLength k := by
   cases side <;> cases ho : h.orientation <;>
     simp [pathLength, negativeLength, positiveLength, shortLength, longLength, ho] <;> omega
 
+/--
+@isnad1 id=lt.2h2v.s5.f21e6d187aa5 from=translated src=- shape=fe56bae9 vocab=32d85c71
+-/
 theorem negativeLength_pos (k : ℕ) (h : Header)
     (hlo : 1 ≤ h.rho) (hhi : h.rho ≤ k + 1) : 0 < negativeLength k h := by
   rw [negativeLength_eq k h hlo hhi]
   unfold windowLength
   omega
 
+/--
+@isnad1 id=le.1h6v.s5.809f654f0223 from=translated src=- shape=907d7333 vocab=78da209e
+-/
 theorem writeBits_bounds (s t : Memory) (m start len : ℕ) (bits : PartialWords.Bits len)
     (h : writeBits s m start bits = some t) : start + len ≤ m := by
   unfold writeBits at h
@@ -36,11 +45,17 @@ theorem writeBits_bounds (s t : Memory) (m start len : ℕ) (bits : PartialWords
     exact hb.1
   · contradiction
 
+/--
+@isnad1 id=le.1h6v.s5.c54e6137bba7 from=translated src=- shape=3456cc1c vocab=8ea59c60
+-/
 theorem startNegative_bounds (k : ℕ) (h : Header) (offset : ℕ) (bits : PartialWords.Bits k)
     (s t : Memory) (hs : ConcreteStart.startNegative k h offset bits s = some t) :
     offset + k ≤ negativeLength k h :=
   writeBits_bounds s t (negativeLength k h) offset k bits hs
 
+/--
+@isnad1 id=le.1h7v.s5.624d05576f00 from=translated src=- shape=74698fa2 vocab=099017b5
+-/
 theorem startPositive_bounds (k : ℕ) (h : Header) (offset : ℕ) (bits : PartialWords.Bits k)
     (extra : Bool) (s t : Memory)
     (hs : ConcreteStart.startPositive k h offset bits extra s = some t) :
@@ -50,6 +65,9 @@ theorem startPositive_bounds (k : ℕ) (h : Header) (offset : ℕ) (bits : Parti
   · assumption
   · contradiction
 
+/--
+@isnad1 id=le.1h9v.s5.07552850aa97 from=translated src=- shape=a37035ae vocab=abcfbddd
+-/
 theorem fillFromBase_seed_bound (x : Letters) (n k L : ℕ) (s t : Memory)
     (m start r : ℕ) (h : ConcreteFill.fillFromBase x n k L s m start r = some t) :
     r + k ≤ L := by
@@ -64,7 +82,9 @@ theorem fillFromBase_seed_bound (x : Letters) (n k L : ℕ) (s t : Memory)
 
 variable {B : Type*} [DecidableEq B]
 
-/-- Every instruction that actually executes has offsets in the finite code range.-/
+/-- Every instruction that actually executes has offsets in the finite code range.
+@isnad1 id=instruct.1h8v.s5.b189f5dc84e5 from=translated src=- shape=9dd5916d vocab=37c9109c
+-/
 theorem execute_bounded (x : Letters) (n k : ℕ) (header : B → Header)
     (mem result : Bank B) (instruction : Instruction B)
     (hs : execute x n k header mem instruction = some result) :
@@ -117,6 +137,9 @@ theorem execute_bounded (x : Letters) (n k : ℕ) (header : B → Header)
       change sourceOffset ≤ 2 * windowLength k
       omega
 
+/--
+@isnad1 id=instruct.2h9v.s5.aa3e03b8cffb from=translated src=- shape=002c032d vocab=65c38949
+-/
 theorem run_bounded (x : Letters) (n k : ℕ) (header : B → Header)
     (instructions : List (Instruction B)) (mem result : Bank B)
     (hs : run x n k header mem instructions = some result) :
@@ -133,6 +156,9 @@ theorem run_bounded (x : Letters) (n k : ℕ) (header : B → Header)
       · exact execute_bounded x n k header mem next _ hexec
       · exact ih next hrest q hq
 
+/--
+@isnad1 id=lt.2h7v.s5.0551ba8a293e from=translated src=- shape=99417078 vocab=be9b9979
+-/
 theorem loadRoot_position_bound (x : Letters) (n a len : ℕ) (s t : Memory) (m : ℕ)
     (hlen : 0 < len) (h : ConcreteFill.loadRoot x n a len s m = some t) : a < n := by
   unfold ConcreteFill.loadRoot at h
@@ -140,6 +166,9 @@ theorem loadRoot_position_bound (x : Letters) (n a len : ℕ) (s t : Memory) (m 
   · omega
   · contradiction
 
+/--
+@isnad1 id=lt.4h10v.s6.c476fa490e87 from=translated src=- shape=3cf02166 vocab=2dc952cd
+-/
 theorem loadRoots_bounded (x : Letters) (n k : ℕ) (header : B → Header)
     (hlo : ∀ b, 1 ≤ (header b).rho) (hhi : ∀ b, (header b).rho ≤ k + 1)
     (roots : List (B × ℕ)) (mem result : Bank B)
@@ -162,6 +191,9 @@ theorem loadRoots_bounded (x : Letters) (n k : ℕ) (header : B → Header)
           (negativeLength k (header b)) (negativeLength_pos k (header b) (hlo b) (hhi b)) hload
       · exact ih (Function.update mem b t) hrest c j hj
 
+/--
+@isnad1 id=and.3h8v.s7.092e147b7965 from=translated src=- shape=e6d411d8 vocab=effa7407
+-/
 theorem decode_bounded [Fintype B] (x : Letters) (n k : ℕ) (header : B → Header)
     (hlo : ∀ b, 1 ≤ (header b).rho) (hhi : ∀ b, (header b).rho ≤ k + 1)
     (roots : List (B × ℕ)) (instructions : List (Instruction B)) (output : Output k header)
@@ -177,7 +209,9 @@ theorem decode_bounded [Fintype B] (x : Letters) (n k : ℕ) (header : B → Hea
       exact ⟨loadRoots_bounded x n k header hlo hhi roots _ initial hload,
         run_bounded x n k header instructions initial result hrun⟩
 
-/-- The successful generating-family record automatically satisfies all field bounds.-/
+/-- The successful generating-family record automatically satisfies all field bounds.
+@isnad1 id=ex.2h5v.s7.23c6d947b62a from=translated src=- shape=e1b74a43 vocab=7b04a1aa
+-/
 theorem generating_decode_exists_bounded [Fintype B]
     (E : GeneratingModel.EditedFamily B k) (x : Letters) (n : ℕ)
     (hx : KUnique x n k) (hg : E.family.Generating x n (windowLength k)) :

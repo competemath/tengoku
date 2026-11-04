@@ -27,13 +27,18 @@ def Inside (e : Edit) (start len : ℕ) : Prop :=
   | .delete pos => start ≤ pos ∧ pos < start + len
   | .insert pos _ => start ≤ pos ∧ pos ≤ start + len
 
+/--
+@isnad1 id=le.2h4v.s5.15435a35129e from=translated src=- shape=0259e873 vocab=9ce4e82b
+-/
 theorem local_output_bound (e : Edit) (start len n : ℕ)
     (he : Inside e start len) (hbound : start + len ≤ n) :
     start + e.outputLength len ≤ e.outputLength n := by
   cases e <;> simp only [Inside, Edit.outputLength] at he ⊢ <;> omega
 
 /-- Surviving letters of a local output segment have source indices inside
-its original interval. This is derived from the actual edit's origin map.-/
+its original interval. This is derived from the actual edit's origin map.
+@isnad1 id=and.4h5v.s6.d827625379c1 from=translated src=- shape=01f06fcd vocab=927a2148
+-/
 theorem origin_in_source_interval (e : Edit) (start len i r : ℕ)
     (he : Inside e start len) (hstart : start ≤ i)
     (hend : i < start + e.outputLength len) (hr : e.origin i = some r) :
@@ -63,7 +68,9 @@ theorem origin_in_source_interval (e : Edit) (start len i r : ℕ)
 
 /-- No equal (L-1)-windows arise from changes in disjoint source intervals.
 This includes either side of either local replacement, by using unchanged
-as the edit for a path lying in the original word.-/
+as the edit for a path lying in the original word.
+@isnad1 id=not.13h11v.s7.d9c0b193f93b from=translated src=- shape=676d033d vocab=8c10c6ae
+-/
 theorem local_windows_ne {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     (hx : KUnique x n k) (e f : Edit) (he : e.Valid n) (hf : f.Valid n)
     (s p t q : ℕ) (hei : Inside e s p) (hfi : Inside f t q)
@@ -91,6 +98,9 @@ def localVertices (e : Edit) (x : Letters) (start len L : ℕ) :
   {v | ∃ a, start ≤ a ∧ a + (L - 1) ≤ start + e.outputLength len ∧
     SpectrumPath.vertexAt (e.word x) L a = v}
 
+/--
+@isnad1 id=disjoint.9h9v.s7.e6bce990dff3 from=translated src=- shape=2c1e044b vocab=0304b7f3
+-/
 theorem local_vertex_sets_disjoint {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     (hx : KUnique x n k) (e f : Edit) (he : e.Valid n) (hf : f.Valid n)
     (s p t q : ℕ) (hei : Inside e s p) (hfi : Inside f t q)

@@ -21,7 +21,9 @@ namespace DeletionCode.BubblePathSimplicity
 
 open Windows HeaderRecovery CatalogueWords SingleEditOrigins
 
-/-- Uniqueness restricts to any actual in-bounds substring.-/
+/-- Uniqueness restricts to any actual in-bounds substring.
+@isnad1 id=kunique.3h6v.s5.91729086a810 from=translated src=- shape=2404e99d vocab=75c956aa
+-/
 theorem substring_unique (full word : Letters) (n len r s : ℕ)
     (hfull : KUnique full n r) (hbound : s + len ≤ n)
     (hocc : Agree word 0 full s len) : KUnique word len r := by
@@ -37,7 +39,9 @@ theorem substring_unique (full word : Letters) (n len r s : ℕ)
         simpa only [Nat.zero_add, Nat.add_assoc] using hocc (b + i) (by omega))
   omega
 
-/-- A concrete local list in a valid one-edit output inherits (L-1)-uniqueness.-/
+/-- A concrete local list in a valid one-edit output inherits (L-1)-uniqueness.
+@isnad1 id=kunique.5h6v.s6.272c8d9aad97 from=translated src=- shape=ca74dd2f vocab=b6bd6bbf
+-/
 theorem local_word_unique {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     (hx : KUnique x n k) (e : Edit) (he : e.Valid n)
     (word : List Bool) (s : ℕ)
@@ -47,7 +51,9 @@ theorem local_word_unique {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
   substring_unique (e.word x) (listLetters word) (e.outputLength n) word.length
     (windowLength k - 1) s (EditRigidity.one_edit_unique hk x hx e he) hbound hocc
 
-/-- All vertices of such a local path, including its terminal vertex, are distinct.-/
+/-- All vertices of such a local path, including its terminal vertex, are distinct.
+@isnad1 id=injectiv.6h6v.s7.4013bcf96b93 from=translated src=- shape=574fa6af vocab=d1c2f63c
+-/
 theorem local_vertex_injective {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     (hx : KUnique x n k) (e : Edit) (he : e.Valid n)
     (word : List Bool) (s : ℕ)
@@ -60,7 +66,9 @@ theorem local_vertex_injective {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     (by unfold windowLength; omega) hlength
     (local_word_unique hk x hx e he word s hbound hocc)
 
-/-- The grammar lengths give exactly the two vertex-index types in the paper.-/
+/-- The grammar lengths give exactly the two vertex-index types in the paper.
+@isnad1 id=and.2h2v.s7.e6b6ae15d0b2 from=translated src=- shape=130385f7 vocab=7f78b7c3
+-/
 theorem bubble_vertices_injective {k : ℕ} (bubble : BubbleWord k)
     (hlong : KUnique (listLetters bubble.longWord) bubble.longWord.length (windowLength k - 1))
     (hshort : KUnique (listLetters bubble.shortWord) bubble.shortWord.length (windowLength k - 1)) :
@@ -110,7 +118,9 @@ theorem bubble_vertices_injective {k : ℕ} (bubble : BubbleWord k)
       exact congrFun heq ⟨r, hr⟩
 
 /-- The actual longer source substring and shorter deletion substring both
-spell simple paths, with exactly the manuscript's long and short vertex ranges.-/
+spell simple paths, with exactly the manuscript's long and short vertex ranges.
+@isnad1 id=and.7h6v.s8.33d0abe97012 from=translated src=- shape=8919e9a9 vocab=0eb85511
+-/
 theorem deletion_vertices_injective {n k : ℕ} (hk : 1 ≤ k) (bubble : BubbleWord k)
     (x : Letters) (hx : KUnique x n k) (pos : ℕ) (hpos : pos < n) (s : ℕ)
     (hlength : s + bubble.longWord.length ≤ n)
@@ -126,7 +136,9 @@ theorem deletion_vertices_injective {n k : ℕ} (hk : 1 ≤ k) (bubble : BubbleW
     (local_word_unique hk x hx (.delete pos) hpos bubble.shortWord s hslength hshort)
 
 /-- The actual longer insertion substring and shorter source substring both
-spell simple paths. The inserted bit is the actual bit used in the full edit.-/
+spell simple paths. The inserted bit is the actual bit used in the full edit.
+@isnad1 id=and.7h7v.s8.e4f6cff01e9c from=translated src=- shape=dc3c0224 vocab=a844118e
+-/
 theorem insertion_vertices_injective {n k : ℕ} (hk : 1 ≤ k) (bubble : BubbleWord k)
     (x : Letters) (hx : KUnique x n k) (pos : ℕ) (bit : Bool) (hpos : pos ≤ n) (s : ℕ)
     (hlength : s + bubble.longWord.length ≤ n + 1)

@@ -16,15 +16,24 @@ namespace DeletionCode.TraceMatchedSuffix
 
 open AlignmentTrace FiniteConflictGraph TraceSeparation
 
+/--
+@isnad1 id=le.0h1v.s3.ad1a316705a5 from=translated src=- shape=62f9f3ca vocab=a36a6fb4
+-/
 theorem matchedCount_le_length (trace : Trace) : trace.matchedCount ≤ trace.length := by
   have h := trace.length_eq_counts
   omega
 
+/--
+@isnad1 id=le.0h2v.s3.891d4e010697 from=translated src=- shape=be8b5c95 vocab=d81b3847
+-/
 theorem matchedAnchor_le_index (trace : Trace) (i : ℕ) : trace.matchedAnchor i ≤ i := by
   have h := matchedCount_le_length (trace.take i)
   have hlen := List.length_take_le i trace
   exact h.trans hlen
 
+/--
+@isnad1 id=le.1h3v.s5.a6efce714d2a from=translated src=- shape=f0a35f06 vocab=6f13bab0
+-/
 theorem matchedAnchor_gap_le (trace : Trace) (i j : ℕ) (hij : i ≤ j) :
     trace.matchedAnchor j ≤ trace.matchedAnchor i + (j - i) := by
   have hsplit : trace.take j = trace.take i ++ (trace.drop i).take (j - i) := by
@@ -37,7 +46,9 @@ theorem matchedAnchor_gap_le (trace : Trace) (i j : ℕ) (hij : i ≤ j) :
   omega
 
 /-- A trace made entirely of matched columns has identical projections,
-and each column contributes one letter to that word.-/
+and each column contributes one letter to that word.
+@isnad1 id=and.1h1v.s5.0adde992a823 from=translated src=- shape=939c72dd vocab=b519a207
+-/
 theorem matched_projections (trace : Trace)
     (hmatched : ∀ col ∈ trace, col.isEdit = false) :
     trace.source = trace.target ∧ trace.source.length = trace.length := by
@@ -57,7 +68,9 @@ theorem matched_projections (trace : Trace)
     | insertion bit => simp only [Column.isEdit, Bool.true_eq_false] at hcol
 
 /-- A concrete edit-free interval of columns supplies a common suffix of
-the source and target prefixes.-/
+the source and target prefixes.
+@isnad1 id=ex.3h3v.s6.22e8dacd4953 from=translated src=- shape=9a36f88f vocab=135fabbe
+-/
 theorem common_suffix_of_matched_range (trace : Trace) (i m : ℕ)
     (hm : m ≤ i) (hi : i ≤ trace.length)
     (hno : ∀ j : Fin trace.length, i - m ≤ j.val → j.val < i → ¬ EditIndex trace j) :
@@ -91,7 +104,9 @@ theorem common_suffix_of_matched_range (trace : Trace) (i m : ℕ)
   · rw [hsplit, Trace.target_append, ← hproj]
 
 /-- Before any separated edit, at least L-1 consecutive matched columns
-give an actual common suffix of the two projected prefixes.-/
+give an actual common suffix of the two projected prefixes.
+@isnad1 id=ex.3h3v.s7.fca8912d00a3 from=translated src=- shape=76f0f6d7 vocab=33f3efae
+-/
 theorem common_suffix_before_edit {trace : Trace} {L : ℕ} (hL : 1 ≤ L)
     (hsep : Separated (4 * L) trace) (i : Fin trace.length) (hi : EditIndex trace i) :
     ∃ a b common : List Bool,

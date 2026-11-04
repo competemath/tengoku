@@ -29,6 +29,9 @@ open Windows PartialWords Recovery
 def windowStart (D : ℕ) (w : Slot) : ℕ :=
   if w.val = 0 then 0 else if w.val = 1 then D / 2 else D
 
+/--
+@isnad1 id=le.0h2v.s3.d57304e27e5e from=translated src=- shape=0dd6a2f0 vocab=b4b6e9c5
+-/
 theorem windowStart_le (D : ℕ) (w : Slot) : windowStart D w ≤ D := by
   fin_cases w <;> simp [windowStart, Nat.div_le_self]
 
@@ -38,6 +41,9 @@ def WindowKnown (s : Memory) (start len : ℕ) : Prop :=
 def SeedKnown (s : Memory) (start L k : ℕ) : Prop :=
   ∃ r bits, r + k ≤ L ∧ readBits s (start + r) k = some bits
 
+/--
+@isnad1 id=iff.0h3v.s5.9503490463d6 from=translated src=- shape=f511611e vocab=80d54629
+-/
 theorem windowKnown_iff (s : Memory) (start len : ℕ) :
     WindowKnown s start len ↔ ∀ i, i < len → ∃ b, s (start + i) = some b := by
   constructor
@@ -50,7 +56,9 @@ theorem windowKnown_iff (s : Memory) (start len : ℕ) :
     obtain ⟨b, hb⟩ := h i.val i.isLt
     simp [hb]
 
-/-- Every subblock of a readable block can itself be read.-/
+/-- Every subblock of a readable block can itself be read.
+@isnad1 id=windowkn.3h5v.s5.c2b04daaba6e from=translated src=- shape=2a367486 vocab=fb844558
+-/
 theorem windowKnown_subblock (s : Memory) (a m b len : ℕ)
     (h : WindowKnown s a m) (hab : a ≤ b) (hbound : b + len ≤ a + m) :
     WindowKnown s b len := by
@@ -60,6 +68,9 @@ theorem windowKnown_subblock (s : Memory) (a m b len : ℕ)
   have hread := (windowKnown_iff _ _ _).mp h (b + i - a) hidx
   simpa [show a + (b + i - a) = b + i by omega] using hread
 
+/--
+@isnad1 id=windowkn.2h4v.s4.8eadab19b1ab from=translated src=- shape=25f02e62 vocab=45965060
+-/
 theorem windowKnown_mono (s t : Memory) (start len : ℕ)
     (hext : Extends s t) (h : WindowKnown s start len) :
     WindowKnown t start len := by
@@ -68,6 +79,9 @@ theorem windowKnown_mono (s t : Memory) (start len : ℕ)
   obtain ⟨b, hb⟩ := (windowKnown_iff _ _ _).mp h i hi
   exact ⟨b, hext (start + i) b hb⟩
 
+/--
+@isnad1 id=seedknow.2h5v.s4.53ea9f435118 from=translated src=- shape=56f4aa71 vocab=1618fbca
+-/
 theorem seedKnown_mono (s t : Memory) (start L k : ℕ)
     (hext : Extends s t) (h : SeedKnown s start L k) :
     SeedKnown t start L k := by
@@ -85,7 +99,9 @@ private theorem seedKnown_of_overlap (s : Memory) (a b L k : ℕ)
   refine ⟨max a b - b, bits, by omega, ?_⟩
   simpa [show b + (max a b - b) = max a b by omega] using hread
 
-/-- An already read adjacent selected window supplies a readable k-seed.-/
+/-- An already read adjacent selected window supplies a readable k-seed.
+@isnad1 id=seedknow.3h5v.s6.9fc8609543bf from=translated src=- shape=f48cae58 vocab=3383c577
+-/
 theorem adjacent_window_seed (s : Memory) (D k : ℕ) (v w : Slot)
     (hD : D < 3 * (k + 1)) (hadj : AdjSlot v w)
     (hknown : WindowKnown s (windowStart D v) (3 * (k + 1))) :
@@ -98,7 +114,9 @@ theorem adjacent_window_seed (s : Memory) (D k : ℕ) (v w : Slot)
     fin_cases v <;> fin_cases w <;>
       simp [AdjSlot, windowStart] at hadj ⊢ <;> omega
 
-/-- Every in-bounds k-stretch lies in one of the actual selected slots.-/
+/-- Every in-bounds k-stretch lies in one of the actual selected slots.
+@isnad1 id=ex.2h3v.s7.593834439e7c from=translated src=- shape=dc712a98 vocab=8cabea51
+-/
 theorem selected_window_cover (D k a : ℕ) (hD : D < 3 * (k + 1))
     (ha : a + k ≤ 3 * (k + 1) + D) :
     ∃ w : Slot, windowStart D w ≤ a ∧ a + k ≤ windowStart D w + 3 * (k + 1) := by
@@ -111,7 +129,9 @@ theorem selected_window_cover (D k a : ℕ) (hD : D < 3 * (k + 1))
   · refine ⟨⟨2, by omega⟩, ?_⟩
     simpa [windowStart, hb] using And.intro hba hab
 
-/-- A newly available k-stretch can initialize a realizable selected seed slot.-/
+/-- A newly available k-stretch can initialize a realizable selected seed slot.
+@isnad1 id=ex.3h4v.s6.3ced734d1918 from=translated src=- shape=dce7b4e3 vocab=adfce1ed
+-/
 theorem seed_selects_window (s : Memory) (D k a : ℕ) (hD : D < 3 * (k + 1))
     (ha : a + k ≤ 3 * (k + 1) + D) (hknown : WindowKnown s a k) :
     ∃ w : Slot, SeedKnown s (windowStart D w) (3 * (k + 1)) k := by
@@ -120,7 +140,9 @@ theorem seed_selects_window (s : Memory) (D k a : ℕ) (hD : D < 3 * (k + 1))
   refine ⟨w, a - windowStart D w, bits, by omega, ?_⟩
   simpa [show windowStart D w + (a - windowStart D w) = a by omega] using hread
 
-/-- The first and last selected windows already cover every letter of the path.-/
+/-- The first and last selected windows already cover every letter of the path.
+@isnad1 id=windowkn.2h3v.s5.2bfe17f4f3b2 from=translated src=- shape=a041c1be vocab=78ab7511
+-/
 theorem all_windows_known (s : Memory) (D L : ℕ) (hD : D ≤ L)
     (hknown : ∀ w : Slot, WindowKnown s (windowStart D w) L) :
     WindowKnown s 0 (L + D) := by
@@ -143,6 +165,9 @@ structure Realizes (s : State B) (mem : B → Memory) (D : B → ℕ) (k : ℕ) 
   done_known : ∀ b w, s.Done b w →
     WindowKnown (mem b) (windowStart (D b) w) (3 * (k + 1))
 
+/--
+@isnad1 id=seedknow.3h7v.s6.fd30e95f0777 from=translated src=- shape=b7647b62 vocab=4fc3016a
+-/
 theorem Realizes.ready_seedKnown (s : State B) (mem : B → Memory) (D : B → ℕ)
     (k : ℕ) (hreal : Realizes s mem D k) (b : B) (w : Slot)
     (hD : D b < 3 * (k + 1)) (hready : s.Ready b w) :
@@ -151,6 +176,9 @@ theorem Realizes.ready_seedKnown (s : State B) (mem : B → Memory) (D : B → �
   · exact hreal.seed_known b w hseed
   · exact adjacent_window_seed (mem b) (D b) k v w hD hadj (hreal.done_known b v hv)
 
+/--
+@isnad1 id=windowkn.3h6v.s6.d12acb4c57cc from=translated src=- shape=06c80ff3 vocab=5e92641b
+-/
 theorem Realizes.complete_wordKnown (s : State B) (mem : B → Memory) (D : B → ℕ)
     (k : ℕ) (hreal : Realizes s mem D k) (b : B)
     (hD : D b ≤ 3 * (k + 1)) (hcomplete : s.Complete b) :
@@ -158,13 +186,18 @@ theorem Realizes.complete_wordKnown (s : State B) (mem : B → Memory) (D : B �
   exact all_windows_known (mem b) (D b) (3 * (k + 1)) hD
     (fun w => hreal.done_known b w (hcomplete w))
 
+/--
+@isnad1 id=realizes.2h6v.s5.cb42a3557ff4 from=translated src=- shape=ab1bd8d2 vocab=3390c0d7
+-/
 theorem Realizes.mono (s : State B) (mem mem' : B → Memory) (D : B → ℕ) (k : ℕ)
     (hreal : Realizes s mem D k) (hext : ∀ b, Extends (mem b) (mem' b)) :
     Realizes s mem' D k where
   seed_known b w h := seedKnown_mono _ _ _ _ _ (hext b) (hreal.seed_known b w h)
   done_known b w h := windowKnown_mono _ _ _ _ (hext b) (hreal.done_known b w h)
 
-/-- A start operation is realizable when its chosen slot has an actual stored seed.-/
+/-- A start operation is realizable when its chosen slot has an actual stored seed.
+@isnad1 id=realizes.2h7v.s6.23a52b876a34 from=translated src=- shape=238658f4 vocab=bb8d9531
+-/
 theorem Realizes.start [DecidableEq B] (s : State B) (mem : B → Memory)
     (D : B → ℕ) (k : ℕ) (hreal : Realizes s mem D k) (b : B) (w : Slot)
     (hseed : SeedKnown (mem b) (windowStart (D b) w) (3 * (k + 1)) k) :
@@ -178,7 +211,9 @@ theorem Realizes.start [DecidableEq B] (s : State B) (mem : B → Memory)
       exact hreal.seed_known a v (by simpa [State.start, hab, hba] using h)
   done_known a v h := hreal.done_known a v h
 
-/-- Marking a filled window preserves realization once its data is stored.-/
+/-- Marking a filled window preserves realization once its data is stored.
+@isnad1 id=realizes.2h7v.s6.da215abdf186 from=translated src=- shape=6240c23c vocab=706da6b3
+-/
 theorem Realizes.fill [DecidableEq B] (s : State B) (mem : B → Memory)
     (D : B → ℕ) (k : ℕ) (hreal : Realizes s mem D k) (b : B) (w : Slot)
     (hwindow : WindowKnown (mem b) (windowStart (D b) w) (3 * (k + 1))) :
@@ -191,6 +226,9 @@ theorem Realizes.fill [DecidableEq B] (s : State B) (mem : B → Memory)
       exact hwindow
     · exact hreal.done_known a v hold
 
+/--
+@isnad1 id=realizes.2h7v.s5.e3f526d559f5 from=translated src=- shape=53355fa3 vocab=90b416ed
+-/
 theorem Realizes.update_mem [DecidableEq B] (s : State B) (mem : B → Memory)
     (D : B → ℕ) (k : ℕ) (hreal : Realizes s mem D k) (b : B) (t : Memory)
     (hext : Extends (mem b) t) : Realizes s (Function.update mem b t) D k := by
@@ -203,7 +241,9 @@ theorem Realizes.update_mem [DecidableEq B] (s : State B) (mem : B → Memory)
     intro j bit hj
     simpa [Function.update, hab, hba] using hj
 
-/-- Start a chosen slot after extending just that bubble's memory.-/
+/-- Start a chosen slot after extending just that bubble's memory.
+@isnad1 id=realizes.3h8v.s6.bc4f57aafd5d from=translated src=- shape=df8f08f4 vocab=5edca2ae
+-/
 theorem Realizes.start_update [DecidableEq B] (s : State B) (mem : B → Memory)
     (D : B → ℕ) (k : ℕ) (hreal : Realizes s mem D k) (b : B) (w : Slot) (t : Memory)
     (hext : Extends (mem b) t)
@@ -213,7 +253,9 @@ theorem Realizes.start_update [DecidableEq B] (s : State B) (mem : B → Memory)
     (Realizes.update_mem s mem D k hreal b t hext) b w
   simpa using hseed
 
-/-- Mark a window filled after its checked write extends that bubble's memory.-/
+/-- Mark a window filled after its checked write extends that bubble's memory.
+@isnad1 id=realizes.3h8v.s6.15606dd772fe from=translated src=- shape=15c54b80 vocab=788879f9
+-/
 theorem Realizes.fill_update [DecidableEq B] (s : State B) (mem : B → Memory)
     (D : B → ℕ) (k : ℕ) (hreal : Realizes s mem D k) (b : B) (w : Slot) (t : Memory)
     (hext : Extends (mem b) t)

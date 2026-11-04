@@ -84,6 +84,9 @@ def decode [Fintype B] (x : Letters) (n k : ℕ) (header : B → Header)
   (loadRoots x n k header (fun _ => empty) roots).bind fun initial =>
     (run x n k header initial instructions).bind (finish k header)
 
+/--
+@isnad1 id=iff.0h5v.s6.96387f117ac6 from=translated src=- shape=8b9ce3ec vocab=f7d33471
+-/
 theorem finish_eq_some_iff [Fintype B] (k : ℕ) (header : B → Header)
     (mem : Bank B) (output : Output k header) :
     finish k header mem = some output ↔
@@ -110,7 +113,9 @@ theorem finish_eq_some_iff [Fintype B] (k : ℕ) (header : B → Header)
       intro b
       simp [hout b]
 
-/-- Sound completed memory produces exactly the finite target negative paths.-/
+/-- Sound completed memory produces exactly the finite target negative paths.
+@isnad1 id=eq.2h5v.s6.6ddd1143ef85 from=translated src=- shape=2eac6c81 vocab=c07ddf2f
+-/
 theorem finish_correct [Fintype B] (k : ℕ) (header : B → Header)
     (long : B → Letters) (mem : Bank B)
     (hs : ∀ b, Sound (mem b) (negativePath k (header b) (long b))
@@ -128,7 +133,9 @@ theorem finish_correct [Fintype B] (k : ℕ) (header : B → Header)
   funext i
   simpa only [Nat.zero_add] using hbits i
 
-/-- Running a concatenated record is ordinary sequential composition.-/
+/-- Running a concatenated record is ordinary sequential composition.
+@isnad1 id=eq.0h8v.s6.3963a19643f6 from=translated src=- shape=8765a851 vocab=fa9212b8
+-/
 theorem run_append (x : Letters) (n k : ℕ) (header : B → Header)
     (first second : List (Instruction B)) (mem : Bank B) :
     run x n k header mem (first ++ second) =

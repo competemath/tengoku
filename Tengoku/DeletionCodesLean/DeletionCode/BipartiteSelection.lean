@@ -24,7 +24,9 @@ open SimpleGraph
 open scoped BigOperators
 
 /-- The finite pigeonhole bound in multiplication form, without rounding.
-The selected label exists even when I is empty.-/
+The selected label exists even when I is empty.
+@isnad1 id=ex.1h4v.s6.e675cdad2e3f from=translated src=- shape=1465ec7d vocab=aa2e0afe
+-/
 theorem exists_large_label_fiber {V : Type*} {Q : ℕ} (I : Finset V)
     (label : V → Fin Q) (hQ : 1 ≤ Q) :
     ∃ a : Fin Q, I.card ≤ Q * (I.filter (fun v => label v = a)).card := by
@@ -54,6 +56,9 @@ noncomputable def componentColor (C : G.ConnectedComponent) : C → Fin 2 := by
   classical
   exact if h : C.toSimpleGraph.Colorable 2 then fun v => h.some v else fun _ => 0
 
+/--
+@isnad1 id=ne.2h5v.s6.64725626c3b2 from=translated src=- shape=116461e0 vocab=b1d8f443
+-/
 theorem componentColor_valid (C : G.ConnectedComponent) (hC : C.toSimpleGraph.Colorable 2)
     {v w : C} (hvw : C.toSimpleGraph.Adj v w) :
     componentColor G C v ≠ componentColor G C w := by
@@ -64,6 +69,9 @@ theorem componentColor_valid (C : G.ConnectedComponent) (hC : C.toSimpleGraph.Co
 noncomputable def color (v : V) : Fin 2 :=
   componentColor G (G.connectedComponentMk v) ⟨v, rfl⟩
 
+/--
+@isnad1 id=eq.1h4v.s5.86cb56b0cb65 from=translated src=- shape=b642302a vocab=5c3d5bff
+-/
 theorem color_eq_component (C : G.ConnectedComponent) (v : V) (hv : v ∈ C) :
     color G v = componentColor G C ⟨v, hv⟩ := by
   change G.connectedComponentMk v = C at hv
@@ -71,7 +79,9 @@ theorem color_eq_component (C : G.ConnectedComponent) (v : V) (hv : v ∈ C) :
   rfl
 
 /-- Adjacent retained vertices receive different colors; no coloring of
-the nonbipartite components is assumed.-/
+the nonbipartite components is assumed.
+@isnad1 id=ne.2h4v.s5.087677d0ae76 from=translated src=- shape=87641a21 vocab=47f80a27
+-/
 theorem good_color_valid {v w : V} (hv : Good G v) (hvw : G.Adj v w) :
     color G v ≠ color G w := by
   let C := G.connectedComponentMk v
@@ -81,7 +91,9 @@ theorem good_color_valid {v w : V} (hv : Good G v) (hvw : G.Adj v w) :
   rw [color_eq_component G C v hvC, color_eq_component G C w hwC]
   exact componentColor_valid G C hv (show C.toSimpleGraph.Adj ⟨v, hvC⟩ ⟨w, hwC⟩ from hvw)
 
-/-- The induced graph on all retained components is two-colorable.-/
+/-- The induced graph on all retained components is two-colorable.
+@isnad1 id=colorabl.0h2v.s5.f56fcb4a11fc from=translated src=- shape=3e5cd334 vocab=125cf03c
+-/
 theorem good_graph_colorable : (G.induce {v | Good G v}).Colorable 2 := by
   refine ⟨SimpleGraph.Coloring.mk (fun v => color G v.val) ?_⟩
   intro v w hvw
@@ -93,12 +105,17 @@ noncomputable def goodVertices : Finset V := by
   classical
   exact Finset.univ.filter (Good G)
 
+/--
+@isnad1 id=iff.0h3v.s4.79a7e715a909 from=translated src=- shape=e09c8489 vocab=b8f82ac4
+-/
 @[simp] theorem mem_goodVertices (v : V) : v ∈ goodVertices G ↔ Good G v := by
   classical
   simp only [goodVertices, Finset.mem_filter, Finset.mem_univ, true_and]
 
 /-- At least half of all vertices in bipartite components can be selected
-as one independent set. Component colorings and the large fiber are derived.-/
+as one independent set. Component colorings and the large fiber are derived.
+@isnad1 id=ex.0h2v.s6.f28d676269f4 from=translated src=- shape=92f280da vocab=e470aeac
+-/
 theorem exists_independent_good :
     ∃ I : Finset V, (∀ v ∈ I, Good G v) ∧ G.IsIndepSet (I : Set V) ∧
       (goodVertices G).card ≤ 2 * I.card := by

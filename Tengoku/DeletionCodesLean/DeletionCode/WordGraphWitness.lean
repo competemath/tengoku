@@ -18,7 +18,9 @@ open Windows HeaderRecovery SignedSupport SignedRuleCount RuleSetGraph
 open ConnectedBlocks WitnessCases
 
 /-- A nonbipartite component of a graph of k-unique words contains a bounded
-surviving generating witness at every chosen word in that component.-/
+surviving generating witness at every chosen word in that component.
+@isnad1 id=ex.5h8v.s8.2a84eb0927f4 from=translated src=- shape=0ff64111 vocab=5f452c64
+-/
 theorem component_witness {V : Type*} {t k n : ℕ} (ht : 2 ≤ t)
     (G : SimpleGraph V) (words : V → Letters)
     (K : Set (Gram (windowLength k) → ℤ))
@@ -45,7 +47,9 @@ theorem component_witness {V : Type*} {t k n : ℕ} (ht : 2 ≤ t)
     by simpa only [walkWords, hstart] using hcount⟩
 
 /-- An actual finite-word graph is a direct specialization. Padding is fixed;
-no unused infinite letter-function data is part of the graph's vertices.-/
+no unused infinite letter-function data is part of the graph's vertices.
+@isnad1 id=ex.5h7v.s8.8046de6439b5 from=translated src=- shape=e6c67821 vocab=09180bb7
+-/
 theorem finite_word_component_witness {t k n : ℕ} (ht : 2 ≤ t)
     (vertices : Set (Bits n)) (G : SimpleGraph vertices)
     (K : Set (Gram (windowLength k) → ℤ))

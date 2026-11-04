@@ -31,6 +31,9 @@ def GeneratingSet (x : Letters) (n k ν R c : ℕ) (group : Fin ν → Fin R)
       (∀ i, VertexDisjointOn E.family (windowLength k) (ruleBubbles E.family i)) ∧
       SignedGenerating E.family x n (windowLength k) ∧ rulesOfFamily E group = Q
 
+/--
+@isnad1 id=generati.1h8v.s5.60a2c1082ae3 from=translated src=- shape=426322c8 vocab=46d107e9
+-/
 theorem generatingSet_mem (x : Letters) (n k ν R c : ℕ) (group : Fin ν → Fin R)
     (Q : RuleSet k) (hQ : GeneratingSet x n k ν R c group Q) :
     GeneratingRuleSet x n k ν R c group Q := by
@@ -46,6 +49,9 @@ def generatingSetInclusion (x : Letters) (n k ν R c : ℕ) (group : Fin ν → 
       {Q : RuleSet k // GeneratingRuleSet x n k ν R c group Q} :=
   fun Q => ⟨Q.val, generatingSet_mem x n k ν R c group Q.val Q.property⟩
 
+/--
+@isnad1 id=finite.2h7v.s5.a8c3b684987a from=translated src=- shape=a8bad0fe vocab=25bb58b0
+-/
 theorem generatingSet_finite (x : Letters) (n k ν R c : ℕ) (group : Fin ν → Fin R)
     (hν : 1 ≤ ν) (hx : KUnique x n k) :
     Finite {Q : RuleSet k // GeneratingSet x n k ν R c group Q} := by
@@ -54,6 +60,9 @@ theorem generatingSet_finite (x : Letters) (n k ν R c : ℕ) (group : Fin ν �
   exact Finite.of_injective (generatingSetInclusion x n k ν R c group)
     (fun _ _ h => Subtype.ext (congrArg (fun Q : {Q : RuleSet k // GeneratingRuleSet x n k ν R c group Q} => Q.val) h))
 
+/--
+@isnad1 id=le.2h7v.s6.fb1c319d38b9 from=translated src=- shape=f4ad5a8b vocab=b3cfa3a6
+-/
 theorem generatingSet_record_bound (x : Letters) (n k ν R c : ℕ)
     (group : Fin ν → Fin R) (hν : 1 ≤ ν) (hx : KUnique x n k) :
     Nat.card {Q : RuleSet k // GeneratingSet x n k ν R c group Q} ≤
@@ -64,7 +73,9 @@ theorem generatingSet_record_bound (x : Letters) (n k ν R c : ℕ)
     (fun _ _ h => Subtype.ext (congrArg (fun Q : {Q : RuleSet k // GeneratingRuleSet x n k ν R c group Q} => Q.val) h))
   exact hcard.trans (generatingRuleSet_card_bound x n k ν R c group hν hx)
 
-/-- The counting lemma's explicit bound for ν=2tR bubble occurrences.-/
+/-- The counting lemma's explicit bound for ν=2tR bubble occurrences.
+@isnad1 id=le.3h7v.s7.1bfd021cf29f from=translated src=- shape=87693914 vocab=5ee31841
+-/
 theorem counting_generating_sets (t : ℕ) (ht : 1 ≤ t) (x : Letters)
     (n k R c : ℕ) (hR : 1 ≤ R) (hx : KUnique x n k)
     (group : Fin (2 * t * R) → Fin R) :
@@ -74,7 +85,9 @@ theorem counting_generating_sets (t : ℕ) (ht : 1 ≤ t) (x : Letters)
   exact (generatingSet_record_bound x n k (2 * t * R) R c group hν hx).trans
     (Nat.mul_le_mul_left (n ^ c) (field_power_bound k t R hR))
 
-/-- One integer depending only on t works for every base word, size and component count.-/
+/-- One integer depending only on t works for every base word, size and component count.
+@isnad1 id=ex.1h1v.s7.392a0678852e from=translated src=- shape=f08083b9 vocab=ca20ff9d
+-/
 theorem exists_counting_exponent (t : ℕ) (ht : 1 ≤ t) :
     ∃ a : ℕ, 1 ≤ a ∧ ∀ (x : Letters) (n k R c : ℕ),
       1 ≤ R → KUnique x n k → ∀ group : Fin (2 * t * R) → Fin R,

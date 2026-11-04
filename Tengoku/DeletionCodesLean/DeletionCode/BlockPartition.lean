@@ -35,22 +35,34 @@ noncomputable def blocks {k : ℕ} (U : RuleSet k) : Finset (RuleSet k) := by
   classical
   exact U.image (blockOf U)
 
+/--
+@isnad1 id=iff.0h4v.s6.f2e5093dd3f7 from=translated src=- shape=4d97fbef vocab=b7620027
+-/
 @[simp] theorem mem_blockOf {k : ℕ} (U : RuleSet k)
     (a b : Gram (windowLength k) → ℤ) :
     b ∈ blockOf U a ↔ b ∈ U ∧ ConnectedIn U a b := by
   classical
   simp [blockOf]
 
+/--
+@isnad1 id=iff.0h3v.s6.26a65a368a68 from=translated src=- shape=8fe9bc30 vocab=6c5af302
+-/
 @[simp] theorem mem_blocks {k : ℕ} (U B : RuleSet k) :
     B ∈ blocks U ↔ ∃ a ∈ U, blockOf U a = B := by
   classical
   simp [blocks]
 
+/--
+@isnad1 id=nonempty.1h3v.s5.38d1453308eb from=translated src=- shape=96e1458f vocab=dffd5fec
+-/
 theorem blockOf_nonempty {k : ℕ} (U : RuleSet k)
     (a : Gram (windowLength k) → ℤ) (ha : a ∈ U) : (blockOf U a).Nonempty := by
   refine ⟨a, (mem_blockOf U a a).mpr ⟨ha, ?_⟩⟩
   exact Relation.EqvGen.refl _
 
+/--
+@isnad1 id=eq.1h4v.s5.7121e675db66 from=translated src=- shape=39552e09 vocab=256ebf4f
+-/
 theorem blockOf_eq_of_connected {k : ℕ} (U : RuleSet k)
     (a b : Gram (windowLength k) → ℤ) (hab : ConnectedIn U a b) :
     blockOf U a = blockOf U b := by
@@ -63,7 +75,9 @@ theorem blockOf_eq_of_connected {k : ℕ} (U : RuleSet k)
   · rintro ⟨hc, hbc⟩
     exact ⟨hc, Relation.EqvGen.trans _ _ _ hab hbc⟩
 
-/-- Every incident vertex of a support union belongs to an actual rule in it.-/
+/-- Every incident vertex of a support union belongs to an actual rule in it.
+@isnad1 id=iff.0h3v.s6.eb859f678591 from=translated src=- shape=b49f536f vocab=3ff0c575
+-/
 theorem incident_iff_rule {k : ℕ} (U : RuleSet k)
     (v : SupportComponents.Vertex (windowLength k)) :
     Incident U v ↔ ∃ w ∈ U, Incident {w} v := by
@@ -75,7 +89,9 @@ theorem incident_iff_rule {k : ℕ} (U : RuleSet k)
   · rintro ⟨w, hw, hv⟩
     exact ComponentBounds.incident_mono (Finset.singleton_subset_iff.mpr hw) hv
 
-/-- Sharing even one actual support vertex would merge two old rule blocks.-/
+/-- Sharing even one actual support vertex would merge two old rule blocks.
+@isnad1 id=not.4h5v.s6.2836953484e4 from=translated src=- shape=d86b73e2 vocab=82684c4e
+-/
 theorem blocks_support_disjoint {k : ℕ} (U : RuleSet k) :
     ∀ B ∈ blocks U, ∀ C ∈ blocks U, B ≠ C →
       ∀ v, Incident B v → ¬ Incident C v := by
@@ -98,6 +114,9 @@ noncomputable def attachedBlocks {k : ℕ} (U : RuleSet k)
   classical
   exact (blocks U).filter (fun B => ∃ v, Incident B v ∧ Incident {w} v)
 
+/--
+@isnad1 id=iff.0h4v.s6.bbd506f1e466 from=translated src=- shape=50456999 vocab=d0eeb856
+-/
 @[simp] theorem mem_attachedBlocks {k : ℕ} (U B : RuleSet k)
     (w : Gram (windowLength k) → ℤ) :
     B ∈ attachedBlocks U w ↔
@@ -105,6 +124,9 @@ noncomputable def attachedBlocks {k : ℕ} (U : RuleSet k)
   classical
   simp [attachedBlocks]
 
+/--
+@isnad1 id=le.0h3v.s6.36f595070004 from=translated src=- shape=f6053a0c vocab=18b3aa86
+-/
 theorem attached_blocks_count_bound {k : ℕ} (U : RuleSet k)
     (w : Gram (windowLength k) → ℤ) :
     (attachedBlocks U w).card ≤ Fintype.card (RuleSetVertex {w}) := by
@@ -116,7 +138,9 @@ theorem attached_blocks_count_bound {k : ℕ} (U : RuleSet k)
       C ((mem_attachedBlocks U C w).mp hC).1 hne
 
 /-- The large-block upper estimate applied to the actual old block partition.
-The disjoint-support condition is proved above, rather than assumed here.-/
+The disjoint-support condition is proved above, rather than assumed here.
+@isnad1 id=le.2h5v.s8.f7775a706ce6 from=translated src=- shape=171f1477 vocab=43af0e91
+-/
 theorem attached_blocks_union_bound {k : ℕ} (U : RuleSet k)
     (w : Gram (windowLength k) → ℤ) (t L : ℕ)
     (hsize : ∀ B ∈ blocks U, B.card ≤ L)

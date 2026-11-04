@@ -50,7 +50,9 @@ def Adjacent {B : Type*} (F : Family B) (L : ℕ) (a b : B) : Prop :=
 def Connected {B : Type*} (F : Family B) (L : ℕ) : B → B → Prop :=
   Relation.EqvGen (F.Adjacent L)
 
-/-- Sharing an entire valid gram also gives a common de Bruijn vertex.-/
+/-- Sharing an entire valid gram also gives a common de Bruijn vertex.
+@isnad1 id=adjacent.3h8v.s5.44d52fec2bc2 from=translated src=- shape=e34a1fbf vocab=96f75ae9
+-/
 theorem supplier_adjacent {B : Type*} (F : Family B) (L : ℕ)
     (b a : B) (side : Bool) (i j : ℕ)
     (hi : i ≤ F.extra b false) (hj : j ≤ F.extra a side)
@@ -60,7 +62,9 @@ theorem supplier_adjacent {B : Type*} (F : Family B) (L : ℕ)
   intro q hq
   exact hgram q (by omega)
 
-/-- Natural-number rank has a least value in every nonempty component.-/
+/-- Natural-number rank has a least value in every nonempty component.
+@isnad1 id=ex.0h4v.s5.7672f8a72bcb from=translated src=- shape=5f099c51 vocab=7695a73f
+-/
 theorem exists_minimal_in_component {B : Type*} (F : Family B) (L : ℕ) (b : B) :
     ∃ r, F.Connected L r b ∧
       ∀ a, F.Connected L a b → F.rank r ≤ F.rank a := by
@@ -74,7 +78,9 @@ theorem exists_minimal_in_component {B : Type*} (F : Family B) (L : ℕ) (b : B)
   omega
 
 /-- Every component has a member whose negative windows all occur in x.
-No rootedness or supplier-closure hypothesis is assumed.-/
+No rootedness or supplier-closure hypothesis is assumed.
+@isnad1 id=ex.1h6v.s5.bd832928ef66 from=translated src=- shape=c438506b vocab=bf9ff923
+-/
 theorem component_root_windows {B : Type*} (F : Family B)
     (x : Letters) (n L : ℕ) (hgen : F.Generating x n L) (b : B) :
     ∃ r, F.Connected L r b ∧
@@ -91,7 +97,9 @@ theorem component_root_windows {B : Type*} (F : Family B)
     have hle := hmin a haconn
     omega
 
-/-- A component root's entire negative word is a genuine contiguous subword of x.-/
+/-- A component root's entire negative word is a genuine contiguous subword of x.
+@isnad1 id=ex.3h7v.s6.fcc4aab25352 from=translated src=- shape=fb5a636c vocab=9f25cfbd
+-/
 theorem component_root_subword {B : Type*} (F : Family B)
     (x : Letters) (n k L : ℕ) (hx : KUnique x n k) (hk : k < L)
     (hgen : F.Generating x n L) (b : B) :

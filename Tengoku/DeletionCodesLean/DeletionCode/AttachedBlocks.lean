@@ -20,7 +20,9 @@ namespace DeletionCode.AttachedBlocks
 open HeaderRecovery SignedSupport SignedRuleCount RuleSetGraph
 open scoped BigOperators
 
-/-- Different attached blocks must use different vertices of the new rule.-/
+/-- Different attached blocks must use different vertices of the new rule.
+@isnad1 id=le.2h3v.s7.c698452d689f from=translated src=- shape=babed876 vocab=7d9bc09d
+-/
 theorem attached_block_count_le_vertices {k : ℕ}
     (Bs : Finset (RuleSet k)) (w : Gram (windowLength k) → ℤ)
     (hmeet : ∀ B ∈ Bs, ∃ v, Incident B v ∧ Incident {w} v)
@@ -47,7 +49,9 @@ theorem attached_block_count_le_vertices {k : ℕ}
   simpa using Fintype.card_le_of_injective chooseVertex hinj
 
 /-- If each old block has at most L rules, their attached union plus the new
-rule has at most one plus L times the new rule's support-vertex count.-/
+rule has at most one plus L times the new rule's support-vertex count.
+@isnad1 id=le.3h4v.s8.294f3e6ee1a0 from=translated src=- shape=40279a91 vocab=46492d52
+-/
 theorem attached_union_card_bound {k : ℕ}
     (Bs : Finset (RuleSet k)) (w : Gram (windowLength k) → ℤ) (L : ℕ)
     (hsize : ∀ B ∈ Bs, B.card ≤ L)
@@ -71,7 +75,9 @@ theorem attached_union_card_bound {k : ℕ}
     _ = 1 + L * Fintype.card (RuleSetVertex {w}) := by
       simp only [Nat.mul_comm, Nat.add_comm]
 
-/-- The large-block quadratic size estimate from an actual support-vertex bound.-/
+/-- The large-block quadratic size estimate from an actual support-vertex bound.
+@isnad1 id=le.4h5v.s8.e549ab176eb9 from=translated src=- shape=88f5219d vocab=ee345276
+-/
 theorem attached_union_card_bound_quadratic {k : ℕ}
     (Bs : Finset (RuleSet k)) (w : Gram (windowLength k) → ℤ) (t L : ℕ)
     (hsize : ∀ B ∈ Bs, B.card ≤ L)

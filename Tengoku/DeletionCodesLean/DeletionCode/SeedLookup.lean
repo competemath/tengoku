@@ -32,12 +32,18 @@ instance (x : Letters) (n k L r : ℕ) (seed : Fin k → Bool) (a : ℕ) :
 def lookup (x : Letters) (n k L r : ℕ) (seed : Fin k → Bool) : Option ℕ :=
   (List.range (n + 1)).find? (fun a => decide (Matches x n k L r seed a))
 
+/--
+@isnad1 id=matches.1h7v.s5.a0050ef66a1f from=translated src=- shape=98d73454 vocab=bc5d5a12
+-/
 theorem lookup_sound (x : Letters) (n k L r a : ℕ) (seed : Fin k → Bool)
     (h : lookup x n k L r seed = some a) : Matches x n k L r seed a := by
   have hp : decide (Matches x n k L r seed a) = true :=
     List.find?_some (p := fun b => decide (Matches x n k L r seed b)) h
   exact of_decide_eq_true hp
 
+/--
+@isnad1 id=ex.1h6v.s5.2bf62c91bcca from=translated src=- shape=21c29eb2 vocab=bc5d5a12
+-/
 theorem lookup_exists (x : Letters) (n k L r : ℕ) (seed : Fin k → Bool)
     (h : ∃ a, Matches x n k L r seed a) :
     ∃ a, lookup x n k L r seed = some a := by
@@ -53,6 +59,9 @@ theorem lookup_exists (x : Letters) (n k L r : ℕ) (seed : Fin k → Bool)
     have hfalse := hnone a hamem
     exact False.elim (hfalse (decide_eq_true ha))
 
+/--
+@isnad1 id=eq.3h8v.s5.68f5647d02ad from=translated src=- shape=0cb1130f vocab=d3fa18b5
+-/
 theorem matches_unique (x : Letters) (n k L r a b : ℕ) (seed : Fin k → Bool)
     (hx : KUnique x n k) (ha : Matches x n k L r seed a)
     (hb : Matches x n k L r seed b) : a = b := by
@@ -60,7 +69,9 @@ theorem matches_unique (x : Letters) (n k L r a b : ℕ) (seed : Fin k → Bool)
   intro i hi
   exact (ha.2.2 ⟨i, hi⟩).trans (hb.2.2 ⟨i, hi⟩).symm
 
-/-- Under k-uniqueness the bounded search returns exactly the matching start.-/
+/-- Under k-uniqueness the bounded search returns exactly the matching start.
+@isnad1 id=iff.1h7v.s5.eb9fac581ac3 from=translated src=- shape=57c3bba0 vocab=d4ec62f9
+-/
 theorem lookup_eq_some_iff (x : Letters) (n k L r a : ℕ) (seed : Fin k → Bool)
     (hx : KUnique x n k) :
     lookup x n k L r seed = some a ↔ Matches x n k L r seed a := by
@@ -77,7 +88,9 @@ def recoverWindow (x : Letters) (n k L r : ℕ) (seed : Fin k → Bool) :
     Option (Fin L → Bool) :=
   (lookup x n k L r seed).map (fun a i => x (a + i.val))
 
-/-- Any returned window really is an in-bounds window of the fixed word.-/
+/-- Any returned window really is an in-bounds window of the fixed word.
+@isnad1 id=ex.1h7v.s6.7962910cd9b6 from=translated src=- shape=2b444838 vocab=f9ea04c5
+-/
 theorem recoverWindow_sound (x : Letters) (n k L r : ℕ) (seed : Fin k → Bool)
     (bits : Fin L → Bool) (h : recoverWindow x n k L r seed = some bits) :
     ∃ a, Matches x n k L r seed a ∧ bits = fun i => x (a + i.val) := by
@@ -88,7 +101,9 @@ theorem recoverWindow_sound (x : Letters) (n k L r : ℕ) (seed : Fin k → Bool
     simp only [heq, Option.map_some, Option.some.injEq] at h
     exact ⟨a, lookup_sound x n k L r a seed heq, h.symm⟩
 
-/-- A target window occurring in x is recovered exactly from its seed.-/
+/-- A target window occurring in x is recovered exactly from its seed.
+@isnad1 id=eq.5h9v.s6.e54f74a2038d from=translated src=- shape=4e2b0b40 vocab=8ba5d516
+-/
 theorem recoverWindow_of_occurrence
     (x target : Letters) (n k L r a w : ℕ) (seed : Fin k → Bool)
     (hx : KUnique x n k) (hr : r + k ≤ L) (ha : a + L ≤ n)

@@ -27,6 +27,9 @@ open scoped BigOperators
 def pathWord {k : ℕ} (bubble : BubbleWord k) (side : Bool) : List Bool :=
   if side then bubble.positiveWord else bubble.negativeWord
 
+/--
+@isnad1 id=eq.0h3v.s4.3430033acc98 from=translated src=- shape=e279251f vocab=b72ab8c9
+-/
 theorem pathWord_length {k : ℕ} (bubble : BubbleWord k) (side : Bool) :
     (pathWord bubble side).length = PathMemory.pathLength k bubble.header side := by
   cases side <;> simp only [pathWord, PathMemory.pathLength, Bool.false_eq_true,
@@ -34,6 +37,9 @@ theorem pathWord_length {k : ℕ} (bubble : BubbleWord k) (side : Bool) :
   · exact bubble.negativeWord_length
   · exact bubble.positiveWord_length
 
+/--
+@isnad1 id=le.0h3v.s4.4fdf01cf711e from=translated src=- shape=d90c7f56 vocab=b2753d2f
+-/
 theorem pathWord_length_ge {k : ℕ} (bubble : BubbleWord k) (side : Bool) :
     windowLength k ≤ (pathWord bubble side).length := by
   have hlo := bubble.rho_lower
@@ -44,6 +50,9 @@ theorem pathWord_length_ge {k : ℕ} (bubble : BubbleWord k) (side : Bool) :
       shortLength, BubbleWord.header, ho, Bool.false_eq_true, ite_false, ite_true, windowLength] <;>
     omega
 
+/--
+@isnad1 id=eq.0h6v.s5.fe709c92a3c9 from=translated src=- shape=7fdcd8e0 vocab=fe4a2a0d
+-/
 theorem family_path {B : Type*} {k : ℕ} (words : B → BubbleWord k) (rank : B → ℕ)
     (b : B) (side : Bool) :
     (editedFamily words rank).family.path b side = listLetters (pathWord (words b) side) := by
@@ -51,6 +60,9 @@ theorem family_path {B : Type*} {k : ℕ} (words : B → BubbleWord k) (rank : B
   · exact editedFamily_negative words rank b
   · exact editedFamily_positive words rank b
 
+/--
+@isnad1 id=eq.0h6v.s5.307c552e4f89 from=translated src=- shape=0be05e48 vocab=71d1e57a
+-/
 theorem family_extra {B : Type*} {k : ℕ} (words : B → BubbleWord k) (rank : B → ℕ)
     (b : B) (side : Bool) :
     (editedFamily words rank).family.extra b side =
@@ -58,6 +70,9 @@ theorem family_extra {B : Type*} {k : ℕ} (words : B → BubbleWord k) (rank : 
   rw [pathWord_length]
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.2311901fc7ac from=translated src=- shape=ebf14a37 vocab=a8388463
+-/
 theorem family_vertex {B : Type*} {k : ℕ} (words : B → BubbleWord k) (rank : B → ℕ)
     (b : B) (side : Bool) (i : ℕ) :
     SupportComponents.vertex (editedFamily words rank).family (windowLength k) b side i =
@@ -65,6 +80,9 @@ theorem family_vertex {B : Type*} {k : ℕ} (words : B → BubbleWord k) (rank :
   funext j
   exact congrFun (family_path words rank b side) (i + j.val)
 
+/--
+@isnad1 id=eq.1h3v.s5.f3db5d3abc50 from=translated src=- shape=77ca4e45 vocab=f7a46d2a
+-/
 theorem wordSpectrum_eq_pathSpectrum (x : Letters) (n L : ℕ) (hn : L ≤ n) :
     wordSpectrum x n L = pathSpectrum x L (n - L) := by
   classical
@@ -76,6 +94,9 @@ theorem wordSpectrum_eq_pathSpectrum (x : Letters) (n L : ℕ) (hn : L ≤ n) :
   have heq : n + 1 - L = n - L + 1 := by omega
   simp only [heq, Nat.zero_add]
 
+/--
+@isnad1 id=eq.0h5v.s6.32c91d69cdf2 from=translated src=- shape=dd902bcd vocab=9669d3ba
+-/
 theorem bubble_spectrum {B : Type*} {k : ℕ} (words : B → BubbleWord k) (rank : B → ℕ)
     (b : B) :
     bubbleSpectrum (editedFamily words rank).family (windowLength k) b =
@@ -90,6 +111,9 @@ theorem bubble_spectrum {B : Type*} {k : ℕ} (words : B → BubbleWord k) (rank
   simp only [bubbleSpectrum, family_path, family_extra, pathWord, Bool.false_eq_true,
     ite_false, ite_true, Pi.sub_apply]
 
+/--
+@isnad1 id=and.0h2v.s6.dd125d52872f from=translated src=- shape=805be5fc vocab=00b9255b
+-/
 theorem long_short_lengths {k : ℕ} (bubble : BubbleWord k) :
     bubble.longWord.length = windowLength k + (windowLength k - bubble.rho) ∧
       bubble.shortWord.length = windowLength k + (windowLength k - bubble.rho - 1) ∧
@@ -100,6 +124,9 @@ theorem long_short_lengths {k : ℕ} (bubble : BubbleWord k) :
     BubbleWord.header, windowLength]
   omega
 
+/--
+@isnad1 id=eq.4h5v.s6.b58af4b92d0e from=translated src=- shape=19d4c7bf vocab=de1f1d6b
+-/
 theorem geometry_unique {k : ℕ} (bubble : BubbleWord k) (hg : Geometry bubble)
     (side : Bool) (i j : ℕ)
     (hi : i + (windowLength k - 1) ≤ (pathWord bubble side).length)
@@ -126,6 +153,9 @@ theorem geometry_unique {k : ℕ} (bubble : BubbleWord k) (hg : Geometry bubble)
   · exact hshort (by omega) (by omega) heq
   · exact hlong (by omega) (by omega) heq
 
+/--
+@isnad1 id=or.4h4v.s7.d5c2cbb2fc19 from=translated src=- shape=a381418e vocab=c243dfa8
+-/
 theorem geometry_endpoints {k : ℕ} (bubble : BubbleWord k) (hg : Geometry bubble) (i j : ℕ)
     (hi : i + (windowLength k - 1) ≤ bubble.negativeWord.length)
     (hj : j + (windowLength k - 1) ≤ bubble.positiveWord.length)
@@ -147,6 +177,9 @@ theorem geometry_endpoints {k : ℕ} (bubble : BubbleWord k) (hg : Geometry bubb
     · left; exact ⟨h.2, h.1⟩
     · right; omega
 
+/--
+@isnad1 id=validcat.3h3v.s7.00f948d370c6 from=translated src=- shape=4cdff4aa vocab=9c68e218
+-/
 theorem validCatalogue {k ν : ℕ} (words : Fin ν → BubbleWord k)
     (hboundary : ∀ b, (words b).left.getLast? = some (!(words b).bit) ∧
       (words b).right.head? = some (!(words b).bit))
@@ -198,6 +231,9 @@ theorem validCatalogue {k ν : ℕ} (words : Fin ν → BubbleWord k)
       rw [family_extra] at hj
       omega
 
+/--
+@isnad1 id=eq.0h4v.s7.0de2114a79b0 from=translated src=- shape=7ed6fb0f vocab=83a932c4
+-/
 theorem rule_spectrum {k ν : ℕ} (words : Fin ν → BubbleWord k) (rank : Fin ν → ℕ) :
     ruleSpectrum (editedFamily words rank).family (windowLength k) Finset.univ =
       ∑ b, (wordSpectrum (listLetters (words b).positiveWord)
@@ -211,7 +247,9 @@ theorem rule_spectrum {k ν : ℕ} (words : Fin ν → BubbleWord k) (rank : Fin
   intro b _
   exact congrFun (bubble_spectrum words rank b) g
 
-/-- The signed catalogue constructor with all word-level obligations explicit.-/
+/-- The signed catalogue constructor with all word-level obligations explicit.
+@isnad1 id=catalogu.5h3v.s9.1824b084db33 from=translated src=- shape=e034da41 vocab=a7d19bbd
+-/
 theorem catalogueRule {t k : ℕ} (words : Fin (2 * t) → BubbleWord k)
     (hboundary : ∀ b, (words b).left.getLast? = some (!(words b).bit) ∧
       (words b).right.head? = some (!(words b).bit))

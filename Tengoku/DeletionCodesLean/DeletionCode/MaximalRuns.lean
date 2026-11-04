@@ -24,7 +24,9 @@ private theorem bool_eq_not_of_ne {a b : Bool} (h : a ≠ b) : a = !b := by
   cases a <;> cases b <;> simp_all
 
 /-- The first bit begins a nonempty run ending at the first opposite bit or
-at the word's end. The run and its boundary are derived by list induction.-/
+at the word's end. The run and its boundary are derived by list induction.
+@isnad1 id=ex.0h2v.s6.d82e45a89f56 from=translated src=- shape=f224852c vocab=aae26920
+-/
 theorem exists_head_run (bit : Bool) (tail : List Bool) :
     ∃ (rho : ℕ) (suffix : List Bool), 0 < rho ∧
       bit :: tail = List.replicate rho bit ++ suffix ∧
@@ -42,7 +44,9 @@ theorem exists_head_run (bit : Bool) (tail : List Bool) :
       simpa only [List.head?_cons, Option.some.injEq] using bool_eq_not_of_ne hb
 
 /-- A valid index lies in a concrete maximal run. Empty exterior words
-represent runs reaching a boundary; otherwise the adjacent bit is opposite.-/
+represent runs reaching a boundary; otherwise the adjacent bit is opposite.
+@isnad1 id=ex.1h2v.s7.eee103c4f376 from=translated src=- shape=715aaed7 vocab=7c0d1855
+-/
 theorem exists_maximal_run (word : List Bool) (pos : ℕ) (hpos : pos < word.length) :
     ∃ (pre suffix : List Bool) (rho : ℕ) (bit : Bool),
       0 < rho ∧ word = pre ++ List.replicate rho bit ++ suffix ∧
@@ -89,7 +93,9 @@ theorem exists_maximal_run (word : List Bool) (pos : ℕ) (hpos : pos < word.len
           · simp at hnil
           · exact Or.inr (by simpa only [List.getLast?_cons_cons] using hlast)
 
-/-- Every index in a displayed constant block reads its actual bit.-/
+/-- Every index in a displayed constant block reads its actual bit.
+@isnad1 id=constant.0h4v.s5.eb928ada90f4 from=translated src=- shape=36cbc3e6 vocab=9177ea26
+-/
 theorem constantOn_block (pre suffix : List Bool) (rho : ℕ) (bit : Bool) :
     ConstantOn (listLetters (pre ++ List.replicate rho bit ++ suffix)) pre.length rho bit := by
   intro i hi
@@ -102,6 +108,9 @@ theorem constantOn_block (pre suffix : List Bool) (rho : ℕ) (bit : Bool) :
   rw [List.getElem?_replicate_of_lt hi]
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s6.3a118c475129 from=translated src=- shape=4fbbf2dd vocab=20669ec4
+-/
 theorem bit_at_run_index (pre suffix : List Bool) (rho : ℕ) (bit : Bool) (pos : ℕ)
     (hstart : pre.length ≤ pos) (hstop : pos < pre.length + rho) :
     listLetters (pre ++ List.replicate rho bit ++ suffix) pos = bit := by
@@ -110,7 +119,9 @@ theorem bit_at_run_index (pre suffix : List Bool) (rho : ℕ) (bit : Bool) (pos 
   simpa only [hindex] using h
 
 /-- Deleting anywhere in a constant run yields the same shortened list.
-Maximality is not needed for this local edit identity.-/
+Maximality is not needed for this local edit identity.
+@isnad1 id=eq.2h5v.s6.9802fb662a9a from=translated src=- shape=1f61d9b9 vocab=c151839a
+-/
 theorem eraseIdx_in_run (pre suffix : List Bool) (rho : ℕ) (bit : Bool) (pos : ℕ)
     (hstart : pre.length ≤ pos) (hstop : pos < pre.length + rho) :
     (pre ++ List.replicate rho bit ++ suffix).eraseIdx pos =
@@ -122,6 +133,9 @@ theorem eraseIdx_in_run (pre suffix : List Bool) (rho : ℕ) (bit : Bool) (pos :
     (by simpa only [List.length_replicate] using hrun)]
   rw [List.eraseIdx_replicate, ite_eq_left hrun]
 
+/--
+@isnad1 id=eq.4h6v.s7.cdb33e5447fb from=translated src=- shape=519742e1 vocab=ea5cd434
+-/
 theorem eraseIdx_same_in_run (pre suffix : List Bool) (rho : ℕ) (bit : Bool) (p q : ℕ)
     (hp : pre.length ≤ p) (hp' : p < pre.length + rho)
     (hq : pre.length ≤ q) (hq' : q < pre.length + rho) :
@@ -129,7 +143,9 @@ theorem eraseIdx_same_in_run (pre suffix : List Bool) (rho : ℕ) (bit : Bool) (
       (pre ++ List.replicate rho bit ++ suffix).eraseIdx q := by
   rw [eraseIdx_in_run pre suffix rho bit p hp hp', eraseIdx_in_run pre suffix rho bit q hq hq']
 
-/-- The source uniqueness bound applies to every displayed run decomposition.-/
+/-- The source uniqueness bound applies to every displayed run decomposition.
+@isnad1 id=le.2h6v.s5.901935d3df8a from=translated src=- shape=34d8ab80 vocab=9957de1e
+-/
 theorem run_length_le_of_unique (word : List Bool) (k : ℕ)
     (hx : KUnique (listLetters word) word.length k)
     (pre suffix : List Bool) (rho : ℕ) (bit : Bool)
@@ -140,7 +156,9 @@ theorem run_length_le_of_unique (word : List Bool) (k : ℕ)
     omega
   · exact constantOn_block pre suffix rho bit
 
-/-- Extracting a maximal source run also derives its length bound.-/
+/-- Extracting a maximal source run also derives its length bound.
+@isnad1 id=ex.2h3v.s7.8b2e131a83cf from=translated src=- shape=b676eddc vocab=935a0343
+-/
 theorem exists_maximal_run_unique (word : List Bool) (pos k : ℕ)
     (hpos : pos < word.length) (hx : KUnique (listLetters word) word.length k) :
     ∃ (pre suffix : List Bool) (rho : ℕ) (bit : Bool),
@@ -155,7 +173,9 @@ theorem exists_maximal_run_unique (word : List Bool) (pos k : ℕ)
     heq, hstart, hstop, hleft, hright⟩
 
 /-- Inserting a bit into an actual list split yields a maximal run containing
-that inserted bit. Shortening the extracted run recovers the exact source.-/
+that inserted bit. Shortening the extracted run recovers the exact source.
+@isnad1 id=ex.0h3v.s7.687a5376efb6 from=translated src=- shape=47d83842 vocab=9b6a6708
+-/
 theorem exists_insertion_run (left right : List Bool) (bit : Bool) :
     ∃ (pre suffix : List Bool) (rho : ℕ),
       0 < rho ∧ left ++ bit :: right = pre ++ List.replicate rho bit ++ suffix ∧
@@ -174,7 +194,9 @@ theorem exists_insertion_run (left right : List Bool) (bit : Bool) :
   exact ⟨pre, suffix, rho, hrho, heq, hshort, hstart, hstop, hleft, hright⟩
 
 /-- For a k-unique source, the longer run produced by insertion has length
-between one and k+1. Its shorter run may be empty, as when rho=1.-/
+between one and k+1. Its shorter run may be empty, as when rho=1.
+@isnad1 id=ex.1h4v.s8.efef1a6e9b35 from=translated src=- shape=a1a518c9 vocab=08eb7d0e
+-/
 theorem exists_insertion_run_unique (left right : List Bool) (bit : Bool) (k : ℕ)
     (hx : KUnique (listLetters (left ++ right)) (left ++ right).length k) :
     ∃ (pre suffix : List Bool) (rho : ℕ),
@@ -200,7 +222,9 @@ theorem exists_insertion_run_unique (left right : List Bool) (bit : Bool) (k : �
   exact ⟨pre, suffix, rho, hrho, hrhoBound, heq, hshort, hstart, hstop, hleft, hright⟩
 
 /-- Valid insertion gaps, including either boundary, have the same concrete
-maximal-run decomposition and length bound without a supplied list split.-/
+maximal-run decomposition and length bound without a supplied list split.
+@isnad1 id=ex.2h4v.s7.bccc8934d794 from=translated src=- shape=c06098f3 vocab=dc5107c1
+-/
 theorem exists_insertion_run_at_gap_unique (word : List Bool) (pos : ℕ) (bit : Bool)
     (k : ℕ) (hpos : pos ≤ word.length)
     (hx : KUnique (listLetters word) word.length k) :

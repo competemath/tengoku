@@ -19,6 +19,9 @@ open Windows PartialWords HeaderRecovery SelectedWindows ConcreteDecoder Concret
 variable {B : Type*} [Fintype B] [DecidableEq B]
 variable {x : Letters} {n k : ℕ}
 
+/--
+@isnad1 id=ex.2h7v.s7.461c421da83f from=translated src=- shape=f5dcd61c vocab=37b5af7d
+-/
 theorem bounded_run (M : Model B x n k) (hx : KUnique x n k)
     (s : Recovery.State B) (mem : Bank B) (hi : M.Invariant s mem) :
     ∃ instructions mem' q,
@@ -55,7 +58,9 @@ theorem bounded_run (M : Model B x n k) (hx : KUnique x n k)
           omega
   exact aux (N - s.score) s mem rfl hi
 
-/-- Bounded concrete execution recovers all finite negative words exactly.-/
+/-- Bounded concrete execution recovers all finite negative words exactly.
+@isnad1 id=ex.2h7v.s7.01db51bce0cb from=translated src=- shape=f7be9b3d vocab=aa403168
+-/
 theorem bounded_run_finishes (M : Model B x n k) (hx : KUnique x n k)
     (s : Recovery.State B) (mem : Bank B) (hi : M.Invariant s mem) :
     ∃ instructions,
@@ -70,7 +75,9 @@ theorem bounded_run_finishes (M : Model B x n k) (hx : KUnique x n k)
   intro b
   exact M.complete_known q mem' hinv.realizes b (hdone b)
 
-/-- Actual root positions and at most 4|B| instructions decode the modeled words.-/
+/-- Actual root positions and at most 4|B| instructions decode the modeled words.
+@isnad1 id=ex.1h5v.s7.bcd65a1f817b from=translated src=- shape=72ae3232 vocab=4aa68aee
+-/
 theorem decode_exists (M : Model B x n k) (hx : KUnique x n k) :
     ∃ roots instructions,
       roots.length = ConcreteInitialization.rootCount M ∧

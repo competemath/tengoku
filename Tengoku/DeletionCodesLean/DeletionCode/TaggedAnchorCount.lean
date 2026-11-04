@@ -20,6 +20,9 @@ abbrev Record (n r : ℕ) := (Fin r → Fin n) × (Fin r → Bool × Bool)
 def packets {n r : ℕ} (rec : Record n r) : List (ℕ × (Bool × Bool)) :=
   List.ofFn (fun i => ((rec.1 i).val, rec.2 i))
 
+/--
+@isnad1 id=eq.0h2v.s6.e562d73d4140 from=translated src=- shape=8cdb7472 vocab=6ca76dbf
+-/
 theorem record_card (n r : ℕ) : Fintype.card (Record n r) = n ^ r * 4 ^ r := by
   simp only [Record, Fintype.card_prod, Fintype.card_fun, Fintype.card_fin,
     Fintype.card_bool]
@@ -35,6 +38,9 @@ noncomputable def badEquiv (n r m B : ℕ) :
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=le.0h4v.s6.90a596ca4a93 from=translated src=- shape=64d6e22a vocab=2d2e26e4
+-/
 theorem bad_record_card_le (n r m B : ℕ) :
     Nat.card {rec : Record n r // Bad m B rec} ≤
       r * (r + 2) * (2 * B) * n ^ (r - 1) * 4 ^ r := by

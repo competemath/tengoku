@@ -67,6 +67,9 @@ def positiveLength (k : ℕ) (h : Header) : ℕ :=
 
 def negativeExtra (k : ℕ) (h : Header) : ℕ := negativeLength k h - windowLength k
 
+/--
+@isnad1 id=eq.2h2v.s5.982eaad36ce8 from=translated src=- shape=6da91c94 vocab=84a910c3
+-/
 theorem negativeLength_eq (k : ℕ) (h : Header)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1) :
     negativeLength k h = windowLength k + negativeExtra k h := by
@@ -74,6 +77,9 @@ theorem negativeLength_eq (k : ℕ) (h : Header)
   cases ho : h.orientation <;>
     simp only [negativeLength, ho, shortLength, longLength, windowLength] <;> omega
 
+/--
+@isnad1 id=lt.2h2v.s5.144ba80091cb from=translated src=- shape=6bca1119 vocab=4bbcb3a1
+-/
 theorem negativeExtra_lt (k : ℕ) (h : Header)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1) :
     negativeExtra k h < windowLength k := by
@@ -87,6 +93,9 @@ def rebuildPositive (k : ℕ) (h : Header) (negative : Letters) : Letters :=
   | .deletion => deleteAt negative (editOffset k)
   | .insertion => insertAt negative (editOffset k) h.bit
 
+/--
+@isnad1 id=eq.1h3v.s4.318074a2a8d5 from=translated src=- shape=fc6f1ad0 vocab=4f65d3a2
+-/
 theorem rebuild_positive_correct (k : ℕ) (h : Header) (long : Letters)
     (hbit : long (editOffset k) = h.bit) :
     rebuildPositive k h (negativePath k h long) = positivePath k h long := by
@@ -97,7 +106,9 @@ theorem rebuild_positive_correct (k : ℕ) (h : Header) (long : Letters)
     rw [← hbit]
     exact insert_delete long (editOffset k)
 
-/-- Rebuilding depends only on the finite negative word, not its unused tail.-/
+/-- Rebuilding depends only on the finite negative word, not its unused tail.
+@isnad1 id=agree.3h4v.s6.cd9b1cb73c32 from=translated src=- shape=c08b4d40 vocab=0ac8d6e0
+-/
 theorem rebuild_positive_preserves_agreement (k : ℕ) (h : Header) (p q : Letters)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)
     (hknown : Agree p 0 q 0 (negativeLength k h)) :
@@ -133,7 +144,9 @@ theorem rebuild_positive_preserves_agreement (k : ℕ) (h : Header) (p q : Lette
           omega
         simpa only [Nat.zero_add] using hknown (i - 1) hlt
 
-/-- Correct finite negative letters suffice to recover the entire positive word.-/
+/-- Correct finite negative letters suffice to recover the entire positive word.
+@isnad1 id=agree.4h4v.s6.55dcdfbe3e14 from=translated src=- shape=4d5323f1 vocab=2cae3f24
+-/
 theorem rebuild_positive_from_known_negative (k : ℕ) (h : Header)
     (long known : Letters)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)
@@ -161,6 +174,9 @@ def lengthenSeed (ell k : ℕ) (seed : Seed) (bit : Bool) : Seed :=
   else if ell ≤ seed.offset then ⟨seed.offset + 1, seed.bits⟩
   else ⟨seed.offset, insertionSeed (ell - seed.offset) bit seed.bits⟩
 
+/--
+@isnad1 id=agree.2h5v.s6.0d3b89d7365d from=translated src=- shape=8f844a6e vocab=464ea41b
+-/
 theorem shorten_seed_correct (p : Letters) (ell k : ℕ) (seed : Seed)
     (extra : Bool) (hseed : Agree p seed.offset seed.bits 0 k)
     (hextra : seed.offset ≤ ell → ell < seed.offset + k →
@@ -186,6 +202,9 @@ theorem shorten_seed_correct (p : Letters) (ell k : ℕ) (seed : Seed)
     · simpa only [Nat.zero_add] using hseed (i + 1) hlast
     · exact (hextra hs he).symm
 
+/--
+@isnad1 id=agree.1h5v.s5.cb32aa7ef217 from=translated src=- shape=6fd36aba vocab=412018c0
+-/
 theorem lengthen_seed_correct (p : Letters) (ell k : ℕ) (seed : Seed)
     (bit : Bool) (hseed : Agree p seed.offset seed.bits 0 k) :
     Agree (insertAt p ell bit) (lengthenSeed ell k seed bit).offset
@@ -221,6 +240,9 @@ def ExtensionMatches (k : ℕ) (h : Header) (long : Letters)
     editOffset k < seed.offset + k →
       extra = negativePath k h long (seed.offset + k - 1)
 
+/--
+@isnad1 id=agree.3h5v.s6.dcf81f32d34c from=translated src=- shape=bcf5f8de vocab=e87663ab
+-/
 theorem transfer_positive_seed_correct (k : ℕ) (h : Header) (long : Letters)
     (seed : Seed) (extra : Bool)
     (hbit : long (editOffset k) = h.bit)
@@ -245,6 +267,9 @@ theorem transfer_positive_seed_correct (k : ℕ) (h : Header) (long : Letters)
     apply shorten_seed_correct long (editOffset k) k seed extra hseed
     simpa only [ExtensionMatches, ho, negativePath, true_implies] using hextra
 
+/--
+@isnad1 id=le.3h4v.s6.545d7a2778d8 from=translated src=- shape=6c57949e vocab=580a5eeb
+-/
 theorem transfer_positive_seed_in_bounds (k : ℕ) (h : Header)
     (seed : Seed) (extra : Bool)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)
@@ -281,7 +306,9 @@ theorem transfer_positive_seed_in_bounds (k : ℕ) (h : Header)
         dsimp [editOffset, windowLength] at hafter
         omega
 
-/-- The combined letter and bounds guarantee needed for a concrete start instruction.-/
+/-- The combined letter and bounds guarantee needed for a concrete start instruction.
+@isnad1 id=and.6h5v.s7.f514950645e6 from=translated src=- shape=583ec5db vocab=da6b8342
+-/
 theorem transfer_positive_seed_valid (k : ℕ) (h : Header) (long : Letters)
     (seed : Seed) (extra : Bool)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)
@@ -307,6 +334,9 @@ def transferFinite (k : ℕ) (h : Header) (offset : ℕ)
   let output := transferPositiveSeed k h ⟨offset, padBits bits⟩ extra
   (output.offset, fun i => output.bits i.val)
 
+/--
+@isnad1 id=and.6h6v.s7.793de3e2cf61 from=translated src=- shape=6488c2ad vocab=dfa1e5ef
+-/
 theorem transferFinite_valid (k : ℕ) (h : Header) (long : Letters)
     (offset : ℕ) (bits : Bits k) (extra : Bool)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)
@@ -336,6 +366,9 @@ def rebuildPositiveFinite (k : ℕ) (h : Header)
     (negative : Bits (negativeLength k h)) : Bits (positiveLength k h) :=
   fun i => rebuildPositive k h (padBits negative) i.val
 
+/--
+@isnad1 id=eq.4h5v.s6.aabc977cc197 from=translated src=- shape=58007078 vocab=23af0549
+-/
 theorem rebuildPositiveFinite_correct (k : ℕ) (h : Header) (long : Letters)
     (negative : Bits (negativeLength k h))
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)

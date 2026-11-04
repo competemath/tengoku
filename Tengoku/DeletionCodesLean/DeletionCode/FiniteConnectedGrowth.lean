@@ -22,7 +22,9 @@ variable {α : Type*} [DecidableEq α]
 def Induced (B : Finset α) (r : α → α → Prop) (u v : α) : Prop :=
   u ∈ B ∧ v ∈ B ∧ r u v
 
-/-- Every nonempty proper subset of a connected finite set has an outgoing edge.-/
+/-- Every nonempty proper subset of a connected finite set has an outgoing edge.
+@isnad1 id=ex.4h4v.s7.7ba9a30c87db from=translated src=- shape=ed33413b vocab=08448dc7
+-/
 theorem frontier (B S : Finset α) (r : α → α → Prop)
     (hconnected : ∀ a ∈ B, ∀ b ∈ B, Relation.EqvGen (Induced B r) a b)
     (hsub : S ⊆ B) (hS : S.Nonempty) (hproper : S ≠ B) :
@@ -50,7 +52,9 @@ theorem frontier (B S : Finset α) (r : α → α → Prop)
     exact (preserve a b (hconnected a (hsub haS) b hbB)).mp haS
   exact hproper (Finset.Subset.antisymm hsub hback)
 
-/-- Induction by adjoining adjacent members of a nonempty induced connected set.-/
+/-- Induction by adjoining adjacent members of a nonempty induced connected set.
+@isnad1 id=var.2h6v.s7.b74edfca6ca5 from=translated src=- shape=1ffdfcd5 vocab=189f8922
+-/
 theorem connected_induction (B : Finset α) (r : α → α → Prop)
     (hB : B.Nonempty)
     (hconnected : ∀ a ∈ B, ∀ b ∈ B, Relation.EqvGen (Induced B r) a b)
@@ -79,7 +83,9 @@ theorem connected_induction (B : Finset α) (r : α → α → Prop)
     (Finset.singleton_subset_iff.mpr ha) ⟨a, Finset.mem_singleton_self a⟩
     (hsingleton a ha) rfl
 
-/-- One saved unit at every connected addition gives the usual (d-1)|B|+1 bound.-/
+/-- One saved unit at every connected addition gives the usual (d-1)|B|+1 bound.
+@isnad1 id=le.5h5v.s7.42cea99c3eff from=translated src=- shape=f72b0d21 vocab=9d668ca8
+-/
 theorem connected_count_bound (B : Finset α) (r : α → α → Prop)
     (hB : B.Nonempty)
     (hconnected : ∀ a ∈ B, ∀ b ∈ B, Relation.EqvGen (Induced B r) a b)

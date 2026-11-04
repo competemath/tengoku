@@ -21,7 +21,9 @@ open Windows HeaderRecovery SingleEditOrigins
 
 /-- The shared-source-letters assertion in manuscript lemma `lem:rigidity`.
 The edits and all surviving source indices are actual data. Positivity of k
-is explicit; the manuscript fixes k = 2*ceil(log₂ n)+2.-/
+is explicit; the manuscript fixes k = 2*ceil(log₂ n)+2.
+@isnad1 id=ex.7h7v.s7.170aee6d73b5 from=translated src=- shape=1dc558ba vocab=aa3ab8fa
+-/
 theorem shared_source_letters {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     (hx : KUnique x n k) (e f : Edit) (he : e.Valid n) (hf : f.Valid n)
     (a b : ℕ) (ha : a + (windowLength k - 1) ≤ e.outputLength n)
@@ -53,7 +55,9 @@ theorem shared_source_letters {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
   exact ⟨s, r, by omega, hri, fun i hi => ⟨hr i hi, hr' i hi⟩⟩
 
 /-- No two distinct (L-1)-windows of a word one edit away from x coincide.
-The injectivity of surviving source positions is proved from the edit.-/
+The injectivity of surviving source positions is proved from the edit.
+@isnad1 id=kunique.3h4v.s5.fdf32ad542ef from=translated src=- shape=23c43e2a vocab=f9360f76
+-/
 theorem one_edit_unique {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     (hx : KUnique x n k) (e : Edit) (he : e.Valid n) :
     KUnique (e.word x) (e.outputLength n) (windowLength k - 1) := by
@@ -63,7 +67,9 @@ theorem one_edit_unique {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
   have hab := e.origin_injective h0.1 h0.2
   omega
 
-/-- The integer L-spectrum remains Boolean after any one valid edit.-/
+/-- The integer L-spectrum remains Boolean after any one valid edit.
+@isnad1 id=or.3h5v.s6.eaea28d32f36 from=translated src=- shape=ba2eaac4 vocab=f284fffc
+-/
 theorem one_edit_spectrum_boolean {n k : ℕ} (hk : 1 ≤ k) (x : Letters)
     (hx : KUnique x n k) (e : Edit) (he : e.Valid n) :
     ∀ g, SignedSupport.wordSpectrum (e.word x) (e.outputLength n) (windowLength k) g = 0 ∨

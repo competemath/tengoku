@@ -51,7 +51,9 @@ private theorem seeded_frontier {k : ℕ} (U I S : RuleSet k)
   exact hne (Finset.Subset.antisymm hSU hUS)
 
 /-- The actual support-component increase when every retained rule is linked
-to at least one seed rule by a path staying inside U.-/
+to at least one seed rule by a path staying inside U.
+@isnad1 id=le.4h4v.s7.c7c5968ca576 from=translated src=- shape=7dfd98ec vocab=01436fb1
+-/
 theorem seeded_component_growth {t k : ℕ} (ht : 1 ≤ t) (U I : RuleSet k)
     (hIU : I ⊆ U) (hcat : ∀ w ∈ U, CatalogueRule t k w)
     (hcover : ∀ u ∈ U, ∃ i ∈ I,
@@ -99,7 +101,9 @@ theorem seeded_component_growth {t k : ℕ} (ht : 1 ≤ t) (U I : RuleSet k)
   change componentCount U ≤ componentCount I + d * (U.card - I.card)
   omega
 
-/-- Savings from the relation survive adjoining all rules linked to its seeds.-/
+/-- Savings from the relation survive adjoining all rules linked to its seeds.
+@isnad1 id=le.8h6v.s8.94b7e0868dbe from=translated src=- shape=88e296eb vocab=03b79f7d
+-/
 theorem relation_seeded_bound {t k : ℕ} (ht : 2 ≤ t) (U I : RuleSet k)
     (hIU : I ⊆ U) (hI : 2 ≤ I.card) (hcat : ∀ u ∈ U, CatalogueRule t k u)
     (hcover : ∀ u ∈ U, ∃ i ∈ I,
@@ -131,10 +135,16 @@ noncomputable def blockHull {k : ℕ} (G I : RuleSet k) : RuleSet k := by
   exact G.filter (fun u => ∃ i ∈ I,
     Relation.EqvGen (FiniteConnectedGrowth.Induced G RuleAdjacent) i u)
 
+/--
+@isnad1 id=le.0h3v.s4.a590c2a14cb7 from=translated src=- shape=34094b5c vocab=c27e7adc
+-/
 theorem blockHull_subset {k : ℕ} (G I : RuleSet k) : blockHull G I ⊆ G := by
   classical
   exact Finset.filter_subset _ _
 
+/--
+@isnad1 id=le.1h3v.s5.4c3d931635da from=translated src=- shape=81f7d988 vocab=c27e7adc
+-/
 theorem subset_blockHull {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G) : I ⊆ blockHull G I := by
   classical
   intro i hi
@@ -150,6 +160,9 @@ private theorem induced_mem_iff {k : ℕ} (G : RuleSet k)
   | symm a b h ih => exact ih.symm
   | trans a b c hab hbc ihab ihbc => exact ihab.trans ihbc
 
+/--
+@isnad1 id=mem.2h5v.s6.f3f521003f23 from=translated src=- shape=fd58ce7b vocab=4d5eb2d4
+-/
 theorem blockHull_closed {k : ℕ} (G I : RuleSet k)
     {a b : Gram (windowLength k) → ℤ} (ha : a ∈ blockHull G I)
     (hpath : Relation.EqvGen (FiniteConnectedGrowth.Induced G RuleAdjacent) a b) :
@@ -178,6 +191,9 @@ private theorem blockHull_path {k : ℕ} (G I : RuleSet k)
     intro ha
     exact Relation.EqvGen.trans a b c (ihab ha) (ihbc (blockHull_closed G I ha hab))
 
+/--
+@isnad1 id=ex.2h4v.s6.66d9a440c5b9 from=translated src=- shape=58c8b60d vocab=1bb15bac
+-/
 theorem blockHull_covered {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G) :
     ∀ u ∈ blockHull G I, ∃ i ∈ I,
       Relation.EqvGen (FiniteConnectedGrowth.Induced (blockHull G I) RuleAdjacent) i u := by
@@ -187,7 +203,9 @@ theorem blockHull_covered {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G) :
   exact ⟨i, hi, blockHull_path G I hpath (subset_blockHull G I hIG hi)⟩
 
 /-- The component estimate for the relation case of the bounded-witness proof,
-applied to the union of whole ambient blocks that meet the relation support.-/
+applied to the union of whole ambient blocks that meet the relation support.
+@isnad1 id=le.7h6v.s7.8e5495ec2823 from=translated src=- shape=7300cce5 vocab=d633a6ea
+-/
 theorem relation_block_hull_bound {t k : ℕ} (ht : 2 ≤ t) (G I : RuleSet k)
     (hIG : I ⊆ G) (hI : 2 ≤ I.card) (hcat : ∀ u ∈ G, CatalogueRule t k u)
     (w : Gram (windowLength k) → ℤ) (hw : CatalogueRule t k w)

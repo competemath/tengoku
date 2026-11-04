@@ -32,6 +32,9 @@ def encodeTotal (L ν : ℕ) (hL : 1 ≤ L) (hν : 1 ≤ ν)
   if hb : InstructionBounded L instruction then encodeInstruction L ν hL hν instruction hb
   else zeroRow L ν hL hν
 
+/--
+@isnad1 id=eq.3h3v.s5.ec8d80a2ef0f from=translated src=- shape=f5a6e158 vocab=a19dc419
+-/
 theorem decode_encodeTotal (L ν : ℕ) (hL : 1 ≤ L) (hν : 1 ≤ ν)
     (instruction : Instruction (Fin ν)) (hb : InstructionBounded L instruction) :
     decodeInstruction L ν hν (encodeTotal L ν hL hν instruction) = some (some instruction) := by
@@ -49,6 +52,9 @@ def rootVectors (n ν c : ℕ) (roots : List (Fin ν × ℕ))
 def rootsOfVectors {n ν c : ℕ} (positions : Fin c → Fin n) (names : Fin c → Fin ν) :
     List (Fin ν × ℕ) := List.ofFn (fun i => (names i, (positions i).val))
 
+/--
+@isnad1 id=eq.2h4v.s6.1e452f77ed9f from=translated src=- shape=dac9e822 vocab=0c977bfc
+-/
 theorem roots_roundtrip (n ν c : ℕ) (roots : List (Fin ν × ℕ))
     (hlen : roots.length = c) (hpos : ∀ b a, (b, a) ∈ roots → a < n) :
     rootsOfVectors (rootVectors n ν c roots hlen hpos).1
@@ -76,7 +82,9 @@ def decodeDescription (x : Letters) (n k ν c : ℕ) (hν : 1 ≤ ν)
   (unpack (decodeInstruction (windowLength k) ν hν) (4 * ν) description.2.2.2).bind
     fun instructions => (decode x n k header roots instructions).map (dataOfOutput k header)
 
-/-- Serializing a bounded concrete record preserves its exact decoded result.-/
+/-- Serializing a bounded concrete record preserves its exact decoded result.
+@isnad1 id=eq.7h8v.s7.fafac123e617 from=translated src=- shape=878ede8d vocab=218e2909
+-/
 theorem description_roundtrip (x : Letters) (n k ν c : ℕ) (hν : 1 ≤ ν)
     (header : Fin ν → Header)
     (hlo : ∀ b, 1 ≤ (header b).rho) (hhi : ∀ b, (header b).rho ≤ windowLength k)
@@ -102,7 +110,9 @@ theorem description_roundtrip (x : Letters) (n k ν c : ℕ) (hν : 1 ≤ ν)
   rw [hheader, roots_roundtrip n ν c roots hroots hpos, hinstructions]
   rfl
 
-/-- Every generating edited family has a description in the counted finite format.-/
+/-- Every generating edited family has a description in the counted finite format.
+@isnad1 id=ex.4h6v.s6.eab1540c109d from=translated src=- shape=94e0e7b0 vocab=fc0cc180
+-/
 theorem serialized_generating_coverage {ν k : ℕ} (E : EditedFamily (Fin ν) k)
     (x : Letters) (n c : ℕ) (hν : 1 ≤ ν) (hx : KUnique x n k)
     (hg : E.family.Generating x n (windowLength k))

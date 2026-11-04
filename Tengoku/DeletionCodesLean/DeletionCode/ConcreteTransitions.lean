@@ -28,6 +28,9 @@ variable {B : Type*}
 def BankSound (mem : B → Memory) (p : B → Letters) (len : B → ℕ) : Prop :=
   ∀ b, Sound (mem b) (p b) (len b)
 
+/--
+@isnad1 id=banksoun.2h6v.s5.6830892ca030 from=translated src=- shape=b7a7fd78 vocab=985dc1b0
+-/
 theorem bankSound_update [DecidableEq B] (mem : B → Memory) (p : B → Letters)
     (len : B → ℕ) (hs : BankSound mem p len) (b : B) (t : Memory)
     (ht : Sound t (p b) (len b)) : BankSound (Function.update mem b t) p len := by
@@ -38,7 +41,9 @@ theorem bankSound_update [DecidableEq B] (mem : B → Memory) (p : B → Letters
   · have hba : b ≠ a := Ne.symm hab
     simpa [Function.update, hab, hba] using hs a
 
-/-- Readiness supplies the seed that makes the executable base fill succeed.-/
+/-- Readiness supplies the seed that makes the executable base fill succeed.
+@isnad1 id=ex.6h10v.s8.5a93e12177eb from=translated src=- shape=98089022 vocab=f0cb8742
+-/
 theorem ready_base_fill [DecidableEq B]
     (s : State B) (mem : B → Memory) (D : B → ℕ) (p : B → Letters)
     (x : Letters) (n k : ℕ) (b : B) (w : Slot)
@@ -61,7 +66,9 @@ theorem ready_base_fill [DecidableEq B]
     Realizes.fill_update s mem D k hreal b w t hext ⟨_, hknown⟩,
     bankSound_update mem p _ hs b t hsound⟩
 
-/-- A completed negative supplier makes any in-bounds source window readable.-/
+/-- A completed negative supplier makes any in-bounds source window readable.
+@isnad1 id=ex.6h10v.s8.0f71a671d442 from=translated src=- shape=5d5687bf vocab=5827b5e5
+-/
 theorem complete_supplier_fill [DecidableEq B]
     (s : State B) (mem : B → Memory) (D : B → ℕ) (p : B → Letters)
     (k : ℕ) (a b : B) (w : Slot) (sourceStart : ℕ)
@@ -86,7 +93,9 @@ theorem complete_supplier_fill [DecidableEq B]
     Realizes.fill_update s mem D k hreal b w t hext ⟨_, hknown⟩,
     bankSound_update mem p _ hs b t hsound⟩
 
-/-- A correct negative-path seed produces an actual valid start slot.-/
+/-- A correct negative-path seed produces an actual valid start slot.
+@isnad1 id=ex.6h9v.s7.16ca6c3d0627 from=translated src=- shape=51c90282 vocab=cde7d25a
+-/
 theorem startNegative_transition [DecidableEq B]
     (s : State B) (mem : B → Memory) (headers : B → Header) (long : B → Letters)
     (k : ℕ) (b : B) (offset : ℕ) (bits : Bits k)
@@ -107,7 +116,9 @@ theorem startNegative_transition [DecidableEq B]
     Realizes.start_update s mem _ k hreal b w t hext hknown,
     bankSound_update mem _ _ hs b t hsound⟩
 
-/-- A correct positive-path seed uses at most one recorded bit and a real start slot.-/
+/-- A correct positive-path seed uses at most one recorded bit and a real start slot.
+@isnad1 id=ex.7h9v.s7.e0c66425b0cc from=translated src=- shape=ea4bc59f vocab=f31ce9c0
+-/
 theorem startPositive_transition [DecidableEq B]
     (s : State B) (mem : B → Memory) (headers : B → Header) (long : B → Letters)
     (k : ℕ) (b : B) (offset : ℕ) (bits : Bits k)

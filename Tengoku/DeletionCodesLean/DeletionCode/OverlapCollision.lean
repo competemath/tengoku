@@ -38,7 +38,9 @@ def keptIndex (n k b : ℕ) (hb : b + k ≤ n) (i : Fin (n - k)) : Fin n :=
 def encode (n k b : ℕ) (hb : b + k ≤ n) (x : Bits n) : Bits (n - k) :=
   fun i => x (keptIndex n k b hb i)
 
-/-- Equality of encodings preserves each bit outside the removed interval.-/
+/-- Equality of encodings preserves each bit outside the removed interval.
+@isnad1 id=eq.4h6v.s6.cc39c9a4cec6 from=translated src=- shape=61b4725a vocab=5b56b4f9
+-/
 theorem encode_eq_at (n k b : ℕ) (hb : b + k ≤ n)
     (x y : Bits n) (heq : encode n k b hb x = encode n k b hb y)
     (j : ℕ) (hj : j < n) (hout : j < b ∨ b + k ≤ j) :
@@ -55,7 +57,9 @@ theorem encode_eq_at (n k b : ℕ) (hb : b + k ≤ n)
       padBits, dite_eq_left hj] using hh
 
 /-- A collision reconstructs each deleted bit from a strictly earlier bit.
-No disjointness of the two windows is used.-/
+No disjointness of the two windows is used.
+@isnad1 id=eq.5h6v.s6.fa08047d24eb from=translated src=- shape=d6411bad vocab=ac786739
+-/
 theorem encode_injective_of_agree (n k a b : ℕ) (hab : a < b)
     (hb : b + k ≤ n) (x y : Bits n)
     (hx : Agree (padBits x) a (padBits x) b k)
@@ -85,6 +89,9 @@ def collisionEncode (n k a b : ℕ) (hb : b + k ≤ n) :
     Collision n k a b → Bits (n - k) :=
   fun x => encode n k b hb x.val
 
+/--
+@isnad1 id=injectiv.2h4v.s5.4f9040180c44 from=translated src=- shape=d406b7bb vocab=af38a2e1
+-/
 theorem collisionEncode_injective (n k a b : ℕ) (hab : a < b)
     (hb : b + k ≤ n) : Function.Injective (collisionEncode n k a b hb) := by
   intro x y heq
@@ -92,7 +99,9 @@ theorem collisionEncode_injective (n k a b : ℕ) (hab : a < b)
   exact encode_injective_of_agree n k a b hab hb x.val y.val x.property y.property heq
 
 /-- The concrete collision set has at most 2^(n-k) members, even when the
-windows overlap. The earlier window bound follows already from a<b and hb.-/
+windows overlap. The earlier window bound follows already from a<b and hb.
+@isnad1 id=le.3h4v.s6.a4f7ceb262ce from=translated src=- shape=8daf9507 vocab=a8c6a338
+-/
 theorem collision_card_le (n k a b : ℕ) (hab : a < b)
     (_ha : a + k ≤ n) (hb : b + k ≤ n) :
     Fintype.card (Collision n k a b) ≤ 2 ^ (n - k) := by

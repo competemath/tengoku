@@ -26,13 +26,18 @@ abbrev Description (n L ν c : ℕ) :=
   (Fin c → Fin n) × (Fin ν → Fin (4 * L)) × (Fin c → Fin ν) ×
   (Fin (4 * ν) → (Fin 12 → Fin (fieldBound L ν)))
 
+/--
+@isnad1 id=eq.0h4v.s8.c8224bde6a0e from=translated src=- shape=c70e4b7b vocab=2f72ac77
+-/
 theorem description_card (n L ν c : ℕ) :
     Fintype.card (Description n L ν c) =
       n ^ c * (4 * L) ^ ν * ν ^ c * ((fieldBound L ν) ^ 12) ^ (4 * ν) := by
   simp [Description, Fintype.card_prod, Fintype.card_fun]
   <;> ring
 
-/-- Positions alone contribute the factor n^c in this raw record space.-/
+/-- Positions alone contribute the factor n^c in this raw record space.
+@isnad1 id=le.3h4v.s8.08b5659ea7ce from=translated src=- shape=a3381a95 vocab=1319f3da
+-/
 theorem description_bound (n L ν c : ℕ)
     (hL : 1 ≤ L) (hν : 1 ≤ ν) (hc : c ≤ ν) :
     Fintype.card (Description n L ν c) ≤

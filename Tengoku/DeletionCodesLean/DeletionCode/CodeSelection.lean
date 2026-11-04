@@ -45,6 +45,9 @@ noncomputable def wordLabelFin (Q : ℕ) (hQ : 2 ≤ Q)
     change 0 ≤ wordLabel Q H x ∧ wordLabel Q H x < (Q : ℤ) at hr
     omega⟩
 
+/--
+@isnad1 id=iff.1h6v.s6.dc343286a211 from=translated src=- shape=2ae99041 vocab=95e1d326
+-/
 theorem wordLabelFin_eq_iff (Q : ℕ) (hQ : 2 ≤ Q)
     (H : Spectrum k →+ UnitAddCircle) (x y : Bits n) :
     wordLabelFin Q hQ H x = wordLabelFin Q hQ H y ↔ wordLabel Q H x = wordLabel Q H y := by
@@ -62,7 +65,9 @@ theorem wordLabelFin_eq_iff (Q : ℕ) (hQ : 2 ≤ Q)
 
 /-- From the actual graph and hash alone, retain at least one word for each
 2Q good vertices, in multiplication form. No probability estimate enters
-this deterministic selection step.-/
+this deterministic selection step.
+@isnad1 id=ex.1h5v.s7.43fcd5c095fd from=translated src=- shape=c1efa112 vocab=997a16b0
+-/
 theorem exists_correcting_code (t Q : ℕ) (hQ : 2 ≤ Q)
     (H : Spectrum k →+ UnitAddCircle) :
     ∃ C : Finset (Bits n),

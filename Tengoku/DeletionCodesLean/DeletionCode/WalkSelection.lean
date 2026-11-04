@@ -31,10 +31,16 @@ def selectedSpan (step : Fin m → V) (S : Finset (Fin m)) : Submodule ℚ V :=
 def SignedMember (step : Fin m → V) (S : Finset (Fin m)) (v : V) : Prop :=
   ∃ r ∈ S, v = step r ∨ v = -step r
 
+/--
+@isnad1 id=mem.1h5v.s6.cf6b6d447068 from=translated src=- shape=2439c773 vocab=80ec8ba3
+-/
 theorem selected_mem_span (step : Fin m → V) (S : Finset (Fin m))
     (r : Fin m) (hr : r ∈ S) : step r ∈ selectedSpan step S :=
   Submodule.subset_span ⟨r, hr, rfl⟩
 
+/--
+@isnad1 id=mem.1h5v.s6.0b95f7af6158 from=translated src=- shape=485dc845 vocab=dc6842c1
+-/
 theorem signed_mem_span (step : Fin m → V) (S : Finset (Fin m))
     (v : V) (hv : SignedMember step S v) : v ∈ selectedSpan step S := by
   obtain ⟨r, hr, h | h⟩ := hv
@@ -52,12 +58,18 @@ structure ScanState (step : Fin m → V) (Good : Finset (Fin m) → Prop)
   covered : ∀ j : Fin m, j.val < n →
     ∃ r ∈ S, r.val ≤ j.val ∧ (step j = step r ∨ step j = -step r)
 
+/--
+@isnad1 id=mem.2h7v.s6.3db4b7d35b46 from=translated src=- shape=c1f98951 vocab=40beff32
+-/
 theorem ScanState.earlier_span {step : Fin m → V} {Good : Finset (Fin m) → Prop}
     {n : ℕ} {S : Finset (Fin m)} (h : ScanState step Good n S)
     (j : Fin m) (hj : j.val < n) : step j ∈ selectedSpan step S := by
   obtain ⟨r, hr, _, heq⟩ := h.covered j hj
   exact signed_mem_span step S (step j) ⟨r, hr, heq⟩
 
+/--
+@isnad1 id=linearin.2h5v.s6.adfa9785326e from=translated src=- shape=1ffcd7d7 vocab=bb410fe0
+-/
 theorem independent_insert {step : Fin m → V} {S : Finset (Fin m)}
     (hs : LinearIndepOn ℚ step (S : Set (Fin m))) (i : Fin m)
     (hi : step i ∉ selectedSpan step S) :
@@ -106,7 +118,9 @@ def Stopped (step : Fin m → V) (Good : Finset (Fin m) → Prop) : Prop :=
           ¬ Good (insert i S)))
 
 /-- The stopping alternative is constructed by scanning a finite prefix.
-No scan trace or final selected family is an input to this theorem.-/
+No scan trace or final selected family is an input to this theorem.
+@isnad1 id=or.1h6v.s6.609a2ed66eb2 from=translated src=- shape=f50c1435 vocab=6e396a14
+-/
 theorem scan_prefix (step : Fin m → V) (Good : Finset (Fin m) → Prop)
     (hgood : Good ∅) (n : ℕ) (hn : n ≤ m) :
     Stopped step Good ∨ ∃ S, ScanState step Good n S := by
@@ -133,7 +147,9 @@ theorem scan_prefix (step : Fin m → V) (Good : Finset (Fin m) → Prop)
           · exact Or.inr ⟨insert i S, hs.append i rfl hspan hnewgood⟩
           · exact Or.inl ⟨i, S, hs, hsigned, Or.inr ⟨hspan, hind, hnewgood⟩⟩
 
-/-- An odd closed walk must trigger one of the two actual scan stopping cases.-/
+/-- An odd closed walk must trigger one of the two actual scan stopping cases.
+@isnad1 id=stopped.2h5v.s6.08f5ab5c4cad from=translated src=- shape=5627d760 vocab=a1511768
+-/
 theorem odd_closed_walk_stops (p : Fin (m + 1) → V)
     (Good : Finset (Fin m) → Prop) (hgood : Good ∅)
     (hclosed : p 0 = p (Fin.last m)) (hodd : Odd m) :
@@ -151,7 +167,9 @@ theorem odd_closed_walk_stops (p : Fin (m + 1) → V)
     exact False.elim (ClosedWalk.not_odd_signed_independent_closed_walk
       (fun r : S => walkStep p r.val) hs.independent p label hclosed hsteps hodd)
 
-/-- A coordinate unchanged by all earlier actual steps has its starting value.-/
+/-- A coordinate unchanged by all earlier actual steps has its starting value.
+@isnad1 id=eq.2h5v.s6.57ffc4ef1984 from=translated src=- shape=04781658 vocab=230482f3
+-/
 theorem coordinate_unchanged_before {H : Type*} (p : Fin (m + 1) → H → ℚ)
     (n : ℕ) (hn : n ≤ m) (h : H)
     (hzero : ∀ j : Fin m, j.val < n → walkStep p j h = 0) :
@@ -172,7 +190,9 @@ def GeneratingSelected {H : Type*} (p : Fin (m + 1) → H → ℚ)
   ∀ i ∈ S, ∀ h, walkStep p i h = -1 →
     p 0 h ≠ 0 ∨ ∃ r ∈ S, r.val < i.val ∧ walkStep p r h ≠ 0
 
-/-- Boolean endpoints and the causal scan invariant derive generation.-/
+/-- Boolean endpoints and the causal scan invariant derive generation.
+@isnad1 id=generati.2h6v.s6.65ac0b75aefb from=translated src=- shape=042d064d vocab=c694177e
+-/
 theorem ScanState.generating {H : Type*} {p : Fin (m + 1) → H → ℚ}
     {Good : Finset (Fin m) → Prop} {n : ℕ} {S : Finset (Fin m)}
     (hs : ScanState (walkStep p) Good n S)
@@ -202,7 +222,9 @@ theorem ScanState.generating {H : Type*} {p : Fin (m + 1) → H → ℚ}
   · exact Or.inl hbase
 
 /-- A bad independent append is still generating; the cutoff is irrelevant
-to the Boolean provenance argument.-/
+to the Boolean provenance argument.
+@isnad1 id=generati.4h7v.s8.6c3891e6ce34 from=translated src=- shape=57c8e991 vocab=5df3120c
+-/
 theorem ScanState.generating_after_append {H : Type*} {p : Fin (m + 1) → H → ℚ}
     {Good : Finset (Fin m) → Prop} {n : ℕ} {S : Finset (Fin m)}
     (hs : ScanState (walkStep p) Good n S)
@@ -214,7 +236,9 @@ theorem ScanState.generating_after_append {H : Type*} {p : Fin (m + 1) → H →
   exact (htrue.append i hi hout trivial).generating hp
 
 /-- The stopping dichotomy together with derived independence and generating
-provenance, using the actual Boolean walk and chronological step indices.-/
+provenance, using the actual Boolean walk and chronological step indices.
+@isnad1 id=ex.3h5v.s9.3280d439c07d from=translated src=- shape=8c0b031c vocab=ddf46d15
+-/
 theorem odd_boolean_closed_walk_stops {H : Type*} (p : Fin (m + 1) → H → ℚ)
     (hp : ∀ j, WitnessAlgebra.BooleanVector (p j))
     (Good : Finset (Fin m) → Prop) (hgood : Good ∅)

@@ -25,17 +25,26 @@ noncomputable instance componentsFintype {L : ℕ} (Q : Finset (Gram L → ℤ))
   classical
   exact Fintype.ofFinite (Quotient (ruleSetSetoid Q))
 
+/--
+@isnad1 id=rulesete.2h5v.s5.03d1a7ff9383 from=translated src=- shape=5cd2cb6d vocab=0e3f2b82
+-/
 theorem edge_mono {L : ℕ} {Q S : Finset (Gram L → ℤ)} (h : Q ⊆ S)
     {u v : Vertex L} (he : RuleSetEdge Q u v) : RuleSetEdge S u v := by
   obtain ⟨w, hw, g, hg, hu, hv⟩ := he
   exact ⟨w, h hw, g, hg, hu, hv⟩
 
+/--
+@isnad1 id=incident.2h4v.s5.7dc4ce45b5c8 from=translated src=- shape=37d83d07 vocab=21b831ad
+-/
 theorem incident_mono {L : ℕ} {Q S : Finset (Gram L → ℤ)} (h : Q ⊆ S)
     {v : Vertex L} (hv : Incident Q v) : Incident S v := by
   obtain ⟨u, hu | hu⟩ := hv
   · exact ⟨u, Or.inl (edge_mono h hu)⟩
   · exact ⟨u, Or.inr (edge_mono h hu)⟩
 
+/--
+@isnad1 id=rulesetc.2h5v.s5.753619c9618f from=translated src=- shape=5cd2cb6d vocab=6a83582b
+-/
 theorem connected_mono {L : ℕ} {Q S : Finset (Gram L → ℤ)} (h : Q ⊆ S)
     {u v : Vertex L} (hc : RuleSetConnected Q u v) : RuleSetConnected S u v := by
   induction hc with
@@ -49,6 +58,9 @@ def componentMap {L : ℕ} {Q S : Finset (Gram L → ℤ)} (h : Q ⊆ S) :
   Quotient.map (fun v => ⟨v.val, incident_mono h v.property⟩)
     (fun _ _ hc => connected_mono h hc)
 
+/--
+@isnad1 id=iff.0h4v.s6.8e8778c9c525 from=translated src=- shape=c8df12f6 vocab=18da3d06
+-/
 theorem incident_union_iff {L : ℕ} (Q S : Finset (Gram L → ℤ)) (v : Vertex L) :
     Incident (Q ∪ S) v ↔ Incident Q v ∨ Incident S v := by
   classical
@@ -68,6 +80,9 @@ def unionComponentMap {L : ℕ} (Q S : Finset (Gram L → ℤ)) :
     RuleSetComponents Q ⊕ RuleSetComponents S → RuleSetComponents (Q ∪ S) :=
   Sum.elim (componentMap Finset.subset_union_left) (componentMap Finset.subset_union_right)
 
+/--
+@isnad1 id=surjecti.0h3v.s6.efad7df2af2e from=translated src=- shape=bab37be3 vocab=ce027cdb
+-/
 theorem unionComponentMap_surjective {L : ℕ} (Q S : Finset (Gram L → ℤ)) :
     Function.Surjective (unionComponentMap Q S) := by
   intro C
@@ -105,7 +120,9 @@ private theorem card_add_one_le_of_collision {A B : Type*} [Fintype A] [Fintype 
     exact hne (hy.symm.trans ((congrArg g hyz).trans hz))
   exact Fintype.card_lt_of_injective_not_surjective g hginj hgnsurj
 
-/-- An intersecting pair of support unions saves at least one component.-/
+/-- An intersecting pair of support unions saves at least one component.
+@isnad1 id=le.1h3v.s6.d6056c30c71e from=translated src=- shape=52bf704e vocab=a1914127
+-/
 theorem componentCount_union_add_one_le {L : ℕ} (Q S : Finset (Gram L → ℤ))
     (hmeet : ∃ v, Incident Q v ∧ Incident S v) :
     componentCount (Q ∪ S) + 1 ≤ componentCount Q + componentCount S := by

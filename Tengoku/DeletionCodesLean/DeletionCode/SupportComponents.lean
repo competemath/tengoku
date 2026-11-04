@@ -50,6 +50,9 @@ def GraphConnected {B : Type*} (F : Family B) (L : ℕ) : Vertex L → Vertex L 
 def representative {B : Type*} (F : Family B) (L : ℕ) (b : B) : Vertex L :=
   vertex F L b false 0
 
+/--
+@isnad1 id=iff.0h9v.s5.fb3dbf82d8e9 from=translated src=- shape=d1564d83 vocab=aaf176eb
+-/
 theorem vertex_eq_iff_agree {B : Type*} (F : Family B) (L : ℕ)
     (a b : B) (sa sb : Bool) (i j : ℕ) :
     vertex F L a sa i = vertex F L b sb j ↔
@@ -61,7 +64,9 @@ theorem vertex_eq_iff_agree {B : Type*} (F : Family B) (L : ℕ)
     funext q
     exact h q.val q.isLt
 
-/-- A path's first vertex reaches every one of its vertices via its own edges.-/
+/-- A path's first vertex reaches every one of its vertices via its own edges.
+@isnad1 id=graphcon.1h6v.s5.ace5d04f9df1 from=translated src=- shape=0b1e9c4d vocab=a1ac35c1
+-/
 theorem path_connected {B : Type*} (F : Family B) (L : ℕ)
     (b : B) (side : Bool) (i : ℕ) (hi : i ≤ F.extra b side + 1) :
     GraphConnected F L (vertex F L b side 0) (vertex F L b side i) := by
@@ -73,7 +78,9 @@ theorem path_connected {B : Type*} (F : Family B) (L : ℕ)
       ⟨b, side, i, by omega, rfl, rfl⟩
     exact Relation.EqvGen.trans _ _ _ hprev (Relation.EqvGen.rel _ _ he)
 
-/-- Common initial vertices connect both paths to the negative-first representative.-/
+/-- Common initial vertices connect both paths to the negative-first representative.
+@isnad1 id=graphcon.2h6v.s6.5975981ef250 from=translated src=- shape=c74ecad8 vocab=a9c04da8
+-/
 theorem representative_connected {B : Type*} (F : Family B) (L : ℕ)
     (hstart : ∀ b, vertex F L b false 0 = vertex F L b true 0)
     (b : B) (side : Bool) (i : ℕ) (hi : i ≤ F.extra b side + 1) :
@@ -85,7 +92,9 @@ theorem representative_connected {B : Type*} (F : Family B) (L : ℕ)
     rw [hstart b]
     exact path_connected F L b true i hi
 
-/-- All vertices of one bubble are internally connected by its actual path edges.-/
+/-- All vertices of one bubble are internally connected by its actual path edges.
+@isnad1 id=graphcon.3h6v.s5.33cf22a9a57f from=translated src=- shape=78fa8002 vocab=89207e59
+-/
 theorem bubble_vertices_connected {B : Type*} (F : Family B) (L : ℕ)
     (hstart : ∀ b, vertex F L b false 0 = vertex F L b true 0)
     (b : B) (u v : Vertex L) (hu : HasVertex F L b u) (hv : HasVertex F L b v) :
@@ -96,7 +105,9 @@ theorem bubble_vertices_connected {B : Type*} (F : Family B) (L : ℕ)
     (Relation.EqvGen.symm _ _ (representative_connected F L hstart b su i hi))
     (representative_connected F L hstart b sv j hj)
 
-/-- Two owners of the same concrete vertex are adjacent in the family.-/
+/-- Two owners of the same concrete vertex are adjacent in the family.
+@isnad1 id=adjacent.3h6v.s5.8fb0dc69b855 from=translated src=- shape=42e9688a vocab=bc40570a
+-/
 theorem same_vertex_adjacent {B : Type*} (F : Family B) (L : ℕ) (hL : 1 ≤ L)
     (a b : B) (v : Vertex L) (ha : HasVertex F L a v) (hb : HasVertex F L b v) :
     F.Adjacent L a b := by
@@ -105,13 +116,18 @@ theorem same_vertex_adjacent {B : Type*} (F : Family B) (L : ℕ) (hL : 1 ≤ L)
   refine ⟨sa, sb, i, j, hi, hj, by omega, by omega, ?_⟩
   exact (vertex_eq_iff_agree F L a b sa sb i j).mp (hai.symm.trans hbj)
 
+/--
+@isnad1 id=ex.1h5v.s5.f010f08d4d33 from=translated src=- shape=3287df12 vocab=1a03af78
+-/
 theorem edge_owners {B : Type*} (F : Family B) (L : ℕ)
     {u v : Vertex L} (h : Edge F L u v) :
     ∃ b, HasVertex F L b u ∧ HasVertex F L b v := by
   obtain ⟨b, side, i, hi, hu, hv⟩ := h
   exact ⟨b, ⟨side, i, by omega, hu⟩, ⟨side, i + 1, by omega, hv⟩⟩
 
-/-- Graph connectedness preserves membership in the vertex union.-/
+/-- Graph connectedness preserves membership in the vertex union.
+@isnad1 id=iff.1h5v.s5.5cf00f0e3aab from=translated src=- shape=40a8f845 vocab=74a29b46
+-/
 theorem supported_iff {B : Type*} (F : Family B) (L : ℕ)
     {u v : Vertex L} (h : GraphConnected F L u v) :
     (∃ b, HasVertex F L b u) ↔ (∃ b, HasVertex F L b v) := by
@@ -123,7 +139,9 @@ theorem supported_iff {B : Type*} (F : Family B) (L : ℕ)
   | symm u v h ih => exact ih.symm
   | trans u v w huv hvw ihu ihv => exact ihu.trans ihv
 
-/-- A path in the consecutive-window graph joins the families owning its endpoints.-/
+/-- A path in the consecutive-window graph joins the families owning its endpoints.
+@isnad1 id=connecte.4h7v.s5.3af617f6d409 from=translated src=- shape=c9724054 vocab=cf726775
+-/
 theorem graph_connected_owners {B : Type*} (F : Family B) (L : ℕ) (hL : 1 ≤ L)
     {u v : Vertex L} (h : GraphConnected F L u v) :
     ∀ a b, HasVertex F L a u → HasVertex F L b v → F.Connected L a b := by
@@ -145,7 +163,9 @@ theorem graph_connected_owners {B : Type*} (F : Family B) (L : ℕ) (hL : 1 ≤ 
     obtain ⟨c, hc⟩ := (supported_iff F L huv).mp ⟨a, ha⟩
     exact Relation.EqvGen.trans _ _ _ (ihu a c ha hc) (ihv c b hc hb)
 
-/-- Sharing a true vertex joins the representatives using each bubble's path edges.-/
+/-- Sharing a true vertex joins the representatives using each bubble's path edges.
+@isnad1 id=graphcon.2h5v.s5.955bc8fa6e6b from=translated src=- shape=bcacbe72 vocab=82dcdf59
+-/
 theorem adjacent_representatives_connected {B : Type*} (F : Family B) (L : ℕ)
     (hstart : ∀ b, vertex F L b false 0 = vertex F L b true 0)
     {a b : B} (h : F.Adjacent L a b) :
@@ -157,7 +177,9 @@ theorem adjacent_representatives_connected {B : Type*} (F : Family B) (L : ℕ)
   rw [heq] at ha
   exact Relation.EqvGen.trans _ _ _ ha (Relation.EqvGen.symm _ _ hb)
 
-/-- Family components equal components of the actual consecutive-window edge union.-/
+/-- Family components equal components of the actual consecutive-window edge union.
+@isnad1 id=iff.2h5v.s6.27e0aa7eb42a from=translated src=- shape=6e1421db vocab=a0afb4b7
+-/
 theorem connected_iff_graph_connected {B : Type*} (F : Family B) (L : ℕ)
     (hL : 1 ≤ L)
     (hstart : ∀ b, vertex F L b false 0 = vertex F L b true 0)
@@ -211,6 +233,9 @@ def componentMap {B : Type*} (F : Family B) (L : ℕ) (hL : 1 ≤ L)
   Quotient.map (supportedRepresentative F L) (fun a b hab =>
     (connected_iff_graph_connected F L hL hstart a b).mp hab)
 
+/--
+@isnad1 id=injectiv.2h3v.s5.963342d28e6e from=translated src=- shape=d91fc904 vocab=5438632d
+-/
 theorem componentMap_injective {B : Type*} (F : Family B) (L : ℕ) (hL : 1 ≤ L)
     (hstart : ∀ b, vertex F L b false 0 = vertex F L b true 0) :
     Function.Injective (componentMap F L hL hstart) := by
@@ -221,6 +246,9 @@ theorem componentMap_injective {B : Type*} (F : Family B) (L : ℕ) (hL : 1 ≤ 
   apply (connected_iff_graph_connected F L hL hstart a b).mpr
   exact Quotient.exact h
 
+/--
+@isnad1 id=surjecti.2h3v.s5.2e89512295bc from=translated src=- shape=d91fc904 vocab=eb3ed9e0
+-/
 theorem componentMap_surjective {B : Type*} (F : Family B) (L : ℕ) (hL : 1 ≤ L)
     (hstart : ∀ b, vertex F L b false 0 = vertex F L b true 0) :
     Function.Surjective (componentMap F L hL hstart) := by
@@ -241,7 +269,9 @@ noncomputable def componentEquiv {B : Type*} (F : Family B) (L : ℕ) (hL : 1 �
   Equiv.ofBijective (componentMap F L hL hstart)
     ⟨componentMap_injective F L hL hstart, componentMap_surjective F L hL hstart⟩
 
-/-- Consequently any finite cardinality representations give the same component count.-/
+/-- Consequently any finite cardinality representations give the same component count.
+@isnad1 id=eq.2h3v.s6.7cc5c20ca542 from=translated src=- shape=ede125d5 vocab=dab0f350
+-/
 theorem component_card_eq {B : Type*} (F : Family B) (L : ℕ) (hL : 1 ≤ L)
     (hstart : ∀ b, vertex F L b false 0 = vertex F L b true 0)
     [Fintype (Components F L)] [Fintype (GraphComponents F L)] :
@@ -250,7 +280,9 @@ theorem component_card_eq {B : Type*} (F : Family B) (L : ℕ) (hL : 1 ≤ L)
 
 /-- Every vertex in the actual support graph reaches a root whose full negative
 word occurs contiguously in x. No extra isolated ambient vertices are asserted
-to have roots.-/
+to have roots.
+@isnad1 id=ex.4h7v.s7.15bd206f18c4 from=translated src=- shape=810a9669 vocab=d2754431
+-/
 theorem graph_component_root_subword {B : Type*} (F : Family B)
     (x : Letters) (n k L : ℕ) (hx : KUnique x n k) (hk : k < L)
     (hstart : ∀ b, vertex F L b false 0 = vertex F L b true 0)

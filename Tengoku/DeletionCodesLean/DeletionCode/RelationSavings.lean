@@ -31,7 +31,9 @@ private theorem group_disjoint (P : PresentedFamily t k R G) (r : Fin R) :
   rw [← rank_bubbles_eq_group P.E (CanonicalIndex.group t R) P.rank r]
   exact P.disjoint r.val
 
-/-- A singleton occurrence component supplies a coordinate unique to its rule.-/
+/-- A singleton occurrence component supplies a coordinate unique to its rule.
+@isnad1 id=ex.1h6v.s9.14c90da2c085 from=translated src=- shape=ba9c87d7 vocab=e80a0069
+-/
 theorem singleton_coordinate (P : PresentedFamily t k R G)
     (C : RuleSetComponents (Finset.univ.image G))
     (hC : SingletonFiber P.bubbleComponent C) :
@@ -65,7 +67,9 @@ theorem singleton_coordinate (P : PresentedFamily t k R G)
   · let hv := P.incident_of_hasVertex b _ (P.gram_prefix_hasVertex b g hhas)
     exact ⟨hv, (P.bubbleComponent_gram_prefix b g hhas hv).symm.trans hb⟩
 
-/-- The relation's nonzero support is contained in the participating rules' support.-/
+/-- The relation's nonzero support is contained in the participating rules' support.
+@isnad1 id=coordina.1h5v.s6.ff987443ad6a from=translated src=- shape=793ce88d vocab=e645675f
+-/
 theorem relation_support_included (w : Gram (windowLength k) → ℤ) (a : Fin R → ℚ)
     (hrel : RelationSupport.Relation G w a) :
     CoordinateSupportIncluded {w} (Finset.univ.image G) := by
@@ -77,7 +81,9 @@ theorem relation_support_included (w : Gram (windowLength k) → ℤ) (a : Fin R
   obtain ⟨r, hr⟩ := RelationSupport.support_inclusion G w a hrel g hug
   exact ⟨G r, Finset.mem_image.mpr ⟨r, Finset.mem_univ r, rfl⟩, hr⟩
 
-/-- Every singleton occurrence component is hit by an actual vertex of w.-/
+/-- Every singleton occurrence component is hit by an actual vertex of w.
+@isnad1 id=ex.3h8v.s8.fdd24546ed8a from=translated src=- shape=d33176a0 vocab=74e7f474
+-/
 theorem singleton_hit (P : PresentedFamily t k R G)
     (w : Gram (windowLength k) → ℤ) (a : Fin R → ℚ)
     (hrel : RelationSupport.Relation G w a) (ha : ∀ r, a r ≠ 0)
@@ -93,7 +99,9 @@ theorem singleton_hit (P : PresentedFamily t k R G)
     ⟨gramSuffix g, Or.inl ⟨w, Finset.mem_singleton_self w, g, hwg, rfl, rfl⟩⟩
   exact ⟨⟨gramPrefix g, hwv⟩, hcomp⟩
 
-/-- Indexed form of the savings lemma; the bound counts the supplied labels.-/
+/-- Indexed form of the savings lemma; the bound counts the supplied labels.
+@isnad1 id=le.4h6v.s7.f8ab2e2085be from=translated src=- shape=6e33618c vocab=2e5485b8
+-/
 theorem savings_indexed (G : Fin R → Gram (windowLength k) → ℤ)
     (hcat : ∀ r, CatalogueRule t k (G r))
     (w : Gram (windowLength k) → ℤ) (hw : CatalogueRule t k w)
@@ -112,7 +120,9 @@ theorem savings_indexed (G : Fin R → Gram (windowLength k) → ℤ)
 
 /-- Manuscript savings-from-a-relation lemma on the actual finite rule set.
 The statement holds even without the manuscript's independence and generation
-assumptions. All participating coefficients must be nonzero.-/
+assumptions. All participating coefficients must be nonzero.
+@isnad1 id=le.4h5v.s7.1fb6c84895bf from=translated src=- shape=39dea946 vocab=c1ad092c
+-/
 theorem savings_from_relation (I : RuleSet k)
     (hcat : ∀ u ∈ I, CatalogueRule t k u)
     (w : Gram (windowLength k) → ℤ) (hw : CatalogueRule t k w)

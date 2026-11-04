@@ -21,6 +21,9 @@ def unpack (decode : β → Option (Option α)) :
     (decode (rows ⟨0, by omega⟩)).bind fun entry =>
       (unpack decode size (fun i => rows i.succ)).map fun rest => entry.toList ++ rest
 
+/--
+@isnad1 id=eq.2h6v.s6.bb5b655062e7 from=translated src=- shape=c703de5a vocab=1779b47f
+-/
 theorem unpack_of_positions (decode : β → Option (Option α)) (size : ℕ)
     (rows : Fin size → β) (xs : List α) (hsize : xs.length ≤ size)
     (hrows : ∀ i, decode (rows i) = some xs[i.val]?) :
@@ -49,6 +52,9 @@ theorem unpack_of_positions (decode : β → Option (Option α)) (size : ℕ)
       have hr := ih (fun i => rows i.succ) xs (by simp at hsize; omega) hrest
       simp [unpack, hfirst, hr]
 
+/--
+@isnad1 id=eq.3h7v.s6.deaadb6b53b9 from=translated src=- shape=6be30dad vocab=93c713b1
+-/
 theorem unpack_pack (decode : β → Option (Option α)) (encode : α → β)
     (padding : β) (hpadding : decode padding = some none)
     (xs : List α) (hencode : ∀ a ∈ xs, decode (encode a) = some (some a))

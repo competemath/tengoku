@@ -27,7 +27,9 @@ open RuleReconstruction SignedRuleCount DescriptionCount
 def indexedFamily {k ν R : ℕ} (bubbles : Fin ν → BubbleWord k) (group : Fin ν → Fin R) :
     EditedFamily (Fin ν) k := editedFamily bubbles (fun b => (group b).val)
 
-/-- Header lengths alone already imply that the two paths have unequal numbers of windows.-/
+/-- Header lengths alone already imply that the two paths have unequal numbers of windows.
+@isnad1 id=ne.0h4v.s4.f17bdc99e21e from=translated src=- shape=5478aa6c vocab=af13001f
+-/
 theorem differentLengths {B : Type*} {k : ℕ} (E : EditedFamily B k) (b : B) :
     E.family.extra b false ≠ E.family.extra b true := by
   have hlo := E.rho_lower b
@@ -57,12 +59,18 @@ structure ValidCatalogue {k ν R : ℕ}
     VertexDisjointOn (indexedFamily bubbles group).family (windowLength k)
       (Finset.univ.filter (fun b => group b = r))
 
+/--
+@isnad1 id=bubblege.1h5v.s5.9bc3bc11c3b5 from=translated src=- shape=33921cad vocab=3256e651
+-/
 theorem ValidCatalogue.geometry {k ν R : ℕ}
     {bubbles : Fin ν → BubbleWord k} {group : Fin ν → Fin R}
     (h : ValidCatalogue bubbles group) :
     BubbleGeometry (indexedFamily bubbles group).family (windowLength k) :=
   ⟨h.simple, h.endpoints, differentLengths (indexedFamily bubbles group)⟩
 
+/--
+@isnad1 id=vertexdi.1h6v.s5.3ae787fe618e from=translated src=- shape=abe36351 vocab=cb8a8b1f
+-/
 theorem ValidCatalogue.rank_disjoint {k ν R : ℕ}
     {bubbles : Fin ν → BubbleWord k} {group : Fin ν → Fin R}
     (h : ValidCatalogue bubbles group) :
@@ -76,7 +84,9 @@ theorem ValidCatalogue.rank_disjoint {k ν R : ℕ}
   have hgroup : group b = group a := Fin.ext (hrb.trans hra.symm)
   exact h.within_rule_disjoint (group a) a (by simp) b (by simp [hgroup]) hab sa sb j l hj hl
 
-/-- Signed provenance supplies every actual negative L-window's source.-/
+/-- Signed provenance supplies every actual negative L-window's source.
+@isnad1 id=generati.2h7v.s6.b8239ced39d7 from=translated src=- shape=199b1a33 vocab=6393bed3
+-/
 theorem word_generating {k ν R n : ℕ} {x : Letters}
     (bubbles : Fin ν → BubbleWord k) (group : Fin ν → Fin R)
     (hvalid : ValidCatalogue bubbles group)
@@ -85,7 +95,9 @@ theorem word_generating {k ν R n : ℕ} {x : Letters}
   signed_generating_implies_generating (indexedFamily bubbles group).family x n
     (windowLength k) hvalid.geometry hvalid.rank_disjoint hgen
 
-/-- The concrete catalogue conditions imply the entire signed counting interface.-/
+/-- The concrete catalogue conditions imply the entire signed counting interface.
+@isnad1 id=generati.3h8v.s6.df720ebbad72 from=translated src=- shape=681856cd vocab=c47841ed
+-/
 theorem valid_generatingRuleSet {k ν R n c : ℕ} {x : Letters}
     (bubbles : Fin ν → BubbleWord k) (group : Fin ν → Fin R)
     (hvalid : ValidCatalogue bubbles group)
@@ -113,6 +125,9 @@ def CatalogueGeneratingSet (x : Letters) (n k ν R t c : ℕ)
       (SupportComponents.GraphComponents (indexedFamily bubbles group).family (windowLength k)) = c ∧
     rulesOfFamily (indexedFamily bubbles group) group = Q ∧ Q.card = R
 
+/--
+@isnad1 id=generati.1h9v.s5.b2f23b508237 from=translated src=- shape=9c8db4c3 vocab=0010526a
+-/
 theorem catalogueGeneratingSet_included (x : Letters) (n k ν R t c : ℕ)
     (group : Fin ν → Fin R) (Q : RuleSet k)
     (hQ : CatalogueGeneratingSet x n k ν R t c group Q) :
@@ -120,7 +135,9 @@ theorem catalogueGeneratingSet_included (x : Letters) (n k ν R t c : ℕ)
   obtain ⟨bubbles, hvalid, _, hgen, hc, rfl, _⟩ := hQ
   exact valid_generatingRuleSet bubbles group hvalid hgen hc
 
-/-- The complete grammar-defined catalogue class inherits the finite-record count.-/
+/-- The complete grammar-defined catalogue class inherits the finite-record count.
+@isnad1 id=le.2h8v.s6.af46d0ff923d from=translated src=- shape=729c3e88 vocab=8159b730
+-/
 theorem catalogueGeneratingSet_card_bound (x : Letters) (n k ν R t c : ℕ)
     (group : Fin ν → Fin R) (hν : 1 ≤ ν) (hx : KUnique x n k) :
     Nat.card {Q : RuleSet k // CatalogueGeneratingSet x n k ν R t c group Q} ≤

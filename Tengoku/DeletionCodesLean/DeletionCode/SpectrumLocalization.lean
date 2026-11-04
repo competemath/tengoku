@@ -24,7 +24,9 @@ noncomputable def windowSum (x : Letters) (L start count : ℕ) (g : Gram L) : �
   classical
   exact ∑ i ∈ Finset.range count, if gram x L (start + i) = g then 1 else 0
 
-/-- The guarded finite-word spectrum counts exactly the valid start positions.-/
+/-- The guarded finite-word spectrum counts exactly the valid start positions.
+@isnad1 id=eq.1h4v.s6.ec568b7e3e57 from=translated src=- shape=5bcd58d5 vocab=f451445b
+-/
 theorem wordSpectrum_eq_windowSum (x : Letters) (n L : ℕ) (hL : L ≤ n + 1)
     (g : Gram L) : wordSpectrum x n L g = windowSum x L 0 (n + 1 - L) g := by
   classical
@@ -44,6 +46,9 @@ theorem wordSpectrum_eq_windowSum (x : Letters) (n L : ℕ) (hL : L ≤ n + 1)
   have hgood : i + L ≤ n := by omega
   simp only [hgood, true_and, Nat.zero_add]
 
+/--
+@isnad1 id=eq.0h6v.s5.bb9fd69973eb from=translated src=- shape=63d12b13 vocab=69e56ac0
+-/
 theorem windowSum_add (x : Letters) (L start a b : ℕ) (g : Gram L) :
     windowSum x L start (a + b) g =
       windowSum x L start a g + windowSum x L (start + a) b g := by
@@ -52,6 +57,9 @@ theorem windowSum_add (x : Letters) (L start a b : ℕ) (g : Gram L) :
   rw [Finset.sum_range_add]
   simp only [Nat.add_assoc]
 
+/--
+@isnad1 id=eq.0h5v.s5.f57dde621d42 from=translated src=- shape=7f2e0531 vocab=69e56ac0
+-/
 theorem windowSum_shift (x : Letters) (L a count : ℕ) (g : Gram L) :
     windowSum x L a count g = windowSum (fun i => x (a + i)) L 0 count g := by
   classical
@@ -63,7 +71,9 @@ theorem windowSum_shift (x : Letters) (L a count : ℕ) (g : Gram L) :
     simp only [SignedSupport.gram, Nat.zero_add, Nat.add_assoc]
   rw [hgram]
 
-/-- All windows split at the two ends of the local path's edge interval.-/
+/-- All windows split at the two ends of the local path's edge interval.
+@isnad1 id=eq.1h6v.s7.eeefff0b12fc from=translated src=- shape=05c18975 vocab=f451445b
+-/
 theorem spectrum_split (x : Letters) (a p b L : ℕ) (hp : L ≤ p + 1) (g : Gram L) :
     wordSpectrum x (a + p + b) L g =
       windowSum x L 0 a g + wordSpectrum (fun i => x (a + i)) p L g +
@@ -74,6 +84,9 @@ theorem spectrum_split (x : Letters) (a p b L : ℕ) (hp : L ≤ p + 1) (g : Gra
   rw [hcount, windowSum_add, windowSum_add]
   simp only [Nat.zero_add, windowSum_shift x L a]
 
+/--
+@isnad1 id=eq.1h7v.s6.f8bdb4285217 from=translated src=- shape=cdb8cbac vocab=d341866d
+-/
 theorem windowSum_congr (x y : Letters) (L a b count : ℕ) (g : Gram L)
     (h : ∀ i, i < count → gram x L (a + i) = gram y L (b + i)) :
     windowSum x L a count g = windowSum y L b count g := by
@@ -84,7 +97,9 @@ theorem windowSum_congr (x y : Letters) (L a b count : ℕ) (g : Gram L)
   rw [h i (Finset.mem_range.mp hi)]
 
 /-- A replacement with the same prefix and suffix of length L-1 has the
-same spectrum change as its local words. Exterior lengths may be arbitrary.-/
+same spectrum change as its local words. Exterior lengths may be arbitrary.
+@isnad1 id=eq.5h8v.s8.d9afaba940f9 from=translated src=- shape=f3e451fe vocab=5b053b0d
+-/
 theorem replacement (x y : Letters) (a p q b L : ℕ) (hL : 1 ≤ L)
     (hp : L ≤ p + 1) (hq : L ≤ q + 1)
     (hleft : Agree x 0 y 0 (a + (L - 1)))
@@ -109,25 +124,40 @@ theorem replacement (x y : Letters) (a p q b L : ℕ) (hL : 1 ≤ L)
   rw [spectrum_split x a p b L hp, spectrum_split y a q b L hq, hbefore, hafter]
   omega
 
+/--
+@isnad1 id=eq.1h3v.s5.c3b1be408c03 from=translated src=- shape=9595f6b6 vocab=3def47a4
+-/
 theorem listLetters_append_left (x y : List Bool) (i : ℕ) (hi : i < x.length) :
     listLetters (x ++ y) i = listLetters x i := by
   simp only [listLetters, List.getD_eq_getElem?_getD]
   rw [List.getElem?_append_left hi]
 
+/--
+@isnad1 id=eq.0h3v.s5.fa2b3a3c41a4 from=translated src=- shape=7ebd59c8 vocab=b36fbfc5
+-/
 theorem listLetters_append_right (x y : List Bool) (i : ℕ) :
     listLetters (x ++ y) (x.length + i) = listLetters y i := by
   simp only [listLetters, List.getD_eq_getElem?_getD]
   rw [List.getElem?_append_right (by omega)]
   simp only [Nat.add_sub_cancel_left]
 
+/--
+@isnad1 id=eq.1h4v.s5.450b6e6a26f6 from=translated src=- shape=c8148cef vocab=9fafeae7
+-/
 theorem listLetters_middle (x p y : List Bool) (i : ℕ) (hi : i < p.length) :
     listLetters (x ++ (p ++ y)) (x.length + i) = listLetters p i := by
   rw [listLetters_append_right, listLetters_append_left p y i hi]
 
+/--
+@isnad1 id=eq.0h4v.s6.60e0d1196ba1 from=translated src=- shape=1a7a8b33 vocab=b36fbfc5
+-/
 theorem listLetters_suffix (x p y : List Bool) (i : ℕ) :
     listLetters (x ++ (p ++ y)) (x.length + p.length + i) = listLetters y i := by
   rw [Nat.add_assoc, listLetters_append_right, listLetters_append_right]
 
+/--
+@isnad1 id=eq.1h5v.s5.1627f0534f93 from=translated src=- shape=712a1085 vocab=76af4df8
+-/
 theorem wordSpectrum_congr (x y : Letters) (n L : ℕ)
     (h : ∀ i, i < n → x i = y i) (g : Gram L) :
     wordSpectrum x n L g = wordSpectrum y n L g := by
@@ -143,7 +173,9 @@ theorem wordSpectrum_congr (x y : Letters) (n L : ℕ)
   · simp only [hi, false_and, ite_false]
 
 /-- Concrete unchanged exterior words cancel when the local words share
-their first and last L-1 letters, exactly as in the coverage proof.-/
+their first and last L-1 letters, exactly as in the coverage proof.
+@isnad1 id=eq.5h6v.s8.bfbd27361ca1 from=translated src=- shape=0aa8b902 vocab=889c7703
+-/
 theorem context_replacement (x p q y : List Bool) (L : ℕ) (hL : 1 ≤ L)
     (hp : L ≤ p.length + 1) (hq : L ≤ q.length + 1)
     (hprefix : Agree (listLetters p) 0 (listLetters q) 0 (L - 1))

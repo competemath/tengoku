@@ -28,6 +28,9 @@ noncomputable def selectedBlocks {k : ℕ} (G I : RuleSet k) : Finset (RuleSet k
   classical
   exact (blocks G).filter (fun B => (B ∩ I).Nonempty)
 
+/--
+@isnad1 id=iff.0h4v.s6.0e39cd3769c5 from=translated src=- shape=6ffcf030 vocab=5a14d85b
+-/
 @[simp] theorem mem_selectedBlocks {k : ℕ} (G I B : RuleSet k) :
     B ∈ selectedBlocks G I ↔ B ∈ blocks G ∧ (B ∩ I).Nonempty := by
   classical
@@ -77,7 +80,9 @@ private theorem indexed_relation {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
       simp only [ite_eq_left hu]
 
 /-- Every selected actual adjacency block has a gram of one of its rules that
-survives in the relation vector. No nonzero-restriction premise is required.-/
+survives in the relation vector. No nonzero-restriction premise is required.
+@isnad1 id=ex.5h6v.s8.26dbc2cb360e from=translated src=- shape=5e5473af vocab=ea979130
+-/
 theorem selected_block_nonzero {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
     (w : Gram (windowLength k) → ℤ)
     (a : (Gram (windowLength k) → ℤ) → ℚ)
@@ -112,7 +117,9 @@ theorem selected_block_nonzero {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
     T hactive hclosed
   exact ⟨g, u.val, (hmem u).mp hu, hug, hw⟩
 
-/-- Each selected block shares an actual incident de Bruijn vertex with w.-/
+/-- Each selected block shares an actual incident de Bruijn vertex with w.
+@isnad1 id=ex.5h6v.s8.7c0906c16d2b from=translated src=- shape=ef13d8c9 vocab=7b752a95
+-/
 theorem selected_block_meets {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
     (w : Gram (windowLength k) → ℤ)
     (a : (Gram (windowLength k) → ℤ) → ℚ)
@@ -127,7 +134,9 @@ theorem selected_block_meets {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
       ⟨u, hu, GeneratingBlocks.nonzero_incident u g hug⟩,
     GeneratingBlocks.nonzero_incident w g hwg⟩
 
-/-- Selection by a nonzero relation coefficient implies actual attachment.-/
+/-- Selection by a nonzero relation coefficient implies actual attachment.
+@isnad1 id=le.4h5v.s8.a7b240151696 from=translated src=- shape=ac26d3eb vocab=dc98ebdf
+-/
 theorem selectedBlocks_subset_attachedBlocks {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
     (w : Gram (windowLength k) → ℤ)
     (a : (Gram (windowLength k) → ℤ) → ℚ)
@@ -141,7 +150,9 @@ theorem selectedBlocks_subset_attachedBlocks {k : ℕ} (G I : RuleSet k) (hIG : 
       selected_block_meets G I hIG w a hind ha hrel B hB⟩
 
 /-- A linear combination cannot introduce a gram outside the actual support
-union of the ambient rules. Independence and nonzero coefficients are unneeded.-/
+union of the ambient rules. Independence and nonzero coefficients are unneeded.
+@isnad1 id=coordina.2h5v.s6.0574e35b6235 from=translated src=- shape=57b39eb5 vocab=c6fbf416
+-/
 theorem relation_support_included {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
     (w : Gram (windowLength k) → ℤ)
     (a : (Gram (windowLength k) → ℤ) → ℚ)
@@ -162,7 +173,9 @@ theorem relation_support_included {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
   exact hzg (by exact_mod_cast hzero)
 
 /-- The finite union of precisely the selected blocks is the existing actual
-block hull of I in G. This is a partition identity, independent of the relation.-/
+block hull of I in G. This is a partition identity, independent of the relation.
+@isnad1 id=eq.1h3v.s6.988d32468337 from=translated src=- shape=079f7e9e vocab=861b439e
+-/
 theorem selectedBlocks_biUnion {k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G) :
     (selectedBlocks G I).biUnion id = RelationBlockSavings.blockHull G I := by
   classical

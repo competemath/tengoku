@@ -41,7 +41,9 @@ structure Witness (t k : ℕ) (v : Gram (windowLength k) → ℤ)
   bounds : WitnessBounds t k U
 
 /-- Independence forces every selected block to meet w; support containment
-then assigns distinct selected blocks to distinct actual components of w.-/
+then assigns distinct selected blocks to distinct actual components of w.
+@isnad1 id=le.5h6v.s7.1e97bac48811 from=translated src=- shape=3b2547dc vocab=b076a440
+-/
 theorem relation_block_count {t k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
     (w : Gram (windowLength k) → ℤ) (hw : CatalogueRule t k w)
     (a : (Gram (windowLength k) → ℤ) → ℚ) (hind : Independent G)
@@ -54,6 +56,9 @@ theorem relation_block_count {t k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
   · exact relation_support_included G I hIG w a hrel
   · exact selected_block_meets G I hIG w a hind ha hrel
 
+/--
+@isnad1 id=le.6h6v.s7.7d32e1532273 from=translated src=- shape=d1a431a9 vocab=1375f4cb
+-/
 theorem relation_hull_card {t k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
     (w : Gram (windowLength k) → ℤ) (hw : CatalogueRule t k w)
     (a : (Gram (windowLength k) → ℤ) → ℚ) (hind : Independent G)
@@ -75,7 +80,9 @@ theorem relation_hull_card {t k : ℕ} (G I : RuleSet k) (hIG : I ⊆ G)
       (relation_block_count G I hIG w hw a hind ha hrel)
 
 /-- Retaining whole blocks in the relation case gives the full bounded
-witness, including the stronger component bound for every resulting size.-/
+witness, including the stronger component bound for every resulting size.
+@isnad1 id=witness.10h8v.s8.40e0c31889e1 from=translated src=- shape=0c71fde7 vocab=0138202d
+-/
 theorem relation_case {t k : ℕ} (ht : 2 ≤ t)
     (v : Gram (windowLength k) → ℤ) (K : Set (Gram (windowLength k) → ℤ))
     (G I : RuleSet k) (hIG : I ⊆ G) (hI : 2 ≤ I.card)
@@ -100,7 +107,9 @@ theorem relation_case {t k : ℕ} (ht : 2 ≤ t)
     (fun u hu => hK u (hUG hu)), hlow, hupper.trans hquad, hc.trans (Nat.le_succ _), fun _ => hc⟩
 
 /-- Novelty up to sign derives a relation with at least two active coefficients,
-so no relation-support set is assumed in the in-span stopping case.-/
+so no relation-support set is assumed in the in-span stopping case.
+@isnad1 id=ex.8h6v.s8.1839660f8af8 from=translated src=- shape=56fd990a vocab=62b77006
+-/
 theorem relation_case_of_span {t k : ℕ} (ht : 2 ≤ t)
     (v : Gram (windowLength k) → ℤ) (K : Set (Gram (windowLength k) → ℤ))
     (G : RuleSet k) (hgen : GeneratingAt v G)
@@ -116,7 +125,9 @@ theorem relation_case_of_span {t k : ℕ} (ht : 2 ≤ t)
     relation_case ht v K G I hIG hI hgen hcat hK hsize w hw a ha hrel⟩
 
 /-- A cutoff failure after an independent append selects its actual new block,
-with both the strict lower cutoff and the full manuscript upper bounds.-/
+with both the strict lower cutoff and the full manuscript upper bounds.
+@isnad1 id=witness.7h6v.s8.9cfe3d907337 from=translated src=- shape=526e7763 vocab=f58b365e
+-/
 theorem large_block_case {t k : ℕ} (ht : 2 ≤ t)
     (v : Gram (windowLength k) → ℤ) (K : Set (Gram (windowLength k) → ℤ))
     (G : RuleSet k) (w : Gram (windowLength k) → ℤ)

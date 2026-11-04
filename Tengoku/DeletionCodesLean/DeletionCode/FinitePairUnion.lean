@@ -32,14 +32,18 @@ def orderedPairEquiv (n : ℕ) : OrderedPair n ≃ Σ b : Fin n, Fin b.val where
   right_inv := by rintro ⟨b, a⟩; rfl
 
 /-- The number of pairs a < b among n positions is exactly choose n 2,
-including the empty cases n = 0 and n = 1.-/
+including the empty cases n = 0 and n = 1.
+@isnad1 id=eq.0h1v.s6.ed50119852b0 from=translated src=- shape=5f32f2e5 vocab=176f915d
+-/
 theorem ordered_pair_card (n : ℕ) : Fintype.card (OrderedPair n) = n.choose 2 := by
   rw [Fintype.card_congr (orderedPairEquiv n), Fintype.card_sigma]
   simp only [Fintype.card_fin]
   rw [Fin.sum_univ_eq_sum_range (fun i => i) n, Finset.sum_range_id, Nat.choose_two_right]
 
 /-- A union of events indexed by a < b has at most choose n 2 times the
-maximum event size. The counted set contains each outcome only once.-/
+maximum event size. The counted set contains each outcome only once.
+@isnad1 id=le.1h4v.s7.f80787c6816a from=translated src=- shape=bcc596b4 vocab=3643dff8
+-/
 theorem ordered_pair_union_bound {α : Type*} [Fintype α] [DecidableEq α]
     (n M : ℕ) (P : Fin n → Fin n → α → Prop)
     (hcount : ∀ a b, a < b → (univ.filter (P a b)).card ≤ M) :

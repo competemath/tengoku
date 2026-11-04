@@ -73,9 +73,15 @@ def WellFormed (M : Data B) (s : State B) : Prop :=
   (∀ b w, s.Done b w → s.Started b) ∧
   (∀ b, M.root b → s.Complete b)
 
+/--
+@isnad1 id=started.0h4v.s4.3cd0b0cefe88 from=translated src=- shape=684d6ce2 vocab=33e6e623
+-/
 theorem started_start (s : State B) (b : B) (w : Slot) :
     (s.start b w).Started b := by simp [Started, start]
 
+/--
+@isnad1 id=started.1h5v.s4.81001560c60f from=translated src=- shape=182cd232 vocab=33e6e623
+-/
 theorem started_start_mono (s : State B) (b a : B) (w : Slot)
     (h : s.Started a) : (s.start b w).Started a := by
   by_cases hab : a = b
@@ -84,14 +90,23 @@ theorem started_start_mono (s : State B) (b a : B) (w : Slot)
   · have hba : b ≠ a := Ne.symm hab
     simpa [Started, start, hab, hba] using h
 
+/--
+@isnad1 id=complete.1h5v.s4.9fa31ece25c9 from=translated src=- shape=182cd232 vocab=987a15db
+-/
 theorem complete_start (s : State B) (b a : B) (w : Slot)
     (h : s.Complete a) : (s.start b w).Complete a := h
 
+/--
+@isnad1 id=complete.1h5v.s4.a5157cab69fd from=translated src=- shape=182cd232 vocab=fd603cd8
+-/
 theorem complete_fill (s : State B) (b a : B) (w : Slot)
     (h : s.Complete a) : (s.fill b w).Complete a := by
   intro v
   exact Finset.mem_insert_of_mem (h v)
 
+/--
+@isnad1 id=started.2h5v.s4.92bb2872d141 from=translated src=- shape=9591d3a9 vocab=8c47d063
+-/
 theorem ready_started (M : Data B) (s : State B)
     (hs : WellFormed M s) (b : B) (w : Slot) (h : s.Ready b w) :
     s.Started b := by
@@ -99,6 +114,9 @@ theorem ready_started (M : Data B) (s : State B)
   · simp [Started, hseed]
   · exact hs.1 b v hv
 
+/--
+@isnad1 id=wellform.1h5v.s4.cf14b300f84e from=translated src=- shape=88b5bb5d vocab=555a05e6
+-/
 theorem start_wellFormed (M : Data B) (s : State B)
     (hs : WellFormed M s) (b : B) (w : Slot) :
     WellFormed M (s.start b w) := by
@@ -108,6 +126,9 @@ theorem start_wellFormed (M : Data B) (s : State B)
   · intro a ha
     exact complete_start s b a w (hs.2 a ha)
 
+/--
+@isnad1 id=wellform.2h5v.s5.399a8f6cbb5e from=translated src=- shape=c6a90a2a vocab=d1da1054
+-/
 theorem fill_wellFormed (M : Data B) (s : State B)
     (hs : WellFormed M s) (b : B) (w : Slot) (hb : s.Started b) :
     WellFormed M (s.fill b w) := by
@@ -122,7 +143,9 @@ theorem fill_wellFormed (M : Data B) (s : State B)
   · intro a ha
     exact complete_fill s b a w (hs.2 a ha)
 
-/-- An incomplete started bubble has a ready unfilled window.-/
+/-- An incomplete started bubble has a ready unfilled window.
+@isnad1 id=ex.2h3v.s5.889835527e95 from=translated src=- shape=595f4fb8 vocab=359c8a93
+-/
 theorem frontier (s : State B) (b : B)
     (hb : s.Started b) (hi : ¬ s.Complete b) :
     ∃ w, s.Ready b w ∧ ¬ s.Done b w := by
@@ -180,6 +203,9 @@ inductive Step (M : Data B) : State B → State B → Prop
       (hsrc : M.source b w = some a) (ha : s.Complete a) :
       Step M s (s.fill b w)
 
+/--
+@isnad1 id=wellform.2h4v.s4.b4bdd51e572d from=translated src=- shape=99635e93 vocab=69713565
+-/
 theorem step_preserves (M : Data B) {s s' : State B}
     (h : Step M s s') (hs : s.WellFormed M) : s'.WellFormed M := by
   cases h with
@@ -194,7 +220,9 @@ theorem step_preserves (M : Data B) {s s' : State B}
       exact State.fill_wellFormed M s hs b w
         (State.ready_started M s hs b w hr)
 
-/-- Rank induction rules out incomplete started bubbles in a terminal state.-/
+/-- Rank induction rules out incomplete started bubbles in a terminal state.
+@isnad1 id=complete.2h4v.s5.c725bb5f22f3 from=translated src=- shape=8966ce1d vocab=f90444e8
+-/
 theorem terminal_started_complete (M : Data B) (s : State B)
     (hstop : ∀ s', ¬ Step M s s') : ∀ b, s.Started b → s.Complete b := by
   classical
@@ -218,6 +246,9 @@ theorem terminal_started_complete (M : Data B) (s : State B)
   intro b hb
   exact aux (M.rank b) b rfl hb
 
+/--
+@isnad1 id=complete.2h4v.s5.3479e5cbb863 from=translated src=- shape=ebc5a71b vocab=7e9ba60f
+-/
 theorem terminal_complete (M : Data B) (s : State B)
     (hs : s.WellFormed M) (hstop : ∀ s', ¬ Step M s s') :
     ∀ b, s.Complete b := by
@@ -238,6 +269,9 @@ theorem terminal_complete (M : Data B) (s : State B)
   obtain ⟨r, hr, hpath⟩ := M.rooted b
   exact along hpath (hs.2 r hr)
 
+/--
+@isnad1 id=ex.2h3v.s5.1b35d1b4d344 from=translated src=- shape=3c7239f0 vocab=7e9ba60f
+-/
 theorem progress (M : Data B) (s : State B)
     (hs : s.WellFormed M) (hincomplete : ¬ ∀ b, s.Complete b) :
     ∃ s', Step M s s' := by
@@ -257,6 +291,9 @@ def startedSet (s : State B) : Finset B :=
 
 def score (s : State B) : ℕ := s.startedSet.card + s.filled.card
 
+/--
+@isnad1 id=le.0h2v.s5.e193ca2505dc from=translated src=- shape=33e92d3c vocab=e864aeea
+-/
 theorem score_le (s : State B) : s.score ≤ 4 * Fintype.card B := by
   have h1 : s.startedSet.card ≤ Fintype.card B := Finset.card_le_univ _
   have h2 : s.filled.card ≤ Fintype.card (B × Slot) := Finset.card_le_univ _
@@ -265,6 +302,9 @@ theorem score_le (s : State B) : s.score ≤ 4 * Fintype.card B := by
   unfold score
   omega
 
+/--
+@isnad1 id=eq.1h4v.s5.bbcad22e5963 from=translated src=- shape=5634bb7c vocab=e2410d1d
+-/
 theorem score_start (s : State B) (b : B) (w : Slot)
     (hb : ¬ s.Started b) : (s.start b w).score = s.score + 1 := by
   classical
@@ -288,6 +328,9 @@ theorem score_start (s : State B) (b : B) (w : Slot)
   unfold score
   omega
 
+/--
+@isnad1 id=eq.1h4v.s5.b0d9afac999b from=translated src=- shape=24005c0a vocab=6275eb49
+-/
 theorem score_fill (s : State B) (b : B) (w : Slot)
     (hn : ¬ s.Done b w) : (s.fill b w).score = s.score + 1 := by
   have hnot : (b, w) ∉ s.filled := hn
@@ -297,6 +340,9 @@ theorem score_fill (s : State B) (b : B) (w : Slot)
   omega
 end State
 
+/--
+@isnad1 id=eq.1h4v.s5.9e5b0a55f095 from=translated src=- shape=38ebaaed vocab=0785bb52
+-/
 theorem step_score (M : Data B) {s s' : State B}
     (h : Step M s s') : s'.score = s.score + 1 := by
   cases h with
@@ -310,7 +356,9 @@ inductive Trace (M : Data B) : ℕ → State B → State B → Prop
   | cons {m : ℕ} {s s' s'' : State B} :
       Step M s s' → Trace M m s' s'' → Trace M (m + 1) s s''
 
-/-- Abstract recovery, NOT the manuscript's counting lemma.-/
+/-- Abstract recovery, NOT the manuscript's counting lemma.
+@isnad1 id=ex.1h3v.s6.dfcf7d14cd2a from=translated src=- shape=03097d62 vocab=cf944202
+-/
 theorem bounded_recovery (M : Data B) (s : State B)
     (hs : s.WellFormed M) :
     ∃ m s', Trace M m s s' ∧ (∀ b, s'.Complete b) ∧
@@ -343,6 +391,9 @@ noncomputable def initial (M : Data B) : State B := by
   exact ⟨fun b => if M.root b then some 0 else none,
     Finset.univ.filter (fun p : B × Slot => M.root p.1)⟩
 
+/--
+@isnad1 id=wellform.0h2v.s4.8849e0d827f3 from=translated src=- shape=fe3051fb vocab=81145c07
+-/
 theorem initial_wellFormed (M : Data B) : (initial M).WellFormed M := by
   classical
   constructor
@@ -352,7 +403,9 @@ theorem initial_wellFormed (M : Data B) : (initial M).WellFormed M := by
   · intro b hr w
     simp [State.Done, initial, hr]
 
-/-- Starts with just the roots, not an assumed completely recovered state.-/
+/-- Starts with just the roots, not an assumed completely recovered state.
+@isnad1 id=ex.0h2v.s5.30952597386c from=translated src=- shape=9c41a770 vocab=a64e3192
+-/
 theorem recover_from_roots (M : Data B) :
     ∃ m s', Trace M m (initial M) s' ∧ (∀ b, s'.Complete b) ∧
       m ≤ 4 * Fintype.card B := by

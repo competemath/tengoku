@@ -54,6 +54,9 @@ noncomputable def wordSpectrum (x : Letters) (n L : ℕ) (g : Gram L) : ℤ := b
   classical
   exact ∑ i : Fin (n + 1), if i.val + L ≤ n ∧ gram x L i.val = g then 1 else 0
 
+/--
+@isnad1 id=iff.0h5v.s4.0962c9b34427 from=translated src=- shape=fca6dbc0 vocab=412faf75
+-/
 theorem gram_eq_iff_agree (p q : Letters) (L i j : ℕ) :
     gram p L i = gram q L j ↔ Agree p i q j L := by
   constructor
@@ -63,6 +66,9 @@ theorem gram_eq_iff_agree (p q : Letters) (L i j : ℕ) :
     funext r
     exact h r.val r.isLt
 
+/--
+@isnad1 id=eq.1h9v.s5.0bdf8e872e26 from=translated src=- shape=30f0f265 vocab=9824defe
+-/
 theorem gram_eq_source_vertices {B : Type*} (F : Family B) (L : ℕ)
     (a b : B) (sa sb : Bool) (i j : ℕ)
     (h : gram (F.path a sa) L i = gram (F.path b sb) L j) :
@@ -70,6 +76,9 @@ theorem gram_eq_source_vertices {B : Type*} (F : Family B) (L : ℕ)
   funext q
   exact congrFun h ⟨q.val, by have := q.isLt; omega⟩
 
+/--
+@isnad1 id=eq.1h9v.s6.3f4b189189b5 from=translated src=- shape=df07d7be vocab=a11742fc
+-/
 theorem gram_eq_target_vertices {B : Type*} (F : Family B) (L : ℕ)
     (a b : B) (sa sb : Bool) (i j : ℕ)
     (h : gram (F.path a sa) L i = gram (F.path b sb) L j) :
@@ -88,6 +97,9 @@ structure BubbleGeometry {B : Type*} (F : Family B) (L : ℕ) : Prop where
       (i = 0 ∧ j = 0) ∨ (i = F.extra b false + 1 ∧ j = F.extra b true + 1)
   differentLengths : ∀ b, F.extra b false ≠ F.extra b true
 
+/--
+@isnad1 id=injectiv.1h5v.s6.47ee066beb12 from=translated src=- shape=475f65ac vocab=e1445467
+-/
 theorem gram_injective_of_simple {B : Type*} (F : Family B) (L : ℕ)
     (H : BubbleGeometry F L) (b : B) (side : Bool) :
     Function.Injective (fun i : Fin (F.extra b side + 1) => gram (F.path b side) L i.val) := by
@@ -100,7 +112,9 @@ theorem gram_injective_of_simple {B : Type*} (F : Family B) (L : ℕ)
   exact Fin.ext (congrArg (fun z : Fin (F.extra b side + 2) => z.val) hindices)
 
 /-- A shared edge would force both paths to consist of the same single edge,
-contradicting their unequal lengths.-/
+contradicting their unequal lengths.
+@isnad1 id=false.3h5v.s6.4b1da0b6af06 from=translated src=- shape=a2dd727b vocab=6ac953bb
+-/
 theorem no_common_bubble_gram {B : Type*} (F : Family B) (L : ℕ)
     (H : BubbleGeometry F L) (b : B) (g : Gram L)
     (hn : g ∈ windowSet (F.path b false) L (F.extra b false))
@@ -127,6 +141,9 @@ theorem no_common_bubble_gram {B : Type*} (F : Family B) (L : ℕ)
   · omega
   · exact H.differentLengths b (by omega)
 
+/--
+@isnad1 id=eq.2h4v.s6.14748e4febd3 from=translated src=- shape=b46ec9ff vocab=62bd4ed4
+-/
 theorem pathSpectrum_eq_one (p : Letters) (L D : ℕ) (g : Gram L)
     (hinj : Function.Injective (fun i : Fin (D + 1) => gram p L i.val))
     (hg : g ∈ windowSet p L D) : pathSpectrum p L D g = 1 := by
@@ -140,6 +157,9 @@ theorem pathSpectrum_eq_one (p : Letters) (L D : ℕ) (g : Gram L)
     (fun hnot => False.elim (hnot (Finset.mem_univ i)))
   exact hsingle.trans (by simp)
 
+/--
+@isnad1 id=eq.1h4v.s5.8e909ab8b48e from=translated src=- shape=d647e299 vocab=922e90d4
+-/
 theorem pathSpectrum_eq_zero (p : Letters) (L D : ℕ) (g : Gram L)
     (hg : g ∉ windowSet p L D) : pathSpectrum p L D g = 0 := by
   classical
@@ -157,6 +177,9 @@ noncomputable def bubbleSpectrum {B : Type*} (F : Family B) (L : ℕ)
 def HasGram {B : Type*} (F : Family B) (L : ℕ) (b : B) (g : Gram L) : Prop :=
   ∃ side, g ∈ windowSet (F.path b side) L (F.extra b side)
 
+/--
+@isnad1 id=eq.2h5v.s5.9f0355442575 from=translated src=- shape=54e7dbc4 vocab=9675e4d1
+-/
 theorem bubble_negative_value {B : Type*} (F : Family B) (L : ℕ)
     (H : BubbleGeometry F L) (b : B) (g : Gram L)
     (hn : g ∈ windowSet (F.path b false) L (F.extra b false)) :
@@ -167,6 +190,9 @@ theorem bubble_negative_value {B : Type*} (F : Family B) (L : ℕ)
     pathSpectrum_eq_one _ _ _ _ (gram_injective_of_simple F L H b false) hn]
   decide
 
+/--
+@isnad1 id=eq.2h5v.s5.67040829cd10 from=translated src=- shape=cf3f2077 vocab=9154be54
+-/
 theorem bubble_positive_value {B : Type*} (F : Family B) (L : ℕ)
     (H : BubbleGeometry F L) (b : B) (g : Gram L)
     (hp : g ∈ windowSet (F.path b true) L (F.extra b true)) :
@@ -178,6 +204,9 @@ theorem bubble_positive_value {B : Type*} (F : Family B) (L : ℕ)
     pathSpectrum_eq_zero _ _ _ _ hn]
   decide
 
+/--
+@isnad1 id=iff.1h5v.s5.0c39fdc27b39 from=translated src=- shape=af12b2f9 vocab=fe34e64a
+-/
 theorem bubble_support_iff {B : Type*} (F : Family B) (L : ℕ)
     (H : BubbleGeometry F L) (b : B) (g : Gram L) :
     bubbleSpectrum F L b g ≠ 0 ↔ HasGram F L b g := by
@@ -204,6 +233,9 @@ def VertexDisjointOn {B : Type*} (F : Family B) (L : ℕ) (S : Finset B) : Prop 
     i ≤ F.extra a sa + 1 → j ≤ F.extra b sb + 1 →
     SupportComponents.vertex F L a sa i ≠ SupportComponents.vertex F L b sb j
 
+/--
+@isnad1 id=false.6h7v.s6.2c2bc7901c60 from=translated src=- shape=a3b5cac3 vocab=0d00d26a
+-/
 theorem no_common_rule_gram {B : Type*} (F : Family B) (L : ℕ) (S : Finset B)
     (hdis : VertexDisjointOn F L S) (a b : B) (ha : a ∈ S) (hb : b ∈ S)
     (hab : a ≠ b) (g : Gram L) (hga : HasGram F L a g) (hgb : HasGram F L b g) :
@@ -219,7 +251,9 @@ noncomputable def ruleSpectrum {B : Type*} (F : Family B) (L : ℕ)
     (S : Finset B) (g : Gram L) : ℤ :=
   ∑ b ∈ S, bubbleSpectrum F L b g
 
-/-- Every gram in a bubble retains that bubble's coefficient in the whole rule.-/
+/-- Every gram in a bubble retains that bubble's coefficient in the whole rule.
+@isnad1 id=eq.4h6v.s5.adfcd1fee199 from=translated src=- shape=427a0780 vocab=f2994764
+-/
 theorem rule_value_at_gram {B : Type*} (F : Family B) (L : ℕ)
     (H : BubbleGeometry F L) (S : Finset B) (hdis : VertexDisjointOn F L S)
     (b : B) (hb : b ∈ S) (g : Gram L) (hg : HasGram F L b g) :
@@ -234,6 +268,9 @@ theorem rule_value_at_gram {B : Type*} (F : Family B) (L : ℕ)
   · intro hnot
     exact False.elim (hnot hb)
 
+/--
+@isnad1 id=eq.4h6v.s6.a449d39633e6 from=translated src=- shape=79cf29d8 vocab=3feea908
+-/
 theorem rule_negative_of_window {B : Type*} (F : Family B) (L : ℕ)
     (H : BubbleGeometry F L) (S : Finset B) (hdis : VertexDisjointOn F L S)
     (b : B) (hb : b ∈ S) (g : Gram L)
@@ -242,6 +279,9 @@ theorem rule_negative_of_window {B : Type*} (F : Family B) (L : ℕ)
   rw [rule_value_at_gram F L H S hdis b hb g ⟨false, hg⟩]
   exact bubble_negative_value F L H b g hg
 
+/--
+@isnad1 id=iff.2h5v.s5.347aaeedf30f from=translated src=- shape=5ed112fd vocab=7bf6a7ec
+-/
 theorem rule_support_iff {B : Type*} (F : Family B) (L : ℕ)
     (H : BubbleGeometry F L) (S : Finset B) (hdis : VertexDisjointOn F L S)
     (g : Gram L) :
@@ -260,13 +300,18 @@ theorem rule_support_iff {B : Type*} (F : Family B) (L : ℕ)
     rw [rule_value_at_gram F L H S hdis b hb g hg]
     exact (bubble_support_iff F L H b g).mpr hg
 
-/-- The signed support is exactly the union of actual windows, without cancellation.-/
+/-- The signed support is exactly the union of actual windows, without cancellation.
+@isnad1 id=eq.2h4v.s6.e2975539454d from=translated src=- shape=302db603 vocab=82273ad7
+-/
 theorem rule_support_eq_edge_union {B : Type*} (F : Family B) (L : ℕ)
     (H : BubbleGeometry F L) (S : Finset B) (hdis : VertexDisjointOn F L S) :
     {g | ruleSpectrum F L S g ≠ 0} = {g | ∃ b ∈ S, HasGram F L b g} := by
   ext g
   exact rule_support_iff F L H S hdis g
 
+/--
+@isnad1 id=ex.1h4v.s5.7d1d1a2c4b86 from=translated src=- shape=cf4da135 vocab=6023accb
+-/
 theorem wordSpectrum_nonzero_occurs (x : Letters) (n L : ℕ) (g : Gram L)
     (h : wordSpectrum x n L g ≠ 0) : ∃ a, a + L ≤ n ∧ gram x L a = g := by
   classical
@@ -290,7 +335,9 @@ def SignedGenerating {B : Type*} [Fintype B] (F : Family B)
       ∃ j, j < i ∧ ruleSpectrum F L (ruleBubbles F j) g ≠ 0
 
 /-- The concrete word-level generating premise is derived from signed spectra
-and catalogue geometry, not assumed as another provenance hypothesis.-/
+and catalogue geometry, not assumed as another provenance hypothesis.
+@isnad1 id=generati.3h5v.s5.116cdf3b44b3 from=translated src=- shape=a49a96f1 vocab=a2e114d5
+-/
 theorem signed_generating_implies_generating {B : Type*} [Fintype B]
     (F : Family B) (x : Letters) (n L : ℕ)
     (H : BubbleGeometry F L)
@@ -322,10 +369,16 @@ def gramPrefix {L : ℕ} (g : Gram L) : SupportComponents.Vertex L :=
 def gramSuffix {L : ℕ} (g : Gram L) : SupportComponents.Vertex L :=
   fun q => g ⟨q.val + 1, by have := q.isLt; omega⟩
 
+/--
+@isnad1 id=eq.0h6v.s5.430e3c66cc74 from=translated src=- shape=038941cc vocab=8f688216
+-/
 theorem prefix_gram {B : Type*} (F : Family B) (L : ℕ)
     (b : B) (side : Bool) (i : ℕ) :
     gramPrefix (gram (F.path b side) L i) = SupportComponents.vertex F L b side i := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.08ebd116f333 from=translated src=- shape=a637bd24 vocab=5759ed98
+-/
 theorem suffix_gram {B : Type*} (F : Family B) (L : ℕ)
     (b : B) (side : Bool) (i : ℕ) :
     gramSuffix (gram (F.path b side) L i) = SupportComponents.vertex F L b side (i + 1) := by
@@ -342,7 +395,9 @@ def signedSupportEdge {B : Type*} [Fintype B] (F : Family B) (L : ℕ)
     u = gramPrefix g ∧ v = gramSuffix g
 
 /-- The actual signed-support graph has precisely the consecutive-window edges
-used by SupportComponents. No cancellation is assumed in this identification.-/
+used by SupportComponents. No cancellation is assumed in this identification.
+@isnad1 id=iff.2h5v.s5.ac7d7d1f03e5 from=translated src=- shape=ba1fea88 vocab=d263c476
+-/
 theorem signed_support_edge_iff {B : Type*} [Fintype B]
     (F : Family B) (L : ℕ) (H : BubbleGeometry F L)
     (hdis : ∀ i, VertexDisjointOn F L (ruleBubbles F i))
@@ -369,7 +424,9 @@ theorem signed_support_edge_iff {B : Type*} [Fintype B]
     · exact hv.trans (suffix_gram F L b side i).symm
 
 /-- The path vertex union is exactly the incident-vertex set of the signed
-support union. In particular the restriction excludes every ambient outsider.-/
+support union. In particular the restriction excludes every ambient outsider.
+@isnad1 id=iff.2h4v.s5.92c2563d6e28 from=translated src=- shape=9c93e77d vocab=89780688
+-/
 theorem supported_iff_signed_incident {B : Type*} [Fintype B]
     (F : Family B) (L : ℕ) (H : BubbleGeometry F L)
     (hdis : ∀ i, VertexDisjointOn F L (ruleBubbles F i))
@@ -399,6 +456,9 @@ def SignedGraphConnected {B : Type*} [Fintype B] (F : Family B) (L : ℕ) :
     SupportComponents.Vertex L → SupportComponents.Vertex L → Prop :=
   Relation.EqvGen (signedSupportEdge F L)
 
+/--
+@isnad1 id=iff.2h5v.s5.93ab74e2a3d3 from=translated src=- shape=ba1fea88 vocab=aeb8b77d
+-/
 theorem signed_graph_connected_iff {B : Type*} [Fintype B]
     (F : Family B) (L : ℕ) (H : BubbleGeometry F L)
     (hdis : ∀ i, VertexDisjointOn F L (ruleBubbles F i))
@@ -418,7 +478,9 @@ def signedSupportedGraphSetoid {B : Type*} [Fintype B] (F : Family B) (L : ℕ) 
     fun h₁ h₂ => Relation.EqvGen.trans _ _ _ h₁ h₂⟩
 
 /-- Hence the existing supported-graph component quotient counts exactly the
-components of the signed support union, with the same incident vertex set.-/
+components of the signed support union, with the same incident vertex set.
+@isnad1 id=eq.2h3v.s5.0e393674f821 from=translated src=- shape=2a4eb082 vocab=13f53a59
+-/
 theorem signed_supported_graph_setoid_eq {B : Type*} [Fintype B]
     (F : Family B) (L : ℕ) (H : BubbleGeometry F L)
     (hdis : ∀ i, VertexDisjointOn F L (ruleBubbles F i)) :

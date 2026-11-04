@@ -25,6 +25,9 @@ open SignedSupport SignedRuleCount RuleReconstruction RuleSetGraph
 def RuleAdjacent {L : ℕ} (w u : Gram L → ℤ) : Prop :=
   ∃ v, Incident {w} v ∧ Incident {u} v
 
+/--
+@isnad1 id=ruleadja.1h3v.s4.f4c0745eb543 from=translated src=- shape=3fc92832 vocab=a2e302d8
+-/
 theorem RuleAdjacent.symm {L : ℕ} {w u : Gram L → ℤ}
     (h : RuleAdjacent w u) : RuleAdjacent u w := by
   obtain ⟨v, hw, hu⟩ := h
@@ -64,7 +67,9 @@ private theorem singleton_rules {t k : ℕ} (words : Fin (2 * t) → BubbleWord 
     rw [hgroup 0, hvalue, hf]
 
 /-- A catalogue rule has at most 2t components of its actual signed support.
-This follows from the proved support-graph equivalence and its 2t path bubbles.-/
+This follows from the proved support-graph equivalence and its 2t path bubbles.
+@isnad1 id=le.1h3v.s5.5bcb3c53fdae from=translated src=- shape=0c8e3d1c vocab=7e322c94
+-/
 theorem catalogue_singleton_component_count_le {t k : ℕ}
     (w : Gram (windowLength k) → ℤ) (hw : CatalogueRule t k w) :
     componentCount {w} ≤ 2 * t := by
@@ -76,7 +81,9 @@ theorem catalogue_singleton_component_count_le {t k : ℕ}
   exact GeneratingCount.editedFamily_component_count_le
     (indexedFamily words (fun _ => (0 : Fin 1)))
 
-/-- A rule meeting the old support union saves one of its possible 2t components.-/
+/-- A rule meeting the old support union saves one of its possible 2t components.
+@isnad1 id=le.2h4v.s7.0d40db9908dc from=translated src=- shape=940ac5af vocab=90cdf5f2
+-/
 theorem adjoining_rule_component_sum {t k : ℕ}
     (U : RuleSet k) (w : Gram (windowLength k) → ℤ)
     (hw : CatalogueRule t k w) (hadj : ∃ u ∈ U, RuleAdjacent w u) :
@@ -97,7 +104,9 @@ theorem adjoining_rule_component_sum {t k : ℕ}
   rw [heq] at h
   exact h.trans (Nat.add_le_add_left (catalogue_singleton_component_count_le w hw) _)
 
-/-- The first assertion of the manuscript's connected-block lemma.-/
+/-- The first assertion of the manuscript's connected-block lemma.
+@isnad1 id=le.3h4v.s7.8df53200da6d from=translated src=- shape=9196e4c2 vocab=128b12b0
+-/
 theorem adjoining_rule_bound {t k : ℕ} (ht : 1 ≤ t)
     (U : RuleSet k) (w : Gram (windowLength k) → ℤ)
     (hw : CatalogueRule t k w) (hadj : ∃ u ∈ U, RuleAdjacent w u) :
@@ -112,7 +121,9 @@ def Connected {k : ℕ} (B : RuleSet k) : Prop :=
     Relation.EqvGen (FiniteConnectedGrowth.Induced B RuleAdjacent) a b
 
 /-- Every nonempty connected block of catalogue rules satisfies
-c(B) ≤ (2t−1)|B|+1, with c(B) intrinsic to its signed support union.-/
+c(B) ≤ (2t−1)|B|+1, with c(B) intrinsic to its signed support union.
+@isnad1 id=le.4h3v.s6.72bf5ecc7ff1 from=translated src=- shape=d51d29db vocab=6d7fb228
+-/
 theorem connected_block_bound {t k : ℕ} (ht : 1 ≤ t) (B : RuleSet k)
     (hB : B.Nonempty) (hcatalogue : ∀ w ∈ B, CatalogueRule t k w)
     (hconnected : Connected B) :

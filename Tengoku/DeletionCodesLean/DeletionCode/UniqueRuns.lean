@@ -20,7 +20,9 @@ open Windows
 def ConstantOn (x : Letters) (start len : ℕ) (bit : Bool) : Prop :=
   ∀ i, i < len → x (start + i) = bit
 
-/-- Every in-bounds constant substring of a k-unique source has length at most k.-/
+/-- Every in-bounds constant substring of a k-unique source has length at most k.
+@isnad1 id=le.3h6v.s5.a9ce3200b2b0 from=translated src=- shape=4e21c7da vocab=ac344ebc
+-/
 theorem constant_length_le (k n : ℕ) (x : Letters) (hx : KUnique x n k)
     (a len : ℕ) (bit : Bool) (hbound : a + len ≤ n)
     (hconstant : ConstantOn x a len bit) : len ≤ k := by
@@ -35,7 +37,9 @@ theorem constant_length_le (k n : ℕ) (x : Letters) (hx : KUnique x n k)
     exact hfirst.trans hsecond.symm)
   omega
 
-/-- In particular there is no in-bounds constant window of length k+1.-/
+/-- In particular there is no in-bounds constant window of length k+1.
+@isnad1 id=not.2h5v.s5.4212c26ec6b1 from=translated src=- shape=0bda6cf3 vocab=ac344ebc
+-/
 theorem no_constant_succ_window (k n : ℕ) (x : Letters) (hx : KUnique x n k)
     (a : ℕ) (bit : Bool) (hbound : a + (k + 1) ≤ n) :
     ¬ ConstantOn x a (k + 1) bit := by
@@ -44,7 +48,9 @@ theorem no_constant_succ_window (k n : ℕ) (x : Letters) (hx : KUnique x n k)
   omega
 
 /-- A constant substring after a valid insertion has length at most k+1.
-The inserted bit and the constant substring's bit need not be supplied as equal.-/
+The inserted bit and the constant substring's bit need not be supplied as equal.
+@isnad1 id=le.4h8v.s6.57e598f9697b from=translated src=- shape=a5495c54 vocab=314f4dc4
+-/
 theorem insert_constant_length_le (k n : ℕ) (x : Letters) (hx : KUnique x n k)
     (pos : ℕ) (insertedBit : Bool) (hpos : pos ≤ n)
     (a len : ℕ) (bit : Bool) (hbound : a + len ≤ n + 1)

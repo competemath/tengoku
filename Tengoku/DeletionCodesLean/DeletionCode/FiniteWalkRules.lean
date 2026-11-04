@@ -35,12 +35,18 @@ noncomputable def selectedRules
   classical
   exact S.image (step p)
 
+/--
+@isnad1 id=eq.0h4v.s6.7aa0acaceb52 from=translated src=- shape=2cc3df70 vocab=fbee118c
+-/
 @[simp] theorem rational_step
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (i : Fin m) :
     rational (step p i) = walkStep (rationalPath p) i := by
   funext g
   simp [rational, step, walkStep, rationalPath]
 
+/--
+@isnad1 id=iff.0h5v.s6.33d62dc1d6ca from=translated src=- shape=22bfa9b1 vocab=68fb3c53
+-/
 @[simp] theorem mem_selectedRules
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (u : Gram (windowLength k) → ℤ) :
@@ -48,23 +54,35 @@ noncomputable def selectedRules
   classical
   exact Finset.mem_image
 
+/--
+@isnad1 id=mem.1h5v.s6.0a854d80a79a from=translated src=- shape=73fcfe1e vocab=68fb3c53
+-/
 theorem step_mem_selectedRules
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (i : Fin m) (hi : i ∈ S) : step p i ∈ selectedRules p S :=
   (mem_selectedRules p S _).mpr ⟨i, hi, rfl⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.b1774bf05b4c from=translated src=- shape=2f89539a vocab=b847bf75
+-/
 @[simp] theorem selectedRules_empty
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) :
     selectedRules p ∅ = ∅ := by
   classical
   simp [selectedRules]
 
+/--
+@isnad1 id=eq.0h5v.s6.2346be933403 from=translated src=- shape=7e01b323 vocab=cf729f1d
+-/
 @[simp] theorem selectedRules_insert
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (i : Fin m) : selectedRules p (insert i S) = insert (step p i) (selectedRules p S) := by
   classical
   simp [selectedRules]
 
+/--
+@isnad1 id=injon.1h4v.s6.f5c54f009a5d from=translated src=- shape=17e32740 vocab=b1d69366
+-/
 theorem selected_step_injOn
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (hind : LinearIndepOn ℚ (walkStep (rationalPath p)) (↑S : Set (Fin m))) :
@@ -85,11 +103,17 @@ noncomputable def selectedIndex
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (u : selectedRules p S) : S := Classical.choose (selectedIndex_exists p S u)
 
+/--
+@isnad1 id=eq.0h5v.s7.ae883da2ab99 from=translated src=- shape=7b1cc77c vocab=b10858eb
+-/
 theorem selectedIndex_spec
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (u : selectedRules p S) : step p (selectedIndex p S u).val = u.val :=
   Classical.choose_spec (selectedIndex_exists p S u)
 
+/--
+@isnad1 id=injectiv.0h4v.s6.58363329e8d6 from=translated src=- shape=77b74438 vocab=d7d1bf78
+-/
 theorem selectedIndex_injective
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m)) :
     Function.Injective (selectedIndex p S) := by
@@ -100,6 +124,9 @@ theorem selectedIndex_injective
     _ = step p (selectedIndex p S v).val := by rw [huv]
     _ = v.val := selectedIndex_spec p S v
 
+/--
+@isnad1 id=eq.2h5v.s7.094fa2f5163f from=translated src=- shape=bfea34c4 vocab=fcb1cc66
+-/
 theorem selectedIndex_step
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (hind : LinearIndepOn ℚ (walkStep (rationalPath p)) (↑S : Set (Fin m)))
@@ -108,6 +135,9 @@ theorem selectedIndex_step
   selected_step_injOn p S hind (selectedIndex p S _).property hi
     (selectedIndex_spec p S _)
 
+/--
+@isnad1 id=independ.1h4v.s6.4d2b5270ed1b from=translated src=- shape=7668d5ec vocab=0a04f8e9
+-/
 theorem selected_independent
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (hind : LinearIndepOn ℚ (walkStep (rationalPath p)) (↑S : Set (Fin m))) :
@@ -125,6 +155,9 @@ noncomputable def selectedRank
   classical
   exact if hu : u ∈ selectedRules p S then (selectedIndex p S ⟨u, hu⟩).val.val else 0
 
+/--
+@isnad1 id=eq.2h5v.s7.fa5d926e7e81 from=translated src=- shape=247e02e8 vocab=18d61b2a
+-/
 theorem selectedRank_step
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (hind : LinearIndepOn ℚ (walkStep (rationalPath p)) (↑S : Set (Fin m)))
@@ -133,6 +166,9 @@ theorem selectedRank_step
   simp only [selectedRank, dite_eq_left (step_mem_selectedRules p S i hi)]
   rw [selectedIndex_step p S hind i hi]
 
+/--
+@isnad1 id=injon.1h4v.s7.b5b4ee1fe331 from=translated src=- shape=1e29fa5e vocab=4917e88c
+-/
 theorem selectedRank_injOn
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (hind : LinearIndepOn ℚ (walkStep (rationalPath p)) (↑S : Set (Fin m))) :
@@ -143,6 +179,9 @@ theorem selectedRank_injOn
   rw [selectedRank_step p S hind i hi, selectedRank_step p S hind j hj] at heq
   exact congrArg (step p) (Fin.ext heq)
 
+/--
+@isnad1 id=generati.2h4v.s7.79f31355b487 from=translated src=- shape=b647284d vocab=008023e9
+-/
 theorem selected_generatingAt
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (hind : LinearIndepOn ℚ (walkStep (rationalPath p)) (↑S : Set (Fin m)))
@@ -171,6 +210,9 @@ theorem selected_generatingAt
       rw [← rational_step]
       simp [rational, hz]
 
+/--
+@isnad1 id=eq.0h4v.s6.62d24c4044d4 from=translated src=- shape=c1debc30 vocab=ff6b6276
+-/
 theorem rational_image_selectedRules
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m)) :
     rational '' (↑(selectedRules p S) : Set _) =
@@ -183,6 +225,9 @@ theorem rational_image_selectedRules
   · rintro ⟨i, hi, rfl⟩
     exact ⟨step p i, step_mem_selectedRules p S i hi, rational_step p i⟩
 
+/--
+@isnad1 id=eq.0h4v.s7.0f1f2b9a9e83 from=translated src=- shape=d2b11af4 vocab=ea677cbe
+-/
 theorem selectedSpan_eq
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m)) :
     selectedSpan (walkStep (rationalPath p)) S =
@@ -190,6 +235,9 @@ theorem selectedSpan_eq
   rw [rational_image_selectedRules]
   rfl
 
+/--
+@isnad1 id=and.2h6v.s7.8370e2930fb9 from=translated src=- shape=658997ec vocab=31806d3a
+-/
 theorem novelty_transfer
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ) (S : Finset (Fin m))
     (i : Fin m)

@@ -13,6 +13,9 @@ open DescriptionCount HeaderRecovery
 
 def exponent (t : ℕ) : ℕ := 100 * t * (16 * (2 * t + 1) + 1)
 
+/--
+@isnad1 id=le.1h1v.s4.3466d3efcc3d from=translated src=- shape=35bd48ee vocab=80575236
+-/
 theorem exponent_pos (t : ℕ) (ht : 1 ≤ t) : 1 ≤ exponent t := by
   unfold exponent
   nlinarith
@@ -29,6 +32,9 @@ private theorem self_le_power (base : ℕ) (hbase : 2 ≤ base) : ∀ q, q ≤ b
       _ ≤ base * base ^ q := Nat.mul_le_mul_right _ hbase
       _ = base ^ (q + 1) := by rw [pow_succ, Nat.mul_comm]
 
+/--
+@isnad1 id=le.1h3v.s6.ab4f972a9e77 from=translated src=- shape=c84e53a6 vocab=6f887d26
+-/
 theorem field_power_bound (k t R : ℕ) (hR : 1 ≤ R) :
     fieldBound (windowLength k) (2 * t * R) ^ (50 * (2 * t * R)) ≤
       (windowLength k * R) ^ (exponent t * R) := by

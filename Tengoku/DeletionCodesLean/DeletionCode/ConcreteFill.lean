@@ -41,7 +41,9 @@ def Recovered (s t : Memory) (p : Letters) (m start len : ℕ) : Prop :=
   Sound t p m ∧ Extends s t ∧
     readBits t start len = some (fun i : Fin len => p (start + i.val))
 
-/-- A valid base occurrence is filled exactly, using only its stored seed.-/
+/-- A valid base occurrence is filled exactly, using only its stored seed.
+@isnad1 id=ex.6h10v.s7.57783ad1dc24 from=translated src=- shape=f574875e vocab=2b277022
+-/
 theorem fillFromBase_correct (x p : Letters) (n k L : ℕ)
     (s : Memory) (m start r : ℕ) (seed : Bits k)
     (hx : KUnique x n k) (hs : Sound s p m)
@@ -62,7 +64,9 @@ theorem fillFromBase_correct (x p : Letters) (n k L : ℕ)
   simp only [fillFromBase, hread, Option.bind_some, hlookup]
   exact ht
 
-/-- Supplier copying preserves truth when the recorded blocks really agree.-/
+/-- Supplier copying preserves truth when the recorded blocks really agree.
+@isnad1 id=ex.6h10v.s6.48dc87936cb7 from=translated src=- shape=2bb3b61b vocab=a8e38fd4
+-/
 theorem copyFromMemory_correct (source s : Memory) (q p : Letters)
     (sourceLength sourceStart len m start : ℕ) (bits : Bits len)
     (hsource : Sound source q sourceLength) (hs : Sound s p m)
@@ -85,6 +89,9 @@ theorem copyFromMemory_correct (source s : Memory) (q p : Letters)
     funext i
     exact hbits i
 
+/--
+@isnad1 id=ex.4h7v.s6.165cd70fa9cd from=translated src=- shape=355208ac vocab=d5c29348
+-/
 theorem loadRoot_correct (x p : Letters) (n a len : ℕ) (s : Memory) (m : ℕ)
     (hs : Sound s p m) (ha : a + len ≤ n) (hbound : len ≤ m)
     (hocc : Agree x a p 0 len) :
@@ -100,7 +107,9 @@ theorem loadRoot_correct (x p : Letters) (n a len : ℕ) (s : Memory) (m : ℕ)
     funext i
     exact hbits i
 
-/-- Even arbitrary base-fill inputs cannot overwrite an already recorded bit.-/
+/-- Even arbitrary base-fill inputs cannot overwrite an already recorded bit.
+@isnad1 id=extends.1h9v.s5.f8e5206ead75 from=translated src=- shape=7d543ec2 vocab=a7ec1be5
+-/
 theorem fillFromBase_extends (x : Letters) (n k L : ℕ)
     (s t : Memory) (m start r : ℕ)
     (h : fillFromBase x n k L s m start r = some t) : Extends s t := by

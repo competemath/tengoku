@@ -50,6 +50,9 @@ abbrev RuleSetComponents {L : ℕ} (Q : Finset (Gram L → ℤ)) :=
 noncomputable def componentCount {L : ℕ} (Q : Finset (Gram L → ℤ)) : ℕ :=
   Nat.card (RuleSetComponents Q)
 
+/--
+@isnad1 id=eq.1h6v.s5.c95e22faf789 from=translated src=- shape=0a6fc9c8 vocab=b9417a26
+-/
 theorem rank_bubbles_eq_group {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
     (group : Fin ν → Fin R) (hrank : ∀ b, E.rank b = (group b).val) (r : Fin R) :
     ruleBubbles E.family r.val = groupBubbles group r := by
@@ -62,7 +65,9 @@ theorem rank_bubbles_eq_group {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
   · exact congrArg (fun z : Fin R => z.val)
 
 /-- Passing from a list of indexed rules to its underlying set preserves the
-unsigned support union, even if an image contains repeated rules.-/
+unsigned support union, even if an image contains repeated rules.
+@isnad1 id=iff.3h7v.s6.ab0fec43e85b from=translated src=- shape=7e7a581e vocab=15d4e724
+-/
 theorem rulesOfFamily_edge_iff {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
     (group : Fin ν → Fin R) (hrank : ∀ b, E.rank b = (group b).val)
     (H : BubbleGeometry E.family (windowLength k))
@@ -92,6 +97,9 @@ theorem rulesOfFamily_edge_iff {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
     · exact Finset.mem_image.mpr ⟨group b, Finset.mem_univ _, rfl⟩
     · simpa only [hsets] using hg
 
+/--
+@isnad1 id=eq.3h5v.s6.bd8318842738 from=translated src=- shape=86b81fc3 vocab=15d4e724
+-/
 theorem rulesOfFamily_edge_eq {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
     (group : Fin ν → Fin R) (hrank : ∀ b, E.rank b = (group b).val)
     (H : BubbleGeometry E.family (windowLength k))
@@ -100,6 +108,9 @@ theorem rulesOfFamily_edge_eq {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
   funext u v
   exact propext (rulesOfFamily_edge_iff E group hrank H hdis u v)
 
+/--
+@isnad1 id=iff.3h6v.s6.5967b0b0a9b4 from=translated src=- shape=d55b0669 vocab=05797d51
+-/
 theorem incident_iff_supported {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
     (group : Fin ν → Fin R) (hrank : ∀ b, E.rank b = (group b).val)
     (H : BubbleGeometry E.family (windowLength k))
@@ -122,6 +133,9 @@ def incidentVertexEquiv {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
   left_inv _ := rfl
   right_inv _ := rfl
 
+/--
+@isnad1 id=iff.3h7v.s6.0f4ee9c9e480 from=translated src=- shape=7e7a581e vocab=ee8aed47
+-/
 theorem rulesOfFamily_connected_iff {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
     (group : Fin ν → Fin R) (hrank : ∀ b, E.rank b = (group b).val)
     (H : BubbleGeometry E.family (windowLength k))
@@ -141,6 +155,9 @@ noncomputable def ruleSetComponentMap {ν R k : ℕ} (E : EditedFamily (Fin ν) 
   Quotient.map (incidentVertexEquiv E group hrank H hdis) (fun a b hab =>
     (rulesOfFamily_connected_iff E group hrank H hdis a.val b.val).mp hab)
 
+/--
+@isnad1 id=injectiv.3h5v.s6.b5a352387716 from=translated src=- shape=c6d9644f vocab=9f3c9534
+-/
 theorem ruleSetComponentMap_injective {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
     (group : Fin ν → Fin R) (hrank : ∀ b, E.rank b = (group b).val)
     (H : BubbleGeometry E.family (windowLength k))
@@ -153,6 +170,9 @@ theorem ruleSetComponentMap_injective {ν R k : ℕ} (E : EditedFamily (Fin ν) 
   apply (rulesOfFamily_connected_iff E group hrank H hdis a.val b.val).mpr
   exact Quotient.exact hab
 
+/--
+@isnad1 id=surjecti.3h5v.s6.56cb0c73b160 from=translated src=- shape=c6d9644f vocab=321f2172
+-/
 theorem ruleSetComponentMap_surjective {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
     (group : Fin ν → Fin R) (hrank : ∀ b, E.rank b = (group b).val)
     (H : BubbleGeometry E.family (windowLength k))
@@ -176,7 +196,9 @@ noncomputable def ruleSetComponentEquiv {ν R k : ℕ} (E : EditedFamily (Fin ν
     ⟨ruleSetComponentMap_injective E group hrank H hdis,
       ruleSetComponentMap_surjective E group hrank H hdis⟩
 
-/-- The c used by recovery is the intrinsic number of signed-support components.-/
+/-- The c used by recovery is the intrinsic number of signed-support components.
+@isnad1 id=eq.3h5v.s6.b4eb0c1e3275 from=translated src=- shape=4351a4ae vocab=89d43882
+-/
 theorem componentCount_rulesOfFamily {ν R k : ℕ} (E : EditedFamily (Fin ν) k)
     (group : Fin ν → Fin R) (hrank : ∀ b, E.rank b = (group b).val)
     (H : BubbleGeometry E.family (windowLength k))

@@ -37,8 +37,14 @@ def orientationCode (orientation : Orientation) : ℕ :=
   | .deletion => 0
   | .insertion => 1
 
+/--
+@isnad1 id=le.0h1v.s3.24ec39e66e45 from=translated src=- shape=a311c14d vocab=0d6231a8
+-/
 theorem bitCode_le (bit : Bool) : bitCode bit ≤ 1 := by cases bit <;> decide
 
+/--
+@isnad1 id=le.0h1v.s3.deb8afbf8494 from=translated src=- shape=a311c14d vocab=0f9e0d25
+-/
 theorem orientationCode_le (orientation : Orientation) : orientationCode orientation ≤ 1 := by
   cases orientation <;> decide
 
@@ -54,6 +60,9 @@ def decodeHeader {L : ℕ} (code : Fin (4 * L)) : Header where
   orientation := if code.val % 4 < 2 then .deletion else .insertion
   bit := code.val % 2 == 1
 
+/--
+@isnad1 id=eq.2h2v.s5.03f424262900 from=translated src=- shape=2039f8b9 vocab=a32a9c31
+-/
 theorem decode_encodeHeader (L : ℕ) (header : Header)
     (hrho0 : 1 ≤ header.rho) (hrhoL : header.rho ≤ L) :
     decodeHeader (encodeHeader L header hrho0 hrhoL) = header := by
@@ -97,6 +106,9 @@ def instructionField {ν : ℕ} (instruction : Instruction (Fin ν)) (i : Fin 12
     | 5 => window.val
     | _ => 0
 
+/--
+@isnad1 id=lt.3h4v.s5.2f9c664c958c from=translated src=- shape=5db904de vocab=598c8a81
+-/
 theorem instructionField_lt (L ν : ℕ) (hL : 1 ≤ L) (hν : 1 ≤ ν)
     (instruction : Instruction (Fin ν)) (hbound : InstructionBounded L instruction)
     (i : Fin 12) : instructionField instruction i < fieldBound L ν := by
@@ -152,6 +164,9 @@ def decodeInstruction (L ν : ℕ) (hν : 1 ≤ ν) (row : Row L ν) :
       (nameFromNat ν hν (row 4).val) (slotFromNat (row 5).val)))
   | _ => none
 
+/--
+@isnad1 id=eq.3h3v.s5.bb285654f86d from=translated src=- shape=6569a956 vocab=c3107bda
+-/
 theorem decode_encodeInstruction (L ν : ℕ) (hL : 1 ≤ L) (hν : 1 ≤ ν)
     (instruction : Instruction (Fin ν)) (hbound : InstructionBounded L instruction) :
     decodeInstruction L ν hν (encodeInstruction L ν hL hν instruction hbound) =
@@ -173,6 +188,9 @@ theorem decode_encodeInstruction (L ν : ℕ) (hL : 1 ≤ L) (hν : 1 ≤ ν)
 def zeroRow (L ν : ℕ) (hL : 1 ≤ L) (_hν : 1 ≤ ν) : Row L ν :=
   fun _ => ⟨0, by unfold fieldBound; nlinarith⟩
 
+/--
+@isnad1 id=eq.2h2v.s5.9c04db3c518c from=translated src=- shape=fdb38a55 vocab=94454089
+-/
 theorem decode_zeroRow (L ν : ℕ) (hL : 1 ≤ L) (hν : 1 ≤ ν) :
     decodeInstruction L ν hν (zeroRow L ν hL hν) = some none := rfl
 

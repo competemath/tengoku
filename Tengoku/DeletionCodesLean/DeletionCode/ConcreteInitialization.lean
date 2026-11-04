@@ -21,7 +21,9 @@ def ValidRoots (M : Model B x n k) (records : List (B × ℕ)) : Prop :=
   ∀ b a, (b, a) ∈ records → a + negativeLength k (M.header b) ≤ n ∧
     Agree x a (negativePath k (M.header b) (M.long b)) 0 (negativeLength k (M.header b))
 
-/-- Loading valid root records succeeds and preserves every previously stored bit.-/
+/-- Loading valid root records succeeds and preserves every previously stored bit.
+@isnad1 id=ex.2h7v.s7.cfe851dc7d55 from=translated src=- shape=7b9c0bf1 vocab=04885fdf
+-/
 theorem loadRoots_correct [DecidableEq B] (M : Model B x n k)
     (records : List (B × ℕ)) (mem : Bank B) (hs : M.Sound mem)
     (hvalid : ValidRoots M records) :
@@ -70,7 +72,9 @@ noncomputable def rootCount [Fintype B] (M : Model B x n k) : ℕ := by
   classical
   exact (Finset.univ.filter M.schedule.root).card
 
-/-- Exactly one actual x-position is recorded for every marked root.-/
+/-- Exactly one actual x-position is recorded for every marked root.
+@isnad1 id=ex.0h5v.s6.59cc136ee5df from=translated src=- shape=3919bf98 vocab=477d61eb
+-/
 theorem root_records_exist [Fintype B] (M : Model B x n k) :
     ∃ records : List (B × ℕ), records.length = rootCount M ∧ ValidRoots M records ∧
       (∀ b, M.schedule.root b → ∃ a, (b, a) ∈ records) := by
@@ -99,7 +103,9 @@ theorem root_records_exist [Fintype B] (M : Model B x n k) :
     refine ⟨pos b, List.mem_map.mpr ⟨b, ?_, rfl⟩⟩
     simpa [roots] using hb
 
-/-- Root loading constructs the actual invariant for the abstract initial state.-/
+/-- Root loading constructs the actual invariant for the abstract initial state.
+@isnad1 id=ex.0h5v.s6.56363b53eaaa from=translated src=- shape=a53f7d7f vocab=f709d715
+-/
 theorem initialization_exists [Fintype B] [DecidableEq B] (M : Model B x n k) :
     ∃ records mem, records.length = rootCount M ∧
       loadRoots x n k M.header (fun _ => empty) records = some mem ∧

@@ -29,6 +29,9 @@ def Confusable (t : ℕ) (x y : Bits n) : Prop :=
   ∃ output : List Bool,
     WithinEdits t (List.ofFn x) output ∧ WithinEdits t (List.ofFn y) output
 
+/--
+@isnad1 id=confusab.1h4v.s4.51f45e8f5985 from=translated src=- shape=42c2fce2 vocab=5fe4cab0
+-/
 theorem Confusable.symm {t : ℕ} {x y : Bits n} (h : Confusable t x y) :
     Confusable t y x := by
   obtain ⟨output, hx, hy⟩ := h
@@ -61,6 +64,9 @@ def Exceptional (t k : ℕ) (label : Bits n → H) (x : Bits n) : Prop :=
 def Vertex (t k : ℕ) (label : Bits n → H) :=
   {x : Bits n // Unique k x ∧ ¬ Exceptional t k label x}
 
+/--
+@isnad1 id=finite.0h5v.s4.3d499aec7039 from=translated src=- shape=3aabeafb vocab=d9bc2b47
+-/
 instance vertexFinite (t k : ℕ) (label : Bits n → H) : Finite (Vertex t k label) := by
   unfold Vertex
   infer_instance
@@ -78,12 +84,17 @@ def graph (t k : ℕ) (label : Bits n → H) : SimpleGraph (Vertex t k label) wh
     intro x h
     exact h.1 rfl
 
+/--
+@isnad1 id=kunique.0h6v.s5.b672f731919e from=translated src=- shape=822c28d0 vocab=ed2d64c3
+-/
 theorem vertex_unique {t k : ℕ} {label : Bits n → H} (x : Vertex t k label) :
     Windows.KUnique (padBits x.val) n k := x.property.1
 
 /-- Excluding the exceptional set rules out both short balanced traces and
 nonseparated full-size traces. This applies to every such trace, not merely
-to one specially chosen alignment.-/
+to one specially chosen alignment.
+@isnad1 id=and.7h9v.s7.8b06b5604028 from=translated src=- shape=c1625afd vocab=1241e0f8
+-/
 theorem nonexceptional_trace {t k : ℕ} {label : Bits n → H}
     (x : Vertex t k label) (y : Bits n)
     (hxy : x.val ≠ y) (hlabel : label x.val = label y)
@@ -105,7 +116,9 @@ theorem nonexceptional_trace {t k : ℕ} {label : Bits n → H}
   exact ⟨hdel.trans hdt, hins.trans hdt, hsep⟩
 
 /-- Every oriented edge supplies a genuine separated full-size trace.
-The exact counters and separation follow from exceptional-set exclusion.-/
+The exact counters and separation follow from exceptional-set exclusion.
+@isnad1 id=ex.1h7v.s7.0a63afa637b6 from=translated src=- shape=28b81d5d vocab=11f33093
+-/
 theorem edge_separated_trace {t k : ℕ} {label : Bits n → H}
     {x y : Vertex t k label} (hxy : (graph t k label).Adj x y) :
     ∃ trace : Trace,

@@ -20,6 +20,9 @@ def Relation {I : Type*} [Fintype I] {L : ℕ}
     (G : I → Gram L → ℤ) (w : Gram L → ℤ) (a : I → ℚ) : Prop :=
   ∀ g, (w g : ℚ) = ∑ i, a i * (G i g : ℚ)
 
+/--
+@isnad1 id=ex.2h6v.s5.b677459090d1 from=translated src=- shape=e695ee8e vocab=c907ab2d
+-/
 theorem support_inclusion {I : Type*} [Fintype I] {L : ℕ}
     (G : I → Gram L → ℤ) (w : Gram L → ℤ) (a : I → ℚ)
     (hrel : Relation G w a) (g : Gram L) (hw : w g ≠ 0) :
@@ -34,6 +37,9 @@ theorem support_inclusion {I : Type*} [Fintype I] {L : ℕ}
     simp [hnone i]
   exact hw (by exact_mod_cast hz)
 
+/--
+@isnad1 id=ne.4h7v.s6.38e9eb0ca2c6 from=translated src=- shape=2101f369 vocab=c907ab2d
+-/
 theorem isolated_coordinate_nonzero {I : Type*} [Fintype I] {L : ℕ}
     (G : I → Gram L → ℤ) (w : Gram L → ℤ) (a : I → ℚ)
     (hrel : Relation G w a) (i : I) (g : Gram L)

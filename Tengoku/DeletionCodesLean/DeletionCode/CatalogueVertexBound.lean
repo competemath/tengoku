@@ -35,6 +35,9 @@ def namedVertex {t k : ℕ} (E : EditedFamily (Fin (2 * t)) k) :
   | ⟨b, Sum.inr i⟩ => ⟨vertex E.family (windowLength k) b true (i.val + 1),
       b, true, i.val + 1, by have := i.isLt; omega, rfl⟩
 
+/--
+@isnad1 id=surjecti.0h3v.s6.86bd8887619b from=translated src=- shape=615096ff vocab=693e90bc
+-/
 theorem namedVertex_surjective {t k : ℕ} (E : EditedFamily (Fin (2 * t)) k) :
     Function.Surjective (namedVertex E) := by
   intro v
@@ -59,7 +62,9 @@ theorem namedVertex_surjective {t k : ℕ} (E : EditedFamily (Fin (2 * t)) k) :
       rw [hindex]
       exact hv.symm
 
-/-- The two path lengths and rho ≥ 1 give at most 2L vertex names per bubble.-/
+/-- The two path lengths and rho ≥ 1 give at most 2L vertex names per bubble.
+@isnad1 id=le.0h4v.s7.57d1f1ec6ce2 from=translated src=- shape=e69ad0e4 vocab=88187f14
+-/
 theorem bubble_vertex_names_le {t k : ℕ} (E : EditedFamily (Fin (2 * t)) k)
     (b : Fin (2 * t)) :
     E.family.extra b false + 2 + (E.family.extra b true + 1) ≤ 2 * windowLength k := by
@@ -70,6 +75,9 @@ theorem bubble_vertex_names_le {t k : ℕ} (E : EditedFamily (Fin (2 * t)) k)
       ite_false, ite_true, negativeLength, positiveLength, shortLength, longLength,
       windowLength, ho] <;> omega
 
+/--
+@isnad1 id=le.0h3v.s6.5d04f4e63afe from=translated src=- shape=a610cec4 vocab=c8d0d34f
+-/
 theorem supported_vertex_count_le {t k : ℕ} (E : EditedFamily (Fin (2 * t)) k) :
     Nat.card (SupportedVertex E.family (windowLength k)) ≤ 4 * t * windowLength k := by
   classical
@@ -118,7 +126,9 @@ private theorem singleton_rules {t k : ℕ} (words : Fin (2 * t) → BubbleWord 
     rw [hgroup 0, hvalue, hf]
 
 /-- The finite vertex type is the actual incident-vertex set of the rule's
-nonzero signed support, not a count attached to a chosen presentation.-/
+nonzero signed support, not a count attached to a chosen presentation.
+@isnad1 id=le.1h3v.s6.27b13db6141b from=translated src=- shape=647edf7a vocab=f7b45038
+-/
 theorem catalogue_vertex_card_le {t k : ℕ}
     (w : Gram (windowLength k) → ℤ) (hw : CatalogueRule t k w) :
     Fintype.card (RuleSetVertex {w}) ≤ 4 * t * windowLength k := by

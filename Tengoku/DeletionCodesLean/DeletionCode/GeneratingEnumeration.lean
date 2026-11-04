@@ -26,7 +26,9 @@ open SignedSupport SignedRuleCount RuleReconstruction RuleSetGraph SupportCompon
 open CanonicalIndex ConnectedBlocks FiniteGenerating
 open scoped BigOperators
 
-/-- Sort the actual finite set by its injective ranks.-/
+/-- Sort the actual finite set by its injective ranks.
+@isnad1 id=ex.1h3v.s8.ea812cdf5019 from=translated src=- shape=5ba02092 vocab=baaaf13f
+-/
 theorem rank_sorted_enumeration {k : ℕ} (G : RuleSet k)
     (rank : (Gram (windowLength k) → ℤ) → ℕ)
     (hinj : Set.InjOn rank (↑G : Set _)) :
@@ -55,7 +57,9 @@ theorem rank_sorted_enumeration {k : ℕ} (G : RuleSet k)
   rw [hrank i, hrank j]
   exact sorted.strictMono hij
 
-/-- The earlier-supplier property survives the rank-sorted finite enumeration.-/
+/-- The earlier-supplier property survives the rank-sorted finite enumeration.
+@isnad1 id=ex.1h3v.s9.07b53f9370b2 from=translated src=- shape=3087a746 vocab=7b5a60ea
+-/
 theorem exists_ordered_enumeration {k : ℕ} (v : Gram (windowLength k) → ℤ)
     (G : RuleSet k) (hgen : GeneratingAt v G) :
     ∃ e : Fin G.card ≃ G, ∀ i g, (e i).val g = -1 →
@@ -187,7 +191,9 @@ noncomputable def presentationOfCatalogue {t k R : ℕ}
         rfl
       _ = rules r := hvalue r
 
-/-- The concrete chosen presentation inherits exactly the earlier-rule suppliers.-/
+/-- The concrete chosen presentation inherits exactly the earlier-rule suppliers.
+@isnad1 id=signedge.1h7v.s7.9698591fd2bf from=translated src=- shape=a4cdcf46 vocab=9b73d875
+-/
 theorem CataloguePresentation.signedGenerating {t k R : ℕ}
     {rules : Fin R → Gram (windowLength k) → ℤ} (P : CataloguePresentation t k R rules)
     (x : Letters) (n : ℕ)
@@ -221,7 +227,9 @@ theorem CataloguePresentation.signedGenerating {t k R : ℕ}
     exact hjg
 
 /-- Finite ordered generation on actual catalogue vectors supplies the exact
-concrete-presentation predicate counted by the manuscript theorem.-/
+concrete-presentation predicate counted by the manuscript theorem.
+@isnad1 id=generati.2h5v.s6.f9dfcd6f61c6 from=translated src=- shape=ac1768be vocab=926c11a4
+-/
 theorem generatingAt_to_manuscript {t k n : ℕ} (x : Letters) (G : RuleSet k)
     (hgen : GeneratingAt (wordSpectrum x n (windowLength k)) G)
     (hcat : ∀ w ∈ G, CatalogueRule t k w) :

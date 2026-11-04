@@ -35,6 +35,9 @@ def StartedCorrectly (k : ℕ) (h : Header) (long : Letters) (s t : Memory) : Pr
     ∃ w : Recovery.Slot,
       SeedKnown t (windowStart (negativeExtra k h) w) (windowLength k) k
 
+/--
+@isnad1 id=ex.5h6v.s6.74d4b0281eec from=translated src=- shape=d7dc49d3 vocab=231f107b
+-/
 theorem startNegative_correct (k : ℕ) (h : Header) (long : Letters)
     (offset : ℕ) (bits : PartialWords.Bits k) (s : Memory)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)
@@ -51,7 +54,9 @@ theorem startNegative_correct (k : ℕ) (h : Header) (long : Letters)
     exact hbound
   · exact ⟨bits, hread⟩
 
-/-- The positive start preserves all known data and creates a real selected seed.-/
+/-- The positive start preserves all known data and creates a real selected seed.
+@isnad1 id=ex.7h7v.s7.995ec0c89b8a from=translated src=- shape=a95946c1 vocab=7f728588
+-/
 theorem startPositive_correct (k : ℕ) (h : Header) (long : Letters)
     (offset : ℕ) (bits : PartialWords.Bits k) (extra : Bool) (s : Memory)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)
@@ -80,7 +85,9 @@ theorem startPositive_correct (k : ℕ) (h : Header) (long : Letters)
       exact hb
     · exact ⟨transferred.2, hread⟩
 
-/-- One recorded Boolean always suffices, including when the seed crosses the edit.-/
+/-- One recorded Boolean always suffices, including when the seed crosses the edit.
+@isnad1 id=ex.6h6v.s7.3b4c80dd4f77 from=translated src=- shape=a9400b53 vocab=feabf7c1
+-/
 theorem startPositive_exists (k : ℕ) (h : Header) (long : Letters)
     (offset : ℕ) (bits : PartialWords.Bits k) (s : Memory)
     (hrho0 : 1 ≤ h.rho) (hrho1 : h.rho ≤ k + 1)

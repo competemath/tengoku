@@ -22,7 +22,9 @@ open scoped BigOperators
 
 /-- Manuscript lemma `lem:coverage`: an actual alignment with exactly t
 deletions and t insertions, separated by 4L matched columns and from both
-boundaries, has its target-minus-source spectrum in the concrete catalogue.-/
+boundaries, has its target-minus-source spectrum in the concrete catalogue.
+@isnad1 id=catalogu.5h3v.s6.8d2179402dd6 from=translated src=- shape=e0632255 vocab=a6f895b4
+-/
 theorem catalogueRule (trace : Trace) (t k : ℕ) (hk : 1 ≤ k)
     (hx : KUnique (listLetters trace.source) trace.source.length k)
     (hsep : Separated (4 * windowLength k) trace)

@@ -22,7 +22,9 @@ open Windows HeaderRecovery SignedSupport SignedRuleCount RuleSetGraph Connected
 open CatalogueAlgebra FiniteWalkRules WalkSelection BlockPartition WitnessCases
 
 /-- An odd closed Boolean walk whose steps are surviving catalogue rules
-contains an actual finite generating witness with all manuscript bounds.-/
+contains an actual finite generating witness with all manuscript bounds.
+@isnad1 id=ex.6h5v.s7.f0a33d430e46 from=translated src=- shape=fd4b5959 vocab=83b3071b
+-/
 theorem extract {t k m : ℕ} (ht : 2 ≤ t)
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ)
     (K : Set (Gram (windowLength k) → ℤ))
@@ -69,7 +71,9 @@ theorem extract {t k m : ℕ} (ht : 2 ≤ t)
       hgenI (hcat i) (hcatS S) hKI hs.good hbadI⟩
 
 /-- The extracted rule set satisfies the very predicate used by the concrete
-counting theorem, while retaining independence and all witness bounds.-/
+counting theorem, while retaining independence and all witness bounds.
+@isnad1 id=ex.7h7v.s7.3dc8fafcbbd0 from=translated src=- shape=de53a6e9 vocab=4c6de727
+-/
 theorem extract_counted {t k m n : ℕ} (ht : 2 ≤ t) (x : Letters)
     (p : Fin (m + 1) → Gram (windowLength k) → ℤ)
     (K : Set (Gram (windowLength k) → ℤ))
@@ -86,7 +90,9 @@ theorem extract_counted {t k m n : ℕ} (ht : 2 ≤ t) (x : Letters)
     hU.generating hU.catalogue⟩
 
 /-- For a walk of actual k-unique words, Boolean spectra are a consequence of
-the checked path lemma. Only the edge catalogue/survival interface remains.-/
+the checked path lemma. Only the edge catalogue/survival interface remains.
+@isnad1 id=ex.6h6v.s8.a18109c7b716 from=translated src=- shape=6cb17163 vocab=c6c41228
+-/
 theorem extract_word_walk {t k m n : ℕ} (ht : 2 ≤ t)
     (words : Fin (m + 1) → Letters)
     (K : Set (Gram (windowLength k) → ℤ))

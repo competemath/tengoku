@@ -20,6 +20,9 @@ namespace DeletionCode.BlockAdjunction
 open HeaderRecovery SignedSupport SignedRuleCount RuleSetGraph ConnectedBlocks
 open BlockPartition
 
+/--
+@isnad1 id=connecte.2h5v.s5.d710ad9875a8 from=translated src=- shape=25bf6c1d vocab=b2154254
+-/
 theorem connectedIn_mono {k : ℕ} {U V : RuleSet k} (hUV : U ⊆ V)
     {a b : Gram (windowLength k) → ℤ} (h : ConnectedIn U a b) : ConnectedIn V a b := by
   induction h with
@@ -29,7 +32,9 @@ theorem connectedIn_mono {k : ℕ} {U V : RuleSet k} (hUV : U ⊆ V)
   | symm a b hab ih => exact Relation.EqvGen.symm _ _ ih
   | trans a b c hab hbc ihab ihbc => exact Relation.EqvGen.trans _ _ _ ihab ihbc
 
-/-- Paths within an equivalence class can be restricted to that class itself.-/
+/-- Paths within an equivalence class can be restricted to that class itself.
+@isnad1 id=connecte.2h5v.s5.559bb0b4fba0 from=translated src=- shape=ee3fcec5 vocab=256ebf4f
+-/
 theorem path_within_block {k : ℕ} (U : RuleSet k)
     {b c : Gram (windowLength k) → ℤ} (hbc : ConnectedIn U b c) :
     ∀ a, ConnectedIn U a b → ConnectedIn (blockOf U a) b c := by
@@ -53,7 +58,9 @@ theorem path_within_block {k : ℕ} (U : RuleSet k)
     exact Relation.EqvGen.trans _ _ _ (ihbc a hab)
       (ihcd a (Relation.EqvGen.trans _ _ _ hab hbc))
 
-/-- Every actual rule block is connected using only its own rules.-/
+/-- Every actual rule block is connected using only its own rules.
+@isnad1 id=connecte.0h3v.s4.862974256149 from=translated src=- shape=add79f7d vocab=3defc075
+-/
 theorem blockOf_connected {k : ℕ} (U : RuleSet k)
     (a : Gram (windowLength k) → ℤ) : Connected (blockOf U a) := by
   intro b hb c hc
@@ -93,7 +100,9 @@ private theorem attached_union_closed {k : ℕ} (U : RuleSet k)
   exact Finset.mem_biUnion.mpr ⟨B, hB, hbB⟩
 
 /-- The new block is exactly the new rule and the old blocks touching it.
-Freshness of w is unnecessary for this identity.-/
+Freshness of w is unnecessary for this identity.
+@isnad1 id=eq.0h3v.s7.fbe3b95313dd from=translated src=- shape=aaf4c559 vocab=de038aae
+-/
 theorem blockOf_insert_eq {k : ℕ} (U : RuleSet k)
     (w : Gram (windowLength k) → ℤ) :
     blockOf (insert w U) w = insert w ((attachedBlocks U w).biUnion id) := by
@@ -147,7 +156,9 @@ theorem blockOf_insert_eq {k : ℕ} (U : RuleSet k)
       exact (mem_blockOf (insert w U) w b).mpr
         ⟨Finset.mem_insert_of_mem hbU, Relation.EqvGen.trans _ _ _ hwa habNew⟩
 
-/-- The size estimate for the actual newly formed block of a catalogue rule.-/
+/-- The size estimate for the actual newly formed block of a catalogue rule.
+@isnad1 id=le.2h4v.s7.70f55bb9a603 from=translated src=- shape=3a7f47d2 vocab=c165abfe
+-/
 theorem new_block_card_bound {t k : ℕ} (U : RuleSet k)
     (w : Gram (windowLength k) → ℤ) (hw : CatalogueRule t k w)
     (hsize : ∀ B ∈ blocks U, B.card ≤ windowLength k) :
@@ -156,7 +167,9 @@ theorem new_block_card_bound {t k : ℕ} (U : RuleSet k)
   exact attached_blocks_union_bound U w t (windowLength k) hsize
     (CatalogueVertexBound.catalogue_vertex_card_le w hw)
 
-/-- The actual new block also satisfies the connected-block component bound.-/
+/-- The actual new block also satisfies the connected-block component bound.
+@isnad1 id=le.3h4v.s7.d1665ba3f66d from=translated src=- shape=b23bfc45 vocab=ff452bf6
+-/
 theorem new_block_component_bound {t k : ℕ} (ht : 1 ≤ t) (U : RuleSet k)
     (w : Gram (windowLength k) → ℤ) (hw : CatalogueRule t k w)
     (hcatalogue : ∀ u ∈ U, CatalogueRule t k u) :

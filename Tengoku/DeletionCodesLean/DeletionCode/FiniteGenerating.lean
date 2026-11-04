@@ -35,6 +35,9 @@ structure GeneratingAt {k : ℕ} (v : Gram (windowLength k) → ℤ) (G : RuleSe
 def ClosedIn {k : ℕ} (G U : RuleSet k) : Prop :=
   ∀ a ∈ U, ∀ b ∈ G, ConnectedIn G a b → b ∈ U
 
+/--
+@isnad1 id=independ.2h3v.s5.e0cc30c2aec2 from=translated src=- shape=60619e67 vocab=955fb27f
+-/
 theorem independent_restrict {k : ℕ} {G U : RuleSet k} (hUG : U ⊆ G)
     (hind : Independent G) : Independent U := by
   let f : U → G := fun u => ⟨u.val, hUG u.property⟩
@@ -43,6 +46,9 @@ theorem independent_restrict {k : ℕ} {G U : RuleSet k} (hUG : U ⊆ G)
     exact Subtype.ext (congrArg (fun u : G => u.val) hab)
   exact hind.comp f hf
 
+/--
+@isnad1 id=generati.3h5v.s5.25a7352e14db from=translated src=- shape=92edb70b vocab=c23faeef
+-/
 theorem generating_restrict {k : ℕ} (v : Gram (windowLength k) → ℤ)
     (G U : RuleSet k) (rank : (Gram (windowLength k) → ℤ) → ℕ)
     (hUG : U ⊆ G) (hclosed : ClosedIn G U) (hgen : GeneratingOn v G rank) :
@@ -56,6 +62,9 @@ theorem generating_restrict {k : ℕ} (v : Gram (windowLength k) → ℤ)
         GeneratingBlocks.nonzero_incident z g hzg⟩
     exact Or.inr ⟨z, hclosed u hu z hz hconnect, hrank, hzg⟩
 
+/--
+@isnad1 id=generati.3h4v.s5.8eb277f10eda from=translated src=- shape=277ce223 vocab=e61bf0c8
+-/
 theorem GeneratingAt.restrict {k : ℕ} {v : Gram (windowLength k) → ℤ}
     {G U : RuleSet k} (hgen : GeneratingAt v G) (hUG : U ⊆ G)
     (hclosed : ClosedIn G U) : GeneratingAt v U := by
@@ -65,22 +74,34 @@ theorem GeneratingAt.restrict {k : ℕ} {v : Gram (windowLength k) → ℤ}
   intro a ha b hb hab
   exact hinj (hUG ha) (hUG hb) hab
 
+/--
+@isnad1 id=closedin.0h3v.s3.55029ade60eb from=translated src=- shape=617d5f33 vocab=736d464d
+-/
 theorem blockHull_closed {k : ℕ} (G I : RuleSet k) :
     ClosedIn G (RelationBlockSavings.blockHull G I) := by
   intro a ha b _ hab
   exact RelationBlockSavings.blockHull_closed G I ha hab
 
+/--
+@isnad1 id=generati.1h4v.s4.6a2002512010 from=translated src=- shape=24727f20 vocab=c3f41386
+-/
 theorem generating_blockHull {k : ℕ} {v : Gram (windowLength k) → ℤ}
     {G : RuleSet k} (hgen : GeneratingAt v G) (I : RuleSet k) :
     GeneratingAt v (RelationBlockSavings.blockHull G I) :=
   hgen.restrict (RelationBlockSavings.blockHull_subset G I) (blockHull_closed G I)
 
+/--
+@isnad1 id=closedin.0h3v.s4.81fdc9b8d59f from=translated src=- shape=9f42b38c vocab=a4d24339
+-/
 theorem blockOf_closed {k : ℕ} (G : RuleSet k) (a : Gram (windowLength k) → ℤ) :
     ClosedIn G (blockOf G a) := by
   intro b hb c hc hbc
   exact (mem_blockOf G a c).mpr
     ⟨hc, Relation.EqvGen.trans _ _ _ ((mem_blockOf G a b).mp hb).2 hbc⟩
 
+/--
+@isnad1 id=generati.1h4v.s4.8645f0cfcd2d from=translated src=- shape=412bdd08 vocab=e6831ad2
+-/
 theorem generating_blockOf {k : ℕ} {v : Gram (windowLength k) → ℤ}
     {G : RuleSet k} (hgen : GeneratingAt v G) (a : Gram (windowLength k) → ℤ) :
     GeneratingAt v (blockOf G a) := by

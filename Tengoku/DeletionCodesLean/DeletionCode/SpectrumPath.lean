@@ -32,6 +32,9 @@ open scoped BigOperators
 def vertexAt (word : Letters) (L offset : ℕ) : SupportComponents.Vertex L :=
   fun i => word (offset + i.val)
 
+/--
+@isnad1 id=lt.2h5v.s5.f3433b1e4918 from=translated src=- shape=1f7ce2ec vocab=5af27a3e
+-/
 theorem spectrum_at_occurrence_positive (word : Letters) (n L a : ℕ) (g : Gram L)
     (ha : a + L ≤ n) (hg : gram word L a = g) :
     0 < wordSpectrum word n L g := by
@@ -50,6 +53,9 @@ theorem spectrum_at_occurrence_positive (word : Letters) (n L a : ℕ) (g : Gram
     simpa only [occurrence, ha, hg, and_self, ite_true, wordSpectrum] using hsum
   omega
 
+/--
+@isnad1 id=iff.0h4v.s5.9eb8800e67ce from=translated src=- shape=c9eb0011 vocab=6023accb
+-/
 theorem spectrum_nonzero_iff_occurs (word : Letters) (n L : ℕ) (g : Gram L) :
     wordSpectrum word n L g ≠ 0 ↔ ∃ a, a + L ≤ n ∧ gram word L a = g := by
   constructor
@@ -57,7 +63,9 @@ theorem spectrum_nonzero_iff_occurs (word : Letters) (n L : ℕ) (g : Gram L) :
   · rintro ⟨a, ha, hg⟩
     exact ne_of_gt (spectrum_at_occurrence_positive word n L a g ha hg)
 
-/-- Equal valid L-grams begin at the same position in an (L-1)-unique word.-/
+/-- Equal valid L-grams begin at the same position in an (L-1)-unique word.
+@isnad1 id=eq.4h5v.s6.49da6ad461fe from=translated src=- shape=81e4d75c vocab=80af143b
+-/
 theorem gram_position_unique (word : Letters) (n L a b : ℕ)
     (hunique : KUnique word n (L - 1))
     (ha : a + L ≤ n) (hb : b + L ≤ n)
@@ -66,6 +74,9 @@ theorem gram_position_unique (word : Letters) (n L a b : ℕ)
   intro i hi
   exact congrFun heq ⟨i, by omega⟩
 
+/--
+@isnad1 id=eq.3h5v.s5.9b15377a7cbb from=translated src=- shape=2418acfb vocab=3bddfe8f
+-/
 theorem spectrum_at_occurrence_one (word : Letters) (n L a : ℕ) (g : Gram L)
     (hunique : KUnique word n (L - 1))
     (ha : a + L ≤ n) (hg : gram word L a = g) :
@@ -85,7 +96,9 @@ theorem spectrum_at_occurrence_one (word : Letters) (n L a : ℕ) (g : Gram L)
     (fun hnot => False.elim (hnot (Finset.mem_univ occurrence)))
   exact hsingle.trans (by simp [occurrence, ha, hg])
 
-/-- Every actual integral spectrum coordinate is zero or one.-/
+/-- Every actual integral spectrum coordinate is zero or one.
+@isnad1 id=or.1h4v.s5.e6a697641578 from=translated src=- shape=1563da5e vocab=f4a63d09
+-/
 theorem spectrum_boolean (word : Letters) (n L : ℕ)
     (hunique : KUnique word n (L - 1)) :
     ∀ g, wordSpectrum word n L g = 0 ∨ wordSpectrum word n L g = 1 := by
@@ -96,7 +109,9 @@ theorem spectrum_boolean (word : Letters) (n L : ℕ)
   · obtain ⟨a, ha, hg⟩ := wordSpectrum_nonzero_occurs word n L g hzero
     exact Or.inr (spectrum_at_occurrence_one word n L a g hunique ha hg)
 
-/-- All n-L+2 vertices, including the terminal vertex, are distinct.-/
+/-- All n-L+2 vertices, including the terminal vertex, are distinct.
+@isnad1 id=injectiv.3h3v.s6.d856e09259f1 from=translated src=- shape=55080805 vocab=7e04586b
+-/
 theorem vertex_path_injective (word : Letters) (n L : ℕ)
     (hL : 1 ≤ L) (hn : L ≤ n) (hunique : KUnique word n (L - 1)) :
     Function.Injective (fun i : Fin (n - L + 2) => vertexAt word L i.val) := by
@@ -110,7 +125,9 @@ theorem vertex_path_injective (word : Letters) (n L : ℕ)
   · intro i hi
     exact congrFun heq ⟨i, hi⟩
 
-/-- These are exactly the n-L+1 edges carried by the spectrum.-/
+/-- These are exactly the n-L+1 edges carried by the spectrum.
+@isnad1 id=iff.1h4v.s6.e593b0846628 from=translated src=- shape=9d0eb02d vocab=7b4ff945
+-/
 theorem spectrum_support_path (word : Letters) (n L : ℕ) (hn : L ≤ n) (g : Gram L) :
     wordSpectrum word n L g ≠ 0 ↔ ∃ i : Fin (n - L + 1), gram word L i.val = g := by
   rw [spectrum_nonzero_iff_occurs]
@@ -120,7 +137,9 @@ theorem spectrum_support_path (word : Letters) (n L : ℕ) (hn : L ≤ n) (g : G
   · rintro ⟨i, hi⟩
     exact ⟨i.val, by have := i.isLt; omega, hi⟩
 
-/-- Each supported gram is the directed edge between the displayed consecutive vertices.-/
+/-- Each supported gram is the directed edge between the displayed consecutive vertices.
+@isnad1 id=and.0h3v.s5.1590280fbab2 from=translated src=- shape=3aa0f10b vocab=d582a2e6
+-/
 theorem path_edge_endpoints (word : Letters) (L i : ℕ) :
     gramPrefix (gram word L i) = vertexAt word L i ∧
       gramSuffix (gram word L i) = vertexAt word L (i + 1) := by
@@ -131,7 +150,9 @@ theorem path_edge_endpoints (word : Letters) (L i : ℕ) :
     congr 1
     omega
 
-/-- Equality of actual spectra recovers the finite word; no uniqueness of z is assumed.-/
+/-- Equality of actual spectra recovers the finite word; no uniqueness of z is assumed.
+@isnad1 id=agree.4h4v.s6.1b8f832642e6 from=translated src=- shape=bd76e3f5 vocab=5cc5835a
+-/
 theorem equal_spectrum_recovers_word (word z : Letters) (n L : ℕ)
     (hL : 1 ≤ L) (hn : L ≤ n) (hunique : KUnique word n (L - 1))
     (hspectrum : wordSpectrum z n L = wordSpectrum word n L) :
@@ -155,7 +176,9 @@ theorem equal_spectrum_recovers_word (word z : Letters) (n L : ℕ)
   intro i hi
   exact (hagree i hi).symm
 
-/-- In the finite-word representation, equal spectra give literal word equality.-/
+/-- In the finite-word representation, equal spectra give literal word equality.
+@isnad1 id=eq.4h4v.s6.691e022dac1c from=translated src=- shape=c2c0a022 vocab=241c6fef
+-/
 theorem equal_spectrum_eq_finite (word z : Letters) (n L : ℕ)
     (hL : 1 ≤ L) (hn : L ≤ n) (hunique : KUnique word n (L - 1))
     (hspectrum : wordSpectrum z n L = wordSpectrum word n L) :
@@ -164,7 +187,9 @@ theorem equal_spectrum_eq_finite (word z : Letters) (n L : ℕ)
   simpa only [Nat.zero_add] using
     equal_spectrum_recovers_word word z n L hL hn hunique hspectrum i.val i.isLt
 
-/-- Manuscript Lemma `lem:path`, stated with actual counts, path vertices, and edge labels.-/
+/-- Manuscript Lemma `lem:path`, stated with actual counts, path vertices, and edge labels.
+@isnad1 id=and.3h3v.s8.7bd09d1cac20 from=translated src=- shape=fa336db9 vocab=21d3d491
+-/
 theorem spectrum_is_simple_path_and_determines_word (word : Letters) (n L : ℕ)
     (hL : 1 ≤ L) (hn : L ≤ n) (hunique : KUnique word n (L - 1)) :
     (∀ g, wordSpectrum word n L g = 0 ∨ wordSpectrum word n L g = 1) ∧
@@ -180,7 +205,9 @@ theorem spectrum_is_simple_path_and_determines_word (word : Letters) (n L : ℕ)
     fun i => path_edge_endpoints word L i.val,
     fun z h => equal_spectrum_recovers_word word z n L hL hn hunique h⟩
 
-/-- Uniqueness of shorter windows implies uniqueness of every longer window.-/
+/-- Uniqueness of shorter windows implies uniqueness of every longer window.
+@isnad1 id=kunique.2h4v.s4.7c1487c25a7d from=translated src=- shape=095346e7 vocab=dd317d56
+-/
 theorem kunique_mono (word : Letters) (n k m : ℕ)
     (hunique : KUnique word n k) (hkm : k ≤ m) : KUnique word n m := by
   intro a b ha hb hagree
@@ -188,7 +215,9 @@ theorem kunique_mono (word : Letters) (n k m : ℕ)
   intro i hi
   exact hagree i (by omega)
 
-/-- The paper's k-uniqueness hypothesis suffices at its chosen L=3(k+1).-/
+/-- The paper's k-uniqueness hypothesis suffices at its chosen L=3(k+1).
+@isnad1 id=other.2h3v.s8.2435e3d04ab7 from=translated src=- shape=f8cc824b vocab=0894a66a
+-/
 theorem catalogue_window_spectrum (word : Letters) (n k : ℕ)
     (hunique : KUnique word n k) (hn : HeaderRecovery.windowLength k ≤ n) :
     let L := HeaderRecovery.windowLength k

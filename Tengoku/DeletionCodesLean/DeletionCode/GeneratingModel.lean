@@ -34,6 +34,9 @@ def EditedFamily.family (E : EditedFamily B k) : Family B where
   path b side := pathLetters k (E.header b) (E.long b) side
   extra b side := pathLength k (E.header b) side - windowLength k
 
+/--
+@isnad1 id=eq.0h5v.s5.4591bf57899f from=translated src=- shape=9d51122a vocab=461dc800
+-/
 theorem EditedFamily.path_length_eq (E : EditedFamily B k) (b : B) (side : Bool) :
     pathLength k (E.header b) side = windowLength k + E.family.extra b side := by
   have hlo := E.rho_lower b
@@ -42,6 +45,9 @@ theorem EditedFamily.path_length_eq (E : EditedFamily B k) (b : B) (side : Bool)
     simp [family, pathLength, negativeLength, positiveLength, longLength,
       shortLength, windowLength, ho] <;> omega
 
+/--
+@isnad1 id=eq.0h4v.s4.724940308f55 from=translated src=- shape=871e2bd0 vocab=ef56f4a6
+-/
 theorem EditedFamily.negative_extra (E : EditedFamily B k) (b : B) :
     E.family.extra b false = negativeExtra k (E.header b) := rfl
 
@@ -53,6 +59,9 @@ def componentSetoid (F : Family B) (L : ℕ) : Setoid B where
 
 abbrev Components (E : EditedFamily B k) := Quotient (componentSetoid E.family (windowLength k))
 
+/--
+@isnad1 id=ex.2h6v.s6.d79f073a49d9 from=translated src=- shape=19ed3980 vocab=6f92b54b
+-/
 theorem component_has_root (E : EditedFamily B k) (x : Letters) (n : ℕ)
     (hx : KUnique x n k) (hg : E.family.Generating x n (windowLength k))
     (C : Components E) :
@@ -74,6 +83,9 @@ noncomputable def selectedRoot (E : EditedFamily B k) (x : Letters) (n : ℕ)
     (hx : KUnique x n k) (hg : E.family.Generating x n (windowLength k))
     (C : Components E) : B := Classical.choose (component_has_root E x n hx hg C)
 
+/--
+@isnad1 id=other.2h6v.s6.f45650c59500 from=translated src=- shape=5cc50ab4 vocab=4a7037ab
+-/
 theorem selectedRoot_spec (E : EditedFamily B k) (x : Letters) (n : ℕ)
     (hx : KUnique x n k) (hg : E.family.Generating x n (windowLength k))
     (C : Components E) :
@@ -95,6 +107,9 @@ def SourceValid (E : EditedFamily B k) (x : Letters) (n : ℕ)
           (windowStart (negativeExtra k (E.header b)) w)
           (pathLetters k (E.header a) (E.long a) side) j (windowLength k)
 
+/--
+@isnad1 id=ex.1h7v.s5.1d001c128168 from=translated src=- shape=cc4b57fb vocab=438aa417
+-/
 theorem source_exists (E : EditedFamily B k) (x : Letters) (n : ℕ)
     (hg : E.family.Generating x n (windowLength k)) (b : B) (w : Recovery.Slot) :
     ∃ source, SourceValid E x n b w source := by
@@ -110,11 +125,17 @@ noncomputable def source (E : EditedFamily B k) (x : Letters) (n : ℕ)
     (hg : E.family.Generating x n (windowLength k)) (b : B) (w : Recovery.Slot) : Option B :=
   Classical.choose (source_exists E x n hg b w)
 
+/--
+@isnad1 id=sourceva.1h7v.s5.ce742efaaee4 from=translated src=- shape=53e70c5d vocab=e8ddd73a
+-/
 theorem source_spec (E : EditedFamily B k) (x : Letters) (n : ℕ)
     (hg : E.family.Generating x n (windowLength k)) (b : B) (w : Recovery.Slot) :
     SourceValid E x n b w (source E x n hg b w) :=
   Classical.choose_spec (source_exists E x n hg b w)
 
+/--
+@isnad1 id=adjacent.1h5v.s4.a3197c5294af from=translated src=- shape=f0b9948a vocab=92a30c1f
+-/
 theorem adjacent_symm (F : Family B) (L : ℕ) {a b : B} (h : F.Adjacent L a b) :
     F.Adjacent L b a := by
   obtain ⟨sa, sb, i, j, hi, hj, hbi, hbj, hagree⟩ := h
@@ -127,6 +148,9 @@ private theorem reach_trans {adj : B → B → Prop} {a b c : B}
   | refl => exact hab
   | tail hbc hcd ih => exact Recovery.Reach.tail ih hcd
 
+/--
+@isnad1 id=reach.1h5v.s4.033d5ea94bc0 from=translated src=- shape=c7f30440 vocab=ab60999a
+-/
 theorem connected_reach (F : Family B) (L : ℕ) {a b : B} (h : F.Connected L a b) :
     Recovery.Reach (F.Adjacent L) a b := by
   have aux : ∀ {a b}, F.Connected L a b →

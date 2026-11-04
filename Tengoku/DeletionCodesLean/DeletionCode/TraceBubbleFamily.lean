@@ -26,7 +26,9 @@ def BubbleAt (trace : Trace) (k : ℕ) (c : EditColumn trace) :=
   LocalBubble k trace.source (oneEditTarget trace c) (position trace c) (orientation trace c)
 
 /-- Matched-column margins place every actual edit sufficiently far inside
-the original source for the constructive run and flank extraction.-/
+the original source for the constructive run and flank extraction.
+@isnad1 id=and.1h3v.s6.d795ac95174c from=translated src=- shape=4f88b280 vocab=a8f59741
+-/
 theorem position_margins (trace : Trace) (k : ℕ)
     (hsep : Separated (4 * windowLength k) trace) (c : EditColumn trace) :
     4 * windowLength k ≤ position trace c ∧
@@ -34,7 +36,9 @@ theorem position_margins (trace : Trace) (k : ℕ)
   TraceSeparation.sourcePosition_margins hsep c.val c.property
 
 /-- The local bubble is constructed for the actual edit at its actual
-source position. No catalogue word or substring presentation is supplied.-/
+source position. No catalogue word or substring presentation is supplied.
+@isnad1 id=nonempty.2h3v.s5.c7454b6702e9 from=translated src=- shape=45248664 vocab=a088d801
+-/
 theorem exists_bubbleAt (trace : Trace) (k : ℕ)
     (hx : KUnique (listLetters trace.source) trace.source.length k)
     (hsep : Separated (4 * windowLength k) trace) (c : EditColumn trace) :
@@ -54,12 +58,18 @@ noncomputable def bubbleAt (trace : Trace) (k : ℕ)
     (hsep : Separated (4 * windowLength k) trace) (c : EditColumn trace) :
     BubbleAt trace k c := Classical.choice (exists_bubbleAt trace k hx hsep c)
 
+/--
+@isnad1 id=eq.2h3v.s5.f2629767c88e from=translated src=- shape=ad70582a vocab=4675ded1
+-/
 theorem bubbleAt_orientation (trace : Trace) (k : ℕ)
     (hx : KUnique (listLetters trace.source) trace.source.length k)
     (hsep : Separated (4 * windowLength k) trace) (c : EditColumn trace) :
     (bubbleAt trace k hx hsep c).bubble.orientation = orientation trace c :=
   (bubbleAt trace k hx hsep c).orientation_eq
 
+/--
+@isnad1 id=eq.2h3v.s6.35e89f819447 from=translated src=- shape=16fc5374 vocab=978aef84
+-/
 theorem bubbleAt_source (trace : Trace) (k : ℕ)
     (hx : KUnique (listLetters trace.source) trace.source.length k)
     (hsep : Separated (4 * windowLength k) trace) (c : EditColumn trace) :
@@ -67,6 +77,9 @@ theorem bubbleAt_source (trace : Trace) (k : ℕ)
       (bubbleAt trace k hx hsep c).bubble.negativeWord ++ (bubbleAt trace k hx hsep c).after :=
   (bubbleAt trace k hx hsep c).source_eq
 
+/--
+@isnad1 id=eq.2h3v.s6.a48f5c127870 from=translated src=- shape=d718acf7 vocab=f08eb2b5
+-/
 theorem bubbleAt_target (trace : Trace) (k : ℕ)
     (hx : KUnique (listLetters trace.source) trace.source.length k)
     (hsep : Separated (4 * windowLength k) trace) (c : EditColumn trace) :
@@ -87,6 +100,9 @@ noncomputable def indexedBubbleWords (trace : Trace) (k t : ℕ)
     (hdel : trace.deletions = t) (hins : trace.insertions = t) : Fin (2 * t) → BubbleWord k :=
   fun i => bubbleWords trace k hx hsep (editEquiv trace t hdel hins i)
 
+/--
+@isnad1 id=eq.4h4v.s7.172596b79295 from=translated src=- shape=a5871549 vocab=8bcb653b
+-/
 theorem indexedBubbleWords_orientation (trace : Trace) (k t : ℕ)
     (hx : KUnique (listLetters trace.source) trace.source.length k)
     (hsep : Separated (4 * windowLength k) trace)

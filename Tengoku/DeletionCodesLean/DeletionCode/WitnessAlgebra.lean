@@ -27,7 +27,9 @@ def BooleanVector {H : Type*} (v : H → ℚ) : Prop := ∀ h, v h = 0 ∨ v h =
 def SignedUnitVector {H : Type*} (v : H → ℚ) : Prop :=
   ∀ h, v h = -1 ∨ v h = 0 ∨ v h = 1
 
-/-- Catalogue geometry gives the signed-unit premise for actual rule spectra.-/
+/-- Catalogue geometry gives the signed-unit premise for actual rule spectra.
+@isnad1 id=signedun.2h4v.s5.a8f037e42a25 from=translated src=- shape=746a47d0 vocab=2dda97b5
+-/
 theorem ruleSpectrum_signed_unit {B : Type*} (F : RootSelection.Family B) (L : ℕ)
     (H : SignedSupport.BubbleGeometry F L) (S : Finset B)
     (hdis : SignedSupport.VertexDisjointOn F L S) :
@@ -51,7 +53,9 @@ theorem ruleSpectrum_signed_unit {B : Type*} (F : RootSelection.Family B) (L : �
       rw [hvalue, SignedSupport.bubble_positive_value F L H b g hwindow]
       norm_num
 
-/-- Whole-block retention preserves independence as well as signed generation.-/
+/-- Whole-block retention preserves independence as well as signed generation.
+@isnad1 id=and.2h6v.s7.b5e7e9abc1f6 from=translated src=- shape=1efd898a vocab=5618f192
+-/
 theorem independent_generating_blockHull {I : Type*} {L : ℕ}
     (v : SignedSupport.Gram L → ℤ) (G : I → SignedSupport.Gram L → ℤ)
     (rank : I → ℕ) (T : Set I) (hgen : GeneratingBlocks.Generating v G rank)
@@ -64,6 +68,9 @@ theorem independent_generating_blockHull {I : Type*} {L : ℕ}
   exact ⟨GeneratingBlocks.generating_blockHull v G rank T hgen,
     hind.comp Subtype.val Subtype.val_injective⟩
 
+/--
+@isnad1 id=eq.2h4v.s7.e65a4807eb79 from=translated src=- shape=ca72eb6f vocab=a5ebc487
+-/
 theorem span_zero_at {H : Type*} (S : Set (H → ℚ)) (h : H)
     (hzero : ∀ w ∈ S, w h = 0) (u : H → ℚ) (hu : u ∈ Submodule.span ℚ S) :
     u h = 0 := by
@@ -73,7 +80,9 @@ theorem span_zero_at {H : Type*} (S : Set (H → ℚ)) (h : H)
   | add x y hx hy hix hiy => simp [hix, hiy]
   | smul a x hx hix => simp [hix]
 
-/-- A nonzero coordinate in the span occurs in some spanning vector.-/
+/-- A nonzero coordinate in the span occurs in some spanning vector.
+@isnad1 id=ex.2h4v.s7.e147f21422ea from=translated src=- shape=73907e77 vocab=a5ebc487
+-/
 theorem span_support {H : Type*} (S : Set (H → ℚ)) (u : H → ℚ)
     (hu : u ∈ Submodule.span ℚ S) (h : H) (hne : u h ≠ 0) :
     ∃ w ∈ S, w h ≠ 0 := by
@@ -82,7 +91,9 @@ theorem span_support {H : Type*} (S : Set (H → ℚ)) (u : H → ℚ)
   push Not at hnone
   exact hne (span_zero_at S h hnone u hu)
 
-/-- A negative step coordinate must be present at its Boolean starting point.-/
+/-- A negative step coordinate must be present at its Boolean starting point.
+@isnad1 id=eq.3h4v.s6.80f129fb16bd from=translated src=- shape=dbc64849 vocab=3eca67bf
+-/
 theorem negative_step_source {H : Type*} (p q : H → ℚ)
     (hp : BooleanVector p) (hq : BooleanVector q) (h : H)
     (hneg : (q - p) h = -1) : p h = 1 := by
@@ -93,7 +104,9 @@ theorem negative_step_source {H : Type*} (p q : H → ℚ)
   · rcases hq' with hq' | hq' <;> linarith
   · exact hp'
 
-/-- The generating invariant at an append, as in the bounded-witness proof.-/
+/-- The generating invariant at an append, as in the bounded-witness proof.
+@isnad1 id=or.4h6v.s7.73279af1bd69 from=translated src=- shape=1878cdbc vocab=26eb5c26
+-/
 theorem generating_append {H : Type*} (v p q : H → ℚ) (S : Set (H → ℚ))
     (hp : BooleanVector p) (hq : BooleanVector q)
     (hspan : p - v ∈ Submodule.span ℚ S) (h : H)
@@ -106,7 +119,9 @@ theorem generating_append {H : Type*} (v p q : H → ℚ) (S : Set (H → ℚ))
     simp [hpone, hv]
   · exact Or.inl hv
 
-/-- Signed vectors cannot be distinct non-unit scalar multiples of each other.-/
+/-- Signed vectors cannot be distinct non-unit scalar multiples of each other.
+@isnad1 id=or.5h4v.s6.1728c7dfae69 from=translated src=- shape=1834f99c vocab=2e9ba4cb
+-/
 theorem scalar_eq_one_or_neg_one {H : Type*} (g w : H → ℚ) (a : ℚ)
     (hg : SignedUnitVector g) (hw : SignedUnitVector w)
     (hg0 : g ≠ 0) (ha : a ≠ 0) (hrel : w = a • g) : a = 1 ∨ a = -1 := by
@@ -130,7 +145,9 @@ theorem scalar_eq_one_or_neg_one {H : Type*} (g w : H → ℚ) (a : ℚ)
     · exfalso; apply ha; nlinarith
     · left; nlinarith
 
-/-- A one-term nonzero relation is precisely a previously seen rule or its negative.-/
+/-- A one-term nonzero relation is precisely a previously seen rule or its negative.
+@isnad1 id=or.5h4v.s6.15c74ff2cbb1 from=translated src=- shape=28ffcedf vocab=2e9ba4cb
+-/
 theorem scalar_multiple_eq_or_neg {H : Type*} (g w : H → ℚ) (a : ℚ)
     (hg : SignedUnitVector g) (hw : SignedUnitVector w)
     (hg0 : g ≠ 0) (ha : a ≠ 0) (hrel : w = a • g) : w = g ∨ w = -g := by
@@ -139,7 +156,9 @@ theorem scalar_multiple_eq_or_neg {H : Type*} (g w : H → ℚ) (a : ℚ)
   · right; simpa [h] using hrel
 
 /-- A zero-sum sequence of signed independent vectors has even length.
-This is the algebraic obstruction to traversing an odd closed walk using only ±G.-/
+This is the algebraic obstruction to traversing an odd closed walk using only ±G.
+@isnad1 id=even.2h6v.s7.49e86ed1fd38 from=translated src=- shape=37c61ad7 vocab=dcda61f5
+-/
 theorem signed_sum_even {I J V : Type*} [Fintype I] [Fintype J]
     [AddCommGroup V] [Module ℚ V] (G : I → V) (hG : LinearIndependent ℚ G)
     (label : J → I) (positive : J → Prop) [DecidablePred positive]

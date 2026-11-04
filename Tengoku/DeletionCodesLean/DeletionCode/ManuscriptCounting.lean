@@ -34,6 +34,9 @@ def GeneratingSet (t : ℕ) (x : Letters) (n k R c : ℕ) (Q : RuleSet k) : Prop
       SignedGenerating (flatFamily t R words).family x n (windowLength k) ∧
       rulesOfFamily (flatFamily t R words) (group t R) = Q
 
+/--
+@isnad1 id=generati.1h7v.s5.44717893f066 from=translated src=- shape=d7fbafa8 vocab=4e036672
+-/
 theorem generatingSet_included (t : ℕ) (x : Letters) (n k R c : ℕ)
     (Q : RuleSet k) (hQ : GeneratingSet t x n k R c Q) :
     CountingLemma.GeneratingSet x n k (2 * t * R) R c (group t R) Q := by
@@ -46,6 +49,9 @@ def inclusion (t : ℕ) (x : Letters) (n k R c : ℕ) :
       {Q : RuleSet k // CountingLemma.GeneratingSet x n k (2 * t * R) R c (group t R) Q} :=
   fun Q => ⟨Q.val, generatingSet_included t x n k R c Q.val Q.property⟩
 
+/--
+@isnad1 id=injectiv.0h6v.s6.01748850b62d from=translated src=- shape=8cc6201a vocab=710b9394
+-/
 theorem inclusion_injective (t : ℕ) (x : Letters) (n k R c : ℕ) :
     Function.Injective (inclusion t x n k R c) := by
   intro Q₁ Q₂ h
@@ -53,6 +59,9 @@ theorem inclusion_injective (t : ℕ) (x : Letters) (n k R c : ℕ) :
   exact congrArg (fun Q : {Q : RuleSet k //
     CountingLemma.GeneratingSet x n k (2 * t * R) R c (group t R) Q} => Q.val) h
 
+/--
+@isnad1 id=finite.3h6v.s5.d2262f61bb3a from=translated src=- shape=ee6fab23 vocab=1004e3d5
+-/
 theorem generatingSet_finite (t : ℕ) (ht : 1 ≤ t) (x : Letters)
     (n k R c : ℕ) (hR : 1 ≤ R) (hx : KUnique x n k) :
     Finite {Q : RuleSet k // GeneratingSet t x n k R c Q} := by
@@ -62,7 +71,9 @@ theorem generatingSet_finite (t : ℕ) (ht : 1 ≤ t) (x : Letters)
       (by nlinarith) hx
   exact Finite.of_injective (inclusion t x n k R c) (inclusion_injective t x n k R c)
 
-/-- Explicit n^c (LR)^(a_t R) bound for the underlying signed catalogue sets.-/
+/-- Explicit n^c (LR)^(a_t R) bound for the underlying signed catalogue sets.
+@isnad1 id=le.3h6v.s6.aaa9231dae80 from=translated src=- shape=54220b68 vocab=603c6524
+-/
 theorem card_bound (t : ℕ) (ht : 1 ≤ t) (x : Letters)
     (n k R c : ℕ) (hR : 1 ≤ R) (hx : KUnique x n k) :
     Nat.card {Q : RuleSet k // GeneratingSet t x n k R c Q} ≤
@@ -75,7 +86,9 @@ theorem card_bound (t : ℕ) (ht : 1 ≤ t) (x : Letters)
     (inclusion_injective t x n k R c)).trans
     (CountingLemma.counting_generating_sets t ht x n k R c hR hx (group t R))
 
-/-- Any additional condition, including independence or survival, preserves the bound.-/
+/-- Any additional condition, including independence or survival, preserves the bound.
+@isnad1 id=le.3h7v.s6.4f8677fe6b8d from=translated src=- shape=f855c9f6 vocab=603c6524
+-/
 theorem filtered_card_bound (t : ℕ) (ht : 1 ≤ t) (x : Letters)
     (n k R c : ℕ) (hR : 1 ≤ R) (hx : KUnique x n k) (P : RuleSet k → Prop) :
     Nat.card {Q : RuleSet k // GeneratingSet t x n k R c Q ∧ P Q} ≤
@@ -90,7 +103,9 @@ theorem filtered_card_bound (t : ℕ) (ht : 1 ≤ t) (x : Letters)
     exact congrArg (fun Q : {Q : RuleSet k // GeneratingSet t x n k R c Q} => Q.val) h
   exact (Nat.card_le_card_of_injective forget hinj).trans (card_bound t ht x n k R c hR hx)
 
-/-- The existence-of-a-constant formulation of the manuscript's counting lemma.-/
+/-- The existence-of-a-constant formulation of the manuscript's counting lemma.
+@isnad1 id=ex.1h1v.s6.cd23d8f69487 from=translated src=- shape=6aba1d96 vocab=f2021ff0
+-/
 theorem counting_generating_sets (t : ℕ) (ht : 1 ≤ t) :
     ∃ a : ℕ, 1 ≤ a ∧ ∀ (x : Letters) (n k R c : ℕ),
       1 ≤ R → KUnique x n k →

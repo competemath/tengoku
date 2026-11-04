@@ -80,6 +80,9 @@ namespace TrimmedRun
 
 variable {k rho : ℕ} {pre suffix : List Bool} {bit : Bool} {orientation : Orientation}
 
+/--
+@isnad1 id=eq.0h7v.s6.4e61132b5cc4 from=translated src=- shape=3d2ed5ab vocab=e34f67c4
+-/
 theorem long_eq (r : TrimmedRun k pre suffix rho bit orientation) :
     pre ++ List.replicate rho bit ++ suffix =
       r.before ++ r.bubble.longWord ++ r.after := by
@@ -91,6 +94,9 @@ theorem long_eq (r : TrimmedRun k pre suffix rho bit orientation) :
     _ = _ := by
       simp only [BubbleWord.longWord, r.rho_eq, r.bit_eq, List.append_assoc]
 
+/--
+@isnad1 id=eq.0h7v.s6.c461dd79f800 from=translated src=- shape=092b10c6 vocab=216bbe26
+-/
 theorem short_eq (r : TrimmedRun k pre suffix rho bit orientation) :
     pre ++ List.replicate (rho - 1) bit ++ suffix =
       r.before ++ r.bubble.shortWord ++ r.after := by
@@ -102,6 +108,9 @@ theorem short_eq (r : TrimmedRun k pre suffix rho bit orientation) :
     _ = _ := by
       simp only [BubbleWord.shortWord, r.rho_eq, r.bit_eq, List.append_assoc]
 
+/--
+@isnad1 id=eq.0h7v.s5.77cb6a206b96 from=translated src=- shape=403cac04 vocab=d8499574
+-/
 theorem before_length (r : TrimmedRun k pre suffix rho bit orientation) :
     r.before.length + (windowLength k - rho) = pre.length := by
   have h := congrArg List.length r.pre_eq
@@ -128,12 +137,17 @@ namespace LocalBubble
 
 variable {k pos : ℕ} {source target : List Bool} {orientation : Orientation}
 
+/--
+@isnad1 id=le.0h6v.s5.dc91b0660097 from=translated src=- shape=11edcf5b vocab=2c59e626
+-/
 theorem start_le (p : LocalBubble k source target pos orientation) :
     p.before.length ≤ pos := by
   have h := p.edit_start
   omega
 
-/-- The entire longer local word ends at most L positions after the edit.-/
+/-- The entire longer local word ends at most L positions after the edit.
+@isnad1 id=le.0h6v.s5.4addf9e3203a from=translated src=- shape=08ca2722 vocab=20beb296
+-/
 theorem long_end_le (p : LocalBubble k source target pos orientation) :
     p.before.length + p.bubble.longWord.length ≤ pos + windowLength k := by
   have h := p.edit_start
@@ -144,6 +158,9 @@ theorem long_end_le (p : LocalBubble k source target pos orientation) :
   unfold windowLength at *
   omega
 
+/--
+@isnad1 id=and.0h6v.s6.4aec35d40272 from=translated src=- shape=da968d7c vocab=e823dbb0
+-/
 theorem long_interval_bounds (p : LocalBubble k source target pos orientation) :
     pos + 1 - windowLength k ≤ p.before.length ∧
       p.before.length + p.bubble.longWord.length ≤ pos + windowLength k := by
@@ -166,7 +183,9 @@ private theorem interior_flanks (k rho pos : ℕ) (pre suffix : List Bool)
 
 /-- Every sufficiently interior deletion in a k-unique finite source has
 the catalogue word grammar, including the opposite boundary bits. The
-deleted position may be anywhere in its extracted maximal run.-/
+deleted position may be anywhere in its extracted maximal run.
+@isnad1 id=nonempty.3h3v.s6.97f2dff35b13 from=translated src=- shape=8b89038d vocab=a45c9065
+-/
 theorem exists_deletion_bubble (word : List Bool) (pos k : ℕ)
     (hx : KUnique (listLetters word) word.length k)
     (hleft : 4 * windowLength k ≤ pos)
@@ -217,7 +236,9 @@ theorem exists_deletion_bubble (word : List Bool) (pos k : ℕ)
   · omega
 
 /-- An interior insertion has the same grammar, with the source and
-target paths reversed. The run bit is the actual inserted bit.-/
+target paths reversed. The run bit is the actual inserted bit.
+@isnad1 id=ex.3h4v.s7.c86755424d42 from=translated src=- shape=3482a932 vocab=057eec14
+-/
 theorem exists_insertion_bubble (word : List Bool) (pos k : ℕ) (bit : Bool)
     (hx : KUnique (listLetters word) word.length k)
     (hleft : 4 * windowLength k ≤ pos)

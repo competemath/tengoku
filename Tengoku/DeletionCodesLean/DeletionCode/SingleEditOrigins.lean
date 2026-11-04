@@ -57,7 +57,9 @@ def origin (e : Edit) (i : ℕ) : Option ℕ :=
   | .insert pos _ =>
       if i < pos then some i else if i = pos then none else some (i - 1)
 
-/-- A source-labelled output bit is precisely the bit at that source position.-/
+/-- A source-labelled output bit is precisely the bit at that source position.
+@isnad1 id=eq.1h4v.s4.5b632064d940 from=translated src=- shape=999c69aa vocab=d072d9df
+-/
 theorem word_of_origin (e : Edit) (x : Letters) {i r : ℕ}
     (h : e.origin i = some r) : e.word x i = x r := by
   cases e with
@@ -80,7 +82,9 @@ theorem word_of_origin (e : Edit) (x : Letters) {i r : ℕ}
           simpa only [origin, ite_eq_right hi, ite_eq_right heq, Option.some.injEq] using h
         simp only [word, insertAt, ite_eq_right hi, ite_eq_right heq, hir]
 
-/-- No original source position survives at two distinct output positions.-/
+/-- No original source position survives at two distinct output positions.
+@isnad1 id=eq.2h4v.s5.f7a3372b7843 from=translated src=- shape=13b806ae vocab=735d6c3a
+-/
 theorem origin_injective (e : Edit) {i j r : ℕ}
     (hi : e.origin i = some r) (hj : e.origin j = some r) : i = j := by
   cases e with
@@ -94,7 +98,9 @@ theorem origin_injective (e : Edit) {i j r : ℕ}
       by_cases hiEq : i = pos <;> by_cases hjEq : j = pos <;>
       simp_all only [origin, ite_true, ite_false, Option.some.injEq, reduceCtorEq] <;> omega
 
-/-- Every surviving bit inside the valid output has an in-bounds source label.-/
+/-- Every surviving bit inside the valid output has an in-bounds source label.
+@isnad1 id=lt.3h4v.s5.ed591fb4725c from=translated src=- shape=c103ae3d vocab=f356425f
+-/
 theorem origin_lt (e : Edit) {n i r : ℕ} (hv : e.Valid n)
     (hi : i < e.outputLength n) (hr : e.origin i = some r) : r < n := by
   cases e with
@@ -112,7 +118,9 @@ theorem origin_lt (e : Edit) {n i r : ℕ} (hv : e.Valid n)
         Option.some.injEq, reduceCtorEq] <;> omega
 
 /-- A block lying wholly before or strictly after the cut consists of
-consecutive original source positions. This also holds for an empty block.-/
+consecutive original source positions. This also holds for an empty block.
+@isnad1 id=ex.1h4v.s6.e5d98835cb25 from=translated src=- shape=08bf07ab vocab=c6d6c7ca
+-/
 theorem clean_block (e : Edit) (a s k : ℕ)
     (h : a + s + k ≤ e.cut ∨ e.cut < a + s) :
     ∃ r, ∀ i, i < k → e.origin (a + s + i) = some (r + i) := by

@@ -27,17 +27,25 @@ open scoped ENNReal
 /-- The exact strict test in the definition of surviving rules.-/
 def smallArc (Q : ℕ) : Set UnitAddCircle := {z | ‖z‖ < 1 / (Q : ℝ)}
 
+/--
+@isnad1 id=eq.0h1v.s6.e9ce67eda39c from=translated src=- shape=397eb04a vocab=b5a3084d
+-/
 theorem smallArc_eq_ball (Q : ℕ) :
     smallArc Q = Metric.ball (0 : UnitAddCircle) (1 / (Q : ℝ)) := by
   ext z
   simp only [smallArc, Set.mem_ofPred_eq, Metric.mem_ball, dist_zero_right]
 
+/--
+@isnad1 id=measurab.0h1v.s4.0cfcaa406367 from=translated src=- shape=1a6c1393 vocab=470baf68
+-/
 theorem measurableSet_smallArc (Q : ℕ) : MeasurableSet (smallArc Q) := by
   rw [smallArc_eq_ball]
   exact measurableSet_ball
 
 /-- Open and closed circle balls have equal Haar measure, so the strict
-inequality loses no mass even at radius one half.-/
+inequality loses no mass even at radius one half.
+@isnad1 id=eq.1h1v.s6.59f4da542740 from=translated src=- shape=bb477fbb vocab=d66bd271
+-/
 theorem volume_smallArc (Q : ℕ) (hQ : 2 ≤ Q) :
     volume (smallArc Q) = ENNReal.ofReal (2 / (Q : ℝ)) := by
   have hQr : (0 : ℝ) < Q := by exact_mod_cast (lt_of_lt_of_le (by decide : 0 < 2) hQ)
@@ -54,24 +62,34 @@ theorem volume_smallArc (Q : ℕ) (hQ : 2 ≤ Q) :
   ring
 
 /-- For Q=2 the open test has full measure, although it excludes the
-half-turn itself. No incorrect equality of the underlying sets is used.-/
+half-turn itself. No incorrect equality of the underlying sets is used.
+@isnad1 id=eq.0h0v.s5.941a450644c1 from=translated src=- shape=f36eb5e7 vocab=02cd9d6e
+-/
 theorem volume_smallArc_two : volume (smallArc 2) = 1 := by
   simpa using volume_smallArc 2 (by decide)
 
 /-- Uniform real weights on the paper's actual half-open interval [0,1).-/
 noncomputable def realUnit : Measure ℝ := volume.restrict (Set.Ico 0 1)
 
+/--
+@isnad1 id=isprobab.0h0v.s2.50416cc53a02 from=translated src=- shape=54c8eceb vocab=06f312e4
+-/
 instance realUnit_probability : IsProbabilityMeasure realUnit where
   measure_univ := by simp [realUnit]
 
 /-- The covering map has the correct law for [0,1), not only for the
-(0,1] fundamental domain used by the standard library.-/
+(0,1] fundamental domain used by the standard library.
+@isnad1 id=measurep.0h0v.s6.a74e8aaaec52 from=translated src=- shape=65cced33 vocab=538fe33a
+-/
 theorem measurePreserving_realUnit :
     MeasurePreserving (fun r : ℝ => (r : UnitAddCircle)) realUnit volume := by
   unfold realUnit
   rw [restrict_Ico_eq_restrict_Ioc]
   simpa only [zero_add] using UnitAddCircle.measurePreserving_mk 0
 
+/--
+@isnad1 id=eq.0h0v.s7.571f9c0b5a99 from=translated src=- shape=d810a8c1 vocab=20d5acc9
+-/
 theorem map_realUnit :
     Measure.map (fun r : ℝ => (r : UnitAddCircle)) realUnit = volume :=
   measurePreserving_realUnit.map_eq
@@ -80,6 +98,9 @@ theorem map_realUnit :
 noncomputable def realWeights (I : Type*) [Fintype I] : Measure (I → ℝ) :=
   Measure.pi (fun _ : I => realUnit)
 
+/--
+@isnad1 id=isprobab.0h1v.s4.d38ad27cd941 from=translated src=- shape=8a0813a3 vocab=209b5191
+-/
 instance realWeights_probability (I : Type*) [Fintype I] :
     IsProbabilityMeasure (realWeights I) := by
   unfold realWeights
@@ -90,12 +111,17 @@ def toCircle {I : Type*} (weights : I → ℝ) : I → UnitAddCircle :=
   fun i => (weights i : UnitAddCircle)
 
 /-- Finite independent real weights reduce to product circle Haar measure.
-The empty coordinate family is included.-/
+The empty coordinate family is included.
+@isnad1 id=measurep.0h1v.s6.8c9ae7042075 from=translated src=- shape=c51472bc vocab=c70b081f
+-/
 theorem measurePreserving_toCircle (I : Type*) [Fintype I] :
     MeasurePreserving (@toCircle I) (realWeights I) volume := by
   exact measurePreserving_pi (fun _ : I => realUnit)
     (fun _ : I => (volume : Measure UnitAddCircle)) (fun _ => measurePreserving_realUnit)
 
+/--
+@isnad1 id=eq.0h1v.s6.ed5d6f4ebf9d from=translated src=- shape=29cf9391 vocab=860c6f29
+-/
 theorem map_toCircle (I : Type*) [Fintype I] :
     Measure.map (@toCircle I) (realWeights I) = volume :=
   (measurePreserving_toCircle I).map_eq
