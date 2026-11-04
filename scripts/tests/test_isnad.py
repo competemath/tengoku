@@ -9,6 +9,8 @@ import stat
 import subprocess
 import sys
 import tempfile
+import threading
+import time
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -393,8 +395,8 @@ class Batches(unittest.TestCase):
     def test_both_commands_hand_their_batch_option_to_facts(self):
         seen = []
 
-        def fake_facts(modules, names, exe, batch=None, exact=False):
-            seen.append((list(modules), list(names), batch, exact))
+        def fake_facts(modules, names, exe, batch=None, exact=False, jobs=None):
+            seen.append((list(modules), list(names), batch, exact, jobs))
             return [], []
 
         ap = isnad.build_parser()
@@ -406,8 +408,18 @@ class Batches(unittest.TestCase):
             mock.patch("builtins.print"),
         ):
             isnad.cmd_tag(ap.parse_args(["tag", "--module", "A", "--module", "B", "--name", "n", "--batch", "7"]))
-            isnad.cmd_check_tags(ap.parse_args(["check-tags", "--module", "A", "--batch", "9"]))
-        self.assertEqual(seen, [(["A", "B"], ["n"], 7, True), (["A"], [], 9, True)], "the PR's modules are exactly the modules")
+            isnad.cmd_check_tags(ap.parse_args(["check-tags", "--module", "A", "--batch", "9", "--jobs", "2"]))
+        self.assertEqual(
+            seen,
+            [(["A", "B"], ["n"], 7, True, isnad.JOBS), (["A"], [], 9, True, 2)],
+            "the PR's modules are exactly the modules, and the batches run --jobs at a time (JOBS by default)",
+        )
+
+    def test_the_lane_runs_batches_in_parallel_by_default(self):
+        self.assertGreater(isnad.JOBS, 1)
+        for cmd in ("tag", "check-tags"):
+            a = isnad.build_parser().parse_args([cmd, "--module", "A"])
+            self.assertEqual(a.jobs, isnad.JOBS, cmd)
 
     # `--module A.B` selects by prefix: it reports the theorems of `A.B.C` too (derived-alg-geo-lean part 2, 3 Nov 2026: `Exponential.lean` beside `Exponential/Kernel.lean`)
     PARENT, CHILD = "Tengoku.Lib.Dir", "Tengoku.Lib.Dir.Kid"
@@ -579,6 +591,70 @@ class Batches(unittest.TestCase):
         for cmd in ("tag", "check-tags"):
             self.assertEqual(ap.parse_args([cmd, "--module", "A"]).batch, isnad.BATCH)
             self.assertEqual(ap.parse_args([cmd, "--module", "A", "--batch", "7"]).batch, 7)
+
+
+class BatchesInParallel(unittest.TestCase):
+    """The batches of a part are independent processes: `jobs` of them run at a time (214 modules took 18 minutes one batch after the other on a 4-core runner), and the
+    result is the one the serial run gives, in the order of the batches, whatever order they finish in."""
+
+    MODULES = [f"Tengoku.Lib.M{i}" for i in range(10)]
+
+    def facts_with(self, jobs, batch=2, delays=None, boom=None, exact=False):
+        """`facts` over ten modules in batches of `batch`, through stand-ins for the two `tengoku-isnad` calls; returns (records, ranges, most processes at once, calls)."""
+        lock = threading.Lock()
+        state = {"now": 0, "most": 0, "calls": 0}
+        delays = delays or {}
+
+        def call(args):
+            mods = [a for i, a in enumerate(args) if i and args[i - 1] == "--module"]
+            with lock:
+                state["now"] += 1
+                state["calls"] += 1
+                state["most"] = max(state["most"], state["now"])
+            try:
+                time.sleep(delays.get(mods[0], 0))
+                if boom == mods[0]:
+                    raise SystemExit(f"stand-in: {mods[0]} killed")
+            finally:
+                with lock:
+                    state["now"] -= 1
+            return mods
+
+        def fake_exe(args, exe=None, **_):
+            return [isnad.Record("\t".join(["isnad1", "t", m, "thm", "0", "0", "1", "c", "s", "v"])) for m in call(args)]
+
+        def fake_lines(args, exe=None, **_):
+            return ["\t".join(["isnad1-range", "t", m, "1:0", "2:0", "1:8", "1:10"]) for m in call(args[1:])]
+
+        with mock.patch.object(isnad, "run_exe", fake_exe), mock.patch.object(isnad, "run_exe_lines", fake_lines):
+            recs, ranges = isnad.facts(self.MODULES, [], None, batch, exact=exact, jobs=jobs)
+        return [(r.module, r.name) for r in recs], ranges, state["most"], state["calls"]
+
+    def test_the_result_is_the_serial_result_even_when_the_first_batches_finish_last(self):
+        serial = self.facts_with(1)
+        # the first batch is the slowest: a run that appended results as they came would put it last
+        slow_first = self.facts_with(3, delays={self.MODULES[0]: 0.15, self.MODULES[2]: 0.08})
+        self.assertEqual(serial[:2], slow_first[:2])
+        self.assertEqual([m for m, _ in slow_first[0]], self.MODULES)
+        self.assertEqual(serial[3], slow_first[3], "the same number of processes")
+
+    def test_with_exact_the_parallel_result_is_the_serial_result_too(self):
+        self.assertEqual(self.facts_with(1, exact=True)[:2], self.facts_with(4, exact=True)[:2])
+
+    def test_batches_do_run_at_the_same_time_and_never_more_than_jobs(self):
+        delays = {m: 0.05 for m in self.MODULES}  # every call waits a little, so that batches that run together overlap in time
+        self.assertEqual(self.facts_with(1, delays=delays)[2], 1, "jobs=1 is one after the other")
+        self.assertEqual(self.facts_with(3, delays=delays)[2], 3, "five batches, three at a time")
+        self.assertEqual(self.facts_with(50, delays=delays)[2], 5, "never more than there are batches")
+
+    def test_a_batch_that_stops_the_run_stops_it(self):
+        for jobs in (1, 3):
+            with self.assertRaises(SystemExit) as c:
+                self.facts_with(jobs, boom=self.MODULES[4])
+            self.assertIn(self.MODULES[4], str(c.exception))
+
+    def test_one_batch_is_one_process_pair_whatever_jobs_says(self):
+        self.assertEqual(self.facts_with(8, batch=100)[2:], (1, 2))
 
 
 if __name__ == "__main__":

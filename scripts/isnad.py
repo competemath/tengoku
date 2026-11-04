@@ -30,6 +30,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -217,6 +218,7 @@ def run_exe(args: list[str], exe: str | None = None, cwd: Path = ROOT, extra_pat
 
 
 BATCH = 25  # modules per `tengoku-isnad` process (see facts)
+JOBS = 3  # batches of one part run at a time (see facts)
 
 
 ARGUMENT = re.compile(
@@ -233,27 +235,40 @@ def lean_name(arg: str) -> str:
     return match.group(0)
 
 
-def facts(modules: list[str], names: list[str], exe: str | None, batch: int = BATCH, exact: bool = False) -> tuple[list[Record], list[str]]:
+def facts(
+    modules: list[str], names: list[str], exe: str | None, batch: int = BATCH, exact: bool = False, jobs: int = 1
+) -> tuple[list[Record], list[str]]:
     """The records and the range lines of the modules, from one `tengoku-isnad` process per `batch` modules (all of them in one process when batch < 1). One
     process over a whole 400-module tag part held the import closure and the analysis of every module, and the hosted runner was shut down for memory (exit 143,
     'The runner has received a shutdown signal': three tag runs on 2026-10-15/16); a batch frees it before the next.
     `--module` selects by prefix: a module `A.B` selects the theorems of `A.B.C` too. A library that has a file `A/B.lean` that only imports the files of the
     directory `A/B/` (derived-alg-geo-lean part 2, 3 Nov 2026: `CentralCharge/Exponential.lean` beside four modules in `Exponential/`) makes the batch that lists `A.B`
     report the theorems of `A.B.C` as well as the batch that lists `A.B.C`: each of them came twice, was skipped as "the same name for two theorems of the module", and the
-    module came out untagged and refused. With `exact`, a batch keeps only the theorems of the modules it lists: every theorem comes from one batch, the one that lists its module."""
+    module came out untagged and refused. With `exact`, a batch keeps only the theorems of the modules it lists: every theorem comes from one batch, the one that lists its module.
+    The batches are independent processes (each imports only its own modules' environment), so `jobs` of them run at a time: on a 4-core hosted runner the 214 modules of a part
+    took 18 minutes one batch after the other. What comes back is in the order of the batches whatever the order they finish in, so a run with `jobs` is the run without it."""
     modules = [lean_name(m) for m in modules]
     names = [lean_name(n) for n in names]
     size = batch if batch > 0 else max(len(modules), 1)
     recs: list[Record] = []
     ranges: list[str] = []
-    for i in range(0, len(modules), size):
-        part = modules[i : i + size]
+
+    def one(part: list[str]) -> tuple[list[Record], list[str]]:
         args = [x for m in part for x in ("--module", m)] + [x for n in names for x in ("--name", n)]
         got, lines = run_exe(args, exe), run_exe_lines(["--ranges", *args], exe)
         if exact:
             listed = set(part)
             got = [r for r in got if r.module in listed]
             lines = [ln for ln in lines if parse_range_line(ln)[1] in listed]
+        return got, lines
+
+    parts = [modules[i : i + size] for i in range(0, len(modules), size)]
+    if jobs > 1 and len(parts) > 1:
+        with ThreadPoolExecutor(max_workers=min(jobs, len(parts))) as pool:
+            done = list(pool.map(one, parts))  # in the order of `parts`; a batch that stops the run raises here
+    else:
+        done = [one(part) for part in parts]
+    for got, lines in done:
         recs += got
         ranges += lines
     if exact:
@@ -531,7 +546,7 @@ def tagtest(exe: str | None = None) -> int:
 
 
 def cmd_tag(a: argparse.Namespace) -> int:
-    recs, ranges = facts(a.module, a.name, a.exe, a.batch, exact=True)
+    recs, ranges = facts(a.module, a.name, a.exe, a.batch, exact=True, jobs=a.jobs)
     plan, skipped = plan_tags(recs, ranges, a.origin, a.src)
     counts, more = tag_files(plan, ROOT, a.write)
     for name, why in skipped + more:
@@ -613,7 +628,7 @@ def check_tags(recs: list[Record], ranges: list[str], modules: list[str], root: 
 
 
 def cmd_check_tags(a: argparse.Namespace) -> int:
-    recs, ranges = facts(a.module, [], a.exe, a.batch, exact=True)
+    recs, ranges = facts(a.module, [], a.exe, a.batch, exact=True, jobs=a.jobs)
     problems, summary = check_tags(recs, ranges, a.module, ROOT)
     if problems:
         print("isnad check-tags: " + "; ".join(problems[:10]) + (f"; and {len(problems) - 10} more" if len(problems) > 10 else ""))
@@ -666,10 +681,12 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--write", action="store_true")
     s.add_argument("--exe")
     s.add_argument("--batch", type=int, default=BATCH, help=f"modules per tengoku-isnad process (default {BATCH}; below 1: all in one)")
+    s.add_argument("--jobs", type=int, default=JOBS, help=f"batches run at a time (default {JOBS}; 1: one after the other)")
     s = sub.add_parser("check-tags")
     s.add_argument("--module", action="append", required=True)
     s.add_argument("--exe")
     s.add_argument("--batch", type=int, default=BATCH, help=f"modules per tengoku-isnad process (default {BATCH}; below 1: all in one)")
+    s.add_argument("--jobs", type=int, default=JOBS, help=f"batches run at a time (default {JOBS}; 1: one after the other)")
     s = sub.add_parser("strip")
     s.add_argument("paths", nargs="+")
     s.add_argument("--write", action="store_true")
