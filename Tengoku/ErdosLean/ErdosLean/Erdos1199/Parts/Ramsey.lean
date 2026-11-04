@@ -17,7 +17,9 @@ namespace Erdos1199
 open Filter
 
 /-- Infinite Ramsey for pairs: any finite colouring `χ` of pairs `i < j` of an infinite set
-`S ⊆ ℕ` has an infinite homogeneous subsequence.-/
+`S ⊆ ℕ` has an infinite homogeneous subsequence.
+@isnad1 id=ex.1h3v.s6.114a13038978 from=translated src=- shape=c18efe1b vocab=2f8521a9
+-/
 theorem ramsey_pairs {κ : Type*} [Finite κ] (χ : ℕ → ℕ → κ) (S : Set ℕ) (hS : S.Infinite) :
     ∃ (k : κ) (u : ℕ → ℕ), StrictMono u ∧ (∀ i, u i ∈ S) ∧
       ∀ i j, i < j → χ (u i) (u j) = k := by

@@ -18,10 +18,16 @@ open scoped ENNReal
 namespace Erdos995
 namespace Con
 
+/--
+@isnad1 id=le.0h1v.s4.c5ae6b9f86a0 from=translated src=- shape=0dd30c50 vocab=4d115ee4
+-/
 lemma bExp_le_succ (k : ℕ) : bExp k ≤ bExp (k + 1) := by
   unfold bExp; have : (k + 1) ^ 2 ≤ (k + 1 + 1) ^ 2 := Nat.pow_le_pow_left (by omega) 2
   omega
 
+/--
+@isnad1 id=le.0h1v.s6.8d9670f2940f from=translated src=- shape=d637ef52 vocab=473cba3c
+-/
 lemma firstTrial_succ_le (k : ℕ) : firstTrial (k + 1) ≤ 2 ^ (2 * bExp k + 3 * k + 25) := by
   induction k with
   | zero =>
@@ -42,6 +48,9 @@ lemma firstTrial_succ_le (k : ℕ) : firstTrial (k + 1) ≤ 2 ^ (2 * bExp k + 3 
       rw [← pow_succ', show 2 * bExp (k + 1) + 3 * (k + 1) + 25 = 2 * bExp (k + 1) + 3 * k + 27 + 1 by ring]
     rw [h3]; omega
 
+/--
+@isnad1 id=le.2h3v.s6.87e3c62df4e1 from=translated src=- shape=f575815c vocab=b83cb17c
+-/
 lemma log_le_aux (S B N : ℕ) (hS : S ≤ 2 ^ B) (hN : N ≤ 21 ^ S) :
     Real.log N ≤ 4 * (2 : ℝ) ^ B := by
   have hl21 : Real.log 21 ≤ 4 := by
@@ -61,6 +70,9 @@ lemma log_le_aux (S B N : ℕ) (hS : S ≤ 2 ^ B) (hN : N ≤ 21 ^ S) :
   rw [Real.log_pow] at h1
   nlinarith
 
+/--
+@isnad1 id=le.1h2v.s6.bb1c3643626d from=translated src=- shape=8eaf8dc3 vocab=d9899d7f
+-/
 lemma log_le_of_le (k N : ℕ) (hN : N ≤ 21 ^ firstTrial (k + 1)) :
     Real.log N ≤ (2 : ℝ) ^ (2 * bExp k + 3 * k + 27) := by
   have h := log_le_aux _ _ N (firstTrial_succ_le k) hN
@@ -68,6 +80,9 @@ lemma log_le_of_le (k N : ℕ) (hN : N ≤ 21 ^ firstTrial (k + 1)) :
     rw [show 2 * bExp k + 3 * k + 27 = (2 * bExp k + 3 * k + 25) + 2 by ring, pow_add]; norm_num; ring
   rw [e]; exact h
 
+/--
+@isnad1 id=le.0h1v.s3.de17c8462981 from=translated src=- shape=1ed09587 vocab=e6ae41d9
+-/
 lemma natCast_le_sig (k : ℕ) : (k : ℝ) ≤ sig k := by
   unfold sig
   have h1 : (k : ℝ) ≤ 2 ^ k := by exact_mod_cast (Nat.lt_two_pow_self).le
@@ -75,6 +90,9 @@ lemma natCast_le_sig (k : ℕ) : (k : ℝ) ≤ sig k := by
     pow_le_pow_right₀ (by norm_num) (by unfold bExp; nlinarith)
   linarith
 
+/--
+@isnad1 id=eventual.1h2v.s7.8e90372ded74 from=translated src=- shape=785aa640 vocab=6ccd7567
+-/
 lemma growth {ε : ℝ} (hε : 0 < ε) (C : ℝ) :
     ∀ᶠ k : ℕ in atTop, ∀ N : ℕ, N ≤ 21 ^ firstTrial (k + 1) →
       C * ((N : ℝ) * Real.log N ^ ((1 : ℝ) / 2 - ε)) ≤ sig k * N := by

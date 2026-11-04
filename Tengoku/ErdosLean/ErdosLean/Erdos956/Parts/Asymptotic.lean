@@ -14,6 +14,9 @@ namespace Erdos956
 
 open Filter
 
+/--
+@isnad1 id=eq.0h5v.s8.7ec1d68832f6 from=translated src=- shape=96bfa32a vocab=a11b80c8
+-/
 lemma altAsymptotic_sum_cubic (A B C D : ℤ) (n : ℕ) :
     12 * ∑ i ∈ Finset.Icc 1 n, (A + B * (i : ℤ) + C * (i : ℤ) ^ 2 + D * (i : ℤ) ^ 3) =
       12 * A * n + 6 * B * n * (n + 1) + 2 * C * n * (n + 1) * (2 * n + 1)
@@ -25,6 +28,9 @@ lemma altAsymptotic_sum_cubic (A B C D : ℤ) (n : ℕ) :
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h1v.s7.d7a4c1b06246 from=translated src=- shape=345e6d21 vocab=f5f93f76
+-/
 lemma altAsymptotic_Mk_closed (k : ℕ) : (12 * Mk k : ℤ) = 5 * (k : ℤ) ^ 4 + 2 * k ^ 3 + k ^ 2 + 4 * k := by
   have h : (Mk k : ℤ) = ∑ i ∈ Finset.Icc 1 k,
       (((k : ℤ) + 1) * ((k : ℤ) ^ 2 + 1) + (-((k : ℤ) ^ 2 + 1)) * (i : ℤ)
@@ -42,6 +48,9 @@ lemma altAsymptotic_Mk_closed (k : ℕ) : (12 * Mk k : ℤ) = 5 * (k : ℤ) ^ 4 
   rw [h, altAsymptotic_sum_cubic]
   ring
 
+/--
+@isnad1 id=le.0h1v.s5.0331ea17e9bb from=translated src=- shape=b441fe33 vocab=bb9e3314
+-/
 lemma Mk_lower (k : ℕ) : 5 * k ^ 4 ≤ 12 * Mk k := by
   have h := altAsymptotic_Mk_closed k
   have : ((5 * k ^ 4 : ℕ) : ℤ) ≤ ((12 * Mk k : ℕ) : ℤ) := by
@@ -51,6 +60,9 @@ lemma Mk_lower (k : ℕ) : 5 * k ^ 4 ≤ 12 * Mk k := by
     nlinarith [pow_nonneg this 3, pow_nonneg this 2]
   exact_mod_cast this
 
+/--
+@isnad1 id=ex.1h1v.s6.fbb641dfc7ea from=translated src=- shape=864e651f vocab=a21bb45c
+-/
 theorem lower_of_grid (g : ℕ → ℕ) (hg : ∀ k ≥ 2, ∀ n ≥ nk k, Mk k ≤ g n) :
     ∃ c₀ : ℝ, 0 < c₀ ∧ ∀ᶠ n : ℕ in atTop, c₀ * (n : ℝ) ^ ((4 : ℝ) / 3) ≤ g n := by
   refine ⟨5 / 432, by norm_num, ?_⟩

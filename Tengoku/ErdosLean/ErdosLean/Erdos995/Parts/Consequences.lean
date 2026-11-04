@@ -20,7 +20,9 @@ open scoped ENNReal
 
 namespace Erdos995
 
-/-- For `N ≥ 3`, `1 ≤ log N`.-/
+/-- For `N ≥ 3`, `1 ≤ log N`.
+@isnad1 id=le.1h1v.s4.5420912dba7d from=translated src=- shape=d643ca81 vocab=a0466d8a
+-/
 lemma one_le_log_nat {N : ℕ} (hN : 3 ≤ N) : (1 : ℝ) ≤ Real.log N := by
   have h3 : (3 : ℝ) ≤ N := by exact_mod_cast hN
   have hpos : (0 : ℝ) < N := by linarith
@@ -28,7 +30,9 @@ lemma one_le_log_nat {N : ℕ} (hN : 3 ≤ N) : (1 : ℝ) ≤ Real.log N := by
   have := Real.exp_one_lt_d9
   linarith
 
-/-- `√(log y) ≤ 2 y^{1/4}` for `y ≥ 1`.-/
+/-- `√(log y) ≤ 2 y^{1/4}` for `y ≥ 1`.
+@isnad1 id=le.1h1v.s6.ee15e87d31fd from=translated src=- shape=f75101f7 vocab=e1a62eb3
+-/
 lemma sqrt_log_le {y : ℝ} (hy : 1 ≤ y) : Real.sqrt (Real.log y) ≤ 2 * y ^ ((1 : ℝ) / 4) := by
   have hy0 : 0 ≤ y := by linarith
   have h1 : Real.log y ≤ y ^ ((1 : ℝ) / 2) / (1 / 2) := Real.log_le_rpow_div hy0 (by norm_num)
@@ -39,6 +43,9 @@ lemma sqrt_log_le {y : ℝ} (hy : 1 ≤ y) : Real.sqrt (Real.log y) ≤ 2 * y ^ 
   rw [Real.sqrt_le_left (by positivity)]
   · nlinarith
 
+/--
+@isnad1 id=erdos995.2h0v.s2.8c1b164eea7f from=translated src=- shape=f443e7c7 vocab=dff6760b
+-/
 lemma criticalExponent_of (hU : ErdosUpperBound) (hL : HoLowerBound) : Erdos995CriticalExponent := by
   refine ⟨fun θ hθ f n hn => ?_, fun θ hθ hG => ?_⟩
   · have h := hU f n hn (θ - 1 / 2) (by linarith)
@@ -72,6 +79,9 @@ lemma criticalExponent_of (hU : ErdosUpperBound) (hL : HoLowerBound) : Erdos995C
     have h5 : 0 < (N : ℝ) * Real.log N ^ ((1 : ℝ) / 2 - ε) := mul_pos hNpos hr1
     nlinarith
 
+/--
+@isnad1 id=not.1h0v.s2.d667434e5b23 from=translated src=- shape=ffc494c5 vocab=829a582e
+-/
 lemma not_logLogQuestion_of (hL : HoLowerBound) : ¬ LogLogQuestion := by
   intro hQ
   obtain ⟨f, n, hn, -, -, hlow⟩ := hL

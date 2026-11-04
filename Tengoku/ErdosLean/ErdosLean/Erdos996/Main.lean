@@ -34,6 +34,9 @@ local notation "μ𝕋" => haarAddCircle (T := 1)
 
 /-! ### Reduction to the literal statement -/
 
+/--
+@isnad1 id=not.3h3v.s10.67687c5cb8f2 from=translated src=- shape=3e1882de vocab=6eb2149e
+-/
 theorem not_lacunaryAveragesConverge {f : Lp ℂ 2 μ𝕋} {n : ℕ → ℕ} {δ : ℝ} (hδ : 0 < δ)
     (hint : ∫ t, f t ∂μ𝕋 = 0)
     (hpos : 0 < μ𝕋 {x | ∃ᶠ N in atTop, δ ≤ ‖(∑ k ∈ range N, f (n k • x)) / (N : ℂ)‖}) :

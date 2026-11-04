@@ -15,7 +15,9 @@ exists because `2 ≤ L.length`).
 
 namespace Erdos612
 
-/-- Vertices in consecutive layers are adjacent.-/
+/-- Vertices in consecutive layers are adjacent.
+@isnad1 id=adj.1h3v.s5.140a3b7dae47 from=translated src=- shape=0c074661 vocab=182d6cce
+-/
 theorem blowup_adj_of_succ {L : Layers} (u v : Vtx L) (h : u.layer + 1 = v.layer) :
     (blowup L).Adj u v := by
   refine ⟨?_, by omega, by omega⟩
@@ -36,9 +38,15 @@ def canonVtx (L : Layers) (hpos : AllWin PosQ L) (ℓ : ℕ) (hℓ : ℓ < L.len
     rw [ht]; simpa using this
   ⟨⟨⟨ℓ, hℓ⟩, ⟨0, hc⟩⟩, ⟨0, hw⟩⟩
 
+/--
+@isnad1 id=eq.2h2v.s4.97acb97be3c4 from=translated src=- shape=18ac1f10 vocab=2d0499ca
+-/
 theorem canonVtx_layer (L : Layers) (hpos : AllWin PosQ L) (ℓ : ℕ) (hℓ : ℓ < L.length) :
     (canonVtx L hpos ℓ hℓ).layer = ℓ := rfl
 
+/--
+@isnad1 id=connecte.2h1v.s4.c8795d61bf98 from=translated src=- shape=018648d4 vocab=1d302af2
+-/
 theorem connected_blowup (L : Layers) (hlen : 2 ≤ L.length) (hpos : AllWin PosQ L) :
     (blowup L).Connected := by
   have h0 : 0 < L.length := by omega

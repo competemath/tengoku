@@ -7,6 +7,9 @@ import Tengoku.ErdosLean.ErdosLean.Erdos790.Defs
 namespace Erdos790
 
 open Classical in
+/--
+@isnad1 id=ex.1h4v.s6.ef04476399c6 from=translated src=- shape=5050bacc vocab=3a163a27
+-/
 theorem exists_color_fiber {α : Type*} (T : Finset α) {m : ℕ} (hm : 0 < m) (f : α → Fin m) :
     ∃ c : Fin m, T.card ≤ m * (T.filter (fun a => f a = c)).card := by
   by_contra h

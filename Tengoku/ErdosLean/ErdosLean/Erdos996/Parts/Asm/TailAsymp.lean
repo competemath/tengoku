@@ -22,6 +22,9 @@ namespace Asm
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
+/--
+@isnad1 id=lt.1h1v.s4.3bd8d7c3f9eb from=translated src=- shape=998257d8 vocab=d08708e8
+-/
 lemma alt_log_gt_three (N : ℕ) (hN : 32 ≤ N) : 3 < Real.log (N : ℝ) := by
   have h2 := Real.log_two_gt_d9
   have h : Real.log ((2 : ℝ) ^ 5) ≤ Real.log (N : ℝ) :=
@@ -30,15 +33,24 @@ lemma alt_log_gt_three (N : ℕ) (hN : 32 ≤ N) : 3 < Real.log (N : ℝ) := by
   push_cast at h
   linarith
 
+/--
+@isnad1 id=lt.1h1v.s4.93139ebdfe59 from=translated src=- shape=b79b632f vocab=d08708e8
+-/
 lemma alt_one_lt_loglog (N : ℕ) (hN : 32 ≤ N) : 1 < Real.log (Real.log (N : ℝ)) := by
   have h3 := alt_log_gt_three N hN
   have he : Real.exp 1 < 3 := by have := Real.exp_one_lt_d9; linarith
   rw [Real.lt_log_iff_exp_lt (by linarith)]
   linarith
 
+/--
+@isnad1 id=lt.1h1v.s4.2321d694fa81 from=translated src=- shape=c5a3dc2e vocab=d08708e8
+-/
 lemma alt_lll_pos (N : ℕ) (hN : 32 ≤ N) : 0 < Real.log (Real.log (Real.log (N : ℝ))) :=
   Real.log_pos (alt_one_lt_loglog N hN)
 
+/--
+@isnad1 id=le.1h1v.s4.12f057226422 from=translated src=- shape=3769b894 vocab=a0466d8a
+-/
 lemma alt_lll_le_log (N : ℕ) (hN : 32 ≤ N) :
     Real.log (Real.log (Real.log (N : ℝ))) ≤ Real.log (N : ℝ) := by
   have h1 := alt_one_lt_loglog N hN
@@ -46,6 +58,9 @@ lemma alt_lll_le_log (N : ℕ) (hN : 32 ≤ N) :
   calc _ ≤ Real.log (Real.log (N : ℝ)) := Real.log_le_self (by linarith)
     _ ≤ Real.log (N : ℝ) := Real.log_le_self (by linarith)
 
+/--
+@isnad1 id=lt.2h2v.s6.d707d24af455 from=translated src=- shape=8a560ec1 vocab=716e9579
+-/
 lemma alt_lll_lt (N e : ℕ) (hN : 32 ≤ N) (h : (N : ℝ) < (2 : ℝ) ^ (2 * e)) :
     Real.log (Real.log (Real.log (N : ℝ))) <
       Real.log (Real.log (Real.log ((2 : ℝ) ^ (2 * e)))) := by
@@ -57,7 +72,9 @@ lemma alt_lll_lt (N e : ℕ) (hN : 32 ≤ N) (h : (N : ℝ) < (2 : ℝ) ^ (2 * e
     Real.log_lt_log (by linarith) g1
   exact Real.log_lt_log (by linarith) g2
 
-/-- Per-term bound.-/
+/-- Per-term bound.
+@isnad1 id=le.3h5v.s8.917837274e54 from=translated src=- shape=eb60670c vocab=6325f47e
+-/
 lemma alt_term_bound (A : ℕ) (C : ℝ) (hC : 0 < C) (e k : ℕ)
     (hE : Real.log (Real.log (Real.log ((2 : ℝ) ^ (2 * e)))) ≤ ((A : ℝ) + 1) * (k + 1) + 30)
     (N : ℕ) (hN : 32 ≤ N) :
@@ -101,7 +118,9 @@ lemma alt_term_bound (A : ℕ) (C : ℝ) (hC : 0 < C) (e k : ℕ)
       _ = lam A k * (B ^ C) ^ 2 / (L ^ C) ^ 2 := by rw [mul_div_assoc]
       _ ≤ _ := le_add_of_nonneg_left t1
 
-/-- Summability of the weighted stage costs `λ_k B_k^{2C}`.-/
+/-- Summability of the weighted stage costs `λ_k B_k^{2C}`.
+@isnad1 id=summable.2h2v.s7.27d7d09b8713 from=translated src=- shape=8356f7a1 vocab=aba23e44
+-/
 lemma alt_summable_weight (A : ℕ) (hA : 1 ≤ A) (C : ℝ) (_hC : 0 < C) :
     Summable (fun k : ℕ => lam A k * ((((A : ℝ) + 1) * (k + 1) + 30) ^ C) ^ 2) := by
   set n := ⌈C⌉₊
@@ -133,7 +152,9 @@ lemma alt_summable_weight (A : ℕ) (hA : 1 ≤ A) (C : ℝ) (_hC : 0 < C) :
         exact mul_le_mul hlam h3 (by positivity) (by positivity)
     _ = _ := by ring
 
-/-- Eventually `(log log log N)^{2C} ≤ √N`.-/
+/-- Eventually `(log log log N)^{2C} ≤ √N`.
+@isnad1 id=eventual.1h1v.s6.937f04b0c2a5 from=translated src=- shape=adb25f63 vocab=77f43634
+-/
 lemma alt_eventually_small (C : ℝ) (hC : 0 < C) :
     ∀ᶠ N : ℕ in atTop, 32 ≤ N ∧
       (Real.log (Real.log (Real.log (N : ℝ))) ^ C) ^ 2 ≤ Real.sqrt N := by
@@ -155,6 +176,9 @@ lemma alt_eventually_small (C : ℝ) (hC : 0 < C) :
   rw [Real.sqrt_eq_rpow, ← Real.rpow_natCast, ← Real.rpow_mul hNpos.le]
   norm_num
 
+/--
+@isnad1 id=ex.1h1v.s8.a2a480277ee0 from=translated src=- shape=b3f38b97 vocab=9384626b
+-/
 lemma tail_asymp (C : ℝ) (hC : 0 < C) : ∃ A₀ : ℕ, ∀ A : ℕ, A₀ ≤ A → ∀ E : ℕ → ℕ,
     (∀ k, Real.log (Real.log (Real.log ((2 : ℝ) ^ (2 * E k)))) ≤ ((A : ℝ) + 1) * (k + 1) + 30) →
     ∀ C₁ : ℝ, 0 ≤ C₁ → ∃ K : ℝ, 0 ≤ K ∧ ∀ᶠ N : ℕ in atTop,

@@ -13,21 +13,35 @@ namespace Erdos956Upper
 
 open Erdos956 Metric
 
+/--
+@isnad1 id=crosses.1h2v.s3.1ac788630e13 from=translated src=- shape=7e524d71 vocab=f38fe81e
+-/
 lemma Arc.crosses_symm {a b : Arc} (h : a.Crosses b) : b.Crosses a := by
   obtain ⟨x, h1, h2, h3⟩ := h
   exact ⟨x, h2, h1, h3.symm⟩
 
+/--
+@isnad1 id=eq.0h1v.s6.d394d0e140ce from=translated src=- shape=af724ec3 vocab=37883869
+-/
 lemma Arc.left_zero' (a : Arc) : a.left 0 = a.l := by simp [Arc.left]
 
+/--
+@isnad1 id=eq.0h1v.s6.768c2a6fffd4 from=translated src=- shape=af724ec3 vocab=03d06acc
+-/
 lemma Arc.right_zero' (a : Arc) : a.right 0 = a.r := by simp [Arc.right]
 
+/--
+@isnad1 id=ne.1h1v.s3.21d40d99d571 from=translated src=- shape=64b9cc36 vocab=733900cc
+-/
 lemma Arc.left_ne_right' {a : Arc} (ha : a.Valid) : a.left ≠ a.right := by
   intro h
   have h0 : a.left 0 = a.right 0 := by rw [h]
   rw [Arc.left_zero', Arc.right_zero'] at h0
   exact absurd h0 (ne_of_lt ha.1)
 
-/-- Deleting one arc per crossing pair: `|B| ≤ 4|W| + cr(B)/2` (cr counts ordered pairs).-/
+/-- Deleting one arc per crossing pair: `|B| ≤ 4|W| + cr(B)/2` (cr counts ordered pairs).
+@isnad1 id=le.4h4v.s7.3fcc1f2e5716 from=translated src=- shape=1ecd164c vocab=4449c835
+-/
 lemma crossing_amplify {ι : Type*} (W : Finset E) (arc : ι → Arc) (B : Finset ι)
     (hvalid : ∀ i ∈ B, (arc i).Valid)
     (hend : ∀ i ∈ B, (arc i).left ∈ W ∧ (arc i).right ∈ W)
@@ -81,7 +95,9 @@ lemma crossing_amplify {ι : Type*} (W : Finset E) (arc : ι → Arc) (B : Finse
     have hc' : ((B.erase i).card : ℝ) + 1 = B.card := by exact_mod_cast hcard
     linarith
 
-/-- Binomial averaging of a filtered count.-/
+/-- Binomial averaging of a filtered count.
+@isnad1 id=eq.1h5v.s7.238f3a720fdf from=translated src=- shape=043e4fdb vocab=70b1afc0
+-/
 lemma weighted_filter_card {α : Type*} [DecidableEq E] (V : Finset E) (p : ℝ) (s : Finset α)
     (F : α → Finset E) (hF : ∀ a ∈ s, F a ⊆ V) :
     ∑ S ∈ V.powerset, p ^ S.card * (1 - p) ^ (V.card - S.card) *
@@ -100,6 +116,9 @@ lemma weighted_filter_card {α : Type*} [DecidableEq E] (V : Finset E) (p : ℝ)
     _ = ∑ a ∈ s, p ^ (F a).card :=
         Finset.sum_congr rfl fun a ha => sum_weight_subset V (F a) (hF a ha) p
 
+/--
+@isnad1 id=le.7h5v.s8.d244d4860545 from=translated src=- shape=fd20f888 vocab=2535ac1a
+-/
 theorem crossing_lemma {ι : Type*} (V : Finset E) (A : Finset ι) (arc : ι → Arc)
     (hvalid : ∀ i ∈ A, (arc i).Valid)
     (hend : ∀ i ∈ A, (arc i).left ∈ V ∧ (arc i).right ∈ V)

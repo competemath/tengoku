@@ -23,6 +23,9 @@ private theorem clump_eq {L : Layers} (c d : Clump L) (h1 : c.1.val = d.1.val)
   obtain rfl : i = j := Fin.ext h2
   rfl
 
+/--
+@isnad1 id=cliquefr.2h2v.s4.3e7470faf44f from=translated src=- shape=09512509 vocab=ec76cd39
+-/
 theorem cliqueFree_blowup (L : Layers) (s : ℕ) (hne : L ≠ [])
     (h : AllWin (CliqQ s) L) : (blowup L).CliqueFree s := by
   intro t ht

@@ -11,6 +11,9 @@ The achievable counts for size `n` are bounded by `|X.sym2| = n(n+1)/2`, so `le_
 
 namespace Erdos956
 
+/--
+@isnad1 id=le.1h2v.s4.4a82004930a4 from=translated src=- shape=a91dcbd5 vocab=cacadd25
+-/
 theorem le_h {C : Set E} {X : Finset E} (hX : Admissible C X) :
     (unitPairs C X).card ≤ h X.card := by
   classical

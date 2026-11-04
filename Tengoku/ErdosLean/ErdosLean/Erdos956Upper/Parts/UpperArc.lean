@@ -16,32 +16,59 @@ variable {D : Set E} {X : Finset E}
 
 /-! ### Auxiliary facts -/
 
+/--
+@isnad1 id=continuo.0h0v.s7.d9f9c39eca23 from=translated src=- shape=612dfe02 vocab=4e58f3df
+-/
 lemma coord0_continuous : Continuous (fun v : E => v 0) := by fun_prop
+/--
+@isnad1 id=continuo.0h0v.s7.90a31c931ac9 from=translated src=- shape=612dfe02 vocab=4e58f3df
+-/
 lemma coord1_continuous : Continuous (fun v : E => v 1) := by fun_prop
 
+/--
+@isnad1 id=eq.0h1v.s6.f44cbc38bf35 from=translated src=- shape=a0675905 vocab=730e2fd5
+-/
 lemma pt2_eta (v : E) : pt2 (v 0) (v 1) = v := by
   ext i; fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.c7975252749e from=translated src=- shape=eda743f3 vocab=e6d31cdd
+-/
 lemma pt2_add_smul (t s : ℝ) : pt2 t s = pt2 t 0 + s • pt2 0 1 := by
   ext i; fin_cases i <;> simp
 
+/--
+@isnad1 id=continuo.0h1v.s5.fc16d1b67ed8 from=translated src=- shape=4827ab61 vocab=6666963c
+-/
 lemma pt2_continuous (t : ℝ) : Continuous (fun s : ℝ => pt2 t s) := by
   have : (fun s : ℝ => pt2 t s) = fun s => pt2 t 0 + s • pt2 0 1 := by
     funext s; exact pt2_add_smul t s
   rw [this]; fun_prop
 
+/--
+@isnad1 id=eq.0h0v.s6.e42fa662e0af from=translated src=- shape=e2e55dbe vocab=619256f3
+-/
 lemma norm_pt2_01 : ‖pt2 0 1‖ = 1 := by
   rw [EuclideanSpace.norm_eq]; simp [Fin.sum_univ_two]
 
+/--
+@isnad1 id=ex.2h3v.s7.d423866b4b23 from=translated src=- shape=215756fb vocab=5aa36287
+-/
 lemma exists_near (hS : SepConfig D X) {v : E} (hv : v ∈ Kset D) :
     ∃ a ∈ D, ‖v - a‖ ≤ 1 := by
   obtain ⟨a, ha, hd⟩ := hS.compact.exists_infDist_eq_dist ⟨0, hS.zero_mem⟩ v
   refine ⟨a, ha, ?_⟩
   rw [← dist_eq_norm, ← hd]; exact hv
 
+/--
+@isnad1 id=isclosed.0h1v.s5.181f1d45e808 from=translated src=- shape=0ae065e3 vocab=e32a1398
+-/
 lemma kset_isClosed : IsClosed (Kset D) :=
   isClosed_le (continuous_infDist_pt D) continuous_const
 
+/--
+@isnad1 id=iscompac.1h2v.s5.fd022776201a from=translated src=- shape=75627609 vocab=2c6c9dc5
+-/
 lemma kset_isCompact (hS : SepConfig D X) : IsCompact (Kset D) := by
   refine Metric.isCompact_of_isClosed_isBounded kset_isClosed ?_
   obtain ⟨R, hR⟩ := (isBounded_iff_forall_norm_le).1 hS.compact.isBounded
@@ -52,26 +79,40 @@ lemma kset_isCompact (hS : SepConfig D X) : IsCompact (Kset D) := by
   rw [norm_sub_rev] at this
   linarith [norm_sub_rev v a]
 
+/--
+@isnad1 id=mem.1h2v.s6.290a1028b9d6 from=translated src=- shape=ae80ccde vocab=822e041d
+-/
 lemma zero_mem_kset (hS : SepConfig D X) : (0 : E) ∈ Kset D := by
   show infDist 0 D ≤ 1
   rw [infDist_zero_of_mem hS.zero_mem]; norm_num
 
+/--
+@isnad1 id=bddabove.1h2v.s6.9a46b8b50c9e from=translated src=- shape=e4041764 vocab=6753a0fa
+-/
 lemma wid_bdd (hS : SepConfig D X) : BddAbove ((fun v : E => v 0) '' Kset D) :=
   ((kset_isCompact hS).image coord0_continuous).bddAbove
 
+/--
+@isnad1 id=ex.1h2v.s6.69a87e6bc20c from=translated src=- shape=b42d971e vocab=03131b07
+-/
 lemma wid_attained (hS : SepConfig D X) : ∃ p ∈ Kset D, p 0 = wid D := by
   have := ((kset_isCompact hS).image coord0_continuous).sSup_mem
     ⟨_, Set.mem_image_of_mem _ (zero_mem_kset hS)⟩
   obtain ⟨p, hp, h⟩ := this
   exact ⟨p, hp, h⟩
 
+/--
+@isnad1 id=bddabove.1h3v.s4.c87a94197f8c from=translated src=- shape=3f957b86 vocab=8c2fd42b
+-/
 lemma slice_bdd (hS : SepConfig D X) (t : ℝ) : BddAbove {s : ℝ | pt2 t s ∈ Kset D} := by
   obtain ⟨B, hB⟩ := ((kset_isCompact hS).image coord1_continuous).bddAbove
   refine ⟨B, fun s hs => ?_⟩
   have := hB ⟨pt2 t s, hs, rfl⟩
   simpa using this
 
-/-- `K` is convex.-/
+/-- `K` is convex.
+@isnad1 id=convex.1h2v.s6.c78cccf96cc0 from=translated src=- shape=e69f0a2f vocab=b40c218b
+-/
 theorem kset_convex (hS : SepConfig D X) : Convex ℝ (Kset D) := by
   intro u hu v hv a b ha hb hab
   obtain ⟨p, hp, hup⟩ := exists_near hS hu
@@ -89,14 +130,18 @@ theorem kset_convex (hS : SepConfig D X) : Convex ℝ (Kset D) := by
     _ ≤ a * 1 + b * 1 := by gcongr
     _ = 1 := by linarith
 
-/-- `K` is centrally symmetric.-/
+/-- `K` is centrally symmetric.
+@isnad1 id=mem.2h3v.s6.d89164087072 from=translated src=- shape=68d4d136 vocab=a6d2e476
+-/
 theorem kset_neg (hS : SepConfig D X) {v : E} (hv : v ∈ Kset D) : -v ∈ Kset D := by
   obtain ⟨a, ha, h⟩ := exists_near hS hv
   show infDist _ D ≤ 1
   refine (infDist_le_dist_of_mem (hS.neg_mem a ha)).trans ?_
   rw [dist_eq_norm, show -v - -a = -(v - a) by abel, norm_neg]; exact h
 
-/-- `w ≥ 1` (the unit disc lies in `K` since `0 ∈ D`).-/
+/-- `w ≥ 1` (the unit disc lies in `K` since `0 ∈ D`).
+@isnad1 id=le.1h2v.s4.294f02a66f5b from=translated src=- shape=b4a0a582 vocab=684e8dd4
+-/
 theorem one_le_wid (hS : SepConfig D X) : 1 ≤ wid D := by
   have hmem : pt2 1 0 ∈ Kset D := by
     show infDist _ D ≤ 1
@@ -105,7 +150,9 @@ theorem one_le_wid (hS : SepConfig D X) : 1 ≤ wid D := by
   have := le_csSup (wid_bdd hS) (Set.mem_image_of_mem (fun v : E => v 0) hmem)
   exact this
 
-/-- Points of `K` have `|v₀| ≤ w`.-/
+/-- Points of `K` have `|v₀| ≤ w`.
+@isnad1 id=le.2h3v.s6.87d4b32f7175 from=translated src=- shape=7b1e0b14 vocab=7c1851cb
+-/
 theorem abs_le_wid (hS : SepConfig D X) {v : E} (hv : v ∈ Kset D) : |v 0| ≤ wid D := by
   have h1 := le_csSup (wid_bdd hS) (Set.mem_image_of_mem (fun v : E => v 0) hv)
   have h2 := le_csSup (wid_bdd hS) (Set.mem_image_of_mem (fun v : E => v 0) (kset_neg hS hv))
@@ -114,7 +161,9 @@ theorem abs_le_wid (hS : SepConfig D X) {v : E} (hv : v ∈ Kset D) : |v 0| ≤ 
   change v 0 ≤ wid D at h1
   rw [abs_le]; constructor <;> linarith
 
-/-- For `|t| < w` the supremum defining `g t` is attained.-/
+/-- For `|t| < w` the supremum defining `g t` is attained.
+@isnad1 id=mem.2h3v.s5.6dad4434914e from=translated src=- shape=81a2a9be vocab=1f69a745
+-/
 theorem pt2_gUp_mem (hS : SepConfig D X) {t : ℝ} (ht : |t| < wid D) :
     pt2 t (gUp D t) ∈ Kset D := by
   obtain ⟨p, hp, hpw⟩ := wid_attained hS
@@ -138,14 +187,18 @@ theorem pt2_gUp_mem (hS : SepConfig D X) {t : ℝ} (ht : |t| < wid D) :
     kset_isClosed.preimage (pt2_continuous t)
   exact hcl.csSup_mem hne (slice_bdd hS t)
 
-/-- Points of `K` lie below the upper boundary.-/
+/-- Points of `K` lie below the upper boundary.
+@isnad1 id=le.3h3v.s7.66bf4f1747ad from=translated src=- shape=e95386ea vocab=c4bca5e3
+-/
 theorem le_gUp (hS : SepConfig D X) {v : E} (hv : v ∈ Kset D) (_ht : |v 0| < wid D) :
     v 1 ≤ gUp D (v 0) := by
   refine le_csSup (slice_bdd hS _) ?_
   show pt2 (v 0) (v 1) ∈ Kset D
   rw [pt2_eta]; exact hv
 
-/-- Points of the upper arc are unit vectors.-/
+/-- Points of the upper arc are unit vectors.
+@isnad1 id=eq.2h3v.s6.06a5d8a1e1cd from=translated src=- shape=dd0d710a vocab=20ba0a8e
+-/
 theorem onUpper_unit (hS : SepConfig D X) {v : E} (hv : OnUpper D v) : infDist v D = 1 := by
   obtain ⟨ht, hg⟩ := hv
   have hmem : v ∈ Kset D := by
@@ -169,7 +222,9 @@ theorem onUpper_unit (hS : SepConfig D X) {v : E} (hv : OnUpper D v) : infDist v
   change v 1 + ε ≤ gUp D (v 0) at this
   rw [← hg] at this; linarith
 
-/-- `g` is concave on `(-w, w)`.-/
+/-- `g` is concave on `(-w, w)`.
+@isnad1 id=concaveo.1h2v.s5.3be89de8cbb7 from=translated src=- shape=e5c8bf32 vocab=8d085b96
+-/
 theorem gUp_concaveOn (hS : SepConfig D X) :
     ConcaveOn ℝ (Set.Ioo (-wid D) (wid D)) (gUp D) := by
   refine ⟨convex_Ioo _ _, fun x hx y hy a b ha hb hab => ?_⟩
@@ -184,7 +239,9 @@ theorem gUp_concaveOn (hS : SepConfig D X) :
   have := le_gUp hS hk (by rw [e0]; exact habs)
   rw [e0, e1] at this; exact this
 
-/-- `g` is continuous on `(-w, w)`.-/
+/-- `g` is continuous on `(-w, w)`.
+@isnad1 id=continuo.1h2v.s5.86f69f9c95c2 from=translated src=- shape=b127494c vocab=f1ead5ad
+-/
 theorem gUp_continuousOn (hS : SepConfig D X) :
     ContinuousOn (gUp D) (Set.Ioo (-wid D) (wid D)) :=
   (gUp_concaveOn hS).continuousOn isOpen_Ioo

@@ -12,6 +12,9 @@ and `γ t = p₀` for `t ≤ 0`; it is continuous (the pieces agree at integers)
 
 namespace Erdos514
 
+/--
+@isnad1 id=ex.4h1v.s7.cb22afff7dd4 from=translated src=- shape=b66b79bd vocab=6d92bf97
+-/
 theorem path_through_nested (D : ℕ → Set ℂ) (hopen : ∀ n, IsOpen (D n))
     (hconn : ∀ n, IsPreconnected (D n)) (hne : ∀ n, (D n).Nonempty)
     (hsub : ∀ n, D (n + 1) ⊆ D n) :

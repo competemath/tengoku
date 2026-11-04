@@ -7,6 +7,9 @@ import Tengoku.ErdosLean.ErdosLean.Erdos514.Defs
 
 namespace Erdos514
 
+/--
+@isnad1 id=eq.0h3v.s5.51765bea3014 from=translated src=- shape=7481d789 vocab=929b02ec
+-/
 theorem shift_eq_add_mul (f : ℂ → ℂ) (n : ℕ) (z : ℂ) :
     shift f n z = shift f n 0 + z * shift f (n + 1) z := by
   have h := sub_smul_dslope (shift f n) 0 z

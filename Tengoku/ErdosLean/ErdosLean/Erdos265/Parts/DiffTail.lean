@@ -19,6 +19,9 @@ namespace Erdos265
 
 variable {a : ℕ → ℕ}
 
+/--
+@isnad1 id=eq.1h2v.s4.7e029f1eaecb from=translated src=- shape=516e261e vocab=96e7c7c4
+-/
 lemma recipD_eq (ha : IsRationalPair a) (n : ℕ) : recipD a n = recipS a n - recip a n := by
   have h2 : (2 : ℝ) ≤ a n := by exact_mod_cast two_le_of ha n
   have h1 : (a n : ℝ) - 1 ≠ 0 := by linarith
@@ -27,17 +30,26 @@ lemma recipD_eq (ha : IsRationalPair a) (n : ℕ) : recipD a n = recipS a n - re
   field_simp
   ring
 
+/--
+@isnad1 id=lt.1h2v.s4.aec04ddf5877 from=translated src=- shape=95bcf7d0 vocab=decf4ef9
+-/
 lemma recipD_pos (ha : IsRationalPair a) (n : ℕ) : 0 < recipD a n := by
   have h2 : (2 : ℝ) ≤ a n := by exact_mod_cast two_le_of ha n
   unfold recipD
   have : 0 < (a n : ℝ) * ((a n : ℝ) - 1) := by nlinarith
   positivity
 
+/--
+@isnad1 id=summable.1h1v.s4.343735b75e6a from=translated src=- shape=95b9ce9a vocab=eb6d621e
+-/
 lemma summable_recipD (ha : IsRationalPair a) : Summable (recipD a) := by
   have : recipD a = fun k => recipS a k - recip a k := funext (recipD_eq ha)
   rw [this]
   exact (summable_recipS ha).sub (summable_recip ha)
 
+/--
+@isnad1 id=eq.1h2v.s4.382ceeec0943 from=translated src=- shape=516e261e vocab=dc40ab52
+-/
 theorem Dt_eq_V_sub_T (ha : IsRationalPair a) (n : ℕ) : Dt a n = V a n - T a n := by
   unfold Dt V T tail
   have h1 : Summable (fun k => recipS a (k + n)) :=
@@ -47,14 +59,23 @@ theorem Dt_eq_V_sub_T (ha : IsRationalPair a) (n : ℕ) : Dt a n = V a n - T a n
   rw [← h1.tsum_sub h2]
   exact tsum_congr (fun k => recipD_eq ha (k + n))
 
+/--
+@isnad1 id=eq.1h2v.s5.cbc9656dcdb1 from=translated src=- shape=199bb5bc vocab=f2535c07
+-/
 theorem Dt_succ (ha : IsRationalPair a) (n : ℕ) : Dt a n = recipD a n + Dt a (n + 1) :=
   tail_eq_add_tail_succ (summable_recipD ha) n
 
+/--
+@isnad1 id=lt.1h2v.s4.6fc65bc6bcf6 from=translated src=- shape=95bcf7d0 vocab=08106597
+-/
 theorem Dt_pos (ha : IsRationalPair a) (n : ℕ) : 0 < Dt a n := by
   unfold Dt tail
   exact ((summable_nat_add_iff n).mpr (summable_recipD ha)).tsum_pos
     (fun k => (recipD_pos ha (k + n)).le) 0 (recipD_pos ha (0 + n))
 
+/--
+@isnad1 id=le.1h3v.s6.d1646bc84c01 from=translated src=- shape=fc1c2fff vocab=6080d7d4
+-/
 lemma recipD_le_tele (ha : IsRationalPair a) (n k : ℕ) :
     recipD a (k + n) ≤ 1 / ((a n : ℝ) + k - 1) - 1 / ((a n : ℝ) + k) := by
   have h2 : (2 : ℝ) ≤ a n := by exact_mod_cast two_le_of ha n
@@ -74,6 +95,9 @@ lemma recipD_le_tele (ha : IsRationalPair a) (n k : ℕ) :
   apply one_div_le_one_div_of_le hA
   apply mul_le_mul hle (by linarith) (by linarith) (by linarith)
 
+/--
+@isnad1 id=le.1h2v.s5.5103e622bead from=translated src=- shape=496da925 vocab=4f9dfc5d
+-/
 theorem Dt_le (ha : IsRationalPair a) (n : ℕ) : Dt a n ≤ 1 / ((a n : ℝ) - 1) := by
   have h2 : (2 : ℝ) ≤ a n := by exact_mod_cast two_le_of ha n
   unfold Dt tail
@@ -96,6 +120,9 @@ theorem Dt_le (ha : IsRationalPair a) (n : ℕ) : Dt a n ≤ 1 / ((a n : ℝ) - 
     apply div_nonneg zero_le_one; linarith
   linarith [key N]
 
+/--
+@isnad1 id=le.1h2v.s5.97005a5671b7 from=translated src=- shape=f6c54d13 vocab=f2218a05
+-/
 theorem inv_sq_le_Dt (ha : IsRationalPair a) (n : ℕ) : 1 / (a n : ℝ) ^ 2 ≤ Dt a n := by
   have h2 : (2 : ℝ) ≤ a n := by exact_mod_cast two_le_of ha n
   rw [Dt_succ ha n]

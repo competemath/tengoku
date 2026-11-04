@@ -19,7 +19,9 @@ private def HTGood (c : ℕ → Bool) (γ₀ : Bool) (L a : ℕ) : Prop :=
 
 /-- Proposition A.2 (`m = ℓ = 1`): if the colour class `c⁻¹(γ₀)` contains arbitrarily long
 intervals arbitrarily far to the right, then some infinite `B ⊆ ℕ` has `B + B`
-monochromatic.-/
+monochromatic.
+@isnad1 id=ex.1h2v.s5.5bdc22d22df2 from=translated src=- shape=82516313 vocab=6c7cb1db
+-/
 theorem hindman_thick (c : ℕ → Bool) (γ₀ : Bool)
     (hthick : ∀ L N : ℕ, ∃ n, N ≤ n ∧ ∀ j ≤ L, c (n + j) = γ₀) :
     ∃ B : Set ℕ, B.Infinite ∧ IsMonoSumset c B := by

@@ -14,7 +14,9 @@ namespace Erdos494
 
 open Finset
 
-/-- Univariate Taylor expansion of `C(k,i) (θ+u)^(k-i)` around `θ`.-/
+/-- Univariate Taylor expansion of `C(k,i) (θ+u)^(k-i)` around `θ`.
+@isnad1 id=eq.1h5v.s7.ed721978e3b4 from=translated src=- shape=8a3afef7 vocab=b1105602
+-/
 lemma taylor_uni (i k N : ℕ) (hk : k ≤ i + N) (θ u : ℝ) :
     (k.choose i : ℝ) * (θ + u) ^ (k - i) =
       ∑ j ∈ range (N + 1),
@@ -51,7 +53,9 @@ lemma taylor_uni (i k N : ℕ) (hk : k ≤ i + N) (θ u : ℝ) :
       rw [Nat.choose_eq_zero_of_lt (by omega : i + m < i + j)]
       simp
 
-/-- Hasse derivatives of order beyond the degree vanish.-/
+/-- Hasse derivatives of order beyond the degree vanish.
+@isnad1 id=eq.1h7v.s5.06c41a66b5b1 from=translated src=- shape=b993be42 vocab=020d1ae8
+-/
 lemma hasseEval_eq_zero_left (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (m1 m2 : ℕ) (h : r1 < m1) (x y : ℝ) :
     hasseEval r1 r2 c m1 m2 x y = 0 := by
   unfold hasseEval
@@ -63,6 +67,9 @@ lemma hasseEval_eq_zero_left (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (m1 m2 : �
   rw [Nat.choose_eq_zero_of_lt (by omega : k1 < m1)]
   simp
 
+/--
+@isnad1 id=eq.1h7v.s5.91d22d039291 from=translated src=- shape=d3ab9bf7 vocab=020d1ae8
+-/
 lemma hasseEval_eq_zero_right (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (m1 m2 : ℕ) (h : r2 < m2) (x y : ℝ) :
     hasseEval r1 r2 c m1 m2 x y = 0 := by
   unfold hasseEval
@@ -74,7 +81,9 @@ lemma hasseEval_eq_zero_right (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (m1 m2 : �
   rw [Nat.choose_eq_zero_of_lt (by omega : k2 < m2)]
   simp
 
-/-- Bivariate Taylor expansion.-/
+/-- Bivariate Taylor expansion.
+@isnad1 id=eq.0h8v.s7.bc660748d0d6 from=translated src=- shape=46efa4dd vocab=dd90b959
+-/
 lemma hasseEval_taylor (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (i1 i2 : ℕ) (θ u v : ℝ) :
     hasseEval r1 r2 c i1 i2 (θ + u) (θ + v) =
       ∑ j1 ∈ range (r1 - i1 + 1), ∑ j2 ∈ range (r2 - i2 + 1),
@@ -111,7 +120,9 @@ lemma hasseEval_taylor (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (i1 i2 : ℕ) (θ
   conv_lhs => rw [Finset.sum_comm]
   conv_lhs => enter [2, j1]; rw [Finset.sum_comm]
 
-/-- Crude bound for all Hasse derivatives at `(θ, θ)`.-/
+/-- Crude bound for all Hasse derivatives at `(θ, θ)`.
+@isnad1 id=le.1h7v.s7.0cff0407d79a from=translated src=- shape=c2658de8 vocab=9509e2ba
+-/
 lemma hasseEval_abs_le (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (H : ℝ)
     (hH : ∀ k1 k2, |(c k1 k2 : ℝ)| ≤ H) (m1 m2 : ℕ) (θ : ℝ) :
     |hasseEval r1 r2 c m1 m2 θ θ| ≤
@@ -154,6 +165,9 @@ lemma hasseEval_abs_le (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (H : ℝ)
       push_cast
       ring
 
+/--
+@isnad1 id=le.10h12v.s8.4bc999430d17 from=translated src=- shape=f0115285 vocab=6e159f02
+-/
 theorem taylor_upper_bound (r1 r2 : ℕ) (hr1 : 1 ≤ r1) (hr2 : 1 ≤ r2) (c : ℕ → ℕ → ℤ) (H : ℝ)
     (hH : ∀ k1 k2, |(c k1 k2 : ℝ)| ≤ H) (θ t Θ0 Λ : ℝ)
     (hvan : ∀ i1 i2 : ℕ, (i1 : ℝ) / r1 + (i2 : ℝ) / r2 < t → hasseEval r1 r2 c i1 i2 θ θ = 0)

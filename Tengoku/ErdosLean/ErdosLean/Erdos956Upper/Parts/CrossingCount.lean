@@ -16,36 +16,57 @@ variable {D : Set E} {X : Finset E}
 
 /-! ### Auxiliary facts -/
 
+/--
+@isnad1 id=iff.0h3v.s7.4c396ac89d66 from=translated src=- shape=3db40d1f vocab=7f1aa2cc
+-/
 lemma mem_upperEdges_iff {e : E × E × E} :
     e ∈ upperEdges D X ↔ (e.1 ∈ X ∧ e.2.1 ∈ X ∧ e.2.2 ∈ X) ∧ Consec D X e.1 e.2.1 e.2.2 := by
   classical
   unfold upperEdges
   simp only [Finset.mem_filter, Finset.mem_product]
 
+/--
+@isnad1 id=eq.1h3v.s7.67aa6eae5158 from=translated src=- shape=41e188cb vocab=c184a208
+-/
 lemma onUpper_curve {c p : E} (h : OnUpper D (p - c)) : p 1 = curve D c (p 0) := by
   obtain ⟨_, h2⟩ := h
   simp only [PiLp.sub_apply] at h2
   simp only [curve]; linarith
 
+/--
+@isnad1 id=lt.1h3v.s8.04753d1ac89d from=translated src=- shape=d8ee0dc4 vocab=f1ffa6a1
+-/
 lemma onUpper_abs {c p : E} (h : OnUpper D (p - c)) : |p 0 - c 0| < wid D := by
   simpa using h.1
 
+/--
+@isnad1 id=onupper.2h3v.s8.3bc27be3093a from=translated src=- shape=17a4bd73 vocab=cf2cfdae
+-/
 lemma onUpper_of_curve {c z : E} (h0 : |z 0 - c 0| < wid D) (h1 : z 1 = curve D c (z 0)) :
     OnUpper D (z - c) := by
   refine ⟨by simpa using h0, ?_⟩
   simp only [PiLp.sub_apply, curve] at *; linarith
 
+/--
+@isnad1 id=eq.2h2v.s7.bd4ecf28ffc9 from=translated src=- shape=11489ea2 vocab=26a1f0b9
+-/
 lemma pt_ext' {p q : E} (h0 : p 0 = q 0) (h1 : p 1 = q 1) : p = q := by
   ext i; fin_cases i
   · exact h0
   · exact h1
 
+/--
+@isnad1 id=lt.4h5v.s6.c857286e82ae from=translated src=- shape=2dcbd950 vocab=1681bced
+-/
 lemma abs_between {a b s k w : ℝ} (ha : |a - k| < w) (hb : |b - k| < w) (h1 : a ≤ s)
     (h2 : s ≤ b) : |s - k| < w := by
   obtain ⟨a1, a2⟩ := abs_lt.1 ha
   obtain ⟨b1, b2⟩ := abs_lt.1 hb
   exact abs_lt.2 ⟨by linarith, by linarith⟩
 
+/--
+@isnad1 id=eq.8h7v.s9.2b219c2a5b32 from=translated src=- shape=14a30d60 vocab=8ff4f184
+-/
 lemma zero_mid (hS : SepConfig D X) {c c' : E} {t1 s t2 : ℝ}
     (h1 : |t1 - c 0| < wid D ∧ |t1 - c' 0| < wid D)
     (hs : |s - c 0| < wid D ∧ |s - c' 0| < wid D)
@@ -64,7 +85,9 @@ lemma zero_mid (hS : SepConfig D X) {c c' : E} {t1 s t2 : ℝ}
     simp only at a1 a2
     linarith
 
-/-- Two edges on the same curve whose open intervals meet are equal.-/
+/-- Two edges on the same curve whose open intervals meet are equal.
+@isnad1 id=eq.5h5v.s8.1cfed4c90bcd from=translated src=- shape=f51342e9 vocab=09d30653
+-/
 lemma same_center_eq {e e' : E × E × E} (he : e ∈ upperEdges D X) (he' : e' ∈ upperEdges D X)
     (hc : e.1 = e'.1) {x : ℝ} (hx : x ∈ Set.Ioo (e.2.1 0) (e.2.2 0))
     (hx' : x ∈ Set.Ioo (e'.2.1 0) (e'.2.2 0)) : e = e' := by
@@ -92,11 +115,17 @@ lemma same_center_eq {e e' : E × E × E} (he : e ∈ upperEdges D X) (he' : e' 
   have e2 : q = q' := pt_ext' hqq (by rw [onUpper_curve hq, onUpper_curve hq', hqq])
   subst e1 e2; rfl
 
+/--
+@isnad1 id=lt.3h4v.s8.338064a1dc65 from=translated src=- shape=28cebd77 vocab=ea34a516
+-/
 lemma dom_of_edge {e : E × E × E} (he : e ∈ upperEdges D X) {x : ℝ} (h1 : e.2.1 0 ≤ x)
     (h2 : x ≤ e.2.2 0) : |x - e.1 0| < wid D := by
   rw [mem_upperEdges_iff] at he
   exact abs_between (onUpper_abs he.2.1) (onUpper_abs he.2.2.1) h1 h2
 
+/--
+@isnad1 id=iff.0h4v.s9.8330729a7de5 from=translated src=- shape=7901f015 vocab=4eacfd35
+-/
 lemma mem_crossAll_iff {e e' : E × E × E} :
     (e, e') ∈ crossAll (upperEdges D X) (upperArc D) ↔
       e ∈ upperEdges D X ∧ e' ∈ upperEdges D X ∧ e ≠ e' ∧
@@ -107,10 +136,16 @@ lemma mem_crossAll_iff {e e' : E × E × E} :
   simp only [Arc.Crosses, upperArc]
   tauto
 
+/--
+@isnad1 id=eq.1h3v.s5.fcae1100fc08 from=translated src=- shape=62df7d2e vocab=0ff04b24
+-/
 lemma arc_left {e : E × E × E} (he : e ∈ upperEdges D X) : (upperArc D e).left = e.2.1 := by
   rw [mem_upperEdges_iff] at he
   exact pt_ext' (by simp [Arc.left, upperArc]) (by simp [Arc.left, upperArc, onUpper_curve he.2.1])
 
+/--
+@isnad1 id=eq.1h3v.s5.0816b1c9b984 from=translated src=- shape=62df7d2e vocab=8d9b07fa
+-/
 lemma arc_right {e : E × E × E} (he : e ∈ upperEdges D X) : (upperArc D e).right = e.2.2 := by
   rw [mem_upperEdges_iff] at he
   exact pt_ext' (by simp [Arc.right, upperArc])
@@ -124,6 +159,9 @@ noncomputable def meetSet (D : Set E) (X : Finset E) (c c' : E) : Finset (E × E
   exact (upperEdges D X).filter fun e => e.1 = c ∧ c ≠ c' ∧
     ∃ x ∈ Set.Ioo (e.2.1 0) (e.2.2 0), |x - c' 0| < wid D ∧ curve D c x = curve D c' x
 
+/--
+@isnad1 id=iff.0h5v.s9.ea1c4bf1978d from=translated src=- shape=5d0a0521 vocab=ad16cec6
+-/
 lemma mem_meetSet {c c' : E} {e : E × E × E} :
     e ∈ meetSet D X c c' ↔ e ∈ upperEdges D X ∧ e.1 = c ∧ c ≠ c' ∧
       ∃ x ∈ Set.Ioo (e.2.1 0) (e.2.2 0), |x - c' 0| < wid D ∧ curve D c x = curve D c' x := by
@@ -131,6 +169,9 @@ lemma mem_meetSet {c c' : E} {e : E × E × E} :
   unfold meetSet
   simp only [Finset.mem_filter]
 
+/--
+@isnad1 id=or.3h6v.s8.93c41e8a029a from=translated src=- shape=cc4c9400 vocab=5911df8f
+-/
 lemma meetSet_order {c c' : E} {a b : E × E × E} (ha : a ∈ meetSet D X c c')
     (hb : b ∈ meetSet D X c c') (hab : a ≠ b) : a.2.2 0 ≤ b.2.1 0 ∨ b.2.2 0 ≤ a.2.1 0 := by
   rw [mem_meetSet] at ha hb
@@ -152,6 +193,9 @@ lemma meetSet_order {c c' : E} {a b : E × E × E} (ha : a ∈ meetSet D X c c')
     · linarith [le_max_right (a.2.1 0) (b.2.1 0)]
     · linarith [min_le_right (a.2.2 0) (b.2.2 0)]
 
+/--
+@isnad1 id=false.8h7v.s8.dc561a7e4efc from=translated src=- shape=64e76352 vocab=8750dc98
+-/
 lemma meetSet_middle (hS : SepConfig D X) {c c' : E} (hc : c ∈ X) (hc' : c' ∈ X)
     {a m b : E × E × E} (ha : a ∈ meetSet D X c c') (hm : m ∈ meetSet D X c c')
     (hb : b ∈ meetSet D X c c') (ham : a.2.2 0 ≤ m.2.1 0) (hmb : m.2.2 0 ≤ b.2.1 0) : False := by
@@ -182,6 +226,9 @@ lemma meetSet_middle (hS : SepConfig D X) {c c' : E} (hc : c ∈ X) (hc' : c' �
   have hne : m.2.1 ≠ m.2.2 := fun h => by rw [h] at hpq; exact lt_irrefl _ hpq
   exact no_two_common_points hS hc hc' hpX hqX hcc hne hp hq hp' hq'
 
+/--
+@isnad1 id=le.3h4v.s5.1a4684aaf342 from=translated src=- shape=d9b1bcb3 vocab=618b22a2
+-/
 lemma meetSet_card (hS : SepConfig D X) {c c' : E} (hc : c ∈ X) (hc' : c' ∈ X) :
     (meetSet D X c c').card ≤ 2 := by
   by_contra h
@@ -202,6 +249,9 @@ lemma meetSet_card (hS : SepConfig D X) {c c' : E} (hc : c ∈ X) (hc' : c' ∈ 
   · exact M hd hb ha h2 h1
   · exact M hd hb ha h2 h1
 
+/--
+@isnad1 id=le.1h2v.s6.6a901cf68c6c from=translated src=- shape=1c8c967e vocab=c5299e0f
+-/
 theorem crossAll_upper_le (hS : SepConfig D X) :
     (crossAll (upperEdges D X) (upperArc D)).card ≤ 4 * X.card ^ 2 := by
   classical
@@ -232,6 +282,9 @@ theorem crossAll_upper_le (hS : SepConfig D X) :
           _ = 4 := by norm_num
     _ = 4 * X.card ^ 2 := by rw [Finset.card_product, smul_eq_mul]; ring
 
+/--
+@isnad1 id=le.1h2v.s6.89c11c2397e3 from=translated src=- shape=1c8c967e vocab=47abeff9
+-/
 theorem crossDisj_upper_le (hS : SepConfig D X) :
     (crossDisj (upperEdges D X) (upperArc D)).card ≤ 4 * X.card ^ 2 := by
   classical
@@ -241,7 +294,9 @@ theorem crossDisj_upper_le (hS : SepConfig D X) :
 
 /-! ### Adjacent crossings -/
 
-/-- Two edges crossing `e` and sharing its left endpoint are equal.-/
+/-- Two edges crossing `e` and sharing its left endpoint are equal.
+@isnad1 id=eq.5h5v.s7.1498263718ed from=translated src=- shape=68db3a35 vocab=f409dce6
+-/
 lemma left_unique (hS : SepConfig D X) {e e1 e2 : E × E × E}
     (h1 : (e, e1) ∈ crossAll (upperEdges D X) (upperArc D))
     (h2 : (e, e2) ∈ crossAll (upperEdges D X) (upperArc D))
@@ -292,7 +347,9 @@ lemma left_unique (hS : SepConfig D X) {e e1 e2 : E × E × E}
   · exact zero_mid hS ⟨d0' _ le_rfl hx2a.le, d2 _ le_rfl hx2a.le⟩ ⟨d0' y ya yb2, d2 y ya yb2⟩
       ⟨d0' _ hx2a.le le_rfl, d2 _ hx2a.le le_rfl⟩ ya yb2 (by rw [← hp0, ← hp2]) hz2
 
-/-- Two edges crossing `e` and sharing its right endpoint are equal.-/
+/-- Two edges crossing `e` and sharing its right endpoint are equal.
+@isnad1 id=eq.5h5v.s7.9c35a8cb96c3 from=translated src=- shape=76e0e1d6 vocab=2c3f4d9a
+-/
 lemma right_unique (hS : SepConfig D X) {e e1 e2 : E × E × E}
     (h1 : (e, e1) ∈ crossAll (upperEdges D X) (upperArc D))
     (h2 : (e, e2) ∈ crossAll (upperEdges D X) (upperArc D))
@@ -343,6 +400,9 @@ lemma right_unique (hS : SepConfig D X) {e e1 e2 : E × E × E}
   · exact zero_mid hS ⟨d0' _ le_rfl hx2b.le, d2 _ le_rfl hx2b.le⟩ ⟨d0' y ya2 yb, d2 y ya2 yb⟩
       ⟨d0' _ hx2b.le le_rfl, d2 _ hx2b.le le_rfl⟩ ya2 yb hz2 (by rw [← hq0, ← hq2])
 
+/--
+@isnad1 id=le.1h2v.s5.2b2cfcf40b59 from=translated src=- shape=3356ec26 vocab=4b453958
+-/
 theorem crossAdj_upper_le (hS : SepConfig D X) :
     (crossAdj (upperEdges D X) (upperArc D)).card ≤ 4 * (upperEdges D X).card := by
   classical

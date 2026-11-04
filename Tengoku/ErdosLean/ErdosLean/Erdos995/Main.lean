@@ -30,7 +30,9 @@ namespace Erdos995
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
-/-- **Erdős's upper bound** (in fact for every sequence `n`, lacunary or not).-/
+/-- **Erdős's upper bound** (in fact for every sequence `n`, lacunary or not).
+@isnad1 id=erdosupp.0h0v.s0.2bd4a2bccb86 from=translated src=- shape=45709ebd vocab=2bd4a2bc
+-/
 theorem erdosUpperBound : ErdosUpperBound := by
   intro f n _ ε hε
   have h : ∀ᵐ x ∂μ𝕋, ∀ m : ℕ, ∀ᶠ j : ℕ in atTop, Upper.sumNorm f n (2 ^ (j + 1)) x ≤

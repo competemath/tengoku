@@ -11,7 +11,9 @@ namespace Erdos996
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
-/-- Crude spike floor: `φ_d ≥ -t/√(t(1-t))` with `t = 2^{-d}` (valid for all `d`).-/
+/-- Crude spike floor: `φ_d ≥ -t/√(t(1-t))` with `t = 2^{-d}` (valid for all `d`).
+@isnad1 id=le.0h2v.s6.bee363edaea3 from=translated src=- shape=fb60423e vocab=a58c3ba3
+-/
 lemma spike_ge_floor_aux (d : ℕ) (x : 𝕋) :
     -((2 : ℝ)⁻¹ ^ d / Real.sqrt ((2 : ℝ)⁻¹ ^ d * (1 - (2 : ℝ)⁻¹ ^ d))) ≤ spike d x := by
   unfold spike
@@ -22,7 +24,9 @@ lemma spike_ge_floor_aux (d : ℕ) (x : 𝕋) :
     Set.indicator_nonneg (fun _ _ => zero_le_one) x
   linarith
 
-/-- The spike floor constant `g` satisfies `g² ≤ 2 · 2^{-d}`.-/
+/-- The spike floor constant `g` satisfies `g² ≤ 2 · 2^{-d}`.
+@isnad1 id=ex.0h1v.s6.845beb952e2c from=translated src=- shape=f9ef7e95 vocab=480cf83b
+-/
 lemma spike_floor_exists (d : ℕ) :
     ∃ g : ℝ, 0 ≤ g ∧ g ^ 2 ≤ 2 * (2 : ℝ)⁻¹ ^ d ∧ ∀ y : 𝕋, -g ≤ spike d y := by
   have ht0 : (0 : ℝ) < (2 : ℝ)⁻¹ ^ d := by positivity
@@ -39,7 +43,9 @@ lemma spike_floor_exists (d : ℕ) :
     rw [div_pow, hs, div_le_iff₀ (by nlinarith)]
     nlinarith [mul_nonneg (sq_nonneg ((2 : ℝ)⁻¹ ^ d)) (sub_nonneg.2 ht2)]
 
-/-- Deterministic lower floor `F ≥ -C₃ λ / B` under the depth choice `64 B² L / λ ≤ 2^d`.-/
+/-- Deterministic lower floor `F ≥ -C₃ λ / B` under the depth choice `64 B² L / λ ≤ 2^d`.
+@isnad1 id=le.4h7v.s7.2a28298352c7 from=translated src=- shape=246f536e vocab=371a594f
+-/
 lemma block_lower_floor (lam B : ℝ) (L d D U : ℕ) (hlam : 0 < lam) (hB : 1 ≤ B)
     (hL : 1 ≤ L) (hd : 64 * B ^ 2 * L / lam ≤ 2 ^ d) (x : 𝕋) :
     -(lam / B) ≤ block lam L d D U x := by

@@ -21,6 +21,9 @@ Given `G` on a finite type `V` with the hypotheses of `DiamBoundType`, let
 
 namespace Erdos612
 
+/--
+@isnad1 id=diamboun.1h3v.s3.6d614b765238 from=translated src=- shape=da6bb30e vocab=74ff4a3a
+-/
 theorem diamBoundType_of_diamBound {s m : ℕ} {c : ℝ} (h : DiamBound s m c) :
     DiamBoundType s m c := by
   classical

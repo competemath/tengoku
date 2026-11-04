@@ -8,6 +8,9 @@ namespace Erdos790
 
 open Filter
 
+/--
+@isnad1 id=eventual.2h2v.s6.4033898e8e1b from=translated src=- shape=9a8e181e vocab=52eaa607
+-/
 lemma asymptotics_key (c : ℝ) (hc : 0 < c) (ε : ℝ) (hε : 0 < ε) :
     ∀ᶠ x : ℝ in atTop, x ^ (1 - ε) ≤ c * x / Real.log x ^ 2 := by
   have h := (isLittleO_log_rpow_atTop (half_pos hε)).bound (Real.sqrt_pos.2 hc)
@@ -25,6 +28,9 @@ lemma asymptotics_key (c : ℝ) (hc : 0 < c) (ε : ℝ) (hε : 0 < ε) :
   calc x ^ (1 - ε) * Real.log x ^ 2 ≤ x ^ (1 - ε) * (c * x ^ ε) := by gcongr
     _ = c * x := by rw [mul_left_comm, ← Real.rpow_add hxpos]; simp
 
+/--
+@isnad1 id=and.2h2v.s7.aed3a4d2cbad from=translated src=- shape=c50b3ab0 vocab=b6d87d5f
+-/
 theorem asymptotics (f : ℕ → ℕ) (c : ℝ) (hc : 0 < c)
     (hf : ∀ n : ℕ, 2 ≤ n → c * n / Real.log n ^ 2 ≤ f n) :
     Tendsto (fun n : ℕ => (f n : ℝ) / Real.sqrt n) atTop atTop ∧

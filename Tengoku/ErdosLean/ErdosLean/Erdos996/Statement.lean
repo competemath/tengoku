@@ -54,6 +54,9 @@ def Erdos996Statement : Prop :=
 /-- A strong lacunarity condition satisfied by the counterexample (`n_{k+1} ≥ 2 n_k`, `n 0 ≥ 1`).-/
 def IsDyadicLacunary (n : ℕ → ℕ) : Prop := 1 ≤ n 0 ∧ ∀ k, 2 * n k ≤ n (k + 1)
 
+/--
+@isnad1 id=islacuna.1h1v.s3.4621a4a57240 from=translated src=- shape=c3984ded vocab=89ac2035
+-/
 lemma IsDyadicLacunary.isLacunary {n : ℕ → ℕ} (hn : IsDyadicLacunary n) : IsLacunary n := by
   refine ⟨3 / 2, by norm_num, Eventually.of_forall fun k => ?_⟩
   have hpos : ∀ k, 1 ≤ n k := by

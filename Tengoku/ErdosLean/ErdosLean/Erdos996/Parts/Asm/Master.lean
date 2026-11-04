@@ -22,12 +22,18 @@ namespace Asm
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
+/--
+@isnad1 id=le.1h2v.s5.28d647241b55 from=translated src=- shape=b3e96bc5 vocab=d922ddd9
+-/
 lemma gFun_ge (A : ℕ) (hA : 1 ≤ A) (x : 𝕋) : -(1 / 100 : ℝ) ≤ gFun A x := by
   unfold gFun
   have h1 := tsum_floorC_le A hA
   have h2 : 0 ≤ (gPos A x).toReal := ENNReal.toReal_nonneg
   linarith
 
+/--
+@isnad1 id=le.2h3v.s6.76f2a48ed4ee from=translated src=- shape=d7c31578 vocab=3a1fd015
+-/
 lemma blk_sub_le_gFun (A : ℕ) (hA : 1 ≤ A) (x : 𝕋) (hx : gPos A x ≠ ∞) (k : ℕ) :
     blk A k x - 1 / 100 ≤ gFun A x := by
   unfold gFun
@@ -42,6 +48,9 @@ lemma blk_sub_le_gFun (A : ℕ) (hA : 1 ≤ A) (x : 𝕋) (hx : gPos A x ≠ ∞
     rw [ENNReal.toReal_ofReal']; exact le_max_left _ _
   linarith
 
+/--
+@isnad1 id=eventual.1h2v.s8.82c2a1155431 from=translated src=- shape=dbffe206 vocab=c88f3094
+-/
 lemma ae_forall_nSeq (A : ℕ) {P : 𝕋 → Prop} (h : ∀ᵐ y ∂μ𝕋, P y) :
     ∀ᵐ x ∂μ𝕋, ∀ j, P (nSeq A j • x) := by
   have hv : (volume : Measure 𝕋) = μ𝕋 := by
@@ -57,6 +66,9 @@ lemma ae_forall_nSeq (A : ℕ) {P : 𝕋 → Prop} (h : ∀ᵐ y ∂μ𝕋, P y)
       exact MeasurePreserving.id _
   exact hmp.quasiMeasurePreserving.ae h
 
+/--
+@isnad1 id=ex.3h3v.s8.2dc139901207 from=translated src=- shape=956d3f79 vocab=a53ca45d
+-/
 lemma master_trial (A : ℕ) (hA : 1 ≤ A) (x : 𝕋) (s : ℕ)
     (hfin : ∀ j, gPos A (nSeq A j • x) ≠ ∞) (hx : x ∈ goodSet A s) :
     ∃ N : ℕ, s ≤ N ∧ (1 : ℝ) ≤ (∑ j ∈ range N, gFun A (nSeq A j • x)) / N := by

@@ -11,6 +11,9 @@ For `t ≥ 0` and `t⁴/2 ≤ e`: `0 ≤ p_x(t) ≤ t³/2` and `0 ≤ p_y(t) ≤
 
 namespace Erdos956
 
+/--
+@isnad1 id=and.2h2v.s9.99f8ee548c9d from=translated src=- shape=755ac11c vocab=c11a03b7
+-/
 lemma pp_coords {e t : ℝ} (ht : 0 ≤ t) (he : t ^ 4 / 2 ≤ e) :
     0 ≤ pp e t 0 ∧ pp e t 0 ≤ t ^ 3 / 2 ∧ 0 ≤ pp e t 1 ∧ pp e t 1 ≤ e := by
   have hl := inv_rr_lower t

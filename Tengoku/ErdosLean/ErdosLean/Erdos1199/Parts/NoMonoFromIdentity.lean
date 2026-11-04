@@ -13,7 +13,9 @@ namespace Erdos1199
 open Filter
 
 /-- If for every `p ∈ ℕ*` exactly one of `p + p`, `D p` contains `{n | h n = true}`, then no
-infinite `B ⊆ ℕ` has `B + B` monochromatic under `h`.-/
+infinite `B ⊆ ℕ` has `B + B` monochromatic under `h`.
+@isnad1 id=not.1h1v.s6.1e821b6e4656 from=translated src=- shape=db9c91e0 vocab=0fc8e625
+-/
 theorem no_mono_of_identity (h : ℕ → Bool)
     (hid : ∀ p : Ultrafilter ℕ, Nonprincipal p →
       ({n : ℕ | h n = true} ∈ p + p ↔ {n : ℕ | h n = true} ∉ dbl p)) :

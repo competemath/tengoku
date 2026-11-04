@@ -13,7 +13,9 @@ namespace Erdos1199
 open Filter
 
 /-- Lemma 3.4: if `A ∈ p + p` and `A ∈ D p` for a nonprincipal `p`, then there is a strictly
-increasing sequence `v` with `v i + v j ∈ A` for all `i ≤ j`.-/
+increasing sequence `v` with `v i + v j ∈ A` for all `i ≤ j`.
+@isnad1 id=ex.3h2v.s6.c64a6bdab2b3 from=translated src=- shape=e996d77a vocab=422cc7df
+-/
 theorem diagonal_recursion {p : Ultrafilter ℕ} (hp : Nonprincipal p) {A : Set ℕ}
     (h1 : A ∈ p + p) (h2 : A ∈ dbl p) :
     ∃ v : ℕ → ℕ, StrictMono v ∧ ∀ i j, i ≤ j → v i + v j ∈ A := by

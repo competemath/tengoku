@@ -11,12 +11,18 @@ disjoint translate.  Adding points never removes unit pairs.
 
 namespace Erdos956
 
+/--
+@isnad1 id=le.1h3v.s5.575c013eed45 from=translated src=- shape=c6e1ef6f vocab=093893e1
+-/
 lemma unitPairs_mono {C : Set E} {X Y : Finset E} (h : X ⊆ Y) :
     unitPairs C X ⊆ unitPairs C Y := by
   classical
   unfold unitPairs
   exact Finset.filter_subset_filter _ (Finset.sym2_mono h)
 
+/--
+@isnad1 id=ex.1h2v.s7.bb5fe73da921 from=translated src=- shape=98dba540 vocab=1c758ed8
+-/
 lemma altPadding_exists_far {C : Set E} {X : Finset E} (hX : Admissible C X) :
     ∃ y, y ∉ X ∧ Admissible C (insert y X) := by
   obtain ⟨hc, hconv, hne, hpw⟩ := hX
@@ -60,6 +66,9 @@ lemma altPadding_exists_far {C : Set E} {X : Finset E} (hX : Admissible C X) :
   · rw [Finset.coe_insert, Set.pairwise_insert]
     exact ⟨hpw, fun x hx _ => ⟨hdisj x hx, (hdisj x hx).symm⟩⟩
 
+/--
+@isnad1 id=ex.2h3v.s5.a5618647d08c from=translated src=- shape=94dd11d3 vocab=566f1923
+-/
 theorem exists_padding {C : Set E} {X : Finset E} (hX : Admissible C X) {n : ℕ}
     (hn : X.card ≤ n) : ∃ Y : Finset E, X ⊆ Y ∧ Y.card = n ∧ Admissible C Y := by
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hn

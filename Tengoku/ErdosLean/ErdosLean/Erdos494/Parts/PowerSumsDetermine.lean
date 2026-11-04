@@ -13,7 +13,9 @@ namespace Erdos494
 
 open Finset
 
-/-- Newton's identity for a finite subset of `ℂ`, stated with `Multiset.esymm` and `psum`.-/
+/-- Newton's identity for a finite subset of `ℂ`, stated with `Multiset.esymm` and `psum`.
+@isnad1 id=eq.0h2v.s7.45bfd62c80fb from=translated src=- shape=337f2c3b vocab=13692a81
+-/
 lemma newton_finset (S : Finset ℂ) (k : ℕ) :
     (k : ℂ) * S.val.esymm k = (-1) ^ (k + 1) *
       ∑ a ∈ antidiagonal k with a.1 < k, (-1) ^ a.1 * S.val.esymm a.1 * psum S a.2 := by
@@ -31,6 +33,9 @@ lemma newton_finset (S : Finset ℂ) (k : ℕ) :
     exact Finset.sum_coe_sort S (fun a => a ^ m)
   simpa [map_mul, map_sum, map_pow, map_neg, map_one, map_natCast, he, hp] using h
 
+/--
+@isnad1 id=eq.3h3v.s5.7e6cdfbab0ea from=translated src=- shape=63b27bf6 vocab=53871fc3
+-/
 theorem power_sums_determine (A B : Finset ℂ) (n : ℕ) (hA : A.card = n) (hB : B.card = n)
     (h : ∀ j, 1 ≤ j → j ≤ n → psum A j = psum B j) : A = B := by
   -- elementary symmetric functions agree up to `n`

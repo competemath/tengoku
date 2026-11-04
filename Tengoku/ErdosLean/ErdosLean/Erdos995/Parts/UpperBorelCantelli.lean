@@ -20,6 +20,9 @@ namespace Upper
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
+/--
+@isnad1 id=eventual.2h4v.s9.b589f579abe8 from=translated src=- shape=2f89fe3c vocab=24a7a4ca
+-/
 lemma ae_eventually_sumNorm_le (f : Lp ℂ 2 μ𝕋) (n : ℕ → ℕ) {ε δ : ℝ} (hε : 0 < ε) (hδ : 0 < δ) :
     ∀ᵐ x ∂μ𝕋, ∀ᶠ j : ℕ in atTop,
       sumNorm f n (2 ^ (j + 1)) x ≤ δ * ((2 : ℝ) ^ j * (j : ℝ) ^ ((1 : ℝ) / 2 + ε)) := by

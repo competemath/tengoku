@@ -11,7 +11,9 @@ namespace Erdos494
 
 open Complex
 
-/-- If `|C| = k` then `C_k = {Σ C}`.-/
+/-- If `|C| = k` then `C_k = {Σ C}`.
+@isnad1 id=eq.1h2v.s4.aaf11519f0de from=translated src=- shape=537e661c vocab=c0789330
+-/
 lemma sumMultiset_of_card_eq (C : Finset ℂ) (k : ℕ) (hC : C.card = k) :
     sumMultiset C k = {C.sum id} := by
   subst hC
@@ -19,6 +21,9 @@ lemma sumMultiset_of_card_eq (C : Finset ℂ) (k : ℕ) (hC : C.card = k) :
   rw [Finset.powersetCard_self]
   rfl
 
+/--
+@isnad1 id=not.1h1v.s4.26a743ad881c from=translated src=- shape=5659affb vocab=2a0f510e
+-/
 theorem kruyt_counterexample : ∀ k > 2, ¬Erdos494Unique k k := by
   intro k hk hU
   let c : ℕ → ℂ := fun i => (if i = 0 then 1 else 0) - (if i = 1 then 1 else 0)

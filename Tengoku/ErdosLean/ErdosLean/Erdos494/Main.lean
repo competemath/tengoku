@@ -26,7 +26,9 @@ open Filter
 
 namespace Erdos494
 
-/-- Selfridge–Straus: nonvanishing of `f_s(n, ·)` gives uniqueness for `|A| = n`.-/
+/-- Selfridge–Straus: nonvanishing of `f_s(n, ·)` gives uniqueness for `|A| = n`.
+@isnad1 id=erdos494.1h2v.s4.1b3381d1f7d3 from=translated src=- shape=2c3d2ad7 vocab=3f361a70
+-/
 theorem unique_of_gfsPoly_ne_zero (s n : ℕ) (hcore : ∀ j, 1 ≤ j → gfsPoly s n j ≠ 0) :
     Erdos494Unique s n := by
   intro A B hA hB hAB

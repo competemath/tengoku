@@ -18,7 +18,9 @@ Suppose `‖g z‖ ≤ A (1 + ‖z‖)` on `D = tract g K z₀`.
 
 namespace Erdos514
 
-/-- `log (B (1 + r)) < c √r` for all large `r`.-/
+/-- `log (B (1 + r)) < c √r` for all large `r`.
+@isnad1 id=ex.2h2v.s6.680449d0cf9b from=translated src=- shape=be8c448d vocab=8e4ef9f2
+-/
 lemma alt_log_lt_sqrt {B c : ℝ} (hB : 0 < B) (hc : 0 < c) :
     ∃ R : ℝ, ∀ r ≥ R, Real.log (B * (1 + r)) < c * Real.sqrt r := by
   refine ⟨1 + 512 * B / c ^ 4, fun r hr => ?_⟩
@@ -61,6 +63,9 @@ lemma alt_log_lt_sqrt {B c : ℝ} (hB : 0 < B) (hc : 0 < c) :
     exact h
   linarith
 
+/--
+@isnad1 id=ex.3h4v.s6.d310797046dc from=translated src=- shape=c985699c vocab=dfb02683
+-/
 theorem tract_growth {g : ℂ → ℂ} (hg : IsTranscendentalEntire g) {K : ℝ} (hK : 0 < K) {z₀ : ℂ}
     (hz₀ : K < ‖g z₀‖) (A : ℝ) : ∃ z ∈ tract g K z₀, A * (1 + ‖z‖) < ‖g z‖ := by
   by_contra hcon

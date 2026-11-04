@@ -34,7 +34,9 @@ open SimpleGraph
 
 namespace Erdos612
 
-/-- **Engine.**  A periodic family of layered blow-ups refutes `DiamBound s m c`.-/
+/-- **Engine.**  A periodic family of layered blow-ups refutes `DiamBound s m c`.
+@isnad1 id=not.8h7v.s7.38b502ab867c from=translated src=- shape=2138ce16 vocab=540b2982
+-/
 theorem not_diamBound_of_fam {s m δ : ℕ} {c : ℝ} (pre per suf : Layers) (hper2 : 2 ≤ per.length)
     (hδ : 2 ≤ δ) (hm : m ∣ δ)
     (hpos : AllWin PosQ (fam pre per suf 2)) (hdeg : AllWin (DegQ δ) (fam pre per suf 2))
@@ -73,7 +75,9 @@ theorem not_diamBound_of_fam {s m δ : ℕ} {c : ℝ} (pre per suf : Layers) (hp
   rw [e] at key
   nlinarith
 
-/-- Part (i) fails at `r = 2`.-/
+/-- Part (i) fails at `r = 2`.
+@isnad1 id=not.0h0v.s2.1fb260822b7e from=translated src=- shape=8d7dbbf6 vocab=a498e741
+-/
 theorem not_evenConjAt_two : ¬ EvenConjAt 2 := by
   unfold EvenConjAt
   rw [evenCoeff_two]
@@ -82,7 +86,9 @@ theorem not_evenConjAt_two : ¬ EvenConjAt 2 := by
   rw [show cssPer.total = 73 from cssPer_sum, cssPer_len]
   norm_num
 
-/-- Part (ii) fails at `r = 4`.-/
+/-- Part (ii) fails at `r = 4`.
+@isnad1 id=not.0h0v.s2.8e319fb22f00 from=translated src=- shape=8d7dbbf6 vocab=7db2e794
+-/
 theorem not_oddConjAt_four : ¬ OddConjAt 4 := by
   unfold OddConjAt
   rw [oddCoeff_four]
@@ -92,14 +98,18 @@ theorem not_oddConjAt_four : ¬ OddConjAt 4 := by
   norm_num
 
 /-- **Erdős #612**: both parts of the conjecture are false, in the weak and in the uniform
-reading of `O(1)`.-/
+reading of `O(1)`.
+@isnad1 id=erdos612.0h0v.s0.21fd6d8cbdd9 from=translated src=- shape=45709ebd vocab=21fd6d8c
+-/
 theorem erdos_612 : Erdos612Answer := by
   refine ⟨fun h => not_evenConjAt_two (h 2 le_rfl), fun h => not_oddConjAt_four (h 4 (by norm_num)),
     fun h => not_evenConjAt_two (diamBound_of_uniform (h 2 le_rfl)),
     fun h => not_oddConjAt_four (diamBound_of_uniform (h 4 (by norm_num))),
     not_evenConjAt_two, not_oddConjAt_four⟩
 
-/-- The negation of the conjecture as stated.-/
+/-- The negation of the conjecture as stated.
+@isnad1 id=not.0h0v.s1.29136a7b8366 from=translated src=- shape=49959d42 vocab=5c90bdc7
+-/
 theorem erdos_612_false : ¬ Erdos612Conjecture := fun h => erdos_612.1 h.1
 
 end Erdos612

@@ -13,6 +13,9 @@ Along an edge the layer changes by at most one, so `dist u v ≥ layer v - layer
 
 namespace Erdos612
 
+/--
+@isnad1 id=le.0h4v.s5.222c945faa43 from=translated src=- shape=0be10c9a vocab=c8049dba
+-/
 theorem layer_le_walk_length (L : Layers) {u v : Vtx L} (p : (blowup L).Walk u v) :
     v.layer ≤ u.layer + p.length := by
   induction p with
@@ -22,13 +25,18 @@ theorem layer_le_walk_length (L : Layers) {u v : Vtx L} (p : (blowup L).Walk u v
     have := h.2.2
     omega
 
+/--
+@isnad1 id=le.1h3v.s5.1ace5e64c326 from=translated src=- shape=8bdc7bfd vocab=fd0acb89
+-/
 theorem layer_sub_le_dist (L : Layers) (u v : Vtx L) (h : (blowup L).Reachable u v) :
     v.layer - u.layer ≤ (blowup L).dist u v := by
   obtain ⟨p, hp⟩ := h.exists_walk_length_eq_dist
   have := layer_le_walk_length L p
   omega
 
-/-- A vertex in any layer `ℓ < L.length`, under `AllWin PosQ L`.-/
+/-- A vertex in any layer `ℓ < L.length`, under `AllWin PosQ L`.
+@isnad1 id=ex.2h2v.s4.376c6ab7d0fd from=translated src=- shape=4985936e vocab=605f5f8d
+-/
 theorem exists_vtx_layer (L : Layers) (hpos : AllWin PosQ L) (ℓ : ℕ) (hℓ : ℓ < L.length) :
     ∃ v : Vtx L, v.layer = ℓ := by
   obtain ⟨hne, hw⟩ := hpos ℓ hℓ
@@ -41,6 +49,9 @@ theorem exists_vtx_layer (L : Layers) (hpos : AllWin PosQ L) (ℓ : ℕ) (hℓ :
     exact List.getElem_mem _
   exact ⟨⟨⟨⟨ℓ, hℓ⟩, ⟨0, hc⟩⟩, ⟨0, hwt⟩⟩, rfl⟩
 
+/--
+@isnad1 id=le.2h1v.s5.b1fce58a8fd8 from=translated src=- shape=3e04ed94 vocab=bc0dc04d
+-/
 theorem length_le_diam (L : Layers) (hpos : AllWin PosQ L) (hc : (blowup L).Connected) :
     L.length ≤ (blowup L).diam + 1 := by
   rcases Nat.eq_zero_or_pos L.length with h0 | hl

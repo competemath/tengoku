@@ -14,6 +14,9 @@ open Filter Topology
 
 namespace Erdos265
 
+/--
+@isnad1 id=ex.3h2v.s6.da94592afcd8 from=translated src=- shape=52029669 vocab=a66df93c
+-/
 theorem quad_limit {H : ℕ → ℝ} (h1 : ∀ n, 1 ≤ H n) {K : ℝ} (hK : 0 < K)
     (hrec : ∀ᶠ n in atTop, H (n + 1) ≤ K * H n ^ 2) :
     ∃ ℓ : ℝ, 0 ≤ ℓ ∧ Tendsto (logRatio H) atTop (𝓝 ℓ) := by

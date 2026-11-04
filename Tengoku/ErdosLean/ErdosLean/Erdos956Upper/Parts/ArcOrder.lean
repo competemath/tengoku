@@ -12,6 +12,9 @@ namespace Erdos956Upper
 
 open Erdos956 Metric
 
+/--
+@isnad1 id=lt.8h4v.s6.9df5e08cd128 from=translated src=- shape=40ddfbaa vocab=0b694808
+-/
 theorem Arc.lt_of_lt_of_not_crosses {a b : Arc} (ha : a.Valid) (hb : b.Valid)
     (hnc : ¬ a.Crosses b) {x y : ℝ} (hxa : x ∈ Set.Ioo a.l a.r) (hxb : x ∈ Set.Ioo b.l b.r)
     (hya : y ∈ Set.Ioo a.l a.r) (hyb : y ∈ Set.Ioo b.l b.r) (hlt : a.f x < b.f x) :

@@ -18,6 +18,9 @@ namespace Asm
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
+/--
+@isnad1 id=measurab.0h1v.s4.cdff9dc42be3 from=translated src=- shape=c7200f4e vocab=ef3158f6
+-/
 lemma measurableSet_spikeSet (d : ℕ) : MeasurableSet (spikeSet d) := by
   have hb : (0 : ℝ) < (2 : ℝ)⁻¹ ^ d := by positivity
   unfold spikeSet
@@ -25,7 +28,9 @@ lemma measurableSet_spikeSet (d : ℕ) : MeasurableSet (spikeSet d) := by
   exact ((QuotientAddGroup.isOpenMap_coe (N := AddSubgroup.zmultiples (1 : ℝ))) _
     isOpen_Ioo).measurableSet.insert _
 
-/-- Haar measure on `𝕋` computed on `[0,1)` in `ℝ`.-/
+/-- Haar measure on `𝕋` computed on `[0,1)` in `ℝ`.
+@isnad1 id=eq.1h1v.s7.8131cbaf02b0 from=translated src=- shape=96e63732 vocab=b47a9f68
+-/
 lemma haar_eq_volume_Ico (U : Set 𝕋) (hU : MeasurableSet U) :
     μ𝕋 U = volume (Set.Ico (0 : ℝ) 1 ∩ (((↑) : ℝ → 𝕋) ⁻¹' U)) := by
   have h1 : (volume : Measure 𝕋) = μ𝕋 := by
@@ -34,6 +39,9 @@ lemma haar_eq_volume_Ico (U : Set 𝕋) (hU : MeasurableSet U) :
   rw [← h1, h2, zero_add, Set.inter_comm]
   exact measure_congr ((Ico_ae_eq_Ioc (μ := (volume : Measure ℝ))).symm.inter (ae_eq_refl _))
 
+/--
+@isnad1 id=eq.0h1v.s6.45db5f6f0c8f from=translated src=- shape=d653b3c3 vocab=2e4fcdd7
+-/
 lemma measure_spikeSet (d : ℕ) : μ𝕋 (spikeSet d) = (2⁻¹ : ℝ≥0∞) ^ d := by
   have ht1 : (2 : ℝ)⁻¹ ^ d ≤ 1 := pow_le_one₀ (by norm_num) (by norm_num)
   rw [haar_eq_volume_Ico _ (measurableSet_spikeSet d)]
@@ -58,16 +66,25 @@ lemma measure_spikeSet (d : ℕ) : μ𝕋 (spikeSet d) = (2⁻¹ : ℝ≥0∞) ^
     ENNReal.ofReal_inv_of_pos (by norm_num)]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s7.9b1b6813064a from=translated src=- shape=88c28cf9 vocab=14616721
+-/
 lemma spike_eq (d : ℕ) (x : 𝕋) :
     spike d x = ((spikeSet d).indicator 1 x - (2 : ℝ)⁻¹ ^ d) /
       Real.sqrt ((2 : ℝ)⁻¹ ^ d * (1 - (2 : ℝ)⁻¹ ^ d)) := rfl
 
+/--
+@isnad1 id=measurab.0h1v.s5.0607d8760fa0 from=translated src=- shape=f6104e8a vocab=40389545
+-/
 lemma measurable_spike (d : ℕ) : Measurable (spike d) := by
   have : spike d = fun x => ((spikeSet d).indicator 1 x - (2 : ℝ)⁻¹ ^ d) /
       Real.sqrt ((2 : ℝ)⁻¹ ^ d * (1 - (2 : ℝ)⁻¹ ^ d)) := rfl
   rw [this]
   exact ((measurable_one.indicator (measurableSet_spikeSet d)).sub measurable_const).div_const _
 
+/--
+@isnad1 id=le.0h2v.s5.b7dc3a99cdf6 from=translated src=- shape=671f88af vocab=7ed38aab
+-/
 lemma abs_spike_le (d : ℕ) (x : 𝕋) : |spike d x| ≤ 2 ^ d := by
   rcases Nat.eq_zero_or_pos d with rfl | hd
   · simp [spike]
@@ -92,9 +109,15 @@ lemma abs_spike_le (d : ℕ) (x : 𝕋) : |spike d x| ≤ 2 ^ d := by
     _ ≤ 1 / t := one_div_le_one_div_of_le ht0 hct
     _ = 2 ^ d := by rw [ht, one_div, inv_pow, inv_inv]
 
+/--
+@isnad1 id=measurab.0h2v.s5.52788a040e7c from=translated src=- shape=9790d628 vocab=c6b4a551
+-/
 lemma measurableSet_hitSet (d v : ℕ) : MeasurableSet (hitSet d v) :=
   (continuous_nsmul (2 ^ v)).measurable (measurableSet_spikeSet d)
 
+/--
+@isnad1 id=measurep.1h1v.s7.0fb413b0eaa4 from=translated src=- shape=6afc3f5a vocab=6786adb2
+-/
 lemma measurePreserving_nsmul (n : ℕ) (hn : n ≠ 0) :
     MeasurePreserving (fun x : 𝕋 => n • x) μ𝕋 μ𝕋 := by
   have hmp : MeasurePreserving (fun x : 𝕋 => (n : ℤ) • x) μ𝕋 μ𝕋 :=
@@ -103,27 +126,42 @@ lemma measurePreserving_nsmul (n : ℕ) (hn : n ≠ 0) :
     funext x; exact (natCast_zsmul x n).symm
   rw [e]; exact hmp
 
+/--
+@isnad1 id=eq.0h2v.s6.3ffd25db5d8c from=translated src=- shape=c9c7e0a7 vocab=f92241c0
+-/
 lemma measure_hitSet (d v : ℕ) : μ𝕋 (hitSet d v) = (2⁻¹ : ℝ≥0∞) ^ d := by
   have hmp := measurePreserving_nsmul (2 ^ v) (by positivity)
   have : hitSet d v = (fun x : 𝕋 => (2 ^ v : ℕ) • x) ⁻¹' spikeSet d := rfl
   rw [this, hmp.measure_preimage (measurableSet_spikeSet d).nullMeasurableSet]
   exact measure_spikeSet d
 
+/--
+@isnad1 id=eq.2h2v.s8.e6719ab6ed50 from=translated src=- shape=2d09567a vocab=04106320
+-/
 lemma integral_nsmul_comp (n : ℕ) (hn : n ≠ 0) (g : 𝕋 → ℝ) (hg : Measurable g) :
     ∫ x, g (n • x) ∂μ𝕋 = ∫ x, g x ∂μ𝕋 := by
   have hmp := measurePreserving_nsmul n hn
   rw [← integral_map hmp.measurable.aemeasurable
     (by rw [hmp.map_eq]; exact hg.aestronglyMeasurable), hmp.map_eq]
 
+/--
+@isnad1 id=eq.0h1v.s7.0fe9c9b934c4 from=translated src=- shape=5aba3f58 vocab=185baa25
+-/
 lemma integral_indicator_spikeSet (d : ℕ) :
     ∫ x, (spikeSet d).indicator (1 : 𝕋 → ℝ) x ∂μ𝕋 = (2 : ℝ)⁻¹ ^ d := by
   rw [integral_indicator_one (measurableSet_spikeSet d), measureReal_def, measure_spikeSet]
   simp
 
+/--
+@isnad1 id=integrab.0h1v.s7.468d992714a2 from=translated src=- shape=23805242 vocab=3a3d572e
+-/
 lemma integrable_indicator_spikeSet (d : ℕ) :
     Integrable (fun x => (spikeSet d).indicator (1 : 𝕋 → ℝ) x) μ𝕋 :=
   (integrable_const (1 : ℝ)).indicator (measurableSet_spikeSet d)
 
+/--
+@isnad1 id=eq.1h2v.s7.3df218c066c2 from=translated src=- shape=9313228a vocab=46f19b76
+-/
 lemma integral_spike_nsmul (d n : ℕ) (hn : n ≠ 0) : ∫ x, spike d (n • x) ∂μ𝕋 = 0 := by
   rw [integral_nsmul_comp n hn _ (measurable_spike d)]
   simp only [spike_eq]
@@ -131,6 +169,9 @@ lemma integral_spike_nsmul (d n : ℕ) (hn : n ≠ 0) : ∫ x, spike d (n • x)
     integral_indicator_spikeSet, integral_const]
   simp
 
+/--
+@isnad1 id=eq.2h2v.s7.88b94f9767f3 from=translated src=- shape=c119c0d4 vocab=6bc0b95d
+-/
 lemma integral_spike_nsmul_sq (d n : ℕ) (hd : 1 ≤ d) (hn : n ≠ 0) :
     ∫ x, spike d (n • x) ^ 2 ∂μ𝕋 = 1 := by
   rw [integral_nsmul_comp n hn (fun y => spike d y ^ 2) ((measurable_spike d).pow_const 2)]

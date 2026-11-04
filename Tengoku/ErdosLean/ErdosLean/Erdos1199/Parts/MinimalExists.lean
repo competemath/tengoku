@@ -12,7 +12,9 @@ namespace Erdos1199
 
 open Filter
 
-/-- `ω(x)` is closed.-/
+/-- `ω(x)` is closed.
+@isnad1 id=isclosed.0h1v.s3.6baeedd2d05f from=translated src=- shape=6da4ece3 vocab=2565868f
+-/
 theorem isClosed_omega (x : Pt) : IsClosed (Omega x) := by
   have hc : IsCompact {p : Ultrafilter ℕ | Nonprincipal p} :=
     isClosed_nonprincipal.isCompact
@@ -21,18 +23,24 @@ theorem isClosed_omega (x : Pt) : IsClosed (Omega x) := by
   rw [this]
   exact (hc.image (continuous_act x)).isClosed
 
-/-- `ω(x)` is nonempty.-/
+/-- `ω(x)` is nonempty.
+@isnad1 id=nonempty.0h1v.s2.214291afa99e from=translated src=- shape=6da4ece3 vocab=acb7596f
+-/
 theorem omega_nonempty (x : Pt) : (Omega x).Nonempty := by
   obtain ⟨p, hp, -⟩ := exists_nonprincipal_mem (Set.infinite_univ (α := ℕ))
   exact ⟨act p x, p, hp, rfl⟩
 
-/-- `ω(x)` is invariant.-/
+/-- `ω(x)` is invariant.
+@isnad1 id=mem.1h3v.s4.b2243501e545 from=translated src=- shape=52180de5 vocab=e198abb5
+-/
 theorem omega_invariant (x : Pt) (p : Ultrafilter ℕ) {y : Pt} (hy : y ∈ Omega x) :
     act p y ∈ Omega x := by
   obtain ⟨q, hq, rfl⟩ := hy
   exact ⟨p + q, nonprincipal_add hq, act_add p q x⟩
 
-/-- Every `ω(x)` contains a minimal subsystem (in the sense of `IsMinimalSub`).-/
+/-- Every `ω(x)` contains a minimal subsystem (in the sense of `IsMinimalSub`).
+@isnad1 id=ex.0h1v.s3.79170adb27d4 from=translated src=- shape=593294eb vocab=295857c1
+-/
 theorem exists_minimal (x : Pt) : ∃ M : Set Pt, IsMinimalSub x M := by
   let S : Set (Set Pt) := {K | K.Nonempty ∧ IsClosed K ∧ K ⊆ Omega x ∧
     ∀ p : Ultrafilter ℕ, ∀ y ∈ K, act p y ∈ K}

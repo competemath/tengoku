@@ -15,6 +15,9 @@ namespace Erdos494
 
 namespace GfsRecursionAux
 
+/--
+@isnad1 id=eq.0h3v.s5.56cb1d0a0470 from=translated src=- shape=4fed11fa vocab=ba34bedc
+-/
 lemma sum_Icc_one_eq_range {M : Type*} [AddCommMonoid M] (m : ℕ) (F : ℕ → M) :
     ∑ i ∈ Finset.Icc 1 m, F i = ∑ i ∈ Finset.range m, F (i + 1) := by
   induction m with
@@ -24,6 +27,9 @@ lemma sum_Icc_one_eq_range {M : Type*} [AddCommMonoid M] (m : ℕ) (F : ℕ → 
 /-- `g n m = Σ_{i=1}^m (-1)^{i+1} C(n, m-i)`.-/
 def g (n m : ℕ) : ℤ := ∑ i ∈ Finset.Icc 1 m, (-1) ^ (i + 1) * (n.choose (m - i) : ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s5.ff1cae8e04ab from=translated src=- shape=40d3f83b vocab=b0d9ba18
+-/
 lemma g_succ (n m : ℕ) : g n (m + 1) = (n.choose m : ℤ) - g n m := by
   unfold g
   rw [sum_Icc_one_eq_range, sum_Icc_one_eq_range, Finset.sum_range_succ']
@@ -35,6 +41,9 @@ lemma g_succ (n m : ℕ) : g n (m + 1) = (n.choose m : ℤ) - g n m := by
     rw [this, pow_succ]; ring
   rw [h]; simp; ring
 
+/--
+@isnad1 id=eq.0h2v.s5.20681545f11d from=translated src=- shape=eb3bb581 vocab=85fe8e45
+-/
 lemma key (n m : ℕ) : (m : ℤ) * (n.choose m : ℤ) = (n : ℤ) * g n m := by
   induction m with
   | zero => simp [g]
@@ -52,6 +61,9 @@ lemma key (n m : ℕ) : (m : ℤ) * (n.choose m : ℤ) = (n : ℤ) * g n m := by
 end GfsRecursionAux
 
 open GfsRecursionAux in
+/--
+@isnad1 id=eq.2h3v.s7.3d1bf36d47a5 from=translated src=- shape=80196f1f vocab=71b3d1e8
+-/
 theorem gfs_recursion (n j k : ℕ) (hj : 1 ≤ j) (hk : 1 ≤ k) :
     (k : ℤ) * gfsPoly k n j =
       ∑ i ∈ Finset.Icc 1 k, (-1) ^ (i + 1) *

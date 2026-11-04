@@ -11,7 +11,9 @@ local notation "μ𝕋" => haarAddCircle (T := 1)
 
 namespace DigitIndep
 
-/-- Haar measure on `𝕋` computed on `[0,1)` in `ℝ`.-/
+/-- Haar measure on `𝕋` computed on `[0,1)` in `ℝ`.
+@isnad1 id=eq.1h1v.s7.8131cbaf02b0 from=translated src=- shape=96e63732 vocab=b47a9f68
+-/
 lemma haar_eq (U : Set 𝕋) (hU : MeasurableSet U) :
     μ𝕋 U = volume (Set.Ico (0 : ℝ) 1 ∩ (((↑) : ℝ → 𝕋) ⁻¹' U)) := by
   have h1 : (volume : Measure 𝕋) = μ𝕋 := by
@@ -20,6 +22,9 @@ lemma haar_eq (U : Set 𝕋) (hU : MeasurableSet U) :
   rw [← h1, h2, zero_add, Set.inter_comm]
   exact measure_congr ((Ico_ae_eq_Ioc (μ := (volume : Measure ℝ))).symm.inter (ae_eq_refl _))
 
+/--
+@isnad1 id=eq.0h2v.s8.c34168ee5863 from=translated src=- shape=4b589163 vocab=bff3a61f
+-/
 lemma digit_mk (j : ℕ) (y : ℝ) :
     Int.fract ((2 : ℝ) ^ j * (AddCircle.equivIco 1 0 (y : 𝕋) : ℝ)) =
       Int.fract ((2 : ℝ) ^ j * y) := by
@@ -28,6 +33,9 @@ lemma digit_mk (j : ℕ) (y : ℝ) :
   have : (2 : ℝ) ^ j * ⌊y⌋ = ((2 ^ j * ⌊y⌋ : ℤ) : ℝ) := by push_cast; ring
   rw [hy, mul_sub, this, Int.fract_sub_intCast]
 
+/--
+@isnad1 id=eq.1h4v.s6.f8362dd5a1b2 from=translated src=- shape=28d2f6ba vocab=9157a772
+-/
 lemma digit_shift {A j : ℕ} (hj : A ≤ j) (m : ℕ) (y : ℝ) :
     Int.fract ((2 : ℝ) ^ j * (y + (m : ℝ) / 2 ^ A)) = Int.fract ((2 : ℝ) ^ j * y) := by
   have h : (2 : ℝ) ^ j = 2 ^ (j - A) * 2 ^ A := by rw [← pow_add, Nat.sub_add_cancel hj]
@@ -35,6 +43,9 @@ lemma digit_shift {A j : ℕ} (hj : A ≤ j) (m : ℕ) (y : ℝ) :
     rw [h]; push_cast; field_simp
   rw [this, Int.fract_add_natCast]
 
+/--
+@isnad1 id=iff.0h1v.s5.185032dc1655 from=translated src=- shape=62292de9 vocab=9132930e
+-/
 lemma fract_lt_half_iff (u : ℝ) : Int.fract u < 2⁻¹ ↔ ⌊2 * u⌋ % 2 = 0 := by
   have h1 := Int.fract_nonneg u
   have h2 := Int.fract_lt_one u
@@ -47,6 +58,9 @@ lemma fract_lt_half_iff (u : ℝ) : Int.fract u < 2⁻¹ ↔ ⌊2 * u⌋ % 2 = 0
       rw [Int.floor_eq_iff]; push_cast; constructor <;> linarith
     rw [this]; simp only [hf, false_iff]; omega
 
+/--
+@isnad1 id=le.3h5v.s7.db4bc4a0e2d0 from=translated src=- shape=68eec9db vocab=0e73d0cb
+-/
 lemma floor_le_of_block {A j : ℕ} (hj : j < A) {m : ℤ} {y y' : ℝ}
     (hy : (m : ℝ) ≤ 2 ^ A * y') (hy' : 2 ^ A * y < m + 1) :
     ⌊2 * (2 ^ j * y)⌋ ≤ ⌊2 * (2 ^ j * y')⌋ := by
@@ -75,6 +89,9 @@ lemma floor_le_of_block {A j : ℕ} (hj : j < A) {m : ℤ} {y y' : ℝ}
   have h2' : c < m + 1 := by exact_mod_cast h2
   omega
 
+/--
+@isnad1 id=iff.5h5v.s8.e92620ea747c from=translated src=- shape=64a81c16 vocab=2a004887
+-/
 lemma digit_block {A j : ℕ} (hj : j < A) {m : ℤ} {y y' : ℝ}
     (h1 : (m : ℝ) ≤ 2 ^ A * y) (h2 : 2 ^ A * y < m + 1)
     (h1' : (m : ℝ) ≤ 2 ^ A * y') (h2' : 2 ^ A * y' < m + 1) :
@@ -92,6 +109,9 @@ def StrongDet (a b : ℕ) (E : Set 𝕋) : Prop :=
 noncomputable def proj (a b : ℕ) (y : ℝ) : ℝ :=
   ((⌊(2 : ℝ) ^ b * y⌋ - 2 ^ (b - a) * ⌊(2 : ℝ) ^ a * y⌋ : ℤ) : ℝ) / 2 ^ b
 
+/--
+@isnad1 id=and.1h4v.s7.81de491f6581 from=translated src=- shape=9c55e207 vocab=472b2f99
+-/
 lemma proj_digits {a b : ℕ} (hab : a ≤ b) (y : ℝ) (j : ℕ) :
     (a ≤ j → j < b → (Int.fract ((2 : ℝ) ^ j * y) < 2⁻¹ ↔
       Int.fract ((2 : ℝ) ^ j * proj a b y) < 2⁻¹)) ∧
@@ -155,6 +175,9 @@ lemma proj_digits {a b : ℕ} (hab : a ≤ b) (y : ℝ) (j : ℕ) :
       rw [Int.fract_eq_self.mpr ⟨h0, by linarith⟩]
       exact hhalf
 
+/--
+@isnad1 id=strongde.1h3v.s4.383d224b1f83 from=translated src=- shape=ead6c711 vocab=39ebb67e
+-/
 lemma strong_of_det {a b : ℕ} {E : Set 𝕋} (hE : DeterminedByWindow a b E) : StrongDet a b E := by
   intro x x' hxx'
   obtain ⟨y, rfl⟩ := QuotientAddGroup.mk_surjective x
@@ -192,14 +215,23 @@ lemma strong_of_det {a b : ℕ} {E : Set 𝕋} (hE : DeterminedByWindow a b E) :
 /-- The dyadic interval `[m/2^A, (m+1)/2^A)`.-/
 def dyBlock (A m : ℕ) : Set ℝ := {y | (m : ℝ) ≤ 2 ^ A * y ∧ 2 ^ A * y < m + 1}
 
+/--
+@isnad1 id=iff.0h3v.s6.c2a7c247b35e from=translated src=- shape=ae4033ec vocab=10a7a06b
+-/
 lemma mem_dyBlock {A m : ℕ} {y : ℝ} :
     y ∈ dyBlock A m ↔ (m : ℝ) ≤ 2 ^ A * y ∧ 2 ^ A * y < m + 1 := Iff.rfl
 
+/--
+@isnad1 id=measurab.0h2v.s3.7f7a7a94b1a5 from=translated src=- shape=215a98a0 vocab=d010c26d
+-/
 lemma measurableSet_dyBlock (A m : ℕ) : MeasurableSet (dyBlock A m) :=
   show MeasurableSet ({y : ℝ | (m : ℝ) ≤ 2 ^ A * y} ∩ {y : ℝ | 2 ^ A * y < m + 1}) from
     (measurableSet_le measurable_const (measurable_const.mul measurable_id)).inter
       (measurableSet_lt (measurable_const.mul measurable_id) measurable_const)
 
+/--
+@isnad1 id=eq.1h2v.s6.23cb6a8057ed from=translated src=- shape=f26b26b9 vocab=ac8f9bf6
+-/
 lemma Ico_decomp (A : ℕ) (X : Set ℝ) (hX : MeasurableSet X) :
     volume (Set.Ico (0 : ℝ) 1 ∩ X) = ∑ m ∈ range (2 ^ A), volume (dyBlock A m ∩ X) := by
   have hpos : (0 : ℝ) < 2 ^ A := by positivity
@@ -238,6 +270,9 @@ lemma Ico_decomp (A : ℕ) (X : Set ℝ) (hX : MeasurableSet X) :
   · intro m _
     exact (measurableSet_dyBlock A m).inter hX
 
+/--
+@isnad1 id=eq.1h3v.s7.5035e7b0a8bc from=translated src=- shape=294f7228 vocab=80b51d31
+-/
 lemma dyBlock_shift (A m : ℕ) (X : Set ℝ) (hinv : ∀ y : ℝ, y + (m : ℝ) / 2 ^ A ∈ X ↔ y ∈ X) :
     volume (dyBlock A m ∩ X) = volume (dyBlock A 0 ∩ X) := by
   have : dyBlock A 0 ∩ X = (fun y => y + (m : ℝ) / 2 ^ A) ⁻¹' (dyBlock A m ∩ X) := by
@@ -249,6 +284,9 @@ lemma dyBlock_shift (A m : ℕ) (X : Set ℝ) (hinv : ∀ y : ℝ, y + (m : ℝ)
   rw [this, measure_preimage_add_right]
 
 open Classical in
+/--
+@isnad1 id=eq.4h3v.s8.760ccb048c66 from=translated src=- shape=d5b4eb7f vocab=cb8ceadd
+-/
 lemma sum_formula (A : ℕ) (G X : Set ℝ) (hG : MeasurableSet G) (hX : MeasurableSet X)
     (hblock : ∀ m : ℕ, (∀ y ∈ dyBlock A m, y ∈ G) ∨ (∀ y ∈ dyBlock A m, y ∉ G))
     (hinv : ∀ (m : ℕ) (y : ℝ), y + (m : ℝ) / 2 ^ A ∈ X ↔ y ∈ X) :
@@ -275,12 +313,17 @@ lemma sum_formula (A : ℕ) (G X : Set ℝ) (hG : MeasurableSet G) (hX : Measura
     _ = _ := by
         rw [Finset.sum_ite, Finset.sum_const_zero, add_zero, Finset.sum_const, nsmul_eq_mul]
 
+/--
+@isnad1 id=eq.1h4v.s6.abef7a82f5c1 from=translated src=- shape=96860cd1 vocab=0dfb9dce
+-/
 lemma ennreal_aux (cG cU u t : ENNReal) (h : cU * u = 1) : cG * t = cG * u * (cU * t) := by
   calc cG * t = cG * t * (cU * u) := by rw [h, mul_one]
     _ = cG * u * (cU * t) := by ring
 
 /-- Two-window independence: a set determined by digits `[0,A)` and a set determined by
-digits `[A,B)` are independent.-/
+digits `[A,B)` are independent.
+@isnad1 id=eq.4h4v.s8.17dc888e274e from=translated src=- shape=fede8d29 vocab=26fb517a
+-/
 lemma indep_two {A B : ℕ} {F E : Set 𝕋} (hF : StrongDet 0 A F)
     (hE : StrongDet A B E) (mF : MeasurableSet F) (mE : MeasurableSet E) :
     μ𝕋 (F ∩ E) = μ𝕋 F * μ𝕋 E := by
@@ -329,10 +372,16 @@ lemma indep_two {A B : ℕ} {F E : Set 𝕋} (hF : StrongDet 0 A F)
   rw [kU] at e4
   exact ennreal_aux _ _ _ _ e4
 
+/--
+@isnad1 id=strongde.2h5v.s5.a7cd9ea739e3 from=translated src=- shape=e716ed35 vocab=729970a6
+-/
 lemma det_mono {a b a' b' : ℕ} {E : Set 𝕋} (h : StrongDet a b E)
     (hw : ∀ j, a ≤ j → j < b → a' ≤ j ∧ j < b') : StrongDet a' b' E :=
   fun x y hxy => h x y (fun j h1 h2 => hxy j (hw j h1 h2).1 (hw j h1 h2).2)
 
+/--
+@isnad1 id=strongde.1h5v.s6.0cb264d8933f from=translated src=- shape=56ff72e6 vocab=e93ddc87
+-/
 lemma det_iInter {ι : Type*} {a b : ℕ} (s : Finset ι) (E : ι → Set 𝕋)
     (h : ∀ i ∈ s, StrongDet a b (E i)) : StrongDet a b (⋂ i ∈ s, E i) := by
   intro x y hxy
@@ -342,7 +391,9 @@ lemma det_iInter {ι : Type*} {a b : ℕ} (s : Finset ι) (E : ι → Set 𝕋)
 end DigitIndep
 
 open DigitIndep in
-/-- Sets determined by pairwise disjoint digit windows are independent under Haar measure.-/
+/-- Sets determined by pairwise disjoint digit windows are independent under Haar measure.
+@isnad1 id=eq.3h5v.s8.686c50ab0d4b from=translated src=- shape=f47a9e73 vocab=08b607b2
+-/
 lemma measure_iInter_of_disjoint_windows {ι : Type*} (s : Finset ι) (a b : ι → ℕ)
     (E : ι → Set 𝕋) (hE : ∀ i ∈ s, DeterminedByWindow (a i) (b i) (E i))
     (hmeas : ∀ i ∈ s, MeasurableSet (E i))

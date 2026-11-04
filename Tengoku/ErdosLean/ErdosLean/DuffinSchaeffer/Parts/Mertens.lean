@@ -17,25 +17,40 @@ namespace DuffinSchaeffer
 
 namespace MertensAux
 
+/--
+@isnad1 id=eq.0h1v.s4.63e6c2fd938d from=translated src=- shape=34005fe2 vocab=099c3f69
+-/
 lemma Iic_eq_range' (n : ℕ) : Iic n = range (n + 1) := by
   ext m; simp
 
+/--
+@isnad1 id=eq.0h2v.s6.ad1bbfce5c10 from=translated src=- shape=68347904 vocab=bd524d36
+-/
 lemma sum_primes_succ (f : ℕ → ℝ) (n : ℕ) :
     ∑ p ∈ (Iic (n + 1)).filter Nat.Prime, f p =
       ∑ p ∈ (Iic n).filter Nat.Prime, f p + if (n + 1).Prime then f (n + 1) else 0 := by
   rw [Iic_eq_range', Iic_eq_range', sum_filter, sum_filter, sum_range_succ]
 
+/--
+@isnad1 id=eq.1h3v.s6.531547f88f51 from=translated src=- shape=d7647a01 vocab=730b974c
+-/
 lemma sum_primes_Ioc_succ (f : ℕ → ℝ) {M n : ℕ} (h : M ≤ n) :
     ∑ p ∈ (Ioc M (n + 1)).filter Nat.Prime, f p =
       ∑ p ∈ (Ioc M n).filter Nat.Prime, f p + if (n + 1).Prime then f (n + 1) else 0 := by
   rw [sum_filter, sum_filter, sum_Ioc_succ_top h]
 
+/--
+@isnad1 id=le.0h1v.s5.92a596de1752 from=translated src=- shape=10cdd4ce vocab=fc28ae0f
+-/
 lemma theta_le (n : ℕ) : ∑ p ∈ (Iic n).filter Nat.Prime, Real.log p ≤ Real.log 4 * n := by
   have h1 : (Iic n).filter Nat.Prime = Nat.primesLE n := by
     rw [Nat.primesLE_eq_filter_range, Iic_eq_range']
   rw [h1, ← Chebyshev.theta_eq_sum_primesLE_log]
   exact Chebyshev.theta_le_log4_mul_x (Nat.cast_nonneg n)
 
+/--
+@isnad1 id=eq.0h1v.s6.70a91b569696 from=translated src=- shape=bca03e6f vocab=839f7961
+-/
 lemma log_factorial_eq (n : ℕ) :
     Real.log (n.factorial : ℝ) = ∑ p ∈ (Iic n).filter Nat.Prime,
       ((n.factorial.factorization p : ℕ) : ℝ) * Real.log p := by
@@ -46,6 +61,9 @@ lemma log_factorial_eq (n : ℕ) :
     exact mem_filter.2 ⟨mem_Iic.2 ((hp.1.dvd_factorial).1 hp.2.1), hp.1⟩
   · intro p _; simp
 
+/--
+@isnad1 id=le.1h2v.s5.d72b15e16fcc from=translated src=- shape=0c730828 vocab=e92ee4b2
+-/
 lemma div_le_factorization (n p : ℕ) (hp : p.Prime) :
     n / p ≤ n.factorial.factorization p := by
   rw [Nat.factorization_factorial hp (Nat.lt_add_one (Nat.log p n))]
@@ -58,6 +76,9 @@ lemma div_le_factorization (n p : ℕ) (hp : p.Prime) :
     have := Finset.single_le_sum (f := fun i => n / p ^ i) (fun _ _ => Nat.zero_le _) h1
     simpa using this
 
+/--
+@isnad1 id=le.1h2v.s6.4d4c7e97fccf from=translated src=- shape=4e1e6db6 vocab=93832fa7
+-/
 lemma factorization_le_div (n p : ℕ) (hp : p.Prime) :
     ((n.factorial.factorization p : ℕ) : ℝ) ≤ n / ((p : ℝ) - 1) := by
   have h := Nat.sub_one_mul_factorization_factorial hp (n := n)
@@ -68,6 +89,9 @@ lemma factorization_le_div (n p : ℕ) (hp : p.Prime) :
   rw [le_div_iff₀ (by linarith)]
   linarith
 
+/--
+@isnad1 id=le.1h1v.s6.6c84e2f98e74 from=translated src=- shape=0b5b587b vocab=ff1f5f32
+-/
 lemma log_succ_sub_log_le (n : ℕ) (hn : 1 ≤ n) :
     Real.log ((n : ℝ) + 1) - Real.log n ≤ 1 / n := by
   have hn' : (0 : ℝ) < n := by exact_mod_cast hn
@@ -76,6 +100,9 @@ lemma log_succ_sub_log_le (n : ℕ) (hn : 1 ≤ n) :
   have e : ((n : ℝ) + 1) / n - 1 = 1 / n := by field_simp; ring
   linarith
 
+/--
+@isnad1 id=le.1h1v.s7.b4304bf2808f from=translated src=- shape=09938fc5 vocab=00bf3666
+-/
 lemma sum_log_div_Icc (n : ℕ) (hn : 1 ≤ n) :
     ∑ m ∈ Icc 2 n, Real.log m / ((m : ℝ) * ((m : ℝ) - 1)) ≤
       1 + Real.log 2 - (Real.log ((n : ℝ) + 1) + 1) / n := by
@@ -105,6 +132,9 @@ lemma sum_log_div_Icc (n : ℕ) (hn : 1 ≤ n) :
       div_nonneg (by linarith) (by positivity)
     linarith
 
+/--
+@isnad1 id=le.1h1v.s6.060b5e907f99 from=translated src=- shape=9a6833ba vocab=f26a4264
+-/
 lemma sum_inv_Icc (n : ℕ) (hn : 1 ≤ n) :
     ∑ m ∈ Icc 2 n, 1 / ((m : ℝ) * ((m : ℝ) - 1)) ≤ 1 - 1 / n := by
   induction n, hn using Nat.le_induction with
@@ -119,6 +149,9 @@ lemma sum_inv_Icc (n : ℕ) (hn : 1 ≤ n) :
       field_simp; ring
     linarith
 
+/--
+@isnad1 id=lt.0h0v.s4.df854e967e54 from=translated src=- shape=3c26ae4f vocab=8079cfe6
+-/
 lemma log_four_lt_two : Real.log 4 < 2 := by
   have : Real.log 4 = 2 * Real.log 2 := by
     rw [show (4 : ℝ) = 2 ^ 2 by norm_num, Real.log_pow]; norm_num
@@ -129,7 +162,9 @@ end MertensAux
 
 open MertensAux
 
-/-- Mertens' first theorem, upper bound.-/
+/-- Mertens' first theorem, upper bound.
+@isnad1 id=le.1h1v.s6.b74ce72ae11d from=translated src=- shape=6312e89b vocab=e7c97772
+-/
 theorem sum_log_prime_div_le (x : ℝ) (hx : 1 ≤ x) :
     ∑ p ∈ (Iic ⌊x⌋₊).filter Nat.Prime, Real.log p / p ≤ Real.log x + 2 := by
   set n := ⌊x⌋₊ with hn
@@ -167,7 +202,9 @@ theorem sum_log_prime_div_le (x : ℝ) (hx : 1 ≤ x) :
     mul_lt_mul_of_pos_left (by linarith) hnpos
   nlinarith
 
-/-- Mertens' first theorem, lower bound.-/
+/-- Mertens' first theorem, lower bound.
+@isnad1 id=le.1h1v.s6.5b946be5b3dc from=translated src=- shape=ac55e1e1 vocab=2245b1b2
+-/
 theorem sum_log_prime_div_ge (x : ℝ) (hx : 1 ≤ x) :
     Real.log x - 3 ≤ ∑ p ∈ (Iic ⌊x⌋₊).filter Nat.Prime, Real.log p / p := by
   set n := ⌊x⌋₊ with hn
@@ -235,7 +272,9 @@ theorem sum_log_prime_div_ge (x : ℝ) (hx : 1 ≤ x) :
   linarith
 
 /-- Mertens' second theorem in the form of an upper bound on a range:
-`∑_{y < p ≤ x} 1/p ≤ log(log x / log y) + 100 / log y` for `2 ≤ y ≤ x`.-/
+`∑_{y < p ≤ x} 1/p ≤ log(log x / log y) + 100 / log y` for `2 ≤ y ≤ x`.
+@isnad1 id=le.2h2v.s6.fe0126b7a13d from=translated src=- shape=6abbe321 vocab=9f39b4aa
+-/
 theorem sum_inv_prime_Ioc_le (y x : ℝ) (hy : 2 ≤ y) (hyx : y ≤ x) :
     ∑ p ∈ (Ioc ⌊y⌋₊ ⌊x⌋₊).filter Nat.Prime, (1 : ℝ) / p ≤
       Real.log (Real.log x / Real.log y) + 100 / Real.log y := by

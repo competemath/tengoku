@@ -7,6 +7,9 @@ import Tengoku.ErdosLean.ErdosLean.Erdos790.Defs
 
 namespace Erdos790
 
+/--
+@isnad1 id=ex.3h2v.s7.04829bb5420b from=translated src=- shape=b02614e1 vocab=3c11411c
+-/
 theorem relation_shape (S : Finset ℤ) (hpos : ∀ s ∈ S, 0 < s) (h2 : 2 ≤ S.card) (x : ℤ)
     (hsum : ∑ s ∈ S, s = x) :
     ∃ b₁ ∈ S, ∃ z ∈ S, 0 < z ∧ z < b₁ ∧ b₁ + z ≤ x ∧ z ≤ x - b₁ ∧

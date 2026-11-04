@@ -17,6 +17,9 @@ open scoped ENNReal
 namespace Erdos995
 namespace Upper
 
+/--
+@isnad1 id=islittle.3h3v.s8.e5aaecd9b037 from=translated src=- shape=4caddbcc vocab=844661f3
+-/
 lemma isLittleO_of_dyadic (S : ℕ → ℂ) (G : ℕ → ℝ)
     (hSG : ∀ N : ℕ, ‖S N‖ ≤ G (2 ^ (Nat.log 2 N + 1))) {ε : ℝ} (hε : 0 < ε)
     (h : ∀ m : ℕ, ∀ᶠ j : ℕ in atTop,

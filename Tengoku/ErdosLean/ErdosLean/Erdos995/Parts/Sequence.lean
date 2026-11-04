@@ -14,6 +14,9 @@ open scoped ENNReal
 namespace Erdos995
 namespace Con
 
+/--
+@isnad1 id=eq.2h2v.s5.8caabcc6f007 from=translated src=- shape=20e6569d vocab=b3a4b4c6
+-/
 lemma trialOf_trial (s r : ℕ) (hr1 : 1 ≤ r) (hr2 : r ≤ trialLen s) :
     trialOf (21 ^ s + r - 2) = s := by
   unfold trialOf
@@ -23,7 +26,9 @@ lemma trialOf_trial (s r : ℕ) (hr1 : 1 ≤ r) (hr2 : r ≤ trialLen s) :
   · omega
   · rw [pow_succ]; omega
 
-/-- Every global index is the `r`-th exponent of some trial.-/
+/-- Every global index is the `r`-th exponent of some trial.
+@isnad1 id=ex.0h1v.s6.8229138465b0 from=translated src=- shape=3e87b5fb vocab=a7c2fa17
+-/
 lemma exists_trial (j : ℕ) : ∃ s r, 1 ≤ r ∧ r ≤ trialLen s ∧ j = 21 ^ s + r - 2 := by
   have h1 := Nat.pow_log_le_self 21 (by omega : j + 1 ≠ 0)
   have h2 := Nat.lt_pow_succ_log_self (by norm_num : 1 < 21) (j + 1)
@@ -33,6 +38,9 @@ lemma exists_trial (j : ℕ) : ∃ s r, 1 ≤ r ∧ r ≤ trialLen s ∧ j = 21 
   · unfold trialLen; omega
   · omega
 
+/--
+@isnad1 id=eq.2h2v.s6.dafc9b6676a2 from=translated src=- shape=adafa448 vocab=f7742080
+-/
 lemma mExp_trial (s r : ℕ) (hr1 : 1 ≤ r) (hr2 : r ≤ trialLen s) :
     mExp (21 ^ s + r - 2) = trialStart s + r * spacing (stage s) := by
   unfold mExp
@@ -41,6 +49,9 @@ lemma mExp_trial (s r : ℕ) (hr1 : 1 ≤ r) (hr2 : r ≤ trialLen s) :
   have : 21 ^ s + r - 2 + 2 - 21 ^ s = r := by omega
   rw [this]
 
+/--
+@isnad1 id=strictmo.0h0v.s2.80e252846297 from=translated src=- shape=e3d48bcb vocab=4ccf16f8
+-/
 lemma mExp_strictMono : StrictMono mExp := by
   apply strictMono_nat_of_lt_succ
   intro j
@@ -64,9 +75,15 @@ lemma mExp_strictMono : StrictMono mExp := by
     have : 0 < spacing (stage (s + 1)) := by unfold spacing; omega
     omega
 
+/--
+@isnad1 id=le.0h1v.s3.f37f42494491 from=translated src=- shape=8a62b088 vocab=7ab43206
+-/
 lemma one_le_nSeq (j : ℕ) : 1 ≤ nSeq j := by
   unfold nSeq; exact Nat.one_le_two_pow
 
+/--
+@isnad1 id=isdyadic.0h0v.s1.d866d824a4c2 from=translated src=- shape=49959d42 vocab=0a5e4b79
+-/
 lemma isDyadicLacunary_nSeq : IsDyadicLacunary nSeq := by
   refine ⟨one_le_nSeq 0, fun k => ?_⟩
   unfold nSeq

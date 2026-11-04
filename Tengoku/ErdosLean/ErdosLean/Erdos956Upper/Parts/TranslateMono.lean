@@ -14,7 +14,9 @@ open Erdos956 Metric
 
 variable {D : Set E} {X : Finset E}
 
-/-- For convex `F`, increments over a fixed step `h ≥ 0` are monotone.-/
+/-- For convex `F`, increments over a fixed step `h ≥ 0` are monotone.
+@isnad1 id=le.7h5v.s7.9bf8180b257b from=translated src=- shape=1cc0b45e vocab=1990a4e1
+-/
 lemma convex_incr_mono {s : Set ℝ} {F : ℝ → ℝ} (hF : ConvexOn ℝ s F) {u v h : ℝ}
     (hu : u ∈ s) (hv : v ∈ s) (huh : u + h ∈ s) (hvh : v + h ∈ s) (hh : 0 ≤ h) (huv : u ≤ v) :
     F (u + h) - F u ≤ F (v + h) - F v := by
@@ -36,6 +38,9 @@ lemma convex_incr_mono {s : Set ℝ} {F : ℝ → ℝ} (hF : ConvexOn ℝ s F) {
   have key := s1.trans s2
   exact (div_le_div_iff_of_pos_right hh).mp key
 
+/--
+@isnad1 id=antitone.2h4v.s8.a6c72e0da7cb from=translated src=- shape=b3739522 vocab=fd6494bd
+-/
 theorem curve_sub_antitoneOn (hS : SepConfig D X) {c c' : E} (hcc : c 0 ≤ c' 0) :
     AntitoneOn (fun x => curve D c x - curve D c' x)
       {x | |x - c 0| < wid D ∧ |x - c' 0| < wid D} := by

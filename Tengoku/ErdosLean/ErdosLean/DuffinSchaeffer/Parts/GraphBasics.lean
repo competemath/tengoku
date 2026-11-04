@@ -19,17 +19,29 @@ namespace GCDGraph
 
 /-! ### Auxiliary lemmas -/
 
+/--
+@isnad1 id=le.1h2v.s5.15518201bc36 from=translated src=- shape=0ba14da8 vocab=8845c72c
+-/
 theorem alt_wsum_nonneg {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) (S : Finset ℕ) : 0 ≤ wsum μ S :=
   Finset.sum_nonneg (fun i _ => hμ i)
 
+/--
+@isnad1 id=le.1h2v.s5.efafb1292525 from=translated src=- shape=6b15e81e vocab=8d3841fd
+-/
 theorem alt_esum_nonneg {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) (E : Finset (ℕ × ℕ)) :
     0 ≤ esum μ E :=
   Finset.sum_nonneg (fun _ _ => mul_nonneg (hμ _) (hμ _))
 
+/--
+@isnad1 id=le.2h3v.s5.7d6e82ea0a31 from=translated src=- shape=8c5b57a9 vocab=8845c72c
+-/
 theorem alt_wsum_mono {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) {S T : Finset ℕ} (h : S ⊆ T) :
     wsum μ S ≤ wsum μ T :=
   Finset.sum_le_sum_of_subset_of_nonneg h (fun i _ _ => hμ i)
 
+/--
+@isnad1 id=le.2h4v.s6.f42a33bf1dbf from=translated src=- shape=fda707cc vocab=0a91b743
+-/
 theorem alt_esum_le {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) {E : Finset (ℕ × ℕ)} {V W : Finset ℕ}
     (h : E ⊆ V ×ˢ W) : esum μ E ≤ wsum μ V * wsum μ W := by
   have h1 : esum μ E ≤ esum μ (V ×ˢ W) :=
@@ -38,6 +50,9 @@ theorem alt_esum_le {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) {E : Finset (�
   unfold esum wsum
   rw [Finset.sum_product, Finset.sum_mul_sum]
 
+/--
+@isnad1 id=lt.1h1v.s6.3d01f95ed580 from=translated src=- shape=a4b121db vocab=0cbd031f
+-/
 theorem alt_c_pos {p : ℕ} (hp : p.Prime) : 0 < 1 - 1 / (p : ℝ) ^ ((31 : ℝ) / 30) := by
   have h1 : (1 : ℝ) < p := by exact_mod_cast hp.one_lt
   have h2 : (1 : ℝ) < (p : ℝ) ^ ((31 : ℝ) / 30) := Real.one_lt_rpow h1 (by norm_num)
@@ -45,10 +60,16 @@ theorem alt_c_pos {p : ℕ} (hp : p.Prime) : 0 < 1 - 1 / (p : ℝ) ^ ((31 : ℝ)
     rw [div_lt_one (by linarith)]; exact h2
   linarith
 
+/--
+@isnad1 id=le.0h1v.s6.3db61691f756 from=translated src=- shape=5744d275 vocab=4c6de5b5
+-/
 theorem alt_c_le_one (p : ℕ) : 1 - 1 / (p : ℝ) ^ ((31 : ℝ) / 30) ≤ 1 := by
   have : 0 ≤ 1 / (p : ℝ) ^ ((31 : ℝ) / 30) := by positivity
   linarith
 
+/--
+@isnad1 id=lt.1h2v.s4.abca8a35892c from=translated src=- shape=b14389dd vocab=9197e763
+-/
 theorem alt_qf_pos (G : GCDGraph) {p : ℕ} (hp : p.Prime) : 0 < G.qualityFactor p := by
   unfold qualityFactor
   have h1 : (1 : ℝ) < p := by exact_mod_cast hp.one_lt
@@ -60,14 +81,23 @@ theorem alt_qf_pos (G : GCDGraph) {p : ℕ} (hp : p.Prime) : 0 < G.qualityFactor
     · norm_num
   positivity
 
+/--
+@isnad1 id=lt.0h1v.s4.586d41684d1c from=translated src=- shape=7766ea7d vocab=19740d9e
+-/
 theorem alt_prodqf_pos (G : GCDGraph) : 0 < ∏ p ∈ G.P, G.qualityFactor p :=
   Finset.prod_pos (fun p hp => G.alt_qf_pos (G.P_prime p hp))
 
 /-! ### Lemma 6.7 -/
 
+/--
+@isnad1 id=issubgra.0h1v.s2.c6e93b5413d0 from=translated src=- shape=b3bac8d8 vocab=e0999903
+-/
 theorem IsSubgraph.refl (G : GCDGraph) : G.IsSubgraph G := by
   exact ⟨rfl, subset_rfl, subset_rfl, subset_rfl, subset_rfl, fun p _ => ⟨rfl, rfl⟩⟩
 
+/--
+@isnad1 id=issubgra.2h3v.s4.be2e54233402 from=translated src=- shape=0bc0c4a6 vocab=e0999903
+-/
 theorem IsSubgraph.trans {G₁ G₂ G₃ : GCDGraph} (h₁ : G₁.IsSubgraph G₂) (h₂ : G₂.IsSubgraph G₃) :
     G₁.IsSubgraph G₃ := by
   obtain ⟨a1, b1, c1, d1, e1, f1⟩ := h₁
@@ -75,22 +105,32 @@ theorem IsSubgraph.trans {G₁ G₂ G₃ : GCDGraph} (h₁ : G₁.IsSubgraph G�
   exact ⟨a1.trans a2, b1.trans b2, c1.trans c2, d1.trans d2, e2.trans e1, fun p hp =>
     ⟨(f1 p (e2 hp)).1.trans (f2 p hp).1, (f1 p (e2 hp)).2.trans (f2 p hp).2⟩⟩
 
-/-- Lemma 6.7(b).-/
+/-- Lemma 6.7(b).
+@isnad1 id=le.1h2v.s4.7918cbb6f5ba from=translated src=- shape=adb49038 vocab=d55395ad
+-/
 theorem R_mono {G' G : GCDGraph} (h : G'.IsSubgraph G) : G'.R ⊆ G.R := by
   intro p hp
   simp only [R, mem_sdiff, mem_biUnion] at hp ⊢
   obtain ⟨⟨e, he, hpe⟩, hnP⟩ := hp
   exact ⟨⟨e, h.2.2.2.1 he, hpe⟩, fun h' => hnP (h.2.2.2.2.1 h')⟩
 
+/--
+@isnad1 id=le.0h1v.s3.e537d92bb8a1 from=translated src=- shape=b9369acb vocab=6b917ef0
+-/
 theorem density_nonneg (G : GCDGraph) : 0 ≤ G.density :=
   div_nonneg (alt_esum_nonneg G.μ_nonneg _)
     (mul_nonneg (alt_wsum_nonneg G.μ_nonneg _) (alt_wsum_nonneg G.μ_nonneg _))
 
+/--
+@isnad1 id=le.0h1v.s3.7b616e7ed8fd from=translated src=- shape=a311c14d vocab=6b917ef0
+-/
 theorem density_le_one (G : GCDGraph) : G.density ≤ 1 :=
   div_le_one_of_le₀ (alt_esum_le G.μ_nonneg G.E_sub)
     (mul_nonneg (alt_wsum_nonneg G.μ_nonneg _) (alt_wsum_nonneg G.μ_nonneg _))
 
-/-- Lemma 6.7(c)(d).-/
+/-- Lemma 6.7(c)(d).
+@isnad1 id=iff.0h1v.s4.24ef8d665174 from=translated src=- shape=04d65f92 vocab=ba991986
+-/
 theorem density_pos_iff (G : GCDGraph) : 0 < G.density ↔ G.Nontrivial := by
   constructor
   · intro h
@@ -100,6 +140,9 @@ theorem density_pos_iff (G : GCDGraph) : 0 < G.density ↔ G.Nontrivial := by
   · intro h
     exact div_pos h (lt_of_lt_of_le h (alt_esum_le G.μ_nonneg G.E_sub))
 
+/--
+@isnad1 id=lt.1h1v.s4.ed80ffc424d1 from=translated src=- shape=19a8d80d vocab=b1967ff6
+-/
 theorem wsum_V_pos_of_density_pos (G : GCDGraph) (h : 0 < G.density) : 0 < wsum G.μ G.V := by
   have he : 0 < esum G.μ G.E := (density_pos_iff G).1 h
   have hle := alt_esum_le G.μ_nonneg G.E_sub
@@ -107,6 +150,9 @@ theorem wsum_V_pos_of_density_pos (G : GCDGraph) (h : 0 < G.density) : 0 < wsum 
   · exact h'
   · rw [← h'] at hle; simp at hle; linarith
 
+/--
+@isnad1 id=lt.1h1v.s4.c1af02929036 from=translated src=- shape=19a8d80d vocab=7023f1a6
+-/
 theorem wsum_W_pos_of_density_pos (G : GCDGraph) (h : 0 < G.density) : 0 < wsum G.μ G.W := by
   have he : 0 < esum G.μ G.E := (density_pos_iff G).1 h
   have hle := alt_esum_le G.μ_nonneg G.E_sub
@@ -114,7 +160,9 @@ theorem wsum_W_pos_of_density_pos (G : GCDGraph) (h : 0 < G.density) : 0 < wsum 
   · exact h'
   · rw [← h'] at hle; simp at hle; linarith
 
-/-- Lemma 6.7(d): `q(G) > 0 ↔ δ(G) > 0`.-/
+/-- Lemma 6.7(d): `q(G) > 0 ↔ δ(G) > 0`.
+@isnad1 id=iff.0h1v.s4.acc9e22b2319 from=translated src=- shape=e98eac01 vocab=4e31bf2a
+-/
 theorem quality_pos_iff (G : GCDGraph) : 0 < G.quality ↔ 0 < G.density := by
   constructor
   · intro h
@@ -131,6 +179,9 @@ theorem quality_pos_iff (G : GCDGraph) : 0 < G.quality ↔ 0 < G.density := by
     have := G.alt_prodqf_pos
     positivity
 
+/--
+@isnad1 id=le.0h1v.s3.e24cdd9e7d2b from=translated src=- shape=b9369acb vocab=b8e18b25
+-/
 theorem quality_nonneg (G : GCDGraph) : 0 ≤ G.quality := by
   unfold quality
   have := G.density_nonneg
@@ -139,7 +190,9 @@ theorem quality_nonneg (G : GCDGraph) : 0 ≤ G.quality := by
   have := G.alt_prodqf_pos
   positivity
 
-/-- Expression of the quality through `μ(E)`: `q(G) = μ(E)^{10} / (μ(V)^9 μ(W)^9) ∏ …`.-/
+/-- Expression of the quality through `μ(E)`: `q(G) = μ(E)^{10} / (μ(V)^9 μ(W)^9) ∏ …`.
+@isnad1 id=eq.0h1v.s6.ddccd2d7d68e from=translated src=- shape=30c78fba vocab=14bf2f89
+-/
 theorem quality_eq (G : GCDGraph) :
     G.quality = esum G.μ G.E ^ 10 / (wsum G.μ G.V ^ 9 * wsum G.μ G.W ^ 9) *
       ∏ p ∈ G.P, G.qualityFactor p := by
@@ -153,6 +206,9 @@ theorem quality_eq (G : GCDGraph) :
 
 /-! ### Special subgraphs `G_{p^k,p^ℓ}` -/
 
+/--
+@isnad1 id=issubgra.2h4v.s5.2fe032782785 from=translated src=- shape=dc329031 vocab=fed38d8b
+-/
 theorem restrictPrime_isSubgraph (G : GCDGraph) (p k l : ℕ) (hp : p.Prime) (hpP : p ∉ G.P) :
     (G.restrictPrime p k l hp hpP).IsSubgraph G := by
   refine ⟨rfl, filter_subset _ _, filter_subset _ _, filter_subset _ _, subset_insert _ _,
@@ -160,6 +216,9 @@ theorem restrictPrime_isSubgraph (G : GCDGraph) (p k l : ℕ) (hp : p.Prime) (hp
   have hne : q ≠ p := fun h => hpP (h ▸ hq)
   exact ⟨Function.update_of_ne hne _ _, Function.update_of_ne hne _ _⟩
 
+/--
+@isnad1 id=le.2h4v.s5.a3df0142ffb6 from=translated src=- shape=79a159dc vocab=4c6394aa
+-/
 theorem R_restrictPrime_subset (G : GCDGraph) (p k l : ℕ) (hp : p.Prime) (hpP : p ∉ G.P) :
     (G.restrictPrime p k l hp hpP).R ⊆ G.R.erase p := by
   intro q hq
@@ -168,7 +227,9 @@ theorem R_restrictPrime_subset (G : GCDGraph) (p k l : ℕ) (hp : p.Prime) (hpP 
   rw [h] at hq
   exact (G.restrictPrime p k l hp hpP).not_mem_P_of_mem_R hq (mem_insert_self _ _)
 
-/-- Lemma 11.1.-/
+/-- Lemma 11.1.
+@isnad1 id=eq.5h4v.s8.b2039552ac1d from=translated src=- shape=da91943f vocab=689c458f
+-/
 theorem quality_restrictPrime (G : GCDGraph) (p k l : ℕ) (hp : p.Prime) (hpP : p ∉ G.P)
     (hE : 0 < esum G.μ G.E) (hV : 0 < wsum G.μ (vslice G.V p k))
     (hW : 0 < wsum G.μ (vslice G.W p l)) :
@@ -202,7 +263,9 @@ theorem quality_restrictPrime (G : GCDGraph) (p k l : ℕ) (hp : p.Prime) (hpP :
   field_simp
 
 /-- Adding a prime `p ∉ P` that divides no `gcd(v,w)`, `(v,w) ∈ E`, with `f(p) = g(p) = 0`
-(used when `p ∉ R(G)`; the quality gets multiplied by `(1 - p^{-31/30})^{-10} ≥ 1`).-/
+(used when `p ∉ R(G)`; the quality gets multiplied by `(1 - p^{-31/30})^{-10} ≥ 1`).
+@isnad1 id=ex.3h2v.s7.3623f694f4a1 from=translated src=- shape=004bf849 vocab=37be5bde
+-/
 theorem exists_addPrime_zero (G : GCDGraph) (p : ℕ) (hp : p.Prime) (hpP : p ∉ G.P)
     (hpR : p ∉ G.R) :
     ∃ G' : GCDGraph, G'.IsSubgraph G ∧ G'.V = G.V ∧ G'.W = G.W ∧ G'.E = G.E ∧
@@ -297,12 +360,18 @@ theorem exists_addPrime_zero (G : GCDGraph) (p : ℕ) (hp : p.Prime) (hpP : p �
 
 /-! ### Lemma 11.2 -/
 
+/--
+@isnad1 id=eq.4h4v.s7.06a021544460 from=translated src=- shape=26226f83 vocab=95f1c485
+-/
 theorem alt_induce_quality (G : GCDGraph) (V' W' : Finset ℕ) (E' : Finset (ℕ × ℕ))
     (hV : V' ⊆ G.V) (hW : W' ⊆ G.W) (hE : E' ⊆ G.E) (hE' : E' ⊆ V' ×ˢ W') :
     (G.induce V' W' E' hV hW hE hE').quality =
       esum G.μ E' ^ 10 / (wsum G.μ V' ^ 9 * wsum G.μ W' ^ 9) * ∏ p ∈ G.P, G.qualityFactor p :=
   quality_eq _
 
+/--
+@isnad1 id=issubgra.4h4v.s6.da44311f2ece from=translated src=- shape=5a65d9c9 vocab=ab1c513a
+-/
 theorem alt_induce_isSubgraph (G : GCDGraph) (V' W' : Finset ℕ) (E' : Finset (ℕ × ℕ))
     (hV : V' ⊆ G.V) (hW : W' ⊆ G.W) (hE : E' ⊆ G.E) (hE' : E' ⊆ V' ×ˢ W') :
     (G.induce V' W' E' hV hW hE hE').IsSubgraph G :=
@@ -310,7 +379,9 @@ theorem alt_induce_isSubgraph (G : GCDGraph) (V' W' : Finset ℕ) (E' : Finset (
 
 /-- Lemma 11.2: given partitions of `V` and `W` indexed by `I` and `J` (via labelling maps),
 some block pair keeps a `1/(|I||J|)` share of the density and a `1/(|I||J|)^{10}` share of the
-quality.-/
+quality.
+@isnad1 id=ex.3h5v.s8.1f48b3076614 from=translated src=- shape=d2df69bb vocab=f8a1a674
+-/
 theorem exists_block_subgraph (G : GCDGraph) (hδ : 0 < G.density) (I J : Finset ℕ)
     (iV jW : ℕ → ℕ) (hI : ∀ v ∈ G.V, iV v ∈ I) (hJ : ∀ w ∈ G.W, jW w ∈ J) :
     ∃ i ∈ I, ∃ j ∈ J, ∃ G' : GCDGraph, G'.IsSubgraph G ∧
@@ -414,6 +485,9 @@ theorem exists_block_subgraph (G : GCDGraph) (hδ : 0 < G.density) (I J : Finset
 
 /-! ### Lemmas 10.1 and 8.5 -/
 
+/--
+@isnad1 id=and.7h5v.s8.00694beb5703 from=translated src=- shape=822acae1 vocab=e7bc5859
+-/
 theorem alt_real_remove (X Y e a n : ℝ) (hY : 0 < Y) (ha : 0 ≤ a) (haX : a ≤ X) (he : 0 < e)
     (heXY : e ≤ X * Y) (hlt : n < 9 * (e / (X * Y)) / 10 * Y) (he' : e - a * n ≤ (X - a) * Y) :
     e / (X * Y) ≤ (e - a * n) / ((X - a) * Y) ∧
@@ -451,6 +525,9 @@ theorem alt_real_remove (X Y e a n : ℝ) (hY : 0 < Y) (ha : 0 ≤ a) (haX : a �
     _ = (δ * (1 + x)) ^ 10 * (X - a) * Y := by ring
     _ ≤ _ := by gcongr
 
+/--
+@isnad1 id=eq.0h2v.s6.c67b1f743816 from=translated src=- shape=e6b38488 vocab=8ff5651b
+-/
 theorem alt_esum_split_fst (G : GCDGraph) (v : ℕ) :
     esum G.μ G.E = esum G.μ (G.E.filter (fun e => e.1 ≠ v)) + G.μ v * wsum G.μ (G.nbhdV v) := by
   unfold esum
@@ -477,6 +554,9 @@ theorem alt_esum_split_fst (G : GCDGraph) (v : ℕ) :
     obtain ⟨_, rfl⟩ := he
     rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.ea4ca2d88bdd from=translated src=- shape=e6b38488 vocab=731b0b31
+-/
 theorem alt_esum_split_snd (G : GCDGraph) (w : ℕ) :
     esum G.μ G.E = esum G.μ (G.E.filter (fun e => e.2 ≠ w)) + G.μ w * wsum G.μ (G.nbhdW w) := by
   unfold esum
@@ -503,6 +583,9 @@ theorem alt_esum_split_snd (G : GCDGraph) (w : ℕ) :
     obtain ⟨_, rfl⟩ := he
     ring
 
+/--
+@isnad1 id=ex.2h1v.s6.70ede43db1ef from=translated src=- shape=7e1c0171 vocab=07fe0298
+-/
 theorem alt_step10 (G : GCDGraph) (hδ : 0 < G.density) (hH : ¬ G.HighDegree) :
     ∃ G1 : GCDGraph, G1.IsSubgraph G ∧ G1.P = G.P ∧ G1.f = G.f ∧ G1.g = G.g ∧
       G1.V.card + G1.W.card < G.V.card + G.W.card ∧ G.density ≤ G1.density ∧
@@ -585,7 +668,9 @@ theorem alt_step10 (G : GCDGraph) (hδ : 0 < G.density) (hH : ¬ G.HighDegree) :
         linarith
       exact mul_le_mul_of_nonneg_right h2' hprod.le
 
-/-- Lemma 8.5 (by iterating Lemma 10.1).-/
+/-- Lemma 8.5 (by iterating Lemma 10.1).
+@isnad1 id=ex.1h1v.s6.245743da919d from=translated src=- shape=d038b48f vocab=4a10a846
+-/
 theorem exists_highDegree_subgraph (G : GCDGraph) (hδ : 0 < G.density) :
     ∃ G' : GCDGraph, G'.IsSubgraph G ∧ G'.P = G.P ∧ G'.f = G.f ∧ G'.g = G.g ∧
       0 < G'.density ∧ G.density ≤ G'.density ∧ G.quality ≤ G'.quality ∧ G'.HighDegree := by
@@ -606,6 +691,9 @@ theorem exists_highDegree_subgraph (G : GCDGraph) (hδ : 0 < G.density) :
 
 /-! ### Lemmas 11.5 and 11.6 -/
 
+/--
+@isnad1 id=le.7h7v.s8.db548643f7ca from=translated src=- shape=8fa622bc vocab=d8b90f1e
+-/
 theorem alt_real_sparse (S T e e1 A B η : ℝ) (hA : 0 < A) (hB : 0 < B)
     (hAS : A ≤ η * S) (hBT : B ≤ η * T) (he : 0 ≤ e) (hη : 0 < η)
     (he1 : η ^ ((9 : ℝ) / 5) * e < e1) :
@@ -641,6 +729,9 @@ theorem alt_real_sparse (S T e e1 A B η : ℝ) (hA : 0 < A) (hB : 0 < B)
         apply mul_le_mul_of_nonneg_right _ hSTp.le
         exact pow_le_pow_left₀ (by positivity) he1.le 10
 
+/--
+@isnad1 id=ex.4h2v.s8.63e3559a34fd from=translated src=- shape=eeb098eb vocab=55c82538
+-/
 theorem alt_step115 (G : GCDGraph) (hδ : 0 < G.density) (η : ℝ) (hη0 : 0 < η) (hη1 : η < 1)
     (hA : ¬ ∀ A ⊆ G.V, ∀ B ⊆ G.W, wsum G.μ A ≤ η * wsum G.μ G.V → wsum G.μ B ≤ η * wsum G.μ G.W →
         esum G.μ (G.E.filter (fun e => e.1 ∈ A ∧ e.2 ∈ B)) ≤ η ^ ((9 : ℝ) / 5) * esum G.μ G.E) :
@@ -687,7 +778,9 @@ theorem alt_step115 (G : GCDGraph) (hδ : 0 < G.density) (η : ℝ) (hη0 : 0 < 
   exact mul_le_mul_of_nonneg_right (alt_real_sparse _ _ _ _ _ _ η hAp hBp hAS hBT he.le hη0 hlt)
     hprod.le
 
-/-- Lemma 11.6 (by iterating Lemma 11.5).-/
+/-- Lemma 11.6 (by iterating Lemma 11.5).
+@isnad1 id=ex.3h2v.s8.2c4eebc75cc4 from=translated src=- shape=02f0a354 vocab=45ce4093
+-/
 theorem exists_sparse_small_sets_subgraph (G : GCDGraph) (hδ : 0 < G.density) (η : ℝ)
     (hη0 : 0 < η) (hη1 : η < 1) :
     ∃ G' : GCDGraph, G'.IsSubgraph G ∧ G'.P = G.P ∧ G'.f = G.f ∧ G'.g = G.g ∧

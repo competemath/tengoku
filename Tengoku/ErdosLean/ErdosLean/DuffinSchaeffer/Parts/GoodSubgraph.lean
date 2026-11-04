@@ -18,6 +18,9 @@ namespace DuffinSchaeffer
 
 /-! ### Auxiliary lemmas (racing prover) -/
 
+/--
+@isnad1 id=and.4h5v.s7.3a98ef2a2458 from=translated src=- shape=c9fe519c vocab=03b85051
+-/
 theorem alt71_extract {δ q δ' q' X : ℝ} (hδ : 0 < δ) (hq : 0 < q) (hq' : 0 ≤ q')
     (h : X ≤ min 1 (δ' / δ) * (q' / q)) : X * q ≤ q' ∧ X * (δ * q) ≤ δ' * q' := by
   have hr : 0 ≤ q' / q := div_nonneg hq' hq.le
@@ -33,6 +36,9 @@ theorem alt71_extract {δ q δ' q' X : ℝ} (hδ : 0 < δ) (hq : 0 < q) (hq' : 0
   · rw [div_mul_div_comm, le_div_iff₀ (mul_pos hδ hq)] at h2
     exact h2
 
+/--
+@isnad1 id=eq.1h3v.s6.2be72c82f308 from=translated src=- shape=90221d99 vocab=474ebcf5
+-/
 theorem alt71_prod_fact (P : Finset ℕ) (f : ℕ → ℕ) (hP : ∀ p ∈ P, p.Prime) (q : ℕ) :
     (∏ p ∈ P, p ^ f p).factorization q = if q ∈ P then f q else 0 := by
   classical
@@ -45,6 +51,9 @@ theorem alt71_prod_fact (P : Finset ℕ) (f : ℕ → ℕ) (hP : ∀ p ∈ P, p.
       Finsupp.single_apply]
     split_ifs <;> simp
 
+/--
+@isnad1 id=dvd.3h3v.s6.34b3a823059f from=translated src=- shape=e92fd032 vocab=c85dcf33
+-/
 theorem alt71_prod_dvd (P : Finset ℕ) (f : ℕ → ℕ) (hP : ∀ p ∈ P, p.Prime) (v : ℕ) (hv : v ≠ 0)
     (hd : ∀ p ∈ P, p ^ f p ∣ v) : (∏ p ∈ P, p ^ f p) ∣ v := by
   classical
@@ -57,18 +66,27 @@ theorem alt71_prod_dvd (P : Finset ℕ) (f : ℕ → ℕ) (hP : ∀ p ∈ P, p.P
   · exact ((hP q hq).pow_dvd_iff_le_factorization hv).1 (hd q hq)
   · exact Nat.zero_le _
 
+/--
+@isnad1 id=eq.3h4v.s7.b1003dd97960 from=translated src=- shape=e5a76550 vocab=5c854c13
+-/
 theorem alt71_div_fact (P : Finset ℕ) (f : ℕ → ℕ) (hP : ∀ p ∈ P, p.Prime) (v : ℕ) (hv : v ≠ 0)
     (hd : ∀ p ∈ P, p ^ f p ∣ v) (q : ℕ) :
     (v / ∏ p ∈ P, p ^ f p).factorization q = v.factorization q - (if q ∈ P then f q else 0) := by
   rw [Nat.factorization_div (alt71_prod_dvd P f hP v hv hd), Finsupp.tsub_apply,
     alt71_prod_fact P f hP q]
 
+/--
+@isnad1 id=lt.3h3v.s6.54211776c2e3 from=translated src=- shape=320da852 vocab=543411c4
+-/
 theorem alt71_div_pos (P : Finset ℕ) (f : ℕ → ℕ) (hP : ∀ p ∈ P, p.Prime) (v : ℕ) (hv : 0 < v)
     (hd : ∀ p ∈ P, p ^ f p ∣ v) : 0 < v / ∏ p ∈ P, p ^ f p := by
   have h0 : 0 < (∏ p ∈ P, p ^ f p) :=
     Finset.prod_pos (fun p hp => pow_pos (hP p hp).pos _)
   exact Nat.div_pos (Nat.le_of_dvd hv (alt71_prod_dvd P f hP v hv.ne' hd)) h0
 
+/--
+@isnad1 id=not.4h3v.s6.e6f19e718372 from=translated src=- shape=bbf90fc5 vocab=2351765c
+-/
 theorem alt71_not_dvd (v w p : ℕ) (hv : 0 < v) (hw : 0 < w) (hp : p.Prime)
     (h : v.factorization p = w.factorization p) : ¬ p ∣ coprimePart v w := by
   intro hdvd
@@ -95,6 +113,9 @@ theorem alt71_not_dvd (v w p : ℕ) (hv : 0 < v) (hw : 0 < w) (hp : p.Prime)
     · exact h' hd
     · exact hwg0 h'
 
+/--
+@isnad1 id=dvd.3h3v.s6.753f55749592 from=translated src=- shape=e15295bb vocab=2c1390dd
+-/
 theorem alt71_dvd_cp (v w p : ℕ) (hv : 0 < v) (hw : 0 < w)
     (h : v.factorization p ≠ w.factorization p) : p ∣ coprimePart v w := by
   have hv0 : v ≠ 0 := hv.ne'
@@ -112,6 +133,9 @@ theorem alt71_dvd_cp (v w p : ℕ) (hv : 0 < v) (hw : 0 < w)
     rw [Nat.factorization_div (Nat.gcd_dvd_left v w), Finsupp.tsub_apply, hg]
     omega
 
+/--
+@isnad1 id=ne.2h2v.s5.008765d67743 from=translated src=- shape=d7f059a1 vocab=c78ff33d
+-/
 theorem alt71_coprimePart_ne_zero (v w : ℕ) (hv : 0 < v) (hw : 0 < w) :
     coprimePart v w ≠ 0 := by
   unfold coprimePart
@@ -119,7 +143,9 @@ theorem alt71_coprimePart_ne_zero (v w : ℕ) (hv : 0 < v) (hw : 0 < w) :
   · exact (Nat.div_pos (Nat.gcd_le_left w hv) (Nat.gcd_pos_of_pos_left w hv)).ne'
   · exact (Nat.div_pos (Nat.gcd_le_right v hw) (Nat.gcd_pos_of_pos_right v hw)).ne'
 
-/-- If `2^N < t^50` and `t > 10^2000` then `N ≤ t`.-/
+/-- If `2^N < t^50` and `t > 10^2000` then `N ≤ t`.
+@isnad1 id=le.2h2v.s5.011e211ad25f from=translated src=- shape=5386e99e vocab=86ef8cea
+-/
 theorem alt71_N_le (t : ℝ) (ht : T0 < t) (N : ℕ) (h : (2 : ℝ) ^ N < t ^ (50 : ℕ)) :
     (N : ℝ) ≤ t := by
   have hT : (30000 : ℝ) ≤ T0 := by
@@ -147,6 +173,9 @@ theorem alt71_N_le (t : ℝ) (ht : T0 < t) (N : ℕ) (h : (2 : ℝ) ^ N < t ^ (5
 
 namespace GCDGraph
 
+/--
+@isnad1 id=le.1h3v.s4.6726adce0f0e from=translated src=- shape=ae5e1350 vocab=f81de0e5
+-/
 theorem alt71_newUnequal_le {H2 H1 H : GCDGraph} (h21 : H2.IsSubgraph H1) :
     newUnequal H2 H ≤ newUnequal H2 H1 + newUnequal H1 H := by
   classical
@@ -163,10 +192,16 @@ theorem alt71_newUnequal_le {H2 H1 H : GCDGraph} (h21 : H2.IsSubgraph H1) :
   · left
     exact ⟨⟨hp2, hp1⟩, hne⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.119e75f982d8 from=translated src=- shape=34c957ae vocab=932b3599
+-/
 theorem alt71_newUnequal_self (H : GCDGraph) : newUnequal H H = 0 := by
   unfold newUnequal
   simp
 
+/--
+@isnad1 id=mem.2h2v.s5.46f74727921b from=translated src=- shape=aa616ccd vocab=194d7b16
+-/
 theorem alt71_sharp_of_flat (H : GCDGraph) (hflat : H.Rflat = ∅) (p : ℕ) (hp : p ∈ H.R) :
     p ∈ H.Rsharp := by
   classical
@@ -174,7 +209,9 @@ theorem alt71_sharp_of_flat (H : GCDGraph) (hflat : H.Rflat = ∅) (p : ℕ) (hp
   unfold Rsharp
   exact Finset.mem_filter.2 ⟨hp, by simpa using this⟩
 
-/-- Iterating Props 8.1/8.2 until `R = ∅` (Stages 3a / 4b).-/
+/-- Iterating Props 8.1/8.2 until `R = ∅` (Stages 3a / 4b).
+@isnad1 id=ex.3h2v.s6.f918a0e7b9f2 from=translated src=- shape=d365cb0b vocab=abbbbd75
+-/
 theorem alt71_iterate : ∀ n : ℕ, ∀ H : GCDGraph, H.R.card = n → 0 < H.density →
     (∀ p ∈ H.R, T0 < (p : ℝ)) →
     ∃ H' : GCDGraph, H'.IsSubgraph H ∧ 0 < H'.density ∧ H'.R = ∅ ∧
@@ -212,7 +249,9 @@ theorem alt71_iterate : ∀ n : ℕ, ∀ H : GCDGraph, H.R.card = n → 0 < H.de
   · exact hPR1 h
   · exact Finset.mem_union_right _ (hR1.subset h)
 
-/-- Stage 2: iterating Prop 8.1 until `R♭ = ∅`.-/
+/-- Stage 2: iterating Prop 8.1 until `R♭ = ∅`.
+@isnad1 id=ex.3h2v.s7.fe0b8ef70f5e from=translated src=- shape=7c91349a vocab=c165b3db
+-/
 theorem alt71_stage2 : ∀ n : ℕ, ∀ H : GCDGraph, H.R.card = n → 0 < H.density →
     (∀ p ∈ H.R, T0 < (p : ℝ)) →
     ∃ H' : GCDGraph, H'.IsSubgraph H ∧ 0 < H'.density ∧ H'.Rflat = ∅ ∧
@@ -259,7 +298,9 @@ theorem alt71_stage2 : ∀ n : ℕ, ∀ H : GCDGraph, H.R.card = n → 0 < H.den
     refine ⟨H, IsSubgraph.refl H, hδ, hflat, ?_, ?_⟩ <;>
       simp [alt71_newUnequal_self]
 
-/-- The final anatomical estimate of Stage 4b.-/
+/-- The final anatomical estimate of Stage 4b.
+@isnad1 id=le.6h4v.s8.c575ebe6337c from=translated src=- shape=2885105b vocab=fdf1a5ec
+-/
 theorem alt71_final (F G2 : GCDGraph) (hs : F.IsSubgraph G2) (hPF : F.P ⊆ G2.P ∪ G2.R)
     (t : ℝ) (ht : 0 < t)
     (hcount : (((G2.P.filter (fun p => G2.f p ≠ G2.g p ∧ t ≤ (p : ℝ))).card : ℕ) : ℝ) ≤ t)
@@ -332,7 +373,9 @@ theorem alt71_final (F G2 : GCDGraph) (hs : F.IsSubgraph G2) (hPF : F.P ⊆ G2.P
     · intro p _ _; positivity
   linarith
 
-/-- Proposition 7.1.-/
+/-- Proposition 7.1.
+@isnad1 id=ex.0h0v.s8.7d6416c5e39b from=translated src=- shape=8a7f5a0f vocab=65e297d3
+-/
 theorem prop71 : ∃ c : ℝ, 0 < c ∧ ∀ (G : GCDGraph) (t : ℝ), G.P = ∅ → 0 < G.density →
     (∀ e ∈ G.E, 10 ≤ Lsum t e.1 e.2) → 10 * G.density ^ (-(1 : ℝ) / 50) ≤ t → T0 < t →
     ∃ G' : GCDGraph, G'.IsSubgraph G ∧ 0 < G'.density ∧ G'.R = ∅ ∧ G'.HighDegree ∧

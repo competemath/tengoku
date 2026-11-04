@@ -22,7 +22,9 @@ namespace Erdos956
 
 open Filter Asymptotics
 
-/-- The grid configuration of parameter `k`, padded to size `n`, has `≥ M_k` unit pairs.-/
+/-- The grid configuration of parameter `k`, padded to size `n`, has `≥ M_k` unit pairs.
+@isnad1 id=le.2h2v.s4.86875003f0d3 from=translated src=- shape=811b7df3 vocab=f0a941b4
+-/
 theorem grid_bound : ∀ k ≥ 2, ∀ n ≥ nk k, Mk k ≤ h n := by
   intro k hk n hn
   have hadm := admissible_X hk
@@ -33,23 +35,33 @@ theorem grid_bound : ∀ k ≥ 2, ∀ n ≥ nk k, Mk k ≤ h n := by
     _ ≤ h Y.card := le_h hY
     _ = h n := by rw [hYc]
 
-/-- `h(n) ≫ n^{4/3}`.-/
+/-- `h(n) ≫ n^{4/3}`.
+@isnad1 id=erdos956.0h0v.s0.387ba5e761ec from=translated src=- shape=45709ebd vocab=387ba5e7
+-/
 theorem erdos956_lowerBound : Erdos956LowerBound := lower_of_grid h grid_bound
 
-/-- `h(n) > n^{1+c}` eventually, for every `c < 1/3`.-/
+/-- `h(n) > n^{1+c}` eventually, for every `c < 1/3`.
+@isnad1 id=erdos956.0h0v.s0.248a5ac8a72a from=translated src=- shape=45709ebd vocab=248a5ac8
+-/
 theorem erdos956_allExponents : Erdos956AllExponents :=
   exponents_of_lower h erdos956_lowerBound
 
-/-- **Erdős #956** as posed: there is `c > 0` with `h(n) > n^{1+c}` for all large `n`.-/
+/-- **Erdős #956** as posed: there is `c > 0` with `h(n) > n^{1+c}` for all large `n`.
+@isnad1 id=erdos956.0h0v.s0.59ea1052ce8b from=translated src=- shape=45709ebd vocab=59ea1052
+-/
 theorem erdos956 : Erdos956Statement :=
   ⟨1 / 6, by norm_num, erdos956_allExponents (1 / 6) (by norm_num)⟩
 
-/-- Everything proved here, bundled.-/
+/-- Everything proved here, bundled.
+@isnad1 id=and.0h0v.s2.1aa4936ab9e2 from=translated src=- shape=13ca159b vocab=2c927514
+-/
 theorem erdos956_main : Erdos956Statement ∧ Erdos956LowerBound ∧ Erdos956AllExponents :=
   ⟨erdos956, erdos956_lowerBound, erdos956_allExponents⟩
 
 /-- With the Erdős–Pach upper bound (assumed as a hypothesis, not proved here) the order of
-magnitude is determined: `h(n) = Θ(n^{4/3})`.-/
+magnitude is determined: `h(n) = Θ(n^{4/3})`.
+@isnad1 id=istheta.1h0v.s5.0f7cad3a1f47 from=translated src=- shape=2cca3b0c vocab=9d75b910
+-/
 theorem erdos956_theta_of_upper (hup : ErdosPachUpperBound) :
     (fun n : ℕ => (h n : ℝ)) =Θ[atTop] fun n : ℕ => (n : ℝ) ^ ((4 : ℝ) / 3) := by
   obtain ⟨c₀, hc₀, hev⟩ := erdos956_lowerBound

@@ -24,7 +24,9 @@ namespace Erdos612All
 
 open Erdos612
 
-/-- Part (i) of Erdős #612 fails for every `r ≥ 2`.-/
+/-- Part (i) of Erdős #612 fails for every `r ≥ 2`.
+@isnad1 id=not.1h1v.s3.9ebd5985a75a from=translated src=- shape=c1538fc1 vocab=4f817bd7
+-/
 theorem not_evenConjAt (r : ℕ) (hr : 2 ≤ r) : ¬ EvenConjAt r := by
   obtain ⟨s, rfl⟩ : ∃ s, r = s + 1 := ⟨r - 1, by omega⟩
   have hs : 1 ≤ s := by omega
@@ -40,7 +42,9 @@ theorem not_evenConjAt (r : ℕ) (hr : 2 ≤ r) : ¬ EvenConjAt r := by
   · rw [Nat.add_sub_cancel]
     exact ⟨4 * (s + 1), by unfold evDelta evW; ring⟩
 
-/-- Part (ii) of Erdős #612 fails for every `r ≥ 4`.-/
+/-- Part (ii) of Erdős #612 fails for every `r ≥ 4`.
+@isnad1 id=not.1h1v.s3.b15df5bfae48 from=translated src=- shape=c1538fc1 vocab=266f057b
+-/
 theorem not_oddConjAt (r : ℕ) (hr : 4 ≤ r) : ¬ OddConjAt r := by
   obtain ⟨q, rfl⟩ : ∃ q, r = q + 4 := ⟨r - 4, by omega⟩
   unfold OddConjAt
@@ -56,7 +60,9 @@ theorem not_oddConjAt (r : ℕ) (hr : 4 ≤ r) : ¬ OddConjAt r := by
     exact ⟨(2 * q + 7) * 3 * (2 * (6 * q + 19)), by unfold odDelta odX odU; ring⟩
 
 /-- **Erdős #612, all `r`**: part (i) fails for every `r ≥ 2`, part (ii) fails for every
-`r ≥ 4`, in the weak and in the uniform reading of `O(1)`.-/
+`r ≥ 4`, in the weak and in the uniform reading of `O(1)`.
+@isnad1 id=erdos612.0h0v.s0.8226ddc5e5d3 from=translated src=- shape=45709ebd vocab=8226ddc5
+-/
 theorem erdos_612_all : Erdos612AllAnswer :=
   ⟨not_evenConjAt, not_oddConjAt,
     fun r hr h => not_evenConjAt r hr (diamBound_of_uniform h),

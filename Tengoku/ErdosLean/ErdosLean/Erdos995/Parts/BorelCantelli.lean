@@ -18,6 +18,9 @@ namespace Con
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
+/--
+@isnad1 id=eventual.0h0v.s7.cc8fa0524e3c from=translated src=- shape=f224178f vocab=37a5d6fa
+-/
 lemma ae_eventually_stageGood : ∀ᵐ x ∂μ𝕋, ∀ᶠ k in atTop, x ∈ stageGood k := by
   have hsum : ∑' k, μ𝕋 (stageGood k)ᶜ ≠ ∞ := by
     refine ne_top_of_le_ne_top ?_ (ENNReal.tsum_le_tsum measure_compl_stageGood_le)

@@ -12,6 +12,9 @@ namespace Erdos956Upper
 
 open Erdos956 Metric
 
+/--
+@isnad1 id=le.4h5v.s8.4456f55a8dbf from=translated src=- shape=7dd561ad vocab=341180a7
+-/
 theorem final_arith (n : ℕ) (U S e O : ℝ) (hU : U ≤ e + n) (hS : S ≤ 2 * n)
     (hO : O ≤ 4 * (n : ℝ) ^ 2)
     (he : ∀ p : ℝ, 0 < p → p ≤ 1 / 4 → e ≤ 8 * n / p + p ^ 2 * O) :

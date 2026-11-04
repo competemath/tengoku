@@ -13,11 +13,17 @@ namespace Erdos956
 
 open Finset
 
+/--
+@isnad1 id=and.1h4v.s4.1e126f8c0392 from=translated src=- shape=9a65b32b vocab=86666714
+-/
 lemma altGridCard_pt_inj {x y x' y' : ℝ} (h : pt x y = pt x' y') : x = x' ∧ y = y' := by
   refine ⟨?_, ?_⟩
   · have := congrArg (fun v : E => v 0) h; simpa using this
   · have := congrArg (fun v : E => v 1) h; simpa using this
 
+/--
+@isnad1 id=eq.1h1v.s4.72149cc9eeb8 from=translated src=- shape=014ed288 vocab=86d90fd2
+-/
 theorem card_X {k : ℕ} (hk : 1 ≤ k) : (X k).card = nk k := by
   have hk0 : (0 : ℝ) < k := by exact_mod_cast hk
   have ha : 0 < a k := by unfold a α; positivity

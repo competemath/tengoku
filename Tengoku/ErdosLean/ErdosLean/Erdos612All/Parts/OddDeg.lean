@@ -21,43 +21,76 @@ namespace Erdos612All
 
 open Erdos612
 
+/--
+@isnad1 id=eq.1h2v.s6.db2319534b7a from=translated src=- shape=8dd7db9c vocab=e9dd4bf6
+-/
 theorem odBlock_three (q j : ℕ) (h : 3 * j < 6 * q + 16) : odBlock q (3 * j) = [1] := by
   unfold odBlock; simp [h]
 
+/--
+@isnad1 id=eq.1h2v.s6.aa1ec0baace7 from=translated src=- shape=02190b31 vocab=cea922c5
+-/
 theorem odBlock_three_one (q j : ℕ) (h : 3 * j + 1 < 6 * q + 16) :
     odBlock q (3 * j + 1) = List.replicate (2 * q + 6 - j) (odX q) := by
   unfold odBlock
   rw [show (3 * j + 1) % 3 = 1 by omega, show (3 * j + 1) / 3 = j by omega]
   simp [h]
 
+/--
+@isnad1 id=eq.1h2v.s6.5607d9089c62 from=translated src=- shape=d35fbd5c vocab=b29d4a9f
+-/
 theorem odBlock_three_two (q j : ℕ) (h : 3 * j + 2 < 6 * q + 16) :
     odBlock q (3 * j + 2) = List.replicate (j + 2) (odX q) := by
   unfold odBlock
   rw [show (3 * j + 2) % 3 = 2 by omega, show (3 * j + 2) / 3 = j by omega]
   simp [h]
 
+/--
+@isnad1 id=eq.0h1v.s5.ef2f0d4dbf42 from=translated src=- shape=601e497f vocab=635319b1
+-/
 theorem odBlock_E1 (q : ℕ) : odBlock q (6 * q + 16) = odE q := by
   unfold odBlock; simp
 
+/--
+@isnad1 id=eq.0h1v.s5.874c714203ed from=translated src=- shape=601e497f vocab=70f59aa0
+-/
 theorem odBlock_F (q : ℕ) : odBlock q (6 * q + 17) = odF q := by
   unfold odBlock; simp
 
+/--
+@isnad1 id=eq.0h1v.s5.47775470b78f from=translated src=- shape=601e497f vocab=635319b1
+-/
 theorem odBlock_E3 (q : ℕ) : odBlock q (6 * q + 18) = odE q := by
   unfold odBlock; simp
 
+/--
+@isnad1 id=eq.0h1v.s4.1f054091d90d from=translated src=- shape=d5542b44 vocab=86dc73a6
+-/
 theorem odE_sum (q : ℕ) : (odE q).sum = 3 * odU q := by
   simp [odE]; ring
 
+/--
+@isnad1 id=eq.0h1v.s5.cb5230b7dba9 from=translated src=- shape=89df15dc vocab=830259f1
+-/
 theorem odF_sum (q : ℕ) : (odF q).sum = 6 * (q * odU q) + 19 * odU q := by
   simp only [odF, List.sum_append, List.sum_replicate, smul_eq_mul]; ring
 
+/--
+@isnad1 id=or.1h2v.s5.e119adc2c8b7 from=translated src=- shape=1df86ee8 vocab=e8a447e0
+-/
 theorem odF_mem (q w : ℕ) (h : w ∈ odF q) : w = 3 * odU q ∨ w = 4 * odU q := by
   simp only [odF, List.mem_append, List.mem_replicate] at h
   omega
 
+/--
+@isnad1 id=eq.0h1v.s5.595d38c7b819 from=translated src=- shape=03579887 vocab=3456e2f5
+-/
 theorem odDelta_eq (q : ℕ) : odDelta q = 6 * (q * odU q) + 21 * odU q := by
   unfold odDelta odX; ring
 
+/--
+@isnad1 id=degq.5h4v.s7.44cfc151a6d8 from=translated src=- shape=bd4db385 vocab=c4a0c589
+-/
 theorem odBlock_deg (q m : ℕ) (hm : m < 6 * q + 19) (a c : List ℕ)
     (ha : m ≠ 0 → a = odBlock q (m - 1)) (ha0 : m = 0 → odX q ≤ a.sum)
     (hc : m + 1 ≠ 6 * q + 19 → c = odBlock q (m + 1)) (hc0 : m + 1 = 6 * q + 19 → c = [1]) :

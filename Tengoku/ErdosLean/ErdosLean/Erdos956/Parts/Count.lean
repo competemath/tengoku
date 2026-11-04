@@ -13,14 +13,23 @@ import Tengoku.ErdosLean.ErdosLean.Erdos956.Parts.TriplesCard
 
 namespace Erdos956
 
+/--
+@isnad1 id=lt.1h1v.s4.c28687fb76c2 from=translated src=- shape=f8216502 vocab=ea0c1e63
+-/
 lemma altCount_a_pos {k : ℕ} (hk : 1 ≤ k) : 0 < a k := by
   have hk0 : (0 : ℝ) < k := by exact_mod_cast hk
   unfold a α; exact div_pos (by norm_num) (pow_pos hk0 2)
 
+/--
+@isnad1 id=lt.1h1v.s4.fbc4ee794cf1 from=translated src=- shape=f8216502 vocab=b9a96d1d
+-/
 lemma altCount_b_pos {k : ℕ} (hk : 1 ≤ k) : 0 < b k := by
   have hk0 : (0 : ℝ) < k := by exact_mod_cast hk
   unfold b α; exact div_pos (by norm_num) (by positivity)
 
+/--
+@isnad1 id=lt.2h2v.s5.5e775e0237ed from=translated src=- shape=99e955c5 vocab=de5bc7e9
+-/
 lemma altCount_lowY_lt_one {k s : ℕ} (hk : 1 ≤ k) (hs : s ≤ k ^ 2) : (s : ℝ) * b k < 1 := by
   have hk1 : (1 : ℝ) ≤ k := by exact_mod_cast hk
   have hk0 : (0 : ℝ) < k := by linarith
@@ -34,12 +43,18 @@ lemma altCount_lowY_lt_one {k s : ℕ} (hk : 1 ≤ k) (hs : s ≤ k ^ 2) : (s : 
     _ ≤ 1 / 200 := div_le_self (by norm_num) hk2
     _ < 1 := by norm_num
 
+/--
+@isnad1 id=le.1h2v.s5.b76a679336db from=translated src=- shape=16752a8c vocab=1c647826
+-/
 lemma altCount_upY_ge_one {k : ℕ} (hk : 1 ≤ k) (s : ℕ) : 1 ≤ 1 + η k + (s : ℝ) * b k := by
   have hb := altCount_b_pos hk
   have hη : 0 ≤ η k := by unfold η α; positivity
   have : 0 ≤ (s : ℝ) * b k := mul_nonneg (Nat.cast_nonneg _) hb.le
   linarith
 
+/--
+@isnad1 id=ne.2h5v.s5.91b98598e9e3 from=translated src=- shape=0655214b vocab=782c98c3
+-/
 lemma altCount_lowPt_ne_upPt {k r s r' s' : ℕ} (hk : 1 ≤ k) (hs : s ≤ k ^ 2) :
     lowPt k r s ≠ upPt k r' s' := by
   intro h
@@ -49,6 +64,9 @@ lemma altCount_lowPt_ne_upPt {k r s r' s' : ℕ} (hk : 1 ≤ k) (hs : s ≤ k ^ 
   have := altCount_upY_ge_one hk s'
   linarith
 
+/--
+@isnad1 id=injon.1h1v.s5.3062e5d6c2cc from=translated src=- shape=541b0600 vocab=98d24e9a
+-/
 lemma pairOf_injOn {k : ℕ} (hk : 1 ≤ k) : Set.InjOn (pairOf k) (triples k : Set _) := by
   rintro ⟨i, r, s⟩ hq ⟨i', r', s'⟩ hq' h
   simp only [Finset.coe_filter, Set.mem_ofPred_eq, triples, Finset.mem_product, Finset.mem_Icc,
@@ -74,6 +92,9 @@ lemma pairOf_injOn {k : ℕ} (hk : 1 ≤ k) : Set.InjOn (pairOf k) (triples k : 
     rfl
   · exact absurd hL (altCount_lowPt_ne_upPt hk hs)
 
+/--
+@isnad1 id=mem.2h2v.s6.1bca95312649 from=translated src=- shape=b2cfe93a vocab=855a397b
+-/
 lemma pairOf_mem_unitPairs {k : ℕ} (hk : 1 ≤ k) {q : ℕ × ℕ × ℕ} (hq : q ∈ triples k) :
     pairOf k q ∈ unitPairs (C k) (X k) := by
   classical
@@ -99,6 +120,9 @@ lemma pairOf_mem_unitPairs {k : ℕ} (hk : 1 ≤ k) {q : ℕ × ℕ × ℕ} (hq 
         simp only [idx, Finset.mem_product, Finset.mem_range]; omega, rfl⟩
   · exact ⟨_, _, rfl, altCount_lowPt_ne_upPt hk hs, hd⟩
 
+/--
+@isnad1 id=le.1h1v.s4.0d8eee7d838c from=translated src=- shape=24f3fde2 vocab=46a9c2fa
+-/
 theorem Mk_le_card_unitPairs {k : ℕ} (hk : 1 ≤ k) : Mk k ≤ (unitPairs (C k) (X k)).card := by
   rw [← card_triples]
   apply Finset.card_le_card_of_injOn (pairOf k)

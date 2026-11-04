@@ -8,6 +8,9 @@ so `C = ∑_{k ≤ n} ‖aₖ‖` works.  Purely algebraic: no hypothesis on `f`
 
 namespace Erdos514
 
+/--
+@isnad1 id=eq.0h3v.s6.6a336f399b6c from=translated src=- shape=6e71be70 vocab=028ee7f2
+-/
 lemma alt_expand (f : ℂ → ℂ) (m : ℕ) (z : ℂ) :
     f z = (∑ k ∈ Finset.range m, shift f k 0 * z ^ k) + z ^ m * shift f m z := by
   induction m with
@@ -19,6 +22,9 @@ lemma alt_expand (f : ℂ → ℂ) (m : ℕ) (z : ℂ) :
     rw [Finset.sum_range_succ, shift_succ]
     linear_combination (-(z ^ m)) * h
 
+/--
+@isnad1 id=ex.0h2v.s6.e41407779348 from=translated src=- shape=8e42838e vocab=b038736a
+-/
 theorem ratio_bound (f : ℂ → ℂ) (n : ℕ) :
     ∃ C : ℝ, ∀ z : ℂ, 1 ≤ ‖z‖ → ‖z‖ * ‖shift f (n + 1) z‖ - C ≤ ‖f z / z ^ n‖ := by
   refine ⟨∑ k ∈ Finset.range (n+1), ‖shift f k 0‖, fun z hz => ?_⟩

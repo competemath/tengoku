@@ -16,6 +16,9 @@ open Filter Topology
 
 namespace Erdos265
 
+/--
+@isnad1 id=le.1h2v.s5.0a60a4f5dd8d from=translated src=- shape=a2c89992 vocab=fb2abeb5
+-/
 theorem seqOf_ge_MM {c : ℕ → ℤ × ℤ} (hc : ∀ k, Adm k (c k)) (n : ℕ) :
     MM (n / 2) ≤ seqOf c n := by
   have h4 := MM_ge (n / 2)
@@ -30,6 +33,9 @@ theorem seqOf_ge_MM {c : ℕ → ℤ × ℤ} (hc : ∀ k, Adm k (c k)) (n : ℕ)
   unfold seqOf
   split_ifs <;> omega
 
+/--
+@isnad1 id=tendsto.1h1v.s6.4b14c4e98624 from=translated src=- shape=0f206168 vocab=995803dc
+-/
 theorem seqOf_double_exp {c : ℕ → ℤ × ℤ} (hc : ∀ k, Adm k (c k)) :
     Tendsto (fun n : ℕ ↦ (seqOf c n : ℝ) ^ ((1 : ℝ) / (51 / 50 : ℝ) ^ n)) atTop atTop := by
   have key : ∀ n : ℕ, (2 : ℝ) ^ ((40 / (51 / 50 : ℝ)) * ((21 / 20 : ℝ) / (51 / 50) ^ 2) ^ (n / 2))

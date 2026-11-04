@@ -17,7 +17,9 @@ namespace Erdos265
 
 variable {a : ℕ → ℕ}
 
-/-- `1/(1 - e^{-1}) ≤ 2`.-/
+/-- `1/(1 - e^{-1}) ≤ 2`.
+@isnad1 id=le.0h0v.s5.dd53103cef85 from=translated src=- shape=843d0ec6 vocab=1e76ec75
+-/
 theorem inv_one_sub_exp_neg_one_le_two : (1 - Real.exp (-1))⁻¹ ≤ 2 := by
   have he : (2 : ℝ) ≤ Real.exp 1 := by
     have := Real.exp_one_gt_d9
@@ -30,10 +32,15 @@ theorem inv_one_sub_exp_neg_one_le_two : (1 - Real.exp (-1))⁻¹ ≤ 2 := by
   calc (1 - Real.exp (-1))⁻¹ ≤ (1 / 2 : ℝ)⁻¹ := inv_anti₀ (by norm_num) h12
     _ = 2 := by norm_num
 
+/--
+@isnad1 id=lt.0h0v.s4.7d73c39a3ee4 from=translated src=- shape=00b7d787 vocab=379b737d
+-/
 theorem exp_neg_one_lt_one : Real.exp (-1) < 1 := by
   rw [← Real.exp_zero]; exact Real.exp_lt_exp.mpr (by norm_num)
 
-/-- `e^{-⌈log x⌉} ≤ 1/x` for `x > 0`.-/
+/-- `e^{-⌈log x⌉} ≤ 1/x` for `x > 0`.
+@isnad1 id=le.1h1v.s5.af61628179bf from=translated src=- shape=cd90b82f vocab=557b3076
+-/
 theorem exp_neg_ceil_log_le {x : ℝ} (hx : 0 < x) :
     Real.exp (-((⌈Real.log x⌉₊ : ℕ) : ℝ)) ≤ 1 / x := by
   have hl : Real.log x ≤ ((⌈Real.log x⌉₊ : ℕ) : ℝ) := Nat.le_ceil _
@@ -42,7 +49,9 @@ theorem exp_neg_ceil_log_le {x : ℝ} (hx : 0 < x) :
   calc x = Real.exp (Real.log x) := (Real.exp_log hx).symm
     _ ≤ _ := Real.exp_le_exp.mpr hl
 
-/-- Pointwise bound on the far tail.-/
+/-- Pointwise bound on the far tail.
+@isnad1 id=le.2h5v.s6.d480bd281c77 from=translated src=- shape=64d3ac59 vocab=953ef376
+-/
 theorem far_term_le {N n M k : ℕ} (hn : N ≤ n)
     (hN : ∀ m ≥ N, Real.exp (m : ℝ) ≤ (a m : ℝ)) :
     recip a (k + M + n) ≤ Real.exp (-(M : ℝ)) * Real.exp (-1) ^ k := by
@@ -62,7 +71,9 @@ theorem far_term_le {N n M k : ℕ} (hn : N ≤ n)
         congr 1
         ring
 
-/-- Far tail sum bound.-/
+/-- Far tail sum bound.
+@isnad1 id=le.3h4v.s6.19a0c5e57d97 from=translated src=- shape=b405a913 vocab=f951fd3f
+-/
 theorem far_tail_le (ha : IsRationalPair a) {N n M : ℕ} (hn : N ≤ n)
     (hN : ∀ m ≥ N, Real.exp (m : ℝ) ≤ (a m : ℝ)) :
     ∑' k, recip a (k + M + n) ≤ 2 * Real.exp (-(M : ℝ)) := by
@@ -82,7 +93,9 @@ theorem far_tail_le (ha : IsRationalPair a) {N n M : ℕ} (hn : N ≤ n)
         mul_le_mul_of_nonneg_left inv_one_sub_exp_neg_one_le_two (Real.exp_pos _).le
     _ = 2 * Real.exp (-(M : ℝ)) := by ring
 
-/-- Near part bound.-/
+/-- Near part bound.
+@isnad1 id=le.1h3v.s6.5d67501a310f from=translated src=- shape=25b07ffb vocab=6b5a2904
+-/
 theorem near_sum_le (ha : IsRationalPair a) (n M : ℕ) :
     ∑ k ∈ Finset.range M, recip a (k + n) ≤ M * (1 / (a n : ℝ)) := by
   have hxpos : 0 < (a n : ℝ) := by
@@ -96,6 +109,9 @@ theorem near_sum_le (ha : IsRationalPair a) (n M : ℕ) :
   calc _ ≤ ∑ k ∈ Finset.range M, (1 / (a n : ℝ)) := Finset.sum_le_sum hle
     _ = M * (1 / (a n : ℝ)) := by simp
 
+/--
+@isnad1 id=eq.1h3v.s6.4847b4a1bc50 from=translated src=- shape=3a302345 vocab=88d9885e
+-/
 theorem T_split (ha : IsRationalPair a) (n M : ℕ) :
     T a n = ∑ k ∈ Finset.range M, recip a (k + n) + ∑' k, recip a (k + M + n) := by
   have hs : Summable (fun k => recip a (k + n)) :=
@@ -103,6 +119,9 @@ theorem T_split (ha : IsRationalPair a) (n M : ℕ) :
   unfold T tail
   rw [← hs.sum_add_tsum_nat_add M]
 
+/--
+@isnad1 id=eventual.2h1v.s5.13756d90b5d1 from=translated src=- shape=bace056d vocab=d1b9ff0b
+-/
 theorem tail_regular (ha : IsRationalPair a)
     (hexp : ∀ᶠ m : ℕ in atTop, Real.exp (m : ℝ) ≤ (a m : ℝ)) :
     ∀ᶠ n in atTop, T a n ≤ regF a n / (a n : ℝ) := by

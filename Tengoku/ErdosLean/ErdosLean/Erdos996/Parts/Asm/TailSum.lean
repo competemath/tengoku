@@ -21,7 +21,9 @@ namespace Asm
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
-/-- If at most one term of a finite sum is nonzero, `‖∑ f‖² = ∑ ‖f‖²`.-/
+/-- If at most one term of a finite sum is nonzero, `‖∑ f‖² = ∑ ‖f‖²`.
+@isnad1 id=eq.1h3v.s7.389b240c3809 from=translated src=- shape=3b03839d vocab=cb0e9101
+-/
 lemma alt_norm_sum_sq_of_disj {ι : Type*} (s : Finset ι) (f : ι → ℂ)
     (h : ∀ i ∈ s, ∀ j ∈ s, i ≠ j → f i = 0 ∨ f j = 0) :
     ‖∑ i ∈ s, f i‖ ^ 2 = ∑ i ∈ s, ‖f i‖ ^ 2 := by
@@ -40,6 +42,9 @@ lemma alt_norm_sum_sq_of_disj {ι : Type*} (s : Finset ι) (f : ι → ℂ)
     rw [Finset.sum_eq_zero hex, Finset.sum_eq_zero (fun i hi => by rw [hex i hi, norm_zero]; ring)]
     simp
 
+/--
+@isnad1 id=or.1h4v.s6.d1fd0af934ae from=translated src=- shape=6370d465 vocab=070f28f1
+-/
 lemma alt_fc_blk_disj (A k k' : ℕ) (r : ℤ) (hne : k ≠ k') :
     fourierCoeff (fun x => (blk A k x : ℂ)) r = 0 ∨
       fourierCoeff (fun x => (blk A k' x : ℂ)) r = 0 := by
@@ -54,6 +59,9 @@ lemma alt_fc_blk_disj (A k k' : ℕ) (r : ℤ) (hne : k ≠ k') :
   · exact hq0 h
   · exact hq0' h
 
+/--
+@isnad1 id=hassum.1h2v.s7.f5aec85461a5 from=translated src=- shape=4c7542d1 vocab=32bb0bd7
+-/
 lemma alt_hasSum_norm_sq (A : ℕ) (hA : 1 ≤ A) (r : ℤ) :
     HasSum (fun k => ‖fourierCoeff (fun x => (blk A k x : ℂ)) r‖ ^ 2)
       (‖fourierCoeff (fun x => (gFun A x : ℂ)) r‖ ^ 2) := by
@@ -82,6 +90,9 @@ lemma alt_hasSum_norm_sq (A : ℕ) (hA : 1 ≤ A) (r : ℤ) :
       fun k => ‖b k‖ ^ 2 from rfl, this]
     simp
 
+/--
+@isnad1 id=eq.0h3v.s7.7f10808ed12f from=translated src=- shape=66e35f28 vocab=548929e5
+-/
 lemma alt_norm_blk_sq (A k : ℕ) (r : ℤ) :
     ‖fourierCoeff (fun x => (blk A k x : ℂ)) r‖ ^ 2 =
       lam A k / blockLen A k *
@@ -92,6 +103,9 @@ lemma alt_norm_blk_sq (A k : ℕ) (r : ℤ) :
   · intro q hq q' hq' hne
     exact fourierCoeff_atom_disjoint A k q k q' r hq hq' (fun h => hne (congrArg Prod.snd h))
 
+/--
+@isnad1 id=summable.0h3v.s6.cea42709b88e from=translated src=- shape=b23d9529 vocab=9bc9bc4d
+-/
 lemma alt_summable_atom (A k q : ℕ) :
     Summable (fun r : ℤ => ‖fourierCoeff (fun x => (atom A k q x : ℂ)) r‖ ^ 2) := by
   have hmeas : Measurable (atom A k q) :=
@@ -104,6 +118,9 @@ lemma alt_summable_atom (A k q : ℕ) :
   have := (hasSum_sq_fourierCoeff (hm.toLp _)).summable
   rwa [fourierCoeff_congr_ae hm.coeFn_toLp] at this
 
+/--
+@isnad1 id=ex.0h0v.s7.f2a0f714c51c from=translated src=- shape=c5966893 vocab=2fd7c984
+-/
 lemma tail_sum_le : ∃ C₁ : ℝ, 0 < C₁ ∧ ∀ A : ℕ, 1 ≤ A → ∀ N : ℕ, 1 ≤ N →
     ∑' r : {r : ℤ // (N : ℤ) < |r|}, ‖fourierCoeff (fun x => (gFun A x : ℂ)) r‖ ^ 2 ≤
       C₁ * ∑' k, lam A k * min 1 ((2 : ℝ) ^ logQ A k / N) := by

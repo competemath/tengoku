@@ -18,9 +18,15 @@ namespace Erdos612All
 
 open Erdos612
 
+/--
+@isnad1 id=eq.0h1v.s5.6e518be2a39d from=translated src=- shape=60b96af7 vocab=427a8ee0
+-/
 theorem odPer_length (q : ℕ) : (odPer q).length = 6 * q + 19 := by
   simp [odPer]
 
+/--
+@isnad1 id=eq.0h1v.s6.4a61d2f76b20 from=translated src=- shape=eae2f0ac vocab=4205f245
+-/
 theorem odPer_total (q : ℕ) :
     (odPer q).total = (2 * q + 6) + (12 * q ^ 2 + 84 * q + 145) * odU q := by
   rw [odPer, total_map_range, show 6 * q + 19 = 3 * (2 * q + 5) + 1 + 1 + 1 + 1 by ring,
@@ -41,6 +47,9 @@ theorem odPer_total (q : ℕ) :
   simp only [List.sum_singleton, odX]
   ring
 
+/--
+@isnad1 id=lt.0h1v.s5.254f4fc7daf9 from=translated src=- shape=d16ec180 vocab=b9cfb7d6
+-/
 theorem od_growth (q : ℕ) :
     oddCoeff (q + 4) * ((odPer q).total : ℝ) < ((odPer q).length : ℝ) * (odDelta q : ℝ) := by
   rw [odPer_total, odPer_length]

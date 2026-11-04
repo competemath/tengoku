@@ -9,7 +9,9 @@ namespace Erdos996
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
-/-- Pointwise lower bound for the spike.-/
+/-- Pointwise lower bound for the spike.
+@isnad1 id=le.0h2v.s6.7e8f7d5cec85 from=translated src=- shape=f2c10c72 vocab=a58c3ba3
+-/
 lemma spike_ge_neg (d : ℕ) (y : 𝕋) :
     -((2 : ℝ)⁻¹ ^ d) / Real.sqrt ((2 : ℝ)⁻¹ ^ d * (1 - (2 : ℝ)⁻¹ ^ d)) ≤ spike d y := by
   unfold spike
@@ -18,7 +20,9 @@ lemma spike_ge_neg (d : ℕ) (y : 𝕋) :
       (1 : 𝕋 → ℝ) y := Set.indicator_nonneg (fun _ _ => zero_le_one) y
   linarith
 
-/-- Value of the spike on its support interval.-/
+/-- Value of the spike on its support interval.
+@isnad1 id=eq.1h2v.s7.de0b39d3f04b from=translated src=- shape=dcd04938 vocab=6712f1da
+-/
 lemma spike_eq_of_mem (d : ℕ) (y : 𝕋)
     (hy : y ∈ QuotientAddGroup.mk '' Set.Ico (0 : ℝ) ((2 : ℝ)⁻¹ ^ d)) :
     spike d y = (1 - (2 : ℝ)⁻¹ ^ d) / Real.sqrt ((2 : ℝ)⁻¹ ^ d * (1 - (2 : ℝ)⁻¹ ^ d)) := by
@@ -27,7 +31,9 @@ lemma spike_eq_of_mem (d : ℕ) (y : 𝕋)
   simp
 
 /-- Local amplification: on the good event the trial sum is at least `2 B ℓ`
-(the probability bound `≥ c₀ λ / B²` is a consequence of G2).-/
+(the probability bound `≥ c₀ λ / B²` is a consequence of G2).
+@isnad1 id=le.9h9v.s9.38d11f803e17 from=translated src=- shape=f885a620 vocab=bdebc9e5
+-/
 lemma trial_signal (lam B : ℝ) (L ℓ d D U M : ℕ) (hlam : 0 < lam) (hlam1 : lam ≤ 1)
     (hB : 100 ≤ B) (hL : 1 ≤ L) (hℓ : 8 * ℓ ≤ L) (hD : d + 2 ≤ D)
     (hd : 64 * B ^ 2 * L / lam ≤ 2 ^ d) (hd' : (2 : ℝ) ^ d < 128 * B ^ 2 * L / lam) (x : 𝕋)

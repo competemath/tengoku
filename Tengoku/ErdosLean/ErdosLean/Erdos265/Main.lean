@@ -31,7 +31,9 @@ open Filter Topology
 
 namespace Erdos265
 
-/-- **Growth half** (Kovač–Tao).  An admissible sequence with `aₙ^{1/(51/50)ⁿ} → ∞`.-/
+/-- **Growth half** (Kovač–Tao).  An admissible sequence with `aₙ^{1/(51/50)ⁿ} → ∞`.
+@isnad1 id=ex.0h0v.s6.2122b003913b from=translated src=- shape=cae4b470 vocab=fe8a5f1d
+-/
 theorem growth_half : ∃ a : ℕ → ℕ, IsRationalPair a ∧
     Tendsto (fun n : ℕ ↦ (a n : ℝ) ^ ((1 : ℝ) / (51 / 50 : ℝ) ^ n)) atTop atTop := by
   obtain ⟨hs1, hs2⟩ := center_summable

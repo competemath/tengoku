@@ -9,6 +9,9 @@ namespace Erdos790
 private lemma toNat_cast {z : ℤ} (hz : 0 < z) : ((z.toNat : ℕ) : ℤ) = z :=
   Int.toNat_of_nonneg hz.le
 
+/--
+@isnad1 id=le.1h1v.s5.bfdd03b6e6be from=translated src=- shape=8633b7d0 vocab=24e55bc9
+-/
 theorem two_pow_dyIdx_le {z : ℤ} (hz : 0 < z) : (2 : ℤ) ^ dyIdx z ≤ z := by
   have hn : z.toNat ≠ 0 := by omega
   have := Nat.pow_log_le_self 2 hn
@@ -17,6 +20,9 @@ theorem two_pow_dyIdx_le {z : ℤ} (hz : 0 < z) : (2 : ℤ) ^ dyIdx z ≤ z := b
     _ ≤ ((z.toNat : ℕ) : ℤ) := by exact_mod_cast this
     _ = z := toNat_cast hz
 
+/--
+@isnad1 id=lt.1h1v.s5.db53ff9e7f28 from=translated src=- shape=c90f75aa vocab=53f74e66
+-/
 theorem lt_two_pow_dyIdx_succ {z : ℤ} (hz : 0 < z) : z < (2 : ℤ) ^ (dyIdx z + 1) := by
   have := Nat.lt_pow_succ_log_self (by norm_num : 1 < 2) z.toNat
   unfold dyIdx
@@ -24,6 +30,9 @@ theorem lt_two_pow_dyIdx_succ {z : ℤ} (hz : 0 < z) : z < (2 : ℤ) ^ (dyIdx z 
     _ < ((2 ^ (Nat.log 2 z.toNat).succ : ℕ) : ℤ) := by exact_mod_cast this
     _ = (2 : ℤ) ^ (Nat.log 2 z.toNat + 1) := by push_cast; rfl
 
+/--
+@isnad1 id=lt.2h2v.s5.288c003a6e17 from=translated src=- shape=e20a30ab vocab=9659427c
+-/
 theorem dyIdx_lt_of_two_mul_lt {z x : ℤ} (hz : 0 < z) (hzx : 2 * z < x) :
     dyIdx z < dyIdx x := by
   have h1 := two_pow_dyIdx_le hz
@@ -38,6 +47,9 @@ theorem dyIdx_lt_of_two_mul_lt {z x : ℤ} (hz : 0 < z) (hzx : 2 * z < x) :
   unfold dyIdx at *
   omega
 
+/--
+@isnad1 id=lt.3h2v.s5.d1b88fc98d08 from=translated src=- shape=851349dd vocab=9659427c
+-/
 theorem lt_two_mul_of_dyIdx_eq {z b : ℤ} (hz : 0 < z) (hb : 0 < b) (h : dyIdx b = dyIdx z) :
     b < 2 * z := by
   have h1 := lt_two_pow_dyIdx_succ hb
@@ -45,6 +57,9 @@ theorem lt_two_mul_of_dyIdx_eq {z b : ℤ} (hz : 0 < z) (hb : 0 < b) (h : dyIdx 
   rw [h, pow_succ] at h1
   linarith
 
+/--
+@isnad1 id=le.1h2v.s4.b6b5e6385ae5 from=translated src=- shape=be951825 vocab=72e68e44
+-/
 theorem dyIdx_le_topIdx {A : Finset ℤ} {z : ℤ} (hz : z ∈ A) : dyIdx z ≤ topIdx A :=
   Finset.le_sup (f := dyIdx) hz
 

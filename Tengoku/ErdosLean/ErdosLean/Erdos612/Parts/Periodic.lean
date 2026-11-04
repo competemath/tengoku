@@ -112,7 +112,9 @@ private lemma window_step {pre per suf : Layers} (hper : 2 ≤ per.length) (k �
       exact this
 
 /-- Every window of the `(p+2)`-period family is a window of the `2`-period family
-(requires a period of length at least `2`; see `window_reduce_counterexample`).-/
+(requires a period of length at least `2`; see `window_reduce_counterexample`).
+@isnad1 id=ex.2h5v.s7.980f0f17ae0d from=translated src=- shape=b601131e vocab=3ede418d
+-/
 theorem window_reduce {pre per suf : Layers} (hper : 2 ≤ per.length) (p ℓ : ℕ)
     (hℓ : ℓ < (fam pre per suf (p + 2)).length) :
     ∃ ℓ', ℓ' < (fam pre per suf 2).length ∧
@@ -127,7 +129,9 @@ theorem window_reduce {pre per suf : Layers} (hper : 2 ≤ per.length) (p ℓ : 
     obtain ⟨ℓ', hℓ', b1, b2, b3⟩ := ih ℓ₁ hℓ₁
     exact ⟨ℓ', hℓ', a1.trans b1, a2.trans b2, a3.trans b3⟩
 
-/-- The hypothesis `2 ≤ per.length` of `window_reduce` cannot be weakened to `per ≠ []`.-/
+/-- The hypothesis `2 ≤ per.length` of `window_reduce` cannot be weakened to `per ≠ []`.
+@isnad1 id=not.0h0v.s8.23befc71400a from=translated src=- shape=d8a800c1 vocab=1ba175d1
+-/
 theorem window_reduce_counterexample :
     ¬ ∃ ℓ', ℓ' < (fam [] [[1]] [] 2).length ∧
       (fam [] [[1]] [] (1 + 2)).lft 1 = (fam [] [[1]] [] 2).lft ℓ' ∧
@@ -162,7 +166,9 @@ private theorem lift_win_suffix (X Y C : Layers) (j : ℕ) (hj : 1 ≤ j) :
   · rw [List.getD_append_right _ _ _ _ (by omega), List.getD_append_right _ _ _ _ (by omega)]
     congr 1; omega
 
-/-- Every window of the `2`-period family is a window of the `(p+2)`-period family.-/
+/-- Every window of the `2`-period family is a window of the `(p+2)`-period family.
+@isnad1 id=ex.2h5v.s7.6d167615a114 from=translated src=- shape=00e07b25 vocab=0cf4b03f
+-/
 theorem window_lift {pre per suf : Layers} (hper : per ≠ []) (p ℓ' : ℕ)
     (hℓ' : ℓ' < (fam pre per suf 2).length) :
     ∃ ℓ, ℓ < (fam pre per suf (p + 2)).length ∧
@@ -197,6 +203,9 @@ theorem window_lift {pre per suf : Layers} (hper : per ≠ []) (p ℓ' : ℕ)
     · rw [ep', e2']
       exact lift_win_suffix _ pre (per ++ per ++ suf) j (by omega)
 
+/--
+@isnad1 id=allwin.2h5v.s5.cdddfa9dabe9 from=translated src=- shape=dd4cc36f vocab=35acdf8b
+-/
 theorem allWin_fam {Q : List ℕ → List ℕ → List ℕ → Prop} {pre per suf : Layers}
     (hper : 2 ≤ per.length) (h : AllWin Q (fam pre per suf 2)) (p : ℕ) :
     AllWin Q (fam pre per suf (p + 2)) := by
@@ -204,6 +213,9 @@ theorem allWin_fam {Q : List ℕ → List ℕ → List ℕ → Prop} {pre per su
   obtain ⟨ℓ', hℓ', h1, h2, h3⟩ := window_reduce hper p ℓ hℓ
   rw [h1, h2, h3]; exact h ℓ' hℓ'
 
+/--
+@isnad1 id=somewin.2h5v.s5.4519274cc9e9 from=translated src=- shape=efeabf44 vocab=fbf8d1ff
+-/
 theorem someWin_fam {Q : List ℕ → List ℕ → List ℕ → Prop} {pre per suf : Layers}
     (hper : per ≠ []) (h : SomeWin Q (fam pre per suf 2)) (p : ℕ) :
     SomeWin Q (fam pre per suf (p + 2)) := by

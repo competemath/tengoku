@@ -14,6 +14,9 @@ namespace Erdos612All
 
 open Erdos612
 
+/--
+@isnad1 id=and.2h2v.s5.1a8a927b60dd from=translated src=- shape=272da33d vocab=a90042bd
+-/
 theorem evBlock_pos (s m : ℕ) (hs : 1 ≤ s) (hm : m ≤ 6 * s) :
     evBlock s m ≠ [] ∧ ∀ w ∈ evBlock s m, 0 < w := by
   have hw : 0 < evW s := by unfold evW; positivity
@@ -28,6 +31,9 @@ theorem evBlock_pos (s m : ℕ) (hs : 1 ≤ s) (hm : m ≤ 6 * s) :
     refine ⟨by simp, fun w hw' => ?_⟩
     rw [(List.mem_replicate.mp hw').2]; exact hw
 
+/--
+@isnad1 id=cliqq.4h4v.s7.054198609ad1 from=translated src=- shape=8a3bd77a vocab=b0c0194a
+-/
 theorem evBlock_cliq (s m : ℕ) (hs : 1 ≤ s) (hm : m ≤ 6 * s) (a c : List ℕ)
     (hc : m ≠ 6 * s → c = evBlock s (m + 1)) (hc1 : m = 6 * s → c.length ≤ 1) :
     CliqQ (2 * (s + 1)) a (evBlock s m) c := by
@@ -45,6 +51,9 @@ theorem evBlock_cliq (s m : ℕ) (hs : 1 ≤ s) (hm : m ≤ 6 * s) (a c : List �
   · rw [evBlock_three_two, hc (by omega), show 3 * i + 2 + 1 = 3 * (i + 1) by omega, evBlock_three]
     simp; omega
 
+/--
+@isnad1 id=tightq.1h1v.s5.1078266e22be from=translated src=- shape=eb7dff72 vocab=0812401d
+-/
 theorem evBlock_tight (s : ℕ) (hs : 1 ≤ s) :
     TightQ (evDelta s) (evBlock s 2) (evBlock s 3) (evBlock s 4) := by
   refine ⟨1, ?_, ?_⟩

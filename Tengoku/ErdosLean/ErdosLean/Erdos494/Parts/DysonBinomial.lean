@@ -29,9 +29,15 @@ namespace DysonAux
 def Sol (θ κ : ℝ) (pq : ℤ × ℕ) : Prop :=
   0 < pq.2 ∧ (pq.1 : ℝ) / pq.2 ≠ θ ∧ |θ - (pq.1 : ℝ) / pq.2| < (pq.2 : ℝ) ^ (-κ)
 
+/--
+@isnad1 id=eq.1h2v.s5.f8877eb454cf from=translated src=- shape=15398880 vocab=5ab3c956
+-/
 lemma pow_eq_exp (y : ℝ) (hy : 0 < y) (n : ℕ) : y ^ n = Real.exp (n * Real.log y) := by
   rw [Real.exp_nat_mul, Real.exp_log hy]
 
+/--
+@isnad1 id=finite.1h2v.s5.4308b2486571 from=translated src=- shape=93b3b03f vocab=aa4eb0ba
+-/
 lemma box_finite (T : Set (ℤ × ℕ)) (B : ℝ)
     (h : ∀ v ∈ T, |(v.1 : ℝ)| ≤ B ∧ (v.2 : ℝ) ≤ B) : T.Finite := by
   apply ((Set.finite_Icc (-(⌈B⌉₊ : ℤ)) (⌈B⌉₊ : ℤ)).prod (Set.finite_Iic ⌈B⌉₊)).subset
@@ -43,6 +49,9 @@ lemma box_finite (T : Set (ℤ × ℕ)) (B : ℝ)
   have h2' : v.2 ≤ ⌈B⌉₊ := by exact_mod_cast h2.trans (Nat.le_ceil B)
   exact Set.mem_prod.mpr ⟨Set.mem_Icc.mpr (abs_le.mp h1''), Set.mem_Iic.mpr h2'⟩
 
+/--
+@isnad1 id=le.3h4v.s6.c9f2afd1830a from=translated src=- shape=4f5b6682 vocab=b83b3233
+-/
 lemma sol_abs_le (θ κ : ℝ) (hκ : 0 ≤ κ) (p : ℤ) (q : ℕ) (hq : 0 < q)
     (h : |θ - (p : ℝ) / q| < (q : ℝ) ^ (-κ)) : |(p : ℝ)| ≤ (|θ| + 1) * q := by
   have hq' : (1 : ℝ) ≤ q := by exact_mod_cast hq
@@ -54,7 +63,9 @@ lemma sol_abs_le (θ κ : ℝ) (hκ : 0 ≤ κ) (p : ℤ) (q : ℕ) (hq : 0 < q)
   rw [abs_div, Nat.abs_cast, div_le_iff₀ (by linarith)] at h2
   exact h2
 
-/-- Choice of the degrees `r1, r2`.-/
+/-- Choice of the degrees `r1, r2`.
+@isnad1 id=ex.6h4v.s8.f54446f0a19c from=translated src=- shape=3a2119c3 vocab=26a9ecc4
+-/
 lemma choose_degrees (r : ℕ) (hr1 : (1 : ℝ) ≤ r) (η L1 L2 : ℝ) (hη0 : 0 < η) (hη1 : η ≤ 1)
     (hηM : η * (12800 * r) = 2) (hL1 : 0 < L1) (hcon : 12800 * (r : ℝ) * L1 ≤ L2) :
     ∃ r1 r2 : ℕ, 16 * r ≤ r2 ∧ r2 ≤ r1 ∧ 1 ≤ r1 ∧ 1 ≤ r2 ∧
@@ -119,7 +130,9 @@ lemma choose_degrees (r : ℕ) (hr1 : (1 : ℝ) ≤ r) (η L1 L2 : ℝ) (hη0 : 
     exact_mod_cast this
   exact ⟨r1, r2, h16, h21, hr1', hr2', hq12L, hupper, hR2η⟩
 
-/-- The final numerical contradiction.-/
+/-- The final numerical contradiction.
+@isnad1 id=lt.9h8v.s9.66f4decb739a from=translated src=- shape=e8109019 vocab=889a1393
+-/
 lemma key_lt (r1 r2 q1 q2 : ℕ) (hq1R : (0 : ℝ) < q1) (hq2R : (0 : ℝ) < q2)
     (K θ κ t : ℝ) (hK1 : 1 ≤ K) (hR1pos : (0 : ℝ) < r1) (hR21 : (r2 : ℝ) ≤ r1)
     (hupper : (r2 : ℝ) * Real.log q2 ≤ 2 * (r1 * Real.log q1))

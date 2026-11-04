@@ -19,13 +19,17 @@ namespace GCDGraph
 
 namespace Unbalanced
 
-/-- A finite partial sum of a geometric series.-/
+/-- A finite partial sum of a geometric series.
+@isnad1 id=le.2h2v.s6.b0cc80072f8d from=translated src=- shape=0a90a49d vocab=aa21b3d4
+-/
 lemma sum_pow_le_tsum {y : ℝ} (hy0 : 0 ≤ y) (hy1 : y < 1) (T : Finset ℕ) :
     ∑ i ∈ T, y ^ i ≤ (1 - y)⁻¹ := by
   rw [← tsum_geometric_of_lt_one hy0 hy1]
   exact (summable_geometric_of_lt_one hy0 hy1).sum_le_tsum T (fun i _ => pow_nonneg hy0 i)
 
-/-- `∑_{ℓ ∈ S} y^{|ℓ - k|} ≤ 2/(1-y)`.-/
+/-- `∑_{ℓ ∈ S} y^{|ℓ - k|} ≤ 2/(1-y)`.
+@isnad1 id=le.2h3v.s6.d44efb652c81 from=translated src=- shape=a1e6cd12 vocab=32dfc865
+-/
 lemma sum_pow_dist_le {y : ℝ} (hy0 : 0 ≤ y) (hy1 : y < 1) (S : Finset ℕ) (k : ℕ) :
     ∑ l ∈ S, y ^ ((k - l) + (l - k)) ≤ 2 * (1 - y)⁻¹ := by
   rw [← Finset.sum_filter_add_sum_filter_not S (fun l => k ≤ l)]
@@ -61,7 +65,9 @@ lemma sum_pow_dist_le {y : ℝ} (hy0 : 0 ≤ y) (hy1 : y < 1) (S : Finset ℕ) (
     exact sum_pow_le_tsum hy0 hy1 _
   linarith
 
-/-- Positive edge measure forces positive vertex measures.-/
+/-- Positive edge measure forces positive vertex measures.
+@isnad1 id=and.3h4v.s6.daf232cce3e6 from=translated src=- shape=5fb2ba52 vocab=e03cacbb
+-/
 lemma wsum_pos_of_esum_pos {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) {V W : Finset ℕ}
     {E : Finset (ℕ × ℕ)} (hE : E ⊆ V ×ˢ W) (h : 0 < esum μ E) :
     0 < wsum μ V ∧ 0 < wsum μ W := by
@@ -81,7 +87,9 @@ lemma wsum_pos_of_esum_pos {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) {V W : F
       rw [hz e.2 (Finset.mem_product.1 (hE he)).2, mul_zero])
     linarith
 
-/-- Two distinct slices are disjoint parts of the whole set.-/
+/-- Two distinct slices are disjoint parts of the whole set.
+@isnad1 id=le.2h5v.s5.07924ac33489 from=translated src=- shape=a80cfae5 vocab=b6efc907
+-/
 lemma wsum_slice_add_le {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) (W : Finset ℕ) (p k l : ℕ)
     (hkl : k ≠ l) : wsum μ (vslice W p k) + wsum μ (vslice W p l) ≤ wsum μ W := by
   unfold wsum vslice
@@ -95,7 +103,9 @@ lemma wsum_slice_add_le {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) (W : Finset
     intro v h1 h2
     exact hkl ((Finset.mem_filter.1 h1).2.symm.trans (Finset.mem_filter.1 h2).2)
 
-/-- From a `(1 - 10^40/p)`-proportion slice, any other slice is `≤ 10^40/p` of the whole.-/
+/-- From a `(1 - 10^40/p)`-proportion slice, any other slice is `≤ 10^40/p` of the whole.
+@isnad1 id=le.4h5v.s6.edf03e7c084e from=translated src=- shape=e9d84638 vocab=03f0a88b
+-/
 lemma small_other_slice {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) (W : Finset ℕ) (p k l : ℕ)
     (hp : 0 < (p : ℝ)) (hkl : k ≠ l)
     (hW : (1 - K40 / p) * wsum μ W ≤ wsum μ (vslice W p k)) :
@@ -107,10 +117,15 @@ lemma small_other_slice {μ : ℕ → ℝ} (hμ : ∀ n, 0 ≤ μ n) (W : Finset
     field_simp
   linarith
 
+/--
+@isnad1 id=le.0h0v.s4.8a74420794d8 from=translated src=- shape=fe96b7c9 vocab=766ac740
+-/
 lemma log_ten_ge : Real.log 2 ≤ Real.log 10 :=
   Real.log_le_log (by norm_num) (by norm_num)
 
-/-- The numerical heart of Lemma 11.3 (in logarithmic form).-/
+/-- The numerical heart of Lemma 11.3 (in logarithmic form).
+@isnad1 id=and.8h6v.s8.e56f3dcda1c1 from=translated src=- shape=26cf8385 vocab=a7ebb9b7
+-/
 lemma core_ineq (p : ℝ) (hp : 2 ≤ p) (r d : ℕ) (hr : 1 ≤ r) (hd : r + 1 ≤ d)
     (hpr : T0 < p ^ r) (X M den : ℝ)
     (hX : 1 / 100 * ((2 : ℝ) ^ (-(1 : ℝ) / 20)) ^ d / (4 * p ^ ((31 : ℝ) / 30)) < X)
@@ -183,6 +198,9 @@ lemma core_ineq (p : ℝ) (hp : 2 ≤ p) (r d : ℕ) (hr : 1 ≤ r) (hd : r + 1 
     push_cast
     nlinarith
 
+/--
+@isnad1 id=le.0h0v.s6.90b4c9fdd4f3 from=translated src=- shape=c2ee8059 vocab=162d5b7c
+-/
 lemma y_le : ((2 : ℝ) ^ (-(1 : ℝ) / 20)) ≤ 49 / 50 := by
   have hy0 : (0 : ℝ) ≤ (2 : ℝ) ^ (-(1 : ℝ) / 20) := by positivity
   have h20 : ((2 : ℝ) ^ (-(1 : ℝ) / 20)) ^ (20 : ℕ) = 1 / 2 := by
@@ -194,7 +212,9 @@ lemma y_le : ((2 : ℝ) ^ (-(1 : ℝ) / 20)) ≤ 49 / 50 := by
   rw [h20] at this
   norm_num at this
 
-/-- Weighted pigeonhole over the fibres of a map `g : ℕ × ℕ → ℕ`.-/
+/-- Weighted pigeonhole over the fibres of a map `g : ℕ × ℕ → ℕ`.
+@isnad1 id=ex.4h6v.s8.ec9ab8a907b7 from=translated src=- shape=d143bf2c vocab=e83845cc
+-/
 lemma pigeonhole (μ : ℕ → ℝ) (hμ : ∀ n, 0 ≤ μ n) (F : Finset (ℕ × ℕ)) (g : ℕ × ℕ → ℕ)
     (c : ℕ) (Efib : ℕ → Finset (ℕ × ℕ)) (hfib : ∀ l, F.filter (fun e => g e = l) ⊆ Efib l)
     (B : ℝ) (hB0 : 0 ≤ B) (hB : B < esum μ F) :
@@ -232,7 +252,9 @@ lemma pigeonhole (μ : ℕ → ℝ) (hμ : ∀ n, 0 ≤ μ n) (F : Finset (ℕ �
   have := Finset.sum_le_sum hcon
   linarith
 
-/-- The conclusion (a), once a heavy far-away block `G_{p^k,p^ℓ}` has been found.-/
+/-- The conclusion (a), once a heavy far-away block `G_{p^k,p^ℓ}` has been found.
+@isnad1 id=and.8h5v.s8.82d803b90c6f from=translated src=- shape=ab6f2906 vocab=1a2c9870
+-/
 lemma conclude (G : GCDGraph) (hδ : 0 < G.density) (p : ℕ) (hp : p.Prime) (hpP : p ∉ G.P)
     (r k l : ℕ) (hr : 1 ≤ r) (hpr : T0 < (p : ℝ) ^ r) (hdist : r + 1 ≤ (k - l) + (l - k))
     (hX : 1 / 100 * ((2 : ℝ) ^ (-(1 : ℝ) / 20)) ^ ((k - l) + (l - k)) *
@@ -330,7 +352,9 @@ open Unbalanced
 /-- Lemma 11.3.  If `p^k` exactly divides a `(1 - 10^40/p)`-proportion of `W` and `p^r > 10^2000`,
 then either some `ℓ` with `|ℓ - k| ≥ r + 1` gives a quality (and density·quality) doubling
 `G_{p^k,p^ℓ}`, or the edges from `V_{p^k}` to `⋃_{|ℓ-k| ≥ r+1} W_{p^ℓ}` have measure
-`≤ μ(E)/(4 p^{31/30})`.-/
+`≤ μ(E)/(4 p^{31/30})`.
+@isnad1 id=or.6h4v.s9.86c56b8fd6a8 from=translated src=- shape=49a92139 vocab=d08394ed
+-/
 theorem lemma113 (G : GCDGraph) (hδ : 0 < G.density) (p : ℕ) (hp : p.Prime) (hpP : p ∉ G.P)
     (r k : ℕ) (hr : 1 ≤ r) (hpr : T0 < (p : ℝ) ^ r)
     (hW : (1 - K40 / p) * wsum G.μ G.W ≤ wsum G.μ (vslice G.W p k)) :
@@ -363,7 +387,9 @@ theorem lemma113 (G : GCDGraph) (hδ : 0 < G.density) (p : ℕ) (hp : p.Prime) (
   refine conclude G hδ p hp hpP r k _ hr hpr hdist hl (Or.inr ?_)
   exact small_other_slice G.μ_nonneg G.W p k _ hp0 (by omega) hW
 
-/-- Lemma 11.4 (the symmetric version of Lemma 11.3).-/
+/-- Lemma 11.4 (the symmetric version of Lemma 11.3).
+@isnad1 id=or.6h4v.s9.579c5b1d173a from=translated src=- shape=ca03e9e2 vocab=e1c380af
+-/
 theorem lemma114 (G : GCDGraph) (hδ : 0 < G.density) (p : ℕ) (hp : p.Prime) (hpP : p ∉ G.P)
     (r l : ℕ) (hr : 1 ≤ r) (hpr : T0 < (p : ℝ) ^ r)
     (hV : (1 - K40 / p) * wsum G.μ G.V ≤ wsum G.μ (vslice G.V p l)) :

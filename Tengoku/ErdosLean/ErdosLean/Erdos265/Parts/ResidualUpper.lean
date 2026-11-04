@@ -18,7 +18,9 @@ namespace Erdos265
 
 variable {a : ℕ → ℕ}
 
-/-- Pure real inequality behind the residual bound.-/
+/-- Pure real inequality behind the residual bound.
+@isnad1 id=le.3h2v.s7.6033bb9d9d10 from=translated src=- shape=266df4ff vocab=162129a8
+-/
 lemma residual_alg {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) (hs : x + y ≤ 1 / 2) :
     (x + y) / (1 - (x + y)) - x / (1 - x) - y ≤ 8 * (x + y) * y := by
   have h1 : 0 < 1 - (x + y) := by linarith
@@ -41,6 +43,9 @@ lemma residual_alg {x y : ℝ} (hx : 0 ≤ x) (hy : 0 ≤ y) (hs : x + y ≤ 1 /
     nlinarith [mul_le_mul_of_nonneg_left hq h8]
   linarith
 
+/--
+@isnad1 id=eventual.1h1v.s5.de53680859b0 from=translated src=- shape=8128aefd vocab=977e6bd7
+-/
 theorem residual_upper (ha : IsRationalPair a) :
     ∀ᶠ n in atTop, Eres a n ≤ 8 * T a n * T a (n + 1) := by
   have hT : Tendsto (T a) atTop (𝓝 0) := tail_tendsto_zero (recip a)

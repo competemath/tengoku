@@ -10,13 +10,18 @@ entire function (`Complex.hasSum_taylorSeries_of_entire` or
 
 namespace Erdos514
 
-/-- The difference quotient at `0` of an entire function is entire.-/
+/-- The difference quotient at `0` of an entire function is entire.
+@isnad1 id=differen.1h1v.s7.67b69f08c623 from=translated src=- shape=c9cc2022 vocab=78092077
+-/
 lemma alt_differentiable_dslope {g : ℂ → ℂ} (hg : Differentiable ℂ g) :
     Differentiable ℂ (dslope g 0) := by
   have h := (Complex.differentiableOn_dslope (s := Set.univ) (c := (0 : ℂ))
     Filter.univ_mem).mpr hg.differentiableOn
   exact fun z => (h z (Set.mem_univ z)).differentiableAt Filter.univ_mem
 
+/--
+@isnad1 id=ex.2h3v.s7.59750c263f30 from=translated src=- shape=95089f9a vocab=a282db99
+-/
 theorem poly_of_norm_le {g : ℂ → ℂ} (hg : Differentiable ℂ g) {A : ℝ} {m : ℕ}
     (hA : ∀ z, ‖g z‖ ≤ A * (1 + ‖z‖) ^ m) : ∃ p : Polynomial ℂ, ∀ z, g z = p.eval z := by
   induction m generalizing g A with

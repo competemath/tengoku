@@ -16,12 +16,18 @@ namespace Erdos265
 
 variable {a : ℕ → ℕ}
 
+/--
+@isnad1 id=le.1h2v.s4.f1618f64121b from=translated src=- shape=68e71729 vocab=27bdf874
+-/
 theorem P_le_pow (ha : IsRationalPair a) (n : ℕ) : P a n ≤ a n ^ n := by
   unfold P
   have := Finset.prod_le_pow_card (Finset.range n) a (a n)
     (fun k hk => ha.1.monotone (Finset.mem_range.mp hk).le)
   simpa using this
 
+/--
+@isnad1 id=le.1h2v.s5.2aedb74fafeb from=translated src=- shape=4647b6db vocab=770217e6
+-/
 theorem Henv_le_pow (ha : IsRationalPair a) (n : ℕ) :
     Henv a n ≤ (a n : ℝ) ^ (n + 1) := by
   have hD := Dt_pos ha n
@@ -46,6 +52,9 @@ theorem Henv_le_pow (ha : IsRationalPair a) (n : ℕ) :
         mul_le_mul_of_nonneg_left haD hpow
     _ = (a n : ℝ) ^ n * (a n : ℝ) * Real.sqrt (Dt a n) := by ring
 
+/--
+@isnad1 id=eventual.3h2v.s5.494e184bd6ff from=translated src=- shape=921fb468 vocab=3ffdbe03
+-/
 theorem exp_growth (ha : IsRationalPair a) {ℓ : ℝ} (hℓ : 0 < ℓ)
     (hlim : Tendsto (logRatio (Henv a)) atTop (𝓝 ℓ)) :
     ∀ᶠ m : ℕ in atTop, Real.exp (m : ℝ) ≤ (a m : ℝ) := by

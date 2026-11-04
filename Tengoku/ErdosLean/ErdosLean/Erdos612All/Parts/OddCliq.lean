@@ -15,6 +15,9 @@ namespace Erdos612All
 
 open Erdos612
 
+/--
+@isnad1 id=and.1h2v.s6.7c35cf39c412 from=translated src=- shape=d1abdbe1 vocab=edc23c13
+-/
 theorem odBlock_pos (q m : ℕ) (hm : m < 6 * q + 19) :
     odBlock q m ≠ [] ∧ ∀ w ∈ odBlock q m, 0 < w := by
   have hu : 0 < odU q := by unfold odU; positivity
@@ -43,6 +46,9 @@ theorem odBlock_pos (q m : ℕ) (hm : m < 6 * q + 19) :
       refine ⟨by simp [odE], fun w hw' => ?_⟩
       rw [(List.mem_replicate.mp hw').2]; exact hu
 
+/--
+@isnad1 id=cliqq.3h4v.s7.a474fb4bd466 from=translated src=- shape=2ae1f66a vocab=b754a745
+-/
 theorem odBlock_cliq (q m : ℕ) (hm : m < 6 * q + 19) (a c : List ℕ)
     (hc : m + 1 ≠ 6 * q + 19 → c = odBlock q (m + 1)) (hc1 : m + 1 = 6 * q + 19 → c.length ≤ 1) :
     CliqQ (2 * (q + 4) + 1) a (odBlock q m) c := by
@@ -72,6 +78,9 @@ theorem odBlock_cliq (q m : ℕ) (hm : m < 6 * q + 19) (a c : List ℕ)
       rw [odBlock_E3]
       simp [odE]; omega
 
+/--
+@isnad1 id=tightq.0h1v.s4.51858f4992bc from=translated src=- shape=ab590f58 vocab=a50c37b1
+-/
 theorem odBlock_tight (q : ℕ) :
     TightQ (odDelta q) (odBlock q 2) (odBlock q 3) (odBlock q 4) := by
   refine ⟨1, ?_, ?_⟩

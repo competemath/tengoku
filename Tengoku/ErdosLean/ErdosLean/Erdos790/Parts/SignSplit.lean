@@ -7,6 +7,9 @@ negation preserves sum-freeness). -/
 
 namespace Erdos790
 
+/--
+@isnad1 id=or.1h1v.s6.35ef43e3de51 from=translated src=- shape=25f15c4d vocab=e10affab
+-/
 theorem sign_split (A : Finset ℤ) (hA : 2 ≤ A.card) :
     A.card ≤ 4 * (A.filter (fun x => 0 < x)).card ∨
       A.card ≤ 4 * (A.filter (fun x => x < 0)).card := by
@@ -22,6 +25,9 @@ theorem sign_split (A : Finset ℤ) (hA : 2 ≤ A.card) :
   have h3 := Finset.card_union_le (A.filter (fun x => 0 < x)) (A.filter (fun x => x < 0))
   omega
 
+/--
+@isnad1 id=issumfre.1h1v.s4.122c4e4d0db8 from=translated src=- shape=cb55ec13 vocab=45c37657
+-/
 theorem isSumFree_image_neg {B : Finset ℤ} (hB : IsSumFree B) :
     IsSumFree (B.image (fun x => -x)) := by
   intro x hx S hS hxS hcard hsum

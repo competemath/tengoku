@@ -18,6 +18,9 @@ open Filter Topology
 
 namespace Erdos265
 
+/--
+@isnad1 id=le.2h2v.s7.638356441ff5 from=translated src=- shape=1b3055ce vocab=9cd39fe4
+-/
 lemma lin_f1_gen {M x : ℝ} (hM : 0 < M) (hx : |x| ≤ M / 8) :
     |f1 M - f1 (M + x) - x / M ^ 2| ≤ 2 * x ^ 2 / M ^ 3 := by
   have hx1 := abs_le.mp hx
@@ -31,6 +34,9 @@ lemma lin_f1_gen {M x : ℝ} (hM : 0 < M) (hx : |x| ≤ M / 8) :
     positivity
   nlinarith [h2]
 
+/--
+@isnad1 id=le.3h2v.s7.dcf86f579f7f from=translated src=- shape=72949bb9 vocab=a14f827f
+-/
 lemma lin_f2_gen {M x : ℝ} (hM : 64 ≤ M) (hx : |x| ≤ M / 8) (hxx : |x| ≤ x ^ 2) :
     |f2 M - f2 (M + x) - 2 * x / M ^ 3| ≤ 8 * x ^ 2 / M ^ 4 := by
   have hx1 := abs_le.mp hx
@@ -91,6 +97,9 @@ lemma lin_f2_gen {M x : ℝ} (hM : 64 ≤ M) (hx : |x| ≤ M / 8) (hxx : |x| ≤
     _ ≤ 16 / 5 * x ^ 2 / M ^ 4 + 24 / 5 * x ^ 2 / M ^ 4 := add_le_add hA hB
     _ = 8 * x ^ 2 / M ^ 4 := by ring
 
+/--
+@isnad1 id=le.0h1v.s5.b9d90101c98b from=translated src=- shape=362adc04 vocab=ced34e81
+-/
 lemma int_abs_le_sq (n : ℤ) : |(n : ℝ)| ≤ (n : ℝ) ^ 2 := by
   rcases eq_or_ne n 0 with h | h
   · simp [h]
@@ -98,11 +107,17 @@ lemma int_abs_le_sq (n : ℤ) : |(n : ℝ)| ≤ (n : ℝ) ^ 2 := by
       rw [← Int.cast_abs]; exact_mod_cast Int.one_le_abs h
     rw [← sq_abs]; nlinarith
 
+/--
+@isnad1 id=le.2h2v.s7.781f463ebe2d from=translated src=- shape=67907b1d vocab=ff17088d
+-/
 theorem lin_f1 {N : ℝ} (hN : 64 ≤ N) {n : ℤ} (hn : |(n : ℝ)| ≤ N / 8) :
     |f1 N - f1 (N + n) - n / N ^ 2| ≤ 2 * (n : ℝ) ^ 2 / N ^ 3 := by
   have := lin_f1_gen (M := N) (x := n) (by linarith) hn
   exact this
 
+/--
+@isnad1 id=le.2h2v.s7.0beb171e14f5 from=translated src=- shape=3fb76f4b vocab=ff17088d
+-/
 theorem lin_f1_two {N : ℝ} (hN : 64 ≤ N) {n : ℤ} (hn : |(n : ℝ)| ≤ N / 8) :
     |f1 (2 * N) - f1 (2 * N + n) - n / (4 * N ^ 2)| ≤ 2 * (n : ℝ) ^ 2 / N ^ 3 := by
   have hM : (0:ℝ) < 2 * N := by linarith
@@ -115,11 +130,17 @@ theorem lin_f1_two {N : ℝ} (hN : 64 ≤ N) {n : ℤ} (hn : |(n : ℝ)| ≤ N /
   have : 0 ≤ (n : ℝ) ^ 2 * N ^ 3 := by positivity
   nlinarith
 
+/--
+@isnad1 id=le.2h2v.s7.2bb21f102c5c from=translated src=- shape=77d52882 vocab=27145df4
+-/
 theorem lin_f2 {N : ℝ} (hN : 64 ≤ N) {n : ℤ} (hn : |(n : ℝ)| ≤ N / 8) :
     |f2 N - f2 (N + n) - 2 * n / N ^ 3| ≤ 8 * (n : ℝ) ^ 2 / N ^ 4 := by
   have := lin_f2_gen (M := N) (x := n) hN hn (int_abs_le_sq n)
   exact this
 
+/--
+@isnad1 id=le.2h2v.s7.0c3c51da5ef3 from=translated src=- shape=3fb76f4b vocab=27145df4
+-/
 theorem lin_f2_two {N : ℝ} (hN : 64 ≤ N) {n : ℤ} (hn : |(n : ℝ)| ≤ N / 8) :
     |f2 (2 * N) - f2 (2 * N + n) - n / (4 * N ^ 3)| ≤ 8 * (n : ℝ) ^ 2 / N ^ 4 := by
   have h := lin_f2_gen (M := 2 * N) (x := n) (by linarith) (by linarith) (int_abs_le_sq n)

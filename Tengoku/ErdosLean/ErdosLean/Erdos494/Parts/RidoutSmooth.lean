@@ -19,7 +19,9 @@ If infinitely many bad pairs exist, pigeonhole fixes `(a,b)`; then
 
 namespace Erdos494
 
-/-- Mahler decomposition: a `P`-smooth `x` is `a * u ^ r` with `a` bounded in terms of `P, r`.-/
+/-- Mahler decomposition: a `P`-smooth `x` is `a * u ^ r` with `a` bounded in terms of `P, r`.
+@isnad1 id=ex.2h3v.s6.6623934f9deb from=translated src=- shape=a6d89360 vocab=1b214023
+-/
 lemma ridout_decomp (P r : ℕ) (hr : 0 < r) (x : ℕ) (hx : x ∈ Nat.smoothNumbers P) :
     ∃ a u : ℕ, 0 < a ∧ a ≤ ((P + 1) ^ r) ^ P ∧ 0 < u ∧ x = a * u ^ r := by
   have hx0 : x ≠ 0 := Nat.ne_zero_of_mem_smoothNumbers hx
@@ -46,7 +48,9 @@ lemma ridout_decomp (P r : ℕ) (hr : 0 < r) (x : ℕ) (hx : x ∈ Nat.smoothNum
     refine Finset.prod_congr rfl fun p _ => ?_
     rw [← pow_mul, ← pow_add, mul_comm (x.factorization p / r) r, Nat.mod_add_div]
 
-/-- `|α - β| β^(n-1) ≤ |α^n - β^n|` for `α, β ≥ 0`, `n ≥ 1`.-/
+/-- `|α - β| β^(n-1) ≤ |α^n - β^n|` for `α, β ≥ 0`, `n ≥ 1`.
+@isnad1 id=le.3h3v.s6.39b5f16253ba from=translated src=- shape=3c243832 vocab=623f8879
+-/
 lemma ridout_pow_sub_pow (α β : ℝ) (hα : 0 ≤ α) (hβ : 0 ≤ β) (n : ℕ) (hn : 1 ≤ n) :
     |α - β| * β ^ (n - 1) ≤ |α ^ n - β ^ n| := by
   rw [← geom_sum₂_mul, abs_mul, mul_comm]

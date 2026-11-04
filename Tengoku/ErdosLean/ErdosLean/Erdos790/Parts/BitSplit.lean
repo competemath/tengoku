@@ -7,7 +7,9 @@ import Tengoku.ErdosLean.ErdosLean.Erdos790.Defs
 namespace Erdos790
 
 /-- For `i < k < 2^L` there is a level `h < L` whose block contains both `i` and `k`
-(same split point) with `i < splitPt h i ≤ k`.-/
+(same split point) with `i < splitPt h i ≤ k`.
+@isnad1 id=ex.2h3v.s6.ba079919c281 from=translated src=- shape=7a7c9f00 vocab=414b0862
+-/
 theorem bit_split (L i k : ℕ) (hik : i < k) (hk : k < 2 ^ L) :
     ∃ h < L, splitPt h i = splitPt h k ∧ i < splitPt h i ∧ splitPt h k ≤ k := by
   have hex : ∃ m, i / 2 ^ m = k / 2 ^ m :=

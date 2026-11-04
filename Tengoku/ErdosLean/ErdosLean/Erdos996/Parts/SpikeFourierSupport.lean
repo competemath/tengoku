@@ -9,7 +9,9 @@ namespace Erdos996
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
-/-- Fourier coefficients of `x ↦ g (n • x)` vanish off the multiples of `n`.-/
+/-- Fourier coefficients of `x ↦ g (n • x)` vanish off the multiples of `n`.
+@isnad1 id=eq.2h3v.s7.80a45a8283d5 from=translated src=- shape=2bc9a479 vocab=e17c44ae
+-/
 lemma fourierCoeff_nsmul_comp_eq_zero (n : ℕ) (hn : 0 < n) (g : 𝕋 → ℂ) (r : ℤ)
     (h : ¬ (n : ℤ) ∣ r) : fourierCoeff (fun x : 𝕋 => g (n • x)) r = 0 := by
   obtain ⟨a, ha_def⟩ : ∃ a : 𝕋, a = (((1 : ℝ) / n : ℝ) : 𝕋) := ⟨_, rfl⟩
@@ -55,7 +57,9 @@ lemma fourierCoeff_nsmul_comp_eq_zero (n : ℕ) (hn : 0 < n) (g : 𝕋 → ℂ) 
   · exact absurd (sub_eq_zero.mp h0).symm hne
   · exact h0
 
-/-- Dilation formula: `\widehat{g(n ·)}(n s) = \hat g(s)`.-/
+/-- Dilation formula: `\widehat{g(n ·)}(n s) = \hat g(s)`.
+@isnad1 id=eq.2h3v.s7.860d7d16ffbc from=translated src=- shape=bdc6b99b vocab=62e248a1
+-/
 lemma fourierCoeff_nsmul_comp_mul (n : ℕ) (hn : 0 < n) (g : 𝕋 → ℂ)
     (hg : AEStronglyMeasurable g μ𝕋) (s : ℤ) :
     fourierCoeff (fun x : 𝕋 => g (n • x)) ((n : ℤ) * s) = fourierCoeff g s := by
@@ -77,6 +81,9 @@ lemma fourierCoeff_nsmul_comp_mul (n : ℕ) (hn : 0 < n) (g : 𝕋 → ℂ)
         (integral_map hmp.measurable.aemeasurable (by rw [hmp.map_eq]; exact hF)).symm
     _ = ∫ y, fourier (-s) y • g y ∂μ𝕋 := by rw [hmp.map_eq]
 
+/--
+@isnad1 id=measurab.0h1v.s6.9cea9ce62b54 from=translated src=- shape=091a04b8 vocab=13ef099a
+-/
 lemma measurableSet_spikeSet (d : ℕ) :
     MeasurableSet (QuotientAddGroup.mk '' Set.Ico (0 : ℝ) ((2 : ℝ)⁻¹ ^ d) : Set 𝕋) := by
   have hb : (0 : ℝ) < (2 : ℝ)⁻¹ ^ d := by positivity
@@ -84,10 +91,16 @@ lemma measurableSet_spikeSet (d : ℕ) :
   exact ((QuotientAddGroup.isOpenMap_coe (N := AddSubgroup.zmultiples (1 : ℝ))) _
     isOpen_Ioo).measurableSet.insert _
 
+/--
+@isnad1 id=measurab.0h1v.s5.0607d8760fa0 from=translated src=- shape=f6104e8a vocab=40389545
+-/
 lemma measurable_spike (d : ℕ) : Measurable (spike d) := by
   unfold spike
   exact ((measurable_one.indicator (measurableSet_spikeSet d)).sub measurable_const).div_const _
 
+/--
+@isnad1 id=iff.2h2v.s7.caf4474e5b92 from=translated src=- shape=85cdb5f0 vocab=c677c686
+-/
 lemma mem_spikeSet_iff (d : ℕ) (hd : 1 ≤ d) (x : ℝ)
     (hx : x ∈ Set.Ioc ((2 : ℝ)⁻¹ ^ d - 1) ((2 : ℝ)⁻¹ ^ d)) :
     ((x : 𝕋) ∈ (QuotientAddGroup.mk '' Set.Ico (0 : ℝ) ((2 : ℝ)⁻¹ ^ d) : Set 𝕋)) ↔
@@ -113,7 +126,9 @@ lemma mem_spikeSet_iff (d : ℕ) (hd : 1 ≤ d) (x : ℝ)
   · intro hx'
     exact ⟨x, hx', rfl⟩
 
-/-- For `d ≥ 1`, the spike `φ_d` has vanishing Fourier coefficients at nonzero multiples of `2^d`.-/
+/-- For `d ≥ 1`, the spike `φ_d` has vanishing Fourier coefficients at nonzero multiples of `2^d`.
+@isnad1 id=eq.2h2v.s6.340414c81e3c from=translated src=- shape=5fe2bd6e vocab=4e2dea4d
+-/
 lemma fourierCoeff_spike_eq_zero (d : ℕ) (hd : 1 ≤ d) (m : ℤ) (hm : m ≠ 0) :
     fourierCoeff (fun x : 𝕋 => (spike d x : ℂ)) ((2 : ℤ) ^ d * m) = 0 := by
   have hb0 : (0 : ℝ) < (2 : ℝ)⁻¹ ^ d := by positivity
@@ -178,7 +193,9 @@ lemma fourierCoeff_spike_eq_zero (d : ℕ) (hd : 1 ≤ d) (m : ℤ) (hm : m ≠ 
   simp
 
 /-- Fourier support of a dilated spike: `\widehat{φ_d(2^v ·)}(r) = 0` unless
-`v ≤ val₂(r) ≤ v + d - 1`.-/
+`v ≤ val₂(r) ≤ v + d - 1`.
+@isnad1 id=eq.2h3v.s7.9a81d679e501 from=translated src=- shape=e55755bd vocab=31e5d5ef
+-/
 lemma fourierCoeff_spike_dilate_eq_zero (d v : ℕ) (r : ℤ) (hr : r ≠ 0)
     (h : ¬ (2 ^ v ∣ r ∧ ¬ 2 ^ (v + d) ∣ r)) :
     fourierCoeff (fun x : 𝕋 => (spike d ((2 ^ v : ℕ) • x) : ℂ)) r = 0 := by

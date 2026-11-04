@@ -18,6 +18,9 @@ open Filter Topology
 
 namespace Erdos265
 
+/--
+@isnad1 id=le.7h6v.s8.8d3f9833c989 from=translated src=- shape=8afaae98 vocab=f70c4f17
+-/
 lemma block_coord1 {N : ℝ} (hN64 : 64 ≤ N) {a b : ℤ} {x y δ1 : ℝ} (hd : δ1 = -x / N ^ 2)
     (hab : (a : ℝ) ^ 2 + (b : ℝ) ^ 2 ≤ N) (haN : |(a : ℝ)| ≤ N / 8) (hbN : |(b : ℝ)| ≤ N / 8)
     (he1 : |(a : ℝ) - (y - x)| ≤ 1 / 2) (he2 : |(b : ℝ) - (8 * x - 4 * y)| ≤ 1 / 2) :
@@ -53,6 +56,9 @@ lemma block_coord1 {N : ℝ} (hN64 : 64 ≤ N) {a b : ℤ} {x y δ1 : ℝ} (hd :
         abs_add_three _ _ _
     _ ≤ _ := by linarith
 
+/--
+@isnad1 id=le.7h6v.s8.d97039cda50d from=translated src=- shape=5aeff0ff vocab=8e8b60ae
+-/
 lemma block_coord2 {N : ℝ} (hN64 : 64 ≤ N) {a b : ℤ} {x y δ2 : ℝ} (hd : δ2 = -y / N ^ 3)
     (hab : (a : ℝ) ^ 2 + (b : ℝ) ^ 2 ≤ N) (haN : |(a : ℝ)| ≤ N / 8) (hbN : |(b : ℝ)| ≤ N / 8)
     (he1 : |(a : ℝ) - (y - x)| ≤ 1 / 2) (he2 : |(b : ℝ) - (8 * x - 4 * y)| ≤ 1 / 2) :
@@ -89,6 +95,9 @@ lemma block_coord2 {N : ℝ} (hN64 : 64 ≤ N) {a b : ℤ} {x y δ2 : ℝ} (hd :
         abs_add_three _ _ _
     _ ≤ _ := by linarith
 
+/--
+@isnad1 id=ex.2h2v.s7.96ded3144f66 from=translated src=- shape=5db688cc vocab=9c2df7b9
+-/
 theorem block_approx (k : ℕ) (δ : ℝ × ℝ) (h1 : |δ.1| ≤ rad1 k) (h2 : |δ.2| ≤ rad2 k) :
     ∃ c : ℤ × ℤ, Adm k c ∧
       |(center k).1 + δ.1 - (blockVal k c).1| ≤ 16 / (NN k : ℝ) ^ 2 ∧

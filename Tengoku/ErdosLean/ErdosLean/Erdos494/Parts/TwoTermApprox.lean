@@ -24,7 +24,9 @@ namespace TwoTermApprox
 
 open Finset
 
-/-- Log-concavity of binomial coefficients.-/
+/-- Log-concavity of binomial coefficients.
+@isnad1 id=le.0h2v.s6.6652f35dc4cd from=translated src=- shape=0985b270 vocab=f63e9d0f
+-/
 lemma choose_lc (n r : ℕ) : n.choose (r + 2) * n.choose r ≤ n.choose (r + 1) ^ 2 := by
   rcases Nat.lt_or_ge r n with h | h
   · obtain ⟨t, rfl⟩ : ∃ t, n = r + t + 1 := ⟨n - r - 1, by omega⟩
@@ -47,7 +49,9 @@ lemma choose_lc (n r : ℕ) : n.choose (r + 2) * n.choose r ≤ n.choose (r + 1)
   · rw [Nat.choose_eq_zero_of_lt (by omega : n < r + 2)]
     simp
 
-/-- Far terms are small (upward direction), for an abstract log-concave sequence.-/
+/-- Far terms are small (upward direction), for an abstract log-concave sequence.
+@isnad1 id=le.7h5v.s7.caacc730431a from=translated src=- shape=eed08a0c vocab=2e594065
+-/
 lemma far_up (T : ℕ → ℝ) (s m : ℕ) (μ : ℝ) (hμ0 : 0 ≤ μ) (hμ1 : μ ≤ 1)
     (hnn : ∀ i, 0 ≤ T i) (hlc : ∀ k, T k * T (k + 2) ≤ μ * T (k + 1) ^ 2)
     (hpos : ∀ i, 0 < T i ↔ (1 ≤ i ∧ i ≤ s)) (hm1 : 1 ≤ m) (hmax : ∀ i, T i ≤ T m) :
@@ -85,7 +89,9 @@ lemma far_up (T : ℕ → ℝ) (s m : ℕ) (μ : ℝ) (hμ0 : 0 ≤ μ) (hμ1 : 
   calc T (m + d + 2) ≤ μ * T (m + d + 1) := aux d (mono d)
     _ ≤ μ * T m := mul_le_mul_of_nonneg_left (hmax _) hμ0
 
-/-- Far terms are small in both directions.-/
+/-- Far terms are small in both directions.
+@isnad1 id=le.9h5v.s7.d6b83cfdbd02 from=translated src=- shape=710dc163 vocab=2e594065
+-/
 lemma far (T : ℕ → ℝ) (s m : ℕ) (μ : ℝ) (hμ0 : 0 ≤ μ) (hμ1 : μ ≤ 1)
     (hnn : ∀ i, 0 ≤ T i) (hlc : ∀ k, T k * T (k + 2) ≤ μ * T (k + 1) ^ 2)
     (hpos : ∀ i, 0 < T i ↔ (1 ≤ i ∧ i ≤ s)) (hm1 : 1 ≤ m) (hms : m ≤ s)
@@ -129,7 +135,9 @@ lemma far (T : ℕ → ℝ) (s m : ℕ) (μ : ℝ) (hμ0 : 0 ≤ μ) (hμ1 : μ 
     rw [e] at this
     exact this
 
-/-- The combinatorial core: if the alternating sum vanishes, two consecutive terms are close.-/
+/-- The combinatorial core: if the alternating sum vanishes, two consecutive terms are close.
+@isnad1 id=ex.7h3v.s8.21abf69e4a19 from=translated src=- shape=c946e05c vocab=0e929430
+-/
 lemma core (T : ℕ → ℝ) (s : ℕ) (θk : ℝ) (hθ0 : 0 ≤ θk) (he : ((s : ℝ) + 1) * θk ≤ 1 / 2)
     (hnn : ∀ i, 0 ≤ T i) (hlc : ∀ k, T k * T (k + 2) ≤ θk ^ 2 * T (k + 1) ^ 2)
     (hpos : ∀ i, 0 < T i ↔ (1 ≤ i ∧ i ≤ s)) (hs : 1 ≤ s)
@@ -243,7 +251,9 @@ lemma core (T : ℕ → ℝ) (s : ℕ) (θk : ℝ) (hθ0 : 0 ≤ θk) (he : ((s 
       _ ≤ 2 * (((s : ℝ) + 1) * θk) * T m := by nlinarith
 
 /-- Numerical constants: `θ = 1 - 1/(2(S-1)^2)`, `q = 1 + ε/2`, `α = q(1-ε)` with
-`ε = 1/(2S^2)`.-/
+`ε = 1/(2S^2)`.
+@isnad1 id=ex.1h1v.s8.1f3bc35b94e0 from=translated src=- shape=1e265f78 vocab=2e594065
+-/
 lemma constants (S : ℝ) (hS3 : 3 ≤ S) :
     ∃ θ q α : ℝ, 0 ≤ θ ∧ 1 < q ∧ q < S ∧ 0 < α ∧ α < 1 ∧ θ * q ≤ α ∧
       (∀ i : ℝ, 1 ≤ i → i + 1 ≤ S → i * q ≤ α * (i + 1)) ∧
@@ -284,22 +294,37 @@ lemma constants (S : ℝ) (hS3 : 3 ≤ S) :
 noncomputable def Tf (s n κ : ℕ) (i : ℕ) : ℝ :=
   if 1 ≤ i ∧ i ≤ s then (i : ℝ) ^ κ * (n.choose (s - i) : ℝ) else 0
 
+/--
+@isnad1 id=eq.2h4v.s6.375a92d6bf9f from=translated src=- shape=b0a7d7bc vocab=d4cd4111
+-/
 lemma Tf_in (s n κ i : ℕ) (h1 : 1 ≤ i) (h2 : i ≤ s) :
     Tf s n κ i = (i : ℝ) ^ κ * (n.choose (s - i) : ℝ) := by
   unfold Tf; rw [ite_eq_left ⟨h1, h2⟩]
 
+/--
+@isnad1 id=eq.1h4v.s5.09e5b0db774c from=translated src=- shape=53a4b738 vocab=9a0022ec
+-/
 lemma Tf_out (s n κ i : ℕ) (h : ¬ (1 ≤ i ∧ i ≤ s)) : Tf s n κ i = 0 := by
   unfold Tf; rw [ite_eq_right h]
 
+/--
+@isnad1 id=lt.2h3v.s5.3b425ed82f40 from=translated src=- shape=53038354 vocab=91077eb6
+-/
 lemma choose_pos_real (s n r : ℕ) (hn : s < n) (hr : r ≤ s) : (0 : ℝ) < (n.choose r : ℝ) := by
   exact_mod_cast Nat.choose_pos (by omega)
 
+/--
+@isnad1 id=le.0h4v.s4.e9ed50ce53c3 from=translated src=- shape=f0c23793 vocab=9a0022ec
+-/
 lemma Tf_nonneg (s n κ : ℕ) : ∀ i, 0 ≤ Tf s n κ i := by
   intro i
   by_cases h : 1 ≤ i ∧ i ≤ s
   · rw [Tf_in s n κ i h.1 h.2]; positivity
   · rw [Tf_out s n κ i h]
 
+/--
+@isnad1 id=iff.1h4v.s5.31a58fbbb3a5 from=translated src=- shape=8e989e56 vocab=bf46ac7c
+-/
 lemma Tf_pos (s n κ : ℕ) (hn : s < n) : ∀ i, 0 < Tf s n κ i ↔ (1 ≤ i ∧ i ≤ s) := by
   intro i
   constructor
@@ -313,6 +338,9 @@ lemma Tf_pos (s n κ : ℕ) (hn : s < n) : ∀ i, 0 < Tf s n κ i ↔ (1 ≤ i �
     have := choose_pos_real s n (s - i) hn (Nat.sub_le _ _)
     positivity
 
+/--
+@isnad1 id=le.1h5v.s7.fcfdf777e1a6 from=translated src=- shape=0b5fefcd vocab=29b415b8
+-/
 lemma Tf_lc (s n κ : ℕ) (θ : ℝ)
     (hθ : ∀ k : ℝ, 1 ≤ k → k + 2 ≤ (s : ℝ) → k * (k + 2) ≤ θ ^ 2 * (k + 1) ^ 2) :
     ∀ k, Tf s n κ k * Tf s n κ (k + 2) ≤ (θ ^ κ) ^ 2 * Tf s n κ (k + 1) ^ 2 := by
@@ -352,6 +380,9 @@ lemma Tf_lc (s n κ : ℕ) (θ : ℝ)
       · rw [Tf_out s n κ k (by omega), zero_mul]
     rw [h0]; positivity
 
+/--
+@isnad1 id=eq.1h3v.s6.4b55484db6c4 from=translated src=- shape=f96d2312 vocab=984b65d0
+-/
 lemma Tf_sum (s n j : ℕ) (hf : gfsPoly s n j = 0) :
     ∑ i ∈ Icc 1 s, (-1 : ℝ) ^ (i - 1) * Tf s n (j - 1) i = 0 := by
   have hf' : ((gfsPoly s n j : ℤ) : ℝ) = 0 := by rw [hf]; simp
@@ -364,7 +395,9 @@ lemma Tf_sum (s n j : ℕ) (hf : gfsPoly s n j = 0) :
   rw [Tf_in s n (j - 1) i hi'.1 hi'.2]
   ring
 
-/-- Converting closeness of `T_i, T_{i+1}` into the near-equation.-/
+/-- Converting closeness of `T_i, T_{i+1}` into the near-equation.
+@isnad1 id=le.4h5v.s8.fc3ebfc639fa from=translated src=- shape=ed2b6098 vocab=66a6ec08
+-/
 lemma conversion (s n κ i : ℕ) (hn : s < n) (hi1 : 1 ≤ i) (his : i + 1 ≤ s) (e : ℝ)
     (hclose : |Tf s n κ i - Tf s n κ (i + 1)| ≤ 2 * e * Tf s n κ (i + 1)) :
     |(n : ℝ) * (i : ℝ) ^ κ - ((s : ℝ) - i) * ((i : ℝ) + 1) ^ κ| ≤
@@ -416,7 +449,9 @@ lemma conversion (s n κ i : ℕ) (hn : s < n) (hi1 : 1 ≤ i) (his : i + 1 ≤ 
     nlinarith
   linarith
 
-/-- The final real-variable estimate.-/
+/-- The final real-variable estimate.
+@isnad1 id=le.10h7v.s9.5874818e3793 from=translated src=- shape=e32461ef vocab=a308cb4e
+-/
 lemma final_step (S q α θ I N : ℝ) (κ : ℕ) (hS1 : 1 < S) (hq1 : 1 < q) (hθ0 : 0 ≤ θ)
     (hα0 : 0 < α) (hθq : θ * q ≤ α) (hακ : 4 * (S + 1) * q * α ^ κ ≤ 1) (hI1 : 1 ≤ I)
     (hIS : I + 1 ≤ S) (hiq : I * q ≤ α * (I + 1))
@@ -489,6 +524,9 @@ lemma final_step (S q α θ I N : ℝ) (κ : ℕ) (hS1 : 1 < S) (hq1 : 1 < q) (h
 end TwoTermApprox
 
 open TwoTermApprox in
+/--
+@isnad1 id=ex.1h1v.s8.037c8ef1d061 from=translated src=- shape=70dee0f2 vocab=0f7c3377
+-/
 theorem two_term_approx (s : ℕ) (hs : 3 ≤ s) :
     ∃ δ : ℝ, 0 < δ ∧ δ < 1 ∧ ∃ J0 : ℕ, ∀ n j : ℕ, s < n → J0 ≤ j → gfsPoly s n j = 0 →
       ∃ i ∈ Finset.Icc 1 (s - 1),

@@ -19,6 +19,9 @@ namespace Erdos265
 
 variable {a : ℕ → ℕ}
 
+/--
+@isnad1 id=le.1h2v.s4.9a9b75eedac7 from=translated src=- shape=c3193f73 vocab=f1169e5f
+-/
 lemma mv_one_le_P (ha : IsRationalPair a) (n : ℕ) : 1 ≤ P a n := by
   unfold P
   rw [Nat.one_le_iff_ne_zero, Finset.prod_ne_zero_iff]
@@ -26,13 +29,18 @@ lemma mv_one_le_P (ha : IsRationalPair a) (n : ℕ) : 1 ≤ P a n := by
   have := two_le_of ha k
   omega
 
+/--
+@isnad1 id=eq.0h2v.s5.1e9aad0344b9 from=translated src=- shape=c9f212c2 vocab=223d9f1b
+-/
 lemma mv_P_succ (n : ℕ) : (P a (n + 1) : ℝ) = (P a n : ℝ) * (a n : ℝ) := by
   unfold P
   rw [Finset.prod_range_succ]
   push_cast
   ring
 
-/-- `Dt n ≤ (2/a_n) T n`.-/
+/-- `Dt n ≤ (2/a_n) T n`.
+@isnad1 id=le.1h2v.s5.c8b6827ef69b from=translated src=- shape=048cb140 vocab=168db3ed
+-/
 lemma mv_Dt_le_two_T (ha : IsRationalPair a) (n : ℕ) :
     Dt a n ≤ 2 / (a n : ℝ) * T a n := by
   have hs : Summable (fun k => recip a (k + n)) :=
@@ -50,6 +58,9 @@ lemma mv_Dt_le_two_T (ha : IsRationalPair a) (n : ℕ) :
   rw [← tsum_mul_left]
   exact hsD.tsum_le_tsum hpt (hs.mul_left _)
 
+/--
+@isnad1 id=eq.1h2v.s5.1af39307b235 from=translated src=- shape=84331335 vocab=aec641dc
+-/
 lemma mv_logH (ha : IsRationalPair a) (n : ℕ) :
     Real.log (Henv a n) = Real.log (P a n : ℝ) - Real.log (Dt a n) / 2 := by
   have hD := Dt_pos ha n
@@ -57,6 +68,9 @@ lemma mv_logH (ha : IsRationalPair a) (n : ℕ) :
   unfold Henv
   rw [Real.log_div (by positivity) (Real.sqrt_pos.mpr hD).ne', Real.log_sqrt hD.le]
 
+/--
+@isnad1 id=le.1h2v.s5.5c231a17c07b from=translated src=- shape=a62975b3 vocab=17ad577e
+-/
 lemma mv_logD_lower (ha : IsRationalPair a) (n : ℕ) :
     -2 * Real.log (a n : ℝ) ≤ Real.log (Dt a n) := by
   have hX : (2 : ℝ) ≤ (a n : ℝ) := by exact_mod_cast two_le_of ha n
@@ -65,6 +79,9 @@ lemma mv_logD_lower (ha : IsRationalPair a) (n : ℕ) :
   push_cast at h
   linarith
 
+/--
+@isnad1 id=le.2h2v.s6.c2e074e20232 from=translated src=- shape=21c663a4 vocab=a4ba178e
+-/
 lemma mv_logD_upper (ha : IsRationalPair a) {n : ℕ} (hT : T a n ≤ regF a n / (a n : ℝ)) :
     Real.log (Dt a n) ≤ Real.log 2 + Real.log (regF a n) - 2 * Real.log (a n : ℝ) := by
   have hX : (2 : ℝ) ≤ (a n : ℝ) := by exact_mod_cast two_le_of ha n
@@ -84,6 +101,9 @@ lemma mv_logD_upper (ha : IsRationalPair a) {n : ℕ} (hT : T a n ≤ regF a n /
   push_cast at h2
   linarith
 
+/--
+@isnad1 id=tendsto.3h2v.s7.c40ed5fd3fd9 from=translated src=- shape=bbec3074 vocab=3b5f22f8
+-/
 theorem majorant_vanish (ha : IsRationalPair a) {ℓ : ℝ} (hℓ : 0 < ℓ)
     (hlim : Tendsto (logRatio (Henv a)) atTop (𝓝 ℓ)) :
     Tendsto (fun n ↦ (P a n : ℝ) ^ 2 * (regF a n / (a n : ℝ)) *

@@ -7,6 +7,9 @@ If `shift f n = p` then `f = ∑_{k<n} aₖ zᵏ + zⁿ p`, a polynomial. -/
 
 namespace Erdos514
 
+/--
+@isnad1 id=istransc.1h2v.s3.70654a804335 from=translated src=- shape=35a9db1b vocab=44d61caf
+-/
 theorem shift_transcendental {f : ℂ → ℂ} (hf : IsTranscendentalEntire f) (n : ℕ) :
     IsTranscendentalEntire (shift f n) := by
   induction n with

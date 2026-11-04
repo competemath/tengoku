@@ -13,6 +13,9 @@ namespace Erdos956Upper
 
 open Erdos956 Metric
 
+/--
+@isnad1 id=le.1h2v.s5.ea2374f81509 from=translated src=- shape=58544fc3 vocab=08b57fd5
+-/
 theorem unitPairs_card_le {C : Set E} {X : Finset E} (h : Admissible C X) :
     (unitPairs C X).card ≤
       (upperPairs (diffSet C) X).card + (sidePairs (diffSet C) X).card := by

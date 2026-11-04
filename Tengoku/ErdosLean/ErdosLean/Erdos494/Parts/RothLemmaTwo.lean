@@ -31,12 +31,18 @@ namespace RL2
 noncomputable def a2_wr {m : ℕ} (f : Fin m → Polynomial ℚ) : Matrix (Fin m) (Fin m) (Polynomial ℚ) :=
   Matrix.of fun (μ k : Fin m) => Polynomial.derivative^[(μ : ℕ)] (f k)
 
+/--
+@isnad1 id=eq.0h3v.s8.27e2fa7d638b from=translated src=- shape=b50efda2 vocab=2ba7cefa
+-/
 lemma a2_iterate_derivative_add' (p q : Polynomial ℚ) (k : ℕ) :
     derivative^[k] (p + q) = derivative^[k] p + derivative^[k] q := by
   induction k generalizing p q with
   | zero => simp
   | succ k ih => simp [Function.iterate_succ_apply, ih]
 
+/--
+@isnad1 id=eq.1h4v.s6.609cefe19dc8 from=translated src=- shape=c4a8f595 vocab=32a923fb
+-/
 lemma a2_coeff_prod_of_le {ι : Type*} [DecidableEq ι] (s : Finset ι) (p : ι → Polynomial ℚ)
     (e : ι → ℕ) (h : ∀ i ∈ s, (p i).natDegree ≤ e i) :
     (∏ i ∈ s, p i).coeff (∑ i ∈ s, e i) = ∏ i ∈ s, (p i).coeff (e i) := by
@@ -50,6 +56,9 @@ lemma a2_coeff_prod_of_le {ι : Type*} [DecidableEq ι] (s : Finset ι) (p : ι 
         (Finset.sum_le_sum fun i hi => h i (Finset.mem_insert_of_mem hi))
     rw [coeff_mul_add_eq_of_natDegree_le h1 h2, ih fun i hi => h i (Finset.mem_insert_of_mem hi)]
 
+/--
+@isnad1 id=ne.2h2v.s6.fc8d84e6a044 from=translated src=- shape=bcca700e vocab=690d99a2
+-/
 lemma a2_det_ne_zero_of_injective {m : ℕ} (f : Fin m → Polynomial ℚ) (hne : ∀ k, f k ≠ 0)
     (hinj : Function.Injective fun k => (f k).natDegree) : (a2_wr f).det ≠ 0 := by
   set d : Fin m → ℕ := fun k => (f k).natDegree with hd
@@ -105,6 +114,9 @@ lemma a2_det_ne_zero_of_injective {m : ℕ} (f : Fin m → Polynomial ℚ) (hne 
   refine (mul_ne_zero (Finset.prod_ne_zero_iff.mpr fun k _ => ?_) hD) this
   exact leadingCoeff_ne_zero.mpr (hne k)
 
+/--
+@isnad1 id=ne.2h3v.s6.1acd995622a7 from=translated src=- shape=01c5eedb vocab=ab00d39a
+-/
 lemma a2_wmain {m : ℕ} (n : ℕ) : ∀ f : Fin m → Polynomial ℚ, (∑ k, (f k).natDegree) = n →
     LinearIndependent ℚ f → (a2_wr f).det ≠ 0 := by
   induction n using Nat.strong_induction_on with
@@ -155,10 +167,16 @@ lemma a2_wmain {m : ℕ} (n : ℕ) : ∀ f : Fin m → Polynomial ℚ, (∑ k, (
   rw [← hdet]
   exact ih _ hsum g rfl hgli
 
+/--
+@isnad1 id=ne.1h2v.s8.17a39d10271a from=translated src=- shape=7cda5acc vocab=8eee557b
+-/
 theorem wronskian_ne_zero {m : ℕ} (f : Fin m → Polynomial ℚ) (hf : LinearIndependent ℚ f) :
     (Matrix.of fun (μ k : Fin m) => Polynomial.derivative^[(μ : ℕ)] (f k)).det ≠ 0 :=
   a2_wmain _ f rfl hf
 
+/--
+@isnad1 id=dvd.3h4v.s7.13ea75757c2a from=translated src=- shape=28866b7c vocab=f84fe7b1
+-/
 theorem gauss_order_bound (U : Polynomial ℤ) (p : ℤ) (q : ℕ) (hq : 0 < q)
     (hcop : IsCoprime p (q : ℤ)) (e : ℕ)
     (hdvd : (Polynomial.X - Polynomial.C ((p : ℚ) / q)) ^ e ∣ U.map (Int.castRingHom ℚ)) :
@@ -213,6 +231,9 @@ structure NormLike {R : Type*} [Ring R] (ν : R → ℝ) : Prop where
 noncomputable def L1 {R : Type*} [Semiring R] (ν : R → ℝ) (p : R[X]) : ℝ :=
   p.sum fun _ a => ν a
 
+/--
+@isnad1 id=eq.2h4v.s6.b7593039e9a1 from=translated src=- shape=db6c0e40 vocab=63654055
+-/
 lemma L1_eq_sum {R : Type*} [Ring R] {ν : R → ℝ} (hν : NormLike ν) (p : R[X]) (s : Finset ℕ)
     (hs : p.support ⊆ s) : L1 ν p = ∑ i ∈ s, ν (p.coeff i) := by
   unfold L1
@@ -221,12 +242,18 @@ lemma L1_eq_sum {R : Type*} [Ring R] {ν : R → ℝ} (hν : NormLike ν) (p : R
   intro i _ hi
   rw [Polynomial.notMem_support_iff.mp hi, hν.zero]
 
+/--
+@isnad1 id=eq.1h4v.s7.74aa2e7310cb from=translated src=- shape=bd69954d vocab=8bd725e0
+-/
 lemma L1_monomial {R : Type*} [Ring R] {ν : R → ℝ} (hν : NormLike ν) (n : ℕ) (a : R) :
     L1 ν (monomial n a) = ν a := by
   unfold L1
   rw [Polynomial.sum_monomial_index]
   exact hν.zero
 
+/--
+@isnad1 id=normlike.1h2v.s4.1ff1f131df0a from=translated src=- shape=35e15fe9 vocab=d539c827
+-/
 lemma L1_normLike {R : Type*} [Ring R] {ν : R → ℝ} (hν : NormLike ν) : NormLike (L1 ν) where
   zero := by simp [L1]
   nonneg := fun p => by
@@ -269,6 +296,9 @@ lemma L1_normLike {R : Type*} [Ring R] {ν : R → ℝ} (hν : NormLike ν) : No
     rw [← Polynomial.C_1, ← Polynomial.monomial_zero_left, L1_monomial hν]
     exact hν.one
 
+/--
+@isnad1 id=normlike.0h0v.s3.cec58c4e9ca9 from=translated src=- shape=99abad4d vocab=12b7fdf8
+-/
 lemma normLike_abs : NormLike (fun a : ℤ => (|a| : ℝ)) where
   zero := by simp
   nonneg := fun a => by positivity
@@ -277,6 +307,9 @@ lemma normLike_abs : NormLike (fun a : ℤ => (|a| : ℝ)) where
   neg := fun a => by push_cast; rw [abs_neg]
   one := by simp
 
+/--
+@isnad1 id=le.1h5v.s5.ad77a04209b0 from=translated src=- shape=f777fd36 vocab=f0c30a65
+-/
 lemma normLike_prod {R : Type*} [CommRing R] {ν : R → ℝ} (hν : NormLike ν) {ι : Type*}
     (s : Finset ι) (g : ι → R) : ν (∏ i ∈ s, g i) ≤ ∏ i ∈ s, ν (g i) := by
   classical
@@ -286,6 +319,9 @@ lemma normLike_prod {R : Type*} [CommRing R] {ν : R → ℝ} (hν : NormLike ν
     rw [Finset.prod_insert ha, Finset.prod_insert ha]
     exact le_trans (hν.mul _ _) (mul_le_mul_of_nonneg_left ih (hν.nonneg _))
 
+/--
+@isnad1 id=le.1h5v.s5.2248d27b0d1f from=translated src=- shape=f777fd36 vocab=c1e2221c
+-/
 lemma normLike_sum {R : Type*} [Ring R] {ν : R → ℝ} (hν : NormLike ν) {ι : Type*}
     (s : Finset ι) (g : ι → R) : ν (∑ i ∈ s, g i) ≤ ∑ i ∈ s, ν (g i) :=
   Finset.le_sum_of_subadditive ν hν.zero.le hν.add s g
@@ -298,18 +334,30 @@ noncomputable def a2_L (n : ℕ) : (Fin n → ℚ) →ₗ[ℚ] ℚ[X] where
   map_add' v w := by simp only [Pi.add_apply, map_add, Finset.sum_add_distrib]
   map_smul' a v := by simp only [Pi.smul_apply, RingHom.id_apply, Finset.smul_sum, smul_monomial]
 
+/--
+@isnad1 id=eq.0h2v.s7.665c034f9fde from=translated src=- shape=27eccc86 vocab=0a4c92ea
+-/
 lemma a2_L_apply (n : ℕ) (v : Fin n → ℚ) : a2_L n v = ∑ i : Fin n, monomial (i : ℕ) (v i) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.72faff326286 from=translated src=- shape=b2481773 vocab=7b2d7037
+-/
 lemma a2_L_coeff (n : ℕ) (v : Fin n → ℚ) (i : Fin n) : (a2_L n v).coeff i = v i := by
   rw [a2_L_apply, finsetSum_coeff, Finset.sum_eq_single i]
   · simp
   · intro b _ hb; rw [coeff_monomial, ite_eq_right]; exact fun h => hb (Fin.ext h)
   · simp
 
+/--
+@isnad1 id=eq.0h1v.s7.ad39b0fac54e from=translated src=- shape=892155da vocab=2e00b798
+-/
 lemma a2_L_ker (n : ℕ) : LinearMap.ker (a2_L n) = ⊥ := by
   rw [LinearMap.ker_eq_bot']
   intro v hv; funext i; have := a2_L_coeff n v i; rw [hv] at this; simpa using this.symm
 
+/--
+@isnad1 id=lt.0h3v.s8.05fd60a1ee18 from=translated src=- shape=5534171e vocab=f3dcf4c2
+-/
 lemma a2_L_natDegree (n : ℕ) (v : Fin (n+1) → ℚ) (k : ℕ) :
     (hasseDeriv k (a2_L (n+1) v)).natDegree < n + 1 := by
   refine lt_of_le_of_lt (natDegree_hasseDeriv_le _ _) ?_
@@ -318,6 +366,9 @@ lemma a2_L_natDegree (n : ℕ) (v : Fin (n+1) → ℚ) (k : ℕ) :
   refine natDegree_sum_le_of_forall_le _ _ fun i _ => le_trans (natDegree_monomial_le _) ?_
   exact Nat.lt_succ_iff.mp i.2
 
+/--
+@isnad1 id=eq.0h4v.s8.41babe6cfe33 from=translated src=- shape=fa06d2cb vocab=b97ddcee
+-/
 lemma a2_eval_hD_L (n : ℕ) (v : Fin n → ℚ) (i : ℕ) (x : ℚ) :
     (hasseDeriv i (a2_L n v)).eval x = ∑ j : Fin n, ((j : ℕ).choose i : ℚ) * v j * x ^ ((j : ℕ) - i) := by
   rw [a2_L_apply, map_sum, eval_finsetSum]
@@ -332,6 +383,9 @@ noncomputable def a2_HWm {R : Type*} [CommRing R] {m : ℕ} (f : Fin m → R[X])
 noncomputable def a2_HW {R : Type*} [CommRing R] {m : ℕ} (f : Fin m → R[X]) : R[X] :=
   (a2_HWm f).det
 
+/--
+@isnad1 id=ne.1h2v.s6.2cbfc5f0c79c from=translated src=- shape=d1044aec vocab=43394d20
+-/
 lemma a2_HW_ne_zero {m : ℕ} (f : Fin m → ℚ[X]) (hf : LinearIndependent ℚ f) : a2_HW f ≠ 0 := by
   have h := wronskian_ne_zero f hf
   have : (Matrix.of fun (μ k : Fin m) => derivative^[(μ : ℕ)] (f k)) =
@@ -342,6 +396,9 @@ lemma a2_HW_ne_zero {m : ℕ} (f : Fin m → ℚ[X]) (hf : LinearIndependent ℚ
   rw [this, Matrix.det_mul_column] at h
   exact right_ne_zero_of_mul h
 
+/--
+@isnad1 id=eq.1h5v.s8.8caa3da0ff79 from=translated src=- shape=8b88644a vocab=a994a109
+-/
 lemma a2_HW_comb {R : Type*} [CommRing R] {m : ℕ} (f h : Fin m → R[X])
     (G : Matrix (Fin m) (Fin m) R) (hf : ∀ k', f k' = ∑ k, G k' k • h k) :
     a2_HW f = C G.det * a2_HW h := by
@@ -356,6 +413,9 @@ lemma a2_HW_comb {R : Type*} [CommRing R] {m : ℕ} (f h : Fin m → R[X])
     rw [LinearMap.map_smul, smul_eq_C_mul, mul_comm]
   rw [this, Matrix.det_mul, ← RingHom.map_det, Matrix.det_transpose, mul_comm]
 
+/--
+@isnad1 id=eq.0h2v.s5.75b625461702 from=translated src=- shape=a35ebecc vocab=b35b00ec
+-/
 lemma a2_HW_map {m : ℕ} (f : Fin m → ℤ[X]) :
     a2_HW (fun k => (f k).map (Int.castRingHom ℚ)) = (a2_HW f).map (Int.castRingHom ℚ) := by
   unfold a2_HW
@@ -368,10 +428,16 @@ lemma a2_HW_map {m : ℕ} (f : Fin m → ℤ[X]) :
 
 noncomputable def a2_vecZ (n : ℕ) (v : Fin n → ℤ) : ℤ[X] := ∑ i : Fin n, monomial (i : ℕ) (v i)
 
+/--
+@isnad1 id=eq.0h2v.s7.4a0f87bad3ae from=translated src=- shape=0cdfa083 vocab=f4bbdc84
+-/
 lemma a2_vecZ_map (n : ℕ) (v : Fin n → ℤ) :
     (a2_vecZ n v).map (Int.castRingHom ℚ) = a2_L n (fun i => (v i : ℚ)) := by
   simp [a2_vecZ, a2_L_apply, Polynomial.map_sum]
 
+/--
+@isnad1 id=le.1h4v.s7.f2b23febb0c1 from=translated src=- shape=67ea81dc vocab=feb6d90c
+-/
 lemma a2_L1_hD_vecZ (n : ℕ) (v : Fin (n+1) → ℤ) (H : ℝ) (hH : ∀ i, |(v i : ℝ)| ≤ H) (μ : ℕ) :
     L1 (fun a : ℤ => (|a| : ℝ)) (hasseDeriv μ (a2_vecZ (n+1) v)) ≤ (n + 1) * 2 ^ n * H := by
   have hν := L1_normLike normLike_abs
@@ -394,6 +460,9 @@ lemma a2_L1_hD_vecZ (n : ℕ) (v : Fin (n+1) → ℤ) (H : ℝ) (hH : ∀ i, |(v
 
 /-! #### Lower bound machinery -/
 
+/--
+@isnad1 id=eq.1h4v.s8.795e0718fb09 from=translated src=- shape=148b9b49 vocab=99f58b5f
+-/
 lemma a2_comp_expand (f : ℚ[X]) (x : ℚ) (r N : ℕ) (hN : f.natDegree < N) :
     f.comp (C x + X ^ r) = ∑ m ∈ range N, C ((hasseDeriv m f).eval x) * X ^ (r * m) := by
   have h1 : f.comp (C x + X ^ r) = (taylor x f).comp (X ^ r) := by
@@ -404,6 +473,9 @@ lemma a2_comp_expand (f : ℚ[X]) (x : ℚ) (r N : ℕ) (hN : f.natDegree < N) :
   refine Finset.sum_congr rfl fun m _ => ?_
   rw [coe_compRingHom_apply, monomial_comp, taylor_coeff, pow_mul]
 
+/--
+@isnad1 id=dvd.1h4v.s8.461f07bbee7b from=translated src=- shape=f3560c61 vocab=c4f9d095
+-/
 lemma a2_det_dvd {R : Type*} [CommRing R] {l : ℕ} (M : Matrix (Fin l) (Fin l) R[X])
     (d : Fin l → ℕ) (h : ∀ i j, X ^ d j ∣ M i j) : X ^ (∑ j, d j) ∣ M.det := by
   rw [Matrix.det_apply]
@@ -411,6 +483,9 @@ lemma a2_det_dvd {R : Type*} [CommRing R] {l : ℕ} (M : Matrix (Fin l) (Fin l) 
   rw [← Finset.prod_pow_eq_pow_sum, Units.smul_def, zsmul_eq_mul]
   exact dvd_mul_of_dvd_right (Finset.prod_dvd_prod_of_dvd _ _ fun j _ => h _ _) _
 
+/--
+@isnad1 id=dvd.3h12v.s10.262b37c14d82 from=translated src=- shape=41dce0a6 vocab=59461b7a
+-/
 lemma a2_entry_dvd {l : ℕ} (φ ψ : Fin l → ℚ[X]) (x y : ℚ) (r1 r2 N1 N2 d μ ν : ℕ)
     (h1 : ∀ k, (hasseDeriv μ (φ k)).natDegree < N1)
     (h2 : ∀ k, (hasseDeriv ν (ψ k)).natDegree < N2)
@@ -450,6 +525,9 @@ lemma a2_entry_dvd {l : ℕ} (φ ψ : Fin l → ℚ[X]) (x y : ℚ) (r1 r2 N1 N2
     rw [hz, C_0, zero_mul]
     exact dvd_zero _
 
+/--
+@isnad1 id=le.5h7v.s8.c52297dc44eb from=translated src=- shape=1947b365 vocab=90778c2a
+-/
 lemma a2_ord_le (U V : ℚ[X]) (x y : ℚ) (r1 r2 D : ℕ) (hr1 : 1 ≤ r1) (hr2 : 1 ≤ r2)
     (hU : U ≠ 0) (hV : V ≠ 0)
     (h : X ^ D ∣ U.comp (C x + X ^ r2) * V.comp (C y + X ^ r1)) :
@@ -479,6 +557,9 @@ lemma a2_ord_le (U V : ℚ[X]) (x y : ℚ) (r1 r2 D : ℕ) (hr1 : 1 ≤ r1) (hr2
   rw [mul_dvd_mul_iff_left (pow_ne_zero _ X_ne_zero), X_dvd_iff, coeff_zero_eq_eval_zero] at h'
   exact hG h'
 
+/--
+@isnad1 id=le.7h10v.s9.d877205f6211 from=translated src=- shape=142aa51c vocab=258b9a37
+-/
 lemma a2_lower {l : ℕ} (φ ψ : Fin l → ℚ[X]) (x y : ℚ) (r1 r2 N1 N2 : ℕ) (hr1 : 1 ≤ r1)
     (hr2 : 1 ≤ r2) (hU : a2_HW φ ≠ 0) (hV : a2_HW ψ ≠ 0) (d : Fin l → ℕ)
     (h1 : ∀ (μ : ℕ) k, (hasseDeriv μ (φ k)).natDegree < N1)
@@ -503,6 +584,9 @@ lemma a2_lower {l : ℕ} (φ ψ : Fin l → ℚ[X]) (x y : ℚ) (r1 r2 N1 N2 : �
 
 /-! #### Rank decomposition -/
 
+/--
+@isnad1 id=ex.0h3v.s7.3ecd0729d523 from=translated src=- shape=51fc6270 vocab=404bbf72
+-/
 lemma a2_basis {n m : ℕ} (M : Matrix (Fin n) (Fin m) ℚ) : ∃ (l : ℕ) (I : Fin l → Fin n),
     LinearIndependent ℚ (fun k => M (I k)) ∧
     (∀ i, M i ∈ Submodule.span ℚ (Set.range fun k => M (I k))) ∧ l = M.transpose.rank := by
@@ -518,6 +602,9 @@ lemma a2_basis {n m : ℕ} (M : Matrix (Fin n) (Fin m) ℚ) : ∃ (l : ℕ) (I :
   · rw [Matrix.rank_eq_finrank_span_cols, ← finrank_span_eq_card hli, hspan]
     rfl
 
+/--
+@isnad1 id=ex.0h3v.s9.e297e3af550d from=translated src=- shape=122e5248 vocab=fcf24493
+-/
 lemma a2_decomp (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) : ∃ (l : ℕ) (I : Fin l → Fin (r1+1))
     (J : Fin l → Fin (r2+1)) (g : Fin (r1+1) → Fin l → ℚ),
     LinearIndependent ℚ (fun k => a2_L (r2+1) (fun j => (c (I k) j : ℚ))) ∧
@@ -537,6 +624,9 @@ lemma a2_decomp (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) : ∃ (l : ℕ) (I : Fin
     simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, M, Matrix.of_apply] at this
     exact this.symm
 
+/--
+@isnad1 id=eq.1h10v.s10.7a6b854d3c31 from=translated src=- shape=ca961217 vocab=220fe90c
+-/
 lemma a2_hasseEval_eq (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) {l : ℕ} (I : Fin l → Fin (r1+1))
     (g : Fin (r1+1) → Fin l → ℚ)
     (hg : ∀ (i : Fin (r1+1)) (j : Fin (r2+1)), (c i j : ℚ) = ∑ k, g i k * c (I k) j)
@@ -562,6 +652,9 @@ lemma a2_hasseEval_eq (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) {l : ℕ} (I : Fin
   refine Finset.sum_congr rfl fun k _ => ?_
   ring
 
+/--
+@isnad1 id=eq.1h7v.s5.8908644d180a from=translated src=- shape=f284169d vocab=020d1ae8
+-/
 lemma a2_hE_zero (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (i1 i2 : ℕ) (x y : ℝ) (h : r1 < i1 ∨ r2 < i2) :
     hasseEval r1 r2 c i1 i2 x y = 0 := by
   unfold hasseEval
@@ -571,6 +664,9 @@ lemma a2_hE_zero (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (i1 i2 : ℕ) (x y : �
   · rw [Nat.choose_eq_zero_of_lt (by omega : k1 < i1)]; simp
   · rw [Nat.choose_eq_zero_of_lt (by omega : k2 < i2)]; simp
 
+/--
+@isnad1 id=ex.1h5v.s5.8c4e21d5bb23 from=translated src=- shape=0b7f3fcd vocab=9806ae75
+-/
 lemma a2_trivial (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (hc : BoxNonzero r1 r2 c) (x y : ℝ) :
     ∃ i1 ≤ r1, ∃ i2 ≤ r2, hasseEval r1 r2 c i1 i2 x y ≠ 0 := by
   classical
@@ -615,11 +711,17 @@ lemma a2_trivial (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (hc : BoxNonzero r1 r2 
 
 /-! #### Arithmetic -/
 
+/--
+@isnad1 id=eq.0h1v.s5.61c9351c7a56 from=translated src=- shape=1f8c6911 vocab=48575070
+-/
 lemma a2_sum_id (n : ℕ) : (∑ ν ∈ range n, (ν : ℝ)) * 2 = n * (n - 1) := by
   induction n with
   | zero => simp
   | succ n ih => rw [Finset.sum_range_succ, add_mul, ih]; push_cast; ring
 
+/--
+@isnad1 id=lt.5h3v.s7.9121c49399d9 from=translated src=- shape=4693673c vocab=13f4c6e8
+-/
 lemma a2_S_big (r2 l : ℕ) (η : ℝ) (hr2 : 1 ≤ r2) (hl : 1 ≤ l) (hl2 : l ≤ r2 + 1) (hη : 0 < η)
     (hη4 : η ≤ 1/4) :
     2 * l * η < ∑ ν ∈ range l, max 0 (4 * Real.sqrt η - η - ν / r2) := by
@@ -683,6 +785,9 @@ lemma a2_S_big (r2 l : ℕ) (η : ℝ) (hr2 : 1 ≤ r2) (hl : 1 ≤ l) (hl2 : l 
     have h9 : 0 < η * r2 := mul_pos hη hr2'
     nlinarith
 
+/--
+@isnad1 id=false.13h9v.s9.4e217dc6707b from=translated src=- shape=f0edfc83 vocab=3aadf9ef
+-/
 lemma a2_final (r1 r2 l e1 e2 : ℕ) (H η : ℝ) (q1 q2 : ℕ)
     (hr2 : 1 ≤ r2) (hl : 1 ≤ l) (hl2 : l ≤ r2 + 1) (hη : 0 < η) (hη4 : η ≤ 1/4)
     (hr21 : (r2:ℝ) ≤ η * r1) (hH : 1 ≤ H) (hq1 : 0 < q1)

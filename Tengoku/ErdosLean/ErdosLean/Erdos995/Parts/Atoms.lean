@@ -22,17 +22,26 @@ namespace Con
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
+/--
+@isnad1 id=eq.0h2v.s5.8bddfc9c497b from=translated src=- shape=e75944c5 vocab=28da770c
+-/
 lemma blk_eq_sum_atom (k : ℕ) (x : 𝕋) :
     blk k x = Real.sqrt (lam k / blockLen k) * ∑ q ∈ Finset.Icc 1 (blockLen k), atom k q x := by
   rfl
 
 /-! ### Band separation -/
 
+/--
+@isnad1 id=monotone.0h0v.s2.92ac97edf1a3 from=translated src=- shape=e3d48bcb vocab=514f6145
+-/
 lemma shift_mono' : Monotone shift := by
   refine monotone_nat_of_le_succ (fun n => ?_)
   show shift n ≤ shift n + blockLen n * spacing n + depth n
   exact le_trans (Nat.le_add_right _ _) (Nat.le_add_right _ _)
 
+/--
+@isnad1 id=le.2h4v.s6.22f949f880a4 from=translated src=- shape=b32b7106 vocab=47348ead
+-/
 lemma band_sep (k k' q q' : ℕ) (hk : k < k') (hq : q ≤ blockLen k) :
     shift k + q * spacing k + depth k ≤ shift k' + q' * spacing k' := by
   have h1 : shift (k + 1) ≤ shift k' := shift_mono' (by omega)
@@ -43,6 +52,9 @@ lemma band_sep (k k' q q' : ℕ) (hk : k < k') (hq : q ≤ blockLen k) :
   generalize q' * spacing k' = c at *
   omega
 
+/--
+@isnad1 id=le.1h3v.s5.d3b1a163182e from=translated src=- shape=1dffb004 vocab=cb7e3903
+-/
 lemma band_sep_same (k q q' : ℕ) (hq : q < q') :
     shift k + q * spacing k + depth k ≤ shift k + q' * spacing k := by
   have h1 : (q + 1) * spacing k ≤ q' * spacing k := Nat.mul_le_mul_right _ hq
@@ -52,6 +64,9 @@ lemma band_sep_same (k q q' : ℕ) (hq : q < q') :
   generalize q' * spacing k = c at *
   omega
 
+/--
+@isnad1 id=integrab.0h2v.s6.b9d1a688f876 from=translated src=- shape=dde49eff vocab=77ac7edc
+-/
 lemma integrable_atom (k q : ℕ) : Integrable (fun x : 𝕋 => (atom k q x : ℂ)) μ𝕋 := by
   have hn : ((2 ^ (shift k + q * spacing k) : ℕ) : ℤ) ≠ 0 := by positivity
   have hmp : MeasurePreserving (fun x : 𝕋 => ((2 ^ (shift k + q * spacing k) : ℕ) : ℤ) • x)
@@ -65,6 +80,9 @@ lemma integrable_atom (k q : ℕ) : Integrable (fun x : 𝕋 => (atom k q x : �
   exact Integrable.comp_measurable
     (by rw [hmp.map_eq]; exact Erdos996.Asm.alt_integrable_spike _) hmp.measurable
 
+/--
+@isnad1 id=eq.0h2v.s5.5be3c7ac1886 from=translated src=- shape=693b1c6f vocab=ade137e1
+-/
 lemma fourierCoeff_atom_zero (k q : ℕ) : fourierCoeff (fun x => (atom k q x : ℂ)) 0 = 0 := by
   have hmeas : AEStronglyMeasurable (fun y : 𝕋 => (Erdos996.spike (depth k) y : ℂ)) μ𝕋 :=
     (Complex.measurable_ofReal.comp (Erdos996.measurable_spike _)).aestronglyMeasurable
@@ -73,6 +91,9 @@ lemma fourierCoeff_atom_zero (k q : ℕ) : fourierCoeff (fun x => (atom k q x : 
   rw [mul_zero] at h
   exact h.trans (Erdos996.Asm.alt_fourierCoeff_spike_zero _)
 
+/--
+@isnad1 id=eq.0h2v.s6.28eed18279d1 from=translated src=- shape=cef4bb7c vocab=e1a59db7
+-/
 lemma fourierCoeff_blk (k : ℕ) (r : ℤ) :
     fourierCoeff (fun x => (blk k x : ℂ)) r =
       (Real.sqrt (lam k / blockLen k) : ℂ) *
@@ -86,7 +107,9 @@ lemma fourierCoeff_blk (k : ℕ) (r : ℤ) :
   rw [hfun, fourierCoeff.const_mul,
     fourierCoeff.sum _ _ (fun q _ => integrable_atom k q), Finset.sum_apply]
 
-/-- Distinct atoms have disjoint Fourier supports.-/
+/-- Distinct atoms have disjoint Fourier supports.
+@isnad1 id=or.3h5v.s7.c252c6e36f31 from=translated src=- shape=d9bc9442 vocab=110ac3e7
+-/
 lemma fourierCoeff_atom_disjoint (k q k' q' : ℕ) (r : ℤ)
     (hq : q ∈ Finset.Icc 1 (blockLen k)) (hq' : q' ∈ Finset.Icc 1 (blockLen k'))
     (hne : (k, q) ≠ (k', q')) :

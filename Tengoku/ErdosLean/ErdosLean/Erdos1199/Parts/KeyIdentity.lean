@@ -13,7 +13,9 @@ namespace Erdos1199
 open Filter
 
 /-- Core of Proposition 3.2: if some colour class `A` of the sampled sequence
-`n ↦ ext2 b (R + s n)` lies in both `p + p` and `D p`, then `b` has the Owings property.-/
+`n ↦ ext2 b (R + s n)` lies in both `p + p` and `D p`, then `b` has the Owings property.
+@isnad1 id=owings.4h5v.s6.0fea3e60afe1 from=translated src=- shape=6209e0da vocab=7911d3be
+-/
 theorem owings_of_mem_add_mem_dbl (b : ℕ → Bool) {p : Ultrafilter ℕ} (hp : Nonprincipal p)
     (R s : ℤ) (hs : 1 ≤ s) (γ : Bool)
     (h1 : {n : ℕ | ext2 b (R + s * (n : ℤ)) = γ} ∈ p + p)
@@ -69,7 +71,9 @@ theorem owings_of_mem_add_mem_dbl (b : ℕ → Bool) {p : Ultrafilter ℕ} (hp :
     · rw [add_comm]; exact key j i h
 
 /-- Proposition 3.2: if `b` has no infinite set of positive integers with monochromatic `B + B`,
-then for `c(n) = b(2n)` and every nonprincipal `p`, `(p + p) · 𝐜 = J ((D p) · 𝐜)`.-/
+then for `c(n) = b(2n)` and every nonprincipal `p`, `(p + p) · 𝐜 = J ((D p) · 𝐜)`.
+@isnad1 id=eq.2h2v.s5.7d2446dfedc6 from=translated src=- shape=d97e0bf9 vocab=aa6e8b8b
+-/
 theorem key_identity (b : ℕ → Bool) (hb : ¬ Owings b) {p : Ultrafilter ℕ}
     (hp : Nonprincipal p) :
     act (p + p) (encode (ext2 b)) = cmpl (act (dbl p) (encode (ext2 b))) := by

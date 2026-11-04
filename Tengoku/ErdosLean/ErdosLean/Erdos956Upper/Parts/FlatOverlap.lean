@@ -23,7 +23,9 @@ lemma eq_of_coords {u v : E} (h0 : u 0 = v 0) (h1 : u 1 = v 1) : u = v := by
   · exact h0
   · exact h1
 
-/-- Three-point concavity inequality, cleared of denominators.-/
+/-- Three-point concavity inequality, cleared of denominators.
+@isnad1 id=le.5h5v.s7.1fcb1a04f534 from=translated src=- shape=c5f6ad96 vocab=99d27b22
+-/
 lemma conc3 {I : Set ℝ} {G : ℝ → ℝ} (hG : ConcaveOn ℝ I G) {p m r : ℝ} (hp : p ∈ I)
     (hr : r ∈ I) (hpm : p < m) (hmr : m < r) :
     (r - m) * G p + (m - p) * G r ≤ (r - p) * G m := by
@@ -40,6 +42,9 @@ lemma conc3 {I : Set ℝ} {G : ℝ → ℝ} (hG : ConcaveOn ℝ I G) {p m r : �
   have := mul_le_mul_of_nonneg_left h hrp.le
   linarith
 
+/--
+@isnad1 id=concaveo.1h3v.s5.d78c961bae48 from=translated src=- shape=6e52f384 vocab=13920713
+-/
 lemma concaveOn_affine' {I : Set ℝ} (hI : Convex ℝ I) (A B : ℝ) :
     ConcaveOn ℝ I (fun x => A + B * x) := by
   refine ⟨hI, fun x _ y _ a b _ _ hab => ?_⟩
@@ -48,6 +53,9 @@ lemma concaveOn_affine' {I : Set ℝ} (hI : Convex ℝ I) (A B : ℝ) :
   rw [show b = 1 - a by linarith]
   ring
 
+/--
+@isnad1 id=le.7h5v.s6.6f79796fce8b from=translated src=- shape=87011412 vocab=d9627233
+-/
 lemma conc_nonpos_right {I : Set ℝ} {G : ℝ → ℝ} (hG : ConcaveOn ℝ I G) {p q x : ℝ}
     (hp : p ∈ I) (hx : x ∈ I) (hpq : p < q) (hqx : q < x) (h1 : G p = 0) (h2 : G q = 0) :
     G x ≤ 0 := by
@@ -55,6 +63,9 @@ lemma conc_nonpos_right {I : Set ℝ} {G : ℝ → ℝ} (hG : ConcaveOn ℝ I G)
   rw [h1, h2] at this
   nlinarith
 
+/--
+@isnad1 id=le.7h5v.s6.16928622c901 from=translated src=- shape=71d7be91 vocab=d9627233
+-/
 lemma conc_nonpos_left {I : Set ℝ} {G : ℝ → ℝ} (hG : ConcaveOn ℝ I G) {p q x : ℝ}
     (hx : x ∈ I) (hq : q ∈ I) (hxp : x < p) (hpq : p < q) (h1 : G p = 0) (h2 : G q = 0) :
     G x ≤ 0 := by
@@ -62,6 +73,9 @@ lemma conc_nonpos_left {I : Set ℝ} {G : ℝ → ℝ} (hG : ConcaveOn ℝ I G) 
   rw [h1, h2] at this
   nlinarith
 
+/--
+@isnad1 id=le.7h5v.s6.516f849b834b from=translated src=- shape=4dd14d2c vocab=d9627233
+-/
 lemma conc_nonneg_mid {I : Set ℝ} {G : ℝ → ℝ} (hG : ConcaveOn ℝ I G) {p q x : ℝ}
     (hp : p ∈ I) (hq : q ∈ I) (hpx : p < x) (hxq : x < q) (h1 : G p = 0) (h2 : G q = 0) :
     0 ≤ G x := by
@@ -70,7 +84,9 @@ lemma conc_nonneg_mid {I : Set ℝ} {G : ℝ → ℝ} (hG : ConcaveOn ℝ I G) {
   nlinarith
 
 /-- If a concave function has equal increments of step `h` at `p < q ≤ p + h`,
-it is affine on `[p, q + h]`.-/
+it is affine on `[p, q + h]`.
+@isnad1 id=ex.6h6v.s7.dd4700675566 from=translated src=- shape=f3d2dc3b vocab=50752f58
+-/
 lemma flat_of_incr {g : ℝ → ℝ} {l r : ℝ} (hg : ConcaveOn ℝ (Set.Ioo l r) g) {p q h : ℝ}
     (hpq : p < q) (hqh : q ≤ p + h) (hlp : l < p) (hr : q + h < r)
     (hinc : g (p + h) - g p = g (q + h) - g q) :
@@ -120,7 +136,9 @@ lemma flat_of_incr {g : ℝ → ℝ} {l r : ℝ} (hg : ConcaveOn ℝ (Set.Ioo l 
   linear_combination this
 
 /-- Equal increments of step `s` at `t` and `t + ρ` (`s ≤ ρ`) force equal consecutive
-increments at `t` and `t + s`.-/
+increments at `t` and `t + s`.
+@isnad1 id=eq.6h6v.s7.35e02623bbc5 from=translated src=- shape=e02f2ac5 vocab=07b4e8b3
+-/
 lemma step_eq {g : ℝ → ℝ} {l r : ℝ} (hg : ConcaveOn ℝ (Set.Ioo l r) g) {t s ρ : ℝ}
     (hs : 0 ≤ s) (hsρ : s ≤ ρ) (hl : l < t) (hr : t + ρ + s < r)
     (hinc : g (t + s) - g t = g (t + ρ + s) - g (t + ρ)) :
@@ -137,7 +155,9 @@ lemma step_eq {g : ℝ → ℝ} {l r : ℝ} (hg : ConcaveOn ℝ (Set.Ioo l r) g)
   simp only [Pi.neg_apply] at k1 k2
   linarith
 
-/-- A chord of the upper arc of horizontal span `2s` whose midpoint is on the arc.-/
+/-- A chord of the upper arc of horizontal span `2s` whose midpoint is on the arc.
+@isnad1 id=mem.5h4v.s7.3e0d36ccd7b7 from=translated src=- shape=3a197608 vocab=92bebc80
+-/
 lemma chord_mem (hS : SepConfig D X) {t s : ℝ} (hs : 0 ≤ s) (ht : |t| < wid D)
     (ht2 : |t + s + s| < wid D)
     (hmid : gUp D (t + s + s) - gUp D (t + s) = gUp D (t + s) - gUp D t) :
@@ -160,6 +180,9 @@ lemma chord_mem (hS : SepConfig D X) {t s : ℝ} (hs : 0 ≤ s) (ht : |t| < wid 
 
 /-! ### Two curves, two common points -/
 
+/--
+@isnad1 id=false.13h6v.s9.d7249721faa6 from=translated src=- shape=4aa77e4b vocab=90f2a66b
+-/
 theorem two_core (hS : SepConfig D X) {c c' p q : E} (hc : c ∈ X) (hc' : c' ∈ X)
     (hp : p ∈ X) (hq : q ∈ X) (hcc : c ≠ c') (hpq : p ≠ q)
     (h1 : OnUpper D (p - c)) (h2 : OnUpper D (q - c))
@@ -206,6 +229,9 @@ theorem two_core (hS : SepConfig D X) {c c' p q : E} (hc : c ∈ X) (hc' : c' �
     · simp [hd]
     · simp; linarith
 
+/--
+@isnad1 id=false.11h6v.s8.862200c7bacc from=translated src=- shape=554bca9e vocab=8a491a3f
+-/
 theorem no_two_common_points (hS : SepConfig D X) {c c' p q : E} (hc : c ∈ X) (hc' : c' ∈ X)
     (hp : p ∈ X) (hq : q ∈ X) (hcc : c ≠ c') (hpq : p ≠ q)
     (h1 : OnUpper D (p - c)) (h2 : OnUpper D (q - c))
@@ -218,6 +244,9 @@ theorem no_two_common_points (hS : SepConfig D X) {c c' p q : E} (hc : c ∈ X) 
 
 /-! ### Three curves coinciding on an interval -/
 
+/--
+@isnad1 id=false.14h7v.s9.7aec927e83cf from=translated src=- shape=f682bd86 vocab=92852f0e
+-/
 theorem three_core (hS : SepConfig D X) {c c' c'' : E} (hc : c ∈ X) (hc' : c' ∈ X)
     (hc'' : c'' ∈ X) (h12 : c ≠ c') (h23 : c' ≠ c'') (o1 : c 0 < c' 0) (o2 : c' 0 < c'' 0)
     {α β : ℝ} (hαβ : α < β)
@@ -316,6 +345,9 @@ theorem three_core (hS : SepConfig D X) {c c' c'' : E} (hc : c ∈ X) (hc' : c' 
     · simp only [PiLp.sub_apply, pt2_one]
       linear_combination B - A1 - E1α
 
+/--
+@isnad1 id=false.9h7v.s8.73c0b2859eb1 from=translated src=- shape=6d793a1b vocab=92852f0e
+-/
 theorem no_three_coincident (hS : SepConfig D X) {c c' c'' : E} (hc : c ∈ X) (hc' : c' ∈ X)
     (hc'' : c'' ∈ X) (h12 : c ≠ c') (h13 : c ≠ c'') (h23 : c' ≠ c'') {α β : ℝ} (hαβ : α < β)
     (h : ∀ x ∈ Set.Icc α β, |x - c 0| < wid D ∧ |x - c' 0| < wid D ∧ |x - c'' 0| < wid D ∧

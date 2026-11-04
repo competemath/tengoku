@@ -9,6 +9,9 @@ and arbitrarily large values. -/
 
 namespace Erdos514
 
+/--
+@isnad1 id=ex.4h3v.s6.b756fd6ac2f7 from=translated src=- shape=67d73681 vocab=a478fe25
+-/
 theorem exists_mem_norm_eq {S : Set ℂ} (hS : IsPreconnected S) (hSb : ¬ Bornology.IsBounded S)
     {w : ℂ} (hw : w ∈ S) {r : ℝ} (hr : ‖w‖ ≤ r) : ∃ z ∈ S, ‖z‖ = r := by
   have hex : ∃ z ∈ S, r < ‖z‖ := by

@@ -11,6 +11,9 @@ local notation "μ𝕋" => haarAddCircle (T := 1)
 
 namespace SpikeTailAux
 
+/--
+@isnad1 id=iff.0h2v.s8.c2fa08e041b4 from=translated src=- shape=78a4fce9 vocab=ce0173c0
+-/
 lemma mem_spikeSet_iff (d : ℕ) (z : 𝕋) :
     z ∈ (QuotientAddGroup.mk '' Set.Ico (0 : ℝ) ((2 : ℝ)⁻¹ ^ d) : Set 𝕋) ↔
       ((AddCircle.equivIco 1 0 z : ℝ)) < (2 : ℝ)⁻¹ ^ d := by
@@ -24,6 +27,9 @@ lemma mem_spikeSet_iff (d : ℕ) (z : 𝕋) :
     refine ⟨(AddCircle.equivIco 1 0 z : ℝ), ⟨(AddCircle.equivIco 1 0 z).2.1, h⟩, ?_⟩
     exact AddCircle.coe_equivIco
 
+/--
+@isnad1 id=measurab.0h1v.s5.0607d8760fa0 from=translated src=- shape=f6104e8a vocab=40389545
+-/
 lemma measurable_spike (d : ℕ) : Measurable (spike d) := by
   have hA : MeasurableSet (QuotientAddGroup.mk '' Set.Ico (0 : ℝ) ((2 : ℝ)⁻¹ ^ d) : Set 𝕋) := by
     have : (QuotientAddGroup.mk '' Set.Ico (0 : ℝ) ((2 : ℝ)⁻¹ ^ d) : Set 𝕋) =
@@ -34,9 +40,15 @@ lemma measurable_spike (d : ℕ) : Measurable (spike d) := by
       measurableSet_Iio
   exact ((measurable_one.indicator hA).sub measurable_const).div_const _
 
+/--
+@isnad1 id=eq.0h3v.s8.645a3bea3988 from=translated src=- shape=a195dd79 vocab=e1778b7d
+-/
 lemma fourier_add_arg (n : ℤ) (x y : 𝕋) : fourier n (x + y) = fourier n x * fourier n y := by
   simp only [fourier_apply, smul_add, AddCircle.toCircle_add, Circle.coe_mul]
 
+/--
+@isnad1 id=eq.2h3v.s7.0794a8683484 from=translated src=- shape=905e34b8 vocab=659a7562
+-/
 lemma fc_eq_zero_of_not_dvd (d Q : ℕ) (hQ : 0 < Q) (r : ℤ) (h : ¬ (Q : ℤ) ∣ r) :
     fourierCoeff (fun x : 𝕋 => (spike d (Q • x) : ℂ)) r = 0 := by
   have hQr : (0:ℝ) < Q := by exact_mod_cast hQ
@@ -80,6 +92,9 @@ lemma fc_eq_zero_of_not_dvd (d Q : ℕ) (hQ : 0 < Q) (r : ℤ) (h : ¬ (Q : ℤ)
   · exact absurd (sub_eq_zero.mp h4) hne
   · exact h4
 
+/--
+@isnad1 id=eq.1h3v.s7.a7dce7c6295f from=translated src=- shape=f9f52e72 vocab=dc088546
+-/
 lemma fc_dilate (d Q : ℕ) (hQ : 0 < Q) (s : ℤ) :
     fourierCoeff (fun x : 𝕋 => (spike d (Q • x) : ℂ)) ((Q : ℤ) * s) =
       fourierCoeff (fun x : 𝕋 => (spike d x : ℂ)) s := by
@@ -100,6 +115,9 @@ lemma fc_dilate (d Q : ℕ) (hQ : 0 < Q) (s : ℤ) :
   show _ = fourier (-s) ((Q:ℤ) • x) • (spike d ((Q:ℤ) • x) : ℂ)
   rw [fourier_apply, fourier_apply, smul_smul, hx, show -((Q:ℤ) * s) = -s * (Q:ℤ) by ring]
 
+/--
+@isnad1 id=eq.2h2v.s8.7fc35bdd3b6f from=translated src=- shape=07ed601c vocab=889a2db3
+-/
 lemma fc_spike (d : ℕ) (hd : 1 ≤ d) (s : ℤ) (hs : s ≠ 0) :
     fourierCoeff (fun x : 𝕋 => (spike d x : ℂ)) s =
       (((Real.sqrt ((2:ℝ)⁻¹ ^ d * (1 - (2:ℝ)⁻¹ ^ d)))⁻¹ : ℝ) : ℂ) *
@@ -151,6 +169,9 @@ lemma fc_spike (d : ℕ) (hd : 1 ≤ d) (s : ℤ) (hs : s ≠ 0) :
   rw [h1]
   simp only [Complex.ofReal_zero, mul_zero, Complex.exp_zero, sub_self, zero_div, sub_zero]
 
+/--
+@isnad1 id=and.2h2v.s7.9935448ac5f3 from=translated src=- shape=57c200e6 vocab=32d28b0d
+-/
 lemma norm_fc_spike_sq_le (d : ℕ) (hd : 1 ≤ d) (s : ℤ) (hs : s ≠ 0) :
     ‖fourierCoeff (fun x : 𝕋 => (spike d x : ℂ)) s‖ ^ 2 ≤ 2 * (2:ℝ)⁻¹ ^ d ∧
     ‖fourierCoeff (fun x : 𝕋 => (spike d x : ℂ)) s‖ ^ 2 ≤ 1 / ((2:ℝ)⁻¹ ^ d * (s:ℝ) ^ 2) := by
@@ -213,6 +234,9 @@ lemma norm_fc_spike_sq_le (d : ℕ) (hd : 1 ≤ d) (s : ℤ) (hs : s ≠ 0) :
       _ = p * (1 - p) * (1 / (p * (s:ℝ) ^ 2)) := by
           field_simp
 
+/--
+@isnad1 id=le.1h2v.s6.1e3d10befb1d from=translated src=- shape=764a1274 vocab=dd5bcd12
+-/
 lemma tail_nat (K : ℝ) (hK : 0 < K) (L : ℕ) :
     ∑ n ∈ Finset.range L, (if K < (n:ℝ) then 1 / (n:ℝ) ^ 2 else 0) ≤ 2 / K := by
   have e : ∑ n ∈ Finset.range L, (if K < (n:ℝ) then 1 / (n:ℝ) ^ 2 else 0) =
@@ -228,6 +252,9 @@ lemma tail_nat (K : ℝ) (hK : 0 < K) (L : ℕ) :
   calc _ ≤ 2 / ((⌊K⌋₊ : ℝ) + 1) := sum_Ioo_inv_sq_le _ _
     _ ≤ 2 / K := div_le_div_of_nonneg_left (by norm_num) hK (Nat.lt_floor_add_one K).le
 
+/--
+@isnad1 id=and.1h1v.s7.0ffdefc1f402 from=translated src=- shape=46288a2e vocab=90195620
+-/
 lemma tail_int (K : ℝ) (hK : 0 < K) :
     Summable (fun s : ℤ => if K < |(s:ℝ)| then 1 / (s:ℝ) ^ 2 else 0) ∧
     ∑' s : ℤ, (if K < |(s:ℝ)| then 1 / (s:ℝ) ^ 2 else 0) ≤ 4 / K := by
@@ -260,7 +287,9 @@ lemma tail_int (K : ℝ) (hK : 0 < K) :
 end SpikeTailAux
 
 open SpikeTailAux in
-/-- Fourier tail of one dilated spike: `‖(I - S_N) φ_d(2^v ·)‖₂² ≤ C₁ min(1, 2^{d+v}/N)`.-/
+/-- Fourier tail of one dilated spike: `‖(I - S_N) φ_d(2^v ·)‖₂² ≤ C₁ min(1, 2^{d+v}/N)`.
+@isnad1 id=ex.0h0v.s8.216b502e7bcb from=translated src=- shape=f4827c3e vocab=f5cd0df7
+-/
 lemma spike_dilate_tail :
     ∃ C₁ : ℝ, 0 < C₁ ∧ ∀ (d v N : ℕ), 1 ≤ d → 1 ≤ N →
       ∑' r : {r : ℤ // (N : ℤ) < |r|},

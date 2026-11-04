@@ -13,6 +13,9 @@ namespace Erdos612All
 
 open Erdos612
 
+/--
+@isnad1 id=eq.0h3v.s5.769fe4d4401c from=translated src=- shape=e78a8247 vocab=a7e68fc5
+-/
 theorem lay_map_range (N : ℕ) (G : ℕ → List ℕ) (ℓ : ℕ) :
     Layers.lay ((List.range N).map G) ℓ = if ℓ < N then G ℓ else [] := by
   simp only [Layers.lay, List.getD_eq_getElem?_getD, List.getElem?_map]
@@ -21,6 +24,9 @@ theorem lay_map_range (N : ℕ) (G : ℕ → List ℕ) (ℓ : ℕ) :
   · rw [List.getElem?_eq_none (by simpa using (not_lt.mp h))]
     rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.21e93848b4ab from=translated src=- shape=e089ddc5 vocab=8d5abc8f
+-/
 theorem lft_map_range (N : ℕ) (G : ℕ → List ℕ) (ℓ : ℕ) :
     Layers.lft ((List.range N).map G) ℓ =
       if ℓ = 0 then [] else if ℓ ≤ N then G (ℓ - 1) else [] := by
@@ -32,6 +38,9 @@ theorem lft_map_range (N : ℕ) (G : ℕ → List ℕ) (ℓ : ℕ) :
     rw [this]
     split_ifs <;> first | rfl | omega
 
+/--
+@isnad1 id=iff.0h3v.s7.1c5799d5004b from=translated src=- shape=47706b22 vocab=c50eebe5
+-/
 theorem allWin_map_range {Q : List ℕ → List ℕ → List ℕ → Prop} (N : ℕ) (G : ℕ → List ℕ) :
     AllWin Q ((List.range N).map G) ↔
       ∀ ℓ, ℓ < N → Q (if ℓ = 0 then [] else G (ℓ - 1)) (G ℓ)
@@ -43,6 +52,9 @@ theorem allWin_map_range {Q : List ℕ → List ℕ → List ℕ → Prop} (N : 
   · subst h0; simp [h]
   · simp [h0, h, h.le]
 
+/--
+@isnad1 id=iff.0h3v.s7.dfe5245cda6a from=translated src=- shape=f76b4607 vocab=9e903dbe
+-/
 theorem someWin_map_range {Q : List ℕ → List ℕ → List ℕ → Prop} (N : ℕ) (G : ℕ → List ℕ) :
     SomeWin Q ((List.range N).map G) ↔
       ∃ ℓ, ℓ < N ∧ Q (if ℓ = 0 then [] else G (ℓ - 1)) (G ℓ)
@@ -54,6 +66,9 @@ theorem someWin_map_range {Q : List ℕ → List ℕ → List ℕ → Prop} (N :
   · subst h0; simp [h]
   · simp [h0, h, h.le]
 
+/--
+@isnad1 id=eq.0h4v.s6.9bee1de818d2 from=translated src=- shape=43c5d620 vocab=416be2b7
+-/
 theorem map_range_append (a b : ℕ) (F H : ℕ → List ℕ) :
     (List.range a).map F ++ (List.range b).map H =
       (List.range (a + b)).map (fun ℓ => if ℓ < a then F ℓ else H (ℓ - a)) := by

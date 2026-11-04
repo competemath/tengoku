@@ -13,7 +13,9 @@ namespace Erdos1199
 open Filter
 
 /-- If `G` depends only on the coordinates in `F`, then `h n = G (Tⁿ x)` satisfies
-`{n | h n} ∈ q ↔ G (q · x)` for every ultrafilter `q`.-/
+`{n | h n} ∈ q ↔ G (q · x)` for every ultrafilter `q`.
+@isnad1 id=iff.1h4v.s6.6706e49888d2 from=translated src=- shape=8d5bc2c2 vocab=f0ec3f76
+-/
 theorem coding (G : Pt → Bool) (F : Finset Idx)
     (hF : ∀ u v : Pt, (∀ i ∈ F, u i = v i) → G u = G v) (x : Pt) (q : Ultrafilter ℕ) :
     {n : ℕ | G (act (pure n) x) = true} ∈ q ↔ G (act q x) = true := by

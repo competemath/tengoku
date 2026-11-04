@@ -6,6 +6,9 @@ import Tengoku.ErdosLean.ErdosLean.Erdos790.Defs
 
 namespace Erdos790
 
+/--
+@isnad1 id=not.1h2v.s7.0b6bf7033df1 from=translated src=- shape=c4882282 vocab=e486395f
+-/
 theorem idx_not_mem_image_Fset {A : Finset ℤ} {a : ℤ} (ha : a ∈ A) :
     idx A (dyIdx a) ∉ (Fset A a).image (idx A) := by
   intro h

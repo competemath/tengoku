@@ -14,7 +14,9 @@ open MeasureTheory Filter
 namespace DuffinSchaeffer
 
 /-- `limsup_{q→∞} A_q = addWellApproximable (ℝ/ℤ) (q ↦ ψ(q)/q)` (the `blimsup` over `0 < n` in
-Mathlib's definition agrees with the plain `limsup` since `0 < n` eventually).-/
+Mathlib's definition agrees with the plain `limsup` since `0 < n` eventually).
+@isnad1 id=eq.0h1v.s6.20021500cb0a from=translated src=- shape=1fd8899e vocab=f64a7e3b
+-/
 theorem limsup_Aq_eq (ψ : ℕ → ℝ) :
     limsup (Aq ψ) atTop = addWellApproximable UnitAddCircle (fun n => ψ n / n) := by
   unfold addWellApproximable
@@ -36,7 +38,9 @@ theorem limsup_Aq_eq (ψ : ℕ → ℝ) :
   · intro h
     exact h.mono hsub1
 
-/-- Monotonicity of `addWellApproximable` in the radii.-/
+/-- Monotonicity of `addWellApproximable` in the radii.
+@isnad1 id=le.1h2v.s6.bab1f0e55634 from=translated src=- shape=1ef1ef56 vocab=a1f2c4f9
+-/
 theorem addWellApproximable_mono {δ δ' : ℕ → ℝ} (h : ∀ n, δ n ≤ δ' n) :
     addWellApproximable UnitAddCircle δ ⊆ addWellApproximable UnitAddCircle δ' := by
   intro x hx
@@ -46,7 +50,9 @@ theorem addWellApproximable_mono {δ δ' : ℕ → ℝ} (h : ∀ n, δ n ≤ δ'
   exact ⟨p, hpq, hcop, hdist.trans_le (h q)⟩
 
 /-- If a.e. point of the circle is `ψ(q)/q`-well approximable, then a.e. real `α` has infinitely
-many reduced solutions `(a, q)` of `|α - a/q| < ψ(q)/q`.-/
+many reduced solutions `(a, q)` of `|α - a/q| < ψ(q)/q`.
+@isnad1 id=eventual.1h1v.s6.a02720ab58ce from=translated src=- shape=2b8085d1 vocab=25ba718e
+-/
 theorem ae_solutions_of_ae_circle (ψ : ℕ → ℝ)
     (h : ∀ᵐ x : UnitAddCircle, x ∈ addWellApproximable UnitAddCircle (fun n => ψ n / n)) :
     ∀ᵐ α : ℝ, (solutions ψ α).Infinite := by

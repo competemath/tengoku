@@ -18,6 +18,9 @@ open Filter
 
 namespace Erdos514
 
+/--
+@isnad1 id=erdos514.0h0v.s0.91972ebda8f2 from=translated src=- shape=45709ebd vocab=91972ebd
+-/
 theorem erdos_514 : Erdos514Statement := by
   intro f hf
   obtain ⟨D, hD, hsub, hmem⟩ := nested_chain hf

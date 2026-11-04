@@ -9,7 +9,9 @@ least half of the `a` good. -/
 namespace Erdos790
 
 open Classical in
-/-- For distinct positions `j ≠ k`, exactly a `1/m` fraction of colourings agree at `j`, `k`.-/
+/-- For distinct positions `j ≠ k`, exactly a `1/m` fraction of colourings agree at `j`, `k`.
+@isnad1 id=eq.1h4v.s6.4f24f189a9ab from=translated src=- shape=a023dc51 vocab=319e4fe1
+-/
 theorem card_coloring_eq_mul {ι : Type*} [Fintype ι] (m : ℕ) {j k : ι} (hjk : j ≠ k) :
     m * (Finset.univ.filter (fun χ : ι → Fin m => χ j = χ k)).card =
       Fintype.card (ι → Fin m) := by
@@ -32,6 +34,9 @@ theorem card_coloring_eq_mul {ι : Type*} [Fintype ι] (m : ℕ) {j k : ι} (hjk
   rw [h1, Fintype.card_congr e, Fintype.card_prod, Fintype.card_fin]
 
 open Classical in
+/--
+@isnad1 id=ex.3h6v.s8.3a5f954723b5 from=translated src=- shape=b1a96130 vocab=f0b7109b
+-/
 theorem exists_coloring_many_good {α ι : Type*} [Fintype ι] (S : Finset α) (g : α → ι)
     (G : α → Finset ι) (m : ℕ) (hm : 0 < m) (hg : ∀ a ∈ S, g a ∉ G a)
     (hG : ∀ a ∈ S, 2 * (G a).card ≤ m) :

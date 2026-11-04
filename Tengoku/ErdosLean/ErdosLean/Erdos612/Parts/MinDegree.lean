@@ -15,15 +15,24 @@ open SimpleGraph
 
 namespace Erdos612
 
+/--
+@isnad1 id=eq.0h2v.s5.c03d42050d71 from=translated src=- shape=bb62f34e vocab=f05715d4
+-/
 lemma nbr_eq_window (L : Layers) (ℓ : ℕ) :
     L.nbr ℓ = (L.lft ℓ).sum + (L.lay ℓ).sum + (L.lay (ℓ + 1)).sum := rfl
 
+/--
+@isnad1 id=mem.0h2v.s6.fad391ed1d8a from=translated src=- shape=9c3f3a15 vocab=ca0e17f3
+-/
 lemma wt_mem_lay (L : Layers) (c : Clump L) : L.wt c.1 c.2 ∈ L.lay c.1 := by
   unfold Layers.wt
   have hj : (c.2 : ℕ) < (L.lay c.1).length := c.2.2
   rw [List.getD_eq_getElem _ _ hj]
   exact List.getElem_mem hj
 
+/--
+@isnad1 id=eq.3h2v.s7.159a74772363 from=translated src=- shape=de39cce4 vocab=1c8002d4
+-/
 theorem minDegree_blowup (L : Layers) (δ : ℕ) (hpos : AllWin PosQ L)
     (hdeg : AllWin (DegQ δ) L) (ht : SomeWin (TightQ δ) L) :
     (blowup L).minDegree = δ := by

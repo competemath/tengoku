@@ -27,6 +27,9 @@ namespace DuffinSchaeffer
 /-- The Duffin–Schaeffer weight `w(q) = φ(q) ψ(q) / q` (so `w 0 = 0`).-/
 noncomputable def weight (ψ : ℕ → ℝ) (q : ℕ) : ℝ := (Nat.totient q : ℝ) * ψ q / q
 
+/--
+@isnad1 id=iff.0h1v.s4.ef091afbef0b from=translated src=- shape=976d84df vocab=271dfd0a
+-/
 theorem dsSeriesDiverges_iff (ψ : ℕ → ℝ) : DSSeriesDiverges ψ ↔ ¬ Summable (weight ψ) :=
   Iff.rfl
 
@@ -257,11 +260,17 @@ def restrictPrime (p k l : ℕ) (hp : p.Prime) (hpP : p ∉ G.P) : GCDGraph wher
       rw [Function.update_of_ne hne]
       exact G.exact_W q hq' hfg w hw
 
+/--
+@isnad1 id=prime.1h2v.s4.4e456d62d1aa from=translated src=- shape=d964e1ac vocab=d8af3722
+-/
 theorem prime_of_mem_R {p : ℕ} (h : p ∈ G.R) : p.Prime := by
   obtain ⟨h1, -⟩ := Finset.mem_sdiff.1 h
   obtain ⟨e, -, he⟩ := Finset.mem_biUnion.1 h1
   exact Nat.prime_of_mem_primeFactors he
 
+/--
+@isnad1 id=not.1h2v.s5.c27254c69057 from=translated src=- shape=222e7a4e vocab=7c987c6f
+-/
 theorem not_mem_P_of_mem_R {p : ℕ} (h : p ∈ G.R) : p ∉ G.P := (Finset.mem_sdiff.1 h).2
 
 /-- Minimum degree condition of KM Proposition 7.1(b)(c) / Lemma 8.5(c):

@@ -12,6 +12,9 @@ namespace Erdos956
 
 open Filter
 
+/--
+@isnad1 id=eventual.2h2v.s7.ea7b13b89550 from=translated src=- shape=2012067d vocab=0fcf4d5c
+-/
 theorem exponents_of_lower (g : ℕ → ℕ)
     (hg : ∃ c₀ : ℝ, 0 < c₀ ∧ ∀ᶠ n : ℕ in atTop, c₀ * (n : ℝ) ^ ((4 : ℝ) / 3) ≤ g n) :
     ∀ c : ℝ, c < 1 / 3 → ∀ᶠ n : ℕ in atTop, (n : ℝ) ^ (1 + c) < g n := by

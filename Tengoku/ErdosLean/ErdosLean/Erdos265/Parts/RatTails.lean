@@ -17,9 +17,15 @@ namespace Erdos265
 
 variable {a : ℕ → ℕ}
 
+/--
+@isnad1 id=le.1h2v.s4.d6d621401085 from=translated src=- shape=b0c166db vocab=daec3eee
+-/
 theorem two_le_of (ha : IsRationalPair a) (n : ℕ) : 2 ≤ a n :=
   le_trans ha.2.1 (ha.1.monotone (Nat.zero_le n))
 
+/--
+@isnad1 id=eq.1h2v.s5.948ebdd9faa3 from=translated src=- shape=c27be92b vocab=50fe3ca8
+-/
 theorem tail_eq_add_tail_succ {f : ℕ → ℝ} (hf : Summable f) (n : ℕ) :
     tail f n = f n + tail f (n + 1) := by
   have hs : Summable (fun k => f (k + n)) := (summable_nat_add_iff n).mpr hf
@@ -31,27 +37,47 @@ theorem tail_eq_add_tail_succ {f : ℕ → ℝ} (hf : Summable f) (n : ℕ) :
   congr 1
   omega
 
+/--
+@isnad1 id=tendsto.0h1v.s4.3b4c45d26318 from=translated src=- shape=b940a6d7 vocab=800647d1
+-/
 theorem tail_tendsto_zero (f : ℕ → ℝ) : Tendsto (tail f) atTop (𝓝 0) :=
   tendsto_sum_nat_add f
 
+/--
+@isnad1 id=summable.1h1v.s4.2a0579351696 from=translated src=- shape=95b9ce9a vocab=69429ab1
+-/
 theorem summable_recip (ha : IsRationalPair a) : Summable (recip a) := ha.2.2.1
 
+/--
+@isnad1 id=summable.1h1v.s4.8ead62a417ad from=translated src=- shape=95b9ce9a vocab=fd3aaa3f
+-/
 theorem summable_recipS (ha : IsRationalPair a) : Summable (recipS a) := ha.2.2.2.1
 
+/--
+@isnad1 id=lt.1h2v.s4.a978ac7ca4f5 from=translated src=- shape=95bcf7d0 vocab=02f19d62
+-/
 theorem recip_pos (ha : IsRationalPair a) (n : ℕ) : 0 < recip a n := by
   have := two_le_of ha n
   unfold recip
   have : (2 : ℝ) ≤ (a n : ℝ) := by exact_mod_cast this
   positivity
 
+/--
+@isnad1 id=lt.1h2v.s4.21b20103dfff from=translated src=- shape=95bcf7d0 vocab=aaac9525
+-/
 theorem T_pos (ha : IsRationalPair a) (n : ℕ) : 0 < T a n := by
   have hs : Summable (fun k => recip a (k + n)) := (summable_nat_add_iff n).mpr (summable_recip ha)
   exact hs.tsum_pos (fun i => (recip_pos ha _).le) 0 (recip_pos ha _)
 
+/--
+@isnad1 id=le.1h2v.s4.4231de3cdd95 from=translated src=- shape=95bcf7d0 vocab=d3411e8a
+-/
 theorem T_nonneg (ha : IsRationalPair a) (n : ℕ) : 0 ≤ T a n := (T_pos ha n).le
 
 /-- Generic integrality: if `∑ 1/c_k = q ∈ ℚ` with all `c_k ≥ 1`, then
-`q.den · ∏_{k<n} c_k · ∑_{k≥n} 1/c_k ∈ ℤ`.-/
+`q.den · ∏_{k<n} c_k · ∑_{k≥n} 1/c_k ∈ ℤ`.
+@isnad1 id=ex.3h3v.s7.da240fbfce8e from=translated src=- shape=e4683dff vocab=d6b661ce
+-/
 theorem int_scale_aux (c : ℕ → ℕ) (hc : ∀ k, 1 ≤ c k)
     (hs : Summable (fun k => (1 : ℝ) / (c k : ℝ))) (q : ℚ)
     (hq : ∑' k, (1 : ℝ) / (c k : ℝ) = (q : ℝ)) (n : ℕ) :
@@ -92,7 +118,9 @@ theorem int_scale_aux (c : ℕ → ℕ) (hc : ∀ k, 1 ≤ c k)
   rw [← hqn]
   ring
 
-/-- Integrality of the scaled tails.-/
+/-- Integrality of the scaled tails.
+@isnad1 id=ex.1h1v.s6.623de2e6be25 from=translated src=- shape=61da7bb2 vocab=5d15e135
+-/
 theorem int_scale (ha : IsRationalPair a) :
     ∃ b d : ℕ, 0 < b ∧ 0 < d ∧
       (∀ n, ∃ z : ℤ, ((b * P a n : ℕ) : ℝ) * T a n = z) ∧

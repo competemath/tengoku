@@ -25,22 +25,37 @@ open Finset PowerSeries
 /-- `exp(c t)` as a power series.-/
 noncomputable def E (c : ℂ) : ℂ⟦X⟧ := rescale c (exp ℂ)
 
+/--
+@isnad1 id=eq.0h2v.s5.dc7ebad05756 from=translated src=- shape=95d2ad5f vocab=c497c6e8
+-/
 lemma E_add (a b : ℂ) : E a * E b = E (a + b) := exp_mul_exp_eq_exp_add a b
 
+/--
+@isnad1 id=eq.0h0v.s4.de950498129c from=translated src=- shape=f33ffcdd vocab=5a1faa5e
+-/
 lemma E_zero : E 0 = 1 := by
   simp [E, constantCoeff_exp]
 
+/--
+@isnad1 id=eq.0h3v.s5.a034ef5e6956 from=translated src=- shape=fb8a96a7 vocab=8fcec342
+-/
 lemma prod_E {ι : Type*} (t : Finset ι) (c : ι → ℂ) : ∏ i ∈ t, E (c i) = E (∑ i ∈ t, c i) := by
   classical
   induction t using Finset.induction_on with
   | empty => simp [E_zero]
   | insert x t hx ih => rw [prod_insert hx, sum_insert hx, ih, E_add]
 
+/--
+@isnad1 id=eq.0h2v.s5.d80b581ccb6e from=translated src=- shape=7baacb88 vocab=b56abde5
+-/
 lemma E_pow (c : ℂ) (i : ℕ) : E c ^ i = E ((i : ℂ) * c) := by
   induction i with
   | zero => simp [E_zero]
   | succ i ih => rw [pow_succ, ih, E_add]; push_cast; ring_nf
 
+/--
+@isnad1 id=eq.0h2v.s6.f456c6763bc4 from=translated src=- shape=2ed41b35 vocab=1193ed56
+-/
 lemma coeff_E (c : ℂ) (m : ℕ) : coeff m (E c) = c ^ m / (m.factorial : ℂ) := by
   rw [E, coeff_rescale, coeff_exp]; simp [div_eq_mul_inv]
 
@@ -50,6 +65,9 @@ noncomputable def G (A : Finset ℂ) (k : ℕ) : ℂ⟦X⟧ := ∑ S ∈ A.power
 /-- `Σ_{a ∈ A} exp(i a t)`.-/
 noncomputable def P (A : Finset ℂ) (i : ℕ) : ℂ⟦X⟧ := ∑ a ∈ A, E ((i : ℂ) * a)
 
+/--
+@isnad1 id=eq.0h4v.s7.3e938497b255 from=translated src=- shape=b52e6bda vocab=f6eb8b6c
+-/
 lemma sum_powersetCard_subtype {M : Type*} [AddCommMonoid M] (A : Finset ℂ) (r : ℕ)
     (F : ℂ → M) :
     ∑ t ∈ (univ : Finset A).powersetCard r, F (∑ i ∈ t, (i : ℂ)) =
@@ -61,6 +79,9 @@ lemma sum_powersetCard_subtype {M : Type*} [AddCommMonoid M] (A : Finset ℂ) (r
   refine sum_congr rfl fun t _ => ?_
   simp [mapEmbedding_apply, sum_map]
 
+/--
+@isnad1 id=eq.0h2v.s7.a1678ab51e5b from=translated src=- shape=4d29bffa vocab=23fa5759
+-/
 lemma newton (A : Finset ℂ) (k : ℕ) :
     (k : ℂ⟦X⟧) * G A k = ∑ i ∈ Icc 1 k, (-1) ^ (i + 1) * G A (k - i) * P A i := by
   have h := congrArg (MvPolynomial.aeval (fun a : A => E (a : ℂ)))
@@ -105,27 +126,47 @@ lemma newton (A : Finset ℂ) (k : ℕ) :
 /-- `q A k m = Σ_{S ⊆ A, |S| = k} (ΣS)^m`.-/
 noncomputable def q (A : Finset ℂ) (k m : ℕ) : ℂ := ∑ S ∈ A.powersetCard k, (S.sum id) ^ m
 
+/--
+@isnad1 id=eq.0h3v.s4.c9ab7e931037 from=translated src=- shape=2b9cb7f3 vocab=b708f2f9
+-/
 lemma ksumPsum_eq (A : Finset ℂ) (k m : ℕ) : ksumPsum A k m = q A k m := by
   unfold ksumPsum sumMultiset q
   rw [Multiset.map_map]; rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.3bdc81f8e2fd from=translated src=- shape=6e46b2ff vocab=2e855400
+-/
 lemma coeff_G (A : Finset ℂ) (k m : ℕ) : coeff m (G A k) = q A k m / (m.factorial : ℂ) := by
   simp only [G, map_sum, coeff_E, q, Finset.sum_div]
 
+/--
+@isnad1 id=eq.0h3v.s7.6a1c2d6710e7 from=translated src=- shape=70dd299d vocab=7f7cb604
+-/
 lemma coeff_P (A : Finset ℂ) (i v : ℕ) :
     coeff v (P A i) = (i : ℂ) ^ v * psum A v / (v.factorial : ℂ) := by
   simp only [P, map_sum, coeff_E, psum, Finset.mul_sum, Finset.sum_div, mul_pow]
 
+/--
+@isnad1 id=eq.0h2v.s6.560a73a19295 from=translated src=- shape=7052b110 vocab=252ae9ed
+-/
 lemma coeff_G_zero (A : Finset ℂ) (k : ℕ) : coeff 0 (G A k) = (A.card.choose k : ℂ) := by
   rw [coeff_G, q]; simp [card_powersetCard]
 
+/--
+@isnad1 id=eq.0h2v.s6.716e72c9bcf2 from=translated src=- shape=c728f78c vocab=2978dbb3
+-/
 lemma coeff_P_zero (A : Finset ℂ) (i : ℕ) : coeff 0 (P A i) = (A.card : ℂ) := by
   rw [coeff_P]; simp [psum]
 
+/--
+@isnad1 id=eq.0h1v.s4.cf3614a55bf4 from=translated src=- shape=bec784ce vocab=f9a57b47
+-/
 lemma G_zero (A : Finset ℂ) : G A 0 = 1 := by
   simp [G, E_zero]
 
-/-- Coefficient form of Newton's identity.-/
+/-- Coefficient form of Newton's identity.
+@isnad1 id=eq.0h3v.s8.947ed78c3d92 from=translated src=- shape=8207db21 vocab=26a95784
+-/
 lemma newton_coeff (A : Finset ℂ) (k m : ℕ) :
     (k : ℂ) * coeff m (G A k) = ∑ i ∈ Icc 1 k, (-1) ^ (i + 1) *
       ∑ x ∈ antidiagonal m, coeff x.1 (G A (k - i)) * coeff x.2 (P A i) := by
@@ -141,6 +182,9 @@ lemma newton_coeff (A : Finset ℂ) (k m : ℕ) :
 end KSumAux
 
 open KSumAux Finset PowerSeries in
+/--
+@isnad1 id=eq.4h5v.s6.795b97bb03b7 from=translated src=- shape=5f1731db vocab=f307d459
+-/
 theorem ksum_power_sum (A B : Finset ℂ) (n s j : ℕ) (hA : A.card = n) (hB : B.card = n)
     (hj : 1 ≤ j) (h : ∀ l, 1 ≤ l → l < j → psum A l = psum B l) :
     ksumPsum A s j - ksumPsum B s j = (gfsPoly s n j : ℂ) * (psum A j - psum B j) := by

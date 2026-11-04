@@ -14,7 +14,9 @@ private theorem mem_Dset_of (A : Finset ℤ) (a : ℤ) {h : ℕ} (hL : h < Nat.c
   unfold Dset
   exact Finset.mem_image.2 ⟨h, Finset.mem_filter.2 ⟨Finset.mem_range.2 hL, hs⟩, rfl⟩
 
-/-- Lemma 2: for `a < b` in `A`, some `δ ∈ D(a) ∪ D(b)` satisfies `(b - a)/2 ≤ δ ≤ b - a`.-/
+/-- Lemma 2: for `a < b` in `A`, some `δ ∈ D(a) ∪ D(b)` satisfies `(b - a)/2 ≤ δ ≤ b - a`.
+@isnad1 id=ex.3h3v.s6.7184dd18c27f from=translated src=- shape=0db6a204 vocab=9636fdb6
+-/
 theorem distance_lists (A : Finset ℤ) {a b : ℤ} (ha : a ∈ A) (hb : b ∈ A) (hab : a < b) :
     ∃ δ, (δ ∈ Dset A a ∨ δ ∈ Dset A b) ∧ b - a ≤ 2 * δ ∧ δ ≤ b - a := by
   have hik := rank_lt_rank A ha hb hab
@@ -43,6 +45,9 @@ theorem distance_lists (A : Finset ℤ) {a b : ℤ} (ha : a ∈ A) (hb : b ∈ A
   · exact ⟨e - a, Or.inl hDa, hc, by linarith⟩
   · exact ⟨-(e - b), Or.inr hDb, by linarith, by linarith⟩
 
+/--
+@isnad1 id=le.0h2v.s4.8b1df3ce293e from=translated src=- shape=219d8ef1 vocab=00a1b490
+-/
 theorem card_Dset_le (A : Finset ℤ) (a : ℤ) : (Dset A a).card ≤ Nat.clog 2 A.card := by
   unfold Dset
   refine Finset.card_image_le.trans ?_

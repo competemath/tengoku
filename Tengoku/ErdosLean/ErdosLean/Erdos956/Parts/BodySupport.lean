@@ -13,6 +13,9 @@ Then `convexHull_min` into the half-plane.
 
 namespace Erdos956
 
+/--
+@isnad1 id=convex.0h2v.s8.64d54cb5687d from=translated src=- shape=ae13adbb vocab=e803772a
+-/
 lemma altBodySupport_convex_halfplane (t c : ℝ) : Convex ℝ {z : E | z 0 * t + z 1 ≤ c} := by
   intro x hx y hy s u hs hu hsu
   simp only [Set.mem_ofPred_eq, PiLp.add_apply, PiLp.smul_apply, smul_eq_mul] at hx hy ⊢
@@ -23,6 +26,9 @@ lemma altBodySupport_convex_halfplane (t c : ℝ) : Convex ℝ {z : E | z 0 * t 
     _ ≤ s * c + u * c := add_le_add h1 h2
     _ = c := by rw [← add_mul, hsu, one_mul]
 
+/--
+@isnad1 id=and.3h2v.s8.6565e8bac56a from=translated src=- shape=774a166c vocab=dd81bc2b
+-/
 lemma altBodySupport_pp_nonneg {k : ℕ} (hk : 1 ≤ k) {t : ℝ} (ht0 : 0 ≤ t) (htW : t ≤ W k) :
     0 ≤ pp (η k) t 0 ∧ 0 ≤ pp (η k) t 1 := by
   have hηW : η k = W k ^ 4 := by unfold η W; ring
@@ -32,6 +38,9 @@ lemma altBodySupport_pp_nonneg {k : ℕ} (hk : 1 ≤ k) {t : ℝ} (ht0 : 0 ≤ t
   obtain ⟨h1, -, h3, -⟩ := pp_coords ht0 he
   exact ⟨h1, h3⟩
 
+/--
+@isnad1 id=le.2h2v.s5.04332bccff77 from=translated src=- shape=00b0b618 vocab=7be68f6c
+-/
 lemma altBodySupport_ia_le_W {k i : ℕ} (hk : 1 ≤ k) (hik : i ≤ k) : (i : ℝ) * a k ≤ W k := by
   have hk0 : (0 : ℝ) < k := by exact_mod_cast hk
   have hi : (i : ℝ) ≤ k := by exact_mod_cast hik
@@ -41,6 +50,9 @@ lemma altBodySupport_ia_le_W {k i : ℕ} (hk : 1 ≤ k) (hik : i ≤ k) : (i : �
   have h2 : (0 : ℝ) ≤ 1 / 10 / k := by positivity
   nlinarith
 
+/--
+@isnad1 id=le.4h3v.s9.53fa903bf65d from=translated src=- shape=e6d44c4c vocab=d2398081
+-/
 lemma mem_D_support {k : ℕ} (hk : 1 ≤ k) {t : ℝ} (ht0 : 0 ≤ t) (htW : t ≤ W k)
     {z : E} (hz : z ∈ D k) :
     z 0 * t + z 1 ≤ pp (η k) t 0 * t + pp (η k) t 1 := by

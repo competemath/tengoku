@@ -21,6 +21,9 @@ applied to `g_{n+1}` with `A = K (n+1) + ‖a_{n+1}‖`.
 
 namespace Erdos514
 
+/--
+@isnad1 id=ex.1h1v.s7.d6c0cc8cfb80 from=translated src=- shape=f6a753d5 vocab=90d1cf8b
+-/
 theorem nested_chain {f : ℂ → ℂ} (hf : IsTranscendentalEntire f) :
     ∃ D : ℕ → Set ℂ, (∀ n, IsOpen (D n) ∧ IsPreconnected (D n) ∧ (D n).Nonempty) ∧
       (∀ n, D (n + 1) ⊆ D n) ∧

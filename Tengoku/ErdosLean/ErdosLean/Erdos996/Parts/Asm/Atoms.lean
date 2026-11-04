@@ -24,12 +24,17 @@ local notation "μ𝕋" => haarAddCircle (T := 1)
 /-! ### Auxiliary lemmas (self-contained; they only use fully proved results of
 `Parts/SpikeFourierSupport.lean`). -/
 
+/--
+@isnad1 id=monotone.0h1v.s3.96fd015f3433 from=translated src=- shape=f736e2c1 vocab=7cd83fc3
+-/
 lemma alt_shift_mono (A : ℕ) : Monotone (shift A) := by
   refine monotone_nat_of_le_succ (fun n => ?_)
   show shift A n ≤ shift A n + blockLen A n * spacing A n + depth A n
   exact le_trans (Nat.le_add_right _ _) (Nat.le_add_right _ _)
 
-/-- Bands of different stages are separated.-/
+/-- Bands of different stages are separated.
+@isnad1 id=le.2h5v.s6.eff40eb1577d from=translated src=- shape=081b4a34 vocab=4c936cd2
+-/
 lemma alt_band_sep (A k k' q q' : ℕ) (hk : k < k') (hq : q ≤ blockLen A k) :
     shift A k + q * spacing A k + depth A k ≤ shift A k' + q' * spacing A k' := by
   have h1 : shift A (k + 1) ≤ shift A k' := alt_shift_mono A (by omega)
@@ -40,7 +45,9 @@ lemma alt_band_sep (A k k' q q' : ℕ) (hk : k < k') (hq : q ≤ blockLen A k) :
   generalize q' * spacing A k' = c at *
   omega
 
-/-- Bands of the same stage are separated.-/
+/-- Bands of the same stage are separated.
+@isnad1 id=le.1h4v.s6.cc09dcdfa0bb from=translated src=- shape=6aff2df7 vocab=82ae865e
+-/
 lemma alt_band_sep_same (A k q q' : ℕ) (hq : q < q') :
     shift A k + q * spacing A k + depth A k ≤ shift A k + q' * spacing A k := by
   have h1 : (q + 1) * spacing A k ≤ q' * spacing A k := Nat.mul_le_mul_right _ hq
@@ -50,6 +57,9 @@ lemma alt_band_sep_same (A k q q' : ℕ) (hq : q < q') :
   generalize q' * spacing A k = c at *
   omega
 
+/--
+@isnad1 id=integrab.0h1v.s6.ddf0a3beb210 from=translated src=- shape=7877f663 vocab=26faeac5
+-/
 lemma alt_integrable_spike (d : ℕ) : Integrable (fun y : 𝕋 => (spike d y : ℂ)) μ𝕋 := by
   have h : Integrable (spike d) μ𝕋 := by
     unfold spike
@@ -57,6 +67,9 @@ lemma alt_integrable_spike (d : ℕ) : Integrable (fun y : 𝕋 => (spike d y : 
       (integrable_const _)).div_const _
   exact h.ofReal
 
+/--
+@isnad1 id=integrab.0h3v.s6.f18c31257a07 from=translated src=- shape=9d436811 vocab=a08609b0
+-/
 lemma alt_integrable_atom (A k q : ℕ) : Integrable (fun x : 𝕋 => (atom A k q x : ℂ)) μ𝕋 := by
   have hn : ((2 ^ (shift A k + q * spacing A k) : ℕ) : ℤ) ≠ 0 := by positivity
   have hmp : MeasurePreserving (fun x : 𝕋 => ((2 ^ (shift A k + q * spacing A k) : ℕ) : ℤ) • x)
@@ -69,6 +82,9 @@ lemma alt_integrable_atom (A k q : ℕ) : Integrable (fun x : 𝕋 => (atom A k 
   exact Integrable.comp_measurable (by rw [hmp.map_eq]; exact alt_integrable_spike _)
     hmp.measurable
 
+/--
+@isnad1 id=eq.0h1v.s5.767c36e41ec3 from=translated src=- shape=bec2cbec vocab=fbc5b3c8
+-/
 lemma alt_fourierCoeff_spike_zero (d : ℕ) :
     fourierCoeff (fun x : 𝕋 => (spike d x : ℂ)) 0 = 0 := by
   rcases Nat.eq_zero_or_pos d with rfl | hd
@@ -120,11 +136,17 @@ lemma alt_fourierCoeff_spike_zero (d : ℕ) :
 
 /-! ### Main statements -/
 
+/--
+@isnad1 id=eq.0h3v.s6.281539c3dc1d from=translated src=- shape=e062930b vocab=950e2402
+-/
 lemma blk_eq_sum_atom (A k : ℕ) (x : 𝕋) :
     blk A k x = Real.sqrt (lam A k / blockLen A k) *
       ∑ q ∈ Finset.Icc 1 (blockLen A k), atom A k q x := by
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.d5379c083e6f from=translated src=- shape=71e9f9a4 vocab=a01b3c97
+-/
 lemma fourierCoeff_blk (A k : ℕ) (r : ℤ) :
     fourierCoeff (fun x => (blk A k x : ℂ)) r =
       (Real.sqrt (lam A k / blockLen A k) : ℂ) *
@@ -138,6 +160,9 @@ lemma fourierCoeff_blk (A k : ℕ) (r : ℤ) :
   rw [hfun, fourierCoeff.const_mul,
     fourierCoeff.sum _ _ (fun q _ => alt_integrable_atom A k q), Finset.sum_apply]
 
+/--
+@isnad1 id=eq.0h3v.s5.0af3ff8ee2c2 from=translated src=- shape=331131f3 vocab=44ba0711
+-/
 lemma fourierCoeff_atom_zero (A k q : ℕ) : fourierCoeff (fun x => (atom A k q x : ℂ)) 0 = 0 := by
   have hmeas : AEStronglyMeasurable (fun y : 𝕋 => (spike (depth A k) y : ℂ)) μ𝕋 :=
     (Complex.measurable_ofReal.comp (Erdos996.measurable_spike _)).aestronglyMeasurable
@@ -146,7 +171,9 @@ lemma fourierCoeff_atom_zero (A k q : ℕ) : fourierCoeff (fun x => (atom A k q 
   rw [mul_zero] at h
   exact h.trans (alt_fourierCoeff_spike_zero _)
 
-/-- Distinct atoms have disjoint Fourier supports.-/
+/-- Distinct atoms have disjoint Fourier supports.
+@isnad1 id=or.3h6v.s7.1f016622d4d8 from=translated src=- shape=5046fef8 vocab=0d7794fd
+-/
 lemma fourierCoeff_atom_disjoint (A k q k' q' : ℕ) (r : ℤ)
     (hq : q ∈ Finset.Icc 1 (blockLen A k)) (hq' : q' ∈ Finset.Icc 1 (blockLen A k'))
     (hne : (k, q) ≠ (k', q')) :

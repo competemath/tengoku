@@ -24,7 +24,9 @@ open Real Set Filter Topology intervalIntegral
 
 namespace Erdos514
 
-/-- A `C²` convex cutoff: `Φ = 0` on `(-∞, 0]`, `0 < Φ t ≤ t` for `t > 0`.-/
+/-- A `C²` convex cutoff: `Φ = 0` on `(-∞, 0]`, `0 < Φ t ≤ t` for `t > 0`.
+@isnad1 id=ex.0h0v.s7.251834119ce7 from=translated src=- shape=69cf9856 vocab=730324dd
+-/
 lemma alt_phi_exists : ∃ Φ Φ1 Φ2 : ℝ → ℝ, Continuous Φ2 ∧ (∀ t, HasDerivAt Φ (Φ1 t) t) ∧
     (∀ t, HasDerivAt Φ1 (Φ2 t) t) ∧ (∀ t, 0 ≤ Φ2 t) ∧
     (∀ t ≤ 0, Φ t = 0) ∧ (∀ t < 0, Φ1 t = 0 ∧ Φ2 t = 0) ∧ (∀ t, 0 < t → 0 < Φ t ∧ Φ t ≤ t) ∧
@@ -71,7 +73,9 @@ lemma alt_phi_exists : ∃ Φ Φ1 Φ2 : ℝ → ℝ, Continuous Φ2 ∧ (∀ t, 
       linarith
     · exact intervalIntegral.integral_nonneg ht.le (fun x _ => Real.smoothTransition.nonneg x)
 
-/-- Differentiation under the integral sign, jointly continuous version.-/
+/-- Differentiation under the integral sign, jointly continuous version.
+@isnad1 id=hasderiv.3h5v.s7.413a20074467 from=translated src=- shape=2f048b90 vocab=c7c9bc70
+-/
 lemma alt_hasDerivAt_integral {F F' : ℝ → ℝ → ℝ} (hF : Continuous (fun p : ℝ × ℝ => F p.1 p.2))
     (hF' : Continuous (fun p : ℝ × ℝ => F' p.1 p.2)) (hd : ∀ x t, HasDerivAt (fun x => F x t) (F' x t) x)
     (a b x₀ : ℝ) :
@@ -88,7 +92,9 @@ lemma alt_hasDerivAt_integral {F F' : ℝ → ℝ → ℝ} (hF : Continuous (fun
       hM (x, t) ⟨Metric.ball_subset_closedBall hx, Set.uIoc_subset_uIcc ht⟩)
     intervalIntegrable_const (Filter.Eventually.of_forall fun t _ x _ => hd x t)).2
 
-/-- Cauchy–Schwarz for interval integrals of continuous functions.-/
+/-- Cauchy–Schwarz for interval integrals of continuous functions.
+@isnad1 id=le.3h4v.s7.1d2922c1f165 from=translated src=- shape=c36b3bcb vocab=29dbf691
+-/
 lemma alt_cauchy_schwarz {f g : ℝ → ℝ} (hf : Continuous f) (hg : Continuous g) {a b : ℝ}
     (hab : a ≤ b) :
     (∫ x in a..b, f x * g x) ^ 2 ≤ (∫ x in a..b, f x ^ 2) * (∫ x in a..b, g x ^ 2) := by
@@ -114,7 +120,9 @@ lemma alt_cauchy_schwarz {f g : ℝ → ℝ} (hf : Continuous f) (hg : Continuou
   nlinarith
 
 /-- Picone-type estimate: `α² ∫ f² ≤ ∫ f'²` on `[a, a + 2π]` for `f` vanishing at both ends,
-for every `0 < α < 1/2`.-/
+for every `0 < α < 1/2`.
+@isnad1 id=le.6h4v.s8.4065e11a7c26 from=translated src=- shape=1be674d7 vocab=3cbaa856
+-/
 lemma alt_wirtinger_alpha {f f1 : ℝ → ℝ} (hf1 : Continuous f1)
     (hd : ∀ x, HasDerivAt f (f1 x) x) {a : ℝ} (ha : f a = 0) (hb : f (a + 2 * π) = 0)
     {α : ℝ} (hα0 : 0 < α) (hα1 : α < 1 / 2) :
@@ -188,7 +196,9 @@ lemma alt_wirtinger_alpha {f f1 : ℝ → ℝ} (hf1 : Continuous f1)
       (Continuous.intervalIntegrable (by fun_prop) _ _))
   · exact hG'c.intervalIntegrable
 
-/-- Wirtinger's inequality for a function with a zero, on a period of length `2π`.-/
+/-- Wirtinger's inequality for a function with a zero, on a period of length `2π`.
+@isnad1 id=le.4h3v.s7.e24f1002da5b from=translated src=- shape=c83b866c vocab=c4eb0a20
+-/
 lemma alt_wirtinger {f f1 : ℝ → ℝ} (hf1 : Continuous f1)
     (hd : ∀ x, HasDerivAt f (f1 x) x) {a : ℝ} (ha : f a = 0) (hb : f (a + 2 * π) = 0) :
     (∫ x in a..a + 2 * π, f x ^ 2) / 4 ≤ ∫ x in a..a + 2 * π, f1 x ^ 2 := by
@@ -219,7 +229,9 @@ lemma alt_wirtinger {f f1 : ℝ → ℝ} (hf1 : Continuous f1)
   rw [h2] at this
   nlinarith [mul_pos (sub_pos.2 hβ) hI1pos]
 
-/-- Convexity plus boundedness at `-∞` forces a nonnegative derivative.-/
+/-- Convexity plus boundedness at `-∞` forces a nonnegative derivative.
+@isnad1 id=le.4h5v.s7.fd3d68dfbd61 from=translated src=- shape=023f72c5 vocab=c694916f
+-/
 lemma alt_deriv_nonneg_of_convex {m m1 m2 : ℝ → ℝ} (hm : ∀ s, HasDerivAt m (m1 s) s)
     (hm1 : ∀ s, HasDerivAt m1 (m2 s) s) (hm2 : ∀ s, 0 ≤ m2 s) {B : ℝ}
     (hB : ∀ s ≤ 0, m s ≤ B) : ∀ s, 0 ≤ m1 s := by
@@ -271,7 +283,9 @@ lemma alt_deriv_nonneg_of_convex {m m1 m2 : ℝ → ℝ} (hm : ∀ s, HasDerivAt
     linarith [abs_nonneg (B - m s₁ + 1)]
   nlinarith
 
-/-- The ODE comparison: `2 m m'' ≥ m'² + m²` forces `m ≥ c eˢ`.-/
+/-- The ODE comparison: `2 m m'' ≥ m'² + m²` forces `m ≥ c eˢ`.
+@isnad1 id=ex.5h4v.s8.6142d7492a81 from=translated src=- shape=bce74b15 vocab=294fdd1d
+-/
 lemma alt_ode {m m1 m2 : ℝ → ℝ} (hm : ∀ s, HasDerivAt m (m1 s) s)
     (hm1 : ∀ s, HasDerivAt m1 (m2 s) s) {s₀ : ℝ} (hpos : ∀ s ≥ s₀, 0 < m s)
     (hm1nn : ∀ s ≥ s₀, 0 ≤ m1 s) (hineq : ∀ s ≥ s₀, m1 s ^ 2 + m s ^ 2 ≤ 2 * m s * m2 s) :
@@ -457,44 +471,80 @@ noncomputable def V2 (d w : ℂ) : ℝ :=
       S.Φ1 (S.U (Complex.exp w)) * (d ^ 2 * deriv S.q w).re
   else 0
 
+/--
+@isnad1 id=continuo.0h1v.s4.7844ee634745 from=translated src=- shape=8735051e vocab=a2547e46
+-/
 lemma Φ_cont : Continuous S.Φ := continuous_iff_continuousAt.2 fun t => (S.hΦ t).continuousAt
+/--
+@isnad1 id=continuo.0h1v.s4.bee11063ba6c from=translated src=- shape=8735051e vocab=7caea802
+-/
 lemma Φ1_cont : Continuous S.Φ1 :=
   continuous_iff_continuousAt.2 fun t => (S.hΦ1 t).continuousAt
 
+/--
+@isnad1 id=differen.0h1v.s6.bebf573fb853 from=translated src=- shape=e86db131 vocab=3aa677d8
+-/
 lemma h_diff : Differentiable ℂ S.h := S.hg.comp Complex.differentiable_exp
 
+/--
+@isnad1 id=analytic.0h2v.s4.631b1df4bbc4 from=translated src=- shape=8fec07e6 vocab=c4bdfc63
+-/
 lemma h_analytic (w : ℂ) : AnalyticAt ℂ S.h w := S.h_diff.analyticAt w
 
+/--
+@isnad1 id=ne.1h2v.s4.fd546810398a from=translated src=- shape=c7f3aef5 vocab=02ab366e
+-/
 lemma g_ne {z : ℂ} (hz : z ∈ S.D) : S.g z ≠ 0 := by
   intro h0
   have := S.hDpos z hz
   rw [h0, norm_zero] at this
   linarith [S.hK]
 
+/--
+@isnad1 id=ne.1h2v.s4.2073696b6c34 from=translated src=- shape=04a14efe vocab=d3caf501
+-/
 lemma h_ne {w : ℂ} (hw : Complex.exp w ∈ S.D) : S.h w ≠ 0 := S.g_ne hw
 
+/--
+@isnad1 id=analytic.1h2v.s5.a78f69ac86fd from=translated src=- shape=8cac5f5c vocab=9ee00435
+-/
 lemma q_analytic {w : ℂ} (hw : Complex.exp w ∈ S.D) : AnalyticAt ℂ S.q w :=
   (S.h_analytic w).deriv.div (S.h_analytic w) (S.h_ne hw)
 
+/--
+@isnad1 id=eventual.1h2v.s5.a0d897ab5b89 from=translated src=- shape=89b05f3c vocab=8cb69008
+-/
 lemma evD {w : ℂ} (hw : Complex.exp w ∈ S.D) : ∀ᶠ w' in 𝓝 w, Complex.exp w' ∈ S.D :=
   Complex.continuous_exp.continuousAt.preimage_mem_nhds (S.hDopen.mem_nhds hw)
 
+/--
+@isnad1 id=eventual.1h2v.s5.0b35e1da7128 from=translated src=- shape=8edcec92 vocab=f4a10680
+-/
 lemma evOut {w : ℂ} (hw : Complex.exp w ∉ S.D) :
     ∀ᶠ w' in 𝓝 w, Complex.exp w' ∉ S.D ∨ S.U (Complex.exp w') < 0 :=
   Complex.continuous_exp.continuousAt.eventually (S.hloc _ hw)
 
+/--
+@isnad1 id=and.1h3v.s6.ef996c43ec33 from=translated src=- shape=f88153a6 vocab=10a4b6f9
+-/
 lemma zero_out {w : ℂ} (d : ℂ) (hw : Complex.exp w ∉ S.D ∨ S.U (Complex.exp w) < 0) :
     S.V w = 0 ∧ S.V1 d w = 0 ∧ S.V2 d w = 0 := by
   rcases hw with hw | hw
   · simp [V, Vz, V1, V2, hw]
   · simp [V, Vz, V1, V2, S.hΦ0 _ hw.le, S.hΦ10 _ hw, S.hΦ20 _ hw]
 
+/--
+@isnad1 id=eq.1h2v.s5.c1686bc55b79 from=translated src=- shape=900fb41e vocab=807ac10d
+-/
 lemma U_eq {z : ℂ} (hz : z ∈ S.D) :
     S.U z = Real.log ‖S.g z‖ - Real.log S.K - S.ε := by
   have h1 : ‖S.g z‖ ≠ 0 := norm_ne_zero_iff.2 (S.g_ne hz)
   simp only [U]
   rw [Real.log_div h1 S.hK.ne']
 
+/--
+@isnad1 id=continuo.1h2v.s5.9f553f2e699f from=translated src=- shape=133856f6 vocab=a2f62e5d
+-/
 lemma U_contAt {z : ℂ} (hz : z ∈ S.D) : ContinuousAt S.U z := by
   have h1 : ‖S.g z‖ / S.K ≠ 0 :=
     div_ne_zero (norm_ne_zero_iff.2 (S.g_ne hz)) S.hK.ne'
@@ -502,6 +552,9 @@ lemma U_contAt {z : ℂ} (hz : z ∈ S.D) : ContinuousAt S.U z := by
     ((S.hg.continuous.norm).div_const S.K).continuousAt
   exact (hc.log h1).sub continuousAt_const
 
+/--
+@isnad1 id=continuo.0h1v.s4.d1fefc18a69b from=translated src=- shape=7000f90d vocab=a1688e7c
+-/
 lemma Vz_cont : Continuous S.Vz := by
   rw [continuous_iff_continuousAt]
   intro z
@@ -519,17 +572,29 @@ lemma Vz_cont : Continuous S.Vz := by
         simp [Vz, S.hΦ0 _ h'.le]
     exact continuousAt_const.congr heq
 
+/--
+@isnad1 id=continuo.0h1v.s4.f7585200a9ee from=translated src=- shape=7000f90d vocab=a1588db9
+-/
 lemma V_cont : Continuous S.V := S.Vz_cont.comp Complex.continuous_exp
 
+/--
+@isnad1 id=le.0h2v.s4.38e133d83d7f from=translated src=- shape=0d4521f5 vocab=9d6e66ac
+-/
 lemma V_nonneg (w : ℂ) : 0 ≤ S.V w := by
   simp only [V, Vz]
   split_ifs
   · exact S.hΦnn _
   · exact le_rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.d0192ba5627c from=translated src=- shape=711b00dc vocab=2898b672
+-/
 lemma V_periodic (w : ℂ) : S.V (w + 2 * π * Complex.I) = S.V w := by
   simp only [V, Complex.exp_periodic w]
 
+/--
+@isnad1 id=continuo.0h2v.s4.024a7ba21b44 from=translated src=- shape=a17f733d vocab=5adb4544
+-/
 lemma V1_cont (d : ℂ) : Continuous (S.V1 d) := by
   rw [continuous_iff_continuousAt]
   intro w
@@ -548,6 +613,9 @@ lemma V1_cont (d : ℂ) : Continuous (S.V1 d) := by
       exact (S.zero_out d hw').2.1.symm
     exact continuousAt_const.congr heq
 
+/--
+@isnad1 id=continuo.0h2v.s4.e8d1ec6b4efb from=translated src=- shape=a17f733d vocab=d868aad5
+-/
 lemma V2_cont (d : ℂ) : Continuous (S.V2 d) := by
   rw [continuous_iff_continuousAt]
   intro w
@@ -571,7 +639,9 @@ lemma V2_cont (d : ℂ) : Continuous (S.V2 d) := by
       exact (S.zero_out d hw').2.2.symm
     exact continuousAt_const.congr heq
 
-/-- The Laplacian of `V` is nonnegative.-/
+/-- The Laplacian of `V` is nonnegative.
+@isnad1 id=le.0h2v.s5.36ccf76a757b from=translated src=- shape=c9daa526 vocab=f44de498
+-/
 lemma lap_nonneg (w : ℂ) : 0 ≤ S.V2 1 w + S.V2 Complex.I w := by
   simp only [V2]
   split_ifs with hw
@@ -590,16 +660,27 @@ lemma lap_nonneg (w : ℂ) : 0 ≤ S.V2 1 w + S.V2 Complex.I w := by
 
 /-! ### Directional derivatives -/
 
+/--
+@isnad1 id=continuo.0h2v.s5.c0bb5f9910f1 from=translated src=- shape=c77f4b31 vocab=f2f863e2
+-/
 lemma path_cont (a d : ℂ) : Continuous (fun t : ℝ => a + (t : ℂ) * d) := by fun_prop
 
+/--
+@isnad1 id=eventual.1h4v.s6.f1ab68bcd673 from=translated src=- shape=46ccaeaa vocab=214b1c16
+-/
 lemma ev_path {a d : ℂ} {t₀ : ℝ} {P : ℂ → Prop} (hP : ∀ᶠ w in 𝓝 (a + (t₀ : ℂ) * d), P w) :
     ∀ᶠ t : ℝ in 𝓝 t₀, P (a + (t : ℂ) * d) :=
   ((path_cont a d).tendsto t₀).eventually hP
 
+/--
+@isnad1 id=hasderiv.0h3v.s5.6680592353c6 from=translated src=- shape=260886bc vocab=e0e23fe3
+-/
 lemma hasDerivAt_path (a d : ℂ) (t₀ : ℂ) : HasDerivAt (fun ζ : ℂ => a + ζ * d) d t₀ := by
   simpa using ((hasDerivAt_id t₀).mul_const d).const_add a
 
-/-- Directional derivative of `log ‖h‖`.-/
+/-- Directional derivative of `log ‖h‖`.
+@isnad1 id=hasderiv.1h4v.s6.93b16c082fd1 from=translated src=- shape=93b8862d vocab=72e779e9
+-/
 lemma dir_logh {a d : ℂ} {t₀ : ℝ} (hw : Complex.exp (a + (t₀ : ℂ) * d) ∈ S.D) :
     HasDerivAt (fun t : ℝ => Real.log ‖S.h (a + (t : ℂ) * d)‖)
       ((d * S.q (a + (t₀ : ℂ) * d)).re) t₀ := by
@@ -627,7 +708,9 @@ lemma dir_logh {a d : ℂ} {t₀ : ℝ} (hw : Complex.exp (a + (t₀ : ℂ) * d)
     (norm_ne_zero_iff.2 hne)]
   ring
 
-/-- Directional derivative of `re (d * Q)`.-/
+/-- Directional derivative of `re (d * Q)`.
+@isnad1 id=hasderiv.1h5v.s7.6c3d858225bf from=translated src=- shape=1a842181 vocab=a3fa426d
+-/
 lemma dir_re {Q : ℂ → ℂ} {Q' : ℂ} {a d : ℂ} {t₀ : ℝ}
     (hQ : HasDerivAt Q Q' (a + (t₀ : ℂ) * d)) :
     HasDerivAt (fun t : ℝ => (d * Q (a + (t : ℂ) * d)).re) ((d * (Q' * d)).re) t₀ := by
@@ -635,6 +718,9 @@ lemma dir_re {Q : ℂ → ℂ} {Q' : ℂ} {a d : ℂ} {t₀ : ℝ}
     (hQ.comp (t₀ : ℂ) (hasDerivAt_path a d t₀)).const_mul d
   exact hcomp.real_of_complex
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.6e97262a4e7b from=translated src=- shape=5e5dd285 vocab=d7dcd34a
+-/
 lemma dir_V (a d : ℂ) (t₀ : ℝ) :
     HasDerivAt (fun t : ℝ => S.V (a + (t : ℂ) * d)) (S.V1 d (a + (t₀ : ℂ) * d)) t₀ := by
   by_cases hw : Complex.exp (a + (t₀ : ℂ) * d) ∈ S.D
@@ -660,6 +746,9 @@ lemma dir_V (a d : ℂ) (t₀ : ℝ) :
     filter_upwards [hev] with t ht
     exact (S.zero_out d ht).1
 
+/--
+@isnad1 id=hasderiv.0h4v.s6.55511ebc3edb from=translated src=- shape=167bf599 vocab=5a6a957c
+-/
 lemma dir_V1 (a d : ℂ) (t₀ : ℝ) :
     HasDerivAt (fun t : ℝ => S.V1 d (a + (t : ℂ) * d)) (S.V2 d (a + (t₀ : ℂ) * d)) t₀ := by
   by_cases hw : Complex.exp (a + (t₀ : ℂ) * d) ∈ S.D
@@ -700,6 +789,9 @@ end alt_CData
 
 /-! ### Auxiliary real lemmas for the integral part -/
 
+/--
+@isnad1 id=periodic.2h3v.s5.4c3dd50e8df9 from=translated src=- shape=6f417d31 vocab=8a13c5f3
+-/
 lemma alt_deriv_periodic {f f1 : ℝ → ℝ} {T : ℝ} (hd : ∀ x, HasDerivAt f (f1 x) x)
     (hp : Function.Periodic f T) : Function.Periodic f1 T := by
   intro x
@@ -709,6 +801,9 @@ lemma alt_deriv_periodic {f f1 : ℝ → ℝ} {T : ℝ} (hd : ∀ x, HasDerivAt 
   rw [h2] at h1
   exact h1.unique (hd x)
 
+/--
+@isnad1 id=lt.5h4v.s6.daa8c272b6b5 from=translated src=- shape=599ab3fa vocab=693ef934
+-/
 lemma alt_integral_pos {f : ℝ → ℝ} (hf : Continuous f) (hnn : ∀ x, 0 ≤ f x) {a b x : ℝ}
     (hax : a < x) (hxb : x < b) (hx : 0 < f x) : 0 < ∫ t in a..b, f t := by
   rw [intervalIntegral.integral_pos_iff_support_of_nonneg_ae
@@ -720,6 +815,9 @@ lemma alt_integral_pos {f : ℝ → ℝ} (hf : Continuous f) (hnn : ∀ x, 0 ≤
   exact lt_of_lt_of_le (hopen.measure_pos MeasureTheory.volume hne)
     (MeasureTheory.measure_mono (inter_subset_inter_right _ Ioo_subset_Ioc_self))
 
+/--
+@isnad1 id=eq.1h1v.s5.6d17e820f755 from=translated src=- shape=82dd0087 vocab=0e53358e
+-/
 lemma alt_exp_log_pt {z : ℂ} (hz : z ≠ 0) :
     Complex.exp ((Real.log ‖z‖ : ℂ) + (Complex.arg z : ℂ) * Complex.I) = z := by
   have : ((Real.log ‖z‖ : ℂ) + (Complex.arg z : ℂ) * Complex.I) = Complex.log z := by
@@ -733,9 +831,15 @@ variable (S : alt_CData)
 /-- the point `s + iθ`.-/
 noncomputable def pt (s θ : ℝ) : ℂ := (s : ℂ) + (θ : ℂ) * Complex.I
 
+/--
+@isnad1 id=continuo.0h0v.s5.cda77fd29e72 from=translated src=- shape=e37279c3 vocab=7f82c1ce
+-/
 lemma pt_cont : Continuous (fun p : ℝ × ℝ => pt p.1 p.2) := by
   unfold pt; fun_prop
 
+/--
+@isnad1 id=hasderiv.0h3v.s5.1de2caf2519e from=translated src=- shape=c2b6d989 vocab=a3e72098
+-/
 lemma dV_s (θ s₀ : ℝ) :
     HasDerivAt (fun s : ℝ => S.V (pt s θ)) (S.V1 1 (pt s₀ θ)) s₀ := by
   have e : ∀ t : ℝ, pt t θ = (θ : ℂ) * Complex.I + (t : ℂ) * 1 := fun t => by
@@ -743,6 +847,9 @@ lemma dV_s (θ s₀ : ℝ) :
   simp only [e]
   exact S.dir_V _ _ _
 
+/--
+@isnad1 id=hasderiv.0h3v.s5.7b02e1437dbe from=translated src=- shape=575b9d30 vocab=b67edaa1
+-/
 lemma dV1_s (θ s₀ : ℝ) :
     HasDerivAt (fun s : ℝ => S.V1 1 (pt s θ)) (S.V2 1 (pt s₀ θ)) s₀ := by
   have e : ∀ t : ℝ, pt t θ = (θ : ℂ) * Complex.I + (t : ℂ) * 1 := fun t => by
@@ -750,20 +857,32 @@ lemma dV1_s (θ s₀ : ℝ) :
   simp only [e]
   exact S.dir_V1 _ _ _
 
+/--
+@isnad1 id=hasderiv.0h3v.s5.9e52e2ae3e4d from=translated src=- shape=5b8a2883 vocab=b56ba940
+-/
 lemma dV_θ (s θ₀ : ℝ) :
     HasDerivAt (fun θ : ℝ => S.V (pt s θ)) (S.V1 Complex.I (pt s θ₀)) θ₀ :=
   S.dir_V _ _ _
 
+/--
+@isnad1 id=hasderiv.0h3v.s5.e1dc5c6b31d2 from=translated src=- shape=b89bbec0 vocab=85e5ed88
+-/
 lemma dV1_θ (s θ₀ : ℝ) :
     HasDerivAt (fun θ : ℝ => S.V1 Complex.I (pt s θ)) (S.V2 Complex.I (pt s θ₀)) θ₀ :=
   S.dir_V1 _ _ _
 
+/--
+@isnad1 id=periodic.0h2v.s4.f331d9da7ae6 from=translated src=- shape=b5e5ab9b vocab=4562a05d
+-/
 lemma V_pt_periodic (s : ℝ) : Function.Periodic (fun θ : ℝ => S.V (pt s θ)) (2 * π) := by
   intro θ
   have : pt s (θ + 2 * π) = pt s θ + 2 * π * Complex.I := by
     simp only [pt]; push_cast; ring
   simp only [this, S.V_periodic]
 
+/--
+@isnad1 id=periodic.0h2v.s5.a08a3973c40d from=translated src=- shape=6de2792a vocab=0c7be2f9
+-/
 lemma V1_pt_periodic (s : ℝ) :
     Function.Periodic (fun θ : ℝ => S.V1 Complex.I (pt s θ)) (2 * π) :=
   alt_deriv_periodic (fun θ => S.dV_θ s θ) (S.V_pt_periodic s)
@@ -780,26 +899,53 @@ noncomputable def E (s : ℝ) : ℝ := ∫ θ in (0:ℝ)..2 * π, S.V1 1 (pt s �
 /-- `∫ V_θ²`-/
 noncomputable def T (s : ℝ) : ℝ := ∫ θ in (0:ℝ)..2 * π, S.V1 Complex.I (pt s θ) ^ 2
 
+/--
+@isnad1 id=eq.1h2v.s4.e40c64b56d7b from=translated src=- shape=ffe8b604 vocab=b656bafa
+-/
 lemma V_eq_of_mem {w : ℂ} (hw : Complex.exp w ∈ S.D) :
     S.V w = S.Φ (S.U (Complex.exp w)) := by
   simp only [V, Vz]; rw [ite_eq_left hw]
 
+/--
+@isnad1 id=eq.1h2v.s4.1810ed3e90b2 from=translated src=- shape=d35de4ba vocab=252b4053
+-/
 lemma V_eq_of_not_mem {w : ℂ} (hw : Complex.exp w ∉ S.D) : S.V w = 0 := by
   simp only [V, Vz]; rw [ite_eq_right hw]
 
+/--
+@isnad1 id=continuo.0h1v.s5.610072c861ad from=translated src=- shape=e153255d vocab=2735edfa
+-/
 lemma cV : Continuous (fun p : ℝ × ℝ => S.V (pt p.1 p.2)) := S.V_cont.comp pt_cont
+/--
+@isnad1 id=continuo.0h2v.s5.d662c88a056e from=translated src=- shape=1c3bf613 vocab=83976542
+-/
 lemma cV1 (d : ℂ) : Continuous (fun p : ℝ × ℝ => S.V1 d (pt p.1 p.2)) :=
   (S.V1_cont d).comp pt_cont
+/--
+@isnad1 id=continuo.0h2v.s5.b566c3e457a4 from=translated src=- shape=1c3bf613 vocab=e34c68bd
+-/
 lemma cV2 (d : ℂ) : Continuous (fun p : ℝ × ℝ => S.V2 d (pt p.1 p.2)) :=
   (S.V2_cont d).comp pt_cont
 
+/--
+@isnad1 id=continuo.0h2v.s4.c4e101a4f8a5 from=translated src=- shape=b838b089 vocab=34fd05ec
+-/
 lemma cVθ (s : ℝ) : Continuous (fun θ : ℝ => S.V (pt s θ)) :=
   S.cV.comp (Continuous.prodMk_right s)
+/--
+@isnad1 id=continuo.0h3v.s4.051f15ed5646 from=translated src=- shape=25bb1bc2 vocab=07eadb03
+-/
 lemma cV1θ (d : ℂ) (s : ℝ) : Continuous (fun θ : ℝ => S.V1 d (pt s θ)) :=
   (S.cV1 d).comp (Continuous.prodMk_right s)
+/--
+@isnad1 id=continuo.0h3v.s4.b507a49b25b9 from=translated src=- shape=25bb1bc2 vocab=07be4b71
+-/
 lemma cV2θ (d : ℂ) (s : ℝ) : Continuous (fun θ : ℝ => S.V2 d (pt s θ)) :=
   (S.cV2 d).comp (Continuous.prodMk_right s)
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.9924475f5ca8 from=translated src=- shape=f4cbe5c8 vocab=fb0aa7dc
+-/
 lemma hasDerivAt_M (s₀ : ℝ) : HasDerivAt S.M (S.M1 s₀) s₀ := by
   have := alt_hasDerivAt_integral (F := fun s θ => S.V (pt s θ) ^ 2)
     (F' := fun s θ => 2 * S.V (pt s θ) * S.V1 1 (pt s θ))
@@ -807,6 +953,9 @@ lemma hasDerivAt_M (s₀ : ℝ) : HasDerivAt S.M (S.M1 s₀) s₀ := by
     (fun s θ => ((S.dV_s θ s).pow 2).congr_deriv (by ring)) 0 (2 * π) s₀
   exact this
 
+/--
+@isnad1 id=hasderiv.0h2v.s5.767f1047c2e8 from=translated src=- shape=f4cbe5c8 vocab=effb9096
+-/
 lemma hasDerivAt_M1 (s₀ : ℝ) : HasDerivAt S.M1 (S.M2 s₀) s₀ := by
   have := alt_hasDerivAt_integral (F := fun s θ => 2 * S.V (pt s θ) * S.V1 1 (pt s θ))
     (F' := fun s θ => 2 * S.V1 1 (pt s θ) * S.V1 1 (pt s θ) +
@@ -818,7 +967,9 @@ lemma hasDerivAt_M1 (s₀ : ℝ) : HasDerivAt S.M1 (S.M2 s₀) s₀ := by
     0 (2 * π) s₀
   exact this
 
-/-- Integration by parts in `θ`: `∫ V V_θθ = - ∫ V_θ²`.-/
+/-- Integration by parts in `θ`: `∫ V V_θθ = - ∫ V_θ²`.
+@isnad1 id=eq.0h2v.s6.d00b63c58455 from=translated src=- shape=535cff03 vocab=93ec8278
+-/
 lemma ibp (s : ℝ) :
     ∫ θ in (0:ℝ)..2 * π, S.V (pt s θ) * S.V2 Complex.I (pt s θ) = - S.T s := by
   have hd : ∀ θ ∈ uIcc (0:ℝ) (2 * π), HasDerivAt
@@ -839,6 +990,9 @@ lemma ibp (s : ℝ) :
   · exact ((S.cV1θ Complex.I s).mul (S.cV1θ Complex.I s)).intervalIntegrable _ _
   · exact ((S.cVθ s).mul (S.cV2θ Complex.I s)).intervalIntegrable _ _
 
+/--
+@isnad1 id=le.0h2v.s5.92f44866ef45 from=translated src=- shape=8d5183eb vocab=c7c079af
+-/
 lemma M2_ge (s : ℝ) : 2 * S.E s + 2 * S.T s ≤ S.M2 s := by
   have hle : ∀ θ ∈ Icc (0:ℝ) (2 * π),
       2 * S.V1 1 (pt s θ) ^ 2 - 2 * (S.V (pt s θ) * S.V2 Complex.I (pt s θ)) ≤
@@ -862,20 +1016,34 @@ lemma M2_ge (s : ℝ) : 2 * S.E s + 2 * S.T s ≤ S.M2 s := by
   · exact Continuous.intervalIntegrable (by fun_prop) _ _
   · exact Continuous.intervalIntegrable (by fun_prop) _ _
 
+/--
+@isnad1 id=le.0h2v.s4.45a00bfb7c1b from=translated src=- shape=787c1379 vocab=1287cc8a
+-/
 lemma E_nonneg (s : ℝ) : 0 ≤ S.E s :=
   intervalIntegral.integral_nonneg (by positivity) (fun _ _ => sq_nonneg _)
+/--
+@isnad1 id=le.0h2v.s4.6267adff735a from=translated src=- shape=787c1379 vocab=38c78e0c
+-/
 lemma T_nonneg (s : ℝ) : 0 ≤ S.T s :=
   intervalIntegral.integral_nonneg (by positivity) (fun _ _ => sq_nonneg _)
+/--
+@isnad1 id=le.0h2v.s4.d4ce0793081e from=translated src=- shape=787c1379 vocab=90413370
+-/
 lemma M_nonneg (s : ℝ) : 0 ≤ S.M s :=
   intervalIntegral.integral_nonneg (by positivity) (fun _ _ => sq_nonneg _)
 
+/--
+@isnad1 id=le.0h2v.s4.d7ec8e279672 from=translated src=- shape=787c1379 vocab=1e6a98ed
+-/
 lemma M2_nonneg (s : ℝ) : 0 ≤ S.M2 s := by
   have := S.M2_ge s
   have := S.E_nonneg s
   have := S.T_nonneg s
   linarith
 
-/-- Wirtinger: a zero on the circle gives `T ≥ M/4`.-/
+/-- Wirtinger: a zero on the circle gives `T ≥ M/4`.
+@isnad1 id=le.1h3v.s5.449ea2e5942d from=translated src=- shape=b45ae397 vocab=c1c64d6b
+-/
 lemma T_ge {s θ₀ : ℝ} (h0 : S.V (pt s θ₀) = 0) : S.M s / 4 ≤ S.T s := by
   have hb : S.V (pt s (θ₀ + 2 * π)) = 0 := by
     have := S.V_pt_periodic s θ₀
@@ -889,7 +1057,9 @@ lemma T_ge {s θ₀ : ℝ} (h0 : S.V (pt s θ₀) = 0) : S.M s / 4 ≤ S.T s := 
   rw [hp1.intervalIntegral_add_eq θ₀ 0, hp2.intervalIntegral_add_eq θ₀ 0, zero_add] at hw
   exact hw
 
-/-- Cauchy–Schwarz: `M1² ≤ 4 M E`.-/
+/-- Cauchy–Schwarz: `M1² ≤ 4 M E`.
+@isnad1 id=le.0h2v.s5.8a434d0dac9d from=translated src=- shape=d0944e4c vocab=ee9d5a2b
+-/
 lemma M1_sq_le (s : ℝ) : S.M1 s ^ 2 ≤ 4 * S.M s * S.E s := by
   have hcs := alt_cauchy_schwarz (S.cVθ s) (S.cV1θ 1 s) (by positivity : (0:ℝ) ≤ 2 * π)
   have hM1 : S.M1 s = 2 * ∫ θ in (0:ℝ)..2 * π, S.V (pt s θ) * S.V1 1 (pt s θ) := by
@@ -899,7 +1069,9 @@ lemma M1_sq_le (s : ℝ) : S.M1 s ^ 2 ≤ 4 * S.M s * S.E s := by
   simp only [M, E]
   nlinarith [hcs]
 
-/-- `M` is bounded for `s ≤ 0`.-/
+/-- `M` is bounded for `s ≤ 0`.
+@isnad1 id=ex.0h1v.s4.d0227efac68f from=translated src=- shape=0c7fe654 vocab=90413370
+-/
 lemma M_bdd : ∃ B, ∀ s ≤ 0, S.M s ≤ B := by
   obtain ⟨B, hB⟩ := (isCompact_closedBall (0 : ℂ) 1).exists_bound_of_continuousOn
     S.Vz_cont.continuousOn
@@ -922,7 +1094,9 @@ lemma M_bdd : ∃ B, ∀ s ≤ 0, S.M s ≤ B := by
   simp only [intervalIntegral.integral_const, sub_zero, smul_eq_mul] at this
   exact this
 
-/-- The main conclusion of Carleman's method.-/
+/-- The main conclusion of Carleman's method.
+@isnad1 id=ex.5h2v.s7.0ab85988aefc from=translated src=- shape=f9879671 vocab=ae261e57
+-/
 theorem growth {z₁ : ℂ} (hz₁D : z₁ ∈ S.D) (hz₁0 : z₁ ≠ 0) (hU : 0 < S.U z₁)
     (hΦpos : ∀ t, 0 < t → 0 < S.Φ t)
     (hcross : ∃ r₀ : ℝ, ∀ r ≥ r₀, ∃ w : ℂ, ‖w‖ = r ∧ w ∉ S.D) :
@@ -1032,7 +1206,9 @@ theorem growth {z₁ : ℂ} (hz₁D : z₁ ∈ S.D) (hz₁0 : z₁ ≠ 0) (hU : 
 
 end alt_CData
 
-/-- Points outside the tract have a neighbourhood outside the tract or where `u < ε`.-/
+/-- Points outside the tract have a neighbourhood outside the tract or where `u < ε`.
+@isnad1 id=eventual.4h5v.s7.62b5d9c4f92d from=translated src=- shape=f055fa89 vocab=04e24d5e
+-/
 lemma alt_tract_loc {g : ℂ → ℂ} (hg : Continuous g) {K ε : ℝ} (hK : 0 < K) (hε : 0 < ε)
     {z₀ z : ℂ} (hz : z ∉ tract g K z₀) :
     ∀ᶠ z' in 𝓝 z, z' ∉ tract g K z₀ ∨ Real.log (‖g z'‖ / K) - ε < 0 := by
@@ -1064,6 +1240,9 @@ lemma alt_tract_loc {g : ℂ → ℂ} (hg : Continuous g) {K ε : ℝ} (hK : 0 <
       rw [Real.log_exp] at this
       linarith
 
+/--
+@isnad1 id=ex.4h3v.s7.09d72bd07334 from=translated src=- shape=ac607bc6 vocab=6a50bfae
+-/
 theorem carleman_growth {g : ℂ → ℂ} (hg : Differentiable ℂ g) {K : ℝ} (hK : 0 < K) {z₀ : ℂ}
     (hz₀ : K < ‖g z₀‖)
     (hcross : ∃ r₀ : ℝ, ∀ r ≥ r₀, ∃ w : ℂ, ‖w‖ = r ∧ w ∉ tract g K z₀) :

@@ -18,16 +18,25 @@ namespace Erdos956Upper
 
 open Erdos956 Metric Filter Topology
 
+/--
+@isnad1 id=continuo.3h4v.s5.0c1a3cfbb32d from=translated src=- shape=0069cdd5 vocab=b3550365
+-/
 lemma pb_cwa_Ici {f : ℝ → ℝ} {l r p : ℝ} (hf : ContinuousOn f (Set.Icc l r)) (hlp : l ≤ p)
     (hpr : p < r) : ContinuousWithinAt f (Set.Ici p) p :=
   (hf p ⟨hlp, hpr.le⟩).mono_of_mem_nhdsWithin
     (Filter.mem_of_superset (Icc_mem_nhdsGE hpr) (Set.Icc_subset_Icc_left hlp))
 
+/--
+@isnad1 id=continuo.3h4v.s5.12ee86a228f3 from=translated src=- shape=0069cdd5 vocab=f73df3c0
+-/
 lemma pb_cwa_Iic {f : ℝ → ℝ} {l r p : ℝ} (hf : ContinuousOn f (Set.Icc l r)) (hlp : l < p)
     (hpr : p ≤ r) : ContinuousWithinAt f (Set.Iic p) p :=
   (hf p ⟨hlp.le, hpr⟩).mono_of_mem_nhdsWithin
     (Filter.mem_of_superset (Icc_mem_nhdsLE hlp) (Set.Icc_subset_Icc_right hpr))
 
+/--
+@isnad1 id=ex.4h4v.s6.26a23171c39a from=translated src=- shape=03fcbcbf vocab=4d186a3f
+-/
 lemma pb_exists_right {g h : ℝ → ℝ} {p x : ℝ} (hg : ContinuousWithinAt g (Set.Ici p) p)
     (hh : ContinuousWithinAt h (Set.Ici p) p) (hlt : g p < h p) (hpx : p < x) :
     ∃ y, p < y ∧ y < x ∧ g y < h y := by
@@ -38,6 +47,9 @@ lemma pb_exists_right {g h : ℝ → ℝ} {p x : ℝ} (hg : ContinuousWithinAt g
   obtain ⟨y, hy, hy'⟩ := (h2.and h3).exists
   exact ⟨y, hy'.1, hy'.2, hy⟩
 
+/--
+@isnad1 id=ex.4h4v.s6.d1c16489b50b from=translated src=- shape=9ddec06a vocab=17e39dcb
+-/
 lemma pb_exists_left {g h : ℝ → ℝ} {q x : ℝ} (hg : ContinuousWithinAt g (Set.Iic q) q)
     (hh : ContinuousWithinAt h (Set.Iic q) q) (hlt : g q < h q) (hxq : x < q) :
     ∃ y, x < y ∧ y < q ∧ g y < h y := by
@@ -48,14 +60,23 @@ lemma pb_exists_left {g h : ℝ → ℝ} {q x : ℝ} (hg : ContinuousWithinAt g 
   obtain ⟨y, hy, hy'⟩ := (h2.and h3).exists
   exact ⟨y, hy'.1, hy'.2, hy⟩
 
+/--
+@isnad1 id=eq.2h2v.s7.bd4ecf28ffc9 from=translated src=- shape=11489ea2 vocab=26a1f0b9
+-/
 lemma pb_E_ext {z w : E} (h0 : z 0 = w 0) (h1 : z 1 = w 1) : z = w := by
   ext i
   fin_cases i
   · exact h0
   · exact h1
 
+/--
+@isnad1 id=eq.0h1v.s6.d394d0e140ce from=translated src=- shape=af724ec3 vocab=37883869
+-/
 lemma pb_left_zero (a : Arc) : a.left 0 = a.l := rfl
 
+/--
+@isnad1 id=le.5h4v.s7.af7be46dd6b0 from=translated src=- shape=acb596bd vocab=9ea80dc6
+-/
 theorem planar_bound {ι : Type*} (V : Finset E) (A : Finset ι) (arc : ι → Arc)
     (hvalid : ∀ i ∈ A, (arc i).Valid)
     (hend : ∀ i ∈ A, (arc i).left ∈ V ∧ (arc i).right ∈ V)

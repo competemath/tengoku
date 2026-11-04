@@ -13,7 +13,9 @@ namespace Erdos1199
 open Filter
 
 /-- If `G ≡ true` on a minimal subsystem `M ⊆ ω(x)` and `h n = G (Tⁿ x)` codes `G` along
-ultrafilters, then `h` has arbitrarily long runs of `true` arbitrarily far to the right.-/
+ultrafilters, then `h` has arbitrarily long runs of `true` arbitrarily far to the right.
+@isnad1 id=ex.3h5v.s6.b2e4f77dd14e from=translated src=- shape=bd5b613f vocab=f0454456
+-/
 theorem thick_of_minimal (x : Pt) (M : Set Pt) (hM : IsMinimalSub x M) (G : Pt → Bool)
     (hG : ∀ y ∈ M, G y = true)
     (hcode : ∀ q : Ultrafilter ℕ,

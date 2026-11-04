@@ -19,21 +19,33 @@ namespace Erdos612All
 
 open Erdos612
 
+/--
+@isnad1 id=eq.0h2v.s4.5ed1f357007e from=translated src=- shape=55db04bb vocab=c1815066
+-/
 theorem evBlock_three (s i : ℕ) : evBlock s (3 * i) = [1] := by
   unfold evBlock; simp
 
+/--
+@isnad1 id=eq.0h2v.s5.a1f75d0a834e from=translated src=- shape=43f7a4b3 vocab=82f730b3
+-/
 theorem evBlock_three_one (s i : ℕ) :
     evBlock s (3 * i + 1) = List.replicate (2 * s - i) (evW s) := by
   unfold evBlock
   rw [show (3 * i + 1) % 3 = 1 by omega, show (3 * i + 1) / 3 = i by omega]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s5.d11448a601fd from=translated src=- shape=e5b05def vocab=275cf01b
+-/
 theorem evBlock_three_two (s i : ℕ) :
     evBlock s (3 * i + 2) = List.replicate (i + 1) (evW s) := by
   unfold evBlock
   rw [show (3 * i + 2) % 3 = 2 by omega, show (3 * i + 2) / 3 = i by omega]
   simp
 
+/--
+@isnad1 id=degq.4h4v.s6.c4ec4b7fac99 from=translated src=- shape=7acd4c4c vocab=02380da1
+-/
 theorem evBlock_deg (s m : ℕ) (hs : 1 ≤ s) (hm : m ≤ 6 * s) (a c : List ℕ)
     (ha : m ≠ 0 → a = evBlock s (m - 1)) (hc : m ≠ 6 * s → c = evBlock s (m + 1)) :
     DegQ (evDelta s) a (evBlock s m) c := by

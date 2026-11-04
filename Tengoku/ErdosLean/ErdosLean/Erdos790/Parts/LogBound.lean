@@ -6,11 +6,17 @@ import Tengoku.ErdosLean.ErdosLean.Erdos790.Defs
 
 namespace Erdos790
 
+/--
+@isnad1 id=le.1h2v.s4.743b0f98e078 from=translated src=- shape=6bee9d27 vocab=deab731d
+-/
 theorem K_mono {M N : ℕ} (h : M ≤ N) : K M ≤ K N := by
   unfold K
   have := Nat.clog_mono_right 2 h
   exact Nat.mul_le_mul (by omega) (by omega)
 
+/--
+@isnad1 id=le.1h1v.s5.a73a7b26cb0f from=translated src=- shape=0fafd951 vocab=ca06f0af
+-/
 theorem K_le_log_sq (n : ℕ) (hn : 2 ≤ n) : (K n : ℝ) ≤ 64 * Real.log n ^ 2 := by
   unfold K
   have hpow' : 2 ^ (Nat.clog 2 n).pred < n := Nat.pow_pred_clog_lt_self (by norm_num) (by omega)
@@ -34,6 +40,9 @@ theorem K_le_log_sq (n : ℕ) (hn : 2 ≤ n) : (K n : ℝ) ≤ 64 * Real.log n ^
   have hpL : (p : ℝ) * 0.69 ≤ L := by nlinarith
   nlinarith [mul_le_mul hcR hcR (by positivity) (by positivity)]
 
+/--
+@isnad1 id=lt.0h1v.s3.0edba6882650 from=translated src=- shape=8a62b088 vocab=a27714ab
+-/
 theorem K_pos (n : ℕ) : 0 < K n := by
   unfold K; positivity
 

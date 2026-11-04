@@ -16,7 +16,9 @@ open Filter
 
 /-- If `M` is closed and `J y ∉ M` for all `y ∈ M`, there is `G : Pt → Bool` depending only on
 finitely many coordinates, with `G (J u) = ¬ G u` for every `u`, and `G ≡ true` on `M`.
-(`H = G⁻¹(true)` is then a clopen set with `Pt = H ⊔ J H` and `M ⊆ H`.)-/
+(`H = G⁻¹(true)` is then a clopen set with `Pt = H ⊔ J H` and `M ⊆ H`.)
+@isnad1 id=ex.2h1v.s6.62368a53f1f9 from=translated src=- shape=f48b9b74 vocab=74cfe7d2
+-/
 theorem finite_separation (M : Set Pt) (hM : IsClosed M) (hdisj : ∀ y ∈ M, cmpl y ∉ M) :
     ∃ (G : Pt → Bool) (F : Finset Idx),
       (∀ u v : Pt, (∀ i ∈ F, u i = v i) → G u = G v) ∧

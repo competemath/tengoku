@@ -18,9 +18,15 @@ namespace Erdos612All
 
 open Erdos612
 
+/--
+@isnad1 id=eq.0h1v.s5.5773507d967d from=translated src=- shape=60b96af7 vocab=85c20fd3
+-/
 theorem evPer_length (s : ℕ) : (evPer s).length = 6 * s + 1 := by
   simp [evPer]
 
+/--
+@isnad1 id=eq.0h1v.s5.83025a0ee4f4 from=translated src=- shape=687cd83f vocab=492e4910
+-/
 theorem evPer_total (s : ℕ) : (evPer s).total = (2 * s + 1) * (evDelta s + 1) := by
   rw [evPer, total_map_range, show 6 * s + 1 = 3 * (2 * s) + 1 by ring, Finset.sum_range_succ,
     sum_range_three, evBlock_three]
@@ -35,6 +41,9 @@ theorem evPer_total (s : ℕ) : (evPer s).total = (2 * s + 1) * (evDelta s + 1) 
   simp only [List.sum_singleton, evDelta]
   ring
 
+/--
+@isnad1 id=lt.1h1v.s5.1365dcc2176a from=translated src=- shape=f1350e35 vocab=520703ec
+-/
 theorem ev_growth (s : ℕ) (hs : 1 ≤ s) :
     evenCoeff (s + 1) * ((evPer s).total : ℝ) < ((evPer s).length : ℝ) * (evDelta s : ℝ) := by
   rw [evPer_total, evPer_length]

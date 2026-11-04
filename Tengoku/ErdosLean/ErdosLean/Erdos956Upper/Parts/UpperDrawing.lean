@@ -14,19 +14,31 @@ open Erdos956 Metric
 
 variable {D : Set E} {X : Finset E}
 
+/--
+@isnad1 id=and.1h3v.s9.ff3c4de44763 from=translated src=- shape=f1398ffb vocab=a1eab290
+-/
 lemma onUpper_sub_iff' {p c : E} (h : OnUpper D (p - c)) :
     |p 0 - c 0| < wid D ∧ p 1 - c 1 = gUp D (p 0 - c 0) := by
   have h1 := h.1; have h2 := h.2
   simp only [PiLp.sub_apply] at h1 h2
   exact ⟨h1, h2⟩
 
+/--
+@isnad1 id=eq.1h3v.s7.761cdfe11095 from=translated src=- shape=f5d018b3 vocab=c184a208
+-/
 lemma curve_eq_of_onUpper {p c : E} (h : OnUpper D (p - c)) : curve D c (p 0) = p 1 := by
   have h2 := (onUpper_sub_iff' h).2
   unfold curve; linarith
 
+/--
+@isnad1 id=eq.1h3v.s7.80e066a05de0 from=translated src=- shape=caf56a04 vocab=98e1fab4
+-/
 lemma pt2_curve_eq {p c : E} (h : OnUpper D (p - c)) : pt2 (p 0) (curve D c (p 0)) = p := by
   rw [curve_eq_of_onUpper h, pt2_eta]
 
+/--
+@isnad1 id=and.1h3v.s7.bfd75ef65f34 from=translated src=- shape=398dade5 vocab=7f1aa2cc
+-/
 lemma mem_upperEdges {e : E × E × E} (he : e ∈ upperEdges D X) :
     e.1 ∈ X ∧ e.2.1 ∈ X ∧ e.2.2 ∈ X ∧ Consec D X e.1 e.2.1 e.2.2 := by
   classical
@@ -34,6 +46,9 @@ lemma mem_upperEdges {e : E × E × E} (he : e ∈ upperEdges D X) :
   simp only [Finset.mem_filter, Finset.mem_product] at he
   exact ⟨he.1.1, he.1.2.1, he.1.2.2, he.2⟩
 
+/--
+@isnad1 id=valid.2h3v.s5.806f18a4e5af from=translated src=- shape=d10ce2ea vocab=d0919355
+-/
 theorem upperEdges_valid (hS : SepConfig D X) :
     ∀ e ∈ upperEdges D X, (upperArc D e).Valid := by
   intro e he
@@ -47,6 +62,9 @@ theorem upperEdges_valid (hS : SepConfig D X) :
   have a2 := abs_lt.1 (onUpper_sub_iff' h2).1
   exact ⟨by linarith [hx.1], by linarith [hx.2]⟩
 
+/--
+@isnad1 id=and.2h3v.s6.c32e0c33a08a from=translated src=- shape=b05a58b9 vocab=0639670b
+-/
 theorem upperEdges_ends (hS : SepConfig D X) :
     ∀ e ∈ upperEdges D X, (upperArc D e).left ∈ X ∧ (upperArc D e).right ∈ X := by
   intro e he
@@ -57,6 +75,9 @@ theorem upperEdges_ends (hS : SepConfig D X) :
   · show pt2 (e.2.2 0) (curve D e.1 (e.2.2 0)) ∈ X
     rw [pt2_curve_eq h2]; exact hq
 
+/--
+@isnad1 id=avoids.3h4v.s6.de816902261e from=translated src=- shape=0d3f85af vocab=07315ef9
+-/
 theorem upperEdges_avoid (hS : SepConfig D X) :
     ∀ e ∈ upperEdges D X, ∀ z ∈ X, (upperArc D e).Avoids z := by
   intro e he z hz ⟨hzI, hz1⟩
@@ -72,6 +93,9 @@ theorem upperEdges_avoid (hS : SepConfig D X) :
   · simp only [PiLp.sub_apply]
     unfold curve at hz1; linarith
 
+/--
+@isnad1 id=eq.5h4v.s6.cafb0d9473af from=translated src=- shape=b9c2ae58 vocab=0639670b
+-/
 theorem upperEdges_simple (hS : SepConfig D X) :
     ∀ e ∈ upperEdges D X, ∀ e' ∈ upperEdges D X, (upperArc D e).left = (upperArc D e').left →
       (upperArc D e).right = (upperArc D e').right → e = e' := by
@@ -89,6 +113,9 @@ theorem upperEdges_simple (hS : SepConfig D X) :
       intro h; rw [h] at hlt; exact lt_irrefl _ hlt
     exact (no_two_common_points hS hc hc' hp hq hcc hpq h1 h2 h1' h2').elim
 
+/--
+@isnad1 id=le.1h2v.s5.e3adf7d9b7fc from=translated src=- shape=54a36f78 vocab=7027095b
+-/
 theorem upperPairs_card_le (hS : SepConfig D X) :
     (upperPairs D X).card ≤ (upperEdges D X).card + X.card := by
   classical

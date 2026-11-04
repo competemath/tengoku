@@ -14,12 +14,21 @@ open MeasureTheory Filter Topology
 
 namespace DuffinSchaeffer
 
+/--
+@isnad1 id=le.1h2v.s5.9af9d5daaa21 from=translated src=- shape=fc3c31a9 vocab=d0342b11
+-/
 theorem capψ_nonneg (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q) (q : ℕ) : 0 ≤ capψ ψ q := by
   unfold capψ
   exact le_min (hψ q) (by positivity)
 
+/--
+@isnad1 id=le.0h2v.s3.53a35c9af33c from=translated src=- shape=ff923e13 vocab=d0342b11
+-/
 theorem capψ_le (ψ : ℕ → ℝ) (q : ℕ) : capψ ψ q ≤ ψ q := min_le_left _ _
 
+/--
+@isnad1 id=le.1h2v.s5.e334f0deb281 from=translated src=- shape=76a59640 vocab=c69a8626
+-/
 theorem weight_capψ_le_half (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q) (q : ℕ) :
     weight (capψ ψ) q ≤ 1 / 2 := by
   unfold weight
@@ -32,6 +41,9 @@ theorem weight_capψ_le_half (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q) (q : �
         mul_le_mul_of_nonneg_left (min_le_right _ _) hφ.le
     _ = 1 / 2 * q := by field_simp
 
+/--
+@isnad1 id=eq.1h2v.s5.f00ee02d4e68 from=translated src=- shape=a05ee849 vocab=eccc94df
+-/
 theorem weight_capψ_eq (ψ : ℕ → ℝ) (q : ℕ) (h : weight (capψ ψ) q < 1 / 2) :
     weight (capψ ψ) q = weight ψ q := by
   unfold weight at *
@@ -48,11 +60,17 @@ theorem weight_capψ_eq (ψ : ℕ → ℝ) (q : ℕ) (h : weight (capψ ψ) q < 
       field_simp
     linarith
 
+/--
+@isnad1 id=le.1h2v.s5.68879e843fef from=translated src=- shape=fc3c31a9 vocab=78b31a3d
+-/
 theorem weight_nonneg (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q) (q : ℕ) : 0 ≤ weight ψ q := by
   unfold weight
   have := hψ q
   positivity
 
+/--
+@isnad1 id=not.2h1v.s5.01ddf68d17ab from=translated src=- shape=f1bb0410 vocab=1fbc256e
+-/
 theorem not_summable_weight_capψ (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q)
     (h : ¬ Summable (weight ψ)) : ¬ Summable (weight (capψ ψ)) := by
   intro hs
@@ -64,7 +82,9 @@ theorem not_summable_weight_capψ (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q)
   filter_upwards [hev] with q hq
   rw [weight_capψ_eq ψ q hq, Real.norm_eq_abs, abs_of_nonneg (weight_nonneg ψ hψ q)]
 
-/-- If `φ(p^k) ≤ K` for all prime powers dividing `n`, then `n ∣ (2K)!`.-/
+/-- If `φ(p^k) ≤ K` for all prime powers dividing `n`, then `n ∣ (2K)!`.
+@isnad1 id=le.2h2v.s5.dcc8e639df0f from=translated src=- shape=9b8ef335 vocab=f46bccaa
+-/
 theorem le_factorial_of_totient_le {n K : ℕ} (hn : 0 < n) (hK : Nat.totient n ≤ K) :
     n ≤ Nat.factorial (2 * K) := by
   have hdvd : n ∣ Nat.factorial (2 * K) := by
@@ -86,6 +106,9 @@ theorem le_factorial_of_totient_le {n K : ℕ} (hn : 0 < n) (hK : Nat.totient n 
       _ ≤ 2 * K := by omega
   exact Nat.le_of_dvd (Nat.factorial_pos _) hdvd
 
+/--
+@isnad1 id=tendsto.0h0v.s3.fb7371ca84a3 from=translated src=- shape=28af4979 vocab=2fed883a
+-/
 theorem tendsto_totient_atTop : Tendsto (fun n : ℕ => Nat.totient n) atTop atTop := by
   rw [tendsto_atTop]
   intro K
@@ -96,7 +119,9 @@ theorem tendsto_totient_atTop : Tendsto (fun n : ℕ => Nat.totient n) atTop atT
   have := le_factorial_of_totient_le (n := n) (K := K) (by omega) hlt.le
   omega
 
-/-- The radius `capψ ψ q / q ≤ 1/(2φ(q))` tends to `0`.-/
+/-- The radius `capψ ψ q / q ≤ 1/(2φ(q))` tends to `0`.
+@isnad1 id=tendsto.1h1v.s5.4a8d8b3bd8ae from=translated src=- shape=aba76dcc vocab=3afe495e
+-/
 theorem tendsto_capψ_div (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q) :
     Tendsto (fun n : ℕ => capψ ψ n / n) atTop (𝓝 0) := by
   have hφ : Tendsto (fun n : ℕ => ((Nat.totient n : ℕ) : ℝ)) atTop atTop :=
@@ -113,7 +138,9 @@ theorem tendsto_capψ_div (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q) :
     calc capψ ψ n ≤ (n : ℝ) / (2 * Nat.totient n) := min_le_right _ _
       _ = 1 / 2 * (Nat.totient n : ℝ)⁻¹ * n := by field_simp
 
-/-- A window `[N, Y]` with `1 ≤ ∑_{N ≤ q ≤ Y} w(q) ≤ 2`, for a divergent series with terms `≤ 1/2`.-/
+/-- A window `[N, Y]` with `1 ≤ ∑_{N ≤ q ≤ Y} w(q) ≤ 2`, for a divergent series with terms `≤ 1/2`.
+@isnad1 id=ex.3h2v.s6.cc8bc94cf9d5 from=translated src=- shape=54e6a9f4 vocab=88b015c4
+-/
 theorem exists_window (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q) (hle : ∀ q, weight ψ q ≤ 1 / 2)
     (h : ¬ Summable (weight ψ)) (N : ℕ) :
     ∃ Y : ℕ, 1 ≤ ∑ q ∈ Finset.Icc N Y, weight ψ q ∧ ∑ q ∈ Finset.Icc N Y, weight ψ q ≤ 2 := by

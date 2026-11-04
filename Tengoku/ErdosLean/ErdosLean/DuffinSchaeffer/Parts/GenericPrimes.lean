@@ -23,17 +23,26 @@ noncomputable def alt_gp_B (α β : ℕ → ℝ) (k l : ℕ) : ℝ :=
     (α k * (1 - β k) + β k * (1 - α k) + (α l * (1 - β l) + β l * (1 - α l))) *
       (20 / 21 : ℝ) ^ ((k - l) + (l - k)) / 1000
 
+/--
+@isnad1 id=eq.0h1v.s7.061e22ba63d8 from=translated src=- shape=4035723d vocab=0607e9cc
+-/
 theorem alt_gp_geom_eq (m : ℕ) :
     ∑ i ∈ range m, (20 / 21 : ℝ) ^ (i + 1) = 20 * (1 - (20 / 21 : ℝ) ^ m) := by
   induction m with
   | zero => simp
   | succ m ih => rw [sum_range_succ, ih]; ring
 
+/--
+@isnad1 id=le.0h1v.s6.8e103343afe8 from=translated src=- shape=513c0a7b vocab=53354fcd
+-/
 theorem alt_gp_geom_le (m : ℕ) : ∑ i ∈ range m, (20 / 21 : ℝ) ^ (i + 1) ≤ 20 := by
   rw [alt_gp_geom_eq]
   have : (0 : ℝ) ≤ (20 / 21 : ℝ) ^ m := by positivity
   linarith
 
+/--
+@isnad1 id=le.0h2v.s6.7d61f9380e69 from=translated src=- shape=b528bfe2 vocab=e9e68dd5
+-/
 theorem alt_gp_offdiag (n k : ℕ) :
     ∑ l ∈ range n, (if k = l then (0 : ℝ) else (20 / 21 : ℝ) ^ ((k - l) + (l - k))) ≤ 40 := by
   have hpt : ∀ l ∈ range n, (if k = l then (0 : ℝ) else (20 / 21 : ℝ) ^ ((k - l) + (l - k))) ≤
@@ -70,6 +79,9 @@ theorem alt_gp_offdiag (n k : ℕ) :
     omega
   linarith
 
+/--
+@isnad1 id=le.2h2v.s6.e02c40383f86 from=translated src=- shape=6c974a8b vocab=e624faf6
+-/
 theorem alt_gp_sqrt_le (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
     (a * b) ^ ((1 : ℝ) / 2) ≤ (a + b) / 2 := by
   rw [Real.mul_rpow ha hb]
@@ -77,6 +89,9 @@ theorem alt_gp_sqrt_le (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
     (by norm_num) (by norm_num) ha hb (by norm_num)
   linarith
 
+/--
+@isnad1 id=le.4h3v.s6.e97563723fab from=translated src=- shape=b0abbf75 vocab=d00bf40e
+-/
 theorem alt_gp_sum_bound (n : ℕ) (α β : ℕ → ℝ) (hα0 : ∀ k, 0 ≤ α k) (hβ0 : ∀ k, 0 ≤ β k)
     (hα : ∑ k ∈ range n, α k = 1) (hβ : ∑ k ∈ range n, β k = 1) :
     ∑ k ∈ range n, ∑ l ∈ range n, alt_gp_B α β k l ≤ 1 := by
@@ -160,6 +175,9 @@ theorem alt_gp_sum_bound (n : ℕ) (α β : ℕ → ℝ) (hα0 : ∀ k, 0 ≤ α
 
 /-! ### Graph-side lemmas -/
 
+/--
+@isnad1 id=and.1h1v.s5.4e96bd47a830 from=translated src=- shape=f4df891e vocab=0d0fd96b
+-/
 theorem alt_gp_pos (G : GCDGraph) (hδ : 0 < G.density) :
     0 < esum G.μ G.E ∧ 0 < wsum G.μ G.V ∧ 0 < wsum G.μ G.W := by
   have hV0 : 0 ≤ wsum G.μ G.V := sum_nonneg fun i _ => G.μ_nonneg i
@@ -173,16 +191,28 @@ theorem alt_gp_pos (G : GCDGraph) (hδ : 0 < G.density) :
     lt_of_le_of_ne hV0 (fun h => hVW (by rw [← h, zero_mul])),
     lt_of_le_of_ne hW0 (fun h => hVW (by rw [← h, mul_zero]))⟩
 
+/--
+@isnad1 id=le.0h2v.s4.fc1064f4c5d0 from=translated src=- shape=93dff582 vocab=4a4176e0
+-/
 theorem alt_gp_wsum_nonneg (G : GCDGraph) (S : Finset ℕ) : 0 ≤ wsum G.μ S :=
   sum_nonneg fun i _ => G.μ_nonneg i
 
+/--
+@isnad1 id=le.0h2v.s4.1d3d059e1248 from=translated src=- shape=d06f9e90 vocab=97cd408f
+-/
 theorem alt_gp_esum_nonneg (G : GCDGraph) (S : Finset (ℕ × ℕ)) : 0 ≤ esum G.μ S :=
   sum_nonneg fun i _ => mul_nonneg (G.μ_nonneg _) (G.μ_nonneg _)
 
+/--
+@isnad1 id=le.0h4v.s4.1065caacef45 from=translated src=- shape=146c3fc7 vocab=f36f62a7
+-/
 theorem alt_gp_vslice_le (G : GCDGraph) (S : Finset ℕ) (p k : ℕ) :
     wsum G.μ (vslice S p k) ≤ wsum G.μ S :=
   sum_le_sum_of_subset_of_nonneg (filter_subset _ _) (fun i _ _ => G.μ_nonneg i)
 
+/--
+@isnad1 id=le.1h5v.s5.83836e317fab from=translated src=- shape=3141b485 vocab=531b1c95
+-/
 theorem alt_gp_two_slices (G : GCDGraph) (S : Finset ℕ) (p k l : ℕ) (hkl : k ≠ l) :
     wsum G.μ (vslice S p k) + wsum G.μ (vslice S p l) ≤ wsum G.μ S := by
   unfold wsum vslice
@@ -190,12 +220,18 @@ theorem alt_gp_two_slices (G : GCDGraph) (S : Finset ℕ) (p k l : ℕ) (hkl : k
   exact sum_le_sum_of_subset_of_nonneg (union_subset (filter_subset _ _) (filter_subset _ _))
     (fun i _ _ => G.μ_nonneg i)
 
+/--
+@isnad1 id=eq.1h4v.s6.676efc4e00e8 from=translated src=- shape=353234b0 vocab=73cec073
+-/
 theorem alt_gp_wsum_partition (G : GCDGraph) (S : Finset ℕ) (p N : ℕ)
     (hN : ∀ v ∈ S, v.factorization p ≤ N) :
     ∑ k ∈ range (N + 1), wsum G.μ (vslice S p k) = wsum G.μ S := by
   unfold wsum vslice
   exact sum_fiberwise_of_maps_to (fun v hv => mem_range.2 (Nat.lt_succ_of_le (hN v hv))) G.μ
 
+/--
+@isnad1 id=eq.1h3v.s8.d1d3e58aaa3b from=translated src=- shape=c3005aca vocab=86b69e6b
+-/
 theorem alt_gp_esum_partition (G : GCDGraph) (p N : ℕ)
     (hN : ∀ e ∈ G.E, e.1.factorization p ≤ N ∧ e.2.factorization p ≤ N) :
     ∑ k ∈ range (N + 1), ∑ l ∈ range (N + 1),
@@ -213,6 +249,9 @@ theorem alt_gp_esum_partition (G : GCDGraph) (p N : ℕ)
   ext e
   simp [Prod.ext_iff]
 
+/--
+@isnad1 id=le.0h4v.s7.7a6c3b6b8cd4 from=translated src=- shape=000d964b vocab=a773b54e
+-/
 theorem alt_gp_esum_slice_le (G : GCDGraph) (p k l : ℕ) :
     esum G.μ (G.E.filter (fun e => e.1.factorization p = k ∧ e.2.factorization p = l)) ≤
       wsum G.μ (vslice G.V p k) * wsum G.μ (vslice G.W p l) := by
@@ -227,6 +266,9 @@ theorem alt_gp_esum_slice_le (G : GCDGraph) (p k l : ℕ) :
   exact sum_le_sum_of_subset_of_nonneg hsub
     (fun i _ _ => mul_nonneg (G.μ_nonneg _) (G.μ_nonneg _))
 
+/--
+@isnad1 id=le.4h4v.s6.d6d9fe2139cb from=translated src=- shape=559ae048 vocab=9e2383e3
+-/
 theorem alt_gp_B_nonneg (α β : ℕ → ℝ) (hα0 : ∀ k, 0 ≤ α k) (hβ0 : ∀ k, 0 ≤ β k)
     (hα1 : ∀ k, α k ≤ 1) (hβ1 : ∀ k, β k ≤ 1) (k l : ℕ) : 0 ≤ alt_gp_B α β k l := by
   unfold alt_gp_B
@@ -238,7 +280,9 @@ theorem alt_gp_B_nonneg (α β : ℕ → ℝ) (hα0 : ∀ k, 0 ≤ α k) (hβ0 :
       nlinarith
     positivity
 
-/-- KM Lemma 12.1 (with our weights).-/
+/-- KM Lemma 12.1 (with our weights).
+@isnad1 id=ex.1h2v.s8.35e6d858ccfd from=translated src=- shape=6e37c1da vocab=25176f97
+-/
 theorem alt_gp_lemma121 (G : GCDGraph) (hδ : 0 < G.density) (p : ℕ) :
     ∃ k l : ℕ, 0 < wsum G.μ (vslice G.V p k) ∧ 0 < wsum G.μ (vslice G.W p l) ∧
       alt_gp_B (fun k => wsum G.μ (vslice G.V p k) / wsum G.μ G.V)
@@ -306,6 +350,9 @@ theorem alt_gp_lemma121 (G : GCDGraph) (hδ : 0 < G.density) (p : ℕ) :
 
 /-! ### Real-variable core of Lemma 12.2 -/
 
+/--
+@isnad1 id=le.3h3v.s7.89c790209912 from=translated src=- shape=8bc1a47b vocab=26c9d79c
+-/
 theorem alt_gp_F_ge (p : ℕ) (hp : p.Prime) (j : ℕ) (c : ℝ) (hc0 : 0 ≤ c) (hc1 : c ≤ 1 / 2) :
     (p : ℝ) ^ j ≤ (p : ℝ) ^ j / ((1 - c) ^ 2 * (1 - 1 / (p : ℝ) ^ ((31 : ℝ) / 30)) ^ 10) := by
   have hp2 : (2 : ℝ) ≤ p := by exact_mod_cast hp.two_le
@@ -325,7 +372,9 @@ theorem alt_gp_F_ge (p : ℕ) (hp : p.Prime) (j : ℕ) (c : ℝ) (hc0 : 0 ≤ c)
           · apply pow_le_one₀ <;> linarith
       _ = 1 := by norm_num
 
-/-- The key lower bound: `min(1, δ'/δ) q'/q ≥ (S²/y) P / (2·10^33)`.-/
+/-- The key lower bound: `min(1, δ'/δ) q'/q ≥ (S²/y) P / (2·10^33)`.
+@isnad1 id=le.7h7v.s8.105229d2719a from=translated src=- shape=f6affb84 vocab=4411646c
+-/
 theorem alt_gp_key (a b x S F P : ℝ) (j : ℕ) (ha : 0 < a) (hb : 0 < b) (hSy : a * b ≤ S)
     (hx : S * (20 / 21 : ℝ) ^ j / 1000 ≤ x) (hj : 1 ≤ j) (hP : 2 ≤ P) (hF : P ^ j ≤ F) :
     S ^ 2 / (a * b) * P / (2 * 10 ^ 33) ≤
@@ -394,7 +443,9 @@ theorem alt_gp_key (a b x S F P : ℝ) (j : ℕ) (ha : 0 < a) (hb : 0 < b) (hSy 
     _ ≤ t * (x ^ 10 * (1 / y ^ 9) * F) := hmain
     _ ≤ min 1 (x / y) * (x ^ 10 * (1 / y ^ 9) * F) := mul_le_mul_of_nonneg_right hmin hnn
 
-/-- Case `k = ℓ` of Lemma 12.2: no quality loss.-/
+/-- Case `k = ℓ` of Lemma 12.2: no quality loss.
+@isnad1 id=le.6h4v.s8.8fc8203f7faa from=translated src=- shape=85d1f6c8 vocab=4411646c
+-/
 theorem alt_gp_diag (a b x F : ℝ) (ha : 0 < a) (hb : 0 < b) (ha1 : a ≤ 1) (hb1 : b ≤ 1)
     (hx : (a * b) ^ ((9 : ℝ) / 10) ≤ x) (hF : 1 ≤ F) :
     1 ≤ min 1 (x / (a * b)) * (x ^ 10 * (1 / a) ^ 9 * (1 / b) ^ 9 * F) := by
@@ -422,7 +473,9 @@ theorem alt_gp_diag (a b x F : ℝ) (ha : 0 < a) (hb : 0 < b) (ha1 : a ≤ 1) (h
     rw [mul_one_div, le_div_iff₀ (by positivity)]; linarith
   nlinarith
 
-/-- From a small `S²/y` to the sharp alternative.-/
+/-- From a small `S²/y` to the sharp alternative.
+@isnad1 id=or.12h5v.s9.6ee2dede3e0c from=translated src=- shape=cf89d8eb vocab=762a6581
+-/
 theorem alt_gp_sharp_real (ak bk al bl η : ℝ) (hak0 : 0 ≤ ak) (hbk0 : 0 ≤ bk) (hal0 : 0 ≤ al)
     (hbl0 : 0 ≤ bl) (hak1 : ak ≤ 1) (hbk1 : bk ≤ 1) (hal1 : al ≤ 1) (hbl1 : bl ≤ 1)
     (hy : 0 < ak * bl)
@@ -457,7 +510,9 @@ theorem alt_gp_sharp_real (ak bk al bl η : ℝ) (hak0 : 0 ≤ ak) (hbk0 : 0 ≤
 /-! ### Lemma 12.2 -/
 
 /-- Lemma 12.2 (with Lemma 12.1 inside its proof).  For a prime `p ∉ P`, `p > 10^40`, either some
-`G_{p^k,p^ℓ}` has `min(1, δ'/δ) q'/q ≥ 2^{1_{k ≠ ℓ}}`, or `p` is sharp.-/
+`G_{p^k,p^ℓ}` has `min(1, δ'/δ) q'/q ≥ 2^{1_{k ≠ ℓ}}`, or `p` is sharp.
+@isnad1 id=or.4h2v.s7.1ae0ef10972a from=translated src=- shape=786171e5 vocab=ae78b75f
+-/
 theorem lemma122 (G : GCDGraph) (hδ : 0 < G.density) (p : ℕ) (hp : p.Prime) (hpP : p ∉ G.P)
     (hpK : K40 < p) :
     (∃ k l : ℕ, 0 < (G.restrictPrime p k l hp hpP).density ∧
@@ -594,7 +649,9 @@ theorem lemma122 (G : GCDGraph) (hδ : 0 < G.density) (p : ℕ) (hp : p.Prime) (
           calc (1 - K40 / p) * W ≤ bl * W := mul_le_mul_of_nonneg_right this hW.le
             _ = Wl := div_mul_cancel₀ _ hW.ne'
 
-/-- Proposition 8.1 (iteration when `R♭(G) ≠ ∅`).-/
+/-- Proposition 8.1 (iteration when `R♭(G) ≠ ∅`).
+@isnad1 id=ex.3h1v.s7.ec8ddb684267 from=translated src=- shape=f05f43c9 vocab=85f97d00
+-/
 theorem prop81 (G : GCDGraph) (hδ : 0 < G.density) (hR : ∀ p ∈ G.R, T0 < (p : ℝ))
     (hflat : G.Rflat.Nonempty) :
     ∃ G' : GCDGraph, G'.IsSubgraph G ∧ 0 < G'.density ∧ G.P ⊂ G'.P ∧ G'.P ⊆ G.P ∪ G.R ∧

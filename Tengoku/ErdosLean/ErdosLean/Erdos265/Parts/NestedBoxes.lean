@@ -15,6 +15,9 @@ open Filter Topology
 
 namespace Erdos265
 
+/--
+@isnad1 id=ex.8h7v.s8.d8a68e1edf04 from=translated src=- shape=9f049ddb vocab=a04a83fa
+-/
 theorem nested_boxes {ι : Type*} (G : ℕ → ι → ℝ × ℝ) (adm : ℕ → ι → Prop)
     (s : ℕ → ℝ × ℝ) (r1 r2 : ℕ → ℝ)
     (hs1 : Summable (fun k ↦ (s k).1)) (hs2 : Summable (fun k ↦ (s k).2))

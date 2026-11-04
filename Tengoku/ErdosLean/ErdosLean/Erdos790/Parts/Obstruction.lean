@@ -19,6 +19,9 @@ private theorem mem_Fset_of (A : Finset ℤ) {a z δ : ℤ} (hzA : z ∈ A) (hz 
   rw [Finset.mem_erase]
   exact ⟨hne, Finset.mem_biUnion.2 ⟨δ, hδ, mem_window_of A A.card hzA hz h1 h2⟩⟩
 
+/--
+@isnad1 id=ex.6h3v.s7.c6737b7cd775 from=translated src=- shape=5e6c5904 vocab=31b6895a
+-/
 theorem obstruction (A : Finset ℤ) (hpos : ∀ a ∈ A, 0 < a) {x : ℤ} (hx : x ∈ A)
     {S : Finset ℤ} (hS : S ⊆ A) (hxS : x ∉ S) (h2 : 2 ≤ S.card) (hsum : ∑ s ∈ S, s = x) :
     ∃ z ∈ S, ∃ a, (a = x ∨ a ∈ S) ∧ dyIdx z ∈ Fset A a := by

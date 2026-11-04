@@ -11,7 +11,9 @@ namespace Erdos996
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
-/-- Lower floor of a spike: `φ_d ≥ -g_d` with `g_d = 1/√(2^d - 1)`.-/
+/-- Lower floor of a spike: `φ_d ≥ -g_d` with `g_d = 1/√(2^d - 1)`.
+@isnad1 id=le.1h2v.s6.225ad341e553 from=translated src=- shape=2118cbb7 vocab=2cd493ef
+-/
 lemma spike_ge (d : ℕ) (hd : 1 ≤ d) (x : 𝕋) :
     -(1 / Real.sqrt (2 ^ d - 1)) ≤ spike d x := by
   have hp : (0 : ℝ) < (2 : ℝ)⁻¹ ^ d := by positivity

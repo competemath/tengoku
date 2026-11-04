@@ -20,11 +20,17 @@ namespace Erdos265
 
 variable {a : ℕ → ℕ}
 
+/--
+@isnad1 id=lt.1h2v.s4.a978ac7ca4f5 from=translated src=- shape=95bcf7d0 vocab=02f19d62
+-/
 lemma recip_pos' (ha : IsRationalPair a) (m : ℕ) : 0 < recip a m := by
   have h : (2 : ℝ) ≤ a m := by exact_mod_cast two_le_of ha m
   unfold recip
   exact div_pos one_pos (by linarith)
 
+/--
+@isnad1 id=eq.1h2v.s5.4c002eff74f8 from=translated src=- shape=03cea741 vocab=9ae2c6a6
+-/
 lemma recipS_eq_recip (ha : IsRationalPair a) (m : ℕ) :
     recipS a m = recip a m / (1 - recip a m) := by
   have h : (2 : ℝ) ≤ a m := by exact_mod_cast two_le_of ha m
@@ -33,6 +39,9 @@ lemma recipS_eq_recip (ha : IsRationalPair a) (m : ℕ) :
   unfold recipS recip
   rw [one_sub_div h0, div_div_div_cancel_right₀ h0]
 
+/--
+@isnad1 id=lt.2h2v.s5.5484075de013 from=translated src=- shape=f15db632 vocab=8bf340cb
+-/
 theorem Eres_pos_of (ha : IsRationalPair a) {n : ℕ} (hT : T a n < 1) : 0 < Eres a n := by
   have hSpos : 0 < T a n := T_pos ha n
   have h1S : 0 < 1 - T a n := by linarith
@@ -66,6 +75,9 @@ theorem Eres_pos_of (ha : IsRationalPair a) {n : ℕ} (hT : T a n < 1) : 0 < Ere
   unfold Eres
   linarith
 
+/--
+@isnad1 id=eventual.1h1v.s4.e9430035b868 from=translated src=- shape=4e892287 vocab=98b53027
+-/
 theorem Eres_pos (ha : IsRationalPair a) : ∀ᶠ n in atTop, 0 < Eres a n := by
   have hT : ∀ᶠ n in atTop, T a n < 1 :=
     (tail_tendsto_zero (recip a)).eventually (gt_mem_nhds one_pos)

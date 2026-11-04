@@ -32,7 +32,9 @@ namespace Erdos790
 open Filter
 
 /-- For every colouring `χ` of the dyadic indices and every colour `c`, the selected set
-(elements whose own index has colour `c` and none of whose forbidden indices do) is sum-free.-/
+(elements whose own index has colour `c` and none of whose forbidden indices do) is sum-free.
+@isnad1 id=issumfre.1h4v.s9.099fd26ffc33 from=translated src=- shape=b3bb7643 vocab=eef10c06
+-/
 theorem selected_sumFree (A : Finset ℤ) (hpos : ∀ a ∈ A, 0 < a) {m : ℕ}
     (χ : Fin (topIdx A + 1) → Fin m) (c : Fin m) :
     IsSumFree (A.filter (fun a => χ (idx A (dyIdx a)) = c ∧
@@ -50,7 +52,9 @@ theorem selected_sumFree (A : Finset ℤ) (hpos : ∀ a ∈ A, 0 < a) {m : ℕ}
     · exact hS ha
   exact (Finset.mem_filter.1 haB).2.2 _ (Finset.mem_image_of_mem _ hmem) hz
 
-/-- Theorem 1 for sets of positive integers: `|A| ≤ 4 K(|A|) |B|`.-/
+/-- Theorem 1 for sets of positive integers: `|A| ≤ 4 K(|A|) |B|`.
+@isnad1 id=ex.2h1v.s6.4a22f09863fc from=translated src=- shape=6914c50f vocab=35ffbcdf
+-/
 theorem positive_case (A : Finset ℤ) (hpos : ∀ a ∈ A, 0 < a) (hA : 1 ≤ A.card) :
     ∃ B ⊆ A, IsSumFree B ∧ A.card ≤ 4 * K A.card * B.card := by
   have hm : 0 < 2 * K A.card := by have := K_pos A.card; omega
@@ -81,7 +85,9 @@ theorem positive_case (A : Finset ℤ) (hpos : ∀ a ∈ A, 0 < a) (hA : 1 ≤ A
   have h0 : A.card ≤ 2 * T.card := by rw [hT]; convert hχ
   linarith
 
-/-- Theorem 1 for arbitrary integer sets with `|A| ≥ 2`: `|A| ≤ 16 K(|A|) |B|`.-/
+/-- Theorem 1 for arbitrary integer sets with `|A| ≥ 2`: `|A| ≤ 16 K(|A|) |B|`.
+@isnad1 id=ex.1h1v.s6.aac5b234fb79 from=translated src=- shape=22539140 vocab=7ed07c18
+-/
 theorem general_case (A : Finset ℤ) (hA : 2 ≤ A.card) :
     ∃ B ⊆ A, IsSumFree B ∧ A.card ≤ 16 * K A.card * B.card := by
   rcases sign_split A hA with h | h
@@ -115,7 +121,9 @@ theorem general_case (A : Finset ℤ) (hA : 2 ≤ A.card) :
       nlinarith
 
 /-- **Erdős Problem 790** (Korsky 2026): `l(n) ≥ n / (1024 (log n)²)`; hence
-`l(n)/√n → ∞`, `l(n) = n^{1-o(1)}`, and `l(n) < n^{1-c}` fails for every `c > 0`.-/
+`l(n)/√n → ∞`, `l(n) = n^{1-o(1)}`, and `l(n) < n^{1-c}` fails for every `c > 0`.
+@isnad1 id=erdos790.0h0v.s0.ca2d8bca8023 from=translated src=- shape=45709ebd vocab=ca2d8bca
+-/
 theorem erdos_790 : Erdos790Answer := by
   have hlow : ∀ n : ℕ, 2 ≤ n → n ≤ 16 * K n * l n := by
     intro n hn

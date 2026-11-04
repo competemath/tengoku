@@ -12,7 +12,9 @@ namespace Erdos494
 
 open Finset
 
-/-- If `|A| = 2k` and `Σ A = 0`, then `(-A)_k = A_k`.-/
+/-- If `|A| = 2k` and `Σ A = 0`, then `(-A)_k = A_k`.
+@isnad1 id=eq.2h2v.s6.f31d934c487b from=translated src=- shape=a7e1fe0c vocab=abe55efe
+-/
 theorem sumMultiset_neg_of_sum_zero (A : Finset ℂ) (k : ℕ) (hc : A.card = 2 * k)
     (hs : A.sum id = 0) :
     sumMultiset (A.map (Equiv.neg ℂ).toEmbedding) k = sumMultiset A k := by
@@ -53,6 +55,9 @@ theorem sumMultiset_neg_of_sum_zero (A : Finset ℂ) (k : ℕ) (hc : A.card = 2 
         rw [Multiset.map_map]; rfl
     _ = _ := by rw [hperm]
 
+/--
+@isnad1 id=not.1h1v.s4.340314474989 from=translated src=- shape=29b8a53f vocab=053b3291
+-/
 theorem tao_counterexample : ∀ k > 2, ¬Erdos494Unique k (2 * k) := by
   intro k hk hU
   set I : Finset ℕ := Finset.Icc 1 (2 * k - 1) with hI

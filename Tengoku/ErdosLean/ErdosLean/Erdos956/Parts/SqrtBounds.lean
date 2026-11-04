@@ -13,18 +13,29 @@ and reduce to polynomial inequalities (`nlinarith`).
 
 namespace Erdos956
 
+/--
+@isnad1 id=eq.0h1v.s5.1389345ae859 from=translated src=- shape=a7460c21 vocab=10a35809
+-/
 lemma rr_sq (t : ℝ) : rr t ^ 2 = 1 + t ^ 2 := by
   unfold rr
   rw [Real.sq_sqrt (by positivity)]
 
+/--
+@isnad1 id=le.0h1v.s3.ea7ffc5ab363 from=translated src=- shape=8a62b088 vocab=79246381
+-/
 lemma one_le_rr (t : ℝ) : 1 ≤ rr t := by
   have h0 : 0 ≤ rr t := Real.sqrt_nonneg _
   nlinarith [rr_sq t, sq_nonneg t]
 
+/--
+@isnad1 id=lt.0h1v.s3.0cd24fb3bb02 from=translated src=- shape=8a62b088 vocab=6e66c496
+-/
 lemma rr_pos (t : ℝ) : 0 < rr t := by
   linarith [one_le_rr t]
 
-/-- `1 - t²/2 ≤ 1/√(1+t²)`.-/
+/-- `1 - t²/2 ≤ 1/√(1+t²)`.
+@isnad1 id=le.0h1v.s6.afcaea02ce6b from=translated src=- shape=e84f3dde vocab=66352e9d
+-/
 lemma inv_rr_lower (t : ℝ) : 1 - t ^ 2 / 2 ≤ 1 / rr t := by
   have h1 := rr_sq t
   have h2 := one_le_rr t
@@ -41,7 +52,9 @@ lemma inv_rr_lower (t : ℝ) : 1 - t ^ 2 / 2 ≤ 1 / rr t := by
       nlinarith [mul_nonneg hu0 hu0, mul_nonneg (mul_nonneg hu0 hu0) (by linarith : (0:ℝ) ≤ 3 - u)]
     nlinarith [mul_pos hp (by linarith : (0:ℝ) < r)]
 
-/-- `1/√(1+t²) ≤ 1 - t²/2 + t⁴/2`.-/
+/-- `1/√(1+t²) ≤ 1 - t²/2 + t⁴/2`.
+@isnad1 id=le.0h1v.s6.d5ecdcb18c54 from=translated src=- shape=fbbfe871 vocab=3381c370
+-/
 lemma inv_rr_upper (t : ℝ) : 1 / rr t ≤ 1 - t ^ 2 / 2 + t ^ 4 / 2 := by
   have h1 := rr_sq t
   have h2 := one_le_rr t

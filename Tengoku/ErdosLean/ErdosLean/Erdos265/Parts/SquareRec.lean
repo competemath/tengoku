@@ -23,7 +23,9 @@ namespace Erdos265
 
 variable {a : ℕ → ℕ}
 
-/-- `1 ≤ P n` (all factors are `≥ 2`).-/
+/-- `1 ≤ P n` (all factors are `≥ 2`).
+@isnad1 id=le.1h2v.s4.d8d0fab6b7da from=translated src=- shape=4bf9a2ff vocab=76e85c7b
+-/
 theorem one_le_P_real (ha : IsRationalPair a) (n : ℕ) : (1 : ℝ) ≤ (P a n : ℝ) := by
   have : 1 ≤ P a n := by
     unfold P
@@ -33,13 +35,18 @@ theorem one_le_P_real (ha : IsRationalPair a) (n : ℕ) : (1 : ℝ) ≤ (P a n :
     omega
   exact_mod_cast this
 
+/--
+@isnad1 id=eq.0h2v.s5.1e9aad0344b9 from=translated src=- shape=c9f212c2 vocab=223d9f1b
+-/
 theorem P_succ_real (n : ℕ) : (P a (n + 1) : ℝ) = (P a n : ℝ) * (a n : ℝ) := by
   unfold P
   rw [Finset.prod_range_succ]
   push_cast
   ring
 
-/-- `Dt n ≤ 1`.-/
+/-- `Dt n ≤ 1`.
+@isnad1 id=le.1h2v.s4.ff5f2c295b11 from=translated src=- shape=fa5a9ae9 vocab=04e85f64
+-/
 theorem Dt_le_one (ha : IsRationalPair a) (n : ℕ) : Dt a n ≤ 1 := by
   have h1 := Dt_le ha n
   have h2 : (2 : ℝ) ≤ (a n : ℝ) := by exact_mod_cast two_le_of ha n
@@ -47,6 +54,9 @@ theorem Dt_le_one (ha : IsRationalPair a) (n : ℕ) : Dt a n ≤ 1 := by
     rw [div_le_one (by linarith)]; linarith
   linarith
 
+/--
+@isnad1 id=le.1h2v.s4.b73a50890f74 from=translated src=- shape=95bcf7d0 vocab=f059c6d7
+-/
 theorem one_le_Henv (ha : IsRationalPair a) (n : ℕ) : 1 ≤ Henv a n := by
   unfold Henv
   have hD := Dt_pos ha n
@@ -57,7 +67,9 @@ theorem one_le_Henv (ha : IsRationalPair a) (n : ℕ) : 1 ≤ Henv a n := by
   rw [le_div_iff₀ hs]
   nlinarith
 
-/-- The real-arithmetic core of the square recurrence.-/
+/-- The real-arithmetic core of the square recurrence.
+@isnad1 id=le.6h4v.s7.1916feda8511 from=translated src=- shape=0ef26199 vocab=762a6581
+-/
 theorem sq_rec_key (X D D' Q : ℝ) (hX : 2 ≤ X) (hD : D = 1 / (X * (X - 1)) + D')
     (hD' : 0 < D') (hle : D ≤ 1 / (X - 1)) (h1 : 1 ≤ Q * D) (h2 : 1 ≤ Q * X ^ 2 * D') :
     X ^ 2 * D ^ 2 ≤ 16 * Q * D' := by

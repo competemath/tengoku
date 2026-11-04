@@ -15,14 +15,23 @@ open Erdos956 Metric
 
 variable {D : Set E} {X : Finset E}
 
+/--
+@isnad1 id=eq.0h2v.s9.8c404a31197b from=translated src=- shape=b9c7db3f vocab=eea65ef5
+-/
 lemma inner_coord_P4 (x y : E) : inner ℝ x y = x 0 * y 0 + x 1 * y 1 := by
   simp [PiLp.inner_apply, Fin.sum_univ_two]; ring
 
+/--
+@isnad1 id=le.1h3v.s7.7ec7a4f91011 from=translated src=- shape=f0d80d84 vocab=b97fc02a
+-/
 lemma infDist_neg_le_P4 (hS : SepConfig D X) (x : E) : infDist (-x) D ≤ infDist x D := by
   obtain ⟨d, hd, hdd⟩ := hS.compact.exists_infDist_eq_dist ⟨0, hS.zero_mem⟩ x
   calc infDist (-x) D ≤ dist (-x) (-d) := infDist_le_dist_of_mem (hS.neg_mem d hd)
     _ = infDist x D := by rw [dist_neg_neg, hdd]
 
+/--
+@isnad1 id=or.2h3v.s7.2b756d08dffc from=translated src=- shape=7164dcb2 vocab=49ce0135
+-/
 theorem unit_orientation (hS : SepConfig D X) {v : E} (hv : infDist v D = 1) :
     OnSide D v ∨ OnSide D (-v) ∨ OnUpper D v ∨ OnUpper D (-v) := by
   have hK : v ∈ Kset D := le_of_eq hv

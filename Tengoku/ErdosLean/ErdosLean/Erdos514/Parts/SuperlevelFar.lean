@@ -7,6 +7,9 @@ import Tengoku.ErdosLean.ErdosLean.Erdos514.Defs
 
 namespace Erdos514
 
+/--
+@isnad1 id=ex.1h3v.s6.765ae68430e6 from=translated src=- shape=474453a1 vocab=3976def1
+-/
 theorem superlevel_subset_far {g : ℂ → ℂ} (hg : Continuous g) (R K₀ : ℝ) :
     ∃ K : ℝ, K₀ ≤ K ∧ superlevel g K ⊆ {z | R < ‖z‖} := by
   obtain ⟨C, hC⟩ :=

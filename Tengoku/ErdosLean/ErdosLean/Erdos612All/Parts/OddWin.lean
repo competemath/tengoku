@@ -27,6 +27,9 @@ def odGlob (q ℓ : ℕ) : List ℕ :=
   else if ℓ = 2 + (6 * q + 19) + (6 * q + 19) then [1]
   else [odDelta q]
 
+/--
+@isnad1 id=eq.0h1v.s6.96de42d26cb7 from=translated src=- shape=89a6b831 vocab=62a6be77
+-/
 theorem od_fam (q : ℕ) : fam (odPre q) (odPer q) (odSuf q) 2 =
     (List.range (2 + (6 * q + 19) + (6 * q + 19) + 3)).map (odGlob q) := by
   have hpre : odPre q = (List.range 2).map (fun _ => [odDelta q]) := rfl
@@ -40,29 +43,49 @@ theorem od_fam (q : ℕ) : fam (odPre q) (odPer q) (odSuf q) 2 =
   unfold odGlob
   split_ifs <;> first | rfl | omega | (congr 1; omega)
 
+/--
+@isnad1 id=eq.0h1v.s5.fa64208ee0a9 from=translated src=- shape=f1c73fa2 vocab=5e7b800a
+-/
 theorem odE_ne (q : ℕ) : odBlock q (6 * q + 19 - 1) = odE q := by
   rw [show 6 * q + 19 - 1 = 6 * q + 18 by omega, odBlock_E3]
 
+/--
+@isnad1 id=eq.1h2v.s4.560f244ae519 from=translated src=- shape=7311a79c vocab=be7e04c0
+-/
 theorem odGlob_pre (q ℓ : ℕ) (h : ℓ < 2) : odGlob q ℓ = [odDelta q] := by
   unfold odGlob; rw [ite_eq_left h]
 
+/--
+@isnad1 id=eq.2h2v.s6.d4b3dad18478 from=translated src=- shape=0cf36689 vocab=3d66527e
+-/
 theorem odGlob_blk (q ℓ : ℕ) (h1 : 2 ≤ ℓ) (h2 : ℓ < 2 + (6 * q + 19)) :
     odGlob q ℓ = odBlock q (ℓ - 2) := by
   unfold odGlob; rw [ite_eq_right (by omega), ite_eq_left h2]
 
+/--
+@isnad1 id=eq.2h2v.s7.a4d351165ff9 from=translated src=- shape=38e25f3d vocab=3d66527e
+-/
 theorem odGlob_blk2 (q ℓ : ℕ) (h1 : 2 + (6 * q + 19) ≤ ℓ)
     (h2 : ℓ < 2 + (6 * q + 19) + (6 * q + 19)) :
     odGlob q ℓ = odBlock q (ℓ - 2 - (6 * q + 19)) := by
   unfold odGlob; rw [ite_eq_right (by omega), ite_eq_right (by omega), ite_eq_left h2]
 
+/--
+@isnad1 id=eq.1h2v.s6.4dd6c5400428 from=translated src=- shape=a4aa5105 vocab=e0347313
+-/
 theorem odGlob_junc (q ℓ : ℕ) (h : ℓ = 2 + (6 * q + 19) + (6 * q + 19)) : odGlob q ℓ = [1] := by
   unfold odGlob; rw [ite_eq_right (by omega), ite_eq_right (by omega), ite_eq_right (by omega), ite_eq_left h]
 
+/--
+@isnad1 id=eq.1h2v.s6.1ac6bbfd5bb7 from=translated src=- shape=d7aa0e5b vocab=088e70fd
+-/
 theorem odGlob_suf (q ℓ : ℕ) (h : 2 + (6 * q + 19) + (6 * q + 19) < ℓ) :
     odGlob q ℓ = [odDelta q] := by
   unfold odGlob; rw [ite_eq_right (by omega), ite_eq_right (by omega), ite_eq_right (by omega), ite_eq_right (by omega)]
 
-/-- Every window of the two-period family is an end window or a block window.-/
+/-- Every window of the two-period family is an end window or a block window.
+@isnad1 id=allwin.0h8v.s8.80240af7c46b from=translated src=- shape=a2d24d2a vocab=6a053bb9
+-/
 theorem od_win (q : ℕ) {Q : List ℕ → List ℕ → List ℕ → Prop}
     (hQ : ∀ m, m < 6 * q + 19 → ∀ a c : List ℕ, (m ≠ 0 → a = odBlock q (m - 1)) →
       (m = 0 → odX q ≤ a.sum) → (m + 1 ≠ 6 * q + 19 → c = odBlock q (m + 1)) →
@@ -116,17 +139,26 @@ theorem od_win (q : ℕ) {Q : List ℕ → List ℕ → List ℕ → Prop}
       odGlob_suf q (ℓ - 1) (by omega)]
     exact h4
 
+/--
+@isnad1 id=allwin.0h1v.s4.902e26d1c6a9 from=translated src=- shape=32574f38 vocab=5fda81f9
+-/
 theorem od_pos (q : ℕ) : AllWin PosQ (fam (odPre q) (odPer q) (odSuf q) 2) := by
   have hδ : 0 < odDelta q := by unfold odDelta odX odU; positivity
   exact od_win q (fun m hm a c _ _ _ _ => odBlock_pos q m hm)
     ⟨by simp, by simpa using hδ⟩ ⟨by simp, by simpa using hδ⟩ ⟨by simp, by simp⟩
     ⟨by simp, by simpa using hδ⟩ ⟨by simp, by simpa using hδ⟩
 
+/--
+@isnad1 id=allwin.0h1v.s4.46541737d14a from=translated src=- shape=7492cdae vocab=eff56658
+-/
 theorem od_deg (q : ℕ) : AllWin (DegQ (odDelta q)) (fam (odPre q) (odPer q) (odSuf q) 2) := by
   have hE := odE_sum q
   refine od_win q (fun m hm a c ha ha0 hc hc0 => odBlock_deg q m hm a c ha ha0 hc hc0) ?_ ?_ ?_ ?_ ?_ <;>
     · intro w hw; simp at hw; subst hw; simp
 
+/--
+@isnad1 id=somewin.0h1v.s4.abf266ddb03d from=translated src=- shape=7492cdae vocab=532ecfdf
+-/
 theorem od_tight (q : ℕ) : SomeWin (TightQ (odDelta q)) (fam (odPre q) (odPer q) (odSuf q) 2) := by
   rw [od_fam, someWin_map_range]
   refine ⟨5, by omega, ?_⟩
@@ -134,6 +166,9 @@ theorem od_tight (q : ℕ) : SomeWin (TightQ (odDelta q)) (fam (odPre q) (odPer 
   simp (disch := omega) only [ite_eq_right, ite_eq_left]
   exact odBlock_tight q
 
+/--
+@isnad1 id=allwin.0h1v.s5.5dd81f44afcc from=translated src=- shape=68b14e61 vocab=672a0319
+-/
 theorem od_cliq (q : ℕ) :
     AllWin (CliqQ (2 * (q + 4) + 1)) (fam (odPre q) (odPer q) (odSuf q) 2) := by
   refine od_win q (fun m hm a c _ _ hc hc0 => odBlock_cliq q m hm a c hc

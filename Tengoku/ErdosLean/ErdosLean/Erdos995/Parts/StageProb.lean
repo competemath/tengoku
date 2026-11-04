@@ -23,7 +23,9 @@ namespace Con
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
-/-- Elementary bound `(1 - r)^n ≤ 2^{-m}` from `n r ≥ 2^m`.-/
+/-- Elementary bound `(1 - r)^n ≤ 2^{-m}` from `n r ≥ 2^m`.
+@isnad1 id=le.3h3v.s6.852cd59c563d from=translated src=- shape=638209bb vocab=270cda3e
+-/
 lemma one_sub_pow_le_aux (r : ℝ) (n m : ℕ) (hr0 : 0 ≤ r) (hr1 : r ≤ 1)
     (hn : (2 : ℝ) ^ m ≤ n * r) : (1 - r) ^ n ≤ (2⁻¹ : ℝ) ^ m := by
   have hb := one_add_mul_le_pow (by linarith : (-2 : ℝ) ≤ r) n
@@ -35,6 +37,9 @@ lemma one_sub_pow_le_aux (r : ℝ) (n m : ℕ) (hr0 : 0 ≤ r) (hr1 : r ≤ 1)
   rw [inv_pow, ← one_div, le_div_iff₀ (by positivity)]
   exact h4
 
+/--
+@isnad1 id=eq.0h1v.s5.dd28386fa715 from=translated src=- shape=3af08947 vocab=bcd6b972
+-/
 lemma ennreal_inv_two_pow (m : ℕ) :
     ((2⁻¹ : ℝ≥0∞)) ^ m = ENNReal.ofReal ((2⁻¹ : ℝ) ^ m) := by
   rw [ENNReal.ofReal_pow (by norm_num), ENNReal.ofReal_inv_of_pos (by norm_num)]
@@ -49,11 +54,17 @@ def stagePairs (k : ℕ) : Finset (Σ _ : ℕ, ℕ) :=
 def pairStart (k : ℕ) (i : Σ _ : ℕ, ℕ) : ℕ :=
   shift k + trialStart i.1 + i.2 * spacing k
 
+/--
+@isnad1 id=eq.1h2v.s5.dc9098c36f6e from=translated src=- shape=5c040f6f vocab=e8ab0e8e
+-/
 lemma stage_of_mem_Ico {k s : ℕ} (hs : s ∈ Finset.Ico (firstTrial k) (firstTrial (k + 1))) :
     stage s = k := by
   rw [Finset.mem_Ico] at hs
   exact stage_eq s k hs.1 hs.2
 
+/--
+@isnad1 id=eq.0h1v.s7.a9c4c3080ab7 from=translated src=- shape=90af717d vocab=ec518138
+-/
 lemma compl_stageGood_eq (k : ℕ) :
     (stageGood k)ᶜ = ⋂ i ∈ stagePairs k, (Erdos996.Asm.hitSet (depth k) (pairStart k i))ᶜ := by
   ext x
@@ -71,6 +82,9 @@ lemma compl_stageGood_eq (k : ℕ) :
     obtain ⟨hh, hhm, hx⟩ := Set.mem_iUnion₂.mp hx
     exact h ⟨s, hh⟩ (by rw [stagePairs, Finset.mem_sigma]; exact ⟨hs, hhm⟩) hx
 
+/--
+@isnad1 id=le.3h5v.s6.9949c3662289 from=translated src=- shape=e83fded9 vocab=855e68be
+-/
 lemma pairStart_lt_of_lt (k : ℕ) {s h s' h' : ℕ}
     (hs : s ∈ Finset.Ico (firstTrial k) (firstTrial (k + 1)))
     (hh : h ≤ blockLen k + 1) (hss' : s < s') :
@@ -86,6 +100,9 @@ lemma pairStart_lt_of_lt (k : ℕ) {s h s' h' : ℕ}
   simp only [pairStart]
   omega
 
+/--
+@isnad1 id=or.3h3v.s7.c82058791ec2 from=translated src=- shape=712efd82 vocab=2c914beb
+-/
 lemma pairStart_disj (k : ℕ) :
     ∀ i ∈ stagePairs k, ∀ j ∈ stagePairs k, i ≠ j →
       pairStart k i + depth k ≤ pairStart k j ∨
@@ -112,6 +129,9 @@ lemma pairStart_disj (k : ℕ) :
       omega
   · right; exact pairStart_lt_of_lt k hj.1 hj.2.2 hgt
 
+/--
+@isnad1 id=le.0h1v.s5.df65fafe8b2c from=translated src=- shape=87626503 vocab=c16010ef
+-/
 lemma card_stagePairs (k : ℕ) :
     7 * nTrials k * blockLen k ≤ 8 * (stagePairs k).card := by
   have hS : firstTrial (k + 1) = firstTrial k + nTrials k := rfl
@@ -127,6 +147,9 @@ lemma card_stagePairs (k : ℕ) :
         rw [stage_of_mem_Ico hs] at this
         omega
 
+/--
+@isnad1 id=le.0h1v.s6.d71a94b53f55 from=translated src=- shape=d7552450 vocab=bd236029
+-/
 lemma stage_count_nat (k : ℕ) :
     2 ^ (k + 3) * 2 ^ depth k ≤ (stagePairs k).card := by
   have hcard := card_stagePairs k
@@ -149,11 +172,17 @@ lemma stage_count_nat (k : ℕ) :
     rw [this, h']; exact Nat.mul_le_mul_right _ (by norm_num)
   omega
 
+/--
+@isnad1 id=le.0h1v.s6.17a9f579ea2b from=translated src=- shape=e39e15fd vocab=5f357e12
+-/
 lemma stage_count_real (k : ℕ) :
     (2 : ℝ) ^ (k + 3) ≤ ((stagePairs k).card : ℝ) * (2⁻¹ : ℝ) ^ depth k := by
   rw [inv_pow, le_mul_inv_iff₀ (by positivity)]
   exact_mod_cast stage_count_nat k
 
+/--
+@isnad1 id=le.0h1v.s7.c272283972a5 from=translated src=- shape=c80803d8 vocab=3e9239d7
+-/
 lemma measure_compl_stageGood_le (k : ℕ) :
     μ𝕋 (stageGood k)ᶜ ≤ (2⁻¹ : ℝ≥0∞) ^ (k + 3) := by
   classical

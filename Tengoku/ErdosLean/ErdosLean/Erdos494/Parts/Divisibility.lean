@@ -9,7 +9,9 @@ For `1 ≤ m ≤ s-1`, `(s-1)! · C(n,m)` is divisible by `n` (`m! C(n,m) = n (n
 
 namespace Erdos494
 
-/-- `n ∣ t! · C(n, m)` for `1 ≤ m ≤ t`.-/
+/-- `n ∣ t! · C(n, m)` for `1 ≤ m ≤ t`.
+@isnad1 id=dvd.2h3v.s5.200b4c1ee5ad from=translated src=- shape=51836204 vocab=ef875bb2
+-/
 lemma dvd_factorial_mul_choose (n t m : ℕ) (hm1 : 1 ≤ m) (hmt : m ≤ t) :
     n ∣ t.factorial * n.choose m := by
   obtain ⟨m', rfl⟩ : ∃ m', m = m' + 1 := ⟨m - 1, by omega⟩
@@ -27,6 +29,9 @@ lemma dvd_factorial_mul_choose (n t m : ℕ) (hm1 : 1 ≤ m) (hmt : m ≤ t) :
       _ = (n' + 1) * n'.choose m' * k := by rw [← h]
       _ = (n' + 1) * (n'.choose m' * k) := by ring
 
+/--
+@isnad1 id=dvd.3h3v.s6.18bef46b4141 from=translated src=- shape=2c001883 vocab=b5323a8c
+-/
 theorem gfs_dvd (s n j : ℕ) (hs : 1 ≤ s) (_hn : 0 < n) (h : gfsPoly s n j = 0) :
     n ∣ (s - 1).factorial * s ^ (j - 1) := by
   obtain ⟨t, rfl⟩ : ∃ t, s = t + 1 := ⟨s - 1, by omega⟩

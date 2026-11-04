@@ -23,7 +23,9 @@ namespace Erdos1199
 open Filter Pointwise
 
 /-- Theorem 1.1 for Boolean colourings: every `b : ℕ → Bool` has an infinite set `B` of
-positive integers with `B + B` monochromatic.-/
+positive integers with `B + B` monochromatic.
+@isnad1 id=owings.0h1v.s2.df4de3006531 from=translated src=- shape=fb795595 vocab=5ae4066e
+-/
 theorem owings_bool (b : ℕ → Bool) : Owings b := by
   by_contra H
   -- the encoded point `𝐜` of `c(n) = b(2n)`
@@ -50,7 +52,9 @@ theorem owings_bool (b : ℕ → Bool) : Owings b := by
   have hthick := thick_of_minimal (encode (ext2 b)) M hM G hGM hcode
   exact hno (hindman_thick (fun n => G (act (pure n) (encode (ext2 b)))) true hthick)
 
-/-- **Erdős #1199 / Owings's question**, original form over the positive integers.-/
+/-- **Erdős #1199 / Owings's question**, original form over the positive integers.
+@isnad1 id=erdos119.0h0v.s0.de0c0dfc113e from=translated src=- shape=45709ebd vocab=de0c0dfc
+-/
 theorem erdos_1199_pos : Erdos1199StatementPos := by
   intro color
   obtain ⟨B, hBinf, hBpos, γ, hγ⟩ := owings_bool (fun n => decide (color n = 1))
@@ -64,13 +68,17 @@ theorem erdos_1199_pos : Erdos1199StatementPos := by
   rcases two (color n) with h | h <;> rcases two (color m) with h' | h' <;>
     simp [h, h'] at hnm ⊢
 
-/-- **Erdős #1199**, in the formal-conjectures formulation.-/
+/-- **Erdős #1199**, in the formal-conjectures formulation.
+@isnad1 id=erdos119.0h0v.s0.ec53234da696 from=translated src=- shape=45709ebd vocab=ec53234d
+-/
 theorem erdos_1199 : Erdos1199Statement := by
   intro color
   obtain ⟨A, h1, -, h3⟩ := erdos_1199_pos color
   exact ⟨A, h1, h3⟩
 
-/-- The formal-conjectures statement `answer(?) ↔ …` with the answer `True` filled in.-/
+/-- The formal-conjectures statement `answer(?) ↔ …` with the answer `True` filled in.
+@isnad1 id=iff.0h0v.s6.e2bb5e899af0 from=translated src=- shape=e471edcc vocab=87e45063
+-/
 theorem erdos_1199_fc :
     True ↔ ∀ (color : ℕ → Fin 2), ∃ (A : Set ℕ),
       A.Infinite ∧ ∀ n ∈ (A + A), ∀ m ∈ (A + A), color n = color m :=

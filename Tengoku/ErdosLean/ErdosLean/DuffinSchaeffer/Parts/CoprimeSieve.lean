@@ -23,6 +23,9 @@ namespace DuffinSchaeffer
 
 namespace CoprimeSieveAux
 
+/--
+@isnad1 id=eq.0h1v.s5.cfc404a95fb3 from=translated src=- shape=ed341a56 vocab=868f914c
+-/
 lemma totient_real (n : ℕ) :
     (Nat.totient n : ℝ) = n * ∏ p ∈ n.primeFactors, (1 - (1 : ℝ) / p) := by
   have h := congrArg (fun q : ℚ => (q : ℝ)) (Nat.totient_eq_mul_prod_factors n)
@@ -30,6 +33,9 @@ lemma totient_real (n : ℕ) :
     Rat.cast_inv] at h
   simpa [one_div] using h
 
+/--
+@isnad1 id=and.1h1v.s7.9e64bd131fb7 from=translated src=- shape=5431aa29 vocab=edc32717
+-/
 lemma prime_factor_bounds {p : ℕ} (hp : p.Prime) :
     0 < 1 - (1 : ℝ) / p ∧ 1 - (1 : ℝ) / p ≤ 1 ∧ 1 / 2 ≤ 1 - (1 : ℝ) / p := by
   have h2 : (2 : ℝ) ≤ p := by exact_mod_cast hp.two_le
@@ -38,6 +44,9 @@ lemma prime_factor_bounds {p : ℕ} (hp : p.Prime) :
   have h4 : 0 ≤ (1 : ℝ) / p := by positivity
   refine ⟨by linarith, by linarith, by linarith⟩
 
+/--
+@isnad1 id=le.1h1v.s5.0f4131fd294b from=translated src=- shape=68ef3600 vocab=ee6aa6f8
+-/
 lemma one_le_factor {p : ℕ} (hp : p.Prime) : 1 ≤ (1 - (1 : ℝ) / p)⁻¹ := by
   obtain ⟨h1, h2, -⟩ := prime_factor_bounds hp
   exact (one_le_inv₀ h1).mpr h2
@@ -45,13 +54,22 @@ lemma one_le_factor {p : ℕ} (hp : p.Prime) : 1 ≤ (1 - (1 : ℝ) / p)⁻¹ :=
 /-- `R n = n / φ(n)`.-/
 noncomputable def R (n : ℕ) : ℝ := (n : ℝ) / Nat.totient n
 
+/--
+@isnad1 id=le.0h1v.s3.71ecdbfd5316 from=translated src=- shape=b9369acb vocab=20c80ffd
+-/
 lemma R_nonneg (n : ℕ) : 0 ≤ R n := by unfold R; positivity
 
+/--
+@isnad1 id=eq.1h1v.s5.59841d7543bc from=translated src=- shape=87195f25 vocab=8a80d568
+-/
 lemma R_eq {n : ℕ} (hn : n ≠ 0) : R n = ∏ p ∈ n.primeFactors, (1 - (1 : ℝ) / p)⁻¹ := by
   rw [R, totient_real, prod_inv_distrib]
   have : (n : ℝ) ≠ 0 := by exact_mod_cast hn
   rw [div_mul_eq_div_div, div_self this, one_div]
 
+/--
+@isnad1 id=le.1h1v.s4.29ba615d1c9c from=translated src=- shape=a558fa7c vocab=b8749d43
+-/
 lemma R_primePow {d : ℕ} (hd : IsPrimePow d) : R d ≤ 2 := by
   obtain ⟨p, k, hp, hk, rfl⟩ := (isPrimePow_nat_iff d).mp hd
   rw [R_eq (pow_ne_zero _ hp.ne_zero), Nat.primeFactors_prime_pow hk.ne' hp, prod_singleton]
@@ -60,6 +78,9 @@ lemma R_primePow {d : ℕ} (hd : IsPrimePow d) : R d ≤ 2 := by
   have : (2 : ℝ)⁻¹ = 1 / 2 := by norm_num
   linarith
 
+/--
+@isnad1 id=le.2h2v.s5.71bbf906f0c3 from=translated src=- shape=a9e7a3e5 vocab=da60323b
+-/
 lemma R_mul_le {a b : ℕ} (ha : a ≠ 0) (hb : b ≠ 0) : R (a * b) ≤ R a * R b := by
   unfold R
   have hta : (0 : ℝ) < Nat.totient a := by exact_mod_cast Nat.totient_pos.mpr (Nat.pos_of_ne_zero ha)
@@ -73,13 +94,22 @@ lemma R_mul_le {a b : ℕ} (ha : a ≠ 0) (hb : b ≠ 0) : R (a * b) ≤ R a * R
 noncomputable def F (m : ℕ) : ArithmeticFunction ℝ :=
   ⟨fun n => if n.Coprime m then R n else 0, by simp [R]⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.7096498cd673 from=translated src=- shape=d9581454 vocab=f46c67b3
+-/
 lemma F_apply (m n : ℕ) : F m n = if n.Coprime m then R n else 0 := rfl
 
+/--
+@isnad1 id=le.0h2v.s4.57641ffb79bb from=translated src=- shape=f54b5217 vocab=bff17e63
+-/
 lemma F_nonneg (m n : ℕ) : 0 ≤ F m n := by
   rw [F_apply]; split_ifs
   · exact R_nonneg n
   · exact le_refl 0
 
+/--
+@isnad1 id=le.0h2v.s6.8649581623af from=translated src=- shape=f62eb855 vocab=6bb3b8ea
+-/
 lemma F_mul_log_le (m n : ℕ) :
     F m n * Real.log n ≤ 2 * (ArithmeticFunction.vonMangoldt * F m) n := by
   rw [← ArithmeticFunction.vonMangoldt_sum, mul_sum, ArithmeticFunction.mul_apply]
@@ -113,6 +143,9 @@ lemma F_mul_log_le (m n : ℕ) :
     _ ≤ ArithmeticFunction.vonMangoldt i * (2 * F m (n / i)) := mul_le_mul_of_nonneg_left key hΛ
     _ = 2 * (ArithmeticFunction.vonMangoldt i * F m (n / i)) := by ring
 
+/--
+@isnad1 id=le.0h2v.s7.e603fe386d7c from=translated src=- shape=3555230a vocab=0de8b38a
+-/
 lemma sum_F_log_le (m N : ℕ) :
     ∑ n ∈ Ioc 0 N, F m n * Real.log n ≤
       2 * (Real.log 4 + 4) * N * ∑ n ∈ Ioc 0 N, F m n / n := by
@@ -139,6 +172,9 @@ lemma sum_F_log_le (m N : ℕ) :
         rw [mul_sum, mul_sum]
         refine sum_congr rfl fun k _ => by ring
 
+/--
+@isnad1 id=le.0h2v.s7.92f0804f6283 from=translated src=- shape=9907bca5 vocab=0de8b38a
+-/
 lemma sum_F_logN_le (m N : ℕ) :
     (∑ n ∈ Ioc 0 N, F m n) * Real.log N ≤
       (2 * (Real.log 4 + 4) + 1) * N * ∑ n ∈ Ioc 0 N, F m n / n := by
@@ -169,18 +205,33 @@ lemma sum_F_logN_le (m N : ℕ) :
 /-- `f n = 1/φ(n)`.-/
 noncomputable def f (n : ℕ) : ℝ := 1 / (Nat.totient n : ℝ)
 
+/--
+@isnad1 id=le.0h1v.s3.7871dd6f55a4 from=translated src=- shape=b9369acb vocab=9f49a1bc
+-/
 lemma f_nonneg (n : ℕ) : 0 ≤ f n := by unfold f; positivity
 
+/--
+@isnad1 id=eq.0h0v.s3.94f837b305c8 from=translated src=- shape=1ac31801 vocab=a3a7c397
+-/
 lemma f_one : f 1 = 1 := by simp [f]
 
+/--
+@isnad1 id=eq.1h2v.s4.c056debb50ff from=translated src=- shape=544cf949 vocab=7b77df54
+-/
 lemma f_mul {a b : ℕ} (h : Nat.Coprime a b) : f (a * b) = f a * f b := by
   simp [f, Nat.totient_mul h, mul_comm]
 
+/--
+@isnad1 id=eq.1h2v.s6.3801cb22aad7 from=translated src=- shape=55f24f7f vocab=7e9830ee
+-/
 lemma f_pow_succ {p : ℕ} (hp : p.Prime) (k : ℕ) :
     f (p ^ (k + 1)) = (1 / ((p : ℝ) - 1)) * (1 / (p : ℝ)) ^ k := by
   rw [f, Nat.totient_prime_pow_succ hp, Nat.cast_mul, Nat.cast_pow, Nat.cast_sub hp.one_le,
     Nat.cast_one, one_div_pow, div_mul_div_comm, one_mul, mul_comm]
 
+/--
+@isnad1 id=hassum.1h1v.s6.10807ebc6003 from=translated src=- shape=8cc40a9a vocab=9cb3016e
+-/
 lemma hasSum_f_pow {p : ℕ} (hp : p.Prime) :
     HasSum (fun k => f (p ^ k)) (1 / ((p : ℝ) - 1) * (1 - 1 / (p : ℝ))⁻¹ + 1) := by
   have h2 : (2 : ℝ) ≤ p := by exact_mod_cast hp.two_le
@@ -195,6 +246,9 @@ lemma hasSum_f_pow {p : ℕ} (hp : p.Prime) :
   rw [sum_range_one, pow_zero, f_one, add_sub_cancel_right]
   exact hg'
 
+/--
+@isnad1 id=le.1h1v.s7.6ab60e27071e from=translated src=- shape=a9169db9 vocab=ec4afb93
+-/
 lemma euler_factor_le {p : ℕ} (hp : p.Prime) :
     1 / ((p : ℝ) - 1) * (1 - 1 / (p : ℝ))⁻¹ + 1 ≤
       (1 - 1 / (p : ℝ))⁻¹ * (1 + 2 * ((p : ℝ) ^ 2)⁻¹) := by
@@ -211,6 +265,9 @@ lemma euler_factor_le {p : ℕ} (hp : p.Prime) :
   have : 0 ≤ (q - 2) / (q * (q - 1) ^ 2) := div_nonneg (by linarith) (by positivity)
   linarith
 
+/--
+@isnad1 id=le.0h2v.s7.af664dc19d14 from=translated src=- shape=bdef6f0f vocab=f4e089a3
+-/
 lemma sum_F_div_le (m N : ℕ) :
     ∑ n ∈ Ioc 0 N, F m n / n ≤
       ∏ p ∈ ((Iic N).filter Nat.Prime).filter (fun p => ¬ p ∣ m),

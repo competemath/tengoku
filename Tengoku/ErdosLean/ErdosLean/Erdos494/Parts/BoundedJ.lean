@@ -24,6 +24,9 @@ private lemma choose_mono_low (n r : ℕ) :
     calc n.choose r ≤ n.choose (r + k) := h1
       _ ≤ n.choose (r + (k + 1)) := by rw [← add_assoc]; exact h2
 
+/--
+@isnad1 id=ex.1h2v.s5.22e9dd3942a1 from=translated src=- shape=7404c3c0 vocab=f09fe3c9
+-/
 theorem bounded_j (s : ℕ) (hs : 2 ≤ s) (J : ℕ) :
     ∃ N : ℕ, ∀ n j : ℕ, N ≤ n → j < J → gfsPoly s n j ≠ 0 := by
   obtain ⟨t, rfl⟩ : ∃ t, s = t + 2 := ⟨s - 2, by omega⟩

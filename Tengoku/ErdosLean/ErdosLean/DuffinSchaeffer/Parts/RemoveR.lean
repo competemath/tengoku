@@ -17,18 +17,27 @@ namespace DuffinSchaeffer
 
 /-! ### Auxiliary lemmas (racing prover) -/
 
+/--
+@isnad1 id=le.1h4v.s6.fcfeb56150b1 from=translated src=- shape=d402b565 vocab=62ad4521
+-/
 theorem alt84_sum_union_le {α : Type*} [DecidableEq α] (s t : Finset α) (f : α → ℝ)
     (hf : ∀ x, 0 ≤ f x) : ∑ x ∈ s ∪ t, f x ≤ ∑ x ∈ s, f x + ∑ x ∈ t, f x := by
   have := Finset.sum_union_inter (s₁ := s) (s₂ := t) (f := f)
   have h0 : 0 ≤ ∑ x ∈ s ∩ t, f x := Finset.sum_nonneg (fun _ _ => hf _)
   linarith
 
+/--
+@isnad1 id=le.2h4v.s6.f42a33bf1dbf from=translated src=- shape=fda707cc vocab=0a91b743
+-/
 theorem alt84_esum_le (μ : ℕ → ℝ) (hμ : ∀ n, 0 ≤ μ n) (S : Finset (ℕ × ℕ)) (A B : Finset ℕ)
     (h : S ⊆ A ×ˢ B) : esum μ S ≤ wsum μ A * wsum μ B := by
   unfold esum wsum
   rw [Finset.sum_mul_sum, ← Finset.sum_product']
   exact Finset.sum_le_sum_of_subset_of_nonneg h (fun e _ _ => mul_nonneg (hμ _) (hμ _))
 
+/--
+@isnad1 id=le.2h2v.s6.dad72d93fe02 from=translated src=- shape=a39a155e vocab=73eaf4e9
+-/
 theorem alt84_inv_sq (A : Finset ℕ) (N : ℝ) (hN : 1 ≤ N) (hA : ∀ a ∈ A, N ≤ a) :
     ∑ a ∈ A, ((a : ℝ) ^ 2)⁻¹ ≤ 2 / N := by
   set m := ⌈N⌉₊ with hm
@@ -52,9 +61,15 @@ theorem alt84_inv_sq (A : Finset ℕ) (N : ℝ) (hN : 1 ≤ N) (hA : ∀ a ∈ A
     _ ≤ 2 / N := by
         apply div_le_div_of_nonneg_left (by norm_num) (by linarith) hNm
 
+/--
+@isnad1 id=eq.0h0v.s4.fef33e3521e1 from=translated src=- shape=8ad78a5d vocab=aa988c04
+-/
 theorem alt84_T0_log : Real.log T0 = 2000 * Real.log 10 := by
   unfold T0; rw [Real.log_pow]; push_cast; ring
 
+/--
+@isnad1 id=lt.0h0v.s4.07d3b5c075d1 from=translated src=- shape=cf0a9d99 vocab=8079cfe6
+-/
 theorem alt84_log10 : 2 < Real.log 10 := by
   rw [Real.lt_log_iff_exp_lt (by norm_num)]
   have h1 := Real.exp_one_lt_d9
@@ -63,6 +78,9 @@ theorem alt84_log10 : 2 < Real.log 10 := by
   have h0 : 0 < Real.exp 1 := Real.exp_pos 1
   nlinarith
 
+/--
+@isnad1 id=le.0h0v.s5.6d0e684d5821 from=translated src=- shape=253bf04b vocab=9d687c90
+-/
 theorem alt84_log51 : Real.log 51 ≤ 4 - 1 / 39 := by
   rw [Real.log_le_iff_le_exp (by norm_num)]
   have h1 : Real.exp (4 - 1 / 39) = Real.exp 1 ^ 4 * Real.exp (-(1 / 39)) := by
@@ -74,7 +92,9 @@ theorem alt84_log51 : Real.log 51 ≤ 4 - 1 / 39 := by
   have h4 : 0 ≤ Real.exp 1 ^ 4 := by positivity
   nlinarith
 
-/-- `∑_{t ≤ p < t^50} 1/p ≤ 4` in the form produced by `sum_inv_prime_Ioc_le`.-/
+/-- `∑_{t ≤ p < t^50} 1/p ≤ 4` in the form produced by `sum_inv_prime_Ioc_le`.
+@isnad1 id=le.1h1v.s6.01c9c74dbd5d from=translated src=- shape=fde2d7f6 vocab=97e8f5b2
+-/
 theorem alt84_mertens (t : ℝ) (ht : T0 ≤ t) :
     Real.log (Real.log (t ^ (50 : ℕ)) / Real.log (t - 1)) + 100 / Real.log (t - 1) ≤ 4 := by
   have hT : (4 : ℝ) ≤ T0 := by
@@ -105,6 +125,9 @@ theorem alt84_mertens (t : ℝ) (ht : T0 ≤ t) :
   have h4 : (100 : ℝ) / 3999 ≤ 1 / 39 := by norm_num
   linarith
 
+/--
+@isnad1 id=not.4h3v.s6.e6f19e718372 from=translated src=- shape=bbf90fc5 vocab=2351765c
+-/
 theorem alt84_not_dvd (v w p : ℕ) (hv : 0 < v) (hw : 0 < w) (hp : p.Prime)
     (h : v.factorization p = w.factorization p) : ¬ p ∣ coprimePart v w := by
   intro hdvd
@@ -131,6 +154,9 @@ theorem alt84_not_dvd (v w p : ℕ) (hv : 0 < v) (hw : 0 < w) (hp : p.Prime)
     · exact h' hd
     · exact hwg0 h'
 
+/--
+@isnad1 id=ne.2h2v.s5.008765d67743 from=translated src=- shape=d7f059a1 vocab=c78ff33d
+-/
 theorem alt84_coprimePart_ne_zero (v w : ℕ) (hv : 0 < v) (hw : 0 < w) : coprimePart v w ≠ 0 := by
   unfold coprimePart
   apply Nat.mul_ne_zero
@@ -139,7 +165,9 @@ theorem alt84_coprimePart_ne_zero (v w : ℕ) (hv : 0 < v) (hw : 0 < w) : coprim
 
 namespace GCDGraph
 
-/-- For a sharp prime `p`, the edges with `p ∣ vw/gcd(v,w)^2` have measure `≤ 2·10^40/p·μ(V)μ(W)`.-/
+/-- For a sharp prime `p`, the edges with `p ∣ vw/gcd(v,w)^2` have measure `≤ 2·10^40/p·μ(V)μ(W)`.
+@isnad1 id=le.2h2v.s6.f332830e1d6d from=translated src=- shape=da1c5c8a vocab=91eb1e88
+-/
 theorem alt84_sharp_bound (G : GCDGraph) (p : ℕ) (hp : p.Prime) (hs : G.IsSharp p) :
     esum G.μ (G.E.filter (fun e => p ∣ coprimePart e.1 e.2)) ≤
       2 * (K40 / p) * (wsum G.μ G.V * wsum G.μ G.W) := by
@@ -194,7 +222,9 @@ theorem alt84_sharp_bound (G : GCDGraph) (p : ℕ) (hp : p.Prime) (hs : G.IsShar
         · exact le_trans hB (mul_le_mul_of_nonneg_left hW' hV0)
     _ = 2 * (K40 / p) * (wsum G.μ G.V * wsum G.μ G.W) := by ring
 
-/-- Lemma 8.4.-/
+/-- Lemma 8.4.
+@isnad1 id=ex.5h2v.s8.ea92f400147e from=translated src=- shape=74871afe vocab=abba119e
+-/
 theorem lemma84 (G : GCDGraph) (t : ℝ) (ht : T0 ≤ t) (hδ : 0 < G.density)
     (hflat : G.Rflat = ∅) (hδt : (10 / t) ^ (50 : ℕ) ≤ G.density)
     (hE : ∀ e ∈ G.E, 10 ≤ Lsum t e.1 e.2) :

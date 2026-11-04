@@ -10,6 +10,9 @@ value `≥ 1`. -/
 
 namespace Erdos494
 
+/--
+@isnad1 id=eq.2h4v.s7.00f8a9a90f79 from=translated src=- shape=74be69b4 vocab=c2e11168
+-/
 lemma rlb_pow_clear (p : ℤ) (q : ℕ) (hq : 0 < q) (m r : ℕ) (h : m ≤ r) :
     (q : ℝ) ^ r * ((p : ℝ) / q) ^ m = (p : ℝ) ^ m * (q : ℝ) ^ (r - m) := by
   have hq' : (q : ℝ) ≠ 0 := by exact_mod_cast hq.ne'
@@ -17,6 +20,9 @@ lemma rlb_pow_clear (p : ℤ) (q : ℕ) (hq : 0 < q) (m r : ℕ) (h : m ≤ r) :
   rw [Nat.add_sub_cancel_left, div_pow, pow_add]
   field_simp
 
+/--
+@isnad1 id=le.3h9v.s7.6ff082bfa2fd from=translated src=- shape=4de872f8 vocab=565468fc
+-/
 theorem rational_lower_bound (r1 r2 : ℕ) (c : ℕ → ℕ → ℤ) (i1 i2 : ℕ) (p1 p2 : ℤ) (q1 q2 : ℕ)
     (hq1 : 0 < q1) (hq2 : 0 < q2)
     (hne : hasseEval r1 r2 c i1 i2 ((p1 : ℝ) / q1) ((p2 : ℝ) / q2) ≠ 0) :

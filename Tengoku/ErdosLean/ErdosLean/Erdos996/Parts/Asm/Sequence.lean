@@ -17,6 +17,9 @@ namespace Asm
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
+/--
+@isnad1 id=eq.2h2v.s5.ecf5a96db577 from=translated src=- shape=20e6569d vocab=62e939b9
+-/
 lemma trialOf_trial (s r : ℕ) (hr1 : 1 ≤ r) (hr2 : r ≤ trialLen s) :
     trialOf (21 ^ s + r - 2) = s := by
   unfold trialOf
@@ -26,7 +29,9 @@ lemma trialOf_trial (s r : ℕ) (hr1 : 1 ≤ r) (hr2 : r ≤ trialLen s) :
   · omega
   · rw [pow_succ]; omega
 
-/-- Every global index is the `r`-th exponent of some trial.-/
+/-- Every global index is the `r`-th exponent of some trial.
+@isnad1 id=ex.0h1v.s6.d9c023eaef25 from=translated src=- shape=3e87b5fb vocab=e5463e0a
+-/
 lemma exists_trial (j : ℕ) : ∃ s r, 1 ≤ r ∧ r ≤ trialLen s ∧ j = 21 ^ s + r - 2 := by
   have h1 := Nat.pow_log_le_self 21 (by omega : j + 1 ≠ 0)
   have h2 := Nat.lt_pow_succ_log_self (by norm_num : 1 < 21) (j + 1)
@@ -36,7 +41,9 @@ lemma exists_trial (j : ℕ) : ∃ s r, 1 ≤ r ∧ r ≤ trialLen s ∧ j = 21 
   · unfold trialLen; omega
   · omega
 
-/-- The `r`-th exponent of trial `s` sits at global index `21^s + r - 2`.-/
+/-- The `r`-th exponent of trial `s` sits at global index `21^s + r - 2`.
+@isnad1 id=eq.2h3v.s6.44355dc75754 from=translated src=- shape=552ec853 vocab=17bf4341
+-/
 lemma mExp_trial (A s r : ℕ) (hr1 : 1 ≤ r) (hr2 : r ≤ trialLen s) :
     mExp A (21 ^ s + r - 2) = trialStart A s + r * spacing A (stage A s) := by
   unfold mExp
@@ -45,6 +52,9 @@ lemma mExp_trial (A s r : ℕ) (hr1 : 1 ≤ r) (hr2 : r ≤ trialLen s) :
   have : 21 ^ s + r - 2 + 2 - 21 ^ s = r := by omega
   rw [this]
 
+/--
+@isnad1 id=strictmo.0h1v.s3.f0ff78af98ab from=translated src=- shape=f736e2c1 vocab=d9d9815a
+-/
 lemma mExp_strictMono (A : ℕ) : StrictMono (mExp A) := by
   apply strictMono_nat_of_lt_succ
   intro j
@@ -68,6 +78,9 @@ lemma mExp_strictMono (A : ℕ) : StrictMono (mExp A) := by
     have : 0 < spacing A (stage A (s + 1)) := by unfold spacing; omega
     omega
 
+/--
+@isnad1 id=isdyadic.0h1v.s2.b4df0fd5391c from=translated src=- shape=76a08d12 vocab=eb0fb5fa
+-/
 lemma isDyadicLacunary_nSeq (A : ℕ) : IsDyadicLacunary (nSeq A) := by
   refine ⟨Nat.one_le_pow _ _ (by norm_num), fun k => ?_⟩
   unfold nSeq

@@ -15,7 +15,9 @@ open Erdos956 Metric
 
 variable {D : Set E} {X : Finset E}
 
-/-- A point of `K` with first coordinate `w` is a unit vector.-/
+/-- A point of `K` with first coordinate `w` is a unit vector.
+@isnad1 id=eq.3h3v.s7.a31b11018c5b from=translated src=- shape=681e02d8 vocab=8c751d84
+-/
 theorem side_unit (hS : SepConfig D X) {v : E} (hv : v ∈ Kset D) (h0 : v 0 = wid D) :
     infDist v D = 1 := by
   by_contra hne
@@ -37,7 +39,9 @@ theorem side_unit (hS : SepConfig D X) {v : E} (hv : v ∈ Kset D) (h0 : v 0 = w
   have := le_abs_self (wid D + ε)
   linarith
 
-/-- Three points on the side over a common base point are impossible.-/
+/-- Three points on the side over a common base point are impossible.
+@isnad1 id=false.9h6v.s9.d3835f0bc30e from=translated src=- shape=4a954b45 vocab=cb1350cb
+-/
 theorem side_three (hS : SepConfig D X) {x p q r : E} (hp : p ∈ X) (hq : q ∈ X) (hr : r ∈ X)
     (hpS : OnSide D (p - x)) (hqS : OnSide D (q - x)) (hrS : OnSide D (r - x))
     (hpq : p 1 < q 1) (hqr : q 1 < r 1) : False := by
@@ -89,6 +93,9 @@ theorem side_three (hS : SepConfig D X) {x p q r : E} (hp : p ∈ X) (hq : q ∈
     rw [← hrq] at hmem
     exact hS.sep q hq r hr (by intro h; rw [h] at hqr; exact lt_irrefl _ hqr) hmem
 
+/--
+@isnad1 id=le.1h2v.s5.1531d7d3fe62 from=translated src=- shape=c77bae81 vocab=f8437bc0
+-/
 theorem sidePairs_card_le (hS : SepConfig D X) : (sidePairs D X).card ≤ 2 * X.card := by
   classical
   refine Finset.card_le_mul_card_image_of_maps_to (f := Prod.fst) ?_ 2 ?_

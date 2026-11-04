@@ -22,12 +22,21 @@ namespace GCDGraph
 
 /-! ### Basic bookkeeping -/
 
+/--
+@isnad1 id=le.0h2v.s4.fc1064f4c5d0 from=translated src=- shape=93dff582 vocab=4a4176e0
+-/
 theorem alt_sh_wsum_nonneg (G : GCDGraph) (S : Finset ℕ) : 0 ≤ wsum G.μ S :=
   sum_nonneg fun i _ => G.μ_nonneg i
 
+/--
+@isnad1 id=le.0h2v.s4.1d3d059e1248 from=translated src=- shape=d06f9e90 vocab=97cd408f
+-/
 theorem alt_sh_esum_nonneg (G : GCDGraph) (S : Finset (ℕ × ℕ)) : 0 ≤ esum G.μ S :=
   sum_nonneg fun i _ => mul_nonneg (G.μ_nonneg _) (G.μ_nonneg _)
 
+/--
+@isnad1 id=and.1h1v.s5.4e96bd47a830 from=translated src=- shape=f4df891e vocab=0d0fd96b
+-/
 theorem alt_sh_pos (G : GCDGraph) (hδ : 0 < G.density) :
     0 < esum G.μ G.E ∧ 0 < wsum G.μ G.V ∧ 0 < wsum G.μ G.W := by
   have hV0 : 0 ≤ wsum G.μ G.V := sum_nonneg fun i _ => G.μ_nonneg i
@@ -41,12 +50,18 @@ theorem alt_sh_pos (G : GCDGraph) (hδ : 0 < G.density) :
     lt_of_le_of_ne hV0 (fun h => hVW (by rw [← h, zero_mul])),
     lt_of_le_of_ne hW0 (fun h => hVW (by rw [← h, mul_zero]))⟩
 
+/--
+@isnad1 id=le.1h4v.s6.64a295ba89b0 from=translated src=- shape=112c4ecb vocab=3c01b7f8
+-/
 theorem alt_sh_esum_le_prod (G : GCDGraph) (V' W' : Finset ℕ) (E' : Finset (ℕ × ℕ))
     (h : E' ⊆ V' ×ˢ W') : esum G.μ E' ≤ wsum G.μ V' * wsum G.μ W' := by
   unfold esum wsum
   rw [sum_mul_sum, ← sum_product']
   exact sum_le_sum_of_subset_of_nonneg h (fun i _ _ => mul_nonneg (G.μ_nonneg _) (G.μ_nonneg _))
 
+/--
+@isnad1 id=le.0h3v.s5.986e277382ef from=translated src=- shape=be2f64cf vocab=75555d56
+-/
 theorem alt_sh_esum_union_le (G : GCDGraph) (s t : Finset (ℕ × ℕ)) :
     esum G.μ (s ∪ t) ≤ esum G.μ s + esum G.μ t := by
   unfold esum
@@ -55,6 +70,9 @@ theorem alt_sh_esum_union_le (G : GCDGraph) (s t : Finset (ℕ × ℕ)) :
     sum_nonneg fun i _ => mul_nonneg (G.μ_nonneg _) (G.μ_nonneg _)
   linarith
 
+/--
+@isnad1 id=le.1h4v.s5.094a5890ecee from=translated src=- shape=b83399c7 vocab=7ec25a3f
+-/
 theorem alt_sh_disj_le (G : GCDGraph) (S : Finset ℕ) (P Q : ℕ → Prop) [DecidablePred P]
     [DecidablePred Q] (h : ∀ v, P v → ¬ Q v) :
     wsum G.μ (S.filter P) + wsum G.μ (S.filter Q) ≤ wsum G.μ S := by
@@ -145,6 +163,9 @@ def alt_sh_plus (G : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP : p ∉ G.P) : GC
       rw [Function.update_of_ne hne]
       exact G.exact_W q hq' hfg w hw
 
+/--
+@isnad1 id=issubgra.2h3v.s5.b1c5b5a5ea15 from=translated src=- shape=2d35db44 vocab=d567ac86
+-/
 theorem alt_sh_plus_isSubgraph (G : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP : p ∉ G.P) :
     (alt_sh_plus G p k hp hpP).IsSubgraph G := by
   refine ⟨rfl, filter_subset _ _, filter_subset _ _, filter_subset _ _, subset_insert _ _, ?_⟩
@@ -152,6 +173,9 @@ theorem alt_sh_plus_isSubgraph (G : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP : 
   have hne : q ≠ p := fun h => hpP (h ▸ hq)
   exact ⟨Function.update_of_ne hne _ _, Function.update_of_ne hne _ _⟩
 
+/--
+@isnad1 id=le.2h3v.s5.e3464419f12f from=translated src=- shape=0c828e4e vocab=324147b5
+-/
 theorem alt_sh_plus_R (G : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP : p ∉ G.P) :
     (alt_sh_plus G p k hp hpP).R ⊆ G.R.erase p := by
   intro q hq
@@ -161,6 +185,9 @@ theorem alt_sh_plus_R (G : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP : p ∉ G.P
   have hqp : q ≠ p := fun h => h2 (by rw [h]; exact mem_insert_self p G.P)
   exact mem_erase.2 ⟨hqp, mem_sdiff.2 ⟨mem_biUnion.2 ⟨e, (mem_filter.1 he).1, hqe⟩, hq1⟩⟩
 
+/--
+@isnad1 id=eq.7h3v.s8.67c9eca621e5 from=translated src=- shape=4e1d3067 vocab=3c86057b
+-/
 theorem alt_sh_plus_quality (G : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP : p ∉ G.P)
     (hE : 0 < esum G.μ G.E) (hV : 0 < wsum G.μ G.V) (hW : 0 < wsum G.μ G.W)
     (hV' : 0 < wsum G.μ (alt_sh_plus G p k hp hpP).V)
@@ -202,7 +229,9 @@ theorem alt_sh_plus_quality (G : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP : p �
 
 /-! ### Real-variable lemmas -/
 
-/-- Weighted AM–GM: `x^{10} < y^9 z ⇒ x < (9y + z)/10`.-/
+/-- Weighted AM–GM: `x^{10} < y^9 z ⇒ x < (9y + z)/10`.
+@isnad1 id=lt.4h3v.s7.d785364495ef from=translated src=- shape=fd1b2c34 vocab=5c9d27ef
+-/
 theorem alt_sh_amgm (x y z : ℝ) (hx : 0 ≤ x) (hy : 0 ≤ y) (hz : 0 ≤ z) (h : x ^ 10 < y ^ 9 * z) :
     x < (9 * y + z) / 10 := by
   by_contra hge
@@ -219,7 +248,9 @@ theorem alt_sh_amgm (x y z : ℝ) (hx : 0 ≤ x) (hy : 0 ≤ y) (hz : 0 ≤ z) (
   have h3 : ((9 * y + z) / 10) ^ 10 ≤ x ^ 10 := pow_le_pow_left₀ (by positivity) hge 10
   linarith
 
-/-- From `x^{10} (V/V')^9 (W/W')^9 F < 1` to `x^{10} < (1-a)^9 (1-b)^9 / F`.-/
+/-- From `x^{10} (V/V')^9 (W/W')^9 F < 1` to `x^{10} < (1-a)^9 (1-b)^9 / F`.
+@isnad1 id=lt.8h8v.s8.8848cce5f26f from=translated src=- shape=9f346776 vocab=e7bc5859
+-/
 theorem alt_sh_bound1 (x V V' W W' a b F : ℝ) (hV : 0 < V) (hW : 0 < W) (hV' : 0 < V')
     (hW' : 0 < W') (hVa : V' ≤ (1 - a) * V) (hWb : W' ≤ (1 - b) * W) (hF : 0 < F)
     (h : x ^ 10 * (V / V') ^ 9 * (W / W') ^ 9 * F < 1) :
@@ -238,6 +269,9 @@ theorem alt_sh_bound1 (x V V' W W' a b F : ℝ) (hV : 0 < V) (hW : 0 < W) (hV' :
     (pow_le_pow_left₀ (by positivity) hv 9) (by positivity)
   exact le_trans (by positivity) (pow_le_pow_left₀ (by positivity) hu 9)
 
+/--
+@isnad1 id=false.12h9v.s8.7c107bb3a971 from=translated src=- shape=a3f69ca9 vocab=762a6581
+-/
 theorem alt_sh_final (xp xa xb a b c θ e η : ℝ) (ha0 : 0 ≤ a) (hb0 : 0 ≤ b) (haη : a ≤ η)
     (hbη : b ≤ η) (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (hθ0 : 0 ≤ θ)
     (hxp : xp < (9 * ((1 - a) * (1 - b) * (1 - c)) + (1 - θ) ^ 2 * (1 - c)) / 10)
@@ -256,7 +290,9 @@ theorem alt_sh_final (xp xa xb a b c θ e η : ℝ) (ha0 : 0 ≤ a) (hb0 : 0 ≤
   nlinarith
 
 /-- The numerical heart of Lemma 14.1: for `P ≥ 10^{2000}`,
-`(10^{40}/P)^2 + P^{-2} + (10^{40}/P)^{9/5} ≤ P^{-31/30}/2`.-/
+`(10^{40}/P)^2 + P^{-2} + (10^{40}/P)^{9/5} ≤ P^{-31/30}/2`.
+@isnad1 id=le.1h1v.s7.8413cd23478b from=translated src=- shape=6d31b195 vocab=eede5258
+-/
 theorem alt_sh_numeric (P : ℝ) (hP : T0 ≤ P) :
     (K40 / P) ^ 2 + (1 / P) ^ 2 + (K40 / P) ^ ((9 : ℝ) / 5) ≤ 1 / P ^ ((31 : ℝ) / 30) / 2 := by
   unfold T0 at hP
@@ -319,7 +355,9 @@ theorem alt_sh_numeric (P : ℝ) (hP : T0 ≤ P) :
 
 /-! ### Pieces of the proof of Lemma 14.1 -/
 
-/-- Coverage of the edge set of the sparsified graph `G₁` (normalized form).-/
+/-- Coverage of the edge set of the sparsified graph `G₁` (normalized form).
+@isnad1 id=le.10h6v.s10.a4bad8ea6711 from=translated src=- shape=a5966282 vocab=00cbcb6e
+-/
 theorem alt_sh_cover (G G1 : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP1 : p ∉ G1.P)
     (hμ1 : G1.μ = G.μ) (hE1 : 0 < esum G1.μ G1.E) (η : ℝ)
     (hVk : (1 - η) * wsum G1.μ G1.V ≤ wsum G1.μ (vslice G1.V p k))
@@ -422,7 +460,9 @@ theorem alt_sh_cover (G G1 : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP1 : p ∉ 
     rw [ex]; linarith
   exact le_of_mul_le_mul_left this hE1
 
-/-- The bound for the `G⁺` candidate.-/
+/-- The bound for the `G⁺` candidate.
+@isnad1 id=lt.14h5v.s9.355e4a540267 from=translated src=- shape=5693d61a vocab=387a18e2
+-/
 theorem alt_sh_xp (G1 : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP1 : p ∉ G1.P)
     (hq1 : 0 < G1.quality) (hE1 : 0 < esum G1.μ G1.E) (hV1 : 0 < wsum G1.μ G1.V)
     (hW1 : 0 < wsum G1.μ G1.W) (hVkpos : 0 < wsum G1.μ (vslice G1.V p k))
@@ -513,7 +553,9 @@ theorem alt_sh_xp (G1 : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP1 : p ∉ G1.P)
     have h2 : (1 - c) ≠ 0 := by linarith
     field_simp
 
-/-- The bound for the `G_{p^k, p^{k-1}}` candidate.-/
+/-- The bound for the `G_{p^k, p^{k-1}}` candidate.
+@isnad1 id=le.13h5v.s9.82daf2c64bbe from=translated src=- shape=ee3b91bc vocab=326a5f7a
+-/
 theorem alt_sh_xa (G1 : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP1 : p ∉ G1.P)
     (hp0 : (0 : ℝ) < p) (hq1 : 0 < G1.quality) (hE1 : 0 < esum G1.μ G1.E)
     (hV1 : 0 < wsum G1.μ G1.V) (hW1 : 0 < wsum G1.μ G1.W)
@@ -598,7 +640,9 @@ theorem alt_sh_xa (G1 : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP1 : p ∉ G1.P)
       positivity
     linarith
 
-/-- The bound for the `G_{p^{k-1}, p^k}` candidate.-/
+/-- The bound for the `G_{p^{k-1}, p^k}` candidate.
+@isnad1 id=le.13h5v.s9.8fbfb7aec42d from=translated src=- shape=d27f4ada vocab=326a5f7a
+-/
 theorem alt_sh_xb (G1 : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP1 : p ∉ G1.P)
     (hp0 : (0 : ℝ) < p) (hq1 : 0 < G1.quality) (hE1 : 0 < esum G1.μ G1.E)
     (hV1 : 0 < wsum G1.μ G1.V) (hW1 : 0 < wsum G1.μ G1.W)
@@ -683,7 +727,9 @@ theorem alt_sh_xb (G1 : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP1 : p ∉ G1.P)
       positivity
     linarith
 
-/-- The contradiction when none of the three candidates increases the quality.-/
+/-- The contradiction when none of the three candidates increases the quality.
+@isnad1 id=false.20h5v.s10.e2f16a6d2d94 from=translated src=- shape=2eb1169b vocab=b0923f5c
+-/
 theorem alt_sh_contra (G1 : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP1 : p ∉ G1.P)
     (hpT : T0 ≤ (p : ℝ)) (hp0 : (0 : ℝ) < p) (hp2 : (2 : ℝ) ≤ p) (hq1 : 0 < G1.quality)
     (hE1 : 0 < esum G1.μ G1.E) (hV1 : 0 < wsum G1.μ G1.V) (hW1 : 0 < wsum G1.μ G1.W)
@@ -746,7 +792,9 @@ theorem alt_sh_contra (G1 : GCDGraph) (p k : ℕ) (hp : p.Prime) (hpP1 : p ∉ G
 
 /-! ### Lemma 14.1 -/
 
-/-- Lemma 14.1 (quality increment even when a prime power divides almost everything).-/
+/-- Lemma 14.1 (quality increment even when a prime power divides almost everything).
+@isnad1 id=ex.4h2v.s6.504fabeb0817 from=translated src=- shape=89c1f90c vocab=5e07cd07
+-/
 theorem lemma141 (G : GCDGraph) (hδ : 0 < G.density) (p : ℕ) (hp : p.Prime) (hpP : p ∉ G.P)
     (hpT : T0 ≤ (p : ℝ)) :
     ∃ G' : GCDGraph, G'.IsSubgraph G ∧ G'.P = insert p G.P ∧ G'.R ⊆ G.R.erase p ∧
@@ -834,7 +882,9 @@ theorem lemma141 (G : GCDGraph) (hδ : 0 < G.density) (p : ℕ) (hp : p.Prime) (
   exact alt_sh_contra G1 p k hp hpP1 hpT hp0 hp2 hq1 hE1 hV1 hW1 η hη hη1 hVk hWk c hc hc0 hc2
     hcov' (lt_of_not_ge hGp_good) hA_good hB_good |>.elim
 
-/-- Proposition 8.2 (iteration when `R♭(G) = ∅`, `R♯(G) ≠ ∅`).-/
+/-- Proposition 8.2 (iteration when `R♭(G) = ∅`, `R♯(G) ≠ ∅`).
+@isnad1 id=ex.4h1v.s7.7f631a7efff9 from=translated src=- shape=a77ac802 vocab=dfabaea6
+-/
 theorem prop82 (G : GCDGraph) (hδ : 0 < G.density) (hR : ∀ p ∈ G.R, T0 < (p : ℝ))
     (hflat : G.Rflat = ∅) (hsharp : G.Rsharp.Nonempty) :
     ∃ G' : GCDGraph, G'.IsSubgraph G ∧ 0 < G'.density ∧ G.P ⊂ G'.P ∧ G'.P ⊆ G.P ∪ G.R ∧

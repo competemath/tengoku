@@ -13,7 +13,9 @@ namespace Erdos956Upper
 open Erdos956 Metric
 open scoped Pointwise
 
-/-- `diffSet C` is the pointwise difference `C - C`.-/
+/-- `diffSet C` is the pointwise difference `C - C`.
+@isnad1 id=eq.0h1v.s6.28672d2eb95a from=translated src=- shape=4f747064 vocab=6fbe38e9
+-/
 lemma diffSet_eq_sub (C : Set E) : diffSet C = C - C := by
   ext v
   simp only [diffSet, Set.mem_sub]
@@ -23,7 +25,9 @@ lemma diffSet_eq_sub (C : Set E) : diffSet C = C - C := by
   · rintro ⟨a, ha, b, hb, rfl⟩
     exact ⟨a, ha, b, hb, rfl⟩
 
-/-- `δ(C + x, C + y) = dist(y - x, C - C)`.-/
+/-- `δ(C + x, C + y) = dist(y - x, C - C)`.
+@isnad1 id=eq.1h3v.s7.4a544e3ea806 from=translated src=- shape=92db2fea vocab=fc44f12c
+-/
 theorem setDist_translate_eq_infDist {C : Set E} (hC : C.Nonempty) (x y : E) :
     setDist (translate C x) (translate C y) = infDist (y - x) (diffSet C) := by
   have hS : {r : ℝ | ∃ p ∈ translate C x, ∃ q ∈ translate C y, r = ‖p - q‖} =
@@ -45,7 +49,9 @@ theorem setDist_translate_eq_infDist {C : Set E} (hC : C.Nonempty) (x y : E) :
   rw [setDist, hS, infDist_eq_iInf]
   rfl
 
-/-- An admissible `(C, X)` yields a separated configuration with `D = C - C`.-/
+/-- An admissible `(C, X)` yields a separated configuration with `D = C - C`.
+@isnad1 id=sepconfi.1h2v.s3.3de238ca69ff from=translated src=- shape=885d3616 vocab=2a8cbbc1
+-/
 theorem admissible_sepConfig {C : Set E} {X : Finset E} (h : Admissible C X) :
     SepConfig (diffSet C) X := by
   obtain ⟨hcpt, hconv, ⟨c, hc⟩, hdisj⟩ := h

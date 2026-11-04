@@ -26,7 +26,9 @@ namespace DuffinSchaeffer
 
 namespace UnitPairCountAux
 
-/-- Counting in blocks: a condition depending only on `s mod d`.-/
+/-- Counting in blocks: a condition depending only on `s mod d`.
+@isnad1 id=eq.0h3v.s6.1526dbaa4dc0 from=translated src=- shape=5a10631b vocab=2845c4ba
+-/
 lemma card_filter_range_mul_mod (Q : ℕ → Prop) [DecidablePred Q] (d k : ℕ) :
     ((range (d * k)).filter (fun s => Q (s % d))).card = k * ((range d).filter Q).card := by
   induction k with
@@ -40,7 +42,9 @@ lemma card_filter_range_mul_mod (Q : ℕ → Prop) [DecidablePred Q] (d k : ℕ)
     rw [Finset.sum_congr rfl this]
     ring
 
-/-- The Chinese remainder theorem for counting.-/
+/-- The Chinese remainder theorem for counting.
+@isnad1 id=eq.3h4v.s7.96ace39421b8 from=translated src=- shape=84f267d5 vocab=6927f1d5
+-/
 lemma card_filter_crt (m n : ℕ) (hm : m ≠ 0) (hn : n ≠ 0) (co : Nat.Coprime m n)
     (Q1 Q2 : ℕ → Prop) [DecidablePred Q1] [DecidablePred Q2] :
     ((range (m * n)).filter (fun s => Q1 (s % m) ∧ Q2 (s % n))).card =
@@ -66,7 +70,9 @@ lemma card_filter_crt (m n : ℕ) (hm : m ≠ 0) (hn : n ≠ 0) (co : Nat.Coprim
       exact ⟨Nat.chineseRemainder_lt_mul co x y hm hn, hQ1, hQ2⟩
     · simp only [h1, h2]
 
-/-- A CRT sieve over a finite set of primes.-/
+/-- A CRT sieve over a finite set of primes.
+@isnad1 id=eq.2h2v.s7.7884f4bc7d06 from=translated src=- shape=df7b8247 vocab=597e1980
+-/
 lemma sieve (F : ℕ → ℕ) (hF : ∀ p s, p ∣ F s ↔ p ∣ F (s % p)) :
     ∀ P : Finset ℕ, (∀ p ∈ P, p.Prime) →
       ((range (∏ p ∈ P, p)).filter (fun s => ∀ p ∈ P, ¬ p ∣ F s)).card =
@@ -97,7 +103,9 @@ lemma sieve (F : ℕ → ℕ) (hF : ∀ p s, p ∣ F s ↔ p ∣ F (s % p)) :
       have hqR : q ∣ ∏ q ∈ P, q := Finset.dvd_prod_of_mem _ hq
       rw [hF q s, hF q (s % ∏ q ∈ P, q), Nat.mod_mod_of_dvd _ hqR]
 
-/-- A linear polynomial `c + e x` with `p ∤ e` has a root mod `p`.-/
+/-- A linear polynomial `c + e x` with `p ∤ e` has a root mod `p`.
+@isnad1 id=ex.2h3v.s5.785def3ca9ff from=translated src=- shape=8e16653e vocab=e0e84b8d
+-/
 lemma exists_root (p c e : ℕ) (hp : p.Prime) (he : ¬ p ∣ e) : ∃ x < p, p ∣ c + e * x := by
   have := Fact.mk hp
   have he' : (e : ZMod p) ≠ 0 := by
@@ -116,6 +124,9 @@ noncomputable def cfac (x y z p : ℕ) : ℝ :=
   fA p ^ 2 / ((if p ∣ x then fA p else 1) * (if p ∣ y then fA p else 1) *
     (if p ∣ z then fA p else 1))
 
+/--
+@isnad1 id=lt.1h1v.s4.9092771dc2d1 from=translated src=- shape=a124ee4e vocab=73c38c7e
+-/
 lemma fA_pos {p : ℕ} (hp : p.Prime) : 0 < fA p := by
   have hp2 : (2:ℝ) ≤ p := by exact_mod_cast hp.two_le
   have hpos : (0:ℝ) < p := by linarith
@@ -124,9 +135,15 @@ lemma fA_pos {p : ℕ} (hp : p.Prime) : 0 < fA p := by
   have := mul_le_mul_of_nonneg_left hp2 hi0.le
   unfold fA; linarith
 
+/--
+@isnad1 id=lt.1h1v.s5.82734b88bb09 from=translated src=- shape=19fc11f6 vocab=fcf1a625
+-/
 lemma prod_fA_pos (s : Finset ℕ) (hs : ∀ p ∈ s, p.Prime) : 0 < ∏ p ∈ s, fA p :=
   prod_pos (fun p hp => fA_pos (hs p hp))
 
+/--
+@isnad1 id=lt.1h2v.s5.da28bda41e7b from=translated src=- shape=90f605f4 vocab=c46f2b44
+-/
 lemma prod_ite_pos (s : Finset ℕ) (hs : ∀ p ∈ s, p.Prime) (x : ℕ) :
     0 < ∏ p ∈ s, (if p ∣ x then fA p else 1) := by
   apply prod_pos
@@ -135,6 +152,9 @@ lemma prod_ite_pos (s : Finset ℕ) (hs : ∀ p ∈ s, p.Prime) (x : ℕ) :
   · exact fA_pos (hs p hp)
   · exact one_pos
 
+/--
+@isnad1 id=le.3h5v.s6.8a9bfd3ba8bb from=translated src=- shape=811e69e9 vocab=256161c6
+-/
 lemma per_prime (p x y z good : ℕ) (hp : p.Prime) (h1 : good + 1 ≤ p)
     (h2 : ¬ p ∣ x → ¬ p ∣ y → ¬ p ∣ z → good + 2 ≤ p) :
     (good : ℝ) / p ≤ cfac x y z p := by
@@ -193,6 +213,9 @@ lemma per_prime (p x y z good : ℕ) (hp : p.Prime) (h1 : good + 1 ≤ p)
       rw [le_div_iff₀ hJ0]; nlinarith
     linarith
 
+/--
+@isnad1 id=eq.1h1v.s5.262672d61967 from=translated src=- shape=a01298b1 vocab=c09b16dc
+-/
 lemma totient_div_eq (n : ℕ) (hn : n ≠ 0) :
     (Nat.totient n : ℝ) / n = ∏ p ∈ n.primeFactors, fA p := by
   have h := Nat.totient_eq_mul_prod_factors n
@@ -204,6 +227,9 @@ lemma totient_div_eq (n : ℕ) (hn : n ≠ 0) :
   rw [mul_div_cancel_left₀ _ this]
   rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.344fb626b44e from=translated src=- shape=33015c84 vocab=d3c563cb
+-/
 lemma prod_inter_ite (g x : ℕ) (hx : x ≠ 0) (f : ℕ → ℝ) :
     ∏ p ∈ g.primeFactors ∩ x.primeFactors, f p =
       ∏ p ∈ g.primeFactors, (if p ∣ x then f p else 1) := by
@@ -213,6 +239,9 @@ lemma prod_inter_ite (g x : ℕ) (hx : x ≠ 0) (f : ℕ → ℝ) :
   simp only [mem_inter, mem_filter, Nat.mem_primeFactors]
   tauto
 
+/--
+@isnad1 id=eq.2h3v.s5.0fdee8fec66b from=translated src=- shape=16623ea4 vocab=13eb415e
+-/
 lemma prod_of_dvd (g d : ℕ) (hg : g ≠ 0) (hdg : d ∣ g) (f : ℕ → ℝ) :
     ∏ p ∈ d.primeFactors, f p = ∏ p ∈ g.primeFactors, (if p ∣ d then f p else 1) := by
   rw [← Finset.prod_filter]

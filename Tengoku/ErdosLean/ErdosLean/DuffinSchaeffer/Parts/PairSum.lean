@@ -22,6 +22,9 @@ namespace DuffinSchaeffer
 /-- `t_j = exp(exp j)`.-/
 noncomputable def alt_tt (j : ℕ) : ℝ := Real.exp (Real.exp j)
 
+/--
+@isnad1 id=le.0h1v.s3.6b9819e2f77b from=translated src=- shape=b9369acb vocab=a468230b
+-/
 theorem alt_tt_ge_two (j : ℕ) : 2 ≤ alt_tt j := by
   unfold alt_tt
   have h1 : (1 : ℝ) ≤ Real.exp j := Real.one_le_exp (Nat.cast_nonneg j)
@@ -29,10 +32,15 @@ theorem alt_tt_ge_two (j : ℕ) : 2 ≤ alt_tt j := by
   have h3 := Real.exp_one_gt_d9
   linarith
 
+/--
+@isnad1 id=eq.0h1v.s3.0b49130a207c from=translated src=- shape=6c9d2488 vocab=62cfa4f1
+-/
 theorem alt_log_tt (j : ℕ) : Real.log (alt_tt j) = Real.exp j := by
   unfold alt_tt; exact Real.log_exp _
 
-/-- Split a sum of `1/p` at a threshold `T`.-/
+/-- Split a sum of `1/p` at a threshold `T`.
+@isnad1 id=le.0h3v.s7.2edc8c263b8a from=translated src=- shape=75747aef vocab=70c6bd3c
+-/
 theorem alt_sum_split (S : Finset ℕ) (P : ℕ → Prop) [DecidablePred P] (T : ℝ) :
     ∑ p ∈ S.filter P, (1 : ℝ) / p ≤
       ∑ p ∈ (S.filter P).filter (fun p : ℕ => (p : ℝ) < T), (1 : ℝ) / p +
@@ -46,7 +54,9 @@ theorem alt_sum_split (S : Finset ℕ) (P : ℕ → Prop) [DecidablePred P] (T :
   · intro p _ _
     positivity
 
-/-- Primes `p | m` with `s < p < T`, `2 ≤ s ≤ T`, via Mertens.-/
+/-- Primes `p | m` with `s < p < T`, `2 ≤ s ≤ T`, via Mertens.
+@isnad1 id=le.3h3v.s7.c3ab49d80843 from=translated src=- shape=71794708 vocab=18e2f4d2
+-/
 theorem alt_sum_mid_le (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime) (s T : ℝ) (hs : 2 ≤ s)
     (hsT : s ≤ T) :
     ∑ p ∈ (S.filter (fun p : ℕ => s < (p : ℝ))).filter (fun p : ℕ => (p : ℝ) < T),
@@ -61,7 +71,9 @@ theorem alt_sum_mid_le (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime) (s T : ℝ) 
   · intro p _ _
     positivity
 
-/-- Primes `p | m` with `p < T`, `2 ≤ T`, via Mertens.-/
+/-- Primes `p | m` with `p < T`, `2 ≤ T`, via Mertens.
+@isnad1 id=le.2h2v.s7.4137e93daaa7 from=translated src=- shape=7613907f vocab=18e2f4d2
+-/
 theorem alt_sum_low_le (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime) (T : ℝ) (hT : 2 ≤ T) :
     ∑ p ∈ S.filter (fun p : ℕ => (p : ℝ) < T), (1 : ℝ) / p ≤
       1 / 2 + (Real.log (Real.log T / Real.log 2) + 100 / Real.log 2) := by
@@ -89,7 +101,9 @@ theorem alt_sum_low_le (S : Finset ℕ) (hS : ∀ p ∈ S, p.Prime) (T : ℝ) (h
     _ ≤ 1 / 2 + (Real.log (Real.log T / Real.log 2) + 100 / Real.log 2) := by
         gcongr
 
-/-- The pointwise bound on `P(q,r)`.-/
+/-- The pointwise bound on `P(q,r)`.
+@isnad1 id=le.4h4v.s7.36714d31d7d2 from=translated src=- shape=322483a8 vocab=bd38a6cc
+-/
 theorem alt_Pfac_le (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q) (q r J : ℕ) (hq : 0 < q) (hr : 0 < r)
     (hJ : q * r ≤ J) :
     Pfac ψ q r ≤ Real.exp 200 + ∑ j ∈ range J,
@@ -277,7 +291,9 @@ theorem alt_Pfac_le (ψ : ℕ → ℝ) (hψ : ∀ q, 0 ≤ ψ q) (q r J : ℕ) (
   have := Real.exp_pos 200
   linarith
 
-/-- `∑_{j < J} e^j / exp(e^j) ≤ 2`.-/
+/-- `∑_{j < J} e^j / exp(e^j) ≤ 2`.
+@isnad1 id=le.0h1v.s5.d3a763d68ca2 from=translated src=- shape=b46de272 vocab=210ee86d
+-/
 theorem alt_sum_exp_div_le (J : ℕ) :
     ∑ j ∈ range J, Real.exp j / alt_tt j ≤ 2 := by
   refine le_trans ?_ (sum_geometric_two_le J)

@@ -15,6 +15,9 @@ Part 7 gives `≥ 1` for all `c - c' ∈ D`.
 
 namespace Erdos956
 
+/--
+@isnad1 id=eq.2h4v.s7.109ee6377585 from=translated src=- shape=484c4062 vocab=a1971dd9
+-/
 lemma upPt_sub_lowPt {k i r s : ℕ} (hk : 1 ≤ k) (his : i ^ 2 ≤ s) :
     upPt k (r + i) (s - i ^ 2) - lowPt k r s = γ (η k) (i * a k) := by
   have hb : b k = a k ^ 2 / 2 := by
@@ -28,6 +31,9 @@ lemma upPt_sub_lowPt {k i r s : ℕ} (hk : 1 ≤ k) (his : i ^ 2 ≤ s) :
   · simp [upPt, lowPt, γ, pt]
     rw [hcast, hb]; ring
 
+/--
+@isnad1 id=eq.2h2v.s7.3fafbde5488d from=translated src=- shape=fdc87abd vocab=c27fd6ab
+-/
 theorem setDist_pairOf {k : ℕ} (hk : 1 ≤ k) {q : ℕ × ℕ × ℕ} (hq : q ∈ triples k) :
     setDist (translate (C k) (lowPt k q.2.1 q.2.2))
       (translate (C k) (upPt k (q.2.1 + q.1) (q.2.2 - q.1 ^ 2))) = 1 := by

@@ -18,7 +18,9 @@ open MeasureTheory Finset
 
 namespace DuffinSchaeffer
 
-/-- Two balls in `ℝ/ℤ` intersect in measure at most `2 min(δ, ε)`.-/
+/-- Two balls in `ℝ/ℤ` intersect in measure at most `2 min(δ, ε)`.
+@isnad1 id=le.2h4v.s7.c8acc9d1bf14 from=translated src=- shape=6efe882d vocab=785cae89
+-/
 theorem ovl_ball_inter_le (x y : UnitAddCircle) {δ ε : ℝ} (hδ : 0 ≤ δ) (hε : 0 ≤ ε) :
     volume.real (Metric.ball x δ ∩ Metric.ball y ε) ≤ 2 * min δ ε := by
   have key : ∀ (z : UnitAddCircle) (η : ℝ), 0 ≤ η → volume.real (Metric.ball z η) ≤ 2 * η := by
@@ -34,7 +36,9 @@ theorem ovl_ball_inter_le (x y : UnitAddCircle) {δ ε : ℝ} (hδ : 0 ≤ δ) (
     ((measureReal_mono Set.inter_subset_right).trans (key y ε hε))
 
 /-- `A_q ∩ A_r` is covered by the intersections of arcs around `a/q`, `b/r` whose centres are
-at distance `< ψ(q)/q + ψ(r)/r`.-/
+at distance `< ψ(q)/q + ψ(r)/r`.
+@isnad1 id=le.2h3v.s11.8864ecd2b0e3 from=translated src=- shape=54dc1e1c vocab=1fe1b070
+-/
 theorem ovl_cover (ψ : ℕ → ℝ) (q r : ℕ) (hq : 0 < q) (hr : 0 < r) :
     Aq ψ q ∩ Aq ψ r ⊆ ⋃ ab ∈ ((range q ×ˢ range r).filter (fun ab : ℕ × ℕ =>
         Nat.Coprime ab.1 q ∧ Nat.Coprime ab.2 r ∧
@@ -55,7 +59,9 @@ theorem ovl_cover (ψ : ℕ → ℝ) (q r : ℕ) (hq : 0 < q) (hr : 0 < r) :
         dist x (((b : ℝ) / r : ℝ) : UnitAddCircle) := dist_triangle _ _ _
     _ < _ := add_lt_add (by rw [dist_comm]; exact hxb1) hxb2
 
-/-- `a/q - b/r = (a r' - b q') / lcm(q,r)`.-/
+/-- `a/q - b/r = (a r' - b q') / lcm(q,r)`.
+@isnad1 id=eq.2h4v.s7.260d5ad021dc from=translated src=- shape=56a5b03a vocab=3903d383
+-/
 theorem ovl_arith (q r a b : ℕ) (hq : 0 < q) (hr : 0 < r) :
     (a : ℝ) / q - b / r =
       (((a : ℤ) * ((r / Nat.gcd q r : ℕ) : ℤ) - (b : ℤ) * ((q / Nat.gcd q r : ℕ) : ℤ) : ℤ) : ℝ) /
@@ -80,7 +86,9 @@ theorem ovl_arith (q r a b : ℕ) (hq : 0 < q) (hr : 0 < r) :
     Int.cast_natCast, Int.cast_natCast, hq', hr', hL]
   field_simp
 
-/-- Telescoping: `∏_{n=2}^{N} (1 - 1/n²) = (N+1)/(2N)`.-/
+/-- Telescoping: `∏_{n=2}^{N} (1 - 1/n²) = (N+1)/(2N)`.
+@isnad1 id=eq.1h1v.s6.5309877137c5 from=translated src=- shape=4e050403 vocab=3d03b61d
+-/
 theorem ovl_prod_Icc (N : ℕ) (hN : 1 ≤ N) :
     ∏ n ∈ Icc 2 N, (1 - 1 / (n : ℝ) ^ 2) = ((N : ℝ) + 1) / (2 * (N : ℝ)) := by
   induction N, hN using Nat.le_induction with

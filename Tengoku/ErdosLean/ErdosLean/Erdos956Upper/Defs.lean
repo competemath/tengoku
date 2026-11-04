@@ -30,7 +30,13 @@ noncomputable section
 /-- The point `(x, y)` of the Euclidean plane.-/
 def pt2 (x y : ℝ) : E := !₂[x, y]
 
+/--
+@isnad1 id=eq.0h2v.s6.c77cd6261499 from=translated src=- shape=02f1c7bf vocab=74c39a13
+-/
 @[simp] lemma pt2_zero (x y : ℝ) : pt2 x y 0 = x := rfl
+/--
+@isnad1 id=eq.0h2v.s6.5678dba687e2 from=translated src=- shape=6e7fa9ed vocab=74c39a13
+-/
 @[simp] lemma pt2_one (x y : ℝ) : pt2 x y 1 = y := rfl
 
 /-- The difference body `C - C`.-/

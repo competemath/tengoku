@@ -7,6 +7,9 @@ Induction on `n` with `Complex.differentiableOn_dslope` (removable singularity).
 
 namespace Erdos514
 
+/--
+@isnad1 id=differen.1h2v.s7.cd06429171e7 from=translated src=- shape=78cb5312 vocab=dd31147b
+-/
 theorem shift_differentiable {f : ℂ → ℂ} (hf : Differentiable ℂ f) (n : ℕ) :
     Differentiable ℂ (shift f n) := by
   induction n with

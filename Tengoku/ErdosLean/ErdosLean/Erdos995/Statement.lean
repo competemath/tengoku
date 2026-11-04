@@ -43,6 +43,9 @@ def IsLacunary (n : ℕ → ℕ) : Prop := ∃ c > (1 : ℝ), ∀ᶠ k in atTop,
 /-- A strong lacunarity condition satisfied by the counterexample (`n_{k+1} ≥ 2 n_k`, `n 0 ≥ 1`).-/
 def IsDyadicLacunary (n : ℕ → ℕ) : Prop := 1 ≤ n 0 ∧ ∀ k, 2 * n k ≤ n (k + 1)
 
+/--
+@isnad1 id=islacuna.1h1v.s3.cb9d7837eb3d from=translated src=- shape=c3984ded vocab=d8c3bf6b
+-/
 lemma IsDyadicLacunary.isLacunary {n : ℕ → ℕ} (hn : IsDyadicLacunary n) : IsLacunary n := by
   refine ⟨3 / 2, by norm_num, Eventually.of_forall fun k => ?_⟩
   have hpos : ∀ k, 1 ≤ n k := by

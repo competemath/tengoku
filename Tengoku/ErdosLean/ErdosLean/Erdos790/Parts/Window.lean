@@ -6,7 +6,9 @@ import Tengoku.ErdosLean.ErdosLean.Erdos790.Defs
 
 namespace Erdos790
 
-/-- If `z ∈ A` is positive and `δ ≤ 2 N z`, `z ≤ 2δ`, then `dyIdx z` lies in the window.-/
+/-- If `z ∈ A` is positive and `δ ≤ 2 N z`, `z ≤ 2δ`, then `dyIdx z` lies in the window.
+@isnad1 id=mem.4h4v.s6.f9ec8c15c655 from=translated src=- shape=140fc51f vocab=d0b38a19
+-/
 theorem mem_window_of (A : Finset ℤ) (N : ℕ) {z δ : ℤ} (hzA : z ∈ A) (hz : 0 < z)
     (h1 : δ ≤ 2 * (N : ℤ) * z) (h2 : z ≤ 2 * δ) : dyIdx z ∈ window N δ (topIdx A) := by
   unfold window
@@ -23,7 +25,9 @@ theorem mem_window_of (A : Finset ℤ) (N : ℕ) {z δ : ℤ} (hzA : z ∈ A) (h
     mul_le_mul_of_nonneg_left hhi'.le (by positivity)
   linarith
 
-/-- A window contains at most `⌈log₂ N⌉ + 5` indices.-/
+/-- A window contains at most `⌈log₂ N⌉ + 5` indices.
+@isnad1 id=le.1h3v.s5.1b5d88329b73 from=translated src=- shape=f4fe3a61 vocab=c2837788
+-/
 theorem card_window_le (N : ℕ) (hN : 1 ≤ N) (δ : ℤ) (M : ℕ) :
     (window N δ M).card ≤ Nat.clog 2 N + 5 := by
   rcases (window N δ M).eq_empty_or_nonempty with h | h

@@ -14,7 +14,9 @@ open MeasureTheory Filter
 namespace DuffinSchaeffer
 
 /-- Finite Chung–Erdős inequality in "quadratic" form: for every real `t`,
-`0 ≤ ∑∑ μ(A_n ∩ A_m) - 2 t ∑ μ(A_n) + t² μ(⋃_F A_n)`.-/
+`0 ≤ ∑∑ μ(A_n ∩ A_m) - 2 t ∑ μ(A_n) + t² μ(⋃_F A_n)`.
+@isnad1 id=le.1h5v.s7.96c68b48c306 from=translated src=- shape=ccd55895 vocab=a24bf9f0
+-/
 theorem chungErdos_quadratic {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsFiniteMeasure μ] (A : ℕ → Set Ω) (hA : ∀ n, MeasurableSet (A n)) (F : Finset ℕ)
     (t : ℝ) :
@@ -73,7 +75,9 @@ theorem chungErdos_quadratic {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
   exact hg
 
 /-- Finite Chung–Erdős: if `0 < S = ∑_F μ(A_n)` and `D = ∑∑ μ(A_n ∩ A_m) ≤ C S²`,
-then `1/C ≤ μ(⋃_F A_n)`.-/
+then `1/C ≤ μ(⋃_F A_n)`.
+@isnad1 id=le.4h5v.s7.3753da30bb5f from=translated src=- shape=1514d469 vocab=c84d502b
+-/
 theorem one_div_le_measure_biUnion {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsFiniteMeasure μ] (A : ℕ → Set Ω) (hA : ∀ n, MeasurableSet (A n)) (F : Finset ℕ)
     (C : ℝ) (hC : 0 < C) (hS : 0 < ∑ n ∈ F, μ.real (A n))
@@ -97,7 +101,9 @@ theorem one_div_le_measure_biUnion {Ω : Type*} [MeasurableSpace Ω] (μ : Measu
   linarith
 
 /-- If for every `N` there is a finite set `F ⊆ [N, ∞)` with `0 < ∑_F μ(A_n)` and
-`∑_{F×F} μ(A_n ∩ A_m) ≤ C (∑_F μ(A_n))²`, then `μ(limsup A_n) ≥ 1/C`.-/
+`∑_{F×F} μ(A_n ∩ A_m) ≤ C (∑_F μ(A_n))²`, then `μ(limsup A_n) ≥ 1/C`.
+@isnad1 id=le.2h4v.s7.b2dfc3e01c3b from=translated src=- shape=18e63bb8 vocab=c1a331cd
+-/
 theorem measure_limsup_ge_of_second_moment {Ω : Type*} [MeasurableSpace Ω] (μ : Measure Ω)
     [IsFiniteMeasure μ] (A : ℕ → Set Ω) (hA : ∀ n, MeasurableSet (A n)) (C : ℝ)
     (h : ∀ N : ℕ, ∃ F : Finset ℕ, (∀ n ∈ F, N ≤ n) ∧ 0 < ∑ n ∈ F, μ.real (A n) ∧

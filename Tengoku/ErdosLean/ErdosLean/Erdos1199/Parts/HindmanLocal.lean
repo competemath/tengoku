@@ -12,7 +12,9 @@ namespace Erdos1199
 
 /-- Lemma A.1 (`m = ℓ = 1`): if no infinite `B` has `B + B ⊆ c⁻¹(j)`, there is `C` such that
 whenever the even block `Q(K, M) = {2(K+s) : s < M}` contains at most one point of colour `¬j`,
-and `C < x`, `2K < x`, `x + C < 2(K + M)`, then `c(2x) = ¬j`.-/
+and `C < x`, `2K < x`, `x + C < 2(K + M)`, then `c(2x) = ¬j`.
+@isnad1 id=ex.1h2v.s7.1fe72f0934f4 from=translated src=- shape=1952afeb vocab=e295482f
+-/
 theorem hindman_local (c : ℕ → Bool) (j : Bool)
     (hno : ¬ ∃ B : Set ℕ, B.Infinite ∧ ∀ x ∈ B, ∀ y ∈ B, c (x + y) = j) :
     ∃ C : ℕ, ∀ K M x : ℕ,

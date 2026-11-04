@@ -14,11 +14,16 @@ namespace Erdos1199
 open Filter
 
 open Classical in
+/--
+@isnad1 id=iff.0h3v.s5.e57390e153ab from=translated src=- shape=7eb29bab vocab=255e1d2d
+-/
 theorem act_apply_eq_true_iff (p : Ultrafilter ℕ) (x : Pt) (i : Idx) :
     act p x i = true ↔ {n : ℕ | x (i.1, i.2 + stride i * (n : ℤ)) = true} ∈ p := by
   unfold act; exact decide_eq_true_iff
 
-/-- Eq. (2.2): `(p + q) · x = p · (q · x)`.-/
+/-- Eq. (2.2): `(p + q) · x = p · (q · x)`.
+@isnad1 id=eq.0h3v.s5.5361c16833f5 from=translated src=- shape=96a587c4 vocab=346867d2
+-/
 theorem act_add (p q : Ultrafilter ℕ) (x : Pt) : act (p + q) x = act p (act q x) := by
   funext i
   rw [Bool.eq_iff_iff, act_apply_eq_true_iff, act_apply_eq_true_iff, mem_add_iff]
@@ -41,13 +46,17 @@ theorem act_add (p q : Ultrafilter ℕ) (x : Pt) : act (p + q) x = act p (act q 
     rw [this]
   rw [hset]
 
-/-- The principal ultrafilter acts as the shift `Tⁿ`.-/
+/-- The principal ultrafilter acts as the shift `Tⁿ`.
+@isnad1 id=eq.0h3v.s5.681f7e88c254 from=translated src=- shape=7e4865fa vocab=7ea3e310
+-/
 theorem act_pure_apply (n : ℕ) (x : Pt) (i : Idx) :
     act (pure n) x i = x (i.1, i.2 + stride i * (n : ℤ)) := by
   rw [Bool.eq_iff_iff, act_apply_eq_true_iff, Ultrafilter.mem_pure]
   exact Iff.rfl
 
-/-- Eq. (2.3) for `J`: `p · (J x) = J (p · x)`.-/
+/-- Eq. (2.3) for `J`: `p · (J x) = J (p · x)`.
+@isnad1 id=eq.0h2v.s3.cf39790ea77c from=translated src=- shape=70fad52e vocab=c6c458fc
+-/
 theorem act_cmpl (p : Ultrafilter ℕ) (x : Pt) : act p (cmpl x) = cmpl (act p x) := by
   funext i
   have e : cmpl (act p x) i = !(act p x i) := rfl
@@ -58,16 +67,23 @@ theorem act_cmpl (p : Ultrafilter ℕ) (x : Pt) : act p (cmpl x) = cmpl (act p x
     ext n; simp [cmpl]
   rw [this]
 
+/--
+@isnad1 id=eq.0h1v.s3.499bac4464f4 from=translated src=- shape=47dcad53 vocab=d7edaacd
+-/
 theorem cmpl_cmpl (x : Pt) : cmpl (cmpl x) = x := by
   funext i; simp [cmpl]
 
-/-- `J` has no fixed points.-/
+/-- `J` has no fixed points.
+@isnad1 id=ne.0h1v.s2.b44bea4b4d94 from=translated src=- shape=a365602c vocab=d7edaacd
+-/
 theorem cmpl_ne_self (x : Pt) : cmpl x ≠ x := by
   intro h
   have := congrFun h (0, 0)
   simp [cmpl] at this
 
-/-- Lemma 3.1, eq. (3.4): `Δ₂ (p · x) = (D p) · (Δ₂ x)`.-/
+/-- Lemma 3.1, eq. (3.4): `Δ₂ (p · x) = (D p) · (Δ₂ x)`.
+@isnad1 id=eq.0h2v.s4.0ea20e32dee9 from=translated src=- shape=7b83e782 vocab=9bfa1761
+-/
 theorem dil_act (p : Ultrafilter ℕ) (x : Pt) : dil (act p x) = act (dbl p) (dil x) := by
   funext i
   have e : dil (act p x) i = act p x (2 * i.1 + 1, i.2) := rfl
@@ -83,13 +99,19 @@ theorem dil_act (p : Ultrafilter ℕ) (x : Pt) : dil (act p x) = act (dbl p) (di
     simp only [h2]
   rw [this]
 
-/-- Lemma 3.1: `Δ₂ J = J Δ₂`.-/
+/-- Lemma 3.1: `Δ₂ J = J Δ₂`.
+@isnad1 id=eq.0h1v.s3.5b3f35cc38f3 from=translated src=- shape=2e76f3a7 vocab=19e6aeca
+-/
 theorem dil_cmpl (x : Pt) : dil (cmpl x) = cmpl (dil x) := rfl
 
-/-- Lemma 3.1: `Δ₂ 𝐜 = 𝐜`.-/
+/-- Lemma 3.1: `Δ₂ 𝐜 = 𝐜`.
+@isnad1 id=eq.0h1v.s3.95f9d1492e15 from=translated src=- shape=e343f8de vocab=2ec7bb48
+-/
 theorem dil_encode (c : ℤ → Bool) : dil (encode c) = encode c := rfl
 
-/-- `p ↦ p · x` is continuous from `βℕ` to `Pt` (product topology).-/
+/-- `p ↦ p · x` is continuous from `βℕ` to `Pt` (product topology).
+@isnad1 id=continuo.0h1v.s4.27544f6d4037 from=translated src=- shape=e9ba6edb vocab=c7435fd6
+-/
 theorem continuous_act (x : Pt) : Continuous (fun p : Ultrafilter ℕ => act p x) := by
   refine continuous_pi fun i => ?_
   rw [continuous_bool_rng true]

@@ -14,7 +14,9 @@ namespace Erdos1199
 open Filter
 
 /-- Proposition 3.6: if `Δ₂ x = x` and `(p+p) x = J((D p) x)` for all `p ∈ ℕ*`, then no
-minimal subsystem `M ⊆ ω(x)` meets its image `J M`.-/
+minimal subsystem `M ⊆ ω(x)` meets its image `J M`.
+@isnad1 id=not.4h3v.s6.9d4a3be090cf from=translated src=- shape=c69ac200 vocab=204994b8
+-/
 theorem disjoint_minimal (x : Pt) (hdil : dil x = x)
     (hkey : ∀ p : Ultrafilter ℕ, Nonprincipal p → act (p + p) x = cmpl (act (dbl p) x))
     (M : Set Pt) (hM : IsMinimalSub x M) :

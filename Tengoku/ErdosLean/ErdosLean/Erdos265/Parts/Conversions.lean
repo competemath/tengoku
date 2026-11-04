@@ -16,6 +16,9 @@ open Filter Topology
 
 namespace Erdos265
 
+/--
+@isnad1 id=tendsto.2h2v.s6.5ad6ae13e4a9 from=translated src=- shape=22f3ee44 vocab=9de0cc07
+-/
 theorem rpow_inv_n_of_beta {a : ℕ → ℕ} {β : ℝ} (hβ : 1 < β)
     (h : Tendsto (fun n : ℕ ↦ (a n : ℝ) ^ ((1 : ℝ) / β ^ n)) atTop atTop) :
     Tendsto (fun n : ℕ ↦ (a n : ℝ) ^ ((1 : ℝ) / (n : ℝ))) atTop atTop := by
@@ -39,6 +42,9 @@ theorem rpow_inv_n_of_beta {a : ℕ → ℕ} {β : ℝ} (hβ : 1 < β)
         apply Real.rpow_le_rpow_of_exponent_le hx
         rw [le_div_iff₀ hnpos]; linarith
 
+/--
+@isnad1 id=tendsto.2h1v.s7.b5a8da412cee from=translated src=- shape=7c00893f vocab=89b74412
+-/
 theorem rpow_two_pow_tendsto_one {a : ℕ → ℕ} (h1 : ∀ n, 1 ≤ (a n : ℝ))
     (h : Tendsto (fun n : ℕ ↦ Real.log (a n : ℝ) / (2 : ℝ) ^ n) atTop (𝓝 0)) :
     Tendsto (fun n : ℕ ↦ (a n : ℝ) ^ ((1 : ℝ) / (2 : ℝ) ^ n)) atTop (𝓝 1) := by
@@ -50,6 +56,9 @@ theorem rpow_two_pow_tendsto_one {a : ℕ → ℕ} (h1 : ∀ n, 1 ≤ (a n : ℝ
   rw [heq, ← Real.exp_zero]
   exact (Real.continuous_exp.tendsto 0).comp h
 
+/--
+@isnad1 id=erdos265.1h0v.s6.784659e3f45d from=translated src=- shape=d06f52a6 vocab=8f9f638e
+-/
 theorem limsup_negative_of
     (h : ∀ a : ℕ → ℕ, IsRationalPair a →
       Tendsto (fun n : ℕ ↦ (a n : ℝ) ^ ((1 : ℝ) / (2 : ℝ) ^ n)) atTop (𝓝 1)) :

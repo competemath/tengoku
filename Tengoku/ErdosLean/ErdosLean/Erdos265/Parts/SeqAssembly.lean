@@ -42,6 +42,9 @@ private lemma adm_int {k : ℕ} {c : ℤ × ℤ} (hc : Adm k c) :
   have h4 := NN_ge k
   exact ⟨h1.1, h1.2, h2.1, h2.2, by exact_mod_cast h3, by exact_mod_cast h4⟩
 
+/--
+@isnad1 id=and.1h2v.s5.f7f060434842 from=translated src=- shape=612df2b5 vocab=0a61f470
+-/
 theorem blockVal_nonneg {k : ℕ} {c : ℤ × ℤ} (hc : Adm k c) :
     0 ≤ (blockVal k c).1 ∧ 0 ≤ (blockVal k c).2 := by
   obtain ⟨a1, a2, a3, a4, a5, a6⟩ := adm_int hc
@@ -64,6 +67,9 @@ private lemma NN_ge_pow (k : ℕ) : (4 : ℝ) ^ k ≤ (NN k : ℝ) := by
   have : 4 ^ k ≤ NN k := Nat.pow_le_pow_right (by norm_num) (mSeq_ge_self k)
   exact_mod_cast this
 
+/--
+@isnad1 id=and.0h0v.s5.b0f10d588328 from=translated src=- shape=14dde0b2 vocab=6fe41143
+-/
 theorem center_summable :
     Summable (fun k ↦ (center k).1) ∧ Summable (fun k ↦ (center k).2) := by
   have hg : Summable (fun k : ℕ ↦ 2 * (1 / 4 : ℝ) ^ k) :=
@@ -137,6 +143,9 @@ private lemma hasSum_of_pairs {f : ℕ → ℝ} (hf : ∀ n, 0 ≤ f n) {x : ℝ
   rw [hx]
   exact se.hasSum.even_add_odd so.hasSum
 
+/--
+@isnad1 id=isration.3h3v.s6.01156ef7dad8 from=translated src=- shape=3dc5a8c7 vocab=71eb1973
+-/
 theorem isRationalPair_of_blocks {c : ℕ → ℤ × ℤ} (hc : ∀ k, Adm k (c k)) {x1 x2 : ℚ}
     (h1 : HasSum (fun k ↦ (blockVal k (c k)).1) (x1 : ℝ))
     (h2 : HasSum (fun k ↦ (blockVal k (c k)).2) (x2 : ℝ)) :

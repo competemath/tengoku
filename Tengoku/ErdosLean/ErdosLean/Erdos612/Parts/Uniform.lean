@@ -11,6 +11,9 @@ The uniform constant works for every fixed `d`: a graph with `minDegree = d`, `2
 
 namespace Erdos612
 
+/--
+@isnad1 id=diamboun.1h3v.s3.e9fad0bd1d99 from=translated src=- shape=da6bb30e vocab=8153d1bc
+-/
 theorem diamBound_of_uniform {s m : ℕ} {c : ℝ} (h : DiamBoundUniform s m c) :
     DiamBound s m c := by
   obtain ⟨C, hC⟩ := h

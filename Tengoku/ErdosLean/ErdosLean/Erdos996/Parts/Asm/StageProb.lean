@@ -25,7 +25,9 @@ local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
 /-- Elementary bound `(1 - r)^n ≤ 2^{-m}` from `n r ≥ 2^m` (via `(1-r)^n (1+r)^n ≤ 1` and
-Bernoulli).-/
+Bernoulli).
+@isnad1 id=le.3h3v.s6.852cd59c563d from=translated src=- shape=638209bb vocab=270cda3e
+-/
 lemma one_sub_pow_le_aux (r : ℝ) (n m : ℕ) (hr0 : 0 ≤ r) (hr1 : r ≤ 1)
     (hn : (2 : ℝ) ^ m ≤ n * r) : (1 - r) ^ n ≤ (2⁻¹ : ℝ) ^ m := by
   have hb := one_add_mul_le_pow (by linarith : (-2 : ℝ) ≤ r) n
@@ -37,6 +39,9 @@ lemma one_sub_pow_le_aux (r : ℝ) (n m : ℕ) (hr0 : 0 ≤ r) (hr1 : r ≤ 1)
   rw [inv_pow, ← one_div, le_div_iff₀ (by positivity)]
   exact h4
 
+/--
+@isnad1 id=eq.0h1v.s5.dd28386fa715 from=translated src=- shape=3af08947 vocab=bcd6b972
+-/
 lemma ennreal_inv_two_pow (m : ℕ) :
     ((2⁻¹ : ℝ≥0∞)) ^ m = ENNReal.ofReal ((2⁻¹ : ℝ) ^ m) := by
   rw [ENNReal.ofReal_pow (by norm_num), ENNReal.ofReal_inv_of_pos (by norm_num)]
@@ -51,11 +56,17 @@ def stagePairs (A k : ℕ) : Finset (Σ _ : ℕ, ℕ) :=
 def pairStart (A k : ℕ) (i : Σ _ : ℕ, ℕ) : ℕ :=
   shift A k + trialStart A i.1 + i.2 * spacing A k
 
+/--
+@isnad1 id=eq.1h3v.s5.039f597ab860 from=translated src=- shape=a4665a99 vocab=1a5c1347
+-/
 lemma stage_of_mem_Ico {A k s : ℕ} (hs : s ∈ Finset.Ico (firstTrial A k) (firstTrial A (k + 1))) :
     stage A s = k := by
   rw [Finset.mem_Ico] at hs
   exact stage_eq A s k hs.1 hs.2
 
+/--
+@isnad1 id=eq.0h2v.s7.675408e37629 from=translated src=- shape=88b1ead8 vocab=84a61f1a
+-/
 lemma compl_stageGood_eq (A k : ℕ) :
     (stageGood A k)ᶜ = ⋂ i ∈ stagePairs A k, (hitSet (depth A k) (pairStart A k i))ᶜ := by
   ext x
@@ -73,6 +84,9 @@ lemma compl_stageGood_eq (A k : ℕ) :
     obtain ⟨hh, hhm, hx⟩ := Set.mem_iUnion₂.mp hx
     exact h ⟨s, hh⟩ (by rw [stagePairs, Finset.mem_sigma]; exact ⟨hs, hhm⟩) hx
 
+/--
+@isnad1 id=le.3h6v.s6.8ffb16b87bdb from=translated src=- shape=910b1fc4 vocab=db10b53a
+-/
 lemma pairStart_lt_of_lt (A k : ℕ) {s h s' h' : ℕ}
     (hs : s ∈ Finset.Ico (firstTrial A k) (firstTrial A (k + 1)))
     (hh : h ≤ blockLen A k + 1) (hss' : s < s') :
@@ -88,6 +102,9 @@ lemma pairStart_lt_of_lt (A k : ℕ) {s h s' h' : ℕ}
   simp only [pairStart]
   omega
 
+/--
+@isnad1 id=or.3h4v.s7.a892bb72c386 from=translated src=- shape=0c260c28 vocab=67f26f82
+-/
 lemma pairStart_disj (A k : ℕ) :
     ∀ i ∈ stagePairs A k, ∀ j ∈ stagePairs A k, i ≠ j →
       pairStart A k i + depth A k ≤ pairStart A k j ∨
@@ -114,6 +131,9 @@ lemma pairStart_disj (A k : ℕ) :
       omega
   · right; exact pairStart_lt_of_lt A k hj.1 hj.2.2 hgt
 
+/--
+@isnad1 id=le.0h2v.s5.a0487c897313 from=translated src=- shape=ef271035 vocab=a0c90ff6
+-/
 lemma card_stagePairs (A k : ℕ) :
     7 * nTrials A k * blockLen A k ≤ 8 * (stagePairs A k).card := by
   have hS : firstTrial A (k + 1) = firstTrial A k + nTrials A k := rfl
@@ -129,6 +149,9 @@ lemma card_stagePairs (A k : ℕ) :
         rw [stage_of_mem_Ico hs] at this
         omega
 
+/--
+@isnad1 id=le.5h5v.s7.a9cb517321f2 from=translated src=- shape=3c6defc9 vocab=b2d07434
+-/
 lemma real_count_aux (n L P Λ K : ℝ) (hcard : 7 * (Λ * K * 16777216) * L ≤ 8 * n)
     (hspec : P < 128 * 100 ^ 2 * L * Λ) (hK : 0 < K) (hL : 0 ≤ L) (hΛ : 0 ≤ Λ) :
     K * 2 ^ 3 * P ≤ n := by
@@ -136,6 +159,9 @@ lemma real_count_aux (n L P Λ K : ℝ) (hcard : 7 * (Λ * K * 16777216) * L ≤
   have hmono : 0 ≤ K * (L * Λ) := mul_nonneg hK.le (mul_nonneg hL hΛ)
   nlinarith
 
+/--
+@isnad1 id=le.0h2v.s6.891a88afdbda from=translated src=- shape=93e0d373 vocab=b5697904
+-/
 lemma stage_count_real (A k : ℕ) :
     (2 : ℝ) ^ (k + 3) ≤ ((stagePairs A k).card : ℝ) * (2⁻¹ : ℝ) ^ depth A k := by
   have hspec := (depth_spec A k).2
@@ -149,6 +175,9 @@ lemma stage_count_real (A k : ℕ) :
   rw [inv_pow, le_mul_inv_iff₀ (by positivity), pow_add]
   exact real_count_aux _ _ _ _ _ hcardR hspec (by positivity) (Nat.cast_nonneg _) (by positivity)
 
+/--
+@isnad1 id=le.1h2v.s7.833df4392365 from=translated src=- shape=3154ab32 vocab=67f8826c
+-/
 lemma measure_compl_stageGood_le (A : ℕ) (hA : 1 ≤ A) (k : ℕ) :
     μ𝕋 (stageGood A k)ᶜ ≤ (2⁻¹ : ℝ≥0∞) ^ (k + 3) := by
   classical
@@ -170,6 +199,9 @@ lemma measure_compl_stageGood_le (A : ℕ) (hA : 1 ≤ A) (k : ℕ) :
     ← ENNReal.ofReal_sub _ hr0, ← ENNReal.ofReal_pow (by linarith)]
   exact ENNReal.ofReal_le_ofReal hfin
 
+/--
+@isnad1 id=lt.1h1v.s6.bc62c3a408f1 from=translated src=- shape=8e6060b3 vocab=f63ce61b
+-/
 lemma measure_iInter_stageGood_pos (A : ℕ) (hA : 1 ≤ A) :
     0 < μ𝕋 (⋂ k, stageGood A k) := by
   set G := ⋂ k, stageGood A k

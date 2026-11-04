@@ -12,7 +12,9 @@ the genuine infinite family `n = 2^{j-1}`). -/
 
 namespace Erdos494
 
-/-- `C(n,k) (n-s)^t ≤ s^t C(n,k+t)` whenever `k + t ≤ s`.-/
+/-- `C(n,k) (n-s)^t ≤ s^t C(n,k+t)` whenever `k + t ≤ s`.
+@isnad1 id=le.1h4v.s6.e90ee12984d4 from=translated src=- shape=83dda9d9 vocab=32545042
+-/
 lemma exactCase_choose_mul_pow_le (n s : ℕ) :
     ∀ t k, k + t ≤ s → n.choose k * (n - s) ^ t ≤ s ^ t * n.choose (k + t) := by
   intro t
@@ -32,6 +34,9 @@ lemma exactCase_choose_mul_pow_le (n s : ℕ) :
       _ = s ^ (t + 1) * n.choose (k + (t + 1)) := by
           rw [show k + 1 + t = k + (t + 1) by omega]; ring
 
+/--
+@isnad1 id=le.1h1v.s5.f8d418628ade from=translated src=- shape=8979ae7e vocab=26067060
+-/
 lemma exactCase_le_two_pow (i : ℕ) (hi : 4 ≤ i) : i ≤ 2 ^ (i - 2) := by
   obtain ⟨t, rfl⟩ : ∃ t, i = t + 4 := ⟨i - 4, by omega⟩
   have h : t < 2 ^ t := Nat.lt_two_pow_self
@@ -39,7 +44,9 @@ lemma exactCase_le_two_pow (i : ℕ) (hi : 4 ≤ i) : i ≤ 2 ^ (i - 2) := by
   norm_num
   omega
 
-/-- For `4 ≤ i ≤ s` and `2^m ≤ n - s`: `i^m C(n, s-i) ≤ 2^m s^s C(n, s-3)`.-/
+/-- For `4 ≤ i ≤ s` and `2^m ≤ n - s`: `i^m C(n, s-i) ≤ 2^m s^s C(n, s-3)`.
+@isnad1 id=le.3h4v.s7.be354ba89033 from=translated src=- shape=d4b8c9d6 vocab=29ce789a
+-/
 lemma exactCase_term_le (s n m i : ℕ) (hi4 : 4 ≤ i) (his : i ≤ s) (hn : 2 ^ m ≤ n - s) :
     i ^ m * n.choose (s - i) ≤ 2 ^ m * s ^ s * n.choose (s - 3) := by
   have key := exactCase_choose_mul_pow_le n s (i - 3) (s - i) (by omega)
@@ -57,7 +64,9 @@ lemma exactCase_term_le (s n m i : ℕ) (hi4 : 4 ≤ i) (his : i ≤ s) (hn : 2 
     _ ≤ 2 ^ m * (s ^ s * n.choose (s - 3)) := by gcongr
     _ = 2 ^ m * s ^ s * n.choose (s - 3) := by ring
 
-/-- `2^m (m+2) ≤ 2 · 3^m`.-/
+/-- `2^m (m+2) ≤ 2 · 3^m`.
+@isnad1 id=le.0h1v.s6.5bb5811b458d from=translated src=- shape=bf316726 vocab=f96c6fce
+-/
 lemma exactCase_bernoulli (m : ℕ) : 2 ^ m * (m + 2) ≤ 2 * 3 ^ m := by
   induction m with
   | zero => simp
@@ -65,7 +74,9 @@ lemma exactCase_bernoulli (m : ℕ) : 2 ^ m * (m + 2) ≤ 2 * 3 ^ m := by
     rw [pow_succ, pow_succ]
     nlinarith [Nat.zero_le (2 ^ m), Nat.zero_le m]
 
-/-- The case `i = 1`, with `s = r + 3`: `n = (r+2) 2^m` and `f > 0` for `m` large.-/
+/-- The case `i = 1`, with `s = r + 3`: `n = (r+2) 2^m` and `f > 0` for `m` large.
+@isnad1 id=lt.3h3v.s7.5264a0cd0a10 from=translated src=- shape=aec1f793 vocab=b7202722
+-/
 lemma exactCase_one' (r m n : ℕ) (hm : 2 ≤ m) (hn : n = (r + 2) * 2 ^ m)
     (hK : 2 ^ m * (1 + (r + 3) ^ (r + 3 + 1)) < 3 ^ m) :
     0 < gfsPoly (r + 3) n (m + 1) := by
@@ -159,12 +170,18 @@ lemma exactCase_one' (r m n : ℕ) (hm : 2 ≤ m) (hn : n = (r + 2) * 2 ^ m)
   have hX' : 2 ^ m * ((r : ℤ) + 3) ^ (r + 3 + 1) * C = X * C := by rw [hX]
   nlinarith
 
+/--
+@isnad1 id=lt.3h2v.s7.d07d8af74265 from=translated src=- shape=323bf8a2 vocab=6fbce96c
+-/
 lemma exactCase_one (s m : ℕ) (hs : 3 ≤ s) (hm : 2 ≤ m)
     (hK : 2 ^ m * (1 + s ^ (s + 1)) < 3 ^ m) :
     0 < gfsPoly s ((s - 1) * 2 ^ m) (m + 1) := by
   obtain ⟨r, rfl⟩ : ∃ r, s = r + 3 := ⟨s - 3, by omega⟩
   exact exactCase_one' r m _ hm (by rw [show r + 3 - 1 = r + 2 by omega]) hK
 
+/--
+@isnad1 id=ex.1h1v.s7.278fb85041f0 from=translated src=- shape=5be05917 vocab=d778dae6
+-/
 theorem exact_case (s : ℕ) (hs : 3 ≤ s) :
     ∃ N : ℕ, ∀ n j i : ℕ, N ≤ n → 1 ≤ j → i ∈ Finset.Icc 1 (s - 1) →
       n * i ^ (j - 1) = (s - i) * (i + 1) ^ (j - 1) → gfsPoly s n j ≠ 0 := by

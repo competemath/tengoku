@@ -12,6 +12,9 @@ namespace Erdos956Upper
 
 open Erdos956 Metric
 
+/--
+@isnad1 id=eq.1h4v.s7.46bc3ff88081 from=translated src=- shape=b6b38b50 vocab=59fed12e
+-/
 theorem sum_weight_subset {α : Type*} [DecidableEq α] (V T : Finset α) (hT : T ⊆ V) (p : ℝ) :
     ∑ S ∈ V.powerset, (if T ⊆ S then p ^ S.card * (1 - p) ^ (V.card - S.card) else 0) =
       p ^ T.card := by

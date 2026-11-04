@@ -16,6 +16,9 @@ private lemma norm_eq_sqrt_coords (v : E) : ‖v‖ = Real.sqrt (v 0 ^ 2 + v 1 ^
   rw [EuclideanSpace.norm_eq, Fin.sum_univ_two, Real.norm_eq_abs, Real.norm_eq_abs, sq_abs,
     sq_abs]
 
+/--
+@isnad1 id=eq.0h2v.s6.7b99b93130f8 from=translated src=- shape=1966ad84 vocab=dd3b93ab
+-/
 lemma norm_γ_sub_pp (e t : ℝ) : ‖γ e t - pp e t‖ = 1 := by
   rw [norm_eq_sqrt_coords]
   simp only [PiLp.sub_apply, γ_zero, γ_one, pp_zero, pp_one]
@@ -29,6 +32,9 @@ lemma norm_γ_sub_pp (e t : ℝ) : ‖γ e t - pp e t‖ = 1 := by
     rw [this, hsq]; field_simp; ring
   rw [h, Real.sqrt_one]
 
+/--
+@isnad1 id=le.4h3v.s7.6badf565c2e2 from=translated src=- shape=cbf606cd vocab=d8c9e3b4
+-/
 lemma one_le_norm_γ_sub {k : ℕ} (hk : 1 ≤ k) {t : ℝ} (ht0 : 0 ≤ t) (htW : t ≤ W k)
     {z : E} (hz : z ∈ D k) : 1 ≤ ‖γ (η k) t - z‖ := by
   have hsup := mem_D_support hk ht0 htW hz

@@ -19,7 +19,9 @@ namespace Asm
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
-/-- `z ↦ z mod 1` lands in `[0, c)` iff the fractional part of `z` is below `c`.-/
+/-- `z ↦ z mod 1` lands in `[0, c)` iff the fractional part of `z` is below `c`.
+@isnad1 id=iff.1h2v.s6.3b56e9bc922b from=translated src=- shape=d063b307 vocab=571d6cf5
+-/
 lemma coe_mem_image_Ico_iff (z c : ℝ) (hc : c ≤ 1) :
     ((z : 𝕋) ∈ (QuotientAddGroup.mk '' Set.Ico (0 : ℝ) c : Set 𝕋)) ↔ Int.fract z < c := by
   constructor
@@ -34,6 +36,9 @@ lemma coe_mem_image_Ico_iff (z c : ℝ) (hc : c ≤ 1) :
   · intro h
     exact ⟨Int.fract z, ⟨Int.fract_nonneg z, h⟩, AddCircle.coe_fract z⟩
 
+/--
+@isnad1 id=iff.0h2v.s6.7bcbc3ecccc0 from=translated src=- shape=7bc01462 vocab=5b0f1cd6
+-/
 lemma fract_lt_two_inv_pow_succ (z : ℝ) (d : ℕ) :
     Int.fract z < (2 : ℝ)⁻¹ ^ (d + 1) ↔
       Int.fract z < 2⁻¹ ∧ Int.fract (2 * z) < (2 : ℝ)⁻¹ ^ d := by
@@ -53,7 +58,9 @@ lemma fract_lt_two_inv_pow_succ (z : ℝ) (d : ℕ) :
     · intro h; exfalso; apply hf; rw [hpow] at h; nlinarith
     · rintro ⟨h, -⟩; exact absurd h hf
 
-/-- `fract z < 2^{-d}` iff the first `d` binary digits of `z` vanish.-/
+/-- `fract z < 2^{-d}` iff the first `d` binary digits of `z` vanish.
+@isnad1 id=iff.0h2v.s6.20890b08342b from=translated src=- shape=9558a0e6 vocab=3acea274
+-/
 lemma fract_lt_two_inv_pow_iff (d : ℕ) : ∀ z : ℝ,
     Int.fract z < (2 : ℝ)⁻¹ ^ d ↔ ∀ i < d, Int.fract ((2 : ℝ) ^ i * z) < 2⁻¹ := by
   induction d with
@@ -75,6 +82,9 @@ lemma fract_lt_two_inv_pow_iff (d : ℕ) : ∀ z : ℝ,
       have := h (i + 1) (by omega)
       rw [pow_succ, mul_assoc] at this; exact this
 
+/--
+@isnad1 id=iff.0h3v.s8.1102d0c57c91 from=translated src=- shape=9f890c0d vocab=df878e59
+-/
 lemma mem_hitSet_iff (d v : ℕ) (x : 𝕋) :
     x ∈ hitSet d v ↔ ∀ j, v ≤ j → j < v + d →
       Int.fract ((2 : ℝ) ^ j * (AddCircle.equivIco 1 0 x : ℝ)) < 2⁻¹ := by
@@ -94,6 +104,9 @@ lemma mem_hitSet_iff (d v : ℕ) (x : 𝕋) :
     rw [← mul_assoc, ← pow_add]
     exact h (i + v) (by omega) (by omega)
 
+/--
+@isnad1 id=determin.0h2v.s4.115127dd9d16 from=translated src=- shape=c1783cc4 vocab=9ede8708
+-/
 lemma determinedByWindow_hitSet (d v : ℕ) : DeterminedByWindow v (v + d) (hitSet d v) := by
   intro x y h
   rw [mem_hitSet_iff, mem_hitSet_iff]
@@ -101,6 +114,9 @@ lemma determinedByWindow_hitSet (d v : ℕ) : DeterminedByWindow v (v + d) (hitS
   · intro hx j hj1 hj2; exact (h j).1 (fun _ _ => hx j hj1 hj2)
   · intro hy j hj1 hj2; exact (h j).2 (hy j hj1 hj2) hj1 hj2
 
+/--
+@isnad1 id=determin.1h3v.s5.554951ce8a5d from=translated src=- shape=824689ce vocab=4519adb5
+-/
 lemma DeterminedByWindow.compl' {a b : ℕ} {E : Set 𝕋} (h : DeterminedByWindow a b E) :
     DeterminedByWindow a b Eᶜ := by
   intro x y hxy

@@ -13,6 +13,9 @@ dropped).  Equivalently `r_t - (1+st)/r_s ≤ (t-s)²/2`, which follows from
 
 namespace Erdos956
 
+/--
+@isnad1 id=le.2h3v.s9.482a85e0d6d7 from=translated src=- shape=9e5ec149 vocab=43942d01
+-/
 lemma support_gen {e s t : ℝ} (hs : 0 ≤ s) (ht : 0 ≤ t) :
     pp e s 0 * t + pp e s 1 ≤ pp e t 0 * t + pp e t 1 := by
   simp only [pp_zero, pp_one]

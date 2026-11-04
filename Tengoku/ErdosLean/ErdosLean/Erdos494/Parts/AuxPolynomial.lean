@@ -20,11 +20,17 @@ open Finset Matrix
 
 attribute [local instance] Matrix.seminormedAddCommGroup
 
+/--
+@isnad1 id=eq.1h3v.s5.f4aa119e3c57 from=translated src=- shape=07331647 vocab=c7dadf57
+-/
 lemma binRoot_pow' (r a b : ℕ) (hr : 1 ≤ r) : binRoot r a b ^ r = (b : ℝ) / a := by
   unfold binRoot
   rw [one_div]
   exact Real.rpow_inv_natCast_pow (by positivity) (by omega)
 
+/--
+@isnad1 id=lt.2h3v.s5.d02b3f841c0c from=translated src=- shape=91174d69 vocab=7ab8b078
+-/
 lemma binRoot_pos' (r a b : ℕ) (ha : 0 < a) (hb : 0 < b) : 0 < binRoot r a b := by
   unfold binRoot
   exact Real.rpow_pos_of_pos (div_pos (by exact_mod_cast hb) (by exact_mod_cast ha)) _
@@ -35,6 +41,9 @@ def auxEntryN (r a b r1 r2 : ℕ) (s i1 i2 k1 k2 : ℕ) : ℕ :=
     k1.choose i1 * k2.choose i2 * b ^ ((k1 + k2) / r) * a ^ ((r1 + r2) / r - (k1 + k2) / r)
   else 0
 
+/--
+@isnad1 id=le.3h10v.s6.b6f845ffcc60 from=translated src=- shape=f3f3e635 vocab=958e4772
+-/
 lemma auxEntryN_le (r a b r1 r2 s i1 i2 k1 k2 : ℕ) (ha : 0 < a) (hk1 : k1 ≤ r1) (hk2 : k2 ≤ r2) :
     auxEntryN r a b r1 r2 s i1 i2 k1 k2 ≤ (2 * max a b) ^ (r1 + r2) := by
   unfold auxEntryN
@@ -60,6 +69,9 @@ lemma auxEntryN_le (r a b r1 r2 s i1 i2 k1 k2 : ℕ) (ha : 0 < a) (hk1 : k1 ≤ 
       _ = (2 * max a b) ^ (r1 + r2) := by rw [mul_pow, ← pow_add]
   · exact Nat.zero_le _
 
+/--
+@isnad1 id=eq.4h9v.s8.f8957d8b439b from=translated src=- shape=d0c56cac vocab=62a473d5
+-/
 lemma aux_col_identity (r a b r1 r2 i1 i2 k1 k2 : ℕ) (hr : 1 ≤ r) (ha : 0 < a) (_hb : 0 < b)
     (hk : k1 + k2 ≤ r1 + r2) :
     ∑ s : Fin r, binRoot r a b ^ (s : ℕ) * ((auxEntryN r a b r1 r2 s i1 i2 k1 k2 : ℕ) : ℝ) =
@@ -101,6 +113,9 @@ lemma aux_col_identity (r a b r1 r2 i1 i2 k1 k2 : ℕ) (hr : 1 ≤ r) (ha : 0 < 
     simp [auxEntryN, this]
   · intro h; exact absurd (Finset.mem_univ _) h
 
+/--
+@isnad1 id=ex.3h3v.s7.931452d67c5f from=translated src=- shape=51e15498 vocab=ccaef4be
+-/
 theorem aux_polynomial (r a b : ℕ) (hr : 1 ≤ r) (ha : 0 < a) (hb : 0 < b) :
     ∃ K : ℝ, 1 ≤ K ∧ ∀ r1 r2 : ℕ, 16 * r ≤ r2 → r2 ≤ r1 →
       ∃ c : ℕ → ℕ → ℤ, BoxNonzero r1 r2 c ∧ (∀ k1 k2, |(c k1 k2 : ℝ)| ≤ K ^ (r1 + r2)) ∧

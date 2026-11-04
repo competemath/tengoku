@@ -12,7 +12,9 @@ namespace Erdos956Upper
 
 open Erdos956 Metric
 
-/-- Supporting half-plane of `K = {infDist · D ≤ 1}` at a boundary point `v`.-/
+/-- Supporting half-plane of `K = {infDist · D ≤ 1}` at a boundary point `v`.
+@isnad1 id=ex.4h2v.s9.19812105e5db from=translated src=- shape=0dc19e45 vocab=7d94026c
+-/
 theorem exists_support {D : Set E} (hD : IsCompact D) (hDc : Convex ℝ D) (hne : D.Nonempty)
     {v : E} (hv : infDist v D = 1) :
     ∃ d ∈ D, ‖v - d‖ = 1 ∧ ∀ u ∈ Kset D, inner ℝ (u - v) (v - d) ≤ 0 := by

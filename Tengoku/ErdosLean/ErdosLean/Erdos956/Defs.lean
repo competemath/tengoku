@@ -28,7 +28,13 @@ noncomputable section
 /-- The point `(x, y)` of the Euclidean plane.-/
 def pt (x y : ℝ) : E := !₂[x, y]
 
+/--
+@isnad1 id=eq.0h2v.s6.16b1784cf10e from=translated src=- shape=02f1c7bf vocab=041cb6aa
+-/
 @[simp] lemma pt_zero (x y : ℝ) : pt x y 0 = x := rfl
+/--
+@isnad1 id=eq.0h2v.s6.07812b5237a5 from=translated src=- shape=6e7fa9ed vocab=041cb6aa
+-/
 @[simp] lemma pt_one (x y : ℝ) : pt x y 1 = y := rfl
 
 /-- The fixed small absolute constant `α`.-/
@@ -55,11 +61,29 @@ def ν (t : ℝ) : E := pt (t / rr t) (1 / rr t)
 /-- `p(t) = γ(t) - ν(t)`, written in coordinates.-/
 def pp (e t : ℝ) : E := pt (t - t / rr t) (1 + e - t ^ 2 / 2 - 1 / rr t)
 
+/--
+@isnad1 id=eq.0h2v.s6.a68f7fccdbc2 from=translated src=- shape=6e7fa9ed vocab=b1a58c4f
+-/
 @[simp] lemma γ_zero (e t : ℝ) : γ e t 0 = t := rfl
+/--
+@isnad1 id=eq.0h2v.s8.0890462e0828 from=translated src=- shape=42a2088d vocab=7212ba77
+-/
 @[simp] lemma γ_one (e t : ℝ) : γ e t 1 = 1 + e - t ^ 2 / 2 := rfl
+/--
+@isnad1 id=eq.0h1v.s6.19ce876971cd from=translated src=- shape=a45f31ad vocab=ccff0a94
+-/
 @[simp] lemma ν_zero (t : ℝ) : ν t 0 = t / rr t := rfl
+/--
+@isnad1 id=eq.0h1v.s7.b6622e46b9f7 from=translated src=- shape=9b7e6069 vocab=ccff0a94
+-/
 @[simp] lemma ν_one (t : ℝ) : ν t 1 = 1 / rr t := rfl
+/--
+@isnad1 id=eq.0h2v.s6.d687b3fa2ecb from=translated src=- shape=df2a302e vocab=8828d939
+-/
 @[simp] lemma pp_zero (e t : ℝ) : pp e t 0 = t - t / rr t := rfl
+/--
+@isnad1 id=eq.0h2v.s9.1f2e33022a46 from=translated src=- shape=0edbf3f3 vocab=979135d6
+-/
 @[simp] lemma pp_one (e t : ℝ) : pp e t 1 = 1 + e - t ^ 2 / 2 - 1 / rr t := rfl
 
 /-- The generators `{p(i a) : 1 ≤ i ≤ k} ∪ {-p(i a) : 1 ≤ i ≤ k}` of the body `D`.-/

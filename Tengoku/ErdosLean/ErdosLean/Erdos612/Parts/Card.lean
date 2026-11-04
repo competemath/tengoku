@@ -28,6 +28,9 @@ private theorem sum_fin_lay (L : Layers) :
   rw [← Fin.sum_univ_getElem (L.map List.sum)]
   exact (Fintype.sum_equiv (finCongr (by simp)) _ _ (fun _ => rfl))
 
+/--
+@isnad1 id=eq.0h1v.s7.4c95a41a206c from=translated src=- shape=7718e021 vocab=8e6f8d7c
+-/
 theorem card_vtx (L : Layers) : Fintype.card (Vtx L) = L.total := by
   rw [Fintype.card_sigma]
   simp only [Fintype.card_fin]
@@ -36,10 +39,16 @@ theorem card_vtx (L : Layers) : Fintype.card (Vtx L) = L.total := by
   refine Finset.sum_congr rfl fun ℓ _ => ?_
   exact sum_fin_getD (L.lay ℓ)
 
+/--
+@isnad1 id=eq.0h4v.s5.0cea1d85414b from=translated src=- shape=cac51d86 vocab=86e69488
+-/
 theorem length_fam (pre per suf : Layers) (p : ℕ) :
     (fam pre per suf p).length = pre.length + p * per.length + suf.length := by
   simp [fam, List.length_flatten, List.sum_replicate]; ring
 
+/--
+@isnad1 id=eq.0h4v.s5.3181beb932eb from=translated src=- shape=66586438 vocab=3d4abf26
+-/
 theorem total_fam (pre per suf : Layers) (p : ℕ) :
     (fam pre per suf p).total = pre.total + p * per.total + suf.total := by
   simp [fam, Layers.total, List.map_flatten, List.sum_flatten, List.map_replicate,

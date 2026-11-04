@@ -11,6 +11,9 @@ the box is convex, so `convexHull_min` finishes.
 
 namespace Erdos956
 
+/--
+@isnad1 id=le.2h2v.s5.04332bccff77 from=translated src=- shape=00b0b618 vocab=7be68f6c
+-/
 lemma ia_le_W {k i : ℕ} (hk : 1 ≤ k) (hik : i ≤ k) : (i : ℝ) * a k ≤ W k := by
   have hk' : (1 : ℝ) ≤ k := by exact_mod_cast hk
   have hik' : (i : ℝ) ≤ k := by exact_mod_cast hik
@@ -39,6 +42,9 @@ private lemma box_convex (A B : ℝ) :
       _ ≤ s * B + t * B := by gcongr
       _ = B := by rw [← add_mul, hst, one_mul]
 
+/--
+@isnad1 id=and.2h2v.s8.a8914c8ff727 from=translated src=- shape=ceef522a vocab=32de51ab
+-/
 lemma mem_D_bounds {k : ℕ} (hk : 1 ≤ k) {z : E} (hz : z ∈ D k) :
     |z 0| ≤ W k ^ 3 / 2 ∧ |z 1| ≤ η k := by
   have hW0 : 0 ≤ W k := by unfold W α; positivity

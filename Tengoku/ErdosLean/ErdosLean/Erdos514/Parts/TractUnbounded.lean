@@ -11,6 +11,9 @@ so `‖g‖ ≤ K` on `frontier D`, and the maximum modulus principle on a bound
 
 namespace Erdos514
 
+/--
+@isnad1 id=not.2h3v.s6.adf468d6750a from=translated src=- shape=a1449261 vocab=cd6dc095
+-/
 theorem tract_not_bounded {g : ℂ → ℂ} (hg : Differentiable ℂ g) {K : ℝ} {w : ℂ}
     (hw : K < ‖g w‖) : ¬ Bornology.IsBounded (tract g K w) := by
   intro hb

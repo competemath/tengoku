@@ -12,6 +12,9 @@ namespace Erdos956Upper
 
 open Erdos956 Metric
 
+/--
+@isnad1 id=mem.7h3v.s9.d43b088ac4cd from=translated src=- shape=1b0d0f71 vocab=559763d6
+-/
 theorem half_chord_mem {D : Set E} (hD : IsCompact D) (hDc : Convex ℝ D) (hne : D.Nonempty)
     (hneg : ∀ v ∈ D, -v ∈ D) {a b : E} (ha : infDist a D = 1) (hb : infDist b D = 1)
     (hm : infDist (midpoint ℝ a b) D = 1) : ((1 : ℝ) / 2) • (b - a) ∈ D := by
@@ -47,7 +50,9 @@ theorem half_chord_mem {D : Set E} (hD : IsCompact D) (hDc : Convex ℝ D) (hne 
   convert this using 2
   norm_num
 
-/-- Every parallel vector of at most half the length lies in `D`.-/
+/-- Every parallel vector of at most half the length lies in `D`.
+@isnad1 id=mem.8h4v.s9.3dfdb37f0542 from=translated src=- shape=900080ca vocab=8a9bbd6e
+-/
 theorem smul_chord_mem {D : Set E} (hD : IsCompact D) (hDc : Convex ℝ D) (h0 : (0 : E) ∈ D)
     (hneg : ∀ v ∈ D, -v ∈ D) {a b : E} (ha : infDist a D = 1) (hb : infDist b D = 1)
     (hm : infDist (midpoint ℝ a b) D = 1) {t : ℝ} (ht : |t| ≤ 1 / 2) :

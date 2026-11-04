@@ -6,6 +6,9 @@ import Tengoku.ErdosLean.ErdosLean.Erdos790.Defs
 
 namespace Erdos790
 
+/--
+@isnad1 id=le.0h3v.s5.b5f8a11bb701 from=translated src=- shape=2d5a8c54 vocab=c2837788
+-/
 theorem fs_card_window_le (N : ℕ) (δ : ℤ) (M : ℕ) :
     (window N δ M).card ≤ Nat.clog 2 N + 5 := by
   rcases (window N δ M).eq_empty_or_nonempty with h | hne
@@ -32,6 +35,9 @@ theorem fs_card_window_le (N : ℕ) (δ : ℤ) (M : ℕ) :
     _ = Nat.clog 2 N + 4 := by simp
     _ ≤ _ := by omega
 
+/--
+@isnad1 id=le.0h2v.s5.e5ae8aa2ded0 from=translated src=- shape=db321834 vocab=7b1f3379
+-/
 theorem card_Dplus_le (A : Finset ℤ) (a : ℤ) :
     (Dplus A a).card ≤ Nat.clog 2 A.card + 1 := by
   unfold Dplus
@@ -40,6 +46,9 @@ theorem card_Dplus_le (A : Finset ℤ) (a : ℤ) :
   refine Finset.card_image_le.trans ((Finset.card_filter_le _ _).trans ?_)
   simp
 
+/--
+@isnad1 id=le.1h2v.s4.308da30b30f6 from=translated src=- shape=72d1801b vocab=17644bb0
+-/
 theorem card_Fset_le (A : Finset ℤ) (hA : 1 ≤ A.card) (a : ℤ) :
     (Fset A a).card ≤ K A.card := by
   unfold Fset K
@@ -52,6 +61,9 @@ theorem card_Fset_le (A : Finset ℤ) (hA : 1 ≤ A.card) (a : ℤ) :
         rw [Finset.sum_const, smul_eq_mul]
     _ ≤ _ := Nat.mul_le_mul_right _ (card_Dplus_le A a)
 
+/--
+@isnad1 id=lt.1h3v.s5.61b55632f4ab from=translated src=- shape=da0a962a vocab=fc95bd71
+-/
 theorem lt_of_mem_Fset {A : Finset ℤ} {a : ℤ} {j : ℕ} (hj : j ∈ Fset A a) :
     j < topIdx A + 1 := by
   unfold Fset at hj
@@ -60,10 +72,16 @@ theorem lt_of_mem_Fset {A : Finset ℤ} {a : ℤ} {j : ℕ} (hj : j ∈ Fset A a
   unfold window at hj
   exact Finset.mem_range.1 (Finset.mem_filter.1 hj).1
 
+/--
+@isnad1 id=not.0h2v.s4.be29c32cdd75 from=translated src=- shape=4e9eb019 vocab=c578b954
+-/
 theorem dyIdx_not_mem_Fset (A : Finset ℤ) (a : ℤ) : dyIdx a ∉ Fset A a := by
   unfold Fset
   exact Finset.notMem_erase _ _
 
+/--
+@isnad1 id=mem.3h4v.s5.b42f7b55f104 from=translated src=- shape=22af56cd vocab=90371de8
+-/
 theorem fs_mem_Fset_of {A : Finset ℤ} {a δ : ℤ} {j : ℕ} (hδ : δ ∈ Dplus A a)
     (hj : j ∈ window A.card δ (topIdx A)) (hne : j ≠ dyIdx a) : j ∈ Fset A a := by
   unfold Fset

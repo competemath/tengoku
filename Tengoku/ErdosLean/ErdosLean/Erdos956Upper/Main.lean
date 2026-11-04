@@ -22,7 +22,9 @@ namespace Erdos956Upper
 
 open Erdos956 Filter Asymptotics
 
-/-- Every admissible configuration of `n` translates has at most `36 n^{4/3}` unit pairs.-/
+/-- Every admissible configuration of `n` translates has at most `36 n^{4/3}` unit pairs.
+@isnad1 id=le.1h2v.s6.58f0e24060b2 from=translated src=- shape=00ce370f vocab=55d0c345
+-/
 theorem unitPairs_card_le_rpow {C : Set E} {X : Finset E} (hadm : Admissible C X) :
     ((unitPairs C X).card : ℝ) ≤ 36 * (X.card : ℝ) ^ ((4 : ℝ) / 3) := by
   have hS := admissible_sepConfig hadm
@@ -45,7 +47,9 @@ theorem unitPairs_card_le_rpow {C : Set E} {X : Finset E} (hadm : Admissible C X
         exact_mod_cast h1
     _ ≤ 36 * (X.card : ℝ) ^ ((4 : ℝ) / 3) := key
 
-/-- `h(n) ≤ 36 n^{4/3}` for every `n`.-/
+/-- `h(n) ≤ 36 n^{4/3}` for every `n`.
+@isnad1 id=le.0h1v.s5.93cdaa500f70 from=translated src=- shape=65e16f9b vocab=0800823d
+-/
 theorem h_le (n : ℕ) : (h n : ℝ) ≤ 36 * (n : ℝ) ^ ((4 : ℝ) / 3) := by
   set B : ℝ := 36 * (n : ℝ) ^ ((4 : ℝ) / 3)
   have hB : 0 ≤ B := by positivity
@@ -66,17 +70,25 @@ namespace Erdos956
 
 open Filter Asymptotics
 
-/-- **Erdős–Pach** (Combinatorica 10 (1990)): `h(n) ≪ n^{4/3}`, unconditionally.-/
+/-- **Erdős–Pach** (Combinatorica 10 (1990)): `h(n) ≪ n^{4/3}`, unconditionally.
+@isnad1 id=erdospac.0h0v.s0.336483ae1c06 from=translated src=- shape=45709ebd vocab=336483ae
+-/
 theorem erdos956_upper : ErdosPachUpperBound := ⟨36, Erdos956Upper.h_le⟩
 
-/-- The upper bound for all large `n`.-/
+/-- The upper bound for all large `n`.
+@isnad1 id=erdos956.0h0v.s0.774068c38955 from=translated src=- shape=45709ebd vocab=774068c3
+-/
 theorem erdos956_upperEventually : Erdos956UpperEventually :=
   ⟨36, Eventually.of_forall Erdos956Upper.h_le⟩
 
-/-- `h(n) = Θ(n^{4/3})`.-/
+/-- `h(n) = Θ(n^{4/3})`.
+@isnad1 id=erdos956.0h0v.s0.db4ec47a42ac from=translated src=- shape=45709ebd vocab=db4ec47a
+-/
 theorem erdos956_theta : Erdos956Theta := erdos956_theta_of_upper erdos956_upper
 
-/-- **Erdős #956, complete answer.**-/
+/-- **Erdős #956, complete answer.**
+@isnad1 id=erdos956.0h0v.s0.d1a84d8d0ac3 from=translated src=- shape=45709ebd vocab=d1a84d8d
+-/
 theorem erdos956_fullAnswer : Erdos956FullAnswer :=
   ⟨erdos956, erdos956_lowerBound, erdos956_allExponents, erdos956_upper,
     erdos956_upperEventually, erdos956_theta⟩

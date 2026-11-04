@@ -16,7 +16,9 @@ open Finset
 
 namespace DuffinSchaeffer
 
-/-- Rankin-type expansion: `∑_{n ≤ N} ∏_{p | n, p ≥ T} (1 + g p) ≤ N ∏_{p ≤ N, p ≥ T} (1 + g p / p)`.-/
+/-- Rankin-type expansion: `∑_{n ≤ N} ∏_{p | n, p ≥ T} (1 + g p) ≤ N ∏_{p ≤ N, p ≥ T} (1 + g p / p)`.
+@isnad1 id=le.1h3v.s7.2031acf15982 from=translated src=- shape=b1851e37 vocab=1a218ba6
+-/
 lemma sum_prod_one_add_le (N : ℕ) (T : ℝ) (g : ℕ → ℝ) (hg : ∀ p, 0 ≤ g p) :
     ∑ n ∈ Icc 1 N, ∏ p ∈ n.primeFactors.filter (fun p : ℕ => T ≤ (p : ℝ)), (1 + g p) ≤
       (N : ℝ) * ∏ p ∈ (Icc 1 N).filter (fun p : ℕ => p.Prime ∧ T ≤ (p : ℝ)),
@@ -74,7 +76,9 @@ lemma sum_prod_one_add_le (N : ℕ) (T : ℝ) (g : ℕ → ℝ) (hg : ∀ p, 0 �
   calc _ ≤ ∑ A ∈ P.powerset, (N : ℝ) * ∏ p ∈ A, (g p / p) := sum_le_sum step2
     _ = _ := by rw [← mul_sum, prod_one_add]
 
-/-- `e^u - 1 ≤ 8u` for `0 ≤ u ≤ 2`.-/
+/-- `e^u - 1 ≤ 8u` for `0 ≤ u ≤ 2`.
+@isnad1 id=le.2h1v.s5.674fed10f664 from=translated src=- shape=fc8f18cb vocab=8993b609
+-/
 lemma exp_sub_one_le_eight_mul (u : ℝ) (h0 : 0 ≤ u) (h2 : u ≤ 2) :
     Real.exp u - 1 ≤ 8 * u := by
   have h1 : -u + 1 ≤ Real.exp (-u) := Real.add_one_le_exp (-u)

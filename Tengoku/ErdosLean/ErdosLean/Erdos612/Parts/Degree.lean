@@ -16,7 +16,9 @@ open SimpleGraph Finset
 
 namespace Erdos612
 
-/-- Total weight of a layer as a sum over its clumps.-/
+/-- Total weight of a layer as a sum over its clumps.
+@isnad1 id=eq.0h2v.s5.0d6612f80284 from=translated src=- shape=d9e80c5d vocab=ae101d5d
+-/
 lemma tot_eq_sum_wt (L : Layers) (ℓ : ℕ) :
     L.tot ℓ = ∑ j : Fin (L.cnt ℓ), L.wt ℓ j := by
   unfold Layers.tot Layers.wt Layers.cnt
@@ -24,12 +26,17 @@ lemma tot_eq_sum_wt (L : Layers) (ℓ : ℕ) :
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [List.getD_eq_getElem]
 
+/--
+@isnad1 id=eq.1h2v.s4.1240080e0f62 from=translated src=- shape=df038b43 vocab=945546d8
+-/
 lemma tot_eq_zero_of_ge (L : Layers) {ℓ : ℕ} (h : L.length ≤ ℓ) : L.tot ℓ = 0 := by
   unfold Layers.tot Layers.lay
   rw [List.getD_eq_default _ _ h]
   rfl
 
-/-- Sum of the layer totals over layers `ℓ' < L.length` with `|ℓ' - ℓ| ≤ 1`.-/
+/-- Sum of the layer totals over layers `ℓ' < L.length` with `|ℓ' - ℓ| ≤ 1`.
+@isnad1 id=eq.0h2v.s7.820589c363c2 from=translated src=- shape=4911cd40 vocab=86613da2
+-/
 lemma sum_near_tot (L : Layers) (ℓ : ℕ) :
     ∑ i ∈ (range L.length).filter (fun i => i ≤ ℓ + 1 ∧ ℓ ≤ i + 1), L.tot i = L.nbr ℓ := by
   have hsub : (range L.length).filter (fun i => i ≤ ℓ + 1 ∧ ℓ ≤ i + 1) ⊆ Icc (ℓ - 1) (ℓ + 1) := by
@@ -55,6 +62,9 @@ lemma sum_near_tot (L : Layers) (ℓ : ℕ) :
     by_contra hlt
     exact absurd (hni (by omega)) (by omega)
 
+/--
+@isnad1 id=eq.0h2v.s9.03b049aa440d from=translated src=- shape=ce2b92bb vocab=f538b54b
+-/
 theorem degree_add_wt (L : Layers) (v : Vtx L) :
     (blowup L).degree v + L.wt v.1.1 v.1.2 = L.nbr v.1.1 := by
   set S : Finset (Clump L) := univ.filter

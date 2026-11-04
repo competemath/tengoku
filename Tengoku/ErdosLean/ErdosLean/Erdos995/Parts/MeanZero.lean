@@ -20,6 +20,9 @@ namespace Con
 local notation "𝕋" => AddCircle (1 : ℝ)
 local notation "μ𝕋" => haarAddCircle (T := 1)
 
+/--
+@isnad1 id=eq.0h1v.s6.d58c227f6134 from=translated src=- shape=9f069270 vocab=768515db
+-/
 lemma meanZero_integral_blk (k : ℕ) : ∫ x, blk k x ∂μ𝕋 = 0 := by
   have h : fourierCoeff (fun x => (blk k x : ℂ)) 0 = 0 := by
     rw [fourierCoeff_blk, Finset.sum_eq_zero (fun q _ => fourierCoeff_atom_zero k q), mul_zero]
@@ -28,10 +31,16 @@ lemma meanZero_integral_blk (k : ℕ) : ∫ x, blk k x ∂μ𝕋 = 0 := by
   rw [integral_complex_ofReal] at h
   exact_mod_cast h
 
+/--
+@isnad1 id=eq.0h1v.s6.c26ebc97c71f from=translated src=- shape=8e0c29f4 vocab=a5082ded
+-/
 lemma meanZero_integral_partialSum (K : ℕ) : ∫ x, ∑ k ∈ range K, blk k x ∂μ𝕋 = 0 := by
   rw [integral_finsetSum _ (fun k _ => integrable_blk k)]
   exact Finset.sum_eq_zero fun k _ => meanZero_integral_blk k
 
+/--
+@isnad1 id=eq.0h0v.s6.88a2722be114 from=translated src=- shape=b86bfee4 vocab=17a6d0f8
+-/
 lemma meanZero_integral_gFun_real : ∫ x, gFun x ∂μ𝕋 = 0 := by
   have hS : ∀ K, Measurable (fun x => ∑ k ∈ range K, blk k x) := fun K =>
     Finset.measurable_sum _ fun k _ => measurable_blk k
@@ -65,6 +74,9 @@ lemma meanZero_integral_gFun_real : ∫ x, gFun x ∂μ𝕋 = 0 := by
   simp only [meanZero_integral_partialSum] at ht
   exact tendsto_nhds_unique ht tendsto_const_nhds
 
+/--
+@isnad1 id=eq.0h0v.s6.368d9cab67d4 from=translated src=- shape=d69bd3e6 vocab=a52192ff
+-/
 lemma integral_gFun : ∫ x, (gFun x : ℂ) ∂μ𝕋 = 0 := by
   rw [integral_complex_ofReal, meanZero_integral_gFun_real, Complex.ofReal_zero]
 
