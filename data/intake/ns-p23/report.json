@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "09de6210b822a424535f078e12c5ed94e4a8c531f781e1322473fe05c40600e2",
+ "gate2_unjudged": [],
+ "library": "ns-p23",
+ "lint_mode": "proposed",
+ "modules": 110,
+ "part": 1,
+ "theorems": 1369
+}
