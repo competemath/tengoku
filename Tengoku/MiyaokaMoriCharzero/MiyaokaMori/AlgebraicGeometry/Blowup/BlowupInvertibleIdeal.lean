@@ -1,0 +1,49 @@
+import Tengoku.MiyaokaMoriCharzero.MiyaokaMori.AlgebraicGeometry.Blowup.SurfaceBlowup
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Blowing up an invertible ideal is an isomorphism
+
+The identity morphism satisfies the actual geometric blowup universal property precisely
+when the given ideal is invertible. Uniqueness of the blowup then identifies any blowup of
+that same ideal with the identity over its original base scheme.
+
+This is Stacks Tag 0807. It supplies the Cartier-centre step for the strict-transform
+argument in the proof of Corollary 4.3 of the paper (§4). Identifying the
+strict transform with the blowup of the original curve is Tag 080E.
+-/
+
+open AlgebraicGeometry CategoryTheory
+
+namespace MiyaokaMori.Statement
+
+universe u
+
+/-- The identity is a blowup of the given ideal exactly when the ideal is invertible.
+@isnad1 id=iff.0h2v.s4.4a6db4f52ebb from=translated src=- shape=548b9726 vocab=ffede643
+-/
+theorem isBlowup_id_iff {X : Scheme.{u}} (I : X.IdealSheafData) :
+    IsBlowup I (𝟙 X) ↔ IsInvertibleIdeal I := by
+  constructor
+  · intro h
+    simpa using h.1
+  · intro h
+    refine ⟨by simpa using h, ?_⟩
+    intro T f _
+    refine ⟨f, by simp, ?_⟩
+    intro g hg
+    simpa using hg
+
+/-- Every actual blowup of an invertible ideal is an isomorphism over the original scheme.
+@isnad1 id=isiso.2h4v.s5.68f556294576 from=translated src=- shape=d04a286a vocab=370a12e2
+-/
+theorem IsBlowup.isIso_of_isInvertibleIdeal
+    {X B : Scheme.{u}} {I : X.IdealSheafData} {b : B ⟶ X}
+    (hb : IsBlowup I b) (hI : IsInvertibleIdeal I) : IsIso b := by
+  obtain ⟨e, he⟩ := hb.exists_iso ((isBlowup_id_iff I).mpr hI)
+  have he' : e.hom = b := by simpa using he
+  rw [← he']
+  infer_instance
+
+end MiyaokaMori.Statement

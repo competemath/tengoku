@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "55827675db1502fb1ea2c1e6f0d56baff26d0ba44ea69f6ecd5b22f75f25d9b4",
+ "gate2_unjudged": [],
+ "library": "miyaoka-mori-charzero",
+ "lint_mode": "proposed",
+ "modules": 132,
+ "part": 1,
+ "theorems": 765
+}

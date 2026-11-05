@@ -1,0 +1,1 @@
+-- MiyaokaMoriCharzero: a factory bundle (data/intake/miyaoka-mori-charzero). This file only marks the library for Tengoku/All.lean.
