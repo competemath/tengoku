@@ -32,7 +32,9 @@ universe u
 
 namespace AlgebraicGeometry.Intersection
 
-/-- The affine description of the existing base map, before choosing algebra instances.-/
+/-- The affine description of the existing base map, before choosing algebra instances.
+@isnad1 id=eq.0h4v.s9.edaf17083980 from=translated src=- shape=6591dda6 vocab=18881998
+-/
 theorem pointBaseMap_spec_eq {k : Type u} [Field k]
     (A : CommRingCat.{u}) (f : Spec A ⟶ Spec (CommRingCat.of k)) (p : Spec A) :
     letI : p.asIdeal.IsPrime := p.isPrime
@@ -44,7 +46,9 @@ theorem pointBaseMap_spec_eq {k : Type u} [Field k]
   simp only [pointBaseMap, Spec.map_comp, Spec.map_preimage]
   rw [Scheme.Spec.map_residueFieldIso_inv_eq_fromSpecResidueField]
 
-/-- The inverse residue-field isomorphism carries the actual coefficient map to `pointBaseMap`.-/
+/-- The inverse residue-field isomorphism carries the actual coefficient map to `pointBaseMap`.
+@isnad1 id=eq.0h4v.s9.47596b48760b from=translated src=- shape=54dcc467 vocab=02b6b8f0
+-/
 theorem pointBaseMap_spec_algebraMap {k : Type u} [Field k]
     (A : CommRingCat.{u}) (f : Spec A ⟶ Spec (CommRingCat.of k)) (p : Spec A) :
     letI : p.asIdeal.IsPrime := p.isPrime
@@ -75,7 +79,9 @@ def specResidueFieldAlgEquiv {k : Type u} [Field k]
   exact congrArg (fun m : CommRingCat.of k ⟶ (Spec A).residueField p ↦ m.hom t)
     (pointBaseMap_spec_algebraMap A f p)
 
-/-- The algebra equivalence has exactly the original residue-field isomorphism as its function.-/
+/-- The algebra equivalence has exactly the original residue-field isomorphism as its function.
+@isnad1 id=eq.0h5v.s10.4dd68bf03bbc from=translated src=- shape=2a80d241 vocab=111093e1
+-/
 theorem specResidueFieldAlgEquiv_apply {k : Type u} [Field k]
     (A : CommRingCat.{u}) (f : Spec A ⟶ Spec (CommRingCat.of k)) (p : Spec A)
     (z : (Spec A).residueField p) :
@@ -84,7 +90,9 @@ theorem specResidueFieldAlgEquiv_apply {k : Type u} [Field k]
     letI : Algebra k ((Spec A).residueField p) := (pointBaseMap f p).hom.toAlgebra
     specResidueFieldAlgEquiv A f p z = (Scheme.Spec.residueFieldIso A p).hom z := rfl
 
-/-- The two actual affine residue fields have equal transcendence degree over the same base.-/
+/-- The two actual affine residue fields have equal transcendence degree over the same base.
+@isnad1 id=eq.0h4v.s8.b2ab8cce30d4 from=translated src=- shape=1f522e10 vocab=c4aeadea
+-/
 theorem specResidueField_trdeg_eq {k : Type u} [Field k]
     (A : CommRingCat.{u}) (f : Spec A ⟶ Spec (CommRingCat.of k)) (p : Spec A) :
     letI : p.asIdeal.IsPrime := p.isPrime

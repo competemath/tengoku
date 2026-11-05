@@ -63,7 +63,9 @@ def inverseSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
 
 /-- The only mathematical input of this file: a homogeneous fraction of degree `-d` multiplied by the homogeneous
 element `g` of degree `d` is a genuine homogeneous fraction of degree `0`, i.e. a local section of the structure sheaf.
-This is the multiplicative mirror of `isFraction_divide_lift`.-/
+This is the multiplicative mirror of `isFraction_divide_lift`.
+@isnad1 id=ex.2h7v.s11.e46309dd20e6 from=translated src=- shape=f8be2018 vocab=df6ebd7a
+-/
 theorem isFraction_multiply_lift (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     {s : ∀ x : U, Fiber 𝒜 x.1} (hs : IsFraction 𝒜 (-(d : ℤ)) s) :
@@ -83,7 +85,9 @@ theorem isFraction_multiply_lift (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     rw [hs, Localization.mk_mul, mul_one]
     exact HomogeneousLocalization.val_mk _
 
-/-- At every point, the value after multiplying by `g` lies in the homogeneous localization used by the structure sheaf.-/
+/-- At every point, the value after multiplying by `g` lies in the homogeneous localization used by the structure sheaf.
+@isnad1 id=ex.1h8v.s14.7a12e1f0bb35 from=translated src=- shape=21cc227d vocab=ae025721
+-/
 theorem exists_multiplyValue (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (s : sectionsSubmodule 𝒜 (-(d : ℤ)) U) (x : U) :
@@ -100,6 +104,9 @@ def multiplyValue (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     HomogeneousLocalization.AtPrime 𝒜 x.1.asHomogeneousIdeal.toIdeal :=
   (exists_multiplyValue 𝒜 d g hg s x).choose
 
+/--
+@isnad1 id=eq.1h8v.s14.580d560072d6 from=translated src=- shape=9e9ca5c4 vocab=ce7657b4
+-/
 theorem multiplyValue_val (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (s : sectionsSubmodule 𝒜 (-(d : ℤ)) U) (x : U) :
@@ -126,6 +133,9 @@ def inverseFrameCoord (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
   rw [he]
   exact hr
 
+/--
+@isnad1 id=eq.1h8v.s14.df5a1fb75d0e from=translated src=- shape=3136d18f vocab=0924edd2
+-/
 theorem inverseFrameCoord_val (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (s : sectionsSubmodule 𝒜 (-(d : ℤ)) U) (x : U) :
@@ -141,18 +151,26 @@ def smulInverseSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
         sectionsSubmodule 𝒜 (-(d : ℤ)) U :=
   LinearMap.toSpanSingleton _ _ (inverseSection 𝒜 d g hg hU)
 
+/--
+@isnad1 id=eq.2h8v.s16.fa5b3d42f5f9 from=translated src=- shape=86769c7f vocab=03473a99
+-/
 theorem smulInverseSection_val (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
     (r : (ProjectiveSpectrum.Proj.structureSheaf 𝒜).obj.obj (op U)) (x : U) :
     (smulInverseSection 𝒜 d g hg hU r).1 x = (r.1 x).val * Localization.mk 1 ⟨g, hU x⟩ := rfl
 
-/-- The commuted form of `fiber_coordinate_mul_inverse`.-/
+/-- The commuted form of `fiber_coordinate_mul_inverse`.
+@isnad1 id=eq.1h5v.s9.c4a3ea967fea from=translated src=- shape=346dcfd3 vocab=dea00c5c
+-/
 theorem fiber_inverse_mul_coordinate (g : A) (x : ProjectiveSpectrum 𝒜)
     (hx : g ∉ x.asHomogeneousIdeal) :
     (Localization.mk 1 ⟨g, hx⟩ : Fiber 𝒜 x) * Localization.mk g 1 = 1 :=
   (mul_comm _ _).trans (fiber_coordinate_mul_inverse 𝒜 g x hx)
 
+/--
+@isnad1 id=eq.2h7v.s15.63f7dd540059 from=translated src=- shape=2b7905b8 vocab=7fa9a1a2
+-/
 theorem inverseFrameCoord_smulInverseSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
@@ -164,6 +182,9 @@ theorem inverseFrameCoord_smulInverseSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 
   rw [inverseFrameCoord_val, smulInverseSection_val, mul_assoc,
     fiber_inverse_mul_coordinate, mul_one]
 
+/--
+@isnad1 id=eq.2h7v.s16.2ead1f9deb00 from=translated src=- shape=f94fae0f vocab=7fa9a1a2
+-/
 theorem smulInverseSection_inverseFrameCoord (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
@@ -188,7 +209,9 @@ def inverseFrameSectionEquiv (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     right_inv := smulInverseSection_inverseFrameCoord 𝒜 d g hg hU }
 
 open AlgebraicGeometry.Scheme.Modules in
-/-- `1/g` is a frame of `O(-d)` on `U` (the negative-degree mirror of `isFrame_homogeneousSection`).-/
+/-- `1/g` is a frame of `O(-d)` on `U` (the negative-degree mirror of `isFrame_homogeneousSection`).
+@isnad1 id=isframe.2h6v.s8.610085d6b87f from=translated src=- shape=48a65c2b vocab=6623abc6
+-/
 theorem isFrame_inverseSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal) :
     IsFrame (sheaf 𝒜 (-(d : ℤ))) U (inverseSection 𝒜 d g hg hU) := by
@@ -197,7 +220,9 @@ theorem isFrame_inverseSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
 
 open AlgebraicGeometry.Scheme.Modules in
 /-- **Both signs at once**: for a homogeneous `g` of degree `1` and **every** `m : ℤ`, the twisting sheaf `O(m)` has a
-frame on the standard open `D₊(g)`: `g ^ m` (of degree `m`) for `m ≥ 0`, and `1 / g ^ (-m)` for `m < 0`.-/
+frame on the standard open `D₊(g)`: `g ^ m` (of degree `m`) for `m ≥ 0`, and `1 / g ^ (-m)` for `m < 0`.
+@isnad1 id=ex.1h5v.s9.1898d8e7f2a4 from=translated src=- shape=b2d44f48 vocab=977bacea
+-/
 theorem exists_isFrame_sheaf_basicOpen (m : ℤ) (g : A) (hg : g ∈ 𝒜 1) :
     ∃ e : Γ(sheaf 𝒜 m, Proj.basicOpen 𝒜 g),
       IsFrame (sheaf 𝒜 m) (Proj.basicOpen 𝒜 g) e := by

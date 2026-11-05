@@ -61,13 +61,17 @@ def localDualAtOpen (M : X.Modules) (U : X.Opens) :
     erw [X.presheaf.map_id]
     rfl
 
-/-- Identity-subopen evaluation is the original local functional on those sections.-/
+/-- Identity-subopen evaluation is the original local functional on those sections.
+@isnad1 id=eq.0h5v.s17.ba5bc251008a from=translated src=- shape=6a2da80d vocab=2831daaa
+-/
 @[simp]
 theorem localDualAtOpen_apply (M : X.Modules) (U : X.Opens)
     (φ : LocalDualSections X M U) (s : Γ(M, U)) :
     localDualAtOpen M U φ s = φ.val (Over.mk (𝟙 U)) s := rfl
 
-/-- Restricting both a functional and its argument restricts their actual evaluation.-/
+/-- Restricting both a functional and its argument restricts their actual evaluation.
+@isnad1 id=eq.0h7v.s19.629c11ebd463 from=translated src=- shape=f4b9eedd vocab=83a3d4b6
+-/
 theorem localDualAtOpen_restrict (M : X.Modules) {U V : X.Opens} (i : V ⟶ U)
     (φ : LocalDualSections X M U) (s : Γ(M, U)) :
     localDualAtOpen M V (localDualRestrict M i φ) (M.presheaf.map i.op s) =
@@ -85,7 +89,9 @@ def sectionPairing (M : X.Modules) (n : ℕ) (U : X.Opens) :
   (exteriorPower.pairingDual (X.ringCatSheaf.obj.obj (op U)) (M.val.obj (op U)) n).comp
     (exteriorPower.map n (localDualAtOpen M U))
 
-/-- Pure wedges pair by the determinant of their original evaluation matrix.-/
+/-- Pure wedges pair by the determinant of their original evaluation matrix.
+@isnad1 id=eq.0h6v.s17.e7d07b7db640 from=translated src=- shape=dd41aa7d vocab=9548afaa
+-/
 theorem sectionPairing_pure (M : X.Modules) (n : ℕ) (U : X.Opens)
     (Φ : Fin n → LocalDualSections X M U) (v : Fin n → Γ(M, U)) :
     sectionPairing M n U
@@ -100,7 +106,9 @@ theorem sectionPairing_pure (M : X.Modules) (n : ℕ) (U : X.Opens)
     (exteriorPower.pairingDual_ιMulti_ιMulti _ _)
 
 /-- Pure algebra: a pairing identity between two semilinear-compatible pairings, known on
-spanning sets, holds everywhere. No presheaves occur, so every `isDefEq` here is cheap.-/
+spanning sets, holds everywhere. No presheaves occur, so every `isDefEq` here is cheap.
+@isnad1 id=eq.7h15v.s11.972fa65f6484 from=translated src=- shape=25ca520e vocab=10b524f5
+-/
 theorem semilinear_pairing_ext {R S E F E' F' : Type*} [CommRing R] [CommRing S]
     [AddCommGroup E] [Module R E] [AddCommGroup F] [Module R F]
     [AddCommGroup E'] [Module S E'] [AddCommGroup F'] [Module S F']
@@ -131,7 +139,9 @@ theorem semilinear_pairing_ext {R S E F E' F' : Type*} [CommRing R] [CommRing S]
 -- `(E' := …)`, `(M := …)` annotations against wrong unification are needed. The ring homomorphism must be
 -- written `X.ringCatSheaf.obj.map i.op` (the same spelling as the module structure); with
 -- `X.presheaf.map i.op` the instances are not found.
-/-- The section pairing commutes with restriction for arbitrary exterior sections.-/
+/-- The section pairing commutes with restriction for arbitrary exterior sections.
+@isnad1 id=eq.0h8v.s18.110b02b55f60 from=translated src=- shape=cde3aec1 vocab=cdfc5124
+-/
 theorem sectionPairing_restrict (M : X.Modules) (n : ℕ)
     {U V : X.Opens} (i : V ⟶ U)
     (α : (moduleExteriorPresheaf X (moduleDualPresheaf M) n).obj (op U))
@@ -178,7 +188,9 @@ def presheafPairing (M : X.Modules) (n : ℕ) :
   naturality i := ModuleCat.MonoidalCategory.tensor_ext fun α z ↦
     sectionPairing_restrict M n i.unop α z
 
-/-- The tensor-presheaf morphism evaluates each pure tensor by the section pairing.-/
+/-- The tensor-presheaf morphism evaluates each pure tensor by the section pairing.
+@isnad1 id=eq.0h6v.s17.4b803b169b1b from=translated src=- shape=cbdf4898 vocab=cfbc3fee
+-/
 @[simp]
 theorem presheafPairing_tmul (M : X.Modules) (n : ℕ) (U : X.Opens)
     (α : (moduleExteriorPresheaf X (moduleDualPresheaf M) n).obj (op U))

@@ -23,7 +23,9 @@ universe u
 
 namespace AlgebraicGeometry.Scheme
 
-/-- The actual closure of a prime point has the Krull dimension of its prime quotient.-/
+/-- The actual closure of a prime point has the Krull dimension of its prime quotient.
+@isnad1 id=eq.0h2v.s7.3d6ce9d41da8 from=translated src=- shape=eee3aea0 vocab=a7e10faf
+-/
 theorem primeClosureDimension_eq_quotient
     (A : Type u) [CommRing A] (p : PrimeSpectrum A) :
     topologicalKrullDim (closure ({p} : Set (PrimeSpectrum A))) =

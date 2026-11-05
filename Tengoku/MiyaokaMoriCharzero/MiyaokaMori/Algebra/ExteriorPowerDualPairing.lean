@@ -34,7 +34,9 @@ def exteriorPowerPairingDualEquiv (b : Basis (Fin r) R M) (n : ℕ) :
   (b.dualBasis.exteriorPower n).equiv
     ((b.exteriorPower n).dualBasis) (Equiv.refl _)
 
-/-- The basis-defined equivalence agrees with Mathlib's canonical pairing map.-/
+/-- The basis-defined equivalence agrees with Mathlib's canonical pairing map.
+@isnad1 id=eq.0h5v.s14.7ba078195e4f from=translated src=- shape=290b445f vocab=379be671
+-/
 theorem exteriorPowerPairingDualEquiv_toLinearMap
     (b : Basis (Fin r) R M) (n : ℕ) :
     (exteriorPowerPairingDualEquiv b n).toLinearMap = exteriorPower.pairingDual R M n := by
@@ -52,14 +54,18 @@ theorem exteriorPowerPairingDualEquiv_toLinearMap
   dsimp only [exteriorPower.ιMultiDual]
   rw [Basis.coe_dualBasis]
 
-/-- The exterior-power pairing is bijective for every exterior degree.-/
+/-- The exterior-power pairing is bijective for every exterior degree.
+@isnad1 id=bijectiv.0h5v.s15.77db173aefd3 from=translated src=- shape=dec22f32 vocab=81f28c7f
+-/
 theorem exteriorPowerPairingDual_bijective
     (b : Basis (Fin r) R M) (n : ℕ) :
     Function.Bijective (exteriorPower.pairingDual R M n) := by
   rw [← exteriorPowerPairingDualEquiv_toLinearMap b n]
   exact (exteriorPowerPairingDualEquiv b n).bijective
 
-/-- Determinant formula for the canonical pairing on pure exterior products.-/
+/-- Determinant formula for the canonical pairing on pure exterior products.
+@isnad1 id=eq.0h5v.s16.9e4913cbb00b from=translated src=- shape=362dfdea vocab=8a6995ca
+-/
 theorem exteriorPowerPairingDual_determinant
     (n : ℕ) (f : Fin n → Module.Dual R M) (v : Fin n → M) :
     exteriorPower.pairingDual R M n (exteriorPower.ιMulti R n f)

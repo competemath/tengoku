@@ -54,7 +54,9 @@ private theorem awayMap_fromZero (s : R) (a : 𝒜 0) :
   simp
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The actual Proj map commutes with the structure maps to the degree-zero spectra.-/
+/-- The actual Proj map commutes with the structure maps to the degree-zero spectra.
+@isnad1 id=eq.1h7v.s9.1b168c024e22 from=translated src=- shape=5a92ffb0 vocab=c3b866f0
+-/
 theorem proj_map_toSpecZero (hf : ℬ₊ ≤ 𝒜₊.map f) :
     Proj.map f hf ≫ Proj.toSpecZero 𝒜 =
       Proj.toSpecZero ℬ ≫ Spec.map (CommRingCat.ofHom f.gradedZeroRingHom) := by

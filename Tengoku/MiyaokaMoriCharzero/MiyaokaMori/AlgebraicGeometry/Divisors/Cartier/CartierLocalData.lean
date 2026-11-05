@@ -60,6 +60,9 @@ def indexAt (D : CartierLocalData X) (x : X) : D.index :=
     exact Set.mem_univ x
   Classical.choose (Set.mem_iUnion.mp hx)
 
+/--
+@isnad1 id=mem.0h3v.s6.ae20e788f917 from=translated src=- shape=afc701da vocab=d076dadf
+-/
 theorem indexAt_mem (D : CartierLocalData X) (x : X) : x ∈ D.opens (D.indexAt x) := by
   let hx : x ∈ ⋃ i, (D.opens i : Set X) := by
     rw [D.cover]
@@ -70,6 +73,9 @@ theorem indexAt_mem (D : CartierLocalData X) (x : X) : x ∈ D.opens (D.indexAt 
 def localEquationAt (D : CartierLocalData X) (x : X) : LocalPrincipalEquation X x :=
   ⟨D.equation (D.indexAt x), D.equation_ne_zero _⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.06b78d18b544 from=translated src=- shape=6312ba6d vocab=c6726b04
+-/
 @[simp]
 theorem localEquationAt_function (D : CartierLocalData X) (x : X) :
     (D.localEquationAt x).function = D.equation (D.indexAt x) := rfl
@@ -78,12 +84,18 @@ theorem localEquationAt_function (D : CartierLocalData X) (x : X) :
 def coefficient (D : CartierLocalData X) (x : X) : ℤ :=
   if hx : coheight x = 1 then Scheme.ord (D.equation (D.indexAt x)) x else 0
 
+/--
+@isnad1 id=eq.1h3v.s6.9cdfbf200c29 from=translated src=- shape=67b08b9b vocab=eb607807
+-/
 @[simp]
 theorem coefficient_eq_ord (D : CartierLocalData X) (x : X)
     (hx : coheight x = 1) : D.coefficient x =
       Scheme.ord (D.equation (D.indexAt x)) x := by
   simp [coefficient, hx]
 
+/--
+@isnad1 id=eq.1h3v.s5.6dd46770b9be from=translated src=- shape=9fac7bd4 vocab=29319a87
+-/
 @[simp]
 theorem coefficient_eq_zero_of_coheight_ne_one (D : CartierLocalData X) (x : X)
     (hx : coheight x ≠ 1) : D.coefficient x = 0 := by
@@ -91,6 +103,9 @@ theorem coefficient_eq_zero_of_coheight_ne_one (D : CartierLocalData X) (x : X)
 
 /- Multiplying the unit ratio by the denominator equation recovers the numerator equation;
 the order of the ratio vanishes at every point of the overlap. -/
+/--
+@isnad1 id=eq.3h5v.s7.155e8994197d from=translated src=- shape=152d3df3 vocab=73b1a712
+-/
 theorem coefficient_eq_of_mem (D : CartierLocalData X) (x : X)
     (hx : coheight x = 1) (i j : D.index)
     (hxi : x ∈ D.opens i) (hxj : x ∈ D.opens j) :
@@ -122,6 +137,9 @@ structure FiniteCartierDivisor (X : Scheme.{u}) [IsIntegral X]
 
 namespace FiniteCartierDivisor
 
+/--
+@isnad1 id=eq.1h3v.s6.a31c23dc79c3 from=translated src=- shape=73079fdf vocab=4dd42c80
+-/
 @[simp]
 theorem coefficient_eq_ord (D : FiniteCartierDivisor X) (x : X)
     (hx : coheight x = 1) : D.toCartierLocalData.coefficient x =
@@ -146,10 +164,16 @@ def zeroCycle (D : FiniteCartierDivisor X) (hD : D.ZeroDimensionalSupport) :
         exact ⟨Set.univ, Filter.univ_mem, by simpa using D.finite_support⟩ },
     isDimensionCycle_of_pointClosureDimension fun x hx => hD.pointClosureDimension_zero x hx⟩
 
+/--
+@isnad1 id=eq.1h3v.s8.16635ee46d14 from=translated src=- shape=5789e1e6 vocab=94781a55
+-/
 @[simp]
 theorem zeroCycle_apply (D : FiniteCartierDivisor X) (hD : D.ZeroDimensionalSupport)
     (x : X) : (D.zeroCycle hD).1 x = D.toCartierLocalData.coefficient x := rfl
 
+/--
+@isnad1 id=finite.1h2v.s8.353d9757fb82 from=translated src=- shape=d882d163 vocab=03f0d295
+-/
 theorem zeroCycle_support_finite (D : FiniteCartierDivisor X)
     (hD : D.ZeroDimensionalSupport) :
     (Function.support (D.zeroCycle hD).1).Finite := by

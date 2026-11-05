@@ -55,7 +55,9 @@ section Ext
 variable {R A B C : Type*} [CommRing R] [CommRing A] [CommRing B] [Semiring C]
   [Algebra R A] [Algebra R B]
 
-/-- Two ring homomorphisms out of `A ⊗[R] B` that agree on pure tensors are equal.-/
+/-- Two ring homomorphisms out of `A ⊗[R] B` that agree on pure tensors are equal.
+@isnad1 id=eq.1h6v.s10.cfcaaf7e7a2a from=translated src=- shape=f4b6d760 vocab=bca9c5ed
+-/
 theorem ringHom_ext {F G : A ⊗[R] B →+* C}
     (h : ∀ (a : A) (b : B), F (a ⊗ₜ[R] b) = G (a ⊗ₜ[R] b)) : F = G := by
   refine RingHom.ext fun x => ?_
@@ -105,6 +107,9 @@ noncomputable def map (φ : R →+* R') (ψ : A →+* A') (χ : B →+* B')
            rw [hχ, hAlg, Algebra.TensorProduct.algebraMap_apply'] } : B →ₐ[R] A' ⊗[R'] B')
       fun _ _ => Commute.all _ _).toRingHom
 
+/--
+@isnad1 id=eq.2h11v.s10.f8c08391fcd9 from=translated src=- shape=dc42a171 vocab=272584a9
+-/
 @[simp] theorem map_tmul (φ : R →+* R') (ψ : A →+* A') (χ : B →+* B')
     (hψ : ∀ r : R, ψ (algebraMap R A r) = algebraMap R' A' (φ r))
     (hχ : ∀ r : R, χ (algebraMap R B r) = algebraMap R' B' (φ r)) (a : A) (b : B) :
@@ -112,13 +117,17 @@ noncomputable def map (φ : R →+* R') (ψ : A →+* A') (χ : B →+* B')
   show (ψ a ⊗ₜ[R'] (1 : B')) * ((1 : A') ⊗ₜ[R'] χ b) = _
   rw [Algebra.TensorProduct.tmul_mul_tmul, mul_one, one_mul]
 
-/-- The base change of the identity maps is the identity.-/
+/-- The base change of the identity maps is the identity.
+@isnad1 id=eq.2h3v.s9.b1b0fbd80222 from=translated src=- shape=44d8fc65 vocab=47e47cd9
+-/
 theorem map_id (h₁ : ∀ r : R, (RingHom.id A) (algebraMap R A r) = algebraMap R A ((RingHom.id R) r))
     (h₂ : ∀ r : R, (RingHom.id B) (algebraMap R B r) = algebraMap R B ((RingHom.id R) r)) :
     map (RingHom.id R) (RingHom.id A) (RingHom.id B) h₁ h₂ = RingHom.id (A ⊗[R] B) :=
   ringHom_ext fun a b => by rw [map_tmul]; rfl
 
-/-- Base change is compatible with composition.-/
+/-- Base change is compatible with composition.
+@isnad1 id=eq.6h15v.s11.aec7c7333423 from=translated src=- shape=a9f81163 vocab=abb987c3
+-/
 theorem map_comp (φ : R →+* R') (ψ : A →+* A') (χ : B →+* B')
     (hψ : ∀ r : R, ψ (algebraMap R A r) = algebraMap R' A' (φ r))
     (hχ : ∀ r : R, χ (algebraMap R B r) = algebraMap R' B' (φ r))
@@ -144,16 +153,25 @@ variable {R A B : Type*} [CommRing R] [CommRing A] [CommRing B] [Algebra R A] [A
 /-- The `m`-th piece of `A ⊗[R] B`: the image of `𝒜 m ⊗ B` in `A ⊗ B`.-/
 abbrev tensorGrading (m : ℕ) : Submodule R (A ⊗[R] B) := DirectSum.decomposeTensor 𝒜 B m
 
+/--
+@isnad1 id=iff.0h6v.s11.e625db7d355c from=translated src=- shape=d1c35450 vocab=dc484194
+-/
 theorem mem_tensorGrading {m : ℕ} {x : A ⊗[R] B} :
     x ∈ tensorGrading 𝒜 (B := B) m ↔
       ∃ y : (𝒜 m) ⊗[R] B, ((𝒜 m).subtype.rTensor B) y = x := Iff.rfl
 
+/--
+@isnad1 id=mem.1h7v.s9.cbcf7d32ef97 from=translated src=- shape=3d268fc0 vocab=3dce5bc6
+-/
 theorem tmul_mem_tensorGrading {m : ℕ} {a : A} (ha : a ∈ 𝒜 m) (b : B) :
     a ⊗ₜ[R] b ∈ tensorGrading 𝒜 (B := B) m :=
   (mem_tensorGrading 𝒜).2 ⟨(⟨a, ha⟩ : 𝒜 m) ⊗ₜ[R] b, by rw [LinearMap.rTensor_tmul]; rfl⟩
 
 variable [GradedAlgebra 𝒜]
 
+/--
+@isnad1 id=gradedmo.0h4v.s8.8283f7f6006e from=translated src=- shape=f1cadcf7 vocab=1c296e49
+-/
 instance tensorGrading_gradedMonoid :
     SetLike.GradedMonoid (fun m => tensorGrading 𝒜 (B := B) m) where
   one_mem := by
@@ -194,6 +212,9 @@ variable {R R' A A' B B' : Type*}
   [CommRing R] [CommRing R'] [CommRing A] [CommRing A'] [CommRing B] [CommRing B']
   [Algebra R A] [Algebra R B] [Algebra R' A'] [Algebra R' B']
 
+/--
+@isnad1 id=mem.4h13v.s11.bffc5c84a8cf from=translated src=- shape=eba88c0e vocab=404da935
+-/
 theorem map_mem (φ : R →+* R') (ψ : A →+* A') (χ : B →+* B')
     (hψ : ∀ r : R, ψ (algebraMap R A r) = algebraMap R' A' (φ r))
     (hχ : ∀ r : R, χ (algebraMap R B r) = algebraMap R' B' (φ r))

@@ -21,7 +21,9 @@ namespace AlgebraicGeometry.Intersection
 
 universe u
 
-/-- A nonzero zero cycle with nonnegative actual coefficients has positive raw degree.-/
+/-- A nonzero zero cycle with nonnegative actual coefficients has positive raw degree.
+@isnad1 id=lt.2h4v.s9.54f747813dbe from=translated src=- shape=0f09b94b vocab=3af0dccf
+-/
 theorem rawZeroCycleDegree_pos_of_nonneg
     {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) [IsProper f]

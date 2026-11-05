@@ -38,7 +38,9 @@ namespace AlgebraicGeometry.Divisors.CurveStalkRamification
 variable {X Y : Scheme.{u}} [IsIntegral X] [IsIntegral Y]
 variable (f : X ⟶ Y) [IsDominant f] (x : X)
 
-/-- The named algebra on the actual stalks has a local structure map.-/
+/-- The named algebra on the actual stalks has a local structure map.
+@isnad1 id=islocalh.0h4v.s11.7b5804bf94bd from=translated src=- shape=0937894f vocab=7dfb8eb9
+-/
 theorem stalkMap_isLocalHom :
     letI := AlgebraicGeometry.Scheme.morphismStalkAlgebra f x
     IsLocalHom (algebraMap (Y.presheaf.stalk (f x)) (X.presheaf.stalk x)) := by
@@ -48,7 +50,9 @@ theorem stalkMap_isLocalHom :
 variable [IsDiscreteValuationRing (X.presheaf.stalk x)]
   [IsDiscreteValuationRing (Y.presheaf.stalk (f x))]
 
-/-- The ramification index of this morphism's actual map of DVR stalks is positive.-/
+/-- The ramification index of this morphism's actual map of DVR stalks is positive.
+@isnad1 id=lt.0h4v.s9.31fc67430707 from=translated src=- shape=e0869565 vocab=061e93a1
+-/
 theorem ramificationIdx_pos :
     letI := AlgebraicGeometry.Scheme.morphismStalkAlgebra f x
     0 < (IsLocalRing.maximalIdeal (X.presheaf.stalk x)).ramificationIdx
@@ -57,7 +61,9 @@ theorem ramificationIdx_pos :
   have := stalkMap_isLocalHom f x
   exact MiyaokaMori.RingTheory.DVRRamification.ramificationIdx_pos (AlgebraicGeometry.Scheme.dominant_stalkMap_injective f x)
 
-/-- Pullback along the canonical function-field map scales the actual DVR orders.-/
+/-- Pullback along the canonical function-field map scales the actual DVR orders.
+@isnad1 id=eq.0h5v.s10.e6d044cea682 from=translated src=- shape=06753da1 vocab=6ec720fb
+-/
 theorem ordFrac_pullback (a : Y.functionField) :
     letI := AlgebraicGeometry.Scheme.morphismStalkAlgebra f x
     Ring.ordFrac (X.presheaf.stalk x) (AlgebraicGeometry.Scheme.dominantFunctionFieldMap f a) =
@@ -77,7 +83,9 @@ theorem ordFrac_pullback (a : Y.functionField) :
 
 variable [IsLocallyNoetherian X] [IsLocallyNoetherian Y]
 
-/-- For a nonzero rational function, geometric order scales by the same local index.-/
+/-- For a nonzero rational function, geometric order scales by the same local index.
+@isnad1 id=eq.3h5v.s10.28142d1b9863 from=translated src=- shape=dd194598 vocab=6e2b1bcf
+-/
 theorem ord_pullback (hx : coheight x = 1) (hy : coheight (f x) = 1)
     {a : Y.functionField} (ha : a ≠ 0) :
     letI := AlgebraicGeometry.Scheme.morphismStalkAlgebra f x
@@ -100,7 +108,9 @@ theorem ord_pullback (hx : coheight x = 1) (hy : coheight (f x) = 1)
 
 variable (hx : coheight x = 1) (hy : coheight (f x) = 1)
 
-/-- The canonical additive valuation scales on every function, with zero still infinite.-/
+/-- The canonical additive valuation scales on every function, with zero still infinite.
+@isnad1 id=eq.2h5v.s10.d12230787750 from=translated src=- shape=f862c38b vocab=1df4d0b1
+-/
 theorem valuation_pullback (a : Y.functionField) :
     letI := AlgebraicGeometry.Scheme.morphismStalkAlgebra f x
     CurveStalkValuation.valuation X x hx (AlgebraicGeometry.Scheme.dominantFunctionFieldMap f a) =

@@ -34,7 +34,9 @@ namespace MiyaokaMori.RingTheory
 
 universe u
 
-/-- An integral algebra whose structure map is injective preserves Krull dimension.-/
+/-- An integral algebra whose structure map is injective preserves Krull dimension.
+@isnad1 id=eq.0h2v.s5.5fc40604bc3f from=translated src=- shape=f946815c vocab=df74aa34
+-/
 theorem ringKrullDim_eq_of_integral_injective
     (R S : Type u) [CommRing R] [CommRing S] [Algebra R S]
     [Algebra.IsIntegral R S] [FaithfulSMul R S] :
@@ -57,7 +59,9 @@ theorem ringKrullDim_eq_of_integral_injective
     rw [← hL]
     exact Order.LTSeries.length_le_krullDim L
 
-/-- The Krull dimension of a finite type domain over a field is its transcendence degree.-/
+/-- The Krull dimension of a finite type domain over a field is its transcendence degree.
+@isnad1 id=eq.0h2v.s6.13d8ff3f2c6c from=translated src=- shape=36e2e795 vocab=eabd9f88
+-/
 theorem finiteTypeDomain_ringKrullDim_eq_trdeg
     (k A : Type u) [Field k] [CommRing A] [IsDomain A]
     [Algebra k A] [Algebra.FiniteType k A] :
@@ -75,7 +79,9 @@ theorem finiteTypeDomain_ringKrullDim_eq_trdeg
   rw [ringKrullDim_eq_of_integral_injective P A, htr]
   simp [P, Cardinal.toENat_nat]
 
-/-- A prime quotient has dimension equal to the transcendence degree of its actual residue field.-/
+/-- A prime quotient has dimension equal to the transcendence degree of its actual residue field.
+@isnad1 id=eq.0h3v.s7.e957819e9367 from=translated src=- shape=be59cb03 vocab=d1d71a1a
+-/
 theorem quotient_ringKrullDim_eq_residue_trdeg
     (k A : Type u) [Field k] [CommRing A]
     [Algebra k A] [Algebra.FiniteType k A] (p : Ideal A) [p.IsPrime] :

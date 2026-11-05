@@ -82,13 +82,17 @@ theorem _root_.topologicalKrullDim_closure_singleton_eq_height {α : Type*} [Top
 
 /-- The closure dimension of a scheme point is its `Order.height` (read in `WithBot ℕ∞`).
 Since `pointClosureDimension` is an `abbrev` of the right-hand side (item 4) this is `rfl`; the name
-is kept because downstream proofs rewrite with it.-/
+is kept because downstream proofs rewrite with it.
+@isnad1 id=eq.0h2v.s5.482fa22962df from=translated src=- shape=339b2787 vocab=00993570
+-/
 theorem pointClosureDimension_eq_height (X : Scheme.{u}) (x : X) :
     pointClosureDimension X x = ((Order.height x : ℕ∞) : WithBot ℕ∞) :=
   rfl
 
 /-- The point dimension is the topological Krull dimension of the closure of the point (item 4). Use this to pass between the
-`Order.height` primitive and closure-of-point computations.-/
+`Order.height` primitive and closure-of-point computations.
+@isnad1 id=eq.0h2v.s7.ad77c924642b from=translated src=- shape=ef9d398d vocab=ac09b3ef
+-/
 theorem pointClosureDimension_eq_topologicalKrullDim_closure (X : Scheme.{u}) (x : X) :
     pointClosureDimension X x = topologicalKrullDim (closure ({x} : Set X)) :=
   (topologicalKrullDim_closure_singleton_eq_height x).symm
@@ -96,7 +100,9 @@ theorem pointClosureDimension_eq_topologicalKrullDim_closure (X : Scheme.{u}) (x
 /-- **The** coercion lemma for comparing a `ℕ`-indexed dimension with a point dimension: the
 `WithBot ℕ∞` equation `pointClosureDimension X x = d` and the `ℕ∞` equation `Order.height x = d`
 say the same thing. Every `ℕ` ↔ `ℕ∞` ↔ `WithBot ℕ∞` comparison of a point dimension goes through
-this lemma.-/
+this lemma.
+@isnad1 id=iff.0h3v.s5.e8789cdc3de6 from=translated src=- shape=db47db20 vocab=54b700e7
+-/
 theorem pointClosureDimension_eq_natCast_iff (X : Scheme.{u}) (x : X) (d : ℕ) :
     pointClosureDimension X x = (d : WithBot ℕ∞) ↔ Order.height x = (d : ℕ∞) := by
   rw [pointClosureDimension_eq_height]
@@ -146,18 +152,24 @@ abbrev IsDimensionCycle (X : Scheme.{u}) (d : ℕ) (α : AlgebraicCycle X ℤ) :
 abbrev DimensionCycle (X : Scheme.{u}) (d : ℕ) :=
   ↥(AlgebraicGeometry.cycleSubgroup X d)
 
-/-- The height of a point carrying a nonzero coefficient of a `d`-cycle.-/
+/-- The height of a point carrying a nonzero coefficient of a `d`-cycle.
+@isnad1 id=eq.2h4v.s6.b902e9127746 from=translated src=- shape=ae92305e vocab=5bf41c38
+-/
 theorem IsDimensionCycle.height_eq {X : Scheme.{u}} {d : ℕ} {α : AlgebraicCycle X ℤ}
     (hα : IsDimensionCycle X d α) (x : X) (hx : α x ≠ 0) : Order.height x = (d : ℕ∞) :=
   hα x hx
 
-/-- The closure dimension of a point carrying a nonzero coefficient of a `d`-cycle.-/
+/-- The closure dimension of a point carrying a nonzero coefficient of a `d`-cycle.
+@isnad1 id=eq.2h4v.s6.71792406f7b5 from=translated src=- shape=eb77543d vocab=1e52a36c
+-/
 theorem IsDimensionCycle.pointClosureDimension_eq {X : Scheme.{u}} {d : ℕ}
     {α : AlgebraicCycle X ℤ} (hα : IsDimensionCycle X d α) (x : X) (hx : α x ≠ 0) :
     pointClosureDimension X x = (d : WithBot ℕ∞) :=
   (AlgebraicGeometry.mem_cycleSubgroup_iff_pointClosureDimension α).mp hα x hx
 
-/-- Build a `d`-cycle from the `pointClosureDimension` form of the support condition.-/
+/-- Build a `d`-cycle from the `pointClosureDimension` form of the support condition.
+@isnad1 id=isdimens.1h3v.s6.784858c3a3a7 from=translated src=- shape=a2baf767 vocab=1e52a36c
+-/
 theorem isDimensionCycle_of_pointClosureDimension {X : Scheme.{u}} {d : ℕ}
     {α : AlgebraicCycle X ℤ} (h : ∀ x : X, α x ≠ 0 → pointClosureDimension X x = (d : WithBot ℕ∞)) :
     IsDimensionCycle X d α :=
@@ -174,7 +186,9 @@ def closedSubschemeStalkLength {Z X : Scheme.{u}} (i : Z ⟶ X)
     (i.stalkMap z).hom.toAlgebra
   exact Module.length (X.presheaf.stalk (i z)) (Z.presheaf.stalk z)
 
-/-- Surjectivity of the closed immersion's stalk map preserves the actual module length.-/
+/-- Surjectivity of the closed immersion's stalk map preserves the actual module length.
+@isnad1 id=eq.0h4v.s5.f85668f8fe29 from=translated src=- shape=097a05dc vocab=753e457b
+-/
 theorem closedSubschemeStalkLength_eq {Z X : Scheme.{u}} (i : Z ⟶ X)
     [IsClosedImmersion i] (z : Z) : closedSubschemeStalkLength i z = stalkLength Z z := by
   let : Algebra (X.presheaf.stalk (i z)) (Z.presheaf.stalk z) :=
@@ -185,17 +199,25 @@ theorem closedSubschemeStalkLength_eq {Z X : Scheme.{u}} (i : Z ⟶ X)
 def fundamentalMultiplicity (X : Scheme.{u}) (x : X) : ℕ∞ :=
   if x ∈ genericPoints X then stalkLength X x else 0
 
+/--
+@isnad1 id=eq.1h2v.s6.a7ecc4a002fd from=translated src=- shape=35070168 vocab=72c399be
+-/
 @[simp]
 theorem fundamentalMultiplicity_of_generic (X : Scheme.{u}) (x : X)
     (hx : x ∈ genericPoints X) : fundamentalMultiplicity X x = stalkLength X x := by
   simp [fundamentalMultiplicity, hx]
 
+/--
+@isnad1 id=eq.1h2v.s6.5f3e09663ae4 from=translated src=- shape=4f455150 vocab=881aaa52
+-/
 @[simp]
 theorem fundamentalMultiplicity_of_not_generic (X : Scheme.{u}) (x : X)
     (hx : x ∉ genericPoints X) : fundamentalMultiplicity X x = 0 := by
   simp [fundamentalMultiplicity, hx]
 
-/-- Noetherian schemes have only finitely many nonzero generic multiplicities.-/
+/-- Noetherian schemes have only finitely many nonzero generic multiplicities.
+@isnad1 id=finite.0h1v.s4.a3d178cbb737 from=translated src=- shape=519ba889 vocab=5a5685db
+-/
 theorem fundamentalMultiplicity_finiteSupport (X : Scheme.{u}) [IsNoetherian X] :
     (Function.support (fundamentalMultiplicity X)).Finite := by
   apply (genericPoints.finite
@@ -211,6 +233,9 @@ def extendedFundamentalCycle (X : Scheme.{u}) [IsNoetherian X] : AlgebraicCycle 
   supportLocallyFiniteWithinDomain' x _ :=
     ⟨Set.univ, Filter.univ_mem, by simpa using fundamentalMultiplicity_finiteSupport X⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.39d20a1b25a0 from=translated src=- shape=2c7f292f vocab=7a49dd97
+-/
 @[simp]
 theorem extendedFundamentalCycle_apply (X : Scheme.{u}) [IsNoetherian X] (x : X) :
     extendedFundamentalCycle X x = fundamentalMultiplicity X x := rfl
@@ -220,6 +245,9 @@ def componentGenericPoints (X : Scheme.{u}) [IsNoetherian X] : Finset X :=
   (genericPoints.finite
     (TopologicalSpace.NoetherianSpace.finite_irreducibleComponents (α := X))).toFinset
 
+/--
+@isnad1 id=iff.0h2v.s6.e4c00772fa29 from=translated src=- shape=b648ad27 vocab=730756c3
+-/
 @[simp]
 theorem mem_componentGenericPoints (X : Scheme.{u}) [IsNoetherian X] (x : X) :
     x ∈ componentGenericPoints X ↔ x ∈ genericPoints X := by
@@ -234,7 +262,9 @@ def extendedClosedSubschemeCycle {Z X : Scheme.{u}} [IsNoetherian Z]
   ∑ η ∈ componentGenericPoints Z,
     Function.locallyFinsuppWithin.single (i η) (stalkLength Z η)
 
-/-- At an embedded component generic point the ambient cycle retains the entire local length.-/
+/-- At an embedded component generic point the ambient cycle retains the entire local length.
+@isnad1 id=eq.1h4v.s8.5adbeaa3e9ec from=translated src=- shape=6b0cd966 vocab=ed51c118
+-/
 theorem extendedClosedSubschemeCycle_apply_generic {Z X : Scheme.{u}} [IsNoetherian Z]
     (i : Z ⟶ X) [IsClosedImmersion i] (η : Z) (hη : η ∈ genericPoints Z) :
     extendedClosedSubschemeCycle i (i η) = stalkLength Z η := by
@@ -251,7 +281,9 @@ def IsIntegralCycleLift {X : Scheme.{u}} (β : AlgebraicCycle X ℕ∞)
     (α : AlgebraicCycle X ℤ) : Prop :=
   ∀ x : X, 0 ≤ α x ∧ ((α x).toNat : ℕ∞) = β x
 
-/-- Any two integral lifts of the same extended cycle agree coefficient by coefficient.-/
+/-- Any two integral lifts of the same extended cycle agree coefficient by coefficient.
+@isnad1 id=eq.2h4v.s5.33e2549f9cc9 from=translated src=- shape=305d836b vocab=8b1e1c16
+-/
 theorem IsIntegralCycleLift.unique {X : Scheme.{u}} {β : AlgebraicCycle X ℕ∞}
     {α γ : AlgebraicCycle X ℤ} (hα : IsIntegralCycleLift β α)
     (hγ : IsIntegralCycleLift β γ) : α = γ := by

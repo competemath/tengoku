@@ -54,19 +54,25 @@ namespace WeightedPolynomialAtlas
 
 variable {S w}
 
-/-- The image of a homogeneous element on a chart is a weighted homogeneous polynomial.-/
+/-- The image of a homogeneous element on a chart is a weighted homogeneous polynomial.
+@isnad1 id=isweight.1h8v.s13.2f629b3c3c6d from=translated src=- shape=bf0d5ae4 vocab=a153d67a
+-/
 theorem equiv_isWeightedHomogeneous (𝒜 : S.WeightedPolynomialAtlas w) (i : 𝒜.I) {m : ℕ}
     {a : S.toAffineAlgebra.sections (𝒜.chart i)} (ha : a ∈ S.grading (𝒜.chart i) m) :
     (𝒜.equiv i a).IsWeightedHomogeneous w m :=
   (𝒜.equiv_grading i m a).mp ha
 
-/-- Conversely, weighted homogeneous polynomials come from the graded pieces of `S`.-/
+/-- Conversely, weighted homogeneous polynomials come from the graded pieces of `S`.
+@isnad1 id=mem.1h8v.s13.f4aeb1606bb5 from=translated src=- shape=75ac54ed vocab=db5c459c
+-/
 theorem symm_mem (𝒜 : S.WeightedPolynomialAtlas w) (i : 𝒜.I) {m : ℕ}
     {p : MvPolynomial σ Γ(X, (𝒜.chart i).toOpens)} (hp : p.IsWeightedHomogeneous w m) :
     (𝒜.equiv i).symm p ∈ S.grading (𝒜.chart i) m :=
   (𝒜.equiv_grading i m _).mpr (by rw [RingEquiv.apply_symm_apply]; exact hp)
 
-/-- Every point lies in some chart.-/
+/-- Every point lies in some chart.
+@isnad1 id=ex.0h6v.s6.9514da5d4d97 from=translated src=- shape=6e24646e vocab=d4c3ab4a
+-/
 theorem exists_chart_mem (𝒜 : S.WeightedPolynomialAtlas w) (x : X) :
     ∃ i : 𝒜.I, x ∈ (𝒜.chart i).toOpens := 𝒜.covers x
 

@@ -32,7 +32,9 @@ namespace AlgebraicGeometry.Scheme
 
 variable {X Y : Scheme.{u}} [IsIntegral X] [IsIntegral Y]
 
-/-- A dominant morphism of integral schemes maps the generic point to the generic point.-/
+/-- A dominant morphism of integral schemes maps the generic point to the generic point.
+@isnad1 id=eq.0h3v.s7.e3ac0f59c913 from=translated src=- shape=54be5bf5 vocab=28308992
+-/
 theorem dominantMap_genericPoint (f : X ⟶ Y) [IsDominant f] :
     f (genericPoint X) = genericPoint Y := by
   apply IsGenericPoint.eq _ (genericPoint_spec Y)
@@ -51,7 +53,9 @@ def dominantFunctionFieldAlgebra (f : X ⟶ Y) [IsDominant f] :
     Algebra Y.functionField X.functionField :=
   (dominantFunctionFieldMap f).hom.toAlgebra
 
-/-- A finite dominant morphism induces a finite extension of its actual function fields.-/
+/-- A finite dominant morphism induces a finite extension of its actual function fields.
+@isnad1 id=finite.0h3v.s6.b77ae4fdd74d from=translated src=- shape=a064b2a0 vocab=4472b09d
+-/
 theorem finiteMap_functionField_finite (f : X ⟶ Y) [IsDominant f] [IsFinite f] :
     letI := dominantFunctionFieldAlgebra f
     Module.Finite Y.functionField X.functionField := by
@@ -71,7 +75,9 @@ def finiteMapFunctionFieldDegree (f : X ⟶ Y) [IsDominant f] [IsFinite f] : ℕ
   letI := finiteMap_functionField_finite f
   Module.finrank Y.functionField X.functionField
 
-/-- The degree is positive because the extension is finite and its underlying field is nontrivial.-/
+/-- The degree is positive because the extension is finite and its underlying field is nontrivial.
+@isnad1 id=lt.0h3v.s5.4300fef0f2de from=translated src=- shape=05573dc9 vocab=f277bc0b
+-/
 theorem finiteMapFunctionFieldDegree_pos (f : X ⟶ Y) [IsDominant f] [IsFinite f] :
     0 < finiteMapFunctionFieldDegree f := by
   let := dominantFunctionFieldAlgebra f

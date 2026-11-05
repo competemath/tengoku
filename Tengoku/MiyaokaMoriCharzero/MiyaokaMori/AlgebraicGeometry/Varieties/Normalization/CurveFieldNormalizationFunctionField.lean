@@ -36,7 +36,9 @@ universe u
 variable (X : Scheme.{u}) [IsIntegral X]
 variable (L : Type u) [Field L] [Algebra X.functionField L]
 
-/-- The unique point of `Spec L` maps to the generic point of the same normalization.-/
+/-- The unique point of `Spec L` maps to the generic point of the same normalization.
+@isnad1 id=eq.0h2v.s8.7fa77809c59a from=translated src=- shape=95d8353f vocab=bfea5cf3
+-/
 theorem curveFieldNormalizationGenericMap_closedPoint :
     curveFieldNormalizationGenericMap X L (IsLocalRing.closedPoint L) =
       genericPoint (curveFieldNormalization X L) := by
@@ -53,7 +55,9 @@ def curveFieldNormalizationFunctionFieldMap :
     Scheme.stalkClosedPointTo (curveFieldNormalizationGenericMap X L)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The canonical field map recovers the already specified `Spec L → normalization`.-/
+/-- The canonical field map recovers the already specified `Spec L → normalization`.
+@isnad1 id=eq.0h2v.s7.7a96ea07da37 from=translated src=- shape=c69d0a38 vocab=bbea5f6d
+-/
 theorem curveFieldNormalizationFunctionFieldMap_factorization :
     Spec.map (curveFieldNormalizationFunctionFieldMap X L) ≫
         (curveFieldNormalization X L).fromSpecStalk
@@ -64,7 +68,9 @@ theorem curveFieldNormalizationFunctionFieldMap_factorization :
   exact Scheme.Spec_stalkClosedPointTo_fromSpecStalk _
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The canonical map is compatible with the function-field map of the same projection.-/
+/-- The canonical map is compatible with the function-field map of the same projection.
+@isnad1 id=eq.0h2v.s7.827bbff6c6be from=translated src=- shape=1560077f vocab=887e6540
+-/
 theorem curveFieldNormalizationFunctionFieldMap_comp :
     dominantFunctionFieldMap (curveFieldNormalizationMap X L) ≫
         curveFieldNormalizationFunctionFieldMap X L =
@@ -84,7 +90,9 @@ theorem curveFieldNormalizationFunctionFieldMap_comp :
     curveFieldNormalizationFunctionFieldMap_factorization, curveFieldNormalization_factorization]
   rfl
 
-/-- A nonempty base open lifts to a nonempty open of this same normalization.-/
+/-- A nonempty base open lifts to a nonempty open of this same normalization.
+@isnad1 id=nonempty.0h3v.s7.cf30f7aa8c7d from=translated src=- shape=71acbfd9 vocab=4fdeb287
+-/
 theorem curveFieldNormalizationMap_preimage_nonempty (U : X.Opens) [Nonempty U] :
     Nonempty (curveFieldNormalizationMap X L ⁻¹ᵁ U) := by
   refine ⟨⟨genericPoint (curveFieldNormalization X L), ?_⟩⟩
@@ -106,7 +114,9 @@ private theorem curveExtensionSectionsIso_eq_germ (U : X.Opens) [Nonempty U]
 
 set_option backward.isDefEq.respectTransparency false in
 /-- On each nonempty affine chart, the canonical generic-stalk map is exactly the
-inclusion of the chart's integral closure into the specified field.-/
+inclusion of the chart's integral closure into the specified field.
+@isnad1 id=eq.1h3v.s13.3cb4b42c88fc from=translated src=- shape=72f7d689 vocab=bef39d4b
+-/
 theorem curveFieldNormalizationFunctionFieldMap_germ
     (U : X.Opens) (hU : IsAffineOpen U) [Nonempty U] :
     letI := curveExtensionSectionAlgebra X L U
@@ -153,7 +163,9 @@ theorem curveFieldNormalizationFunctionFieldMap_germ
     TopCat.Presheaf.germ_stalkSpecializes_assoc]
   rw [Scheme.Hom.germ_stalkMap_assoc, TopCat.Presheaf.germ_res'_assoc]
 
-/-- The actual field map is injective, including for extensions not assumed finite.-/
+/-- The actual field map is injective, including for extensions not assumed finite.
+@isnad1 id=injectiv.0h2v.s8.6bfd2d997b0d from=translated src=- shape=de0b1dd1 vocab=5651900e
+-/
 theorem curveFieldNormalizationFunctionFieldMap_injective :
     Function.Injective (curveFieldNormalizationFunctionFieldMap X L) :=
   (curveFieldNormalizationFunctionFieldMap X L).hom.injective
@@ -175,7 +187,9 @@ variable [FiniteDimensional X.functionField L]
 
 set_option backward.isDefEq.respectTransparency false in
 /-- For a finite extension, the canonical generic-stalk map is bijective. The proof
-uses one nonempty affine chart only to verify this property of the already defined map.-/
+uses one nonempty affine chart only to verify this property of the already defined map.
+@isnad1 id=bijectiv.0h2v.s8.6641973a8f67 from=translated src=- shape=b20993e1 vocab=263627dc
+-/
 theorem curveFieldNormalizationFunctionFieldMap_bijective :
     Function.Bijective (curveFieldNormalizationFunctionFieldMap X L) := by
   obtain ⟨_, ⟨U, hU, rfl⟩, hxU, -⟩ := X.isBasis_affineOpens.exists_subset_of_mem_open
@@ -220,14 +234,18 @@ def curveFieldNormalizationFunctionFieldEquiv :
   exact AlgEquiv.ofBijective (curveFieldNormalizationFunctionFieldAlgHom X L)
     (curveFieldNormalizationFunctionFieldMap_bijective X L)
 
-/-- The equivalence's underlying map is the canonical map extracted from the actual morphism.-/
+/-- The equivalence's underlying map is the canonical map extracted from the actual morphism.
+@isnad1 id=eq.0h2v.s8.b8582e210b53 from=translated src=- shape=bc64fd03 vocab=d406e585
+-/
 theorem curveFieldNormalizationFunctionFieldEquiv_toRingHom :
     letI := dominantFunctionFieldAlgebra (curveFieldNormalizationMap X L)
     CommRingCat.ofHom (curveFieldNormalizationFunctionFieldEquiv X L).toRingHom =
       curveFieldNormalizationFunctionFieldMap X L := rfl
 
 /-- This specific equivalence, without a field-automorphism ambiguity, gives the
-original generic-point morphism of the relative normalization.-/
+original generic-point morphism of the relative normalization.
+@isnad1 id=eq.0h2v.s8.b4f54d78fa17 from=translated src=- shape=f9c0c153 vocab=f4f0139e
+-/
 theorem curveFieldNormalizationFunctionFieldEquiv_factorization :
     letI := dominantFunctionFieldAlgebra (curveFieldNormalizationMap X L)
     Spec.map (CommRingCat.ofHom (curveFieldNormalizationFunctionFieldEquiv X L).toRingHom) ≫

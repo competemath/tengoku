@@ -47,7 +47,9 @@ def curveExtensionSectionsIso (U : X.Opens) [Nonempty U] :
       Scheme.ΓSpecIso (CommRingCat.of L)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The section identification respects the original map through `K(X) → L`.-/
+/-- The section identification respects the original map through `K(X) → L`.
+@isnad1 id=eq.0h3v.s12.ece9abf32348 from=translated src=- shape=4e59d185 vocab=3b78ea27
+-/
 theorem curveExtensionGenericMap_app_sectionsIso (U : X.Opens) [Nonempty U] :
     (curveExtensionGenericMap X L).app U ≫ (curveExtensionSectionsIso X L U).hom =
       X.germToFunctionField U ≫ CommRingCat.ofHom (algebraMap X.functionField L) := by
@@ -98,7 +100,9 @@ def curveFieldNormalizationSectionsFieldIso (U : X.Opens) (hU : IsAffineOpen U) 
 
 set_option backward.isDefEq.respectTransparency false in
 /-- Under the affine integral-closure identification, the projection is the canonical
-inclusion of the original affine coordinate ring.-/
+inclusion of the original affine coordinate ring.
+@isnad1 id=eq.1h3v.s13.93f541f35939 from=translated src=- shape=9f2e3bc1 vocab=b3f3fa3a
+-/
 theorem curveFieldNormalizationMap_app_sectionsFieldIso
     (U : X.Opens) (hU : IsAffineOpen U) [Nonempty U] :
     letI := curveExtensionSectionAlgebra X L U
@@ -119,7 +123,9 @@ theorem curveFieldNormalizationMap_app_sectionsFieldIso
 variable [FiniteDimensional X.functionField L] [Algebra.IsSeparable X.functionField L]
 
 /-- A nonempty affine chart of the same normalization is finite over a Noetherian,
-integrally closed affine coordinate ring.-/
+integrally closed affine coordinate ring.
+@isnad1 id=finite.1h3v.s11.d74b28d8b387 from=translated src=- shape=450d8cdd vocab=ccf5f468
+-/
 theorem curveFieldNormalizationMap_finite_app
     (U : X.Opens) (hU : IsAffineOpen U) [Nonempty U]
     [IsNoetherianRing Γ(X, U)] [IsIntegrallyClosed Γ(X, U)] :
@@ -141,7 +147,9 @@ theorem curveFieldNormalizationMap_finite_app
 
 /-- A finite separable extension gives a finite projection from the actual normalization
 when the original scheme is locally Noetherian with integrally closed nonempty affine sections.
-These are properties of the original scheme, not finiteness data for the target projection.-/
+These are properties of the original scheme, not finiteness data for the target projection.
+@isnad1 id=isfinite.1h2v.s8.b4feae2ba6b3 from=translated src=- shape=dd18a75d vocab=d5e9db07
+-/
 theorem curveFieldNormalizationMap_finite [IsLocallyNoetherian X]
     (hNormal : ∀ U : X.affineOpens, Nonempty U → IsIntegrallyClosed Γ(X, U)) :
     AlgebraicGeometry.IsFinite (curveFieldNormalizationMap X L) := by

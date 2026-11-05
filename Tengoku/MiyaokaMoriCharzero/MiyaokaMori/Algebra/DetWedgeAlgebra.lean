@@ -56,7 +56,9 @@ variable {R : Type u} [CommRing R] {M' M M'' : Type v}
   {a b : ℕ} {f : M' →ₗ[R] M} {g : M →ₗ[R] M''}
 
 /-- Exterior powers preserve surjections: if `g` is surjective so is `⋀^n g` (a pure wedge lifts to
-the pure wedge of lifts).-/
+the pure wedge of lifts).
+@isnad1 id=surjecti.1h5v.s12.da662ff4811d from=translated src=- shape=95f8989f vocab=ceb714ad
+-/
 theorem exteriorPower_map_surjective {n : ℕ} (hg : Function.Surjective g) :
     Function.Surjective (exteriorPower.map n g) := by
   rw [← LinearMap.range_eq_top, eq_top_iff, ← exteriorPower.ιMulti_span R n M'', Submodule.span_le]
@@ -77,12 +79,21 @@ variable (hexact : Function.Exact f g) (hf : Function.Injective f) (σ : M'' →
 def splitMap (f : M' →ₗ[R] M) (σ : M'' →ₗ[R] M) : M' × M'' →ₗ[R] M :=
   f ∘ₗ LinearMap.fst R M' M'' + σ ∘ₗ LinearMap.snd R M' M''
 
+/--
+@isnad1 id=eq.0h8v.s8.7ef5dda6e959 from=translated src=- shape=8632618f vocab=a6303ccf
+-/
 theorem splitMap_apply (m : M') (p : M'') : splitMap f σ (m, p) = f m + σ p := rfl
 
 include hσ in
+/--
+@isnad1 id=eq.1h6v.s8.72f09611f2f1 from=translated src=- shape=bab079e4 vocab=0eb04a18
+-/
 theorem g_σ_apply (p : M'') : g (σ p) = p := LinearMap.congr_fun hσ p
 
 include hexact hf hσ in
+/--
+@isnad1 id=bijectiv.3h7v.s9.68da809eb601 from=translated src=- shape=672a1a5c vocab=79c641c1
+-/
 theorem splitMap_bijective : Function.Bijective (splitMap f σ) := by
   constructor
   · rw [injective_iff_map_eq_zero]
@@ -105,6 +116,9 @@ theorem splitMap_bijective : Function.Bijective (splitMap f σ) := by
 def splitEquiv : (M' × M'') ≃ₗ[R] M :=
   LinearEquiv.ofBijective (splitMap f σ) (splitMap_bijective hexact hf σ hσ)
 
+/--
+@isnad1 id=eq.3h9v.s9.fcae671b3bf9 from=translated src=- shape=417611e8 vocab=0f6dc4fe
+-/
 theorem splitEquiv_apply (m : M') (p : M'') : splitEquiv hexact hf σ hσ (m, p) = f m + σ p := rfl
 
 variable (e' : Module.Basis (Fin a) R M') (e'' : Module.Basis (Fin b) R M'')
@@ -113,6 +127,9 @@ variable (e' : Module.Basis (Fin a) R M') (e'' : Module.Basis (Fin b) R M'')
 def splitBasis : Module.Basis (Fin (a + b)) R M :=
   ((e'.prod e'').reindex finSumFinEquiv).map (splitEquiv hexact hf σ hσ)
 
+/--
+@isnad1 id=eq.3h12v.s9.50b9e73b7167 from=translated src=- shape=974e3b2b vocab=09611570
+-/
 theorem splitBasis_castAdd (j : Fin a) :
     splitBasis hexact hf σ hσ e' e'' (Fin.castAdd b j) = f (e' j) := by
   simp only [splitBasis, Module.Basis.map_apply, Module.Basis.reindex_apply,
@@ -120,6 +137,9 @@ theorem splitBasis_castAdd (j : Fin a) :
     Function.comp_apply, LinearMap.coe_inl]
   rw [splitEquiv_apply, map_zero, add_zero]
 
+/--
+@isnad1 id=eq.3h12v.s9.b8945772c448 from=translated src=- shape=c29ff81c vocab=7f3d7678
+-/
 theorem splitBasis_natAdd (j : Fin b) :
     splitBasis hexact hf σ hσ e' e'' (Fin.natAdd a j) = σ (e'' j) := by
   simp only [splitBasis, Module.Basis.map_apply, Module.Basis.reindex_apply,
@@ -127,6 +147,9 @@ theorem splitBasis_natAdd (j : Fin b) :
     Function.comp_apply, LinearMap.coe_inr]
   rw [splitEquiv_apply, map_zero, zero_add]
 
+/--
+@isnad1 id=eq.3h11v.s9.55dfaf488793 from=translated src=- shape=8d15c8fa vocab=1b0650a4
+-/
 theorem splitBasis_coe :
     ⇑(splitBasis hexact hf σ hσ e' e'') = Fin.append (f ∘ e') (σ ∘ e'') := by
   funext i
@@ -134,7 +157,9 @@ theorem splitBasis_coe :
   · rw [splitBasis_castAdd, Fin.append_left]; rfl
   · rw [splitBasis_natAdd, Fin.append_right]; rfl
 
-/-- The key identity checked on the basis of `⋀^b M` (the case `v = e'`).-/
+/-- The key identity checked on the basis of `⋀^b M` (the case `v = e'`).
+@isnad1 id=eq.3h12v.s16.409ce99f80a8 from=translated src=- shape=f15db17e vocab=c7f84d89
+-/
 theorem key_basis (η : ⋀[R]^b M) :
     Module.exteriorPowerDetEquivOfBasis e' e'' (splitBasis hexact hf σ hσ e' e'')
         (exteriorPower.ιMulti R a e' ⊗ₜ[R] exteriorPower.map b g η) =
@@ -207,7 +232,9 @@ theorem key_basis (η : ⋀[R]^b M) :
   exact LinearMap.congr_fun hPQ η
 
 /-- Two linear maps out of `⋀^a M' ⊗ ⋀^b M` agreeing on tensors of pure wedges are equal
-(the two-module version of `Module.exteriorPowerMul_hom_ext`).-/
+(the two-module version of `Module.exteriorPowerMul_hom_ext`).
+@isnad1 id=eq.1h8v.s16.239bea6d6c01 from=translated src=- shape=23d92d95 vocab=98b5125c
+-/
 theorem tensor_exterior_hom_ext {P : Type w} [AddCommGroup P] [Module R P]
     {φ ψ : ((⋀[R]^a M') ⊗[R] (⋀[R]^b M)) →ₗ[R] P}
     (h : ∀ (v : Fin a → M') (w : Fin b → M),
@@ -219,7 +246,9 @@ theorem tensor_exterior_hom_ext {P : Type w} [AddCommGroup P] [Module R P]
   refine exteriorPower.linearMap_ext (AlternatingMap.ext fun w => ?_)
   exact h v w
 
-/-- **Key identity**: `Λ ∘ (1 ⊗ ⋀^b g) = wedge multiplication ∘ (⋀^a f ⊗ 1)` on `⋀^a M' ⊗ ⋀^b M`.-/
+/-- **Key identity**: `Λ ∘ (1 ⊗ ⋀^b g) = wedge multiplication ∘ (⋀^a f ⊗ 1)` on `⋀^a M' ⊗ ⋀^b M`.
+@isnad1 id=eq.3h11v.s15.a74380e799f0 from=translated src=- shape=d18bae37 vocab=018a7d54
+-/
 theorem detWedge_key :
     (Module.exteriorPowerDetEquivOfBasis e' e'' (splitBasis hexact hf σ hσ e' e'')).toLinearMap ∘ₗ
         TensorProduct.map LinearMap.id (exteriorPower.map b g) =
@@ -238,7 +267,9 @@ theorem detWedge_key :
   exact congrArg (r • ·) (key_basis hexact hf σ hσ e' e'' (exteriorPower.ιMulti R b w))
 
 include hexact hf σ hσ e' e'' in
-/-- Well-definedness: `(1 ⊗ ⋀^b g) t = 0 ⇒ wedge multiplication ((⋀^a f ⊗ 1) t) = 0`.-/
+/-- Well-definedness: `(1 ⊗ ⋀^b g) t = 0 ⇒ wedge multiplication ((⋀^a f ⊗ 1) t) = 0`.
+@isnad1 id=eq.4h12v.s16.d0a833f291c7 from=translated src=- shape=551fa4ae vocab=9e168109
+-/
 theorem mul_map_eq_zero_of_map_eq_zero (t : (⋀[R]^a M') ⊗[R] (⋀[R]^b M))
     (ht : TensorProduct.map LinearMap.id (exteriorPower.map b g) t = 0) :
     Module.exteriorPowerMul R M a b (TensorProduct.map (exteriorPower.map a f) LinearMap.id t) = 0 := by
@@ -248,7 +279,9 @@ theorem mul_map_eq_zero_of_map_eq_zero (t : (⋀[R]^a M') ⊗[R] (⋀[R]^b M))
 
 include hexact hf σ hσ e' e'' in
 /-- Isomorphism property: a `μ` with `μ ∘ (1 ⊗ ⋀^b g) = wedge multiplication ∘ (⋀^a f ⊗ 1)` is
-bijective (it equals `Λ`).-/
+bijective (it equals `Λ`).
+@isnad1 id=bijectiv.5h12v.s17.1674528935fc from=translated src=- shape=bdaf5a05 vocab=5ad40412
+-/
 theorem bijective_of_comp_eq (hg : Function.Surjective g)
     (μ : (⋀[R]^a M') ⊗[R] (⋀[R]^b M'') →ₗ[R] ⋀[R]^(a + b) M)
     (hμ : ∀ t : (⋀[R]^a M') ⊗[R] (⋀[R]^b M),

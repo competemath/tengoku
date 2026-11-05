@@ -24,7 +24,9 @@ universe u
 namespace AlgebraicGeometry.Scheme
 open AlgebraicGeometry.Divisors
 
-/-- Shrink an open around `z` so that a nonzero section is a unit away from `z`.-/
+/-- Shrink an open around `z` so that a nonzero section is a unit away from `z`.
+@isnad1 id=ex.3h4v.s11.85978b71baef from=translated src=- shape=437ce45d vocab=f3945ff0
+-/
 theorem exists_open_isUnit_germ_off_point
     (X : Scheme.{u}) [IsIntegral X] [IsNoetherian X]
     (hdim : topologicalKrullDim X ≤ 1)

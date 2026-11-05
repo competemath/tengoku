@@ -68,6 +68,9 @@ def gen (q : ι) : W q →ₗ[R] SymmetricAlgebra R (⨁ p, W p) :=
 def genSpan (q : ι) : Submodule R (SymmetricAlgebra R (⨁ p, W p)) :=
   LinearMap.range (gen R W q)
 
+/--
+@isnad1 id=mem.0h5v.s12.cd1858f82838 from=translated src=- shape=0ba93f1a vocab=787689c8
+-/
 theorem gen_mem_genSpan (q : ι) (x : W q) : gen R W q x ∈ genSpan R W q :=
   LinearMap.mem_range_self _ x
 
@@ -80,8 +83,14 @@ variable {R W}
 /-- The weighted degree `Σ_q w q * d q` of a multidegree `d`.-/
 def wdeg (w d : ι → ℕ) : ℕ := ∑ q, w q * d q
 
+/--
+@isnad1 id=eq.0h2v.s5.d6271af8af82 from=translated src=- shape=0445b35c vocab=f6b7e409
+-/
 theorem wdeg_zero (w : ι → ℕ) : wdeg w 0 = 0 := by simp [wdeg]
 
+/--
+@isnad1 id=eq.0h4v.s6.6d7a410c4f7a from=translated src=- shape=769433c7 vocab=975a2ac8
+-/
 theorem wdeg_add (w d d' : ι → ℕ) : wdeg w (d + d') = wdeg w d + wdeg w d' := by
   simp [wdeg, Pi.add_apply, mul_add, Finset.sum_add_distrib]
 
@@ -93,17 +102,28 @@ def piece (w : ι → ℕ) (m : ℕ) : Submodule R (SymmetricAlgebra R (⨁ p, W
 
 variable {R W}
 
+/--
+@isnad1 id=le.1h6v.s11.0394b1444028 from=translated src=- shape=5581170a vocab=59b99df0
+-/
 theorem monomial_le_piece {w d : ι → ℕ} {m : ℕ} (hd : wdeg w d = m) :
     monomial R W d ≤ piece R W w m :=
   le_iSup (fun d : {d : ι → ℕ // wdeg w d = m} => monomial R W d.1) ⟨d, hd⟩
 
+/--
+@isnad1 id=eq.0h3v.s11.dc1270b0ef9f from=translated src=- shape=120d79b7 vocab=8801bc9e
+-/
 theorem monomial_zero : monomial R W 0 = 1 := by simp [monomial]
 
+/--
+@isnad1 id=eq.0h5v.s12.6fdf43f64c63 from=translated src=- shape=5971b025 vocab=8e175f5e
+-/
 theorem monomial_mul (d d' : ι → ℕ) :
     monomial R W d * monomial R W d' = monomial R W (d + d') := by
   simp only [monomial, ← Finset.prod_mul_distrib, ← pow_add, Pi.add_apply]
 
-/-- For the multidegree with a single exponent `1` at `q`, the monomial submodule is `genSpan q`.-/
+/-- For the multidegree with a single exponent `1` at `q`, the monomial submodule is `genSpan q`.
+@isnad1 id=eq.0h4v.s10.850af114e77b from=translated src=- shape=3af39fdf vocab=620ade91
+-/
 theorem monomial_single (q : ι) : monomial R W (Pi.single q 1) = genSpan R W q := by
   classical
   rw [monomial, Finset.prod_eq_single q]
@@ -111,6 +131,9 @@ theorem monomial_single (q : ι) : monomial R W (Pi.single q 1) = genSpan R W q 
   · intro b _ hb; rw [Pi.single_eq_of_ne hb, pow_zero]
   · intro h; exact absurd (Finset.mem_univ q) h
 
+/--
+@isnad1 id=eq.0h3v.s5.0c29fadb2f73 from=translated src=- shape=ca856c1c vocab=ca1694ed
+-/
 theorem wdeg_single (w : ι → ℕ) (q : ι) : wdeg w (Pi.single q 1) = w q := by
   classical
   rw [wdeg, Finset.sum_eq_single q]
@@ -118,21 +141,35 @@ theorem wdeg_single (w : ι → ℕ) (q : ι) : wdeg w (Pi.single q 1) = w q := 
   · intro b _ hb; rw [Pi.single_eq_of_ne hb, mul_zero]
   · intro h; exact absurd (Finset.mem_univ q) h
 
+/--
+@isnad1 id=le.0h5v.s11.7bd80d7a083a from=translated src=- shape=12f712da vocab=b602c7a1
+-/
 theorem genSpan_le_piece (w : ι → ℕ) (q : ι) : genSpan R W q ≤ piece R W w (w q) :=
   monomial_single (R := R) (W := W) q ▸ monomial_le_piece (wdeg_single w q)
 
+/--
+@isnad1 id=mem.0h6v.s12.0c3a52a28c32 from=translated src=- shape=c51e32e9 vocab=a956bd46
+-/
 theorem gen_mem_piece (w : ι → ℕ) (q : ι) (x : W q) : gen R W q x ∈ piece R W w (w q) :=
   genSpan_le_piece w q (gen_mem_genSpan R W q x)
 
+/--
+@isnad1 id=le.0h4v.s12.1146ae362045 from=translated src=- shape=1379f912 vocab=8c1d1199
+-/
 theorem one_le_piece_zero (w : ι → ℕ) : (1 : Submodule R (SymmetricAlgebra R (⨁ p, W p)))
     ≤ piece R W w 0 :=
   monomial_zero (R := R) (W := W) ▸ monomial_le_piece (wdeg_zero w)
 
-/-- Submodule multiplication is monotone in `≤` (Mathlib lacks the `Submodule` version of this).-/
+/-- Submodule multiplication is monotone in `≤` (Mathlib lacks the `Submodule` version of this).
+@isnad1 id=le.2h7v.s14.584e07585c52 from=translated src=- shape=bae4cf33 vocab=7905389d
+-/
 theorem mul_le_mul {A B C D : Submodule R (SymmetricAlgebra R (⨁ p, W p))}
     (h₁ : A ≤ B) (h₂ : C ≤ D) : A * C ≤ B * D :=
   Submodule.mul_le.mpr fun _ ha _ hb => Submodule.mul_mem_mul (h₁ ha) (h₂ hb)
 
+/--
+@isnad1 id=gradedmo.0h4v.s11.d4509d7734e6 from=translated src=- shape=8e54341c vocab=c26ffc3c
+-/
 instance instGradedMonoid (w : ι → ℕ) : SetLike.GradedMonoid (piece R W w) where
   one_mem := Submodule.one_le.mp (one_le_piece_zero w)
   mul_mem := by
@@ -159,6 +196,9 @@ section Induction
 
 variable {Q : ℕ → Submodule R (SymmetricAlgebra R (⨁ p, W p))} {w : ι → ℕ}
 
+/--
+@isnad1 id=le.3h7v.s14.ab8e2598918b from=translated src=- shape=e42adb65 vocab=23851733
+-/
 theorem pow_genSpan_le (h1 : (1 : SymmetricAlgebra R (⨁ p, W p)) ∈ Q 0)
     (hmul : ∀ i j, Q i * Q j ≤ Q (i + j)) (hgen : ∀ q, genSpan R W q ≤ Q (w q))
     (q : ι) (n : ℕ) : genSpan R W q ^ n ≤ Q (w q * n) := by
@@ -168,6 +208,9 @@ theorem pow_genSpan_le (h1 : (1 : SymmetricAlgebra R (⨁ p, W p)) ∈ Q 0)
     rw [pow_succ, Nat.mul_succ]
     exact le_trans (mul_le_mul ih (hgen q)) (hmul _ _)
 
+/--
+@isnad1 id=le.3h7v.s14.b5f38b849401 from=translated src=- shape=3f736c35 vocab=10e8ec3f
+-/
 theorem prod_genSpan_le (h1 : (1 : SymmetricAlgebra R (⨁ p, W p)) ∈ Q 0)
     (hmul : ∀ i j, Q i * Q j ≤ Q (i + j)) (hgen : ∀ q, genSpan R W q ≤ Q (w q))
     (d : ι → ℕ) (s : Finset ι) :
@@ -179,7 +222,9 @@ theorem prod_genSpan_le (h1 : (1 : SymmetricAlgebra R (⨁ p, W p)) ∈ Q 0)
     exact le_trans (mul_le_mul (pow_genSpan_le h1 hmul hgen q (d q)) ih) (hmul _ _)
 
 /-- **Induction principle for the weighted pieces**: a family of submodules containing `1`, closed under
-multiplication and containing all generators absorbs the whole `piece m`.-/
+multiplication and containing all generators absorbs the whole `piece m`.
+@isnad1 id=le.3h6v.s14.fabd8bbe9be8 from=translated src=- shape=dd709b99 vocab=5f58704a
+-/
 theorem piece_le_of_gen (h1 : (1 : SymmetricAlgebra R (⨁ p, W p)) ∈ Q 0)
     (hmul : ∀ i j, Q i * Q j ≤ Q (i + j)) (hgen : ∀ q, genSpan R W q ≤ Q (w q))
     (m : ℕ) : piece R W w m ≤ Q m := by
@@ -208,6 +253,9 @@ def decompose (w : ι → ℕ) :
 
 variable {R W}
 
+/--
+@isnad1 id=eq.0h6v.s17.0ba7856080c6 from=translated src=- shape=46625fc0 vocab=82ab8bb2
+-/
 theorem decompose_gen (w : ι → ℕ) (q : ι) (x : W q) :
     decompose R W w (gen R W q x) =
       DirectSum.of (fun m => (piece R W w m : Submodule R _)) (w q)
@@ -217,6 +265,9 @@ theorem decompose_gen (w : ι → ℕ) (q : ι) (x : W q) :
   rw [h1, gradedInclusion, DirectSum.toModule_lof]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s14.b0b94b9dbc8c from=translated src=- shape=c1820251 vocab=cc8d0bd6
+-/
 theorem coeAlgHom_comp_decompose (w : ι → ℕ) :
     (DirectSum.coeAlgHom (piece R W w)).comp (decompose R W w) = AlgHom.id R _ := by
   apply SymmetricAlgebra.algHom_ext
@@ -224,6 +275,9 @@ theorem coeAlgHom_comp_decompose (w : ι → ℕ) :
   show DirectSum.coeAlgHom (piece R W w) (decompose R W w (gen R W q x)) = gen R W q x
   rw [decompose_gen, DirectSum.coeAlgHom_of]
 
+/--
+@isnad1 id=eq.0h5v.s16.20fbd2977667 from=translated src=- shape=1318d4da vocab=49e6774f
+-/
 theorem coeAlgHom_decompose (w : ι → ℕ) (a : SymmetricAlgebra R (⨁ p, W p)) :
     DirectSum.coeAlgHom (piece R W w) (decompose R W w a) = a :=
   AlgHom.congr_fun (coeAlgHom_comp_decompose w) a
@@ -237,16 +291,25 @@ def preimagePiece (w : ι → ℕ) (m : ℕ) : Submodule R (SymmetricAlgebra R (
 
 variable {R W}
 
+/--
+@isnad1 id=iff.0h6v.s16.7cbaab7ab773 from=translated src=- shape=9327b6d8 vocab=6f210c1f
+-/
 theorem mem_preimagePiece {w : ι → ℕ} {m : ℕ} {a : SymmetricAlgebra R (⨁ p, W p)} :
     a ∈ preimagePiece R W w m ↔ decompose R W w a ∈
       LinearMap.range (DirectSum.lof R ℕ (fun k => (piece R W w k : Submodule R _)) m) :=
   Iff.rfl
 
+/--
+@isnad1 id=mem.0h4v.s11.b82a797365ef from=translated src=- shape=639a560e vocab=ecb1eb7d
+-/
 theorem one_mem_preimagePiece (w : ι → ℕ) :
     (1 : SymmetricAlgebra R (⨁ p, W p)) ∈ preimagePiece R W w 0 := by
   rw [mem_preimagePiece, map_one]
   exact ⟨_, (DirectSum.one_def _).symm⟩
 
+/--
+@isnad1 id=le.0h6v.s13.e0f0c66f09dd from=translated src=- shape=ea407bc3 vocab=b3b6a359
+-/
 theorem preimagePiece_mul (w : ι → ℕ) (i j : ℕ) :
     preimagePiece R W w i * preimagePiece R W w j ≤ preimagePiece R W w (i + j) := by
   refine Submodule.mul_le.mpr fun a ha b hb => ?_
@@ -256,13 +319,18 @@ theorem preimagePiece_mul (w : ι → ℕ) (i j : ℕ) :
   rw [mem_preimagePiece, map_mul, ← hx, ← hy, DirectSum.of_mul_of]
   exact ⟨_, rfl⟩
 
+/--
+@isnad1 id=le.0h5v.s11.b0fc7bc7c2a8 from=translated src=- shape=12f712da vocab=9deaea9e
+-/
 theorem genSpan_le_preimagePiece (w : ι → ℕ) (q : ι) :
     genSpan R W q ≤ preimagePiece R W w (w q) := by
   rintro _ ⟨x, rfl⟩
   rw [mem_preimagePiece, decompose_gen]
   exact ⟨_, rfl⟩
 
-/-- **The decomposition of a homogeneous element is itself** (the `left_inv` of `GradedAlgebra.ofAlgHom`).-/
+/-- **The decomposition of a homogeneous element is itself** (the `left_inv` of `GradedAlgebra.ofAlgHom`).
+@isnad1 id=eq.0h6v.s17.e59a606985be from=translated src=- shape=cdae7a13 vocab=d44d4a97
+-/
 theorem decompose_coe (w : ι → ℕ) (m : ℕ) (x : piece R W w m) :
     decompose R W w (x : SymmetricAlgebra R (⨁ p, W p)) =
       DirectSum.of (fun k => (piece R W w k : Submodule R _)) m x := by
@@ -283,12 +351,17 @@ instance instGradedAlgebra (w : ι → ℕ) : GradedAlgebra (piece R W w) :=
 
 /-! ## The degree-zero piece -/
 
+/--
+@isnad1 id=mem.0h5v.s12.93ce83b38bde from=translated src=- shape=10fd235d vocab=092811c8
+-/
 theorem algebraMap_mem_piece_zero (w : ι → ℕ) (r : R) :
     algebraMap R (SymmetricAlgebra R (⨁ p, W p)) r ∈ piece R W w 0 :=
   one_le_piece_zero w (Submodule.algebraMap_mem r)
 
 /-- **`S_0 = R`**: when all weights are positive, the degree-zero piece is exactly the image of the
-coefficient ring.-/
+coefficient ring.
+@isnad1 id=eq.1h4v.s11.876b60347329 from=translated src=- shape=3619cf1e vocab=fe46d2af
+-/
 theorem piece_zero (w : ι → ℕ) (hw : ∀ q, w q ≠ 0) : piece R W w 0 = 1 := by
   refine le_antisymm ?_ (one_le_piece_zero w)
   simp only [piece]

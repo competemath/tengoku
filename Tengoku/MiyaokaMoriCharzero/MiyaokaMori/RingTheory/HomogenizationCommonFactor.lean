@@ -26,7 +26,9 @@ open PrimitivePolynomialTuple PolynomialTupleHomogenization
 universe u
 
 /-- A nonzero bounded polynomial tuple admits a homogeneous factorization whose reduced
-coordinates have no common nonzero zero, with all padding absorbed by the common factor.-/
+coordinates have no common nonzero zero, with all padding absorbed by the common factor.
+@isnad1 id=ex.2h4v.s9.85e1d75479b7 from=translated src=- shape=ea28af03 vocab=dd7ef21d
+-/
 theorem homogenize_and_remove_common_factor {K : Type u} [Field K] {N r₀ : ℕ}
     (P : Fin (N + 1) → Polynomial K)
     (hdeg : ∀ ℓ, (P ℓ).natDegree ≤ r₀) (hne : ∃ ℓ, P ℓ ≠ 0) :

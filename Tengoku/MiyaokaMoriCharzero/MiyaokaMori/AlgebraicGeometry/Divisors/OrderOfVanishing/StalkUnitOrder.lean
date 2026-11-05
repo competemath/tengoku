@@ -22,7 +22,9 @@ namespace AlgebraicGeometry.Divisors.StalkUnitOrder
 
 variable {Y : Scheme.{u}} [IsIntegral Y] [IsLocallyNoetherian Y]
 
-/-- The canonical function-field image of an actual stalk unit has order zero at the same point.-/
+/-- The canonical function-field image of an actual stalk unit has order zero at the same point.
+@isnad1 id=eq.0h3v.s9.0b43a9daef5f from=translated src=- shape=1ce50a52 vocab=fd027fc3
+-/
 theorem ord_algebraMap_unit (x : Y) (b : (Y.presheaf.stalk x)ˣ) :
     Y.ord (algebraMap (Y.presheaf.stalk x) Y.functionField (b : Y.presheaf.stalk x)) x = 0 := by
   by_cases hx : Order.coheight x = 1
@@ -35,7 +37,9 @@ theorem ord_algebraMap_unit (x : Y) (b : (Y.presheaf.stalk x)ˣ) :
     exact Ring.ordFrac_of_isUnit b.isUnit
   · exact Scheme.ord_eq_zero_of_coheight_neq_one hx _
 
-/-- Nonzero rational functions whose quotient is a stalk unit have the same order there.-/
+/-- Nonzero rational functions whose quotient is a stalk unit have the same order there.
+@isnad1 id=eq.3h5v.s9.eb032b062c06 from=translated src=- shape=b916dbee vocab=7875eac4
+-/
 theorem ord_eq_of_div_eq_algebraMap_unit (x : Y) {f g : Y.functionField}
     (hf : f ≠ 0) (hg : g ≠ 0) (b : (Y.presheaf.stalk x)ˣ)
     (hfg : f / g =

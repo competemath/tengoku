@@ -36,7 +36,9 @@ on a basis); in Mathlib, `SymmetricAlgebra.equivMvPolynomial` and `MvPolynomial.
 Proof. `F := uniqueAlgEquiv ∘ h.lift (constr b X) : A →ₐ[R] R[X]` is bijective (`h.lift g` is
 `SymmetricAlgebra.lift g ∘ h.equiv.symm`, and `SymmetricAlgebra.lift (constr b X)` is bijective by
 `IsSymmetricAlgebra.mvPolynomial`). `F (f (b ())) = X`, so `F ∘ aeval (f (b ())) = id` by
-`Polynomial.algHom_ext`; hence `aeval (f (b ()))` is the inverse of the bijection `F`.-/
+`Polynomial.algHom_ext`; hence `aeval (f (b ()))` is the inverse of the bijection `F`.
+@isnad1 id=bijectiv.1h5v.s8.dade8d39659b from=translated src=- shape=5f4e52ff vocab=c2fc8be3
+-/
 theorem aeval_bijective_of_isSymmetricAlgebra {f : M →ₗ[R] A} (h : IsSymmetricAlgebra f)
     (b : Module.Basis Unit R M) :
     Function.Bijective (Polynomial.aeval (f (b ())) : R[X] →ₐ[R] A) := by
@@ -56,7 +58,9 @@ theorem aeval_bijective_of_isSymmetricAlgebra {f : M →ₗ[R] A} (h : IsSymmetr
   refine ⟨fun p q hpq => ?_, fun a => ⟨F a, hF.1 (key (F a))⟩⟩
   rw [← key p, ← key q, hpq]
 
-/-- Bijectivity of `aeval a` transports along an algebra isomorphism.-/
+/-- Bijectivity of `aeval a` transports along an algebra isomorphism.
+@isnad1 id=bijectiv.1h5v.s8.8006095ff4de from=translated src=- shape=82d1c8d6 vocab=7b1028e3
+-/
 theorem aeval_bijective_of_algEquiv {B : Type*} [CommRing B] [Algebra R B] (e : A ≃ₐ[R] B) {a : A}
     (h : Function.Bijective (Polynomial.aeval a : R[X] →ₐ[R] A)) :
     Function.Bijective (Polynomial.aeval (e a) : R[X] →ₐ[R] B) := by

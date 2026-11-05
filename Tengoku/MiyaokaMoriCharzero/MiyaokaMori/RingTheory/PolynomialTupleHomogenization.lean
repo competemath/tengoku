@@ -38,11 +38,15 @@ variable {R S : Type*} [CommSemiring R] [CommSemiring S]
 def homog (p : R[X]) (d : ℕ) : MvPolynomial (Fin 2) R :=
   MvPolynomial.rename (Equiv.swap (0 : Fin 2) 1) (p.homogenize d)
 
-/-- Swapping variables preserves the homogeneous degree.-/
+/-- Swapping variables preserves the homogeneous degree.
+@isnad1 id=ishomoge.0h3v.s4.dc2cad9a11c4 from=translated src=- shape=edd3ff06 vocab=201f4718
+-/
 theorem isHomogeneous_homog (p : R[X]) (d : ℕ) : (homog p d).IsHomogeneous d :=
   (Polynomial.isHomogeneous_homogenize p).rename_isHomogeneous
 
-/-- Evaluating our homogenization swaps the two evaluation coordinates in Mathlib's model.-/
+/-- Evaluating our homogenization swaps the two evaluation coordinates in Mathlib's model.
+@isnad1 id=eq.0h7v.s6.f871d5440e36 from=translated src=- shape=72bd60b0 vocab=11f7c8cd
+-/
 theorem eval₂_homog (p : R[X]) (d : ℕ) (φ : R →+* S) (u v : S) :
     MvPolynomial.eval₂ φ ![u, v] (homog p d) =
       MvPolynomial.eval₂ φ ![v, u] (p.homogenize d) := by
@@ -53,7 +57,9 @@ theorem eval₂_homog (p : R[X]) (d : ℕ) (φ : R →+* S) (u v : S) :
   rw [hswap]
 
 /-- On `[1:t]`, homogenization recovers the actual polynomial when the degree bound holds.
-The bound is explicit because homogenization to a smaller degree would discard terms.-/
+The bound is explicit because homogenization to a smaller degree would discard terms.
+@isnad1 id=eq.1h6v.s6.2bbbe23e1fc5 from=translated src=- shape=4d89d163 vocab=29542680
+-/
 theorem eval₂_homog_one (p : R[X]) {d : ℕ} (hdegree : p.natDegree ≤ d)
     (φ : R →+* S) (t : S) :
     MvPolynomial.eval₂ φ ![1, t] (homog p d) = p.eval₂ φ t := by
@@ -61,7 +67,9 @@ theorem eval₂_homog_one (p : R[X]) {d : ℕ} (hdegree : p.natDegree ≤ d)
   exact Polynomial.eval₂_homogenize_of_eq_one hdegree φ ![t, 1] (by simp)
 
 /-- At `[0:v]`, the value is the degree-`d` coefficient times `v^d`. This formula holds for
-every `d`; a degree bound is required separately whenever recovering the whole polynomial.-/
+every `d`; a degree bound is required separately whenever recovering the whole polynomial.
+@isnad1 id=eq.0h6v.s7.910803039f0c from=translated src=- shape=d312d3d8 vocab=f32d0e5a
+-/
 theorem eval₂_homog_zero (p : R[X]) (d : ℕ) (φ : R →+* S) (v : S) :
     MvPolynomial.eval₂ φ ![0, v] (homog p d) = φ (p.coeff d) * v ^ d := by
   rw [eval₂_homog, Polynomial.homogenize, MvPolynomial.eval₂_sum]
@@ -76,19 +84,25 @@ theorem eval₂_homog_zero (p : R[X]) (d : ℕ) (φ : R →+* S) (v : S) :
     simp [MvPolynomial.eval₂_monomial, Finsupp.prod_fintype, Fin.prod_univ_two, ha₂]
   · simp
 
-/-- Homogenization respects multiplication when both input degrees are bounded.-/
+/-- Homogenization respects multiplication when both input degrees are bounded.
+@isnad1 id=eq.2h5v.s7.a409e284a375 from=translated src=- shape=16b4d280 vocab=33ecfb90
+-/
 theorem homog_mul (p q : R[X]) {m n : ℕ}
     (hp : p.natDegree ≤ m) (hq : q.natDegree ≤ n) :
     homog (p * q) (m + n) = homog p m * homog q n := by
   simp only [homog, Polynomial.homogenize_mul p q hp hq, map_mul]
 
-/-- Increasing the homogeneous degree pads by a power of `X₀`, the infinity factor.-/
+/-- Increasing the homogeneous degree pads by a power of `X₀`, the infinity factor.
+@isnad1 id=eq.1h4v.s7.35df841d7639 from=translated src=- shape=d77b9b47 vocab=94f4cc84
+-/
 theorem homog_add_degree (p : R[X]) {d : ℕ} (hdegree : p.natDegree ≤ d) (e : ℕ) :
     homog p (e + d) = MvPolynomial.X 0 ^ e * homog p d := by
   have hmul := homog_mul (1 : R[X]) p (m := e) (n := d) (by simp) hdegree
   simpa [homog, Polynomial.homogenize_one] using hmul
 
-/-- Padding to any larger specified degree uses the actual difference of degrees.-/
+/-- Padding to any larger specified degree uses the actual difference of degrees.
+@isnad1 id=eq.2h4v.s7.02dd13a6a815 from=translated src=- shape=96e7d33a vocab=84bf1855
+-/
 theorem homog_of_le_degree (p : R[X]) {d r : ℕ}
     (hdegree : p.natDegree ≤ d) (hdr : d ≤ r) :
     homog p r = MvPolynomial.X 0 ^ (r - d) * homog p d := by
@@ -96,7 +110,9 @@ theorem homog_of_le_degree (p : R[X]) {d r : ℕ}
 
 /-- A product homogenized to a larger common degree is the product of its two bounded
 homogenizations and the necessary `X₀` padding. This is a polynomial identity, including
-zero factors; it makes no assertion about geometric cancellation on projective space.-/
+zero factors; it makes no assertion about geometric cancellation on projective space.
+@isnad1 id=eq.3h6v.s8.89321be33c1a from=translated src=- shape=1b47f86d vocab=015ba660
+-/
 theorem homog_mul_padded (p q : R[X]) {m n r : ℕ}
     (hp : p.natDegree ≤ m) (hq : q.natDegree ≤ n) (hmnr : m + n ≤ r) :
     homog (p * q) r =
@@ -111,7 +127,9 @@ section Fields
 variable {k L : Type*} [Field k] [Field L]
 
 /-- On the chart `u ≠ 0`, homogenization is the affine value at `v/u`, multiplied by `u^d`.
-The coefficient homomorphism may be any field homomorphism into any extension field.-/
+The coefficient homomorphism may be any field homomorphism into any extension field.
+@isnad1 id=eq.2h7v.s7.615636ff1048 from=translated src=- shape=9b479b06 vocab=46ba9424
+-/
 theorem eval₂_homog_of_ne_zero (p : k[X]) {d : ℕ} (hdegree : p.natDegree ≤ d)
     (φ : k →+* L) (u v : L) (hu : u ≠ 0) :
     MvPolynomial.eval₂ φ ![u, v] (homog p d) = p.eval₂ φ (v / u) * u ^ d := by
@@ -121,7 +139,9 @@ theorem eval₂_homog_of_ne_zero (p : k[X]) {d : ℕ} (hdegree : p.natDegree ≤
     Polynomial.eval_map]
 
 /-- An actual finite polynomial Bézout identity excludes a common affine root over every
-extension field. The identity is data to be proved for the caller's actual tuple.-/
+extension field. The identity is data to be proved for the caller's actual tuple.
+@isnad1 id=ex.1h6v.s8.07f8fc47ea12 from=translated src=- shape=14febe13 vocab=2973a851
+-/
 theorem exists_eval₂_ne_zero_of_bezout {N : ℕ} (Q : Fin (N + 1) → k[X])
     (hbezout : ∃ B : Fin (N + 1) → k[X], ∑ i, Q i * B i = 1)
     (φ : k →+* L) (t : L) : ∃ i, (Q i).eval₂ φ t ≠ 0 := by
@@ -135,7 +155,9 @@ theorem exists_eval₂_ne_zero_of_bezout {N : ℕ} (Q : Fin (N + 1) → k[X])
 
 /-- A bounded tuple with an actual Bézout identity and a nonzero top coefficient has no
 common homogeneous zero over any extension field. Neither `d > 0` nor nonzero individual
-coordinates are assumed; the conclusion covers the constant-degree case as well.-/
+coordinates are assumed; the conclusion covers the constant-degree case as well.
+@isnad1 id=ex.4h8v.s9.2580c18afe1b from=translated src=- shape=a2a9eb53 vocab=78623144
+-/
 theorem exists_homog_eval₂_ne_zero {N d : ℕ} (Q : Fin (N + 1) → k[X])
     (hdegree : ∀ i, (Q i).natDegree ≤ d)
     (hbezout : ∃ B : Fin (N + 1) → k[X], ∑ i, Q i * B i = 1)

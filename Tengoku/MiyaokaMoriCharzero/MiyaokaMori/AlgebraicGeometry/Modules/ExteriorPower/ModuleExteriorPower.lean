@@ -54,7 +54,9 @@ def exteriorRestriction {U V : X.Opensᵒᵖ} (i : U ⟶ V) :
         ((M.obj V).exteriorPower n) :=
   ModuleCat.exteriorPower.desc (exteriorRestrictionAlternating X M n i)
 
-/-- Restriction sends a wedge generator to the wedge of the restricted sections.-/
+/-- Restriction sends a wedge generator to the wedge of the restricted sections.
+@isnad1 id=eq.0h7v.s17.d1dcd03ec3cb from=translated src=- shape=78d027ba vocab=335cd63c
+-/
 @[simp]
 theorem exteriorRestriction_mk {U V : X.Opensᵒᵖ} (i : U ⟶ V) (v : Fin n → M.obj U) :
     exteriorRestriction X M n i (ModuleCat.exteriorPower.mk v) =

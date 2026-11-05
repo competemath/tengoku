@@ -19,6 +19,9 @@ open scoped AlgebraicGeometry
 
 noncomputable section
 
+/--
+@isnad1 id=finite.0h2v.s6.04bd13811078 from=translated src=- shape=a6aaeb6b vocab=415cbd85
+-/
 theorem AlgebraicGeometry.Scheme.finite_coheight_one_not_mem {X : AlgebraicGeometry.Scheme.{u}}
     [AlgebraicGeometry.IsIntegral X] [AlgebraicGeometry.IsNoetherian X] (U : X.Opens) [Nonempty U] :
     {z : X | Order.coheight z = 1 ∧ z ∉ U}.Finite := by

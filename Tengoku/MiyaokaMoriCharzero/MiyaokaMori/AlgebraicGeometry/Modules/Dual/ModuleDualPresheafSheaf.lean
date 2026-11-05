@@ -128,7 +128,9 @@ private theorem amalgamation_linear {U : X.Opens} (S : Sieve U)
   exact ((x (j ≫ V.hom) hj).val (Over.mk (𝟙 W))).map_smul _ _
 
 /-- The original presheaf of compatible local linear functionals is a sheaf,
-without a local-freeness or affine hypothesis.-/
+without a local-freeness or affine hypothesis.
+@isnad1 id=issheaf.0h2v.s9.599309824e53 from=translated src=- shape=e67aef01 vocab=c85c87eb
+-/
 theorem moduleDualPresheaf_isSheaf :
     Presheaf.IsSheaf (Opens.grothendieckTopology X) (moduleDualPresheaf M).presheaf := by
   apply (Presheaf.isSheaf_iff_isSheaf_comp

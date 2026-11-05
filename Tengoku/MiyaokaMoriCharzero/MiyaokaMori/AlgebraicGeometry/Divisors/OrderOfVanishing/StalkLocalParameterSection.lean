@@ -24,7 +24,9 @@ universe u
 
 namespace AlgebraicGeometry.Divisors
 
-/-- A DVR stalk has an irreducible local section whose function-field image has order one.-/
+/-- A DVR stalk has an irreducible local section whose function-field image has order one.
+@isnad1 id=ex.1h2v.s11.62dfcda73baf from=translated src=- shape=61e6ab8d vocab=35a5253b
+-/
 theorem exists_local_parameter_section (X : Scheme.{u}) [IsIntegral X]
     [IsLocallyNoetherian X] (z : X) (hz : Order.coheight z = 1)
     [IsDiscreteValuationRing (X.presheaf.stalk z)] :

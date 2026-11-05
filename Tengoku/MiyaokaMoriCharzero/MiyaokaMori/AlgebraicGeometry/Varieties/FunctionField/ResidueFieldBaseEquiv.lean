@@ -32,7 +32,9 @@ universe u
 
 namespace AlgebraicGeometry.Intersection
 
-/-- Surjectivity of the actual stalk map descends to the actual residue-field map.-/
+/-- Surjectivity of the actual stalk map descends to the actual residue-field map.
+@isnad1 id=surjecti.0h4v.s10.1ea2bec07e4c from=translated src=- shape=10393556 vocab=3f7097c2
+-/
 theorem residueFieldMap_surjective_of_surjectiveOnStalks
     {X Y : Scheme.{u}} (f : X ⟶ Y) [SurjectiveOnStalks f] (x : X) :
     Function.Surjective (f.residueFieldMap x) := by
@@ -44,7 +46,9 @@ theorem residueFieldMap_surjective_of_surjectiveOnStalks
     (Scheme.residue_residueFieldMap f x)
   simpa only [CommRingCat.comp_apply, ht] using h
 
-/-- An open immersion induces an isomorphism on the actual residue fields.-/
+/-- An open immersion induces an isomorphism on the actual residue fields.
+@isnad1 id=isiso.0h4v.s7.078f3be2ef5f from=translated src=- shape=c59202a8 vocab=c567e503
+-/
 theorem residueFieldMap_isIso_of_isOpenImmersion
     {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f] (x : X) :
     IsIso (f.residueFieldMap x) := by
@@ -74,7 +78,9 @@ def residueFieldMapAlgEquiv
     (fun m : CommRingCat.of k ⟶ X.scheme.residueField x ↦ m.hom t)
     (pointBaseMap_residueFieldMap f hf x)
 
-/-- The algebra equivalence has precisely the original residue-field map as its function.-/
+/-- The algebra equivalence has precisely the original residue-field map as its function.
+@isnad1 id=eq.1h6v.s12.eda9048bd65b from=translated src=- shape=0b6696dc vocab=ad69010e
+-/
 theorem residueFieldMapAlgEquiv_apply
     {k : Type u} [Field k] {X Y : AlgebraicGeometry.Proj.SchemeOver k}
     (f : X.scheme ⟶ Y.scheme) (hf : f ≫ Y.toBase = X.toBase) (x : X.scheme)
@@ -86,7 +92,9 @@ theorem residueFieldMapAlgEquiv_apply
       (pointBaseMap X.toBase x).hom.toAlgebra
     residueFieldMapAlgEquiv f hf x z = f.residueFieldMap x z := rfl
 
-/-- An actual residue-field isomorphism preserves transcendence degree over the specified base.-/
+/-- An actual residue-field isomorphism preserves transcendence degree over the specified base.
+@isnad1 id=eq.1h5v.s11.b2a0594d91c2 from=translated src=- shape=b5b49bdc vocab=1cac7286
+-/
 theorem residueFieldMap_trdeg_eq
     {k : Type u} [Field k] {X Y : AlgebraicGeometry.Proj.SchemeOver k}
     (f : X.scheme ⟶ Y.scheme) (hf : f ≫ Y.toBase = X.toBase) (x : X.scheme)

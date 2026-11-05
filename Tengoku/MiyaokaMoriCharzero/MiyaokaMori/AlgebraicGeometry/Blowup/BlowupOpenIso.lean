@@ -25,7 +25,9 @@ universe u
 
 /-- A blowup is an isomorphism over every open on which its centre ideal is the
 unit ideal. The inverse is obtained from the blowup's universal property and the
-actual open-restriction pullback square.-/
+actual open-restriction pullback square.
+@isnad1 id=isisoove.2h5v.s6.f02c1b6a6b1a from=translated src=- shape=85c1df9d vocab=76a27892
+-/
 theorem IsBlowup.isIsoOverOpen_of_comap_eq_top
     {X B : Scheme.{u}} {I : X.IdealSheafData} {b : B ⟶ X}
     (hb : IsBlowup I b) (U : X.Opens) (hIU : I.comap U.ι = ⊤) :

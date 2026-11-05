@@ -98,7 +98,9 @@ variable {A : Type u} [CommRing A] {σ : Type v} [SetLike σ A] [AddSubgroupClas
     (𝒜 : ℕ → σ) [GradedRing 𝒜]
 
 /-- The irrelevant-ideal condition is preserved by composition with a ring
-homomorphism, so it remains available after pulling back the coordinates.-/
+homomorphism, so it remains available after pulling back the coordinates.
+@isnad1 id=eq.1h7v.s8.6e18ce07c14f from=translated src=- shape=e07710ba vocab=85ad90d2
+-/
 theorem irrelevant_map_eq_top_comp {R : Type w} {B : Type*} [CommRing R] [CommRing B]
     (f : A →+* R) (g : R →+* B)
     (hf : (HomogeneousIdeal.irrelevant 𝒜).toIdeal.map f = ⊤) :
@@ -118,7 +120,9 @@ private theorem toBasicOpenOfGlobalSections_eq (f : A →+* Γ(T, ⊤))
     Localization.awayMap, IsLocalization.Away.map, Category.assoc]
 
 /-- The actual local Proj map commutes with pullback of its global sections.
-Both sides are morphisms of schemes on the same source basic open.-/
+Both sides are morphisms of schemes on the same source basic open.
+@isnad1 id=eq.2h9v.s14.1ae7eb96e9a1 from=translated src=- shape=f8f92a41 vocab=bc5a8a64
+-/
 theorem toBasicOpenOfGlobalSections_naturality (h : S ⟶ T) (f : A →+* Γ(T, ⊤))
     {t : A} {d : ℕ} (hd : 0 < d) (ht : t ∈ 𝒜 d) :
     h.resLE (T.basicOpen (f t)) (S.basicOpen ((h.appTop.hom.comp f) t))
@@ -155,7 +159,9 @@ private theorem basicOpen_ι_fromOfGlobalSections (f : A →+* Γ(T, ⊤))
 
 /-- Composing the canonical Proj morphism with an actual scheme morphism is
 the same as first pulling back its coordinate sections and then constructing
-the canonical Proj morphism. The new ideal condition is derived from `hf`.-/
+the canonical Proj morphism. The new ideal condition is derived from `hf`.
+@isnad1 id=eq.1h7v.s13.995b35956e3f from=translated src=- shape=16ae10c7 vocab=ae8f7651
+-/
 theorem fromOfGlobalSections_naturality (h : S ⟶ T) (f : A →+* Γ(T, ⊤))
     (hf : (HomogeneousIdeal.irrelevant 𝒜).toIdeal.map f = ⊤) :
     h ≫ Proj.fromOfGlobalSections 𝒜 f hf =
@@ -182,7 +188,9 @@ theorem fromOfGlobalSections_naturality (h : S ⟶ T) (f : A →+* Γ(T, ⊤))
     _ = _ := (basicOpen_ι_fromOfGlobalSections 𝒜 g hg hd ht).symm
 
 /-- Restriction from an open `V` to an open `U ≤ V` commutes with the canonical
-projectivization of the tuple; restricted nonvanishing follows from the original.-/
+projectivization of the tuple; restricted nonvanishing follows from the original.
+@isnad1 id=eq.2h7v.s13.043d0142e977 from=translated src=- shape=74cb43a8 vocab=a8e73724
+-/
 theorem fromOfGlobalSections_homOfLE (T : Scheme.{u}) (U V : T.Opens) (hUV : U ≤ V)
     (f : A →+* Γ(V.toScheme, ⊤))
     (hf : (HomogeneousIdeal.irrelevant 𝒜).toIdeal.map f = ⊤) :

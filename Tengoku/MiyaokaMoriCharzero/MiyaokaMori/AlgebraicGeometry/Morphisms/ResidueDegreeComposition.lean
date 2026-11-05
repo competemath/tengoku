@@ -22,7 +22,9 @@ universe u
 
 namespace AlgebraicGeometry.Intersection
 
-/-- The actual residue maps of two composable morphisms form a scalar tower.-/
+/-- The actual residue maps of two composable morphisms form a scalar tower.
+@isnad1 id=isscalar.0h6v.s13.41793db1cf60 from=translated src=- shape=4929fee0 vocab=971993f5
+-/
 theorem residueFieldComp_isScalarTower
     {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) (x : X) :
     letI : Algebra (Z.residueField (g (f x))) (Y.residueField (f x)) :=
@@ -44,7 +46,9 @@ theorem residueFieldComp_isScalarTower
     (f.residueFieldMap x).hom.comp (g.residueFieldMap (f x)).hom
   exact congrArg CommRingCat.Hom.hom (Scheme.residueFieldMap_comp f g x)
 
-/-- Residue degrees multiply along a composite of the actual scheme morphisms.-/
+/-- Residue degrees multiply along a composite of the actual scheme morphisms.
+@isnad1 id=eq.0h6v.s7.c4bbc090c848 from=translated src=- shape=83e60489 vocab=9cdfc6b9
+-/
 theorem residueDegree_comp
     {X Y Z : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ Z) (x : X) :
     (f ≫ g).residueDegree x =

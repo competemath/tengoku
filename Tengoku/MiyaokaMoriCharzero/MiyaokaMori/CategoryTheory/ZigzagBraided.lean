@@ -43,7 +43,9 @@ def Z2 {D V : C} (c : 𝟙_ C ⟶ D ⊗ V) (ev : D ⊗ V ⟶ 𝟙_ C) : Prop :=
   (λ_ V).inv ≫ c ▷ V ≫ (α_ D V V).hom ≫ D ◁ (β_ V V).hom ≫ (α_ D V V).inv ≫ ev ▷ V ≫
     (λ_ V).hom = 𝟙 V
 
-/-- `D ◁ ψ ≫ ρ = β ≫ ψ ▷ D ≫ λ` for `ψ : D ⟶ 𝟙`.-/
+/-- `D ◁ ψ ≫ ρ = β ≫ ψ ▷ D ≫ λ` for `ψ : D ⟶ 𝟙`.
+@isnad1 id=eq.0h3v.s7.e4daf6959b13 from=translated src=- shape=09753d42 vocab=7e132fa8
+-/
 theorem whiskerLeft_rightUnitor_eq {D : C} (ψ : D ⟶ 𝟙_ C) :
     D ◁ ψ ≫ (ρ_ D).hom = (β_ D D).hom ≫ ψ ▷ D ≫ (λ_ D).hom := by
   have h := BraidedCategory.braiding_naturality_right D ψ
@@ -51,7 +53,9 @@ theorem whiskerLeft_rightUnitor_eq {D : C} (ψ : D ⟶ 𝟙_ C) :
   rw [← Category.assoc, ← h]
   simp only [Category.assoc, Iso.inv_hom_id, Category.comp_id]
 
-/-- Moving `ψ : D ⟶ 𝟙` through the evaluation.-/
+/-- Moving `ψ : D ⟶ 𝟙` through the evaluation.
+@isnad1 id=eq.0h5v.s9.f74976d1bf4d from=translated src=- shape=759ccbed vocab=d70e5c78
+-/
 theorem whiskerLeft_whiskerRight_leftUnitor_comp {D V : C} (ψ : D ⟶ 𝟙_ C) (ev : D ⊗ V ⟶ 𝟙_ C) :
     D ◁ (ψ ▷ V) ≫ D ◁ (λ_ V).hom ≫ ev =
       (α_ D D V).inv ≫ (β_ D D).hom ▷ V ≫ (α_ D D V).hom ≫ D ◁ ev ≫ (ρ_ D).hom ≫ ψ := by
@@ -78,7 +82,9 @@ theorem whiskerLeft_whiskerRight_leftUnitor_comp {D V : C} (ψ : D ⟶ 𝟙_ C) 
     _ = (α_ D D V).inv ≫ (β_ D D).hom ▷ V ≫ (α_ D D V).hom ≫ D ◁ ev ≫ (ρ_ D).hom ≫ ψ := by
         rw [h4]
 
-/-- **Lemma B**: from `Z1`, the functional attached to the section `c ≫ ψ ▷ V ≫ λ` is `ψ`.-/
+/-- **Lemma B**: from `Z1`, the functional attached to the section `c ≫ ψ ▷ V ≫ λ` is `ψ`.
+@isnad1 id=eq.1h6v.s8.6722a4535913 from=translated src=- shape=ea22e213 vocab=9a01efbc
+-/
 theorem lemmaB {D V : C} {c : 𝟙_ C ⟶ D ⊗ V} {ev : D ⊗ V ⟶ 𝟙_ C} (h : Z1 c ev) (ψ : D ⟶ 𝟙_ C) :
     (ρ_ D).inv ≫ D ◁ (c ≫ ψ ▷ V ≫ (λ_ V).hom) ≫ ev = ψ := by
   have h' := reassoc_of% h
@@ -90,7 +96,9 @@ theorem lemmaB {D V : C} {c : 𝟙_ C ⟶ D ⊗ V} {ev : D ⊗ V ⟶ 𝟙_ C} (h
         rw [whiskerLeft_whiskerRight_leftUnitor_comp]
     _ = ψ := h' ψ
 
-/-- Moving `σ : 𝟙 ⟶ V` through the coevaluation.-/
+/-- Moving `σ : 𝟙 ⟶ V` through the coevaluation.
+@isnad1 id=eq.0h5v.s9.c0ba450cb1d4 from=translated src=- shape=fedf503d vocab=d70e5c78
+-/
 theorem comp_leftUnitor_inv_whiskerRight {D V : C} (σ : 𝟙_ C ⟶ V) (c : 𝟙_ C ⟶ D ⊗ V) :
     σ ≫ (λ_ V).inv ≫ c ▷ V ≫ (α_ D V V).hom ≫ D ◁ (β_ V V).hom ≫ (α_ D V V).inv =
       c ≫ (ρ_ D).inv ▷ V ≫ (D ◁ σ) ▷ V := by
@@ -122,7 +130,9 @@ theorem comp_leftUnitor_inv_whiskerRight {D V : C} (σ : 𝟙_ C ⟶ V) (c : �
     _ = c ≫ (ρ_ D).inv ▷ V ≫ (D ◁ σ) ▷ V := by
         rw [triangle_assoc_comp_left_inv]
 
-/-- **Lemma A**: from `Z2`, the section attached to the functional `(ρ_ D).inv ≫ D ◁ σ ≫ ev` is `σ`.-/
+/-- **Lemma A**: from `Z2`, the section attached to the functional `(ρ_ D).inv ≫ D ◁ σ ≫ ev` is `σ`.
+@isnad1 id=eq.1h6v.s8.4c91e9ec3218 from=translated src=- shape=70fb1a21 vocab=e5f7d1f9
+-/
 theorem lemmaA {D V : C} {c : 𝟙_ C ⟶ D ⊗ V} {ev : D ⊗ V ⟶ 𝟙_ C} (h : Z2 c ev) (σ : 𝟙_ C ⟶ V) :
     c ≫ ((ρ_ D).inv ≫ D ◁ σ ≫ ev) ▷ V ≫ (λ_ V).hom = σ := by
   have h' := reassoc_of% h
@@ -143,7 +153,9 @@ variable (F : C ⥤ D') [F.Braided]
 
 open Functor.LaxMonoidal Functor.OplaxMonoidal
 
-/-- Transport of the first zigzag identity along a braided strong monoidal functor.-/
+/-- Transport of the first zigzag identity along a braided strong monoidal functor.
+@isnad1 id=z1.1h7v.s8.f0580245e644 from=translated src=- shape=21778175 vocab=e85007f7
+-/
 theorem Z1_map {D V : C} {c : 𝟙_ C ⟶ D ⊗ V} {ev : D ⊗ V ⟶ 𝟙_ C} (h : Z1 c ev) :
     Z1 (ε F ≫ F.map c ≫ δ F D V) (μ F D V ≫ F.map ev ≫ η F) := by
   unfold Z1 at h ⊢
@@ -155,7 +167,9 @@ theorem Z1_map {D V : C} {c : 𝟙_ C ⟶ D ⊗ V} {ev : D ⊗ V ⟶ 𝟙_ C} (h
   simp only [whiskerLeft_comp, Category.assoc]
   simpa using h'
 
-/-- Transport of the second zigzag identity along a braided strong monoidal functor.-/
+/-- Transport of the second zigzag identity along a braided strong monoidal functor.
+@isnad1 id=z2.1h7v.s8.763838f09002 from=translated src=- shape=21778175 vocab=12c2ab1b
+-/
 theorem Z2_map {D V : C} {c : 𝟙_ C ⟶ D ⊗ V} {ev : D ⊗ V ⟶ 𝟙_ C} (h : Z2 c ev) :
     Z2 (ε F ≫ F.map c ≫ δ F D V) (μ F D V ≫ F.map ev ≫ η F) := by
   unfold Z2 at h ⊢

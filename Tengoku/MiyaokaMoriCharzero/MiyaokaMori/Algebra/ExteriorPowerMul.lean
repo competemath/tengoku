@@ -34,7 +34,9 @@ namespace Module
 /-- Composing a function into `Fin.append`: `g ∘ (u ++ v) = (g ∘ u) ++ (g ∘ v)`.
 
 Mathlib only has right-composition versions such as `Fin.append_comp_sumElim`; this form is used
-here and in the sheaf version.-/
+here and in the sheaf version.
+@isnad1 id=eq.0h7v.s6.c2988265355d from=translated src=- shape=cb683b23 vocab=e308aa23
+-/
 theorem exteriorPower_comp_finAppend {α : Type v} {β : Type w} {m n : ℕ}
     (g : α → β) (u : Fin m → α) (v : Fin n → α) :
     g ∘ Fin.append u v = Fin.append (g ∘ u) (g ∘ v) := by
@@ -54,7 +56,9 @@ def exteriorPowerMul (R : Type u) [CommRing R] (M : Type v) [AddCommGroup M] [Mo
       rw [Submodule.mulMap_range, ← pow_add]
     exact h ▸ LinearMap.mem_range_self _ z)
 
-/-- In the exterior algebra, wedge multiplication is the multiplication.-/
+/-- In the exterior algebra, wedge multiplication is the multiplication.
+@isnad1 id=eq.0h6v.s14.74e4c83d4765 from=translated src=- shape=df13939c vocab=a35ba384
+-/
 @[simp]
 theorem exteriorPowerMul_tmul_coe {a b : ℕ} (x : ⋀[R]^a M) (y : ⋀[R]^b M) :
     ((exteriorPowerMul R M a b (x ⊗ₜ[R] y) : ⋀[R]^(a + b) M) : ExteriorAlgebra R M) =
@@ -62,7 +66,9 @@ theorem exteriorPowerMul_tmul_coe {a b : ℕ} (x : ⋀[R]^a M) (y : ⋀[R]^b M) 
   rfl
 
 /-- Wedge multiplication on pure wedge generators: the indices are concatenated by `Fin.append`
-(`ExteriorAlgebra.ιMulti_mul_ιMulti`).-/
+(`ExteriorAlgebra.ιMulti_mul_ιMulti`).
+@isnad1 id=eq.0h6v.s14.c7c61a5055d9 from=translated src=- shape=02e4e3ff vocab=20f31c36
+-/
 @[simp]
 theorem exteriorPowerMul_ιMulti {a b : ℕ} (v : Fin a → M) (w : Fin b → M) :
     exteriorPowerMul R M a b
@@ -76,7 +82,9 @@ theorem exteriorPowerMul_ιMulti {a b : ℕ} (v : Fin a → M) (w : Fin b → M)
 /-- Two linear maps out of `⋀^a M ⊗ ⋀^b M` agreeing on tensors of pure wedges are equal.
 
 Proof: `TensorProduct.curry` is injective; after currying, apply the universal property of the
-exterior power (`exteriorPower.linearMap_ext`) twice.-/
+exterior power (`exteriorPower.linearMap_ext`) twice.
+@isnad1 id=eq.1h7v.s16.ae420ac2cce9 from=translated src=- shape=3d4099b7 vocab=98b5125c
+-/
 theorem exteriorPowerMul_hom_ext {P : Type w} [AddCommGroup P] [Module R P] {a b : ℕ}
     {f g : ((⋀[R]^a M) ⊗[R] (⋀[R]^b M)) →ₗ[R] P}
     (h : ∀ (v : Fin a → M) (w : Fin b → M),
@@ -92,7 +100,9 @@ theorem exteriorPowerMul_hom_ext {P : Type w} [AddCommGroup P] [Module R P] {a b
 
 Proof: by `exteriorPowerMul_hom_ext` it suffices to compare on pure wedge generators, where both
 sides are computed (`exteriorPower.map_apply_ιMulti`, `exteriorPowerMul_ιMulti`) as
-`ιMulti (f ∘ (v ++ w))` and `ιMulti ((f ∘ v) ++ (f ∘ w))`, equal by `exteriorPower_comp_finAppend`.-/
+`ιMulti (f ∘ (v ++ w))` and `ιMulti ((f ∘ v) ++ (f ∘ w))`, equal by `exteriorPower_comp_finAppend`.
+@isnad1 id=eq.0h6v.s15.65b32bbb3047 from=translated src=- shape=36aa1785 vocab=d135de5a
+-/
 theorem exteriorPowerMul_map {N : Type v} [AddCommGroup N] [Module R N]
     (f : M →ₗ[R] N) (a b : ℕ) :
     (exteriorPower.map (a + b) f).comp (exteriorPowerMul R M a b) =

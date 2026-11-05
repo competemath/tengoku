@@ -23,6 +23,9 @@ exterior powers under base ring change); consumers are `ExteriorPowerStalk` and
 noncomputable section
 namespace MiyaokaMori.Algebra
 
+/--
+@isnad1 id=eq.6h9v.s9.9de689a41ba6 from=translated src=- shape=af4076b0 vocab=03ee9b1e
+-/
 theorem semilinear_ext_of_span {R S E P : Type*} [CommRing R] [CommRing S]
     [AddCommGroup E] [Module R E] [AddCommGroup P] [Module S P]
     (ρ : R →+* S) (g₁ g₂ : E → P)
@@ -66,6 +69,9 @@ def exteriorPowerMapSL (σ : R →+* S) (e : M →ₛₗ[σ] N) (n : ℕ) :
     map_smul' := fun r a ↦
       (exteriorPower.alternatingMapLinearEquiv (exteriorPowerMapSLAlternating σ e n)).map_smul r a }
 
+/--
+@isnad1 id=eq.0h8v.s13.ad3cddf06266 from=translated src=- shape=c010e3c1 vocab=1ff116e6
+-/
 @[simp]
 theorem exteriorPowerMapSL_ιMulti (σ : R →+* S) (e : M →ₛₗ[σ] N) (n : ℕ) (v : Fin n → M) :
     exteriorPowerMapSL σ e n (exteriorPower.ιMulti R n v) =
@@ -73,6 +79,9 @@ theorem exteriorPowerMapSL_ιMulti (σ : R →+* S) (e : M →ₛₗ[σ] N) (n :
   letI : Module R (⋀[S]^n N) := Module.compHom _ σ
   exteriorPower.alternatingMapLinearEquiv_apply_ιMulti (exteriorPowerMapSLAlternating σ e n) v
 
+/--
+@isnad1 id=eq.2h10v.s13.c6876cb56f00 from=translated src=- shape=84f35849 vocab=8f4c18cb
+-/
 theorem exteriorPowerMapSL_leftInverse (σ : R →+* S) (τ : S →+* R) (hτσ : ∀ r, τ (σ r) = r)
     (e : M →ₛₗ[σ] N) (e' : N →ₛₗ[τ] M) (h : ∀ m, e' (e m) = m) (n : ℕ) (a : ⋀[R]^n M) :
     exteriorPowerMapSL τ e' n (exteriorPowerMapSL σ e n a) = a := by
@@ -85,7 +94,9 @@ theorem exteriorPowerMapSL_leftInverse (σ : R →+* S) (τ : S →+* R) (hτσ 
   simp only [exteriorPowerMapSL_ιMulti]
   exact congrArg _ (funext fun i ↦ h (v i))
 
-/-- The exterior power of a semilinear bijection with a semilinear inverse is bijective.-/
+/-- The exterior power of a semilinear bijection with a semilinear inverse is bijective.
+@isnad1 id=bijectiv.4h9v.s13.c3e4aae991c8 from=translated src=- shape=44f260b3 vocab=6e10f9c8
+-/
 theorem exteriorPowerMapSL_bijective (σ : R →+* S) (τ : S →+* R)
     (hτσ : ∀ r, τ (σ r) = r) (hστ : ∀ s, σ (τ s) = s)
     (e : M →ₛₗ[σ] N) (e' : N →ₛₗ[τ] M) (h₁ : ∀ m, e' (e m) = m) (h₂ : ∀ y, e (e' y) = y)

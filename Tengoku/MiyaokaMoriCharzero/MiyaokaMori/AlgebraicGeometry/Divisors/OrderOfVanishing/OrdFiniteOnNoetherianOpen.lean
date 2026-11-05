@@ -48,7 +48,9 @@ namespace AlgebraicGeometry.Scheme
 variable {W : AlgebraicGeometry.Scheme.{u}} [AlgebraicGeometry.IsIntegral W]
   [AlgebraicGeometry.IsLocallyNoetherian W]
 
-/-- On a Noetherian open subspace, a rational function has only finitely many points of nonzero order.-/
+/-- On a Noetherian open subspace, a rational function has only finitely many points of nonzero order.
+@isnad1 id=finite.0h3v.s7.5dcd165d073c from=translated src=- shape=5f911daf vocab=074ecb03
+-/
 theorem finite_ord_ne_zero_inter_opens (V : W.Opens) [TopologicalSpace.NoetherianSpace V]
     (f : W.functionField) : {x : W | x ∈ V ∧ W.ord f x ≠ 0}.Finite := by
   classical
@@ -115,7 +117,9 @@ theorem finite_ord_ne_zero_inter_opens (V : W.Opens) [TopologicalSpace.Noetheria
     exact absurd (Order.lt_one_iff.mp hηlt) (ne_of_gt hηpos)
 
 /-- Every point has an affine open neighbourhood `V` with `{x ∈ V | ord_x f ≠ 0}` finite; `V` may be
-required to lie inside a given open `O`.-/
+required to lie inside a given open `O`.
+@isnad1 id=ex.1h4v.s7.577569125684 from=translated src=- shape=c5ac28e4 vocab=02bc0647
+-/
 theorem exists_isOpen_finite_ord_ne_zero (f : W.functionField) (z : W) (O : W.Opens) (hz : z ∈ O) :
     ∃ V : W.Opens, z ∈ V ∧ V ≤ O ∧ {x : W | x ∈ V ∧ W.ord f x ≠ 0}.Finite := by
   obtain ⟨-, ⟨V, hV, rfl⟩, hzV, hVO⟩ :=
@@ -133,7 +137,9 @@ namespace AlgebraicGeometry.Divisors
 /-- The actual local orders of a nonzero rational function have finite support on an integral
 Noetherian scheme. Special case `V = ⊤` of `AlgebraicGeometry.Scheme.finite_ord_ne_zero_inter_opens`
 (the nonzero hypothesis is not needed for finiteness — `ord 0 = 0` — but is kept for the statement's users, which
-compare with an additive valuation whose value at zero is infinity).-/
+compare with an additive valuation whose value at zero is infinity).
+@isnad1 id=finite.1h2v.s6.e28b46363bbd from=translated src=- shape=ebc7f254 vocab=155ec8e5
+-/
 theorem finite_support_ord (X : AlgebraicGeometry.Scheme.{u}) [AlgebraicGeometry.IsIntegral X]
     [AlgebraicGeometry.IsNoetherian X]
     (f : X.functionField) (_hf : f ≠ 0) : (Function.support (X.ord f)).Finite := by

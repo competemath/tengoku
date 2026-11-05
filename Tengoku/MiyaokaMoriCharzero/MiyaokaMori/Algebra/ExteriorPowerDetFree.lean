@@ -47,7 +47,9 @@ noncomputable section
 Proof: `b.exteriorPower n : Basis (Set.powersetCard (Fin a) n) R (⋀[R]^n M)`; any
 `s : Set.powersetCard (Fin a) n` would satisfy `s.card = n` and `s.card ≤ Fintype.card (Fin a) = a < n`,
 a contradiction, so the index type is empty; `Finsupp` on an empty index type is a subsingleton,
-transported back along `Basis.repr`.-/
+transported back along `Basis.repr`.
+@isnad1 id=subsingl.1h5v.s9.d821af7ade3f from=translated src=- shape=2bdc2df7 vocab=497945f0
+-/
 theorem Module.exteriorPower_subsingleton_of_basis_of_lt {R : Type u} [CommRing R] {M : Type v}
     [AddCommGroup M] [Module R M] {a n : ℕ} (b : Module.Basis (Fin a) R M) (h : a < n) :
     Subsingleton (⋀[R]^n M) := by
@@ -83,7 +85,9 @@ def Module.exteriorPowerDetEquivOfBasis {R : Type u} [CommRing R] {M' M'' M : Ty
       (MiyaokaMori.Algebra.TopExteriorBasis.topExteriorEquiv eM).symm)
 
 /-- The isomorphism above is the "wedge" map: it sends `(e_1∧…∧e_a) ⊗ (h_1∧…∧h_b)` to the top wedge
-of `eM`. When `eM` is the concatenation of `e'` and `e''`, the right side is `e_1∧…∧e_a∧h_1∧…∧h_b`.-/
+of `eM`. When `eM` is the concatenation of `e'` and `e''`, the right side is `e_1∧…∧e_a∧h_1∧…∧h_b`.
+@isnad1 id=eq.0h9v.s15.3717762a0325 from=translated src=- shape=f8b7b854 vocab=f0d3e1c8
+-/
 @[simp]
 theorem Module.exteriorPowerDetEquivOfBasis_wedge {R : Type u} [CommRing R] {M' M'' M : Type v}
     [AddCommGroup M'] [Module R M'] [AddCommGroup M''] [Module R M'']
@@ -98,6 +102,9 @@ theorem Module.exteriorPowerDetEquivOfBasis_wedge {R : Type u} [CommRing R] {M' 
     TensorProduct.lid_tmul, smul_eq_mul, mul_one,
     MiyaokaMori.Algebra.TopExteriorBasis.topExteriorEquiv_symm_apply, one_smul]
 
+/--
+@isnad1 id=nonempty.0h9v.s12.72c939edc878 from=translated src=- shape=b0c00e51 vocab=01e259b0
+-/
 theorem Module.exteriorPower_det_of_basis {R : Type u} [CommRing R] {M' M'' M : Type v}
     [AddCommGroup M'] [Module R M'] [AddCommGroup M''] [Module R M'']
     [AddCommGroup M] [Module R M] {a b : ℕ}
@@ -110,7 +117,9 @@ theorem Module.exteriorPower_det_of_basis {R : Type u} [CommRing R] {M' M'' M : 
 free of ranks `a`, `b`, then `⋀^a M′ ⊗ ⋀^b M″ ≅ ⋀^{a+b} M`.
 
 Proof: `M′ × M″` has the basis `e' ⊕ e''` (`Basis.prod`, reindexed to `Fin (a+b)` along
-`finSumFinEquiv`); transport it to `M` along `eq.symm` and apply `Module.exteriorPower_det_of_basis`.-/
+`finSumFinEquiv`); transport it to `M` along `eq.symm` and apply `Module.exteriorPower_det_of_basis`.
+@isnad1 id=nonempty.0h9v.s12.2472989052c8 from=translated src=- shape=0d8b65f3 vocab=638a9508
+-/
 theorem Module.exteriorPower_det_of_linearEquivProd {R : Type u} [CommRing R] {M' M'' M : Type v}
     [AddCommGroup M'] [Module R M'] [AddCommGroup M''] [Module R M'']
     [AddCommGroup M] [Module R M] {a b : ℕ}
@@ -128,7 +137,9 @@ This is the exact shape needed for the local check of `det G ≅ det F ⊗ det H
 
 Proof: `Function.Exact.splitSurjectiveEquiv` turns the section `σ` into `M ≃ₗ M′ × M″`; then apply
 `Module.exteriorPower_det_of_linearEquivProd`. (`Function.Exact f g` means
-`LinearMap.range f = LinearMap.ker g`, see `LinearMap.exact_iff`.)-/
+`LinearMap.range f = LinearMap.ker g`, see `LinearMap.exact_iff`.)
+@isnad1 id=nonempty.3h11v.s13.43cdacb68375 from=translated src=- shape=0ec77f29 vocab=9ebf9250
+-/
 theorem Module.exteriorPower_det_of_splitExact {R : Type u} [CommRing R] {M' M'' M : Type v}
     [AddCommGroup M'] [Module R M'] [AddCommGroup M''] [Module R M'']
     [AddCommGroup M] [Module R M] {a b : ℕ}

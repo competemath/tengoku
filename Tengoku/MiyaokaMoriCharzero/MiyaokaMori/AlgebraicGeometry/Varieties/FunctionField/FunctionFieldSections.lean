@@ -30,7 +30,9 @@ universe u
 
 variable (X : Scheme.{u}) [IsIntegral X] (U : X.Opens) [hU : Nonempty U]
 
-/-- A rational function represented in every stalk on an open comes from a section there.-/
+/-- A rational function represented in every stalk on an open comes from a section there.
+@isnad1 id=ex.1h3v.s11.482bd13e8a58 from=translated src=- shape=4f749f6b vocab=75b46ee9
+-/
 theorem exists_section_of_stalkwise_lift (f : X.functionField)
     (h : ∀ x : U, ∃ a : X.presheaf.stalk x.1,
       algebraMap (X.presheaf.stalk x.1) X.functionField a = f) :
@@ -70,7 +72,9 @@ theorem exists_section_of_stalkwise_lift (f : X.functionField)
     _ = X.germToFunctionField (V x) (s x) := congrArg _ (hsU x)
     _ = f := hsf x
 
-/-- A rational function represented by a unit in every stalk is a unit on the whole open.-/
+/-- A rational function represented by a unit in every stalk is a unit on the whole open.
+@isnad1 id=ex.1h3v.s12.83dd33748d67 from=translated src=- shape=cbb74a9e vocab=b1aee42d
+-/
 theorem exists_unit_section_of_stalkwise_unit (f : X.functionField)
     (h : ∀ x : U, ∃ a : (X.presheaf.stalk x.1)ˣ,
       algebraMap (X.presheaf.stalk x.1) X.functionField

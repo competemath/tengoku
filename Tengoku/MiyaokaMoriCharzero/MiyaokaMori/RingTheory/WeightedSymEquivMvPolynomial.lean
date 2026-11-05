@@ -41,6 +41,9 @@ def directSumBasis : Module.Basis (Σ q, κ q) R (⨁ q, W q) := DFinsupp.basis 
 def equivMvPolynomial : SymmetricAlgebra R (⨁ q, W q) ≃ₐ[R] MvPolynomial (Σ q, κ q) R :=
   SymmetricAlgebra.equivMvPolynomial (directSumBasis b)
 
+/--
+@isnad1 id=eq.0h7v.s9.f9ee3c2deb27 from=translated src=- shape=14cef005 vocab=3da24377
+-/
 theorem directSumBasis_apply (q : ι) (i : κ q) :
     directSumBasis b ⟨q, i⟩ = DirectSum.lof R ι W q (b q i) := by
   show (DFinsupp.basis b) ⟨q, i⟩ = DirectSum.lof R ι W q (b q i)
@@ -54,17 +57,25 @@ theorem directSumBasis_apply (q : ι) (i : κ q) :
       (sigmaFinsuppEquivDFinsupp (Finsupp.single ⟨q, i⟩ 1)) = DFinsupp.single q (b q i)
   rw [sigmaFinsuppEquivDFinsupp_single, DFinsupp.mapRange_single, Module.Basis.repr_symm_single_one]
 
+/--
+@isnad1 id=eq.0h7v.s11.728512f23636 from=translated src=- shape=d27aed7f vocab=fc1c08e3
+-/
 theorem equivMvPolynomial_gen_basis (q : ι) (i : κ q) :
     equivMvPolynomial b (gen R W q (b q i)) = MvPolynomial.X ⟨q, i⟩ := by
   show equivMvPolynomial b (SymmetricAlgebra.ι R (⨁ p, W p) (DirectSum.lof R ι W q (b q i))) = _
   rw [← directSumBasis_apply b q i]
   exact SymmetricAlgebra.equivMvPolynomial_ι_apply (directSumBasis b) ⟨q, i⟩
 
+/--
+@isnad1 id=eq.0h7v.s11.b0b4f4148449 from=translated src=- shape=a9e9abe2 vocab=6f44e197
+-/
 theorem equivMvPolynomial_symm_X (q : ι) (i : κ q) :
     (equivMvPolynomial b).symm (MvPolynomial.X ⟨q, i⟩) = gen R W q (b q i) := by
   rw [← equivMvPolynomial_gen_basis b q i, AlgEquiv.symm_apply_apply]
 
-/-- **Weighted pieces = weighted-homogeneous polynomials.**-/
+/-- **Weighted pieces = weighted-homogeneous polynomials.**
+@isnad1 id=iff.0h8v.s12.eef30781fbf4 from=translated src=- shape=0cf79c79 vocab=54fd3d8b
+-/
 theorem mem_piece_iff_isWeightedHomogeneous (w : ι → ℕ) (m : ℕ) (a : SymmetricAlgebra R (⨁ q, W q)) :
     a ∈ piece R W w m ↔
       (equivMvPolynomial b a).IsWeightedHomogeneous (fun p : Σ q, κ q => w p.1) m := by

@@ -25,7 +25,9 @@ universe u
 namespace AlgebraicGeometry.Divisors
 
 /-- Only finitely many codimension-one points lie outside a nonempty open of an integral
-Noetherian scheme.-/
+Noetherian scheme.
+@isnad1 id=finite.0h2v.s6.d34cb3b821c2 from=translated src=- shape=fbd04969 vocab=415cbd85
+-/
 theorem finite_codimensionOneOutside (X : Scheme.{u}) [IsIntegral X] [IsNoetherian X]
     (U : X.Opens) [Nonempty U] :
     {x : X | x ∉ U ∧ Order.coheight x = 1}.Finite := by

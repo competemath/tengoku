@@ -36,7 +36,9 @@ universe u
 
 namespace AlgebraicGeometry.Intersection
 
-/-- Proper maps preserve the closure dimension at every point supporting a zero cycle.-/
+/-- Proper maps preserve the closure dimension at every point supporting a zero cycle.
+@isnad1 id=eq.1h5v.s8.11fead007fc1 from=translated src=- shape=fda89d07 vocab=56f76438
+-/
 theorem zeroCycle_pointClosureDimension_map_eq {X Y : Scheme.{u}} (f : X ⟶ Y)
     [IsProper f] (β : DimensionCycle X 0) (x : X) (hx : β.1 x ≠ 0) :
     pointClosureDimension X x = pointClosureDimension Y (f x) := by
@@ -48,7 +50,9 @@ theorem zeroCycle_pointClosureDimension_map_eq {X Y : Scheme.{u}} (f : X ⟶ Y)
   exact (IsDimensionCycle.pointClosureDimension_eq β.2 x hx).trans
     (pointClosureDimension_eq_zero_of_isClosed (f x) himage).symm
 
-/-- Finranks multiply for the actual residue-field maps and their specified base-field maps.-/
+/-- Finranks multiply for the actual residue-field maps and their specified base-field maps.
+@isnad1 id=eq.0h6v.s7.c3b8f4c816b3 from=translated src=- shape=f31bc96f vocab=9fafc27d
+-/
 theorem residueFieldDegree_comp {k : Type u} [Field k] {X Y : Scheme.{u}}
     (p : Y ⟶ Spec (CommRingCat.of k)) (f : X ⟶ Y) (x : X) :
     residueFieldDegree (f ≫ p) x = residueFieldDegree p (f x) * f.residueDegree x := by
@@ -65,7 +69,9 @@ theorem residueFieldDegree_comp {k : Type u} [Field k] {X Y : Scheme.{u}}
       Module.finrank (Y.residueField (f x)) (X.residueField x)
   exact (Module.finrank_mul_finrank k (Y.residueField (f x)) (X.residueField x)).symm
 
-/-- The proper pushforward coefficient is a finite fibre sum over any set containing the support.-/
+/-- The proper pushforward coefficient is a finite fibre sum over any set containing the support.
+@isnad1 id=eq.1h6v.s10.e5e5c3b4eed4 from=translated src=- shape=254f6eb3 vocab=cf0fdffb
+-/
 theorem zeroCycle_properPushforward_eq_sum_on {X Y : Scheme.{u}} (f : X ⟶ Y)
     [IsProper f] (β : DimensionCycle X 0)
     (s : Finset X) (hs : ∀ x, x ∉ s → β.1 x = 0) (y : Y) :
@@ -94,7 +100,9 @@ theorem zeroCycle_properPushforward_eq_sum_on {X Y : Scheme.{u}} (f : X ⟶ Y)
       · rw [ite_eq_left ((pointClosureDimension_eq_pointClosureDimension_iff x (f x)).mp
           (zeroCycle_pointClosureDimension_map_eq f β x hx))]
 
-/-- Proper pushforward preserves the existing residue-weighted degree over the same field.-/
+/-- Proper pushforward preserves the existing residue-weighted degree over the same field.
+@isnad1 id=eq.0h6v.s6.20c38ef37cbd from=translated src=- shape=a1dd35f5 vocab=895d06d1
+-/
 theorem rawZeroCycleDegree_properPushforward
     {k : Type u} [Field k] {X Y : Scheme.{u}}
     (p : Y ⟶ Spec (CommRingCat.of k)) [IsProper p]
@@ -139,7 +147,9 @@ theorem rawZeroCycleDegree_properPushforward
     _ = ∑ x ∈ s, β.1 x * (residueFieldDegree (f ≫ p) x : ℤ) :=
       Finset.sum_fiberwise_of_maps_to (fun x hx ↦ Finset.mem_image_of_mem f hx) _
 
-/-- Proper pushforward transport commutes with addition of actual zero cycles.-/
+/-- Proper pushforward transport commutes with addition of actual zero cycles.
+@isnad1 id=eq.0h7v.s7.3671b2f8fbb6 from=translated src=- shape=191491cb vocab=25e79dc2
+-/
 theorem rawZeroCycleDegree_properPushforward_add
     {k : Type u} [Field k] {X Y : Scheme.{u}}
     (p : Y ⟶ Spec (CommRingCat.of k)) [IsProper p]
@@ -150,7 +160,9 @@ theorem rawZeroCycleDegree_properPushforward_add
       rawZeroCycleDegree (f ≫ p) β + rawZeroCycleDegree (f ≫ p) γ := by
   rw [rawZeroCycleDegree_properPushforward p f, rawZeroCycleDegree_add]
 
-/-- Proper pushforward transport commutes with finite sums of actual zero cycles.-/
+/-- Proper pushforward transport commutes with finite sums of actual zero cycles.
+@isnad1 id=eq.0h8v.s6.d423525ed9be from=translated src=- shape=f26a337e vocab=b0ad0951
+-/
 theorem rawZeroCycleDegree_properPushforward_finsetSum
     {k : Type u} [Field k] {X Y : Scheme.{u}}
     (p : Y ⟶ Spec (CommRingCat.of k)) [IsProper p]
@@ -161,7 +173,9 @@ theorem rawZeroCycleDegree_properPushforward_finsetSum
       ∑ i ∈ s, rawZeroCycleDegree (f ≫ p) (β i) := by
   rw [rawZeroCycleDegree_properPushforward p f, rawZeroCycleDegree_finsetSum]
 
-/-- Proper pushforward transport retains integer coefficients in finite weighted sums.-/
+/-- Proper pushforward transport retains integer coefficients in finite weighted sums.
+@isnad1 id=eq.0h9v.s7.a2e78fa2fbec from=translated src=- shape=23ae236e vocab=ef801aa2
+-/
 theorem rawZeroCycleDegree_properPushforward_weightedSum
     {k : Type u} [Field k] {X Y : Scheme.{u}}
     (p : Y ⟶ Spec (CommRingCat.of k)) [IsProper p]
@@ -172,7 +186,9 @@ theorem rawZeroCycleDegree_properPushforward_weightedSum
       ∑ i ∈ s, n i * rawZeroCycleDegree (f ≫ p) (β i) := by
   rw [rawZeroCycleDegree_properPushforward p f, rawZeroCycleDegree_weightedSum]
 
-/-- A closed immersion preserves raw zero-cycle degree.-/
+/-- A closed immersion preserves raw zero-cycle degree.
+@isnad1 id=eq.0h6v.s6.659fa3aa6d93 from=translated src=- shape=b9ef0689 vocab=60d3d529
+-/
 theorem rawZeroCycleDegree_closedImmersion
     {k : Type u} [Field k] {X Y : Scheme.{u}}
     (p : Y ⟶ Spec (CommRingCat.of k)) [IsProper p]

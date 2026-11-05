@@ -28,7 +28,9 @@ universe u
 namespace AlgebraicGeometry.Intersection
 
 /-- The specified map from the original base field to any residue field is essentially
-of finite type.-/
+of finite type.
+@isnad1 id=essfinit.0h4v.s6.98a7abc40284 from=translated src=- shape=99f58c8f vocab=4e00ddf7
+-/
 theorem pointBaseMap_essFiniteType {k : Type u} [Field k] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType f] (x : X) :
     (pointBaseMap f x).hom.EssFiniteType := by
@@ -44,7 +46,9 @@ theorem pointBaseMap_essFiniteType {k : Type u} [Field k] {X : Scheme.{u}}
     f.residueFieldMap x).hom).EssFiniteType at h
   simpa only [hcomp] using h
 
-/-- The same actual base map gives the residue field finite transcendence degree.-/
+/-- The same actual base map gives the residue field finite transcendence degree.
+@isnad1 id=fintrdeg.0h4v.s6.af9fb86af161 from=translated src=- shape=fec1bcfe vocab=a9256d05
+-/
 theorem pointBaseMap_finTrdeg {k : Type u} [Field k] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of k)) [LocallyOfFiniteType f] (x : X) :
     letI : Algebra k (X.residueField x) := (pointBaseMap f x).hom.toAlgebra

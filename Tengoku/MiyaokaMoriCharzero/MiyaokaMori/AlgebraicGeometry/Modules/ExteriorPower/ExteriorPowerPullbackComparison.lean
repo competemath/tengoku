@@ -113,7 +113,9 @@ def moduleExteriorPullbackAdjoint :
       (moduleExteriorPower X ((Scheme.Modules.pullback f).obj M) n))
     (moduleExteriorPullbackPresheafComparison f M n)
 
-/-- The sheafified comparison has the prescribed composite with the exterior unit.-/
+/-- The sheafified comparison has the prescribed composite with the exterior unit.
+@isnad1 id=eq.0h5v.s13.31adc9b44fc3 from=translated src=- shape=0be1af74 vocab=3ede1c6d
+-/
 theorem moduleExteriorPullbackAdjoint_sheafificationUnit :
     moduleExteriorSheafUnit Y M n ≫
       (PresheafOfModules.restrictScalars (𝟙 Y.ringCatSheaf.obj)).map
@@ -122,7 +124,9 @@ theorem moduleExteriorPullbackAdjoint_sheafificationUnit :
   moduleExteriorDesc_unit_comp Y M n _ _
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The descended map wedges precisely the sections supplied by the pullback unit.-/
+/-- The descended map wedges precisely the sections supplied by the pullback unit.
+@isnad1 id=eq.0h7v.s13.b5104807e964 from=translated src=- shape=29fd0b71 vocab=7af3f157
+-/
 theorem moduleExteriorPullbackAdjoint_wedge (U : Y.Opens) (v : Fin n → Γ(M, U)) :
     (moduleExteriorPullbackAdjoint f M n).app U (moduleExteriorWedge Y M n U v) =
       moduleExteriorWedge X ((Scheme.Modules.pullback f).obj M) n (f ⁻¹ᵁ U)
@@ -139,7 +143,9 @@ def moduleExteriorPullbackComparison :
     (moduleExteriorPower X ((Scheme.Modules.pullback f).obj M) n)).symm
     (moduleExteriorPullbackAdjoint f M n)
 
-/-- The pullback unit followed by the constructed comparison is its specified adjoint.-/
+/-- The pullback unit followed by the constructed comparison is its specified adjoint.
+@isnad1 id=eq.0h5v.s8.3b5ba2c1f54d from=translated src=- shape=456945e8 vocab=48517e55
+-/
 theorem moduleExteriorPullbackComparison_unit :
     (Scheme.Modules.pullbackPushforwardAdjunction f).unit.app (moduleExteriorPower Y M n) ≫
       (Scheme.Modules.pushforward f).map (moduleExteriorPullbackComparison f M n) =
@@ -150,7 +156,9 @@ theorem moduleExteriorPullbackComparison_unit :
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The canonical comparison sends a pulled-back wedge to the wedge of pulled-back sections.
-For `n = 0` this also specifies the image of the empty wedge.-/
+For `n = 0` this also specifies the image of the empty wedge.
+@isnad1 id=eq.0h7v.s13.90d16b1b19fa from=translated src=- shape=48fd8329 vocab=e719a16e
+-/
 theorem moduleExteriorPullbackComparison_wedge (U : Y.Opens) (v : Fin n → Γ(M, U)) :
     (moduleExteriorPullbackComparison f M n).app (f ⁻¹ᵁ U)
         (((Scheme.Modules.pullbackPushforwardAdjunction f).unit.app

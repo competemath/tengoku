@@ -40,7 +40,9 @@ open DirectSum
 /-- **Localization commutes with direct sums**: if every `f i : M i →ₗ[R] N i` is the localization
 of modules at `S`, then so is `DirectSum.lmap f : (⨁ i, M i) →ₗ[R] (⨁ i, N i)`.
 
-Mathlib has the tensor-product and finite Pi versions, but not this infinite direct-sum version.-/
+Mathlib has the tensor-product and finite Pi versions, but not this infinite direct-sum version.
+@isnad1 id=islocali.0h6v.s7.b99ed59f30d8 from=translated src=- shape=b4117851 vocab=17dafca3
+-/
 theorem IsLocalizedModule.directSum {R : Type u} [CommSemiring R] (S : Submonoid R)
     {ι : Type v} [DecidableEq ι] {M N : ι → Type w}
     [∀ i, AddCommMonoid (M i)] [∀ i, Module R (M i)]

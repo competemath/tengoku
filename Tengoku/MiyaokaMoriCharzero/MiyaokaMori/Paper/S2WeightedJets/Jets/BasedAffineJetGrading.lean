@@ -62,7 +62,9 @@ section GeneralCoordinates
 variable {n : ℕ}
 variable {I : Ideal (MvPolynomial (Fin n) R)} (s : PresentedAlgebra I →ₐ[R] R)
 
-/-- Each coefficient of the universal coordinate series has weight equal to its order.-/
+/-- Each coefficient of the universal coordinate series has weight equal to its order.
+@isnad1 id=isweight.0h7v.s7.aac5897d0d3a from=translated src=- shape=eca1a4dc vocab=2c91af1e
+-/
 theorem universalCoordinate_coeff_isWeightedHomogeneous (k : ℕ) (i : Fin n) (q : ℕ) :
     ((universalCoordinate s k i).coeff q).IsWeightedHomogeneous
       (fun iq : Fin n × Fin k ↦ iq.2.val + 1) q := by
@@ -78,7 +80,9 @@ theorem universalCoordinate_coeff_isWeightedHomogeneous (k : ℕ) (i : Fin n) (q
         (i, l)) q
 
 /-- Substitution into the universal based coordinate series sends every coefficient of
-order `q` to a weighted homogeneous polynomial of weight `q`.-/
+order `q` to a weighted homogeneous polynomial of weight `q`.
+@isnad1 id=isweight.0h7v.s9.3559575affb5 from=translated src=- shape=e7019d3b vocab=6759efd4
+-/
 theorem universalEvaluation_coeff_isWeightedHomogeneous (k : ℕ)
     (p : MvPolynomial (Fin n) R) :
     ∀ q : ℕ, ((universalEvaluation s k p).coeff q).IsWeightedHomogeneous

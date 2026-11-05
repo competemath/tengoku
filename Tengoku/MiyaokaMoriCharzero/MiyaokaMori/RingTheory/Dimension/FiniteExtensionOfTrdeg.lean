@@ -20,7 +20,9 @@ universe u v
 namespace AlgebraicGeometry.Intersection
 
 /-- Equal finite transcendence degrees make an essentially finite type
-extension in the same field tower finite.-/
+extension in the same field tower finite.
+@isnad1 id=finite.1h3v.s7.94d6c3e56760 from=translated src=- shape=06016200 vocab=edde8c1e
+-/
 theorem finite_of_trdeg_eq
     (k : Type v) (K L : Type u)
     [Field k] [Field K] [Field L]
@@ -43,7 +45,9 @@ theorem finite_of_trdeg_eq
   exact Algebra.finite_of_essFiniteType_of_isAlgebraic
 
 /-- Essential finite type over the original base supplies both finite
-transcendence degree and essential finite type over the intermediate field.-/
+transcendence degree and essential finite type over the intermediate field.
+@isnad1 id=finite.1h3v.s7.59429f6a6fa8 from=translated src=- shape=2bc165a8 vocab=71932332
+-/
 theorem finite_of_essFiniteType_of_trdeg_eq
     (k : Type v) (K L : Type u)
     [Field k] [Field K] [Field L]

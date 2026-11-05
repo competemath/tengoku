@@ -47,19 +47,28 @@ def augmentation (k : ℕ) : Jet.TruncatedJetRing S k →ₐ[S] S :=
   { MiyaokaMori.RingTheory.GlobalTruncatedParameterAPI.epsilon k with
     commutes' := fun a => RingHom.congr_fun (MiyaokaMori.RingTheory.GlobalTruncatedParameterAPI.epsilon_eta k) a }
 
-/-- The augmentation is the constant-term ring hom `epsilon`.-/
+/-- The augmentation is the constant-term ring hom `epsilon`.
+@isnad1 id=eq.0h2v.s9.4e3b3935581a from=translated src=- shape=29cebcc6 vocab=87826cdd
+-/
 theorem augmentation_toRingHom (k : ℕ) :
     (augmentation S k : Jet.TruncatedJetRing S k →+* S) =
       MiyaokaMori.RingTheory.GlobalTruncatedParameterAPI.epsilon k := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.09a2f086d091 from=translated src=- shape=b6c012dc vocab=8b1e8afd
+-/
 theorem augmentation_apply (k : ℕ) (z : Jet.TruncatedJetRing S k) :
     augmentation S k z = MiyaokaMori.RingTheory.GlobalTruncatedParameterAPI.epsilon k z := rfl
 
-/-- Augmenting a polynomial class evaluates its representative at zero.-/
+/-- Augmenting a polynomial class evaluates its representative at zero.
+@isnad1 id=eq.0h3v.s9.d932a30fdaf9 from=translated src=- shape=ca21a881 vocab=21a83581
+-/
 @[simp] theorem augmentation_projection (k : ℕ) (p : S[X]) :
     augmentation S k (Jet.jetProjection S k p) = p.eval 0 := rfl
 
-/-- The class of the parameter is nilpotent of the required order.-/
+/-- The class of the parameter is nilpotent of the required order.
+@isnad1 id=eq.0h2v.s9.ffeab42565d0 from=translated src=- shape=f344b755 vocab=6f13fb5c
+-/
 theorem parameter_pow_eq_zero (k : ℕ) :
     (Jet.jetProjection S k (X : S[X])) ^ (k + 1) = 0 := by
   rw [← map_pow]
@@ -95,12 +104,16 @@ def mapTruncated (k : ℕ) (f : S →ₐ[R] T) :
     ((Ideal.Quotient.mkₐ R (Jet.truncationIdeal T k)).comp (Polynomial.mapAlgHom f))
     (truncation_map_zero k f)
 
-/-- Mapping the class of a polynomial gives the class of its coefficientwise image.-/
+/-- Mapping the class of a polynomial gives the class of its coefficientwise image.
+@isnad1 id=eq.0h6v.s10.5679e6627fc0 from=translated src=- shape=53e20e83 vocab=ff6a9d34
+-/
 @[simp] theorem mapTruncated_projection (k : ℕ) (f : S →ₐ[R] T) (p : S[X]) :
     mapTruncated k f (Jet.jetProjection S k p) =
       Jet.jetProjection T k (p.map f.toRingHom) := rfl
 
-/-- Coefficient change commutes with the actual constant-term augmentation.-/
+/-- Coefficient change commutes with the actual constant-term augmentation.
+@isnad1 id=eq.0h6v.s10.e6e673d2951d from=translated src=- shape=9075f485 vocab=9efcda4e
+-/
 @[simp] theorem augmentation_mapTruncated (k : ℕ) (f : S →ₐ[R] T)
     (z : Jet.TruncatedJetRing S k) :
     augmentation T k (mapTruncated k f z) = f (augmentation S k z) := by
@@ -124,7 +137,9 @@ def mapPoint {s : A →ₐ[R] R} {k : ℕ} (f : S →ₐ[R] T) (j : Point s S k)
     rw [augmentation_mapTruncated, j.2 a]
     exact f.commutes (s a)⟩
 
-/-- Mapping a based jet is coefficient change on its actual algebra homomorphism.-/
+/-- Mapping a based jet is coefficient change on its actual algebra homomorphism.
+@isnad1 id=eq.0h9v.s12.f592d20f069d from=translated src=- shape=a4b85d3a vocab=e8abbc33
+-/
 @[simp] theorem mapPoint_apply {s : A →ₐ[R] R} {k : ℕ} (f : S →ₐ[R] T)
     (j : Point s S k) (a : A) :
     (mapPoint f j).1 a = mapTruncated k f (j.1 a) := rfl

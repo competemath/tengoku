@@ -46,6 +46,9 @@ Always pass through this `def` rather than the anonymous constructor `⟨U.1, U.
 (`GradedRing (S.grading ⟨U.1, U.2⟩)` fails to synthesize, while `S.grading (affineSite U)` works).-/
 def affineSite {X : Scheme.{u}} (U : X.affineOpens) : X.AffineZariskiSite := ⟨U.1, U.2⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.88326556a2b8 from=translated src=- shape=7d3212c1 vocab=eeae0c34
+-/
 @[simp] theorem affineSite_toOpens {X : Scheme.{u}} (U : X.affineOpens) :
     (affineSite U).toOpens = U.1 := rfl
 
@@ -72,14 +75,23 @@ def restrictGraded {U V : X.AffineZariskiSite} (h : U ≤ V) : S.grading V →+*
   toRingHom := S.toAffineAlgebra.restrict h
   map_mem := S.restrict_mem h
 
+/--
+@isnad1 id=eq.1h5v.s10.550c7556b6f3 from=translated src=- shape=b7fbab1e vocab=5461da78
+-/
 @[simp] theorem restrictGraded_apply {U V : X.AffineZariskiSite} (h : U ≤ V)
     (a : S.toAffineAlgebra.sections V) :
     S.restrictGraded h a = S.toAffineAlgebra.restrict h a := rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.863d88ecc6ef from=translated src=- shape=9e6d4fbc vocab=761ae700
+-/
 theorem restrictGraded_refl (U : X.AffineZariskiSite) :
     S.restrictGraded (le_refl U) = GradedRingHom.id (S.grading U) :=
   GradedRingHom.ext fun a => S.toAffineAlgebra.restrict_refl U a
 
+/--
+@isnad1 id=eq.2h5v.s10.b7cdfa7bc000 from=translated src=- shape=57f3d56f vocab=d259806a
+-/
 theorem restrictGraded_trans {U V W : X.AffineZariskiSite} (hUV : U ≤ V) (hVW : V ≤ W) :
     S.restrictGraded (hUV.trans hVW) = (S.restrictGraded hUV).comp (S.restrictGraded hVW) :=
   GradedRingHom.ext fun a => (S.toAffineAlgebra.restrict_restrict hUV hVW a).symm
@@ -92,6 +104,9 @@ def unitZero (U : X.AffineZariskiSite) : Γ(X, U.toOpens) →+* S.grading U 0 wh
   map_zero' := Subtype.ext (map_zero _)
   map_add' a b := Subtype.ext (map_add _ a b)
 
+/--
+@isnad1 id=eq.0h4v.s12.33685cd3a98b from=translated src=- shape=49068a6b vocab=a66cbc03
+-/
 @[simp] theorem coe_unitZero (U : X.AffineZariskiSite) (r : Γ(X, U.toOpens)) :
     (S.unitZero U r : S.toAffineAlgebra.sections U) = S.toAffineAlgebra.unitHom U r := rfl
 
@@ -114,6 +129,9 @@ def GeneratedInDegreeOne : Prop := S.GeneratedInDegree 1
 multiples, Lemma 2.2).-/
 def SufficientlyDivisible (m : ℕ) : Prop := 0 < m ∧ S.GeneratedInDegree m
 
+/--
+@isnad1 id=lt.1h3v.s4.376cb6e34beb from=translated src=- shape=7732b020 vocab=9e79e31d
+-/
 theorem SufficientlyDivisible.pos {m : ℕ} (h : S.SufficientlyDivisible m) : 0 < m := h.1
 
 /-! ## Homomorphisms -/

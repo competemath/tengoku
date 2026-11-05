@@ -71,7 +71,9 @@ def moduleTensorRightUnitIso (M : X.Modules) :
     (asIso (PresheafOfModules.sheafificationAdjunction (𝟙 X.ringCatSheaf.obj)).counit).app M
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Before the original sheafification unit, the left unit map is the presheaf unitor.-/
+/-- Before the original sheafification unit, the left unit map is the presheaf unitor.
+@isnad1 id=eq.0h2v.s14.ada7fbd68d4a from=translated src=- shape=0556a228 vocab=fe6994a3
+-/
 theorem moduleTensorLeftUnitIso_fac (M : X.Modules) :
     moduleTensorSheafificationUnit (SheafOfModules.unit X.ringCatSheaf) M ≫
       (PresheafOfModules.restrictScalars (𝟙 X.ringCatSheaf.obj)).map
@@ -84,7 +86,9 @@ theorem moduleTensorLeftUnitIso_fac (M : X.Modules) :
           (MonoidalCategory.leftUnitor (C := X.PresheafOfModules) M.val).hom)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Before the original sheafification unit, the right unit map is the presheaf unitor.-/
+/-- Before the original sheafification unit, the right unit map is the presheaf unitor.
+@isnad1 id=eq.0h2v.s14.5a61dfbadaf4 from=translated src=- shape=efc96778 vocab=ff57437d
+-/
 theorem moduleTensorRightUnitIso_fac (M : X.Modules) :
     moduleTensorSheafificationUnit M (SheafOfModules.unit X.ringCatSheaf) ≫
       (PresheafOfModules.restrictScalars (𝟙 X.ringCatSheaf.obj)).map
@@ -97,7 +101,9 @@ theorem moduleTensorRightUnitIso_fac (M : X.Modules) :
           (MonoidalCategory.rightUnitor (C := X.PresheafOfModules) M.val).hom)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The left unit isomorphism acts on an original tensor section by scalar multiplication.-/
+/-- The left unit isomorphism acts on an original tensor section by scalar multiplication.
+@isnad1 id=eq.0h5v.s12.f7e3b8195f7b from=translated src=- shape=32686024 vocab=b2f3d9bc
+-/
 @[simp]
 theorem moduleTensorLeftUnitIso_hom_section {M : X.Modules} {U : X.Opens}
     (r : Γ(X, U)) (s : Γ(M, U)) :
@@ -124,7 +130,9 @@ local instance moduleTensorUnitRingCatSectionsCommRing (U : X.Opens) :
   inferInstanceAs (CommRing ↑(X.presheaf.obj (op U)))
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The right unit isomorphism acts on an original tensor section by scalar multiplication.-/
+/-- The right unit isomorphism acts on an original tensor section by scalar multiplication.
+@isnad1 id=eq.0h5v.s12.d514b7f3be98 from=translated src=- shape=5956f08d vocab=1eb3bf18
+-/
 @[simp]
 theorem moduleTensorRightUnitIso_hom_section {M : X.Modules} {U : X.Opens}
     (s : Γ(M, U)) (r : Γ(X, U)) :
@@ -140,7 +148,9 @@ theorem moduleTensorRightUnitIso_hom_section {M : X.Modules} {U : X.Opens}
 end RightUnitSection
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The inverse left unit sends an arbitrary original section to its tensor with `1`.-/
+/-- The inverse left unit sends an arbitrary original section to its tensor with `1`.
+@isnad1 id=eq.0h4v.s11.1376a1726cdb from=translated src=- shape=7b0fb97b vocab=64f95188
+-/
 @[simp]
 theorem moduleTensorLeftUnitIso_inv_section {M : X.Modules} {U : X.Opens}
     (s : Γ(M, U)) :
@@ -161,7 +171,9 @@ theorem moduleTensorLeftUnitIso_inv_section {M : X.Modules} {U : X.Opens}
   exact h
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The inverse right unit sends an arbitrary original section to its tensor with `1`.-/
+/-- The inverse right unit sends an arbitrary original section to its tensor with `1`.
+@isnad1 id=eq.0h4v.s11.e411bfcff000 from=translated src=- shape=e06eae4b vocab=c8e3f61b
+-/
 @[simp]
 theorem moduleTensorRightUnitIso_inv_section {M : X.Modules} {U : X.Opens}
     (s : Γ(M, U)) :
@@ -188,7 +200,9 @@ Proof: a morphism out of a sheafification is determined by its composite with th
 sheafification unit (`homEquiv` of the adjunction is injective); after the two
 `homEquiv_naturality` lemmas, both sides become the presheaf-level naturality
 `(𝟙 ◁ φ.val) ≫ (λ_ N.val).hom = (λ_ M.val).hom ≫ φ.val` of Mathlib's monoidal
-structure on presheaves of modules.-/
+structure on presheaves of modules.
+@isnad1 id=eq.0h4v.s13.984579b206a7 from=translated src=- shape=b2eacd2d vocab=f50989c1
+-/
 theorem moduleTensorLeftUnitIso_naturality {M N : X.Modules} (φ : M ⟶ N) :
     (PresheafOfModules.sheafification (𝟙 X.ringCatSheaf.obj)).map
         (PresheafOfModules.Monoidal.tensorHom (R := X.presheaf)
@@ -218,7 +232,9 @@ set_option backward.isDefEq.respectTransparency false in
 /-- The right unit isomorphism is natural in every morphism of the original module sheaves.
 
 Proof: as for `moduleTensorLeftUnitIso_naturality`, via injectivity of the sheafification
-adjunction's `homEquiv` and Mathlib's presheaf-level `rightUnitor_naturality`.-/
+adjunction's `homEquiv` and Mathlib's presheaf-level `rightUnitor_naturality`.
+@isnad1 id=eq.0h4v.s13.fd033030493e from=translated src=- shape=0e9bd806 vocab=7bcfb382
+-/
 theorem moduleTensorRightUnitIso_naturality {M N : X.Modules} (φ : M ⟶ N) :
     (PresheafOfModules.sheafification (𝟙 X.ringCatSheaf.obj)).map
         (PresheafOfModules.Monoidal.tensorHom (R := X.presheaf)

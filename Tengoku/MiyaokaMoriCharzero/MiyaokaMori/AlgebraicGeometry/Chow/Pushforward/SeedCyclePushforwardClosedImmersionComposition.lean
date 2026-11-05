@@ -27,7 +27,9 @@ universe u
 
 variable {X Y Z : Scheme.{u}}
 
-/-- A closed immersion preserves the topological dimension of every point closure.-/
+/-- A closed immersion preserves the topological dimension of every point closure.
+@isnad1 id=eq.0h4v.s7.ec9d34c443e7 from=translated src=- shape=e3d0801b vocab=870e34c6
+-/
 theorem closedImmersion_pointClosureDimension_eq
     (i : X ⟶ Y) [IsClosedImmersion i] (x : X) :
     pointClosureDimension X x = pointClosureDimension Y (i x) := by
@@ -41,13 +43,17 @@ theorem closedImmersion_pointClosureDimension_eq
   exact IsHomeomorph.topologicalKrullDim_eq e e.isHomeomorph
 
 /-- A closed immersion preserves the height of every point (`Order.height`, the `ℕ∞` form of
-`closedImmersion_pointClosureDimension_eq`).-/
+`closedImmersion_pointClosureDimension_eq`).
+@isnad1 id=eq.0h4v.s7.4941a7815322 from=translated src=- shape=e52715ba vocab=276a4aa4
+-/
 theorem closedImmersion_height_eq (i : X ⟶ Y) [IsClosedImmersion i] (x : X) :
     Order.height x = Order.height (i x) :=
   (pointClosureDimension_eq_pointClosureDimension_iff x (i x)).mp
     (closedImmersion_pointClosureDimension_eq i x)
 
-/-- The closed-immersion pushforward at an image point is the source coefficient.-/
+/-- The closed-immersion pushforward at an image point is the source coefficient.
+@isnad1 id=eq.0h5v.s8.763e9f8cc51a from=translated src=- shape=7276fe8c vocab=87d9bb0a
+-/
 theorem closedImmersion_properPushforward_apply_image
     (i : X ⟶ Y) [IsClosedImmersion i] (α : AlgebraicCycle X ℤ) (x : X) :
     AlgebraicGeometry.AlgebraicCycle.properPushforward i α (i x) = α x := by
@@ -60,7 +66,9 @@ theorem closedImmersion_properPushforward_apply_image
   simp only [ite_eq_left hd, closedImmersion_residueDegree_eq_one i x,
     Nat.cast_one, mul_one]
 
-/-- Proper pushforward through an actual closed immersion composes pointwise.-/
+/-- Proper pushforward through an actual closed immersion composes pointwise.
+@isnad1 id=eq.0h6v.s6.820cd9ee42f0 from=translated src=- shape=4197e1fe vocab=e68e1c0e
+-/
 theorem properPushforward_comp_closedImmersion
     (f : X ⟶ Y) (i : Y ⟶ Z) [IsProper f] [IsClosedImmersion i]
     (α : AlgebraicCycle X ℤ) :
@@ -106,7 +114,9 @@ theorem properPushforward_comp_closedImmersion
       simpa only [Scheme.Hom.comp_apply] using hx
     simp only [AlgebraicGeometry.AlgebraicCycle.properPushforward_apply, hi, hfi', finsum_mem_empty]
 
-/-- The same composition identity on dimension-indexed cycles.-/
+/-- The same composition identity on dimension-indexed cycles.
+@isnad1 id=eq.0h7v.s6.632c806ee6c0 from=translated src=- shape=c52a5db9 vocab=cc2cf832
+-/
 theorem dimensionProperPushforward_comp_closedImmersion
     (f : X ⟶ Y) (i : Y ⟶ Z) [IsProper f] [IsClosedImmersion i]
     (d : ℕ) (α : DimensionCycle X d) :

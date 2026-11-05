@@ -30,6 +30,9 @@ def addSubgroupGrading (i : ι) : AddSubgroup A where
   zero_mem' := zero_mem _
   neg_mem' := neg_mem
 
+/--
+@isnad1 id=iff.0h6v.s6.bf320388e072 from=translated src=- shape=cb3f00c9 vocab=74a53a0f
+-/
 @[simp] theorem mem_addSubgroupGrading {i : ι} {x : A} :
     x ∈ addSubgroupGrading 𝒜 i ↔ x ∈ 𝒜 i := Iff.rfl
 

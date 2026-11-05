@@ -28,7 +28,9 @@ universe u
 
 namespace AlgebraicGeometry.Intersection
 
-/-- The actual residue-field map respects the two specified maps from the base field.-/
+/-- The actual residue-field map respects the two specified maps from the base field.
+@isnad1 id=eq.1h5v.s9.5215915fa957 from=translated src=- shape=68d4df72 vocab=8cc7302c
+-/
 theorem pointBaseMap_residueFieldMap
     {k : Type u} [Field k] {X Y : AlgebraicGeometry.Proj.SchemeOver k}
     (f : X.scheme ⟶ Y.scheme) (hf : f ≫ Y.toBase = X.toBase) (x : X.scheme) :
@@ -40,7 +42,9 @@ theorem pointBaseMap_residueFieldMap
     Scheme.Hom.SpecMap_residueFieldMap_fromSpecResidueField f x,
     Category.assoc, hf]
 
-/-- The three actual structure maps give the residue fields a compatible scalar tower.-/
+/-- The three actual structure maps give the residue fields a compatible scalar tower.
+@isnad1 id=isscalar.1h5v.s12.b7a310bec125 from=translated src=- shape=b9a0be78 vocab=dd3855b3
+-/
 theorem residueFieldBase_isScalarTower
     {k : Type u} [Field k] {X Y : AlgebraicGeometry.Proj.SchemeOver k}
     (f : X.scheme ⟶ Y.scheme) (hf : f ≫ Y.toBase = X.toBase) (x : X.scheme) :

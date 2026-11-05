@@ -28,7 +28,9 @@ section HomogeneousEvaluation
 variable {k : Type u} {R : Type v} {ι : Type w} [CommSemiring k] [CommSemiring R]
 
 /-- Evaluating a degree-`d` homogeneous polynomial on a scaled tuple multiplies
-its value by the `d`th power of the scale.-/
+its value by the `d`th power of the scale.
+@isnad1 id=eq.1h8v.s7.c31dd8cf6c72 from=translated src=- shape=334262ed vocab=b2b92d76
+-/
 theorem eval₂Hom_scale (c : k →+* R) (p : ι → R) (a : R)
     {F : MvPolynomial ι k} {d : ℕ} (hF : F.IsHomogeneous d) :
     MvPolynomial.eval₂Hom c (fun i ↦ a * p i) F =
@@ -63,7 +65,9 @@ private theorem irrelevant_map_le_of_scale (f g : A →+* R) (a : R)
     (HomogeneousIdeal.mem_irrelevant_of_mem 𝒜 hd hx))
 
 /-- Scaling each homogeneous degree by the corresponding power of one unit
-preserves the image of the irrelevant ideal.-/
+preserves the image of the irrelevant ideal.
+@isnad1 id=eq.1h7v.s8.1da6726c338b from=translated src=- shape=d37eae3d vocab=603ffb1a
+-/
 theorem irrelevant_map_eq_of_unit_scale (f g : A →+* R) (a : Rˣ)
     (hscale : ∀ (d : ℕ) (x : A), x ∈ 𝒜 d → g x = (a : R) ^ d * f x) :
     (HomogeneousIdeal.irrelevant 𝒜).toIdeal.map g =
@@ -77,7 +81,9 @@ theorem irrelevant_map_eq_of_unit_scale (f g : A →+* R) (a : Rˣ)
 /-- Homogeneous-localization evaluation is unchanged by a common unit scaling.
 
 The localization maps are actual ring homomorphisms. Their restrictions agree
-on every equal-degree fraction, not merely at residue-field points.-/
+on every equal-degree fraction, not merely at residue-field points.
+@isnad1 id=eq.3h8v.s9.40a9a123b949 from=translated src=- shape=86fc8a58 vocab=3762a333
+-/
 theorem homogeneousLocalization_lift_eq (M : Submonoid A) (f g : A →+* R) (a : Rˣ)
     (hscale : ∀ (d : ℕ) (x : A), x ∈ 𝒜 d → g x = (a : R) ^ d * f x)
     (hf : ∀ x : M, IsUnit (f x)) (hg : ∀ x : M, IsUnit (g x)) :
@@ -96,7 +102,9 @@ theorem homogeneousLocalization_lift_eq (M : Submonoid A) (f g : A →+* R) (a :
     (z.num : A) _ ⟨z.den, z.den_mem⟩).mp rfl
 
 /-- On a homogeneous affine chart, invertibility for the scaled map follows
-from invertibility for the original map. The resulting chart ring maps agree.-/
+from invertibility for the original map. The resulting chart ring maps agree.
+@isnad1 id=eq.3h9v.s10.e5749593692f from=translated src=- shape=b7413dfc vocab=79345b47
+-/
 theorem away_lift_eq_unit_scale (f g : A →+* R) (a : Rˣ)
     (hscale : ∀ (d : ℕ) (x : A), x ∈ 𝒜 d → g x = (a : R) ^ d * f x)
     {t : A} {d : ℕ} (ht : t ∈ 𝒜 d) (hf : IsUnit (f t)) :
@@ -108,7 +116,9 @@ theorem away_lift_eq_unit_scale (f g : A →+* R) (a : Rˣ)
   exact homogeneousLocalization_lift_eq 𝒜 (Submonoid.powers t) f g a hscale _ _
 
 /-- The same fraction calculation applies to any actual localization extensions
-of the two graded evaluations.-/
+of the two graded evaluations.
+@isnad1 id=eq.5h10v.s10.1484bac4e2a7 from=translated src=- shape=08c7fca1 vocab=fc6995b4
+-/
 theorem homogeneousLocalization_eq_of_extensions (M : Submonoid A)
     (f g : A →+* R) (a : Rˣ)
     (hscale : ∀ (d : ℕ) (x : A), x ∈ 𝒜 d → g x = (a : R) ^ d * f x)
@@ -130,7 +140,9 @@ variable {k : Type u} [Field k] {R : Type v} [CommRing R]
 attribute [local instance] MvPolynomial.gradedAlgebra
 
 /-- The scaled tuple satisfies the same irrelevant-ideal condition, derived
-from the condition on the original tuple.-/
+from the condition on the original tuple.
+@isnad1 id=eq.1h6v.s10.240c57df9077 from=translated src=- shape=fb72b7c7 vocab=55faf229
+-/
 theorem irrelevant_map_eq_top_scale (n : ℕ) (c : k →+* R)
     (p : Fin (n + 1) → R) (a : Rˣ)
     (hp : (HomogeneousIdeal.irrelevant (projectiveGrading k n)).toIdeal.map
@@ -142,7 +154,9 @@ theorem irrelevant_map_eq_top_scale (n : ℕ) (c : k →+* R)
       (fun _ _ hF ↦ eval₂Hom_scale c p a hF)]
   exact hp
 
-/-- Equal actual ring maps on the affine projective coordinate chart.-/
+/-- Equal actual ring maps on the affine projective coordinate chart.
+@isnad1 id=eq.1h7v.s13.7c198d271f51 from=translated src=- shape=becac939 vocab=3fdc2f57
+-/
 theorem coordinateChart_lift_eq_scale (n : ℕ) (c : k →+* R)
     (p : Fin (n + 1) → R) (a : Rˣ) (i : Fin (n + 1)) (hi : IsUnit (p i)) :
     (IsLocalization.Away.lift (S := Localization.Away (MvPolynomial.X (R := k) i))
@@ -163,7 +177,9 @@ theorem coordinateChart_lift_eq_scale (n : ℕ) (c : k →+* R)
     (fun _ _ hF ↦ eval₂Hom_scale c p a hF) (MvPolynomial.isHomogeneous_X k i)
     (by simpa using hi)
 
-/-- The actual basic open of each coordinate is unchanged by a unit.-/
+/-- The actual basic open of each coordinate is unchanged by a unit.
+@isnad1 id=eq.0h3v.s12.dfc8de9a15d3 from=translated src=- shape=15996913 vocab=21e02bf5
+-/
 theorem basicOpen_unit_mul (T : Scheme.{u}) (a : Γ(T, ⊤)ˣ) (p : Γ(T, ⊤)) :
     T.basicOpen ((a : Γ(T, ⊤)) * p) = T.basicOpen p := by
   rw [Scheme.basicOpen_mul, T.basicOpen_of_isUnit a.isUnit]
@@ -232,7 +248,9 @@ private theorem toBasicOpenOfGlobalSections_eq (f : A →+* Γ(T, ⊤))
   simp only [Proj.toBasicOpenOfGlobalSections, toAffineBasicOpen,
     evaluationLocalization, Category.assoc]
 
-/-- The common unit scale preserves the source basic open of every homogeneous element.-/
+/-- The common unit scale preserves the source basic open of every homogeneous element.
+@isnad1 id=eq.2h9v.s14.00f1389ebe48 from=translated src=- shape=82dc8159 vocab=eb59a83e
+-/
 theorem basicOpen_homogeneous_unit_scale (f g : A →+* Γ(T, ⊤)) (a : Γ(T, ⊤)ˣ)
     (hscale : ∀ (d : ℕ) (x : A), x ∈ 𝒜 d → g x = (a : Γ(T, ⊤)) ^ d * f x)
     {t : A} {d : ℕ} (ht : t ∈ 𝒜 d) :
@@ -241,7 +259,9 @@ theorem basicOpen_homogeneous_unit_scale (f g : A →+* Γ(T, ⊤)) (a : Γ(T, �
   simpa only [Units.val_pow_eq_pow_val] using basicOpen_unit_mul T (a ^ d) (f t)
 
 /-- Mathlib's actual local Proj maps agree after identifying their equal source
-opens. The proof compares their localization ring maps, including sheaf maps.-/
+opens. The proof compares their localization ring maps, including sheaf maps.
+@isnad1 id=eq.3h9v.s15.57017cde2a06 from=translated src=- shape=94cd2277 vocab=8343b0bc
+-/
 theorem toBasicOpenOfGlobalSections_unit_scale (f g : A →+* Γ(T, ⊤))
     (a : Γ(T, ⊤)ˣ)
     (hscale : ∀ (d : ℕ) (x : A), x ∈ 𝒜 d → g x = (a : Γ(T, ⊤)) ^ d * f x)
@@ -306,7 +326,9 @@ private theorem basicOpen_ι_fromOfGlobalSections (f : A →+* Γ(T, ⊤))
     (Proj.fromOfGlobalSections_preimage_basicOpen 𝒜 f hf hd ht).ge).symm
 
 /-- A homogeneous unit change of evaluation leaves Mathlib's canonical global
-Proj morphism unchanged. The equality is one of scheme morphisms.-/
+Proj morphism unchanged. The equality is one of scheme morphisms.
+@isnad1 id=eq.2h7v.s14.d90444a1f842 from=translated src=- shape=236b47d0 vocab=8631d892
+-/
 theorem fromOfGlobalSections_unit_scale (f g : A →+* Γ(T, ⊤)) (a : Γ(T, ⊤)ˣ)
     (hscale : ∀ (d : ℕ) (x : A), x ∈ 𝒜 d → g x = (a : Γ(T, ⊤)) ^ d * f x)
     (hf : (HomogeneousIdeal.irrelevant 𝒜).toIdeal.map f = ⊤) :
@@ -344,7 +366,9 @@ variable {k : Type u} [Field k]
 attribute [local instance] MvPolynomial.gradedAlgebra
 
 /-- Common multiplication of a projective tuple by one invertible global
-section does not change its canonical morphism to projective space.-/
+section does not change its canonical morphism to projective space.
+@isnad1 id=eq.1h6v.s14.858fe96b7fd2 from=translated src=- shape=965d467e vocab=ffe8cb69
+-/
 theorem fromOfGlobalSections_scale (T : Scheme.{u}) (n : ℕ)
     (c : k →+* Γ(T, ⊤)) (p : Fin (n + 1) → Γ(T, ⊤)) (a : Γ(T, ⊤)ˣ)
     (hp : (HomogeneousIdeal.irrelevant (projectiveGrading k n)).toIdeal.map
@@ -359,7 +383,9 @@ theorem fromOfGlobalSections_scale (T : Scheme.{u}) (n : ℕ)
     (fun _ _ hF ↦ eval₂Hom_scale c p a hF) hp
 
 /-- The two canonical Proj morphisms have the same inverse image of every
-standard coordinate chart. Their local ring-map equality is recorded below.-/
+standard coordinate chart. Their local ring-map equality is recorded below.
+@isnad1 id=eq.1h7v.s14.9bef60e7137c from=translated src=- shape=6ae2b7d5 vocab=360fd84e
+-/
 theorem fromOfGlobalSections_preimage_basicOpen_X_scale (T : Scheme.{u}) (n : ℕ)
     (c : k →+* Γ(T, ⊤)) (p : Fin (n + 1) → Γ(T, ⊤)) (a : Γ(T, ⊤)ˣ)
     (hp : (HomogeneousIdeal.irrelevant (projectiveGrading k n)).toIdeal.map
@@ -380,7 +406,9 @@ theorem fromOfGlobalSections_preimage_basicOpen_X_scale (T : Scheme.{u}) (n : �
 a common unit change of coordinates. This equality retains the structure sheaf.
 
 The chart is presented by its canonical homogeneous-localization ring. The
-global canonical morphism comparison is `fromOfGlobalSections_scale`.-/
+global canonical morphism comparison is `fromOfGlobalSections_scale`.
+@isnad1 id=eq.1h7v.s15.c35dce2753f2 from=translated src=- shape=e9989405 vocab=1136ca49
+-/
 theorem coordinateChart_schemeMap_eq_scale (T : Scheme.{u}) (n : ℕ)
     (c : k →+* Γ(T, ⊤)) (p : Fin (n + 1) → Γ(T, ⊤)) (a : Γ(T, ⊤)ˣ)
     (i : Fin (n + 1)) (hi : IsUnit (p i)) :

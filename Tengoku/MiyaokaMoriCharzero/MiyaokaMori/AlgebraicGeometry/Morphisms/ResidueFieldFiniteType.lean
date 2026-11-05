@@ -28,14 +28,18 @@ universe u
 
 namespace AlgebraicGeometry.Intersection
 
-/-- The actual residue-field map of a locally finite type morphism is essentially of finite type.-/
+/-- The actual residue-field map of a locally finite type morphism is essentially of finite type.
+@isnad1 id=essfinit.0h4v.s9.d966e7daa8eb from=translated src=- shape=46881f0a vocab=ce41d8a3
+-/
 theorem residueFieldMap_essFiniteType {X Y : Scheme.{u}} (f : X ⟶ Y)
     [LocallyOfFiniteType f] (x : X) :
     (f.residueFieldMap x).hom.EssFiniteType := by
   change (IsLocalRing.ResidueField.map (f.stalkMap x).hom).EssFiniteType
   exact (LocallyOfFiniteType.stalkMap f x).residueFieldMap
 
-/-- Local finite type of the source over the base field suffices for the actual residue map.-/
+/-- Local finite type of the source over the base field suffices for the actual residue map.
+@isnad1 id=essfinit.1h5v.s9.96c52848f9f8 from=translated src=- shape=ad3ac638 vocab=0a1a8e74
+-/
 theorem overBase_residueFieldMap_essFiniteType {k : Type u} [Field k]
     {X Y : AlgebraicGeometry.Proj.SchemeOver k} (f : X.scheme ⟶ Y.scheme) (hf : f ≫ Y.toBase = X.toBase)
     [LocallyOfFiniteType X.toBase] (x : X.scheme) :

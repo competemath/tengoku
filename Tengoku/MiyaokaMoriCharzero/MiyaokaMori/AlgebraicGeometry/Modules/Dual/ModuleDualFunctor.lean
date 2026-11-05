@@ -51,19 +51,25 @@ def localDualSectionsPrecomp (φ : M ⟶ N) (U : X.Opens) :
     intro x
     rfl
 
-/-- The pulled-back functional evaluates the original functional on the actual image section.-/
+/-- The pulled-back functional evaluates the original functional on the actual image section.
+@isnad1 id=eq.0h8v.s18.4e18818d7f14 from=translated src=- shape=3b0a5b23 vocab=bae4e605
+-/
 @[simp]
 theorem localDualSectionsPrecomp_apply (φ : M ⟶ N) (U : X.Opens)
     (α : LocalDualSections X N U) (V : Over U) (x : Γ(M, V.left)) :
     (localDualSectionsPrecomp φ U α).val V x = α.val V (φ.app V.left x) := rfl
 
-/-- Precomposition commutes with the original restriction of compatible functionals.-/
+/-- Precomposition commutes with the original restriction of compatible functionals.
+@isnad1 id=eq.0h8v.s20.d13d965be473 from=translated src=- shape=3d9000b3 vocab=1368cf3b
+-/
 theorem localDualSectionsPrecomp_restrict (φ : M ⟶ N) {U V : X.Opens}
     (i : V ⟶ U) (α : LocalDualSections X N U) :
     localDualRestrict M i (localDualSectionsPrecomp φ U α) =
       localDualSectionsPrecomp φ V (localDualRestrict N i α) := rfl
 
-/-- Precomposition with the identity fixes every compatible functional.-/
+/-- Precomposition with the identity fixes every compatible functional.
+@isnad1 id=eq.0h3v.s17.0505fed550b0 from=translated src=- shape=019ca2c4 vocab=09c6d3f9
+-/
 @[simp]
 theorem localDualSectionsPrecomp_id (M : X.Modules) (U : X.Opens) :
     localDualSectionsPrecomp (𝟙 M) U = LinearMap.id := by
@@ -75,7 +81,9 @@ theorem localDualSectionsPrecomp_id (M : X.Modules) (U : X.Opens) :
   intro x
   rfl
 
-/-- Precomposition reverses the order of composition of module-sheaf morphisms.-/
+/-- Precomposition reverses the order of composition of module-sheaf morphisms.
+@isnad1 id=eq.0h7v.s17.80c0864f1822 from=translated src=- shape=ff367480 vocab=3c72acac
+-/
 theorem localDualSectionsPrecomp_comp (φ : M ⟶ N) (ψ : N ⟶ P) (U : X.Opens) :
     localDualSectionsPrecomp (φ ≫ ψ) U =
       (localDualSectionsPrecomp φ U).comp (localDualSectionsPrecomp ψ U) := by
@@ -101,14 +109,18 @@ def moduleDualPresheafPrecomp (φ : M ⟶ N) :
     exact (localDualSectionsPrecomp_restrict φ i.unop α).symm
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Evaluation of the presheaf morphism is the original pointwise precomposition.-/
+/-- Evaluation of the presheaf morphism is the original pointwise precomposition.
+@isnad1 id=eq.0h8v.s17.b186499abc15 from=translated src=- shape=8cdf2241 vocab=539360a0
+-/
 @[simp]
 theorem moduleDualPresheafPrecomp_apply (φ : M ⟶ N) (U : X.Opens)
     (α : LocalDualSections X N U) (V : Over U) (x : Γ(M, V.left)) :
     ((moduleDualPresheafPrecomp φ).app (op U) α).val V x =
       α.val V (φ.app V.left x) := rfl
 
-/-- The dual-presheaf morphism sends an identity to the identity.-/
+/-- The dual-presheaf morphism sends an identity to the identity.
+@isnad1 id=eq.0h2v.s9.3eb26dadf237 from=translated src=- shape=fb56dbe2 vocab=9121afc3
+-/
 @[simp]
 theorem moduleDualPresheafPrecomp_id (M : X.Modules) :
     moduleDualPresheafPrecomp (𝟙 M) = 𝟙 (moduleDualPresheaf M) := by
@@ -117,7 +129,9 @@ theorem moduleDualPresheafPrecomp_id (M : X.Modules) :
   apply ModuleCat.hom_ext
   exact localDualSectionsPrecomp_id M U.unop
 
-/-- The dual-presheaf morphism reverses the order of composition.-/
+/-- The dual-presheaf morphism reverses the order of composition.
+@isnad1 id=eq.0h6v.s9.7f7e0543a1c5 from=translated src=- shape=e971afa3 vocab=de0021c2
+-/
 theorem moduleDualPresheafPrecomp_comp (φ : M ⟶ N) (ψ : N ⟶ P) :
     moduleDualPresheafPrecomp (φ ≫ ψ) =
       moduleDualPresheafPrecomp ψ ≫ moduleDualPresheafPrecomp φ := by
@@ -141,7 +155,9 @@ def moduleSheafDualFunctor (X : Scheme.{u}) : X.Modulesᵒᵖ ⥤ X.Modules :=
 def moduleSheafDualMap (φ : M ⟶ N) : moduleSheafDual N ⟶ moduleSheafDual M :=
   (moduleSheafDualFunctor X).map φ.op
 
-/-- The dual-sheaf morphism is induced by the actual presheaf precomposition under the unit.-/
+/-- The dual-sheaf morphism is induced by the actual presheaf precomposition under the unit.
+@isnad1 id=eq.0h4v.s16.e6d0c9755913 from=translated src=- shape=5637ecf0 vocab=c82656c9
+-/
 theorem moduleSheafDualMap_unit (φ : M ⟶ N) :
     moduleDualPresheafPrecomp φ ≫
         (PresheafOfModules.sheafificationAdjunction (𝟙 X.ringCatSheaf.obj)).unit.app
@@ -153,13 +169,17 @@ theorem moduleSheafDualMap_unit (φ : M ⟶ N) :
   (PresheafOfModules.sheafificationAdjunction (𝟙 X.ringCatSheaf.obj)).unit.naturality
     (moduleDualPresheafPrecomp φ)
 
-/-- The dual-sheaf morphism sends an identity to the identity.-/
+/-- The dual-sheaf morphism sends an identity to the identity.
+@isnad1 id=eq.0h2v.s5.4a4e28462bf8 from=translated src=- shape=1acb6650 vocab=fa37e889
+-/
 @[simp]
 theorem moduleSheafDualMap_id (M : X.Modules) :
     moduleSheafDualMap (𝟙 M) = 𝟙 (moduleSheafDual M) :=
   (moduleSheafDualFunctor X).map_id (op M)
 
-/-- The dual-sheaf morphism reverses the order of composition.-/
+/-- The dual-sheaf morphism reverses the order of composition.
+@isnad1 id=eq.0h6v.s6.36012f8a7ca4 from=translated src=- shape=779fc4c2 vocab=618c093c
+-/
 theorem moduleSheafDualMap_comp (φ : M ⟶ N) (ψ : N ⟶ P) :
     moduleSheafDualMap (φ ≫ ψ) = moduleSheafDualMap ψ ≫ moduleSheafDualMap φ :=
   (moduleSheafDualFunctor X).map_comp ψ.op φ.op
@@ -168,12 +188,16 @@ theorem moduleSheafDualMap_comp (φ : M ⟶ N) (ψ : N ⟶ P) :
 def moduleSheafDualIso (e : M ≅ N) : moduleSheafDual N ≅ moduleSheafDual M :=
   (moduleSheafDualFunctor X).mapIso e.op
 
-/-- The forward dual isomorphism is precomposition with the original forward morphism.-/
+/-- The forward dual isomorphism is precomposition with the original forward morphism.
+@isnad1 id=eq.0h4v.s5.358d09787758 from=translated src=- shape=2dec1883 vocab=1e109ed9
+-/
 @[simp]
 theorem moduleSheafDualIso_hom (e : M ≅ N) :
     (moduleSheafDualIso e).hom = moduleSheafDualMap e.hom := rfl
 
-/-- The inverse dual isomorphism is precomposition with the original inverse morphism.-/
+/-- The inverse dual isomorphism is precomposition with the original inverse morphism.
+@isnad1 id=eq.0h4v.s5.2c2780a7147f from=translated src=- shape=5ef77cff vocab=729f08a8
+-/
 @[simp]
 theorem moduleSheafDualIso_inv (e : M ≅ N) :
     (moduleSheafDualIso e).inv = moduleSheafDualMap e.inv := rfl

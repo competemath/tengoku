@@ -68,7 +68,9 @@ def locallyFraction (d : ℤ) :
     LocalPredicate fun x : ProjectiveSpectrum.top 𝒜 ↦ Fiber 𝒜 x :=
   (fractionPrelocal 𝒜 d).sheafify
 
-/-- Adding shifted fractions uses a common homogeneous denominator.-/
+/-- Adding shifted fractions uses a common homogeneous denominator.
+@isnad1 id=isfracti.2h7v.s11.5640bed32d2a from=translated src=- shape=335022b2 vocab=7d7dc615
+-/
 theorem isFraction_add (d : ℤ) {U : Opens (ProjectiveSpectrum.top 𝒜)}
     {s t : ∀ x : U, Fiber 𝒜 x.1}
     (hs : IsFraction 𝒜 d s) (ht : IsFraction 𝒜 d t) :
@@ -87,7 +89,9 @@ theorem isFraction_add (d : ℤ) {U : Opens (ProjectiveSpectrum.top 𝒜)}
   simp only [Pi.add_apply, hs, ht, Localization.add_mk, mul_comm, add_comm]
   rfl
 
-/-- A degree-zero homogeneous fraction multiplies a degree-`d` fraction to degree `d`.-/
+/-- A degree-zero homogeneous fraction multiplies a degree-`d` fraction to degree `d`.
+@isnad1 id=isfracti.2h7v.s10.3e33489de5aa from=translated src=- shape=b3194472 vocab=34bccd52
+-/
 theorem structureFraction_mul (d : ℤ) {U : Opens (ProjectiveSpectrum.top 𝒜)}
     {r : ∀ x : U, HomogeneousLocalization.AtPrime 𝒜 x.1.asHomogeneousIdeal.toIdeal}
     {s : ∀ x : U, Fiber 𝒜 x.1}
@@ -104,7 +108,9 @@ theorem structureFraction_mul (d : ℤ) {U : Opens (ProjectiveSpectrum.top 𝒜)
   simp only [hr, hs, HomogeneousLocalization.val_mk, Localization.mk_mul]
   rfl
 
-/-- The locally representable sections are closed under addition.-/
+/-- The locally representable sections are closed under addition.
+@isnad1 id=pred.2h7v.s11.15083d03e882 from=translated src=- shape=cc113a71 vocab=7c1e6b68
+-/
 theorem locallyFraction_add (d : ℤ) {U : Opens (ProjectiveSpectrum.top 𝒜)}
     {s t : ∀ x : U, Fiber 𝒜 x.1}
     (hs : (locallyFraction 𝒜 d).pred s) (ht : (locallyFraction 𝒜 d).pred t) :
@@ -116,7 +122,9 @@ theorem locallyFraction_add (d : ℤ) {U : Opens (ProjectiveSpectrum.top 𝒜)}
     ((fractionPrelocal 𝒜 d).res (Opens.infLELeft V W) a ha)
     ((fractionPrelocal 𝒜 d).res (Opens.infLERight V W) b hb)
 
-/-- Multiplication by an actual structure-sheaf section preserves locally shifted fractions.-/
+/-- Multiplication by an actual structure-sheaf section preserves locally shifted fractions.
+@isnad1 id=pred.1h7v.s11.6cf628080fd2 from=translated src=- shape=d279e1ea vocab=9e8e8387
+-/
 theorem locallyFraction_smul (d : ℤ) {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (r : (ProjectiveSpectrum.Proj.structureSheaf 𝒜).obj.obj (op U))
     {s : ∀ x : U, Fiber 𝒜 x.1} (hs : (locallyFraction 𝒜 d).pred s) :
@@ -176,7 +184,9 @@ def sheaf (d : ℤ) : (Proj 𝒜).Modules where
     (TopCat.Presheaf.isSheaf_of_iso (presheafForgetIso 𝒜 d).symm
       (subsheafToTypes (locallyFraction 𝒜 d)).property)
 
-/-- Restriction in the twist is the actual restriction of localization-valued functions.-/
+/-- Restriction in the twist is the actual restriction of localization-valued functions.
+@isnad1 id=eq.0h9v.s17.eb51144b4ae6 from=translated src=- shape=d34d1880 vocab=6d606f63
+-/
 @[simp]
 theorem presheaf_map_apply (d : ℤ) {U V : (Opens (ProjectiveSpectrum.top 𝒜))ᵒᵖ}
     (i : U ⟶ V) (s : (presheaf 𝒜 d).obj U) (x : V.unop) :
@@ -191,7 +201,9 @@ def homogeneousSection (d : ℕ) (a : A) (ha : a ∈ 𝒜 d)
       by omega, fun x ↦ x.1.asHomogeneousIdeal.toIdeal.primeCompl.one_mem,
       fun _ ↦ rfl⟩)
 
-/-- The canonical homogeneous sections commute with restriction to smaller opens.-/
+/-- The canonical homogeneous sections commute with restriction to smaller opens.
+@isnad1 id=eq.1h8v.s17.b054dd0052b0 from=translated src=- shape=a9c34759 vocab=73034f24
+-/
 @[simp]
 theorem homogeneousSection_restrict (d : ℕ) (a : A) (ha : a ∈ 𝒜 d)
     {U V : Opens (ProjectiveSpectrum.top 𝒜)} (i : V ⟶ U) :
@@ -214,7 +226,9 @@ def weightedCoordinateTwistingSection (R : Type u) [CommRing R] {ι : Type t}
   ProjTwisting.homogeneousSection (weightedPolynomialGrading R w) b
     (weightedCoordinatePower R w b i) (weightedCoordinatePower_mem R w b i hi) U
 
-/-- The coordinate section restricts by the restriction map of the same twist.-/
+/-- The coordinate section restricts by the restriction map of the same twist.
+@isnad1 id=eq.1h8v.s17.05d98dcc07fd from=translated src=- shape=174634c8 vocab=8bf54c65
+-/
 @[simp]
 theorem weightedCoordinateTwistingSection_restrict
     (R : Type u) [CommRing R] {ι : Type t} (w : ι → ℕ+)

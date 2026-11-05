@@ -33,6 +33,9 @@ universe u
 
 namespace AlgebraicGeometry.Scheme.Modules
 
+/--
+@isnad1 id=preserve.0h1v.s10.c8fcc3ae959a from=translated src=- shape=568eddeb vocab=4b5a04d4
+-/
 noncomputable instance module_toSheaf_preservesZeroMorphisms (X : Scheme.{u}) :
     (SheafOfModules.toSheaf.{u} X.ringCatSheaf).PreservesZeroMorphisms :=
   Functor.preservesZeroMorphisms_of_additive _
@@ -47,7 +50,9 @@ private theorem module_toSheaf_preservesFiniteColimits (X : Scheme.{u}) :
   exact preservesColimitsOfShape_of_natIso
     (PresheafOfModules.sheafificationCompToSheaf.{u} (𝟙 X.ringCatSheaf.obj)).symm
 
-/-- Forgetting the module structure preserves the actual short exact sequence of sheaves.-/
+/-- Forgetting the module structure preserves the actual short exact sequence of sheaves.
+@isnad1 id=shortexa.1h2v.s10.df4101b67aae from=translated src=- shape=afe5783a vocab=5fce0931
+-/
 theorem module_shortExact_toSheaf (X : Scheme.{u})
     {S : ShortComplex X.Modules} (hS : S.ShortExact) :
     (@ShortComplex.map _ _ _ _ _ _ S (SheafOfModules.toSheaf.{u} X.ringCatSheaf)

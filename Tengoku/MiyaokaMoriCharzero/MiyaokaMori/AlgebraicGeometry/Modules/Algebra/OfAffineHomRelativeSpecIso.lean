@@ -38,6 +38,9 @@ def ofAffineHom.relativeSpecIso : (ofAffineHom p).relativeSpec ≅ Over.mk p :=
   have := ofAffineHom.toSourceHom_isIso p
   Over.isoMk (asIso (ofAffineHom.toSourceHom p)) (ofAffineHom.toSourceHom_comp p)
 
+/--
+@isnad1 id=nonempty.0h3v.s5.a5537541f55e from=translated src=- shape=4924f2f0 vocab=f345b602
+-/
 theorem ofAffineHom_relativeSpec_iso' : Nonempty ((ofAffineHom p).relativeSpec ≅ Over.mk p) :=
   ofAffineHom_relativeSpec_iso p
 
@@ -45,12 +48,18 @@ theorem ofAffineHom_relativeSpec_iso' : Nonempty ((ofAffineHom p).relativeSpec �
 
 variable {X : Scheme.{u}}
 
+/--
+@isnad1 id=isiso.0h4v.s7.1d0944e5298e from=translated src=- shape=a34dc209 vocab=d717dbea
+-/
 instance specNatTrans_isIso {A B : X.AffineAlgebra} (φ : Hom A B) [IsIso φ.app] :
     IsIso (specNatTrans φ) := by
   have : ∀ U, IsIso ((specNatTrans φ).app U) := fun U => by
     rw [specNatTrans_app]; infer_instance
   exact NatIso.isIso_of_isIso_app _
 
+/--
+@isnad1 id=isiso.0h4v.s6.0fd74b75769e from=translated src=- shape=9c70cd09 vocab=f0eeee13
+-/
 instance relativeSpec.map_isIso {A B : X.AffineAlgebra} (φ : Hom A B) [IsIso φ.app] :
     IsIso (relativeSpec.map φ) := by
   have h : relativeSpec.map φ = (HasColimit.isoOfNatIso (asIso (specNatTrans φ))).hom := by

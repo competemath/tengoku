@@ -30,7 +30,9 @@ namespace AlgebraicGeometry.Scheme.Modules.TildeBasisFrame
 
 variable {R : CommRingCat.{u}}
 
-/-- The existing tilde-Finsupp isomorphism sends each scalar summand to the free summand.-/
+/-- The existing tilde-Finsupp isomorphism sends each scalar summand to the free summand.
+@isnad1 id=eq.0h3v.s10.acf5b2eeacd5 from=translated src=- shape=1bb82610 vocab=f63c2f94
+-/
 theorem tildeFinsupp_lsingle (I : Type u) (i : I) :
     (tildeSelf (R := R)).inv ≫
         tilde.map (ModuleCat.ofHom (Finsupp.lsingle i (R := R) (M := R))) ≫
@@ -47,7 +49,9 @@ theorem tildeFinsupp_lsingle (I : Type u) (i : I) :
       (tildeFinsupp (R := R) I).hom = SheafOfModules.ιFree i at h
   exact (Category.assoc _ _ _).symm.trans h
 
-/-- The inverse tilde-Finsupp isomorphism retains the actual scalar summand map.-/
+/-- The inverse tilde-Finsupp isomorphism retains the actual scalar summand map.
+@isnad1 id=eq.0h3v.s11.89f19764535f from=translated src=- shape=eeb4604b vocab=cbc7fec0
+-/
 theorem ιFree_tildeFinsupp_inv (I : Type u) (i : I) :
     SheafOfModules.ιFree (R := (Spec R).ringCatSheaf) i ≫
         (tildeFinsupp (R := R) I).inv =
@@ -62,7 +66,9 @@ variable {M : ModuleCat.{u} R} {I : Type u} (b : Module.Basis I R M)
 def basisIso : tilde M ≅ SheafOfModules.free (R := (Spec R).ringCatSheaf) I :=
   (tilde.functor R).mapIso b.repr.toModuleIso ≪≫ tildeFinsupp I
 
-/-- A scalar coordinate reconstructs exactly the corresponding multiple of the basis vector.-/
+/-- A scalar coordinate reconstructs exactly the corresponding multiple of the basis vector.
+@isnad1 id=eq.0h5v.s9.36681396c76d from=translated src=- shape=44f94683 vocab=b22c18ca
+-/
 theorem lsingle_repr_inv (i : I) :
     ModuleCat.ofHom (Finsupp.lsingle i (R := R) (M := R)) ≫ b.repr.toModuleIso.inv =
       ModuleCat.ofHom (LinearMap.toSpanSingleton R M (b i)) := by
@@ -77,7 +83,9 @@ Proof: `(basisIso b).inv = (tildeFinsupp I).inv ≫ tilde.map b.repr.toModuleIso
 precomposing with `ιFree i` and using `ιFree_tildeFinsupp_inv` gives
 `tildeSelf.inv ≫ tilde.map (lsingle i) ≫ tilde.map b.repr⁻¹`, and `tilde.map_comp` together with
 `lsingle_repr_inv` identifies the last two factors with `tilde.map (toSpanSingleton (b i))`.
-(The same statement is `AlgebraicGeometry.Scheme.Modules.ιFree_basisIso_inv'` in `SpecModulesFreeOfBasis`.)-/
+(The same statement is `AlgebraicGeometry.Scheme.Modules.ιFree_basisIso_inv'` in `SpecModulesFreeOfBasis`.)
+@isnad1 id=eq.0h5v.s11.e95e0571b23e from=translated src=- shape=8fd43595 vocab=10062fd1
+-/
 theorem ιFree_basisIso_inv (i : I) :
     SheafOfModules.ιFree (R := (Spec R).ringCatSheaf) i ≫ (basisIso b).inv =
       (tildeSelf (R := R)).inv ≫
@@ -91,7 +99,9 @@ theorem ιFree_basisIso_inv (i : I) :
   refine (tilde.map_comp _ _).symm.trans ?_
   exact congrArg tilde.map (lsingle_repr_inv b i)
 
-/-- The forward sheaf frame sends the actual basis vector map to its free summand.-/
+/-- The forward sheaf frame sends the actual basis vector map to its free summand.
+@isnad1 id=eq.0h5v.s10.1d978579c462 from=translated src=- shape=953d65b3 vocab=ee0d3200
+-/
 theorem basisVector_basisIso_hom (i : I) :
     ((tildeSelf (R := R)).inv ≫
         tilde.map (ModuleCat.ofHom (LinearMap.toSpanSingleton R M (b i)))) ≫
@@ -99,7 +109,9 @@ theorem basisVector_basisIso_hom (i : I) :
       SheafOfModules.ιFree (R := (Spec R).ringCatSheaf) i := by
   exact (Iso.eq_comp_inv (basisIso b)).1 (ιFree_basisIso_inv b i).symm
 
-/-- The corresponding free section reconstructs the section of the original basis vector.-/
+/-- The corresponding free section reconstructs the section of the original basis vector.
+@isnad1 id=eq.0h5v.s12.ed0bc8418f3b from=translated src=- shape=7ff33043 vocab=03a6335a
+-/
 theorem basisIso_inv_freeSection (i : I) :
     SheafOfModules.sectionsMap (basisIso b).inv (SheafOfModules.freeSection i) =
       (tilde M).unitHomEquiv ((tildeSelf (R := R)).inv ≫
@@ -112,7 +124,9 @@ def finBasisIso {n : ℕ} (b : Module.Basis (Fin n) R M) :
     tilde M ≅ SheafOfModules.free (R := (Spec R).ringCatSheaf) (ULift.{u} (Fin n)) :=
   basisIso (b.reindex Equiv.ulift.symm)
 
-/-- Raising the finite index universe preserves every original basis vector map.-/
+/-- Raising the finite index universe preserves every original basis vector map.
+@isnad1 id=eq.0h5v.s11.7fc4875eb525 from=translated src=- shape=471d20b0 vocab=3c3561d7
+-/
 theorem ιFree_finBasisIso_inv {n : ℕ} (b : Module.Basis (Fin n) R M) (i : Fin n) :
     SheafOfModules.ιFree (R := (Spec R).ringCatSheaf) (ULift.up i) ≫
         (finBasisIso b).inv =

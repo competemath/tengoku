@@ -44,7 +44,9 @@ private def stalkTypesIsColimit (P : PresheafOfModules.{u} (X.presheaf ⋙ forge
     IsColimit (stalkTypesCocone X x P) :=
   isColimitOfPreserves (CategoryTheory.forget Ab) (colimit.isColimit _)
 
-/-- A pair of module germs has representatives over one common neighbourhood.-/
+/-- A pair of module germs has representatives over one common neighbourhood.
+@isnad1 id=ex.0h6v.s13.d0d0b0ca8244 from=translated src=- shape=5d2f2414 vocab=404a2b1b
+-/
 theorem modulePresheafStalk_exists_pair
     (m : ↑(TopCat.Presheaf.stalk (C := Ab) M.presheaf x))
     (n : ↑(TopCat.Presheaf.stalk (C := Ab) N.presheaf x)) :
@@ -55,7 +57,9 @@ theorem modulePresheafStalk_exists_pair
     ((stalkTypesIsColimit X x M).tensor (stalkTypesIsColimit X x N)) (m, n)
   exact ⟨U.unop.1, U.unop.2, a, b, congrArg Prod.fst h, congrArg Prod.snd h⟩
 
-/-- Three module germs have representatives over one common neighbourhood.-/
+/-- Three module germs have representatives over one common neighbourhood.
+@isnad1 id=ex.0h8v.s14.c5a33f32aa92 from=translated src=- shape=66029cd1 vocab=404a2b1b
+-/
 theorem modulePresheafStalk_exists_triple
     (P : PresheafOfModules.{u} (X.presheaf ⋙ forget₂ CommRingCat RingCat))
     (m : ↑(TopCat.Presheaf.stalk (C := Ab) M.presheaf x))
@@ -111,7 +115,9 @@ def tensorPresheafStalkPair
   ((stalkTypesIsColimit X x M).tensor (stalkTypesIsColimit X x N)).desc
     (tensorGermPairCocone X M N x) (m, n)
 
-/-- Pure tensors of representatives compute the stalk pairing.-/
+/-- Pure tensors of representatives compute the stalk pairing.
+@isnad1 id=eq.1h7v.s14.c489ff41d07d from=translated src=- shape=821cb6a2 vocab=7ee8cb3a
+-/
 @[simp]
 theorem tensorPresheafStalkPair_germ (U : X.Opens) (hx : x ∈ U)
     (m : M.obj (op U)) (n : N.obj (op U)) :
@@ -125,7 +131,9 @@ theorem tensorPresheafStalkPair_germ (U : X.Opens) (hx : x ∈ U)
     (((stalkTypesIsColimit X x M).tensor (stalkTypesIsColimit X x N)).fac
       (tensorGermPairCocone X M N x) (op ⟨U, hx⟩))
 
-/-- The stalk pairing is additive in its first variable.-/
+/-- The stalk pairing is additive in its first variable.
+@isnad1 id=eq.0h7v.s13.eb4726112e51 from=translated src=- shape=145bbb1f vocab=e91a210c
+-/
 theorem tensorPresheafStalkPair_add_left
     (m m' : ↑(TopCat.Presheaf.stalk (C := Ab) M.presheaf x))
     (n : ↑(TopCat.Presheaf.stalk (C := Ab) N.presheaf x)) :
@@ -136,7 +144,9 @@ theorem tensorPresheafStalkPair_add_left
   rw [← map_add, tensorPresheafStalkPair_germ, TensorProduct.add_tmul, map_add,
     tensorPresheafStalkPair_germ, tensorPresheafStalkPair_germ]
 
-/-- The stalk pairing is additive in its second variable.-/
+/-- The stalk pairing is additive in its second variable.
+@isnad1 id=eq.0h7v.s13.0a3e42edb7cd from=translated src=- shape=81c73abe vocab=e91a210c
+-/
 theorem tensorPresheafStalkPair_add_right
     (m : ↑(TopCat.Presheaf.stalk (C := Ab) M.presheaf x))
     (n n' : ↑(TopCat.Presheaf.stalk (C := Ab) N.presheaf x)) :
@@ -147,7 +157,9 @@ theorem tensorPresheafStalkPair_add_right
   rw [← map_add, tensorPresheafStalkPair_germ, TensorProduct.tmul_add, map_add,
     tensorPresheafStalkPair_germ, tensorPresheafStalkPair_germ]
 
-/-- A scalar germ and two module germs can be represented on the same neighbourhood.-/
+/-- A scalar germ and two module germs can be represented on the same neighbourhood.
+@isnad1 id=ex.0h7v.s14.1b2c761c61fe from=translated src=- shape=00960048 vocab=404a2b1b
+-/
 theorem modulePresheafStalk_exists_scalar_pair (r : X.presheaf.stalk x)
     (m : ↑(TopCat.Presheaf.stalk (C := Ab) M.presheaf x))
     (n : ↑(TopCat.Presheaf.stalk (C := Ab) N.presheaf x)) :
@@ -162,7 +174,9 @@ theorem modulePresheafStalk_exists_scalar_pair (r : X.presheaf.stalk x)
     TopCat.Presheaf.germ_res_apply M.presheaf (homOfLE hVU) x hxV b,
     TopCat.Presheaf.germ_res_apply N.presheaf (homOfLE hVU) x hxV c⟩
 
-/-- The stalk pairing is linear over the local ring in its first variable.-/
+/-- The stalk pairing is linear over the local ring in its first variable.
+@isnad1 id=eq.0h7v.s14.23857cdd43bd from=translated src=- shape=371122a7 vocab=c80895af
+-/
 theorem tensorPresheafStalkPair_smul_left (r : X.presheaf.stalk x)
     (m : ↑(TopCat.Presheaf.stalk (C := Ab) M.presheaf x))
     (n : ↑(TopCat.Presheaf.stalk (C := Ab) N.presheaf x)) :
@@ -174,7 +188,9 @@ theorem tensorPresheafStalkPair_smul_left (r : X.presheaf.stalk x)
     tensorPresheafStalkPair_germ, ← TensorProduct.smul_tmul',
     PresheafOfModules.germ_smul (R := X.presheaf), tensorPresheafStalkPair_germ]
 
-/-- The stalk pairing is linear over the local ring in its second variable.-/
+/-- The stalk pairing is linear over the local ring in its second variable.
+@isnad1 id=eq.0h7v.s14.29a84c5ace88 from=translated src=- shape=ba2871b1 vocab=c80895af
+-/
 theorem tensorPresheafStalkPair_smul_right (r : X.presheaf.stalk x)
     (m : ↑(TopCat.Presheaf.stalk (C := Ab) M.presheaf x))
     (n : ↑(TopCat.Presheaf.stalk (C := Ab) N.presheaf x)) :
@@ -211,7 +227,9 @@ def tensorPresheafStalkFromTensor :
       (PresheafOfModules.Monoidal.tensorObj (R := X.presheaf) M N).presheaf x) :=
   TensorProduct.lift (tensorPresheafStalkBilinear X M N x)
 
-/-- The canonical inverse sends the tensor of two germs to the germ of their tensor.-/
+/-- The canonical inverse sends the tensor of two germs to the germ of their tensor.
+@isnad1 id=eq.1h7v.s15.5c8afde95b3d from=translated src=- shape=fd56450d vocab=aa72742a
+-/
 @[simp]
 theorem tensorPresheafStalkFromTensor_germ (U : X.Opens) (hx : x ∈ U)
     (m : M.obj (op U)) (n : N.obj (op U)) :
@@ -253,7 +271,9 @@ def tensorPresheafGermTensor (U : X.Opens) (hx : x ∈ U) :
         rw [PresheafOfModules.germ_smul (R := X.presheaf) M, ← TensorProduct.smul_tmul']
         rfl }
 
-/-- The section tensor map is characterized by its action on pure tensors.-/
+/-- The section tensor map is characterized by its action on pure tensors.
+@isnad1 id=eq.1h7v.s16.3061f500f688 from=translated src=- shape=7d9057f4 vocab=cd884b3a
+-/
 @[simp]
 theorem tensorPresheafGermTensor_tmul (U : X.Opens) (hx : x ∈ U)
     (m : M.obj (op U)) (n : N.obj (op U)) :
@@ -323,7 +343,9 @@ def tensorPresheafStalkToTensor :
       (tensorPresheafGermTensor X M N x V hxV).map_smulₛₗ]
     rfl
 
-/-- Taking the stalk map on a tensor of local sections gives the tensor of their germs.-/
+/-- Taking the stalk map on a tensor of local sections gives the tensor of their germs.
+@isnad1 id=eq.1h7v.s15.56583d6b9f35 from=translated src=- shape=e88b51fc vocab=5e4a2d07
+-/
 @[simp]
 theorem tensorPresheafStalkToTensor_germ_tmul (U : X.Opens) (hx : x ∈ U)
     (m : M.obj (op U)) (n : N.obj (op U)) :
@@ -362,7 +384,9 @@ def tensorPresheafStalkEquiv :
           rfl
       | add a b ha hb => simpa only [map_add] using congrArg₂ (· + ·) ha hb)
 
-/-- The canonical equivalence preserves the represented pure tensor.-/
+/-- The canonical equivalence preserves the represented pure tensor.
+@isnad1 id=eq.1h7v.s15.1fb8ae76fc2e from=translated src=- shape=f99088a0 vocab=42bbe62e
+-/
 @[simp]
 theorem tensorPresheafStalkEquiv_germ_tmul (U : X.Opens) (hx : x ∈ U)
     (m : M.obj (op U)) (n : N.obj (op U)) :

@@ -31,7 +31,9 @@ namespace MiyaokaMori.RingTheory
 
 universe u v
 
-/-- A nonzero étale algebra over a one-dimensional Jacobson domain has dimension one.-/
+/-- A nonzero étale algebra over a one-dimensional Jacobson domain has dimension one.
+@isnad1 id=eq.1h2v.s6.06e69a855778 from=translated src=- shape=f1286600 vocab=680c5102
+-/
 theorem ringKrullDim_eq_one_of_etale
     (A : Type u) (S : Type v) [CommRing A] [CommRing S]
     [IsDomain A] [IsJacobsonRing A] [Nontrivial S]
@@ -91,7 +93,9 @@ theorem ringKrullDim_eq_one_of_etale
     exact hPQ
   exact le_antisymm (hupper.trans_eq hA) hlower
 
-/-- A nonzero standard smooth algebra of relative dimension one over a field has dimension one.-/
+/-- A nonzero standard smooth algebra of relative dimension one over a field has dimension one.
+@isnad1 id=eq.1h3v.s6.5297a5b5a169 from=translated src=- shape=78c2aac1 vocab=77e4b2c3
+-/
 theorem ringKrullDim_eq_one_of_standardSmooth
     (K : Type u) (S : Type v) [Field K] [CommRing S] [Nontrivial S]
     (f : K →+* S) (hf : f.IsStandardSmoothOfRelativeDimension 1) :

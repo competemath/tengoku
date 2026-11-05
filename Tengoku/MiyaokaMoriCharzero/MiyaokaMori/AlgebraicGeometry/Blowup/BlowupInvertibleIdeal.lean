@@ -20,7 +20,9 @@ namespace MiyaokaMori.Statement
 
 universe u
 
-/-- The identity is a blowup of the given ideal exactly when the ideal is invertible.-/
+/-- The identity is a blowup of the given ideal exactly when the ideal is invertible.
+@isnad1 id=iff.0h2v.s4.4a6db4f52ebb from=translated src=- shape=548b9726 vocab=ffede643
+-/
 theorem isBlowup_id_iff {X : Scheme.{u}} (I : X.IdealSheafData) :
     IsBlowup I (𝟙 X) ↔ IsInvertibleIdeal I := by
   constructor
@@ -33,7 +35,9 @@ theorem isBlowup_id_iff {X : Scheme.{u}} (I : X.IdealSheafData) :
     intro g hg
     simpa using hg
 
-/-- Every actual blowup of an invertible ideal is an isomorphism over the original scheme.-/
+/-- Every actual blowup of an invertible ideal is an isomorphism over the original scheme.
+@isnad1 id=isiso.2h4v.s5.68f556294576 from=translated src=- shape=d04a286a vocab=370a12e2
+-/
 theorem IsBlowup.isIso_of_isInvertibleIdeal
     {X B : Scheme.{u}} {I : X.IdealSheafData} {b : B ⟶ X}
     (hb : IsBlowup I b) (hI : IsInvertibleIdeal I) : IsIso b := by

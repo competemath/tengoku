@@ -46,6 +46,9 @@ def order {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X] {z : X}
     (_hz : coheight z = 1) (e : LocalPrincipalEquation X z) : ℤ :=
   Scheme.ord e.function z
 
+/--
+@isnad1 id=eq.1h3v.s6.4d5614faf1b4 from=translated src=- shape=731f2723 vocab=93865dc5
+-/
 @[simp]
 theorem order_eq_ord {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X] {z : X}
     (hz : coheight z = 1) (e : LocalPrincipalEquation X z) : e.order hz = Scheme.ord e.function z := rfl
@@ -57,13 +60,17 @@ def LocalPrincipalEquation.mul {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoether
     {z : X} (e₁ e₂ : LocalPrincipalEquation X z) : LocalPrincipalEquation X z :=
   ⟨e₁.function * e₂.function, mul_ne_zero e₁.ne_zero e₂.ne_zero⟩
 
-/-- Order additivity for the actual function-field local equation.-/
+/-- Order additivity for the actual function-field local equation.
+@isnad1 id=eq.1h4v.s6.825a004aad51 from=translated src=- shape=be039b7e vocab=d9950b56
+-/
 theorem LocalPrincipalEquation.order_mul {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X]
     {z : X} (hz : coheight z = 1) (e₁ e₂ : LocalPrincipalEquation X z) :
     (e₁.mul e₂).order hz = e₁.order hz + e₂.order hz := by
   exact Scheme.ord_mul e₁.ne_zero e₂.ne_zero
 
-/-- A principal local equation which is a regular unit has zero order.-/
+/-- A principal local equation which is a regular unit has zero order.
+@isnad1 id=eq.4h5v.s10.bb257b1d8574 from=translated src=- shape=adba4b04 vocab=6fbc69bd
+-/
 theorem LocalPrincipalEquation.order_eq_zero_of_isUnit
     {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X] {z : X}
     (hz : coheight z = 1) (e : LocalPrincipalEquation X z) {U : X.Opens} [Nonempty U]
@@ -96,6 +103,9 @@ def localPrincipalActionAt {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian 
       exact hzα
     · exact (hy (by simp [Function.locallyFinsuppWithin.single_apply, h])).elim⟩
 
+/--
+@isnad1 id=eq.3h4v.s8.8eaffcf920f5 from=translated src=- shape=c21a4068 vocab=4a2b99cc
+-/
 @[simp]
 theorem localPrincipalActionAt_apply {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X]
     {z : X} (hcurve : pointClosureDimension X (genericPoint X) = 1)
@@ -104,6 +114,9 @@ theorem localPrincipalActionAt_apply {X : Scheme.{u}} [IsIntegral X] [IsLocallyN
     (localPrincipalActionAt hcurve hz e α hzα).1 z = localPrincipalCoefficient hcurve hz e α := by
   simp [localPrincipalActionAt]
 
+/--
+@isnad1 id=eq.4h5v.s8.eaae80819c4b from=translated src=- shape=d9412dae vocab=6ca2a623
+-/
 theorem localPrincipalActionAt_apply_of_ne {X : Scheme.{u}} [IsIntegral X]
     [IsLocallyNoetherian X] {z y : X} (hcurve : pointClosureDimension X (genericPoint X) = 1)
     (hz : coheight z = 1)
@@ -112,7 +125,9 @@ theorem localPrincipalActionAt_apply_of_ne {X : Scheme.{u}} [IsIntegral X]
     (localPrincipalActionAt hcurve hz e α hzα).1 y = 0 := by
   simp [localPrincipalActionAt, Function.locallyFinsuppWithin.single_apply, hyz]
 
-/-- The local contribution is coefficientwise the order of vanishing times the cycle coefficient.-/
+/-- The local contribution is coefficientwise the order of vanishing times the cycle coefficient.
+@isnad1 id=eq.2h5v.s7.5710b01e1efc from=translated src=- shape=d0814e3c vocab=6626f7ab
+-/
 theorem localPrincipalCoefficient_mul {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X]
     {z : X} (hcurve : pointClosureDimension X (genericPoint X) = 1)
     (hz : coheight z = 1) (e₁ e₂ : LocalPrincipalEquation X z)

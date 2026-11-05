@@ -53,16 +53,28 @@ variable {R A B : Type*} [CommRing R] [CommRing A] [CommRing B] [Algebra R A] [A
 /-- The image of `M ⊗ B` in `A ⊗[R] B`. For `M = 𝒜 m` this is `GradedBaseChange.tensorGrading 𝒜 m`.-/
 def tensorSub (M : Submodule R A) : Submodule R (A ⊗[R] B) := (M.subtype.rTensor B).range
 
+/--
+@isnad1 id=iff.0h5v.s11.c86dd7f9a40e from=translated src=- shape=3548d056 vocab=d43a91d8
+-/
 theorem mem_tensorSub {M : Submodule R A} {x : A ⊗[R] B} :
     x ∈ tensorSub (B := B) M ↔ ∃ y : M ⊗[R] B, (M.subtype.rTensor B) y = x := Iff.rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.caadb84fabc5 from=translated src=- shape=3a3df9b7 vocab=e90fc8ab
+-/
 theorem tensorSub_eq_tensorGrading (𝒜 : ℕ → Submodule R A) (m : ℕ) :
     tensorSub (B := B) (𝒜 m) = GradedBaseChange.tensorGrading 𝒜 (B := B) m := rfl
 
+/--
+@isnad1 id=mem.1h6v.s9.3a0e4ec3f72a from=translated src=- shape=d88757f4 vocab=ecac8b25
+-/
 theorem tmul_mem_tensorSub {M : Submodule R A} {a : A} (ha : a ∈ M) (b : B) :
     a ⊗ₜ[R] b ∈ tensorSub (B := B) M :=
   ⟨(⟨a, ha⟩ : M) ⊗ₜ[R] b, by rw [LinearMap.rTensor_tmul]; rfl⟩
 
+/--
+@isnad1 id=le.1h5v.s9.82181ce10b70 from=translated src=- shape=b8e4b5d3 vocab=59e1bbcf
+-/
 theorem tensorSub_mono {M N : Submodule R A} (h : M ≤ N) :
     tensorSub (B := B) M ≤ tensorSub (B := B) N := by
   rintro x ⟨y, rfl⟩
@@ -71,7 +83,9 @@ theorem tensorSub_mono {M N : Submodule R A} (h : M ≤ N) :
   | add u v hu hv => rw [map_add]; exact Submodule.add_mem _ hu hv
   | tmul a b => rw [LinearMap.rTensor_tmul]; exact tmul_mem_tensorSub (h a.2) b
 
-/-- Lifting a pointwise multiplicativity condition to `tensorSub`.-/
+/-- Lifting a pointwise multiplicativity condition to `tensorSub`.
+@isnad1 id=mem.3h8v.s11.01521d9e3e0f from=translated src=- shape=8bbfbd84 vocab=4210a3d6
+-/
 theorem tensorSub_mul {M N P : Submodule R A}
     (h : ∀ a ∈ M, ∀ b ∈ N, a * b ∈ P) {x y : A ⊗[R] B}
     (hx : x ∈ tensorSub (B := B) M) (hy : y ∈ tensorSub (B := B) N) :
@@ -105,22 +119,40 @@ def irrelevant : Ideal A := (HomogeneousIdeal.irrelevant 𝒜).toIdeal
 def irrPow (p j : ℕ) : Submodule R A :=
   Submodule.restrictScalars R ((irrelevant 𝒜) ^ p) ⊓ 𝒜 j
 
+/--
+@isnad1 id=iff.0h6v.s8.f2cbf9ca75c1 from=translated src=- shape=f155014d vocab=b65b6ea2
+-/
 theorem mem_irrPow {p j : ℕ} {x : A} :
     x ∈ irrPow 𝒜 p j ↔ x ∈ (irrelevant 𝒜) ^ p ∧ x ∈ 𝒜 j := Iff.rfl
 
+/--
+@isnad1 id=le.0h5v.s7.d8caee90d9e2 from=translated src=- shape=51214c52 vocab=ac2f3242
+-/
 theorem irrPow_le (p j : ℕ) : irrPow 𝒜 p j ≤ 𝒜 j := fun _ hx => hx.2
 
+/--
+@isnad1 id=eq.0h4v.s6.0f58e1369c94 from=translated src=- shape=1be2e861 vocab=238090f2
+-/
 theorem irrPow_zero (j : ℕ) : irrPow 𝒜 0 j = 𝒜 j := by
   refine le_antisymm (irrPow_le 𝒜 0 j) fun x hx => ?_
   exact ⟨by rw [pow_zero, Ideal.one_eq_top]; exact Submodule.mem_top, hx⟩
 
+/--
+@isnad1 id=le.1h6v.s7.fb2abeb98cb0 from=translated src=- shape=2db21d67 vocab=ac2f3242
+-/
 theorem irrPow_anti {p q j : ℕ} (h : q ≤ p) : irrPow 𝒜 p j ≤ irrPow 𝒜 q j :=
   fun _ hx => ⟨Ideal.pow_le_pow_right h hx.1, hx.2⟩
 
+/--
+@isnad1 id=mem.0h3v.s7.0fe7bdd50594 from=translated src=- shape=b12fcae1 vocab=95558292
+-/
 theorem one_mem_irrPow : (1 : A) ∈ irrPow 𝒜 0 0 := by
   rw [irrPow_zero]
   exact SetLike.one_mem_graded 𝒜
 
+/--
+@isnad1 id=mem.2h9v.s8.0864d19d0d47 from=translated src=- shape=64c9ed01 vocab=54b1fe81
+-/
 theorem irrPow_mul {p q j k : ℕ} {x y : A} (hx : x ∈ irrPow 𝒜 p j) (hy : y ∈ irrPow 𝒜 q k) :
     x * y ∈ irrPow 𝒜 (p + q) (j + k) :=
   ⟨by rw [pow_add]; exact Ideal.mul_mem_mul hx.1 hy.1,
@@ -143,17 +175,26 @@ def reesPiece (j : ℕ) : Submodule R (A ⊗[R] B) :=
   ⨆ e : ℕ, (tensorSub (B := B) (irrPow 𝒜 (j - e) j)).map
     (LinearMap.mulLeft R (lam (A := A) t ^ e))
 
+/--
+@isnad1 id=mem.1h8v.s10.c984f3848fd8 from=translated src=- shape=78c5d818 vocab=1d131a4d
+-/
 theorem mem_reesPiece_of {e j : ℕ} {x : A ⊗[R] B}
     (hx : x ∈ tensorSub (B := B) (irrPow 𝒜 (j - e) j)) :
     lam (A := A) t ^ e * x ∈ reesPiece 𝒜 t j :=
   Submodule.mem_iSup_of_mem e ⟨x, hx, rfl⟩
 
+/--
+@isnad1 id=mem.0h5v.s9.4520423780ce from=translated src=- shape=7da88033 vocab=39e1da69
+-/
 theorem one_mem_reesPiece : (1 : A ⊗[R] B) ∈ reesPiece 𝒜 t 0 := by
   have h : (1 : A ⊗[R] B) = lam (A := A) t ^ 0 * ((1 : A) ⊗ₜ[R] (1 : B)) := by
     rw [pow_zero, one_mul]; rfl
   rw [h]
   exact mem_reesPiece_of 𝒜 t (tmul_mem_tensorSub (one_mem_irrPow 𝒜) 1)
 
+/--
+@isnad1 id=mem.2h9v.s10.461233b4247e from=translated src=- shape=036cd579 vocab=202311dd
+-/
 theorem mul_mem_reesPiece {j k : ℕ} {x y : A ⊗[R] B}
     (hx : x ∈ reesPiece 𝒜 t j) (hy : y ∈ reesPiece 𝒜 t k) :
     x * y ∈ reesPiece 𝒜 t (j + k) := by
@@ -175,17 +216,25 @@ theorem mul_mem_reesPiece {j k : ℕ} {x y : A ⊗[R] B}
   · rw [zero_mul]; exact Submodule.zero_mem _
   · intro a b ha hb; rw [add_mul]; exact Submodule.add_mem _ ha hb
 
+/--
+@isnad1 id=eq.0h5v.s8.9dea1fbf35c5 from=translated src=- shape=18165f96 vocab=feb74531
+-/
 theorem lam_pow (e : ℕ) : lam (A := A) t ^ e = (1 : A) ⊗ₜ[R] (t ^ e) := by
   show (Algebra.TensorProduct.includeRight (R := R) (A := A) (B := B) t) ^ e = _
   rw [← map_pow]
   rfl
 
+/--
+@isnad1 id=mem.0h6v.s9.53df48645485 from=translated src=- shape=beca8221 vocab=c522103f
+-/
 theorem lam_pow_mem (e : ℕ) : lam (A := A) t ^ e ∈ tensorSub (B := B) (𝒜 0) := by
   rw [lam_pow]
   exact tmul_mem_tensorSub (SetLike.one_mem_graded 𝒜) (t ^ e)
 
 /-- `R_j ⊆ (A ⊗ B)_j`: the `j`-th Rees piece lies in the `j`-th piece of the base change (i.e.
-"`R_j ⊆ S_j[λ]`").-/
+"`R_j ⊆ S_j[λ]`").
+@isnad1 id=le.0h6v.s9.97e93f3a6642 from=translated src=- shape=867e243c vocab=d674c04a
+-/
 theorem reesPiece_le_tensorGrading (j : ℕ) :
     reesPiece 𝒜 t j ≤ GradedBaseChange.tensorGrading 𝒜 (B := B) j := by
   intro x hx
@@ -214,7 +263,9 @@ variable {R R' A A' B B' : Type*}
   (hψ : ∀ r : R, ψ (algebraMap R A r) = algebraMap R' A' (φ r))
   (hχ : ∀ r : R, χ (algebraMap R B r) = algebraMap R' B' (φ r))
 
-/-- A grading-preserving ring map sends `tensorSub M` into `tensorSub M'`.-/
+/-- A grading-preserving ring map sends `tensorSub M` into `tensorSub M'`.
+@isnad1 id=mem.4h12v.s11.cc063af53b53 from=translated src=- shape=9cd7647e vocab=a4cd2bda
+-/
 theorem map_mem_tensorSub {M : Submodule R A} {M' : Submodule R' A'}
     (h : ∀ a ∈ M, ψ a ∈ M') {x : A ⊗[R] B} (hx : x ∈ tensorSub (B := B) M) :
     GradedBaseChange.map φ ψ χ hψ hχ x ∈ tensorSub (B := B') M' := by
@@ -229,7 +280,9 @@ theorem map_mem_tensorSub {M : Submodule R A} {M' : Submodule R' A'}
 variable (hgr : ∀ (m : ℕ) (a : A), a ∈ 𝒜 m → ψ a ∈ 𝒜' m)
 
 include hgr in
-/-- Preserving the grading ⇒ preserving the irrelevant ideal.-/
+/-- Preserving the grading ⇒ preserving the irrelevant ideal.
+@isnad1 id=mem.2h8v.s9.ac3ae5a09235 from=translated src=- shape=cc586de6 vocab=d33517b2
+-/
 theorem map_mem_irrelevant {x : A} (hx : x ∈ irrelevant 𝒜) : ψ x ∈ irrelevant 𝒜' := by
   have hle : irrelevant 𝒜 ≤ Ideal.comap ψ (irrelevant 𝒜') := by
     refine (HomogeneousIdeal.toIdeal_irrelevant_le 𝒜).mpr fun i hi a ha => ?_
@@ -237,7 +290,9 @@ theorem map_mem_irrelevant {x : A} (hx : x ∈ irrelevant 𝒜) : ψ x ∈ irrel
   exact hle hx
 
 include hgr in
-/-- Preserving the grading ⇒ preserving the powers of the irrelevant ideal.-/
+/-- Preserving the grading ⇒ preserving the powers of the irrelevant ideal.
+@isnad1 id=mem.2h9v.s9.1afdd0b52906 from=translated src=- shape=158433c1 vocab=606bff81
+-/
 theorem map_mem_irrelevant_pow {p : ℕ} {x : A} (hx : x ∈ (irrelevant 𝒜) ^ p) :
     ψ x ∈ (irrelevant 𝒜') ^ p := by
   have hle0 : irrelevant 𝒜 ≤ Ideal.comap ψ (irrelevant 𝒜') := by
@@ -248,12 +303,17 @@ theorem map_mem_irrelevant_pow {p : ℕ} {x : A} (hx : x ∈ (irrelevant 𝒜) ^
   exact hle hx
 
 include hgr in
+/--
+@isnad1 id=mem.2h10v.s9.00f7a68aedd8 from=translated src=- shape=46a85642 vocab=92d436c9
+-/
 theorem map_mem_irrPow {p j : ℕ} {x : A} (hx : x ∈ irrPow 𝒜 p j) : ψ x ∈ irrPow 𝒜' p j :=
   ⟨map_mem_irrelevant_pow 𝒜 𝒜' ψ hgr hx.1, hgr j x hx.2⟩
 
 include hgr in
 /-- **Functoriality of the Rees pieces**: if `ψ` preserves the grading and `χ t = t'`, the base-change
-map sends `R_j` into `R'_j`.-/
+map sends `R_j` into `R'_j`.
+@isnad1 id=mem.5h15v.s11.3f9a45d943b9 from=translated src=- shape=a95c0a1f vocab=929d05ed
+-/
 theorem map_mem_reesPiece {t : B} {t' : B'} (ht : χ t = t') {j : ℕ} {x : A ⊗[R] B}
     (hx : x ∈ reesPiece 𝒜 t j) :
     GradedBaseChange.map φ ψ χ hψ hχ x ∈ reesPiece 𝒜' t' j := by

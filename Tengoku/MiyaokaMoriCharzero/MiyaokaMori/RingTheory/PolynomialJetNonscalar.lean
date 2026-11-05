@@ -30,7 +30,9 @@ namespace MiyaokaMori.Jet
 open Polynomial
 
 /-- A polynomial equal to one at zero has invertible image in the actual truncated ring.
-The proof uses nilpotence of the parameter, and works over any commutative ring.-/
+The proof uses nilpotence of the parameter, and works over any commutative ring.
+@isnad1 id=isunit.1h3v.s8.6b5fb3b9bd89 from=translated src=- shape=9eb0ab00 vocab=ce2d7ef8
+-/
 theorem isUnit_jetProjection_of_eval_zero_eq_one {R : Type*} [CommRing R]
     (T : ℕ) (p : R[X]) (hp : p.eval 0 = 1) : IsUnit (jetProjection R T p) := by
   have hdvd : (X : R[X]) ∣ p - 1 := by
@@ -51,7 +53,9 @@ theorem isUnit_jetProjection_of_eval_zero_eq_one {R : Type*} [CommRing R]
 variable {K ι : Type*} [Field K]
 
 /-- Vanishing of the seed minors with any fixed nonzero seed coordinate gives one common
-scalar polynomial, whose value at zero is one. The coordinate index need not be finite.-/
+scalar polynomial, whose value at zero is one. The coordinate index need not be finite.
+@isnad1 id=ex.3h5v.s9.4ba056a00221 from=translated src=- shape=014f5aa0 vocab=d8a81ea5
+-/
 theorem exists_scalar_polynomial_of_minors_zero (P : ι → K[X]) (a : ι → K)
     (hseed : ∀ i, (P i).eval 0 = a i) (j : ι) (hj : a j ≠ 0)
     (hminor : ∀ i, P i * C (a j) - P j * C (a i) = 0) :
@@ -66,7 +70,9 @@ theorem exists_scalar_polynomial_of_minors_zero (P : ι → K[X]) (a : ι → K)
       _ = (P j * C ((a j)⁻¹)) * C (a i) := by ac_rfl
 
 /-- The common scalar descends to an invertible scalar of the very same truncated tuple.
-Its polynomial representative records the required normalization at zero explicitly.-/
+Its polynomial representative records the required normalization at zero explicitly.
+@isnad1 id=ex.3h6v.s11.2074b828e011 from=translated src=- shape=60e1c57b vocab=8f3ba1de
+-/
 theorem exists_scalar_jet_of_minors_zero (T : ℕ) (P : ι → K[X]) (a : ι → K)
     (hseed : ∀ i, (P i).eval 0 = a i) (j : ι) (hj : a j ≠ 0)
     (hminor : ∀ i, P i * C (a j) - P j * C (a i) = 0) :
@@ -79,7 +85,9 @@ theorem exists_scalar_jet_of_minors_zero (T : ℕ) (P : ι → K[X]) (a : ι →
   rw [hP i, map_mul]
 
 /-- If the truncated tuple is not a unit multiple of the seed, one of the seed minors
-with any nonzero seed coordinate is nonzero. No first-order coefficient is singled out.-/
+with any nonzero seed coordinate is nonzero. No first-order coefficient is singled out.
+@isnad1 id=ex.3h6v.s10.1240f0be72d4 from=translated src=- shape=d71544bc vocab=29c29e36
+-/
 theorem exists_nonzero_minor_of_nonscalar_jet (T : ℕ) (P : ι → K[X]) (a : ι → K)
     (hseed : ∀ i, (P i).eval 0 = a i) (j : ι) (hj : a j ≠ 0)
     (hnonscalar : ¬ ∃ u : (TruncatedJetRing K T)ˣ,
@@ -98,7 +106,9 @@ theorem exists_nonzero_minor_of_nonscalar_jet (T : ℕ) (P : ι → K[X]) (a : �
 
 /-- A nonzero seed minor detects a coordinate ratio outside the constant field in the
 actual fraction field `Frac(K[X])`. The nonzero seed coordinate supplies a nonzero
-denominator, including when the other seed coordinate vanishes.-/
+denominator, including when the other seed coordinate vanishes.
+@isnad1 id=ne.3h7v.s11.afd67ef4f0dd from=translated src=- shape=478e1140 vocab=f7681e2a
+-/
 theorem coordinate_ratio_ne_constant_of_nonzero_minor (P : ι → K[X]) (a : ι → K)
     (hseed : ∀ i, (P i).eval 0 = a i) (i j : ι) (hj : a j ≠ 0)
     (hminor : P i * C (a j) - P j * C (a i) ≠ 0) (c : K) :
@@ -126,7 +136,9 @@ theorem coordinate_ratio_ne_constant_of_nonzero_minor (P : ι → K[X]) (a : ι 
   ring
 
 /-- A nonscalar jet based at a nonzero tuple gives a rational coordinate ratio that is
-not any constant. This is the algebraic generic-fiber input to projectivization.-/
+not any constant. This is the algebraic generic-fiber input to projectivization.
+@isnad1 id=ex.3h6v.s11.6f1c74c2322e from=translated src=- shape=8973565d vocab=1876bd0f
+-/
 theorem exists_nonconstant_coordinate_ratio_of_nonscalar_jet
     (T : ℕ) (P : ι → K[X]) (a : ι → K) (hseed : ∀ i, (P i).eval 0 = a i)
     (j : ι) (hj : a j ≠ 0)

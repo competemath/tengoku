@@ -49,7 +49,9 @@ def principalCartierData (a : X.functionFieldˣ) : CartierLocalData X where
     refine ⟨1, isUnit_one, ?_⟩
     simp [a.ne_zero]
 
-/-- The principal coefficient is the actual local length order at every scheme point.-/
+/-- The principal coefficient is the actual local length order at every scheme point.
+@isnad1 id=eq.0h3v.s6.110654996854 from=translated src=- shape=b6b4e6b4 vocab=229517ab
+-/
 @[simp]
 theorem principalCartierData_coefficient (a : X.functionFieldˣ) (x : X) :
     (principalCartierData a).coefficient x = X.ord (a : X.functionField) x := by
@@ -59,7 +61,9 @@ theorem principalCartierData_coefficient (a : X.functionFieldˣ) (x : X) :
   · rw [CartierLocalData.coefficient_eq_zero_of_coheight_ne_one _ x hx,
       Scheme.ord_eq_zero_of_coheight_neq_one hx]
 
-/-- The unit rational function has zero principal coefficient.-/
+/-- The unit rational function has zero principal coefficient.
+@isnad1 id=eq.0h2v.s6.93dd2711e3ab from=translated src=- shape=1b67fea4 vocab=3eb0f746
+-/
 @[simp]
 theorem principalCartierData_coefficient_one (x : X) :
     (principalCartierData (1 : X.functionFieldˣ)).coefficient x = 0 := by
@@ -69,21 +73,27 @@ theorem principalCartierData_coefficient_one (x : X) :
     isUnit_one (x := x) (by trivial)
   simpa only [map_one, Units.val_one] using h
 
-/-- Multiplication of the same rational equations adds their principal coefficients.-/
+/-- Multiplication of the same rational equations adds their principal coefficients.
+@isnad1 id=eq.0h4v.s8.c79c5b47d540 from=translated src=- shape=f9b40f99 vocab=afe1cee5
+-/
 theorem principalCartierData_coefficient_mul (a b : X.functionFieldˣ) (x : X) :
     (principalCartierData (a * b)).coefficient x =
       (principalCartierData a).coefficient x + (principalCartierData b).coefficient x := by
   simpa only [principalCartierData_coefficient, Units.val_mul] using
     (Scheme.ord_mul (x := x) a.ne_zero b.ne_zero)
 
-/-- The existing zero-cycle construction retains exactly the principal local orders.-/
+/-- The existing zero-cycle construction retains exactly the principal local orders.
+@isnad1 id=eq.1h3v.s8.a4681b281ef5 from=translated src=- shape=2224550b vocab=fbd414e4
+-/
 @[simp]
 theorem principalCartierData_zeroCycle_apply [IsNoetherian X]
     (hdim : topologicalKrullDim X ≤ 1) (a : X.functionFieldˣ) (x : X) :
     ((principalCartierData a).zeroCycle hdim).1 x = X.ord (a : X.functionField) x :=
   principalCartierData_coefficient a x
 
-/-- The principal divisor of the unit function is the existing zero cycle.-/
+/-- The principal divisor of the unit function is the existing zero cycle.
+@isnad1 id=eq.1h1v.s7.a3e8be709aa6 from=translated src=- shape=fc622ad5 vocab=a0199918
+-/
 @[simp]
 theorem principalCartierData_zeroCycle_one [IsNoetherian X]
     (hdim : topologicalKrullDim X ≤ 1) :
@@ -94,7 +104,9 @@ theorem principalCartierData_zeroCycle_one [IsNoetherian X]
   intro x
   exact principalCartierData_coefficient_one x
 
-/-- Principal divisors turn multiplication into the existing addition of actual zero cycles.-/
+/-- Principal divisors turn multiplication into the existing addition of actual zero cycles.
+@isnad1 id=eq.1h3v.s8.d0a73ee322b1 from=translated src=- shape=ab0e164e vocab=8b958e7a
+-/
 theorem principalCartierData_zeroCycle_mul [IsNoetherian X]
     (hdim : topologicalKrullDim X ≤ 1) (a b : X.functionFieldˣ) :
     (principalCartierData (a * b)).zeroCycle hdim =
@@ -105,7 +117,9 @@ theorem principalCartierData_zeroCycle_mul [IsNoetherian X]
   intro x
   exact principalCartierData_coefficient_mul a b x
 
-/-- Below dimension one every principal coefficient vanishes, since no point has codimension one.-/
+/-- Below dimension one every principal coefficient vanishes, since no point has codimension one.
+@isnad1 id=eq.1h2v.s6.eaca28c4480e from=translated src=- shape=aa4e9e1c vocab=fa973928
+-/
 theorem principalCartierData_zeroCycle_eq_zero_of_dim_lt_one [IsNoetherian X]
     (hdim : topologicalKrullDim X < 1) (a : X.functionFieldˣ) :
     (principalCartierData a).zeroCycle hdim.le = DimensionCycle.zero X 0 := by
@@ -122,7 +136,9 @@ theorem principalCartierData_zeroCycle_eq_zero_of_dim_lt_one [IsNoetherian X]
   exact (not_le_of_gt hdim') hle
 
 /-- Principal degree is the finite sum of the actual local orders with their
-residue-field weights.-/
+residue-field weights.
+@isnad1 id=eq.1h4v.s8.e24c89ce5d9f from=translated src=- shape=fdf5f8cc vocab=3f65232e
+-/
 theorem rawZeroCycleDegree_principal_eq_sum {k : Type u} [Field k] [IsNoetherian X]
     (c : X ⟶ Spec (CommRingCat.of k)) [IsProper c]
     (hdim : topologicalKrullDim X ≤ 1) (a : X.functionFieldˣ) :

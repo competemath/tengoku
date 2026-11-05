@@ -28,7 +28,9 @@ namespace AlgebraicGeometry.Divisors.StalkRegularOrder
 
 variable {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X]
 
-/-- A nonzero regular local function has nonnegative order at the same point.-/
+/-- A nonzero regular local function has nonnegative order at the same point.
+@isnad1 id=le.1h3v.s9.2c25720fc4aa from=translated src=- shape=8c42a57d vocab=e388be76
+-/
 theorem ord_algebraMap_nonneg (x : X) {a : X.presheaf.stalk x} (ha : a ≠ 0) :
     0 ≤ X.ord (algebraMap (X.presheaf.stalk x) X.functionField a) x := by
   by_cases hx : Order.coheight x = 1
@@ -44,7 +46,9 @@ theorem ord_algebraMap_nonneg (x : X) {a : X.presheaf.stalk x} (ha : a ≠ 0) :
     exact Ring.ordFrac_ge_one_of_ne_zero ha
   · rw [Scheme.ord_eq_zero_of_coheight_neq_one hx]
 
-/-- A nonzero section regular on a neighbourhood has nonnegative order there.-/
+/-- A nonzero section regular on a neighbourhood has nonnegative order there.
+@isnad1 id=le.2h4v.s10.8f743d544a96 from=translated src=- shape=93f3b48c vocab=399fbc16
+-/
 theorem ord_germToFunctionField_nonneg {U : X.Opens} [Nonempty U]
     {a : Γ(X, U)} (ha : a ≠ 0) {x : X} (hx : x ∈ U) :
     0 ≤ X.ord (X.germToFunctionField U a) x := by

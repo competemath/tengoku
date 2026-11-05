@@ -57,7 +57,9 @@ def moduleExteriorPresheafMap {M N : X.PresheafOfModules} (φ : M ⟶ N) :
     funext j
     exact PresheafOfModules.naturality_apply φ i (v j)
 
-/-- On pure wedges the presheaf morphism applies the given map to every entry.-/
+/-- On pure wedges the presheaf morphism applies the given map to every entry.
+@isnad1 id=eq.0h7v.s17.2b643cf57dfd from=translated src=- shape=5c32e90e vocab=0fb42f7c
+-/
 @[simp]
 theorem moduleExteriorPresheafMap_mk {M N : X.PresheafOfModules} (φ : M ⟶ N)
     (U : X.Opensᵒᵖ) (v : Fin n → M.obj U) :
@@ -94,7 +96,9 @@ def moduleExteriorIso {M N : X.Modules} (e : M ≅ N) :
     moduleExteriorPower X M n ≅ moduleExteriorPower X N n :=
   (moduleExteriorFunctor X n).mapIso e
 
-/-- The transported isomorphism's forward map is precisely the exterior-power map.-/
+/-- The transported isomorphism's forward map is precisely the exterior-power map.
+@isnad1 id=eq.0h5v.s6.9d14e3ff2d7d from=translated src=- shape=77b4b6bb vocab=5a0230d2
+-/
 @[simp]
 theorem moduleExteriorIso_hom {M N : X.Modules} (e : M ≅ N) :
     (moduleExteriorIso X n e).hom = moduleExteriorMap X n e.hom := rfl
@@ -126,13 +130,17 @@ def moduleExteriorWedge (U : X.Opens) :
       (ModuleCat.restrictScalarsId'App _ rfl
         ((moduleExteriorPower X M n).val.obj (op U))).hom)
 
-/-- Wedge sections are the images of the presheaf's actual pure wedge generators.-/
+/-- Wedge sections are the images of the presheaf's actual pure wedge generators.
+@isnad1 id=eq.0h5v.s16.f8cb0b049162 from=translated src=- shape=d95ea24c vocab=6f834453
+-/
 @[simp]
 theorem moduleExteriorWedge_apply (U : X.Opens) (v : Fin n → Γ(M, U)) :
     moduleExteriorWedge X M n U v =
       (moduleExteriorSheafUnit X M n).app (op U) (ModuleCat.exteriorPower.mk v) := rfl
 
-/-- Restriction of a wedge section is the wedge of the restrictions of its entries.-/
+/-- Restriction of a wedge section is the wedge of the restrictions of its entries.
+@isnad1 id=eq.0h7v.s13.421749d62ea7 from=translated src=- shape=7f5c3611 vocab=72db4022
+-/
 theorem moduleExteriorWedge_restrict {U V : X.Opens} (i : V ⟶ U)
     (v : Fin n → Γ(M, U)) :
     (moduleExteriorPower X M n).presheaf.map i.op (moduleExteriorWedge X M n U v) =
@@ -158,14 +166,18 @@ def moduleExteriorWedgeSection (s : Fin n → M.sections) :
         (congrArg (moduleExteriorWedge X M n V.unop)
           (funext fun j ↦ PresheafOfModules.sections_property (s j) i)))
 
-/-- Evaluation of the compatible wedge is the wedge of the evaluated sections.-/
+/-- Evaluation of the compatible wedge is the wedge of the evaluated sections.
+@isnad1 id=eq.0h5v.s13.db31b39d030e from=translated src=- shape=29997463 vocab=76eb558a
+-/
 @[simp]
 theorem moduleExteriorWedgeSection_apply (s : Fin n → M.sections) (U : X.Opens) :
     (moduleExteriorWedgeSection X M n s).val (op U) =
       moduleExteriorWedge X M n U (fun i ↦ (s i).val (op U)) := rfl
 
 set_option backward.isDefEq.respectTransparency false in
-/-- A sheaf morphism acts on wedge sections entry by entry.-/
+/-- A sheaf morphism acts on wedge sections entry by entry.
+@isnad1 id=eq.0h7v.s13.8280f58a0dc4 from=translated src=- shape=ec1beb0a vocab=8e3f7df7
+-/
 theorem moduleExteriorMap_wedge {N : X.Modules} (φ : M ⟶ N) (U : X.Opens)
     (v : Fin n → Γ(M, U)) :
     (moduleExteriorMap X n φ).app U (moduleExteriorWedge X M n U v) =
@@ -195,7 +207,9 @@ def moduleExteriorDesc (N : X.Modules)
   ((PresheafOfModules.sheafificationAdjunction (𝟙 X.ringCatSheaf.obj)).homEquiv
     (moduleExteriorPresheaf X M.val n) N).symm φ
 
-/-- The descended morphism has exactly the specified composite with the sheafification unit.-/
+/-- The descended morphism has exactly the specified composite with the sheafification unit.
+@isnad1 id=eq.0h5v.s14.c96df9dac047 from=translated src=- shape=207fbf2b vocab=920801eb
+-/
 theorem moduleExteriorDesc_unit_comp (N : X.Modules)
     (φ : moduleExteriorPresheaf X M.val n ⟶
       (PresheafOfModules.restrictScalars (𝟙 X.ringCatSheaf.obj)).obj N.val) :
@@ -207,7 +221,9 @@ theorem moduleExteriorDesc_unit_comp (N : X.Modules)
     (𝟙 X.ringCatSheaf.obj)).homEquiv_unit
       (moduleExteriorPresheaf X M.val n) N _).symm.trans (Equiv.apply_symm_apply _ _)
 
-/-- On wedge sections, descent evaluates the input presheaf map on the pure wedge.-/
+/-- On wedge sections, descent evaluates the input presheaf map on the pure wedge.
+@isnad1 id=eq.0h7v.s16.e2fcfee0109a from=translated src=- shape=63b6e5c1 vocab=38a3e0cb
+-/
 theorem moduleExteriorDesc_wedge (N : X.Modules)
     (φ : moduleExteriorPresheaf X M.val n ⟶
       (PresheafOfModules.restrictScalars (𝟙 X.ringCatSheaf.obj)).obj N.val)
@@ -280,7 +296,9 @@ def moduleExteriorRestrictComparison :
   moduleExteriorDesc X (M.restrict f) n ((moduleExteriorPower Y M n).restrict f)
     (moduleExteriorRestrictPresheafComparison f M n)
 
-/-- The restriction comparison sends a wedge to the same wedge over the image open.-/
+/-- The restriction comparison sends a wedge to the same wedge over the image open.
+@isnad1 id=eq.0h7v.s13.da4813ad78ee from=translated src=- shape=45042535 vocab=151f1645
+-/
 theorem moduleExteriorRestrictComparison_wedge (U : X.Opens)
     (v : Fin n → Γ(M.restrict f, U)) :
     (moduleExteriorRestrictComparison f M n).app U

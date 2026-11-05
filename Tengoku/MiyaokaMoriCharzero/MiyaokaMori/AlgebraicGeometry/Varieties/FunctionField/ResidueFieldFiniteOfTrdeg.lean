@@ -29,7 +29,9 @@ universe u
 namespace AlgebraicGeometry.Intersection
 
 /-- Equal residue transcendence degrees, measured in the geometric dimension codomain,
-make the actual residue map finite for a morphism of locally finite type schemes over a field.-/
+make the actual residue map finite for a morphism of locally finite type schemes over a field.
+@isnad1 id=finite.2h5v.s11.25160e316a8e from=translated src=- shape=e381155a vocab=2d3431f2
+-/
 theorem residueFieldMap_finite_of_trdeg_toENat_eq
     {k : Type u} [Field k] {X Y : AlgebraicGeometry.Proj.SchemeOver k} (f : X.scheme ⟶ Y.scheme)
     (hf : f ≫ Y.toBase = X.toBase)

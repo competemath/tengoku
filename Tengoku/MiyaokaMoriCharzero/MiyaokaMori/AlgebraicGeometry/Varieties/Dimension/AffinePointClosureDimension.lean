@@ -28,7 +28,9 @@ universe u
 namespace AlgebraicGeometry.Intersection
 
 /-- On an affine scheme locally of finite type over a field, the actual point closure has
-dimension equal to the transcendence degree of the specified scheme residue field.-/
+dimension equal to the transcendence degree of the specified scheme residue field.
+@isnad1 id=eq.0h4v.s7.c79167aa52a8 from=translated src=- shape=e0cc070e vocab=7dbebaad
+-/
 theorem spec_pointClosureDimension_eq_trdeg {k : Type u} [Field k]
     (A : CommRingCat.{u}) (f : Spec A ⟶ Spec (CommRingCat.of k))
     [LocallyOfFiniteType f] (p : Spec A) :

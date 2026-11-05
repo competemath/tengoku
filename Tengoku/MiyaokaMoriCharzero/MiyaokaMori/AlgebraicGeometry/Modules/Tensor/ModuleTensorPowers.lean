@@ -60,7 +60,9 @@ def moduleTensorSection {U : X.Opens} (s : Γ(M, U)) (t : Γ(N, U)) :
     Γ(moduleTensor M N, U) :=
   (moduleTensorSheafificationUnit M N).app (op U) (s ⊗ₜ[Γ(X, U)] t)
 
-/-- Restricting the tensor section restricts both of its original factors.-/
+/-- Restricting the tensor section restricts both of its original factors.
+@isnad1 id=eq.0h8v.s12.059f6afb33a2 from=translated src=- shape=aba4b747 vocab=9778c16d
+-/
 @[simp]
 theorem moduleTensorSection_restrict {U V : X.Opens} (j : V ⟶ U)
     (s : Γ(M, U)) (t : Γ(N, U)) :
@@ -69,7 +71,9 @@ theorem moduleTensorSection_restrict {U V : X.Opens} (j : V ⟶ U)
   exact (PresheafOfModules.naturality_apply (moduleTensorSheafificationUnit M N)
     j.op (s ⊗ₜ[Γ(X, U)] t)).symm
 
-/-- The tensor section is additive in its first factor.-/
+/-- The tensor section is additive in its first factor.
+@isnad1 id=eq.0h7v.s11.d389c7dbd48b from=translated src=- shape=fec4dde0 vocab=f9f89587
+-/
 theorem moduleTensorSection_add_left {U : X.Opens}
     (s s' : Γ(M, U)) (t : Γ(N, U)) :
     moduleTensorSection (s + s') t = moduleTensorSection s t + moduleTensorSection s' t := by
@@ -77,7 +81,9 @@ theorem moduleTensorSection_add_left {U : X.Opens}
   erw [TensorProduct.add_tmul]
   exact ((moduleTensorSheafificationUnit M N).app (op U)).hom.map_add _ _
 
-/-- The tensor section is additive in its second factor.-/
+/-- The tensor section is additive in its second factor.
+@isnad1 id=eq.0h7v.s11.4da9f23aa69f from=translated src=- shape=6889d699 vocab=f9f89587
+-/
 theorem moduleTensorSection_add_right {U : X.Opens}
     (s : Γ(M, U)) (t t' : Γ(N, U)) :
     moduleTensorSection s (t + t') = moduleTensorSection s t + moduleTensorSection s t' := by
@@ -85,7 +91,9 @@ theorem moduleTensorSection_add_right {U : X.Opens}
   erw [TensorProduct.tmul_add]
   exact ((moduleTensorSheafificationUnit M N).app (op U)).hom.map_add _ _
 
-/-- Multiplying the original two factors multiplies the tensor section by the product.-/
+/-- Multiplying the original two factors multiplies the tensor section by the product.
+@isnad1 id=eq.0h8v.s14.0e6eb004bc4e from=translated src=- shape=c5e50f52 vocab=9cdb0669
+-/
 theorem moduleTensorSection_smul {U : X.Opens} (a b : Γ(X, U))
     (s : Γ(M, U)) (t : Γ(N, U)) :
     moduleTensorSection (a • s) (b • t) = (a * b) • moduleTensorSection s t := by
@@ -95,7 +103,9 @@ theorem moduleTensorSection_smul {U : X.Opens} (a b : Γ(X, U))
   erw [TensorProduct.smul_tmul_smul]
   exact ((moduleTensorSheafificationUnit M N).app (op U)).hom.map_smul _ _
 
-/-- Tensoring a zero section in the first factor gives the zero section.-/
+/-- Tensoring a zero section in the first factor gives the zero section.
+@isnad1 id=eq.0h5v.s11.e81db674024d from=translated src=- shape=d5da7b45 vocab=708f1082
+-/
 @[simp]
 theorem moduleTensorSection_zero_left {U : X.Opens} (t : Γ(N, U)) :
     moduleTensorSection (0 : Γ(M, U)) t = 0 := by
@@ -103,7 +113,9 @@ theorem moduleTensorSection_zero_left {U : X.Opens} (t : Γ(N, U)) :
   erw [TensorProduct.zero_tmul]
   exact ((moduleTensorSheafificationUnit M N).app (op U)).hom.map_zero
 
-/-- Tensoring a zero section in the second factor gives the zero section.-/
+/-- Tensoring a zero section in the second factor gives the zero section.
+@isnad1 id=eq.0h5v.s11.67032ad26d59 from=translated src=- shape=58d2b912 vocab=708f1082
+-/
 @[simp]
 theorem moduleTensorSection_zero_right {U : X.Opens} (s : Γ(M, U)) :
     moduleTensorSection s (0 : Γ(N, U)) = 0 := by
@@ -135,7 +147,9 @@ def moduleTensorPowerSection {U : X.Opens} (s : Γ(M, U)) :
   | 0 => (1 : Γ(X, U))
   | q + 1 => moduleTensorSection s (moduleTensorPowerSection s q)
 
-/-- The tensor power of a section commutes with its actual restriction.-/
+/-- The tensor power of a section commutes with its actual restriction.
+@isnad1 id=eq.0h7v.s11.d0f7ce75319b from=translated src=- shape=20661153 vocab=31685c5a
+-/
 @[simp]
 theorem moduleTensorPowerSection_restrict {U V : X.Opens} (j : V ⟶ U)
     (s : Γ(M, U)) (q : ℕ) :
@@ -149,7 +163,9 @@ theorem moduleTensorPowerSection_restrict {U V : X.Opens} (j : V ⟶ U)
     rw [moduleTensorSection_restrict, ih]
     rfl
 
-/-- A scalar in a section's `q`th tensor power occurs to the same power `q`.-/
+/-- A scalar in a section's `q`th tensor power occurs to the same power `q`.
+@isnad1 id=eq.0h6v.s13.bdec1db5902a from=translated src=- shape=ef93a62d vocab=206f77a6
+-/
 theorem moduleTensorPowerSection_smul {U : X.Opens}
     (a : Γ(X, U)) (s : Γ(M, U)) (q : ℕ) :
     moduleTensorPowerSection (a • s) q = a ^ q • moduleTensorPowerSection s q := by
@@ -168,7 +184,9 @@ def coefficientLineSection {B L : X.Modules} {U : X.Opens}
     Γ(coefficientLineModule B L q, U) :=
   moduleTensorSection b (moduleTensorPowerSection α q)
 
-/-- The coefficient-module section restricts its specified target and dual sections.-/
+/-- The coefficient-module section restricts its specified target and dual sections.
+@isnad1 id=eq.0h9v.s12.59faf8263bc1 from=translated src=- shape=5db8e3cb vocab=2cd224db
+-/
 @[simp]
 theorem coefficientLineSection_restrict {B L : X.Modules} {U V : X.Opens}
     (j : V ⟶ U) (b : Γ(B, U)) (α : Γ(moduleSheafDual L, U)) (q : ℕ) :
@@ -181,7 +199,9 @@ theorem coefficientLineSection_restrict {B L : X.Modules} {U V : X.Opens}
   erw [moduleTensorSection_restrict, moduleTensorPowerSection_restrict]
   rfl
 
-/-- The coefficient-module section has the target weight and the `q`th dual weight.-/
+/-- The coefficient-module section has the target weight and the `q`th dual weight.
+@isnad1 id=eq.0h9v.s14.7ebe53c0fb7e from=translated src=- shape=10e4b14d vocab=3493f877
+-/
 theorem coefficientLineSection_smul {B L : X.Modules} {U : X.Opens}
     (v u : Γ(X, U)) (b : Γ(B, U)) (α : Γ(moduleSheafDual L, U)) (q : ℕ) :
     coefficientLineSection (v • b) (u • α) q =
@@ -192,7 +212,9 @@ theorem coefficientLineSection_smul {B L : X.Modules} {U : X.Opens}
 
 /-- For actual rescaled target and dual sections, the inverse source unit has weight `-q`.
 
-This is an equality of specified sections; it does not assert that they are local frames.-/
+This is an equality of specified sections; it does not assert that they are local frames.
+@isnad1 id=eq.0h9v.s14.4738ff8b941f from=translated src=- shape=f4908f5b vocab=5ba54e89
+-/
 theorem coefficientLineSection_unit_change {B L : X.Modules} {U : X.Opens}
     (u v : Γ(X, U)ˣ) (b : Γ(B, U)) (α : Γ(moduleSheafDual L, U)) (q : ℕ) :
     coefficientLineSection ((v : Γ(X, U)) • b) (((u⁻¹ : Γ(X, U)ˣ) : Γ(X, U)) • α) q =

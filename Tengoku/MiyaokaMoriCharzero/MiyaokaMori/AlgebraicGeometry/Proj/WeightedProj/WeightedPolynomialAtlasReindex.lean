@@ -21,7 +21,9 @@ open CategoryTheory Opposite
 noncomputable section
 
 /-- Renaming variables along an injection preserves weighted homogeneity, provided the weights
-correspond (`w' (e i) = w i`).-/
+correspond (`w' (e i) = w i`).
+@isnad1 id=isweight.3h8v.s7.7111934a3184 from=translated src=- shape=109b7c08 vocab=c9d2a413
+-/
 theorem MvPolynomial.IsWeightedHomogeneous.rename_of {σ τ R : Type*} [CommSemiring R]
     {w : σ → ℕ} {w' : τ → ℕ} {e : σ → τ} (he : Function.Injective e)
     (hw : ∀ i, w' (e i) = w i) {n : ℕ} {p : MvPolynomial σ R}

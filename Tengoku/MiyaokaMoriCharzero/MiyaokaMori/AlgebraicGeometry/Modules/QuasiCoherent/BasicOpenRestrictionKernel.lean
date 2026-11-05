@@ -23,7 +23,9 @@ namespace AlgebraicGeometry.Scheme.Modules.BasicOpenRestrictionKernel
 
 universe u
 
-/-- The actual restriction kernel on an affine basic open is its power-torsion ideal.-/
+/-- The actual restriction kernel on an affine basic open is its power-torsion ideal.
+@isnad1 id=eq.2h4v.s13.022f933397d0 from=translated src=- shape=17d91807 vocab=7243dd2b
+-/
 theorem ker_restriction_eq_powerTorsion
     (X : Scheme.{u}) (V : X.affineOpens) (a : Γ(X, V))
     (W : X.Opens) (hWV : W ≤ V.1) (hW : W = X.basicOpen a) :
@@ -37,7 +39,9 @@ theorem ker_restriction_eq_powerTorsion
     ∃ m : Submonoid.powers a, (m : Γ(X, V)) * s = 0
   exact IsLocalization.map_eq_zero_iff (Submonoid.powers a) Γ(X, W) s
 
-/-- A section restricts to zero on the basic open exactly when a power annihilates it.-/
+/-- A section restricts to zero on the basic open exactly when a power annihilates it.
+@isnad1 id=iff.2h5v.s13.d9e740c91cbe from=translated src=- shape=17ab5c21 vocab=886a4671
+-/
 theorem mem_ker_restriction_iff_pow_mul_eq_zero
     (X : Scheme.{u}) (V : X.affineOpens) (a : Γ(X, V))
     (W : X.Opens) (hWV : W ≤ V.1) (hW : W = X.basicOpen a) (s : Γ(X, V)) :

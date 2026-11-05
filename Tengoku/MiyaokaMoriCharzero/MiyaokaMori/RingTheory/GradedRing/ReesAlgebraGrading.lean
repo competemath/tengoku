@@ -30,7 +30,9 @@ noncomputable def grading (I : Ideal R) (n : ℕ) : Submodule R (reesAlgebra I) 
   (LinearMap.range (Polynomial.monomial n : R →ₗ[R] Polynomial R)).comap
     (reesAlgebra I).val.toLinearMap
 
-/-- Membership in a homogeneous part is actual equality with a monomial.-/
+/-- Membership in a homogeneous part is actual equality with a monomial.
+@isnad1 id=iff.0h4v.s10.e854e9b85132 from=translated src=- shape=3b0b0c5e vocab=735d1d8a
+-/
 theorem mem_grading_iff (I : Ideal R) (n : ℕ) (f : reesAlgebra I) :
     f ∈ grading I n ↔ ∃ r : R, Polynomial.monomial n r = (f : Polynomial R) :=
   Iff.rfl
@@ -42,12 +44,16 @@ theorem eq_monomial_of_mem (I : Ideal R) {n : ℕ} {f : reesAlgebra I}
   obtain ⟨r, hr⟩ := (mem_grading_iff I n f).mp hf
   rw [← hr, Polynomial.coeff_monomial_same]
 
-/-- A homogeneous Rees element has zero coefficient in any other degree.-/
+/-- A homogeneous Rees element has zero coefficient in any other degree.
+@isnad1 id=eq.2h5v.s10.1883afcdcc89 from=translated src=- shape=9bacbec8 vocab=8521f2c6
+-/
 theorem coeff_eq_zero_of_mem (I : Ideal R) {n m : ℕ} {f : reesAlgebra I}
     (hf : f ∈ grading I n) (hnm : n ≠ m) : (f : Polynomial R).coeff m = 0 := by
   rw [eq_monomial_of_mem I hf, Polynomial.coeff_monomial, ite_eq_right hnm]
 
-/-- Constants and products have the expected degrees in the actual Rees algebra.-/
+/-- Constants and products have the expected degrees in the actual Rees algebra.
+@isnad1 id=gradedmo.0h2v.s10.5677df25434a from=translated src=- shape=60576047 vocab=358c6626
+-/
 instance gradedMonoid (I : Ideal R) : SetLike.GradedMonoid (grading I) where
   one_mem := (mem_grading_iff I 0 1).mpr ⟨1, by simp⟩
   mul_mem := by
@@ -64,12 +70,16 @@ noncomputable def component (I : Ideal R) (n : ℕ) (f : reesAlgebra I) : reesAl
   ⟨Polynomial.monomial n ((f : Polynomial R).coeff n),
     reesAlgebra.monomial_mem.mpr (f.property n)⟩
 
-/-- The actual coefficient monomial belongs to the corresponding homogeneous part.-/
+/-- The actual coefficient monomial belongs to the corresponding homogeneous part.
+@isnad1 id=mem.0h4v.s10.a1331af18cf5 from=translated src=- shape=27b16cce vocab=5683016a
+-/
 theorem component_mem (I : Ideal R) (n : ℕ) (f : reesAlgebra I) :
     component I n f ∈ grading I n :=
   (mem_grading_iff I n _).mpr ⟨(f : Polynomial R).coeff n, rfl⟩
 
-/-- The finite monomial expansion holds inside the Rees algebra itself.-/
+/-- The finite monomial expansion holds inside the Rees algebra itself.
+@isnad1 id=eq.0h3v.s9.480c327182ef from=translated src=- shape=e8881315 vocab=ab0b544d
+-/
 theorem sum_components (I : Ideal R) (f : reesAlgebra I) :
     ∑ n ∈ (f : Polynomial R).support, component I n f = f := by
   apply Subtype.ext
@@ -77,7 +87,9 @@ theorem sum_components (I : Ideal R) (f : reesAlgebra I) :
   rw [map_sum]
   exact (f : Polynomial R).as_sum_support.symm
 
-/-- Different homogeneous parts are independent, detected by polynomial coefficients.-/
+/-- Different homogeneous parts are independent, detected by polynomial coefficients.
+@isnad1 id=isupinde.0h2v.s9.0e540cb4a26f from=translated src=- shape=0f6ff0c5 vocab=189a7348
+-/
 theorem grading_iSupIndep (I : Ideal R) : iSupIndep (grading I) := by
   rw [iSupIndep_def]
   intro n
@@ -94,14 +106,18 @@ theorem grading_iSupIndep (I : Ideal R) : iSupIndep (grading I) := by
   rw [eq_monomial_of_mem I hf, hzero, map_zero]
   rfl
 
-/-- The homogeneous parts span every element of the actual Rees algebra.-/
+/-- The homogeneous parts span every element of the actual Rees algebra.
+@isnad1 id=eq.0h2v.s11.30c6018f2d98 from=translated src=- shape=cc03894d vocab=5212b242
+-/
 theorem grading_iSup_eq_top (I : Ideal R) : (⨆ n, grading I n) = ⊤ := by
   apply top_unique
   intro f _
   rw [← sum_components I f]
   exact Submodule.sum_mem _ fun n _ ↦ Submodule.mem_iSup_of_mem n (component_mem I n f)
 
-/-- The canonical sum of homogeneous Rees elements is bijective.-/
+/-- The canonical sum of homogeneous Rees elements is bijective.
+@isnad1 id=isintern.0h2v.s10.e56bc1684f44 from=translated src=- shape=60576047 vocab=87ae4016
+-/
 theorem isInternal (I : Ideal R) : DirectSum.IsInternal (grading I) :=
   DirectSum.isInternal_submodule_of_iSupIndep_of_iSup_eq_top
     (grading_iSupIndep I) (grading_iSup_eq_top I)
@@ -110,7 +126,9 @@ theorem isInternal (I : Ideal R) : DirectSum.IsInternal (grading I) :=
 noncomputable instance gradedAlgebra (I : Ideal R) : GradedAlgebra (grading I) :=
   (isInternal I).gradedAlgebra
 
-/-- A graded projection is exactly the original polynomial's coefficient monomial.-/
+/-- A graded projection is exactly the original polynomial's coefficient monomial.
+@isnad1 id=eq.0h4v.s12.a495b1653dbc from=translated src=- shape=00111ba0 vocab=f81ad0ff
+-/
 theorem coe_graded_proj (I : Ideal R) (n : ℕ) (f : reesAlgebra I) :
     ((GradedRing.proj (grading I) n f : reesAlgebra I) : Polynomial R) =
       Polynomial.monomial n ((f : Polynomial R).coeff n) := by

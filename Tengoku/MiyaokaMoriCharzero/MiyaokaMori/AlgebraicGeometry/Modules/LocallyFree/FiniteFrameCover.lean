@@ -26,7 +26,9 @@ universe u
 variable {k : Type u} [Field k] {X : SchemeOver k} [CompactSpace X.scheme]
 variable {M : X.scheme.Modules} {n : ℕ}
 
-/-- A locally free module on a compact scheme has a finite cover by its actual nonempty frames.-/
+/-- A locally free module on a compact scheme has a finite cover by its actual nonempty frames.
+@isnad1 id=ex.1h4v.s10.6e3a59e20f28 from=translated src=- shape=e3e1b5e7 vocab=5bbf64dd
+-/
 theorem IsLocallyFreeRank.exists_finite_frame_cover (hM : IsLocallyFreeRank X M n) :
     ∃ (S : Finset X.scheme) (U : S → X.scheme.Opens),
       (∀ i : S, (i : X.scheme) ∈ U i) ∧

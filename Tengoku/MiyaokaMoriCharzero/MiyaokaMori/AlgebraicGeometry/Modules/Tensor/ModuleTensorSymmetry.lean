@@ -52,7 +52,9 @@ def moduleTensorSymmetry (M N : X.Modules) : moduleTensor M N ≅ moduleTensor N
     (BraidedCategory.braiding (C := X.PresheafOfModules) M.val N.val)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- The tensor symmetry descends the sectionwise symmetry along the original unit.-/
+/-- The tensor symmetry descends the sectionwise symmetry along the original unit.
+@isnad1 id=eq.0h3v.s14.3b8bf2943b24 from=translated src=- shape=f57297e8 vocab=b6d5c770
+-/
 theorem moduleTensorSymmetry_fac (M N : X.Modules) :
     moduleTensorSheafificationUnit M N ≫
       (PresheafOfModules.restrictScalars (𝟙 X.ringCatSheaf.obj)).map
@@ -63,7 +65,9 @@ theorem moduleTensorSymmetry_fac (M N : X.Modules) :
     (BraidedCategory.braiding (C := X.PresheafOfModules) M.val N.val).hom).symm
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Tensor symmetry exchanges the two specified sections.-/
+/-- Tensor symmetry exchanges the two specified sections.
+@isnad1 id=eq.0h6v.s10.1ce5592a12db from=translated src=- shape=13bb6454 vocab=dd7ad6f3
+-/
 @[simp]
 theorem moduleTensorSymmetry_section {M N : X.Modules} {U : X.Opens}
     (s : Γ(M, U)) (t : Γ(N, U)) :
@@ -73,7 +77,9 @@ theorem moduleTensorSymmetry_section {M N : X.Modules} {U : X.Opens}
     (moduleTensorSymmetry_fac M N)
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Reversing tensor symmetry is the symmetry with the factors exchanged.-/
+/-- Reversing tensor symmetry is the symmetry with the factors exchanged.
+@isnad1 id=eq.0h3v.s5.0a013d473308 from=translated src=- shape=71f1f668 vocab=9a2cd9f5
+-/
 @[simp]
 theorem moduleTensorSymmetry_symm (M N : X.Modules) :
     (moduleTensorSymmetry M N).symm = moduleTensorSymmetry N M := by
@@ -81,7 +87,9 @@ theorem moduleTensorSymmetry_symm (M N : X.Modules) :
   exact congrArg (PresheafOfModules.sheafification (𝟙 X.ringCatSheaf.obj)).map
     (SymmetricCategory.braiding_swap_eq_inv_braiding M.val N.val).symm
 
-/-- Exchanging the tensor factors twice is the identity morphism.-/
+/-- Exchanging the tensor factors twice is the identity morphism.
+@isnad1 id=eq.0h3v.s6.2d7f3db1d2f6 from=translated src=- shape=08454c09 vocab=420de993
+-/
 @[simp]
 theorem moduleTensorSymmetry_hom_hom (M N : X.Modules) :
     (moduleTensorSymmetry M N).hom ≫ (moduleTensorSymmetry N M).hom =
@@ -89,7 +97,9 @@ theorem moduleTensorSymmetry_hom_hom (M N : X.Modules) :
   rw [← moduleTensorSymmetry_symm M N]
   exact (moduleTensorSymmetry M N).hom_inv_id
 
-/-- The inverse tensor symmetry also exchanges the two specified sections.-/
+/-- The inverse tensor symmetry also exchanges the two specified sections.
+@isnad1 id=eq.0h6v.s10.2eb133310beb from=translated src=- shape=65255cbc vocab=26e69602
+-/
 @[simp]
 theorem moduleTensorSymmetry_inv_section {M N : X.Modules} {U : X.Opens}
     (s : Γ(M, U)) (t : Γ(N, U)) :
@@ -108,7 +118,9 @@ Proof: `moduleTensorSymmetry` is `sheafification.mapIso` of the sectionwise brai
 definitionally `PresheafOfModules.Monoidal.tensorHom` (the local instance above is exactly
 Mathlib's `PresheafOfModules.monoidalCategoryStruct`), so `exact` closes it under
 `backward.isDefEq.respectTransparency false`; a `simp`-normalised version of the same
-statement does not unify.-/
+statement does not unify.
+@isnad1 id=eq.0h7v.s14.39f9c46ff02e from=translated src=- shape=0b97f363 vocab=25840433
+-/
 theorem moduleTensorSymmetry_naturality {M M' N N' : X.Modules}
     (f : M ⟶ M') (g : N ⟶ N') :
     (PresheafOfModules.sheafification (𝟙 X.ringCatSheaf.obj)).map

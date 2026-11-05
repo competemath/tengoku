@@ -21,7 +21,9 @@ universe u
 
 namespace AlgebraicGeometry.Scheme
 
-/-- A locally quasi-finite morphism induces a finite extension of the actual residue fields.-/
+/-- A locally quasi-finite morphism induces a finite extension of the actual residue fields.
+@isnad1 id=finite.0h4v.s9.ed2a34906ed9 from=translated src=- shape=46881f0a vocab=b415f478
+-/
 theorem residueFieldMap_finite_of_locallyQuasiFinite
     {X Y : Scheme.{u}} (f : X ⟶ Y) [LocallyQuasiFinite f] (x : X) :
     (f.residueFieldMap x).hom.Finite := by
@@ -36,7 +38,9 @@ theorem residueFieldMap_finite_of_locallyQuasiFinite
   haveI : Algebra.QuasiFinite (Y.residueField (f x)) (X.residueField x) := hq
   exact Module.Finite.of_quasiFinite
 
-/-- A finite morphism induces a finite extension of residue fields at every point.-/
+/-- A finite morphism induces a finite extension of residue fields at every point.
+@isnad1 id=finite.0h4v.s9.1ed25261ab39 from=translated src=- shape=46881f0a vocab=ea4e36ce
+-/
 theorem residueFieldMap_finite_of_isFinite
     {X Y : Scheme.{u}} (f : X ⟶ Y) [AlgebraicGeometry.IsFinite f] (x : X) :
     (f.residueFieldMap x).hom.Finite :=

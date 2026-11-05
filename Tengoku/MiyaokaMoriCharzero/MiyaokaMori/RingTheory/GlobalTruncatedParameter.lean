@@ -83,19 +83,31 @@ def map (r : ℕ) (f : R →+* S) : carrier R r →+* carrier S r :=
     ((Jet.jetProjection S r).comp (Polynomial.mapRingHom f))
     (truncation_map_zero r f)
 
+/--
+@isnad1 id=eq.0h5v.s9.acf1e9466cc6 from=translated src=- shape=0ada8b3a vocab=2719f677
+-/
 @[simp]
 theorem map_projection (r : ℕ) (f : R →+* S) (p : R[X]) :
     map r f (Jet.jetProjection R r p) = Jet.jetProjection S r (p.map f) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.9117412fcf9b from=translated src=- shape=50c6d332 vocab=e6110c01
+-/
 @[simp]
 theorem eta_apply (r : ℕ) (a : R) : eta r a = Jet.jetProjection R r (Polynomial.C a) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.3ee81f4f1832 from=translated src=- shape=cc23b342 vocab=e3983caa
+-/
 @[simp]
 theorem epsilon_projection (r : ℕ) (p : R[X]) :
     epsilon r (Jet.jetProjection R r p) = p.eval 0 := rfl
 
 /-! ## Strict identities needed by affine restriction and later gluing -/
 
+/--
+@isnad1 id=eq.0h2v.s8.03c53609881c from=translated src=- shape=ef73ea54 vocab=396c19e0
+-/
 theorem map_id (r : ℕ) : map r (RingHom.id R) = RingHom.id (carrier R r) := by
   apply RingHom.ext
   intro z
@@ -103,6 +115,9 @@ theorem map_id (r : ℕ) : map r (RingHom.id R) = RingHom.id (carrier R r) := by
   change map r (RingHom.id R) (Jet.jetProjection R r p) = Jet.jetProjection R r p
   rw [map_projection, Polynomial.map_id]
 
+/--
+@isnad1 id=eq.0h6v.s9.ff4b33a78bde from=translated src=- shape=c102ab0d vocab=0d5a2382
+-/
 theorem map_comp (r : ℕ) (f : R →+* S) (g : S →+* T) :
     map r (g.comp f) = (map r g).comp (map r f) := by
   apply RingHom.ext
@@ -113,6 +128,9 @@ theorem map_comp (r : ℕ) (f : R →+* S) (g : S →+* T) :
   rw [map_projection, RingHom.comp_apply, map_projection, map_projection]
   rw [Polynomial.map_map]
 
+/--
+@isnad1 id=eq.0h4v.s8.b6de58e88d06 from=translated src=- shape=ba59cce6 vocab=80076244
+-/
 theorem map_eta (r : ℕ) (f : R →+* S) :
     (map r f).comp (eta r) = (eta r).comp f := by
   apply RingHom.ext
@@ -122,6 +140,9 @@ theorem map_eta (r : ℕ) (f : R →+* S) :
   rw [map_projection]
   simp
 
+/--
+@isnad1 id=eq.0h4v.s8.3458c6521001 from=translated src=- shape=2fef8b6c vocab=07c1c78b
+-/
 theorem epsilon_map (r : ℕ) (f : R →+* S) :
     (epsilon r).comp (map r f) = f.comp (epsilon r) := by
   apply RingHom.ext
@@ -132,6 +153,9 @@ theorem epsilon_map (r : ℕ) (f : R →+* S) :
   rw [map_projection, epsilon_projection, epsilon_projection]
   simpa using (Polynomial.eval_map_apply (p := p) f 0)
 
+/--
+@isnad1 id=eq.0h2v.s7.4b446eb03f22 from=translated src=- shape=844c909e vocab=3b22f0b8
+-/
 theorem epsilon_eta (r : ℕ) :
     (epsilon r).comp (eta r) = RingHom.id R := by
   apply RingHom.ext

@@ -59,23 +59,37 @@ def ofAffineHom (p : W ⟶ T) [IsAffineHom p] : T.AffineAlgebra where
       ((Opens.map p.base).map (homOfLE (AffineZariskiSite.toOpens_mono (U.basicOpen_le f))))
       (Scheme.preimage_basicOpen p f)
 
+/--
+@isnad1 id=eq.0h4v.s7.1db3be341757 from=translated src=- shape=bb53feaa vocab=71e1440b
+-/
 @[simp] theorem ofAffineHom_sections (p : W ⟶ T) [IsAffineHom p] (U : T.AffineZariskiSite) :
     (ofAffineHom p).sections U = Γ(W, p ⁻¹ᵁ U.toOpens) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.cf0c2975b66f from=translated src=- shape=a700ca9b vocab=45208c67
+-/
 @[simp] theorem ofAffineHom_unitHom (p : W ⟶ T) [IsAffineHom p] (U : T.AffineZariskiSite)
     (r : Γ(T, U.toOpens)) : (ofAffineHom p).unitHom U r = (p.app U.toOpens) r := rfl
 
+/--
+@isnad1 id=eq.1h6v.s13.1b950a8944a8 from=translated src=- shape=e68db68b vocab=f7f75921
+-/
 theorem ofAffineHom_restrict (p : W ⟶ T) [IsAffineHom p] {U V : T.AffineZariskiSite} (h : U ≤ V)
     (a : Γ(W, p ⁻¹ᵁ V.toOpens)) :
     (ofAffineHom p).restrict h a =
       (W.presheaf.map ((Opens.map p.base).map
         (homOfLE (AffineZariskiSite.toOpens_mono h))).op).hom a := rfl
 
-/-- The pushforward along the identity is the structure sheaf algebra.-/
+/-- The pushforward along the identity is the structure sheaf algebra.
+@isnad1 id=eq.0h1v.s4.2ec898c95462 from=translated src=- shape=1504e507 vocab=a15217ef
+-/
 theorem ofAffineHom_id : ofAffineHom (𝟙 T) = structureSheaf T := rfl
 
 variable {X : Scheme.{u}}
 
+/--
+@isnad1 id=isaffine.0h4v.s5.ab1d56278f23 from=translated src=- shape=1f33e607 vocab=1d92e2c3
+-/
 instance pullback_isAffineHom (A : X.AffineAlgebra) (g : T ⟶ X) :
     IsAffineHom (Limits.pullback.snd A.relativeSpec.hom g) :=
   AlgebraicGeometry.isAffineHom_isStableUnderBaseChange.of_isPullback
@@ -86,6 +100,9 @@ algebra of the base change `T ×_X Spec_X A ⟶ T`.-/
 def pullback (A : X.AffineAlgebra) (g : T ⟶ X) : T.AffineAlgebra :=
   ofAffineHom (Limits.pullback.snd A.relativeSpec.hom g)
 
+/--
+@isnad1 id=eq.0h5v.s9.12c066792e35 from=translated src=- shape=a50fddde vocab=ff48d1c6
+-/
 @[simp] theorem pullback_sections (A : X.AffineAlgebra) (g : T ⟶ X) (V : T.AffineZariskiSite) :
     (A.pullback g).sections V =
       Γ(Limits.pullback A.relativeSpec.hom g,
@@ -115,6 +132,9 @@ namespace ofAffineHom
 def toSource (U : T.AffineZariskiSite) : Spec ((ofAffineHom p).sections U) ⟶ W :=
   (U.2.preimage p).fromSpec
 
+/--
+@isnad1 id=eq.1h5v.s7.6a94c8709497 from=translated src=- shape=0c080aee vocab=3217e1df
+-/
 theorem map_toSource {U V : T.AffineZariskiSite} (h : U ≤ V) :
     Spec.map ((ofAffineHom p).ring.map (homOfLE h).op) ≫ toSource p V = toSource p U :=
   IsAffineOpen.map_fromSpec (V.2.preimage p) (U.2.preimage p)
@@ -134,18 +154,25 @@ def toSourceCocone : Cocone (ofAffineHom p).gluingData.functor where
 def toSourceHom : (ofAffineHom p).relativeSpec.left ⟶ W :=
   colimit.desc _ (toSourceCocone p)
 
+/--
+@isnad1 id=eq.0h4v.s7.053e13745a28 from=translated src=- shape=530d863f vocab=af89b11a
+-/
 @[reassoc (attr := simp)]
 theorem chart_toSourceHom (U : T.AffineZariskiSite) :
     (ofAffineHom p).chart U ≫ toSourceHom p = (U.2.preimage p).fromSpec :=
   colimit.ι_desc (toSourceCocone p) U
 
-/-- `Spec.map (p.app U) ≫ fromSpec_U = fromSpec_{p⁻¹U} ≫ p`.-/
+/-- `Spec.map (p.app U) ≫ fromSpec_U = fromSpec_{p⁻¹U} ≫ p`.
+@isnad1 id=eq.0h4v.s10.c776822c0ba6 from=translated src=- shape=23eb7c98 vocab=697f3c66
+-/
 theorem specMap_app_fromSpec (U : T.AffineZariskiSite) :
     Spec.map (p.app U.toOpens) ≫ U.2.fromSpec = (U.2.preimage p).fromSpec ≫ p := by
   rw [Scheme.Hom.app_eq_appLE]
   exact IsAffineOpen.SpecMap_appLE_fromSpec p U.2 (U.2.preimage p) le_rfl
 
-/-- `chartToOpen U` factors through the restriction `p ∣_ U`.-/
+/-- `chartToOpen U` factors through the restriction `p ∣_ U`.
+@isnad1 id=eq.0h4v.s9.593bed2effc4 from=translated src=- shape=1fb7c53e vocab=4a2e0a93
+-/
 theorem chartToOpen_eq (U : T.AffineZariskiSite) :
     (ofAffineHom p).chartToOpen U = (U.2.preimage p).isoSpec.inv ≫ (p ∣_ U.toOpens) := by
   rw [← cancel_mono U.toOpens.ι]
@@ -154,7 +181,9 @@ theorem chartToOpen_eq (U : T.AffineZariskiSite) :
     IsAffineOpen.isoSpec_inv_ι_assoc]
   exact specMap_app_fromSpec p U
 
-/-- `toSourceHom` is a morphism over `T`.-/
+/-- `toSourceHom` is a morphism over `T`.
+@isnad1 id=eq.0h3v.s6.3039ba6e8616 from=translated src=- shape=66f9d417 vocab=00a17d2a
+-/
 @[reassoc (attr := simp)]
 theorem toSourceHom_comp : toSourceHom p ≫ p = (ofAffineHom p).relativeSpec.hom := by
   refine colimit.hom_ext fun (U : T.AffineZariskiSite) => ?_
@@ -162,7 +191,9 @@ theorem toSourceHom_comp : toSourceHom p ≫ p = (ofAffineHom p).relativeSpec.ho
   rw [chart_toSourceHom_assoc, chart_hom, chartToOpen_eq, Category.assoc, morphismRestrict_ι,
     IsAffineOpen.isoSpec_inv_ι_assoc]
 
-/-- Over the affine open `p⁻¹U ⊆ W`, `toSourceHom` restricts to the chart square.-/
+/-- Over the affine open `p⁻¹U ⊆ W`, `toSourceHom` restricts to the chart square.
+@isnad1 id=ispullba.0h4v.s9.cafcbf50649c from=translated src=- shape=85aa9548 vocab=cf0bf6ad
+-/
 theorem isPullback_chart (U : T.AffineZariskiSite) :
     IsPullback (U.2.preimage p).isoSpec.inv ((ofAffineHom p).chart U) (p ⁻¹ᵁ U.toOpens).ι
       (toSourceHom p) := by
@@ -182,7 +213,9 @@ def preimageCover : W.OpenCover :=
 
 /-- `toSourceHom` is an isomorphism: isomorphisms are Zariski-local on the target, and over each
 `p⁻¹U` the base change of `toSourceHom` is `isoSpec.inv` (`isPullback_chart`). Stated as a theorem
-(not a global instance): use `have := toSourceHom_isIso p` where needed.-/
+(not a global instance): use `have := toSourceHom_isIso p` where needed.
+@isnad1 id=isiso.0h3v.s5.b7d00a4d6e94 from=translated src=- shape=261b36f4 vocab=70711f73
+-/
 theorem toSourceHom_isIso : IsIso (toSourceHom p) := by
   rw [← MorphismProperty.isomorphisms.iff]
   refine IsZariskiLocalAtTarget.of_openCover (preimageCover p) fun U => ?_
@@ -202,14 +235,18 @@ end RelativeSpecIso
 Proof: `ofAffineHom.toSourceHom p : Spec_T(p_*O_W) ⟶ W` is a morphism over `T` (`toSourceHom_comp`) and an
 isomorphism (`toSourceHom_isIso`: chart by chart via `chart_isPullback` and `IsAffineOpen.isoSpec`;
 being an isomorphism is Zariski-local on the target). The data form `ofAffineHom.relativeSpecIso` is in
-`OfAffineHomRelativeSpecIso.lean`.-/
+`OfAffineHomRelativeSpecIso.lean`.
+@isnad1 id=nonempty.0h3v.s5.a5537541f55e from=translated src=- shape=4924f2f0 vocab=f345b602
+-/
 theorem ofAffineHom_relativeSpec_iso (p : W ⟶ T) [IsAffineHom p] :
     Nonempty ((ofAffineHom p).relativeSpec ≅ Over.mk p) :=
   have := ofAffineHom.toSourceHom_isIso p
   ⟨Over.isoMk (asIso (ofAffineHom.toSourceHom p)) (ofAffineHom.toSourceHom_comp p)⟩
 
 /-- Base-change compatibility, from the previous result: `Spec_T (g^*A) ≅ T ×_X Spec_X A` (the pullback
-square over `X`).-/
+square over `X`).
+@isnad1 id=nonempty.0h4v.s6.8158be5c8410 from=translated src=- shape=a5332c66 vocab=ff4ee0a1
+-/
 theorem pullback_relativeSpec_iso (A : X.AffineAlgebra) (g : T ⟶ X) :
     Nonempty ((A.pullback g).relativeSpec ≅
       Over.mk (Limits.pullback.snd A.relativeSpec.hom g)) :=

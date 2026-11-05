@@ -29,7 +29,9 @@ attribute [local instance] MvPolynomial.gradedAlgebra
 
 variable (k : Type u) [Field k]
 
-/-- The standard grading is exactly the existing positive-weight grading with every weight one.-/
+/-- The standard grading is exactly the existing positive-weight grading with every weight one.
+@isnad1 id=eq.0h2v.s7.acaffff5e782 from=translated src=- shape=2ecc53c4 vocab=891f9887
+-/
 theorem projectiveGrading_eq_weightOne (N : ℕ) :
     projectiveGrading k N =
       WeightedJets.weightedPolynomialGrading k (fun _ : Fin (N + 1) ↦ (1 : ℕ+)) := rfl

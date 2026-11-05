@@ -27,7 +27,9 @@ attribute [local instance] MvPolynomial.weightedGradedAlgebra
 
 variable (R : Type u) [CommRing R] {ι : Type v} (w : ι → ℕ+)
 
-/-- The actual coordinate opens cover polynomial weighted Proj.-/
+/-- The actual coordinate opens cover polynomial weighted Proj.
+@isnad1 id=eq.0h3v.s8.4248420e93c7 from=translated src=- shape=c9e0951a vocab=cca1df3f
+-/
 theorem weightedCoordinateOpen_iSup :
     ⨆ i, weightedCoordinateOpen R w i = ⊤ := by
   apply Proj.iSup_basicOpen_eq_top'
@@ -47,7 +49,9 @@ theorem weightedCoordinateOpen_iSup :
     | mul_X p i hp =>
       exact Subalgebra.mul_mem _ hp (Algebra.subset_adjoin (Set.mem_range_self i))
 
-/-- Every point of the same weighted Proj belongs to one of its coordinate opens.-/
+/-- Every point of the same weighted Proj belongs to one of its coordinate opens.
+@isnad1 id=ex.0h4v.s6.8dd73741daea from=translated src=- shape=fde2a921 vocab=a7fc3265
+-/
 theorem exists_mem_weightedCoordinateOpen (x : weightedProj R w) :
     ∃ i, x ∈ weightedCoordinateOpen R w i :=
   TopologicalSpace.Opens.mem_iSup.mp

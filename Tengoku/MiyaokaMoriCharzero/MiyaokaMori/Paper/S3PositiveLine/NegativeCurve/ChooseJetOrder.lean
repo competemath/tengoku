@@ -16,6 +16,9 @@ universe u v w u' v'
 
 noncomputable section
 
+/--
+@isnad1 id=ex.1h2v.s5.4dadafd9089c from=translated src=- shape=2489e5e2 vocab=807e522e
+-/
 theorem choose_jet_order (c d : ℚ) (hd : 0 < d) :
     ∃ κ : ℕ, 1 ≤ κ ∧ c < d * harmonic κ := by
   obtain ⟨κ, hκ, hineq⟩ :=

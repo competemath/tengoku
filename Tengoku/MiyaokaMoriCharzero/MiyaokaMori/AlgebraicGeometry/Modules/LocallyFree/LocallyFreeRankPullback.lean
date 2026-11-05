@@ -35,7 +35,9 @@ open AlgebraicGeometry.Proj
 variable {k : Type u} [Field k]
 
 set_option backward.isDefEq.respectTransparency false in
-/-- Pulling back the same locally free module sheaf preserves its specified finite rank.-/
+/-- Pulling back the same locally free module sheaf preserves its specified finite rank.
+@isnad1 id=islocall.1h6v.s6.3f3ec7913232 from=translated src=- shape=f23d633f vocab=89491616
+-/
 theorem isLocallyFreeRank_pullback {X Y : SchemeOver k} {L : X.scheme.Modules} {n : ℕ}
     (hL : IsLocallyFreeRank X L n) (f : Y.scheme ⟶ X.scheme) :
     IsLocallyFreeRank Y ((Scheme.Modules.pullback f).obj L) n := by

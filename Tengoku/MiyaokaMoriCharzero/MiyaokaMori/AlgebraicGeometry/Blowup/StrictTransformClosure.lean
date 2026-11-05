@@ -66,11 +66,15 @@ def i : model I b j ⟶ B :=
 def openToModel : (away I b j).toScheme ⟶ model I b j :=
   (away I b j).ι.toImage
 
-/-- The two structural maps retain the original cartesian compatibility.-/
+/-- The two structural maps retain the original cartesian compatibility.
+@isnad1 id=eq.0h6v.s6.04e1c4eca4ce from=translated src=- shape=32fb5436 vocab=4fae77aa
+-/
 theorem i_comp_b : i I b j ≫ b = q I b j ≫ j := by
   simp only [i, q, Category.assoc, pullback.condition]
 
-/-- The open-to-model map factors the original open immersion, as scheme morphisms.-/
+/-- The open-to-model map factors the original open immersion, as scheme morphisms.
+@isnad1 id=eq.0h6v.s7.0e82d50600a2 from=translated src=- shape=7cd6f97c vocab=bf752f4e
+-/
 @[reassoc (attr := simp)]
 theorem openToModel_ι : openToModel I b j ≫ ι I b j = (away I b j).ι :=
   (away I b j).ι.toImage_imageι
@@ -78,27 +82,35 @@ theorem openToModel_ι : openToModel I b j ≫ ι I b j = (away I b j).ι :=
 -- For a blowup application, deriving this quasi-compactness from the locally
 -- principal exceptional ideal in `IsBlowup` is a separate construction task.
 
-/-- Under quasi-compactness, the closure ideal has the topological closure as support.-/
+/-- Under quasi-compactness, the closure ideal has the topological closure as support.
+@isnad1 id=eq.0h6v.s8.eff1261d8dae from=translated src=- shape=8e71cadf vocab=f5091cd8
+-/
 theorem support_closureIdeal [QuasiCompact (away I b j).ι] :
     ((closureIdeal I b j).support : Set ↑(pullback j b)) =
       closure (away I b j : Set ↑(pullback j b)) := by
   rw [closureIdeal, Scheme.Hom.support_ker, Scheme.Opens.range_ι]
 
-/-- The image of the model's inclusion is the closure of the centre-free open.-/
+/-- The image of the model's inclusion is the closure of the centre-free open.
+@isnad1 id=eq.0h6v.s8.e0b292d0806b from=translated src=- shape=01bd2624 vocab=592a3f09
+-/
 theorem range_ι [QuasiCompact (away I b j).ι] :
     Set.range (ι I b j) = closure (away I b j : Set ↑(pullback j b)) := by
   exact (Scheme.IdealSheafData.range_subschemeι (closureIdeal I b j)).trans
     (support_closureIdeal I b j)
 
 /-- On each affine open, the defining ideal is the actual open restriction kernel.
-The quasi-compactness hypothesis ensures this component-wise kernel is quasi-coherent.-/
+The quasi-compactness hypothesis ensures this component-wise kernel is quasi-coherent.
+@isnad1 id=eq.0h7v.s13.f37b06ff727d from=translated src=- shape=82d36ec9 vocab=cbceaa03
+-/
 theorem closureIdeal_apply [QuasiCompact (away I b j).ι]
     (V : (pullback j b).affineOpens) :
     (closureIdeal I b j).ideal V = RingHom.ker ((away I b j).ι.app V).hom :=
   Scheme.Hom.ker_apply (away I b j).ι V
 
 /-- The same affine ideal written directly with the ambient structure-sheaf restriction.
-The target open is the part of `V` lying in the centre-free open, not its reduction.-/
+The target open is the part of `V` lying in the centre-free open, not its reduction.
+@isnad1 id=eq.0h7v.s14.8c4b5530a752 from=translated src=- shape=eabec938 vocab=4451aa43
+-/
 theorem closureIdeal_apply_restriction [QuasiCompact (away I b j).ι]
     (V : (pullback j b).affineOpens) :
     (closureIdeal I b j).ideal V =

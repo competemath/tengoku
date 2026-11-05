@@ -35,7 +35,9 @@ open MiyaokaMori.RingTheory
 
 universe u
 
-/-- Open neighbourhoods with a common dimension bound bound the dimension of the whole space.-/
+/-- Open neighbourhoods with a common dimension bound bound the dimension of the whole space.
+@isnad1 id=le.1h2v.s6.97229c5a3c8b from=translated src=- shape=4c3860a4 vocab=a7d52f91
+-/
 theorem dimension_le_of_open_neighborhoods
     {X : Type u} [TopologicalSpace X] (d : WithBot ℕ∞)
     (h : ∀ x : X, ∃ U : TopologicalSpace.Opens X,
@@ -58,7 +60,9 @@ theorem dimension_le_of_open_neighborhoods
 variable {k : Type u} [Field k]
 
 /-- Every point of a scheme smooth of relative dimension one over the field has an actual affine open
-neighbourhood of dimension one.-/
+neighbourhood of dimension one.
+@isnad1 id=ex.0h4v.s7.69d89bbfcb76 from=translated src=- shape=17dd47bb vocab=bc944adb
+-/
 theorem exists_affineOpen_dimension_one_of_smoothOfRelativeDimension
     {C : Scheme.{u}} (π : C ⟶ Spec (CommRingCat.of k)) [SmoothOfRelativeDimension 1 π] (x : C) :
     ∃ V : C.Opens, IsAffineOpen V ∧ x ∈ V ∧ topologicalKrullDim V = 1 := by
@@ -89,7 +93,9 @@ theorem exists_affineOpen_dimension_one_of_smoothOfRelativeDimension
       exact PrimeSpectrum.topologicalKrullDim_eq_ringKrullDim Γ(C, V)
     _ = 1 := hd
 
-/-- Smooth relative dimension one and nonemptiness give dimension one.-/
+/-- Smooth relative dimension one and nonemptiness give dimension one.
+@isnad1 id=eq.0h3v.s6.319e70f3e780 from=translated src=- shape=5c14e61c vocab=eaec11e3
+-/
 theorem topologicalKrullDim_eq_one_of_smoothOfRelativeDimension
     {C : Scheme.{u}} (π : C ⟶ Spec (CommRingCat.of k)) [SmoothOfRelativeDimension 1 π] [Nonempty C] :
     topologicalKrullDim C = 1 := by
@@ -103,7 +109,9 @@ theorem topologicalKrullDim_eq_one_of_smoothOfRelativeDimension
     rw [← hV]
     exact topologicalKrullDim_subspace_le C (V : Set C)
 
-/-- Under an explicit integral-scheme instance the generic closure has the curve's dimension.-/
+/-- Under an explicit integral-scheme instance the generic closure has the curve's dimension.
+@isnad1 id=eq.0h3v.s6.c00d8f36935b from=translated src=- shape=d05f8fa1 vocab=0152a12f
+-/
 theorem genericPoint_closureDimension_eq_one_of_smoothOfRelativeDimension
     {C : Scheme.{u}} (π : C ⟶ Spec (CommRingCat.of k)) [SmoothOfRelativeDimension 1 π] [IsIntegral C] :
     Intersection.pointClosureDimension C (genericPoint C) = 1 := by

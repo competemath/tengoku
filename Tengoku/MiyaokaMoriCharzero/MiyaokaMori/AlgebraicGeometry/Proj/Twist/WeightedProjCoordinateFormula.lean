@@ -55,7 +55,9 @@ variable {A : Type u} {σ : Type v} [CommRing A] [SetLike σ A] [AddSubgroupClas
   (𝒜 : ℕ → σ) [GradedRing 𝒜]
 
 /-- Dividing a shifted homogeneous fraction by a nonvanishing homogeneous element
-gives an actual same-degree homogeneous fraction.-/
+gives an actual same-degree homogeneous fraction.
+@isnad1 id=ex.3h7v.s11.4ab13da9ed9a from=translated src=- shape=f753b25a vocab=6a0241ce
+-/
 theorem isFraction_divide_lift (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
@@ -80,7 +82,9 @@ theorem isFraction_divide_lift (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     congr 1
 
 /-- Each value of a locally shifted fraction, after division, lies in the same
-homogeneous localization used by the structure sheaf.-/
+homogeneous localization used by the structure sheaf.
+@isnad1 id=ex.2h8v.s14.e1f27fa66c33 from=translated src=- shape=974fb1b3 vocab=ff6363b6
+-/
 theorem exists_divideValue (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
@@ -100,7 +104,9 @@ def divideValue (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
   (exists_divideValue 𝒜 d g hg hU s x).choose
 
 /-- The chosen homogeneous-localization representative is the actual quotient
-in the ordinary localization.-/
+in the ordinary localization.
+@isnad1 id=eq.2h8v.s14.9a2cc05f57b9 from=translated src=- shape=edd30344 vocab=43a56003
+-/
 theorem divideValue_val (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
@@ -128,7 +134,9 @@ def divideSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
   rw [he]
   exact hr
 
-/-- Evaluation of the actual structure-sheaf quotient section.-/
+/-- Evaluation of the actual structure-sheaf quotient section.
+@isnad1 id=eq.2h8v.s14.e59583c236f1 from=translated src=- shape=52236107 vocab=3871c14f
+-/
 theorem divideSection_val (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
@@ -145,20 +153,26 @@ def multiplySection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
         sectionsSubmodule 𝒜 (d : ℤ) U :=
   LinearMap.toSpanSingleton _ _ (homogeneousSection 𝒜 d g hg U)
 
-/-- The inverse frame multiplies localization values by the actual homogeneous element.-/
+/-- The inverse frame multiplies localization values by the actual homogeneous element.
+@isnad1 id=eq.1h8v.s16.995bb7d1cfee from=translated src=- shape=2935e269 vocab=5d0a3725
+-/
 theorem multiplySection_val (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : Opens (ProjectiveSpectrum.top 𝒜))
     (r : (ProjectiveSpectrum.Proj.structureSheaf 𝒜).obj.obj (op U)) (x : U) :
     (multiplySection 𝒜 d g hg U r).1 x = (r.1 x).val * Localization.mk g 1 := rfl
 
-/-- A nonvanishing homogeneous element and its displayed fraction inverse multiply to one.-/
+/-- A nonvanishing homogeneous element and its displayed fraction inverse multiply to one.
+@isnad1 id=eq.1h5v.s9.d6bc9a4ae953 from=translated src=- shape=432c04f4 vocab=dea00c5c
+-/
 theorem fiber_coordinate_mul_inverse (g : A) (x : ProjectiveSpectrum 𝒜)
     (hx : g ∉ x.asHomogeneousIdeal) :
     (Localization.mk g 1 : Fiber 𝒜 x) * Localization.mk 1 ⟨g, hx⟩ = 1 := by
   rw [Localization.mk_mul, mul_one, one_mul]
   exact Localization.mk_self ⟨g, hx⟩
 
-/-- Multiplying the quotient by the coordinate recovers the original twist section.-/
+/-- Multiplying the quotient by the coordinate recovers the original twist section.
+@isnad1 id=eq.2h7v.s16.37a4344bd87f from=translated src=- shape=ae78e833 vocab=608b2c6a
+-/
 theorem multiplySection_divideSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
@@ -169,7 +183,9 @@ theorem multiplySection_divideSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
   rw [multiplySection_val, divideSection_val, mul_assoc,
     mul_comm (Localization.mk 1 _), fiber_coordinate_mul_inverse, mul_one]
 
-/-- Dividing a multiple of the coordinate recovers the original structure-sheaf section.-/
+/-- Dividing a multiple of the coordinate recovers the original structure-sheaf section.
+@isnad1 id=eq.2h7v.s15.2174ff7c932c from=translated src=- shape=0b00f5ba vocab=608b2c6a
+-/
 theorem divideSection_multiplySection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
@@ -193,14 +209,18 @@ def homogeneousFrameSectionEquiv (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     left_inv := divideSection_multiplySection 𝒜 d g hg hU
     right_inv := multiplySection_divideSection 𝒜 d g hg hU }
 
-/-- The frame identifies the unit section with the specified homogeneous section.-/
+/-- The frame identifies the unit section with the specified homogeneous section.
+@isnad1 id=eq.2h6v.s16.0641e707b587 from=translated src=- shape=a0032898 vocab=7809f98d
+-/
 theorem homogeneousFrameSectionEquiv_one (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal) :
     homogeneousFrameSectionEquiv 𝒜 d g hg hU 1 = homogeneousSection 𝒜 d g hg U :=
   LinearMap.toSpanSingleton_apply_one _ _ _
 
-/-- Division sends the specified homogeneous section to the actual unit of the section ring.-/
+/-- Division sends the specified homogeneous section to the actual unit of the section ring.
+@isnad1 id=eq.2h6v.s17.a2e8c0474b6f from=translated src=- shape=adb5721c vocab=09205c46
+-/
 theorem homogeneousFrameSectionEquiv_symm_section (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U : Opens (ProjectiveSpectrum.top 𝒜)}
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal) :
@@ -209,7 +229,9 @@ theorem homogeneousFrameSectionEquiv_symm_section (d : ℕ) (g : A) (hg : g ∈ 
   rw [← homogeneousFrameSectionEquiv_one 𝒜 d g hg hU]
   exact (homogeneousFrameSectionEquiv 𝒜 d g hg hU).symm_apply_apply 1
 
-/-- The component frame is compatible with actual restriction of sections.-/
+/-- The component frame is compatible with actual restriction of sections.
+@isnad1 id=eq.1h9v.s18.8e2fcab82724 from=translated src=- shape=ecd04b05 vocab=ed6342d2
+-/
 theorem multiplySection_restrict (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U V : Opens (ProjectiveSpectrum.top 𝒜)} (i : V ⟶ U)
     (r : (ProjectiveSpectrum.Proj.structureSheaf 𝒜).obj.obj (op U)) :
@@ -217,7 +239,9 @@ theorem multiplySection_restrict (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
       multiplySection 𝒜 d g hg V
         ((ProjectiveSpectrum.Proj.structureSheaf 𝒜).obj.map i.op r) := rfl
 
-/-- Restricting the quotient gives the quotient of the restricted twist section.-/
+/-- Restricting the quotient gives the quotient of the restricted twist section.
+@isnad1 id=eq.3h9v.s17.d9d29f233305 from=translated src=- shape=e4b6f680 vocab=e3bf00b3
+-/
 theorem divideSection_restrict (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     {U V : Opens (ProjectiveSpectrum.top 𝒜)} (i : V ⟶ U)
     (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
@@ -235,7 +259,9 @@ theorem divideSection_restrict (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
 open AlgebraicGeometry.Scheme.Modules in
 /-- A homogeneous element `g` is a frame of `O(d)` on an open `U` where it vanishes nowhere: `r ↦ r • g` is bijective on
 every open subset of `U` (the inverse is `divideSection`). This is the only "mathematical input" of this file; the
-isomorphism and the formulas below are all produced by the general `IsFrame` API (`ModuleSheafFrame`).-/
+isomorphism and the formulas below are all produced by the general `IsFrame` API (`ModuleSheafFrame`).
+@isnad1 id=isframe.2h6v.s8.b9616dffc991 from=translated src=- shape=5ac25203 vocab=95ee1c62
+-/
 theorem isFrame_homogeneousSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal) :
     IsFrame (sheaf 𝒜 (d : ℤ)) U (homogeneousSection 𝒜 d g hg U) := by
@@ -244,7 +270,9 @@ theorem isFrame_homogeneousSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (fun x : W' ↦ hU ⟨x.1, h x.2⟩)).bijective
 
 open AlgebraicGeometry.Scheme.Modules in
-/-- Taking coordinates with respect to this frame is division by `g`.-/
+/-- Taking coordinates with respect to this frame is division by `g`.
+@isnad1 id=eq.3h8v.s13.9659a7296b5c from=translated src=- shape=d96e55e3 vocab=4d53f9fa
+-/
 theorem coord_homogeneousSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
     {W' : (Proj 𝒜).Opens} (h : W' ≤ U) (s : sectionsSubmodule 𝒜 (d : ℤ) W') :
@@ -263,7 +291,9 @@ def homogeneousCoordinateFrameIso (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
       SheafOfModules.unit (R := U.toScheme.ringCatSheaf) :=
   (isFrame_homogeneousSection 𝒜 d g hg U hU).restrictIso
 
-/-- On each subopen, the forward map is division followed by the actual structure-ring appIso.-/
+/-- On each subopen, the forward map is division followed by the actual structure-ring appIso.
+@isnad1 id=eq.2h8v.s17.78c9a61be493 from=translated src=- shape=50a70b0b vocab=f48465ab
+-/
 theorem homogeneousCoordinateFrameIso_hom_app (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
     (V : U.toScheme.Opens) (s : ((sheaf 𝒜 (d : ℤ)).restrict U.ι).val.obj (op V)) :
@@ -275,7 +305,9 @@ theorem homogeneousCoordinateFrameIso_hom_app (d : ℕ) (g : A) (hg : g ∈ 𝒜
       (coord_homogeneousSection 𝒜 d g hg U hU (Scheme.Modules.image_ι_le U V) s))
 
 /-- The same formula in the `Hom.app` / `restrictAppIso` spelling that consumers' goals carry
-(`HomogeneousTupleTwistPullback`): the forward frame of a restricted section is its quotient by `g`.-/
+(`HomogeneousTupleTwistPullback`): the forward frame of a restricted section is its quotient by `g`.
+@isnad1 id=eq.2h8v.s14.4b0a9b11c0bb from=translated src=- shape=757122b3 vocab=27855d29
+-/
 theorem homogeneousCoordinateFrameIso_hom_app_restrictAppIso_inv (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
     (V : U.toScheme.Opens) (t : sectionsSubmodule 𝒜 (d : ℤ) (U.ι ''ᵁ V)) :
@@ -288,7 +320,9 @@ theorem homogeneousCoordinateFrameIso_hom_app_restrictAppIso_inv (d : ℕ) (g : 
       (coord_homogeneousSection 𝒜 d g hg U hU (Scheme.Modules.image_ι_le U V) t))
 
 /-- The forward frame of a **global** homogeneous section, restricted to the chart: divide on any
-open `V'` containing the chart where `g` is invertible, then restrict.-/
+open `V'` containing the chart where `g` is invertible, then restrict.
+@isnad1 id=eq.5h8v.s15.d3bbfcd95a0c from=translated src=- shape=d9a2e94c vocab=42dc1d78
+-/
 theorem homogeneousCoordinateFrameIso_hom_app_top_homogeneousSection (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
     (a : A) (ha : a ∈ 𝒜 d) {V' : (Proj 𝒜).Opens}
@@ -308,7 +342,9 @@ theorem homogeneousCoordinateFrameIso_hom_app_top_homogeneousSection (d : ℕ) (
 /-- Bridge form of the previous lemma for instantiation at a **concrete** graded ring: the
 consumer's named constants (its copy `P` of the twist, its frame `e`, its restricted section `x`,
 its quotient `r`) enter as variables tied by equations that are discharged by top-level `rfl`, so the
-instance is syntactically the consumer's statement.-/
+instance is syntactically the consumer's statement.
+@isnad1 id=eq.9h12v.s15.02151b7ebaca from=translated src=- shape=20339d28 vocab=23dc8f3b
+-/
 theorem homogeneousCoordinateFrameIso_hom_app_top_of_eq (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
     (a : A) (ha : a ∈ 𝒜 d) {V' : (Proj 𝒜).Opens}
@@ -327,7 +363,9 @@ theorem homogeneousCoordinateFrameIso_hom_app_top_of_eq (d : ℕ) (g : A) (hg : 
   subst he'; subst hx; subst hr
   exact homogeneousCoordinateFrameIso_hom_app_top_homogeneousSection 𝒜 d g hg U hU a ha hV' hUV
 
-/-- The inverse frame transports the scalar through appIso and multiplies by the same section.-/
+/-- The inverse frame transports the scalar through appIso and multiplies by the same section.
+@isnad1 id=eq.2h8v.s17.d40eb9dd0da3 from=translated src=- shape=4903ea49 vocab=fc5b9387
+-/
 theorem homogeneousCoordinateFrameIso_inv_app (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
     (V : U.toScheme.Opens) (r : Γ(U.toScheme, V)) :
@@ -339,7 +377,9 @@ theorem homogeneousCoordinateFrameIso_inv_app (d : ℕ) (g : A) (hg : g ∈ 𝒜
 
 The section is written `show sectionsSubmodule … from …`: using it directly as a section of the restricted sheaf makes
 the kernel pay one carrier conversion of about 5 s under a common head; going through the normal form is almost free.
-If the downstream goal is spelled without the `show`, `exact` with this lemma still closes it (one β/ζ step).-/
+If the downstream goal is spelled without the `show`, `exact` with this lemma still closes it (one β/ζ step).
+@isnad1 id=eq.2h7v.s17.b4e9ee2cd1bb from=translated src=- shape=27ed033c vocab=fe19479a
+-/
 theorem homogeneousCoordinateFrameIso_hom_section (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
     (V : U.toScheme.Opens) :
@@ -348,7 +388,9 @@ theorem homogeneousCoordinateFrameIso_hom_section (d : ℕ) (g : A) (hg : g ∈ 
         homogeneousSection 𝒜 d g hg (U.ι ''ᵁ V)) = (1 : Γ(U.toScheme, V)) :=
   (isFrame_homogeneousSection 𝒜 d g hg U hU).restrictIso_hom_app_frame V
 
-/-- Pointwise value of the forward frame: the fraction `s` divided by `g`.-/
+/-- Pointwise value of the forward frame: the fraction `s` divided by `g`.
+@isnad1 id=eq.2h9v.s17.8030ce3f31fd from=translated src=- shape=8068f026 vocab=721ddaac
+-/
 theorem homogeneousCoordinateFrameIso_hom_val (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
     (V : U.toScheme.Opens) (s : ((sheaf 𝒜 (d : ℤ)).restrict U.ι).val.obj (op V))
@@ -363,7 +405,9 @@ theorem homogeneousCoordinateFrameIso_hom_val (d : ℕ) (g : A) (hg : g ∈ 𝒜
   exact (congrArg (fun z => (z.1 x).val) h1).trans
     (divideSection_val 𝒜 d g hg (fun y : U.ι ''ᵁ V ↦ hU ⟨y.1, U.ι_image_le V y.2⟩) s x)
 
-/-- Pointwise value of the inverse frame: the transported scalar times `g`.-/
+/-- Pointwise value of the inverse frame: the transported scalar times `g`.
+@isnad1 id=eq.2h9v.s17.a8c4d1eca2c6 from=translated src=- shape=f0d0a000 vocab=40fa20a9
+-/
 theorem homogeneousCoordinateFrameIso_inv_val (d : ℕ) (g : A) (hg : g ∈ 𝒜 d)
     (U : (Proj 𝒜).Opens) (hU : ∀ x : U, g ∉ x.1.asHomogeneousIdeal)
     (V : U.toScheme.Opens) (r : Γ(U.toScheme, V)) (x : U.ι ''ᵁ V) :
@@ -378,7 +422,9 @@ attribute [local instance] MvPolynomial.weightedGradedAlgebra
 
 variable (R : Type u) [CommRing R] {ι : Type t} (w : ι → ℕ+)
 
-/-- The specified common-degree coordinate power is nonvanishing on its actual coordinate chart.-/
+/-- The specified common-degree coordinate power is nonvanishing on its actual coordinate chart.
+@isnad1 id=not.2h6v.s9.d1f676a2da1a from=translated src=- shape=a45a7016 vocab=443f2352
+-/
 theorem weightedCoordinatePower_not_mem (b : ℕ) (hb : 0 < b) (i : ι)
     (hi : (w i : ℕ) ∣ b) (x : weightedCoordinateOpen R w i) :
     weightedCoordinatePower R w b i ∉ x.1.asHomogeneousIdeal := by
@@ -394,7 +440,9 @@ the `GradedRing` instance are concrete, so a kernel comparison under a common he
 carry out any new reasoning at this level.
 -/
 
-/-- The coordinate power `X_i^(b/w_i)` is a frame of `O(b)` on the coordinate chart `D₊(X_i)`.-/
+/-- The coordinate power `X_i^(b/w_i)` is a frame of `O(b)` on the coordinate chart `D₊(X_i)`.
+@isnad1 id=isframe.2h5v.s6.63410ac951bb from=translated src=- shape=58b23bb0 vocab=34b6f8f2
+-/
 theorem isFrame_weightedCoordinateTwistingSection (b : ℕ) (hb : 0 < b)
     (hw : ∀ i, (w i : ℕ) ∣ b) (i : ι) :
     Scheme.Modules.IsFrame (weightedProjTwisting R w (b : ℤ)) (weightedCoordinateOpen R w i)
@@ -414,7 +462,9 @@ def weightedProjCoordinateFrameIso (b : ℕ) (hb : 0 < b)
 
 /-- A common positive multiple of the coordinate weights gives a twist trivial on every standard
 coordinate chart (Stacks, `lemma-when-invertible`). This is the proved form of the local
-triviality of `O(b)`.-/
+triviality of `O(b)`.
+@isnad1 id=nonempty.2h5v.s8.113848968f37 from=translated src=- shape=8da848ae vocab=03876bd3
+-/
 theorem weightedProjTwisting_coordinate_trivial (b : ℕ) (hb : 0 < b)
     (hw : ∀ i, (w i : ℕ) ∣ b) (i : ι) :
     Nonempty ((weightedProjTwisting R w (b : ℤ)).restrict
@@ -422,7 +472,9 @@ theorem weightedProjTwisting_coordinate_trivial (b : ℕ) (hb : 0 < b)
         SheafOfModules.unit (R := (weightedCoordinateOpen R w i).toScheme.ringCatSheaf)) :=
   ⟨weightedProjCoordinateFrameIso R w b hb hw i⟩
 
-/-- The coordinate frame's forward map is the fraction s divided by X_i^(b/w_i).-/
+/-- The coordinate frame's forward map is the fraction s divided by X_i^(b/w_i).
+@isnad1 id=eq.2h8v.s18.0d4f1895570b from=translated src=- shape=550c7001 vocab=559b32bf
+-/
 theorem weightedProjCoordinateFrameIso_hom_val (b : ℕ) (hb : 0 < b)
     (hw : ∀ i, (w i : ℕ) ∣ b) (i : ι)
     (V : (weightedCoordinateOpen R w i).toScheme.Opens)
@@ -439,7 +491,9 @@ theorem weightedProjCoordinateFrameIso_hom_val (b : ℕ) (hb : 0 < b)
     (weightedCoordinatePower R w b i) (weightedCoordinatePower_mem R w b i (hw i))
     (weightedCoordinateOpen R w i) (weightedCoordinatePower_not_mem R w b hb i (hw i)) V s x
 
-/-- The inverse coordinate frame multiplies the transported scalar by X_i^(b/w_i).-/
+/-- The inverse coordinate frame multiplies the transported scalar by X_i^(b/w_i).
+@isnad1 id=eq.2h8v.s18.6278e66a9de1 from=translated src=- shape=83a47e35 vocab=1af56989
+-/
 theorem weightedProjCoordinateFrameIso_inv_val (b : ℕ) (hb : 0 < b)
     (hw : ∀ i, (w i : ℕ) ∣ b) (i : ι)
     (V : (weightedCoordinateOpen R w i).toScheme.Opens)
@@ -453,7 +507,9 @@ theorem weightedProjCoordinateFrameIso_inv_val (b : ℕ) (hb : 0 < b)
     (weightedCoordinateOpen R w i) (weightedCoordinatePower_not_mem R w b hb i (hw i)) V r x
 
 /-- The forward frame sends the existing named coordinate section to the actual scalar one.
-(The section goes through `sectionsSubmodule`; see `homogeneousCoordinateFrameIso_hom_section` for the reason.)-/
+(The section goes through `sectionsSubmodule`; see `homogeneousCoordinateFrameIso_hom_section` for the reason.)
+@isnad1 id=eq.2h6v.s18.f8c8bb6fd6ac from=translated src=- shape=1c58f699 vocab=95fc2ffd
+-/
 theorem weightedProjCoordinateFrameIso_section (b : ℕ) (hb : 0 < b)
     (hw : ∀ i, (w i : ℕ) ∣ b) (i : ι)
     (V : (weightedCoordinateOpen R w i).toScheme.Opens) :
@@ -473,7 +529,9 @@ special cases of `PresheafOfModules.naturality_apply (weightedProjCoordinateFram
 stated at the weighted concrete level, each would cost 6–12 s of kernel time. Use the Mathlib lemma directly when needed.
 -/
 
-/-- Multiplication and division are inverse on each actual restricted twist module.-/
+/-- Multiplication and division are inverse on each actual restricted twist module.
+@isnad1 id=eq.2h7v.s18.f63845f04924 from=translated src=- shape=6709ff08 vocab=05c00b70
+-/
 theorem weightedProjCoordinateFrameIso_inv_hom (b : ℕ) (hb : 0 < b)
     (hw : ∀ i, (w i : ℕ) ∣ b) (i : ι)
     (V : (weightedCoordinateOpen R w i).toScheme.Opens)
@@ -485,7 +543,9 @@ theorem weightedProjCoordinateFrameIso_inv_hom (b : ℕ) (hb : 0 < b)
       (weightedCoordinateOpen R w i).ι) ↦ φ.val.app (op V) s)
     (weightedProjCoordinateFrameIso R w b hb hw i).hom_inv_id
 
-/-- Division and multiplication are inverse on each actual structure-sheaf section ring.-/
+/-- Division and multiplication are inverse on each actual structure-sheaf section ring.
+@isnad1 id=eq.2h7v.s18.cad9d9c76442 from=translated src=- shape=212ee29b vocab=f9e626ff
+-/
 theorem weightedProjCoordinateFrameIso_hom_inv (b : ℕ) (hb : 0 < b)
     (hw : ∀ i, (w i : ℕ) ∣ b) (i : ι)
     (V : (weightedCoordinateOpen R w i).toScheme.Opens)

@@ -38,6 +38,9 @@ variable {X : Scheme.{u}}
 
 attribute [instance] AffineAlgebra.sectionsAlgebra
 
+/--
+@isnad1 id=eq.0h4v.s11.7f5d4127d9ff from=translated src=- shape=49655d84 vocab=92cf9735
+-/
 @[simp] theorem AffineAlgebra.algebraMap_sections (A : X.AffineAlgebra) (U : X.AffineZariskiSite)
     (r : Γ(X, U.toOpens)) : algebraMap Γ(X, U.toOpens) (A.sections U) r = A.unitHom U r := rfl
 
@@ -56,6 +59,9 @@ def gradingSubmodule (m : ℕ) : Submodule Γ(X, U.toOpens) (S.toAffineAlgebra.s
     rw [zero_add] at h
     exact h
 
+/--
+@isnad1 id=iff.0h5v.s11.cc1e8d168021 from=translated src=- shape=de11ace8 vocab=0c0764eb
+-/
 @[simp] theorem mem_gradingSubmodule {m : ℕ} {a : S.toAffineAlgebra.sections U} :
     a ∈ S.gradingSubmodule U m ↔ a ∈ S.grading U m := Iff.rfl
 

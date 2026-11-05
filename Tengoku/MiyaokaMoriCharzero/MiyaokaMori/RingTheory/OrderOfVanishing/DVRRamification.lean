@@ -40,7 +40,9 @@ variable {R S K L : Type*}
   [Field L] [Algebra K L] [Algebra R L] [IsScalarTower R K L]
   [Algebra S L] [IsFractionRing S L] [IsScalarTower R S L]
 
-/-- Adic valuations scale by the actual local ramification index.-/
+/-- Adic valuations scale by the actual local ramification index.
+@isnad1 id=eq.0h7v.s8.80e9d71db9b9 from=translated src=- shape=81ece826 vocab=50931ed5
+-/
 theorem valuation_liesOver_eq_ramification (p : HeightOneSpectrum R)
     (q : HeightOneSpectrum S) [q.asIdeal.LiesOver p.asIdeal] (a : K) :
     p.valuation K a ^ q.asIdeal.ramificationIdx R =
@@ -49,7 +51,9 @@ theorem valuation_liesOver_eq_ramification (p : HeightOneSpectrum R)
   exact p.valuation_liesOver L q a
 
 omit [IsDedekindDomain S] in
-/-- The sum of actual local indices times residue degrees is the fraction-field degree.-/
+/-- The sum of actual local indices times residue degrees is the fraction-field degree.
+@isnad1 id=eq.0h5v.s9.b627ecbb04ab from=translated src=- shape=604892cd vocab=b3f5a181
+-/
 theorem fundamental_ramification_sum (p : HeightOneSpectrum R)
     [Module.Finite R S] [Fintype (p.asIdeal.primesOver S)] :
     ∑ q : p.asIdeal.primesOver S,
@@ -66,12 +70,16 @@ variable {R S : Type*}
   [CommRing S] [IsDomain S] [IsDiscreteValuationRing S]
   [Algebra R S] [IsLocalHom (algebraMap R S)]
 
-/-- A local homomorphism between DVRs carries the target maximal ideal over the source one.-/
+/-- A local homomorphism between DVRs carries the target maximal ideal over the source one.
+@isnad1 id=liesover.0h2v.s7.828db2bde7aa from=translated src=- shape=69505b51 vocab=2cc8db91
+-/
 theorem maximalIdeal_liesOver :
     (IsLocalRing.maximalIdeal S).LiesOver (IsLocalRing.maximalIdeal R) :=
   ⟨(IsLocalRing.maximalIdeal_comap (algebraMap R S)).symm⟩
 
-/-- An injective local map of DVRs has strictly positive actual ramification index.-/
+/-- An injective local map of DVRs has strictly positive actual ramification index.
+@isnad1 id=lt.1h2v.s7.7b1cd91b083c from=translated src=- shape=512d3e38 vocab=9ba988fe
+-/
 theorem ramificationIdx_pos (hinj : Function.Injective (algebraMap R S)) :
     0 < (IsLocalRing.maximalIdeal S).ramificationIdx R := by
   have : Module.IsTorsionFree R S :=
@@ -90,7 +98,9 @@ variable {K L : Type*}
   [Field L] [Algebra K L] [Algebra R L] [IsScalarTower R K L]
   [Algebra S L] [IsFractionRing S L] [IsScalarTower R S L]
 
-/-- The canonical fraction-field orders scale by the actual DVR ramification index.-/
+/-- The canonical fraction-field orders scale by the actual DVR ramification index.
+@isnad1 id=eq.1h5v.s9.65b2d1d3fbc2 from=translated src=- shape=ea6070c0 vocab=f10dc7e6
+-/
 theorem ordFrac_algebraMap (hinj : Function.Injective (algebraMap R S)) (a : K) :
     Ring.ordFrac S (algebraMap K L a) =
       (Ring.ordFrac R a) ^ (IsLocalRing.maximalIdeal S).ramificationIdx R := by

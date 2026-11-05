@@ -33,7 +33,9 @@ namespace AlgebraicGeometry.Scheme
 variable {X Y : Scheme.{u}} [IsIntegral X] [IsIntegral Y]
 variable (f : X ⟶ Y) [IsDominant f] (x : X)
 
-/-- The actual stalk map and induced function-field map form a commuting square.-/
+/-- The actual stalk map and induced function-field map form a commuting square.
+@isnad1 id=eq.0h4v.s12.f0a61597c43c from=translated src=- shape=bad3b145 vocab=c62ebc84
+-/
 theorem dominantFunctionFieldMap_comp_algebraMap :
     (dominantFunctionFieldMap f).hom.comp
         (algebraMap (Y.presheaf.stalk (f x)) Y.functionField) =
@@ -50,13 +52,17 @@ theorem dominantFunctionFieldMap_comp_algebraMap :
   exact f.stalkSpecializes_stalkMap (genericPoint X) x
     ((genericPoint_spec X).specializes trivial)
 
-/-- Elementwise form of the same stalk/function-field commuting square.-/
+/-- Elementwise form of the same stalk/function-field commuting square.
+@isnad1 id=eq.0h5v.s12.aebc621df438 from=translated src=- shape=9b4030ba vocab=a7bf803b
+-/
 theorem dominantFunctionFieldMap_algebraMap (a : Y.presheaf.stalk (f x)) :
     dominantFunctionFieldMap f (algebraMap (Y.presheaf.stalk (f x)) Y.functionField a) =
       algebraMap (X.presheaf.stalk x) X.functionField (f.stalkMap x a) :=
   DFunLike.congr_fun (dominantFunctionFieldMap_comp_algebraMap f x) a
 
-/-- Dominance between integral schemes makes every actual local-ring map injective.-/
+/-- Dominance between integral schemes makes every actual local-ring map injective.
+@isnad1 id=injectiv.0h4v.s10.cb48847dd302 from=translated src=- shape=9e54ea49 vocab=4feb5ca2
+-/
 theorem dominant_stalkMap_injective : Function.Injective (f.stalkMap x) := by
   intro a b hab
   apply IsFractionRing.injective (Y.presheaf.stalk (f x)) Y.functionField
@@ -75,7 +81,9 @@ def sourceStalkFunctionFieldAlgebra : Algebra (Y.presheaf.stalk (f x)) X.functio
   ((dominantFunctionFieldMap f).hom.comp
     (algebraMap (Y.presheaf.stalk (f x)) Y.functionField)).toAlgebra
 
-/-- The named source-stalk action factors through the canonical source function field.-/
+/-- The named source-stalk action factors through the canonical source function field.
+@isnad1 id=isscalar.0h4v.s10.9f97f49c9416 from=translated src=- shape=1c3ad8d7 vocab=cf0734fc
+-/
 theorem sourceStalk_functionField_isScalarTower :
     letI := dominantFunctionFieldAlgebra f
     letI := sourceStalkFunctionFieldAlgebra f x
@@ -85,7 +93,9 @@ theorem sourceStalk_functionField_isScalarTower :
   apply IsScalarTower.of_algebraMap_eq'
   rfl
 
-/-- The same source-stalk action also factors through the actual target stalk.-/
+/-- The same source-stalk action also factors through the actual target stalk.
+@isnad1 id=isscalar.0h4v.s10.d701426631e6 from=translated src=- shape=e5e056f0 vocab=e9979d2d
+-/
 theorem sourceStalk_targetStalk_isScalarTower :
     letI := morphismStalkAlgebra f x
     letI := sourceStalkFunctionFieldAlgebra f x

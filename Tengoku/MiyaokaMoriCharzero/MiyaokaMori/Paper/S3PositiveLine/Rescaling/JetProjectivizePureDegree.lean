@@ -37,13 +37,25 @@ def MulClosed : Prop :=
 
 variable {c}
 
+/--
+@isnad1 id=ispure.2h6v.s6.32834bc53cca from=translated src=- shape=535043fb vocab=dcd0a200
+-/
 theorem IsPure.of_eq {m n : ℕ} {x : T} (h : IsPure c m x) (e : m = n) : IsPure c n x := e ▸ h
 
+/--
+@isnad1 id=ispure.0h4v.s6.f4a9a30a0426 from=translated src=- shape=fc9796d4 vocab=dcd0a200
+-/
 theorem isPure_zero (c : ∀ p, T →+ M p) (m : ℕ) : IsPure c m (0 : T) := fun p _ => map_zero (c p)
 
+/--
+@isnad1 id=ispure.2h6v.s6.1e4777015e45 from=translated src=- shape=7c1ff229 vocab=d4ff9788
+-/
 theorem IsPure.add {m : ℕ} {x y : T} (hx : IsPure c m x) (hy : IsPure c m y) : IsPure c m (x + y) :=
   fun p hp => by rw [map_add, hx p hp, hy p hp, add_zero]
 
+/--
+@isnad1 id=ispure.3h6v.s7.0e46f1db5e5f from=translated src=- shape=0e13f254 vocab=fd0adb58
+-/
 theorem isPure_pow (hmul : MulClosed c) (hone : IsPure c 0 (1 : T)) {d : ℕ} {x : T} (hx : IsPure c d x)
     (n : ℕ) : IsPure c (n * d) (x ^ n) := by
   induction n with
@@ -52,6 +64,9 @@ theorem isPure_pow (hmul : MulClosed c) (hone : IsPure c 0 (1 : T)) {d : ℕ} {x
     rw [pow_succ, Nat.succ_mul]
     exact hmul _ _ _ _ ih hx
 
+/--
+@isnad1 id=ispure.3h7v.s7.ab58080e9fb2 from=translated src=- shape=5ab02ce0 vocab=0a8fe9b9
+-/
 theorem isPure_prod (hmul : MulClosed c) (hone : IsPure c 0 (1 : T)) {ι : Type*} (s : Finset ι)
     (x : ι → T) (deg : ι → ℕ) (h : ∀ i ∈ s, IsPure c (deg i) (x i)) :
     IsPure c (∑ i ∈ s, deg i) (∏ i ∈ s, x i) := by
@@ -64,7 +79,9 @@ theorem isPure_prod (hmul : MulClosed c) (hone : IsPure c 0 (1 : T)) {ι : Type*
       (ih fun i hi => h i (Finset.mem_insert_of_mem hi))
 
 /-- Evaluation of weighted-homogeneous polynomials: if `Ψ` sends constants to pure degree `0` and `X i` to
-pure degree `w i`, then it sends `w`-homogeneous polynomials of weight `m` to pure degree `m`.-/
+pure degree `w i`, then it sends `w`-homogeneous polynomials of weight `m` to pure degree `m`.
+@isnad1 id=ispure.4h9v.s9.d83bf217b07a from=translated src=- shape=e7e1f036 vocab=43a39190
+-/
 theorem isPure_eval_of_isWeightedHomogeneous (hmul : MulClosed c) {R σ : Type*} [CommRing R]
     (Ψ : MvPolynomial σ R →+* T) (w : σ → ℕ) (hC : ∀ a : R, IsPure c 0 (Ψ (MvPolynomial.C a)))
     (hX : ∀ i : σ, IsPure c (w i) (Ψ (MvPolynomial.X i))) {m : ℕ} {f : MvPolynomial σ R}

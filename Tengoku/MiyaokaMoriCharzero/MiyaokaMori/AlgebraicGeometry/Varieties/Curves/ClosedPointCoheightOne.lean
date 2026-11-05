@@ -29,7 +29,9 @@ universe u
 
 namespace AlgebraicGeometry.Scheme
 
-/-- A closed point of an integral scheme of dimension one has coheight one.-/
+/-- A closed point of an integral scheme of dimension one has coheight one.
+@isnad1 id=eq.2h2v.s6.af49ebdae3ae from=translated src=- shape=e66b4bd2 vocab=7cd9256d
+-/
 theorem closedPoint_coheight_eq_one_of_dimension_one
     (X : Scheme.{u}) [IsIntegral X] (hX : topologicalKrullDim X = 1)
     (z : X) (hz : IsClosed ({z} : Set X)) : Order.coheight z = 1 := by

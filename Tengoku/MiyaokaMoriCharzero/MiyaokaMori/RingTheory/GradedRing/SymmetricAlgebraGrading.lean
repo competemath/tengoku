@@ -33,15 +33,21 @@ variable (R : Type u) (M : Type v) [CommSemiring R] [AddCommMonoid M] [Module R 
 def symmetricPiece (n : ℕ) : Submodule R (SymmetricAlgebra R M) :=
   (LinearMap.range (SymmetricAlgebra.ι R M)) ^ n
 
-/-- Multiplication adds degrees because these submodules are powers of the generator image.-/
+/-- Multiplication adds degrees because these submodules are powers of the generator image.
+@isnad1 id=gradedmo.0h2v.s8.57194b22dca8 from=translated src=- shape=a22ff9ba vocab=f431498a
+-/
 instance symmetricPiece_gradedMonoid : SetLike.GradedMonoid (symmetricPiece R M) :=
   Submodule.nat_power_gradedMonoid (LinearMap.range (SymmetricAlgebra.ι R M))
 
-/-- Each canonical module generator belongs to the degree-one part.-/
+/-- Each canonical module generator belongs to the degree-one part.
+@isnad1 id=mem.0h3v.s9.2f3102ad6665 from=translated src=- shape=7c96ef04 vocab=b49a745d
+-/
 theorem symmetric_ι_mem (m : M) : SymmetricAlgebra.ι R M m ∈ symmetricPiece R M 1 := by
   simpa only [symmetricPiece, pow_one] using LinearMap.mem_range_self (SymmetricAlgebra.ι R M) m
 
-/-- Each actual coefficient belongs to the degree-zero part.-/
+/-- Each actual coefficient belongs to the degree-zero part.
+@isnad1 id=mem.0h3v.s9.995d4826425f from=translated src=- shape=88ec3e83 vocab=3b147f7e
+-/
 theorem symmetric_algebraMap_mem (r : R) :
     algebraMap R (SymmetricAlgebra R M) r ∈ symmetricPiece R M 0 := by
   simpa only [symmetricPiece, pow_zero] using
@@ -52,7 +58,9 @@ def symmetricGradedInclusion : M →ₗ[R] ⨁ n : ℕ, symmetricPiece R M n :=
   DirectSum.lof R ℕ (fun n ↦ ↥(symmetricPiece R M n)) 1 ∘ₗ
     (SymmetricAlgebra.ι R M).codRestrict _ (symmetric_ι_mem R M)
 
-/-- Evaluation of the generator map in the direct sum.-/
+/-- Evaluation of the generator map in the direct sum.
+@isnad1 id=eq.0h3v.s13.b0e1af4014cf from=translated src=- shape=fe3f7e8f vocab=8cd9252e
+-/
 theorem symmetricGradedInclusion_apply (m : M) :
     symmetricGradedInclusion R M m =
       DirectSum.of (fun n : ℕ ↦ ↥(symmetricPiece R M n)) 1
@@ -63,7 +71,9 @@ def symmetricDecomposition :
     SymmetricAlgebra R M →ₐ[R] ⨁ n : ℕ, symmetricPiece R M n :=
   SymmetricAlgebra.lift (symmetricGradedInclusion R M)
 
-/-- A homogeneous element is sent to precisely its degree in the direct sum.-/
+/-- A homogeneous element is sent to precisely its degree in the direct sum.
+@isnad1 id=eq.0h4v.s14.7cd54e62a915 from=translated src=- shape=587daa43 vocab=cbf0deca
+-/
 theorem symmetricDecomposition_on_piece (n : ℕ) (x : symmetricPiece R M n) :
     symmetricDecomposition R M (x : SymmetricAlgebra R M) =
       DirectSum.of (fun n : ℕ ↦ ↥(symmetricPiece R M n)) n x := by
@@ -96,7 +106,9 @@ instance symmetricGrading : GradedAlgebra (symmetricPiece R M) :=
         symmetricGradedInclusion_apply, DirectSum.coeAlgHom_of])
     (symmetricDecomposition_on_piece R M)
 
-/-- The decomposition places a canonical module generator entirely in degree one.-/
+/-- The decomposition places a canonical module generator entirely in degree one.
+@isnad1 id=eq.0h3v.s14.e6a00df067e1 from=translated src=- shape=00105c8c vocab=ed641d95
+-/
 @[simp]
 theorem symmetricDecomposition_ι (m : M) :
     symmetricDecomposition R M (SymmetricAlgebra.ι R M m) =
@@ -104,7 +116,9 @@ theorem symmetricDecomposition_ι (m : M) :
         ⟨SymmetricAlgebra.ι R M m, symmetric_ι_mem R M m⟩ :=
   symmetricDecomposition_on_piece R M 1 ⟨_, symmetric_ι_mem R M m⟩
 
-/-- The decomposition places an actual coefficient entirely in degree zero.-/
+/-- The decomposition places an actual coefficient entirely in degree zero.
+@isnad1 id=eq.0h3v.s14.9cd8e1997c75 from=translated src=- shape=b90970d9 vocab=0eea8704
+-/
 @[simp]
 theorem symmetricDecomposition_algebraMap (r : R) :
     symmetricDecomposition R M (algebraMap R (SymmetricAlgebra R M) r) =
@@ -116,7 +130,9 @@ variable {R M} {N : Type w} [AddCommMonoid N] [Module R N]
 
 /-- The actual symmetric-algebra map induced by a linear map preserves every degree.
 
-The map is written as the existing universal lift, without introducing a second functor.-/
+The map is written as the existing universal lift, without introducing a second functor.
+@isnad1 id=mem.1h6v.s11.c738cb450d0e from=translated src=- shape=1d3cf3c1 vocab=f9891b61
+-/
 theorem symmetric_lift_linearMap_mem (f : M →ₗ[R] N) {n : ℕ}
     {x : SymmetricAlgebra R M} (hx : x ∈ symmetricPiece R M n) :
     SymmetricAlgebra.lift ((SymmetricAlgebra.ι R N).comp f) x ∈ symmetricPiece R N n := by

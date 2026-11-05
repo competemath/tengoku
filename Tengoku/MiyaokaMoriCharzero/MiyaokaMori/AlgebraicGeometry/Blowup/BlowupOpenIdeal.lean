@@ -18,7 +18,9 @@ namespace MiyaokaMori.Statement
 
 universe u
 
-/-- The unit ideal is invertible, with local generator `1` on every affine open.-/
+/-- The unit ideal is invertible, with local generator `1` on every affine open.
+@isnad1 id=isinvert.0h1v.s4.1fb79494424f from=translated src=- shape=6a6a934a vocab=53082b85
+-/
 theorem isInvertibleIdeal_top (X : Scheme.{u}) :
     IsInvertibleIdeal (⊤ : X.IdealSheafData) := by
   intro x
@@ -30,7 +32,9 @@ theorem isInvertibleIdeal_top (X : Scheme.{u}) :
   · simp
 
 /-- The actual point ideal pulls back to the unit ideal along any morphism whose
-image avoids the closed point.-/
+image avoids the closed point.
+@isnad1 id=eq.2h4v.s8.bdc6e3db47ab from=translated src=- shape=b6f7e90a vocab=bc5873ba
+-/
 theorem pointIdeal_comap_eq_top_of_avoids
     {X T : Scheme.{u}} (x : X) (hx : IsClosed ({x} : Set X))
     (f : T ⟶ X) (havoid : ∀ t : T, f t ≠ x) :

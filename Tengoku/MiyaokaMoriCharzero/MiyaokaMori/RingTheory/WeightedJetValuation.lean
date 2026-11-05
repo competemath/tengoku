@@ -49,25 +49,33 @@ def weightedOrder (w : ι → ℕ+) (v : K → WithTop ℤ)
     (a : ι → K) : WithTop ℚ :=
   Finset.univ.inf fun i ↦ normalizedOrder v (w i) (a i)
 
-/-- The weighted minimum is bounded above by each normalized coordinate order.-/
+/-- The weighted minimum is bounded above by each normalized coordinate order.
+@isnad1 id=le.0h6v.s5.55e5629f593f from=translated src=- shape=b9a00c78 vocab=8fa066fe
+-/
 theorem weightedOrder_le_coordinate (w : ι → ℕ+) (v : K → WithTop ℤ)
     (a : ι → K) (i : ι) :
     weightedOrder w v a ≤ normalizedOrder v (w i) (a i) := by
   exact Finset.inf_le (Finset.mem_univ i)
 
-/-- Zero coefficients contribute infinity, never the integer zero.-/
+/-- Zero coefficients contribute infinity, never the integer zero.
+@isnad1 id=eq.0h3v.s6.a5aa86e91dc5 from=translated src=- shape=69b2ecb6 vocab=b30b7f1f
+-/
 @[simp] theorem normalizedOrder_zero (v : AddValuation K (WithTop ℤ)) (q : ℕ+) :
     normalizedOrder v q 0 = ⊤ := by
   simp [normalizedOrder]
 
-/-- At a finite integer order the normalization is exactly ordinary rational division.-/
+/-- At a finite integer order the normalization is exactly ordinary rational division.
+@isnad1 id=eq.1h5v.s5.17f6e3e5fc75 from=translated src=- shape=c7384763 vocab=4cf34aff
+-/
 theorem normalizedOrder_of_eq (v : K → WithTop ℤ) (q : ℕ+) (a : K)
     (m : ℤ) (hm : v a = (m : WithTop ℤ)) :
     normalizedOrder v q a = ((m : ℚ) / (q : ℕ) : ℚ) := by
   simp [normalizedOrder, hm]
 
 /-- If each coordinate is zero or has order zero, and at least one coordinate is
-nonzero, then the weighted minimum is zero. Zero coordinates retain order `⊤`.-/
+nonzero, then the weighted minimum is zero. Zero coordinates retain order `⊤`.
+@isnad1 id=eq.2h5v.s7.b17c5fb58fa7 from=translated src=- shape=484c41db vocab=c5ff89ab
+-/
 theorem weightedOrder_eq_zero_of_zero_or_order_zero (w : ι → ℕ+)
     (v : AddValuation K (WithTop ℤ)) (a : ι → K)
     (hzero : ∀ i, a i = 0 ∨ v (a i) = 0) (ha : ∃ i, a i ≠ 0) :
@@ -83,7 +91,9 @@ theorem weightedOrder_eq_zero_of_zero_or_order_zero (w : ι → ℕ+)
     · simp [normalizedOrder, hv]
 
 /-- A regular coefficient times a monomial has order at least the sum of the
-exponent-weighted lower bounds of its coordinates. Infinite values are retained.-/
+exponent-weighted lower bounds of its coordinates. Infinite values are retained.
+@isnad1 id=le.2h7v.s9.07670d6faed7 from=translated src=- shape=063957e8 vocab=258e1fd5
+-/
 theorem monomial_order_lowerBound (v : AddValuation K (WithTop ℤ))
     (d : ι →₀ ℕ) (c : K) (a : ι → K) (lower : ι → WithTop ℤ)
     (hc : 0 ≤ v c) (ha : ∀ i, lower i ≤ v (a i)) :
@@ -102,7 +112,9 @@ theorem monomial_order_lowerBound (v : AddValuation K (WithTop ℤ))
     (hprod d.support).trans (le_add_of_nonneg_left hc)
 
 /-- Exact weighted homogeneity converts the monomial estimate into a target-weight
-bound. The common bound may be negative; no positivity of it is assumed.-/
+bound. The common bound may be negative; no positivity of it is assumed.
+@isnad1 id=le.3h9v.s9.19f711469f7b from=translated src=- shape=310c8076 vocab=2aef75bb
+-/
 theorem weightedMonomial_order_lowerBound (w : ι → ℕ+)
     (v : AddValuation K (WithTop ℤ)) (d : ι →₀ ℕ) (c : K) (q : ℕ)
     (hd : Finsupp.weight (fun i ↦ (w i : ℕ)) d = q) (a : ι → K)
@@ -118,7 +130,9 @@ theorem weightedMonomial_order_lowerBound (w : ι → ℕ+)
   exact monomial_order_lowerBound v d c a (fun i ↦ (w i : ℕ) • b) hc ha
 
 /-- Evaluating an exactly weighted homogeneous polynomial with regular coefficients
-preserves a lower bound in the integer valuation group, including negative bounds.-/
+preserves a lower bound in the integer valuation group, including negative bounds.
+@isnad1 id=le.3h8v.s8.82b8e10279a0 from=translated src=- shape=db288f7a vocab=fed44009
+-/
 theorem weightedPolynomial_order_lowerBound_integral (w : ι → ℕ+)
     (v : AddValuation K (WithTop ℤ)) (p : MvPolynomial ι K) (q : ℕ)
     (hp : p.IsWeightedHomogeneous (fun i ↦ (w i : ℕ)) q)
@@ -203,7 +217,9 @@ def valuationSupport {Z μ : Type*} [Fintype μ]
     (v : Z → AddValuation K (WithTop ℤ)) (a : μ → ι → K) : Set Z :=
   {z | ∃ c i, a c i ≠ 0 ∧ v z (a c i) ≠ 0}
 
-/-- Weighted support is contained in the union of the genuine coordinate supports.-/
+/-- Weighted support is contained in the union of the genuine coordinate supports.
+@isnad1 id=le.1h7v.s6.ba6e7df9e21b from=translated src=- shape=327cd907 vocab=9636c7ad
+-/
 theorem weightedSupport_subset_valuationSupport {Z μ : Type*} [Fintype μ]
     (w : ι → ℕ+) (v : Z → AddValuation K (WithTop ℤ)) (a : μ → ι → K)
     (ha : ∀ c, ∃ i, a c i ≠ 0) :
@@ -294,7 +310,9 @@ private theorem weightedMonomial_order_lowerBound_rat
     (fun i ↦ (w i : ℕ) • (b : WithTop ℚ)) hc ha
 
 /-- An exactly weight-`q` polynomial with regular coefficients preserves a common
-weighted lower bound after evaluation.-/
+weighted lower bound after evaluation.
+@isnad1 id=le.3h8v.s8.6406f4cf1a77 from=translated src=- shape=7915a2e1 vocab=20f93361
+-/
 theorem weightedPolynomial_order_lowerBound (w : ι → ℕ+)
     (v : AddValuation K (WithTop ℤ)) (p : MvPolynomial ι K) (q : ℕ+)
     (hp : p.IsWeightedHomogeneous (fun i ↦ (w i : ℕ)) (q : ℕ))
@@ -377,7 +395,9 @@ private theorem eval_inverse_after_forward
       ((MvPolynomial.eval₂Hom MvPolynomial.C G.forward) (G.inverse i)) = a i
   simpa using h
 
-/-- A regular weighted polynomial equivalence leaves the weighted order invariant.-/
+/-- A regular weighted polynomial equivalence leaves the weighted order invariant.
+@isnad1 id=eq.1h6v.s7.f22fcb87aee1 from=translated src=- shape=fd26481b vocab=c6d37e26
+-/
 theorem weightedOrder_invariant (w : ι → ℕ+) (v : AddValuation K (WithTop ℤ))
     (G : WeightedPolynomialEquiv (K := K) w) (hG : G.RegularAt v) (a : ι → K) :
     weightedOrder w v (G.evalForward a) = weightedOrder w v a := by
@@ -398,7 +418,9 @@ theorem weightedOrder_invariant (w : ι → ℕ+) (v : AddValuation K (WithTop �
       _ = weightedOrder w v a := congrArg (weightedOrder w v) htuple.symm
   exact le_antisymm hinverse_order hforward_order
 
-/-- Finite character of individual nonzero coordinates gives finite weighted support.-/
+/-- Finite character of individual nonzero coordinates gives finite weighted support.
+@isnad1 id=hasfinit.2h7v.s6.6fca1feb4cb5 from=translated src=- shape=85cbddcf vocab=8fb1cdf1
+-/
 theorem weightedSupport_finite_of_finiteCharacter {Z μ : Type*} [Fintype μ]
     (w : ι → ℕ+) (v : Z → AddValuation K (WithTop ℤ))
     (hv : ValuationFiniteCharacter v) (a : μ → ι → K)
@@ -413,7 +435,9 @@ theorem weightedSupport_finite_of_finiteCharacter {Z μ : Type*} [Fintype μ]
   exact Set.mem_iUnion.mpr ⟨⟨(c, i), hi⟩, hvi⟩
 
 /-- Every nonzero jet tuple has a rational weighted order whose reduced denominator
-divides the least common multiple of the jet weights.-/
+divides the least common multiple of the jet weights.
+@isnad1 id=hasjetde.1h5v.s6.96e50c311693 from=translated src=- shape=a1a7df56 vocab=3861f109
+-/
 theorem weightedOrder_has_jetDenominatorBoundary {n T : ℕ}
     (v : AddValuation K (WithTop ℤ)) (a : JetCoordinate n T → K)
     (ha : ∃ i, a i ≠ 0) :

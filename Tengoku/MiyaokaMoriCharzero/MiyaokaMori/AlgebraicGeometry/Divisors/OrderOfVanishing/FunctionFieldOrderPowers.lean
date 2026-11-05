@@ -25,7 +25,9 @@ universe u
 
 variable {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X]
 
-/-- The order of a nonzero rational function raised to an integer power scales by that integer.-/
+/-- The order of a nonzero rational function raised to an integer power scales by that integer.
+@isnad1 id=eq.1h4v.s7.116e4d61a609 from=translated src=- shape=e0d31d9c vocab=6544548d
+-/
 theorem ord_zpow {f : X.functionField} (hf : f ≠ 0) (m : ℤ) (x : X) :
     Scheme.ord (f ^ m) x = m * Scheme.ord f x := by
   by_cases hx : coheight x = 1

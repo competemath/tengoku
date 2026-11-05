@@ -22,7 +22,9 @@ noncomputable section
 open scoped AlgebraicGeometry
 
 /-- For a nonzero section `a` over an open `U ∋ z`: `ord_z 1 = 0`, `a • 1` is the germ of `a` in
-the function field, and its order at `z` is nonnegative.-/
+the function field, and its order at `z` is nonnegative.
+@isnad1 id=and.2h4v.s11.07aaace76d65 from=translated src=- shape=9e11b76e vocab=64ce5907
+-/
 theorem bridge_ord_nonneg {X : AlgebraicGeometry.Scheme.{u}}
     [AlgebraicGeometry.IsIntegral X] [AlgebraicGeometry.IsLocallyNoetherian X]
     {U : X.Opens} [Nonempty U] {z : X} (hzU : z ∈ U) {a : Γ(X, U)} (ha : a ≠ 0) :

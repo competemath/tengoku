@@ -48,7 +48,9 @@ variable {X Y : Scheme.{u}} (f : Y ⟶ X) [IsOpenImmersion f]
 def stalkRingEquiv (y : Y) : Y.presheaf.stalk y ≃+* X.presheaf.stalk (f y) :=
   ((asIso (f.stalkMap y)).symm).commRingCatIsoToRingEquiv
 
-/-- A germ followed by the inverse local-ring map is the germ on the image open.-/
+/-- A germ followed by the inverse local-ring map is the germ on the image open.
+@isnad1 id=eq.1h5v.s11.bd9cfbc5020e from=translated src=- shape=eed945fa vocab=e2da8750
+-/
 theorem germ_inv_stalkMap (y : Y) (U : Y.Opens) (hy : y ∈ U) :
     Y.presheaf.germ U y hy ≫ (asIso (f.stalkMap y)).inv =
       (f.appIso U).inv ≫ X.presheaf.germ (f ''ᵁ U) (f y) ⟨y, hy, rfl⟩ := by
@@ -57,7 +59,9 @@ theorem germ_inv_stalkMap (y : Y) (U : Y.Opens) (hy : y ∈ U) :
   rw [Scheme.Hom.germ_stalkMap, Scheme.Hom.appIso_inv_app_assoc]
   exact (Y.presheaf.germ_res (eqToHom (f.preimage_image_eq U)) y ⟨y, hy, rfl⟩).symm
 
-/-- The scalar comparison sends a germ to the corresponding original scalar germ.-/
+/-- The scalar comparison sends a germ to the corresponding original scalar germ.
+@isnad1 id=eq.1h6v.s13.3472485cdb0f from=translated src=- shape=c7b7a8d2 vocab=d1b99dfc
+-/
 @[simp]
 theorem stalkRingEquiv_germ (y : Y) (U : Y.Opens) (hy : y ∈ U) (r : Γ(Y, U)) :
     stalkRingEquiv f y (Y.presheaf.germ U y hy r) =
@@ -100,7 +104,9 @@ def stalkEquiv (E : X.Modules) (y : Y) :
         exact (stalkRingEquiv_germ f y U hyU (Y.presheaf.map (CategoryTheory.homOfLE hUV).op a)).symm
       · exact (hg b).symm }
 
-/-- The semilinear equivalence preserves the represented section on every image open.-/
+/-- The semilinear equivalence preserves the represented section on every image open.
+@isnad1 id=eq.1h7v.s16.6ccdfb5185cd from=translated src=- shape=8346d9ee vocab=c933ce2d
+-/
 @[simp]
 theorem stalkEquiv_germ (E : X.Modules) (y : Y) (U : Y.Opens) (hy : y ∈ U)
     (s : Γ(E.restrict f, U)) :

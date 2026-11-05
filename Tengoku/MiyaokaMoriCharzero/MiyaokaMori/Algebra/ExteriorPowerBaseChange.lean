@@ -46,6 +46,9 @@ def exteriorPowerBaseChangeMap (n : ℕ) :
   (exteriorPower.alternatingMapLinearEquiv
     (exteriorPowerBaseChangeGenerator R S M n)).liftBaseChange S
 
+/--
+@isnad1 id=eq.0h6v.s16.6f8a5d6577f2 from=translated src=- shape=6865eca9 vocab=828e9cdc
+-/
 @[simp]
 theorem exteriorPowerBaseChangeMap_tmul_ιMulti (n : ℕ) (s : S) (m : Fin n → M) :
     exteriorPowerBaseChangeMap R S M n (s ⊗ₜ[R] exteriorPower.ιMulti R n m) =
@@ -127,6 +130,9 @@ def exteriorPowerBaseChangeInv (n : ℕ) :
     ((exteriorAlgebraBaseChangeReverse R S M).toLinearMap.comp
       (⋀[S]^n (S ⊗[R] M)).subtype)
 
+/--
+@isnad1 id=eq.0h5v.s16.798042bbeeb8 from=translated src=- shape=9cf1b2d7 vocab=f795e21b
+-/
 @[simp]
 theorem exteriorPowerBaseChangeInv_ιMulti (n : ℕ) (m : Fin n → M) :
     exteriorPowerBaseChangeInv R S M n
@@ -138,7 +144,9 @@ theorem exteriorPowerBaseChangeInv_ιMulti (n : ℕ) (m : Fin n → M) :
   congr 1
   exact exteriorPowerProjection_ιMulti R M n m
 
-/-- The reverse comparison is a left inverse on all tensors of exterior powers.-/
+/-- The reverse comparison is a left inverse on all tensors of exterior powers.
+@isnad1 id=eq.0h4v.s14.6d934d42a0d5 from=translated src=- shape=10e7f25a vocab=f6400903
+-/
 theorem exteriorPowerBaseChangeInv_comp_map (n : ℕ) :
     (exteriorPowerBaseChangeInv R S M n).comp (exteriorPowerBaseChangeMap R S M n) =
       LinearMap.id := by
@@ -171,7 +179,9 @@ private theorem baseChangeUnit_span :
       simpa only [TensorProduct.smul_tmul', smul_eq_mul, mul_one] using h
   | add x y hx hy => exact Submodule.add_mem _ hx hy
 
-/-- The two comparisons agree with the identity on wedges of a spanning family.-/
+/-- The two comparisons agree with the identity on wedges of a spanning family.
+@isnad1 id=eq.0h4v.s15.311b1635a52e from=translated src=- shape=d63a668d vocab=f6400903
+-/
 theorem exteriorPowerBaseChangeMap_comp_inv (n : ℕ) :
     (exteriorPowerBaseChangeMap R S M n).comp (exteriorPowerBaseChangeInv R S M n) =
       LinearMap.id := by
@@ -196,14 +206,18 @@ def exteriorPowerBaseChange (n : ℕ) :
     (exteriorPowerBaseChangeMap_comp_inv R S M n)
     (exteriorPowerBaseChangeInv_comp_map R S M n)
 
-/-- The canonical comparison sends a scalar times a wedge to the pulled-back wedge.-/
+/-- The canonical comparison sends a scalar times a wedge to the pulled-back wedge.
+@isnad1 id=eq.0h6v.s16.5f264849bd10 from=translated src=- shape=7e681873 vocab=64ed68b5
+-/
 @[simp]
 theorem exteriorPowerBaseChange_tmul_ιMulti (n : ℕ) (s : S) (m : Fin n → M) :
     exteriorPowerBaseChange R S M n (s ⊗ₜ[R] exteriorPower.ιMulti R n m) =
       s • exteriorPower.ιMulti S n (fun i ↦ 1 ⊗ₜ[R] m i) :=
   exteriorPowerBaseChangeMap_tmul_ιMulti R S M n s m
 
-/-- The wedge formula also specifies the image of the empty wedge when `n = 0`.-/
+/-- The wedge formula also specifies the image of the empty wedge when `n = 0`.
+@isnad1 id=eq.0h5v.s16.1d0b9a2852c5 from=translated src=- shape=b9c21d70 vocab=fd86a0db
+-/
 @[simp]
 theorem exteriorPowerBaseChange_one_tmul_ιMulti (n : ℕ) (m : Fin n → M) :
     exteriorPowerBaseChange R S M n (1 ⊗ₜ[R] exteriorPower.ιMulti R n m) =

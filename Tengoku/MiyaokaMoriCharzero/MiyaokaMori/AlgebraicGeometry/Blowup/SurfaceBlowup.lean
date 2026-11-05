@@ -44,7 +44,9 @@ def IsBlowup {X B : Scheme.{u}} (I : X.IdealSheafData) (b : B ⟶ X) : Prop :=
       ∃! lift : T ⟶ B, lift ≫ b = f
 
 /-- The geometric universal property determines the blowup up to an isomorphism
-over its actual base scheme.-/
+over its actual base scheme.
+@isnad1 id=ex.2h6v.s6.e60815659d48 from=translated src=- shape=aa661bce vocab=89dfcb8a
+-/
 theorem IsBlowup.exists_iso {X B C : Scheme.{u}} {I : X.IdealSheafData}
     {b : B ⟶ X} {c : C ⟶ X} (hb : IsBlowup I b) (hc : IsBlowup I c) :
     ∃ e : B ≅ C, e.hom ≫ c = b := by

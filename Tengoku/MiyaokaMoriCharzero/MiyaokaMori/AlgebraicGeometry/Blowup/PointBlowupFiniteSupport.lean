@@ -27,7 +27,9 @@ universe u
 
 variable {W S : Scheme.{u}} {β : S ⟶ W}
 
-/-- Enlarging the allowed set preserves the same actual point-blowup sequence.-/
+/-- Enlarging the allowed set preserves the same actual point-blowup sequence.
+@isnad1 id=ispointb.2h5v.s6.6edeef4cccca from=translated src=- shape=0ef20b90 vocab=45a79735
+-/
 theorem mono {A B : Set W} (hβ : IsPointBlowupSequenceOver W A β) (hAB : A ⊆ B) :
     IsPointBlowupSequenceOver W B β := by
   induction hβ with
@@ -35,7 +37,9 @@ theorem mono {A B : Set W} (hβ : IsPointBlowupSequenceOver W A β) (hAB : A ⊆
   | cons f b previous centre closed hcentre blowup ih =>
     exact .cons f b ih centre closed (hAB hcentre) blowup
 
-/-- All centres of the same sequence map into a finite subset of its permitted set.-/
+/-- All centres of the same sequence map into a finite subset of its permitted set.
+@isnad1 id=ex.1h4v.s7.a024493fcb8b from=translated src=- shape=52e4ef0d vocab=ed2f68c0
+-/
 theorem exists_finset_centres {A : Set W} (hβ : IsPointBlowupSequenceOver W A β) :
     ∃ K : Finset W, (K : Set W) ⊆ A ∧ IsPointBlowupSequenceOver W (K : Set W) β := by
   induction hβ with
@@ -53,7 +57,9 @@ theorem exists_finset_centres {A : Set W} (hβ : IsPointBlowupSequenceOver W A �
         exact Finset.mem_insert_of_mem hx)
     · exact Finset.mem_insert_self _ _
 
-/-- The centres lie over a finite set on the base of any given ruling.-/
+/-- The centres lie over a finite set on the base of any given ruling.
+@isnad1 id=ex.1h6v.s8.8646b6b072a8 from=translated src=- shape=5a5134b5 vocab=9e68bf98
+-/
 theorem exists_finset_base {A : Set W} (hβ : IsPointBlowupSequenceOver W A β)
     {C : Scheme.{u}} (π : W ⟶ C) :
     ∃ T : Finset C, IsPointBlowupSequenceOver W (π ⁻¹' (T : Set C)) β := by
@@ -62,7 +68,9 @@ theorem exists_finset_base {A : Set W} (hβ : IsPointBlowupSequenceOver W A β)
   intro x hx
   exact Finset.mem_image.mpr ⟨x, hx, rfl⟩
 
-/-- Outside a finite set of base points every centre avoids that entire original fibre.-/
+/-- Outside a finite set of base points every centre avoids that entire original fibre.
+@isnad1 id=ex.1h6v.s8.b58f44c4397c from=translated src=- shape=5eda2487 vocab=5c5e6f3d
+-/
 theorem exists_finset_fibre_avoidance {A : Set W}
     (hβ : IsPointBlowupSequenceOver W A β) {C : Scheme.{u}} (π : W ⟶ C) :
     ∃ T : Finset C, ∀ y : C, y ∉ T →

@@ -30,7 +30,9 @@ namespace MiyaokaMori.RingTheory.RuledSurfaceAlgebra
 variable {R : Type u} [CommRing R] {M : Type v} [AddCommGroup M] [Module R M]
   {κ : Type x} (b : Module.Basis κ R M)
 
-/-- The image of a degree-one generator is a homogeneous polynomial of degree `1`.-/
+/-- The image of a degree-one generator is a homogeneous polynomial of degree `1`.
+@isnad1 id=isweight.0h5v.s9.addfa1f10c08 from=translated src=- shape=f946caf6 vocab=daef74cc
+-/
 theorem equivMvPolynomial_ι_isWeightedHomogeneous (v : M) :
     (SymmetricAlgebra.equivMvPolynomial b (SymmetricAlgebra.ι R M v)).IsWeightedHomogeneous
       (fun _ : κ => 1) 1 := by
@@ -47,7 +49,9 @@ theorem equivMvPolynomial_ι_isWeightedHomogeneous (v : M) :
   exact (MvPolynomial.mem_weightedHomogeneousSubmodule R w' 1 _).mp (hle hv)
 
 /-- **Standard pieces = homogeneous polynomials.** `a ∈ Sym^m M` iff its image in `R[X_κ]` is
-(weighted-, for the constant weight `1`) homogeneous of degree `m`.-/
+(weighted-, for the constant weight `1`) homogeneous of degree `m`.
+@isnad1 id=iff.0h6v.s10.16e111c3b7fe from=translated src=- shape=80a81f45 vocab=66ba2b13
+-/
 theorem mem_symmetricPiece_iff_isWeightedHomogeneous (m : ℕ) (a : SymmetricAlgebra R M) :
     a ∈ symmetricPiece R M m ↔
       (SymmetricAlgebra.equivMvPolynomial b a).IsWeightedHomogeneous (fun _ : κ => 1) m := by

@@ -31,7 +31,9 @@ universe u
 
 variable {X Y : Scheme.{u}} [IsIntegral X] [IsIntegral Y]
 
-/-- Mapping a section's generic germ agrees with pulling back the actual section.-/
+/-- Mapping a section's generic germ agrees with pulling back the actual section.
+@isnad1 id=eq.0h5v.s12.6bfe20c3652c from=translated src=- shape=c13a6931 vocab=6a53d6fa
+-/
 theorem dominantFunctionFieldMap_germToFunctionField
     (f : X ⟶ Y) [IsDominant f]
     (U : Y.Opens) [Nonempty U] [Nonempty (f ⁻¹ᵁ U)]
@@ -44,7 +46,9 @@ theorem dominantFunctionFieldMap_germToFunctionField
     f.germ_stalkMap_apply U x hx a,
     X.algebraMap_germ_eq_germToFunctionField hx (f.app U a)]
 
-/-- A unit ratio on an open set pulls back to a unit ratio on its full inverse image.-/
+/-- A unit ratio on an open set pulls back to a unit ratio on its full inverse image.
+@isnad1 id=isunitra.1h6v.s8.a15cfec14290 from=translated src=- shape=d5c21c05 vocab=0cb331bd
+-/
 theorem isUnitRatioOn_pullback_dominant
     (f : X ⟶ Y) [IsDominant f] (U : Y.Opens)
     (a b : Y.functionField) (h : IsUnitRatioOn U a b) :
@@ -83,7 +87,9 @@ noncomputable def pullbackDominant
     change IsUnitRatioOn (f ⁻¹ᵁ (D.opens i ⊓ D.opens j)) _ _
     exact isUnitRatioOn_pullback_dominant f _ _ _ (D.ratio_unit i j)
 
-/-- Every pulled-back chart computes the coefficient using the mapped original equation.-/
+/-- Every pulled-back chart computes the coefficient using the mapped original equation.
+@isnad1 id=eq.1h6v.s8.ee9adb4caa85 from=translated src=- shape=aad369f0 vocab=10ceacb7
+-/
 theorem pullbackDominant_coefficient_eq_ord
     (D : CartierLocalData Y) (f : X ⟶ Y) [IsDominant f]
     (x : X) (i : D.index) (hxi : f x ∈ D.opens i) :

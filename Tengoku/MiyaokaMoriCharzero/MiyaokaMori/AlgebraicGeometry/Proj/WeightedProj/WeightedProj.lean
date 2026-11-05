@@ -77,7 +77,9 @@ def weightedCoordinateChartMap (i : ι) :
 def weightedCoordinatePower (b : ℕ) (i : ι) : MvPolynomial ι R :=
   MvPolynomial.X i ^ (b / (w i : ℕ))
 
-/-- Divisibility puts each coordinate power in the same actual graded piece.-/
+/-- Divisibility puts each coordinate power in the same actual graded piece.
+@isnad1 id=mem.1h5v.s7.75a09505ca0b from=translated src=- shape=ed3466ba vocab=d9c315d8
+-/
 theorem weightedCoordinatePower_mem (b : ℕ) (i : ι) (hi : (w i : ℕ) ∣ b) :
     weightedCoordinatePower R w b i ∈ weightedPolynomialGrading R w b := by
   have h := (MvPolynomial.isWeightedHomogeneous_X (R := R) (fun j ↦ (w j : ℕ)) i).pow
@@ -85,7 +87,9 @@ theorem weightedCoordinatePower_mem (b : ℕ) (i : ι) (hi : (w i : ℕ) ∣ b) 
   simpa only [weightedCoordinatePower, weightedPolynomialGrading,
     MvPolynomial.mem_weightedHomogeneousSubmodule, smul_eq_mul, Nat.div_mul_cancel hi] using h
 
-/-- At a positive divisible degree, the coordinate power has the same Proj open.-/
+/-- At a positive divisible degree, the coordinate power has the same Proj open.
+@isnad1 id=eq.2h5v.s8.1b52bdc86056 from=translated src=- shape=52d08173 vocab=ac8bf30e
+-/
 theorem weightedCoordinatePower_basicOpen (b : ℕ) (hb : 0 < b) (i : ι)
     (hi : (w i : ℕ) ∣ b) :
     Proj.basicOpen (weightedPolynomialGrading R w) (weightedCoordinatePower R w b i) =
@@ -93,7 +97,9 @@ theorem weightedCoordinatePower_basicOpen (b : ℕ) (hb : 0 < b) (i : ι)
   exact Proj.basicOpen_pow (weightedPolynomialGrading R w) (MvPolynomial.X i)
     (b / (w i : ℕ)) (Nat.div_pos (Nat.le_of_dvd hb hi) (w i).pos)
 
-/-- Each weighted homogeneous piece is finite over the coefficient ring.-/
+/-- Each weighted homogeneous piece is finite over the coefficient ring.
+@isnad1 id=finite.0h4v.s8.c40c7307aa6f from=translated src=- shape=8d0e03cd vocab=589aa6dd
+-/
 theorem weightedPolynomialGrading_finite [Finite ι] (m : ℕ) :
     Module.Finite R (weightedPolynomialGrading R w m) := by
   apply Module.Finite.iff_fg.mpr

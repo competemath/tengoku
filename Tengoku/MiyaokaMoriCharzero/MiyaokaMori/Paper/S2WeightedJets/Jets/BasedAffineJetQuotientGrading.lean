@@ -58,7 +58,9 @@ def decompositionMap (hJ : J.IsHomogeneous 𝒜) : (A ⧸ J) →+ ⨁ i, compone
     (mappedDecomposition_eq_zero 𝒜 J hJ)
 
 /-- The descended decomposition on a polynomial class is its original decomposition
-followed componentwise by the actual quotient map.-/
+followed componentwise by the actual quotient map.
+@isnad1 id=eq.1h5v.s13.1df3c65a0863 from=translated src=- shape=de94dbaf vocab=b141db52
+-/
 theorem decompositionMap_mk (hJ : J.IsHomogeneous 𝒜) (a : A) :
     decompositionMap 𝒜 J hJ (Ideal.Quotient.mk J a) =
       DirectSum.map (fun i ↦ (componentMap 𝒜 J i).toAddMonoidHom)

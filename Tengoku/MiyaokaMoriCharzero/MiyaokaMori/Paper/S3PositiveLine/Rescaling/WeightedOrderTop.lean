@@ -39,15 +39,26 @@ open Classical in
 def ordTop (f : X.functionField) (x : X) : WithTop ℤ :=
   if f = 0 then ⊤ else ((X.ord f x : ℤ) : WithTop ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s6.5f002238afe5 from=translated src=- shape=033baa1b vocab=86ab9dfb
+-/
 @[simp] theorem ordTop_zero (x : X) : X.ordTop 0 x = ⊤ := by simp [ordTop]
 
+/--
+@isnad1 id=eq.1h3v.s6.a895c14666aa from=translated src=- shape=6e7811df vocab=acbe08ab
+-/
 theorem ordTop_of_ne_zero {f : X.functionField} (hf : f ≠ 0) (x : X) :
     X.ordTop f x = ((X.ord f x : ℤ) : WithTop ℤ) := by simp [ordTop, hf]
 
+/--
+@isnad1 id=iff.0h3v.s6.234cfa23dc1a from=translated src=- shape=75e34629 vocab=86ab9dfb
+-/
 theorem ordTop_eq_top_iff {f : X.functionField} {x : X} : X.ordTop f x = ⊤ ↔ f = 0 := by
   by_cases hf : f = 0 <;> simp [ordTop, hf]
 
-/-- At a point of coheight `1`, `ordTop` is the stalk valuation (as a function).-/
+/-- At a point of coheight `1`, `ordTop` is the stalk valuation (as a function).
+@isnad1 id=eq.1h3v.s7.3bb8200b88ea from=translated src=- shape=bc7cdb9d vocab=544a27a1
+-/
 theorem ordTop_eq_valuation (x : X) (hx : coheight x = 1)
     [IsDiscreteValuationRing (X.presheaf.stalk x)] (f : X.functionField) :
     X.ordTop f x = AlgebraicGeometry.Divisors.CurveStalkValuation.valuation X x hx f := by
@@ -57,7 +68,9 @@ theorem ordTop_eq_valuation (x : X) (hx : coheight x = 1)
 
 /-- Function form of `ordTop_eq_valuation`: at a coheight-`1` DVR point the order function `X.ordTop · x` is the
 underlying function of the stalk valuation. Used to replace `ordTop` inside `weightedOrderTop` by an `AddValuation`
-so that the lemmas requiring the valuation axioms apply.-/
+so that the lemmas requiring the valuation axioms apply.
+@isnad1 id=eq.1h2v.s7.b7ece6ce1015 from=translated src=- shape=8f661cb5 vocab=544a27a1
+-/
 theorem ordTop_fun_eq_valuation (x : X) (hx : coheight x = 1)
     [IsDiscreteValuationRing (X.presheaf.stalk x)] :
     (fun f : X.functionField ↦ X.ordTop f x) = ⇑(AlgebraicGeometry.Divisors.CurveStalkValuation.valuation X x hx) :=
@@ -77,23 +90,37 @@ abbrev normalizedOrdTop (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
 abbrev weightedOrderTop (a : Fin (n + 1) → Fin κ → X.functionField) (z : X) : WithTop ℚ :=
   weightedOrder jetCoordinateWeight (fun f ↦ X.ordTop f z) (fun p : JetCoordinate n κ ↦ a p.1 p.2)
 
+/--
+@isnad1 id=eq.0h5v.s6.b2751fe8213a from=translated src=- shape=3b1f45f3 vocab=e5894525
+-/
 theorem weightedOrderTop_def (a : Fin (n + 1) → Fin κ → X.functionField) (z : X) :
     weightedOrderTop a z = Finset.univ.inf (normalizedOrdTop a z) := rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.0fd2c2ec9a85 from=translated src=- shape=6f614d4c vocab=3d748a93
+-/
 theorem normalizedOrdTop_of_ne_zero (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
     (p : JetCoordinate n κ) (hp : a p.1 p.2 ≠ 0) :
     normalizedOrdTop a z p = (((X.ord (a p.1 p.2) z : ℤ) : ℚ) / ((p.2 : ℕ) + 1) : ℚ) := by
   simp [normalizedOrdTop, normalizedOrder, X.ordTop_of_ne_zero hp, jetCoordinateWeight]
 
+/--
+@isnad1 id=iff.0h6v.s7.759fafd932f9 from=translated src=- shape=60efcce5 vocab=4322ffe3
+-/
 theorem normalizedOrdTop_eq_top_iff (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
     (p : JetCoordinate n κ) : normalizedOrdTop a z p = ⊤ ↔ a p.1 p.2 = 0 := by
   rw [normalizedOrdTop, normalizedOrder, WithTop.map_eq_top_iff, Scheme.ordTop_eq_top_iff]
 
+/--
+@isnad1 id=le.0h6v.s6.e33fc55584f4 from=translated src=- shape=f789bab0 vocab=ffc53836
+-/
 theorem weightedOrderTop_le (a : Fin (n + 1) → Fin κ → X.functionField) (z : X)
     (p : JetCoordinate n κ) : weightedOrderTop a z ≤ normalizedOrdTop a z p :=
   weightedOrder_le_coordinate jetCoordinateWeight (fun f ↦ X.ordTop f z) (fun p ↦ a p.1 p.2) p
 
-/-- The weighted order of a nonzero tuple is finite and attained at some nonzero coordinate.-/
+/-- The weighted order of a nonzero tuple is finite and attained at some nonzero coordinate.
+@isnad1 id=ex.1h5v.s8.a09429381af6 from=translated src=- shape=473e4c44 vocab=417a3498
+-/
 theorem weightedOrderTop_attained (a : Fin (n + 1) → Fin κ → X.functionField)
     (hne : ∃ i q, a i q ≠ 0) (z : X) :
     ∃ p : JetCoordinate n κ, a p.1 p.2 ≠ 0 ∧
@@ -109,6 +136,9 @@ theorem weightedOrderTop_attained (a : Fin (n + 1) → Fin κ → X.functionFiel
     exact hiq hle
   exact ⟨p, hp0, by rw [weightedOrderTop_def, hp, normalizedOrdTop_of_ne_zero a z p hp0]⟩
 
+/--
+@isnad1 id=ne.1h5v.s7.ef59fce1561c from=translated src=- shape=3d642962 vocab=35eac7a8
+-/
 theorem weightedOrderTop_ne_top (a : Fin (n + 1) → Fin κ → X.functionField)
     (hne : ∃ i q, a i q ≠ 0) (z : X) : weightedOrderTop a z ≠ ⊤ := by
   obtain ⟨p, -, hp⟩ := weightedOrderTop_attained a hne z

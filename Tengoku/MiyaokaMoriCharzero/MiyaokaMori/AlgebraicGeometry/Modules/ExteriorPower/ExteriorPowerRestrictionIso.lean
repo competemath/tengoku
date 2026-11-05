@@ -54,6 +54,9 @@ def openModulePresheafRestrictIso (F : X.Modules) :
   exact Iso.refl _
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isiso.0h4v.s16.d1411f73167c from=translated src=- shape=214f77a3 vocab=44ed4643
+-/
 theorem moduleSheafificationDesc_isIso {Y : Scheme.{u}} {M : Y.PresheafOfModules}
     {F : Y.Modules} (g : M ⟶ F.val)
     [Presheaf.IsLocallyInjective (Opens.grothendieckTopology Y)
@@ -121,6 +124,9 @@ def openImmersionModuleSheafificationAbIso {Y Z : Scheme.{u}} (f : Y ⟶ Z)
     (sheafificationAdjunction J AddCommGrpCat).counit.app F)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.0h4v.s14.ac1c8c58f804 from=translated src=- shape=e1abaf0b vocab=6b26eece
+-/
 theorem openImmersionModuleSheafificationAbIso_unit {Y Z : Scheme.{u}} (f : Y ⟶ Z)
     [IsOpenImmersion f] (M : Z.PresheafOfModules) :
     CategoryTheory.toSheafify (Opens.grothendieckTopology Y)
@@ -138,6 +144,9 @@ theorem openImmersionModuleSheafificationAbIso_unit {Y Z : Scheme.{u}} (f : Y �
     (f.opensFunctor.op ⋙ M.presheaf) F).apply_symm_apply g
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=and.0h3v.s14.2596377047f4 from=translated src=- shape=a20063b2 vocab=85861cda
+-/
 theorem openModuleSheafificationUnit_isLocallyBijective (M : X.PresheafOfModules) :
     Presheaf.IsLocallyInjective (Opens.grothendieckTopology U.toScheme)
         ((PresheafOfModules.toPresheaf _).map (openModuleSheafificationUnit X U M)) ∧
@@ -165,6 +174,9 @@ def openModuleSheafificationMap (M : X.PresheafOfModules) :
     (𝟙 U.toScheme.ringCatSheaf.obj)).symm (openModuleSheafificationUnit X U M)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=isiso.0h3v.s12.b22161da6fa4 from=translated src=- shape=374ea94e vocab=3343d5bc
+-/
 theorem openModuleSheafificationMap_isIso (M : X.PresheafOfModules) :
     IsIso (openModuleSheafificationMap X U M) := by
   have := (openModuleSheafificationUnit_isLocallyBijective X U M).1

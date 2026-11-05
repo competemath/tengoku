@@ -44,12 +44,18 @@ noncomputable def AlgebraicGeometry.AlgebraicCycle.degree {k : Type u} [Field k]
     (Z : AlgebraicGeometry.AlgebraicCycle X ℤ) : ℤ :=
   ∑ᶠ x : X, Z x * ((X ↘ AlgebraicGeometry.Spec (CommRingCat.of k)).residueDegree x : ℤ)
 
+/--
+@isnad1 id=eq.0h2v.s6.1a5df2561a58 from=translated src=- shape=568d38a9 vocab=ba5a2d61
+-/
 theorem AlgebraicGeometry.AlgebraicCycle.degree_zero {k : Type u} [Field k]
     {X : AlgebraicGeometry.Scheme.{u}} [X.Over (AlgebraicGeometry.Spec (CommRingCat.of k))] :
     AlgebraicGeometry.AlgebraicCycle.degree (k := k) (0 : AlgebraicGeometry.AlgebraicCycle X ℤ) = 0 := by
   unfold AlgebraicGeometry.AlgebraicCycle.degree
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.e6c81f1a0542 from=translated src=- shape=52119483 vocab=160ca855
+-/
 theorem AlgebraicGeometry.AlgebraicCycle.degree_neg {k : Type u} [Field k]
     {X : AlgebraicGeometry.Scheme.{u}} [X.Over (AlgebraicGeometry.Spec (CommRingCat.of k))]
     (a : AlgebraicGeometry.AlgebraicCycle X ℤ) :
@@ -65,7 +71,9 @@ theorem AlgebraicGeometry.AlgebraicCycle.degree_neg {k : Type u} [Field k]
 namespace AlgebraicGeometry.Intersection
 
 /-- A zero-dimensional scheme point is closed: its irreducible closure has no nontrivial
-specialization. This is proved from the actual Krull dimension of that closure.-/
+specialization. This is proved from the actual Krull dimension of that closure.
+@isnad1 id=isclosed.1h2v.s6.b420e430272e from=translated src=- shape=836b621f vocab=4ed1e7ae
+-/
 theorem isClosed_singleton_of_pointClosureDimension_zero {X : Scheme.{u}} (x : X)
     (hx : pointClosureDimension X x = 0) : IsClosed ({x} : Set X) := by
   have hx' : topologicalKrullDim (closure ({x} : Set X)) = 0 :=
@@ -91,7 +99,9 @@ theorem isClosed_singleton_of_pointClosureDimension_zero {X : Scheme.{u}} (x : X
     · exact subset_closure
   exact closure_eq_iff_isClosed.mp hcl
 
-/-- A closed point has zero-dimensional closure.-/
+/-- A closed point has zero-dimensional closure.
+@isnad1 id=eq.1h2v.s6.1386fc01bdfb from=translated src=- shape=144a12a5 vocab=4ed1e7ae
+-/
 theorem pointClosureDimension_eq_zero_of_isClosed {X : Scheme.{u}} (x : X)
     (hx : IsClosed ({x} : Set X)) : pointClosureDimension X x = 0 := by
   rw [pointClosureDimension_eq_topologicalKrullDim_closure, hx.closure_eq]
@@ -118,7 +128,9 @@ def pointBaseMap {K : Type u} [Field K] {X : Scheme.{u}}
     CommRingCat.of K ⟶ X.residueField x :=
   Spec.preimage (X.fromSpecResidueField x ≫ f)
 
-/-- A closed point of a locally finite type scheme has a finite residue-field extension.-/
+/-- A closed point of a locally finite type scheme has a finite residue-field extension.
+@isnad1 id=finite.1h4v.s7.94ce57d183ae from=translated src=- shape=77ba8db8 vocab=d9fce579
+-/
 theorem pointBaseMap_finite {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) [LocallyOfFiniteType f]
     (x : X) (hx : IsClosed ({x} : Set X)) : (pointBaseMap f x).hom.Finite := by
@@ -147,7 +159,9 @@ open AlgebraicGeometry.Intersection in
 `Spec.map _ = X.fromSpecResidueField x ≫ p`, by `Spec.map_preimage` and
 `Scheme.Hom.SpecMap_residueFieldMap_fromSpecResidueField`); `g` is bijective because `κ(p x) ≅ k` for the unique
 point of `Spec k` (`Spec.residueFieldIso`, and `k → (⊥).ResidueField` is bijective); so the two `finrank`s agree by
-`Algebra.finrank_eq_of_equiv_equiv`.-/
+`Algebra.finrank_eq_of_equiv_equiv`.
+@isnad1 id=eq.0h4v.s5.34393d64e4ff from=translated src=- shape=b279c42e vocab=2fc3eada
+-/
 theorem AlgebraicGeometry.Scheme.Hom.residueFieldDegree_eq_residueDegree {k : Type u} [Field k]
     {X : Scheme.{u}} (p : X ⟶ Spec (CommRingCat.of k)) (x : X) :
     residueFieldDegree p x = p.residueDegree x := by
@@ -187,6 +201,9 @@ theorem AlgebraicGeometry.Scheme.Hom.residueFieldDegree_eq_residueDegree {k : Ty
 
 namespace AlgebraicGeometry.Intersection
 
+/--
+@isnad1 id=eq.1h4v.s6.769338879e3b from=translated src=- shape=3a099c84 vocab=c24a72e9
+-/
 theorem residueFieldDegree_eq_one {K : Type u} [Field K] [IsAlgClosed K]
     {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of K)) [LocallyOfFiniteType f]
     (x : X) (hx : IsClosed ({x} : Set X)) : residueFieldDegree f x = 1 := by
@@ -194,7 +211,9 @@ theorem residueFieldDegree_eq_one {K : Type u} [Field K] [IsAlgClosed K]
   apply Algebra.finrank_eq_one_iff_bijective_algebraMap.mpr
   exact ConcreteCategory.bijective_of_isIso (residueFieldIsoBase f x hx).inv
 
-/-- Every point in the support of a zero cycle has a genuinely finite residue extension.-/
+/-- Every point in the support of a zero cycle has a genuinely finite residue extension.
+@isnad1 id=finite.1h5v.s8.251c53e36379 from=translated src=- shape=347950fd vocab=08c6df12
+-/
 theorem zeroCycle_pointBaseMap_finite {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) [LocallyOfFiniteType f]
     (α : DimensionCycle X 0) (x : X) (hx : α.1 x ≠ 0) :
@@ -202,7 +221,9 @@ theorem zeroCycle_pointBaseMap_finite {K : Type u} [Field K] {X : Scheme.{u}}
   pointBaseMap_finite f x (isClosed_singleton_of_pointClosureDimension_zero x
       (IsDimensionCycle.pointClosureDimension_eq α.2 x hx))
 
-/-- Each residue-field weight on the support is positive; no infinite-degree default is used.-/
+/-- Each residue-field weight on the support is positive; no infinite-degree default is used.
+@isnad1 id=lt.1h5v.s8.e65693df5264 from=translated src=- shape=696464e5 vocab=4e08ec9a
+-/
 theorem zeroCycle_residueFieldDegree_pos {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) [LocallyOfFiniteType f]
     (α : DimensionCycle X 0) (x : X) (hx : α.1 x ≠ 0) : 0 < residueFieldDegree f x := by
@@ -210,18 +231,25 @@ theorem zeroCycle_residueFieldDegree_pos {K : Type u} [Field K] {X : Scheme.{u}}
   letI : Module.Finite K (X.residueField x) := zeroCycle_pointBaseMap_finite f α x hx
   exact Module.finrank_pos
 
+/--
+@isnad1 id=finite.0h2v.s6.a0a9300d4415 from=translated src=- shape=5bc2bc18 vocab=cc83ca6b
+-/
 theorem cycle_finiteSupport {X : Scheme.{u}} [CompactSpace X] (α : AlgebraicCycle X ℤ) :
     (Function.support α).Finite := by
   simpa using α.locallyFiniteSupport.finite_inter_support_of_isCompact isCompact_univ
 
-/-- Properness over a field supplies compactness, so every cycle has finite support.-/
+/-- Properness over a field supplies compactness, so every cycle has finite support.
+@isnad1 id=finite.0h4v.s7.141e7e7a7b8c from=translated src=- shape=341208bd vocab=08a9f76e
+-/
 theorem properCycle_finiteSupport {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) [IsProper f] (α : AlgebraicCycle X ℤ) :
     (Function.support α).Finite := by
   letI : CompactSpace X := QuasiCompact.compactSpace_of_compactSpace f
   exact cycle_finiteSupport α
 
-/-- A proper scheme over a field is Noetherian.-/
+/-- A proper scheme over a field is Noetherian.
+@isnad1 id=isnoethe.0h3v.s5.b527c1b36a47 from=translated src=- shape=6cb0ac8b vocab=ccc86b1a
+-/
 theorem properFieldScheme_isNoetherian {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) [IsProper f] : IsNoetherian X := by
   letI : IsLocallyNoetherian X := LocallyOfFiniteType.isLocallyNoetherian f
@@ -231,7 +259,9 @@ theorem properFieldScheme_isNoetherian {K : Type u} [Field K] {X : Scheme.{u}}
 end AlgebraicGeometry.Intersection
 
 open AlgebraicGeometry.Intersection in
-/-- Additivity of the degree; `X` proper over `k` gives the finite supports (`properCycle_finiteSupport`).-/
+/-- Additivity of the degree; `X` proper over `k` gives the finite supports (`properCycle_finiteSupport`).
+@isnad1 id=eq.0h4v.s7.5337fc71307c from=translated src=- shape=5326ed4e vocab=edc7deb8
+-/
 theorem AlgebraicGeometry.AlgebraicCycle.degree_add {k : Type u} [Field k]
     {X : Scheme.{u}} [X.Over (Spec (CommRingCat.of k))] [IsProper (X ↘ Spec (CommRingCat.of k))]
     (a b : AlgebraicCycle X ℤ) :
@@ -260,7 +290,9 @@ abbrev rawZeroCycleDegree {K : Type u} [Field K] {X : Scheme.{u}}
     (α : DimensionCycle X 0) : ℤ :=
   @AlgebraicCycle.degree K _ X ⟨f⟩ α.1
 
-/-- The raw degree may be computed over a finite set proven to contain the cycle support.-/
+/-- The raw degree may be computed over a finite set proven to contain the cycle support.
+@isnad1 id=eq.1h5v.s9.ab3fb8c1fffe from=translated src=- shape=2a0e5a56 vocab=14f0f90d
+-/
 theorem rawZeroCycleDegree_eq_sum_on {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) [IsProper f] (α : DimensionCycle X 0)
     (s : Finset X) (hs : ∀ x, x ∉ s → α.1 x = 0) :
@@ -273,6 +305,9 @@ theorem rawZeroCycleDegree_eq_sum_on {K : Type u} [Field K] {X : Scheme.{u}}
     by_contra hn
     exact hx (by simp [hs x hn])
 
+/--
+@isnad1 id=eq.0h4v.s9.952ed386bd3a from=translated src=- shape=cd18589d vocab=bbf4459d
+-/
 theorem rawZeroCycleDegree_eq_sum {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) [IsProper f]
     (α : DimensionCycle X 0) :
@@ -283,7 +318,9 @@ theorem rawZeroCycleDegree_eq_sum {K : Type u} [Field K] {X : Scheme.{u}}
     by_contra hn
     exact hx ((properCycle_finiteSupport f α.1).mem_toFinset.mpr hn)
 
-/-- Over an algebraically closed base each actual residue degree is one.-/
+/-- Over an algebraically closed base each actual residue degree is one.
+@isnad1 id=eq.1h5v.s9.3805baa4fc4e from=translated src=- shape=869701fe vocab=90b84efc
+-/
 theorem rawZeroCycleDegree_eq_sum_of_isAlgClosed {K : Type u} [Field K] [IsAlgClosed K]
     {X : Scheme.{u}} (f : X ⟶ Spec (CommRingCat.of K)) [IsProper f]
     (α : DimensionCycle X 0) (s : Finset X) (hs : ∀ x, x ∉ s → α.1 x = 0) :
@@ -298,7 +335,9 @@ theorem rawZeroCycleDegree_eq_sum_of_isAlgClosed {K : Type u} [Field K] [IsAlgCl
       (IsDimensionCycle.pointClosureDimension_eq α.2 x hx))]
     simp
 
-/-- The generator formula retains the integer multiplicity and residue extension degree.-/
+/-- The generator formula retains the integer multiplicity and residue extension degree.
+@isnad1 id=eq.1h5v.s6.343ef21b726b from=translated src=- shape=4828fc6d vocab=f4f19040
+-/
 theorem rawZeroCycleDegree_closedPointZeroCycle {K : Type u} [Field K] {X : Scheme.{u}}
     (f : X ⟶ Spec (CommRingCat.of K)) [IsProper f]
     (x : X) (hx : IsClosed ({x} : Set X)) (n : ℤ) :

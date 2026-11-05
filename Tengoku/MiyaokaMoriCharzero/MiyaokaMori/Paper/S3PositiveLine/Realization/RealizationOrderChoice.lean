@@ -20,7 +20,9 @@ this theorem does not construct positive jets or prove polynomial realization.
 namespace MiyaokaMori.Jet
 
 /-- Choose a positive jet order beyond any cutoff satisfying the paper's strict harmonic
-inequality. The harmonic sum is Mathlib's sum of the reciprocals from `1` through `k`.-/
+inequality. The harmonic sum is Mathlib's sum of the reciprocals from `1` through `k`.
+@isnad1 id=ex.1h5v.s6.053057f03cb8 from=translated src=- shape=deab878d vocab=a51c0e67
+-/
 theorem exists_realization_order (d a : ℚ) (n δ N : ℕ) (hd : 0 < d) :
     ∃ k : ℕ, max 1 N ≤ k ∧
       2 * ((n : ℚ) + 1) * (δ : ℚ) * a < d * harmonic k := by

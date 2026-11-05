@@ -28,7 +28,9 @@ namespace AlgebraicGeometry.Intersection
 
 universe u
 
-/-- A codimension-one point of a scheme of dimension at most one is closed.-/
+/-- A codimension-one point of a scheme of dimension at most one is closed.
+@isnad1 id=isclosed.2h2v.s6.ff59b40a3835 from=translated src=- shape=723336d0 vocab=caff3931
+-/
 theorem isClosed_singleton_of_coheight_eq_one {X : Scheme.{u}}
     (hdim : topologicalKrullDim X ≤ 1) (x : X) (hx : coheight x = 1) :
     IsClosed ({x} : Set X) := by
@@ -52,7 +54,9 @@ theorem isClosed_singleton_of_coheight_eq_one {X : Scheme.{u}}
       (Scheme.le_iff_specializes.mp hyx)).eq
   · exact subset_closure
 
-/-- Codimension-one points have zero-dimensional closures on a scheme of dimension at most one.-/
+/-- Codimension-one points have zero-dimensional closures on a scheme of dimension at most one.
+@isnad1 id=eq.2h2v.s6.b63e1d9cf219 from=translated src=- shape=6bf01506 vocab=55b8c2f9
+-/
 theorem pointClosureDimension_eq_zero_of_coheight_eq_one {X : Scheme.{u}}
     (hdim : topologicalKrullDim X ≤ 1) (x : X) (hx : coheight x = 1) :
     pointClosureDimension X x = 0 :=
@@ -63,7 +67,9 @@ namespace CartierLocalData
 
 variable {X : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X]
 
-/-- Every chart containing a point computes the existing Cartier coefficient by its own equation.-/
+/-- Every chart containing a point computes the existing Cartier coefficient by its own equation.
+@isnad1 id=eq.1h4v.s6.51043342d0f2 from=translated src=- shape=13194fb6 vocab=f967cdb9
+-/
 theorem coefficient_eq_ord_of_mem (D : CartierLocalData X) (x : X) (i : D.index)
     (hxi : x ∈ D.opens i) : D.coefficient x = X.ord (D.equation i) x := by
   by_cases hx : coheight x = 1
@@ -72,7 +78,9 @@ theorem coefficient_eq_ord_of_mem (D : CartierLocalData X) (x : X) (i : D.index)
   · rw [D.coefficient_eq_zero_of_coheight_ne_one x hx,
       Scheme.ord_eq_zero_of_coheight_neq_one hx]
 
-/-- Compactness and the finite support of each local equation prove finite Cartier support.-/
+/-- Compactness and the finite support of each local equation prove finite Cartier support.
+@isnad1 id=finite.0h2v.s5.1e9a72c61534 from=translated src=- shape=cdf35ce0 vocab=9b1e969d
+-/
 theorem coefficient_finite_support [IsNoetherian X] (D : CartierLocalData X) :
     (Function.support D.coefficient).Finite := by
   obtain ⟨s, hs⟩ := isCompact_univ.elim_finite_subcover
@@ -93,11 +101,16 @@ def toFiniteCartierDivisor [IsNoetherian X] (D : CartierLocalData X) :
   toCartierLocalData := D
   finite_support := D.coefficient_finite_support
 
+/--
+@isnad1 id=eq.0h2v.s5.ed11aefc51eb from=translated src=- shape=17ecfe07 vocab=e42d3737
+-/
 @[simp]
 theorem toFiniteCartierDivisor_toCartierLocalData [IsNoetherian X]
     (D : CartierLocalData X) : D.toFiniteCartierDivisor.toCartierLocalData = D := rfl
 
-/-- The same nonzero coefficients are supported in dimension zero on a curve.-/
+/-- The same nonzero coefficients are supported in dimension zero on a curve.
+@isnad1 id=eq.2h3v.s6.3783b4caceae from=translated src=- shape=f2793d3b vocab=a149bd27
+-/
 theorem coefficient_pointClosureDimension_zero (D : CartierLocalData X)
     (hdim : topologicalKrullDim X ≤ 1) (x : X) (hx : D.coefficient x ≠ 0) :
     pointClosureDimension X x = 0 := by
@@ -105,7 +118,9 @@ theorem coefficient_pointClosureDimension_zero (D : CartierLocalData X)
   by_contra h
   exact hx (D.coefficient_eq_zero_of_coheight_ne_one x h)
 
-/-- The proved dimension condition for the original finite Cartier divisor.-/
+/-- The proved dimension condition for the original finite Cartier divisor.
+@isnad1 id=zerodime.1h2v.s5.f4f3aaa40dc7 from=translated src=- shape=79c4bb2f vocab=28081311
+-/
 theorem zeroDimensionalSupport [IsNoetherian X] (D : CartierLocalData X)
     (hdim : topologicalKrullDim X ≤ 1) : D.toFiniteCartierDivisor.ZeroDimensionalSupport := by
   constructor
@@ -117,12 +132,17 @@ def zeroCycle [IsNoetherian X] (D : CartierLocalData X)
     (hdim : topologicalKrullDim X ≤ 1) : DimensionCycle X 0 :=
   D.toFiniteCartierDivisor.zeroCycle (D.zeroDimensionalSupport hdim)
 
+/--
+@isnad1 id=eq.1h3v.s8.c81bcf1252f3 from=translated src=- shape=79541d89 vocab=f08ddabf
+-/
 @[simp]
 theorem zeroCycle_apply [IsNoetherian X] (D : CartierLocalData X)
     (hdim : topologicalKrullDim X ≤ 1) (x : X) :
     (D.zeroCycle hdim).1 x = D.coefficient x := rfl
 
-/-- The resulting zero cycle retains the finite support of the original Cartier coefficients.-/
+/-- The resulting zero cycle retains the finite support of the original Cartier coefficients.
+@isnad1 id=finite.1h2v.s8.c162a1b15c38 from=translated src=- shape=f4904b23 vocab=21bc2b3e
+-/
 theorem zeroCycle_support_finite [IsNoetherian X] (D : CartierLocalData X)
     (hdim : topologicalKrullDim X ≤ 1) : (Function.support (D.zeroCycle hdim).1).Finite :=
   D.toFiniteCartierDivisor.zeroCycle_support_finite (D.zeroDimensionalSupport hdim)
