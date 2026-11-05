@@ -48,18 +48,30 @@ open Finset
 
 /-! ### The pulled-back run, unfolded -/
 
+/--
+@isnad1 id=eq.0h1v.s4.85bf920f3845 from=translated src=- shape=fe9cb31d vocab=de087205
+-/
 theorem restrictRun_nil (st : MonomialState) : restrictRun st [] = [] := rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.9e02cf130931 from=translated src=- shape=a5a6a4a5 vocab=bc6617de
+-/
 theorem restrictRun_cons_of_eq_empty (st : MonomialState) {S : Finset (Finset ℕ)}
     (Ns : List (Finset (Finset ℕ))) (h : S.filter (· ∈ st.nerve) = ∅) :
     restrictRun st (S :: Ns) = restrictRun (st.blowUp S) Ns := by
   simp [restrictRun, h]
 
+/--
+@isnad1 id=eq.1h3v.s7.d9c64059d3b4 from=translated src=- shape=5a424f24 vocab=bc6617de
+-/
 theorem restrictRun_cons_of_ne_empty (st : MonomialState) {S : Finset (Finset ℕ)}
     (Ns : List (Finset (Finset ℕ))) (h : S.filter (· ∈ st.nerve) ≠ ∅) :
     restrictRun st (S :: Ns) = S.filter (· ∈ st.nerve) :: restrictRun (st.blowUp S) Ns := by
   simp [restrictRun, h]
 
+/--
+@isnad1 id=eq.0h3v.s6.02b47d19cedd from=translated src=- shape=0120a2da vocab=dcee6f84
+-/
 theorem restrictRun_append (st : MonomialState) (L₁ L₂ : List (Finset (Finset ℕ))) :
     restrictRun st (L₁ ++ L₂) = restrictRun st L₁ ++ restrictRun (L₁.foldl blowUp st) L₂ := by
   induction L₁ generalizing st with
@@ -73,16 +85,25 @@ theorem restrictRun_append (st : MonomialState) (L₁ L₂ : List (Finset (Finse
 
 /-! ### Counters and centers along a phase -/
 
+/--
+@isnad1 id=le.0h2v.s3.974ab248ea5d from=translated src=- shape=64f4f458 vocab=34fbb018
+-/
 theorem nextComp_le_blowUp (st : MonomialState) (S : Finset (Finset ℕ)) :
     st.nextComp ≤ (st.blowUp S).nextComp :=
   Nat.le_add_right _ _
 
+/--
+@isnad1 id=le.0h2v.s3.565209de24d6 from=translated src=- shape=64f4f458 vocab=66f6246c
+-/
 theorem nextLabel_le_blowUp (st : MonomialState) (S : Finset (Finset ℕ)) :
     st.nextLabel ≤ (st.blowUp S).nextLabel :=
   Nat.le_succ _
 
 variable {r : ℕ}
 
+/--
+@isnad1 id=le.1h2v.s5.643655eeee1d from=translated src=- shape=729394a5 vocab=c9d99595
+-/
 theorem phase_nextComp_le (st : MonomialState) (hs : ∀ s < r, st.Star s) :
     st.nextComp ≤ (phase r st hs).1.nextComp := by
   induction st, hs using phase.induct r with
@@ -91,6 +112,9 @@ theorem phase_nextComp_le (st : MonomialState) (hs : ∀ s < r, st.Star s) :
     exact (nextComp_le_blowUp st _).trans ih
   | case2 st hs h => rw [phase_of_not_nonempty st hs h]
 
+/--
+@isnad1 id=le.1h2v.s5.1cbb8583ac00 from=translated src=- shape=729394a5 vocab=de08d438
+-/
 theorem phase_nextLabel_le (st : MonomialState) (hs : ∀ s < r, st.Star s) :
     st.nextLabel ≤ (phase r st hs).1.nextLabel := by
   induction st, hs using phase.induct r with
@@ -99,7 +123,9 @@ theorem phase_nextLabel_le (st : MonomialState) (hs : ∀ s < r, st.Star s) :
     exact (nextLabel_le_blowUp st _).trans ih
   | case2 st hs h => rw [phase_of_not_nonempty st hs h]
 
-/-- Every component of a centre of a phase lies below the final counter.-/
+/-- Every component of a centre of a phase lies below the final counter.
+@isnad1 id=lt.4h5v.s6.d3721d4584c9 from=translated src=- shape=dab1945e vocab=cf24d413
+-/
 theorem phase_centers_lt (st : MonomialState) (hs : ∀ s < r, st.Star s) :
     ∀ S ∈ (phase r st hs).2, ∀ Q ∈ S, ∀ c ∈ Q, c < (phase r st hs).1.nextComp := by
   induction st, hs using phase.induct r with
@@ -117,17 +143,25 @@ theorem phase_centers_lt (st : MonomialState) (hs : ∀ s < r, st.Star s) :
 
 /-! ### A center disjoint from the subnerve -/
 
+/--
+@isnad1 id=star.2h3v.s4.4bdf2ca5ae66 from=translated src=- shape=5ffee77c vocab=8fedcde0
+-/
 theorem Sub.star_of_star {L N : MonomialState} (h : Sub L N) {s : ℕ} (hs : N.Star s) : L.Star s :=
   fun T hT => by
   rw [h.total_eq, h.m_eq]
   exact hs T (h.mem_faces hT)
 
+/--
+@isnad1 id=eq.2h3v.s5.300e6ba96b55 from=translated src=- shape=bb2fbcee vocab=b1d8b34e
+-/
 theorem Sub.choice_eq_empty_of {L N : MonomialState} (h : Sub L N) {r : ℕ}
     (hN : N.choice r = ∅) : L.choice r = ∅ :=
   L.choice_eq_empty_iff.mpr (h.star_of_star (N.choice_eq_empty_iff.mp hN))
 
 /-- A blow-up of `P` along nonempty faces none of which is a face of `P` keeps `Rel`: the nerve
-is unchanged and the old components keep their exponents and labels.-/
+is unchanged and the old components keep their exponents and labels.
+@isnad1 id=rel.3h5v.s6.43c74c2a0465 from=translated src=- shape=20e66d4b vocab=d4dc9435
+-/
 theorem Rel.of_blowUp_disjoint {ρ σ : ℕ → ℕ} {D P : MonomialState} (h : Rel ρ σ D P)
     {S : Finset (Finset ℕ)} (hS0 : ∀ Q ∈ S, Q.Nonempty) (hdis : ∀ Q ∈ S, Q ∉ P.nerve) :
     Rel ρ σ D (P.blowUp S) where
@@ -144,7 +178,9 @@ theorem Rel.of_blowUp_disjoint {ρ σ : ℕ → ℕ} {D P : MonomialState} (h : 
 /-! ### The induction along a phase -/
 
 /-- The image of a family of faces under a renumbering that agrees with `ρ` on the components
-involved.-/
+involved.
+@isnad1 id=eq.2h4v.s6.e40fae972cea from=translated src=- shape=bb86323f vocab=9292b627
+-/
 theorem image_image_congr {ρ ρ' : ℕ → ℕ} {K : ℕ} (hρ : ∀ c, c < K → ρ' c = ρ c)
     {S : Finset (Finset ℕ)} (hS : ∀ Q ∈ S, ∀ c ∈ Q, c < K) :
     S.image (Finset.image ρ') = S.image (Finset.image ρ) :=
@@ -152,7 +188,9 @@ theorem image_image_congr {ρ ρ' : ℕ → ℕ} {K : ℕ} (hρ : ∀ c, c < K �
 
 /-- Phase `r` of the run on `N`, with the direct state `D` and the pulled-back state `P` carried
 along: the renumbering extends, `Rel` and `Sub` persist, and the centres of `D`'s phase are the
-nonempty restrictions of the centres of `N`'s phase.-/
+nonempty restrictions of the centres of `N`'s phase.
+@isnad1 id=ex.4h6v.s7.1960364690b6 from=translated src=- shape=f07ba422 vocab=aa224a1a
+-/
 theorem phase_restrict (r : ℕ) : ∀ (N : MonomialState) (hsN : ∀ s < r, N.Star s)
     (D P : MonomialState) (ρ σ : ℕ → ℕ), Rel ρ σ D P → Sub P N →
     ∀ hsD : ∀ s < r, D.Star s,
@@ -211,6 +249,9 @@ theorem phase_restrict (r : ℕ) : ∀ (N : MonomialState) (hsN : ∀ s < r, N.S
 
 /-! ### The phases and Step 3 -/
 
+/--
+@isnad1 id=ex.4h7v.s7.2423aa3b6a17 from=translated src=- shape=66696372 vocab=1b73012b
+-/
 theorem phases_restrict (k : ℕ) : ∀ (r : ℕ) (N : MonomialState) (hsN : ∀ s < r, N.Star s)
     (D P : MonomialState) (ρ σ : ℕ → ℕ), Rel ρ σ D P → Sub P N → ∀ hsD : ∀ s < r, D.Star s,
     ∃ ρ' σ' : ℕ → ℕ, (∀ c, c < D.nextComp → ρ' c = ρ c) ∧ (∀ ℓ, ℓ < D.nextLabel → σ' ℓ = σ ℓ) ∧
@@ -237,19 +278,27 @@ theorem phases_restrict (k : ℕ) : ∀ (r : ℕ) (N : MonomialState) (hsN : ∀
       congr 1
       exact List.map_congr_left fun S hS => image_image_congr hρ' (phase_centers_lt D hsD S hS)
 
+/--
+@isnad1 id=le.1h3v.s4.c5794727f31d from=translated src=- shape=b0fe36e5 vocab=83b15ac5
+-/
 theorem IsRun.nextComp_le {st st' : MonomialState} {L : List (Finset (Finset ℕ))}
     (h : IsRun st L st') : st.nextComp ≤ st'.nextComp := by
   induction h with
   | nil => exact le_rfl
   | cons r _ _ _ _ ih => exact (nextComp_le_blowUp _ _).trans ih
 
+/--
+@isnad1 id=le.1h3v.s4.fd47e674a601 from=translated src=- shape=b0fe36e5 vocab=a16fe98d
+-/
 theorem IsRun.nextLabel_le {st st' : MonomialState} {L : List (Finset (Finset ℕ))}
     (h : IsRun st L st') : st.nextLabel ≤ st'.nextLabel := by
   induction h with
   | nil => exact le_rfl
   | cons r _ _ _ _ ih => exact (nextLabel_le_blowUp _ _).trans ih
 
-/-- Every component of a centre of a run lies below the final counter.-/
+/-- Every component of a centre of a run lies below the final counter.
+@isnad1 id=lt.4h6v.s6.f42853f686b2 from=translated src=- shape=b266c89d vocab=2adaba32
+-/
 theorem IsRun.centers_lt {st st' : MonomialState} {L : List (Finset (Finset ℕ))}
     (h : IsRun st L st') : ∀ S ∈ L, ∀ Q ∈ S, ∀ c ∈ Q, c < st'.nextComp := by
   induction h with
@@ -261,7 +310,9 @@ theorem IsRun.centers_lt {st st' : MonomialState} {L : List (Finset (Finset ℕ)
         ((nextComp_le_blowUp _ _).trans hL.nextComp_le)
     · exact ih S hS Q hQ c hc
 
-/-- A map strictly monotone below `K` extends to an order embedding of `ℕ`.-/
+/-- A map strictly monotone below `K` extends to an order embedding of `ℕ`.
+@isnad1 id=ex.1h2v.s5.f7cf71559d57 from=translated src=- shape=49c23c11 vocab=181c5760
+-/
 theorem exists_orderEmbedding_extend (f : ℕ → ℕ) (K : ℕ) (hf : StrictMonoOn f (Set.Iio K)) :
     ∃ g : ℕ ↪o ℕ, ∀ c, c < K → g c = f c := by
   rcases Nat.eq_zero_or_pos K with rfl | hK
@@ -279,6 +330,9 @@ theorem exists_orderEmbedding_extend (f : ℕ → ℕ) (K : ℕ) (hf : StrictMon
     exact ⟨OrderEmbedding.ofStrictMono _ hg, fun c hc => by
       rw [OrderEmbedding.coe_ofStrictMono]; exact ite_eq_left hc⟩
 
+/--
+@isnad1 id=ex.1h2v.s7.9952f51c0422 from=translated src=- shape=2f291dfe vocab=e9f6d7f9
+-/
 theorem step3_restrict_aux {L N : MonomialState} (h : Sub L N) :
     ∃ ρ' σ' : ℕ → ℕ, (∀ c, c < L.nextComp → ρ' c = c) ∧ (∀ ℓ, ℓ < L.nextLabel → σ' ℓ = ℓ) ∧
       Rel ρ' σ' (step3 L).1 ((step3 N).2.foldl blowUp L) ∧
@@ -293,7 +347,9 @@ theorem step3_restrict_aux {L N : MonomialState} (h : Sub L N) :
 [Kol07, 34.1] on the state: for `Sub L N` there are order embeddings `ρ` of components and `σ`
 of labels, the identity on those of `L`, such that the pulled-back run on `L` is the direct run
 on `L` renumbered by `ρ` and `σ`, with the same nerve up to `ρ`, and the centres of the direct
-run, renumbered, are the pulled-back centres with the empty ones deleted.-/
+run, renumbered, are the pulled-back centres with the empty ones deleted.
+@isnad1 id=ex.1h2v.s8.57831f8ab352 from=translated src=- shape=e8dc5aed vocab=1965151d
+-/
 theorem step3_restrict {L N : MonomialState} (h : Sub L N) :
     ∃ ρ : ℕ ↪o ℕ, (∀ c, c < L.nextComp → ρ c = c) ∧
       ∃ σ : ℕ ↪o ℕ, (∀ ℓ, ℓ < L.nextLabel → σ ℓ = ℓ) ∧

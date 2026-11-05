@@ -101,7 +101,9 @@ section CharZero
 
 variable [Algebra ℚ R]
 
-/-- A nonzero natural number is a unit of the `ℚ`-algebra `R`.-/
+/-- A nonzero natural number is a unit of the `ℚ`-algebra `R`.
+@isnad1 id=isunit.1h2v.s5.69fa7b2b4d59 from=translated src=- shape=11ebea54 vocab=7905c359
+-/
 theorem isUnit_natCast {a : ℕ} (ha : a ≠ 0) : IsUnit (a : R) := by
   rw [← map_natCast (algebraMap ℚ R) a]
   exact (IsUnit.mk0 (a : ℚ) (by exact_mod_cast ha)).map _
@@ -110,7 +112,9 @@ variable [IsLocalRing R]
 
 /-- The residue field of a local `ℚ`-algebra has characteristic zero (Mathlib's
 `algebraRat.charZero`, made an instance; the `Algebra ℚ` structure is Mathlib's
-`IsLocalRing.ResidueField.algebra`).-/
+`IsLocalRing.ResidueField.algebra`).
+@isnad1 id=charzero.0h1v.s5.ad715d10ecff from=translated src=- shape=5dfeedad vocab=e12fefba
+-/
 instance charZero_residueField : CharZero (ResidueField R) :=
   algebraRat.charZero _
 
@@ -119,7 +123,9 @@ end CharZero
 section Sum
 
 /-- Evaluating a finite sum of derivations (Mathlib has `Derivation.coeFnAddMonoidHom` but no
-summed evaluation lemma).-/
+summed evaluation lemma).
+@isnad1 id=eq.0h7v.s7.569e89c41147 from=translated src=- shape=eb683ec8 vocab=b92f6f6c
+-/
 theorem derivation_sum_apply {R A M ι : Type*} [CommSemiring R] [CommSemiring A]
     [AddCommMonoid M] [Algebra R A] [Module A M] [Module R M] (s : Finset ι)
     (D : ι → Derivation R A M) (a : A) : (∑ i ∈ s, D i) a = ∑ i ∈ s, D i a := by
@@ -133,13 +139,18 @@ namespace RegularCoords
 
 variable {R} [IsRegularLocalRing R] [Algebra ℚ R] {n : ℕ} (c : RegularCoords R n)
 
+/--
+@isnad1 id=mem.0h4v.s6.cc8ef4266936 from=translated src=- shape=cb94b9fc vocab=dfe43a0c
+-/
 theorem x_mem_maximalIdeal (i : Fin n) : c.x i ∈ maximalIdeal R := by
   rw [c.span_x]
   exact Ideal.subset_span ⟨i, rfl⟩
 
 /-- The partial derivatives lower the `𝔪`-adic filtration by one step at the first level: an
 element of `𝔪` all of whose partials lie in `𝔪` lies in `𝔪²`.  (A step of the
-change-of-coordinates argument; the Euler-identity computation `∂ᵢ (∑ aₗ xₗ) ≡ aᵢ (mod 𝔪)`.)-/
+change-of-coordinates argument; the Euler-identity computation `∂ᵢ (∑ aₗ xₗ) ≡ aᵢ (mod 𝔪)`.)
+@isnad1 id=mem.2h4v.s8.0afe076ccf95 from=translated src=- shape=ab6e919d vocab=80b32477
+-/
 theorem mem_maximalIdeal_sq_of_pderiv_mem {y : R} (hy : y ∈ maximalIdeal R)
     (h : ∀ i, c.pderiv i y ∈ maximalIdeal R) : y ∈ maximalIdeal R ^ 2 := by
   rw [c.span_x] at hy
@@ -164,6 +175,9 @@ theorem mem_maximalIdeal_sq_of_pderiv_mem {y : R} (hy : y ∈ maximalIdeal R)
 def jacobian (x' : Fin n → R) : Matrix (Fin n) (Fin n) R :=
   Matrix.of fun i j => c.pderiv i (x' j)
 
+/--
+@isnad1 id=eq.0h6v.s7.4f485ea6801a from=translated src=- shape=2813335d vocab=b8fe405e
+-/
 @[simp]
 theorem jacobian_apply (x' : Fin n → R) (i j : Fin n) : c.jacobian x' i j = c.pderiv i (x' j) :=
   rfl
@@ -172,6 +186,9 @@ theorem jacobian_apply (x' : Fin n → R) (i j : Fin n) : c.jacobian x' i j = c.
 noncomputable def transportPderiv (x' : Fin n → R) : Fin n → Derivation ℚ R R :=
   fun j => ∑ l, (c.jacobian x')⁻¹ j l • c.pderiv l
 
+/--
+@isnad1 id=eq.0h6v.s8.e97ac11d5894 from=translated src=- shape=25bb8071 vocab=fca8ca39
+-/
 theorem transportPderiv_apply (x' : Fin n → R) (j : Fin n) (f : R) :
     c.transportPderiv x' j f = ∑ l, (c.jacobian x')⁻¹ j l * c.pderiv l f := by
   rw [transportPderiv, derivation_sum_apply]
@@ -179,7 +196,9 @@ theorem transportPderiv_apply (x' : Fin n → R) (j : Fin n) (f : R) :
 
 /-- If `x'` also generates the maximal ideal, the Jacobian matrix `∂ᵢ x'ⱼ` is invertible over
 `R`.  Uses `dim R = n` (regularity) through the minimal number of generators of the maximal
-ideal; see the module docstring for the argument.-/
+ideal; see the module docstring for the argument.
+@isnad1 id=isunit.1h4v.s6.bb78e446e7dd from=translated src=- shape=83e6daf7 vocab=d6e91c51
+-/
 theorem isUnit_jacobian (x' : Fin n → R) (hx' : maximalIdeal R = Ideal.span (Set.range x')) :
     IsUnit (c.jacobian x') := by
   classical
@@ -253,7 +272,9 @@ theorem isUnit_jacobian (x' : Fin n → R) (hx' : maximalIdeal R = Ideal.span (S
   have hn : 0 < n := Fin.pos j₀
   omega
 
-/-- The transported derivations satisfy `∂'ᵢ x'ⱼ = δᵢⱼ`.-/
+/-- The transported derivations satisfy `∂'ᵢ x'ⱼ = δᵢⱼ`.
+@isnad1 id=eq.1h6v.s7.bcd1494b5d16 from=translated src=- shape=017959d6 vocab=a28c09eb
+-/
 theorem transportPderiv_x (x' : Fin n → R) (hx' : maximalIdeal R = Ideal.span (Set.range x'))
     (i j : Fin n) : c.transportPderiv x' i (x' j) = if i = j then 1 else 0 := by
   classical
@@ -277,19 +298,27 @@ noncomputable def changeCoords (x' : Fin n → R) (hx' : maximalIdeal R = Ideal.
   pderiv_x := c.transportPderiv_x x' hx'
   pderiv_comm := hcomm
 
+/--
+@isnad1 id=eq.2h4v.s8.a61735c71ccc from=translated src=- shape=25b807bf vocab=59445a28
+-/
 @[simp]
 theorem changeCoords_x (x' : Fin n → R) (hx' : maximalIdeal R = Ideal.span (Set.range x'))
     (hcomm : ∀ i j f, c.transportPderiv x' i (c.transportPderiv x' j f) =
       c.transportPderiv x' j (c.transportPderiv x' i f)) :
     (c.changeCoords x' hx' hcomm).x = x' := rfl
 
+/--
+@isnad1 id=eq.2h4v.s8.68eb35de3e2c from=translated src=- shape=686c6ada vocab=02ade486
+-/
 @[simp]
 theorem changeCoords_pderiv (x' : Fin n → R) (hx' : maximalIdeal R = Ideal.span (Set.range x'))
     (hcomm : ∀ i j f, c.transportPderiv x' i (c.transportPderiv x' j f) =
       c.transportPderiv x' j (c.transportPderiv x' i f)) :
     (c.changeCoords x' hx' hcomm).pderiv = c.transportPderiv x' := rfl
 
-/-- The old derivations in terms of the transported ones: `∂ᵢ = ∑ⱼ Mᵢⱼ ∂'ⱼ`.-/
+/-- The old derivations in terms of the transported ones: `∂ᵢ = ∑ⱼ Mᵢⱼ ∂'ⱼ`.
+@isnad1 id=eq.1h5v.s8.2a0101eefd79 from=translated src=- shape=21541518 vocab=ec3ee456
+-/
 theorem pderiv_eq_sum_transportPderiv (x' : Fin n → R)
     (hx' : maximalIdeal R = Ideal.span (Set.range x')) (i : Fin n) :
     c.pderiv i = ∑ j, c.jacobian x' i j • c.transportPderiv x' j := by
@@ -313,7 +342,9 @@ theorem pderiv_eq_sum_transportPderiv (x' : Fin n → R)
   simp [Matrix.one_apply]
 
 /-- The `R`-submodule of `Derivation ℚ R R` spanned by the transported derivations equals that
-spanned by the original ones.-/
+spanned by the original ones.
+@isnad1 id=eq.1h4v.s8.2960d0dc7c3c from=translated src=- shape=334c9ca8 vocab=38121a2d
+-/
 theorem span_range_transportPderiv (x' : Fin n → R)
     (hx' : maximalIdeal R = Ideal.span (Set.range x')) :
     Submodule.span R (Set.range (c.transportPderiv x')) =
@@ -337,7 +368,9 @@ def SpansDerivations (k : Type v) [CommRing k] [Algebra k R] : Prop :=
 
 /-- The spanning identity in transported coordinates: if the `∂ᵢ` span the `ℚ`-derivations,
 then so do the `∂'ⱼ` of a second generating system, `δ = ∑ₖ δ(x'ₖ) ∂'ₖ`.  (Proof:
-`δ(x'ₖ) = ∑ₗ δ(xₗ) Mₗₖ` by the spanning identity, and `∑ₖ Mₗₖ (M⁻¹)ₖₚ = δₗₚ`.)-/
+`δ(x'ₖ) = ∑ₗ δ(xₗ) Mₗₖ` by the spanning identity, and `∑ₖ Mₗₖ (M⁻¹)ₖₚ = δₗₚ`.)
+@isnad1 id=eq.2h6v.s8.b5a1d1b028a3 from=translated src=- shape=5f568244 vocab=472d8677
+-/
 theorem SpansDerivations.transport (hs : c.SpansDerivations ℚ) (x' : Fin n → R)
     (hx' : maximalIdeal R = Ideal.span (Set.range x')) (δ : Derivation ℚ R R) (f : R) :
     δ f = ∑ k, δ (x' k) * c.transportPderiv x' k f := by
@@ -366,7 +399,9 @@ theorem SpansDerivations.transport (hs : c.SpansDerivations ℚ) (x' : Fin n →
 /-- If the `∂ᵢ` span the `ℚ`-derivations, the transported derivations of a second generating
 system commute — their commutator is a derivation killing every `x'ₖ`, hence zero by the
 spanning identity.  This discharges the commutation hypothesis of `changeCoords` for every
-coordinate structure with spanning derivations.-/
+coordinate structure with spanning derivations.
+@isnad1 id=eq.2h7v.s8.7b62c1084f6b from=translated src=- shape=c1f1fa5f vocab=d4707435
+-/
 theorem transportPderiv_comm (hs : c.SpansDerivations ℚ) (x' : Fin n → R)
     (hx' : maximalIdeal R = Ideal.span (Set.range x')) (i j : Fin n) (f : R) :
     c.transportPderiv x' i (c.transportPderiv x' j f) =
@@ -386,7 +421,9 @@ noncomputable def changeCoordsOfSpans (hs : c.SpansDerivations ℚ) (x' : Fin n 
     (hx' : maximalIdeal R = Ideal.span (Set.range x')) : RegularCoords R n :=
   c.changeCoords x' hx' (c.transportPderiv_comm hs x' hx')
 
-/-- The transported coordinate structure again has spanning derivations.-/
+/-- The transported coordinate structure again has spanning derivations.
+@isnad1 id=spansder.3h4v.s8.242ae43ceb97 from=translated src=- shape=8de5d56d vocab=75ec4b56
+-/
 theorem spansDerivations_changeCoords (hs : c.SpansDerivations ℚ) (x' : Fin n → R)
     (hx' : maximalIdeal R = Ideal.span (Set.range x'))
     (hcomm : ∀ i j f, c.transportPderiv x' i (c.transportPderiv x' j f) =

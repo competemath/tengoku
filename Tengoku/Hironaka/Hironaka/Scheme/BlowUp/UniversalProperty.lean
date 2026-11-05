@@ -50,19 +50,25 @@ namespace IsBlowUp
 
 variable {X B : Scheme.{u}} {I : X.IdealSheafData} {π : B ⟶ X}
 
-/-- Existence half of the universal property.-/
+/-- Existence half of the universal property.
+@isnad1 id=ex.2h6v.s6.815fa678c222 from=translated src=- shape=670acaf9 vocab=d8a72fb5
+-/
 theorem exists_lift (h : IsBlowUp I π) {Y : Scheme.{u}} (f : Y ⟶ X)
     (hf : (I.comap f).IsInvertible) : ∃ g : Y ⟶ B, g ≫ π = f :=
   (h.existsUnique_lift f hf).exists
 
-/-- Uniqueness half of the universal property: two lifts of an admissible morphism coincide.-/
+/-- Uniqueness half of the universal property: two lifts of an admissible morphism coincide.
+@isnad1 id=eq.4h8v.s6.6694c2bbfa7e from=translated src=- shape=3d50ae56 vocab=d8a72fb5
+-/
 theorem hom_ext (h : IsBlowUp I π) {Y : Scheme.{u}} (f : Y ⟶ X) (hf : (I.comap f).IsInvertible)
     (g g' : Y ⟶ B) (e : g ≫ π = f) (e' : g' ≫ π = f) : g = g' := by
   obtain ⟨g₀, -, huniq⟩ := h.existsUnique_lift f hf
   exact (huniq g e).trans (huniq g' e').symm
 
 /-- Admissibility of `π` composed with any morphism into `X` for which `I` pulls back to an
-invertible ideal sheaf on the blow-up: `I.comap (π ≫ g) = (I.comap g).comap π`.-/
+invertible ideal sheaf on the blow-up: `I.comap (π ≫ g) = (I.comap g).comap π`.
+@isnad1 id=iff.0h6v.s5.9546076625a5 from=translated src=- shape=e50a6ec5 vocab=6bedd6f9
+-/
 theorem comap_comp_isInvertible_iff {Z : Scheme.{u}} (g : X ⟶ Z) (J : Z.IdealSheafData) :
     (J.comap (π ≫ g)).IsInvertible ↔ ((J.comap g).comap π).IsInvertible := by
   rw [Scheme.IdealSheafData.comap_comp]

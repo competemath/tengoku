@@ -52,7 +52,9 @@ section Field
 variable (k K : Type u) [Field k] [Field K] [Algebra k K]
 
 /-- For a separating transcendence basis `v` of `K/k`, the differentials `d (v i)` form a basis of
-`Ω[K⁄k]` ([Sta, Tags 00RX, 030O]; the construction of `Hironaka/Algebra/RegularSmooth/Trdeg.lean`).-/
+`Ω[K⁄k]` ([Sta, Tags 00RX, 030O]; the construction of `Hironaka/Algebra/RegularSmooth/Trdeg.lean`).
+@isnad1 id=ex.1h4v.s9.83bd89cc9ca2 from=translated src=- shape=a4be5779 vocab=95b12689
+-/
 theorem exists_basis_kaehlerDifferential_of_isTranscendenceBasis {ι : Type v} (v : ι → K)
     (hv : IsTranscendenceBasis k v)
     [Algebra.IsSeparable (IntermediateField.adjoin k (Set.range v)) K] :

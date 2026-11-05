@@ -55,7 +55,9 @@ generic points of the irreducible components of `Z` (`Closeds.mem_genericPoints_
 def Closeds.genericPoints (Z : Closeds X) : Set X :=
   {η | η ∈ Z ∧ ∀ ⦃η'⦄, η' ∈ Z → η' ⤳ η → η' = η}
 
-/-- The empty closed set has no generic points.-/
+/-- The empty closed set has no generic points.
+@isnad1 id=eq.0h1v.s6.14eda8a674a7 from=translated src=- shape=0b620365 vocab=0da7c28a
+-/
 theorem Closeds.genericPoints_bot : (⊥ : Closeds X).genericPoints = ∅ := by
   refine Set.eq_empty_of_forall_notMem fun η hη => ?_
   have h : η ∈ ((⊥ : Closeds X) : Set X) := hη.1
@@ -67,7 +69,9 @@ theorem Closeds.genericPoints_bot : (⊥ : Closeds X).genericPoints = ∅ := by
 noncomputable def IrreducibleCloseds.genericPoint [QuasiSober X] (Z : IrreducibleCloseds X) : X :=
   Z.isIrreducible.genericPoint
 
-/-- The generic point of `Z` is a generic point of `Z`: `closure {η} = Z`.-/
+/-- The generic point of `Z` is a generic point of `Z`: `closure {η} = Z`.
+@isnad1 id=isgeneri.0h2v.s4.7175b56da5c5 from=translated src=- shape=ea1ed474 vocab=c80817ba
+-/
 theorem IrreducibleCloseds.isGenericPoint_genericPoint [QuasiSober X] (Z : IrreducibleCloseds X) :
     IsGenericPoint Z.genericPoint (Z : Set X) :=
   Z.isIrreducible.isGenericPoint_genericPoint Z.isClosed
@@ -77,7 +81,9 @@ whose closure is a maximal irreducible subset of `Z` — an irreducible componen
 specialization-maximal `η` has `closure {η}` maximal: an irreducible `T ⊆ Z` containing `η` has a
 generic point `η'` of its closure, which specializes to `η`, so `η' = η` and `T ⊆ closure {η}`;
 conversely maximality of `closure {η}` forces any `η' ∈ Z` with `η' ⤳ η` to satisfy `η ⤳ η'` as
-well, hence `η' = η`.)-/
+well, hence `η' = η`.)
+@isnad1 id=iff.0h3v.s6.c197e6c49034 from=translated src=- shape=ebddad0c vocab=1776b074
+-/
 theorem Closeds.mem_genericPoints_iff [T0Space X] [QuasiSober X] (Z : Closeds X) (η : X) :
     η ∈ Z.genericPoints ↔ Maximal (fun T : Set X => T ⊆ Z ∧ IsIrreducible T) (closure {η}) := by
   constructor
@@ -101,7 +107,9 @@ theorem Closeds.mem_genericPoints_iff [T0Space X] [QuasiSober X] (Z : Closeds X)
         isIrreducible_singleton.closure⟩ h1
     exact (hspec.antisymm (specializes_iff_closure_subset.mpr h2)).eq
 
-/-- The only generic point of an irreducible closed `Z` is its generic point.-/
+/-- The only generic point of an irreducible closed `Z` is its generic point.
+@isnad1 id=eq.0h2v.s5.50bd0d84817d from=translated src=- shape=d347b452 vocab=d83c0ac9
+-/
 theorem IrreducibleCloseds.genericPoints_eq [T0Space X] [QuasiSober X] (Z : IrreducibleCloseds X) :
     (⟨Z, Z.isClosed⟩ : Closeds X).genericPoints = {Z.genericPoint} := by
   ext η
@@ -146,30 +154,40 @@ noncomputable def maxOrdAlong (Z : Set X) : ℕ∞ :=
   ⨆ z ∈ Z, I.ord z
 
 /-- `ord_Z I = ord_η I` for any generic point `η` of the irreducible closed `Z` (there is exactly
-one, schemes being `T₀`).-/
+one, schemes being `T₀`).
+@isnad1 id=eq.1h4v.s6.105cfbced6c8 from=translated src=- shape=c6f47354 vocab=9b7edb10
+-/
 theorem ordAlong_eq_of_isGenericPoint {Z : IrreducibleCloseds X} {η : X}
     (hη : IsGenericPoint η (Z : Set X)) : I.ordAlong Z = I.ord η := by
   rw [ordAlong, Z.isGenericPoint_genericPoint.eq hη]
 
-/-- For an irreducible closed `Z` the convention `ord_Z I = m` is `ordAlong I Z = m`.-/
+/-- For an irreducible closed `Z` the convention `ord_Z I = m` is `ordAlong I Z = m`.
+@isnad1 id=iff.0h4v.s6.7a473fc6f5e7 from=translated src=- shape=e2190492 vocab=6f85a829
+-/
 theorem ordAlongEq_iff (Z : IrreducibleCloseds X) (m : ℕ∞) :
     I.OrdAlongEq ⟨Z, Z.isClosed⟩ m ↔ I.ordAlong Z = m := by
   rw [OrdAlongEq, IrreducibleCloseds.genericPoints_eq]
   simp only [Set.mem_singleton_iff, forall_eq]
   rfl
 
-/-- For an irreducible closed `Z` the convention `ord_Z I ≥ m` is `m ≤ ordAlong I Z`.-/
+/-- For an irreducible closed `Z` the convention `ord_Z I ≥ m` is `m ≤ ordAlong I Z`.
+@isnad1 id=iff.0h4v.s6.4d3395ddc87c from=translated src=- shape=79d2f491 vocab=221f617c
+-/
 theorem leOrdAlong_iff (Z : IrreducibleCloseds X) (m : ℕ∞) :
     I.LeOrdAlong ⟨Z, Z.isClosed⟩ m ↔ m ≤ I.ordAlong Z := by
   rw [LeOrdAlong, IrreducibleCloseds.genericPoints_eq]
   simp only [Set.mem_singleton_iff, forall_eq]
   rfl
 
-/-- `ord_z I ≤ max-ord_Z I` for `z ∈ Z`.-/
+/-- `ord_z I ≤ max-ord_Z I` for `z ∈ Z`.
+@isnad1 id=le.1h4v.s6.a0b380524c0e from=translated src=- shape=a57fc061 vocab=5d8ff232
+-/
 theorem le_maxOrdAlong {Z : Set X} {z : X} (hz : z ∈ Z) : I.ord z ≤ I.maxOrdAlong Z :=
   le_iSup₂ (f := fun z (_ : z ∈ Z) => I.ord z) z hz
 
-/-- `max-ord_Z I ≤ m` iff `ord_z I ≤ m` for every `z ∈ Z`.-/
+/-- `max-ord_Z I ≤ m` iff `ord_z I ≤ m` for every `z ∈ Z`.
+@isnad1 id=iff.0h4v.s6.ef3f9e10777e from=translated src=- shape=14ca1a73 vocab=5d8ff232
+-/
 theorem maxOrdAlong_le_iff {Z : Set X} {m : ℕ∞} : I.maxOrdAlong Z ≤ m ↔ ∀ z ∈ Z, I.ord z ≤ m :=
   iSup₂_le_iff
 

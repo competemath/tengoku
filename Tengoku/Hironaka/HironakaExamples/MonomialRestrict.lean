@@ -40,11 +40,15 @@ namespace Hironaka.Monomial.Examples
 
 open Hironaka.Monomial MonomialState Hironaka.Monomial.Examples
 
-/-- The centers of the split example on `X`.-/
+/-- The centers of the split example on `X`.
+@isnad1 id=eq.0h0v.s6.576de8e4c0d3 from=translated src=- shape=7353d7fd vocab=1db50eec
+-/
 theorem splitX_centers : (step3 splitX).2 = [{{0}}, {{2}}] :=
   step3_map_eq_of_step3Fuel (fuel := 20) Prod.snd (by decide)
 
-/-- The centers of the split example on `U`.-/
+/-- The centers of the split example on `U`.
+@isnad1 id=eq.0h0v.s6.a8f1577f52d0 from=translated src=- shape=7353d7fd vocab=fa14e299
+-/
 theorem splitU_centers : (step3 splitU).2 = [{{0}}, {{2}}] :=
   step3_map_eq_of_step3Fuel (fuel := 20) Prod.snd (by decide)
 
@@ -57,11 +61,15 @@ def bigN : MonomialState :=
 def subL : MonomialState :=
   ofValid 2 4 3 3 (fun c => c) (fun c => [5, 2, 2].getD c 0) {{1}, {2}, {1, 2}} (by decide)
 
-/-- The run on `N`: phase 1 blows up `{0}`, phase 2 blows up `{1, 2}`.-/
+/-- The run on `N`: phase 1 blows up `{0}`, phase 2 blows up `{1, 2}`.
+@isnad1 id=eq.0h0v.s6.5e31ca74bfbf from=translated src=- shape=eb5e3079 vocab=91e0df2f
+-/
 theorem bigN_centers : (step3 bigN).2 = [{{0}}, {{1, 2}}] :=
   step3_map_eq_of_step3Fuel (fuel := 20) Prod.snd (by decide)
 
-/-- The run on `L`: only `{1, 2}`.-/
+/-- The run on `L`: only `{1, 2}`.
+@isnad1 id=eq.0h0v.s5.96f5a31eb295 from=translated src=- shape=8caf1834 vocab=133f8d7e
+-/
 theorem subL_centers : (step3 subL).2 = [{{1, 2}}] :=
   step3_map_eq_of_step3Fuel (fuel := 20) Prod.snd (by decide)
 
@@ -79,10 +87,15 @@ def doubleY : MonomialState :=
 /-- The fold `X ⊔ X → X` on components.-/
 def fold : ℕ → ℕ := fun c => [0, 1, 0, 1].getD c 0
 
+/--
+@isnad1 id=eq.0h0v.s6.278680f64a48 from=translated src=- shape=7353d7fd vocab=2ecb2599
+-/
 theorem baseL_centers : (step3 baseL).2 = [{{0}}, {{1}}] :=
   step3_map_eq_of_step3Fuel (fuel := 20) Prod.snd (by decide)
 
-/-- The run on `Y` blows up both copies of `E⁰` at once, then both copies of `E¹`.-/
+/-- The run on `Y` blows up both copies of `E⁰` at once, then both copies of `E¹`.
+@isnad1 id=eq.0h0v.s6.c018936b7515 from=translated src=- shape=758e7dd2 vocab=9a150b20
+-/
 theorem doubleY_centers : (step3 doubleY).2 = [{{0}, {2}}, {{1}, {3}}] :=
   step3_map_eq_of_step3Fuel (fuel := 20) Prod.snd (by decide)
 

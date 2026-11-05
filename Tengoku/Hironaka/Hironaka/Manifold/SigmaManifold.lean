@@ -38,6 +38,9 @@ namespace ChartedSpace
 variable {ι : Type*} {H : Type*} [TopologicalSpace H] (M : ι → Type*)
   [∀ i, TopologicalSpace (M i)] [cm : ∀ i, ChartedSpace H (M i)]
 
+/--
+@isnad1 id=eq.0h4v.s7.8e2812213691 from=translated src=- shape=5a4e9cc0 vocab=a85e8b33
+-/
 theorem sigma_chartAt [Nonempty H] (p : Σ i, M i) :
     chartAt H p = ((cm p.1).chartAt p.2).lift_openEmbedding IsOpenEmbedding.sigmaMk := by
   simp +instances only [chartAt, sigma, ‹Nonempty H›, ↓reduceDIte]
@@ -53,7 +56,9 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] {E : Type*} [NormedAddCom
 
 /-- The inclusion of a summand into the disjoint union `Σ i, M i` (with the charted-space
 structure `ChartedSpace.sigma`) is `C^n`: in the lifted charts it is the identity. The family
-version of Mathlib's `ContMDiff.inl`.-/
+version of Mathlib's `ContMDiff.inl`.
+@isnad1 id=contmdif.0h8v.s6.e316ab08fdf1 from=translated src=- shape=9c2828a0 vocab=7395f4dc
+-/
 theorem ContMDiff.sigmaMk (i : ι) : ContMDiff I I n (@Sigma.mk ι M i) := by
   obtain (hH | hH) := isEmpty_or_nonempty H
   · intro x
@@ -84,6 +89,9 @@ manifold: the `Σ`-type with the charted-space and manifold structure `ChartedSp
 noncomputable def sigmaManifold : AnalyticManifold.{u} K E where
   carrier := Σ i, (M i : Type u)
 
+/--
+@isnad1 id=eq.0h4v.s6.9c5ead911914 from=translated src=- shape=fe7692e9 vocab=32fc84e0
+-/
 theorem sigmaManifold_carrier : (sigmaManifold M : Type u) = Σ i, (M i : Type u) :=
   rfl
 
@@ -92,6 +100,9 @@ noncomputable def sigmaMk (i : ι) : AnalyticMap (M i) (sigmaManifold M) :=
   ⟨fun x => (Sigma.mk i x : Σ j, (M j : Type u)),
     ContMDiff.sigmaMk (I := 𝓘(K, E)) (n := ω) (M := fun j => (M j : Type u)) i⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.39aa1066ffa1 from=translated src=- shape=c52c682a vocab=b6625959
+-/
 theorem sigmaMk_apply (i : ι) (x : M i) : sigmaMk M i x = Sigma.mk i x :=
   rfl
 

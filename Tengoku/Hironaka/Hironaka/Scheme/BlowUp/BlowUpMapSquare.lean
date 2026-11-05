@@ -42,7 +42,9 @@ universe u
 variable {P X Y Z : Scheme.{u}} {fst : P ⟶ X} {snd : P ⟶ Y} {f : X ⟶ Z} {g : Y ⟶ Z}
 
 /-- In a cartesian square of schemes the image of `fst` is the preimage under `f` of the image of
-`g` (Mathlib's `Scheme.Pullback.range_fst`).-/
+`g` (Mathlib's `Scheme.Pullback.range_fst`).
+@isnad1 id=eq.1h8v.s9.c92e2a4d433f from=translated src=- shape=eb908e3d vocab=5da4114d
+-/
 theorem range_fst_of_isPullback (H : IsPullback fst snd f g) :
     Set.range fst = f ⁻¹' Set.range g := by
   have hsurj : Function.Surjective H.isoPullback.hom := by
@@ -56,7 +58,9 @@ theorem range_fst_of_isPullback (H : IsPullback fst snd f g) :
     Set.image_univ, Scheme.Pullback.range_fst]
 
 /-- A property of morphisms stable under base change passes from `g` to `fst` in a cartesian
-square (Mathlib's `MorphismProperty.IsStableUnderBaseChange`).-/
+square (Mathlib's `MorphismProperty.IsStableUnderBaseChange`).
+@isnad1 id=var.1h10v.s6.8d4cb7aa9782 from=translated src=- shape=8517b420 vocab=745fc2a1
+-/
 theorem property_of_isPullback (Q : MorphismProperty Scheme.{u}) [Q.IsStableUnderBaseChange]
     (H : IsPullback fst snd f g) (hg : Q g) : Q fst :=
   MorphismProperty.IsStableUnderBaseChange.of_isPullback H.flip hg

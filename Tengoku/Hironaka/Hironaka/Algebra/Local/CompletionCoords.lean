@@ -79,29 +79,39 @@ section Local
 
 variable [IsLocalRing R] [IsNoetherianRing R]
 
-/-- `R̂` is a local ring (Mathlib's instance, restated).-/
+/-- `R̂` is a local ring (Mathlib's instance, restated).
+@isnad1 id=islocalr.0h1v.s6.2a7a3d0dbba6 from=translated src=- shape=368cb636 vocab=fae34159
+-/
 theorem isLocalRing_adicCompletion : IsLocalRing (AdicCompletion (maximalIdeal R) R) :=
   inferInstance
 
-/-- The maximal ideal of `R̂` is `𝔪R̂`.-/
+/-- The maximal ideal of `R̂` is `𝔪R̂`.
+@isnad1 id=eq.0h1v.s9.138b8eb09b9d from=translated src=- shape=56d3d75d vocab=980a4bba
+-/
 theorem maximalIdeal_adicCompletion :
     maximalIdeal (AdicCompletion (maximalIdeal R) R) =
       (maximalIdeal R).map (algebraMap R (AdicCompletion (maximalIdeal R) R)) :=
   AdicCompletion.maximalIdeal_eq_map
 
-/-- The residue field of `R̂` is `K`.-/
+/-- The residue field of `R̂` is `K`.
+@isnad1 id=bijectiv.0h1v.s9.8a2d7cd3c299 from=translated src=- shape=a277bb04 vocab=e46dbdad
+-/
 theorem residueField_map_adicCompletion_bijective :
     Function.Bijective
       (ResidueField.map (algebraMap R (AdicCompletion (maximalIdeal R) R))) :=
   AdicCompletion.residueField_map_bijective R
 
-/-- `R̂` is `𝔪R̂`-adically complete.-/
+/-- `R̂` is `𝔪R̂`-adically complete.
+@isnad1 id=isadicco.0h1v.s7.c3440063c406 from=translated src=- shape=1b49ae4a vocab=5d75f502
+-/
 theorem isAdicComplete_adicCompletion :
     IsAdicComplete (maximalIdeal (AdicCompletion (maximalIdeal R) R))
       (AdicCompletion (maximalIdeal R) R) :=
   inferInstance
 
-/-- `ι f ∈ (𝔪R̂)ᵃ ↔ f ∈ 𝔪ᵃ`, through the kernel of the evaluation at level `a`.-/
+/-- `ι f ∈ (𝔪R̂)ᵃ ↔ f ∈ 𝔪ᵃ`, through the kernel of the evaluation at level `a`.
+@isnad1 id=iff.0h3v.s10.d12bf37414be from=translated src=- shape=3ad89b44 vocab=8351b3ab
+-/
 theorem algebraMap_mem_maximalIdeal_pow_iff (f : R) (a : ℕ) :
     algebraMap R (AdicCompletion (maximalIdeal R) R) f ∈
         maximalIdeal (AdicCompletion (maximalIdeal R) R) ^ a ↔
@@ -114,14 +124,18 @@ theorem algebraMap_mem_maximalIdeal_pow_iff (f : R) (a : ℕ) :
   rw [AdicCompletion.eval_of, Submodule.mkQ_apply, Submodule.Quotient.mk_eq_zero, Ideal.smul_eq_mul,
     Ideal.mul_top]
 
-/-- `f ∈ 𝔪ᵃ ↔ ι f ∈ (𝔪R̂)ᵃ`.-/
+/-- `f ∈ 𝔪ᵃ ↔ ι f ∈ (𝔪R̂)ᵃ`.
+@isnad1 id=iff.0h3v.s10.d4d0f6292bbe from=translated src=- shape=c7b70669 vocab=8351b3ab
+-/
 theorem mem_maximalIdeal_pow_iff_algebraMap_mem (f : R) (a : ℕ) :
     f ∈ maximalIdeal R ^ a ↔
       algebraMap R (AdicCompletion (maximalIdeal R) R) f ∈
         maximalIdeal (AdicCompletion (maximalIdeal R) R) ^ a :=
   (algebraMap_mem_maximalIdeal_pow_iff f a).symm
 
-/-- The order of an element is preserved under completion.-/
+/-- The order of an element is preserved under completion.
+@isnad1 id=eq.0h2v.s8.c64315805874 from=translated src=- shape=482525f1 vocab=9880b54a
+-/
 theorem ordElem_algebraMap_adicCompletion (f : R) :
     ordElem (algebraMap R (AdicCompletion (maximalIdeal R) R) f) = ordElem f := by
   apply _root_.ENat.eq_of_forall_natCast_le_iff
@@ -129,7 +143,9 @@ theorem ordElem_algebraMap_adicCompletion (f : R) :
   rw [← mem_maximalIdeal_pow_iff_le_ordElem, ← mem_maximalIdeal_pow_iff_le_ordElem,
     algebraMap_mem_maximalIdeal_pow_iff]
 
-/-- The order of an ideal is preserved under completion.-/
+/-- The order of an ideal is preserved under completion.
+@isnad1 id=eq.0h2v.s8.921e0cf28832 from=translated src=- shape=f6699cbb vocab=7763630a
+-/
 theorem ord_map_adicCompletion (I : Ideal R) :
     ord (I.map (algebraMap R (AdicCompletion (maximalIdeal R) R))) = ord I := by
   apply _root_.ENat.eq_of_forall_natCast_le_iff
@@ -147,13 +163,17 @@ theorem ord_map_adicCompletion (I : Ideal R) :
       _ = maximalIdeal (AdicCompletion (maximalIdeal R) R) ^ r := by
           rw [AdicCompletion.maximalIdeal_eq_map]
 
-/-- `R → R̂` is faithfully flat (flat and local, [Sta, Tag 00MC]).-/
+/-- `R → R̂` is faithfully flat (flat and local, [Sta, Tag 00MC]).
+@isnad1 id=faithful.0h1v.s6.1af3514b3312 from=translated src=- shape=d7071ce9 vocab=eca1334a
+-/
 theorem faithfullyFlat_adicCompletion :
     Module.FaithfullyFlat R (AdicCompletion (maximalIdeal R) R) :=
   Module.FaithfullyFlat.of_flat_of_isLocalHom
 
 /-- `I R̂ ∩ R = I` (Krull's intersection theorem in the form recalled in [Kol07, Definition 55],
-here from faithful flatness).-/
+here from faithful flatness).
+@isnad1 id=eq.0h2v.s9.93aeb7a67fa6 from=translated src=- shape=ee2cda4e vocab=03932625
+-/
 theorem comap_map_adicCompletion (I : Ideal R) :
     (I.map (algebraMap R (AdicCompletion (maximalIdeal R) R))).comap
       (algebraMap R (AdicCompletion (maximalIdeal R) R)) = I := by
@@ -161,7 +181,9 @@ theorem comap_map_adicCompletion (I : Ideal R) :
   exact Ideal.comap_map_eq_self_of_faithfullyFlat I
 
 /-- Extension of ideals to `R̂` is injective: two subschemes with the same completion at a point
-agree near it ([Kol07, Definition 55]).-/
+agree near it ([Kol07, Definition 55]).
+@isnad1 id=injectiv.0h1v.s9.111b64565069 from=translated src=- shape=49e14deb vocab=883aafca
+-/
 theorem map_adicCompletion_injective :
     Function.Injective
       (fun I : Ideal R => I.map (algebraMap R (AdicCompletion (maximalIdeal R) R))) := by
@@ -176,14 +198,18 @@ section Derivations
 variable [IsLocalRing R]
 
 /-- The extended derivation restricts to `D` along `ι` (the completed derivations of
-[Kol07, Lemma 74(5)]).-/
+[Kol07, Lemma 74(5)]).
+@isnad1 id=eq.0h4v.s10.f7c0c98e84b3 from=translated src=- shape=4fc17dd5 vocab=802f7278
+-/
 theorem adicCompletion_algebraMap_maximalIdeal {k : Type v} [CommRing k] [Algebra k R]
     (D : Derivation k R R) (f : R) :
     D.adicCompletion (maximalIdeal R) (algebraMap R (AdicCompletion (maximalIdeal R) R) f) =
       algebraMap R (AdicCompletion (maximalIdeal R) R) (D f) :=
   D.adicCompletion_algebraMap _ f
 
-/-- The extension kills the coefficient field whenever `D` does.-/
+/-- The extension kills the coefficient field whenever `D` does.
+@isnad1 id=eq.1h4v.s10.31286ab006db from=translated src=- shape=0e55727a vocab=25460de8
+-/
 theorem adicCompletion_algebraMap_eq_zero {k : Type v} [CommRing k] [Algebra k R] [Algebra ℚ R]
     (D : Derivation ℚ R R) (hD : ∀ a : k, D (algebraMap k R a) = 0) (a : k) :
     D.adicCompletion (maximalIdeal R) (algebraMap k (AdicCompletion (maximalIdeal R) R) a) = 0 := by
@@ -195,7 +221,9 @@ namespace RegularCoords
 
 variable [IsRegularLocalRing R] [Algebra ℚ R] {n : ℕ} (c : RegularCoords R n)
 
-/-- `∂̂ᵢ (ι xⱼ) = δᵢⱼ`.-/
+/-- `∂̂ᵢ (ι xⱼ) = δᵢⱼ`.
+@isnad1 id=eq.0h5v.s10.ecd3fbd3c872 from=translated src=- shape=c22ee785 vocab=e0357f44
+-/
 theorem adicCompletion_pderiv_x (i j : Fin n) :
     (c.pderiv i).adicCompletion (maximalIdeal R)
         (algebraMap R (AdicCompletion (maximalIdeal R) R) (c.x j)) =
@@ -203,7 +231,9 @@ theorem adicCompletion_pderiv_x (i j : Fin n) :
   rw [Derivation.adicCompletion_algebraMap, c.pderiv_x]
   split_ifs <;> simp
 
-/-- The extended coordinate derivations commute.-/
+/-- The extended coordinate derivations commute.
+@isnad1 id=eq.0h6v.s11.5bf9e5c378c6 from=translated src=- shape=ddd9b99d vocab=7f4fea4b
+-/
 theorem adicCompletion_pderiv_comm (i j : Fin n) (f : AdicCompletion (maximalIdeal R) R) :
     (c.pderiv i).adicCompletion (maximalIdeal R)
         ((c.pderiv j).adicCompletion (maximalIdeal R) f) =
@@ -235,7 +265,9 @@ noncomputable def adicCompletion [IsRegularLocalRing (AdicCompletion (maximalIde
   pderiv_comm i j f := c.adicCompletion_pderiv_comm i j f
 
 /-- `R̂` carries a `RegularCoords` structure with parameters `ι xᵢ` and derivations `∂̂ᵢ`, given
-the regularity of `R̂`.-/
+the regularity of `R̂`.
+@isnad1 id=ex.0h3v.s9.77d634186344 from=translated src=- shape=79aab21f vocab=e939efbd
+-/
 theorem exists_adicCompletion_coords [IsRegularLocalRing (AdicCompletion (maximalIdeal R) R)] :
     ∃ ĉ : RegularCoords (AdicCompletion (maximalIdeal R) R) n,
       ĉ.x = (fun i => algebraMap R (AdicCompletion (maximalIdeal R) R) (c.x i)) ∧

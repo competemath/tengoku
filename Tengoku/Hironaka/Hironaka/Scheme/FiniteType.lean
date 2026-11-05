@@ -27,7 +27,9 @@ namespace AlgebraicGeometry
 
 attribute [mk_iff] FiniteType
 
-/-- A morphism that is locally of finite type and quasi-compact is of finite type.-/
+/-- A morphism that is locally of finite type and quasi-compact is of finite type.
+@isnad1 id=finitety.0h3v.s4.7b95002a5b3d from=translated src=- shape=d492d1ea vocab=fb8f55ef
+-/
 instance FiniteType.of_locallyOfFiniteType_of_quasiCompact {X Y : Scheme.{u}} (f : X ⟶ Y)
     [LocallyOfFiniteType f] [QuasiCompact f] : FiniteType f where
 

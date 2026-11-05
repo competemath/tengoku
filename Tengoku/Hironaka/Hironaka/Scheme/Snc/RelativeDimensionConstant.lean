@@ -56,7 +56,9 @@ noncomputable def dimCount (f : X ⟶ Spec (.of k)) (x : X) : WithBot ℕ∞ :=
     ((Cardinal.toENat (Algebra.trdeg k (ResidueField (X.presheaf.stalk x))) : ℕ∞) : WithBot ℕ∞)
 
 /-- Every point of a scheme smooth over `k` has an affine neighbourhood whose section ring is
-standard smooth of SOME relative dimension over `k`.-/
+standard smooth of SOME relative dimension over `k`.
+@isnad1 id=ex.0h4v.s8.1570bb34b824 from=translated src=- shape=9b7e742c vocab=af1631b4
+-/
 theorem exists_affineOpen_isStandardSmoothOfRelativeDimension' (f : X ⟶ Spec (.of k)) [Smooth f]
     (x : X) :
     ∃ (V : X.Opens) (_ : IsAffineOpen V) (_ : x ∈ V) (m : ℕ),

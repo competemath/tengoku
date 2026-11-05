@@ -39,7 +39,9 @@ section RegularLocalRing
 variable {R : Type u} [CommRing R] [IsRegularLocalRing R]
 
 /-- A regular local ring has a regular system of parameters indexed by `Fin n`, `n = dim R` — a
-generating family of `𝔪` with `spanFinrank 𝔪 = dim R` members.-/
+generating family of `𝔪` with `spanFinrank 𝔪 = dim R` members.
+@isnad1 id=ex.0h1v.s6.56c33c209d92 from=translated src=- shape=b8eea7d6 vocab=2f48d0d8
+-/
 theorem exists_fin_span_eq_maximalIdeal (R : Type u) [CommRing R] [IsRegularLocalRing R] :
     ∃ (n : ℕ) (z : Fin n → R),
       span (Set.range z) = maximalIdeal R ∧ (n : WithBot ℕ∞) = ringKrullDim R := by
@@ -59,7 +61,9 @@ theorem exists_fin_span_eq_maximalIdeal (R : Type u) [CommRing R] [IsRegularLoca
 variable {n : ℕ} {z : Fin n → R}
 
 /-- The members of a regular system of parameters lie in `𝔪` and outside `𝔪²` (Kollár's
-"`z_1, …, z_n ∈ 𝔪_x`").-/
+"`z_1, …, z_n ∈ 𝔪_x`").
+@isnad1 id=and.1h4v.s7.4a8f8d151f59 from=translated src=- shape=588d0574 vocab=5080dda3
+-/
 theorem mem_maximalIdeal_and_notMem_sq_of_span_eq
     (hz : span (Set.range z) = maximalIdeal R ∧ (n : WithBot ℕ∞) = ringKrullDim R) (i : Fin n) :
     z i ∈ maximalIdeal R ∧ z i ∉ maximalIdeal R ^ 2 :=
@@ -67,7 +71,9 @@ theorem mem_maximalIdeal_and_notMem_sq_of_span_eq
     notMem_sq_of_span_eq z hz.1.symm hz.2 i⟩
 
 /-- Distinct members of a regular system of parameters generate distinct ideals — their classes form
-a basis of `𝔪/𝔪²`, and two members generating the same ideal have proportional classes.-/
+a basis of `𝔪/𝔪²`, and two members generating the same ideal have proportional classes.
+@isnad1 id=ne.2h5v.s6.77aaac9c1b13 from=translated src=- shape=7f140c29 vocab=c0568beb
+-/
 theorem span_singleton_ne_of_ne
     (hz : span (Set.range z) = maximalIdeal R ∧ (n : WithBot ℕ∞) = ringKrullDim R) {i j : Fin n}
     (hij : i ≠ j) : span {z i} ≠ span {z j} := by

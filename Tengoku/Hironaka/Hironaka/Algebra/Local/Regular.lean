@@ -95,7 +95,9 @@ variable {R : Type u} [CommRing R]
 
 /-! ### Dimension bookkeeping -/
 
-/-- A ring of finite Krull dimension has a natural number as its dimension.-/
+/-- A ring of finite Krull dimension has a natural number as its dimension.
+@isnad1 id=ex.0h1v.s4.d6bf901ef2a5 from=translated src=- shape=81131f7c vocab=9fd1cf2e
+-/
 theorem exists_ringKrullDim_eq_natCast (R : Type u) [CommRing R] [FiniteRingKrullDim R] :
     ∃ n : ℕ, ringKrullDim R = n := by
   obtain ⟨a, ha⟩ := WithBot.ne_bot_iff_exists.mp (ringKrullDim_ne_bot (R := R))
@@ -111,14 +113,18 @@ section Quotient
 
 variable [IsLocalRing R]
 
-/-- The quotient of a local ring by a proper ideal is local.-/
+/-- The quotient of a local ring by a proper ideal is local.
+@isnad1 id=islocalr.1h2v.s6.22f4644b59d0 from=translated src=- shape=1404771f vocab=580b26b0
+-/
 theorem isLocalRing_quotient_of_le_maximalIdeal {I : Ideal R} (hI : I ≤ maximalIdeal R) :
     IsLocalRing (R ⧸ I) := by
   have : Nontrivial (R ⧸ I) :=
     Ideal.Quotient.nontrivial_iff.mpr (ne_top_of_le_ne_top (maximalIdeal.isMaximal R).ne_top hI)
   exact IsLocalRing.of_surjective' (Ideal.Quotient.mk I) Ideal.Quotient.mk_surjective
 
-/-- The maximal ideal of a local quotient is the image of `𝔪`.-/
+/-- The maximal ideal of a local quotient is the image of `𝔪`.
+@isnad1 id=eq.0h2v.s8.6430699d2669 from=translated src=- shape=4098482b vocab=6766dbd2
+-/
 theorem maximalIdeal_quotient_eq_map (I : Ideal R) [IsLocalRing (R ⧸ I)] :
     maximalIdeal (R ⧸ I) = (maximalIdeal R).map (Ideal.Quotient.mk I) :=
   (IsLocalRing.map_maximalIdeal_of_surjective _ Ideal.Quotient.mk_surjective).symm
@@ -126,7 +132,9 @@ theorem maximalIdeal_quotient_eq_map (I : Ideal R) [IsLocalRing (R ⧸ I)] :
 variable [IsNoetherianRing R]
 
 /-- The exchange step: an element `x ∈ 𝔪 ∖ 𝔪²` replaces one member of a minimal generating system
-of `𝔪`: `𝔪 = ⟨x⟩ + ⟨t⟩` with `t.card + 1 = spanFinrank 𝔪`.-/
+of `𝔪`: `𝔪 = ⟨x⟩ + ⟨t⟩` with `t.card + 1 = spanFinrank 𝔪`.
+@isnad1 id=ex.2h2v.s8.a844404dea64 from=translated src=- shape=7001a3a3 vocab=1294433e
+-/
 theorem exists_span_insert_eq_maximalIdeal {x : R} (mem : x ∈ maximalIdeal R)
     (nmem : x ∉ maximalIdeal R ^ 2) :
     ∃ t : Finset R, (t : Set R) ⊆ maximalIdeal R ∧ t.card + 1 = (maximalIdeal R).spanFinrank ∧
@@ -172,7 +180,9 @@ theorem exists_span_insert_eq_maximalIdeal {x : R} (mem : x ∈ maximalIdeal R)
     · exact mem
     · exact hs (Finset.mem_coe.mpr (Finset.mem_of_mem_erase (Finset.mem_coe.mp hy)))
 
-/-- For `x ∈ 𝔪 ∖ 𝔪²` the maximal ideal of `R/⟨x⟩` needs one generator fewer than `𝔪`.-/
+/-- For `x ∈ 𝔪 ∖ 𝔪²` the maximal ideal of `R/⟨x⟩` needs one generator fewer than `𝔪`.
+@isnad1 id=le.2h2v.s9.3f1d29938ca3 from=translated src=- shape=a925f51d vocab=13ec4df3
+-/
 theorem spanFinrank_maximalIdeal_quotient_add_one_le {x : R} (mem : x ∈ maximalIdeal R)
     (nmem : x ∉ maximalIdeal R ^ 2) [IsLocalRing (R ⧸ span {x})] :
     (maximalIdeal (R ⧸ span {x})).spanFinrank + 1 ≤ (maximalIdeal R).spanFinrank := by
@@ -187,7 +197,9 @@ theorem spanFinrank_maximalIdeal_quotient_add_one_le {x : R} (mem : x ∈ maxima
     _ = t.card := Set.ncard_coe_finset t
 
 /-- For `x ∈ 𝔪`, lifting generators of the maximal ideal of `R/⟨x⟩` and adjoining `x` generates
-`𝔪`.-/
+`𝔪`.
+@isnad1 id=le.1h2v.s8.3c561f6283fb from=translated src=- shape=bf2773c3 vocab=45704127
+-/
 theorem spanFinrank_maximalIdeal_le_spanFinrank_maximalIdeal_quotient_add_one {x : R}
     (hx : x ∈ maximalIdeal R) [IsLocalRing (R ⧸ span {x})] :
     (maximalIdeal R).spanFinrank ≤ (maximalIdeal (R ⧸ span {x})).spanFinrank + 1 := by
@@ -240,7 +252,9 @@ end Quotient
 /-- The first step of [Sta, Tag 00NP] and [Mat89, Theorem 14.3]: in a Noetherian local ring of
 positive dimension there is `x ∈ 𝔪 ∖ 𝔪²` in no minimal prime, since
 `𝔪 ⊄ 𝔪² ∪ P₁ ∪ ⋯ ∪ P_k` by prime avoidance (`Ideal.subset_union_prime`, with `𝔪²` in one of the
-two non-prime slots).-/
+two non-prime slots).
+@isnad1 id=ex.1h1v.s8.331277e0cc45 from=translated src=- shape=45e1dd62 vocab=5880acdb
+-/
 theorem exists_mem_maximalIdeal_notMem_sq_notMem_minimalPrimes [IsLocalRing R]
     [IsNoetherianRing R] (h : 0 < ringKrullDim R) :
     ∃ x ∈ maximalIdeal R, x ∉ maximalIdeal R ^ 2 ∧ ∀ p ∈ minimalPrimes R, x ∉ p := by
@@ -313,7 +327,9 @@ theorem _root_.IsRegularLocalRing.quotient_span_singleton [IsRegularLocalRing R]
 /-! ### Regular local rings are domains -/
 
 /-- The induction on the dimension of [Mat89, Theorem 14.3]: a regular local ring of dimension
-`n` is a domain.-/
+`n` is a domain.
+@isnad1 id=isdomain.1h2v.s5.7bb9ffea7f56 from=translated src=- shape=a5499644 vocab=575aba15
+-/
 theorem isDomain_of_isRegularLocalRing_of_ringKrullDim_eq (n : ℕ) :
     ∀ (R : Type u) [CommRing R] [IsRegularLocalRing R], ringKrullDim R = n → IsDomain R := by
   induction n with
@@ -359,7 +375,9 @@ theorem isDomain_of_isRegularLocalRing_of_ringKrullDim_eq (n : ℕ) :
     exact IsDomain.of_bot_isPrime R
 
 /-- A regular local ring is a domain ([Sta, Tag 00NP], [Mat89, Theorem 14.3]; named as in Mathlib
-pull request 28683).-/
+pull request 28683).
+@isnad1 id=isdomain.0h1v.s4.fd890a1a5574 from=translated src=- shape=c612a321 vocab=fbdff070
+-/
 theorem isDomain_of_isRegularLocalRing (R : Type u) [CommRing R] [IsRegularLocalRing R] :
     IsDomain R := by
   obtain ⟨n, hn⟩ := exists_ringKrullDim_eq_natCast R
@@ -367,7 +385,9 @@ theorem isDomain_of_isRegularLocalRing (R : Type u) [CommRing R] [IsRegularLocal
 
 /-- A regular local ring is a domain, as an instance (as in Mathlib pull request 28683). Its
 priority is low, so that where Mathlib derives `IsDomain` otherwise (for a field, say) Mathlib's
-derivation is found and statements elaborate as against Mathlib alone.-/
+derivation is found and statements elaborate as against Mathlib alone.
+@isnad1 id=isdomain.0h1v.s4.fd890a1a5574 from=translated src=- shape=c612a321 vocab=fbdff070
+-/
 instance (priority := 10) instIsDomainOfIsRegularLocalRing (R : Type u) [CommRing R]
     [IsRegularLocalRing R] : IsDomain R :=
   isDomain_of_isRegularLocalRing R
@@ -397,7 +417,9 @@ theorem _root_.IsRegularLocalRing.of_quotient_span_singleton [IsLocalRing R] [Is
 section Monomials
 
 /-- A monomial in elements of an ideal `J` lies in the power of `J` given by its degree (used
-in `Hironaka/Algebra/Local/CohenMap.lean`).-/
+in `Hironaka/Algebra/Local/CohenMap.lean`).
+@isnad1 id=mem.1h6v.s7.508d489f632e from=translated src=- shape=5290ec65 vocab=99934853
+-/
 theorem prod_pow_mem_pow_sum {B : Type*} [CommRing B] {ι : Type*} (s : Finset ι) (a : ι → B)
     (k : ι → ℕ) (J : Ideal B) (ha : ∀ i, a i ∈ J) : ∏ i ∈ s, a i ^ k i ∈ J ^ (∑ i ∈ s, k i) := by
   classical

@@ -58,7 +58,9 @@ Type*} [Field C] [Algebra C R] [Algebra C S]
 field), and a finite family `ξ_i ∈ S` (`i ∈ s`, `i₀ ∈ s`), there are constants
 `c : ι → C` with `c i₀ = 1`, `c = 0` off `s`, such that with `γ := ∑ c_j ξ_j`: the minimal
 polynomial `Q` of `γ` over `R` is monic irreducible with `Q(γ) = 0`, and some `A ∈ R ∖ 0` has
-`A · ξ_i = B_i(γ)` for polynomials `B_i ∈ R[T]`, every `i ∈ s`.-/
+`A · ξ_i = B_i(γ)` for polynomials `B_i ∈ R[T]`, every `i ∈ s`.
+@isnad1 id=ex.4h8v.s9.56c4ec2e3fb9 from=translated src=- shape=bf0cf49c vocab=795eae48
+-/
 theorem exists_linear_primitive_relations (f : R →+* S) (hf : f.Finite)
     (hinj : Function.Injective f) (hC : ∀ c, f (algebraMap C R c) = algebraMap C S c)
     {ι : Type*} (s : Finset ι) (ξ : ι → S) {i₀ : ι} (hi₀ : i₀ ∈ s) :

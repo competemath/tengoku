@@ -36,7 +36,9 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜]
 
 /-- A local diffeomorphism `f` at `x` agrees with a partial diffeomorphism `Φ` on the source of
 `Φ`, a neighbourhood of `x`: the definition of `IsLocalDiffeomorphAt`, which Mathlib does not
-expose; the witness is the inverse of `hf.localInverse`.-/
+expose; the witness is the inverse of `hf.localInverse`.
+@isnad1 id=ex.1h12v.s7.48691dee185f from=translated src=- shape=ba3df6b4 vocab=1eaa50f2
+-/
 theorem IsLocalDiffeomorphAt.exists_partialDiffeomorph (hf : IsLocalDiffeomorphAt I J n f x) :
     ∃ Φ : PartialDiffeomorph I J M N n, x ∈ Φ.source ∧ EqOn f Φ Φ.source := by
   refine ⟨hf.localInverse.symm, hf.localInverse_mem_target, fun y hy => ?_⟩
@@ -49,7 +51,9 @@ theorem IsLocalDiffeomorphAt.exists_partialDiffeomorph (hf : IsLocalDiffeomorphA
 /-- The converse: `f` is a local diffeomorphism at `x` when it agrees on the source of a partial
 diffeomorphism `Φ`, a neighbourhood of `x`, with `Φ`. Mathlib's
 `PartialDiffeomorph.isLocalDiffeomorphAt` is the case `f = Φ`; here `f` replaces `Φ` as the
-forward map of `Φ`, which changes nothing on `Φ.source`.-/
+forward map of `Φ`, which changes nothing on `Φ.source`.
+@isnad1 id=islocald.2h13v.s7.e9fe97fe6473 from=translated src=- shape=fcff3711 vocab=1eaa50f2
+-/
 theorem IsLocalDiffeomorphAt.of_eqOn (Φ : PartialDiffeomorph I J M N n) (hx : x ∈ Φ.source)
     (h : EqOn f Φ Φ.source) : IsLocalDiffeomorphAt I J n f x :=
   PartialDiffeomorph.isLocalDiffeomorphAt _ _ _ (x := x)

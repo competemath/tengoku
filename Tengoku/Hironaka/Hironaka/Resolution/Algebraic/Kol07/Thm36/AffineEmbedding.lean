@@ -48,21 +48,36 @@ noncomputable def dropLast (n : ℕ) :
     MvPolynomial (Fin (n + 2)) k →ₐ[k] MvPolynomial (Fin (n + 1)) k :=
   aeval fun i : Fin (n + 2) => if h : i.val < n + 1 then X ⟨i.val, h⟩ else 0
 
+/--
+@isnad1 id=eq.1h3v.s9.b464bcebf800 from=translated src=- shape=28dac8ed vocab=c78fa2c6
+-/
 theorem padProj_X_of_lt (n : ℕ) (i : Fin (n + 2)) (h : i.val < n) :
     padProj (k := k) n (X i) = X ⟨i.val, h⟩ := by
   rw [padProj, aeval_X, dite_eq_left h]
 
+/--
+@isnad1 id=eq.1h3v.s9.f387854c5938 from=translated src=- shape=b5db8b98 vocab=29cc8892
+-/
 theorem padProj_X_of_le (n : ℕ) (i : Fin (n + 2)) (h : n ≤ i.val) :
     padProj (k := k) n (X i) = 0 := by
   rw [padProj, aeval_X, dite_eq_right (not_lt.mpr h)]
 
+/--
+@isnad1 id=eq.1h3v.s9.86f2a6b2659d from=translated src=- shape=c54037a4 vocab=dc1a9ad6
+-/
 theorem dropLast_X_of_lt (n : ℕ) (i : Fin (n + 2)) (h : i.val < n + 1) :
     dropLast (k := k) n (X i) = X ⟨i.val, h⟩ := by
   rw [dropLast, aeval_X, dite_eq_left h]
 
+/--
+@isnad1 id=eq.0h2v.s9.2b28c9f414a1 from=translated src=- shape=719f45d2 vocab=6bf98618
+-/
 theorem dropLast_X_last (n : ℕ) : dropLast (k := k) n (X (Fin.last (n + 1))) = 0 := by
   rw [dropLast, aeval_X, dite_eq_right (by simp)]
 
+/--
+@isnad1 id=surjecti.0h2v.s8.de7cf5163359 from=translated src=- shape=34cc8aca vocab=f50dda78
+-/
 theorem padProj_surjective (n : ℕ) : Function.Surjective (padProj (k := k) n) := by
   intro P
   refine ⟨rename (Fin.castLE (Nat.le_add_right n 2)) P, ?_⟩
@@ -74,7 +89,9 @@ theorem padProj_surjective (n : ℕ) : Function.Surjective (padProj (k := k) n) 
     simp [Fin.castLE]
   rw [this, aeval_X_left_apply]
 
-/-- `padProj` factors through `dropLast`.-/
+/-- `padProj` factors through `dropLast`.
+@isnad1 id=eq.0h2v.s9.4f2987d434a3 from=translated src=- shape=57514cd1 vocab=84ea0548
+-/
 theorem padProj_eq_comp_dropLast (n : ℕ) :
     padProj (k := k) n =
       (aeval fun j : Fin (n + 1) =>
@@ -94,7 +111,9 @@ theorem padProj_eq_comp_dropLast (n : ℕ) :
 /-! ### The height bound -/
 
 /-- A prime of `k[x_0, …, x_{n+1}]` containing the kernel of the projection killing the last two
-variables has height `≥ 2` (the chain `⊥ < ker dropLast < ker padProj`).-/
+variables has height `≥ 2` (the chain `⊥ < ker dropLast < ker padProj`).
+@isnad1 id=le.1h3v.s10.f4dede44b43a from=translated src=- shape=112fa9ea vocab=a94576a5
+-/
 theorem two_le_height_of_ker_padProj_le (n : ℕ) (p : Ideal (MvPolynomial (Fin (n + 2)) k))
     (hp : RingHom.ker (padProj (k := k) n) ≤ p) : 2 ≤ p.height := by
   have h1 : (RingHom.ker (dropLast (k := k) n)).IsPrime := RingHom.ker_isPrime _
@@ -128,7 +147,9 @@ theorem two_le_height_of_ker_padProj_le (n : ℕ) (p : Ideal (MvPolynomial (Fin 
 
 /-- An affine scheme of finite type over `k` embeds as a closed subscheme of `𝔸^{n+2}_k` over `k`
 (`n` generators of its ring of functions and two zero coordinates) with the local rings of the
-ambient space of dimension `≥ 2` at every point, as in the proof of [Kol07, Theorem 36].-/
+ambient space of dimension `≥ 2` at every point, as in the proof of [Kol07, Theorem 36].
+@isnad1 id=ex.0h2v.s10.abf3a063de36 from=translated src=- shape=c75e612f vocab=5a98ddbf
+-/
 theorem exists_affineEmbedding_aux (X : Scheme.{u}) [X.Over (Spec (CommRingCat.of k))]
     [LocallyOfFiniteType (X ↘ Spec (CommRingCat.of k))] [IsAffine X] :
     ∃ (N : ℕ) (emb : X ⟶ Spec (CommRingCat.of (MvPolynomial (Fin N) k))),
@@ -196,7 +217,9 @@ theorem exists_affineEmbedding_aux (X : Scheme.{u}) [X.Over (Spec (CommRingCat.o
 
 /-- The embedding of `exists_affineEmbedding_aux` with the dimension bound stated only at the
 generic points of `X` (a special case), the form in which it enters the construction of an
-admissible embedding of an affine scheme.-/
+admissible embedding of an affine scheme.
+@isnad1 id=ex.0h2v.s10.b78b42c868cf from=translated src=- shape=a1df172c vocab=7513ca21
+-/
 theorem exists_affineEmbedding (X : Scheme.{u}) [X.Over (Spec (CommRingCat.of k))]
     [LocallyOfFiniteType (X ↘ Spec (CommRingCat.of k))] [IsAffine X] :
     ∃ (N : ℕ) (emb : X ⟶ Spec (CommRingCat.of (MvPolynomial (Fin N) k))),

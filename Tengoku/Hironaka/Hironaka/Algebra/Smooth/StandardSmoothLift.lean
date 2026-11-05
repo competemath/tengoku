@@ -65,7 +65,9 @@ of `Y` extended to `Φ_I` on `A_X` in the proof of [Kol07, Lemma 41].-/
 noncomputable def liftRelation (r : σ) : MvPolynomial ι R' :=
   Function.surjInv (MvPolynomial.map_surjective (algebraMap R' R) hφ) (P.relation r)
 
-/-- The lifted relation maps back to `P.relation r`.-/
+/-- The lifted relation maps back to `P.relation r`.
+@isnad1 id=eq.1h7v.s8.d7f4ef62615a from=translated src=- shape=cb6f91f1 vocab=9867d266
+-/
 theorem map_liftRelation (r : σ) :
     MvPolynomial.map (algebraMap R' R) (liftRelation hφ P r) = P.relation r :=
   Function.surjInv_eq (MvPolynomial.map_surjective (algebraMap R' R) hφ) _
@@ -97,7 +99,9 @@ noncomputable def ambientPre :
   (PreSubmersivePresentation.localizationAway (Ambient hφ P) (liftedJac hφ P)).comp
     (liftedPre hφ P)
 
-/-- The composite presentation's Jacobian is the unit `Δ · Δ` of `T[1/Δ]`.-/
+/-- The composite presentation's Jacobian is the unit `Δ · Δ` of `T[1/Δ]`.
+@isnad1 id=isunit.1h6v.s10.9a504b2c99df from=translated src=- shape=b9cc0c9b vocab=97260c0b
+-/
 theorem isUnit_jacobian_ambientPre : IsUnit (ambientPre hφ P).jacobian := by
   unfold ambientPre
   rw [PreSubmersivePresentation.comp_jacobian_eq_jacobian_smul_jacobian,
@@ -112,7 +116,9 @@ noncomputable def ambientPres : SubmersivePresentation R' (Ambient hφ P) (Unit 
   __ := ambientPre hφ P
   jacobian_isUnit := isUnit_jacobian_ambientPre hφ P
 
-/-- The ambient `T[1/Δ]` is standard smooth over `R'`: `h_A` is smooth.-/
+/-- The ambient `T[1/Δ]` is standard smooth over `R'`: `h_A` is smooth.
+@isnad1 id=isstanda.1h6v.s10.df17857b0774 from=translated src=- shape=0c50ca4e vocab=e2e431c9
+-/
 theorem isStandardSmooth_ambient [Finite ι] : IsStandardSmooth R' (Ambient hφ P) :=
   (ambientPres hφ P).isStandardSmooth
 
@@ -123,13 +129,17 @@ theorem isStandardSmooth_ambient [Finite ι] : IsStandardSmooth R' (Ambient hφ 
 noncomputable def liftedBase : Presentation R (R ⊗[R'] LiftedQuot hφ P) ι σ :=
   (liftedPre hφ P).toPresentation.baseChange R
 
-/-- The base-changed relations are `P`'s.-/
+/-- The base-changed relations are `P`'s.
+@isnad1 id=eq.1h7v.s11.e2bbdde6a28b from=translated src=- shape=bcf64c95 vocab=40af75b1
+-/
 theorem liftedBase_relation (r : σ) : (liftedBase hφ P).relation r = P.relation r := by
   unfold liftedBase
   rw [Presentation.baseChange_relation]
   exact map_liftRelation hφ P r
 
-/-- The base-changed presentation has `P`'s kernel.-/
+/-- The base-changed presentation has `P`'s kernel.
+@isnad1 id=eq.1h6v.s11.72763dfd02fb from=translated src=- shape=d1c65c90 vocab=e988d4d2
+-/
 theorem liftedBase_ker : (liftedBase hφ P).ker = P.ker := by
   rw [← (liftedBase hφ P).span_range_relation_eq_ker, ← P.span_range_relation_eq_ker]
   congr 1
@@ -146,20 +156,26 @@ noncomputable def baseChangeEquiv : (R ⊗[R'] LiftedQuot hφ P) ≃ₐ[R] S :=
 /-! ### The relative dimension and the image of the lifted Jacobian -/
 
 /-- The ambient's presentation has `P`'s dimension (the localisation adds one variable and one
-relation): Kollár's relative dimension `d`.-/
+relation): Kollár's relative dimension `d`.
+@isnad1 id=eq.1h6v.s11.256d21acaada from=translated src=- shape=d8108388 vocab=71e4b697
+-/
 theorem dimension_ambientPre [Finite ι] : (ambientPre hφ P).dimension = P.dimension := by
   unfold ambientPre
   rw [PreSubmersivePresentation.dimension_comp_eq_dimension_add_dimension]
   simp [Presentation.dimension]
 
 /-- The ambient is standard smooth of relative dimension `P.dimension` over `R'`: the constant
-relative dimension of `h_A`.-/
+relative dimension of `h_A`.
+@isnad1 id=isstanda.1h6v.s10.f8f4f999846c from=translated src=- shape=e213684c vocab=9780c975
+-/
 theorem isStandardSmoothOfRelativeDimension_ambient [Finite ι] :
     IsStandardSmoothOfRelativeDimension P.dimension R' (Ambient hφ P) :=
   (ambientPres hφ P).isStandardSmoothOfRelativeDimension (dimension_ambientPre hφ P)
 
 /-- Under the base change, the class of a lifted polynomial `q` goes to `q` evaluated at `P`'s
-generators.-/
+generators.
+@isnad1 id=eq.1h7v.s11.95130fdc424a from=translated src=- shape=f17f9205 vocab=87f3df27
+-/
 theorem baseChangeEquiv_one_tmul_mk (q : MvPolynomial ι R') :
     baseChangeEquiv hφ P (1 ⊗ₜ[R'] (algebraMap (MvPolynomial ι R') (LiftedQuot hφ P) q)) =
       aeval P.val (MvPolynomial.map (algebraMap R' R) q) := by
@@ -192,7 +208,9 @@ theorem baseChangeEquiv_one_tmul_mk (q : MvPolynomial ι R') :
     Presentation.quotientEquiv_mk, Generators.algebraMap_apply]
 
 /-- The lifted Jacobian maps to `P`'s Jacobian under the base change, a unit of `S`, so `Spec S`
-lies in `D(Δ)`.-/
+lies in `D(Δ)`.
+@isnad1 id=eq.1h6v.s11.acc630504fe3 from=translated src=- shape=3a80d739 vocab=697c7809
+-/
 theorem baseChangeEquiv_one_tmul_liftedJac :
     baseChangeEquiv hφ P (1 ⊗ₜ[R'] liftedJac hφ P) = P.jacobian := by
   classical
@@ -221,17 +239,23 @@ noncomputable def liftedToS : LiftedQuot hφ P →ₐ[R'] S :=
   ((baseChangeEquiv hφ P).toAlgHom.restrictScalars R').comp
     (Algebra.TensorProduct.includeRight (R := R') (A := R) (B := LiftedQuot hφ P))
 
-/-- The defining formula of `liftedToS`.-/
+/-- The defining formula of `liftedToS`.
+@isnad1 id=eq.1h7v.s11.14d7ecb84b83 from=translated src=- shape=db115095 vocab=d0b72ee2
+-/
 theorem liftedToS_apply (t : LiftedQuot hφ P) :
     liftedToS hφ P t = baseChangeEquiv hφ P (1 ⊗ₜ[R'] t) := rfl
 
-/-- `liftedToS` is a map of `R'`-algebras.-/
+/-- `liftedToS` is a map of `R'`-algebras.
+@isnad1 id=eq.1h7v.s10.3ef38fac7b95 from=translated src=- shape=ba8bbd53 vocab=4ec99a27
+-/
 theorem liftedToS_algebraMap (r : R') :
     liftedToS hφ P (algebraMap R' (LiftedQuot hφ P) r) = algebraMap R' S r := by
   rw [liftedToS, AlgHom.comp_apply, AlgHom.commutes, AlgHom.commutes]
 
 /-- The pushout square in `CommRingCat`: `S` is the base change of the lifted quotient along
-`R' → R`, so `Spec S = Spec R ×_{Spec R'} Spec T` (`isPullback_SpecMap_of_isPushout`).-/
+`R' → R`, so `Spec S = Spec R ×_{Spec R'} Spec T` (`isPullback_SpecMap_of_isPushout`).
+@isnad1 id=ispushou.1h6v.s9.18ee11a21997 from=translated src=- shape=7209372d vocab=d3eaa125
+-/
 theorem isPushout_liftedQuot :
     CategoryTheory.IsPushout (CommRingCat.ofHom (algebraMap R' R))
       (CommRingCat.ofHom (algebraMap R' (LiftedQuot hφ P)))
@@ -248,7 +272,9 @@ theorem isPushout_liftedQuot :
 
 /-! ### The ambient localised at the Jacobian maps onto `S` -/
 
-/-- The lifted Jacobian is a unit in `S`.-/
+/-- The lifted Jacobian is a unit in `S`.
+@isnad1 id=isunit.1h6v.s9.afb2ca2aae43 from=translated src=- shape=82ddaebb vocab=b73ab9bb
+-/
 theorem isUnit_liftedToS_liftedJac : IsUnit (liftedToS hφ P (liftedJac hφ P)) := by
   rw [liftedToS_apply, baseChangeEquiv_one_tmul_liftedJac]
   exact P.jacobian_isUnit
@@ -259,13 +285,17 @@ noncomputable def ambientToS : Ambient hφ P →+* S :=
   IsLocalization.Away.lift (g := (liftedToS hφ P).toRingHom) (liftedJac hφ P)
     (isUnit_liftedToS_liftedJac hφ P)
 
-/-- `ambientToS` extends `liftedToS`.-/
+/-- `ambientToS` extends `liftedToS`.
+@isnad1 id=eq.1h6v.s11.b8b0b7a7023c from=translated src=- shape=caa67081 vocab=d55f51e0
+-/
 theorem ambientToS_comp_algebraMap :
     (ambientToS hφ P).comp (algebraMap (LiftedQuot hφ P) (Ambient hφ P)) =
       (liftedToS hφ P).toRingHom :=
   IsLocalization.Away.lift_comp _ _
 
-/-- `ambientToS` on the image of `T`.-/
+/-- `ambientToS` on the image of `T`.
+@isnad1 id=eq.1h7v.s11.e0ab6d392e20 from=translated src=- shape=829757ac vocab=35e443ae
+-/
 theorem ambientToS_algebraMap (t : LiftedQuot hφ P) :
     ambientToS hφ P (algebraMap (LiftedQuot hφ P) (Ambient hφ P) t) = liftedToS hφ P t :=
   IsLocalization.Away.lift_eq _ _ _

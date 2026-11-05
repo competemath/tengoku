@@ -30,7 +30,9 @@ open MvPowerSeries
 variable {n : ℕ} (r : Fin n) {K : Type*} [CommRing K]
 
 /-- Below degree `N`, the chart substitution of `F` and of its truncation `truncTotal N F` agree
-(the substitution does not lower degrees).-/
+(the substitution does not lower degrees).
+@isnad1 id=eq.1h6v.s9.ce6bc0419d77 from=translated src=- shape=6e49ec7e vocab=c6809b76
+-/
 theorem coeff_subst_chartSubst_truncTotal (F : MvPowerSeries (Fin n) K) {N : ℕ}
     {β : Fin n →₀ ℕ} (hβ : β.degree < N) :
     coeff β (subst (chartSubst (K := K) r) (truncTotal N F : MvPowerSeries (Fin n) K)) =

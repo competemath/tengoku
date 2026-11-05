@@ -81,7 +81,9 @@ variable {X Y : Scheme.{u}}
 /-- The inverse image of an invertible ideal sheaf along a flat morphism is invertible (flatness
 of `g` makes `g^*𝓘ⁿ → 𝒪` injective [Sta, Tag 0805], here for `n = 1`).  On an affine open
 `V ⊆ f⁻¹(U)` with `J(U) = (a)`, `(J.comap f)(V) = (f♯a)` (`ideal_comap_of_le`) and `f♯a` is a
-nonzerodivisor because `f♯ : Γ(U) → Γ(V)` is flat and multiplication by `a` is injective.-/
+nonzerodivisor because `f♯ : Γ(U) → Γ(V)` is flat and multiplication by `a` is injective.
+@isnad1 id=isinvert.1h4v.s5.3fc201ac2326 from=translated src=- shape=fc7e54ba vocab=d360d403
+-/
 theorem Scheme.IdealSheafData.IsInvertible.comap_of_flat (f : Y ⟶ X)
     [Flat f] {J : X.IdealSheafData} (hJ : J.IsInvertible) : (J.comap f).IsInvertible := fun y => by
   obtain ⟨U, hxU, a, ha, hJU⟩ := hJ (f y)
@@ -117,7 +119,9 @@ variable {X B B' : Scheme.{u}}
 /-- The blow-up of an open `U` along `U ∩ Z` is the restriction of `π` to `π⁻¹(U)`
 [Hau14, Corollary 5.2 (b)]: a pullback square `B' → B` over `U.ι : U → X` gives an isomorphism
 `B' ≅ π⁻¹(U)` carrying `π' : B' ⟶ U` to Mathlib's restriction `π ∣_ U`, because `π⁻¹(U)` with
-`π ∣_ U` is a pullback of the same cospan (`isPullback_morphismRestrict`).-/
+`π ∣_ U` is a pullback of the same cospan (`isPullback_morphismRestrict`).
+@isnad1 id=ex.1h7v.s9.bf5499154112 from=translated src=- shape=81fde2f2 vocab=52d7a3bf
+-/
 theorem exists_restrictIso_of_isPullback {π : B ⟶ X} (U : X.Opens) {π' : B' ⟶ U} {φ : B' ⟶ B}
     (H : IsPullback φ π' π U.ι) :
     ∃ e : B' ≅ (π ⁻¹ᵁ U).toScheme, e.hom ≫ (π ∣_ U) = π' :=
@@ -133,7 +137,9 @@ variable {X₁ X₂ B₁ B₂ : Scheme.{u}} {I : X₂.IdealSheafData}
 /-- **Blowing up commutes with flat base change** [Sta, Tag 0805], proved from the universal
 property as described in the module docstring: for `g : X₁ ⟶ X₂` flat and blow-ups `π₂ : B₂ ⟶ X₂`
 along `I` and `π₁ : B₁ ⟶ X₁` along `I.comap g` in the sense of `IsBlowUp`, there is `φ : B₁ ⟶ B₂`
-over `g` with `B₁ = X₁ ×_{X₂} B₂`.-/
+over `g` with `B₁ = X₁ ×_{X₂} B₂`.
+@isnad1 id=ex.2h8v.s6.03839496ae85 from=translated src=- shape=b1f729b7 vocab=7bbf5ce6
+-/
 theorem exists_isPullback_of_flat (g : X₁ ⟶ X₂) [Flat g] {π₂ : B₂ ⟶ X₂} (h₂ : IsBlowUp I π₂)
     {π₁ : B₁ ⟶ X₁} (h₁ : IsBlowUp (I.comap g) π₁) : ∃ φ : B₁ ⟶ B₂, IsPullback φ π₁ π₂ g := by
   have hcond : Limits.pullback.fst π₂ g ≫ π₂ = Limits.pullback.snd π₂ g ≫ g :=
@@ -166,7 +172,9 @@ theorem exists_isPullback_of_flat (g : X₁ ⟶ X₂) [Flat g] {π₂ : B₂ ⟶
   exact ⟨φ, IsPullback.of_iso_pullback ⟨hφ⟩ ⟨σ, τ, hστ, hτσ⟩ hσ₁ hσ₂⟩
 
 /-- The base-change square for an étale `g` [Sta, Tag 0805] (étale morphisms are flat, Mathlib's
-`Etale → Smooth → Flat`).-/
+`Etale → Smooth → Flat`).
+@isnad1 id=ex.2h8v.s6.888b62c0670a from=translated src=- shape=b1f729b7 vocab=70b943ff
+-/
 theorem exists_isPullback_of_etale (g : X₁ ⟶ X₂) [Etale g] {π₂ : B₂ ⟶ X₂} (h₂ : IsBlowUp I π₂)
     {π₁ : B₁ ⟶ X₁} (h₁ : IsBlowUp (I.comap g) π₁) : ∃ φ : B₁ ⟶ B₂, IsPullback φ π₁ π₂ g :=
   h₂.exists_isPullback_of_flat g h₁
@@ -175,7 +183,9 @@ theorem exists_isPullback_of_etale (g : X₁ ⟶ X₂) [Etale g] {π₂ : B₂ �
 (Hauser's case is `S = Spec k`, where every morphism is flat): the blow-up of
 `Z ×_S Y` along `Z × a = a.comap pr₂` is the flat base change of `B_a Y ⟶ Y` along the projection
 `pr₂`, and, pasting with the product square, it is `Z ×_S B_a Y`: `B' = Z ×_S B_a Y` over
-`Z ⟶ S ⟵ B_a Y ⟶ Y ⟶ S`.-/
+`Z ⟶ S ⟵ B_a Y ⟶ Y ⟶ S`.
+@isnad1 id=ex.2h10v.s7.9594def50b69 from=translated src=- shape=501aed9f vocab=d4868a8b
+-/
 theorem exists_isPullback_prod {S Z Y BY B' : Scheme.{u}} (fZ : Z ⟶ S) [Flat fZ] (fY : Y ⟶ S)
     {a : Y.IdealSheafData} {πY : BY ⟶ Y} (hY : IsBlowUp a πY) {π' : B' ⟶ Limits.pullback fZ fY}
     (h' : IsBlowUp (a.comap (Limits.pullback.snd fZ fY)) π') :

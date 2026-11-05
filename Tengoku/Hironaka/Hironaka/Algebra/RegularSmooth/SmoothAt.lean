@@ -49,7 +49,9 @@ variable {X Y : Scheme.{u}}
 
 /-- A point lies in the smooth locus of `f` iff the restriction of `f` to some open neighbourhood
 of the point is smooth: Mathlib's smooth locus agrees with the definition of "smooth at `x`" of
-[Sta, Tag 01V9] (and of [Sta, Tag 00TB] in the affine case).-/
+[Sta, Tag 01V9] (and of [Sta, Tag 00TB] in the affine case).
+@isnad1 id=iff.0h4v.s7.d288e30979d3 from=translated src=- shape=8e6001c6 vocab=5662205d
+-/
 theorem Scheme.Hom.mem_smoothLocus_iff_exists_smooth (f : X ⟶ Y) [LocallyOfFinitePresentation f]
     {x : X} : x ∈ f.smoothLocus ↔ ∃ U : X.Opens, x ∈ U ∧ Smooth (U.ι ≫ f) := by
   constructor
@@ -72,7 +74,9 @@ theorem Scheme.Hom.mem_smoothLocus_iff_exists_smooth (f : X ⟶ Y) [LocallyOfFin
 
 /-- Over a field, a morphism locally of finite type is locally of finite presentation (Mathlib's
 instance for a locally Noetherian target, in `AlgebraicGeometry/Noetherian.lean`), so
-`f.smoothLocus` is defined for `X` locally of finite type over `k`.-/
+`f.smoothLocus` is defined for `X` locally of finite type over `k`.
+@isnad1 id=locallyo.0h3v.s5.f0d210fd78ee from=translated src=- shape=62b40abb vocab=65b1f6a8
+-/
 theorem Scheme.Hom.locallyOfFinitePresentation_of_field {k : Type u} [Field k]
     (f : X ⟶ Spec (.of k)) [LocallyOfFiniteType f] : LocallyOfFinitePresentation f :=
   inferInstance
@@ -98,13 +102,18 @@ noncomputable def Scheme.Hom.sectionsAlgebra (f : X ⟶ Spec (.of k)) (U : X.Ope
     Algebra k Γ(X, U) :=
   ((Scheme.ΓSpecIso (.of k)).inv ≫ f.appLE ⊤ U le_top).hom.toAlgebra
 
+/--
+@isnad1 id=eq.0h4v.s11.78ede0f0ff58 from=translated src=- shape=ae8f8f29 vocab=62107263
+-/
 theorem Scheme.Hom.algebraMap_sectionsAlgebra (f : X ⟶ Spec (.of k)) (U : X.Opens) :
     letI := f.sectionsAlgebra U
     algebraMap k Γ(X, U) = ((Scheme.ΓSpecIso (.of k)).inv ≫ f.appLE ⊤ U le_top).hom :=
   rfl
 
 /-- For `f : X ⟶ Spec k` locally of finite type and `U` an affine open, `Γ(X, U)` is a
-`k`-algebra of finite type (for the structure `Scheme.Hom.sectionsAlgebra`).-/
+`k`-algebra of finite type (for the structure `Scheme.Hom.sectionsAlgebra`).
+@isnad1 id=finitety.1h4v.s9.a218e5dea9e4 from=translated src=- shape=84a1e4fa vocab=625f9e82
+-/
 theorem Scheme.Hom.finiteType_sectionsAlgebra (f : X ⟶ Spec (.of k)) [LocallyOfFiniteType f]
     {U : X.Opens} (hU : IsAffineOpen U) :
     letI := f.sectionsAlgebra U
@@ -119,7 +128,9 @@ the proof of [Sta, Tag 038X]): for `f : X ⟶ Spec k` locally of finite presenta
 open `U ∋ x` with `𝔮 = hU.primeIdealOf ⟨x, hx⟩` the prime of `x`, the point `x` lies in the smooth
 locus of `f` iff `Γ(X, U)` is smooth at `𝔮` over `k`: `Algebra.IsSmoothAt k 𝔮`, i.e. `Γ(X, U)_𝔮`
 is formally smooth over `k`. Mathlib's `formallySmooth_stalkMap_iff` for the affine open `⊤` of
-`Spec k`, then the base ring `Γ(Spec k, ⊤)` is replaced by `k` along `Scheme.ΓSpecIso`.-/
+`Spec k`, then the base ring `Γ(Spec k, ⊤)` is replaced by `k` along `Scheme.ΓSpecIso`.
+@isnad1 id=iff.2h5v.s9.d9817f7c6d8f from=translated src=- shape=cd14f1fe vocab=30843f4d
+-/
 theorem Scheme.Hom.mem_smoothLocus_iff_isSmoothAt (f : X ⟶ Spec (.of k))
     [LocallyOfFinitePresentation f] {U : X.Opens} (hU : IsAffineOpen U) {x : X} (hx : x ∈ U) :
     letI := f.sectionsAlgebra U
@@ -139,7 +150,9 @@ end sectionsAlgebra
 
 /-- The stalk of `Spec k` at its point is `k` (as in the proof of Mathlib's
 `Scheme.Hom.genericPoint_mem_smoothLocus_of_perfectField`): for a field `k`, the canonical map
-`k → 𝒪_{Spec k, y}` is an isomorphism at the unique point `y` of `Spec k`.-/
+`k → 𝒪_{Spec k, y}` is an isomorphism at the unique point `y` of `Spec k`.
+@isnad1 id=isiso.0h2v.s5.2083730d8b7f from=translated src=- shape=18fe32f9 vocab=fe19bd17
+-/
 theorem isIso_toStalk_Spec_of_field {k : Type u} [Field k] (y : Spec (.of k)) :
     IsIso (StructureSheaf.toStalk k y) := by
   obtain rfl : y = IsLocalRing.closedPoint k := Subsingleton.elim (α := PrimeSpectrum k) _ _

@@ -32,7 +32,9 @@ public section
 variable {X : Type*} [TopologicalSpace X]
 
 /-- In a Jacobson space, every point `x` of a closed set `S` specializes to a closed point
-`p ∈ S` — a closed point of the closed set `closure {x} ⊆ S`.-/
+`p ∈ S` — a closed point of the closed set `closure {x} ⊆ S`.
+@isnad1 id=ex.2h3v.s5.e389f2a88891 from=translated src=- shape=d7191c15 vocab=ac025a5b
+-/
 theorem exists_isClosed_singleton_mem_specializes [JacobsonSpace X] {S : Set X} (hS : IsClosed S)
     {x : X} (hx : x ∈ S) : ∃ p, IsClosed {p} ∧ p ∈ S ∧ x ⤳ p := by
   obtain ⟨p, hp, hpc⟩ := nonempty_inter_closedPoints (Z := closure {x})
@@ -43,7 +45,9 @@ theorem exists_isClosed_singleton_mem_specializes [JacobsonSpace X] {S : Set X} 
 
 /-- Open sets `O p` around the closed points `p` of a closed set `S` of a Jacobson space cover
 `S`: the closed points are dense in `S`, and each point of `S` lies in the open set attached to a
-closed point it specializes to.-/
+closed point it specializes to.
+@isnad1 id=le.3h3v.s7.a0275c844495 from=translated src=- shape=2b522fb7 vocab=d7e4b3ad
+-/
 theorem subset_iUnion_of_isOpen_of_closedPoints [JacobsonSpace X] {S : Set X} (hS : IsClosed S)
     (O : {p : X // IsClosed {p} ∧ p ∈ S} → Set X) (hO : ∀ p, IsOpen (O p))
     (hpO : ∀ p, p.1 ∈ O p) : S ⊆ ⋃ p, O p := by

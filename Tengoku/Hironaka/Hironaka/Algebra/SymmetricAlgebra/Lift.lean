@@ -47,6 +47,9 @@ noncomputable def gradedLift (g : M →ₗ[R] A) (hg : ∀ x, g x ∈ 𝒜 1) : 
       rw [map_mul, lift_ι_apply, add_comm]
       exact SetLike.mul_mem_graded (hg m) ih
 
+/--
+@isnad1 id=eq.1h6v.s11.536a1f61afb1 from=translated src=- shape=92a65bec vocab=26d0e52f
+-/
 theorem gradedLift_apply (g : M →ₗ[R] A) (hg : ∀ x, g x ∈ 𝒜 1) (a : SymmetricAlgebra R M) :
     gradedLift 𝒜 g hg a = lift g a :=
   rfl

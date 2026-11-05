@@ -73,7 +73,9 @@ variable {X Y : Scheme.{u}}
 section ExtOfCover
 
 /-- Along an open immersion the stalk maps are isomorphisms, so equal inverse images give equal
-stalk ideals at the points of the image.-/
+stalk ideals at the points of the image.
+@isnad1 id=eq.1h6v.s10.1750c125af32 from=translated src=- shape=30bae721 vocab=1b8b4079
+-/
 theorem stalkIdeal_eq_of_comap_eq (f : Y ⟶ X) [IsOpenImmersion f] {J K : X.IdealSheafData}
     (h : J.comap f = K.comap f) (y : Y) : J.stalkIdeal (f y) = K.stalkIdeal (f y) := by
   have h1 := stalkIdeal_comap J f y
@@ -85,7 +87,9 @@ theorem stalkIdeal_eq_of_comap_eq (f : Y ⟶ X) [IsOpenImmersion f] {J K : X.Ide
     Ideal.comap_map_of_bijective _ hbij]
 
 /-- An ideal sheaf is determined by its inverse images along the members of an open cover
-(a consequence of extensionality by stalks, `ext_stalkIdeal`).-/
+(a consequence of extensionality by stalks, `ext_stalkIdeal`).
+@isnad1 id=eq.1h4v.s6.5e18b7fbd551 from=translated src=- shape=b3c95fd6 vocab=506de0c5
+-/
 theorem ext_of_openCover {J K : X.IdealSheafData} (𝒱 : X.OpenCover.{u})
     (h : ∀ i, J.comap (𝒱.f i) = K.comap (𝒱.f i)) : J = K := by
   refine ext_stalkIdeal fun x => ?_
@@ -129,24 +133,41 @@ abbrev GlueIdx.scheme (p : GlueIdx 𝒰) : Scheme.{u} := p.V.1.toScheme
 /-- The map of the member to `X`: `V ⟶ 𝒰.X i ⟶ X`.-/
 noncomputable abbrev GlueIdx.toX (p : GlueIdx 𝒰) : p.scheme ⟶ X := p.V.1.ι ≫ 𝒰.f p.i
 
-/-- The affine open of the index, as an `IsAffineOpen` fact.-/
+/-- The affine open of the index, as an `IsAffineOpen` fact.
+@isnad1 id=isaffine.0h3v.s7.65906f832de6 from=translated src=- shape=1a852600 vocab=84b03baf
+-/
 theorem GlueIdx.isAffineOpen (p : GlueIdx 𝒰) : IsAffineOpen p.V.1 := p.V.2
 
+/--
+@isnad1 id=eq.0h3v.s4.065a28515b90 from=translated src=- shape=80c228dd vocab=692489bc
+-/
 theorem GlueIdx.opensRange_toX (p : GlueIdx 𝒰) : p.toX.opensRange = p.opens := by
   change (p.V.1.ι ≫ 𝒰.f p.i).opensRange = _
   rw [Scheme.Hom.opensRange_comp, Opens.opensRange_ι]
 
+/--
+@isnad1 id=eq.0h3v.s8.0b07ad33a207 from=translated src=- shape=58784381 vocab=52f8fd86
+-/
 theorem GlueIdx.range_toX (p : GlueIdx 𝒰) : Set.range p.toX = (p.opens : Set X) := by
   rw [← Scheme.Hom.coe_opensRange, GlueIdx.opensRange_toX]
 
+/--
+@isnad1 id=eq.0h4v.s10.e1a1ace52290 from=translated src=- shape=f69f7a91 vocab=6dbc0046
+-/
 theorem GlueIdx.toX_apply (p : GlueIdx 𝒰) (y : p.scheme) : p.toX y = 𝒰.f p.i (p.V.1.ι y) :=
   Scheme.Hom.comp_apply _ _ y
 
 /-- The preorder by inclusion of the covered opens.-/
 instance : Preorder (GlueIdx 𝒰) := Preorder.lift GlueIdx.opens
 
+/--
+@isnad1 id=iff.0h4v.s5.2ec4bee3e428 from=translated src=- shape=a88e8f85 vocab=d1f95100
+-/
 theorem GlueIdx.le_def {p q : GlueIdx 𝒰} : p ≤ q ↔ p.opens ≤ q.opens := Iff.rfl
 
+/--
+@isnad1 id=le.1h4v.s8.a89906f79fc9 from=translated src=- shape=5494cfb5 vocab=9e8ab653
+-/
 theorem GlueIdx.range_toX_subset {p q : GlueIdx 𝒰} (h : p ≤ q) :
     Set.range p.toX ⊆ Set.range q.toX := by
   rw [GlueIdx.range_toX, GlueIdx.range_toX]
@@ -156,10 +177,16 @@ theorem GlueIdx.range_toX_subset {p q : GlueIdx 𝒰} (h : p ≤ q) :
 noncomputable def GlueIdx.trans {p q : GlueIdx 𝒰} (h : p ≤ q) : p.scheme ⟶ q.scheme :=
   IsOpenImmersion.lift q.toX p.toX (GlueIdx.range_toX_subset h)
 
+/--
+@isnad1 id=eq.1h4v.s6.b04306a28abf from=translated src=- shape=9ca0b634 vocab=7cee0fd1
+-/
 @[reassoc (attr := simp)]
 theorem GlueIdx.trans_toX {p q : GlueIdx 𝒰} (h : p ≤ q) : GlueIdx.trans h ≫ q.toX = p.toX :=
   IsOpenImmersion.lift_fac _ _ _
 
+/--
+@isnad1 id=isopenim.1h4v.s5.6a80a75bf83d from=translated src=- shape=a68258a3 vocab=4c0e1db5
+-/
 theorem GlueIdx.isOpenImmersion_trans {p q : GlueIdx 𝒰} (h : p ≤ q) :
     IsOpenImmersion (GlueIdx.trans h) := by
   have : IsOpenImmersion (GlueIdx.trans h ≫ q.toX) := by
@@ -167,14 +194,23 @@ theorem GlueIdx.isOpenImmersion_trans {p q : GlueIdx 𝒰} (h : p ≤ q) :
     infer_instance
   exact IsOpenImmersion.of_comp (GlueIdx.trans h) q.toX
 
+/--
+@isnad1 id=eq.2h5v.s6.7224a4f0aa4c from=translated src=- shape=86005e4f vocab=7cee0fd1
+-/
 theorem GlueIdx.trans_eq_of_comp_eq {p q : GlueIdx 𝒰} (h : p ≤ q) (g : p.scheme ⟶ q.scheme)
     (hg : g ≫ q.toX = p.toX) : g = GlueIdx.trans h :=
   (cancel_mono q.toX).mp (by rw [hg, GlueIdx.trans_toX])
 
+/--
+@isnad1 id=eq.2h5v.s6.1da669ac0447 from=translated src=- shape=382cfef5 vocab=89184d19
+-/
 theorem GlueIdx.trans_comp_trans {p q r : GlueIdx 𝒰} (hpq : p ≤ q) (hqr : q ≤ r) :
     GlueIdx.trans hpq ≫ GlueIdx.trans hqr = GlueIdx.trans (hpq.trans hqr) :=
   GlueIdx.trans_eq_of_comp_eq _ _ (by rw [Category.assoc, GlueIdx.trans_toX, GlueIdx.trans_toX])
 
+/--
+@isnad1 id=eq.0h3v.s5.a6b68c401740 from=translated src=- shape=4c44c471 vocab=b68dd467
+-/
 theorem GlueIdx.trans_self (p : GlueIdx 𝒰) : GlueIdx.trans (le_refl p) = 𝟙 p.scheme :=
   (GlueIdx.trans_eq_of_comp_eq le_rfl (𝟙 _) (Category.id_comp _)).symm
 
@@ -185,7 +221,9 @@ section Cover
 variable {𝒰}
 
 /-- The members of the refinement cover `X`: every point lies in some `𝒰.X i`, and every point
-of `𝒰.X i` lies in some affine open of it.-/
+of `𝒰.X i` lies in some affine open of it.
+@isnad1 id=ex.0h3v.s8.f997dc0472c7 from=translated src=- shape=5589d2d5 vocab=0969af19
+-/
 theorem GlueIdx.exists_toX_eq (x : X) : ∃ (p : GlueIdx 𝒰) (y : p.scheme), p.toX y = x := by
   obtain ⟨i, u, rfl⟩ := 𝒰.exists_eq x
   obtain ⟨V, huV⟩ := exists_affineOpens_mem u
@@ -202,7 +240,9 @@ noncomputable abbrev glueCover : X.OpenCover.{u} where
   mem₀ := (Cover.mkOfCovers (GlueIdx 𝒰) GlueIdx.scheme GlueIdx.toX GlueIdx.exists_toX_eq).mem₀
 
 /-- Two points of members with the same image in `X` lie in a common smaller member: an affine
-basic open of `V_p` inside `V_p ∩ (𝒰.f p.i)⁻¹(𝒰.f q.i ''ᵁ V_q)` around the point.-/
+basic open of `V_p` inside `V_p ∩ (𝒰.f p.i)⁻¹(𝒰.f q.i ''ᵁ V_q)` around the point.
+@isnad1 id=ex.1h6v.s9.a2f1bff739aa from=translated src=- shape=9213eecd vocab=372ce1e7
+-/
 theorem GlueIdx.exists_common {p q : GlueIdx 𝒰} (xp : p.scheme) (xq : q.scheme)
     (hx : p.toX xp = q.toX xq) :
     ∃ (k : GlueIdx 𝒰) (hkp : k ≤ p) (hkq : k ≤ q) (y : k.scheme),
@@ -258,7 +298,9 @@ noncomputable abbrev GlueIdx.ideal (p : GlueIdx 𝒰) : p.scheme.IdealSheafData 
   (I p.i).comap p.V.1.ι
 
 /-- The compatibility hypothesis transported to a transition map: for `p ≤ q` the ideal of `q`
-pulls back to the ideal of `p`, through `V_p ⟶ 𝒰.X i ×_X 𝒰.X j`.-/
+pulls back to the ideal of `p`, through `V_p ⟶ 𝒰.X i ×_X 𝒰.X j`.
+@isnad1 id=eq.2h5v.s6.cef902efc27d from=translated src=- shape=6752c939 vocab=702664de
+-/
 theorem GlueIdx.comap_trans (compat : GlueCompat 𝒰 I) {p q : GlueIdx 𝒰} (h : p ≤ q) :
     (GlueIdx.ideal I q).comap (GlueIdx.trans h) = GlueIdx.ideal I p := by
   have hw : p.V.1.ι ≫ 𝒰.f p.i = (GlueIdx.trans h ≫ q.V.1.ι) ≫ 𝒰.f q.i := by
@@ -281,6 +323,9 @@ noncomputable def GlueIdx.subschemeTrans {p q : GlueIdx 𝒰} (h : p ≤ q) :
   subschemeMap _ _ (GlueIdx.trans h)
     (le_map_iff_comap_le.mpr (GlueIdx.comap_trans I compat h).le)
 
+/--
+@isnad1 id=eq.2h5v.s7.13f057f0ff27 from=translated src=- shape=f6d1480c vocab=84ce6cc3
+-/
 @[reassoc (attr := simp)]
 theorem GlueIdx.subschemeTrans_subschemeι {p q : GlueIdx 𝒰} (h : p ≤ q) :
     GlueIdx.subschemeTrans I compat h ≫ (GlueIdx.ideal I q).subschemeι =
@@ -306,7 +351,9 @@ noncomputable def glueNatTrans :
   naturality _ _ h := GlueIdx.subschemeTrans_subschemeι I compat h.le
 
 /-- The squares `Z_p → Z_q` over `V_p → V_q` are cartesian: a closed subscheme is its ideal sheaf
-(Mathlib's `isPullback_of_isClosedImmersion`), and the ideals match by `comap_trans`.-/
+(Mathlib's `isPullback_of_isClosedImmersion`), and the ideals match by `comap_trans`.
+@isnad1 id=equifibe.1h3v.s6.6d79ef537191 from=translated src=- shape=5e3b683c vocab=421c1094
+-/
 theorem glueNatTrans_equifibered : (glueNatTrans I compat).Equifibered := by
   intro p q h
   refine (isPullback_of_isClosedImmersion (GlueIdx.ideal I p).subschemeι
@@ -327,7 +374,9 @@ noncomputable abbrev glueScheme : Scheme.{u} := (glueRelData I compat).glued
 /-- The structure map `Z ⟶ X`.-/
 noncomputable def glueι : glueScheme I compat ⟶ X := (glueRelData I compat).toBase
 
-/-- The base change of `Z ⟶ X` to a member `V_p` is the closed immersion `Z_p ⟶ V_p`.-/
+/-- The base change of `Z ⟶ X` to a member `V_p` is the closed immersion `Z_p ⟶ V_p`.
+@isnad1 id=isclosed.1h4v.s6.42c15a450cd8 from=translated src=- shape=9828cba5 vocab=185a0315
+-/
 theorem isClosedImmersion_pullbackSnd (p : GlueIdx 𝒰) :
     IsClosedImmersion (Limits.pullback.snd (glueι I compat) p.toX) := by
   have H := ((glueRelData I compat).isPullback_natTrans_ι_toBase p).flip
@@ -338,7 +387,9 @@ theorem isClosedImmersion_pullbackSnd (p : GlueIdx 𝒰) :
   exact (MorphismProperty.arrow_mk_iso_iff (P := @IsClosedImmersion) e).mp
     (inferInstanceAs (IsClosedImmersion (GlueIdx.ideal I p).subschemeι))
 
-/-- `Z ⟶ X` is a closed immersion: it is one over every member of the refinement cover.-/
+/-- `Z ⟶ X` is a closed immersion: it is one over every member of the refinement cover.
+@isnad1 id=isclosed.1h3v.s5.60abe822a37d from=translated src=- shape=6d396cda vocab=073f788f
+-/
 instance isClosedImmersion_glueι : IsClosedImmersion (glueι I compat) :=
   IsZariskiLocalAtTarget.of_openCover (glueCover 𝒰) fun p =>
     isClosedImmersion_pullbackSnd I compat p
@@ -347,7 +398,9 @@ instance isClosedImmersion_glueι : IsClosedImmersion (glueι I compat) :=
 [Kol07, Proposition 37, proof].-/
 noncomputable def glue : X.IdealSheafData := (glueι I compat).ker
 
-/-- On a member `V_p` the glued ideal sheaf restricts to `Z_p`'s ideal.-/
+/-- On a member `V_p` the glued ideal sheaf restricts to `Z_p`'s ideal.
+@isnad1 id=eq.1h4v.s6.2e9d9bee90ff from=translated src=- shape=3efdcf87 vocab=feb7dcb1
+-/
 theorem glue_comap_toX (p : GlueIdx 𝒰) : (glue I compat).comap p.toX = GlueIdx.ideal I p := by
   have H := (glueRelData I compat).isPullback_natTrans_ι_toBase p
   have : IsClosedImmersion (glueRelData I compat).toBase := isClosedImmersion_glueι I compat
@@ -358,7 +411,9 @@ theorem glue_comap_toX (p : GlueIdx 𝒰) : (glue I compat).comap p.toX = GlueId
   exact h1.trans (h2.trans (h3.trans h4))
 
 /-- **`Z ∩ 𝒰.X i = V(I i)`** — the glued ideal sheaf restricts to `I i` on each member of the
-cover.-/
+cover.
+@isnad1 id=eq.1h4v.s6.0686df6e6c46 from=translated src=- shape=baca0e3d vocab=07343590
+-/
 theorem glue_comap (i : 𝒰.I₀) : (glue I compat).comap (𝒰.f i) = I i := by
   refine ext_stalkIdeal fun u => ?_
   obtain ⟨V, huV⟩ := exists_affineOpens_mem u
@@ -369,7 +424,9 @@ theorem glue_comap (i : 𝒰.I₀) : (glue I compat).comap (𝒰.f i) = I i := b
     ⟨u, huV⟩
   rwa [Opens.ι_apply] at this
 
-/-- **Uniqueness** — an ideal sheaf restricting to `I i` on every member is the glued one.-/
+/-- **Uniqueness** — an ideal sheaf restricting to `I i` on every member is the glued one.
+@isnad1 id=eq.2h4v.s6.476ff012e630 from=translated src=- shape=1bbc71f7 vocab=07343590
+-/
 theorem glue_unique (J : X.IdealSheafData) (hJ : ∀ i, J.comap (𝒰.f i) = I i) :
     J = glue I compat :=
   ext_of_openCover 𝒰 fun i => by rw [hJ, glue_comap]

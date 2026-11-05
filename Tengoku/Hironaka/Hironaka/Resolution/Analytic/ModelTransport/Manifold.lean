@@ -77,7 +77,9 @@ variable (M : AnalyticManifold.{u} 𝕜 E) (ψ : E ≃L[𝕜] E')
 
 /-- The charts composed with `ψ` are analytically compatible: their transition maps are
 `ψ ∘ (transition of `M`) ∘ ψ⁻¹` (Mathlib's `isManifold_of_contDiffOn` with
-`ψ.contDiff.comp_contDiffOn`).-/
+`ψ.contDiff.comp_contDiffOn`).
+@isnad1 id=ismanifo.0h5v.s7.85317ecff255 from=translated src=- shape=71cb0e15 vocab=78572a13
+-/
 theorem isManifold_transportChartedSpace :
     @IsManifold 𝕜 _ E' _ _ E' _ 𝓘(𝕜, E') ω M _ (M.transportChartedSpace ψ) := by
   refine @isManifold_of_contDiffOn 𝕜 _ E' _ _ E' _ 𝓘(𝕜, E') ω M _ (M.transportChartedSpace ψ)
@@ -177,13 +179,17 @@ theorem _root_.AnalyticManifold.coe_transportDiffeomorph_symm :
 variable {M ψ} {H F : Type*} [TopologicalSpace H] [NormedAddCommGroup F] [NormedSpace 𝕜 F]
   {I : ModelWithCorners 𝕜 F H} {P : Type*} [TopologicalSpace P] [ChartedSpace H P]
 
-/-- Analyticity out of the re-modelled manifold.-/
+/-- Analyticity out of the re-modelled manifold.
+@isnad1 id=iff.0h10v.s9.2ffbfe85088d from=translated src=- shape=93737992 vocab=3128450d
+-/
 theorem contMDiff_transport_source_iff {f : M.transport ψ → P} :
     ContMDiff 𝓘(𝕜, E') I ω f ↔ ContMDiff 𝓘(𝕜, E) I ω (f ∘ ⇑(M.transportDiffeomorph ψ)) :=
   ⟨fun h => h.comp (M.transportDiffeomorph ψ).contMDiff,
     fun h => h.comp (M.transportDiffeomorph ψ).symm.contMDiff⟩
 
-/-- Analyticity into the re-modelled manifold.-/
+/-- Analyticity into the re-modelled manifold.
+@isnad1 id=iff.0h10v.s9.630dcd2ff609 from=translated src=- shape=c042b38f vocab=3128450d
+-/
 theorem contMDiff_transport_target_iff {f : P → M} :
     ContMDiff I 𝓘(𝕜, E') ω (⇑(M.transportDiffeomorph ψ) ∘ f) ↔ ContMDiff I 𝓘(𝕜, E) ω f :=
   ⟨fun h => (M.transportDiffeomorph ψ).symm.contMDiff.comp h,
@@ -192,7 +198,9 @@ theorem contMDiff_transport_target_iff {f : P → M} :
 variable (M ψ)
 
 /-- Conjugating an analytic transition of `E` by `ψ` gives an analytic transition of `E'`:
-membership in the analytic groupoid is preserved.-/
+membership in the analytic groupoid is preserved.
+@isnad1 id=iff.0h5v.s9.0165c9781952 from=translated src=- shape=45e73880 vocab=c181cf92
+-/
 theorem trans_mem_contDiffGroupoid_iff (g : OpenPartialHomeomorph E E) :
     ψ.toHomeomorph.toOpenPartialHomeomorph.symm.trans
         (g.trans ψ.toHomeomorph.toOpenPartialHomeomorph) ∈ contDiffGroupoid ω 𝓘(𝕜, E') ↔
@@ -205,7 +213,9 @@ theorem trans_mem_contDiffGroupoid_iff (g : OpenPartialHomeomorph E E) :
     ψ.symm.contDiffOn_comp_iff]
 
 /-- A chart of `M` composed with `ψ` is in the maximal atlas of the re-modelled manifold iff the
-chart is in the maximal atlas of `M`.-/
+chart is in the maximal atlas of `M`.
+@isnad1 id=iff.0h6v.s9.495298b6a54a from=translated src=- shape=e48325d8 vocab=8854a116
+-/
 theorem mem_maximalAtlas_transport_iff (φ : OpenPartialHomeomorph M E) :
     φ.trans ψ.toHomeomorph.toOpenPartialHomeomorph ∈
         IsManifold.maximalAtlas 𝓘(𝕜, E') ω (M.transport ψ) ↔
@@ -235,7 +245,9 @@ theorem mem_maximalAtlas_transport_iff (φ : OpenPartialHomeomorph M E) :
   rw [h1, h2, trans_mem_contDiffGroupoid_iff, trans_mem_contDiffGroupoid_iff]
 
 /-- Every chart of the maximal atlas of the re-modelled manifold is a chart of `M` composed with
-`ψ`.-/
+`ψ`.
+@isnad1 id=ex.1h6v.s9.507196af1188 from=translated src=- shape=ebacc4fb vocab=8854a116
+-/
 theorem exists_trans_of_mem_maximalAtlas_transport (φ' : OpenPartialHomeomorph (M.transport ψ) E')
     (h : φ' ∈ IsManifold.maximalAtlas 𝓘(𝕜, E') ω (M.transport ψ)) :
     ∃ φ : OpenPartialHomeomorph M E, φ ∈ IsManifold.maximalAtlas 𝓘(𝕜, E) ω M ∧

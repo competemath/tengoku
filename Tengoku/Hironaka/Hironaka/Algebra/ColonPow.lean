@@ -48,14 +48,18 @@ variable {R : Type*} [CommRing R]
 
 /-- The colon by the set of elements of the ideal `(u)^k` is the colon by the singleton
 `{u ^ k}`: the form in which a colon stalk `(π⁻¹(J)_a : I_{F,a}^k)` meets a generator `u` of the
-stalk `I_{F,a}` of the exceptional ideal.-/
+stalk `I_{F,a}` of the exceptional ideal.
+@isnad1 id=eq.0h4v.s7.61b0c48babf8 from=translated src=- shape=5c789aef vocab=52327e6d
+-/
 theorem colon_coe_span_singleton_pow (A : Ideal R) (u : R) (k : ℕ) :
     A.colon (SetLike.coe (Ideal.span {u} ^ k)) = A.colon {u ^ k} := by
   rw [Ideal.span_singleton_pow, Submodule.colon_span]
 
 /-- The colon by a smaller power is smaller: `(A : u^s) ⊆ (A : u^t)` for `s ≤ t`. At a stalk this
 compares the transforms of one ideal under two markings, as in the proof of
-[Kol07, Theorem 100].-/
+[Kol07, Theorem 100].
+@isnad1 id=le.1h5v.s7.78af3071c9fd from=translated src=- shape=09c8de56 vocab=e46fd1dd
+-/
 theorem colon_singleton_pow_mono (A : Ideal R) (u : R) {s t : ℕ} (hst : s ≤ t) :
     A.colon {u ^ s} ≤ A.colon {u ^ t} := by
   intro x hx
@@ -65,7 +69,9 @@ theorem colon_singleton_pow_mono (A : Ideal R) (u : R) {s t : ℕ} (hst : s ≤ 
   exact Ideal.mul_mem_right _ _ hx
 
 /-- Exact division: an ideal `A ⊆ (u^a)` is `u^a` times its colon, `A = (u^a) · (A : u^a)`.
-This is the identity `π^* I = I_F^m · π_*^{-1}(I, m)` of [Kol07, Definition 60] at a stalk.-/
+This is the identity `π^* I = I_F^m · π_*^{-1}(I, m)` of [Kol07, Definition 60] at a stalk.
+@isnad1 id=eq.1h4v.s7.61dea8760cf7 from=translated src=- shape=b4ecf190 vocab=b704fd04
+-/
 theorem span_pow_mul_colon_of_le (A : Ideal R) (u : R) (a : ℕ) (hA : A ≤ Ideal.span {u ^ a}) :
     Ideal.span {u ^ a} * A.colon {u ^ a} = A := by
   refine le_antisymm ?_ ?_
@@ -84,7 +90,9 @@ variable [IsDomain R]
 
 /-- Cancellation in a domain: `((u^k) · C : u^k) = C` for `u ≠ 0`. The stalk form of the
 statement that the weak transform is determined by dividing out the exceptional ideal exactly
-[Hir64, Ch. 0, §5, p. 142].-/
+[Hir64, Ch. 0, §5, p. 142].
+@isnad1 id=eq.1h4v.s7.c82af94e973f from=translated src=- shape=e6f1df32 vocab=47295a05
+-/
 theorem colon_span_pow_mul_self (C : Ideal R) {u : R} (hu : u ≠ 0) (k : ℕ) :
     (Ideal.span {u ^ k} * C).colon {u ^ k} = C := by
   ext x
@@ -98,7 +106,9 @@ theorem colon_span_pow_mul_self (C : Ideal R) {u : R} (hu : u ≠ 0) (k : ℕ) :
 
 /-- The product rule for colons by powers of a nonzero element: for `A ⊆ (u^a)` and `B ⊆ (u^b)`,
 `(A B : u^{a+b}) = (A : u^a) (B : u^b)`. The stalk form of the product of marked ideals
-`(I₁, m₁) · (I₂, m₂) = (I₁ I₂, m₁ + m₂)` [Kol07, Definition 59].-/
+`(I₁, m₁) · (I₂, m₂) = (I₁ I₂, m₁ + m₂)` [Kol07, Definition 59].
+@isnad1 id=eq.3h6v.s8.b063ec2f9eea from=translated src=- shape=23d7fdfd vocab=25fcb01c
+-/
 theorem colon_mul_pow_add (A B : Ideal R) {u : R} (hu : u ≠ 0) (a b : ℕ)
     (hA : A ≤ Ideal.span {u ^ a}) (hB : B ≤ Ideal.span {u ^ b}) :
     (A * B).colon {u ^ (a + b)} = A.colon {u ^ a} * B.colon {u ^ b} := by
@@ -108,7 +118,9 @@ theorem colon_mul_pow_add (A B : Ideal R) {u : R} (hu : u ≠ 0) (a b : ℕ)
 
 /-- The power rule: for `A ⊆ (u^k)`, `(A^s : u^{ks}) = (A : u^k)^s`. At a stalk this is the
 compatibility of the marked transform with powers, `(Π_*^{-1} I)^s = Π_*^{-1}(I^s)`, used in the
-proof of [Kol07, Theorem 100].-/
+proof of [Kol07, Theorem 100].
+@isnad1 id=eq.2h5v.s8.c0b2ec3c0636 from=translated src=- shape=dcf66798 vocab=a11620ac
+-/
 theorem colon_pow_pow_mul (A : Ideal R) {u : R} (hu : u ≠ 0) (k s : ℕ)
     (hA : A ≤ Ideal.span {u ^ k}) :
     (A ^ s).colon {u ^ (k * s)} = A.colon {u ^ k} ^ s := by
@@ -118,7 +130,9 @@ theorem colon_pow_pow_mul (A : Ideal R) {u : R} (hu : u ≠ 0) (k s : ℕ)
 
 /-- The sum rule: for `A, B ⊆ (u^k)`, `(A + B : u^k) = (A : u^k) + (B : u^k)`. The stalk form of
 the sum of marked ideals with the same marking, `(I₁, m) + (I₂, m) = (I₁ + I₂, m)`
-[Kol07, Definition 59].-/
+[Kol07, Definition 59].
+@isnad1 id=eq.3h5v.s8.1cef77d314b4 from=translated src=- shape=2873c9df vocab=b45cec4c
+-/
 theorem colon_sup_pow (A B : Ideal R) {u : R} (hu : u ≠ 0) (k : ℕ)
     (hA : A ≤ Ideal.span {u ^ k}) (hB : B ≤ Ideal.span {u ^ k}) :
     (A ⊔ B).colon {u ^ k} = A.colon {u ^ k} ⊔ B.colon {u ^ k} := by
@@ -141,7 +155,9 @@ variable {R : Type*} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 (`Ideal.span_pow_mul_colon_of_le`), so `m + ord (J : u^m) ≤ ord (u^m) + ord (J : u^m) = ord J ≤ m`.
 This is the algebra behind "the order of `I` along `E^{jk}` is reduced by `m`" in the proof of
 [Kol07, Lemma 102] and in the one-dimensional case of the induction of [Kol07, 70]; not stated
-in the sources.-/
+in the sources.
+@isnad1 id=eq.4h4v.s8.0c7c4f1e2643 from=translated src=- shape=88fba82e vocab=1919cc9f
+-/
 theorem colon_span_singleton_pow_eq_top_of_ord_le
     (hmul : ∀ f g : R, ordElem (f * g) =
       ordElem f + ordElem g)

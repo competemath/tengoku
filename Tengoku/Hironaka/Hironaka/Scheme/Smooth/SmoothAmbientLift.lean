@@ -94,7 +94,9 @@ theorem _root_.CategoryTheory.IsPullback.of_comp_mono_fst {C : Type*} [Category 
     · rw [H.lift_snd, h₂]
 
 /-- `Spec.map (f.appLE U V e) ≫ hU.isoSpec.inv = hV.isoSpec.inv ≫ f.resLE U V e` for affine
-opens: the comparison of the affine `Spec` square with the `resLE` square.-/
+opens: the comparison of the affine `Spec` square with the `resLE` square.
+@isnad1 id=eq.3h5v.s10.d713ca5e598d from=translated src=- shape=d742be61 vocab=bba71599
+-/
 theorem SpecMap_appLE_isoSpec_inv {X Y : Scheme.{u}} (f : X ⟶ Y) {U : Y.Opens}
     (hU : IsAffineOpen U) {V : X.Opens} (hV : IsAffineOpen V) (e : V ≤ f ⁻¹ᵁ U) :
     Spec.map (f.appLE U V e) ≫ hU.isoSpec.inv = hV.isoSpec.inv ≫ f.resLE U V e := by
@@ -104,7 +106,9 @@ theorem SpecMap_appLE_isoSpec_inv {X Y : Scheme.{u}} (f : X ⟶ Y) {U : Y.Opens}
 /-- Given affine `U ⊆ X` and affine `V₀ ⊆ h ⁻¹ᵁ U` containing `y`, there is a basic open
 `D(t) ⊆ V₀` containing `y` with `Γ(X, U) → Γ(Y, D(t))` standard smooth: Mathlib's `Smooth h` is
 `RingHom.Smooth` of every affine `appLE`, and a smooth ring map is locally standard smooth on the
-target (the local presentation of `Y` near `y` in the proof of [Kol07, Lemma 41]).-/
+target (the local presentation of `Y` near `y` in the proof of [Kol07, Lemma 41]).
+@isnad1 id=ex.4h6v.s10.ff22d6f043e9 from=translated src=- shape=608d24dd vocab=c1bb6ee5
+-/
 theorem exists_basicOpen_isStandardSmooth_appLE {X Y : Scheme.{u}} (h : Y ⟶ X) [Smooth h]
     {U : X.Opens} (hU : IsAffineOpen U) {V₀ : Y.Opens} (hV₀ : IsAffineOpen V₀)
     (e : V₀ ≤ h ⁻¹ᵁ U) {y : Y} (hy : y ∈ V₀) :

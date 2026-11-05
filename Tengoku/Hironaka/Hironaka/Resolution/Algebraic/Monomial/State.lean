@@ -121,18 +121,29 @@ reduce in the kernel; this enumeration does, so that the example computations ru
 `decide`.)-/
 def sortedList (s : Finset ℕ) : List ℕ := (List.range (s.sup id + 1)).filter (· ∈ s)
 
+/--
+@isnad1 id=iff.0h2v.s4.c2d5441f063e from=translated src=- shape=5a1cf6b0 vocab=bec3fa20
+-/
 theorem mem_sortedList {s : Finset ℕ} {x : ℕ} : x ∈ sortedList s ↔ x ∈ s := by
   rw [sortedList, List.mem_filter, List.mem_range, decide_eq_true_eq]
   exact ⟨fun h => h.2, fun h => ⟨Nat.lt_succ_of_le (Finset.le_sup (f := id) h), h⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.14a4b84d8aeb from=translated src=- shape=fa6aa011 vocab=5d1133f3
+-/
 theorem sortedList_toFinset (s : Finset ℕ) : (sortedList s).toFinset = s := by
   ext x
   rw [List.mem_toFinset, mem_sortedList]
 
+/--
+@isnad1 id=injectiv.0h0v.s2.c55410cb609f from=translated src=- shape=6c822ea8 vocab=2ec7339a
+-/
 theorem sortedList_injective : Function.Injective sortedList := fun s t h => by
   rw [← sortedList_toFinset s, ← sortedList_toFinset t, h]
 
-/-- `sortedList s` is increasing.-/
+/-- `sortedList s` is increasing.
+@isnad1 id=pairwise.0h1v.s4.546c44b74f48 from=translated src=- shape=d88ff1e3 vocab=e8c741b8
+-/
 theorem sortedList_pairwise (s : Finset ℕ) : (sortedList s).Pairwise (· < ·) :=
   List.pairwise_lt_range.filter _
 
@@ -140,26 +151,42 @@ theorem sortedList_pairwise (s : Finset ℕ) : (sortedList s).Pairwise (· < ·)
 compared lexicographically.-/
 def labelTuple (T : Finset ℕ) : List ℕ := sortedList (st.labels T)
 
+/--
+@isnad1 id=eq.1h3v.s5.dcb14e388265 from=translated src=- shape=2b2ad1b9 vocab=61b21620
+-/
 theorem total_insert {T : Finset ℕ} {c : ℕ} (hc : c ∉ T) :
     st.total (insert c T) = st.a c + st.total T :=
   Finset.sum_insert hc
 
+/--
+@isnad1 id=eq.1h3v.s5.1d0f59fb633c from=translated src=- shape=3f19adbb vocab=0e8909ce
+-/
 theorem total_erase_add {T : Finset ℕ} {c : ℕ} (hc : c ∈ T) :
     st.total (T.erase c) + st.a c = st.total T :=
   Finset.sum_erase_add _ _ hc
 
+/--
+@isnad1 id=eq.0h1v.s4.3d242066d32d from=translated src=- shape=4582f21b vocab=77a08ba6
+-/
 theorem total_empty : st.total ∅ = 0 := Finset.sum_empty
 
+/--
+@isnad1 id=iff.0h3v.s4.67a39efbbf71 from=translated src=- shape=5b20a3f3 vocab=5d67f67a
+-/
 theorem labelTuple_eq_iff {T T' : Finset ℕ} :
     st.labelTuple T = st.labelTuple T' ↔ st.labels T = st.labels T' :=
   ⟨fun h => sortedList_injective h, fun h => by rw [labelTuple, labelTuple, h]⟩
 
-/-- A face of the nerve has all its components below `nextComp`.-/
+/-- A face of the nerve has all its components below `nextComp`.
+@isnad1 id=lt.2h3v.s5.f5128f40f3be from=translated src=- shape=3b9de63b vocab=d633f0b3
+-/
 theorem lt_nextComp_of_mem {T : Finset ℕ} (hT : T ∈ st.nerve) {c : ℕ} (hc : c ∈ T) :
     c < st.nextComp :=
   st.nerve_lt T hT c hc
 
-/-- The nonempty subsets of a face are faces.-/
+/-- The nonempty subsets of a face are faces.
+@isnad1 id=mem.3h3v.s5.9a9dbf75105e from=translated src=- shape=64cbb3b5 vocab=84e2ec59
+-/
 theorem mem_nerve_of_subset {T T' : Finset ℕ} (hT : T ∈ st.nerve) (h : T' ⊆ T)
     (hne : T'.Nonempty) : T' ∈ st.nerve :=
   st.nerve_down T hT T' h hne
@@ -169,6 +196,9 @@ theorem mem_nerve_of_subset {T T' : Finset ℕ} (hT : T ∈ st.nerve) (h : T' �
 /-- The faces of size `r`.-/
 def faces (r : ℕ) : Finset (Finset ℕ) := st.nerve.filter fun T => T.card = r
 
+/--
+@isnad1 id=iff.0h3v.s5.69ccf8e5c3ec from=translated src=- shape=4817ed6c vocab=47284758
+-/
 theorem mem_faces {r : ℕ} {T : Finset ℕ} : T ∈ st.faces r ↔ T ∈ st.nerve ∧ T.card = r :=
   Finset.mem_filter
 
@@ -186,19 +216,29 @@ def measure (r : ℕ) : ℕ ×ₗ ℕ := toLex (st.maxTotal r, st.numMax r)
 /-- Kollár's condition `(∗_s)` of [Kol07, 111, Step 3.r]: every face of size `s` has sum `< m`.-/
 def Star (s : ℕ) : Prop := ∀ T ∈ st.faces s, st.total T < st.m
 
+/--
+@isnad1 id=le.1h3v.s5.f9c47027580d from=translated src=- shape=5f4311f4 vocab=b68a2fb3
+-/
 theorem total_le_maxTotal {r : ℕ} {T : Finset ℕ} (hT : T ∈ st.faces r) :
     st.total T ≤ st.maxTotal r :=
   Finset.le_sup (f := st.total) hT
 
+/--
+@isnad1 id=le.1h3v.s5.da7acd32d026 from=translated src=- shape=cc0f0a16 vocab=b68a2fb3
+-/
 theorem maxTotal_le {r b : ℕ} (h : ∀ T ∈ st.faces r, st.total T ≤ b) : st.maxTotal r ≤ b :=
   Finset.sup_le h
 
-/-- `(∗_0)` holds vacuously: faces are nonempty.-/
+/-- `(∗_0)` holds vacuously: faces are nonempty.
+@isnad1 id=star.0h1v.s3.b119bddeb643 from=translated src=- shape=8ba9e24c vocab=50010758
+-/
 theorem star_zero : st.Star 0 := fun T hT => by
   have h := (st.mem_faces.mp hT)
   exact absurd (Finset.card_eq_zero.mp h.2) (st.nerve_nonempty T h.1).ne_empty
 
-/-- `(∗_s)` holds vacuously for `s > n`: faces have size at most `n`.-/
+/-- `(∗_s)` holds vacuously for `s > n`: faces have size at most `n`.
+@isnad1 id=star.1h2v.s3.5e4a8869b540 from=translated src=- shape=82f39d8c vocab=34c01e82
+-/
 theorem star_of_lt {s : ℕ} (hs : st.n < s) : st.Star s := fun T hT => by
   have h := st.mem_faces.mp hT
   exact absurd (h.2 ▸ st.nerve_card T h.1) (not_le.mpr hs)
@@ -220,10 +260,16 @@ the faces of the lexicographically smallest `(j₁ < ⋯ < j_r)` with `E^{j₁} 
 def choice (r : ℕ) : Finset (Finset ℕ) :=
   (st.maximizers r).filter fun T => ∀ T' ∈ st.maximizers r, st.labelTuple T ≤ st.labelTuple T'
 
+/--
+@isnad1 id=iff.0h3v.s5.5f20b5066b1f from=translated src=- shape=f6db7475 vocab=b8a77971
+-/
 theorem mem_candidates {r : ℕ} {T : Finset ℕ} :
     T ∈ st.candidates r ↔ T ∈ st.faces r ∧ st.m ≤ st.total T :=
   Finset.mem_filter
 
+/--
+@isnad1 id=iff.0h3v.s6.62fc24c3ce94 from=translated src=- shape=55ea1e61 vocab=743f9471
+-/
 theorem mem_maximizers {r : ℕ} {T : Finset ℕ} :
     T ∈ st.maximizers r ↔ T ∈ st.faces r ∧ st.m ≤ st.total T ∧
       ∀ T' ∈ st.faces r, st.m ≤ st.total T' → st.total T' ≤ st.total T := by
@@ -239,7 +285,9 @@ theorem mem_maximizers {r : ℕ} {T : Finset ℕ} :
     exact h3 T' hT' hm
 
 /-- The characterization of Kollár's choice: the faces of size `r` of sum `≥ m` and of maximal sum
-among those, whose label tuple is lexicographically smallest among the faces of that sum.-/
+among those, whose label tuple is lexicographically smallest among the faces of that sum.
+@isnad1 id=iff.0h3v.s7.9bbc88669c53 from=translated src=- shape=0426f776 vocab=4464e567
+-/
 theorem mem_choice {r : ℕ} {T : Finset ℕ} :
     T ∈ st.choice r ↔ T ∈ st.faces r ∧ st.m ≤ st.total T ∧
       (∀ T' ∈ st.faces r, st.m ≤ st.total T' → st.total T' ≤ st.total T) ∧
@@ -254,28 +302,44 @@ theorem mem_choice {r : ℕ} {T : Finset ℕ} :
     obtain ⟨h1', h2', h3'⟩ := st.mem_maximizers.mp hT'
     exact h4 T' h1' (le_antisymm (h3 T' h1' h2') (h3' T h1 h2))
 
+/--
+@isnad1 id=mem.1h3v.s5.3ca6be228001 from=translated src=- shape=1a534c45 vocab=fe866e2c
+-/
 theorem mem_faces_of_mem_choice {r : ℕ} {T : Finset ℕ} (h : T ∈ st.choice r) :
     T ∈ st.faces r :=
   (st.mem_choice.mp h).1
 
+/--
+@isnad1 id=mem.1h3v.s5.2f051ecee16c from=translated src=- shape=3d07b7ec vocab=f54d00da
+-/
 theorem mem_nerve_of_mem_choice {r : ℕ} {T : Finset ℕ} (h : T ∈ st.choice r) : T ∈ st.nerve :=
   (st.mem_faces.mp (st.mem_faces_of_mem_choice h)).1
 
+/--
+@isnad1 id=eq.1h3v.s5.be376a16b774 from=translated src=- shape=986c5789 vocab=ef594446
+-/
 theorem card_of_mem_choice {r : ℕ} {T : Finset ℕ} (h : T ∈ st.choice r) : T.card = r :=
   (st.mem_faces.mp (st.mem_faces_of_mem_choice h)).2
 
+/--
+@isnad1 id=le.1h3v.s5.81efdb8a9af8 from=translated src=- shape=76ebd3af vocab=3df28196
+-/
 theorem m_le_total_of_mem_choice {r : ℕ} {T : Finset ℕ} (h : T ∈ st.choice r) :
     st.m ≤ st.total T :=
   (st.mem_choice.mp h).2.1
 
-/-- The faces of the center have a common sum.-/
+/-- The faces of the center have a common sum.
+@isnad1 id=eq.2h4v.s5.e8fcabd3048a from=translated src=- shape=b5109b0d vocab=b53484ba
+-/
 theorem total_eq_of_mem_choice {r : ℕ} {T T' : Finset ℕ} (h : T ∈ st.choice r)
     (h' : T' ∈ st.choice r) : st.total T = st.total T' := by
   obtain ⟨h1, h2, h3, -⟩ := st.mem_choice.mp h
   obtain ⟨h1', h2', h3', -⟩ := st.mem_choice.mp h'
   exact le_antisymm (h3' T h1 h2) (h3 T' h1' h2')
 
-/-- The faces of the center have a common label tuple.-/
+/-- The faces of the center have a common label tuple.
+@isnad1 id=eq.2h4v.s5.203e34faced3 from=translated src=- shape=b7385a7a vocab=5af9cb09
+-/
 theorem labelTuple_eq_of_mem_choice {r : ℕ} {T T' : Finset ℕ} (h : T ∈ st.choice r)
     (h' : T' ∈ st.choice r) : st.labelTuple T = st.labelTuple T' := by
   obtain ⟨h1, -, -, h4⟩ := st.mem_choice.mp h
@@ -283,7 +347,9 @@ theorem labelTuple_eq_of_mem_choice {r : ℕ} {T T' : Finset ℕ} (h : T ∈ st.
   exact le_antisymm (h4 T' h1' (st.total_eq_of_mem_choice h' h))
     (h4' T h1 (st.total_eq_of_mem_choice h h'))
 
-/-- The faces of the center are the `r`-faces of sum `m_r`, when the center is nonempty.-/
+/-- The faces of the center are the `r`-faces of sum `m_r`, when the center is nonempty.
+@isnad1 id=eq.1h3v.s5.3e5ddea49bae from=translated src=- shape=5f4311f4 vocab=195eb3e1
+-/
 theorem total_eq_maxTotal_of_mem_choice {r : ℕ} {T : Finset ℕ} (h : T ∈ st.choice r) :
     st.total T = st.maxTotal r := by
   obtain ⟨h1, h2, h3, -⟩ := st.mem_choice.mp h
@@ -292,7 +358,9 @@ theorem total_eq_maxTotal_of_mem_choice {r : ℕ} {T : Finset ℕ} (h : T ∈ st
   · exact h3 T' hT' hm
   · exact (not_le.mp hm).le.trans h2
 
-/-- Kollár's choice is empty exactly when `(∗_r)` holds.-/
+/-- Kollár's choice is empty exactly when `(∗_r)` holds.
+@isnad1 id=iff.0h2v.s4.784d72c4a698 from=translated src=- shape=0c40c024 vocab=9e6c1866
+-/
 theorem choice_eq_empty_iff {r : ℕ} : st.choice r = ∅ ↔ st.Star r := by
   constructor
   · intro h T hT
@@ -306,6 +374,9 @@ theorem choice_eq_empty_iff {r : ℕ} : st.choice r = ∅ ↔ st.Star r := by
     refine Finset.eq_empty_of_forall_notMem fun T hT => ?_
     exact absurd (st.m_le_total_of_mem_choice hT) (not_le.mpr (h T (st.mem_faces_of_mem_choice hT)))
 
+/--
+@isnad1 id=iff.0h2v.s3.851a575e38d0 from=translated src=- shape=81d62338 vocab=982d2852
+-/
 theorem choice_nonempty_iff {r : ℕ} : (st.choice r).Nonempty ↔ ¬ st.Star r := by
   rw [Finset.nonempty_iff_ne_empty, not_iff_not, choice_eq_empty_iff]
 
@@ -319,6 +390,9 @@ def blowUpNerve (N S : Finset (Finset ℕ)) (c : Finset ℕ → ℕ) : Finset (F
     S.biUnion fun P =>
       ((insert ∅ N).filter fun T₁ => T₁ ∪ P ∈ N ∧ ∀ Q ∈ S, ¬ Q ⊆ T₁).image (insert (c P))
 
+/--
+@isnad1 id=iff.0h4v.s7.9604ff48ce8d from=translated src=- shape=253701a0 vocab=3e46a5f2
+-/
 theorem mem_blowUpNerve {N S : Finset (Finset ℕ)} {c : Finset ℕ → ℕ} {T : Finset ℕ} :
     T ∈ blowUpNerve N S c ↔ (T ∈ N ∧ ∀ P ∈ S, ¬ P ⊆ T) ∨
       ∃ P ∈ S, ∃ T₁, (T₁ = ∅ ∨ T₁ ∈ N) ∧ T₁ ∪ P ∈ N ∧ (∀ Q ∈ S, ¬ Q ⊆ T₁) ∧
@@ -336,15 +410,24 @@ theorem mem_blowUpNerve {N S : Finset (Finset ℕ)} {c : Finset ℕ → ℕ} {T 
 /-- The components of a face as an increasing list: the key ordering the faces of a center.-/
 def faceList (P : Finset ℕ) : List ℕ := sortedList P
 
+/--
+@isnad1 id=injectiv.0h0v.s2.6a3231fddae9 from=translated src=- shape=6c822ea8 vocab=15c5d3b3
+-/
 theorem faceList_injective : Function.Injective faceList := fun _ _ h => sortedList_injective h
 
 /-- The rank of the face `P` among the faces of the center `S`, in the order of `faceList`.-/
 def rank (S : Finset (Finset ℕ)) (P : Finset ℕ) : ℕ :=
   (S.filter fun Q => faceList Q < faceList P).card
 
+/--
+@isnad1 id=lt.1h2v.s5.93382b85ec8b from=translated src=- shape=0d69eddb vocab=df3f0352
+-/
 theorem rank_lt_card {S : Finset (Finset ℕ)} {P : Finset ℕ} (hP : P ∈ S) : rank S P < S.card :=
   Finset.card_lt_card (Finset.filter_ssubset.mpr ⟨P, hP, lt_irrefl _⟩)
 
+/--
+@isnad1 id=lt.2h3v.s5.a79b40e3d9c6 from=translated src=- shape=863fa783 vocab=33885ffa
+-/
 theorem rank_lt_rank {S : Finset (Finset ℕ)} {P Q : Finset ℕ} (hP : P ∈ S)
     (h : faceList P < faceList Q) : rank S P < rank S Q := by
   refine Finset.card_lt_card ⟨fun R hR => ?_, fun hsub => ?_⟩
@@ -353,6 +436,9 @@ theorem rank_lt_rank {S : Finset (Finset ℕ)} {P Q : Finset ℕ} (hP : P ∈ S)
   · have := Finset.mem_filter.mp (hsub (Finset.mem_filter.mpr ⟨hP, h⟩))
     exact lt_irrefl _ this.2
 
+/--
+@isnad1 id=injon.0h1v.s4.1ead8a24d886 from=translated src=- shape=af980f10 vocab=617de947
+-/
 theorem rank_injOn (S : Finset (Finset ℕ)) : Set.InjOn (rank S) S := by
   intro P hP Q hQ h
   by_contra hne : P ≠ Q
@@ -363,17 +449,29 @@ theorem rank_injOn (S : Finset (Finset ℕ)) : Set.InjOn (rank S) S := by
 /-- The new component allocated to the face `P` of the center `S`: `nextComp + rank S P`.-/
 def newComp (S : Finset (Finset ℕ)) (P : Finset ℕ) : ℕ := st.nextComp + rank S P
 
+/--
+@isnad1 id=le.0h3v.s4.ea8182de7718 from=translated src=- shape=1ecf7fd8 vocab=037ee7b4
+-/
 theorem nextComp_le_newComp (S : Finset (Finset ℕ)) (P : Finset ℕ) :
     st.nextComp ≤ st.newComp S P :=
   Nat.le_add_right _ _
 
+/--
+@isnad1 id=lt.1h3v.s5.41f357a48d22 from=translated src=- shape=f552aab9 vocab=92157821
+-/
 theorem newComp_lt {S : Finset (Finset ℕ)} {P : Finset ℕ} (hP : P ∈ S) :
     st.newComp S P < st.nextComp + S.card :=
   Nat.add_lt_add_left (rank_lt_card hP) _
 
+/--
+@isnad1 id=injon.0h2v.s4.e02a3dc61f98 from=translated src=- shape=7899ce52 vocab=fc063367
+-/
 theorem newComp_injOn (S : Finset (Finset ℕ)) : Set.InjOn (st.newComp S) S :=
   fun _ hP _ hQ h => rank_injOn S hP hQ (Nat.add_left_cancel h)
 
+/--
+@isnad1 id=not.1h4v.s5.f3b4d930ae03 from=translated src=- shape=85527514 vocab=7388fea6
+-/
 theorem newComp_notMem {S : Finset (Finset ℕ)} {P T : Finset ℕ} (hT : T ∈ st.nerve) :
     st.newComp S P ∉ T := fun h =>
   absurd (st.lt_nextComp_of_mem hT h) (not_lt.mpr (st.nextComp_le_newComp S P))
@@ -471,23 +569,48 @@ def blowUp (S : Finset (Finset ℕ)) : MonomialState where
 
 variable (S : Finset (Finset ℕ))
 
+/--
+@isnad1 id=eq.0h2v.s3.0f3ceccf2b9b from=translated src=- shape=79db75b7 vocab=664adeca
+-/
 @[simp] theorem blowUp_n : (st.blowUp S).n = st.n := rfl
+/--
+@isnad1 id=eq.0h2v.s3.9e8edaa761da from=translated src=- shape=79db75b7 vocab=50b7d405
+-/
 @[simp] theorem blowUp_m : (st.blowUp S).m = st.m := rfl
+/--
+@isnad1 id=eq.0h2v.s4.80a2b7371796 from=translated src=- shape=7da35ffc vocab=051ddaea
+-/
 @[simp] theorem blowUp_nextComp : (st.blowUp S).nextComp = st.nextComp + S.card := rfl
+/--
+@isnad1 id=eq.0h2v.s4.fbbbc20e1766 from=translated src=- shape=82860130 vocab=d5e10b85
+-/
 @[simp] theorem blowUp_nextLabel : (st.blowUp S).nextLabel = st.nextLabel + 1 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.7fbef4058618 from=translated src=- shape=2fa1d464 vocab=d0d52187
+-/
 theorem blowUp_nerve : (st.blowUp S).nerve = blowUpNerve st.nerve S (st.newComp S) := rfl
 
+/--
+@isnad1 id=eq.1h3v.s4.547d9487b035 from=translated src=- shape=ed4a2de9 vocab=96152476
+-/
 theorem blowUp_label_of_lt {c : ℕ} (hc : c < st.nextComp) : (st.blowUp S).label c = st.label c :=
   ite_eq_left hc
 
+/--
+@isnad1 id=eq.1h3v.s4.20e9541e0542 from=translated src=- shape=ed4a2de9 vocab=a2c1dbc4
+-/
 theorem blowUp_a_of_lt {c : ℕ} (hc : c < st.nextComp) : (st.blowUp S).a c = st.a c :=
   ite_eq_left hc
 
-/-- The new components carry the new label.-/
+/-- The new components carry the new label.
+@isnad1 id=eq.0h3v.s4.021d7038e175 from=translated src=- shape=b21f3c4d vocab=ed2daafb
+-/
 theorem blowUp_label_newComp (P : Finset ℕ) : (st.blowUp S).label (st.newComp S P) = st.nextLabel :=
   ite_eq_right (not_lt.mpr (st.nextComp_le_newComp S P))
 
-/-- The new component of the face `P` has exponent `a(P) - m`.-/
+/-- The new component of the face `P` has exponent `a(P) - m`.
+@isnad1 id=eq.1h3v.s5.4c9490414890 from=translated src=- shape=dceab8ca vocab=9fa17f99
+-/
 theorem blowUp_a_newComp {P : Finset ℕ} (hP : P ∈ S) :
     (st.blowUp S).a (st.newComp S P) = st.total P - st.m := by
   change (if st.newComp S P < st.nextComp then st.a (st.newComp S P)
@@ -498,12 +621,16 @@ theorem blowUp_a_newComp {P : Finset ℕ} (hP : P ∈ S) :
       fun Q hQ => st.newComp_injOn S (Finset.mem_filter.mp hQ).1 hP (Finset.mem_filter.mp hQ).2⟩
   rw [this, Finset.sup_singleton]
 
-/-- The sum of a set of old components is unchanged.-/
+/-- The sum of a set of old components is unchanged.
+@isnad1 id=eq.1h3v.s5.e5ab8336320c from=translated src=- shape=b1f74880 vocab=0cbf046f
+-/
 theorem blowUp_total_of_lt {T : Finset ℕ} (hT : ∀ c ∈ T, c < st.nextComp) :
     (st.blowUp S).total T = st.total T :=
   Finset.sum_congr rfl fun c hc => st.blowUp_a_of_lt S (hT c hc)
 
-/-- The sum of a new face `T₁ ∪ {c_P}`: `a(T₁) + (a(P) - m)`.-/
+/-- The sum of a new face `T₁ ∪ {c_P}`: `a(T₁) + (a(P) - m)`.
+@isnad1 id=eq.2h4v.s6.75dd6a083962 from=translated src=- shape=c3f37f0b vocab=5078b8ee
+-/
 theorem blowUp_total_insert_newComp {P T₁ : Finset ℕ} (hP : P ∈ S)
     (hT₁ : ∀ c ∈ T₁, c < st.nextComp) :
     (st.blowUp S).total (insert (st.newComp S P) T₁) = (st.total P - st.m) + st.total T₁ := by
@@ -515,7 +642,9 @@ theorem blowUp_total_insert_newComp {P T₁ : Finset ℕ} (hP : P ∈ S)
 admissibility condition, not part of this predicate).-/
 def IsCenter : Prop := S ⊆ st.nerve ∧ ∀ P ∈ S, ∀ Q ∈ S, st.labels P = st.labels Q
 
-/-- Kollár's choice is a center.-/
+/-- Kollár's choice is a center.
+@isnad1 id=iscenter.0h2v.s3.bb0203ca8796 from=translated src=- shape=6e160329 vocab=a6972b89
+-/
 theorem isCenter_choice (r : ℕ) : st.IsCenter (st.choice r) :=
   ⟨fun _ hP => st.mem_nerve_of_mem_choice hP, fun _ hP _ hQ =>
     st.labelTuple_eq_iff.mp (st.labelTuple_eq_of_mem_choice hP hQ)⟩
@@ -533,7 +662,9 @@ theorem eq_of_isCenter_of_subset {P Q T : Finset ℕ} (hS : st.IsCenter S) (hP :
   exact le_antisymm (key hP hQ hPT hQT) (key hQ hP hQT hPT)
 
 /-- For a centre, the rule reads as stated in the module docstring: the new faces of `P` are
-the `T₁ ∪ {c_P}` with `T₁ ∪ P ∈ N` and `P ⊄ T₁`.-/
+the `T₁ ∪ {c_P}` with `T₁ ∪ P ∈ N` and `P ⊄ T₁`.
+@isnad1 id=iff.1h3v.s7.50a69973d462 from=translated src=- shape=e4d3d81f vocab=bcd932f0
+-/
 theorem mem_blowUp_nerve {T : Finset ℕ} (hS : st.IsCenter S) :
     T ∈ (st.blowUp S).nerve ↔ (T ∈ st.nerve ∧ ∀ P ∈ S, ¬ P ⊆ T) ∨
       ∃ P ∈ S, ∃ T₁, T₁ ∪ P ∈ st.nerve ∧ ¬ P ⊆ T₁ ∧ T = insert (st.newComp S P) T₁ := by
@@ -583,7 +714,9 @@ def ofValid (n m k L : ℕ) (label a : ℕ → ℕ) (N : Finset (Finset ℕ))
   nerve_card := h.2.2.2.2.2.1
   nerve_labels := h.2.2.2.2.2.2
 
-/-- The data of a monomial state are `Valid` (its six invariants).-/
+/-- The data of a monomial state are `Valid` (its six invariants).
+@isnad1 id=valid.0h1v.s3.6924be3b1ad0 from=translated src=- shape=25bb8d71 vocab=97db1674
+-/
 theorem valid_self (st : MonomialState) :
     MonomialState.Valid st.n st.m st.nextComp st.nextLabel st.label st.nerve :=
   ⟨st.one_le_m, st.nerve_nonempty, st.nerve_lt, fun c _ hc => st.label_lt c hc,

@@ -37,7 +37,9 @@ variable {R : Type u} [CommRing R] [IsRegularLocalRing R] (I : Ideal R)
 
 /-- If `R` and `R/I` are regular local rings, there is a regular system of parameters `x` of `R`
 an initial segment of length `c` of which generates `I`, and `dim R/I + c = dim R`
-([Sta, Tag 00NR] and [Sta, Tag 00NQ]).-/
+([Sta, Tag 00NR] and [Sta, Tag 00NQ]).
+@isnad1 id=ex.0h2v.s7.c2e53702a519 from=translated src=- shape=4fe81e25 vocab=b8d7e648
+-/
 theorem exists_regularSystemOfParameters_of_quotient_and_ringKrullDim :
     ∃ (n c : ℕ) (x : Fin n → R), c ≤ n ∧ (n : WithBot ℕ∞) = ringKrullDim R ∧
       maximalIdeal R = Ideal.span (Set.range x) ∧ I = Ideal.span (x '' {j | j.val < c}) ∧

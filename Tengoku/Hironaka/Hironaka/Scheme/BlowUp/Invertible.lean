@@ -91,7 +91,9 @@ def Ideal.IsInvertible {A : Type u} [CommRing A] (J : Ideal A) : Prop :=
 
 namespace AlgebraicGeometry
 
-/-- A ring isomorphism preserves nonzerodivisors.-/
+/-- A ring isomorphism preserves nonzerodivisors.
+@isnad1 id=mem.1h4v.s8.d79f97ede673 from=translated src=- shape=8f719aba vocab=b73e7fe4
+-/
 theorem map_mem_nonZeroDivisors_of_ringEquiv {B : Type v} {C : Type w} [CommRing B] [CommRing C]
     (e : B ≃+* C) {b : B} (hb : b ∈ nonZeroDivisors B) : e b ∈ nonZeroDivisors C := by
   rw [mem_nonZeroDivisors_iff] at hb ⊢
@@ -115,6 +117,9 @@ def IsRegularGeneratorIn (J : Ideal A) (B : Type v) [CommRing B] [Algebra A B] (
   J.map (algebraMap A B) = Ideal.span {algebraMap A B a} ∧
     algebraMap A B a ∈ nonZeroDivisors B
 
+/--
+@isnad1 id=iff.0h2v.s7.41b418ffa171 from=translated src=- shape=b6ef4438 vocab=2d7fd55c
+-/
 theorem isInvertible_iff_forall_exists (J : Ideal A) :
     J.IsInvertible ↔ ∀ p : PrimeSpectrum A, ∃ s ∉ p.asIdeal, ∃ a ∈ J,
       J.IsRegularGeneratorIn (Localization.Away s) a :=
@@ -124,7 +129,9 @@ namespace IsRegularGeneratorIn
 
 variable {J : Ideal A} {a : A}
 
-/-- The datum passes along `A`-algebra isomorphisms.-/
+/-- The datum passes along `A`-algebra isomorphisms.
+@isnad1 id=isregula.1h6v.s6.1c104847543f from=translated src=- shape=406dc9a1 vocab=b8e9a1cf
+-/
 theorem of_algEquiv {B : Type v} {C : Type w} [CommRing B] [CommRing C] [Algebra A B]
     [Algebra A C] (e : B ≃ₐ[A] C) (h : J.IsRegularGeneratorIn B a) :
     J.IsRegularGeneratorIn C a := by
@@ -137,7 +144,9 @@ theorem of_algEquiv {B : Type v} {C : Type w} [CommRing B] [CommRing C] [Algebra
     exact AlgebraicGeometry.map_mem_nonZeroDivisors_of_ringEquiv e.toRingEquiv h₂
 
 /-- The datum passes to a further localization: if `C` is a localization of the `A`-algebra `B`,
-the image of `a` still generates `J C` and is still a nonzerodivisor.-/
+the image of `a` still generates `J C` and is still a nonzerodivisor.
+@isnad1 id=isregula.1h6v.s7.15681a64329e from=translated src=- shape=1dc979ae vocab=003b9f4e
+-/
 theorem of_isLocalization {B : Type v} {C : Type w} [CommRing B] [CommRing C] [Algebra A B]
     [Algebra B C] [Algebra A C] [IsScalarTower A B C] (M : Submonoid B) [IsLocalization M C]
     (h : J.IsRegularGeneratorIn B a) : J.IsRegularGeneratorIn C a := by
@@ -148,7 +157,9 @@ theorem of_isLocalization {B : Type v} {C : Type w} [CommRing B] [CommRing C] [A
   · rw [IsScalarTower.algebraMap_apply A B C]
     exact IsLocalization.nonZeroDivisors_le_comap M C h₂
 
-/-- The datum in `A_s` passes to every localization of `A` away from `s * t`.-/
+/-- The datum in `A_s` passes to every localization of `A` away from `s * t`.
+@isnad1 id=isregula.1h6v.s7.5d6afacd8216 from=translated src=- shape=27a53159 vocab=c27a4aa9
+-/
 theorem of_isLocalization_away_mul {s t : A}
     (h : J.IsRegularGeneratorIn (Localization.Away s) a) (C : Type w) [CommRing C] [Algebra A C]
     [IsLocalization.Away (s * t) C] : J.IsRegularGeneratorIn C a := by
@@ -162,13 +173,17 @@ theorem of_isLocalization_away_mul {s t : A}
 
 end IsRegularGeneratorIn
 
-/-- The unit ideal is invertible (`s = 1`, `a = 1`).-/
+/-- The unit ideal is invertible (`s = 1`, `a = 1`).
+@isnad1 id=isinvert.0h1v.s5.c1066f0e0b21 from=translated src=- shape=b8471119 vocab=d8f37831
+-/
 theorem isInvertible_top : (⊤ : Ideal A).IsInvertible := fun p =>
   ⟨1, (Ideal.ne_top_iff_one _).mp p.isPrime.ne_top, 1, trivial, by
     rw [Ideal.map_top, map_one, Ideal.span_singleton_one], by rw [map_one]; exact one_mem _⟩
 
 /-- A product of invertible ideals is invertible: multiply the local generators on the common
-neighbourhood `D(s₁ s₂)`.-/
+neighbourhood `D(s₁ s₂)`.
+@isnad1 id=isinvert.2h3v.s6.ef12aa8078c5 from=translated src=- shape=1333e5f0 vocab=f3282ab1
+-/
 theorem IsInvertible.mul {J₁ J₂ : Ideal A} (h₁ : J₁.IsInvertible) (h₂ : J₂.IsInvertible) :
     (J₁ * J₂).IsInvertible := by
   intro p
@@ -187,7 +202,9 @@ theorem IsInvertible.mul {J₁ J₂ : Ideal A} (h₁ : J₁.IsInvertible) (h₂ 
   · rw [map_mul]; exact mul_mem g₁.2 g₂.2
 
 /-- Invertibility is stable under localization at an element: a prime of `A_s` lies over a prime
-`𝔭 ∌ s` of `A`, and the datum of `J` at `𝔭` survives in `(A_s)_{s'} = A_{s s'}`.-/
+`𝔭 ∌ s` of `A`, and the datum of `J` at `𝔭` survives in `(A_s)_{s'} = A_{s s'}`.
+@isnad1 id=isinvert.1h3v.s8.85f41b6100bf from=translated src=- shape=244f3b76 vocab=3ae51c54
+-/
 theorem IsInvertible.map_away {J : Ideal A} (hJ : J.IsInvertible) (s : A) :
     (J.map (algebraMap A (Localization.Away s))).IsInvertible := by
   intro q
@@ -207,7 +224,9 @@ theorem IsInvertible.map_away {J : Ideal A} (hJ : J.IsInvertible) (s : A) :
     exact hg'.2
 
 /-- If `J₁ J₂` is invertible then `J₁` is: the argument of [Hau14, Theorem 4.18, proof (c)], run
-on a neighbourhood (see the module docstring).-/
+on a neighbourhood (see the module docstring).
+@isnad1 id=isinvert.1h3v.s6.12e9ca07e654 from=translated src=- shape=5ef293d7 vocab=f3282ab1
+-/
 theorem IsInvertible.of_mul_left {J₁ J₂ : Ideal A} (h : (J₁ * J₂).IsInvertible) :
     J₁.IsInvertible := by
   intro p
@@ -330,7 +349,9 @@ theorem IsInvertible.of_mul_left {J₁ J₂ : Ideal A} (h : (J₁ * J₂).IsInve
   · rw [hspanC, ha₀C, Ideal.span_singleton_mul_right_unit hsi]
   · rw [ha₀C]; exact mul_mem hX hsi.mem_nonZeroDivisors
 
-/-- If `J₁ J₂` is invertible then `J₁` and `J₂` are.-/
+/-- If `J₁ J₂` is invertible then `J₁` and `J₂` are.
+@isnad1 id=and.1h3v.s6.c14ef664892c from=translated src=- shape=69fde433 vocab=f3282ab1
+-/
 theorem IsInvertible.of_mul {J₁ J₂ : Ideal A} (h : (J₁ * J₂).IsInvertible) :
     J₁.IsInvertible ∧ J₂.IsInvertible :=
   ⟨IsInvertible.of_mul_left h, IsInvertible.of_mul_left (mul_comm J₁ J₂ ▸ h)⟩

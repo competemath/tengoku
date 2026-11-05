@@ -47,7 +47,9 @@ variable (k A S : Type u) [CommRing k] [CommRing A] [CommRing S] [Algebra k A] [
   [Algebra A S] [IsScalarTower k A S]
 
 /-- `Ω[S⁄A] → Ω[S⁄A]`, the map induced by the identity of `S`, is surjective (it is the
-identity on the generators `d s`).-/
+identity on the generators `d s`).
+@isnad1 id=surjecti.0h3v.s8.352d41bebc21 from=translated src=- shape=f6d3b4db vocab=e2451a57
+-/
 theorem surjective_map_self : Function.Surjective (KaehlerDifferential.map k A S S) := by
   rw [← LinearMap.range_eq_top, ← top_le_iff, ← KaehlerDifferential.span_range_derivation A S,
     Submodule.span_le]
@@ -55,7 +57,9 @@ theorem surjective_map_self : Function.Surjective (KaehlerDifferential.map k A S
   exact ⟨KaehlerDifferential.D k S s, by simp [KaehlerDifferential.map_D]⟩
 
 /-- If `S ⊗_A Ω[A⁄k] → Ω[S⁄k]` is surjective then `Ω[S⁄A] = 0`, i.e. `A → S` is formally
-unramified [Sta, Tag 00RS].-/
+unramified [Sta, Tag 00RS].
+@isnad1 id=formally.1h3v.s9.927d2bfbc569 from=translated src=- shape=852fa3b9 vocab=86f3214c
+-/
 theorem formallyUnramified_of_surjective_mapBaseChange
     (h : Function.Surjective (mapBaseChange k A S)) : Algebra.FormallyUnramified A S := by
   refine ⟨subsingleton_of_forall_eq 0 fun w => ?_⟩
@@ -64,7 +68,9 @@ theorem formallyUnramified_of_surjective_mapBaseChange
   exact (KaehlerDifferential.exact_mapBaseChange_map k A S).apply_apply_eq_zero t
 
 /-- If `S` is formally smooth over `k` and `S ⊗_A Ω[A⁄k] → Ω[S⁄k]` is bijective, then `S` is
-formally smooth over `A` (the Jacobi–Zariski sequence, [Sta, Tags 00S2, 00TI]).-/
+formally smooth over `A` (the Jacobi–Zariski sequence, [Sta, Tags 00S2, 00TI]).
+@isnad1 id=formally.1h3v.s9.1cb02daab81a from=translated src=- shape=5a61f9b0 vocab=64e26404
+-/
 theorem formallySmooth_of_bijective_mapBaseChange [Algebra.FormallySmooth k S]
     (h : Function.Bijective (mapBaseChange k A S)) : Algebra.FormallySmooth A S := by
   have hunr := formallyUnramified_of_surjective_mapBaseChange k A S h.2
@@ -77,7 +83,9 @@ theorem formallySmooth_of_bijective_mapBaseChange [Algebra.FormallySmooth k S]
   rw [Subsingleton.elim y 0, map_zero]
 
 /-- The étale criterion: `A → S` is étale when `S` is smooth over `k`, `A` is of finite type over
-`k`, and `S ⊗_A Ω[A⁄k] → Ω[S⁄k]` is bijective.-/
+`k`, and `S ⊗_A Ω[A⁄k] → Ω[S⁄k]` is bijective.
+@isnad1 id=etale.1h3v.s9.2cb1ef85bec1 from=translated src=- shape=729f6066 vocab=c7d4aed3
+-/
 theorem etale_of_bijective_mapBaseChange [Algebra.FormallySmooth k S]
     [Algebra.FinitePresentation k S] [Algebra.FiniteType k A]
     (h : Function.Bijective (mapBaseChange k A S)) : Algebra.Etale A S where
@@ -95,7 +103,9 @@ variable {k S : Type u} [CommRing k] [CommRing S] [Algebra k S] {n : ℕ} (v : F
 
 /-- If `Ω[S⁄k]` is free of rank `n` and the differentials of `v_0, …, v_{n-1} ∈ S` generate it, then
 `k[t_0, …, t_{n-1}] → S`, `t_i ↦ v_i`, is étale (the argument of [Sta, Tag 054L] in given
-coordinates).-/
+coordinates).
+@isnad1 id=etale.2h4v.s9.877229fcc068 from=translated src=- shape=6e651773 vocab=0c34e641
+-/
 theorem etale_aeval_of_span_eq_top [Nontrivial S] [Algebra.FormallySmooth k S]
     [Algebra.FinitePresentation k S] [Module.Free S Ω[S⁄k]] [Module.Finite S Ω[S⁄k]]
     (hrank : Module.finrank S Ω[S⁄k] = n)

@@ -58,7 +58,9 @@ variable {k : Type u} [Field k] {S : Type u} [CommRing S] [Algebra k S]
 /-- If the finite type `k`-algebra `S` is smooth at `𝔮` over `k`, there is `g ∉ 𝔮` with `S_g`
 standard smooth over `k` (the first sentence of the proof of (1) ⇒ (3) in [Sta, Tag 00TT];
 [Sta, Tag 00TA]). Mathlib's statement for finitely presented algebras, with finite type over a
-field giving finite presentation.-/
+field giving finite presentation.
+@isnad1 id=ex.0h3v.s7.f39997c84cf3 from=translated src=- shape=a609283d vocab=0edac30f
+-/
 theorem IsSmoothAt.exists_notMem_isStandardSmooth_of_finiteType [Algebra.FiniteType k S]
     (𝔮 : Ideal S) [𝔮.IsPrime] [Algebra.IsSmoothAt k 𝔮] :
     ∃ g ∉ 𝔮, Algebra.IsStandardSmooth k (Localization.Away g) := by
@@ -67,7 +69,9 @@ theorem IsSmoothAt.exists_notMem_isStandardSmooth_of_finiteType [Algebra.FiniteT
   exact Algebra.IsSmoothAt.exists_notMem_isStandardSmooth (R := k) 𝔮
 
 /-- For `S` standard smooth of relative dimension `d` over `k`, `Ω[S⁄k]` is free of rank `d`, so
-`κ(𝔮) ⊗[S] Ω[S⁄k]` has dimension `d` at every prime `𝔮` ([Sta, Tag 00T7, (2)]; [Sta, Tag 02G1]).-/
+`κ(𝔮) ⊗[S] Ω[S⁄k]` has dimension `d` at every prime `𝔮` ([Sta, Tag 00T7, (2)]; [Sta, Tag 02G1]).
+@isnad1 id=eq.0h4v.s9.c50d870b4106 from=translated src=- shape=78fee096 vocab=0051c072
+-/
 theorem IsStandardSmoothOfRelativeDimension.finrank_residueField_tensor_kaehlerDifferential
     (d : ℕ) [Algebra.IsStandardSmoothOfRelativeDimension d k S] (𝔮 : Ideal S) [𝔮.IsPrime] :
     Module.finrank 𝔮.ResidueField (𝔮.ResidueField ⊗[S] Ω[S⁄k]) = d := by

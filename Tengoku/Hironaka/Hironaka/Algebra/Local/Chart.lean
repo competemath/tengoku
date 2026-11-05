@@ -73,7 +73,9 @@ namespace Derivation
 
 variable {k A : Type*} [CommRing k] [CommRing A] [Algebra k A]
 
-/-- A finite sum of derivations, applied.-/
+/-- A finite sum of derivations, applied.
+@isnad1 id=eq.0h7v.s7.9465133d2f1e from=translated src=- shape=d0197b42 vocab=e72c341c
+-/
 theorem finset_sum_apply {ι M : Type*} [AddCommGroup M] [Module k M] [Module A M]
     (s : Finset ι) (D : ι → Derivation k A M) (z : A) :
     (∑ i ∈ s, D i) z = ∑ i ∈ s, D i z := by
@@ -82,7 +84,9 @@ theorem finset_sum_apply {ι M : Type*} [AddCommGroup M] [Module k M] [Module A 
   | empty => simp
   | insert i s hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, Derivation.add_apply, ih]
 
-/-- `D.extendAway a` restricts to `D`.-/
+/-- `D.extendAway a` restricts to `D`.
+@isnad1 id=eq.0h5v.s10.46ccc18ff816 from=translated src=- shape=5e8b6529 vocab=0fcdc5ca
+-/
 theorem extendAway_algebraMap (D : Derivation k A A) (a f : A) :
     D.extendAway a (algebraMap A (Localization.Away a) f) =
       algebraMap A (Localization.Away a) (D f) :=
@@ -96,7 +100,9 @@ theorem eq_extendAway_of_algebraMap (D : Derivation k A A) (a : A)
     D' = D.extendAway a :=
   D.eq_localization_of_algebraMap _ D' h
 
-/-- The quotient rule `D(f/aᵐ) = (a · D f − m · f · D a)/aᵐ⁺¹`.-/
+/-- The quotient rule `D(f/aᵐ) = (a · D f − m · f · D a)/aᵐ⁺¹`.
+@isnad1 id=eq.0h6v.s9.b25db43674e0 from=translated src=- shape=51740e9f vocab=356697c6
+-/
 theorem extendAway_mk (D : Derivation k A A) (a f : A) (m : ℕ) :
     D.extendAway a (Localization.mk f ⟨a ^ m, pow_mem (Submonoid.mem_powers a) m⟩) =
       Localization.mk (a * D f - (m : A) * f * D a)
@@ -125,19 +131,25 @@ section Injective
 
 variable [IsRegularLocalRing R] (x : Fin n → R) (r : Fin n)
 
-/-- A member of a regular system of parameters is nonzero (it is not even in `𝔪²`).-/
+/-- A member of a regular system of parameters is nonzero (it is not even in `𝔪²`).
+@isnad1 id=ne.2h4v.s6.9804a3db78f5 from=translated src=- shape=97e3da43 vocab=2f48d0d8
+-/
 theorem x_ne_zero_of_span_eq (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) (i : Fin n) : x i ≠ 0 :=
   fun h => notMem_sq_of_span_eq x hx hn i (h ▸ zero_mem _)
 
-/-- `R → R[1/x_r]` is injective.-/
+/-- `R → R[1/x_r]` is injective.
+@isnad1 id=injectiv.2h4v.s8.087b0a0a8ca0 from=translated src=- shape=252113d9 vocab=886011fe
+-/
 theorem algebraMap_away_injective (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) :
     Function.Injective (algebraMap R (Localization.Away (x r))) :=
   IsLocalization.injective (Localization.Away (x r))
     (powers_le_nonZeroDivisors_of_noZeroDivisors (x_ne_zero_of_span_eq x hx hn r))
 
-/-- The algebra map `R → R'` into the chart ring is injective.-/
+/-- The algebra map `R → R'` into the chart ring is injective.
+@isnad1 id=injectiv.2h4v.s11.b9b9d00cabe4 from=translated src=- shape=24a4be37 vocab=5c96ef6a
+-/
 theorem algebraMap_chartRing_injective (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) :
     Function.Injective (algebraMap R (chartRing x r)) := by
@@ -152,7 +164,9 @@ section Presentation
 
 variable (x : Fin n → R) (r : Fin n)
 
-/-- The presentation `R[Y_i : i < r] → R'` is surjective.-/
+/-- The presentation `R[Y_i : i < r] → R'` is surjective.
+@isnad1 id=surjecti.0h4v.s10.2f0ea844b60f from=translated src=- shape=f6dcd44a vocab=9f2c6ef5
+-/
 theorem chartPresentation_surjective : Function.Surjective (chartPresentation x r) := by
   rw [← AlgHom.range_eq_top, chartPresentation, MvPolynomial.aeval_range, eq_top_iff]
   rintro ⟨z, hz⟩ -
@@ -180,23 +194,38 @@ variable (x : Fin n → R) (r : Fin n)
 noncomputable abbrev invX : Localization.Away (x r) :=
   Localization.mk 1 ⟨x r, Submonoid.mem_powers _⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.8ec68732c076 from=translated src=- shape=87b43527 vocab=40ff3d19
+-/
 theorem algebraMap_mul_invX : algebraMap R (Localization.Away (x r)) (x r) * invX x r = 1 := by
   rw [← Localization.mk_one_eq_algebraMap, Localization.mk_mul, mul_one, one_mul]
   exact Localization.mk_self ⟨x r, Submonoid.mem_powers _⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.0a63e7f6ac69 from=translated src=- shape=ba216b46 vocab=86bbaf54
+-/
 theorem mk_eq_algebraMap_mul_invX (b : R) :
     Localization.mk b ⟨x r, Submonoid.mem_powers _⟩ =
       algebraMap R (Localization.Away (x r)) b * invX x r := by
   rw [← Localization.mk_one_eq_algebraMap, Localization.mk_mul, mul_one, one_mul]
 
+/--
+@isnad1 id=eq.1h5v.s6.720171ea4fe8 from=translated src=- shape=23a64a59 vocab=06b95feb
+-/
 theorem chartY_eq_mk_of_lt {k : Fin n} (hk : k < r) :
     chartY x r k = Localization.mk (x k) ⟨x r, Submonoid.mem_powers _⟩ :=
   chartYOf_of_lt _ _ _ hk
 
+/--
+@isnad1 id=eq.1h5v.s8.27b6e8f2d340 from=translated src=- shape=7a3b5d55 vocab=29fe51b5
+-/
 theorem chartY_eq_algebraMap_of_not_lt {k : Fin n} (hk : ¬ k < r) :
     chartY x r k = algebraMap R (Localization.Away (x r)) (x k) :=
   chartYOf_of_not_lt _ _ _ hk
 
+/--
+@isnad1 id=eq.1h5v.s8.521c1caefa56 from=translated src=- shape=1ae0be17 vocab=0d52733c
+-/
 theorem chartY_of_lt {k : Fin n} (hk : k < r) :
     chartY x r k = algebraMap R (Localization.Away (x r)) (x k) * invX x r := by
   rw [chartY_eq_mk_of_lt x r hk, mk_eq_algebraMap_mul_invX]
@@ -207,17 +236,26 @@ namespace RegularCoords
 
 variable [IsRegularLocalRing R] [Algebra ℚ R] (c : RegularCoords R n) (r : Fin n)
 
+/--
+@isnad1 id=eq.0h6v.s10.a41f6d1358f7 from=translated src=- shape=ba107237 vocab=50158011
+-/
 theorem awayPderiv_algebraMap (j : Fin n) (a : R) :
     c.awayPderiv r j (algebraMap R (Localization.Away (c.x r)) a) =
       algebraMap R (Localization.Away (c.x r)) (c.pderiv j a) :=
   Derivation.localization_algebraMap _ _ a
 
+/--
+@isnad1 id=eq.0h6v.s10.00c848106f1e from=translated src=- shape=068a6e81 vocab=e1d4c352
+-/
 theorem awayPderiv_algebraMap_x (j i : Fin n) :
     c.awayPderiv r j (algebraMap R (Localization.Away (c.x r)) (c.x i)) =
       if j = i then 1 else 0 := by
   rw [awayPderiv_algebraMap, c.pderiv_x]
   split_ifs <;> simp
 
+/--
+@isnad1 id=eq.0h5v.s10.868da6efc0e5 from=translated src=- shape=f83cf9be vocab=d20baf68
+-/
 theorem awayPderiv_invX (j : Fin n) :
     c.awayPderiv r j (invX c.x r) = -(invX c.x r ^ 2 * if j = r then 1 else 0) := by
   have hu : invX c.x r * algebraMap R (Localization.Away (c.x r)) (c.x r) = 1 := by
@@ -226,7 +264,9 @@ theorem awayPderiv_invX (j : Fin n) :
   ring
 
 /-- The table of derivatives of the chart coordinates (the proof of [Wlo05, Lemma 2.6.3]):
-`∂ⱼ yₖ = δⱼₖ u − δⱼᵣ xₖ u²` for `k < r`.-/
+`∂ⱼ yₖ = δⱼₖ u − δⱼᵣ xₖ u²` for `k < r`.
+@isnad1 id=eq.1h6v.s11.94f48dd7685e from=translated src=- shape=8743dc5d vocab=e751a895
+-/
 theorem awayPderiv_chartY_of_lt (j : Fin n) {k : Fin n} (hk : k < r) :
     c.awayPderiv r j (chartY c.x r k) =
       (if j = k then 1 else 0) * invX c.x r -
@@ -236,12 +276,17 @@ theorem awayPderiv_chartY_of_lt (j : Fin n) {k : Fin n} (hk : k < r) :
     smul_eq_mul, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.1h6v.s9.4098351df858 from=translated src=- shape=3f6a5f0b vocab=4888494f
+-/
 theorem awayPderiv_chartY_of_not_lt (j : Fin n) {k : Fin n} (hk : ¬ k < r) :
     c.awayPderiv r j (chartY c.x r k) = if j = k then 1 else 0 := by
   rw [chartY_eq_algebraMap_of_not_lt c.x r hk, awayPderiv_algebraMap_x]
 
 /-- `∂'ⱼ yₖ = δⱼₖ`: the transformed derivations are dual to the chart coordinates (the proof of
-[Wlo05, Lemma 2.6.3]; [BM08, Lemma 3.1]).-/
+[Wlo05, Lemma 2.6.3]; [BM08, Lemma 3.1]).
+@isnad1 id=eq.0h6v.s9.5c7f812adf31 from=translated src=- shape=6b2fe40f vocab=c8712040
+-/
 theorem chartDeriv_chartY (j k : Fin n) :
     c.chartDeriv r j (chartY c.x r k) = if j = k then 1 else 0 := by
   classical
@@ -284,7 +329,9 @@ theorem chartDeriv_chartY (j k : Fin n) :
       ring
     · exact awayPderiv_chartY_of_not_lt c r j hk
 
-/-- `∂'ⱼ` maps the image of `R` into the chart ring.-/
+/-- `∂'ⱼ` maps the image of `R` into the chart ring.
+@isnad1 id=mem.0h6v.s10.5ac913271eca from=translated src=- shape=48dc9b1e vocab=42fbc0c2
+-/
 theorem chartDeriv_algebraMap_mem (j : Fin n) (a : R) :
     c.chartDeriv r j (algebraMap R (Localization.Away (c.x r)) a) ∈ chartRing c.x r := by
   rcases lt_trichotomy j r with hj | hjr | hj
@@ -300,7 +347,9 @@ theorem chartDeriv_algebraMap_mem (j : Fin n) (a : R) :
   · rw [c.chartDeriv_of_gt r hj, awayPderiv_algebraMap]
     exact Subalgebra.algebraMap_mem _ _
 
-/-- Each `∂'ⱼ` maps the chart ring `R'` into itself.-/
+/-- Each `∂'ⱼ` maps the chart ring `R'` into itself.
+@isnad1 id=mem.1h6v.s10.9f5f1914b30e from=translated src=- shape=4cf19465 vocab=4c88433d
+-/
 theorem chartDeriv_mem (j : Fin n) {z : Localization.Away (c.x r)} (hz : z ∈ chartRing c.x r) :
     c.chartDeriv r j z ∈ chartRing c.x r := by
   refine Algebra.adjoin_induction (p := fun z _ => c.chartDeriv r j z ∈ chartRing c.x r)
@@ -329,7 +378,9 @@ variable [IsRegularLocalRing R] (x : Fin n → R) (r : Fin n)
 
 omit [IsRegularLocalRing R] in
 /-- Every element of the chart ring is congruent modulo `𝔪'` to the image of an element of `R`
-(the constant term of a polynomial in the `yᵢ`).-/
+(the constant term of a polynomial in the `yᵢ`).
+@isnad1 id=ex.0h6v.s12.bcf0f52452cc from=translated src=- shape=81cd8210 vocab=ebaf1448
+-/
 theorem exists_algebraMap_sub_mem_chartOriginOf (d : R) (z : chartRingOf x r d) :
     ∃ a : R, z - algebraMap R _ a ∈ chartOriginOf x r d := by
   obtain ⟨z, hz⟩ := z
@@ -370,7 +421,9 @@ point.  Proof: `R/⟨xᵢ : i ≠ r⟩` is a regular local ring of dimension one
 (`Hironaka/Algebra/Local/RegularSystem.lean`, after moving `x_r` to the last position) with maximal
 ideal `⟨x̄_r⟩`, hence a domain in which `x̄_r ≠ 0`; the ring map from `R[1/x_r]` to its fraction
 field sends `R'` into the quotient and every generator of `𝔪'` into its maximal ideal, so `1 ∈ 𝔪'`
-would give `1 ∈ ⟨x̄_r⟩`.-/
+would give `1 ∈ ⟨x̄_r⟩`.
+@isnad1 id=not.3h5v.s11.f7a77e8b6ace from=translated src=- shape=904f7f24 vocab=6ba10424
+-/
 theorem one_notMem_chartOriginOf (d : R) (hd : d = x r)
     (hx : maximalIdeal R = span (Set.range x)) (hn : (n : WithBot ℕ∞) = ringKrullDim R) :
     (1 : chartRingOf x r d) ∉ chartOriginOf x r d := by
@@ -461,17 +514,23 @@ theorem one_notMem_chartOriginOf (d : R) (hd : d = x r)
   subst this
   exact (maximalIdeal.isMaximal S).ne_top ((Ideal.eq_top_iff_one _).mpr hs)
 
-/-- `1 ∉ 𝔪'`.-/
+/-- `1 ∉ 𝔪'`.
+@isnad1 id=not.2h4v.s11.7f13d151e641 from=translated src=- shape=5d417495 vocab=427c3b51
+-/
 theorem one_notMem_chartOrigin (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) : (1 : chartRing x r) ∉ chartOrigin x r :=
   one_notMem_chartOriginOf x r (x r) rfl hx hn
 
-/-- `𝔪'` is a proper ideal.-/
+/-- `𝔪'` is a proper ideal.
+@isnad1 id=ne.3h5v.s11.692a046bd93f from=translated src=- shape=99613156 vocab=e8b6a972
+-/
 theorem chartOriginOf_ne_top (d : R) (hd : d = x r) (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) : chartOriginOf x r d ≠ ⊤ :=
   fun h => one_notMem_chartOriginOf x r d hd hx hn (h ▸ Submodule.mem_top)
 
-/-- `𝔪'` lies over `𝔪` (general denominator).-/
+/-- `𝔪'` lies over `𝔪` (general denominator).
+@isnad1 id=eq.3h5v.s11.ce5860b8b189 from=translated src=- shape=ee367aa8 vocab=3b707633
+-/
 theorem comap_chartOriginOf (d : R) (hd : d = x r) (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) :
     (chartOriginOf x r d).comap (algebraMap R (chartRingOf x r d)) = maximalIdeal R := by
@@ -483,13 +542,17 @@ theorem comap_chartOriginOf (d : R) (hd : d = x r) (hx : maximalIdeal R = span (
   · subst hd
     exact maximalIdeal_le_comap_chartOrigin x r hx
 
-/-- `𝔪'` lies over `𝔪`.-/
+/-- `𝔪'` lies over `𝔪`.
+@isnad1 id=eq.2h4v.s11.7823c9e71226 from=translated src=- shape=c2d13136 vocab=ae950aed
+-/
 theorem comap_chartOrigin (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) :
     (chartOrigin x r).comap (algebraMap R (chartRing x r)) = maximalIdeal R :=
   comap_chartOriginOf x r (x r) rfl hx hn
 
-/-- `R'/𝔪' ≅ K`, as the bijectivity of the residue map `R/𝔪 → R'/𝔪'`.-/
+/-- `R'/𝔪' ≅ K`, as the bijectivity of the residue map `R/𝔪 → R'/𝔪'`.
+@isnad1 id=bijectiv.2h4v.s13.03365f30c6c1 from=translated src=- shape=422ea556 vocab=15dbe2f6
+-/
 theorem quotientMap_chartOrigin_bijective (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) :
     Function.Bijective (Ideal.quotientMap (chartOrigin x r) (algebraMap R (chartRing x r))
@@ -503,7 +566,9 @@ theorem quotientMap_chartOrigin_bijective (hx : maximalIdeal R = span (Set.range
   rwa [neg_sub] at this
 
 /-- The origin of the chart is a maximal ideal of `R'` (the point `p'` of the proof of
-[Kol07, Lemma 61]).-/
+[Kol07, Lemma 61]).
+@isnad1 id=ismaxima.2h4v.s8.86305378b1d9 from=translated src=- shape=885bf23d vocab=8e127de4
+-/
 theorem chartOrigin_isMaximal (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) : (chartOrigin x r).IsMaximal := by
   have hbij := quotientMap_chartOrigin_bijective x r hx hn
@@ -516,13 +581,21 @@ section Shift
 
 variable (x : Fin n → R) (r : Fin n) (a : Fin n → R)
 
+/--
+@isnad1 id=eq.1h6v.s6.133c9483610c from=translated src=- shape=09ee8de4 vocab=8779193f
+-/
 theorem shiftCoords_of_lt {i : Fin n} (hi : i < r) : shiftCoords x r a i = x i - a i * x r :=
   ite_eq_left hi
 
+/--
+@isnad1 id=eq.1h6v.s5.e9568604a66d from=translated src=- shape=8982f54c vocab=470c447e
+-/
 theorem shiftCoords_of_not_lt {i : Fin n} (hi : ¬ i < r) : shiftCoords x r a i = x i :=
   ite_eq_right hi
 
-/-- `x'ᵢ/x_r = yᵢ − ãᵢ` for `i < r`.-/
+/-- `x'ᵢ/x_r = yᵢ − ãᵢ` for `i < r`.
+@isnad1 id=eq.1h6v.s9.b901c77b90c1 from=translated src=- shape=f840b864 vocab=7bd5aa14
+-/
 theorem mk_shiftCoords_of_lt {i : Fin n} (hi : i < r) :
     Localization.mk (shiftCoords x r a i) ⟨x r, Submonoid.mem_powers _⟩ =
       Localization.mk (x i) ⟨x r, Submonoid.mem_powers _⟩ -
@@ -531,7 +604,9 @@ theorem mk_shiftCoords_of_lt {i : Fin n} (hi : i < r) :
     map_mul, sub_mul, mul_assoc, algebraMap_mul_invX, mul_one]
 
 /-- The shifted coordinates generate `𝔪` (the linear change of coordinates in the proof of
-[Kol07, Lemma 61]).-/
+[Kol07, Lemma 61]).
+@isnad1 id=eq.1h5v.s6.b4c08870a520 from=translated src=- shape=84da8395 vocab=5b2a5db6
+-/
 theorem span_range_shiftCoords [IsLocalRing R] (hx : maximalIdeal R = span (Set.range x)) :
     maximalIdeal R = span (Set.range (shiftCoords x r a)) := by
   have hxm : ∀ j, x j ∈ maximalIdeal R := fun j => hx ▸ Ideal.subset_span ⟨j, rfl⟩
@@ -553,7 +628,9 @@ theorem span_range_shiftCoords [IsLocalRing R] (hx : maximalIdeal R = span (Set.
     · exact sub_mem (hxm i) (Ideal.mul_mem_left _ _ (hxm r))
     · exact hxm i
 
-/-- The shifted coordinates generate the same `P = ⟨xᵢ : i ≤ r⟩`.-/
+/-- The shifted coordinates generate the same `P = ⟨xᵢ : i ≤ r⟩`.
+@isnad1 id=eq.0h5v.s6.44418a12c1bc from=translated src=- shape=4f645e50 vocab=08ff778f
+-/
 theorem span_shiftCoords_le :
     span (shiftCoords x r a '' {i | i ≤ r}) = span (x '' {i | i ≤ r}) := by
   apply le_antisymm
@@ -577,7 +654,9 @@ theorem span_shiftCoords_le :
     · rw [← shiftCoords_of_not_lt x r a h]
       exact Ideal.subset_span ⟨i, hi', rfl⟩
 
-/-- The shifted coordinates define the same chart ring (`x'ᵢ/x_r = yᵢ − ãᵢ`).-/
+/-- The shifted coordinates define the same chart ring (`x'ᵢ/x_r = yᵢ − ãᵢ`).
+@isnad1 id=eq.0h5v.s7.242abb82fe21 from=translated src=- shape=6d513d51 vocab=64f077fb
+-/
 theorem chartRingOf_shiftCoords : chartRingOf (shiftCoords x r a) r (x r) = chartRing x r := by
   apply le_antisymm
   · apply Algebra.adjoin_le
@@ -600,7 +679,9 @@ theorem chartRingOf_shiftCoords : chartRingOf (shiftCoords x r a) r (x r) = char
       (Subalgebra.algebraMap_mem _ _)
 
 /-- The generators of `𝔪'_a` and of the origin of the shifted chart have the same images in
-`R[1/x_r]`.-/
+`R[1/x_r]`.
+@isnad1 id=eq.0h6v.s12.85773996e833 from=translated src=- shape=593637b4 vocab=bd407d0d
+-/
 theorem coe_chartYROf_shiftCoords (i : Fin n) :
     ((chartYROf (shiftCoords x r a) r (x r) i : chartRingOf (shiftCoords x r a) r (x r)) :
         Localization.Away (x r)) =
@@ -614,7 +695,9 @@ theorem coe_chartYROf_shiftCoords (i : Fin n) :
       shiftCoords_of_not_lt x r a hi]
 
 /-- `𝔪'_a` is the origin of the chart for the shifted coordinates (membership correspondence
-through the ambient ring `R[1/x_r]`).-/
+through the ambient ring `R[1/x_r]`).
+@isnad1 id=iff.0h6v.s12.3203f9ec83ea from=translated src=- shape=2b8ed88f vocab=62f1f8b9
+-/
 theorem mem_chartOriginAt_iff (z : chartRing x r) :
     z ∈ chartOriginAt x r a ↔
       ∃ w ∈ chartOriginOf (shiftCoords x r a) r (x r),
@@ -663,11 +746,16 @@ theorem mem_chartOriginAt_iff (z : chartRing x r) :
       rw [this]
       exact Ideal.mul_mem_left _ _ h₁
 
+/--
+@isnad1 id=eq.0h5v.s5.b008255901a7 from=translated src=- shape=aa4ecce1 vocab=6c12436d
+-/
 theorem shiftCoords_self_symm : x r = shiftCoords x r a r := (shiftCoords_self x r a).symm
 
 variable [IsRegularLocalRing R]
 
-/-- `1 ∉ 𝔪'_a`.-/
+/-- `1 ∉ 𝔪'_a`.
+@isnad1 id=not.2h5v.s11.e407cb6509b7 from=translated src=- shape=13bcaf27 vocab=396636d8
+-/
 theorem one_notMem_chartOriginAt (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) : (1 : chartRing x r) ∉ chartOriginAt x r a := by
   rw [mem_chartOriginAt_iff]
@@ -677,7 +765,9 @@ theorem one_notMem_chartOriginAt (hx : maximalIdeal R = span (Set.range x))
   exact one_notMem_chartOriginOf (shiftCoords x r a) r (x r) (shiftCoords_self_symm x r a)
     (span_range_shiftCoords x r a hx) hn hw
 
-/-- `𝔪'_a` lies over `𝔪`.-/
+/-- `𝔪'_a` lies over `𝔪`.
+@isnad1 id=eq.2h5v.s11.62ca8fdb694d from=translated src=- shape=ccc96190 vocab=05584117
+-/
 theorem comap_chartOriginAt (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) :
     (chartOriginAt x r a).comap (algebraMap R (chartRing x r)) = maximalIdeal R := by
@@ -693,7 +783,9 @@ theorem comap_chartOriginAt (hx : maximalIdeal R = span (Set.range x))
   · intro hb
     exact ⟨algebraMap R _ b, hb, by rw [Subalgebra.coe_algebraMap, Subalgebra.coe_algebraMap]⟩
 
-/-- `𝔪'_a` has residue field `K`: `𝔪` maps into `𝔪'_a` and the residue map is bijective.-/
+/-- `𝔪'_a` has residue field `K`: `𝔪` maps into `𝔪'_a` and the residue map is bijective.
+@isnad1 id=ex.2h5v.s14.19059753323e from=translated src=- shape=4ebcfd1a vocab=cd3b33e9
+-/
 theorem quotientMap_chartOriginAt_bijective (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) :
     ∃ h : maximalIdeal R ≤ (chartOriginAt x r a).comap (algebraMap R (chartRing x r)),
@@ -713,7 +805,9 @@ theorem quotientMap_chartOriginAt_bijective (hx : maximalIdeal R = span (Set.ran
   have := neg_mem_iff.mpr hmem
   rwa [neg_sub] at this
 
-/-- `𝔪'_a` is maximal.-/
+/-- `𝔪'_a` is maximal.
+@isnad1 id=ismaxima.2h5v.s8.874fc2d6bf58 from=translated src=- shape=8ea2db53 vocab=3f5286d1
+-/
 theorem chartOriginAt_isMaximal (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) : (chartOriginAt x r a).IsMaximal := by
   obtain ⟨h, hbij⟩ := quotientMap_chartOriginAt_bijective x r a hx hn
@@ -726,12 +820,16 @@ section Domain
 
 variable [IsRegularLocalRing R] (x : Fin n → R) (r : Fin n)
 
-/-- `R[1/x_r]` is a domain.-/
+/-- `R[1/x_r]` is a domain.
+@isnad1 id=isdomain.2h4v.s6.87593e35f6b5 from=translated src=- shape=c3e3a381 vocab=d0a71990
+-/
 theorem isDomain_away (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) : IsDomain (Localization.Away (x r)) :=
   IsLocalization.Away.isDomain (S := Localization.Away (x r)) (x_ne_zero_of_span_eq x hx hn r)
 
-/-- The chart ring is a domain.-/
+/-- The chart ring is a domain.
+@isnad1 id=isdomain.2h4v.s8.189aed3bfd9f from=translated src=- shape=c9bf3e63 vocab=13e386f7
+-/
 theorem isDomain_chartRing (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) : IsDomain (chartRing x r) := by
   have := isDomain_away x r hx hn
@@ -754,6 +852,9 @@ noncomputable def chartDerivRing (j : Fin n) : Derivation ℚ (chartRing c.x r) 
   map_one_eq_zero' := Subtype.ext (by simp)
   leibniz' z w := Subtype.ext (by simp [Derivation.leibniz])
 
+/--
+@isnad1 id=eq.0h6v.s13.aa4482c90f31 from=translated src=- shape=adc159ff vocab=393c1544
+-/
 @[simp]
 theorem coe_chartDerivRing (j : Fin n) (z : chartRing c.x r) :
     (c.chartDerivRing r j z : Localization.Away (c.x r)) = c.chartDeriv r j z :=

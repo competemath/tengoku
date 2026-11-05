@@ -40,7 +40,9 @@ namespace Derivation
 variable {k R : Type*} [CommRing k] [CommRing R] [Algebra k R] (I : Ideal R)
   (D : Derivation k R R)
 
-/-- A derivation lowers the powers of an ideal by one: `D(Iᵃ⁺¹) ⊆ Iᵃ`.-/
+/-- A derivation lowers the powers of an ideal by one: `D(Iᵃ⁺¹) ⊆ Iᵃ`.
+@isnad1 id=mem.1h6v.s8.d56707c7cff9 from=translated src=- shape=6d67b01d vocab=5e5f4a74
+-/
 theorem mem_pow_of_mem_pow_succ (a : ℕ) {f : R} (hf : f ∈ I ^ (a + 1)) : D f ∈ I ^ a := by
   induction a generalizing f with
   | zero => simp
@@ -70,11 +72,17 @@ noncomputable def adicLevel (n : ℕ) (y : R ⧸ (I ^ (n + 1) • ⊤ : Ideal R)
     rw [Ideal.smul_eq_mul, Ideal.mul_top]
     exact D.mem_pow_of_mem_pow_succ I n hfg
 
+/--
+@isnad1 id=eq.0h6v.s9.056337ffb50e from=translated src=- shape=a65cf89a vocab=995c2020
+-/
 @[simp]
 theorem adicLevel_mk (n : ℕ) (f : R) :
     D.adicLevel I n (Submodule.Quotient.mk f) = Submodule.Quotient.mk (D f) :=
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s12.118a598559f6 from=translated src=- shape=4e19af89 vocab=78659a17
+-/
 theorem transitionMap_adicLevel {m n : ℕ} (h : m ≤ n) (y : R ⧸ (I ^ (n + 1) • ⊤ : Ideal R)) :
     AdicCompletion.transitionMap I R h (D.adicLevel I n y) =
       D.adicLevel I m (AdicCompletion.transitionMap I R (Nat.succ_le_succ h) y) := by
@@ -92,6 +100,9 @@ noncomputable def adicCompletionFun (x : AdicCompletion I R) : AdicCompletion I 
   ⟨fun n => D.adicLevel I n (x.val (n + 1)), fun {m n} h => by
     rw [transitionMap_adicLevel, x.property (Nat.succ_le_succ h)]⟩
 
+/--
+@isnad1 id=eq.0h6v.s13.b0cc2062a230 from=translated src=- shape=796ede32 vocab=409c6557
+-/
 @[simp]
 theorem adicCompletionFun_val (x : AdicCompletion I R) (n : ℕ) :
     (D.adicCompletionFun I x).val n = D.adicLevel I n (x.val (n + 1)) :=
@@ -149,12 +160,17 @@ noncomputable def adicCompletion : Derivation k (AdicCompletion I R) (AdicComple
       hxn, hyn, hDx, hDy, Derivation.leibniz, smul_eq_mul f (D g), smul_eq_mul g (D f)]
     exact (map_add (Ideal.Quotient.mk _) _ _).trans (by rw [map_mul, map_mul]; rfl)
 
+/--
+@isnad1 id=eq.0h6v.s13.05b7a80422ce from=translated src=- shape=0181263e vocab=1b897d1c
+-/
 @[simp]
 theorem adicCompletion_val (x : AdicCompletion I R) (n : ℕ) :
     (D.adicCompletion I x).val n = D.adicLevel I n (x.val (n + 1)) :=
   rfl
 
-/-- The extended derivation restricts to `D` along the canonical map `R → R̂`.-/
+/-- The extended derivation restricts to `D` along the canonical map `R → R̂`.
+@isnad1 id=eq.0h5v.s10.f13cfd4394e1 from=translated src=- shape=8d94d6a3 vocab=3d12082a
+-/
 theorem adicCompletion_of (f : R) :
     D.adicCompletion I (AdicCompletion.of I R f) = AdicCompletion.of I R (D f) := by
   apply AdicCompletion.ext
@@ -162,7 +178,9 @@ theorem adicCompletion_of (f : R) :
   rw [adicCompletion_val, AdicCompletion.of_apply, AdicCompletion.of_apply, Submodule.mkQ_apply,
     Submodule.mkQ_apply, adicLevel_mk]
 
-/-- `D̂ ∘ ι = ι ∘ D` for the algebra map `ι : R → R̂`.-/
+/-- `D̂ ∘ ι = ι ∘ D` for the algebra map `ι : R → R̂`.
+@isnad1 id=eq.0h5v.s10.06d6102e291d from=translated src=- shape=13ac242c vocab=636a8782
+-/
 theorem adicCompletion_algebraMap (f : R) :
     D.adicCompletion I (algebraMap R (AdicCompletion I R) f) =
       algebraMap R (AdicCompletion I R) (D f) := by

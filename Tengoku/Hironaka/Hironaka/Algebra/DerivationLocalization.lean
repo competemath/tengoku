@@ -67,6 +67,9 @@ noncomputable def localizationFun (x : Localization M) : Localization M :=
       linear_combination (↑u * ↑s * ↑t) * E -
         (↑u * ↑t * D ↑s + ↑u * ↑s * D ↑t + ↑s * ↑t * D ↑u) * hu
 
+/--
+@isnad1 id=eq.0h6v.s9.8c0f161437c3 from=translated src=- shape=09c949d0 vocab=198fcbbf
+-/
 @[simp]
 theorem localizationFun_mk (a : A) (s : M) :
     D.localizationFun M (Localization.mk a s) =
@@ -107,12 +110,17 @@ noncomputable def localization : Derivation k (Localization M) (Localization M) 
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h6v.s9.402184310503 from=translated src=- shape=56c16b05 vocab=9cdbf3b2
+-/
 @[simp]
 theorem localization_mk (a : A) (s : M) :
     D.localization M (Localization.mk a s) = Localization.mk (↑s * D a - a * D ↑s) (s * s) :=
   localizationFun_mk M D a s
 
-/-- The extension agrees with `D` on the image of `A`.-/
+/-- The extension agrees with `D` on the image of `A`.
+@isnad1 id=eq.0h5v.s9.12c5daa95fb2 from=translated src=- shape=56c64a5b vocab=60db255c
+-/
 @[simp]
 theorem localization_algebraMap (a : A) :
     D.localization M (algebraMap A (Localization M) a) = algebraMap A (Localization M) (D a) := by
@@ -146,7 +154,9 @@ theorem eq_localization_of_algebraMap (D' : Derivation k (Localization M) (Local
   push_cast
   ring
 
-/-- The extension of the zero derivation is zero.-/
+/-- The extension of the zero derivation is zero.
+@isnad1 id=eq.0h3v.s9.015ac1e37722 from=translated src=- shape=581b5cbf vocab=4cb6c01f
+-/
 theorem zero_localization : (0 : Derivation k A A).localization M = 0 := by
   symm
   apply Derivation.eq_localization_of_algebraMap
@@ -154,7 +164,9 @@ theorem zero_localization : (0 : Derivation k A A).localization M = 0 := by
   simp
 
 /-- The extensions of two commuting derivations commute: their commutator is a derivation of
-`M⁻¹A` vanishing on `A`, hence zero by uniqueness.-/
+`M⁻¹A` vanishing on `A`, hence zero by uniqueness.
+@isnad1 id=eq.1h6v.s10.cd851799d30c from=translated src=- shape=2a4ebac1 vocab=fa95ddaa
+-/
 theorem localization_comm (D₁ D₂ : Derivation k A A) (h : ∀ a, D₁ (D₂ a) = D₂ (D₁ a))
     (z : Localization M) :
     D₁.localization M (D₂.localization M z) = D₂.localization M (D₁.localization M z) := by

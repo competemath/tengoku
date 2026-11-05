@@ -40,16 +40,24 @@ variable {R : Type*} [CommRing R] [IsRegularLocalRing R] [Algebra ℚ R] {n : �
 def topPderivSet (S : Set R) (r : ℕ) : Set R :=
   ⋃ (l : List (Fin n)) (_ : l.length = r), c.iterPderiv l '' S
 
+/--
+@isnad1 id=iff.0h6v.s6.c4bea1606d20 from=translated src=- shape=6bef6eea vocab=71ae2f87
+-/
 theorem mem_topPderivSet {S : Set R} {r : ℕ} {f : R} :
     f ∈ c.topPderivSet S r ↔ ∃ l : List (Fin n), l.length = r ∧ ∃ s ∈ S, c.iterPderiv l s = f := by
   simp [topPderivSet]
 
+/--
+@isnad1 id=le.0h5v.s5.856a8202990c from=translated src=- shape=54f7ebc7 vocab=6852199a
+-/
 theorem topPderivSet_subset_iterPderivSet (S : Set R) (r : ℕ) :
     c.topPderivSet S r ⊆ c.iterPderivSet S r := fun f hf => by
   obtain ⟨l, hl, s, hs, rfl⟩ := c.mem_topPderivSet.mp hf
   exact c.mem_iterPderivSet.mpr ⟨l, hl.le, s, hs, rfl⟩
 
-/-- Iterated partials do not depend on the order of differentiation.-/
+/-- Iterated partials do not depend on the order of differentiation.
+@isnad1 id=eq.1h6v.s6.e12d39c1c982 from=translated src=- shape=30789633 vocab=97291334
+-/
 theorem iterPderiv_perm {l l' : List (Fin n)} (h : l.Perm l') (f : R) :
     c.iterPderiv l f = c.iterPderiv l' f := by
   induction h with
@@ -58,14 +66,18 @@ theorem iterPderiv_perm {l l' : List (Fin n)} (h : l.Perm l') (f : R) :
   | swap i j l => simp only [iterPderiv_cons]; exact c.pderiv_comm j i _
   | trans _ _ ih1 ih2 => exact ih1.trans ih2
 
-/-- Every `r`-th partial of an element of `I` lies in `Dʳ(I)` [Kol07, Definition 73].-/
+/-- Every `r`-th partial of an element of `I` lies in `Dʳ(I)` [Kol07, Definition 73].
+@isnad1 id=mem.1h6v.s7.8fdaead91718 from=translated src=- shape=97fb1a71 vocab=04af8a49
+-/
 theorem iterPderiv_mem_Dpow {I : Ideal R} {f : R} (hf : f ∈ I) (l : List (Fin n)) :
     c.iterPderiv l f ∈ c.Dpow l.length I := by
   induction l with
   | nil => simpa using hf
   | cons i l ih => rw [iterPderiv_cons, List.length_cons, Dpow_succ]; exact c.pderiv_mem_D ih i
 
-/-- The `r`-th partials of elements of `I` lie in `Dʳ(I)`.-/
+/-- The `r`-th partials of elements of `I` lie in `Dʳ(I)`.
+@isnad1 id=le.0h5v.s7.06f095f2866f from=translated src=- shape=5f7678fe vocab=4988a186
+-/
 theorem span_topPderivSet_le (I : Ideal R) (r : ℕ) :
     Ideal.span (c.topPderivSet (I : Set R) r) ≤ c.Dpow r I := by
   refine Ideal.span_le.mpr fun g hg => ?_
@@ -74,14 +86,18 @@ theorem span_topPderivSet_le (I : Ideal R) (r : ℕ) :
   exact c.iterPderiv_mem_Dpow hf l
 
 /-- Kollár's first identity [Kol07, Definition 73]: for `j ≠ i`,
-`∂ⱼ f = ∂ⱼ∂ᵢ(xᵢ f) − xᵢ ∂ⱼ∂ᵢ f`.-/
+`∂ⱼ f = ∂ⱼ∂ᵢ(xᵢ f) − xᵢ ∂ⱼ∂ᵢ f`.
+@isnad1 id=eq.1h6v.s8.640798c8cdcb from=translated src=- shape=6f74708a vocab=81b00697
+-/
 theorem pderiv_eq_of_ne {i j : Fin n} (h : j ≠ i) (f : R) :
     c.pderiv j f = c.pderiv j (c.pderiv i (c.x i * f)) - c.x i * c.pderiv j (c.pderiv i f) := by
   rw [Derivation.leibniz, smul_eq_mul, smul_eq_mul, c.pderiv_x, ite_eq_left rfl, mul_one, map_add,
     Derivation.leibniz, smul_eq_mul, smul_eq_mul, c.pderiv_x, ite_eq_right h, mul_zero, add_zero]
   ring
 
-/-- Kollár's second identity [Kol07, Definition 73]: `2 ∂ᵢ f = ∂ᵢ²(xᵢ f) − xᵢ ∂ᵢ² f`.-/
+/-- Kollár's second identity [Kol07, Definition 73]: `2 ∂ᵢ f = ∂ᵢ²(xᵢ f) − xᵢ ∂ᵢ² f`.
+@isnad1 id=eq.0h5v.s9.653f945cfdce from=translated src=- shape=3505af83 vocab=a883eca3
+-/
 theorem two_nsmul_pderiv (i : Fin n) (f : R) :
     2 • c.pderiv i f = c.pderiv i (c.pderiv i (c.x i * f)) - c.x i * c.pderiv i (c.pderiv i f) := by
   rw [Derivation.leibniz, smul_eq_mul, smul_eq_mul, c.pderiv_x, ite_eq_left rfl, mul_one, map_add,
@@ -89,7 +105,9 @@ theorem two_nsmul_pderiv (i : Fin n) (f : R) :
   ring
 
 /-- The general form of Kollár's identities: `∂^l(xᵢ f) = xᵢ ∂^l f + k ∂^{l ∖ i} f`, where `k` is
-the number of occurrences of `i` in `l` and `l ∖ i` erases one of them.-/
+the number of occurrences of `i` in `l` and `l ∖ i` erases one of them.
+@isnad1 id=eq.0h6v.s7.0d45320e074e from=translated src=- shape=0415f877 vocab=f73305e6
+-/
 theorem iterPderiv_x_mul (l : List (Fin n)) (i : Fin n) (f : R) :
     c.iterPderiv l (c.x i * f) =
       c.x i * c.iterPderiv l f + (l.count i) • c.iterPderiv (l.erase i) f := by
@@ -112,7 +130,9 @@ theorem iterPderiv_x_mul (l : List (Fin n)) (i : Fin n) (f : R) :
 
 /-- In characteristic zero, every `r`-th partial of an element of `I` is a combination of
 `(r+1)`-th partials of elements of `I`, provided there is a coordinate (`0 < n`):
-`(k + 1) ∂^l f = ∂^{i₀ ∷ l}(x_{i₀} f) − x_{i₀} ∂^{i₀ ∷ l} f` with `k + 1` a unit.-/
+`(k + 1) ∂^l f = ∂^{i₀ ∷ l}(x_{i₀} f) − x_{i₀} ∂^{i₀ ∷ l} f` with `k + 1` a unit.
+@isnad1 id=mem.2h6v.s7.827d530495dc from=translated src=- shape=53081203 vocab=15b1e3be
+-/
 theorem iterPderiv_mem_span_topPderivSet_succ (hn : 0 < n) {I : Ideal R} {f : R} (hf : f ∈ I)
     (l : List (Fin n)) :
     c.iterPderiv l f ∈ Ideal.span (c.topPderivSet (I : Set R) (l.length + 1)) := by
@@ -134,7 +154,9 @@ theorem iterPderiv_mem_span_topPderivSet_succ (hn : 0 < n) {I : Ideal R} {f : R}
   rwa [← mul_assoc, hu.val_inv_mul, one_mul] at this
 
 /-- In characteristic zero the `r`-th partials of elements of `I` lie in the span of the
-`(r+1)`-th partials (`0 < n`).-/
+`(r+1)`-th partials (`0 < n`).
+@isnad1 id=le.1h5v.s7.1f9cc71335ba from=translated src=- shape=45f9f70c vocab=38239b8e
+-/
 theorem span_topPderivSet_le_succ (hn : 0 < n) (I : Ideal R) (r : ℕ) :
     Ideal.span (c.topPderivSet (I : Set R) r) ≤
       Ideal.span (c.topPderivSet (I : Set R) (r + 1)) := by
@@ -143,6 +165,9 @@ theorem span_topPderivSet_le_succ (hn : 0 < n) (I : Ideal R) (r : ℕ) :
   rw [← hl]
   exact c.iterPderiv_mem_span_topPderivSet_succ hn hf l
 
+/--
+@isnad1 id=le.2h6v.s7.5bfce5c1f2ac from=translated src=- shape=95b899d7 vocab=b1b633ea
+-/
 theorem span_topPderivSet_mono (hn : 0 < n) (I : Ideal R) {r s : ℕ} (hrs : r ≤ s) :
     Ideal.span (c.topPderivSet (I : Set R) r) ≤ Ideal.span (c.topPderivSet (I : Set R) s) := by
   induction s, hrs using Nat.le_induction with
@@ -151,7 +176,9 @@ theorem span_topPderivSet_mono (hn : 0 < n) (I : Ideal R) {r s : ℕ} (hrs : r �
 
 /-- **In characteristic zero, `Dʳ(I)` is generated by the `r`-th iterated partials of the elements
 of `I` alone**, provided there is a coordinate (`0 < n`) (Kollár's remark in
-[Kol07, Definition 73]).-/
+[Kol07, Definition 73]).
+@isnad1 id=eq.1h5v.s6.93963e6161fd from=translated src=- shape=b2e3dab5 vocab=58badb2b
+-/
 theorem Dpow_eq_span_topPderivSet (hn : 0 < n) (I : Ideal R) (r : ℕ) :
     c.Dpow r I = Ideal.span (c.topPderivSet (I : Set R) r) := by
   refine le_antisymm ?_ (c.span_topPderivSet_le I r)

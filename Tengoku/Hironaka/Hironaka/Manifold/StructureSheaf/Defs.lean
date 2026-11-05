@@ -153,12 +153,18 @@ def extendBy0 {U : Opens M} (f : (contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜)
     M → 𝕜 :=
   fun x => if h : x ∈ U then f ⟨x, h⟩ else 0
 
+/--
+@isnad1 id=eq.1h9v.s9.dc76e9dddbd7 from=translated src=- shape=78d3f57e vocab=e7299d60
+-/
 @[simp]
 theorem extendBy0_of_mem {U : Opens M}
     (f : (contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf.obj (op U)) {x : M} (hx : x ∈ U) :
     extendBy0 IM n M f x = f ⟨x, hx⟩ := by
   simp only [extendBy0, dite_eq_left hx]
 
+/--
+@isnad1 id=eq.0h8v.s9.51a57c3d5046 from=translated src=- shape=c899d8fa vocab=3020d9cc
+-/
 theorem extendBy0_comp_val {U : Opens M}
     (f : (contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf.obj (op U)) :
     extendBy0 IM n M f ∘ Subtype.val = f := by
@@ -274,7 +280,9 @@ def germAt (a : TopCat.of M) (U : Opens M) (ha : a ∈ U) :
     rw [extendBy0_of_mem IM n M _ hx, extendBy0_of_mem IM n M _ hx, extendBy0_of_mem IM n M _ hx]
     rfl
 
-/-- Naturality of the germs at `a` over the open neighbourhoods of `a`.-/
+/-- Naturality of the germs at `a` over the open neighbourhoods of `a`.
+@isnad1 id=eq.0h11v.s13.d7862eed656f from=translated src=- shape=9bfb7141 vocab=f3d30fdf
+-/
 theorem germAt_naturality (a : TopCat.of M) (U V : (OpenNhds a)ᵒᵖ) (i : U ⟶ V)
     (f : ((OpenNhds.inclusion a).op ⋙ (contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf).obj U) :
     germAt IM n M a ((OpenNhds.inclusion a).obj (unop V)) (unop V).2
@@ -313,6 +321,9 @@ def stalkToGerm (a : M) :
     (contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf.stalk a →+* (𝓝 a).Germ 𝕜 :=
   (stalkToGermHom IM n M a).hom
 
+/--
+@isnad1 id=eq.1h9v.s11.8ebbca7713d4 from=translated src=- shape=d9c17b9f vocab=e63ba7e4
+-/
 @[simp]
 theorem stalkToGerm_germ (a : M) (U : Opens M) (ha : a ∈ U)
     (f : (contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf.obj (op U)) :
@@ -321,7 +332,9 @@ theorem stalkToGerm_germ (a : M) (U : Opens M) (ha : a ∈ U)
   ConcreteCategory.congr_hom (colimit.ι_desc (stalkToGermCocone IM n M a) (op ⟨U, ha⟩)) f
 
 /-- Two sections with the same germ at `a` agree on an open neighbourhood of `a`, so the stalk
-embeds into the germs.-/
+embeds into the germs.
+@isnad1 id=injectiv.0h7v.s10.dce4357cd5ff from=translated src=- shape=fd0282cc vocab=5facd847
+-/
 theorem stalkToGerm_injective (a : M) : Function.Injective (stalkToGerm IM n M a) := by
   intro s t hst
   let S := (contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf
@@ -340,7 +353,9 @@ theorem stalkToGerm_injective (a : M) : Function.Injective (stalkToGerm IM n M a
   have := hW₀ x hxW.1
   rwa [extendBy0_of_mem IM n M f hxW.2.1, extendBy0_of_mem IM n M g hxW.2.2] at this
 
-/-- The extension by zero of a `C^n` section over `U` is `C^n` on `U`.-/
+/-- The extension by zero of a `C^n` section over `U` is `C^n` on `U`.
+@isnad1 id=contmdif.0h8v.s8.270ba156f1e9 from=translated src=- shape=3ede5d72 vocab=2099117a
+-/
 theorem contMDiffOn_extendBy0 {U : Opens M}
     (f : (contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf.obj (op U)) :
     ContMDiffOn IM 𝓘(𝕜) n (extendBy0 IM n M f) U := by
@@ -353,7 +368,9 @@ theorem contMDiffOn_extendBy0 {U : Opens M}
     n).liftPropAt_iff_comp_subtype_val (U := U) (extendBy0 IM n M f) ⟨x, hx⟩).mpr hf
 
 /-- The range of `stalkToGerm` is the set of germs of functions `C^n` on an open neighbourhood of
-`a`.-/
+`a`.
+@isnad1 id=iff.0h8v.s10.62664ab6fc0d from=translated src=- shape=a38080f3 vocab=3247e92b
+-/
 theorem mem_range_stalkToGerm_iff (a : M) (g : (𝓝 a).Germ 𝕜) :
     g ∈ Set.range (stalkToGerm IM n M a) ↔
       ∃ h : M → 𝕜, g = ↑h ∧ ∃ U : Opens M, a ∈ U ∧ ContMDiffOn IM 𝓘(𝕜) n h U := by
@@ -406,6 +423,9 @@ variable (φ : N → M) {V : Opens N} (hφ : ContMDiffOn 𝓘(𝕜, E') 𝓘(�
   {c : M} (hc : φ b = c)
 
 include hφ hb hc in
+/--
+@isnad1 id=tendsto.3h9v.s7.ca22b0008569 from=translated src=- shape=e12d72a0 vocab=acfb2191
+-/
 theorem tendsto_of_contMDiffOn_of_eq : Tendsto φ (𝓝 b) (𝓝 c) :=
   hc ▸ (hφ.continuousOn.continuousAt (V.2.mem_nhds hb)).tendsto
 
@@ -414,10 +434,16 @@ def stalkGermComp : (structureSheaf 𝕜 E M).presheaf.stalk c →+* (𝓝 b).Ge
   (germCompRingHom (𝕜 := 𝕜) φ (tendsto_of_contMDiffOn_of_eq φ hφ hb hc)).comp
     (stalkToGerm 𝓘(𝕜, E) ω M c)
 
+/--
+@isnad1 id=eq.3h10v.s11.7a460d86d331 from=translated src=- shape=e355eb4c vocab=81289d4f
+-/
 theorem stalkGermComp_apply (s : (structureSheaf 𝕜 E M).presheaf.stalk c) :
     stalkGermComp φ hφ hb hc s =
       (stalkToGerm 𝓘(𝕜, E) ω M c s).compTendsto φ (tendsto_of_contMDiffOn_of_eq φ hφ hb hc) := rfl
 
+/--
+@isnad1 id=mem.3h10v.s10.a64835e6a18a from=translated src=- shape=9a3b6fbd vocab=e0ccb326
+-/
 theorem stalkGermComp_mem_range (s : (structureSheaf 𝕜 E M).presheaf.stalk c) :
     stalkGermComp φ hφ hb hc s ∈ (stalkToGerm 𝓘(𝕜, E') ω N b).range := by
   obtain ⟨h, hs, U, hcU, hU⟩ :=

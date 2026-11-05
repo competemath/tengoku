@@ -57,20 +57,26 @@ theorem IsDBalanced.eq_top_of_ord_lt {I : Ideal R} {m : ℕ} (h : c.IsDBalanced 
   exact top_le_iff.mp this
 
 /-- "At every point it has order either `m` or `0`" [Kol07, Definition 83], locally: `ord I = 0`
-or `m ≤ ord I`.-/
+or `m ≤ ord I`.
+@isnad1 id=or.2h5v.s6.009a2558f503 from=translated src=- shape=f172032e vocab=d586ee29
+-/
 theorem IsDBalanced.ord_eq_zero_or_le {I : Ideal R} {m : ℕ} (h : c.IsDBalanced I m) (hm : 1 ≤ m) :
     ord I = 0 ∨ (m : ℕ∞) ≤ ord I := by
   by_cases hle : (m : ℕ∞) ≤ ord I
   · exact Or.inr hle
   · exact Or.inl (ord_eq_zero_iff.mpr (h.eq_top_of_ord_lt hm (not_le.mp hle)))
 
-/-- If moreover `ord I ≤ m` then `ord I ∈ {0, m}`.-/
+/-- If moreover `ord I ≤ m` then `ord I ∈ {0, m}`.
+@isnad1 id=or.3h5v.s6.01d67635346b from=translated src=- shape=9d9742cc vocab=d586ee29
+-/
 theorem IsDBalanced.ord_eq_zero_or_eq {I : Ideal R} {m : ℕ} (h : c.IsDBalanced I m) (hm : 1 ≤ m)
     (hle : ord I ≤ m) : ord I = 0 ∨ ord I = m :=
   (h.ord_eq_zero_or_le hm).imp id fun h' => le_antisymm hle h'
 
 /-- Kollár's "`cosupp (I, m) = cosupp I`" [Kol07, Definition 83], locally:
-`m ≤ ord I ↔ 1 ≤ ord I`.-/
+`m ≤ ord I ↔ 1 ≤ ord I`.
+@isnad1 id=iff.2h5v.s6.b477ca9906c7 from=translated src=- shape=3ca65ec4 vocab=d586ee29
+-/
 theorem IsDBalanced.le_ord_iff_one_le {I : Ideal R} {m : ℕ} (h : c.IsDBalanced I m) (hm : 1 ≤ m) :
     (m : ℕ∞) ≤ ord I ↔ 1 ≤ ord I := by
   refine ⟨fun h' => le_trans (by exact_mod_cast hm) h', fun h1 => ?_⟩
@@ -82,7 +88,9 @@ theorem IsDBalanced.le_ord_iff_one_le {I : Ideal R} {m : ℕ} (h : c.IsDBalanced
 /-- The D-balanced inclusions pass to the image under a ring map whose target derivations are
 induced by the source ones (`∂'ⱼ ∘ φ = φ ∘ ∂_{e j}`), such as the restriction to a coordinate
 hypersurface `R/⟨x₁⟩`: the algebra behind Kollár's remark that D-balanced ideals "behave very
-well with respect to restriction to smooth subvarieties" [Kol07, 52].-/
+well with respect to restriction to smooth subvarieties" [Kol07, 52].
+@isnad1 id=isdbalan.2h10v.s8.555cde24f26e from=translated src=- shape=5e901a54 vocab=452f9b3b
+-/
 theorem IsDBalanced.map {R' : Type*} [CommRing R'] [IsRegularLocalRing R'] [Algebra ℚ R']
     {n' : ℕ} (c' : RegularCoords R' n') (φ : R →+* R') (e : Fin n' → Fin n)
     (hφ : ∀ j f, c'.pderiv j (φ f) = φ (c.pderiv (e j) f)) {I : Ideal R} {m : ℕ}
@@ -97,7 +105,9 @@ theorem IsDBalanced.map {R' : Type*} [CommRing R'] [IsRegularLocalRing R'] [Alge
 variable (c)
 
 /-- `⟨xᵢ^m⟩` is D-balanced with respect to `m`, since `Dⁱ ⟨xᵢ^m⟩ = ⟨xᵢ^(m-i)⟩` and
-`⟨xᵢ^(m-i)⟩^m = ⟨xᵢ^m⟩^(m-i)`.-/
+`⟨xᵢ^(m-i)⟩^m = ⟨xᵢ^m⟩^(m-i)`.
+@isnad1 id=isdbalan.0h5v.s6.8f3b398b25b7 from=translated src=- shape=6171b00e vocab=9b8c8947
+-/
 theorem isDBalanced_span_singleton_x_pow (i : Fin n) (m : ℕ) :
     c.IsDBalanced (Ideal.span {c.x i ^ m}) m := by
   intro k hk
@@ -105,7 +115,9 @@ theorem isDBalanced_span_singleton_x_pow (i : Fin n) (m : ℕ) :
     ← pow_mul, ← pow_mul, Nat.mul_comm (m - k) m]
 
 /-- `⟨xᵢ xⱼ⟩` is not D-balanced with respect to `2` as soon as `xᵢ² ∉ ⟨xᵢ xⱼ⟩` (which holds in
-`ℚ⟦x₁, x₂⟧`: `X_sq_notMem_span_X_mul_X` below), since `D ⟨xᵢ xⱼ⟩ = ⟨xᵢ, xⱼ⟩`.-/
+`ℚ⟦x₁, x₂⟧`: `X_sq_notMem_span_X_mul_X` below), since `D ⟨xᵢ xⱼ⟩ = ⟨xᵢ, xⱼ⟩`.
+@isnad1 id=not.2h5v.s7.b9232c7d8b62 from=translated src=- shape=522c4625 vocab=11e72522
+-/
 theorem not_isDBalanced_span_singleton_x_mul_x {i j : Fin n} (hij : i ≠ j)
     (h : c.x i ^ 2 ∉ Ideal.span {c.x i * c.x j}) :
     ¬ c.IsDBalanced (Ideal.span {c.x i * c.x j}) 2 := by
@@ -121,7 +133,9 @@ theorem not_isDBalanced_span_singleton_x_mul_x {i j : Fin n} (hij : i ≠ j)
 end RegularCoords
 
 /-- In `K⟦X⟧` (any field `K`, `i ≠ j`), `Xᵢ² ∉ ⟨Xᵢ Xⱼ⟩`: the coefficient of `Xᵢ²` in a multiple of
-`Xⱼ` vanishes.-/
+`Xⱼ` vanishes.
+@isnad1 id=not.1h4v.s7.2212c5745d49 from=translated src=- shape=0a08141a vocab=a7660afa
+-/
 theorem X_sq_notMem_span_X_mul_X {σ K : Type*} [Field K] {i j : σ} (hij : i ≠ j) :
     (MvPowerSeries.X i : MvPowerSeries σ K) ^ 2 ∉
       Ideal.span {(MvPowerSeries.X i * MvPowerSeries.X j : MvPowerSeries σ K)} := by

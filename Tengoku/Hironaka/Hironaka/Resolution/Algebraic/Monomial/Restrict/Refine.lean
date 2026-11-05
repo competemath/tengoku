@@ -37,7 +37,9 @@ namespace Hironaka.Monomial.MonomialState
 
 open Finset
 
-/-- The image of the part of `W` over `A` is `A`, when `A ⊆ ρ(W)`.-/
+/-- The image of the part of `W` over `A` is `A`, when `A ⊆ ρ(W)`.
+@isnad1 id=eq.1h3v.s6.32b51ce6b3ba from=translated src=- shape=ec978cb5 vocab=d7afd312
+-/
 theorem image_filter_mem_image {ρ : ℕ → ℕ} {W A : Finset ℕ} (hA : A ⊆ W.image ρ) :
     (W.filter fun c => ρ c ∈ A).image ρ = A := by
   ext y
@@ -54,31 +56,52 @@ namespace Refines
 variable {ρ : ℕ → ℕ} {Y L : MonomialState} (h : Refines ρ Y L)
 include h
 
+/--
+@isnad1 id=eq.2h4v.s5.b59bef349f2e from=translated src=- shape=d92e2916 vocab=4bdddf8f
+-/
 theorem card_image {T : Finset ℕ} (hT : T ∈ Y.nerve) : (T.image ρ).card = T.card :=
   Finset.card_image_of_injOn (h.injOn T hT)
 
+/--
+@isnad1 id=eq.2h4v.s5.b1dc01f2aece from=translated src=- shape=5e329fb5 vocab=ac8fa712
+-/
 theorem total_image {T : Finset ℕ} (hT : T ∈ Y.nerve) : L.total (T.image ρ) = Y.total T := by
   rw [total, total, Finset.sum_image (h.injOn T hT)]
   exact Finset.sum_congr rfl fun c hc => h.a_eq c (MonomialState.lt_nextComp_of_mem _ hT hc)
 
+/--
+@isnad1 id=eq.2h4v.s5.12f36b8a0cfe from=translated src=- shape=50237304 vocab=9c97fa40
+-/
 theorem labels_image {T : Finset ℕ} (hT : T ∈ Y.nerve) : L.labels (T.image ρ) = Y.labels T := by
   rw [labels, labels, Finset.image_image]
   exact Finset.image_congr fun c hc => h.label_eq c (MonomialState.lt_nextComp_of_mem _ hT hc)
 
+/--
+@isnad1 id=eq.2h4v.s5.7ee7df9ac240 from=translated src=- shape=6743ba44 vocab=0ee44ab9
+-/
 theorem labelTuple_image {T : Finset ℕ} (hT : T ∈ Y.nerve) :
     L.labelTuple (T.image ρ) = Y.labelTuple T := by
   rw [labelTuple, labelTuple, h.labels_image hT]
 
+/--
+@isnad1 id=mem.2h5v.s5.ac9fbb156477 from=translated src=- shape=e7b6d926 vocab=8eb1d081
+-/
 theorem image_mem_faces {r : ℕ} {T : Finset ℕ} (hT : T ∈ Y.faces r) : T.image ρ ∈ L.faces r := by
   obtain ⟨hT, hc⟩ := Y.mem_faces.mp hT
   exact L.mem_faces.mpr ⟨h.image_mem T hT, (h.card_image hT).trans hc⟩
 
+/--
+@isnad1 id=ex.2h5v.s6.d9b99f021ae6 from=translated src=- shape=7a3fc30d vocab=8eb1d081
+-/
 theorem exists_lift_faces {r : ℕ} {T' : Finset ℕ} (hT' : T' ∈ L.faces r) :
     ∃ T ∈ Y.faces r, T.image ρ = T' := by
   obtain ⟨hT', hc⟩ := L.mem_faces.mp hT'
   obtain ⟨T, hT, rfl⟩ := h.exists_lift T' hT'
   exact ⟨T, Y.mem_faces.mpr ⟨hT, (h.card_image hT).symm.trans hc⟩, rfl⟩
 
+/--
+@isnad1 id=iff.1h4v.s4.009635f3a95a from=translated src=- shape=edb2fc02 vocab=0ad91073
+-/
 theorem star_iff (s : ℕ) : L.Star s ↔ Y.Star s := by
   constructor
   · intro hs T hT
@@ -89,7 +112,9 @@ theorem star_iff (s : ℕ) : L.Star s ↔ Y.Star s := by
     rw [h.total_image (Y.mem_faces.mp hT).1, ← h.m_eq]
     exact hs T hT
 
-/-- Kollár's choice on `Y` is the `ρ`-preimage of the choice on `L`.-/
+/-- Kollár's choice on `Y` is the `ρ`-preimage of the choice on `L`.
+@isnad1 id=eq.1h4v.s6.20dfb9c027e5 from=translated src=- shape=8987f9cc vocab=900c7f87
+-/
 theorem choice_eq (r : ℕ) : Y.choice r = Y.nerve.filter fun Q => Q.image ρ ∈ L.choice r := by
   ext Q
   rw [Finset.mem_filter, Y.mem_choice, L.mem_choice]
@@ -120,7 +145,9 @@ theorem choice_eq (r : ℕ) : Y.choice r = Y.nerve.filter fun Q => Q.image ρ �
         (by rw [h.total_image hTn, h.total_image hQ]; exact he)
       rwa [h.labelTuple_image hQ, h.labelTuple_image hTn] at this
 
-/-- The choice on `L` is the image of the choice on `Y`.-/
+/-- The choice on `L` is the image of the choice on `Y`.
+@isnad1 id=eq.1h4v.s5.7a16a446cfb7 from=translated src=- shape=22a26248 vocab=ebaf1010
+-/
 theorem choice_image (r : ℕ) : L.choice r = (Y.choice r).image (Finset.image ρ) := by
   ext T'
   rw [Finset.mem_image]
@@ -132,6 +159,9 @@ theorem choice_image (r : ℕ) : L.choice r = (Y.choice r).image (Finset.image �
     rw [h.choice_eq] at hT
     exact (Finset.mem_filter.mp hT).2
 
+/--
+@isnad1 id=iff.1h4v.s4.a8f7e69ff281 from=translated src=- shape=bee84b25 vocab=7b95f69c
+-/
 theorem choice_nonempty_iff (r : ℕ) : (Y.choice r).Nonempty ↔ (L.choice r).Nonempty := by
   rw [h.choice_image, Finset.image_nonempty]
 
@@ -143,16 +173,25 @@ variable {S_Y S_L : Finset (Finset ℕ)} (hSY : S_Y ⊆ Y.nerve)
   (hSL : S_L = S_Y.image (Finset.image ρ)) (hpre : ∀ Q ∈ Y.nerve, Q.image ρ ∈ S_L → Q ∈ S_Y)
 
 omit h in
+/--
+@isnad1 id=mem.2h4v.s6.51c12b65d0ab from=translated src=- shape=8caeeda5 vocab=63f75373
+-/
 theorem image_mem_center' (hSL : S_L = S_Y.image (Finset.image ρ)) {Q : Finset ℕ} (hQ : Q ∈ S_Y) :
     Q.image ρ ∈ S_L := by
   rw [hSL]; exact Finset.mem_image_of_mem _ hQ
 
 omit h in
+/--
+@isnad1 id=ex.2h4v.s6.4f10d4b07c8f from=translated src=- shape=0c470398 vocab=63f75373
+-/
 theorem exists_of_mem_center' (hSL : S_L = S_Y.image (Finset.image ρ)) {Q' : Finset ℕ}
     (hQ' : Q' ∈ S_L) : ∃ Q ∈ S_Y, Q.image ρ = Q' := by
   rw [hSL] at hQ'; exact Finset.mem_image.mp hQ'
 
 omit h in
+/--
+@isnad1 id=nonempty.3h5v.s6.5ded8a159c3f from=translated src=- shape=ce5afb16 vocab=8d6dc94d
+-/
 theorem nonempty_of_mem_center' (hSY : S_Y ⊆ Y.nerve) (hSL : S_L = S_Y.image (Finset.image ρ))
     {Q' : Finset ℕ} (hQ' : Q' ∈ S_L) : Q'.Nonempty := by
   obtain ⟨Q, hQ, rfl⟩ := exists_of_mem_center' hSL hQ'
@@ -161,7 +200,9 @@ theorem nonempty_of_mem_center' (hSY : S_Y ⊆ Y.nerve) (hSL : S_L = S_Y.image (
 omit h in
 include hSY hSL hpre in
 /-- No face of `S_L` lies inside the image of a face `T` of `Y` containing no face of `S_Y`: the
-components of `T` over such a face would form a face of `S_Y` inside `T`.-/
+components of `T` over such a face would form a face of `S_Y` inside `T`.
+@isnad1 id=not.6h6v.s7.ecf55af55d33 from=translated src=- shape=29a410c3 vocab=9f547d14
+-/
 theorem not_subset_image_of_forall {T : Finset ℕ} (hT : T ∈ Y.nerve)
     (hTS : ∀ Q ∈ S_Y, ¬ Q ⊆ T) : ∀ Q' ∈ S_L, ¬ Q' ⊆ T.image ρ := fun Q' hQ' hQ'T => by
   have hQ'ne : Q'.Nonempty := nonempty_of_mem_center' hSY hSL hQ'
@@ -173,7 +214,9 @@ theorem not_subset_image_of_forall {T : Finset ℕ} (hT : T ∈ Y.nerve)
   exact hTS _ (hpre _ hmem (by rw [hfil]; exact hQ')) (Finset.filter_subset _ _)
 
 include hSY hSL hpre in
-/-- `Refines` extends across a blow-up along `S_Y` and its image `S_L`.-/
+/-- `Refines` extends across a blow-up along `S_Y` and its image `S_L`.
+@isnad1 id=refines.4h5v.s7.7bf93b5dc33c from=translated src=- shape=ac51cb0a vocab=5ae7af2d
+-/
 theorem blowUp : Refines (extendComp ρ Y L S_Y S_L) (Y.blowUp S_Y) (L.blowUp S_L) where
   n_eq := by rw [blowUp_n, blowUp_n, h.n_eq]
   m_eq := by rw [blowUp_m, blowUp_m, h.m_eq]

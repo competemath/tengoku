@@ -45,9 +45,15 @@ def extendComp (c : ℕ) : ℕ :=
 label.-/
 def extendLabel (ℓ : ℕ) : ℕ := if ℓ < D.nextLabel then σ ℓ else P.nextLabel
 
+/--
+@isnad1 id=eq.1h6v.s5.e5115a91cc2e from=translated src=- shape=06b98a1c vocab=d7d1136e
+-/
 theorem extendComp_of_lt {c : ℕ} (hc : c < D.nextComp) : extendComp ρ D P S_D S c = ρ c :=
   ite_eq_left hc
 
+/--
+@isnad1 id=eq.1h6v.s5.502b20f9aba4 from=translated src=- shape=67c63667 vocab=f0c977ce
+-/
 theorem extendComp_newComp {Q : Finset ℕ} (hQ : Q ∈ S_D) :
     extendComp ρ D P S_D S (D.newComp S_D Q) = P.newComp S (Q.image ρ) := by
   rw [extendComp, ite_eq_right (not_lt.mpr (D.nextComp_le_newComp S_D Q))]
@@ -57,12 +63,21 @@ theorem extendComp_newComp {Q : Finset ℕ} (hQ : Q ∈ S_D) :
         D.newComp_injOn S_D (Finset.mem_filter.mp hQ').1 hQ (Finset.mem_filter.mp hQ').2⟩
   rw [this, Finset.sup_singleton]
 
+/--
+@isnad1 id=eq.1h4v.s4.09b6d92a31da from=translated src=- shape=1a7999c3 vocab=b563f52f
+-/
 theorem extendLabel_of_lt {ℓ : ℕ} (hℓ : ℓ < D.nextLabel) : extendLabel σ D P ℓ = σ ℓ :=
   ite_eq_left hℓ
 
+/--
+@isnad1 id=eq.0h3v.s4.690b691210c9 from=translated src=- shape=c29911fb vocab=d1668327
+-/
 theorem extendLabel_nextLabel : extendLabel σ D P D.nextLabel = P.nextLabel :=
   ite_eq_right (lt_irrefl _)
 
+/--
+@isnad1 id=eq.1h6v.s5.8fffa2b93f25 from=translated src=- shape=c0e08ada vocab=54dd1fbd
+-/
 theorem image_extendComp_of_lt {T : Finset ℕ} (hT : ∀ c ∈ T, c < D.nextComp) :
     T.image (extendComp ρ D P S_D S) = T.image ρ :=
   Finset.image_congr fun c hc => extendComp_of_lt ρ D P S_D S (hT c hc)
@@ -71,6 +86,9 @@ end Defs
 
 /-! ### Ranks under the renumbering -/
 
+/--
+@isnad1 id=iff.2h3v.s6.f0e0fc91c071 from=translated src=- shape=49fcaf37 vocab=33885ffa
+-/
 theorem rank_lt_rank_iff {S : Finset (Finset ℕ)} {P Q : Finset ℕ} (hP : P ∈ S) (hQ : Q ∈ S) :
     rank S P < rank S Q ↔ faceList P < faceList Q := by
   refine ⟨fun h => ?_, rank_lt_rank hP⟩
@@ -79,7 +97,9 @@ theorem rank_lt_rank_iff {S : Finset (Finset ℕ)} {P Q : Finset ℕ} (hP : P �
   · exact lt_asymm h (rank_lt_rank hQ hlt)
   · exact lt_irrefl _ (faceList_injective heq ▸ h)
 
-/-- The new components allocated by a blow-up are exactly `nextComp, …, nextComp + |S_D| - 1`.-/
+/-- The new components allocated by a blow-up are exactly `nextComp, …, nextComp + |S_D| - 1`.
+@isnad1 id=ex.2h3v.s6.200f43a7a1ab from=translated src=- shape=b0893090 vocab=f2e4322a
+-/
 theorem exists_newComp_eq (D : MonomialState) (S_D : Finset (Finset ℕ)) {c : ℕ}
     (hc : D.nextComp ≤ c) (hc' : c < D.nextComp + S_D.card) : ∃ Q ∈ S_D, D.newComp S_D Q = c := by
   have himg : S_D.image (rank S_D) = Finset.range S_D.card := by
@@ -97,10 +117,16 @@ namespace Rel
 variable {ρ σ : ℕ → ℕ} {D P : MonomialState} (h : Rel ρ σ D P)
 include h
 
+/--
+@isnad1 id=eq.2h5v.s5.ef478b62ba32 from=translated src=- shape=f70ad989 vocab=d9b669c4
+-/
 theorem faceList_image {Q : Finset ℕ} (hQ : ∀ c ∈ Q, c < D.nextComp) :
     faceList (Q.image ρ) = (faceList Q).map ρ :=
   sortedList_image fun a ha b hb hab => h.mono (hQ a ha) (hQ b hb) hab
 
+/--
+@isnad1 id=iff.3h6v.s6.ffd875e39c07 from=translated src=- shape=50dc8548 vocab=598eed07
+-/
 theorem faceList_image_lt_iff {Q Q' : Finset ℕ} (hQ : ∀ c ∈ Q, c < D.nextComp)
     (hQ' : ∀ c ∈ Q', c < D.nextComp) :
     faceList (Q.image ρ) < faceList (Q'.image ρ) ↔ faceList Q < faceList Q' := by
@@ -108,13 +134,18 @@ theorem faceList_image_lt_iff {Q Q' : Finset ℕ} (hQ : ∀ c ∈ Q, c < D.nextC
   exact map_lt_map_iff h.mono (fun c hc => hQ c (mem_sortedList.mp hc))
     (fun c hc => hQ' c (mem_sortedList.mp hc))
 
-/-- Images of subsets of faces compare like the subsets.-/
+/-- Images of subsets of faces compare like the subsets.
+@isnad1 id=iff.3h6v.s6.0086c73bb871 from=translated src=- shape=2792eee4 vocab=ffe575d8
+-/
 theorem image_subset_image_iff {A B : Finset ℕ} (hA : ∀ c ∈ A, c < D.nextComp)
     (hB : ∀ c ∈ B, c < D.nextComp) : A.image ρ ⊆ B.image ρ ↔ A ⊆ B := by
   rw [← Finset.coe_subset, Finset.coe_image, Finset.coe_image,
     h.mono.injOn.image_subset_image_iff (fun c hc => hA c hc) (fun c hc => hB c hc),
     Finset.coe_subset]
 
+/--
+@isnad1 id=iff.3h6v.s6.553c52daa404 from=translated src=- shape=2792eee4 vocab=3746c68e
+-/
 theorem image_eq_image_iff {A B : Finset ℕ} (hA : ∀ c ∈ A, c < D.nextComp)
     (hB : ∀ c ∈ B, c < D.nextComp) : A.image ρ = B.image ρ ↔ A = B := by
   rw [← Finset.coe_inj, Finset.coe_image, Finset.coe_image,
@@ -126,24 +157,34 @@ section Center
 
 variable {ρ : ℕ → ℕ} {D P : MonomialState} {S S_D : Finset (Finset ℕ)}
 
+/--
+@isnad1 id=lt.3h4v.s6.8f3da9b3a8e2 from=translated src=- shape=f8728587 vocab=e4a493e0
+-/
 theorem lt_of_mem_center (hSD : S_D ⊆ D.nerve) {Q : Finset ℕ} (hQ : Q ∈ S_D) :
     ∀ c ∈ Q, c < D.nextComp :=
   fun _ hc => D.lt_nextComp_of_mem (hSD hQ) hc
 
+/--
+@isnad1 id=mem.2h5v.s7.d59c97c69313 from=translated src=- shape=5c6a233c vocab=5557269f
+-/
 theorem image_mem_center (hfilter : S.filter (· ∈ P.nerve) = S_D.image (Finset.image ρ))
     {Q : Finset ℕ} (hQ : Q ∈ S_D) : Q.image ρ ∈ S := by
   have : Q.image ρ ∈ S.filter (· ∈ P.nerve) := by
     rw [hfilter]; exact Finset.mem_image_of_mem _ hQ
   exact (Finset.mem_filter.mp this).1
 
-/-- A face of `S` lying in `P`'s nerve is the image of a face of `S_D`.-/
+/-- A face of `S` lying in `P`'s nerve is the image of a face of `S_D`.
+@isnad1 id=ex.3h5v.s7.7b520717d7ad from=translated src=- shape=53007668 vocab=5557269f
+-/
 theorem exists_of_mem_center (hfilter : S.filter (· ∈ P.nerve) = S_D.image (Finset.image ρ))
     {Q : Finset ℕ} (hQ : Q ∈ S) (hQP : Q ∈ P.nerve) : ∃ Q₀ ∈ S_D, Q₀.image ρ = Q := by
   have : Q ∈ S_D.image (Finset.image ρ) := by
     rw [← hfilter]; exact Finset.mem_filter.mpr ⟨hQ, hQP⟩
   exact Finset.mem_image.mp this
 
-/-- A component below the new counter is old or the new component of a face of the centre.-/
+/-- A component below the new counter is old or the new component of a face of the centre.
+@isnad1 id=or.1h3v.s6.5b72b9fdfdc6 from=translated src=- shape=32a3e6fb vocab=92157821
+-/
 theorem lt_or_exists_newComp (D : MonomialState) (S_D : Finset (Finset ℕ)) {c : ℕ}
     (hc : c < D.nextComp + S_D.card) : c < D.nextComp ∨ ∃ Q ∈ S_D, D.newComp S_D Q = c := by
   by_cases h : c < D.nextComp
@@ -163,6 +204,9 @@ variable {S S_D : Finset (Finset ℕ)} (hSD : S_D ⊆ D.nerve)
   (hfilter : S.filter (· ∈ P.nerve) = S_D.image (Finset.image ρ))
 include hSD hfilter
 
+/--
+@isnad1 id=lt.6h8v.s7.836d696585d6 from=translated src=- shape=524fa2d9 vocab=44704387
+-/
 theorem newComp_image_lt {Q₁ Q₂ : Finset ℕ} (hQ₁ : Q₁ ∈ S_D) (hQ₂ : Q₂ ∈ S_D)
     (hlt : D.newComp S_D Q₁ < D.newComp S_D Q₂) :
     P.newComp S (Q₁.image ρ) < P.newComp S (Q₂.image ρ) := by
@@ -172,7 +216,9 @@ theorem newComp_image_lt {Q₁ Q₂ : Finset ℕ} (hQ₁ : Q₁ ∈ S_D) (hQ₂ 
   exact (rank_lt_rank_iff hQ₁ hQ₂).mp (Nat.lt_of_add_lt_add_left hlt)
 
 /-- No face of the centre `S` lies inside the image of a set of old components unless it is the
-image of a face of `S_D` inside that set.-/
+image of a face of `S_D` inside that set.
+@isnad1 id=not.7h8v.s7.e7ad573567df from=translated src=- shape=ff8ecb99 vocab=b6c3e0d8
+-/
 theorem not_subset_image (hS0 : ∀ Q ∈ S, Q.Nonempty) {T : Finset ℕ} (hT : T ∈ D.nerve)
     (hTS : ∀ Q₀ ∈ S_D, ¬ Q₀ ⊆ T) : ∀ Q ∈ S, ¬ Q ⊆ T.image ρ := fun Q hQ hQT => by
   have hQP : Q ∈ P.nerve := P.mem_nerve_of_subset (h.image_mem_nerve hT) hQT (hS0 Q hQ)
@@ -180,6 +226,9 @@ theorem not_subset_image (hS0 : ∀ Q ∈ S, Q.Nonempty) {T : Finset ℕ} (hT : 
   exact hTS Q₀ hQ₀ ((h.image_subset_image_iff (lt_of_mem_center hSD hQ₀)
     fun _ hc => D.lt_nextComp_of_mem hT hc).mp hQT)
 
+/--
+@isnad1 id=strictmo.3h6v.s7.006d2083d008 from=translated src=- shape=774de11f vocab=43cf5f1d
+-/
 theorem extendComp_strictMonoOn :
     StrictMonoOn (extendComp ρ D P S_D S) (Set.Iio (D.nextComp + S_D.card)) := by
   intro a ha b hb hab
@@ -195,6 +244,9 @@ theorem extendComp_strictMonoOn :
       exact h.newComp_image_lt hSD hfilter hQ₁ hQ₂ hab
 
 omit hSD in
+/--
+@isnad1 id=lt.3h7v.s7.94a9eba2f6ac from=translated src=- shape=36ccc40e vocab=e7de5620
+-/
 theorem extendComp_lt : ∀ c, c < D.nextComp + S_D.card →
     extendComp ρ D P S_D S c < P.nextComp + S.card := fun c hc => by
   rcases lt_or_exists_newComp D S_D hc with hc' | ⟨Q, hQ, rfl⟩
@@ -203,6 +255,9 @@ theorem extendComp_lt : ∀ c, c < D.nextComp + S_D.card →
   · rw [extendComp_newComp ρ D P S_D S hQ]
     exact P.newComp_lt (image_mem_center hfilter hQ)
 
+/--
+@isnad1 id=eq.4h7v.s7.ed99a19b5ad0 from=translated src=- shape=d52d628d vocab=9f627ae8
+-/
 theorem blowUp_a_extend : ∀ c, c < D.nextComp + S_D.card →
     (P.blowUp S).a (extendComp ρ D P S_D S c) = (D.blowUp S_D).a c := fun c hc => by
   rcases lt_or_exists_newComp D S_D hc with hc' | ⟨Q, hQ, rfl⟩
@@ -212,6 +267,9 @@ theorem blowUp_a_extend : ∀ c, c < D.nextComp + S_D.card →
       D.blowUp_a_newComp S_D hQ, h.total_image (lt_of_mem_center hSD hQ), h.m_eq]
 
 omit hSD hfilter in
+/--
+@isnad1 id=eq.2h7v.s6.83b53f93b994 from=translated src=- shape=80a1e201 vocab=b8e04005
+-/
 theorem blowUp_label_extend : ∀ c, c < D.nextComp + S_D.card →
     (P.blowUp S).label (extendComp ρ D P S_D S c) =
       extendLabel σ D P ((D.blowUp S_D).label c) := fun c hc => by
@@ -222,6 +280,9 @@ theorem blowUp_label_extend : ∀ c, c < D.nextComp + S_D.card →
       extendLabel_nextLabel]
 
 omit hSD hfilter in
+/--
+@isnad1 id=strictmo.1h4v.s5.7690414ae4c8 from=translated src=- shape=1c7a93b1 vocab=01e2a655
+-/
 theorem extendLabel_strictMonoOn :
     StrictMonoOn (extendLabel σ D P) (Set.Iio (D.nextLabel + 1)) := by
   intro a ha b hb hab
@@ -235,6 +296,9 @@ theorem extendLabel_strictMonoOn :
     exact h.σlt a ha'
 
 omit hSD hfilter in
+/--
+@isnad1 id=lt.2h5v.s5.ea940432e8fb from=translated src=- shape=7b99ec3b vocab=8c1fb233
+-/
 theorem extendLabel_lt : ∀ ℓ, ℓ < D.nextLabel + 1 → extendLabel σ D P ℓ < P.nextLabel + 1 :=
   fun ℓ hℓ => by
   rcases (Nat.lt_succ_iff.mp hℓ).lt_or_eq with hℓ' | rfl
@@ -243,7 +307,9 @@ theorem extendLabel_lt : ∀ ℓ, ℓ < D.nextLabel + 1 → extendLabel σ D P �
   · rw [extendLabel_nextLabel]
     exact Nat.lt_succ_self _
 
-/-- The nerve rule commutes with the renumbering.-/
+/-- The nerve rule commutes with the renumbering.
+@isnad1 id=eq.4h6v.s7.31846639d886 from=translated src=- shape=79333737 vocab=a3a9dd59
+-/
 theorem blowUp_nerve_extend (hS0 : ∀ Q ∈ S, Q.Nonempty) :
     (P.blowUp S).nerve = (D.blowUp S_D).nerve.image (Finset.image (extendComp ρ D P S_D S)) := by
   ext T'
@@ -312,7 +378,9 @@ theorem blowUp_nerve_extend (hS0 : ∀ Q ∈ S, Q.Nonempty) :
         exact h3 Q' hQ' ((h.image_subset_image_iff (lt_of_mem_center hSD hQ') hT₁₀c).mp hQT)
 
 /-- The renumbering extends across a blow-up: `D` along its centre `S_D`, `P` along the centre
-`S` whose faces in `P` are the images of those of `S_D`.-/
+`S` whose faces in `P` are the images of those of `S_D`.
+@isnad1 id=rel.4h6v.s7.d2648b09ca15 from=translated src=- shape=826ea8e9 vocab=fb96d8f0
+-/
 theorem blowUp (hS0 : ∀ Q ∈ S, Q.Nonempty) :
     Rel (extendComp ρ D P S_D S) (extendLabel σ D P) (D.blowUp S_D) (P.blowUp S) where
   n_eq := by rw [blowUp_n, blowUp_n, h.n_eq]

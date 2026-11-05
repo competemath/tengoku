@@ -79,25 +79,85 @@ instance : SMul ℤ (Complexified A) := ⟨fun n z => ⟨n • z.re, n • z.im�
 instance : NatCast (Complexified A) := ⟨fun n => ⟨n, 0⟩⟩
 instance : IntCast (Complexified A) := ⟨fun n => ⟨n, 0⟩⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.ab030affbbb4 from=translated src=- shape=c6b7a0b8 vocab=24cd843c
+-/
 @[simp] theorem zero_re : (0 : Complexified A).re = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s5.daac864e9f0b from=translated src=- shape=c6b7a0b8 vocab=c79d0c1c
+-/
 @[simp] theorem zero_im : (0 : Complexified A).im = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s5.7d12e7ef52a7 from=translated src=- shape=c6b7a0b8 vocab=24cd843c
+-/
 @[simp] theorem one_re : (1 : Complexified A).re = 1 := rfl
+/--
+@isnad1 id=eq.0h1v.s5.06ee1e939ec9 from=translated src=- shape=c6b7a0b8 vocab=c79d0c1c
+-/
 @[simp] theorem one_im : (1 : Complexified A).im = 0 := rfl
+/--
+@isnad1 id=eq.0h3v.s5.2c892169e8c4 from=translated src=- shape=0090f101 vocab=84c29e23
+-/
 @[simp] theorem add_re (z w : Complexified A) : (z + w).re = z.re + w.re := rfl
+/--
+@isnad1 id=eq.0h3v.s5.79ca54d07e37 from=translated src=- shape=0090f101 vocab=9d946615
+-/
 @[simp] theorem add_im (z w : Complexified A) : (z + w).im = z.im + w.im := rfl
+/--
+@isnad1 id=eq.0h2v.s5.7b60fe8e96cf from=translated src=- shape=58efbbcf vocab=c4768d2a
+-/
 @[simp] theorem neg_re (z : Complexified A) : (-z).re = -z.re := rfl
+/--
+@isnad1 id=eq.0h2v.s5.5bef83fb6f7e from=translated src=- shape=58efbbcf vocab=6ce4de6c
+-/
 @[simp] theorem neg_im (z : Complexified A) : (-z).im = -z.im := rfl
+/--
+@isnad1 id=eq.0h3v.s5.f5f94956c434 from=translated src=- shape=0090f101 vocab=2a44278e
+-/
 @[simp] theorem sub_re (z w : Complexified A) : (z - w).re = z.re - w.re := rfl
+/--
+@isnad1 id=eq.0h3v.s5.2603030157d3 from=translated src=- shape=0090f101 vocab=7a64b08a
+-/
 @[simp] theorem sub_im (z w : Complexified A) : (z - w).im = z.im - w.im := rfl
+/--
+@isnad1 id=eq.0h3v.s6.a83fa584d41f from=translated src=- shape=9d6409a6 vocab=9466cc82
+-/
 @[simp] theorem mul_re (z w : Complexified A) : (z * w).re = z.re * w.re - z.im * w.im := rfl
+/--
+@isnad1 id=eq.0h3v.s6.dbcecab36a79 from=translated src=- shape=b9761b50 vocab=9054ca30
+-/
 @[simp] theorem mul_im (z w : Complexified A) : (z * w).im = z.re * w.im + z.im * w.re := rfl
+/--
+@isnad1 id=eq.0h3v.s5.07d1c2c5fc43 from=translated src=- shape=9f363131 vocab=97c54606
+-/
 @[simp] theorem nsmul_re (n : ℕ) (z : Complexified A) : (n • z).re = n • z.re := rfl
+/--
+@isnad1 id=eq.0h3v.s5.108104575236 from=translated src=- shape=9f363131 vocab=2907f8a0
+-/
 @[simp] theorem nsmul_im (n : ℕ) (z : Complexified A) : (n • z).im = n • z.im := rfl
+/--
+@isnad1 id=eq.0h3v.s5.5a2ff460e257 from=translated src=- shape=9f363131 vocab=e2f2d47c
+-/
 @[simp] theorem zsmul_re (n : ℤ) (z : Complexified A) : (n • z).re = n • z.re := rfl
+/--
+@isnad1 id=eq.0h3v.s5.10e1be5d77ca from=translated src=- shape=9f363131 vocab=a640e6a0
+-/
 @[simp] theorem zsmul_im (n : ℤ) (z : Complexified A) : (n • z).im = n • z.im := rfl
+/--
+@isnad1 id=eq.0h2v.s4.7aaae7a34496 from=translated src=- shape=7db3a00d vocab=095ba5eb
+-/
 @[simp] theorem natCast_re (n : ℕ) : (n : Complexified A).re = n := rfl
+/--
+@isnad1 id=eq.0h2v.s5.2b8fef3882de from=translated src=- shape=7ba49ae7 vocab=75809ecd
+-/
 @[simp] theorem natCast_im (n : ℕ) : (n : Complexified A).im = 0 := rfl
+/--
+@isnad1 id=eq.0h2v.s4.6438fabc0252 from=translated src=- shape=7db3a00d vocab=92aa6991
+-/
 @[simp] theorem intCast_re (n : ℤ) : (n : Complexified A).re = n := rfl
+/--
+@isnad1 id=eq.0h2v.s5.5cc1fd7c0beb from=translated src=- shape=7ba49ae7 vocab=afd1e7d9
+-/
 @[simp] theorem intCast_im (n : ℤ) : (n : Complexified A).im = 0 := rfl
 
 instance instCommRing : CommRing (Complexified A) where
@@ -127,6 +187,9 @@ instance instCommRing : CommRing (Complexified A) where
   mul_zero := by intros; ext <;> simp
   mul_comm := by intros; ext <;> simp <;> ring
 
+/--
+@isnad1 id=nontrivi.0h1v.s3.9faf5af46219 from=translated src=- shape=d96e9922 vocab=b3b929e1
+-/
 instance instNontrivial [Nontrivial A] : Nontrivial (Complexified A) :=
   ⟨⟨0, 1, fun h => zero_ne_one (congrArg re h)⟩⟩
 
@@ -138,15 +201,30 @@ def ofReal : A →+* Complexified A where
   map_zero' := rfl
   map_add' _ _ := by ext <;> simp
 
+/--
+@isnad1 id=eq.0h2v.s6.c4756330e0fb from=translated src=- shape=4b9f7faf vocab=f513b116
+-/
 @[simp] theorem ofReal_re (a : A) : (ofReal a).re = a := rfl
+/--
+@isnad1 id=eq.0h2v.s6.e67cb28cdf9c from=translated src=- shape=dc77db7a vocab=f9a87a00
+-/
 @[simp] theorem ofReal_im (a : A) : (ofReal a).im = 0 := rfl
 
 /-- The imaginary unit `i = 1 ⊗ i` of `A ⊗_ℝ ℂ`.-/
 def I : Complexified A := ⟨0, 1⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.cbaabbf5f519 from=translated src=- shape=5f1ef773 vocab=99e4183f
+-/
 @[simp] theorem I_re : (I : Complexified A).re = 0 := rfl
+/--
+@isnad1 id=eq.0h1v.s4.497ca0d4d585 from=translated src=- shape=5f1ef773 vocab=3583f0d5
+-/
 @[simp] theorem I_im : (I : Complexified A).im = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.56b05dd69ddb from=translated src=- shape=33cac440 vocab=241d3968
+-/
 theorem I_mul_I : (I : Complexified A) * I = -1 := by ext <;> simp
 
 /-- The complexification of a ring homomorphism, componentwise.-/
@@ -157,34 +235,61 @@ def map (f : A →+* B) : Complexified A →+* Complexified B where
   map_zero' := by ext <;> simp
   map_add' _ _ := by ext <;> simp
 
+/--
+@isnad1 id=eq.0h4v.s7.094cdb166279 from=translated src=- shape=7758e3e0 vocab=c9a6d665
+-/
 @[simp] theorem map_re (f : A →+* B) (z : Complexified A) : (map f z).re = f z.re := rfl
+/--
+@isnad1 id=eq.0h4v.s7.d515c5e19a7b from=translated src=- shape=7758e3e0 vocab=f4252f9a
+-/
 @[simp] theorem map_im (f : A →+* B) (z : Complexified A) : (map f z).im = f z.im := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.68ef9e4e1aae from=translated src=- shape=a9843297 vocab=8748ed6e
+-/
 @[simp]
 theorem map_id : map (RingHom.id A) = RingHom.id (Complexified A) :=
   RingHom.ext fun _ => rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.39338a60ca73 from=translated src=- shape=1d0a1d16 vocab=6c2eb14a
+-/
 theorem map_comp {C : Type*} [CommRing C] (g : B →+* C) (f : A →+* B) :
     map (g.comp f) = (map g).comp (map f) :=
   RingHom.ext fun _ => rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.190462ba686c from=translated src=- shape=542b35ba vocab=1b5e767a
+-/
 @[simp] theorem map_ofReal (f : A →+* B) (a : A) : map f (ofReal a) = ofReal (f a) := by
   ext <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s6.37a8f8a9f52a from=translated src=- shape=b393e1dd vocab=37956889
+-/
 @[simp] theorem map_I (f : A →+* B) : map f (I : Complexified A) = I := by ext <;> simp
 
+/--
+@isnad1 id=injectiv.1h3v.s7.e09eb4818ff3 from=translated src=- shape=1aeb3f0b vocab=6dbc5827
+-/
 theorem map_injective {f : A →+* B} (hf : Function.Injective f) : Function.Injective (map f) :=
   fun z w h => by
     ext
     · exact hf (congrArg re h)
     · exact hf (congrArg im h)
 
+/--
+@isnad1 id=surjecti.1h3v.s7.4c05c4b9b881 from=translated src=- shape=1aeb3f0b vocab=138dbfe0
+-/
 theorem map_surjective {f : A →+* B} (hf : Function.Surjective f) : Function.Surjective (map f) :=
   fun w => by
     obtain ⟨a, ha⟩ := hf w.re
     obtain ⟨b, hb⟩ := hf w.im
     exact ⟨⟨a, b⟩, by ext <;> simp [ha, hb]⟩
 
+/--
+@isnad1 id=bijectiv.1h3v.s7.a94493b5ac9e from=translated src=- shape=1aeb3f0b vocab=29435c51
+-/
 theorem map_bijective {f : A →+* B} (hf : Function.Bijective f) : Function.Bijective (map f) :=
   ⟨map_injective hf.1, map_surjective hf.2⟩
 
@@ -192,6 +297,9 @@ theorem map_bijective {f : A →+* B} (hf : Function.Bijective f) : Function.Bij
 noncomputable def mapEquiv (e : A ≃+* B) : Complexified A ≃+* Complexified B :=
   RingEquiv.ofBijective (map e.toRingHom) (map_bijective e.bijective)
 
+/--
+@isnad1 id=eq.0h4v.s7.ec1a93db435c from=translated src=- shape=c0dea30d vocab=5a3ece95
+-/
 @[simp] theorem mapEquiv_apply (e : A ≃+* B) (z : Complexified A) :
     mapEquiv e z = map e.toRingHom z := rfl
 
@@ -204,8 +312,14 @@ def algebraMapComplex (φ : ℝ →+* A) : ℂ →+* Complexified A where
   map_zero' := by ext <;> simp
   map_add' _ _ := by ext <;> simp
 
+/--
+@isnad1 id=eq.0h3v.s6.e26a32c311f4 from=translated src=- shape=18938d98 vocab=422ef740
+-/
 @[simp] theorem algebraMapComplex_re (φ : ℝ →+* A) (c : ℂ) :
     (algebraMapComplex φ c).re = φ c.re := rfl
+/--
+@isnad1 id=eq.0h3v.s6.ba22a6d4893b from=translated src=- shape=18938d98 vocab=d2d0efa4
+-/
 @[simp] theorem algebraMapComplex_im (φ : ℝ →+* A) (c : ℂ) :
     (algebraMapComplex φ c).im = φ c.im := rfl
 
@@ -215,7 +329,13 @@ variable {R : Type*} [CommSemiring R] [Algebra R A]
 
 instance instSMul : SMul R (Complexified A) := ⟨fun r z => ⟨r • z.re, r • z.im⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.597acd8ef9aa from=translated src=- shape=1cba1c43 vocab=cfa3fcf3
+-/
 @[simp] theorem smul_re (r : R) (z : Complexified A) : (r • z).re = r • z.re := rfl
+/--
+@isnad1 id=eq.0h4v.s6.1719748d63d5 from=translated src=- shape=1cba1c43 vocab=c2114ea3
+-/
 @[simp] theorem smul_im (r : R) (z : Complexified A) : (r • z).im = r • z.im := rfl
 
 /-- The `R`-algebra structure of `A ⊗_ℝ ℂ` from one of `A` (through `ofReal`).-/
@@ -225,6 +345,9 @@ instance instAlgebra : Algebra R (Complexified A) where
   smul := (· • ·)
   smul_def' r z := by ext <;> simp [Algebra.smul_def]
 
+/--
+@isnad1 id=eq.0h3v.s7.f932910c256c from=translated src=- shape=61376e1c vocab=5f510b18
+-/
 @[simp]
 theorem algebraMap_apply (r : R) :
     algebraMap R (Complexified A) r = ofReal (algebraMap R A r) := rfl
@@ -232,6 +355,9 @@ theorem algebraMap_apply (r : R) :
 /-- `ofReal` as an `R`-algebra homomorphism.-/
 def ofRealAlgHom : A →ₐ[R] Complexified A := { ofReal with commutes' := fun _ => rfl }
 
+/--
+@isnad1 id=eq.0h3v.s7.c7732ee1b84f from=translated src=- shape=e702d4da vocab=4dcf06cd
+-/
 @[simp] theorem ofRealAlgHom_apply (a : A) :
     (ofRealAlgHom : A →ₐ[R] Complexified A) a = ofReal a := rfl
 
@@ -242,19 +368,31 @@ end Algebra
 /-- The norm `N(a + bi) = a² + b²`, multiplicative.-/
 def norm (z : Complexified A) : A := z.re * z.re + z.im * z.im
 
+/--
+@isnad1 id=eq.0h3v.s5.f2a4222822ae from=translated src=- shape=0090f101 vocab=051704b8
+-/
 theorem norm_mul (z w : Complexified A) : norm (z * w) = norm z * norm w := by
   simp only [norm, mul_re, mul_im]; ring
 
+/--
+@isnad1 id=eq.0h1v.s5.f1384bccc4a0 from=translated src=- shape=c6b7a0b8 vocab=0697d298
+-/
 theorem norm_one : norm (1 : Complexified A) = 1 := by simp [norm]
 
 /-- The conjugate `a - bi`.-/
 def conj (z : Complexified A) : Complexified A := ⟨z.re, -z.im⟩
 
+/--
+@isnad1 id=eq.0h2v.s6.83b241e9dd92 from=translated src=- shape=c57a40ac vocab=93a1c928
+-/
 theorem mul_conj (z : Complexified A) : z * conj z = ofReal (norm z) := by
   ext
   · simp only [mul_re, conj, norm, ofReal_re, mul_neg, sub_neg_eq_add]
   · simp only [mul_im, conj, ofReal_im, mul_neg]; ring
 
+/--
+@isnad1 id=iff.0h2v.s5.e551940572c4 from=translated src=- shape=8b353daa vocab=9653db19
+-/
 theorem isUnit_iff_isUnit_norm (z : Complexified A) : IsUnit z ↔ IsUnit (norm z) := by
   constructor
   · rintro ⟨u, rfl⟩
@@ -270,7 +408,9 @@ theorem isUnit_iff_isUnit_norm (z : Complexified A) : IsUnit z ↔ IsUnit (norm 
 congruent modulo `𝔪_A` to a constant `φ c`, `φ : ℝ →+* A` — then `A ⊗_ℝ ℂ = A[i]` is a local
 ring. Proof: for `z = a + bi` with `a ≡ φ α`, `b ≡ φ β`, the norm `a² + b² ≡ φ(α² + β²)`; if
 `(α, β) ≠ 0` this is a unit of `A` (a constant outside `𝔪_A`), so `z` is a unit; otherwise
-`a, b ∈ 𝔪_A` and `1 - z` has norm `≡ 1`, a unit.-/
+`a, b ∈ 𝔪_A` and `1 - z` has norm `≡ 1`, a unit.
+@isnad1 id=islocalr.1h2v.s7.c2404ada8c00 from=translated src=- shape=bc114ffe vocab=140561db
+-/
 theorem isLocalRing_of_exists_sub_mem [IsLocalRing A] (φ : ℝ →+* A)
     (h : ∀ a : A, ∃ c : ℝ, a - φ c ∈ IsLocalRing.maximalIdeal A) :
     IsLocalRing (Complexified A) := by
@@ -321,7 +461,9 @@ theorem isLocalRing_of_exists_sub_mem [IsLocalRing A] (φ : ℝ →+* A)
     rw [isUnit_iff_isUnit_norm]
     exact hcong _ _ hαβ (hnorm z.re z.im α β hα hβ)
 
-/-- A local homomorphism complexifies to a local homomorphism.-/
+/-- A local homomorphism complexifies to a local homomorphism.
+@isnad1 id=islocalh.0h3v.s7.cdc3573de8cc from=translated src=- shape=80e3e4d1 vocab=366ac22d
+-/
 theorem isLocalHom_map (f : A →+* B) [IsLocalHom f] :
     IsLocalHom (map f) where
   map_nonunit z hz := by
@@ -344,6 +486,9 @@ noncomputable def algebraMapComplexAlgHom : ℂ →ₐ[ℝ] Complexified A :=
     commutes' := fun r =>
       Complexified.ext (by simp) (by simp) }
 
+/--
+@isnad1 id=eq.0h2v.s7.4b3358059398 from=translated src=- shape=72ac6f0c vocab=c4c88a92
+-/
 @[simp] theorem algebraMapComplexAlgHom_apply (c : ℂ) :
     (algebraMapComplexAlgHom : ℂ →ₐ[ℝ] Complexified A) c =
       ⟨algebraMap ℝ A c.re, algebraMap ℝ A c.im⟩ :=
@@ -353,6 +498,9 @@ noncomputable def algebraMapComplexAlgHom : ℂ →ₐ[ℝ] Complexified A :=
 noncomputable def ofTensor : A ⊗[ℝ] ℂ →ₐ[ℝ] Complexified A :=
   Algebra.TensorProduct.productMap ofRealAlgHom algebraMapComplexAlgHom
 
+/--
+@isnad1 id=eq.0h3v.s8.54e9a3f1a96b from=translated src=- shape=26f5d38a vocab=ab9c13cc
+-/
 @[simp] theorem ofTensor_tmul (a : A) (c : ℂ) :
     ofTensor (a ⊗ₜ c) = ofReal a * ⟨algebraMap ℝ A c.re, algebraMap ℝ A c.im⟩ := by
   rw [ofTensor, Algebra.TensorProduct.productMap_apply_tmul]
@@ -373,6 +521,9 @@ noncomputable def toTensor : Complexified A →ₐ[ℝ] A ⊗[ℝ] ℂ where
   commutes' r := by
     simp [Algebra.TensorProduct.algebraMap_apply]
 
+/--
+@isnad1 id=eq.0h2v.s8.229c84c62a83 from=translated src=- shape=42b60b20 vocab=01c6ec57
+-/
 @[simp] theorem toTensor_apply (z : Complexified A) :
     toTensor z = z.re ⊗ₜ 1 + z.im ⊗ₜ Complex.I := rfl
 

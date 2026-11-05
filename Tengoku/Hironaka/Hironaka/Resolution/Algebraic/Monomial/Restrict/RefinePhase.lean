@@ -43,14 +43,22 @@ def refineRun (ρ : ℕ → ℕ) : MonomialState → List (Finset (Finset ℕ)) 
     (st.nerve.filter fun Q => Q.image ρ ∈ S') ::
       refineRun ρ (st.blowUp (st.nerve.filter fun Q => Q.image ρ ∈ S')) Ls
 
+/--
+@isnad1 id=eq.0h2v.s4.b213b51eacb2 from=translated src=- shape=4cc5aa5b vocab=6977e097
+-/
 theorem refineRun_nil (ρ : ℕ → ℕ) (st : MonomialState) : refineRun ρ st [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.58e04f6c6c54 from=translated src=- shape=6da2d1ec vocab=27d5320d
+-/
 theorem refineRun_cons (ρ : ℕ → ℕ) (st : MonomialState) (S' : Finset (Finset ℕ))
     (Ls : List (Finset (Finset ℕ))) :
     refineRun ρ st (S' :: Ls) = (st.nerve.filter fun Q => Q.image ρ ∈ S') ::
       refineRun ρ (st.blowUp (st.nerve.filter fun Q => Q.image ρ ∈ S')) Ls := rfl
 
-/-- The preimage run, index by index.-/
+/-- The preimage run, index by index.
+@isnad1 id=eq.0h4v.s7.d19c283cab23 from=translated src=- shape=6a7b2428 vocab=0680b231
+-/
 theorem refineRun_getElem? (ρ : ℕ → ℕ) (st : MonomialState) (Ls : List (Finset (Finset ℕ)))
     (k : ℕ) :
     (refineRun ρ st Ls)[k]? = (Ls[k]?).map fun S' : Finset (Finset ℕ) =>
@@ -66,13 +74,18 @@ theorem refineRun_getElem? (ρ : ℕ → ℕ) (st : MonomialState) (Ls : List (F
         List.foldl_cons]
       exact ih _ k
 
+/--
+@isnad1 id=le.0h2v.s4.b24d26bbf76b from=translated src=- shape=fd9aaeb0 vocab=e8bc60d3
+-/
 theorem nextComp_le_foldl (st : MonomialState) (Ls : List (Finset (Finset ℕ))) :
     st.nextComp ≤ (Ls.foldl blowUp st).nextComp := by
   induction Ls generalizing st with
   | nil => exact le_rfl
   | cons S Ls ih => exact (nextComp_le_blowUp st S).trans (ih _)
 
-/-- The preimage run depends on `ρ` only below the final counter of the run.-/
+/-- The preimage run depends on `ρ` only below the final counter of the run.
+@isnad1 id=eq.1h4v.s5.34a5a3d32a46 from=translated src=- shape=174656ed vocab=c66ba2be
+-/
 theorem refineRun_congr {ρ ρ' : ℕ → ℕ} : ∀ (st : MonomialState) (Ls : List (Finset (Finset ℕ))),
     (∀ c, c < ((refineRun ρ st Ls).foldl blowUp st).nextComp → ρ' c = ρ c) →
     refineRun ρ' st Ls = refineRun ρ st Ls
@@ -89,6 +102,9 @@ theorem refineRun_congr {ρ ρ' : ℕ → ℕ} : ∀ (st : MonomialState) (Ls : 
     rw [refineRun_cons, List.foldl_cons]
     exact hc
 
+/--
+@isnad1 id=eq.0h4v.s6.e2155f5be4b8 from=translated src=- shape=e6941286 vocab=e14b0ed6
+-/
 theorem refineRun_append (ρ : ℕ → ℕ) (st : MonomialState) (L₁ L₂ : List (Finset (Finset ℕ))) :
     refineRun ρ st (L₁ ++ L₂) =
       refineRun ρ st L₁ ++ refineRun ρ ((refineRun ρ st L₁).foldl blowUp st) L₂ := by
@@ -97,7 +113,9 @@ theorem refineRun_append (ρ : ℕ → ℕ) (st : MonomialState) (L₁ L₂ : Li
   | cons S' L₁ ih =>
     rw [List.cons_append, refineRun_cons, refineRun_cons, ih, List.cons_append, List.foldl_cons]
 
-/-- The final state of a phase is the fold of its centres.-/
+/-- The final state of a phase is the fold of its centres.
+@isnad1 id=eq.1h2v.s5.7ac6ed7c5a8b from=translated src=- shape=6b8bfaf6 vocab=ea20dcbe
+-/
 theorem phase_fst_eq_foldl {r : ℕ} (st : MonomialState) (hs : ∀ s < r, st.Star s) :
     (phase r st hs).1 = (phase r st hs).2.foldl blowUp st := by
   induction st, hs using phase.induct r with
@@ -106,6 +124,9 @@ theorem phase_fst_eq_foldl {r : ℕ} (st : MonomialState) (hs : ∀ s < r, st.St
 
 /-! ### The lockstep induction -/
 
+/--
+@isnad1 id=ex.3h4v.s7.ba2d535d3930 from=translated src=- shape=4a74328f vocab=48593f03
+-/
 theorem phase_refine (r : ℕ) : ∀ (L : MonomialState) (hsL : ∀ s < r, L.Star s) (Y : MonomialState)
     (ρ : ℕ → ℕ), Refines ρ Y L → ∀ hsY : ∀ s < r, Y.Star s,
     ∃ ρ' : ℕ → ℕ, (∀ c, c < Y.nextComp → ρ' c = ρ c) ∧
@@ -142,6 +163,9 @@ theorem phase_refine (r : ℕ) : ∀ (L : MonomialState) (hsL : ∀ s < r, L.Sta
     rw [phase_of_not_nonempty L hsL hne, phase_of_not_nonempty Y hsY hYe]
     exact ⟨ρ, fun _ _ => rfl, href, rfl, rfl⟩
 
+/--
+@isnad1 id=ex.3h5v.s7.7e613c118de8 from=translated src=- shape=8a46f280 vocab=2583446d
+-/
 theorem phases_refine (k : ℕ) : ∀ (r : ℕ) (L : MonomialState) (hsL : ∀ s < r, L.Star s)
     (Y : MonomialState) (ρ : ℕ → ℕ), Refines ρ Y L → ∀ hsY : ∀ s < r, Y.Star s,
     ∃ ρ' : ℕ → ℕ, (∀ c, c < Y.nextComp → ρ' c = ρ c) ∧
@@ -171,6 +195,9 @@ theorem phases_refine (k : ℕ) : ∀ (r : ℕ) (L : MonomialState) (hsL : ∀ s
         (image_image_congr hρ' (phase_centers_lt Y hsY S hS)).symm
     · rw [refineRun_append, hcongr, ← hmapY₁, ← phase_fst_eq_foldl, ← hmapY']
 
+/--
+@isnad1 id=ex.1h3v.s7.f4c9c26fe10f from=translated src=- shape=1496b94f vocab=e32710f3
+-/
 theorem step3_refine_aux {ρ : ℕ → ℕ} {Y L : MonomialState} (h : Refines ρ Y L) :
     ∃ ρ' : ℕ → ℕ, (∀ c, c < Y.nextComp → ρ' c = ρ c) ∧
       Refines ρ' (step3 Y).1 (step3 L).1 ∧
@@ -182,7 +209,9 @@ theorem step3_refine_aux {ρ : ℕ → ℕ} {Y L : MonomialState} (h : Refines �
 
 /-- Functoriality of Step 3 under refinement, the first clause of [Kol07, 34.1] on the state:
 the run on `Y` is the `ρ`-preimage of the run on `L`, with `ρ` extended to the new components
-and `Refines` between the final states.-/
+and `Refines` between the final states.
+@isnad1 id=ex.1h3v.s8.a12d78cc9dd1 from=translated src=- shape=a4b96936 vocab=2e3b427b
+-/
 theorem step3_refine {ρ : ℕ → ℕ} {Y L : MonomialState} (h : Refines ρ Y L) :
     ∃ ρ' : ℕ → ℕ, (∀ c, c < Y.nextComp → ρ' c = ρ c) ∧
       Refines ρ' (step3 Y).1 (step3 L).1 ∧

@@ -60,7 +60,9 @@ section RelativeDimension
 variable {X Y : Scheme.{u}}
 
 /-- On an open `V` covered by the basic opens of a set `s` of sections spanning the unit ideal,
-every point lies in some `D(t)`, `t ∈ s` (Mathlib's `iSup_basicOpen_of_span_eq_top`).-/
+every point lies in some `D(t)`, `t ∈ s` (Mathlib's `iSup_basicOpen_of_span_eq_top`).
+@isnad1 id=ex.2h4v.s11.befa7d838a1b from=translated src=- shape=a2e34a7c vocab=de52067a
+-/
 theorem exists_mem_basicOpen_of_span_eq_top {V : X.Opens} (s : Set Γ(X, V))
     (hs : Ideal.span s = ⊤) {x : X} (hx : x ∈ V) : ∃ t ∈ s, x ∈ X.basicOpen t := by
   have h := iSup_basicOpen_of_span_eq_top V s hs
@@ -70,7 +72,9 @@ theorem exists_mem_basicOpen_of_span_eq_top {V : X.Opens} (s : Set Γ(X, V))
   exact ⟨t, hts, hxt⟩
 
 /-- A section that is a unit at a point is not nilpotent, so its localization is a nontrivial
-ring.-/
+ring.
+@isnad1 id=nontrivi.1h4v.s9.7e21e679d7d9 from=translated src=- shape=5889f103 vocab=093627f3
+-/
 theorem nontrivial_localizationAway_of_mem_basicOpen {V : X.Opens} (t : Γ(X, V)) {x : X}
     (hx : x ∈ X.basicOpen t) : Nontrivial (Localization.Away t) := by
   have hxV : x ∈ V := X.basicOpen_le t hx
@@ -122,7 +126,9 @@ variable {X Y : Scheme.{u}}
 
 /-- The map of closed subschemes `V(J) → V(I)` induced by an open immersion `f : Y ⟶ X` with
 `J = I.comap f` is an open immersion: it is the base change of `f` along `V(I) → X`
-(Mathlib's `isPullback_of_isClosedImmersion`).-/
+(Mathlib's `isPullback_of_isClosedImmersion`).
+@isnad1 id=isopenim.2h5v.s6.f43234fb1165 from=translated src=- shape=9f6e1b32 vocab=56d6eb1b
+-/
 theorem isOpenImmersion_subschemeMap_of_comap (f : Y ⟶ X) [IsOpenImmersion f]
     (I : X.IdealSheafData) (J : Y.IdealSheafData) (hJ : J = I.comap f) (H : I ≤ J.map f) :
     IsOpenImmersion (subschemeMap J I f H) := by
@@ -151,7 +157,9 @@ positive relative dimension over the centre [Kol07, Definition 25]: if the induc
 point of `V(Z·𝒪_B)` lies in the exceptional set of `π`.
 A local isomorphism at such a point would make the restriction of `V(Z·𝒪_B) → V(Z)` to an open
 neighbourhood an open immersion, smooth of relative dimension `0` and `m` at once, on a nonempty
-scheme.-/
+scheme.
+@isnad1 id=le.1h5v.s7.140654fdd669 from=translated src=- shape=f16d26ce vocab=ecd7bf05
+-/
 theorem support_comap_subset_exceptionalSet {B X : Scheme.{u}} (π : B ⟶ X)
     (Z : X.IdealSheafData) {m : ℕ} (hm : 1 ≤ m)
     [SmoothOfRelativeDimension m (Scheme.IdealSheafData.subschemeMap (Z.comap π) Z π

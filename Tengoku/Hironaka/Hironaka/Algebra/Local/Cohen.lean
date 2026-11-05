@@ -43,11 +43,17 @@ variable (R : Type*) [CommRing R] [IsNoetherianRing R] [IsLocalRing R] {d : ℕ}
 local notation "R̂" => AdicCompletion (maximalIdeal R) R
 
 omit [IsNoetherianRing R] in
+/--
+@isnad1 id=mem.1h4v.s6.0ad62caa6469 from=translated src=- shape=5cbf979c vocab=f9ab5f07
+-/
 theorem x_mem_maximalIdeal_of_eq_span (hx : maximalIdeal R = Ideal.span (Set.range x))
     (i : Fin d) : x i ∈ maximalIdeal R := by
   rw [hx]
   exact Ideal.subset_span ⟨i, rfl⟩
 
+/--
+@isnad1 id=eq.1h3v.s9.b71b56136eff from=translated src=- shape=f5149159 vocab=fb3c3ccb
+-/
 theorem maximalIdeal_adicCompletion_eq_span (hx : maximalIdeal R = Ideal.span (Set.range x)) :
     maximalIdeal R̂ = Ideal.span (Set.range fun i => algebraMap R R̂ (x i)) := by
   rw [AdicCompletion.maximalIdeal_eq_map, hx, Ideal.map_span, ← Set.range_comp]
@@ -60,7 +66,9 @@ noncomputable abbrev cohenMap' (hx : maximalIdeal R = Ideal.span (Set.range x)) 
     MvPowerSeries (Fin d) (ResidueField R) →ₐ[ResidueField R] R̂ :=
   cohenMap R x (x_mem_maximalIdeal_of_eq_span R x hx)
 
-/-- On polynomials, `Φ` is the evaluation at `ι(x)`.-/
+/-- On polynomials, `Φ` is the evaluation at `ι(x)`.
+@isnad1 id=eq.1h4v.s10.10668320ee50 from=translated src=- shape=e3381a90 vocab=46c4621c
+-/
 theorem cohenMap_coe (hx : maximalIdeal R = Ideal.span (Set.range x))
     (P : MvPolynomial (Fin d) (ResidueField R)) :
     cohenMap' R x hx (P : MvPowerSeries (Fin d) (ResidueField R)) =
@@ -77,7 +85,9 @@ theorem cohenMap_coe (hx : maximalIdeal R = Ideal.span (Set.range x))
   exact AlgHom.congr_fun h P
 
 /-- One step of the successive approximation: an element of `𝔪̂^a` is, modulo `𝔪̂^{a+1}`, the
-value of a homogeneous polynomial of degree `a` over the coefficient field.-/
+value of a homogeneous polynomial of degree `a` over the coefficient field.
+@isnad1 id=ex.3h5v.s11.0cca653eea47 from=translated src=- shape=ede2522d vocab=706c7f08
+-/
 theorem exists_isHomogeneous_sub_cohenMap_mem (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) (a : ℕ) :
     ∀ ρ ∈ maximalIdeal R̂ ^ a, ∃ H : MvPolynomial (Fin d) (ResidueField R),
@@ -138,6 +148,9 @@ noncomputable def approxStep (hι : IsCoefficientAlgebra R)
     (r : {r : R̂ // r ∈ maximalIdeal R̂ ^ a}) : MvPolynomial (Fin d) (ResidueField R) :=
   Classical.choose (exists_isHomogeneous_sub_cohenMap_mem R x hι hx a r.1 r.2)
 
+/--
+@isnad1 id=and.2h5v.s11.a4e289fb1589 from=translated src=- shape=6afba3a4 vocab=21e6374a
+-/
 theorem approxStep_spec (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) (a : ℕ)
     (r : {r : R̂ // r ∈ maximalIdeal R̂ ^ a}) :
@@ -163,15 +176,24 @@ noncomputable def approxPoly (hι : IsCoefficientAlgebra R)
     MvPolynomial (Fin d) (ResidueField R) :=
   approxStep R x hι hx a (approxRem R x hι hx ρ a)
 
+/--
+@isnad1 id=ishomoge.2h5v.s7.c7d5c3516411 from=translated src=- shape=2ca41577 vocab=ff521460
+-/
 theorem approxPoly_isHomogeneous (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) (ρ : R̂) (a : ℕ) :
     (approxPoly R x hι hx ρ a).IsHomogeneous a :=
   (approxStep_spec R x hι hx a (approxRem R x hι hx ρ a)).1
 
+/--
+@isnad1 id=eq.2h4v.s10.3670441da52c from=translated src=- shape=add39d91 vocab=ed5650b0
+-/
 theorem approxRem_zero (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) (ρ : R̂) :
     (approxRem R x hι hx ρ 0).1 = ρ := rfl
 
+/--
+@isnad1 id=eq.2h5v.s11.2e0bbd4a4850 from=translated src=- shape=9a2b38f0 vocab=50b96b8f
+-/
 theorem approxRem_succ (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) (ρ : R̂) (a : ℕ) :
     (approxRem R x hι hx ρ (a + 1)).1 = (approxRem R x hι hx ρ a).1 -
@@ -183,6 +205,9 @@ noncomputable def approxPartial (hι : IsCoefficientAlgebra R)
     MvPolynomial (Fin d) (ResidueField R) :=
   ∑ b ∈ Finset.range a, approxPoly R x hι hx ρ b
 
+/--
+@isnad1 id=eq.2h5v.s10.3dfd9117f72f from=translated src=- shape=aaf38ade vocab=eb7b7458
+-/
 theorem approxRem_eq (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) (ρ : R̂) (a : ℕ) :
     (approxRem R x hι hx ρ a).1 = ρ -
@@ -202,11 +227,17 @@ noncomputable def approxSeries (hι : IsCoefficientAlgebra R)
     MvPowerSeries (Fin d) (ResidueField R) :=
   fun α => (approxPoly R x hι hx ρ α.degree).coeff α
 
+/--
+@isnad1 id=eq.2h5v.s9.98fba95c7aa9 from=translated src=- shape=34b75c09 vocab=2de8e8b9
+-/
 theorem coeff_approxSeries (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) (ρ : R̂)
     (α : Fin d →₀ ℕ) :
     coeff α (approxSeries R x hι hx ρ) = (approxPoly R x hι hx ρ α.degree).coeff α := rfl
 
+/--
+@isnad1 id=eq.2h6v.s9.26c30fc0449c from=translated src=- shape=ec81d575 vocab=f5e583e0
+-/
 theorem coeff_approxPartial (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) (ρ : R̂) (a : ℕ)
     (α : Fin d →₀ ℕ) :
@@ -223,12 +254,18 @@ theorem coeff_approxPartial (hι : IsCoefficientAlgebra R)
     have := Finset.mem_range.mp hb
     omega
 
+/--
+@isnad1 id=eq.2h5v.s9.600869137785 from=translated src=- shape=4f887353 vocab=1205fcf0
+-/
 theorem truncTotal_approxSeries (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) (ρ : R̂) (a : ℕ) :
     truncTotal a (approxSeries R x hι hx ρ) = approxPartial R x hι hx ρ a := by
   ext α
   rw [coeff_truncTotal_eq_ite, coeff_approxPartial, coeff_approxSeries]
 
+/--
+@isnad1 id=eq.2h5v.s9.bf5e36eefe59 from=translated src=- shape=57d1a3c7 vocab=00b70bdd
+-/
 theorem truncTotal_coe_approxPartial (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) (ρ : R̂)
     (a : ℕ) :
@@ -241,7 +278,9 @@ theorem truncTotal_coe_approxPartial (hι : IsCoefficientAlgebra R)
   · rfl
 
 /-- `Φ` is surjective, for any coefficient field (the surjectivity half of
-[Kol07, Definition 55], by successive approximation).-/
+[Kol07, Definition 55], by successive approximation).
+@isnad1 id=surjecti.2h3v.s9.f4e6b4e1aa3a from=translated src=- shape=084272b7 vocab=9654695c
+-/
 theorem cohenMap_surjective_of_residue (hι : IsCoefficientAlgebra R)
     (hx : maximalIdeal R = Ideal.span (Set.range x)) :
     Function.Surjective (cohenMap' R x hx) := by
@@ -268,7 +307,9 @@ variable (R : Type*) [CommRing R] [IsNoetherianRing R] [IsLocalRing R] [Algebra 
   (x : Fin d → R)
 
 /-- `Φ` is surjective — the specialization of `cohenMap_surjective_of_residue` at the chosen
-coefficient field (`ℚ ⊆ R`).-/
+coefficient field (`ℚ ⊆ R`).
+@isnad1 id=surjecti.1h3v.s9.d92a44efc342 from=translated src=- shape=bc6514b3 vocab=646d7e2c
+-/
 theorem cohenMap_surjective (hx : maximalIdeal R = Ideal.span (Set.range x)) :
     Function.Surjective (cohenMap' R x hx) :=
   cohenMap_surjective_of_residue R x (isCoefficientAlgebra_coefficientAlgebra R) hx

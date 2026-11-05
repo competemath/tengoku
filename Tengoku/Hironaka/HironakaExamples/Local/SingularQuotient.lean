@@ -39,7 +39,9 @@ variable {R : Type u} [CommRing R] [IsRegularLocalRing R]
 
 /-- A regular local ring modulo a nonzero element of `𝔪²` is not a regular local ring
 ([Sta, Tag 00NR] would make the element part of a regular system of parameters, which never lies
-in `𝔪²`).-/
+in `𝔪²`).
+@isnad1 id=not.2h2v.s7.85d2ce2a5400 from=translated src=- shape=139e889e vocab=7e2d362c
+-/
 theorem not_isRegularLocalRing_quotient_span_singleton {g : R} (hg0 : g ∈ nonZeroDivisors R)
     (hg : g ∈ maximalIdeal R ^ 2) : ¬ IsRegularLocalRing (R ⧸ Ideal.span {g}) := by
   intro hQ

@@ -50,7 +50,9 @@ variable {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spec (.of k))
 
 section Arithmetic
 
-/-- `n + t = n` in `WithBot ℕ∞` forces `t = 0`.-/
+/-- `n + t = n` in `WithBot ℕ∞` forces `t = 0`.
+@isnad1 id=eq.1h2v.s5.ab340169a533 from=translated src=- shape=edb99cf8 vocab=dd07c3d4
+-/
 theorem enat_eq_zero_of_natCast_add_eq {n : ℕ} {t : ℕ∞}
     (h : (n : WithBot ℕ∞) + (t : WithBot ℕ∞) = (n : WithBot ℕ∞)) : t = 0 := by
   have ht : t ≠ ⊤ := by
@@ -70,7 +72,9 @@ variable (n : ℕ) [SmoothOfRelativeDimension n f] (x : X)
 include f n
 
 /-- The stalk of a scheme locally of finite type over `k` is essentially of finite type over
-`k`.-/
+`k`.
+@isnad1 id=essfinit.0h5v.s6.c79afe2bcf92 from=translated src=- shape=ab10390d vocab=59933e87
+-/
 theorem essFiniteType_stalk :
     letI := f.stalkAlgebra x
     Algebra.EssFiniteType k (X.presheaf.stalk x) := by
@@ -89,7 +93,9 @@ theorem essFiniteType_stalk :
       (hU.primeIdealOf ⟨x, hxU⟩).asIdeal.primeCompl
   exact Algebra.EssFiniteType.comp k Γ(X, U) (X.presheaf.stalk x)
 
-/-- The residue field of the stalk is essentially of finite type over `k`.-/
+/-- The residue field of the stalk is essentially of finite type over `k`.
+@isnad1 id=essfinit.0h5v.s7.af61994a0321 from=translated src=- shape=32cb4780 vocab=9d474e15
+-/
 theorem essFiniteType_residueField_stalk :
     letI := f.stalkAlgebra x
     Algebra.EssFiniteType k (ResidueField (X.presheaf.stalk x)) := by
@@ -101,7 +107,9 @@ theorem essFiniteType_residueField_stalk :
   exact Algebra.EssFiniteType.comp k (X.presheaf.stalk x) (ResidueField (X.presheaf.stalk x))
 
 /-- `Ω[𝒪_{X,x}⁄k]` is a finite `𝒪_{X,x}`-module (the localization of the finite module
-`Ω[Γ(U)⁄k]` of a standard smooth affine chart).-/
+`Ω[Γ(U)⁄k]` of a standard smooth affine chart).
+@isnad1 id=finite.0h5v.s9.0d4263d28d77 from=translated src=- shape=e215f5bb vocab=7e1860c1
+-/
 theorem finite_kaehlerDifferential_stalk :
     letI := f.stalkAlgebra x
     Module.Finite (X.presheaf.stalk x) Ω[X.presheaf.stalk x⁄k] := by

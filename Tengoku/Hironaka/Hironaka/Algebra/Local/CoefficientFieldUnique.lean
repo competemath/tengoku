@@ -51,7 +51,9 @@ separated local `k`-algebra `B` with the same residue composite are equal: the u
 complementing the Hensel-lemma construction of a field of representatives
 [Kol07, Definition 55]; not in the sources. Induction along the powers of the maximal ideal with
 `Algebra.FormallyUnramified.comp_injective` for the square-zero ideals `𝔪ⁿ/𝔪ⁿ⁺¹`, then
-separatedness (Krull's intersection theorem).-/
+separatedness (Krull's intersection theorem).
+@isnad1 id=eq.1h5v.s8.f8a177304c61 from=translated src=- shape=fcedf1e7 vocab=8ea1c8ed
+-/
 theorem algHom_ext_of_residue_eq {k A B : Type*} [CommRing k] [CommRing A] [CommRing B]
     [Algebra k A] [Algebra k B] [Algebra.FormallyUnramified k A] [IsLocalRing B]
     [IsHausdorff (maximalIdeal B) B] (σ₁ σ₂ : A →ₐ[k] B)

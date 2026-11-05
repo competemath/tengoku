@@ -52,17 +52,25 @@ variable {Y : Type u} {Y' : Type v}
 def graphOn {Ω : Set Y} (φ : Ω → Y') (S : Set Y) : Set (Y × Y') :=
   {p | ∃ y : Ω, (y : Y) ∈ S ∧ p = ((y : Y), φ y)}
 
+/--
+@isnad1 id=le.1h6v.s5.5c224d5e9d94 from=translated src=- shape=e2d1f412 vocab=49b70700
+-/
 theorem graphOn_mono {Ω : Set Y} (φ : Ω → Y') {S T : Set Y} (h : S ⊆ T) :
     graphOn φ S ⊆ graphOn φ T := by
   rintro p ⟨y, hy, rfl⟩
   exact ⟨y, h hy, rfl⟩
 
+/--
+@isnad1 id=mem.1h6v.s5.ec59b32a8b69 from=translated src=- shape=0996759f vocab=fb27715a
+-/
 theorem fst_mem_of_mem_graphOn {Ω : Set Y} {φ : Ω → Y'} {S : Set Y} {p : Y × Y'}
     (hp : p ∈ graphOn φ S) : p.1 ∈ S := by
   obtain ⟨y, hy, rfl⟩ := hp
   exact hy
 
-/-- The graph of `φ` over `Ω` is the transpose of the graph of its inverse `ψ` over `Ω'`.-/
+/-- The graph of `φ` over `Ω` is the transpose of the graph of its inverse `ψ` over `Ω'`.
+@isnad1 id=eq.4h6v.s7.b3818f906bd4 from=translated src=- shape=33a8ab29 vocab=1c09c37f
+-/
 theorem graphOn_eq_preimage_swap {Ω : Set Y} {φ : Ω → Y'} {Ω' : Set Y'} {ψ : Ω' → Y}
     (hφΩ : ∀ y : Ω, φ y ∈ Ω') (hψφ : ∀ y : Ω, ψ ⟨φ y, hφΩ y⟩ = y)
     (hψΩ : ∀ y' : Ω', ψ y' ∈ Ω) (hφψ : ∀ y' : Ω', φ ⟨ψ y', hψΩ y'⟩ = y') :
@@ -81,7 +89,9 @@ variable [TopologicalSpace Y] [TopologicalSpace Y']
 /-! ### (1) Shrinking the domain so that the closure of the graph avoids a closed set -/
 
 /-- Shrinking the domain of a continuous partial map so that the closure of its graph avoids a
-closed set `E`, keeping a given subgraph `G` whose closure already avoids `E`.-/
+closed set `E`, keeping a given subgraph `G` whose closure already avoids `E`.
+@isnad1 id=ex.5h6v.s8.3a1ab5dd262c from=translated src=- shape=fed8c6cc vocab=4b64f9d3
+-/
 theorem exists_isOpen_graphOn_closure_disjoint [TopologicalSpace.MetrizableSpace Y]
     [TopologicalSpace.MetrizableSpace Y']
     {Ω : Set Y} (hΩ : IsOpen Ω) {φ : Ω → Y'} (hφ : Continuous φ) {G E : Set (Y × Y')}
@@ -132,7 +142,9 @@ theorem exists_isOpen_graphOn_closure_disjoint [TopologicalSpace.MetrizableSpace
 
 /-! ### (2) The boundary of the graph over an open set is closed -/
 
-/-- Over an open `S`, the closure of the graph meets `S × Y'` only in the graph.-/
+/-- Over an open `S`, the closure of the graph meets `S × Y'` only in the graph.
+@isnad1 id=le.3h5v.s6.28590c366e4d from=translated src=- shape=7c282274 vocab=2a723339
+-/
 theorem closure_graphOn_inter_subset [T2Space Y'] {Ω : Set Y} {φ : Ω → Y'} (hφ : Continuous φ)
     {S : Set Y} (hS : IsOpen S) (hSΩ : S ⊆ Ω) :
     closure (graphOn φ S) ∩ S ×ˢ (univ : Set Y') ⊆ graphOn φ S := by
@@ -159,7 +171,9 @@ theorem closure_graphOn_inter_subset [T2Space Y'] {Ω : Set Y} {φ : Ω → Y'} 
   rw [himage]
   exact ⟨q, hq, rfl⟩
 
-/-- The boundary `closure Γ ∖ Γ` of the graph over an open set is closed.-/
+/-- The boundary `closure Γ ∖ Γ` of the graph over an open set is closed.
+@isnad1 id=isclosed.3h5v.s6.7f2593829a5e from=translated src=- shape=27a88cf3 vocab=cbe18b0b
+-/
 theorem isClosed_closure_diff_graphOn [T2Space Y'] {Ω : Set Y} {φ : Ω → Y'} (hφ : Continuous φ)
     {S : Set Y} (hS : IsOpen S) (hSΩ : S ⊆ Ω) :
     IsClosed (closure (graphOn φ S) \ graphOn φ S) := by
@@ -179,7 +193,9 @@ theorem isClosed_closure_diff_graphOn [T2Space Y'] {Ω : Set Y} {φ : Ω → Y'}
 /-- If `φ : Ω → Y'` is a homeomorphism onto the open `Ω'` with inverse `ψ`, and the closure of its
 graph avoids the pairs of `R × R'` outside both domains, then the closure of the graph meets
 `R × R'` only in the graph: a limit `(a, b)` with `a ∈ Ω` lies on the graph by continuity of `φ`,
-one with `b ∈ Ω'` by continuity of `ψ`, and the remaining pairs are excluded.-/
+one with `b ∈ Ω'` by continuity of `ψ`, and the remaining pairs are excluded.
+@isnad1 id=le.9h8v.s8.fbe8115a2544 from=translated src=- shape=c0013898 vocab=8b63a3e3
+-/
 theorem closure_graphOn_inter_prod_subset [T2Space Y] [T2Space Y'] {Ω : Set Y} (hΩ : IsOpen Ω)
     {φ : Ω → Y'} (hφ : Continuous φ) {Ω' : Set Y'} (hΩ' : IsOpen Ω') {ψ : Ω' → Y}
     (hψ : Continuous ψ) (hφΩ : ∀ y : Ω, φ y ∈ Ω') (hψφ : ∀ y : Ω, ψ ⟨φ y, hφΩ y⟩ = y)
@@ -203,7 +219,9 @@ theorem closure_graphOn_inter_prod_subset [T2Space Y] [T2Space Y'] {Ω : Set Y} 
 /-! ### (3) The real diagonal is closed -/
 
 /-- For closed embeddings `f`, `g` and continuous maps `a`, `b` into a Hausdorff space, the set
-of pairs `(f u, g v)` with `a u = b v` is closed.-/
+of pairs `(f u, g v)` with `a u = b v` is closed.
+@isnad1 id=isclosed.4h9v.s6.8906115d7ea6 from=translated src=- shape=d610c8c4 vocab=a12abd8a
+-/
 theorem isClosed_image_prodMap_of_eq {X : Type*} {A : Type*} {B : Type*} [TopologicalSpace X]
     [T2Space X] [TopologicalSpace A] [TopologicalSpace B] {f : A → Y} {g : B → Y'}
     (hf : IsClosedEmbedding f) (hg : IsClosedEmbedding g) {a : A → X} {b : B → X}

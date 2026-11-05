@@ -42,7 +42,9 @@ variable {d : ℕ}
 /-- The analytic implicit function theorem in one dependent variable, from Mathlib's `C^ω` inverse
 function theorem for the joint map `(u, t) ↦ (u, Φ₂(u, t))`: a simple zero `(u₀, t₀)` of an
 analytic `Φ₂` (`∂_t Φ₂(u₀, t₀) = c ≠ 0`) lies on an analytic root branch `τ`, and near `(u₀, t₀)`
-the zeros of `Φ₂` are exactly the points of the branch.-/
+the zeros of `Φ₂` are exactly the points of the branch.
+@isnad1 id=ex.4h5v.s8.e8a5d3e3fc89 from=translated src=- shape=71203b28 vocab=331c4d8f
+-/
 theorem exists_analytic_root_branch {Φ₂ : (Fin d → ℂ) × ℂ → ℂ} {u₀ : Fin d → ℂ} {t₀ c : ℂ}
     (hΦ : AnalyticAt ℂ Φ₂ (u₀, t₀)) (h0 : Φ₂ (u₀, t₀) = 0)
     (hder : HasDerivAt (fun t => Φ₂ (u₀, t)) c t₀) (hc : c ≠ 0) :

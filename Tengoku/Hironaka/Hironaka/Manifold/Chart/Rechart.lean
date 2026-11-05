@@ -54,14 +54,18 @@ def rechartedSpace (e : M' ≃ₜ M) (c : M → OpenPartialHomeomorph M H)
     exact ⟨mem_univ _, hc (e p)⟩
   chart_mem_atlas p := ⟨e p, rfl⟩
 
-/-- The chart of `rechartedSpace e c hc` at `p` is `e ≫ c (e p)`.-/
+/-- The chart of `rechartedSpace e c hc` at `p` is `e ≫ c (e p)`.
+@isnad1 id=eq.1h6v.s6.e7a6ac834aa1 from=translated src=- shape=8fea3dce vocab=49b009d4
+-/
 theorem chartAt_rechartedSpace (e : M' ≃ₜ M) (c : M → OpenPartialHomeomorph M H)
     (hc : ∀ x, x ∈ (c x).source) (p : M') :
     @chartAt H _ M' _ (rechartedSpace e c hc) p =
       e.toOpenPartialHomeomorph.trans (c (e p)) :=
   rfl
 
-/-- The extended chart of the re-charted space at `p` is `I ∘ c (e p) ∘ e`.-/
+/-- The extended chart of the re-charted space at `p` is `I ∘ c (e p) ∘ e`.
+@isnad1 id=eq.1h10v.s7.4e2aeeb97b94 from=translated src=- shape=cf723a73 vocab=3a7b2431
+-/
 theorem extChartAt_rechartedSpace (e : M' ≃ₜ M) (c : M → OpenPartialHomeomorph M H)
     (hc : ∀ x, x ∈ (c x).source) (p q : M') :
     letI := rechartedSpace e c hc
@@ -69,7 +73,9 @@ theorem extChartAt_rechartedSpace (e : M' ≃ₜ M) (c : M → OpenPartialHomeom
   rfl
 
 /-- The transition map between two charts `e ≫ c x` and `e ≫ c y` is that between `c x` and
-`c y`: the homeomorphism `e` cancels.-/
+`c y`: the homeomorphism `e` cancels.
+@isnad1 id=eq.0h7v.s6.2be1ec594e32 from=translated src=- shape=10b3ab27 vocab=d98d1ae4
+-/
 theorem trans_symm_trans_trans_toOpenPartialHomeomorph (e : M' ≃ₜ M)
     (c : M → OpenPartialHomeomorph M H) (x y : M) :
     (e.toOpenPartialHomeomorph.trans (c x)).symm.trans (e.toOpenPartialHomeomorph.trans (c y)) =
@@ -95,7 +101,9 @@ variable [ChartedSpace H M]
 
 /-- **The re-charted space is a manifold** when the charts `c x` belong to the maximal atlas of
 `M`: its transition maps are the transition maps `(c x)⁻¹ ≫ c y` of `M`
-(`trans_symm_trans_trans_toOpenPartialHomeomorph`), which lie in the groupoid.-/
+(`trans_symm_trans_trans_toOpenPartialHomeomorph`), which lie in the groupoid.
+@isnad1 id=ismanifo.2h9v.s7.a04a955b8ec8 from=translated src=- shape=19413bcf vocab=eef8820d
+-/
 theorem isManifold_rechartedSpace [IsManifold I n M] (e : M' ≃ₜ M)
     (c : M → OpenPartialHomeomorph M H) (hc : ∀ x, x ∈ (c x).source)
     (hcm : ∀ x, c x ∈ maximalAtlas I n M) :
@@ -112,7 +120,9 @@ variable [IsManifold I n M] (e : M' ≃ₜ M) (c : M → OpenPartialHomeomorph M
 
 include hcm in
 /-- In the re-charted structure, `e : M' → M` is smooth: read in the charts `e ≫ c x` and `c x`,
-it is the identity.-/
+it is the identity.
+@isnad1 id=contmdif.2h9v.s7.db83c5365827 from=translated src=- shape=e9932093 vocab=4e61dcb1
+-/
 theorem contMDiff_rechartedSpace :
     letI := rechartedSpace e c hc
     ContMDiff I I n e := by
@@ -139,7 +149,9 @@ theorem contMDiff_rechartedSpace :
 
 include hcm in
 /-- In the re-charted structure, `e⁻¹ : M → M'` is smooth: read in the charts `c x` and
-`e ≫ c x`, it is the identity.-/
+`e ≫ c x`, it is the identity.
+@isnad1 id=contmdif.2h9v.s7.6f1a1d5ec154 from=translated src=- shape=782bb6bc vocab=76a7cd61
+-/
 theorem contMDiff_symm_rechartedSpace :
     letI := rechartedSpace e c hc
     ContMDiff I I n e.symm := by
@@ -174,7 +186,9 @@ def rechartedDiffeomorph :
     contMDiff_toFun := contMDiff_rechartedSpace e c hc hcm
     contMDiff_invFun := contMDiff_symm_rechartedSpace e c hc hcm }
 
-/-- The diffeomorphism `rechartedDiffeomorph` is `e` on points.-/
+/-- The diffeomorphism `rechartedDiffeomorph` is `e` on points.
+@isnad1 id=eq.2h9v.s8.756296fc6475 from=translated src=- shape=c6ff14fc vocab=c44d2533
+-/
 theorem coe_rechartedDiffeomorph : ⇑(rechartedDiffeomorph e c hc hcm) = e :=
   rfl
 

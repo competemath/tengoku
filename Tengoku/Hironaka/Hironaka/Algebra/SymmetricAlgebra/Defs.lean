@@ -40,7 +40,9 @@ variable (R : Type u) (M : Type u) [CommRing R] [AddCommGroup M] [Module R M]
 `R`-submodule spanned by the image of `M`.-/
 def grading (n : ℕ) : Submodule R (SymmetricAlgebra R M) := LinearMap.range (ι R M) ^ n
 
-/-- The pieces multiply as powers of one submodule do.-/
+/-- The pieces multiply as powers of one submodule do.
+@isnad1 id=gradedmo.0h2v.s8.1e594225ca27 from=translated src=- shape=a22ff9ba vocab=5b33e2b3
+-/
 instance gradedMonoid : SetLike.GradedMonoid (grading R M) :=
   Submodule.nat_power_gradedMonoid (LinearMap.range (ι R M))
 
@@ -51,6 +53,9 @@ def gradedι : M →ₗ[R] ⨁ i : ℕ, grading R M i :=
     (ι R M).codRestrict _ fun m => by
       simpa only [grading, pow_one] using LinearMap.mem_range_self _ m
 
+/--
+@isnad1 id=eq.0h3v.s14.0cab907bd55a from=translated src=- shape=fe3f7e8f vocab=10c5c604
+-/
 theorem gradedι_apply (m : M) :
     gradedι R M m = DirectSum.of (fun i : ℕ => grading R M i) 1
       ⟨ι R M m, by simpa only [grading, pow_one] using LinearMap.mem_range_self _ m⟩ :=
@@ -83,7 +88,9 @@ namespace SymmetricAlgebra
 
 variable {R : Type u} {M : Type u} [CommRing R] [AddCommGroup M] [Module R M]
 
-/-- The constants have degree zero, and only they: `Sym⁰ M = R`.-/
+/-- The constants have degree zero, and only they: `Sym⁰ M = R`.
+@isnad1 id=bijectiv.0h2v.s12.3d974c225bf3 from=translated src=- shape=917680e6 vocab=0844630f
+-/
 theorem algebraMap_bijective_gradingZero :
     Function.Bijective (algebraMap R (grading R M 0)) := by
   refine ⟨fun r s h => algebraMap_inj (M := M) r s |>.mp (congrArg Subtype.val h), ?_⟩

@@ -46,7 +46,9 @@ section Vanishing
 
 variable {σ K B : Type*} [CommRing K] [CommRing B] [Algebra K B]
 
-/-- If the variables lie in `J` and every monomial of `P` has degree `≥ n`, then `P(a) ∈ Jⁿ`.-/
+/-- If the variables lie in `J` and every monomial of `P` has degree `≥ n`, then `P(a) ∈ Jⁿ`.
+@isnad1 id=mem.2h7v.s8.2332721b17f4 from=translated src=- shape=e6341037 vocab=87e6b145
+-/
 theorem aeval_mem_pow_of_degree_le {J : Ideal B} {a : σ → B} (ha : ∀ i, a i ∈ J) {n : ℕ}
     {P : MvPolynomial σ K} (hP : ∀ α ∈ P.support, n ≤ α.degree) :
     MvPolynomial.aeval a P ∈ J ^ n := by
@@ -59,7 +61,9 @@ theorem aeval_mem_pow_of_degree_le {J : Ideal B} {a : σ → B} (ha : ∀ i, a i
   exact prod_pow_mem_pow_sum _ a α J ha
 
 /-- If the variables lie in `J` with `Jⁿ = 0`, two polynomials that agree below degree `n` have
-the same value.-/
+the same value.
+@isnad1 id=eq.3h8v.s9.3baa0e3f8c0e from=translated src=- shape=c725d67b vocab=1c6d83de
+-/
 theorem aeval_eq_of_coeff_eq {J : Ideal B} {a : σ → B} (ha : ∀ i, a i ∈ J) {n : ℕ}
     (hJ : J ^ n = ⊥) {P Q : MvPolynomial σ K}
     (h : ∀ α : σ →₀ ℕ, α.degree < n → P.coeff α = Q.coeff α) :
@@ -99,12 +103,18 @@ local notation "R̂" => AdicCompletion (maximalIdeal R) R
 noncomputable def levelVar (n : ℕ) (i : Fin d) : R̂ ⧸ maximalIdeal R̂ ^ n :=
   Ideal.Quotient.mk _ (algebraMap R R̂ (x i))
 
+/--
+@isnad1 id=mem.1h5v.s13.ff6f525ce1d7 from=translated src=- shape=2c118870 vocab=92a1731f
+-/
 theorem levelVar_mem (hx : ∀ i, x i ∈ maximalIdeal R) (n : ℕ) (i : Fin d) :
     levelVar R x n i ∈ (maximalIdeal R̂).map (Ideal.Quotient.mk (maximalIdeal R̂ ^ n)) := by
   refine Ideal.mem_map_of_mem _ ?_
   rw [AdicCompletion.maximalIdeal_eq_map]
   exact Ideal.mem_map_of_mem _ (hx i)
 
+/--
+@isnad1 id=eq.0h2v.s14.a7677b336909 from=translated src=- shape=eacc48dc vocab=12ce1c61
+-/
 theorem map_maximalIdeal_pow_eq_bot (n : ℕ) :
     ((maximalIdeal R̂).map (Ideal.Quotient.mk (maximalIdeal R̂ ^ n))) ^ n = ⊥ := by
   rw [← Ideal.map_pow (Ideal.Quotient.mk (maximalIdeal R̂ ^ n)) (maximalIdeal R̂) n,
@@ -150,9 +160,15 @@ noncomputable def levelEval (n : ℕ) :
       change MvPolynomial.aeval (levelVar R x n) (truncTotal n (k • 1)) = k • 1
       rw [map_smul, truncTotal_one hn.ne', map_smul, map_one]
 
+/--
+@isnad1 id=eq.1h5v.s13.f46efa53d9c1 from=translated src=- shape=fe7a91cd vocab=b760101a
+-/
 theorem levelEval_apply (n : ℕ) (F : MvPowerSeries (Fin d) (ResidueField R)) :
     levelEval R x hx n F = MvPolynomial.aeval (levelVar R x n) (truncTotal n F) := rfl
 
+/--
+@isnad1 id=eq.1h5v.s13.9db9d4384646 from=translated src=- shape=be590325 vocab=151bf920
+-/
 theorem factorₐ_comp_levelVar {m n : ℕ} (hle : m ≤ n) :
     (fun i => Ideal.Quotient.factorₐ (ResidueField R) (I := maximalIdeal R̂ ^ n)
       (J := maximalIdeal R̂ ^ m) (Ideal.pow_le_pow_right hle) (levelVar R x n i)) =
@@ -162,7 +178,9 @@ theorem factorₐ_comp_levelVar {m n : ℕ} (hle : m ≤ n) :
   exact Ideal.Quotient.factor_mk (S := maximalIdeal R̂ ^ n) (T := maximalIdeal R̂ ^ m)
     (Ideal.pow_le_pow_right hle) _
 
-/-- The levels are compatible.-/
+/-- The levels are compatible.
+@isnad1 id=eq.2h5v.s13.837c344be82d from=translated src=- shape=3cbdacff vocab=1f365aba
+-/
 theorem levelEval_compat {m n : ℕ} (hle : m ≤ n) :
     (Ideal.Quotient.factorₐ (ResidueField R) (Ideal.pow_le_pow_right hle)).comp
       (levelEval R x hx n) = levelEval R x hx m := by
@@ -178,19 +196,26 @@ noncomputable def cohenMap : MvPowerSeries (Fin d) (ResidueField R) →ₐ[Resid
   IsAdicComplete.liftAlgHom (maximalIdeal R̂) (levelEval R x hx)
     (fun hle => levelEval_compat R x hx hle)
 
+/--
+@isnad1 id=eq.1h5v.s13.b669a0ae879c from=translated src=- shape=10942097 vocab=2e077a2f
+-/
 theorem mk_cohenMap (n : ℕ) (F : MvPowerSeries (Fin d) (ResidueField R)) :
     Ideal.Quotient.mk (maximalIdeal R̂ ^ n) (cohenMap R x hx F) = levelEval R x hx n F :=
   IsAdicComplete.mk_liftAlgHom (maximalIdeal R̂) (levelEval R x hx)
     (fun hle => levelEval_compat R x hx hle) n F
 
-/-- `Φ(C k) = σ(k)` — the constants go to the coefficient field.-/
+/-- `Φ(C k) = σ(k)` — the constants go to the coefficient field.
+@isnad1 id=eq.1h4v.s10.d6f279ce72a1 from=translated src=- shape=1c50b49c vocab=16e4d712
+-/
 theorem cohenMap_C (k : ResidueField R) :
     cohenMap R x hx (C k) = algebraMap (ResidueField R) R̂ k := by
   change cohenMap R x hx
     (algebraMap (ResidueField R) (MvPowerSeries (Fin d) (ResidueField R)) k) = _
   rw [AlgHom.commutes]
 
-/-- `Φ(Xᵢ) = ι(xᵢ)`.-/
+/-- `Φ(Xᵢ) = ι(xᵢ)`.
+@isnad1 id=eq.1h4v.s9.eb75e6f586dc from=translated src=- shape=512428e7 vocab=a9d29761
+-/
 theorem cohenMap_X (i : Fin d) : cohenMap R x hx (X i) = algebraMap R R̂ (x i) := by
   refine eq_of_forall_mk_pow_eq (maximalIdeal R̂) fun n => ?_
   rw [mk_cohenMap, levelEval_apply]
@@ -211,14 +236,21 @@ local notation "R̂" => AdicCompletion (maximalIdeal R) R
 noncomputable instance coefficientAlgebra : Algebra (ResidueField R) R̂ :=
   (coefficientField R).toAlgebra
 
+/--
+@isnad1 id=eq.0h2v.s9.2d76be022862 from=translated src=- shape=ea15fcf9 vocab=e2d1852b
+-/
 theorem algebraMap_residueField_apply (k : ResidueField R) :
     algebraMap (ResidueField R) R̂ k = coefficientField R k := rfl
 
-/-- The chosen coefficient field is a section of the residue map.-/
+/-- The chosen coefficient field is a section of the residue map.
+@isnad1 id=iscoeffi.0h1v.s5.a62e28844bb1 from=translated src=- shape=35b6fbdb vocab=8cb853db
+-/
 theorem isCoefficientAlgebra_coefficientAlgebra : IsCoefficientAlgebra R :=
   residue_coefficientField R
 
-/-- `Φ(C k) = σ(k)` for the chosen coefficient field.-/
+/-- `Φ(C k) = σ(k)` for the chosen coefficient field.
+@isnad1 id=eq.1h4v.s10.8bb28111a49e from=translated src=- shape=060a76df vocab=616a6bfd
+-/
 theorem cohenMap_C_coefficientField {d : ℕ} (x : Fin d → R) (hx : ∀ i, x i ∈ maximalIdeal R)
     (k : ResidueField R) : cohenMap R x hx (C k) = coefficientField R k :=
   cohenMap_C R x hx k

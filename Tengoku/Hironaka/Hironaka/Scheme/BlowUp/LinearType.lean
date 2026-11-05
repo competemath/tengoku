@@ -58,11 +58,17 @@ noncomputable def partialPresentationIdeal (j : ℕ) : Ideal (MvPolynomial (Fin 
 noncomputable def partialBase (j : ℕ) : Ideal A :=
   Ideal.span (insert a (g '' {i : Fin k | i.val < j}))
 
+/--
+@isnad1 id=eq.0h4v.s7.15e76cfc5be9 from=translated src=- shape=4fa79d67 vocab=be7846b1
+-/
 theorem partialPresentationIdeal_zero : partialPresentationIdeal a g 0 = ⊥ := by
   have : {i : Fin k | i.val < 0} = ∅ :=
     Set.eq_empty_of_forall_notMem fun i hi => Nat.not_lt_zero _ hi
   rw [partialPresentationIdeal, this, Set.image_empty, Ideal.span_empty]
 
+/--
+@isnad1 id=eq.1h5v.s9.1f496aae9741 from=translated src=- shape=ef415c8f vocab=8f3d8c2a
+-/
 theorem partialPresentationIdeal_succ {j : ℕ} (hj : j < k) :
     partialPresentationIdeal a g (j + 1) =
       partialPresentationIdeal a g j ⊔ Ideal.span {C a * X ⟨j, hj⟩ - C (g ⟨j, hj⟩)} := by
@@ -73,6 +79,9 @@ theorem partialPresentationIdeal_succ {j : ℕ} (hj : j < k) :
   rw [partialPresentationIdeal, partialPresentationIdeal, this, Set.image_insert_eq,
     Ideal.span_insert, sup_comm]
 
+/--
+@isnad1 id=eq.1h5v.s6.28d0a4ee87a3 from=translated src=- shape=67d93c0e vocab=eb773fcc
+-/
 theorem partialPresentationIdeal_eq_of_le {j : ℕ} (hj : k ≤ j) :
     partialPresentationIdeal a g j = presentationIdeal a g := by
   have : {i : Fin k | i.val < j} = Set.univ :=
@@ -80,13 +89,21 @@ theorem partialPresentationIdeal_eq_of_le {j : ℕ} (hj : k ≤ j) :
   rw [partialPresentationIdeal, this, Set.image_univ]
   rfl
 
+/--
+@isnad1 id=mem.0h5v.s6.ce1d82e5efb6 from=translated src=- shape=2ace278f vocab=2681c3e2
+-/
 theorem a_mem_partialBase (j : ℕ) : a ∈ partialBase a g j :=
   Ideal.subset_span (Set.mem_insert _ _)
 
+/--
+@isnad1 id=mem.1h6v.s6.1fd58dc7fb51 from=translated src=- shape=2744ef93 vocab=0943667b
+-/
 theorem g_mem_partialBase {j : ℕ} {i : Fin k} (hi : i.val < j) : g i ∈ partialBase a g j :=
   Ideal.subset_span (Set.mem_insert_of_mem _ ⟨i, hi, rfl⟩)
 
-/-- The identity `J_j + ⟨a⟩ = Q_j M`.-/
+/-- The identity `J_j + ⟨a⟩ = Q_j M`.
+@isnad1 id=eq.0h5v.s8.e5fcad74fc50 from=translated src=- shape=aaec5fc8 vocab=fb642798
+-/
 theorem partialPresentationIdeal_sup_span_C (j : ℕ) :
     partialPresentationIdeal a g j ⊔ Ideal.span {C a} =
       (partialBase a g j).map (C : A →+* MvPolynomial (Fin k) A) := by
@@ -111,9 +128,15 @@ theorem partialPresentationIdeal_sup_span_C (j : ℕ) :
 
 /-! ### The regularity hypotheses, extracted from `IsWeaklyRegular` -/
 
+/--
+@isnad1 id=issmulre.1h4v.s5.37a6417a54ca from=translated src=- shape=ef25cd2f vocab=484bfe81
+-/
 theorem isSMulRegular_head (h : IsWeaklyRegular A (a :: List.ofFn g)) : IsSMulRegular A a :=
   ((isWeaklyRegular_cons_iff A a _).mp h).1
 
+/--
+@isnad1 id=eq.0h5v.s5.7b6407a6e05a from=translated src=- shape=b927bd91 vocab=b56771f0
+-/
 theorem ofList_take_cons_ofFn (j : ℕ) :
     Ideal.ofList ((a :: List.ofFn g).take (j + 1)) = partialBase a g j := by
   rw [List.take_succ_cons, Ideal.ofList_cons, partialBase, Ideal.span_insert]
@@ -129,7 +152,9 @@ theorem ofList_take_cons_ofFn (j : ℕ) :
   · rintro ⟨i, hi, rfl⟩
     exact ⟨i.val, ⟨hi, i.2⟩, rfl⟩
 
-/-- The `j`-th clause of weak regularity, in colon form: `gⱼ c ∈ Q_j ⟹ c ∈ Q_j`.-/
+/-- The `j`-th clause of weak regularity, in colon form: `gⱼ c ∈ Q_j ⟹ c ∈ Q_j`.
+@isnad1 id=mem.2h6v.s7.e9fea7e1501c from=translated src=- shape=b77898ed vocab=058f8c2f
+-/
 theorem mem_partialBase_of_mul_mem (h : IsWeaklyRegular A (a :: List.ofFn g)) (j : Fin k)
     {c : A} (hc : g j * c ∈ partialBase a g j) : c ∈ partialBase a g j := by
   have hreg := h.regular_mod_prev (j.val + 1) (by simp)

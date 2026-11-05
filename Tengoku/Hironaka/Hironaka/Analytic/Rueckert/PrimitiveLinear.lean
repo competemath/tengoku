@@ -47,7 +47,9 @@ variable {F E : Type*} [Field F] [Field E] [Algebra F E]
 with the generator `α + ϕ x • β` exposed and the coefficient drawn from a subfield: if `E / F`
 has finitely many intermediate fields and `ϕ : C →+* F` is a ring map from an infinite field `C`
 (the constants `ℂ` inside the function field `Frac 𝒪_d`), then for all `α β : E` some `x : C`
-has `F⟮α, β⟯ = F⟮α + ϕ x • β⟯`.-/
+has `F⟮α, β⟯ = F⟮α + ϕ x • β⟯`.
+@isnad1 id=ex.0h6v.s7.0ace52dc93c4 from=translated src=- shape=455824c6 vocab=c195ba27
+-/
 theorem exists_adjoin_pair_eq_adjoin_add_smul {C : Type*} [Field C] [Infinite C] (ϕ : C →+* F)
     [Finite (IntermediateField F E)] (α β : E) : ∃ x : C, F⟮α, β⟯ = F⟮α + ϕ x • β⟯ := by
   let f : C → IntermediateField F E := fun x ↦ F⟮α + ϕ x • β⟯
@@ -77,7 +79,9 @@ theorem exists_adjoin_pair_eq_adjoin_add_smul {C : Type*} [Field C] [Infinite C]
 /-- Iterating `exists_adjoin_pair_eq_adjoin_add_smul` over a finite family `β` indexed by
 `insert i₀ t` (`i₀ ∉ t`): a linear combination `∑ ϕ (c j) • β_j` with coefficients `c` in the
 subfield `C`, `c i₀ = 1` and `c = 0` off the index set, generates a field containing every
-`β_i`, `i ∈ insert i₀ t`.-/
+`β_i`, `i ∈ insert i₀ t`.
+@isnad1 id=ex.1h8v.s8.0895b1d65193 from=translated src=- shape=6ab242b3 vocab=eeff3bc3
+-/
 theorem exists_linear_primitive_aux {C : Type*} [Field C] [Infinite C] (ϕ : C →+* F)
     [Finite (IntermediateField F E)] {ι : Type*} [DecidableEq ι] (β : ι → E) (i₀ : ι)
     (t : Finset ι) (hi₀ : i₀ ∉ t) :
@@ -136,7 +140,9 @@ finset `s` with a distinguished `i₀ ∈ s`, admits coefficients `c : ι → C`
 lies in `F⟮∑ j ∈ s, ϕ (c j) • β j⟯`: a primitive element of `F(β_i : i ∈ s)` that is a
 `C`-linear combination of the generators. The primitive element theorem (Artin) gives finitely
 many intermediate fields of `F(β_i : i ∈ s) / F`, and the pair lemma is iterated inside that
-field.-/
+field.
+@isnad1 id=ex.2h8v.s8.5ebd100c27cc from=translated src=- shape=a14c5ef0 vocab=c805b691
+-/
 theorem exists_linear_primitive_of_isIntegral [CharZero F] {C : Type*} [Field C]
     (ϕ : C →+* F) {ι : Type*} (s : Finset ι) (β : ι → E) (hβ : ∀ i ∈ s, IsIntegral F (β i))
     {i₀ : ι} (hi₀ : i₀ ∈ s) :

@@ -45,15 +45,23 @@ section Basic
 
 variable {R : Type u} {M : Type u} [CommRing R] [AddCommGroup M] [Module R M]
 
+/--
+@isnad1 id=mem.0h3v.s10.6e2dd20bd66a from=translated src=- shape=7c96ef04 vocab=a98ed39e
+-/
 theorem ι_mem_grading_one (x : M) : ι R M x ∈ grading R M 1 := by
   simpa only [grading, pow_one] using LinearMap.mem_range_self _ x
 
+/--
+@isnad1 id=mem.0h3v.s9.e190a082260b from=translated src=- shape=fe808a0d vocab=6398605e
+-/
 theorem algebraMap_mem_grading_zero (r : R) :
     algebraMap R (SymmetricAlgebra R M) r ∈ grading R M 0 := by
   rw [grading, pow_zero]
   exact Submodule.algebraMap_mem r
 
-/-- Two ring maps out of `Sym_R M` that agree on the constants and on `ι(M)` are equal.-/
+/-- Two ring maps out of `Sym_R M` that agree on the constants and on `ι(M)` are equal.
+@isnad1 id=eq.2h5v.s11.a44f8599d27f from=translated src=- shape=09898019 vocab=955f85f2
+-/
 theorem ringHom_ext {T : Type*} [Semiring T] {F G : SymmetricAlgebra R M →+* T}
     (h₁ : ∀ r, F (algebraMap R _ r) = G (algebraMap R _ r)) (h₂ : ∀ x, F (ι R M x) = G (ι R M x)) :
     F = G := by
@@ -71,11 +79,17 @@ noncomputable def liftₛₗ {T : Type*} [CommRing T] (ψ : R →+* T) (g : M �
   (lift { toFun := g, map_add' := g.map_add, map_smul' := fun r x => (hg r x).trans rfl } :
     SymmetricAlgebra R M →ₐ[R] T).toRingHom
 
+/--
+@isnad1 id=eq.1h6v.s9.f4f13e7f0782 from=translated src=- shape=3e21d366 vocab=2d5cbc9e
+-/
 theorem liftₛₗ_ι {T : Type*} [CommRing T] (ψ : R →+* T) (g : M →+ T)
     (hg : ∀ (r : R) (x : M), g (r • x) = ψ r * g x) (x : M) : liftₛₗ ψ g hg (ι R M x) = g x := by
   let := ψ.toAlgebra
   exact lift_ι_apply _ x
 
+/--
+@isnad1 id=eq.1h6v.s9.779a6278a11f from=translated src=- shape=76439a7c vocab=213d313c
+-/
 theorem liftₛₗ_algebraMap {T : Type*} [CommRing T] (ψ : R →+* T) (g : M →+ T)
     (hg : ∀ (r : R) (x : M), g (r • x) = ψ r * g x) (r : R) :
     liftₛₗ ψ g hg (algebraMap R _ r) = ψ r := by
@@ -84,11 +98,17 @@ theorem liftₛₗ_algebraMap {T : Type*} [CommRing T] (ψ : R →+* T) (g : M �
 
 variable {S : Type u} {N : Type u} [CommRing S] [AddCommGroup N] [Module S N]
 
+/--
+@isnad1 id=eq.0h7v.s11.651b94b85bc8 from=translated src=- shape=aaac620d vocab=eef33b85
+-/
 theorem gradedMap_ι (φ : R →+* S) (f : M →ₛₗ[φ] N) (x : M) :
     gradedMap φ f (ι R M x) = ι S N (f x) := by
   let := algebraOfRingHom (N := N) φ
   exact lift_ι_apply (ιₛₗ φ f) x
 
+/--
+@isnad1 id=eq.0h7v.s11.e70a94a2dab9 from=translated src=- shape=99ca3d57 vocab=50c5115d
+-/
 theorem gradedMap_algebraMap (φ : R →+* S) (f : M →ₛₗ[φ] N) (r : R) :
     gradedMap φ f (algebraMap R _ r) = algebraMap S _ (φ r) := by
   let := algebraOfRingHom (N := N) φ
@@ -104,6 +124,9 @@ variable {R : Type u} {M : Type u} [CommRing R] [AddCommGroup M] [Module R M]
 noncomputable def toAway (e : SymmetricAlgebra R M) : R →+* Away (grading R M) e :=
   (fromZeroRingHom (grading R M) _).comp (algebraMap R (grading R M 0))
 
+/--
+@isnad1 id=eq.0h4v.s12.8b43ac458dd5 from=translated src=- shape=b5a176b3 vocab=1ce91ddf
+-/
 theorem val_toAway (e : SymmetricAlgebra R M) (r : R) :
     (toAway e r).val = Localization.mk (algebraMap R _ r) 1 :=
   rfl
@@ -111,6 +134,9 @@ theorem val_toAway (e : SymmetricAlgebra R M) (r : R) :
 variable (e : SymmetricAlgebra R M) (x₀ : M) (he : ι R M x₀ = e)
 include he
 
+/--
+@isnad1 id=mem.1h4v.s10.becbb21d4101 from=translated src=- shape=50e6b7bf vocab=a98ed39e
+-/
 theorem e_mem_grading_one : e ∈ grading R M 1 := he ▸ ι_mem_grading_one x₀
 
 /-- The fraction `x / x₀` of the chart `(Sym M)_(x₀)`, for `x ∈ M`.-/
@@ -118,6 +144,9 @@ noncomputable def frac (x : M) : Away (grading R M) e :=
   Away.mk (grading R M) (e_mem_grading_one e x₀ he) 1 (ι R M x)
     (by simpa only [smul_eq_mul, mul_one] using ι_mem_grading_one x)
 
+/--
+@isnad1 id=eq.1h5v.s10.fd85b45760ee from=translated src=- shape=84728c00 vocab=0f019869
+-/
 theorem val_frac (x : M) :
     (frac e x₀ he x).val = Localization.mk (ι R M x) ⟨e, Submonoid.mem_powers e⟩ := by
   rw [frac, Away.val_mk]
@@ -135,12 +164,21 @@ noncomputable def dehom : SymmetricAlgebra R M →+* Away (grading R M) e :=
       simp only [AddMonoidHom.coe_mk, ZeroHom.coe_mk, val_mul, val_frac, val_toAway,
         Localization.mk_mul, one_mul, LinearMap.map_smul, Algebra.smul_def])
 
+/--
+@isnad1 id=eq.1h5v.s12.bdd9a488c9c4 from=translated src=- shape=2728f322 vocab=5dd28e48
+-/
 theorem dehom_ι (x : M) : dehom e x₀ he (ι R M x) = frac e x₀ he x :=
   liftₛₗ_ι _ _ _ x
 
+/--
+@isnad1 id=eq.1h5v.s13.b1b84050614a from=translated src=- shape=4a29c9cc vocab=50f66b76
+-/
 theorem dehom_algebraMap (r : R) : dehom e x₀ he (algebraMap R _ r) = toAway e r :=
   liftₛₗ_algebraMap _ _ _ r
 
+/--
+@isnad1 id=eq.1h4v.s12.47711516578b from=translated src=- shape=180db20d vocab=5216d389
+-/
 theorem dehom_e : dehom e x₀ he e = 1 := by
   refine (congrArg (dehom e x₀ he) he.symm).trans ?_
   rw [dehom_ι]
@@ -149,7 +187,9 @@ theorem dehom_e : dehom e x₀ he e = 1 := by
     Localization.r_iff_exists]
   exact ⟨1, by simp [he]⟩
 
-/-- The value of the dehomogenization at `a ∈ Symⁿ M` is `a / x₀ⁿ`.-/
+/-- The value of the dehomogenization at `a ∈ Symⁿ M` is `a / x₀ⁿ`.
+@isnad1 id=eq.2h6v.s12.9abbe03d1740 from=translated src=- shape=d10ab155 vocab=5b41f06a
+-/
 theorem val_dehom_of_mem {n : ℕ} {a : SymmetricAlgebra R M} (ha : a ∈ grading R M n) :
     (dehom e x₀ he a).val =
       Localization.mk a ⟨e ^ n, Submonoid.pow_mem _ (Submonoid.mem_powers e) n⟩ := by
@@ -166,6 +206,9 @@ theorem val_dehom_of_mem {n : ℕ} {a : SymmetricAlgebra R M} (ha : a ∈ gradin
     congr 1
     exact Subtype.ext (pow_succ' e i).symm
 
+/--
+@isnad1 id=surjecti.1h4v.s12.65e23aabefb1 from=translated src=- shape=11837725 vocab=58367ed5
+-/
 theorem dehom_surjective : Function.Surjective (dehom e x₀ he) := by
   intro z
   obtain ⟨n, a, ha, rfl⟩ := Away.mk_surjective (grading R M) (e_mem_grading_one e x₀ he) z
@@ -173,7 +216,9 @@ theorem dehom_surjective : Function.Surjective (dehom e x₀ he) := by
   exact ⟨a, val_injective _ (by rw [val_dehom_of_mem e x₀ he ha', Away.val_mk])⟩
 
 /-- Ring maps out of the chart `(Sym M)_(x₀)` are determined by their values on the fractions
-`x / x₀` and on the constants.-/
+`x / x₀` and on the constants.
+@isnad1 id=eq.3h7v.s15.a8ade1123c25 from=translated src=- shape=e186f3cf vocab=66867f8e
+-/
 theorem away_ringHom_ext {T : Type*} [Semiring T] {F G : Away (grading R M) e →+* T}
     (h₁ : ∀ r, F (toAway e r) = G (toAway e r))
     (h₂ : ∀ x, F (dehom e x₀ he (ι R M x)) = G (dehom e x₀ he (ι R M x))) : F = G := by
@@ -185,7 +230,9 @@ theorem away_ringHom_ext {T : Type*} [Semiring T] {F G : Away (grading R M) e �
 
 omit he in
 /-- The lift through the localization at `e` of a ring map sending `e` to `1` sends `a / eⁿ` to the
-image of `a`.-/
+image of `a`.
+@isnad1 id=eq.2h7v.s10.d38112ffa321 from=translated src=- shape=1a9cdf1d vocab=6b91a10a
+-/
 theorem awayLift_mk_of_eq_one {T : Type*} [CommRing T] (L : SymmetricAlgebra R M →+* T)
     (hu : L e = 1) (hunit : IsUnit (L e)) (a : SymmetricAlgebra R M) (s : Submonoid.powers e) :
     Localization.awayLift L e hunit (Localization.mk a s) = L a := by
@@ -202,6 +249,9 @@ noncomputable def awayLift {T : Type*} [CommRing T] (ψ : R →+* T) (g : M →+
   (Localization.awayLift (liftₛₗ ψ g hg) e (by rw [← he, liftₛₗ_ι, h₀]; exact isUnit_one)).comp
     (algebraMap (Away (grading R M) e) (Localization.Away e))
 
+/--
+@isnad1 id=eq.3h8v.s13.225de528ca29 from=translated src=- shape=4e012e04 vocab=4bbe42a0
+-/
 theorem awayLift_dehom {T : Type*} [CommRing T] (ψ : R →+* T) (g : M →+ T)
     (hg : ∀ (r : R) (x : M), g (r • x) = ψ r * g x) (h₀ : g x₀ = 1) (a : SymmetricAlgebra R M) :
     awayLift e x₀ he ψ g hg h₀ (dehom e x₀ he a) = liftₛₗ ψ g hg a := by
@@ -213,11 +263,17 @@ theorem awayLift_dehom {T : Type*} [CommRing T] (ψ : R →+* T) (g : M →+ T)
   · simp only [RingHom.comp_apply, awayLift, dehom_ι, algebraMap_apply, val_frac]
     exact awayLift_mk_of_eq_one e _ hu _ _ _
 
+/--
+@isnad1 id=eq.3h8v.s13.21276fb5840f from=translated src=- shape=91817c90 vocab=f723d2f1
+-/
 theorem awayLift_toAway {T : Type*} [CommRing T] (ψ : R →+* T) (g : M →+ T)
     (hg : ∀ (r : R) (x : M), g (r • x) = ψ r * g x) (h₀ : g x₀ = 1) (r : R) :
     awayLift e x₀ he ψ g hg h₀ (toAway e r) = ψ r := by
   rw [← dehom_algebraMap e x₀ he, awayLift_dehom, liftₛₗ_algebraMap]
 
+/--
+@isnad1 id=eq.3h8v.s13.14e0b6f17ebb from=translated src=- shape=41f5fa60 vocab=2e693b5e
+-/
 theorem awayLift_frac {T : Type*} [CommRing T] (ψ : R →+* T) (g : M →+ T)
     (hg : ∀ (r : R) (x : M), g (r • x) = ψ r * g x) (h₀ : g x₀ = 1) (x : M) :
     awayLift e x₀ he ψ g hg h₀ (dehom e x₀ he (ι R M x)) = g x := by
@@ -231,6 +287,9 @@ variable {R : Type u} {M : Type u} [CommRing R] [AddCommGroup M] [Module R M]
 variable {S : Type u} {N : Type u} [CommRing S] [AddCommGroup N] [Module S N]
 variable (φ : R →+* S) (f : M →ₛₗ[φ] N) (x₀ : M)
 
+/--
+@isnad1 id=eq.0h8v.s16.fe2335d75afe from=translated src=- shape=47197d8b vocab=42f80ed3
+-/
 theorem awayMap_toAway (r : R) :
     Away.map (gradedMap φ f) (ι R M x₀) (toAway (ι R M x₀) r) =
       toAway (gradedMap φ f (ι R M x₀)) (φ r) := by
@@ -242,6 +301,9 @@ theorem awayMap_toAway (r : R) :
   · exact gradedMap_algebraMap φ f r
   · exact Subtype.ext (map_one _)
 
+/--
+@isnad1 id=eq.0h8v.s15.c228704b20d7 from=translated src=- shape=9bd1ed62 vocab=aaf3d03a
+-/
 theorem awayMap_frac (x : M) :
     Away.map (gradedMap φ f) (ι R M x₀) (frac (ι R M x₀) x₀ rfl x) =
       frac (gradedMap φ f (ι R M x₀)) (f x₀) (gradedMap_ι φ f x₀).symm (f x) := by
@@ -251,7 +313,9 @@ theorem awayMap_frac (x : M) :
   · exact gradedMap_ι φ f x
   · exact Subtype.ext (pow_one _)
 
-/-- The dehomogenizations commute with the graded map of symmetric algebras.-/
+/-- The dehomogenizations commute with the graded map of symmetric algebras.
+@isnad1 id=eq.0h8v.s16.5f8e7235cfbd from=translated src=- shape=684b16d2 vocab=4ca2f19c
+-/
 theorem awayMap_dehom (a : SymmetricAlgebra R M) :
     Away.map (gradedMap φ f) (ι R M x₀) (dehom (ι R M x₀) x₀ rfl a) =
       dehom (gradedMap φ f (ι R M x₀)) (f x₀) (gradedMap_ι φ f x₀).symm (gradedMap φ f a) := by
@@ -271,7 +335,9 @@ extends along `f` to an `S`-linear map out of `N` (so that `N = S ⊗_R M`), the
 pushout of rings. Both ways round, a ring map out of the corner is a ring map `b` out of `S` with
 an additive map `N → T` (or `M → T`), semilinear along `b` (or `b ∘ φ`), sending `f x₀` (or `x₀`) to
 `1` (`awayLift`); the extension property turns the second kind into the first, and the spanning
-property makes the extension unique.-/
+property makes the extension unique.
+@isnad1 id=ispushou.2h7v.s14.517fe810d502 from=translated src=- shape=d874cf8d vocab=212a7a4e
+-/
 theorem isPushout_away (hspan : Submodule.span S (Set.range f) = ⊤)
     (hext : ∀ (T : Type u) [AddCommGroup T] [Module S T] (g : M →ₛₗ[φ] T),
       ∃ g' : N →ₗ[S] T, ∀ x, g' (f x) = g x) :

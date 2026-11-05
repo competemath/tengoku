@@ -55,6 +55,9 @@ noncomputable instance sigma : ChartedSpace H (Σ i, M i) := by
   have : IsEmpty (Σ i, M i) := ⟨fun p => (hM p.1).false p.2⟩
   exact empty H (Σ i, M i)
 
+/--
+@isnad1 id=ex.1h4v.s7.b95bd8f97774 from=translated src=- shape=8251f73b vocab=e46f4812
+-/
 theorem mem_atlas_sigma [h : Nonempty H] {e : OpenPartialHomeomorph (Σ i, M i) H}
     (he : e ∈ atlas H (Σ i, M i)) :
     ∃ (i : ι) (f : OpenPartialHomeomorph (M i) H), f ∈ atlas H (M i) ∧
@@ -74,7 +77,9 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] {E : Type*} [NormedAddCom
 
 /-- The disjoint union `Σ i, M i` of a family of `C^n` manifolds modelled on `(E, H)` is a `C^n`
 manifold modelled on `(E, H)`: chart changes within one `M i` are those of `M i`, and chart
-changes between different summands have empty domain.-/
+changes between different summands have empty domain.
+@isnad1 id=ismanifo.0h7v.s6.6c7484df459b from=translated src=- shape=df490796 vocab=a1aebba3
+-/
 instance sigma : IsManifold I n (Σ i, M i) where
   compatible {e} e' he he' := by
     obtain (h | h) := isEmpty_or_nonempty H

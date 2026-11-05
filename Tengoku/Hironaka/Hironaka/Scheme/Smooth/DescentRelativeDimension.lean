@@ -62,7 +62,9 @@ section Rank
 variable (S : Type u) [CommRing S] {B : Type u} [CommRing B] [Algebra S B]
 
 /-- The Kähler differentials of `B[1/t]` over `S` are the base change of those of `B`; when the
-latter are free, the rank is unchanged.-/
+latter are free, the rank is unchanged.
+@isnad1 id=eq.0h3v.s8.aad03421798a from=translated src=- shape=4561cf77 vocab=84362e7f
+-/
 theorem rank_kaehlerDifferential_localizationAway [Nontrivial B] [Module.Free B Ω[B⁄S]] (t : B)
     [Nontrivial (Localization.Away t)] :
     Module.rank (Localization.Away t) Ω[Localization.Away t⁄S] = Module.rank B Ω[B⁄S] := by
@@ -71,7 +73,9 @@ theorem rank_kaehlerDifferential_localizationAway [Nontrivial B] [Module.Free B 
   rw [← h.equiv.rank_eq, Module.rank_baseChange, Cardinal.lift_id]
 
 omit [Algebra S B] in
-/-- A generating set of the unit ideal of a nontrivial ring contains a non-nilpotent element.-/
+/-- A generating set of the unit ideal of a nontrivial ring contains a non-nilpotent element.
+@isnad1 id=ex.1h2v.s6.bd83d9e478e6 from=translated src=- shape=8641be41 vocab=93b112f3
+-/
 theorem exists_not_isNilpotent_of_span_eq_top [Nontrivial B] {s : Set B}
     (hs : Ideal.span s = ⊤) : ∃ t ∈ s, ¬ IsNilpotent t := by
   by_contra hcon
@@ -84,7 +88,9 @@ theorem exists_not_isNilpotent_of_span_eq_top [Nontrivial B] {s : Set B}
   exact one_ne_zero hm
 
 omit [Algebra S B] in
-/-- `B[1/t]` is nontrivial when `t` is not nilpotent.-/
+/-- `B[1/t]` is nontrivial when `t` is not nilpotent.
+@isnad1 id=nontrivi.1h2v.s5.fff21ed56eff from=translated src=- shape=8dc0986f vocab=d4a0ce18
+-/
 theorem nontrivial_localizationAway_of_not_isNilpotent {t : B} (ht : ¬ IsNilpotent t) :
     Nontrivial (Localization.Away t) :=
   not_subsingleton_iff_nontrivial.mp fun h =>
@@ -95,7 +101,9 @@ theorem nontrivial_localizationAway_of_not_isNilpotent {t : B} (ht : ¬ IsNilpot
 /-- If `S → B` is locally standard smooth of relative dimension `n`, `B` is nontrivial and
 `Ω[B⁄S]` is free, then `Ω[B⁄S]` has rank `n`: on a nontrivial basic open `B[1/t]` of the cover the
 differentials are free of rank `n` (Mathlib's `rank_kaehlerDifferential`) and are the base change
-of `Ω[B⁄S]`.-/
+of `Ω[B⁄S]`.
+@isnad1 id=eq.1h3v.s7.7f22ff393e6f from=translated src=- shape=f6307f54 vocab=7d775fa4
+-/
 theorem rank_kaehlerDifferential_eq_of_locally [Nontrivial B] [Module.Free B Ω[B⁄S]] (n : ℕ)
     (h : RingHom.Locally (RingHom.IsStandardSmoothOfRelativeDimension n) (algebraMap S B)) :
     Module.rank B Ω[B⁄S] = n := by
@@ -116,7 +124,9 @@ section Codescent
 variable {R S T : Type u} [CommRing R] [CommRing S] [CommRing T] [Algebra R S] [Algebra R T]
 
 /-- `S ⊗[R] T[1/t]` is the localization of `S ⊗[R] T` at `1 ⊗ t`, so a property that holds locally
-for `S → S ⊗[R] T` holds locally for `S → S ⊗[R] T[1/t]`.-/
+for `S → S ⊗[R] T` holds locally for `S → S ⊗[R] T[1/t]`.
+@isnad1 id=locally.1h5v.s9.f8e4ffe8f395 from=translated src=- shape=378bbbf5 vocab=e6316576
+-/
 theorem locally_tensorProduct_localizationAway (n : ℕ)
     (h : RingHom.Locally (RingHom.IsStandardSmoothOfRelativeDimension n)
       (algebraMap S (S ⊗[R] T))) (t : T) :
@@ -138,7 +148,9 @@ theorem locally_tensorProduct_localizationAway (n : ℕ)
 
 /-- Being locally standard smooth of relative dimension `n` codescends along faithfully flat ring
 maps: the ring-level form of the descent ([Sta, Tag 02VL] for smoothness alone, Mathlib's
-`RingHom.Smooth.codescendsAlong_faithfullyFlat`).-/
+`RingHom.Smooth.codescendsAlong_faithfullyFlat`).
+@isnad1 id=codescen.0h1v.s5.6084cbde109e from=translated src=- shape=1301b721 vocab=dc04271d
+-/
 theorem codescendsAlong_locally_isStandardSmoothOfRelativeDimension (n : ℕ) :
     RingHom.CodescendsAlong (RingHom.Locally (RingHom.IsStandardSmoothOfRelativeDimension n))
       RingHom.FaithfullyFlat := by
@@ -195,7 +207,9 @@ open AlgebraicGeometry CategoryTheory
 
 /-- Smoothness of relative dimension `m` descends along surjective, flat, quasi-compact morphisms:
 it is fpqc local on the base ([Sta, Tag 02VL] for smoothness alone). Mathlib's `descendsAlong_flat`
-applied to the ring-level codescent above.-/
+applied to the ring-level codescent above.
+@isnad1 id=descends.0h1v.s6.999db1d8e960 from=translated src=- shape=4720de53 vocab=5bbfeb99
+-/
 theorem descendsAlong_smoothOfRelativeDimension (m : ℕ) :
     MorphismProperty.DescendsAlong (@SmoothOfRelativeDimension.{u} m)
       (@Surjective ⊓ @Flat ⊓ @QuasiCompact) :=

@@ -69,7 +69,9 @@ variable [IsLocalRing R] [IsNoetherianRing R] {ι : Type v} (s : ι → R)
   (hs : ∀ i, s i ∈ maximalIdeal R)
 
 /-- By Nakayama's lemma, a family of elements of `𝔪` generates `𝔪` iff its classes span
-`𝔪/𝔪²`.-/
+`𝔪/𝔪²`.
+@isnad1 id=iff.1h3v.s9.00a32edc0ebe from=translated src=- shape=247471ae vocab=024fb0d0
+-/
 theorem span_eq_maximalIdeal_iff_span_toCotangent_eq_top :
     maximalIdeal R = span (Set.range s) ↔
       Submodule.span (ResidueField R)
@@ -87,7 +89,9 @@ theorem span_eq_maximalIdeal_iff_span_toCotangent_eq_top :
   exact eq_comm
 
 /-- Minimal generating systems of `𝔪` are exactly the families whose classes form a basis of
-`𝔪/𝔪²`.-/
+`𝔪/𝔪²`.
+@isnad1 id=iff.1h3v.s9.cde1679a4be3 from=translated src=- shape=a9c7d1fe vocab=7b36e040
+-/
 theorem span_eq_maximalIdeal_and_card_eq_spanFinrank_iff [Fintype ι] :
     (maximalIdeal R = span (Set.range s) ∧ Fintype.card ι = (maximalIdeal R).spanFinrank) ↔
       ∃ b : Module.Basis ι (ResidueField R) (CotangentSpace R),
@@ -112,19 +116,25 @@ section Regular
 
 variable [IsRegularLocalRing R] {n : ℕ} (x : Fin n → R)
 
-/-- A regular system of parameters lies in `𝔪`.-/
+/-- A regular system of parameters lies in `𝔪`.
+@isnad1 id=mem.1h4v.s6.726696d3663f from=translated src=- shape=5cbf979c vocab=b8cb72cb
+-/
 theorem x_mem_maximalIdeal_of_span_eq (hx : maximalIdeal R = span (Set.range x)) (i : Fin n) :
     x i ∈ maximalIdeal R :=
   hx ▸ Ideal.subset_span ⟨i, rfl⟩
 
-/-- In a regular local ring of dimension `n`, `𝔪` needs `n` generators.-/
+/-- In a regular local ring of dimension `n`, `𝔪` needs `n` generators.
+@isnad1 id=eq.1h2v.s5.47b0fa2b4e8a from=translated src=- shape=709bbfa3 vocab=f6b32c11
+-/
 theorem spanFinrank_maximalIdeal_eq_of_natCast_eq (hn : (n : WithBot ℕ∞) = ringKrullDim R) :
     (maximalIdeal R).spanFinrank = n := by
   have h := IsRegularLocalRing.spanFinrank_maximalIdeal (R := R)
   rw [← hn] at h
   exact_mod_cast h
 
-/-- A regular system of parameters is a basis of `𝔪/𝔪²`.-/
+/-- A regular system of parameters is a basis of `𝔪/𝔪²`.
+@isnad1 id=ex.2h3v.s9.cf23bc7470a9 from=translated src=- shape=f4101cf2 vocab=4a6938bc
+-/
 theorem exists_basis_cotangentSpace_of_span_eq (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) :
     ∃ b : Module.Basis (Fin n) (ResidueField R) (CotangentSpace R),
@@ -132,7 +142,9 @@ theorem exists_basis_cotangentSpace_of_span_eq (hx : maximalIdeal R = span (Set.
   (span_eq_maximalIdeal_and_card_eq_spanFinrank_iff x (x_mem_maximalIdeal_of_span_eq x hx)).mp
     ⟨hx, by rw [Fintype.card_fin, spanFinrank_maximalIdeal_eq_of_natCast_eq hn]⟩
 
-/-- No member of a regular system of parameters lies in `𝔪²`.-/
+/-- No member of a regular system of parameters lies in `𝔪²`.
+@isnad1 id=not.2h4v.s7.82810760404f from=translated src=- shape=8345900c vocab=5080dda3
+-/
 theorem notMem_sq_of_span_eq (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) (k : Fin n) : x k ∉ maximalIdeal R ^ 2 := by
   obtain ⟨b, hb⟩ := exists_basis_cotangentSpace_of_span_eq x hx hn
@@ -142,7 +154,9 @@ theorem notMem_sq_of_span_eq (hx : maximalIdeal R = span (Set.range x))
   exact (Ideal.toCotangent_eq_zero _ _).mpr hk
 
 /-- An element of `𝔪 ∖ 𝔪²` can be completed to a regular system of parameters (by the exchange
-lemma `exists_span_insert_eq_maximalIdeal`).-/
+lemma `exists_span_insert_eq_maximalIdeal`).
+@isnad1 id=ex.3h3v.s7.5ef5f9b28510 from=translated src=- shape=862d720a vocab=5080dda3
+-/
 theorem exists_span_eq_maximalIdeal_of_notMem_sq (hn : (n : WithBot ℕ∞) = ringKrullDim R)
     {y : R} (hy : y ∈ maximalIdeal R) (hy2 : y ∉ maximalIdeal R ^ 2) :
     ∃ x' : Fin n → R, (∃ i, x' i = y) ∧ maximalIdeal R = span (Set.range x') := by
@@ -168,17 +182,26 @@ theorem exists_span_eq_maximalIdeal_of_notMem_sq (hn : (n : WithBot ℕ∞) = ri
 /-! ### Quotients by initial segments of a regular system of parameters -/
 
 omit [IsRegularLocalRing R] in
+/--
+@isnad1 id=eq.0h3v.s6.60db37e64c6f from=translated src=- shape=af7c6977 vocab=33360777
+-/
 theorem span_image_lt_zero : span (x '' {j : Fin n | j.val < 0}) = ⊥ := by
   have : {j : Fin n | j.val < 0} = ∅ :=
     Set.eq_empty_of_forall_notMem fun j hj => Nat.not_lt_zero _ hj
   rw [this, Set.image_empty, Ideal.span_empty]
 
+/--
+@isnad1 id=eq.2h4v.s6.9fbff3be0ebe from=translated src=- shape=2f9fa68a vocab=fb169f19
+-/
 theorem span_image_lt_of_le (hx : maximalIdeal R = span (Set.range x)) {i : ℕ} (hi : n ≤ i) :
     span (x '' {j : Fin n | j.val < i}) = maximalIdeal R := by
   have : {j : Fin n | j.val < i} = Set.univ := Set.eq_univ_of_forall fun j => lt_of_lt_of_le j.2 hi
   rw [this, Set.image_univ, hx]
 
 omit [IsRegularLocalRing R] in
+/--
+@isnad1 id=eq.1h4v.s7.18ba2829e271 from=translated src=- shape=bf459beb vocab=e9293c90
+-/
 theorem span_image_lt_succ {i : ℕ} (hi : i < n) :
     span (x '' {j : Fin n | j.val < i + 1}) =
       span (x '' {j : Fin n | j.val < i}) ⊔ span {x ⟨i, hi⟩} := by
@@ -188,7 +211,9 @@ theorem span_image_lt_succ {i : ℕ} (hi : i < n) :
     omega
   rw [this, Set.image_insert_eq, Ideal.span_insert, sup_comm]
 
-/-- The classes of `xᵢ, …, x_{n-1}` generate the maximal ideal of `R/Pᵢ`.-/
+/-- The classes of `xᵢ, …, x_{n-1}` generate the maximal ideal of `R/Pᵢ`.
+@isnad1 id=eq.1h4v.s10.ace973e7a628 from=translated src=- shape=8c66397f vocab=acd475f0
+-/
 theorem map_maximalIdeal_quotient_span_image_lt (hx : maximalIdeal R = span (Set.range x))
     (i : ℕ) :
     (maximalIdeal R).map (Ideal.Quotient.mk (span (x '' {j : Fin n | j.val < i}))) =
@@ -207,7 +232,9 @@ theorem map_maximalIdeal_quotient_span_image_lt (hx : maximalIdeal R = span (Set
 
 /-- The step of the induction: if `R/Pᵢ` is regular of dimension `dim R − i`, the class of `xᵢ`
 is not in the square of its maximal ideal, because the classes of `xᵢ, …, x_{n-1}` are a regular
-system of parameters of `R/Pᵢ`.-/
+system of parameters of `R/Pᵢ`.
+@isnad1 id=not.4h4v.s11.0f6e3931c9e3 from=translated src=- shape=6a4d80c0 vocab=8156e581
+-/
 theorem mk_notMem_maximalIdeal_sq_of (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) {i : ℕ} (hi : i < n)
     [IsRegularLocalRing (R ⧸ span (x '' {j : Fin n | j.val < i}))]
@@ -239,7 +266,9 @@ theorem mk_notMem_maximalIdeal_sq_of (hx : maximalIdeal R = span (Set.range x))
   simpa [y] using this
 
 /-- The induction: for `i ≤ n`, `R/Pᵢ` is regular local with `dim R/Pᵢ + i = dim R`
-[Sta, Tag 00NQ].-/
+[Sta, Tag 00NQ].
+@isnad1 id=and.3h4v.s7.19786cb25370 from=translated src=- shape=4aa8e3df vocab=b8d7e648
+-/
 theorem isRegularLocalRing_quotient_span_image_lt_and_ringKrullDim
     (hx : maximalIdeal R = span (Set.range x)) (hn : (n : WithBot ℕ∞) = ringKrullDim R)
     {i : ℕ} (hi : i ≤ n) :
@@ -271,7 +300,9 @@ theorem isRegularLocalRing_quotient_span_image_lt_and_ringKrullDim
     rw [← ringKrullDim_eq_of_ringEquiv e, Nat.cast_succ, add_comm (i : WithBot ℕ∞) 1,
       ← add_assoc, hQdim, hdim]
 
-/-- `R/Pᵢ` is a regular local ring.-/
+/-- `R/Pᵢ` is a regular local ring.
+@isnad1 id=isregula.2h4v.s6.62603c2b8974 from=translated src=- shape=eca94531 vocab=a0c04de4
+-/
 theorem isRegularLocalRing_quotient_span_image_lt (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) (i : ℕ) :
     IsRegularLocalRing (R ⧸ span (x '' {j : Fin n | j.val < i})) := by
@@ -280,20 +311,26 @@ theorem isRegularLocalRing_quotient_span_image_lt (hx : maximalIdeal R = span (S
   · rw [span_image_lt_of_le x hx (not_le.mp hi).le, ← span_image_lt_of_le x hx le_rfl]
     exact (isRegularLocalRing_quotient_span_image_lt_and_ringKrullDim x hx hn le_rfl).1
 
-/-- `dim R/Pᵢ + i = dim R` for `i ≤ n`.-/
+/-- `dim R/Pᵢ + i = dim R` for `i ≤ n`.
+@isnad1 id=eq.3h4v.s7.777291e6b11c from=translated src=- shape=fb81b4b4 vocab=b8d7e648
+-/
 theorem ringKrullDim_quotient_span_image_lt (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) {i : ℕ} (hi : i ≤ n) :
     ringKrullDim (R ⧸ span (x '' {j : Fin n | j.val < i})) + i = ringKrullDim R :=
   (isRegularLocalRing_quotient_span_image_lt_and_ringKrullDim x hx hn hi).2
 
-/-- `Pᵢ = ⟨x₀, …, x_{i-1}⟩` is prime.-/
+/-- `Pᵢ = ⟨x₀, …, x_{i-1}⟩` is prime.
+@isnad1 id=isprime.2h4v.s6.2019295a9130 from=translated src=- shape=21e18e6b vocab=b7965341
+-/
 theorem isPrime_span_image_lt (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) (i : ℕ) :
     (span (x '' {j : Fin n | j.val < i})).IsPrime := by
   have := isRegularLocalRing_quotient_span_image_lt x hx hn i
   exact (Ideal.Quotient.isDomain_iff_prime _).mp inferInstance
 
-/-- `xᵢ ∉ Pᵢ`.-/
+/-- `xᵢ ∉ Pᵢ`.
+@isnad1 id=not.3h4v.s7.9083542ba402 from=translated src=- shape=88957a6c vocab=44e21db9
+-/
 theorem notMem_span_image_lt (hx : maximalIdeal R = span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) {i : ℕ} (hi : i < n) :
     x ⟨i, hi⟩ ∉ span (x '' {j : Fin n | j.val < i}) := by
@@ -304,7 +341,9 @@ theorem notMem_span_image_lt (hx : maximalIdeal R = span (Set.range x))
     (by rw [Ideal.Quotient.eq_zero_iff_mem.mpr h]; exact zero_mem _)
 
 /-- A regular system of parameters is a regular sequence [Sta, Tag 00NQ] (named as in Mathlib
-pull request 28683).-/
+pull request 28683).
+@isnad1 id=isregula.2h2v.s6.089c6a11afbc from=translated src=- shape=112c5357 vocab=c8c3dc44
+-/
 theorem isRegular_of_span_eq_maximalIdeal (rs : List R) (hspan : Ideal.ofList rs = maximalIdeal R)
     (len : (rs.length : WithBot ℕ∞) = ringKrullDim R) : RingTheory.Sequence.IsRegular R rs := by
   classical
@@ -350,7 +389,9 @@ end Regular
 section Existence
 
 /-- A regular local ring has a regular system of parameters — a family `x : Fin d → R` with
-`𝔪 = ⟨x⟩` and `d = dim R` (a generating finset of `𝔪` of cardinality `spanFinrank 𝔪 = dim R`).-/
+`𝔪 = ⟨x⟩` and `d = dim R` (a generating finset of `𝔪` of cardinality `spanFinrank 𝔪 = dim R`).
+@isnad1 id=ex.0h1v.s6.49b744adfd6e from=translated src=- shape=834a7679 vocab=2f48d0d8
+-/
 theorem exists_regularSystem (R : Type u) [CommRing R] [IsRegularLocalRing R] :
     ∃ (d : ℕ) (x : Fin d → R),
       maximalIdeal R = Ideal.span (Set.range x) ∧ (d : WithBot ℕ∞) = ringKrullDim R := by

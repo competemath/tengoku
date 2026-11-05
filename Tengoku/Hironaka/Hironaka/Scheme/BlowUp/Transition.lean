@@ -70,6 +70,9 @@ noncomputable def awayToAwayₐ (x c : R) (h : x ∣ c) :
   IsLocalization.Away.liftAlgHom x (f := Algebra.ofId R (Localization.Away c))
     (by rw [Algebra.ofId_apply]; exact IsLocalization.Away.isUnit_of_dvd c h)
 
+/--
+@isnad1 id=eq.1h4v.s9.760080c3a7ae from=translated src=- shape=36c0a7e9 vocab=054ddf21
+-/
 theorem awayToAwayₐ_algebraMap (x c : R) (h : x ∣ c) (r : R) :
     awayToAwayₐ x c h (algebraMap R (Localization.Away x) r) =
       algebraMap R (Localization.Away c) r := by
@@ -84,23 +87,34 @@ variable (I : Ideal R) {a c : R} (hac : a ∣ c)
 noncomputable def toAway : affineBlowUpAlgebra I a →ₐ[R] Localization.Away c :=
   (awayToAwayₐ a c hac).comp (affineBlowUpAlgebra I a).val
 
+/--
+@isnad1 id=eq.1h5v.s11.c22695703a01 from=translated src=- shape=5de81ee9 vocab=257b04cd
+-/
 theorem toAway_algebraMap (r : R) :
     toAway I hac (algebraMap R (affineBlowUpAlgebra I a) r) =
       algebraMap R (Localization.Away c) r := by
   rw [toAway, AlgHom.comp_apply, Subalgebra.coe_val, Subalgebra.coe_algebraMap,
     awayToAwayₐ_algebraMap]
 
+/--
+@isnad1 id=eq.2h5v.s11.c87e76e6b4d1 from=translated src=- shape=8d9ce619 vocab=5efce4a3
+-/
 theorem toAway_frac_mul {x : R} (hx : x ∈ I) :
     toAway I hac (frac hx) * algebraMap R (Localization.Away c) a =
       algebraMap R (Localization.Away c) x := by
   rw [toAway, AlgHom.comp_apply, Subalgebra.coe_val, coe_frac, ← awayToAwayₐ_algebraMap a c hac a,
     ← map_mul, mul_assoc, mul_comm (invSelf a), mul_invSelf, mul_one, awayToAwayₐ_algebraMap]
 
+/--
+@isnad1 id=isunit.1h3v.s7.edb7547c2c28 from=translated src=- shape=bdd328da vocab=8e414c92
+-/
 theorem isUnit_algebraMap_of_dvd {x : R} (hxc : x ∣ c) :
     IsUnit (algebraMap R (Localization.Away c) x) :=
   IsLocalization.Away.isUnit_of_dvd c hxc
 
-/-- For `x ∈ I` with `x ∣ c`, the image of `x/a` in `R_c` is a unit.-/
+/-- For `x ∈ I` with `x ∣ c`, the image of `x/a` in `R_c` is a unit.
+@isnad1 id=isunit.3h5v.s10.46f1d1438e13 from=translated src=- shape=af8517a1 vocab=e13d939e
+-/
 theorem isUnit_toAway_frac {x : R} (hx : x ∈ I) (hxc : x ∣ c) : IsUnit (toAway I hac (frac hx)) :=
   isUnit_of_mul_isUnit_left ((toAway_frac_mul I hac hx).symm ▸ isUnit_algebraMap_of_dvd hxc)
 
@@ -110,6 +124,9 @@ variable (s : affineBlowUpAlgebra I a) (hs : IsUnit (toAway I hac s))
 noncomputable def embed : Localization.Away s →ₐ[R] Localization.Away c :=
   IsLocalization.Away.liftAlgHom s (f := toAway I hac) hs
 
+/--
+@isnad1 id=eq.2h6v.s15.cd81234171b6 from=translated src=- shape=ee58a9c2 vocab=15f78e05
+-/
 theorem embed_algebraMap (z : affineBlowUpAlgebra I a) :
     embed I hac s hs (algebraMap _ _ z) = toAway I hac z := by
   rw [embed, IsLocalization.Away.liftAlgHom_apply, IsLocalization.Away.lift_eq]
@@ -117,7 +134,9 @@ theorem embed_algebraMap (z : affineBlowUpAlgebra I a) :
 
 /-- `R[I/a]_s → R_c` is injective when `c = s · aᵐ` in `R[I/a]`: an element `w/sᵐ` mapping to zero
 has `w ↦ 0` in `R_c`, so `cᵏ w = 0` in `R[I/a]`; `s` is a unit of the localization and `a` a
-nonzerodivisor, so `w = 0` there.-/
+nonzerodivisor, so `w = 0` there.
+@isnad1 id=injectiv.3h6v.s14.9512ce86dd02 from=translated src=- shape=7b990f56 vocab=b5a0a1e2
+-/
 theorem embed_injective {m : ℕ} (hcs : algebraMap R (affineBlowUpAlgebra I a) c =
     s * algebraMap R (affineBlowUpAlgebra I a) a ^ m) : Function.Injective (embed I hac s hs) := by
   rw [injective_iff_map_eq_zero]
@@ -164,6 +183,9 @@ theorem embed_injective {m : ℕ} (hcs : algebraMap R (affineBlowUpAlgebra I a) 
     (IsLocalization.Away.algebraMap_isUnit s).pow k
   rw [← hu.mul_left_eq_zero, hw, hz0]
 
+/--
+@isnad1 id=eq.1h4v.s12.9b0f168c0c77 from=translated src=- shape=ebe5cd16 vocab=67a9f72f
+-/
 theorem frac_mul_algebraMap {x : R} (hx : x ∈ I) :
     frac (a := a) hx * algebraMap R (affineBlowUpAlgebra I a) a =
       algebraMap R (affineBlowUpAlgebra I a) x := by
@@ -171,6 +193,9 @@ theorem frac_mul_algebraMap {x : R} (hx : x ∈ I) :
   rw [Subalgebra.coe_mul, coe_frac, Subalgebra.coe_algebraMap, Subalgebra.coe_algebraMap,
     mul_assoc, mul_comm (invSelf a), mul_invSelf, mul_one]
 
+/--
+@isnad1 id=mem.2h6v.s11.82c773335419 from=translated src=- shape=6644b3d0 vocab=7a3bef26
+-/
 theorem toAway_mem_of_frac_mem (T : Subalgebra R (Localization.Away c))
     (hT : ∀ x (hx : x ∈ I), toAway I hac (frac hx) ∈ T) (w : affineBlowUpAlgebra I a) :
     toAway I hac w ∈ T := by
@@ -181,7 +206,9 @@ theorem toAway_mem_of_frac_mem (T : Subalgebra R (Localization.Away c))
   exact hle ⟨w, w.2, rfl⟩
 
 /-- A subalgebra of `R_c` containing the images of the `x/a` and an inverse of the image of `s`
-contains the image of `R[I/a]_s`.-/
+contains the image of `R[I/a]_s`.
+@isnad1 id=le.4h6v.s13.e0ba6d531801 from=translated src=- shape=83fea99d vocab=0a42f5a3
+-/
 theorem range_embed_le_of (T : Subalgebra R (Localization.Away c))
     (hT : ∀ x (hx : x ∈ I), toAway I hac (frac hx) ∈ T)
     (hsT : ∃ t ∈ T, t * toAway I hac s = 1) : (embed I hac s hs).range ≤ T := by
@@ -205,7 +232,9 @@ section Pairwise
 variable {b : R} (ha : a ∈ I) (hb : b ∈ I) (hbc : b ∣ c)
 
 /-- The image of `R[I/a]_{b/a}` in `R_c` lies in the image of `R[I/b]_{a/b}` (for `a ∣ c`,
-`b ∣ c`): `x/a = (x/b)·(a/b)⁻¹` and `(b/a)⁻¹ = a/b`.-/
+`b ∣ c`): `x/a = (x/b)·(a/b)⁻¹` and `(b/a)⁻¹ = a/b`.
+@isnad1 id=le.4h5v.s13.b7cf488cd2b5 from=translated src=- shape=9a481cc2 vocab=fc989ea2
+-/
 theorem range_embed_le :
     (embed I hac (frac (a := a) hb) (isUnit_toAway_frac I hac hb hbc)).range ≤
       (embed I hbc (frac (a := b) ha) (isUnit_toAway_frac I hbc ha hac)).range := by
@@ -238,7 +267,9 @@ theorem range_embed_le :
     rw [one_mul, mul_comm (algebraMap R (Localization.Away c) a), mul_mul_mul_comm, hWv,
       toAway_frac_mul, mul_comm]
 
-/-- The images of `R[I/a]_{b/a}` and `R[I/b]_{a/b}` in `R_c` coincide.-/
+/-- The images of `R[I/a]_{b/a}` and `R[I/b]_{a/b}` in `R_c` coincide.
+@isnad1 id=eq.4h5v.s13.cc7efbe8398a from=translated src=- shape=9a481cc2 vocab=e4b7ff42
+-/
 theorem range_embed_eq :
     (embed I hac (frac (a := a) hb) (isUnit_toAway_frac I hac hb hbc)).range =
       (embed I hbc (frac (a := b) ha) (isUnit_toAway_frac I hbc ha hac)).range :=
@@ -250,6 +281,9 @@ section Transition
 
 variable {b : R} (ha : a ∈ I) (hb : b ∈ I)
 
+/--
+@isnad1 id=eq.1h4v.s12.faeec007f8af from=translated src=- shape=211f6774 vocab=91511c65
+-/
 theorem algebraMap_mul_eq_frac_mul_sq :
     algebraMap R (affineBlowUpAlgebra I a) (a * b) =
       frac (a := a) hb * algebraMap R (affineBlowUpAlgebra I a) a ^ 2 := by
@@ -267,24 +301,38 @@ noncomputable def embedBA (b : R) :
   embed I (dvd_mul_left b a) (frac (a := b) ha)
     (isUnit_toAway_frac I (dvd_mul_left b a) ha (dvd_mul_right a b))
 
+/--
+@isnad1 id=eq.1h5v.s15.fca8c2f6c080 from=translated src=- shape=dfcc3468 vocab=5741bd17
+-/
 theorem embedAB_algebraMap (z : affineBlowUpAlgebra I a) :
     embedAB I hb a (algebraMap _ _ z) = toAway I (dvd_mul_right a b) z :=
   embed_algebraMap _ _ _ _ z
 
+/--
+@isnad1 id=eq.1h5v.s15.0ee4461590f9 from=translated src=- shape=bc62a55c vocab=6eaa0f8b
+-/
 theorem embedBA_algebraMap (z : affineBlowUpAlgebra I b) :
     embedBA I ha b (algebraMap _ _ z) = toAway I (dvd_mul_left b a) z :=
   embed_algebraMap _ _ _ _ z
 
-/-- `R[I/a]_{b/a} → R_{ab}` is injective: `R[I/a]_{b/a}` is a subring of `R_{ab}`.-/
+/-- `R[I/a]_{b/a} → R_{ab}` is injective: `R[I/a]_{b/a}` is a subring of `R_{ab}`.
+@isnad1 id=injectiv.1h4v.s13.c5df02bfeec6 from=translated src=- shape=751ae595 vocab=c38f5393
+-/
 theorem embedAB_injective : Function.Injective (embedAB I hb a) :=
   embed_injective I (dvd_mul_right a b) _ _ (algebraMap_mul_eq_frac_mul_sq I hb)
 
+/--
+@isnad1 id=injectiv.1h4v.s13.54b67e522085 from=translated src=- shape=d4ee2765 vocab=a06d8711
+-/
 theorem embedBA_injective : Function.Injective (embedBA I ha b) := by
   have h : algebraMap R (affineBlowUpAlgebra I b) (a * b) =
       frac (a := b) ha * algebraMap R (affineBlowUpAlgebra I b) b ^ 2 := by
     rw [mul_comm a b]; exact algebraMap_mul_eq_frac_mul_sq I ha
   exact embed_injective I (dvd_mul_left b a) _ _ h
 
+/--
+@isnad1 id=eq.2h4v.s13.8c5ad2c47a1a from=translated src=- shape=32ddfe96 vocab=03b955bf
+-/
 theorem range_embedAB_eq : (embedAB I hb a).range = (embedBA I ha b).range :=
   range_embed_eq I (dvd_mul_right a b) ha hb (dvd_mul_left b a)
 
@@ -297,13 +345,18 @@ noncomputable def transitionEquiv :
       (range_embedAB_eq I ha hb)).trans
       (AlgEquiv.ofInjective (embedBA I ha b) (embedBA_injective I ha)).symm)
 
+/--
+@isnad1 id=eq.2h5v.s15.f193ae3ac52c from=translated src=- shape=faf53a06 vocab=c9328d08
+-/
 theorem embedBA_transitionEquiv (z : Localization.Away (frac (a := a) hb)) :
     embedBA I ha b (transitionEquiv I ha hb z) = embedAB I hb a z := by
   rw [transitionEquiv, AlgEquiv.trans_apply, AlgEquiv.trans_apply,
     ← AlgEquiv.ofInjective_apply (embedBA I ha b) (embedBA_injective I ha),
     AlgEquiv.apply_symm_apply, Subalgebra.equivOfEq_apply, AlgEquiv.ofInjective_apply]
 
-/-- The transition sends `x/a` to `(x/b)·(a/b)⁻¹`, i.e. `e(x/a) · (a/b) = x/b`.-/
+/-- The transition sends `x/a` to `(x/b)·(a/b)⁻¹`, i.e. `e(x/a) · (a/b) = x/b`.
+@isnad1 id=eq.3h5v.s16.a50aca5634eb from=translated src=- shape=5e8c6eeb vocab=ace9e743
+-/
 theorem transitionEquiv_spec {x : R} (hx : x ∈ I) :
     transitionEquiv I ha hb (algebraMap _ _ (frac (a := a) hx)) *
         algebraMap _ _ (frac (a := b) ha) =

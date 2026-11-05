@@ -53,6 +53,9 @@ noncomputable abbrev chartTail : List R :=
   List.ofFn fun i : Fin (n - r - 1) => x ⟨r + 1 + i, by omega⟩
 
 omit [IsRegularLocalRing R] in
+/--
+@isnad1 id=eq.0h4v.s6.5ba97cad2a5e from=translated src=- shape=e1af0692 vocab=2972609e
+-/
 theorem ofList_chartList_append_chartTail :
     Ideal.ofList (chartList x r ++ chartTail x r) = Ideal.span (Set.range x) := by
   change Ideal.span {y | y ∈ chartList x r ++ chartTail x r} = _
@@ -75,12 +78,17 @@ theorem ofList_chartList_append_chartTail :
       omega
 
 omit [CommRing R] [IsRegularLocalRing R] in
+/--
+@isnad1 id=eq.0h4v.s5.d6fcb9abee49 from=translated src=- shape=2e742860 vocab=e97d24ad
+-/
 theorem length_chartList_append_chartTail : (chartList x r ++ chartTail x r).length = n := by
   simp only [List.length_append, List.length_cons, List.length_ofFn]
   omega
 
 /-- `[x_r, x₀, …, x_{r-1}]` is weakly regular on `R` (a prefix of a permutation of a regular
-system of parameters; regular sequences as in [Sta, Tag 00LJ]).-/
+system of parameters; regular sequences as in [Sta, Tag 00LJ]).
+@isnad1 id=isweakly.2h4v.s6.01f284fb274a from=translated src=- shape=210933bd vocab=b47353a8
+-/
 theorem isWeaklyRegular_chartList (hx : maximalIdeal R = Ideal.span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) : IsWeaklyRegular R (chartList x r) := by
   have hreg := isRegular_of_span_eq_maximalIdeal (chartList x r ++ chartTail x r)
@@ -88,7 +96,9 @@ theorem isWeaklyRegular_chartList (hx : maximalIdeal R = Ideal.span (Set.range x
     (by rw [length_chartList_append_chartTail]; exact hn)
   exact ((isWeaklyRegular_append_iff R _ _).mp hreg.toIsWeaklyRegular).1
 
-/-- `x_r` is a nonzerodivisor of `R` (the head of the weakly regular list).-/
+/-- `x_r` is a nonzerodivisor of `R` (the head of the weakly regular list).
+@isnad1 id=issmulre.2h4v.s6.b3ee60454021 from=translated src=- shape=64bff503 vocab=6905e7b2
+-/
 theorem isSMulRegular_x (hx : maximalIdeal R = Ideal.span (Set.range x))
     (hn : (n : WithBot ℕ∞) = ringKrullDim R) : IsSMulRegular R (x r) :=
   isSMulRegular_head _ _ (isWeaklyRegular_chartList x r hx hn)
@@ -96,13 +106,18 @@ theorem isSMulRegular_x (hx : maximalIdeal R = Ideal.span (Set.range x))
 /-! ### The kernel of the presentation -/
 
 omit [IsRegularLocalRing R] in
+/--
+@isnad1 id=eq.0h5v.s11.2d73b1024474 from=translated src=- shape=220e6b56 vocab=4486fd14
+-/
 theorem chartPresentation_sub_eq_zero (i : Fin r) :
     chartPresentation x r (C (x r) * X i - C (x (Fin.castLE r.2.le i))) = 0 := by
   rw [chartPresentation, map_sub, map_mul, aeval_C, aeval_X, aeval_C,
     algebraMap_x_eq_mul_chartYR x r (show Fin.castLE r.2.le i < r from i.2), sub_self]
 
 omit [IsRegularLocalRing R] in
-/-- `⟨x_r Yᵢ − xᵢ⟩ ⊆ ker`.-/
+/-- `⟨x_r Yᵢ − xᵢ⟩ ⊆ ker`.
+@isnad1 id=le.0h4v.s10.f4bfacc97878 from=translated src=- shape=1a897f60 vocab=342ba536
+-/
 theorem chartRelations_le_ker_chartPresentation :
     chartRelations x r ≤ RingHom.ker (chartPresentation x r) := by
   refine Ideal.span_le.mpr ?_

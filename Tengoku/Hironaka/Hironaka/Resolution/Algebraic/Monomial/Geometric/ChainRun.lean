@@ -69,31 +69,51 @@ def chainStateY (ρ : ℕ → ℕ) : MonomialState → MonomialState → List (F
     chainStateY (extendComp ρ Y L (Y.nerve.filter fun Q => Q.image ρ ∈ S) S)
       (Y.blowUp (Y.nerve.filter fun Q => Q.image ρ ∈ S)) (L.blowUp S) Ns
 
+/--
+@isnad1 id=eq.0h3v.s4.4a14cf0d01d2 from=translated src=- shape=1061bba1 vocab=3b598706
+-/
 theorem chainRun_nil (ρ : ℕ → ℕ) (Y L : MonomialState) : chainRun ρ Y L [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.a2c48a0ca320 from=translated src=- shape=102a5521 vocab=861333dd
+-/
 theorem chainRun_cons (ρ : ℕ → ℕ) (Y L : MonomialState) (S : Finset (Finset ℕ))
     (Ns : List (Finset (Finset ℕ))) :
     chainRun ρ Y L (S :: Ns) = (Y.nerve.filter fun Q => Q.image ρ ∈ S) ::
       chainRun (extendComp ρ Y L (Y.nerve.filter fun Q => Q.image ρ ∈ S) S)
         (Y.blowUp (Y.nerve.filter fun Q => Q.image ρ ∈ S)) (L.blowUp S) Ns := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.0f3ea34176a0 from=translated src=- shape=172ec255 vocab=7b15d6a4
+-/
 theorem chainMap_nil (ρ : ℕ → ℕ) (Y L : MonomialState) : chainMap ρ Y L [] = ρ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.9865eb41e87b from=translated src=- shape=1118801a vocab=f21e2036
+-/
 theorem chainMap_cons (ρ : ℕ → ℕ) (Y L : MonomialState) (S : Finset (Finset ℕ))
     (Ns : List (Finset (Finset ℕ))) :
     chainMap ρ Y L (S :: Ns) =
       chainMap (extendComp ρ Y L (Y.nerve.filter fun Q => Q.image ρ ∈ S) S)
         (Y.blowUp (Y.nerve.filter fun Q => Q.image ρ ∈ S)) (L.blowUp S) Ns := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.c82f81460802 from=translated src=- shape=96613dd6 vocab=e5f026b1
+-/
 theorem chainStateY_nil (ρ : ℕ → ℕ) (Y L : MonomialState) : chainStateY ρ Y L [] = Y := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.17b443d6a7c7 from=translated src=- shape=146030fb vocab=a60fdb31
+-/
 theorem chainStateY_cons (ρ : ℕ → ℕ) (Y L : MonomialState) (S : Finset (Finset ℕ))
     (Ns : List (Finset (Finset ℕ))) :
     chainStateY ρ Y L (S :: Ns) =
       chainStateY (extendComp ρ Y L (Y.nerve.filter fun Q => Q.image ρ ∈ S) S)
         (Y.blowUp (Y.nerve.filter fun Q => Q.image ρ ∈ S)) (L.blowUp S) Ns := rfl
 
-/-- The state after the chain is the fold of the chain run.-/
+/-- The state after the chain is the fold of the chain run.
+@isnad1 id=eq.0h4v.s5.1281a5372e9f from=translated src=- shape=131f68f7 vocab=e8508192
+-/
 theorem chainStateY_eq_foldl (ρ : ℕ → ℕ) : ∀ (Y L : MonomialState) (Ns : List (Finset (Finset ℕ))),
     chainStateY ρ Y L Ns = (chainRun ρ Y L Ns).foldl blowUp Y
   | _, _, [] => rfl
@@ -101,7 +121,9 @@ theorem chainStateY_eq_foldl (ρ : ℕ → ℕ) : ∀ (Y L : MonomialState) (Ns 
     rw [chainStateY_cons, chainRun_cons, List.foldl_cons]
     exact chainStateY_eq_foldl _ _ _ Ns
 
-/-- The chain along a concatenation.-/
+/-- The chain along a concatenation.
+@isnad1 id=eq.0h5v.s6.8f8f25ba27e6 from=translated src=- shape=ba950f2f vocab=4c97363b
+-/
 theorem chainRun_append (ρ : ℕ → ℕ) : ∀ (Y L : MonomialState) (N₁ N₂ : List (Finset (Finset ℕ))),
     chainRun ρ Y L (N₁ ++ N₂) =
       chainRun ρ Y L N₁ ++
@@ -112,6 +134,9 @@ theorem chainRun_append (ρ : ℕ → ℕ) : ∀ (Y L : MonomialState) (N₁ N�
       List.foldl_cons, List.cons_append]
     exact congrArg _ (chainRun_append _ _ _ N₁ N₂)
 
+/--
+@isnad1 id=eq.0h5v.s6.c7f4e9225b11 from=translated src=- shape=754314b6 vocab=d0118fb5
+-/
 theorem chainMap_append (ρ : ℕ → ℕ) : ∀ (Y L : MonomialState) (N₁ N₂ : List (Finset (Finset ℕ))),
     chainMap ρ Y L (N₁ ++ N₂) =
       chainMap (chainMap ρ Y L N₁) (chainStateY ρ Y L N₁) (N₁.foldl blowUp L) N₂
@@ -120,6 +145,9 @@ theorem chainMap_append (ρ : ℕ → ℕ) : ∀ (Y L : MonomialState) (N₁ N�
     rw [List.cons_append, chainMap_cons, chainMap_cons, chainStateY_cons, List.foldl_cons]
     exact chainMap_append _ _ _ N₁ N₂
 
+/--
+@isnad1 id=eq.0h5v.s6.4a22199f7b3a from=translated src=- shape=88f758dd vocab=d0118fb5
+-/
 theorem chainStateY_append (ρ : ℕ → ℕ) :
     ∀ (Y L : MonomialState) (N₁ N₂ : List (Finset (Finset ℕ))),
     chainStateY ρ Y L (N₁ ++ N₂) =
@@ -132,7 +160,9 @@ theorem chainStateY_append (ρ : ℕ → ℕ) :
 /-! ### The lockstep, with the chain -/
 
 /-- `phase_refine` with the explicit chain: the phase-`r` run on `Y` is the chain run of the
-phase-`r` run on `L`, and the final states refine along the chain map.-/
+phase-`r` run on `L`, and the final states refine along the chain map.
+@isnad1 id=and.3h4v.s7.276976ac4ab9 from=translated src=- shape=476ad8b1 vocab=8b2b8bd3
+-/
 theorem phase_chain (r : ℕ) : ∀ (L : MonomialState) (hsL : ∀ s < r, L.Star s) (Y : MonomialState)
     (ρ : ℕ → ℕ), Refines ρ Y L → ∀ hsY : ∀ s < r, Y.Star s,
     Refines (chainMap ρ Y L (phase r L hsL).2) (phase r Y hsY).1 (phase r L hsL).1 ∧
@@ -160,7 +190,9 @@ theorem phase_chain (r : ℕ) : ∀ (L : MonomialState) (hsL : ∀ s < r, L.Star
     rw [phase_of_not_nonempty L hsL hne, phase_of_not_nonempty Y hsY hYe]
     exact ⟨href, rfl, rfl⟩
 
-/-- `phases_refine` with the explicit chain.-/
+/-- `phases_refine` with the explicit chain.
+@isnad1 id=and.3h5v.s7.39167f2c18ac from=translated src=- shape=9ce2890d vocab=4ba60700
+-/
 theorem phases_chain (k : ℕ) : ∀ (r : ℕ) (L : MonomialState) (hsL : ∀ s < r, L.Star s)
     (Y : MonomialState) (ρ : ℕ → ℕ), Refines ρ Y L → ∀ hsY : ∀ s < r, Y.Star s,
     Refines (chainMap ρ Y L (phases k r L hsL).2) (phases k r Y hsY).1 (phases k r L hsL).1 ∧
@@ -182,7 +214,9 @@ theorem phases_chain (k : ℕ) : ∀ (r : ℕ) (L : MonomialState) (hsL : ∀ s 
     exact ⟨href', by rw [hrun₁, hrun'], hst'⟩
 
 /-- The run of Step 3 on a refining state `Y` is the chain run of the run of Step 3 on `L`, and
-the final states refine along the chain map.-/
+the final states refine along the chain map.
+@isnad1 id=and.1h3v.s6.0199324c7c12 from=translated src=- shape=b7a96d09 vocab=54361d10
+-/
 theorem step3_chain {ρ : ℕ → ℕ} {Y L : MonomialState} (h : Refines ρ Y L) :
     Refines (chainMap ρ Y L (step3 L).2) (step3 Y).1 (step3 L).1 ∧
       (step3 Y).2 = chainRun ρ Y L (step3 L).2 ∧ (step3 Y).1 = chainStateY ρ Y L (step3 L).2 := by

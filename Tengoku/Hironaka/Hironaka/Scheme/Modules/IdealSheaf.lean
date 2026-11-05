@@ -39,7 +39,9 @@ variable {X : Scheme.{u}} (I : X.IdealSheafData)
 
 /-- **Membership in `I(U)` is local**: a function on an affine open `U` lies in `I(U)` if every
 point of `U` has an open neighbourhood `V` such that the restriction of the function to every affine
-open inside `V ∩ U` lies in the ideal of that open.-/
+open inside `V ∩ U` lies in the ideal of that open.
+@isnad1 id=mem.1h4v.s13.c33c5cbcdf62 from=translated src=- shape=a2a91662 vocab=8f31e9db
+-/
 theorem mem_ideal_of_locally_mem (U : X.affineOpens) (s : Γ(X, U))
     (h : ∀ x ∈ (U : X.Opens), ∃ V : X.Opens, x ∈ V ∧ ∀ (U' : X.affineOpens)
       (hU' : (U' : X.Opens) ≤ U), (U' : X.Opens) ≤ V →
@@ -76,6 +78,9 @@ every affine open `U ⊆ W` lies in `I(U)`.-/
 def IsLocallyMem (W : X.Opens) (s : Γ(X, W)) : Prop :=
   ∀ (U : X.affineOpens) (hU : (U : X.Opens) ≤ W), X.presheaf.map (homOfLE hU).op s ∈ I.ideal U
 
+/--
+@isnad1 id=islocall.2h5v.s10.828deeed9002 from=translated src=- shape=052c1309 vocab=95f672af
+-/
 theorem isLocallyMem_map {W W' : X.Opens} (h : W' ≤ W) {s : Γ(X, W)} (hs : I.IsLocallyMem W s) :
     I.IsLocallyMem W' (X.presheaf.map (homOfLE h).op s) := fun U hU => by
   rw [← ConcreteCategory.comp_apply, ← Functor.map_comp]
@@ -98,7 +103,9 @@ noncomputable def toSubmodule : (SheafOfModules.unit X.ringCatSheaf).val.Submodu
   map f _ hs := I.isLocallyMem_map f.unop.le hs
 
 /-- The sheaf condition of `toSubmodule`, from the locality of membership in `I(U)`
-(`mem_ideal_of_locally_mem`).-/
+(`mem_ideal_of_locally_mem`).
+@isnad1 id=issheaf.0h2v.s10.a6c7ff7234e3 from=translated src=- shape=7b31acc6 vocab=64a2edff
+-/
 theorem isSheaf_toSubmodule :
     Presheaf.IsSheaf (Opens.grothendieckTopology X) I.toSubmodule.toPresheafOfModules.presheaf := by
   rw [Presheaf.isSheaf_iff_isSheaf_forget (s := CategoryTheory.forget AddCommGrpCat),
@@ -132,7 +139,9 @@ noncomputable def toModules : X.Modules where
   val := I.toSubmodule.toPresheafOfModules
   isSheaf := I.isSheaf_toSubmodule
 
-/-- Over an affine open `U`, the sections of `I.toModules` are the elements of `I(U)`.-/
+/-- Over an affine open `U`, the sections of `I.toModules` are the elements of `I(U)`.
+@isnad1 id=iff.0h4v.s11.e5d84a989e1f from=translated src=- shape=468d6604 vocab=c3bd3a0d
+-/
 theorem isLocallyMem_iff (U : X.affineOpens) (s : Γ(X, U)) :
     I.IsLocallyMem U s ↔ s ∈ I.ideal U := by
   refine ⟨fun hs => ?_, fun hs U' hU' => ?_⟩
@@ -153,12 +162,17 @@ noncomputable def toModulesSectionsEquiv (U : X.affineOpens) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s16.192b2d2d83fa from=translated src=- shape=02b1fb63 vocab=d6cd3d78
+-/
 theorem coe_toModulesSectionsEquiv (U : X.affineOpens) (s : Γ(I.toModules, U)) :
     ((I.toModulesSectionsEquiv U s : I.ideal U) : Γ(X, U)) =
       (s : I.toSubmodule.obj (op (U : X.Opens))).1 :=
   rfl
 
-/-- The restriction maps of `I.toModules` are the restrictions of functions.-/
+/-- The restriction maps of `I.toModules` are the restrictions of functions.
+@isnad1 id=eq.1h5v.s16.d0c41614f31a from=translated src=- shape=f6e621b6 vocab=e3f14ff5
+-/
 theorem coe_toModulesSectionsEquiv_restrictionMap {U V : X.affineOpens} (h : U ≤ V)
     (s : Γ(I.toModules, V)) :
     ((I.toModulesSectionsEquiv U (I.toModules.presheaf.map (homOfLE h).op s) : I.ideal U) :

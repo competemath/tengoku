@@ -52,7 +52,9 @@ open IsLocalRing
 
 variable {R : Type*} [CommRing R] [IsRegularLocalRing R]
 
-/-- Members of a generating family of `𝔪` lie in `𝔪`.-/
+/-- Members of a generating family of `𝔪` lie in `𝔪`.
+@isnad1 id=mem.1h4v.s6.dfc1cf8595f7 from=translated src=- shape=5c8a5baa vocab=fb3b8f7f
+-/
 theorem mem_maximalIdeal_of_eq_span {ι : Type*} {z : ι → R}
     (hz : maximalIdeal R = Ideal.span (Set.range z)) (i : ι) : z i ∈ maximalIdeal R :=
   hz ▸ Ideal.subset_span ⟨i, rfl⟩
@@ -65,10 +67,15 @@ noncomputable def tiltedComplement {d : ℕ} (z : Fin (d + 1) → R) (p₀ : Fin
   fun j => z (p₀.succAbove j) + t j * z p₀
 
 omit [IsRegularLocalRing R] in
+/--
+@isnad1 id=eq.0h6v.s6.5fcb4e396c79 from=translated src=- shape=701d698b vocab=58353676
+-/
 theorem tiltedComplement_apply {d : ℕ} (z : Fin (d + 1) → R) (p₀ : Fin (d + 1)) (t : Fin d → R)
     (j : Fin d) : tiltedComplement z p₀ t j = z (p₀.succAbove j) + t j * z p₀ := rfl
 
-/-- `(z_{p₀}, y)` generates `𝔪` whenever `z` does (the tilt is invertible).-/
+/-- `(z_{p₀}, y)` generates `𝔪` whenever `z` does (the tilt is invertible).
+@isnad1 id=eq.1h5v.s7.9a2cc0484d0d from=translated src=- shape=f8720dbb vocab=78acef48
+-/
 theorem span_range_cons_tiltedComplement {d : ℕ} (z : Fin (d + 1) → R)
     (hz : maximalIdeal R = Ideal.span (Set.range z)) (p₀ : Fin (d + 1)) (t : Fin d → R) :
     maximalIdeal R = Ideal.span (Set.range (Fin.cons (z p₀) (tiltedComplement z p₀ t))) := by
@@ -101,7 +108,9 @@ theorem span_range_cons_tiltedComplement {d : ℕ} (z : Fin (d + 1) → R)
 indices and `x' ∈ 𝔪` whose class in `𝔪/𝔪²` is not in the span of the classes `z̄ᵢ`, `i ∈ T`, there
 is a family `y` of `d` elements containing every `zᵢ`, `i ∈ T`, such that both `(z_{p₀}, y)` and
 `(x', y)` are regular systems of parameters (Kollár's "for a general choice of `x_{s+2}, …, xₙ`",
-[Kol07, 95], made explicit).-/
+[Kol07, 95], made explicit).
+@isnad1 id=ex.5h7v.s11.1617cfe49bf8 from=translated src=- shape=b3d2678e vocab=f3436af1
+-/
 theorem exists_cons_regularSystem_common {d : ℕ} (z : Fin (d + 1) → R)
     (hz : maximalIdeal R = Ideal.span (Set.range z)) (p₀ : Fin (d + 1)) (T : Set (Fin (d + 1)))
     (hT : p₀ ∉ T) (x' : R) (hx' : x' ∈ maximalIdeal R)

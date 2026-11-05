@@ -37,7 +37,9 @@ variable {𝕜 : Type*} [NontriviallyNormedField 𝕜] {E : Type*} [NormedAddCom
   [NormedSpace 𝕜 E]
 
 /-- The determinant of a composite of continuous linear maps is the product of the determinants
-(Mathlib's `LinearMap.det_comp` through the coercion `E →L[𝕜] E → E →ₗ[𝕜] E`).-/
+(Mathlib's `LinearMap.det_comp` through the coercion `E →L[𝕜] E → E →ₗ[𝕜] E`).
+@isnad1 id=eq.0h4v.s8.24813a47c847 from=translated src=- shape=c6ddb978 vocab=a82a158c
+-/
 theorem det_clm_comp (A B : E →L[𝕜] E) : (A.comp B).det = A.det * B.det :=
   LinearMap.det_comp (A : E →ₗ[𝕜] E) (B : E →ₗ[𝕜] E)
 
@@ -45,7 +47,9 @@ variable [CompleteSpace 𝕜]
 
 /-- **The determinant is analytic on `E →L[𝕜] E`.** With a finite basis `b`,
 `det L = det (toMatrix b b L)` is a polynomial (Leibniz's formula) in the entries
-`b.repr (L (b j)) i`, continuous linear functions of `L`; without one, `det = 1`.-/
+`b.repr (L (b j)) i`, continuous linear functions of `L`; without one, `det = 1`.
+@isnad1 id=contdiff.0h3v.s8.bc37230dfb77 from=translated src=- shape=797ee15c vocab=0a6fda8f
+-/
 theorem contDiff_det {n : WithTop ℕ∞} : ContDiff 𝕜 n fun L : E →L[𝕜] E => L.det := by
   classical
   by_cases hfin : Module.Finite 𝕜 E
@@ -70,14 +74,18 @@ theorem contDiff_det {n : WithTop ℕ∞} : ContDiff 𝕜 n fun L : E →L[𝕜]
     exact contDiff_const
 
 /-- **`x ↦ det (DF x)` is `C^ω` on an open set on which `F` is `C^ω`**
-(`ContDiffOn.fderiv_of_isOpen` with `ω + 1 = ω`, then `contDiff_det`).-/
+(`ContDiffOn.fderiv_of_isOpen` with `ω + 1 = ω`, then `contDiff_det`).
+@isnad1 id=contdiff.2h4v.s7.75d8437d9a21 from=translated src=- shape=545e8c56 vocab=2307fd12
+-/
 theorem contDiffOn_det_fderiv {F : E → E} {s : Set E} (hF : ContDiffOn 𝕜 ω F s) (hs : IsOpen s) :
     ContDiffOn 𝕜 ω (fun x => (fderiv 𝕜 F x).det) s :=
   contDiff_det.comp_contDiffOn (hF.fderiv_of_isOpen hs le_top)
 
 /-- The Jacobian determinant of an analytic map is analytic on an open set: analytic is `C^ω`
 (`AnalyticOnNhd.contDiffOn_of_completeSpace`), `C^ω` on an open set is analytic
-(`ContDiffOn.analyticOn`, `IsOpen.analyticOn_iff_analyticOnNhd`).-/
+(`ContDiffOn.analyticOn`, `IsOpen.analyticOn_iff_analyticOnNhd`).
+@isnad1 id=analytic.2h4v.s7.6e9166833db8 from=translated src=- shape=4aab4b87 vocab=fe3ddf5d
+-/
 theorem analyticOnNhd_det_fderiv [CompleteSpace E] {F : E → E} {V : Set E} (hV : IsOpen V)
     (hF : AnalyticOnNhd 𝕜 F V) : AnalyticOnNhd 𝕜 (fun x => (fderiv 𝕜 F x).det) V :=
   hV.analyticOn_iff_analyticOnNhd.mp

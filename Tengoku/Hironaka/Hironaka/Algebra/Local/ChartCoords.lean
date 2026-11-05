@@ -66,7 +66,9 @@ namespace RegularCoords
 variable {R : Type*} [CommRing R] [IsRegularLocalRing R] [Algebra ℚ R] {n : ℕ}
   (c : RegularCoords R n) (r : Fin n)
 
-/-- The extended coordinate derivations `∂ᵢ`, `∂ⱼ` of `R[1/x_r]` commute.-/
+/-- The extended coordinate derivations `∂ᵢ`, `∂ⱼ` of `R[1/x_r]` commute.
+@isnad1 id=eq.0h6v.s11.e9a83dc0fd05 from=translated src=- shape=7c5fbb9c vocab=c1a4f0aa
+-/
 theorem awayPderiv_commutator (i j : Fin n) : ⁅c.awayPderiv r i, c.awayPderiv r j⁆ = 0 := by
   ext z
   rw [Derivation.commutator_apply, Derivation.zero_apply, sub_eq_zero]

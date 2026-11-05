@@ -53,7 +53,9 @@ variable {R : Type u} [CommRing R] {n : ℕ} (x : Fin n → R) (r : Fin n)
 
 /-- The affine blow-up algebra `R[I/x_r]` for `I = (x_i : i ≤ r)` ([Hau14, Definition 4.16]) is
 Kollár's chart ring `R' = R[x_i/x_r : i < r]` ([Kol07, Definition 60, (60.2)]), as subalgebras of
-`R[1/x_r]`.-/
+`R[1/x_r]`.
+@isnad1 id=eq.0h4v.s7.a3e7784b71c3 from=translated src=- shape=beff1b2f vocab=220dfd4e
+-/
 theorem affineBlowUpAlgebra_span_eq_chartRing :
     affineBlowUpAlgebra (Ideal.span (x '' {i | i ≤ r})) (x r) = chartRing x r := by
   apply le_antisymm
@@ -84,7 +86,9 @@ end Identification
 
 /-- In adapted coordinates `y` at `x` (`I_x = (y_0, …, y_{r-1})`), the chart ring of `y_ρ`
 (`ρ = r − 1`) of the local blow-up `B_{I_x} Spec 𝒪_{X,x}` is the chart ring `chartRing y ρ` of
-Kollár's coordinates (60.2) ([Kol07, Definition 60]).-/
+Kollár's coordinates (60.2) ([Kol07, Definition 60]).
+@isnad1 id=eq.2h7v.s10.324ed7d6c64a from=translated src=- shape=8bdee1d5 vocab=02332571
+-/
 theorem affineBlowUpAlgebra_stalkIdeal_eq_chartRing {X : AlgebraicGeometry.Scheme.{u}}
     (Z : X.IdealSheafData) (x : X) {n r : ℕ} {y : Fin n → X.presheaf.stalk x}
     (hZ : Z.stalkIdeal x = Ideal.span (y '' {i | i.val < r})) (ρ : Fin n) (hρ : ρ.val + 1 = r) :
@@ -106,7 +110,9 @@ include hx hn
 
 /-- At a prime `𝔮` of the chart ring `R'`, the chart functions `y_i` form a regular system of
 parameters of `R'_𝔮` exactly when `𝔮` is the origin `𝔪' = (y_1, …, y_n)` of the chart; the "if" is
-`maximalIdeal_localization_chartOrigin` of `Hironaka/Algebra/Local/ChartLocal.lean`.-/
+`maximalIdeal_localization_chartOrigin` of `Hironaka/Algebra/Local/ChartLocal.lean`.
+@isnad1 id=iff.2h5v.s14.77585e16a9a8 from=translated src=- shape=b5c4dcc2 vocab=b2f9855b
+-/
 theorem maximalIdeal_localization_eq_span_iff (𝔮 : Ideal (chartRing x r)) [𝔮.IsPrime] :
     maximalIdeal (Localization.AtPrime 𝔮) =
         Ideal.span (Set.range fun i => algebraMap (chartRing x r) (Localization.AtPrime 𝔮)
@@ -130,7 +136,9 @@ theorem maximalIdeal_localization_eq_span_iff (𝔮 : Ideal (chartRing x r)) [�
 `R/𝔪 → R'/𝔮` bijective) is `chartOriginAt x r a` for some `a`: the origin of the chart after the
 linear change `x_i ↦ x_i − a_i x_r` of the first `r` coordinates. This is the remark in the proof
 of [Kol07, Lemma 61] that "every preimage of `p` appears as the origin after a suitable linear
-change", and item (9) of [Hau03, Appendix C].-/
+change", and item (9) of [Hau03, Appendix C].
+@isnad1 id=ex.4h5v.s14.11baa4cb781a from=translated src=- shape=a3dc64d3 vocab=9c906cfe
+-/
 theorem exists_eq_chartOriginAt (𝔮 : Ideal (chartRing x r)) [𝔮.IsPrime]
     (h : maximalIdeal R ≤ 𝔮.comap (algebraMap R (chartRing x r)))
     (hrat : Function.Bijective (Ideal.quotientMap 𝔮 (algebraMap R (chartRing x r)) h)) :

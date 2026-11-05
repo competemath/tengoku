@@ -44,13 +44,22 @@ variable {n : ℕ} (r : Fin n)
 noncomputable def chartExp (α : Fin n →₀ ℕ) : Fin n →₀ ℕ :=
   α + Finsupp.single r (∑ i ∈ univ.filter (· < r), α i)
 
+/--
+@isnad1 id=eq.1h4v.s6.ca8e10393b80 from=translated src=- shape=f35dcbd5 vocab=e79bac55
+-/
 theorem chartExp_apply_of_ne {i : Fin n} (hi : i ≠ r) (α : Fin n →₀ ℕ) : chartExp r α i = α i := by
   simp [chartExp, hi.symm]
 
+/--
+@isnad1 id=eq.0h3v.s6.3580df385396 from=translated src=- shape=3e0f009f vocab=6d1eb3bb
+-/
 theorem chartExp_apply_self (α : Fin n →₀ ℕ) :
     chartExp r α r = α r + ∑ i ∈ univ.filter (· < r), α i := by
   simp [chartExp]
 
+/--
+@isnad1 id=eq.0h3v.s6.7423602d67bb from=translated src=- shape=3d98d7ec vocab=ba2e9b3f
+-/
 theorem sum_filter_le_chartExp_apply_self (α : Fin n →₀ ℕ) :
     ∑ i ∈ univ.filter (· ≤ r), α i = chartExp r α r := by
   rw [chartExp_apply_self, add_comm]
@@ -67,7 +76,9 @@ theorem sum_filter_le_chartExp_apply_self (α : Fin n →₀ ℕ) :
       · exact h.le
   rw [h, sum_insert (by simp), add_comm]
 
-/-- `σ` is injective.-/
+/-- `σ` is injective.
+@isnad1 id=injectiv.0h2v.s4.bf0d5f78ac41 from=translated src=- shape=32205f06 vocab=43e5075b
+-/
 theorem chartExp_injective : Function.Injective (chartExp r) := by
   intro α β h
   have h1 : ∀ i, i ≠ r → α i = β i := fun i hi => by
@@ -82,26 +93,38 @@ theorem chartExp_injective : Function.Injective (chartExp r) := by
     omega
   · exact h1 i hi
 
+/--
+@isnad1 id=eq.0h3v.s8.be508ef022c7 from=translated src=- shape=d309ce77 vocab=57dd135f
+-/
 theorem degree_add' (α β : Fin n →₀ ℕ) : (α + β).degree = α.degree + β.degree := by
   simp only [Finsupp.degree_eq_sum, Finsupp.coe_add, Pi.add_apply, sum_add_distrib]
 
-/-- `|σ(α)| = |α| + ∑_{i<r} αᵢ`.-/
+/-- `|σ(α)| = |α| + ∑_{i<r} αᵢ`.
+@isnad1 id=eq.0h3v.s8.e48e959e56c7 from=translated src=- shape=580d0bfc vocab=12903f91
+-/
 theorem degree_chartExp (α : Fin n →₀ ℕ) :
     (chartExp r α).degree = α.degree + ∑ i ∈ univ.filter (· < r), α i := by
   rw [chartExp, degree_add', Finsupp.degree_single]
 
+/--
+@isnad1 id=le.0h3v.s7.9b38d8fee132 from=translated src=- shape=372fac8c vocab=83694ba9
+-/
 theorem sum_filter_lt_le_degree (α : Fin n →₀ ℕ) : ∑ i ∈ univ.filter (· < r), α i ≤ α.degree := by
   rw [Finsupp.degree_eq_sum]
   exact sum_le_sum_of_subset (filter_subset _ _)
 
-/-- `|σ(α)| ≤ 2|α|`.-/
+/-- `|σ(α)| ≤ 2|α|`.
+@isnad1 id=le.0h3v.s8.08eda828970f from=translated src=- shape=5ce716d7 vocab=3d602526
+-/
 theorem degree_chartExp_le (α : Fin n →₀ ℕ) : (chartExp r α).degree ≤ 2 * α.degree := by
   rw [degree_chartExp]
   have := sum_filter_lt_le_degree r α
   omega
 
 /-- For `|α| = m`, `|σ(α)| − m ≤ m`: the bound "`≤ 2m − m = m`" of the proof of
-[Kol07, Lemma 61].-/
+[Kol07, Lemma 61].
+@isnad1 id=le.1h4v.s8.ed6450371a18 from=translated src=- shape=41127b94 vocab=47ae6743
+-/
 theorem degree_chartExp_sub_le {α : Fin n →₀ ℕ} {m : ℕ} (h : α.degree = m) :
     (chartExp r α).degree - m ≤ m := by
   rw [degree_chartExp, h]
@@ -117,12 +140,17 @@ substitution of [Kol07, Definition 60, (60.3)].-/
 noncomputable def chartSubst : Fin n → MvPowerSeries (Fin n) K :=
   fun i => if i < r then X i * X r else X i
 
+/--
+@isnad1 id=hassubst.0h3v.s4.7c94db54d96f from=translated src=- shape=ec4e693d vocab=c71ea704
+-/
 theorem hasSubst_chartSubst : HasSubst (chartSubst (K := K) r) :=
   hasSubst_of_constantCoeff_zero fun i => by
     unfold chartSubst
     split_ifs <;> simp
 
-/-- The monomial `x^α` goes to `y^{σ(α)}` under the chart substitution.-/
+/-- The monomial `x^α` goes to `y^{σ(α)}` under the chart substitution.
+@isnad1 id=eq.0h4v.s8.31bf1cd948c9 from=translated src=- shape=ecb646ab vocab=890707b8
+-/
 theorem chartSubst_prod (α : Fin n →₀ ℕ) :
     (α.prod fun s e => chartSubst (K := K) r s ^ e) = monomial (chartExp r α) 1 := by
   classical
@@ -150,7 +178,9 @@ theorem chartSubst_prod (α : Fin n →₀ ℕ) :
   rfl
 
 /-- The coefficient formula `coeff_{σ α}(φ̂ f) = coeff_α f`: since `σ` is injective, the
-corresponding monomial of `φ̂ f` has the coefficient of `x^α` in `f`.-/
+corresponding monomial of `φ̂ f` has the coefficient of `x^α` in `f`.
+@isnad1 id=eq.0h5v.s8.ddd156ef72e1 from=translated src=- shape=47536a93 vocab=b9d55cfa
+-/
 theorem coeff_subst_chartSubst (f : MvPowerSeries (Fin n) K) (α : Fin n →₀ ℕ) :
     coeff (chartExp r α) (subst (chartSubst r) f) = coeff α f := by
   classical
@@ -160,7 +190,9 @@ theorem coeff_subst_chartSubst (f : MvPowerSeries (Fin n) K) (α : Fin n →₀ 
     rw [chartSubst_prod, coeff_monomial, ite_eq_right (fun h => hd (chartExp_injective r h).symm),
       smul_zero]
 
-/-- Every monomial of `φ̂ f` is `y^{σ(d)}` for a monomial `x^d` of `f`.-/
+/-- Every monomial of `φ̂ f` is `y^{σ(d)}` for a monomial `x^d` of `f`.
+@isnad1 id=eq.1h5v.s8.1aa44f2f79f0 from=translated src=- shape=09ca671d vocab=b9d55cfa
+-/
 theorem coeff_subst_chartSubst_eq_zero {f : MvPowerSeries (Fin n) K} {β : Fin n →₀ ℕ}
     (hβ : ∀ d, coeff d f ≠ 0 → chartExp r d ≠ β) :
     coeff β (subst (chartSubst (K := K) r) f) = 0 := by
@@ -172,7 +204,9 @@ theorem coeff_subst_chartSubst_eq_zero {f : MvPowerSeries (Fin n) K} {β : Fin n
   · rw [chartSubst_prod, coeff_monomial, ite_eq_right (fun h => hβ d hd h.symm), smul_zero]
 
 /-- If every monomial of `f` has `x₀..x_r`-degree `≥ m` (`f ∈ P̂ᵐ`), then every monomial of `φ̂ f`
-has `y_r`-exponent `≥ m`.-/
+has `y_r`-exponent `≥ m`.
+@isnad1 id=eq.2h6v.s9.7d9ac1269ca0 from=translated src=- shape=07e8749e vocab=94c9877b
+-/
 theorem coeff_subst_chartSubst_eq_zero_of_lt {f : MvPowerSeries (Fin n) K} {m : ℕ}
     (hP : ∀ d, coeff d f ≠ 0 → m ≤ ∑ i ∈ univ.filter (· ≤ r), d i) {β : Fin n →₀ ℕ}
     (hβ : β r < m) : coeff β (subst (chartSubst (K := K) r) f) = 0 := by
@@ -183,7 +217,9 @@ theorem coeff_subst_chartSubst_eq_zero_of_lt {f : MvPowerSeries (Fin n) K} {m : 
 
 /-- **The monomial computation of the proof of [Kol07, Lemma 61]**: if `order f = m` and every
 monomial of `f` has `x₀..x_r`-degree `≥ m` (`f ∈ P̂ᵐ`), then `φ̂ f = y_r^m g` with `order g ≤ m` —
-the monomial of degree `m` of `f` survives with degree `≤ 2m − m = m`.-/
+the monomial of degree `m` of `f` survives with degree `≤ 2m − m = m`.
+@isnad1 id=ex.2h5v.s8.97eaa8fa96f8 from=translated src=- shape=c45772e9 vocab=2a18b676
+-/
 theorem exists_X_pow_mul_eq_subst_chartSubst {f : MvPowerSeries (Fin n) K} {m : ℕ}
     (hord : f.order = m) (hP : ∀ d, coeff d f ≠ 0 → m ≤ ∑ i ∈ univ.filter (· ≤ r), d i) :
     ∃ g : MvPowerSeries (Fin n) K, X r ^ m * g = subst (chartSubst (K := K) r) f ∧

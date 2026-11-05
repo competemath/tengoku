@@ -53,6 +53,9 @@ variable {R : Type u} [CommRing R]
 def cotangentEquivOfEq {I J : Ideal R} (h : I = J) : I.Cotangent ≃ₗ[R] J.Cotangent := by
   subst h; exact LinearEquiv.refl R _
 
+/--
+@isnad1 id=eq.1h4v.s10.93413a787db9 from=translated src=- shape=ba0e8f06 vocab=6c3f8d86
+-/
 @[simp]
 theorem cotangentEquivOfEq_toCotangent {I J : Ideal R} (h : I = J) (x : I) :
     cotangentEquivOfEq h (I.toCotangent x) = J.toCotangent ⟨x, h ▸ x.2⟩ := by
@@ -64,7 +67,9 @@ namespace IsLocalRing
 
 variable (R : Type u) [CommRing R] [IsLocalRing R]
 
-/-- `IsLocalRing.ker_residue` stated for the structure map `R → κ` (the same map).-/
+/-- `IsLocalRing.ker_residue` stated for the structure map `R → κ` (the same map).
+@isnad1 id=eq.0h1v.s7.e647604a9e23 from=translated src=- shape=82bf87f6 vocab=475e5aa1
+-/
 theorem ker_algebraMap_residueField :
     RingHom.ker (algebraMap R (ResidueField R)) = maximalIdeal R :=
   ker_residue
@@ -80,7 +85,9 @@ conormal map `d̄ : 𝔪/𝔪² → κ ⊗[R] Ω[R⁄k]` is injective ([Sta, Tag
 [Sta, Tag 02HP] with the section supplied by formal smoothness). Formal smoothness lifts the
 identity of `κ` along the square-zero surjection `R/𝔪² → κ` to a `k`-algebra section, and
 Mathlib's `retractionKerCotangentToTensorEquivSection` converts the section into a retraction of
-`d̄`.-/
+`d̄`.
+@isnad1 id=injectiv.0h2v.s11.b113bc9a3c1f from=translated src=- shape=289370b4 vocab=81eb3911
+-/
 theorem injective_kerCotangentToTensor_residueField_of_formallySmooth
     [Algebra.FormallySmooth k (ResidueField R)] :
     Function.Injective (kerCotangentToTensor k R (ResidueField R)) := by
@@ -108,13 +115,17 @@ theorem injective_kerCotangentToTensor_residueField_of_formallySmooth
   exact Function.LeftInverse.injective (g := l) fun x => LinearMap.congr_fun hl x
 
 /-- The conormal sequence `𝔪/𝔪² → κ ⊗[R] Ω[R⁄k] → Ω[κ⁄k]` is exact in the middle
-[Sta, Tag 00RU].-/
+[Sta, Tag 00RU].
+@isnad1 id=exact.0h2v.s11.b13aaa03ed70 from=translated src=- shape=98174570 vocab=4a8251a3
+-/
 theorem exact_kerCotangentToTensor_mapBaseChange_residueField :
     Function.Exact (kerCotangentToTensor k R (ResidueField R))
       (mapBaseChange k R (ResidueField R)) :=
   exact_kerCotangentToTensor_mapBaseChange k R (ResidueField R) residue_surjective
 
-/-- The map `κ ⊗[R] Ω[R⁄k] → Ω[κ⁄k]` of the conormal sequence is surjective [Sta, Tag 00RU].-/
+/-- The map `κ ⊗[R] Ω[R⁄k] → Ω[κ⁄k]` of the conormal sequence is surjective [Sta, Tag 00RU].
+@isnad1 id=surjecti.0h2v.s10.8bfc3a00bcfb from=translated src=- shape=7d9222cc vocab=a5e092b7
+-/
 theorem mapBaseChange_residueField_surjective :
     Function.Surjective (mapBaseChange k R (ResidueField R)) :=
   mapBaseChange_surjective k R (ResidueField R) residue_surjective
@@ -128,23 +139,35 @@ noncomputable def cotangentSpaceToTensor :
       (ker_algebraMap_residueField R).symm).toLinearMap).extendScalarsOfSurjective
       residue_surjective
 
+/--
+@isnad1 id=eq.0h3v.s12.8077562a0a94 from=translated src=- shape=e8273885 vocab=c2108925
+-/
 theorem cotangentSpaceToTensor_apply (x : CotangentSpace R) :
     cotangentSpaceToTensor k R x =
       kerCotangentToTensor k R (ResidueField R)
         (Ideal.cotangentEquivOfEq (ker_algebraMap_residueField R).symm x) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.0f7cdab6c474 from=translated src=- shape=9bc0a23d vocab=5b8a3d14
+-/
 @[simp]
 theorem cotangentSpaceToTensor_toCotangent (x : maximalIdeal R) :
     cotangentSpaceToTensor k R ((maximalIdeal R).toCotangent x) = 1 ⊗ₜ D k R x := by
   rw [cotangentSpaceToTensor_apply, Ideal.cotangentEquivOfEq_toCotangent,
     kerCotangentToTensor_toCotangent]
 
+/--
+@isnad1 id=injectiv.0h2v.s9.1723e9be3652 from=translated src=- shape=c81b8722 vocab=e563c40f
+-/
 theorem injective_cotangentSpaceToTensor [Algebra.FormallySmooth k (ResidueField R)] :
     Function.Injective (cotangentSpaceToTensor k R) :=
   (injective_kerCotangentToTensor_residueField_of_formallySmooth k R).comp
     (LinearEquiv.injective _)
 
+/--
+@isnad1 id=exact.0h2v.s11.c73212d915c8 from=translated src=- shape=0387ff7c vocab=bf0d741a
+-/
 theorem exact_cotangentSpaceToTensor_mapBaseChange :
     Function.Exact (cotangentSpaceToTensor k R) (mapBaseChange k R (ResidueField R)) := by
   intro y
@@ -158,7 +181,9 @@ theorem exact_cotangentSpaceToTensor_mapBaseChange :
 
 /-- With `d̄` injective (`κ` formally smooth over `k`) the conormal sequence is short exact, so
 `dim_κ κ ⊗[R] Ω[R⁄k] = dim_κ 𝔪/𝔪² + dim_κ Ω[κ⁄k]` for `R` essentially of finite type over `k`
-(the first display in the proof of [Sta, Tag 00TV]).-/
+(the first display in the proof of [Sta, Tag 00TV]).
+@isnad1 id=eq.0h2v.s9.61ac99f77dc3 from=translated src=- shape=40ab92a5 vocab=63921906
+-/
 theorem finrank_residueField_tensor_kaehlerDifferential [Algebra.EssFiniteType k R]
     [Algebra.FormallySmooth k (ResidueField R)] :
     Module.finrank (ResidueField R) (ResidueField R ⊗[R] Ω[R⁄k]) =

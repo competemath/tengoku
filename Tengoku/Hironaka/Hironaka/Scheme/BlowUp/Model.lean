@@ -62,7 +62,9 @@ open MvPolynomial IsLocalization.Away
 variable (A : Type u) [CommRing A] {σ : Type v} (S : Set σ) (j : σ)
 
 /-- Two `A`-algebra maps out of `R[I/a]`, for an `A`-algebra `R`, agreeing on the image of `R` and
-on the generators `x/a` are equal.-/
+on the generators `x/a` are equal.
+@isnad1 id=eq.2h7v.s13.0094e0a796ae from=translated src=- shape=a2aec602 vocab=c6306e69
+-/
 theorem algHom_ext_of_tower {R : Type v} [CommRing R] [Algebra A R] {I : Ideal R} {a : R}
     {Q : Type w} [Semiring Q] [Algebra A Q] {φ ψ : affineBlowUpAlgebra I a →ₐ[A] Q}
     (h₁ : ∀ r, φ (algebraMap R (affineBlowUpAlgebra I a) r) =
@@ -83,6 +85,9 @@ theorem algHom_ext_of_tower {R : Type v} [CommRing R] [Algebra A R] {I : Ideal R
 /-- The centre `I = (xᵢ : i ∈ S)`.-/
 noncomputable def coordinateIdeal : Ideal (MvPolynomial σ A) := Ideal.span (X '' S)
 
+/--
+@isnad1 id=mem.1h4v.s7.7d0153eff87f from=translated src=- shape=1835e339 vocab=45c48cef
+-/
 theorem X_mem_coordinateIdeal {i : σ} (hi : i ∈ S) :
     (X i : MvPolynomial σ A) ∈ coordinateIdeal A S :=
   Ideal.subset_span ⟨i, hi, rfl⟩
@@ -103,35 +108,55 @@ noncomputable def modelAux :
   else algebraMap (MvPolynomial σ A) (Localization.Away (X j : MvPolynomial σ A)) (X (R := A) i) :
     Localization.Away (X j : MvPolynomial σ A))
 
+/--
+@isnad1 id=eq.2h5v.s11.3d783bb2945f from=translated src=- shape=7676f7f3 vocab=2efcbf8a
+-/
 theorem modelAux_X_of_mem {i : σ} (hi : i ∈ S) (hij : i ≠ j) :
     modelAux A S j (X (R := A) i) =
       algebraMap (MvPolynomial σ A) (Localization.Away (X j : MvPolynomial σ A)) (X (R := A) i) *
         invSelf (X j : MvPolynomial σ A) := by
   rw [modelAux, aeval_X, ite_eq_left ⟨hi, hij⟩]
 
+/--
+@isnad1 id=eq.1h5v.s10.f430479a84ac from=translated src=- shape=b307f597 vocab=159c6e1f
+-/
 theorem modelAux_X_of_not {i : σ} (h : ¬(i ∈ S ∧ i ≠ j)) :
     modelAux A S j (X (R := A) i) =
       algebraMap (MvPolynomial σ A) (Localization.Away (X j : MvPolynomial σ A))
         (X (R := A) i) := by
   rw [modelAux, aeval_X, ite_eq_right h]
 
+/--
+@isnad1 id=eq.0h4v.s10.1c5e0f98fc29 from=translated src=- shape=95d32f5c vocab=60eb6083
+-/
 theorem modelAux_X_self :
     modelAux A S j (X (R := A) j) =
       algebraMap (MvPolynomial σ A) (Localization.Away (X j : MvPolynomial σ A)) (X (R := A) j) :=
   modelAux_X_of_not A S j fun h => h.2 rfl
 
+/--
+@isnad1 id=eq.2h5v.s8.0b0995a5fdfd from=translated src=- shape=00222d6a vocab=22785298
+-/
 theorem chartSubst_X_of_mem {i : σ} (hi : i ∈ S) (hij : i ≠ j) :
     chartSubst A S j (X (R := A) i) = X (R := A) i * X j := by
   rw [chartSubst, aeval_X, ite_eq_left ⟨hi, hij⟩]
 
+/--
+@isnad1 id=eq.1h5v.s8.3e53f2ad0da5 from=translated src=- shape=53dee894 vocab=9a476ddf
+-/
 theorem chartSubst_X_of_not {i : σ} (h : ¬(i ∈ S ∧ i ≠ j)) :
     chartSubst A S j (X (R := A) i) = X i := by
   rw [chartSubst, aeval_X, ite_eq_right h]
 
+/--
+@isnad1 id=eq.0h4v.s8.b006378e8a8e from=translated src=- shape=62a27f86 vocab=e94dd384
+-/
 theorem chartSubst_X_self : chartSubst A S j (X (R := A) j) = X j :=
   chartSubst_X_of_not A S j fun h => h.2 rfl
 
-/-- `α ∘ πⱼ` is the localization map `R → R[1/xⱼ]`.-/
+/-- `α ∘ πⱼ` is the localization map `R → R[1/xⱼ]`.
+@isnad1 id=eq.0h4v.s10.528db332de49 from=translated src=- shape=61e9a8e2 vocab=7effef9b
+-/
 theorem modelAux_comp_chartSubst :
     (modelAux A S j).comp (chartSubst A S j) =
       IsScalarTower.toAlgHom A (MvPolynomial σ A) (Localization.Away (X j : MvPolynomial σ A)) := by
@@ -142,10 +167,16 @@ theorem modelAux_comp_chartSubst :
       modelAux_X_self, mul_assoc, mul_comm (invSelf _), mul_invSelf, mul_one]
   · rw [chartSubst_X_of_not A S j h, modelAux_X_of_not A S j h]
 
+/--
+@isnad1 id=eq.0h5v.s10.fbbf4d87d76a from=translated src=- shape=fd309292 vocab=366eae22
+-/
 theorem modelAux_chartSubst (p : MvPolynomial σ A) :
     modelAux A S j (chartSubst A S j p) = algebraMap _ _ p :=
   AlgHom.congr_fun (modelAux_comp_chartSubst A S j) p
 
+/--
+@isnad1 id=isunit.0h4v.s9.163adcc3ccb0 from=translated src=- shape=e89479f1 vocab=777d0b27
+-/
 theorem isUnit_modelAux_X : IsUnit (modelAux A S j (X (R := A) j)) := by
   rw [modelAux_X_self]; exact algebraMap_isUnit _
 
@@ -154,6 +185,9 @@ noncomputable def modelAux' :
     Localization.Away (X j : MvPolynomial σ A) →ₐ[A] Localization.Away (X j : MvPolynomial σ A) :=
   IsLocalization.Away.liftAlgHom (X (R := A) j) (f := modelAux A S j) (isUnit_modelAux_X A S j)
 
+/--
+@isnad1 id=eq.0h5v.s11.b2536ede23ac from=translated src=- shape=5d191a77 vocab=54dcb504
+-/
 theorem modelAux'_algebraMap (p : MvPolynomial σ A) :
     modelAux' A S j (algebraMap (MvPolynomial σ A) (Localization.Away (X (R := A) j)) p) =
       modelAux A S j p := by
@@ -170,12 +204,18 @@ noncomputable def chartSubst' :
       rw [AlgHom.comp_apply, chartSubst_X_self, IsScalarTower.coe_toAlgHom']
       exact algebraMap_isUnit _)
 
+/--
+@isnad1 id=eq.0h5v.s11.9930d9fd5cf6 from=translated src=- shape=f645a7ae vocab=c6541143
+-/
 theorem chartSubst'_algebraMap (p : MvPolynomial σ A) :
     chartSubst' A S j (algebraMap (MvPolynomial σ A) (Localization.Away (X (R := A) j)) p) =
       algebraMap (MvPolynomial σ A) (Localization.Away (X (R := A) j)) (chartSubst A S j p) := by
   rw [chartSubst', IsLocalization.Away.liftAlgHom_apply, IsLocalization.Away.lift_eq]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.d5032d733e5c from=translated src=- shape=0d567b07 vocab=3cb6164a
+-/
 theorem chartSubst'_invSelf :
     chartSubst' A S j (invSelf (X (R := A) j)) = invSelf (X (R := A) j) := by
   have hu : IsUnit (algebraMap (MvPolynomial σ A) (Localization.Away (X (R := A) j))
@@ -190,6 +230,9 @@ theorem chartSubst'_invSelf :
   rw [chartSubst_X_self] at h
   rw [mul_comm (invSelf _), mul_invSelf, ← h, ← map_mul, mul_comm, mul_invSelf, map_one]
 
+/--
+@isnad1 id=eq.0h5v.s11.9f2d6ef3d6f2 from=translated src=- shape=78626c96 vocab=b120594a
+-/
 theorem modelAux'_chartSubst' (z : Localization.Away (X j : MvPolynomial σ A)) :
     modelAux' A S j (chartSubst' A S j z) = z := by
   have hcomp : (((modelAux' A S j).comp (chartSubst' A S j) :
@@ -206,6 +249,9 @@ theorem modelAux'_chartSubst' (z : Localization.Away (X j : MvPolynomial σ A)) 
   exact RingHom.congr_fun
     (IsLocalization.ringHom_ext (Submonoid.powers (X j : MvPolynomial σ A)) hcomp) z
 
+/--
+@isnad1 id=eq.0h4v.s10.860f5c4b7dc4 from=translated src=- shape=58dc5f24 vocab=0eb3af78
+-/
 theorem chartSubst'_comp_modelAux :
     (chartSubst' A S j).comp (modelAux A S j) =
       IsScalarTower.toAlgHom A (MvPolynomial σ A) (Localization.Away (X j : MvPolynomial σ A)) := by
@@ -217,6 +263,9 @@ theorem chartSubst'_comp_modelAux :
       mul_one]
   · rw [modelAux_X_of_not A S j h, chartSubst'_algebraMap, chartSubst_X_of_not A S j h]
 
+/--
+@isnad1 id=eq.0h5v.s11.ad0425ff6fd5 from=translated src=- shape=78626c96 vocab=b120594a
+-/
 theorem chartSubst'_modelAux' (z : Localization.Away (X j : MvPolynomial σ A)) :
     chartSubst' A S j (modelAux' A S j z) = z := by
   have hcomp : (((chartSubst' A S j).comp (modelAux' A S j) :
@@ -234,11 +283,16 @@ theorem chartSubst'_modelAux' (z : Localization.Away (X j : MvPolynomial σ A)) 
   exact RingHom.congr_fun
     (IsLocalization.ringHom_ext (Submonoid.powers (X j : MvPolynomial σ A)) hcomp) z
 
+/--
+@isnad1 id=injectiv.0h4v.s10.8dbb3df0d30b from=translated src=- shape=8d235add vocab=37e474d6
+-/
 theorem modelAux'_injective : Function.Injective (modelAux' A S j) :=
   Function.LeftInverse.injective (chartSubst'_modelAux' A S j)
 
 /-- `α` is injective: `xⱼ` is a nonzerodivisor of the polynomial ring, and `α` extends to the
-automorphism `α'` of `R[1/xⱼ]`.-/
+automorphism `α'` of `R[1/xⱼ]`.
+@isnad1 id=injectiv.0h4v.s9.ee0f4d59a4aa from=translated src=- shape=94659298 vocab=dd9299d7
+-/
 theorem modelAux_injective : Function.Injective (modelAux A S j) := by
   intro p q h
   apply IsLocalization.injective (M := Submonoid.powers (X j : MvPolynomial σ A))
@@ -247,6 +301,9 @@ theorem modelAux_injective : Function.Injective (modelAux A S j) := by
   apply modelAux'_injective A S j
   rwa [modelAux'_algebraMap, modelAux'_algebraMap]
 
+/--
+@isnad1 id=mem.0h5v.s11.2f332e1e75b2 from=translated src=- shape=a57b6954 vocab=d654b073
+-/
 theorem modelAux_mem (p : MvPolynomial σ A) :
     modelAux A S j p ∈ affineBlowUpAlgebra (coordinateIdeal A S) (X (R := A) j) := by
   induction p using MvPolynomial.induction_on with
@@ -275,13 +332,22 @@ noncomputable def modelHom :
     change modelAux A S j (algebraMap A (MvPolynomial σ A) r) = _
     rw [AlgHom.commutes]; rfl)
 
+/--
+@isnad1 id=eq.0h5v.s13.7cc0c2524dfa from=translated src=- shape=a2bf9539 vocab=22b8a12d
+-/
 @[simp]
 theorem coe_modelHom (p : MvPolynomial σ A) :
     (modelHom A S j p : Localization.Away (X j : MvPolynomial σ A)) = modelAux A S j p := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s12.a5e473f5cd0a from=translated src=- shape=6f334f7d vocab=ec8ffb69
+-/
 theorem modelHom_injective : Function.Injective (modelHom A S j) := fun _ _ h =>
   modelAux_injective A S j (congrArg Subtype.val h)
 
+/--
+@isnad1 id=ex.1h5v.s11.f6069e3b85a1 from=translated src=- shape=b2b31dba vocab=703a5710
+-/
 theorem exists_modelAux_eq_frac {x : MvPolynomial σ A} (hx : x ∈ coordinateIdeal A S) :
     ∃ p, modelAux A S j p = algebraMap _ _ x * invSelf (X (R := A) j) := by
   induction hx using Submodule.span_induction with
@@ -301,6 +367,9 @@ theorem exists_modelAux_eq_frac {x : MvPolynomial σ A} (hx : x ∈ coordinateId
     exact ⟨chartSubst A S j q * p, by
       rw [map_mul, hp, modelAux_chartSubst, smul_eq_mul, map_mul, mul_assoc]⟩
 
+/--
+@isnad1 id=surjecti.0h4v.s12.6d24a25e3aee from=translated src=- shape=6f334f7d vocab=888beab2
+-/
 theorem modelHom_surjective : Function.Surjective (modelHom A S j) := by
   rintro ⟨z, hz⟩
   suffices h : ∃ p, modelAux A S j p = z from h.imp fun p hp => Subtype.ext hp
@@ -322,6 +391,9 @@ noncomputable def coordinateSubspaceEquiv :
     affineBlowUpAlgebra (coordinateIdeal A S) (X (R := A) j) ≃ₐ[A] MvPolynomial σ A :=
   (AlgEquiv.ofBijective (modelHom A S j) ⟨modelHom_injective A S j, modelHom_surjective A S j⟩).symm
 
+/--
+@isnad1 id=eq.0h5v.s13.f5d7a582630b from=translated src=- shape=afd96afe vocab=83d2f4c4
+-/
 theorem coordinateSubspaceEquiv_modelHom (p : MvPolynomial σ A) :
     coordinateSubspaceEquiv A S j (modelHom A S j p) = p := by
   rw [coordinateSubspaceEquiv,
@@ -329,7 +401,9 @@ theorem coordinateSubspaceEquiv_modelHom (p : MvPolynomial σ A) :
       ⟨modelHom_injective A S j, modelHom_surjective A S j⟩,
     AlgEquiv.symm_apply_apply]
 
-/-- `xᵢ/xⱼ ↦ xᵢ` for `i ∈ S`, `i ≠ j`.-/
+/-- `xᵢ/xⱼ ↦ xᵢ` for `i ∈ S`, `i ≠ j`.
+@isnad1 id=eq.3h5v.s12.d3afefb7b404 from=translated src=- shape=818fe5a1 vocab=9e9f8127
+-/
 theorem coordinateSubspaceEquiv_frac {i : σ} (hi : i ∈ S) (hij : i ≠ j)
     (hi' : (X i : MvPolynomial σ A) ∈ coordinateIdeal A S) :
     coordinateSubspaceEquiv A S j (frac (a := X (R := A) j) hi') = X i := by
@@ -338,7 +412,9 @@ theorem coordinateSubspaceEquiv_frac {i : σ} (hi : i ∈ S) (hij : i ≠ j)
   rw [this, coordinateSubspaceEquiv_modelHom]
 
 /-- Under the identification, the inclusion `R → R[I/xⱼ]` is `xᵢ ↦ xᵢ xⱼ` for `i ∈ S`, `i ≠ j`:
-Hauser's chart map `πⱼ` [Hau14, Definition 4.12].-/
+Hauser's chart map `πⱼ` [Hau14, Definition 4.12].
+@isnad1 id=eq.2h5v.s14.01fbb69b231f from=translated src=- shape=b8240016 vocab=3cff08f6
+-/
 theorem coordinateSubspaceEquiv_algebraMap_X_of_mem {i : σ} (hi : i ∈ S) (hij : i ≠ j) :
     coordinateSubspaceEquiv A S j (algebraMap (MvPolynomial σ A) _ (X (R := A) i)) =
       X (R := A) i * X j := by
@@ -348,7 +424,9 @@ theorem coordinateSubspaceEquiv_algebraMap_X_of_mem {i : σ} (hi : i ∈ S) (hij
       modelAux_X_self, mul_assoc, mul_comm (invSelf _), mul_invSelf, mul_one])
   rw [this, coordinateSubspaceEquiv_modelHom]
 
-/-- The inclusion `R → R[I/xⱼ]` is `xᵢ ↦ xᵢ` for `i = j` and for `i ∉ S`.-/
+/-- The inclusion `R → R[I/xⱼ]` is `xᵢ ↦ xᵢ` for `i = j` and for `i ∉ S`.
+@isnad1 id=eq.1h5v.s14.0b190fab72ed from=translated src=- shape=585fd694 vocab=3706735c
+-/
 theorem coordinateSubspaceEquiv_algebraMap_X_of_not {i : σ} (h : ¬(i ∈ S ∧ i ≠ j)) :
     coordinateSubspaceEquiv A S j (algebraMap (MvPolynomial σ A) _ (X (R := A) i)) = X i := by
   have : algebraMap (MvPolynomial σ A) (affineBlowUpAlgebra (coordinateIdeal A S) (X (R := A) j))
@@ -356,25 +434,39 @@ theorem coordinateSubspaceEquiv_algebraMap_X_of_not {i : σ} (h : ¬(i ∈ S ∧
     Subtype.ext (by rw [Subalgebra.coe_algebraMap, coe_modelHom, modelAux_X_of_not A S j h])
   rw [this, coordinateSubspaceEquiv_modelHom]
 
+/--
+@isnad1 id=eq.2h5v.s11.4e96bb1ee4dd from=translated src=- shape=bca261be vocab=cc059f01
+-/
 theorem frac_add' {R : Type w} [CommRing R] {I : Ideal R} {a x y : R} (hx : x ∈ I) (hy : y ∈ I) :
     frac (a := a) (I.add_mem hx hy) = frac hx + frac hy :=
   Subtype.ext (by rw [Subalgebra.coe_add, coe_frac, coe_frac, coe_frac, map_add, add_mul])
 
+/--
+@isnad1 id=eq.1h5v.s11.a32410bbd54b from=translated src=- shape=7df89591 vocab=3b998cbc
+-/
 theorem frac_mul_left' {R : Type w} [CommRing R] {I : Ideal R} {a x : R} (r : R) (hx : x ∈ I) :
     frac (a := a) (I.mul_mem_left r hx) = algebraMap R _ r * frac hx :=
   Subtype.ext (by
     rw [Subalgebra.coe_mul, Subalgebra.coe_algebraMap, coe_frac, coe_frac, map_mul, mul_assoc])
 
+/--
+@isnad1 id=eq.0h3v.s10.7563d336562f from=translated src=- shape=d15544f8 vocab=db266ab7
+-/
 theorem frac_zero' {R : Type w} [CommRing R] {I : Ideal R} {a : R} :
     frac (a := a) I.zero_mem = 0 :=
   Subtype.ext (by rw [coe_frac, map_zero, zero_mul]; rfl)
 
+/--
+@isnad1 id=eq.1h3v.s10.db061ff40996 from=translated src=- shape=d603bbf7 vocab=b1ad3528
+-/
 theorem frac_self' {R : Type w} [CommRing R] {I : Ideal R} {a : R} (ha : a ∈ I) :
     frac (a := a) ha = 1 :=
   Subtype.ext (by rw [coe_frac, mul_invSelf]; rfl)
 
 /-- The identification is the unique `A`-algebra isomorphism with the values of
-[Hau14, Example 4.42] on the variables.-/
+[Hau14, Example 4.42] on the variables.
+@isnad1 id=eq.4h5v.s16.da0c39c2fea5 from=translated src=- shape=c58eabc9 vocab=6a578db7
+-/
 theorem coordinateSubspaceEquiv_unique
     (e : affineBlowUpAlgebra (coordinateIdeal A S) (X (R := A) j) ≃ₐ[A] MvPolynomial σ A)
     (h₁ : ∀ i ∈ S, i ≠ j → ∀ hi : (X i : MvPolynomial σ A) ∈ coordinateIdeal A S,

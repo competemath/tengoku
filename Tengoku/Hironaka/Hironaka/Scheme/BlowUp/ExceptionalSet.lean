@@ -51,28 +51,38 @@ immersion.-/
 def exceptionalSet : Set X :=
   {x | ¬ ∃ U : X.Opens, x ∈ U ∧ IsOpenImmersion (U.ι ≫ f)}
 
-/-- Membership in the exceptional set, by definition.-/
+/-- Membership in the exceptional set, by definition.
+@isnad1 id=iff.0h4v.s7.d64385e17b13 from=translated src=- shape=790dc090 vocab=ed0bae9f
+-/
 theorem mem_exceptionalSet_iff {x : X} :
     x ∈ f.exceptionalSet ↔ ¬ ∃ U : X.Opens, x ∈ U ∧ IsOpenImmersion (U.ι ≫ f) :=
   Iff.rfl
 
-/-- A point is not exceptional iff `f` is an open immersion on some open neighbourhood of it.-/
+/-- A point is not exceptional iff `f` is an open immersion on some open neighbourhood of it.
+@isnad1 id=iff.0h4v.s7.d7878fb5ac2a from=translated src=- shape=fdfdeaf6 vocab=ed0bae9f
+-/
 theorem notMem_exceptionalSet_iff {x : X} :
     x ∉ f.exceptionalSet ↔ ∃ U : X.Opens, x ∈ U ∧ IsOpenImmersion (U.ι ≫ f) :=
   not_not
 
 /-- The comparison with Mathlib's global notion: `f` is a local isomorphism (`IsLocalIso f`,
-source-locally an open immersion) iff its exceptional set is empty.-/
+source-locally an open immersion) iff its exceptional set is empty.
+@isnad1 id=iff.0h3v.s5.bb1b1eaffa2e from=translated src=- shape=aba14e59 vocab=0236a276
+-/
 theorem exceptionalSet_eq_empty_iff : f.exceptionalSet = ∅ ↔ IsLocalIso f := by
   rw [isLocalIso_iff, Set.eq_empty_iff_forall_notMem]
   exact forall_congr' fun x => notMem_exceptionalSet_iff f
 
-/-- A local isomorphism has empty exceptional set.-/
+/-- A local isomorphism has empty exceptional set.
+@isnad1 id=eq.0h3v.s5.eda98450c3b9 from=translated src=- shape=da8ff739 vocab=0236a276
+-/
 theorem exceptionalSet_eq_empty [IsLocalIso f] : f.exceptionalSet = ∅ :=
   (exceptionalSet_eq_empty_iff f).mpr ‹_›
 
 /-- A point over an open `V` of the target on which `f` restricts to an isomorphism is not
-exceptional: on `f⁻¹(V)` the morphism is `f ∣_ V` followed by the open immersion `V.ι`.-/
+exceptional: on `f⁻¹(V)` the morphism is `f ∣_ V` followed by the open immersion `V.ι`.
+@isnad1 id=not.1h5v.s8.e7626e3b8ae9 from=translated src=- shape=0e576cf3 vocab=2b525b0f
+-/
 theorem notMem_exceptionalSet_of_isIso_restrict {V : Y.Opens} [IsIso (f ∣_ V)] {x : X}
     (hx : f x ∈ V) : x ∉ f.exceptionalSet := by
   rw [notMem_exceptionalSet_iff]
@@ -80,7 +90,9 @@ theorem notMem_exceptionalSet_of_isIso_restrict {V : Y.Opens} [IsIso (f ∣_ V)]
   rw [← morphismRestrict_ι]
   infer_instance
 
-/-- If `f` is an isomorphism over an open `V`, its exceptional set lies over the complement.-/
+/-- If `f` is an isomorphism over an open `V`, its exceptional set lies over the complement.
+@isnad1 id=le.0h4v.s8.33e63f28a070 from=translated src=- shape=fe4668b5 vocab=1732a96d
+-/
 theorem exceptionalSet_subset_compl_preimage {V : Y.Opens} [IsIso (f ∣_ V)] :
     f.exceptionalSet ⊆ ((f ⁻¹ᵁ V : Set X))ᶜ :=
   fun _ hx hxV => notMem_exceptionalSet_of_isIso_restrict f hxV hx
@@ -88,7 +100,9 @@ theorem exceptionalSet_subset_compl_preimage {V : Y.Opens} [IsIso (f ∣_ V)] :
 /-- **The exceptional set lies in the exceptional divisor** `|F| = |π⁻¹(Z)|`, the support of the
 inverse image ideal sheaf `I·𝒪_B`, for any morphism `π : B ⟶ X` that is an isomorphism over the
 complement of the centre `Z = V(I)` ([Sta, Tag 02OS]; the easy half of `Ex(Π) = Ex_tot(Π)` in
-[Kol07, Definition 25]).-/
+[Kol07, Definition 25]).
+@isnad1 id=le.0h4v.s8.8f66e9797ae5 from=translated src=- shape=edf1688a vocab=2120df82
+-/
 theorem exceptionalSet_subset_support_comap {B : Scheme.{u}} (π : B ⟶ X) (I : X.IdealSheafData)
     [IsIso (π ∣_ I.support.compl)] : π.exceptionalSet ⊆ ((I.comap π).support : Set B) := by
   intro x hx

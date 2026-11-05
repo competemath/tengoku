@@ -45,7 +45,9 @@ namespace Algebra
 variable (k K : Type u) [Field k] [Field K] [Algebra k K]
 
 /-- For a field extension `K/k` with a separating transcendence basis `s` (`K` separable over
-`k(s)`), the rank of `Ω[K⁄k]` is the transcendence degree of `K/k` (used in [Sta, Tag 00TV]).-/
+`k(s)`), the rank of `Ω[K⁄k]` is the transcendence degree of `K/k` (used in [Sta, Tag 00TV]).
+@isnad1 id=eq.1h3v.s8.6abcd92aec85 from=translated src=- shape=d5ea890c vocab=033b582b
+-/
 theorem rank_kaehlerDifferential_eq_trdeg_of_isSeparable {s : Set K}
     (hs : IsTranscendenceBasis k ((↑) : s → K))
     [Algebra.IsSeparable (IntermediateField.adjoin k s) K] :
@@ -78,14 +80,18 @@ theorem rank_kaehlerDifferential_eq_trdeg_of_isSeparable {s : Set K}
   rw [← bK.mk_eq_rank'', hs.cardinalMk_eq_trdeg]
 
 /-- For `k` perfect and `K/k` finitely generated (essentially of finite type),
-`rank_K Ω[K⁄k] = trdeg_k K`: every such extension has a separating transcendence basis.-/
+`rank_K Ω[K⁄k] = trdeg_k K`: every such extension has a separating transcendence basis.
+@isnad1 id=eq.0h2v.s6.2e9d6e214204 from=translated src=- shape=d2f14955 vocab=13445829
+-/
 theorem rank_kaehlerDifferential_eq_trdeg_of_perfectField [PerfectField k]
     [Algebra.EssFiniteType k K] :
     Module.rank K Ω[K⁄k] = Algebra.trdeg k K := by
   obtain ⟨s, hs, H⟩ := exists_isTranscendenceBasis_and_isSeparable_of_perfectField k K
   exact rank_kaehlerDifferential_eq_trdeg_of_isSeparable k K (s := (s : Set K)) hs
 
-/-- For `K/k` separable algebraic, `Ω[K⁄k] = 0`: `K` is formally unramified over `k`.-/
+/-- For `K/k` separable algebraic, `Ω[K⁄k] = 0`: `K` is formally unramified over `k`.
+@isnad1 id=subsingl.0h2v.s5.7a1a6bcd3361 from=translated src=- shape=af6b215a vocab=2afee6ef
+-/
 theorem subsingleton_kaehlerDifferential_of_isSeparable [Algebra.IsSeparable k K] :
     Subsingleton Ω[K⁄k] :=
   have := Algebra.FormallyUnramified.of_isSeparable k K

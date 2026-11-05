@@ -39,7 +39,9 @@ variable {R : Type u} [CommRing R] {n : ℕ} (x : Fin n → R) (r : Fin n)
 
 /-- Every element of the chart ring is a quotient `φ(c)/x_r^M`: the generators `x_i/x_r` are, and
 sums and products of such quotients are (the Rees-algebra form of the chart ring of
-[Kol07, Definition 60, (60.2)]).-/
+[Kol07, Definition 60, (60.2)]).
+@isnad1 id=ex.0h5v.s12.2c408b00deba from=translated src=- shape=e512a617 vocab=e6c0bac4
+-/
 theorem exists_pow_mul_eq_algebraMap (g : chartRing x r) :
     ∃ (M : ℕ) (c : R),
       algebraMap R (chartRing x r) (x r) ^ M * g = algebraMap R (chartRing x r) c := by
@@ -73,9 +75,15 @@ def IsTransformOf (g : chartRing x r) : Prop :=
   ∃ (M : ℕ) (f : R), f ∈ I ∧
     algebraMap R (chartRing x r) (x r) ^ M * g = algebraMap R (chartRing x r) f
 
+/--
+@isnad1 id=istransf.0h5v.s9.6d82d2d39829 from=translated src=- shape=8ff6c5a8 vocab=c1074468
+-/
 theorem IsTransformOf.zero : IsTransformOf x r I 0 :=
   ⟨0, 0, I.zero_mem, by simp⟩
 
+/--
+@isnad1 id=istransf.2h7v.s11.7f25a65e0755 from=translated src=- shape=1e5fd614 vocab=7d823f43
+-/
 theorem IsTransformOf.add {g₁ g₂ : chartRing x r} (h₁ : IsTransformOf x r I g₁)
     (h₂ : IsTransformOf x r I g₂) : IsTransformOf x r I (g₁ + g₂) := by
   obtain ⟨M₁, f₁, hf₁, e₁⟩ := h₁
@@ -85,6 +93,9 @@ theorem IsTransformOf.add {g₁ g₂ : chartRing x r} (h₁ : IsTransformOf x r 
   rw [map_add, map_mul, map_mul, map_pow, map_pow, ← e₁, ← e₂]
   ring
 
+/--
+@isnad1 id=istransf.1h7v.s11.66e9e3b0d4eb from=translated src=- shape=68c7dd47 vocab=90744df9
+-/
 theorem IsTransformOf.mul (a : chartRing x r) {g : chartRing x r} (h : IsTransformOf x r I g) :
     IsTransformOf x r I (a * g) := by
   obtain ⟨M, f, hf, e⟩ := h
@@ -93,7 +104,9 @@ theorem IsTransformOf.mul (a : chartRing x r) {g : chartRing x r} (h : IsTransfo
   rw [map_mul, ← e, ← e']
   ring
 
-/-- A transform is saturated: if `x_r^k g` is a transform then so is `g`.-/
+/-- A transform is saturated: if `x_r^k g` is a transform then so is `g`.
+@isnad1 id=istransf.1h7v.s12.fed9fc07c311 from=translated src=- shape=58bde5ba vocab=f0a7c4c6
+-/
 theorem IsTransformOf.of_pow_mul {k : ℕ} {g : chartRing x r}
     (h : IsTransformOf x r I (algebraMap R (chartRing x r) (x r) ^ k * g)) :
     IsTransformOf x r I g := by
@@ -110,17 +123,24 @@ def transformsIdeal : Ideal (chartRing x r) where
     rw [smul_eq_mul]
     exact IsTransformOf.mul x r I a h
 
+/--
+@isnad1 id=iff.0h6v.s11.6e0485e9b4ad from=translated src=- shape=cfea852b vocab=ade5d615
+-/
 theorem mem_transformsIdeal {g : chartRing x r} :
     g ∈ transformsIdeal x r I ↔ IsTransformOf x r I g :=
   Iff.rfl
 
-/-- Every element of `I R'` is a transform (with `M = 0`).-/
+/-- Every element of `I R'` is a transform (with `M = 0`).
+@isnad1 id=le.0h5v.s12.fef67afb1f87 from=translated src=- shape=c9f8c30d vocab=d5fb9936
+-/
 theorem map_le_transformsIdeal :
     I.map (algebraMap R (chartRing x r)) ≤ transformsIdeal x r I :=
   Ideal.map_le_iff_le_comap.mpr fun f hf => ⟨0, f, hf, by rw [pow_zero, one_mul]⟩
 
 /-- The ideal of transforms is the union of the `transformIdeal x r I m` of
-`Hironaka/Algebra/Local/BirationalTransform.lean`.-/
+`Hironaka/Algebra/Local/BirationalTransform.lean`.
+@isnad1 id=eq.0h5v.s11.9c0d0e995fe8 from=translated src=- shape=b46ac91d vocab=8a051b9b
+-/
 theorem transformsIdeal_eq_iSup_transformIdeal :
     transformsIdeal x r I = ⨆ m : ℕ, transformIdeal x r I m := by
   refine le_antisymm (fun g hg => ?_) (iSup_le fun m => Ideal.span_le.mpr ?_)
@@ -132,7 +152,9 @@ theorem transformsIdeal_eq_iSup_transformIdeal :
 /-- **The `x_r`-saturation of `I R'` is the ideal of the transforms of the elements of `I`**,
 `⋃_k (I R' : x_r^k) = {x_r^{-M} φ(f) : f ∈ I}`: [BM97, Proposition 3.13] in the chart ring
 (the strict transform of [Kol07, Definition 25] and the transform (60.1) of
-[Kol07, Definition 60]).-/
+[Kol07, Definition 60]).
+@isnad1 id=eq.0h5v.s13.d4751aa50da0 from=translated src=- shape=9df25376 vocab=d00c2cc4
+-/
 theorem iSup_colon_pow_map_eq_transformsIdeal :
     (⨆ k : ℕ, Submodule.colon (I.map (algebraMap R (chartRing x r)))
       (SetLike.coe (Ideal.span {algebraMap R (chartRing x r) (x r)} ^ k))) =
@@ -152,14 +174,18 @@ theorem iSup_colon_pow_map_eq_transformsIdeal :
     exact Ideal.mul_mem_left _ b (Ideal.mem_map_of_mem _ hf)
 
 /-- The saturation theorem with the colons by the elements `x_r^k` (the form the transport lemma
-of `Hironaka.Algebra.SaturationDescent` produces).-/
+of `Hironaka.Algebra.SaturationDescent` produces).
+@isnad1 id=eq.0h5v.s13.8700dd379605 from=translated src=- shape=3d18173c vocab=b5f08561
+-/
 theorem iSup_colon_pow_singleton_map_eq_transformsIdeal :
     (⨆ k : ℕ, (I.map (algebraMap R (chartRing x r))).colon
       {algebraMap R (chartRing x r) (x r) ^ k}) = transformsIdeal x r I := by
   rw [← iSup_colon_pow_map_eq_transformsIdeal]
   simp_rw [Ideal.span_singleton_pow, Submodule.colon_span]
 
-/-- The saturation in the form of the union of the `transformIdeal x r I m`.-/
+/-- The saturation in the form of the union of the `transformIdeal x r I m`.
+@isnad1 id=eq.0h5v.s14.aa7c2fb8242d from=translated src=- shape=652c6386 vocab=02a13f26
+-/
 theorem iSup_colon_pow_map_eq_iSup_transformIdeal :
     (⨆ k : ℕ, Submodule.colon (I.map (algebraMap R (chartRing x r)))
       (SetLike.coe (Ideal.span {algebraMap R (chartRing x r) (x r)} ^ k))) =

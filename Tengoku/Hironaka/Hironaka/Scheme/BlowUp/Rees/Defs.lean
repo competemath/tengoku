@@ -63,17 +63,24 @@ def reesAlgebra.grading (i : ℕ) : Submodule R (reesAlgebra I) where
 
 variable {I}
 
-/-- Membership: `p` has degree `n` iff its coefficients of index `≠ n` vanish.-/
+/-- Membership: `p` has degree `n` iff its coefficients of index `≠ n` vanish.
+@isnad1 id=iff.0h4v.s10.f77e032a87cc from=translated src=- shape=23b9f85f vocab=b0a33c5e
+-/
 theorem reesAlgebra.mem_grading_iff {n : ℕ} {p : reesAlgebra I} :
     p ∈ reesAlgebra.grading I n ↔ ∀ j ≠ n, (p : R[X]).coeff j = 0 :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.2h5v.s10.33e7b2590fed from=translated src=- shape=2ae85683 vocab=b0a33c5e
+-/
 theorem reesAlgebra.coeff_eq_zero_of_mem_grading {n : ℕ} {p : reesAlgebra I}
     (hp : p ∈ reesAlgebra.grading I n) {j : ℕ} (hj : j ≠ n) : (p : R[X]).coeff j = 0 :=
   reesAlgebra.mem_grading_iff.mp hp j hj
 
 /-- The `n`-th coefficient of an element of the Rees algebra lies in `I ^ n`
-(`mem_reesAlgebra_iff`, read on the subtype).-/
+(`mem_reesAlgebra_iff`, read on the subtype).
+@isnad1 id=mem.0h4v.s8.0fbf7b261089 from=translated src=- shape=dbd7bb18 vocab=1ba4e5e2
+-/
 theorem reesAlgebra.coeff_mem_pow (p : reesAlgebra I) (n : ℕ) : (p : R[X]).coeff n ∈ I ^ n :=
   (mem_reesAlgebra_iff I p).mp p.2 n
 
@@ -88,12 +95,16 @@ theorem reesAlgebra.eq_monomial_of_mem_grading {n : ℕ} {p : reesAlgebra I}
   · rw [h]
   · exact reesAlgebra.coeff_eq_zero_of_mem_grading hp (Ne.symm h)
 
-/-- An element of the Rees algebra that is a monomial of degree `i` lies in the `i`-th piece.-/
+/-- An element of the Rees algebra that is a monomial of degree `i` lies in the `i`-th piece.
+@isnad1 id=mem.1h5v.s10.1db3766dcb81 from=translated src=- shape=c1188f83 vocab=9a3218c1
+-/
 theorem reesAlgebra.mem_grading_of_coe_eq_monomial {i : ℕ} {p : reesAlgebra I} {c : R}
     (hp : (p : R[X]) = monomial i c) : p ∈ reesAlgebra.grading I i :=
   fun j hj => by rw [hp, coeff_monomial, ite_eq_right (Ne.symm hj)]
 
-/-- The `n`-th piece consists of the monomials `c tⁿ`, `c ∈ I ^ n`.-/
+/-- The `n`-th piece consists of the monomials `c tⁿ`, `c ∈ I ^ n`.
+@isnad1 id=iff.0h4v.s10.fb71ca623b7c from=translated src=- shape=907dbfcc vocab=22c5e0a2
+-/
 theorem reesAlgebra.mem_grading_iff_exists {n : ℕ} {p : reesAlgebra I} :
     p ∈ reesAlgebra.grading I n ↔ ∃ c ∈ I ^ n, (p : R[X]) = monomial n c :=
   ⟨fun hp => ⟨_, (reesAlgebra.eq_monomial_of_mem_grading hp).2,
@@ -119,10 +130,16 @@ noncomputable def reesAlgebra.component (n : ℕ) : reesAlgebra I →ₗ[R] rees
 
 variable {I}
 
+/--
+@isnad1 id=eq.1h4v.s13.adcce40242e7 from=translated src=- shape=e61fa186 vocab=7ae2b87b
+-/
 theorem reesAlgebra.component_of_mem {n : ℕ} {p : reesAlgebra I}
     (hp : p ∈ reesAlgebra.grading I n) : reesAlgebra.component I n p = ⟨p, hp⟩ :=
   Subtype.ext <| Subtype.ext (reesAlgebra.eq_monomial_of_mem_grading hp).1.symm
 
+/--
+@isnad1 id=eq.2h5v.s13.46024150b11d from=translated src=- shape=58604a5f vocab=0f654e98
+-/
 theorem reesAlgebra.component_of_mem_of_ne {m n : ℕ} {p : reesAlgebra I}
     (hp : p ∈ reesAlgebra.grading I m) (h : m ≠ n) : reesAlgebra.component I n p = 0 :=
   Subtype.ext <| Subtype.ext <| by
@@ -131,7 +148,9 @@ theorem reesAlgebra.component_of_mem_of_ne {m n : ℕ} {p : reesAlgebra I}
 
 /-- Independence: the `n`-th component of a finite sum of homogeneous elements is its degree-`n`
 summand — a polynomial is determined by its coefficients, and the `n`-th coefficient of the sum
-is the `n`-th coefficient of the degree-`n` summand.-/
+is the `n`-th coefficient of the degree-`n` summand.
+@isnad1 id=eq.0h4v.s16.32680066e957 from=translated src=- shape=feb4fa57 vocab=a611e156
+-/
 theorem reesAlgebra.component_coeAddMonoidHom (x : ⨁ i, reesAlgebra.grading I i) (n : ℕ) :
     reesAlgebra.component I n (DirectSum.coeAddMonoidHom (reesAlgebra.grading I) x) = x n := by
   classical
@@ -148,7 +167,9 @@ section Instances
 variable (I : Ideal R)
 
 /-- `1 = 1 · t⁰` has degree `0`, and the product `c tⁱ · d tʲ = cd tⁱ⁺ʲ` of elements of degrees
-`i` and `j` has degree `i + j` (`Polynomial.monomial_mul_monomial`).-/
+`i` and `j` has degree `i + j` (`Polynomial.monomial_mul_monomial`).
+@isnad1 id=gradedmo.0h2v.s10.bd04524e773d from=translated src=- shape=60576047 vocab=59808b6a
+-/
 instance reesAlgebra.gradedMonoid : SetLike.GradedMonoid (reesAlgebra.grading I) where
   one_mem := reesAlgebra.mem_grading_of_coe_eq_monomial (c := (1 : R)) (by simp)
   mul_mem := fun {i j p q} hp hq => by
@@ -160,7 +181,9 @@ instance reesAlgebra.gradedMonoid : SetLike.GradedMonoid (reesAlgebra.grading I)
 /-- `reesAlgebra I` is the internal direct sum of its pieces [Hau14, Definition 4.6].
 Independence is `reesAlgebra.component_coeAddMonoidHom` (compare coefficients); spanning is
 `Polynomial.as_sum_support`, each monomial `monomial i (coeff i p)` lying in the `i`-th piece by
-`reesAlgebra.monomial_mem`.-/
+`reesAlgebra.monomial_mem`.
+@isnad1 id=isintern.0h2v.s10.dc0a32f59652 from=translated src=- shape=60576047 vocab=882c3dcf
+-/
 theorem reesAlgebra.isInternal_grading : DirectSum.IsInternal (reesAlgebra.grading I) := by
   classical
   refine ⟨fun x y hxy => DirectSum.ext fun n => ?_, fun p => ?_⟩
@@ -188,7 +211,9 @@ section DegreeZero
 
 variable {R : Type u} [CommRing R] {I : Ideal R}
 
-/-- Degree zero consists of the constant polynomials [Hau14, Definition 4.6].-/
+/-- Degree zero consists of the constant polynomials [Hau14, Definition 4.6].
+@isnad1 id=iff.0h3v.s10.5ca8d7183ad0 from=translated src=- shape=fa1c4477 vocab=c261ed6e
+-/
 theorem reesAlgebra.mem_grading_zero_iff {p : reesAlgebra I} :
     p ∈ reesAlgebra.grading I 0 ↔ ∃ r : R, (p : R[X]) = C r := by
   constructor
@@ -197,7 +222,9 @@ theorem reesAlgebra.mem_grading_zero_iff {p : reesAlgebra I} :
   · rintro ⟨r, hr⟩
     exact reesAlgebra.mem_grading_of_coe_eq_monomial (hr.trans (monomial_zero_left (a := r)).symm)
 
-/-- The constant `r · t⁰` has degree zero.-/
+/-- The constant `r · t⁰` has degree zero.
+@isnad1 id=mem.0h3v.s11.3cce28e571f4 from=translated src=- shape=cf5d3c42 vocab=1faa39d6
+-/
 theorem reesAlgebra.algebraMap_mem_grading_zero (r : R) :
     algebraMap R (reesAlgebra I) r ∈ reesAlgebra.grading I 0 :=
   reesAlgebra.mem_grading_zero_iff.mpr ⟨r, by rw [Subalgebra.coe_algebraMap, algebraMap_eq]⟩

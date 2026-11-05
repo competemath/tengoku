@@ -59,7 +59,9 @@ namespace Ideal
 
 variable {A : Type u} {B : Type u} [CommRing A] [CommRing B]
 
-/-- The datum of a regular generator passes along a ring isomorphism of the base.-/
+/-- The datum of a regular generator passes along a ring isomorphism of the base.
+@isnad1 id=isregula.1h6v.s10.3c546fce4a2d from=translated src=- shape=2f3913ea vocab=0f3955a4
+-/
 theorem IsRegularGeneratorIn.map_ringEquiv (e : A ≃+* B) {J : Ideal A} {s a : A}
     (h : J.IsRegularGeneratorIn (Localization.Away s) a) :
     (J.map (e : A →+* B)).IsRegularGeneratorIn (Localization.Away (e s)) (e a) := by
@@ -81,7 +83,9 @@ theorem IsRegularGeneratorIn.map_ringEquiv (e : A ≃+* B) {J : Ideal A} {s a : 
   · rw [← hρ]
     exact map_mem_nonZeroDivisors_of_ringEquiv ρ h₂
 
-/-- Invertibility passes along ring isomorphisms.-/
+/-- Invertibility passes along ring isomorphisms.
+@isnad1 id=isinvert.1h4v.s7.a1d1081b0191 from=translated src=- shape=59f885b4 vocab=9e73ee83
+-/
 theorem IsInvertible.map_ringEquiv (e : A ≃+* B) {J : Ideal A} (hJ : J.IsInvertible) :
     (J.map (e : A →+* B)).IsInvertible := by
   intro q
@@ -89,7 +93,9 @@ theorem IsInvertible.map_ringEquiv (e : A ≃+* B) {J : Ideal A} (hJ : J.IsInver
   rw [PrimeSpectrum.comap_asIdeal, Ideal.mem_comap] at hs
   exact ⟨e s, hs, e a, Ideal.mem_map_of_mem _ ha, IsRegularGeneratorIn.map_ringEquiv e h⟩
 
-/-- Invertibility passes to any localization away from an element.-/
+/-- Invertibility passes to any localization away from an element.
+@isnad1 id=isinvert.1h4v.s6.25320e9e5255 from=translated src=- shape=a8819017 vocab=40df2a3e
+-/
 theorem IsInvertible.map_of_isLocalization_away {J : Ideal A} (hJ : J.IsInvertible) (s : A)
     (C : Type u) [CommRing C] [Algebra A C] [IsLocalization.Away s C] :
     (J.map (algebraMap A C)).IsInvertible := by
@@ -107,13 +113,17 @@ namespace AlgebraicGeometry.Scheme.IdealSheafData
 variable {X : Scheme.{u}} (J : X.IdealSheafData)
 
 /-- The ideal of `J` on a basic open `D(s) ⊆ U` is the extension of `J(U)` along the localization
-map `Γ(X, U) → Γ(X, D(s))`.-/
+map `Γ(X, U) → Γ(X, D(s))`.
+@isnad1 id=eq.0h4v.s12.8e4886cfe258 from=translated src=- shape=3febb74e vocab=71dea5a4
+-/
 theorem ideal_affineBasicOpen_eq_map (U : X.affineOpens) (s : Γ(X, U)) :
     J.ideal (X.affineBasicOpen s) =
       (J.ideal U).map (algebraMap Γ(X, U) Γ(X, X.basicOpen s)) :=
   (J.map_ideal_basicOpen U s).symm
 
-/-- A regular generator of `J(U)` restricts to a regular generator of `J(D(s))`.-/
+/-- A regular generator of `J(U)` restricts to a regular generator of `J(D(s))`.
+@isnad1 id=ex.2h5v.s13.e9ae3b5249d9 from=translated src=- shape=208d6824 vocab=f0176e55
+-/
 theorem exists_regular_generator_affineBasicOpen (U : X.affineOpens) {f : Γ(X, U)}
     (hf : f ∈ nonZeroDivisors Γ(X, U)) (hJ : J.ideal U = Ideal.span {f}) (s : Γ(X, U)) :
     ∃ g ∈ nonZeroDivisors Γ(X, X.basicOpen s),
@@ -123,14 +133,18 @@ theorem exists_regular_generator_affineBasicOpen (U : X.affineOpens) {f : Γ(X, 
     IsLocalization.nonZeroDivisors_le_comap (Submonoid.powers s) _ hf, ?_⟩
   rw [ideal_affineBasicOpen_eq_map, hJ, Ideal.map_span, Set.image_singleton]
 
-/-- `J(U)` invertible implies `J(D(s))` invertible.-/
+/-- `J(U)` invertible implies `J(D(s))` invertible.
+@isnad1 id=isinvert.1h4v.s9.9e176ab1b93a from=translated src=- shape=679909aa vocab=9181f0e7
+-/
 theorem isInvertible_ideal_affineBasicOpen (U : X.affineOpens) (hU : (J.ideal U).IsInvertible)
     (s : Γ(X, U)) : (J.ideal (X.affineBasicOpen s)).IsInvertible := by
   have := U.2.isLocalization_basicOpen s
   rw [ideal_affineBasicOpen_eq_map]
   exact hU.map_of_isLocalization_away s Γ(X, X.basicOpen s)
 
-/-- The point of `U` at a prime of `Γ(X, U)` lies in `D(s)` iff `s` is not in the prime.-/
+/-- The point of `U` at a prime of `Γ(X, U)` lies in `D(s)` iff `s` is not in the prime.
+@isnad1 id=iff.1h4v.s12.8d5c0bc0bb92 from=translated src=- shape=fa97dbf6 vocab=33286f4a
+-/
 theorem fromSpec_mem_basicOpen_iff {U : X.Opens} (hU : IsAffineOpen U)
     (p : PrimeSpectrum Γ(X, U)) (s : Γ(X, U)) :
     hU.fromSpec p ∈ X.basicOpen s ↔ s ∉ p.asIdeal := by
@@ -138,13 +152,18 @@ theorem fromSpec_mem_basicOpen_iff {U : X.Opens} (hU : IsAffineOpen U)
   rw [h1, hU.fromSpec_preimage_basicOpen]
   exact PrimeSpectrum.mem_basicOpen _ _
 
+/--
+@isnad1 id=ex.0h2v.s6.2a54a4ab58b5 from=translated src=- shape=acfb38e6 vocab=9bb908a6
+-/
 theorem exists_affineOpens_mem (x : X) : ∃ U : X.affineOpens, x ∈ U.1 := by
   obtain ⟨_, ⟨U, hU, rfl⟩, hxU, -⟩ :=
     X.isBasis_affineOpens.exists_subset_of_mem_open (Set.mem_univ x) isOpen_univ
   exact ⟨⟨U, hU⟩, hxU⟩
 
 /-- Pointwise form of locality: `J` is invertible if every point has an affine open neighbourhood
-on which the ideal of `J` is invertible.-/
+on which the ideal of `J` is invertible.
+@isnad1 id=isinvert.1h2v.s8.eee8c399166c from=translated src=- shape=ea00aafb vocab=8374e91b
+-/
 theorem isInvertible_of_forall_exists_affine
     (h : ∀ x : X, ∃ U : X.affineOpens, x ∈ U.1 ∧ (J.ideal U).IsInvertible) : J.IsInvertible := by
   intro x
@@ -161,7 +180,9 @@ theorem isInvertible_of_forall_exists_affine
   rfl
 
 /-- The ideal of an invertible ideal sheaf on any affine open is invertible (compare the proof of
-[Sta, Tag 01WS]).-/
+[Sta, Tag 01WS]).
+@isnad1 id=isinvert.1h3v.s8.5633ea3124d0 from=translated src=- shape=07ec5fa7 vocab=8374e91b
+-/
 theorem IsInvertible.ideal (hJ : J.IsInvertible) (U : X.affineOpens) :
     (J.ideal U).IsInvertible := by
   intro p
@@ -196,7 +217,9 @@ theorem IsInvertible.ideal (hJ : J.IsInvertible) (U : X.affineOpens) :
   exact ⟨s, hs, a, ha, Ideal.IsRegularGeneratorIn.of_algEquiv
     (IsLocalization.algEquiv (Submonoid.powers s) _ _) hgen⟩
 
-/-- An ideal sheaf is invertible iff its ideal on every affine open is invertible.-/
+/-- An ideal sheaf is invertible iff its ideal on every affine open is invertible.
+@isnad1 id=iff.0h2v.s8.3a543b3e0397 from=translated src=- shape=4b02bfbf vocab=8374e91b
+-/
 theorem isInvertible_iff_forall_ideal :
     J.IsInvertible ↔ ∀ U : X.affineOpens, (J.ideal U).IsInvertible :=
   ⟨fun h U => IsInvertible.ideal J h U, fun h => isInvertible_of_forall_exists_affine J fun x =>
@@ -204,7 +227,9 @@ theorem isInvertible_iff_forall_ideal :
     ⟨U, hxU, h U⟩⟩
 
 /-- An ideal sheaf is invertible iff its ideals on the members of an affine open cover are
-invertible.-/
+invertible.
+@isnad1 id=iff.1h4v.s8.d8731efe094c from=translated src=- shape=8c9a7b32 vocab=a1c4a5c7
+-/
 theorem isInvertible_iff_of_iSup_eq_top {ι : Type*} (U : ι → X.affineOpens)
     (hU : ⨆ i, (U i).1 = ⊤) : J.IsInvertible ↔ ∀ i, (J.ideal (U i)).IsInvertible :=
   ⟨fun h i => IsInvertible.ideal J h (U i), fun h => isInvertible_of_forall_exists_affine J
@@ -213,13 +238,17 @@ theorem isInvertible_iff_of_iSup_eq_top {ι : Type*} (U : ι → X.affineOpens)
     obtain ⟨i, hi⟩ := TopologicalSpace.Opens.mem_iSup.mp hx
     exact ⟨U i, hi, h i⟩⟩
 
-/-- The unit ideal sheaf is invertible.-/
+/-- The unit ideal sheaf is invertible.
+@isnad1 id=isinvert.0h1v.s4.95c6271961bd from=translated src=- shape=6a6a934a vocab=0b341648
+-/
 theorem isInvertible_top : (⊤ : X.IdealSheafData).IsInvertible := fun x => by
   obtain ⟨U, hxU⟩ := exists_affineOpens_mem x
   exact ⟨U, hxU, 1, one_mem _, Ideal.span_singleton_one.symm⟩
 
 /-- A product of invertible ideal sheaves is invertible: multiply the local generators on a
-common basic open.-/
+common basic open.
+@isnad1 id=isinvert.2h3v.s5.865821ecd372 from=translated src=- shape=28e1eca0 vocab=217dc0a2
+-/
 theorem IsInvertible.mul {J₁ J₂ : X.IdealSheafData} (h₁ : J₁.IsInvertible)
     (h₂ : J₂.IsInvertible) : (J₁ * J₂).IsInvertible := fun x => by
   obtain ⟨U₁, hx₁, f₁, hf₁, e₁⟩ := h₁ x
@@ -237,7 +266,9 @@ theorem IsInvertible.mul {J₁ J₂ : X.IdealSheafData} (h₁ : J₁.IsInvertibl
   rw [ideal_mul, Pi.mul_apply, hJ₁, hJ₂]
   exact Ideal.span_singleton_mul_span_singleton g₁ g₂
 
-/-- The comap of an invertible ideal sheaf along an open immersion is invertible.-/
+/-- The comap of an invertible ideal sheaf along an open immersion is invertible.
+@isnad1 id=isinvert.1h4v.s5.1c42f2031ef0 from=translated src=- shape=fc7e54ba vocab=633039dc
+-/
 theorem IsInvertible.comap_of_isOpenImmersion {Y : Scheme.{u}} (f : Y ⟶ X) [IsOpenImmersion f]
     {J : X.IdealSheafData} (hJ : J.IsInvertible) : (J.comap f).IsInvertible := fun y => by
   obtain ⟨U, hxU, g, hg, hJU⟩ := hJ (f y)

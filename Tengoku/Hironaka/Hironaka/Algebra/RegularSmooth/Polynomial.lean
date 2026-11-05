@@ -38,7 +38,9 @@ open scoped TensorProduct
 namespace KaehlerDifferential
 
 /-- The `i`-th coordinate of `d x` in the basis `d x_j` of `Ω[R[x_j] ⁄ R]` is `∂x/∂x_i`
-([Sta, Tag 00RX], "`d f = ∑ (∂f/∂x_i) d x_i`").-/
+([Sta, Tag 00RX], "`d f = ∑ (∂f/∂x_i) d x_i`").
+@isnad1 id=eq.0h4v.s11.b062969579cf from=translated src=- shape=2f71020c vocab=dea267a1
+-/
 theorem mvPolynomialBasis_repr_D_apply {R : Type u} [CommRing R] {σ : Type v}
     (x : MvPolynomial σ R) (i : σ) :
     (mvPolynomialBasis R σ).repr (D R (MvPolynomial σ R) x) i = pderiv i x := by
@@ -63,6 +65,9 @@ noncomputable def mvPolynomialLocalizationBasis :
   (mvPolynomialBasis k ι).ofIsLocalizedModule (Localization.AtPrime Q) Q.primeCompl
     (map k k (MvPolynomial ι k) (Localization.AtPrime Q))
 
+/--
+@isnad1 id=eq.0h4v.s13.ffbd7e610833 from=translated src=- shape=1a1f37d4 vocab=3803afa7
+-/
 @[simp]
 theorem mvPolynomialLocalizationBasis_apply (i : ι) :
     mvPolynomialLocalizationBasis Q i =
@@ -72,7 +77,9 @@ theorem mvPolynomialLocalizationBasis_apply (i : ι) :
     mvPolynomialBasis_apply, map_D]
 
 /-- The coordinates of `d f` in the basis `d x_i` of `Ω[k[x]_Q ⁄ k]` are the partial derivatives
-`∂f/∂x_i` [Sta, Tag 00RX].-/
+`∂f/∂x_i` [Sta, Tag 00RX].
+@isnad1 id=eq.0h5v.s14.96ec25a8f14f from=translated src=- shape=ff60f4e7 vocab=8efd29ec
+-/
 theorem mvPolynomialLocalizationBasis_repr_D (x : MvPolynomial ι k) (i : ι) :
     (mvPolynomialLocalizationBasis Q).repr
         (D k (Localization.AtPrime Q)
@@ -87,6 +94,9 @@ noncomputable def residueFieldTensorMvPolynomialLocalizationBasis :
       (Q.ResidueField ⊗[Localization.AtPrime Q] Ω[Localization.AtPrime Q⁄k]) :=
   (mvPolynomialLocalizationBasis Q).baseChange Q.ResidueField
 
+/--
+@isnad1 id=eq.0h4v.s14.7373f81580f3 from=translated src=- shape=5b06d50a vocab=3400e363
+-/
 @[simp]
 theorem residueFieldTensorMvPolynomialLocalizationBasis_apply (i : ι) :
     residueFieldTensorMvPolynomialLocalizationBasis Q i =
@@ -96,7 +106,9 @@ theorem residueFieldTensorMvPolynomialLocalizationBasis_apply (i : ι) :
     mvPolynomialLocalizationBasis_apply]
 
 /-- The coordinates of `1 ⊗ d f` in the basis `1 ⊗ d x_i` of `κ(Q) ⊗[P] Ω[P⁄k]` are the residues
-`∂f/∂x_i mod Q`; this is how the Jacobian minor enters the proof that smooth implies regular.-/
+`∂f/∂x_i mod Q`; this is how the Jacobian minor enters the proof that smooth implies regular.
+@isnad1 id=eq.0h5v.s15.09b1cca081e5 from=translated src=- shape=8dc792b7 vocab=030f2d16
+-/
 theorem residueFieldTensorMvPolynomialLocalizationBasis_repr_tmul_D (x : MvPolynomial ι k)
     (i : ι) :
     (residueFieldTensorMvPolynomialLocalizationBasis Q).repr
@@ -110,7 +122,9 @@ theorem residueFieldTensorMvPolynomialLocalizationBasis_repr_tmul_D (x : MvPolyn
 end KaehlerDifferential
 
 /-- For a field `k` and a prime `Q` of `k[x_1, …, x_N]`, the localization `k[x]_Q` is a regular
-local ring (the regularity of the ambient ring in the proof of [Sta, Tag 00TS]).-/
+local ring (the regularity of the ambient ring in the proof of [Sta, Tag 00TS]).
+@isnad1 id=isregula.0h3v.s7.53aa8fc646e7 from=translated src=- shape=639423b1 vocab=48c0298e
+-/
 theorem MvPolynomial.isRegularLocalRing_localization_atPrime {k : Type u} [Field k] {ι : Type v}
     [Finite ι] (Q : Ideal (MvPolynomial ι k)) [Q.IsPrime] :
     IsRegularLocalRing (Localization.AtPrime Q) :=

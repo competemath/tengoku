@@ -40,7 +40,9 @@ namespace AlgebraicGeometry
 (Hironaka's hypothesis in [Hir64, Corollary 3]) has an ideal sheaf with nonzero stalks (Kollár's
 convention in [Kol07, Notation 64]): a zero stalk at `x` kills each of the finitely many local
 generators on a neighbourhood of `x` (`TopCat.Presheaf.germ_eq`), so the ideal sheaf vanishes on a
-neighbourhood of `x`, which then lies in the support.-/
+neighbourhood of `x`, which then lies in the support.
+@isnad1 id=isnonzer.1h2v.s6.05e800c7ad03 from=translated src=- shape=16c5ed04 vocab=ead452cd
+-/
 theorem isNonzeroEverywhere_of_isNowhereDense_support {X : Scheme.{u}} [IsLocallyNoetherian X]
     (W : X.IdealSheafData) (hW : IsNowhereDense (W.support : Set X)) : IsNonzeroEverywhere W := by
   intro x hx

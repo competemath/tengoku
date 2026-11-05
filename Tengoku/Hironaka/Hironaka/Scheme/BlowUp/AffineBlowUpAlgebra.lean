@@ -57,17 +57,26 @@ noncomputable def affineBlowUpAlgebra (I : Ideal R) (a : R) : Subalgebra R (Loca
 
 variable {I : Ideal R} {a : R}
 
+/--
+@isnad1 id=eq.0h3v.s6.1a43ff32bd15 from=translated src=- shape=da37cc19 vocab=6f864438
+-/
 theorem awayFrac_one (x : R) : awayFrac a 1 x = Localization.mk x ⟨a, Submonoid.mem_powers a⟩ := by
   unfold awayFrac
   congr 1
   exact Subtype.ext (pow_one a)
 
+/--
+@isnad1 id=eq.0h3v.s7.aa273428c100 from=translated src=- shape=d8ad7fe1 vocab=1e984227
+-/
 theorem awayFrac_zero (x : R) : awayFrac a 0 x = algebraMap R (Localization.Away a) x := by
   rw [← Localization.mk_one_eq_algebraMap]
   unfold awayFrac
   congr 1
   exact Subtype.ext (pow_zero a)
 
+/--
+@isnad1 id=eq.0h6v.s7.14388aefd589 from=translated src=- shape=64e25dcf vocab=b515e830
+-/
 theorem awayFrac_add (n m : ℕ) (x y : R) :
     awayFrac a n x + awayFrac a m y = awayFrac a (n + m) (a ^ m * x + a ^ n * y) := by
   unfold awayFrac
@@ -76,6 +85,9 @@ theorem awayFrac_add (n m : ℕ) (x y : R) :
   · ring
   · exact Subtype.ext (pow_add a n m).symm
 
+/--
+@isnad1 id=eq.0h6v.s6.fb2f12db1571 from=translated src=- shape=b765ce46 vocab=53ada53c
+-/
 theorem awayFrac_mul (n m : ℕ) (x y : R) :
     awayFrac a n x * awayFrac a m y = awayFrac a (n + m) (x * y) := by
   unfold awayFrac
@@ -83,7 +95,9 @@ theorem awayFrac_mul (n m : ℕ) (x y : R) :
   congr 1
   exact Subtype.ext (pow_add a n m).symm
 
-/-- The fractions `x/aⁿ`, `x ∈ Iⁿ`, lie in `R[I/a]` [Sta, Tag 052P].-/
+/-- The fractions `x/aⁿ`, `x ∈ Iⁿ`, lie in `R[I/a]` [Sta, Tag 052P].
+@isnad1 id=mem.1h5v.s8.3c6c8cca3d20 from=translated src=- shape=4b344109 vocab=3cdb0bb7
+-/
 theorem awayFrac_mem_affineBlowUpAlgebra (n : ℕ) {x : R} (hx : x ∈ I ^ n) :
     awayFrac a n x ∈ affineBlowUpAlgebra I a := by
   induction n generalizing x with
@@ -105,7 +119,9 @@ theorem awayFrac_mem_affineBlowUpAlgebra (n : ℕ) {x : R} (hx : x ∈ I ^ n) :
       exact Subalgebra.add_mem _ hx' hy'
 
 /-- The membership lemma [Sta, Tag 052P]: the elements of `R[I/a]` are exactly the fractions
-`x/aⁿ` with `x ∈ Iⁿ`.-/
+`x/aⁿ` with `x ∈ Iⁿ`.
+@isnad1 id=iff.1h4v.s8.4254649d4854 from=translated src=- shape=5b246fd1 vocab=3cdb0bb7
+-/
 theorem mem_affineBlowUpAlgebra_iff (ha : a ∈ I) {y : Localization.Away a} :
     y ∈ affineBlowUpAlgebra I a ↔ ∃ n, ∃ x ∈ I ^ n, y = awayFrac a n x := by
   constructor

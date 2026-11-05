@@ -49,24 +49,32 @@ noncomputable def singIdeal (X : Scheme.{u}) : X.IdealSheafData :=
 
 variable {k : Type u} [Field k] {X : Scheme.{u}}
 
-/-- The defining equation of `singIdeal X`.-/
+/-- The defining equation of `singIdeal X`.
+@isnad1 id=eq.0h1v.s5.4ebab604f137 from=translated src=- shape=1404252e vocab=a14041e5
+-/
 theorem singIdeal_eq_vanishingIdeal_closure_singularLocus (X : Scheme.{u}) :
     X.singIdeal = IdealSheafData.vanishingIdeal ⟨closure X.singularLocus, isClosed_closure⟩ :=
   rfl
 
-/-- The support of `singIdeal X` is the closure of `Sing X`.-/
+/-- The support of `singIdeal X` is the closure of `Sing X`.
+@isnad1 id=eq.0h1v.s6.65fc5f5abda8 from=translated src=- shape=f7172cd5 vocab=460f2895
+-/
 theorem coe_support_singIdeal (X : Scheme.{u}) :
     (X.singIdeal.support : Set X) = closure X.singularLocus :=
   rfl
 
 /-- `singIdeal X` is a radical ideal sheaf (the reduced structure on the singular locus): the
 vanishing ideal sheaf of the support of any ideal sheaf is its radical (Mathlib's
-`vanishingIdeal_support`), and the support of `singIdeal X` is the closed set it vanishes on.-/
+`vanishingIdeal_support`), and the support of `singIdeal X` is the closed set it vanishes on.
+@isnad1 id=eq.0h1v.s3.17cacee98ba6 from=translated src=- shape=1863cfa8 vocab=c0f9a714
+-/
 theorem radical_singIdeal (X : Scheme.{u}) : X.singIdeal.radical = X.singIdeal := by
   rw [← IdealSheafData.vanishingIdeal_support]
   rfl
 
-/-- `singIdeal X` is the unit ideal sheaf iff `X` is regular (the singular locus is empty).-/
+/-- `singIdeal X` is the unit ideal sheaf iff `X` is regular (the singular locus is empty).
+@isnad1 id=iff.0h1v.s4.96cc716f525f from=translated src=- shape=bc3615db vocab=cf806985
+-/
 theorem singIdeal_eq_top_iff_isRegular (X : Scheme.{u}) : X.singIdeal = ⊤ ↔ IsRegular X := by
   rw [isRegular_iff_singularLocus_eq_empty]
   constructor

@@ -86,20 +86,34 @@ def succOfBMOOf (bmo : ∀ s : ℕ, BMO n s) : StageOf BO BMO (n + 1) where
 def succOf (S : StageOf BO BMO n) : StageOf BO BMO (n + 1) :=
   succOfBMOOf h103 h107 S.bmo
 
+/--
+@isnad1 id=eq.0h6v.s5.e7562a2a596b from=translated src=- shape=4bfb49af vocab=610b84de
+-/
 theorem succOf_eq_succOfBMOOf (S : StageOf BO BMO n) :
     succOf h103 h107 S = succOfBMOOf h103 h107 S.bmo := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.84fbda813f62 from=translated src=- shape=3aa9dcb2 vocab=273eabff
+-/
 theorem succOf_bo (S : StageOf BO BMO n) : (succOf h103 h107 S).bo = h103.bo n S.bmo := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.22632414e6ea from=translated src=- shape=55ef1790 vocab=463d2c8e
+-/
 theorem succOf_bmo (S : StageOf BO BMO n) :
     (succOf h103 h107 S).bmo = h107.bmo (n + 1) (succOf h103 h107 S).bo := rfl
 
 /-- The successor stage depends on the stage below only through its marked data, as in the
-hypothesis "assume that (69) holds in dimensions `< n`" of [Kol07, Theorem 103].-/
+hypothesis "assume that (69) holds in dimensions `< n`" of [Kol07, Theorem 103].
+@isnad1 id=eq.1h7v.s6.a621701cc77d from=translated src=- shape=edc491fe vocab=7c97819f
+-/
 theorem succOf_congr (S S' : StageOf BO BMO n) (h : S.bmo = S'.bmo) :
     succOf h103 h107 S = succOf h103 h107 S' :=
   congrArg (succOfBMOOf h103 h107) h
 
+/--
+@isnad1 id=ex.0h6v.s7.eef147beeb48 from=translated src=- shape=5241c354 vocab=0f901fec
+-/
 theorem exists_succOf (S : StageOf BO BMO n) :
     ∃ S' : StageOf BO BMO (n + 1), S'.bo = h103.bo n S.bmo ∧ S'.bmo = h107.bmo (n + 1) S'.bo :=
   ⟨succOf h103 h107 S, rfl, rfl⟩
@@ -113,20 +127,34 @@ def towerOf (base : StageOf BO BMO 0) (h103 : StepBOOf BO BMO) (h107 : StepBMOOf
 
 variable (base : StageOf BO BMO 0)
 
+/--
+@isnad1 id=eq.0h5v.s5.468e2bf84dd0 from=translated src=- shape=9b1a22f1 vocab=ff8a220b
+-/
 theorem towerOf_zero : towerOf base h103 h107 0 = base := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.0d58ec69e473 from=translated src=- shape=6bbfc9b4 vocab=20336b0c
+-/
 theorem towerOf_succ (n : ℕ) :
     towerOf base h103 h107 (n + 1) = succOf h103 h107 (towerOf base h103 h107 n) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.ff7f97dda9ec from=translated src=- shape=74495ce7 vocab=d77ab5f5
+-/
 theorem towerOf_succ_bo (n m : ℕ) :
     (towerOf base h103 h107 (n + 1)).bo m = h103.bo n (towerOf base h103 h107 n).bmo m := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.5e261922ff63 from=translated src=- shape=c27a9088 vocab=baef5821
+-/
 theorem towerOf_succ_bmo (n m : ℕ) :
     (towerOf base h103 h107 (n + 1)).bmo m =
       h107.bmo (n + 1) (towerOf base h103 h107 (n + 1)).bo m := rfl
 
 /-- The recursion as an existence statement: there is a stage in every dimension, equal to the base
-stage at `0` and to the successor of the previous stage at each `n + 1`.-/
+stage at `0` and to the successor of the previous stage at each `n + 1`.
+@isnad1 id=ex.0h5v.s6.fe6909b564a8 from=translated src=- shape=086a8069 vocab=423efcc9
+-/
 theorem exists_towerOf :
     ∃ st : ∀ n : ℕ, StageOf BO BMO n,
       st 0 = base ∧ ∀ n : ℕ, st (n + 1) = succOf h103 h107 (st n) :=
@@ -134,13 +162,17 @@ theorem exists_towerOf :
 
 include base h103 h107 in
 /-- Given a base stage and the two reduction steps, the order-reduction data exist in every
-dimension and at every mark.-/
+dimension and at every mark.
+@isnad1 id=nonempty.0h7v.s5.8f95599a5145 from=translated src=- shape=5d89044e vocab=ff06e1eb
+-/
 theorem nonempty_bo_of_tower (n m : ℕ) : Nonempty (BO n m) :=
   ⟨(towerOf base h103 h107 n).bo m⟩
 
 include base h103 h107 in
 /-- Given a base stage and the two reduction steps, the marked data exist in every dimension and at
-every mark.-/
+every mark.
+@isnad1 id=nonempty.0h7v.s5.f9ddb42c7790 from=translated src=- shape=d757199f vocab=ff06e1eb
+-/
 theorem nonempty_bmo_of_tower (n m : ℕ) : Nonempty (BMO n m) :=
   ⟨(towerOf base h103 h107 n).bmo m⟩
 

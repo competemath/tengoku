@@ -64,7 +64,9 @@ variable {k : Type u} [Field k] {X : Scheme.{u}}
 /-- The converse of `Scheme.Hom.exists_affineOpen_isStandardSmoothOfRelativeDimension`: a morphism
 to `Spec k` such that every point has an affine neighbourhood `V` with `Γ(X, V)` standard smooth of
 relative dimension `m` over `k` (the `k`-algebra structure through `f`) is smooth of relative
-dimension `m`.-/
+dimension `m`.
+@isnad1 id=smoothof.1h4v.s8.fbca534fcac0 from=translated src=- shape=a79733c1 vocab=7c72c5c9
+-/
 theorem smoothOfRelativeDimension_of_forall_exists_affineOpen (f : X ⟶ Spec (.of k))
     (m : ℕ) (h : ∀ x : X, ∃ (V : X.Opens) (_ : IsAffineOpen V) (_ : x ∈ V),
       letI := f.sectionsAlgebra V
@@ -81,7 +83,9 @@ theorem smoothOfRelativeDimension_of_forall_exists_affineOpen (f : X ⟶ Spec (.
 
 /-- A scheme smooth over `k` is covered by affine opens whose section rings are standard smooth
 `k`-algebras (through `f`); the `Smooth` analogue of
-`exists_affineOpen_isStandardSmoothOfRelativeDimension`.-/
+`exists_affineOpen_isStandardSmoothOfRelativeDimension`.
+@isnad1 id=ex.0h4v.s8.bfadfb12be5f from=translated src=- shape=11e06b72 vocab=8300150f
+-/
 theorem exists_affineOpen_isStandardSmooth (f : X ⟶ Spec (.of k)) [Smooth f] (x : X) :
     ∃ (V : X.Opens) (_ : IsAffineOpen V) (_ : x ∈ V),
       letI := f.sectionsAlgebra V
@@ -100,7 +104,9 @@ theorem exists_affineOpen_isStandardSmooth (f : X ⟶ Spec (.of k)) [Smooth f] (
     (Scheme.ΓSpecIso (.of k)).symm.commRingCatIsoToRingEquiv hstd
 
 /-- Cancellation in `WithBot ℕ∞`: from `r + t = n` with `r, n` finite and `p + 1 = r`,
-`p + t = n − 1`.-/
+`p + t = n − 1`.
+@isnad1 id=eq.2h4v.s6.7af1850b6c54 from=translated src=- shape=42acfb49 vocab=4d02c8d1
+-/
 theorem natCast_add_eq_natCast_sub_one {p r n : ℕ} {t : ℕ∞}
     (hX : ((r : ℕ) : WithBot ℕ∞) + (t : WithBot ℕ∞) = (n : WithBot ℕ∞)) (hpr : p + 1 = r) :
     ((p : ℕ) : WithBot ℕ∞) + (t : WithBot ℕ∞) = ((n - 1 : ℕ) : WithBot ℕ∞) := by

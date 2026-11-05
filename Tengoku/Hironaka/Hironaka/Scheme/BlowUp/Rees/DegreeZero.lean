@@ -51,11 +51,17 @@ universe u
 
 variable {R : Type u} [CommRing R] (I : Ideal R)
 
+/--
+@isnad1 id=eq.0h3v.s14.1360a67c76a0 from=translated src=- shape=cbdbb1c4 vocab=394c8ec1
+-/
 @[simp]
 theorem reesAlgebra.gradingZeroEquiv_apply (p : reesAlgebra.grading I 0) :
     reesAlgebra.gradingZeroEquiv I p = ((p : reesAlgebra I) : R[X]).coeff 0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s14.a454656dc986 from=translated src=- shape=41bc89e6 vocab=4b0643a8
+-/
 @[simp]
 theorem reesAlgebra.coe_gradingZeroEquiv_symm (r : R) :
     (((reesAlgebra.gradingZeroEquiv I).symm r : reesAlgebra I) : R[X]) = C r := by
@@ -65,7 +71,9 @@ theorem reesAlgebra.coe_gradingZeroEquiv_symm (r : R) :
 /-- The **constant-map triangle**: `R → grading I 0 → reesAlgebra I` is
 `algebraMap R (reesAlgebra I)`, where the second map is the grading-induced
 `algebraMap (𝒜 0) A` of Mathlib's `SetLike.GradeZero` instance (the one `Proj.toSpecZero` and
-`fromZeroRingHom` use).-/
+`fromZeroRingHom` use).
+@isnad1 id=eq.0h3v.s15.72fabd6ce118 from=translated src=- shape=b678bc33 vocab=f896f97d
+-/
 @[simp]
 theorem reesAlgebra.algebraMap_gradingZeroEquiv_symm (r : R) :
     algebraMap (reesAlgebra.grading I 0) (reesAlgebra I) ((reesAlgebra.gradingZeroEquiv I).symm r) =

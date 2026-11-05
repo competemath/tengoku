@@ -79,6 +79,9 @@ noncomputable def awayMapₐ : Localization.Away a →ₐ[R] Localization.Away (
         IsScalarTower.algebraMap_apply R S (Localization.Away (algebraMap R S a))]
       exact IsLocalization.Away.algebraMap_isUnit _)
 
+/--
+@isnad1 id=eq.0h4v.s11.00f7f93bfa5d from=translated src=- shape=b22e715e vocab=4e5f71c2
+-/
 theorem awayMapₐ_algebraMap (r : R) :
     awayMapₐ S a (algebraMap R (Localization.Away a) r) =
       algebraMap S (Localization.Away (algebraMap R S a)) (algebraMap R S r) := by
@@ -86,6 +89,9 @@ theorem awayMapₐ_algebraMap (r : R) :
     ← IsScalarTower.algebraMap_apply R S (Localization.Away (algebraMap R S a))]
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.c63b35bd337e from=translated src=- shape=0d47332b vocab=bc2434f3
+-/
 theorem awayMapₐ_invSelf :
     awayMapₐ S a (IsLocalization.Away.invSelf a) =
       IsLocalization.Away.invSelf (algebraMap R S a) := by
@@ -103,6 +109,9 @@ namespace affineBlowUpAlgebra
 
 variable (I : Ideal R)
 
+/--
+@isnad1 id=mem.0h5v.s11.bc1da82681b8 from=translated src=- shape=f0d3e5d1 vocab=cc99604d
+-/
 theorem awayMapₐ_mem (z : affineBlowUpAlgebra I a) :
     awayMapₐ S a z ∈ affineBlowUpAlgebra (I.map (algebraMap R S)) (algebraMap R S a) := by
   obtain ⟨z, hz⟩ := z
@@ -136,11 +145,17 @@ noncomputable def baseChangeHom :
     rw [awayMapₐ_algebraMap, ← IsScalarTower.algebraMap_apply]
     rfl)
 
+/--
+@isnad1 id=eq.0h5v.s13.afd2c89713c7 from=translated src=- shape=3b7b31f4 vocab=2efeaae7
+-/
 @[simp]
 theorem coe_baseChangeHom (z : affineBlowUpAlgebra I a) :
     (baseChangeHom S a I z : Localization.Away (algebraMap R S a)) = awayMapₐ S a z :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s13.06c86e35801c from=translated src=- shape=b6401d31 vocab=49aaf66e
+-/
 theorem baseChangeHom_frac {x : R} (hx : x ∈ I) :
     baseChangeHom S a I (frac hx) = frac (Ideal.mem_map_of_mem (algebraMap R S) hx) := by
   apply Subtype.ext
@@ -148,7 +163,9 @@ theorem baseChangeHom_frac {x : R} (hx : x ∈ I) :
   rw [map_mul, awayMapₐ_algebraMap, awayMapₐ_invSelf]
   rfl
 
-/-- The induced map is the unique `R`-algebra map with `x/a ↦ (image of x)/b`.-/
+/-- The induced map is the unique `R`-algebra map with `x/a ↦ (image of x)/b`.
+@isnad1 id=eq.1h5v.s13.3d3b67f24b06 from=translated src=- shape=f3a24d61 vocab=49aaf66e
+-/
 theorem baseChangeHom_unique
     (ψ : affineBlowUpAlgebra I a →ₐ[R]
       affineBlowUpAlgebra (I.map (algebraMap R S)) (algebraMap R S a))
@@ -162,6 +179,9 @@ noncomputable def tensorHom :
       affineBlowUpAlgebra (I.map (algebraMap R S)) (algebraMap R S a) :=
   Algebra.TensorProduct.lift (Algebra.ofId S _) (baseChangeHom S a I) fun _ _ => Commute.all _ _
 
+/--
+@isnad1 id=eq.0h6v.s15.2e30e94dd84f from=translated src=- shape=e36bbdbe vocab=b474a774
+-/
 @[simp]
 theorem tensorHom_tmul (s : S) (z : affineBlowUpAlgebra I a) :
     tensorHom S a I (s ⊗ₜ z) = algebraMap S _ s * baseChangeHom S a I z := by

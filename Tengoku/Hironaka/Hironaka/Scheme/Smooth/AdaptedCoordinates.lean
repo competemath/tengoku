@@ -66,7 +66,9 @@ variable {k : Type u} [Field k] {X : Scheme.{u}}
 variable (Z : X.IdealSheafData)
 
 /-- The `k`-algebra structures `Scheme.Hom.stalkAlgebra` of `𝒪_{X,ι z}` (through `f`) and of
-`𝒪_{V(Z),z}` (through `ι ≫ f`) are compatible with the stalk map of `ι : V(Z) ⟶ X`.-/
+`𝒪_{V(Z),z}` (through `ι ≫ f`) are compatible with the stalk map of `ι : V(Z) ⟶ X`.
+@isnad1 id=eq.0h6v.s12.cddcb9cd9292 from=translated src=- shape=b217d09c vocab=9a84effc
+-/
 theorem stalkMap_subschemeι_algebraMap (f : X ⟶ Spec (.of k)) (z : Z.subscheme) (c : k) :
     letI := f.stalkAlgebra (Z.subschemeι z)
     letI := (Z.subschemeι ≫ f).stalkAlgebra z
@@ -91,7 +93,9 @@ theorem stalkMap_subschemeι_algebraMap (f : X ⟶ Spec (.of k)) (z : Z.subschem
   exact h'
 
 /-- The residue fields of `𝒪_{X,ι z}` and `𝒪_{V(Z),z}` have the same transcendence degree over
-`k` (they are `k`-isomorphic through the stalk map of the closed immersion).-/
+`k` (they are `k`-isomorphic through the stalk map of the closed immersion).
+@isnad1 id=eq.0h5v.s10.5c9013b09094 from=translated src=- shape=3c3a8413 vocab=391ff710
+-/
 theorem trdeg_residueField_stalk_subschemeι (f : X ⟶ Spec (.of k)) (z : Z.subscheme) :
     letI := f.stalkAlgebra (Z.subschemeι z)
     letI := (Z.subschemeι ≫ f).stalkAlgebra z
@@ -108,7 +112,9 @@ theorem trdeg_residueField_stalk_subschemeι (f : X ⟶ Spec (.of k)) (z : Z.sub
   exact e.trdeg_eq.symm
 
 /-- Cancellation in `WithBot ℕ∞`: from `a + t = n` and `b + t = m` with `m + r = n` (all finite
-except possibly `t`, which is then finite too), `b + r = a`.-/
+except possibly `t`, which is then finite too), `b + r = a`.
+@isnad1 id=eq.3h6v.s7.f9708b37d5f4 from=translated src=- shape=7fc2efcf vocab=dd07c3d4
+-/
 theorem natCast_add_natCast_eq_of_add_eq {a b n m r : ℕ} {t : ℕ∞}
     (hX : ((a : ℕ) : WithBot ℕ∞) + (t : WithBot ℕ∞) = (n : WithBot ℕ∞))
     (hZ : ((b : ℕ) : WithBot ℕ∞) + (t : WithBot ℕ∞) = (m : WithBot ℕ∞)) (hm : m + r = n) :

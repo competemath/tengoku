@@ -77,12 +77,21 @@ noncomputable def chartYOf (i : Fin n) : Localization.Away d :=
 `R[1/x_r]` [Kol07, Definition 60, (60.2)].-/
 noncomputable abbrev chartY : Fin n → Localization.Away (x r) := chartYOf x r (x r)
 
+/--
+@isnad1 id=eq.1h6v.s6.053cb6407364 from=translated src=- shape=92b49094 vocab=15423c6a
+-/
 theorem chartYOf_of_lt {i : Fin n} (h : i < r) :
     chartYOf x r d i = Localization.mk (x i) ⟨d, Submonoid.mem_powers d⟩ := ite_eq_left h
 
+/--
+@isnad1 id=eq.1h6v.s7.d444c9bb5a8d from=translated src=- shape=cc851351 vocab=b24d084b
+-/
 theorem chartYOf_of_not_lt {i : Fin n} (h : ¬ i < r) : chartYOf x r d i = algebraMap R _ (x i) :=
   ite_eq_right h
 
+/--
+@isnad1 id=eq.0h5v.s7.82f0c2fa374c from=translated src=- shape=8360f876 vocab=8b527c02
+-/
 theorem chartYOf_self : chartYOf x r d r = algebraMap R _ (x r) := ite_eq_right (lt_irrefl r)
 
 /-- With a general denominator `d`: the subalgebra `R[xᵢ/d : i < r]` of `R[1/d]`.-/
@@ -95,13 +104,18 @@ noncomputable def chartRingOf : Subalgebra R (Localization.Away d) :=
 `Algebra.adjoin R {x_i / x_r : i < r}`.-/
 noncomputable abbrev chartRing : Subalgebra R (Localization.Away (x r)) := chartRingOf x r (x r)
 
+/--
+@isnad1 id=mem.0h6v.s8.c25f599cb433 from=translated src=- shape=a35d7466 vocab=463fdadd
+-/
 theorem chartYOf_mem (i : Fin n) : chartYOf x r d i ∈ chartRingOf x r d := by
   unfold chartYOf
   split_ifs with h
   · exact Algebra.subset_adjoin ⟨i, h, rfl⟩
   · exact Subalgebra.algebraMap_mem _ _
 
-/-- Every `yᵢ` lies in the chart ring.-/
+/-- Every `yᵢ` lies in the chart ring.
+@isnad1 id=mem.0h5v.s8.2de2e388278b from=translated src=- shape=9a02ffd4 vocab=f2a63d37
+-/
 theorem chartY_mem (i : Fin n) : chartY x r i ∈ chartRing x r := chartYOf_mem x r (x r) i
 
 /-- With a general denominator: `yᵢ` as an element of the chart ring.-/
@@ -111,6 +125,9 @@ noncomputable def chartYROf (i : Fin n) : chartRingOf x r d :=
 /-- `yᵢ` as an element of the chart ring `R'`.-/
 noncomputable abbrev chartYR : Fin n → chartRing x r := chartYROf x r (x r)
 
+/--
+@isnad1 id=eq.0h6v.s8.006127a50de6 from=translated src=- shape=ec267a9d vocab=dbad65e1
+-/
 @[simp]
 theorem coe_chartYROf (i : Fin n) :
     (chartYROf x r d i : Localization.Away d) = chartYOf x r d i :=
@@ -124,11 +141,16 @@ noncomputable def chartOriginOf : Ideal (chartRingOf x r d) :=
 "`p' ∈ B_Z X`, the origin of the chart we consider" of the proof of [Kol07, Lemma 61].-/
 noncomputable abbrev chartOrigin : Ideal (chartRing x r) := chartOriginOf x r (x r)
 
+/--
+@isnad1 id=mem.0h6v.s11.b8044b7dc8dc from=translated src=- shape=9420f273 vocab=5236a396
+-/
 theorem chartYROf_mem_chartOriginOf (i : Fin n) : chartYROf x r d i ∈ chartOriginOf x r d :=
   Ideal.subset_span ⟨i, rfl⟩
 
 /-- Every coordinate `xᵢ` of `R` maps into the origin of the chart: `xᵢ = yᵢ` for `i ≥ r` and
-`xᵢ = yᵢ · x_r` for `i < r`.-/
+`xᵢ = yᵢ · x_r` for `i < r`.
+@isnad1 id=mem.0h5v.s12.d9f97edfce4f from=translated src=- shape=22db9116 vocab=ad0e8f8b
+-/
 theorem algebraMap_x_mem_chartOrigin (i : Fin n) :
     algebraMap R (chartRing x r) (x i) ∈ chartOrigin x r := by
   by_cases h : i < r
@@ -147,7 +169,9 @@ theorem algebraMap_x_mem_chartOrigin (i : Fin n) :
     exact chartYROf_mem_chartOriginOf x r (x r) i
 
 /-- The algebra map `R → R'` sends `𝔪` into `𝔪'`, so the residue map `R/𝔪 → R'/𝔪'`
-(`Ideal.quotientMap`) is defined.-/
+(`Ideal.quotientMap`) is defined.
+@isnad1 id=le.1h4v.s11.f8204944cf70 from=translated src=- shape=b3e8824b vocab=6b148648
+-/
 theorem maximalIdeal_le_comap_chartOrigin [IsLocalRing R]
     (hx : maximalIdeal R = Ideal.span (Set.range x)) :
     maximalIdeal R ≤ (chartOrigin x r).comap (algebraMap R (chartRing x r)) := by
@@ -171,6 +195,9 @@ of the chart to the point `a` (the proof of [Kol07, Lemma 61]): `x'ᵢ = xᵢ �
 noncomputable def shiftCoords (a : Fin n → R) : Fin n → R :=
   fun i => if i < r then x i - a i * x r else x i
 
+/--
+@isnad1 id=eq.0h5v.s5.8e13a4ca2bcf from=translated src=- shape=b5ce970d vocab=6c12436d
+-/
 theorem shiftCoords_self (a : Fin n → R) : shiftCoords x r a r = x r := ite_eq_right (lt_irrefl r)
 
 /-- The other `K`-rational points of the exceptional fibre,
@@ -224,15 +251,24 @@ noncomputable def chartDeriv (j : Fin n) :
       ∑ i ∈ Finset.univ.filter (fun i : Fin n => i < r), chartY c.x r i • c.awayPderiv r i
   else c.awayPderiv r j
 
+/--
+@isnad1 id=eq.1h5v.s11.7c29be870fed from=translated src=- shape=9a6f7b58 vocab=83ebf714
+-/
 theorem chartDeriv_of_lt {j : Fin n} (h : j < r) :
     c.chartDeriv r j = algebraMap R (Localization.Away (c.x r)) (c.x r) • c.awayPderiv r j :=
   ite_eq_left h
 
+/--
+@isnad1 id=eq.0h4v.s12.f2ff36786662 from=translated src=- shape=81511393 vocab=04756da0
+-/
 theorem chartDeriv_self :
     c.chartDeriv r r = c.awayPderiv r r +
       ∑ i ∈ Finset.univ.filter (fun i : Fin n => i < r), chartY c.x r i • c.awayPderiv r i := by
   rw [chartDeriv, ite_eq_right (lt_irrefl r), ite_eq_left rfl]
 
+/--
+@isnad1 id=eq.1h5v.s8.d6889e2e8447 from=translated src=- shape=d4db6715 vocab=ac964bea
+-/
 theorem chartDeriv_of_gt {j : Fin n} (h : r < j) : c.chartDeriv r j = c.awayPderiv r j := by
   rw [chartDeriv, ite_eq_right (not_lt.mpr h.le), ite_eq_right h.ne']
 

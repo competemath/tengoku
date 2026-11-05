@@ -46,7 +46,9 @@ variable {R : Type u} [CommRing R] [IsRegularLocalRing R]
 
 /-- The dimension part of [Sta, Tag 00NQ]: if `f : ι → R` takes values in `𝔪` with linearly
 independent classes in `𝔪/𝔪²`, then `R ⧸ (f i)` is a regular local ring and
-`dim R ⧸ (f i) + |ι| = dim R`.-/
+`dim R ⧸ (f i) + |ι| = dim R`.
+@isnad1 id=and.2h3v.s9.fc44d5835f45 from=translated src=- shape=d8899b75 vocab=f0e66f6c
+-/
 theorem quotient_span_range_of_linearIndependent {ι : Type*} [Fintype ι] (f : ι → R)
     (hf : ∀ i, f i ∈ maximalIdeal R)
     (hli : LinearIndependent (ResidueField R) fun i => (maximalIdeal R).toCotangent ⟨f i, hf i⟩) :

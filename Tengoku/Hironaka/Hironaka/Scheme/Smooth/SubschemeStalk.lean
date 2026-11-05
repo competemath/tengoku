@@ -44,12 +44,16 @@ universe u
 
 variable {X : Scheme.{u}} (Z : X.IdealSheafData)
 
-/-- A point of the support of `Z` is the image of a point of the closed subscheme `V(Z)`.-/
+/-- A point of the support of `Z` is the image of a point of the closed subscheme `V(Z)`.
+@isnad1 id=ex.1h3v.s8.0b362f5abd56 from=translated src=- shape=dc606e4b vocab=f3228efc
+-/
 theorem exists_subschemeι_eq {x : X} (hx : x ∈ Z.support) : ∃ z : Z.subscheme, Z.subschemeι z = x :=
   (Set.ext_iff.mp Z.range_subschemeι x).mpr hx
 
 /-- The kernel of the stalk map of the closed immersion `V(Z) ⟶ X` at `z` is the stalk of `Z`
-at `ι z`.-/
+at `ι z`.
+@isnad1 id=eq.0h3v.s12.60ac79e72ba0 from=translated src=- shape=4ec43fa2 vocab=18592e50
+-/
 theorem ker_stalkMap_subschemeι (z : Z.subscheme) :
     RingHom.ker (Z.subschemeι.stalkMap z).hom = Z.stalkIdeal (Z.subschemeι z) := by
   obtain ⟨_, ⟨U, hU, rfl⟩, hxU, -⟩ := X.isBasis_affineOpens.exists_subset_of_mem_open
@@ -96,6 +100,9 @@ noncomputable def stalkQuotientEquiv (z : Z.subscheme) :
   (Ideal.quotEquivOfEq (ker_stalkMap_subschemeι Z z).symm).trans
     (RingHom.quotientKerEquivOfSurjective (Z.subschemeι.stalkMap_surjective z))
 
+/--
+@isnad1 id=eq.0h4v.s15.810e65183cd9 from=translated src=- shape=8677c142 vocab=f3e03b1a
+-/
 theorem stalkQuotientEquiv_mk (z : Z.subscheme) (a : X.presheaf.stalk (Z.subschemeι z)) :
     stalkQuotientEquiv Z z (Ideal.Quotient.mk _ a) = Z.subschemeι.stalkMap z a :=
   rfl
@@ -111,12 +118,17 @@ noncomputable def residueFieldStalkEquiv (z : Z.subscheme) :
       obtain ⟨r, rfl⟩ := Z.subschemeι.stalkMap_surjective z s
       exact ⟨IsLocalRing.residue _ r, ResidueField.map_residue _ r⟩⟩
 
+/--
+@isnad1 id=eq.0h4v.s14.706986906889 from=translated src=- shape=f5e9cc15 vocab=fe939f9d
+-/
 theorem residueFieldStalkEquiv_residue (z : Z.subscheme) (r : X.presheaf.stalk (Z.subschemeι z)) :
     residueFieldStalkEquiv Z z (IsLocalRing.residue _ r) =
       IsLocalRing.residue _ (Z.subschemeι.stalkMap z r) :=
   ResidueField.map_residue _ r
 
-/-- A closed point of `X` in the support of `Z` is a closed point of `V(Z)`.-/
+/-- A closed point of `X` in the support of `Z` is a closed point of `V(Z)`.
+@isnad1 id=isclosed.2h4v.s8.46f96d35723c from=translated src=- shape=fd0f99de vocab=6024f804
+-/
 theorem isClosed_singleton_of_subschemeι_eq {z : Z.subscheme} {x : X} (hzx : Z.subschemeι z = x)
     (hx : IsClosed ({x} : Set X)) : IsClosed ({z} : Set Z.subscheme) := by
   have : ({z} : Set Z.subscheme) = Z.subschemeι ⁻¹' {x} := by

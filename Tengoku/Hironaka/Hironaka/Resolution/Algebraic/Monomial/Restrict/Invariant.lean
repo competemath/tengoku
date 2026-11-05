@@ -32,6 +32,9 @@ namespace Hironaka.Monomial.MonomialState
 
 open Finset
 
+/--
+@isnad1 id=le.1h4v.s5.deb0f04feaf8 from=translated src=- shape=71187815 vocab=e527ae23
+-/
 theorem blowUpNerve_mono {N N' S : Finset (Finset ℕ)} {c : Finset ℕ → ℕ} (h : N ⊆ N') :
     blowUpNerve N S c ⊆ blowUpNerve N' S c := by
   intro T hT
@@ -39,16 +42,24 @@ theorem blowUpNerve_mono {N N' S : Finset (Finset ℕ)} {c : Finset ℕ → ℕ}
   · exact mem_blowUpNerve.mpr (Or.inl ⟨h h1, h2⟩)
   · exact mem_blowUpNerve.mpr (Or.inr ⟨P, hP, T₁, h1.imp_right (fun h1 => h h1), h h2, h3, rfl⟩)
 
+/--
+@isnad1 id=eq.1h3v.s4.e0bcdaa18d9d from=translated src=- shape=ccc109ba vocab=5b248132
+-/
 theorem Sub.total_eq {L N : MonomialState} (h : Sub L N) (T : Finset ℕ) :
     L.total T = N.total T := by
   simp only [total, h.a_eq]
 
+/--
+@isnad1 id=eq.1h4v.s4.73679f466a91 from=translated src=- shape=19636976 vocab=a0c2fe4f
+-/
 theorem Sub.newComp_eq {L N : MonomialState} (h : Sub L N) (S : Finset (Finset ℕ)) (P : Finset ℕ) :
     L.newComp S P = N.newComp S P := by
   simp only [newComp, h.nextComp_eq]
 
 /-- The invariant `L_i ⊆ N_i` with equal exponents and labels is preserved by a blow-up along
-any `S`: the rule is monotone in the nerve.-/
+any `S`: the rule is monotone in the nerve.
+@isnad1 id=sub.1h3v.s4.ebfed3d588d2 from=translated src=- shape=a741fdf7 vocab=5deee344
+-/
 theorem Sub.blowUp {L N : MonomialState} (h : Sub L N) (S : Finset (Finset ℕ)) :
     Sub (L.blowUp S) (N.blowUp S) where
   n_eq := h.n_eq
@@ -73,17 +84,25 @@ theorem Sub.blowUp {L N : MonomialState} (h : Sub L N) (S : Finset (Finset ℕ))
     rw [this]
     exact blowUpNerve_mono h.nerve_sub
 
+/--
+@isnad1 id=mem.2h4v.s5.8099918633d1 from=translated src=- shape=ca714132 vocab=dd8f9ee8
+-/
 theorem Sub.mem_faces {L N : MonomialState} (h : Sub L N) {r : ℕ} {T : Finset ℕ}
     (hT : T ∈ L.faces r) : T ∈ N.faces r := by
   obtain ⟨h1, h2⟩ := L.mem_faces.mp hT
   exact N.mem_faces.mpr ⟨h.nerve_sub h1, h2⟩
 
+/--
+@isnad1 id=eq.1h3v.s4.7165b946da4c from=translated src=- shape=009ab381 vocab=97432098
+-/
 theorem Sub.labelTuple_eq {L N : MonomialState} (h : Sub L N) (T : Finset ℕ) :
     L.labelTuple T = N.labelTuple T := by
   simp only [labelTuple, labels, h.label_eq]
 
 /-- If a face of Kollár's centre of `N` lies in `L`, the centre of `L` is the centre of `N`
-restricted to the faces of `L`.-/
+restricted to the faces of `L`.
+@isnad1 id=eq.3h4v.s6.0c5fb3b87cd0 from=translated src=- shape=7c236708 vocab=e3ae89f7
+-/
 theorem Sub.choice_eq_of_mem {L N : MonomialState} (h : Sub L N) {r : ℕ} {P : Finset ℕ}
     (hP : P ∈ N.choice r) (hPL : P ∈ L.nerve) :
     L.choice r = (N.choice r).filter (· ∈ L.nerve) := by
@@ -115,7 +134,9 @@ theorem Sub.choice_eq_of_mem {L N : MonomialState} (h : Sub L N) {r : ℕ} {P : 
       exact hTlex T' (h.mem_faces hT') (by rw [← h.total_eq, ← h.total_eq]; exact he)
 
 /-- A blow-up along faces none of which is a face of `L` does not change the nerve of `L`: no face
-of `L` contains such a face, and no new face is created.-/
+of `L` contains such a face, and no new face is created.
+@isnad1 id=eq.2h2v.s6.17fb8c4f6a1c from=translated src=- shape=ccf41f5f vocab=44e3b2a6
+-/
 theorem blowUp_nerve_of_forall_notMem (L : MonomialState) {S : Finset (Finset ℕ)}
     (hS0 : ∀ P ∈ S, P.Nonempty) (hS : ∀ P ∈ S, P ∉ L.nerve) : (L.blowUp S).nerve = L.nerve := by
   ext T
@@ -127,14 +148,18 @@ theorem blowUp_nerve_of_forall_notMem (L : MonomialState) {S : Finset (Finset �
   · intro hT
     exact Or.inl ⟨hT, fun P hP hPT => hS P hP (L.mem_nerve_of_subset hT hPT (hS0 P hP))⟩
 
-/-- `Sub` is preserved along a list of centres.-/
+/-- `Sub` is preserved along a list of centres.
+@isnad1 id=sub.1h3v.s4.43d5349958b3 from=translated src=- shape=27efce64 vocab=139c25fa
+-/
 theorem Sub.foldl {L N : MonomialState} (h : Sub L N) (Ns : List (Finset (Finset ℕ))) :
     Sub (Ns.foldl MonomialState.blowUp L) (Ns.foldl MonomialState.blowUp N) := by
   induction Ns generalizing L N with
   | nil => exact h
   | cons S Ns ih => exact ih (h.blowUp S)
 
-/-- The pulled-back run ends in a state `Sub` the final state of `N`.-/
+/-- The pulled-back run ends in a state `Sub` the final state of `N`.
+@isnad1 id=sub.1h2v.s5.01e993acefad from=translated src=- shape=4140ccb4 vocab=ef415748
+-/
 theorem sub_foldl_step3 {L N : MonomialState} (h : Sub L N) :
     Sub ((step3 N).2.foldl MonomialState.blowUp L) (step3 N).1 := by
   rw [(step3_isRun N).fold]

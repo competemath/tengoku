@@ -38,16 +38,24 @@ namespace Scheme
 
 variable {X : Scheme.{u}}
 
+/--
+@isnad1 id=iff.0h2v.s6.c163362b8d17 from=translated src=- shape=79ddc71c vocab=daa9dd09
+-/
 theorem isRegularAt_iff {x : X} : X.IsRegularAt x ↔ IsRegularLocalRing (X.presheaf.stalk x) :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h2v.s5.1e041811753c from=translated src=- shape=a6e5a524 vocab=857e4ab1
+-/
 theorem mem_singularLocus_iff {x : X} : x ∈ X.singularLocus ↔ ¬ X.IsRegularAt x :=
   Iff.rfl
 
 /-- The affine-local form of regularity at a point: on an affine open `U ∋ x` with
 `𝔮 = hU.primeIdealOf ⟨x, hx⟩` the prime of `x`, `X` is regular at `x` iff the localization
 `Γ(X, U)_𝔮` is a regular local ring, because `𝒪_{X,x} ≅ Γ(X, U)_𝔮`
-(`IsAffineOpen.isLocalization_stalk`) and regularity is invariant under ring isomorphism.-/
+(`IsAffineOpen.isLocalization_stalk`) and regularity is invariant under ring isomorphism.
+@isnad1 id=iff.2h3v.s11.40f4252cb928 from=translated src=- shape=c30db910 vocab=3edf571c
+-/
 theorem isRegularAt_iff_isRegularLocalRing_localization {U : X.Opens} (hU : IsAffineOpen U)
     {x : X} (hx : x ∈ U) :
     X.IsRegularAt x ↔
@@ -64,9 +72,15 @@ end Scheme
 
 variable {X : Scheme.{u}}
 
+/--
+@isnad1 id=iff.0h1v.s4.7c68120183bd from=translated src=- shape=959a3d4a vocab=173c4628
+-/
 theorem isRegular_iff : IsRegular X ↔ ∀ x : X, X.IsRegularAt x :=
   ⟨fun h => h.isRegularAt, fun h => ⟨h⟩⟩
 
+/--
+@isnad1 id=iff.0h1v.s5.2c33f8f49ecd from=translated src=- shape=51d52fca vocab=b84aba68
+-/
 theorem isRegular_iff_singularLocus_eq_empty : IsRegular X ↔ X.singularLocus = ∅ := by
   simp only [isRegular_iff, Set.eq_empty_iff_forall_notMem, Scheme.mem_singularLocus_iff, not_not]
 

@@ -40,6 +40,9 @@ noncomputable def quotientLinear (hJ : ∀ f ∈ J, D f ∈ J) : (R ⧸ J) →�
     (J.restrictScalars k).mapQ (J.restrictScalars k) D.toLinearMap (fun f hf => hJ f hf) ∘ₗ
     (Submodule.Quotient.restrictScalarsEquiv k J).symm.toLinearMap
 
+/--
+@isnad1 id=eq.1h5v.s10.d26d2f9e7f95 from=translated src=- shape=25958560 vocab=cba26836
+-/
 theorem quotientLinear_mk (hJ : ∀ f ∈ J, D f ∈ J) (f : R) :
     D.quotientLinear J hJ (Ideal.Quotient.mk J f) = Ideal.Quotient.mk J (D f) := by
   simp only [quotientLinear, LinearMap.comp_apply, LinearEquiv.coe_coe, ← Ideal.Quotient.mk_eq_mk,
@@ -55,6 +58,9 @@ noncomputable def quotientOfMapLE (hJ : ∀ f ∈ J, D f ∈ J) : Derivation k (
     rw [← map_mul, quotientLinear_mk, quotientLinear_mk, quotientLinear_mk, Derivation.leibniz]
     simp only [smul_eq_mul, map_add, map_mul]
 
+/--
+@isnad1 id=eq.1h5v.s9.8b1c49961def from=translated src=- shape=c4e9e093 vocab=1428ccd0
+-/
 @[simp] theorem quotientOfMapLE_mk (hJ : ∀ f ∈ J, D f ∈ J) (f : R) :
     D.quotientOfMapLE J hJ (Ideal.Quotient.mk J f) = Ideal.Quotient.mk J (D f) :=
   D.quotientLinear_mk J hJ f
@@ -70,7 +76,9 @@ namespace RegularCoords
 variable {R : Type*} [CommRing R] [IsRegularLocalRing R] [Algebra ℚ R] {k : ℕ}
   (c : RegularCoords R (k + 1)) (i₀ : Fin (k + 1))
 
-/-- `∂ⱼ` preserves `⟨x_{i₀}⟩` for `j ≠ i₀`, because `∂ⱼ x_{i₀} = 0`.-/
+/-- `∂ⱼ` preserves `⟨x_{i₀}⟩` for `j ≠ i₀`, because `∂ⱼ x_{i₀} = 0`.
+@isnad1 id=mem.2h6v.s8.6cd7505b0efd from=translated src=- shape=dda97226 vocab=94342235
+-/
 theorem pderiv_mem_span_x_of_ne {j : Fin (k + 1)} (hj : j ≠ i₀) {f : R}
     (hf : f ∈ span {c.x i₀}) : c.pderiv j f ∈ span {c.x i₀} := by
   obtain ⟨g, rfl⟩ := mem_span_singleton.mp hf
@@ -84,7 +92,9 @@ noncomputable def quotientPderiv (j : Fin k) :
   (c.pderiv (i₀.succAbove j)).quotientOfMapLE _ fun _ hf =>
     c.pderiv_mem_span_x_of_ne i₀ (Fin.succAbove_ne i₀ j) hf
 
-/-- `(∂_{σ j} f)‾ = ∂̄ⱼ f̄`: Kollár's `∂f/∂xᵢ |_S = ∂(f|_S)/∂xᵢ` for `i > 1` [Kol07, 87].-/
+/-- `(∂_{σ j} f)‾ = ∂̄ⱼ f̄`: Kollár's `∂f/∂xᵢ |_S = ∂(f|_S)/∂xᵢ` for `i > 1` [Kol07, 87].
+@isnad1 id=eq.0h6v.s11.20796155d0f3 from=translated src=- shape=45f53223 vocab=a014be7e
+-/
 @[simp] theorem quotientPderiv_mk (j : Fin k) (f : R) :
     c.quotientPderiv i₀ j (Ideal.Quotient.mk (span {c.x i₀}) f) =
       Ideal.Quotient.mk (span {c.x i₀}) (c.pderiv (i₀.succAbove j) f) :=
@@ -94,15 +104,27 @@ noncomputable def quotientPderiv (j : Fin k) :
 `j.succ ↦ i₀.succAbove j`.-/
 def shiftPerm : Equiv.Perm (Fin (k + 1)) := (finSuccEquiv k).trans (finSuccEquiv' i₀).symm
 
+/--
+@isnad1 id=eq.0h2v.s7.7f96b7c6c8aa from=translated src=- shape=a834d4d3 vocab=31e1689d
+-/
 @[simp] theorem shiftPerm_zero : shiftPerm i₀ 0 = i₀ := by
   simp [shiftPerm]
 
+/--
+@isnad1 id=eq.0h3v.s7.b14801e8998b from=translated src=- shape=531f7b0e vocab=2bac4678
+-/
 @[simp] theorem shiftPerm_succ (j : Fin k) : shiftPerm i₀ j.succ = i₀.succAbove j := by
   simp [shiftPerm]
 
+/--
+@isnad1 id=eq.0h4v.s8.a2599c87c505 from=translated src=- shape=5fdcce58 vocab=30dcc4a4
+-/
 theorem span_x_shiftPerm : maximalIdeal R = span (Set.range (c.x ∘ shiftPerm i₀)) := by
   rw [c.span_x, (shiftPerm i₀).surjective.range_comp]
 
+/--
+@isnad1 id=eq.0h4v.s8.269e1ebb3603 from=translated src=- shape=eafa2d3d vocab=74c440c6
+-/
 theorem span_image_lt_one :
     span ((c.x ∘ shiftPerm i₀) '' {j : Fin (k + 1) | j.val < 1}) = span {c.x i₀} := by
   have hset : {j : Fin (k + 1) | j.val < 1} = {0} := by
@@ -112,11 +134,16 @@ theorem span_image_lt_one :
   rw [hset, Set.image_singleton, Function.comp_apply, shiftPerm_zero]
 
 /-- `R̄ = R/⟨x_{i₀}⟩` is a regular local ring (the quotient by a member of a regular system of
-parameters).-/
+parameters).
+@isnad1 id=isregula.0h4v.s7.ec94f7b926f9 from=translated src=- shape=b5b1c575 vocab=943c9f53
+-/
 instance isRegularLocalRing_quotient_span_x : IsRegularLocalRing (R ⧸ span {c.x i₀}) :=
   c.span_image_lt_one i₀ ▸
     isRegularLocalRing_quotient_span_image_lt (c.x ∘ shiftPerm i₀) (c.span_x_shiftPerm i₀) c.card 1
 
+/--
+@isnad1 id=eq.0h4v.s7.48d7f40d5177 from=translated src=- shape=b93bb9e0 vocab=cb6dca3c
+-/
 theorem ringKrullDim_quotient_span_x_add_one :
     ringKrullDim (R ⧸ span {c.x i₀}) + 1 = ringKrullDim R := by
   have h := ringKrullDim_quotient_span_image_lt (c.x ∘ shiftPerm i₀) (c.span_x_shiftPerm i₀) c.card
@@ -124,6 +151,9 @@ theorem ringKrullDim_quotient_span_x_add_one :
   rw [c.span_image_lt_one i₀, Nat.cast_one] at h
   exact h
 
+/--
+@isnad1 id=eq.1h2v.s5.adf00da1f893 from=translated src=- shape=2d8dcf9b vocab=82841ddb
+-/
 theorem withBot_eq_natCast_of_add_one_eq {d : WithBot ℕ∞} {m : ℕ}
     (h : d + 1 = ((m + 1 : ℕ) : WithBot ℕ∞)) : d = (m : WithBot ℕ∞) := by
   induction d using WithBot.recBotCoe with
@@ -143,12 +173,16 @@ theorem withBot_eq_natCast_of_add_one_eq {d : WithBot ℕ∞} {m : ℕ}
       subst ha
       exact WithBot.coe_natCast a
 
-/-- `dim R̄ = n − 1`.-/
+/-- `dim R̄ = n − 1`.
+@isnad1 id=eq.0h4v.s7.0afa035e12d1 from=translated src=- shape=6a088cbc vocab=49b7e4f1
+-/
 theorem card_quotient_span_x : (k : WithBot ℕ∞) = ringKrullDim (R ⧸ span {c.x i₀}) :=
   (withBot_eq_natCast_of_add_one_eq
     ((c.ringKrullDim_quotient_span_x_add_one i₀).trans c.card.symm)).symm
 
-/-- The classes `x̄_{σ j}` generate the maximal ideal of `R̄`.-/
+/-- The classes `x̄_{σ j}` generate the maximal ideal of `R̄`.
+@isnad1 id=eq.0h4v.s9.f39070c10775 from=translated src=- shape=5b0308e6 vocab=a5e5213d
+-/
 theorem maximalIdeal_quotient_span_x :
     maximalIdeal (R ⧸ span {c.x i₀}) =
       span (Set.range fun j : Fin k =>
@@ -186,14 +220,22 @@ noncomputable def quotientCoords : RegularCoords (R ⧸ span {c.x i₀}) k where
     obtain ⟨g, rfl⟩ := Ideal.Quotient.mk_surjective f
     simp only [quotientPderiv_mk, c.pderiv_comm]
 
+/--
+@isnad1 id=eq.0h5v.s9.65ad0586d69a from=translated src=- shape=c47af3a8 vocab=574cd6fd
+-/
 @[simp] theorem quotientCoords_x (j : Fin k) :
     (c.quotientCoords i₀).x j = Ideal.Quotient.mk (span {c.x i₀}) (c.x (i₀.succAbove j)) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.bdb0c9b3447f from=translated src=- shape=2fddc7a1 vocab=2d9efc7d
+-/
 @[simp] theorem quotientCoords_pderiv (j : Fin k) :
     (c.quotientCoords i₀).pderiv j = c.quotientPderiv i₀ j := rfl
 
 /-- The compatibility clause `∂̄ⱼ (f̄) = (∂_{σ j} f)‾`, in the form the restriction of D-balanced
-ideals takes as a hypothesis.-/
+ideals takes as a hypothesis.
+@isnad1 id=eq.0h6v.s11.9c0d8c617a4e from=translated src=- shape=03be0ef4 vocab=7b0d9718
+-/
 theorem quotientCoords_pderiv_mk (j : Fin k) (f : R) :
     (c.quotientCoords i₀).pderiv j (Ideal.Quotient.mk (span {c.x i₀}) f) =
       Ideal.Quotient.mk (span {c.x i₀}) (c.pderiv (i₀.succAbove j) f) :=

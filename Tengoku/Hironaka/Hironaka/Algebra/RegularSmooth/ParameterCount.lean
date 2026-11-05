@@ -36,7 +36,9 @@ namespace IsRegularLocalRing
 variable {R : Type*} [CommRing R] [IsRegularLocalRing R]
 
 /-- In a regular local ring of dimension `m`, the classes in `𝔪/𝔪²` of `m` generators of `𝔪` are
-linearly independent over the residue field (they span a space of dimension `m`).-/
+linearly independent over the residue field (they span a space of dimension `m`).
+@isnad1 id=linearin.3h3v.s9.d029f2cfc0b4 from=translated src=- shape=bf66a89c vocab=a10aaf72
+-/
 theorem linearIndependent_toCotangent_of_span_eq {m : ℕ} (z : Fin m → R)
     (hz : ∀ i, z i ∈ maximalIdeal R) (hspan : Ideal.span (Set.range z) = maximalIdeal R)
     (hdim : (m : WithBot ℕ∞) = ringKrullDim R) :
@@ -62,7 +64,9 @@ theorem linearIndependent_toCotangent_of_span_eq {m : ℕ} (z : Fin m → R)
 
 /-- Two families of elements of `𝔪` with linearly independent classes in `𝔪/𝔪²` generating the same
 ideal have the same size: the dimension count of [Sta, Tag 00NQ]
-(`quotient_span_range_of_linearIndependent`) applied to both families.-/
+(`quotient_span_range_of_linearIndependent`) applied to both families.
+@isnad1 id=eq.5h5v.s10.b36c4a59a202 from=translated src=- shape=5610d0e8 vocab=94cae081
+-/
 theorem card_eq_of_span_range_eq {ι κ : Type*} [Fintype ι] [Fintype κ] (f : ι → R) (g : κ → R)
     (hf : ∀ i, f i ∈ maximalIdeal R) (hg : ∀ j, g j ∈ maximalIdeal R)
     (hfl : LinearIndependent (ResidueField R) fun i => (maximalIdeal R).toCotangent ⟨f i, hf i⟩)

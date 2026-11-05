@@ -67,7 +67,9 @@ variable {k : Type u} [Field k] [CharZero k]
 the scheme-level relative dimension of `f` on the open `V`: `f.resLE U V e` has it by
 `HasRingHomProperty.iff_of_isAffine` (the global sections of the restriction are `f.appLE U V e` up
 to isomorphism, `arrowResLEAppIso`), and `V.ι ≫ f = f.resLE U V e ≫ U.ι` adds the relative
-dimension `0` of the open immersion.-/
+dimension `0` of the open immersion.
+@isnad1 id=smoothof.4h6v.s9.dcffe18270e7 from=translated src=- shape=4176649f vocab=045d7c5a
+-/
 theorem smoothOfRelativeDimension_ι_comp_of_appLE {X Y : Scheme.{u}} (f : Y ⟶ X) {U : X.Opens}
     (hU : IsAffineOpen U) {V : Y.Opens} (hV : IsAffineOpen V) (e : V ≤ f ⁻¹ᵁ U) (n : ℕ)
     (hn : RingHom.IsStandardSmoothOfRelativeDimension n (f.appLE U V e).hom) :
@@ -89,7 +91,9 @@ theorem smoothOfRelativeDimension_ι_comp_of_appLE {X Y : Scheme.{u}} (f : Y ⟶
 
 /-- A smooth morphism has a relative dimension near every point of the source: Mathlib's `Smooth`
 is affine-locally standard smooth (`Smooth.exists_isStandardSmooth`), and a submersive presentation
-has a dimension.-/
+has a dimension.
+@isnad1 id=ex.0h4v.s6.3d887829a621 from=translated src=- shape=3a83b322 vocab=62436fb5
+-/
 theorem exists_smoothOfRelativeDimension_ι_comp {X Y : Scheme.{u}} (f : Y ⟶ X) [Smooth f]
     (y : Y) : ∃ (V : Y.Opens) (n : ℕ), y ∈ V ∧ SmoothOfRelativeDimension n (V.ι ≫ f) := by
   obtain ⟨U, hU, V, hV, hy, e, hss⟩ := Smooth.exists_isStandardSmooth f y
@@ -102,7 +106,9 @@ theorem exists_smoothOfRelativeDimension_ι_comp {X Y : Scheme.{u}} (f : Y ⟶ X
 /-- A smooth morphism from an IRREDUCIBLE scheme has a global relative dimension: two local
 relative dimensions agree on the (nonempty) overlap of their opens
 (`SmoothOfRelativeDimension.eq_of_nonempty`), and `SmoothOfRelativeDimension n` is Zariski-local at
-the source.-/
+the source.
+@isnad1 id=ex.0h3v.s5.92acba625b7b from=translated src=- shape=99b48797 vocab=cfac00b1
+-/
 theorem exists_smoothOfRelativeDimension_of_irreducibleSpace {X Y : Scheme.{u}} (f : Y ⟶ X)
     [Smooth f] [IrreducibleSpace Y] : ∃ n, SmoothOfRelativeDimension n f := by
   choose V n hmem hP using exists_smoothOfRelativeDimension_ι_comp f
@@ -140,7 +146,9 @@ a nonempty open (`Y^ns` is dense, `dense_smoothLocus_of_perfectField`), its imag
 map `h` (`Scheme.Hom.isOpenMap`, smooth morphisms being flat and locally of finite presentation)
 meets the dense `X^ns`; there the structure morphism of `Y` factors through `Y^ns` (relative
 dimension `dY`) and through `h` and `X^ns` (relative dimension `n + dX`). No dimension theory
-enters.-/
+enters.
+@isnad1 id=smoothof.0h6v.s8.c1995703cc20 from=translated src=- shape=03071183 vocab=6b1e635b
+-/
 theorem smoothOfRelativeDimension_sub_of_smoothLocus (X Y : Scheme.{u})
     [X.Over (Spec (CommRingCat.of k))] [LocallyOfFiniteType (X ↘ Spec (CommRingCat.of k))]
     [Y.Over (Spec (CommRingCat.of k))] [LocallyOfFiniteType (Y ↘ Spec (CommRingCat.of k))]

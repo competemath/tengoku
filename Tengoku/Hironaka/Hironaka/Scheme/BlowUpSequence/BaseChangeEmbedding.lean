@@ -48,16 +48,24 @@ proof of [Kol07, Theorem 36].-/
 noncomputable def baseChangeEmbedding : X' ⟶ A' :=
   hA.lift (pX ≫ emb) fX' (by rw [Category.assoc, hemb]; exact hX.w)
 
+/--
+@isnad1 id=eq.3h14v.s7.1a5ff912b3c6 from=translated src=- shape=8764b9c3 vocab=839e20ea
+-/
 @[reassoc (attr := simp)]
 theorem baseChangeEmbedding_comp : baseChangeEmbedding emb hemb hX hA ≫ pA = pX ≫ emb :=
   hA.lift_fst _ _ _
 
+/--
+@isnad1 id=eq.3h14v.s7.8336297aff01 from=translated src=- shape=3d4dbd6d vocab=839e20ea
+-/
 @[reassoc (attr := simp)]
 theorem baseChangeEmbedding_over : baseChangeEmbedding emb hemb hX hA ≫ fA' = fX' :=
   hA.lift_snd _ _ _
 
 /-- The base change of `emb` is a pullback square over `pA`, `pX` (pasting with the square of
-`A`).-/
+`A`).
+@isnad1 id=ispullba.3h14v.s7.729fb38b6942 from=translated src=- shape=35101366 vocab=839e20ea
+-/
 theorem isPullback_baseChangeEmbedding :
     IsPullback (baseChangeEmbedding emb hemb hX hA) pX pA emb := by
   have s : IsPullback (baseChangeEmbedding emb hemb hX hA ≫ fA') pX q (emb ≫ fA) := by
@@ -65,21 +73,27 @@ theorem isPullback_baseChangeEmbedding :
     exact hX.flip
   exact IsPullback.of_right s (baseChangeEmbedding_comp emb hemb hX hA) hA.flip
 
-/-- A closed immersion base-changes to a closed immersion.-/
+/-- A closed immersion base-changes to a closed immersion.
+@isnad1 id=isclosed.3h14v.s7.f8946e6a13af from=translated src=- shape=8003706c vocab=8da8296c
+-/
 theorem isClosedImmersion_baseChangeEmbedding [IsClosedImmersion emb] :
     IsClosedImmersion (baseChangeEmbedding emb hemb hX hA) :=
   property_of_isPullback @IsClosedImmersion
     (isPullback_baseChangeEmbedding emb hemb hX hA) ‹_›
 
 /-- The kernel of the base-changed embedding is the inverse image of the kernel,
-`I_{X_L} = p^* I_X` (the proof of [Kol07, Theorem 36]).-/
+`I_{X_L} = p^* I_X` (the proof of [Kol07, Theorem 36]).
+@isnad1 id=eq.3h14v.s7.d4cf497ff5a9 from=translated src=- shape=0fc706ef vocab=3d3f9698
+-/
 theorem ker_baseChangeEmbedding [IsClosedImmersion emb] :
     (baseChangeEmbedding emb hemb hX hA).ker = emb.ker.comap pA := by
   have hsq := isPullback_baseChangeEmbedding emb hemb hX hA
   rw [← hsq.isoPullback_hom_fst, Scheme.Hom.ker_comp_of_isIso,
     Scheme.IdealSheafData.ker_fst_of_isClosedImmersion]
 
-/-- On the canonical pullbacks `X ×_S S'`, `A ×_S S'`, the induced morphism is `pullback.map`.-/
+/-- On the canonical pullbacks `X ×_S S'`, `A ×_S S'`, the induced morphism is `pullback.map`.
+@isnad1 id=eq.1h8v.s7.b4e2f8046d84 from=translated src=- shape=7194f302 vocab=57645a9b
+-/
 theorem baseChangeEmbedding_eq_pullback_map (fX : X ⟶ S) (fA : A ⟶ S) (hemb : emb ≫ fA = fX)
     (q : S' ⟶ S) :
     baseChangeEmbedding emb hemb (IsPullback.of_hasPullback fX q) (IsPullback.of_hasPullback fA q) =

@@ -74,10 +74,15 @@ variable {R : Type*} [CommRing R] [IsLocalRing R]
 noncomputable def ordElem (f : R) : ℕ∞ :=
   ord (Ideal.span {f})
 
+/--
+@isnad1 id=le.1h3v.s7.64dd238ba3fb from=translated src=- shape=2c512449 vocab=d5170c11
+-/
 theorem le_ord_of_le {I : Ideal R} {r : ℕ} (h : I ≤ maximalIdeal R ^ r) : (r : ℕ∞) ≤ ord I :=
   le_iSup₂_of_le r h le_rfl
 
-/-- `r ≤ ord I` iff `I ≤ 𝔪^r`; uses that the powers of `𝔪` decrease.-/
+/-- `r ≤ ord I` iff `I ≤ 𝔪^r`; uses that the powers of `𝔪` decrease.
+@isnad1 id=iff.0h3v.s7.de712f149acc from=translated src=- shape=6b1e6c24 vocab=d5170c11
+-/
 theorem le_ord_iff {I : Ideal R} {r : ℕ} : (r : ℕ∞) ≤ ord I ↔ I ≤ maximalIdeal R ^ r := by
   refine ⟨fun h => ?_, le_ord_of_le⟩
   by_contra hI
@@ -94,18 +99,25 @@ theorem le_ord_iff {I : Ideal R} {r : ℕ} : (r : ℕ∞) ≤ ord I ↔ I ≤ ma
   have hlt : ((r - 1 : ℕ) : ℕ∞) < r := by exact_mod_cast Nat.sub_one_lt hr
   exact absurd (h.trans hle) (not_le.mpr hlt)
 
+/--
+@isnad1 id=iff.0h3v.s6.e17cd9c700dc from=translated src=- shape=7949a533 vocab=5941c308
+-/
 theorem mem_maximalIdeal_pow_iff_le_ordElem {f : R} {r : ℕ} :
     f ∈ maximalIdeal R ^ r ↔ (r : ℕ∞) ≤ ordElem f := by
   rw [ordElem, le_ord_iff, Ideal.span_singleton_le_iff_mem]
 
 /-- The order is antitone: `I ≤ J → ord J ≤ ord I` (property (1) of the cosupport in
-[Kol07, Definition 59]).-/
+[Kol07, Definition 59]).
+@isnad1 id=le.1h3v.s6.707181e52caa from=translated src=- shape=5db93062 vocab=9de19b94
+-/
 theorem ord_anti {I J : Ideal R} (h : I ≤ J) : ord J ≤ ord I := by
   rw [← ENat.forall_natCast_le_iff_le]
   intro r hr
   exact le_ord_iff.mpr (h.trans (le_ord_iff.mp hr))
 
-/-- The unit ideal has order `0`.-/
+/-- The unit ideal has order `0`.
+@isnad1 id=eq.0h1v.s5.6f28ea478f91 from=translated src=- shape=05d4bbd4 vocab=94450d72
+-/
 @[simp]
 theorem ord_top : ord (⊤ : Ideal R) = 0 := by
   refine le_antisymm (iSup₂_le fun r hr => ?_) bot_le
@@ -115,7 +127,9 @@ theorem ord_top : ord (⊤ : Ideal R) = 0 := by
     have : maximalIdeal R = ⊤ := top_le_iff.mp (hr.trans (Ideal.pow_le_self hr0.ne'))
     exact (maximalIdeal.isMaximal R).ne_top this
 
-/-- `ord I = 0` iff `I` is the unit ideal (in a local ring a proper ideal lies in `𝔪`).-/
+/-- `ord I = 0` iff `I` is the unit ideal (in a local ring a proper ideal lies in `𝔪`).
+@isnad1 id=iff.0h2v.s6.abec372d425f from=translated src=- shape=14a027f7 vocab=94450d72
+-/
 theorem ord_eq_zero_iff {I : Ideal R} : ord I = 0 ↔ I = ⊤ := by
   constructor
   · intro h
@@ -127,11 +141,15 @@ theorem ord_eq_zero_iff {I : Ideal R} : ord I = 0 ↔ I = ⊤ := by
   · rintro rfl
     exact ord_top
 
-/-- `1 ≤ ord f` iff `f ∈ 𝔪`.-/
+/-- `1 ≤ ord f` iff `f ∈ 𝔪`.
+@isnad1 id=iff.0h2v.s6.3fe5e6097e8a from=translated src=- shape=50426dd9 vocab=96eca5af
+-/
 theorem one_le_ordElem_iff {f : R} : 1 ≤ ordElem f ↔ f ∈ maximalIdeal R := by
   rw [← Nat.cast_one, ← mem_maximalIdeal_pow_iff_le_ordElem, pow_one]
 
-/-- `ord f = 1` iff `f ∈ 𝔪 ∖ 𝔪²`.-/
+/-- `ord f = 1` iff `f ∈ 𝔪 ∖ 𝔪²`.
+@isnad1 id=iff.0h2v.s7.d57c07a7596b from=translated src=- shape=7b8444c1 vocab=205feb72
+-/
 theorem ordElem_eq_one_iff {f : R} :
     ordElem f = 1 ↔ f ∈ maximalIdeal R ∧ f ∉ maximalIdeal R ^ 2 := by
   rw [← one_le_ordElem_iff, mem_maximalIdeal_pow_iff_le_ordElem]
@@ -147,7 +165,9 @@ theorem ordElem_eq_one_iff {f : R} :
       have h2' : ¬ 2 ≤ m := fun h => h2 (by exact_mod_cast h)
       exact_mod_cast (show m = 1 by omega)
 
-/-- The order of an ideal is the infimum of the orders of its elements.-/
+/-- The order of an ideal is the infimum of the orders of its elements.
+@isnad1 id=eq.0h2v.s7.e50b47575022 from=translated src=- shape=79727418 vocab=24ac134f
+-/
 theorem ord_eq_iInf (I : Ideal R) : ord I = ⨅ f ∈ I, ordElem f := by
   refine le_antisymm (le_iInf₂ fun f hf => ord_anti ((Ideal.span_singleton_le_iff_mem _).mpr hf)) ?_
   rw [← ENat.forall_natCast_le_iff_le]
@@ -155,7 +175,9 @@ theorem ord_eq_iInf (I : Ideal R) : ord I = ⨅ f ∈ I, ordElem f := by
   refine le_ord_iff.mpr fun f hf => ?_
   exact mem_maximalIdeal_pow_iff_le_ordElem.mpr (hr.trans (iInf₂_le f hf))
 
-/-- The order of `⟨S⟩` is the infimum of the orders of the generators.-/
+/-- The order of `⟨S⟩` is the infimum of the orders of the generators.
+@isnad1 id=eq.0h2v.s6.be23b557653b from=translated src=- shape=8b3b1927 vocab=31ce363c
+-/
 theorem ord_span (S : Set R) : ord (Ideal.span S) = ⨅ f ∈ S, ordElem f := by
   refine le_antisymm (le_iInf₂ fun f hf => ord_anti ?_) ?_
   · exact (Ideal.span_singleton_le_iff_mem _).mpr (Ideal.subset_span hf)
@@ -164,7 +186,9 @@ theorem ord_span (S : Set R) : ord (Ideal.span S) = ⨅ f ∈ S, ordElem f := by
     refine le_ord_iff.mpr (Ideal.span_le.mpr fun f hf => ?_)
     exact mem_maximalIdeal_pow_iff_le_ordElem.mpr (hr.trans (iInf₂_le f hf))
 
-/-- For a finite nonempty generating set the infimum is attained by a generator.-/
+/-- For a finite nonempty generating set the infimum is attained by a generator.
+@isnad1 id=ex.2h2v.s5.267e04450889 from=translated src=- shape=5671b494 vocab=92de623a
+-/
 theorem exists_ord_span_eq_ordElem {S : Set R} (hS : S.Finite) (hne : S.Nonempty) :
     ∃ f ∈ S, ord (Ideal.span S) = ordElem f := by
   obtain ⟨f, hf, hmin⟩ := hS.toFinset.exists_min_image ordElem (by simpa using hne)
@@ -179,7 +203,9 @@ section Noetherian
 variable [IsNoetherianRing R]
 
 /-- In a Noetherian local ring the only ideal of infinite order is the zero ideal (Krull's
-intersection theorem, recalled in [Kol07, Definition 55]).-/
+intersection theorem, recalled in [Kol07, Definition 55]).
+@isnad1 id=iff.0h2v.s6.49b94a6cc184 from=translated src=- shape=823c1e45 vocab=ce308a8f
+-/
 theorem ord_eq_top_iff {I : Ideal R} : ord I = ⊤ ↔ I = ⊥ := by
   constructor
   · intro h
@@ -191,7 +217,9 @@ theorem ord_eq_top_iff {I : Ideal R} : ord I = ⊤ ↔ I = ⊥ := by
     rw [ENat.eq_top_iff_forall_ge]
     exact fun r => le_ord_of_le bot_le
 
-/-- The only element of infinite order is `0`.-/
+/-- The only element of infinite order is `0`.
+@isnad1 id=iff.0h2v.s5.4a094d478324 from=translated src=- shape=91a09030 vocab=cd8b529e
+-/
 theorem ordElem_eq_top_iff {f : R} : ordElem f = ⊤ ↔ f = 0 := by
   rw [ordElem, ord_eq_top_iff, Ideal.span_singleton_eq_bot]
 
@@ -202,7 +230,9 @@ section Calculus
 variable {R : Type*} [CommRing R] [IsLocalRing R]
 
 /-- Superadditivity, `ord I + ord J ≤ ord (I J)`, from `𝔪^a 𝔪^b = 𝔪^(a+b)` (property (2) of the
-cosupport in [Kol07, Definition 59]).-/
+cosupport in [Kol07, Definition 59]).
+@isnad1 id=le.0h3v.s6.42db30135b4a from=translated src=- shape=380a4ee2 vocab=c5cae354
+-/
 theorem le_ord_mul (I J : Ideal R) : ord I + ord J ≤ ord (I * J) := by
   rw [← ENat.forall_natCast_le_iff_le]
   intro r hr
@@ -223,7 +253,9 @@ theorem le_ord_mul (I J : Ideal R) : ord I + ord J ≤ ord (I * J) := by
     _ ≤ maximalIdeal R ^ r := Ideal.pow_le_pow_right hr'
 
 /-- `ord (I + J) = min (ord I) (ord J)` (property (4) of the cosupport in
-[Kol07, Definition 59]).-/
+[Kol07, Definition 59]).
+@isnad1 id=eq.0h3v.s6.d852c4ca615e from=translated src=- shape=5b18d633 vocab=7658eb53
+-/
 theorem ord_sup (I J : Ideal R) : ord (I ⊔ J) = min (ord I) (ord J) := by
   refine le_antisymm ?_ ?_ <;> rw [← ENat.forall_natCast_le_iff_le] <;> intro r hr
   · rw [le_ord_iff, sup_le_iff] at hr
@@ -232,7 +264,9 @@ theorem ord_sup (I J : Ideal R) : ord (I ⊔ J) = min (ord I) (ord J) := by
     exact le_ord_iff.mpr (sup_le (le_ord_iff.mp hr.1) (le_ord_iff.mp hr.2))
 
 /-- `c · ord I ≤ ord (I ^ c)` (one inclusion of property (3) of the cosupport in
-[Kol07, Definition 59]).-/
+[Kol07, Definition 59]).
+@isnad1 id=le.0h3v.s6.2cc5ed85bfb7 from=translated src=- shape=4705bd80 vocab=fa1261ee
+-/
 theorem le_ord_pow (I : Ideal R) (c : ℕ) : (c : ℕ∞) * ord I ≤ ord (I ^ c) := by
   induction c with
   | zero => simp
@@ -244,7 +278,9 @@ theorem le_ord_pow (I : Ideal R) (c : ℕ) : (c : ℕ∞) * ord I ≤ ord (I ^ c
 
 /-- The order does not drop under a local homomorphism, `ord I ≤ ord (I.map φ)` (the proof of
 [Wlo05, Lemma 2.10.3]; the inclusion (58.2) of [Kol07, 58] is its sheaf form);
-restriction to `R/(x₁)` is the case `φ = Ideal.Quotient.mk`.-/
+restriction to `R/(x₁)` is the case `φ = Ideal.Quotient.mk`.
+@isnad1 id=le.0h4v.s7.b44b94205e93 from=translated src=- shape=d9488e2d vocab=2b1b4931
+-/
 theorem ord_le_ord_map {S : Type*} [CommRing S] [IsLocalRing S] (φ : R →+* S) [IsLocalHom φ]
     (I : Ideal R) : ord I ≤ ord (I.map φ) := by
   rw [← ENat.forall_natCast_le_iff_le]
@@ -254,10 +290,15 @@ theorem ord_le_ord_map {S : Type*} [CommRing S] [IsLocalRing S] (φ : R →+* S)
     _ = (maximalIdeal R).map φ ^ r := Ideal.map_pow _ _ _
     _ ≤ maximalIdeal S ^ r := Ideal.pow_right_mono (map_maximalIdeal_le φ) r
 
+/--
+@isnad1 id=eq.0h1v.s5.0ae57b5591ab from=translated src=- shape=30104014 vocab=65bc4982
+-/
 theorem ordElem_one : ordElem (1 : R) = 0 := by
   rw [ordElem, Ideal.span_singleton_one, ord_top]
 
-/-- Multiplicativity of the order on elements implies `ord (f ^ n) = n · ord f`.-/
+/-- Multiplicativity of the order on elements implies `ord (f ^ n) = n · ord f`.
+@isnad1 id=eq.1h3v.s6.ba70285117a3 from=translated src=- shape=e1d736cb vocab=5a8bf2de
+-/
 theorem ordElem_pow_of_ordElem_mul
     (hmul : ∀ f g : R, ordElem (f * g) = ordElem f + ordElem g) (f : R) (n : ℕ) :
     ordElem (f ^ n) = (n : ℕ∞) * ordElem f := by
@@ -268,6 +309,9 @@ theorem ordElem_pow_of_ordElem_mul
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h1v.s5.8171ca66a713 from=translated src=- shape=a679d27d vocab=4c579989
+-/
 theorem ord_bot : ord (⊥ : Ideal R) = ⊤ := by
   rw [ENat.eq_top_iff_forall_ge]
   exact fun r => le_ord_of_le bot_le
@@ -276,7 +320,9 @@ variable [IsNoetherianRing R]
 
 /-- Given multiplicativity of the order on elements, `ord (I ^ c) = c · ord I` for `c ≥ 1` (the
 equality behind property (3) of the cosupport in [Kol07, Definition 59]).  Pick a generator `f`
-of `I` with `ord f = ord I`; then `f ^ c ∈ I ^ c` has order `c · ord I`.-/
+of `I` with `ord f = ord I`; then `f ^ c ∈ I ^ c` has order `c · ord I`.
+@isnad1 id=eq.2h3v.s7.f74a465df644 from=translated src=- shape=f3d8ed53 vocab=3c6252cb
+-/
 theorem ord_pow_of_ordElem_mul (hmul : ∀ f g : R, ordElem (f * g) = ordElem f + ordElem g)
     (I : Ideal R) {c : ℕ} (hc : 1 ≤ c) : ord (I ^ c) = (c : ℕ∞) * ord I := by
   refine le_antisymm ?_ (le_ord_pow I c)
@@ -298,7 +344,9 @@ theorem ord_pow_of_ordElem_mul (hmul : ∀ f g : R, ordElem (f * g) = ordElem f 
     _ = (c : ℕ∞) * ordElem f := ordElem_pow_of_ordElem_mul hmul f c
     _ = (c : ℕ∞) * ord I := by rw [hord]
 
-/-- Given multiplicativity of the order on elements, `ord (f I) = ord f + ord I`.-/
+/-- Given multiplicativity of the order on elements, `ord (f I) = ord f + ord I`.
+@isnad1 id=eq.1h3v.s7.f91d23fabfc0 from=translated src=- shape=32170bea vocab=f677ea5c
+-/
 theorem ord_span_singleton_mul_of_ordElem_mul
     (hmul : ∀ f g : R, ordElem (f * g) = ordElem f + ordElem g) (f : R) (I : Ideal R) :
     ord (Ideal.span {f} * I) = ordElem f + ord I := by

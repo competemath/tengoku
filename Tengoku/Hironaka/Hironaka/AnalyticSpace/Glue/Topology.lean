@@ -45,6 +45,9 @@ universe u
 def transitionGraph (D : TopCat.GlueData.{u}) (i j : D.J) : Set (D.U i × D.U j) :=
   Set.range fun x : D.V (i, j) => ((D.f i j x, D.f j i (D.t i j x)) : D.U i × D.U j)
 
+/--
+@isnad1 id=iff.0h5v.s7.2ca1080f500a from=translated src=- shape=77a3a6b0 vocab=02aa1cb9
+-/
 theorem mem_transitionGraph_iff_rel (D : TopCat.GlueData.{u}) {i j : D.J} {y : D.U i}
     {y' : D.U j} : (y, y') ∈ transitionGraph D i j ↔ D.Rel ⟨i, y⟩ ⟨j, y'⟩ := by
   constructor
@@ -54,7 +57,9 @@ theorem mem_transitionGraph_iff_rel (D : TopCat.GlueData.{u}) {i j : D.J} {y : D
     exact ⟨x, Prod.ext h₁ h₂⟩
 
 /-- The Hausdorff criterion: Hausdorff pieces and closed transition graphs give a Hausdorff glued
-space.-/
+space.
+@isnad1 id=t2space.1h1v.s6.650635156941 from=translated src=- shape=3479c341 vocab=4ac19b18
+-/
 theorem t2Space_glued_of_isClosed_transitionGraph (D : TopCat.GlueData.{u})
     [∀ i, T2Space (D.U i)] (hgraph : ∀ i j, i ≠ j → IsClosed (transitionGraph D i j)) :
     T2Space D.toGlueData.glued := by

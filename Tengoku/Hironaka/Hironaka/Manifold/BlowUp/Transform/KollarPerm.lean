@@ -40,23 +40,37 @@ def kollarFirst (σ : Fin c ↪ Fin n) (i : Fin c) : Finset (Fin n) := (Finset.u
 /-- The indices outside the centre.-/
 def kollarLast (σ : Fin c ↪ Fin n) : Finset (Fin n) := (Finset.univ.map σ)ᶜ
 
+/--
+@isnad1 id=eq.0h4v.s5.bb153d607a7a from=translated src=- shape=bd567567 vocab=749eb929
+-/
 theorem card_kollarFirst (σ : Fin c ↪ Fin n) (i : Fin c) : (kollarFirst σ i).card = c - 1 := by
   rw [kollarFirst, Finset.card_erase_of_mem (Finset.mem_map_of_mem _ (Finset.mem_univ i)),
     Finset.card_map, Finset.card_univ, Fintype.card_fin]
 
+/--
+@isnad1 id=eq.0h3v.s4.d19684cde655 from=translated src=- shape=0752bf86 vocab=01137007
+-/
 theorem card_kollarLast (σ : Fin c ↪ Fin n) : (kollarLast σ).card = n - c := by
   rw [kollarLast, Finset.card_compl, Finset.card_map, Finset.card_univ, Fintype.card_fin,
     Fintype.card_fin]
 
+/--
+@isnad1 id=le.0h3v.s3.075b1d54677b from=translated src=- shape=46771f2f vocab=abe1c02e
+-/
 theorem c_le_n (σ : Fin c ↪ Fin n) : c ≤ n := by
   have := Fintype.card_le_of_injective σ σ.injective
   simpa using this
 
+/--
+@isnad1 id=lt.0h2v.s3.b4692b7c1433 from=translated src=- shape=7d122e43 vocab=1173123d
+-/
 theorem c_pos (i : Fin c) : 0 < c := Fin.pos i
 
 /-- A permutation `τ` of the coordinate indices with the centre's other coordinates at the
 positions `< r = c - 1`, the divisor coordinate `σ i` at `r`, and the transversal coordinates
-after, as in Kollár's chart [Kol07, Definition 60, (60.2)].-/
+after, as in Kollár's chart [Kol07, Definition 60, (60.2)].
+@isnad1 id=ex.0h4v.s7.63ff27493a15 from=translated src=- shape=a95a7b15 vocab=54e98e10
+-/
 theorem exists_kollarPerm (σ : Fin c ↪ Fin n) (i : Fin c) :
     ∃ (r : Fin n) (τ : Fin n ≃ Fin n), τ r = σ i ∧ ∀ j, j < r ↔ ∃ k, k ≠ i ∧ τ j = σ k := by
   classical

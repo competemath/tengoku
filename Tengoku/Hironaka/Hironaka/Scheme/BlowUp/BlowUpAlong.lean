@@ -28,12 +28,16 @@ open CategoryTheory
 
 namespace AlgebraicGeometry
 
-/-- An effective Cartier ideal sheaf is an invertible one, in the library's sense.-/
+/-- An effective Cartier ideal sheaf is an invertible one, in the library's sense.
+@isnad1 id=iff.0h2v.s3.ca63ccb79fb4 from=translated src=- shape=e74561de vocab=0eb0024d
+-/
 theorem Scheme.IdealSheafData.isEffectiveCartier_iff_isInvertible {X : Scheme.{u}}
     (J : X.IdealSheafData) : J.IsEffectiveCartier ↔ J.IsInvertible :=
   Iff.rfl
 
-/-- `π.IsBlowUpAlong I` is the library's `IsBlowUp I π`.-/
+/-- `π.IsBlowUpAlong I` is the library's `IsBlowUp I π`.
+@isnad1 id=iff.0h4v.s4.60b1392b9def from=translated src=- shape=76f3d924 vocab=78b1a9d2
+-/
 theorem Scheme.Hom.isBlowUpAlong_iff_isBlowUp {X B : Scheme.{u}} (π : B ⟶ X)
     (I : X.IdealSheafData) : π.IsBlowUpAlong I ↔ IsBlowUp I π :=
   ⟨fun h => ⟨h.1, h.2⟩, fun h => ⟨h.admissible, h.existsUnique_lift⟩⟩

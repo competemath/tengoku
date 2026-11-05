@@ -51,7 +51,9 @@ namespace AlgebraicGeometry
 variable {k : Type u} [Field k] {X : Scheme.{u}} (f : X ⟶ Spec (.of k))
 
 /-- `Ω[𝒪_{X,x}⁄k]` is a finite free module at every point of a scheme smooth over `k`: the base
-change of `Ω[Γ(V)⁄k]`, free and finite on a standard smooth affine neighbourhood `V ∋ x`.-/
+change of `Ω[Γ(V)⁄k]`, free and finite on a standard smooth affine neighbourhood `V ∋ x`.
+@isnad1 id=and.0h4v.s9.a12cb2789540 from=translated src=- shape=823ea452 vocab=99bb9e24
+-/
 theorem free_finite_kaehlerDifferential_stalk [Smooth f] (x : X) :
     letI := f.stalkAlgebra x
     Module.Free (X.presheaf.stalk x) Ω[X.presheaf.stalk x⁄k] ∧
@@ -68,7 +70,9 @@ theorem free_finite_kaehlerDifferential_stalk [Smooth f] (x : X) :
   exact ⟨Module.Free.of_equiv e, Module.Finite.equiv e⟩
 
 /-- The stalk of a scheme smooth over `k` is essentially of finite type over `k` (the form of
-`essFiniteType_stalk` without a relative dimension).-/
+`essFiniteType_stalk` without a relative dimension).
+@isnad1 id=essfinit.0h4v.s6.bcb7bb6e3746 from=translated src=- shape=658980e2 vocab=a7d00cfc
+-/
 theorem essFiniteType_stalk_of_smooth [Smooth f] (x : X) :
     letI := f.stalkAlgebra x
     Algebra.EssFiniteType k (X.presheaf.stalk x) := by
@@ -86,7 +90,9 @@ theorem essFiniteType_stalk_of_smooth [Smooth f] (x : X) :
       (hU.primeIdealOf ⟨x, hxU⟩).asIdeal.primeCompl
   exact Algebra.EssFiniteType.comp k Γ(X, U) (X.presheaf.stalk x)
 
-/-- The residue field of the stalk is essentially of finite type over `k`.-/
+/-- The residue field of the stalk is essentially of finite type over `k`.
+@isnad1 id=essfinit.0h4v.s7.dd93a7fdd248 from=translated src=- shape=3606828a vocab=da6627be
+-/
 theorem essFiniteType_residueField_stalk_of_smooth [Smooth f] (x : X) :
     letI := f.stalkAlgebra x
     Algebra.EssFiniteType k (ResidueField (X.presheaf.stalk x)) := by

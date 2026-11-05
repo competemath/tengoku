@@ -47,7 +47,9 @@ variable {k : Type u} [Field k] {X : Scheme.{u}}
 /-- For `f : X ⟶ Spec k` smooth of relative dimension `n`, every point has an affine open
 neighbourhood `V` on which `Γ(X, V)` is standard smooth of relative dimension `n` over `k`
 (Mathlib's `SmoothOfRelativeDimension`, with the affine open of `Spec k` necessarily `⊤` and the
-base ring `Γ(Spec k, ⊤)` replaced by `k` along `Scheme.ΓSpecIso`).-/
+base ring `Γ(Spec k, ⊤)` replaced by `k` along `Scheme.ΓSpecIso`).
+@isnad1 id=ex.0h5v.s8.0d9f9cf219be from=translated src=- shape=371aef5a vocab=7c72c5c9
+-/
 theorem Scheme.Hom.exists_affineOpen_isStandardSmoothOfRelativeDimension (f : X ⟶ Spec (.of k))
     (n : ℕ) [SmoothOfRelativeDimension n f] (x : X) :
     ∃ (V : X.Opens) (_ : IsAffineOpen V) (_ : x ∈ V),

@@ -52,7 +52,9 @@ variable {r : ℕ} {P T₁ : Finset ℕ} {c : ℕ}
 /-- The inequality of [Kol07, 111, Step 3.2 and 3.r], for faces of every size: for a new face
 `T₁ ∪ {c_P}` of the blow-up along Kollár's centre at phase `r` and a component `c ∈ P \ T₁`, the
 old face `T₁ ∪ {c}` has the same size, `a'(T₁ ∪ {c_P}) + m = a(T₁ ∪ {c}) + a(P \ {c})`, and
-`a(P \ {c}) < m` by `(∗_{r-1})`; hence `a'(T₁ ∪ {c_P}) < a(T₁ ∪ {c})`.-/
+`a(P \ {c}) < m` by `(∗_{r-1})`; hence `a'(T₁ ∪ {c_P}) < a(T₁ ∪ {c})`.
+@isnad1 id=and.5h5v.s8.4ec9e1a82f61 from=translated src=- shape=2c95f6fb vocab=aa1e46b5
+-/
 theorem total_newFace_lt (hs : ∀ s < r, st.Star s) (hP : P ∈ st.choice r)
     (hT₁ : T₁ ∪ P ∈ st.nerve) (hc : c ∈ P) (hcT₁ : c ∉ T₁) :
     insert c T₁ ∈ st.nerve ∧
@@ -99,7 +101,9 @@ include hs
 
 /-- Every face of the new state of size `s` is an old face outside the center with its old sum, or
 has sum strictly below that of an old face of size `s`: in either case its sum is at most `m_s`,
-and a new face achieving `m_s` is an old `s`-face outside the center achieving `m_s`.-/
+and a new face achieving `m_s` is an old `s`-face outside the center achieving `m_s`.
+@isnad1 id=and.2h4v.s6.45a6f12abaf2 from=translated src=- shape=52d08c63 vocab=518bd17e
+-/
 theorem total_le_maxTotal_of_mem_blowUp_faces {s : ℕ} {T : Finset ℕ}
     (hT : T ∈ (st.blowUp (st.choice r)).faces s) :
     (st.blowUp (st.choice r)).total T ≤ st.maxTotal s ∧
@@ -120,7 +124,9 @@ theorem total_le_maxTotal_of_mem_blowUp_faces {s : ℕ} {T : Finset ℕ}
     exact ⟨(hlt.trans_le hle).le, fun he => absurd he (ne_of_lt (hlt.trans_le hle))⟩
 
 /-- [Kol07, 111, Step 3.2 and 3.r]: a blow-up along Kollár's centre at phase `r` strictly
-decreases `(m_r, n_r)` in `ℕ ×ₗ ℕ`.-/
+decreases `(m_r, n_r)` in `ℕ ×ₗ ℕ`.
+@isnad1 id=lt.2h2v.s5.22e933066575 from=translated src=- shape=76cc55f6 vocab=e35139eb
+-/
 theorem measure_blowUp_lt (h : (st.choice r).Nonempty) :
     (st.blowUp (st.choice r)).measure r < st.measure r := by
   have hle : (st.blowUp (st.choice r)).maxTotal r ≤ st.maxTotal r :=
@@ -141,7 +147,9 @@ theorem measure_blowUp_lt (h : (st.choice r).Nonempty) :
       exact (st.total_le_maxTotal_of_mem_blowUp_faces hs hT1).2 (heq ▸ hT2) |>.2.2 hP
 
 /-- A phase-`r` blow-up preserves `(∗_s)` for `s < r`. Kollár uses this throughout
-[Kol07, 111, Step 3.r] without stating its preservation; not in the sources as such.-/
+[Kol07, 111, Step 3.r] without stating its preservation; not in the sources as such.
+@isnad1 id=star.2h3v.s4.c3aced1d9d6f from=translated src=- shape=590dbb22 vocab=e6a55f03
+-/
 theorem star_blowUp {s : ℕ} (hsr : s < r) : (st.blowUp (st.choice r)).Star s := by
   intro T hT
   obtain ⟨hTn, hTs⟩ := (st.blowUp (st.choice r)).mem_faces.mp hT
@@ -155,7 +163,9 @@ theorem star_blowUp {s : ℕ} (hsr : s < r) : (st.blowUp (st.choice r)).Star s :
 
 /-- Under a phase-`r` blow-up no pair `(m_s, n_s)` increases. Not in the sources: a
 strengthening of the decrease of `(m_r, n_r)`, by the same case analysis of the faces of the
-new state.-/
+new state.
+@isnad1 id=le.1h3v.s5.6d65284bb95c from=translated src=- shape=744f2341 vocab=bff1a726
+-/
 theorem measure_blowUp_le (s : ℕ) :
     (st.blowUp (st.choice r)).measure s ≤ st.measure s := by
   have hle : (st.blowUp (st.choice r)).maxTotal s ≤ st.maxTotal s :=

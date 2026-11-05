@@ -73,7 +73,9 @@ variable {X U : Scheme.{u}}
 section StalkExt
 
 /-- Off the support the stalk ideal is the unit ideal: some section of `J` over an affine
-neighbourhood is a unit at `x` (Mathlib's `mem_zeroLocus_iff`, `mem_basicOpen`).-/
+neighbourhood is a unit at `x` (Mathlib's `mem_zeroLocus_iff`, `mem_basicOpen`).
+@isnad1 id=eq.1h3v.s9.26db8f2362c1 from=translated src=- shape=4c256374 vocab=050df3fc
+-/
 theorem stalkIdeal_eq_top_of_notMem_support (J : X.IdealSheafData) {x : X}
     (hx : x ∉ J.support) : J.stalkIdeal x = ⊤ := by
   obtain ⟨V, hxV⟩ := exists_affineOpens_mem x
@@ -84,7 +86,9 @@ theorem stalkIdeal_eq_top_of_notMem_support (J : X.IdealSheafData) {x : X}
   exact Ideal.eq_top_of_isUnit_mem _ (Ideal.mem_map_of_mem _ hs)
     ((Scheme.mem_basicOpen X s x hxV).mp hxs)
 
-/-- Monotonicity of the stalk ideal.-/
+/-- Monotonicity of the stalk ideal.
+@isnad1 id=le.1h4v.s9.711396986aec from=translated src=- shape=f6fb449e vocab=df66de17
+-/
 theorem stalkIdeal_mono {I J : X.IdealSheafData} (h : I ≤ J) (x : X) :
     I.stalkIdeal x ≤ J.stalkIdeal x := by
   obtain ⟨V, hxV⟩ := exists_affineOpens_mem x
@@ -93,7 +97,9 @@ theorem stalkIdeal_mono {I J : X.IdealSheafData} (h : I ≤ J) (x : X) :
 
 /-- An ideal sheaf is bounded by another as soon as its stalk ideals are: on an affine open `V`
 the stalk at the point of a maximal ideal `𝔪` of `Γ(V)` is the localization at `𝔪`, and an ideal
-is determined by its localizations at the maximal ideals (`Ideal.le_of_localization_maximal`).-/
+is determined by its localizations at the maximal ideals (`Ideal.le_of_localization_maximal`).
+@isnad1 id=le.1h3v.s9.71c145392acf from=translated src=- shape=ef60a103 vocab=df66de17
+-/
 theorem le_of_stalkIdeal_le {I J : X.IdealSheafData} (h : ∀ x, I.stalkIdeal x ≤ J.stalkIdeal x) :
     I ≤ J := by
   refine le_of_iSup_eq_top (fun V : X.affineOpens => V) (iSup_affineOpens_eq_top X) fun V => ?_
@@ -123,7 +129,9 @@ theorem le_of_stalkIdeal_le {I J : X.IdealSheafData} (h : ∀ x, I.stalkIdeal x 
   rwa [Ideal.comap_map_of_bijective e' e.bijective,
     Ideal.comap_map_of_bijective e' e.bijective] at this
 
-/-- Extensionality by stalks: ideal sheaves with equal stalk ideals at every point are equal.-/
+/-- Extensionality by stalks: ideal sheaves with equal stalk ideals at every point are equal.
+@isnad1 id=eq.1h3v.s7.a9be750a9448 from=translated src=- shape=ef60a103 vocab=44158012
+-/
 theorem ext_stalkIdeal {I J : X.IdealSheafData} (h : ∀ x, I.stalkIdeal x = J.stalkIdeal x) :
     I = J :=
   le_antisymm (le_of_stalkIdeal_le fun x => (h x).le) (le_of_stalkIdeal_le fun x => (h x).ge)
@@ -152,7 +160,9 @@ theorem _root_.AlgebraicGeometry.Scheme.Hom.comap_stalkMap_map_eq_self (u : U)
 
 /-- The stalkwise half of the descent lemma: for `f` flat and `|Z| ⊆ f(U)`, an inequality
 `Z'.comap f ≤ Z.comap f` of inverse images descends to `Z' ≤ Z` — contract along the faithfully
-flat stalk maps at the points of `|Z|`; off `|Z|` the stalk of `Z` is the unit ideal.-/
+flat stalk maps at the points of `|Z|`; off `|Z|` the stalk of `Z` is the unit ideal.
+@isnad1 id=le.2h5v.s8.d7006d7045e9 from=translated src=- shape=63019588 vocab=6a6f67b8
+-/
 theorem le_of_comap_le_of_flat (Z Z' : X.IdealSheafData) (hZ : (Z.support : Set X) ⊆ Set.range f)
     (h : Z'.comap f ≤ Z.comap f) : Z' ≤ Z := by
   refine le_of_stalkIdeal_le fun x => ?_
@@ -178,7 +188,9 @@ theorem eq_of_comap_eq_of_flat (Z Z' : X.IdealSheafData) (hZ : (Z.support : Set 
   le_antisymm (le_of_comap_le_of_flat f Z' Z hZ' h.le) (le_of_comap_le_of_flat f Z Z' hZ h.ge)
 
 /-- A morphism `ι_C ≫ g` out of the closed subscheme `C = W.comap g` factors through `W`:
-`W.comap (ι_C ≫ g) = ⊥`.-/
+`W.comap (ι_C ≫ g) = ⊥`.
+@isnad1 id=eq.0h4v.s6.ba8c1e82c81f from=translated src=- shape=136170b2 vocab=b5b93eb6
+-/
 theorem comap_subschemeι_comp_eq_bot {Y : Scheme.{u}} (W : X.IdealSheafData) (g : Y ⟶ X) :
     W.comap ((W.comap g).subschemeι ≫ g) = ⊥ := by
   rw [comap_comp]

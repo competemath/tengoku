@@ -37,6 +37,9 @@ universe u v
 
 /-! ### The tube lemma as disjointness from a closed set -/
 
+/--
+@isnad1 id=ex.4h5v.s7.d137998ae171 from=translated src=- shape=abf7278f vocab=5955d4fe
+-/
 theorem exists_isOpen_prod_disjoint {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     {s : Set X} {t : Set Y} (hs : IsCompact s) (ht : IsCompact t) {E : Set (X × Y)}
     (hE : IsClosed E) (hd : Disjoint (s ×ˢ t) E) :
@@ -45,6 +48,9 @@ theorem exists_isOpen_prod_disjoint {X Y : Type*} [TopologicalSpace X] [Topologi
     (Set.subset_compl_iff_disjoint_right.mpr hd)
   exact ⟨u, v, hu, hv, hsu, htv, Set.subset_compl_iff_disjoint_right.mp huv⟩
 
+/--
+@isnad1 id=ex.5h7v.s8.4d242bbba98b from=translated src=- shape=c705e22d vocab=5955d4fe
+-/
 theorem exists_isOpen_prod3_disjoint {X Y Z : Type*} [TopologicalSpace X] [TopologicalSpace Y]
     [TopologicalSpace Z] {s : Set X} {t : Set Y} {r : Set Z} (hs : IsCompact s) (ht : IsCompact t)
     (hr : IsCompact r) {E : Set (X × Y × Z)} (hE : IsClosed E) (hd : Disjoint (s ×ˢ t ×ˢ r) E) :
@@ -59,7 +65,9 @@ theorem exists_isOpen_prod3_disjoint {X Y Z : Type*} [TopologicalSpace X] [Topol
 variable {ι : Type u} {Y : ι → Type v} [∀ i, TopologicalSpace (Y i)]
 
 /-- **The shrinking.** Open subsets `A i ⊇ K i` avoiding finitely many closed pair and triple
-constraints.-/
+constraints.
+@isnad1 id=ex.7h7v.s11.bed42fbf911a from=translated src=- shape=08a16529 vocab=ade3cd6c
+-/
 theorem exists_shrink (K : ∀ i, Set (Y i)) (hK : ∀ i, IsCompact (K i))
     (S₂ : Set (ι × ι)) (E₂ : ∀ p : ι × ι, Set (Y p.1 × Y p.2))
     (hE₂ : ∀ p ∈ S₂, IsClosed (E₂ p)) (hK₂ : ∀ p ∈ S₂, Disjoint (K p.1 ×ˢ K p.2) (E₂ p))

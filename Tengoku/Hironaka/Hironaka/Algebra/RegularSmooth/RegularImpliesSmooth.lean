@@ -81,7 +81,9 @@ noncomputable def residueFieldAlgEquivOfBijective
         ResidueField.map_residue, ← IsScalarTower.algebraMap_apply,
         IsScalarTower.algebraMap_apply k L (ResidueField L), ResidueField.algebraMap_eq]
 
-/-- Formal smoothness of `κ(L)` over `k` transports to `κ(P)` along the residue field bijection.-/
+/-- Formal smoothness of `κ(L)` over `k` transports to `κ(P)` along the residue field bijection.
+@isnad1 id=formally.1h3v.s8.3da3ceb356a1 from=translated src=- shape=c9a8b3de vocab=024334f4
+-/
 theorem FormallySmooth.residueField_of_bijective
     (hbij : Function.Bijective (ResidueField.map (algebraMap P L)))
     [Algebra.FormallySmooth k (ResidueField L)] : Algebra.FormallySmooth k (ResidueField P) :=

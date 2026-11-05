@@ -47,7 +47,9 @@ variable {k S T : Type u} [CommRing k] [CommRing S] [CommRing T] [Algebra k S] [
   [Algebra S T] [IsScalarTower k S T]
 
 /-- The image under `Ω[S⁄k] → Ω[T⁄k]` of the differentials of the `v i` are the differentials of
-their images.-/
+their images.
+@isnad1 id=eq.0h5v.s9.a1263dbb0f14 from=translated src=- shape=d8136d2a vocab=8ffc0cb9
+-/
 theorem map_image_range_D {ι : Type*} (v : ι → S) :
     KaehlerDifferential.map k k S T '' (Set.range fun i => D k S (v i)) =
       Set.range fun i => D k T (algebraMap S T (v i)) := by
@@ -59,7 +61,9 @@ theorem map_image_range_D {ι : Type*} (v : ι → S) :
     exact ⟨_, ⟨i, rfl⟩, by rw [KaehlerDifferential.map_D]⟩
 
 /-- If the `d v_i` generate `Ω[T⁄k]` for the localization `T = S[M⁻¹]`, every `ω ∈ Ω[S⁄k]` has a
-multiple `s • ω`, `s ∈ M`, in the span of the `d v_i`.-/
+multiple `s • ω`, `s ∈ M`, in the span of the `d v_i`.
+@isnad1 id=ex.1h7v.s9.15366b01e571 from=translated src=- shape=5a1659d6 vocab=9ca9db52
+-/
 theorem exists_smul_mem_span_of_localized (M : Submonoid S) [IsLocalization M T] {ι : Type*}
     (v : ι → S) (h : Submodule.span T (Set.range fun i => D k T (algebraMap S T (v i))) = ⊤)
     (ω : Ω[S⁄k]) : ∃ s ∈ M, s • ω ∈ Submodule.span S (Set.range fun i => D k S (v i)) := by
@@ -79,7 +83,9 @@ theorem exists_smul_mem_span_of_localized (M : Submonoid S) [IsLocalization M T]
   rw [← Submonoid.smul_def, ← Submonoid.smul_def, hc, one_smul]
   exact P.smul_mem _ hm
 
-/-- One multiplier for all of `Ω[S⁄k]` when it is finitely generated.-/
+/-- One multiplier for all of `Ω[S⁄k]` when it is finitely generated.
+@isnad1 id=ex.1h6v.s9.a05669ac7f81 from=translated src=- shape=331956e5 vocab=c7e01bd7
+-/
 theorem exists_mem_forall_smul_mem_span (M : Submonoid S) [IsLocalization M T]
     [Module.Finite S Ω[S⁄k]] {ι : Type*} (v : ι → S)
     (h : Submodule.span T (Set.range fun i => D k T (algebraMap S T (v i))) = ⊤) :
@@ -102,7 +108,9 @@ theorem exists_mem_forall_smul_mem_span (M : Submonoid S) [IsLocalization M T]
   | smul r a _ ha => rw [smul_comm]; exact P.smul_mem r ha
 
 /-- If `s • Ω[S⁄k]` lies in the span of the `d v_i`, the `d v_i` generate `Ω[S'⁄k]` for the
-localization `S' = S[1/s]` (or any localization at a submonoid containing `s`).-/
+localization `S' = S[1/s]` (or any localization at a submonoid containing `s`).
+@isnad1 id=eq.2h7v.s9.6179dd1335a6 from=translated src=- shape=e47c0d21 vocab=9ca9db52
+-/
 theorem span_eq_top_of_forall_smul_mem {S' : Type u} [CommRing S'] [Algebra k S'] [Algebra S S']
     [IsScalarTower k S S'] (M : Submonoid S) [IsLocalization M S'] {ι : Type*} (v : ι → S)
     {s : S} (hs : s ∈ M)
@@ -133,14 +141,18 @@ variable {k S T : Type v} [CommRing k] [CommRing S] [CommRing T] [Algebra k S] [
   [Algebra S T] [IsScalarTower k S T]
 
 /-- `Ω[T⁄k]` is a finite `T`-module when `Ω[S⁄k]` is a finite `S`-module and `T` is a localization
-of `S` (it is the base change `T ⊗_S Ω[S⁄k]`).-/
+of `S` (it is the base change `T ⊗_S Ω[S⁄k]`).
+@isnad1 id=finite.0h4v.s7.3695980fa2a0 from=translated src=- shape=52dbe85a vocab=f2180d22
+-/
 theorem finite_kaehlerDifferential_of_isLocalization (M : Submonoid S) [IsLocalization M T]
     [Module.Finite S Ω[S⁄k]] : Module.Finite T Ω[T⁄k] :=
   Module.Finite.equiv (IsLocalizedModule.isBaseChange M T (KaehlerDifferential.map k k S T)).equiv
 
 omit [Algebra k S] [IsScalarTower k S T] in
 /-- Nakayama at a local ring `T`: if the classes `1 ⊗ d v_i` form a basis of `κ ⊗_T Ω[T⁄k]`, the
-`d v_i` generate `Ω[T⁄k]`.-/
+`d v_i` generate `Ω[T⁄k]`.
+@isnad1 id=eq.1h6v.s10.2c0c4ba038b5 from=translated src=- shape=39f66541 vocab=6438a87e
+-/
 theorem span_eq_top_of_basis_tensor [IsLocalRing T] [Module.Finite T Ω[T⁄k]] {ι : Type*}
     (v : ι → S)
     (b : Module.Basis ι (IsLocalRing.ResidueField T) (IsLocalRing.ResidueField T ⊗[T] Ω[T⁄k]))

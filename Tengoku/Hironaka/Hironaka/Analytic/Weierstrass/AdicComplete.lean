@@ -45,16 +45,23 @@ variable {m : ℕ}
 
 local notation "𝔪" => IsLocalRing.maximalIdeal (MvPowerSeries (Fin m) K)
 
-/-- The maximal ideal of the formal power series ring: zero constant term.-/
+/-- The maximal ideal of the formal power series ring: zero constant term.
+@isnad1 id=iff.0h3v.s8.a78f2197ada8 from=translated src=- shape=40b3f6ea vocab=855709ea
+-/
 theorem mem_maximalIdeal_iff (f : MvPowerSeries (Fin m) K) :
     f ∈ 𝔪 ↔ constantCoeff f = 0 := by
   rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, MvPowerSeries.isUnit_iff_constantCoeff,
     isUnit_iff_ne_zero, not_not]
 
+/--
+@isnad1 id=mem.0h3v.s7.e42ea4c1c5e9 from=translated src=- shape=5424cf18 vocab=af0107ba
+-/
 theorem X_mem_maximalIdeal (i : Fin m) : (X i : MvPowerSeries (Fin m) K) ∈ 𝔪 :=
   (mem_maximalIdeal_iff _).mpr (constantCoeff_X i)
 
-/-- Elements of `𝔪^n` have no coefficients of total degree `< n`.-/
+/-- Elements of `𝔪^n` have no coefficients of total degree `< n`.
+@isnad1 id=eq.2h5v.s9.4660e0a2a95d from=translated src=- shape=96984dee vocab=e2522dcd
+-/
 theorem coeff_eq_zero_of_mem_maximalIdeal_pow {n : ℕ} {f : MvPowerSeries (Fin m) K}
     (hf : f ∈ 𝔪 ^ n) (d : Fin m →₀ ℕ) (hd : Finsupp.degree d < n) : coeff d f = 0 := by
   classical
@@ -81,12 +88,17 @@ noncomputable def leastVarShift (i : Fin m) (f : MvPowerSeries (Fin m) K) :
     MvPowerSeries (Fin m) K :=
   fun ν => if ∀ j < i, ν j = 0 then coeff (ν + Finsupp.single i 1) f else 0
 
+/--
+@isnad1 id=eq.0h5v.s9.2e0cdb3f3c3e from=translated src=- shape=810e42eb vocab=8799e945
+-/
 theorem coeff_leastVarShift (i : Fin m) (f : MvPowerSeries (Fin m) K) (ν : Fin m →₀ ℕ) :
     coeff ν (leastVarShift i f) =
       if ∀ j < i, ν j = 0 then coeff (ν + Finsupp.single i 1) f else 0 := rfl
 
 /-- A series without constant term is `∑_i x_i · D_i f`, grouping each monomial under its least
-variable.-/
+variable.
+@isnad1 id=eq.1h3v.s7.301cede785fe from=translated src=- shape=a7615282 vocab=b5a7282b
+-/
 theorem sum_X_mul_leastVarShift {f : MvPowerSeries (Fin m) K} (hf : constantCoeff f = 0) :
     ∑ i, X i * leastVarShift i f = f := by
   classical
@@ -133,7 +145,9 @@ theorem sum_X_mul_leastVarShift {f : MvPowerSeries (Fin m) K} (hf : constantCoef
     · intro h
       exact absurd (Finset.mem_univ i₀) h
 
-/-- A series with no coefficients of total degree `< n` lies in `𝔪^n`.-/
+/-- A series with no coefficients of total degree `< n` lies in `𝔪^n`.
+@isnad1 id=mem.1h4v.s9.f309cd7d4feb from=translated src=- shape=cad01e8e vocab=e2522dcd
+-/
 theorem mem_maximalIdeal_pow_of_coeff (n : ℕ) {f : MvPowerSeries (Fin m) K}
     (hf : ∀ d : Fin m →₀ ℕ, Finsupp.degree d < n → coeff d f = 0) : f ∈ 𝔪 ^ n := by
   induction n generalizing f with
@@ -152,16 +166,23 @@ theorem mem_maximalIdeal_pow_of_coeff (n : ℕ) {f : MvPowerSeries (Fin m) K}
       omega
     · rfl
 
-/-- The coefficientwise description of `𝔪^n`: no coefficients of total degree `< n`.-/
+/-- The coefficientwise description of `𝔪^n`: no coefficients of total degree `< n`.
+@isnad1 id=iff.0h4v.s9.dd8c2ebef3b3 from=translated src=- shape=a14d5b86 vocab=e2522dcd
+-/
 theorem mem_maximalIdeal_pow_iff (n : ℕ) (f : MvPowerSeries (Fin m) K) :
     f ∈ 𝔪 ^ n ↔ ∀ d : Fin m →₀ ℕ, Finsupp.degree d < n → coeff d f = 0 :=
   ⟨fun hf => coeff_eq_zero_of_mem_maximalIdeal_pow hf, mem_maximalIdeal_pow_of_coeff n⟩
 
+/--
+@isnad1 id=eq.0h3v.s9.d330aba7cc09 from=translated src=- shape=f5910c50 vocab=9d0e47a6
+-/
 theorem maximalIdeal_pow_smul_top (n : ℕ) :
     (𝔪 ^ n • (⊤ : Submodule (MvPowerSeries (Fin m) K) (MvPowerSeries (Fin m) K))) = 𝔪 ^ n := by
   simp
 
-/-- `⋂_n 𝔪^n = 0`: the topology of the maximal ideal is Hausdorff.-/
+/-- `⋂_n 𝔪^n = 0`: the topology of the maximal ideal is Hausdorff.
+@isnad1 id=ishausdo.0h2v.s6.8222db65acee from=translated src=- shape=08facdb8 vocab=49fc62e1
+-/
 instance isHausdorff_maximalIdeal : IsHausdorff 𝔪 (MvPowerSeries (Fin m) K) := by
   refine ⟨fun x hx => ?_⟩
   ext d
@@ -174,6 +195,9 @@ instance isHausdorff_maximalIdeal : IsHausdorff 𝔪 (MvPowerSeries (Fin m) K) :
 noncomputable def adicLimit (f : ℕ → MvPowerSeries (Fin m) K) : MvPowerSeries (Fin m) K :=
   fun d => coeff d (f (Finsupp.degree d + 1))
 
+/--
+@isnad1 id=eq.0h4v.s9.3ebe0d437194 from=translated src=- shape=873e56e4 vocab=340907e5
+-/
 theorem coeff_adicLimit (f : ℕ → MvPowerSeries (Fin m) K) (d : Fin m →₀ ℕ) :
     coeff d (adicLimit f) = coeff d (f (Finsupp.degree d + 1)) := rfl
 

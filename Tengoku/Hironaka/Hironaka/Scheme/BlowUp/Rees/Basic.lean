@@ -34,6 +34,9 @@ section Components
 
 variable {I : Ideal R}
 
+/--
+@isnad1 id=eq.0h4v.s13.4d18f982d9e6 from=translated src=- shape=ca0c27ae vocab=b0e98012
+-/
 @[simp]
 theorem reesAlgebra.coe_component (n : ℕ) (p : reesAlgebra I) :
     ((reesAlgebra.component I n p : reesAlgebra I) : R[X]) = monomial n ((p : R[X]).coeff n) :=
@@ -57,16 +60,24 @@ noncomputable def reesAlgebra.degreeOne : I →ₗ[R] reesAlgebra I where
 
 variable {I}
 
+/--
+@isnad1 id=eq.0h3v.s10.49120cc8f50a from=translated src=- shape=7a16a888 vocab=1eb94ab5
+-/
 @[simp]
 theorem reesAlgebra.coe_degreeOne (a : I) :
     (reesAlgebra.degreeOne I a : R[X]) = monomial 1 (a : R) :=
   rfl
 
+/--
+@isnad1 id=mem.0h3v.s11.e7a45db0fa05 from=translated src=- shape=8cc3ae73 vocab=d8913bbb
+-/
 theorem reesAlgebra.degreeOne_mem (a : I) :
     reesAlgebra.degreeOne I a ∈ reesAlgebra.grading I 1 :=
   reesAlgebra.mem_grading_of_coe_eq_monomial rfl
 
-/-- The degree-one piece is `I t`: its elements are exactly the `a t`, `a ∈ I`.-/
+/-- The degree-one piece is `I t`: its elements are exactly the `a t`, `a ∈ I`.
+@isnad1 id=iff.0h3v.s11.9acfe1d17042 from=translated src=- shape=866f3c53 vocab=d8913bbb
+-/
 theorem reesAlgebra.mem_grading_one_iff {p : reesAlgebra I} :
     p ∈ reesAlgebra.grading I 1 ↔ ∃ a : I, reesAlgebra.degreeOne I a = p := by
   refine ⟨fun hp => ?_, fun ⟨a, ha⟩ => ha ▸ reesAlgebra.degreeOne_mem a⟩
@@ -74,7 +85,9 @@ theorem reesAlgebra.mem_grading_one_iff {p : reesAlgebra I} :
   exact ⟨⟨c, by simpa using hc⟩, Subtype.ext hpc.symm⟩
 
 variable (I) in
-/-- The degree-one piece is the range of `a ↦ a t`.-/
+/-- The degree-one piece is the range of `a ↦ a t`.
+@isnad1 id=eq.0h2v.s9.f5628356be10 from=translated src=- shape=0806dcea vocab=fdfc119e
+-/
 theorem reesAlgebra.grading_one_eq_range :
     reesAlgebra.grading I 1 = LinearMap.range (reesAlgebra.degreeOne I) :=
   Submodule.ext fun _ => reesAlgebra.mem_grading_one_iff.trans LinearMap.mem_range.symm

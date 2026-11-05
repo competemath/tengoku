@@ -66,12 +66,17 @@ noncomputable def reesAlgebra.evalInv (a : R) : reesAlgebra I →ₐ[R] Localiza
 
 variable {I}
 
+/--
+@isnad1 id=eq.0h4v.s10.34480b62f466 from=translated src=- shape=97c8033f vocab=fa40bc97
+-/
 theorem reesAlgebra.evalInv_apply (a : R) (p : reesAlgebra I) :
     reesAlgebra.evalInv I a p =
       Polynomial.aeval (IsLocalization.Away.invSelf a : Localization.Away a) (p : R[X]) :=
   rfl
 
-/-- Evaluation at `1/a` sends the monomial `c tⁿ` to `c/aⁿ`.-/
+/-- Evaluation at `1/a` sends the monomial `c tⁿ` to `c/aⁿ`.
+@isnad1 id=eq.1h6v.s10.1d792b6c0a3d from=translated src=- shape=ccdeecf2 vocab=289c1132
+-/
 theorem reesAlgebra.evalInv_of_coe_eq_monomial {a : R} {n : ℕ} {c : R} {p : reesAlgebra I}
     (hp : (p : R[X]) = monomial n c) : reesAlgebra.evalInv I a p = awayFrac a n c := by
   rw [reesAlgebra.evalInv_apply, hp, aeval_monomial]
@@ -82,7 +87,9 @@ theorem reesAlgebra.evalInv_of_coe_eq_monomial {a : R} {n : ℕ} {c : R} {p : re
   rw [map_pow, mul_assoc, ← mul_pow, mul_comm (IsLocalization.Away.invSelf a),
     IsLocalization.Away.mul_invSelf, one_pow, mul_one]
 
-/-- Evaluation at `1/a` sends the degree-one element `a t` to `1`.-/
+/-- Evaluation at `1/a` sends the degree-one element `a t` to `1`.
+@isnad1 id=eq.0h3v.s11.01338218bea1 from=translated src=- shape=3235625f vocab=7b4f03fd
+-/
 theorem reesAlgebra.evalInv_degreeOne (a : I) :
     reesAlgebra.evalInv I a (reesAlgebra.degreeOne I a) = 1 := by
   rw [reesAlgebra.evalInv_of_coe_eq_monomial (reesAlgebra.coe_degreeOne a), awayFrac_one]
@@ -103,6 +110,9 @@ noncomputable def reesAlgebra.awayLift (a : I) :
       rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, reesAlgebra.evalInv_degreeOne]
       exact isUnit_one)
 
+/--
+@isnad1 id=eq.0h4v.s15.41ef09e1faca from=translated src=- shape=e4d3bab5 vocab=1b39427c
+-/
 theorem reesAlgebra.awayLift_algebraMap (a : I) (p : reesAlgebra I) :
     reesAlgebra.awayLift a
         (algebraMap (reesAlgebra I) (Localization.Away (reesAlgebra.degreeOne I a)) p) =
@@ -117,11 +127,16 @@ noncomputable def reesAlgebra.chartHom (a : I) :
     (algebraMap (Away (reesAlgebra.grading I) (reesAlgebra.degreeOne I a))
       (Localization.Away (reesAlgebra.degreeOne I a)))
 
-/-- Membership in the `n`-th piece written with the degree `n • 1` of `Away.mk`.-/
+/-- Membership in the `n`-th piece written with the degree `n • 1` of `Away.mk`.
+@isnad1 id=iff.0h4v.s11.d85e887176d2 from=translated src=- shape=566bdd17 vocab=bc059483
+-/
 theorem reesAlgebra.mem_grading_smul_one_iff {n : ℕ} {p : reesAlgebra I} :
     p ∈ reesAlgebra.grading I (n • 1) ↔ p ∈ reesAlgebra.grading I n := by
   rw [smul_eq_mul, mul_one]
 
+/--
+@isnad1 id=eq.1h5v.s14.b842efcedb90 from=translated src=- shape=fea0363f vocab=565fe5f6
+-/
 theorem reesAlgebra.chartHom_mk (a : I) (n : ℕ) (x : reesAlgebra I)
     (hx : x ∈ reesAlgebra.grading I (n • 1)) :
     reesAlgebra.chartHom a (Away.mk _ (reesAlgebra.degreeOne_mem a) n x hx) =
@@ -133,7 +148,9 @@ theorem reesAlgebra.chartHom_mk (a : I) (n : ℕ) (x : reesAlgebra I)
   rw [IsLocalization.lift_mk'_spec]
   simp [map_pow, reesAlgebra.evalInv_degreeOne]
 
-/-- The chart map sends `x tⁿ/(at)ⁿ` to `x/aⁿ`.-/
+/-- The chart map sends `x tⁿ/(at)ⁿ` to `x/aⁿ`.
+@isnad1 id=eq.1h5v.s14.f916bc326770 from=translated src=- shape=8f840cf9 vocab=a4da4cdf
+-/
 theorem reesAlgebra.chartHom_mk_eq_awayFrac (a : I) (n : ℕ) (x : reesAlgebra I)
     (hx : x ∈ reesAlgebra.grading I (n • 1)) :
     reesAlgebra.chartHom a (Away.mk _ (reesAlgebra.degreeOne_mem a) n x hx) =
@@ -143,7 +160,9 @@ theorem reesAlgebra.chartHom_mk_eq_awayFrac (a : I) (n : ℕ) (x : reesAlgebra I
     (reesAlgebra.eq_monomial_of_mem_grading (reesAlgebra.mem_grading_smul_one_iff.mp hx)).1
 
 /-- The image of the chart map lies in `R[I/a]` (the normal form of the grading and
-`Away.mk_surjective`).-/
+`Away.mk_surjective`).
+@isnad1 id=mem.0h4v.s14.c00c18ee5dfa from=translated src=- shape=5823a444 vocab=9a35d350
+-/
 theorem reesAlgebra.chartHom_mem (a : I)
     (z : Away (reesAlgebra.grading I) (reesAlgebra.degreeOne I a)) :
     reesAlgebra.chartHom a z ∈ affineBlowUpAlgebra I a := by
@@ -153,7 +172,9 @@ theorem reesAlgebra.chartHom_mem (a : I)
     (reesAlgebra.eq_monomial_of_mem_grading (reesAlgebra.mem_grading_smul_one_iff.mp hx)).2
 
 /-- Injectivity of the chart map: if `x/aⁿ = 0` in `R_a` then `aᵏx = 0` for some `k`, so `(at)ᵏ`
-kills `x tⁿ` and the fraction vanishes in `(R̃_{at})₀`.-/
+kills `x tⁿ` and the fraction vanishes in `(R̃_{at})₀`.
+@isnad1 id=injectiv.0h3v.s14.7c45b688f1ac from=translated src=- shape=51537d52 vocab=7d973952
+-/
 theorem reesAlgebra.chartHom_injective (a : I) : Function.Injective (reesAlgebra.chartHom a) := by
   rw [injective_iff_map_eq_zero]
   intro z hz
@@ -187,6 +208,9 @@ noncomputable def reesAlgebra.chartRingEquiv (a : I) :
       congr 1
       exact coeff_monomial_same n x⟩
 
+/--
+@isnad1 id=eq.1h5v.s15.4582075a72be from=translated src=- shape=47c20dd5 vocab=1891550e
+-/
 @[simp]
 theorem reesAlgebra.coe_chartRingEquiv_mk (a : I) (n : ℕ) (x : reesAlgebra I)
     (hx : x ∈ reesAlgebra.grading I (n • 1)) :
@@ -194,7 +218,9 @@ theorem reesAlgebra.coe_chartRingEquiv_mk (a : I) (n : ℕ) (x : reesAlgebra I)
       Localization.Away (a : R)) = awayFrac (a : R) n ((x : R[X]).coeff n) :=
   reesAlgebra.chartHom_mk_eq_awayFrac a n x hx
 
-/-- The `val` of a constant of degree zero in the homogeneous localization is the constant.-/
+/-- The `val` of a constant of degree zero in the homogeneous localization is the constant.
+@isnad1 id=eq.0h4v.s15.af96b4a95ce0 from=translated src=- shape=18e2050b vocab=3decb453
+-/
 theorem reesAlgebra.val_fromZeroRingHom (x : Submonoid (reesAlgebra I))
     (f : reesAlgebra.grading I 0) :
     (fromZeroRingHom (reesAlgebra.grading I) x f).val =
@@ -204,7 +230,9 @@ theorem reesAlgebra.val_fromZeroRingHom (x : Submonoid (reesAlgebra I))
 
 /-- Compatibility with the constants: `R → grading I 0 → (R̃_{at})₀ → R_a` is `algebraMap R R_a`;
 with `reesAlgebra.chartRingEquiv` this is the statement that the chart ring isomorphism is one of
-`R`-algebras.-/
+`R`-algebras.
+@isnad1 id=eq.0h4v.s16.382f98b309d3 from=translated src=- shape=3061fe29 vocab=ada515fa
+-/
 theorem reesAlgebra.chartHom_fromZeroRingHom (a : I) (r : R) :
     reesAlgebra.chartHom a
         (fromZeroRingHom (reesAlgebra.grading I) _ ((reesAlgebra.gradingZeroEquiv I).symm r)) =
@@ -214,6 +242,9 @@ theorem reesAlgebra.chartHom_fromZeroRingHom (a : I) (r : R) :
   change reesAlgebra.evalInv I a (algebraMap R (reesAlgebra I) r) = _
   exact (reesAlgebra.evalInv I a).commutes r
 
+/--
+@isnad1 id=eq.0h4v.s17.7d9e299f4416 from=translated src=- shape=0b7de157 vocab=7a4694f3
+-/
 theorem reesAlgebra.chartRingEquiv_fromZeroRingHom (a : I) (r : R) :
     reesAlgebra.chartRingEquiv a
         (fromZeroRingHom (reesAlgebra.grading I) _ ((reesAlgebra.gradingZeroEquiv I).symm r)) =

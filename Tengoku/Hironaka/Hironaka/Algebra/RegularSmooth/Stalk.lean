@@ -40,6 +40,9 @@ noncomputable def Scheme.Hom.stalkAlgebra (f : X ⟶ Spec (.of k)) (x : X) :
   ((Scheme.ΓSpecIso (.of k)).inv ≫ f.app ⊤ ≫
     X.presheaf.germ (f ⁻¹ᵁ ⊤) x (show f x ∈ (⊤ : (Spec (.of k)).Opens) from trivial)).hom.toAlgebra
 
+/--
+@isnad1 id=eq.0h4v.s11.78ee6cf8bc46 from=translated src=- shape=9fddc9b1 vocab=7cffd407
+-/
 theorem Scheme.Hom.algebraMap_stalkAlgebra (f : X ⟶ Spec (.of k)) (x : X) :
     letI := f.stalkAlgebra x
     algebraMap k (X.presheaf.stalk x) = ((Scheme.ΓSpecIso (.of k)).inv ≫ f.app ⊤ ≫
@@ -47,7 +50,9 @@ theorem Scheme.Hom.algebraMap_stalkAlgebra (f : X ⟶ Spec (.of k)) (x : X) :
   rfl
 
 /-- Through any open `U ∋ x`, the `k`-algebra structure of `Γ(X, U)` followed by the germ map is
-the `k`-algebra structure of the stalk.-/
+the `k`-algebra structure of the stalk.
+@isnad1 id=eq.1h5v.s10.61458fd2d180 from=translated src=- shape=19679ba4 vocab=582c3444
+-/
 theorem Scheme.Hom.germ_comp_algebraMap_sectionsAlgebra (f : X ⟶ Spec (.of k)) (U : X.Opens)
     {x : X} (hx : x ∈ U) :
     letI := f.sectionsAlgebra U
@@ -61,7 +66,9 @@ theorem Scheme.Hom.germ_comp_algebraMap_sectionsAlgebra (f : X ⟶ Spec (.of k))
     X.presheaf.germ U x hx = _
   rw [Category.assoc, TopCat.Presheaf.germ_res]
 
-/-- The scalar tower `k → Γ(X, U) → 𝒪_{X,x}` for the structures induced by `f`.-/
+/-- The scalar tower `k → Γ(X, U) → 𝒪_{X,x}` for the structures induced by `f`.
+@isnad1 id=isscalar.1h5v.s11.ad02ce764b5c from=translated src=- shape=2c39ff72 vocab=10d8dc6a
+-/
 theorem Scheme.Hom.isScalarTower_sectionsAlgebra_stalk (f : X ⟶ Spec (.of k)) (U : X.Opens)
     {x : X} (hx : x ∈ U) :
     letI := f.sectionsAlgebra U

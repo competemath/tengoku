@@ -67,7 +67,9 @@ namespace Hironaka.Examples.Theorem88
 open Polynomial
 
 /-- In characteristic zero (any ring) the ideal of the partials of all elements of an ideal contains
-the ideal: `u = D(y u) − y D u` when `D y = 1`.-/
+the ideal: `u = D(y u) − y D u` when `D y = 1`.
+@isnad1 id=eq.1h4v.s8.3750e79de45a from=translated src=- shape=82513200 vocab=c77ae11a
+-/
 theorem mem_of_pderiv_eq_one {B : Type*} [CommRing B] [Algebra ℚ B] (D : Derivation ℚ B B)
     {y : B} (hy : D y = 1) (u : B) : u = D (y * u) - y * D u := by
   rw [Derivation.leibniz, hy, smul_eq_mul, smul_eq_mul, mul_one]
@@ -86,13 +88,21 @@ noncomputable abbrev c : ℚ[X] := C (-(1 / 2 : ℚ))
 noncomputable def φ : ChartPoly →ₐ[ℚ] TruncPoly :=
   MvPolynomial.aeval ![0, Ideal.Quotient.mk _ (c * X ^ 2), Ideal.Quotient.mk _ X]
 
+/--
+@isnad1 id=eq.0h0v.s10.69026ccedc01 from=translated src=- shape=a7605e28 vocab=27397d68
+-/
 theorem φ_X1 : φ (MvPolynomial.X 1) = Ideal.Quotient.mk _ (c * X ^ 2) := by
   simp [φ]
 
+/--
+@isnad1 id=eq.0h0v.s10.38ea4cccfbd5 from=translated src=- shape=73d17644 vocab=82c3b0a5
+-/
 theorem φ_X2 : φ (MvPolynomial.X 2) = Ideal.Quotient.mk _ X := by
   simp [φ]
 
-/-- The generators of `J_1 = (x_1 g, 2 x_1 + t², t x_1)` are killed by the test map.-/
+/-- The generators of `J_1 = (x_1 g, 2 x_1 + t², t x_1)` are killed by the test map.
+@isnad1 id=le.0h0v.s10.1bdded631532 from=translated src=- shape=ed59974d vocab=28cf302a
+-/
 theorem span_le_ker :
     Ideal.span {MvPolynomial.X 1 * (MvPolynomial.X 1 + MvPolynomial.X 2 ^ 2),
         2 * MvPolynomial.X 1 + MvPolynomial.X 2 ^ 2, MvPolynomial.X 2 * MvPolynomial.X 1} ≤
@@ -118,7 +128,9 @@ theorem span_le_ker :
     exact Dvd.intro c (by ring)
 
 /-- The transformed generator `g = π_*^{-1}(x_1² + t² x_1, 1) = x_1 + t²` does not lie in
-`π_*^{-1}(D I, 0) = (x_1 g, 2 x_1 + t², t x_1)`.-/
+`π_*^{-1}(D I, 0) = (x_1 g, 2 x_1 + t², t x_1)`.
+@isnad1 id=not.0h0v.s10.810f49c8c1e7 from=translated src=- shape=79a3b752 vocab=70935772
+-/
 theorem transformElem_not_mem :
     (MvPolynomial.X 1 + MvPolynomial.X 2 ^ 2 : ChartPoly) ∉
       Ideal.span {MvPolynomial.X 1 * (MvPolynomial.X 1 + MvPolynomial.X 2 ^ 2),

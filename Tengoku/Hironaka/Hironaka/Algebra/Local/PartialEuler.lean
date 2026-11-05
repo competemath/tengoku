@@ -45,11 +45,15 @@ variable {k : Type*} [Field k] {R : Type*} [CommRing R] [Algebra k R] {ι : Type
 of the coordinates defining a submanifold `Y` in an adapted chart, the ideal of `Y`).-/
 def coordIdeal : Ideal R := Ideal.span (x '' S)
 
-/-- The coordinates indexed by `S` lie in `J_S`.-/
+/-- The coordinates indexed by `S` lie in `J_S`.
+@isnad1 id=mem.1h5v.s6.f4b650f5ef84 from=translated src=- shape=bc9ba148 vocab=2a93dfac
+-/
 theorem x_mem_coordIdeal {i : ι} (hi : i ∈ S) : x i ∈ coordIdeal x S :=
   Ideal.subset_span ⟨i, hi, rfl⟩
 
-/-- A derivation lowers the power of an ideal by one.-/
+/-- A derivation lowers the power of an ideal by one.
+@isnad1 id=mem.1h6v.s8.4b597e041365 from=translated src=- shape=0598f69d vocab=555663b3
+-/
 theorem derivation_apply_mem_pow_of_mem_pow_succ (D : Derivation k R R) (J : Ideal R) (m : ℕ) :
     ∀ {f : R}, f ∈ J ^ (m + 1) → D f ∈ J ^ m := by
   induction m with
@@ -69,20 +73,28 @@ theorem derivation_apply_mem_pow_of_mem_pow_succ (D : Derivation k R R) (J : Ide
 `iterD [i₁, …, iₖ] f = ∂_{i₁} (∂_{i₂} (… (∂_{iₖ} f)))`.-/
 def iterD (l : List ι) (f : R) : R := l.foldr (fun i g => pd i g) f
 
-/-- The empty iterated derivative is the identity.-/
+/-- The empty iterated derivative is the identity.
+@isnad1 id=eq.0h5v.s6.990700b44b2d from=translated src=- shape=a8aa158f vocab=3536e7db
+-/
 theorem iterD_nil (f : R) : iterD pd [] f = f := rfl
 
-/-- One more derivative in front.-/
+/-- One more derivative in front.
+@isnad1 id=eq.0h7v.s7.aa720853e107 from=translated src=- shape=23575951 vocab=e6a62bb3
+-/
 theorem iterD_cons (i : ι) (l : List ι) (f : R) : iterD pd (i :: l) f = pd i (iterD pd l f) := rfl
 
-/-- One more derivative at the back.-/
+/-- One more derivative at the back.
+@isnad1 id=eq.0h7v.s7.ff3cc6ca37a1 from=translated src=- shape=10aa455a vocab=ed4833a0
+-/
 theorem iterD_append_singleton (l : List ι) (i : ι) (f : R) :
     iterD pd (l ++ [i]) f = iterD pd l (pd i f) := by
   unfold iterD
   rw [List.foldr_append]
   rfl
 
-/-- Iterated derivatives lower the power of an ideal by the length.-/
+/-- Iterated derivatives lower the power of an ideal by the length.
+@isnad1 id=mem.1h8v.s8.464bfc729191 from=translated src=- shape=71a59ceb vocab=ac0d0256
+-/
 theorem iterD_mem_pow (J : Ideal R) (l : List ι) :
     ∀ {p : ℕ} {f : R}, f ∈ J ^ (p + l.length) → iterD pd l f ∈ J ^ p := by
   induction l with
@@ -97,31 +109,41 @@ theorem iterD_mem_pow (J : Ideal R) (l : List ι) :
 /-- The Euler operator along `S`, `E_S f = ∑_{i ∈ S} x_i ∂_i f`.-/
 def eulerS (f : R) : R := ∑ i ∈ S, x i * pd i f
 
-/-- The Euler operator is additive.-/
+/-- The Euler operator is additive.
+@isnad1 id=eq.0h8v.s7.91bae9f31c71 from=translated src=- shape=2f79ea36 vocab=ad70433e
+-/
 theorem eulerS_add (f g : R) : eulerS x pd S (f + g) = eulerS x pd S f + eulerS x pd S g := by
   simp only [eulerS, map_add, mul_add, Finset.sum_add_distrib]
 
-/-- The Leibniz rule for the Euler operator.-/
+/-- The Leibniz rule for the Euler operator.
+@isnad1 id=eq.0h8v.s7.a7f20faa5fb1 from=translated src=- shape=2945ed90 vocab=9e12efc8
+-/
 theorem eulerS_mul (f g : R) :
     eulerS x pd S (f * g) = f * eulerS x pd S g + g * eulerS x pd S f := by
   simp only [eulerS, Derivation.leibniz, smul_eq_mul, mul_add, Finset.sum_add_distrib,
     Finset.mul_sum]
   congr 1 <;> exact Finset.sum_congr rfl fun i _ => by ring
 
-/-- `E_S f ∈ J_S` for every `f`.-/
+/-- `E_S f ∈ J_S` for every `f`.
+@isnad1 id=mem.0h7v.s7.9aeea6c3215d from=translated src=- shape=dbab8ad5 vocab=e364580d
+-/
 theorem eulerS_mem (f : R) : eulerS x pd S f ∈ coordIdeal x S :=
   Submodule.sum_mem _ fun _ hi => Ideal.mul_mem_right _ _ (x_mem_coordIdeal x S hi)
 
 variable [DecidableEq ι] (hx : ∀ i ∈ S, ∀ j ∈ S, pd i (x j) = if i = j then 1 else 0)
 include hx
 
-/-- `E_S x_j = x_j` for `j ∈ S` (the Euler identity on the coordinates).-/
+/-- `E_S x_j = x_j` for `j ∈ S` (the Euler identity on the coordinates).
+@isnad1 id=eq.2h7v.s8.e7c035ccc4e5 from=translated src=- shape=cfa453a5 vocab=8beecb14
+-/
 theorem eulerS_x {j : ι} (hj : j ∈ S) : eulerS x pd S (x j) = x j := by
   unfold eulerS
   rw [Finset.sum_eq_single j (fun i hi hij => by rw [hx i hi j hj, ite_eq_right hij, mul_zero])
     (fun h => (h hj).elim), hx j hj j hj, ite_eq_left rfl, mul_one]
 
-/-- `E_S h − h ∈ J_S²` for `h ∈ J_S`.-/
+/-- `E_S h − h ∈ J_S²` for `h ∈ J_S`.
+@isnad1 id=mem.2h7v.s8.89558aab3649 from=translated src=- shape=d36eb391 vocab=f5b8a9b8
+-/
 theorem eulerS_sub_self_mem_sq {h : R} (hh : h ∈ coordIdeal x S) :
     eulerS x pd S h - h ∈ coordIdeal x S ^ 2 := by
   refine Submodule.span_induction (p := fun h _ => eulerS x pd S h - h ∈ coordIdeal x S ^ 2)
@@ -143,7 +165,9 @@ theorem eulerS_sub_self_mem_sq {h : R} (hh : h ∈ coordIdeal x S) :
     refine Ideal.add_mem _ (Ideal.mul_mem_left _ _ (by rwa [← pow_two])) ?_
     exact Ideal.mul_mem_mul ha' (eulerS_mem x pd S c)
 
-/-- The Euler identity along `S`: `E_S f − a f ∈ J_S^{a+1}` for `f ∈ J_S^a`, `a ≥ 1`.-/
+/-- The Euler identity along `S`: `E_S f − a f ∈ J_S^{a+1}` for `f ∈ J_S^a`, `a ≥ 1`.
+@isnad1 id=mem.3h8v.s9.1f4eae9c9d5e from=translated src=- shape=9982c600 vocab=468fcd7c
+-/
 theorem eulerS_sub_nsmul_mem {a : ℕ} (ha : 1 ≤ a) {f : R} (hf : f ∈ coordIdeal x S ^ a) :
     eulerS x pd S f - (a : R) * f ∈ coordIdeal x S ^ (a + 1) := by
   induction a, ha using Nat.le_induction generalizing f with
@@ -170,7 +194,9 @@ theorem eulerS_sub_nsmul_mem {a : ℕ} (ha : 1 ≤ a) {f : R} (hf : f ∈ coordI
 
 variable [CharZero k]
 
-/-- If `f ∈ J_S^a` and all `∂_i f`, `i ∈ S`, lie in `J_S^a`, then `f ∈ J_S^{a+1}` (`a ≥ 1`).-/
+/-- If `f ∈ J_S^a` and all `∂_i f`, `i ∈ S`, lie in `J_S^a`, then `f ∈ J_S^{a+1}` (`a ≥ 1`).
+@isnad1 id=mem.4h8v.s9.184365a25e6d from=translated src=- shape=9a52dbb0 vocab=1d45e5bb
+-/
 theorem mem_pow_succ_of_forall_pderiv_mem {a : ℕ} (ha : 1 ≤ a) {f : R}
     (hf : f ∈ coordIdeal x S ^ a) (hd : ∀ i ∈ S, pd i f ∈ coordIdeal x S ^ a) :
     f ∈ coordIdeal x S ^ (a + 1) := by
@@ -192,7 +218,9 @@ theorem mem_pow_succ_of_forall_pderiv_mem {a : ℕ} (ha : 1 ≤ a) {f : R}
 
 /-- The Taylor criterion along `S`: `f ∈ J_S^p` iff every iterated derivative of `f` along fewer
 than `p` coordinates of `S` lies in `J_S` (the algebraic form of the order along a closed
-subspace, [BM97, Chapter I, §3]).-/
+subspace, [BM97, Chapter I, §3]).
+@isnad1 id=iff.1h8v.s8.af2a3e2197cd from=translated src=- shape=a738f950 vocab=20460b3a
+-/
 theorem mem_coordIdeal_pow_iff (p : ℕ) (f : R) :
     f ∈ coordIdeal x S ^ p ↔
       ∀ l : List ι, (∀ i ∈ l, i ∈ S) → l.length < p → iterD pd l f ∈ coordIdeal x S := by

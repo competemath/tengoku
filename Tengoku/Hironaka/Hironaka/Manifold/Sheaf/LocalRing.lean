@@ -48,7 +48,9 @@ variable {𝕜 : Type} [NontriviallyNormedField 𝕜]
 -- restored for this declaration.
 set_option backward.isDefEq.respectTransparency.types false in
 /-- A germ of the sheaf of `C^n` functions valued in `𝕜` is a unit iff its value at the point is
-nonzero.-/
+nonzero.
+@isnad1 id=iff.0h8v.s11.019cdb188d6a from=translated src=- shape=1ba4351e vocab=5adc3f97
+-/
 theorem contMDiffSheafCommRing.isUnit_stalk_iff {x : M}
     (f : (contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf.stalk x) :
     IsUnit f ↔ contMDiffSheafCommRing.eval IM 𝓘(𝕜) n M 𝕜 x f ≠ 0 := by
@@ -99,7 +101,9 @@ theorem contMDiffSheafCommRing.isUnit_stalk_iff {x : M}
       exact (((contDiffAt_inv _ (hVf y)).contMDiffAt).comp y
         (f.contMDiff.comp (contMDiff_inclusion hUV)).contMDiffAt :)
 
-/-- The non-units of the stalk are the germs vanishing at the point.-/
+/-- The non-units of the stalk are the germs vanishing at the point.
+@isnad1 id=eq.0h7v.s12.c5c3049c19b9 from=translated src=- shape=ecb20f0b vocab=d46568e8
+-/
 theorem contMDiffSheafCommRing.nonunits_stalk (x : M) :
     nonunits ((contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf.stalk x) =
       RingHom.ker (contMDiffSheafCommRing.eval IM 𝓘(𝕜) n M 𝕜 x) := by
@@ -107,7 +111,9 @@ theorem contMDiffSheafCommRing.nonunits_stalk (x : M) :
   rw [mem_nonunits_iff, not_iff_comm, Iff.comm]
   apply contMDiffSheafCommRing.isUnit_stalk_iff
 
-/-- The stalks of the sheaf of `C^n` functions valued in `𝕜` are local rings.-/
+/-- The stalks of the sheaf of `C^n` functions valued in `𝕜` are local rings.
+@isnad1 id=islocalr.0h7v.s9.6b2eee4f1bb6 from=translated src=- shape=99bf8c34 vocab=5a04aed1
+-/
 instance contMDiffSheafCommRing.instLocalRing_stalk (x : M) :
     IsLocalRing ((contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf.stalk x) := by
   apply IsLocalRing.of_nonunits_add
@@ -115,7 +121,9 @@ instance contMDiffSheafCommRing.instLocalRing_stalk (x : M) :
   intro f g
   exact Ideal.add_mem _
 
-/-- The maximal ideal of the stalk is the kernel of the evaluation.-/
+/-- The maximal ideal of the stalk is the kernel of the evaluation.
+@isnad1 id=eq.0h7v.s11.be0dfe0803c6 from=translated src=- shape=02adf54f vocab=7d0f4598
+-/
 theorem contMDiffSheafCommRing.maximalIdeal_stalk (x : M) :
     maximalIdeal ((contMDiffSheafCommRing IM 𝓘(𝕜) n M 𝕜).presheaf.stalk x) =
       RingHom.ker (contMDiffSheafCommRing.eval IM 𝓘(𝕜) n M 𝕜 x) := by

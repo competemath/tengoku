@@ -35,7 +35,9 @@ namespace Analytic
 
 /-- Over an integrally closed domain `R` embedded in a domain `S` by `f`, a monic irreducible
 `Q ∈ R[T]` with root `ξ` divides every `H ∈ R[T]` vanishing at `ξ` (Gauss's lemma through
-Mathlib's `minpoly.isIntegrallyClosed_dvd`).-/
+Mathlib's `minpoly.isIntegrallyClosed_dvd`).
+@isnad1 id=dvd.5h6v.s8.ec13d190588d from=translated src=- shape=8fd6e880 vocab=74f3133f
+-/
 theorem dvd_of_eval₂_eq_zero_of_monic_irreducible {R S : Type*} [CommRing R] [IsDomain R]
     [IsIntegrallyClosed R] [CommRing S] [IsDomain S] (f : R →+* S) (hinj : Function.Injective f)
     {ξ : S} {Q : R[X]} (hQ : Q.Monic) (hQirr : Irreducible Q) (hQξ : eval₂ f ξ Q = 0) {H : R[X]}

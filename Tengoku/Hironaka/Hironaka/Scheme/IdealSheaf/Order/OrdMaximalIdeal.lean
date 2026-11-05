@@ -42,7 +42,9 @@ open IsLocalRing
 variable {R : Type*} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
 /-- The order ([Kol07, Definition 47]) of the maximal ideal of a Noetherian local ring that is not
-a field is `1` (Nakayama: `𝔪 ⊆ 𝔪²` forces `𝔪 = 0`).-/
+a field is `1` (Nakayama: `𝔪 ⊆ 𝔪²` forces `𝔪 = 0`).
+@isnad1 id=eq.1h1v.s6.ba399f285091 from=translated src=- shape=d6acccfc vocab=6234671c
+-/
 theorem ord_maximalIdeal_eq_one (h : maximalIdeal R ≠ ⊥) : ord (maximalIdeal R) = 1 := by
   refine le_antisymm (iSup_le fun r => iSup_le fun hr => ?_) ?_
   · rcases Nat.lt_or_ge r 2 with hr2 | hr2
@@ -64,7 +66,9 @@ namespace AlgebraicGeometry.Scheme.IdealSheafData
 open AlgebraicGeometry
 
 /-- An ideal sheaf whose stalk at `x` is the maximal ideal of a stalk that is not a field has order
-`1` at `x`.-/
+`1` at `x`.
+@isnad1 id=eq.2h3v.s9.d2986929a9bc from=translated src=- shape=b4cb8eda vocab=939672c3
+-/
 theorem ord_eq_one_of_stalkIdeal_eq_maximalIdeal {X : Scheme.{u}} [IsLocallyNoetherian X]
     (I : X.IdealSheafData) {x : X} (h : I.stalkIdeal x = maximalIdeal (X.presheaf.stalk x))
     (hne : maximalIdeal (X.presheaf.stalk x) ≠ ⊥) : I.ord x = 1 := by

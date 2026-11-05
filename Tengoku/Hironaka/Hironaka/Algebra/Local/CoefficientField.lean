@@ -44,7 +44,9 @@ namespace IsLocalRing
 open IsLocalRing
 
 /-- A field of characteristic zero is formally smooth over `ℚ`, being separably generated
-([Sta, Tag 0322]): algebraic extensions in characteristic zero are separable.-/
+([Sta, Tag 0322]): algebraic extensions in characteristic zero are separable.
+@isnad1 id=formally.0h1v.s4.163e8797a8d0 from=translated src=- shape=c1204047 vocab=8e3c2773
+-/
 theorem formallySmooth_rat_of_field (K : Type*) [Field K] [Algebra ℚ K] :
     Algebra.FormallySmooth ℚ K := by
   have : FaithfulSMul ℚ K :=
@@ -77,7 +79,9 @@ abbrev IsCoefficientAlgebra [Algebra (ResidueField R) R̂] : Prop :=
   ∀ k, residue R̂ (algebraMap (ResidueField R) R̂ k) = residueFieldEquiv R k
 
 /-- Every element of `R̂` is a constant from the coefficient field plus an element of `𝔪R̂`:
-`R̂ = σ(K) + 𝔪R̂`, for any coefficient field.-/
+`R̂ = σ(K) + 𝔪R̂`, for any coefficient field.
+@isnad1 id=mem.1h2v.s11.e0134f792114 from=translated src=- shape=da00cb02 vocab=f8e44d79
+-/
 theorem sub_algebraMap_mem_maximalIdeal [Algebra (ResidueField R) R̂]
     (hι : IsCoefficientAlgebra R) (y : R̂) :
     y - algebraMap (ResidueField R) R̂ ((residueFieldEquiv R).symm (residue R̂ y)) ∈
@@ -90,7 +94,9 @@ theorem sub_algebraMap_mem_maximalIdeal [Algebra (ResidueField R) R̂]
 variable [Algebra ℚ R]
 
 /-- A coefficient field of `R̂` exists — a ring map `K → R̂` from the residue field which is a
-section of the residue map `R̂ → R̂/𝔪R̂ = K` — when `R` contains `ℚ`.-/
+section of the residue map `R̂ → R̂/𝔪R̂ = K` — when `R` contains `ℚ`.
+@isnad1 id=ex.0h1v.s11.24d525c5ddb4 from=translated src=- shape=d2f12b5e vocab=eea15516
+-/
 theorem exists_coefficientField :
     ∃ σ : ResidueField R →+* R̂, ∀ k, residue R̂ (σ k) = residueFieldEquiv R k := by
   have := formallySmooth_rat_of_field (ResidueField R)
@@ -107,12 +113,17 @@ theorem exists_coefficientField :
 noncomputable def coefficientField : ResidueField R →+* R̂ :=
   Classical.choose (exists_coefficientField R)
 
+/--
+@isnad1 id=eq.0h2v.s11.32827779d899 from=translated src=- shape=0519d3ea vocab=e3cfdc43
+-/
 theorem residue_coefficientField (k : ResidueField R) :
     residue R̂ (coefficientField R k) = residueFieldEquiv R k :=
   Classical.choose_spec (exists_coefficientField R) k
 
 /-- Every element of `R̂` is a constant from the coefficient field plus an element of `𝔪R̂`:
-`R̂ = σ(K) + 𝔪R̂`.-/
+`R̂ = σ(K) + 𝔪R̂`.
+@isnad1 id=mem.0h2v.s11.bc1957f21ecf from=translated src=- shape=d906ee18 vocab=9878e2fc
+-/
 theorem sub_coefficientField_mem_maximalIdeal (y : R̂) :
     y - coefficientField R ((residueFieldEquiv R).symm (residue R̂ y)) ∈ maximalIdeal R̂ := by
   rw [← Ideal.Quotient.eq_zero_iff_mem, map_sub, sub_eq_zero]

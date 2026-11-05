@@ -32,7 +32,9 @@ universe u
 variable {X : Scheme.{u}}
 
 /-- The generic points of a closed set are the points whose closure is a maximal irreducible
-subset of it; restates `Closeds.mem_genericPoints_iff`.-/
+subset of it; restates `Closeds.mem_genericPoints_iff`.
+@isnad1 id=iff.0h3v.s8.6df68fe3f0a5 from=translated src=- shape=893410c8 vocab=ea40e5eb
+-/
 theorem mem_genericPoints_iff (Z : Closeds X) (η : X) :
     η ∈ Z.genericPoints ↔ Maximal (fun T : Set X => T ⊆ Z ∧ IsIrreducible T) (closure {η}) :=
   Closeds.mem_genericPoints_iff Z η
