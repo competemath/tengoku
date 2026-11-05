@@ -48,6 +48,7 @@ import Tengoku.Jsp000937Lean
 import Tengoku.LanaGenl
 import Tengoku.MiscYd
 import Tengoku.Vcvio
+import Tengoku.LanaPi1
 import Tengoku.LanaHeights
 import Tengoku.AtPalomar
 import Tengoku.EpsilonSml
