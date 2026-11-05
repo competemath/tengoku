@@ -15,6 +15,7 @@ import Tengoku.Degiorgi
 import Tengoku.FixedPointTheoremsLean4
 import Tengoku.Expdb
 import Tengoku.DerivedAlgGeoLean
+import Tengoku.KummerCriterion
 import Tengoku.FltRegular
 import Tengoku.HodgeStructuresLean4
 import Tengoku.T3ModelCompanion
