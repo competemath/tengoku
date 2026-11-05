@@ -90,6 +90,7 @@ import Tengoku.MiyaokaMoriCharzero
 import Tengoku.GrothendieckRiemannRoch
 import Tengoku.Automatatheory
 import Tengoku.BrownianMotion
+import Tengoku.NsP23
 import Tengoku.NpcompletenessLean4
 import Tengoku.MeanFourier
 import Tengoku.LanaOka

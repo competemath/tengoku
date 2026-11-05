@@ -1,0 +1,1 @@
+-- NsP23: a factory bundle (data/intake/ns-p23). This file only marks the library for Tengoku/All.lean.
