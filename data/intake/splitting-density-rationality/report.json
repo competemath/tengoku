@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "684c0315fe95ab508f7106ce57d0802a19790406e867ddfff3c63776ba2bf3bd",
+ "gate2_unjudged": [],
+ "library": "splitting-density-rationality",
+ "lint_mode": "proposed",
+ "modules": 30,
+ "part": 1,
+ "theorems": 493
+}
