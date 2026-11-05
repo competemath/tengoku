@@ -1,0 +1,1 @@
+-- ChoppedPlanePointIdeals: a factory bundle (data/intake/chopped-plane-point-ideals). This file only marks the library for Tengoku/All.lean.

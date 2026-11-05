@@ -68,6 +68,7 @@ import Tengoku.ChebotarevDensity
 import Tengoku.Compfiles
 import Tengoku.Pfr
 import Tengoku.Stafford38Formal
+import Tengoku.ChoppedPlanePointIdeals
 import Tengoku.LanaEllipticCurves
 import Tengoku.Apap
 import Tengoku.DgLean
