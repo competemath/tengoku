@@ -54,7 +54,9 @@ private theorem sum_relationsAtDegree_card_le
         U.card := hcard.symm
     _ ≤ R.card := Finset.card_le_card hU
 
-/-- Universal lower bound for every finite genuine semigroup presentation.-/
+/-- Universal lower bound for every finite genuine semigroup presentation.
+@isnad1 id=le.1h2v.s5.12441d4c41bc from=translated src=- shape=9f3ed6cc vocab=9def19bc
+-/
 theorem globalPresentation_card_lower_bound
     (R : Finset (SemigroupPresentationRelation D))
     (hR : D.IsSemigroupPresentation (k := ℚ) R) :
@@ -72,6 +74,9 @@ def HasSemigroupPresentationCard (n : ℕ) : Prop :=
   ∃ R : Finset (SemigroupPresentationRelation D),
     D.IsSemigroupPresentation (k := ℚ) R ∧ R.card = n
 
+/--
+@isnad1 id=ex.0h1v.s3.683e3c936713 from=translated src=- shape=4e3b816f vocab=60abf918
+-/
 theorem exists_semigroupPresentationCard :
     ∃ n, D.HasSemigroupPresentationCard n := by
   obtain ⟨R, hR⟩ := D.exists_finite_semigroupPresentation
@@ -83,11 +88,17 @@ noncomputable def semigroupRho (D : FourGeneratedNumericalSemigroup) : ℕ := by
   classical
   exact Nat.find D.exists_semigroupPresentationCard
 
+/--
+@isnad1 id=hassemig.0h1v.s2.436229dd01f4 from=translated src=- shape=9d44d080 vocab=85c7becf
+-/
 theorem semigroupRho_spec : D.HasSemigroupPresentationCard D.semigroupRho :=
   by
     classical
     exact Nat.find_spec D.exists_semigroupPresentationCard
 
+/--
+@isnad1 id=le.1h2v.s4.bbda85669696 from=translated src=- shape=2f03d7dc vocab=c8b8428d
+-/
 theorem semigroupRho_le_of_presentation
     (R : Finset (SemigroupPresentationRelation D))
     (hR : D.IsSemigroupPresentation (k := ℚ) R) :
@@ -96,7 +107,9 @@ theorem semigroupRho_le_of_presentation
   exact Nat.find_min' D.exists_semigroupPresentationCard ⟨R, hR, rfl⟩
 
 /-- Exact global Betti-sum formula for the genuine minimal presentation
-cardinality.-/
+cardinality.
+@isnad1 id=eq.0h1v.s4.c4abe0677dbb from=translated src=- shape=9ae97a7d vocab=24e17ff3
+-/
 theorem semigroupRho_eq_sum_bettiContribution :
     D.semigroupRho =
       ∑ d : D.BettiDegreeIndex, D.bettiContribution d.1 := by
@@ -110,6 +123,9 @@ theorem semigroupRho_eq_sum_bettiContribution :
 
 abbrev rho : ℕ := D.semigroupRho
 
+/--
+@isnad1 id=eq.0h1v.s3.170aaf33bc11 from=translated src=- shape=dea8492f vocab=575be5ad
+-/
 theorem globalConnectorFinset_card_eq_rho :
     D.globalConnectorFinset.card = D.semigroupRho := by
   rw [D.globalConnectorFinset_card, D.semigroupRho_eq_sum_bettiContribution]
@@ -124,7 +140,9 @@ private theorem budgetDegreeToBetti_injective :
   exact congrArg (fun z : D.BettiDegreeIndex => z.1) h
 
 /-- The contribution visible after omitting one generator is bounded by the
-global presentation size.-/
+global presentation size.
+@isnad1 id=le.0h2v.s4.c377b73e594d from=translated src=- shape=c72097d8 vocab=e47ef38c
+-/
 theorem fourBaseBudget_le_rho (i : Fin 4) :
     D.fourBaseBudget i ≤ D.semigroupRho := by
   rw [D.semigroupRho_eq_sum_bettiContribution]
@@ -148,6 +166,9 @@ theorem fourBaseBudget_le_rho (i : Fin 4) :
       · intro _ _ _
         exact Nat.zero_le _
 
+/--
+@isnad1 id=le.0h1v.s5.23d611c22707 from=translated src=- shape=a351062a vocab=e295fe19
+-/
 theorem fourBaseBudget_sum_le_four_global :
     (∑ i : Fin 4, D.fourBaseBudget i) ≤ 4 :=
   D.fourBaseBudget_sum_le_four
@@ -171,6 +192,9 @@ structure GlobalToricPresentationBridge : Prop where
     ∑ d : D.BettiDegreeIndex, D.bettiContribution d.1
   budgetCompatibility : ∀ i, D.fourBaseBudget i ≤ D.semigroupRho
 
+/--
+@isnad1 id=globalto.0h1v.s2.25f98f313883 from=translated src=- shape=5c11bb93 vocab=0d123774
+-/
 theorem globalToricPresentationBridge : D.GlobalToricPresentationBridge where
   connectorGeneration := fun k _ =>
     D.toricIdeal_eq_span_globalConnectorBinomials (k := k)

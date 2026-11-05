@@ -28,10 +28,16 @@ abbrev SemigroupAlgebra := AddMonoidAlgebra k D.Gamma
 def T (s : D.Gamma) : SemigroupAlgebra (k := k) D :=
   AddMonoidAlgebra.single s 1
 
+/--
+@isnad1 id=eq.0h2v.s7.6f98825ef5a3 from=translated src=- shape=f4fde9f3 vocab=6a13ef9e
+-/
 @[simp] theorem T_zero : T (k := k) D 0 = 1 := by
   rw [AddMonoidAlgebra.one_def]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.1a434b5c71d1 from=translated src=- shape=60401c8e vocab=98c492b0
+-/
 @[simp] theorem T_add (s t : D.Gamma) :
     T (k := k) D s * T (k := k) D t = T (k := k) D (s + t) := by
   simp [T, AddMonoidAlgebra.single_mul_single]
@@ -74,14 +80,32 @@ instance : Module k (AperyArtin k D i) :=
 def coeffLinearEquiv : AperyArtin k D i ≃ₗ[k] (D.AperyIndex i →₀ k) :=
   (coeffAddEquiv (k := k) (D := D) (i := i)).linearEquiv k
 
+/--
+@isnad1 id=eq.1h5v.s6.bd32c6608f29 from=translated src=- shape=203e0439 vocab=be334ddc
+-/
 @[ext] theorem ext {x y : AperyArtin k D i} (h : x.coeff = y.coeff) : x = y :=
   (coeffEquiv (k := k) (D := D) (i := i)).injective h
 
+/--
+@isnad1 id=eq.0h3v.s7.31fbc01e6069 from=translated src=- shape=264d886e vocab=be334ddc
+-/
 @[simp] theorem coeff_zero : coeff (0 : AperyArtin k D i) = 0 := rfl
+/--
+@isnad1 id=eq.0h5v.s7.b927323101da from=translated src=- shape=c40a09ec vocab=6539cc48
+-/
 @[simp] theorem coeff_add (x y : AperyArtin k D i) : coeff (x + y) = coeff x + coeff y := rfl
+/--
+@isnad1 id=eq.0h4v.s6.b09595baf6a4 from=translated src=- shape=cdbc21b3 vocab=f66cf112
+-/
 @[simp] theorem coeff_neg (x : AperyArtin k D i) : coeff (-x) = -coeff x := rfl
+/--
+@isnad1 id=eq.0h5v.s8.29db9f852fb8 from=translated src=- shape=350fc0fd vocab=c7ebd76c
+-/
 @[simp] theorem coeff_smul (r : k) (x : AperyArtin k D i) : coeff (r • x) = r • coeff x := rfl
 
+/--
+@isnad1 id=var.0h8v.s7.b635bf576284 from=translated src=- shape=8e040a53 vocab=5e4ea970
+-/
 @[elab_as_elim]
 theorem induction_linear {P : AperyArtin k D i → Prop} (x : AperyArtin k D i)
     (zero : P 0) (add : ∀ x y, P x → P y → P (x + y))
@@ -96,6 +120,9 @@ theorem induction_linear {P : AperyArtin k D i → Prop} (x : AperyArtin k D i)
 def A (s : D.Gamma) (hs : D.IsApery i s) : AperyArtin k D i :=
   .mk (Finsupp.single ⟨s, hs⟩ 1)
 
+/--
+@isnad1 id=eq.1h5v.s8.f7023e110bb4 from=translated src=- shape=0cbabd49 vocab=6138a45b
+-/
 @[simp] theorem coeff_A (s : D.Gamma) (hs : D.IsApery i s) (t : D.AperyIndex i) :
     (A (k := k) s hs).coeff t = if t.1 = s then 1 else 0 := by
   classical
@@ -106,11 +133,17 @@ def A (s : D.Gamma) (hs : D.IsApery i s) : AperyArtin k D i :=
   · have hne : t ≠ (⟨s, hs⟩ : D.AperyIndex i) := fun heq => h (congrArg Subtype.val heq)
     simp [h, hne, Finsupp.single_apply]
 
+/--
+@isnad1 id=eq.1h5v.s8.353596daf173 from=translated src=- shape=66b60030 vocab=861c9ad3
+-/
 @[simp] theorem smul_A (r : k) (s : D.Gamma) (hs : D.IsApery i s) :
     r • A (k := k) s hs = .mk (Finsupp.single ⟨s, hs⟩ r) := by
   ext
   simp [A, Finsupp.single_apply]
 
+/--
+@isnad1 id=isapery.1h4v.s7.082a06fa29b8 from=translated src=- shape=405d7713 vocab=28bec719
+-/
 theorem isApery_of_add_left {s t : D.Gamma} (h : D.IsApery i (s + t)) :
     D.IsApery i s := by
   intro hs
@@ -119,6 +152,9 @@ theorem isApery_of_add_left {s t : D.Gamma} (h : D.IsApery i (s + t)) :
   refine ⟨u + t, ?_⟩
   rw [hu, add_assoc]
 
+/--
+@isnad1 id=isapery.1h4v.s7.d00bc70e9de7 from=translated src=- shape=09ff7783 vocab=28bec719
+-/
 theorem isApery_of_add_right {s t : D.Gamma} (h : D.IsApery i (s + t)) :
     D.IsApery i t := by
   rw [add_comm] at h
@@ -135,6 +171,9 @@ def mul (x y : AperyArtin k D i) : AperyArtin k D i :=
 
 instance : Mul (AperyArtin k D i) := ⟨mul⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.9c93ac8dc323 from=translated src=- shape=5162dc53 vocab=6e856b19
+-/
 theorem mul_def (x y : AperyArtin k D i) :
     x * y = x.coeff.sum fun s rs => y.coeff.sum fun t rt =>
       (rs * rt) • basisProduct (k := k) s t := rfl
@@ -162,12 +201,18 @@ instance : NonUnitalNonAssocRing (AperyArtin k D i) where
     · intro p rp sp
       simp [add_mul, add_smul, Finsupp.sum_add]
 
+/--
+@isnad1 id=eq.2h5v.s9.08df89166664 from=translated src=- shape=8eb80640 vocab=d0c6aaa8
+-/
 @[simp] theorem A_mul_A (s t : D.Gamma) (hs : D.IsApery i s) (ht : D.IsApery i t) :
     A (k := k) s hs * A (k := k) t ht =
       if h : D.IsApery i (s + t) then A (k := k) (s + t) h else 0 := by
   classical
   simp [mul_def, A, basisProduct]
 
+/--
+@isnad1 id=eq.0h6v.s8.b848a3bab990 from=translated src=- shape=f01b42fc vocab=3481407f
+-/
 theorem smul_mul_raw (r : k) (x y : AperyArtin k D i) : (r • x) * y = r • (x * y) := by
   classical
   simp only [mul_def, coeff_smul]
@@ -181,6 +226,9 @@ theorem smul_mul_raw (r : k) (x y : AperyArtin k D i) : (r • x) * y = r • (x
   congr 1
   ring
 
+/--
+@isnad1 id=eq.0h6v.s8.aacffd492fa5 from=translated src=- shape=8cc1fdc0 vocab=3481407f
+-/
 theorem mul_smul_raw (r : k) (x y : AperyArtin k D i) : x * (r • y) = r • (x * y) := by
   classical
   simp only [mul_def, coeff_smul]
@@ -313,6 +361,9 @@ noncomputable def truncatedAperyMonomial (s : D.Gamma) : AperyArtin k D i :=
     classical
     exact if hs : D.IsApery i s then A (k := k) s hs else 0
 
+/--
+@isnad1 id=eq.0h3v.s6.b66feea347e2 from=translated src=- shape=1cafd0c8 vocab=204aa173
+-/
 @[simp] theorem truncatedAperyMonomial_zero :
     truncatedAperyMonomial (k := k) D i 0 = 1 := by
   classical
@@ -320,6 +371,9 @@ noncomputable def truncatedAperyMonomial (s : D.Gamma) : AperyArtin k D i :=
     A (k := k) 0 (D.zero_isApery i)
   simp only [dite_eq_left (D.zero_isApery i)]
 
+/--
+@isnad1 id=eq.0h5v.s7.3a7086f24bca from=translated src=- shape=c70496f4 vocab=8274fcb7
+-/
 @[simp] theorem truncatedAperyMonomial_add (s t : D.Gamma) :
     truncatedAperyMonomial (k := k) D i (s + t) =
       truncatedAperyMonomial (k := k) D i s * truncatedAperyMonomial (k := k) D i t := by
@@ -342,15 +396,24 @@ def semigroupToAperyAlg : SemigroupAlgebra (k := k) D →ₐ[k] AperyArtin k D i
   AddMonoidAlgebra.lift k (AperyArtin k D i) D.Gamma
     (truncatedAperyMonomialHom (k := k) D i)
 
+/--
+@isnad1 id=eq.0h5v.s8.dc823f57dae8 from=translated src=- shape=a08565bf vocab=6ac0ac19
+-/
 @[simp] theorem semigroupToAperyAlg_single (s : D.Gamma) (r : k) :
     semigroupToAperyAlg (k := k) D i (AddMonoidAlgebra.single s r) =
       r • truncatedAperyMonomial (k := k) D i s := by
   exact AddMonoidAlgebra.lift_single _ _ _
 
+/--
+@isnad1 id=eq.0h4v.s8.2fa9d36482d0 from=translated src=- shape=44effeec vocab=20fb5d65
+-/
 @[simp] theorem semigroupToAperyAlg_T (s : D.Gamma) :
     semigroupToAperyAlg (k := k) D i (T (k := k) D s) =
       truncatedAperyMonomial (k := k) D i s := by simp [T]
 
+/--
+@isnad1 id=surjecti.0h3v.s8.ae1efbeaf8dc from=translated src=- shape=b5ac7774 vocab=ef73eb18
+-/
 theorem semigroupToAperyAlg_surjective :
     Function.Surjective (semigroupToAperyAlg (k := k) D i) := by
   intro x
@@ -364,6 +427,9 @@ theorem semigroupToAperyAlg_surjective :
       refine ⟨AddMonoidAlgebra.single s.1 r, ?_⟩
       simp [truncatedAperyMonomial, s.2, AperyArtin.smul_A]
 
+/--
+@isnad1 id=eq.0h5v.s9.6237e98fccfa from=translated src=- shape=91a02d1d vocab=a3f1c695
+-/
 theorem coeff_semigroupToAperyAlg (f : SemigroupAlgebra (k := k) D)
     (s : D.AperyIndex i) :
     (semigroupToAperyAlg (k := k) D i f).coeff s = f.coeff s.1 := by
@@ -380,6 +446,9 @@ theorem coeff_semigroupToAperyAlg (f : SemigroupAlgebra (k := k) D)
       · have hne : t ≠ s.1 := fun h => ht (h ▸ s.2)
         simp [truncatedAperyMonomial, ht, Finsupp.single_apply, hne]
 
+/--
+@isnad1 id=mem.1h4v.s8.2f460930053d from=translated src=- shape=32246c31 vocab=324349a0
+-/
 theorem T_mem_baseMonomialIdeal (s : D.Gamma) (hs : ¬ D.IsApery i s) :
     T (k := k) D s ∈ baseMonomialIdeal (k := k) D i := by
   classical
@@ -390,6 +459,9 @@ theorem T_mem_baseMonomialIdeal (s : D.Gamma) (hs : ¬ D.IsApery i s) :
   rw [← T_add]
   exact (baseMonomialIdeal (k := k) D i).mul_mem_right (T (k := k) D h) hb
 
+/--
+@isnad1 id=le.0h3v.s9.07098d23a56b from=translated src=- shape=d91855b8 vocab=4a395ca8
+-/
 theorem baseMonomialIdeal_le_ker :
     baseMonomialIdeal (k := k) D i ≤ RingHom.ker (semigroupToAperyAlg (k := k) D i).toRingHom := by
   apply Ideal.span_le.2
@@ -399,6 +471,9 @@ theorem baseMonomialIdeal_le_ker :
   apply RingHom.mem_ker.2
   simp [truncatedAperyMonomial, D.base_not_isApery i]
 
+/--
+@isnad1 id=le.0h3v.s9.4c3a3e9751f5 from=translated src=- shape=27cd6ef2 vocab=4a395ca8
+-/
 theorem ker_le_baseMonomialIdeal :
     RingHom.ker (semigroupToAperyAlg (k := k) D i).toRingHom ≤ baseMonomialIdeal (k := k) D i := by
   intro f hf
@@ -415,7 +490,9 @@ theorem ker_le_baseMonomialIdeal :
       (algebraMap k (SemigroupAlgebra (k := k) D) (f.coeff s)) hm
     simpa [T, Algebra.smul_def] using hsmul
 
-/-- Exact truncation kernel.-/
+/-- Exact truncation kernel.
+@isnad1 id=eq.0h3v.s8.83fdf50e5a99 from=translated src=- shape=27cd6ef2 vocab=d6e7ca60
+-/
 theorem semigroupToAperyAlg_ker :
     RingHom.ker (semigroupToAperyAlg (k := k) D i).toRingHom =
       baseMonomialIdeal (k := k) D i := by
@@ -427,6 +504,9 @@ def chosenBaseEquivApery : ChosenBaseQuotient (k := k) D i ≃ₐ[k] AperyArtin 
   (Ideal.quotientEquivAlgOfEq k (semigroupToAperyAlg_ker (k := k) D i).symm).trans
     (Ideal.quotientKerAlgEquivOfSurjective (semigroupToAperyAlg_surjective (k := k) D i))
 
+/--
+@isnad1 id=eq.0h4v.s10.a1a8ee580093 from=translated src=- shape=afcb22d3 vocab=d2d5adfa
+-/
 @[simp] theorem chosenBaseEquivApery_mk (f : SemigroupAlgebra (k := k) D) :
     chosenBaseEquivApery (k := k) D i
       (Ideal.Quotient.mk (baseMonomialIdeal (k := k) D i) f) =

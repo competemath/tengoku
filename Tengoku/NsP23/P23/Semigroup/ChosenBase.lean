@@ -29,13 +29,22 @@ abbrev TailPoly (k : Type*) [CommSemiring k] := MvPolynomial (Fin 3) k
 def tailDegree (u : Fin 3 →₀ ℕ) : ℕ :=
   ∑ j : Fin 3, u j * D.tailGen i j
 
+/--
+@isnad1 id=eq.0h2v.s5.2ffdfd9ef159 from=translated src=- shape=db7dfd5b vocab=ac2e2824
+-/
 @[simp] theorem tailDegree_zero : tailDegree D i 0 = 0 := by
   simp [tailDegree]
 
+/--
+@isnad1 id=eq.0h4v.s6.be750bdd54dd from=translated src=- shape=32649446 vocab=3fdcdf4d
+-/
 theorem tailDegree_add (u v : Fin 3 →₀ ℕ) :
     tailDegree D i (u + v) = tailDegree D i u + tailDegree D i v := by
   simp [tailDegree, add_mul, Finset.sum_add_distrib]
 
+/--
+@isnad1 id=eq.0h4v.s5.4db010fbd972 from=translated src=- shape=8a5fe069 vocab=19f60de8
+-/
 @[simp] theorem tailDegree_single (j : Fin 3) (n : ℕ) :
     tailDegree D i (Finsupp.single j n) = n * D.tailGen i j := by
   classical
@@ -46,10 +55,16 @@ coordinates.-/
 def tailExponent (u : Fin 4 →₀ ℕ) : Fin 3 →₀ ℕ :=
   Finsupp.equivFunOnFinite.symm (fun j => u (D.tailIndex i j))
 
+/--
+@isnad1 id=eq.0h4v.s7.11784f1d76cc from=translated src=- shape=8d1d89cf vocab=057c9c45
+-/
 @[simp] theorem tailExponent_apply (u : Fin 4 →₀ ℕ) (j : Fin 3) :
     tailExponent D i u j = u (D.tailIndex i j) := by
   simp [tailExponent]
 
+/--
+@isnad1 id=eq.1h3v.s6.0b04ab45c9c3 from=translated src=- shape=dca4a3b6 vocab=614a1f13
+-/
 theorem weightedDegree_eq_tailDegree_of_base_zero (u : Fin 4 →₀ ℕ)
     (hu : u i = 0) :
     D.weightedDegree u = tailDegree D i (tailExponent D i u) := by
@@ -64,14 +79,23 @@ def extendTailExponent (u : Fin 3 →₀ ℕ) : Fin 4 →₀ ℕ :=
   Finsupp.equivFunOnFinite.symm
     (Fin.succAboveCases i (0 : ℕ) (fun j => u j))
 
+/--
+@isnad1 id=eq.0h2v.s6.160ad787e3dc from=translated src=- shape=b4895b9f vocab=7c644982
+-/
 @[simp] theorem extendTailExponent_base (u : Fin 3 →₀ ℕ) :
     extendTailExponent i u i = 0 := by
   simp [extendTailExponent]
 
+/--
+@isnad1 id=eq.0h3v.s6.dd28ea2194cf from=translated src=- shape=a961acf1 vocab=c6588665
+-/
 @[simp] theorem extendTailExponent_tail (u : Fin 3 →₀ ℕ) (j : Fin 3) :
     extendTailExponent i u (i.succAbove j) = u j := by
   simp [extendTailExponent]
 
+/--
+@isnad1 id=eq.0h3v.s5.430a30f4ca23 from=translated src=- shape=6fb35b43 vocab=1445cf35
+-/
 theorem weightedDegree_extendTailExponent (u : Fin 3 →₀ ℕ) :
     D.weightedDegree (extendTailExponent i u) = tailDegree D i u := by
   rw [weightedDegree_eq_tailDegree_of_base_zero D i _ (extendTailExponent_base i u)]
@@ -85,10 +109,16 @@ def tailDegreeGamma (u : Fin 3 →₀ ℕ) : D.Gamma :=
   ⟨tailDegree D i u, (D.mem_Gamma_iff _).2
     ⟨extendTailExponent i u, weightedDegree_extendTailExponent D i u⟩⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.8ae8bded2be8 from=translated src=- shape=7399a3e7 vocab=58dc7aaa
+-/
 @[simp] theorem tailDegreeGamma_zero : tailDegreeGamma D i 0 = 0 := by
   apply Subtype.ext
   simp [tailDegreeGamma]
 
+/--
+@isnad1 id=eq.0h4v.s7.2eba8bd4f6c9 from=translated src=- shape=7fb7b63d vocab=b7a35a2a
+-/
 theorem tailDegreeGamma_add (u v : Fin 3 →₀ ℕ) :
     tailDegreeGamma D i (u + v) = tailDegreeGamma D i u + tailDegreeGamma D i v := by
   apply Subtype.ext
@@ -98,6 +128,9 @@ theorem tailDegreeGamma_add (u v : Fin 3 →₀ ℕ) :
 def tailVariableA (j : Fin 3) : AperyArtin k D i :=
   A (k := k) (D.tail i j) (D.tail_isApery i j)
 
+/--
+@isnad1 id=eq.0h4v.s5.9a084aea70f7 from=translated src=- shape=392ce6e0 vocab=de7df74b
+-/
 @[simp] theorem truncatedAperyMonomial_tail (j : Fin 3) :
     truncatedAperyMonomial (k := k) D i (D.tail i j) =
       tailVariableA (k := k) D i j := by
@@ -112,6 +145,9 @@ def tailPolyToChosenBase : TailPoly k →ₐ[k] ChosenBaseQuotient (k := k) D i 
   (chosenBaseEquivApery (k := k) D i).symm.toAlgHom.comp
     (tailPolyToApery (k := k) D i)
 
+/--
+@isnad1 id=eq.0h4v.s8.9077e1992245 from=translated src=- shape=d8a61f4c vocab=796f2a3f
+-/
 @[simp] theorem tailPolyToApery_X (j : Fin 3) :
     tailPolyToApery (k := k) D i (MvPolynomial.X j) = tailVariableA (k := k) D i j := by
   simp [tailPolyToApery]
@@ -143,7 +179,9 @@ private theorem tailVariable_prod (u : Fin 3 →₀ ℕ) :
             simp [Nat.add_mul]
       · simp
 
-/-- Exact arbitrary tail-monomial image.-/
+/-- Exact arbitrary tail-monomial image.
+@isnad1 id=eq.0h5v.s9.a093388b95ec from=translated src=- shape=67c20613 vocab=b2cd059c
+-/
 @[simp] theorem tailPolyToApery_monomial (u : Fin 3 →₀ ℕ) (r : k) :
     tailPolyToApery (k := k) D i (MvPolynomial.monomial u r) =
       r • truncatedAperyMonomial (k := k) D i
@@ -151,7 +189,9 @@ private theorem tailVariable_prod (u : Fin 3 →₀ ℕ) :
   rw [tailPolyToApery, MvPolynomial.aeval_monomial, tailVariable_prod]
   simp [Algebra.smul_def]
 
-/-- Every Apéry degree has a tail-only factorization.-/
+/-- Every Apéry degree has a tail-only factorization.
+@isnad1 id=ex.1h3v.s6.c81753351ffe from=translated src=- shape=abfe2e95 vocab=ffd3e95c
+-/
 theorem exists_tailExponent_of_isApery {s : D.Gamma} (hs : D.IsApery i s) :
     ∃ u : Fin 3 →₀ ℕ, tailDegree D i u = s.1 := by
   rcases (D.mem_Gamma_iff s.1).1 s.2 with ⟨v, hv⟩
@@ -160,7 +200,9 @@ theorem exists_tailExponent_of_isApery {s : D.Gamma} (hs : D.IsApery i s) :
   rw [← weightedDegree_eq_tailDegree_of_base_zero D i v hvi, hv]
 
 /-- Minimality of the original four generators says that the only tail
-factorization of a tail generator is its coordinate vector.-/
+factorization of a tail generator is its coordinate vector.
+@isnad1 id=iff.0h4v.s6.32cce8c48eee from=translated src=- shape=e6b6b9fe vocab=f9dbd2dc
+-/
 theorem tailDegree_eq_tailGen_iff {u : Fin 3 →₀ ℕ} {j : Fin 3} :
     tailDegree D i u = D.tailGen i j ↔ u = Finsupp.single j 1 := by
   constructor
@@ -204,7 +246,9 @@ theorem tailDegree_eq_tailGen_iff {u : Fin 3 →₀ ℕ} {j : Fin 3} :
   · rintro rfl
     simp
 
-/-- The three-tail polynomial map onto the finite Apéry model is surjective.-/
+/-- The three-tail polynomial map onto the finite Apéry model is surjective.
+@isnad1 id=surjecti.0h3v.s8.7ec1fd06f752 from=translated src=- shape=8ffefe06 vocab=897473bc
+-/
 theorem tailPolyToApery_surjective :
     Function.Surjective (tailPolyToApery (k := k) D i) := by
   intro x
@@ -231,7 +275,9 @@ theorem tailPolyToApery_surjective :
         have heq : tailDegreeGamma D i u = s.1 := Subtype.ext hu
         exact heq ▸ s.2
 
-/-- The genuine chosen-base tail presentation is surjective.-/
+/-- The genuine chosen-base tail presentation is surjective.
+@isnad1 id=surjecti.0h3v.s9.db49e487126f from=translated src=- shape=8ffefe06 vocab=e34c9fab
+-/
 theorem tailPolyToChosenBase_surjective :
     Function.Surjective (tailPolyToChosenBase (k := k) D i) := by
   intro q
@@ -242,14 +288,18 @@ theorem tailPolyToChosenBase_surjective :
   simpa [tailPolyToChosenBase] using hf
 
 /-- Exact arbitrary monomial formula in the genuine quotient, stated through
-the quotient/Apéry equivalence.-/
+the quotient/Apéry equivalence.
+@isnad1 id=eq.0h5v.s10.939ab4eacb9c from=translated src=- shape=48a57ff2 vocab=2a260d29
+-/
 theorem tailPolyToChosenBase_monomial (u : Fin 3 →₀ ℕ) (r : k) :
     chosenBaseEquivApery (k := k) D i
         (tailPolyToChosenBase (k := k) D i (MvPolynomial.monomial u r)) =
       r • truncatedAperyMonomial (k := k) D i (tailDegreeGamma D i u) := by
   simpa [tailPolyToChosenBase] using tailPolyToApery_monomial (k := k) D i u r
 
-/-- Every tail variable survives in the genuine quotient.-/
+/-- Every tail variable survives in the genuine quotient.
+@isnad1 id=ne.0h4v.s6.56445ca6dad3 from=translated src=- shape=a3c62e80 vocab=8f9ccb0f
+-/
 theorem tailVariableA_ne_zero (j : Fin 3) :
     tailVariableA (k := k) D i j ≠ 0 := by
   intro h
@@ -257,6 +307,9 @@ theorem tailVariableA_ne_zero (j : Fin 3) :
     x.coeff ⟨D.tail i j, D.tail_isApery i j⟩) h
   simpa [tailVariableA] using hc
 
+/--
+@isnad1 id=ne.0h4v.s9.2ecbdfcd4d11 from=translated src=- shape=c5986bd8 vocab=768d5bee
+-/
 theorem tailVariableChosenBase_ne_zero (j : Fin 3) :
     tailPolyToChosenBase (k := k) D i (MvPolynomial.X j) ≠ 0 := by
   intro h
@@ -264,6 +317,9 @@ theorem tailVariableChosenBase_ne_zero (j : Fin 3) :
   exact tailVariableA_ne_zero (k := k) D i j (by
     simpa [tailPolyToChosenBase, tailPolyToApery] using he)
 
+/--
+@isnad1 id=ne.0h4v.s9.2ecbdfcd4d11 from=translated src=- shape=c5986bd8 vocab=768d5bee
+-/
 theorem tailVariable_ne_zero (j : Fin 3) :
     tailPolyToChosenBase (k := k) D i (MvPolynomial.X j) ≠ 0 :=
   tailVariableChosenBase_ne_zero (k := k) D i j
@@ -277,11 +333,17 @@ def aperyAugmentationIdeal : Ideal (AperyArtin k D i) :=
 def aperyAugmentationSquare : Ideal (AperyArtin k D i) :=
   aperyAugmentationIdeal (k := k) D i ^ 2
 
+/--
+@isnad1 id=mem.1h4v.s8.46e5cc8822e9 from=translated src=- shape=2b08e995 vocab=415c92aa
+-/
 theorem A_mem_aperyAugmentationIdeal (s : D.AperyIndex i) (hs : s.1 ≠ 0) :
     A (k := k) s.1 s.2 ∈ aperyAugmentationIdeal (k := k) D i := by
   apply Ideal.subset_span
   exact ⟨s, hs, rfl⟩
 
+/--
+@isnad1 id=mem.0h4v.s7.26d57d23fc8c from=translated src=- shape=1f6816b7 vocab=351e3042
+-/
 theorem tailVariableA_mem_aperyAugmentationIdeal (j : Fin 3) :
     tailVariableA (k := k) D i j ∈ aperyAugmentationIdeal (k := k) D i := by
   simpa [tailVariableA] using
@@ -329,7 +391,9 @@ private theorem truncatedAperyMonomial_mem_tailVariableIdeal_of_ne_zero
     (Ideal.subset_span (Set.mem_range_self j))
 
 /-- The positive-degree augmentation ideal is generated by exactly the three
-tail-variable classes.-/
+tail-variable classes.
+@isnad1 id=eq.0h3v.s5.6fb3925a1e5b from=translated src=- shape=68a591a2 vocab=b1317335
+-/
 theorem aperyAugmentationIdeal_eq_tailVariableIdeal :
     aperyAugmentationIdeal (k := k) D i = tailVariableIdeal (k := k) D i := by
   apply le_antisymm
@@ -351,7 +415,9 @@ theorem aperyAugmentationIdeal_eq_tailVariableIdeal :
     exact tailVariableA_mem_aperyAugmentationIdeal (k := k) D i j
 
 /-- Every positive Apéry basis monomial other than one of the three minimal
-tail generators lies in the actual square of the augmentation ideal.-/
+tail generators lies in the actual square of the augmentation ideal.
+@isnad1 id=mem.2h4v.s8.2f986e39b87a from=translated src=- shape=20797651 vocab=772410d1
+-/
 theorem A_mem_aperyAugmentationSquare_of_ne_tail
     (s : D.AperyIndex i) (hs : s.1 ≠ 0)
     (hnot : ∀ j : Fin 3, s.1 ≠ D.tail i j) :
@@ -436,6 +502,9 @@ def tailCoeff (j : Fin 3) : AperyArtin k D i →ₗ[k] k where
   map_add' _ _ := by simp
   map_smul' _ _ := by simp
 
+/--
+@isnad1 id=eq.0h5v.s8.bad553f65e39 from=translated src=- shape=5ca6bc86 vocab=b2e07820
+-/
 @[simp] theorem tailCoeff_tailVariable (j l : Fin 3) :
     tailCoeff (k := k) D i j (tailVariableA (k := k) D i l) =
       if j = l then 1 else 0 := by
@@ -453,6 +522,9 @@ def tailCoeff (j : Fin 3) : AperyArtin k D i →ₗ[k] k where
       exact congrArg Subtype.val h
     simp [hjl, htail]
 
+/--
+@isnad1 id=eq.2h6v.s9.420f0f2b2e09 from=translated src=- shape=efc3f232 vocab=dcbb4969
+-/
 theorem positive_basis_mul_tailCoeff_zero
     (p q : D.AperyIndex i) (hp : p.1 ≠ 0) (hq : q.1 ≠ 0) (j : Fin 3) :
     tailCoeff (k := k) D i j
@@ -539,6 +611,9 @@ def aperyConstantCoeff : AperyArtin k D i →ₗ[k] k where
   map_add' _ _ := by simp
   map_smul' _ _ := by simp
 
+/--
+@isnad1 id=eq.1h4v.s8.615fde091a09 from=translated src=- shape=10258026 vocab=f9b4212b
+-/
 @[simp] theorem aperyConstantCoeff_A (s : D.Gamma) (hs : D.IsApery i s) :
     aperyConstantCoeff (k := k) D i (A (k := k) s hs) =
       if s = 0 then 1 else 0 := by
@@ -556,14 +631,23 @@ def aperyFirstOrderLinear :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.930366b0f0cb from=translated src=- shape=25389dd8 vocab=72748b57
+-/
 @[simp] theorem aperyFirstOrderLinear_fst (x : AperyArtin k D i) :
     (aperyFirstOrderLinear (k := k) D i x).fst =
       aperyConstantCoeff (k := k) D i x := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.765c0620c871 from=translated src=- shape=4ff13cde vocab=99a6b74c
+-/
 @[simp] theorem aperyFirstOrderLinear_snd (x : AperyArtin k D i) (j : Fin 3) :
     (aperyFirstOrderLinear (k := k) D i x).snd j =
       tailCoeff (k := k) D i j x := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.f4ad79475146 from=translated src=- shape=c138560d vocab=36b4698e
+-/
 @[simp] theorem aperyFirstOrderLinear_one :
     aperyFirstOrderLinear (k := k) D i (1 : AperyArtin k D i) = 1 := by
   apply TrivSqZeroExt.ext
@@ -667,6 +751,9 @@ def aperyFirstOrderAlgHom :
       aperyFirstOrderLinear_one]
     simp [Algebra.algebraMap_eq_smul_one]
 
+/--
+@isnad1 id=eq.0h4v.s9.c291e7e5a389 from=translated src=- shape=3f4fc058 vocab=b19c104a
+-/
 theorem aperyFirstOrder_tail_fst (j : Fin 3) :
     (aperyFirstOrderAlgHom (k := k) D i
       (tailVariableA (k := k) D i j)).fst = 0 := by
@@ -681,12 +768,18 @@ theorem aperyFirstOrder_tail_fst (j : Fin 3) :
       (Nat.ne_of_gt (D.tailGen_positive i j) hv)
   simp [hne]
 
+/--
+@isnad1 id=eq.0h5v.s9.ba5ee89454da from=translated src=- shape=1a3c4eb7 vocab=182bb11b
+-/
 @[simp] theorem aperyFirstOrder_tail_snd (j l : Fin 3) :
     (aperyFirstOrderAlgHom (k := k) D i
       (tailVariableA (k := k) D i l)).snd j =
       if j = l then 1 else 0 := by
   exact tailCoeff_tailVariable (k := k) D i j l
 
+/--
+@isnad1 id=le.0h3v.s10.3c3951fa4fd6 from=translated src=- shape=69633487 vocab=109534dc
+-/
 theorem aperyAugmentationIdeal_le_firstOrder_kerIdeal :
     aperyAugmentationIdeal (k := k) D i ≤
       Ideal.comap (aperyFirstOrderAlgHom (k := k) D i).toRingHom
@@ -703,7 +796,9 @@ theorem aperyAugmentationIdeal_le_firstOrder_kerIdeal :
   · rfl
 
 /-- Every element of the actual augmentation square has zero first-order
-image.-/
+image.
+@isnad1 id=eq.1h4v.s9.ff70b2a572f7 from=translated src=- shape=4e7f7bb6 vocab=a476150d
+-/
 theorem aperyFirstOrder_eq_zero_of_mem_square
     {x : AperyArtin k D i}
     (hx : x ∈ aperyAugmentationSquare (k := k) D i) :
@@ -724,7 +819,9 @@ theorem aperyFirstOrder_eq_zero_of_mem_square
   simpa [K, TrivSqZeroExt.kerIdeal_sq] using hxK
 
 /-- Each of the three tail-variable classes is nonzero in the actual
-cotangent quotient: it is not contained in the augmentation square.-/
+cotangent quotient: it is not contained in the augmentation square.
+@isnad1 id=not.0h4v.s7.6b5b9fcc2b51 from=translated src=- shape=0319a53b vocab=d51f3a8e
+-/
 theorem tailVariableA_not_mem_aperyAugmentationSquare (j : Fin 3) :
     tailVariableA (k := k) D i j ∉ aperyAugmentationSquare (k := k) D i := by
   intro hj
@@ -732,7 +829,9 @@ theorem tailVariableA_not_mem_aperyAugmentationSquare (j : Fin 3) :
   have hsnd := congrArg (fun z : TrivSqZeroExt k (Fin 3 → k) => z.snd j) hz
   simpa using hsnd
 
-/-- Exact linear-independence test modulo the actual augmentation square.-/
+/-- Exact linear-independence test modulo the actual augmentation square.
+@isnad1 id=iff.0h4v.s8.231c7bd33bdb from=translated src=- shape=123b7862 vocab=ed008e5a
+-/
 theorem tail_linearCombination_mem_aperyAugmentationSquare_iff
     (c : Fin 3 → k) :
     (∑ j : Fin 3, c j • tailVariableA (k := k) D i j) ∈
@@ -762,7 +861,9 @@ variables.-/
 abbrev ChosenBaseCotangentModel := Fin 3 → k
 
 /-- The coordinate model used by the exact cotangent basis theorem has
-dimension three.-/
+dimension three.
+@isnad1 id=eq.0h1v.s6.543b4db68ba4 from=translated src=- shape=a4033e76 vocab=44fbcea0
+-/
 theorem chosenBase_cotangentModel_finrank :
     Module.finrank k (ChosenBaseCotangentModel (k := k)) = 3 := by
   exact Module.finrank_fin_fun k
@@ -786,7 +887,9 @@ structure ChosenBaseCotangentBasis : Prop where
       A (k := k) s.1 s.2 ∈ aperyAugmentationSquare (k := k) D i
 
 /-- Exact embedding-dimension-three foundation for the chosen-base quotient,
-in the permitted equivalent-basis form indexed by `Fin 3`.-/
+in the permitted equivalent-basis form indexed by `Fin 3`.
+@isnad1 id=chosenba.0h3v.s4.7d0e3d6f8a06 from=translated src=- shape=9b42ccea vocab=5919523c
+-/
 theorem chosenBase_embeddingDimension_eq_three :
     ChosenBaseCotangentBasis (k := k) D i where
   augmentation_eq_tail_span :=

@@ -58,7 +58,9 @@ private theorem predecessor_ne_self (ha : 2 ≤ a) {e : Direction}
   exact (variableGenerators_ne_one_of_two_le ha e)
     (Normal.mul_left_cancel hmul')
 
-/-- Under an antichain, dominance is exactly being the common x/y/z centre.-/
+/-- Under an antichain, dominance is exactly being the common x/y/z centre.
+@isnad1 id=iff.2h5v.s6.fbebdf7129fd from=translated src=- shape=c6d0f011 vocab=b16f87cd
+-/
 theorem isDominantRoot_iff_all_directionalCentre
     (S : Finset (Normal a b c)) (C : Normal a b c)
     (ha : 2 ≤ a) (hanti : IsRootAntichain S) :
@@ -111,7 +113,9 @@ private theorem not_divides_of_distinct_roots {S : Finset (Normal a b c)}
   exact (hanti R hR C hC hne) ((Normal.exact_divides_iff R C).2 hdiv)
 
 /-- H4 y-edge: an existing y-predecessor covered by a distinct root centre
-forces the exact indicator equation and the transverse inequality.-/
+forces the exact indicator equation and the transverse inequality.
+@isnad1 id=and.5h6v.s7.2b53c28bcd3d from=translated src=- shape=2061b859 vocab=405e785f
+-/
 theorem h4_y_edge_exact {S : Finset (Normal a b c)} {C R : Normal a b c}
     (hanti : IsRootAntichain S) (hcentre : IsDirectionalCentre S .y C)
     (hR : R ∈ S) (hne : R ≠ C) (hy : 0 < R.y) :
@@ -126,7 +130,9 @@ theorem h4_y_edge_exact {S : Finset (Normal a b c)} {C R : Normal a b c}
   · simp [hx]
     omega
 
-/-- H4 z-edge, symmetric to `h4_y_edge_exact`.-/
+/-- H4 z-edge, symmetric to `h4_y_edge_exact`.
+@isnad1 id=and.5h6v.s7.16ea106f427f from=translated src=- shape=dd795666 vocab=81e0ffa9
+-/
 theorem h4_z_edge_exact {S : Finset (Normal a b c)} {C R : Normal a b c}
     (hanti : IsRootAntichain S) (hcentre : IsDirectionalCentre S .z C)
     (hR : R ∈ S) (hne : R ≠ C) (hz : 0 < R.z) :
@@ -141,7 +147,9 @@ theorem h4_z_edge_exact {S : Finset (Normal a b c)} {C R : Normal a b c}
   · simp [hx]
     omega
 
-/-- H4 ordinary x-edge.-/
+/-- H4 ordinary x-edge.
+@isnad1 id=and.5h6v.s7.53469d3b4aea from=translated src=- shape=12fc7947 vocab=0f0e45a4
+-/
 theorem h4_x_edge_ordinary_exact {S : Finset (Normal a b c)}
     {C R : Normal a b c} (hanti : IsRootAntichain S)
     (hcentre : IsDirectionalCentre S .x C) (hR : R ∈ S)
@@ -152,7 +160,9 @@ theorem h4_x_edge_ordinary_exact {S : Finset (Normal a b c)}
   unfold Normal.DividesCriterion at hnd
   omega
 
-/-- H4 wrapped x-edge. The predecessor guard is explicit, including `c=0`.-/
+/-- H4 wrapped x-edge. The predecessor guard is explicit, including `c=0`.
+@isnad1 id=and.7h6v.s7.fa769dd848eb from=translated src=- shape=c92de6df vocab=fd9840eb
+-/
 theorem h4_x_edge_wrapped_exact {S : Finset (Normal a b c)}
     {C R : Normal a b c} (hanti : IsRootAntichain S)
     (hcentre : IsDirectionalCentre S .x C) (hR : R ∈ S)

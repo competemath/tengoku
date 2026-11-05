@@ -35,6 +35,9 @@ def act (r : MonomialArtin k S) (φ : Omega k S) : Omega k S where
 
 instance : SMul (MonomialArtin k S) (Omega k S) := ⟨act⟩
 
+/--
+@isnad1 id=eq.0h8v.s8.281e1211c9a3 from=translated src=- shape=6195a968 vocab=29172d9b
+-/
 @[simp]
 theorem smul_apply (r : MonomialArtin k S) (φ : Omega k S)
     (x : MonomialArtin k S) : (r • φ) x = φ (r * x) := rfl
@@ -70,6 +73,9 @@ instance : IsScalarTower k (MonomialArtin k S) (Omega k S) where
 def U (S : Finset (Normal a b c)) (p : MonomialIndex S) : Omega k S :=
   (MonomialArtin.monomialBasis k S).dualBasis p
 
+/--
+@isnad1 id=eq.0h7v.s8.1048274657d2 from=translated src=- shape=d275194e vocab=a40d7fd1
+-/
 @[simp]
 theorem U_apply_X (S : Finset (Normal a b c)) (p q : MonomialIndex S) :
     U (k := k) S p (X (k := k) S q.1 q.2) = if p = q then 1 else 0 := by
@@ -78,7 +84,9 @@ theorem U_apply_X (S : Finset (Normal a b c)) (p q : MonomialIndex S) :
       |>.trans (by simp [eq_comm])
 
 /-- Exact coefficient formula for the action of a monomial basis vector on a
-dual basis vector.-/
+dual basis vector.
+@isnad1 id=eq.0h8v.s9.d8af4e82f3c6 from=translated src=- shape=3b313076 vocab=ef86c652
+-/
 theorem X_smul_U_apply_X (S : Finset (Normal a b c))
     (m q s : MonomialIndex S) :
     (X (k := k) S m.1 m.2 • U (k := k) S s)
@@ -99,7 +107,9 @@ theorem X_smul_U_apply_X (S : Finset (Normal a b c))
     simp [hmq, hne]
 
 /-- Cancellativity upgrades the coefficient formula to an exact dual-basis
-action.-/
+action.
+@isnad1 id=eq.1h8v.s8.10449bd339d2 from=translated src=- shape=9613618a vocab=fb72307b
+-/
 theorem X_smul_U_eq_U (S : Finset (Normal a b c))
     (m q s : MonomialIndex S) (h : m.1 * q.1 = s.1) :
     X (k := k) S m.1 m.2 • U (k := k) S s = U (k := k) S q := by
@@ -117,6 +127,9 @@ theorem X_smul_U_eq_U (S : Finset (Normal a b c))
       exact h
   simp [hiff, eq_comm]
 
+/--
+@isnad1 id=ne.0h6v.s7.c875184594ce from=translated src=- shape=aa367a6d vocab=f5b9904f
+-/
 theorem U_ne_zero (S : Finset (Normal a b c)) (p : MonomialIndex S) :
     U (k := k) S p ≠ 0 := by
   intro h
@@ -155,7 +168,9 @@ private theorem U_mem_rootDual_span (S : Finset (Normal a b c))
   rw [← X_smul_U_eq_U (k := k) S wi p (rootIndex S s hs) hprod]
   exact Submodule.smul_mem _ _ hroot
 
-/-- The selected-root duals generate the entire canonical module.-/
+/-- The selected-root duals generate the entire canonical module.
+@isnad1 id=eq.0h5v.s9.c009c24e2372 from=translated src=- shape=999fe85c vocab=95148998
+-/
 theorem rootDual_span_eq_top (S : Finset (Normal a b c)) :
     Submodule.span (MonomialArtin k S) (rootDualSet k S) = ⊤ := by
   let P := Submodule.span (MonomialArtin k S) (rootDualSet k S)
@@ -170,7 +185,9 @@ theorem rootDual_span_eq_top (S : Finset (Normal a b c)) :
   rw [(MonomialArtin.monomialBasis k S).dualBasis.span_eq] at hspan
   exact hspan (Submodule.mem_top)
 
-/-- Exact monomial annihilator of a selected-root dual.-/
+/-- Exact monomial annihilator of a selected-root dual.
+@isnad1 id=iff.1h7v.s8.8b524b487bc3 from=translated src=- shape=1e063484 vocab=5b8a7fa0
+-/
 theorem X_smul_rootDual_eq_zero_iff (S : Finset (Normal a b c))
     (s : Normal a b c) (hs : s ∈ S) (w : MonomialIndex S) :
     X (k := k) S w.1 w.2 • U (k := k) S (rootIndex S s hs) = 0 ↔

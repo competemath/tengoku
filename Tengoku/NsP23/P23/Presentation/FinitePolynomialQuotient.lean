@@ -37,6 +37,9 @@ noncomputable def finitePolynomialQuotientEquiv
     (Ideal.quotientKerAlgEquivOfSurjective
       (polyToDirectAlg_surjective (k := k) S))
 
+/--
+@isnad1 id=eq.2h6v.s10.e5c45967df9e from=translated src=- shape=1f75865c vocab=d04b6c1f
+-/
 @[simp]
 theorem finitePolynomialQuotientEquiv_mk
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -46,6 +49,9 @@ theorem finitePolynomialQuotientEquiv_mk
       polyToDirectAlg (k := k) S f := by
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s10.c0a24325a251 from=translated src=- shape=666f60b9 vocab=3a0debf8
+-/
 @[simp]
 theorem finitePolynomialQuotientEquiv_polyX
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -55,6 +61,9 @@ theorem finitePolynomialQuotientEquiv_polyX
       truncatedMonomial (k := k) S (Normal.xGenerator : Normal a b c) := by
   simp
 
+/--
+@isnad1 id=eq.2h5v.s10.6676fb10c09a from=translated src=- shape=666f60b9 vocab=6590ba78
+-/
 @[simp]
 theorem finitePolynomialQuotientEquiv_polyY
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -64,6 +73,9 @@ theorem finitePolynomialQuotientEquiv_polyY
       truncatedMonomial (k := k) S (Normal.yGenerator : Normal a b c) := by
   simp
 
+/--
+@isnad1 id=eq.2h5v.s10.f176fa9f72fd from=translated src=- shape=666f60b9 vocab=b3ff60fa
+-/
 @[simp]
 theorem finitePolynomialQuotientEquiv_polyZ
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -73,6 +85,9 @@ theorem finitePolynomialQuotientEquiv_polyZ
       truncatedMonomial (k := k) S (Normal.zGenerator : Normal a b c) := by
   simp
 
+/--
+@isnad1 id=eq.2h7v.s10.4ff78dfce7a0 from=translated src=- shape=b8848bd8 vocab=47befc5b
+-/
 @[simp]
 theorem finitePolynomialQuotientEquiv_monomial
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -82,6 +97,9 @@ theorem finitePolynomialQuotientEquiv_monomial
       r • truncatedMonomial (k := k) S (normalizeExponent a b c d) := by
   simp
 
+/--
+@isnad1 id=eq.3h6v.s10.1f17b25eb37f from=translated src=- shape=c75a8ea6 vocab=b5dd6d4a
+-/
 @[simp]
 theorem finitePolynomialQuotientEquiv_polynomialLift_of_mem
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -92,6 +110,9 @@ theorem finitePolynomialQuotientEquiv_polynomialLift_of_mem
       X (k := k) S p hp := by
   simp [polynomialLift, hp]
 
+/--
+@isnad1 id=eq.3h6v.s10.758f689936aa from=translated src=- shape=a7992e3a vocab=d5a1fc34
+-/
 @[simp]
 theorem finitePolynomialQuotientEquiv_polynomialLift_of_border
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -113,7 +134,9 @@ def presentationGeneratorFinset (S : Finset (Normal a b c)) :
   exact insert (tiePolynomial (k := k) a b c)
     ((borderFinset S).image (polynomialLift (k := k)))
 
-/-- The concrete finite family spans exactly the final presentation ideal.-/
+/-- The concrete finite family spans exactly the final presentation ideal.
+@isnad1 id=eq.0h5v.s6.18af5b240b9e from=translated src=- shape=9982deff vocab=89698314
+-/
 theorem span_presentationGeneratorFinset (S : Finset (Normal a b c)) :
     Ideal.span (↑(presentationGeneratorFinset (k := k) S) : Set (ThreePoly k)) =
       finitePresentationIdeal (k := k) S := by
@@ -151,7 +174,9 @@ structure DirectModelAsPolynomialQuotient (k : Type*) [Field k]
       polyToDirectAlg (k := k) S f
 
 /-- Run 15 summary theorem.  This is a presentation theorem only; it does not
-assert minimality or compute the number of minimal kernel generators.-/
+assert minimality or compute the number of minimal kernel generators.
+@isnad1 id=directmo.2h5v.s5.afabb13ba957 from=translated src=- shape=36cb26c0 vocab=afb872dd
+-/
 theorem directModel_as_polynomialQuotient
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) :

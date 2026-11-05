@@ -36,6 +36,9 @@ def act (a : AperyArtin k D i) (φ : AperyOmega k D i) : AperyOmega k D i where
 
 instance : SMul (AperyArtin k D i) (AperyOmega k D i) := ⟨act⟩
 
+/--
+@isnad1 id=eq.0h6v.s8.cc66422c81f4 from=translated src=- shape=0d14d14c vocab=eef5745f
+-/
 @[simp] theorem smul_apply (a : AperyArtin k D i) (φ : AperyOmega k D i)
     (x : AperyArtin k D i) : (a • φ) x = φ (a * x) := rfl
 
@@ -61,6 +64,9 @@ noncomputable def aperyDualBasis :
     Module.Basis (D.AperyIndex i) k (AperyOmega k D i) :=
   (aperyBasis (k := k) (D := D) (i := i)).dualBasis
 
+/--
+@isnad1 id=eq.0h4v.s7.8d0268ab88c5 from=translated src=- shape=f53d88c4 vocab=02e74318
+-/
 @[simp] theorem aperyBasis_apply (p : D.AperyIndex i) :
     aperyBasis (k := k) (D := D) (i := i) p =
       A (k := k) p.1 p.2 := by
@@ -70,6 +76,9 @@ noncomputable def aperyDualBasis :
 def AU (p : D.AperyIndex i) : AperyOmega k D i :=
   aperyDualBasis (k := k) D i p
 
+/--
+@isnad1 id=eq.0h5v.s8.c643109886bf from=translated src=- shape=9cc48ab1 vocab=b4e0e2c9
+-/
 @[simp] theorem AU_apply_A (p q : D.AperyIndex i) :
     AU (k := k) D i p (A (k := k) q.1 q.2) =
       if p = q then 1 else 0 := by
@@ -80,7 +89,9 @@ def AU (p : D.AperyIndex i) : AperyOmega k D i :=
         (by simp [eq_comm])
 
 /-- Exact coefficient formula for a basis monomial acting on an Apéry dual
-basis vector.-/
+basis vector.
+@isnad1 id=eq.0h6v.s9.27e2c68e4983 from=translated src=- shape=eabaccde vocab=fae32891
+-/
 theorem A_smul_AU_apply_A (h p q : D.AperyIndex i) :
     (A (k := k) h.1 h.2 • AU (k := k) D i p)
         (A (k := k) q.1 q.2) =
@@ -99,7 +110,9 @@ theorem A_smul_AU_apply_A (h p q : D.AperyIndex i) :
       simpa [he] using p.2
     simp [hhq, hne]
 
-/-- Exact action when an Apéry predecessor exists.-/
+/-- Exact action when an Apéry predecessor exists.
+@isnad1 id=eq.1h6v.s8.86f1f25149f1 from=translated src=- shape=8c51e69f vocab=4361ac4a
+-/
 theorem A_smul_AU_eq_AU (h p q : D.AperyIndex i)
     (hp : h.1 + q.1 = p.1) :
     A (k := k) h.1 h.2 • AU (k := k) D i p = AU (k := k) D i q := by
@@ -116,7 +129,9 @@ theorem A_smul_AU_eq_AU (h p q : D.AperyIndex i)
       exact hp
   simp [hiff, eq_comm]
 
-/-- Exact zero action when no Apéry predecessor exists.-/
+/-- Exact zero action when no Apéry predecessor exists.
+@isnad1 id=eq.1h5v.s9.26665ad728cf from=translated src=- shape=96f36cc3 vocab=8ef6e5c7
+-/
 theorem A_smul_AU_eq_zero (h p : D.AperyIndex i)
     (hn : ¬ ∃ q : D.AperyIndex i, h.1 + q.1 = p.1) :
     A (k := k) h.1 h.2 • AU (k := k) D i p = 0 := by
@@ -128,7 +143,9 @@ theorem A_smul_AU_eq_zero (h p : D.AperyIndex i)
   simp [hne]
 
 /-- Every Apéry degree lies below an Apéry-socle degree.  The construction is
-symbolic well-founded induction on the remaining uniform degree bound.-/
+symbolic well-founded induction on the remaining uniform degree bound.
+@isnad1 id=ex.0h3v.s9.98ef497fc15e from=translated src=- shape=c6dfac6f vocab=4fab05ae
+-/
 theorem exists_aperySocle_above (p : D.AperyIndex i) :
     ∃ s : D.AperySocleIndex i, ∃ h : D.Gamma,
       s.1.1 = p.1 + h := by
@@ -161,7 +178,9 @@ def IsAperyReflectionCenter (C : ℤ) : Prop :=
     IntInGamma D (C - (s.1.1.1 : ℤ))
 
 /-- A center admissible on socle degrees is admissible on every Apéry degree.
-The proof extends the degree to a socle degree and adds back the extension.-/
+The proof extends the degree to a socle degree and adds back the extension.
+@isnad1 id=intingam.1h4v.s6.e02f0826af4b from=translated src=- shape=bbb1ce0a vocab=f165a932
+-/
 theorem reflectionCenter_all_apery {C : ℤ}
     (hC : IsAperyReflectionCenter D i C) (p : D.AperyIndex i) :
     IntInGamma D (C - (p.1.1 : ℤ)) := by
@@ -179,6 +198,9 @@ noncomputable def reflectionGamma (C : ℤ)
     (hC : IsAperyReflectionCenter D i C) (p : D.AperyIndex i) : D.Gamma :=
   Classical.choose (reflectionCenter_all_apery D i hC p)
 
+/--
+@isnad1 id=eq.1h4v.s7.a0124896627d from=translated src=- shape=87d914b4 vocab=07ef3fac
+-/
 @[simp] theorem reflectionGamma_val (C : ℤ)
     (hC : IsAperyReflectionCenter D i C) (p : D.AperyIndex i) :
     ((reflectionGamma D i C hC p).1 : ℤ) = C - (p.1.1 : ℤ) :=
@@ -199,6 +221,9 @@ noncomputable def reflectionLinearMap (C : ℤ)
   (aperyDualBasis (k := k) D i).constr k
     (fun p => reflectionMonomial (k := k) D i C hC p)
 
+/--
+@isnad1 id=eq.1h5v.s9.909978244f6c from=translated src=- shape=58b8984f vocab=550aead9
+-/
 @[simp] theorem reflectionLinearMap_AU (C : ℤ)
     (hC : IsAperyReflectionCenter D i C) (p : D.AperyIndex i) :
     reflectionLinearMap (k := k) D i C hC (AU (k := k) D i p) =
@@ -302,7 +327,9 @@ private theorem reflection_basis_smul (C : ℤ)
     exact reflection_basis_identity (k := k) D i C hC h p
   exact LinearMap.congr_fun heq φ
 
-/-- The reflection map is linear over the full Apéry algebra.-/
+/-- The reflection map is linear over the full Apéry algebra.
+@isnad1 id=eq.1h6v.s10.37672c47701e from=translated src=- shape=321186b0 vocab=b594ac65
+-/
 theorem reflectionLinearMap_map_smul (C : ℤ)
     (hC : IsAperyReflectionCenter D i C)
     (a : AperyArtin k D i) (φ : AperyOmega k D i) :
@@ -324,13 +351,18 @@ noncomputable def reflectionCanonicalHom (C : ℤ)
   map_add' φ ψ := by simp
   map_smul' a φ := reflectionLinearMap_map_smul (k := k) D i C hC a φ
 
+/--
+@isnad1 id=eq.1h5v.s8.9bce99c5b1f4 from=translated src=- shape=2c7680c5 vocab=2322b43f
+-/
 @[simp] theorem reflectionCanonicalHom_AU (C : ℤ)
     (hC : IsAperyReflectionCenter D i C) (p : D.AperyIndex i) :
     reflectionCanonicalHom (k := k) D i C hC (AU (k := k) D i p) =
       reflectionMonomial (k := k) D i C hC p :=
   reflectionLinearMap_AU (k := k) D i C hC p
 
-/-- Public Run22 value wrapper for the frozen PF/Apéry-socle equivalence.-/
+/-- Public Run22 value wrapper for the frozen PF/Apéry-socle equivalence.
+@isnad1 id=eq.0h3v.s8.2db10f27171c from=translated src=- shape=5d072303 vocab=ace74963
+-/
 theorem pseudoFrobeniusEquivAperySocle_val
     (f : D.PseudoFrobeniusIndex) :
     ((((D.pseudoFrobeniusEquivAperySocle i) f).1.1.1 : ℕ) : ℤ) =
@@ -344,7 +376,9 @@ def tailReflectionCenter (j : Fin 3) (f : D.PseudoFrobeniusIndex) : ℤ :=
   (D.tailGen i j : ℤ) + f.1 + D.n i
 
 /-- A tail NG witness makes its selected reflection center admissible on all
-Apéry-socle degrees.-/
+Apéry-socle degrees.
+@isnad1 id=isaperyr.1h4v.s6.c72760721a37 from=translated src=- shape=df9ef18b vocab=a1bdd166
+-/
 theorem tail_ngWitness_reflectionCenter (j : Fin 3)
     (f : D.PseudoFrobeniusIndex)
     (hf : NGWitnessForGenerator D (D.tailIndex i j) f) :
@@ -364,7 +398,9 @@ theorem tail_ngWitness_reflectionCenter (j : Fin 3)
   omega
 
 /-- For the witness-selected center, the chosen PF root dual maps exactly to
-the chosen tail variable.-/
+the chosen tail variable.
+@isnad1 id=other.1h5v.s9.1e83c855b5be from=translated src=- shape=99dd8da1 vocab=6c0b46b7
+-/
 theorem reflectionCanonicalHom_AU_pf_eq_tailVariableA (j : Fin 3)
     (f : D.PseudoFrobeniusIndex)
     (hf : NGWitnessForGenerator D (D.tailIndex i j) f) :
@@ -408,6 +444,9 @@ def AperyTraceSubmodule :
   ⨆ F : AperyOmega k D i →ₗ[AperyArtin k D i] AperyArtin k D i,
     F.range
 
+/--
+@isnad1 id=le.0h4v.s9.ab69c9b92235 from=translated src=- shape=ae9259d4 vocab=2ef8adc1
+-/
 theorem aperyTrace_range_le
     (F : AperyOmega k D i →ₗ[AperyArtin k D i] AperyArtin k D i) :
     F.range ≤ AperyTraceSubmodule (k := k) D i :=
@@ -415,7 +454,9 @@ theorem aperyTrace_range_le
     AperyArtin k D i => G.range) F
 
 /-- Every tail variable belongs to ordinary Apéry trace under the semigroup
-NG-vector hypothesis.-/
+NG-vector hypothesis.
+@isnad1 id=mem.1h4v.s8.b5c93bbc13a4 from=translated src=- shape=d066718b vocab=267a083b
+-/
 theorem tailVariableA_mem_aperyTrace
     (hng : SemigroupNearlyGorenstein D) (j : Fin 3) :
     tailVariableA (k := k) D i j ∈ AperyTraceSubmodule (k := k) D i := by
@@ -433,7 +474,9 @@ def AperyNearlyGorenstein : Prop :=
   aperyAugmentationIdeal (k := k) D i ≤ AperyTraceSubmodule (k := k) D i
 
 /-- Main Apéry bridge: the standard PF NG-vector criterion puts the full
-augmentation ideal in the ordinary canonical-dual trace.-/
+augmentation ideal in the ordinary canonical-dual trace.
+@isnad1 id=aperynea.1h3v.s4.87ee7f118388 from=translated src=- shape=59ed7ea6 vocab=703e6e68
+-/
 theorem semigroupNearlyGorenstein_to_aperyNearlyGorenstein
     (hng : SemigroupNearlyGorenstein D) :
     AperyNearlyGorenstein (k := k) D i := by

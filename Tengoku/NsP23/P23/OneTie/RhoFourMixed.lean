@@ -12,6 +12,9 @@ open P23.Artin P23.Presentation
 set_option maxHeartbeats 1200000
 variable {a b c : ℕ} [NeZero a] {k : Type*} [Field k]
 
+/--
+@isnad1 id=other.7h8v.s10.d2e1bb7eda35 from=translated src=- shape=93ef0f38 vocab=a266ffcd
+-/
 theorem mixed_three_border_z_coeff_zero {S : Finset (Normal a b c)}
     (M : MixedThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c)
     (hl : IsLiveTie S) (hanti : IsRootAntichain S) (hbB : b < M.B) (hcvC : c+M.v < M.C)
@@ -138,6 +141,9 @@ theorem mixed_three_border_z_coeff_zero {S : Finset (Normal a b c)}
   · exact hUz
   · exact hVcoeff
 
+/--
+@isnad1 id=other.5h5v.s8.f3459281b092 from=translated src=- shape=e982dd57 vocab=939269c9
+-/
 theorem mixed_three_border_z_not_trace {S : Finset (Normal a b c)}
     (M : MixedThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c)
     (hl : IsLiveTie S) (hanti : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3) :
@@ -150,6 +156,9 @@ theorem mixed_three_border_z_not_trace {S : Finset (Normal a b c)}
   obtain ⟨F,s,hs,hcoeff⟩ := exists_root_image_with_variable_coeff_of_mem_trace S hS
     (by omega) hanti hd .z _ htrace
   exact hcoeff (mixed_three_border_z_coeff_zero M hS hd hl hanti hb hc F s hs)
+/--
+@isnad1 id=not.5h5v.s6.b7b94f494bc0 from=translated src=- shape=44076e75 vocab=3023dda2
+-/
 theorem mixed_three_border_not_nearlyGorenstein {S : Finset (Normal a b c)}
     (M : MixedThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c)
     (hl : IsLiveTie S) (ha : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3) :

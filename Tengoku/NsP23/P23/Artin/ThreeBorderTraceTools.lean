@@ -9,6 +9,9 @@ noncomputable section
 open P23.OneTie
 variable {a b c : ℕ} [NeZero a] {k : Type*} [Field k]
 
+/--
+@isnad1 id=eq.1h8v.s8.c18c8c7ef0db from=translated src=- shape=3330e037 vocab=7ac107a0
+-/
 theorem coeffAt_X_mul_eq_zero_of_not_dvd (S : Finset (Normal a b c))
     (m t : MonomialIndex S) (hnt : ¬m.1 ∣ t.1) (v : MonomialArtin k S) :
     coeffAt (k := k) S t (X (k := k) S m.1 m.2 * v) = 0 := by
@@ -25,6 +28,9 @@ theorem coeffAt_X_mul_eq_zero_of_not_dvd (S : Finset (Normal a b c))
       simp [MonomialArtin.X_mul_X,hs,coeffAt_apply,MonomialArtin.coeff_X,hi,hprod]
     · simp [MonomialArtin.X_mul_X,hs]
 
+/--
+@isnad1 id=eq.3h9v.s10.ffff2529b1f4 from=translated src=- shape=32b39247 vocab=b761bc49
+-/
 theorem root_coeff_zero_of_nondvd_and_surviving_product (S : Finset (Normal a b c))
     (F : Omega k S →ₗ[MonomialArtin k S] MonomialArtin k S)
     (s : Normal a b c) (hs : s ∈ S) (l e : MonomialIndex S)

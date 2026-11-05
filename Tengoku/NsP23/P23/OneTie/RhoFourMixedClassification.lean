@@ -11,6 +11,9 @@ open P23.Presentation P23.Artin
 variable {a b c : ℕ} [NeZero a]
 set_option maxHeartbeats 1200000
 
+/--
+@isnad1 id=or.8h4v.s7.c02a04251501 from=translated src=- shape=ac80a5ce vocab=6b323826
+-/
 theorem mixed_three_border_support_classification (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (hc : 0 < c)
@@ -74,6 +77,9 @@ theorem mixed_three_border_support_classification (S : Finset (Normal a b c))
     ext p
     simp [swapYZ,yAxis,zAxis,hz0]
     tauto
+/--
+@isnad1 id=false.9h4v.s7.e85663359562 from=translated src=- shape=1a0921a1 vocab=7c6128f1
+-/
 theorem rho_four_mixed_canonical_impossible (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (hc : 0 < c)

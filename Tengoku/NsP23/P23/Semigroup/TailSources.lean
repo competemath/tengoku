@@ -20,22 +20,37 @@ def TailInK (h : ℕ) : Prop :=
 def IsTailSource (h : ℕ) : Prop :=
   TailInK D i h ∧ ∀ j : Fin 3, ¬∃ k : ℕ, TailInK D i k ∧ h=D.tailGen i j+k
 
+/--
+@isnad1 id=tailinh.0h2v.s4.5f7853219d11 from=translated src=- shape=751db40f vocab=9c53aeee
+-/
 theorem tailInH_zero : TailInH D i 0 := ⟨0, tailDegree_zero D i⟩
 
+/--
+@isnad1 id=tailinh.0h3v.s4.61bc2ed0f596 from=translated src=- shape=351f5eba vocab=be86a3f8
+-/
 theorem tailInH_tailGen (j : Fin 3) : TailInH D i (D.tailGen i j) :=
   ⟨Finsupp.single j 1, by simp⟩
 
+/--
+@isnad1 id=tailinh.2h4v.s5.f6bf14f08b6f from=translated src=- shape=2c53b180 vocab=bd699e9d
+-/
 theorem tailInH_add {h r : ℕ} (hh : TailInH D i h) (hr : TailInH D i r) :
     TailInH D i (h+r) := by
   obtain ⟨u,hu⟩ := hh
   obtain ⟨v,hv⟩ := hr
   exact ⟨u+v, by rw [tailDegree_add,hu,hv]⟩
 
+/--
+@isnad1 id=not.0h2v.s4.f066211e59c8 from=translated src=- shape=de774b71 vocab=44fe559f
+-/
 theorem not_tailInH_base : ¬TailInH D i (D.n i) := by
   rintro ⟨u,hu⟩
   exact D.minimal i (extendTailExponent i u) (extendTailExponent_base i u)
     ((weightedDegree_extendTailExponent D i u).trans hu)
 
+/--
+@isnad1 id=lt.1h3v.s5.65e6c6cb0fae from=translated src=- shape=6623e98f vocab=0a4dc5f4
+-/
 theorem tailDegree_pos_of_ne_zero (u : PlainExp) (hu : u≠0) :
     0<tailDegree D i u := by
   obtain ⟨j,hj⟩ := Finsupp.ne_iff.mp hu
@@ -44,6 +59,9 @@ theorem tailDegree_pos_of_ne_zero (u : PlainExp) (hu : u≠0) :
     apply Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ j)
   exact lt_of_lt_of_le (Nat.mul_pos hp (D.tailGen_positive i j)) hterm
 
+/--
+@isnad1 id=tailink.2h4v.s5.6dcf7878b40c from=translated src=- shape=9a7ea607 vocab=53c99229
+-/
 theorem tailInK_add_tailInH {h r : ℕ} (hh : TailInK D i h) (hr : TailInH D i r) :
     TailInK D i (h+r) := by
   obtain ⟨hh,γ,hγ⟩ := hh
@@ -53,6 +71,9 @@ theorem tailInK_add_tailInH {h r : ℕ} (hh : TailInK D i h) (hr : TailInH D i r
   rw [hγ,hu]
   omega
 
+/--
+@isnad1 id=iff.0h4v.s6.409852e79f42 from=translated src=- shape=9d0c0e90 vocab=67709025
+-/
 theorem truncatedAperyMonomial_eq_zero_iff_not_isApery
     {k : Type*} [Field k] (s : D.Gamma) :
     truncatedAperyMonomial (k := k) D i s=0 ↔ ¬D.IsApery i s := by
@@ -66,6 +87,9 @@ theorem truncatedAperyMonomial_eq_zero_iff_not_isApery
       exact False.elim (hn hs)
   · simp [truncatedAperyMonomial,hs]
 
+/--
+@isnad1 id=iff.0h4v.s9.e59aea6048e3 from=translated src=- shape=8cbccdb4 vocab=ea89da8e
+-/
 theorem tail_monomial_mem_chosenBaseDefiningIdeal_iff
     {k : Type*} [Field k] (u : PlainExp) :
     MvPolynomial.monomial u (1 : k) ∈ chosenBaseDefiningIdeal (k := k) D i ↔
@@ -92,6 +116,9 @@ theorem tail_monomial_mem_chosenBaseDefiningIdeal_iff
     apply ha
     exact ⟨γ,Subtype.ext hγ⟩
 
+/--
+@isnad1 id=iff.0h3v.s5.5a77ab8bfc56 from=translated src=- shape=136a8816 vocab=f219864d
+-/
 theorem isTailSource_iff_no_nonzero_tail_predecessor (h : ℕ) :
     IsTailSource D i h ↔ TailInK D i h ∧
       ¬∃ k r : ℕ, TailInK D i k ∧ TailInH D i r ∧ r≠0 ∧ h=k+r := by
@@ -123,7 +150,9 @@ theorem isTailSource_iff_no_nonzero_tail_predecessor (h : ℕ) :
     exact ⟨k,D.tailGen i j,hk,tailInH_tailGen D i j,
       Nat.ne_of_gt (D.tailGen_positive i j),by omega⟩
 
-/-- Minimal original generators have no predecessor by another generator.-/
+/-- Minimal original generators have no predecessor by another generator.
+@isnad1 id=ne.1h4v.s6.27380e7b91fb from=translated src=- shape=87a710d7 vocab=97f06581
+-/
 theorem generator_not_add_other (j l : Fin 4) (hjl : j≠l) (γ : D.Gamma) :
     D.n j≠D.n l+γ.1 := by
   classical
@@ -159,6 +188,9 @@ structure TailSocleTopPattern (D : FourGeneratedNumericalSemigroup) (i : Fin 4) 
 namespace TailSocleTopPattern
 variable {D : FourGeneratedNumericalSemigroup} {i : Fin 4} (P : TailSocleTopPattern D i)
 
+/--
+@isnad1 id=injectiv.0h3v.s6.182ad5f75802 from=translated src=- shape=09b79dd5 vocab=51ad72e3
+-/
 theorem socleDegree_injective :
     Function.Injective (fun j => aperySocleDegree D i (P.byTail j)) := by
   intro j l h
@@ -168,10 +200,16 @@ theorem socleDegree_injective :
   have hl := P.top_eq l
   omega
 
+/--
+@isnad1 id=injectiv.0h3v.s7.1e96690abab4 from=translated src=- shape=e010ac15 vocab=41cb8e7e
+-/
 theorem pseudoFrobenius_injective : Function.Injective
     (fun j => (D.pseudoFrobeniusEquivAperySocle i).symm (P.byTail j)) :=
   (D.pseudoFrobeniusEquivAperySocle i).symm.injective.comp P.byTail.injective
 
+/--
+@isnad1 id=ne.0h4v.s5.738927f95ceb from=translated src=- shape=a8a0800d vocab=d936c829
+-/
 theorem top_ne_base_add_tail (j : Fin 3) : P.top≠D.n i+D.tailGen i j := by
   intro he
   have hj := P.top_eq j
@@ -181,10 +219,16 @@ theorem top_ne_base_add_tail (j : Fin 3) : P.top≠D.n i+D.tailGen i j := by
 
 end TailSocleTopPattern
 
+/--
+@isnad1 id=eq.0h3v.s6.0e7f60c0d81e from=translated src=- shape=42162c3e vocab=d963fedb
+-/
 theorem pf_inverse_degree (s : D.AperySocleIndex i) :
     ((D.pseudoFrobeniusEquivAperySocle i).symm s).1 =
       (aperySocleDegree D i s : ℤ)-(D.n i : ℤ) := rfl
 
+/--
+@isnad1 id=ex.1h3v.s7.82e337dff31f from=translated src=- shape=ea5d6da5 vocab=2b3cbccc
+-/
 theorem exists_selected_tail_ng_relations (P : TailSocleTopPattern D i)
     (hn : SemigroupNearlyGorenstein D) :
     ∃ s : Fin 3, ∀ t : Fin 3, t≠s → ∃ γ : D.Gamma,
@@ -208,7 +252,9 @@ theorem exists_selected_tail_ng_relations (P : TailSocleTopPattern D i)
   omega
 
 /-- The relation witness has no base predecessor, so every factorization is
-base-free by the frozen generic Apéry factorization API.-/
+base-free by the frozen generic Apéry factorization API.
+@isnad1 id=isapery.2h5v.s6.4e4e7dfab92a from=translated src=- shape=d39c3312 vocab=18a0158f
+-/
 theorem gamma_isApery_of_ng_tail_relation (s t : Fin 3) (hst : s≠t)
     (γ : D.Gamma) (he : D.n i+D.tailGen i t=D.tailGen i s+γ.1) :
     D.IsApery i γ := by
@@ -219,12 +265,18 @@ theorem gamma_isApery_of_ng_tail_relation (s t : Fin 3) (hst : s≠t)
   exact generator_not_add_other D (D.tailIndex i t) (D.tailIndex i s)
     (fun h => hst ((D.tailIndex_injective i h).symm)) δ hbad
 
+/--
+@isnad1 id=eq.3h6v.s7.aef6634755ac from=translated src=- shape=98ce35a4 vocab=9e47d0db
+-/
 theorem ng_tail_factorization_base_zero (s t : Fin 3) (hst : s≠t)
     (γ : D.Gamma) (he : D.n i+D.tailGen i t=D.tailGen i s+γ.1)
     (u : Fin 4 →₀ ℕ) (hu : D.weightedDegree u=γ.1) : u i=0 :=
   D.apery_factorization_base_eq_zero i
     (gamma_isApery_of_ng_tail_relation D i s t hst γ he) u hu
 
+/--
+@isnad1 id=ex.2h5v.s7.e763d1f5fd03 from=translated src=- shape=6a0c976c vocab=fa339802
+-/
 theorem exists_tail_factorization_containing_selected (s t : Fin 3) (hst : s≠t)
     (γ : D.Gamma) (he : D.n i+D.tailGen i t=D.tailGen i s+γ.1) :
     ∃ u : PlainExp, tailDegree D i u=D.n i+D.tailGen i t ∧ 0<u s := by
@@ -235,6 +287,9 @@ theorem exists_tail_factorization_containing_selected (s t : Fin 3) (hst : s≠t
     exact he.symm
   · simp
 
+/--
+@isnad1 id=istailso.2h5v.s7.27361fd8d49e from=translated src=- shape=9c6363cb vocab=5cffd022
+-/
 theorem source_of_ng_tail_relation (s t : Fin 3) (hst : s≠t)
     (γ : D.Gamma) (he : D.n i+D.tailGen i t=D.tailGen i s+γ.1) :
     IsTailSource D i (D.n i+D.tailGen i t) := by
@@ -266,6 +321,9 @@ structure TwoTailSources (D : FourGeneratedNumericalSemigroup) (i : Fin 4) where
   second_contains_selected : 0<second_factorization selected
   degrees_ne : D.n i+D.tailGen i first≠D.n i+D.tailGen i second
 
+/--
+@isnad1 id=nonempty.1h3v.s4.8a3f93a83962 from=translated src=- shape=4e3017eb vocab=baae40a4
+-/
 theorem exists_two_tail_sources (P : TailSocleTopPattern D i)
     (hn : SemigroupNearlyGorenstein D) : Nonempty (TwoTailSources D i) := by
   obtain ⟨s,hs⟩ := exists_selected_tail_ng_relations D i P hn
@@ -299,7 +357,9 @@ theorem exists_two_tail_sources (P : TailSocleTopPattern D i)
   omega
 
 /-- Source => displayed monomial. No converse and no uniqueness of arbitrary
-tail factorizations is asserted. Minimality of the display is not needed.-/
+tail factorizations is asserted. Minimality of the display is not needed.
+@isnad1 id=mem.4h5v.s9.6ef19dac00ab from=translated src=- shape=18078d4f vocab=5869195d
+-/
 theorem source_factorization_eq_displayed_monomial (G : Finset PlainExp)
     (hI : plainMonomialIdeal ℚ G=chosenBaseDefiningIdeal (k := ℚ) D i)
     {d : ℕ} (hs : IsTailSource D i d) (u : PlainExp) (hu : tailDegree D i u=d)

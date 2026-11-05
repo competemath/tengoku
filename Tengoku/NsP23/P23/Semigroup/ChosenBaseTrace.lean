@@ -40,6 +40,9 @@ def act (q : Q k D i) (φ : ChosenBaseOmega k D i) :
 
 instance : SMul (Q k D i) (ChosenBaseOmega k D i) := ⟨act⟩
 
+/--
+@isnad1 id=eq.0h6v.s10.c26703b86548 from=translated src=- shape=0d14d14c vocab=b14fe561
+-/
 @[simp] theorem smul_apply (q : Q k D i) (φ : ChosenBaseOmega k D i)
     (r : Q k D i) : (q • φ) r = φ (q * r) := rfl
 
@@ -93,6 +96,9 @@ noncomputable def chosenBaseOmegaEquivAperyOmega :
   map_add' φ ψ := by apply LinearMap.ext; intro q; rfl
   map_smul' t φ := by apply LinearMap.ext; intro q; rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.f67652ac6bc1 from=translated src=- shape=2cfe6cb7 vocab=f8233c0b
+-/
 @[simp] theorem chosenBaseOmegaEquivAperyOmega_apply_equiv
     (φ : ChosenBaseOmega k D i) (q : Q k D i) :
     chosenBaseOmegaEquivAperyOmega (k := k) D i φ
@@ -101,11 +107,17 @@ noncomputable def chosenBaseOmegaEquivAperyOmega :
     (chosenBaseEquivApery (k := k) D i q)) = φ q
   rw [(chosenBaseEquivApery (k := k) D i).symm_apply_apply]
 
+/--
+@isnad1 id=eq.0h5v.s12.546bf52b762f from=translated src=- shape=42cc9cfc vocab=9a21fb1a
+-/
 @[simp] theorem chosenBaseOmegaEquivAperyOmega_symm_apply
     (ψ : AperyOmega k D i) (q : Q k D i) :
     (chosenBaseOmegaEquivAperyOmega (k := k) D i).symm ψ q =
       ψ (chosenBaseEquivApery (k := k) D i q) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.3e2d703055a2 from=translated src=- shape=e2c1d6a4 vocab=4b98153f
+-/
 theorem chosenBaseOmegaEquivAperyOmega_smul
     (q : Q k D i) (φ : ChosenBaseOmega k D i) :
     chosenBaseOmegaEquivAperyOmega (k := k) D i (q • φ) =
@@ -119,6 +131,9 @@ theorem chosenBaseOmegaEquivAperyOmega_smul
   congr 1
   simp
 
+/--
+@isnad1 id=eq.0h5v.s13.20db3a28adff from=translated src=- shape=271911a9 vocab=aa8a6e8c
+-/
 theorem chosenBaseOmegaEquivAperyOmega_symm_smul
     (a : A k D i) (ψ : AperyOmega k D i) :
     (chosenBaseOmegaEquivAperyOmega (k := k) D i).symm (a • ψ) =
@@ -150,6 +165,9 @@ def pullChosenBaseCanonicalHom
     rw [chosenBaseOmegaEquivAperyOmega_smul, F.map_smul]
     simp [smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h4v.s10.8a4322c332f9 from=translated src=- shape=2ece820f vocab=373a97b2
+-/
 @[simp] theorem pull_pushChosenBaseCanonicalHom
     (F : ChosenBaseOmega k D i →ₗ[Q k D i] Q k D i) :
     pullChosenBaseCanonicalHom (k := k) D i
@@ -158,6 +176,9 @@ def pullChosenBaseCanonicalHom
   intro φ
   simp [pullChosenBaseCanonicalHom, pushChosenBaseCanonicalHom]
 
+/--
+@isnad1 id=eq.0h4v.s8.82f6b05c0139 from=translated src=- shape=2ece820f vocab=f942bce0
+-/
 @[simp] theorem push_pullChosenBaseCanonicalHom
     (F : AperyOmega k D i →ₗ[A k D i] A k D i) :
     pushChosenBaseCanonicalHom (k := k) D i
@@ -171,12 +192,17 @@ supremum of ranges of all intrinsic canonical homomorphisms.-/
 def ChosenBaseTraceSubmodule : Submodule (Q k D i) (Q k D i) :=
   ⨆ F : ChosenBaseOmega k D i →ₗ[Q k D i] Q k D i, F.range
 
+/--
+@isnad1 id=le.0h4v.s11.4d178ffc810d from=translated src=- shape=ae9259d4 vocab=def9f4a4
+-/
 theorem chosenBaseTrace_range_le
     (F : ChosenBaseOmega k D i →ₗ[Q k D i] Q k D i) :
     F.range ≤ ChosenBaseTraceSubmodule (k := k) D i :=
   le_iSup (fun G : ChosenBaseOmega k D i →ₗ[Q k D i] Q k D i => G.range) F
 
-/-- Exact ordinary-trace membership transport.-/
+/-- Exact ordinary-trace membership transport.
+@isnad1 id=iff.0h4v.s10.d47eddc4ebdd from=translated src=- shape=37ff0dce vocab=9d065d25
+-/
 theorem mem_chosenBaseTrace_iff_equiv_mem_aperyTrace (q : Q k D i) :
     q ∈ ChosenBaseTraceSubmodule (k := k) D i ↔
       chosenBaseEquivApery (k := k) D i q ∈
@@ -218,6 +244,9 @@ def ChosenBaseNearlyGorenstein : Prop := by
   exact IsLocalRing.maximalIdeal (Q k D i) ≤
     ChosenBaseTraceSubmodule (k := k) D i
 
+/--
+@isnad1 id=iff.0h3v.s4.4abf38600d80 from=translated src=- shape=faadfc7c vocab=339169c1
+-/
 theorem chosenBaseNearlyGorenstein_iff_aperyNearlyGorenstein :
     ChosenBaseNearlyGorenstein (k := k) D i ↔
       AperyNearlyGorenstein (k := k) D i := by
@@ -241,7 +270,9 @@ theorem chosenBaseNearlyGorenstein_iff_aperyNearlyGorenstein :
     exact (mem_chosenBaseTrace_iff_equiv_mem_aperyTrace
       (k := k) D i q).2 hEt
 
-/-- Main Run22 bridge.-/
+/-- Main Run22 bridge.
+@isnad1 id=chosenba.1h3v.s4.f34ea1edaac3 from=translated src=- shape=59ed7ea6 vocab=f5c4966e
+-/
 theorem semigroupNearlyGorenstein_to_chosenBaseNearlyGorenstein
     (hng : SemigroupNearlyGorenstein D) :
     ChosenBaseNearlyGorenstein (k := k) D i :=
@@ -250,6 +281,9 @@ theorem semigroupNearlyGorenstein_to_chosenBaseNearlyGorenstein
       (semigroupNearlyGorenstein_to_aperyNearlyGorenstein
         (k := k) D i hng)
 
+/--
+@isnad1 id=and.2h3v.s5.8ddc251932fc from=translated src=- shape=f342c71f vocab=f159b0bf
+-/
 theorem semigroup_type_three_ng_gives_chosenBase_type_three_ng
     (htype : D.semigroupType = 3) (hng : SemigroupNearlyGorenstein D) :
     chosenBaseType (k := k) D i = 3 ∧
@@ -279,6 +313,9 @@ structure ChosenBaseNGBridge : Prop where
   semigroupToChosenBaseNG : SemigroupNearlyGorenstein D →
     ChosenBaseNearlyGorenstein (k := k) D i
 
+/--
+@isnad1 id=chosenba.0h3v.s4.923579fe4ef1 from=translated src=- shape=9b42ccea vocab=f30d9642
+-/
 theorem chosenBaseNGBridge : ChosenBaseNGBridge (k := k) D i where
   ngVectorInterface := semigroupNearlyGorenstein_iff_ngVector D
   aperyOrdinaryTrace := rfl

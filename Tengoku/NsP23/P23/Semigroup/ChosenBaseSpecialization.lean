@@ -24,9 +24,15 @@ def tailIndexEquiv : Fin 3 ≃ {j : Fin 4 // j ≠ i} :=
       obtain ⟨l, hl⟩ := hj
       exact ⟨l, Subtype.ext hl⟩)
 
+/--
+@isnad1 id=eq.0h3v.s8.7f9c8d7eef2e from=translated src=- shape=64efb303 vocab=664b1a28
+-/
 @[simp] theorem tailIndexEquiv_apply (j : Fin 3) :
     (tailIndexEquiv D i j).1 = D.tailIndex i j := rfl
 
+/--
+@isnad1 id=eq.1h3v.s8.91f6eab0fa7f from=translated src=- shape=c2beb7dc vocab=0e38098b
+-/
 @[simp] theorem tailIndexEquiv_symm_apply (j : Fin 4) (hj : j ≠ i) :
     D.tailIndex i ((tailIndexEquiv D i).symm ⟨j, hj⟩) = j :=
   congrArg Subtype.val ((tailIndexEquiv D i).apply_symm_apply ⟨j, hj⟩)
@@ -37,6 +43,9 @@ def baseSpecialization : FourPoly k →ₐ[k] TailPoly k :=
 def tailEmbedding : TailPoly k →ₐ[k] FourPoly k :=
   MvPolynomial.rename (D.tailIndex i)
 
+/--
+@isnad1 id=eq.0h3v.s8.c808f4d7b44e from=translated src=- shape=4ef6273e vocab=223e4431
+-/
 @[simp] theorem baseSpecialization_X_base :
     baseSpecialization (k := k) D i (MvPolynomial.X i) = 0 := by
   have hi : i ∉ Set.range (D.tailIndex i) := by
@@ -44,20 +53,32 @@ def tailEmbedding : TailPoly k →ₐ[k] FourPoly k :=
     exact D.tailIndex_ne_base i j hj
   simp [baseSpecialization, MvPolynomial.killCompl, hi]
 
+/--
+@isnad1 id=eq.0h4v.s8.2a7cee382785 from=translated src=- shape=cc9c2f71 vocab=f9390866
+-/
 @[simp] theorem baseSpecialization_X_tail (j : Fin 3) :
     baseSpecialization (k := k) D i (MvPolynomial.X (D.tailIndex i j)) =
       MvPolynomial.X j := by
   simpa [baseSpecialization, ← MvPolynomial.rename_X (D.tailIndex i) j] using
     MvPolynomial.killCompl_rename_app (D.tailIndex i).injective (MvPolynomial.X j : TailPoly k)
 
+/--
+@isnad1 id=eq.0h3v.s8.4471f3f16dac from=translated src=- shape=5f81e7db vocab=7ac4d770
+-/
 @[simp] theorem baseSpecialization_comp_tailEmbedding :
     (baseSpecialization (k := k) D i).comp (tailEmbedding D i) = AlgHom.id k _ :=
   MvPolynomial.killCompl_comp_rename (D.tailIndex i).injective
 
+/--
+@isnad1 id=eq.0h4v.s9.6073aa458885 from=translated src=- shape=b57b8527 vocab=59851f6c
+-/
 @[simp] theorem baseSpecialization_tailEmbedding (p : TailPoly k) :
     baseSpecialization D i (tailEmbedding D i p) = p :=
   MvPolynomial.killCompl_rename_app (D.tailIndex i).injective p
 
+/--
+@isnad1 id=surjecti.0h3v.s8.e1797bea1c5c from=translated src=- shape=93ceda27 vocab=a38b88cd
+-/
 theorem baseSpecialization_surjective :
     Function.Surjective (baseSpecialization (k := k) D i) :=
   fun p => ⟨tailEmbedding D i p, baseSpecialization_tailEmbedding D i p⟩
@@ -65,9 +86,15 @@ theorem baseSpecialization_surjective :
 abbrev restrictToTails := tailExponent D i
 abbrev tailEmbeddingExponent := extendTailExponent i
 
+/--
+@isnad1 id=eq.0h4v.s7.28b5304c986e from=translated src=- shape=8d1d89cf vocab=50b20157
+-/
 @[simp] theorem restrictToTails_apply (u : Fin 4 →₀ ℕ) (j : Fin 3) :
     restrictToTails D i u j = u (D.tailIndex i j) := tailExponent_apply D i u j
 
+/--
+@isnad1 id=eq.0h3v.s6.43989c9470bf from=translated src=- shape=a5a3fb5d vocab=d74ef9c1
+-/
 theorem tailEmbeddingExponent_eq_mapDomain (v : Fin 3 →₀ ℕ) :
     tailEmbeddingExponent i v = v.mapDomain (D.tailIndex i) := by
   ext j
@@ -80,6 +107,9 @@ theorem tailEmbeddingExponent_eq_mapDomain (v : Fin 3 →₀ ℕ) :
     rw [Finsupp.mapDomain_apply (D.tailIndex i).injective]
     exact extendTailExponent_tail i v l
 
+/--
+@isnad1 id=eq.1h3v.s6.de4708a7a503 from=translated src=- shape=b25481da vocab=7b2585e6
+-/
 theorem tailEmbedding_restrictToTails (u : Fin 4 →₀ ℕ) (hu : u i = 0) :
     tailEmbeddingExponent i (restrictToTails D i u) = u := by
   ext j
@@ -87,10 +117,16 @@ theorem tailEmbedding_restrictToTails (u : Fin 4 →₀ ℕ) (hu : u i = 0) :
   · simpa using hu.symm
   · simp [tailEmbeddingExponent, restrictToTails]
 
+/--
+@isnad1 id=eq.1h3v.s6.41b6000bc9df from=translated src=- shape=beced1c3 vocab=2d7ed583
+-/
 theorem restrictToTails_degree (u : Fin 4 →₀ ℕ) (hu : u i = 0) :
     tailDegree D i (restrictToTails D i u) = D.weightedDegree u :=
   (weightedDegree_eq_tailDegree_of_base_zero D i u hu).symm
 
+/--
+@isnad1 id=eq.1h5v.s9.04a0eb1ba12c from=translated src=- shape=02b11247 vocab=ddcec87d
+-/
 theorem baseSpecialization_monomial_of_base_pos (u : Fin 4 →₀ ℕ) (r : k)
     (hu : 0 < u i) : baseSpecialization D i (MvPolynomial.monomial u r) = 0 := by
   apply MvPolynomial.killCompl_monomial_eq_zero_of_notMem_range
@@ -98,6 +134,9 @@ theorem baseSpecialization_monomial_of_base_pos (u : Fin 4 →₀ ℕ) (r : k)
   · rintro ⟨j, hj⟩
     exact D.tailIndex_ne_base i j hj
 
+/--
+@isnad1 id=eq.1h5v.s9.845e8b20ad46 from=translated src=- shape=61bbe99f vocab=0121e23c
+-/
 theorem baseSpecialization_monomial_of_base_zero (u : Fin 4 →₀ ℕ) (r : k)
     (hu : u i = 0) : baseSpecialization D i (MvPolynomial.monomial u r) =
       MvPolynomial.monomial (restrictToTails D i u) r := by
@@ -106,6 +145,9 @@ theorem baseSpecialization_monomial_of_base_zero (u : Fin 4 →₀ ℕ) (r : k)
   conv_lhs => rw [← h]
   exact MvPolynomial.killCompl_monomial_mapDomain (R := k) (D.tailIndex i).injective
 
+/--
+@isnad1 id=eq.0h3v.s9.aac7441cfeeb from=translated src=- shape=e2d5fa72 vocab=65821064
+-/
 theorem baseSpecialization_ker :
     RingHom.ker (baseSpecialization (k := k) D i).toRingHom =
       Ideal.span {MvPolynomial.X i} := by
@@ -133,6 +175,9 @@ theorem baseSpecialization_ker :
 def fourPolyToChosenBase : FourPoly k →ₐ[k] ChosenBaseQuotient (k := k) D i :=
   (Ideal.Quotient.mkₐ k (baseMonomialIdeal D i)).comp D.semigroupPolyMap
 
+/--
+@isnad1 id=eq.0h3v.s9.1857a001d87b from=translated src=- shape=50c07593 vocab=72d3ac5b
+-/
 theorem fourPolyToChosenBase_eq : fourPolyToChosenBase (k := k) D i =
     (tailPolyToChosenBase D i).comp (baseSpecialization D i) := by
   apply MvPolynomial.algHom_ext
@@ -153,6 +198,9 @@ theorem fourPolyToChosenBase_eq : fourPolyToChosenBase (k := k) D i =
       AlgEquiv.apply_symm_apply, tailPolyToApery]
     exact truncatedAperyMonomial_tail D i l
 
+/--
+@isnad1 id=eq.0h3v.s9.d1bf35d3f439 from=translated src=- shape=5410ca16 vocab=e4b865c0
+-/
 theorem fourPolyToChosenBase_ker :
     RingHom.ker (fourPolyToChosenBase (k := k) D i).toRingHom =
       D.toricIdeal ⊔ Ideal.span {MvPolynomial.X i} := by
@@ -167,12 +215,18 @@ theorem fourPolyToChosenBase_ker :
     ← RingHom.ker_eq_comap_bot]
   exact sup_comm _ _
 
+/--
+@isnad1 id=eq.0h3v.s9.c67b22f0bb9a from=translated src=- shape=74a6db53 vocab=0dcf2634
+-/
 theorem fourPolyToChosenBase_ker_comap :
     RingHom.ker (fourPolyToChosenBase (k := k) D i).toRingHom =
       Ideal.comap (baseSpecialization D i).toRingHom (chosenBaseDefiningIdeal D i) := by
   rw [fourPolyToChosenBase_eq]
   exact (RingHom.comap_ker _ _).symm
 
+/--
+@isnad1 id=eq.0h3v.s8.4eeac80ff4bf from=translated src=- shape=557f1e71 vocab=04164fc3
+-/
 theorem map_toricIdeal_eq_chosenBaseDefiningIdeal :
     Ideal.map (baseSpecialization (k := k) D i).toRingHom D.toricIdeal =
       chosenBaseDefiningIdeal D i := by

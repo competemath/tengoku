@@ -28,7 +28,9 @@ private abbrev A (k : Type*) [Field k] (S : Finset (Normal a b c)) :=
   MonomialArtin k S
 
 /-- The final polynomial quotient is local, transported across the frozen
-final-presentation algebra equivalence.-/
+final-presentation algebra equivalence.
+@isnad1 id=islocalr.3h5v.s6.860b553d0db0 from=translated src=- shape=ee94638b vocab=6260c981
+-/
 theorem quotientIsLocalRing (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S) :
     IsLocalRing (Q k S) := by
@@ -43,6 +45,9 @@ def quotientAugmentationIdeal (S : Finset (Normal a b c))
   (augmentationIdeal (k := k) S hS hdom).comap
     (finitePolynomialQuotientEquiv (k := k) S hS hdom).toRingHom
 
+/--
+@isnad1 id=iff.2h6v.s9.669b9cf61267 from=translated src=- shape=710358d5 vocab=fcab9aa2
+-/
 theorem mem_quotientAugmentationIdeal_iff
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (q : Q k S) :
@@ -52,7 +57,9 @@ theorem mem_quotientAugmentationIdeal_iff
   Iff.rfl
 
 /-- Mathlib's intrinsic maximal ideal on the quotient is exactly the
-transported augmentation ideal.-/
+transported augmentation ideal.
+@isnad1 id=eq.3h5v.s7.26efb8ae5f1f from=translated src=- shape=f9dc9b2f vocab=02122b8b
+-/
 theorem quotientMaximalIdeal_eq_augmentationIdeal
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S) :
@@ -66,7 +73,9 @@ theorem quotientMaximalIdeal_eq_augmentationIdeal
       (finitePolynomialQuotientEquiv (k := k) S hS hdom).bijective
   exact (IsLocalRing.eq_maximalIdeal hmax).symm
 
-/-- Exact maximal-ideal membership transport.-/
+/-- Exact maximal-ideal membership transport.
+@isnad1 id=iff.3h6v.s9.b13d44132295 from=translated src=- shape=21250928 vocab=c78d3819
+-/
 theorem quotientMaximalIdeal_mem_iff
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -97,7 +106,9 @@ def QuotientSocle (S : Finset (Normal a b c)) (hS : S.Nonempty)
   }
 
 /-- Intrinsic quotient socle membership is exactly direct-socle membership
-under the frozen algebra equivalence.-/
+under the frozen algebra equivalence.
+@isnad1 id=iff.3h6v.s10.a7744ea52afe from=translated src=- shape=15024bbb vocab=717d7e1e
+-/
 theorem mem_quotientSocle_iff_equiv_mem_directSocle
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -141,7 +152,9 @@ noncomputable def quotientSocleEquivDirectSocle
   map_smul' t q := by ext; simp
 
 /-- The intrinsic quotient socle has dimension equal to the selected-root
-cardinality.-/
+cardinality.
+@isnad1 id=eq.4h5v.s10.ac29d836fd8c from=translated src=- shape=bf66d9b7 vocab=dd055ffc
+-/
 theorem quotientSocle_finrank_eq_card
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -156,6 +169,9 @@ def quotientType (k : Type*) [Field k] (S : Finset (Normal a b c))
     (hlive : IsLiveTie S) : ℕ :=
   Module.finrank k (QuotientSocle (k := k) S hS hdom hlive)
 
+/--
+@isnad1 id=eq.4h5v.s6.110b8c6cb26c from=translated src=- shape=6f9dded6 vocab=d1c527d7
+-/
 theorem quotientType_eq_rootCard
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -163,6 +179,9 @@ theorem quotientType_eq_rootCard
     quotientType k S hS hdom hlive = S.card :=
   quotientSocle_finrank_eq_card (k := k) S hS hdom hlive hanti
 
+/--
+@isnad1 id=iff.4h5v.s6.a3be9724a4a8 from=translated src=- shape=0c17cfbf vocab=d1c527d7
+-/
 theorem quotientType_eq_three_iff
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)

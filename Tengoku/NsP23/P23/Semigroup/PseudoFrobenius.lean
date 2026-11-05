@@ -22,17 +22,29 @@ namespace FourGeneratedNumericalSemigroup
 
 variable (D : FourGeneratedNumericalSemigroup)
 
+/--
+@isnad1 id=intingam.0h1v.s3.318ac911aa42 from=translated src=- shape=8ba9e24c vocab=fa5a74b6
+-/
 @[simp] theorem intInGamma_zero : IntInGamma D 0 := ⟨0, by simp⟩
 
+/--
+@isnad1 id=intingam.0h2v.s4.a3ae94907b2a from=translated src=- shape=d1aa6395 vocab=1f343bfe
+-/
 theorem intInGamma_generator (j : Fin 4) : IntInGamma D (D.n j) :=
   ⟨D.generator j, by simp [generator]⟩
 
+/--
+@isnad1 id=intingam.2h3v.s4.ae7109d93583 from=translated src=- shape=d203bb48 vocab=8fd38c85
+-/
 theorem intInGamma_add {x y : ℤ} (hx : IntInGamma D x)
     (hy : IntInGamma D y) : IntInGamma D (x + y) := by
   rcases hx with ⟨s, rfl⟩
   rcases hy with ⟨t, rfl⟩
   exact ⟨s + t, by simp⟩
 
+/--
+@isnad1 id=iff.0h2v.s5.663f12275c0c from=translated src=- shape=e649714b vocab=35af5843
+-/
 @[simp] theorem intInGamma_natCast (s : ℕ) :
     IntInGamma D (s : ℤ) ↔ s ∈ D.Gamma := by
   constructor
@@ -81,7 +93,9 @@ private theorem exists_generator_add_of_ne_zero (s : D.Gamma) (hs : s ≠ 0) :
       (D.weightedDegree_generatorFactorization j)
 
 /-- The pseudo-Frobenius condition is detected by the four minimal
-generators.-/
+generators.
+@isnad1 id=iff.0h2v.s5.9bea3b3e7e68 from=translated src=- shape=26aa9e20 vocab=6604697d
+-/
 theorem isPseudoFrobenius_iff_generators (f : ℤ) :
     D.IsPseudoFrobenius f ↔
       (¬ IntInGamma D f ∧ ∀ j : Fin 4, IntInGamma D (f + D.n j)) := by
@@ -132,6 +146,9 @@ private theorem pfToApery_injective (i : Fin 4) :
   rw [D.pfToApery_val i f, D.pfToApery_val i g] at hv
   omega
 
+/--
+@isnad1 id=finite.0h1v.s2.b5d4004b01e6 from=translated src=- shape=76a08d12 vocab=91e2a15c
+-/
 instance pseudoFrobeniusFinite : Finite D.PseudoFrobeniusIndex :=
   Finite.of_injective (D.pfToApery 0) (D.pfToApery_injective 0)
 
@@ -146,6 +163,9 @@ abbrev AperySocleIndex (i : Fin 4) :=
   {s : D.AperyIndex i //
     ∀ j : Fin 3, ¬ D.IsApery i (s.1 + D.tail i j)}
 
+/--
+@isnad1 id=finite.0h2v.s3.8abd80a50949 from=translated src=- shape=4e72ac67 vocab=f3f472a1
+-/
 instance aperySocleIndexFinite (i : Fin 4) : Finite (D.AperySocleIndex i) :=
   inferInstance
 
@@ -220,6 +240,9 @@ def pseudoFrobeniusEquivAperySocle (i : Fin 4) :
       omega
     exact_mod_cast hz
 
+/--
+@isnad1 id=eq.0h2v.s4.f7a75f9eb7cb from=translated src=- shape=8cc5c399 vocab=33afd4b3
+-/
 theorem pseudoFrobenius_card_eq_aperySocle_card (i : Fin 4) :
     Fintype.card (D.AperySocleIndex i) = D.semigroupType := by
   rw [semigroupType, Fintype.card_congr (D.pseudoFrobeniusEquivAperySocle i)]

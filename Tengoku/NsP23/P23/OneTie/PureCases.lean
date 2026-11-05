@@ -71,6 +71,9 @@ def pureBelowBorderNat (a b r u v x y z : ℕ) : Prop :=
   (x = 0 ∧ y = 0 ∧ z = v + 2) ∨
   (0 < v ∧ x = r + 1 ∧ y = u + 1 - b ∧ z = 1)
 
+/--
+@isnad1 id=iff.2h6v.s7.8120cc87d06d from=translated src=- shape=4d84f1d5 vocab=b74c6468
+-/
 theorem mem_pureDominantExpectedBorderBelow_iff
     (ha : 2 ≤ a) (r u v : ℕ) (hr : r < a - 1) (m : Normal a b 0) :
     m ∈ pureDominantExpectedBorderBelow (a := a) (b := b) ha r u v hr ↔
@@ -85,6 +88,9 @@ theorem mem_pureDominantExpectedBorderBelow_iff
         pureBelowZH, pureZX, pureZY, pureZZ, pureBelowBorderNat, hh, hv]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.5h8v.s7.c0fa80ab1a9b from=translated src=- shape=426593bd vocab=ecf96342
+-/
 theorem pureBelow_border_arithmetic
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) (hr : r < a - 1)
     (x y z : ℕ) (hxlt : x < a) :
@@ -113,6 +119,9 @@ theorem pureBelow_border_arithmetic
 
 set_option maxHeartbeats 12000000 in
 set_option maxRecDepth 8192 in
+/--
+@isnad1 id=eq.4h5v.s6.43ce174a51ff from=translated src=- shape=ab283552 vocab=313316b6
+-/
 theorem pureDominantBorder_below_exact
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) (hr : r < a - 1) :
     borderFinset (pureDominantSoclesBelow (a := a) (b := b) r u v hr) =
@@ -146,6 +155,9 @@ theorem pureDominantBorder_below_exact
         hx, hx0, hby, hr] at harith ⊢
       grind
 
+/--
+@isnad1 id=eq.4h5v.s6.e329ec563ff0 from=translated src=- shape=621d68eb vocab=b628e19a
+-/
 theorem pureDominantBorder_below_card
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) (hr : r < a - 1) :
     (borderFinset (pureDominantSoclesBelow (a := a) (b := b) r u v hr)).card =
@@ -236,6 +248,9 @@ def pureLastBorderNat (b v x y z : ℕ) : Prop :=
   (x = 0 ∧ y = 0 ∧ z = v + 2) ∨
   (0 < v ∧ x = 0 ∧ y = b ∧ z = 1)
 
+/--
+@isnad1 id=iff.1h4v.s6.666a3c78c55b from=translated src=- shape=40d56959 vocab=dddf4707
+-/
 theorem mem_pureDominantExpectedBorderLast_iff
     (ha : 2 ≤ a) (v : ℕ) (m : Normal a b 0) :
     m ∈ pureDominantExpectedBorderLast (a := a) (b := b) ha v ↔
@@ -246,6 +261,9 @@ theorem mem_pureDominantExpectedBorderLast_iff
       pureLastZH, pureZX, pureZY, pureZZ, pureLastBorderNat, hv]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.3h6v.s7.b975119088ea from=translated src=- shape=5d1f5482 vocab=79b42251
+-/
 theorem pureLast_border_arithmetic
     (ha : 2 ≤ a) (hb : 2 ≤ b) (x y z : ℕ) (hxlt : x < a) :
     (¬pureLastStandardNat a b v x y z ∧
@@ -278,6 +296,9 @@ theorem pureLast_border_arithmetic
 
 set_option maxHeartbeats 12000000 in
 set_option maxRecDepth 8192 in
+/--
+@isnad1 id=eq.2h3v.s5.42b09efea614 from=translated src=- shape=4657594d vocab=4a8a6fd8
+-/
 theorem pureDominantBorder_last_exact
     (ha : 2 ≤ a) (hb : 2 ≤ b) :
     borderFinset (pureDominantSoclesLast (a := a) (b := b) v) =
@@ -312,6 +333,9 @@ theorem pureDominantBorder_last_exact
         hx, hx0, hby, hlast] at harith ⊢
       grind
 
+/--
+@isnad1 id=eq.2h3v.s6.91ba049a7642 from=translated src=- shape=303ee429 vocab=52409fa4
+-/
 theorem pureDominantBorder_last_card
     (ha : 2 ≤ a) (hb : 2 ≤ b) :
     (borderFinset (pureDominantSoclesLast (a := a) (b := b) v)).card =
@@ -351,7 +375,9 @@ theorem pureDominantBorder_last_card
       using hs
 
 /-- Both command-authorized live-tie branches have six final border points
-when `v≥1`.-/
+when `v≥1`.
+@isnad1 id=and.3h5v.s7.a3be2ae07ca0 from=translated src=- shape=201f8885 vocab=d4b409f1
+-/
 theorem pureDominant_card_of_pos
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v) :
     (∀ (hr : r < a - 1), b ≤ u →
@@ -367,7 +393,9 @@ theorem pureDominant_card_of_pos
     simpa [hv'] using pureDominantBorder_last_card (v := v) ha hb
 
 /-- Both command-authorized live-tie branches have five final border points
-when `v=0`.-/
+when `v=0`.
+@isnad1 id=and.2h4v.s7.63b17a5d7de7 from=translated src=- shape=ad10d6b5 vocab=d4b409f1
+-/
 theorem pureDominant_card_of_zero
     (ha : 2 ≤ a) (hb : 2 ≤ b) :
     (∀ (hr : r < a - 1), b ≤ u →
@@ -380,7 +408,9 @@ theorem pureDominant_card_of_zero
   · simpa using pureDominantBorder_last_card (v := 0) ha hb
 
 /-- Neither command-authorized dominant pure branch can have cardinality
-four.-/
+four.
+@isnad1 id=and.2h5v.s6.e85734881b66 from=translated src=- shape=892e7330 vocab=d4b409f1
+-/
 theorem pureDominant_card_ne_four
     (ha : 2 ≤ a) (hb : 2 ≤ b) :
     (∀ (hr : r < a - 1), b ≤ u →

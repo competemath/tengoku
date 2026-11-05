@@ -13,6 +13,9 @@ set_option maxHeartbeats 1200000
 def pureYXZRoots (B C r v : ℕ) (hra : r < a) : Finset (Normal a b 0) :=
   {⟨a-1,B-1,v-1,by have := NeZero.pos a; omega⟩,⟨r-1,b-1,C-1,by omega⟩}
 
+/--
+@isnad1 id=eq.9h7v.s8.bd0537a51ea3 from=translated src=- shape=569d89cf vocab=98524c66
+-/
 theorem pure_y_xz_three_border_roots_exact (S : Finset (Normal a b 0))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (ha : IsRootAntichain S) (B C r v : ℕ) (hr : 0 < r) (hra : r < a)
@@ -39,6 +42,9 @@ theorem pure_y_xz_three_border_roots_exact (S : Finset (Normal a b 0))
   have := p.x_lt
   omega
 
+/--
+@isnad1 id=le.10h7v.s8.b2d7877d4962 from=translated src=- shape=d3404e50 vocab=b8a47a3e
+-/
 theorem pure_y_xz_three_border_type_le_two (S : Finset (Normal a b 0))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (B C r v : ℕ) (hr : 0 < r) (hra : r < a)
@@ -59,6 +65,9 @@ theorem pure_y_xz_three_border_type_le_two (S : Finset (Normal a b 0))
     simpa [T] using Finset.card_insert_le
       (⟨a-1,B-1,v-1,by omega⟩ : Normal a b 0) {⟨r-1,b-1,C-1,by omega⟩})
 
+/--
+@isnad1 id=le.10h7v.s8.ed5b4a66b8ee from=translated src=- shape=687ecdfd vocab=b8a47a3e
+-/
 theorem pure_y_xy_three_border_type_le_two (S : Finset (Normal a b 0))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (B C r u : ℕ) (hr : 0 < r) (hra : r < a)
@@ -84,6 +93,9 @@ theorem pure_y_xy_three_border_type_le_two (S : Finset (Normal a b 0))
     simpa [T] using Finset.card_insert_le
       (⟨r-1,E-1,C-1,by omega⟩ : Normal a b 0) {⟨a-1,V-1,C-1,by omega⟩})
 
+/--
+@isnad1 id=le.12h8v.s8.47bd30689fa9 from=translated src=- shape=00c3506f vocab=eeb69a57
+-/
 theorem pure_two_xy_three_border_type_le_two (S : Finset (Normal a b 0))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (C r s u v : ℕ) (hr : 0 < r) (hsr : r < s)

@@ -17,7 +17,9 @@ variable {a b c : ℕ} [NeZero a]
 private theorem reduction_a_pos : 0 < a := Nat.pos_of_ne_zero (NeZero.ne a)
 
 /-- Every selected root distinct from a dominant root is a minimal border point
-of the dominant principal core.-/
+of the dominant principal core.
+@isnad1 id=mem.5h6v.s7.2ba9f29c006b from=translated src=- shape=4320c6e3 vocab=e6fdca66
+-/
 theorem dominant_extra_root_mem_principalBorder
     (S : Finset (Normal a b c)) (ha : 2 ≤ a)
     (hanti : IsRootAntichain S) {C R : Normal a b c}
@@ -42,6 +44,9 @@ theorem dominant_extra_root_mem_principalBorder
       have hdCne : d ≠ C := Finset.ne_of_mem_erase hdroot
       exact False.elim ((hanti d hdS R hR hdne) hdR)
 
+/--
+@isnad1 id=eq.2h5v.s6.9bfcdcaf0ade from=translated src=- shape=feac64dd vocab=819c0b9b
+-/
 theorem dominant_erase_card_eq_two
     (S : Finset (Normal a b c)) {C : Normal a b c}
     (hcard : S.card = 3) (hdom : IsDominantRoot S C) :
@@ -51,7 +56,9 @@ theorem dominant_erase_card_eq_two
 /-! ## Mixed reduction -/
 
 /-- In the mixed domain, a live tie cannot be one of the two extra roots of a
-dominant configuration.-/
+dominant configuration.
+@isnad1 id=mem.6h5v.s6.7700a7b6fa4f from=translated src=- shape=7aafec22 vocab=ba88534d
+-/
 theorem mixed_dominant_tie_mem_core
     (S : Finset (Normal a b c)) (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hlive : IsLiveTie S) (hanti : IsRootAntichain S)
@@ -98,6 +105,9 @@ theorem mixed_dominant_tie_mem_core
       simp [Normal.DividesCriterion, liveTiePoint, hbounds]
     exact ((hanti liveTiePoint htS C hdom.1 htne) htC).elim
 
+/--
+@isnad1 id=and.6h5v.s6.6090cd28c461 from=translated src=- shape=2152477b vocab=c7f14d40
+-/
 theorem mixed_dominant_core_bounds
     (S : Finset (Normal a b c)) (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hlive : IsLiveTie S) (hanti : IsRootAntichain S)
@@ -118,6 +128,9 @@ def mixedSoclesForPair (pair : MixedAddedPair)
   | .ZQ => mixedSoclesZQ r u v hr
   | .PQ => mixedSoclesPQ r u v hr
 
+/--
+@isnad1 id=eq.9h7v.s7.8046ba2250c0 from=translated src=- shape=a1434f38 vocab=038b341d
+-/
 theorem mixed_dominant_last_eq_family
     (S : Finset (Normal a b c)) (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hcard : S.card = 3) (hlive : IsLiveTie S)
@@ -154,6 +167,9 @@ theorem mixed_dominant_last_eq_family
       subst r
       simp [mixedDominantSoclesLast, mixedCore]
 
+/--
+@isnad1 id=eq.9h7v.s7.0e8de2a8c391 from=translated src=- shape=72360852 vocab=527f6bc3
+-/
 theorem mixed_dominant_last_border_card
     (S : Finset (Normal a b c)) (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hcard : S.card = 3) (hlive : IsLiveTie S)
@@ -167,6 +183,9 @@ theorem mixed_dominant_last_border_card
   rw [mixed_dominant_last_eq_family S ha hb hc hcard hlive hanti hr hlast hdom]
   exact mixedDominantLast_border_card ha hb hc hu hv
 
+/--
+@isnad1 id=ex.9h7v.s7.0589c12915f3 from=translated src=- shape=b9794de8 vocab=35a66a58
+-/
 theorem mixed_dominant_below_pair
     (S : Finset (Normal a b c)) (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hcard : S.card = 3) (hlive : IsLiveTie S)
@@ -263,6 +282,9 @@ inductive MixedDominantFourBorderSurvivor
       (hu : b ≤ u) (hv : c ≤ v) (nonprimitive : 1 < u ∨ 1 < v)
       (roots : S = mixedSoclesPQ r u v hr) : MixedDominantFourBorderSurvivor S
 
+/--
+@isnad1 id=mixeddom.8h5v.s6.4b3b7198c91b from=translated src=- shape=04c94cdc vocab=867f3dc3
+-/
 theorem mixed_dominant_four_border_survivor
     (S : Finset (Normal a b c)) (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hcard : S.card = 3) (hlive : IsLiveTie S)
@@ -307,6 +329,9 @@ inductive PureDominantBranch (S : Finset (Normal a b 0)) : Prop where
   | lastTieCore {u v : ℕ} (hu : b ≤ u)
       (roots : S = pureDominantSoclesLastCore u v) : PureDominantBranch S
 
+/--
+@isnad1 id=puredomi.6h4v.s6.ad505296ae23 from=translated src=- shape=c0f3d9e3 vocab=d343cde0
+-/
 theorem pure_dominant_three_branch_reduction
     (S : Finset (Normal a b 0)) (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hcard : S.card = 3) (hlive : IsLiveTie S)
@@ -449,6 +474,9 @@ theorem pure_dominant_three_branch_reduction
         subst u
         simp [pureDominantSoclesLast, pureCore, pureH, pureZ]
 
+/--
+@isnad1 id=ne.6h4v.s7.3af9b7f84082 from=translated src=- shape=4a400648 vocab=792f2c6a
+-/
 theorem pure_dominant_border_card_ne_four_general
     (S : Finset (Normal a b 0)) (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hcard : S.card = 3) (hlive : IsLiveTie S)

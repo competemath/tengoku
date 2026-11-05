@@ -38,29 +38,47 @@ def yzZ : YZPoly k := MvPolynomial.X 1
 def iteratedTiePolynomial (a b c : ℕ) : Polynomial (YZPoly k) :=
   Polynomial.X ^ a - Polynomial.C (yzY ^ b * yzZ ^ c)
 
+/--
+@isnad1 id=eq.0h1v.s9.f47abcc2e0d8 from=translated src=- shape=a27c0860 vocab=2fb03845
+-/
 @[simp] theorem threePolyEquivIterated_polyX :
     threePolyEquivIterated (k := k) polyX = Polynomial.X := by
   exact MvPolynomial.finSuccEquiv_X_zero
 
+/--
+@isnad1 id=eq.0h1v.s9.2267a0d469f1 from=translated src=- shape=0903552b vocab=74b9e88c
+-/
 @[simp] theorem threePolyEquivIterated_polyY :
     threePolyEquivIterated (k := k) polyY = Polynomial.C yzY := by
   simpa [threePolyEquivIterated, polyY, yzY] using
     (MvPolynomial.finSuccEquiv_X_succ (R := k) (n := 2) (j := (0 : Fin 2)))
 
+/--
+@isnad1 id=eq.0h1v.s9.a1fb229807ef from=translated src=- shape=0903552b vocab=22547d5c
+-/
 @[simp] theorem threePolyEquivIterated_polyZ :
     threePolyEquivIterated (k := k) polyZ = Polynomial.C yzZ := by
   simpa [threePolyEquivIterated, polyZ, yzZ] using
     (MvPolynomial.finSuccEquiv_X_succ (R := k) (n := 2) (j := (1 : Fin 2)))
 
+/--
+@isnad1 id=eq.0h4v.s9.d34862761d37 from=translated src=- shape=95bfe15c vocab=28bc8763
+-/
 @[simp] theorem threePolyEquivIterated_tiePolynomial :
     threePolyEquivIterated (k := k) (tiePolynomial (k := k) a b c) =
       iteratedTiePolynomial (k := k) a b c := by
   simp [tiePolynomial, iteratedTiePolynomial]
 
+/--
+@isnad1 id=monic.0h4v.s5.9675202c267a from=translated src=- shape=5de72ae3 vocab=85bb2135
+-/
 theorem iteratedTiePolynomial_monic :
     (iteratedTiePolynomial (k := k) a b c).Monic := by
   exact Polynomial.monic_X_pow_sub_C _ (NeZero.ne a)
 
+/--
+@isnad1 id=eq.0h4v.s5.3ec48101dcfa from=translated src=- shape=05846fff vocab=4e547556
+-/
 @[simp] theorem iteratedTiePolynomial_natDegree :
     (iteratedTiePolynomial (k := k) a b c).natDegree = a := by
   exact Polynomial.natDegree_X_pow_sub_C
@@ -69,6 +87,9 @@ theorem iteratedTiePolynomial_monic :
 def tieIdeal (k : Type*) [Field k] (a b c : ℕ) [NeZero a] : Ideal (ThreePoly k) :=
   Ideal.span {tiePolynomial (k := k) a b c}
 
+/--
+@isnad1 id=mem.0h4v.s7.a98dfdd0f98c from=translated src=- shape=e3b63776 vocab=a562576d
+-/
 theorem tiePolynomial_mem_tieIdeal :
     tiePolynomial (k := k) a b c ∈ tieIdeal k a b c :=
   Ideal.subset_span (Set.mem_singleton _)
@@ -83,12 +104,17 @@ def reducedRepresentative (a b c : ℕ) [NeZero a] (f : ThreePoly k) : ThreePoly
   (threePolyEquivIterated (k := k)).symm
     (threePolyEquivIterated (k := k) f %ₘ iteratedTiePolynomial (k := k) a b c)
 
+/--
+@isnad1 id=eq.0h5v.s10.1319de7da37f from=translated src=- shape=d71877f9 vocab=087f0ee6
+-/
 @[simp] theorem threePolyEquivIterated_reducedRepresentative (f : ThreePoly k) :
     threePolyEquivIterated (k := k) (reducedRepresentative a b c f) =
       threePolyEquivIterated (k := k) f %ₘ iteratedTiePolynomial (k := k) a b c := by
   simp [reducedRepresentative]
 
-/-- The monic remainder has no x exponent reaching the tie degree.-/
+/-- The monic remainder has no x exponent reaching the tie degree.
+@isnad1 id=isxreduc.0h5v.s5.49c8620c265c from=translated src=- shape=1232a081 vocab=f1e84dd5
+-/
 theorem reducedRepresentative_isReduced (f : ThreePoly k) :
     IsXReduced a (reducedRepresentative a b c f) := by
   intro d hd
@@ -116,7 +142,9 @@ theorem reducedRepresentative_isReduced (f : ThreePoly k) :
         exact (NeZero.ne a this).elim)
   exact hle.trans_lt hlt
 
-/-- Every polynomial differs from its monic remainder by a tie multiple.-/
+/-- Every polynomial differs from its monic remainder by a tie multiple.
+@isnad1 id=mem.0h5v.s8.a812b05b459f from=translated src=- shape=bdbd18a8 vocab=7d7159b1
+-/
 theorem sub_reducedRepresentative_mem_tieIdeal (f : ThreePoly k) :
     f - reducedRepresentative a b c f ∈ tieIdeal k a b c := by
   let E := threePolyEquivIterated (k := k)
@@ -134,7 +162,9 @@ theorem sub_reducedRepresentative_mem_tieIdeal (f : ThreePoly k) :
   exact Ideal.mul_mem_right h (tieIdeal k a b c)
     (tiePolynomial_mem_tieIdeal (k := k) (a := a) (b := b) (c := c))
 
-/-- Exact coefficient formula for the polynomial-to-normal map.-/
+/-- Exact coefficient formula for the polynomial-to-normal map.
+@isnad1 id=eq.0h6v.s8.b68e9261d290 from=translated src=- shape=d7baeb52 vocab=a098f18e
+-/
 theorem coeff_polyToNormalAlg (f : ThreePoly k) (p : Normal a b c) :
     (polyToNormalAlg (k := k) (a := a) (b := b) (c := c) f).coeff p =
       ∑ d ∈ f.support,
@@ -167,7 +197,9 @@ theorem coeff_polyToNormalAlg (f : ThreePoly k) (p : Normal a b c) :
       intro d hd
       simp [Finsupp.single_apply]
 
-/-- Normalization is injective on x-reduced exponent triples.-/
+/-- Normalization is injective on x-reduced exponent triples.
+@isnad1 id=eq.3h5v.s7.9f408e1fb736 from=translated src=- shape=be696183 vocab=32386931
+-/
 theorem normalizeExponent_injective_of_x_lt {d e : Fin 3 →₀ ℕ}
     (hd : d 0 < a) (he : e 0 < a)
     (h : normalizeExponent a b c d = normalizeExponent a b c e) : d = e := by
@@ -186,7 +218,9 @@ theorem normalizeExponent_injective_of_x_lt {d e : Fin 3 →₀ ℕ}
   · exact hy
   · exact hz
 
-/-- The polynomial map is injective on x-reduced representatives.-/
+/-- The polynomial map is injective on x-reduced representatives.
+@isnad1 id=eq.2h5v.s8.881cda2501d3 from=translated src=- shape=6ab0007f vocab=7ea76bea
+-/
 theorem polyToNormalAlg_injective_on_reduced {f : ThreePoly k}
     (hred : IsXReduced a f)
     (hmap : polyToNormalAlg (k := k) (a := a) (b := b) (c := c) f = 0) :

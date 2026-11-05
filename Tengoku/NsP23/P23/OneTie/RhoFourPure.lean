@@ -14,19 +14,31 @@ variable {a b : ℕ} [NeZero a] {k : Type*} [Field k]
 namespace PureThreeBorderData
 variable {S : Finset (Normal a b 0)} (P : PureThreeBorderData S)
 
+/--
+@isnad1 id=mem.4h4v.s6.d36b5ef5a3af from=translated src=- shape=8a7c7fad vocab=69c7741f
+-/
 theorem xRoot_mem (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (ha : IsRootAntichain S) (huv : P.u < P.v) : P.xRoot ∈ S :=
   Eq.mp (congrArg (fun T => P.xRoot ∈ T) (pure_three_border_roots_exact P hS hd ha huv).symm)
     (by simp [threeRoots])
+/--
+@isnad1 id=mem.4h4v.s6.e2b378c89cb7 from=translated src=- shape=8a7c7fad vocab=5ced0ce4
+-/
 theorem yRoot_mem (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (ha : IsRootAntichain S) (huv : P.u < P.v) : P.yRoot ∈ S :=
   Eq.mp (congrArg (fun T => P.yRoot ∈ T) (pure_three_border_roots_exact P hS hd ha huv).symm)
     (by simp [threeRoots])
+/--
+@isnad1 id=mem.4h4v.s6.f00884bed38d from=translated src=- shape=8a7c7fad vocab=ce4f2a96
+-/
 theorem zRoot_mem (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (ha : IsRootAntichain S) (huv : P.u < P.v) : P.zRoot ∈ S :=
   Eq.mp (congrArg (fun T => P.zRoot ∈ T) (pure_three_border_roots_exact P hS hd ha huv).symm)
     (by simp [threeRoots])
 
+/--
+@isnad1 id=and.2h4v.s8.54bc1e7fa6c4 from=translated src=- shape=fb0885da vocab=05a81b1d
+-/
 theorem annihilator_scalars_survive (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0) :
     (yAxis P.u : Normal a b 0) ∈ standardFinset S ∧
     (yAxis P.v : Normal a b 0) ∈ standardFinset S ∧
@@ -50,6 +62,9 @@ theorem annihilator_scalars_survive (hS : S.Nonempty) (hd : IsLiveParameterDomai
       simp [zAxis]
       omega
 
+/--
+@isnad1 id=eq.8h8v.s11.ca0ba16934e0 from=translated src=- shape=3358cc35 vocab=7186348c
+-/
 theorem root_coeff_zero_of_annihilator_products (hS : S.Nonempty)
     (hd : IsLiveParameterDomain a b 0) (ha : IsRootAntichain S) (huv : P.u < P.v)
     (e : MonomialIndex S)
@@ -78,6 +93,9 @@ theorem root_coeff_zero_of_annihilator_products (hS : S.Nonempty)
     omega
 end PureThreeBorderData
 
+/--
+@isnad1 id=eq.5h5v.s9.90f625287b8b from=translated src=- shape=fab9eafe vocab=ce9166a3
+-/
 theorem pure_three_border_x_trace_forces_r_one {S : Finset (Normal a b 0)}
     (P : PureThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (hl : IsLiveTie S) (ha : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3)
@@ -115,6 +133,9 @@ theorem pure_three_border_x_trace_forces_r_one {S : Finset (Normal a b 0)}
     (by omega) ha hd .x _ hxtrace
   exact hcoeff (P.root_coeff_zero_of_annihilator_products hS hd ha huv ei hyu hyv hzw F s hs)
 
+/--
+@isnad1 id=eq.5h5v.s9.11830c4d175e from=translated src=- shape=1085ba1d vocab=533e2356
+-/
 theorem pure_three_border_y_trace_forces_v_endpoint {S : Finset (Normal a b 0)}
     (P : PureThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (hl : IsLiveTie S) (ha : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3)
@@ -148,6 +169,9 @@ theorem pure_three_border_y_trace_forces_v_endpoint {S : Finset (Normal a b 0)}
   obtain ⟨F,s,hs,hcoeff⟩ := exists_root_image_with_variable_coeff_of_mem_trace S hS
     (by omega) ha hd .y _ hytrace
   exact hcoeff (P.root_coeff_zero_of_annihilator_products hS hd ha huv ei hyu hyv hzw F s hs)
+/--
+@isnad1 id=eq.7h5v.s9.765370ceba36 from=translated src=- shape=4f829131 vocab=4c052f37
+-/
 theorem pure_three_border_z_trace_forces_w_endpoint {S : Finset (Normal a b 0)}
     (P : PureThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (hl : IsLiveTie S) (ha : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3)
@@ -242,6 +266,9 @@ theorem pure_three_border_z_trace_forces_w_endpoint {S : Finset (Normal a b 0)}
     simp [Normal.exact_divides_iff,Normal.DividesCriterion,zw,zAxis,PureThreeBorderData.zRoot]
     omega
 
+/--
+@isnad1 id=and.6h4v.s7.820608ba144f from=translated src=- shape=397291b3 vocab=567cd3a3
+-/
 theorem pure_three_border_ng_forces_endpoints {S : Finset (Normal a b 0)}
     (P : PureThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (hl : IsLiveTie S) (ha : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3)

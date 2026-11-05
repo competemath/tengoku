@@ -112,7 +112,9 @@ private theorem isDirectionalCentre_x_criterion_iff (S : Finset (Normal a b c))
       · rw [Normal.predecessor_x_none s hsx hw] at hq
         contradiction
 
-/-- The `y`-direction centre condition, fully expanded into coordinate inequalities.-/
+/-- The `y`-direction centre condition, fully expanded into coordinate inequalities.
+@isnad1 id=iff.0h5v.s7.6cb198e2d902 from=translated src=- shape=32c38135 vocab=8b0d7c24
+-/
 theorem isDirectionalCentre_y_iff (S : Finset (Normal a b c))
     (centre : Normal a b c) :
     IsDirectionalCentre S .y centre ↔
@@ -123,7 +125,9 @@ theorem isDirectionalCentre_y_iff (S : Finset (Normal a b c))
   simpa [Normal.DividesCriterion, Normal.yPredecessor] using
     (isDirectionalCentre_y_criterion_iff S centre)
 
-/-- The `z`-direction centre condition, fully expanded into coordinate inequalities.-/
+/-- The `z`-direction centre condition, fully expanded into coordinate inequalities.
+@isnad1 id=iff.0h5v.s7.24cbbf11caac from=translated src=- shape=6ac2bff7 vocab=a0fc523e
+-/
 theorem isDirectionalCentre_z_iff (S : Finset (Normal a b c))
     (centre : Normal a b c) :
     IsDirectionalCentre S .z centre ↔
@@ -135,7 +139,9 @@ theorem isDirectionalCentre_z_iff (S : Finset (Normal a b c))
     (isDirectionalCentre_z_criterion_iff S centre)
 
 /-- The ordinary and wrapped `x`-direction centre conditions, fully expanded
-into coordinate inequalities.-/
+into coordinate inequalities.
+@isnad1 id=iff.0h5v.s8.fb3543a11164 from=translated src=- shape=be42bc81 vocab=d5f30308
+-/
 theorem isDirectionalCentre_x_iff (S : Finset (Normal a b c))
     (centre : Normal a b c) :
     IsDirectionalCentre S .x centre ↔

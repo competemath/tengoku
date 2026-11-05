@@ -29,6 +29,9 @@ def transportDirectCanonicalHom (E : MonomialArtin k S ≃ₐ[k] MonomialArtin k
     rw [he,F.map_smul]
     simp [smul_eq_mul]
 
+/--
+@isnad1 id=mem.1h11v.s9.41113aa6af21 from=translated src=- shape=75155538 vocab=e8482fcf
+-/
 theorem directTrace_transport (E : MonomialArtin k S ≃ₐ[k] MonomialArtin k T)
     {v : MonomialArtin k S} (hv : v ∈ TraceSubmodule k S) : E v ∈ TraceSubmodule k T := by
   rw [trace_eq_span_traceValueSet] at hv
@@ -46,6 +49,9 @@ theorem directTrace_transport (E : MonomialArtin k S ≃ₐ[k] MonomialArtin k T
   · intro r x hx hx'
     simpa [smul_eq_mul] using (TraceSubmodule k T).smul_mem (E r) hx'
 
+/--
+@isnad1 id=iff.0h11v.s9.64296fc23b4b from=translated src=- shape=04237fea vocab=e8482fcf
+-/
 theorem directTrace_mem_iff_algEquiv (E : MonomialArtin k S ≃ₐ[k] MonomialArtin k T)
     (v : MonomialArtin k S) : E v ∈ TraceSubmodule k T ↔ v ∈ TraceSubmodule k S := by
   constructor
@@ -75,6 +81,9 @@ def normalModelCongr (e : Normal a b c ≃* Normal a' b' c')
   exact (normalMonomialQuotientEquiv (k := k) S).symm.trans
     ((Ideal.quotientEquivAlg _ _ E hmap).trans (normalMonomialQuotientEquiv (k := k) T))
 
+/--
+@isnad1 id=eq.2h11v.s9.71bc39b11bdd from=translated src=- shape=e46b645c vocab=6210a494
+-/
 theorem normalModelCongr_X (e : Normal a b c ≃* Normal a' b' c')
     (he : ∀ p, e p ∈ standardSet T ↔ p ∈ standardSet S)
     (p : Normal a b c) (hp : p ∈ standardFinset S) :
@@ -97,6 +106,9 @@ def swapYZMulEquiv : Normal a b c ≃* Normal a c b where
   map_mul' p q := by
     apply Normal.ext <;> simp [swapYZ,Normal.mul,Normal.raw,Normal.normalize]
 
+/--
+@isnad1 id=eq.1h11v.s9.68e71ddcb15d from=translated src=- shape=8e0d3c8c vocab=828280b0
+-/
 theorem normalModelCongr_truncated (e : Normal a b c ≃* Normal a' b' c')
     (he : ∀ p, e p ∈ standardSet T ↔ p ∈ standardSet S) (p : Normal a b c) :
     normalModelCongr (k := k) e he (truncatedMonomial (k := k) S p) =
@@ -115,6 +127,9 @@ def swapYZDirectEquiv (S : Finset (Normal a b c)) :
     MonomialArtin k S ≃ₐ[k] MonomialArtin k (swapYZFinset S) :=
   normalModelCongr swapYZMulEquiv (fun p => mem_standardSet_swapYZFinset_iff S p)
 
+/--
+@isnad1 id=variable.4h5v.s6.9e4de7f06f15 from=translated src=- shape=b9759178 vocab=bdb6f5c7
+-/
 theorem swapYZVariablesInTrace (S : Finset (Normal a b c))
     (hd : IsLiveParameterDomain a b c) (hl : IsLiveTie S)
     (hl' : IsLiveTie (swapYZFinset S)) (hv : VariablesInTrace k S hl) :
@@ -131,6 +146,9 @@ theorem swapYZVariablesInTrace (S : Finset (Normal a b c))
   · simpa [swapYZMulEquiv,swapYZ,Normal.yGenerator,Normal.zGenerator] using hz'
   · simpa [swapYZMulEquiv,swapYZ,Normal.yGenerator,Normal.zGenerator] using hy'
 
+/--
+@isnad1 id=isrootan.1h4v.s5.0a7ff3534c73 from=translated src=- shape=81cd560f vocab=e8db1c26
+-/
 theorem swapYZIsRootAntichain (S : Finset (Normal a b c)) (ha : IsRootAntichain S) :
     IsRootAntichain (swapYZFinset S) := by
   intro p hp q hq hn hd
@@ -138,6 +156,9 @@ theorem swapYZIsRootAntichain (S : Finset (Normal a b c)) (ha : IsRootAntichain 
   obtain ⟨q',hq',rfl⟩ := Finset.mem_map.mp hq
   exact ha p' hp' q' hq' (fun he => hn (he ▸ rfl)) ((swapYZ_divides_iff p' q').mp hd)
 
+/--
+@isnad1 id=isliveti.2h4v.s5.6f6a2866deb7 from=translated src=- shape=047926dd vocab=f66831cc
+-/
 theorem swapYZIsLiveTie (S : Finset (Normal a b c))
     (hd : IsLiveParameterDomain a b c) (hl : IsLiveTie S) : IsLiveTie (swapYZFinset S) := by
   have ha1 : a ≠ 1 := by have := hd.1; omega

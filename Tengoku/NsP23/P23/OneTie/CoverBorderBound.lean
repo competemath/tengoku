@@ -8,6 +8,9 @@ noncomputable section
 open Classical
 variable {a b c : ℕ} [NeZero a]
 
+/--
+@isnad1 id=le.5h4v.s6.63eb36f066aa from=translated src=- shape=831eb82b vocab=76edb87d
+-/
 theorem mixed_topDeletion_border_card_le_five {S : Finset (Normal a b c)}
     (ha : 2≤a) (hb : 1≤b) (hc : 1≤c) (hlive : IsLiveTie S)
     (htop : IsTopDeletion S) : (borderFinset S).card≤5 := by
@@ -27,6 +30,9 @@ theorem mixed_topDeletion_border_card_le_five {S : Finset (Normal a b c)}
     omega
   · rw [topDeletionMixedBelow_border_card S ha hb hc hu hv (by omega) hne hstd]
 
+/--
+@isnad1 id=le.4h3v.s6.2b1739b84017 from=translated src=- shape=2d4ece29 vocab=76edb87d
+-/
 theorem pure_topDeletion_border_card_le_five {S : Finset (Normal a b 0)}
     (ha : 2≤a) (hb : 2≤b) (hlive : IsLiveTie S)
     (htop : IsTopDeletion S) : (borderFinset S).card≤5 := by
@@ -49,6 +55,9 @@ theorem pure_topDeletion_border_card_le_five {S : Finset (Normal a b 0)}
   rw [topDeletionPure_border_card S ha hb hu hv hrA hne hstd]
   omega
 
+/--
+@isnad1 id=le.2h4v.s5.4aa36185c476 from=translated src=- shape=d1d8a8ef vocab=688325b0
+-/
 theorem topDeletion_border_card_le_five {S : Finset (Normal a b c)}
     (h : CoverHypotheses S) (htop : IsTopDeletion S) : (borderFinset S).card≤5 := by
   rcases h.live_domain with hm | ⟨hb,hc⟩
@@ -73,6 +82,9 @@ private theorem typeThreeBase_border_le_five {S : Finset (Normal a b c)}
   | p4Z ha hb hv => rw [p4Z_border_card ha hb hv]; omega
   | p5Z ha hb hv => rw [p5Z_border_card ha hb hv]; omega
 
+/--
+@isnad1 id=le.2h4v.s5.37855bd4517e from=translated src=- shape=7042f750 vocab=935b101f
+-/
 theorem three_root_nondominant_border_card_le_five
     (S : Finset (Normal a b c)) (h : CoverHypotheses S) (h3 : S.card=3) :
     (borderFinset S).card≤5 := by
@@ -118,6 +130,9 @@ private theorem base_two_border_le_four {S : Finset (Normal a b c)}
   | p5Z ha hb hv =>
       simp [p5ZSocles,Finset.card_insert_eq_ite,Normal.mk.injEq] at h2 <;> omega
 
+/--
+@isnad1 id=le.2h4v.s5.070d24bb8ddb from=translated src=- shape=7042f750 vocab=935b101f
+-/
 theorem two_root_nondominant_border_card_le_four
     (S : Finset (Normal a b c)) (h : CoverHypotheses S) (h2 : S.card=2) :
     (borderFinset S).card≤4 := by
@@ -129,6 +144,9 @@ theorem two_root_nondominant_border_card_le_four
       have hp := base_two_border_le_four hh hc2 hs
       rwa [borderFinset_swapYZ_card] at hp
 
+/--
+@isnad1 id=le.1h4v.s5.89b8d550bce4 from=translated src=- shape=9205a821 vocab=1fef0b34
+-/
 theorem oneTie_nondominant_border_card_le_type_plus_two
     (S : Finset (Normal a b c)) (h : CoverHypotheses S) :
     (borderFinset S).card≤S.card+2 := by

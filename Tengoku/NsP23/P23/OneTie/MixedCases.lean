@@ -25,6 +25,9 @@ def singletonIf (condition : Prop) [Decidable condition]
   if condition then {m} else ∅
 
 omit [NeZero a] in
+/--
+@isnad1 id=iff.0h6v.s6.a2ff8dc524d7 from=translated src=- shape=37ffe2a8 vocab=a5119c07
+-/
 theorem mem_singletonIf_iff (condition : Prop) [Decidable condition]
     (m n : Normal a b c) :
     m ∈ singletonIf condition n ↔ condition ∧ m = n := by
@@ -39,6 +42,9 @@ def indicator (condition : Prop) [Decidable condition] : ℕ :=
   if condition then 1 else 0
 
 omit [NeZero a] in
+/--
+@isnad1 id=eq.1h6v.s6.78c4ef795e48 from=translated src=- shape=6e181f4b vocab=db21b791
+-/
 theorem card_union_singletonProofIf (s : Finset (Normal a b c))
     (condition : Prop) [Decidable condition] (m : condition → Normal a b c)
     (hnot : ∀ h, m h ∉ s) :
@@ -91,7 +97,9 @@ def mixedWrappedZY (u : ℕ) : Normal a b 1 :=
     omega⟩
 
 /-- At `c = 1`, the x-predecessor of `zY` is the wrapped endpoint
-`(a-1,u+1-b,0)`. This is the load-bearing endpoint in the `Y,P` table.-/
+`(a-1,u+1-b,0)`. This is the load-bearing endpoint in the `Y,P` table.
+@isnad1 id=eq.2h3v.s6.0c7ad0f05cee from=translated src=- shape=25fdf27b vocab=16b7ed0d
+-/
 theorem wrappedPredecessor_zY_c_eq_one
     (hb : 1 ≤ b) (hu : b ≤ u) :
     Normal.predecessor .x (mixedYTimesZ (a := a) (b := b) (c := 1) u) =
@@ -115,6 +123,9 @@ def mixedExpectedBorderYZ (ha : 2 ≤ a) (r u v : ℕ)
     singletonIf (1 < c) (mixedYTimesZ u) ∪
     singletonIf (1 < b) (mixedZTimesY v)
 
+/--
+@isnad1 id=iff.5h7v.s8.b847cf1b05f3 from=translated src=- shape=25c29a62 vocab=6458f359
+-/
 theorem mem_standardSet_mixedSoclesYZ_iff
     (hb : 1 ≤ b) (hc : 1 ≤ c) (hu : b ≤ u) (hv : c ≤ v)
     (hr : r < a - 1) (p : Normal a b c) :
@@ -144,6 +155,9 @@ def mixedYZBorderNat (b c r u v x y z : ℕ) : Prop :=
   (1 < b ∧ x = 0 ∧ y = 1 ∧ z = v + 1)
 
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=iff.2h7v.s6.6712e8757576 from=translated src=- shape=247b9f59 vocab=9dd71c74
+-/
 theorem mem_mixedExpectedBorderYZ_iff
     (ha : 2 ≤ a) (r u v : ℕ) (hr : r < a - 1) (m : Normal a b c) :
     m ∈ mixedExpectedBorderYZ (a := a) (b := b) (c := c) ha r u v hr ↔
@@ -157,6 +171,9 @@ theorem mem_mixedExpectedBorderYZ_iff
   simpa only [mixedYZBorderNat, or_assoc]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.7h9v.s8.190aa8c28acd from=translated src=- shape=184bbc15 vocab=45587deb
+-/
 theorem mixedYZ_border_arithmetic
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1)
@@ -197,6 +214,9 @@ theorem mixedYZ_border_arithmetic
         simp [hx, hx0, hby, hy, hz, mixedYZStandardNat,
           mixedYZBorderNat] <;> omega
 
+/--
+@isnad1 id=eq.6h6v.s6.4529a97ecc38 from=translated src=- shape=c7b7e3fc vocab=2c93cfcf
+-/
 theorem mixedBorderYZ_exact
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -231,6 +251,9 @@ theorem mixedBorderYZ_exact
         Normal.zPredecessor, hx, hx0, hby] using harith
 
 omit [NeZero a] in
+/--
+@isnad1 id=eq.1h6v.s6.72188951b0ea from=translated src=- shape=12d98611 vocab=0a0d5556
+-/
 theorem card_union_singletonIf (s : Finset (Normal a b c))
     (condition : Prop) [Decidable condition] (m : Normal a b c)
     (hnot : condition → m ∉ s) :
@@ -239,6 +262,9 @@ theorem card_union_singletonIf (s : Finset (Normal a b c))
   · simp [singletonIf, indicator, h, Finset.card_insert_of_notMem (hnot h)]
   · simp [singletonIf, indicator, h]
 
+/--
+@isnad1 id=eq.6h6v.s7.07151086f712 from=translated src=- shape=a25bab2e vocab=d9535a54
+-/
 theorem mixedBorderYZ_card
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -342,6 +368,9 @@ def mixedYPBorderNat (a b c r u v x y z : ℕ) : Prop :=
   (c < v ∧ x = r + 1 ∧ y = u + 1 - b ∧ z = 1) ∨
   (1 < c ∧ r + 1 < a - 1 ∧ x = 0 ∧ y = u + 1 ∧ z = 1)
 
+/--
+@isnad1 id=iff.5h7v.s6.a0c3bcd6c056 from=translated src=- shape=37667727 vocab=acf0fcec
+-/
 theorem mem_standardSet_mixedSoclesYP_iff
     (hb : 1 ≤ b) (hc : 1 ≤ c) (hu : b ≤ u) (hv : c ≤ v)
     (hr : r < a - 1) (p : Normal a b c) :
@@ -353,6 +382,9 @@ theorem mem_standardSet_mixedSoclesYP_iff
   omega
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=iff.2h7v.s6.8d502bbb8318 from=translated src=- shape=64ca5167 vocab=b1a6c005
+-/
 theorem mem_mixedExpectedBorderYP_iff
     (ha : 2 ≤ a) (r u v : ℕ) (hr : r < a - 1) (m : Normal a b c) :
     m ∈ mixedExpectedBorderYP (a := a) (b := b) (c := c) ha r u v hr ↔
@@ -374,6 +406,9 @@ theorem mem_mixedExpectedBorderYP_iff
 
 set_option maxHeartbeats 6400000 in
 omit [NeZero a] in
+/--
+@isnad1 id=iff.7h9v.s8.b9be5978a35c from=translated src=- shape=dcc2d1fe vocab=0c5cd99b
+-/
 theorem mixedYP_border_arithmetic
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1)
@@ -407,6 +442,9 @@ theorem mixedYP_border_arithmetic
         simp [hx0, hby, hy, hz, mixedYPStandardNat, mixedYPBorderNat]
         <;> grind (splits := 40)
 
+/--
+@isnad1 id=eq.6h6v.s6.113136e89243 from=translated src=- shape=c7b7e3fc vocab=be024e67
+-/
 theorem mixedBorderYP_exact
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -441,6 +479,9 @@ theorem mixedBorderYP_exact
         Normal.zPredecessor, hx, hx0, hby] using harith
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=eq.6h6v.s8.d6e2f0734db2 from=translated src=- shape=2bd1c1ee vocab=48b4030e
+-/
 theorem mixedBorderYP_card
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -524,6 +565,9 @@ def mixedYQBorderNat (a b c r u v x y z : ℕ) : Prop :=
   (r + 1 < a - 1 ∧ x = r + 2 ∧ y = 0 ∧ z = v + 1 - c) ∨
   (b < u ∧ x = r + 1 ∧ y = 1 ∧ z = v + 1 - c)
 
+/--
+@isnad1 id=iff.5h7v.s6.1f4c7656f38a from=translated src=- shape=37667727 vocab=8162aa6a
+-/
 theorem mem_standardSet_mixedSoclesYQ_iff
     (hb : 1 ≤ b) (hc : 1 ≤ c) (hu : b ≤ u) (hv : c ≤ v)
     (hr : r < a - 1) (p : Normal a b c) :
@@ -535,6 +579,9 @@ theorem mem_standardSet_mixedSoclesYQ_iff
   omega
 
 set_option maxHeartbeats 1000000 in
+/--
+@isnad1 id=iff.2h7v.s6.9a849a683dca from=translated src=- shape=64ca5167 vocab=d02bfaea
+-/
 theorem mem_mixedExpectedBorderYQ_iff
     (ha : 2 ≤ a) (r u v : ℕ) (hr : r < a - 1) (m : Normal a b c) :
     m ∈ mixedExpectedBorderYQ (a := a) (b := b) (c := c) ha r u v hr ↔
@@ -556,6 +603,9 @@ theorem mem_mixedExpectedBorderYQ_iff
 
 set_option maxHeartbeats 6400000 in
 omit [NeZero a] in
+/--
+@isnad1 id=iff.7h9v.s8.82705dea2ee6 from=translated src=- shape=dcc2d1fe vocab=6d3c76a9
+-/
 theorem mixedYQ_border_arithmetic
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1)
@@ -589,6 +639,9 @@ theorem mixedYQ_border_arithmetic
         simp [hx0, hby, hy, hz, mixedYQStandardNat, mixedYQBorderNat]
         <;> grind (splits := 40)
 
+/--
+@isnad1 id=eq.6h6v.s6.a6b4ecf681cd from=translated src=- shape=c7b7e3fc vocab=776934e4
+-/
 theorem mixedBorderYQ_exact
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -624,6 +677,9 @@ theorem mixedBorderYQ_exact
 
 set_option maxHeartbeats 6400000 in
 set_option maxRecDepth 8192 in
+/--
+@isnad1 id=eq.6h6v.s8.bd13b9d3da8c from=translated src=- shape=47caa6d6 vocab=e893d31b
+-/
 theorem mixedBorderYQ_card
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -716,10 +772,22 @@ theorem mixedBorderYQ_card
 def swapYZ (m : Normal a b c) : Normal a c b :=
   ⟨m.x, m.z, m.y, m.x_lt⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.d4a87d204cce from=translated src=- shape=157cc812 vocab=db6d00a0
+-/
 @[simp] theorem swapYZ_x (m : Normal a b c) : (swapYZ m).x = m.x := rfl
+/--
+@isnad1 id=eq.0h4v.s5.c78ceeb10059 from=translated src=- shape=96cdfdbd vocab=3cfd21c6
+-/
 @[simp] theorem swapYZ_y (m : Normal a b c) : (swapYZ m).y = m.z := rfl
+/--
+@isnad1 id=eq.0h4v.s5.8518be0d5894 from=translated src=- shape=96cdfdbd vocab=3cfd21c6
+-/
 @[simp] theorem swapYZ_z (m : Normal a b c) : (swapYZ m).z = m.y := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.71ad0033555f from=translated src=- shape=266dc1bb vocab=9afe88cd
+-/
 @[simp] theorem swapYZ_swapYZ (m : Normal a b c) : swapYZ (swapYZ m) = m := by
   cases m
   rfl
@@ -734,11 +802,17 @@ def swapYZEmbedding : Normal a b c ↪ Normal a c b where
 def swapYZFinset (S : Finset (Normal a b c)) : Finset (Normal a c b) :=
   S.map swapYZEmbedding
 
+/--
+@isnad1 id=iff.0h5v.s5.a44f10ee2663 from=translated src=- shape=33c1a0ee vocab=f1adeb40
+-/
 theorem swapYZ_divides_iff (p q : Normal a b c) :
     swapYZ p ∣ swapYZ q ↔ p ∣ q := by
   simp [Normal.exact_divides_iff, Normal.DividesCriterion, swapYZ]
   tauto
 
+/--
+@isnad1 id=iff.0h5v.s6.c0d3fabe6b71 from=translated src=- shape=4dae1289 vocab=2cae8ec7
+-/
 theorem mem_standardSet_swapYZFinset_iff (S : Finset (Normal a b c))
     (p : Normal a b c) :
     swapYZ p ∈ standardSet (swapYZFinset S) ↔ p ∈ standardSet S := by
@@ -751,6 +825,9 @@ theorem mem_standardSet_swapYZFinset_iff (S : Finset (Normal a b c))
     refine ⟨swapYZ s, ?_, (swapYZ_divides_iff p s).mpr hdiv⟩
     exact Finset.mem_map.mpr ⟨s, hs, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.903afc651810 from=translated src=- shape=789486e4 vocab=3de36c0a
+-/
 theorem swapYZ_predecessor_x (m : Normal a b c) :
     Normal.predecessor .x (swapYZ m) =
       Option.map swapYZ (Normal.predecessor .x m) := by
@@ -765,6 +842,9 @@ theorem swapYZ_predecessor_x (m : Normal a b c) :
     · have hws : ¬(c ≤ mz ∧ b ≤ my) := by tauto
       simp [Normal.predecessor, hx, hw, hws]
 
+/--
+@isnad1 id=eq.0h4v.s5.85c394ebd5c2 from=translated src=- shape=c03b9189 vocab=5ec9b696
+-/
 theorem swapYZ_predecessor_y (m : Normal a b c) :
     Normal.predecessor .y (swapYZ m) =
       Option.map swapYZ (Normal.predecessor .z m) := by
@@ -772,6 +852,9 @@ theorem swapYZ_predecessor_y (m : Normal a b c) :
   simp [Normal.predecessor, Normal.yPredecessor, Normal.zPredecessor, swapYZ]
   split_ifs <;> simp_all
 
+/--
+@isnad1 id=eq.0h4v.s5.fdb1ad011337 from=translated src=- shape=c03b9189 vocab=5ec9b696
+-/
 theorem swapYZ_predecessor_z (m : Normal a b c) :
     Normal.predecessor .z (swapYZ m) =
       Option.map swapYZ (Normal.predecessor .y m) := by
@@ -779,6 +862,9 @@ theorem swapYZ_predecessor_z (m : Normal a b c) :
   simp [Normal.predecessor, Normal.yPredecessor, Normal.zPredecessor, swapYZ]
   split_ifs <;> simp_all
 
+/--
+@isnad1 id=iff.0h5v.s5.055941216151 from=translated src=- shape=918edad7 vocab=e1fa421d
+-/
 theorem isMinimalBorder_swapYZFinset_iff (S : Finset (Normal a b c))
     (m : Normal a b c) :
     IsMinimalBorder (standardSet (swapYZFinset S)) (swapYZ m) ↔
@@ -828,6 +914,9 @@ theorem isMinimalBorder_swapYZFinset_iff (S : Finset (Normal a b c))
           rw [← heq, mem_standardSet_swapYZFinset_iff]
           exact hy p hp
 
+/--
+@isnad1 id=eq.0h4v.s5.5db0edbe0c09 from=translated src=- shape=ee242f57 vocab=abdffda7
+-/
 theorem borderFinset_swapYZ_card (S : Finset (Normal a b c)) :
     (borderFinset (swapYZFinset S)).card = (borderFinset S).card := by
   classical
@@ -852,7 +941,9 @@ theorem borderFinset_swapYZ_card (S : Finset (Normal a b c)) :
     subst S
     rfl
 
-/-- Exact equivariance of the finite border under the y/z reflection.-/
+/-- Exact equivariance of the finite border under the y/z reflection.
+@isnad1 id=eq.0h4v.s5.e108420412ae from=translated src=- shape=bfa82f96 vocab=9a23cba9
+-/
 theorem borderFinset_swapYZ_exact (S : Finset (Normal a b c)) :
     borderFinset (swapYZFinset S) = swapYZFinset (borderFinset S) := by
   classical
@@ -886,6 +977,9 @@ def mixedSoclesZP (r u v : ℕ) (hr : r < a - 1) : Finset (Normal a b c) :=
 def mixedSoclesZQ (r u v : ℕ) (hr : r < a - 1) : Finset (Normal a b c) :=
   {mixedCore r u v (by omega), mixedZ v, mixedQ r v hr}
 
+/--
+@isnad1 id=eq.1h6v.s6.532105fdb30f from=translated src=- shape=25734908 vocab=09e1f89d
+-/
 theorem swapYZFinset_mixedSoclesZP
     (hr : r < a - 1) :
     swapYZFinset (mixedSoclesZP (a := a) (b := b) (c := c) r u v hr) =
@@ -895,6 +989,9 @@ theorem swapYZFinset_mixedSoclesZP
     swapYZ, mixedCore, mixedY, mixedZ, mixedP, mixedQ]
   aesop
 
+/--
+@isnad1 id=eq.1h6v.s6.c5a5a28584ad from=translated src=- shape=25734908 vocab=f9bdcef6
+-/
 theorem swapYZFinset_mixedSoclesZQ
     (hr : r < a - 1) :
     swapYZFinset (mixedSoclesZQ (a := a) (b := b) (c := c) r u v hr) =
@@ -904,7 +1001,9 @@ theorem swapYZFinset_mixedSoclesZQ
     swapYZ, mixedCore, mixedY, mixedZ, mixedP, mixedQ]
   aesop
 
-/-- Exact reflected expected-border theorem for the `Z,P` choice.-/
+/-- Exact reflected expected-border theorem for the `Z,P` choice.
+@isnad1 id=eq.6h6v.s6.9e2db7fc46c4 from=translated src=- shape=896b7349 vocab=81b90b71
+-/
 theorem mixedBorderZP_exact
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -914,7 +1013,9 @@ theorem mixedBorderZP_exact
   rw [← borderFinset_swapYZ_exact, swapYZFinset_mixedSoclesZP]
   exact mixedBorderYQ_exact ha hc hb hv hu hr
 
-/-- Exact reflected expected-border theorem for the `Z,Q` choice.-/
+/-- Exact reflected expected-border theorem for the `Z,Q` choice.
+@isnad1 id=eq.6h6v.s6.b7d0087aeae6 from=translated src=- shape=896b7349 vocab=26670a9d
+-/
 theorem mixedBorderZQ_exact
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -924,6 +1025,9 @@ theorem mixedBorderZQ_exact
   rw [← borderFinset_swapYZ_exact, swapYZFinset_mixedSoclesZQ]
   exact mixedBorderYP_exact ha hc hb hv hu hr
 
+/--
+@isnad1 id=eq.6h6v.s8.02c4bb42076f from=translated src=- shape=d69340c6 vocab=3aa12649
+-/
 theorem mixedBorderZP_card
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -941,6 +1045,9 @@ theorem mixedBorderZP_card
       rw [swapYZFinset_mixedSoclesZP]
     _ = _ := mixedBorderYQ_card ha hc hb hv hu hr
 
+/--
+@isnad1 id=eq.6h6v.s8.a77d408c3d56 from=translated src=- shape=200c0d59 vocab=a42acb14
+-/
 theorem mixedBorderZQ_card
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -992,6 +1099,9 @@ def mixedPQBorderNat (a b c r u v x y z : ℕ) : Prop :=
   ((b < u ∨ (u + 1 - b = 1 ∧ v + 1 - c = 1)) ∧
     x = r + 1 ∧ y = 1 ∧ z = v + 1 - c)
 
+/--
+@isnad1 id=iff.5h7v.s6.178003649f50 from=translated src=- shape=37667727 vocab=54438518
+-/
 theorem mem_standardSet_mixedSoclesPQ_iff
     (hb : 1 ≤ b) (hc : 1 ≤ c) (hu : b ≤ u) (hv : c ≤ v)
     (hr : r < a - 1) (p : Normal a b c) :
@@ -1003,6 +1113,9 @@ theorem mem_standardSet_mixedSoclesPQ_iff
   omega
 
 set_option maxHeartbeats 1200000 in
+/--
+@isnad1 id=iff.1h7v.s6.d87103197c1e from=translated src=- shape=375a085c vocab=5978f520
+-/
 theorem mem_mixedExpectedBorderPQ_iff
     (r u v : ℕ) (hr : r < a - 1) (m : Normal a b c) :
     m ∈ mixedExpectedBorderPQ (a := a) (b := b) (c := c) r u v hr ↔
@@ -1020,6 +1133,9 @@ theorem mem_mixedExpectedBorderPQ_iff
 
 set_option maxHeartbeats 6400000 in
 omit [NeZero a] in
+/--
+@isnad1 id=iff.7h9v.s8.be55aec3098e from=translated src=- shape=dcc2d1fe vocab=f97d60c5
+-/
 theorem mixedPQ_border_arithmetic
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1)
@@ -1049,6 +1165,9 @@ theorem mixedPQ_border_arithmetic
       all_goals simp [hx0, hby, hy, hz, mixedPQStandardNat,
         mixedPQBorderNat] <;> grind (splits := 48)
 
+/--
+@isnad1 id=eq.6h6v.s6.8efcf61ffef3 from=translated src=- shape=37584727 vocab=21618e7f
+-/
 theorem mixedBorderPQ_exact
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -1084,6 +1203,9 @@ theorem mixedBorderPQ_exact
 
 set_option maxHeartbeats 12000000 in
 set_option maxRecDepth 8192 in
+/--
+@isnad1 id=eq.6h6v.s8.6a9826bca8cb from=translated src=- shape=29799a00 vocab=e233b00b
+-/
 theorem mixedBorderPQ_card
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -1195,7 +1317,9 @@ noncomputable def mixedDominantBorderCard (pair : MixedAddedPair)
 
 /-- If a dominant mixed three-socle choice has exact border cardinality four,
 then it is one of the three command-authorized survivor shapes, with the
-`YQ` reflection `ZP` displayed explicitly.-/
+`YQ` reflection `ZP` displayed explicitly.
+@isnad1 id=or.7h7v.s7.33eaacd6f04d from=translated src=- shape=e35913cf vocab=baed9975
+-/
 theorem mixedDominant_card_eq_four_survivors
     (pair : MixedAddedPair)
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)

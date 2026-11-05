@@ -9,6 +9,9 @@ namespace P23.Semigroup
 noncomputable section
 open P23.Monomial P23.Presentation
 
+/--
+@isnad1 id=ex.1h2v.s6.dcd3ca6e1038 from=translated src=- shape=1e17f3ef vocab=8489a4c0
+-/
 theorem chosenBase_plain_exponentPresentation_of_budget_zero
     (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
     (hB : D.fourBaseBudget i = 0) :

@@ -10,6 +10,9 @@ variable (D : FourGeneratedNumericalSemigroup)
 def doubleGapFinset : Finset ℕ :=
   D.gapFinset.filter (fun a=>D.frobenius-a∈D.gapFinset)
 
+/--
+@isnad1 id=mem.1h2v.s5.2e91731f7455 from=translated src=- shape=6ba1bc94 vocab=1330929d
+-/
 theorem doubleGap_reflection {a : ℕ} (ha : a∈D.doubleGapFinset) :
     D.frobenius-a∈D.doubleGapFinset := by
   have h := Finset.mem_filter.mp ha
@@ -63,6 +66,9 @@ private theorem reflectedGoodGaps_card : D.reflectedGoodGaps.card=D.smallSemigro
   change D.frobenius-a=D.frobenius-b at he
   omega
 
+/--
+@isnad1 id=eq.0h1v.s5.f17c79970d5f from=translated src=- shape=ad704ec2 vocab=17ab7464
+-/
 theorem two_genus_eq_frobenius_one_add_doubleGapCard :
     2*D.genus=D.frobenius+1+D.doubleGapFinset.card := by
   classical
@@ -91,11 +97,17 @@ theorem two_genus_eq_frobenius_one_add_doubleGapCard :
 def nonFrobeniusPFFinset : Finset ℕ :=
   (Finset.univ.erase D.frobeniusPF).image D.pseudoFrobeniusNat
 
+/--
+@isnad1 id=eq.0h1v.s4.83e79090e486 from=translated src=- shape=892db7fb vocab=c21a9e65
+-/
 theorem nonFrobeniusPF_card : D.nonFrobeniusPFFinset.card=D.semigroupType-1 := by
   classical
   rw [nonFrobeniusPFFinset,Finset.card_image_of_injective _ D.pseudoFrobeniusNat_injective]
   simp [semigroupType]
 
+/--
+@isnad1 id=le.0h1v.s4.786119a7f970 from=translated src=- shape=ffc59986 vocab=4fc84009
+-/
 theorem nonFrobeniusPF_subset_doubleGap : D.nonFrobeniusPFFinset⊆D.doubleGapFinset := by
   classical
   intro a ha
@@ -126,10 +138,16 @@ theorem nonFrobeniusPF_subset_doubleGap : D.nonFrobeniusPFFinset⊆D.doubleGapFi
   apply Finset.mem_filter.mpr
   exact ⟨D.pseudoFrobeniusNat_mem_gapFinset f,(D.mem_gapFinset _).mpr hnot⟩
 
+/--
+@isnad1 id=lt.0h1v.s3.00b797bb0cdf from=translated src=- shape=b9369acb vocab=b254b228
+-/
 theorem semigroupType_pos : 0<D.semigroupType := by
   have : Nonempty D.PseudoFrobeniusIndex := ⟨D.frobeniusPF⟩
   exact Fintype.card_pos
 
+/--
+@isnad1 id=le.0h1v.s4.714c0d7d3c61 from=translated src=- shape=6a88e1b5 vocab=4fc3fb2e
+-/
 theorem frobenius_type_le_two_genus : D.frobenius+D.semigroupType≤2*D.genus := by
   have hc := Finset.card_le_card D.nonFrobeniusPF_subset_doubleGap
   rw [D.nonFrobeniusPF_card] at hc

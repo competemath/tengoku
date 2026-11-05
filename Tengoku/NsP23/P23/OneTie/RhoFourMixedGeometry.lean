@@ -16,6 +16,9 @@ def noXThreeBorderRoots (B C u v : ℕ) : Finset (Normal a b c) :=
   {⟨a-1,B-1,v-1,by have := Nat.pos_of_ne_zero (NeZero.ne a); omega⟩,
    ⟨a-1,u-1,C-1,by have := Nat.pos_of_ne_zero (NeZero.ne a); omega⟩}
 
+/--
+@isnad1 id=iff.3h9v.s7.cecd7ebf0d1c from=translated src=- shape=0a722f20 vocab=3201144e
+-/
 theorem no_x_three_border_standard (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (B C u v : ℕ)
     (he : borderFinset S = {yAxis B,zAxis C,yzPoint u v}) (p : Normal a b c) :
@@ -23,6 +26,9 @@ theorem no_x_three_border_standard (S : Finset (Normal a b c))
   rw [standard_iff_no_border_divisor S hS hd p, he]
   simp [Normal.exact_divides_iff, Normal.DividesCriterion, yAxis,zAxis,yzPoint] <;> omega
 
+/--
+@isnad1 id=eq.8h8v.s7.3fef91466d21 from=translated src=- shape=2e4a649b vocab=d1bcad3b
+-/
 theorem no_x_three_border_roots_exact (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (ha : IsRootAntichain S)
     (B C u v : ℕ) (hu : 0 < u) (huB : u < B) (hv : 0 < v) (hvC : v < C)
@@ -46,6 +52,9 @@ theorem no_x_three_border_roots_exact (S : Finset (Normal a b c))
   have hx := p.x_lt
   simp [standardSet,noXThreeBorderRoots,Normal.exact_divides_iff,Normal.DividesCriterion] <;> omega
 
+/--
+@isnad1 id=le.9h8v.s7.68c70d252131 from=translated src=- shape=6e1d960f vocab=9ad13710
+-/
 theorem mixed_three_border_no_x_type_le_two (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (B C u v : ℕ) (hu : 0 < u) (huB : u < B)
@@ -82,6 +91,9 @@ def threeRoots : Finset (Normal a b c) := {M.highRoot,M.yCornerRoot,M.zCornerRoo
 def twoRoots : Finset (Normal a b c) := {M.highRoot,M.lowBoxRoot}
 end MixedThreeBorderData
 
+/--
+@isnad1 id=iff.2h6v.s7.7dd31f7303f8 from=translated src=- shape=80bfff45 vocab=65276d96
+-/
 theorem mixed_three_border_standard_slices {S : Finset (Normal a b c)}
     (M : MixedThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c)
     (p : Normal a b c) : p ∈ standardSet S ↔ p.y < M.B ∧ p.z < M.C ∧
@@ -90,6 +102,9 @@ theorem mixed_three_border_standard_slices {S : Finset (Normal a b c)}
   simp [Normal.exact_divides_iff,Normal.DividesCriterion,yAxis,zAxis]
   omega
 
+/--
+@isnad1 id=eq.5h5v.s6.5f12ad04783e from=translated src=- shape=f0db7710 vocab=d2637ca6
+-/
 theorem mixed_three_border_roots_exact {S : Finset (Normal a b c)}
     (M : MixedThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c)
     (hanti : IsRootAntichain S) (hbB : b < M.B) (hcvC : c+M.v < M.C) :
@@ -119,6 +134,9 @@ theorem mixed_three_border_roots_exact {S : Finset (Normal a b c)}
     MixedThreeBorderData.yCornerRoot,MixedThreeBorderData.zCornerRoot,
     Normal.exact_divides_iff,Normal.DividesCriterion] <;> omega
 
+/--
+@isnad1 id=eq.4h5v.s6.cadb2f8410f6 from=translated src=- shape=5d94f5f9 vocab=d3120a7c
+-/
 theorem mixed_three_border_two_roots_of_degenerate {S : Finset (Normal a b c)}
     (M : MixedThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c)
     (hanti : IsRootAntichain S) (hdeg : M.B ≤ b ∨ M.C ≤ c+M.v) : S = M.twoRoots := by
@@ -147,6 +165,9 @@ theorem mixed_three_border_two_roots_of_degenerate {S : Finset (Normal a b c)}
   simp [standardSet,MixedThreeBorderData.twoRoots,MixedThreeBorderData.highRoot,
     MixedThreeBorderData.lowBoxRoot,Normal.exact_divides_iff,Normal.DividesCriterion] <;> omega
 
+/--
+@isnad1 id=iff.4h5v.s6.e7590aa43c51 from=translated src=- shape=932dd6ce vocab=7d36b0ad
+-/
 theorem mixed_three_border_type_three_iff {S : Finset (Normal a b c)}
     (M : MixedThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c)
     (hl : IsLiveTie S) (hanti : IsRootAntichain S) :

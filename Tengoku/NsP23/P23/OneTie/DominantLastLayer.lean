@@ -41,6 +41,9 @@ def mixedDominantLastBorderNat (u v x y z : ℕ) : Prop :=
   (x = 0 ∧ y = 1 ∧ z = v + 1) ∨
   (x = 0 ∧ y = 0 ∧ z = v + 2)
 
+/--
+@isnad1 id=iff.3h6v.s6.6935ca2681cb from=translated src=- shape=2941bfe4 vocab=2cc91758
+-/
 theorem mem_standardSet_mixedDominantSoclesLast_iff
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (p : Normal a b c) :
@@ -52,6 +55,9 @@ theorem mem_standardSet_mixedDominantSoclesLast_iff
     dominantLastStandardNat]
   omega
 
+/--
+@isnad1 id=iff.1h6v.s6.1941ecf8d910 from=translated src=- shape=448878c4 vocab=8cd3fb31
+-/
 theorem mem_mixedDominantExpectedBorderLast_iff
     (ha : 2 ≤ a) (m : Normal a b c) :
     m ∈ mixedDominantExpectedBorderLast (a := a) (b := b) (c := c) ha u v ↔
@@ -62,6 +68,9 @@ theorem mem_mixedDominantExpectedBorderLast_iff
     mixedZTimesY, mixedZTimesZ, Normal.ext_iff]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.6h8v.s7.f87cf72b5e43 from=translated src=- shape=8ebabd0f vocab=657a251f
+-/
 theorem mixedDominantLast_border_arithmetic
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (x y z : ℕ) (hxlt : x < a) :
@@ -78,6 +87,9 @@ theorem mixedDominantLast_border_arithmetic
     simp [hx, hby, hcz, dominantLastStandardNat,
       mixedDominantLastBorderNat] <;> grind (splits := 32)
 
+/--
+@isnad1 id=eq.5h5v.s6.1b3b17674391 from=translated src=- shape=88dfcd2b vocab=461b5f83
+-/
 theorem mixedDominantLast_border_exact
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) :
@@ -92,6 +104,9 @@ theorem mixedDominantLast_border_exact
     exact mem_mixedDominantExpectedBorderLast_iff ha m
   · exact mixedDominantLast_border_arithmetic ha hb hc hu hv
 
+/--
+@isnad1 id=eq.5h5v.s6.915be97ad074 from=translated src=- shape=10039701 vocab=49dec58f
+-/
 theorem mixedDominantLast_border_card
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) :
@@ -161,6 +176,9 @@ def pureDominantLastCoreBorderNat (u v x y z : ℕ) : Prop :=
   (x = 0 ∧ y = 0 ∧ z = v + 2) ∨
   (0 < v ∧ x = 0 ∧ y = u + 1 ∧ z = 1)
 
+/--
+@isnad1 id=iff.3h5v.s6.67fd948c40b1 from=translated src=- shape=7d9c205b vocab=fa65eed9
+-/
 theorem mem_standardSet_pureDominantSoclesLastCore_iff
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) (p : Normal a b 0) :
     p ∈ standardSet (pureDominantSoclesLastCore (a := a) (b := b) u v) ↔
@@ -171,6 +189,9 @@ theorem mem_standardSet_pureDominantSoclesLastCore_iff
     dominantLastStandardNat]
   omega
 
+/--
+@isnad1 id=iff.1h5v.s6.a5c547ff665e from=translated src=- shape=bb36a3ec vocab=fac4489c
+-/
 theorem mem_pureDominantExpectedBorderLastCore_iff
     (ha : 2 ≤ a) (m : Normal a b 0) :
     m ∈ pureDominantExpectedBorderLastCore (a := a) (b := b) ha u v ↔
@@ -182,6 +203,9 @@ theorem mem_pureDominantExpectedBorderLastCore_iff
       pureLastCoreYZ, pureLastCoreZZ, hv, Normal.ext_iff]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.4h7v.s7.c6682fd431cb from=translated src=- shape=95664f8e vocab=dc4db877
+-/
 theorem pureDominantLastCore_border_arithmetic
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u)
     (x y z : ℕ) (hxlt : x < a) :
@@ -198,6 +222,9 @@ theorem pureDominantLastCore_border_arithmetic
     simp [hx, hby, hv0, dominantLastStandardNat,
       pureDominantLastCoreBorderNat] <;> grind (splits := 32)
 
+/--
+@isnad1 id=eq.3h4v.s6.71997b6da30a from=translated src=- shape=a4c5b3bb vocab=e4c10ad2
+-/
 theorem pureDominantBorder_lastCore_exact
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) :
     borderFinset (pureDominantSoclesLastCore (a := a) (b := b) u v) =
@@ -211,6 +238,9 @@ theorem pureDominantBorder_lastCore_exact
     exact mem_pureDominantExpectedBorderLastCore_iff ha m
   · exact pureDominantLastCore_border_arithmetic ha hb hu
 
+/--
+@isnad1 id=eq.3h4v.s6.91b1151151bf from=translated src=- shape=92351a5d vocab=c0445d11
+-/
 theorem pureDominantBorder_lastCore_card
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) :
     (borderFinset
@@ -251,6 +281,9 @@ theorem pureDominantBorder_lastCore_card
   · simpa [pureDominantExpectedBorderLastCore, hv, s, A, B, C, D, E]
       using hs
 
+/--
+@isnad1 id=ne.3h4v.s6.26483100ed80 from=translated src=- shape=c64c7b1a vocab=c132c1c4
+-/
 theorem pureDominantBorder_lastCore_card_ne_four
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) :
     (borderFinset

@@ -12,6 +12,9 @@ variable {a b c : ℕ} [NeZero a]
 def yAxis (n : ℕ) : Normal a b c := ⟨0,n,0,Nat.pos_of_ne_zero (NeZero.ne a)⟩
 def zAxis (n : ℕ) : Normal a b c := ⟨0,0,n,Nat.pos_of_ne_zero (NeZero.ne a)⟩
 
+/--
+@isnad1 id=iff.2h5v.s6.a7fd5291bdcd from=translated src=- shape=b85385b7 vocab=de8e0002
+-/
 theorem standard_iff_no_border_divisor (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (p : Normal a b c) :
     p ∈ standardSet S ↔ ∀ g ∈ borderFinset S, ¬g ∣ p := by
@@ -23,6 +26,9 @@ theorem standard_iff_no_border_divisor (S : Finset (Normal a b c))
     obtain ⟨g,hg,hgp⟩ := killed_has_border_divisor S hS hd p hn
     exact hp g hg hgp
 
+/--
+@isnad1 id=eq.5h6v.s7.c364fd9df671 from=translated src=- shape=8f070841 vocab=853e96e1
+-/
 theorem border_dvd_border_eq {S : Finset (Normal a b c)} (hS : S.Nonempty)
     (ha : 2 ≤ a) {p q : Normal a b c}
     (hp : p ∈ borderFinset S) (hq : q ∈ borderFinset S) (h : p ∣ q) : p = q := by
@@ -31,6 +37,9 @@ theorem border_dvd_border_eq {S : Finset (Normal a b c)} (hS : S.Nonempty)
     (variableGenerators_ne_one_of_two_le ha)).mp ((mem_borderFinset_iff hS q).mp hq)
   exact ((mem_borderFinset_iff hS p).mp hp).1 (hqmin.2 p h hn)
 
+/--
+@isnad1 id=eq.4h6v.s6.80d4ffb65028 from=translated src=- shape=df494839 vocab=30910fd2
+-/
 theorem pure_y_border_unique {S : Finset (Normal a b c)} (hS : S.Nonempty)
     (ha : 2 ≤ a) {u v : ℕ} (hu : yAxis u ∈ borderFinset S)
     (hv : yAxis v ∈ borderFinset S) : u = v := by
@@ -42,6 +51,9 @@ theorem pure_y_border_unique {S : Finset (Normal a b c)} (hS : S.Nonempty)
       ((Normal.exact_divides_iff _ _).mpr (by simp [Normal.DividesCriterion,yAxis,h]))
     exact (congrArg Normal.y he).symm
 
+/--
+@isnad1 id=eq.4h6v.s6.744c65ef7144 from=translated src=- shape=df494839 vocab=dafecb98
+-/
 theorem pure_z_border_unique {S : Finset (Normal a b c)} (hS : S.Nonempty)
     (ha : 2 ≤ a) {u v : ℕ} (hu : zAxis u ∈ borderFinset S)
     (hv : zAxis v ∈ borderFinset S) : u = v := by
@@ -53,6 +65,9 @@ theorem pure_z_border_unique {S : Finset (Normal a b c)} (hS : S.Nonempty)
       ((Normal.exact_divides_iff _ _).mpr (by simp [Normal.DividesCriterion,zAxis,h]))
     exact (congrArg Normal.z he).symm
 
+/--
+@isnad1 id=ex.4h6v.s7.b4e118cb5337 from=translated src=- shape=b29004c3 vocab=3ccad544
+-/
 theorem three_border_exists_third (S : Finset (Normal a b c))
     (hcard : (borderFinset S).card = 3) (Y Z : Normal a b c)
     (hY : Y ∈ borderFinset S) (hZ : Z ∈ borderFinset S) (hne : Y ≠ Z) :
@@ -75,6 +90,9 @@ theorem three_border_exists_third (S : Finset (Normal a b c))
   rw [hq] at hr
   exact ⟨q,hqG,hqY,hqZ,hr.symm⟩
 
+/--
+@isnad1 id=ex.3h4v.s6.a286e6de3a2c from=translated src=- shape=eaa13a4e vocab=93989a8d
+-/
 theorem mixed_pure_y_border_exists (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (hc : 0 < c) :
     ∃ B, 0 < B ∧ yAxis B ∈ borderFinset S := by
@@ -105,6 +123,9 @@ theorem mixed_pure_y_border_exists (S : Finset (Normal a b c))
   have ge : (yAxis g.y : Normal a b c) = g := by apply Normal.ext <;> simp [yAxis,gx,gz]
   rwa [ge]
 
+/--
+@isnad1 id=ex.3h4v.s6.d815bbf6e341 from=translated src=- shape=3500e7be vocab=440e94ff
+-/
 theorem pure_z_border_exists (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (hb : 0 < b) :
     ∃ C, 0 < C ∧ zAxis C ∈ borderFinset S := by
@@ -135,6 +156,9 @@ theorem pure_z_border_exists (S : Finset (Normal a b c))
   have ge : (zAxis g.z : Normal a b c) = g := by apply Normal.ext <;> simp [zAxis,gx,gy]
   rwa [ge]
 
+/--
+@isnad1 id=eq.3h5v.s5.c9d35f0d420f from=translated src=- shape=74ee82ba vocab=30291365
+-/
 theorem normal_dvd_antisymm_live (hd : IsLiveParameterDomain a b c)
     {p q : Normal a b c} (hpq : p ∣ q) (hqp : q ∣ p) : p = q := by
   have h := (Normal.exact_divides_iff _ _).mp hpq
@@ -143,6 +167,9 @@ theorem normal_dvd_antisymm_live (hd : IsLiveParameterDomain a b c)
   unfold Normal.DividesCriterion at h h'
   apply Normal.ext <;> omega
 
+/--
+@isnad1 id=le.3h5v.s6.ac01564cd994 from=translated src=- shape=c74e75c8 vocab=06f585e7
+-/
 theorem roots_subset_of_standardSet_eq {S T : Finset (Normal a b c)}
     (hd : IsLiveParameterDomain a b c) (hS : IsRootAntichain S)
     (he : standardSet S = standardSet T) : S ⊆ T := by
@@ -157,11 +184,17 @@ theorem roots_subset_of_standardSet_eq {S T : Finset (Normal a b c)}
   have heq : s = t := normal_dvd_antisymm_live hd hst (hss.symm ▸ hts)
   rwa [heq]
 
+/--
+@isnad1 id=le.3h5v.s6.aa31b3b18a86 from=translated src=- shape=95ea06cd vocab=8d03055c
+-/
 theorem roots_card_le_of_standardSet_eq {S T : Finset (Normal a b c)}
     (hd : IsLiveParameterDomain a b c) (hS : IsRootAntichain S)
     (he : standardSet S = standardSet T) : S.card ≤ T.card :=
   Finset.card_le_card (roots_subset_of_standardSet_eq hd hS he)
 
+/--
+@isnad1 id=eq.4h5v.s6.8c57d12b8040 from=translated src=- shape=616349c1 vocab=16ab07c0
+-/
 theorem roots_eq_of_standardSet_eq {S T : Finset (Normal a b c)}
     (hd : IsLiveParameterDomain a b c) (hS : IsRootAntichain S) (hT : IsRootAntichain T)
     (he : standardSet S = standardSet T) : S = T := by

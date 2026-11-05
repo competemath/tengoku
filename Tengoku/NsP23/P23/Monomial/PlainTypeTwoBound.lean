@@ -15,6 +15,9 @@ def plainPairCross (p q : PlainExp) (ij : Fin 3 × Fin 3) : PlainExp :=
 def plainPairOppositeDirections (p q : PlainExp) : Finset (Fin 3 × Fin 3) :=
   Finset.univ.filter (fun ij => p ij.1 < q ij.1 ∧ q ij.2 < p ij.2)
 
+/--
+@isnad1 id=le.0h2v.s4.8fa2ac6ce36a from=translated src=- shape=55235272 vocab=ea40137a
+-/
 theorem plainPair_opposite_card_le_two (p q : PlainExp) :
     (plainPairOppositeDirections p q).card ≤ 2 := by
   let P := Finset.univ.filter (fun i : Fin 3 => p i < q i)
@@ -41,6 +44,9 @@ private theorem plainPair_killed_eq_of_border {p q m w : PlainExp}
   by_contra hn
   exact hk (hh.2 w hw (Ne.symm hn))
 
+/--
+@isnad1 id=le.0h2v.s7.316700b33186 from=translated src=- shape=d1de2cf9 vocab=5e305724
+-/
 theorem plainPair_border_subset (p q : PlainExp) :
     plainBorderFinset {p,q} ⊆
       (Finset.univ.image (plainPairAxisCap p q)) ∪
@@ -91,6 +97,9 @@ theorem plainPair_border_subset (p q : PlainExp) :
     apply cap i
     simp only [max_lt_iff]; omega
 
+/--
+@isnad1 id=le.0h2v.s5.ea8061fa41b3 from=translated src=- shape=41dc0d48 vocab=af49c37c
+-/
 theorem plain_pair_border_card_le_five (p q : PlainExp) :
     (plainBorderFinset {p,q}).card ≤ 5 := by
   have h := Finset.card_le_card (plainPair_border_subset p q)
@@ -104,6 +113,9 @@ theorem plain_pair_border_card_le_five (p q : PlainExp) :
   have hu3 : (Finset.univ : Finset (Fin 3)).card=3 := by simp
   omega
 
+/--
+@isnad1 id=le.3h1v.s5.8994bf66ce14 from=translated src=- shape=d724c1ac vocab=470e4002
+-/
 theorem plain_type_two_border_card_le_five (R : Finset PlainExp)
     (_ha : PlainRootAntichain R) (h2 : R.card=2) (_hv : PlainVariablesSurvive R) :
     (plainBorderFinset R).card ≤ 5 := by

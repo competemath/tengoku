@@ -38,11 +38,17 @@ def rootTraceValueSet (k : Type*) [Field k] (S : Finset (Normal a b c)) :
       (s : Normal a b c) (hs : s ∈ S),
       F (U (k := k) S (rootIndex S s hs)) = v}
 
+/--
+@isnad1 id=le.0h6v.s9.2cb1b1ab5838 from=translated src=- shape=dfa4cf27 vocab=7c2db424
+-/
 theorem trace_range_le (S : Finset (Normal a b c))
     (F : Omega k S →ₗ[MonomialArtin k S] MonomialArtin k S) :
     F.range ≤ TraceSubmodule k S :=
   le_iSup (fun G : Omega k S →ₗ[MonomialArtin k S] MonomialArtin k S ↦ G.range) F
 
+/--
+@isnad1 id=eq.0h5v.s7.1020356de168 from=translated src=- shape=2e0c51c3 vocab=30d57e5c
+-/
 theorem trace_eq_span_traceValueSet (S : Finset (Normal a b c)) :
     TraceSubmodule k S =
       Submodule.span (MonomialArtin k S) (traceValueSet k S) := by
@@ -56,7 +62,9 @@ theorem trace_eq_span_traceValueSet (S : Finset (Normal a b c)) :
     exact trace_range_le (k := k) S F ⟨φ, rfl⟩
 
 /-- The ordinary trace equals the `A`-span of images of the selected-root
-duals.  This is a theorem, not the definition of trace.-/
+duals.  This is a theorem, not the definition of trace.
+@isnad1 id=eq.0h5v.s7.899bd15e9f42 from=translated src=- shape=2e0c51c3 vocab=05a1785c
+-/
 theorem trace_eq_span_rootTraceValueSet (S : Finset (Normal a b c)) :
     TraceSubmodule k S =
       Submodule.span (MonomialArtin k S) (rootTraceValueSet k S) := by
@@ -86,7 +94,9 @@ theorem trace_eq_span_rootTraceValueSet (S : Finset (Normal a b c)) :
 
 /-- Each selected-root image has zero degree-zero coefficient in type greater
 than one.  The proof uses a second incomparable root and exact coefficient
-transport; it is specific to the direct finite model.-/
+transport; it is specific to the direct finite model.
+@isnad1 id=eq.4h7v.s10.9a73d88c67b9 from=translated src=- shape=f2e871c8 vocab=67c9aae5
+-/
 theorem rootTraceValue_constantCoeff_eq_zero (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
     (F : Omega k S →ₗ[MonomialArtin k S] MonomialArtin k S)
@@ -126,7 +136,9 @@ theorem rootTraceValue_constantCoeff_eq_zero (S : Finset (Normal a b c))
   · simp [unitIndex]
 
 /-- If every selected-root image has zero coefficient in a live variable,
-then every trace element has zero coefficient there.-/
+then every trace element has zero coefficient there.
+@isnad1 id=eq.7h7v.s10.1fd6cadae129 from=translated src=- shape=1ccf137f vocab=af2495aa
+-/
 theorem coeffAt_variable_eq_zero_of_trace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
@@ -165,7 +177,9 @@ theorem coeffAt_variable_eq_zero_of_trace
   exact (hspanZ ht).2
 
 /-- A trace occurrence of a live variable has a selected-root image with a
-nonzero coefficient in that variable.-/
+nonzero coefficient in that variable.
+@isnad1 id=ex.6h6v.s10.bf7976d3990d from=translated src=- shape=8e5c5c85 vocab=d6fd7acd
+-/
 theorem exists_root_image_with_variable_coeff_of_mem_trace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
@@ -187,6 +201,9 @@ theorem exists_root_image_with_variable_coeff_of_mem_trace
   rw [hone] at hz
   exact one_ne_zero hz
 
+/--
+@isnad1 id=ex.6h5v.s10.8a04d8bbeac1 from=translated src=- shape=b75e998c vocab=999cd311
+-/
 theorem exists_root_image_with_x_coeff_of_mem_trace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
@@ -201,6 +218,9 @@ theorem exists_root_image_with_x_coeff_of_mem_trace
   exists_root_image_with_variable_coeff_of_mem_trace (k := k) S hS hcard
     hanti hdom .x _ htrace
 
+/--
+@isnad1 id=ex.6h5v.s10.72b5aebc10c8 from=translated src=- shape=b75e998c vocab=3fee175b
+-/
 theorem exists_root_image_with_y_coeff_of_mem_trace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
@@ -215,6 +235,9 @@ theorem exists_root_image_with_y_coeff_of_mem_trace
   exists_root_image_with_variable_coeff_of_mem_trace (k := k) S hS hcard
     hanti hdom .y _ htrace
 
+/--
+@isnad1 id=ex.6h5v.s10.c5b80a6cbf1f from=translated src=- shape=b75e998c vocab=3fee175b
+-/
 theorem exists_root_image_with_z_coeff_of_mem_trace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
@@ -258,6 +281,9 @@ def VariableTraceSources (k : Type*) [Field k] (S : Finset (Normal a b c))
         ⟨Normal.zGenerator, (mem_standardFinset_iff_standardSet S _).2 hlive.2.2.1⟩
         (F (U (k := k) S (rootIndex S s hs))) ≠ 0)
 
+/--
+@isnad1 id=variable.6h5v.s6.75b874958795 from=translated src=- shape=7f07e35c vocab=cc716e6c
+-/
 theorem variableTraceSources_of_variablesInTrace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)

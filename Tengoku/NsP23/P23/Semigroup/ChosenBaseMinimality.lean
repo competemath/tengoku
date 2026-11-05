@@ -12,6 +12,9 @@ variable {k : Type*} [Field k]
 variable (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
 local instance (p : Prop) : Decidable p := Classical.propDecidable p
 
+/--
+@isnad1 id=le.1h4v.s7.460092830c19 from=translated src=- shape=dc859a49 vocab=74466a4a
+-/
 theorem chosenBaseDefiningIdeal_generator_card_lower_bound (G : Finset (TailPoly k))
     (hG : Ideal.span (↑G : Set (TailPoly k)) = chosenBaseDefiningIdeal D i) :
     D.semigroupRho ≤ G.card := by
@@ -19,11 +22,17 @@ theorem chosenBaseDefiningIdeal_generator_card_lower_bound (G : Finset (TailPoly
   rw [chosenBaseRelationSpace_finrank] at h
   simpa using h
 
+/--
+@isnad1 id=eq.0h3v.s4.5ea9d150d852 from=translated src=- shape=3d5e6b69 vocab=ae681b92
+-/
 theorem specializedConnectorFinset_card_eq_rho :
     (specializedConnectorFinset (k := k) D i).card = D.semigroupRho :=
   Nat.le_antisymm (specializedConnectorFinset_card_le_rho D i)
     (chosenBaseDefiningIdeal_generator_card_lower_bound D i _ (specializedConnectorFinset_span_eq D i))
 
+/--
+@isnad1 id=injectiv.0h3v.s4.d7248185fe28 from=translated src=- shape=90b7d43c vocab=41a4081a
+-/
 theorem specializedConnectorPolynomial_injective :
     Function.Injective (D.specializedConnectorPolynomial (k := k) i) := by
   intro g h he
@@ -34,6 +43,9 @@ theorem specializedConnectorPolynomial_injective :
   simp only [ite_eq_left rfl, ite_eq_right hn] at hc
   exact one_ne_zero hc
 
+/--
+@isnad1 id=hasminim.0h3v.s4.acc3dfb9ba30 from=translated src=- shape=8d31942a vocab=aa5e3ceb
+-/
 theorem chosenBaseDefiningIdeal_minimalGeneratorCard :
     HasMinimalGeneratorCard (chosenBaseDefiningIdeal (k := k) D i) D.semigroupRho :=
   ⟨⟨specializedConnectorFinset D i, specializedConnectorFinset_span_eq D i,
@@ -42,6 +54,9 @@ theorem chosenBaseDefiningIdeal_minimalGeneratorCard :
 
 abbrev chosenBaseMu := idealGeneratorMu (chosenBaseDefiningIdeal (k := k) D i)
 
+/--
+@isnad1 id=eq.0h3v.s4.63da8491c86c from=translated src=- shape=465e2638 vocab=1e73be7a
+-/
 theorem chosenBaseDefiningIdeal_mu_eq_rho :
     idealGeneratorMu (chosenBaseDefiningIdeal (k := k) D i) = D.semigroupRho := by
   have hmin := chosenBaseDefiningIdeal_minimalGeneratorCard (k := k) D i
@@ -56,6 +71,9 @@ theorem chosenBaseDefiningIdeal_mu_eq_rho :
     rw [← hcard]
     exact hmin.2 G hG
 
+/--
+@isnad1 id=eq.0h2v.s4.85417c2a98a2 from=translated src=- shape=0bce004c vocab=a32311c7
+-/
 theorem chosenBase_mu_eq_rho_Q :
     idealGeneratorMu (chosenBaseDefiningIdeal (k := ℚ) D i) = D.semigroupRho :=
   chosenBaseDefiningIdeal_mu_eq_rho D i
@@ -65,6 +83,9 @@ def SemigroupRhoAsChosenBaseIdealMu : Prop :=
   ∀ i : Fin 4, HasMinimalGeneratorCard (chosenBaseDefiningIdeal (k := k) D i) D.semigroupRho ∧
     idealGeneratorMu (chosenBaseDefiningIdeal (k := k) D i) = D.semigroupRho
 
+/--
+@isnad1 id=semigrou.0h2v.s3.efe3f135af2d from=translated src=- shape=29692155 vocab=6260bb8e
+-/
 theorem semigroupRhoAsChosenBaseIdealMu : SemigroupRhoAsChosenBaseIdealMu (k := k) D :=
   fun i => ⟨chosenBaseDefiningIdeal_minimalGeneratorCard D i, chosenBaseDefiningIdeal_mu_eq_rho D i⟩
 
@@ -74,6 +95,9 @@ def MinimalMonomialChosenBasePresentation : Prop :=
     (∀ p ∈ G, ∃ u : Fin 3 →₀ ℕ, p = MvPolynomial.monomial u 1 ∧ p ≠ 0) ∧
     HasMinimalGeneratorCard (chosenBaseDefiningIdeal (k := k) D i) D.semigroupRho
 
+/--
+@isnad1 id=minimalm.1h3v.s4.cd179087ede6 from=translated src=- shape=40b477be vocab=aaa2d0ec
+-/
 theorem chosenBase_minimalMonomialPresentation_of_budget_zero
     (hB : D.fourBaseBudget i = 0) : MinimalMonomialChosenBasePresentation (k := k) D i := by
   let G := (specializedConnectorFinset (k := k) D i).image Neg.neg
@@ -99,7 +123,9 @@ theorem chosenBase_minimalMonomialPresentation_of_budget_zero
     exact ⟨D.connectorRightTail i g, by simp [hg.1], neg_ne_zero.mpr hg.2⟩
 
 /-- A monomial cannot have the two distinct nonzero endpoint coefficients of a live binomial,
-including in characteristic two.-/
+including in characteristic two.
+@isnad1 id=not.0h4v.s8.c78123d24447 from=translated src=- shape=11b87013 vocab=1e89bf89
+-/
 theorem neg_monomial_not_live (w : Fin 3 →₀ ℕ) :
     ¬D.LiveTailBinomial (k := k) i (-MvPolynomial.monomial w 1) := by
   rintro ⟨u,v,he,_,_,_,huv,_⟩
@@ -125,6 +151,9 @@ def MinimalOneLiveBinomialChosenBasePresentation : Prop :=
     ((D.connectorLeftTail i g).support.card = 1 ∨ (D.connectorRightTail i g).support.card = 1) ∧
     HasMinimalGeneratorCard (chosenBaseDefiningIdeal (k := k) D i) D.semigroupRho
 
+/--
+@isnad1 id=minimalo.1h3v.s4.778b2057379c from=translated src=- shape=40b477be vocab=d39245e1
+-/
 theorem chosenBase_minimal_one_live_binomial_of_budget_one
     (hB : D.fourBaseBudget i = 1) : MinimalOneLiveBinomialChosenBasePresentation (k := k) D i := by
   obtain ⟨g,hg,huniq⟩ := D.existsUnique_internal_connector_of_budget_one i hB
@@ -158,6 +187,9 @@ theorem chosenBase_minimal_one_live_binomial_of_budget_one
     exact ⟨_,external h he⟩
   · rw [Finset.card_erase_of_mem hmem, specializedConnectorFinset_card_eq_rho]
 
+/--
+@isnad1 id=and.2h2v.s5.f78f46381eb6 from=translated src=- shape=86a76c09 vocab=ac89b0e3
+-/
 theorem semigroup_type_three_ng_chosenBase_fullBridge
     (htype : D.semigroupType = 3) (hNG : SemigroupNearlyGorenstein D) :
     chosenBaseType (k := ℚ) D i = 3 ∧ ChosenBaseNearlyGorenstein (k := ℚ) D i ∧
@@ -179,6 +211,9 @@ structure ChosenBaseMinimalityBridge : Prop where
   budgetZero : D.fourBaseBudget i = 0 → MinimalMonomialChosenBasePresentation (k := k) D i
   budgetOne : D.fourBaseBudget i = 1 → MinimalOneLiveBinomialChosenBasePresentation (k := k) D i
 
+/--
+@isnad1 id=chosenba.0h3v.s4.9821fb9ec2ab from=translated src=- shape=9b42ccea vocab=f271b6a3
+-/
 theorem chosenBaseMinimalityBridge : ChosenBaseMinimalityBridge (k := k) D i where
   exactSubmodule := mem_chosenBaseRelationSubmodule_iff D i
   basis := chosenBaseRelationBasis_apply D i

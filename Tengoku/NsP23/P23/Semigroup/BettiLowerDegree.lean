@@ -31,6 +31,9 @@ def fiberRelationPolynomial (d : ℕ) :
   (D.fiberPolynomial (k := k) d).comp
     (D.FiberRelationSpace k d).subtype
 
+/--
+@isnad1 id=eq.0h4v.s11.cc105d20dcbc from=translated src=- shape=6a8fe868 vocab=4ecabc36
+-/
 @[simp] theorem fiberRelationPolynomial_apply (d : ℕ)
     (a : D.FiberRelationSpace k d) :
     D.fiberRelationPolynomial (k := k) d a =
@@ -44,6 +47,9 @@ def ActualLowerDegreeRelationSubmodule (d : ℕ) :
   Submodule.comap (D.fiberRelationPolynomial (k := k) d)
     ((D.lowerToricIdeal (k := k) d).restrictScalars k)
 
+/--
+@isnad1 id=iff.0h4v.s11.72265d9e356c from=translated src=- shape=cd5d28e3 vocab=6298a2f0
+-/
 @[simp] theorem mem_actualLowerDegreeRelationSubmodule_iff (d : ℕ)
     (a : D.FiberRelationSpace k d) :
     a ∈ D.ActualLowerDegreeRelationSubmodule (k := k) d ↔
@@ -73,6 +79,9 @@ def degreeComponentCoeff (d : ℕ) (C : D.BettiComponent d) :
     FourPoly k →ₗ[k] k :=
   LinearMap.proj C |>.comp (D.degreeComponentCoeffVector (k := k) d)
 
+/--
+@isnad1 id=eq.0h4v.s9.1c3bd37eb90d from=translated src=- shape=bce500fe vocab=15ae78f3
+-/
 theorem degreeComponentCoeffVector_fiberPolynomial (d : ℕ)
     (a : D.FiberCoeff k d) :
     D.degreeComponentCoeffVector (k := k) d
@@ -96,6 +105,9 @@ def shiftedFactorization {e d : ℕ} (u : D.FactorizationAt e)
   change weightedDegreeOf D.n (w + u.1) = d
   rw [weightedDegreeOf_add, hu, hdeg]
 
+/--
+@isnad1 id=eq.2h6v.s6.30a12c43be8f from=translated src=- shape=a0e98c1b vocab=227bf3bb
+-/
 theorem shiftedFactorizations_sameComponent {e d : ℕ}
     (u v : D.FactorizationAt e) (w : Fin 4 →₀ ℕ)
     (hdeg : D.weightedDegree w + e = d) (hw : w ≠ 0) :
@@ -117,6 +129,9 @@ theorem shiftedFactorizations_sameComponent {e d : ℕ}
         change 0 < w j + v.1 j
         omega⟩).reachable
 
+/--
+@isnad1 id=eq.1h5v.s9.7275a9a9e918 from=translated src=- shape=a77bcb24 vocab=92691586
+-/
 theorem degreeComponentCoeffVector_monomial_of_degree_ne
     (d : ℕ) (w : Fin 4 →₀ ℕ) (r : k)
     (hdeg : D.weightedDegree w ≠ d) :
@@ -133,6 +148,9 @@ theorem degreeComponentCoeffVector_monomial_of_degree_ne
     rw [← D.factorizationAt_degree u, h]
   simp [MvPolynomial.coeff_monomial, huw.symm]
 
+/--
+@isnad1 id=eq.1h8v.s9.7486bf866519 from=translated src=- shape=2bd8c0e8 vocab=f18a3fe7
+-/
 theorem degreeComponentCoeffVector_monomial_mul_fiberBinomial
     {e d : ℕ} (hed : e < d) (u v : D.FactorizationAt e)
     (w : Fin 4 →₀ ℕ) (r : k) :
@@ -187,6 +205,9 @@ theorem degreeComponentCoeffVector_monomial_mul_fiberBinomial
       D.degreeComponentCoeffVector_monomial_of_degree_ne d (w + v.1) r hvDegree,
       sub_zero]
 
+/--
+@isnad1 id=eq.1h7v.s8.96a30af667db from=translated src=- shape=e0c6510b vocab=974f3f9d
+-/
 theorem degreeComponentCoeffVector_mul_fiberBinomial
     {e d : ℕ} (hed : e < d) (u v : D.FactorizationAt e)
     (p : FourPoly k) :
@@ -201,7 +222,9 @@ theorem degreeComponentCoeffVector_mul_fiberBinomial
     (k := k) hed u v w (MvPolynomial.coeff w p)
 
 /-- Every genuine consequence of strictly lower-degree fiber binomials has
-zero coefficient sum in each degree-`d` graph component.-/
+zero coefficient sum in each degree-`d` graph component.
+@isnad1 id=eq.1h4v.s9.03ce082f9a4a from=translated src=- shape=6d4b4edc vocab=f33518b4
+-/
 theorem mem_lowerToricIdeal_componentCoeff_zero (d : ℕ) (p : FourPoly k)
     (hp : p ∈ D.lowerToricIdeal (k := k) d) :
     D.degreeComponentCoeffVector (k := k) d p = 0 := by
@@ -231,7 +254,9 @@ theorem mem_lowerToricIdeal_componentCoeff_zero (d : ℕ) (p : FourPoly k)
   simpa using hall 1
 
 /-- The missing Run24 direction: membership in the actual lower ideal forces
-all component sums to vanish.-/
+all component sums to vanish.
+@isnad1 id=mem.1h4v.s11.9f9b6145335d from=translated src=- shape=dbf88ffe vocab=0ef486f8
+-/
 theorem componentKernel_of_fiberPolynomial_mem_lower {d : ℕ}
     (a : D.FiberRelationSpace k d)
     (ha : D.fiberPolynomial (k := k) d a.1 ∈
@@ -244,6 +269,9 @@ theorem componentKernel_of_fiberPolynomial_mem_lower {d : ℕ}
   apply Subtype.ext
   exact hz
 
+/--
+@isnad1 id=iff.0h4v.s11.44dc084f28c8 from=translated src=- shape=7b4fbb18 vocab=0ef486f8
+-/
 theorem fiberPolynomial_mem_lower_iff_componentKernel {d : ℕ}
     (a : D.FiberRelationSpace k d) :
     D.fiberPolynomial (k := k) d a.1 ∈ D.lowerToricIdeal (k := k) d ↔
@@ -252,7 +280,9 @@ theorem fiberPolynomial_mem_lower_iff_componentKernel {d : ℕ}
   · exact D.componentKernel_of_fiberPolynomial_mem_lower a
   · exact D.fiberPolynomial_mem_lower_of_componentKernel a
 
-/-- The load-bearing repair equality.-/
+/-- The load-bearing repair equality.
+@isnad1 id=eq.0h3v.s10.3a7ac6ae04d0 from=translated src=- shape=e3835d6a vocab=56bb9115
+-/
 theorem actualLowerDegreeRelationSubmodule_eq_componentKernel (d : ℕ) :
     D.ActualLowerDegreeRelationSubmodule (k := k) d =
       LinearMap.ker (D.fiberToComponentRelation (k := k) d) := by
@@ -274,6 +304,9 @@ def actualDegreeNewEquivRun24DegreeNew (d : ℕ) :
   Submodule.quotEquivOfEq _ _
     (D.actualLowerDegreeRelationSubmodule_eq_componentKernel (k := k) d)
 
+/--
+@isnad1 id=eq.0h4v.s14.50fcbce12575 from=translated src=- shape=50215582 vocab=27a1ce94
+-/
 @[simp] theorem actualDegreeNewEquivRun24DegreeNew_mk (d : ℕ)
     (a : D.FiberRelationSpace k d) :
     D.actualDegreeNewEquivRun24DegreeNew (k := k) d
@@ -287,6 +320,9 @@ def actualDegreeNewEquivComponentRelation (d : ℕ) :
   (D.actualDegreeNewEquivRun24DegreeNew (k := k) d).trans
     (D.degreeNewToricRelationSpaceEquiv (k := k) d)
 
+/--
+@isnad1 id=eq.1h3v.s9.9a1651acc7ec from=translated src=- shape=81103fe5 vocab=1da5b8a7
+-/
 theorem actualDegreeNewToricRelationSpace_finrank {d : ℕ}
     (hd : D.IsBettiDegree d) :
     Module.finrank k (D.ActualDegreeNewToricRelationSpace k d) =
@@ -294,6 +330,9 @@ theorem actualDegreeNewToricRelationSpace_finrank {d : ℕ}
   rw [(D.actualDegreeNewEquivComponentRelation (k := k) d).finrank_eq]
   exact D.componentRelationSpace_finrank hd
 
+/--
+@isnad1 id=eq.1h3v.s9.75e2c5a5d32a from=translated src=- shape=87135772 vocab=902c19f9
+-/
 theorem actualDegreeNewToricRelationSpace_finrank_eq_componentCount_sub_one
     {d : ℕ} (hd : D.IsBettiDegree d) :
     Module.finrank k (D.ActualDegreeNewToricRelationSpace k d) =
@@ -306,6 +345,9 @@ def actualConnectorClass {d : ℕ} (hd : D.IsBettiDegree d)
     D.ActualDegreeNewToricRelationSpace k d :=
   D.actualDegreeNewMk (k := k) d (D.connectorFiberRelation (k := k) hd e)
 
+/--
+@isnad1 id=eq.1h4v.s13.3159169b9864 from=translated src=- shape=1d215eb3 vocab=d4330ef8
+-/
 @[simp] theorem actualEquivRun24_connectorClass {d : ℕ}
     (hd : D.IsBettiDegree d) (e : D.ComponentConnector hd) :
     D.actualDegreeNewEquivRun24DegreeNew (k := k) d
@@ -319,6 +361,9 @@ def actualConnectorClassBasis {d : ℕ} (hd : D.IsBettiDegree d) :
   (D.connectorClassBasis (k := k) hd).map
     (D.actualDegreeNewEquivRun24DegreeNew (k := k) d).symm
 
+/--
+@isnad1 id=eq.1h4v.s10.fa30e8084240 from=translated src=- shape=46622520 vocab=dc213fd2
+-/
 @[simp] theorem actualConnectorClassBasis_apply {d : ℕ}
     (hd : D.IsBettiDegree d) (e : D.ComponentConnector hd) :
     D.actualConnectorClassBasis (k := k) hd e =
@@ -326,6 +371,9 @@ def actualConnectorClassBasis {d : ℕ} (hd : D.IsBettiDegree d) :
   apply (D.actualDegreeNewEquivRun24DegreeNew (k := k) d).injective
   simp [actualConnectorClassBasis]
 
+/--
+@isnad1 id=eq.1h3v.s11.156251fb9755 from=translated src=- shape=f40ade23 vocab=0c63f090
+-/
 theorem actualConnectorClass_span_eq_top {d : ℕ}
     (hd : D.IsBettiDegree d) :
     Submodule.span k (Set.range (D.actualConnectorClass (k := k) hd)) = ⊤ := by
@@ -347,6 +395,9 @@ def GeneratesActualDegreeNewRelations {d : ℕ}
   Submodule.span k (D.actualDegreeNewGeneratorFinset (k := k) G :
     Set (D.ActualDegreeNewToricRelationSpace k d)) = ⊤
 
+/--
+@isnad1 id=generate.1h3v.s4.b4cd9c1c32f8 from=translated src=- shape=0be45707 vocab=cf4e1416
+-/
 theorem actualConnectorRelationFinset_generates {d : ℕ}
     (hd : D.IsBettiDegree d) :
     D.GeneratesActualDegreeNewRelations
@@ -373,6 +424,9 @@ theorem actualConnectorRelationFinset_generates {d : ℕ}
   rw [D.actualConnectorClass_span_eq_top (k := k) hd] at hle
   exact top_unique hle
 
+/--
+@isnad1 id=le.2h4v.s9.6c3872b6519b from=translated src=- shape=496e7f09 vocab=5ff7579d
+-/
 theorem actualDegreeToricRelation_generator_card_lower_bound {d : ℕ}
     (hd : D.IsBettiDegree d) (G : Finset (D.FiberRelationSpace k d))
     (hG : D.GeneratesActualDegreeNewRelations (k := k) G) :
@@ -391,6 +445,9 @@ theorem actualDegreeToricRelation_generator_card_lower_bound {d : ℕ}
       unfold actualDegreeNewGeneratorFinset
       exact Finset.card_image_le
 
+/--
+@isnad1 id=eq.1h3v.s8.f594e3efdb43 from=translated src=- shape=141fa38b vocab=c2759d57
+-/
 theorem actualConnectorRelationFinset_card_exact {d : ℕ}
     (hd : D.IsBettiDegree d) :
     (D.connectorRelationFinset (k := k) hd).card =
@@ -408,6 +465,9 @@ def GeneratesDegreeDModuloLower {d : ℕ}
       D.fiberPolynomial (k := k) d (a - b).1 ∈
         D.lowerToricIdeal (k := k) d
 
+/--
+@isnad1 id=iff.0h4v.s12.d8240d00dfcf from=translated src=- shape=97021931 vocab=785e81a4
+-/
 theorem generatesDegreeDModuloLower_iff_sup_span {d : ℕ}
     (G : Finset (D.FiberRelationSpace k d)) :
     D.GeneratesDegreeDModuloLower (k := k) G ↔
@@ -439,6 +499,9 @@ theorem generatesDegreeDModuloLower_iff_sup_span {d : ℕ}
       abel
     simpa [hab] using hx
 
+/--
+@isnad1 id=iff.0h4v.s12.4997a6d23e6c from=translated src=- shape=97021931 vocab=de5e5e17
+-/
 theorem generatesActualDegreeNewRelations_iff_sup_span {d : ℕ}
     (G : Finset (D.FiberRelationSpace k d)) :
     D.GeneratesActualDegreeNewRelations (k := k) G ↔
@@ -459,6 +522,9 @@ theorem generatesActualDegreeNewRelations_iff_sup_span {d : ℕ}
     ((D.ActualLowerDegreeRelationSubmodule (k := k) d).map_mkQ_eq_top
       (Submodule.span k (G : Set (D.FiberRelationSpace k d))))
 
+/--
+@isnad1 id=iff.0h4v.s8.14d05720ff19 from=translated src=- shape=094d2a71 vocab=36dde54c
+-/
 theorem generatesDegreeDModuloLower_iff_actual {d : ℕ}
     (G : Finset (D.FiberRelationSpace k d)) :
     D.GeneratesDegreeDModuloLower (k := k) G ↔
@@ -466,6 +532,9 @@ theorem generatesDegreeDModuloLower_iff_actual {d : ℕ}
   rw [D.generatesDegreeDModuloLower_iff_sup_span,
     D.generatesActualDegreeNewRelations_iff_sup_span]
 
+/--
+@isnad1 id=le.2h4v.s9.9201674cb14b from=translated src=- shape=496e7f09 vocab=5b8c3935
+-/
 theorem degreeD_mod_lower_generator_card_lower_bound {d : ℕ}
     (hd : D.IsBettiDegree d) (G : Finset (D.FiberRelationSpace k d))
     (hG : D.GeneratesDegreeDModuloLower (k := k) G) :
@@ -499,6 +568,9 @@ structure ExactToricBettiPresentationBridge (d : ℕ)
     (D.connectorRelationFinset (k := k) hd).card =
       D.bettiContribution d
 
+/--
+@isnad1 id=exacttor.1h3v.s4.da4f6c97fb85 from=translated src=- shape=21e1c7fe vocab=93628d8d
+-/
 theorem exactToricBettiPresentationBridge {d : ℕ}
     (hd : D.IsBettiDegree d) :
     D.ExactToricBettiPresentationBridge (k := k) d hd where

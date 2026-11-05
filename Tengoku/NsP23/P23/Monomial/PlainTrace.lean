@@ -35,11 +35,17 @@ def plainRootTraceValueSet (k : Type*) [Field k] (S : Finset PlainExp) :
       (s : PlainExp) (hs : s ∈ S),
       F (PU (k := k) S (plainRootIndex S s hs)) = v}
 
+/--
+@isnad1 id=le.0h3v.s9.93611bc0f547 from=translated src=- shape=06a3fc72 vocab=f9a53738
+-/
 theorem plainTrace_range_le (S : Finset PlainExp)
     (F : PlainOmega k S →ₗ[PlainMonomialArtin k S] PlainMonomialArtin k S) :
     F.range ≤ PlainTraceSubmodule k S :=
   le_iSup (fun G : PlainOmega k S →ₗ[PlainMonomialArtin k S] PlainMonomialArtin k S ↦ G.range) F
 
+/--
+@isnad1 id=eq.0h2v.s7.eac759d8695a from=translated src=- shape=fc23dfc7 vocab=c4cef24d
+-/
 theorem plainTrace_eq_span_plainTraceValueSet (S : Finset PlainExp) :
     PlainTraceSubmodule k S =
       Submodule.span (PlainMonomialArtin k S) (plainTraceValueSet k S) := by
@@ -53,7 +59,9 @@ theorem plainTrace_eq_span_plainTraceValueSet (S : Finset PlainExp) :
     exact plainTrace_range_le (k := k) S F ⟨φ, rfl⟩
 
 /-- The ordinary trace equals the `A`-span of images of the selected-root
-duals.  This is a theorem, not the definition of trace.-/
+duals.  This is a theorem, not the definition of trace.
+@isnad1 id=eq.0h2v.s7.36db5b1b583a from=translated src=- shape=fc23dfc7 vocab=fd7039b5
+-/
 theorem plainTrace_eq_span_rootTraceValueSet (S : Finset PlainExp) :
     PlainTraceSubmodule k S =
       Submodule.span (PlainMonomialArtin k S) (plainRootTraceValueSet k S) := by
@@ -83,7 +91,9 @@ theorem plainTrace_eq_span_rootTraceValueSet (S : Finset PlainExp) :
 
 /-- Each selected-root image has zero degree-zero coefficient in type greater
 than one.  The proof uses a second incomparable root and exact coefficient
-transport; it is specific to the direct finite model.-/
+transport; it is specific to the direct finite model.
+@isnad1 id=eq.4h4v.s9.25daddd75f9f from=translated src=- shape=ff4be38a vocab=ae6f99e3
+-/
 theorem plainRootTraceValue_constantCoeff_eq_zero (S : Finset PlainExp)
     (hS : S.Nonempty) (hcard : 2 ≤ S.card) (hanti : PlainRootAntichain S)
     (F : PlainOmega k S →ₗ[PlainMonomialArtin k S] PlainMonomialArtin k S)
@@ -123,7 +133,9 @@ theorem plainRootTraceValue_constantCoeff_eq_zero (S : Finset PlainExp)
   · simp [plainUnitIndex]
 
 /-- If every selected-root image has zero coefficient in a live variable,
-then every trace element has zero coefficient there.-/
+then every trace element has zero coefficient there.
+@isnad1 id=eq.6h4v.s10.fb120bc5585e from=translated src=- shape=0fdb9466 vocab=25b998e4
+-/
 theorem plain_variable_coeff_eq_zero_of_trace
     (S : Finset PlainExp) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : PlainRootAntichain S)
@@ -162,7 +174,9 @@ theorem plain_variable_coeff_eq_zero_of_trace
   exact (hspanZ ht).2
 
 /-- A trace occurrence of a live variable has a selected-root image with a
-nonzero coefficient in that variable.-/
+nonzero coefficient in that variable.
+@isnad1 id=ex.5h3v.s10.800695a774cd from=translated src=- shape=ced05484 vocab=eacbee58
+-/
 theorem plain_exists_root_image_with_variable_coeff_of_mem_trace
     (S : Finset PlainExp) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : PlainRootAntichain S)

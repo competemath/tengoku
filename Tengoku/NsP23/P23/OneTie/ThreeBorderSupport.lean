@@ -14,10 +14,16 @@ def NormalHasFullSupport (q : Normal a b c) : Prop := 0 < q.x ∧ 0 < q.y ∧ 0 
 
 def NormalIsPureX (q : Normal a b c) : Prop := 0 < q.x ∧ q.y = 0 ∧ q.z = 0
 
+/--
+@isnad1 id=le.0h4v.s5.451fb01e14a7 from=translated src=- shape=17b15860 vocab=48531cdf
+-/
 theorem normalSupport_card_le_three (q : Normal a b c) : (normalSupport q).card ≤ 3 := by
   simpa [normalSupport] using Finset.card_le_card (Finset.filter_subset
     (fun j : Fin 3 => if j = 0 then 0 < q.x else if j = 1 then 0 < q.y else 0 < q.z) Finset.univ)
 
+/--
+@isnad1 id=iff.0h4v.s5.a4d13ce73186 from=translated src=- shape=98167fcb vocab=75e2a7eb
+-/
 theorem normalSupport_eq_univ_iff (q : Normal a b c) :
     normalSupport q = Finset.univ ↔ NormalHasFullSupport q := by
   constructor
@@ -30,6 +36,9 @@ theorem normalSupport_eq_univ_iff (q : Normal a b c) :
     ext j
     fin_cases j <;> simp [normalSupport,hx,hy,hz]
 
+/--
+@isnad1 id=le.1h4v.s5.8168b6135255 from=translated src=- shape=85e724b5 vocab=e7da7cd3
+-/
 theorem normalSupport_card_le_two_of_not_full (q : Normal a b c)
     (h : ¬NormalHasFullSupport q) : (normalSupport q).card ≤ 2 := by
   have hne : normalSupport q ≠ Finset.univ := by
@@ -39,12 +48,18 @@ theorem normalSupport_card_le_two_of_not_full (q : Normal a b c)
   have hu : (Finset.univ : Finset (Fin 3)).card = 3 := by decide
   omega
 
+/--
+@isnad1 id=dvd.1h4v.s5.be8ff3b2f86e from=translated src=- shape=29b3c678 vocab=37c03ae0
+-/
 theorem pure_x_divides_liveTiePoint (q : Normal a b c) (hq : NormalIsPureX q) :
     q ∣ (liveTiePoint : Normal a b c) := by
   apply (Normal.exact_divides_iff q liveTiePoint).mpr
   rcases hq with ⟨hx,hy,hz⟩
   simp [Normal.DividesCriterion, liveTiePoint, hy,hz]
 
+/--
+@isnad1 id=not.3h5v.s6.4e56a84adb35 from=translated src=- shape=759c9224 vocab=be7862c9
+-/
 theorem border_not_pure_x {S : Finset (Normal a b c)}
     (hS : S.Nonempty) (hl : IsLiveTie S) {q : Normal a b c}
     (hq : q ∈ borderFinset S) : ¬NormalIsPureX q := by

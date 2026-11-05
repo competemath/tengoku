@@ -23,6 +23,9 @@ def plainConstantCoeffAlgHom (R : Finset PlainExp) (hR : R.Nonempty) :
 def plainAugmentationIdeal (R : Finset PlainExp) (hR : R.Nonempty) :
     Ideal (PlainMonomialArtin k R) := RingHom.ker (plainConstantCoeffAlgHom R hR).toRingHom
 
+/--
+@isnad1 id=ismaxima.1h2v.s5.ad277dd48358 from=translated src=- shape=e8383442 vocab=24145fa0
+-/
 theorem plainAugmentationIdeal_isMaximal (R : Finset PlainExp) (hR : R.Nonempty) :
     (plainAugmentationIdeal (k := k) R hR).IsMaximal := by
   apply RingHom.ker_isMaximal_of_surjective
@@ -32,6 +35,9 @@ theorem plainAugmentationIdeal_isMaximal (R : Finset PlainExp) (hR : R.Nonempty)
 def plainVariableIdeal (R : Finset PlainExp) : Ideal (PlainMonomialArtin k R) :=
   Ideal.span (Set.range (fun j : Fin 3 => PXall (k := k) R (plainUnitVector j)))
 
+/--
+@isnad1 id=mem.2h3v.s7.14568e3e5565 from=translated src=- shape=f8263bd3 vocab=9e1c2548
+-/
 theorem plain_PX_mem_variableIdeal (R : Finset PlainExp) (p : PlainExp)
     (hp : p ∈ plainStandardFinset R) (hn : p ≠ 0) :
     PX (k := k) R p hp ∈ plainVariableIdeal R := by
@@ -54,6 +60,9 @@ theorem plain_PX_mem_variableIdeal (R : Finset PlainExp) (p : PlainExp)
   have hm := (plainVariableIdeal (k := k) R).mul_mem_left (PX R q hq) hv
   simpa [PX_mul_PX,q,plainPredecessor_add_unitVector j p hj,hp] using hm
 
+/--
+@isnad1 id=eq.1h2v.s5.0f1e9142895a from=translated src=- shape=d7ee70d3 vocab=5bbf0778
+-/
 theorem plainVariableIdeal_eq_augmentationIdeal (R : Finset PlainExp) (hR : R.Nonempty) :
     plainVariableIdeal (k := k) R = plainAugmentationIdeal R hR := by
   apply le_antisymm
@@ -77,12 +86,18 @@ theorem plainVariableIdeal_eq_augmentationIdeal (R : Finset PlainExp) (hR : R.No
       simpa [Algebra.smul_def] using (plainVariableIdeal (k := k) R).mul_mem_left
         (algebraMap k (PlainMonomialArtin k R) (v.coeff p)) hm
 
+/--
+@isnad1 id=eq.0h4v.s6.cbdbb29f70e1 from=translated src=- shape=c398b90a vocab=bdb4ea89
+-/
 theorem plain_PXall_nsmul (R : Finset PlainExp) (p : PlainExp) (n : ℕ) :
     PXall (k := k) R (n • p) = (PXall R p)^n := by
   induction n with
   | zero => simp
   | succ n ih => rw [succ_nsmul,PXall_add,ih,pow_succ]
 
+/--
+@isnad1 id=isnilpot.0h3v.s6.065631f079bb from=translated src=- shape=f1ff3d6a vocab=4456a421
+-/
 theorem plain_variable_nilpotent (R : Finset PlainExp) (j : Fin 3) :
     IsNilpotent (PXall (k := k) R (plainUnitVector j)) := by
   let N := (∑ p ∈ plainStandardFinset R, p j) + 1
@@ -97,6 +112,9 @@ theorem plain_variable_nilpotent (R : Finset PlainExp) (j : Fin 3) :
   rw [←plain_PXall_nsmul]
   simp [PXall,hn]
 
+/--
+@isnad1 id=islocalr.1h2v.s4.ecb45d540828 from=translated src=- shape=89161a2a vocab=cc6f7511
+-/
 theorem plainIsLocalRing (R : Finset PlainExp) (hR : R.Nonempty) :
     IsLocalRing (PlainMonomialArtin k R) := by
   apply IsLocalRing.of_unique_max_ideal
@@ -112,6 +130,9 @@ theorem plainIsLocalRing (R : Finset PlainExp) (hR : R.Nonempty) :
 def PlainDirectNearlyGorenstein (k : Type*) [Field k] (R : Finset PlainExp)
     (hR : R.Nonempty) : Prop := plainAugmentationIdeal (k := k) R hR ≤ PlainTraceSubmodule k R
 
+/--
+@isnad1 id=eq.2h3v.s6.00d6c2998428 from=translated src=- shape=e329a951 vocab=5c74a9c1
+-/
 theorem plainMaximalIdeal_eq_augmentationIdeal (R : Finset PlainExp) (hR : R.Nonempty)
     (I : Ideal (PlainMonomialArtin k R)) (hI : I.IsMaximal) :
     I = plainAugmentationIdeal R hR := by

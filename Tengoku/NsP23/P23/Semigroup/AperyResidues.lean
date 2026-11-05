@@ -24,6 +24,9 @@ private theorem apery_eq_of_le_residue (D : FourGeneratedNumericalSemigroup) (i 
     change t.1.1 = D.n i + (s.1.1 + k * D.n i)
     rw [hk]; ring
 
+/--
+@isnad1 id=injectiv.0h2v.s4.bea27ead1f1d from=translated src=- shape=57ca8524 vocab=c11da1d3
+-/
 theorem aperyResidue_injective (D : FourGeneratedNumericalSemigroup) (i : Fin 4) :
     Function.Injective (aperyResidue D i) := by
   intro s t he
@@ -31,6 +34,9 @@ theorem aperyResidue_injective (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
   · exact apery_eq_of_le_residue D i s t h he
   · exact (apery_eq_of_le_residue D i t s h he.symm).symm
 
+/--
+@isnad1 id=surjecti.0h2v.s4.a71be06e57ce from=translated src=- shape=57ca8524 vocab=ead85631
+-/
 theorem aperyResidue_surjective (D : FourGeneratedNumericalSemigroup) (i : Fin 4) :
     Function.Surjective (aperyResidue D i) := by
   classical
@@ -63,6 +69,9 @@ def aperyResidueEquiv (D : FourGeneratedNumericalSemigroup) (i : Fin 4) :
     D.AperyIndex i ≃ ZMod (D.n i) :=
   Equiv.ofBijective (aperyResidue D i) ⟨aperyResidue_injective D i,aperyResidue_surjective D i⟩
 
+/--
+@isnad1 id=eq.0h2v.s4.b36b7f92b0d9 from=translated src=- shape=2eced3fb vocab=dc03a023
+-/
 theorem aperyIndex_card (D : FourGeneratedNumericalSemigroup) (i : Fin 4) :
     Nat.card (D.AperyIndex i)=D.n i := by
   letI : NeZero (D.n i) := ⟨Nat.ne_of_gt (D.positive i)⟩

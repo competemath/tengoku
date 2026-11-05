@@ -65,7 +65,9 @@ def m2ZExpectedBorder (ha : 2 ≤ a) (r u v : ℕ) (hr : r ≤ a - 2) :
       (⟨r + 1, u, 0, by omega⟩ : Normal a 1 1),
       (⟨r + 2, 0, v, by omega⟩ : Normal a 1 1)}
 
-/-- At `r=a-2`, `x^(r+2)y^u = y^(u+1)z`.-/
+/-- At `r=a-2`, `x^(r+2)y^u = y^(u+1)z`.
+@isnad1 id=eq.4h3v.s8.a6d06c261839 from=translated src=- shape=d6ae9ff2 vocab=570a49a0
+-/
 theorem m2K_endpoint_xK (ha : 2 ≤ a) (_hu : 1 ≤ u)
     (hr : r ≤ a - 2) (hend : r = a - 2) :
     m2KRoot (a := a) ha r u hr *
@@ -81,7 +83,9 @@ theorem m2K_endpoint_xK (ha : 2 ≤ a) (_hu : 1 ≤ u)
   · simp [m2KRoot, m2YBorder, Normal.xGenerator, Normal.zGenerator,
       show a ≠ 1 by omega, hsum, hdiv]
 
-/-- At `r=a-2`, `x^(r+2)z^v = yz^(v+1)`.-/
+/-- At `r=a-2`, `x^(r+2)z^v = yz^(v+1)`.
+@isnad1 id=eq.4h3v.s8.78baa8a4438c from=translated src=- shape=300aea6d vocab=debe8b89
+-/
 theorem m2K_endpoint_xQ (ha : 2 ≤ a) (_hv : 1 ≤ v)
     (hr : r ≤ a - 2) (hend : r = a - 2) :
     (⟨r + 1, 0, v, by omega⟩ : Normal a 1 1) *
@@ -97,6 +101,9 @@ theorem m2K_endpoint_xQ (ha : 2 ≤ a) (_hv : 1 ≤ v)
   · simp [m2ZBorder, Normal.xGenerator, Normal.yGenerator,
       show a ≠ 1 by omega, hsum, hdiv]
 
+/--
+@isnad1 id=eq.4h3v.s8.1092bb2d3b48 from=translated src=- shape=aa0fad8a vocab=0bc3e227
+-/
 theorem m2Z_endpoint_xQ (ha : 2 ≤ a) (_hv : 1 ≤ v)
     (hr : r ≤ a - 2) (hend : r = a - 2) :
     (⟨r + 1, 0, v, by omega⟩ : Normal a 1 1) *
@@ -137,6 +144,9 @@ def m2ZBorderNat (a r u v x y z : ℕ) : Prop :=
   ((r = a - 2 ∧ x = 0 ∧ y = 1 ∧ z = v + 1) ∨
    (r ≠ a - 2 ∧ x = r + 2 ∧ y = 0 ∧ z = v))
 
+/--
+@isnad1 id=iff.3h5v.s7.a2e705b4994a from=translated src=- shape=9dc727a5 vocab=45e9c080
+-/
 theorem mem_standardSet_m2K_iff (ha : 2 ≤ a) (hu : 1 ≤ u) (hr : r ≤ a - 2)
     (p : Normal a 1 1) :
     p ∈ standardSet (m2KSocles (a := a) ha r u v hr) ↔
@@ -145,6 +155,9 @@ theorem mem_standardSet_m2K_iff (ha : 2 ≤ a) (hu : 1 ≤ u) (hr : r ≤ a - 2)
   simp [standardSet, m2KSocles, m2Core, m2Partner, m2KRoot,
     Normal.exact_divides_iff, Normal.DividesCriterion, m2KStandardNat]
 
+/--
+@isnad1 id=iff.3h5v.s7.f91e5c5d5929 from=translated src=- shape=9dc727a5 vocab=c7f38616
+-/
 theorem mem_standardSet_m2Z_iff (ha : 2 ≤ a) (hu : 1 ≤ u) (hr : r ≤ a - 2)
     (p : Normal a 1 1) :
     p ∈ standardSet (m2ZSocles (a := a) ha r u v hr) ↔
@@ -154,6 +167,9 @@ theorem mem_standardSet_m2Z_iff (ha : 2 ≤ a) (hu : 1 ≤ u) (hr : r ≤ a - 2)
     Normal.exact_divides_iff, Normal.DividesCriterion, m2ZStandardNat]
   omega
 
+/--
+@isnad1 id=iff.2h5v.s7.37e07e37fb1a from=translated src=- shape=dac81caa vocab=0abc9fe7
+-/
 theorem mem_m2KExpectedBorder_iff (ha : 2 ≤ a) (hr : r ≤ a - 2)
     (m : Normal a 1 1) :
     m ∈ m2KExpectedBorder (a := a) ha r u v hr ↔
@@ -163,6 +179,9 @@ theorem mem_m2KExpectedBorder_iff (ha : 2 ≤ a) (hr : r ≤ a - 2)
     simp [m2KExpectedBorder, h, m2KBorderNat, m2YBorder, m2ZBorder,
       m2KDiagonal, Normal.mk.injEq]
 
+/--
+@isnad1 id=iff.2h5v.s7.8aaa79647f3c from=translated src=- shape=dac81caa vocab=ccdcb71b
+-/
 theorem mem_m2ZExpectedBorder_iff (ha : 2 ≤ a) (hr : r ≤ a - 2)
     (m : Normal a 1 1) :
     m ∈ m2ZExpectedBorder (a := a) ha r u v hr ↔
@@ -172,6 +191,9 @@ theorem mem_m2ZExpectedBorder_iff (ha : 2 ≤ a) (hr : r ≤ a - 2)
     simp [m2ZExpectedBorder, h, m2ZBorderNat, m2YBorder, Normal.mk.injEq]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.5h7v.s8.95d92e564ae9 from=translated src=- shape=9c05787b vocab=b0feef18
+-/
 theorem m2K_border_arithmetic (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
     (hr : r ≤ a - 2) (x y z : ℕ) (hxlt : x < a) :
     (¬m2KStandardNat r u v x y z ∧
@@ -189,6 +211,9 @@ theorem m2K_border_arithmetic (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
       m2KBorderNat] <;> grind (splits := 32)
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.5h7v.s8.ee34f7ed10ca from=translated src=- shape=9c05787b vocab=3cec1574
+-/
 theorem m2Z_border_arithmetic (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
     (hr : r ≤ a - 2) (x y z : ℕ) (hxlt : x < a) :
     (¬m2ZStandardNat r u v x y z ∧
@@ -205,6 +230,9 @@ theorem m2Z_border_arithmetic (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
     simp [hx, hy, hz, hend, Nat.lt_iff_add_one_le, m2ZStandardNat,
       m2ZBorderNat] <;> grind (splits := 32)
 
+/--
+@isnad1 id=eq.4h4v.s6.18b18ac77ba4 from=translated src=- shape=6cd79b90 vocab=0fa79170
+-/
 theorem m2K_border_exact (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
     (hr : r ≤ a - 2) :
     borderFinset (m2KSocles (a := a) ha r u v hr) =
@@ -237,6 +265,9 @@ theorem m2K_border_exact (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
         Normal.yPredecessor, Normal.zPredecessor, hx, hx0, hy,
         Nat.lt_iff_add_one_le] using harith
 
+/--
+@isnad1 id=eq.4h4v.s7.19fdd8299639 from=translated src=- shape=b4814625 vocab=44c4ec12
+-/
 theorem m2K_border_card (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
     (hr : r ≤ a - 2) :
     (borderFinset (m2KSocles (a := a) ha r u v hr)).card =
@@ -278,6 +309,9 @@ theorem m2K_border_card (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
     rw [Finset.card_insert_of_notMem hB]
     simpa [h]
 
+/--
+@isnad1 id=eq.4h4v.s6.e52c0bcb2606 from=translated src=- shape=6cd79b90 vocab=b85b57eb
+-/
 theorem m2Z_border_exact (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
     (hr : r ≤ a - 2) :
     borderFinset (m2ZSocles (a := a) ha r u v hr) =
@@ -310,6 +344,9 @@ theorem m2Z_border_exact (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
         Normal.yPredecessor, Normal.zPredecessor, hx, hx0, hy,
         Nat.lt_iff_add_one_le] using harith
 
+/--
+@isnad1 id=eq.4h4v.s6.be65a69ac99c from=translated src=- shape=a8329cc9 vocab=2154f076
+-/
 theorem m2Z_border_card (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
     (hr : r ≤ a - 2) :
     (borderFinset (m2ZSocles (a := a) ha r u v hr)).card = 5 := by
@@ -319,6 +356,9 @@ theorem m2Z_border_card (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v)
 
 /-! A shared transport from coordinate arithmetic to exact finite borders. -/
 
+/--
+@isnad1 id=eq.4h7v.s8.8823e421734d from=translated src=- shape=37252f39 vocab=a2401ea0
+-/
 theorem borderFinset_eq_expected_of_nat {a b c : ℕ} [NeZero a]
     (S G : Finset (Normal a b c))
     (Std Border : ℕ → ℕ → ℕ → Prop)
@@ -397,6 +437,9 @@ def m3KBorderNat (a b c v x y z : ℕ) : Prop :=
    (a ≠ 2 ∧ x = 2 ∧ y = 0 ∧ z = m3D v c)) ∨
   (x = 1 ∧ y = 0 ∧ z = m3D v c + 1)
 
+/--
+@isnad1 id=iff.4h5v.s6.2a1ec5ecfb5f from=translated src=- shape=0031daff vocab=06a906f8
+-/
 theorem mem_standardSet_m3K_iff (ha : 2 ≤ a) (hb : 1 ≤ b)
     (hc : 1 ≤ c) (hv : c ≤ v) (p : Normal a b c) :
     p ∈ standardSet (m3KSocles (a := a) (b := b) (c := c) ha v) ↔
@@ -406,6 +449,9 @@ theorem mem_standardSet_m3K_iff (ha : 2 ≤ a) (hb : 1 ≤ b)
     Normal.exact_divides_iff, Normal.DividesCriterion, m3KStandardNat, m3D]
   omega
 
+/--
+@isnad1 id=iff.1h5v.s6.2f02b954ea20 from=translated src=- shape=25eca3c3 vocab=61105424
+-/
 theorem mem_m3KExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a b c) :
     m ∈ m3KExpectedBorder (a := a) (b := b) (c := c) ha v ↔
       m3KBorderNat a b c v m.x m.y m.z := by
@@ -414,6 +460,9 @@ theorem mem_m3KExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a b c) :
     simp [m3KExpectedBorder, h, m3KBorderNat, Normal.mk.injEq]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.5h7v.s7.e1f0b9575bf5 from=translated src=- shape=4a73dd74 vocab=0e9cba70
+-/
 theorem m3K_border_arithmetic (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hv : c ≤ v) (x y z : ℕ) (hxlt : x < a) :
     (¬m3KStandardNat b c v x y z ∧
@@ -431,6 +480,9 @@ theorem m3K_border_arithmetic (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     simp [ha2, hx, hby, hcz, hy, hz, m3KStandardNat, m3KBorderNat, m3D] <;>
       grind (splits := 32)
 
+/--
+@isnad1 id=eq.4h4v.s6.c0283b0b0188 from=translated src=- shape=bb071134 vocab=d864ee3b
+-/
 theorem m3K_border_exact (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hv : c ≤ v) :
     borderFinset (m3KSocles (a := a) (b := b) (c := c) ha v) =
@@ -442,12 +494,18 @@ theorem m3K_border_exact (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
   · exact mem_m3KExpectedBorder_iff ha
   · exact m3K_border_arithmetic (v := v) ha hb hc hv
 
+/--
+@isnad1 id=eq.4h4v.s6.f3fd457cafb5 from=translated src=- shape=e3bf822c vocab=406333ed
+-/
 theorem m3K_border_card (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hv : c ≤ v) :
     (borderFinset (m3KSocles (a := a) (b := b) (c := c) ha v)).card = 5 := by
   rw [m3K_border_exact ha hb hc hv]
   by_cases h : a = 2 <;> simp [m3KExpectedBorder, h, m3D] <;> omega
 
+/--
+@isnad1 id=eq.4h4v.s7.834cf87b4d34 from=translated src=- shape=e12414a3 vocab=9b5d52b8
+-/
 theorem m3K_endpoint_xK (hb : 1 ≤ b) (hc : 1 ≤ c) (hv : c ≤ v)
     (ha2 : a = 2) :
     m3KRoot (a := a) (b := b) (by omega) v c *
@@ -489,6 +547,9 @@ def m4YBorderNat (u v x y z : ℕ) : Prop :=
   (x = 0 ∧ y = 0 ∧ z = v + 2) ∨
   (x = 1 ∧ y = 0 ∧ z = v + 1)
 
+/--
+@isnad1 id=iff.1h4v.s7.22e4e87fb0a0 from=translated src=- shape=f5610f29 vocab=b9eb624c
+-/
 theorem mem_standardSet_m4Y_iff (ha : 2 ≤ a) (p : Normal a 1 1) :
     p ∈ standardSet (m4YSocles (a := a) ha u v) ↔
       m4YStandardNat a u v p.x p.y p.z := by
@@ -497,6 +558,9 @@ theorem mem_standardSet_m4Y_iff (ha : 2 ≤ a) (p : Normal a 1 1) :
     Normal.exact_divides_iff, Normal.DividesCriterion, m4YStandardNat]
   omega
 
+/--
+@isnad1 id=iff.1h4v.s7.5fe74de000e4 from=translated src=- shape=21a0f63d vocab=63b88f0a
+-/
 theorem mem_m4YExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a 1 1) :
     m ∈ m4YExpectedBorder (a := a) ha u v ↔
       m4YBorderNat u v m.x m.y m.z := by
@@ -504,6 +568,9 @@ theorem mem_m4YExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a 1 1) :
   simp [m4YExpectedBorder, m4YBorderNat, Normal.mk.injEq]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.3h6v.s8.f940d815574a from=translated src=- shape=d101f757 vocab=f9c1065a
+-/
 theorem m4Y_border_arithmetic (ha : 2 ≤ a) (hu : 1 ≤ u)
     (x y z : ℕ) (hxlt : x < a) :
     (¬m4YStandardNat a u v x y z ∧
@@ -519,6 +586,9 @@ theorem m4Y_border_arithmetic (ha : 2 ≤ a) (hu : 1 ≤ u)
     simp [hx, hy, hz, Nat.lt_iff_add_one_le, m4YStandardNat, m4YBorderNat] <;>
       grind (splits := 32)
 
+/--
+@isnad1 id=eq.2h3v.s6.681eca946d89 from=translated src=- shape=3c8267f8 vocab=04450c2e
+-/
 theorem m4Y_border_exact (ha : 2 ≤ a) (hu : 1 ≤ u) :
     borderFinset (m4YSocles (a := a) ha u v) =
       m4YExpectedBorder (a := a) ha u v := by
@@ -529,6 +599,9 @@ theorem m4Y_border_exact (ha : 2 ≤ a) (hu : 1 ≤ u) :
   · exact mem_m4YExpectedBorder_iff ha
   · exact m4Y_border_arithmetic (v := v) ha hu
 
+/--
+@isnad1 id=eq.2h3v.s6.5eb6f6e712a3 from=translated src=- shape=71a15cac vocab=fee1b000
+-/
 theorem m4Y_border_card (ha : 2 ≤ a) (hu : 1 ≤ u) :
     (borderFinset (m4YSocles (a := a) ha u v)).card = 5 := by
   rw [m4Y_border_exact ha hu]
@@ -593,6 +666,9 @@ def m5ZBorderNat (b c v x y z : ℕ) : Prop :=
   (x = 1 ∧ y = 1 ∧ z = 0) ∨
   (x = 1 ∧ y = 0 ∧ z = v + 1)
 
+/--
+@isnad1 id=iff.4h5v.s6.fab2cb9dd5c7 from=translated src=- shape=2242fc42 vocab=4708814a
+-/
 theorem mem_standardSet_m5Y_iff (ha : 2 ≤ a) (hb : 1 ≤ b)
     (hc : 1 ≤ c) (hv : 1 ≤ v) (p : Normal a b c) :
     p ∈ standardSet (m5YSocles (a := a) (b := b) (c := c) ha v) ↔
@@ -602,6 +678,9 @@ theorem mem_standardSet_m5Y_iff (ha : 2 ≤ a) (hb : 1 ≤ b)
     Normal.exact_divides_iff, Normal.DividesCriterion, m5YStandardNat]
   omega
 
+/--
+@isnad1 id=iff.4h5v.s6.a219be228a24 from=translated src=- shape=2242fc42 vocab=fc003725
+-/
 theorem mem_standardSet_m5Z_iff (ha : 2 ≤ a) (hb : 1 ≤ b)
     (hc : 1 ≤ c) (hv : 1 ≤ v) (p : Normal a b c) :
     p ∈ standardSet (m5ZSocles (a := a) (b := b) (c := c) ha v) ↔
@@ -611,6 +690,9 @@ theorem mem_standardSet_m5Z_iff (ha : 2 ≤ a) (hb : 1 ≤ b)
     Normal.exact_divides_iff, Normal.DividesCriterion, m5ZStandardNat]
   omega
 
+/--
+@isnad1 id=iff.1h5v.s6.6c12d14ab4d8 from=translated src=- shape=e8929563 vocab=3dcfd753
+-/
 theorem mem_m5YExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a b c) :
     m ∈ m5YExpectedBorder (a := a) (b := b) (c := c) ha v ↔
       m5YBorderNat b c v m.x m.y m.z := by
@@ -619,6 +701,9 @@ theorem mem_m5YExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a b c) :
     simp [m5YExpectedBorder, h, m5YBorderNat, Normal.mk.injEq]
   aesop
 
+/--
+@isnad1 id=iff.1h5v.s6.21cc00a6fdcc from=translated src=- shape=e8929563 vocab=4cf2c225
+-/
 theorem mem_m5ZExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a b c) :
     m ∈ m5ZExpectedBorder (a := a) (b := b) (c := c) ha v ↔
       m5ZBorderNat b c v m.x m.y m.z := by
@@ -626,6 +711,9 @@ theorem mem_m5ZExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a b c) :
   simp [m5ZExpectedBorder, m5ZBorderNat, Normal.mk.injEq]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.5h7v.s7.44fa2009760c from=translated src=- shape=0554ce17 vocab=264316bd
+-/
 theorem m5Y_border_arithmetic (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hv : 1 ≤ v) (x y z : ℕ) (hxlt : x < a) :
     (¬m5YStandardNat a b c v x y z ∧
@@ -644,6 +732,9 @@ theorem m5Y_border_arithmetic (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
       grind (splits := 32)
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.5h7v.s7.28a9c96c34f2 from=translated src=- shape=0554ce17 vocab=855b85a2
+-/
 theorem m5Z_border_arithmetic (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hv : 1 ≤ v) (x y z : ℕ) (hxlt : x < a) :
     (¬m5ZStandardNat a b c v x y z ∧
@@ -660,6 +751,9 @@ theorem m5Z_border_arithmetic (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     simp [hx, hby, hcz, hy, hz, m5ZStandardNat, m5ZBorderNat] <;>
       grind (splits := 32)
 
+/--
+@isnad1 id=eq.4h4v.s6.88483237e6ca from=translated src=- shape=64b673fa vocab=92e9c292
+-/
 theorem m5Y_border_exact (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hv : 1 ≤ v) :
     borderFinset (m5YSocles (a := a) (b := b) (c := c) ha v) =
@@ -671,6 +765,9 @@ theorem m5Y_border_exact (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
   · exact mem_m5YExpectedBorder_iff ha
   · exact m5Y_border_arithmetic (v := v) ha hb hc hv
 
+/--
+@isnad1 id=eq.4h4v.s6.0132e996fc69 from=translated src=- shape=64b673fa vocab=40e21ae7
+-/
 theorem m5Z_border_exact (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hv : 1 ≤ v) :
     borderFinset (m5ZSocles (a := a) (b := b) (c := c) ha v) =
@@ -682,6 +779,9 @@ theorem m5Z_border_exact (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
   · exact mem_m5ZExpectedBorder_iff ha
   · exact m5Z_border_arithmetic (v := v) ha hb hc hv
 
+/--
+@isnad1 id=eq.4h4v.s6.aac26736e246 from=translated src=- shape=4ef05959 vocab=787c4c15
+-/
 theorem m5Y_border_card (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hv : 1 ≤ v) :
     (borderFinset (m5YSocles (a := a) (b := b) (c := c) ha v)).card =
@@ -689,6 +789,9 @@ theorem m5Y_border_card (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
   rw [m5Y_border_exact ha hb hc hv]
   by_cases h : c = 1 <;> simp [m5YExpectedBorder, h] <;> omega
 
+/--
+@isnad1 id=eq.4h4v.s6.b8303bd3ecec from=translated src=- shape=56f145da vocab=ca8501c7
+-/
 theorem m5Z_border_card (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hv : 1 ≤ v) :
     (borderFinset (m5ZSocles (a := a) (b := b) (c := c) ha v)).card = 5 := by
@@ -724,6 +827,9 @@ theorem m5Z_border_card (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
   rw [Finset.card_insert_of_notMem hD]
   simp
 
+/--
+@isnad1 id=eq.2h3v.s7.0df54b40d1f7 from=translated src=- shape=1db13a50 vocab=d65ecd07
+-/
 theorem m5Y_c_eq_one_redundancy_yz (ha : 2 ≤ a) (hc1 : c = 1) :
     (⟨0, b + 1, 1, a_pos⟩ : Normal a b c) =
       (⟨a - 1, 0, 0, by omega⟩ : Normal a b c) *
@@ -736,6 +842,9 @@ theorem m5Y_c_eq_one_redundancy_yz (ha : 2 ≤ a) (hc1 : c = 1) :
     omega
   · simp [hsum, hdiv, hc1]
 
+/--
+@isnad1 id=eq.2h4v.s6.910e1d230622 from=translated src=- shape=ef1f7292 vocab=ec4a8f12
+-/
 theorem m5Y_c_eq_one_redundancy_xz (ha : 2 ≤ a) (hc1 : c = 1) :
     (⟨1, 0, v + 1, by omega⟩ : Normal a b c) =
       (⟨1, 0, v + c, by omega⟩ : Normal a b c) := by
@@ -785,6 +894,9 @@ def p5ZBorderNat (v x y z : ℕ) : Prop :=
   (x = 1 ∧ y = 1 ∧ z = 0) ∨ (x = 0 ∧ y = 1 ∧ z = 1) ∨
   (x = 0 ∧ y = 0 ∧ z = v + 2) ∨ (x = 1 ∧ y = 0 ∧ z = v + 1)
 
+/--
+@isnad1 id=iff.3h4v.s6.caf3c4de81e9 from=translated src=- shape=08d30cab vocab=eb0a0e22
+-/
 theorem mem_standardSet_p4Z_iff (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hV : 1 ≤ V) (p : Normal a b 0) :
     p ∈ standardSet (p4ZSocles (a := a) (b := b) ha V) ↔
@@ -794,6 +906,9 @@ theorem mem_standardSet_p4Z_iff (ha : 2 ≤ a) (hb : 2 ≤ b)
     Normal.DividesCriterion, p4ZStandardNat]
   omega
 
+/--
+@isnad1 id=iff.3h4v.s6.fb2cbba03bd7 from=translated src=- shape=ad9cb42e vocab=58da9159
+-/
 theorem mem_standardSet_p5Z_iff (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hv : 1 ≤ v) (p : Normal a b 0) :
     p ∈ standardSet (p5ZSocles (a := a) (b := b) ha v) ↔
@@ -803,12 +918,18 @@ theorem mem_standardSet_p5Z_iff (ha : 2 ≤ a) (hb : 2 ≤ b)
     Normal.DividesCriterion, p5ZStandardNat]
   omega
 
+/--
+@isnad1 id=iff.1h4v.s6.3ff836a3bc62 from=translated src=- shape=22b957e7 vocab=5d5ee60c
+-/
 theorem mem_p4ZExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a b 0) :
     m ∈ p4ZExpectedBorder (a := a) (b := b) ha V ↔
       p4ZBorderNat V m.x m.y m.z := by
   rcases m with ⟨mx, my, mz, hmx⟩
   simp [p4ZExpectedBorder, p4ZBorderNat, Normal.mk.injEq]
 
+/--
+@isnad1 id=iff.1h4v.s6.5b4536ed662e from=translated src=- shape=106ec0aa vocab=ea1150f2
+-/
 theorem mem_p5ZExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a b 0) :
     m ∈ p5ZExpectedBorder (a := a) (b := b) ha v ↔
       p5ZBorderNat v m.x m.y m.z := by
@@ -816,6 +937,9 @@ theorem mem_p5ZExpectedBorder_iff (ha : 2 ≤ a) (m : Normal a b 0) :
   simp [p5ZExpectedBorder, p5ZBorderNat, Normal.mk.injEq]
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.4h6v.s7.073a2eec9ae0 from=translated src=- shape=7ba1e3dc vocab=4b7e1e33
+-/
 theorem p4Z_border_arithmetic (ha : 2 ≤ a) (hb : 2 ≤ b) (hV : 1 ≤ V)
     (x y z : ℕ) (hxlt : x < a) :
     (¬p4ZStandardNat b V x y z ∧
@@ -831,6 +955,9 @@ theorem p4Z_border_arithmetic (ha : 2 ≤ a) (hb : 2 ≤ b) (hV : 1 ≤ V)
       grind (splits := 32)
 
 set_option maxHeartbeats 6400000 in
+/--
+@isnad1 id=iff.4h6v.s7.a8c688e1f847 from=translated src=- shape=cd80fa4a vocab=3384bbdb
+-/
 theorem p5Z_border_arithmetic (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v)
     (x y z : ℕ) (hxlt : x < a) :
     (¬p5ZStandardNat b v x y z ∧
@@ -845,6 +972,9 @@ theorem p5Z_border_arithmetic (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v)
     simp [hx, hby, hy, hz, p5ZStandardNat, p5ZBorderNat] <;>
       grind (splits := 32)
 
+/--
+@isnad1 id=eq.3h3v.s6.e587eb1dc8db from=translated src=- shape=3dbb131a vocab=bba203f9
+-/
 theorem p4Z_border_exact (ha : 2 ≤ a) (hb : 2 ≤ b) (hV : 1 ≤ V) :
     borderFinset (p4ZSocles (a := a) (b := b) ha V) =
       p4ZExpectedBorder (a := a) (b := b) ha V := by
@@ -854,6 +984,9 @@ theorem p4Z_border_exact (ha : 2 ≤ a) (hb : 2 ≤ b) (hV : 1 ≤ V) :
   · exact mem_p4ZExpectedBorder_iff ha
   · exact p4Z_border_arithmetic (V := V) ha hb hV
 
+/--
+@isnad1 id=eq.3h3v.s6.3a627d6dea3c from=translated src=- shape=e1be297f vocab=e14a1663
+-/
 theorem p5Z_border_exact (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v) :
     borderFinset (p5ZSocles (a := a) (b := b) ha v) =
       p5ZExpectedBorder (a := a) (b := b) ha v := by
@@ -863,11 +996,17 @@ theorem p5Z_border_exact (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v) :
   · exact mem_p5ZExpectedBorder_iff ha
   · exact p5Z_border_arithmetic (v := v) ha hb hv
 
+/--
+@isnad1 id=eq.3h3v.s6.856b9c89d62a from=translated src=- shape=354f6193 vocab=7a665f45
+-/
 theorem p4Z_border_card (ha : 2 ≤ a) (hb : 2 ≤ b) (hV : 1 ≤ V) :
     (borderFinset (p4ZSocles (a := a) (b := b) ha V)).card = 4 := by
   rw [p4Z_border_exact ha hb hV]
   simp [p4ZExpectedBorder]
 
+/--
+@isnad1 id=eq.3h3v.s6.4a62674cf0d0 from=translated src=- shape=0754ba2f vocab=ee29bd02
+-/
 theorem p5Z_border_card (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v) :
     (borderFinset (p5ZSocles (a := a) (b := b) ha v)).card = 4 := by
   rw [p5Z_border_exact ha hb hv]
@@ -896,6 +1035,9 @@ structure NonDominantRowCardSummary : Prop where
   p5Z : ∀ {a b v : ℕ} [NeZero a] (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hv : 1 ≤ v), (borderFinset (p5ZSocles (b := b) ha v)).card = 4
 
+/--
+@isnad1 id=nondomin.0h0v.s0.30fbf30a1807 from=translated src=- shape=45709ebd vocab=30fbf30a
+-/
 theorem nonDominantRowCardSummary : NonDominantRowCardSummary :=
   ⟨m2K_border_card, m2Z_border_card, m3K_border_card, m4Y_border_card,
     m5Y_border_card, m5Z_border_card, p4Z_border_card, p5Z_border_card⟩

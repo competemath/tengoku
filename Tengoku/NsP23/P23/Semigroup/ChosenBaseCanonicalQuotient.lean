@@ -16,6 +16,9 @@ variable (S : Finset (Normal a b c)) (hS : S.Nonempty)
 variable (hd : IsLiveParameterDomain a b c) (hl : IsLiveTie S)
 variable (E : ChosenBaseQuotient (k := ℚ) D i ≃ₐ[ℚ] FinitePolynomialQuotient ℚ S)
 
+/--
+@isnad1 id=iff.3h8v.s10.ac8b1cba827f from=translated src=- shape=a6c337dc vocab=b4e64c94
+-/
 theorem chosenCanonical_maximal_mem_iff (x : ChosenBaseQuotient (k := ℚ) D i) :
     letI := chosenBaseIsLocalRing (k := ℚ) D i
     letI := quotientIsLocalRing (k := ℚ) S hS hd hl
@@ -26,6 +29,9 @@ theorem chosenCanonical_maximal_mem_iff (x : ChosenBaseQuotient (k := ℚ) D i) 
   simp only [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
   exact not_iff_not.mpr (MulEquiv.isUnit_map (f := E.toRingEquiv.toMulEquiv)).symm
 
+/--
+@isnad1 id=iff.3h8v.s11.66cc638cbb3b from=translated src=- shape=6ba2b850 vocab=f44340d8
+-/
 theorem chosenCanonical_socle_mem_iff (x : ChosenBaseQuotient (k := ℚ) D i) :
     x ∈ ChosenBaseSocle (k := ℚ) D i ↔ E x ∈ QuotientSocle (k := ℚ) S hS hd hl := by
   letI := chosenBaseIsLocalRing (k := ℚ) D i
@@ -52,6 +58,9 @@ def chosenCanonicalSocleEquiv
   map_smul' r x := by ext; simp
 
 include E in
+/--
+@isnad1 id=eq.3h7v.s8.e79632a737e8 from=translated src=- shape=438a5822 vocab=273d2440
+-/
 theorem chosenCanonical_type_eq : quotientType ℚ S hS hd hl = chosenBaseType (k := ℚ) D i :=
   (chosenCanonicalSocleEquiv S hS hd hl E).finrank_eq.symm
 
@@ -64,6 +73,9 @@ def chosenCanonicalOmegaEquiv : ChosenBaseOmega ℚ D i ≃ₗ[ℚ] QuotientOmeg
   map_add' φ ψ := by apply LinearMap.ext; intro x; rfl
   map_smul' r φ := by apply LinearMap.ext; intro x; rfl
 
+/--
+@isnad1 id=eq.0h9v.s13.a3e563cd57fc from=translated src=- shape=afba086c vocab=41728575
+-/
 theorem chosenCanonicalOmegaEquiv_smul (x : ChosenBaseQuotient (k := ℚ) D i)
     (φ : ChosenBaseOmega ℚ D i) :
     chosenCanonicalOmegaEquiv S E (x • φ) = E x • chosenCanonicalOmegaEquiv S E φ := by
@@ -73,6 +85,9 @@ theorem chosenCanonicalOmegaEquiv_smul (x : ChosenBaseQuotient (k := ℚ) D i)
   congr 1
   simp
 
+/--
+@isnad1 id=eq.0h9v.s13.4a1bc295cadd from=translated src=- shape=75d8776b vocab=b73d34ef
+-/
 theorem chosenCanonicalOmegaEquiv_symm_smul (x : FinitePolynomialQuotient ℚ S)
     (ψ : QuotientOmega ℚ S) :
     (chosenCanonicalOmegaEquiv S E).symm (x • ψ) =
@@ -99,6 +114,9 @@ def pullChosenCanonicalHom
     rw [chosenCanonicalOmegaEquiv_smul, F.map_smul]
     simp [smul_eq_mul]
 
+/--
+@isnad1 id=iff.0h8v.s11.bd24e7425eb8 from=translated src=- shape=8d4a4661 vocab=a6839888
+-/
 theorem chosenCanonical_trace_mem_iff (x : ChosenBaseQuotient (k := ℚ) D i) :
     x ∈ ChosenBaseTraceSubmodule (k := ℚ) D i ↔ E x ∈ QuotientTraceSubmodule ℚ S := by
   constructor
@@ -124,6 +142,9 @@ theorem chosenCanonical_trace_mem_iff (x : ChosenBaseQuotient (k := ℚ) D i) :
     simpa using hback
 
 include E in
+/--
+@isnad1 id=iff.3h7v.s8.edba13dfbbfe from=translated src=- shape=b5178bb7 vocab=d9a472ab
+-/
 theorem chosenCanonical_ng_iff : ChosenBaseNearlyGorenstein (k := ℚ) D i ↔
     QuotientNearlyGorenstein ℚ S hS hd hl := by
   unfold ChosenBaseNearlyGorenstein QuotientNearlyGorenstein
@@ -138,6 +159,9 @@ theorem chosenCanonical_ng_iff : ChosenBaseNearlyGorenstein (k := ℚ) D i ↔
     exact (chosenCanonical_trace_mem_iff S E x).mpr
       (h ((chosenCanonical_maximal_mem_iff S hS hd hl E x).mp hx))
 
+/--
+@isnad1 id=eq.1h2v.s5.8081f2fc2381 from=translated src=- shape=0f369139 vocab=fa86f4af
+-/
 theorem idealGeneratorMu_eq_minimal_card (I : Ideal (ThreePoly ℚ)) (n : ℕ)
     (hmin : HasMinimalGeneratorCard I n) : idealGeneratorMu I = n := by
   classical
@@ -153,15 +177,24 @@ theorem idealGeneratorMu_eq_minimal_card (I : Ideal (ThreePoly ℚ)) (n : ℕ)
 
 namespace BudgetOneNormalizedPresentation
 variable (B : BudgetOneNormalizedPresentation D i)
+/--
+@isnad1 id=eq.0h3v.s6.eed28ae9044e from=translated src=- shape=d89d5614 vocab=386c5f1b
+-/
 theorem canonicalOneTieType_eq_chosenBaseType :
     quotientType ℚ B.roots B.roots_nonempty B.coordinates.liveDomain B.roots_live =
       chosenBaseType (k := ℚ) D i :=
   chosenCanonical_type_eq _ _ _ _ B.chosenBaseEquivCanonicalOneTie
 
+/--
+@isnad1 id=iff.0h3v.s5.098b155694d1 from=translated src=- shape=94d1e42d vocab=2c330ddf
+-/
 theorem canonicalOneTie_ng_iff : ChosenBaseNearlyGorenstein (k := ℚ) D i ↔
     QuotientNearlyGorenstein ℚ B.roots B.roots_nonempty B.coordinates.liveDomain B.roots_live :=
   chosenCanonical_ng_iff _ _ _ _ B.chosenBaseEquivCanonicalOneTie
 
+/--
+@isnad1 id=eq.0h3v.s5.3a07dc9ffcea from=translated src=- shape=4d1e496c vocab=76734e35
+-/
 theorem canonicalKernelMu_eq_rho :
     idealGeneratorMu (finitePresentationIdeal (k := ℚ) B.roots) = D.semigroupRho := by
   apply idealGeneratorMu_eq_minimal_card
@@ -173,6 +206,9 @@ end BudgetOneNormalizedPresentation
 proved methods of this data, not definitions of type or trace.-/
 abbrev BudgetOneOneTieNormalization := BudgetOneNormalizedPresentation
 
+/--
+@isnad1 id=nonempty.1h2v.s4.a4025940eacb from=translated src=- shape=97de8cf9 vocab=e0d91b93
+-/
 theorem budgetOneOneTieNormalization (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
     (hB : D.fourBaseBudget i = 1) : Nonempty (BudgetOneOneTieNormalization D i) :=
   budgetOneNormalizedPresentation D i hB
@@ -192,6 +228,9 @@ structure ChosenBaseCanonicalOneTieBridge (D : FourGeneratedNumericalSemigroup) 
   canonicalKernelMuEqRho : idealGeneratorMu (finitePresentationIdeal (k := ℚ) normalization.roots) = D.semigroupRho
   borderCardEqRhoSubOne : (borderFinset normalization.roots).card = D.semigroupRho - 1
 
+/--
+@isnad1 id=nonempty.3h2v.s5.f779bfcad618 from=translated src=- shape=cdc56e98 vocab=962cb2ce
+-/
 theorem chosenBaseCanonicalOneTieBridge (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
     (hB : D.fourBaseBudget i = 1) (ht : D.semigroupType = 3)
     (hng : SemigroupNearlyGorenstein D) : Nonempty (ChosenBaseCanonicalOneTieBridge D i) := by

@@ -84,6 +84,9 @@ private theorem fibre_border_arithmetic
     simp [fibreStd, fibreBorder, hx, hy, hz, hqxlast] <;>
     grind (splits := 64)
 
+/--
+@isnad1 id=eq.9h7v.s7.2c568e60b575 from=translated src=- shape=fa9bc404 vocab=31a9fab6
+-/
 theorem pureFibreProduct_border_exact
     (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hpx : px < a) (hqx : qx < a)
@@ -114,6 +117,9 @@ theorem pureFibreProduct_border_exact
         Normal.mk.injEq]
   · exact fibre_border_arithmetic ha hb hpxq hqyp hstrip hlive hk
 
+/--
+@isnad1 id=eq.9h7v.s7.9e959c2b9b7d from=translated src=- shape=c556f4c8 vocab=5c7a32cd
+-/
 theorem pureFibreProduct_border_card
     (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hpx : px < a) (hqx : qx < a)
@@ -131,6 +137,9 @@ theorem pureFibreProduct_border_card
       simp [fibreMiddleBorder, fibreOuterBorder, fibreXZ, fibreYZ,
         fibreZNext, hlast, Normal.mk.injEq] <;> omega
 
+/--
+@isnad1 id=ne.9h7v.s7.e8ac3edb8414 from=translated src=- shape=c556f4c8 vocab=5c7a32cd
+-/
 theorem pureFibreProduct_border_card_ne_four
     (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hpx : px < a) (hqx : qx < a)
@@ -142,7 +151,9 @@ theorem pureFibreProduct_border_card_ne_four
   omega
 
 /-- The frozen abstract fibre-product shape has exactly two plane roots; the
-antichain and live-tie hypotheses put them in the ordered strip used above.-/
+antichain and live-tie hypotheses put them in the ordered strip used above.
+@isnad1 id=ex.5h3v.s7.9a4c29b3a4c8 from=translated src=- shape=c43f6542 vocab=a1261e6e
+-/
 theorem pureFibreProduct_ordered_parameters
     {S : Finset (Normal a b 0)}
     (hb : 2 ≤ b) (hcard : S.card = 3)
@@ -241,6 +252,9 @@ theorem pureFibreProduct_ordered_parameters
     simp [pureFibreProductSocles, fibrePlaneLeft, fibrePlaneRight,
       Z, fibreZRoot, hPz, hQz, Normal.ext_iff, or_left_comm]
 
+/--
+@isnad1 id=ex.6h3v.s7.9f0cba924bfa from=translated src=- shape=53f48d3f vocab=076e512f
+-/
 theorem pureFibreProductShape_border_exact
     {S : Finset (Normal a b 0)}
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hcard : S.card = 3)
@@ -257,6 +271,9 @@ theorem pureFibreProductShape_border_exact
   exact ⟨px, py, qx, qy, k, hpx, hqx, hpxq, rfl,
     pureFibreProduct_border_exact ha hb hpx hqx hpxq hqyp hstrip hliveP hk⟩
 
+/--
+@isnad1 id=eq.6h3v.s6.61d2569dd0cd from=translated src=- shape=d393f8df vocab=b153a13f
+-/
 theorem pureFibreProductShape_border_card
     {S : Finset (Normal a b 0)}
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hcard : S.card = 3)
@@ -267,6 +284,9 @@ theorem pureFibreProductShape_border_card
     ⟨px, py, qx, qy, k, hpx, hqx, hk, hpxq, hqyp, hstrip, hliveP, rfl⟩
   exact pureFibreProduct_border_card ha hb hpx hqx hpxq hqyp hstrip hliveP hk
 
+/--
+@isnad1 id=ne.6h3v.s6.d45e1c5d009b from=translated src=- shape=4f9b7a3b vocab=b153a13f
+-/
 theorem pureFibreProductShape_border_card_ne_four
     {S : Finset (Normal a b 0)}
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hcard : S.card = 3)

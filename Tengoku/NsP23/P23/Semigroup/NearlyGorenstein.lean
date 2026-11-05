@@ -30,7 +30,9 @@ def SemigroupNearlyGorenstein (D : FourGeneratedNumericalSemigroup) : Prop :=
   ∀ j : Fin 4, ∃ f : D.PseudoFrobeniusIndex,
     NGWitnessForGenerator D j f
 
-/-- Stable semantic interface exposing the exact NG-vector criterion.-/
+/-- Stable semantic interface exposing the exact NG-vector criterion.
+@isnad1 id=iff.0h1v.s5.8a57d6487f74 from=translated src=- shape=8f85a152 vocab=8efa0c44
+-/
 theorem semigroupNearlyGorenstein_iff_ngVector
     (D : FourGeneratedNumericalSemigroup) :
     SemigroupNearlyGorenstein D ↔
@@ -39,20 +41,27 @@ theorem semigroupNearlyGorenstein_iff_ngVector
           IntInGamma D ((D.n j : ℤ) + f.1 - g.1) := by
   rfl
 
+/--
+@isnad1 id=ex.1h2v.s4.51068fb4bc90 from=translated src=- shape=94a10c7c vocab=300ab894
+-/
 theorem exists_ngWitness (D : FourGeneratedNumericalSemigroup)
     (hng : SemigroupNearlyGorenstein D) (j : Fin 4) :
     ∃ f : D.PseudoFrobeniusIndex, NGWitnessForGenerator D j f :=
   hng j
 
 /-- The witness at the selected base generator, retained for the later source
-lemma although it is not needed by the Run22 trace proof.-/
+lemma although it is not needed by the Run22 trace proof.
+@isnad1 id=ex.1h2v.s4.51068fb4bc90 from=translated src=- shape=94a10c7c vocab=300ab894
+-/
 theorem exists_base_ngWitness (D : FourGeneratedNumericalSemigroup)
     (hng : SemigroupNearlyGorenstein D) (i : Fin 4) :
     ∃ f : D.PseudoFrobeniusIndex, NGWitnessForGenerator D i f :=
   exists_ngWitness D hng i
 
 /-- The witness at a chosen tail, with the original generator index preserved
-by `tailIndex`.-/
+by `tailIndex`.
+@isnad1 id=ex.1h3v.s6.cf6b95898959 from=translated src=- shape=325bcc49 vocab=683bee7a
+-/
 theorem exists_tail_ngWitness (D : FourGeneratedNumericalSemigroup)
     (hng : SemigroupNearlyGorenstein D) (i : Fin 4) (j : Fin 3) :
     ∃ f : D.PseudoFrobeniusIndex,

@@ -14,6 +14,9 @@ def chosenBasePlainPolynomialQuotientEquiv (D : FourGeneratedNumericalSemigroup)
     (TailPoly ℚ ⧸ plainMonomialIdeal ℚ G) ≃ₐ[ℚ] ChosenBaseQuotient (k := ℚ) D i :=
   (Ideal.quotientEquivAlgOfEq ℚ hI).trans (tailPolynomialQuotientEquiv D i)
 
+/--
+@isnad1 id=finite.1h3v.s6.b9c9869f7d3a from=translated src=- shape=a837ee86 vocab=82754251
+-/
 theorem chosenBase_plainSurvivors_finite (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
     (G : Finset PlainExp) (hI : plainMonomialIdeal ℚ G = chosenBaseDefiningIdeal D i) :
     (plainSurvivors ℚ G).Finite := by
@@ -23,6 +26,9 @@ theorem chosenBase_plainSurvivors_finite (D : FourGeneratedNumericalSemigroup) (
     (chosenBasePlainPolynomialQuotientEquiv D i G hI).symm.toLinearEquiv.finiteDimensional
   exact plainSurvivors_finite ℚ G
 
+/--
+@isnad1 id=mem.1h3v.s6.0f43f8d9869e from=translated src=- shape=930ac78f vocab=7b158acf
+-/
 theorem chosenBase_plain_unit_survives (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
     (G : Finset PlainExp) (hI : plainMonomialIdeal ℚ G = chosenBaseDefiningIdeal D i) :
     (0 : PlainExp) ∈ plainSurvivors ℚ G := by
@@ -36,6 +42,9 @@ theorem chosenBase_plain_unit_survives (D : FourGeneratedNumericalSemigroup) (i 
   have hc := congrArg c hunit
   simpa using hc
 
+/--
+@isnad1 id=plainvar.2h3v.s6.877e7b2e565b from=translated src=- shape=5ff66312 vocab=b0725f01
+-/
 theorem chosenBase_plain_variables_survive (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
     (G : Finset PlainExp) (hI : plainMonomialIdeal ℚ G = chosenBaseDefiningIdeal D i)
     (hf : (plainSurvivors ℚ G).Finite) :

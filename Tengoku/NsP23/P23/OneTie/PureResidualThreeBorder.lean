@@ -47,6 +47,9 @@ def roots : Finset (Normal a b 0) :=
 def formalTop (Y Z : ℕ) := (R.u+b-1)*Y+(R.C-1)*Z
 end PureResidualThreeBorder
 
+/--
+@isnad1 id=nonempty.6h4v.s6.fcd1273d5850 from=translated src=- shape=2bcefafe vocab=e9aaa4db
+-/
 theorem pure_three_border_ng_residual {S : Finset (Normal a b 0)}
     (P : PureThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (hl : IsLiveTie S) (ha : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3)
@@ -56,6 +59,9 @@ theorem pure_three_border_ng_residual {S : Finset (Normal a b 0)}
   refine ⟨⟨P.u,P.C,hd.1,hb,P.u_pos,by have := P.w_pos; have := P.w_lt; omega,?_⟩⟩
   simpa [hr,hv,hw] using P.border
 
+/--
+@isnad1 id=eq.2h4v.s6.9f1f4b22212e from=translated src=- shape=b02e3121 vocab=34a42489
+-/
 theorem pureResidual_roots_exact {S : Finset (Normal a b 0)}
     (R : PureResidualThreeBorder S) (hS : S.Nonempty) (ha : IsRootAntichain S) : S = R.roots := by
   have hd : IsLiveParameterDomain a b 0 := ⟨R.a_ge_two,Or.inr ⟨R.b_ge_two,rfl⟩⟩
@@ -68,6 +74,9 @@ theorem pureResidual_roots_exact {S : Finset (Normal a b 0)}
     PureThreeBorderData.xRoot,PureThreeBorderData.yRoot,PureThreeBorderData.zRoot,
     PureResidualThreeBorder.generalData,Nat.sub_sub]
 
+/--
+@isnad1 id=eq.3h4v.s7.2482d99ba51c from=translated src=- shape=cce66982 vocab=c38e3c81
+-/
 theorem pureResidual_type_three {S : Finset (Normal a b 0)}
     (R : PureResidualThreeBorder S) (hS : S.Nonempty) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) :
@@ -76,11 +85,17 @@ theorem pureResidual_type_three {S : Finset (Normal a b 0)}
   dsimp [PureResidualThreeBorder.generalData]
   have := R.u_pos; have := R.b_ge_two; omega
 
+/--
+@isnad1 id=eq.0h3v.s8.7df82dff73d5 from=translated src=- shape=9a31e3ae vocab=0f2cfc42
+-/
 theorem polynomialLift_eq_variable_powers (p : Normal a b 0) :
     polynomialLift (k := ℚ) p = polyX^p.x * polyY^p.y * polyZ^p.z := by
   simp [polynomialLift,normalExponent,MvPolynomial.X_pow_eq_monomial,
     MvPolynomial.monomial_mul_monomial,polyX,polyY,polyZ]
 
+/--
+@isnad1 id=eq.0h4v.s9.dca578179f29 from=translated src=- shape=b390ff77 vocab=3cc5efc5
+-/
 theorem pureResidual_presentation_exact {S : Finset (Normal a b 0)}
     (R : PureResidualThreeBorder S) :
     finitePresentationIdeal (k := ℚ) S = Ideal.span
@@ -109,6 +124,9 @@ theorem pureResidual_presentation_exact {S : Finset (Normal a b 0)}
   simp [tiePolynomial]
   tauto
 
+/--
+@isnad1 id=and.1h7v.s8.1a11e3ef54e0 from=translated src=- shape=61ab461a vocab=8f7390af
+-/
 theorem pureResidual_top_equations {S : Finset (Normal a b 0)}
     (R : PureResidualThreeBorder S) (X Y Z : ℕ) (htie : a*X=b*Y) :
     (a-1)*X+(R.u-1)*Y+(R.C-1)*Z+X = R.formalTop Y Z ∧

@@ -24,6 +24,9 @@ private theorem a_pos_of_neZero {a : ℕ} [NeZero a] : 0 < a :=
 
 /-! ## M3 / YZ -/
 
+/--
+@isnad1 id=other.3h3v.s6.f0e74bb3f373 from=translated src=- shape=577c182e vocab=1635193c
+-/
 theorem mixedYZ_card_eq_three {a u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v) :
     let hr : 0 < a - 1 := by omega
@@ -31,6 +34,9 @@ theorem mixedYZ_card_eq_three {a u v : ℕ} [NeZero a]
   dsimp
   simp [mixedSoclesYZ, mixedCore, mixedY, mixedZ, Normal.ext_iff]
 
+/--
+@isnad1 id=other.3h3v.s6.811b472e148c from=translated src=- shape=e5de9932 vocab=6a53d9d4
+-/
 theorem mixedYZ_isRootAntichain {a u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v) :
     let hr : 0 < a - 1 := by omega
@@ -46,6 +52,9 @@ theorem mixedYZ_isRootAntichain {a u v : ℕ} [NeZero a]
       mixedCore, mixedY, mixedZ, Normal.ext_iff]
   all_goals omega
 
+/--
+@isnad1 id=other.3h3v.s6.6b683f1be067 from=translated src=- shape=e5de9932 vocab=d3e8cb01
+-/
 theorem mixedYZ_isLiveTie {a u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v) :
     let hr : 0 < a - 1 := by omega
@@ -57,6 +66,9 @@ theorem mixedYZ_isLiveTie {a u v : ℕ} [NeZero a]
     show a ≠ 1 by omega, Normal.yGenerator, Normal.zGenerator]
   omega
 
+/--
+@isnad1 id=other.3h4v.s9.73efaf3b7787 from=translated src=- shape=72728808 vocab=41b274e3
+-/
 theorem mixedYZ_y_not_mem_trace {a u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hu : 1 ≤ u) (hv : 1 ≤ v) :
     let hr : 0 < a - 1 := by omega
@@ -178,12 +190,18 @@ theorem mixedYZ_y_not_mem_trace {a u v : ℕ} [NeZero a]
 
 /-! ## M4 / YQ -/
 
+/--
+@isnad1 id=eq.5h5v.s6.64168494076a from=translated src=- shape=57a021c4 vocab=cf203be6
+-/
 theorem mixedYQ_card_eq_three {a b r u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hu : b ≤ u) (hv : 1 ≤ v)
     (hr : r < a - 1) :
     (mixedSoclesYQ (a := a) (b := b) (c := 1) r u v hr).card = 3 := by
   simp [mixedSoclesYQ, mixedCore, mixedY, mixedQ, Normal.ext_iff]
 
+/--
+@isnad1 id=isrootan.5h5v.s6.014054fa8fcc from=translated src=- shape=5b4df898 vocab=2fe6da69
+-/
 theorem mixedYQ_isRootAntichain {a b r u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hu : b ≤ u) (hv : 1 ≤ v)
     (hr : r < a - 1) :
@@ -198,6 +216,9 @@ theorem mixedYQ_isRootAntichain {a b r u v : ℕ} [NeZero a]
       mixedCore, mixedY, mixedQ, Normal.ext_iff]
   all_goals omega
 
+/--
+@isnad1 id=isliveti.5h5v.s6.2ad3fb27bce9 from=translated src=- shape=5b4df898 vocab=e881ca99
+-/
 theorem mixedYQ_isLiveTie {a b r u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hu : b ≤ u) (hv : 1 ≤ v)
     (hr : r < a - 1) :
@@ -208,6 +229,9 @@ theorem mixedYQ_isLiveTie {a b r u v : ℕ} [NeZero a]
     show a ≠ 1 by omega, Normal.yGenerator, Normal.zGenerator]
   omega
 
+/--
+@isnad1 id=other.5h6v.s9.207a87f58fc5 from=translated src=- shape=d2003c91 vocab=5fccab75
+-/
 theorem mixedYQ_y_not_mem_trace {a b r u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hu : b ≤ u) (hv : 1 ≤ v)
     (hr : r < a - 1) :
@@ -332,12 +356,18 @@ theorem mixedYQ_y_not_mem_trace {a b r u v : ℕ} [NeZero a]
 
 /-! ## Reflected M4 / ZP, proved directly -/
 
+/--
+@isnad1 id=eq.5h5v.s6.ec879452cd8c from=translated src=- shape=73cf73af vocab=8927c9aa
+-/
 theorem mixedZP_card_eq_three {a c r u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hc : 1 ≤ c) (hu : 1 ≤ u) (hv : c ≤ v)
     (hr : r < a - 1) :
     (mixedSoclesZP (a := a) (b := 1) (c := c) r u v hr).card = 3 := by
   simp [mixedSoclesZP, mixedCore, mixedZ, mixedP, Normal.ext_iff]
 
+/--
+@isnad1 id=isrootan.5h5v.s6.7df6da431b8e from=translated src=- shape=a69f0007 vocab=21f37aff
+-/
 theorem mixedZP_isRootAntichain {a c r u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hc : 1 ≤ c) (hu : 1 ≤ u) (hv : c ≤ v)
     (hr : r < a - 1) :
@@ -352,6 +382,9 @@ theorem mixedZP_isRootAntichain {a c r u v : ℕ} [NeZero a]
       mixedCore, mixedZ, mixedP, Normal.ext_iff]
   all_goals omega
 
+/--
+@isnad1 id=isliveti.5h5v.s6.9442a1c11f7e from=translated src=- shape=a69f0007 vocab=6a4141ed
+-/
 theorem mixedZP_isLiveTie {a c r u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hc : 1 ≤ c) (hu : 1 ≤ u) (hv : c ≤ v)
     (hr : r < a - 1) :
@@ -362,6 +395,9 @@ theorem mixedZP_isLiveTie {a c r u v : ℕ} [NeZero a]
     show a ≠ 1 by omega, Normal.yGenerator, Normal.zGenerator]
   omega
 
+/--
+@isnad1 id=other.5h6v.s9.29cfecea499d from=translated src=- shape=32e70ed1 vocab=a01b9d65
+-/
 theorem mixedZP_z_not_mem_trace {a c r u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hc : 1 ≤ c) (hu : 1 ≤ u) (hv : c ≤ v)
     (hr : r < a - 1) :
@@ -486,6 +522,9 @@ theorem mixedZP_z_not_mem_trace {a c r u v : ℕ} [NeZero a]
 
 /-! ## M5 / PQ -/
 
+/--
+@isnad1 id=other.5h5v.s6.e772b264e55e from=translated src=- shape=cf8046ee vocab=b253c9b1
+-/
 theorem mixedPQ_card_eq_three {a b c u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) :
@@ -512,6 +551,9 @@ theorem mixedPQ_card_eq_three {a b c u v : ℕ} [NeZero a]
   change ({C, P, Q} : Finset (Normal a b c)).card = 3
   simp [hCP, hCQ, hPQ]
 
+/--
+@isnad1 id=other.5h5v.s6.3e667d1e8bc8 from=translated src=- shape=6d53f629 vocab=27af7484
+-/
 theorem mixedPQ_isRootAntichain {a b c u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) :
@@ -528,6 +570,9 @@ theorem mixedPQ_isRootAntichain {a b c u v : ℕ} [NeZero a]
       mixedCore, mixedP, mixedQ, Normal.ext_iff]
   all_goals omega
 
+/--
+@isnad1 id=other.5h5v.s6.19f96c32684c from=translated src=- shape=6d53f629 vocab=bc1f628f
+-/
 theorem mixedPQ_isLiveTie {a b c u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) :
@@ -541,6 +586,9 @@ theorem mixedPQ_isLiveTie {a b c u v : ℕ} [NeZero a]
     show a ≠ 1 by omega, Normal.yGenerator, Normal.zGenerator]
   omega
 
+/--
+@isnad1 id=other.6h6v.s9.72a4333fe9f5 from=translated src=- shape=9aa8b238 vocab=cb7ec09b
+-/
 theorem mixedPQ_y_not_mem_trace_of_u_gt_one
     {a b c u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
@@ -675,6 +723,9 @@ theorem mixedPQ_y_not_mem_trace_of_u_gt_one
       (rootIndex S Q hQ) hzero
       (by apply Normal.ext <;> simp [yy, Normal.yGenerator]))
 
+/--
+@isnad1 id=other.6h6v.s9.ed97bf666a02 from=translated src=- shape=3b469f91 vocab=cb7ec09b
+-/
 theorem mixedPQ_z_not_mem_trace_of_v_gt_one
     {a b c u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
@@ -809,6 +860,9 @@ theorem mixedPQ_z_not_mem_trace_of_v_gt_one
       (rootIndex S Q hQ) hzero
       (by apply Normal.ext <;> simp [yz, Normal.yGenerator, Normal.zGenerator]))
 
+/--
+@isnad1 id=other.6h7v.s7.0330c9fae763 from=translated src=- shape=ae93d04b vocab=7128dec6
+-/
 theorem mixedPQ_not_variablesInTrace
     {a b c u v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)

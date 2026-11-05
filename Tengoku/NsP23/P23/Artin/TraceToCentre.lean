@@ -20,38 +20,50 @@ open P23.OneTie
 variable {a b c : ℕ} [NeZero a]
 variable {k : Type*} [Field k]
 
-/-- Generic predecessor exactness, shared by ordinary and wrapped branches.-/
+/-- Generic predecessor exactness, shared by ordinary and wrapped branches.
+@isnad1 id=eq.1h6v.s6.ad8c15f1102a from=translated src=- shape=3be64595 vocab=791b6c7e
+-/
 theorem predecessor_mul_generator {r q : Normal a b c} (e : Direction)
     (hpred : Normal.predecessor e r = some q) :
     q * e.generator = r :=
   (Normal.predecessor_eq_some_iff_mul e r q).1 hpred
 
-/-- Every existing directional predecessor divides its root.-/
+/-- Every existing directional predecessor divides its root.
+@isnad1 id=dvd.1h6v.s5.feb0324e071d from=translated src=- shape=a55545aa vocab=0fed60ba
+-/
 theorem predecessor_dvd_root {r q : Normal a b c} (e : Direction)
     (hpred : Normal.predecessor e r = some q) : q ∣ r :=
   ⟨e.generator, (predecessor_mul_generator e hpred).symm⟩
 
-/-- A predecessor of a selected root survives in the standard set.-/
+/-- A predecessor of a selected root survives in the standard set.
+@isnad1 id=mem.2h7v.s6.74f13d113781 from=translated src=- shape=af659209 vocab=4eb9ae56
+-/
 theorem predecessor_mem_standardSet (S : Finset (Normal a b c))
     {r q : Normal a b c} (hr : r ∈ S) (e : Direction)
     (hpred : Normal.predecessor e r = some q) : q ∈ standardSet S :=
   (mem_standardSet_iff S q).2 ⟨r, hr, predecessor_dvd_root e hpred⟩
 
-/-- A predecessor of a selected root has a standard-finset index.-/
+/-- A predecessor of a selected root has a standard-finset index.
+@isnad1 id=mem.2h7v.s6.07c48b235df0 from=translated src=- shape=50f4359c vocab=c0445199
+-/
 theorem predecessor_mem_standardFinset (S : Finset (Normal a b c))
     {r q : Normal a b c} (hr : r ∈ S) (e : Direction)
     (hpred : Normal.predecessor e r = some q) : q ∈ standardFinset S :=
   (mem_standardFinset_iff_standardSet S q).2
     (predecessor_mem_standardSet S hr e hpred)
 
-/-- A selected root has its canonical surviving index.-/
+/-- A selected root has its canonical surviving index.
+@isnad1 id=mem.1h5v.s6.b6ea0d3bf910 from=translated src=- shape=934ad3c4 vocab=19d871b5
+-/
 theorem root_mem_standardFinset (S : Finset (Normal a b c))
     {r : Normal a b c} (hr : r ∈ S) : r ∈ standardFinset S :=
   (rootIndex S r hr).2
 
 /-- A nonzero variable coefficient in a selected-root image makes that source
 root a directional centre.  The proof treats ordinary and wrapped
-predecessors through the same generic predecessor theorem.-/
+predecessors through the same generic predecessor theorem.
+@isnad1 id=isdirect.3h8v.s10.6d82a9e83578 from=translated src=- shape=4cd94298 vocab=6ca32997
+-/
 theorem rootSource_isDirectionalCentre
     (S : Finset (Normal a b c)) (e : Direction)
     (heS : e.generator ∈ standardFinset S)
@@ -96,7 +108,9 @@ theorem rootSource_isDirectionalCentre
     simpa using hc
   exact hcoeff (by simpa [ei] using this)
 
-/-- Trace membership of a surviving variable produces a directional centre.-/
+/-- Trace membership of a surviving variable produces a directional centre.
+@isnad1 id=ex.6h6v.s8.6e7826d5cfb9 from=translated src=- shape=13a971f2 vocab=cf7c4e43
+-/
 theorem exists_directionalCentre_of_variable_mem_trace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
@@ -109,6 +123,9 @@ theorem exists_directionalCentre_of_variable_mem_trace
       hanti hdom e heS htrace
   exact ⟨s, hs, rootSource_isDirectionalCentre (k := k) S e heS F s hs hcoeff⟩
 
+/--
+@isnad1 id=ex.6h5v.s8.c7a07d63f52d from=translated src=- shape=3a660bbc vocab=f95e87f5
+-/
 theorem exists_x_directionalCentre_of_mem_trace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
@@ -119,6 +136,9 @@ theorem exists_x_directionalCentre_of_mem_trace
   exists_directionalCentre_of_variable_mem_trace (k := k) S hS hcard
     hanti hdom .x _ htrace
 
+/--
+@isnad1 id=ex.6h5v.s8.0155b8c587ba from=translated src=- shape=3a660bbc vocab=c0273c64
+-/
 theorem exists_y_directionalCentre_of_mem_trace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
@@ -129,6 +149,9 @@ theorem exists_y_directionalCentre_of_mem_trace
   exists_directionalCentre_of_variable_mem_trace (k := k) S hS hcard
     hanti hdom .y _ htrace
 
+/--
+@isnad1 id=ex.6h5v.s8.1f055f8ed964 from=translated src=- shape=3a660bbc vocab=43796bd8
+-/
 theorem exists_z_directionalCentre_of_mem_trace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
@@ -140,7 +163,9 @@ theorem exists_z_directionalCentre_of_mem_trace
     hanti hdom .z _ htrace
 
 /-- The direct-model H3/DC bridge.  The three returned centres may be
-different selected roots.-/
+different selected roots.
+@isnad1 id=hasdirec.6h5v.s6.84b9558ff886 from=translated src=- shape=61dfa3ff vocab=32e39478
+-/
 theorem hasDirectionalCentres_of_variablesInTrace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hcard : 2 ≤ S.card) (hanti : IsRootAntichain S)
@@ -165,7 +190,9 @@ theorem hasDirectionalCentres_of_variablesInTrace
       exact ⟨s, hcentre⟩
 
 /-- Mixed type-three four-border trace geometry, through the stable Phase-1
-API only.-/
+API only.
+@isnad1 id=ex.8h5v.s7.3a2f1d5f7740 from=translated src=- shape=2c079ffd vocab=5e3998c9
+-/
 theorem mixed_four_border_trace_has_dominant
     (S : Finset (Normal a b c)) (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hcardS : S.card = 3) (hlive : IsLiveTie S)
@@ -181,7 +208,9 @@ theorem mixed_four_border_trace_has_dominant
     hanti hcentres hborder
 
 /-- Pure type-three four-border trace geometry, through the stable Phase-1
-API only.-/
+API only.
+@isnad1 id=or.7h4v.s7.0c6417ddaf41 from=translated src=- shape=b9c5b39c vocab=4aeed46f
+-/
 theorem pure_four_border_trace_dominant_or_residual
     (S : Finset (Normal a b 0)) (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hcardS : S.card = 3) (hlive : IsLiveTie S)
@@ -208,6 +237,9 @@ structure TraceFourBorderGeometry (k : Type*) [Field k] : Prop where
     (borderFinset S).card = 4 →
       (∃ C ∈ S, IsDominantRoot S C) ∨ IsPureResidualFourBorderShape S
 
+/--
+@isnad1 id=tracefou.0h1v.s3.97fe43ba92be from=translated src=- shape=c6850a32 vocab=641c8e1e
+-/
 theorem trace_four_border_geometry : TraceFourBorderGeometry k where
   mixed := by
     intro a b c _ S ha hb hc hcard hlive hanti htrace hborder

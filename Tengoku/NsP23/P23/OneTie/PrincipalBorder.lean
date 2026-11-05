@@ -36,7 +36,9 @@ def mixedP (r u : ℕ) (hr : r < a - 1) : Normal a b c :=
 def mixedQ (r v : ℕ) (hr : r < a - 1) : Normal a b c :=
   ⟨r + 1, 0, v + 1 - c, by omega⟩
 
-/-- On the last x-layer the mixed principal border is exactly `Y,Z`.-/
+/-- On the last x-layer the mixed principal border is exactly `Y,Z`.
+@isnad1 id=eq.6h6v.s7.c8634c4398b7 from=translated src=- shape=83a4d0b7 vocab=577fdcdd
+-/
 theorem mixedPrincipalBorder_last
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r = a - 1) :
@@ -73,7 +75,9 @@ theorem mixedPrincipalBorder_last
         hx0, hby]
       omega
 
-/-- Below the last x-layer the mixed principal border is exactly `Y,Z,P,Q`.-/
+/-- Below the last x-layer the mixed principal border is exactly `Y,Z,P,Q`.
+@isnad1 id=eq.6h6v.s7.21f1fda2772f from=translated src=- shape=d3113425 vocab=d051cd8e
+-/
 theorem mixedPrincipalBorder_below
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -113,6 +117,9 @@ theorem mixedPrincipalBorder_below
         mixedP, mixedQ, hx0, hby]
       omega
 
+/--
+@isnad1 id=eq.6h6v.s6.3fd4e86dd9d7 from=translated src=- shape=5b9e6301 vocab=e8446658
+-/
 theorem mixedPrincipalBorder_last_card
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r = a - 1) :
@@ -121,6 +128,9 @@ theorem mixedPrincipalBorder_last_card
   rw [mixedPrincipalBorder_last ha hb hc hu hv hr]
   simp [mixedY, mixedZ]
 
+/--
+@isnad1 id=eq.6h6v.s6.ac1d07316c0a from=translated src=- shape=1fc66243 vocab=2b0a8e66
+-/
 theorem mixedPrincipalBorder_below_card
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hr : r < a - 1) :
@@ -172,6 +182,9 @@ def pureH (r u : ℕ) (hr : r < a) : Normal a b 0 :=
   else
     ⟨0, u + 1, 0, a_pos⟩
 
+/--
+@isnad1 id=eq.4h5v.s7.28a35dd1e031 from=translated src=- shape=471e92e5 vocab=e0c3dc4e
+-/
 theorem purePrincipalBorder_below
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) (hr : r < a - 1) :
     borderFinset ({pureCore (a := a) (b := b) r u v (by omega)} :
@@ -201,6 +214,9 @@ theorem purePrincipalBorder_below
         hx0, hby, hr]
       omega
 
+/--
+@isnad1 id=eq.4h5v.s7.f4672a66e52e from=translated src=- shape=fcce54ca vocab=9e0eacca
+-/
 theorem purePrincipalBorder_last
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b - 1 ≤ u) (hr : r = a - 1) :
     borderFinset ({pureCore (a := a) (b := b) r u v (by omega)} :
@@ -231,6 +247,9 @@ theorem purePrincipalBorder_last
         hx0, hby, hlast]
       omega
 
+/--
+@isnad1 id=eq.4h5v.s6.6948c859a671 from=translated src=- shape=671e9c26 vocab=850fd231
+-/
 theorem purePrincipalBorder_below_card
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) (hr : r < a - 1) :
     (borderFinset ({pureCore (a := a) (b := b) r u v (by omega)} :
@@ -238,6 +257,9 @@ theorem purePrincipalBorder_below_card
   rw [purePrincipalBorder_below ha hb hu hr]
   simp [pureH, pureZ, hr]
 
+/--
+@isnad1 id=eq.4h5v.s7.ec103db306e3 from=translated src=- shape=2ca3a66a vocab=9d40cec7
+-/
 theorem purePrincipalBorder_last_card
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b - 1 ≤ u) (hr : r = a - 1) :
     (borderFinset ({pureCore (a := a) (b := b) r u v (by omega)} :
@@ -247,7 +269,9 @@ theorem purePrincipalBorder_last_card
   simp [pureH, pureZ, hlast]
 
 /-- At `r=a-2`, multiplication of the horizontal point by `x` wraps through
-the pure tie and gives `y^(u+1)`; it is not an accidental redundancy.-/
+the pure tie and gives `y^(u+1)`; it is not an accidental redundancy.
+@isnad1 id=eq.4h4v.s7.e23a4fe136b1 from=translated src=- shape=e87d9a5e vocab=06c354b3
+-/
 theorem pure_xH_endpoint
     (ha : 2 ≤ a) (_hb : 2 ≤ b) (hu : b ≤ u) (hr : r = a - 2) :
     pureH (a := a) (b := b) r u (by omega) *

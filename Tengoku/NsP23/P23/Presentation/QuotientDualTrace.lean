@@ -44,6 +44,9 @@ def act (q : Q k S) (φ : QuotientOmega k S) : QuotientOmega k S where
 
 instance : SMul (Q k S) (QuotientOmega k S) := ⟨act⟩
 
+/--
+@isnad1 id=eq.0h8v.s9.728e92561160 from=translated src=- shape=728ebf1f vocab=63eadade
+-/
 @[simp]
 theorem smul_apply (q : Q k S) (φ : QuotientOmega k S) (r : Q k S) :
     (q • φ) r = φ (q * r) := rfl
@@ -104,6 +107,9 @@ noncomputable def quotientOmegaEquivDirectOmega
   map_add' φ ψ := by apply LinearMap.ext; intro r; rfl
   map_smul' t φ := by apply LinearMap.ext; intro r; rfl
 
+/--
+@isnad1 id=eq.2h7v.s11.af242a438886 from=translated src=- shape=4b6a4105 vocab=a2adb76a
+-/
 @[simp]
 theorem quotientOmegaEquivDirectOmega_apply_equiv
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -115,6 +121,9 @@ theorem quotientOmegaEquivDirectOmega_apply_equiv
     (finitePolynomialQuotientEquiv (k := k) S hS hdom q)) = φ q
   rw [(finitePolynomialQuotientEquiv (k := k) S hS hdom).symm_apply_apply]
 
+/--
+@isnad1 id=eq.2h7v.s12.dea5c49ff929 from=translated src=- shape=3076a447 vocab=9f98aa2f
+-/
 @[simp]
 theorem quotientOmegaEquivDirectOmega_symm_apply
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -123,7 +132,9 @@ theorem quotientOmegaEquivDirectOmega_symm_apply
       ψ (finitePolynomialQuotientEquiv (k := k) S hS hdom q) := by
   rfl
 
-/-- Exact compatibility of dual transport with the intrinsic quotient action.-/
+/-- Exact compatibility of dual transport with the intrinsic quotient action.
+@isnad1 id=eq.2h7v.s12.12ab44831fb1 from=translated src=- shape=68008794 vocab=512a3569
+-/
 theorem quotientOmegaEquivDirectOmega_smul
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (q : Q k S)
@@ -139,6 +150,9 @@ theorem quotientOmegaEquivDirectOmega_smul
   congr 1
   simp
 
+/--
+@isnad1 id=eq.2h7v.s13.e868af03ef64 from=translated src=- shape=885422db vocab=e653b5b3
+-/
 theorem quotientOmegaEquivDirectOmega_symm_smul
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (r : A k S) (ψ : Omega k S) :
@@ -175,6 +189,9 @@ def pullCanonicalHom
     rw [quotientOmegaEquivDirectOmega_smul, F.map_smul]
     simp [smul_eq_mul]
 
+/--
+@isnad1 id=eq.2h6v.s10.10f04209aa54 from=translated src=- shape=adbcad06 vocab=01a23de3
+-/
 @[simp]
 theorem pull_pushCanonicalHom
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -186,6 +203,9 @@ theorem pull_pushCanonicalHom
   intro φ
   simp [pullCanonicalHom, pushCanonicalHom]
 
+/--
+@isnad1 id=eq.2h6v.s9.cf3f1181377d from=translated src=- shape=adbcad06 vocab=e1dc400e
+-/
 @[simp]
 theorem push_pullCanonicalHom
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -203,13 +223,18 @@ def QuotientTraceSubmodule (k : Type*) [Field k]
     (S : Finset (Normal a b c)) : Submodule (Q k S) (Q k S) :=
   ⨆ F : QuotientOmega k S →ₗ[Q k S] Q k S, F.range
 
+/--
+@isnad1 id=le.0h6v.s11.f4f6e0eeb5cf from=translated src=- shape=6c73146c vocab=df082923
+-/
 theorem quotientTrace_range_le (S : Finset (Normal a b c))
     (F : QuotientOmega k S →ₗ[Q k S] Q k S) :
     F.range ≤ QuotientTraceSubmodule k S :=
   le_iSup (fun G : QuotientOmega k S →ₗ[Q k S] Q k S => G.range) F
 
 /-- Ordinary trace membership is transported exactly by the frozen algebra
-equivalence.-/
+equivalence.
+@isnad1 id=iff.2h6v.s10.d26bde7e4dbc from=translated src=- shape=9928ed68 vocab=bacee951
+-/
 theorem mem_quotientTrace_iff_equiv_mem_directTrace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (q : Q k S) :
@@ -253,7 +278,9 @@ def QuotientNearlyGorenstein
   exact IsLocalRing.maximalIdeal (Q k S) ≤ QuotientTraceSubmodule k S
 
 /-- The intrinsic quotient NG condition is exactly the frozen direct-model
-condition.-/
+condition.
+@isnad1 id=iff.3h5v.s6.337701f4cb8e from=translated src=- shape=ff1e07ab vocab=3fdd9bb4
+-/
 theorem quotientNearlyGorenstein_iff_directNearlyGorenstein
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S) :
@@ -294,6 +321,9 @@ structure FiniteQuotientArtinTransport
   ngTransport : QuotientNearlyGorenstein k S hS hdom hlive ↔
     DirectNearlyGorenstein k S hS hdom
 
+/--
+@isnad1 id=finitequ.4h5v.s5.a96b66663431 from=translated src=- shape=fc3c8271 vocab=d1be373c
+-/
 theorem finiteQuotientArtinTransport
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)

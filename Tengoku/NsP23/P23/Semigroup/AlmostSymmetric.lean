@@ -28,6 +28,9 @@ private theorem doubleGap_subset_nonFrobeniusPF (has : D.IsAlmostSymmetric) :
   refine ⟨f,Finset.mem_erase.mpr ⟨hf,Finset.mem_univ f⟩,?_⟩
   simp [pseudoFrobeniusNat,f]
 
+/--
+@isnad1 id=iff.0h1v.s4.759fa3dec387 from=translated src=- shape=c3ad890d vocab=551a76f2
+-/
 theorem almostSymmetric_iff_doubleGap_card :
     D.IsAlmostSymmetric ↔ D.doubleGapFinset.card=D.semigroupType-1 := by
   classical
@@ -49,6 +52,9 @@ theorem almostSymmetric_iff_doubleGap_card :
       simpa using this
     exact hz ▸ f.2
 
+/--
+@isnad1 id=iff.0h1v.s5.cd24835b7fcb from=translated src=- shape=d62a609f vocab=e587bdbe
+-/
 theorem almostSymmetric_iff_two_genus_eq :
     D.IsAlmostSymmetric ↔ 2*D.genus=D.frobenius+D.semigroupType := by
   rw [D.almostSymmetric_iff_doubleGap_card]

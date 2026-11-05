@@ -37,6 +37,9 @@ def threeRoots : Finset (Normal a b 0) := {P.xRoot,P.yRoot,P.zRoot}
 def twoRoots : Finset (Normal a b 0) := {P.smallRoot,P.zRoot}
 end PureThreeBorderData
 
+/--
+@isnad1 id=iff.2h5v.s7.3c3626c9744e from=translated src=- shape=3f9b2a0c vocab=b0332a6b
+-/
 theorem pure_three_border_standard_slices {S : Finset (Normal a b 0)}
     (P : PureThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (p : Normal a b 0) : p ∈ standardSet S ↔
@@ -46,6 +49,9 @@ theorem pure_three_border_standard_slices {S : Finset (Normal a b 0)}
   simp [Normal.exact_divides_iff,Normal.DividesCriterion,zAxis]
   omega
 
+/--
+@isnad1 id=eq.4h4v.s6.416f70a190e5 from=translated src=- shape=eb444c3a vocab=ea215dfc
+-/
 theorem pure_three_border_roots_exact {S : Finset (Normal a b 0)}
     (P : PureThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (hanti : IsRootAntichain S) (huv : P.u < P.v) : S = P.threeRoots := by
@@ -83,6 +89,9 @@ theorem pure_three_border_roots_exact {S : Finset (Normal a b 0)}
     PureThreeBorderData.yRoot,PureThreeBorderData.zRoot,
     Normal.exact_divides_iff,Normal.DividesCriterion] <;> omega
 
+/--
+@isnad1 id=eq.4h4v.s6.8c020997fd20 from=translated src=- shape=eb444c3a vocab=37e1f704
+-/
 theorem pure_three_border_two_roots_exact {S : Finset (Normal a b 0)}
     (P : PureThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (hanti : IsRootAntichain S) (hvu : P.v ≤ P.u) : S = P.twoRoots := by
@@ -119,6 +128,9 @@ theorem pure_three_border_two_roots_exact {S : Finset (Normal a b 0)}
   simp [standardSet,PureThreeBorderData.twoRoots,PureThreeBorderData.smallRoot,
     PureThreeBorderData.zRoot,Normal.exact_divides_iff,Normal.DividesCriterion] <;> omega
 
+/--
+@isnad1 id=eq.4h4v.s7.220e3b312917 from=translated src=- shape=c3821e4a vocab=bee74f8a
+-/
 theorem pure_three_border_type_formula {S : Finset (Normal a b 0)}
     (P : PureThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (hl : IsLiveTie S) (hanti : IsRootAntichain S) :
@@ -158,6 +170,9 @@ theorem pure_three_border_type_formula {S : Finset (Normal a b 0)}
       omega
     simp [PureThreeBorderData.twoRoots,h12]
 
+/--
+@isnad1 id=iff.4h4v.s6.605131041089 from=translated src=- shape=601441a4 vocab=3ea54c59
+-/
 theorem pure_three_border_type_three_iff {S : Finset (Normal a b 0)}
     (P : PureThreeBorderData S) (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0)
     (hl : IsLiveTie S) (hanti : IsRootAntichain S) :

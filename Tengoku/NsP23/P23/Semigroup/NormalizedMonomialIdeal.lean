@@ -64,12 +64,18 @@ private theorem normalGeneratorIdeal_eq_upward (G : Finset (Normal a b c)) :
     | smul t f hf hi =>
       simpa [Algebra.smul_def] using (normalGeneratorIdeal G).mul_mem_left (algebraMap ℚ _ t) hi
 
+/--
+@isnad1 id=iff.0h5v.s8.2831318d23d8 from=translated src=- shape=31e33b21 vocab=585673d7
+-/
 theorem monomial_mem_normalGeneratorIdeal_iff (G : Finset (Normal a b c)) (p : Normal a b c) :
     monomial (k := ℚ) p ∈ normalGeneratorIdeal G ↔ ∃ g ∈ G, g ∣ p := by
   rw [normalGeneratorIdeal_eq_upward]
   change monomial (k := ℚ) p ∈ upwardNormalSpan G ↔ p ∈ normalKilledSet G
   exact MonoidAlgebra.single_mem_span_single
 
+/--
+@isnad1 id=eq.2h6v.s8.146672acfbb5 from=translated src=- shape=9f329612 vocab=dfb6a47c
+-/
 theorem normalGeneratorIdeal_coeff_zero (G : Finset (Normal a b c)) (p : Normal a b c)
     (hp : monomial (k := ℚ) p ∉ normalGeneratorIdeal G)
     (f : NormalMonoidAlgebra ℚ a b c) (hf : f ∈ normalGeneratorIdeal G) : f.coeff p = 0 := by
@@ -85,6 +91,9 @@ theorem normalGeneratorIdeal_coeff_zero (G : Finset (Normal a b c)) (p : Normal 
   | add f g hf hg hi hj => simp [hi,hj]
   | smul t f hf hi => simp [hi]
 
+/--
+@isnad1 id=not.2h6v.s8.2aa39777537e from=translated src=- shape=d22583c5 vocab=585673d7
+-/
 theorem normal_survivor_downward (G : Finset (Normal a b c)) {d p : Normal a b c}
     (hp : monomial (k := ℚ) p ∉ normalGeneratorIdeal G) (hdiv : d ∣ p) :
     monomial (k := ℚ) d ∉ normalGeneratorIdeal G := by
@@ -92,6 +101,9 @@ theorem normal_survivor_downward (G : Finset (Normal a b c)) {d p : Normal a b c
   obtain ⟨g,hg,hgd⟩ := (monomial_mem_normalGeneratorIdeal_iff G d).mp hd
   exact hp ((monomial_mem_normalGeneratorIdeal_iff G p).mpr ⟨g,hg,dvd_trans hgd hdiv⟩)
 
+/--
+@isnad1 id=linearin.0h4v.s10.77530a835410 from=translated src=- shape=b0c4215d vocab=ee42b0d6
+-/
 theorem normal_surviving_quotient_monomials_independent (G : Finset (Normal a b c)) :
     LinearIndependent ℚ (fun p : {p : Normal a b c | monomial (k := ℚ) p ∉ normalGeneratorIdeal G} =>
       Ideal.Quotient.mk (normalGeneratorIdeal G) (monomial (k := ℚ) p.1)) := by
@@ -108,12 +120,18 @@ theorem normal_surviving_quotient_monomials_independent (G : Finset (Normal a b 
     simp only [monomial_coeff, Subtype.val_inj]
   simpa [MonoidAlgebra.coeff_sum, MonoidAlgebra.coeff_smul, hmono, hj] using hc
 
+/--
+@isnad1 id=finite.0h4v.s9.56891e89fe7b from=translated src=- shape=a78d8363 vocab=3c293e75
+-/
 theorem normal_survivors_finite (G : Finset (Normal a b c))
     [Module.Finite ℚ (NormalMonoidAlgebra ℚ a b c ⧸ normalGeneratorIdeal G)] :
     {p : Normal a b c | monomial (k := ℚ) p ∉ normalGeneratorIdeal G}.Finite := by
   haveI := (normal_surviving_quotient_monomials_independent G).finite
   exact Set.toFinite _
 
+/--
+@isnad1 id=eq.1h5v.s9.2eef6b4a53ca from=translated src=- shape=2a9f35bb vocab=6cebb4d9
+-/
 theorem normalizedMonomialIdeal_map {D : FourGeneratedNumericalSemigroup} {i : Fin 4}
     {p : TailPoly ℚ} (C : OneTieCoordinates D i p) (E : Finset (Fin 3 →₀ ℕ))
     (hspan : Ideal.span (↑(rawLiftGeneratorFinset C E) : Set (ThreePoly ℚ)) = renamedChosenBaseIdeal C) :
@@ -158,6 +176,9 @@ def chosenBaseQuotientEquivNormalGenerators {D : FourGeneratedNumericalSemigroup
     ((surjectiveAlgHomQuotientEquiv _ polyToNormalAlg_surjective _ hker).trans
       (Ideal.quotientEquivAlgOfEq ℚ (normalizedMonomialIdeal_map C E hspan)))
 
+/--
+@isnad1 id=finite.1h5v.s9.78cf6d2ec6b6 from=translated src=- shape=43109095 vocab=c5e9b554
+-/
 theorem chosenBase_normal_survivorQuotient_finite {D : FourGeneratedNumericalSemigroup} {i : Fin 4}
     {p : TailPoly ℚ} (C : OneTieCoordinates D i p) (E : Finset (Fin 3 →₀ ℕ))
     (hspan : Ideal.span (↑(rawLiftGeneratorFinset C E) : Set (ThreePoly ℚ)) = renamedChosenBaseIdeal C) :
@@ -173,6 +194,9 @@ def normalSurvivorRoots (G : Finset (Normal a b c))
     Finset (Normal a b c) :=
   hf.toFinset.filter (fun p => ∀ q ∈ hf.toFinset, p ∣ q → p = q)
 
+/--
+@isnad1 id=isrootan.1h4v.s7.4d99e1e72f81 from=translated src=- shape=bfd6aa7d vocab=21187264
+-/
 theorem normalSurvivorRoots_antichain (G : Finset (Normal a b c))
     (hf : {p : Normal a b c | monomial (k := ℚ) p ∉ normalGeneratorIdeal G}.Finite) :
     IsRootAntichain (normalSurvivorRoots G hf) := by
@@ -181,6 +205,9 @@ theorem normalSurvivorRoots_antichain (G : Finset (Normal a b c))
   have hqsurv := (Finset.mem_filter.mp hq).1
   exact hne (hpmax q hqsurv hd)
 
+/--
+@isnad1 id=iff.2h5v.s8.e4aa336e5c27 from=translated src=- shape=9376eaf8 vocab=90ee509d
+-/
 theorem normalSurvivorRoots_standardSet_iff (G : Finset (Normal a b c))
     (hf : {p : Normal a b c | monomial (k := ℚ) p ∉ normalGeneratorIdeal G}.Finite)
     (hdom : IsLiveParameterDomain a b c) (p : Normal a b c) :
@@ -206,6 +233,9 @@ theorem normalSurvivorRoots_standardSet_iff (G : Finset (Normal a b c))
       omega
     exact ⟨s,Finset.mem_filter.mpr ⟨hsu,hsm⟩,hps⟩
 
+/--
+@isnad1 id=nonempty.3h4v.s8.53589f29019f from=translated src=- shape=5db28d67 vocab=1717eea4
+-/
 theorem normalSurvivorRoots_nonempty (G : Finset (Normal a b c))
     (hf : {p : Normal a b c | monomial (k := ℚ) p ∉ normalGeneratorIdeal G}.Finite)
     (hdom : IsLiveParameterDomain a b c)
@@ -217,6 +247,9 @@ theorem normalSurvivorRoots_nonempty (G : Finset (Normal a b c))
 def normalPresentationFinset (G : Finset (Normal a b c)) : Finset (ThreePoly ℚ) :=
   insert (tiePolynomial a b c) (G.image (polynomialLift (k := ℚ)))
 
+/--
+@isnad1 id=eq.0h4v.s5.4047ef4e2558 from=translated src=- shape=0877ded1 vocab=bd687aa2
+-/
 theorem normalPresentationFinset_card (G : Finset (Normal a b c)) :
     (normalPresentationFinset G).card = G.card + 1 := by
   have hn : tiePolynomial a b c ∉ G.image (polynomialLift (k := ℚ)) := by
@@ -226,12 +259,18 @@ theorem normalPresentationFinset_card (G : Finset (Normal a b c)) :
   rw [normalPresentationFinset, Finset.card_insert_of_notMem hn,
     Finset.card_image_of_injective _ polynomialLift_injective]
 
+/--
+@isnad1 id=eq.0h4v.s8.9e45f359dee5 from=translated src=- shape=b847c88c vocab=c7ea076a
+-/
 theorem normalPresentationFinset_map (G : Finset (Normal a b c)) :
     (Ideal.span (↑(normalPresentationFinset G) : Set (ThreePoly ℚ))).map
       (polyToNormalAlg (k := ℚ) (a := a) (b := b) (c := c)).toRingHom = normalGeneratorIdeal G := by
   simp [normalPresentationFinset, normalGeneratorIdeal, Ideal.map_span,
     Finset.coe_insert, Finset.coe_image, Set.image_insert_eq, Set.image_image]
 
+/--
+@isnad1 id=eq.0h4v.s8.99c74c6ba609 from=translated src=- shape=b68c6657 vocab=59ef1697
+-/
 theorem normalGeneratorIdeal_comap (G : Finset (Normal a b c)) :
     (normalGeneratorIdeal G).comap
       (polyToNormalAlg (k := ℚ) (a := a) (b := b) (c := c)).toRingHom =
@@ -247,6 +286,9 @@ theorem normalGeneratorIdeal_comap (G : Finset (Normal a b c)) :
   rw [Set.mem_singleton_iff.mp hf]
   exact Ideal.subset_span (Finset.mem_insert_self _ _)
 
+/--
+@isnad1 id=eq.5h7v.s7.6131f958c603 from=translated src=- shape=9e3e43f9 vocab=d654be5c
+-/
 theorem normalGenerators_incomparable_of_minimal (G : Finset (Normal a b c)) (n : ℕ)
     (hm : HasMinimalGeneratorCard (Ideal.span (↑(normalPresentationFinset G) : Set (ThreePoly ℚ))) n)
     (hc : (normalPresentationFinset G).card = n) :
@@ -290,6 +332,9 @@ private theorem normalWeight_le_of_dvd {p q : Normal a b c} (h : p ∣ q) :
   rw [normalWeight_mul]
   omega
 
+/--
+@isnad1 id=eq.4h4v.s9.23b871b41336 from=translated src=- shape=40a334c8 vocab=2db7bfc6
+-/
 theorem normalGenerators_eq_exact_border (G : Finset (Normal a b c))
     (hf : {p : Normal a b c | monomial (k := ℚ) p ∉ normalGeneratorIdeal G}.Finite)
     (hd : IsLiveParameterDomain a b c)
@@ -333,6 +378,9 @@ theorem normalGenerators_eq_exact_border (G : Finset (Normal a b c))
 section ChosenBaseSurvival
 variable {D : FourGeneratedNumericalSemigroup} {i : Fin 4} {p : TailPoly ℚ}
 
+/--
+@isnad1 id=iff.0h5v.s9.d5b569964e70 from=translated src=- shape=150d16d2 vocab=09535398
+-/
 theorem renamedChosenBaseIdeal_mem_iff (C : OneTieCoordinates D i p) (f : TailPoly ℚ) :
     renameToOneTie C f ∈ renamedChosenBaseIdeal C ↔ f ∈ chosenBaseDefiningIdeal D i := by
   constructor
@@ -342,6 +390,9 @@ theorem renamedChosenBaseIdeal_mem_iff (C : OneTieCoordinates D i p) (f : TailPo
     exact (renameToOneTie C).injective he ▸ hq
   · exact Ideal.mem_map_of_mem _
 
+/--
+@isnad1 id=eq.1h5v.s9.71d055b227e4 from=translated src=- shape=a6fb5771 vocab=3da23e01
+-/
 theorem normalGeneratorIdeal_comap_of_raw_span (C : OneTieCoordinates D i p)
     (E : Finset (Fin 3 →₀ ℕ))
     (hs : Ideal.span (↑(rawLiftGeneratorFinset C E) : Set (ThreePoly ℚ)) = renamedChosenBaseIdeal C) :
@@ -352,6 +403,9 @@ theorem normalGeneratorIdeal_comap_of_raw_span (C : OneTieCoordinates D i p)
   change Ideal.span (↑(normalizedLiftGeneratorFinset C E) : Set (ThreePoly ℚ)) = _
   rw [normalizedLiftGeneratorFinset_span_eq, hs]
 
+/--
+@isnad1 id=not.1h5v.s9.6377f1702ea7 from=translated src=- shape=8d838a03 vocab=b9e1d857
+-/
 theorem chosenBase_normal_unit_survives (C : OneTieCoordinates D i p)
     (E : Finset (Fin 3 →₀ ℕ))
     (hs : Ideal.span (↑(rawLiftGeneratorFinset C E) : Set (ThreePoly ℚ)) = renamedChosenBaseIdeal C) :
@@ -372,6 +426,9 @@ theorem chosenBase_normal_unit_survives (C : OneTieCoordinates D i p)
       tailPolyToChosenBase D i (MvPolynomial.X 0) * 1 := (mul_one _).symm
     _ = 0 := by rw [hz, mul_zero]
 
+/--
+@isnad1 id=not.0h5v.s7.3c9c39d96a64 from=translated src=- shape=1d0b1f20 vocab=f1a68dc7
+-/
 theorem chosenBase_renamed_variable_survives (C : OneTieCoordinates D i p)
     (j : Fin 3) : (MvPolynomial.X j : ThreePoly ℚ) ∉ renamedChosenBaseIdeal C := by
   intro h
@@ -382,6 +439,9 @@ theorem chosenBase_renamed_variable_survives (C : OneTieCoordinates D i p)
     simpa only [he] using h
   exact tailVariableChosenBase_ne_zero (k := ℚ) D i _ (RingHom.mem_ker.mp hj)
 
+/--
+@isnad1 id=and.1h5v.s10.ae40bf010a69 from=translated src=- shape=0c4cc590 vocab=8d06e9bf
+-/
 theorem chosenBase_normal_variables_survive (C : OneTieCoordinates D i p)
     (E : Finset (Fin 3 →₀ ℕ))
     (hs : Ideal.span (↑(rawLiftGeneratorFinset C E) : Set (ThreePoly ℚ)) = renamedChosenBaseIdeal C) :
@@ -400,6 +460,9 @@ theorem chosenBase_normal_variables_survive (C : OneTieCoordinates D i p)
     normalGeneratorIdeal (normalizedMonomialGeneratorFinset C E) at hz
   simpa using And.intro hx (And.intro hy hz)
 
+/--
+@isnad1 id=not.1h5v.s9.969f4878864f from=translated src=- shape=bf3813e0 vocab=16167bbc
+-/
 theorem chosenBase_normal_tie_survives (C : OneTieCoordinates D i p)
     (E : Finset (Fin 3 →₀ ℕ))
     (hs : Ideal.span (↑(rawLiftGeneratorFinset C E) : Set (ThreePoly ℚ)) = renamedChosenBaseIdeal C) :
@@ -464,6 +527,9 @@ structure BudgetOneNormalizedPresentation (D : FourGeneratedNumericalSemigroup) 
     monomial (k := ℚ) q ∉ normalGeneratorIdeal
       (normalizedMonomialGeneratorFinset coordinates rawExponents)}.Finite
 
+/--
+@isnad1 id=nonempty.1h2v.s4.c4aa5a341545 from=translated src=- shape=97de8cf9 vocab=bd8880f9
+-/
 theorem budgetOneNormalizedPresentation (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
     (hB : D.fourBaseBudget i = 1) : Nonempty (BudgetOneNormalizedPresentation D i) := by
   obtain ⟨p,C,E,hs,hc,hpos⟩ := budgetOne_raw_normalization_data D i hB
@@ -476,31 +542,52 @@ variable (B : BudgetOneNormalizedPresentation D i)
 abbrev generators := normalizedMonomialGeneratorFinset B.coordinates B.rawExponents
 def roots := normalSurvivorRoots B.generators B.survivorsFinite
 
+/--
+@isnad1 id=nonempty.0h3v.s5.5c433c3e51df from=translated src=- shape=192cfb76 vocab=892d3ebb
+-/
 theorem roots_nonempty : B.roots.Nonempty :=
   normalSurvivorRoots_nonempty _ _ B.coordinates.liveDomain
     (chosenBase_normal_unit_survives _ _ B.spanEq)
 
+/--
+@isnad1 id=isrootan.0h3v.s5.7173543f3b1e from=translated src=- shape=58792db1 vocab=7f6bfeff
+-/
 theorem roots_antichain : IsRootAntichain B.roots := normalSurvivorRoots_antichain _ _
 
+/--
+@isnad1 id=iff.0h4v.s10.eebbe270fbf1 from=translated src=- shape=50fa6d3a vocab=85400ee6
+-/
 theorem survivor_iff_standard (q : Normal B.coordinates.a B.coordinates.b B.coordinates.c) :
     monomial (k := ℚ) q ∉ normalGeneratorIdeal B.generators ↔ q ∈ standardSet B.roots :=
   (normalSurvivorRoots_standardSet_iff _ _ B.coordinates.liveDomain q).symm
 
+/--
+@isnad1 id=isliveti.0h3v.s5.b67dad8cbb92 from=translated src=- shape=58792db1 vocab=0032d5de
+-/
 theorem roots_live : IsLiveTie B.roots := by
   obtain ⟨hx,hy,hz⟩ := chosenBase_normal_variables_survive _ _ B.spanEq
   exact ⟨(B.survivor_iff_standard _).mp hx, (B.survivor_iff_standard _).mp hy,
     (B.survivor_iff_standard _).mp hz,
     (B.survivor_iff_standard _).mp (chosenBase_normal_tie_survives _ _ B.spanEq)⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.5ad3d2cc0bbd from=translated src=- shape=eec917de vocab=9aa5ce20
+-/
 theorem normalized_span : Ideal.span (↑(normalPresentationFinset B.generators) : Set (ThreePoly ℚ)) =
     renamedChosenBaseIdeal B.coordinates := by
   change Ideal.span (↑(normalizedLiftGeneratorFinset B.coordinates B.rawExponents) : Set (ThreePoly ℚ)) = _
   rw [normalizedLiftGeneratorFinset_span_eq, B.spanEq]
 
+/--
+@isnad1 id=and.0h3v.s6.724215e2d465 from=translated src=- shape=723daed5 vocab=3bf22fbe
+-/
 theorem normalized_card : (normalPresentationFinset B.generators).card = D.semigroupRho ∧
     B.generators.card = D.semigroupRho - 1 :=
   normalizedGeneratorFinsets_card _ _ B.spanEq B.rawCard B.rhoPos
 
+/--
+@isnad1 id=eq.0h3v.s5.47a758a5c40a from=translated src=- shape=ae697387 vocab=83755efd
+-/
 theorem raw_family_card : (rawLiftGeneratorFinset B.coordinates B.rawExponents).card = D.semigroupRho := by
   have hlo := (renamedChosenBaseIdeal_minimalGeneratorCard B.coordinates).2 _ B.spanEq
   have hup : (rawLiftGeneratorFinset B.coordinates B.rawExponents).card ≤ B.rawExponents.card + 1 := by
@@ -510,6 +597,9 @@ theorem raw_family_card : (rawLiftGeneratorFinset B.coordinates B.rawExponents).
   have hp := B.rhoPos
   omega
 
+/--
+@isnad1 id=ne.0h4v.s8.48171b3c0d89 from=translated src=- shape=63e63212 vocab=02dda129
+-/
 theorem tie_ne_raw_monomial (d : Fin 3 →₀ ℕ) :
     tiePolynomial (k := ℚ) B.coordinates.a B.coordinates.b B.coordinates.c ≠ MvPolynomial.monomial d 1 := by
   intro h
@@ -518,6 +608,9 @@ theorem tie_ne_raw_monomial (d : Fin 3 →₀ ℕ) :
   simp only [polyToNormalAlg_tiePolynomial, polyToNormalAlg_monomial, one_smul] at he
   exact normalMonomial_ne_zero _ _ _ _ he.symm
 
+/--
+@isnad1 id=ne.0h4v.s7.bcf25d075b82 from=translated src=- shape=b48f353a vocab=d63f6b09
+-/
 theorem normalized_lift_ne_zero (q : Normal B.coordinates.a B.coordinates.b B.coordinates.c) :
     polynomialLift (k := ℚ) q ≠ 0 := by
   intro h
@@ -526,17 +619,26 @@ theorem normalized_lift_ne_zero (q : Normal B.coordinates.a B.coordinates.b B.co
   simp only [polyToNormalAlg_polynomialLift, map_zero] at he
   exact normalMonomial_ne_zero _ _ _ _ he
 
+/--
+@isnad1 id=injon.0h3v.s7.0ae90676e55c from=translated src=- shape=57f49e3f vocab=e6e3b17a
+-/
 theorem normalization_injective : Set.InjOn
     (normalizeExponent B.coordinates.a B.coordinates.b B.coordinates.c) B.rawExponents := by
   apply Finset.card_image_iff.mp
   exact B.normalized_card.2.trans B.rawCard.symm
 
+/--
+@isnad1 id=ne.1h4v.s8.c018e90c8c5a from=translated src=- shape=15576e8d vocab=b1995219
+-/
 theorem generators_ne_one (q : Normal B.coordinates.a B.coordinates.b B.coordinates.c)
     (hq : q ∈ B.generators) : q ≠ 1 := by
   intro h; subst q
   exact chosenBase_normal_unit_survives _ _ B.spanEq
     ((monomial_mem_normalGeneratorIdeal_iff _ _).mpr ⟨1,hq,dvd_refl _⟩)
 
+/--
+@isnad1 id=eq.0h3v.s6.309a0066e0e2 from=translated src=- shape=d9a1d544 vocab=8db46e74
+-/
 theorem generators_exact_border : B.generators = borderFinset B.roots := by
   apply normalGenerators_eq_exact_border _ _ B.coordinates.liveDomain
     (chosenBase_normal_unit_survives _ _ B.spanEq)
@@ -545,10 +647,16 @@ theorem generators_exact_border : B.generators = borderFinset B.roots := by
     exact renamedChosenBaseIdeal_minimalGeneratorCard B.coordinates
   · exact B.normalized_card.1
 
+/--
+@isnad1 id=eq.0h3v.s6.c37eae064fd1 from=translated src=- shape=cffa59f1 vocab=ef6978d3
+-/
 theorem border_card : (borderFinset B.roots).card = D.semigroupRho - 1 := by
   rw [← B.generators_exact_border]
   exact B.normalized_card.2
 
+/--
+@isnad1 id=eq.0h3v.s6.a54e180fe6f5 from=translated src=- shape=6fcb7cca vocab=ff381114
+-/
 theorem canonical_ideal : renamedChosenBaseIdeal B.coordinates =
     finitePresentationIdeal (k := ℚ) B.roots := by
   rw [← B.normalized_span, ← normalGeneratorIdeal_comap, B.generators_exact_border]

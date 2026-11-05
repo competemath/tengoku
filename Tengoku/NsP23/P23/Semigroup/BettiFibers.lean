@@ -26,6 +26,9 @@ abbrev FactorizationAt (d : ℕ) := {u : Fin 4 →₀ ℕ // u ∈ D.factorizati
 instance factorizationAtFintype (d : ℕ) : Fintype (D.FactorizationAt d) :=
   Fintype.ofFinset (D.factorizations d) (fun _ => Iff.rfl)
 
+/--
+@isnad1 id=eq.0h3v.s6.e69ca1723805 from=translated src=- shape=2fc74067 vocab=3ad2a69f
+-/
 @[simp] theorem factorizationAt_degree {d : ℕ} (u : D.FactorizationAt d) :
     D.weightedDegree u.1 = d :=
   D.mem_factorizations.mp u.2
@@ -34,6 +37,9 @@ instance factorizationAtFintype (d : ℕ) : Fintype (D.FactorizationAt d) :=
 def factorizationSupport {d : ℕ} (u : D.FactorizationAt d) : Finset (Fin 4) :=
   u.1.support
 
+/--
+@isnad1 id=iff.0h4v.s7.161d97d94ed9 from=translated src=- shape=1ee00799 vocab=c90f9839
+-/
 @[simp] theorem mem_factorizationSupport {d : ℕ} (u : D.FactorizationAt d)
     (j : Fin 4) :
     j ∈ D.factorizationSupport u ↔ 0 < u.1 j := by
@@ -43,6 +49,9 @@ def factorizationSupport {d : ℕ} (u : D.FactorizationAt d) : Finset (Fin 4) :=
 def FactorizationOverlap {d : ℕ} (u v : D.FactorizationAt d) : Prop :=
   ∃ j : Fin 4, 0 < u.1 j ∧ 0 < v.1 j
 
+/--
+@isnad1 id=iff.0h4v.s4.e001ffed8ed9 from=translated src=- shape=f19b9d55 vocab=829a173f
+-/
 theorem factorizationOverlap_comm {d : ℕ} (u v : D.FactorizationAt d) :
     D.FactorizationOverlap u v ↔ D.FactorizationOverlap v u := by
   constructor <;> rintro ⟨j, hu, hv⟩ <;> exact ⟨j, hv, hu⟩
@@ -56,6 +65,9 @@ noncomputable instance factorizationGraphAdjDecidable (d : ℕ) :
   classical
   exact Classical.decRel _
 
+/--
+@isnad1 id=iff.0h4v.s5.f14edc93d7d5 from=translated src=- shape=38cf086b vocab=3e9ad9d0
+-/
 @[simp] theorem factorizationGraph_adj {d : ℕ} (u v : D.FactorizationAt d) :
     (D.factorizationGraph d).Adj u v ↔
       u ≠ v ∧ D.FactorizationOverlap u v := by
@@ -78,6 +90,9 @@ def componentCount (d : ℕ) : ℕ := Fintype.card (D.BettiComponent d)
 /-- A Betti degree is a fiber with at least two overlap components.-/
 def IsBettiDegree (d : ℕ) : Prop := 2 ≤ D.componentCount d
 
+/--
+@isnad1 id=iff.0h4v.s5.552d5f256330 from=translated src=- shape=3bfaa05a vocab=7ba75021
+-/
 theorem componentOf_eq_iff_reachable {d : ℕ} (u v : D.FactorizationAt d) :
     D.componentOf u = D.componentOf v ↔ (D.factorizationGraph d).Reachable u v :=
   SimpleGraph.ConnectedComponent.eq
@@ -98,6 +113,9 @@ def combinedSupport (d : ℕ) : Finset (Fin 4) :=
 /-- Cardinality `v_d` of the combined fiber support.-/
 def supportCard (d : ℕ) : ℕ := (D.combinedSupport d).card
 
+/--
+@isnad1 id=iff.0h4v.s7.ff2527893e8a from=translated src=- shape=1468f630 vocab=9ebecb5e
+-/
 theorem mem_componentSupport_iff {d : ℕ} {C : D.BettiComponent d} {j : Fin 4} :
     j ∈ D.componentSupport C ↔
       ∃ u : D.FactorizationAt d, D.componentOf u = C ∧ 0 < u.1 j := by
@@ -110,6 +128,9 @@ theorem mem_componentSupport_iff {d : ℕ} {C : D.BettiComponent d} {j : Fin 4} 
     exact Finset.mem_biUnion.mpr ⟨u, Finset.mem_filter.mpr ⟨Finset.mem_univ _, huC⟩,
       (D.mem_factorizationSupport u j).mpr huj⟩
 
+/--
+@isnad1 id=iff.0h3v.s7.575e3a44dce4 from=translated src=- shape=164a957b vocab=831607d5
+-/
 theorem mem_combinedSupport_iff {d : ℕ} {j : Fin 4} :
     j ∈ D.combinedSupport d ↔ ∃ u : D.FactorizationAt d, 0 < u.1 j := by
   classical
@@ -121,6 +142,9 @@ theorem mem_combinedSupport_iff {d : ℕ} {j : Fin 4} :
     exact Finset.mem_biUnion.mpr
       ⟨u, Finset.mem_univ _, (D.mem_factorizationSupport u j).mpr huj⟩
 
+/--
+@isnad1 id=le.0h3v.s5.c67344cd126c from=translated src=- shape=941142ac vocab=9b0b6a4e
+-/
 theorem componentSupport_subset_combinedSupport {d : ℕ} (C : D.BettiComponent d) :
     D.componentSupport C ⊆ D.combinedSupport d := by
   intro j hj
@@ -128,6 +152,9 @@ theorem componentSupport_subset_combinedSupport {d : ℕ} (C : D.BettiComponent 
   rw [D.mem_combinedSupport_iff]
   exact ⟨hj.choose, hj.choose_spec.2⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.8852d3e81645 from=translated src=- shape=2357e844 vocab=3062c533
+-/
 theorem biUnion_componentSupport (d : ℕ) :
     Finset.univ.biUnion (fun C : D.BettiComponent d => D.componentSupport C) =
       D.combinedSupport d := by
@@ -141,7 +168,9 @@ theorem biUnion_componentSupport (d : ℕ) :
     obtain ⟨u, hu⟩ := D.mem_combinedSupport_iff.mp hj
     exact ⟨D.componentOf u, D.mem_componentSupport_iff.mpr ⟨u, rfl, hu⟩⟩
 
-/-- Distinct overlap components use disjoint generator sets.-/
+/-- Distinct overlap components use disjoint generator sets.
+@isnad1 id=disjoint.1h4v.s5.ddb5d67ad4c5 from=translated src=- shape=6dc67563 vocab=e315766c
+-/
 theorem componentSupport_disjoint {d : ℕ} {C E : D.BettiComponent d}
     (hCE : C ≠ E) : Disjoint (D.componentSupport C) (D.componentSupport E) := by
   classical
@@ -156,11 +185,17 @@ theorem componentSupport_disjoint {d : ℕ} {C E : D.BettiComponent d}
   · exact SimpleGraph.ConnectedComponent.sound
       ((D.factorizationGraph_adj u v).2 ⟨huv, ⟨j, huj, hvj⟩⟩).reachable
 
+/--
+@isnad1 id=pairwise.0h2v.s5.91b55bb6331f from=translated src=- shape=4d02e199 vocab=a22a1da8
+-/
 theorem componentSupport_pairwiseDisjoint (d : ℕ) :
     (Set.univ : Set (D.BettiComponent d)).PairwiseDisjoint D.componentSupport := by
   intro C _ E _ hCE
   exact D.componentSupport_disjoint hCE
 
+/--
+@isnad1 id=eq.1h3v.s7.96d886417536 from=translated src=- shape=6a6831aa vocab=62cb20bb
+-/
 theorem factorization_eq_zero_of_degree_eq_zero {d : ℕ} (hd : d = 0)
     (u : D.FactorizationAt d) : u.1 = 0 := by
   apply Finsupp.ext
@@ -170,6 +205,9 @@ theorem factorization_eq_zero_of_degree_eq_zero {d : ℕ} (hd : d = 0)
   simp [hd] at hle
   exact hle
 
+/--
+@isnad1 id=eq.0h3v.s5.3952e390d57b from=translated src=- shape=5a8b4ac5 vocab=48dad74c
+-/
 @[simp] theorem weightedDegree_single (j : Fin 4) (m : ℕ) :
     D.weightedDegree (Finsupp.single j m) = m * D.n j := by
   classical
@@ -180,6 +218,9 @@ theorem factorization_eq_zero_of_degree_eq_zero {d : ℕ} (hd : d = 0)
     simp [Finsupp.single_apply, hkj]
   · simp
 
+/--
+@isnad1 id=nonempty.1h3v.s4.a292dd5801ba from=translated src=- shape=c5967874 vocab=36233bdd
+-/
 theorem componentSupport_nonempty_of_isBetti {d : ℕ} (hd : D.IsBettiDegree d)
     (C : D.BettiComponent d) : (D.componentSupport C).Nonempty := by
   classical
@@ -220,6 +261,9 @@ the support is empty, a branch never used by singleton theorems).-/
 def singletonSupportVariable {d : ℕ} (C : D.BettiComponent d) : Fin 4 :=
   if h : (D.componentSupport C).Nonempty then h.choose else 0
 
+/--
+@isnad1 id=mem.1h3v.s5.b9d021027191 from=translated src=- shape=154279ea vocab=0af7f144
+-/
 theorem singletonSupportVariable_mem {d : ℕ} {C : D.BettiComponent d}
     (hC : D.IsSingletonSupportComponent C) :
     D.singletonSupportVariable C ∈ D.componentSupport C := by
@@ -228,6 +272,9 @@ theorem singletonSupportVariable_mem {d : ℕ} {C : D.BettiComponent d}
     omega)
   simp [singletonSupportVariable, hn, hn.choose_spec]
 
+/--
+@isnad1 id=eq.1h3v.s5.25f8f9eb005e from=translated src=- shape=74b4d9f0 vocab=10ae198c
+-/
 theorem componentSupport_eq_singleton {d : ℕ} {C : D.BettiComponent d}
     (hC : D.IsSingletonSupportComponent C) :
     D.componentSupport C = {D.singletonSupportVariable C} := by
@@ -237,6 +284,9 @@ theorem componentSupport_eq_singleton {d : ℕ} {C : D.BettiComponent d}
   have heq : D.singletonSupportVariable C = j := by simpa using hvar
   simpa [heq] using hj
 
+/--
+@isnad1 id=le.1h4v.s5.b6cc4a10036f from=translated src=- shape=769b03ae vocab=56ab6b6d
+-/
 theorem factorizationSupport_subset_componentSupport {d : ℕ}
     {C : D.BettiComponent d} {u : D.FactorizationAt d}
     (hu : D.componentOf u = C) :
@@ -245,6 +295,9 @@ theorem factorizationSupport_subset_componentSupport {d : ℕ}
   exact D.mem_componentSupport_iff.mpr
     ⟨u, hu, (D.mem_factorizationSupport u j).mp hj⟩
 
+/--
+@isnad1 id=eq.2h4v.s8.881388204731 from=translated src=- shape=4af7e269 vocab=89b0bc84
+-/
 theorem factorization_eq_single_of_singleton_component {d : ℕ}
     {C : D.BettiComponent d} (hC : D.IsSingletonSupportComponent C)
     {u : D.FactorizationAt d} (hu : D.componentOf u = C) :
@@ -265,6 +318,9 @@ theorem factorization_eq_single_of_singleton_component {d : ℕ}
       simpa [factorizationSupport] using hjnot
     simp [Finsupp.single_apply, hj, hz]
 
+/--
+@isnad1 id=eq.3h5v.s5.ec099b47089f from=translated src=- shape=98b78738 vocab=de877edd
+-/
 theorem singleton_component_vertex_unique {d : ℕ} {C : D.BettiComponent d}
     (hC : D.IsSingletonSupportComponent C)
     {u v : D.FactorizationAt d} (hu : D.componentOf u = C)
@@ -364,7 +420,9 @@ private theorem singleton_degree_lt_impossible {j : Fin 4} {d₁ d₂ : ℕ}
   exact hwu (D.singleton_component_vertex_unique hC₂ hcompw hu₂)
 
 /-- A fixed generator can support a singleton Betti component in at most one
-degree.  The proof shifts the smaller pure-power relation symbolically.-/
+degree.  The proof shifts the smaller pure-power relation symbolically.
+@isnad1 id=eq.4h4v.s5.9c2383d746b4 from=translated src=- shape=456fab4a vocab=bb074504
+-/
 theorem singletonComponent_degree_unique {j : Fin 4} {d₁ d₂ : ℕ}
     (h₁ : D.IsBettiDegree d₁) (h₂ : D.IsBettiDegree d₂)
     (hs₁ : D.HasSingletonComponentAt j d₁)
@@ -406,6 +464,9 @@ structure SingletonBettiOccurrence where
 def singletonOccurrenceVariable (o : D.SingletonBettiOccurrence) : Fin 4 :=
   D.singletonSupportVariable o.component
 
+/--
+@isnad1 id=injectiv.0h1v.s3.477b7bde22d0 from=translated src=- shape=dcea802f vocab=0a691138
+-/
 theorem singletonOccurrenceVariable_injective :
     Function.Injective D.singletonOccurrenceVariable := by
   intro a b hab
@@ -424,6 +485,9 @@ theorem singletonOccurrenceVariable_injective :
   subst C₂
   rfl
 
+/--
+@isnad1 id=finite.0h1v.s2.f3a58e111526 from=translated src=- shape=76a08d12 vocab=078d3f95
+-/
 noncomputable instance singletonBettiOccurrenceFinite :
     Finite (D.SingletonBettiOccurrence) :=
   Finite.of_injective D.singletonOccurrenceVariable D.singletonOccurrenceVariable_injective
@@ -431,6 +495,9 @@ noncomputable instance singletonBettiOccurrenceFinite :
 noncomputable instance singletonBettiOccurrenceFintype :
     Fintype (D.SingletonBettiOccurrence) := Fintype.ofFinite _
 
+/--
+@isnad1 id=le.0h1v.s3.081f8b4b8df2 from=translated src=- shape=f6b6ad72 vocab=0f06c9f4
+-/
 theorem singletonBettiOccurrence_card_le_four :
     Fintype.card (D.SingletonBettiOccurrence) ≤ 4 := by
   simpa using Fintype.card_le_of_injective D.singletonOccurrenceVariable

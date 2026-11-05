@@ -44,6 +44,9 @@ structure ReorientedPureResidual (S : Finset (Normal a b c)) where
         (equivalence (Ideal.Quotient.mk _ (polynomialLift (k := ℚ) p))) =
       truncatedMonomial (k := ℚ) roots (normalCoordinates p)
 
+/--
+@isnad1 id=nonempty.8h3v.s7.7d108ce3d418 from=translated src=- shape=105ea9a6 vocab=ae36ac87
+-/
 theorem pure_three_border_reoriented_residual (S : Finset (Normal a b 0))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3)
@@ -100,6 +103,9 @@ theorem pure_three_border_reoriented_residual (S : Finset (Normal a b 0))
       exact normalModelCongr_truncated pureSwapXYMulEquiv
         (normalEquiv_standard_iff pureSwapXYMulEquiv S) p
 
+/--
+@isnad1 id=nonempty.8h4v.s7.a7c951ac7976 from=translated src=- shape=14405f18 vocab=ae36ac87
+-/
 theorem three_border_ng_reoriented_residual (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3)

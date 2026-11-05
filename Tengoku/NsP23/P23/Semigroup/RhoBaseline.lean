@@ -11,6 +11,9 @@ noncomputable section
 open scoped BigOperators
 open P23.Monomial P23.OneTie P23.Artin P23.Presentation
 
+/--
+@isnad1 id=ex.0h1v.s4.717ffd9df319 from=translated src=- shape=98bf10d5 vocab=5b01faee
+-/
 theorem exists_base_budget_le_one (D : FourGeneratedNumericalSemigroup) :
     ∃ i : Fin 4, D.fourBaseBudget i ≤ 1 := by
   by_contra hn
@@ -21,6 +24,9 @@ theorem exists_base_budget_le_one (D : FourGeneratedNumericalSemigroup) :
   norm_num at hh
   omega
 
+/--
+@isnad1 id=eq.2h2v.s5.81a685ef1503 from=translated src=- shape=b326a7c3 vocab=6c9649ba
+-/
 theorem budget_zero_rho_le_three_semigroupType_eq_one
     (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
     (hb : D.fourBaseBudget i = 0) (hr : D.semigroupRho ≤ 3) : D.semigroupType = 1 := by
@@ -39,6 +45,9 @@ theorem budget_zero_rho_le_three_semigroupType_eq_one
   rw [chosenPlain_type_eq R hR E,chosenBaseType_eq_semigroupType] at ht
   exact ht
 
+/--
+@isnad1 id=eq.2h2v.s5.311c85059292 from=translated src=- shape=b326a7c3 vocab=6c9649ba
+-/
 theorem budget_one_rho_le_three_semigroupType_eq_one
     (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
     (hb : D.fourBaseBudget i = 1) (hr : D.semigroupRho ≤ 3) : D.semigroupType = 1 := by
@@ -52,6 +61,9 @@ theorem budget_one_rho_le_three_semigroupType_eq_one
   rw [B.canonicalOneTieType_eq_chosenBaseType,chosenBaseType_eq_semigroupType] at ht
   exact ht
 
+/--
+@isnad1 id=eq.1h1v.s4.704a05a10570 from=translated src=- shape=8acc91d3 vocab=42c3ae9f
+-/
 theorem semigroupRho_le_three_imp_type_one (D : FourGeneratedNumericalSemigroup)
     (hr : D.semigroupRho ≤ 3) : D.semigroupType = 1 := by
   obtain ⟨i,hi⟩ := exists_base_budget_le_one D
@@ -60,15 +72,24 @@ theorem semigroupRho_le_three_imp_type_one (D : FourGeneratedNumericalSemigroup)
   · exact budget_zero_rho_le_three_semigroupType_eq_one D i hz hr
   · exact budget_one_rho_le_three_semigroupType_eq_one D i ho hr
 
+/--
+@isnad1 id=le.1h1v.s4.8f6d8a121971 from=translated src=- shape=6d39fd21 vocab=42c3ae9f
+-/
 theorem semigroupType_ne_one_imp_rho_ge_four (D : FourGeneratedNumericalSemigroup)
     (ht : D.semigroupType ≠ 1) : 4 ≤ D.semigroupRho := by
   by_contra hn
   exact ht (semigroupRho_le_three_imp_type_one D (by omega))
 
+/--
+@isnad1 id=le.1h1v.s4.4d191b801769 from=translated src=- shape=6d39fd21 vocab=42c3ae9f
+-/
 theorem type_two_semigroupRho_ge_four (D : FourGeneratedNumericalSemigroup)
     (ht : D.semigroupType = 2) : 4 ≤ D.semigroupRho :=
   semigroupType_ne_one_imp_rho_ge_four D (by omega)
 
+/--
+@isnad1 id=le.1h1v.s4.afe7cbbcb9a6 from=translated src=- shape=6d39fd21 vocab=42c3ae9f
+-/
 theorem type_three_semigroupRho_ge_four (D : FourGeneratedNumericalSemigroup)
     (ht : D.semigroupType = 3) : 4 ≤ D.semigroupRho :=
   semigroupType_ne_one_imp_rho_ge_four D (by omega)
@@ -79,6 +100,9 @@ structure SmallPresentationBaseline (D : FourGeneratedNumericalSemigroup) : Prop
   typeTwoRhoFour : D.semigroupType = 2 → 4 ≤ D.semigroupRho
   typeThreeRhoFour : D.semigroupType = 3 → 4 ≤ D.semigroupRho
 
+/--
+@isnad1 id=smallpre.0h1v.s2.fadab33485fe from=translated src=- shape=5c11bb93 vocab=24272a2d
+-/
 theorem smallPresentationBaseline (D : FourGeneratedNumericalSemigroup) :
     SmallPresentationBaseline D where
   smallRhoTypeOne := semigroupRho_le_three_imp_type_one D

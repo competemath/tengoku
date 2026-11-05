@@ -14,6 +14,9 @@ variable {D : FourGeneratedNumericalSemigroup} {i : Fin 4}
 variable (R : Finset PlainExp) (hR : R.Nonempty)
 variable (E : ChosenBaseQuotient (k := ℚ) D i ≃ₐ[ℚ] PlainMonomialArtin ℚ R)
 
+/--
+@isnad1 id=iff.1h5v.s10.59d3111e3cb4 from=translated src=- shape=d341cae2 vocab=adc4ecdd
+-/
 theorem chosenPlain_maximal_mem_iff (x : ChosenBaseQuotient (k := ℚ) D i) :
     letI := chosenBaseIsLocalRing (k := ℚ) D i
     letI := plainIsLocalRing (k := ℚ) R hR
@@ -24,6 +27,9 @@ theorem chosenPlain_maximal_mem_iff (x : ChosenBaseQuotient (k := ℚ) D i) :
   simp only [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
   exact not_iff_not.mpr (MulEquiv.isUnit_map (f := E.toRingEquiv.toMulEquiv)).symm
 
+/--
+@isnad1 id=iff.1h5v.s11.926f449b5e61 from=translated src=- shape=4bb9f2ed vocab=c977b7d4
+-/
 theorem chosenPlain_socle_mem_iff (x : ChosenBaseQuotient (k := ℚ) D i) :
     x ∈ ChosenBaseSocle (k := ℚ) D i ↔ E x ∈ PlainDirectSocle (k := ℚ) R hR := by
   letI := chosenBaseIsLocalRing (k := ℚ) D i
@@ -52,6 +58,9 @@ def chosenPlainSocleEquiv
   map_smul' r x := by ext; simp
 
 include E in
+/--
+@isnad1 id=eq.1h4v.s7.9d94b60467ad from=translated src=- shape=45e3d498 vocab=38f102ff
+-/
 theorem chosenPlain_type_eq : plainDirectType ℚ R hR = chosenBaseType (k := ℚ) D i :=
   (chosenPlainSocleEquiv R hR E).finrank_eq.symm
 
@@ -64,6 +73,9 @@ def chosenPlainOmegaEquiv : ChosenBaseOmega ℚ D i ≃ₗ[ℚ] PlainOmega ℚ R
   map_add' φ ψ := by apply LinearMap.ext; intro x; rfl
   map_smul' r φ := by apply LinearMap.ext; intro x; rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.19af22883157 from=translated src=- shape=c2634451 vocab=15ce28ed
+-/
 theorem chosenPlainOmegaEquiv_smul (x : ChosenBaseQuotient (k := ℚ) D i)
     (φ : ChosenBaseOmega ℚ D i) :
     chosenPlainOmegaEquiv R E (x • φ) = E x • chosenPlainOmegaEquiv R E φ := by
@@ -73,6 +85,9 @@ theorem chosenPlainOmegaEquiv_smul (x : ChosenBaseQuotient (k := ℚ) D i)
   congr 1
   simp
 
+/--
+@isnad1 id=eq.0h6v.s13.7d151e7978c4 from=translated src=- shape=66a4a154 vocab=03c7ad37
+-/
 theorem chosenPlainOmegaEquiv_symm_smul (x : PlainMonomialArtin ℚ R)
     (ψ : PlainOmega ℚ R) :
     (chosenPlainOmegaEquiv R E).symm (x • ψ) =
@@ -99,6 +114,9 @@ def pullChosenPlainHom
     rw [chosenPlainOmegaEquiv_smul, F.map_smul]
     simp [smul_eq_mul]
 
+/--
+@isnad1 id=iff.0h5v.s10.e065bbd334d4 from=translated src=- shape=853a16da vocab=1fed306a
+-/
 theorem chosenPlain_trace_mem_iff (x : ChosenBaseQuotient (k := ℚ) D i) :
     x ∈ ChosenBaseTraceSubmodule (k := ℚ) D i ↔ E x ∈ PlainTraceSubmodule ℚ R := by
   constructor
@@ -124,6 +142,9 @@ theorem chosenPlain_trace_mem_iff (x : ChosenBaseQuotient (k := ℚ) D i) :
     simpa using hback
 
 include E in
+/--
+@isnad1 id=iff.1h4v.s7.066dd5c21b2b from=translated src=- shape=05890f5d vocab=b2aba459
+-/
 theorem chosenPlain_ng_iff : ChosenBaseNearlyGorenstein (k := ℚ) D i ↔
     PlainDirectNearlyGorenstein ℚ R hR := by
   unfold ChosenBaseNearlyGorenstein PlainDirectNearlyGorenstein

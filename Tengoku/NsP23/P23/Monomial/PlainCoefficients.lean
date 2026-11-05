@@ -11,10 +11,16 @@ def plainCoeffAt (S : Finset PlainExp) (p : PlainMonomialIndex S) :
   map_add' _ _ := by simp
   map_smul' _ _ := by simp
 
+/--
+@isnad1 id=eq.0h4v.s7.4afcf5bb190d from=translated src=- shape=63244c66 vocab=7030226f
+-/
 @[simp]
 theorem plainCoeffAt_apply (S : Finset PlainExp) (p : PlainMonomialIndex S)
     (v : PlainMonomialArtin k S) : plainCoeffAt (k := k) S p v = v.coeff p := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.719d59e44a68 from=translated src=- shape=9ee91a4a vocab=5e0cc6f7
+-/
 theorem plainCoeffAt_PX (S : Finset PlainExp) (p q : PlainMonomialIndex S) :
     plainCoeffAt (k := k) S p (PX (k := k) S q.1 q.2) =
       if p = q then 1 else 0 := by
@@ -31,6 +37,9 @@ def plainConstantCoeff (S : Finset PlainExp) (hS : S.Nonempty) :
     PlainMonomialArtin k S →ₗ[k] k :=
   plainCoeffAt (k := k) S (plainUnitIndex S hS)
 
+/--
+@isnad1 id=eq.1h2v.s7.2c05d6036d76 from=translated src=- shape=748b229d vocab=ef8b440d
+-/
 @[simp]
 theorem plainConstantCoeff_one (S : Finset PlainExp) (hS : S.Nonempty) :
     plainConstantCoeff (k := k) S hS 1 = 1 := by
@@ -38,7 +47,9 @@ theorem plainConstantCoeff_one (S : Finset PlainExp) (hS : S.Nonempty) :
   simp [plainConstantCoeff, plainUnitIndex]
 
 /-- Left multiplication by a surviving monomial transports coefficients
-exactly along a cancellative normalized product.-/
+exactly along a cancellative normalized product.
+@isnad1 id=eq.1h6v.s8.1330861e6729 from=translated src=- shape=8078d774 vocab=a6b30b66
+-/
 theorem plainCoeffAt_PX_mul (S : Finset PlainExp)
     (m e t : PlainMonomialIndex S) (hmet : m.1 + e.1 = t.1)
     (v : PlainMonomialArtin k S) :
@@ -74,7 +85,9 @@ theorem plainCoeffAt_PX_mul (S : Finset PlainExp)
           simp [ht, heq, hval]
         · simp [PlainMonomialArtin.PX_mul_PX, hsurv, hqe, plainCoeffAt_PX]
 
-/-- Right-multiplication form of coefficient transport.-/
+/-- Right-multiplication form of coefficient transport.
+@isnad1 id=eq.1h6v.s8.03adfa08841a from=translated src=- shape=9f534530 vocab=a6b30b66
+-/
 theorem plainCoeffAt_mul_PX (S : Finset PlainExp)
     (m e t : PlainMonomialIndex S) (hmet : e.1 + m.1 = t.1)
     (v : PlainMonomialArtin k S) :
@@ -83,6 +96,9 @@ theorem plainCoeffAt_mul_PX (S : Finset PlainExp)
   rw [mul_comm]
   exact plainCoeffAt_PX_mul (k := k) S m e t (by simpa [add_comm] using hmet) v
 
+/--
+@isnad1 id=iff.0h2v.s6.fe0cf15e9cb0 from=translated src=- shape=16f063c0 vocab=d3bd8354
+-/
 theorem plain_add_eq_zero_iff (p q : PlainExp) : p + q = 0 ↔ p = 0 ∧ q = 0 := by
   constructor
   · intro h
@@ -90,6 +106,9 @@ theorem plain_add_eq_zero_iff (p q : PlainExp) : p + q = 0 ↔ p = 0 ∧ q = 0 :
     constructor <;> ext j <;> specialize hc j <;> simp only [Finsupp.add_apply,Finsupp.zero_apply] at hc ⊢ <;> omega
   · rintro ⟨rfl,rfl⟩; simp
 
+/--
+@isnad1 id=or.1h3v.s6.2a7847128506 from=translated src=- shape=61b24294 vocab=fc955639
+-/
 theorem plain_variable_is_atom (j : Fin 3) (p q : PlainExp)
     (h : p+q=plainUnitVector j) : p=0 ∨ q=0 := by
   have hc r := congrArg (fun p : PlainExp => p r) h
@@ -128,6 +147,9 @@ private theorem plainConstantCoeff_PX_mul_PX (S : Finset PlainExp) (hS : S.Nonem
     by_cases hp : p.1=0 <;> by_cases hq : q.1=0 <;>
       simp_all [Subtype.ext_iff,eq_comm]
 
+/--
+@isnad1 id=eq.1h4v.s9.39de8584e453 from=translated src=- shape=bb1a1cee vocab=55886d42
+-/
 theorem plainConstantCoeff_mul (S : Finset PlainExp) (hS : S.Nonempty)
     (u v : PlainMonomialArtin k S) :
     plainConstantCoeff (k := k) S hS (u*v) =
@@ -147,6 +169,9 @@ theorem plainConstantCoeff_mul (S : Finset PlainExp) (hS : S.Nonempty)
       rw [plainConstantCoeff_PX_mul_PX S hS p q]
       ring
 
+ /--
+ @isnad1 id=eq.4h5v.s9.10d5ed343a80 from=translated src=- shape=94764352 vocab=180153c9
+ -/
  theorem plainCoeffAt_mul_eq_zero_of_right (S : Finset PlainExp)
     (hS : S.Nonempty)
     (e : Fin 3) (heS : plainUnitVector e ∈ plainStandardFinset S)

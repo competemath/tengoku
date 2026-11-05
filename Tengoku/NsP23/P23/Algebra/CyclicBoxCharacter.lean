@@ -10,6 +10,9 @@ variable {q : ℕ} [NeZero q]
 
 abbrev cyclicCharacter : AddChar (ZMod q) ℂ := ZMod.stdAddChar
 
+/--
+@isnad1 id=and.2h2v.s7.3502fef02ca3 from=translated src=- shape=d79e3365 vocab=ef7668e1
+-/
 theorem nonzero_two_torsion_eq_half (h : ZMod q) (hne : h ≠ 0)
     (h2 : h + h = 0) : 2 ∣ q ∧ h = ((q / 2 : ℕ) : ZMod q) := by
   have hv : 0 < h.val := by
@@ -29,6 +32,9 @@ theorem nonzero_two_torsion_eq_half (h : ZMod q) (hne : h ≠ 0)
   · have hh : q / 2 = h.val := by omega
     rw [hh, ZMod.natCast_zmod_val]
 
+/--
+@isnad1 id=eq.2h2v.s7.d1fa74c5fe9d from=translated src=- shape=46178e91 vocab=fe02ba61
+-/
 theorem cyclicCharacter_two_torsion (h : ZMod q) (hne : h≠0) (h2 : h+h=0) :
     cyclicCharacter h = -1 := by
   have he : cyclicCharacter h * cyclicCharacter h = 1 := by
@@ -48,6 +54,9 @@ theorem cyclicCharacter_two_torsion (h : ZMod q) (hne : h≠0) (h2 : h+h=0) :
 def cyclicGeometricSum (n : ℕ) (w : ZMod q) : ℂ :=
   ∑ j ∈ Finset.range n, cyclicCharacter (j • w)
 
+/--
+@isnad1 id=eq.1h3v.s6.103e193b4d70 from=translated src=- shape=524f338e vocab=995c7dea
+-/
 theorem geometric_sum_zero_nsmul (n : ℕ) (w : ZMod q)
     (hz : cyclicGeometricSum n w=0) : n • w=0 := by
   have hs : ∑ j ∈ Finset.range n, cyclicCharacter w ^ j=0 := by
@@ -58,9 +67,15 @@ theorem geometric_sum_zero_nsmul (n : ℕ) (w : ZMod q)
   apply ZMod.injective_stdAddChar
   simpa only [AddChar.map_nsmul_eq_pow,AddChar.map_zero_eq_one] using hp
 
+/--
+@isnad1 id=eq.0h2v.s5.758699d9211c from=translated src=- shape=5b6d1aea vocab=cdd1e1af
+-/
 theorem cyclicGeometricSum_zero (n : ℕ) :
     cyclicGeometricSum (q:=q) n 0=(n:ℂ) := by simp [cyclicGeometricSum]
 
+/--
+@isnad1 id=eq.3h3v.s7.a93bfda560f4 from=translated src=- shape=73e85d9b vocab=a5a86735
+-/
 theorem cyclicCharacter_translation_sum_zero (S : Finset (ZMod q)) (h : ZMod q)
     (hne : h≠0) (h2 : h+h=0) (hS : S.image (fun x=>x+h)=S) :
     ∑ x∈S, cyclicCharacter x=0 := by
@@ -78,6 +93,9 @@ def cyclicBoxSum (A B C : ℕ) (X Y Z : ZMod q) : ℂ :=
   ∑ x∈Finset.range A, ∑ y∈Finset.range B, ∑ z∈Finset.range C,
     cyclicCharacter (x • X+y • Y+z • Z)
 
+/--
+@isnad1 id=eq.0h7v.s6.6be663870c78 from=translated src=- shape=79346ca1 vocab=daf720ad
+-/
 theorem cyclicCharacter_box_product (A B C : ℕ) (X Y Z : ZMod q) :
     cyclicBoxSum A B C X Y Z=
       cyclicGeometricSum A X*cyclicGeometricSum B Y*cyclicGeometricSum C Z := by

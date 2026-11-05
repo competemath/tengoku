@@ -35,6 +35,9 @@ private theorem mem_optionSingleton_iff {q : Normal a b c}
   | none => simp [optionSingleton]
   | some r => simp [optionSingleton, eq_comm]
 
+/--
+@isnad1 id=iff.0h5v.s6.eb8f76fc26e5 from=translated src=- shape=11a019e1 vocab=6b40210b
+-/
 theorem mem_predecessorRootFinset_iff (T q : Normal a b c) :
     q ∈ predecessorRootFinset T ↔
       Normal.predecessor .x T = some q ∨
@@ -43,7 +46,9 @@ theorem mem_predecessorRootFinset_iff (T q : Normal a b c) :
   simp [predecessorRootFinset, mem_optionSingleton_iff]
 
 /-- The roots formed by all existing immediate predecessors of `T` generate
-exactly the proper-divisor downset of `T`.-/
+exactly the proper-divisor downset of `T`.
+@isnad1 id=eq.1h4v.s6.0433d17d8ca3 from=translated src=- shape=ee8c87a7 vocab=53db2e51
+-/
 theorem standardSet_predecessorRootFinset (T : Normal a b c)
     (hproper : ∀ q ∈ predecessorRootFinset T, ¬T ∣ q) :
     standardSet (predecessorRootFinset T) = Normal.divisorDownset T \ {T} := by

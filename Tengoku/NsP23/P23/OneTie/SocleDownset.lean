@@ -21,6 +21,9 @@ variable {a b c : ℕ} [NeZero a]
 def divisorDownset (s : Normal a b c) : Set (Normal a b c) :=
   {p | p ∣ s}
 
+/--
+@isnad1 id=iff.0h5v.s5.605e78572611 from=translated src=- shape=da480c16 vocab=dc0b168e
+-/
 theorem mem_divisorDownset_iff (p s : Normal a b c) :
     p ∈ divisorDownset s ↔ DividesCriterion p s := by
   exact exact_divides_iff p s
@@ -33,7 +36,9 @@ def OrdinaryBlock (p s : Normal a b c) : Prop :=
 def WrappedBlock (p s : Normal a b c) : Prop :=
   s.x < p.x ∧ p.y + b ≤ s.y ∧ p.z + c ≤ s.z
 
-/-- Exact H2 decomposition of a divisor downset into ordinary and wrapped blocks.-/
+/-- Exact H2 decomposition of a divisor downset into ordinary and wrapped blocks.
+@isnad1 id=iff.0h5v.s5.6dedc48126db from=translated src=- shape=01e4ae36 vocab=53a333d9
+-/
 theorem mem_divisorDownset_iff_blocks (p s : Normal a b c) :
     p ∈ divisorDownset s ↔ OrdinaryBlock p s ∨ WrappedBlock p s := by
   rw [mem_divisorDownset_iff]
@@ -46,6 +51,9 @@ def boundedNormals (s : Normal a b c) : Finset (Normal a b c) :=
     (fun t => ⟨t.1.val, t.2.1.val, t.2.2.val, t.1.isLt⟩)
 
 omit [NeZero a] in
+/--
+@isnad1 id=iff.0h5v.s6.cff88dc5ff6c from=translated src=- shape=425a2590 vocab=43c61f95
+-/
 theorem mem_boundedNormals_iff (p s : Normal a b c) :
     p ∈ boundedNormals s ↔ p.y ≤ s.y ∧ p.z ≤ s.z := by
   constructor
@@ -68,6 +76,9 @@ instance (p s : Normal a b c) : Decidable (DividesCriterion p s) := by
 def divisorFinset (s : Normal a b c) : Finset (Normal a b c) :=
   (boundedNormals s).filter fun p => DividesCriterion p s
 
+/--
+@isnad1 id=iff.0h5v.s6.607273d472b3 from=translated src=- shape=2039570d vocab=60d76506
+-/
 theorem mem_divisorFinset_iff (p s : Normal a b c) :
     p ∈ divisorFinset s ↔ p ∣ s := by
   rw [divisorFinset, Finset.mem_filter, mem_boundedNormals_iff]
@@ -77,6 +88,9 @@ theorem mem_divisorFinset_iff (p s : Normal a b c) :
     have hc := (exact_divides_iff p s).1 h
     exact ⟨⟨hc.1, hc.2.1⟩, hc⟩
 
+/--
+@isnad1 id=finite.0h4v.s4.baa514d15d1a from=translated src=- shape=1506095e vocab=28bdd8b2
+-/
 theorem divisorDownset_finite (s : Normal a b c) :
     (divisorDownset s).Finite := by
   have heq : divisorDownset s = (divisorFinset s : Set (Normal a b c)) := by
@@ -94,6 +108,9 @@ variable {a b c : ℕ} [NeZero a]
 def standardSet (S : Finset (Normal a b c)) : Set (Normal a b c) :=
   {p | ∃ s ∈ S, p ∣ s}
 
+/--
+@isnad1 id=iff.0h5v.s6.48e7991c7b69 from=translated src=- shape=442ad826 vocab=4b9f86ac
+-/
 theorem mem_standardSet_iff (S : Finset (Normal a b c)) (p : Normal a b c) :
     p ∈ standardSet S ↔ ∃ s ∈ S, p ∣ s := Iff.rfl
 
@@ -101,14 +118,23 @@ theorem mem_standardSet_iff (S : Finset (Normal a b c)) (p : Normal a b c) :
 def standardFinset (S : Finset (Normal a b c)) : Finset (Normal a b c) :=
   S.biUnion Normal.divisorFinset
 
+/--
+@isnad1 id=iff.0h5v.s6.b44a2ef1cc15 from=translated src=- shape=1fe933b9 vocab=37963dd5
+-/
 theorem mem_standardFinset_iff (S : Finset (Normal a b c)) (p : Normal a b c) :
     p ∈ standardFinset S ↔ ∃ s ∈ S, p ∣ s := by
   simp [standardFinset, Normal.mem_divisorFinset_iff]
 
+/--
+@isnad1 id=iff.0h5v.s6.591267563f83 from=translated src=- shape=1f866738 vocab=4ce6ce8c
+-/
 theorem mem_standardFinset_iff_standardSet (S : Finset (Normal a b c))
     (p : Normal a b c) : p ∈ standardFinset S ↔ p ∈ standardSet S := by
   rw [mem_standardFinset_iff, mem_standardSet_iff]
 
+/--
+@isnad1 id=finite.0h4v.s4.12753ebc91db from=translated src=- shape=45658d88 vocab=6aac5951
+-/
 theorem standardSet_finite (S : Finset (Normal a b c)) :
     (standardSet S).Finite := by
   have heq : standardSet S = (standardFinset S : Set (Normal a b c)) := by

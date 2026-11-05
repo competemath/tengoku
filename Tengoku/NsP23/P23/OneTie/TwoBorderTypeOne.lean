@@ -9,6 +9,9 @@ noncomputable section
 open P23.Artin P23.Presentation
 variable {a b c : ℕ} [NeZero a]
 
+/--
+@isnad1 id=le.3h4v.s5.c4cc70867ff8 from=translated src=- shape=be143037 vocab=d546c399
+-/
 theorem mixed_live_border_card_ge_two (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (hc : 0 < c) :
     2 ≤ (borderFinset S).card := by
@@ -22,6 +25,9 @@ theorem mixed_live_border_card_ge_two (S : Finset (Normal a b c))
     rcases hp with rfl | rfl <;> assumption
   simpa [hn] using Finset.card_le_card hsub
 
+/--
+@isnad1 id=le.2h3v.s6.251f90f68f49 from=translated src=- shape=48dab5e3 vocab=fb330dc3
+-/
 theorem pure_live_border_card_ge_two (S : Finset (Normal a b 0))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0) :
     2 ≤ (borderFinset S).card := by
@@ -47,6 +53,9 @@ theorem pure_live_border_card_ge_two (S : Finset (Normal a b 0))
     rcases hp with rfl | rfl <;> assumption
   simpa [hn] using Finset.card_le_card hsub
 
+/--
+@isnad1 id=le.3h4v.s5.0e6413eb3c4e from=translated src=- shape=efc0d5bf vocab=9fda0b46
+-/
 theorem live_one_tie_border_card_ge_two (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (_hl : IsLiveTie S) :
     2 ≤ (borderFinset S).card := by
@@ -55,6 +64,9 @@ theorem live_one_tie_border_card_ge_two (S : Finset (Normal a b c))
   · obtain ⟨_,rfl⟩ := hp
     exact pure_live_border_card_ge_two S hS hd
 
+/--
+@isnad1 id=eq.4h6v.s7.d20788ea161c from=translated src=- shape=50ef5377 vocab=3ccad544
+-/
 theorem two_border_eq_pair {S : Finset (Normal a b c)}
     (hc : (borderFinset S).card = 2) {p q : Normal a b c}
     (hp : p ∈ borderFinset S) (hq : q ∈ borderFinset S) (hn : p ≠ q) :
@@ -65,12 +77,18 @@ theorem two_border_eq_pair {S : Finset (Normal a b c)}
     rcases ht with rfl | rfl <;> assumption
   · simp [hc,hn]
 
+/--
+@isnad1 id=isrootan.0h4v.s5.c84f583c80bb from=translated src=- shape=e46fc8c6 vocab=31c351ac
+-/
 theorem singleton_normal_root_antichain (R : Normal a b c) :
     IsRootAntichain ({R} : Finset (Normal a b c)) := by
   intro p hp q hq hn _
   simp only [Finset.mem_singleton] at hp hq
   exact hn (hp.trans hq.symm)
 
+/--
+@isnad1 id=eq.6h4v.s6.3766082363bd from=translated src=- shape=32c5dd08 vocab=b0482a55
+-/
 theorem mixed_live_two_border_root_card_one (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (hc : 0 < c) (hg : (borderFinset S).card = 2) :
@@ -105,6 +123,9 @@ theorem mixed_live_two_border_root_card_one (S : Finset (Normal a b c))
   rw [hr]
   simp
 
+/--
+@isnad1 id=eq.5h3v.s6.615b2cef6d75 from=translated src=- shape=482e6fbb vocab=8b1bf894
+-/
 theorem pure_live_two_border_root_card_one (S : Finset (Normal a b 0))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (hg : (borderFinset S).card = 2) : S.card = 1 := by
@@ -170,6 +191,9 @@ theorem pure_live_two_border_root_card_one (S : Finset (Normal a b 0))
       apply Normal.ext <;> simp [pureZ,zAxis] <;> omega
     rw [hh,hz]
 
+/--
+@isnad1 id=eq.5h4v.s6.6424588d4f6d from=translated src=- shape=72df326f vocab=8b1bf894
+-/
 theorem live_two_border_root_card_one (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b c) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (hg : (borderFinset S).card = 2) : S.card = 1 := by
@@ -178,6 +202,9 @@ theorem live_two_border_root_card_one (S : Finset (Normal a b c))
   · obtain ⟨_,rfl⟩ := hp
     exact pure_live_two_border_root_card_one S hS hd hl ha hg
 
+/--
+@isnad1 id=eq.5h5v.s6.2f73d7899907 from=translated src=- shape=e40531fb vocab=684380d5
+-/
 theorem live_two_border_quotient_type_eq_one (k : Type*) [Field k]
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hd : IsLiveParameterDomain a b c) (hl : IsLiveTie S)

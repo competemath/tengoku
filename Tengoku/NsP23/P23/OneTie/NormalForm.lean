@@ -16,6 +16,9 @@ deriving DecidableEq, Repr
 
 namespace Raw
 
+/--
+@isnad1 id=eq.3h2v.s4.d13c73fe9ef3 from=translated src=- shape=966c8f3f vocab=98b790b2
+-/
 @[ext] theorem ext {p q : Raw} (hx : p.x = q.x) (hy : p.y = q.y) (hz : p.z = q.z) :
     p = q := by
   cases p
@@ -45,8 +48,17 @@ instance : AddCommMonoid Raw where
   nsmul_zero := by intro p; rfl
   nsmul_succ := by intro n p; rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.adea1cb48836 from=translated src=- shape=0438c7a3 vocab=d63f23ac
+-/
 @[simp] theorem add_x (p q : Raw) : (p + q).x = p.x + q.x := rfl
+/--
+@isnad1 id=eq.0h2v.s4.b63ff7ab4010 from=translated src=- shape=0438c7a3 vocab=b2145bf5
+-/
 @[simp] theorem add_y (p q : Raw) : (p + q).y = p.y + q.y := rfl
+/--
+@isnad1 id=eq.0h2v.s4.82a37e4391a0 from=translated src=- shape=0438c7a3 vocab=6a542d6c
+-/
 @[simp] theorem add_z (p q : Raw) : (p + q).z = p.z + q.z := rfl
 
 end Raw
@@ -63,6 +75,9 @@ namespace Normal
 
 variable {a b c : ℕ}
 
+/--
+@isnad1 id=eq.3h5v.s5.2ce435b8d1b9 from=translated src=- shape=b213b1e6 vocab=d77fea90
+-/
 @[ext] theorem ext {p q : Normal a b c}
     (hx : p.x = q.x) (hy : p.y = q.y) (hz : p.z = q.z) : p = q := by
   cases p
@@ -81,15 +96,27 @@ def normalize (a b c : ℕ) (ha : 0 < a) (p : Raw) : Normal a b c where
   z := p.z + (p.x / a) * c
   x_lt := Nat.mod_lt _ ha
 
+/--
+@isnad1 id=eq.1h4v.s5.a57ee57d817e from=translated src=- shape=170ad775 vocab=cbf82f6d
+-/
 @[simp] theorem normalize_x (ha : 0 < a) (p : Raw) :
     (normalize a b c ha p).x = p.x % a := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.2635433a243a from=translated src=- shape=e88d4463 vocab=6d31abe5
+-/
 @[simp] theorem normalize_y (ha : 0 < a) (p : Raw) :
     (normalize a b c ha p).y = p.y + (p.x / a) * b := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.b909bc2b4b7e from=translated src=- shape=f768c4ce vocab=92f52458
+-/
 @[simp] theorem normalize_z (ha : 0 < a) (p : Raw) :
     (normalize a b c ha p).z = p.z + (p.x / a) * c := rfl
 
+/--
+@isnad1 id=eq.1h4v.s5.217d2d5b08a1 from=translated src=- shape=a0ad6dfa vocab=06ac6ccb
+-/
 @[simp] theorem normalize_raw (ha : 0 < a) (p : Normal a b c) :
     normalize a b c ha p.raw = p := by
   ext <;> simp [normalize, raw, Nat.mod_eq_of_lt p.x_lt, Nat.div_eq_of_lt p.x_lt]
@@ -100,7 +127,9 @@ private theorem div_normalize_add (ha : 0 < a) (m n : ℕ) :
   have hm : m % a < a := Nat.mod_lt _ ha
   simp [Nat.div_eq_of_lt hm, Nat.mod_eq_of_lt hm, Nat.add_assoc]
 
-/-- Normalizing the left summand before adding does not change the result.-/
+/-- Normalizing the left summand before adding does not change the result.
+@isnad1 id=eq.1h5v.s5.384c079d0a84 from=translated src=- shape=8411d4e8 vocab=ac3280f1
+-/
 theorem normalize_normalize_add (ha : 0 < a) (p q : Raw) :
     normalize a b c ha ((normalize a b c ha p).raw + q) =
       normalize a b c ha (p + q) := by
@@ -154,20 +183,40 @@ instance [NeZero a] : CommMonoid (Normal a b c) where
       normalize a b c (positive a) (q.raw + p.raw)
     rw [add_comm]
 
+/--
+@isnad1 id=eq.0h3v.s5.f2b416fc57b0 from=translated src=- shape=9e7e80cf vocab=2fbda4db
+-/
 @[simp] theorem one_x [NeZero a] : (1 : Normal a b c).x = 0 := rfl
+/--
+@isnad1 id=eq.0h3v.s5.1e92eaca56c2 from=translated src=- shape=9e7e80cf vocab=607dad3c
+-/
 @[simp] theorem one_y [NeZero a] : (1 : Normal a b c).y = 0 := rfl
+/--
+@isnad1 id=eq.0h3v.s5.1ebb1f9dce55 from=translated src=- shape=9e7e80cf vocab=ed5021c2
+-/
 @[simp] theorem one_z [NeZero a] : (1 : Normal a b c).z = 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.1037bd38321e from=translated src=- shape=e99ff08b vocab=a5ed25b4
+-/
 @[simp] theorem mul_x [NeZero a] (p q : Normal a b c) :
     (p * q).x = (p.x + q.x) % a := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.780e233135a2 from=translated src=- shape=abe9b8f5 vocab=e7dd379e
+-/
 @[simp] theorem mul_y [NeZero a] (p q : Normal a b c) :
     (p * q).y = p.y + q.y + ((p.x + q.x) / a) * b := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.09f5c7215f3a from=translated src=- shape=b5f3fc9e vocab=42b70960
+-/
 @[simp] theorem mul_z [NeZero a] (p q : Normal a b c) :
     (p * q).z = p.z + q.z + ((p.x + q.x) / a) * c := rfl
 
-/-- Left multiplication is injective in the normalized one-tie monoid.-/
+/-- Left multiplication is injective in the normalized one-tie monoid.
+@isnad1 id=eq.1h6v.s7.17bf6f9b7094 from=translated src=- shape=53de8878 vocab=d009681d
+-/
 theorem mul_left_cancel [NeZero a] {p q r : Normal a b c}
     (h : p * q = p * r) : q = r := by
   have hmod : Nat.ModEq a (p.x + q.x) (p.x + r.x) := congrArg Normal.x h
@@ -185,7 +234,9 @@ theorem mul_left_cancel [NeZero a] {p q r : Normal a b c}
     rw [hx] at hz
     omega
 
-/-- Right multiplication is injective in the normalized one-tie monoid.-/
+/-- Right multiplication is injective in the normalized one-tie monoid.
+@isnad1 id=eq.1h6v.s7.7d206d9e6581 from=translated src=- shape=e0587be2 vocab=d009681d
+-/
 theorem mul_right_cancel [NeZero a] {p q r : Normal a b c}
     (h : q * p = r * p) : q = r := by
   rw [mul_comm q p, mul_comm r p] at h
@@ -195,7 +246,9 @@ instance [NeZero a] : IsCancelMul (Normal a b c) where
   mul_left_cancel := fun _ _ _ h => mul_left_cancel h
   mul_right_cancel := fun _ _ _ h => mul_right_cancel h
 
-/-- Normalization is idempotent after forgetting a normal form to raw exponents.-/
+/-- Normalization is idempotent after forgetting a normal form to raw exponents.
+@isnad1 id=eq.0h4v.s5.b3de61b5f060 from=translated src=- shape=c26bf876 vocab=e06a6c7c
+-/
 theorem normalize_idempotent [NeZero a] (p : Raw) :
     normalize a b c (positive a) (normalize a b c (positive a) p).raw =
       normalize a b c (positive a) p :=

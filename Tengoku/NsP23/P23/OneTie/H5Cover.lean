@@ -14,13 +14,17 @@ namespace P23.OneTie
 
 variable {a b c : ℕ} [NeZero a]
 
-/-- A standard monomial is below a selected root.-/
+/-- A standard monomial is below a selected root.
+@isnad1 id=ex.1h5v.s6.9eec2b58a93f from=translated src=- shape=7669a11e vocab=4b9f86ac
+-/
 theorem exists_root_above_of_mem_standardSet {S : Finset (Normal a b c)}
     {p : Normal a b c} (hp : p ∈ standardSet S) :
     ∃ R ∈ S, p ∣ R := by
   exact (mem_standardSet_iff S p).1 hp
 
-/-- Distinct socle roots cannot lie above one another.-/
+/-- Distinct socle roots cannot lie above one another.
+@isnad1 id=eq.4h6v.s6.3483e9303ee3 from=translated src=- shape=c88ca250 vocab=4c8847d7
+-/
 theorem root_eq_of_dvd {S : Finset (Normal a b c)}
     (hanti : IsRootAntichain S) {R Q : Normal a b c}
     (hR : R ∈ S) (hQ : Q ∈ S) (hRQ : R ∣ Q) : R = Q := by
@@ -29,7 +33,9 @@ theorem root_eq_of_dvd {S : Finset (Normal a b c)}
 
 /-- Human case I.1: relative to an x-centre below the last layer, every
 distinct root is either the exact ordinary upper root or has no wrapped
-x-predecessor.-/
+x-predecessor.
+@isnad1 id=or.5h6v.s7.924360dcefd3 from=translated src=- shape=18238fd8 vocab=e1a82052
+-/
 theorem root_shape_below_last {S : Finset (Normal a b c)}
     (hanti : IsRootAntichain S) {C R : Normal a b c}
     (hcentre : IsDirectionalCentre S .x C) (hR : R ∈ S)
@@ -46,7 +52,9 @@ theorem root_shape_below_last {S : Finset (Normal a b c)}
     omega
 
 /-- Human case II: relative to an x-centre in the last layer, every distinct
-root has x-coordinate zero.-/
+root has x-coordinate zero.
+@isnad1 id=eq.5h6v.s6.a6d04f90ee65 from=translated src=- shape=1ef235bf vocab=b8402356
+-/
 theorem root_x_zero_at_last {S : Finset (Normal a b c)}
     (hanti : IsRootAntichain S) {C R : Normal a b c}
     (hcentre : IsDirectionalCentre S .x C) (hR : R ∈ S)
@@ -58,7 +66,9 @@ theorem root_x_zero_at_last {S : Finset (Normal a b c)}
   omega
 
 /-- In case I, liveness of the normalized tie forces the x-centre to be at
-least `(b,c)` in the transverse coordinates (human equation I.2).-/
+least `(b,c)` in the transverse coordinates (human equation I.2).
+@isnad1 id=and.3h5v.s6.925b755698bd from=translated src=- shape=d15695dc vocab=65a7494e
+-/
 theorem below_last_live_bounds {S : Finset (Normal a b c)}
     (h : CoverHypotheses S) {C : Normal a b c}
     (hcentre : IsDirectionalCentre S .x C)
@@ -76,7 +86,9 @@ theorem below_last_live_bounds {S : Finset (Normal a b c)}
     · simp [liveTiePoint, Normal.DividesCriterion] at htcrit
       exact False.elim (hlower.2 ⟨by omega, by omega⟩)
 
-/-- The three selected centres cannot all coincide in the non-dominant case.-/
+/-- The three selected centres cannot all coincide in the non-dominant case.
+@isnad1 id=not.4h7v.s6.ce7c653b5ab2 from=translated src=- shape=8da6ac33 vocab=c34f30ce
+-/
 theorem directional_centres_not_all_equal {S : Finset (Normal a b c)}
     (h : CoverHypotheses S) {X Y Z : Normal a b c}
     (hx : IsDirectionalCentre S .x X)
@@ -144,6 +156,9 @@ def PureTwoCoordinateCase (C P : Normal a b 0) : Prop :=
 /-! Small Presburger leaves for the human two-root split.  Keeping these
 separate prevents proof search from seeing the finite-set and centre records. -/
 
+/--
+@isnad1 id=and.8h6v.s7.35a241d95c26 from=translated src=- shape=c50f6e3a vocab=8577ebb4
+-/
 theorem mixed_below_upper_direct_arithmetic
     {u v U V b c : ℕ} (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v) (hU : U ≤ u) (hV : V ≤ v)
@@ -152,6 +167,9 @@ theorem mixed_below_upper_direct_arithmetic
     b = 1 ∧ c = 1 ∧ U = u - 1 ∧ V = v := by
   omega
 
+/--
+@isnad1 id=and.7h7v.s7.f2d1aaf2107f from=translated src=- shape=8ab50482 vocab=566dff04
+-/
 theorem mixed_below_lower_direct_arithmetic
     {r u v U V b c : ℕ} (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hu : b ≤ u) (hv : c ≤ v)
@@ -162,6 +180,9 @@ theorem mixed_below_lower_direct_arithmetic
     r = 0 ∧ u = b ∧ U = b - 1 ∧ V = v + 1 := by
   by_cases hr : 0 < r <;> simp [hr] at ey <;> omega
 
+/--
+@isnad1 id=and.4h6v.s7.c4d73dc649ab from=translated src=- shape=43cdca71 vocab=086a35fc
+-/
 theorem mixed_last_direct_m4_arithmetic
     {u v U V b c : ℕ} (hb : 1 ≤ b) (hc : 1 ≤ c)
     (ey : u + b = U + 1 ∧ v + c ≤ V)
@@ -169,7 +190,9 @@ theorem mixed_last_direct_m4_arithmetic
     b = 1 ∧ c = 1 ∧ U = u ∧ V = v + 1 := by
   omega
 
-/-- The direct below-last two-root branch (`Cy=P`, `Cz=C`) is M2 or M3.-/
+/-- The direct below-last two-root branch (`Cy=P`, `Cz=C`) is M2 or M3.
+@isnad1 id=or.8h5v.s8.27fdb1d8c193 from=translated src=- shape=7b3bf0cc vocab=79c4bde5
+-/
 theorem mixed_two_below_direct
     (C P : Normal a b c) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b c)))
@@ -207,7 +230,9 @@ theorem mixed_two_below_direct
       hl.2 (by simpa [hl.1] using hey) (by simpa [hl.1] using hez)
     omega
 
-/-- The direct last-layer two-root branch (`Cy=P`, `Cz=C`) is M4.-/
+/-- The direct last-layer two-root branch (`Cy=P`, `Cz=C`) is M4.
+@isnad1 id=and.8h5v.s8.1fe720c4a75c from=translated src=- shape=5fadd8ea vocab=be50bf95
+-/
 theorem mixed_two_last_direct
     (C P : Normal a b c) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b c)))
@@ -252,7 +277,9 @@ theorem mixed_two_last_direct
     (by simpa [hPC] using ey) (by simpa [hnotCP] using ez)
   omega
 
-/-- The reflected below-last two-root branch (`Cy=C`, `Cz=P`).-/
+/-- The reflected below-last two-root branch (`Cy=C`, `Cz=P`).
+@isnad1 id=or.8h5v.s8.115fd341e3d4 from=translated src=- shape=7e7fa27f vocab=79c4bde5
+-/
 theorem mixed_two_below_reflected
     (C P : Normal a b c) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b c)))
@@ -291,7 +318,9 @@ theorem mixed_two_below_reflected
       (by simpa [hl.1] using hez) (by simpa [hl.1] using hey)
     omega
 
-/-- The reflected last-layer two-root branch (`Cy=C`, `Cz=P`) is reflected M4.-/
+/-- The reflected last-layer two-root branch (`Cy=C`, `Cz=P`) is reflected M4.
+@isnad1 id=and.8h5v.s8.0bb0488ccb2a from=translated src=- shape=c228a1f9 vocab=be50bf95
+-/
 theorem mixed_two_last_reflected
     (C P : Normal a b c) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b c)))
@@ -332,6 +361,9 @@ theorem mixed_two_last_reflected
     (by simpa [hPC] using ez) (by simpa [hnotCP] using ey)
   omega
 
+/--
+@isnad1 id=false.8h5v.s7.3f450f77c30d from=translated src=- shape=fa2db4b1 vocab=57249a0c
+-/
 theorem mixed_two_below_common_impossible
     (C P : Normal a b c) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b c)))
@@ -354,7 +386,9 @@ theorem mixed_two_below_common_impossible
     · simp [hl.1, hr] at hey hez
       omega
 
-/-- At the last layer a common y/z centre is M5 or its reflection.-/
+/-- At the last layer a common y/z centre is M5 or its reflection.
+@isnad1 id=or.8h5v.s8.9177fb9ca2c1 from=translated src=- shape=294a6637 vocab=be50bf95
+-/
 theorem mixed_two_last_common
     (C P : Normal a b c) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b c)))
@@ -411,7 +445,9 @@ theorem mixed_two_last_common
     simp [hPC, hCz] at hey
     omega
 
-/-- Complete mixed two-root core classification.-/
+/-- Complete mixed two-root core classification.
+@isnad1 id=mixedtwo.5h5v.s7.34989f9e17dd from=translated src=- shape=a1659bd6 vocab=65bd4e66
+-/
 theorem h5_mixed_two_coordinate_cover
     (C P : Normal a b c) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b c)))
@@ -466,6 +502,9 @@ theorem h5_mixed_two_coordinate_cover
       · have hbelow : C.x < a - 1 := by have := C.x_lt; omega
         exact False.elim (mixed_two_below_common_impossible C P hne h hb hc hxC hY hZ hbelow)
 
+/--
+@isnad1 id=and.5h6v.s7.b75036c45922 from=translated src=- shape=1fb4051f vocab=566dff04
+-/
 theorem pure_below_lower_direct_arithmetic
     {r u v U V b : ℕ} (hb : 2 ≤ b) (hu : b ≤ u)
     (hnw : ¬b ≤ U)
@@ -474,7 +513,9 @@ theorem pure_below_lower_direct_arithmetic
     r = 0 ∧ u = b ∧ U = b - 1 ∧ V = v + 1 := by
   by_cases hr : 0 < r <;> simp [hr] at ey <;> omega
 
-/-- Pure direct below-last branch is P3; the apparent upper branch is impossible.-/
+/-- Pure direct below-last branch is P3; the apparent upper branch is impossible.
+@isnad1 id=and.7h4v.s8.38577851ce40 from=translated src=- shape=66cb8974 vocab=79c4bde5
+-/
 theorem pure_two_below_direct
     (C P : Normal a b 0) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -507,7 +548,9 @@ theorem pure_two_below_direct
       (by simpa [hl.1] using hey) (by simpa [hl.1] using hez)
     omega
 
-/-- Pure direct last-layer branch is P5.-/
+/-- Pure direct last-layer branch is P5.
+@isnad1 id=and.7h4v.s8.87fe0338427a from=translated src=- shape=f4693abc vocab=3a7de3cd
+-/
 theorem pure_two_last_direct
     (C P : Normal a b 0) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -572,7 +615,9 @@ theorem pure_two_last_direct
     hxP hpTie (by simp)
   omega
 
-/-- Pure common-centre below-last branch is P4.-/
+/-- Pure common-centre below-last branch is P4.
+@isnad1 id=and.7h4v.s8.c240532c7943 from=translated src=- shape=bf2e6b4e vocab=0290380a
+-/
 theorem pure_two_below_common
     (C P : Normal a b 0) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -604,7 +649,9 @@ theorem pure_two_below_common
       by_cases hr : 0 < C.x <;> simp [hl.1, hr] at hey hez <;> omega
     · by_cases hr : 0 < C.x <;> simp [hl.1, hr] at hey <;> omega
 
-/-- Pure common-centre last-layer branch is P6.-/
+/-- Pure common-centre last-layer branch is P6.
+@isnad1 id=and.7h4v.s8.57e13abadf88 from=translated src=- shape=9dc295f0 vocab=3a7de3cd
+-/
 theorem pure_two_last_common
     (C P : Normal a b 0) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -675,6 +722,9 @@ theorem pure_two_last_common
 /- With `Cy=C` and `Cz=P`, the pure two-root configuration is the
 fibre-product shape. -/
 set_option maxHeartbeats 800000 in
+/--
+@isnad1 id=or.5h4v.s8.536dc5fb05e3 from=translated src=- shape=edb1f79a vocab=9f32fd30
+-/
 theorem pure_two_fibre_coordinate
     (C P : Normal a b 0) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b 0)))
@@ -759,7 +809,9 @@ theorem pure_two_fibre_coordinate
         omega
       exact ⟨hl.1, hPy, hPz, hCz⟩
 
-/-- Complete pure two-root coordinate classification with a fixed x-centre.-/
+/-- Complete pure two-root coordinate classification with a fixed x-centre.
+@isnad1 id=puretwoc.3h4v.s7.89e5d83c6340 from=translated src=- shape=a04a87dc vocab=78ddad1a
+-/
 theorem h5_pure_two_coordinate_cover
     (C P : Normal a b 0) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b 0)))
@@ -814,12 +866,18 @@ theorem h5_pure_two_coordinate_cover
         right; left
         exact hp4
 
+/--
+@isnad1 id=eq.0h5v.s6.2a104920b864 from=translated src=- shape=07ff1b15 vocab=e4086d45
+-/
 theorem swapYZFinset_pair (C P : Normal a b c) :
     swapYZFinset ({C, P} : Finset (Normal a b c)) = {swapYZ C, swapYZ P} := by
   unfold swapYZFinset
   rw [Finset.map_insert, Finset.map_singleton]
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.d167d6e7742f from=translated src=- shape=331785db vocab=e4086d45
+-/
 theorem swapYZFinset_triple (C P R : Normal a b c) :
     swapYZFinset ({C, P, R} : Finset (Normal a b c)) =
       {swapYZ C, swapYZ P, swapYZ R} := by
@@ -827,6 +885,9 @@ theorem swapYZFinset_triple (C P R : Normal a b c) :
   rw [Finset.map_insert, Finset.map_insert, Finset.map_singleton]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.ec68ac379af6 from=translated src=- shape=fd7d9e59 vocab=6b63916c
+-/
 theorem swapYZFinset_swapYZFinset (S : Finset (Normal a b c)) :
     swapYZFinset (swapYZFinset S) = S := by
   ext p
@@ -840,6 +901,9 @@ theorem swapYZFinset_swapYZFinset (S : Finset (Normal a b c)) :
     change swapYZ (swapYZ p) = p
     simp
 
+/--
+@isnad1 id=isdirect.1h5v.s5.d09f9af84d27 from=translated src=- shape=24c367e7 vocab=a51a18e2
+-/
 theorem directionalCentre_swapYZ_x {S : Finset (Normal a b c)}
     {C : Normal a b c} (hC : IsDirectionalCentre S .x C) :
     IsDirectionalCentre (swapYZFinset S) .x (swapYZ C) := by
@@ -851,6 +915,9 @@ theorem directionalCentre_swapYZ_x {S : Finset (Normal a b c)}
   rcases Option.map_eq_some_iff.mp hq with ⟨r, hr, rfl⟩
   exact (swapYZ_divides_iff r C).2 (hC.2 t ht r hr)
 
+/--
+@isnad1 id=isdirect.1h5v.s5.215cf517b524 from=translated src=- shape=34191ed2 vocab=d18f28ed
+-/
 theorem directionalCentre_swapYZ_y {S : Finset (Normal a b c)}
     {C : Normal a b c} (hC : IsDirectionalCentre S .z C) :
     IsDirectionalCentre (swapYZFinset S) .y (swapYZ C) := by
@@ -862,6 +929,9 @@ theorem directionalCentre_swapYZ_y {S : Finset (Normal a b c)}
   rcases Option.map_eq_some_iff.mp hq with ⟨r, hr, rfl⟩
   exact (swapYZ_divides_iff r C).2 (hC.2 t ht r hr)
 
+/--
+@isnad1 id=isdirect.1h5v.s5.49baedb6fb11 from=translated src=- shape=34191ed2 vocab=d18f28ed
+-/
 theorem directionalCentre_swapYZ_z {S : Finset (Normal a b c)}
     {C : Normal a b c} (hC : IsDirectionalCentre S .y C) :
     IsDirectionalCentre (swapYZFinset S) .z (swapYZ C) := by
@@ -873,6 +943,9 @@ theorem directionalCentre_swapYZ_z {S : Finset (Normal a b c)}
   rcases Option.map_eq_some_iff.mp hq with ⟨r, hr, rfl⟩
   exact (swapYZ_divides_iff r C).2 (hC.2 t ht r hr)
 
+/--
+@isnad1 id=coverhyp.3h4v.s5.7e5d303a5802 from=translated src=- shape=eda3359e vocab=33609eb2
+-/
 theorem coverHypotheses_swapYZ {S : Finset (Normal a b c)}
     (h : CoverHypotheses S) (hb : 1 ≤ b) (hc : 1 ≤ c) :
     CoverHypotheses (swapYZFinset S) := by
@@ -942,7 +1015,9 @@ theorem coverHypotheses_swapYZ {S : Finset (Normal a b c)}
       ⟨hCS, fun e => by cases e <;> assumption⟩
 
 /-- The mixed coordinate leaves give the exact unordered two-root cover shape,
-with y/z reflection represented by the public reflection wrapper.-/
+with y/z reflection represented by the public reflection wrapper.
+@isnad1 id=coversha.4h5v.s7.e72560e6c250 from=translated src=- shape=02b0118e vocab=c1d0bc23
+-/
 theorem mixed_coordinate_case_cover_shape
     (C P : Normal a b c) (h : CoverHypotheses ({C, P} : Finset (Normal a b c)))
     (hb : 1 ≤ b) (hc : 1 ≤ c)
@@ -1060,7 +1135,9 @@ theorem mixed_coordinate_case_cover_shape
       rw [hS]
       exact BaseCoverShape.m5 ha hc hb hv
 
-/-- The pure coordinate leaves give the exact unordered two-root cover shape.-/
+/-- The pure coordinate leaves give the exact unordered two-root cover shape.
+@isnad1 id=coversha.2h4v.s7.a2f35e6bf938 from=translated src=- shape=9d811109 vocab=dc47fa52
+-/
 theorem pure_coordinate_case_cover_shape
     (C P : Normal a b 0) (h : CoverHypotheses ({C, P} : Finset (Normal a b 0)))
     (hp : PureTwoCoordinateCase C P) :
@@ -1137,7 +1214,9 @@ theorem pure_coordinate_case_cover_shape
 
 /-- Complete exact-shape theorem for a two-root configuration with a selected
 x-centre.  The mixed and pure live domains are separated before invoking the
-coordinate classifications.-/
+coordinate classifications.
+@isnad1 id=coversha.3h5v.s7.04b27565ae09 from=translated src=- shape=ac7eca2c vocab=38c1936b
+-/
 theorem h5_two_root_cover
     (C P : Normal a b c) (hne : C ≠ P)
     (h : CoverHypotheses ({C, P} : Finset (Normal a b c)))
@@ -1152,7 +1231,9 @@ theorem h5_two_root_cover
       (h5_pure_two_coordinate_cover C P hne h hxC)
 
 /-- Human I.b, direct orientation: with a third root present, the M2/M3
-core extends only to M2K, M2Z, or M3K.-/
+core extends only to M2K, M2Z, or M3K.
+@isnad1 id=basecove.10h6v.s8.e25d53198b1e from=translated src=- shape=e9ae0d79 vocab=36f95ef1
+-/
 theorem mixed_below_direct_three
     (C P R : Normal a b c) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b c)))
@@ -1307,6 +1388,9 @@ theorem mixed_below_direct_three
         simp [Normal.DividesCriterion, hcy, hpx, hpy, hpz, hRl.1, hcx] at hnRC hnPR
         omega
 
+/--
+@isnad1 id=false.8h6v.s8.88f9cf3bd651 from=translated src=- shape=c73f3a2f vocab=57249a0c
+-/
 theorem mixed_below_common_impossible_three
     (C P R : Normal a b c) (hCP : C ≠ P)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b c)))
@@ -1326,7 +1410,9 @@ theorem mixed_below_common_impossible_three
   · by_cases hr : 0 < C.x <;> simp [hl.1, hr] at ey ez <;> omega
 
 /-- Human I.b top-deletion branch: three distinct directional centres below
-the last layer are the three immediate predecessors of one top.-/
+the last layer are the three immediate predecessors of one top.
+@isnad1 id=basecove.12h6v.s8.166b54bae157 from=translated src=- shape=bf897bad vocab=55619b49
+-/
 theorem mixed_below_distinct_centres_top
     (C Y Z : Normal a b c) (hCY : C ≠ Y) (hCZ : C ≠ Z) (hYZ : Y ≠ Z)
     (h : CoverHypotheses ({C, Y, Z} : Finset (Normal a b c)))
@@ -1420,7 +1506,9 @@ theorem mixed_below_distinct_centres_top
         exact False.elim (hYl.2 ⟨by omega, by omega⟩)
 
 /-- The reflected I.b branch is obtained by the exact y/z equivalence, not by
-duplicating the coordinate argument.-/
+duplicating the coordinate argument.
+@isnad1 id=coversha.10h6v.s8.3f3c2233457a from=translated src=- shape=1b96d0ae vocab=72f00c4e
+-/
 theorem mixed_below_reflected_three
     (C P R : Normal a b c) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b c)))
@@ -1452,7 +1540,9 @@ theorem mixed_below_reflected_three
     exact hbase)
 
 /-- Human II.a, direct orientation: a third root over the M4 core is exactly
-the M4Y root.-/
+the M4Y root.
+@isnad1 id=basecove.10h6v.s8.cd7d31f42738 from=translated src=- shape=e9ae0d79 vocab=285ac8af
+-/
 theorem mixed_last_direct_three
     (C P R : Normal a b c) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b c)))
@@ -1530,7 +1620,9 @@ theorem mixed_last_direct_three
       omega
 
 /-- Human II top-deletion branch: at the last x-layer, three distinct centres
-are the wrapped-x, y, and z predecessors of one top.-/
+are the wrapped-x, y, and z predecessors of one top.
+@isnad1 id=basecove.12h6v.s8.48181cc53cbe from=translated src=- shape=5b014ae3 vocab=55619b49
+-/
 theorem mixed_last_distinct_centres_top
     (C Y Z : Normal a b c) (hCY : C ≠ Y) (hCZ : C ≠ Z) (hYZ : Y ≠ Z)
     (h : CoverHypotheses ({C, Y, Z} : Finset (Normal a b c)))
@@ -1605,7 +1697,9 @@ theorem mixed_last_distinct_centres_top
   · rw [← hroots]
     exact standardSet_predecessorRootFinset T hproper
 
-/-- Human II.b distinct-centre branch with `C.y=0`.-/
+/-- Human II.b distinct-centre branch with `C.y=0`.
+@isnad1 id=basecove.12h6v.s8.0acf4600f6d3 from=translated src=- shape=826ea9bb vocab=55619b49
+-/
 theorem mixed_last_yzero_distinct_centres_top
     (C Y Z : Normal a b c) (hCY : C ≠ Y) (hCZ : C ≠ Z) (hYZ : Y ≠ Z)
     (h : CoverHypotheses ({C, Y, Z} : Finset (Normal a b c)))
@@ -1673,6 +1767,9 @@ theorem mixed_last_yzero_distinct_centres_top
   · rw [← hroots]
     exact standardSet_predecessorRootFinset T hproper
 
+/--
+@isnad1 id=coversha.12h6v.s8.2294f6876efb from=translated src=- shape=abe7db37 vocab=76bcc46f
+-/
 theorem mixed_last_zzero_distinct_centres_top
     (C Y Z : Normal a b c) (hCY : C ≠ Y) (hCZ : C ≠ Z) (hYZ : Y ≠ Z)
     (h : CoverHypotheses ({C, Y, Z} : Finset (Normal a b c)))
@@ -1705,6 +1802,9 @@ theorem mixed_last_zzero_distinct_centres_top
   rw [swapYZFinset_triple]
   simpa [Finset.pair_comm] using hbase
 
+/--
+@isnad1 id=coversha.10h6v.s8.e234c5d80e8d from=translated src=- shape=1b96d0ae vocab=cbe37996
+-/
 theorem mixed_last_reflected_three
     (C P R : Normal a b c) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b c)))
@@ -1733,7 +1833,9 @@ theorem mixed_last_reflected_three
     exact hbase)
 
 /-- Human II.b, M5 orientation: when the common non-x centre is `P` and
-`C.y=0`, the third root is exactly the Y- or Z-extension.-/
+`C.y=0`, the third root is exactly the Y- or Z-extension.
+@isnad1 id=basecove.11h6v.s8.5606422f8e06 from=translated src=- shape=66a6fe8c vocab=137e4fee
+-/
 theorem mixed_last_common_yzero_three
     (C P R : Normal a b c) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b c)))
@@ -1822,6 +1924,9 @@ theorem mixed_last_common_yzero_three
       simp [hxR, hxP] at eRy eRz
       omega
 
+/--
+@isnad1 id=coversha.11h6v.s8.23094f14bbca from=translated src=- shape=66a6fe8c vocab=e6ab3393
+-/
 theorem mixed_last_common_zzero_three
     (C P R : Normal a b c) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b c)))
@@ -1852,7 +1957,9 @@ theorem mixed_last_common_zzero_three
 
 /-- In the pure case, zero-z x- and y-centres force every positive-z root to
 be the same pure z-power.  This is the common fibre-product argument used in
-human cases I.d and II.e.-/
+human cases I.d and II.e.
+@isnad1 id=ispurefi.5h5v.s6.5edc65bd65d1 from=translated src=- shape=c73c7af0 vocab=c1c80d6d
+-/
 theorem pure_fibre_of_zero_z_centres
     {S : Finset (Normal a b 0)} (C Y : Normal a b 0)
     (h : CoverHypotheses S)
@@ -1899,7 +2006,9 @@ theorem pure_fibre_of_zero_z_centres
       exact h.antichain Z hZS R hRS (Ne.symm hRZ') hd
 
 /-- Human I.c--d: below the last layer the direct pure branch is either the
-fibre-product zero-z case, or its positive-z P3 core admits no third root.-/
+fibre-product zero-z case, or its positive-z P3 core admits no third root.
+@isnad1 id=basecove.9h5v.s9.83c1decd930f from=translated src=- shape=316d7d8e vocab=36f95ef1
+-/
 theorem pure_below_direct_three
     (C P R : Normal a b 0) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -2009,7 +2118,9 @@ theorem pure_below_direct_three
         omega
 
 /-- Human II.d--e: at the last x-layer the direct pure branch is P5Z when
-`C.z>0`, and the zero-z branch is the pure fibre-product shape.-/
+`C.z>0`, and the zero-z branch is the pure fibre-product shape.
+@isnad1 id=basecove.9h5v.s9.5da4b1641ea6 from=translated src=- shape=316d7d8e vocab=285ac8af
+-/
 theorem pure_last_direct_three
     (C P R : Normal a b 0) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -2145,7 +2256,9 @@ theorem pure_last_direct_three
       (pure_fibre_of_zero_z_centres C P h hxC hyP hCz0 hPz0)
 
 /-- The pure orientation with the x-centre also serving as y-centre is always
-the fibre-product branch; a positive `C.z` would force `b = 1`.-/
+the fibre-product branch; a positive `C.z` would force `b = 1`.
+@isnad1 id=basecove.8h5v.s9.68f55d5c3681 from=translated src=- shape=18f83951 vocab=dacb79a6
+-/
 theorem pure_reflected_three
     (C Z R : Normal a b 0) (hCZ : C ≠ Z) (hCR : C ≠ R) (hZR : Z ≠ R)
     (h : CoverHypotheses ({C, Z, R} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -2196,7 +2309,9 @@ theorem pure_reflected_three
 
 /-- Human II.d--e: a common non-x centre at the last layer is either the
 zero-z fibre-product branch or the two-root P6 core; the latter cannot have a
-third distinct root.-/
+third distinct root.
+@isnad1 id=basecove.9h5v.s9.6b1a22c2b21a from=translated src=- shape=8f818549 vocab=285ac8af
+-/
 theorem pure_last_common_three
     (C P R : Normal a b 0) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -2280,7 +2395,9 @@ theorem pure_last_common_three
       omega
 
 /-- Pure II.d with three distinct centres and `C.y=0`: the roots are the
-three predecessors of `T=(0,b,C.z)`.-/
+three predecessors of `T=(0,b,C.z)`.
+@isnad1 id=basecove.11h5v.s9.54c12fde9b6d from=translated src=- shape=2a7bc6ea vocab=55619b49
+-/
 theorem pure_last_yzero_distinct_top
     (C Y Z : Normal a b 0) (hCY : C ≠ Y) (hCZ : C ≠ Z) (hYZ : Y ≠ Z)
     (h : CoverHypotheses ({C, Y, Z} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -2345,7 +2462,9 @@ theorem pure_last_yzero_distinct_top
     exact standardSet_predecessorRootFinset T hproper
 
 /-- The complete pure three-centre branch: positive `C.z` gives top deletion;
-zero `C.z` gives the fibre-product shape.-/
+zero `C.z` gives the fibre-product shape.
+@isnad1 id=basecove.8h5v.s9.958f5e636ef6 from=translated src=- shape=a349b9b0 vocab=dacb79a6
+-/
 theorem pure_distinct_three
     (C Y Z : Normal a b 0) (hCY : C ≠ Y) (hCZ : C ≠ Z) (hYZ : Y ≠ Z)
     (h : CoverHypotheses ({C, Y, Z} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -2437,7 +2556,9 @@ theorem pure_distinct_three
     · exact mixed_below_distinct_centres_top C Y Z hCY hCZ hYZ h (by omega)
         (by omega) hxC hyY hzZ hbelow (by omega) (by omega)
 
-/-- Human I.d: the pure below-last common-centre triple is exactly P4Z.-/
+/-- Human I.d: the pure below-last common-centre triple is exactly P4Z.
+@isnad1 id=basecove.9h5v.s9.457b1c9e8ffa from=translated src=- shape=8f818549 vocab=36f95ef1
+-/
 theorem pure_below_common_three
     (C P R : Normal a b 0) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -2569,7 +2690,9 @@ theorem pure_below_common_three
     rw [hS]
     exact BaseCoverShape.p4Z ha hb hPzp
 
-/-- Complete pure three-root cover with a fixed x-centre.-/
+/-- Complete pure three-root cover with a fixed x-centre.
+@isnad1 id=basecove.6h5v.s8.1c70ba5d992f from=translated src=- shape=31ea9f41 vocab=315a5278
+-/
 theorem h5_pure_three_cover
     (C P R : Normal a b 0) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b 0))) (hb : 2 ≤ b)
@@ -2643,7 +2766,9 @@ theorem h5_pure_three_cover
         (by simpa [h'] using hy) (by simpa [h'] using hz)
       simpa [h'] using out
 
-/-- Complete mixed three-root cover with a fixed x-centre.-/
+/-- Complete mixed three-root cover with a fixed x-centre.
+@isnad1 id=coversha.7h6v.s8.f48e7107ed7e from=translated src=- shape=e72674da vocab=7c520b95
+-/
 theorem h5_mixed_three_cover
     (C P R : Normal a b c) (hCP : C ≠ P) (hCR : C ≠ R) (hPR : P ≠ R)
     (h : CoverHypotheses ({C, P, R} : Finset (Normal a b c)))
@@ -2795,7 +2920,9 @@ theorem h5_mixed_three_cover
 
 /-- H5 with a selected x-centre.  The cardinal hypotheses reduce the root
 finset to an exact pair or triple; all permutations are handled by finset
-commutativity before invoking the coordinate covers above.-/
+commutativity before invoking the coordinate covers above.
+@isnad1 id=coversha.2h5v.s5.e1f91d8b112b from=translated src=- shape=27c35d95 vocab=27bfbd64
+-/
 theorem h5_cover_with_xcentre
     (S : Finset (Normal a b c)) (h : CoverHypotheses S)
     (C : Normal a b c) (hxC : IsDirectionalCentre S .x C) : CoverShape S := by
@@ -2853,7 +2980,9 @@ theorem h5_cover_with_xcentre
           (by simpa [hs] using h) hb (by simpa [hs] using hxC)
         exact CoverShape.direct (by simpa [hs] using out)
 
-/-- Public below-last half of H5.-/
+/-- Public below-last half of H5.
+@isnad1 id=coversha.3h5v.s6.461df0ec842b from=translated src=- shape=c365e3e9 vocab=313cd703
+-/
 theorem h5_cover_below_last
     (S : Finset (Normal a b c)) (h : CoverHypotheses S)
     (C : Normal a b c) (hxC : IsDirectionalCentre S .x C)
@@ -2863,7 +2992,9 @@ theorem h5_cover_below_last
   · exact False.elim (hnotlast hlast)
   · exact h5_cover_with_xcentre S h C hxC
 
-/-- Public last-layer half of H5, including wrapped-x boundary branches.-/
+/-- Public last-layer half of H5, including wrapped-x boundary branches.
+@isnad1 id=coversha.3h5v.s6.2c4575273eff from=translated src=- shape=c365e3e9 vocab=bc134e7a
+-/
 theorem h5_cover_last_layer
     (S : Finset (Normal a b c)) (h : CoverHypotheses S)
     (C : Normal a b c) (hxC : IsDirectionalCentre S .x C)
@@ -2873,7 +3004,9 @@ theorem h5_cover_last_layer
   · exact False.elim (hnotbelow hbelow)
   · exact h5_cover_with_xcentre S h C hxC
 
-/-- Full unbounded symbolic H5 cover.-/
+/-- Full unbounded symbolic H5 cover.
+@isnad1 id=coversha.1h4v.s5.0c45d52ccd2f from=translated src=- shape=4fb2bbc8 vocab=c00ee2f6
+-/
 theorem h5_full_symbolic_cover
     (S : Finset (Normal a b c)) (h : CoverHypotheses S) : CoverShape S := by
   obtain ⟨C, hxC⟩ := h.centres .x
@@ -2889,6 +3022,9 @@ private theorem pair_card_ne_three {α : Type*} [DecidableEq α] (p q : α) :
   have hle := Finset.card_le_two (a := p) (b := q)
   omega
 
+/--
+@isnad1 id=typethre.2h4v.s5.487a46a2918b from=translated src=- shape=3aa5f369 vocab=cd62e462
+-/
 theorem typeThreeBaseShape_of_base
     {S : Finset (Normal a b c)} (hcard : S.card = 3)
     (hs : BaseCoverShape S) : TypeThreeBaseShape S := by
@@ -2929,7 +3065,9 @@ theorem typeThreeBaseShape_of_base
       exact pair_card_ne_three _ _ (by simpa only [p6Socles] using hcard)
 
 /-- Type-three specialization of H5.  Only top deletion, pure fibre product,
-and the eight Run-04 extension rows remain (with explicit mixed reflection).-/
+and the eight Run-04 extension rows remain (with explicit mixed reflection).
+@isnad1 id=typethre.2h4v.s5.15291b6327d3 from=translated src=- shape=cca1864d vocab=29b0c19d
+-/
 theorem h5_typeThree_specialized_cover
     (S : Finset (Normal a b c)) (h : CoverHypotheses S) (hcard : S.card = 3) :
     TypeThreeCoverShape S := by

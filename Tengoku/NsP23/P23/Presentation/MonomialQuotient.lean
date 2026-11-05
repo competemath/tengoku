@@ -30,12 +30,18 @@ def killedMonomialIdeal (S : Finset (Normal a b c)) :
     Ideal (NormalMonoidAlgebra k a b c) :=
   Ideal.span (killedMonomialSet (k := k) S)
 
+/--
+@isnad1 id=mem.1h6v.s7.b74b72ba0f24 from=translated src=- shape=db85d06c vocab=4829e901
+-/
 theorem monomial_mem_killedMonomialIdeal (S : Finset (Normal a b c))
     (p : Normal a b c) (hp : p ∉ standardSet S) :
     monomial (k := k) p ∈ killedMonomialIdeal (k := k) S := by
   apply Ideal.subset_span
   exact ⟨p, hp, rfl⟩
 
+/--
+@isnad1 id=le.0h5v.s9.073aeff27627 from=translated src=- shape=4461727c vocab=81a6c569
+-/
 theorem killedMonomialIdeal_le_ker (S : Finset (Normal a b c)) :
     killedMonomialIdeal (k := k) S ≤
       RingHom.ker (truncateAlgHom (k := k) S).toRingHom := by
@@ -45,6 +51,9 @@ theorem killedMonomialIdeal_le_ker (S : Finset (Normal a b c)) :
   apply truncateAlgHom_monomial_of_not_mem
   exact fun hfin => hp ((mem_standardFinset_iff_standardSet S p).1 hfin)
 
+/--
+@isnad1 id=le.0h5v.s9.bcfe7f359e1d from=translated src=- shape=6fb2097a vocab=81a6c569
+-/
 theorem ker_le_killedMonomialIdeal (S : Finset (Normal a b c)) :
     RingHom.ker (truncateAlgHom (k := k) S).toRingHom ≤
       killedMonomialIdeal (k := k) S := by
@@ -67,7 +76,9 @@ theorem ker_le_killedMonomialIdeal (S : Finset (Normal a b c)) :
     simpa [monomial, Algebra.smul_def] using hsmul
 
 /-- Exact identification of the independently defined killed span with the
-truncation kernel.-/
+truncation kernel.
+@isnad1 id=eq.0h5v.s8.4a003bfc1ff4 from=translated src=- shape=6fb2097a vocab=6e75310e
+-/
 theorem truncateAlgHom_ker (S : Finset (Normal a b c)) :
     RingHom.ker (truncateAlgHom (k := k) S).toRingHom =
       killedMonomialIdeal (k := k) S := by
@@ -90,6 +101,9 @@ multiplication.-/
 def normalWeight (p : Normal a b c) : ℕ :=
   (b + c) * p.x + a * p.y + a * p.z
 
+/--
+@isnad1 id=eq.0h5v.s6.907eb2dc3e70 from=translated src=- shape=840f865f vocab=bf279203
+-/
 theorem normalWeight_mul (p q : Normal a b c) :
     normalWeight (p * q) = normalWeight p + normalWeight q := by
   have hdiv := Nat.mod_add_div (p.x + q.x) a
@@ -105,6 +119,9 @@ theorem normalWeight_mul (p q : Normal a b c) :
     _ = ((b + c) * p.x + a * p.y + a * p.z) +
           ((b + c) * q.x + a * q.y + a * q.z) := by ring
 
+/--
+@isnad1 id=lt.2h4v.s6.5e45f2fbca93 from=translated src=- shape=18e72703 vocab=5f6ea539
+-/
 theorem normalWeight_pos_of_ne_one (hdom : IsLiveParameterDomain a b c)
     (p : Normal a b c) (hp : p ≠ 1) : 0 < normalWeight p := by
   have ha : 0 < a := Nat.pos_of_ne_zero (NeZero.ne a)
@@ -128,6 +145,9 @@ theorem normalWeight_pos_of_ne_one (hdom : IsLiveParameterDomain a b c)
   apply hp
   apply Normal.ext <;> simp <;> omega
 
+/--
+@isnad1 id=lt.3h5v.s5.1301048b8768 from=translated src=- shape=bfc886b2 vocab=09338896
+-/
 theorem normalWeight_lt_of_proper_dvd (hdom : IsLiveParameterDomain a b c)
     {d p : Normal a b c} (hdp : d ∣ p) (hne : d ≠ p) :
     normalWeight d < normalWeight p := by
@@ -141,7 +161,9 @@ theorem normalWeight_lt_of_proper_dvd (hdom : IsLiveParameterDomain a b c)
   omega
 
 /-- Every killed monomial has a divisibility-minimal killed divisor, hence an
-exact border divisor, in the live one-tie parameter domain.-/
+exact border divisor, in the live one-tie parameter domain.
+@isnad1 id=ex.3h5v.s6.c8151b8b5c43 from=translated src=- shape=415e3ff2 vocab=de8e0002
+-/
 theorem killed_has_border_divisor (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hdom : IsLiveParameterDomain a b c)
     (p : Normal a b c) (hp : p ∉ standardSet S) :
@@ -168,6 +190,9 @@ theorem killed_has_border_divisor (S : Finset (Normal a b c))
       (variableGenerators_ne_one_of_two_le hdom.1)).2 hgminimal
   exact ⟨g, (mem_borderFinset_iff hS g).2 hborder, hgp⟩
 
+/--
+@isnad1 id=mem.1h6v.s8.ec471f56ba68 from=translated src=- shape=fa7834d9 vocab=a3147721
+-/
 theorem monomial_mem_borderMonomialIdeal_of_border
     (S : Finset (Normal a b c)) (g : Normal a b c)
     (hg : g ∈ borderFinset S) :
@@ -175,6 +200,9 @@ theorem monomial_mem_borderMonomialIdeal_of_border
   apply Ideal.subset_span
   exact ⟨g, hg, rfl⟩
 
+/--
+@isnad1 id=mem.2h7v.s8.3002f8c76b25 from=translated src=- shape=23e3145f vocab=0d2e5319
+-/
 theorem monomial_mem_borderMonomialIdeal_of_dvd
     (S : Finset (Normal a b c)) {g p : Normal a b c}
     (hg : g ∈ borderFinset S) (hgp : g ∣ p) :
@@ -185,6 +213,9 @@ theorem monomial_mem_borderMonomialIdeal_of_dvd
     (monomial (k := k) q) hgen
   simpa [mul_comm] using hmul
 
+/--
+@isnad1 id=le.1h5v.s7.a22f8f40c565 from=translated src=- shape=83b7a1ca vocab=6f8236b7
+-/
 theorem borderMonomialIdeal_le_killedMonomialIdeal
     (S : Finset (Normal a b c)) (hS : S.Nonempty) :
     borderMonomialIdeal (k := k) S ≤ killedMonomialIdeal (k := k) S := by
@@ -193,6 +224,9 @@ theorem borderMonomialIdeal_le_killedMonomialIdeal
   apply monomial_mem_killedMonomialIdeal
   exact ((mem_borderFinset_iff hS g).1 hg).1
 
+/--
+@isnad1 id=le.2h5v.s7.3abb331cc3ff from=translated src=- shape=789db0a5 vocab=43b2802e
+-/
 theorem killedMonomialIdeal_le_borderMonomialIdeal
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) :
@@ -203,7 +237,9 @@ theorem killedMonomialIdeal_le_borderMonomialIdeal
   exact monomial_mem_borderMonomialIdeal_of_dvd (k := k) S hg hgp
 
 /-- In the live one-tie domain, the exact frozen border generates precisely
-the killed monomial ideal.-/
+the killed monomial ideal.
+@isnad1 id=eq.2h5v.s6.2d99744df391 from=translated src=- shape=789db0a5 vocab=1d60abd4
+-/
 theorem borderMonomialIdeal_eq_killedMonomialIdeal
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) :
@@ -226,6 +262,9 @@ noncomputable def normalMonomialQuotientEquiv
     (Ideal.quotientKerAlgEquivOfSurjective
       (truncateAlgHom_surjective (k := k) S))
 
+/--
+@isnad1 id=eq.0h6v.s10.8894664fd93a from=translated src=- shape=6e0873df vocab=217e5de9
+-/
 @[simp]
 theorem normalMonomialQuotientEquiv_mk
     (S : Finset (Normal a b c)) (f : NormalMonoidAlgebra k a b c) :
@@ -234,6 +273,9 @@ theorem normalMonomialQuotientEquiv_mk
       truncateAlgHom (k := k) S f := by
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.70646b39060d from=translated src=- shape=9aaac7e4 vocab=95de856e
+-/
 theorem normalMonomialQuotientEquiv_monomial_of_mem
     (S : Finset (Normal a b c)) (p : Normal a b c)
     (hp : p ∈ standardFinset S) :
@@ -242,6 +284,9 @@ theorem normalMonomialQuotientEquiv_monomial_of_mem
           (monomial (k := k) p)) = X (k := k) S p hp := by
   simp [hp]
 
+/--
+@isnad1 id=eq.1h6v.s10.df5cf9e338f5 from=translated src=- shape=130bf709 vocab=19a51ce4
+-/
 theorem normalMonomialQuotientEquiv_monomial_of_not_mem
     (S : Finset (Normal a b c)) (p : Normal a b c)
     (hp : p ∉ standardFinset S) :
@@ -262,6 +307,9 @@ noncomputable def borderMonomialQuotientEquiv
         (k := k) S hS hdom)).trans
     (normalMonomialQuotientEquiv (k := k) S)
 
+/--
+@isnad1 id=eq.2h6v.s10.60c36df1feee from=translated src=- shape=681eddd5 vocab=d3835e42
+-/
 @[simp]
 theorem borderMonomialQuotientEquiv_monomial
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
@@ -284,6 +332,9 @@ structure DirectModelAsNormalMonoidQuotient : Prop where
         e (Ideal.Quotient.mk (borderMonomialIdeal (k := k) S)
           (monomial (k := k) p)) = truncatedMonomial (k := k) S p
 
+/--
+@isnad1 id=directmo.0h1v.s3.bb90f19d5181 from=translated src=- shape=c6850a32 vocab=9816a1b8
+-/
 theorem directModel_as_normalMonoidQuotient :
     DirectModelAsNormalMonoidQuotient (k := k) := by
   constructor

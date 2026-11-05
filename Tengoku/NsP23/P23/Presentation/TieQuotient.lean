@@ -21,7 +21,9 @@ variable {k : Type*} [Field k]
 variable {a b c : ℕ} [NeZero a]
 
 /-- The independently defined principal tie ideal is killed by normalized
-evaluation.-/
+evaluation.
+@isnad1 id=le.0h4v.s9.489bf4d2b92a from=translated src=- shape=91e18f4d vocab=0e3b1f47
+-/
 theorem tieIdeal_le_polyToNormalAlg_ker :
     tieIdeal k a b c ≤
       RingHom.ker (polyToNormalAlg (k := k) (a := a) (b := b) (c := c)).toRingHom := by
@@ -32,7 +34,9 @@ theorem tieIdeal_le_polyToNormalAlg_ker :
 
 /-- A polynomial in the normalized-evaluation kernel lies in the principal
 tie ideal.  The proof reduces by monic division and invokes injectivity only
-on the symbolic x-reduced remainder.-/
+on the symbolic x-reduced remainder.
+@isnad1 id=le.0h4v.s9.595cc775a5b0 from=translated src=- shape=07c0e799 vocab=0e3b1f47
+-/
 theorem polyToNormalAlg_ker_le_tieIdeal :
     RingHom.ker (polyToNormalAlg (k := k) (a := a) (b := b) (c := c)).toRingHom ≤
       tieIdeal k a b c := by
@@ -55,7 +59,9 @@ theorem polyToNormalAlg_ker_le_tieIdeal :
       (reducedRepresentative_isReduced (k := k) (a := a) (b := b) (c := c) f) hrem0
   simpa [hrem] using hdiff
 
-/-- Exact kernel theorem for the public polynomial map.-/
+/-- Exact kernel theorem for the public polynomial map.
+@isnad1 id=eq.0h4v.s8.6d7704d179b5 from=translated src=- shape=07c0e799 vocab=2cf09948
+-/
 theorem polyToNormalAlg_ker :
     RingHom.ker (polyToNormalAlg (k := k) (a := a) (b := b) (c := c)).toRingHom =
       tieIdeal k a b c := by
@@ -63,7 +69,9 @@ theorem polyToNormalAlg_ker :
   · exact polyToNormalAlg_ker_le_tieIdeal
   · exact tieIdeal_le_polyToNormalAlg_ker
 
-/-- Exact monomial reduction modulo the principal tie ideal.-/
+/-- Exact monomial reduction modulo the principal tie ideal.
+@isnad1 id=mem.0h6v.s9.ca556fc040e4 from=translated src=- shape=9f3c4fed vocab=6ce79a6f
+-/
 theorem monomial_sub_normalMonomial_mem_tieIdeal (d : Fin 3 →₀ ℕ) (r : k) :
     MvPolynomial.monomial d r -
         MvPolynomial.monomial (normalExponent (normalizeExponent a b c d)) r ∈
@@ -85,30 +93,45 @@ def tieQuotientEquivNormalMonoidAlgebra :
     (Ideal.quotientKerAlgEquivOfSurjective
       (polyToNormalAlg_surjective (k := k) (a := a) (b := b) (c := c)))
 
+/--
+@isnad1 id=eq.0h5v.s10.e8790b57b984 from=translated src=- shape=8c1603f7 vocab=a0418d7e
+-/
 @[simp] theorem tieQuotientEquiv_mk (f : ThreePoly k) :
     tieQuotientEquivNormalMonoidAlgebra (k := k) (a := a) (b := b) (c := c)
         (Ideal.Quotient.mk _ f) =
       polyToNormalAlg (k := k) (a := a) (b := b) (c := c) f := by
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.a7f2e9e6e236 from=translated src=- shape=631e5860 vocab=65dc3436
+-/
 @[simp] theorem tieQuotientEquiv_polyX :
     tieQuotientEquivNormalMonoidAlgebra (k := k) (a := a) (b := b) (c := c)
         (Ideal.Quotient.mk _ polyX) =
       monomial (k := k) (Normal.xGenerator : Normal a b c) := by
   simp
 
+/--
+@isnad1 id=eq.0h4v.s10.fbf557d059bf from=translated src=- shape=631e5860 vocab=35bbb50b
+-/
 @[simp] theorem tieQuotientEquiv_polyY :
     tieQuotientEquivNormalMonoidAlgebra (k := k) (a := a) (b := b) (c := c)
         (Ideal.Quotient.mk _ polyY) =
       monomial (k := k) (Normal.yGenerator : Normal a b c) := by
   simp
 
+/--
+@isnad1 id=eq.0h4v.s10.6207bb4e8955 from=translated src=- shape=631e5860 vocab=86b9d085
+-/
 @[simp] theorem tieQuotientEquiv_polyZ :
     tieQuotientEquivNormalMonoidAlgebra (k := k) (a := a) (b := b) (c := c)
         (Ideal.Quotient.mk _ polyZ) =
       monomial (k := k) (Normal.zGenerator : Normal a b c) := by
   simp
 
+/--
+@isnad1 id=eq.0h6v.s10.bed31a6d7284 from=translated src=- shape=5608e01b vocab=83dd8349
+-/
 @[simp] theorem tieQuotientEquiv_monomial (d : Fin 3 →₀ ℕ) (r : k) :
     tieQuotientEquivNormalMonoidAlgebra (k := k) (a := a) (b := b) (c := c)
         (Ideal.Quotient.mk _ (MvPolynomial.monomial d r)) =
@@ -121,7 +144,9 @@ def NormalMonoidAlgebraAsTieQuotient (k : Type*) [Field k]
   Nonempty (TieQuotient k a b c ≃ₐ[k] NormalMonoidAlgebra k a b c)
 
 /-- The normalized one-tie monoid algebra has the asserted single-binomial
-three-variable presentation.-/
+three-variable presentation.
+@isnad1 id=normalmo.0h4v.s4.d36f20ec6b24 from=translated src=- shape=bf6aa7f5 vocab=0a3387a8
+-/
 theorem normalMonoidAlgebra_as_tieQuotient :
     NormalMonoidAlgebraAsTieQuotient k a b c :=
   ⟨tieQuotientEquivNormalMonoidAlgebra⟩

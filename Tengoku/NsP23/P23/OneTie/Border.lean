@@ -23,7 +23,9 @@ def ApplicablePredecessorsSurvive (O : Set (Normal a b c)) (m : Normal a b c) : 
 def IsMinimalBorder (O : Set (Normal a b c)) (m : Normal a b c) : Prop :=
   m ∉ O ∧ ApplicablePredecessorsSurvive O m
 
-/-- Load-bearing minimal-border criterion in direction-uniform form.-/
+/-- Load-bearing minimal-border criterion in direction-uniform form.
+@isnad1 id=iff.0h5v.s6.d5f6be9775dd from=translated src=- shape=44d8889b vocab=68d60636
+-/
 theorem isMinimalBorder_iff (O : Set (Normal a b c)) (m : Normal a b c) :
     IsMinimalBorder O m ↔
       m ∉ O ∧ ∀ e q, Normal.predecessor e m = some q → q ∈ O := by
@@ -50,6 +52,9 @@ noncomputable def borderCandidateFinset (S : Finset (Normal a b c)) :
       {p * Normal.xGenerator, p * Normal.yGenerator, p * Normal.zGenerator}
   exact candidates.filter fun m => IsMinimalBorder (standardSet S) m
 
+/--
+@isnad1 id=iff.0h5v.s8.2a80b8eca8b7 from=translated src=- shape=0713f5c6 vocab=2c70dca8
+-/
 theorem mem_borderCandidateFinset_iff (S : Finset (Normal a b c))
     (m : Normal a b c) :
     m ∈ borderCandidateFinset S ↔
@@ -59,13 +64,17 @@ theorem mem_borderCandidateFinset_iff (S : Finset (Normal a b c))
   classical
   simp [borderCandidateFinset]
 
-/-- A nonempty socle finset generates a standard set containing the unit.-/
+/-- A nonempty socle finset generates a standard set containing the unit.
+@isnad1 id=mem.1h4v.s6.2c229e8ad990 from=translated src=- shape=e8bfcca9 vocab=3d5c1af7
+-/
 theorem one_mem_standardSet_of_nonempty {S : Finset (Normal a b c)}
     (hS : S.Nonempty) : (1 : Normal a b c) ∈ standardSet S := by
   rcases hS with ⟨s, hs⟩
   exact ⟨s, hs, one_dvd s⟩
 
-/-- Every non-unit normal form has an applicable variable predecessor.-/
+/-- Every non-unit normal form has an applicable variable predecessor.
+@isnad1 id=ex.1h4v.s6.41e13b56a615 from=translated src=- shape=63187c2e vocab=44afaf7c
+-/
 theorem exists_predecessor_of_ne_one (m : Normal a b c) (hm : m ≠ 1) :
     ∃ e q, Normal.predecessor e m = some q := by
   by_cases hx : 0 < m.x
@@ -82,7 +91,9 @@ theorem exists_predecessor_of_ne_one (m : Normal a b c) (hm : m ≠ 1) :
   apply Normal.ext <;> simp [hx0, hy0, hz0]
 
 /-- Over a nonempty socle finset, every minimal border point occurs among the
-generator multiples used by `borderCandidateFinset`.-/
+generator multiples used by `borderCandidateFinset`.
+@isnad1 id=mem.2h5v.s6.fd88644a901c from=translated src=- shape=67d4aff2 vocab=fbb0060e
+-/
 theorem minimalBorder_mem_borderCandidateFinset {S : Finset (Normal a b c)}
     (hS : S.Nonempty) {m : Normal a b c}
     (hm : IsMinimalBorder (standardSet S) m) :
@@ -107,6 +118,9 @@ noncomputable def borderFinset (S : Finset (Normal a b c)) :
     Finset (Normal a b c) :=
   borderCandidateFinset S
 
+/--
+@isnad1 id=iff.1h5v.s6.4fa5ea7c7de8 from=translated src=- shape=fd26241e vocab=5bbdbf8f
+-/
 theorem mem_borderFinset_iff {S : Finset (Normal a b c)}
     (hS : S.Nonempty) (m : Normal a b c) :
     m ∈ borderFinset S ↔ IsMinimalBorder (standardSet S) m := by

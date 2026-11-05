@@ -30,10 +30,16 @@ def coeffAt (S : Finset (Normal a b c)) (p : MonomialIndex S) :
   map_add' _ _ := by simp
   map_smul' _ _ := by simp
 
+/--
+@isnad1 id=eq.0h7v.s8.b92303443749 from=translated src=- shape=430bf636 vocab=d74a0136
+-/
 @[simp]
 theorem coeffAt_apply (S : Finset (Normal a b c)) (p : MonomialIndex S)
     (v : MonomialArtin k S) : coeffAt (k := k) S p v = v.coeff p := rfl
 
+/--
+@isnad1 id=eq.0h7v.s8.992931943634 from=translated src=- shape=17458a09 vocab=477c5c2f
+-/
 theorem coeffAt_X (S : Finset (Normal a b c)) (p q : MonomialIndex S) :
     coeffAt (k := k) S p (X (k := k) S q.1 q.2) =
       if p = q then 1 else 0 := by
@@ -50,6 +56,9 @@ def constantCoeff (S : Finset (Normal a b c)) (hS : S.Nonempty) :
     MonomialArtin k S →ₗ[k] k :=
   coeffAt (k := k) S (unitIndex S hS)
 
+/--
+@isnad1 id=eq.1h5v.s8.fd7c3bf19e12 from=translated src=- shape=f2009bca vocab=a113b6d2
+-/
 @[simp]
 theorem constantCoeff_one (S : Finset (Normal a b c)) (hS : S.Nonempty) :
     constantCoeff (k := k) S hS 1 = 1 := by
@@ -57,7 +66,9 @@ theorem constantCoeff_one (S : Finset (Normal a b c)) (hS : S.Nonempty) :
   simp [constantCoeff, unitIndex]
 
 /-- Left multiplication by a surviving monomial transports coefficients
-exactly along a cancellative normalized product.-/
+exactly along a cancellative normalized product.
+@isnad1 id=eq.1h9v.s9.5f270ad68d54 from=translated src=- shape=6b3d512f vocab=8e930555
+-/
 theorem coeffAt_X_mul (S : Finset (Normal a b c))
     (m e t : MonomialIndex S) (hmet : m.1 * e.1 = t.1)
     (v : MonomialArtin k S) :
@@ -93,7 +104,9 @@ theorem coeffAt_X_mul (S : Finset (Normal a b c))
           simp [ht, heq, hval]
         · simp [MonomialArtin.X_mul_X, hsurv, hqe, coeffAt_X]
 
-/-- Right-multiplication form of coefficient transport.-/
+/-- Right-multiplication form of coefficient transport.
+@isnad1 id=eq.1h9v.s9.047ac029f796 from=translated src=- shape=b305b9ed vocab=8e930555
+-/
 theorem coeffAt_mul_X (S : Finset (Normal a b c))
     (m e t : MonomialIndex S) (hmet : e.1 * m.1 = t.1)
     (v : MonomialArtin k S) :
@@ -111,7 +124,9 @@ private theorem normal_eq_one_iff (p : Normal a b c) :
     apply Normal.ext <;> simp [hx, hy, hz]
 
 /-- In the actual mixed/pure live domain, the normalized monoid has no
-nontrivial factorization of its unit.-/
+nontrivial factorization of its unit.
+@isnad1 id=iff.1h5v.s7.526173d5ff4c from=translated src=- shape=a74ad478 vocab=fb6b71b4
+-/
 theorem mul_eq_one_iff (hdom : IsLiveParameterDomain a b c)
     (p q : Normal a b c) : p * q = 1 ↔ p = 1 ∧ q = 1 := by
   constructor
@@ -168,7 +183,9 @@ private theorem constantCoeff_X_mul_X (S : Finset (Normal a b c))
       simp_all [Subtype.ext_iff, eq_comm]
 
 /-- Exact degree-zero coefficient of a product in the P23 live parameter
-domain.-/
+domain.
+@isnad1 id=eq.2h7v.s9.d88c168a3528 from=translated src=- shape=d0fc5241 vocab=0e8ec973
+-/
 theorem constantCoeff_mul (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (u v : MonomialArtin k S) :
     constantCoeff (k := k) S hS (u * v) =
@@ -191,7 +208,9 @@ theorem constantCoeff_mul (S : Finset (Normal a b c)) (hS : S.Nonempty)
           ring
 
 /-- Each live variable generator is an atom of the normalized monoid in the
-mixed/pure P23 parameter domain.-/
+mixed/pure P23 parameter domain.
+@isnad1 id=or.2h6v.s7.abc85d9dfd06 from=translated src=- shape=449ba399 vocab=c502f2c3
+-/
 theorem variableGenerator_is_atom (hdom : IsLiveParameterDomain a b c)
     (e : Direction) (p q : Normal a b c) (h : p * q = e.generator) :
     p = 1 ∨ q = 1 := by
@@ -263,7 +282,9 @@ theorem variableGenerator_is_atom (hdom : IsLiveParameterDomain a b c)
 
 /-- Multiplication by an arbitrary algebra element cannot create the
 coefficient of a live atomic variable from a right factor having neither a
-degree-zero term nor that variable coefficient.-/
+degree-zero term nor that variable coefficient.
+@isnad1 id=eq.5h8v.s9.4fc6f71df476 from=translated src=- shape=292a982e vocab=4ae1da4b
+-/
 theorem coeffAt_mul_eq_zero_of_right (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hdom : IsLiveParameterDomain a b c)
     (e : Direction) (heS : e.generator ∈ standardFinset S)

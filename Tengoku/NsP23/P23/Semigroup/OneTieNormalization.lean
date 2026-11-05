@@ -27,6 +27,9 @@ structure LiveTailTieData (p : TailPoly ℚ) where
   liveImage : tailPolyToChosenBase (k := ℚ) D i (MvPolynomial.monomial u 1) ≠ 0
   singletonSide : u.support.card = 1 ∨ v.support.card = 1
 
+/--
+@isnad1 id=nonempty.1h3v.s4.ecd34eca8669 from=translated src=- shape=8df1eb62 vocab=baab3e1b
+-/
 theorem liveTailTieData_exists (p : TailPoly ℚ) (hp : D.LiveTailBinomial i p) :
     Nonempty (LiveTailTieData D i p) := by
   obtain ⟨u,v,he,hu,hv,hd,hn,hp,hi,hl⟩ := hp
@@ -35,6 +38,9 @@ theorem liveTailTieData_exists (p : TailPoly ℚ) (hp : D.LiveTailBinomial i p) 
 
 variable {D i}
 
+/--
+@isnad1 id=eq.0h4v.s5.eb0d90114e7a from=translated src=- shape=a78f939c vocab=2ef7cf3a
+-/
 theorem LiveTailTieData.degree_eq {p : TailPoly ℚ} (T : LiveTailTieData D i p) :
     tailDegree D i T.u = tailDegree D i T.v := by
   have hE := congrArg (chosenBaseEquivApery (k := ℚ) D i) T.equalImage
@@ -57,7 +63,9 @@ theorem LiveTailTieData.degree_eq {p : TailPoly ℚ} (T : LiveTailTieData D i p)
     simp [truncatedAperyMonomial, hu, hv, AperyArtin.coeff_A, hn, Ne.symm hn] at hc
   exact congrArg Subtype.val hg
 
-/-- Original generator minimality excludes exponent one on either singleton side.-/
+/-- Original generator minimality excludes exponent one on either singleton side.
+@isnad1 id=le.3h5v.s7.ddba2567b438 from=translated src=- shape=b768344b vocab=11326d98
+-/
 theorem singleton_live_exponent_two_le (u v : Fin 3 →₀ ℕ)
     (hd : Disjoint u.support v.support) (he : tailDegree D i u = tailDegree D i v)
     (x : Fin 3) (hu : u.support = {x}) : 2 ≤ u x := by
@@ -161,6 +169,9 @@ structure OneTieCoordinates (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
   signedEquation : MvPolynomial.renameEquiv ℚ sigma p = tiePolynomial a b c ∨
     MvPolynomial.renameEquiv ℚ sigma p = -tiePolynomial a b c
 
+/--
+@isnad1 id=nonempty.0h4v.s4.f4ea59c230e2 from=translated src=- shape=aef267c2 vocab=c3da97f0
+-/
 theorem oneTieCoordinates_exists {p : TailPoly ℚ} (T : LiveTailTieData D i p) :
     Nonempty (OneTieCoordinates D i p) := by
   rcases T.singletonSide with hu | hv
@@ -175,6 +186,9 @@ theorem oneTieCoordinates_exists {p : TailPoly ℚ} (T : LiveTailTieData D i p) 
     have := congrArg Neg.neg he
     simpa only [map_neg, neg_neg] using this
 
+/--
+@isnad1 id=ex.1h2v.s7.3af2f157d766 from=translated src=- shape=e3b22b7c vocab=0d7682c5
+-/
 theorem oneTieCoordinates_of_budget_one (D : FourGeneratedNumericalSemigroup)
     (i : Fin 4) (hB : D.fourBaseBudget i = 1) :
     ∃ p : TailPoly ℚ, p ∈ chosenBaseDefiningIdeal D i ∧
@@ -189,9 +203,15 @@ theorem oneTieCoordinates_of_budget_one (D : FourGeneratedNumericalSemigroup)
 def renameToOneTie {p : TailPoly ℚ} (C : OneTieCoordinates D i p) :
     TailPoly ℚ ≃ₐ[ℚ] ThreePoly ℚ := MvPolynomial.renameEquiv ℚ C.sigma
 
+/--
+@isnad1 id=islivepa.0h4v.s5.7582be001ba5 from=translated src=- shape=9525bfd2 vocab=ccabae34
+-/
 theorem oneTieCoordinates_liveDomain {p : TailPoly ℚ} (C : OneTieCoordinates D i p) :
     IsLiveParameterDomain C.a C.b C.c := C.liveDomain
 
+/--
+@isnad1 id=or.0h4v.s9.6e0335516d49 from=translated src=- shape=04b1f532 vocab=1ff2bc5f
+-/
 theorem renameToOneTie_live {p : TailPoly ℚ} (C : OneTieCoordinates D i p) :
     renameToOneTie C p = tiePolynomial C.a C.b C.c ∨
       renameToOneTie C p = -tiePolynomial C.a C.b C.c := C.signedEquation
@@ -204,6 +224,9 @@ def chosenBaseQuotientEquivRenamed {p : TailPoly ℚ} (C : OneTieCoordinates D i
   (tailPolynomialQuotientEquiv D i).symm.trans
     (Ideal.quotientEquivAlg _ _ (renameToOneTie C) rfl)
 
+/--
+@isnad1 id=mem.1h4v.s8.b2bb97af2052 from=translated src=- shape=c5e18188 vocab=10c26513
+-/
 theorem tiePolynomial_mem_renamedChosenBaseIdeal {p : TailPoly ℚ}
     (C : OneTieCoordinates D i p) (hp : p ∈ chosenBaseDefiningIdeal D i) :
     tiePolynomial C.a C.b C.c ∈ renamedChosenBaseIdeal C := by
@@ -213,6 +236,9 @@ theorem tiePolynomial_mem_renamedChosenBaseIdeal {p : TailPoly ℚ}
   · have hneg : -tiePolynomial C.a C.b C.c ∈ renamedChosenBaseIdeal C := he ▸ hm
     simpa only [neg_neg] using neg_mem hneg
 
+/--
+@isnad1 id=eq.0h2v.s10.a8a431bd3d96 from=translated src=- shape=d3046ff0 vocab=45ac94fc
+-/
 theorem span_image_algEquiv (e : ThreePoly ℚ ≃ₐ[ℚ] ThreePoly ℚ)
     (G : Finset (ThreePoly ℚ)) :
     Ideal.span (↑(G.image e) : Set (ThreePoly ℚ)) =
@@ -222,7 +248,9 @@ theorem span_image_algEquiv (e : ThreePoly ℚ ≃ₐ[ℚ] ThreePoly ℚ)
   congr 1
   exact Finset.coe_image
 
-/-- Transport includes the lower bound for every finite polynomial generating family.-/
+/-- Transport includes the lower bound for every finite polynomial generating family.
+@isnad1 id=hasminim.1h3v.s9.f9b48501b0f0 from=translated src=- shape=b0e66960 vocab=ed5f9557
+-/
 theorem minimalGeneratorCard_map_algEquiv (e : ThreePoly ℚ ≃ₐ[ℚ] ThreePoly ℚ)
     (I : Ideal (ThreePoly ℚ)) (n : ℕ) (h : HasMinimalGeneratorCard I n) :
     HasMinimalGeneratorCard (I.map e.toRingHom) n := by
@@ -238,12 +266,18 @@ theorem minimalGeneratorCard_map_algEquiv (e : ThreePoly ℚ ≃ₐ[ℚ] ThreePo
     have hl := h.2 _ hs
     rwa [Finset.card_image_of_injective _ e.symm.injective] at hl
 
+/--
+@isnad1 id=hasminim.0h4v.s4.58cdb032751b from=translated src=- shape=5d26b9d8 vocab=d1a51ad8
+-/
 theorem renamedChosenBaseIdeal_minimalGeneratorCard {p : TailPoly ℚ}
     (C : OneTieCoordinates D i p) :
     HasMinimalGeneratorCard (renamedChosenBaseIdeal C) D.semigroupRho :=
   minimalGeneratorCard_map_algEquiv (renameToOneTie C) _ _
     (chosenBaseDefiningIdeal_minimalGeneratorCard D i)
 
+/--
+@isnad1 id=nezero.0h4v.s4.8e11bd585c55 from=translated src=- shape=deead888 vocab=2cf71236
+-/
 instance OneTieCoordinates.neZeroA {p : TailPoly ℚ} (C : OneTieCoordinates D i p) :
     NeZero C.a := ⟨by have := C.liveDomain.1; omega⟩
 
@@ -263,6 +297,9 @@ def normalizedLiftGeneratorFinset {p : TailPoly ℚ} (C : OneTieCoordinates D i 
   exact insert (tiePolynomial C.a C.b C.c)
     ((normalizedMonomialGeneratorFinset C E).image (polynomialLift (k := ℚ)))
 
+/--
+@isnad1 id=eq.0h5v.s7.90188d3137dc from=translated src=- shape=25a58019 vocab=9e162bf5
+-/
 theorem normalizedLiftGeneratorFinset_span_eq {p : TailPoly ℚ}
     (C : OneTieCoordinates D i p) (E : Finset (Fin 3 →₀ ℕ)) :
     Ideal.span (↑(normalizedLiftGeneratorFinset C E) : Set (ThreePoly ℚ)) =
@@ -305,12 +342,18 @@ theorem normalizedLiftGeneratorFinset_span_eq {p : TailPoly ℚ}
           ⟨_,Finset.mem_image.mpr ⟨d,hd,rfl⟩,rfl⟩))
       simpa only [add_sub_cancel, N] using N.add_mem hnorm (hnTie (hdiff d))
 
+/--
+@isnad1 id=ne.0h4v.s6.5e8f5862418a from=translated src=- shape=13e716d5 vocab=5ddcc3ce
+-/
 theorem normalMonomial_ne_zero (a b c : ℕ) [NeZero a] (q : Normal a b c) :
     monomial (k := ℚ) q ≠ 0 := by
   intro hz
   have hc := congrArg (fun f : NormalMonoidAlgebra ℚ a b c => f.coeff q) hz
   simpa using hc
 
+/--
+@isnad1 id=ne.0h4v.s5.5e6729f74717 from=translated src=- shape=8ebc4144 vocab=ec71ff72
+-/
 theorem tiePolynomial_ne_polynomialLift (a b c : ℕ) [NeZero a] (q : Normal a b c) :
     tiePolynomial (k := ℚ) a b c ≠ polynomialLift q := by
   intro he
@@ -318,6 +361,9 @@ theorem tiePolynomial_ne_polynomialLift (a b c : ℕ) [NeZero a] (q : Normal a b
   have hz : monomial (k := ℚ) q = 0 := by simpa using hm.symm
   exact normalMonomial_ne_zero a b c q hz
 
+/--
+@isnad1 id=and.3h5v.s7.764519523919 from=translated src=- shape=41fca642 vocab=b681816c
+-/
 theorem normalizedGeneratorFinsets_card {p : TailPoly ℚ} (C : OneTieCoordinates D i p)
     (E : Finset (Fin 3 →₀ ℕ))
     (hspan : Ideal.span (↑(rawLiftGeneratorFinset C E) : Set (ThreePoly ℚ)) =
@@ -340,7 +386,9 @@ theorem normalizedGeneratorFinsets_card {p : TailPoly ℚ} (C : OneTieCoordinate
   have hle : (normalizedMonomialGeneratorFinset C E).card ≤ E.card := Finset.card_image_le
   constructor <;> omega
 
-/-- The actual budget-one family supplies every premise of normalization.-/
+/-- The actual budget-one family supplies every premise of normalization.
+@isnad1 id=ex.1h2v.s7.17f039f87559 from=translated src=- shape=981544c1 vocab=03ad026d
+-/
 theorem budgetOne_raw_normalization_data (D : FourGeneratedNumericalSemigroup)
     (i : Fin 4) (hB : D.fourBaseBudget i = 1) :
     ∃ (p : TailPoly ℚ) (C : OneTieCoordinates D i p) (E : Finset (Fin 3 →₀ ℕ)),

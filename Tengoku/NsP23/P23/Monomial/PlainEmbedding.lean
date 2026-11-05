@@ -16,12 +16,18 @@ def plainEmbeddingDimension (k : Type*) [Field k] (R : Finset PlainExp) (hR : R.
 
 abbrev PlainVariableIndex (R : Finset PlainExp) := {j : Fin 3 // plainUnitVector j ∈ plainStandardFinset R}
 
+/--
+@isnad1 id=mem.3h3v.s7.b48ca11d65b4 from=translated src=- shape=000efd99 vocab=44e6ab88
+-/
 theorem plain_PX_mem_augmentation (R : Finset PlainExp) (hR : R.Nonempty)
     (p : PlainExp) (hp : p ∈ plainStandardFinset R) (hn : p ≠ 0) :
     PX (k := k) R p hp ∈ plainAugmentationIdeal R hR := by
   change plainConstantCoeff R hR (PX (k := k) R p hp)=0
   simp [plainConstantCoeff,plainUnitIndex,Ne.symm hn]
 
+/--
+@isnad1 id=mem.4h3v.s8.3e1604bdb1d8 from=translated src=- shape=ebbf2a02 vocab=45553775
+-/
 theorem plain_nonvariable_mem_square (R : Finset PlainExp) (hR : R.Nonempty)
     (p : PlainExp) (hp : p ∈ plainStandardFinset R) (hn : p≠0)
     (hv : ∀ j, p≠plainUnitVector j) :
@@ -46,6 +52,9 @@ theorem plain_nonvariable_mem_square (R : Finset PlainExp) (hR : R.Nonempty)
     (plain_PX_mem_augmentation (k := k) R hR _ he hen)
   simpa [pow_two,PX_mul_PX,hsum,hp] using hm
 
+/--
+@isnad1 id=eq.1h5v.s9.fa0daf5dc12f from=translated src=- shape=6ec46ce7 vocab=6ebf1bb5
+-/
 theorem plain_variable_coeff_mul_zero (R : Finset PlainExp) (hR : R.Nonempty)
     (j : PlainVariableIndex R) (u v : plainAugmentationIdeal (k := k) R hR) :
     plainCoeffAt (k := k) R ⟨plainUnitVector j.1,j.2⟩ (u.val*v.val)=0 := by
@@ -95,6 +104,9 @@ def plainCotangentVariable (R : Finset PlainExp) (hR : R.Nonempty)
     ⟨PX R (plainUnitVector j.1) j.2,plain_PX_mem_augmentation R hR _ j.2 (by
       intro h; have := congrArg (fun p : PlainExp => p j.1) h; simpa using this)⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.82159682ccdf from=translated src=- shape=9607cb38 vocab=1ce736c6
+-/
 @[simp] theorem plainCotangentCoeff_variable (R : Finset PlainExp) (hR : R.Nonempty)
     (j l : PlainVariableIndex R) :
     plainCotangentCoeff (k := k) R hR j (plainCotangentVariable R hR l) =
@@ -112,6 +124,9 @@ def plainCotangentVariable (R : Finset PlainExp) (hR : R.Nonempty)
     · rintro rfl; rfl
   simp [he,eq_comm]
 
+/--
+@isnad1 id=linearin.1h2v.s6.a92f09bca196 from=translated src=- shape=85b748f7 vocab=ae942d70
+-/
 theorem plainCotangentVariables_independent (R : Finset PlainExp) (hR : R.Nonempty) :
     LinearIndependent k (plainCotangentVariable (k := k) R hR) := by
   apply linearIndependent_iff'.mpr
@@ -119,6 +134,9 @@ theorem plainCotangentVariables_independent (R : Finset PlainExp) (hR : R.Nonemp
   have hc := congrArg (plainCotangentCoeff (k := k) R hR j) hz
   simpa [map_sum,hj] using hc
 
+/--
+@isnad1 id=eq.1h2v.s8.6827272e597f from=translated src=- shape=445071cd vocab=044b739f
+-/
 theorem plainCotangentVariables_span (R : Finset PlainExp) (hR : R.Nonempty) :
     Submodule.span k (Set.range (plainCotangentVariable (k := k) R hR)) = ⊤ := by
   apply top_unique
@@ -177,6 +195,9 @@ def plainCotangentBasis (R : Finset PlainExp) (hR : R.Nonempty) :
   Module.Basis.mk (plainCotangentVariables_independent R hR)
     (plainCotangentVariables_span R hR).ge
 
+/--
+@isnad1 id=iff.1h2v.s4.b151e6fe1617 from=translated src=- shape=13ae0617 vocab=0a8d2907
+-/
 theorem plain_embeddingDimension_eq_three_iff_variablesSurvive (R : Finset PlainExp)
     (hR : R.Nonempty) : plainEmbeddingDimension k R hR=3 ↔ PlainVariablesSurvive R := by
   unfold plainEmbeddingDimension

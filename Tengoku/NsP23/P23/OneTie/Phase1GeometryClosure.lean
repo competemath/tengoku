@@ -23,7 +23,9 @@ structure PhaseOneFourBorderGeometry : Prop where
       (∃ C ∈ S, IsDominantRoot S C) ∨ IsPureResidualFourBorderShape S
 
 /-- The Run-06 Phase-1 closure milestone, exposing only the mixed and pure
-four-border conclusions needed by later work.-/
+four-border conclusions needed by later work.
+@isnad1 id=phaseone.0h0v.s0.d8f675ddbfed from=translated src=- shape=45709ebd vocab=d8f675dd
+-/
 theorem phaseOne_four_border_geometry : PhaseOneFourBorderGeometry where
   mixed := by
     intro a b c _ S ha hb hc hcard hlive hanti hcentres hborder

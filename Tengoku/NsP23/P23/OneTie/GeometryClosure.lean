@@ -133,7 +133,9 @@ private theorem pure_base_four_residual
   | p4Z ha' hb' hV => exact Or.inl ⟨_, ha', hb', hV, rfl⟩
   | p5Z ha' hb' hv => exact Or.inr ⟨_, ha', hb', hv, rfl⟩
 
-/-- A mixed type-three four-border configuration has a dominant root.-/
+/-- A mixed type-three four-border configuration has a dominant root.
+@isnad1 id=ex.8h4v.s7.651d77067439 from=translated src=- shape=ccb58d9a vocab=07777377
+-/
 theorem mixed_four_border_has_dominant
     (S : Finset (Normal a b c))
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
@@ -166,7 +168,9 @@ theorem mixed_four_border_has_dominant
       exact (mixed_base_card_ne_four ha hc hb hcardRoots hliveSwap h) hcardSwap
 
 /-- A pure type-three four-border configuration is dominant or one of the two
-exact residual P4Z/P5Z shapes.-/
+exact residual P4Z/P5Z shapes.
+@isnad1 id=or.7h3v.s7.8440cc8b2322 from=translated src=- shape=0ffce9ab vocab=e3db2f36
+-/
 theorem pure_four_border_dominant_or_residual
     (S : Finset (Normal a b 0))
     (ha : 2 ≤ a) (hb : 2 ≤ b)

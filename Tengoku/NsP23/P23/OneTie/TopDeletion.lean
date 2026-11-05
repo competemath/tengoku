@@ -21,7 +21,9 @@ private theorem standardSet_singleton (T : Normal a b c) :
   simp [standardSet, Normal.divisorDownset]
 
 /-- Removing the top of a principal downset adds that top to the border,
-provided no old principal-border point is divisible by the top.-/
+provided no old principal-border point is divisible by the top.
+@isnad1 id=eq.4h5v.s7.25ca5407e33c from=translated src=- shape=7ad56217 vocab=d9df6a70
+-/
 theorem topDeletion_border_eq_insert_principal
     (S : Finset (Normal a b c)) (T : Normal a b c)
     (ha : 2 ≤ a) (hS : S.Nonempty)
@@ -79,6 +81,9 @@ def topDeletionMixedBelowExpected (T : Normal a b c) (hr : r < a - 1) :
       mixedP (a := a) (b := b) (c := c) r u hr,
       mixedQ (a := a) (b := b) (c := c) r v hr}
 
+/--
+@isnad1 id=eq.8h7v.s7.77d2feea2387 from=translated src=- shape=ab3dff17 vocab=92a632fd
+-/
 theorem topDeletionMixedBelow_border_exact
     (S : Finset (Normal a b c))
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
@@ -114,6 +119,9 @@ theorem topDeletionMixedBelow_border_exact
       Normal.DividesCriterion] at hdiv
     omega
 
+/--
+@isnad1 id=eq.8h7v.s7.7cda3b37ae7f from=translated src=- shape=a4ee4560 vocab=4bf3fd1b
+-/
 theorem topDeletionMixedBelow_border_card
     (S : Finset (Normal a b c))
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
@@ -135,6 +143,9 @@ def topDeletionMixedLastExpected (T : Normal a b c) : Finset (Normal a b c) :=
   {T, mixedY (a := a) (b := b) (c := c) u,
     mixedZ (a := a) (b := b) (c := c) v}
 
+/--
+@isnad1 id=eq.8h7v.s7.c71d2a8b2def from=translated src=- shape=074d6e08 vocab=4222a92b
+-/
 theorem topDeletionMixedLast_border_exact
     (S : Finset (Normal a b c))
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
@@ -161,6 +172,9 @@ theorem topDeletionMixedLast_border_exact
       Normal.DividesCriterion] at hdiv
     omega
 
+/--
+@isnad1 id=eq.8h7v.s7.179c592cb9b2 from=translated src=- shape=c02adea1 vocab=1d349ed7
+-/
 theorem topDeletionMixedLast_border_card
     (S : Finset (Normal a b c))
     (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
@@ -177,6 +191,9 @@ def topDeletionPureExpected (T : Normal a b 0) (hr : r < a) :
     Finset (Normal a b 0) :=
   {T, pureH (a := a) (b := b) r u hr, pureZ (a := a) (b := b) v}
 
+/--
+@isnad1 id=eq.7h6v.s7.8b85985e378e from=translated src=- shape=f5f02784 vocab=d7cc33ac
+-/
 theorem topDeletionPure_border_exact
     (S : Finset (Normal a b 0))
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) (hv : 1 ≤ v)
@@ -217,6 +234,9 @@ theorem topDeletionPure_border_exact
         Normal.DividesCriterion] at hdiv
       omega
 
+/--
+@isnad1 id=eq.7h6v.s7.23db9c11e9fd from=translated src=- shape=ddd60f6a vocab=3f1fbcab
+-/
 theorem topDeletionPure_border_card
     (S : Finset (Normal a b 0))
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hu : b ≤ u) (hv : 1 ≤ v)
@@ -233,7 +253,9 @@ theorem topDeletionPure_border_card
 
 /-- In the live type-three H5 domain, deleting a principal top has border
 cardinality three or five.  The live bounds on the deleted top are derived
-from `IsLiveTie`; they are not extra classification hypotheses.-/
+from `IsLiveTie`; they are not extra classification hypotheses.
+@isnad1 id=or.5h4v.s7.506d0838ba92 from=translated src=- shape=5d1b5dea vocab=76edb87d
+-/
 theorem typeThreeTopDeletion_border_card
     {S : Finset (Normal a b c)}
     (ha : 2 ≤ a)
@@ -283,6 +305,9 @@ theorem typeThreeTopDeletion_border_card
     exact Or.inl (topDeletionPure_border_card S ha hb hu hv hrA
       hnonempty hstd)
 
+/--
+@isnad1 id=ne.5h4v.s6.f7a20090d1c4 from=translated src=- shape=8827c172 vocab=76edb87d
+-/
 theorem topDeletion_border_card_ne_four
     {S : Finset (Normal a b c)}
     (ha : 2 ≤ a)

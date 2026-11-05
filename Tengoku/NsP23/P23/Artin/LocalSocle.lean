@@ -79,7 +79,9 @@ private theorem X_pow_formula (S : Finset (Normal a b c))
         simp [hn, hsucc]
 
 /-- Every live variable basis vector is nilpotent.  The exponent is the sum
-of the weights of the finite standard set plus one.-/
+of the weights of the finite standard set plus one.
+@isnad1 id=isnilpot.3h6v.s7.6ba5aa2b8815 from=translated src=- shape=56ffa214 vocab=dc2f5b28
+-/
 theorem variableBasis_isNilpotent (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hdom : IsLiveParameterDomain a b c)
     (hlive : IsLiveTie S) (e : Direction) :
@@ -100,6 +102,9 @@ theorem variableBasis_isNilpotent (S : Finset (Normal a b c))
   rw [X_pow_formula (k := k) S hS e.generator he]
   simp [variable_pow_not_mem_standardFinset S hdom e]
 
+/--
+@isnad1 id=isnilpot.3h5v.s7.b915c2bf7135 from=translated src=- shape=2eba3df8 vocab=14bc9f74
+-/
 theorem xBasis_isNilpotent (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hdom : IsLiveParameterDomain a b c)
     (hlive : IsLiveTie S) :
@@ -108,6 +113,9 @@ theorem xBasis_isNilpotent (S : Finset (Normal a b c))
         ((mem_standardFinset_iff_standardSet S _).2 hlive.1)) :=
   variableBasis_isNilpotent (k := k) S hS hdom hlive .x
 
+/--
+@isnad1 id=isnilpot.3h5v.s7.c3470c67d508 from=translated src=- shape=2eba3df8 vocab=3c91850a
+-/
 theorem yBasis_isNilpotent (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hdom : IsLiveParameterDomain a b c)
     (hlive : IsLiveTie S) :
@@ -116,6 +124,9 @@ theorem yBasis_isNilpotent (S : Finset (Normal a b c))
         ((mem_standardFinset_iff_standardSet S _).2 hlive.2.1)) :=
   variableBasis_isNilpotent (k := k) S hS hdom hlive .y
 
+/--
+@isnad1 id=isnilpot.3h5v.s7.ad7fadbdca78 from=translated src=- shape=2eba3df8 vocab=3c91850a
+-/
 theorem zBasis_isNilpotent (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hdom : IsLiveParameterDomain a b c)
     (hlive : IsLiveTie S) :
@@ -124,7 +135,9 @@ theorem zBasis_isNilpotent (S : Finset (Normal a b c))
         ((mem_standardFinset_iff_standardSet S _).2 hlive.2.2.1)) :=
   variableBasis_isNilpotent (k := k) S hS hdom hlive .z
 
-/-- Every maximal ideal is the frozen augmentation ideal.-/
+/-- Every maximal ideal is the frozen augmentation ideal.
+@isnad1 id=eq.4h6v.s7.8f64d675549c from=translated src=- shape=04992109 vocab=57de88c5
+-/
 theorem maximalIdeal_eq_augmentationIdeal
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -147,7 +160,9 @@ theorem maximalIdeal_eq_augmentationIdeal
   exact (augmentationIdeal_isMaximal (k := k) S hS hdom).eq_of_le hI.ne_top haug |>.symm
 
 /-- Scope-clean local-ring structure obtained from the unique maximal ideal.
-It is a theorem rather than a global instance because liveness is proof data.-/
+It is a theorem rather than a global instance because liveness is proof data.
+@isnad1 id=islocalr.3h5v.s6.857c45c1a3f4 from=translated src=- shape=ee94638b vocab=d2263466
+-/
 theorem directIsLocalRing (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S) :
     IsLocalRing (MonomialArtin k S) := by
@@ -158,7 +173,9 @@ theorem directIsLocalRing (S : Finset (Normal a b c)) (hS : S.Nonempty)
   exact maximalIdeal_eq_augmentationIdeal (k := k) S hS hdom hlive I hI
 
 /-- Under the locally installed structure, Mathlib's maximal ideal is the
-frozen augmentation ideal.-/
+frozen augmentation ideal.
+@isnad1 id=eq.3h5v.s6.e1c1e9b58cdf from=translated src=- shape=f9dc9b2f vocab=b712bd73
+-/
 theorem localMaximalIdeal_eq_augmentationIdeal
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S) :
@@ -199,6 +216,9 @@ def DirectSocle (S : Finset (Normal a b c)) (hS : S.Nonempty)
     intro t v hv r hr
     rw [MonomialArtin.mul_smul_comm', hv r hr, smul_zero]
 
+/--
+@isnad1 id=iff.2h6v.s9.988f2f2d3348 from=translated src=- shape=4320fe7a vocab=d093e939
+-/
 theorem mem_directSocle_iff (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hdom : IsLiveParameterDomain a b c)
     (v : MonomialArtin k S) :
@@ -207,7 +227,9 @@ theorem mem_directSocle_iff (S : Finset (Normal a b c))
   Iff.rfl
 
 /-- Intrinsic socle membership is equivalent to annihilation by the three
-live variables.-/
+live variables.
+@isnad1 id=iff.3h6v.s9.0e2f9d8100bb from=translated src=- shape=fb7e2f33 vocab=4872ad7a
+-/
 theorem mem_directSocle_iff_variables
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -243,7 +265,9 @@ theorem mem_directSocle_iff_variables
     exact hr
 
 /-- A selected root multiplied by any live variable is killed.  This includes
-wrapped x multiplication through normalized monoid multiplication.-/
+wrapped x multiplication through normalized monoid multiplication.
+@isnad1 id=eq.4h7v.s7.9874347c0268 from=translated src=- shape=d76ae21b vocab=93c45dfc
+-/
 theorem root_mul_variable_eq_zero
     (S : Finset (Normal a b c)) (hdom : IsLiveParameterDomain a b c)
     (hlive : IsLiveTie S) (hanti : IsRootAntichain S)
@@ -271,7 +295,9 @@ theorem root_mul_variable_eq_zero
     · exact (hanti s hs t ht (Ne.symm hts)) hst
   simpa [MonomialArtin.X_mul_X, hkill]
 
-/-- Every selected-root basis vector belongs to the algebraic socle.-/
+/-- Every selected-root basis vector belongs to the algebraic socle.
+@isnad1 id=mem.5h6v.s8.bbcf0c704e05 from=translated src=- shape=0f8bc1c6 vocab=94e2f85c
+-/
 theorem root_X_mem_directSocle
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -286,7 +312,9 @@ theorem root_X_mem_directSocle
     by simpa [Direction.generator, mul_comm] using
       root_mul_variable_eq_zero (k := k) S hdom hlive hanti hs .z⟩
 
-/-- A surviving non-root monomial has a surviving variable multiple.-/
+/-- A surviving non-root monomial has a surviving variable multiple.
+@isnad1 id=ex.1h5v.s7.bf98f5191737 from=translated src=- shape=fb88194c vocab=6d1d5ef2
+-/
 theorem exists_variable_mul_mem_standardFinset_of_not_root
     (S : Finset (Normal a b c)) (p : MonomialIndex S)
     (hp : p.1 ∉ S) :
@@ -302,7 +330,9 @@ theorem exists_variable_mul_mem_standardFinset_of_not_root
   exact ⟨t, by simpa [mul_assoc, mul_comm, mul_left_comm] using hmul.symm⟩
 
 /-- A surviving monomial basis vector in the socle is one of the selected
-roots.-/
+roots.
+@isnad1 id=mem.5h6v.s8.442bc58b4fc0 from=translated src=- shape=fdddc6eb vocab=4e2746fc
+-/
 theorem monomial_mem_roots_of_mem_directSocle
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -375,7 +405,9 @@ def rootBasisSet (S : Finset (Normal a b c)) : Set (MonomialArtin k S) :=
 def rootSpan (S : Finset (Normal a b c)) : Submodule k (MonomialArtin k S) :=
   Submodule.span k (rootBasisSet (k := k) S)
 
-/-- The algebraic socle is exactly the span of the selected-root monomials.-/
+/-- The algebraic socle is exactly the span of the selected-root monomials.
+@isnad1 id=eq.4h5v.s6.8f2a547ed1d6 from=translated src=- shape=b0569398 vocab=66746141
+-/
 theorem directSocle_eq_rootSpan
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -406,6 +438,9 @@ private theorem rootMonomialIndex_injective (S : Finset (Normal a b c)) :
   apply Subtype.ext
   exact congrArg (fun p : MonomialIndex S => p.1) h
 
+/--
+@isnad1 id=linearin.0h5v.s6.329c7e341806 from=translated src=- shape=1eac7404 vocab=8deeac14
+-/
 theorem rootBasis_linearIndependent (S : Finset (Normal a b c)) :
     LinearIndependent k (rootBasisVector (k := k) S) := by
   change LinearIndependent k
@@ -422,7 +457,9 @@ noncomputable def directSocleBasis
   rw [directSocle_eq_rootSpan (k := k) S hS hdom hlive hanti]
   exact Module.Basis.span (rootBasis_linearIndependent (k := k) S)
 
-/-- The socle dimension is exactly the number of selected roots.-/
+/-- The socle dimension is exactly the number of selected roots.
+@isnad1 id=eq.4h5v.s8.438b6439471e from=translated src=- shape=fbb30a24 vocab=31bd547c
+-/
 theorem directSocle_finrank_eq_card
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -438,6 +475,9 @@ def directType (k : Type*) [Field k] (S : Finset (Normal a b c))
     (hS : S.Nonempty) (hdom : IsLiveParameterDomain a b c) : ℕ :=
   Module.finrank k (DirectSocle (k := k) S hS hdom)
 
+/--
+@isnad1 id=eq.4h5v.s6.3cecd3131f7a from=translated src=- shape=2964c801 vocab=bb9f8534
+-/
 theorem directType_eq_rootCard
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -445,6 +485,9 @@ theorem directType_eq_rootCard
     directType k S hS hdom = S.card :=
   directSocle_finrank_eq_card (k := k) S hS hdom hlive hanti
 
+/--
+@isnad1 id=iff.4h5v.s6.a74dccccbcb1 from=translated src=- shape=16b5a2e0 vocab=bb9f8534
+-/
 theorem directType_eq_three_iff
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -453,7 +496,9 @@ theorem directType_eq_three_iff
   rw [directType_eq_rootCard (k := k) S hS hdom hlive hanti]
 
 /-- The frozen direct-NG predicate is literally maximal-ideal containment in
-the ordinary local-ring structure supplied above.-/
+the ordinary local-ring structure supplied above.
+@isnad1 id=iff.3h5v.s8.11dd4737fc54 from=translated src=- shape=20195dd0 vocab=024ae593
+-/
 theorem directNearlyGorenstein_iff_localMaximalIdeal_le_trace
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S) :
@@ -479,6 +524,9 @@ structure DirectLocalArtinStructure
     (letI := directIsLocalRing (k := k) S hS hdom hlive
      IsLocalRing.maximalIdeal (MonomialArtin k S) ≤ TraceSubmodule k S)
 
+/--
+@isnad1 id=directlo.4h5v.s5.5ca82fd75b1c from=translated src=- shape=4af14e06 vocab=02da6042
+-/
 theorem directLocalArtinStructure
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)

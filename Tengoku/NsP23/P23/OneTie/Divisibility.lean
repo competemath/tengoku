@@ -16,7 +16,9 @@ def DividesCriterion (p s : Normal a b c) : Prop :=
   p.y ≤ s.y ∧ p.z ≤ s.z ∧
     (p.x ≤ s.x ∨ (p.y + b ≤ s.y ∧ p.z + c ≤ s.z))
 
-/-- Actual monoid divisibility is exactly the ordinary-or-wrapped coordinate criterion.-/
+/-- Actual monoid divisibility is exactly the ordinary-or-wrapped coordinate criterion.
+@isnad1 id=iff.0h5v.s5.79525d4fce15 from=translated src=- shape=fb3ba1ca vocab=9d635013
+-/
 theorem exact_divides_iff (p s : Normal a b c) :
     p ∣ s ↔ DividesCriterion p s := by
   have ha : 0 < a := Nat.pos_of_ne_zero (NeZero.ne a)
@@ -107,6 +109,9 @@ def wrappedXPredecessor (p : Normal a b c) (_hpx : p.x = 0)
     have ha : 0 < a := Nat.pos_of_ne_zero (NeZero.ne a)
     omega⟩
 
+/--
+@isnad1 id=eq.1h4v.s6.4a002909fb15 from=translated src=- shape=7926d2f5 vocab=fadeebaf
+-/
 theorem yPredecessor_mul (p : Normal a b c) (hy : 0 < p.y) :
     yPredecessor p hy * yGenerator = p := by
   have hdiv : p.x / a = 0 := Nat.div_eq_of_lt p.x_lt
@@ -117,6 +122,9 @@ theorem yPredecessor_mul (p : Normal a b c) (hy : 0 < p.y) :
     omega
   · simp [yPredecessor, yGenerator, hdiv]
 
+/--
+@isnad1 id=eq.1h4v.s6.1104e79b2d83 from=translated src=- shape=7926d2f5 vocab=9a321e84
+-/
 theorem zPredecessor_mul (p : Normal a b c) (hz : 0 < p.z) :
     zPredecessor p hz * zGenerator = p := by
   have hdiv : p.x / a = 0 := Nat.div_eq_of_lt p.x_lt
@@ -127,6 +135,9 @@ theorem zPredecessor_mul (p : Normal a b c) (hz : 0 < p.z) :
   · simp [zPredecessor, zGenerator, hdiv]
     omega
 
+/--
+@isnad1 id=eq.1h4v.s6.177e827bfe78 from=translated src=- shape=7926d2f5 vocab=d30b3091
+-/
 theorem xPredecessor_mul (p : Normal a b c) (hx : 0 < p.x) :
     xPredecessor p hx * xGenerator = p := by
   have ha2 : 2 ≤ a := by have := p.x_lt; omega
@@ -140,6 +151,9 @@ theorem xPredecessor_mul (p : Normal a b c) (hx : 0 < p.x) :
     exact Nat.mod_eq_of_lt p.x_lt
   apply Normal.ext <;> simp [xPredecessor, xGenerator, ha1, hdiv, hmod]
 
+/--
+@isnad1 id=eq.3h4v.s6.7b42e89b4aa4 from=translated src=- shape=d2862ba3 vocab=7057e2d7
+-/
 theorem wrappedXPredecessor_mul (p : Normal a b c)
     (hpx : p.x = 0) (hy : b ≤ p.y) (hz : c ≤ p.z) :
     wrappedXPredecessor p hpx hy hz * xGenerator = p := by
@@ -158,6 +172,9 @@ theorem wrappedXPredecessor_mul (p : Normal a b c)
     · simp [wrappedXPredecessor, xGenerator, ha1, hdiv]
       omega
 
+/--
+@isnad1 id=eq.2h5v.s6.8f9f79a02414 from=translated src=- shape=a60d6616 vocab=fadeebaf
+-/
 theorem yPredecessor_unique (p : Normal a b c) (hy : 0 < p.y)
     (q : Normal a b c) (hq : q * yGenerator = p) : q = yPredecessor p hy := by
   have hxq : q.x = p.x := by
@@ -175,6 +192,9 @@ theorem yPredecessor_unique (p : Normal a b c) (hy : 0 < p.y)
     omega
   · simp [yPredecessor, hzq]
 
+/--
+@isnad1 id=eq.2h5v.s6.b3ae52451b91 from=translated src=- shape=a60d6616 vocab=9a321e84
+-/
 theorem zPredecessor_unique (p : Normal a b c) (hz : 0 < p.z)
     (q : Normal a b c) (hq : q * zGenerator = p) : q = zPredecessor p hz := by
   have hxq : q.x = p.x := by
@@ -192,6 +212,9 @@ theorem zPredecessor_unique (p : Normal a b c) (hz : 0 < p.z)
   · simp [zPredecessor]
     omega
 
+/--
+@isnad1 id=eq.2h5v.s6.7be27c2acbaa from=translated src=- shape=a60d6616 vocab=d30b3091
+-/
 theorem xPredecessor_unique (p : Normal a b c) (hx : 0 < p.x)
     (q : Normal a b c) (hq : q * xGenerator = p) : q = xPredecessor p hx := by
   have ha2 : 2 ≤ a := by have := p.x_lt; omega
@@ -220,6 +243,9 @@ theorem xPredecessor_unique (p : Normal a b c) (hx : 0 < p.x)
   · simp [xPredecessor, hyq]
   · simp [xPredecessor, hzq]
 
+/--
+@isnad1 id=eq.4h5v.s6.bd97f62b96fb from=translated src=- shape=91309f7b vocab=7057e2d7
+-/
 theorem wrappedXPredecessor_unique (p : Normal a b c)
     (hpx : p.x = 0) (hy : b ≤ p.y) (hz : c ≤ p.z)
     (q : Normal a b c) (hq : q * xGenerator = p) :
@@ -262,18 +288,27 @@ theorem wrappedXPredecessor_unique (p : Normal a b c)
     · simp [wrappedXPredecessor]
       omega
 
+/--
+@isnad1 id=iff.0h4v.s5.75b3a57dd3e3 from=translated src=- shape=d6d00a25 vocab=c514c180
+-/
 theorem yGenerator_dvd_iff (p : Normal a b c) :
     yGenerator ∣ p ↔ 0 < p.y := by
   rw [exact_divides_iff]
   simp [DividesCriterion, yGenerator]
   omega
 
+/--
+@isnad1 id=iff.0h4v.s5.22658242c38f from=translated src=- shape=d6d00a25 vocab=9f994a2f
+-/
 theorem zGenerator_dvd_iff (p : Normal a b c) :
     zGenerator ∣ p ↔ 0 < p.z := by
   rw [exact_divides_iff]
   simp [DividesCriterion, zGenerator]
   omega
 
+/--
+@isnad1 id=iff.0h4v.s6.db936fab7b81 from=translated src=- shape=42080c42 vocab=10cfbc96
+-/
 theorem xGenerator_dvd_iff (p : Normal a b c) :
     xGenerator ∣ p ↔ 0 < p.x ∨ (b ≤ p.y ∧ c ≤ p.z) := by
   rw [exact_divides_iff]
@@ -323,42 +358,68 @@ def predecessor (e : Direction) (s : Normal a b c) : Option (Normal a b c) :=
   | .z =>
       if hz : 0 < s.z then some (zPredecessor s hz) else none
 
+/--
+@isnad1 id=eq.1h4v.s5.7f3a92c47b72 from=translated src=- shape=35f15ee2 vocab=d2365ffa
+-/
 @[simp] theorem predecessor_x_of_pos (s : Normal a b c) (hx : 0 < s.x) :
     predecessor .x s = some (xPredecessor s hx) := by
   simp [predecessor, hx]
 
+/--
+@isnad1 id=eq.3h4v.s6.1c74636be5be from=translated src=- shape=d9c4163d vocab=3f04f784
+-/
 @[simp] theorem predecessor_x_wrapped (s : Normal a b c) (hx : s.x = 0)
     (hy : b ≤ s.y) (hz : c ≤ s.z) :
     predecessor .x s = some (wrappedXPredecessor s hx hy hz) := by
   have hnot : ¬0 < s.x := by omega
   simp only [predecessor, hnot, dite_false, hy, hz, and_self, dite_true]
 
+/--
+@isnad1 id=eq.2h4v.s6.95b1c7920c7a from=translated src=- shape=40ea6b50 vocab=f36b6ab6
+-/
 @[simp] theorem predecessor_x_none (s : Normal a b c) (hx : s.x = 0)
     (hw : ¬(b ≤ s.y ∧ c ≤ s.z)) : predecessor .x s = none := by
   have hnot : ¬0 < s.x := by omega
   simp [predecessor, hnot, hw]
 
+/--
+@isnad1 id=eq.1h4v.s5.0f61a5bdde3b from=translated src=- shape=35f15ee2 vocab=2bef20eb
+-/
 @[simp] theorem predecessor_y_of_pos (s : Normal a b c) (hy : 0 < s.y) :
     predecessor .y s = some (yPredecessor s hy) := by
   simp [predecessor, hy]
 
+/--
+@isnad1 id=eq.1h4v.s5.92fe41d7e20d from=translated src=- shape=14a28ad1 vocab=b8db3001
+-/
 @[simp] theorem predecessor_y_none (s : Normal a b c) (hy : s.y = 0) :
     predecessor .y s = none := by
   simp [predecessor, hy]
 
+/--
+@isnad1 id=eq.1h4v.s5.1bfa40c46d12 from=translated src=- shape=35f15ee2 vocab=6212a2ca
+-/
 @[simp] theorem predecessor_z_of_pos (s : Normal a b c) (hz : 0 < s.z) :
     predecessor .z s = some (zPredecessor s hz) := by
   simp [predecessor, hz]
 
+/--
+@isnad1 id=eq.1h4v.s5.152b12455e26 from=translated src=- shape=14a28ad1 vocab=ae2f1641
+-/
 @[simp] theorem predecessor_z_none (s : Normal a b c) (hz : s.z = 0) :
     predecessor .z s = none := by
   simp [predecessor, hz]
 
 omit [NeZero a] in
+/--
+@isnad1 id=not.0h4v.s5.1b8b7ee84e74 from=translated src=- shape=eb1f9bf1 vocab=82a6a0ab
+-/
 theorem x_predecessor_cases_exclusive (s : Normal a b c) :
     ¬(0 < s.x ∧ s.x = 0 ∧ b ≤ s.y ∧ c ≤ s.z) := by omega
 
-/-- The predecessor interface returns exactly the unique factor by the variable generator.-/
+/-- The predecessor interface returns exactly the unique factor by the variable generator.
+@isnad1 id=iff.0h6v.s6.ff94137364aa from=translated src=- shape=59edc94f vocab=791b6c7e
+-/
 theorem predecessor_eq_some_iff_mul (e : Direction) (s q : Normal a b c) :
     predecessor e s = some q ↔ q * e.generator = s := by
   constructor
@@ -434,6 +495,9 @@ theorem predecessor_eq_some_iff_mul (e : Direction) (s q : Normal a b c) :
         congr
         exact (zPredecessor_unique s hz q h).symm
 
+/--
+@isnad1 id=iff.0h5v.s5.1bd780cd9b75 from=translated src=- shape=cd3f25f2 vocab=1da1f682
+-/
 theorem predecessor_isSome_iff_dvd (e : Direction) (s : Normal a b c) :
     (predecessor e s).isSome ↔ e.generator ∣ s := by
   constructor
@@ -450,7 +514,9 @@ theorem predecessor_isSome_iff_dvd (e : Direction) (s : Normal a b c) :
 
 end Normal
 
-/-- Public Run-01 checkpoint: actual monoid divisibility equals the exact criterion.-/
+/-- Public Run-01 checkpoint: actual monoid divisibility equals the exact criterion.
+@isnad1 id=iff.0h5v.s5.79525d4fce15 from=translated src=- shape=fb3ba1ca vocab=9d635013
+-/
 theorem exact_divides_iff {a b c : ℕ} [NeZero a]
     (p s : Normal a b c) : p ∣ s ↔ Normal.DividesCriterion p s :=
   Normal.exact_divides_iff p s

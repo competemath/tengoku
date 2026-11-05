@@ -6,6 +6,9 @@ namespace P23.OneTie
 open P23.Artin
 variable {a b c : ℕ} [NeZero a]
 
+/--
+@isnad1 id=eq.4h5v.s6.eb594a77425c from=translated src=- shape=710279c2 vocab=cc6a8755
+-/
 theorem standardSet_eq_of_borderFinset_eq {S T : Finset (Normal a b c)}
     (hS : S.Nonempty) (hT : T.Nonempty) (hd : IsLiveParameterDomain a b c)
     (he : borderFinset S = borderFinset T) : standardSet S = standardSet T := by
@@ -13,6 +16,9 @@ theorem standardSet_eq_of_borderFinset_eq {S T : Finset (Normal a b c)}
   rw [standard_iff_no_border_divisor S hS hd,
     standard_iff_no_border_divisor T hT hd,he]
 
+/--
+@isnad1 id=eq.4h5v.s6.8c57d12b8040 from=translated src=- shape=616349c1 vocab=16ab07c0
+-/
 theorem rootFinset_eq_of_standardSet_eq {S T : Finset (Normal a b c)}
     (hd : IsLiveParameterDomain a b c) (hS : IsRootAntichain S)
     (hT : IsRootAntichain T) (he : standardSet S = standardSet T) : S = T :=

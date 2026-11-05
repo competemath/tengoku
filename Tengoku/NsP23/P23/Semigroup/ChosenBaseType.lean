@@ -18,7 +18,9 @@ variable {k : Type*} [Field k]
 variable (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
 
 /-- Tail multiplication kills an Apéry basis monomial exactly when the sum
-leaves the Apéry set.-/
+leaves the Apéry set.
+@isnad1 id=iff.0h5v.s8.083e659643c6 from=translated src=- shape=dd19ec8e vocab=e45cf7ba
+-/
 theorem tailVariableA_mul_A_eq_zero_iff (s : D.AperyIndex i) (j : Fin 3) :
     tailVariableA (k := k) D i j * A (k := k) s.1 s.2 = 0 ↔
       ¬ D.IsApery i (s.1 + D.tail i j) := by
@@ -52,7 +54,9 @@ private theorem tailVariableA_pow_eq (j : Fin 3) (n : ℕ) :
       simp [add_comm]
 
 /-- Every tail variable is nilpotent, using the uniform Run20 Apéry degree
-bound rather than enumeration.-/
+bound rather than enumeration.
+@isnad1 id=isnilpot.0h4v.s6.9ee1a3195984 from=translated src=- shape=d877f030 vocab=cdeabfe7
+-/
 theorem tailVariableA_isNilpotent (j : Fin 3) :
     IsNilpotent (tailVariableA (k := k) D i j) := by
   refine ⟨D.conductor + D.n i, ?_⟩
@@ -75,10 +79,16 @@ def aperyAugmentationAlgHom : AperyArtin k D i →ₐ[k] k :=
   (TrivSqZeroExt.fstHom k k (Fin 3 → k)).comp
     (aperyFirstOrderAlgHom (k := k) D i)
 
+/--
+@isnad1 id=eq.0h4v.s8.339996e2fbdd from=translated src=- shape=bd2167ee vocab=53c1c3c4
+-/
 @[simp] theorem aperyAugmentationAlgHom_apply (x : AperyArtin k D i) :
     aperyAugmentationAlgHom (k := k) D i x =
       aperyConstantCoeff (k := k) D i x := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.a4405b189d1a from=translated src=- shape=8473aa6f vocab=35325b7d
+-/
 theorem apery_basis_expansion (x : AperyArtin k D i) :
     x = x.coeff.sum fun s r => r • A (k := k) s.1 s.2 := by
   induction x using AperyArtin.induction_linear with
@@ -112,7 +122,9 @@ private theorem mem_aperyAugmentationIdeal_of_constantCoeff_eq_zero
         (algebraMap k (AperyArtin k D i) (x.coeff s))
         (A_mem_aperyAugmentationIdeal (k := k) D i s hs0)
 
-/-- The algebra-hom kernel is exactly the frozen Run20 augmentation ideal.-/
+/-- The algebra-hom kernel is exactly the frozen Run20 augmentation ideal.
+@isnad1 id=eq.0h3v.s7.f963c5ffd890 from=translated src=- shape=4c70f7ac vocab=42f78d2c
+-/
 theorem aperyAugmentationAlgHom_ker :
     RingHom.ker (aperyAugmentationAlgHom (k := k) D i).toRingHom =
       aperyAugmentationIdeal (k := k) D i := by
@@ -132,12 +144,18 @@ theorem aperyAugmentationAlgHom_ker :
       FourGeneratedNumericalSemigroup.generator] using
       (Nat.ne_of_gt (D.tailGen_positive i j) hv)
 
+/--
+@isnad1 id=surjecti.0h3v.s7.36e01f2c1932 from=translated src=- shape=81f75b37 vocab=07138a4b
+-/
 theorem aperyAugmentationAlgHom_surjective :
     Function.Surjective (aperyAugmentationAlgHom (k := k) D i) := by
   intro r
   exact ⟨algebraMap k (AperyArtin k D i) r,
     (aperyAugmentationAlgHom (k := k) D i).commutes r⟩
 
+/--
+@isnad1 id=ismaxima.0h3v.s5.edacc4b3d5dc from=translated src=- shape=faadfc7c vocab=de55a98a
+-/
 theorem aperyAugmentationIdeal_isMaximal :
     (aperyAugmentationIdeal (k := k) D i).IsMaximal := by
   rw [← aperyAugmentationAlgHom_ker (k := k) D i]
@@ -146,7 +164,9 @@ theorem aperyAugmentationIdeal_isMaximal :
     (aperyAugmentationAlgHom_surjective (k := k) D i)
 
 /-- Every maximal ideal of the finite Apéry algebra is the augmentation
-ideal.-/
+ideal.
+@isnad1 id=eq.1h4v.s6.6bed0392cbb8 from=translated src=- shape=a24cfbfb vocab=68733fce
+-/
 theorem aperyMaximalIdeal_eq_augmentationIdeal
     (I : Ideal (AperyArtin k D i)) (hI : I.IsMaximal) :
     I = aperyAugmentationIdeal (k := k) D i := by
@@ -161,7 +181,9 @@ theorem aperyMaximalIdeal_eq_augmentationIdeal
   exact (aperyAugmentationIdeal_isMaximal (k := k) D i).eq_of_le
     hI.ne_top haug |>.symm
 
-/-- The finite Apéry algebra is a local ring.-/
+/-- The finite Apéry algebra is a local ring.
+@isnad1 id=islocalr.0h3v.s5.da52108b87e8 from=translated src=- shape=dd5c06af vocab=558b18df
+-/
 theorem aperyIsLocalRing : IsLocalRing (AperyArtin k D i) := by
   apply IsLocalRing.of_unique_max_ideal
   exact ⟨aperyAugmentationIdeal (k := k) D i,
@@ -179,6 +201,9 @@ def AperySocle : Submodule k (AperyArtin k D i) where
     intro c x hx r hr
     rw [mul_smul_comm, hx r hr, smul_zero]
 
+/--
+@isnad1 id=iff.0h4v.s7.cfbffe80c013 from=translated src=- shape=40032c99 vocab=f1e4eb88
+-/
 theorem mem_aperySocle_iff_tail_variables (x : AperyArtin k D i) :
     x ∈ AperySocle (k := k) D i ↔
       ∀ j : Fin 3, tailVariableA (k := k) D i j * x = 0 := by
@@ -204,6 +229,9 @@ theorem mem_aperySocle_iff_tail_variables (x : AperyArtin k D i) :
       exact hx j
     exact hle hr
 
+/--
+@isnad1 id=iff.0h4v.s8.974d7f97f15f from=translated src=- shape=260e0cfb vocab=dff41baf
+-/
 theorem A_mem_aperySocle_iff (s : D.AperyIndex i) :
     A (k := k) s.1 s.2 ∈ AperySocle (k := k) D i ↔
       ∀ j : Fin 3, ¬ D.IsApery i (s.1 + D.tail i j) := by
@@ -272,7 +300,9 @@ def aperySocleRootSpan : Submodule k (AperyArtin k D i) :=
   Submodule.span k (aperySocleRootSet (k := k) D i)
 
 /-- The intrinsic Apéry socle is exactly the span of Apéry-socle basis
-degrees.-/
+degrees.
+@isnad1 id=eq.0h3v.s6.b9626c7d88cf from=translated src=- shape=fbb3a69d vocab=9bd23a25
+-/
 theorem aperySocle_eq_rootSpan :
     AperySocle (k := k) D i = aperySocleRootSpan (k := k) D i := by
   apply le_antisymm
@@ -297,6 +327,9 @@ private def aperySocleBasisIndex (s : D.AperySocleIndex i) :
 private theorem aperySocleBasisIndex_injective :
     Function.Injective (aperySocleBasisIndex D i) := Subtype.val_injective
 
+/--
+@isnad1 id=linearin.0h3v.s6.37c67fae2084 from=translated src=- shape=d01f90d1 vocab=9e90bd3b
+-/
 theorem aperySocleBasis_linearIndependent :
     LinearIndependent k (aperySocleBasisVector (k := k) D i) := by
   change LinearIndependent k
@@ -314,13 +347,18 @@ noncomputable def aperySocleBasis :
 
 def aperyType : ℕ := Module.finrank k (AperySocle (k := k) D i)
 
+/--
+@isnad1 id=eq.0h3v.s4.679a6c284532 from=translated src=- shape=381962a8 vocab=84ae18d9
+-/
 theorem aperyType_eq_semigroupType :
     aperyType (k := k) D i = D.semigroupType := by
   rw [aperyType, ← pseudoFrobenius_card_eq_aperySocle_card D i,
     ← Module.finrank_eq_card_basis (aperySocleBasis (k := k) D i)]
 
 /-- Locality of the genuine chosen-base quotient, transported across the
-frozen Run20 algebra equivalence.-/
+frozen Run20 algebra equivalence.
+@isnad1 id=islocalr.0h3v.s6.5cdf151907ef from=translated src=- shape=dd5c06af vocab=82ed6101
+-/
 theorem chosenBaseIsLocalRing : IsLocalRing (ChosenBaseQuotient (k := k) D i) := by
   letI := aperyIsLocalRing (k := k) D i
   exact RingEquiv.isLocalRing (chosenBaseEquivApery (k := k) D i).symm.toRingEquiv
@@ -329,6 +367,9 @@ def chosenBaseAugmentationIdeal : Ideal (ChosenBaseQuotient (k := k) D i) :=
   (aperyAugmentationIdeal (k := k) D i).comap
     (chosenBaseEquivApery (k := k) D i).toRingHom
 
+/--
+@isnad1 id=eq.0h3v.s7.4094f5dd5b79 from=translated src=- shape=7a49b6e5 vocab=661f16c0
+-/
 theorem chosenBaseMaximalIdeal_eq_augmentationIdeal :
     letI := chosenBaseIsLocalRing (k := k) D i
     IsLocalRing.maximalIdeal (ChosenBaseQuotient (k := k) D i) =
@@ -351,6 +392,9 @@ def ChosenBaseSocle : Submodule k (ChosenBaseQuotient (k := k) D i) := by
     smul_mem' := by intro c x hx r hr; rw [mul_smul_comm, hx r hr, smul_zero]
   }
 
+/--
+@isnad1 id=iff.0h4v.s10.faab08a7e16b from=translated src=- shape=672ea278 vocab=07f097ad
+-/
 theorem mem_chosenBaseSocle_iff_equiv_mem_aperySocle
     (x : ChosenBaseQuotient (k := k) D i) :
     x ∈ ChosenBaseSocle (k := k) D i ↔
@@ -391,13 +435,18 @@ def chosenBaseType : ℕ :=
   Module.finrank k (ChosenBaseSocle (k := k) D i)
 
 /-- Main Run21 theorem: the genuine chosen-base quotient has algebraic type
-equal to the numerical-semigroup pseudo-Frobenius type.-/
+equal to the numerical-semigroup pseudo-Frobenius type.
+@isnad1 id=eq.0h3v.s4.182ab7129a7a from=translated src=- shape=381962a8 vocab=bb0adf68
+-/
 theorem chosenBaseType_eq_semigroupType :
     chosenBaseType (k := k) D i = D.semigroupType := by
   rw [chosenBaseType,
     (chosenBaseSocleEquivAperySocle (k := k) D i).finrank_eq,
     ← aperyType, aperyType_eq_semigroupType (k := k) D i]
 
+/--
+@isnad1 id=iff.0h3v.s5.99a31bb592ae from=translated src=- shape=727d4a79 vocab=bb0adf68
+-/
 theorem chosenBaseType_eq_three_iff :
     chosenBaseType (k := k) D i = 3 ↔ D.semigroupType = 3 := by
   rw [chosenBaseType_eq_semigroupType (k := k) D i]

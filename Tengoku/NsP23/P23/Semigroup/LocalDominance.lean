@@ -17,6 +17,9 @@ structure BudgetOneDominantCanonicalRoot (D : FourGeneratedNumericalSemigroup) (
   typeEqSemigroup : normalization.roots.card=D.semigroupType
   kernelMuEqRho : idealGeneratorMu (finitePresentationIdeal (k:=ℚ) normalization.roots)=D.semigroupRho
 
+/--
+@isnad1 id=nonempty.4h2v.s6.cbb65f8f39f3 from=translated src=- shape=cbd11343 vocab=67be7a3a
+-/
 theorem budgetOneDominantCanonicalRoot (D : FourGeneratedNumericalSemigroup) (i : Fin 4)
     (hB : D.fourBaseBudget i=1) (ht : D.semigroupType=2 ∨ D.semigroupType=3)
     (hn : SemigroupNearlyGorenstein D) (hr : D.semigroupType+4≤D.semigroupRho) :

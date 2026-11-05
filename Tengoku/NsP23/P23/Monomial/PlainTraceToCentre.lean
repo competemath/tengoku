@@ -6,6 +6,9 @@ namespace P23.Monomial
 noncomputable section
 variable {k : Type*} [Field k]
 
+/--
+@isnad1 id=plaindir.3h5v.s9.f2057cf6e180 from=translated src=- shape=17ec457a vocab=443b0719
+-/
 theorem plain_rootSource_isDirectionalCentre (R : Finset PlainExp) (j : Fin 3)
     (hj : plainUnitVector j ∈ plainStandardFinset R)
     (F : PlainOmega k R →ₗ[PlainMonomialArtin k R] PlainMonomialArtin k R)
@@ -37,6 +40,9 @@ def PlainVariablesInTrace (k : Type*) [Field k] (R : Finset PlainExp)
   ∀ j, PX (k := k) R (plainUnitVector j)
     ((mem_plainStandardFinset R _).mpr (hv j)) ∈ PlainTraceSubmodule k R
 
+/--
+@isnad1 id=hasplain.5h2v.s5.4788d6d783c4 from=translated src=- shape=3539f14b vocab=9584a8d4
+-/
 theorem plain_hasDirectionalCentres_of_variablesInTrace (R : Finset PlainExp)
     (hR : R.Nonempty) (hcard : 2 ≤ R.card) (ha : PlainRootAntichain R)
     (hv : PlainVariablesSurvive R) (ht : PlainVariablesInTrace k R hv) :

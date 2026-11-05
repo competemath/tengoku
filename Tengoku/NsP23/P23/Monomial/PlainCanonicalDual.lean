@@ -32,6 +32,9 @@ def act (r : PlainMonomialArtin k S) (φ : PlainOmega k S) : PlainOmega k S wher
 
 instance : SMul (PlainMonomialArtin k S) (PlainOmega k S) := ⟨act⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.db88123594ab from=translated src=- shape=986c7439 vocab=2cce8dd6
+-/
 @[simp]
 theorem smul_apply (r : PlainMonomialArtin k S) (φ : PlainOmega k S)
     (x : PlainMonomialArtin k S) : (r • φ) x = φ (r * x) := rfl
@@ -67,6 +70,9 @@ instance : IsScalarTower k (PlainMonomialArtin k S) (PlainOmega k S) where
 def PU (S : Finset PlainExp) (p : PlainMonomialIndex S) : PlainOmega k S :=
   (PlainMonomialArtin.monomialBasis k S).dualBasis p
 
+/--
+@isnad1 id=eq.0h4v.s7.fc93843ee330 from=translated src=- shape=20680bbe vocab=7d39686f
+-/
 @[simp]
 theorem PU_apply_PX (S : Finset PlainExp) (p q : PlainMonomialIndex S) :
     PU (k := k) S p (PX (k := k) S q.1 q.2) = if p = q then 1 else 0 := by
@@ -75,7 +81,9 @@ theorem PU_apply_PX (S : Finset PlainExp) (p q : PlainMonomialIndex S) :
       |>.trans (by simp [eq_comm])
 
 /-- Exact coefficient formula for the action of a monomial basis vector on a
-dual basis vector.-/
+dual basis vector.
+@isnad1 id=eq.0h5v.s8.f09a323ff942 from=translated src=- shape=03f39c84 vocab=ea59221c
+-/
 theorem PX_smul_PU_apply_PX (S : Finset PlainExp)
     (m q s : PlainMonomialIndex S) :
     (PX (k := k) S m.1 m.2 • PU (k := k) S s)
@@ -96,7 +104,9 @@ theorem PX_smul_PU_apply_PX (S : Finset PlainExp)
     simp [hmq, hne]
 
 /-- Cancellativity upgrades the coefficient formula to an exact dual-basis
-action.-/
+action.
+@isnad1 id=eq.1h5v.s7.ff83788283fb from=translated src=- shape=e2dd3f6f vocab=4a3fb92d
+-/
 theorem PX_smul_PU_eq_PU (S : Finset PlainExp)
     (m q s : PlainMonomialIndex S) (h : m.1 + q.1 = s.1) :
     PX (k := k) S m.1 m.2 • PU (k := k) S s = PU (k := k) S q := by
@@ -114,6 +124,9 @@ theorem PX_smul_PU_eq_PU (S : Finset PlainExp)
       exact h
   simp [hiff, eq_comm]
 
+/--
+@isnad1 id=ne.0h3v.s6.0681532c570f from=translated src=- shape=dc1128e4 vocab=adce6326
+-/
 theorem PU_ne_zero (S : Finset PlainExp) (p : PlainMonomialIndex S) :
     PU (k := k) S p ≠ 0 := by
   intro h
@@ -151,7 +164,9 @@ private theorem PU_mem_plainRootDual_span (S : Finset PlainExp)
   rw [←PX_smul_PU_eq_PU (k := k) S wi p (plainRootIndex S s hs) hprod]
   exact Submodule.smul_mem _ _ hroot
 
-/-- The selected-root duals generate the entire canonical module.-/
+/-- The selected-root duals generate the entire canonical module.
+@isnad1 id=eq.0h2v.s8.15532a84de8f from=translated src=- shape=1a48e1f4 vocab=4e1af92d
+-/
 theorem plainRootDual_span_eq_top (S : Finset PlainExp) :
     Submodule.span (PlainMonomialArtin k S) (plainRootDualSet k S) = ⊤ := by
   let P := Submodule.span (PlainMonomialArtin k S) (plainRootDualSet k S)
@@ -166,7 +181,9 @@ theorem plainRootDual_span_eq_top (S : Finset PlainExp) :
   rw [(PlainMonomialArtin.monomialBasis k S).dualBasis.span_eq] at hspan
   exact hspan (Submodule.mem_top)
 
-/-- Exact monomial annihilator of a selected-root dual.-/
+/-- Exact monomial annihilator of a selected-root dual.
+@isnad1 id=iff.1h4v.s7.4b91fbcc2197 from=translated src=- shape=4dcecbf5 vocab=6cc434e8
+-/
 theorem PX_smul_plainRootDual_eq_zero_iff (S : Finset PlainExp)
     (s : PlainExp) (hs : s ∈ S) (w : PlainMonomialIndex S) :
     PX (k := k) S w.1 w.2 • PU (k := k) S (plainRootIndex S s hs) = 0 ↔

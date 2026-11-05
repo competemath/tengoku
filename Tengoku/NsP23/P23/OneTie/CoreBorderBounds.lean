@@ -95,6 +95,9 @@ private theorem m2_scalar (r u v x y z : ℕ)
         omega
       exact Or.inr (Or.inr (Or.inr ⟨by omega,hy0,by omega⟩))
 
+/--
+@isnad1 id=le.4h4v.s6.c8e5622dd694 from=translated src=- shape=3fe8715a vocab=818180d5
+-/
 theorem m2_core_border_card_le_four (ha : 2≤a) (hu : 1≤u) (hv : 1≤v)
     (hr : r≤a-2) : (borderFinset (m2Socles (a:=a) ha r u v hr)).card ≤ 4 := by
   by_cases hlast : r=a-2
@@ -132,6 +135,9 @@ theorem m2_core_border_card_le_four (ha : 2≤a) (hu : 1≤u) (hv : 1≤v)
     exact le_trans (Finset.card_le_card hs) (card_four_le _ _ _ _)
 
 set_option maxHeartbeats 400000 in
+/--
+@isnad1 id=le.4h4v.s6.e43f319a23b1 from=translated src=- shape=ca085078 vocab=9785cf33
+-/
 theorem m3_core_border_card_le_four (ha : 2≤a) (hb : 1≤b) (hc : 1≤c)
     (hv : c≤v) : (borderFinset (m3Socles (a:=a) (b:=b) (c:=c) v)).card ≤ 4 := by
   let G : Finset (Normal a b c) := {⟨0,b+1,0,by omega⟩,
@@ -169,6 +175,9 @@ private theorem m4_core_standard (ha : 2≤a) (u v : ℕ) (p : Normal a 1 1) :
   omega
 
 set_option maxHeartbeats 400000 in
+/--
+@isnad1 id=le.2h3v.s6.9fe04b1dae61 from=translated src=- shape=fd741e2e vocab=64790186
+-/
 theorem m4_core_border_card_le_four (ha : 2≤a) (hu : 1≤u) :
     (borderFinset (m4Socles (a:=a) ha u v)).card ≤ 4 := by
   let G : Finset (Normal a 1 1) := {⟨0,u+1,0,by omega⟩,
@@ -207,6 +216,9 @@ private theorem m5_core_standard (ha : 2≤a) (hb : 1≤b) (hc : 1≤c)
   omega
 
 set_option maxHeartbeats 400000 in
+/--
+@isnad1 id=le.4h4v.s6.7be9738133fa from=translated src=- shape=bf2b6dfa vocab=ce345b0d
+-/
 theorem m5_core_border_card_le_four (ha : 2≤a) (hb : 1≤b) (hc : 1≤c)
     (hv : 1≤v) : (borderFinset (m5Socles (a:=a) (b:=b) (c:=c) ha v)).card ≤ 4 := by
   let G : Finset (Normal a b c) := {⟨0,b+1,0,by omega⟩,
@@ -233,6 +245,9 @@ theorem m5_core_border_card_le_four (ha : 2≤a) (hb : 1≤b) (hc : 1≤c)
   exact le_trans (Finset.card_le_card hs) (card_four_le _ _ _ _)
 
 set_option maxHeartbeats 400000 in
+/--
+@isnad1 id=le.2h3v.s6.12b1738035eb from=translated src=- shape=73f15168 vocab=9f254a9d
+-/
 theorem p3_core_border_card_le_four (ha : 2≤a) (hb : 2≤b) :
     (borderFinset (p3Socles (a:=a) (b:=b) v)).card ≤ 4 := by
   let G : Finset (Normal a b 0) := {⟨1,1,0,by omega⟩,
@@ -261,6 +276,9 @@ theorem p3_core_border_card_le_four (ha : 2≤a) (hb : 2≤b) :
   omega
 
 set_option maxHeartbeats 400000 in
+/--
+@isnad1 id=le.3h3v.s6.ceeb159d7984 from=translated src=- shape=f22c54aa vocab=215af806
+-/
 theorem p4_core_border_card_le_four (ha : 2≤a) (hb : 2≤b) (hV : 1≤V) :
     (borderFinset (p4Socles (a:=a) (b:=b) V)).card ≤ 4 := by
   let G : Finset (Normal a b 0) := {⟨1,1,0,by omega⟩,
@@ -289,6 +307,9 @@ theorem p4_core_border_card_le_four (ha : 2≤a) (hb : 2≤b) (hV : 1≤V) :
   omega
 
 set_option maxHeartbeats 400000 in
+/--
+@isnad1 id=le.3h3v.s6.0accf7ea824c from=translated src=- shape=7a5a3dcb vocab=cf6983f5
+-/
 theorem p5_core_border_card_le_four (ha : 2≤a) (hb : 2≤b) (hv : 1≤v) :
     (borderFinset (p5Socles (a:=a) (b:=b) ha v)).card ≤ 4 := by
   let G : Finset (Normal a b 0) := {⟨1,1,0,by omega⟩,
@@ -317,6 +338,9 @@ theorem p5_core_border_card_le_four (ha : 2≤a) (hb : 2≤b) (hv : 1≤v) :
   omega
 
 set_option maxHeartbeats 400000 in
+/--
+@isnad1 id=le.3h3v.s6.abae4e00b9ec from=translated src=- shape=7a5a3dcb vocab=4de9cb75
+-/
 theorem p6_core_border_card_le_four (ha : 2≤a) (hb : 2≤b) (hv : 1≤v) :
     (borderFinset (p6Socles (a:=a) (b:=b) ha v)).card ≤ 4 := by
   let G : Finset (Normal a b 0) := {⟨1,1,0,by omega⟩,
@@ -345,6 +369,9 @@ theorem p6_core_border_card_le_four (ha : 2≤a) (hb : 2≤b) (hv : 1≤v) :
   omega
 
 set_option maxHeartbeats 400000 in
+/--
+@isnad1 id=le.5h5v.s7.947f6e9fa5e4 from=translated src=- shape=8fc3d9da vocab=9dcf3b19
+-/
 theorem pure_fibre_pair_border_card_le_four (ha : 2≤a) (hb : 2≤b)
     (r u k : ℕ) (hr : r<a) (hu : b≤u) (hk : 1≤k) :
     (borderFinset ({⟨r,u,0,hr⟩,⟨0,0,k,by omega⟩} : Finset (Normal a b 0))).card ≤ 4 := by
@@ -385,6 +412,9 @@ theorem pure_fibre_pair_border_card_le_four (ha : 2≤a) (hb : 2≤b)
           omega
   exact le_trans (Finset.card_le_card hs) (card_four_le _ _ _ _)
 
+/--
+@isnad1 id=le.5h3v.s6.04507935632d from=translated src=- shape=4e209760 vocab=2a8138b0
+-/
 theorem pureFibreProduct_two_border_card_le_four
     {S : Finset (Normal a b 0)} (ha : 2≤a) (hb : 2≤b)
     (h2 : S.card=2) (hshape : IsPureFibreProduct S) (hlive : IsLiveTie S) :

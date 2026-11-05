@@ -19,7 +19,9 @@ variable {a b c : ℕ} [NeZero a]
 variable {k : Type*} [Field k]
 
 /-- Two monomial actions on dual basis elements agree when they remove their
-respective scalar factors and leave the same surviving quotient.-/
+respective scalar factors and leave the same surviving quotient.
+@isnad1 id=eq.2h10v.s9.841d713ffb66 from=translated src=- shape=15c99c34 vocab=fb72307b
+-/
 theorem dual_relation_of_common_quotient (S : Finset (Normal a b c))
     (m n q s t : MonomialIndex S)
     (hms : m.1 * q.1 = s.1) (hnt : n.1 * q.1 = t.1) :
@@ -29,7 +31,9 @@ theorem dual_relation_of_common_quotient (S : Finset (Normal a b c))
   rw [X_smul_U_eq_U (k := k) S n q t hnt]
 
 /-- An A-linear map transfers coefficients across a dual relation whenever
-both scalar/coefficient products are the same surviving target.-/
+both scalar/coefficient products are the same surviving target.
+@isnad1 id=eq.3h13v.s11.9544f2a5f77a from=translated src=- shape=8a8a8351 vocab=38f7834c
+-/
 theorem coeff_transfer_of_dual_relation (S : Finset (Normal a b c))
     (F : Omega k S →ₗ[MonomialArtin k S] MonomialArtin k S)
     (m n e h w s t : MonomialIndex S)
@@ -48,7 +52,9 @@ theorem coeff_transfer_of_dual_relation (S : Finset (Normal a b c))
   exact hcoeff
 
 /-- Common-quotient form of coefficient transfer, combining the preceding two
-generic lemmas.-/
+generic lemmas.
+@isnad1 id=eq.4h14v.s11.84b21288a3fa from=translated src=- shape=e9ac13a0 vocab=d28c4a3b
+-/
 theorem coeff_transfer_of_common_quotient (S : Finset (Normal a b c))
     (F : Omega k S →ₗ[MonomialArtin k S] MonomialArtin k S)
     (m n q e h w s t : MonomialIndex S)
@@ -61,7 +67,9 @@ theorem coeff_transfer_of_common_quotient (S : Finset (Normal a b c))
     hmew hnhw
 
 /-- If a monomial annihilates a dual basis element, every coefficient whose
-product with that monomial survives must vanish in every A-linear image.-/
+product with that monomial survives must vanish in every A-linear image.
+@isnad1 id=eq.2h10v.s10.1c19a804a065 from=translated src=- shape=2d9ed3e8 vocab=38f7834c
+-/
 theorem coeff_eq_zero_of_annihilator (S : Finset (Normal a b c))
     (F : Omega k S →ₗ[MonomialArtin k S] MonomialArtin k S)
     (l h g s : MonomialIndex S)

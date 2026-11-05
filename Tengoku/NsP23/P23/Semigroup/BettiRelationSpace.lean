@@ -49,6 +49,9 @@ def fiberPolynomial (d : ℕ) : D.FiberCoeff k d →ₗ[k] FourPoly k where
     intro u _
     simp [smul_eq_mul, smul_smul]
 
+/--
+@isnad1 id=eq.0h5v.s8.3a6c021b84d2 from=translated src=- shape=8af94b55 vocab=1be9f1c8
+-/
 @[simp] theorem coeff_fiberPolynomial (d : ℕ) (a : D.FiberCoeff k d)
     (u : D.FactorizationAt d) :
     MvPolynomial.coeff u.1 (D.fiberPolynomial (k := k) d a) = a u := by
@@ -62,6 +65,9 @@ def fiberPolynomial (d : ℕ) : D.FiberCoeff k d →ₗ[k] FourPoly k where
     simp [hne]
   · simp
 
+/--
+@isnad1 id=injectiv.0h3v.s8.0679711efa9e from=translated src=- shape=2a0e33f6 vocab=1038216d
+-/
 theorem fiberPolynomial_injective (d : ℕ) :
     Function.Injective (D.fiberPolynomial (k := k) d) := by
   intro a b h
@@ -69,6 +75,9 @@ theorem fiberPolynomial_injective (d : ℕ) :
   exact (D.coeff_fiberPolynomial d a u).symm.trans
     ((congrArg (MvPolynomial.coeff u.1) h).trans (D.coeff_fiberPolynomial d b u))
 
+/--
+@isnad1 id=eq.0h4v.s10.5b4e8b3c91cc from=translated src=- shape=e836d074 vocab=7d5ba7a0
+-/
 theorem semigroupPolyMap_fiberPolynomial (d : ℕ) [Nonempty (D.FactorizationAt d)]
     (a : D.FiberCoeff k d) :
     D.semigroupPolyMap (D.fiberPolynomial (k := k) d a) =
@@ -82,6 +91,9 @@ theorem semigroupPolyMap_fiberPolynomial (d : ℕ) [Nonempty (D.FactorizationAt 
     D.semigroupPolyMap_fiberMonomial, totalCoeff]
   rw [Finset.sum_smul]
 
+/--
+@isnad1 id=iff.0h4v.s9.cd186ff98cb3 from=translated src=- shape=93d7f205 vocab=46cb7402
+-/
 theorem fiberPolynomial_mem_toricIdeal_iff (d : ℕ) (a : D.FiberCoeff k d) :
     D.fiberPolynomial (k := k) d a ∈ D.toricIdeal (k := k) ↔
       a ∈ D.FiberRelationSpace k d := by
@@ -143,6 +155,9 @@ def componentTotalCoeff (d : ℕ) : (D.BettiComponent d → k) →ₗ[k] k where
 abbrev ComponentRelationSpace (k : Type*) [Field k] (d : ℕ) :=
   LinearMap.ker (D.componentTotalCoeff (k := k) d)
 
+/--
+@isnad1 id=eq.0h4v.s9.6655695f9f89 from=translated src=- shape=11fa7004 vocab=f6f9e22d
+-/
 theorem component_total_componentCoeff (d : ℕ) (a : D.FiberCoeff k d) :
     D.componentTotalCoeff (k := k) d (D.componentCoeff (k := k) d a) =
       D.totalCoeff (k := k) d a := by
@@ -164,6 +179,9 @@ def fiberDelta {d : ℕ} (u v : D.FactorizationAt d) : D.FiberCoeff k d :=
   (Pi.single u (1 : k) : D.FactorizationAt d → k) -
     (Pi.single v (1 : k) : D.FactorizationAt d → k)
 
+/--
+@isnad1 id=mem.0h5v.s8.70de6a3e3f59 from=translated src=- shape=e1a7b675 vocab=0b66bcc4
+-/
 theorem fiberDelta_mem_relation {d : ℕ} (u v : D.FactorizationAt d) :
     D.fiberDelta (k := k) u v ∈ D.FiberRelationSpace k d := by
   classical
@@ -175,6 +193,9 @@ def fiberDeltaRelation {d : ℕ} (u v : D.FactorizationAt d) :
     D.FiberRelationSpace k d :=
   ⟨D.fiberDelta (k := k) u v, D.fiberDelta_mem_relation u v⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.efd0543141d5 from=translated src=- shape=e2ce1250 vocab=d4e44922
+-/
 @[simp] theorem fiberPolynomial_fiberDelta {d : ℕ} (u v : D.FactorizationAt d) :
     D.fiberPolynomial (k := k) d (D.fiberDelta (k := k) u v) =
       D.fiberBinomial (k := k) u v := by
@@ -199,12 +220,18 @@ def componentDelta {d : ℕ} (u v : D.FactorizationAt d) :
   classical
   exact Pi.single (D.componentOf u) 1 - Pi.single (D.componentOf v) 1
 
+/--
+@isnad1 id=mem.0h5v.s8.18ba1e327ec6 from=translated src=- shape=91d10426 vocab=105a4162
+-/
 theorem componentDelta_mem_relation {d : ℕ} (u v : D.FactorizationAt d) :
     D.componentDelta (k := k) u v ∈ D.ComponentRelationSpace k d := by
   classical
   change (∑ C, D.componentDelta (k := k) u v C) = 0
   simp [componentDelta]
 
+/--
+@isnad1 id=eq.0h5v.s11.334e02d7b888 from=translated src=- shape=ce8e30d6 vocab=e8b0fbfd
+-/
 theorem fiberToComponentRelation_fiberDelta {d : ℕ} (u v : D.FactorizationAt d) :
     (D.fiberToComponentRelation (k := k) d) (D.fiberDeltaRelation (k := k) u v) =
       ⟨D.componentDelta (k := k) u v, D.componentDelta_mem_relation u v⟩ := by
@@ -237,6 +264,9 @@ def componentSingle {d : ℕ} (C : D.BettiComponent d) : D.BettiComponent d → 
   classical
   exact Pi.single C 1
 
+/--
+@isnad1 id=eq.0h4v.s8.8cc0196e6a83 from=translated src=- shape=4196b679 vocab=bdd9d7fa
+-/
 theorem componentCoeff_single (d : ℕ) (u : D.FactorizationAt d) :
     D.componentCoeff (k := k) d
         (Pi.single u (1 : k) : D.FactorizationAt d → k) =
@@ -245,6 +275,9 @@ theorem componentCoeff_single (d : ℕ) (u : D.FactorizationAt d) :
   funext C
   simp [componentCoeff, componentSingle, Pi.single_apply, eq_comm]
 
+/--
+@isnad1 id=eq.0h4v.s9.27b87e89bfd1 from=translated src=- shape=2fde5afc vocab=e7aee691
+-/
 theorem componentCoeff_componentLift (d : ℕ) (b : D.BettiComponent d → k) :
     D.componentCoeff (k := k) d (D.componentLift (k := k) d b) = b := by
   classical
@@ -263,18 +296,27 @@ def componentRelationLift (d : ℕ) :
       rw [← D.component_total_componentCoeff, D.componentCoeff_componentLift]
       exact b.2)
 
+/--
+@isnad1 id=eq.0h4v.s12.083b709f43f7 from=translated src=- shape=725d60bf vocab=b91f168f
+-/
 theorem fiberToComponentRelation_componentRelationLift (d : ℕ)
     (b : D.ComponentRelationSpace k d) :
     D.fiberToComponentRelation (k := k) d (D.componentRelationLift (k := k) d b) = b := by
   apply Subtype.ext
   exact D.componentCoeff_componentLift d b.1
 
+/--
+@isnad1 id=surjecti.0h3v.s11.7d11cc67139a from=translated src=- shape=98feb356 vocab=c3db03da
+-/
 theorem fiberToComponentRelation_surjective (d : ℕ) :
     Function.Surjective (D.fiberToComponentRelation (k := k) d) := by
   intro b
   exact ⟨D.componentRelationLift (k := k) d b,
     D.fiberToComponentRelation_componentRelationLift d b⟩
 
+/--
+@isnad1 id=surjecti.1h3v.s7.2970dbc3aee0 from=translated src=- shape=ed8c74d2 vocab=d5c802a0
+-/
 theorem componentTotalCoeff_surjective {d : ℕ} (hd : D.IsBettiDegree d) :
     Function.Surjective (D.componentTotalCoeff (k := k) d) := by
   classical
@@ -283,6 +325,9 @@ theorem componentTotalCoeff_surjective {d : ℕ} (hd : D.IsBettiDegree d) :
   refine ⟨Pi.single C r, ?_⟩
   simp [componentTotalCoeff, Pi.single_apply]
 
+/--
+@isnad1 id=eq.1h3v.s8.55cf24bafcaf from=translated src=- shape=36f6624e vocab=2cc71b77
+-/
 theorem componentRelationSpace_finrank {d : ℕ} (hd : D.IsBettiDegree d) :
     Module.finrank k (D.ComponentRelationSpace k d) = D.bettiContribution d := by
   classical
@@ -310,6 +355,9 @@ def degreeNewToricRelationSpaceEquiv (d : ℕ) :
   (D.fiberToComponentRelation (k := k) d).quotKerEquivOfSurjective
     (D.fiberToComponentRelation_surjective d)
 
+/--
+@isnad1 id=eq.1h3v.s11.458ffa374a8b from=translated src=- shape=87135772 vocab=14215b1f
+-/
 theorem toricBettiContribution_eq_componentCount_sub_one {d : ℕ}
     (hd : D.IsBettiDegree d) :
     Module.finrank k (D.DegreeNewToricRelationSpace k d) =
@@ -326,6 +374,9 @@ def connectorClass {d : ℕ} (hd : D.IsBettiDegree d)
     (e : D.ComponentConnector hd) : D.DegreeNewToricRelationSpace k d :=
   D.degreeNewMk (k := k) d (D.connectorFiberRelation (k := k) hd e)
 
+/--
+@isnad1 id=eq.1h4v.s13.73266f90e35c from=translated src=- shape=92652f13 vocab=f4bff38c
+-/
 theorem degreeNewEquiv_connectorClass {d : ℕ} (hd : D.IsBettiDegree d)
     (e : D.ComponentConnector hd) :
     D.degreeNewToricRelationSpaceEquiv (k := k) d (D.connectorClass (k := k) hd e) =
@@ -338,6 +389,9 @@ theorem degreeNewEquiv_connectorClass {d : ℕ} (hd : D.IsBettiDegree d)
   rw [LinearMap.quotKerEquivOfSurjective_apply_mk]
   exact D.fiberToComponentRelation_fiberDelta _ _
 
+/--
+@isnad1 id=linearin.1h3v.s11.c3c010c7f3a8 from=translated src=- shape=6758ddba vocab=44672b67
+-/
 theorem connectorClass_linearIndependent {d : ℕ} (hd : D.IsBettiDegree d) :
     LinearIndependent k (D.connectorClass (k := k) hd) := by
   classical
@@ -358,6 +412,9 @@ theorem connectorClass_linearIndependent {d : ℕ} (hd : D.IsBettiDegree d) :
   simp_rw [heq] at hcoord
   simpa using hcoord
 
+/--
+@isnad1 id=eq.1h3v.s13.45c254e47b35 from=translated src=- shape=f40ade23 vocab=4c1eaa92
+-/
 theorem connectorClass_span_eq_top {d : ℕ} (hd : D.IsBettiDegree d) :
     Submodule.span k (Set.range (D.connectorClass (k := k) hd)) = ⊤ := by
   apply (D.connectorClass_linearIndependent (k := k) hd).span_eq_top_of_card_eq_finrank'
@@ -368,11 +425,17 @@ def connectorClassBasis {d : ℕ} (hd : D.IsBettiDegree d) :
   Module.Basis.mk (D.connectorClass_linearIndependent (k := k) hd)
     (D.connectorClass_span_eq_top (k := k) hd).ge
 
+/--
+@isnad1 id=eq.1h4v.s12.b32ca439c3f6 from=translated src=- shape=46622520 vocab=c3b6fc78
+-/
 @[simp] theorem connectorClassBasis_apply {d : ℕ} (hd : D.IsBettiDegree d)
     (e : D.ComponentConnector hd) :
     D.connectorClassBasis (k := k) hd e = D.connectorClass (k := k) hd e :=
   Module.Basis.mk_apply _ _ _
 
+/--
+@isnad1 id=eq.1h2v.s4.7d96e0c73a2e from=translated src=- shape=754fec3b vocab=9d179674
+-/
 theorem degreeToricRelation_connector_card_exact {d : ℕ} (hd : D.IsBettiDegree d) :
     Fintype.card (D.ComponentConnector hd) = D.bettiContribution d := by
   exact D.connectorCount hd
@@ -382,6 +445,9 @@ def withinComponentStarSum (d : ℕ) (a : D.FiberRelationSpace k d) :
   ∑ u, a.1 u • D.fiberDeltaRelation (k := k) u
     (D.componentRepresentative (D.componentOf u))
 
+/--
+@isnad1 id=eq.1h4v.s11.f9c2c0a5a3a3 from=translated src=- shape=3d7d8450 vocab=45a3b8cb
+-/
 theorem withinComponentStarSum_eq_of_mem_ker {d : ℕ}
     (a : D.FiberRelationSpace k d)
     (ha : a ∈ LinearMap.ker (D.fiberToComponentRelation (k := k) d)) :
@@ -427,6 +493,9 @@ theorem withinComponentStarSum_eq_of_mem_ker {d : ℕ}
           congrArg D.componentRepresentative hc.symm
     simp [hne]
 
+/--
+@isnad1 id=mem.1h4v.s11.b1fb021b9100 from=translated src=- shape=2c49d11b vocab=0ef486f8
+-/
 theorem fiberPolynomial_mem_lower_of_componentKernel {d : ℕ}
     (a : D.FiberRelationSpace k d)
     (ha : a ∈ LinearMap.ker (D.fiberToComponentRelation (k := k) d)) :
@@ -448,7 +517,9 @@ def withinComponentDifferenceSet (d : ℕ) : Set (D.FiberRelationSpace k d) :=
     a = D.fiberDeltaRelation (k := k) u v}
 
 /-- Exact kernel description: component sums forget precisely the
-within-component differences.-/
+within-component differences.
+@isnad1 id=eq.0h3v.s10.254bf626d6d9 from=translated src=- shape=d10dbf47 vocab=a5d0d7a9
+-/
 theorem ker_fiberToComponentRelation_eq_withinComponentSpan (d : ℕ) :
     LinearMap.ker (D.fiberToComponentRelation (k := k) d) =
       Submodule.span k (D.withinComponentDifferenceSet (k := k) d) := by
@@ -499,6 +570,9 @@ def connectorRelationFinset {k : Type*} [Field k] {d : ℕ}
   classical
   exact Finset.univ.image (D.connectorFiberRelation (k := k) hd)
 
+/--
+@isnad1 id=generate.1h3v.s4.4056a76118d2 from=translated src=- shape=68b73707 vocab=c38f5367
+-/
 theorem connectorRelationFinset_generates {k : Type*} [Field k] {d : ℕ}
     (hd : D.IsBettiDegree d) :
     D.GeneratesDegreeNewRelations (D.connectorRelationFinset (k := k) hd) := by
@@ -522,6 +596,9 @@ theorem connectorRelationFinset_generates {k : Type*} [Field k] {d : ℕ}
   rw [D.connectorClass_span_eq_top (k := k) hd] at hle
   exact top_unique hle
 
+/--
+@isnad1 id=le.2h4v.s9.b03c3eb5d256 from=translated src=- shape=4155f721 vocab=5a647051
+-/
 theorem degreeToricRelation_generator_card_lower_bound {k : Type*} [Field k]
     {d : ℕ} (hd : D.IsBettiDegree d) (G : Finset (D.FiberRelationSpace k d))
     (hG : D.GeneratesDegreeNewRelations G) :
@@ -540,6 +617,9 @@ theorem degreeToricRelation_generator_card_lower_bound {k : Type*} [Field k]
       unfold degreeNewGeneratorFinset
       exact Finset.card_image_le
 
+/--
+@isnad1 id=eq.1h3v.s8.54d2f93e1797 from=translated src=- shape=e0dc18d8 vocab=c2759d57
+-/
 theorem connectorRelationFinset_card_exact {k : Type*} [Field k] {d : ℕ}
     (hd : D.IsBettiDegree d) :
     (D.connectorRelationFinset (k := k) hd).card = D.bettiContribution d := by
@@ -574,6 +654,9 @@ structure ToricBettiPresentationBridge {k : Type*} [Field k] (d : ℕ)
   connectorCardExact :
     (D.connectorRelationFinset (k := k) hd).card = D.bettiContribution d
 
+/--
+@isnad1 id=toricbet.1h3v.s4.6173b591ee06 from=translated src=- shape=6adc2d68 vocab=e79a352f
+-/
 theorem toricBettiPresentationBridge {k : Type*} [Field k] {d : ℕ}
     (hd : D.IsBettiDegree d) : D.ToricBettiPresentationBridge (k := k) d hd where
   toricKernelGenerated := D.toricIdeal_eq_span_fiberBinomials

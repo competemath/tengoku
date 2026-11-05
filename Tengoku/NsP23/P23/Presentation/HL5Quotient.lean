@@ -19,7 +19,9 @@ noncomputable section
 variable {k : Type*} [Field k]
 variable {a b c : ℕ} [NeZero a]
 
-/-- Intrinsic quotient type three forces exactly three selected roots.-/
+/-- Intrinsic quotient type three forces exactly three selected roots.
+@isnad1 id=eq.5h5v.s6.3b602eba2147 from=translated src=- shape=360f8ab3 vocab=d1c527d7
+-/
 theorem rootCard_eq_three_of_quotientType_eq_three
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -29,7 +31,9 @@ theorem rootCard_eq_three_of_quotientType_eq_three
   (quotientType_eq_three_iff (k := k) S hS hdom hlive hanti).1 htype
 
 /-- Intrinsic quotient nearly-Gorensteinness transports to the frozen direct
-model predicate.-/
+model predicate.
+@isnad1 id=directne.4h5v.s6.adc9079b2ebd from=translated src=- shape=e1e8e1a3 vocab=3fdd9bb4
+-/
 theorem directNearlyGorenstein_of_quotientNearlyGorenstein
     (S : Finset (Normal a b c)) (hS : S.Nonempty)
     (hdom : IsLiveParameterDomain a b c) (hlive : IsLiveTie S)
@@ -39,7 +43,9 @@ theorem directNearlyGorenstein_of_quotientNearlyGorenstein
     (k := k) S hS hdom hlive).1 hng
 
 /-- Mixed H-L5 in exact-border form for the canonical final polynomial
-quotient.-/
+quotient.
+@isnad1 id=ne.7h5v.s8.2f695aed013a from=translated src=- shape=8c5b4335 vocab=67e048df
+-/
 theorem mixed_quotient_HL5_border_ne_four
     (S : Finset (Normal a b c)) (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hlive : IsLiveTie S) (hanti : IsRootAntichain S)
@@ -61,7 +67,9 @@ theorem mixed_quotient_HL5_border_ne_four
     (k := k) S ha hb hc hcard hlive hanti hdirect
 
 /-- Pure H-L5 in exact-border form for the canonical final polynomial
-quotient.-/
+quotient.
+@isnad1 id=ne.6h4v.s8.22602b666503 from=translated src=- shape=567c54f7 vocab=1269496c
+-/
 theorem pure_quotient_HL5_border_ne_four
     (S : Finset (Normal a b 0)) (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hlive : IsLiveTie S) (hanti : IsRootAntichain S)
@@ -82,7 +90,9 @@ theorem pure_quotient_HL5_border_ne_four
   exact pure_directModel_HL5_of_nearlyGorenstein
     (k := k) S ha hb hcard hlive hanti hdirect
 
-/-- Mixed H-L5 in polynomial-kernel minimal-generator form.-/
+/-- Mixed H-L5 in polynomial-kernel minimal-generator form.
+@isnad1 id=ne.7h5v.s9.fcd24a6bbe47 from=translated src=- shape=73909b44 vocab=28975e52
+-/
 theorem mixed_quotient_HL5_kernel_mu_ne_five
     (S : Finset (Normal a b c)) (ha : 2 ≤ a) (hb : 1 ≤ b) (hc : 1 ≤ c)
     (hlive : IsLiveTie S) (hanti : IsRootAntichain S)
@@ -99,7 +109,9 @@ theorem mixed_quotient_HL5_kernel_mu_ne_five
     (k := k) S (nonempty_of_isLiveTie S hlive)
       ⟨ha, Or.inl ⟨hb, hc⟩⟩ hlive).1 hmu
 
-/-- Pure H-L5 in polynomial-kernel minimal-generator form.-/
+/-- Pure H-L5 in polynomial-kernel minimal-generator form.
+@isnad1 id=ne.6h4v.s9.81842f0005de from=translated src=- shape=c72ab4e5 vocab=8f3ad35b
+-/
 theorem pure_quotient_HL5_kernel_mu_ne_five
     (S : Finset (Normal a b 0)) (ha : 2 ≤ a) (hb : 2 ≤ b)
     (hlive : IsLiveTie S) (hanti : IsRootAntichain S)
@@ -155,7 +167,9 @@ structure CanonicalFiniteQuotientHL5 (k : Type*) [Field k] : Prop where
         (RingHom.ker (polyToDirectAlg (k := k) S).toRingHom) ≠ 5
 
 /-- The canonical final quotient satisfies the mixed and pure H-L5
-conclusions in both border and kernel-mu forms.-/
+conclusions in both border and kernel-mu forms.
+@isnad1 id=canonica.0h1v.s3.7e27ece37268 from=translated src=- shape=c6850a32 vocab=c0420f76
+-/
 theorem canonicalFiniteQuotient_HL5 : CanonicalFiniteQuotientHL5 k where
   mixedBorder := by
     intro a b c _ S ha hb hc hlive hanti htype hng

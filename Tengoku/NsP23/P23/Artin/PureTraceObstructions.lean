@@ -24,6 +24,9 @@ private theorem a_pos_of_neZero {a : ℕ} [NeZero a] : 0 < a :=
 
 /-! ## P4Z -/
 
+/--
+@isnad1 id=eq.3h3v.s6.25c9898a0507 from=translated src=- shape=ee7544ed vocab=9b823c05
+-/
 theorem p4Z_card_eq_three {a b V : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hV : 1 ≤ V) :
     (p4ZSocles (a := a) (b := b) ha V).card = 3 := by
@@ -48,6 +51,9 @@ theorem p4Z_card_eq_three {a b V : ℕ} [NeZero a]
   change ({C, P, Z} : Finset (Normal a b 0)).card = 3
   simp [hCP, hCZ, hPZ]
 
+/--
+@isnad1 id=isrootan.3h3v.s5.3121bb910e22 from=translated src=- shape=bbb4277c vocab=470079a4
+-/
 theorem p4Z_isRootAntichain {a b V : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hV : 1 ≤ V) :
     IsRootAntichain (p4ZSocles (a := a) (b := b) ha V) := by
@@ -59,6 +65,9 @@ theorem p4Z_isRootAntichain {a b V : ℕ} [NeZero a]
     simp_all [Normal.exact_divides_iff, Normal.DividesCriterion, Normal.ext_iff]
   all_goals omega
 
+/--
+@isnad1 id=isliveti.3h3v.s5.bf9345b96dfd from=translated src=- shape=bbb4277c vocab=70f4aa47
+-/
 theorem p4Z_isLiveTie {a b V : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hV : 1 ≤ V) :
     IsLiveTie (p4ZSocles (a := a) (b := b) ha V) := by
@@ -68,6 +77,9 @@ theorem p4Z_isLiveTie {a b V : ℕ} [NeZero a]
     Normal.yGenerator, Normal.zGenerator]
   omega
 
+/--
+@isnad1 id=other.3h4v.s9.093a6cd8d30d from=translated src=- shape=3c03cd1f vocab=38bb7e54
+-/
 theorem p4Z_z_not_mem_trace {a b V : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hV : 1 ≤ V) :
     let S := p4ZSocles (a := a) (b := b) ha V
@@ -170,6 +182,9 @@ theorem p4Z_z_not_mem_trace {a b V : ℕ} [NeZero a]
       (rootIndex S Z hZ) hzero
       (by apply Normal.ext <;> simp [yz, Normal.yGenerator, Normal.zGenerator]))
 
+/--
+@isnad1 id=not.4h4v.s6.66de37f40700 from=translated src=- shape=62ccc462 vocab=5fd1c0af
+-/
 theorem p4Z_not_variablesInTrace {a b V : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hV : 1 ≤ V)
     (hlive : IsLiveTie (p4ZSocles (a := a) (b := b) ha V)) :
@@ -179,6 +194,9 @@ theorem p4Z_not_variablesInTrace {a b V : ℕ} [NeZero a]
 
 /-! ## P5Z -/
 
+/--
+@isnad1 id=eq.3h3v.s6.f567b929dc88 from=translated src=- shape=ee7544ed vocab=f8528f85
+-/
 theorem p5Z_card_eq_three {a b v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v) :
     (p5ZSocles (a := a) (b := b) ha v).card = 3 := by
@@ -187,6 +205,9 @@ theorem p5Z_card_eq_three {a b v : ℕ} [NeZero a]
   have hv0 : v ≠ 0 := by omega
   simp [p5ZSocles, Normal.ext_iff, ha10, hb0, hv0]
 
+/--
+@isnad1 id=isrootan.3h3v.s5.add246f6f861 from=translated src=- shape=bbb4277c vocab=bc2d352e
+-/
 theorem p5Z_isRootAntichain {a b v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v) :
     IsRootAntichain (p5ZSocles (a := a) (b := b) ha v) := by
@@ -198,6 +219,9 @@ theorem p5Z_isRootAntichain {a b v : ℕ} [NeZero a]
     simp_all [Normal.exact_divides_iff, Normal.DividesCriterion, Normal.ext_iff]
   all_goals omega
 
+/--
+@isnad1 id=isliveti.3h3v.s5.353642b81751 from=translated src=- shape=bbb4277c vocab=25933d7d
+-/
 theorem p5Z_isLiveTie {a b v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v) :
     IsLiveTie (p5ZSocles (a := a) (b := b) ha v) := by
@@ -207,6 +231,9 @@ theorem p5Z_isLiveTie {a b v : ℕ} [NeZero a]
     Normal.yGenerator, Normal.zGenerator]
   omega
 
+/--
+@isnad1 id=other.3h4v.s9.21a64b03c0b3 from=translated src=- shape=3c03cd1f vocab=19697e34
+-/
 theorem p5Z_z_not_mem_trace {a b v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v) :
     let S := p5ZSocles (a := a) (b := b) ha v
@@ -320,6 +347,9 @@ theorem p5Z_z_not_mem_trace {a b v : ℕ} [NeZero a]
           Nat.mod_eq_of_lt (show 1 < a by omega),
           Nat.div_eq_of_lt (show 1 < a by omega)]))
 
+/--
+@isnad1 id=not.4h4v.s6.4a243e87a073 from=translated src=- shape=62ccc462 vocab=9d4963aa
+-/
 theorem p5Z_not_variablesInTrace {a b v : ℕ} [NeZero a]
     (ha : 2 ≤ a) (hb : 2 ≤ b) (hv : 1 ≤ v)
     (hlive : IsLiveTie (p5ZSocles (a := a) (b := b) ha v)) :
@@ -365,6 +395,9 @@ structure CanonicalTraceObstructions : Prop where
       (mem_standardFinset_iff_standardSet S _).2 (p5Z_isLiveTie ha hb hv).2.2.1
     X (k := k) S Normal.zGenerator hzS ∉ TraceSubmodule k S
 
+/--
+@isnad1 id=canonica.0h1v.s3.812da333cb6b from=translated src=- shape=c6850a32 vocab=8f592d9c
+-/
 theorem canonicalTraceObstructions : CanonicalTraceObstructions (k := k) where
   mixedYZ := mixedYZ_y_not_mem_trace
   mixedYQ := mixedYQ_y_not_mem_trace

@@ -9,6 +9,9 @@ open P23.Artin P23.Presentation
 variable {a b : ℕ} [NeZero a]
 set_option maxHeartbeats 1600000
 
+/--
+@isnad1 id=not.7h4v.s8.a2830872186c from=translated src=- shape=c6664acc vocab=51a82855
+-/
 theorem pure_three_border_no_y_axis (S : Finset (Normal a b 0))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3)
@@ -86,6 +89,9 @@ structure PureXZThreeBorderData (S : Finset (Normal a b 0)) where
   border : borderFinset S =
     {(⟨r,u,0,r_lt⟩ : Normal a b 0),zAxis C,(⟨s,0,w,s_lt⟩ : Normal a b 0)}
 
+/--
+@isnad1 id=or.7h3v.s7.f5081a9ff837 from=translated src=- shape=08b55605 vocab=259fbb2e
+-/
 theorem pure_three_border_support_classification (S : Finset (Normal a b 0))
     (hS : S.Nonempty) (hd : IsLiveParameterDomain a b 0) (hl : IsLiveTie S)
     (ha : IsRootAntichain S) (ht : quotientType ℚ S hS hd hl = 3)
