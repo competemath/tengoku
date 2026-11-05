@@ -1,0 +1,78 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.YamaguchiPapers.Nyll.GaloisCohomology.Kummer.Concrete.CyclotomicInvariantCharacter
+import Tengoku.YamaguchiPapers.Nyll.GaloisCohomology.Kummer.Concrete.RootOfUnityPowerAction
+import Tengoku.YamaguchiPapers.Nyll.GaloisCohomology.Kummer.Concrete.AbsoluteContinuousCharacterAction
+import Tengoku.YamaguchiPapers.Nyll.GaloisCohomology.Kummer.Concrete.AbsoluteKummerH1
+import Tengoku.Seed.Topology.Algebra.Group.Basic
+import Tengoku.Seed.Topology.Algebra.Ring.Basic
+import Tengoku.Seed.Topology.Instances.ZMod
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Roots give invariant Kummer characters
+
+An automorphism has the same actual power action on a root and on the
+Kummer coefficient roots. Their cyclotomic actions cancel. The resulting
+constant-coefficient Kummer character is fixed by the true left action.
+-/
+
+namespace ClassFieldTower.Martinet.Shafarevich
+
+open KummerTheory
+
+variable (K : Type*) [Field K] [CharZero K]
+
+/-- A unit which is an n-th root of unity has an invariant Kummer character
+under every field automorphism.
+@isnad1 id=eq.2h5v.s15.cc5e1b703e55 from=translated src=- shape=c05e7214 vocab=c49b646c
+-/
+theorem absoluteKummerContinuousNthRootsCharacterEquiv_conjugation_invariant_of_root
+    (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
+    (u : Kˣ) (hu : (u : K) ^ (n : ℕ) = 1) (τ : K ≃+* K)
+    (σ : Gal(AlgebraicClosure K/K)) :
+    absoluteKummerContinuousNthRootsCharacterEquiv K n hmu
+        (u : Kˣ ⧸ (powMonoidHom (n : ℕ) : Kˣ →* Kˣ).range)
+        (absoluteGaloisConjugate τ σ) =
+      absoluteKummerContinuousNthRootsCharacterEquiv K n hmu
+        (u : Kˣ ⧸ (powMonoidHom (n : ℕ) : Kˣ →* Kˣ).range) σ := by
+  obtain ⟨a, _ha, hcop, hroots⟩ := exists_bounded_coprime_power_action_on_roots K n hmu τ
+  have hunit : Units.map τ.toMonoidHom u = u ^ a := by
+    apply Units.ext
+    exact hroots (u : K) hu
+  apply absoluteKummerContinuousNthRootsCharacterEquiv_conjugation_invariant_of_power_action
+    K n hmu τ u a hcop ?_ hroots σ
+  rw [hunit]
+  exact map_pow (QuotientGroup.mk' (powMonoidHom (n : ℕ) : Kˣ →* Kˣ).range) u a
+
+/-- The root's constant-coefficient Kummer character is fixed by the
+inverse-conjugation left action, with the original Kummer coordinate.
+@isnad1 id=eq.2h4v.s15.13c749edb786 from=translated src=- shape=0f24a0fb vocab=d0e889e5
+-/
+theorem absoluteContinuousCharacterAction_kummer_root
+    (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
+    (u : Kˣ) (hu : (u : K) ^ (n : ℕ) = 1) (τ : K ≃+* K) :
+    absoluteContinuousCharacterAction (K := K) (A := Multiplicative (ZMod (n : ℕ))) τ
+        (absoluteKummerContinuousZModCharacterEquiv K n hmu
+          (u : Kˣ ⧸ (powMonoidHom (n : ℕ) : Kˣ →* Kˣ).range)) =
+      absoluteKummerContinuousZModCharacterEquiv K n hmu
+        (u : Kˣ ⧸ (powMonoidHom (n : ℕ) : Kˣ →* Kˣ).range) := by
+  apply ContinuousMonoidHom.ext
+  intro σ
+  change discreteNthRootsContinuousMulEquivMultiplicativeZMod K n hmu
+      (absoluteKummerContinuousNthRootsCharacterEquiv K n hmu
+        (u : Kˣ ⧸ (powMonoidHom (n : ℕ) : Kˣ →* Kˣ).range)
+        (absoluteGaloisConjugate τ.symm σ)) =
+    discreteNthRootsContinuousMulEquivMultiplicativeZMod K n hmu
+      (absoluteKummerContinuousNthRootsCharacterEquiv K n hmu
+        (u : Kˣ ⧸ (powMonoidHom (n : ℕ) : Kˣ →* Kˣ).range) σ)
+  exact congrArg (discreteNthRootsContinuousMulEquivMultiplicativeZMod K n hmu)
+    (absoluteKummerContinuousNthRootsCharacterEquiv_conjugation_invariant_of_root
+      K n hmu u hu τ.symm σ)
+
+end ClassFieldTower.Martinet.Shafarevich

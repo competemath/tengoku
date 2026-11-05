@@ -1,0 +1,364 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.YamaguchiPapers.Nyll.SchemeTheory.AbhyankarLemma.Geometry.Inertia.IdealLocalization
+import Tengoku.Seed.FieldTheory.Galois.Infinite
+import Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Ramification.HilbertRamification.Dedekind.Basic
+import Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Ramification.HilbertRamification.ResidueExactSequence
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Residue fields under localization at a normalization prime
+
+This file compares the decomposition group and residue action attached to a
+prime of a normalization with the corresponding objects for the localized
+valuation subring.  The comparison is canonical and retains the base-prime
+residue field.
+-/
+
+noncomputable section
+
+universe uA uB uK uL
+
+namespace TameAbhyankar.SGA1
+
+open scoped Pointwise
+open RamificationTheory.HilbertRamification
+open RamificationTheory.HilbertRamification.ValuationSubring
+
+attribute [local instance] Ideal.Quotient.field
+
+section DecompositionLocalization
+
+variable {A : Type uA} {B : Type uB} {K : Type uK} {L : Type uL}
+variable [CommRing A] [CommRing B] [Field K] [Field L]
+variable [Algebra A K] [IsFractionRing A K]
+variable [Algebra B L] [IsFractionRing B L]
+variable [Algebra A B] [Algebra K L] [Algebra A L]
+variable [IsScalarTower A K L] [IsScalarTower A B L]
+variable [IsIntegralClosure B A L]
+variable [Algebra.IsAlgebraic K L]
+variable [IsDedekindDomain B]
+
+variable (P : Ideal B) [P.IsMaximal]
+variable (hP : P ≠ ⊥)
+
+omit [IsDedekindDomain B] in
+/-- The normalization action fixes the base ring.
+@isnad1 id=smulcomm.0h4v.s9.b71da19d9baa from=translated src=- shape=1cd16740 vocab=6b09b4ee
+-/
+theorem normalizationGaloisSMulCommClass :
+    letI := IsIntegralClosure.MulSemiringAction A K L B
+    SMulCommClass Gal(L/K) A B := by
+  let := IsIntegralClosure.MulSemiringAction A K L B
+  constructor
+  intro sigma a b
+  apply (IsFractionRing.injective B L)
+  simp only [Algebra.smul_def, map_mul,
+    algebraMap_normalization_smul (A := A)]
+  have ha : (sigma : Gal(L/K)) (algebraMap A L a) =
+      algebraMap A L a := by
+    calc
+      (sigma : Gal(L/K)) (algebraMap A L a) =
+          (sigma : Gal(L/K))
+            (algebraMap K L (algebraMap A K a)) := by
+        rw [← IsScalarTower.algebraMap_apply A K L]
+      _ = algebraMap K L (algebraMap A K a) :=
+        (sigma : Gal(L/K)).commutes (algebraMap A K a)
+      _ = algebraMap A L a :=
+        (IsScalarTower.algebraMap_apply A K L a).symm
+  have haB : (sigma : Gal(L/K))
+        (algebraMap B L (algebraMap A B a)) =
+      algebraMap B L (algebraMap A B a) := by
+    calc
+      (sigma : Gal(L/K))
+          (algebraMap B L (algebraMap A B a)) =
+        (sigma : Gal(L/K)) (algebraMap A L a) := by
+          rw [IsScalarTower.algebraMap_apply A B L]
+      _ = algebraMap A L a := ha
+      _ = algebraMap B L (algebraMap A B a) :=
+        IsScalarTower.algebraMap_apply A B L a
+  rw [haB]
+
+/-- The canonical map from a normalization ring to the valuation ring
+obtained by localizing at `P`.-/
+def idealLocalizationRingHom :
+    B →+* idealLocalizationValuationSubring B L P hP :=
+  (idealLocalizationEquiv B L P hP).toRingHom.comp
+    (algebraMap B (idealLocalizationSubalgebra B L P))
+
+/--
+@isnad1 id=eq.1h4v.s8.8d0269b29011 from=translated src=- shape=28f52bc9 vocab=62a09754
+-/
+@[simp] theorem idealLocalizationRingHom_apply_coe (b : B) :
+    ((idealLocalizationRingHom (B := B) (L := L) P hP b :
+      idealLocalizationValuationSubring B L P hP) : L) =
+      algebraMap B L b :=
+  rfl
+
+/-- Membership in `P` is detected by the maximal ideal after localization.
+@isnad1 id=iff.1h4v.s9.31a515b33324 from=translated src=- shape=ea12bed1 vocab=ebc48935
+-/
+theorem idealLocalizationRingHom_mem_maximalIdeal_iff (b : B) :
+    idealLocalizationRingHom (B := B) (L := L) P hP b ∈
+        IsLocalRing.maximalIdeal
+          (idealLocalizationValuationSubring B L P hP) ↔
+      b ∈ P := by
+  let S := idealLocalizationSubalgebra B L P
+  let bS : S := algebraMap B S b
+  have he := idealLocalizationEquiv_mem_maximalIdeal_iff B L P hP bS
+  have hb := IsLocalization.AtPrime.to_map_mem_maximal_iff S P b
+  exact he.trans hb
+
+private theorem globalDecomposition_maps_localization :
+    letI := IsIntegralClosure.MulSemiringAction A K L B
+    ∀ (sigma : HilbertRamification.Dedekind.decompositionGroup P Gal(L/K))
+      {x : L},
+      x ∈ idealLocalizationValuationSubring B L P hP →
+      ((sigma : Gal(L/K)) : L ≃ₐ[K] L) x ∈
+        idealLocalizationValuationSubring B L P hP := by
+  let := IsIntegralClosure.MulSemiringAction A K L B
+  intro sigma x hx
+  change x ∈ idealLocalizationSubalgebra B L P at hx
+  change ((sigma : Gal(L/K)) : L ≃ₐ[K] L) x ∈
+    idealLocalizationSubalgebra B L P
+  rcases hx with ⟨a, s, hs, rfl⟩
+  have hsigma : (sigma : Gal(L/K)) • s ∈ P.primeCompl := by
+    intro hsigmaP
+    have hsmul : (sigma : Gal(L/K))⁻¹ • ((sigma : Gal(L/K)) • s) ∈
+        (sigma : Gal(L/K))⁻¹ • P :=
+      Ideal.smul_mem_pointwise_smul
+        (M := Gal(L/K)) (sigma : Gal(L/K))⁻¹
+        ((sigma : Gal(L/K)) • s) P hsigmaP
+    have hinvP : (sigma : Gal(L/K))⁻¹ • P = P := by
+      calc
+        (sigma : Gal(L/K))⁻¹ • P =
+            (sigma : Gal(L/K))⁻¹ • ((sigma : Gal(L/K)) • P) :=
+          congrArg ((sigma : Gal(L/K))⁻¹ • ·) sigma.property.symm
+        _ = P := inv_smul_smul _ _
+    have hsP : s ∈ P := by
+      simpa [hinvP] using hsmul
+    exact hs hsP
+  refine ⟨(sigma : Gal(L/K)) • a, (sigma : Gal(L/K)) • s,
+    hsigma, ?_⟩
+  simp only [map_mul, map_inv₀,
+    algebraMap_normalization_smul (A := A)]
+
+private theorem globalDecomposition_maps_localization_iff :
+    letI := IsIntegralClosure.MulSemiringAction A K L B
+    ∀ (sigma : HilbertRamification.Dedekind.decompositionGroup P Gal(L/K))
+      (x : L),
+      ((sigma : Gal(L/K)) : L ≃ₐ[K] L) x ∈
+          idealLocalizationValuationSubring B L P hP ↔
+        x ∈ idealLocalizationValuationSubring B L P hP := by
+  let := IsIntegralClosure.MulSemiringAction A K L B
+  intro sigma x
+  constructor
+  · intro hx
+    let sigmaInv : HilbertRamification.Dedekind.decompositionGroup P Gal(L/K) :=
+      sigma⁻¹
+    have hinv := globalDecomposition_maps_localization
+      (A := A) (P := P) (hP := hP) sigmaInv hx
+    simpa [sigmaInv] using hinv
+  · exact globalDecomposition_maps_localization
+      (A := A) (P := P) (hP := hP) sigma
+
+/-- Stabilizing a normalization prime is equivalent to stabilizing its
+localized valuation subring, in the forward direction.-/
+def globalIdealDecompositionToLocalDecomposition :
+    letI := IsIntegralClosure.MulSemiringAction A K L B
+    HilbertRamification.Dedekind.decompositionGroup P Gal(L/K) →*
+      decompositionGroup K (idealLocalizationValuationSubring B L P hP) := by
+  letI := IsIntegralClosure.MulSemiringAction A K L B
+  refine
+    { toFun := fun sigma ↦ ⟨(sigma : Gal(L/K)), ?_⟩
+      map_one' := rfl
+      map_mul' := fun _ _ ↦ rfl }
+  apply _root_.ValuationSubring.toSubring_injective
+  ext x
+  change x ∈ (sigma : Gal(L/K)) •
+      idealLocalizationValuationSubring B L P hP ↔
+    x ∈ idealLocalizationValuationSubring B L P hP
+  rw [_root_.ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem]
+  exact globalDecomposition_maps_localization_iff
+    (A := A) (P := P) (hP := hP) sigma⁻¹ x
+
+/-- A decomposition automorphism of the localized valuation ring stabilizes
+the original normalization prime.-/
+def localDecompositionToGlobalIdealDecomposition :
+    letI := IsIntegralClosure.MulSemiringAction A K L B
+    decompositionGroup K (idealLocalizationValuationSubring B L P hP) →*
+      HilbertRamification.Dedekind.decompositionGroup P Gal(L/K) := by
+  letI := IsIntegralClosure.MulSemiringAction A K L B
+  let V := idealLocalizationValuationSubring B L P hP
+  refine
+    { toFun := fun tau ↦ ⟨(tau : Gal(L/K)), ?_⟩
+      map_one' := rfl
+      map_mul' := fun _ _ ↦ rfl }
+  apply Ideal.ext
+  intro b
+  rw [Ideal.mem_pointwise_smul_iff_inv_smul_mem]
+  have hmap :
+      idealLocalizationRingHom (B := B) (L := L) P hP
+          ((tau : Gal(L/K))⁻¹ • b) =
+        (tau⁻¹ : decompositionGroup K V) •
+          idealLocalizationRingHom (B := B) (L := L) P hP b := by
+    apply Subtype.ext
+    exact algebraMap_normalization_smul (A := A)
+      ((tau : Gal(L/K))⁻¹) b
+  rw [← idealLocalizationRingHom_mem_maximalIdeal_iff (B := B) (L := L) P hP,
+    hmap, ← idealLocalizationRingHom_mem_maximalIdeal_iff (B := B) (L := L) P hP]
+  rw [IsLocalRing.mem_maximalIdeal, IsLocalRing.mem_maximalIdeal]
+  exact not_congr
+    (MulEquiv.isUnit_map
+      (MulSemiringAction.toRingAut
+        (decompositionGroup K V) V tau⁻¹))
+
+/-- The ideal decomposition group is canonically the decomposition group of
+the localized valuation subring.-/
+def idealDecompositionLocalizationMulEquiv :
+    letI := IsIntegralClosure.MulSemiringAction A K L B
+    HilbertRamification.Dedekind.decompositionGroup P Gal(L/K) ≃*
+      decompositionGroup K (idealLocalizationValuationSubring B L P hP) := by
+  letI := IsIntegralClosure.MulSemiringAction A K L B
+  refine
+    { toFun := globalIdealDecompositionToLocalDecomposition
+        (A := A) (P := P) (hP := hP)
+      invFun := localDecompositionToGlobalIdealDecomposition
+        (A := A) (P := P) (hP := hP)
+      left_inv := ?_
+      right_inv := ?_
+      map_mul' := fun _ _ ↦ rfl }
+  · intro sigma
+    apply Subtype.ext
+    change (sigma : Gal(L/K)) = (sigma : Gal(L/K))
+    rfl
+  · intro tau
+    apply Subtype.ext
+    change (tau : Gal(L/K)) = (tau : Gal(L/K))
+    rfl
+
+section BaseResidueField
+
+variable [IsGalois K L]
+
+/-- The prime of the base ring below a normalization prime.-/
+abbrev normalizationIdealBasePrime : Ideal A :=
+  P.comap (algebraMap A B)
+
+include L
+
+omit [IsFractionRing A K] [IsIntegralClosure B A L]
+  [Algebra.IsAlgebraic K L] [IsGalois K L] in
+/--
+@isnad1 id=eq.1h7v.s12.deb2a697034f from=translated src=- shape=fd45f07a vocab=a3d53f84
+-/
+theorem localDecomposition_fixes_normalizationBase
+    (sigma : decompositionGroup K
+      (idealLocalizationValuationSubring B L P hP))
+    (a : A) :
+    sigma • idealLocalizationRingHom (B := B) (L := L) P hP
+        (algebraMap A B a) =
+      idealLocalizationRingHom (B := B) (L := L) P hP
+        (algebraMap A B a) := by
+  apply Subtype.ext
+  change ((sigma : Gal(L/K)) : L ≃ₐ[K] L)
+      (algebraMap B L (algebraMap A B a)) =
+    algebraMap B L (algebraMap A B a)
+  calc
+    ((sigma : Gal(L/K)) : L ≃ₐ[K] L)
+        (algebraMap B L (algebraMap A B a)) =
+      ((sigma : Gal(L/K)) : L ≃ₐ[K] L) (algebraMap A L a) := by
+        rw [IsScalarTower.algebraMap_apply A B L]
+    _ = ((sigma : Gal(L/K)) : L ≃ₐ[K] L)
+        (algebraMap K L (algebraMap A K a)) := by
+          rw [← IsScalarTower.algebraMap_apply A K L]
+    _ = algebraMap K L (algebraMap A K a) :=
+      (sigma : Gal(L/K)).commutes (algebraMap A K a)
+    _ = algebraMap A L a :=
+      (IsScalarTower.algebraMap_apply A K L a).symm
+    _ = algebraMap B L (algebraMap A B a) :=
+      IsScalarTower.algebraMap_apply A B L a
+
+/-- The base ring maps canonically to the fixed valuation subring defining
+the intrinsic decomposition residue field.-/
+def normalizationBaseToDecompositionFixedSubring :
+    A →+* decompositionFixedSubring K
+      (idealLocalizationValuationSubring B L P hP) := by
+  letI := IsIntegralClosure.MulSemiringAction A K L B
+  let V := idealLocalizationValuationSubring B L P hP
+  exact RingHom.codRestrict
+    ((idealLocalizationRingHom (B := B) (L := L) P hP).comp
+      (algebraMap A B))
+    (decompositionFixedSubring K V)
+    (fun a sigma ↦ localDecomposition_fixes_normalizationBase
+      (A := A) (B := B) (K := K) (L := L)
+      (P := P) (hP := hP) sigma a)
+
+/-- The canonical map from the base-prime residue field to the intrinsic
+decomposition residue field.-/
+def normalizationBaseResidueToDecompositionResidueField :
+    A ⧸ normalizationIdealBasePrime (A := A) P →+*
+      decompositionResidueField K
+        (idealLocalizationValuationSubring B L P hP) := by
+  letI := IsIntegralClosure.MulSemiringAction A K L B
+  let V := idealLocalizationValuationSubring B L P hP
+  let f := normalizationBaseToDecompositionFixedSubring
+    (A := A) (B := B) (K := K) (L := L) (P := P) (hP := hP)
+  apply Ideal.Quotient.lift (normalizationIdealBasePrime (A := A) P)
+    ((Ideal.Quotient.mk (decompositionFixedMaximalIdeal K V)).comp f)
+  intro a ha
+  apply Ideal.Quotient.eq_zero_iff_mem.mpr
+  change idealLocalizationRingHom (B := B) (L := L) P hP
+      (algebraMap A B a) ∈ IsLocalRing.maximalIdeal V
+  exact (idealLocalizationRingHom_mem_maximalIdeal_iff
+    (B := B) (L := L) P hP (algebraMap A B a)).mpr ha
+
+omit [IsFractionRing A K] [IsIntegralClosure B A L]
+  [Algebra.IsAlgebraic K L] [IsGalois K L] in
+/--
+@isnad1 id=eq.1h6v.s14.b1b04a8a4d2a from=translated src=- shape=0374e8c1 vocab=de6dccf3
+-/
+@[simp] theorem normalizationBaseResidueToDecompositionResidueField_mk
+    (a : A) :
+    normalizationBaseResidueToDecompositionResidueField
+        (A := A) (P := P) (hP := hP)
+        (Ideal.Quotient.mk (normalizationIdealBasePrime (A := A) P) a) =
+      Ideal.Quotient.mk
+        (decompositionFixedMaximalIdeal K
+          (idealLocalizationValuationSubring B L P hP))
+        (normalizationBaseToDecompositionFixedSubring
+          (A := A) (B := B) (K := K) (L := L)
+          (P := P) (hP := hP) a) := by
+  simp [normalizationBaseResidueToDecompositionResidueField]
+
+omit [Algebra.IsAlgebraic K L] [IsGalois K L] in
+/--
+@isnad1 id=eq.1h5v.s14.3fdf5ce31809 from=translated src=- shape=eafb4e3f vocab=bdc2eec9
+-/
+@[simp] theorem decompositionResidueField_algebraMap_mk
+    (r : decompositionFixedSubring K
+      (idealLocalizationValuationSubring B L P hP)) :
+    algebraMap
+        (decompositionResidueField K
+          (idealLocalizationValuationSubring B L P hP))
+        (selectedResidueField
+          (idealLocalizationValuationSubring B L P hP))
+        (Ideal.Quotient.mk
+          (decompositionFixedMaximalIdeal K
+            (idealLocalizationValuationSubring B L P hP)) r) =
+      IsLocalRing.residue
+        (idealLocalizationValuationSubring B L P hP) r := by
+  rfl
+
+end BaseResidueField
+
+end DecompositionLocalization
+
+end TameAbhyankar.SGA1
+
+end

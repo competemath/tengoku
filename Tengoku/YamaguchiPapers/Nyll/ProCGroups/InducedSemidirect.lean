@@ -1,0 +1,54 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.YamaguchiPapers.Nyll.ProCGroups.InducedFunctions
+import Tengoku.Seed.Algebra.Group.Action.End
+import Tengoku.Seed.GroupTheory.SemidirectProduct
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Evaluation on induced semidirect products
+
+The subgroup action on the induced group is the restriction of its ambient
+translation action. Evaluation at the identity therefore induces an actual
+surjective homomorphism of semidirect products.
+-/
+
+namespace ProCGroups.InducedFunctions
+
+universe uQ uA
+
+variable {Q : Type uQ} [Group Q] {A : Type uA} [CommGroup A]
+variable (J : Subgroup Q) [MulDistribMulAction J A]
+
+/-- Evaluation on the function coordinate, with the subgroup coordinate
+unchanged, defines a homomorphism of the actual semidirect products.-/
+def inducedEvaluationSemidirectHom :
+    (InducedModule (B := A) J) ⋊[
+        (MulDistribMulAction.toMulAut Q (InducedModule (B := A) J)).comp J.subtype] J →*
+      A ⋊[MulDistribMulAction.toMulAut J A] J :=
+  SemidirectProduct.map (inducedEvaluation J) (MonoidHom.id J) (by
+    intro j
+    apply MonoidHom.ext
+    intro f
+    change inducedEvaluation J ((j : Q) • f) = j • inducedEvaluation J f
+    exact inducedEvaluation_smul J j f)
+
+/-- Every pair has a preimage, supplied by the actual evaluation epimorphism.
+@isnad1 id=surjecti.0h3v.s15.7f9de867f89f from=translated src=- shape=68866555 vocab=816462d0
+-/
+theorem inducedEvaluationSemidirectHom_surjective :
+    Function.Surjective (inducedEvaluationSemidirectHom (A := A) J) := by
+  intro x
+  obtain ⟨f, hf⟩ := inducedEvaluation_surjective (B := A) J x.left
+  refine ⟨⟨f, x.right⟩, ?_⟩
+  apply SemidirectProduct.ext
+  · change inducedEvaluation J f = x.left
+    exact hf
+  · rfl
+
+end ProCGroups.InducedFunctions
