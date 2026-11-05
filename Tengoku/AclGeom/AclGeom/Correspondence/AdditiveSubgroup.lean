@@ -46,7 +46,9 @@ open MvPolynomial
 
 variable {k : Type*} [Field k]
 
-/-- Translation is an algebra automorphism, so it preserves prime polynomials.-/
+/-- Translation is an algebra automorphism, so it preserves prime polynomials.
+@isnad1 id=iff.0h4v.s8.12815ef46e63 from=translated src=- shape=e6ef33e8 vocab=63baa49d
+-/
 theorem prime_translate_iff {σ : Type*} (c : σ → k) {G : MvPolynomial σ k} :
     Prime (translate c G) ↔ Prime G := by
   let T : MvPolynomial σ k ≃ₐ[k] MvPolynomial σ k :=

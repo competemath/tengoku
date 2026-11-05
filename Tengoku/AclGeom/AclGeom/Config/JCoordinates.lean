@@ -37,7 +37,9 @@ variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 section JTuples
 
 /-- If `x` is transcendental over `a` and algebraic over `{z, a}`, then `z`
-is transcendental.-/
+is transcendental.
+@isnad1 id=not.2h5v.s7.a5a577c7ec25 from=translated src=- shape=5c2c47d8 vocab=2fa0be38
+-/
 theorem notMem_bot_of_mem_racl_pair {x a z : K} (hx : x ∉ racl k ({a} : Set K))
     (h : x ∈ racl k ({z, a} : Set K)) : z ∉ (⊥ : ClosedIF k K) := by
   intro hz
@@ -56,7 +58,9 @@ private theorem mem_pair_left {z w : K} : z ∈ racl k ({z, w} : Set K) :=
 private theorem mem_pair_right {z w : K} : w ∈ racl k ({z, w} : Set K) :=
   subset_racl k _ (Set.mem_insert_of_mem _ rfl)
 
-/-- The five coordinates of `j(x, a)` are transcendental.-/
+/-- The five coordinates of `j(x, a)` are transcendental.
+@isnad1 id=and.1h4v.s9.be910bb512ee from=translated src=- shape=27172dab vocab=5c23bb63
+-/
 theorem jCoordinates_notMem_bot (hind : AlgebraicIndependent k ![x, a]) :
     x ∉ (⊥ : ClosedIF k K) ∧ x + a ∉ (⊥ : ClosedIF k K) ∧
       x * a ∉ (⊥ : ClosedIF k K) ∧ x + x * a ∉ (⊥ : ClosedIF k K) ∧
@@ -99,28 +103,47 @@ def jTupleOf (x a : K) (hind : AlgebraicIndependent k ![x, a]) : Fin 5 → Point
     Point.mk' k (x + x * a) (jCoordinates_notMem_bot hind).2.2.2.1,
     Point.mk' k a (jCoordinates_notMem_bot hind).2.2.2.2]
 
+/--
+@isnad1 id=eq.1h4v.s7.9e8f3d592528 from=translated src=- shape=534af5c6 vocab=16510fca
+-/
 @[simp] theorem jTupleOf_zero (hind : AlgebraicIndependent k ![x, a]) :
     (jTupleOf x a hind 0).1 = point k x := rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.639157fef213 from=translated src=- shape=eace4065 vocab=a3fadb1e
+-/
 @[simp] theorem jTupleOf_one (hind : AlgebraicIndependent k ![x, a]) :
     (jTupleOf x a hind 1).1 = point k (x + a) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.7291ea32ec1c from=translated src=- shape=eace4065 vocab=a20f3a51
+-/
 @[simp] theorem jTupleOf_two (hind : AlgebraicIndependent k ![x, a]) :
     (jTupleOf x a hind 2).1 = point k (x * a) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.66976c659f34 from=translated src=- shape=ce7ecac3 vocab=abb5ced0
+-/
 @[simp] theorem jTupleOf_three (hind : AlgebraicIndependent k ![x, a]) :
     (jTupleOf x a hind 3).1 = point k (x + x * a) := rfl
 
+/--
+@isnad1 id=eq.1h4v.s7.a16d1d40b5a0 from=translated src=- shape=d41a76f2 vocab=16510fca
+-/
 @[simp] theorem jTupleOf_four (hind : AlgebraicIndependent k ![x, a]) :
     (jTupleOf x a hind 4).1 = point k a := rfl
 
-/-- Two `j`-tuples with the same parameter share their parameter point.-/
+/-- Two `j`-tuples with the same parameter share their parameter point.
+@isnad1 id=eq.2h5v.s7.2eef0fd8c270 from=translated src=- shape=0cc55cad vocab=9ab97e8f
+-/
 theorem jTupleOf_four_eq {x' : K} (hind : AlgebraicIndependent k ![x, a])
     (hind' : AlgebraicIndependent k ![x', a]) :
     jTupleOf x a hind 4 = jTupleOf x' a hind' 4 :=
   Subtype.ext ((jTupleOf_four hind).trans (jTupleOf_four hind').symm)
 
-/-- `jTupleOf x a` is a semantic `j`-tuple.-/
+/-- `jTupleOf x a` is a semantic `j`-tuple.
+@isnad1 id=jsem.1h4v.s6.7d0fe652eeb2 from=translated src=- shape=8e67d3e1 vocab=0dba6fcb
+-/
 theorem jSem_jTupleOf (hind : AlgebraicIndependent k ![x, a]) :
     JSem (jTupleOf x a hind) :=
   ⟨x, a, hind, rfl, rfl, rfl, rfl, rfl⟩

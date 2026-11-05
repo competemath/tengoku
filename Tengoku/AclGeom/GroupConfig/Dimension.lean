@@ -78,12 +78,16 @@ theorem _root_.AlgebraicIndependent.matroid_eRk_eq_toENat_trdeg_adjoin (R : Type
     Algebra.trdeg_adjoin_eq_trdeg_intermediateField_adjoin]
 
 /-- The rank over the carrier of a subfield `M` is the transcendence degree over `M` of the
-subalgebra generated.-/
+subalgebra generated.
+@isnad1 id=eq.0h4v.s9.cf2cba72f7f5 from=translated src=- shape=ced4ba51 vocab=0227761a
+-/
 theorem erk_coe_eq_toENat_trdeg_adjoin (M : IntermediateField k K) (X : Set K) :
     erk k (M : Set K) X = Cardinal.toENat (Algebra.trdeg (↥M) ↥(Algebra.adjoin (↥M) X)) := by
   rw [erk_coe_eq, AlgebraicIndependent.matroid_eRk_eq_toENat_trdeg_adjoin]
 
-/-- For a finite tuple, the transcendence degree of the generated subalgebra is finite.-/
+/-- For a finite tuple, the transcendence degree of the generated subalgebra is finite.
+@isnad1 id=lt.0h5v.s9.d5aac823a6cb from=translated src=- shape=40dbdf0e vocab=a84ea7a8
+-/
 theorem trdeg_adjoin_range_lt_aleph0 (M : IntermediateField k K) {ι : Type*} [Finite ι]
     (a : ι → K) :
     Algebra.trdeg (↥M) ↥(Algebra.adjoin (↥M) (Set.range a)) < Cardinal.aleph0 := by
@@ -93,7 +97,9 @@ theorem trdeg_adjoin_range_lt_aleph0 (M : IntermediateField k K) {ι : Type*} [F
 /-! ### Specialisation of tuples -/
 
 /-- A containment of vanishing ideals gives a surjection of the generated subalgebras
-`M[a] → M[b]`, sending `a i` to `b i`.-/
+`M[a] → M[b]`, sending `a i` to `b i`.
+@isnad1 id=ex.1h6v.s13.514b650d842d from=translated src=- shape=1ec5fe18 vocab=08a7ef95
+-/
 theorem exists_surjective_adjoin_of_idealOf_le (M : IntermediateField k K) {ι : Type*}
     {a b : ι → K} (hle : idealOf (↥M) a ≤ idealOf (↥M) b) :
     ∃ π : ↥(Algebra.adjoin (↥M) (Set.range a)) →ₐ[↥M] ↥(Algebra.adjoin (↥M) (Set.range b)),

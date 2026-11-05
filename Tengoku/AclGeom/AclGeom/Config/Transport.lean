@@ -51,7 +51,9 @@ noncomputable section
 variable {k K l L : Type*} [Field k] [Field K] [Algebra k K]
   [Field l] [Field L] [Algebra l L]
 
-/-- An order isomorphism of closed lattices carries partial quadrangles to partial quadrangles.-/
+/-- An order isomorphism of closed lattices carries partial quadrangles to partial quadrangles.
+@isnad1 id=ispartia.1h6v.s7.203977bb79eb from=translated src=- shape=d34fcdc9 vocab=a2dba6cf
+-/
 theorem IsPartialQuadrangle.map (e : ClosedIF k K ≃o ClosedIF l L) {f : Fin 6 → Point k K}
     (h : IsPartialQuadrangle f) : IsPartialQuadrangle (Point.map e ∘ f) where
   injective := (Point.map e).injective.comp h.injective
@@ -93,23 +95,31 @@ def QWitness.map (e : ClosedIF k K ≃o ClosedIF l L) (w : QWitness k K) : QWitn
   Y := Point.map e w.Y
   Z := Point.map e w.Z
 
-/-- The rank-two join `A = A₁ ∨ A₂` of the image witness is the image of `A`.-/
+/-- The rank-two join `A = A₁ ∨ A₂` of the image witness is the image of `A`.
+@isnad1 id=eq.0h6v.s8.d6a647bd7987 from=translated src=- shape=bc6d8067 vocab=3f887f95
+-/
 theorem QWitness.map_A (e : ClosedIF k K ≃o ClosedIF l L) (w : QWitness k K) :
     (w.map e).A = e w.A :=
   (map_sup e w.A₁.1 w.A₂.1).symm
 
-/-- The rank-two join `B = B₁ ∨ B₂` of the image witness is the image of `B`.-/
+/-- The rank-two join `B = B₁ ∨ B₂` of the image witness is the image of `B`.
+@isnad1 id=eq.0h6v.s8.aa84e08237f2 from=translated src=- shape=bc6d8067 vocab=27938924
+-/
 theorem QWitness.map_B (e : ClosedIF k K ≃o ClosedIF l L) (w : QWitness k K) :
     (w.map e).B = e w.B :=
   (map_sup e w.B₁.1 w.B₂.1).symm
 
-/-- The rank-two join `C = C₁ ∨ C₂` of the image witness is the image of `C`.-/
+/-- The rank-two join `C = C₁ ∨ C₂` of the image witness is the image of `C`.
+@isnad1 id=eq.0h6v.s8.2f35ad956557 from=translated src=- shape=bc6d8067 vocab=4a247dd9
+-/
 theorem QWitness.map_C (e : ClosedIF k K ≃o ClosedIF l L) (w : QWitness k K) :
     (w.map e).C = e w.C :=
   (map_sup e w.C₁.1 w.C₂.1).symm
 
 /-- **An order isomorphism preserves `Ψ`**: all twenty-four clauses (i)–(vii) of the
-`Q`-configuration hold for the image witness.-/
+`Q`-configuration hold for the image witness.
+@isnad1 id=psi.1h6v.s7.428b7d983c79 from=translated src=- shape=bd8d558f vocab=53d2d4cb
+-/
 theorem QWitness.Psi.map (e : ClosedIF k K ≃o ClosedIF l L) {w : QWitness k K} (h : w.Psi) :
     (w.map e).Psi where
   rank_ABC := by
@@ -199,7 +209,9 @@ theorem QWitness.Psi.map (e : ClosedIF k K ≃o ClosedIF l L) {w : QWitness k K}
       EmbeddingLike.apply_eq_iff_eq] using h.meet_R
 
 /-- **`Q` is invariant under order isomorphisms of closed lattices**: the geometric relation `Q`
-holds for the images of four points exactly when it holds for the points.-/
+holds for the images of four points exactly when it holds for the points.
+@isnad1 id=iff.0h9v.s8.b0de6451a66a from=translated src=- shape=ab1d3686 vocab=c0a1d216
+-/
 theorem qGeom_map_iff (e : ClosedIF k K ≃o ClosedIF l L) {P D Y I : Point k K} :
     QGeom (Point.map e P) (Point.map e D) (Point.map e Y) (Point.map e I) ↔ QGeom P D Y I := by
   constructor
@@ -214,7 +226,9 @@ theorem qGeom_map_iff (e : ClosedIF k K ≃o ClosedIF l L) {P D Y I : Point k K}
     exact ⟨w.map e, hw.map e, rfl, rfl, rfl, rfl⟩
 
 /-- An order isomorphism of closed lattices carries multiplication diagrams to multiplication
-diagrams.-/
+diagrams.
+@isnad1 id=muldiagr.1h13v.s9.2d0fe1fd9fae from=translated src=- shape=0acbd80f vocab=804ec259
+-/
 theorem MulDiagram.map (e : ClosedIF k K ≃o ClosedIF l L) {X Y V E A₀ B₀ C₀ D₀ : Point k K}
     (h : MulDiagram X Y V E A₀ B₀ C₀ D₀) :
     MulDiagram (Point.map e X) (Point.map e Y) (Point.map e V) (Point.map e E) (Point.map e A₀)
@@ -233,7 +247,9 @@ theorem MulDiagram.map (e : ClosedIF k K ≃o ClosedIF l L) {X Y V E A₀ B₀ C
   rank_XYA := by simpa only [Point.map_coe, ← map_sup, rankEq_map_iff] using h.rank_XYA
 
 /-- **`Q′` is invariant under order isomorphisms of closed lattices**: the geometric relation `Q′`
-holds for the images of four points exactly when it holds for the points.-/
+holds for the images of four points exactly when it holds for the points.
+@isnad1 id=iff.0h9v.s8.b2bbaaa64ae0 from=translated src=- shape=ab1d3686 vocab=edb28161
+-/
 theorem q'Geom_map_iff (e : ClosedIF k K ≃o ClosedIF l L) {X Y S E : Point k K} :
     Q'Geom (Point.map e X) (Point.map e Y) (Point.map e S) (Point.map e E) ↔ Q'Geom X Y S E := by
   constructor
@@ -253,7 +269,9 @@ theorem q'Geom_map_iff (e : ClosedIF k K ≃o ClosedIF l L) {X Y S E : Point k K
       (qGeom_map_iff e).2 hQ, hM.map e⟩
 
 /-- **`J` is invariant under order isomorphisms of closed lattices**: the geometric relation `J`
-holds for the images of five points exactly when it holds for the points.-/
+holds for the images of five points exactly when it holds for the points.
+@isnad1 id=iff.0h10v.s9.bc4109fa299d from=translated src=- shape=a8a6e519 vocab=db132eea
+-/
 theorem jGeom_map_iff (e : ClosedIF k K ≃o ClosedIF l L) {X P Q R A : Point k K} :
     JGeom (Point.map e X) (Point.map e P) (Point.map e Q) (Point.map e R) (Point.map e A) ↔
       JGeom X P Q R A := by

@@ -27,7 +27,9 @@ universe u
 /-- Named consumer: a finite Frobenius cover of the actual normal subgroup.
 Universal injectivity of the affine morphism makes its fraction-field extension purely
 inseparable. The proof uses embeddings into an algebraic closure, without identifying
-residue fields or cancelling a finite map as a monomorphism.-/
+residue fields or cancelling a finite map as a monomorphism.
+@isnad1 id=ispurely.0h4v.s7.af5bc735b10c from=translated src=- shape=c96d18c3 vocab=a1fb7858
+-/
 theorem isPurelyInseparable_of_universallyInjective
     {R A K L : Type u} [CommRing R] [CommRing A] [Field K] [Field L]
     [Algebra R A] [Algebra A L] [IsFractionRing A L]

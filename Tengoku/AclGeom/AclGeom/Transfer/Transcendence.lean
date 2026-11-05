@@ -34,7 +34,9 @@ noncomputable section
 variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 
 /-- A set of cardinality strictly below `trdeg_k K` does not relatively
-algebraically generate all of `K`.-/
+algebraically generate all of `K`.
+@isnad1 id=ex.1h3v.s6.82b5709405bc from=translated src=- shape=c645d9ed vocab=0a490b7e
+-/
 theorem exists_notMem_racl_of_mk_lt_trdeg (S : Set K)
     (hS : Cardinal.mk S < Algebra.trdeg k K) :
   ∃ z : K, z ∉ racl k S := by
@@ -46,7 +48,9 @@ theorem exists_notMem_racl_of_mk_lt_trdeg (S : Set K)
   exact (not_le_of_gt hS) (Algebra.IsAlgebraic.trdeg_le_cardinalMk k S)
 
 /-- A natural lower bound on transcendence degree supplies a fresh element
-over every finite parameter set of smaller cardinality.-/
+over every finite parameter set of smaller cardinality.
+@isnad1 id=ex.2h4v.s6.81fa83bd64d0 from=translated src=- shape=4dd32413 vocab=947b6acf
+-/
 theorem exists_notMem_racl_of_card_lt_trdeg {n : ℕ}
     (htr : (n : Cardinal) < Algebra.trdeg k K)
     (S : Finset K) (hS : S.card ≤ n) :
@@ -59,7 +63,9 @@ theorem exists_notMem_racl_of_card_lt_trdeg {n : ℕ}
   exact hScard.trans_lt htr
 
 /-- The rank-five hypothesis used by the 21-point configuration gives its
-four-parameter fresh-element oracle.-/
+four-parameter fresh-element oracle.
+@isnad1 id=ex.2h3v.s6.98cd84de431b from=translated src=- shape=8b6f0f1f vocab=aca87535
+-/
 theorem fresh_four_of_five_le_trdeg
     (htr : (5 : Cardinal) ≤ Algebra.trdeg k K) :
     ∀ S : Finset K, S.card ≤ 4 → ∃ z, z ∉ racl k (S : Set K) := by
@@ -68,7 +74,9 @@ theorem fresh_four_of_five_le_trdeg
     (n := 4) (lt_of_lt_of_le (by norm_num) htr) S hS
 
 /-- The same rank-five hypothesis gives the three-parameter oracle used by
-the j-rigidity descent argument.-/
+the j-rigidity descent argument.
+@isnad1 id=ex.2h3v.s6.e60c005a79e2 from=translated src=- shape=8b6f0f1f vocab=aca87535
+-/
 theorem fresh_three_of_five_le_trdeg
     (htr : (5 : Cardinal) ≤ Algebra.trdeg k K) :
     ∀ S : Finset K, S.card ≤ 3 → ∃ z, z ∉ racl k (S : Set K) := by

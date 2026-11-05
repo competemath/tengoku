@@ -46,7 +46,9 @@ variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 
 /-- A subset of the line that is constructible over `k` is finite or cofinite. Only this
 implication holds in general: the singleton of an element transcendental over `k` is not
-constructible over `k`. Named consumer: `GroupConfig.not_isConstructibleOver_range_algebraMap`.-/
+constructible over `k`. Named consumer: `GroupConfig.not_isConstructibleOver_range_algebraMap`.
+@isnad1 id=or.1h3v.s6.743c6730fb8b from=translated src=- shape=859d8725 vocab=da8f6325
+-/
 theorem IsConstructibleOver.finite_or_finite_compl {s : Set (Fin 1 → K)}
     (hs : IsConstructibleOver k s) : s.Finite ∨ sᶜ.Finite := by
   classical
@@ -95,7 +97,9 @@ theorem IsConstructibleOver.finite_or_finite_compl {s : Set (Fin 1 → K)}
     exact subset_biUnion_of_mem hc
 
 /-- `rem:descent-limits` (refuted on #31): for an infinite field `k` and an element `t` of `K`
-outside `k`, the elements of `k` do not form a constructible subset of the line over `k`.-/
+outside `k`, the elements of `k` do not form a constructible subset of the line over `k`.
+@isnad1 id=not.1h3v.s7.4a5c036d3621 from=translated src=- shape=7b514d9e vocab=e3a1b7b9
+-/
 theorem not_isConstructibleOver_range_algebraMap [Infinite k] {t : K}
     (ht : t ∉ range (algebraMap k K)) :
     ¬ IsConstructibleOver k {u : Fin 1 → K | u 0 ∈ range (algebraMap k K)} := by
@@ -115,7 +119,9 @@ theorem not_isConstructibleOver_range_algebraMap [Infinite k] {t : K}
     exact ht ⟨d - c, by rw [map_sub, hd, add_sub_cancel_right]⟩
 
 /-- `rem:descent-limits`, degree bound one and empty parameters: the elements of `K` satisfying a
-nonzero polynomial over `k` of degree at most one are exactly the elements of `k`.-/
+nonzero polynomial over `k` of degree at most one are exactly the elements of `k`.
+@isnad1 id=eq.0h2v.s8.ce9a58c95ec3 from=translated src=- shape=4349fe9b vocab=ef067ed1
+-/
 theorem setOf_exists_natDegree_le_one_aeval_eq_zero :
     {u : Fin 1 → K | ∃ P : Polynomial k, P ≠ 0 ∧ P.natDegree ≤ 1 ∧ Polynomial.aeval (u 0) P = 0} =
       {u | u 0 ∈ range (algebraMap k K)} := by
@@ -139,7 +145,9 @@ theorem setOf_exists_natDegree_le_one_aeval_eq_zero :
 
 /-- `rem:descent-limits` (refuted on #31), degree bound one and empty parameters: for an infinite
 field `k` and an element `t` of `K` outside `k`, membership in `acl(k)` witnessed by a nonzero
-polynomial over `k` of degree at most one is not a constructible relation over `k`.-/
+polynomial over `k` of degree at most one is not a constructible relation over `k`.
+@isnad1 id=not.1h3v.s8.d672a8003151 from=translated src=- shape=87a518c0 vocab=af3b9d53
+-/
 theorem not_isConstructibleOver_setOf_exists_natDegree_le_one [Infinite k] {t : K}
     (ht : t ∉ range (algebraMap k K)) :
     ¬ IsConstructibleOver k {u : Fin 1 → K | ∃ P : Polynomial k, P ≠ 0 ∧ P.natDegree ≤ 1 ∧

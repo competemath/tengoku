@@ -49,7 +49,9 @@ variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 
 /-- **Translating `b` and `d` by a constant** (#27).  If `a, b, c, d, x` are independent and
 `η ∈ k`, then so are `a`, `b - η`, `c`, `d + (c - 1) η` and `x`: the change of coordinates is
-triangular with an inverse of the same form.-/
+triangular with an inverse of the same form.
+@isnad1 id=algebrai.1h8v.s8.7e79550256d5 from=translated src=- shape=701af912 vocab=712cc3a0
+-/
 theorem algebraicIndependent_table_Q_shift {a b c d x : K}
     (hind : AlgebraicIndependent k ![a, b, c, d, x]) (η : k) :
     AlgebraicIndependent k ![a, b - algebraMap k K η,

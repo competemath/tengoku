@@ -39,7 +39,9 @@ attribute [local instance] specializationOrder
 universe u
 
 /-- Closed points are the minimal elements of a scheme's specialization order.
-Named consumer: identifying places with actual closed points of a curve.-/
+Named consumer: identifying places with actual closed points of a curve.
+@isnad1 id=iff.0h2v.s6.db89a91a192e from=translated src=- shape=3e3209bd vocab=e0d8ea37
+-/
 theorem isClosed_singleton_iff_isMin (X : Scheme.{u}) (x : X) :
     IsClosed ({x} : Set X) ↔ IsMin x := by
   constructor
@@ -56,7 +58,9 @@ theorem isClosed_singleton_iff_isMin (X : Scheme.{u}) (x : X) :
     exact Set.mem_singleton_iff.mpr (le_antisymm hyx (hx hyx))
 
 /-- On an actual integral dimension-one curve, the closed points are exactly the
-nongeneric points. Named consumer: the actual closed-point/place equivalence.-/
+nongeneric points. Named consumer: the actual closed-point/place equivalence.
+@isnad1 id=iff.1h2v.s7.baca8773eb33 from=translated src=- shape=ab46a01c vocab=7e2671fb
+-/
 theorem isClosed_singleton_iff_ne_genericPoint (X : Scheme.{u}) [IsIntegral X]
     (hdim : topologicalKrullDim X = 1) (x : X) :
     IsClosed ({x} : Set X) ↔ x ≠ genericPoint X := by
@@ -75,7 +79,9 @@ theorem isClosed_singleton_iff_ne_genericPoint (X : Scheme.{u}) [IsIntegral X]
     exact (Order.krullDim_le_one_iff_forall_isMin.mp (he.trans hdim).le) x hx
 
 /-- A stalk of an integral scheme is a field exactly at its generic point.
-Named consumer: properness of the closed point's valuation subring.-/
+Named consumer: properness of the closed point's valuation subring.
+@isnad1 id=iff.0h2v.s7.eebf6718c8cf from=translated src=- shape=f9756e91 vocab=2cea1ae9
+-/
 theorem isField_stalk_iff_genericPoint (X : Scheme.{u}) [IsIntegral X] (x : X) :
     IsField (X.presheaf.stalk x) ↔ x = genericPoint X := by
   constructor

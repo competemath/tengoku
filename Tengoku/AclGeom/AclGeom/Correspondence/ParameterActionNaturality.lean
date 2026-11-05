@@ -28,7 +28,9 @@ variable {C : Type u} [Category.{v} C] [CartesianMonoidalCategory C]
   {G : C} [GrpObj G] (X : C) [ModObj G X] {S T : C}
 
 /-- The parameter-preserving action commutes with changing the parameter.
-Named consumer: literal tensor-coordinate base change for the actual generic coefficient field.-/
+Named consumer: literal tensor-coordinate base change for the actual generic coefficient field.
+@isnad1 id=eq.0h7v.s8.1d0eec29afd6 from=translated src=- shape=d7c7f109 vocab=216507f6
+-/
 theorem parameterAct_natural (f : S ⟶ T) (g : T ⟶ G) :
     (f ⊗ₘ 𝟙 X) ≫ parameterAct X g = parameterAct X (f ≫ g) ≫ (f ⊗ₘ 𝟙 X) := by
   apply CartesianMonoidalCategory.hom_ext

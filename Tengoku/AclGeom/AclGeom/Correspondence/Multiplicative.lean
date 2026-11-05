@@ -74,47 +74,63 @@ variable (S : MulCorrSetup k Ω)
 def base : IntermediateField k Ω :=
   adjoin k {S.x₁, S.y₁}
 
-/-- The base is contained in the closure of `x₁`.-/
+/-- The base is contained in the closure of `x₁`.
+@isnad1 id=le.0h3v.s6.44441882a581 from=translated src=- shape=28931b18 vocab=0d57ae2a
+-/
 theorem base_le_racl : S.base ≤ racl k {S.x₁} := by
   refine adjoin_le_iff.2 ?_
   rintro z (rfl | rfl)
   · exact subset_racl k _ rfl
   · exact S.y₁_mem
 
-/-- The independence counts, exactly as in the additive setup.-/
+/-- The independence counts, exactly as in the additive setup.
+@isnad1 id=not.0h3v.s6.cfa05a5a0e81 from=translated src=- shape=0c5e1715 vocab=5d02d77e
+-/
 theorem x₂_notMem : S.x₂ ∉ racl k {S.x₁} :=
   AlgebraicIndependent.notMem_racl_pair S.indep
 
-/-- … and symmetrically.-/
+/-- … and symmetrically.
+@isnad1 id=not.0h3v.s6.8eb56bf32fac from=translated src=- shape=0c5e1715 vocab=5d02d77e
+-/
 theorem x₁_notMem : S.x₁ ∉ racl k {S.x₂} :=
   AlgebraicIndependent.notMem_racl_pair' S.indep
 
-/-- The transcendental coordinates are nonzero.-/
+/-- The transcendental coordinates are nonzero.
+@isnad1 id=ne.0h3v.s5.dd87270e5ed5 from=translated src=- shape=18197b12 vocab=c2e55cc1
+-/
 theorem x₁_ne : S.x₁ ≠ 0 := by
   intro h
   refine S.x₁_notMem ?_
   rw [h]
   exact zero_mem _
 
-/-- … both of them.-/
+/-- … both of them.
+@isnad1 id=ne.0h3v.s5.d088a99d839a from=translated src=- shape=18197b12 vocab=9d8ceba0
+-/
 theorem x₂_ne : S.x₂ ≠ 0 := by
   intro h
   refine S.x₂_notMem ?_
   rw [h]
   exact zero_mem _
 
-/-- `x₂` remains transcendental over the enlarged base `k(x₁, y₁)`.-/
+/-- `x₂` remains transcendental over the enlarged base `k(x₁, y₁)`.
+@isnad1 id=transcen.0h3v.s7.482bb929e4b8 from=translated src=- shape=1738dfb6 vocab=ac1fef4f
+-/
 theorem transcendental_x₂ : Transcendental ↥S.base S.x₂ := by
   intro halg
   refine S.x₂_notMem ((isRAC_racl {S.x₁}).mem_of_isAlgebraic ?_)
   exact isAlgebraic_of_le S.base_le_racl halg
 
-/-- The second correspondence relation persists over the enlarged base.-/
+/-- The second correspondence relation persists over the enlarged base.
+@isnad1 id=mem.0h3v.s8.97ee8f2759c0 from=translated src=- shape=0aa1d03a vocab=cdee8733
+-/
 theorem y₂_mem_baseRacl : S.y₂ ∈ racl ↥S.base {S.x₂} :=
   racl_subset_racl_base S.base {S.x₂} S.y₂_mem
 
 /-- The first coordinate of the product correspondence is transcendental:
-dividing by `x₁` would otherwise make `x₂` algebraic over `k(x₁)`.-/
+dividing by `x₁` would otherwise make `x₂` algebraic over `k(x₁)`.
+@isnad1 id=transcen.0h3v.s6.9d9ffe6546d0 from=translated src=- shape=33508852 vocab=603ea3f4
+-/
 theorem mul_fst_transcendental : Transcendental k (S.x₁ * S.x₂) := by
   intro halg
   have hmem : S.x₁ * S.x₂ ∈ racl k {S.x₁} :=
@@ -126,11 +142,15 @@ theorem mul_fst_transcendental : Transcendental k (S.x₁ * S.x₂) := by
     rwa [hcancel] at hdiv
   exact S.x₂_notMem hx₂
 
-/-- The product pair is a two-way correspondence in the first coordinate.-/
+/-- The product pair is a two-way correspondence in the first coordinate.
+@isnad1 id=ne.0h3v.s6.8065abcdc5d8 from=translated src=- shape=24293ff5 vocab=683edf86
+-/
 theorem mul_fst_ne : S.x₁ * S.x₂ ≠ 0 :=
   mul_ne_zero S.x₁_ne S.x₂_ne
 
-/-- … and in the second.-/
+/-- … and in the second.
+@isnad1 id=ne.0h3v.s6.7773cbc79f6a from=translated src=- shape=24293ff5 vocab=5fd7107b
+-/
 theorem mul_snd_ne : S.y₁ * S.y₂ ≠ 0 :=
   mul_ne_zero S.y₁_ne S.y₂_ne
 
@@ -147,7 +167,9 @@ def JointRel (c₂' : Fin 2 → Ω) : Prop :=
       aeval (Sum.elim ![S.x₁, S.y₁] ![S.x₂, S.y₂]) f = 0
 
 /-- Joint relocation of the second pair, exactly as in the additive chain:
-the construction is independent of the group operation.-/
+the construction is independent of the group operation.
+@isnad1 id=ex.1h4v.s10.15a29f8a3200 from=translated src=- shape=eec25a6a vocab=8b8b7be5
+-/
 theorem exists_pair_relocation [IsAlgClosed Ω] {s : Ω}
     (hs : Transcendental ↥S.base s) :
     ∃ c₂' : Fin 2 → Ω, S.JointRel c₂' ∧
@@ -183,20 +205,26 @@ theorem exists_pair_relocation [IsAlgClosed Ω] {s : Ω}
 
 variable {S} {c₂' : Fin 2 → Ω}
 
-/-- A joint relocation has the same joint vanishing ideal.-/
+/-- A joint relocation has the same joint vanishing ideal.
+@isnad1 id=eq.1h4v.s8.c820ae2e7d85 from=translated src=- shape=d70f8c04 vocab=143ff832
+-/
 theorem JointRel.idealOf_eq (hrel : S.JointRel c₂') :
     idealOf k (Sum.elim ![S.x₁, S.y₁] c₂') =
       idealOf k (Sum.elim ![S.x₁, S.y₁] ![S.x₂, S.y₂]) :=
   idealOf_eq_of_aeval_iff k hrel
 
 /-- The product pair of a joint relocation is a generic point of the same
-product locus (the multiplicative step 2a, instantiated).-/
+product locus (the multiplicative step 2a, instantiated).
+@isnad1 id=eq.1h4v.s8.427c70d67517 from=translated src=- shape=a17c9bf8 vocab=952adfbe
+-/
 theorem JointRel.mul_idealOf_eq (hrel : S.JointRel c₂') :
     idealOf k (![S.x₁, S.y₁] * c₂') =
       idealOf k (![S.x₁, S.y₁] * ![S.x₂, S.y₂]) :=
   idealOf_mul_eq_of_joint hrel
 
-/-- The relocated pair is still a finite correspondence.-/
+/-- The relocated pair is still a finite correspondence.
+@isnad1 id=mem.1h4v.s6.80253b0391b6 from=translated src=- shape=75551a76 vocab=5041a6df
+-/
 theorem JointRel.snd_mem (hrel : S.JointRel c₂') : c₂' 1 ∈ racl k {c₂' 0} := by
   have hv : Sum.elim ![S.x₁, S.y₁] ![S.x₂, S.y₂] (Sum.inr 1) ∈ racl k
       (Sum.elim ![S.x₁, S.y₁] ![S.x₂, S.y₂] '' {Sum.inr 0}) := by
@@ -204,7 +232,9 @@ theorem JointRel.snd_mem (hrel : S.JointRel c₂') : c₂' 1 ∈ racl k {c₂' 0
   have h := mem_racl_image_of_idealOf_eq k hrel.idealOf_eq.symm hv
   simpa [Set.image_singleton] using h
 
-/-- The relocated product pair is still a two-way correspondence.-/
+/-- The relocated product pair is still a two-way correspondence.
+@isnad1 id=mem.1h4v.s7.03bdc211fba7 from=translated src=- shape=8525d18e vocab=80501269
+-/
 theorem JointRel.mul_snd_mem (hrel : S.JointRel c₂') :
     S.y₁ * c₂' 1 ∈ racl k {S.x₁ * c₂' 0} := by
   have hv : (![S.x₁, S.y₁] * ![S.x₂, S.y₂]) 1 ∈ racl k
@@ -213,7 +243,9 @@ theorem JointRel.mul_snd_mem (hrel : S.JointRel c₂') :
   have h := mem_racl_image_of_idealOf_eq k hrel.mul_idealOf_eq.symm hv
   simpa [Set.image_singleton] using h
 
-/-- … and conversely.-/
+/-- … and conversely.
+@isnad1 id=mem.1h4v.s7.b0349d135da1 from=translated src=- shape=8525d18e vocab=80501269
+-/
 theorem JointRel.mul_fst_mem (hrel : S.JointRel c₂') :
     S.x₁ * c₂' 0 ∈ racl k {S.y₁ * c₂' 1} := by
   have hv : (![S.x₁, S.y₁] * ![S.x₂, S.y₂]) 0 ∈ racl k
@@ -222,7 +254,9 @@ theorem JointRel.mul_fst_mem (hrel : S.JointRel c₂') :
   have h := mem_racl_image_of_idealOf_eq k hrel.mul_idealOf_eq.symm hv
   simpa [Set.image_singleton] using h
 
-/-- The relocated product coordinate is transcendental.-/
+/-- The relocated product coordinate is transcendental.
+@isnad1 id=transcen.1h4v.s6.82455051cb2f from=translated src=- shape=2d129415 vocab=35794cb8
+-/
 theorem JointRel.mul_fst_transcendental (hrel : S.JointRel c₂') :
     Transcendental k (S.x₁ * c₂' 0) := by
   have hv : Transcendental k ((![S.x₁, S.y₁] * ![S.x₂, S.y₂]) 0) := by
@@ -230,14 +264,18 @@ theorem JointRel.mul_fst_transcendental (hrel : S.JointRel c₂') :
   have h := transcendental_of_idealOf_eq k hrel.mul_idealOf_eq.symm hv
   simpa using h
 
-/-- The relocated coordinates stay nonzero: vanishing is a joint relation.-/
+/-- The relocated coordinates stay nonzero: vanishing is a joint relation.
+@isnad1 id=ne.1h4v.s6.8b04027c6863 from=translated src=- shape=03c3c633 vocab=858820be
+-/
 theorem JointRel.fst_ne (hrel : S.JointRel c₂') : c₂' 0 ≠ 0 := by
   intro h0
   have h := (hrel (MvPolynomial.X (Sum.inr 0))).1 (by simp [h0])
   simp at h
   exact S.x₂_ne h
 
-/-- … both of them.-/
+/-- … both of them.
+@isnad1 id=ne.1h4v.s6.eb53becdc401 from=translated src=- shape=03c3c633 vocab=858820be
+-/
 theorem JointRel.snd_ne (hrel : S.JointRel c₂') : c₂' 1 ≠ 0 := by
   intro h0
   have h := (hrel (MvPolynomial.X (Sum.inr 1))).1 (by simp [h0])
@@ -245,11 +283,15 @@ theorem JointRel.snd_ne (hrel : S.JointRel c₂') : c₂' 1 ≠ 0 := by
   exact S.y₂_ne h
 
 variable (S) in
-/-- `x₂` is not algebraic over the base, in `racl` form.-/
+/-- `x₂` is not algebraic over the base, in `racl` form.
+@isnad1 id=not.0h3v.s6.43c3268064e9 from=translated src=- shape=edfe1bb2 vocab=b53cde58
+-/
 theorem x₂_notMem_base : S.x₂ ∉ racl k {S.x₁, S.y₁} := fun hmem ↦
   S.transcendental_x₂ ((mem_racl_iff k).1 hmem)
 
-/-- The relocated first coordinate stays generic over the base.-/
+/-- The relocated first coordinate stays generic over the base.
+@isnad1 id=not.1h4v.s6.171fef095cbd from=translated src=- shape=cbe3061a vocab=fbeaea46
+-/
 theorem JointRel.fst_notMem_base (hrel : S.JointRel c₂') :
     c₂' 0 ∉ racl k {S.x₁, S.y₁} := by
   have hv : Sum.elim ![S.x₁, S.y₁] ![S.x₂, S.y₂] (Sum.inr 0) ∉ racl k
@@ -262,7 +304,9 @@ variable {s : Ω}
 
 variable (S) in
 /-- Convert the algebraicity output of `exists_pair_relocation` to closure
-form over `k`.-/
+form over `k`.
+@isnad1 id=mem.1h5v.s10.dc10993385af from=translated src=- shape=918d37ca vocab=5bb5ab32
+-/
 theorem racl_pair_of_relocation {z : Ω}
     (halg : IsAlgebraic ↥(adjoin ↥S.base ({s} : Set Ω)) z) :
     z ∈ racl k {S.x₁, s} := by
@@ -275,7 +319,9 @@ theorem racl_pair_of_relocation {z : Ω}
   exact h1
 
 /-- With `s` independent from `{x₁, x₂}`, the relocated first coordinate
-stays outside `racl k {x₁, x₂}`.-/
+stays outside `racl k {x₁, x₂}`.
+@isnad1 id=not.3h5v.s7.f83c342c4fcf from=translated src=- shape=c01545b3 vocab=ceae2b34
+-/
 theorem JointRel.fst_notMem_pair (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s}) :
     c₂' 0 ∉ racl k {S.x₁, S.x₂} := by
@@ -291,7 +337,9 @@ theorem JointRel.fst_notMem_pair (hrel : S.JointRel c₂')
     · exact subset_racl k _ (Set.mem_insert _ _)
   exact hs (racl_le_of_subset_racl hsub hexch)
 
-/-- Triple independence, permuted.-/
+/-- Triple independence, permuted.
+@isnad1 id=not.3h5v.s7.75eb49d6bda4 from=translated src=- shape=392bb080 vocab=ceae2b34
+-/
 theorem JointRel.x₁_notMem_pair (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s}) :
     S.x₁ ∉ racl k {S.x₂, c₂' 0} := by
@@ -302,7 +350,9 @@ theorem JointRel.x₁_notMem_pair (hrel : S.JointRel c₂')
   exact hrel.fst_notMem_pair hs halg hexch
 
 /-- The ρ-side genericity count: the relocated product coordinate is not
-algebraic over the ratio element `ρ = c₂ / c₂'`.-/
+algebraic over the ratio element `ρ = c₂ / c₂'`.
+@isnad1 id=not.3h5v.s8.ed0f29437b23 from=translated src=- shape=e807574b vocab=ddab17f0
+-/
 theorem JointRel.mul_fst_notMem_rho (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s}) :
     S.x₁ * c₂' 0 ∉ racl k {S.x₂ / c₂' 0, S.y₂ / c₂' 1} := by
@@ -339,7 +389,9 @@ open MvPolynomial
 
 /-- The product locus is a plane curve: its vanishing ideal is generated by
 a single prime polynomial (the curve-ideal brick applied to the product
-pair).-/
+pair).
+@isnad1 id=ex.0h3v.s8.7cd7099f23dd from=translated src=- shape=eabb06bc vocab=7eefae53
+-/
 theorem exists_prime_span_mul :
     ∃ F : MvPolynomial (Fin 2) k, Prime F ∧
       idealOf k (![S.x₁, S.y₁] * ![S.x₂, S.y₂]) = Ideal.span {F} := by
@@ -371,7 +423,9 @@ def rhoVec (S : MulCorrSetup k Ω) (c₂' : Fin 2 → Ω) :
 variable {S} {c₂' : Fin 2 → Ω} {s : Ω}
 
 /-- The unrelocated product coordinate is also transcendental over `k(ρ)`
-(dividing by `ρ₁` moves between the two product points).-/
+(dividing by `ρ₁` moves between the two product points).
+@isnad1 id=not.3h5v.s8.c3c3f1fc1809 from=translated src=- shape=d013cdc1 vocab=ddab17f0
+-/
 theorem JointRel.mul_fst_notMem_rho' (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s}) :
     S.x₁ * S.x₂ ∉ racl k {S.x₂ / c₂' 0, S.y₂ / c₂' 1} := by
@@ -387,14 +441,18 @@ theorem JointRel.mul_fst_notMem_rho' (hrel : S.JointRel c₂')
   exact hrel.mul_fst_notMem_rho hs halg h2
 
 /-- The unrelocated product's second coordinate is also transcendental over
-`k(ρ)`.-/
+`k(ρ)`.
+@isnad1 id=not.3h5v.s8.a639af6dfe2f from=translated src=- shape=fa4d4fc5 vocab=b8f1f922
+-/
 theorem JointRel.mul_snd_notMem_rho' (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s}) :
     S.y₁ * S.y₂ ∉ racl k {S.x₂ / c₂' 0, S.y₂ / c₂' 1} := fun hmem ↦
   hrel.mul_fst_notMem_rho' hs halg
     (racl_le_of_subset_racl (Set.singleton_subset_iff.2 hmem) S.mul_mem')
 
-/-- … and the relocated product's second coordinate.-/
+/-- … and the relocated product's second coordinate.
+@isnad1 id=not.3h5v.s8.b8002f598e73 from=translated src=- shape=32d37a12 vocab=b8f1f922
+-/
 theorem JointRel.mul_snd_notMem_rho (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s}) :
     S.y₁ * c₂' 1 ∉ racl k {S.x₂ / c₂' 0, S.y₂ / c₂' 1} := fun hmem ↦
@@ -405,7 +463,9 @@ theorem JointRel.mul_snd_notMem_rho (hrel : S.JointRel c₂')
 through step 4): the extension to `k(ρ)` of the product-locus generator has
 its span fixed by the scaling substitution by `ρ = c₂ / c₂'`, so by scaling
 rigidity the monomial values of `ρ` agree across its support — the
-`ρ^(m−m') = 1` relations feeding the exponent-lattice classification.-/
+`ρ^(m−m') = 1` relations feeding the exponent-lattice classification.
+@isnad1 id=eq.7h8v.s11.83c9c21aee13 from=translated src=- shape=4b199b0a vocab=17da6f9e
+-/
 theorem JointRel.monomial_prod_rhoVec_eq [IsAlgClosed k]
     (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s})
@@ -473,7 +533,9 @@ theorem JointRel.monomial_prod_rhoVec_eq [IsAlgClosed k]
 
 /-- The Ω-level form of the exact scaling identity: at any two support
 monomials of the generator, the ratio element satisfies the same monomial
-value.-/
+value.
+@isnad1 id=eq.7h8v.s10.0a331c9c37bd from=translated src=- shape=7be821d5 vocab=7c076193
+-/
 theorem JointRel.rho_pow_support_eq [IsAlgClosed k] (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s})
     {F : MvPolynomial (Fin 2) k} (hF0 : F ≠ 0)
@@ -497,7 +559,9 @@ theorem JointRel.rho_pow_support_eq [IsAlgClosed k] (hrel : S.JointRel c₂')
   rwa [hconv, hconv] at hval
 
 /-- The `ℤ`-exponent form: the support difference kills the ratio element,
-`ρ^(m−m') = 1`.-/
+`ρ^(m−m') = 1`.
+@isnad1 id=eq.7h8v.s10.c199447e1c0c from=translated src=- shape=5eb4c98b vocab=6f4bd4b3
+-/
 theorem JointRel.zpow_rho_support_eq_one [IsAlgClosed k]
     (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s})
@@ -514,7 +578,9 @@ theorem JointRel.zpow_rho_support_eq_one [IsAlgClosed k]
   exact mul_ne_zero (pow_ne_zero _ hρ₀) (pow_ne_zero _ hρ₁)
 
 /-- Intermediate fields are closed under integer powers (helper avoiding a
-slow instance search).-/
+slow instance search).
+@isnad1 id=mem.1h5v.s6.0ceda2e9fa9e from=translated src=- shape=4a6b2d46 vocab=2abca76a
+-/
 theorem zpow_mem_racl {A : Set Ω} {x : Ω} (hx : x ∈ racl k A)
     (n : ℤ) : x ^ n ∈ racl k A := by
   rcases n with n | n
@@ -526,7 +592,9 @@ theorem zpow_mem_racl {A : Set Ω} {x : Ω} (hx : x ∈ racl k A)
 /-- **Relocation invariance of monomial values** (the coset-constant step):
 any support-difference monomial value of the product point is fixed by the
 relocation, hence algebraic over every side of the independence, hence in
-`k`.-/
+`k`.
+@isnad1 id=ex.7h8v.s10.21e3d2a0dde5 from=translated src=- shape=8b026f0e vocab=f171fc6d
+-/
 theorem JointRel.exists_algebraMap_eq_zpow_mul [IsAlgClosed k]
     (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s})
@@ -631,7 +699,9 @@ interalgebraic products satisfy multiplicative coset equations
 `x_i^a y_i^b = c_i` with common nonzero integer exponents and nonzero
 constants from `k`. The exponents arise as a support difference of the
 product-locus generator; the constants are the relocation-invariant
-monomial values, split along the independence of the two pairs.-/
+monomial values, split along the independence of the two pairs.
+@isnad1 id=ex.1h4v.s8.214855d0871b from=translated src=- shape=4c16e7a1 vocab=ae6d6b12
+-/
 theorem exists_coset_equations [IsAlgClosed k] [IsAlgClosed Ω] {s : Ω}
     (hs : s ∉ racl k {S.x₁, S.x₂}) :
     ∃ (a b : ℤ) (c₁ c₂ : k), a ≠ 0 ∧ b ≠ 0 ∧ c₁ ≠ 0 ∧ c₂ ≠ 0 ∧
@@ -748,7 +818,9 @@ theorem exists_coset_equations [IsAlgClosed k] [IsAlgClosed Ω] {s : Ω}
 
 /-- The multiplicative coset equations with **coprime** exponents:
 extracting the gcd only changes the constants, since the root of the
-monomial value is itself algebraic over the algebraically closed base.-/
+monomial value is itself algebraic over the algebraically closed base.
+@isnad1 id=ex.1h4v.s8.7e805078c2f0 from=translated src=- shape=8b71cd6a vocab=7fc9e35a
+-/
 theorem exists_coset_equations_coprime [IsAlgClosed k] [IsAlgClosed Ω]
     {s : Ω} (hs : s ∉ racl k {S.x₁, S.x₂}) :
     ∃ (a b : ℤ) (c₁ c₂ : k), a ≠ 0 ∧ b ≠ 0 ∧ Int.gcd a b = 1 ∧

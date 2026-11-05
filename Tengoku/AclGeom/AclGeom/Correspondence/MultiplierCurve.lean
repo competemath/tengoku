@@ -44,7 +44,9 @@ open MvPolynomial
 variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 
 /-- **Polynomial images preserve equality of vanishing ideals**: if `a` and `b` have the same
-vanishing ideal, so do their images under the same polynomial map `g`.-/
+vanishing ideal, so do their images under the same polynomial map `g`.
+@isnad1 id=eq.1h7v.s9.f36fc99ab7e4 from=translated src=- shape=da8f59d7 vocab=fb3a9022
+-/
 theorem idealOf_aeval_comp_eq_of_idealOf_eq {ι κ : Type*} {a b : ι → K}
     (h : idealOf k a = idealOf k b) (g : κ → MvPolynomial ι k) :
     idealOf k (fun j ↦ aeval a (g j)) = idealOf k (fun j ↦ aeval b (g j)) := by

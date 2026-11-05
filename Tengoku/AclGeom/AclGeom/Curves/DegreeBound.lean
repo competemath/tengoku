@@ -36,7 +36,9 @@ noncomputable section
 
 variable {k F : Type*} [Field k] [Field F] [Algebra k F]
 
-/-- Adjoining an element and its inverse give the same subfield.-/
+/-- Adjoining an element and its inverse give the same subfield.
+@isnad1 id=eq.0h3v.s6.42f316087988 from=translated src=- shape=1bb7ae6c vocab=8b9df9c3
+-/
 theorem adjoin_inv_eq (f : F) :
     adjoin k ({f⁻¹} : Set F) = adjoin k ({f} : Set F) := by
   rcases eq_or_ne f 0 with rfl | hf0
@@ -49,7 +51,9 @@ theorem adjoin_inv_eq (f : F) :
     have h2 := inv_mem h1
     rwa [inv_inv] at h2
 
-/-- Powers of a transcendental element are linearly independent.-/
+/-- Powers of a transcendental element are linearly independent.
+@isnad1 id=linearin.1h4v.s6.cfd66fe614ef from=translated src=- shape=3f1f507d vocab=ceed4961
+-/
 theorem linearIndependent_pow_of_transcendental {f : F}
     (htr : Transcendental k f) (N : ℕ) :
     LinearIndependent k fun j : Fin N ↦ f ^ (j : ℕ) := by

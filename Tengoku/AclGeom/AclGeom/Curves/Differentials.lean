@@ -43,11 +43,16 @@ noncomputable def adeleMulMap (f : F) :
   LinearMap.pi fun P ↦ (LinearMap.mulLeft k f).comp (LinearMap.proj P)
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
+/--
+@isnad1 id=eq.0h5v.s8.cd6e9c0c5559 from=translated src=- shape=22814f06 vocab=f629be56
+-/
 @[simp]
 theorem adeleMulMap_apply (f : F) (α : (P : Place k F) → F)
     (P : Place k F) : adeleMulMap k f α P = f * α P := rfl
 
-/-- Multiplication maps `A(D + div f)` into `A(D)`.-/
+/-- Multiplication maps `A(D + div f)` into `A(D)`.
+@isnad1 id=mem.2h5v.s10.aa2bc5b2dbb6 from=translated src=- shape=0a60654b vocab=4db1e7e9
+-/
 theorem adeleMulMap_mem_adeleSpace {f : F} (hf : f ≠ 0)
     {D : Divisor k F} {α : (P : Place k F) → F}
     (hα : α ∈ adeleSpace (D + divisorOf k f)) :
@@ -62,7 +67,9 @@ theorem adeleMulMap_mem_adeleSpace {f : F} (hf : f ≠ 0)
   omega
 
 /-- Multiplication preserves the adeles: the new exceptional places are
-poles of the multiplier.-/
+poles of the multiplier.
+@isnad1 id=mem.1h4v.s10.cae2fc2790aa from=translated src=- shape=9f850e9a vocab=9ecd2f63
+-/
 theorem adeleMulMap_mem_adeleSubmodule (f : F)
     {α : (P : Place k F) → F} (hα : α ∈ adeleSubmodule k F) :
     adeleMulMap k f α ∈ adeleSubmodule k F := by
@@ -85,7 +92,9 @@ theorem adeleMulMap_mem_adeleSubmodule (f : F)
   omega
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
-/-- Multiplication fixes the diagonal.-/
+/-- Multiplication fixes the diagonal.
+@isnad1 id=eq.0h4v.s10.4d8ee40ab976 from=translated src=- shape=36a7cb80 vocab=21de4a4e
+-/
 theorem adeleMulMap_diagonal (f g : F) :
     adeleMulMap k f (adeleDiagonal k F g) = adeleDiagonal k F (f * g) :=
   rfl
@@ -97,10 +106,16 @@ noncomputable def adeleSMul (f : F) :
     ((adeleMulMap k f).comp (adeleSubmodule k F).subtype)
     fun α ↦ adeleMulMap_mem_adeleSubmodule f α.2
 
+/--
+@isnad1 id=eq.0h4v.s12.861ac381e594 from=translated src=- shape=c9078add vocab=2b7a19a9
+-/
 @[simp]
 theorem adeleSMul_coe (f : F) (α : ↥(adeleSubmodule k F)) :
     (adeleSMul f α : (P : Place k F) → F) = adeleMulMap k f ↑α := rfl
 
+/--
+@isnad1 id=eq.0h4v.s12.87c2f02b3b60 from=translated src=- shape=a729092c vocab=06873d2b
+-/
 theorem adeleSMul_add (f g : F) :
     adeleSMul (k := k) (F := F) (f + g) = adeleSMul f + adeleSMul g := by
   refine LinearMap.ext fun α ↦ Subtype.ext (funext fun P ↦ ?_)
@@ -109,6 +124,9 @@ theorem adeleSMul_add (f g : F) :
       g * ((α : (Q : Place k F) → F) P)
   ring
 
+/--
+@isnad1 id=eq.0h4v.s12.d909fa5ea8e0 from=translated src=- shape=63adb9d9 vocab=7ea159ce
+-/
 theorem adeleSMul_smul (c : k) (f : F) :
     adeleSMul (k := k) (F := F) (c • f) = c • adeleSMul f := by
   refine LinearMap.ext fun α ↦ Subtype.ext (funext fun P ↦ ?_)
@@ -128,13 +146,18 @@ noncomputable def weilDifferentialsAt (D : Divisor k F) :
     Submodule k (Module.Dual k ↥(adeleSubmodule k F)) :=
   (boundedSubmodule D).dualAnnihilator
 
+/--
+@isnad1 id=iff.0h4v.s13.9f6d922cf1e7 from=translated src=- shape=41cb7cfc vocab=c643009b
+-/
 theorem mem_weilDifferentialsAt_iff {D : Divisor k F}
     {ω : Module.Dual k ↥(adeleSubmodule k F)} :
     ω ∈ weilDifferentialsAt D ↔
       ∀ α ∈ boundedSubmodule D, ω α = 0 :=
   Submodule.mem_dualAnnihilator ω
 
-/-- Levels are antitone: killing a larger space is harder.-/
+/-- Levels are antitone: killing a larger space is harder.
+@isnad1 id=le.1h4v.s12.49deec63fcff from=translated src=- shape=9185c006 vocab=acf28c79
+-/
 theorem weilDifferentialsAt_antitone {D E : Divisor k F} (h : D ≤ E) :
     weilDifferentialsAt (E : Divisor k F) ≤ weilDifferentialsAt D := by
   intro ω hω
@@ -143,7 +166,9 @@ theorem weilDifferentialsAt_antitone {D E : Divisor k F} (h : D ≤ E) :
   exact hω α (boundedSubmodule_mono h hα)
 
 /-- **The level shift**: precomposing a level-`D` differential with
-multiplication by `f` yields a level-`(D + div f)` differential.-/
+multiplication by `f` yields a level-`(D + div f)` differential.
+@isnad1 id=mem.2h5v.s13.f57a24f83df3 from=translated src=- shape=122be291 vocab=d13caa84
+-/
 theorem comp_adeleSMul_mem_weilDifferentialsAt {f : F} (hf : f ≠ 0)
     {D : Divisor k F} {ω : Module.Dual k ↥(adeleSubmodule k F)}
     (hω : ω ∈ weilDifferentialsAt D) :
@@ -199,6 +224,9 @@ noncomputable def differentialPairing {W D E : Divisor k F}
     change ω ∘ₗ adeleSMul (c • (f : F)) = c • (ω ∘ₗ adeleSMul (f : F))
     rw [adeleSMul_smul, LinearMap.comp_smul]
 
+/--
+@isnad1 id=eq.2h7v.s15.0f11b29d46f5 from=translated src=- shape=29828381 vocab=bff3117d
+-/
 @[simp]
 theorem differentialPairing_coe {W D E : Divisor k F}
     {ω : Module.Dual k ↥(adeleSubmodule k F)}

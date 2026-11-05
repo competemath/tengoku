@@ -34,7 +34,9 @@ noncomputable section
 variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 
 /-- The image of the matroid over `C` under a `k`-automorphism is the matroid over the
-image of `C`.-/
+image of `C`.
+@isnad1 id=eq.0h4v.s7.67abd9b012a0 from=translated src=- shape=40632a77 vocab=d05a8a89
+-/
 theorem rkMatroid_image (σ : K ≃ₐ[k] K) (C : Set K) :
     rkMatroid k (σ '' C) = (rkMatroid k C).map σ σ.injective.injOn := by
   refine Matroid.ext_closure fun X ↦ ?_
@@ -46,14 +48,18 @@ theorem rkMatroid_image (σ : K ≃ₐ[k] K) (C : Set K) :
         rw [IntermediateField.coe_map]
         rfl
 
-/-- `lem:equiv`: automorphisms preserve ranks.-/
+/-- `lem:equiv`: automorphisms preserve ranks.
+@isnad1 id=eq.0h5v.s7.d1d40aa56882 from=translated src=- shape=eb7d1ef3 vocab=7453326c
+-/
 theorem erk_image (σ : K ≃ₐ[k] K) (C X : Set K) :
     erk k (σ '' C) (σ '' X) = erk k C X := by
   unfold erk
   rw [rkMatroid_image]
   exact eRk_map _ _ (subset_univ X)
 
-/-- `lem:equiv`: automorphisms preserve independence.-/
+/-- `lem:equiv`: automorphisms preserve independence.
+@isnad1 id=indepove.1h6v.s8.4d8b5a881269 from=translated src=- shape=eb6414be vocab=f59594d3
+-/
 theorem IndepOver.image (σ : K ≃ₐ[k] K) {C A B : Set K} (h : IndepOver k C A B) :
     IndepOver k (σ '' C) (σ '' A) (σ '' B) := by
   intro a' ha' hfin'
@@ -66,6 +72,9 @@ theorem IndepOver.image (σ : K ≃ₐ[k] K) {C A B : Set K} (h : IndepOver k C 
   rw [hrepr, ← image_union, erk_image, erk_image]
   exact h ha hfin
 
+/--
+@isnad1 id=iff.0h6v.s8.7261d37b3f70 from=translated src=- shape=cf6ce96f vocab=f59594d3
+-/
 theorem indepOver_image_iff (σ : K ≃ₐ[k] K) {C A B : Set K} :
     IndepOver k (σ '' C) (σ '' A) (σ '' B) ↔ IndepOver k C A B := by
   refine ⟨fun h ↦ ?_, IndepOver.image σ⟩

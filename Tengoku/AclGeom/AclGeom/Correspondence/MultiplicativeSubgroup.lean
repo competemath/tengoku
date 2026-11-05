@@ -79,7 +79,9 @@ private theorem eq_cochar_of_mul_eq_one {G : Type*} [CommGroup G] {a b p q : ℤ
 standard embedding into `A⁴` is Zariski-closed, whose coordinate ring has connected prime spectrum
 and Krull dimension one, and whose two projections are nonconstant.  Then
 `H = {(u, v) : u ^ m = v ^ n}` for nonzero integers `m, n`, and every coset `g H` is
-`{(u, v) : u ^ m = c · v ^ n}` with `c = g₁ ^ m · g₂ ^ (-n)`.-/
+`{(u, v) : u ^ m = c · v ^ n}` with `c = g₁ ^ m · g₂ ^ (-n)`.
+@isnad1 id=ex.4h2v.s12.90d952b23af4 from=translated src=- shape=a86f49d3 vocab=838c63f4
+-/
 theorem mulSubgroup_classification_of_connected (H : Subgroup (kˣ × kˣ))
     (hclosed : zeroLocus k (vanishingIdeal k (torusEmb '' (H : Set (kˣ × kˣ)))) =
       torusEmb '' (H : Set (kˣ × kˣ)))

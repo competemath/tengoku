@@ -37,7 +37,9 @@ open TensorProduct
 
 /-- An element vanishing at every point of a finite-type algebra over an algebraically closed
 field is nilpotent. Named consumers: the faithful coefficient-rank argument and specialization
-in constant-field rationality descent.-/
+in constant-field rationality descent.
+@isnad1 id=isnilpot.1h3v.s7.c595fd3ed1fc from=translated src=- shape=e3167b2e vocab=6cd0d978
+-/
 theorem isNilpotent_of_forall_algHom_eq_zero {k S : Type*} [Field k] [IsAlgClosed k]
     [CommRing S] [Algebra k S] [Algebra.FiniteType k S] {z : S}
     (hz : ∀ φ : S →ₐ[k] k, φ z = 0) : IsNilpotent z := by
@@ -58,7 +60,9 @@ theorem isNilpotent_of_forall_algHom_eq_zero {k S : Type*} [Field k] [IsAlgClose
   exact ⟨n, Ideal.mem_bot.mp hn⟩
 
 /-- Independent powers stay independent under extension of constants. Named consumer: the
-nonnilpotent diagonal of a transcendental parameter.-/
+nonnilpotent diagonal of a transcendental parameter.
+@isnad1 id=transcen.1h4v.s8.ab33c62505b7 from=translated src=- shape=b3cff1c9 vocab=6d229554
+-/
 theorem transcendental_one_tmul {L C E : Type*} [Field L] [Field C] [Field E]
     [Algebra L C] [Algebra L E] {r : E} (hr : Transcendental L r) :
     Transcendental C ((1 : C) ⊗ₜ[L] r : C ⊗[L] E) := by
@@ -87,7 +91,9 @@ theorem transcendental_one_tmul {L C E : Type*} [Field L] [Field C] [Field E]
   exact ht
 
 /-- A transcendental element has a nonnilpotent tensor diagonal. Named consumer: algebraicity
-of the coefficient-field inclusion detected by faithful base-field points.-/
+of the coefficient-field inclusion detected by faithful base-field points.
+@isnad1 id=not.1h3v.s9.665574cc1bc7 from=translated src=- shape=6a4b423e vocab=9ba3aa1a
+-/
 theorem not_isNilpotent_tensor_diagonal {L E : Type*} [Field L] [Field E] [Algebra L E]
     {r : E} (hr : Transcendental L r) :
     ¬ IsNilpotent (r ⊗ₜ[L] (1 : E) - (1 : E) ⊗ₜ[L] r) := by
@@ -112,7 +118,9 @@ theorem not_isNilpotent_tensor_diagonal {L E : Type*} [Field L] [Field E] [Algeb
   exact hal.neg.add hc
 
 /-- Injective restriction of base-field points makes the tensor diagonal nilpotent.
-Named consumer: `isAlgebraic_fractionRing_of_injective_points`.-/
+Named consumer: `isAlgebraic_fractionRing_of_injective_points`.
+@isnad1 id=isnilpot.1h4v.s9.825585f2a003 from=translated src=- shape=df72618d vocab=3597014a
+-/
 theorem tensor_diagonal_isNilpotent_of_injective_points
     {k B A : Type*} [Field k] [IsAlgClosed k] [CommRing B] [CommRing A]
     [Algebra k B] [Algebra k A] [Algebra B A] [IsScalarTower k B A]
@@ -143,7 +151,9 @@ theorem tensor_diagonal_isNilpotent_of_injective_points
 /-- The fraction field of a finite-type domain is algebraic over a compatible coefficient
 field when restriction of base-field points to the coefficient ring is injective.
 Pure inseparability is allowed.
-Named consumer: the actual generic-action coefficient field has the full group rank.-/
+Named consumer: the actual generic-action coefficient field has the full group rank.
+@isnad1 id=isalgebr.1h5v.s8.2f5e60f33630 from=translated src=- shape=f0a5fa81 vocab=eacd96b1
+-/
 theorem isAlgebraic_fractionRing_of_injective_points
     {k B A C E : Type*} [Field k] [IsAlgClosed k] [CommRing B]
     [CommRing A] [IsDomain A] [Algebra k B] [Algebra k A] [Algebra B A]

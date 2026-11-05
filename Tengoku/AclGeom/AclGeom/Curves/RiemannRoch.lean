@@ -66,6 +66,9 @@ noncomputable def RiemannSpace (D : Divisor k F) : Submodule k F where
     rw [h1]
     exact hf P
 
+/--
+@isnad1 id=iff.0h4v.s7.9232a0c1b698 from=translated src=- shape=4d367f9e vocab=1c423348
+-/
 theorem mem_riemannSpace_iff {D : Divisor k F} {f : F} :
     f ∈ RiemannSpace D ↔
       f = 0 ∨ ∀ P : Place k F, -(D P) ≤ P.ord f := Iff.rfl

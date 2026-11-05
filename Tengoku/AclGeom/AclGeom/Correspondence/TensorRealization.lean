@@ -29,7 +29,9 @@ open scoped TensorProduct
 
 /-- Every prime tensor component of two finite extensions embeds in an
 algebraically closed ambient extension of the base: there are embeddings of the two factors over
-the base whose multiplication map has exactly the given prime as kernel.-/
+the base whose multiplication map has exactly the given prime as kernel.
+@isnad1 id=ex.0h5v.s9.27adae056d41 from=translated src=- shape=e852ed43 vocab=7cd34a23
+-/
 theorem exists_productMap_ker_of_isPrime
     {E F G Ω : Type*} [Field E] [Field F] [Field G] [Field Ω]
     [Algebra E F] [Algebra E G] [Algebra E Ω] [IsAlgClosed Ω]

@@ -22,7 +22,9 @@ open CategoryTheory.MonoidalCategory CategoryTheory.CartesianMonoidalCategory
 open CategoryTheory.MonObj CategoryTheory.GrpObj
 
 /-- A commuting group factorization transports the actual conjugation diagram.
-Named consumer: finite-coordinate conjugation of the actual normal subgroup.-/
+Named consumer: finite-coordinate conjugation of the actual normal subgroup.
+@isnad1 id=eq.2h10v.s8.b4ee197ef33b from=translated src=- shape=2adfe6b0 vocab=20c8b43a
+-/
 theorem factor_conjugation
     {C : Type*} [Category* C] [CartesianMonoidalCategory C]
     {G H N M : C} [GrpObj G] [GrpObj H]

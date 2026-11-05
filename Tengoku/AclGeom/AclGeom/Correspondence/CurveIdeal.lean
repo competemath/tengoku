@@ -45,7 +45,9 @@ noncomputable section
 
 variable (k : Type*) {Ω : Type*} [Field k] [Field Ω] [Algebra k Ω]
 
-/-- The vanishing ideal of a dependent pair is nonzero.-/
+/-- The vanishing ideal of a dependent pair is nonzero.
+@isnad1 id=ne.1h4v.s8.3d29d112bdcd from=translated src=- shape=5d95b123 vocab=bf338405
+-/
 theorem idealOf_ne_bot_of_mem_racl {u v : Ω} (hv : v ∈ racl k {u}) :
     idealOf k ![u, v] ≠ ⊥ := fun h ↦
   AlgebraicIndependent.notMem_racl_pair ((idealOf_eq_bot_iff k).1 h) hv
@@ -53,7 +55,9 @@ theorem idealOf_ne_bot_of_mem_racl {u v : Ω} (hv : v ∈ racl k {u}) :
 /-- Zariski's lemma, applied to the curve: the vanishing ideal of a pair with
 a transcendental coordinate is not maximal — its residue ring embeds into
 `Ω` and contains the transcendental coordinate, so it cannot be algebraic
-over `k`.-/
+over `k`.
+@isnad1 id=not.1h4v.s6.5d82e6f007ef from=translated src=- shape=d6fd31da vocab=8679267b
+-/
 theorem not_isMaximal_idealOf {u v : Ω} (hu : Transcendental k u) :
     ¬(idealOf k ![u, v]).IsMaximal := by
   intro hM
@@ -83,7 +87,9 @@ theorem not_isMaximal_idealOf {u v : Ω} (hu : Transcendental k u) :
 /-- **The curve ideal is principal**: the vanishing ideal of a pair `(u, v)`
 with `u` transcendental over `k` and `v` algebraic over `k(u)` is generated
 by a single prime polynomial. The generator is the minimal equation of the
-curve; every relation between `u` and `v` over `k` is divisible by it.-/
+curve; every relation between `u` and `v` over `k` is divisible by it.
+@isnad1 id=ex.2h4v.s8.48e30c82dfd2 from=translated src=- shape=673fb811 vocab=78ac71d6
+-/
 theorem exists_prime_span_idealOf {u v : Ω} (hu : Transcendental k u)
     (hv : v ∈ racl k {u}) :
     ∃ f : MvPolynomial (Fin 2) k, Prime f ∧ idealOf k ![u, v] = Ideal.span {f} := by
@@ -132,15 +138,24 @@ variable {σ : Type*} {K : Type*} [Field K]
 def translate (c : σ → K) : MvPolynomial σ K →ₐ[K] MvPolynomial σ K :=
   aeval fun j ↦ X j + C (c j)
 
+/--
+@isnad1 id=eq.0h4v.s8.987c57d5f561 from=translated src=- shape=4caafac0 vocab=6100d393
+-/
 @[simp]
 theorem translate_X (c : σ → K) (j : σ) :
     translate c (X j) = X j + C (c j) := by
   simp [translate]
 
+/--
+@isnad1 id=eq.0h4v.s8.ed6c64741f6c from=translated src=- shape=8c81959f vocab=2d1133c2
+-/
 @[simp]
 theorem translate_C (c : σ → K) (a : K) : translate c (C a) = C a := by
   simp [translate, algebraMap_eq]
 
+/--
+@isnad1 id=eq.0h5v.s9.918f23940b23 from=translated src=- shape=973bab00 vocab=27ddff46
+-/
 theorem translate_translate (c c' : σ → K) (g : MvPolynomial σ K) :
     translate c (translate c' g) = translate (c + c') g := by
   have hcomp : (translate (σ := σ) c).comp (translate c') = translate (c + c') := by
@@ -148,6 +163,9 @@ theorem translate_translate (c c' : σ → K) (g : MvPolynomial σ K) :
     simp [translate, map_add, add_assoc]
   exact congrArg (fun (f : MvPolynomial σ K →ₐ[K] MvPolynomial σ K) ↦ f g) hcomp
 
+/--
+@isnad1 id=eq.0h3v.s8.0f00ce84ef8e from=translated src=- shape=7c4bd99d vocab=b79c636a
+-/
 theorem translate_zero (g : MvPolynomial σ K) :
     translate (0 : σ → K) g = g := by
   have hid : translate (σ := σ) (0 : σ → K) = AlgHom.id K _ := by
@@ -156,15 +174,23 @@ theorem translate_zero (g : MvPolynomial σ K) :
   rw [hid]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.69a7fbea602e from=translated src=- shape=0ebc595e vocab=2ef6df9a
+-/
 theorem translate_neg_translate (c : σ → K) (g : MvPolynomial σ K) :
     translate (-c) (translate c g) = g := by
   rw [translate_translate, neg_add_cancel, translate_zero]
 
+/--
+@isnad1 id=eq.0h4v.s9.d7ee02899223 from=translated src=- shape=47221d31 vocab=2ef6df9a
+-/
 theorem translate_translate_neg (c : σ → K) (g : MvPolynomial σ K) :
     translate c (translate (-c) g) = g := by
   rw [translate_translate, add_neg_cancel, translate_zero]
 
-/-- Evaluation through a translation shifts the point.-/
+/-- Evaluation through a translation shifts the point.
+@isnad1 id=eq.0h6v.s9.7246f305d0b6 from=translated src=- shape=4289c0ff vocab=89ca5553
+-/
 theorem aeval_translate {Ω : Type*} [Field Ω] [Algebra K Ω]
     (a : σ → Ω) (c : σ → K) (g : MvPolynomial σ K) :
     aeval a (translate c g) = aeval (fun j ↦ a j + algebraMap K Ω (c j)) g := by
@@ -185,15 +211,23 @@ analogue of `translate`.-/
 def scale (c : σ → K) : MvPolynomial σ K →ₐ[K] MvPolynomial σ K :=
   aeval fun j ↦ C (c j) * X j
 
+/--
+@isnad1 id=eq.0h4v.s8.91e41b19efdb from=translated src=- shape=378cacc0 vocab=503f2c37
+-/
 @[simp]
 theorem scale_X (c : σ → K) (j : σ) : scale c (X j) = C (c j) * X j := by
   simp [scale]
 
+/--
+@isnad1 id=eq.0h4v.s8.940548d1c25d from=translated src=- shape=8c81959f vocab=f130221f
+-/
 @[simp]
 theorem scale_C (c : σ → K) (a : K) : scale c (C a) = C a := by
   simp [scale, algebraMap_eq]
 
-/-- Scaling acts on a monomial by the corresponding monomial value.-/
+/-- Scaling acts on a monomial by the corresponding monomial value.
+@isnad1 id=eq.0h5v.s9.06665e62c081 from=translated src=- shape=788afbed vocab=24790f96
+-/
 theorem scale_monomial (c : σ → K) (m : σ →₀ ℕ) (a : K) :
     scale c (monomial m a) = monomial m ((m.prod fun j e ↦ c j ^ e) * a) := by
   classical
@@ -212,7 +246,9 @@ theorem scale_monomial (c : σ → K) (m : σ →₀ ℕ) (a : K) :
 
 /-- The coefficient formula for scaling: each coefficient is multiplied by
 the corresponding monomial value. In particular the support is preserved
-when the scaling vector has no zero entries.-/
+when the scaling vector has no zero entries.
+@isnad1 id=eq.0h5v.s8.6f1573c55c73 from=translated src=- shape=9585a47a vocab=8be37c31
+-/
 theorem coeff_scale (c : σ → K) (g : MvPolynomial σ K) (m : σ →₀ ℕ) :
     (scale c g).coeff m = (m.prod fun j e ↦ c j ^ e) * g.coeff m := by
   classical
@@ -227,6 +263,9 @@ theorem coeff_scale (c : σ → K) (g : MvPolynomial σ K) (m : σ →₀ ℕ) :
       fun m' ↦ (m'.prod fun j e ↦ c j ^ e) * g.coeff m', ite_eq_right hm]
     rw [MvPolynomial.notMem_support_iff.1 hm, mul_zero]
 
+/--
+@isnad1 id=eq.0h5v.s9.85174eb1cf8e from=translated src=- shape=973bab00 vocab=9c3101e6
+-/
 theorem scale_scale (c c' : σ → K) (g : MvPolynomial σ K) :
     scale c (scale c' g) = scale (c * c') g := by
   have hcomp : (scale (σ := σ) c).comp (scale c') = scale (c * c') := by
@@ -234,6 +273,9 @@ theorem scale_scale (c c' : σ → K) (g : MvPolynomial σ K) :
     simp [scale, mul_assoc, mul_comm, mul_left_comm]
   exact congrArg (fun (f : MvPolynomial σ K →ₐ[K] MvPolynomial σ K) ↦ f g) hcomp
 
+/--
+@isnad1 id=eq.0h3v.s8.0b9074df0836 from=translated src=- shape=7c4bd99d vocab=7ed51380
+-/
 theorem scale_one (g : MvPolynomial σ K) : scale (1 : σ → K) g = g := by
   have hid : scale (σ := σ) (1 : σ → K) = AlgHom.id K _ := by
     refine algHom_ext fun i ↦ ?_
@@ -241,7 +283,9 @@ theorem scale_one (g : MvPolynomial σ K) : scale (1 : σ → K) g = g := by
   rw [hid]
   rfl
 
-/-- Evaluation through a scaling multiplies the point coordinatewise.-/
+/-- Evaluation through a scaling multiplies the point coordinatewise.
+@isnad1 id=eq.0h6v.s9.d3ed8a9675b1 from=translated src=- shape=1ba71dfd vocab=50259a5c
+-/
 theorem aeval_scale {Ω : Type*} [Field Ω] [Algebra K Ω]
     (a : σ → Ω) (c : σ → K) (g : MvPolynomial σ K) :
     aeval a (scale c g) = aeval (fun j ↦ algebraMap K Ω (c j) * a j) g := by
@@ -252,7 +296,9 @@ theorem aeval_scale {Ω : Type*} [Field Ω] [Algebra K Ω]
   exact congrArg (fun (f : MvPolynomial σ K →ₐ[K] Ω) ↦ f g) hcomp
 
 /-- Vanishing ideals transform by scaling: the ideal of the coordinatewise
-quotient point is generated by the scaled generator.-/
+quotient point is generated by the scaled generator.
+@isnad1 id=eq.2h5v.s9.3958625ffc58 from=translated src=- shape=f4d3937e vocab=fadd4d61
+-/
 theorem idealOf_scale_span {Ω : Type*} [Field Ω] [Algebra K Ω]
     {a : Fin 2 → Ω} {c : Fin 2 → K} (hc : ∀ j, c j ≠ 0)
     {F : MvPolynomial (Fin 2) K} (h : idealOf K a = Ideal.span {F}) :
@@ -298,7 +344,9 @@ theorem idealOf_scale_span {Ω : Type*} [Field Ω] [Algebra K Ω]
       exact (mem_idealOf_iff K).1 (h ▸ Ideal.subset_span rfl)
     rw [hF, zero_mul]
 
-/-- Scaling by a vector with nonzero entries preserves the support.-/
+/-- Scaling by a vector with nonzero entries preserves the support.
+@isnad1 id=eq.1h4v.s8.711996154096 from=translated src=- shape=81b11908 vocab=0cdcb22b
+-/
 theorem support_scale {c : σ → K} (hc : ∀ j, c j ≠ 0) (g : MvPolynomial σ K) :
     (scale c g).support = g.support := by
   classical
@@ -318,7 +366,9 @@ theorem support_scale {c : σ → K} (hc : ∀ j, c j ≠ 0) (g : MvPolynomial �
 /-- **Scaling rigidity**: if scaling by a nowhere-zero vector fixes the
 ideal generated by `F`, the monomial values of the scaling vector agree
 across the support of `F` — the input to the multiplicative
-classification.-/
+classification.
+@isnad1 id=eq.5h6v.s9.14601d4c8575 from=translated src=- shape=9585fed4 vocab=0be31116
+-/
 theorem monomial_prod_eq_of_span_scale_eq {c : σ → K} (hc : ∀ j, c j ≠ 0)
     {F : MvPolynomial σ K} (hF : F ≠ 0)
     (h : Ideal.span {scale c F} = Ideal.span {F}) :
@@ -360,7 +410,9 @@ theorem monomial_prod_eq_of_span_scale_eq {c : σ → K} (hc : ∀ j, c j ≠ 0)
 
 /-- A nonzero polynomial vanishing at a point with all coordinates nonzero
 has at least two monomials in its support (a single monomial cannot vanish
-at such a point).-/
+at such a point).
+@isnad1 id=ex.3h5v.s8.ea1bc55548ab from=translated src=- shape=1b928613 vocab=f0089868
+-/
 theorem exists_support_pair_of_aeval_eq_zero [Fintype σ]
     {Ω : Type*} [Field Ω] [Algebra K Ω] {v : σ → Ω} (hv : ∀ j, v j ≠ 0)
     {F : MvPolynomial σ K} (hF0 : F ≠ 0) (hF : aeval v F = 0) :

@@ -44,10 +44,16 @@ variable {K : Type*} [Field K]
 def compScale (α : K) : Polynomial K →+* Polynomial K :=
   Polynomial.compRingHom (Polynomial.C α * Polynomial.X)
 
+/--
+@isnad1 id=eq.0h3v.s8.af0521f2480a from=translated src=- shape=13f0c96c vocab=a7a8628d
+-/
 theorem compScale_apply (α : K) (p : Polynomial K) :
     compScale α p = p.comp (Polynomial.C α * Polynomial.X) :=
   Polynomial.coe_compRingHom_apply p _
 
+/--
+@isnad1 id=injectiv.1h2v.s7.4f8ad3683998 from=translated src=- shape=1e6a7049 vocab=800fe6c5
+-/
 theorem compScale_injective {α : K} (hα : α ≠ 0) :
     Function.Injective (compScale α) := by
   intro p q h
@@ -67,9 +73,15 @@ theorem compScale_injective {α : K} (hα : α ≠ 0) :
 def innerParam (α : K) (n : ℕ) : Polynomial K →+* Polynomial K :=
   (Polynomial.expand K n).toRingHom.comp (compScale α)
 
+/--
+@isnad1 id=eq.0h4v.s9.c84883660be4 from=translated src=- shape=d473ba6a vocab=86e65fe4
+-/
 theorem innerParam_apply (α : K) (n : ℕ) (p : Polynomial K) :
     innerParam α n p = Polynomial.expand K n (compScale α p) := rfl
 
+/--
+@isnad1 id=injectiv.2h3v.s7.1ffae4f5d8a9 from=translated src=- shape=06aeec5d vocab=9c3e39a4
+-/
 theorem innerParam_injective {α : K} (hα : α ≠ 0) {n : ℕ} (hn : n ≠ 0) :
     Function.Injective (innerParam α n) :=
   (Polynomial.expand_injective (Nat.pos_of_ne_zero hn)).comp
@@ -80,10 +92,16 @@ def binomialParam (α : K) (n m : ℕ) :
     Polynomial (Polynomial K) →+* Polynomial K :=
   Polynomial.eval₂RingHom (innerParam α n) (Polynomial.X ^ m)
 
+/--
+@isnad1 id=eq.0h5v.s9.142571e94c51 from=translated src=- shape=3b54208f vocab=3ec4ff89
+-/
 theorem binomialParam_C (α : K) (n m : ℕ) (p : Polynomial K) :
     binomialParam α n m (Polynomial.C p) = innerParam α n p := by
   simp [binomialParam]
 
+/--
+@isnad1 id=eq.0h4v.s8.78ffe029ba76 from=translated src=- shape=2274bff2 vocab=8f0548ad
+-/
 theorem binomialParam_X (α : K) (n m : ℕ) :
     binomialParam α n m Polynomial.X = Polynomial.X ^ m := by
   simp [binomialParam]
@@ -93,7 +111,9 @@ def cosetBinomial (c : K) (m n : ℕ) : Polynomial (Polynomial K) :=
   Polynomial.C ((Polynomial.X : Polynomial K) ^ m) -
     Polynomial.C (Polynomial.C c) * (Polynomial.X : Polynomial (Polynomial K)) ^ n
 
-/-- The parametrization kills the binomial.-/
+/-- The parametrization kills the binomial.
+@isnad1 id=eq.1h5v.s8.f0f41766b418 from=translated src=- shape=bafb3d76 vocab=8606efb5
+-/
 theorem binomialParam_cosetBinomial {α c : K} (m₀ n₀ : ℕ)
     (hroot : α ^ m₀ = c) :
     binomialParam α n₀ m₀ (cosetBinomial c m₀ n₀) = 0 := by
@@ -126,12 +146,18 @@ def nestEquiv : MvPolynomial (Fin 2) K ≃ₐ[K] Polynomial (Polynomial K) :=
   (MvPolynomial.finSuccEquiv K 1).trans
     (Polynomial.mapAlgEquiv (MvPolynomial.uniqueAlgEquiv K (Fin 1)))
 
+/--
+@isnad1 id=eq.0h1v.s8.b9923b2bc783 from=translated src=- shape=8b7552fe vocab=bf096699
+-/
 theorem nestEquiv_X_zero :
     nestEquiv K (MvPolynomial.X 0) =
       (Polynomial.X : Polynomial (Polynomial K)) := by
   rw [nestEquiv, AlgEquiv.trans_apply, MvPolynomial.finSuccEquiv_X_zero,
     Polynomial.coe_mapAlgEquiv, Polynomial.map_X]
 
+/--
+@isnad1 id=eq.0h1v.s9.f8b4ef1f26ab from=translated src=- shape=b8669d56 vocab=4e208045
+-/
 theorem nestEquiv_X_one :
     nestEquiv K (MvPolynomial.X 1) = Polynomial.C Polynomial.X := by
   rw [nestEquiv, AlgEquiv.trans_apply]
@@ -151,6 +177,9 @@ theorem nestEquiv_X_one :
     simp [Polynomial.monomial_one_one_eq_X]
   exact h2
 
+/--
+@isnad1 id=eq.0h2v.s9.176e81e66016 from=translated src=- shape=a93c6bfd vocab=12469b7b
+-/
 theorem nestEquiv_C (a : K) :
     nestEquiv K (MvPolynomial.C a) = Polynomial.C (Polynomial.C a) := by
   have h : nestEquiv K (MvPolynomial.C a) = algebraMap K _ a :=
@@ -162,6 +191,9 @@ theorem nestEquiv_C (a : K) :
 def mvParam (α : K) (n m : ℕ) : MvPolynomial (Fin 2) K →ₐ[K] Polynomial K :=
   MvPolynomial.aeval ![Polynomial.C α * Polynomial.X ^ n, Polynomial.X ^ m]
 
+/--
+@isnad1 id=eq.1h5v.s10.d02af5d9a8f3 from=translated src=- shape=d45a0792 vocab=06b040ae
+-/
 theorem mvParam_binomial {α c : K} {m n : ℕ} (hroot : α ^ m = c) :
     mvParam α n m ((MvPolynomial.X 0 : MvPolynomial (Fin 2) K) ^ m -
       MvPolynomial.C c * MvPolynomial.X 1 ^ n) = 0 := by

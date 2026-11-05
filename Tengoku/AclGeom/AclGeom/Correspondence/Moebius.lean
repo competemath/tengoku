@@ -39,7 +39,9 @@ variable {k : Type*} [Field k]
 
 section Bilinear
 
-/-- Reconstruction of a `Fin 2`-finsupp from its two values.-/
+/-- Reconstruction of a `Fin 2`-finsupp from its two values.
+@isnad1 id=eq.0h1v.s7.ae6537734159 from=translated src=- shape=8bd36011 vocab=c7c9b90e
+-/
 theorem finsupp_fin_two_eq (m : Fin 2 →₀ ℕ) :
     m = Finsupp.single 0 (m 0) + Finsupp.single 1 (m 1) := by
   ext i

@@ -42,7 +42,9 @@ section UniformOrder
 variable {O : ValuationSubring F}
 
 /-- Explicit form of the polynomial-value computation: the exponent is
-the root multiplicity at `0`.-/
+the root multiplicity at `0`.
+@isnad1 id=eq.3h5v.s9.82f7101fdcb3 from=translated src=- shape=7cb0f564 vocab=49d7aaf1
+-/
 theorem valuation_aeval_eq_pow_rootMultiplicity
     (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F}
     (hz : O.valuation z < 1) {p : Polynomial k} (hp : p ≠ 0) :
@@ -58,7 +60,9 @@ theorem valuation_aeval_eq_pow_rootMultiplicity
 /-- **The uniform order** of an element of `k(z)`: a single integer `m`
 with `v w = (v z)^m` at *every* place where `z` is small. The exponent is
 read off a fixed rational presentation of `w`, independently of the
-place.-/
+place.
+@isnad1 id=ex.3h4v.s8.314ba3cab294 from=translated src=- shape=30ad080a vocab=3bc7a13e
+-/
 theorem exists_uniform_valuation_zpow {z w : F}
     (hztr : Transcendental k z) (hw : w ∈ adjoin k ({z} : Set F))
     (hw0 : w ≠ 0) :
@@ -96,7 +100,9 @@ variable [IsAlgClosed k] [IsFunctionFieldOneVar k F]
 element of a one-variable function field has finitely many zero places.
 Weak-approximation witnesses at distinct zeros are `k(f)`-linearly
 independent — the minimal-uniform-order term dominates at its own
-place — so the number of zeros is bounded by `[F : k(f)]`.-/
+place — so the number of zeros is bounded by `[F : k(f)]`.
+@isnad1 id=finite.1h3v.s8.a46a54886ab6 from=translated src=- shape=00a2ed00 vocab=a95f49f6
+-/
 theorem finite_setOf_valuation_lt_one {f : F} (hf0 : f ≠ 0) :
     {P : Place k F | P.val.valuation f < 1}.Finite := by
   classical
@@ -209,7 +215,9 @@ theorem finite_setOf_valuation_lt_one {f : F} (hf0 : f ≠ 0) :
   rw [Fintype.card_fin] at hcard
   omega
 
-/-- Finiteness of poles: the zeros of the inverse.-/
+/-- Finiteness of poles: the zeros of the inverse.
+@isnad1 id=finite.1h3v.s8.634bfabe1269 from=translated src=- shape=02d9d404 vocab=a95f49f6
+-/
 theorem finite_setOf_one_lt_valuation {f : F} (hf0 : f ≠ 0) :
     {P : Place k F | 1 < P.val.valuation f}.Finite := by
   have h1 := finite_setOf_valuation_lt_one (k := k) (inv_ne_zero hf0)
@@ -229,7 +237,9 @@ variable [IsAlgClosed k] [IsFunctionFieldOneVar k F]
 
 namespace Place
 
-/-- Packaged uniformizer existence for a place.-/
+/-- Packaged uniformizer existence for a place.
+@isnad1 id=ex.0h3v.s10.cd3cd75d9ad8 from=translated src=- shape=9b221e93 vocab=f293a522
+-/
 theorem exists_uniformizer (P : Place k F) :
     ∃ t : F, P.val.valuation t ≠ 0 ∧ P.val.valuation t < 1 ∧
       ∀ w : F, P.val.valuation w ≠ 0 → P.val.valuation w < 1 →
@@ -244,23 +254,37 @@ theorem exists_uniformizer (P : Place k F) :
 maximum among nonzero values below one.-/
 noncomputable def pi (P : Place k F) : F := P.exists_uniformizer.choose
 
+/--
+@isnad1 id=ne.0h3v.s8.2f036d8f1c5a from=translated src=- shape=653ecba1 vocab=9c58a448
+-/
 theorem pi_valuation_ne_zero (P : Place k F) :
     P.val.valuation P.pi ≠ 0 := P.exists_uniformizer.choose_spec.1
 
+/--
+@isnad1 id=lt.0h3v.s8.e806c47b25eb from=translated src=- shape=653ecba1 vocab=884f8722
+-/
 theorem pi_valuation_lt_one (P : Place k F) :
     P.val.valuation P.pi < 1 := P.exists_uniformizer.choose_spec.2.1
 
+/--
+@isnad1 id=le.2h4v.s9.630f0312c5eb from=translated src=- shape=fcc2eab9 vocab=726b56dc
+-/
 theorem le_pi_valuation (P : Place k F) {w : F}
     (hw0 : P.val.valuation w ≠ 0) (hwlt : P.val.valuation w < 1) :
     P.val.valuation w ≤ P.val.valuation P.pi :=
   P.exists_uniformizer.choose_spec.2.2 w hw0 hwlt
 
+/--
+@isnad1 id=lt.0h3v.s8.db5de6ef3bef from=translated src=- shape=7053b8aa vocab=884f8722
+-/
 theorem pi_valuation_pos (P : Place k F) :
     (0 : _) < P.val.valuation P.pi :=
   zero_lt_iff.2 P.pi_valuation_ne_zero
 
 /-- Every nonzero element's value is a unique integer power of the
-uniformizer's value.-/
+uniformizer's value.
+@isnad1 id=existsun.1h4v.s8.b7067528e4d6 from=translated src=- shape=7634422a vocab=283b2405
+-/
 theorem existsUnique_zpow_valuation (P : Place k F) {f : F}
     (hf : f ≠ 0) : ∃! m : ℤ,
       P.val.valuation f = P.val.valuation P.pi ^ m := by
@@ -314,11 +338,17 @@ noncomputable def ord (P : Place k F) (f : F) : ℤ :=
   if hf : f = 0 then 0
   else (P.existsUnique_zpow_valuation hf).exists.choose
 
+/--
+@isnad1 id=eq.1h4v.s8.87614b31c5d5 from=translated src=- shape=ca5a38f5 vocab=3c5c1e40
+-/
 theorem valuation_eq_zpow_ord (P : Place k F) {f : F} (hf : f ≠ 0) :
     P.val.valuation f = P.val.valuation P.pi ^ P.ord f := by
   rw [ord, dite_eq_right hf]
   exact (P.existsUnique_zpow_valuation hf).exists.choose_spec
 
+/--
+@isnad1 id=eq.2h5v.s8.6a1ace5bf11a from=translated src=- shape=174b8ecf vocab=3c5c1e40
+-/
 theorem ord_eq_of_valuation_eq_zpow (P : Place k F) {f : F} (hf : f ≠ 0)
     {m : ℤ} (h : P.val.valuation f = P.val.valuation P.pi ^ m) :
     P.ord f = m := by
@@ -326,7 +356,9 @@ theorem ord_eq_of_valuation_eq_zpow (P : Place k F) {f : F} (hf : f ≠ 0)
   exact zpow_left_injective_of_lt_one P.pi_valuation_pos
     P.pi_valuation_lt_one (h1.symm.trans h)
 
-/-- Additivity of the order.-/
+/-- Additivity of the order.
+@isnad1 id=eq.2h5v.s7.8b91f51668c6 from=translated src=- shape=fe5cf8ca vocab=a466e5be
+-/
 theorem ord_mul (P : Place k F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) :
     P.ord (f * g) = P.ord f + P.ord g := by
   refine P.ord_eq_of_valuation_eq_zpow (mul_ne_zero hf hg) ?_
@@ -334,6 +366,9 @@ theorem ord_mul (P : Place k F) {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) :
     P.valuation_eq_zpow_ord hg,
     zpow_add₀ P.pi_valuation_ne_zero]
 
+/--
+@isnad1 id=iff.1h4v.s8.dd76fb7e7e55 from=translated src=- shape=89f192c5 vocab=386b68aa
+-/
 theorem ord_eq_zero_iff (P : Place k F) {f : F} (hf : f ≠ 0) :
     P.ord f = 0 ↔ P.val.valuation f = 1 := by
   constructor
@@ -344,6 +379,9 @@ theorem ord_eq_zero_iff (P : Place k F) {f : F} (hf : f ≠ 0) :
   · intro h1
     exact P.ord_eq_of_valuation_eq_zpow hf (by rw [h1, zpow_zero])
 
+/--
+@isnad1 id=iff.1h4v.s8.a5a6c83e99e6 from=translated src=- shape=140d6b35 vocab=408e5c19
+-/
 theorem ord_pos_iff (P : Place k F) {f : F} (hf : f ≠ 0) :
     0 < P.ord f ↔ P.val.valuation f < 1 := by
   have h1 := P.valuation_eq_zpow_ord hf
@@ -368,31 +406,45 @@ theorem ord_pos_iff (P : Place k F) {f : F} (hf : f ≠ 0) :
     rw [h1] at hlt
     exact hlt.not_ge h2
 
+/--
+@isnad1 id=ne.0h3v.s6.ea5857d5dac9 from=translated src=- shape=aa6cd9e6 vocab=d98ac492
+-/
 theorem pi_ne_zero (P : Place k F) : P.pi ≠ 0 := fun h ↦
   P.pi_valuation_ne_zero (by rw [h, Valuation.map_zero])
 
+/--
+@isnad1 id=eq.0h3v.s6.cd18c1880050 from=translated src=- shape=fca7b58f vocab=b650cf2b
+-/
 theorem ord_pi (P : Place k F) : P.ord P.pi = 1 :=
   P.ord_eq_of_valuation_eq_zpow P.pi_ne_zero (by rw [zpow_one])
 
-/-- Order of an integer power.-/
+/-- Order of an integer power.
+@isnad1 id=eq.1h5v.s6.ac43fa317748 from=translated src=- shape=1c7e02b6 vocab=e5be51d0
+-/
 theorem ord_zpow (P : Place k F) {f : F} (hf : f ≠ 0) (n : ℤ) :
     P.ord (f ^ n) = n * P.ord f := by
   refine P.ord_eq_of_valuation_eq_zpow (zpow_ne_zero n hf) ?_
   rw [map_zpow₀, P.valuation_eq_zpow_ord hf, ← zpow_mul, mul_comm]
 
-/-- Order of a natural power.-/
+/-- Order of a natural power.
+@isnad1 id=eq.1h5v.s6.e43d0c60727a from=translated src=- shape=77eba1d8 vocab=18d00eae
+-/
 theorem ord_pow (P : Place k F) {f : F} (hf : f ≠ 0) (n : ℕ) :
     P.ord (f ^ n) = n * P.ord f := by
   have h := P.ord_zpow hf (n : ℤ)
   rwa [zpow_natCast] at h
 
-/-- Nonzero constants have order zero everywhere.-/
+/-- Nonzero constants have order zero everywhere.
+@isnad1 id=eq.1h4v.s7.3725f03659e7 from=translated src=- shape=411dc3ef vocab=3da3cc63
+-/
 theorem ord_algebraMap (P : Place k F) {c : k} (hc : c ≠ 0) :
     P.ord (algebraMap k F c) = 0 :=
   (P.ord_eq_zero_iff ((map_ne_zero (algebraMap k F)).2 hc)).2
     (valuation_algebraMap_eq_one P.algebraMap_mem hc)
 
-/-- Nonnegative order characterizes integrality.-/
+/-- Nonnegative order characterizes integrality.
+@isnad1 id=iff.1h4v.s8.e3f95fcc0a7f from=translated src=- shape=140d6b35 vocab=bdcf2147
+-/
 theorem ord_nonneg_iff (P : Place k F) {f : F} (hf : f ≠ 0) :
     0 ≤ P.ord f ↔ P.val.valuation f ≤ 1 := by
   have h1 := P.valuation_eq_zpow_ord hf
@@ -414,7 +466,9 @@ theorem ord_nonneg_iff (P : Place k F) {f : F} (hf : f ≠ 0) :
     rw [zpow_zero, ← h1] at h2
     exact h2.not_ge hle
 
-/-- The order reverses the valuation comparison.-/
+/-- The order reverses the valuation comparison.
+@isnad1 id=iff.2h5v.s8.f9a97de80ed1 from=translated src=- shape=a880842b vocab=bdcf2147
+-/
 theorem valuation_le_valuation_iff (P : Place k F) {f g : F} (hf : f ≠ 0)
     (hg : g ≠ 0) :
     P.val.valuation f ≤ P.val.valuation g ↔ P.ord g ≤ P.ord f := by
@@ -429,7 +483,9 @@ theorem valuation_le_valuation_iff (P : Place k F) {f g : F} (hf : f ≠ 0)
     exact zpow_le_zpow_right_of_le_one₀ P.pi_valuation_pos
       P.pi_valuation_lt_one.le h
 
-/-- Ultrametric superadditivity of the order.-/
+/-- Ultrametric superadditivity of the order.
+@isnad1 id=le.3h5v.s7.9675294ab454 from=translated src=- shape=b6936f56 vocab=8bff2bb1
+-/
 theorem min_ord_le_ord_add (P : Place k F) {f g : F} (hf : f ≠ 0)
     (hg : g ≠ 0) (hfg : f + g ≠ 0) :
     min (P.ord f) (P.ord g) ≤ P.ord (f + g) := by
@@ -469,6 +525,9 @@ noncomputable def divisorOf (f : F) : Divisor k F := by
       · exact absurd ((P.ord_eq_zero_iff hf).2 heq) hP
       · exact Or.inr hgt)
 
+/--
+@isnad1 id=eq.1h4v.s6.8119b599aac7 from=translated src=- shape=14ab9a18 vocab=8198c618
+-/
 theorem divisorOf_apply {f : F} (hf : f ≠ 0) (P : Place k F) :
     divisorOf k f P = P.ord f := by
   rw [divisorOf, dite_eq_right hf]

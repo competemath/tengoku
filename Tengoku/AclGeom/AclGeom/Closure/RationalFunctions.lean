@@ -44,7 +44,9 @@ section AlgebraicElements
 
 variable {σ F : Type*} [Field F]
 
-/-- A multivariate polynomial that is integral over its coefficient field is a constant.-/
+/-- A multivariate polynomial that is integral over its coefficient field is a constant.
+@isnad1 id=eq.1h3v.s7.d1d57e949385 from=translated src=- shape=08e5263f vocab=a8ea9c67
+-/
 theorem mvPolynomial_eq_C_of_isIntegral {p : MvPolynomial σ F} (hp : IsIntegral F p) :
     p = C (p.coeff 0) := by
   classical
@@ -86,7 +88,9 @@ theorem mvPolynomial_eq_C_of_isIntegral {p : MvPolynomial σ F} (hp : IsIntegral
   exact Nat.mul_ne_zero hn hD hdeg.symm
 
 /-- **(M1) The coefficient field is relatively algebraically closed in a multivariate rational
-function field.**-/
+function field.**
+@isnad1 id=ex.1h3v.s10.d46971e0c217 from=translated src=- shape=457632e1 vocab=d03db8ff
+-/
 theorem mem_range_algebraMap_of_isAlgebraic_fractionRing
     {x : FractionRing (MvPolynomial σ F)} (hx : IsAlgebraic F x) :
     ∃ c : F, algebraMap F (FractionRing (MvPolynomial σ F)) c = x := by
@@ -103,7 +107,9 @@ theorem mem_range_algebraMap_of_isAlgebraic_fractionRing
     MvPolynomial.algebraMap_eq, ← mvPolynomial_eq_C_of_isIntegral hp]
 
 /-- **(M2) A nonzero constant times a variable is not a square** in a multivariate rational
-function field: the `X i`-degree of a square of polynomials is even.-/
+function field: the `X i`-degree of a square of polynomials is even.
+@isnad1 id=not.1h4v.s10.9fd596745a2b from=translated src=- shape=ea08328c vocab=58f29df6
+-/
 theorem not_isSquare_algebraMap_C_mul_X {c : F} (hc : c ≠ 0) (i : σ) :
     ¬ IsSquare (algebraMap (MvPolynomial σ F) (FractionRing (MvPolynomial σ F)) (C c * X i)) := by
   classical
@@ -136,7 +142,9 @@ section RationalFunctionField
 
 variable (k : Type*) [Field k]
 
-/-- The variables of `k(X_σ)` are algebraically independent over `k`.-/
+/-- The variables of `k(X_σ)` are algebraically independent over `k`.
+@isnad1 id=algebrai.0h2v.s10.910b137a2966 from=translated src=- shape=3a2ea127 vocab=b214fef8
+-/
 theorem algebraicIndependent_algebraMap_X (σ : Type*) :
     AlgebraicIndependent k fun i : σ ↦
       algebraMap (MvPolynomial σ k) (FractionRing (MvPolynomial σ k)) (MvPolynomial.X i) := by
@@ -148,7 +156,9 @@ theorem algebraicIndependent_algebraMap_X (σ : Type*) :
 
 /-- **`X i / x²` is transcendental** in `k(X_σ)` for every `x ≠ 0`.  Otherwise it is a constant
 `c` (M1, `mem_range_algebraMap_of_isAlgebraic_fractionRing`), so `x² = c⁻¹ X i`, which is not a
-square (M2, `not_isSquare_algebraMap_C_mul_X`).-/
+square (M2, `not_isSquare_algebraMap_C_mul_X`).
+@isnad1 id=not.1h4v.s11.fd2582767cac from=translated src=- shape=fb71d55c vocab=2c444258
+-/
 theorem not_isAlgebraic_X_div_sq {σ : Type*} (i : σ) (x : FractionRing (MvPolynomial σ k))
     (hx : x ≠ 0) :
     ¬ IsAlgebraic k

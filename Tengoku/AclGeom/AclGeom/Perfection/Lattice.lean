@@ -55,6 +55,9 @@ perfection of `K` some `p`-power of which lies in the image of `k`.-/
 def basePerf : Subfield π.carrier :=
   π.perfSubfield (algebraMap k K).fieldRange
 
+/--
+@isnad1 id=iff.0h4v.s8.310f516864d2 from=translated src=- shape=861d545b vocab=b0d223a3
+-/
 theorem mem_basePerf_iff {x : π.carrier} :
     x ∈ π.basePerf k ↔ ∃ n : ℕ, ∃ c : k, x ^ π.p ^ n = π.incl (algebraMap k K c) := by
   rw [basePerf, mem_perfSubfield_iff]
@@ -66,7 +69,9 @@ theorem mem_basePerf_iff {x : π.carrier} :
 
 variable (k) in
 /-- The perfected subfield of a closed intermediate field contains the
-perfected base.-/
+perfected base.
+@isnad1 id=le.0h4v.s7.cdecc9b30019 from=translated src=- shape=a5c39ba4 vocab=69c90e15
+-/
 theorem basePerf_le_perfSubfield (M : ClosedIF k K) :
     π.basePerf k ≤ π.perfSubfield M.1.toSubfield :=
   π.perfSubfield_mono fun _ hy ↦ by
@@ -80,10 +85,16 @@ def perfIF (M : ClosedIF k K) : IntermediateField (π.basePerf k) π.carrier :=
   (π.perfSubfield M.1.toSubfield).toIntermediateField fun x ↦
     π.basePerf_le_perfSubfield k M x.2
 
+/--
+@isnad1 id=iff.0h5v.s9.eab1f3ce9a66 from=translated src=- shape=831cbdf9 vocab=c486a626
+-/
 theorem mem_perfIF_iff {M : ClosedIF k K} {x : π.carrier} :
     x ∈ π.perfIF k M ↔ ∃ n : ℕ, ∃ m ∈ M, x ^ π.p ^ n = π.incl m :=
   Iff.rfl
 
+/--
+@isnad1 id=le.1h5v.s9.ce771dfd7588 from=translated src=- shape=48f0e178 vocab=f7ecc2bb
+-/
 theorem perfIF_mono {M N : ClosedIF k K} (h : M ≤ N) :
     π.perfIF k M ≤ π.perfIF k N := fun _ hx ↦ by
   obtain ⟨n, m, hm, hxm⟩ := hx
@@ -91,7 +102,9 @@ theorem perfIF_mono {M N : ClosedIF k K} (h : M ≤ N) :
 
 /-- Equation (5.1) of the blueprint: pulling `M^perf` back along the
 inclusion of `K` recovers exactly `M`, for closed `M`. This is the inverse
-direction of the perfection order isomorphism.-/
+direction of the perfection order isomorphism.
+@isnad1 id=iff.0h5v.s8.2497bab60535 from=translated src=- shape=0de78415 vocab=8308eabf
+-/
 theorem incl_mem_perfIF_iff {M : ClosedIF k K} {x : K} :
     π.incl x ∈ π.perfIF k M ↔ x ∈ M := by
   rw [mem_perfIF_iff]
@@ -110,7 +123,9 @@ algebraically closed in the perfection (blueprint Prop `perf-lattice`,
 first part). The proof raises an annihilating polynomial by a common
 Frobenius power to land its coefficients in `ι M`, raises once more to land
 the point in `ι K`, and descends the resulting polynomial identity to `K`
-along the injective inclusion.-/
+along the injective inclusion.
+@isnad1 id=israc.0h4v.s7.e665dc9fe892 from=translated src=- shape=83c84d9b vocab=b9507283
+-/
 theorem isRAC_perfIF (M : ClosedIF k K) : IsRAC (π.perfIF k M) := by
   classical
   intro x hx
@@ -189,13 +204,17 @@ def perfClosed (M : ClosedIF k K) : ClosedIF (π.basePerf k) π.carrier :=
   ⟨π.perfIF k M, π.isRAC_perfIF M⟩
 
 /-- The perfected intermediate field determines the closed field: `perfIF` is
-injective.-/
+injective.
+@isnad1 id=injectiv.0h3v.s7.dcdd62779fba from=translated src=- shape=bc6ef67b vocab=3be0437c
+-/
 theorem perfIF_injective : Function.Injective (π.perfIF k (K := K)) := by
   intro M N h
   refine SetLike.ext fun x ↦ ?_
   rw [← π.incl_mem_perfIF_iff (M := M), ← π.incl_mem_perfIF_iff (M := N), h]
 
-/-- `perfIF` reflects the order (via the pullback equation).-/
+/-- `perfIF` reflects the order (via the pullback equation).
+@isnad1 id=iff.0h5v.s9.892b3e7d3b7f from=translated src=- shape=6ae68c54 vocab=f7ecc2bb
+-/
 theorem perfIF_le_iff {M N : ClosedIF k K} :
     π.perfIF k M ≤ π.perfIF k N ↔ M ≤ N := by
   constructor
@@ -205,7 +224,9 @@ theorem perfIF_le_iff {M N : ClosedIF k K} :
 
 section Comap
 
-/-- Every element of `k` lands in the perfected base under the inclusion.-/
+/-- Every element of `k` lands in the perfected base under the inclusion.
+@isnad1 id=mem.0h4v.s7.ff600721c434 from=translated src=- shape=edf8f552 vocab=ae6882c8
+-/
 theorem incl_algebraMap_mem_basePerf (c : k) :
     π.incl (algebraMap k K c) ∈ π.basePerf k :=
   π.mem_basePerf_iff.2 ⟨0, c, by simp⟩
@@ -219,12 +240,17 @@ def comapIF (N : ClosedIF (π.basePerf k) π.carrier) : IntermediateField k K :=
     change π.incl (algebraMap k K c) ∈ N.1.toSubfield
     exact N.1.algebraMap_mem (⟨_, π.incl_algebraMap_mem_basePerf c⟩ : π.basePerf k)
 
+/--
+@isnad1 id=iff.0h5v.s9.972862c5946c from=translated src=- shape=f27c04b4 vocab=0231b572
+-/
 theorem mem_comapIF_iff {N : ClosedIF (π.basePerf k) π.carrier} {x : K} :
     x ∈ π.comapIF k N ↔ π.incl x ∈ N :=
   Iff.rfl
 
 /-- The pullback of a closed subextension of the perfection is closed in `K`
-(second half of blueprint Prop `perf-lattice`).-/
+(second half of blueprint Prop `perf-lattice`).
+@isnad1 id=israc.0h4v.s7.06fb40c875d1 from=translated src=- shape=5ffd71ca vocab=52006abc
+-/
 theorem isRAC_comapIF (N : ClosedIF (π.basePerf k) π.carrier) :
     IsRAC (π.comapIF k N) := by
   intro y hy
@@ -243,7 +269,9 @@ def comapClosed (N : ClosedIF (π.basePerf k) π.carrier) : ClosedIF k K :=
   ⟨π.comapIF k N, π.isRAC_comapIF N⟩
 
 /-- Equation (5.2) of the blueprint: every closed subextension of the
-perfection is the perfection of its pullback.-/
+perfection is the perfection of its pullback.
+@isnad1 id=eq.0h4v.s8.9c885c5d36e1 from=translated src=- shape=c7fd17bb vocab=97627940
+-/
 theorem perfClosed_comapClosed (N : ClosedIF (π.basePerf k) π.carrier) :
     π.perfClosed k (π.comapClosed k N) = N := by
   refine Subtype.ext (SetLike.ext fun x ↦ ?_)
@@ -262,7 +290,9 @@ theorem perfClosed_comapClosed (N : ClosedIF (π.basePerf k) π.carrier) :
     exact ⟨r, y, (π.mem_comapIF_iff).2 (ClosedIF.mem_val.1 h1), hy.symm⟩
 
 /-- The reverse round trip: pulling the perfection of a closed `M` back to
-`K` recovers `M` (restatement of equation 5.1).-/
+`K` recovers `M` (restatement of equation 5.1).
+@isnad1 id=eq.0h4v.s5.ed2cd33546b8 from=translated src=- shape=b4be77c1 vocab=7bb17111
+-/
 theorem comapClosed_perfClosed (M : ClosedIF k K) :
     π.comapClosed k (π.perfClosed k M) = M := by
   refine Subtype.ext (SetLike.ext fun x ↦ ?_)
@@ -298,19 +328,30 @@ identity map on elements.-/
 def frobZPow (n : ℤ) : RingAut π.carrier :=
   frobeniusZPow π.carrier π.p n
 
+/--
+@isnad1 id=eq.0h2v.s9.36d16488a005 from=translated src=- shape=c22f328c vocab=9033e9e9
+-/
 @[simp] theorem frobZPow_zero : π.frobZPow 0 = 1 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.2802dde23a6e from=translated src=- shape=6d779d23 vocab=088e73e3
+-/
 theorem frobZPow_add (m n : ℤ) :
     π.frobZPow (m + n) = π.frobZPow m * π.frobZPow n :=
   zpow_add _ m n
 
+/--
+@isnad1 id=eq.0h3v.s8.5f2fd8a41e51 from=translated src=- shape=d7d9cf9f vocab=3a6f06f8
+-/
 theorem frobZPow_neg (n : ℤ) : π.frobZPow (-n) = (π.frobZPow n)⁻¹ :=
   zpow_neg _ n
 
 /-- Every closed subextension of the perfection is stable, elementwise, under
 every integral Frobenius power: closed subextensions are perfect, so both
 Frobenius and its inverse preserve them (blueprint P3). In particular every
-atom of the perfected geometry is fixed.-/
+atom of the perfected geometry is fixed.
+@isnad1 id=iff.0h6v.s10.eb28b39f56c4 from=translated src=- shape=988443d2 vocab=7f834710
+-/
 theorem frobZPow_mem_iff (n : ℤ) {N : ClosedIF (π.basePerf k) π.carrier}
     (x : π.carrier) : π.frobZPow n x ∈ N.1 ↔ x ∈ N.1 := by
   set F : RingAut π.carrier := (frobeniusEquiv π.carrier π.p : RingAut π.carrier)
@@ -344,7 +385,9 @@ theorem frobZPow_mem_iff (n : ℤ) {N : ClosedIF (π.basePerf k) π.carrier}
     exact (ih (F⁻¹ x)).trans (h2 x)
 
 /-- The setwise form: integral Frobenius powers fix every closed
-subextension of the perfection.-/
+subextension of the perfection.
+@isnad1 id=eq.0h5v.s10.33c720a4ffdd from=translated src=- shape=f5ddaa67 vocab=33188ca0
+-/
 theorem frobZPow_image_closed (n : ℤ) (N : ClosedIF (π.basePerf k) π.carrier) :
     π.frobZPow n '' (N.1 : Set π.carrier) = (N.1 : Set π.carrier) := by
   ext y

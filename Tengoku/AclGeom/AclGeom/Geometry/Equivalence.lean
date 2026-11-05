@@ -59,12 +59,21 @@ instance : PartialOrder (Point k K) := Subtype.partialOrder _
 def rep (P : Point k K) : K :=
   (ClosedIF.IsAtom.exists_eq_point P.2).choose
 
+/--
+@isnad1 id=not.0h3v.s7.62881381a25a from=translated src=- shape=5f74bcf5 vocab=4a99f6ea
+-/
 theorem rep_notMem_bot (P : Point k K) : P.rep ∉ (⊥ : ClosedIF k K) :=
   (ClosedIF.IsAtom.exists_eq_point P.2).choose_spec.1
 
+/--
+@isnad1 id=eq.0h3v.s7.50898e69b2ef from=translated src=- shape=6db09fa5 vocab=fbe01232
+-/
 @[simp] theorem point_rep (P : Point k K) : ClosedIF.point k P.rep = P.1 :=
   (ClosedIF.IsAtom.exists_eq_point P.2).choose_spec.2.symm
 
+/--
+@isnad1 id=mem.0h3v.s7.4bc07bc3c94b from=translated src=- shape=60fe316f vocab=0c18c04a
+-/
 theorem mem_rep (P : Point k K) : P.rep ∈ P.1 := by
   rw [← point_rep]
   exact ClosedIF.mem_point_self _
@@ -81,15 +90,23 @@ def Point.mk' (x : K) (hx : x ∉ (⊥ : ClosedIF k K)) : Point k K :=
 def pointCl (S : Set (Point k K)) : Set (Point k K) :=
   {P | P.1 ≤ sSup (Subtype.val '' S)}
 
+/--
+@isnad1 id=iff.0h4v.s8.dd030b9eba68 from=translated src=- shape=c404b2aa vocab=85c936eb
+-/
 theorem mem_pointCl_iff {S : Set (Point k K)} {P : Point k K} :
     P ∈ pointCl S ↔ P.1 ≤ sSup (Subtype.val '' S) := Iff.rfl
 
+/--
+@isnad1 id=le.0h3v.s5.dbe1de9b8fed from=translated src=- shape=f9a4024e vocab=ff52a359
+-/
 theorem subset_pointCl (S : Set (Point k K)) : S ⊆ pointCl S :=
   fun P hP ↦ mem_pointCl_iff.2 (le_sSup ⟨P, hP, rfl⟩)
 
 /-- The supremum of the points of a set of generators is the relative
 algebraic closure of that set: the bridge between the point geometry and
-`racl`.-/
+`racl`.
+@isnad1 id=eq.0h3v.s6.54f29d8f8fca from=translated src=- shape=fdc174a5 vocab=b44adfec
+-/
 theorem sSup_point_image (A : Set K) :
     (sSup ((fun x ↦ ClosedIF.point k x) '' A)).1 = racl k A := by
   refine le_antisymm ?_ ?_
@@ -109,7 +126,9 @@ theorem sSup_point_image (A : Set K) :
     _ = _ := isRAC_iff_racl_eq.1 (sSup ((fun x ↦ ClosedIF.point k x) '' A)).2
 
 /-- Membership in a point closure, in terms of representatives: `P ∈ cl S`
-iff the generator of `P` is algebraic over the generators of `S`.-/
+iff the generator of `P` is algebraic over the generators of `S`.
+@isnad1 id=iff.0h4v.s6.d43d09149890 from=translated src=- shape=e60337a5 vocab=2f515459
+-/
 theorem mem_pointCl_iff_rep_mem {S : Set (Point k K)} {P : Point k K} :
     P ∈ pointCl S ↔ P.rep ∈ racl k (Point.rep '' S) := by
   have himg : (fun x ↦ ClosedIF.point k x) '' (Point.rep '' S) = Subtype.val '' S := by
@@ -137,6 +156,9 @@ namespace ClosedIF
 def toPointSet (E : ClosedIF k K) : Set (Point k K) :=
   {P | P.1 ≤ E}
 
+/--
+@isnad1 id=eq.0h3v.s5.926ab3217507 from=translated src=- shape=9b104724 vocab=e589e016
+-/
 theorem pointCl_toPointSet (E : ClosedIF k K) :
     pointCl (toPointSet E) = toPointSet E := by
   refine Set.eq_of_subset_of_subset (fun P hP ↦ ?_) (subset_pointCl _)
@@ -146,7 +168,9 @@ theorem pointCl_toPointSet (E : ClosedIF k K) :
   exact hQ
 
 /-- Every closed intermediate field is the join of its points
-(atomisticity, packaged for the equivalence).-/
+(atomisticity, packaged for the equivalence).
+@isnad1 id=eq.0h3v.s7.7177ce3e01a2 from=translated src=- shape=6c35e1d5 vocab=9fa8b062
+-/
 theorem sSup_toPointSet (E : ClosedIF k K) :
     sSup (Subtype.val '' toPointSet E) = E := by
   have : Subtype.val '' toPointSet E = {P : ClosedIF k K | IsAtom P ∧ P ≤ E} := by
@@ -186,7 +210,9 @@ end PointSetIso
 
 section TransportPoints
 
-/-- Order isomorphisms carry atoms to atoms.-/
+/-- Order isomorphisms carry atoms to atoms.
+@isnad1 id=isatom.1h4v.s6.d3f61c52ee20 from=translated src=- shape=2a15ae10 vocab=0e032d2e
+-/
 theorem IsAtom.orderIso_map {α β : Type*} [PartialOrder α] [OrderBot α]
     [PartialOrder β] [OrderBot β] (e : α ≃o β) {a : α} (h : IsAtom a) :
     IsAtom (e a) := by
@@ -202,7 +228,9 @@ theorem IsAtom.orderIso_map {α β : Type*} [PartialOrder α] [OrderBot α]
     _ = e ⊥ := by rw [hbot]
     _ = ⊥ := e.map_bot
 
-/-- Order isomorphisms preserve atoms.-/
+/-- Order isomorphisms preserve atoms.
+@isnad1 id=iff.0h4v.s6.f250f565d5ae from=translated src=- shape=fc72dc7f vocab=0e032d2e
+-/
 theorem isAtom_orderIso_iff {α β : Type*} [PartialOrder α] [OrderBot α]
     [PartialOrder β] [OrderBot β] (e : α ≃o β) {a : α} :
     IsAtom (e a) ↔ IsAtom a := by
@@ -220,11 +248,16 @@ def Point.map (e : ClosedIF k K ≃o ClosedIF l L) : Point k K ≃ Point l L whe
   left_inv P := Subtype.ext (e.symm_apply_apply P.1)
   right_inv Q := Subtype.ext (e.apply_symm_apply Q.1)
 
+/--
+@isnad1 id=eq.0h6v.s8.f5714f11be10 from=translated src=- shape=d11104f4 vocab=a68b4cec
+-/
 @[simp] theorem Point.map_coe (e : ClosedIF k K ≃o ClosedIF l L)
     (P : Point k K) : (Point.map e P).1 = e P.1 := rfl
 
 /-- An order isomorphism of closed lattices preserves the point closure
-(blueprint eq. 20.3): the restriction to points is a geometry equivalence.-/
+(blueprint eq. 20.3): the restriction to points is a geometry equivalence.
+@isnad1 id=iff.0h7v.s8.88f74f1437f5 from=translated src=- shape=511aeb08 vocab=29faaca8
+-/
 theorem pointCl_map_iff (e : ClosedIF k K ≃o ClosedIF l L)
     {S : Set (Point k K)} {P : Point k K} :
     Point.map e P ∈ pointCl (Point.map e '' S) ↔ P ∈ pointCl S := by

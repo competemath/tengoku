@@ -55,7 +55,9 @@ def partialMap (d : A) (hd : d ≠ 0)
     Spec.map (CommRingCat.ofHom φ)
 
 /-- The principal-open partial map attached to an injective localization map
-is dominant.-/
+is dominant.
+@isnad1 id=isdomina.2h4v.s8.aa21261e8c22 from=translated src=- shape=25a00a56 vocab=35548d0f
+-/
 instance partialMap_isDominant (d : A) (hd : d ≠ 0)
     (φ : B →+* Localization.Away d) (hφ : Function.Injective φ) :
     IsDominant (partialMap d hd φ hφ).hom := by
@@ -81,7 +83,9 @@ def awayOpenIso (d : A) :
     (awayOpen d).toScheme ≅ Spec (.of (Localization.Away d)) :=
   basicOpenIsoSpecAway (R := CommRingCat.of A) d
 
-/-- A nonzero principal function does not vanish at the generic point.-/
+/-- A nonzero principal function does not vanish at the generic point.
+@isnad1 id=mem.1h2v.s6.52105d95b933 from=translated src=- shape=b36dc47d vocab=747ed303
+-/
 theorem genericPoint_mem_awayOpen (d : A) (hd : d ≠ 0) :
     genericPoint (Spec (.of A)) ∈ awayOpen d := by
   apply ((genericPoint_spec (Spec (.of A))).mem_open_set_iff
@@ -103,7 +107,9 @@ noncomputable def genericAwayMap (d : A) (hd : d ≠ 0) :
   (Spec.preimage g).hom
 
 /-- The generic-point map from `A[1/d]` extends the canonical map from `A`
-to the function field of `Spec A`.-/
+to the function field of `Spec A`.
+@isnad1 id=eq.1h2v.s8.334bcd1083f3 from=translated src=- shape=e8cc706c vocab=f87ff05a
+-/
 theorem genericAwayMap_comp_algebraMap (d : A) (hd : d ≠ 0) :
     (genericAwayMap d hd).comp
         (algebraMap A (Localization.Away d)) =
@@ -148,7 +154,9 @@ theorem genericAwayMap_comp_algebraMap (d : A) (hd : d ≠ 0) :
   exact hp'
 
 /-- The generic-point map out of `A[1/d]` is the canonical localization map
-to the function field.-/
+to the function field.
+@isnad1 id=eq.1h2v.s8.1ae7b1a21dc7 from=translated src=- shape=1123be6c vocab=b979b717
+-/
 theorem genericAwayMap_eq_mapToFractionRing (d : A) (hd : d ≠ 0) :
     letI : Algebra A (Spec (.of A)).functionField :=
       AlgebraicGeometry.instAlgebraCarrierFunctionFieldSpec (.of A)
@@ -175,7 +183,9 @@ theorem genericAwayMap_eq_mapToFractionRing (d : A) (hd : d ≠ 0) :
 set_option backward.isDefEq.respectTransparency false in
 /-- The generic-point morphism of the principal-open partial map is induced
 by its cleared localization homomorphism followed by the canonical map to the
-source function field.-/
+source function field.
+@isnad1 id=eq.2h4v.s8.e4aa3a3c1a69 from=translated src=- shape=8356107a vocab=eb91a1f6
+-/
 theorem partialMap_fromFunctionField_eq (d : A) (hd : d ≠ 0)
     (φ : B →+* Localization.Away d) (hφ : Function.Injective φ) :
     (partialMap d hd φ hφ).fromFunctionField =
@@ -204,11 +214,15 @@ field.-/
 noncomputable def denominator (x : K) : R :=
   (IsFractionRing.div_surjective R x).choose_spec.choose
 
-/-- The chosen denominator is a non-zero-divisor.-/
+/-- The chosen denominator is a non-zero-divisor.
+@isnad1 id=mem.0h3v.s6.afc76bdd8219 from=translated src=- shape=6a1cabaa vocab=88960b9d
+-/
 theorem denominator_mem (x : K) : denominator (R := R) x ∈ R⁰ :=
   (IsFractionRing.div_surjective R x).choose_spec.choose_spec.1
 
-/-- The chosen numerator and denominator represent the original element.-/
+/-- The chosen numerator and denominator represent the original element.
+@isnad1 id=eq.0h3v.s7.677003f80243 from=translated src=- shape=373b2b5f vocab=145ee959
+-/
 theorem fraction_eq (x : K) :
     algebraMap R K (numerator (R := R) x) /
       algebraMap R K (denominator (R := R) x) = x :=
@@ -223,7 +237,9 @@ noncomputable def common (x : ι → K) : R :=
 
 variable [IsDomain R]
 
-/-- The common denominator of a finite family is nonzero.-/
+/-- The common denominator of a finite family is nonzero.
+@isnad1 id=ne.0h4v.s6.e5f88a637d19 from=translated src=- shape=d84fcb27 vocab=625c3ce2
+-/
 theorem common_ne_zero (x : ι → K) : common (R := R) x ≠ 0 := by
   classical
   apply Finset.prod_ne_zero_iff.mpr
@@ -231,7 +247,9 @@ theorem common_ne_zero (x : ι → K) : common (R := R) x ≠ 0 := by
   exact mem_nonZeroDivisors_iff_ne_zero.mp (denominator_mem (R := R) (x i))
 
 /-- Every member of the finite family lies in the localization at its common
-denominator.-/
+denominator.
+@isnad1 id=mem.0h5v.s7.0e4fc323cd54 from=translated src=- shape=7b463b02 vocab=22c37dd5
+-/
 theorem mem_localization (x : ι → K) (i : ι) :
     x i ∈ Localization.subalgebra.ofField K
       (Submonoid.powers (common (R := R) x))
@@ -308,7 +326,9 @@ noncomputable def awayAlgHomOfGenerators
   exact e.symm.toAlgHom.comp ψS
 
 /-- Mapping the cleared-denominator factorization back to the fraction field
-recovers the original algebra homomorphism.-/
+recovers the original algebra homomorphism.
+@isnad1 id=other.1h8v.s10.fc29efb65368 from=translated src=- shape=d178dc8e vocab=9bf0c96c
+-/
 theorem awayAlgHomOfGenerators_mapToFractionRing
     (b : ι → B) (hb : Algebra.adjoin k (Set.range b) = ⊤)
     (φ : B →ₐ[k] K) (z : B) :
@@ -353,7 +373,9 @@ theorem awayAlgHomOfGenerators_mapToFractionRing
   rfl
 
 /-- If the original fraction-field homomorphism is injective, so is its
-cleared-denominator factorization.-/
+cleared-denominator factorization.
+@isnad1 id=injectiv.2h7v.s10.ef8e780b2d32 from=translated src=- shape=2267e412 vocab=f339321b
+-/
 theorem awayAlgHomOfGenerators_injective
     (b : ι → B) (hb : Algebra.adjoin k (Set.range b) = ⊤)
     (φ : B →ₐ[k] K) (hφ : Function.Injective φ) :
@@ -390,7 +412,9 @@ noncomputable def partialMapOfGenerators
     (awayAlgHomOfGenerators_injective (A := A) b hb φ hφ)
 
 /-- The partial map obtained by clearing the generator denominators is
-dominant.-/
+dominant.
+@isnad1 id=isdomina.2h7v.s9.c06c8cfa2e66 from=translated src=- shape=c5b048bd vocab=3696e441
+-/
 instance partialMapOfGenerators_isDominant
     (b : ι → B) (hb : Algebra.adjoin k (Set.range b) = ⊤)
     (φ : B →ₐ[k] K) (hφ : Function.Injective φ) :

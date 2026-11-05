@@ -50,7 +50,9 @@ def stalkValuationSubring (X : Scheme.{u}) [IsIntegral X] [IsLocallyNoetherian X
   exact (ValuationRing.valuation (X.presheaf.stalk x) X.functionField).valuationSubring
 
 /-- Membership is literal membership in the image of the actual stalk embedding.
-Named consumers: the place correspondence and its automorphism formula.-/
+Named consumers: the place correspondence and its automorphism formula.
+@isnad1 id=iff.2h3v.s9.4b32117cc4ba from=translated src=- shape=da680d7e vocab=7768ad82
+-/
 theorem mem_stalkValuationSubring
     (X : Scheme.{u}) [IsIntegral X] [IsLocallyNoetherian X]
     (hdim : topologicalKrullDim X ≤ 1)
@@ -63,7 +65,9 @@ theorem mem_stalkValuationSubring
   exact ValuationRing.mem_integer_iff (X.presheaf.stalk x) X.functionField z
 
 /-- The actual stalk-image valuation ring has dimension at most one.
-Named consumer: equality with the valuation ring of a place centered there.-/
+Named consumer: equality with the valuation ring of a place centered there.
+@isnad1 id=krulldim.2h2v.s7.2d2d9d43e818 from=translated src=- shape=4f7fd031 vocab=b390f313
+-/
 theorem stalkValuationSubring_krullDimLE
     (X : Scheme.{u}) [IsIntegral X] [IsLocallyNoetherian X]
     (hdim : topologicalKrullDim X ≤ 1)
@@ -79,7 +83,9 @@ theorem stalkValuationSubring_krullDimLE
   exact (Order.coheight_le_krullDim x).trans (he.trans_le hdim)
 
 /-- The actual stalk valuation subring is the whole field exactly at the generic point.
-Named consumer: turning every closed point into a genuine nontrivial place.-/
+Named consumer: turning every closed point into a genuine nontrivial place.
+@isnad1 id=iff.2h2v.s7.41e26bf9c42e from=translated src=- shape=a67a56fd vocab=b587cbda
+-/
 theorem stalkValuationSubring_eq_top_iff
     (X : Scheme.{u}) [IsIntegral X] [IsLocallyNoetherian X]
     (hdim : topologicalKrullDim X ≤ 1)

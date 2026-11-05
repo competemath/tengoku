@@ -103,39 +103,59 @@ characteristic `p`.-/
 def IsAdditive (P : Polynomial K) : Prop :=
   ∀ x y : K, P.eval (x + y) = P.eval x + P.eval y
 
+/--
+@isnad1 id=isadditi.0h1v.s5.01b43d147e3e from=translated src=- shape=a72970d9 vocab=1c578a91
+-/
 theorem isAdditive_zero : IsAdditive (0 : Polynomial K) := by
   intro x y
   simp
 
+/--
+@isnad1 id=isadditi.0h1v.s4.70c2cd0501f5 from=translated src=- shape=84bfdc15 vocab=e957e5e8
+-/
 theorem isAdditive_X : IsAdditive (X : Polynomial K) := by
   intro x y
   simp
 
+/--
+@isnad1 id=isadditi.2h3v.s6.1d1cf3dbe1ad from=translated src=- shape=1333e5f0 vocab=fe07c0ce
+-/
 theorem IsAdditive.add {P Q : Polynomial K} (hP : IsAdditive P)
     (hQ : IsAdditive Q) : IsAdditive (P + Q) := by
   intro x y
   simp only [eval_add, hP x y, hQ x y]
   ring
 
+/--
+@isnad1 id=isadditi.1h3v.s7.50a2ed105b9f from=translated src=- shape=c504e831 vocab=4722a4df
+-/
 theorem IsAdditive.C_mul {P : Polynomial K} (hP : IsAdditive P) (c : K) :
     IsAdditive (C c * P) := by
   intro x y
   simp only [eval_mul, eval_C, hP x y]
   ring
 
+/--
+@isnad1 id=isadditi.2h3v.s5.ef30df1240f3 from=translated src=- shape=026a30af vocab=0b456a20
+-/
 theorem IsAdditive.comp {P Q : Polynomial K} (hP : IsAdditive P)
     (hQ : IsAdditive Q) : IsAdditive (P.comp Q) := by
   intro x y
   simp only [eval_comp, hQ x y]
   exact hP _ _
 
-/-- In characteristic `p`, the `p^n`-th power monomial is additive.-/
+/-- In characteristic `p`, the `p^n`-th power monomial is additive.
+@isnad1 id=isadditi.0h3v.s6.00efb94879a4 from=translated src=- shape=2b6fa051 vocab=23015d8b
+-/
 theorem isAdditive_X_pow_expChar_pow (p : ℕ) [ExpChar K p] (n : ℕ) :
     IsAdditive ((X : Polynomial K) ^ p ^ n) := by
   intro x y
   simp only [eval_pow, eval_X]
   exact add_pow_expChar_pow x y p n
 
+/--
+@isnad1 id=eq.1h2v.s6.de3249f33232 from=translated src=- shape=54bf819d vocab=986b5406
+-/
 theorem IsAdditive.eval_zero {P : Polynomial K} (hP : IsAdditive P) :
     P.eval 0 = 0 := by
   have h := hP 0 0
@@ -145,6 +165,9 @@ theorem IsAdditive.eval_zero {P : Polynomial K} (hP : IsAdditive P) :
     exact h.symm
   exact add_left_cancel h2
 
+/--
+@isnad1 id=eq.1h2v.s5.a570828c8953 from=translated src=- shape=ef1d67c6 vocab=9f96d861
+-/
 theorem IsAdditive.coeff_zero {P : Polynomial K} (hP : IsAdditive P) :
     P.coeff 0 = 0 := by
   rw [coeff_zero_eq_eval_zero]
@@ -152,7 +175,9 @@ theorem IsAdditive.coeff_zero {P : Polynomial K} (hP : IsAdditive P) :
 
 /-- The engine of the support classification: over an infinite field, an
 additive polynomial has `C(i,j) · pᵢ = 0` for every intermediate `j`
-(via Taylor expansion and Hasse derivatives).-/
+(via Taylor expansion and Hasse derivatives).
+@isnad1 id=eq.3h4v.s6.4c08d6beceb6 from=translated src=- shape=aa0d0859 vocab=2436dec4
+-/
 theorem IsAdditive.natCast_choose_mul_coeff [Infinite K] {P : Polynomial K}
     (hP : IsAdditive P) {i j : ℕ} (hj0 : j ≠ 0) (hji : j < i) :
     (i.choose j : K) * P.coeff i = 0 := by
@@ -196,7 +221,9 @@ theorem IsAdditive.eq_C_mul_X [CharZero K] {P : Polynomial K}
 
 /-- Characteristic `p`: the support of an additive polynomial consists of
 `p`-power exponents (blueprint Lemma `subgroup-classification` (a),
-characteristic-`p` case, via Lucas' theorem).-/
+characteristic-`p` case, via Lucas' theorem).
+@isnad1 id=eq.3h4v.s6.c4072b1ce470 from=translated src=- shape=1b758080 vocab=5694aae3
+-/
 theorem IsAdditive.coeff_eq_zero_of_ne_pow (p : ℕ) [CharP K p] (hp : p.Prime)
     [Infinite K] {P : Polynomial K} (hP : IsAdditive P) {i : ℕ}
     (hi : ∀ r : ℕ, i ≠ p ^ r) : P.coeff i = 0 := by
@@ -221,7 +248,9 @@ variable {K : Type*} [Field K]
 
 open Polynomial in
 /-- If an additive polynomial is a single nonzero monomial, its exponent is a
-`p`-power (blueprint Lemma 8.9, final normalization step).-/
+`p`-power (blueprint Lemma 8.9, final normalization step).
+@isnad1 id=ex.4h5v.s8.5a6d7156d606 from=translated src=- shape=983c64d9 vocab=e2d50638
+-/
 theorem IsAdditive.pow_exponent_of_monomial (p : ℕ) [CharP K p] (hp : p.Prime)
     [Infinite K] {P : Polynomial K} (hP : IsAdditive P) {l : K} {m : ℕ}
     (hl : l ≠ 0) (hPm : P = C l * X ^ m) : ∃ r, m = p ^ r := by

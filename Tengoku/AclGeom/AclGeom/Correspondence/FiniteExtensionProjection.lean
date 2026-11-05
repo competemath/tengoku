@@ -50,7 +50,9 @@ def projectionAlgHom (a₂ : ι₂ → K₂) (e : L₂ →ₐ[k] L₁) :
   e.comp (Subalgebra.val _)
 
 omit [Algebra k K₂] [IsScalarTower k K₂ L₂] in
-/-- A field embedding is injective on the target coordinate ring.-/
+/-- A field embedding is injective on the target coordinate ring.
+@isnad1 id=injectiv.0h7v.s9.f30f0ab2c72f from=translated src=- shape=d22ab70d vocab=c4321942
+-/
 theorem projectionAlgHom_injective (a₂ : ι₂ → K₂) (e : L₂ →ₐ[k] L₁) :
     Function.Injective (projectionAlgHom (k := k) a₂ e) :=
   e.injective.comp Subtype.val_injective
@@ -70,7 +72,9 @@ def functionFieldAlgHom
     (e.comp (FiniteExtensionChart.functionFieldAlgEquiv a₂ ha₂).toAlgHom)
 
 /-- Conjugating the scheme-theoretic function-field embedding back to the
-selected ambient extension fields recovers the original embedding.-/
+selected ambient extension fields recovers the original embedding.
+@isnad1 id=eq.2h11v.s10.c75e4a2e826c from=translated src=- shape=793a1643 vocab=33dd17d3
+-/
 @[simp] theorem functionFieldAlgHom_commutes
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)
@@ -106,6 +110,9 @@ def partialMap [Fintype ι₂]
     (projectionAlgHom (k := k) a₂ e)
     (projectionAlgHom_injective (k := k) a₂ e)
 
+/--
+@isnad1 id=isdomina.1h10v.s9.42ed4a598c77 from=translated src=- shape=424343e0 vocab=65c5a664
+-/
 instance partialMap_isDominant [Fintype ι₂]
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤) (e : L₂ →ₐ[k] L₁) :
@@ -135,6 +142,9 @@ def rationalMap [Fintype ι₂]
         (k := k) (K := K₂) (L := L₂) a₂) :=
   (partialMap (k := k) a₁ a₂ ha₁ e).toRationalMap
 
+/--
+@isnad1 id=isdomina.1h10v.s8.53d59391f9d3 from=translated src=- shape=4c118720 vocab=aebe4f5e
+-/
 instance rationalMap_isDominant [Fintype ι₂]
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤) (e : L₂ →ₐ[k] L₁) :

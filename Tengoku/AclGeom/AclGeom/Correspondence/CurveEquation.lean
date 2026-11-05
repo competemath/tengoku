@@ -39,7 +39,9 @@ namespace FiniteCorrespondencePair
 variable (P : FiniteCorrespondencePair k Ω)
 
 /-- The source coordinate of a finite-correspondence pair is transcendental
-over the field of definition.-/
+over the field of definition.
+@isnad1 id=transcen.0h3v.s5.a85a9dbbd953 from=translated src=- shape=de13559f vocab=52140216
+-/
 theorem source_transcendental' : Transcendental k P.source := by
   intro h
   exact P.source_generic (mem_racl_empty_of_isAlgebraic h)
@@ -69,7 +71,9 @@ private theorem leadingCoeff_rawCurveEquation_ne_zero :
     MonomialOrder.lex.leadingCoeff P.rawCurveEquation ≠ 0 :=
   MonomialOrder.leadingCoeff_ne_zero_iff.mpr P.rawCurveEquation_prime.ne_zero
 
-/-- The canonical curve equation is monic in the fixed lexicographic order.-/
+/-- The canonical curve equation is monic in the fixed lexicographic order.
+@isnad1 id=monic.0h3v.s6.02f7bd392072 from=translated src=- shape=61232a9d vocab=b5f12170
+-/
 theorem curveEquation_monic : MonomialOrder.lex.Monic P.curveEquation := by
   rw [MonomialOrder.Monic, curveEquation, MonomialOrder.leadingCoeff_mul,
     MonomialOrder.leadingCoeff_C]
@@ -81,7 +85,9 @@ private theorem curveEquation_associated_raw :
   exact IsUnit.map MvPolynomial.C
     (isUnit_iff_ne_zero.mpr (inv_ne_zero P.leadingCoeff_rawCurveEquation_ne_zero))
 
-/-- The canonical equation generates exactly the branch ideal.-/
+/-- The canonical equation generates exactly the branch ideal.
+@isnad1 id=eq.0h3v.s7.480f3a3ffe72 from=translated src=- shape=9b51155b vocab=b17b2261
+-/
 theorem ideal_eq_span_curveEquation :
     P.ideal = Ideal.span {P.curveEquation} := by
   rw [P.ideal_eq_span_rawCurveEquation]
@@ -129,13 +135,17 @@ def curveCoefficientCoordinates :
     P.curveCoefficientSet k E → P.curveCoefficientField k E :=
   fun z ↦ ⟨z.1, IntermediateField.subset_adjoin k _ z.2⟩
 
-/-- Every canonical coefficient belongs to the coefficient field.-/
+/-- Every canonical coefficient belongs to the coefficient field.
+@isnad1 id=mem.0h5v.s8.d6eb9b908270 from=translated src=- shape=f1935f2f vocab=2ecda02a
+-/
 theorem coeff_mem_curveCoefficientField (d : Fin 2 →₀ ℕ) :
     ((P.curveEquation.coeff d : E) : Ω) ∈ P.curveCoefficientField k E :=
   IntermediateField.subset_adjoin k _ ⟨d, rfl⟩
 
 /-- The intrinsic coefficient field is contained in every field of
-definition used to present the correspondence.-/
+definition used to present the correspondence.
+@isnad1 id=le.0h4v.s7.3d3634bf9cd1 from=translated src=- shape=0d711107 vocab=09ec297c
+-/
 theorem curveCoefficientField_le : P.curveCoefficientField k E ≤ E := by
   rw [curveCoefficientField]
   refine IntermediateField.adjoin_le_iff.mpr ?_

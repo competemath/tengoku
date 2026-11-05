@@ -39,7 +39,9 @@ universe u v
 variable {k : Type u} {F : Type v} [Field k] [Field F] [Algebra k F]
 
 /-- The actual Kähler differential space of a separably generated one-variable field
-has dimension one. Named consumer: the actual smooth curve stalk's cotangent bound.-/
+has dimension one. Named consumer: the actual smooth curve stalk's cotangent bound.
+@isnad1 id=eq.1h2v.s7.1dc68b883321 from=translated src=- shape=4651a7e6 vocab=f9ee7987
+-/
 theorem finrank_differential_eq_one [PerfectField k] [Algebra.EssFiniteType k F]
     (htr : Algebra.trdeg k F = 1) :
     Module.finrank F (KaehlerDifferential k F) = 1 := by

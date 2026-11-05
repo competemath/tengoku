@@ -35,17 +35,29 @@ variable {C : Type u} [Category.{v} C] [CartesianMonoidalCategory C]
 def parameterAct (g : T ⟶ G) : T ⊗ X ⟶ T ⊗ X :=
   lift (fst T X) (((fst T X) ≫ g) • snd T X)
 
+/--
+@isnad1 id=eq.0h5v.s7.f3ad78996402 from=translated src=- shape=19b75b12 vocab=575d9219
+-/
 lemma parameterAct_fst (g : T ⟶ G) : parameterAct X g ≫ fst T X = fst T X :=
   lift_fst _ _
 
+/--
+@isnad1 id=eq.0h5v.s8.5719624dddd8 from=translated src=- shape=ae17a12a vocab=103d5c7a
+-/
 lemma parameterAct_snd (g : T ⟶ G) :
     parameterAct X g ≫ snd T X = ((fst T X) ≫ g) • snd T X :=
   lift_snd _ _
 
+/--
+@isnad1 id=eq.0h4v.s7.cfa467eafdd5 from=translated src=- shape=deee3e03 vocab=e91d4bb1
+-/
 lemma parameterAct_one : parameterAct X (1 : T ⟶ G) = 𝟙 (T ⊗ X) := by
   change lift (fst T X) (((fst T X) ≫ (1 : T ⟶ G)) • snd T X) = 𝟙 (T ⊗ X)
   rw [MonObj.comp_one, _root_.one_smul, lift_fst_snd]
 
+/--
+@isnad1 id=eq.0h6v.s8.c8b3c0238d07 from=translated src=- shape=27f15106 vocab=4d7b2ef6
+-/
 lemma parameterAct_mul (g h : T ⟶ G) :
     parameterAct X (g * h) = parameterAct X h ≫ parameterAct X g := by
   apply CartesianMonoidalCategory.hom_ext

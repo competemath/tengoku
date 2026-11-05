@@ -41,6 +41,9 @@ def coefficientExtension : R ⊗[F] ↥(coefficientFieldPart W F) →ₗ[R] (�
   (TensorProduct.piScalarRightHom F R R 𝓜).comp
     ((coefficientFieldPart W F).subtype.baseChange R)
 
+/--
+@isnad1 id=eq.0h6v.s15.96c331fda722 from=translated src=- shape=c167a7ca vocab=f4cc057e
+-/
 @[simp]
 theorem coefficientExtension_tmul (r : R) (u : coefficientFieldPart W F) :
     coefficientExtension W F (r ⊗ₜ[F] u) = r • coeVec F (u : 𝓜 → F) := by
@@ -50,7 +53,9 @@ theorem coefficientExtension_tmul (r : R) (u : coefficientFieldPart W F) :
   change (u.1 j : R) * r = r * (u.1 j : R)
   exact mul_comm _ _
 
-/-- The literal tensor extension embeds in the ambient coordinate space.-/
+/-- The literal tensor extension embeds in the ambient coordinate space.
+@isnad1 id=injectiv.0h4v.s14.5314a61ea78f from=translated src=- shape=00fd3cb2 vocab=dc78d419
+-/
 theorem coefficientExtension_injective [Finite 𝓜] :
     Function.Injective (coefficientExtension W F) := by
   classical

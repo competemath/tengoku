@@ -36,7 +36,9 @@ variable {K E : Type*} [Field K] [Field E] [Algebra K E] [IsAlgClosed K]
   [IsFunctionFieldOneVar K E]
 
 omit [IsAlgClosed K] [IsFunctionFieldOneVar K E] in
-/-- A derivation preserving every proper valuation subring containing `K` is regular.-/
+/-- A derivation preserving every proper valuation subring containing `K` is regular.
+@isnad1 id=derivati.1h3v.s8.4ba3c1e4daac from=translated src=- shape=61cd1b2e vocab=36a76566
+-/
 theorem derivationIsRegular_of_forall_valuationSubring {D : Derivation K E E}
     (h : ∀ V : ValuationSubring E, (∀ c : K, algebraMap K E c ∈ V) → V ≠ ⊤ →
       ∀ x ∈ V, D x ∈ V) :

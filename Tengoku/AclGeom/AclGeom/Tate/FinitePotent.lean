@@ -53,13 +53,17 @@ structure IsTateCore (θ : Module.End k V) (W : Submodule k V) :
   /-- A core absorbs some power of the endomorphism.-/
   absorbs : ∃ n : ℕ, ∀ x : V, (θ ^ n) x ∈ W
 
-/-- Endomorphisms with finite-dimensional range are finite-potent.-/
+/-- Endomorphisms with finite-dimensional range are finite-potent.
+@isnad1 id=isfinite.0h3v.s7.42931b5d824d from=translated src=- shape=f116a4ea vocab=ba0002a9
+-/
 theorem IsFinitePotent.of_finiteDimensional_range
     (θ : Module.End k V) [FiniteDimensional k (LinearMap.range θ)] :
     IsFinitePotent θ :=
   ⟨1, by rwa [pow_one]⟩
 
-/-- Nilpotent endomorphisms are finite-potent.-/
+/-- Nilpotent endomorphisms are finite-potent.
+@isnad1 id=isfinite.1h3v.s7.3f80a9ad799b from=translated src=- shape=4fd7c8b8 vocab=efdb5dc6
+-/
 theorem IsFinitePotent.of_isNilpotent {θ : Module.End k V}
     (h : IsNilpotent θ) : IsFinitePotent θ := by
   obtain ⟨n, hn⟩ := h
@@ -68,7 +72,9 @@ theorem IsFinitePotent.of_isNilpotent {θ : Module.End k V}
   infer_instance
 
 /-- Over a field, a nilpotent endomorphism of a finite-dimensional
-space has trace zero.-/
+space has trace zero.
+@isnad1 id=eq.1h3v.s9.cfb0e62dd4f5 from=translated src=- shape=94bdfe3a vocab=f00b9b85
+-/
 theorem trace_eq_zero_of_isNilpotent {W : Type*} [AddCommGroup W]
     [Module k W] [FiniteDimensional k W] {φ : Module.End k W}
     (h : IsNilpotent φ) : LinearMap.trace k W φ = 0 := by
@@ -85,7 +91,9 @@ theorem trace_eq_zero_of_isNilpotent {W : Type*} [AddCommGroup W]
 endomorphism of a finite-dimensional space is the trace of its
 restriction to an invariant subspace plus the trace of the induced
 quotient action — split by any complement, the cross blocks die by
-`tr(AB) = tr(BA)`.-/
+`tr(AB) = tr(BA)`.
+@isnad1 id=eq.1h4v.s11.2f6a024c095d from=translated src=- shape=07568c54 vocab=64549f6b
+-/
 theorem trace_eq_trace_restrict_add_trace_mapQ {M : Type*}
     [AddCommGroup M] [Module k M] [FiniteDimensional k M]
     (φ : Module.End k M) {U : Submodule k M}
@@ -124,7 +132,9 @@ theorem trace_eq_trace_restrict_add_trace_mapQ {M : Type*}
     congr 1
 
 /-- The trace agrees on nested cores: the induced action on the
-quotient is nilpotent.-/
+quotient is nilpotent.
+@isnad1 id=eq.3h5v.s11.4ef6b2fb7b96 from=translated src=- shape=bb07c440 vocab=7e70567b
+-/
 theorem IsTateCore.trace_restrict_eq_of_le {θ : Module.End k V}
     {U W : Submodule k V} (hU : IsTateCore θ U) (hW : IsTateCore θ W)
     (hUW : U ≤ W) :
@@ -189,7 +199,9 @@ theorem IsTateCore.trace_restrict_eq_of_le {θ : Module.End k V}
     rw [h7, h8, h9]
   rw [h6, LinearMap.trace_conj']
 
-/-- Cores are closed under joins.-/
+/-- Cores are closed under joins.
+@isnad1 id=istateco.2h5v.s7.a609870bd308 from=translated src=- shape=168c83b1 vocab=801364ea
+-/
 theorem IsTateCore.sup {θ : Module.End k V} {W₁ W₂ : Submodule k V}
     (h₁ : IsTateCore θ W₁) (h₂ : IsTateCore θ W₂) :
     IsTateCore θ (W₁ ⊔ W₂) := by
@@ -205,7 +217,9 @@ theorem IsTateCore.sup {θ : Module.End k V} {W₁ W₂ : Submodule k V}
   · obtain ⟨n, hn⟩ := h₁.absorbs
     exact ⟨n, fun x ↦ Submodule.mem_sup_left (hn x)⟩
 
-/-- The trace agrees on any two cores.-/
+/-- The trace agrees on any two cores.
+@isnad1 id=eq.2h5v.s11.19623787139c from=translated src=- shape=be532129 vocab=f3ee42b6
+-/
 theorem IsTateCore.trace_restrict_eq {θ : Module.End k V}
     {W₁ W₂ : Submodule k V} (h₁ : IsTateCore θ W₁)
     (h₂ : IsTateCore θ W₂) :
@@ -230,7 +244,9 @@ noncomputable def tateTrace (θ : Module.End k V) : k := by
     LinearMap.trace k h.choose (θ.restrict h.choose_spec.stable)
   else 0
 
-/-- The Tate trace is computed on any core.-/
+/-- The Tate trace is computed on any core.
+@isnad1 id=eq.1h4v.s10.7ca846a936a4 from=translated src=- shape=0e4d33ea vocab=9d97ab9d
+-/
 theorem IsTateCore.tateTrace_eq {θ : Module.End k V}
     {W : Submodule k V} (hW : IsTateCore θ W) :
     haveI := hW.finite
@@ -240,7 +256,9 @@ theorem IsTateCore.tateTrace_eq {θ : Module.End k V}
   rw [tateTrace, dite_eq_left hex]
   exact hex.choose_spec.trace_restrict_eq hW
 
-/-- The Tate trace of the zero operator vanishes.-/
+/-- The Tate trace of the zero operator vanishes.
+@isnad1 id=eq.0h2v.s6.fdf60cd4ff19 from=translated src=- shape=f5de26b7 vocab=bec91d26
+-/
 theorem tateTrace_zero : tateTrace (0 : Module.End k V) = 0 := by
   have hcore : IsTateCore (0 : Module.End k V) (⊥ : Submodule k V) :=
     ⟨inferInstance, fun x _ ↦ by
@@ -256,7 +274,9 @@ theorem tateTrace_zero : tateTrace (0 : Module.End k V) = 0 := by
 
 section FiniteRank
 
-/-- The range of a finite-rank endomorphism is a core.-/
+/-- The range of a finite-rank endomorphism is a core.
+@isnad1 id=istateco.0h3v.s8.214015aafb0e from=translated src=- shape=b04bfeb5 vocab=42329c64
+-/
 theorem isTateCore_range (θ : Module.End k V)
     [FiniteDimensional k (LinearMap.range θ)] :
     IsTateCore θ (LinearMap.range θ) :=
@@ -264,7 +284,9 @@ theorem isTateCore_range (θ : Module.End k V)
     ⟨1, fun x ↦ by rw [pow_one]; exact ⟨x, rfl⟩⟩⟩
 
 /-- A finite-dimensional subspace containing the ranges of two
-endomorphisms is a common core.-/
+endomorphisms is a common core.
+@isnad1 id=istateco.1h4v.s7.99d112b27a86 from=translated src=- shape=b363d1b3 vocab=9f822f16
+-/
 theorem isTateCore_of_range_le {θ : Module.End k V}
     {W : Submodule k V} [FiniteDimensional k W]
     (h : LinearMap.range θ ≤ W) : IsTateCore θ W :=
@@ -272,7 +294,9 @@ theorem isTateCore_of_range_le {θ : Module.End k V}
     ⟨1, fun x ↦ by rw [pow_one]; exact h ⟨x, rfl⟩⟩⟩
 
 /-- **Additivity of the Tate trace on finite-rank endomorphisms**: the
-join of the ranges is a common core.-/
+join of the ranges is a common core.
+@isnad1 id=eq.0h4v.s9.5cdf90b1ad0d from=translated src=- shape=7db6b191 vocab=085d2b62
+-/
 theorem tateTrace_add_of_finiteDimensional_range
     (θ₁ θ₂ : Module.End k V)
     [FiniteDimensional k (LinearMap.range θ₁)]
@@ -297,7 +321,9 @@ theorem tateTrace_add_of_finiteDimensional_range
     rfl
   rw [hres, map_add]
 
-/-- The Tate trace commutes with scalars.-/
+/-- The Tate trace commutes with scalars.
+@isnad1 id=eq.1h5v.s7.de151a962c8e from=translated src=- shape=573d408e vocab=c896f146
+-/
 theorem tateTrace_smul {θ : Module.End k V} {W : Submodule k V}
     (hW : IsTateCore θ W) (c : k) :
     tateTrace (c • θ) = c * tateTrace θ := by
@@ -318,7 +344,9 @@ theorem tateTrace_smul {θ : Module.End k V} {W : Submodule k V}
 
 /-- **The trace of a product is symmetric** for finite-rank composites:
 the restrictions to the two range-cores are intertwined compositions,
-and `tr(ab) = tr(ba)` in finite dimensions.-/
+and `tr(ab) = tr(ba)` in finite dimensions.
+@isnad1 id=eq.0h4v.s10.ed31544da894 from=translated src=- shape=3d9c0ff6 vocab=c5cb645c
+-/
 theorem tateTrace_comp_comm (f g : Module.End k V)
     [FiniteDimensional k (LinearMap.range (f ∘ₗ g))]
     [FiniteDimensional k (LinearMap.range (g ∘ₗ f))] :
@@ -345,7 +373,9 @@ theorem tateTrace_comp_comm (f g : Module.End k V)
   rw [hUcore.tateTrace_eq, hWcore.tateTrace_eq, hab, hba,
     LinearMap.trace_comp_comm']
 
-/-- The range of any power is a core once it is finite-dimensional.-/
+/-- The range of any power is a core once it is finite-dimensional.
+@isnad1 id=istateco.0h4v.s9.5f6be304cd9d from=translated src=- shape=263347c5 vocab=0f88f4fd
+-/
 theorem isTateCore_range_pow (θ : Module.End k V) (n : ℕ)
     [FiniteDimensional k (LinearMap.range (θ ^ n))] :
     IsTateCore θ (LinearMap.range (θ ^ n)) := by
@@ -363,7 +393,9 @@ theorem isTateCore_range_pow (θ : Module.End k V) (n : ℕ)
 /-- **Symmetry of the trace of a product**, squared-range version: if
 `(αβ)²` and `(βα)²` have finite-dimensional range — as happens for
 Tate's trace-class operators — then `tr(αβ) = tr(βα)`: the squared
-ranges are cores intertwined by the restricted factors.-/
+ranges are cores intertwined by the restricted factors.
+@isnad1 id=eq.0h4v.s11.b70ec707cc36 from=translated src=- shape=470341f8 vocab=5357f135
+-/
 theorem tateTrace_comp_comm_of_sq (α β : Module.End k V)
     [FiniteDimensional k (LinearMap.range ((α ∘ₗ β) ^ 2))]
     [FiniteDimensional k (LinearMap.range ((β ∘ₗ α) ^ 2))] :
@@ -404,7 +436,9 @@ theorem tateTrace_comp_comm_of_sq (α β : Module.End k V)
 /-- **Additivity of the Tate trace over a potent pair**: if all four
 length-two words in `φ, ψ` have finite-dimensional range, the join of
 those ranges is a common core — length-three word images fold back
-into length-two ranges.-/
+into length-two ranges.
+@isnad1 id=eq.0h4v.s10.1dd40d33485b from=translated src=- shape=45bc5dfc vocab=b846617a
+-/
 theorem tateTrace_add_of_sq (φ ψ : Module.End k V)
     [FiniteDimensional k (LinearMap.range (φ ∘ₗ φ))]
     [FiniteDimensional k (LinearMap.range (φ ∘ₗ ψ))]
@@ -477,13 +511,22 @@ dimensions.-/
 def AlmostLE (A B : Submodule k V) : Prop :=
   ∃ W : Submodule k V, FiniteDimensional k W ∧ A ≤ B ⊔ W
 
+/--
+@isnad1 id=almostle.1h4v.s6.389fb847e477 from=translated src=- shape=98764201 vocab=2ca27493
+-/
 theorem AlmostLE.of_le {A B : Submodule k V} (h : A ≤ B) :
     AlmostLE A B :=
   ⟨⊥, inferInstance, by rwa [sup_bot_eq]⟩
 
+/--
+@isnad1 id=almostle.0h3v.s5.b473391e8ff8 from=translated src=- shape=c8899d1f vocab=9765ec25
+-/
 theorem AlmostLE.rfl {A : Submodule k V} : AlmostLE A A :=
   AlmostLE.of_le le_rfl
 
+/--
+@isnad1 id=almostle.2h5v.s6.30d005f7f1f7 from=translated src=- shape=9eb68be0 vocab=9765ec25
+-/
 theorem AlmostLE.trans {A B C : Submodule k V} (h₁ : AlmostLE A B)
     (h₂ : AlmostLE B C) : AlmostLE A C := by
   obtain ⟨W₁, hW₁, hle₁⟩ := h₁
@@ -494,14 +537,23 @@ theorem AlmostLE.trans {A B C : Submodule k V} (h₁ : AlmostLE A B)
       ((le_sup_left : W₂ ≤ W₂ ⊔ W₁).trans le_sup_right))
   · exact (le_sup_right : W₁ ≤ W₂ ⊔ W₁).trans le_sup_right
 
+/--
+@isnad1 id=almostle.2h5v.s7.12e30f7833bb from=translated src=- shape=e4557349 vocab=2ca27493
+-/
 theorem AlmostLE.mono_right {A B C : Submodule k V}
     (h : AlmostLE A B) (hBC : B ≤ C) : AlmostLE A C :=
   h.trans (AlmostLE.of_le hBC)
 
+/--
+@isnad1 id=almostle.2h5v.s7.369601a1ce1e from=translated src=- shape=6f49a695 vocab=2ca27493
+-/
 theorem AlmostLE.mono_left {A B C : Submodule k V} (hAB : A ≤ B)
     (h : AlmostLE B C) : AlmostLE A C :=
   (AlmostLE.of_le hAB).trans h
 
+/--
+@isnad1 id=almostle.2h5v.s7.aa3f8b5cbb47 from=translated src=- shape=916f2289 vocab=70cb2590
+-/
 theorem AlmostLE.sup {A B C : Submodule k V} (h₁ : AlmostLE A C)
     (h₂ : AlmostLE B C) : AlmostLE (A ⊔ B) C := by
   obtain ⟨W₁, hW₁, hle₁⟩ := h₁
@@ -512,6 +564,9 @@ theorem AlmostLE.sup {A B C : Submodule k V} (h₁ : AlmostLE A C)
   · exact hle₂.trans (sup_le le_sup_left
       ((le_sup_right : W₂ ≤ W₁ ⊔ W₂).trans le_sup_right))
 
+/--
+@isnad1 id=almostle.0h4v.s7.5a5187735a6e from=translated src=- shape=82649aff vocab=b519ae20
+-/
 theorem AlmostLE.of_finiteDimensional {A B : Submodule k V}
     [FiniteDimensional k A] : AlmostLE A B :=
   ⟨A, inferInstance, le_sup_right⟩
@@ -527,6 +582,9 @@ structure IsTraceClass (A : Submodule k V) (T : Module.End k V) :
   /-- The image of the reference subspace is finite-dimensional.-/
   finite_map : FiniteDimensional k (A.map T)
 
+/--
+@isnad1 id=istracec.0h3v.s6.84d7279f90a5 from=translated src=- shape=c87e5e85 vocab=8aa1d173
+-/
 theorem IsTraceClass.zero (A : Submodule k V) :
     IsTraceClass A (0 : Module.End k V) := by
   constructor
@@ -539,7 +597,9 @@ theorem IsTraceClass.zero (A : Submodule k V) :
     exact Submodule.finiteDimensional_of_le h1
 
 /-- Products of two trace-class operators have finite-dimensional
-range.-/
+range.
+@isnad1 id=finitedi.2h5v.s9.23e18ab1912c from=translated src=- shape=3cd41836 vocab=1586edcd
+-/
 theorem IsTraceClass.finiteDimensional_range_comp
     {A : Submodule k V} {T S : Module.End k V}
     (hT : IsTraceClass A T) (hS : IsTraceClass A S) :
@@ -553,7 +613,9 @@ theorem IsTraceClass.finiteDimensional_range_comp
     rw [Submodule.map_sup]
   exact Submodule.finiteDimensional_of_le h1
 
-/-- The trace class is closed under addition.-/
+/-- The trace class is closed under addition.
+@isnad1 id=istracec.2h5v.s7.dba78beca005 from=translated src=- shape=95d63ea0 vocab=6cc2198d
+-/
 theorem IsTraceClass.add {A : Submodule k V} {T S : Module.End k V}
     (hT : IsTraceClass A T) (hS : IsTraceClass A S) :
     IsTraceClass A (T + S) := by
@@ -572,7 +634,9 @@ theorem IsTraceClass.add {A : Submodule k V} {T S : Module.End k V}
         (Submodule.mem_sup_right ⟨y, hy, rfl⟩)
     exact Submodule.finiteDimensional_of_le h1
 
-/-- The trace class is closed under negation.-/
+/-- The trace class is closed under negation.
+@isnad1 id=istracec.1h4v.s6.c9af8e086d06 from=translated src=- shape=21d5c565 vocab=ac865ec1
+-/
 theorem IsTraceClass.neg {A : Submodule k V} {T : Module.End k V}
     (hT : IsTraceClass A T) : IsTraceClass A (-T) := by
   constructor
@@ -585,6 +649,9 @@ theorem IsTraceClass.neg {A : Submodule k V} {T : Module.End k V}
       exact ⟨-y, Submodule.neg_mem _ hy, by simp⟩
     exact Submodule.finiteDimensional_of_le h1
 
+/--
+@isnad1 id=istracec.2h5v.s7.4ccc4fb491bd from=translated src=- shape=95d63ea0 vocab=69c6547a
+-/
 theorem IsTraceClass.sub {A : Submodule k V} {T S : Module.End k V}
     (hT : IsTraceClass A T) (hS : IsTraceClass A S) :
     IsTraceClass A (T - S) := by
@@ -592,7 +659,9 @@ theorem IsTraceClass.sub {A : Submodule k V} {T S : Module.End k V}
   exact hT.add hS.neg
 
 /-- The trace class absorbs left composition with operators respecting
-the commensurability class.-/
+the commensurability class.
+@isnad1 id=istracec.2h5v.s7.d16d6eace3ee from=translated src=- shape=50b3710f vocab=99938ed6
+-/
 theorem IsTraceClass.comp_left {A : Submodule k V}
     {T g : Module.End k V} (hT : IsTraceClass A T)
     (hg : AlmostLE (A.map g) A) : IsTraceClass A (g ∘ₗ T) := by
@@ -612,7 +681,9 @@ theorem IsTraceClass.comp_left {A : Submodule k V}
     infer_instance
 
 /-- **The Tate trace of a finite-rank idempotent is its rank** (cast
-into the field).-/
+into the field).
+@isnad1 id=eq.1h3v.s8.cdb79eb22963 from=translated src=- shape=7ff79f66 vocab=4e30a51a
+-/
 theorem tateTrace_of_isIdempotentElem {ρ : Module.End k V}
     (hρ : IsIdempotentElem ρ)
     [FiniteDimensional k (LinearMap.range ρ)] :
@@ -629,7 +700,9 @@ theorem tateTrace_of_isIdempotentElem {ρ : Module.End k V}
 
 end TraceClass
 
-/-- **Commutators of finite-rank composites are traceless.**-/
+/-- **Commutators of finite-rank composites are traceless.**
+@isnad1 id=eq.0h4v.s10.1795b1554e31 from=translated src=- shape=a811cfa0 vocab=3735c8ca
+-/
 theorem tateTrace_comp_sub_comp_comm (f g : Module.End k V)
     [FiniteDimensional k (LinearMap.range (f ∘ₗ g))]
     [FiniteDimensional k (LinearMap.range (g ∘ₗ f))] :
@@ -650,7 +723,9 @@ theorem tateTrace_comp_sub_comp_comm (f g : Module.End k V)
 
 end FiniteRank
 
-/-- Square-zero operators have vanishing higher powers.-/
+/-- Square-zero operators have vanishing higher powers.
+@isnad1 id=eq.2h4v.s8.f84e00d1bb55 from=translated src=- shape=690545f8 vocab=df3ad783
+-/
 theorem pow_eq_zero_of_comp_self_eq_zero {θ : Module.End k V}
     (hθ : θ ∘ₗ θ = 0) {n : ℕ} (hn : 2 ≤ n) :
     (θ ^ n : Module.End k V) = 0 := by
@@ -666,7 +741,9 @@ theorem pow_eq_zero_of_comp_self_eq_zero {θ : Module.End k V}
     _ = 0 := by rw [h2, mul_zero]
 
 /-- The Tate trace of a nilpotent operator vanishes: the bottom
-submodule is a core.-/
+submodule is a core.
+@isnad1 id=eq.1h3v.s7.417e93330e44 from=translated src=- shape=02c68200 vocab=131c4397
+-/
 theorem tateTrace_of_isNilpotent {θ : Module.End k V}
     (h : IsNilpotent θ) : tateTrace θ = 0 := by
   obtain ⟨n, hn⟩ := h
@@ -687,7 +764,9 @@ theorem tateTrace_of_isNilpotent {θ : Module.End k V}
   rw [h1, map_zero]
 
 /-- The range of a finite sum of operators with finite-dimensional
-ranges is finite-dimensional.-/
+ranges is finite-dimensional.
+@isnad1 id=finitedi.1h5v.s9.3ce64053ced2 from=translated src=- shape=cb129471 vocab=64d45f36
+-/
 theorem finiteDimensional_range_finset_sum {ι : Type*} (t : Finset ι)
     (Y : ι → Module.End k V)
     (ht : ∀ j ∈ t, FiniteDimensional k (LinearMap.range (Y j))) :
@@ -707,7 +786,9 @@ theorem finiteDimensional_range_finset_sum {ι : Type*} (t : Finset ι)
     (Finset.mem_attach t j) ⟨y, rfl⟩
 
 /-- **Additivity of the Tate trace over finite families** whose
-pairwise composites all have finite-dimensional range.-/
+pairwise composites all have finite-dimensional range.
+@isnad1 id=eq.1h5v.s9.430e360561aa from=translated src=- shape=8057a496 vocab=01de3bac
+-/
 theorem tateTrace_finset_sum {ι : Type*} (s : Finset ι)
     (X : ι → Module.End k V)
     (h : ∀ i ∈ s, ∀ j ∈ s, FiniteDimensional k
@@ -755,7 +836,9 @@ theorem tateTrace_finset_sum {ι : Type*} (s : Finset ι)
 /-- **Traceless commutators, squared-range version**: when the squares
 and the mixed products of `α ∘ β` and `β ∘ α` have finite-dimensional
 range — as happens when both composites are trace-class — the
-commutator is traceless.-/
+commutator is traceless.
+@isnad1 id=eq.0h4v.s12.b1d64e685175 from=translated src=- shape=6c40b61f vocab=e1fb042d
+-/
 theorem tateTrace_comp_sub_comp_comm_of_sq (α β : Module.End k V)
     [FiniteDimensional k (LinearMap.range ((α ∘ₗ β) ^ 2))]
     [FiniteDimensional k (LinearMap.range ((β ∘ₗ α) ^ 2))]
@@ -805,7 +888,9 @@ theorem tateTrace_comp_sub_comp_comm_of_sq (α β : Module.End k V)
 /-- **Compatible projections for a spanning pair**: two subspaces that
 together span the module admit projections onto each whose sum is the
 identity plus an operator into the intersection — project onto each
-along a complement of the intersection inside the other.-/
+along a complement of the intersection inside the other.
+@isnad1 id=ex.1h4v.s9.1893faad03b0 from=translated src=- shape=b88827b2 vocab=c486b3ba
+-/
 theorem exists_projection_pair {A B : Submodule k V}
     (hsup : A ⊔ B = ⊤) :
     ∃ εA εB : Module.End k V,
@@ -913,7 +998,9 @@ theorem exists_projection_pair {A B : Submodule k V}
         (Submodule.projection_apply_mem hcomplB x) (hC₁B h1)
 
 /-- Almost-stability propagates from generators to the whole monoid
-of words.-/
+of words.
+@isnad1 id=almostle.2h5v.s8.989e6007497d from=translated src=- shape=37254018 vocab=e6fcc1eb
+-/
 theorem almostLE_map_closure_of {A : Submodule k V}
     {s : Set (Module.End k V)}
     (hs : ∀ w ∈ s, AlmostLE (A.map w) A) :

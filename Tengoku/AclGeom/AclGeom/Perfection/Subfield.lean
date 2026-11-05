@@ -83,11 +83,16 @@ def ofCharZero (K : Type u) [Field K] [CharZero K] : Perfection K where
 
 variable {K : Type*} [Field K] (π : Perfection K)
 
+/--
+@isnad1 id=injectiv.0h2v.s6.11275cf4c795 from=translated src=- shape=416bac74 vocab=cd55ec84
+-/
 theorem incl_injective : Function.Injective π.incl :=
   π.incl.injective
 
 /-- Every element of the perfection has a `p`-power inside (the image of)
-`K`.-/
+`K`.
+@isnad1 id=ex.0h3v.s7.918391626984 from=translated src=- shape=6d5658d7 vocab=8199f883
+-/
 theorem exists_pow_incl (x : π.carrier) :
     ∃ (n : ℕ) (y : K), π.incl y = x ^ π.p ^ n :=
   IsPRadical.pow_mem π.incl π.p x
@@ -121,11 +126,16 @@ def perfSubfield (M : Subfield K) : Subfield π.carrier where
     exact ⟨n, m⁻¹, inv_mem hm, by rw [inv_pow, h, map_inv₀]⟩
 
 /-- The public membership criterion for the perfected subfield
-(blueprint §Foundation III).-/
+(blueprint §Foundation III).
+@isnad1 id=iff.0h4v.s8.5ce68d1a1490 from=translated src=- shape=c2dbb6f9 vocab=d3df3902
+-/
 theorem mem_perfSubfield_iff {M : Subfield K} {x : π.carrier} :
     x ∈ π.perfSubfield M ↔ ∃ n : ℕ, ∃ m ∈ M, x ^ π.p ^ n = π.incl m :=
   Iff.rfl
 
+/--
+@isnad1 id=le.1h4v.s6.c3cbd0ec1790 from=translated src=- shape=345598db vocab=5db92589
+-/
 theorem perfSubfield_mono {M N : Subfield K} (h : M ≤ N) :
     π.perfSubfield M ≤ π.perfSubfield N := by
   rintro x ⟨n, m, hm, hx⟩
@@ -133,7 +143,9 @@ theorem perfSubfield_mono {M N : Subfield K} (h : M ≤ N) :
 
 /-- Elements of `K` land in `M^perf` exactly when some `p`-power lands in
 `M`; this computes the pullback of the perfected subfield along the
-inclusion.-/
+inclusion.
+@isnad1 id=iff.0h4v.s7.7aeb577af214 from=translated src=- shape=511bc4ad vocab=d3df3902
+-/
 theorem incl_mem_perfSubfield_iff {M : Subfield K} {x : K} :
     π.incl x ∈ π.perfSubfield M ↔ ∃ n : ℕ, x ^ π.p ^ n ∈ M := by
   constructor
@@ -143,7 +155,9 @@ theorem incl_mem_perfSubfield_iff {M : Subfield K} {x : K} :
   · rintro ⟨n, hn⟩
     exact ⟨n, x ^ π.p ^ n, hn, by rw [map_pow]⟩
 
-/-- The image of `M` is contained in `M^perf`.-/
+/-- The image of `M` is contained in `M^perf`.
+@isnad1 id=mem.1h4v.s7.b84d93da2b8f from=translated src=- shape=2eb6860e vocab=61c84ec6
+-/
 theorem incl_mem_perfSubfield {M : Subfield K} {x : K} (hx : x ∈ M) :
     π.incl x ∈ π.perfSubfield M :=
   π.incl_mem_perfSubfield_iff.2 ⟨0, by simpa using hx⟩

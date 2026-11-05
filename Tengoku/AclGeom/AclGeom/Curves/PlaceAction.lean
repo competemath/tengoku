@@ -46,11 +46,16 @@ def comap (σ : F ≃ₐ[k] F) (P : Place k F) : Place k F where
     change σ (σ.symm x) ∈ P.val at hx
     rwa [AlgEquiv.apply_symm_apply] at hx
 
+/--
+@isnad1 id=iff.0h5v.s7.0cb1e8b07559 from=translated src=- shape=1d41cee7 vocab=37a9253b
+-/
 theorem mem_comap {σ : F ≃ₐ[k] F} {P : Place k F} {x : F} :
     x ∈ (P.comap σ).val ↔ σ x ∈ P.val :=
   Iff.rfl
 
-/-- Places are determined by their valuation rings.-/
+/-- Places are determined by their valuation rings.
+@isnad1 id=eq.1h4v.s6.243e83ab0da7 from=translated src=- shape=9973d0b2 vocab=34c16585
+-/
 theorem ext_val {P Q : Place k F} (h : P.val = Q.val) : P = Q := by
   obtain ⟨v, _, _⟩ := P
   obtain ⟨w, _, _⟩ := Q

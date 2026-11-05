@@ -39,7 +39,9 @@ include hind
 
 /-- **The witness satisfies Ψ** (blueprint Thm q-correct, soundness
 direction, witness verification): all seven clauses hold at the
-table-7.1 points.-/
+table-7.1 points.
+@isnad1 id=psi.1h7v.s7.5566f4ac2769 from=translated src=- shape=c9d34bcd vocab=0830e4e0
+-/
 theorem qWitness_psi : (qWitness hind).Psi where
   rank_ABC := qWitness_rank_ABC hind
   rank_AB := qWitness_rank_AB hind
@@ -67,7 +69,9 @@ theorem qWitness_psi : (qWitness hind).Psi where
   meet_R := qWitness_meet_R hind
 
 /-- The geometric `Q` holds at the four free outputs of the witness:
-`([b], [ax], [ax+b], [ax/b])`.-/
+`([b], [ax], [ax+b], [ax/b])`.
+@isnad1 id=qgeom.1h7v.s7.b666936dffc5 from=translated src=- shape=f650e5df vocab=4fd5d14c
+-/
 theorem qGeom_of_table :
     QGeom (Point.mk' k b (qtable_b_notMem_bot hind))
       (Point.mk' k (a * x) (qtable_mul_ax_notMem_bot hind))
@@ -84,7 +88,9 @@ variable {k : Type*} {K : Type*} [Field k] [Field K] [Algebra k K]
 /-- The witness generators from a semantic pair and a fresh chain: with
 `u, v` independent, `a` fresh over them, and `c, d` fresh successively,
 the five table generators `(a, u, c, d, v/a)` are algebraically
-independent (blueprint Thm q-correct, soundness, generator step).-/
+independent (blueprint Thm q-correct, soundness, generator step).
+@isnad1 id=algebrai.4h7v.s8.7eeeddaa9d97 from=translated src=- shape=74dde400 vocab=056608f6
+-/
 theorem qtable_indep_of_fresh {u v a c d : K}
     (hpair : AlgebraicIndependent k ![u, v])
     (ha : a ∉ racl k ({u, v} : Set K))
@@ -221,7 +227,9 @@ theorem qtable_indep_of_fresh {u v a c d : K}
 /-- **Soundness of the geometric `Q`** (blueprint Thm q-correct, one
 direction): every semantic quadruple is geometric, given a supply of
 fresh elements over small sets — available whenever the extension has
-relative transcendence degree at least five.-/
+relative transcendence degree at least five.
+@isnad1 id=qgeom.2h6v.s7.73d36f3de357 from=translated src=- shape=c356f3ba vocab=eb444f99
+-/
 theorem qGeom_of_qSem {X Y Z W : Point k K}
     (hfresh : ∀ S : Finset K, S.card ≤ 4 → ∃ z, z ∉ racl k (S : Set K))
     (h : QSem X Y Z W) : QGeom X Y Z W := by

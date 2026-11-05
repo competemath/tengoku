@@ -54,7 +54,9 @@ blueprint's functional-composition convention.-/
 def groupoidDifferenceChart (e a : X ⟶ Y) : X ⟶ X :=
   a ≫ inv e
 
-/-- Functors between groupoids preserve based difference charts.-/
+/-- Functors between groupoids preserve based difference charts.
+@isnad1 id=eq.0h7v.s7.ca50f0cc71f9 from=translated src=- shape=be8d52e2 vocab=9955eb96
+-/
 theorem map_groupoidDifferenceChart
     {D : Type*} [CategoryTheory.Groupoid D] (F : C ⥤ D)
     (e a : X ⟶ Y) :
@@ -62,7 +64,9 @@ theorem map_groupoidDifferenceChart
       groupoidDifferenceChart (F.map e) (F.map a) := by
   simp [groupoidDifferenceChart, CategoryTheory.Functor.map_inv]
 
-/-- A based difference chart is the identity exactly at its base arrow.-/
+/-- A based difference chart is the identity exactly at its base arrow.
+@isnad1 id=iff.0h5v.s7.203bdfc06074 from=translated src=- shape=e3a1680a vocab=2251302a
+-/
 theorem groupoidDifferenceChart_eq_one_iff (e a : X ⟶ Y) :
     groupoidDifferenceChart e a = 1 ↔ a = e := by
   constructor
@@ -78,7 +82,9 @@ def groupoidDifferenceProduct (e a b : X ⟶ Y) : X ⟶ Y :=
   a ≫ inv e ≫ b
 
 /-- Functors between groupoids preserve the difference-product expression
-on every based arrow family.-/
+on every based arrow family.
+@isnad1 id=eq.0h8v.s7.49c84d0b294a from=translated src=- shape=253ae2a9 vocab=e1281eea
+-/
 theorem map_groupoidDifferenceProduct
     {D : Type*} [CategoryTheory.Groupoid D] (F : C ⥤ D)
     (e a b : X ⟶ Y) :
@@ -87,14 +93,18 @@ theorem map_groupoidDifferenceProduct
   simp [groupoidDifferenceProduct, CategoryTheory.Functor.map_inv]
 
 /-- Inverting every arrow converts a difference product into the inverse
-of the product with its two variable inputs exchanged.-/
+of the product with its two variable inputs exchanged.
+@isnad1 id=eq.0h6v.s6.4a2777f7894b from=translated src=- shape=93b57853 vocab=b2b600c1
+-/
 theorem groupoidDifferenceProduct_inv (e a b : X ⟶ Y) :
     groupoidDifferenceProduct (inv e) (inv a) (inv b) =
       inv (groupoidDifferenceProduct e b a) := by
   simp [groupoidDifferenceProduct, Category.assoc, IsIso.inv_comp]
 
 /-- Multiplication in the vertex group is closed in the difference chart,
-with the parameter formula `a e⁻¹ b`.-/
+with the parameter formula `a e⁻¹ b`.
+@isnad1 id=eq.0h6v.s7.a06049e5bf8d from=translated src=- shape=3d2b00c9 vocab=7610aa8b
+-/
 theorem groupoidDifferenceChart_mul (e a b : X ⟶ Y) :
     groupoidDifferenceChart e a * groupoidDifferenceChart e b =
       groupoidDifferenceChart e (groupoidDifferenceProduct e a b) := by
@@ -106,7 +116,9 @@ chart element.-/
 def groupoidDifferenceInverse (e a : X ⟶ Y) : X ⟶ Y :=
   e ≫ inv a ≫ e
 
-/-- Inversion in the vertex group is closed in the difference chart.-/
+/-- Inversion in the vertex group is closed in the difference chart.
+@isnad1 id=eq.0h5v.s7.5f5c43f4e183 from=translated src=- shape=ede9e958 vocab=f6a0be89
+-/
 theorem groupoidDifferenceChart_inv (e a : X ⟶ Y) :
     (groupoidDifferenceChart e a)⁻¹ =
       groupoidDifferenceChart e (groupoidDifferenceInverse e a) := by
@@ -116,14 +128,18 @@ theorem groupoidDifferenceChart_inv (e a : X ⟶ Y) :
 /-- The four-arrow cancellation from blueprint (8.3), stated in a genuine
 three-object groupoid.  Starting with a fresh arrow `s : Y ⟶ Z`, the
 successive `U`, `S`, `U`, and `T` components return the difference-product
-parameter `a e⁻¹ b`.-/
+parameter `a e⁻¹ b`.
+@isnad1 id=eq.0h8v.s7.99dd214f486b from=translated src=- shape=9684e561 vocab=cef9de51
+-/
 theorem groupoidFourArrowComposite (e a b : X ⟶ Y) (s : Y ⟶ Z) :
     (a ≫ s) ≫ inv (inv b ≫ e ≫ s) =
       groupoidDifferenceProduct e a b := by
   simp [groupoidDifferenceProduct, Category.assoc]
 
 /-- The four-arrow groupoid construction computes multiplication in the
-difference chart.-/
+difference chart.
+@isnad1 id=eq.0h8v.s8.a5ba029b9203 from=translated src=- shape=533f7ce2 vocab=f0bab203
+-/
 theorem groupoidFourArrowComposite_chart (e a b : X ⟶ Y) (s : Y ⟶ Z) :
     groupoidDifferenceChart e a * groupoidDifferenceChart e b =
       groupoidDifferenceChart e ((a ≫ s) ≫ inv (inv b ≫ e ≫ s)) := by
@@ -155,14 +171,18 @@ def groupoidArrowChunk (e : X ⟶ Y) : RationalGroupChunk (X ⟶ Y) where
       Category.assoc]
 
 /-- The groupoid difference chart intertwines the transported chunk
-multiplication with multiplication in the vertex group.-/
+multiplication with multiplication in the vertex group.
+@isnad1 id=eq.0h6v.s9.62b40cc81602 from=translated src=- shape=4dfd91e2 vocab=c05883b3
+-/
 theorem groupoidDifferenceEquiv_mul (e a b : X ⟶ Y) :
     groupoidDifferenceEquiv e ((groupoidArrowChunk e).mul a b) =
       groupoidDifferenceEquiv e a * groupoidDifferenceEquiv e b := by
   exact (groupoidDifferenceChart_mul e a b).symm
 
 /-- The groupoid difference chart intertwines the transported chunk
-inverse with inversion in the vertex group.-/
+inverse with inversion in the vertex group.
+@isnad1 id=eq.0h5v.s8.c0ce046c7004 from=translated src=- shape=e7fe8beb vocab=3b7f905f
+-/
 theorem groupoidDifferenceEquiv_inv (e a : X ⟶ Y) :
     groupoidDifferenceEquiv e ((groupoidArrowChunk e).inv a) =
       (groupoidDifferenceEquiv e a)⁻¹ := by
@@ -183,7 +203,9 @@ difference chart.-/
 def differenceProduct (e a b : G) : G := a * e⁻¹ * b
 
 /-- Multiplication in the difference chart is represented by
-`a e⁻¹ b`, exactly as in blueprint (8.4).-/
+`a e⁻¹ b`, exactly as in blueprint (8.4).
+@isnad1 id=eq.0h4v.s5.f1b65d3fdd23 from=translated src=- shape=4eea89f8 vocab=f2ce7499
+-/
 theorem differenceChart_mul (e a b : G) :
     differenceChart e a * differenceChart e b =
       differenceChart e (differenceProduct e a b) := by
@@ -193,7 +215,9 @@ theorem differenceChart_mul (e a b : G) :
 def differenceInverse (e a : G) : G := e * a⁻¹ * e
 
 /-- Inversion is closed in the difference chart, represented by
-`e a⁻¹ e`.-/
+`e a⁻¹ e`.
+@isnad1 id=eq.0h3v.s5.5170816e8df4 from=translated src=- shape=5daf3e87 vocab=be4c337a
+-/
 theorem differenceChart_inv (e a : G) :
     (differenceChart e a)⁻¹ = differenceChart e (differenceInverse e a) := by
   simp [differenceChart, differenceInverse, mul_assoc]
@@ -201,13 +225,17 @@ theorem differenceChart_inv (e a : G) :
 /-- The explicit cancellation calculation in the three-object
 correspondence groupoid.  With
 `u = se`, `sₐ = ua⁻¹`, `u_b = sb`, and `c = sₐ⁻¹u_b`, the output is
-`c = ae⁻¹b`.-/
+`c = ae⁻¹b`.
+@isnad1 id=eq.0h5v.s6.c751adc6497a from=translated src=- shape=e0258ea0 vocab=896ac80f
+-/
 theorem groupoidComposite_eq (s e a b : G) :
     (((s * e) * a⁻¹)⁻¹) * (s * b) = differenceProduct e a b := by
   simp [differenceProduct, mul_assoc]
 
 /-- The parameter formula from the groupoid cancellation agrees with
-multiplication in the difference chart.-/
+multiplication in the difference chart.
+@isnad1 id=eq.0h5v.s7.f4e34a0f4276 from=translated src=- shape=acd07a3c vocab=226997c3
+-/
 theorem groupoidComposite_chart (s e a b : G) :
     differenceChart e a * differenceChart e b =
       differenceChart e ((((s * e) * a⁻¹)⁻¹) * (s * b)) := by
@@ -225,26 +253,46 @@ the order `(S, T, U, S', T', U')`.-/
 def sixPointGroupTuple (α γ ε : G) : Fin 6 → G :=
   ![α, γ, α * γ, ε, α * γ * ε, γ * ε]
 
+/--
+@isnad1 id=eq.0h4v.s5.f455ccfca66b from=translated src=- shape=37826fa8 vocab=631d37ea
+-/
 @[simp] theorem sixPointGroupTuple_zero (α γ ε : G) :
     sixPointGroupTuple α γ ε 0 = α := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.2b62358ea2c8 from=translated src=- shape=4b4154e7 vocab=631d37ea
+-/
 @[simp] theorem sixPointGroupTuple_one (α γ ε : G) :
     sixPointGroupTuple α γ ε 1 = γ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.0d61b577ca09 from=translated src=- shape=0101b3a5 vocab=f75a036a
+-/
 @[simp] theorem sixPointGroupTuple_two (α γ ε : G) :
     sixPointGroupTuple α γ ε 2 = α * γ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.416af3004a2f from=translated src=- shape=144fe5b0 vocab=631d37ea
+-/
 @[simp] theorem sixPointGroupTuple_three (α γ ε : G) :
     sixPointGroupTuple α γ ε 3 = ε := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.9a34b70102d9 from=translated src=- shape=e911cdd1 vocab=f75a036a
+-/
 @[simp] theorem sixPointGroupTuple_four (α γ ε : G) :
     sixPointGroupTuple α γ ε 4 = α * γ * ε := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.778ef1f39c1a from=translated src=- shape=ed7b03eb vocab=f75a036a
+-/
 @[simp] theorem sixPointGroupTuple_five (α γ ε : G) :
     sixPointGroupTuple α γ ε 5 = γ * ε := rfl
 
 /-- The four product identities corresponding to the four dependent
-triples of a partial quadrangle.-/
+triples of a partial quadrangle.
+@isnad1 id=and.0h4v.s8.09f7322e5bd2 from=translated src=- shape=b78903ee vocab=f75a036a
+-/
 theorem sixPointGroupTuple_relations (α γ ε : G) :
     sixPointGroupTuple α γ ε 2 =
         sixPointGroupTuple α γ ε 0 * sixPointGroupTuple α γ ε 1 ∧

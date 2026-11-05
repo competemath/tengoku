@@ -44,7 +44,9 @@ variable {k : Type u} [Field k]
 
 /-- A map from a nonempty open of a normal curve to a proper target extends uniquely.
 The open comparison is an actual open immersion, not a supplied extension certificate.
-Named consumer: extending the automorphisms of the original group curve to its completion.-/
+Named consumer: extending the automorphisms of the original group curve to its completion.
+@isnad1 id=existsun.2h6v.s9.bb43bf2ec46f from=translated src=- shape=b8abff2e vocab=99addc15
+-/
 theorem existsUnique_morphism_extension_from_open
     (X Y U : Over (Spec (.of k))) [IsIntegral X.left] [IsLocallyNoetherian X.left]
     (hdim : topologicalKrullDim X.left ≤ 1)
@@ -102,7 +104,9 @@ theorem existsUnique_morphism_extension_from_open
 /-- Every automorphism of a nonempty open in a proper normal integral curve extends
 uniquely to an automorphism of the whole curve. This is the individual extension assertion
 in the source proof of `lem:affine-action`; neither a completion nor joint regularity of a
-family is asserted. All global maps and inverse identities are constructed internally.-/
+family is asserted. All global maps and inverse identities are constructed internally.
+@isnad1 id=existsun.2h5v.s9.48895635480f from=translated src=- shape=c1cc5012 vocab=4a3700d3
+-/
 theorem existsUnique_iso_extension
     (X U : Over (Spec (.of k))) [IsIntegral X.left]
     (hdim : topologicalKrullDim X.left ≤ 1)

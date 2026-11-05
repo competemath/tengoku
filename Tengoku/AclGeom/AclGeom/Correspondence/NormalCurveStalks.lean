@@ -42,7 +42,9 @@ open CategoryTheory AlgebraicGeometry
 universe u
 
 /-- Normal locally Noetherian integral curves have valuation-ring stalks.
-Named consumer: extension of rational maps to proper targets.-/
+Named consumer: extension of rational maps to proper targets.
+@isnad1 id=valuatio.1h2v.s7.e8a67fdb1238 from=translated src=- shape=2e8e24bf vocab=4364036f
+-/
 theorem stalk_valuationRing
     (X : Scheme.{u}) [IsIntegral X] [IsLocallyNoetherian X]
     (hdim : topologicalKrullDim X ≤ 1) (x : X)

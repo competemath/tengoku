@@ -58,7 +58,9 @@ private theorem exists_open_of_finite_locallyClosed_cover {X ι : Type*}
 
 /-- A finite action with locally closed orbit fibers fixes its point on an irreducible
 translation space. Named consumer: the actual affine-curve boundary in `SchemePlaceFixed`.
-Only individual left translations are required to be homeomorphisms.-/
+Only individual left translations are required to be homeomorphisms.
+@isnad1 id=eq.4h7v.s8.7883bf5bb7e8 from=translated src=- shape=48c3c69c vocab=45e6efee
+-/
 theorem fixed_of_finite_locallyClosed_fibers {Γ α : Type*} [Group Γ] [TopologicalSpace Γ]
     [IrreducibleSpace Γ] (ρ : Γ →* Equiv.Perm α) (L : Γ → Γ ≃ₜ Γ)
     (hL : ∀ g h, L g h = g * h) (P : α) {B : Set α} (hB : B.Finite)

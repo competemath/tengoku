@@ -34,7 +34,9 @@ noncomputable section
 variable {k F : Type*} [Field k] [Field F] [Algebra k F]
 
 /-- A fractional-linear relation with transcendental output has
-nonzero determinant.-/
+nonzero determinant.
+@isnad1 id=ne.3h8v.s9.8fa7455fd52f from=translated src=- shape=47cb82d9 vocab=f6581cf6
+-/
 theorem moebius_det_ne_zero_of_transcendental {z w : F}
     (hw : Transcendental k w) {a b c d : k}
     (hden : algebraMap k F c * z + algebraMap k F d ≠ 0)
@@ -82,7 +84,9 @@ theorem moebius_det_ne_zero_of_transcendental {z w : F}
     exact isAlgebraic_algebraMap _
 
 /-- An algebra automorphism carries a field generator to another
-field generator.-/
+field generator.
+@isnad1 id=eq.1h4v.s8.dfe101eed124 from=translated src=- shape=d8f8795f vocab=5cea7671
+-/
 theorem adjoin_image_eq_top_of_adjoin_eq_top {t : F}
     (htop : adjoin k ({t} : Set F) = ⊤) (σ : F ≃ₐ[k] F) :
     adjoin k ({σ t} : Set F) = ⊤ := by
@@ -97,7 +101,9 @@ theorem adjoin_image_eq_top_of_adjoin_eq_top {t : F}
   rw [IntermediateField.adjoin_map, Set.image_singleton] at hmap
   exact hmap
 
-/-- Algebra automorphisms preserve transcendence over the base.-/
+/-- Algebra automorphisms preserve transcendence over the base.
+@isnad1 id=transcen.1h4v.s7.51b0bf1ce6c2 from=translated src=- shape=7bca32a3 vocab=76d418cf
+-/
 theorem transcendental_map_algEquiv {t : F} (ht : Transcendental k t)
     (σ : F ≃ₐ[k] F) : Transcendental k (σ t) := by
   intro halg

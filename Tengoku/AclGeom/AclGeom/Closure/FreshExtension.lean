@@ -33,7 +33,9 @@ abbrev FreshAmbient (Ω : Type*) [Field Ω] : Type _ :=
   AlgebraicClosure (FractionRing (MvPolynomial (Fin 4) Ω))
 
 /-- `FreshAmbient Ω` has transcendence degree at least four over every subfield `k` of `Ω`: the
-four variables stay algebraically independent.-/
+four variables stay algebraically independent.
+@isnad1 id=le.0h2v.s8.f32bdb8c9d17 from=translated src=- shape=41fda58b vocab=5d6ea845
+-/
 theorem four_le_trdeg_freshAmbient (k Ω : Type*) [Field k] [Field Ω] [Algebra k Ω] :
     (4 : Cardinal) ≤ Algebra.trdeg k (FreshAmbient Ω) := by
   have hinj : Function.Injective

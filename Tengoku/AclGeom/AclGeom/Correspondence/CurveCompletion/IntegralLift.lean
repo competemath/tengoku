@@ -25,7 +25,9 @@ universe u v w z
 
 /-- An integral chart map into the fraction field of an integrally closed ring lifts
 uniquely whenever its base map already lies in the ring. Named consumer: valuative
-properness of the actual normalized two-chart curve.-/
+properness of the actual normalized two-chart curve.
+@isnad1 id=existsun.0h5v.s8.a2dc9a1d0361 from=translated src=- shape=9d14cfc9 vocab=a8f28c7d
+-/
 theorem existsUnique_integral_lift
     {R : Type u} {A : Type v} {O : Type w} {K : Type z}
     [CommRing R] [CommRing A] [CommRing O] [IsDomain O] [Field K]

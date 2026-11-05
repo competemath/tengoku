@@ -53,10 +53,15 @@ variable (k : Type*) {K : Type*} [Field k] [Field K] [Algebra k K]
 abbrev rkMatroid (C : Set K) : Matroid K :=
   AlgebraicIndependent.matroid (↥(adjoin k C)) K
 
+/--
+@isnad1 id=eq.0h3v.s5.edc539bf5b9e from=translated src=- shape=32300d1e vocab=1190384f
+-/
 @[simp]
 theorem rkMatroid_ground (C : Set K) : (rkMatroid k C).E = univ := rfl
 
-/-- The closure operator of `rkMatroid k C` is `S ↦ racl k (C ∪ S)`.-/
+/-- The closure operator of `rkMatroid k C` is `S ↦ racl k (C ∪ S)`.
+@isnad1 id=eq.0h4v.s6.8139bdc9dcec from=translated src=- shape=b73b2ecd vocab=c2aa340c
+-/
 theorem rkMatroid_closure_eq (C S : Set K) :
     (rkMatroid k C).closure S = (racl k (C ∪ S) : Set K) := by
   change (AlgebraicIndependent.matroid (↥(adjoin k C)) K).closure S = _
@@ -65,18 +70,25 @@ theorem rkMatroid_closure_eq (C S : Set K) :
   simp only [SetLike.mem_coe]
   exact mem_racl_adjoin_base_iff
 
+/--
+@isnad1 id=iff.0h5v.s6.268701953743 from=translated src=- shape=eb32357a vocab=bf784370
+-/
 theorem mem_rkMatroid_closure_iff {C S : Set K} {x : K} :
     x ∈ (rkMatroid k C).closure S ↔ x ∈ racl k (C ∪ S) := by
   rw [rkMatroid_closure_eq, SetLike.mem_coe]
 
 /-- Independence over `C`: no member lies in the closure of `C` and the other
-members.-/
+members.
+@isnad1 id=iff.0h4v.s6.800bd7bb6614 from=translated src=- shape=a018341d vocab=0994ccb1
+-/
 theorem rkMatroid_indep_iff {C S : Set K} :
     (rkMatroid k C).Indep S ↔ ∀ x ∈ S, x ∉ racl k (C ∪ (S \ {x})) := by
   rw [indep_iff_forall_notMem_closure_sdiff']
   simp only [rkMatroid_ground, subset_univ, true_and, mem_rkMatroid_closure_iff]
 
-/-- The matroid over `C` depends only on `racl k C`.-/
+/-- The matroid over `C` depends only on `racl k C`.
+@isnad1 id=eq.1h4v.s6.951f729cb14c from=translated src=- shape=02861b78 vocab=5cf86b57
+-/
 theorem rkMatroid_congr {C C' : Set K} (h : racl k C = racl k C') :
     rkMatroid k C = rkMatroid k C' := by
   refine Matroid.ext_closure fun X ↦ ?_
@@ -84,14 +96,18 @@ theorem rkMatroid_congr {C C' : Set K} (h : racl k C = racl k C') :
     racl_union_left]
 
 /-- Independence over a smaller base set is implied by independence over a
-larger one.-/
+larger one.
+@isnad1 id=indep.2h5v.s6.26828ce23460 from=translated src=- shape=b4b56f5e vocab=d3cc3086
+-/
 theorem rkMatroid_indep_of_subset_base {C C' S : Set K} (hCC' : C ⊆ C')
     (hS : (rkMatroid k C').Indep S) : (rkMatroid k C).Indep S := by
   rw [rkMatroid_indep_iff] at hS ⊢
   intro x hx hmem
   exact hS x hx (racl_mono (union_subset_union_left _ hCC') hmem)
 
-/-- The closure of a basis of `X` over `C` contains `X`.-/
+/-- The closure of a basis of `X` over `C` contains `X`.
+@isnad1 id=le.1h5v.s6.b31964b63b97 from=translated src=- shape=834f5c3a vocab=8a19d907
+-/
 theorem subset_racl_of_isBasis' {C X I : Set K} (hI : (rkMatroid k C).IsBasis' I X) :
     X ⊆ racl k (C ∪ I) := by
   have h := hI.closure_eq_closure
@@ -105,37 +121,56 @@ theorem subset_racl_of_isBasis' {C X I : Set K} (hI : (rkMatroid k C).IsBasis' I
 `k(C, X)` over `k(C)`, as an extended natural number.-/
 def erk (C X : Set K) : ℕ∞ := (rkMatroid k C).eRk X
 
+/--
+@isnad1 id=le.0h4v.s5.3dfc0d62eb8d from=translated src=- shape=4915690e vocab=b5cd1b70
+-/
 theorem erk_le_encard (C X : Set K) : erk k C X ≤ X.encard :=
   (rkMatroid k C).eRk_le_encard X
 
+/--
+@isnad1 id=lt.1h4v.s5.f1a100dfcfdf from=translated src=- shape=25c24cce vocab=404154f1
+-/
 theorem erk_lt_top {X : Set K} (hX : X.Finite) (C : Set K) : erk k C X < ⊤ :=
   (erk_le_encard k C X).trans_lt hX.encard_lt_top
 
+/--
+@isnad1 id=ne.1h4v.s5.8159277c121d from=translated src=- shape=25c24cce vocab=16915e7a
+-/
 theorem erk_ne_top {X : Set K} (hX : X.Finite) (C : Set K) : erk k C X ≠ ⊤ :=
   (erk_lt_top k hX C).ne
 
-/-- Monotonicity in the set.-/
+/-- Monotonicity in the set.
+@isnad1 id=le.1h5v.s5.c737722c49bd from=translated src=- shape=21dbb16d vocab=668aa691
+-/
 theorem erk_mono {X Y : Set K} (C : Set K) (h : X ⊆ Y) : erk k C X ≤ erk k C Y :=
   (rkMatroid k C).eRk_mono h
 
-/-- The rank over `C` depends only on `racl k C`.-/
+/-- The rank over `C` depends only on `racl k C`.
+@isnad1 id=eq.1h5v.s6.1461f98c6bf9 from=translated src=- shape=23352516 vocab=f30ce441
+-/
 theorem erk_congr_base {C C' : Set K} (h : racl k C = racl k C') (X : Set K) :
     erk k C X = erk k C' X := by
   unfold erk
   rw [rkMatroid_congr k h]
 
-/-- (R2): the rank over `C` is the rank over `racl k C`.-/
+/-- (R2): the rank over `C` is the rank over `racl k C`.
+@isnad1 id=eq.0h4v.s6.a48023a6b27b from=translated src=- shape=0dd335ef vocab=96d2c101
+-/
 theorem erk_racl_base (C X : Set K) : erk k (racl k C) X = erk k C X :=
   erk_congr_base k (racl_racl k C) X
 
-/-- Adjoining elements of `racl k C` to the base does not change ranks.-/
+/-- Adjoining elements of `racl k C` to the base does not change ranks.
+@isnad1 id=eq.1h5v.s6.1f3463f0250c from=translated src=- shape=95f88f42 vocab=3a5a872c
+-/
 theorem erk_base_union_of_subset_racl {C S : Set K} (hS : S ⊆ racl k C) (X : Set K) :
     erk k (C ∪ S) X = erk k C X := by
   refine erk_congr_base k ?_ X
   refine le_antisymm (racl_le_of_subset_racl (union_subset (subset_racl k C) hS)) ?_
   exact racl_mono subset_union_left
 
-/-- (R3): monotonicity in the base.-/
+/-- (R3): monotonicity in the base.
+@isnad1 id=le.1h5v.s5.e285fdbcc8a5 from=translated src=- shape=2b3e6635 vocab=668aa691
+-/
 theorem erk_base_mono {C C' : Set K} (h : C ⊆ C') (X : Set K) :
     erk k C' X ≤ erk k C X := by
   obtain ⟨J, hJ⟩ := (rkMatroid k C').exists_isBasis' X
@@ -143,12 +178,16 @@ theorem erk_base_mono {C C' : Set K} (h : C ⊆ C') (X : Set K) :
   rw [← hJ.encard_eq_eRk]
   exact (rkMatroid_indep_of_subset_base k h hJ.indep).encard_le_eRk_of_subset hJ.subset
 
-/-- The rank of the closure.-/
+/-- The rank of the closure.
+@isnad1 id=eq.0h4v.s6.644692609230 from=translated src=- shape=765a3092 vocab=c3fe275c
+-/
 theorem erk_racl (C X : Set K) : erk k C (racl k (C ∪ X)) = erk k C X := by
   unfold erk
   rw [← rkMatroid_closure_eq, eRk_closure_eq]
 
-/-- A set inside the closure of `C ∪ X` contributes nothing to the rank over `C`.-/
+/-- A set inside the closure of `C ∪ X` contributes nothing to the rank over `C`.
+@isnad1 id=eq.1h5v.s6.687edbb36c68 from=translated src=- shape=444f26a9 vocab=3a5a872c
+-/
 theorem erk_union_eq_of_subset_racl {C X Y : Set K} (hY : Y ⊆ racl k (C ∪ X)) :
     erk k C (X ∪ Y) = erk k C X := by
   refine le_antisymm ?_ (erk_mono k C subset_union_left)
@@ -156,38 +195,58 @@ theorem erk_union_eq_of_subset_racl {C X Y : Set K} (hY : Y ⊆ racl k (C ∪ X)
         erk_mono k C (union_subset (subset_union_right.trans (subset_racl k (C ∪ X))) hY)
     _ = erk k C X := erk_racl k C X
 
-/-- (R2): rank zero over `C` means containment in `racl k C`.-/
+/-- (R2): rank zero over `C` means containment in `racl k C`.
+@isnad1 id=iff.0h4v.s6.bc84816d6391 from=translated src=- shape=4b771ee0 vocab=04b9a369
+-/
 theorem erk_eq_zero_iff {C X : Set K} : erk k C X = 0 ↔ X ⊆ racl k C := by
   have h0 : (rkMatroid k C).eRk X = 0 ↔ X ⊆ (rkMatroid k C).loops :=
     eRk_eq_zero_iff (subset_univ X)
   unfold erk
   rw [h0, ← closure_empty, rkMatroid_closure_eq, union_empty]
 
+/--
+@isnad1 id=eq.1h4v.s6.ee4624b70064 from=translated src=- shape=1605b1f9 vocab=04b9a369
+-/
 theorem erk_eq_zero_of_subset_racl {C X : Set K} (h : X ⊆ racl k C) : erk k C X = 0 :=
   (erk_eq_zero_iff k).2 h
 
+/--
+@isnad1 id=iff.0h4v.s6.9021cec67083 from=translated src=- shape=785a5b0b vocab=29594b38
+-/
 theorem erk_singleton_eq_zero_iff {C : Set K} {x : K} :
     erk k C {x} = 0 ↔ x ∈ racl k C := by
   rw [erk_eq_zero_iff, singleton_subset_iff, SetLike.mem_coe]
 
+/--
+@isnad1 id=eq.0h3v.s5.6a8bf5d27d3a from=translated src=- shape=dfe41a0a vocab=6fafe8af
+-/
 theorem erk_empty (C : Set K) : erk k C ∅ = 0 :=
   erk_eq_zero_of_subset_racl k (empty_subset _)
 
+/--
+@isnad1 id=eq.0h5v.s6.c9fb5b7df536 from=translated src=- shape=3d7cfbb8 vocab=9e0ae36b
+-/
 theorem erk_union_comm (C X Y : Set K) : erk k C (X ∪ Y) = erk k C (Y ∪ X) := by
   rw [union_comm]
 
-/-- Subadditivity.-/
+/-- Subadditivity.
+@isnad1 id=le.0h5v.s6.c8046afe9471 from=translated src=- shape=9438396e vocab=2e14742d
+-/
 theorem erk_union_le (C X Y : Set K) : erk k C (X ∪ Y) ≤ erk k C X + erk k C Y :=
   (rkMatroid k C).eRk_union_le_eRk_add_eRk X Y
 
-/-- Submodularity.-/
+/-- Submodularity.
+@isnad1 id=le.0h5v.s6.ce6c8968d2aa from=translated src=- shape=d09f93fe vocab=4ac47fe6
+-/
 theorem erk_inter_add_erk_union_le (C X Y : Set K) :
     erk k C (X ∩ Y) + erk k C (X ∪ Y) ≤ erk k C X + erk k C Y :=
   (rkMatroid k C).eRk_inter_add_eRk_union_le X Y
 
 /-! ### The tower law -/
 
-/-- A basis of `Y` over `C ∪ X` is disjoint from `X`.-/
+/-- A basis of `Y` over `C ∪ X` is disjoint from `X`.
+@isnad1 id=disjoint.1h6v.s6.a42c385ba17b from=translated src=- shape=b625a4f2 vocab=c56e9510
+-/
 theorem disjoint_of_isBasis'_union {C X Y J : Set K}
     (hJ : (rkMatroid k (C ∪ X)).IsBasis' J Y) : Disjoint X J := by
   rw [disjoint_right]
@@ -196,7 +255,9 @@ theorem disjoint_of_isBasis'_union {C X Y J : Set K}
   exact hind (subset_racl k _ (mem_union_left _ (mem_union_right _ heX)))
 
 /-- (R1), the tower law: the rank of `X ∪ Y` over `C` is the rank of `X` over
-`C` plus the rank of `Y` over `C ∪ X`.-/
+`C` plus the rank of `Y` over `C ∪ X`.
+@isnad1 id=eq.0h5v.s6.a74f1a5ee4aa from=translated src=- shape=613654bf vocab=46bbc628
+-/
 theorem erk_union_eq (C X Y : Set K) :
     erk k C (X ∪ Y) = erk k C X + erk k (C ∪ X) Y := by
   obtain ⟨I, hI⟩ := (rkMatroid k C).exists_isBasis' X
@@ -250,7 +311,9 @@ private theorem ENat.eq_of_add_eq_add_of_le {x x' y y' : ℕ∞} (hx : x ≤ x')
     exact (ENat.add_le_add_iff_left hx').1 h1
 
 /-- The relative rank over a larger base, from the ranks of unions
-(subtraction-free form of the tower law).-/
+(subtraction-free form of the tower law).
+@isnad1 id=eq.2h5v.s6.89548b6be66b from=translated src=- shape=bdcfcfb6 vocab=10cff067
+-/
 theorem erk_base_union_eq_of_erk_union_eq {C X Y : Set K} (hX : X.Finite)
     (h : erk k C (X ∪ Y) = erk k C X + erk k C Y) :
     erk k (C ∪ X) Y = erk k C Y := by
@@ -262,7 +325,9 @@ theorem erk_base_union_eq_of_erk_union_eq {C X Y : Set K} (hX : X.Finite)
 /-! ### Finite character of the base -/
 
 /-- Finite character of the base: the rank of a finite set over `C ∪ B` is
-attained over `C ∪ b` for some finite `b ⊆ B`.-/
+attained over `C ∪ b` for some finite `b ⊆ B`.
+@isnad1 id=ex.1h5v.s6.338a8e7e1d86 from=translated src=- shape=5c5ede6c vocab=46e5dd05
+-/
 theorem exists_finite_subset_erk_union_eq {X : Set K} (hX : X.Finite) (C B : Set K) :
     ∃ b ⊆ B, b.Finite ∧ erk k (C ∪ b) X = erk k (C ∪ B) X := by
   classical
@@ -299,16 +364,23 @@ def IndepOver (C A B : Set K) : Prop :=
 
 variable {k}
 
+/--
+@isnad1 id=eq.3h6v.s6.b130833e7086 from=translated src=- shape=564babc4 vocab=5cd2d880
+-/
 theorem IndepOver.erk_eq {C A B : Set K} (h : IndepOver k C A B) {a : Set K}
     (ha : a ⊆ A) (hfin : a.Finite) : erk k (C ∪ B) a = erk k C a :=
   h ha hfin
 
-/-- (R0): independence passes to subsets on the left.-/
+/-- (R0): independence passes to subsets on the left.
+@isnad1 id=indepove.2h6v.s6.201751b00d4f from=translated src=- shape=47f0cb29 vocab=7345f16e
+-/
 theorem IndepOver.mono_left {C A A' B : Set K} (h : IndepOver k C A B) (hA : A' ⊆ A) :
     IndepOver k C A' B :=
   fun _ ha hfin ↦ h (ha.trans hA) hfin
 
-/-- (R0): independence passes to subsets on the right.-/
+/-- (R0): independence passes to subsets on the right.
+@isnad1 id=indepove.2h6v.s6.02e8783e89e8 from=translated src=- shape=8dd2a0b5 vocab=7345f16e
+-/
 theorem IndepOver.mono_right {C A B B' : Set K} (h : IndepOver k C A B) (hB : B' ⊆ B) :
     IndepOver k C A B' := by
   intro a ha hfin
@@ -316,7 +388,9 @@ theorem IndepOver.mono_right {C A B B' : Set K} (h : IndepOver k C A B) (hB : B'
   calc erk k C a = erk k (C ∪ B) a := (h ha hfin).symm
     _ ≤ erk k (C ∪ B') a := erk_base_mono k (union_subset_union_right C hB) a
 
-/-- (R0): finite character on both sides.-/
+/-- (R0): finite character on both sides.
+@isnad1 id=iff.0h5v.s6.75e5c5bba3c1 from=translated src=- shape=dd310d77 vocab=5cd2d880
+-/
 theorem indepOver_iff_forall_finite {C A B : Set K} :
     IndepOver k C A B ↔
       ∀ ⦃a : Set K⦄, a ⊆ A → a.Finite → ∀ ⦃b : Set K⦄, b ⊆ B → b.Finite →
@@ -329,14 +403,18 @@ theorem indepOver_iff_forall_finite {C A B : Set K} :
     rw [← hb]
     exact h ha hfin hbB hbfin
 
-/-- Independence over `C` is independence over `racl k C`.-/
+/-- Independence over `C` is independence over `racl k C`.
+@isnad1 id=indepove.1h5v.s6.5ec87ddbed5d from=translated src=- shape=4fd4506c vocab=13d209e8
+-/
 theorem IndepOver.of_racl_base {C A B : Set K} (h : IndepOver k C A B) :
     IndepOver k (racl k C) A B := by
   intro a ha hfin
   rw [erk_racl_base, erk_congr_base k (racl_union_left (k := k) C B) a]
   exact h ha hfin
 
-/-- Over `C`, a set is independent from `B` iff `racl k (C ∪ A)` is.-/
+/-- Over `C`, a set is independent from `B` iff `racl k (C ∪ A)` is.
+@isnad1 id=iff.0h5v.s6.a5a9cf53b3e9 from=translated src=- shape=aaf1f9af vocab=b152ac51
+-/
 theorem indepOver_racl_left_iff {C A B : Set K} :
     IndepOver k C (racl k (C ∪ A)) B ↔ IndepOver k C A B := by
   refine ⟨fun h ↦ h.mono_left (subset_union_right.trans (subset_racl k _)), fun h ↦ ?_⟩
@@ -374,12 +452,16 @@ theorem indepOver_racl_left_iff {C A B : Set K} :
   exact (ENat.eq_of_add_eq_add_of_le hle1 hle2 (erk_ne_top k hfin' C)
     (erk_ne_top k hafin _) heq).1
 
-/-- (R6): independence only depends on the closure of `C ∪ A`.-/
+/-- (R6): independence only depends on the closure of `C ∪ A`.
+@isnad1 id=iff.1h6v.s6.3d7d397b48d6 from=translated src=- shape=afe6c505 vocab=e28934c2
+-/
 theorem indepOver_congr_left {C A A' B : Set K} (h : racl k (C ∪ A') = racl k (C ∪ A)) :
     IndepOver k C A B ↔ IndepOver k C A' B := by
   rw [← indepOver_racl_left_iff (A := A), ← indepOver_racl_left_iff (A := A'), h]
 
-/-- (R6): independence only depends on the closure of `C ∪ B` (right-hand form).-/
+/-- (R6): independence only depends on the closure of `C ∪ B` (right-hand form).
+@isnad1 id=iff.0h5v.s6.b0bb0a69d3f9 from=translated src=- shape=f288552a vocab=b152ac51
+-/
 theorem indepOver_racl_right_iff {C A B : Set K} :
     IndepOver k C A (racl k (C ∪ B)) ↔ IndepOver k C A B := by
   have hbase : racl k (C ∪ (racl k (C ∪ B) : Set K)) = racl k (C ∪ B) := by
@@ -392,7 +474,9 @@ theorem indepOver_racl_right_iff {C A B : Set K} :
     rw [erk_congr_base k hbase a]
     exact h ha hfin
 
-/-- (R4): symmetry of independence.-/
+/-- (R4): symmetry of independence.
+@isnad1 id=indepove.1h5v.s5.04667fd93430 from=translated src=- shape=1a8df9a3 vocab=8829969b
+-/
 theorem IndepOver.symm {C A B : Set K} (h : IndepOver k C A B) : IndepOver k C B A := by
   intro b hb hbfin
   obtain ⟨a, haA, hafin, ha⟩ := exists_finite_subset_erk_union_eq k hbfin C A
@@ -406,10 +490,15 @@ theorem IndepOver.symm {C A B : Set K} (h : IndepOver k C A B) : IndepOver k C B
   exact le_antisymm (erk_base_mono k subset_union_left b)
     ((ENat.add_le_add_iff_left (erk_ne_top k hafin C)).1 h3.symm.le)
 
+/--
+@isnad1 id=iff.0h5v.s5.603317c96978 from=translated src=- shape=456d81ac vocab=8829969b
+-/
 theorem indepOver_comm {C A B : Set K} : IndepOver k C A B ↔ IndepOver k C B A :=
   ⟨IndepOver.symm, IndepOver.symm⟩
 
-/-- (R5): transitivity.-/
+/-- (R5): transitivity.
+@isnad1 id=iff.0h6v.s6.1ef2dec429d9 from=translated src=- shape=cac70905 vocab=ffe8f99f
+-/
 theorem indepOver_union_right_iff {C A B D : Set K} :
     IndepOver k C A (B ∪ D) ↔ IndepOver k C A B ∧ IndepOver k (C ∪ B) A D := by
   constructor
@@ -423,7 +512,9 @@ theorem indepOver_union_right_iff {C A B D : Set K} :
   · rintro ⟨h1, h2⟩ a ha hfin
     rw [← union_assoc, h2 ha hfin, h1 ha hfin]
 
-/-- (R7): the closures of independent sets meet in the closure of the base.-/
+/-- (R7): the closures of independent sets meet in the closure of the base.
+@isnad1 id=le.1h5v.s7.1c14ad5abb15 from=translated src=- shape=f318d10b vocab=5e2db88c
+-/
 theorem IndepOver.racl_inter_subset {C B D : Set K} (h : IndepOver k C B D) :
     (racl k (C ∪ B) : Set K) ∩ racl k (C ∪ D) ⊆ racl k C := by
   rintro x ⟨hxB, hxD⟩
@@ -434,14 +525,18 @@ theorem IndepOver.racl_inter_subset {C B D : Set K} (h : IndepOver k C B D) :
   rw [h0] at hx'
   exact (erk_singleton_eq_zero_iff k).1 hx'.symm
 
-/-- (R7), equality form: `acl(C ∪ B) ∩ acl(C ∪ D) = acl(C)` for `B ⫝_C D`.-/
+/-- (R7), equality form: `acl(C ∪ B) ∩ acl(C ∪ D) = acl(C)` for `B ⫝_C D`.
+@isnad1 id=eq.1h5v.s7.995b171fa3b9 from=translated src=- shape=f318d10b vocab=4617198d
+-/
 theorem IndepOver.racl_inter_eq {C B D : Set K} (h : IndepOver k C B D) :
     (racl k (C ∪ B) : Set K) ∩ racl k (C ∪ D) = racl k C :=
   le_antisymm h.racl_inter_subset (subset_inter
     (SetLike.coe_subset_coe.2 (racl_mono subset_union_left))
     (SetLike.coe_subset_coe.2 (racl_mono subset_union_left)))
 
-/-- (R8): a set independent from itself is algebraic over the base.-/
+/-- (R8): a set independent from itself is algebraic over the base.
+@isnad1 id=le.1h4v.s6.dc09772732e1 from=translated src=- shape=cf4da51c vocab=38e96cee
+-/
 theorem IndepOver.subset_racl_of_self {C B : Set K} (h : IndepOver k C B B) :
     B ⊆ racl k C := by
   intro b hb
@@ -451,7 +546,9 @@ theorem IndepOver.subset_racl_of_self {C B : Set K} (h : IndepOver k C B B) :
   rw [h0] at hb'
   exact (erk_singleton_eq_zero_iff k).1 hb'.symm
 
-/-- (R9), first clause: `B ⫝_C D` and `A ⫝_C (B ∪ D)` give `(A ∪ B) ⫝_C D`.-/
+/-- (R9), first clause: `B ⫝_C D` and `A ⫝_C (B ∪ D)` give `(A ∪ B) ⫝_C D`.
+@isnad1 id=indepove.2h6v.s6.0b4b12f25fcc from=translated src=- shape=16e8d9e3 vocab=ffe8f99f
+-/
 theorem IndepOver.union_left {C A B D : Set K} (h1 : IndepOver k C B D)
     (h2 : IndepOver k C A (B ∪ D)) : IndepOver k C (A ∪ B) D := by
   intro c hc hfin
@@ -468,7 +565,9 @@ theorem IndepOver.union_left {C A B D : Set K} (h1 : IndepOver k C B D)
       h2' haA hafin]
   rwa [← hsplit] at key
 
-/-- (R9), second clause: `A ⫝_C B` and `(A ∪ B) ⫝_C D` give `A ⫝_C (B ∪ D)`.-/
+/-- (R9), second clause: `A ⫝_C B` and `(A ∪ B) ⫝_C D` give `A ⫝_C (B ∪ D)`.
+@isnad1 id=indepove.2h6v.s6.b6b5db2609c6 from=translated src=- shape=8648d8f7 vocab=ffe8f99f
+-/
 theorem IndepOver.union_right {C A B D : Set K} (h1 : IndepOver k C A B)
     (h2 : IndepOver k C (A ∪ B) D) : IndepOver k C A (B ∪ D) := by
   rw [indepOver_union_right_iff]
@@ -492,7 +591,9 @@ theorem IndepOver.union_right {C A B D : Set K} (h1 : IndepOver k C A B)
     ((ENat.add_le_add_iff_left (erk_ne_top k hbfin C)).1 t1.le)
 
 /-- (R10), first clause: independence is unchanged by adjoining to the base
-a set independent from everything in sight.-/
+a set independent from everything in sight.
+@isnad1 id=iff.1h6v.s6.db52405ce516 from=translated src=- shape=57659cdf vocab=ab0c3170
+-/
 theorem indepOver_base_union_iff {C A B E : Set K}
     (hE : IndepOver k ∅ E (C ∪ (A ∪ B))) :
     IndepOver k C A B ↔ IndepOver k (C ∪ E) A B := by
@@ -517,7 +618,9 @@ theorem indepOver_base_union_iff {C A B E : Set K}
     rw [← e1, ← e2]; exact h ha hfin
 
 /-- (R10), second clause: algebraicity over the base is unchanged by adjoining
-an independent set.-/
+an independent set.
+@isnad1 id=iff.1h5v.s6.c4977e878dee from=translated src=- shape=afa27e30 vocab=5287ca79
+-/
 theorem subset_racl_base_union_iff {C A E : Set K} (hE : IndepOver k ∅ E (C ∪ A)) :
     A ⊆ racl k C ↔ A ⊆ racl k (C ∪ E) := by
   refine ⟨fun h ↦ h.trans (racl_mono subset_union_left), fun h x hx ↦ ?_⟩
@@ -535,13 +638,17 @@ section Bridges
 
 variable (k)
 
-/-- Over the empty base, `rkMatroid` is the algebraic-independence matroid over `k`.-/
+/-- Over the empty base, `rkMatroid` is the algebraic-independence matroid over `k`.
+@isnad1 id=eq.0h2v.s5.760fab55af61 from=translated src=- shape=7330b792 vocab=250126f7
+-/
 theorem rkMatroid_empty : rkMatroid k (∅ : Set K) = AlgebraicIndependent.matroid k K := by
   refine Matroid.ext_closure fun X ↦ ?_
   rw [rkMatroid_closure_eq, algebraicMatroid_closure_eq_racl, empty_union]
 
 /-- Over (the carrier of) a subfield `M`, `rkMatroid` is the algebraic-independence
-matroid over `M`.-/
+matroid over `M`.
+@isnad1 id=eq.0h3v.s7.eb8d98e02e07 from=translated src=- shape=51e99801 vocab=581a5e55
+-/
 theorem rkMatroid_coe (M : IntermediateField k K) :
     rkMatroid k (M : Set K) = AlgebraicIndependent.matroid (↥M) K := by
   refine Matroid.ext_closure fun X ↦ ?_
@@ -554,11 +661,17 @@ theorem rkMatroid_coe (M : IntermediateField k K) :
   rw [key]
   exact ⟨fun h ↦ h, fun h ↦ h⟩
 
+/--
+@isnad1 id=eq.0h3v.s5.ae2fd56ce773 from=translated src=- shape=e99c2d1d vocab=d8c464d4
+-/
 theorem erk_empty_eq (X : Set K) :
     erk k ∅ X = (AlgebraicIndependent.matroid k K).eRk X := by
   unfold erk
   rw [rkMatroid_empty]
 
+/--
+@isnad1 id=eq.0h4v.s7.a7c58f1745c6 from=translated src=- shape=0648c815 vocab=c276e920
+-/
 theorem erk_coe_eq (M : IntermediateField k K) (X : Set K) :
     erk k (M : Set K) X = (AlgebraicIndependent.matroid (↥M) K).eRk X := by
   unfold erk
@@ -615,18 +728,24 @@ theorem _root_.AlgebraicIndependent.matroid_eRk_eq_toENat_trdeg (R : Type*) [Fie
       rfl
   exact hx.cardinalMk_eq_trdeg
 
-/-- The rank over the carrier of a subfield `M` is the transcendence degree over `M`.-/
+/-- The rank over the carrier of a subfield `M` is the transcendence degree over `M`.
+@isnad1 id=eq.0h4v.s9.061537851149 from=translated src=- shape=c319781b vocab=d1e213b1
+-/
 theorem erk_coe_eq_toENat_trdeg (M : IntermediateField k K) (X : Set K) :
     erk k (M : Set K) X = Cardinal.toENat (Algebra.trdeg (↥M) ↥(adjoin (↥M) X)) := by
   rw [erk_coe_eq, AlgebraicIndependent.matroid_eRk_eq_toENat_trdeg]
 
-/-- The rank over the empty base is the transcendence degree over `k`.-/
+/-- The rank over the empty base is the transcendence degree over `k`.
+@isnad1 id=eq.0h3v.s7.61b419ae2229 from=translated src=- shape=6123e51c vocab=a291c141
+-/
 theorem erk_empty_eq_toENat_trdeg (X : Set K) :
     erk k ∅ X = Cardinal.toENat (Algebra.trdeg k ↥(adjoin k X)) := by
   rw [erk_empty_eq, AlgebraicIndependent.matroid_eRk_eq_toENat_trdeg]
 
 /-- Over (the carrier of) a subfield `M` together with a set `B`, `rkMatroid` is the
-matroid over `M` with base `B`: change of base type.-/
+matroid over `M` with base `B`: change of base type.
+@isnad1 id=eq.0h4v.s6.781a66e1b209 from=translated src=- shape=d25a91ed vocab=947be135
+-/
 theorem rkMatroid_coe_union (M : IntermediateField k K) (B : Set K) :
     rkMatroid k ((M : Set K) ∪ B) = rkMatroid (↥M) B := by
   refine Matroid.ext_closure fun X ↦ ?_
@@ -639,13 +758,18 @@ theorem rkMatroid_coe_union (M : IntermediateField k K) (B : Set K) :
   rw [key]
   exact ⟨fun h ↦ h, fun h ↦ h⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.0bcf12882c81 from=translated src=- shape=99f642a0 vocab=0bf6af4c
+-/
 theorem erk_coe_union (M : IntermediateField k K) (B X : Set K) :
     erk k ((M : Set K) ∪ B) X = erk (↥M) B X := by
   unfold erk
   rw [rkMatroid_coe_union]
 
 /-- Independence over the base type `M` is independence over `k` with `M` adjoined to the
-base set.-/
+base set.
+@isnad1 id=iff.0h6v.s7.8a3bcd55c6f5 from=translated src=- shape=c5aab4ec vocab=4ce317c1
+-/
 theorem indepOver_coe_union_iff (M : IntermediateField k K) (B A D : Set K) :
     IndepOver k ((M : Set K) ∪ B) A D ↔ IndepOver (↥M) B A D := by
   constructor
@@ -661,7 +785,9 @@ end Bridges
 /-! ### Independence from rank equalities -/
 
 /-- A finite set with the same rank over `C ∪ B` as over `C` is independent from `B`
-over `C`.-/
+over `C`.
+@isnad1 id=indepove.2h5v.s6.2b7946bb20f9 from=translated src=- shape=d1c2a418 vocab=7b685e29
+-/
 theorem indepOver_of_erk_eq {C B X : Set K} (hX : X.Finite)
     (h : erk k (C ∪ B) X = erk k C X) : IndepOver k C X B := by
   intro a ha hfin

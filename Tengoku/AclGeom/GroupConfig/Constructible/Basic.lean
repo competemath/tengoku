@@ -148,7 +148,9 @@ def IsConstructibleOver (k : Type*) [Field k] {K ι : Type*} [Field K] [Algebra 
     s = MvPolynomial.pointToPoint ⁻¹' C
 
 /-- Constructibility over the base means a finite union of cells, each given by
-finitely many polynomial equations and one polynomial inequation over that base.-/
+finitely many polynomial equations and one polynomial inequation over that base.
+@isnad1 id=iff.0h4v.s9.7c9f0ca908f4 from=translated src=- shape=5be456e6 vocab=66e7ebc6
+-/
 theorem isConstructibleOver_iff_exists_polynomial_data {k K ι : Type*}
     [Field k] [Field K] [Algebra k K] {s : Set (ι → K)} :
     IsConstructibleOver k s ↔
@@ -182,7 +184,9 @@ private theorem pointToPoint_eq_comap {k K ι : Type*} [Field k] [Field K] [Alge
 /-- `thm:chevalley`: Chevalley on field-valued points. Finite coordinate projections preserve
 constructibility over an arbitrary base field when the ambient field is algebraically
 closed. No transcendence-degree hypothesis is needed. This is the projection step
-for constructible relations in the group-configuration blueprint.-/
+for constructible relations in the group-configuration blueprint.
+@isnad1 id=isconstr.1h5v.s6.a8c5e37e4fb4 from=translated src=- shape=a759d7b4 vocab=d09211bd
+-/
 theorem IsConstructibleOver.image_projection {k K ι κ : Type*}
     [Field k] [Field K] [Algebra k K] [IsAlgClosed K]
     [Finite ι] [Finite κ] {s : Set ((ι ⊕ κ) → K)} (hs : IsConstructibleOver k s) :

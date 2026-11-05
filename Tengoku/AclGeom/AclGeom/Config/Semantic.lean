@@ -43,16 +43,22 @@ variable {k : Type*} {K : Type*} [Field k] [Field K] [Algebra k K]
 namespace ClosedIF
 
 /-- Normalization: translating by a constant of the base field does not
-move a principal closure (blueprint §semantic relations).-/
+move a principal closure (blueprint §semantic relations).
+@isnad1 id=eq.0h4v.s7.34cbd2fffc76 from=translated src=- shape=3a6fc349 vocab=8fc70fcf
+-/
 theorem point_add_algebraMap (x : K) (c : k) :
     point k (x + algebraMap k K c) = point k x :=
   Subtype.ext (racl_add_algebraMap x c)
 
-/-- Normalization: inversion does not move a principal closure.-/
+/-- Normalization: inversion does not move a principal closure.
+@isnad1 id=eq.0h3v.s6.5f4e637de6ba from=translated src=- shape=179a48ee vocab=8b3ba376
+-/
 theorem point_inv (x : K) : point k x⁻¹ = point k x :=
   Subtype.ext (racl_inv x)
 
-/-- A ratio and its reciprocal generate the same principal closure.-/
+/-- A ratio and its reciprocal generate the same principal closure.
+@isnad1 id=eq.0h4v.s6.e2e5c12d225c from=translated src=- shape=cbff7a1a vocab=daa87c40
+-/
 theorem point_div_symm (x y : K) : point k (x / y) = point k (y / x) := by
   rw [← point_inv (x / y), inv_div]
 
@@ -70,7 +76,9 @@ def QSem (X Y Z W : Point k K) : Prop :=
 
 /-- **The ratio point of a semantic `Q`-quadruple differs from its second point**: in
 `([x], [y], [x+y], [x/y])` with `x, y` independent, `[x/y] = [y]` would put `x = (x/y) y` in
-the closure of `y`.-/
+the closure of `y`.
+@isnad1 id=ne.1h6v.s6.bb2390f4f218 from=translated src=- shape=26bb322d vocab=f8e8e75b
+-/
 theorem QSem.ratio_ne {X Y Z W : Point k K} (h : QSem X Y Z W) : W ≠ Y := by
   obtain ⟨x, y, hind, -, hY, -, hW⟩ := h
   intro hWY

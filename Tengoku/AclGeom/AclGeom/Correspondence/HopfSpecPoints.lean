@@ -61,7 +61,9 @@ def hopfPointsMulEquiv (S : Type u) [CommRing S] [HopfAlgebra R S] :
       WithConv (S →ₐ[R] R) :=
   (precompMulEquiv (unitIsoSpecAsOver R).symm).trans Spec.mapMulEquiv.symm
 
-/-- The point corresponding to an `R`-algebra map is its `Spec`.-/
+/-- The point corresponding to an `R`-algebra map is its `Spec`.
+@isnad1 id=eq.0h3v.s12.3e052c4fe884 from=translated src=- shape=451c7a64 vocab=4a74f2da
+-/
 theorem hopfPointsMulEquiv_symm_apply_left (S : Type u) [CommRing S] [HopfAlgebra R S]
     (f : S →ₐ[R] R) :
     ((hopfPointsMulEquiv R S).symm (WithConv.toConv f)).left =

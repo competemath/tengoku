@@ -54,12 +54,21 @@ def IsSmall (C : Set K) : Prop := erk k ∅ C ≠ ⊤
 
 variable {k}
 
+/--
+@isnad1 id=issmall.1h3v.s5.eb5a02bb8f68 from=translated src=- shape=54b0ffe0 vocab=2546bff0
+-/
 theorem IsSmall.of_finite {C : Set K} (hC : C.Finite) : IsSmall k C :=
   erk_ne_top k hC ∅
 
+/--
+@isnad1 id=issmall.2h4v.s5.060cd2b34c9a from=translated src=- shape=1667ece7 vocab=665be1a0
+-/
 theorem IsSmall.mono {C C' : Set K} (hC : IsSmall k C) (h : C' ⊆ C) : IsSmall k C' :=
   fun htop ↦ hC (eq_top_iff.2 (htop ▸ erk_mono k ∅ h))
 
+/--
+@isnad1 id=issmall.2h4v.s5.18100ca799c7 from=translated src=- shape=e1ccb59f vocab=2d8e6aa5
+-/
 theorem IsSmall.union {C D : Set K} (hC : IsSmall k C) (hD : IsSmall k D) :
     IsSmall k (C ∪ D) := by
   intro htop
@@ -68,12 +77,17 @@ theorem IsSmall.union {C D : Set K} (hC : IsSmall k C) (hD : IsSmall k D) :
   exact (ENat.add_lt_top.2 ⟨lt_top_iff_ne_top.2 hC, lt_top_iff_ne_top.2 hD⟩).ne
     (top_le_iff.1 h)
 
+/--
+@isnad1 id=issmall.1h3v.s6.8dc670411bd3 from=translated src=- shape=38454ea2 vocab=0a11333b
+-/
 theorem IsSmall.racl {C : Set K} (hC : IsSmall k C) : IsSmall k (racl k C : Set K) := by
   have h := erk_racl k ∅ C
   rw [empty_union] at h
   exact fun htop ↦ hC (h ▸ htop)
 
-/-- A small set has the same closure as one of its finite subsets.-/
+/-- A small set has the same closure as one of its finite subsets.
+@isnad1 id=ex.1h3v.s6.d60b1c5273f9 from=translated src=- shape=ef459bd9 vocab=c995eba1
+-/
 theorem IsSmall.exists_finite_racl_eq {C : Set K} (hC : IsSmall k C) :
     ∃ S ⊆ C, S.Finite ∧ AclGeom.racl k S = AclGeom.racl k C := by
   obtain ⟨J, hJ⟩ := (rkMatroid k ∅).exists_isBasis' C

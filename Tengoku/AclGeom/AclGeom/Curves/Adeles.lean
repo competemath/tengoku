@@ -113,7 +113,9 @@ noncomputable def adeleSpace (D : Divisor k F) :
       P.ord_algebraMap hc0, zero_add]
     exact h1
 
-/-- Monotonicity of the bounded adele spaces.-/
+/-- Monotonicity of the bounded adele spaces.
+@isnad1 id=le.1h4v.s8.a74f0f4a9876 from=translated src=- shape=eabeed95 vocab=9d1007fe
+-/
 theorem adeleSpace_mono {D E : Divisor k F} (h : D ≤ E) :
     adeleSpace D ≤ adeleSpace (E : Divisor k F) := by
   intro α hα P
@@ -123,7 +125,9 @@ theorem adeleSpace_mono {D E : Divisor k F} (h : D ≤ E) :
     exact Or.inr (by omega)
 
 /-- Bounded adeles are adeles: the exceptional places lie in the
-support of the divisor.-/
+support of the divisor.
+@isnad1 id=le.0h3v.s8.ada4123dd66a from=translated src=- shape=e06c6518 vocab=7b62b5c1
+-/
 theorem adeleSpace_le_adeleSubmodule (D : Divisor k F) :
     adeleSpace D ≤ adeleSubmodule k F := by
   intro α hα
@@ -141,11 +145,16 @@ noncomputable def adeleDiagonal : F →ₗ[k] ((P : Place k F) → F) :=
   LinearMap.pi fun _ ↦ LinearMap.id
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
+/--
+@isnad1 id=eq.0h4v.s8.7412765d3d7b from=translated src=- shape=44d39984 vocab=a857ee84
+-/
 @[simp]
 theorem adeleDiagonal_apply (f : F) (P : Place k F) :
     adeleDiagonal k F f P = f := rfl
 
-/-- Diagonal families are adeles: the exceptional places are the poles.-/
+/-- Diagonal families are adeles: the exceptional places are the poles.
+@isnad1 id=mem.0h3v.s9.179a38a9089a from=translated src=- shape=497ba3f9 vocab=7952dfbb
+-/
 theorem adeleDiagonal_mem_adeleSubmodule (f : F) :
     adeleDiagonal k F f ∈ adeleSubmodule k F := by
   rcases eq_or_ne f 0 with rfl | hf0
@@ -169,17 +178,28 @@ concentrated at the single place `P`.-/
 noncomputable def adeleMonomial (n : ℤ) : (Q : Place k F) → F :=
   fun Q ↦ if Q = P then P.pi ^ n else 0
 
+/--
+@isnad1 id=eq.0h4v.s6.a7057c818a92 from=translated src=- shape=d1c81f92 vocab=724ebecf
+-/
 theorem adeleMonomial_apply_self (n : ℤ) :
     adeleMonomial P n P = P.pi ^ n := ite_eq_left rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.3cd970c44876 from=translated src=- shape=faea3a0e vocab=fc6c9fbd
+-/
 theorem adeleMonomial_apply_ne {Q : Place k F} (hQ : Q ≠ P) (n : ℤ) :
     adeleMonomial P n Q = 0 := ite_eq_right hQ
 
+/--
+@isnad1 id=eq.0h4v.s6.fcd42265793b from=translated src=- shape=775d08aa vocab=1517353c
+-/
 theorem ord_pi_zpow (n : ℤ) : P.ord (P.pi ^ n) = n := by
   rw [P.ord_zpow P.pi_ne_zero, P.ord_pi, mul_one]
 
 /-- The monomial adele lies in `A(D)` as soon as its order clears the
-bound at `P`.-/
+bound at `P`.
+@isnad1 id=mem.1h5v.s8.d97f8a25755c from=translated src=- shape=3559f68a vocab=c4b05f63
+-/
 theorem adeleMonomial_mem_adeleSpace {D : Divisor k F} {n : ℤ}
     (h : -(D P) ≤ n) : adeleMonomial P n ∈ adeleSpace D := by
   intro Q

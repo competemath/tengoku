@@ -76,10 +76,16 @@ def reindex {W : Type*} (D : RationalGroupChunk W) (e : V ≃ W) :
     apply e.injective
     simp [D.mul_mul_inv]
 
+/--
+@isnad1 id=eq.0h6v.s6.caf8fa8235c3 from=translated src=- shape=0f7c0be9 vocab=f9239db4
+-/
 @[simp] theorem reindex_mul {W : Type*} (D : RationalGroupChunk W)
     (e : V ≃ W) (a b : V) :
     (D.reindex e).mul a b = e.symm (D.mul (e a) (e b)) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.1e8a087dcbed from=translated src=- shape=1e9e1fd6 vocab=2d03b335
+-/
 @[simp] theorem reindex_inv {W : Type*} (D : RationalGroupChunk W)
     (e : V ≃ W) (a : V) :
     (D.reindex e).inv a = e.symm (D.inv (e a)) := rfl
@@ -90,28 +96,38 @@ def leftUnit (a : V) : V := C.mul (C.inv a) a
 /-- The right unit produced from a parameter `a`.-/
 def rightUnit (a : V) : V := C.mul a (C.inv a)
 
-/-- Every `leftUnit a` acts as a left identity.-/
+/-- Every `leftUnit a` acts as a left identity.
+@isnad1 id=eq.0h4v.s4.a92cbadfe820 from=translated src=- shape=91157b63 vocab=bc0e02b2
+-/
 theorem leftUnit_mul (a b : V) : C.mul (C.leftUnit a) b = b := by
   rw [leftUnit, C.mul_assoc]
   exact C.inv_mul_mul a b
 
-/-- Every `rightUnit a` acts as a right identity.-/
+/-- Every `rightUnit a` acts as a right identity.
+@isnad1 id=eq.0h4v.s4.c86128d3363e from=translated src=- shape=273b90fa vocab=14314545
+-/
 theorem mul_rightUnit (a b : V) : C.mul b (C.rightUnit a) = b := by
   rw [rightUnit, ← C.mul_assoc]
   exact C.mul_mul_inv a b
 
-/-- A left unit and a right unit necessarily coincide.-/
+/-- A left unit and a right unit necessarily coincide.
+@isnad1 id=eq.0h4v.s4.83cd7d8b0e34 from=translated src=- shape=86780fce vocab=5bda82e9
+-/
 theorem leftUnit_eq_rightUnit (a b : V) : C.leftUnit a = C.rightUnit b := by
   calc
     C.leftUnit a = C.mul (C.leftUnit a) (C.rightUnit b) :=
       (C.mul_rightUnit b (C.leftUnit a)).symm
     _ = C.rightUnit b := C.leftUnit_mul a (C.rightUnit b)
 
-/-- All parameter-dependent left units coincide.-/
+/-- All parameter-dependent left units coincide.
+@isnad1 id=eq.0h4v.s4.b8a7412062fb from=translated src=- shape=86780fce vocab=d217a385
+-/
 theorem leftUnit_eq_leftUnit (a b : V) : C.leftUnit a = C.leftUnit b :=
   (C.leftUnit_eq_rightUnit a b).trans (C.leftUnit_eq_rightUnit b b).symm
 
-/-- All parameter-dependent right units coincide.-/
+/-- All parameter-dependent right units coincide.
+@isnad1 id=eq.0h4v.s4.bcda0c21d1a2 from=translated src=- shape=86780fce vocab=e3986af1
+-/
 theorem rightUnit_eq_rightUnit (a b : V) : C.rightUnit a = C.rightUnit b :=
   (C.leftUnit_eq_rightUnit a a).symm.trans (C.leftUnit_eq_rightUnit a b)
 
@@ -175,6 +191,9 @@ def reindex (C : TranslationGroupChunk k F W) (e : V ≃ W) :
     intro a b h
     exact e.injective (C.translation_injective h)
 
+/--
+@isnad1 id=eq.0h7v.s6.c1fb2a06e547 from=translated src=- shape=a80f0267 vocab=1fbabf33
+-/
 @[simp] theorem reindex_translation
     (C : TranslationGroupChunk k F W) (e : V ≃ W) (a : V) :
     (C.reindex e).translation a = C.translation (e a) := rfl

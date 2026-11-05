@@ -65,13 +65,18 @@ def liftedCoordinates (a : ι → K) :
   fun i ↦ ⟨a i, subset_adjoin k _ (Set.mem_range_self i)⟩
 
 omit [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h5v.s6.e7083422056e from=translated src=- shape=a10e32e8 vocab=18f9edd9
+-/
 @[simp]
 theorem liftedCoordinates_coe (a : ι → K) (i : ι) :
     (liftedCoordinates (k := k) a i : K) = a i :=
   rfl
 
 omit [FiniteDimensional K L] in
-/-- The lifted parameter coordinates generate their intermediate field.-/
+/-- The lifted parameter coordinates generate their intermediate field.
+@isnad1 id=eq.0h4v.s10.fe4d3232c3e1 from=translated src=- shape=66bf8abb vocab=8a994325
+-/
 theorem adjoin_liftedCoordinates_eq_top (a : ι → K) :
     adjoin k (Set.range (liftedCoordinates (k := k) a)) = ⊤ := by
   let A := adjoin k (Set.range a)
@@ -84,7 +89,9 @@ theorem adjoin_liftedCoordinates_eq_top (a : ι → K) :
   simp [liftedCoordinates]
 
 /-- Adding a `K`-basis to coordinates that generate `K / k` generates all
-of the finite extension `L / k`.-/
+of the finite extension `L / k`.
+@isnad1 id=eq.1h5v.s8.0001c4c4c90d from=translated src=- shape=c8986a8e vocab=3a89a003
+-/
 theorem adjoin_generators_eq_top (a : ι → K)
     (ha : adjoin k (Set.range a) = ⊤) :
     adjoin k (Set.range (generators (K := K) (L := L) a)) = ⊤ := by
@@ -128,7 +135,9 @@ def coordinateGenerators (a : ι → K) :
 
 omit [Algebra k K] [IsScalarTower k K L] in
 /-- The chosen coordinate-ring generators generate the whole chart algebra
-over the ground field.-/
+over the ground field.
+@isnad1 id=eq.0h5v.s11.9ec332ed91ce from=translated src=- shape=504dbdbf vocab=8985d461
+-/
 theorem adjoin_coordinateGenerators_eq_top (a : ι → K) :
     Algebra.adjoin k (Set.range
       (coordinateGenerators (k := k) (K := K) (L := L) a)) = ⊤ := by
@@ -161,11 +170,17 @@ def structureMap (a : ι → K) :
   Spec.map (CommRingCat.ofHom
     (algebraMap k (coordinateRing (k := k) (K := K) (L := L) a)))
 
+/--
+@isnad1 id=finitety.0h5v.s7.cd28be8df7db from=translated src=- shape=5f5286da vocab=da1a3435
+-/
 instance finiteType [Finite ι] (a : ι → K) :
     Algebra.FiniteType k
       (coordinateRing (k := k) (K := K) (L := L) a) :=
   Algebra.FiniteType.adjoin_of_finite (Set.finite_range _)
 
+/--
+@isnad1 id=locallyo.0h5v.s6.07ccce9ac4c9 from=translated src=- shape=63be1c64 vocab=13401ad0
+-/
 instance locallyOfFiniteType [Finite ι] (a : ι → K) :
     LocallyOfFiniteType
       (structureMap (k := k) (K := K) (L := L) a) := by
@@ -173,18 +188,26 @@ instance locallyOfFiniteType [Finite ι] (a : ι → K) :
   rw [HasRingHomProperty.Spec_iff (P := @LocallyOfFiniteType)]
   exact RingHom.finiteType_algebraMap.mpr inferInstance
 
+/--
+@isnad1 id=quasicom.0h5v.s6.03f49f733fdd from=translated src=- shape=60922a9e vocab=46c78be2
+-/
 instance quasiCompact (a : ι → K) :
     QuasiCompact
       (structureMap (k := k) (K := K) (L := L) a) := by
   unfold structureMap scheme
   infer_instance
 
-/-- Every affine extension chart is separated as an absolute scheme.-/
+/-- Every affine extension chart is separated as an absolute scheme.
+@isnad1 id=issepara.0h5v.s6.bbb817a4143b from=translated src=- shape=ee6ce0ff vocab=494f592f
+-/
 instance schemeSeparated (a : ι → K) :
     (scheme (k := k) (K := K) (L := L) a).IsSeparated := by
   unfold scheme
   infer_instance
 
+/--
+@isnad1 id=isintegr.0h5v.s6.ece8da366620 from=translated src=- shape=ee6ce0ff vocab=0e02e486
+-/
 instance integral (a : ι → K) :
     IsIntegral (scheme (k := k) (K := K) (L := L) a) := by
   unfold scheme
@@ -213,6 +236,9 @@ instance coordinateRingAlgebraGeneratedField (a : ι → K) :
     (adjoin k (Set.range (generators (K := K) (L := L) a)))
   infer_instance
 
+/--
+@isnad1 id=isfracti.0h5v.s8.d57b60817687 from=translated src=- shape=ca16b464 vocab=6a0f5881
+-/
 instance isFractionRing (a : ι → K) :
     IsFractionRing (coordinateRing (k := k) (K := K) (L := L) a)
       (generatedField (k := k) (K := K) (L := L) a) := by
@@ -232,7 +258,9 @@ def generatedFieldEquiv (a : ι → K)
 
 /-- When the displayed coordinates generate `K`, the ambient extension field
 `L` itself is a fraction field of the chart coordinate ring.  This formulation
-is convenient for clearing denominators directly inside `L`.-/
+is convenient for clearing denominators directly inside `L`.
+@isnad1 id=isfracti.1h5v.s8.e459dc2b4361 from=translated src=- shape=ef177c30 vocab=000e6546
+-/
 theorem isFractionRing_extension (a : ι → K)
     (ha : adjoin k (Set.range a) = ⊤) :
     IsFractionRing
@@ -274,7 +302,9 @@ noncomputable def functionFieldAlgEquiv (a : ι → K)
     (Spec (.of A)).functionField L).restrictScalars k
 
 /-- The chart function-field equivalence sends the generic germ of a
-coordinate-ring element to that element in the selected ambient field.-/
+coordinate-ring element to that element in the selected ambient field.
+@isnad1 id=eq.1h6v.s11.01a671ef6289 from=translated src=- shape=9b53f56d vocab=de12e7bb
+-/
 theorem functionFieldAlgEquiv_toStalk (a : ι → K)
     (ha : adjoin k (Set.range a) = ⊤)
     (z : coordinateRing (k := k) (K := K) (L := L) a) :
@@ -305,6 +335,9 @@ def parameter (a : ι → K) (i : ι) :
       (Sum.inl i : ι ⊕ Fin (Module.finrank K L)))⟩
 
 omit [Algebra k K] [IsScalarTower k K L] in
+/--
+@isnad1 id=eq.0h6v.s7.a7b37209df1f from=translated src=- shape=c6278ed2 vocab=c69db4d9
+-/
 @[simp]
 theorem parameter_coe (a : ι → K) (i : ι) :
     (parameter (k := k) (K := K) (L := L) a i : L) =

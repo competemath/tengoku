@@ -47,20 +47,26 @@ def conjugate (eX : X ≃+* X') (eY : Y ≃+* Y')
     (f : X ≃+* Y) : X' ≃+* Y' :=
   eX.symm.trans (f.trans eY)
 
-/-- Pointwise formula for conjugation.-/
+/-- Pointwise formula for conjugation.
+@isnad1 id=eq.0h8v.s9.0b2f486f45af from=translated src=- shape=18d5ed5c vocab=c8defdf5
+-/
 @[simp] theorem conjugate_apply (eX : X ≃+* X') (eY : Y ≃+* Y')
     (f : X ≃+* Y) (x : X') :
     conjugate eX eY f x = eY (f (eX.symm x)) :=
   rfl
 
 /-- Conjugation carries an identity equivalence to an identity
-equivalence.-/
+equivalence.
+@isnad1 id=eq.0h3v.s7.136fffdb7255 from=translated src=- shape=8d0f511c vocab=4b489403
+-/
 @[simp] theorem conjugate_refl (eX : X ≃+* X') :
     conjugate eX eX (RingEquiv.refl X) = RingEquiv.refl X' := by
   ext x
   simp [conjugate]
 
-/-- Conjugation preserves composition of field equivalences exactly.-/
+/-- Conjugation preserves composition of field equivalences exactly.
+@isnad1 id=eq.0h11v.s8.7e1b00d895bb from=translated src=- shape=cf0824eb vocab=9523b382
+-/
 theorem conjugate_trans (eX : X ≃+* X') (eY : Y ≃+* Y')
     (eZ : Z ≃+* Z') (f : X ≃+* Y) (g : Y ≃+* Z) :
     (conjugate eX eY f).trans (conjugate eY eZ g) =
@@ -68,14 +74,18 @@ theorem conjugate_trans (eX : X ≃+* X') (eY : Y ≃+* Y')
   ext x
   simp [conjugate]
 
-/-- Conjugation preserves inverse equivalences exactly.-/
+/-- Conjugation preserves inverse equivalences exactly.
+@isnad1 id=eq.0h7v.s8.3649de63af78 from=translated src=- shape=581bef52 vocab=166ea6ee
+-/
 @[simp] theorem conjugate_symm (eX : X ≃+* X') (eY : Y ≃+* Y')
     (f : X ≃+* Y) :
     (conjugate eX eY f).symm = conjugate eY eX f.symm := by
   ext y
   simp [conjugate]
 
-/-- Conjugation by fixed chart equivalences is faithful.-/
+/-- Conjugation by fixed chart equivalences is faithful.
+@isnad1 id=injectiv.0h6v.s7.faa08be989ad from=translated src=- shape=2aa15d34 vocab=60e3f369
+-/
 theorem conjugate_injective (eX : X ≃+* X') (eY : Y ≃+* Y') :
     Function.Injective (conjugate eX eY : (X ≃+* Y) → (X' ≃+* Y')) := by
   intro f g h
@@ -84,7 +94,9 @@ theorem conjugate_injective (eX : X ≃+* X') (eY : Y ≃+* Y') :
   simpa [conjugate] using hx
 
 /-- Equality can be checked after conjugating both equivalences to fixed
-reference charts.-/
+reference charts.
+@isnad1 id=iff.0h8v.s8.78abfab756fe from=translated src=- shape=5ce0b4ba vocab=cbe025f2
+-/
 theorem conjugate_eq_iff (eX : X ≃+* X') (eY : Y ≃+* Y')
     (f g : X ≃+* Y) :
     conjugate eX eY f = conjugate eX eY g ↔ f = g :=
@@ -141,19 +153,25 @@ def inducedTargetChart (eX : X ≃+* X') : Z ≃+* X' :=
 /-- The middle chart induced from a source chart returns the source-chart
 value on every point transported through the left arrow.  This is the
 restriction formula used to retain a distinguished branch while changing
-the ambient normal-cover chart.-/
+the ambient normal-cover chart.
+@isnad1 id=eq.0h7v.s9.819da27f5dfa from=translated src=- shape=e0ed752e vocab=a413ed49
+-/
 @[simp] theorem inducedMiddleChart_left_apply (eX : X ≃+* X') (x : X) :
     T.inducedMiddleChart eX (T.left x) = eX x := by
   simp [inducedMiddleChart]
 
 /-- The target chart induced from a source chart returns the source-chart
-value on every point transported through the direct arrow.-/
+value on every point transported through the direct arrow.
+@isnad1 id=eq.0h7v.s9.38ade969178f from=translated src=- shape=b8739348 vocab=b8c07273
+-/
 @[simp] theorem inducedTargetChart_direct_apply (eX : X ≃+* X') (x : X) :
     T.inducedTargetChart eX (T.direct x) = eX x := by
   simp [inducedTargetChart]
 
 /-- If the source chart and left arrow fix a coefficient field, then the
-middle chart induced from them fixes that coefficient field as well.-/
+middle chart induced from them fixes that coefficient field as well.
+@isnad1 id=eq.2h8v.s9.6a6878095b90 from=translated src=- shape=16346b42 vocab=8f53fe21
+-/
 theorem inducedMiddleChart_algebraMap
     {F : Type u} [Field F] [Algebra F X] [Algebra F Y] [Algebra F X']
     (eX : X ≃+* X')
@@ -168,7 +186,9 @@ theorem inducedMiddleChart_algebraMap
   rw [inducedMiddleChart, RingEquiv.trans_apply, hs, heX]
 
 /-- If the source chart and direct arrow fix a coefficient field, then the
-target chart induced from them fixes that coefficient field as well.-/
+target chart induced from them fixes that coefficient field as well.
+@isnad1 id=eq.2h8v.s9.628cdca81cca from=translated src=- shape=58ae2f76 vocab=6322eac9
+-/
 theorem inducedTargetChart_algebraMap
     {F : Type u} [Field F] [Algebra F X] [Algebra F Z] [Algebra F X']
     (eX : X ≃+* X')
@@ -183,7 +203,9 @@ theorem inducedTargetChart_algebraMap
   rw [inducedTargetChart, RingEquiv.trans_apply, hs, heX]
 
 /-- With the induced middle chart, the conjugated left arrow is the
-identity on the reference source.-/
+identity on the reference source.
+@isnad1 id=eq.0h6v.s7.ba5916fbe080 from=translated src=- shape=dc47ea80 vocab=1afb05ac
+-/
 @[simp] theorem conjugate_induced_left (eX : X ≃+* X') :
     (T.conjugate eX (T.inducedMiddleChart eX)
       (T.inducedTargetChart eX)).left = RingEquiv.refl X' := by
@@ -191,7 +213,9 @@ identity on the reference source.-/
   simp [conjugate, inducedMiddleChart]
 
 /-- With the induced target chart, the conjugated direct arrow is the
-identity on the reference source.-/
+identity on the reference source.
+@isnad1 id=eq.0h6v.s7.3595291f568e from=translated src=- shape=dc47ea80 vocab=f31ff1bd
+-/
 @[simp] theorem conjugate_induced_direct (eX : X ≃+* X') :
     (T.conjugate eX (T.inducedMiddleChart eX)
       (T.inducedTargetChart eX)).direct = RingEquiv.refl X' := by
@@ -201,7 +225,9 @@ identity on the reference source.-/
 /-- With both induced charts, the conjugated right arrow is also the
 identity.  Thus a reference assembled solely from source charts is a
 gauge-normalized organizational diagram; a nontrivial family action still
-requires independently fixed middle/target charts or selected graph data.-/
+requires independently fixed middle/target charts or selected graph data.
+@isnad1 id=eq.0h6v.s7.f77fd0a8b043 from=translated src=- shape=dc47ea80 vocab=b4c6104f
+-/
 @[simp] theorem conjugate_induced_right (eX : X ≃+* X') :
     (T.conjugate eX (T.inducedMiddleChart eX)
       (T.inducedTargetChart eX)).right = RingEquiv.refl X' := by
@@ -215,7 +241,9 @@ requires independently fixed middle/target charts or selected graph data.-/
     _ = x := by simp
 
 /-- Postcomposing an induced middle chart by an independently chosen
-common left arrow makes that arrow the literal conjugated left edge.-/
+common left arrow makes that arrow the literal conjugated left edge.
+@isnad1 id=eq.0h10v.s8.70e6403c27c5 from=translated src=- shape=7fde299b vocab=f060fafe
+-/
 @[simp] theorem conjugate_inducedMiddle_trans_left
     (eX : X ≃+* X') (left' : X' ≃+* Y') (direct' : X' ≃+* Z') :
     (T.conjugate eX ((T.inducedMiddleChart eX).trans left')
@@ -224,7 +252,9 @@ common left arrow makes that arrow the literal conjugated left edge.-/
   simp [conjugate, inducedMiddleChart]
 
 /-- Postcomposing an induced target chart by an independently chosen
-common direct arrow makes that arrow the literal conjugated direct edge.-/
+common direct arrow makes that arrow the literal conjugated direct edge.
+@isnad1 id=eq.0h10v.s8.f410768f2d5c from=translated src=- shape=e33c1852 vocab=4a05a9e0
+-/
 @[simp] theorem conjugate_inducedTarget_trans_direct
     (eX : X ≃+* X') (left' : X' ≃+* Y') (direct' : X' ≃+* Z') :
     (T.conjugate eX ((T.inducedMiddleChart eX).trans left')
@@ -233,7 +263,9 @@ common direct arrow makes that arrow the literal conjugated direct edge.-/
   simp [conjugate, inducedTargetChart]
 
 /-- With independently prescribed common left and direct arrows, the
-conjugated right edge is their quotient rather than an identity.-/
+conjugated right edge is their quotient rather than an identity.
+@isnad1 id=eq.0h10v.s9.927ccc9bc233 from=translated src=- shape=03bc78b1 vocab=f7fe5680
+-/
 @[simp] theorem conjugate_induced_trans_right
     (eX : X ≃+* X') (left' : X' ≃+* Y') (direct' : X' ≃+* Z') :
     (T.conjugate eX ((T.inducedMiddleChart eX).trans left')
@@ -253,7 +285,9 @@ conjugated right edge is their quotient rather than an identity.-/
 /-- A restriction square for the left arrow followed by one for the right
 arrow gives the corresponding restriction square for the strict direct
 arrow.  Keeping this argument generic prevents concrete finite-cover types
-from being unfolded merely to reassociate the triangle identity.-/
+from being unfolded merely to reassociate the triangle identity.
+@isnad1 id=eq.2h8v.s8.113f7b6a3cd7 from=translated src=- shape=0c28d62c vocab=e6f92778
+-/
 theorem direct_comp_of_left_right
     {F : Type u} [Semiring F]
     (source : F →+* X) (middle : F →+* Y) (target : F →+* Z)
@@ -488,7 +522,9 @@ def toFourArrowDiagram : FourArrowDiagram X Y Z where
 
 /-- The semantic diagram obtained from independently prescribed common
 left and direct arrows retains those arrows literally, and its four right
-arrows are the corresponding nontrivial quotients.-/
+arrows are the corresponding nontrivial quotients.
+@isnad1 id=other.0h27v.s10.d85182848be5 from=translated src=- shape=3a7f9814 vocab=8a652508
+-/
 theorem ofCommonLeftDirect_toFourArrowDiagram
     (se : CompositionTriangle Xse Yse Zse)
     (sAa : CompositionTriangle Xsa Ysa Zsa)
@@ -514,7 +550,9 @@ theorem ofCommonLeftDirect_toFourArrowDiagram
 /-- The four right arrows of a source-induced reference are all identities.
 This exposes the exact boundary of `ofSourceCharts`: parameter-dependent
 information must be recovered from selected graph embeddings, or from a
-reference with independently specified middle and target charts.-/
+reference with independently specified middle and target charts.
+@isnad1 id=other.0h21v.s9.1e6488f80ce6 from=translated src=- shape=1daef3ce vocab=31ce082c
+-/
 theorem ofSourceCharts_right_arrows_eq_refl
     (se : CompositionTriangle Xse Yse Zse)
     (sAa : CompositionTriangle Xsa Ysa Zsa)
@@ -536,28 +574,36 @@ theorem ofSourceCharts_right_arrows_eq_refl
 
 /-- The first semantic right arrow acts on an element expressed in its
 original middle chart by the original right arrow followed by the target
-chart.-/
+chart.
+@isnad1 id=eq.0h17v.s9.444448040407 from=translated src=- shape=857bfbda vocab=7fe54eaa
+-/
 @[simp] theorem toFourArrowDiagram_rightE_apply (y : Yse) :
     R.toFourArrowDiagram.rightE (R.seY y) =
       R.seZ (R.se.right y) := by
   simp [toFourArrowDiagram, CompositionTriangle.conjugate,
     FieldEquiv.conjugate]
 
-/-- Pointwise chart formula for the inverse-input semantic right arrow.-/
+/-- Pointwise chart formula for the inverse-input semantic right arrow.
+@isnad1 id=eq.0h17v.s9.f9d324230d5a from=translated src=- shape=7815c97d vocab=c37db84a
+-/
 @[simp] theorem toFourArrowDiagram_rightA_apply (y : Ysa) :
     R.toFourArrowDiagram.rightA (R.sAaY y) =
       R.sAaZ (R.sAa.right y) := by
   simp [toFourArrowDiagram, CompositionTriangle.conjugate,
     FieldEquiv.conjugate]
 
-/-- Pointwise chart formula for the second-input semantic right arrow.-/
+/-- Pointwise chart formula for the second-input semantic right arrow.
+@isnad1 id=eq.0h17v.s9.53f4541eb19a from=translated src=- shape=cfdddd2c vocab=037383a3
+-/
 @[simp] theorem toFourArrowDiagram_rightB_apply (y : Ysb) :
     R.toFourArrowDiagram.rightB (R.sbY y) =
       R.sbZ (R.sb.right y) := by
   simp [toFourArrowDiagram, CompositionTriangle.conjugate,
     FieldEquiv.conjugate]
 
-/-- Pointwise chart formula for the output semantic right arrow.-/
+/-- Pointwise chart formula for the output semantic right arrow.
+@isnad1 id=eq.0h17v.s9.b89e58ae6075 from=translated src=- shape=6400d216 vocab=66868dbe
+-/
 @[simp] theorem toFourArrowDiagram_rightC_apply (y : Ysc) :
     R.toFourArrowDiagram.rightC (R.sAcY y) =
       R.sAcZ (R.sAc.right y) := by
@@ -591,7 +637,9 @@ def conjugate (eX : X ≃+* X') (eY : Y ≃+* Y')
   sA_c_uB := by
     rw [FieldEquiv.conjugate_trans, D.sA_c_uB]
 
-/-- The transported diagram has the pointwise conjugated output arrow.-/
+/-- The transported diagram has the pointwise conjugated output arrow.
+@isnad1 id=eq.0h10v.s8.188fc2541708 from=translated src=- shape=38575ff4 vocab=da3c6934
+-/
 @[simp] theorem conjugate_rightC
     (eX : X ≃+* X') (eY : Y ≃+* Y') (eZ : Z ≃+* Z') :
     (D.conjugate eX eY eZ).rightC =
@@ -600,7 +648,9 @@ def conjugate (eX : X ≃+* X') (eY : Y ≃+* Y')
 
 /-- **Faithful semantic four-arrow cancellation.**  Four literal
 composition identities between field equivalences force the output
-right-family map to be the based difference product of the other three.-/
+right-family map to be the based difference product of the other three.
+@isnad1 id=eq.0h4v.s8.e317448aeb61 from=translated src=- shape=2237d77a vocab=11936212
+-/
 theorem right_cancellation :
     D.rightC = (D.rightA.trans D.rightE.symm).trans D.rightB := by
   ext y
@@ -724,7 +774,9 @@ def ofSourceRestrictions
 /-- Faithful four-arrow cancellation restricted to one common coefficient
 field.  The formula retains the inverse `e` arrow in the middle chart; it is
 therefore the exact field-map factorization that must later be spread to the
-intrinsic germ chart.-/
+intrinsic germ chart.
+@isnad1 id=eq.0h6v.s7.f40d517e5abf from=translated src=- shape=56f993f0 vocab=dd72c62b
+-/
 theorem mapC_factorization :
     C.mapC = D.rightB.toRingHom.comp
       (D.rightE.symm.toRingHom.comp C.mapA) := by
@@ -742,13 +794,17 @@ theorem mapC_factorization :
 
 end RightRestriction
 
-/-- Pointwise form of semantic four-arrow cancellation.-/
+/-- Pointwise form of semantic four-arrow cancellation.
+@isnad1 id=eq.0h5v.s9.30c5bde3b3b9 from=translated src=- shape=eaf8b22b vocab=88ec629e
+-/
 theorem right_cancellation_apply (y : Y) :
     D.rightC y = D.rightB (D.rightE.symm (D.rightA y)) := by
   exact DFunLike.congr_fun D.right_cancellation y
 
 /-- Cancellation is invariant under simultaneous conjugation to any three
-reference field charts.-/
+reference field charts.
+@isnad1 id=eq.0h10v.s9.b10d9fb0c9ad from=translated src=- shape=f1aca7f5 vocab=4c5cef92
+-/
 theorem conjugate_right_cancellation
     (eX : X ≃+* X') (eY : Y ≃+* Y') (eZ : Z ≃+* Z') :
     (D.conjugate eX eY eZ).rightC =

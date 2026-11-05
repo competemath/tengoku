@@ -49,6 +49,9 @@ instance : CoeFun (InfinitesimalAutomorphism k F)
     (fun _ ↦ DualNumber F → DualNumber F) :=
   ⟨fun σ ↦ σ.toAlgEquiv⟩
 
+/--
+@isnad1 id=eq.1h4v.s8.a00d3e448819 from=translated src=- shape=ac13fb15 vocab=acde8063
+-/
 @[ext]
 theorem ext {σ τ : InfinitesimalAutomorphism k F}
     (h : σ.toAlgEquiv = τ.toAlgEquiv) : σ = τ := by
@@ -57,10 +60,16 @@ theorem ext {σ τ : InfinitesimalAutomorphism k F}
   cases h
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.ed7007cdd51c from=translated src=- shape=3dce1bba vocab=ef3a6d72
+-/
 @[simp]
 theorem fst_map_inl (σ : InfinitesimalAutomorphism k F) (x : F) :
     (σ (inl x)).fst = x := σ.fst_map_inl' x
 
+/--
+@isnad1 id=eq.0h3v.s9.3b3b854ffc77 from=translated src=- shape=d4f2e5e6 vocab=44dce374
+-/
 @[simp]
 theorem map_eps (σ : InfinitesimalAutomorphism k F) :
     σ (DualNumber.eps : DualNumber F) = DualNumber.eps := σ.map_eps'
@@ -112,10 +121,16 @@ def ofDerivation (D : Derivation k F F) :
     · change 1 + D 0 = 1
       rw [map_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h4v.s9.29df3f1ad603 from=translated src=- shape=0efb85ea vocab=e3d6b8dd
+-/
 @[simp]
 theorem ofDerivation_apply (D : Derivation k F F) (z : DualNumber F) :
     ofDerivation D z = (z.fst, z.snd + D z.fst) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.5e2c4655a4c8 from=translated src=- shape=f4f26e1b vocab=f478beaf
+-/
 @[simp]
 theorem ofDerivation_apply_inl (D : Derivation k F F) (x : F) :
     ofDerivation D (inl x) = (x, D x) := by
@@ -124,6 +139,9 @@ theorem ofDerivation_apply_inl (D : Derivation k F F) (x : F) :
   · change 0 + D x = D x
     rw [zero_add]
 
+/--
+@isnad1 id=eq.0h3v.s9.b2070cec513b from=translated src=- shape=e417f14e vocab=78e6b92c
+-/
 @[simp]
 theorem ofDerivation_apply_eps (D : Derivation k F F) :
     ofDerivation D (DualNumber.eps : DualNumber F) = DualNumber.eps := by
@@ -157,11 +175,16 @@ def toDerivation (σ : InfinitesimalAutomorphism k F) :
     simp only [smul_eq_mul]
     ring
 
+/--
+@isnad1 id=eq.0h4v.s9.b435a4f93dfe from=translated src=- shape=3e3daa85 vocab=ee8f0142
+-/
 @[simp]
 theorem toDerivation_apply (σ : InfinitesimalAutomorphism k F)
     (x : F) : σ.toDerivation x = (σ (inl x)).snd := rfl
 
-/-- Every infinitesimal automorphism fixes the pure `ε`-part.-/
+/-- Every infinitesimal automorphism fixes the pure `ε`-part.
+@isnad1 id=eq.0h4v.s8.e63d56d2d6e0 from=translated src=- shape=37f3b447 vocab=459424ff
+-/
 @[simp]
 theorem map_inr (σ : InfinitesimalAutomorphism k F) (x : F) :
     σ (inr x) = inr x := by
@@ -185,6 +208,9 @@ theorem map_inr (σ : InfinitesimalAutomorphism k F) (x : F) :
           DualNumber.snd_eps, DualNumber.fst_eps, snd_inr, mul_one,
           mul_zero, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s7.5fa755f5aa43 from=translated src=- shape=998d9fc6 vocab=74043831
+-/
 @[simp]
 theorem toDerivation_ofDerivation (D : Derivation k F F) :
     (ofDerivation D).toDerivation = D := by
@@ -192,6 +218,9 @@ theorem toDerivation_ofDerivation (D : Derivation k F F) :
   change 0 + D x = D x
   rw [zero_add]
 
+/--
+@isnad1 id=eq.0h3v.s5.7f3c0880aa02 from=translated src=- shape=19868076 vocab=f13a30e2
+-/
 @[simp]
 theorem ofDerivation_toDerivation
     (σ : InfinitesimalAutomorphism k F) :
@@ -231,6 +260,9 @@ def VanishesAt [IsAlgClosed k] [IsFunctionFieldOneVar k F]
 def refl : InfinitesimalAutomorphism k F :=
   ofDerivation 0
 
+/--
+@isnad1 id=eq.0h3v.s8.884e88e0c382 from=translated src=- shape=eee87abb vocab=08eb4214
+-/
 @[simp]
 theorem refl_apply (z : DualNumber F) :
     refl (k := k) (F := F) z = z := by

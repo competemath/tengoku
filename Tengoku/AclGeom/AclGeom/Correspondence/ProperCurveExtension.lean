@@ -44,7 +44,9 @@ open CategoryTheory AlgebraicGeometry
 universe u
 
 /-- Equality of rational maps reflects equality of morphisms into separated schemes.
-Named consumer: uniqueness of the extension to a proper curve.-/
+Named consumer: uniqueness of the extension to a proper curve.
+@isnad1 id=eq.1h4v.s5.e2f6b1ecd1ee from=translated src=- shape=893813e3 vocab=f42c13dd
+-/
 theorem hom_eq_of_toRationalMap_eq
     {X Y : Scheme.{u}} [IsReduced X] [Y.IsSeparated]
     (f g : X ⟶ Y) (h : f.toRationalMap = g.toRationalMap) : f = g := by
@@ -54,7 +56,9 @@ theorem hom_eq_of_toRationalMap_eq
 
 /-- A rational map from a normal integral locally Noetherian curve to a proper target
 has no missing point in its domain. Normality is the actual integral closedness of stalks.
-Named consumer: the unique global extension and the proper-curve function-field theorem.-/
+Named consumer: the unique global extension and the proper-curve function-field theorem.
+@isnad1 id=eq.3h6v.s7.4e29af9ce6e2 from=translated src=- shape=edb6448a vocab=244b7918
+-/
 theorem domain_eq_top
     {X Y S : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X]
     (hdim : topologicalKrullDim X ≤ 1)
@@ -114,7 +118,9 @@ theorem domain_eq_top
 
 /-- Every rational map from a normal integral locally Noetherian curve to a proper target
 extends uniquely over the whole source. All extension data are constructed internally.
-Named consumer: the proper-normal-curve function-field isomorphism theorem.-/
+Named consumer: the proper-normal-curve function-field isomorphism theorem.
+@isnad1 id=existsun.3h6v.s7.d25d70ed93d8 from=translated src=- shape=e8dcf54d vocab=f33bda30
+-/
 theorem existsUnique_extension
     {X Y S : Scheme.{u}} [IsIntegral X] [IsLocallyNoetherian X] [S.IsSeparated]
     (hdim : topologicalKrullDim X ≤ 1)

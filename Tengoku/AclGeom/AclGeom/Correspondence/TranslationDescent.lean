@@ -53,7 +53,9 @@ def toUVPoly :
       MvPolynomial (Fin 2) (MvPolynomial (Fin 2) k) :=
   aeval (Sum.elim (fun j ↦ X j) fun j ↦ C (X j))
 
-/-- `aevalSnd` factors through the universal coefficient view.-/
+/-- `aevalSnd` factors through the universal coefficient view.
+@isnad1 id=eq.0h4v.s11.31ec5815be81 from=translated src=- shape=599d0f27 vocab=3c5c5dee
+-/
 theorem aevalSnd_eq_map_toUVPoly (c : Fin 2 → K)
     (g : MvPolynomial (Fin 2 ⊕ Fin 2) k) :
     aevalSnd (k := k) c g =
@@ -70,7 +72,9 @@ theorem aevalSnd_eq_map_toUVPoly (c : Fin 2 → K)
   exact congrArg (fun (f : MvPolynomial (Fin 2 ⊕ Fin 2) k →+* _) ↦ f g) hcomp
 
 /-- The coefficient bridge: coefficients of a block evaluation are the
-evaluations of the universal coefficient polynomials.-/
+evaluations of the universal coefficient polynomials.
+@isnad1 id=eq.0h5v.s10.b1169518cc33 from=translated src=- shape=0941f827 vocab=80265446
+-/
 theorem coeff_aevalSnd (c : Fin 2 → K) (g : MvPolynomial (Fin 2 ⊕ Fin 2) k)
     (m : Fin 2 →₀ ℕ) :
     (aevalSnd (k := k) c g).coeff m =
@@ -79,7 +83,9 @@ theorem coeff_aevalSnd (c : Fin 2 → K) (g : MvPolynomial (Fin 2 ⊕ Fin 2) k)
   rfl
 
 /-- Block evaluation of the sum substitution is the translation of the
-extended polynomial.-/
+extended polynomial.
+@isnad1 id=eq.0h4v.s10.6cef0a97a115 from=translated src=- shape=6c4e2474 vocab=33314d58
+-/
 theorem aevalSnd_addSubst (c : Fin 2 → K) (F : MvPolynomial (Fin 2) k) :
     aevalSnd (k := k) c (addSubst (k := k) F) =
       translate c (MvPolynomial.map (algebraMap k K) F) := by
@@ -94,7 +100,9 @@ theorem aevalSnd_addSubst (c : Fin 2 → K) (F : MvPolynomial (Fin 2) k) :
   exact congrArg (fun (f : MvPolynomial (Fin 2) k →+* _) ↦ f F) hcomp
 
 /-- Block evaluation of the first-block inclusion is coefficient
-extension.-/
+extension.
+@isnad1 id=eq.0h4v.s10.496ba847feb7 from=translated src=- shape=57175c55 vocab=acfc6090
+-/
 theorem aevalSnd_rename_inl (c : Fin 2 → K) (F : MvPolynomial (Fin 2) k) :
     aevalSnd (k := k) c (rename Sum.inl F) =
       MvPolynomial.map (algebraMap k K) F := by
@@ -121,7 +129,9 @@ def aevalFst (c : Fin 2 → K) :
   aeval (Sum.elim (fun j ↦ C (c j)) fun j ↦ X j)
 
 /-- Composing first-block evaluation with a point evaluation recovers the
-joint evaluation.-/
+joint evaluation.
+@isnad1 id=eq.0h6v.s10.6ac55ecd03df from=translated src=- shape=67f6bf79 vocab=70ad223e
+-/
 theorem aeval_aevalFst (c : Fin 2 → K) (v : Fin 2 → Ω)
     (f : MvPolynomial (Fin 2 ⊕ Fin 2) k) :
     aeval v (aevalFst (k := k) c f) =
@@ -143,7 +153,9 @@ theorem aeval_aevalFst (c : Fin 2 → K) (v : Fin 2 → Ω)
 `q` over `K` is spanned by the extension of `G`, then any joint polynomial
 vanishing at `(c, q)` vanishes at `(c, w)` for every zero `w` of `G` — the
 first block evaluates into `K`, and the resulting relative polynomial is a
-multiple of the extended generator.-/
+multiple of the extended generator.
+@isnad1 id=eq.3h8v.s10.a83f2d7826cd from=translated src=- shape=e523be1f vocab=e01db131
+-/
 theorem joint_aeval_eq_zero {c : Fin 2 → K} {q : Fin 2 → Ω}
     {G : MvPolynomial (Fin 2) k}
     (hspan : idealOf K q = Ideal.span {MvPolynomial.map (algebraMap k K) G})
@@ -163,7 +175,9 @@ theorem joint_aeval_eq_zero {c : Fin 2 → K} {q : Fin 2 → Ω}
   rw [hGw, mul_zero]
 
 /-- First-block evaluation of the sum substitution is the translation of
-the extended polynomial.-/
+the extended polynomial.
+@isnad1 id=eq.0h4v.s10.89dbb7601f1a from=translated src=- shape=6c4e2474 vocab=474ffbf6
+-/
 theorem aevalFst_addSubst (c : Fin 2 → K) (F : MvPolynomial (Fin 2) k) :
     aevalFst (k := k) c (addSubst (k := k) F) =
       translate c (MvPolynomial.map (algebraMap k K) F) := by
@@ -178,7 +192,9 @@ theorem aevalFst_addSubst (c : Fin 2 → K) (F : MvPolynomial (Fin 2) k) :
   exact congrArg (fun (f : MvPolynomial (Fin 2) k →+* _) ↦ f F) hcomp
 
 /-- First-block evaluation of the first-block inclusion is the constant of
-the evaluation.-/
+the evaluation.
+@isnad1 id=eq.0h4v.s10.6e701efda697 from=translated src=- shape=ab1e10f7 vocab=ec593a7e
+-/
 theorem aevalFst_rename_inl (c : Fin 2 → K) (F : MvPolynomial (Fin 2) k) :
     aevalFst (k := k) c (rename Sum.inl F) = C (aeval c F) := by
   have hcomp : ((aevalFst (k := k) c).toRingHom.comp
@@ -192,7 +208,9 @@ theorem aevalFst_rename_inl (c : Fin 2 → K) (F : MvPolynomial (Fin 2) k) :
   exact congrArg (fun (f : MvPolynomial (Fin 2) k →+* _) ↦ f F) hcomp
 
 /-- First-block evaluation of the second-block inclusion is coefficient
-extension.-/
+extension.
+@isnad1 id=eq.0h4v.s10.1106155e316f from=translated src=- shape=57175c55 vocab=923194f3
+-/
 theorem aevalFst_rename_inr (c : Fin 2 → K) (F : MvPolynomial (Fin 2) k) :
     aevalFst (k := k) c (rename Sum.inr F) =
       MvPolynomial.map (algebraMap k K) F := by
@@ -208,7 +226,9 @@ theorem aevalFst_rename_inr (c : Fin 2 → K) (F : MvPolynomial (Fin 2) k) :
 /-- Bridged form of `joint_aeval_eq_zero`: the first block is given as an
 `Ω`-tuple together with the equation identifying it as the image of a
 `K`-tuple. Keeping the concrete coercion inside a hypothesis avoids
-elaborating evaluation maps at concrete intermediate fields.-/
+elaborating evaluation maps at concrete intermediate fields.
+@isnad1 id=eq.4h9v.s10.41ed47d84286 from=translated src=- shape=4d005aed vocab=e01db131
+-/
 theorem joint_aeval_eq_zero' {c : Fin 2 → K} {p q : Fin 2 → Ω}
     (hp : (fun j ↦ algebraMap K Ω (c j)) = p)
     {G : MvPolynomial (Fin 2) k}
@@ -222,7 +242,9 @@ theorem joint_aeval_eq_zero' {c : Fin 2 → K} {p q : Fin 2 → Ω}
 
 /-- **Joint-type determination**: two points of the same curve, each generic
 over the field `K` generated by the first block, have the same joint
-vanishing ideal with it.-/
+vanishing ideal with it.
+@isnad1 id=eq.2h7v.s10.285fc4048d6c from=translated src=- shape=b58c3933 vocab=9627ed07
+-/
 theorem joint_idealOf_eq {c : Fin 2 → K} {q q' : Fin 2 → Ω}
     {G : MvPolynomial (Fin 2) k}
     (hspan : idealOf K q = Ideal.span {MvPolynomial.map (algebraMap k K) G})
@@ -242,7 +264,9 @@ theorem joint_idealOf_eq {c : Fin 2 → K} {q q' : Fin 2 → Ω}
   · exact joint_aeval_eq_zero hspan (hzero hspan') h
   · exact joint_aeval_eq_zero hspan' (hzero hspan) h
 
-/-- Translation commutes with coefficient maps.-/
+/-- Translation commutes with coefficient maps.
+@isnad1 id=eq.0h5v.s10.d278679b6c30 from=translated src=- shape=06eedd26 vocab=58355c33
+-/
 theorem map_translate {L : Type*} [Field L] (f : K →+* L) (c : Fin 2 → K)
     (g : MvPolynomial (Fin 2) K) :
     MvPolynomial.map f (translate c g) =
@@ -262,7 +286,9 @@ def toVUPoly :
   aeval (Sum.elim (fun j ↦ C (X j)) fun j ↦ X j)
 
 /-- `aevalFst` factors through the first-block universal coefficient
-view.-/
+view.
+@isnad1 id=eq.0h4v.s11.49f4c4b865a0 from=translated src=- shape=599d0f27 vocab=aab15994
+-/
 theorem aevalFst_eq_map_toVUPoly (c : Fin 2 → K)
     (g : MvPolynomial (Fin 2 ⊕ Fin 2) k) :
     aevalFst (k := k) c g =
@@ -278,7 +304,9 @@ theorem aevalFst_eq_map_toVUPoly (c : Fin 2 → K)
       · simp [aevalFst, toVUPoly]
   exact congrArg (fun (f : MvPolynomial (Fin 2 ⊕ Fin 2) k →+* _) ↦ f g) hcomp
 
-/-- The coefficient bridge for the first block.-/
+/-- The coefficient bridge for the first block.
+@isnad1 id=eq.0h5v.s10.0a5b74d7a0ba from=translated src=- shape=0941f827 vocab=c0baf8f7
+-/
 theorem coeff_aevalFst (c : Fin 2 → K) (g : MvPolynomial (Fin 2 ⊕ Fin 2) k)
     (m : Fin 2 →₀ ℕ) :
     (aevalFst (k := k) c g).coeff m =
@@ -294,7 +322,9 @@ noncomputable def fromVUPoly :
     MvPolynomial (Fin 2) k →ₐ[k] MvPolynomial (Fin 2 ⊕ Fin 2) k).toRingHom
     fun j ↦ X (Sum.inr j)
 
-/-- The universal coefficient view is a section of reassembly.-/
+/-- The universal coefficient view is a section of reassembly.
+@isnad1 id=eq.0h2v.s10.a488ce766fc5 from=translated src=- shape=6287ae9a vocab=e6a2179d
+-/
 theorem fromVUPoly_toVUPoly (g : MvPolynomial (Fin 2 ⊕ Fin 2) k) :
     fromVUPoly (k := k) (toVUPoly (k := k) g) = g := by
   have hcomp : ((fromVUPoly (k := k)).comp (toVUPoly (k := k)).toRingHom) =
@@ -307,7 +337,9 @@ theorem fromVUPoly_toVUPoly (g : MvPolynomial (Fin 2 ⊕ Fin 2) k) :
   exact congrArg (fun (F : MvPolynomial (Fin 2 ⊕ Fin 2) k →+* _) ↦ F g) hcomp
 
 /-- Membership in the span of a constant-coefficient polynomial is a
-coefficientwise condition.-/
+coefficientwise condition.
+@isnad1 id=iff.0h3v.s9.b0af95e7b720 from=translated src=- shape=01259a24 vocab=e477e877
+-/
 theorem mem_span_C_iff {R : Type*} [CommRing R] {g : R}
     {p : MvPolynomial (Fin 2) R} :
     p ∈ Ideal.span {(C g : MvPolynomial (Fin 2) R)} ↔
@@ -328,7 +360,9 @@ theorem mem_span_C_iff {R : Type*} [CommRing R] {g : R}
     refine Finset.sum_congr rfl fun m hm ↦ ?_
     rw [mul_comm, C_mul_monomial, ← hr m]
 
-/-- Renaming along an injective map preserves the total degree.-/
+/-- Renaming along an injective map preserves the total degree.
+@isnad1 id=eq.1h5v.s8.d23ea214a27b from=translated src=- shape=65d3e9ad vocab=7c0267b2
+-/
 theorem totalDegree_rename_of_injective {σ τ : Type*} [DecidableEq τ]
     {f : σ → τ} (hf : Function.Injective f) (p : MvPolynomial σ k) :
     (rename f p).totalDegree = p.totalDegree := by
@@ -339,7 +373,9 @@ theorem totalDegree_rename_of_injective {σ τ : Type*} [DecidableEq τ]
   exact Finsupp.sum_mapDomain_index (h := fun _ e ↦ e) (fun _ ↦ rfl)
     fun _ _ _ ↦ rfl
 
-/-- The sum substitution does not raise the total degree.-/
+/-- The sum substitution does not raise the total degree.
+@isnad1 id=le.0h2v.s9.1f4f67ca2cc1 from=translated src=- shape=e38b22ba vocab=c114df9d
+-/
 theorem totalDegree_addSubst_le (g : MvPolynomial (Fin 2) k) :
     (addSubst (k := k) g).totalDegree ≤ g.totalDegree := by
   classical
@@ -367,7 +403,9 @@ theorem totalDegree_addSubst_le (g : MvPolynomial (Fin 2) k) :
     _ = d i := mul_one _
 
 /-- Primality of the curve generator persists into the first block of the
-joint ring.-/
+joint ring.
+@isnad1 id=prime.1h2v.s9.75a478ea787e from=translated src=- shape=3484874a vocab=128e2404
+-/
 theorem prime_rename_inl {G : MvPolynomial (Fin 2) k} (hG : Prime G) :
     Prime (rename (Sum.inl : Fin 2 → Fin 2 ⊕ Fin 2) G) := by
   classical
@@ -385,7 +423,9 @@ theorem prime_rename_inl {G : MvPolynomial (Fin 2) k} (hG : Prime G) :
     (Set.range (Sum.inl : Fin 2 → Fin 2 ⊕ Fin 2))).2 h2
   rwa [rename_rename, ← heq] at h3
 
-/-- … and into the second block.-/
+/-- … and into the second block.
+@isnad1 id=prime.1h2v.s9.4e20cd58f3e5 from=translated src=- shape=3484874a vocab=1e4ec644
+-/
 theorem prime_rename_inr {G : MvPolynomial (Fin 2) k} (hG : Prime G) :
     Prime (rename (Sum.inr : Fin 2 → Fin 2 ⊕ Fin 2) G) := by
   classical
@@ -408,7 +448,9 @@ end JointDetermination
 /-- **Properness of the stabilizer**: a translation vector fixing a prime
 generator cannot be algebraically independent — otherwise evaluating the
 identity at the origin makes the generator constant. Consequently the
-translation locus of the curve-coset chain is at most one-dimensional.-/
+translation locus of the curve-coset chain is at most one-dimensional.
+@isnad1 id=false.3h4v.s10.90d90257bb4a from=translated src=- shape=d47f1bc8 vocab=04298b61
+-/
 theorem not_algebraicIndependent_of_translate_eq
     {K : Type*} [Field K] [Algebra k K]
     {c : Fin 2 → K} {F : MvPolynomial (Fin 2) k} (hFp : Prime F)

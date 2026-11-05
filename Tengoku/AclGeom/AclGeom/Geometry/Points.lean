@@ -49,24 +49,37 @@ the associated combinatorial geometry.-/
 def point (x : K) : ClosedIF k K :=
   ⟨racl k {x}, isRAC_racl _⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.007c708673f1 from=translated src=- shape=117c5127 vocab=376b5f00
+-/
 @[simp] theorem coe_point (x : K) :
     ((point k x).1 : IntermediateField k K) = racl k {x} := rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.f4f24f658789 from=translated src=- shape=597a8433 vocab=532ade52
+-/
 @[simp] theorem mem_point {x y : K} : y ∈ point k x ↔ y ∈ racl k {x} := Iff.rfl
 
 instance : IsConcreteLE (ClosedIF k K) K where
   coe_subset_coe' {E F} :=
     (SetLike.coe_subset_coe (S := E.1) (T := F.1)).trans le_iff.symm
 
+/--
+@isnad1 id=mem.0h3v.s5.34b629ee28ff from=translated src=- shape=f3d8929b vocab=0f60da36
+-/
 theorem mem_point_self (x : K) : x ∈ point k x :=
   subset_racl k {x} rfl
 
-/-- The set underlying a principal closure.-/
+/-- The set underlying a principal closure.
+@isnad1 id=eq.0h3v.s6.2c7f167dde1a from=translated src=- shape=3be4a395 vocab=179b45f2
+-/
 theorem coe_set_point (x : K) :
     ((point k x : ClosedIF k K) : Set K) = (racl k {x} : Set K) := rfl
 
 /-- The universal property of the principal closure: `point k x ≤ E` iff
-`x ∈ E`.-/
+`x ∈ E`.
+@isnad1 id=iff.0h4v.s6.a3e2cc0adcb8 from=translated src=- shape=31c5403c vocab=0a27553d
+-/
 theorem point_le_iff {x : K} {E : ClosedIF k K} : point k x ≤ E ↔ x ∈ E := by
   constructor
   · intro h
@@ -75,6 +88,9 @@ theorem point_le_iff {x : K} {E : ClosedIF k K} : point k x ≤ E ↔ x ∈ E :=
     rw [le_iff, coe_point, ← isRAC_iff_racl_eq.1 E.2]
     exact racl_mono (Set.singleton_subset_iff.2 h)
 
+/--
+@isnad1 id=iff.0h3v.s8.56e3bdbb2394 from=translated src=- shape=2c9ee516 vocab=a84d686b
+-/
 theorem point_eq_bot_iff {x : K} : point k x = ⊥ ↔ x ∈ (⊥ : ClosedIF k K) := by
   constructor
   · intro h
@@ -84,7 +100,9 @@ theorem point_eq_bot_iff {x : K} : point k x = ⊥ ↔ x ∈ (⊥ : ClosedIF k K
     exact le_antisymm (point_le_iff.2 h) bot_le
 
 /-- Exchange in point form: if `y ∈ P_x` but `y ∉ ⊥`, then `x ∈ P_y`
-(the engine of blueprint Lemma `principal-atom`).-/
+(the engine of blueprint Lemma `principal-atom`).
+@isnad1 id=mem.2h4v.s7.39a99b7dd86a from=translated src=- shape=2d60e46b vocab=a84d686b
+-/
 theorem mem_point_symm {x y : K} (hy : y ∈ point k x)
     (hy' : y ∉ (⊥ : ClosedIF k K)) : x ∈ point k y := by
   -- Reduce to `racl_exchange` over `S = ∅`.
@@ -98,7 +116,9 @@ theorem mem_point_symm {x y : K} (hy : y ∈ point k x)
   simpa using this
 
 /-- Principal closures of elements outside the bottom are atoms
-(blueprint Lemma `principal-atom`, forward direction).-/
+(blueprint Lemma `principal-atom`, forward direction).
+@isnad1 id=isatom.1h3v.s7.048badfd8355 from=translated src=- shape=dd07e391 vocab=a0b0f3af
+-/
 theorem isAtom_point {x : K} (hx : x ∉ (⊥ : ClosedIF k K)) :
     IsAtom (point k x) := by
   constructor
@@ -115,7 +135,9 @@ theorem isAtom_point {x : K} (hx : x ∉ (⊥ : ClosedIF k K)) :
     exact absurd (lt_of_le_of_lt this hb) (lt_irrefl _)
 
 /-- Every atom of `𝒢(K/k)` is a principal closure (blueprint Lemma
-`principal-atom`, converse direction).-/
+`principal-atom`, converse direction).
+@isnad1 id=ex.1h3v.s7.52f91defe12f from=translated src=- shape=7de81eb0 vocab=a0b0f3af
+-/
 theorem IsAtom.exists_eq_point {P : ClosedIF k K} (hP : IsAtom P) :
     ∃ x : K, x ∉ (⊥ : ClosedIF k K) ∧ P = point k x := by
   obtain ⟨x, hxP, hx0⟩ := SetLike.exists_of_lt (bot_lt_iff_ne_bot.2 hP.1)
@@ -126,7 +148,9 @@ theorem IsAtom.exists_eq_point {P : ClosedIF k K} (hP : IsAtom P) :
   · exact absurd (hP.2 _ h) fun hbot ↦ hx0 (point_eq_bot_iff.1 hbot)
 
 /-- Two principal closures agree iff their generators are mutually algebraic
-(blueprint Lemma `principal-atom`, last clause).-/
+(blueprint Lemma `principal-atom`, last clause).
+@isnad1 id=iff.0h4v.s6.974e678078ab from=translated src=- shape=54072bd9 vocab=0f60da36
+-/
 theorem point_eq_point_iff {x y : K} :
     point k x = point k y ↔ x ∈ point k y ∧ y ∈ point k x := by
   constructor

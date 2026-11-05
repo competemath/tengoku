@@ -58,7 +58,9 @@ variable {E L E' L' E'' L'' : IntermediateField k Ω}
   {h : E ≤ L} {h' : E' ≤ L'} {h'' : E'' ≤ L''}
 
 /-- Two extension equivalences are equal when their base and total
-equivalences are equal.-/
+equivalences are equal.
+@isnad1 id=eq.4h8v.s9.4f989cea226a from=translated src=- shape=a373c7f1 vocab=32816715
+-/
 @[ext] theorem ext {e e' : ExtensionEquiv h h'}
     (hbase : e.baseEquiv = e'.baseEquiv)
     (htotal : e.totalEquiv = e'.totalEquiv) : e = e' := by
@@ -68,7 +70,9 @@ equivalences are equal.-/
   cases htotal
   rfl
 
-/-- Pointwise form of the commutative-square condition.-/
+/-- Pointwise form of the commutative-square condition.
+@isnad1 id=eq.2h8v.s11.f3567a111069 from=translated src=- shape=2fc59c03 vocab=89e46fe8
+-/
 @[simp] theorem commutes_apply (e : ExtensionEquiv h h') (x : E) :
     e.totalEquiv (IntermediateField.inclusion h x) =
       IntermediateField.inclusion h' (e.baseEquiv x) :=
@@ -88,7 +92,9 @@ def ofEq (hE : E = E') (hL : L = L') : ExtensionEquiv h h' := by
   exact refl h
 
 /-- The base equivalence of an equality-induced extension equivalence is
-the canonical equality-induced equivalence.-/
+the canonical equality-induced equivalence.
+@isnad1 id=eq.4h6v.s8.8b883c2e28fb from=translated src=- shape=816587c9 vocab=d3e571e6
+-/
 @[simp] theorem ofEq_baseEquiv (hE : E = E') (hL : L = L') :
     (ofEq (h := h) (h' := h') hE hL).baseEquiv =
       IntermediateField.equivOfEq hE := by
@@ -118,22 +124,40 @@ def trans (e : ExtensionEquiv h h') (e' : ExtensionEquiv h' h'') :
     intro x
     simp
 
+/--
+@isnad1 id=eq.1h4v.s9.6ef62263c37b from=translated src=- shape=831b8329 vocab=5aaf34dc
+-/
 @[simp] theorem refl_baseEquiv (h : E ≤ L) :
     (refl h).baseEquiv = AlgEquiv.refl := rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.9d16380af80d from=translated src=- shape=6076aea2 vocab=2654f7e9
+-/
 @[simp] theorem refl_totalEquiv (h : E ≤ L) :
     (refl h).totalEquiv = AlgEquiv.refl := rfl
 
+/--
+@isnad1 id=eq.2h7v.s9.7255c62a325a from=translated src=- shape=0439b0d7 vocab=739de173
+-/
 @[simp] theorem symm_baseEquiv (e : ExtensionEquiv h h') :
     e.symm.baseEquiv = e.baseEquiv.symm := rfl
 
+/--
+@isnad1 id=eq.2h7v.s9.5e83b6a74387 from=translated src=- shape=26930466 vocab=81921bf7
+-/
 @[simp] theorem symm_totalEquiv (e : ExtensionEquiv h h') :
     e.symm.totalEquiv = e.totalEquiv.symm := rfl
 
+/--
+@isnad1 id=eq.3h10v.s9.730200c7ca6e from=translated src=- shape=afacd12d vocab=5e3065ae
+-/
 @[simp] theorem trans_baseEquiv (e : ExtensionEquiv h h')
     (e' : ExtensionEquiv h' h'') :
     (e.trans e').baseEquiv = e.baseEquiv.trans e'.baseEquiv := rfl
 
+/--
+@isnad1 id=eq.3h10v.s9.edc00c6d2b2d from=translated src=- shape=bed380f5 vocab=06cfec08
+-/
 @[simp] theorem trans_totalEquiv (e : ExtensionEquiv h h')
     (e' : ExtensionEquiv h' h'') :
     (e.trans e').totalEquiv = e.totalEquiv.trans e'.totalEquiv := rfl
@@ -143,7 +167,9 @@ end ExtensionEquiv
 /-- Finite-dimensionality is insensitive to equality-based changes of the
 displayed base and total intermediate fields.  Packaging the dependent
 transport here avoids rewriting through the inclusion proof in
-`extendScalars`.-/
+`extendScalars`.
+@isnad1 id=finitedi.5h6v.s10.f0aa1ee1bcf4 from=translated src=- shape=45ec9fa7 vocab=4e4bef5e
+-/
 theorem finiteDimensional_of_eq
     {E L E' L' : IntermediateField k Ω}
     (h : E ≤ L) (h' : E' ≤ L') (hE : E = E') (hL : L = L')
@@ -156,7 +182,9 @@ theorem finiteDimensional_of_eq
 /-- Normal closure is invariant under equivalences of both the original
 extension and the ambient algebraically closed field, when the base is
 fixed.  This is the functorial form of the `iSup`-of-field-ranges
-definition.-/
+definition.
+@isnad1 id=eq.0h7v.s7.0debe460808b from=translated src=- shape=ac005cd6 vocab=36870aac
+-/
 theorem map_normalClosure_eq_of_equiv
     {F K K' A A' : Type*}
     [Field F] [Field K] [Field K'] [Field A] [Field A']
@@ -181,7 +209,9 @@ theorem map_normalClosure_eq_of_equiv
 
 /-- If the lower scalar map is surjective, taking a normal closure is
 unchanged by restricting scalars along that map.  In particular this
-applies when the two base fields are equivalent.-/
+applies when the two base fields are equivalent.
+@isnad1 id=eq.1h4v.s8.439c4554872d from=translated src=- shape=f0d362da vocab=48502668
+-/
 theorem normalClosure_restrictScalars_of_surjective
     {F F' K A : Type*}
     [Field F] [Field F'] [Field K] [Field A]
@@ -222,7 +252,9 @@ def normalClosureOver (h : E ≤ L) : IntermediateField (↥E) Ω :=
   normalClosure (↥E) (extendScalars h) Ω
 
 /-- The original finite extension embeds literally in its ambient normal
-closure.-/
+closure.
+@isnad1 id=le.1h4v.s8.95b31f6881f1 from=translated src=- shape=0a875b7d vocab=d8b2c9eb
+-/
 theorem extendScalars_le_normalClosureOver (h : E ≤ L) :
     extendScalars h ≤ normalClosureOver h :=
   le_normalClosure _
@@ -234,7 +266,9 @@ def canonicalNormalClosure (h : E ≤ L) :
     IntermediateField (↥E) (AlgebraicClosure (↥E)) :=
   normalClosure (↥E) (extendScalars h) (AlgebraicClosure (↥E))
 
-/-- The canonical normal closure of a finite extension is finite.-/
+/-- The canonical normal closure of a finite extension is finite.
+@isnad1 id=finitedi.2h4v.s12.df0b8d9780e1 from=translated src=- shape=b391aa51 vocab=e331a82c
+-/
 theorem canonicalNormalClosure_finiteDimensional (h : E ≤ L)
     (hfin : FiniteDimensional (↥E) (↥(extendScalars h))) :
     FiniteDimensional (↥E) (↥(canonicalNormalClosure h)) := by
@@ -242,7 +276,9 @@ theorem canonicalNormalClosure_finiteDimensional (h : E ≤ L)
   exact normalClosure.is_finiteDimensional
     (↥E) (↥(extendScalars h)) (AlgebraicClosure (↥E))
 
-/-- The canonical normal closure is normal over its base.-/
+/-- The canonical normal closure is normal over its base.
+@isnad1 id=normal.2h4v.s11.e5c6a03f29f7 from=translated src=- shape=2dc653a2 vocab=a7c90547
+-/
 theorem canonicalNormalClosure_normal (h : E ≤ L)
     (halg : Algebra.IsAlgebraic (↥E) (↥(extendScalars h))) :
     Normal (↥E) (↥(canonicalNormalClosure h)) := by
@@ -309,7 +345,9 @@ namespace NormalExtensionEquiv
 variable {E L E' L' E'' L'' : IntermediateField k Ω}
   {h : E ≤ L} {h' : E' ≤ L'} {h'' : E'' ≤ L''}
 
-/-- Pointwise form of compatibility on the normal covers.-/
+/-- Pointwise form of compatibility on the normal covers.
+@isnad1 id=eq.2h8v.s16.83e44f526725 from=translated src=- shape=1b205848 vocab=4f25194c
+-/
 @[simp] theorem normal_commutes_apply (e : NormalExtensionEquiv h h')
     (x : E) :
     e.normalEquiv
@@ -319,7 +357,9 @@ variable {E L E' L' E'' L'' : IntermediateField k Ω}
   DFunLike.congr_fun e.normal_commutes x
 
 /-- Normal-extension equivalences are determined by their extension square
-and their normal-cover equivalence.-/
+and their normal-cover equivalence.
+@isnad1 id=eq.4h8v.s14.7781c8904694 from=translated src=- shape=99bcac0a vocab=6a7f78eb
+-/
 @[ext] theorem ext {e e' : NormalExtensionEquiv h h'}
     (hext : e.toExtensionEquiv = e'.toExtensionEquiv)
     (hnormal : e.normalEquiv = e'.normalEquiv) : e = e' := by
@@ -421,13 +461,18 @@ noncomputable def normalLift (e : ExtensionEquiv h h') :
   intro x
   exact n.commutes x
 
+/--
+@isnad1 id=eq.2h7v.s7.5074846c9928 from=translated src=- shape=39ecf805 vocab=c990fcf2
+-/
 @[simp] theorem normalLift_toExtensionEquiv (e : ExtensionEquiv h h') :
     e.normalLift.toExtensionEquiv = e := by
   simp [normalLift]
 
 end ExtensionEquiv
 
-/-- A normal closure of a finite extension remains finite.-/
+/-- A normal closure of a finite extension remains finite.
+@isnad1 id=finitedi.2h4v.s10.191b8f282089 from=translated src=- shape=534773e8 vocab=6f69cf35
+-/
 theorem normalClosureOver_finiteDimensional (h : E ≤ L)
     (hfin : FiniteDimensional (↥E) (↥(extendScalars h))) :
     FiniteDimensional (↥E) (↥(normalClosureOver h)) := by
@@ -435,7 +480,9 @@ theorem normalClosureOver_finiteDimensional (h : E ≤ L)
   exact normalClosure.is_finiteDimensional (↥E) (↥(extendScalars h)) Ω
 
 /-- Inside an algebraically closed ambient field, the normal closure of an
-algebraic extension is normal over its base.-/
+algebraic extension is normal over its base.
+@isnad1 id=normal.2h4v.s10.c74eebed6160 from=translated src=- shape=d9e0a2c9 vocab=1e1aed86
+-/
 theorem normalClosureOver_normal [IsAlgClosed Ω] (h : E ≤ L)
     (halg : Algebra.IsAlgebraic (↥E) (↥(extendScalars h))) :
     Normal (↥E) (↥(normalClosureOver h)) := by
@@ -461,7 +508,9 @@ def liftEmbedding (h : E ≤ L)
   (embeddingEquivNormal h).symm f
 
 /-- Composing a lifted branch with the normal-cover inclusion recovers
-the original ambient embedding.-/
+the original ambient embedding.
+@isnad1 id=eq.1h5v.s12.2a719b1149f5 from=translated src=- shape=4aa1c6d4 vocab=c14b2885
+-/
 @[simp] theorem normalClosure_val_comp_liftEmbedding (h : E ≤ L)
     (f : (↥(extendScalars h)) →ₐ[↥E] Ω) :
     (normalClosureOver h).val.comp (liftEmbedding h f) = f :=
@@ -474,7 +523,9 @@ def selectedEmbedding (h : E ≤ L) :
   liftEmbedding h (extendScalars h).val
 
 /-- The selected embedding evaluates to the original literal branch in
-the ambient field.-/
+the ambient field.
+@isnad1 id=eq.1h4v.s11.4604336eb732 from=translated src=- shape=581849fb vocab=3f360ca5
+-/
 @[simp] theorem normalClosure_val_comp_selectedEmbedding (h : E ≤ L) :
     (normalClosureOver h).val.comp (selectedEmbedding h) =
       (extendScalars h).val :=
@@ -506,11 +557,15 @@ def targetField : IntermediateField k Ω :=
 def branchField : IntermediateField k Ω :=
   adjoin k {P.source, P.target}
 
-/-- The source function field embeds in the selected branch field.-/
+/-- The source function field embeds in the selected branch field.
+@isnad1 id=le.0h3v.s6.dfb2f0cfab5f from=translated src=- shape=9734f8cc vocab=c3b5eab9
+-/
 theorem sourceField_le_branchField : P.sourceField ≤ P.branchField :=
   adjoin.mono k _ _ (by simp)
 
-/-- The target function field embeds in the selected branch field.-/
+/-- The target function field embeds in the selected branch field.
+@isnad1 id=le.0h3v.s6.bed7aca01cea from=translated src=- shape=9734f8cc vocab=ef7b0f08
+-/
 theorem targetField_le_branchField : P.targetField ≤ P.branchField :=
   adjoin.mono k _ _ (by simp)
 
@@ -522,7 +577,9 @@ def branchOverSource : IntermediateField (↥P.sourceField) Ω :=
 def branchOverTarget : IntermediateField (↥P.targetField) Ω :=
   extendScalars P.targetField_le_branchField
 
-/-- Over the source field, the branch field is generated by the target.-/
+/-- Over the source field, the branch field is generated by the target.
+@isnad1 id=eq.0h3v.s7.31054b5eb8ea from=translated src=- shape=5ca59286 vocab=5f37b289
+-/
 theorem branchOverSource_eq_adjoin_target :
     P.branchOverSource = adjoin (↥P.sourceField) {P.target} := by
   refine restrictScalars_injective k ?_
@@ -532,7 +589,9 @@ theorem branchOverSource_eq_adjoin_target :
   rw [adjoin_adjoin_left]
   simp only [Set.union_singleton, Set.pair_comm]
 
-/-- The selected branch is a finite cover of its source function field.-/
+/-- The selected branch is a finite cover of its source function field.
+@isnad1 id=finitedi.0h3v.s10.c1f4624d0d01 from=translated src=- shape=61eb5981 vocab=5eb428c4
+-/
 theorem branchOverSource_finiteDimensional :
     FiniteDimensional (↥P.sourceField) (↥P.branchOverSource) := by
   rw [P.branchOverSource_eq_adjoin_target]
@@ -556,7 +615,9 @@ def chainField (Q : FiniteCorrespondencePair k Ω) :
     IntermediateField k Ω :=
   adjoin k {P.source, P.target, Q.target}
 
-/-- The left branch field embeds in the joint chain field.-/
+/-- The left branch field embeds in the joint chain field.
+@isnad1 id=le.0h4v.s6.0624507bb180 from=translated src=- shape=24b76a7c vocab=6a4e6016
+-/
 theorem branchField_le_chainField (Q : FiniteCorrespondencePair k Ω) :
     P.branchField ≤ P.chainField Q := by
   unfold branchField chainField
@@ -568,14 +629,18 @@ theorem branchField_le_chainField (Q : FiniteCorrespondencePair k Ω) :
   · exact Or.inr (Or.inl rfl)
 
 /-- When the middle coordinates agree, the right branch field embeds in
-the joint chain field.-/
+the joint chain field.
+@isnad1 id=le.1h4v.s6.814df4138daa from=translated src=- shape=c1f6f4c8 vocab=ca238003
+-/
 theorem rightBranchField_le_chainField
     (Q : FiniteCorrespondencePair k Ω) (h : P.target = Q.source) :
     Q.branchField ≤ P.chainField Q :=
   adjoin.mono k _ _ (by simp [← h])
 
 /-- The endpoint branch selected by composition embeds in the joint chain
-field.-/
+field.
+@isnad1 id=le.1h4v.s6.ca00214afaa6 from=translated src=- shape=f21d629b vocab=b21ff45c
+-/
 theorem compositeBranchField_le_chainField
     (Q : FiniteCorrespondencePair k Ω) (h : P.target = Q.source) :
     (P.comp Q h).branchField ≤ P.chainField Q := by
@@ -604,7 +669,9 @@ def chainOverComposite (Q : FiniteCorrespondencePair k Ω)
   extendScalars (P.compositeBranchField_le_chainField Q h)
 
 /-- Over the composite endpoint branch, the chain field is generated by
-the shared middle coordinate.-/
+the shared middle coordinate.
+@isnad1 id=eq.1h4v.s8.9871facdce95 from=translated src=- shape=b100db4f vocab=31c8894e
+-/
 theorem chainOverComposite_eq_adjoin_middle
     (Q : FiniteCorrespondencePair k Ω) (h : P.target = Q.source) :
     P.chainOverComposite Q h =
@@ -620,7 +687,9 @@ theorem chainOverComposite_eq_adjoin_middle
   tauto
 
 /-- The joint chain field is finite over the selected composite endpoint
-branch.-/
+branch.
+@isnad1 id=finitedi.1h4v.s10.96db4d7da6a0 from=translated src=- shape=1cb5d8c4 vocab=4f7de6b9
+-/
 theorem chainOverComposite_finiteDimensional
     (Q : FiniteCorrespondencePair k Ω) (h : P.target = Q.source) :
     FiniteDimensional (↥(P.comp Q h).branchField)

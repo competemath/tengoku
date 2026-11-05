@@ -38,7 +38,9 @@ variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 namespace AclGeom
 
 /-- `rem:psi-hyp`(c): the relative algebraic closure of `S` over `k̄ = acl_k(∅)` is the relative
-algebraic closure of `S` over `k`. Named consumer: `AclGeom.ClosedIF.baseClosureEquiv`.-/
+algebraic closure of `S` over `k`. Named consumer: `AclGeom.ClosedIF.baseClosureEquiv`.
+@isnad1 id=eq.0h3v.s8.2c895fa8ef50 from=translated src=- shape=78097425 vocab=405a86b1
+-/
 theorem racl_baseClosure_coe (S : Set K) :
     ((racl (↥(racl k (∅ : Set K))) S : IntermediateField _ K) : Set K) = racl k S := by
   ext x
@@ -82,13 +84,17 @@ def baseClosureEquiv : ClosedIF (↥(racl k (∅ : Set K))) K ≃o ClosedIF k K 
   right_inv _ := Subtype.ext (SetLike.coe_injective rfl)
   map_rel_iff' := Iff.rfl
 
-/-- The order isomorphism `AclGeom.ClosedIF.baseClosureEquiv` preserves carriers.-/
+/-- The order isomorphism `AclGeom.ClosedIF.baseClosureEquiv` preserves carriers.
+@isnad1 id=eq.0h3v.s10.853e198f2bbb from=translated src=- shape=90e5ba0a vocab=59223477
+-/
 @[simp]
 theorem coe_baseClosureEquiv (E : ClosedIF (↥(racl k (∅ : Set K))) K) :
     ((baseClosureEquiv k K E : ClosedIF k K) : Set K) = E :=
   rfl
 
-/-- The inverse of `AclGeom.ClosedIF.baseClosureEquiv` preserves carriers.-/
+/-- The inverse of `AclGeom.ClosedIF.baseClosureEquiv` preserves carriers.
+@isnad1 id=eq.0h3v.s10.0501ef843bc7 from=translated src=- shape=a693a3a2 vocab=39c6927f
+-/
 @[simp]
 theorem coe_baseClosureEquiv_symm (F : ClosedIF k K) :
     (((baseClosureEquiv k K).symm F : ClosedIF (↥(racl k (∅ : Set K))) K) : Set K) = F :=

@@ -60,13 +60,18 @@ noncomputable def adeleProjPi (D : Divisor k F) :
   LinearMap.pi fun P ↦
     (P.filtrationProj (D P).toNat).comp (LinearMap.proj P)
 
+/--
+@isnad1 id=eq.0h5v.s9.9dfe748d7c5e from=translated src=- shape=4c9f54e9 vocab=8caf95dd
+-/
 theorem adeleProjPi_apply (D : Divisor k F)
     (α : (P : Place k F) → F) (P : Place k F) :
     adeleProjPi D α P = P.filtrationProj (D P).toNat (α P) := rfl
 
 /-- The componentwise projection preserves the adeles: the image
 coordinate at `P` has order at least `−D(P)`, so the exceptional set
-is inside the support of `D`.-/
+is inside the support of `D`.
+@isnad1 id=mem.0h4v.s9.19f884545333 from=translated src=- shape=e8200244 vocab=93bc4ace
+-/
 theorem adeleProjPi_mem_adeleSubmodule (D : Divisor k F)
     (α : (P : Place k F) → F) :
     adeleProjPi D α ∈ adeleSubmodule k F := by
@@ -103,10 +108,16 @@ noncomputable def adeleSinglePi (P : Place k F) :
     by_cases h : Q = P <;> simp [h]
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
+/--
+@isnad1 id=eq.1h5v.s8.1945833d5add from=translated src=- shape=d552e8b8 vocab=8faad419
+-/
 theorem adeleSinglePi_apply_ne (P : Place k F) {Q : Place k F}
     (hQ : Q ≠ P) (x : F) : adeleSinglePi (k := k) P x Q = 0 :=
   ite_eq_right hQ
 
+/--
+@isnad1 id=mem.0h4v.s9.701754307b95 from=translated src=- shape=3c77cc6f vocab=6322b27b
+-/
 theorem adeleSinglePi_mem_adeleSubmodule (P : Place k F) (x : F) :
     adeleSinglePi (k := k) P x ∈ adeleSubmodule k F := by
   refine Set.Finite.subset (Set.finite_singleton P) fun Q hQ ↦ ?_
@@ -140,7 +151,9 @@ noncomputable def blockOp (D : Divisor k F) (f g : F)
 
 /-- The residue of `α_P dg` vanishes at almost every place: outside
 the exceptional set of `α` and the poles of `g`, both entries are
-integral.-/
+integral.
+@isnad1 id=finite.0h4v.s9.4676494330f4 from=translated src=- shape=0b263a74 vocab=483e2dd5
+-/
 theorem residue_support_finite (g : F) (α : ↥(adeleSubmodule k F)) :
     {P : Place k F |
       P.residue ((α : (Q : Place k F) → F) P) g ≠ 0}.Finite := by
@@ -204,12 +217,17 @@ noncomputable def residueFunctional (g : F) :
     rw [finsum_congr h1, ← smul_finsum]
     rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.89a426a68a31 from=translated src=- shape=2656daad vocab=40d25043
+-/
 theorem residueFunctional_apply (g : F) (α : ↥(adeleSubmodule k F)) :
     residueFunctional g α = ∑ᶠ P : Place k F,
       P.residue ((α : (Q : Place k F) → F) P) g := rfl
 
 /-- The residue functional is additive in its differential
-parameter.-/
+parameter.
+@isnad1 id=eq.0h4v.s11.5f1e839d2f95 from=translated src=- shape=d6c01d32 vocab=df8a5c26
+-/
 theorem residueFunctional_add (g h : F) :
     residueFunctional (k := k) (F := F) (g + h) =
       residueFunctional g + residueFunctional h := by
@@ -225,7 +243,9 @@ theorem residueFunctional_add (g h : F) :
   exact finsum_add_distrib (residue_support_finite g α)
     (residue_support_finite h α)
 
-/-- The residue functional scales in its differential parameter.-/
+/-- The residue functional scales in its differential parameter.
+@isnad1 id=eq.0h4v.s11.40da9be11913 from=translated src=- shape=86a7b02c vocab=b5e2556b
+-/
 theorem residueFunctional_smul (c : k) (g : F) :
     residueFunctional (k := k) (F := F) (c • g) =
       c • residueFunctional g := by
@@ -248,6 +268,9 @@ noncomputable def residueFunctionalLinearMap :
   map_add' := residueFunctional_add
   map_smul' := residueFunctional_smul
 
+/--
+@isnad1 id=eq.0h3v.s12.9b19df102f05 from=translated src=- shape=8d55f539 vocab=3c9e6711
+-/
 @[simp]
 theorem residueFunctionalLinearMap_apply (g : F) :
     residueFunctionalLinearMap (k := k) (F := F) g =

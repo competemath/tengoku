@@ -43,7 +43,9 @@ variable {O : ValuationSubring F}
 
 /-- **The reduce lemma**: an element of `k(x)` that is integral at a
 place where `x` is small is congruent to a base constant modulo the
-maximal ideal.-/
+maximal ideal.
+@isnad1 id=ex.5h5v.s9.a0f9472febb4 from=translated src=- shape=e8c56b67 vocab=1b608bc6
+-/
 theorem exists_sub_valuation_lt_one_of_mem_adjoin
     (hk : ∀ c : k, algebraMap k F c ∈ O) {x : F}
     (hxtr : Transcendental k x) (hx : O.valuation x < 1) {a : F}
@@ -153,7 +155,9 @@ set_option maxHeartbeats 800000 in
 whose residues admit no nontrivial vanishing `k`-combination are linearly
 independent over `k(x)`. Normalize a vanishing combination by the
 coefficient of minimal order, reduce the coefficients to constants, and
-contradict.-/
+contradict.
+@isnad1 id=linearin.5h6v.s9.445ad64ccc29 from=translated src=- shape=cdf9c376 vocab=146a3fa4
+-/
 theorem linearIndependent_of_residue_independent
     (hk : ∀ c : k, algebraMap k F c ∈ O) {x : F}
     (hxtr : Transcendental k x) (hx : O.valuation x < 1)
@@ -282,7 +286,9 @@ congruent to a base constant modulo the maximal ideal. If not, the
 powers of the element would have independent residues — a minimal
 vanishing combination factors over the algebraically closed base, and a
 small-valued linear factor yields a reduction — contradicting the
-degree bound.-/
+degree bound.
+@isnad1 id=ex.1h4v.s9.e5ff392dfdfb from=translated src=- shape=581b9b8c vocab=787f6c62
+-/
 theorem Place.exists_residue (P : Place k F) {u : F}
     (hu : P.val.valuation u ≤ 1) :
     ∃ c : k, P.val.valuation (u - algebraMap k F c) < 1 := by

@@ -35,7 +35,9 @@ variable {k : Type*} {Ω : Type*} [Field k] [Field Ω] [Algebra k Ω]
 
 /-- Membership in `racl k S` via an ambient-coefficient annihilator: `x` is
 in the closure iff some nonzero polynomial over `Ω` with coefficients in
-`k(S)` vanishes at `x`.-/
+`k(S)` vanishes at `x`.
+@isnad1 id=iff.0h4v.s7.f9c057706d9c from=translated src=- shape=e2092e77 vocab=a6217ab9
+-/
 theorem mem_racl_iff_exists_poly {S : Set Ω} {x : Ω} :
     x ∈ racl k S ↔ ∃ p : Polynomial Ω, p ≠ 0 ∧ p.eval x = 0 ∧
       ∀ n, p.coeff n ∈ adjoin k S := by
@@ -53,7 +55,9 @@ theorem mem_racl_iff_exists_poly {S : Set Ω} {x : Ω} :
 
 /-- **Ambient invariance of `racl`** (blueprint §9.1, opening line), in
 embedding form: along any `k`-algebra embedding `ι : N →ₐ[k] Ω` of a
-field `N`, closure membership is the same computed in `N` or in `Ω`.-/
+field `N`, closure membership is the same computed in `N` or in `Ω`.
+@isnad1 id=iff.0h6v.s7.ef02b8c95e8a from=translated src=- shape=b351da1d vocab=45ebe290
+-/
 theorem algHom_mem_racl_image_iff {N : Type*} [Field N] [Algebra k N]
     (ι : N →ₐ[k] Ω) {S : Set N} {x : N} :
     ι x ∈ racl k (⇑ι '' S) ↔ x ∈ racl k S := by
@@ -104,7 +108,9 @@ theorem algHom_mem_racl_image_iff {N : Type*} [Field N] [Algebra k N]
 after embedding them in a larger ambient field.  This is weaker than
 commuting `racl` with an embedding: the larger ambient field may contain
 additional algebraic elements, but mutual algebraicity of the generators
-is still preserved.-/
+is still preserved.
+@isnad1 id=eq.1h6v.s7.ed62544ac8f4 from=translated src=- shape=9ba467e9 vocab=86f540c5
+-/
 theorem algHom_racl_image_eq_of_racl_eq
     {N : Type*} [Field N] [Algebra k N]
     (ι : N →ₐ[k] Ω) {S T : Set N}
@@ -120,7 +126,9 @@ theorem algHom_racl_image_eq_of_racl_eq
     rw [h]
     exact subset_racl k T hx
 
-/-- Ambient invariance in embedding form, singleton case.-/
+/-- Ambient invariance in embedding form, singleton case.
+@isnad1 id=iff.0h6v.s8.71c26b2f0b9b from=translated src=- shape=8bbba865 vocab=523e1b88
+-/
 theorem algHom_mem_racl_singleton_iff {N : Type*} [Field N] [Algebra k N]
     (ι : N →ₐ[k] Ω) {w x : N} :
     ι x ∈ racl k ({ι w} : Set Ω) ↔ x ∈ racl k ({w} : Set N) := by
@@ -129,7 +137,9 @@ theorem algHom_mem_racl_singleton_iff {N : Type*} [Field N] [Algebra k N]
 
 /-- Equivariance of ambient closure membership along an embedding: a
 `k`-automorphism of the source preserves interalgebraicity relations seen
-through the embedding.-/
+through the embedding.
+@isnad1 id=mem.1h7v.s9.4028e81aca3b from=translated src=- shape=5b460fad vocab=3a7cb700
+-/
 theorem algHom_mem_racl_singleton_map {N : Type*} [Field N] [Algebra k N]
     (ι : N →ₐ[k] Ω) (σ : N ≃ₐ[k] N) {z w : N}
     (h : ι z ∈ racl k ({ι w} : Set Ω)) :
@@ -139,7 +149,9 @@ theorem algHom_mem_racl_singleton_map {N : Type*} [Field N] [Algebra k N]
 
 /-- **Base insensitivity of the closure** (blueprint §9.1: closures over
 `k` and over `k̄` agree): enlarging the base field by elements algebraic
-over it does not change `racl`.-/
+over it does not change `racl`.
+@isnad1 id=iff.1h5v.s8.c09525f2a9a8 from=translated src=- shape=a167eb71 vocab=002b2cfb
+-/
 theorem mem_racl_base_iff_of_algebraic {K₀ : IntermediateField k Ω}
     (halg : ∀ y ∈ K₀, IsAlgebraic k y) {S : Set Ω} {z : Ω} :
     z ∈ racl (↥K₀) S ↔ z ∈ racl k S := by
@@ -171,7 +183,9 @@ theorem mem_racl_base_iff_of_algebraic {K₀ : IntermediateField k Ω}
 
 /-- Pair independence is insensitive to algebraic base enlargement: an
 independent pair over `k` stays independent over any subextension of
-algebraic elements.-/
+algebraic elements.
+@isnad1 id=algebrai.2h5v.s7.f0608fa845be from=translated src=- shape=a7cd70b4 vocab=e523b34d
+-/
 theorem algebraicIndependent_pair_base_of_algebraic
     {K₀ : IntermediateField k Ω} (halg : ∀ y ∈ K₀, IsAlgebraic k y)
     {x a : Ω} (hind : AlgebraicIndependent k ![x, a]) :

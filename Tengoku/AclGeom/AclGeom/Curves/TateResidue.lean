@@ -56,6 +56,9 @@ noncomputable def Place.toSubmodule (P : Place k F) : Submodule k F where
       exact hx
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
+/--
+@isnad1 id=iff.0h4v.s8.b4db68eb105b from=translated src=- shape=840b693d vocab=bc0ed8c3
+-/
 theorem Place.mem_toSubmodule_iff {P : Place k F} {x : F} :
     x ∈ P.toSubmodule ↔ P.val.valuation x ≤ 1 :=
   ⟨fun h ↦ h, fun h ↦ h⟩
@@ -84,10 +87,16 @@ noncomputable def Place.filtration (P : Place k F) (m : ℕ) :
         valuation_algebraMap_eq_one P.algebraMap_mem hc0, one_mul]
       exact hx
 
+/--
+@isnad1 id=iff.0h5v.s9.060214f86f55 from=translated src=- shape=17efdb9c vocab=930cbb9e
+-/
 theorem Place.mem_filtration_iff {P : Place k F} {m : ℕ} {x : F} :
     x ∈ P.filtration m ↔ P.val.valuation (P.pi ^ m * x) ≤ 1 :=
   ⟨fun h ↦ h, fun h ↦ h⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.1e7d092f6408 from=translated src=- shape=042753fa vocab=64b95fb1
+-/
 theorem Place.filtration_zero (P : Place k F) :
     P.filtration 0 = P.toSubmodule := by
   ext x
@@ -96,7 +105,9 @@ theorem Place.filtration_zero (P : Place k F) :
 
 /-- **The one-step gauge**: each filtration step is spanned over the
 previous one by a single negative monomial — the residue at the top
-order.-/
+order.
+@isnad1 id=le.0h4v.s8.6ebc05225ae0 from=translated src=- shape=bb1c7e0e vocab=6a639e9c
+-/
 theorem Place.filtration_succ_le (P : Place k F) (m : ℕ) :
     P.filtration (m + 1) ≤ P.filtration m ⊔
       Submodule.span k {P.pi ^ (-(m + 1 : ℕ) : ℤ)} := by
@@ -145,7 +156,9 @@ theorem Place.filtration_succ_le (P : Place k F) (m : ℕ) :
       (Submodule.mem_sup_right
         (Submodule.smul_mem _ _ (Submodule.mem_span_singleton_self _)))
 
-/-- Filtration membership in terms of the order.-/
+/-- Filtration membership in terms of the order.
+@isnad1 id=iff.0h5v.s7.b48cafd3f159 from=translated src=- shape=9643b15e vocab=9f9207e2
+-/
 theorem Place.mem_filtration_iff_ord {P : Place k F} {m : ℕ} {x : F} :
     x ∈ P.filtration m ↔ x = 0 ∨ -(m : ℤ) ≤ P.ord x := by
   rw [Place.mem_filtration_iff]
@@ -165,7 +178,9 @@ theorem Place.mem_filtration_iff_ord {P : Place k F} {m : ℕ} {x : F} :
 
 /-- **Commensurability of the filtration** (the analytic input to
 Tate's residue): every filtration stage is almost contained in the
-valuation ring.-/
+valuation ring.
+@isnad1 id=almostle.0h4v.s6.923e7d0704ac from=translated src=- shape=44fb697d vocab=97cda726
+-/
 theorem Place.filtration_almostLE (P : Place k F) (m : ℕ) :
     AlmostLE (P.filtration m) P.toSubmodule := by
   induction m with
@@ -180,7 +195,9 @@ theorem Place.filtration_almostLE (P : Place k F) (m : ℕ) :
     exact P.filtration_succ_le m
 
 /-- Multiplication by a nonzero element sends the valuation ring into
-a filtration stage: the pole order.-/
+a filtration stage: the pole order.
+@isnad1 id=le.1h4v.s8.3d6f032d22a2 from=translated src=- shape=e3f2dd66 vocab=98fb72a8
+-/
 theorem Place.mulLeft_toSubmodule_le_filtration (P : Place k F)
     {h : F} (hh : h ≠ 0) :
     P.toSubmodule.map (LinearMap.mulLeft k h) ≤
@@ -206,7 +223,9 @@ theorem Place.mulLeft_toSubmodule_le_filtration (P : Place k F)
 
 /-- **Multiplication operators respect the commensurability class**:
 `h · O_P ≺ O_P` — Tate's condition for the function field to act
-through his algebra `E`.-/
+through his algebra `E`.
+@isnad1 id=almostle.1h4v.s7.6b4dade40e07 from=translated src=- shape=0de3c8c5 vocab=963473f3
+-/
 theorem Place.mulLeft_almostLE (P : Place k F) {h : F} (hh : h ≠ 0) :
     AlmostLE (P.toSubmodule.map (LinearMap.mulLeft k h))
       P.toSubmodule :=
@@ -223,11 +242,17 @@ noncomputable def Place.proj (P : Place k F) : F →ₗ[k] F :=
     (Classical.choose_spec (Submodule.exists_isCompl P.toSubmodule))
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
+/--
+@isnad1 id=mem.0h4v.s8.27ea0cb74c71 from=translated src=- shape=16960338 vocab=b1c8ab0a
+-/
 theorem Place.proj_mem (P : Place k F) (x : F) :
     P.proj x ∈ P.toSubmodule :=
   Submodule.projection_apply_mem _ x
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
+/--
+@isnad1 id=eq.1h4v.s8.3098f3c03dc8 from=translated src=- shape=5f240351 vocab=b1c8ab0a
+-/
 theorem Place.proj_eq_self (P : Place k F) {x : F}
     (hx : x ∈ P.toSubmodule) : P.proj x = x := by
   rw [Place.proj]
@@ -244,6 +269,9 @@ noncomputable def Place.filtrationProj (P : Place k F) (m : ℕ) :
     (Classical.choose (Submodule.exists_isCompl (P.filtration m)))
     (Classical.choose_spec (Submodule.exists_isCompl (P.filtration m)))
 
+/--
+@isnad1 id=mem.0h5v.s8.596721ea0e14 from=translated src=- shape=b490e222 vocab=8846402c
+-/
 theorem Place.filtrationProj_mem (P : Place k F) (m : ℕ) (x : F) :
     P.filtrationProj m x ∈ P.filtration m :=
   Submodule.projection_apply_mem _ x
@@ -257,10 +285,15 @@ noncomputable def Place.commutatorProj (P : Place k F) (h : F) :
   P.proj ∘ₗ LinearMap.mulLeft k h - LinearMap.mulLeft k h ∘ₗ P.proj
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
+/--
+@isnad1 id=eq.0h5v.s9.e627fc8ca210 from=translated src=- shape=17777abd vocab=9af78a75
+-/
 theorem Place.commutatorProj_apply (P : Place k F) (h x : F) :
     P.commutatorProj h x = P.proj (h * x) - h * P.proj x := rfl
 
-/-- `E₁`-membership: the range of `c(h)` is almost inside `O_P`.-/
+/-- `E₁`-membership: the range of `c(h)` is almost inside `O_P`.
+@isnad1 id=almostle.1h4v.s7.8e079a68721f from=translated src=- shape=8540917f vocab=9cd275da
+-/
 theorem Place.commutatorProj_range_almostLE (P : Place k F) {h : F}
     (hh : h ≠ 0) :
     AlmostLE (LinearMap.range (P.commutatorProj h)) P.toSubmodule := by
@@ -276,7 +309,9 @@ theorem Place.commutatorProj_range_almostLE (P : Place k F) {h : F}
 
 /-- `E₂`-membership: `c(h)` sends the valuation ring into a
 finite-dimensional subspace, since it factors through the defect of
-`h · O_P` over `O_P`.-/
+`h · O_P` over `O_P`.
+@isnad1 id=finitedi.1h4v.s9.65fdfb57de73 from=translated src=- shape=5599564b vocab=3783d57c
+-/
 theorem Place.finiteDimensional_commutatorProj_map (P : Place k F)
     {h : F} (hh : h ≠ 0) :
     FiniteDimensional k
@@ -306,7 +341,9 @@ theorem Place.finiteDimensional_commutatorProj_map (P : Place k F)
   exact Submodule.finiteDimensional_of_le hmap
 
 /-- Multiplication respects the commensurability class, including by
-zero.-/
+zero.
+@isnad1 id=almostle.0h4v.s7.24820c81306a from=translated src=- shape=cc34ed43 vocab=963473f3
+-/
 theorem Place.mulLeft_map_almostLE (P : Place k F) (h : F) :
     AlmostLE (P.toSubmodule.map (LinearMap.mulLeft k h))
       P.toSubmodule := by
@@ -317,7 +354,9 @@ theorem Place.mulLeft_map_almostLE (P : Place k F) (h : F) :
     exact Submodule.zero_mem _
   · exact P.mulLeft_almostLE hh
 
-/-- The commutator operator is trace-class.-/
+/-- The commutator operator is trace-class.
+@isnad1 id=istracec.0h4v.s6.358fa4aeb518 from=translated src=- shape=3a4d472f vocab=7d467ea2
+-/
 theorem Place.isTraceClass_commutatorProj (P : Place k F) (h : F) :
     IsTraceClass P.toSubmodule (P.commutatorProj h) := by
   rcases eq_or_ne h 0 with rfl | hh
@@ -332,7 +371,9 @@ theorem Place.isTraceClass_commutatorProj (P : Place k F) (h : F) :
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
 /-- **Tate's commutator identity**: the residue commutator decomposes
-through the local operators, using commutativity of multiplication.-/
+through the local operators, using commutativity of multiplication.
+@isnad1 id=eq.0h5v.s10.9f98e7d565da from=translated src=- shape=8cd102e9 vocab=21468abd
+-/
 theorem Place.commutator_eq (P : Place k F) (f g : F) :
     (P.proj ∘ₗ LinearMap.mulLeft k f) ∘ₗ LinearMap.mulLeft k g -
       LinearMap.mulLeft k g ∘ₗ (P.proj ∘ₗ LinearMap.mulLeft k f) =
@@ -353,7 +394,9 @@ noncomputable def Place.residue (P : Place k F) (f g : F) : k :=
     LinearMap.mulLeft k g ∘ₗ (P.proj ∘ₗ LinearMap.mulLeft k f))
 
 /-- The residue commutator is trace-class, hence finite-potent with a
-well-defined trace.-/
+well-defined trace.
+@isnad1 id=istracec.0h5v.s10.80370aea7d80 from=translated src=- shape=f3863d4f vocab=131dee18
+-/
 theorem Place.isTraceClass_residue_commutator (P : Place k F)
     (f g : F) :
     IsTraceClass P.toSubmodule
@@ -367,7 +410,9 @@ theorem Place.isTraceClass_residue_commutator (P : Place k F)
 section OrdLink
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
-/-- Inverse multiplications compose to the identity.-/
+/-- Inverse multiplications compose to the identity.
+@isnad1 id=eq.1h3v.s8.3bd0479b5681 from=translated src=- shape=c5f0abcf vocab=1861b165
+-/
 theorem mulLeft_inv_comp {g : F} (hg : g ≠ 0) :
     LinearMap.mulLeft k g⁻¹ ∘ₗ LinearMap.mulLeft k g = LinearMap.id := by
   refine LinearMap.ext fun x ↦ ?_
@@ -392,7 +437,9 @@ end OrdLink
 section ResidueCalculus
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
-/-- The residue commutator is additive in the first slot.-/
+/-- The residue commutator is additive in the first slot.
+@isnad1 id=eq.0h6v.s12.c88c53f7051b from=translated src=- shape=4d327681 vocab=5da857bd
+-/
 theorem Place.residue_commutator_add_left (P : Place k F)
     (f₁ f₂ g : F) :
     (P.proj ∘ₗ LinearMap.mulLeft k (f₁ + f₂)) ∘ₗ
@@ -409,7 +456,9 @@ theorem Place.residue_commutator_add_left (P : Place k F)
   ring
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
-/-- The residue commutator is additive in the second slot.-/
+/-- The residue commutator is additive in the second slot.
+@isnad1 id=eq.0h6v.s12.28f667016ccb from=translated src=- shape=f0ff0f73 vocab=5da857bd
+-/
 theorem Place.residue_commutator_add_right (P : Place k F)
     (f g₁ g₂ : F) :
     (P.proj ∘ₗ LinearMap.mulLeft k f) ∘ₗ
@@ -427,7 +476,9 @@ theorem Place.residue_commutator_add_right (P : Place k F)
   ring
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
-/-- The residue commutator scales in the first slot.-/
+/-- The residue commutator scales in the first slot.
+@isnad1 id=eq.0h6v.s11.d4cf57d0d473 from=translated src=- shape=e89514ac vocab=685f2a20
+-/
 theorem Place.residue_commutator_smul_left (P : Place k F) (c : k)
     (f g : F) :
     (P.proj ∘ₗ LinearMap.mulLeft k (c • f)) ∘ₗ
@@ -442,7 +493,9 @@ theorem Place.residue_commutator_smul_left (P : Place k F) (c : k)
     map_smul, smul_sub]
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
-/-- The residue commutator scales in the second slot.-/
+/-- The residue commutator scales in the second slot.
+@isnad1 id=eq.0h6v.s11.41190ac54ad3 from=translated src=- shape=067bd827 vocab=685f2a20
+-/
 theorem Place.residue_commutator_smul_right (P : Place k F) (c : k)
     (f g : F) :
     (P.proj ∘ₗ LinearMap.mulLeft k f) ∘ₗ
@@ -456,7 +509,9 @@ theorem Place.residue_commutator_smul_right (P : Place k F) (c : k)
     LinearMap.comp_apply, LinearMap.mulLeft_apply, smul_mul_assoc,
     map_smul, smul_sub]
 
-/-- **Additivity of the residue in the first argument.**-/
+/-- **Additivity of the residue in the first argument.**
+@isnad1 id=eq.0h6v.s6.f60d0c5ee17f from=translated src=- shape=cb9f1c84 vocab=bb09c12a
+-/
 theorem Place.residue_add_left (P : Place k F) (f₁ f₂ g : F) :
     P.residue (f₁ + f₂) g = P.residue f₁ g + P.residue f₂ g := by
   have hφ := P.isTraceClass_residue_commutator f₁ g
@@ -469,7 +524,9 @@ theorem Place.residue_add_left (P : Place k F) (f₁ f₂ g : F) :
     P.residue_commutator_add_left f₁ f₂ g]
   exact tateTrace_add_of_sq _ _
 
-/-- **Additivity of the residue in the second argument.**-/
+/-- **Additivity of the residue in the second argument.**
+@isnad1 id=eq.0h6v.s6.1e4e2f26b877 from=translated src=- shape=d40c8de3 vocab=bb09c12a
+-/
 theorem Place.residue_add_right (P : Place k F) (f g₁ g₂ : F) :
     P.residue f (g₁ + g₂) = P.residue f g₁ + P.residue f g₂ := by
   have hφ := P.isTraceClass_residue_commutator f g₁
@@ -482,7 +539,9 @@ theorem Place.residue_add_right (P : Place k F) (f g₁ g₂ : F) :
     P.residue_commutator_add_right f g₁ g₂]
   exact tateTrace_add_of_sq _ _
 
-/-- **The residue scales in the first argument.**-/
+/-- **The residue scales in the first argument.**
+@isnad1 id=eq.0h6v.s6.d5f4ddeb9238 from=translated src=- shape=eeab6dbf vocab=77652c5f
+-/
 theorem Place.residue_smul_left (P : Place k F) (c : k) (f g : F) :
     P.residue (c • f) g = c * P.residue f g := by
   set C : Module.End k F :=
@@ -502,7 +561,9 @@ theorem Place.residue_smul_left (P : Place k F) (c : k) (f g : F) :
     P.residue_commutator_smul_left c f g, ← hC,
     tateTrace_smul (isTateCore_range_pow C 2)]
 
-/-- **The residue scales in the second argument.**-/
+/-- **The residue scales in the second argument.**
+@isnad1 id=eq.0h6v.s6.65dcd31f5dbd from=translated src=- shape=6b7cf740 vocab=77652c5f
+-/
 theorem Place.residue_smul_right (P : Place k F) (c : k) (f g : F) :
     P.residue f (c • g) = c * P.residue f g := by
   set C : Module.End k F :=
@@ -523,7 +584,9 @@ theorem Place.residue_smul_right (P : Place k F) (c : k) (f g : F) :
     tateTrace_smul (isTateCore_range_pow C 2)]
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
-/-- The valuation ring is closed under multiplication.-/
+/-- The valuation ring is closed under multiplication.
+@isnad1 id=mem.2h5v.s8.2f5127760d3a from=translated src=- shape=0d435eed vocab=48a6fbed
+-/
 theorem Place.mul_mem_toSubmodule (P : Place k F) {a b : F}
     (ha : a ∈ P.toSubmodule) (hb : b ∈ P.toSubmodule) :
     a * b ∈ P.toSubmodule := by
@@ -536,7 +599,9 @@ theorem Place.mul_mem_toSubmodule (P : Place k F) {a b : F}
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
 /-- **Vanishing for integral pairs** (Tate's property (R2)): when `f`
 and `g` are both integral at `P`, the residue commutator kills the
-valuation ring and lands in it, so it squares to zero.-/
+valuation ring and lands in it, so it squares to zero.
+@isnad1 id=eq.2h5v.s8.a735475f4ef6 from=translated src=- shape=d740cf4e vocab=959cf8e0
+-/
 theorem Place.residue_eq_zero_of_mem (P : Place k F) {f g : F}
     (hf : f ∈ P.toSubmodule) (hg : g ∈ P.toSubmodule) :
     P.residue f g = 0 := by
@@ -574,7 +639,9 @@ theorem Place.residue_eq_zero_of_mem (P : Place k F) {f g : F}
   rw [Place.residue, ← hC]
   exact tateTrace_of_isNilpotent hnil
 
-/-- The residue vanishes when the second argument is zero.-/
+/-- The residue vanishes when the second argument is zero.
+@isnad1 id=eq.0h4v.s6.9fa91f0a7c90 from=translated src=- shape=e246e503 vocab=7d5b3352
+-/
 theorem Place.residue_zero_right (P : Place k F) (f : F) :
     P.residue f 0 = 0 := by
   rw [← zero_smul k (0 : F), P.residue_smul_right, zero_mul]

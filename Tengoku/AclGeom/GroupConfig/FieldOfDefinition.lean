@@ -80,11 +80,16 @@ instance (d : ℕ) [Finite ι] : LinearOrder (Monomials ι d) :=
 def coeffVec (d : ℕ) : MvPolynomial ι K →ₗ[K] (Monomials ι d → K) :=
   LinearMap.pi fun m ↦ lcoeff K m.1
 
+/--
+@isnad1 id=eq.0h5v.s8.07675db532f7 from=translated src=- shape=bdc9694e vocab=4c1063cf
+-/
 @[simp]
 theorem coeffVec_apply (d : ℕ) (f : MvPolynomial ι K) (m : Monomials ι d) :
     coeffVec d f m = f.coeff m.1 := rfl
 
-/-- Polynomials of degree at most `d` are determined by their coefficient vectors.-/
+/-- Polynomials of degree at most `d` are determined by their coefficient vectors.
+@isnad1 id=injon.0h3v.s8.321ed29314c5 from=translated src=- shape=9f9ca968 vocab=c8c4afd4
+-/
 theorem coeffVec_injOn (d : ℕ) :
     InjOn (coeffVec (K := K) (ι := ι) d) (restrictTotalDegree ι K d : Set (MvPolynomial ι K)) := by
   intro f hf g hg h
@@ -100,6 +105,9 @@ theorem coeffVec_injOn (d : ℕ) :
 def degSubspace (I : Ideal (MvPolynomial ι K)) (d : ℕ) : Submodule K (Monomials ι d → K) :=
   (I.restrictScalars K ⊓ restrictTotalDegree ι K d).map (coeffVec d)
 
+/--
+@isnad1 id=iff.0h5v.s9.cd2b17ffaa13 from=translated src=- shape=9b721faa vocab=2f8e37e4
+-/
 theorem mem_degSubspace_iff {I : Ideal (MvPolynomial ι K)} {d : ℕ} {w : Monomials ι d → K} :
     w ∈ degSubspace I d ↔ ∃ f ∈ I, f.totalDegree ≤ d ∧ coeffVec d f = w := by
   simp only [degSubspace, Submodule.mem_map, Submodule.mem_inf, Submodule.restrictScalars_mem,
@@ -110,6 +118,9 @@ theorem mem_degSubspace_iff {I : Ideal (MvPolynomial ι K)} {d : ℕ} {w : Monom
   · rintro ⟨f, hfI, hfd, rfl⟩
     exact ⟨f, ⟨hfI, hfd⟩, rfl⟩
 
+/--
+@isnad1 id=mem.2h5v.s9.f1f441cef1e7 from=translated src=- shape=8dd590ca vocab=2f8e37e4
+-/
 theorem coeffVec_mem_degSubspace {I : Ideal (MvPolynomial ι K)} {d : ℕ} {f : MvPolynomial ι K}
     (hfI : f ∈ I) (hfd : f.totalDegree ≤ d) : coeffVec d f ∈ degSubspace I d :=
   mem_degSubspace_iff.2 ⟨f, hfI, hfd, rfl⟩
@@ -123,7 +134,9 @@ variable (F : Subfield K)
 /-- Scalar extension of polynomials along the inclusion of a subfield.-/
 abbrev mapF : MvPolynomial ι F →+* MvPolynomial ι K := MvPolynomial.map F.subtype
 
-/-- A polynomial all of whose coefficients lie in `F` is the extension of an `F`-polynomial.-/
+/-- A polynomial all of whose coefficients lie in `F` is the extension of an `F`-polynomial.
+@isnad1 id=ex.1h4v.s9.e2eb58ee651a from=translated src=- shape=d22a16a9 vocab=701eb6e4
+-/
 theorem exists_mapF_eq_of_coeff_mem {f : MvPolynomial ι K} (hf : ∀ m, f.coeff m ∈ F) :
     ∃ g : MvPolynomial ι F, mapF F g = f := by
   apply mem_range_map_iff_coeffs_subset.mpr
@@ -131,6 +144,9 @@ theorem exists_mapF_eq_of_coeff_mem {f : MvPolynomial ι K} (hf : ∀ m, f.coeff
   obtain ⟨m, -, rfl⟩ := mem_coeffs_iff.mp hc
   exact ⟨⟨f.coeff m, hf m⟩, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.d18070869f41 from=translated src=- shape=f8cdbf67 vocab=fab0206f
+-/
 theorem totalDegree_mapF (g : MvPolynomial ι F) : (mapF F g).totalDegree = g.totalDegree := by
   unfold totalDegree
   rw [support_map_of_injective _ F.subtype_injective]
@@ -139,6 +155,9 @@ theorem totalDegree_mapF (g : MvPolynomial ι F) : (mapF F g).totalDegree = g.to
 def IdealDefinedOver (I : Ideal (MvPolynomial ι K)) : Prop :=
   I = (I.comap (mapF F)).map (mapF F)
 
+/--
+@isnad1 id=iff.0h4v.s10.95cf795ff8ea from=translated src=- shape=d0940a7d vocab=4ee45f70
+-/
 theorem idealDefinedOver_iff_le {I : Ideal (MvPolynomial ι K)} :
     IdealDefinedOver F I ↔ I ≤ (I.comap (mapF F)).map (mapF F) := by
   constructor
@@ -159,6 +178,9 @@ variable {R : Type*} [CommRing R] [Algebra R K]
 def coordPoly (l : K →ₗ[R] R) (p : MvPolynomial ι K) : MvPolynomial ι R :=
   ∑ m ∈ p.support, monomial m (l (p.coeff m))
 
+/--
+@isnad1 id=eq.0h6v.s8.426ccffc65c5 from=translated src=- shape=a4e84e42 vocab=ec2a4c67
+-/
 theorem coeff_coordPoly (l : K →ₗ[R] R) (p : MvPolynomial ι K) (m : ι →₀ ℕ) :
     (coordPoly l p).coeff m = l (p.coeff m) := by
   classical
@@ -178,11 +200,17 @@ theorem coeff_coordPoly (l : K →ₗ[R] R) (p : MvPolynomial ι K) (m : ι →�
       have : m' ≠ m := fun h ↦ hm (h ▸ hm')
       simp [this]
 
+/--
+@isnad1 id=eq.0h6v.s8.f6e09ab6622a from=translated src=- shape=f0c9d482 vocab=c1c8f7e7
+-/
 theorem coordPoly_add (l : K →ₗ[R] R) (p q : MvPolynomial ι K) :
     coordPoly l (p + q) = coordPoly l p + coordPoly l q := by
   refine MvPolynomial.ext _ _ fun m ↦ ?_
   simp [coeff_coordPoly]
 
+/--
+@isnad1 id=eq.0h7v.s7.ebacd0850ded from=translated src=- shape=7ffb1511 vocab=bb1efdfc
+-/
 theorem coordPoly_sum (l : K →ₗ[R] R) {α : Type*} (s : Finset α) (p : α → MvPolynomial ι K) :
     coordPoly l (∑ i ∈ s, p i) = ∑ i ∈ s, coordPoly l (p i) := by
   classical
@@ -194,7 +222,9 @@ theorem coordPoly_sum (l : K →ₗ[R] R) {α : Type*} (s : Finset α) (p : α �
     rw [Finset.sum_insert hi, Finset.sum_insert hi, coordPoly_add, ih]
 
 /-- The coefficient projection is `R[X]`-linear: it commutes with multiplication by
-`R`-polynomials.-/
+`R`-polynomials.
+@isnad1 id=eq.0h6v.s8.e2c4629560a4 from=translated src=- shape=61c2406b vocab=19e8c3ee
+-/
 theorem coordPoly_mul_map (l : K →ₗ[R] R) (c : MvPolynomial ι K) (g : MvPolynomial ι R) :
     coordPoly l (c * MvPolynomial.map (algebraMap R K) g) = coordPoly l c * g := by
   classical
@@ -205,7 +235,9 @@ theorem coordPoly_mul_map (l : K →ₗ[R] R) (c : MvPolynomial ι K) (g : MvPol
     rw [Algebra.smul_def, mul_comm]
   rw [this, map_smul, smul_eq_mul, mul_comm]
 
-/-- Coefficient projections of elements of an extended ideal lie in the ideal.-/
+/-- Coefficient projections of elements of an extended ideal lie in the ideal.
+@isnad1 id=mem.1h6v.s9.74c43e178ecc from=translated src=- shape=4c3b52df vocab=a20006c2
+-/
 theorem coordPoly_mem_of_mem_map (l : K →ₗ[R] R) {J : Ideal (MvPolynomial ι R)}
     {f : MvPolynomial ι K} (hf : f ∈ J.map (MvPolynomial.map (algebraMap R K))) :
     coordPoly l f ∈ J := by
@@ -218,6 +250,9 @@ theorem coordPoly_mem_of_mem_map (l : K →ₗ[R] R) {J : Ideal (MvPolynomial ι
   rw [smul_eq_mul, ← hgJeq i, coordPoly_mul_map]
   exact J.mul_mem_left _ (hgJ i)
 
+/--
+@isnad1 id=le.0h5v.s6.0b6912ac5169 from=translated src=- shape=c5e94716 vocab=e2a84cd8
+-/
 theorem totalDegree_coordPoly_le (l : K →ₗ[R] R) (p : MvPolynomial ι K) :
     (coordPoly l p).totalDegree ≤ p.totalDegree := by
   refine Finset.sup_le fun m hm ↦ le_totalDegree ?_
@@ -226,7 +261,9 @@ theorem totalDegree_coordPoly_le (l : K →ₗ[R] R) (p : MvPolynomial ι K) :
   exact fun h ↦ hm (by rw [h, map_zero])
 
 /-- A polynomial is recovered from its coefficient projections along a basis of `K` over
-`R`.-/
+`R`.
+@isnad1 id=eq.0h6v.s9.fa95f778e8b2 from=translated src=- shape=86f79641 vocab=8a4fb9aa
+-/
 theorem sum_smul_map_coordPoly {J : Type*} [DecidableEq J] (b : Basis J R K)
     (p : MvPolynomial ι K) :
     ∑ j ∈ p.support.biUnion (fun m ↦ (b.repr (p.coeff m)).support),
@@ -254,7 +291,9 @@ section Subfield
 
 variable (F : Subfield K)
 
-/-- The coefficient projection commutes with multiplication by `F`-polynomials.-/
+/-- The coefficient projection commutes with multiplication by `F`-polynomials.
+@isnad1 id=eq.0h6v.s10.9d2aace39b21 from=translated src=- shape=701245f3 vocab=fc173109
+-/
 theorem coordPoly_mul_mapF (l : K →ₗ[F] F) (c : MvPolynomial ι K) (g : MvPolynomial ι F) :
     coordPoly l (c * mapF F g) = coordPoly l c * g :=
   coordPoly_mul_map l c g
@@ -262,7 +301,9 @@ theorem coordPoly_mul_mapF (l : K →ₗ[F] F) (c : MvPolynomial ι K) (g : MvPo
 /-! ### Degree pieces of ideals defined over a subfield -/
 
 /-- A polynomial of `I` of degree at most `d` lies in the ideal generated by the
-`F`-polynomials of `I` as soon as the degree-`d` piece of `I` is defined over `F`.-/
+`F`-polynomials of `I` as soon as the degree-`d` piece of `I` is defined over `F`.
+@isnad1 id=mem.3h6v.s10.21d9d973ea4e from=translated src=- shape=5812cc8d vocab=d9fa7720
+-/
 theorem mem_map_comap_of_definedOver {I : Ideal (MvPolynomial ι K)} {d : ℕ}
     (h : DefinedOver (degSubspace I d) F) {f : MvPolynomial ι K} (hf : f ∈ I)
     (hfd : f.totalDegree ≤ d) : f ∈ (I.comap (mapF F)).map (mapF F) := by
@@ -308,14 +349,18 @@ theorem mem_map_comap_of_definedOver {I : Ideal (MvPolynomial ι K)} {d : ℕ}
   exact hsub hf'
 
 /-- `lem:ideal-filtration`, easy direction: if every degree piece is spanned by `F`-valued
-vectors, the ideal is generated by `F`-polynomials.-/
+vectors, the ideal is generated by `F`-polynomials.
+@isnad1 id=idealdef.1h4v.s6.90a47afb7692 from=translated src=- shape=640151b4 vocab=19374f3b
+-/
 theorem idealDefinedOver_of_degSubspace {I : Ideal (MvPolynomial ι K)}
     (h : ∀ d, DefinedOver (degSubspace I d) F) : IdealDefinedOver F I := by
   rw [idealDefinedOver_iff_le]
   exact fun f hf ↦ mem_map_comap_of_definedOver F (h _) hf le_rfl
 
 /-- `lem:ideal-filtration` (3): if `I` is generated by polynomials of degree at most `d`, then
-`I` is defined over `F` as soon as its degree-`d` piece is.-/
+`I` is defined over `F` as soon as its degree-`d` piece is.
+@isnad1 id=idealdef.3h6v.s7.b535ff3c2546 from=translated src=- shape=dbd54c8a vocab=2fb46a64
+-/
 theorem idealDefinedOver_of_span {I : Ideal (MvPolynomial ι K)} {S : Set (MvPolynomial ι K)}
     (hS : Ideal.span S = I) {d : ℕ} (hd : ∀ f ∈ S, f.totalDegree ≤ d)
     (h : DefinedOver (degSubspace I d) F) : IdealDefinedOver F I := by
@@ -332,17 +377,25 @@ section Equivariance
 
 variable (σ : K ≃+* K)
 
+/--
+@isnad1 id=eq.0h4v.s8.60f1a0ee107f from=translated src=- shape=65fcfc38 vocab=0b8e4902
+-/
 theorem totalDegree_map_ringEquiv (p : MvPolynomial ι K) :
     (MvPolynomial.map σ.toRingHom p).totalDegree = p.totalDegree := by
   unfold totalDegree
   rw [support_map_of_injective _ σ.injective]
 
+/--
+@isnad1 id=eq.0h5v.s10.186bcd7b1e50 from=translated src=- shape=144e752f vocab=30b9f9a7
+-/
 theorem coeffVec_map (d : ℕ) (p : MvPolynomial ι K) :
     coeffVec d (MvPolynomial.map σ.toRingHom p) = mapVec σ (coeffVec d p) := by
   funext m
   simp [coeff_map]
 
-/-- The degree pieces of the image ideal are the images of the degree pieces.-/
+/-- The degree pieces of the image ideal are the images of the degree pieces.
+@isnad1 id=eq.0h5v.s9.7eabe45a2cf9 from=translated src=- shape=1b7f2930 vocab=3ec35eb3
+-/
 theorem degSubspace_map (I : Ideal (MvPolynomial ι K)) (d : ℕ) :
     degSubspace (I.map (MvPolynomial.map σ.toRingHom)) d =
       (degSubspace I d).map (mapVec σ) := by
@@ -370,6 +423,9 @@ of its degree pieces.-/
 def idealFod (I : Ideal (MvPolynomial ι K)) : Subfield K :=
   ⨆ d, fod (degSubspace I d)
 
+/--
+@isnad1 id=le.0h4v.s6.d2edd79e27c3 from=translated src=- shape=fa5518fe vocab=4460598a
+-/
 theorem fod_degSubspace_le_idealFod (I : Ideal (MvPolynomial ι K)) (d : ℕ) :
     fod (degSubspace I d) ≤ idealFod I :=
   le_iSup (fun d ↦ fod (degSubspace I d)) d
@@ -381,7 +437,9 @@ section Equivariance
 variable (σ : K ≃+* K)
 
 /-- `thm:weil-fod`: the field of definition of the image ideal is the image of the field of
-definition.-/
+definition.
+@isnad1 id=eq.0h4v.s8.5093ec42fa86 from=translated src=- shape=fda9534f vocab=c6f3c7f6
+-/
 theorem idealFod_map (I : Ideal (MvPolynomial ι K)) :
     idealFod (I.map (MvPolynomial.map σ.toRingHom)) = (idealFod I).map σ.toRingHom := by
   unfold idealFod

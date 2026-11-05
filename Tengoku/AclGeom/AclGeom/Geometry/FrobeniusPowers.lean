@@ -52,7 +52,9 @@ def frobeniusZPow (n : ℤ) : RingAut K :=
 
 variable {K}
 
-/-- Natural Frobenius powers raise to the corresponding power of `q`.-/
+/-- Natural Frobenius powers raise to the corresponding power of `q`.
+@isnad1 id=eq.0h4v.s7.80fdccd85520 from=translated src=- shape=1dbf21cc vocab=f93664a0
+-/
 theorem frobeniusZPow_natCast_apply (n : ℕ) (x : K) :
     frobeniusZPow K q n x = x ^ q ^ n := by
   rw [frobeniusZPow, zpow_natCast]
@@ -62,14 +64,18 @@ theorem frobeniusZPow_natCast_apply (n : ℕ) (x : K) :
     rw [pow_succ, RingAut.mul_apply, ih, frobeniusEquiv_apply, frobenius_def,
       ← pow_mul, pow_succ']
 
-/-- The quotient of two Frobenius powers, as an automorphism.-/
+/-- The quotient of two Frobenius powers, as an automorphism.
+@isnad1 id=eq.0h4v.s8.f4139629410b from=translated src=- shape=b5085174 vocab=e11eb7c6
+-/
 theorem frobeniusZPow_sub (m n : ℤ) :
     frobeniusZPow K q (m - n) = (frobeniusZPow K q n)⁻¹ * frobeniusZPow K q m := by
   rw [frobeniusZPow, frobeniusZPow, frobeniusZPow, ← zpow_neg, ← zpow_add,
     neg_add_eq_sub]
 
 /-- If `y^(q^v) = x^(q^u)` then `y` is the `(u - v)`-th Frobenius power of
-`x`.-/
+`x`.
+@isnad1 id=eq.1h6v.s7.1de151acd181 from=translated src=- shape=dde08f25 vocab=2b2dc460
+-/
 theorem frobeniusZPow_sub_apply_of_pow_eq {u v : ℕ} {x y : K}
     (h : y ^ q ^ v = x ^ q ^ u) :
     frobeniusZPow K q ((u : ℤ) - v) x = y := by
@@ -79,7 +85,9 @@ theorem frobeniusZPow_sub_apply_of_pow_eq {u v : ℕ} {x y : K}
   exact (frobeniusZPow K q v).symm_apply_apply y
 
 /-- In exponential characteristic one (characteristic zero) every integral Frobenius power is
-the identity (blueprint validation item TEST-1).-/
+the identity (blueprint validation item TEST-1).
+@isnad1 id=eq.1h3v.s7.d5f11efbd861 from=translated src=- shape=5284e762 vocab=1b6ffaf7
+-/
 theorem frobeniusZPow_eq_one_of_eq_one (hq : q = 1) (n : ℤ) : frobeniusZPow K q n = 1 := by
   subst hq
   have h1 : (frobeniusEquiv K 1 : RingAut K) = 1 := by

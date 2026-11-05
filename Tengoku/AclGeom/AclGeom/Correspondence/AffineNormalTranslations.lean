@@ -21,7 +21,9 @@ namespace AclGeom.AffineTransformation
 noncomputable section
 variable {k : Type*} [Field k]
 
-/-- Named consumer: the closed image of the genuine normal subgroup contains translations.-/
+/-- Named consumer: the closed image of the genuine normal subgroup contains translations.
+@isnad1 id=mem.1h3v.s6.e8fe2bbefab0 from=translated src=- shape=066f2639 vocab=bde6c5b3
+-/
 theorem translations_mem_of_normal_ne_bot (S : Subgroup (AffineTransformation k))
     [S.Normal] (hS : S ≠ ⊥) (b : k) : translation b ∈ S := by
   obtain ⟨⟨g, hg⟩, hg1⟩ := Subgroup.ne_bot_iff_exists_ne_one.mp hS

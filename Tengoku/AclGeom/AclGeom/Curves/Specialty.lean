@@ -37,16 +37,25 @@ noncomputable def boundedSubmodule (D : Divisor k F) :
   (adeleSpace D ⊔ LinearMap.range (adeleDiagonal k F)).comap
     (adeleSubmodule k F).subtype
 
+/--
+@isnad1 id=iff.0h4v.s11.cceab1e05f79 from=translated src=- shape=546bfb7e vocab=e2d8cca0
+-/
 theorem mem_boundedSubmodule_iff {D : Divisor k F}
     {α : ↥(adeleSubmodule k F)} :
     α ∈ boundedSubmodule D ↔
       (α : (Q : Place k F) → F) ∈
         adeleSpace D ⊔ LinearMap.range (adeleDiagonal k F) := Iff.rfl
 
+/--
+@isnad1 id=le.1h4v.s11.179afee1aef1 from=translated src=- shape=168389c3 vocab=1f1fa820
+-/
 theorem boundedSubmodule_mono {D E : Divisor k F} (h : D ≤ E) :
     boundedSubmodule (D : Divisor k F) ≤ boundedSubmodule E :=
   Submodule.comap_mono (sup_le_sup_right (adeleSpace_mono h) _)
 
+/--
+@isnad1 id=mem.0h4v.s8.78b7aaeba56b from=translated src=- shape=4465bcfe vocab=bc585ec2
+-/
 theorem adeleMonomial_mem_adeleSubmodule (P : Place k F) (n : ℤ) :
     adeleMonomial P n ∈ adeleSubmodule k F :=
   adeleSpace_le_adeleSubmodule (Finsupp.single P (-n))

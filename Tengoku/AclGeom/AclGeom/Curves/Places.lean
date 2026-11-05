@@ -47,7 +47,9 @@ variable {k F : Type*} [Field k] [Field F] [Algebra k F]
 variable {O : ValuationSubring F}
 
 /-- Base-field constants are units of every valuation subring containing
-the base field.-/
+the base field.
+@isnad1 id=eq.2h4v.s8.06791460ac7d from=translated src=- shape=303e4c86 vocab=43183645
+-/
 theorem valuation_algebraMap_eq_one
     (hk : ∀ c : k, algebraMap k F c ∈ O) {c : k} (hc : c ≠ 0) :
     O.valuation (algebraMap k F c) = 1 := by
@@ -62,7 +64,9 @@ theorem valuation_algebraMap_eq_one
   refine le_antisymm h1 ?_
   rwa [inv_le_one₀ (by exact zero_lt_iff.2 h0)] at h2
 
-/-- Polynomial values at elements of a valuation subring stay in it.-/
+/-- Polynomial values at elements of a valuation subring stay in it.
+@isnad1 id=mem.2h5v.s8.a47a3826d790 from=translated src=- shape=d7cc6111 vocab=ac843471
+-/
 theorem aeval_mem (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F}
     (hzO : z ∈ O) (p : Polynomial k) : aeval z p ∈ O := by
   induction p using Polynomial.induction_on' with
@@ -72,7 +76,9 @@ theorem aeval_mem (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F}
     exact mul_mem (hk c) (pow_mem hzO n)
 
 /-- A `k`-polynomial with nonzero constant term evaluates to a unit at
-any element of the maximal ideal: the constant dominates.-/
+any element of the maximal ideal: the constant dominates.
+@isnad1 id=eq.3h5v.s9.86e12504a6d4 from=translated src=- shape=8d0fda6e vocab=72bf6425
+-/
 theorem valuation_aeval_eq_one (hk : ∀ c : k, algebraMap k F c ∈ O)
     {z : F} (hz : O.valuation z < 1) {p : Polynomial k}
     (hp0 : p.coeff 0 ≠ 0) : O.valuation (aeval z p) = 1 := by
@@ -94,7 +100,9 @@ theorem valuation_aeval_eq_one (hk : ∀ c : k, algebraMap k F c ∈ O)
     valuation_algebraMap_eq_one hk hp0]
 
 /-- Every nonzero `k`-polynomial value at a maximal-ideal element `z` has
-value a natural power of `v z`: factor out the root multiplicity at `0`.-/
+value a natural power of `v z`: factor out the root multiplicity at `0`.
+@isnad1 id=ex.3h5v.s9.ce4754f9b34c from=translated src=- shape=2abc95cc vocab=5ad9a1d0
+-/
 theorem exists_valuation_aeval_eq_pow
     (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F}
     (hz : O.valuation z < 1) {p : Polynomial k} (hp : p ≠ 0) :
@@ -111,7 +119,9 @@ theorem exists_valuation_aeval_eq_pow
 /-- **The restricted value group is cyclic** (first half of Stichtenoth
 Theorem 1.1.6): every nonzero element of the subfield `k(z)`, for `z` a
 nonzero element of the maximal ideal, has value an integer power of
-`v z`.-/
+`v z`.
+@isnad1 id=ex.5h5v.s8.a2f988bd57ba from=translated src=- shape=049e5c9f vocab=db096b7e
+-/
 theorem exists_valuation_eq_zpow_of_mem_adjoin
     (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F} (hz0 : z ≠ 0)
     (hz : O.valuation z < 1) {w : F}
@@ -136,7 +146,9 @@ theorem exists_valuation_eq_zpow_of_mem_adjoin
   rw [hpq, map_div₀, hm₁, hm₂, zpow_sub₀ hzv, zpow_natCast, zpow_natCast]
 
 /-- Ultrametric sums: a finite sum with a strictly dominating term has the
-dominating term's value.-/
+dominating term's value.
+@isnad1 id=eq.2h6v.s8.0ed1c75368f8 from=translated src=- shape=02b723cc vocab=82a55140
+-/
 theorem valuation_sum_eq_of_forall_lt {ι : Type*} {s : Finset ι}
     {f : ι → F} {j : ι} (hj : j ∈ s)
     (hmax : ∀ i ∈ s, i ≠ j → O.valuation (f i) < O.valuation (f j)) :
@@ -160,7 +172,9 @@ open IntermediateField in
 1.1.6): elements of `F` whose values lie in pairwise distinct cosets of
 the cyclic group `⟨v z⟩` are linearly independent over the subfield
 `k(z)`. Consequently the index of `⟨v z⟩` in the value group is bounded
-by `[F : k(z)]`.-/
+by `[F : k(z)]`.
+@isnad1 id=linearin.5h6v.s9.a61f562850d3 from=translated src=- shape=4e0c6698 vocab=c8a1387b
+-/
 theorem linearIndependent_of_pairwise_valuation_ne {ι : Type*} [Fintype ι]
     (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F} (hz0 : z ≠ 0)
     (hz : O.valuation z < 1) {w : ι → F} (hw0 : ∀ i, w i ≠ 0)
@@ -228,7 +242,9 @@ theorem linearIndependent_of_pairwise_valuation_ne {ι : Type*} [Fintype ι]
 open IntermediateField in
 /-- **Pigeonhole through the coset bound**: when `F` is finite over
 `k(z)`, some positive power `d ≤ [F : k(z)]` of every nonzero value lands
-in the cyclic group `⟨v z⟩`.-/
+in the cyclic group `⟨v z⟩`.
+@isnad1 id=ex.4h5v.s9.c4f378929717 from=translated src=- shape=7d8ef2a9 vocab=efbc028f
+-/
 theorem exists_pow_valuation_eq_zpow
     (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F} (hz0 : z ≠ 0)
     (hz : O.valuation z < 1)
@@ -276,7 +292,9 @@ theorem exists_pow_valuation_eq_zpow
   omega
 
 /-- Integer powers of a fixed base strictly between `0` and `1` are
-injective in the exponent.-/
+injective in the exponent.
+@isnad1 id=eq.3h4v.s7.5b07cb196d9e from=translated src=- shape=539acd75 vocab=9dafe959
+-/
 theorem zpow_left_injective_of_lt_one {Γ : Type*}
     [LinearOrderedCommGroupWithZero Γ] {a : Γ} (h0 : 0 < a) (h1 : a < 1)
     {m n : ℤ} (h : a ^ m = a ^ n) : m = n := by
@@ -287,7 +305,9 @@ theorem zpow_left_injective_of_lt_one {Γ : Type*}
 
 open IntermediateField in
 /-- **Uniform exponent**: raising to the `[F : k(z)]!`-th power lands
-every small nonzero value in `⟨v z⟩`, with a positive exponent.-/
+every small nonzero value in `⟨v z⟩`, with a positive exponent.
+@isnad1 id=ex.5h5v.s10.56d974e4107e from=translated src=- shape=9c4dcaf0 vocab=63cdfc7d
+-/
 theorem exists_pow_factorial_valuation_eq
     (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F} (hz0 : z ≠ 0)
     (hz : O.valuation z < 1)
@@ -327,7 +347,9 @@ open IntermediateField in
 /-- **Uniformizer existence** (the discreteness core of Stichtenoth
 Theorem 1.1.6): when `F` is finite over `k(z)` for a nonzero
 maximal-ideal element `z`, the values below `1` attain a maximum — the
-value of a uniformizer.-/
+value of a uniformizer.
+@isnad1 id=ex.3h4v.s10.a6fab701fa8c from=translated src=- shape=757d8e06 vocab=34a3d08c
+-/
 theorem exists_valuation_uniformizer
     (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F} (hz0 : z ≠ 0)
     (hz : O.valuation z < 1)
@@ -364,7 +386,9 @@ theorem exists_valuation_uniformizer
 open IntermediateField in
 /-- **Value classification**: below `1`, every nonzero value is a positive
 power of the uniformizer's value. Strong induction on the uniform
-exponent: dividing by the uniformizer strictly decreases it.-/
+exponent: dividing by the uniformizer strictly decreases it.
+@isnad1 id=ex.8h6v.s10.3f47b723d8a8 from=translated src=- shape=d202e4f6 vocab=1b0c3a14
+-/
 theorem valuation_eq_pow_uniformizer
     (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F} (hz0 : z ≠ 0)
     (hz : O.valuation z < 1)
@@ -420,7 +444,9 @@ open IntermediateField in
 valuation rings** (Stichtenoth Theorem 1.1.6): a valuation subring of
 `F/k` whose maximal ideal contains a nonzero `z` with `F` finite over
 `k(z)` is a DVR. Every ideal is generated by any element of maximal
-value, values being powers of the uniformizer's.-/
+value, values being powers of the uniformizer's.
+@isnad1 id=isdiscre.3h4v.s8.cad96fe6524a from=translated src=- shape=6995519c vocab=9f5299d9
+-/
 theorem isDiscreteValuationRing_of_valuationSubring
     (hk : ∀ c : k, algebraMap k F c ∈ O) {z : F} (hz0 : z ≠ 0)
     (hz : O.valuation z < 1)
@@ -512,7 +538,9 @@ set_option maxHeartbeats 1000000 in
 /-- Abstract tower step: if `F` is finite over `k(x₀)` and `x₀` is
 integral over an intermediate field `E`, then `F` is finite over `E`.
 Kept abstract in `E`: instantiating the nested adjoin tower at a concrete
-adjoin makes instance elaboration diverge.-/
+adjoin makes instance elaboration diverge.
+@isnad1 id=finitedi.1h4v.s8.063f186e97f8 from=translated src=- shape=88d124de vocab=082739f9
+-/
 theorem finiteDimensional_of_isIntegral_of_adjoin_finite
     {E : IntermediateField k F} {x₀ : F}
     [FiniteDimensional (↥(adjoin k ({x₀} : Set F))) F]
@@ -544,7 +572,9 @@ theorem finiteDimensional_of_isIntegral_of_adjoin_finite
 
 /-- In a one-variable function field, `F` is finite over `k(z)` for
 *every* transcendental `z`: the exchange property of the closure
-pregeometry relocates the finiteness witness.-/
+pregeometry relocates the finiteness witness.
+@isnad1 id=finitedi.1h3v.s7.1dabc53b52e8 from=translated src=- shape=f3b8708b vocab=24304316
+-/
 theorem finiteDimensional_adjoin_of_transcendental
     [IsFunctionFieldOneVar k F] {z : F} (hz : Transcendental k z) :
     FiniteDimensional (↥(adjoin k ({z} : Set F))) F := by
@@ -565,7 +595,9 @@ theorem finiteDimensional_adjoin_of_transcendental
     (isAlgebraic_iff_isIntegral.1 ((mem_racl_iff k).1 hx₀z))
 
 /-- Over a relatively algebraically closed base, nonzero maximal-ideal
-elements of a valuation subring are transcendental.-/
+elements of a valuation subring are transcendental.
+@isnad1 id=transcen.4h4v.s8.fc5edebf6bc9 from=translated src=- shape=856dce8f vocab=5a5ac2e7
+-/
 theorem transcendental_of_valuation_lt_one
     (hk : ∀ c : k, algebraMap k F c ∈ O)
     (hrac : ∀ y : F, IsAlgebraic k y → ∃ c : k, algebraMap k F c = y)
@@ -580,7 +612,9 @@ theorem transcendental_of_valuation_lt_one
 
 /-- **Places of a one-variable function field are discrete valuation
 rings** — the packaged form of Stichtenoth Theorem 1.1.6, with the
-finiteness hypothesis discharged from the function-field axioms.-/
+finiteness hypothesis discharged from the function-field axioms.
+@isnad1 id=isdiscre.4h4v.s8.ec890c113667 from=translated src=- shape=17eefe40 vocab=82b8b9ee
+-/
 theorem isDiscreteValuationRing_of_isFunctionField
     [IsFunctionFieldOneVar k F]
     (hk : ∀ c : k, algebraMap k F c ∈ O)
@@ -599,7 +633,9 @@ open IntermediateField
 
 /-- Over an algebraically closed base, algebraic elements descend to the
 base: the element-level relative algebraic closedness used throughout the
-curve library.-/
+curve library.
+@isnad1 id=ex.1h3v.s6.8169b94c25e7 from=translated src=- shape=341648ca vocab=b53e699f
+-/
 theorem exists_algebraMap_eq_of_isAlgebraic [IsAlgClosed k] {y : F}
     (hy : IsAlgebraic k y) : ∃ c : k, algebraMap k F c = y := by
   have h1 : y ∈ adjoin k ({y} : Set F) := subset_adjoin k _ rfl
@@ -610,7 +646,9 @@ theorem exists_algebraMap_eq_of_isAlgebraic [IsAlgClosed k] {y : F}
   exact h1
 
 /-- A nontrivial valuation subring has a nonzero maximal-ideal element:
-the inverse of anything outside it.-/
+the inverse of anything outside it.
+@isnad1 id=ex.1h2v.s7.0b0377fad190 from=translated src=- shape=08d4d20e vocab=e76e61e9
+-/
 theorem exists_valuation_lt_one_of_ne_top (hO : O ≠ ⊤) :
     ∃ z : F, z ≠ 0 ∧ O.valuation z < 1 := by
   obtain ⟨x, hx⟩ : ∃ x : F, x ∉ O := by
@@ -649,16 +687,24 @@ namespace Place
 
 variable {P : Place k F}
 
+/--
+@isnad1 id=mem.0h4v.s6.e06a4985f397 from=translated src=- shape=97c1511d vocab=444c8689
+-/
 theorem algebraMap_mem (P : Place k F) (c : k) :
     algebraMap k F c ∈ P.val := P.algebraMap_mem' c
 
+/--
+@isnad1 id=ne.0h3v.s5.d14799e1d566 from=translated src=- shape=cb6373b5 vocab=667c1fa9
+-/
 theorem ne_top (P : Place k F) : P.val ≠ ⊤ := P.ne_top'
 
 /-- The valuation attached to a place.-/
 def valuation (P : Place k F) := P.val.valuation
 
 /-- Every place of a one-variable function field over an algebraically
-closed base is a discrete valuation ring (Stichtenoth Theorem 1.1.6).-/
+closed base is a discrete valuation ring (Stichtenoth Theorem 1.1.6).
+@isnad1 id=isdiscre.0h3v.s6.14f873ba8c3e from=translated src=- shape=afc787f7 vocab=bbf7dd2d
+-/
 instance isDiscreteValuationRing [IsAlgClosed k] [IsFunctionFieldOneVar k F]
     (P : Place k F) : IsDiscreteValuationRing (↥P.val) := by
   obtain ⟨z, hz0, hz⟩ := exists_valuation_lt_one_of_ne_top P.ne_top

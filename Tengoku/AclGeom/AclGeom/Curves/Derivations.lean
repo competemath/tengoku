@@ -81,7 +81,9 @@ def DerivationVanishesAt (D : Derivation k F F)
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
 /-- The derivative of a scalar multiple of a power, with the natural
-coefficient expressed in the base field.-/
+coefficient expressed in the base field.
+@isnad1 id=eq.0h6v.s8.801eea4e1e02 from=translated src=- shape=164060f9 vocab=2609d8ef
+-/
 theorem derivation_smul_pow (D : Derivation k F F) (c : k) (x : F)
     (n : ℕ) :
     D (c • x ^ n) = ((n : k) * c) • (x ^ (n - 1) * D x) := by

@@ -39,7 +39,9 @@ def tensorPointEval (φ : A →ₐ[k] k) : A ⊗[k] F →ₐ[k] F :=
     (fun _ _ ↦ Commute.all _ _)
 
 /-- Evaluating coefficients specializes scalar multiplication as well.
- Named consumer: the localized affine formula for the actual point action.-/
+ Named consumer: the localized affine formula for the actual point action.
+@isnad1 id=eq.0h6v.s9.124b1aef275c from=translated src=- shape=11761f9f vocab=5143a67b
+-/
 theorem tensorPointEval_smul (φ : A →ₐ[k] k) (a : A) (z : A ⊗[k] F) :
     tensorPointEval φ (a • z) = φ a • tensorPointEval φ z := by
   rw [Algebra.smul_def, Algebra.TensorProduct.algebraMap_apply]

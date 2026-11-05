@@ -85,25 +85,33 @@ namespace IsPartialQuadrangle
 
 variable {f : Fin 6 → Point k K}
 
-/-- Simplification: the triple `(S, T, U)` is dependent.-/
+/-- Simplification: the triple `(S, T, U)` is dependent.
+@isnad1 id=rankeq.1h3v.s8.064dd6581726 from=translated src=- shape=96bdd784 vocab=d18c4930
+-/
 theorem rank_STU (h : IsPartialQuadrangle f) :
     RankEq 2 ((f 0).1 ⊔ ((f 1).1 ⊔ (f 2).1)) := by
   have := h.rank_dep {0, 1, 2} (by decide)
   simpa [Finset.sup_insert] using this
 
-/-- Simplification: the triple `(S, T', U')` is dependent.-/
+/-- Simplification: the triple `(S, T', U')` is dependent.
+@isnad1 id=rankeq.1h3v.s8.50840f3346d6 from=translated src=- shape=96bdd784 vocab=d18c4930
+-/
 theorem rank_STU' (h : IsPartialQuadrangle f) :
     RankEq 2 ((f 0).1 ⊔ ((f 4).1 ⊔ (f 5).1)) := by
   have := h.rank_dep {0, 4, 5} (by decide)
   simpa [Finset.sup_insert] using this
 
-/-- Simplification: the triple `(S', T, U')` is dependent.-/
+/-- Simplification: the triple `(S', T, U')` is dependent.
+@isnad1 id=rankeq.1h3v.s8.0e8c96decf28 from=translated src=- shape=96bdd784 vocab=d18c4930
+-/
 theorem rank_S'TU' (h : IsPartialQuadrangle f) :
     RankEq 2 ((f 1).1 ⊔ ((f 3).1 ⊔ (f 5).1)) := by
   have := h.rank_dep {1, 3, 5} (by decide)
   simpa [Finset.sup_insert] using this
 
-/-- Simplification: the triple `(S', T', U)` is dependent.-/
+/-- Simplification: the triple `(S', T', U)` is dependent.
+@isnad1 id=rankeq.1h3v.s8.037774514827 from=translated src=- shape=96bdd784 vocab=d18c4930
+-/
 theorem rank_S'T'U (h : IsPartialQuadrangle f) :
     RankEq 2 ((f 2).1 ⊔ ((f 3).1 ⊔ (f 4).1)) := by
   have := h.rank_dep {2, 3, 4} (by decide)

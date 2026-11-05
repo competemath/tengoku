@@ -28,7 +28,9 @@ namespace AclGeom.GenericFiniteCover
 noncomputable section
 
 /-- A finite-type algebraic domain extension becomes finite after one base localization.
- Named consumer: the actual affine-group coefficient morphism on dense opens.-/
+ Named consumer: the actual affine-group coefficient morphism on dense opens.
+@isnad1 id=ex.1h2v.s10.7b578f759557 from=translated src=- shape=fcc39389 vocab=a288945d
+-/
 theorem exists_finite_away {R S : Type*} [CommRing R] [IsDomain R]
     [CommRing S] [IsDomain S] [Algebra R S] [Algebra.FiniteType R S]
     [Algebra.IsAlgebraic R S] (hinj : Function.Injective (algebraMap R S)) :
@@ -105,7 +107,9 @@ namespace AclGeom.GenericFiniteCover
 noncomputable section
 
 /-- A dominant finite-type domain map injective on ACF points is finite over a dense
- principal open. Named consumer: the actual affine-group coordinate map.-/
+ principal open. Named consumer: the actual affine-group coordinate map.
+@isnad1 id=ex.2h4v.s11.4894e040a964 from=translated src=- shape=07147a3c vocab=920990a9
+-/
 theorem exists_finite_away_of_injective_points {k B A : Type*} [Field k] [IsAlgClosed k]
     [CommRing B] [IsDomain B] [CommRing A] [IsDomain A]
     [Algebra k B] [Algebra k A] [Algebra.FiniteType k A]
@@ -146,7 +150,9 @@ open CategoryTheory AlgebraicGeometry
 universe u
 
 /-- A dominant affine chart map injective on ACF points restricts to a finite surjective
- map between actual nonempty opens. Named consumer: the actual affine-action coordinates.-/
+ map between actual nonempty opens. Named consumer: the actual affine-action coordinates.
+@isnad1 id=ex.3h7v.s10.5a6a5120ff9d from=translated src=- shape=8134c01f vocab=7ee3f690
+-/
 theorem exists_finite_open_square {k B A : Type u} [Field k] [IsAlgClosed k]
     [CommRing B] [IsDomain B] [CommRing A] [IsDomain A]
     [Algebra k B] [Algebra k A] [Algebra.FiniteType k A]

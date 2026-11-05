@@ -30,7 +30,9 @@ universe u
 
 /-- Named consumer: a finite Ga cover of the actual normal subgroup. A finite radicial
 polynomial-algebra inclusion is dominated by a relative Frobenius. This does not invert
-that inclusion.-/
+that inclusion.
+@isnad1 id=ex.2h4v.s9.15fa692cb944 from=translated src=- shape=96cacf23 vocab=1390bf09
+-/
 theorem exists_polynomial_frobenius_factor
     {k A : Type u} [Field k] [CommRing A] [IsDomain A] [Algebra k A]
     (p : ℕ) [ExpChar k p] [PerfectRing k p]

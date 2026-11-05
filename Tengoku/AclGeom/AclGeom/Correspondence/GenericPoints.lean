@@ -54,6 +54,9 @@ def adjoinTranscendentalAlgHom (ht : AlgebraicIndependent k t)
   ((adjoin k (Set.range s)).val.comp hs.aevalEquivField.toAlgHom).comp
     ht.aevalEquivField.symm.toAlgHom
 
+/--
+@isnad1 id=eq.2h6v.s9.d08da475f8de from=translated src=- shape=0974817c vocab=d2217d8b
+-/
 theorem adjoinTranscendentalAlgHom_apply (ht : AlgebraicIndependent k t)
     (hs : AlgebraicIndependent k s) (i : ι) :
     adjoinTranscendentalAlgHom ht hs ⟨t i, subset_adjoin k _ ⟨i, rfl⟩⟩ = s i := by
@@ -85,7 +88,9 @@ section Extend
 
 /-- A `k`-embedding of an intermediate field into an algebraically closed
 ambient field extends along any algebraic extension of intermediate fields
-(blueprint Lemma 8.1(b), algebraic part).-/
+(blueprint Lemma 8.1(b), algebraic part).
+@isnad1 id=ex.1h5v.s11.5f32c7cba5a2 from=translated src=- shape=d70236a5 vocab=1004dcee
+-/
 theorem exists_extension_of_isAlgebraic [IsAlgClosed Ω]
     {E E' : IntermediateField k Ω} (hEE' : E ≤ E')
     [halg : Algebra.IsAlgebraic ↥E ↥(extendScalars hEE')]
@@ -111,7 +116,9 @@ end Extend
 
 section Assemble
 
-/-- Every value of the relocation embedding lies in `k(s)`.-/
+/-- Every value of the relocation embedding lies in `k(s)`.
+@isnad1 id=mem.2h6v.s9.8761d0087ab3 from=translated src=- shape=688e82b5 vocab=c8afa98d
+-/
 theorem adjoinTranscendentalAlgHom_mem {ι : Type*} {t s : ι → Ω}
     (ht : AlgebraicIndependent k t) (hs : AlgebraicIndependent k s)
     (x : ↥(adjoin k (Set.range t))) :
@@ -125,7 +132,9 @@ given a tuple `a` with a transcendence basis `t` inside `k(a)`, and any other
 algebraically independent tuple `s`, there is a tuple `b` with the same
 vanishing ideal as `a` all of whose coordinates are algebraic over `k(s)`.
 Choosing `s` algebraically independent over a prescribed field `E₀` makes
-the new copy of the locus generically independent from `E₀`.-/
+the new copy of the locus generically independent from `E₀`.
+@isnad1 id=ex.4h7v.s10.695743eb98f3 from=translated src=- shape=e6c7bcfc vocab=c9f60378
+-/
 theorem exists_relocation [IsAlgClosed Ω] {n d : ℕ} {a : Fin n → Ω}
     {t : Fin d → Ω} (ht : AlgebraicIndependent k t)
     (hle : adjoin k (Set.range t) ≤ adjoin k (Set.range a))
@@ -204,6 +213,9 @@ noncomputable def partialAeval (E : IntermediateField k Ω) (c : Fin m → ↥E)
     MvPolynomial (Fin m ⊕ Fin n) k →ₐ[k] MvPolynomial (Fin n) ↥E :=
   aeval (Sum.elim (fun i ↦ C (c i)) X)
 
+/--
+@isnad1 id=eq.0h8v.s11.3a193be2e199 from=translated src=- shape=6506f857 vocab=33054054
+-/
 theorem aeval_partialAeval (E : IntermediateField k Ω) (c : Fin m → ↥E)
     (w : Fin n → Ω) (f : MvPolynomial (Fin m ⊕ Fin n) k) :
     aeval w (partialAeval (Ω := Ω) E c f) =
@@ -218,7 +230,9 @@ theorem aeval_partialAeval (E : IntermediateField k Ω) (c : Fin m → ↥E)
 
 /-- Packaging lemma for the algebraicity hypothesis of
 `exists_joint_relocation`: if every generator in `T` is algebraic over
-`adjoin F S`, then the extension `adjoin F T / adjoin F S` is algebraic.-/
+`adjoin F S`, then the extension `adjoin F T / adjoin F S` is algebraic.
+@isnad1 id=isalgebr.2h4v.s10.580d7e4d9d87 from=translated src=- shape=cecb0680 vocab=ddbb325e
+-/
 theorem isAlgebraic_extendScalars_adjoin {F : Type*} [Field F] [Algebra F Ω]
     {S T : Set Ω} (hle : adjoin F S ≤ adjoin F T)
     (halg : ∀ x ∈ T, IsAlgebraic ↥(adjoin F S) x) :
@@ -233,7 +247,9 @@ theorem isAlgebraic_extendScalars_adjoin {F : Type*} [Field F] [Algebra F Ω]
 /-- Joint-relation relocation (step 1 of the fused curve-coset design):
 relocating `c₂` over the base `k(c₁)` preserves every joint `k`-polynomial
 relation with `c₁`, while making the new copy algebraic over prescribed
-fresh elements.-/
+fresh elements.
+@isnad1 id=ex.4h9v.s13.f8d3bec59a05 from=translated src=- shape=7da523a7 vocab=994417b5
+-/
 theorem exists_joint_relocation [IsAlgClosed Ω] {d : ℕ}
     (c₁ : Fin m → Ω) {c₂ : Fin n → Ω} {t : Fin d → Ω}
     (ht : AlgebraicIndependent ↥(adjoin k (Set.range c₁)) t)
@@ -274,6 +290,9 @@ noncomputable def addSubst :
     MvPolynomial (Fin n) k →ₐ[k] MvPolynomial (Fin n ⊕ Fin n) k :=
   aeval fun j ↦ X (Sum.inl j) + X (Sum.inr j)
 
+/--
+@isnad1 id=eq.0h6v.s9.95431630e418 from=translated src=- shape=03046eb2 vocab=95398fc8
+-/
 theorem aeval_addSubst (u v : Fin n → Ω) (h : MvPolynomial (Fin n) k) :
     aeval (Sum.elim u v) (addSubst (k := k) h) = aeval (u + v) h := by
   have hcomp : ((aeval (Sum.elim u v) : MvPolynomial (Fin n ⊕ Fin n) k →ₐ[k] Ω).comp
@@ -283,7 +302,9 @@ theorem aeval_addSubst (u v : Fin n → Ω) (h : MvPolynomial (Fin n) k) :
   exact congrArg (fun (g : MvPolynomial (Fin n) k →ₐ[k] Ω) ↦ g h) hcomp
 
 /-- Step 2a of the fused curve-coset design: a joint-relation-preserving
-relocation of `c₂` preserves the vanishing ideal of the componentwise sum.-/
+relocation of `c₂` preserves the vanishing ideal of the componentwise sum.
+@isnad1 id=eq.1h6v.s9.7e3c1d5afbc8 from=translated src=- shape=23afb79b vocab=75d0b4b2
+-/
 theorem idealOf_add_eq_of_joint {c₁ c₂ c₂' : Fin n → Ω}
     (H : ∀ f : MvPolynomial (Fin n ⊕ Fin n) k,
       aeval (Sum.elim c₁ c₂') f = 0 ↔ aeval (Sum.elim c₁ c₂) f = 0) :
@@ -298,6 +319,9 @@ noncomputable def mulSubst :
     MvPolynomial (Fin n) k →ₐ[k] MvPolynomial (Fin n ⊕ Fin n) k :=
   aeval fun j ↦ X (Sum.inl j) * X (Sum.inr j)
 
+/--
+@isnad1 id=eq.0h6v.s9.74fdfb8c36c0 from=translated src=- shape=03046eb2 vocab=8b2231a9
+-/
 theorem aeval_mulSubst (u v : Fin n → Ω) (h : MvPolynomial (Fin n) k) :
     aeval (Sum.elim u v) (mulSubst (k := k) h) = aeval (u * v) h := by
   have hcomp : ((aeval (Sum.elim u v) : MvPolynomial (Fin n ⊕ Fin n) k →ₐ[k] Ω).comp
@@ -307,7 +331,9 @@ theorem aeval_mulSubst (u v : Fin n → Ω) (h : MvPolynomial (Fin n) k) :
   exact congrArg (fun (g : MvPolynomial (Fin n) k →ₐ[k] Ω) ↦ g h) hcomp
 
 /-- The multiplicative form of step 2a: a joint-relation-preserving
-relocation preserves the vanishing ideal of the componentwise product.-/
+relocation preserves the vanishing ideal of the componentwise product.
+@isnad1 id=eq.1h6v.s9.300f1e2f630b from=translated src=- shape=23afb79b vocab=4fa3dbef
+-/
 theorem idealOf_mul_eq_of_joint {c₁ c₂ c₂' : Fin n → Ω}
     (H : ∀ f : MvPolynomial (Fin n ⊕ Fin n) k,
       aeval (Sum.elim c₁ c₂') f = 0 ↔ aeval (Sum.elim c₁ c₂) f = 0) :
@@ -321,6 +347,9 @@ noncomputable def subSubst :
     MvPolynomial (Fin n) k →ₐ[k] MvPolynomial (Fin n ⊕ Fin n) k :=
   aeval fun j ↦ X (Sum.inl j) - X (Sum.inr j)
 
+/--
+@isnad1 id=eq.0h6v.s9.ed4842616839 from=translated src=- shape=03046eb2 vocab=251928ba
+-/
 theorem aeval_subSubst (u v : Fin n → Ω) (h : MvPolynomial (Fin n) k) :
     aeval (Sum.elim u v) (subSubst (k := k) h) = aeval (u - v) h := by
   have hcomp : ((aeval (Sum.elim u v) : MvPolynomial (Fin n ⊕ Fin n) k →ₐ[k] Ω).comp
@@ -331,7 +360,9 @@ theorem aeval_subSubst (u v : Fin n → Ω) (h : MvPolynomial (Fin n) k) :
 
 /-- A joint-relation-preserving relocation also preserves the vanishing
 ideal of the componentwise difference (used for the translation element
-`δ = c₂ - c₂'` of the curve-coset argument).-/
+`δ = c₂ - c₂'` of the curve-coset argument).
+@isnad1 id=eq.1h6v.s9.6d7148f410e3 from=translated src=- shape=23afb79b vocab=c2c51b22
+-/
 theorem idealOf_sub_eq_of_joint {c₁ c₂ c₂' : Fin n → Ω}
     (H : ∀ f : MvPolynomial (Fin n ⊕ Fin n) k,
       aeval (Sum.elim c₁ c₂') f = 0 ↔ aeval (Sum.elim c₁ c₂) f = 0) :

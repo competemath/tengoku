@@ -50,7 +50,9 @@ noncomputable def genus : ℤ :=
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
 /-- A one-dimensional extension is trivial: an intermediate field over
-which the ambient field has dimension one is everything.-/
+which the ambient field has dimension one is everything.
+@isnad1 id=eq.1h3v.s8.a7828535d23c from=translated src=- shape=0b00b7a2 vocab=be092eb0
+-/
 theorem intermediateField_eq_top_of_finrank_eq_one
     {K : IntermediateField k F} [FiniteDimensional (↥K) F]
     (h1 : Module.finrank (↥K) F = 1) : K = ⊤ := by

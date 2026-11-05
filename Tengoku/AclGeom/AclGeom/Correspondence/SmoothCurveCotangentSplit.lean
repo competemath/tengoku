@@ -32,7 +32,9 @@ open scoped TensorProduct
 universe u v w
 
 /-- An actual algebra section makes the conormal-to-differential map injective.
-Named consumer: the cotangent bound at an actual smooth curve's closed point.-/
+Named consumer: the cotangent bound at an actual smooth curve's closed point.
+@isnad1 id=injectiv.2h4v.s10.fd0c3a0b9306 from=translated src=- shape=62e874c1 vocab=b351064d
+-/
 theorem kerCotangentToTensor_injective_of_section
     {k : Type u} {R : Type v} {S : Type w}
     [CommRing k] [CommRing R] [CommRing S]

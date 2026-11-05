@@ -47,7 +47,9 @@ variable {k : Type*} {K : Type*} [Field k] [Field K] [Algebra k K]
 section LineClause
 
 /-- Elements outside a relative algebraic closure are transcendental over
-it as a base field.-/
+it as a base field.
+@isnad1 id=transcen.1h4v.s7.09a164f58a4b from=translated src=- shape=3b214718 vocab=41cf68ae
+-/
 theorem transcendental_racl_of_notMem {S : Set K} {z : K}
     (h : z ∉ racl k S) : Transcendental ↥(racl k S) z := by
   intro halg
@@ -57,7 +59,9 @@ variable {u v w t : K}
 
 /-- Exchange reduction for the atom clause: if the generic direction `w`
 were algebraic over the atom parameter and the line value, the line value
-would be algebraic over `{w, t}`.-/
+would be algebraic over `{w, t}`.
+@isnad1 id=mem.3h6v.s8.8ef7785f19c5 from=translated src=- shape=19175ea6 vocab=d6e1dea8
+-/
 theorem line_mem_of_mem (hw : w ∉ racl k ({u, v} : Set K))
     (ht : t ∈ racl k ({u, v} : Set K))
     (hmem : w ∈ racl k ({t, u * w + v} : Set K)) :
@@ -69,7 +73,9 @@ theorem line_mem_of_mem (hw : w ∉ racl k ({u, v} : Set K))
   exact racl_exchange hmem' hwt
 
 /-- The line value is algebraic over the direction alone, once the atom
-closure is promoted to the base field.-/
+closure is promoted to the base field.
+@isnad1 id=mem.1h6v.s9.0036a9d9fcee from=translated src=- shape=88b3fe94 vocab=84d14abb
+-/
 theorem line_mem_over_base (h : u * w + v ∈ racl k ({w, t} : Set K)) :
     u * w + v ∈ racl ↥(racl k ({t} : Set K)) ({w} : Set K) := by
   have h1 : u * w + v ∈ racl ↥(racl k ({t} : Set K)) ({w, t} : Set K) :=
@@ -86,7 +92,9 @@ theorem line_mem_over_base (h : u * w + v ∈ racl k ({w, t} : Set K)) :
   exact h1
 
 /-- A nonzero two-variable relation over the atom base: the vanishing
-ideal of `(w, uw+v)` over `racl{t}` contains a nonzero polynomial.-/
+ideal of `(w, uw+v)` over `racl{t}` contains a nonzero polynomial.
+@isnad1 id=ex.1h6v.s11.27a495e5e5d3 from=translated src=- shape=2f1d2157 vocab=ac6409ab
+-/
 theorem exists_line_relation (h : u * w + v ∈ racl k ({w, t} : Set K)) :
     ∃ G : MvPolynomial (Fin 2) ↥(racl k ({t} : Set K)), G ≠ 0 ∧
       MvPolynomial.aeval ![w, u * w + v] G = 0 := by
@@ -124,7 +132,9 @@ variable {u v w t : K}
 /-- **The substitution collapse**: a relation over `racl{t}` that vanishes
 at `(w, uw+v)` with `w` transcendental over `racl{u, v}` vanishes at every
 specialization `(z, uz+v)` with `z ∈ K` — because the one-variable
-substitution sends it to the zero polynomial.-/
+substitution sends it to the zero polynomial.
+@isnad1 id=eq.3h8v.s11.e3e5c6712fdd from=translated src=- shape=862a3619 vocab=ac6409ab
+-/
 theorem line_relation_specialize
     (hw : w ∉ racl k ({u, v} : Set K))
     (ht : t ∈ racl k ({u, v} : Set K))
@@ -222,7 +232,9 @@ variable {u v w t : K}
 
 /-- At a specialization point `ξ` of the atom closure where the
 `Y`-collapse stays nonzero, the line value is algebraic over the atom
-closure.-/
+closure.
+@isnad1 id=mem.4h8v.s13.fea36385e317 from=translated src=- shape=cb07cf7b vocab=52719500
+-/
 theorem line_value_mem
     (hw : w ∉ racl k ({u, v} : Set K))
     (ht : t ∈ racl k ({u, v} : Set K))
@@ -253,7 +265,9 @@ theorem line_value_mem
   have halg : IsAlgebraic ↥(racl k ({t} : Set K)) (u * (ξ : K) + v) := ⟨_, hQ, hzero⟩
   exact IsRAC.mem_of_isAlgebraic (isRAC_racl _) halg
 
-/-- The relative closure of a transcendental element is an infinite field.-/
+/-- The relative closure of a transcendental element is an infinite field.
+@isnad1 id=infinite.1h3v.s6.a0b7217fc62e from=translated src=- shape=4b962bbb vocab=b2dc5b9b
+-/
 theorem infinite_racl_singleton (ht0 : t ∉ racl k (∅ : Set K)) :
     Infinite ↥(racl k ({t} : Set K)) := by
   have htr : Transcendental k t := fun h ↦ ht0 (mem_racl_empty_of_isAlgebraic h)
@@ -269,7 +283,9 @@ theorem infinite_racl_singleton (ht0 : t ∉ racl k (∅ : Set K)) :
 /-- Two distinct specializations with algebraic line values exist: the
 collapse is nonzero at all but finitely many points of the atom closure,
 which is an infinite field because it contains the transcendental `t`.
-No hypothesis on the size of the base field is needed.-/
+No hypothesis on the size of the base field is needed.
+@isnad1 id=ex.5h7v.s11.ffa474a6a5d5 from=translated src=- shape=c03e015b vocab=29a3ea85
+-/
 theorem exists_two_specializations
     (hw : w ∉ racl k ({u, v} : Set K))
     (ht : t ∈ racl k ({u, v} : Set K)) (ht0 : t ∉ racl k (∅ : Set K))
@@ -292,7 +308,9 @@ theorem exists_two_specializations
 /-- **The atom clause, elementwise** (blueprint clause (iv), by the
 specialization route): no transcendental parameter `t` algebraic over the
 independent line coefficients `u, v` can make the generic direction `w`
-algebraic over `{t, uw + v}`.-/
+algebraic over `{t, uw + v}`.
+@isnad1 id=not.5h6v.s8.482c10bbd63f from=translated src=- shape=e824e68e vocab=3ebaf705
+-/
 theorem notMem_racl_line
     (hu0 : u ∉ racl k (∅ : Set K))
     (hvu : v ∉ racl k ({u} : Set K))
@@ -331,7 +349,9 @@ variable {u v w t : K}
 
 /-- The value form of the atom clause: the line value is not algebraic
 over the parameter and the direction. One more exchange reduces it to
-`notMem_racl_line`.-/
+`notMem_racl_line`.
+@isnad1 id=not.5h6v.s8.c65c8d932de5 from=translated src=- shape=f3ca43c0 vocab=3ebaf705
+-/
 theorem line_value_notMem
     (hu0 : u ∉ racl k (∅ : Set K))
     (hvu : v ∉ racl k ({u} : Set K))
@@ -368,19 +388,31 @@ variable {a b c d x : K} (hind : AlgebraicIndependent k ![a, b, c, d, x])
 
 include hind
 
+/--
+@isnad1 id=not.1h7v.s7.d956a80f2950 from=translated src=- shape=3160d180 vocab=f4889937
+-/
 theorem qtable_a_notMem_empty : a ∉ racl k (∅ : Set K) := fun h ↦
   AlgebraicIndependent.transcendental hind 0
     (isAlgebraic_of_mem_racl_empty h)
 
+/--
+@isnad1 id=not.1h7v.s7.933c0d93d323 from=translated src=- shape=343602b5 vocab=f4889937
+-/
 theorem qtable_c_notMem_empty : c ∉ racl k (∅ : Set K) := fun h ↦
   AlgebraicIndependent.transcendental hind 2
     (isAlgebraic_of_mem_racl_empty h)
 
+/--
+@isnad1 id=not.1h7v.s7.2107089c327e from=translated src=- shape=57474357 vocab=e2c4dba1
+-/
 theorem qtable_ac_notMem_empty : a * c ∉ racl k (∅ : Set K) := by
   intro h
   exact qtable_mul_ac_notMem_bot hind
     (ClosedIF.mem_bot_iff.2 (isAlgebraic_of_mem_racl_empty h))
 
+/--
+@isnad1 id=not.1h7v.s7.5a8d7acb879f from=translated src=- shape=930eba77 vocab=4789c72c
+-/
 theorem qtable_d_notMem_c : d ∉ racl k ({c} : Set K) := by
   have h : AlgebraicIndependent k ![c, d] := by
     simpa using AlgebraicIndependent.comp_pair hind
@@ -388,7 +420,9 @@ theorem qtable_d_notMem_c : d ∉ racl k ({c} : Set K) := by
   exact AlgebraicIndependent.notMem_racl_pair h
 
 /-- `bc + d ∉ racl{ac}`: the closure of `ac` lies in `racl{a, c}`, and
-membership there would recover `d` over `{a, b, c}`.-/
+membership there would recover `d` over `{a, b, c}`.
+@isnad1 id=not.1h7v.s7.9ed5e3b63a8c from=translated src=- shape=9e98fad5 vocab=5c9d6583
+-/
 theorem qtable_bcd_notMem_ac : b * c + d ∉ racl k ({a * c} : Set K) := by
   intro hmem
   have hsub : racl k ({a * c} : Set K) ≤ racl k ({a, b, c} : Set K) := by
@@ -404,6 +438,9 @@ theorem qtable_bcd_notMem_ac : b * c + d ∉ racl k ({a * c} : Set K) := by
     rwa [add_sub_cancel_left] at h3
   exact qtable_d_notMem_abc hind hd
 
+/--
+@isnad1 id=not.1h7v.s7.216e32d05fe6 from=translated src=- shape=fc0cb271 vocab=86440252
+-/
 theorem qtable_Y_notMem_cd : a * x + b ∉ racl k ({c, d} : Set K) := by
   intro hmem
   have hsub : racl k ({c, d} : Set K) ≤ racl k ({a, b, c, d} : Set K) := by
@@ -412,6 +449,9 @@ theorem qtable_Y_notMem_cd : a * x + b ∉ racl k ({c, d} : Set K) := by
     exact ⟨subset_racl k _ (by simp), subset_racl k _ (by simp)⟩
   exact qtable_Y_notMem_abcd hind (hsub hmem)
 
+/--
+@isnad1 id=not.1h7v.s7.e7c89461c229 from=translated src=- shape=4bd8eb3f vocab=86440252
+-/
 theorem qtable_x_notMem_ac_bcd :
     x ∉ racl k ({a * c, b * c + d} : Set K) := by
   intro hmem
@@ -429,7 +469,9 @@ theorem qtable_x_notMem_ac_bcd :
 
 omit hind in
 /-- A point below a join of two principal closures has its representative
-algebraic over the two generators.-/
+algebraic over the two generators.
+@isnad1 id=mem.1h5v.s7.0b7bc031b03d from=translated src=- shape=886173af vocab=058fa960
+-/
 theorem point_rep_mem_of_le {p q : K} {P : Point k K}
     (h : P.1 ≤ ClosedIF.point k p ⊔ ClosedIF.point k q) :
     P.rep ∈ racl k ({p, q} : Set K) := by
@@ -441,14 +483,18 @@ theorem point_rep_mem_of_le {p q : K} {P : Point k K}
   rwa [ClosedIF.mem_sup_point_iff] at h2
 
 omit hind in
-/-- Point representatives are never algebraic over the base.-/
+/-- Point representatives are never algebraic over the base.
+@isnad1 id=not.0h3v.s6.3c79db04e973 from=translated src=- shape=02ee2280 vocab=6d0a0397
+-/
 theorem point_rep_notMem_empty (P : Point k K) :
     P.rep ∉ racl k (∅ : Set K) := fun h ↦
   P.rep_notMem_bot (ClosedIF.mem_bot_iff.2 (isAlgebraic_of_mem_racl_empty h))
 
 omit hind in
 /-- Convert a lattice incidence into a membership over the representative
-and a second generator.-/
+and a second generator.
+@isnad1 id=mem.1h5v.s7.708b964cf150 from=translated src=- shape=6c039696 vocab=058fa960
+-/
 theorem mem_of_le_point_sup {z q : K} {P : Point k K}
     (h : ClosedIF.point k z ≤ P.1 ⊔ ClosedIF.point k q) :
     z ∈ racl k ({P.rep, q} : Set K) := by
@@ -459,7 +505,9 @@ theorem mem_of_le_point_sup {z q : K} {P : Point k K}
   rwa [ClosedIF.mem_sup_point_iff] at h2
 
 /-- Clause (iv), first universal statement: no atom of `A` captures the
-correspondence from `Y` to `X`.-/
+correspondence from `Y` to `X`.
+@isnad1 id=not.2h8v.s9.45e59a685f74 from=translated src=- shape=da9635ae vocab=c8fb5628
+-/
 theorem qWitness_X_free :
     ∀ A' : Point k K, A'.1 ≤ (qWitness hind).A →
       ¬ (qWitness hind).X.1 ≤ A'.1 ⊔ (qWitness hind).Y.1 := by
@@ -472,7 +520,9 @@ theorem qWitness_X_free :
     (point_rep_notMem_empty A') hx
 
 /-- Clause (iv), second universal statement: no atom of `B` captures the
-correspondence from `Y` to `Z`.-/
+correspondence from `Y` to `Z`.
+@isnad1 id=not.2h8v.s9.3f2085a67dbc from=translated src=- shape=da9635ae vocab=3efff11f
+-/
 theorem qWitness_Z_freeB :
     ∀ B' : Point k K, B'.1 ≤ (qWitness hind).B →
       ¬ (qWitness hind).Z.1 ≤ B'.1 ⊔ (qWitness hind).Y.1 := by
@@ -485,7 +535,9 @@ theorem qWitness_Z_freeB :
     (point_rep_notMem_empty B') hz
 
 /-- Clause (iv), third universal statement: no atom of `C` captures the
-correspondence from `X` to `Z`.-/
+correspondence from `X` to `Z`.
+@isnad1 id=not.2h8v.s9.b15fe6496244 from=translated src=- shape=da9635ae vocab=b3312d58
+-/
 theorem qWitness_Z_freeC :
     ∀ C' : Point k K, C'.1 ≤ (qWitness hind).C →
       ¬ (qWitness hind).Z.1 ≤ C'.1 ⊔ (qWitness hind).X.1 := by

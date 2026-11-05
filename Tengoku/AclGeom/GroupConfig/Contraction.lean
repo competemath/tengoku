@@ -37,7 +37,9 @@ noncomputable section
 
 variable {K : Type*} [Field K] {R : Type*} [CommRing R] [Algebra R K] {ι κ : Type*}
 
-/-- Coefficient projections commute with renaming variables along an injection.-/
+/-- Coefficient projections commute with renaming variables along an injection.
+@isnad1 id=eq.1h7v.s9.15fc4a2c9c9b from=translated src=- shape=da1affb3 vocab=ab77a44c
+-/
 theorem coordPoly_rename (l : K →ₗ[R] R) {f : ι → κ} (hf : Function.Injective f)
     (p : MvPolynomial ι K) : coordPoly l (rename f p) = rename f (coordPoly l p) := by
   refine MvPolynomial.ext _ _ fun d ↦ ?_
@@ -60,7 +62,9 @@ variable (M : Type*) [Field M] [Algebra M K]
 
 /-- `lem:extcontr`(2): contracting along an injective renaming of variables an ideal extended
 from `M` gives the extension of the contraction (for `Sum.inl : ι → ι ⊕ κ`: an ideal of
-`K[Y, Z]` defined over `M` contracts to an ideal of `K[Y]` defined over `M`).-/
+`K[Y, Z]` defined over `M` contracts to an ideal of `K[Y]` defined over `M`).
+@isnad1 id=eq.1h6v.s10.bfae4194ce4d from=translated src=- shape=72676258 vocab=70df4729
+-/
 theorem comap_rename_map_eq {ι₁ ι₂ : Type*} {f : ι₁ → ι₂} (hf : Function.Injective f)
     (J : Ideal (MvPolynomial ι₂ M)) :
     (J.map (MvPolynomial.map (algebraMap M K))).comap

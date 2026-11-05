@@ -42,7 +42,9 @@ end PointPresentation
 section FiniteRankTransport
 
 /-- An order isomorphism preserves independence of a finite point tuple.
-This is the rank-transport step used by the lattice form of reconstruction.-/
+This is the rank-transport step used by the lattice form of reconstruction.
+@isnad1 id=iff.0h7v.s7.ea4c2f81e313 from=translated src=- shape=38ac9c84 vocab=457dffef
+-/
 theorem pointIndep_map_iff (e : ClosedIF k K ≃o ClosedIF l L)
     {n : ℕ} (f : Fin n → Point k K) :
     PointIndep l L (Point.map e ∘ f) ↔ PointIndep k K f := by
@@ -56,13 +58,17 @@ theorem pointIndep_map_iff (e : ClosedIF k K ≃o ClosedIF l L)
   exact not_congr (pointCl_map_iff e)
 
 /-- An order isomorphism carries the join of a tuple of points to the join
-of the transported tuple.-/
+of the transported tuple.
+@isnad1 id=eq.0h7v.s9.c2cf68d7cdae from=translated src=- shape=217b265a vocab=8049dada
+-/
 theorem point_map_iSup (e : ClosedIF k K ≃o ClosedIF l L)
     {n : ℕ} (f : Fin n → Point k K) :
     (⨆ i, (Point.map e (f i)).1) = e (⨆ i, (f i).1) := by
   simp only [Point.map_coe, e.map_iSup]
 
-/-- Order isomorphisms preserve finite geometric rank bounds.-/
+/-- Order isomorphisms preserve finite geometric rank bounds.
+@isnad1 id=iff.0h7v.s8.de7e2b7e1724 from=translated src=- shape=17f9b381 vocab=14d197bc
+-/
 theorem rankLE_map_iff (e : ClosedIF k K ≃o ClosedIF l L)
     (n : ℕ) (E : ClosedIF k K) : RankLE n (e E) ↔ RankLE n E := by
   constructor
@@ -77,7 +83,9 @@ theorem rankLE_map_iff (e : ClosedIF k K ≃o ClosedIF l L)
     rw [point_map_iSup]
     exact e.monotone hf
 
-/-- Order isomorphisms preserve exact finite geometric rank.-/
+/-- Order isomorphisms preserve exact finite geometric rank.
+@isnad1 id=iff.0h7v.s8.47cdf3c616b2 from=translated src=- shape=17f9b381 vocab=c7069fd1
+-/
 theorem rankEq_map_iff (e : ClosedIF k K ≃o ClosedIF l L)
     (n : ℕ) (E : ClosedIF k K) : RankEq n (e E) ↔ RankEq n E := by
   constructor
@@ -98,7 +106,9 @@ section IndependentFamilies
 
 /-- A lattice isomorphism transports an arbitrary independent family of
 point generators to independent representatives of the image points.
-The named consumer is transcendence-degree preservation.-/
+The named consumer is transcendence-degree preservation.
+@isnad1 id=algebrai.1h7v.s8.92184f7b401e from=translated src=- shape=132d7489 vocab=6fb2073a
+-/
 theorem algebraicIndependent_pointMap_rep {ι : Type*} {v : ι → K}
     (hv : AlgebraicIndependent k v) (e : ClosedIF k K ≃o ClosedIF l L) :
     AlgebraicIndependent l (fun i ↦
@@ -131,7 +141,9 @@ variable {k₁ : Type*} {K₁ : Type u} {k₂ : Type*} {K₂ : Type v}
   [Field k₂] [Field K₂] [Algebra k₂ K₂]
 
 /-- An order isomorphism transports a transcendence basis to an independent
-family of the same cardinality, so transcendence degree cannot decrease.-/
+family of the same cardinality, so transcendence degree cannot decrease.
+@isnad1 id=le.0h5v.s7.a8bf0fa327fd from=translated src=- shape=3d88907e vocab=3d8dcb67
+-/
 theorem lift_trdeg_le_of_orderIso (e : ClosedIF k₁ K₁ ≃o ClosedIF k₂ K₂) :
     Cardinal.lift.{v} (Algebra.trdeg k₁ K₁) ≤
       Cardinal.lift.{u} (Algebra.trdeg k₂ K₂) := by
@@ -149,7 +161,9 @@ section NumericalRank
 open IntermediateField
 
 /-- An independent family is a transcendence basis exactly when its relative
-algebraic closure is the whole field. Used by the finite-rank bridge.-/
+algebraic closure is the whole field. Used by the finite-rank bridge.
+@isnad1 id=iff.1h4v.s7.ab575228ba13 from=translated src=- shape=e5e85e7e vocab=70a17b17
+-/
 theorem isTranscendenceBasis_iff_racl_range_eq_top {ι : Type*} {v : ι → K}
     (hv : AlgebraicIndependent k v) :
     IsTranscendenceBasis k v ↔ racl k (Set.range v) = ⊤ := by
@@ -166,7 +180,9 @@ theorem isTranscendenceBasis_iff_racl_range_eq_top {ι : Type*} {v : ι → K}
     exact h ▸ (show z ∈ (⊤ : IntermediateField k K) from mem_top)
 
 /-- The finite geometric rank of a closed field equals its transcendence
-degree. This is the numerical rank interface in blueprint Foundation II.-/
+degree. This is the numerical rank interface in blueprint Foundation II.
+@isnad1 id=eq.1h4v.s7.38ae019c0b93 from=translated src=- shape=2e85d1ca vocab=f2f6157f
+-/
 theorem RankEq.trdeg_eq {n : ℕ} {E : ClosedIF k K} (h : RankEq n E) :
     Algebra.trdeg k (↥E.1) = n := by
   classical

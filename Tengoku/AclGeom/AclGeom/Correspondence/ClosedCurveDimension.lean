@@ -23,7 +23,9 @@ namespace AclGeom
 open Set TopologicalSpace Topology
 
 /-- A closed embedding of full finite dimension into an irreducible space is surjective.
-The named source consumer is the equality of the translated curves in `lem:curve-coset`.-/
+The named source consumer is the equality of the translated curves in `lem:curve-coset`.
+@isnad1 id=surjecti.3h4v.s6.75f14aeaf350 from=translated src=- shape=50836866 vocab=3c579a4d
+-/
 theorem surjective_of_isClosedEmbedding_of_finite_topologicalKrullDim
     {X Y : Type*} [TopologicalSpace X] [TopologicalSpace Y] [IrreducibleSpace X]
     {f : Y → X} (hf : IsClosedEmbedding f) (n : ℕ)

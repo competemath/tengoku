@@ -60,7 +60,9 @@ def RankEq (n : ℕ) (E : ClosedIF k K) : Prop :=
   ∃ f : Fin n → Point k K, PointIndep k K f ∧ E = ⨆ i, (f i).1
 
 /-- Joins of finite point tuples are relative algebraic closures of the
-tuples of chosen generators.-/
+tuples of chosen generators.
+@isnad1 id=eq.0h4v.s7.92215816e36e from=translated src=- shape=ef6684c0 vocab=6d25e8da
+-/
 theorem iSup_point_val {n : ℕ} (f : Fin n → Point k K) :
     (⨆ i, (f i).1).1 = racl k (Set.range fun i ↦ (f i).rep) := by
   have h1 : (⨆ i, (f i).1) =
@@ -75,6 +77,9 @@ theorem iSup_point_val {n : ℕ} (f : Fin n → Point k K) :
       exact ⟨i, ((f i).point_rep).symm.trans hi⟩
   rw [h1, sSup_point_image]
 
+/--
+@isnad1 id=rankle.2h5v.s6.4f1d7054f5e9 from=translated src=- shape=0f5a72d2 vocab=b945e857
+-/
 theorem RankLE.mono_left {n : ℕ} {E F : ClosedIF k K} (hEF : E ≤ F)
     (hF : RankLE n F) : RankLE n E := by
   obtain ⟨f, hf⟩ := hF
@@ -91,7 +96,9 @@ configuration witness is verified by exhibiting generators and computing
 with `racl`. -/
 
 /-- The join of a family of principal closures is the relative algebraic
-closure of the set of generators.-/
+closure of the set of generators.
+@isnad1 id=eq.0h4v.s6.fe5742a8407a from=translated src=- shape=96147509 vocab=cc995124
+-/
 theorem coe_iSup_point {ι : Type*} (v : ι → K) :
     ((⨆ i, ClosedIF.point k (v i)).1 : IntermediateField k K) =
       racl k (Set.range v) := by
@@ -108,7 +115,9 @@ theorem coe_iSup_point {ι : Type*} (v : ι → K) :
   rw [h1, sSup_point_image]
 
 /-- Membership in a join of principal closures is relative algebraicity
-over the generators.-/
+over the generators.
+@isnad1 id=iff.0h5v.s7.97bb88a1e4c9 from=translated src=- shape=3247e5a6 vocab=c75bb060
+-/
 theorem mem_iSup_point_iff {ι : Type*} {v : ι → K} {z : K} :
     z ∈ (⨆ i, ClosedIF.point k (v i)) ↔ z ∈ racl k (Set.range v) := by
   change z ∈ ((⨆ i, ClosedIF.point k (v i)).1 : IntermediateField k K) ↔ _
@@ -116,14 +125,18 @@ theorem mem_iSup_point_iff {ι : Type*} {v : ι → K} {z : K} :
 
 /-- Joins of principal closures agree whenever the generator sets have the
 same relative algebraic closure — the absorption workhorse for rank
-computations at dependent generators.-/
+computations at dependent generators.
+@isnad1 id=eq.1h6v.s7.e543b8aa4be6 from=translated src=- shape=50fc5f8b vocab=90510f88
+-/
 theorem iSup_point_congr {ι κ : Type*} {v : ι → K} {w : κ → K}
     (h : racl k (Set.range v) = racl k (Set.range w)) :
     (⨆ i, ClosedIF.point k (v i)) = ⨆ j, ClosedIF.point k (w j) :=
   Subtype.ext (by rw [coe_iSup_point, coe_iSup_point, h])
 
 /-- An algebraically independent family of generators yields an independent
-family of points.-/
+family of points.
+@isnad1 id=pointind.2h4v.s7.6a74936eb681 from=translated src=- shape=824361fc vocab=700ba2e1
+-/
 theorem pointIndep_point {n : ℕ} {v : Fin n → K}
     (hv : AlgebraicIndependent k v) (h0 : ∀ i, v i ∉ (⊥ : ClosedIF k K)) :
     PointIndep k K fun i ↦ Point.mk' k (v i) (h0 i) := by
@@ -153,7 +166,9 @@ theorem pointIndep_point {n : ℕ} {v : Fin n → K}
 /-- Independence of a finite point tuple is exactly algebraic independence
 of any chosen representatives.  This is the reverse direction of
 `pointIndep_point`; unlike that constructor it needs no separate
-non-bottom hypotheses because every `Point.rep` generates its point.-/
+non-bottom hypotheses because every `Point.rep` generates its point.
+@isnad1 id=algebrai.1h4v.s6.8f38b9ecf989 from=translated src=- shape=78559346 vocab=9f884cc6
+-/
 theorem algebraicIndependent_rep_of_pointIndep {n : ℕ}
     {f : Fin n → Point k K} (hf : PointIndep k K f) :
     AlgebraicIndependent k fun i ↦ (f i).rep := by
@@ -167,7 +182,9 @@ theorem algebraicIndependent_rep_of_pointIndep {n : ℕ}
   rw [hcompl]
   simpa only [Set.image_image, Function.comp_apply] using hi
 
-/-- The algebraic-independence matroid has `racl` as its closure operator.-/
+/-- The algebraic-independence matroid has `racl` as its closure operator.
+@isnad1 id=eq.0h3v.s6.2a689ce2a183 from=translated src=- shape=6456a674 vocab=29dd859b
+-/
 theorem algebraicMatroid_closure_eq_racl (S : Set K) :
     (AlgebraicIndependent.matroid k K).closure S = (racl k S : Set K) := by
   ext x
@@ -184,7 +201,9 @@ closed element as an independent `n`-tuple.
 The proof compares finite ranks in the algebraic-independence matroid.  The
 witness tuple supplied by `RankEq` is an independent set of size `n`; equality
 of the two `racl`-spans gives equality of matroid closures, so the explicit
-tuple also has matroid rank `n`, hence is independent.-/
+tuple also has matroid rank `n`, hence is independent.
+@isnad1 id=algebrai.1h4v.s6.501192b2ddd1 from=translated src=- shape=598aea95 vocab=e7b78fc3
+-/
 theorem algebraicIndependent_of_rankEq_iSup_point {n : ℕ} {v : Fin n → K}
     (h : RankEq n (⨆ i, ClosedIF.point k (v i))) :
     AlgebraicIndependent k v := by
@@ -239,7 +258,9 @@ theorem algebraicIndependent_of_rankEq_iSup_point {n : ℕ} {v : Fin n → K}
 
 /-- The join of principal closures at an algebraically independent
 `n`-tuple of generators has rank exactly `n` — the bridge from field
-theory to geometric rank.-/
+theory to geometric rank.
+@isnad1 id=rankeq.1h4v.s6.7b4e7baedd20 from=translated src=- shape=78413e91 vocab=e7b78fc3
+-/
 theorem rankEq_iSup_point {n : ℕ} {v : Fin n → K}
     (hv : AlgebraicIndependent k v) :
     RankEq n (⨆ i, ClosedIF.point k (v i)) := by
@@ -247,7 +268,9 @@ theorem rankEq_iSup_point {n : ℕ} {v : Fin n → K}
     hv.transcendental i (ClosedIF.mem_bot_iff.1 hi)
   exact ⟨fun i ↦ Point.mk' k (v i) (h0 i), pointIndep_point hv h0, rfl⟩
 
-/-- Rank transfers along equalities of closed elements.-/
+/-- Rank transfers along equalities of closed elements.
+@isnad1 id=rankeq.2h5v.s6.ebb7cc723dfc from=translated src=- shape=45532719 vocab=0f7a4575
+-/
 theorem RankEq.congr {n : ℕ} {E F : ClosedIF k K} (h : E = F)
     (hE : RankEq n E) : RankEq n F :=
   h ▸ hE
@@ -332,7 +355,9 @@ theorem RankEq.eq_of_le {n : ℕ} {E F : ClosedIF k K}
 field is the closure of an independent `n`-tuple of generators has rank
 exactly `n`. Rank clauses of configuration witnesses are verified by
 computing the left-hand side with `coe_sup`/`coe_set_sup`/`coe_set_point`
-and the `racl_union` absorptions.-/
+and the `racl_union` absorptions.
+@isnad1 id=rankeq.2h5v.s6.074ce74b8cb0 from=translated src=- shape=8c419742 vocab=4096e468
+-/
 theorem rankEq_of_coe_eq_racl {n : ℕ} {E : ClosedIF k K} {v : Fin n → K}
     (hv : AlgebraicIndependent k v)
     (h : (E.1 : IntermediateField k K) = racl k (Set.range v)) :
@@ -342,7 +367,9 @@ theorem rankEq_of_coe_eq_racl {n : ℕ} {E : ClosedIF k K} {v : Fin n → K}
   exact (rankEq_iSup_point hv).congr hE.symm
 
 /-- Binary suprema as indexed suprema over `Fin 2`, for feeding pair joins
-to the rank bridge.-/
+to the rank bridge.
+@isnad1 id=eq.0h3v.s6.3414694269d9 from=translated src=- shape=128bd764 vocab=d8cbdf2b
+-/
 theorem sup_eq_iSup_two {α : Type*} [CompleteLattice α] (a b : α) :
     a ⊔ b = ⨆ i, (![a, b] : Fin 2 → α) i := by
   refine le_antisymm (sup_le ?_ ?_) (iSup_le fun i ↦ ?_)
@@ -352,7 +379,9 @@ theorem sup_eq_iSup_two {α : Type*} [CompleteLattice α] (a b : α) :
     · exact le_sup_left
     · exact le_sup_right
 
-/-- The underlying field of a join of two principal closures.-/
+/-- The underlying field of a join of two principal closures.
+@isnad1 id=eq.0h4v.s7.38c490b27885 from=translated src=- shape=ddd76646 vocab=a3c22a51
+-/
 theorem coe_sup_point₂ (z₁ z₂ : K) :
     ((ClosedIF.point k z₁ ⊔ ClosedIF.point k z₂).1 :
       IntermediateField k K) = racl k {z₁, z₂} := by
@@ -366,7 +395,9 @@ theorem coe_sup_point₂ (z₁ z₂ : K) :
     · exact (ClosedIF.le_iff.1 le_sup_left) (ClosedIF.mem_point_self z)
     · exact (ClosedIF.le_iff.1 le_sup_right) (ClosedIF.mem_point_self z)
 
-/-- The underlying field of a join of three principal closures.-/
+/-- The underlying field of a join of three principal closures.
+@isnad1 id=eq.0h5v.s7.9fdccb78120f from=translated src=- shape=d2d4424f vocab=a3c22a51
+-/
 theorem coe_sup_point₃ (z₁ z₂ z₃ : K) :
     ((ClosedIF.point k z₁ ⊔ (ClosedIF.point k z₂ ⊔ ClosedIF.point k z₃)).1 :
       IntermediateField k K) = racl k {z₁, z₂, z₃} := by

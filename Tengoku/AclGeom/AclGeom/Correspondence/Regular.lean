@@ -47,7 +47,9 @@ noncomputable section
 variable {k E F : Type*} [Field k] [Field E] [Field F] [Algebra k E] [Algebra k F]
 
 /-- The canonical map `E' ⊗[k] F → E ⊗[k] F` induced by an intermediate
-field `E' ≤ E` is injective (`F` is flat over the field `k`).-/
+field `E' ≤ E` is injective (`F` is flat over the field `k`).
+@isnad1 id=injectiv.0h4v.s11.bfdcd48154d4 from=translated src=- shape=d77f84b6 vocab=11c5ef08
+-/
 theorem tensorProduct_map_val_injective (E' : IntermediateField k E) :
     Function.Injective
       (Algebra.TensorProduct.map E'.val (AlgHom.id k F)) := by
@@ -75,6 +77,9 @@ construction).-/
 noncomputable scoped instance : Algebra (MvPolynomial σ k) (MvPolynomial σ F) :=
   (MvPolynomial.map (algebraMap k F)).toAlgebra
 
+/--
+@isnad1 id=eq.0h3v.s7.7c5befe0c24a from=translated src=- shape=79c9e0b0 vocab=b10f3abc
+-/
 theorem algebraMap_eq :
     algebraMap (MvPolynomial σ k) (MvPolynomial σ F) =
       MvPolynomial.map (algebraMap k F) := rfl
@@ -91,6 +96,9 @@ noncomputable def fwd :
   Algebra.TensorProduct.lift (Algebra.ofId _ _)
     (IsScalarTower.toAlgHom k F (MvPolynomial σ F)) fun _ _ ↦ Commute.all _ _
 
+/--
+@isnad1 id=eq.0h5v.s10.165f2e5af8d0 from=translated src=- shape=1712db89 vocab=5c5d64b7
+-/
 theorem fwd_tmul (p : MvPolynomial σ k) (f : F) :
     fwd (k := k) (F := F) σ (p ⊗ₜ[k] f) =
       MvPolynomial.map (algebraMap k F) p * MvPolynomial.C f := by
@@ -98,7 +106,9 @@ theorem fwd_tmul (p : MvPolynomial σ k) (f : F) :
     IsScalarTower.coe_toAlgHom', MvPolynomial.algebraMap_eq]
 
 /-- `fwd` is bijective: it matches the monomial-tensor basis with the
-scalar-tower basis of `F[T]`.-/
+scalar-tower basis of `F[T]`.
+@isnad1 id=bijectiv.0h3v.s9.9c0d4405c0fb from=translated src=- shape=c983a823 vocab=0280f408
+-/
 theorem fwd_bijective : Function.Bijective (fwd (k := k) (F := F) σ) := by
   classical
   let bF := Module.Basis.ofVectorSpace k F
@@ -138,7 +148,9 @@ end RegularAux
 open RegularAux in
 /-- The purely transcendental step of blueprint Lemma 8.1(a): the tensor
 product of a purely transcendental extension `k(T)` with any extension `F/k`
-is a domain — it is a localization of the polynomial ring `F[T]`.-/
+is a domain — it is a localization of the polynomial ring `F[T]`.
+@isnad1 id=isdomain.0h3v.s9.591c41badf64 from=translated src=- shape=cbfae3c0 vocab=9b2ff814
+-/
 theorem isDomain_fractionRing_mvPolynomial_tensor
     {k F : Type*} [Field k] [Field F] [Algebra k F] (σ : Type*) :
     IsDomain (FractionRing (MvPolynomial σ k) ⊗[k] F) := by

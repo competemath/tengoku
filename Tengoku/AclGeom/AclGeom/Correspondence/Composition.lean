@@ -48,7 +48,9 @@ variable {k : Type*} {Ω : Type*} [Field k] [Field Ω] [Algebra k Ω]
 
 section SharedMiddle
 
-/-- Interalgebraicity is transitive through a shared middle element.-/
+/-- Interalgebraicity is transitive through a shared middle element.
+@isnad1 id=mem.2h5v.s7.0bf247629276 from=translated src=- shape=df8e5fe5 vocab=6ed771df
+-/
 theorem mem_racl_trans {z w u : Ω} (hzw : z ∈ racl k ({w} : Set Ω))
     (hwu : w ∈ racl k ({u} : Set Ω)) : z ∈ racl k ({u} : Set Ω) :=
   racl_le_of_subset_racl (Set.singleton_subset_iff.2 hwu) hzw
@@ -86,7 +88,9 @@ namespace FiniteCorrespondencePair
 variable (P : FiniteCorrespondencePair k Ω)
 
 /-- The target of a finite correspondence is generic whenever its source
-is generic.-/
+is generic.
+@isnad1 id=not.0h3v.s6.714b2eddd78e from=translated src=- shape=02ee2280 vocab=412a088c
+-/
 theorem target_generic : P.target ∉ racl k (∅ : Set Ω) := by
   intro ht
   exact P.source_generic
@@ -100,10 +104,19 @@ def swap : FiniteCorrespondencePair k Ω where
   target_mem_source := P.source_mem_target
   source_mem_target := P.target_mem_source
 
+/--
+@isnad1 id=eq.0h3v.s5.e5f1b940cae9 from=translated src=- shape=45436065 vocab=73eea9c1
+-/
 @[simp] theorem swap_source : P.swap.source = P.target := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.0f94724d2f31 from=translated src=- shape=45436065 vocab=73eea9c1
+-/
 @[simp] theorem swap_target : P.swap.target = P.source := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.5d489e9d86ef from=translated src=- shape=19868076 vocab=d572a2ae
+-/
 @[simp] theorem swap_swap : P.swap.swap = P := by
   cases P
   rfl
@@ -136,9 +149,15 @@ def comp (Q : FiniteCorrespondencePair k Ω) (h : P.target = Q.source) :
     · exact P.source_mem_target
     · simpa [h] using Q.source_mem_target
 
+/--
+@isnad1 id=eq.1h4v.s6.83ef6a44c221 from=translated src=- shape=52ee62fe vocab=19b42ab4
+-/
 @[simp] theorem comp_source (Q : FiniteCorrespondencePair k Ω)
     (h : P.target = Q.source) : (P.comp Q h).source = P.source := rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.1a432bb8b196 from=translated src=- shape=71601a6f vocab=19b42ab4
+-/
 @[simp] theorem comp_target (Q : FiniteCorrespondencePair k Ω)
     (h : P.target = Q.source) : (P.comp Q h).target = Q.target := rfl
 

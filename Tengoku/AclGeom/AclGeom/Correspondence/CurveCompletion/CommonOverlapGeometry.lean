@@ -27,7 +27,9 @@ variable {J : Type u} (U : J → Scheme.{u}) (W : Scheme.{u})
   (f : ∀ i, W ⟶ U i) [∀ i, IsOpenImmersion (f i)]
 
 /-- The literal common-overlap maps have equal composites into the actual gluing. Named consumer:
-overlap_glue_condition.-/
+overlap_glue_condition.
+@isnad1 id=eq.1h6v.s6.b406a946d08e from=translated src=- shape=c79d8953 vocab=ca0110f0
+-/
 theorem commonOverlap_glue_condition (i j : J) (hij : i ≠ j) :
     f i ≫ (commonOverlapGlueData U W f).ι i =
       f j ≫ (commonOverlapGlueData U W f).ι j := by
@@ -49,7 +51,9 @@ theorem commonOverlap_glue_condition (i j : J) (hij : i ≠ j) :
 set_option backward.isDefEq.respectTransparency false in
 -- Match the strict atlas endpoints while transporting its actual pullback cone.
 /-- The literal common overlap is the actual pullback of two distinct chart inclusions into the
-gluing. Named consumer: overlap_isPullback.-/
+gluing. Named consumer: overlap_isPullback.
+@isnad1 id=ispullba.1h6v.s6.e3ded1d40290 from=translated src=- shape=7f8a555f vocab=430015c4
+-/
 theorem commonOverlap_isPullback (i j : J) (hij : i ≠ j) :
     IsPullback (f i) (f j) ((commonOverlapGlueData U W f).ι i)
       ((commonOverlapGlueData U W f).ι j) := by

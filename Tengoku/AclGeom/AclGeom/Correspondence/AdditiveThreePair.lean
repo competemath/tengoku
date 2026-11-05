@@ -48,7 +48,9 @@ open ClosedIF MvPolynomial
 variable {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω]
 
 /-- Over an infinite field, a pointwise additive polynomial is additive in every commutative
-algebra.-/
+algebra.
+@isnad1 id=eq.1h5v.s9.6b4e6366a725 from=translated src=- shape=420b0811 vocab=17d9d35a
+-/
 theorem IsAdditive.aeval_add [Infinite k] {P : Polynomial k} (hP : IsAdditive P)
     {A : Type*} [CommRing A] [Algebra k A] (x y : A) :
     Polynomial.aeval (x + y) P = Polynomial.aeval x P + Polynomial.aeval y P := by

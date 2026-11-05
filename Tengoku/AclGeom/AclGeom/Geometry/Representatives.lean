@@ -63,7 +63,9 @@ section Birational
 
 /-- **Lemma 4.2(d), general form**: an `n`-tuple generating the same
 closure as an independent `n`-tuple is itself independent.  This covers
-every birational (indeed every algebraic) change of coordinates.-/
+every birational (indeed every algebraic) change of coordinates.
+@isnad1 id=algebrai.2h5v.s6.6eb16d1fe23b from=translated src=- shape=dc9dc840 vocab=d50be625
+-/
 theorem AlgebraicIndependent.of_racl_range_eq {n : ℕ} {v w : Fin n → K}
     (hv : AlgebraicIndependent k v)
     (h : racl k (Set.range v) = racl k (Set.range w)) :
@@ -72,7 +74,9 @@ theorem AlgebraicIndependent.of_racl_range_eq {n : ℕ} {v w : Fin n → K}
   have hv' := rankEq_iSup_point hv
   refine hv'.congr (iSup_point_congr h)
 
-/-- Mutual membership of the entries gives equal closures.-/
+/-- Mutual membership of the entries gives equal closures.
+@isnad1 id=eq.2h6v.s7.2f36309dd4cb from=translated src=- shape=97389fef vocab=17fa24a0
+-/
 theorem racl_range_eq_of_mem {n m : ℕ} {v : Fin n → K} {w : Fin m → K}
     (hw : ∀ j, w j ∈ racl k (Set.range v)) (hv : ∀ i, v i ∈ racl k (Set.range w)) :
     racl k (Set.range v) = racl k (Set.range w) :=
@@ -90,7 +94,9 @@ soundness proofs (`AclGeom.Interpretation.FrobLinkSoundness`).  Moved from
 `AclGeom.Counterexamples.GenericArithmetic`; `insert_middle` now proves `range_pair` inline, which
 lives in `AclGeom.Config.Quadrangle`. -/
 
-/-- A pair taken from the entries of an independent triple is independent.-/
+/-- A pair taken from the entries of an independent triple is independent.
+@isnad1 id=algebrai.2h7v.s7.31d0aa923117 from=translated src=- shape=6da75178 vocab=dd1bc422
+-/
 theorem AlgebraicIndependent.pair_of_triple {u v w : K}
     (h : AlgebraicIndependent k ![u, v, w]) {i j : Fin 3} (hij : i ≠ j) :
     AlgebraicIndependent k ![![u, v, w] i, ![u, v, w] j] := by
@@ -102,24 +108,32 @@ theorem AlgebraicIndependent.pair_of_triple {u v w : K}
   ext m
   fin_cases m <;> rfl
 
-/-- The entries `0, 2` of an independent triple are independent.-/
+/-- The entries `0, 2` of an independent triple are independent.
+@isnad1 id=algebrai.1h5v.s6.cece53bb6369 from=translated src=- shape=4349ac62 vocab=dd1bc422
+-/
 theorem AlgebraicIndependent.pair_zero_two {p q r : K} (h : AlgebraicIndependent k ![p, q, r]) :
     AlgebraicIndependent k ![p, r] :=
   AlgebraicIndependent.pair_of_triple h (i := 0) (j := 2) (by decide)
 
-/-- The entries `1, 2` of an independent triple are independent.-/
+/-- The entries `1, 2` of an independent triple are independent.
+@isnad1 id=algebrai.1h5v.s6.93acada4a3dd from=translated src=- shape=24d02364 vocab=dd1bc422
+-/
 theorem AlgebraicIndependent.pair_one_two {p q r : K} (h : AlgebraicIndependent k ![p, q, r]) :
     AlgebraicIndependent k ![q, r] :=
   AlgebraicIndependent.pair_of_triple h (i := 1) (j := 2) (by decide)
 
-/-- `1 + r` is nonzero for the last entry `r` of an independent triple.-/
+/-- `1 + r` is nonzero for the last entry `r` of an independent triple.
+@isnad1 id=ne.1h5v.s7.0a8bd19ce733 from=translated src=- shape=5239e4d9 vocab=1d6c5f50
+-/
 theorem AlgebraicIndependent.one_add_ne_zero_two {p q r : K}
     (hind : AlgebraicIndependent k ![p, q, r]) : 1 + r ≠ 0 := fun h ↦ hind.transcendental 2 (by
   change IsAlgebraic k r
   rw [show r = algebraMap k K (-1) by rw [map_neg, map_one]; linear_combination h]
   exact isAlgebraic_algebraMap _)
 
-/-- Two triples generating the same closure are simultaneously independent.-/
+/-- Two triples generating the same closure are simultaneously independent.
+@isnad1 id=algebrai.3h8v.s8.456c170ce06b from=translated src=- shape=51bd46e2 vocab=909bf16e
+-/
 theorem AlgebraicIndependent.triple_of_mem {u v w u' v' w' : K}
     (h : AlgebraicIndependent k ![u, v, w])
     (h₁ : ∀ i, ![u', v', w'] i ∈ racl k (Set.range ![u, v, w]))
@@ -127,7 +141,9 @@ theorem AlgebraicIndependent.triple_of_mem {u v w u' v' w' : K}
     AlgebraicIndependent k ![u', v', w'] :=
   AlgebraicIndependent.of_racl_range_eq h (racl_range_eq_of_mem h₁ h₂)
 
-/-- Insert a fresh element in the middle of an independent pair.-/
+/-- Insert a fresh element in the middle of an independent pair.
+@isnad1 id=algebrai.2h5v.s7.005f2e29c0e4 from=translated src=- shape=a409191f vocab=4b0dde1a
+-/
 theorem AlgebraicIndependent.insert_middle {p q t : K} (h : AlgebraicIndependent k ![p, q])
     (ht : t ∉ racl k ({p, q} : Set K)) : AlgebraicIndependent k ![p, t, q] := by
   have h3 : AlgebraicIndependent k ![p, q, t] := by
@@ -144,7 +160,9 @@ theorem AlgebraicIndependent.insert_middle {p q t : K} (h : AlgebraicIndependent
   funext i
   fin_cases i <;> rfl
 
-/-- Insert a fresh element in front of an independent pair.-/
+/-- Insert a fresh element in front of an independent pair.
+@isnad1 id=algebrai.2h5v.s7.bd988f92c92c from=translated src=- shape=1f2b9d50 vocab=4b0dde1a
+-/
 theorem AlgebraicIndependent.insert_left {p q t : K} (h : AlgebraicIndependent k ![p, q])
     (ht : t ∉ racl k ({p, q} : Set K)) : AlgebraicIndependent k ![t, p, q] := by
   have := (AlgebraicIndependent.insert_middle h ht).comp ![1, 0, 2] (by decide)

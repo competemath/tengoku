@@ -191,7 +191,9 @@ private theorem exists_finite_specialization
   exact zero_ne_one hh
 
 /-- Evaluation commutes with specializing the first variable at a base-field
-value. The finite-specialization consumer applies this to every corner relation.-/
+value. The finite-specialization consumer applies this to every corner relation.
+@isnad1 id=eq.0h6v.s10.62f1c34f1d09 from=translated src=- shape=7cbd476b vocab=766da2a1
+-/
 theorem aeval_specialize_first {k K : Type*} [Field k] [Field K] [Algebra k K]
     {n : ℕ} (P : MvPolynomial (Fin (n + 1)) k) (c : k) (v : Fin n → K) :
     MvPolynomial.aeval v ((MvPolynomial.finSuccEquiv k n P).eval (MvPolynomial.C c)) =
@@ -210,7 +212,9 @@ theorem aeval_specialize_first {k K : Type*} [Field k] [Field K] [Algebra k K]
   exact congrArg (fun f : MvPolynomial (Fin (n + 1)) k →+* K ↦ f P) heq
 
 /-- Coherent specialization preserving finitely many nonzero incidence
-polynomials in their remaining variables.-/
+polynomials in their remaining variables.
+@isnad1 id=ex.2h7v.s11.a62ed1eec368 from=translated src=- shape=5bc95fbd vocab=69475d2c
+-/
 theorem exists_finite_specialization_preserving_polynomials
     {k F K : Type*} [Field k] [Infinite k] [Field F] [IsAlgClosed F]
     [Field K] [Algebra k F] [Algebra F K] [Algebra k K] [IsScalarTower k F K]

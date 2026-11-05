@@ -55,7 +55,9 @@ variable {R : Type*} [Field R] {𝓜 : Type*} [Finite 𝓜] [LinearOrder 𝓜]
 
 /-! ### Leading indices and pivots -/
 
-/-- A nonzero vector has a leading index: the least index with nonzero coordinate.-/
+/-- A nonzero vector has a leading index: the least index with nonzero coordinate.
+@isnad1 id=ex.1h3v.s6.cac5a458851d from=translated src=- shape=781bbbfe vocab=1c5bc67b
+-/
 theorem exists_leading {v : 𝓜 → R} (hv : v ≠ 0) :
     ∃ μ, v μ ≠ 0 ∧ ∀ ν < μ, v ν = 0 := by
   simpa only [Matrix.IsLeadingEntry, and_comm] using
@@ -75,9 +77,15 @@ def pivotProj : W →ₗ[R] (Pivots W → R) :=
   LinearMap.pi fun μ : Pivots W ↦ (LinearMap.proj (μ : 𝓜)).comp W.subtype
 
 omit [Finite 𝓜] in
+/--
+@isnad1 id=eq.0h5v.s10.05d90876823c from=translated src=- shape=c8390d21 vocab=9719a53e
+-/
 @[simp]
 theorem pivotProj_apply (v : W) (μ : Pivots W) : pivotProj W v μ = (v : 𝓜 → R) μ := rfl
 
+/--
+@isnad1 id=injectiv.0h3v.s10.c232d8f44943 from=translated src=- shape=d4665b6f vocab=ed2da4d0
+-/
 theorem pivotProj_injective : Function.Injective (pivotProj W) := by
   rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
   intro v hv
@@ -88,7 +96,9 @@ theorem pivotProj_injective : Function.Injective (pivotProj W) := by
   exact hμ (congrFun hv ⟨μ, hpiv⟩)
 
 omit [Finite 𝓜] in
-/-- Vectors of `W` with distinct leading indices are linearly independent.-/
+/-- Vectors of `W` with distinct leading indices are linearly independent.
+@isnad1 id=linearin.3h6v.s10.977cc13c1eba from=translated src=- shape=ecb9a686 vocab=2a264224
+-/
 theorem linearIndependent_of_leading {ι : Type*} (w : ι → W) (lead : ι → 𝓜)
     (hinj : Function.Injective lead) (hne : ∀ i, (w i : 𝓜 → R) (lead i) ≠ 0)
     (hlt : ∀ i ν, ν < lead i → (w i : 𝓜 → R) ν = 0) : LinearIndependent R w := by
@@ -125,14 +135,23 @@ def pivotWitness (μ : Pivots W) : W :=
   ⟨Classical.choose μ.2, (Classical.choose_spec μ.2).1⟩
 
 omit [Finite 𝓜] in
+/--
+@isnad1 id=ne.0h4v.s8.6000e37264af from=translated src=- shape=1511b176 vocab=51e89eb7
+-/
 theorem pivotWitness_ne_zero (μ : Pivots W) : (pivotWitness W μ : 𝓜 → R) μ ≠ 0 :=
   (Classical.choose_spec μ.2).2.1
 
 omit [Finite 𝓜] in
+/--
+@isnad1 id=eq.1h5v.s8.95ffeae793c7 from=translated src=- shape=521ecfce vocab=8ac1d46b
+-/
 theorem pivotWitness_eq_zero_of_lt (μ : Pivots W) {ν : 𝓜} (hν : ν < μ) :
     (pivotWitness W μ : 𝓜 → R) ν = 0 :=
   (Classical.choose_spec μ.2).2.2 ν hν
 
+/--
+@isnad1 id=le.0h3v.s8.817b0f5b7a12 from=translated src=- shape=4a9ecb50 vocab=32507b02
+-/
 theorem card_pivots_le_finrank : Nat.card (Pivots W) ≤ finrank R W := by
   have := Fintype.ofFinite (Pivots W)
   rw [Nat.card_eq_fintype_card]
@@ -140,14 +159,23 @@ theorem card_pivots_le_finrank : Nat.card (Pivots W) ≤ finrank R W := by
     (linearIndependent_of_leading W (pivotWitness W) (fun μ ↦ (μ : 𝓜)) Subtype.val_injective
       (pivotWitness_ne_zero W) fun μ ν hν ↦ pivotWitness_eq_zero_of_lt W μ hν)
 
+/--
+@isnad1 id=le.0h3v.s8.57914f5ca310 from=translated src=- shape=cafa5aae vocab=32507b02
+-/
 theorem finrank_le_card_pivots : finrank R W ≤ Nat.card (Pivots W) := by
   have := Fintype.ofFinite (Pivots W)
   have h := LinearMap.finrank_le_finrank_of_injective (pivotProj_injective W)
   rwa [Module.finrank_fintype_fun_eq_card, ← Nat.card_eq_fintype_card] at h
 
+/--
+@isnad1 id=eq.0h3v.s8.eed04f059416 from=translated src=- shape=cafa5aae vocab=fe1945b0
+-/
 theorem finrank_eq_card_pivots : finrank R W = Nat.card (Pivots W) :=
   le_antisymm (finrank_le_card_pivots W) (card_pivots_le_finrank W)
 
+/--
+@isnad1 id=bijectiv.0h3v.s10.4ef3ab930af1 from=translated src=- shape=d4665b6f vocab=b23ddfc8
+-/
 theorem pivotProj_bijective : Function.Bijective (pivotProj W) := by
   classical
   have := Fintype.ofFinite (Pivots W)
@@ -159,6 +187,9 @@ theorem pivotProj_bijective : Function.Bijective (pivotProj W) := by
 def pivotEquiv : W ≃ₗ[R] (Pivots W → R) :=
   LinearEquiv.ofBijective (pivotProj W) (pivotProj_bijective W)
 
+/--
+@isnad1 id=eq.0h5v.s11.7871f263c73b from=translated src=- shape=f6012816 vocab=6b8e08fe
+-/
 @[simp]
 theorem pivotEquiv_apply (v : W) (μ : Pivots W) : pivotEquiv W v μ = (v : 𝓜 → R) μ := rfl
 
@@ -169,9 +200,15 @@ theorem pivotEquiv_apply (v : W) (μ : Pivots W) : pivotEquiv W v μ = (v : 𝓜
 def rref (μ : Pivots W) : 𝓜 → R :=
   ((pivotEquiv W).symm (Pi.single μ 1) : W)
 
+/--
+@isnad1 id=mem.0h4v.s8.b72a6a59b1ae from=translated src=- shape=69b09ac1 vocab=277801f1
+-/
 theorem rref_mem (μ : Pivots W) : rref W μ ∈ W :=
   ((pivotEquiv W).symm (Pi.single μ 1)).2
 
+/--
+@isnad1 id=eq.0h5v.s7.5317564fdf29 from=translated src=- shape=6ce12c95 vocab=61e4db99
+-/
 theorem rref_apply_pivot (μ ν : Pivots W) :
     rref W μ (ν : 𝓜) = if ν = μ then 1 else 0 := by
   classical
@@ -180,16 +217,24 @@ theorem rref_apply_pivot (μ ν : Pivots W) :
   rw [pivotEquiv_apply] at h'
   rw [rref, h', Pi.single_apply]
 
+/--
+@isnad1 id=eq.0h4v.s6.8d48345a9b2a from=translated src=- shape=dd4dbbe5 vocab=fab9b610
+-/
 theorem rref_apply_self (μ : Pivots W) : rref W μ (μ : 𝓜) = 1 := by
   rw [rref_apply_pivot]
   simp
 
+/--
+@isnad1 id=eq.1h5v.s7.acb3304f4508 from=translated src=- shape=e9b62fec vocab=fab9b610
+-/
 theorem rref_apply_of_ne {μ ν : Pivots W} (h : ν ≠ μ) : rref W μ (ν : 𝓜) = 0 := by
   rw [rref_apply_pivot]
   simp [h]
 
 /-- Uniqueness: a family of vectors of `W` with the pivot coordinates of the standard basis
-is the reduced row echelon basis.-/
+is the reduced row echelon basis.
+@isnad1 id=eq.2h4v.s8.136241a9555b from=translated src=- shape=a08a058f vocab=524a5a6d
+-/
 theorem rref_eq_of_pivot_coords {w : Pivots W → (𝓜 → R)} (hw : ∀ μ, w μ ∈ W)
     (hcoord : ∀ μ ν : Pivots W, w μ (ν : 𝓜) = if ν = μ then 1 else 0) :
     w = rref W := by
@@ -201,7 +246,9 @@ theorem rref_eq_of_pivot_coords {w : Pivots W → (𝓜 → R)} (hw : ∀ μ, w 
     rw [hcoord, rref_apply_pivot]
   exact congrArg Subtype.val (pivotProj_injective W h)
 
-/-- The leading index of `rref W μ` is `μ`.-/
+/-- The leading index of `rref W μ` is `μ`.
+@isnad1 id=eq.1h5v.s7.a1be9040e492 from=translated src=- shape=c3c67db3 vocab=b9278344
+-/
 theorem rref_apply_of_lt (μ : Pivots W) {ν : 𝓜} (hν : ν < μ) : rref W μ ν = 0 := by
   by_contra hne
   obtain ⟨ℓ, hℓ, hlt⟩ := exists_leading (v := rref W μ) fun h ↦ hne (by rw [h]; rfl)
@@ -213,7 +260,9 @@ theorem rref_apply_of_lt (μ : Pivots W) {ν : 𝓜} (hν : ν < μ) : rref W μ
   have : ν < ℓ := hℓ' ▸ hν
   exact hne (hlt ν this)
 
-/-- The reduced row echelon basis spans `W`.-/
+/-- The reduced row echelon basis spans `W`.
+@isnad1 id=eq.0h3v.s7.24fd278d6f46 from=translated src=- shape=418fae1d vocab=2ac569f0
+-/
 theorem span_range_rref : Submodule.span R (range (rref W)) = W := by
   classical
   refine le_antisymm (Submodule.span_le.2 (range_subset_iff.2 (rref_mem W))) ?_
@@ -233,7 +282,9 @@ theorem span_range_rref : Submodule.span R (range (rref W)) = W := by
   exact Submodule.sum_mem _ fun μ _ ↦
     Submodule.smul_mem _ _ (Submodule.subset_span ⟨μ, rfl⟩)
 
-/-- The canonical subspace basis satisfies Mathlib's reduced-row-echelon predicate.-/
+/-- The canonical subspace basis satisfies Mathlib's reduced-row-echelon predicate.
+@isnad1 id=isreduce.0h3v.s7.476b524d39db from=translated src=- shape=390640dd vocab=820070a0
+-/
 theorem rref_isReducedRowEchelon :
     Matrix.IsReducedRowEchelon (rref W : Matrix (Pivots W) 𝓜 R) := by
   refine ⟨?_, ?_, ?_⟩
@@ -307,10 +358,15 @@ def fodSet : Set R := range fun p : Pivots W × 𝓜 ↦ rref W p.1 p.2
 reduced row echelon basis.-/
 def fod : Subfield R := Subfield.closure (fodSet W)
 
+/--
+@isnad1 id=mem.0h5v.s6.0df107b8ff09 from=translated src=- shape=7556a97c vocab=d0a89d22
+-/
 theorem rref_apply_mem_fod (μ : Pivots W) (ν : 𝓜) : rref W μ ν ∈ fod W :=
   Subfield.subset_closure ⟨(μ, ν), rfl⟩
 
-/-- The smallest field of definition has a finite set of field generators.-/
+/-- The smallest field of definition has a finite set of field generators.
+@isnad1 id=ex.0h3v.s6.3f1209b48065 from=translated src=- shape=dbf6e081 vocab=34197b39
+-/
 theorem exists_finset_closure_eq_fod :
     ∃ s : Finset R, Subfield.closure (s : Set R) = fod W := by
   classical
@@ -323,6 +379,9 @@ def DefinedOver (F : Subfield R) : Prop :=
 
 variable {W}
 
+/--
+@isnad1 id=definedo.1h4v.s6.b3dc1941781e from=translated src=- shape=cddae68b vocab=7896db9c
+-/
 theorem DefinedOver.of_fod_le {F : Subfield R} (h : fod W ≤ F) : DefinedOver W F := by
   refine le_antisymm ?_ (Submodule.span_le.2 fun v hv ↦ hv.1)
   conv_lhs => rw [← span_range_rref W]
@@ -339,10 +398,16 @@ def coeVec : (𝓜 → F) →ₗ[F] (𝓜 → R) :=
   LinearMap.pi fun ν ↦ (Algebra.linearMap F R).comp (LinearMap.proj ν)
 
 omit [Finite 𝓜] [LinearOrder 𝓜] in
+/--
+@isnad1 id=eq.0h5v.s10.36fa51915675 from=translated src=- shape=de8995af vocab=6554280f
+-/
 @[simp]
 theorem coeVec_apply (u : 𝓜 → F) (ν : 𝓜) : coeVec F u ν = (u ν : R) := rfl
 
 omit [Finite 𝓜] [LinearOrder 𝓜] in
+/--
+@isnad1 id=injectiv.0h3v.s10.5b3b5f550ff3 from=translated src=- shape=d5d57462 vocab=befc620b
+-/
 theorem coeVec_injective : Function.Injective (coeVec (𝓜 := 𝓜) F) := by
   intro u u' h
   funext ν
@@ -351,7 +416,9 @@ theorem coeVec_injective : Function.Injective (coeVec (𝓜 := 𝓜) F) := by
 end Restrict
 
 /-- `lem:fod-subspace`: if `W` is spanned by its `F`-valued vectors then its reduced row
-echelon basis is `F`-valued.-/
+echelon basis is `F`-valued.
+@isnad1 id=le.1h4v.s6.b2af28a0fd3f from=translated src=- shape=db2c0249 vocab=7896db9c
+-/
 theorem DefinedOver.fod_le {F : Subfield R} (h : DefinedOver W F) : fod W ≤ F := by
   classical
   -- The `F`-subspace of `F`-valued vectors of `W`.
@@ -430,7 +497,9 @@ theorem DefinedOver.fod_le {F : Subfield R} (h : DefinedOver W F) : fod W ≤ F 
   rw [← hw]
   exact (rref U ⟨μ.1, hpiv' μ.1 μ.2⟩ ν).2
 
-/-- `lem:fod-subspace`: `W` is defined over `F` iff its field of definition lies in `F`.-/
+/-- `lem:fod-subspace`: `W` is defined over `F` iff its field of definition lies in `F`.
+@isnad1 id=iff.0h4v.s6.b924ee484699 from=translated src=- shape=7ad05c18 vocab=7896db9c
+-/
 theorem definedOver_iff {F : Subfield R} : DefinedOver W F ↔ fod W ≤ F :=
   ⟨DefinedOver.fod_le, DefinedOver.of_fod_le⟩
 
@@ -451,10 +520,16 @@ def mapVec : (𝓜 → R) →ₛₗ[(σ : R →+* R)] (𝓜 → R) where
     simp
 
 omit [Finite 𝓜] [LinearOrder 𝓜] in
+/--
+@isnad1 id=eq.0h5v.s9.dac395181bc7 from=translated src=- shape=e275c765 vocab=38b8cd29
+-/
 @[simp]
 theorem mapVec_apply (v : 𝓜 → R) (ν : 𝓜) : mapVec σ v ν = σ (v ν) := rfl
 
 omit [Finite 𝓜] in
+/--
+@isnad1 id=iff.0h5v.s8.dbe78a17991d from=translated src=- shape=ff218dd6 vocab=2299a376
+-/
 theorem isPivot_map_iff (μ : 𝓜) : IsPivot (W.map (mapVec σ)) μ ↔ IsPivot W μ := by
   constructor
   · rintro ⟨_, ⟨v, hv, rfl⟩, hμ, hlt⟩
@@ -469,6 +544,9 @@ theorem isPivot_map_iff (μ : 𝓜) : IsPivot (W.map (mapVec σ)) μ ↔ IsPivot
 def pivotsMapEquiv : Pivots (W.map (mapVec σ)) ≃ Pivots W :=
   Equiv.subtypeEquivRight (isPivot_map_iff W σ)
 
+/--
+@isnad1 id=eq.0h5v.s11.63d26e0d1bf5 from=translated src=- shape=b6c186c6 vocab=5fe7e4ee
+-/
 theorem rref_map (μ : Pivots (W.map (mapVec σ))) :
     rref (W.map (mapVec σ)) μ = mapVec σ (rref W (pivotsMapEquiv W σ μ)) := by
   classical
@@ -487,6 +565,9 @@ theorem rref_map (μ : Pivots (W.map (mapVec σ))) :
       simp [h, h']
   exact (congrFun key μ).symm
 
+/--
+@isnad1 id=eq.0h4v.s9.b7f45d7b0f12 from=translated src=- shape=597f047a vocab=e1159ea0
+-/
 theorem fodSet_map : fodSet (W.map (mapVec σ)) = σ '' fodSet W := by
   ext x
   constructor
@@ -499,7 +580,9 @@ theorem fodSet_map : fodSet (W.map (mapVec σ)) = σ '' fodSet W := by
     refine ⟨((pivotsMapEquiv W σ).symm μ, ν), ?_⟩
     simp only [rref_map, mapVec_apply, Equiv.apply_symm_apply]
 
-/-- The field of definition of the image subspace is the image of the field of definition.-/
+/-- The field of definition of the image subspace is the image of the field of definition.
+@isnad1 id=eq.0h4v.s8.7917a1a0777a from=translated src=- shape=9aadacb9 vocab=52ba0ec9
+-/
 theorem fod_map : fod (W.map (mapVec σ)) = (fod W).map σ.toRingHom := by
   unfold fod
   rw [fodSet_map]
@@ -512,7 +595,9 @@ theorem fod_map : fod (W.map (mapVec σ)) = (fod W).map σ.toRingHom := by
     change σ x ∈ Subfield.closure (σ '' fodSet W)
     exact Subfield.subset_closure ⟨x, hx, rfl⟩
 
-/-- A field automorphism fixes `W` iff it fixes its field of definition pointwise.-/
+/-- A field automorphism fixes `W` iff it fixes its field of definition pointwise.
+@isnad1 id=iff.0h4v.s9.9adc5514c42e from=translated src=- shape=9c0cad13 vocab=d6021f61
+-/
 theorem map_eq_self_iff : W.map (mapVec σ) = W ↔ ∀ x ∈ fod W, σ x = x := by
   constructor
   · intro hW x hx

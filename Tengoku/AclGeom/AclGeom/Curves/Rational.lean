@@ -35,7 +35,9 @@ variable [IsAlgClosed k] [IsFunctionFieldOneVar k F]
 variable {t : F}
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
-/-- A generator witnesses `[F : k(t)] = 1`.-/
+/-- A generator witnesses `[F : k(t)] = 1`.
+@isnad1 id=eq.1h3v.s8.24c135c78ebe from=translated src=- shape=fa439600 vocab=a069799d
+-/
 theorem finrank_adjoin_eq_one_of_eq_top
     (htop : adjoin k ({t} : Set F) = ⊤) :
     Module.finrank (↥(adjoin k ({t} : Set F))) F = 1 := by
@@ -43,7 +45,9 @@ theorem finrank_adjoin_eq_one_of_eq_top
   exact IntermediateField.finrank_top
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
-/-- Shifting by a constant preserves transcendence.-/
+/-- Shifting by a constant preserves transcendence.
+@isnad1 id=transcen.1h4v.s7.52fb40900c8f from=translated src=- shape=15feef34 vocab=e02b9a64
+-/
 theorem transcendental_sub_algebraMap (htr : Transcendental k t)
     (a : k) : Transcendental k (t - algebraMap k F a) := by
   intro halg
@@ -54,7 +58,9 @@ theorem transcendental_sub_algebraMap (htr : Transcendental k t)
   exact h1.isAlgebraic
 
 omit [IsAlgClosed k] [IsFunctionFieldOneVar k F] in
-/-- Shifting by a constant preserves the generator property.-/
+/-- Shifting by a constant preserves the generator property.
+@isnad1 id=eq.1h4v.s8.b818f2fed43b from=translated src=- shape=cde8c91d vocab=ad3d19b5
+-/
 theorem adjoin_sub_algebraMap_eq_top
     (htop : adjoin k ({t} : Set F) = ⊤) (a : k) :
     adjoin k ({t - algebraMap k F a} : Set F) = ⊤ := by

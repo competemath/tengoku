@@ -40,7 +40,9 @@ universe u
 attribute [local instance] specializationOrder
 
 /-- A continuous map from an irreducible space into finitely many closed points is constant.
-Named consumer: the actual boundary orbit morphism.-/
+Named consumer: the actual boundary orbit morphism.
+@isnad1 id=eq.4h6v.s6.b51bf88d6d3c from=translated src=- shape=4bf414ed vocab=c1416c8e
+-/
 theorem constant_of_finite_closed_range
     {A B : Type*} [TopologicalSpace A] [PreirreducibleSpace A] [TopologicalSpace B]
     (f : A → B) (hf : Continuous f) (S : Set B) (hS : S.Finite)

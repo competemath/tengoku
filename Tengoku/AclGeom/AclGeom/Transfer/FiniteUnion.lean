@@ -28,7 +28,9 @@ open Pointwise
 
 /-- **A field is not a finite union of proper subfields** (blueprint
 Lemma no-field-cover): if finitely many subfields cover `F`, one of them
-is all of `F`.-/
+is all of `F`.
+@isnad1 id=ex.1h3v.s6.23050a23c685 from=translated src=- shape=0f4608c1 vocab=5be8a697
+-/
 theorem exists_eq_top_of_subfield_cover {F : Type*} [Field F]
     {n : ℕ} (S : Fin n → Subfield F)
     (hcover : ∀ x : F, ∃ i, x ∈ S i) :
@@ -107,7 +109,9 @@ theorem exists_eq_top_of_subfield_cover {F : Type*} [Field F]
     exact zpow_mem hj m
 
 /-- Relative form of blueprint Lemma no-field-cover: if finitely many
-subfields lying below a subfield `E` cover `E`, one of them equals `E`.-/
+subfields lying below a subfield `E` cover `E`, one of them equals `E`.
+@isnad1 id=ex.2h4v.s6.369d3084716a from=translated src=- shape=ea4311de vocab=628714ba
+-/
 theorem exists_eq_of_subset_iUnion {F : Type*} [Field F]
     {n : ℕ} {E : Subfield F} {S : Fin n → Subfield F}
     (hle : ∀ i, S i ≤ E) (hcov : (E : Set F) ⊆ ⋃ i, (S i : Set F)) :
@@ -124,7 +128,9 @@ theorem exists_eq_of_subset_iUnion {F : Type*} [Field F]
   exact Subfield.mem_comap.1 h1
 
 /-- Relative no-field-cover for intermediate fields: if finitely many
-intermediate fields lying below `E` cover `E`, one of them equals `E`.-/
+intermediate fields lying below `E` cover `E`, one of them equals `E`.
+@isnad1 id=ex.2h5v.s7.c10577764de4 from=translated src=- shape=7bfd3c3f vocab=e89a3344
+-/
 theorem exists_intermediateField_eq_of_subset_iUnion {k F : Type*}
     [Field k] [Field F] [Algebra k F] {n : ℕ}
     {E : IntermediateField k F} {S : Fin n → IntermediateField k F}
@@ -142,7 +148,9 @@ theorem exists_intermediateField_eq_of_subset_iUnion {k F : Type*}
   exact ((S i).mem_toSubfield x).1 h1
 
 /-- Avoidance form of blueprint Lemma no-field-cover: finitely many proper
-subfields miss a common element.-/
+subfields miss a common element.
+@isnad1 id=ex.1h3v.s6.80bcc16778e0 from=translated src=- shape=c780eaee vocab=5be8a697
+-/
 theorem exists_notMem_of_ne_top {F : Type*} [Field F]
     {n : ℕ} (S : Fin n → Subfield F) (hS : ∀ i, S i ≠ ⊤) :
     ∃ x : F, ∀ i, x ∉ S i := by

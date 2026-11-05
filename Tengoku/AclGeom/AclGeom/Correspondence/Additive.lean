@@ -73,7 +73,9 @@ variable (S : AddCorrSetup k Ω)
 def base : IntermediateField k Ω :=
   adjoin k {S.x₁, S.y₁}
 
-/-- The base is contained in the closure of `x₁`.-/
+/-- The base is contained in the closure of `x₁`.
+@isnad1 id=le.0h3v.s6.1f66770c544e from=translated src=- shape=28931b18 vocab=ef18e1f2
+-/
 theorem base_le_racl : S.base ≤ racl k {S.x₁} := by
   refine adjoin_le_iff.2 ?_
   rintro z (rfl | rfl)
@@ -81,26 +83,36 @@ theorem base_le_racl : S.base ≤ racl k {S.x₁} := by
   · exact S.y₁_mem
 
 /-- `x₂` is not algebraic over `x₁` (blueprint Lemma 4.2(a) applied to the
-independence hypothesis).-/
+independence hypothesis).
+@isnad1 id=not.0h3v.s6.9af9d7bdbd1d from=translated src=- shape=0c5e1715 vocab=1c6cd14d
+-/
 theorem x₂_notMem : S.x₂ ∉ racl k {S.x₁} :=
   AlgebraicIndependent.notMem_racl_pair S.indep
 
-/-- … and symmetrically.-/
+/-- … and symmetrically.
+@isnad1 id=not.0h3v.s6.952fd3fde682 from=translated src=- shape=0c5e1715 vocab=1c6cd14d
+-/
 theorem x₁_notMem : S.x₁ ∉ racl k {S.x₂} :=
   AlgebraicIndependent.notMem_racl_pair' S.indep
 
 /-- `x₂` remains transcendental over the enlarged base `k(x₁, y₁)`
-(first pregeometry count of the curve-coset chain).-/
+(first pregeometry count of the curve-coset chain).
+@isnad1 id=transcen.0h3v.s7.f1355830527c from=translated src=- shape=1738dfb6 vocab=fddadc49
+-/
 theorem transcendental_x₂ : Transcendental ↥S.base S.x₂ := by
   intro halg
   refine S.x₂_notMem ((isRAC_racl {S.x₁}).mem_of_isAlgebraic ?_)
   exact isAlgebraic_of_le S.base_le_racl halg
 
-/-- The second correspondence relation persists over the enlarged base.-/
+/-- The second correspondence relation persists over the enlarged base.
+@isnad1 id=mem.0h3v.s8.0293da676275 from=translated src=- shape=0aa1d03a vocab=2bcb2dbe
+-/
 theorem y₂_mem_baseRacl : S.y₂ ∈ racl ↥S.base {S.x₂} :=
   racl_subset_racl_base S.base {S.x₂} S.y₂_mem
 
-/-- `x₂` is not algebraic over the base, in `racl` form.-/
+/-- `x₂` is not algebraic over the base, in `racl` form.
+@isnad1 id=not.0h3v.s6.2ac069cee7a3 from=translated src=- shape=edfe1bb2 vocab=b76fdd5d
+-/
 theorem x₂_notMem_base : S.x₂ ∉ racl k {S.x₁, S.y₁} := fun hmem ↦
   S.transcendental_x₂ ((mem_racl_iff k).1 hmem)
 
@@ -120,7 +132,9 @@ def JointRel (c₂' : Fin 2 → Ω) : Prop :=
 chain, instantiated to the `AddCorrSetup` data): given `s` transcendental over
 the base `k(x₁, y₁)`, the pair `(x₂, y₂)` relocates to a pair `c₂'` satisfying
 exactly the same joint `k`-polynomial relations with `(x₁, y₁)` and algebraic
-over `k(x₁, y₁, s)`.-/
+over `k(x₁, y₁, s)`.
+@isnad1 id=ex.1h4v.s10.3eff5523f214 from=translated src=- shape=eec25a6a vocab=20bb185e
+-/
 theorem exists_pair_relocation [IsAlgClosed Ω] {s : Ω}
     (hs : Transcendental ↥S.base s) :
     ∃ c₂' : Fin 2 → Ω, S.JointRel c₂' ∧
@@ -158,13 +172,17 @@ theorem exists_pair_relocation [IsAlgClosed Ω] {s : Ω}
 
 variable {S} {c₂' : Fin 2 → Ω}
 
-/-- A joint relocation has the same joint vanishing ideal.-/
+/-- A joint relocation has the same joint vanishing ideal.
+@isnad1 id=eq.1h4v.s8.fbae32d5f2cd from=translated src=- shape=d70f8c04 vocab=618e5475
+-/
 theorem JointRel.idealOf_eq (hrel : S.JointRel c₂') :
     idealOf k (Sum.elim ![S.x₁, S.y₁] c₂') =
       idealOf k (Sum.elim ![S.x₁, S.y₁] ![S.x₂, S.y₂]) :=
   idealOf_eq_of_aeval_iff k hrel
 
-/-- The relocated first coordinate stays generic over the base `k(x₁, y₁)`.-/
+/-- The relocated first coordinate stays generic over the base `k(x₁, y₁)`.
+@isnad1 id=not.1h4v.s6.9c1dc677434e from=translated src=- shape=cbe3061a vocab=6680ed8c
+-/
 theorem JointRel.fst_notMem_base (hrel : S.JointRel c₂') :
     c₂' 0 ∉ racl k {S.x₁, S.y₁} := by
   have hv : Sum.elim ![S.x₁, S.y₁] ![S.x₂, S.y₂] (Sum.inr 0) ∉ racl k
@@ -177,7 +195,9 @@ variable {s : Ω}
 
 /-- Convert the algebraicity output of `exists_pair_relocation` to closure
 form over `k`: the relocated coordinates lie in `racl k {x₁, s}` — the
-generator `y₁` is absorbed by `y₁ ∈ racl k {x₁}`.-/
+generator `y₁` is absorbed by `y₁ ∈ racl k {x₁}`.
+@isnad1 id=mem.1h5v.s10.3a53d863884f from=translated src=- shape=918d37ca vocab=a8fc41cb
+-/
 theorem racl_pair_of_relocation {z : Ω}
     (halg : IsAlgebraic ↥(adjoin ↥S.base ({s} : Set Ω)) z) :
     z ∈ racl k {S.x₁, s} := by
@@ -191,7 +211,9 @@ theorem racl_pair_of_relocation {z : Ω}
 
 /-- With `s` chosen independent from `{x₁, x₂}`, the relocated first
 coordinate stays outside `racl k {x₁, x₂}`: by exchange it is
-interalgebraic with `s` over `k(x₁)`.-/
+interalgebraic with `s` over `k(x₁)`.
+@isnad1 id=not.3h5v.s7.53fdbedebb3d from=translated src=- shape=c01545b3 vocab=1c1685d3
+-/
 theorem JointRel.fst_notMem_pair (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s}) :
     c₂' 0 ∉ racl k {S.x₁, S.x₂} := by
@@ -207,7 +229,9 @@ theorem JointRel.fst_notMem_pair (hrel : S.JointRel c₂')
     · exact subset_racl k _ (Set.mem_insert _ _)
   exact hs (racl_le_of_subset_racl hsub hexch)
 
-/-- Triple independence, permuted: `x₁` is not algebraic over `{x₂, x₂'}`.-/
+/-- Triple independence, permuted: `x₁` is not algebraic over `{x₂, x₂'}`.
+@isnad1 id=not.3h5v.s7.97ee07145af9 from=translated src=- shape=392bb080 vocab=1c1685d3
+-/
 theorem JointRel.x₁_notMem_pair (hrel : S.JointRel c₂')
     (hs : s ∉ racl k {S.x₁, S.x₂}) (halg : c₂' 0 ∈ racl k {S.x₁, s}) :
     S.x₁ ∉ racl k {S.x₂, c₂' 0} := by
@@ -246,7 +270,9 @@ variable {S} {c₂' : Fin 2 → Ω} {s : Ω}
 
 variable {c₂'' : Fin 2 → Ω} {s' : Ω}
 
-/-- First-coordinate specialization of a bivariate polynomial.-/
+/-- First-coordinate specialization of a bivariate polynomial.
+@isnad1 id=eq.0h4v.s9.af91e9284bd7 from=translated src=- shape=4d5a8bdb vocab=b6b27f93
+-/
 theorem polynomial_aeval_fst (g : MvPolynomial (Fin 2) k) (u : Ω) :
     Polynomial.aeval u (aeval ![Polynomial.X, (0 : Polynomial k)] g) =
       aeval ![u, 0] g := by
@@ -258,7 +284,9 @@ theorem polynomial_aeval_fst (g : MvPolynomial (Fin 2) k) (u : Ω) :
     fin_cases i <;> simp
   exact congrArg (fun (φ : MvPolynomial (Fin 2) k →ₐ[k] Ω) ↦ φ g) hcomp
 
-/-- Second-coordinate specialization of a bivariate polynomial.-/
+/-- Second-coordinate specialization of a bivariate polynomial.
+@isnad1 id=eq.0h4v.s9.c2cce70f9197 from=translated src=- shape=32dbf5cf vocab=b6b27f93
+-/
 theorem polynomial_aeval_snd (g : MvPolynomial (Fin 2) k) (v : Ω) :
     Polynomial.aeval v (aeval ![(0 : Polynomial k), Polynomial.X] g) =
       aeval ![0, v] g := by

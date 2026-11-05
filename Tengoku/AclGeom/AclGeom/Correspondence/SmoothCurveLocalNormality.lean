@@ -50,7 +50,9 @@ variable [Field k] [IsAlgClosed k] [CommRing R] [IsDomain R] [IsLocalRing R]
 omit [IsDomain R] [IsNoetherianRing R] in
 /-- Smoothness and the actual one-variable fraction field bound the local cotangent
 space by one. The residue section and generic differential rank are internal.
-Named consumer: local normality of an actual smooth integral curve.-/
+Named consumer: local normality of an actual smooth integral curve.
+@isnad1 id=le.1h3v.s8.3b6d2579f624 from=translated src=- shape=e9a6b49c vocab=9694bf76
+-/
 theorem finrank_cotangent_le_one (htr : Algebra.trdeg k F = 1) :
     Module.finrank (ResidueField R) (CotangentSpace R) ≤ 1 := by
   let S := ResidueField R
@@ -90,7 +92,9 @@ theorem finrank_cotangent_le_one (htr : Algebra.trdeg k F = 1) :
 
 /-- Smooth local curve rings with algebraic residue field are integrally closed.
 No cotangent-rank or normality certificate is supplied. Named consumer: the actual
-closed-point stalk of a smooth integral dimension-one scheme.-/
+closed-point stalk of a smooth integral dimension-one scheme.
+@isnad1 id=isintegr.1h3v.s7.3c8e6067ebd8 from=translated src=- shape=3c8b0505 vocab=1aea2bb0
+-/
 theorem isIntegrallyClosed_of_smooth (htr : Algebra.trdeg k F = 1) : IsIntegrallyClosed R := by
   have hm : (maximalIdeal R).IsPrincipal :=
     finrank_cotangentSpace_le_one_iff.mp (finrank_cotangent_le_one htr)

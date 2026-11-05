@@ -66,19 +66,37 @@ instance : Mul (AffineTransformation k) := ⟨mul⟩
 instance : One (AffineTransformation k) := ⟨one⟩
 instance : Inv (AffineTransformation k) := ⟨inv⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.b5581ffcaf69 from=translated src=- shape=e69ef69b vocab=5be9b1bc
+-/
 @[simp] theorem multiplier_mul (g h : AffineTransformation k) :
     (g * h).multiplier = g.multiplier * h.multiplier := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.b8acc35d6657 from=translated src=- shape=3d42b901 vocab=476d160e
+-/
 @[simp] theorem shift_mul (g h : AffineTransformation k) :
     (g * h).shift = (g.multiplier : k) * h.shift + g.shift := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.46e6f71f4b07 from=translated src=- shape=7b5bff60 vocab=90efa2ca
+-/
 @[simp] theorem multiplier_one : (1 : AffineTransformation k).multiplier = 1 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.1d1053e64506 from=translated src=- shape=c6b7a0b8 vocab=71011333
+-/
 @[simp] theorem shift_one : (1 : AffineTransformation k).shift = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.1ef2c934c0bc from=translated src=- shape=5c68212b vocab=9c019572
+-/
 @[simp] theorem multiplier_inv (g : AffineTransformation k) :
     g⁻¹.multiplier = g.multiplier⁻¹ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.2050caabd155 from=translated src=- shape=3e4b6722 vocab=5b54a33a
+-/
 @[simp] theorem shift_inv (g : AffineTransformation k) :
     g⁻¹.shift = -(g.multiplier⁻¹ : k) * g.shift := rfl
 
@@ -106,12 +124,21 @@ def apply (g : AffineTransformation k) (x : k) : k :=
 
 instance : SMul (AffineTransformation k) k := ⟨apply⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.86bd6f588031 from=translated src=- shape=2850be85 vocab=8a87b63f
+-/
 @[simp] theorem smul_def (g : AffineTransformation k) (x : k) :
     g • x = (g.multiplier : k) * x + g.shift := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.f808a71612a4 from=translated src=- shape=da5adff8 vocab=aa8e2fcc
+-/
 @[simp] theorem one_smul (x : k) : (1 : AffineTransformation k) • x = x := by
   simp [smul_def]
 
+/--
+@isnad1 id=eq.0h4v.s6.52de49ad4499 from=translated src=- shape=8a9d141a vocab=bd07d9fd
+-/
 @[simp] theorem mul_smul (g h : AffineTransformation k) (x : k) :
     (g * h) • x = g • h • x := by
   simp only [smul_def, multiplier_mul, shift_mul, Units.val_mul]
@@ -131,25 +158,42 @@ def scaling (a : kˣ) : AffineTransformation k where
   multiplier := a
   shift := 0
 
+/--
+@isnad1 id=eq.0h2v.s5.5c17bcf78ce0 from=translated src=- shape=b0d7e649 vocab=3b799c13
+-/
 @[simp] theorem translation_multiplier (b : k) :
     (translation b).multiplier = 1 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.7caac78d8154 from=translated src=- shape=1c9622f3 vocab=53ceda7c
+-/
 @[simp] theorem translation_shift (b : k) : (translation b).shift = b := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.e2b664126fb1 from=translated src=- shape=96698720 vocab=24d54d22
+-/
 @[simp] theorem translation_smul (b x : k) : translation b • x = x + b := by
   simp [smul_def, translation]
 
+/--
+@isnad1 id=eq.0h3v.s5.208680e2a4ad from=translated src=- shape=44e7dc92 vocab=8ac3a0ff
+-/
 @[simp] theorem translation_mul_translation (b d : k) :
     translation b * translation d = translation (b + d) := by
   ext <;> simp [translation, add_comm]
 
+/--
+@isnad1 id=eq.0h2v.s5.e2083f568eb6 from=translated src=- shape=e5bb9134 vocab=c0679425
+-/
 @[simp] theorem translation_inv (b : k) :
     (translation b)⁻¹ = translation (-b) := by
   ext <;> simp [translation]
 
 /-- Conjugation by an affine transformation scales the translation
 parameter by its multiplier.  This is the normal-subgroup calculation in
-blueprint (8.4b).-/
+blueprint (8.4b).
+@isnad1 id=eq.0h3v.s6.a5590c7627c1 from=translated src=- shape=850f4893 vocab=52ea1b8b
+-/
 theorem mul_translation_mul_inv (g : AffineTransformation k) (b : k) :
     g * translation b * g⁻¹ = translation ((g.multiplier : k) * b) := by
   ext
@@ -160,7 +204,9 @@ theorem mul_translation_mul_inv (g : AffineTransformation k) (b : k) :
     field_simp
     ring
 
-/-- The fixed-point equation for `x ↦ ax+b`.-/
+/-- The fixed-point equation for `x ↦ ax+b`.
+@isnad1 id=iff.0h3v.s6.6094dfe4ab49 from=translated src=- shape=9b202000 vocab=df8e185e
+-/
 theorem smul_eq_iff (g : AffineTransformation k) (x : k) :
     g • x = x ↔ (1 - (g.multiplier : k)) * x = g.shift := by
   change (g.multiplier : k) * x + g.shift = x ↔ _
@@ -179,7 +225,9 @@ def fixedPoint (g : AffineTransformation k) : k :=
   g.shift / (1 - (g.multiplier : k))
 
 /-- An affine transformation with multiplier different from one fixes its
-explicit fixed point.-/
+explicit fixed point.
+@isnad1 id=eq.1h2v.s6.7f98d5b71ff1 from=translated src=- shape=60a6d2b0 vocab=21e1bad5
+-/
 theorem smul_fixedPoint (g : AffineTransformation k)
     (ha : (g.multiplier : k) ≠ 1) : g • g.fixedPoint = g.fixedPoint := by
   rw [smul_eq_iff]
@@ -193,11 +241,15 @@ theorem eq_fixedPoint_of_smul_eq (g : AffineTransformation k) {x : k}
   simpa [mul_comm] using hx
 
 /-- A pure translation has a fixed point exactly when it is the identity
-translation.-/
+translation.
+@isnad1 id=iff.0h3v.s5.d34fdba69b63 from=translated src=- shape=25753d70 vocab=b2f71410
+-/
 theorem translation_smul_eq_iff {b x : k} : translation b • x = x ↔ b = 0 := by
   simp
 
-/-- A nontrivial translation has no fixed point.-/
+/-- A nontrivial translation has no fixed point.
+@isnad1 id=ne.1h3v.s5.b6e296d81837 from=translated src=- shape=6780b73a vocab=b2f71410
+-/
 theorem translation_fixedPoint_free {b : k} (hb : b ≠ 0) (x : k) :
     translation b • x ≠ x :=
   fun h ↦ hb (translation_smul_eq_iff.1 h)
@@ -227,7 +279,9 @@ noncomputable section
 variable {k F : Type*} [Field k] [Field F] [Algebra k F]
 
 /-- Transcendence makes evaluation of affine transformations injective.
- Named consumers: the fixed-place representation and the actual local coefficient map.-/
+ Named consumers: the fixed-place representation and the actual local coefficient map.
+@isnad1 id=injectiv.1h3v.s7.ad852b4fe913 from=translated src=- shape=265f1974 vocab=0736ceca
+-/
 theorem eval_injective {t : F} (ht : Transcendental k t) :
     Function.Injective (fun A : AffineTransformation k ↦
       algebraMap k F (A.multiplier : k) * t + algebraMap k F A.shift) := by

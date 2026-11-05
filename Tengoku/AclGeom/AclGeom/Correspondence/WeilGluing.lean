@@ -102,14 +102,18 @@ def desc {X : Scheme.{u}} (g : ∀ i, D.U i ⟶ X)
     simpa only [Category.assoc] using hg i j
 
 /-- The descended morphism restricts to the prescribed map on every
-chart.-/
+chart.
+@isnad1 id=eq.1h4v.s6.3c377c401ce3 from=translated src=- shape=7c2f420d vocab=872822a6
+-/
 @[simp, reassoc]
 theorem ι_desc {X : Scheme.{u}} (g : ∀ i, D.U i ⟶ X)
     (hg : CompatibleMaps D g) (i : D.J) :
     D.ι i ≫ desc D g hg = g i :=
   Multicoequalizer.π_desc _ _ _ _ _
 
-/-- Morphisms out of a glued scheme are determined on its charts.-/
+/-- Morphisms out of a glued scheme are determined on its charts.
+@isnad1 id=eq.1h4v.s6.b232a3998f64 from=translated src=- shape=e2ddfba1 vocab=890b5052
+-/
 theorem hom_ext {X : Scheme.{u}} (f g : D.glued ⟶ X)
     (h : ∀ i, D.ι i ≫ f = D.ι i ≫ g) : f = g := by
   apply Multicoequalizer.hom_ext
@@ -124,7 +128,9 @@ abbrev toBase {S : Scheme.{u}} (s : ∀ i, D.U i ⟶ S)
 -- Unfold the scheme-morphism property to synthesize its source-locality instance.
 set_option backward.isDefEq.respectTransparency.types false in
 /-- Local finite type over the base descends from every chart of a
-scheme gluing.-/
+scheme gluing.
+@isnad1 id=locallyo.1h3v.s5.2c2e60f4da71 from=translated src=- shape=3f4120a1 vocab=3b18ce48
+-/
 instance toBase_locallyOfFiniteType {S : Scheme.{u}}
     (s : ∀ i, D.U i ⟶ S) (hs : CompatibleMaps D s)
     [hlt : ∀ i, LocallyOfFiniteType (s i)] :
@@ -136,7 +142,9 @@ instance toBase_locallyOfFiniteType {S : Scheme.{u}}
   exact hlt i
 
 /-- A finite gluing of charts quasi-compact over the base is
-quasi-compact over the base.-/
+quasi-compact over the base.
+@isnad1 id=quasicom.1h3v.s6.866c378e8162 from=translated src=- shape=8cc299e4 vocab=5c76bb25
+-/
 instance toBase_quasiCompact {S : Scheme.{u}}
     (s : ∀ i, D.U i ⟶ S) (hs : CompatibleMaps D s)
     [Finite D.J] [∀ i, QuasiCompact (s i)] :
@@ -171,7 +179,9 @@ instance toBase_quasiCompact {S : Scheme.{u}}
   exact hi.image (D.ι i).continuous
 
 /-- Chart maps to a fixed target are compatible on a common-overlap atlas
-when all of their restrictions to the common overlap agree.-/
+when all of their restrictions to the common overlap agree.
+@isnad1 id=compatib.1h7v.s6.3c46886af09b from=translated src=- shape=81ffa50e vocab=d4bdb1a7
+-/
 theorem commonOverlap_compatible {S : Scheme.{u}}
     (s : ∀ i, U i ⟶ S) (w : W ⟶ S)
     (h : ∀ i, f i ≫ s i = w) :
@@ -200,7 +210,9 @@ def commonOverlapToBase {S : Scheme.{u}}
     (commonOverlap_compatible U W f s w h)
 
 /-- The descended common-overlap morphism restricts to its prescribed map
-on each chart.-/
+on each chart.
+@isnad1 id=eq.1h8v.s7.b705ebe6adcc from=translated src=- shape=08c5e205 vocab=7c211253
+-/
 @[simp, reassoc]
 theorem commonOverlap_ι_toBase {S : Scheme.{u}}
     (s : ∀ i, U i ⟶ S) (w : W ⟶ S)
@@ -210,6 +222,9 @@ theorem commonOverlap_ι_toBase {S : Scheme.{u}}
   unfold commonOverlapToBase
   apply ι_desc
 
+/--
+@isnad1 id=locallyo.1h7v.s6.f7273b99052d from=translated src=- shape=2e2c0305 vocab=e3021531
+-/
 instance commonOverlapToBase_locallyOfFiniteType {S : Scheme.{u}}
     (s : ∀ i, U i ⟶ S) (w : W ⟶ S)
     (h : ∀ i, f i ≫ s i = w)
@@ -219,6 +234,9 @@ instance commonOverlapToBase_locallyOfFiniteType {S : Scheme.{u}}
   exact @toBase_locallyOfFiniteType (commonOverlapGlueData U W f) S s
     (commonOverlap_compatible U W f s w h) (fun i ↦ hft i)
 
+/--
+@isnad1 id=quasicom.1h7v.s6.034e375b6014 from=translated src=- shape=4912d248 vocab=680ff2dc
+-/
 instance commonOverlapToBase_quasiCompact {S : Scheme.{u}} [hJ : Finite J]
     (s : ∀ i, U i ⟶ S) (w : W ⟶ S)
     (h : ∀ i, f i ≫ s i = w)
@@ -228,14 +246,18 @@ instance commonOverlapToBase_quasiCompact {S : Scheme.{u}} [hJ : Finite J]
   exact @toBase_quasiCompact (commonOverlapGlueData U W f) S s
     (commonOverlap_compatible U W f s w h) hJ (fun i ↦ hqc i)
 
-/-- The glued scheme is reduced when every chart is reduced.-/
+/-- The glued scheme is reduced when every chart is reduced.
+@isnad1 id=isreduce.0h1v.s4.7c2882beacde from=translated src=- shape=0ba2655e vocab=cff91761
+-/
 instance isReduced [hred : ∀ i, IsReduced (D.U i)] : IsReduced D.glued := by
   letI (i : D.openCover.I₀) : IsReduced (D.openCover.X i) :=
     hred i
   exact IsReduced.of_openCover D.glued D.openCover
 
 /-- If every chart is irreducible and every pairwise overlap is nonempty,
-then the glued topological space is preirreducible.-/
+then the glued topological space is preirreducible.
+@isnad1 id=preirred.0h1v.s6.012c58e919b0 from=translated src=- shape=4cbb1197 vocab=f7648b6f
+-/
 instance preirreducibleSpace
     [∀ i, IrreducibleSpace (D.U i)]
     [∀ i j, Nonempty (D.V (i, j)).carrier] :
@@ -269,7 +291,9 @@ instance preirreducibleSpace
       (isPreirreducible_iff_preirreducibleSpace.mp (hU i)))
 
 /-- A nonempty gluing has a nonempty underlying topological space when
-its charts are nonempty.-/
+its charts are nonempty.
+@isnad1 id=nonempty.0h1v.s5.7ff4aede3496 from=translated src=- shape=0ba3f7c4 vocab=5656a15e
+-/
 instance nonemptyGlued [Nonempty D.J] [∀ i, Nonempty (D.U i).carrier] :
     Nonempty D.glued.carrier := by
   let i : D.J := Classical.choice inferInstance
@@ -277,7 +301,9 @@ instance nonemptyGlued [Nonempty D.J] [∀ i, Nonempty (D.U i).carrier] :
   exact ⟨D.ι i x⟩
 
 /-- A nonempty gluing of irreducible charts with nonempty pairwise
-overlaps is irreducible.-/
+overlaps is irreducible.
+@isnad1 id=irreduci.0h1v.s6.5d8bd6a3c4bd from=translated src=- shape=fbfbdddb vocab=7c544041
+-/
 instance irreducibleSpace [Nonempty D.J]
     [∀ i, IrreducibleSpace (D.U i)]
     [∀ i j, Nonempty (D.V (i, j)).carrier] :
@@ -286,7 +312,9 @@ instance irreducibleSpace [Nonempty D.J]
   toNonempty := inferInstance
 
 /-- Integral charts with nonempty pairwise overlaps glue to an integral
-scheme.-/
+scheme.
+@isnad1 id=isintegr.0h1v.s6.614fc408d99c from=translated src=- shape=174f2be9 vocab=23c09b72
+-/
 instance isIntegral [Nonempty D.J] [∀ i, IsIntegral (D.U i)]
     [∀ i j, Nonempty (D.V (i, j)).carrier] : IsIntegral D.glued := by
   rw [isIntegral_iff_irreducibleSpace_and_isReduced]

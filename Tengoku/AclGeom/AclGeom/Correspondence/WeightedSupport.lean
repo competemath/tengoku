@@ -38,14 +38,18 @@ open MvPolynomial
 
 variable {M Ω : Type*} [Field M] [Field Ω] [Algebra M Ω]
 
-/-- The `(2, 1)`-weight of an exponent in two variables.-/
+/-- The `(2, 1)`-weight of an exponent in two variables.
+@isnad1 id=eq.0h1v.s8.c6aaab4d8d4d from=translated src=- shape=6ef64a50 vocab=c97edc29
+-/
 theorem weight_two_one (m : Fin 2 →₀ ℕ) : Finsupp.weight ![2, 1] m = 2 * m 0 + m 1 := by
   rw [Finsupp.weight_apply, Finsupp.sum_fintype _ _ (by simp)]
   simp only [Fin.sum_univ_two, Matrix.cons_val_zero, Matrix.cons_val_one, smul_eq_mul]
   ring
 
 /-- If all pairs of support monomials have `(2, 1)`-weight difference zero, the polynomial is
-weighted homogeneous for the weights `(2, 1)`.-/
+weighted homogeneous for the weights `(2, 1)`.
+@isnad1 id=ex.2h2v.s9.99ddab525928 from=translated src=- shape=065ce605 vocab=6e56d30b
+-/
 theorem isWeightedHomogeneous_of_support_pairs {F : MvPolynomial (Fin 2) M} (hF0 : F ≠ 0)
     (h : ∀ m₁ ∈ F.support, ∀ m₂ ∈ F.support,
       2 * ((m₁ 0 : ℤ) - m₂ 0) + ((m₁ 1 : ℤ) - m₂ 1) = 0) :
@@ -58,7 +62,9 @@ theorem isWeightedHomogeneous_of_support_pairs {F : MvPolynomial (Fin 2) M} (hF0
 
 /-- **A `(2, 1)`-weighted-homogeneous locus determines `s/u²`.**  If `F ≠ 0` is weighted
 homogeneous for the weights `(2, 1)` and `F(s, u) = 0` with `u ≠ 0`, then `s/u²` is algebraic over
-the coefficient field.-/
+the coefficient field.
+@isnad1 id=isalgebr.4h6v.s9.25f003fd6a2e from=translated src=- shape=08130381 vocab=bba0f696
+-/
 theorem isAlgebraic_div_sq_of_isWeightedHomogeneous {F : MvPolynomial (Fin 2) M} {W : ℕ}
     (hF0 : F ≠ 0) (hF : F.IsWeightedHomogeneous ![2, 1] W) {s u : Ω} (hu : u ≠ 0)
     (hsu : MvPolynomial.aeval ![s, u] F = 0) : IsAlgebraic M (s / u ^ 2) := by

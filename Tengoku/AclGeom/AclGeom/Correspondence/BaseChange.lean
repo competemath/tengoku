@@ -42,7 +42,9 @@ variable {k K : Type*} [Field k] [Field K] [Algebra k K]
 /-- **Specialization brick** (one-variable relative closure of rational
 function fields, polynomial form): if `k` is infinite and algebraically
 closed in `K`, then a polynomial `x ∈ K[t]` satisfying a nontrivial
-polynomial relation with coefficients in `k[t]` is defined over `k`.-/
+polynomial relation with coefficients in `k[t]` is defined over `k`.
+@isnad1 id=ex.3h4v.s8.914ede4c1094 from=translated src=- shape=b879479f vocab=f8fdbd97
+-/
 theorem exists_map_eq_of_eval₂_eq_zero [Infinite k]
     (hk : ∀ y : K, IsAlgebraic k y → y ∈ (algebraMap k K).range)
     {x : Polynomial K} {P : Polynomial (Polynomial k)} (hP : P ≠ 0)
@@ -111,7 +113,9 @@ theorem exists_map_eq_of_eval₂_eq_zero [Infinite k]
     exact hrspec τ hτ
 
 /-- Over an algebraically closed base, algebraic elements of any extension
-already lie in the base (element-level form).-/
+already lie in the base (element-level form).
+@isnad1 id=mem.1h3v.s6.14a817fa1bd3 from=translated src=- shape=71ad7aa8 vocab=76d8c8ee
+-/
 theorem mem_range_algebraMap_of_isAlgebraic [IsAlgClosed k] {y : K}
     (hy : IsAlgebraic k y) : y ∈ (algebraMap k K).range := by
   have hint : IsIntegral k y := hy.isIntegral
@@ -124,7 +128,9 @@ theorem mem_range_algebraMap_of_isAlgebraic [IsAlgClosed k] {y : K}
     aeval_C, add_eq_zero_iff_eq_neg] at h0
   exact (map_neg (algebraMap k K) ((minpoly k y).coeff 0)).symm ▸ h0.symm
 
-/-- The specialization brick in `IsAlgClosed` form.-/
+/-- The specialization brick in `IsAlgClosed` form.
+@isnad1 id=ex.2h4v.s8.d6ec7398bc07 from=translated src=- shape=7560861f vocab=7b1cf403
+-/
 theorem exists_map_eq_of_eval₂_eq_zero_of_isAlgClosed [IsAlgClosed k]
     {x : Polynomial K} {P : Polynomial (Polynomial k)} (hP : P ≠ 0)
     (hPx : Polynomial.eval₂ (mapRingHom (algebraMap k K)) x P = 0) :
@@ -143,6 +149,9 @@ def coordPoly (b : Module.Basis ι k K') (j : ι) (q : Polynomial K') :
     Polynomial k :=
   q.sum fun m a ↦ Polynomial.C (b.repr a j) * Polynomial.X ^ m
 
+/--
+@isnad1 id=eq.0h7v.s9.db908626b619 from=translated src=- shape=8db4584c vocab=d11aaa1c
+-/
 theorem coordPoly_coeff (b : Module.Basis ι k K') (j : ι) (q : Polynomial K')
     (m : ℕ) : (coordPoly b j q).coeff m = b.repr (q.coeff m) j := by
   classical
@@ -155,7 +164,9 @@ theorem coordPoly_coeff (b : Module.Basis ι k K') (j : ι) (q : Polynomial K')
   · rw [ite_eq_right hm, Polynomial.notMem_support_iff.1 hm, map_zero,
       Finsupp.coe_zero, Pi.zero_apply]
 
-/-- Coordinate polynomials commute with evaluation at points of `k`.-/
+/-- Coordinate polynomials commute with evaluation at points of `k`.
+@isnad1 id=eq.0h7v.s9.b4b4c1a8bddc from=translated src=- shape=a0a5b588 vocab=c6c82785
+-/
 theorem eval_coordPoly (b : Module.Basis ι k K') (j : ι) (q : Polynomial K')
     (τ : k) :
     (coordPoly b j q).eval τ = b.repr (q.eval (algebraMap k K' τ)) j := by
@@ -170,7 +181,9 @@ theorem eval_coordPoly (b : Module.Basis ι k K') (j : ι) (q : Polynomial K')
   rw [Polynomial.eval_mul, Polynomial.eval_C, Polynomial.eval_pow,
     Polynomial.eval_X, map_smul, Finsupp.smul_apply, smul_eq_mul, mul_comm]
 
-/-- Coordinate polynomials are `k[X]`-linear in the `k`-defined factor.-/
+/-- Coordinate polynomials are `k[X]`-linear in the `k`-defined factor.
+@isnad1 id=eq.0h7v.s7.135dd39448eb from=translated src=- shape=900def51 vocab=6c5198c8
+-/
 theorem coordPoly_mul_map (b : Module.Basis ι k K') (j : ι)
     (r : Polynomial K') (q : Polynomial k) :
     coordPoly b j (r * q.map (algebraMap k K')) = coordPoly b j r * q := by
@@ -202,7 +215,9 @@ transcendental over `K'`. The proof homogenizes the algebraic relation into
 a polynomial identity, decomposes numerator and denominator along a
 `k`-basis of `K'`, and specializes at the points of `k`: the values are
 algebraic over `k`, hence in `k`, and cross-multiplied coordinates agree on
-a cofinite set, hence everywhere.-/
+a cofinite set, hence everywhere.
+@isnad1 id=mem.4h5v.s8.a9a96250a67e from=translated src=- shape=349d2119 vocab=1689cbe4
+-/
 theorem mem_adjoin_base_of_isAlgebraic [Infinite k]
     (hk : ∀ y : K', IsAlgebraic k y → y ∈ (algebraMap k K').range)
     {u c : Ω} (hu : Transcendental K' u)
@@ -408,7 +423,9 @@ irreducibility): for `k` algebraically closed, `K` an intermediate field, and
 `K(u)` of an element algebraic over `k(u)` already lie in `k(u)`. The
 coefficients are integral over `k(u)` by the Gauss argument (they divide the
 image of the monic minimal polynomial from below), and integral elements of
-`K(u)` over `k(u)` descend by the specialization brick.-/
+`K(u)` over `k(u)` descend by the specialization brick.
+@isnad1 id=mem.2h6v.s11.5f436fc6c0a9 from=translated src=- shape=e90d0527 vocab=9dfc4bc3
+-/
 theorem minpoly_coeff_mem [IsAlgClosed k] {K : IntermediateField k Ω}
     {u v : Ω} (hu : Transcendental ↥K u)
     (hv : IsAlgebraic ↥(adjoin k ({u} : Set Ω)) v) (i : ℕ) :
@@ -462,7 +479,9 @@ theorem minpoly_coeff_mem [IsAlgClosed k] {K : IntermediateField k Ω}
 /-- **The degree bridge**: the minimal polynomial over `K(u)` has the same
 degree as the one over `k(u)` — it descends coefficientwise by
 `minpoly_coeff_mem`, and the descended polynomial mutually divides the
-`k(u)`-minimal polynomial.-/
+`k(u)`-minimal polynomial.
+@isnad1 id=eq.2h5v.s11.247a3660c9ed from=translated src=- shape=3c602cc0 vocab=380af9dd
+-/
 theorem natDegree_minpoly_adjoin_eq [IsAlgClosed k] {K : IntermediateField k Ω}
     {u v : Ω} (hu : Transcendental ↥K u)
     (hv : IsAlgebraic ↥(adjoin k ({u} : Set Ω)) v) :
@@ -582,7 +601,9 @@ def evalFst (u : Ω) :
   aeval ![Polynomial.C ⟨u, subset_adjoin K _ rfl⟩, Polynomial.X]
 
 /-- Evaluating the second variable recovers the joint evaluation: the
-dictionary is compatible with taking points.-/
+dictionary is compatible with taking points.
+@isnad1 id=eq.0h5v.s11.8c676d6d8851 from=translated src=- shape=9b9dd14c vocab=1d2754d3
+-/
 theorem eval₂_evalFst (u v : Ω) (g : MvPolynomial (Fin 2) K) :
     Polynomial.eval₂ (algebraMap ↥(adjoin K ({u} : Set Ω)) Ω) v
       (evalFst (K := K) u g) = MvPolynomial.aeval ![u, v] g := by
@@ -596,7 +617,9 @@ theorem eval₂_evalFst (u v : Ω) (g : MvPolynomial (Fin 2) K) :
 
 /-- Membership in the vanishing ideal of a plane point, through the
 dictionary: `g` vanishes at `(u, v)` iff its partial evaluation at `u`
-annihilates `v`.-/
+annihilates `v`.
+@isnad1 id=iff.0h5v.s11.3bc0ccb536d5 from=translated src=- shape=29ed156d vocab=601a2387
+-/
 theorem mem_idealOf_iff_evalFst {u v : Ω} {g : MvPolynomial (Fin 2) K} :
     g ∈ idealOf K ![u, v] ↔
       Polynomial.eval₂ (algebraMap ↥(adjoin K ({u} : Set Ω)) Ω) v
@@ -604,7 +627,9 @@ theorem mem_idealOf_iff_evalFst {u v : Ω} {g : MvPolynomial (Fin 2) K} :
   rw [mem_idealOf_iff, eval₂_evalFst]
 
 /-- `evalFst` factors through the variable-separation equivalence: it is the
-coefficientwise evaluation of the `Y`-separated form.-/
+coefficientwise evaluation of the `Y`-separated form.
+@isnad1 id=eq.0h4v.s12.e6289de64463 from=translated src=- shape=41e0829a vocab=b36545a7
+-/
 theorem evalFst_apply_eq (u : Ω) (g : MvPolynomial (Fin 2) K) :
     evalFst (K := K) u g =
       (finSuccEquiv K 1 (rename (Equiv.swap 0 1) g)).map
@@ -632,7 +657,9 @@ theorem evalFst_apply_eq (u : Ω) (g : MvPolynomial (Fin 2) K) :
 
 /-- **Degree preservation**: for `u` transcendental over `K`, the partial
 evaluation at `u` preserves the degree in the second variable. This is the
-count that transfers divisibility bounds between the plane and `K(u)[Y]`.-/
+count that transfers divisibility bounds between the plane and `K(u)[Y]`.
+@isnad1 id=eq.1h4v.s10.90568b990974 from=translated src=- shape=f19bae29 vocab=59d5c5c3
+-/
 theorem natDegree_evalFst {u : Ω} (hu : Transcendental K u)
     (g : MvPolynomial (Fin 2) K) :
     (evalFst (K := K) u g).natDegree = g.degreeOf 1 := by
@@ -656,7 +683,9 @@ theorem natDegree_evalFst {u : Ω} (hu : Transcendental K u)
   rw [Equiv.swap_apply_right] at hswap
   exact hswap
 
-/-- `evalFst` is injective when `u` is transcendental over `K`.-/
+/-- `evalFst` is injective when `u` is transcendental over `K`.
+@isnad1 id=injectiv.1h3v.s10.ca473c95fa90 from=translated src=- shape=2755b36f vocab=f1ab0f22
+-/
 theorem evalFst_injective {u : Ω} (hu : Transcendental K u) :
     Function.Injective (evalFst (K := K) u) := by
   have htr : Transcendental K
@@ -675,7 +704,9 @@ theorem evalFst_injective {u : Ω} (hu : Transcendental K u) :
   exact (rename_injective _ (Equiv.injective (Equiv.swap (0 : Fin 2) 1))) h3
 
 /-- The reverse dictionary on generators: substituting `X 0` into a
-one-variable polynomial partially evaluates to a constant.-/
+one-variable polynomial partially evaluates to a constant.
+@isnad1 id=eq.0h4v.s12.f7c3935a1c78 from=translated src=- shape=9a14eae5 vocab=2776fe82
+-/
 theorem evalFst_polyAevalX (u : Ω) (P : Polynomial K) :
     evalFst (K := K) u (Polynomial.aeval (X 0 : MvPolynomial (Fin 2) K) P) =
       Polynomial.C (Polynomial.aeval
@@ -692,7 +723,9 @@ theorem evalFst_polyAevalX (u : Ω) (P : Polynomial K) :
   exact congrArg (fun (f : Polynomial K →+* _) ↦ f P) hcomp
 
 /-- Joint evaluation through the `X 0` substitution: the reverse dictionary
-is compatible with taking points.-/
+is compatible with taking points.
+@isnad1 id=eq.0h5v.s9.f2460e375b6e from=translated src=- shape=6be8ea09 vocab=4ece2cc4
+-/
 theorem aeval_polyAevalX (u v : Ω) (P : Polynomial K) :
     MvPolynomial.aeval ![u, v]
       (Polynomial.aeval (X 0 : MvPolynomial (Fin 2) K) P) =
@@ -706,7 +739,9 @@ theorem aeval_polyAevalX (u v : Ω) (P : Polynomial K) :
 
 /-- **The reverse dictionary**: every one-variable polynomial over the ring
 `K[u]` is the partial evaluation of a plane polynomial over `K` whose degree
-in the second variable is controlled.-/
+in the second variable is controlled.
+@isnad1 id=ex.1h4v.s11.31d00f1b39c4 from=translated src=- shape=5df4ab34 vocab=010851b1
+-/
 theorem exists_evalFst_eq {u : Ω} (hu : Transcendental K u)
     (N : Polynomial ↥(Algebra.adjoin K ({u} : Set Ω))) :
     ∃ W : MvPolynomial (Fin 2) K,
@@ -775,7 +810,9 @@ by `F`, then the minimal polynomial of `v` over `k(u)` has degree exactly the
 `Y`-degree of `F`. Divisibility gives `≤`; for `≥`, clearing denominators
 with the integer normalization and lifting through the reverse dictionary
 produces a member of the ideal, hence a multiple of `F`, of the minimal
-degree.-/
+degree.
+@isnad1 id=eq.4h5v.s9.ec9fb3059b84 from=translated src=- shape=3dc7245d vocab=7dfd77af
+-/
 theorem natDegree_minpoly_adjoin {u v : Ω} (hu : Transcendental k u)
     {F : MvPolynomial (Fin 2) k} (hF0 : F ≠ 0)
     (hFspan : idealOf k ![u, v] = Ideal.span {F})
@@ -858,7 +895,9 @@ open MvPolynomial IntermediateField
 variable {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω]
 
 /-- Coefficient extension along an injective map preserves the degree in each
-variable.-/
+variable.
+@isnad1 id=eq.0h4v.s8.a3c124b3d57c from=translated src=- shape=00d37add vocab=5e3f047c
+-/
 theorem degreeOf_map_eq {K : Type*} [Field K] [Algebra k K] (i : Fin 2)
     (F : MvPolynomial (Fin 2) k) :
     degreeOf i (MvPolynomial.map (algebraMap k K) F) = degreeOf i F := by
@@ -869,7 +908,9 @@ theorem degreeOf_map_eq {K : Type*} [Field K] [Algebra k K] (i : Fin 2)
     exact map_ne_zero_iff _ (algebraMap k K).injective
   rw [degreeOf_eq_sup, degreeOf_eq_sup, hsupp]
 
-/-- Vanishing ideals transform by the variable swap.-/
+/-- Vanishing ideals transform by the variable swap.
+@isnad1 id=eq.1h5v.s9.8b60e986a6e3 from=translated src=- shape=c65d931b vocab=04eaeb3d
+-/
 theorem idealOf_swap_span {u v : Ω} {F : MvPolynomial (Fin 2) k}
     (h : idealOf k ![u, v] = Ideal.span {F}) :
     idealOf k ![v, u] = Ideal.span {rename (Equiv.swap (0 : Fin 2) 1) F} := by
@@ -912,7 +953,9 @@ theorem idealOf_swap_span {u v : Ω} {F : MvPolynomial (Fin 2) k}
     rw [hF0', zero_mul]
 
 /-- The degree count in the second variable: a cofactor of the extended
-generator against the `K`-generator has no `Y`-degree.-/
+generator against the `K`-generator has no `Y`-degree.
+@isnad1 id=eq.6h8v.s11.c8842f1be647 from=translated src=- shape=379ab09c vocab=2343cfda
+-/
 theorem degreeOf_one_factor_eq_zero [IsAlgClosed k] {K : IntermediateField k Ω}
     {u v : Ω} (hu : Transcendental ↥K u) (hv : v ∈ racl k {u})
     {F : MvPolynomial (Fin 2) k} (hF0 : F ≠ 0)
@@ -957,7 +1000,9 @@ theorem degreeOf_one_factor_eq_zero [IsAlgClosed k] {K : IntermediateField k Ω}
 chain): for `k` algebraically closed and a plane point `(u, v)` two-way
 generic over the intermediate field `K` and two-way interalgebraic over `k`,
 the vanishing ideal over `K` is generated by the extension of the generator
-over `k`. In particular the extended generator is prime.-/
+over `k`. In particular the extended generator is prime.
+@isnad1 id=eq.6h6v.s10.60dc2217c4f0 from=translated src=- shape=38258f78 vocab=c873afc1
+-/
 theorem idealOf_map_eq_span [IsAlgClosed k] {K : IntermediateField k Ω}
     {u v : Ω} (hu : Transcendental ↥K u) (hv : v ∈ racl k {u})
     (hv' : Transcendental ↥K v) (hu' : u ∈ racl k {v})

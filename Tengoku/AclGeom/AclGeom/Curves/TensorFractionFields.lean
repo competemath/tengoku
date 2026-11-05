@@ -36,7 +36,9 @@ variable {k C A : Type*} [Field k] [Field C] [CommRing A] [IsDomain A]
   [Algebra k C] [Algebra k A] [IsDomain (C ⊗[k] A)]
 
 /-- Localizing before or after extending constants gives the same fraction field, and the
-partial localization `C ⊗[k] Frac(A)` is a domain.-/
+partial localization `C ⊗[k] Frac(A)` is a domain.
+@isnad1 id=and.0h3v.s15.3dd76f27c686 from=translated src=- shape=fd8aa61c vocab=24d864f7
+-/
 theorem isDomain_and_exists_tensorFractionEquiv :
     IsDomain (C ⊗[k] FractionRing A) ∧
       ∃ e : FractionRing (C ⊗[k] FractionRing A) ≃ₐ[C] FractionRing (C ⊗[k] A),

@@ -128,7 +128,9 @@ private theorem map_closure_le {C : Set K} {ν ν' : Type*} (w : ν → K) (w' :
 /-! ### The degree of the Frobenius -/
 
 omit [ExpChar K p] in
-/-- A transcendental element is not a rational function of its `p`-th power.-/
+/-- A transcendental element is not a rational function of its `p`-th power.
+@isnad1 id=not.2h5v.s7.4446e0bed40d from=translated src=- shape=3dda72a2 vocab=0f113b16
+-/
 theorem notMem_closure_pow_of_transcendental (hp : p.Prime) {k : Type*} [Field k] [Algebra k K]
     {N : IntermediateField k K} {x : K} (hx : Transcendental N x) :
     x ∉ Subfield.closure ((N : Set K) ∪ {x ^ p}) := by
@@ -194,7 +196,9 @@ private theorem relfinrank_closure_pow_eq (hp : p.Prime) {C : Set K} {x : K}
     natDegree_X_pow_sub_C]
 
 /-- `[F : F^p] = p` for a field `F` finite over `C(x)`, where `C` is perfect and `x` is not a
-rational function of `x^p` over `C`.-/
+rational function of `x^p` over `C`.
+@isnad1 id=eq.6h5v.s7.cde46485a76c from=translated src=- shape=2aa8738e vocab=091ac335
+-/
 theorem relfinrank_map_frobenius_eq (hp : p.Prime) {C : Set K}
     (hC : ∀ c ∈ C, ∃ w ∈ C, w ^ p = c) {F : Subfield K} {x : K} (hCF : C ⊆ F) (hxF : x ∈ F)
     (hxp : x ∉ Subfield.closure (C ∪ {x ^ p}))
@@ -223,7 +227,9 @@ theorem relfinrank_map_frobenius_eq (hp : p.Prime) {C : Set K}
 /-! ### Subfields between Frobenius twists -/
 
 /-- If `[F : F^p] = p` with `p` prime, every subfield between `F^{p^n}` and `F` is a Frobenius
-twist `F^{p^j}` with `j ≤ n`.-/
+twist `F^{p^j}` with `j ≤ n`.
+@isnad1 id=ex.4h5v.s7.db80b8260a17 from=translated src=- shape=c4b4ce99 vocab=7731c0af
+-/
 theorem exists_eq_map_iterateFrobenius (hp : p.Prime) {F : Subfield K}
     (hF : Subfield.relfinrank (F.map (frobenius K p)) F = p) {E : Subfield K} {n : ℕ}
     (h₁ : F.map (iterateFrobenius K p n) ≤ E) (h₂ : E ≤ F) :
@@ -313,7 +319,9 @@ def IsFrobIndex (C : Set K) (y : ι → K) (z : κ → K) (δ : ℤ) : Prop :=
 
 variable {p} {C : Set K} {y : ι → K} {z : κ → K} {x : μ → K} {δ δ' : ℤ}
 
-/-- The Frobenius index is unchanged by enlarging a perfect set of coefficients.-/
+/-- The Frobenius index is unchanged by enlarging a perfect set of coefficients.
+@isnad1 id=isfrobin.3h9v.s6.b7c7ac6369dc from=translated src=- shape=6d0ae37b vocab=7f6c3862
+-/
 theorem IsFrobIndex.mono {C' : Set K} (hCC' : C ⊆ C') (hC' : ∀ c ∈ C', ∃ w ∈ C', w ^ p = c)
     (h : IsFrobIndex p C y z δ) : IsFrobIndex p C' y z δ := by
   obtain ⟨m, n, hδ, h⟩ := h
@@ -333,7 +341,9 @@ theorem IsFrobIndex.mono {C' : Set K} (hCC' : C ⊆ C') (hC' : ∀ c ∈ C', ∃
     rw [hsplit, Subfield.map_sup, hC'j]
   rw [key, key, h]
 
-/-- The Frobenius index is additive along chains of tuples.-/
+/-- The Frobenius index is additive along chains of tuples.
+@isnad1 id=isfrobin.2h11v.s6.275945fffb55 from=translated src=- shape=49ab24bc vocab=283b6d00
+-/
 theorem IsFrobIndex.trans (h₁ : IsFrobIndex p C y z δ) (h₂ : IsFrobIndex p C z x δ') :
     IsFrobIndex p C y x (δ + δ') := by
   obtain ⟨m, n, rfl, h₁⟩ := h₁
@@ -352,7 +362,9 @@ theorem IsFrobIndex.trans (h₁ : IsFrobIndex p C y z δ) (h₂ : IsFrobIndex p 
     _ = (Subfield.closure (C ∪ range y)).map (iterateFrobenius K p (n' + n)) :=
       map_iterateFrobenius_map p _ _ _
 
-/-- The Frobenius index is transported by ring endomorphisms.-/
+/-- The Frobenius index is transported by ring endomorphisms.
+@isnad1 id=isfrobin.1h9v.s7.ebb28ed538d2 from=translated src=- shape=6210007a vocab=02a1714b
+-/
 theorem IsFrobIndex.map (σ : K →+* K) (h : IsFrobIndex p C y z δ) :
     IsFrobIndex p (σ '' C) (σ ∘ y) (σ ∘ z) δ := by
   obtain ⟨m, n, hδ, h⟩ := h
@@ -361,7 +373,9 @@ theorem IsFrobIndex.map (σ : K →+* K) (h : IsFrobIndex p C y z δ) :
   have hy : σ '' C ∪ range (σ ∘ y) = σ '' (C ∪ range y) := by rw [range_comp, image_union]
   rw [hz, hy, map_closure_image, map_closure_image, h]
 
-/-- With `[C(y) : C(y)^p] = p`, the Frobenius index is unique.-/
+/-- With `[C(y) : C(y)^p] = p`, the Frobenius index is unique.
+@isnad1 id=eq.4h9v.s6.85eefe5b7115 from=translated src=- shape=5fb76136 vocab=06b7fbc6
+-/
 theorem IsFrobIndex.unique (hp : p.Prime)
     (hF : Subfield.relfinrank ((Subfield.closure (C ∪ range y)).map (frobenius K p))
       (Subfield.closure (C ∪ range y)) = p)
@@ -386,7 +400,9 @@ theorem IsFrobIndex.unique (hp : p.Prime)
   omega
 
 /-- If `[C(y) : C(y)^p] = p` and each of `C(y)`, `C(z)` contains a Frobenius twist of the
-generators of the other, then `z` has a Frobenius index relative to `y`.-/
+generators of the other, then `z` has a Frobenius index relative to `y`.
+@isnad1 id=ex.4h9v.s8.084dbf33d9eb from=translated src=- shape=1b45f64b vocab=bd4bc779
+-/
 theorem IsFrobIndex.exists (hp : p.Prime)
     (hF : Subfield.relfinrank ((Subfield.closure (C ∪ range y)).map (frobenius K p))
       (Subfield.closure (C ∪ range y)) = p) {m n : ℕ}
@@ -400,7 +416,9 @@ theorem IsFrobIndex.exists (hp : p.Prime)
   obtain ⟨j, -, hj⟩ := exists_eq_map_iterateFrobenius p hp hF hYE (map_closure_le p z y m hz)
   exact ⟨(j : ℤ) - m, m, j, rfl, hj⟩
 
-/-- Index zero means that `y` and `z` generate the same field over `C`.-/
+/-- Index zero means that `y` and `z` generate the same field over `C`.
+@isnad1 id=eq.1h7v.s6.b4333ad7f4b7 from=translated src=- shape=585a481f vocab=38ff68cf
+-/
 theorem IsFrobIndex.closure_eq_of_zero (h : IsFrobIndex p C y z 0) :
     Subfield.closure (C ∪ range z) = Subfield.closure (C ∪ range y) := by
   obtain ⟨m, n, hmn, h⟩ := h

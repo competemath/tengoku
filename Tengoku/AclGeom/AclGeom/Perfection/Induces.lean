@@ -80,7 +80,9 @@ def inducedIso {Φ : π.carrier ≃+* ρ.carrier}
 variable {π ρ} {φ ψ : ClosedIF k K ≃o ClosedIF l L} {Φ : π.carrier ≃+* ρ.carrier}
 
 /-- An inducing isomorphism carries the perfection of the bottom of `𝒢(K/k)` (the relative
-algebraic closure of `k`) onto that of `𝒢(L/l)`.-/
+algebraic closure of `k`) onto that of `𝒢(L/l)`.
+@isnad1 id=eq.1h8v.s9.abf2a211e0d7 from=translated src=- shape=e6ab1a18 vocab=09cecfdc
+-/
 theorem Induces.map_bot (h : π.Induces ρ φ Φ) :
     (π.perfSubfield (⊥ : ClosedIF k K).1.toSubfield).map Φ.toRingHom =
       ρ.perfSubfield (⊥ : ClosedIF l L).1.toSubfield := by
@@ -88,7 +90,9 @@ theorem Induces.map_bot (h : π.Induces ρ φ Φ) :
 
 /-- **The base clause** of blueprint Thm `target`: an inducing isomorphism carries `k^perf` onto
 `l^perf`, provided both bases are relatively algebraically closed.  The hypotheses are needed:
-see the module docstring.-/
+see the module docstring.
+@isnad1 id=compatib.3h8v.s9.bd5480baec36 from=translated src=- shape=293dfe29 vocab=bc8d6b1c
+-/
 theorem Induces.compatible (h : π.Induces ρ φ Φ) (hk : IsRAC (⊥ : IntermediateField k K))
     (hl : IsRAC (⊥ : IntermediateField l L)) :
     CrossBase.Compatible (k := π.basePerf k) (l := ρ.basePerf l) Φ := by
@@ -99,7 +103,9 @@ theorem Induces.compatible (h : π.Induces ρ φ Φ) (hk : IsRAC (⊥ : Intermed
   exact h.map_bot
 
 /-- **Frobenius twists induce the same map** (blueprint Thm `target`, the easy half of the fibre
-clause): integral Frobenius powers fix every closed subextension of the perfection.-/
+clause): integral Frobenius powers fix every closed subextension of the perfection.
+@isnad1 id=induces.1h9v.s8.13a63edd210d from=translated src=- shape=0d181a0a vocab=7089f678
+-/
 theorem Induces.trans_frobZPow (h : π.Induces ρ φ Φ) (n : ℤ) :
     π.Induces ρ φ (Φ.trans (ρ.frobZPow n)) := by
   intro M
@@ -111,7 +117,9 @@ theorem Induces.trans_frobZPow (h : π.Induces ρ φ Φ) (n : ℤ) :
 
 /-- **The converse** of blueprint Thm `target`: an isomorphism of perfections carrying `k^perf`
 onto `l^perf` induces the transported lattice map `T_Φ` (20.6).  No hypothesis on the bases is
-needed.-/
+needed.
+@isnad1 id=induces.1h7v.s8.c5742b5ef4ae from=translated src=- shape=e6934886 vocab=543385b6
+-/
 theorem induces_inducedIso (hΦ : CrossBase.Compatible (k := π.basePerf k) (l := ρ.basePerf l) Φ) :
     π.Induces ρ (π.inducedIso ρ hΦ) Φ := by
   intro M
@@ -126,12 +134,16 @@ theorem induces_inducedIso (hΦ : CrossBase.Compatible (k := π.basePerf k) (l :
 
 /-! ### Functoriality of the transported lattice map -/
 
-/-- **The identity induces the identity** (blueprint (20.9)).-/
+/-- **The identity induces the identity** (blueprint (20.9)).
+@isnad1 id=eq.0h3v.s7.a584fe12f800 from=translated src=- shape=411d4619 vocab=290d7d1f
+-/
 theorem inducedIso_refl (π : Perfection K) :
     π.inducedIso π (CrossBase.compatible_refl (k := π.basePerf k)) = OrderIso.refl _ := by
   rw [inducedIso, CrossBase.closedIFMap_refl, OrderIso.refl_trans, OrderIso.self_trans_symm]
 
-/-- **Composites induce composites** (blueprint (20.10)–(20.11)).-/
+/-- **Composites induce composites** (blueprint (20.10)–(20.11)).
+@isnad1 id=eq.2h11v.s10.1d9616e0791a from=translated src=- shape=01c3f591 vocab=17446558
+-/
 theorem inducedIso_trans {m M : Type*} [Field m] [Field M] [Algebra m M] {σ : Perfection M}
     {Ψ : ρ.carrier ≃+* σ.carrier}
     (hΦ : CrossBase.Compatible (k := π.basePerf k) (l := ρ.basePerf l) Φ)
@@ -142,7 +154,9 @@ theorem inducedIso_trans {m M : Type*} [Field m] [Field M] [Algebra m M] {σ : P
   rw [CrossBase.closedIFMap_trans hΦ hΨ, OrderIso.trans_apply]
 
 /-- With a relatively algebraically closed base, every integral Frobenius power carries the
-perfected base onto itself.-/
+perfected base onto itself.
+@isnad1 id=compatib.1h4v.s8.f1356556373f from=translated src=- shape=ae353c08 vocab=f3d8a42b
+-/
 theorem compatible_frobZPow (π : Perfection K) (hk : IsRAC (⊥ : IntermediateField k K))
     (n : ℤ) : CrossBase.Compatible (k := π.basePerf k) (l := π.basePerf k) (π.frobZPow n) := by
   have h := (induces_inducedIso (π := π) (ρ := π)

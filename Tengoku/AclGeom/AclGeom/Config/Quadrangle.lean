@@ -36,14 +36,18 @@ noncomputable section
 
 variable {k : Type*} {K : Type*} [Field k] [Field K] [Algebra k K]
 
-/-- Distinct principal closures from one-sided non-algebraicity.-/
+/-- Distinct principal closures from one-sided non-algebraicity.
+@isnad1 id=ne.1h4v.s6.37a9712d845f from=translated src=- shape=37f172e4 vocab=532ade52
+-/
 theorem point_ne_of_notMem {z w : K} (h : w ∉ racl k {z}) :
     ClosedIF.point k z ≠ ClosedIF.point k w := by
   intro heq
   exact h (ClosedIF.point_eq_point_iff.1 heq).2
 
 /-- Distinct points from one-sided non-algebraicity, in `Point.mk'`
-form (second generator over the first).-/
+form (second generator over the first).
+@isnad1 id=ne.3h4v.s8.df0bb9766ba3 from=translated src=- shape=c4345008 vocab=d526ef2d
+-/
 theorem Point.mk'_ne {z w : K} {hz : z ∉ (⊥ : ClosedIF k K)}
     {hw : w ∉ (⊥ : ClosedIF k K)} (h : w ∉ racl k {z}) :
     Point.mk' k z hz ≠ Point.mk' k w hw := by
@@ -51,7 +55,9 @@ theorem Point.mk'_ne {z w : K} {hz : z ∉ (⊥ : ClosedIF k K)}
   exact point_ne_of_notMem h (congrArg Subtype.val heq)
 
 /-- Distinct points from one-sided non-algebraicity, in `Point.mk'`
-form (first generator over the second).-/
+form (first generator over the second).
+@isnad1 id=ne.3h4v.s8.c70ff4cbc2ac from=translated src=- shape=564ec9d3 vocab=d526ef2d
+-/
 theorem Point.mk'_ne' {z w : K} {hz : z ∉ (⊥ : ClosedIF k K)}
     {hw : w ∉ (⊥ : ClosedIF k K)} (h : z ∉ racl k {w}) :
     Point.mk' k z hz ≠ Point.mk' k w hw := by
@@ -65,17 +71,26 @@ variable {a b c d x : K} (hind : AlgebraicIndependent k ![a, b, c, d, x])
 
 include hind
 
+/--
+@isnad1 id=not.1h7v.s7.73e50eadd926 from=translated src=- shape=5245a071 vocab=4789c72c
+-/
 theorem qtable_a_notMem_c : a ∉ racl k ({c} : Set K) := by
   have h : AlgebraicIndependent k ![a, c] := by
     simpa using AlgebraicIndependent.comp_pair hind
       (i := 0) (j := 2) (by decide)
   exact AlgebraicIndependent.notMem_racl_pair' h
 
+/--
+@isnad1 id=not.1h7v.s7.e38a408e914a from=translated src=- shape=ab9fc2b8 vocab=4b0dde1a
+-/
 theorem qtable_a_notMem_bc' : a ∉ racl k ({b, c} : Set K) := by
   have h := AlgebraicIndependent.notMem_racl_image hind
     (S := {1, 2}) (i := 0) (by decide)
   simpa [Set.image_insert_eq] using h
 
+/--
+@isnad1 id=not.1h7v.s7.8c7ed3e107e2 from=translated src=- shape=a462ca02 vocab=4b0dde1a
+-/
 theorem qtable_a_notMem_cb : a ∉ racl k ({c, b} : Set K) := by
   rw [Set.pair_comm c b]
   exact qtable_a_notMem_bc' hind
@@ -83,7 +98,9 @@ theorem qtable_a_notMem_cb : a ∉ racl k ({c, b} : Set K) := by
 /-! ### Non-membership of the quadrangle monomials in each other's
 closures -/
 
-/-- `ac ∉ racl{a}`: dividing by `a` would make `c` algebraic over `a`.-/
+/-- `ac ∉ racl{a}`: dividing by `a` would make `c` algebraic over `a`.
+@isnad1 id=not.1h7v.s7.ebe8b1e6cc3e from=translated src=- shape=71a81dca vocab=a4570295
+-/
 theorem qtable_ac_notMem_a : a * c ∉ racl k ({a} : Set K) := by
   intro hmem
   have ha : a ∈ racl k ({a} : Set K) := subset_racl k _ rfl
@@ -91,7 +108,9 @@ theorem qtable_ac_notMem_a : a * c ∉ racl k ({a} : Set K) := by
   rw [inv_mul_cancel_left₀ (qtable_a_ne_zero hind)] at h
   exact qtable_c_notMem_a hind h
 
-/-- `ac ∉ racl{c}`.-/
+/-- `ac ∉ racl{c}`.
+@isnad1 id=not.1h7v.s7.0540437bd772 from=translated src=- shape=439a0772 vocab=a4570295
+-/
 theorem qtable_ac_notMem_c : a * c ∉ racl k ({c} : Set K) := by
   intro hmem
   have hc : c ∈ racl k ({c} : Set K) := subset_racl k _ rfl
@@ -99,7 +118,9 @@ theorem qtable_ac_notMem_c : a * c ∉ racl k ({c} : Set K) := by
   rw [mul_inv_cancel_right₀ (qtable_c_ne_zero hind)] at h
   exact qtable_a_notMem_c hind h
 
-/-- `ac ∉ racl{b}`: dividing by `c` puts `a` in `racl{b, c}`.-/
+/-- `ac ∉ racl{b}`: dividing by `c` puts `a` in `racl{b, c}`.
+@isnad1 id=not.1h7v.s7.101d24159916 from=translated src=- shape=e76923f8 vocab=a4570295
+-/
 theorem qtable_ac_notMem_b : a * c ∉ racl k ({b} : Set K) := by
   intro hmem
   have hsub : racl k ({b} : Set K) ≤ racl k ({b, c} : Set K) :=
@@ -110,7 +131,9 @@ theorem qtable_ac_notMem_b : a * c ∉ racl k ({b} : Set K) := by
   rw [mul_inv_cancel_right₀ (qtable_c_ne_zero hind)] at h
   exact qtable_a_notMem_bc' hind h
 
-/-- `cb ∉ racl{a}`: dividing by `c` puts `b` in `racl{a, c}`.-/
+/-- `cb ∉ racl{a}`: dividing by `c` puts `b` in `racl{a, c}`.
+@isnad1 id=not.1h7v.s7.cb1c2c498214 from=translated src=- shape=a4afac10 vocab=a4570295
+-/
 theorem qtable_cb_notMem_a : c * b ∉ racl k ({a} : Set K) := by
   intro hmem
   have hsub : racl k ({a} : Set K) ≤ racl k ({a, c} : Set K) :=
@@ -121,7 +144,9 @@ theorem qtable_cb_notMem_a : c * b ∉ racl k ({a} : Set K) := by
   rw [inv_mul_cancel_left₀ (qtable_c_ne_zero hind)] at h
   exact qtable_b_notMem_ac hind h
 
-/-- `cb ∉ racl{c}`.-/
+/-- `cb ∉ racl{c}`.
+@isnad1 id=not.1h7v.s7.327c6276e161 from=translated src=- shape=e8d85c2f vocab=a4570295
+-/
 theorem qtable_cb_notMem_c : c * b ∉ racl k ({c} : Set K) := by
   intro hmem
   have hc : c ∈ racl k ({c} : Set K) := subset_racl k _ rfl
@@ -129,7 +154,9 @@ theorem qtable_cb_notMem_c : c * b ∉ racl k ({c} : Set K) := by
   rw [inv_mul_cancel_left₀ (qtable_c_ne_zero hind)] at h
   exact qtable_b_notMem_c hind h
 
-/-- `cb ∉ racl{b}`.-/
+/-- `cb ∉ racl{b}`.
+@isnad1 id=not.1h7v.s7.11f3b7d8bc26 from=translated src=- shape=82dace9a vocab=a4570295
+-/
 theorem qtable_cb_notMem_b : c * b ∉ racl k ({b} : Set K) := by
   intro hmem
   have hb : b ∈ racl k ({b} : Set K) := subset_racl k _ rfl
@@ -137,7 +164,9 @@ theorem qtable_cb_notMem_b : c * b ∉ racl k ({b} : Set K) := by
   rw [mul_inv_cancel_right₀ (qtable_b_ne_zero hind)] at h
   exact qtable_c_notMem_b hind h
 
-/-- `cb ∉ racl{ac}`: the closure of `ac` sits inside `racl{a, c}`.-/
+/-- `cb ∉ racl{ac}`: the closure of `ac` sits inside `racl{a, c}`.
+@isnad1 id=not.1h7v.s7.1052f4444a5e from=translated src=- shape=c5d0f021 vocab=a4570295
+-/
 theorem qtable_cb_notMem_ac : c * b ∉ racl k ({a * c} : Set K) := by
   intro hmem
   have hsub : racl k ({a * c} : Set K) ≤ racl k ({a, c} : Set K) := by
@@ -150,7 +179,9 @@ theorem qtable_cb_notMem_ac : c * b ∉ racl k ({a * c} : Set K) := by
   rw [inv_mul_cancel_left₀ (qtable_c_ne_zero hind)] at h
   exact qtable_b_notMem_ac hind h
 
-/-- `acb ∉ racl{a}`.-/
+/-- `acb ∉ racl{a}`.
+@isnad1 id=not.1h7v.s7.a399f2d4d3bd from=translated src=- shape=ede504e9 vocab=a4570295
+-/
 theorem qtable_acb_notMem_a : a * c * b ∉ racl k ({a} : Set K) := by
   intro hmem
   have hsub : racl k ({a} : Set K) ≤ racl k ({a, c} : Set K) :=
@@ -164,7 +195,9 @@ theorem qtable_acb_notMem_a : a * c * b ∉ racl k ({a} : Set K) := by
     (qtable_c_ne_zero hind))] at h
   exact qtable_b_notMem_ac hind h
 
-/-- `acb ∉ racl{c}`: dividing by `cb` puts `a` in `racl{c, b}`.-/
+/-- `acb ∉ racl{c}`: dividing by `cb` puts `a` in `racl{c, b}`.
+@isnad1 id=not.1h7v.s7.aef04206c705 from=translated src=- shape=ba41b5ba vocab=a4570295
+-/
 theorem qtable_acb_notMem_c : a * c * b ∉ racl k ({c} : Set K) := by
   intro hmem
   have hsub : racl k ({c} : Set K) ≤ racl k ({c, b} : Set K) :=
@@ -180,7 +213,9 @@ theorem qtable_acb_notMem_c : a * c * b ∉ racl k ({c} : Set K) := by
   rw [harith] at h
   exact qtable_a_notMem_cb hind h
 
-/-- `acb ∉ racl{b}`.-/
+/-- `acb ∉ racl{b}`.
+@isnad1 id=not.1h7v.s7.92be3821c030 from=translated src=- shape=09ebab4b vocab=a4570295
+-/
 theorem qtable_acb_notMem_b : a * c * b ∉ racl k ({b} : Set K) := by
   intro hmem
   have hsub : racl k ({b} : Set K) ≤ racl k ({b, c} : Set K) :=
@@ -196,7 +231,9 @@ theorem qtable_acb_notMem_b : a * c * b ∉ racl k ({b} : Set K) := by
   rw [harith] at h
   exact qtable_a_notMem_bc' hind h
 
-/-- `acb ∉ racl{ac}`.-/
+/-- `acb ∉ racl{ac}`.
+@isnad1 id=not.1h7v.s7.b6266e2f33e9 from=translated src=- shape=407714bb vocab=a4570295
+-/
 theorem qtable_acb_notMem_ac : a * c * b ∉ racl k ({a * c} : Set K) := by
   intro hmem
   have hsub : racl k ({a * c} : Set K) ≤ racl k ({a, c} : Set K) := by
@@ -212,7 +249,9 @@ theorem qtable_acb_notMem_ac : a * c * b ∉ racl k ({a * c} : Set K) := by
     (qtable_c_ne_zero hind))] at h
   exact qtable_b_notMem_ac hind h
 
-/-- `acb ∉ racl{cb}`.-/
+/-- `acb ∉ racl{cb}`.
+@isnad1 id=not.1h7v.s7.5e1b52606c95 from=translated src=- shape=9a698af1 vocab=a4570295
+-/
 theorem qtable_acb_notMem_cb : a * c * b ∉ racl k ({c * b} : Set K) := by
   intro hmem
   have hsub : racl k ({c * b} : Set K) ≤ racl k ({c, b} : Set K) := by
@@ -242,7 +281,9 @@ def qQuad : Fin 6 → Point k K :=
     Point.mk' k (a * c * b) (qtable_acb_notMem_bot hind),
     Point.mk' k (c * b) (qtable_mul_cb_notMem_bot hind)]
 
-/-- The six quadrangle points are pairwise distinct.-/
+/-- The six quadrangle points are pairwise distinct.
+@isnad1 id=injectiv.1h7v.s7.59e8a02c5af7 from=translated src=- shape=35f34337 vocab=c7c0cddc
+-/
 theorem qQuad_injective : Function.Injective (qQuad hind) := by
   have hne : ∀ i j : Fin 6, i < j → qQuad hind i ≠ qQuad hind j := by
     intro i j hlt
@@ -308,23 +349,33 @@ end QTable
 
 /-! ### Generic recovery and rank helpers -/
 
-/-- Cancel a known nonzero left factor inside any intermediate field.-/
+/-- Cancel a known nonzero left factor inside any intermediate field.
+@isnad1 id=mem.3h5v.s7.265927434f9d from=translated src=- shape=f88d6ca4 vocab=c32f74f9
+-/
 theorem mem_of_mul_mem_left {E : IntermediateField k K} {u v : K}
     (hu : u ∈ E) (hu0 : u ≠ 0) (huv : u * v ∈ E) : v ∈ E := by
   have h := MulMemClass.mul_mem (inv_mem hu) huv
   rwa [inv_mul_cancel_left₀ hu0] at h
 
-/-- Cancel a known nonzero right factor inside any intermediate field.-/
+/-- Cancel a known nonzero right factor inside any intermediate field.
+@isnad1 id=mem.3h5v.s7.8f0c60a15545 from=translated src=- shape=e8cb2ec7 vocab=c32f74f9
+-/
 theorem mem_of_mul_mem_right {E : IntermediateField k K} {u v : K}
     (hv : v ∈ E) (hv0 : v ≠ 0) (huv : u * v ∈ E) : u ∈ E := by
   have h := MulMemClass.mul_mem huv (inv_mem hv)
   rwa [mul_inv_cancel_right₀ hv0] at h
 
+/--
+@isnad1 id=eq.0h3v.s5.d00e8b5d0ead from=translated src=- shape=b8a41fad vocab=655f2d18
+-/
 theorem range_pair (u v : K) : Set.range ![u, v] = ({u, v} : Set K) := by
   ext z
   simp [Matrix.range_cons, Matrix.range_empty]
   tauto
 
+/--
+@isnad1 id=eq.0h4v.s6.5183963fa6df from=translated src=- shape=aed51620 vocab=655f2d18
+-/
 theorem range_triple (u v w : K) :
     Set.range ![u, v, w] = ({u, v, w} : Set K) := by
   ext z
@@ -332,7 +383,9 @@ theorem range_triple (u v w : K) :
   tauto
 
 /-- Rank two for a triple join of principal closures whose generators
-close to an independent pair.-/
+close to an independent pair.
+@isnad1 id=rankeq.2h7v.s7.2d79ab46d62a from=translated src=- shape=21da1d44 vocab=f390106e
+-/
 theorem rankEq_two_points {z₁ z₂ z₃ u v : K}
     (huv : AlgebraicIndependent k ![u, v])
     (h : racl k ({z₁, z₂, z₃} : Set K) = racl k ({u, v} : Set K)) :
@@ -343,7 +396,9 @@ theorem rankEq_two_points {z₁ z₂ z₃ u v : K}
   exact h
 
 /-- Rank three for a triple join of principal closures whose generators
-close to an independent triple.-/
+close to an independent triple.
+@isnad1 id=rankeq.2h8v.s8.280be19b625b from=translated src=- shape=ab6002eb vocab=f390106e
+-/
 theorem rankEq_three_points {z₁ z₂ z₃ u v w : K}
     (huvw : AlgebraicIndependent k ![u, v, w])
     (h : racl k ({z₁, z₂, z₃} : Set K) = racl k ({u, v, w} : Set K)) :
@@ -359,7 +414,9 @@ variable {a b c d x : K} (hind : AlgebraicIndependent k ![a, b, c, d, x])
 
 include hind
 
-/-- The independent triple `(a, c, b)`, restricted from the five-tuple.-/
+/-- The independent triple `(a, c, b)`, restricted from the five-tuple.
+@isnad1 id=algebrai.1h7v.s7.4da96e1a2e81 from=translated src=- shape=68446ba3 vocab=dd1bc422
+-/
 theorem qtable_indep_acb : AlgebraicIndependent k ![a, c, b] := by
   have h := AlgebraicIndependent.comp hind
     (![0, 2, 1] : Fin 3 -> Fin 5) (by decide)
@@ -371,26 +428,47 @@ theorem qtable_indep_acb : AlgebraicIndependent k ![a, c, b] := by
 
 /-! Memberships of the six quadrangle monomials in `racl {a, c, b}`. -/
 
+/--
+@isnad1 id=mem.1h7v.s7.f1cd09208767 from=translated src=- shape=7f15e0fe vocab=4b0dde1a
+-/
 theorem qtable_acb_mem_a : a ∈ racl k ({a, c, b} : Set K) :=
   subset_racl k _ (by simp)
 
+/--
+@isnad1 id=mem.1h7v.s7.ca06c0b40df9 from=translated src=- shape=7f89fbe9 vocab=4b0dde1a
+-/
 theorem qtable_acb_mem_c : c ∈ racl k ({a, c, b} : Set K) :=
   subset_racl k _ (by simp)
 
+/--
+@isnad1 id=mem.1h7v.s7.00de867ac005 from=translated src=- shape=34a4f732 vocab=4b0dde1a
+-/
 theorem qtable_acb_mem_b : b ∈ racl k ({a, c, b} : Set K) :=
   subset_racl k _ (by simp)
 
+/--
+@isnad1 id=mem.1h7v.s7.645de2b5662f from=translated src=- shape=e0b686f2 vocab=2ae3eb54
+-/
 theorem qtable_acb_mem_ac : a * c ∈ racl k ({a, c, b} : Set K) :=
   MulMemClass.mul_mem (qtable_acb_mem_a hind) (qtable_acb_mem_c hind)
 
+/--
+@isnad1 id=mem.1h7v.s7.d967598f64a1 from=translated src=- shape=6468057c vocab=2ae3eb54
+-/
 theorem qtable_acb_mem_acb : a * c * b ∈ racl k ({a, c, b} : Set K) :=
   MulMemClass.mul_mem (qtable_acb_mem_ac hind) (qtable_acb_mem_b hind)
 
+/--
+@isnad1 id=mem.1h7v.s7.07cd73789ce1 from=translated src=- shape=7a528a36 vocab=2ae3eb54
+-/
 theorem qtable_acb_mem_cb : c * b ∈ racl k ({a, c, b} : Set K) :=
   MulMemClass.mul_mem (qtable_acb_mem_c hind) (qtable_acb_mem_b hind)
 
 /-! Independence of the dependent-triple base pairs. -/
 
+/--
+@isnad1 id=algebrai.1h7v.s7.45dabb61af1f from=translated src=- shape=29e3cd69 vocab=ef3de844
+-/
 theorem qtable_indep_a_cb : AlgebraicIndependent k ![a, c * b] := by
   refine algebraicIndependent_pair ?_ (qtable_cb_notMem_a hind)
   intro hmem
@@ -401,6 +479,9 @@ theorem qtable_indep_a_cb : AlgebraicIndependent k ![a, c * b] := by
     exact MulMemClass.mul_mem hc hb
   exact qtable_a_notMem_cb hind (hsub hmem)
 
+/--
+@isnad1 id=algebrai.1h7v.s7.21fd1f648efb from=translated src=- shape=174d99d4 vocab=ef3de844
+-/
 theorem qtable_indep_ac_b : AlgebraicIndependent k ![a * c, b] := by
   refine algebraicIndependent_pair (qtable_ac_notMem_b hind) ?_
   intro hmem
@@ -411,16 +492,25 @@ theorem qtable_indep_ac_b : AlgebraicIndependent k ![a * c, b] := by
     exact MulMemClass.mul_mem ha hc
   exact qtable_b_notMem_ac hind (hsub hmem)
 
+/--
+@isnad1 id=algebrai.1h7v.s7.5ad3c0ca90fc from=translated src=- shape=942d5516 vocab=dd1bc422
+-/
 theorem qtable_indep_ac : AlgebraicIndependent k ![a, c] := by
   simpa using AlgebraicIndependent.comp_pair hind (i := 0) (j := 2)
     (by decide)
 
+/--
+@isnad1 id=algebrai.1h7v.s7.79700e914ca2 from=translated src=- shape=80d42556 vocab=dd1bc422
+-/
 theorem qtable_indep_cb : AlgebraicIndependent k ![c, b] := by
   simpa using AlgebraicIndependent.comp_pair hind (i := 2) (j := 1)
     (by decide)
 
 /-! ### The four dependent triples -/
 
+/--
+@isnad1 id=rankeq.2h8v.s8.ae3b266b7999 from=translated src=- shape=365632b8 vocab=db4457a0
+-/
 theorem qQuad_rank_dep :
     ∀ s ∈ quadTriples, RankEq 2 (s.sup fun i ↦ ((qQuad hind) i).1) := by
   intro s hs
@@ -500,7 +590,9 @@ variable {a b c d x : K} (hind : AlgebraicIndependent k ![a, b, c, d, x])
 include hind
 
 /-- Every free triple of the quadrangle has rank three: the unimodular
-exponent matrix lets each one recover all of `a, c, b`.-/
+exponent matrix lets each one recover all of `a, c, b`.
+@isnad1 id=rankeq.3h8v.s8.1cbf6343dddd from=translated src=- shape=d94456c4 vocab=93321723
+-/
 theorem qQuad_rank_free :
     ∀ s : Finset (Fin 6), s.card = 3 → s ∉ quadTriples →
       RankEq 3 (s.sup fun i ↦ ((qQuad hind) i).1) := by
@@ -900,7 +992,9 @@ theorem qQuad_rank_free :
       · exact hC
       · exact hB
 
-/-- The join of all six quadrangle points has rank three.-/
+/-- The join of all six quadrangle points has rank three.
+@isnad1 id=rankeq.1h7v.s8.febbd47eb74d from=translated src=- shape=97b75461 vocab=30b4844d
+-/
 theorem qQuad_rank_total :
     RankEq 3 (Finset.univ.sup fun i ↦ ((qQuad hind) i).1) := by
   refine rankEq_of_coe_eq_racl (qtable_indep_acb hind) ?_
@@ -932,12 +1026,16 @@ theorem qQuad_rank_total :
           (Finset.mem_univ (3 : Fin 6))
       exact (ClosedIF.le_iff.1 hle) (ClosedIF.mem_point_self w)
 
-/-- The table-7.2 sextuple is a partial quadrangle.-/
+/-- The table-7.2 sextuple is a partial quadrangle.
+@isnad1 id=ispartia.1h7v.s7.a4672fbd6162 from=translated src=- shape=c9d34bcd vocab=57c8c587
+-/
 theorem qQuad_isPartialQuadrangle : IsPartialQuadrangle (qQuad hind) :=
   ⟨qQuad_injective hind, qQuad_rank_dep hind, qQuad_rank_free hind,
     qQuad_rank_total hind⟩
 
-/-- Clause (vi) of Ψ at the soundness witness.-/
+/-- Clause (vi) of Ψ at the soundness witness.
+@isnad1 id=ex.1h7v.s8.d07ccc618709 from=translated src=- shape=16b07e65 vocab=5cfca29e
+-/
 theorem qWitness_quad :
     ∃ S' T' U' : Point k K,
       IsPartialQuadrangle

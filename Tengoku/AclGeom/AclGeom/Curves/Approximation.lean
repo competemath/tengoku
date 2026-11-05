@@ -46,6 +46,9 @@ variable {k F : Type*} [Field k] [Field F] [Algebra k F]
 
 namespace Place
 
+/--
+@isnad1 id=eq.1h4v.s6.243e83ab0da7 from=translated src=- shape=9973d0b2 vocab=34c16585
+-/
 @[ext]
 theorem ext {P Q : Place k F} (h : P.val = Q.val) : P = Q := by
   cases P; cases Q; simpa using h
@@ -53,7 +56,9 @@ theorem ext {P Q : Place k F} (h : P.val = Q.val) : P = Q := by
 variable [IsAlgClosed k] [IsFunctionFieldOneVar k F]
 
 /-- Distinct places are incomparable: an overring of a discrete valuation
-subring of its fraction field is everything.-/
+subring of its fraction field is everything.
+@isnad1 id=not.1h4v.s6.207d450ab94c from=translated src=- shape=62dd9c69 vocab=a95301a8
+-/
 theorem not_le_of_ne {P Q : Place k F} (h : P ≠ Q) : ¬ P.val ≤ Q.val := by
   intro hle
   haveI := P.isDiscreteValuationRing
@@ -63,7 +68,9 @@ theorem not_le_of_ne {P Q : Place k F} (h : P ≠ Q) : ¬ P.val ≤ Q.val := by
     fun hv ↦ h (Place.ext hv))
 
 /-- **Pair separation**: for distinct places there is an element that is
-small at the first and large at the second.-/
+small at the first and large at the second.
+@isnad1 id=ex.1h4v.s9.ee749656c0d6 from=translated src=- shape=59ff7613 vocab=2aadb9f7
+-/
 theorem exists_lt_one_gt_one {P Q : Place k F} (h : P ≠ Q) :
     ∃ z : F, P.val.valuation z < 1 ∧ 1 < Q.val.valuation z := by
   obtain ⟨a, haP, haQ⟩ : ∃ a : F, a ∈ P.val ∧ a ∉ Q.val := by
@@ -95,7 +102,9 @@ theorem exists_lt_one_gt_one {P Q : Place k F} (h : P ≠ Q) :
 
 /-- **Archimedean property of a place's values**: powers of a value below
 one eventually drop below any nonzero value. From the uniformizer
-classification of P1.-/
+classification of P1.
+@isnad1 id=ex.3h5v.s9.1c150e663b7b from=translated src=- shape=570aa9d8 vocab=295bc7e4
+-/
 theorem exists_pow_valuation_lt (P : Place k F) {y w : F} (hy0 : y ≠ 0)
     (hylt : P.val.valuation y < 1) (hw0 : w ≠ 0) :
     ∃ n : ℕ, P.val.valuation y ^ n < P.val.valuation w := by
@@ -134,7 +143,9 @@ variable {O : ValuationSubring F}
 
 /-- Indicator estimate, small case: where `v y < 1`, the element
 `y^n / (1 + y^n)` has value `(v y)^n` (for positive `n`; at `n = 0` the
-expression degenerates in characteristic two).-/
+expression degenerates in characteristic two).
+@isnad1 id=eq.2h4v.s8.51cbc78dd210 from=translated src=- shape=071244ac vocab=96a6a633
+-/
 theorem valuation_indicator_of_lt_one {y : F} (hy : O.valuation y < 1)
     {n : ℕ} (hn : n ≠ 0) :
     O.valuation (y ^ n / (1 + y ^ n)) = O.valuation y ^ n := by
@@ -148,7 +159,9 @@ theorem valuation_indicator_of_lt_one {y : F} (hy : O.valuation y < 1)
   rw [map_div₀, h2, div_one, Valuation.map_pow]
 
 /-- Indicator estimate, large case: where `1 < v y`, the element
-`y^n / (1 + y^n)` is a unit for positive `n`.-/
+`y^n / (1 + y^n)` is a unit for positive `n`.
+@isnad1 id=eq.2h4v.s8.0683bf8fd8ca from=translated src=- shape=57a6f1cf vocab=96a6a633
+-/
 theorem valuation_indicator_of_gt_one {y : F} (hy : 1 < O.valuation y)
     {n : ℕ} (hn : n ≠ 0) :
     O.valuation (y ^ n / (1 + y ^ n)) = 1 := by
@@ -177,7 +190,9 @@ the core induction): given a place `P₀` distinct from each of finitely
 many places `Ps j`, some element is large at `P₀` and small at every
 `Ps j`. The boundary case `v y = 1` at the new place is handled by
 multiplying with a separator; the case `v y > 1` by the ultrametric
-indicator `y^n/(1+y^n)`; the Archimedean property supplies the power.-/
+indicator `y^n/(1+y^n)`; the Archimedean property supplies the power.
+@isnad1 id=ex.1h5v.s9.4348b7cd0c75 from=translated src=- shape=04eb98c8 vocab=36ed47e8
+-/
 theorem Place.exists_one_lt_forall_lt_one {r : ℕ} (P₀ : Place k F)
     (Ps : Fin r → Place k F) (hne : ∀ j, P₀ ≠ Ps j) :
     ∃ z : F, 1 < P₀.val.valuation z ∧

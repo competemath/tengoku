@@ -56,7 +56,9 @@ def transitionAlgHom (a₂ : ι₂ → K₂) (e : L₁ ≃ₐ[k] L₂) :
 
 omit [Algebra k K₂] [IsScalarTower k K₂ L₂] in
 /-- The coordinate-ring homomorphism induced by a field equivalence is
-injective.-/
+injective.
+@isnad1 id=injectiv.0h7v.s9.f6ed7829f171 from=translated src=- shape=ba73442a vocab=f6c11ceb
+-/
 theorem transitionAlgHom_injective (a₂ : ι₂ → K₂) (e : L₁ ≃ₐ[k] L₂) :
     Function.Injective (transitionAlgHom (k := k) a₂ e) :=
   e.symm.injective.comp Subtype.val_injective
@@ -100,7 +102,9 @@ noncomputable def functionFieldAlgEquiv
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The generic-point morphism induced by the chart function-field
-equivalence is compatible with both chart structure maps to `Spec k`.-/
+equivalence is compatible with both chart structure maps to `Spec k`.
+@isnad1 id=other.2h10v.s10.86c8c0239bfe from=translated src=- shape=52a490d8 vocab=ecc6409c
+-/
 theorem functionFieldMorphism_comp_structureMap
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)
@@ -150,7 +154,9 @@ noncomputable def rationalMap [Finite ι₂]
     (functionFieldMorphism_comp_structureMap a₁ a₂ ha₁ ha₂ e)
 
 /-- The rational transition induced by a ground-field equivalence is a
-rational map over `Spec k`.-/
+rational map over `Spec k`.
+@isnad1 id=eq.2h10v.s9.42a9ba079abf from=translated src=- shape=69732376 vocab=f3786839
+-/
 theorem rationalMap_comp_structureMap [Finite ι₂]
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)
@@ -180,7 +186,9 @@ theorem rationalMap_comp_structureMap [Finite ι₂]
   exact Scheme.RationalMap.isOver_iff.mp hOver
 
 /-- The function-field morphism of the chart rational map is the one induced
-by the selected ambient field equivalence.-/
+by the selected ambient field equivalence.
+@isnad1 id=eq.2h10v.s9.19ede7da3001 from=translated src=- shape=3aea6b64 vocab=6635eb0f
+-/
 theorem rationalMap_fromFunctionField [Finite ι₂]
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)
@@ -193,7 +201,9 @@ theorem rationalMap_fromFunctionField [Finite ι₂]
   exact Scheme.RationalMap.fromFunctionField_ofFunctionField _ _ _ _
 
 /-- The chart rational map induced by a function-field equivalence is
-dominant.-/
+dominant.
+@isnad1 id=isdomina.2h10v.s9.864e2eafe131 from=translated src=- shape=890a94b6 vocab=7b96425a
+-/
 instance rationalMap_isDominant [Finite ι₂]
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)
@@ -205,7 +215,9 @@ instance rationalMap_isDominant [Finite ι₂]
   exact Scheme.functionFieldMorphism_closedPoint _
 
 /-- Reversing the ambient field equivalence reverses the induced
-scheme-function-field equivalence.-/
+scheme-function-field equivalence.
+@isnad1 id=eq.2h10v.s10.e30dce400689 from=translated src=- shape=1dc672a9 vocab=62b0bd2a
+-/
 theorem functionFieldAlgEquiv_symm
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)
@@ -224,7 +236,9 @@ variable {K₃ L₃ : Type u} {ι₃ : Type x}
   [IsScalarTower k K₃ L₃] [FiniteDimensional K₃ L₃]
 
 /-- Conjugating ambient field equivalences through three chart function
-fields preserves transitive composition.-/
+fields preserves transitive composition.
+@isnad1 id=eq.3h15v.s10.f883cda0fa15 from=translated src=- shape=3010947e vocab=c7461805
+-/
 theorem functionFieldAlgEquiv_trans
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂) (a₃ : ι₃ → K₃)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)
@@ -238,7 +252,9 @@ theorem functionFieldAlgEquiv_trans
   simp [functionFieldAlgEquiv]
 
 /-- Finite-extension chart rational maps compose exactly as their ambient
-field equivalences do.-/
+field equivalences do.
+@isnad1 id=eq.3h15v.s10.5e866698aece from=translated src=- shape=ca02d618 vocab=31343881
+-/
 theorem rationalMap_comp [Finite ι₁] [Finite ι₂] [Finite ι₃]
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂) (a₃ : ι₃ → K₃)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)
@@ -263,7 +279,9 @@ theorem rationalMap_comp [Finite ι₁] [Finite ι₂] [Finite ι₃]
 end Composition
 
 /-- The rational maps induced by an ambient field equivalence and its inverse
-compose to the identity.-/
+compose to the identity.
+@isnad1 id=eq.2h10v.s9.582773d68cee from=translated src=- shape=9c6d9972 vocab=3cb4efd6
+-/
 theorem rationalMap_comp_symm [Finite ι₁] [Finite ι₂]
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)
@@ -281,7 +299,9 @@ theorem rationalMap_comp_symm [Finite ι₁] [Finite ι₂]
     rfl
 
 /-- The inverse composite of the two chart rational maps is also the
-identity.-/
+identity.
+@isnad1 id=eq.2h10v.s9.dea56a26088b from=translated src=- shape=57fe84df vocab=3cb4efd6
+-/
 theorem rationalMap_symm_comp [Finite ι₁] [Finite ι₂]
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)
@@ -311,7 +331,9 @@ noncomputable def partialIso [Finite ι₁] [Finite ι₂]
     (rationalMap_symm_comp a₁ a₂ ha₁ ha₂ e)
 
 /-- The dense-open chart isomorphism induced by a ground-field equivalence
-commutes with the two structure maps to `Spec k`.-/
+commutes with the two structure maps to `Spec k`.
+@isnad1 id=isover.2h10v.s9.42c2198359a5 from=translated src=- shape=77fd7d36 vocab=e18fa546
+-/
 theorem partialIso_isOver [Finite ι₁] [Finite ι₂]
     (a₁ : ι₁ → K₁) (a₂ : ι₂ → K₂)
     (ha₁ : adjoin k (Set.range a₁) = ⊤)

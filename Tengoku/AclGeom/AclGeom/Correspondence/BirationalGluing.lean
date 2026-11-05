@@ -43,7 +43,9 @@ namespace BirationalGluing
 
 variable {J : Type u}
 
-/-- A finite intersection of dense open subschemes is dense.-/
+/-- A finite intersection of dense open subschemes is dense.
+@isnad1 id=dense.1h3v.s7.5954fbe8d63a from=translated src=- shape=7b911155 vocab=cbb44b49
+-/
 theorem dense_iInf_opens {X : Scheme.{u}} [Finite J]
     (V : J → X.Opens) (hV : ∀ i, Dense (V i : Set X)) :
     Dense (((⨅ i, V i) : X.Opens) : Set X) := by
@@ -65,7 +67,9 @@ partial isomorphisms.-/
 def partialIsoFamilyCommonSource : X.Opens :=
   ⨅ i, (e i).source
 
-/-- The common source of a finite family of partial isomorphisms is dense.-/
+/-- The common source of a finite family of partial isomorphisms is dense.
+@isnad1 id=dense.0h4v.s6.8867e58ad15b from=translated src=- shape=0036e589 vocab=f5f461ff
+-/
 theorem partialIsoFamilyCommonSource_dense :
     Dense ((partialIsoFamilyCommonSource U e : X.Opens) : Set X) :=
   dense_iInf_opens (fun i ↦ (e i).source) (fun i ↦ (e i).dense_source)
@@ -84,6 +88,9 @@ def partialIsoFamilyMap (i : J) :
 
 -- Unfold the partial-isomorphism chart types to recognize its isomorphism instance.
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=isopenim.0h5v.s5.9da984f6ecfa from=translated src=- shape=26a7befb vocab=2d33bd66
+-/
 instance partialIsoFamilyMap_isOpenImmersion (i : J) :
     IsOpenImmersion (partialIsoFamilyMap U e i) := by
   delta partialIsoFamilyMap
@@ -98,7 +105,9 @@ def partialIsoFamilyGlueData : Scheme.GlueData :=
     (partialIsoFamilyCommonSource U e).toScheme (partialIsoFamilyMap U e)
 
 /-- Restricting a reference-to-chart partial isomorphism to the common
-source preserves compatibility with maps to a base scheme.-/
+source preserves compatibility with maps to a base scheme.
+@isnad1 id=isover.1h8v.s6.c1249ef3fab1 from=translated src=- shape=6962afc1 vocab=a95e7f8d
+-/
 theorem partialIsoFamilyRestriction_isOver {S : Scheme.{u}}
     (sX : X ⟶ S) (s : ∀ i, U i ⟶ S)
     (he : ∀ i, (e i).IsOver sX (s i)) (i : J) :
@@ -107,7 +116,9 @@ theorem partialIsoFamilyRestriction_isOver {S : Scheme.{u}}
     (partialIsoFamilyCommonSource_dense U e) (iInf_le _ i)
 
 /-- Every chart immersion in a reference-based atlas restricts to the same
-map from the common source to the base.-/
+map from the common source to the base.
+@isnad1 id=eq.1h8v.s6.3c0fe8751fda from=translated src=- shape=452b102b vocab=6013caa4
+-/
 theorem partialIsoFamilyMap_comp {S : Scheme.{u}}
     (sX : X ⟶ S) (s : ∀ i, U i ⟶ S)
     (he : ∀ i, (e i).IsOver sX (s i)) (i : J) :
@@ -223,7 +234,9 @@ def partialIsoOfMutualInversePartialMaps
     rw [Category.assoc, hFι, ← Category.assoc, hGu, hgf', Category.id_comp]
 
 /-- The dense-open isomorphism extracted from mutually inverse partial maps
-is over a base whenever the forward partial map is over that base.-/
+is over a base whenever the forward partial map is over that base.
+@isnad1 id=isover.3h7v.s8.67f3c4c7c6cc from=translated src=- shape=e9af4900 vocab=87665f27
+-/
 theorem partialIsoOfMutualInversePartialMaps_isOver
     {S : Scheme.{u}} (sX : X ⟶ S) (sY : Y ⟶ S)
     (f : X.PartialMap Y) [IsDominant f.hom]
@@ -311,7 +324,9 @@ def partialIsoOfMutualInverseRationalMaps
   exact partialIsoOfMutualInversePartialMaps F G hFG hGF
 
 /-- The dense-open isomorphism extracted from mutually inverse rational maps
-is over a base whenever the forward rational map is over that base.-/
+is over a base whenever the forward rational map is over that base.
+@isnad1 id=isover.3h7v.s7.79111ce54dfb from=translated src=- shape=ceb7d0fc vocab=a18b163f
+-/
 theorem partialIsoOfMutualInverseRationalMaps_isOver
     {S : Scheme.{u}}
     [IsIntegral X] [IsIntegral Y] [X.IsSeparated] [Y.IsSeparated]

@@ -123,7 +123,9 @@ private theorem eq_zero_or_one_of_isIdempotentElem {A : Type*} [CommRing A]
 field, a nonempty Zariski-closed `S ⊆ k^σ` with connected coordinate-ring spectrum and an
 operation `op c u v` (playing `u · v · c⁻¹`) preserving `S`, with `op c u c = u` and
 `op c c v = v` for `c ∈ S` and polynomial realizations in each variable, has a prime
-vanishing ideal.-/
+vanishing ideal.
+@isnad1 id=isprime.7h6v.s11.5abc796d8822 from=translated src=- shape=6a5855ac vocab=d31d74f4
+-/
 theorem isPrime_vanishingIdeal_of_connected (S : Set (σ → k))
     (hclosed : zeroLocus k (vanishingIdeal k S) = S) (hne : S.Nonempty)
     [ConnectedSpace (PrimeSpectrum (MvPolynomial σ k ⧸ vanishingIdeal k S))]

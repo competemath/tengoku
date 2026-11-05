@@ -68,6 +68,9 @@ def reparametrize (g : NormalBranchEmbedding E M' N)
     (e : M ≃ₐ[E] M') : NormalBranchEmbedding E M N :=
   ⟨g.toAlgHom.comp e.toAlgHom⟩
 
+/--
+@isnad1 id=eq.0h7v.s8.cc78ad50e839 from=translated src=- shape=8e78d6c2 vocab=298207f5
+-/
 @[simp] theorem reparametrize_apply
     (g : NormalBranchEmbedding E M' N) (e : M ≃ₐ[E] M') (x : M) :
     (g.reparametrize e).toAlgHom x = g.toAlgHom (e x) :=
@@ -112,7 +115,9 @@ def mapOfEquiv (eE : E ≃+* E') (eM : M ≃+* M') (eN : N ≃+* N')
   rwa [eE.apply_symm_apply] at hn
 
 /-- Transport of branch embeddings is pointwise conjugation by the branch-
-and normal-field equivalences.-/
+and normal-field equivalences.
+@isnad1 id=eq.2h11v.s10.b55d4f4b96f7 from=translated src=- shape=ad6073e8 vocab=518e528e
+-/
 @[simp] theorem mapOfEquiv_apply
     (eE : E ≃+* E') (eM : M ≃+* M') (eN : N ≃+* N')
     (hM : eM.toRingHom.comp (algebraMap E M) =
@@ -197,7 +202,9 @@ def deckMapOfEquiv (eE : E ≃+* E') (eN : N ≃+* N')
   rwa [eE.apply_symm_apply] at hn
 
 /-- Deck transport acts by conjugation on the underlying normal-cover
-field.-/
+field.
+@isnad1 id=eq.1h8v.s9.a6e93b849d2e from=translated src=- shape=61c8c40c vocab=6740e253
+-/
 @[simp] theorem deckMapOfEquiv_apply
     (eE : E ≃+* E') (eN : N ≃+* N')
     (hN : eN.toRingHom.comp (algebraMap E N) =
@@ -245,6 +252,9 @@ postcomposition.-/
 instance : SMul (N ≃ₐ[E] N) (NormalBranchEmbedding E M N) where
   smul σ f := ⟨σ.toAlgHom.comp f.toAlgHom⟩
 
+/--
+@isnad1 id=eq.0h5v.s8.6553da1a4326 from=translated src=- shape=5b18103f vocab=48b599c8
+-/
 @[simp] theorem smul_toAlgHom (σ : N ≃ₐ[E] N)
     (f : NormalBranchEmbedding E M N) :
     (σ • f).toAlgHom = σ.toAlgHom.comp f.toAlgHom := rfl
@@ -265,7 +275,9 @@ variable {E' M' N' : Type*} [Field E'] [Field M'] [Field N']
   [Algebra E' M'] [Algebra E' N']
 
 /-- Branch transport is equivariant for conjugation transport of deck
-transformations.-/
+transformations.
+@isnad1 id=eq.2h11v.s9.feb1768aee82 from=translated src=- shape=30e4dbc3 vocab=ffbfab18
+-/
 @[simp] theorem mapOfEquiv_smul
     (eE : E ≃+* E') (eM : M ≃+* M') (eN : N ≃+* N')
     (hM : eM.toRingHom.comp (algebraMap E M) =
@@ -287,6 +299,9 @@ variable [Algebra M N] [IsScalarTower E M N]
 def canonical : NormalBranchEmbedding E M N :=
   ⟨IsScalarTower.toAlgHom E M N⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.b5e8c5e37bab from=translated src=- shape=c4cbf6da vocab=1a4e80e0
+-/
 @[simp] theorem canonical_apply (x : M) :
     (canonical (E := E) (M := M) (N := N)).toAlgHom x =
       algebraMap M N x := rfl
@@ -298,7 +313,9 @@ def extendToAut [Normal E N] (f : NormalBranchEmbedding E M N) :
     (AlgHom.normal_bijective E N N _)
 
 /-- The extended deck transformation sends the literal branch to the
-chosen conjugate branch.-/
+chosen conjugate branch.
+@isnad1 id=eq.0h4v.s8.264976016c0f from=translated src=- shape=364e6b3c vocab=1af8bf82
+-/
 theorem extendToAut_smul_canonical [Normal E N]
     (f : NormalBranchEmbedding E M N) :
     f.extendToAut • canonical (E := E) (M := M) (N := N) = f := by
@@ -323,7 +340,9 @@ noncomputable def alignmentAut [Normal E N]
   exact g.extendToAut
 
 /-- The distinguished alignment automorphism sends its anchoring branch
-embedding to the requested branch embedding.-/
+embedding to the requested branch embedding.
+@isnad1 id=eq.0h5v.s7.328c24034446 from=translated src=- shape=8cc9dd15 vocab=5ba88416
+-/
 theorem alignmentAut_smul [Normal E N]
     (f g : NormalBranchEmbedding E M N) :
     alignmentAut f g • f = g := by
@@ -341,7 +360,9 @@ noncomputable def extendAlong [Normal E N]
   alignmentAut ⟨f⟩ ⟨f.comp e.toAlgHom⟩
 
 /-- The extended normal-cover chart has exactly the prescribed action on
-the embedded branch field.-/
+the embedded branch field.
+@isnad1 id=eq.0h6v.s8.2fb57e7005f9 from=translated src=- shape=f37463e9 vocab=22154037
+-/
 @[simp] theorem extendAlong_apply [Normal E N]
     (f : M →ₐ[E] N) (e : M ≃ₐ[E] M) (x : M) :
     extendAlong f e (f x) = f (e x) := by
@@ -351,7 +372,9 @@ the embedded branch field.-/
   exact h
 
 /-- The deck-transformation action on branches of a normal cover is
-transitive.-/
+transitive.
+@isnad1 id=ex.0h5v.s7.5b403ebab628 from=translated src=- shape=db0adfbe vocab=bb6dcea3
+-/
 theorem exists_smul_eq [Normal E N]
     (f g : NormalBranchEmbedding E M N) :
     ∃ σ : N ≃ₐ[E] N, σ • f = g := by
@@ -372,6 +395,9 @@ def mulActionEquiv (g : G) : X ≃ X where
   left_inv x := by simp
   right_inv x := by simp
 
+/--
+@isnad1 id=eq.0h4v.s6.4bd95d297ccd from=translated src=- shape=ca5fc98a vocab=c2b5ce1b
+-/
 @[simp] theorem mulActionEquiv_apply (g : G) (x : X) :
     mulActionEquiv g x = g • x := rfl
 
@@ -473,7 +499,9 @@ def finiteCoverDeckEquivOfExtensionEquiv
     e.baseEquiv.toRingEquiv n hn
 
 /-- Branch transport is equivariant for the corresponding transport of
-deck transformations.-/
+deck transformations.
+@isnad1 id=eq.3h10v.s14.b4bd31f39f99 from=translated src=- shape=57690b47 vocab=25080936
+-/
 @[simp] theorem finiteCoverBranchEquivOfExtensionEquiv_smul
     {E' L' : IntermediateField k Ω} (h : E ≤ L) (h' : E' ≤ L')
     (e : FiniteCover.ExtensionEquiv h h')
@@ -551,7 +579,9 @@ structure FiniteCoverBasedBranchEquiv
       finiteCoverSelectedBranch h'
 
 /-- Inside an algebraically closed ambient field, deck transformations act
-transitively on the conjugate branches of a finite cover.-/
+transitively on the conjugate branches of a finite cover.
+@isnad1 id=ex.2h6v.s10.370af3a30d38 from=translated src=- shape=c4940288 vocab=5c9621c8
+-/
 theorem finiteCoverBranch_exists_smul_eq [IsAlgClosed Ω]
     (h : E ≤ L)
     (hfin : FiniteDimensional (↥E) (↥(extendScalars h)))
@@ -602,7 +632,9 @@ namespace FiniteCoverBasedNormalEquiv
 variable {E' L' : IntermediateField k Ω} {h : E ≤ L} {h' : E' ≤ L'}
   {e : FiniteCover.ExtensionEquiv h h'}
 
-/-- Pointwise form of the selected-branch preservation equation.-/
+/-- Pointwise form of the selected-branch preservation equation.
+@isnad1 id=eq.2h9v.s14.05f71a44aafa from=translated src=- shape=da29ef06 vocab=8babc251
+-/
 @[simp] theorem map_selected_apply (T : FiniteCoverBasedNormalEquiv h h' e)
     (x : extendScalars h) :
     T.toRingEquiv (FiniteCover.selectedEmbedding h x) =
@@ -751,7 +783,9 @@ def trans {E'' L'' : IntermediateField k Ω} {h'' : E'' ≤ L''}
     rw [T.map_selected, U.map_selected]
 
 /-- Based branch transports are determined by their deck and branch
-equivalences; the compatibility witnesses are propositions.-/
+equivalences; the compatibility witnesses are propositions.
+@isnad1 id=eq.4h8v.s11.1f0d5fc77b06 from=translated src=- shape=f2162ae4 vocab=f6ab8b5e
+-/
 @[ext] theorem ext {T U : FiniteCoverBasedBranchEquiv h h'}
     (hdeck : T.deckEquiv = U.deckEquiv)
     (hbranch : T.branchEquiv = U.branchEquiv) : T = U := by
