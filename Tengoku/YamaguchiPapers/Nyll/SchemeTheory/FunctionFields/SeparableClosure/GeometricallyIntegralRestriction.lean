@@ -37,7 +37,9 @@ variable [Algebra k K] [Algebra K Ω] [Algebra k Ω]
 variable [IsScalarTower k K Ω]
 
 /-- A geometrically integral field extension is linearly disjoint from the
-separable closure of its base inside any common overfield.-/
+separable closure of its base inside any common overfield.
+@isnad1 id=lineardi.0h3v.s7.72ebf15c4dbe from=translated src=- shape=71678837 vocab=9caf1496
+-/
 theorem separableClosure_linearDisjoint_of_geometricallyIntegral
     [GeometricallyIntegral
       (Spec.map (CommRingCat.ofHom (algebraMap k K)))] :
@@ -63,7 +65,9 @@ theorem separableClosure_linearDisjoint_of_geometricallyIntegral
   exact hLD'
 
 /-- Restriction from a separable closure of a geometrically integral field
-extension onto the separable closure of the base field is surjective.-/
+extension onto the separable closure of the base field is surjective.
+@isnad1 id=surjecti.0h3v.s12.b2db33236880 from=translated src=- shape=3e32c118 vocab=78d4bcce
+-/
 theorem separableClosureRestriction_surjective_of_geometricallyIntegral
     [IsSepClosure K Ω]
     [GeometricallyIntegral

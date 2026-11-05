@@ -46,7 +46,9 @@ def geometricStalkStructureMap :
       (Scheme.Etale.mk (𝟙 (Spec (CommRingCat.of R))))
       (Over.homMk (Spec.map (CommRingCat.ofHom φ)) (Category.comp_id _))).hom
 
-/-- The structure map has the specified value at the geometric point.-/
+/-- The structure map has the specified value at the geometric point.
+@isnad1 id=eq.0h3v.s8.dbb33244c9b5 from=translated src=- shape=635daf9f vocab=4ad9ce60
+-/
 theorem geometricStalkStructureMap_evaluation :
     (geometricStalkEvaluation (Spec.map (CommRingCat.ofHom φ))).hom.comp
       (geometricStalkStructureMap φ) = φ := by
@@ -79,14 +81,18 @@ theorem geometricStalkStructureMap_evaluation :
           (Scheme.ΓSpecIso (CommRingCat.of Ω)).hom = CommRingCat.ofHom φ
       rw [Scheme.ΓSpecIso_naturality, Iso.inv_hom_id_assoc]
 
-/-- Pointwise form of the compatibility with the geometric point.-/
+/-- Pointwise form of the compatibility with the geometric point.
+@isnad1 id=eq.0h4v.s9.6fbb8dd50192 from=translated src=- shape=81c313a7 vocab=5418ff1f
+-/
 theorem geometricStalkStructureMap_evaluation_apply (r : R) :
     geometricStalkEvaluation (Spec.map (CommRingCat.ofHom φ))
       (geometricStalkStructureMap φ r) = φ r :=
   RingHom.congr_fun (geometricStalkStructureMap_evaluation φ) r
 
 /-- The structure map factors through the sections of every actual pointed
-étale neighborhood, compatibly with its germ map.-/
+étale neighborhood, compatibly with its germ map.
+@isnad1 id=eq.0h5v.s14.adcf9b009a95 from=translated src=- shape=ec3f2166 vocab=615dc259
+-/
 theorem geometricStalkGerm_comp_structure
     (W : (Spec (CommRingCat.of R)).Etale)
     (t : (Scheme.pointEtaleNeighborhoods (Spec.map (CommRingCat.ofHom φ))).fiber.obj W) :

@@ -34,7 +34,9 @@ variable {R : Type u} {A : Type v} {B : Type w}
   [CommRing R] [CommRing A] [CommRing B] [Algebra R A] [Algebra R B]
 
 /-- Maps out of an essentially finite type unramified algebra are determined
-by reduction modulo any ideal contained in the Jacobson radical.-/
+by reduction modulo any ideal contained in the Jacobson radical.
+@isnad1 id=injectiv.1h4v.s8.d8d30922f6c3 from=translated src=- shape=ecdc9bee vocab=9450d020
+-/
 theorem comp_injective_of_le_jacobson [FormallyUnramified R A] [EssFiniteType R A]
     (J : Ideal B) (hJ : J ≤ Ideal.jacobson ⊥) :
     Function.Injective

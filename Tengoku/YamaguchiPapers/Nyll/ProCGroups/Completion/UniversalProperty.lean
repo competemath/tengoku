@@ -65,7 +65,9 @@ noncomputable def lift
 
 /--
 The universal-property lift is continuous and extends the given homomorphism along the
-completion map.-/
+completion map.
+@isnad1 id=eq.2h6v.s7.e2eaa180dfff from=translated src=- shape=c3e0ac34 vocab=cbb1e21f
+-/
 theorem lift_spec
     (hι : IsProCCompletion C G Ghat ι)
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
@@ -74,7 +76,9 @@ theorem lift_spec
     (hι.lift hH φ).comp ι = φ :=
   Classical.choose_spec (ExistsUnique.exists (hι.existsUnique_lift hH φ))
 
-/-- The universal-property lift is the unique continuous map extending the given homomorphism.-/
+/-- The universal-property lift is the unique continuous map extending the given homomorphism.
+@isnad1 id=eq.3h7v.s7.c569df4721ad from=translated src=- shape=67664fa8 vocab=cbb1e21f
+-/
 theorem lift_unique
     (hι : IsProCCompletion C G Ghat ι)
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
@@ -86,7 +90,9 @@ theorem lift_unique
 
 /--
 Continuous homomorphisms out of a pro-\(C\) completion are determined by their composites with
-the dense source map.-/
+the dense source map.
+@isnad1 id=eq.3h7v.s7.0ecaeec7005d from=translated src=- shape=7b353c27 vocab=e14a014c
+-/
 theorem hom_ext
     (hι : IsProCCompletion C G Ghat ι)
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
@@ -97,7 +103,9 @@ theorem hom_ext
     f = g :=
   (hι.existsUnique_lift hH (f.comp ι)).unique rfl hfg.symm
 
-/-- The lift of the completion map to the completion itself is the identity.-/
+/-- The lift of the completion map to the completion itself is the identity.
+@isnad1 id=eq.1h4v.s6.a106b8140da0 from=translated src=- shape=85cb3988 vocab=951cc55a
+-/
 @[simp] theorem lift_self_eq_id
     (hι : IsProCCompletion C G Ghat ι) :
     hι.lift hι.hasOpenNormalBasisInClass ι = ContinuousMonoidHom.id Ghat := by
@@ -116,14 +124,18 @@ noncomputable def comparison
 
 /--
 The comparison map between two pro-\(C\) completions agrees with the second completion map on
-the source.-/
+the source.
+@isnad1 id=eq.2h6v.s7.102f5d3c7eb6 from=translated src=- shape=388e184c vocab=50e3f201
+-/
 theorem comparison_spec
     (h₁ : IsProCCompletion C G Ghat ι)
     (h₂ : IsProCCompletion C G Ghat₂ ι₂) :
     (h₁.comparison h₂).comp ι = ι₂ :=
   h₁.lift_spec h₂.hasOpenNormalBasisInClass ι₂
 
-/-- The two comparison maps between pro-\(C\) completions compose to the identity.-/
+/-- The two comparison maps between pro-\(C\) completions compose to the identity.
+@isnad1 id=eq.2h6v.s7.b971637eb2e4 from=translated src=- shape=d13cf0ef vocab=4588e6b7
+-/
 @[simp 900] theorem comparison_comp_eq_id
     (h₁ : IsProCCompletion C G Ghat ι)
     (h₂ : IsProCCompletion C G Ghat₂ ι₂) :
@@ -166,7 +178,9 @@ noncomputable def continuousMulEquiv
     continuous_invFun := g.continuous_toFun }
 
 /--
-The canonical equivalence between pro-\(C\) completions sends one completion map to the other.-/
+The canonical equivalence between pro-\(C\) completions sends one completion map to the other.
+@isnad1 id=eq.2h7v.s8.99021d75146f from=translated src=- shape=7e36ceeb vocab=c90c8888
+-/
 @[simp] theorem continuousMulEquiv_apply_completionMap
     (h₁ : IsProCCompletion C G Ghat ι)
     (h₂ : IsProCCompletion C G Ghat₂ ι₂) (x : G) :
@@ -176,7 +190,9 @@ The canonical equivalence between pro-\(C\) completions sends one completion map
 
 /--
 The inverse canonical equivalence between pro-\(C\) completions sends the second completion map
-back to the first.-/
+back to the first.
+@isnad1 id=eq.2h7v.s8.f664166c8de4 from=translated src=- shape=312b02f5 vocab=4e0bbe53
+-/
 @[simp] theorem continuousMulEquiv_symm_apply_completionMap
     (h₁ : IsProCCompletion C G Ghat ι)
     (h₂ : IsProCCompletion C G Ghat₂ ι₂) (x : G) :

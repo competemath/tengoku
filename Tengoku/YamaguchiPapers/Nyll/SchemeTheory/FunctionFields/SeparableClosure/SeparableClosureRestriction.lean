@@ -50,6 +50,9 @@ noncomputable def separableClosureRestriction :
     ext x
     rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.5270d2e7fbae from=translated src=- shape=6ff593ec vocab=3c70fc34
+-/
 @[simp]
 theorem separableClosureRestriction_coe
     (σ : Ω ≃ₐ[K] Ω) (x : separableClosure k Ω) :
@@ -59,7 +62,9 @@ theorem separableClosureRestriction_coe
 
 /-- If `Ω` is a separable closure of `K` and the separable closure of `k`
 inside `Ω` is linearly disjoint from `K`, every automorphism of that
-separable closure over `k` extends to a `K`-automorphism of `Ω`.-/
+separable closure over `k` extends to a `K`-automorphism of `Ω`.
+@isnad1 id=surjecti.1h3v.s12.3e6b8c1c1bab from=translated src=- shape=a14550e7 vocab=2cda31db
+-/
 theorem separableClosureRestriction_surjective_of_linearDisjoint
     [IsSepClosure K Ω]
     (h : (separableClosure k Ω).LinearDisjoint K) :

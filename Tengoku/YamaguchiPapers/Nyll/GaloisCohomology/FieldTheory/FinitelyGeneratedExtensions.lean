@@ -13,7 +13,9 @@ import Tengoku.Seed.FieldTheory.IntermediateField.Adjoin.Algebra
 namespace FieldTheory
 universe u v
 
-/-- Finite extensions of finitely generated fields are finitely generated.-/
+/-- Finite extensions of finitely generated fields are finitely generated.
+@isnad1 id=fg.1h2v.s6.c92b3819889f from=translated src=- shape=f82cba46 vocab=701c7d4b
+-/
 theorem fg_of_finiteDimensional
     (K : Type u) (L : Type v) [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L] (hfg : Field.FG K) : Field.FG L := by

@@ -49,13 +49,17 @@ def OpenNormalSubgroupsOfIndex (G : Type u) [Group G] [TopologicalSpace G]
 
 variable {G : Type u} [Group G] [TopologicalSpace G]
 
-/-- Membership criterion for the finite set of open subgroups of index at most `n`.-/
+/-- Membership criterion for the finite set of open subgroups of index at most `n`.
+@isnad1 id=iff.0h3v.s6.3575a7c8bcd5 from=translated src=- shape=b34cc928 vocab=e42097be
+-/
 @[simp] theorem mem_openSubgroupsOfIndexLE {n : ℕ} {H : Subgroup G} :
     H ∈ OpenSubgroupsOfIndexLE (G := G) n ↔
       IsOpen (H : Set G) ∧ Finite (G ⧸ H) ∧ Nat.card (G ⧸ H) ≤ n :=
   Iff.rfl
 
-/-- Membership criterion for the finite set of open normal subgroups of a fixed index.-/
+/-- Membership criterion for the finite set of open normal subgroups of a fixed index.
+@isnad1 id=iff.0h3v.s6.c23e6b4653f6 from=translated src=- shape=88772be3 vocab=5e8c98f8
+-/
 @[simp] theorem mem_openNormalSubgroupsOfIndex {n : ℕ} {U : Subgroup G} :
     U ∈ OpenNormalSubgroupsOfIndex (G := G) n ↔
       U.Normal ∧ IsOpen (U : Set G) ∧ Finite (G ⧸ U) ∧ Nat.card (G ⧸ U) = n :=
@@ -68,7 +72,9 @@ def CharacteristicIndexIntersection (G : Type u) [Group G] [TopologicalSpace G]
     (n : ℕ) : Subgroup G :=
   sInf (OpenSubgroupsOfIndexLE (G := G) n)
 
-/-- The characteristic index intersection is the infimum of all open subgroups of bounded index.-/
+/-- The characteristic index intersection is the infimum of all open subgroups of bounded index.
+@isnad1 id=eq.0h2v.s4.fcb38a85b39f from=translated src=- shape=d189bae3 vocab=d275e295
+-/
 @[simp] theorem characteristicIndexIntersection_def (n : ℕ) :
     CharacteristicIndexIntersection (G := G) n =
       sInf (OpenSubgroupsOfIndexLE (G := G) n) :=
@@ -90,7 +96,9 @@ def HasFiniteOpenNormalSubgroupsOfIndex (G : Type u) [Group G] [TopologicalSpace
 
 /--
 Finiteness of open subgroups of each index implies finiteness of open normal subgroups of each
-index.-/
+index.
+@isnad1 id=hasfinit.1h1v.s4.aba0f26fae38 from=translated src=- shape=affebb5f vocab=a5bea2ff
+-/
 theorem HasFiniteOpenSubgroupsOfIndex.toHasFiniteOpenNormalSubgroupsOfIndex
     (h : HasFiniteOpenSubgroupsOfIndex G) :
     HasFiniteOpenNormalSubgroupsOfIndex G := by
@@ -99,7 +107,9 @@ theorem HasFiniteOpenSubgroupsOfIndex.toHasFiniteOpenNormalSubgroupsOfIndex
   intro U hU
   exact ⟨hU.2.1, hU.2.2.1, hU.2.2.2⟩
 
-/-- Continuous homomorphisms are equal when they agree on a topological generating set.-/
+/-- Continuous homomorphisms are equal when they agree on a topological generating set.
+@isnad1 id=eq.2h5v.s7.c238e534442d from=translated src=- shape=24913723 vocab=e88d6abc
+-/
 theorem continuousMonoidHom_eq_of_eqOn_topologicalGenerators
     [IsTopologicalGroup G]
     {R : Type v} [Group R] [TopologicalSpace R] [T2Space R]
@@ -127,7 +137,9 @@ theorem continuousMonoidHom_eq_of_eqOn_topologicalGenerators
 
 /--
 A finitely generated profinite group admits only finitely many continuous homomorphisms into a
-fixed finite discrete target.-/
+fixed finite discrete target.
+@isnad1 id=finite.1h2v.s5.2247740374c3 from=translated src=- shape=395435d6 vocab=dd21544a
+-/
 theorem finite_continuousMonoidHom_to_finite_of_topologicallyFinitelyGenerated
     [IsTopologicalGroup G]
     {R : Type v} [Group R] [TopologicalSpace R] [T2Space R] [Finite R]
@@ -171,7 +183,9 @@ noncomputable def openSubgroupIndexBasepoint
 instance instTopologicalSpaceFinitePerm (n : ℕ) : TopologicalSpace (Equiv.Perm (Fin n)) :=
   ⊥
 
-/-- The finite permutation type carries the discrete topology.-/
+/-- The finite permutation type carries the discrete topology.
+@isnad1 id=discrete.0h1v.s3.bf6028a4296f from=translated src=- shape=36b3d148 vocab=a3608a58
+-/
 instance instDiscreteTopologyFinitePerm (n : ℕ) : DiscreteTopology (Equiv.Perm (Fin n)) :=
   ⟨rfl⟩
 
@@ -211,7 +225,9 @@ noncomputable def openSubgroupIndexContinuousHom
       continuous_toFun := hφcont }
 
 omit [TopologicalSpace G] in
-/-- Membership in an open subgroup is equivalent to fixing the basepoint in its coset action.-/
+/-- Membership in an open subgroup is equivalent to fixing the basepoint in its coset action.
+@isnad1 id=iff.2h4v.s7.ab9dd549bed7 from=translated src=- shape=ca31c94e vocab=cd8c5130
+-/
 theorem mem_openSubgroup_iff_indexAction_fix_basepoint
     {H : Subgroup G} (hHfinite : Finite (G ⧸ H)) {n : ℕ}
     (hn : Nat.card (G ⧸ H) = n) {g : G} :
@@ -233,7 +249,9 @@ theorem mem_openSubgroup_iff_indexAction_fix_basepoint
       simpa [openSubgroupIndexAction, openSubgroupIndexBasepoint, e] using hg
     simpa [QuotientGroup.eq] using hq
 
-/-- Finitely generated profinite groups have only finitely many open subgroups of each index.-/
+/-- Finitely generated profinite groups have only finitely many open subgroups of each index.
+@isnad1 id=hasfinit.1h1v.s4.87464a7f1c2e from=translated src=- shape=fb04960b vocab=be0e5a16
+-/
 theorem hasFiniteOpenSubgroupsOfIndex_of_topologicallyFinitelyGenerated
     [IsTopologicalGroup G] [CompactSpace G]
     (hG : TopologicallyFinitelyGenerated G) :
@@ -273,7 +291,9 @@ theorem hasFiniteOpenSubgroupsOfIndex_of_topologicallyFinitelyGenerated
     (s := { H : Subgroup G |
       IsOpen (H : Set G) ∧ Finite (G ⧸ H) ∧ Nat.card (G ⧸ H) = n })).mp hSfinite
 
-/-- Bounding the index by \(n\) still yields only finitely many open subgroups.-/
+/-- Bounding the index by \(n\) still yields only finitely many open subgroups.
+@isnad1 id=finite.1h2v.s4.9a51f095e9f7 from=translated src=- shape=38be0b59 vocab=5dd07d85
+-/
 theorem finite_openSubgroupsOfIndexLE_of_hasFiniteOpenSubgroupsOfIndex
     (hfin : HasFiniteOpenSubgroupsOfIndex G) (n : ℕ) :
     Set.Finite (OpenSubgroupsOfIndexLE (G := G) n) := by
@@ -283,7 +303,9 @@ theorem finite_openSubgroupsOfIndexLE_of_hasFiniteOpenSubgroupsOfIndex
   exact Set.mem_iUnion.2
     ⟨Nat.card (G ⧸ H), Set.mem_iUnion.2 ⟨hH.2.2, ⟨hH.1, hH.2.1, rfl⟩⟩⟩
 
-/-- The infimum of a finite family of open subgroups is open.-/
+/-- The infimum of a finite family of open subgroups is open.
+@isnad1 id=isopen.2h2v.s6.4ab988a5a604 from=translated src=- shape=a7dfa365 vocab=c415f58b
+-/
 theorem Subgroup.isOpen_sInf_of_finite
     {S : Set (Subgroup G)} (hS : S.Finite)
     (hopen : ∀ H ∈ S, IsOpen (H : Set G)) :
@@ -298,7 +320,9 @@ theorem Subgroup.isOpen_sInf_of_finite
           simp only [mem_insert_iff, hK, or_true]))
 
 /--
-The bounded-index characteristic intersection is open once the bounded-index family is finite.-/
+The bounded-index characteristic intersection is open once the bounded-index family is finite.
+@isnad1 id=isopen.1h2v.s4.26e9cafc2896 from=translated src=- shape=542d0ec5 vocab=8c2733d2
+-/
 theorem characteristicIndexIntersection_isOpen_of_hasFiniteOpenSubgroupsOfIndex
     (hfin : HasFiniteOpenSubgroupsOfIndex G) (n : ℕ) :
     IsOpen ((CharacteristicIndexIntersection (G := G) n : Set G)) := by
@@ -307,7 +331,9 @@ theorem characteristicIndexIntersection_isOpen_of_hasFiniteOpenSubgroupsOfIndex
   · intro H hH
     exact hH.1
 
-/-- The bounded-index characteristic intersections form a descending chain.-/
+/-- The bounded-index characteristic intersections form a descending chain.
+@isnad1 id=antitone.0h1v.s4.c305adcfa5f7 from=translated src=- shape=910fa9d2 vocab=0369d58f
+-/
 theorem characteristicIndexIntersection_antitone :
     Antitone (CharacteristicIndexIntersection (G := G)) := by
   intro m n hmn x hx
@@ -315,7 +341,9 @@ theorem characteristicIndexIntersection_antitone :
   intro H hH
   exact hx H ⟨hH.1, hH.2.1, le_trans hH.2.2 hmn⟩
 
-/-- The finite-index characteristic intersection is characteristic.-/
+/-- The finite-index characteristic intersection is characteristic.
+@isnad1 id=istopolo.0h2v.s4.010f4c599ad6 from=translated src=- shape=77fdd9ae vocab=7dbb330d
+-/
 theorem characteristicIndexIntersection_isTopologicallyCharacteristic
     [IsTopologicalGroup G] [CompactSpace G]
     (n : ℕ) :
@@ -343,7 +371,9 @@ theorem characteristicIndexIntersection_isTopologicallyCharacteristic
     simpa using hforward φ.symm (φ g) hg
   · exact hforward φ g
 
-/-- Characteristic index intersections are cofinal among open subgroups.-/
+/-- Characteristic index intersections are cofinal among open subgroups.
+@isnad1 id=ex.1h2v.s5.df74a9c2cd2d from=translated src=- shape=56e7b463 vocab=de6e731d
+-/
 theorem characteristicIndexIntersection_cofinal_of_openSubgroup
     [IsTopologicalGroup G] [CompactSpace G]
     (U : Subgroup G) (hU : IsOpen (U : Set G)) :
@@ -357,7 +387,9 @@ theorem characteristicIndexIntersection_cofinal_of_openSubgroup
 
 /--
 Topologically finitely generated profinite groups have a countable characteristic open basis at
-the identity.-/
+the identity.
+@isnad1 id=ex.1h1v.s7.1f435a78200b from=translated src=- shape=844ffcba vocab=0d61306e
+-/
 theorem exists_characteristicOpenBasis_of_topologicallyFinitelyGenerated
     [IsTopologicalGroup G] [CompactSpace G] [TotallyDisconnectedSpace G]
     : TopologicallyFinitelyGenerated G →
@@ -410,7 +442,9 @@ theorem exists_characteristicOpenBasis_of_topologicallyFinitelyGenerated
 
 /--
 Finitely generated profinite groups have finite fixed-index open-subgroup sets and a countable
-characteristic open basis at the identity.-/
+characteristic open basis at the identity.
+@isnad1 id=and.1h1v.s7.498d53684783 from=translated src=- shape=b26429dd vocab=2ca9ea2f
+-/
 theorem finiteIndexOpenSubgroups_and_charBasis_of_tfg
     [IsTopologicalGroup G] [CompactSpace G] [TotallyDisconnectedSpace G]
     (hG : TopologicallyFinitelyGenerated G) :
@@ -432,7 +466,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G]
 
 namespace Set
 
-/-- An injective self-map of a finite set is automatically surjective on that set.-/
+/-- An injective self-map of a finite set is automatically surjective on that set.
+@isnad1 id=surjon.3h3v.s5.4276bb7fcb0a from=translated src=- shape=f1c80c81 vocab=7fe87d57
+-/
 theorem Finite.surjOn_of_injOn_mapsTo {α : Type*} {s : Set α}
     (hs : s.Finite) {f : α → α}
     (hf : MapsTo f s s) (hinj : InjOn f s) :
@@ -466,7 +502,9 @@ def PreimagePreservesOpenNormalSubgroupsOfIndex
       (OpenNormalSubgroupsOfIndex (G := G) n)
 
 omit [TopologicalSpace G] in
-/-- Comap along a surjective homomorphism is injective on subgroups.-/
+/-- Comap along a surjective homomorphism is injective on subgroups.
+@isnad1 id=injectiv.1h3v.s6.6455e3e962cc from=translated src=- shape=4799f619 vocab=ba975184
+-/
 theorem subgroupComap_injective_of_surjective
     {H : Type v} [Group H]
     (f : G →* H) (hf : Function.Surjective f) :
@@ -483,7 +521,9 @@ theorem subgroupComap_injective_of_surjective
     have hx : x ∈ Subgroup.comap f V := hy
     simpa [hUV] using hx
 
-/-- Preimage under a surjective endomorphism is injective on each fixed-index open-normal family.-/
+/-- Preimage under a surjective endomorphism is injective on each fixed-index open-normal family.
+@isnad1 id=injon.1h3v.s6.97d7e4b7ce4f from=translated src=- shape=8c4a681c vocab=8071df33
+-/
 theorem preimage_injectiveOn_openNormalSubgroupsOfIndex
     {φ : ContinuousMonoidHom G G}
     (hφsurj : Function.Surjective φ) (n : ℕ) :
@@ -504,7 +544,9 @@ def PreimageSurjectiveOnOpenNormalSubgroupsOfIndex
 
 /--
 For finite groups, preimage along a surjective endomorphism is surjective on open normal
-subgroups of fixed index.-/
+subgroups of fixed index.
+@isnad1 id=preimage.3h2v.s6.146b53ace8a1 from=translated src=- shape=854d70dd vocab=de3ac04c
+-/
 theorem preimageSurjectiveOn_openNormalSubgroupsOfIndex_of_finite
     {φ : ContinuousMonoidHom G G}
     (hfin : HasFiniteOpenNormalSubgroupsOfIndex G)
@@ -520,7 +562,9 @@ theorem preimageSurjectiveOn_openNormalSubgroupsOfIndex_of_finite
 
 /--
 If the preimage map is surjective on every fixed-index open-normal family, then \(\ker \varphi
-\le U\) for every open normal subgroup \(U\).-/
+\le U\) for every open normal subgroup \(U\).
+@isnad1 id=le.3h3v.s6.ba1c1165212f from=translated src=- shape=7251182e vocab=455d28f9
+-/
 theorem ker_le_every_openNormal_of_preimageSurjectiveOn_index
     [IsTopologicalGroup G] [CompactSpace G]
     {φ : ContinuousMonoidHom G G}
@@ -569,7 +613,9 @@ noncomputable def ContinuousMonoidHom.toContinuousMulEquivOfBijective
     intro x y
     exact φ.map_mul x y)
 
-/-- A continuously Hopfian group has all surjective continuous endomorphisms invertible.-/
+/-- A continuously Hopfian group has all surjective continuous endomorphisms invertible.
+@isnad1 id=surjecti.1h1v.s4.3d8e240797a1 from=translated src=- shape=fb04960b vocab=4557c0ca
+-/
 theorem surjectiveContinuousEndomorphismsAreAutomorphisms_of_continuousHopfian
     [CompactSpace G] [T2Space G]
     (hhopf : ContinuousHopfian G) :
@@ -582,7 +628,9 @@ theorem surjectiveContinuousEndomorphismsAreAutomorphisms_of_continuousHopfian
   rfl
 
 /--
-In a profinite group, open normal subgroups separate the identity from every nontrivial element.-/
+In a profinite group, open normal subgroups separate the identity from every nontrivial element.
+@isnad1 id=opennorm.0h1v.s4.73b19bade70f from=translated src=- shape=4ff572b6 vocab=5cf357ef
+-/
 theorem openNormalSeparatesPoints_of_profinite
     [IsTopologicalGroup G] [CompactSpace G] [T1Space G] [TotallyDisconnectedSpace G] :
     OpenNormalSeparatesPoints G := by
@@ -599,7 +647,9 @@ theorem openNormalSeparatesPoints_of_profinite
 
 /--
 Preimage along a surjective continuous endomorphism preserves open normal subgroups of fixed
-index.-/
+index.
+@isnad1 id=preimage.1h2v.s6.1bb3c5bb384b from=translated src=- shape=210fd29d vocab=fbeb3565
+-/
 theorem preimagePreservesOpenNormalSubgroupsOfIndex_of_surjective
     [IsTopologicalGroup G] [CompactSpace G]
     {φ : ContinuousMonoidHom G G} (hφsurj : Function.Surjective φ) :

@@ -128,7 +128,9 @@ private theorem automorphismUnitQuotient_mk_mem_unitGroup_of_dvr
       (V.unitGroupMulEquiv.symm u).property)
 
 /-- Every automorphism stabilizing a discrete valuation ring acts trivially on
-the value group: its multiplicative displacement is a valuation-ring unit.-/
+the value group: its multiplicative displacement is a valuation-ring unit.
+@isnad1 id=mem.0h5v.s8.06a3acf6fd57 from=translated src=- shape=fd15c9fc vocab=cf64dbd2
+-/
 theorem automorphismUnitQuotient_mem_unitGroup_of_dvr
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]
@@ -177,7 +179,9 @@ private theorem valueTrivialInertiaGroup_eq_top_of_isDiscreteValuationRing
 
 /-- Every inertia automorphism over a discrete valuation ring acts trivially
 on the relative value group.  This is the public elementwise form of the DVR
-input used by the tame-inertia character.-/
+input used by the tame-inertia character.
+@isnad1 id=mem.0h4v.s13.3d5f5f258dc7 from=translated src=- shape=0f3d3452 vocab=96f0fc4d
+-/
 theorem inertia_mem_valueTrivialInertiaGroup_of_dvr
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]
@@ -187,7 +191,9 @@ theorem inertia_mem_valueTrivialInertiaGroup_of_dvr
   exact Subgroup.mem_top sigma
 
 /-- Tame inertia over a DVR is cyclic when its order is prime to the
-exponential residue characteristic.-/
+exponential residue characteristic.
+@isnad1 id=iscyclic.1h3v.s12.80a1eba5775b from=translated src=- shape=457619b6 vocab=40a5f63c
+-/
 theorem inertiaGroup_isCyclic_of_card_coprime_ringExpChar_of_dvr
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]

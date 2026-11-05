@@ -26,7 +26,9 @@ namespace EtaleFundamentalGroups.SpecialLocalPurity
 universe u v
 
 /-- A non-formally-etale finite algebra has a minimal bad point on the base,
-and that point is the contraction of an actual bad point upstairs.-/
+and that point is the contraction of an actual bad point upstairs.
+@isnad1 id=ex.1h2v.s8.cc0834c2b538 from=translated src=- shape=d1da06f4 vocab=df68dd87
+-/
 theorem exists_minimal_base_nonEtaleCotangentSupport_of_not_formallyEtale
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [IsNoetherianRing R] [Algebra R S] [Module.Finite R S]
@@ -98,7 +100,9 @@ theorem exists_minimal_base_nonEtaleCotangentSupport_of_not_formallyEtale
     exact ⟨P, hPp, Or.inr hPH1⟩
 
 /-- Above a base prime strictly below a minimal bad base point, every target
-prime is etale.-/
+prime is etale.
+@isnad1 id=isetalea.2h4v.s7.03a942bbc0a5 from=translated src=- shape=a7269ac8 vocab=63f2f8ce
+-/
 theorem isEtaleAt_of_comap_lt_minimal_base_nonEtaleCotangentSupport
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [Algebra R S]
@@ -129,7 +133,9 @@ theorem isEtaleAt_of_comap_lt_minimal_base_nonEtaleCotangentSupport
 
 /-- The contraction of an actual non-etale cotangent-support point cannot
 have height one when every target prime above a height-one base prime is
-etale.-/
+etale.
+@isnad1 id=ne.3h4v.s8.d0e15b66931f from=translated src=- shape=2005257b vocab=78bece54
+-/
 theorem
     base_height_ne_one_of_nonEtaleCotangentSupport_of_isEtaleAt_heightOne
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
@@ -154,7 +160,9 @@ theorem
   exact hP.elim hLocus.1 hLocus.2
 
 /-- If a finite algebra is non-etale but etale above every height-one base
-prime, its base cotangent support has a minimal point away from height one.-/
+prime, its base cotangent support has a minimal point away from height one.
+@isnad1 id=ex.2h2v.s8.3fa20e2344f8 from=translated src=- shape=a406e7c8 vocab=aa49e711
+-/
 theorem exists_minimal_base_nonEtaleCotangentSupport_height_ne_one
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [IsNoetherianRing R] [Algebra R S] [Module.Finite R S]
@@ -175,7 +183,9 @@ theorem exists_minimal_base_nonEtaleCotangentSupport_height_ne_one
       hetale p P hPp hP⟩
 
 /-- The contraction of an actual non-etale cotangent-support point cannot
-have height zero when the integral domain extension is generically etale.-/
+have height zero when the integral domain extension is generically etale.
+@isnad1 id=ne.3h4v.s8.80067a809c92 from=translated src=- shape=357e5dca vocab=fd832b7f
+-/
 theorem
     base_height_ne_zero_of_nonEtaleCotangentSupport_of_isEtaleAt_bot
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]

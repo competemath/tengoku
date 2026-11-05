@@ -40,7 +40,9 @@ def primeSymbolicPower (P : Ideal R) [P.IsPrime] (n : ℕ) : Ideal R :=
     ((P ^ n).map (algebraMap R (Localization.AtPrime P)))
 
 /-- Symbolic-power membership is ordinary-power membership after multiplying
-by a denominator outside the prime.-/
+by a denominator outside the prime.
+@isnad1 id=iff.0h4v.s7.533374af6489 from=translated src=- shape=eb68a573 vocab=29575ba7
+-/
 theorem mem_primeSymbolicPower_iff
     (P : Ideal R) [P.IsPrime] (n : ℕ) (x : R) :
     x ∈ primeSymbolicPower P n ↔
@@ -50,19 +52,25 @@ theorem mem_primeSymbolicPower_iff
   exact IsLocalization.algebraMap_mem_map_algebraMap_iff
     P.primeCompl (Localization.AtPrime P) (P ^ n) x
 
-/-- The ordinary prime power is contained in its symbolic power.-/
+/-- The ordinary prime power is contained in its symbolic power.
+@isnad1 id=le.0h3v.s6.82efeb5ef996 from=translated src=- shape=9191cf52 vocab=e92a5f65
+-/
 theorem pow_le_primeSymbolicPower (P : Ideal R) [P.IsPrime] (n : ℕ) :
     P ^ n ≤ primeSymbolicPower P n :=
   Ideal.le_comap_map
 
-/-- Symbolic powers form a decreasing filtration.-/
+/-- Symbolic powers form a decreasing filtration.
+@isnad1 id=antitone.0h2v.s6.8690ef5c90ec from=translated src=- shape=8014ec72 vocab=f10af405
+-/
 theorem primeSymbolicPower_antitone (P : Ideal R) [P.IsPrime] :
     Antitone (primeSymbolicPower P) := by
   intro n m hnm
   exact Ideal.comap_mono (Ideal.map_mono (Ideal.pow_le_pow_right hnm))
 
 /-- The intersection of all symbolic powers of a prime in a Noetherian
-domain is zero.  Krull intersection is applied in the localized ring.-/
+domain is zero.  Krull intersection is applied in the localized ring.
+@isnad1 id=eq.0h2v.s6.7a414d47b0f5 from=translated src=- shape=b182dac5 vocab=94b69cdb
+-/
 theorem iInf_primeSymbolicPower_eq_bot
     [IsDomain R] [IsNoetherianRing R]
     (P : Ideal R) [P.IsPrime] :
@@ -105,7 +113,9 @@ private theorem exists_common_primeCompl_multiplier
     · simpa only [mul_assoc] using I.mul_mem_left s (htJ b hb)
 
 /-- A single denominator outside the prime sends the entire symbolic power
-into the corresponding ordinary power.-/
+into the corresponding ordinary power.
+@isnad1 id=ex.0h3v.s7.e57c64c68906 from=translated src=- shape=a14b8743 vocab=4a10bf9d
+-/
 theorem exists_mul_primeSymbolicPower_mem_pow
     [IsNoetherianRing R] (P : Ideal R) [P.IsPrime] (n : ℕ) :
     ∃ s : R, s ∉ P ∧
@@ -116,7 +126,9 @@ theorem exists_mul_primeSymbolicPower_mem_pow
   exact (mem_primeSymbolicPower_iff P n x).mp hx
 
 /-- In a complete Noetherian local domain, symbolic powers eventually lie
-in any prescribed power of the maximal ideal.-/
+in any prescribed power of the maximal ideal.
+@isnad1 id=ex.0h3v.s7.181ab257ff40 from=translated src=- shape=0492e1f1 vocab=c694d9bd
+-/
 theorem exists_primeSymbolicPower_le_maximalIdeal_pow
     [IsDomain R] [IsLocalRing R] [IsNoetherianRing R]
     [IsAdicComplete (IsLocalRing.maximalIdeal R) R]

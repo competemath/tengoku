@@ -25,7 +25,9 @@ namespace ClassFieldTower.Cohomology
 variable {G : Type*} [Group G]
 
 /-- A cyclic character is determined by its restriction to a normal subgroup of
-coprime index. This uniqueness statement does not require finite index.-/
+coprime index. This uniqueness statement does not require finite index.
+@isnad1 id=injectiv.1h3v.s8.bb0dc9d2f037 from=translated src=- shape=fbd9bd5c vocab=20387ed1
+-/
 theorem cyclicCharacterRestriction_injective_of_index_coprime
     (H : Subgroup G) [H.Normal] (n : ℕ) (hcop : H.index.Coprime n) :
     Function.Injective
@@ -71,7 +73,9 @@ noncomputable def primeToIndexCharacterExtension
     exact continuous_const.mul (openSubgroupTransfer H φ).continuous_toFun
 
 /-- Coprimality and conjugation invariance make normalized transfer restrict to the
-original character.-/
+original character.
+@isnad1 id=eq.2h5v.s10.977e6038a942 from=translated src=- shape=65762ffc vocab=d8868568
+-/
 theorem primeToIndexCharacterExtension_subtype
     (H : OpenSubgroup G) [H.toSubgroup.Normal] [H.toSubgroup.FiniteIndex]
     (n : ℕ) (hindex : H.toSubgroup.index.Coprime n)

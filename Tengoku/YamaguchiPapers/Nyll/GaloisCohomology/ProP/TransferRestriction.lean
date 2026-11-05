@@ -28,7 +28,9 @@ namespace ClassFieldTower.Cohomology
 variable {G A : Type*} [Group G] [CommGroup A]
 
 /-- Transfer restricts to the index power of a conjugation-invariant
-character on a normal finite-index subgroup.-/
+character on a normal finite-index subgroup.
+@isnad1 id=eq.1h5v.s10.c754be19e2e3 from=translated src=- shape=e8c9c5ed vocab=a751306f
+-/
 theorem transfer_subtype_eq_pow_of_conjInvariant
     (H : Subgroup G) [H.Normal] [H.FiniteIndex] (φ : H →* A)
     (hinv : ∀ (g : G) (h : H), φ (MulAut.conjNormal g h) = φ h) (h : H) :

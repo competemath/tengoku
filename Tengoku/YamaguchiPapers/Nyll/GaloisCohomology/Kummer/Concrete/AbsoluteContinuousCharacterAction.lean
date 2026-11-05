@@ -27,14 +27,18 @@ noncomputable def absoluteContinuousCharacterTransform (τ : RingAut K)
   ⟨absoluteGaloisCharacterTransform τ f.toMonoidHom,
     f.continuous.comp (absoluteGaloisConjugateEquiv_continuous τ.symm)⟩
 
-/-- The continuous transform has the same pointwise formula as the algebraic one.-/
+/-- The continuous transform has the same pointwise formula as the algebraic one.
+@isnad1 id=eq.0h5v.s10.922de49314ea from=translated src=- shape=f6eb2e36 vocab=ac94d198
+-/
 theorem absoluteContinuousCharacterTransform_apply (τ : RingAut K)
     (f : Gal(AlgebraicClosure K/K) →ₜ* A) (σ : Gal(AlgebraicClosure K/K)) :
     absoluteContinuousCharacterTransform τ f σ =
       f (absoluteGaloisConjugate τ.symm σ) := by
   rfl
 
-/-- Identity on continuous characters follows from independence of the lift.-/
+/-- Identity on continuous characters follows from independence of the lift.
+@isnad1 id=eq.0h3v.s9.bbc50f83175f from=translated src=- shape=eb36a266 vocab=fc011e44
+-/
 theorem absoluteContinuousCharacterTransform_one
     (f : Gal(AlgebraicClosure K/K) →ₜ* A) :
     absoluteContinuousCharacterTransform 1 f = f := by
@@ -42,7 +46,9 @@ theorem absoluteContinuousCharacterTransform_one
   intro σ
   exact DFunLike.congr_fun (absoluteGaloisCharacterTransform_one f.toMonoidHom) σ
 
-/-- The continuous transforms satisfy the left action composition law.-/
+/-- The continuous transforms satisfy the left action composition law.
+@isnad1 id=eq.0h5v.s9.2beb7e493a4f from=translated src=- shape=0cd0312e vocab=61484025
+-/
 theorem absoluteContinuousCharacterTransform_mul (τ υ : RingAut K)
     (f : Gal(AlgebraicClosure K/K) →ₜ* A) :
     absoluteContinuousCharacterTransform (τ * υ) f =
@@ -78,7 +84,9 @@ noncomputable def absoluteContinuousCharacterAction :
     intro f
     exact absoluteContinuousCharacterTransform_mul τ υ f
 
-/-- Evaluation of the action by a base automorphism.-/
+/-- Evaluation of the action by a base automorphism.
+@isnad1 id=eq.0h4v.s15.6519d555d1cc from=translated src=- shape=138cb47f vocab=bce55d64
+-/
 theorem absoluteContinuousCharacterAction_apply (τ : RingAut K)
     (f : Gal(AlgebraicClosure K/K) →ₜ* A) :
     absoluteContinuousCharacterAction τ f = absoluteContinuousCharacterTransform τ f := by

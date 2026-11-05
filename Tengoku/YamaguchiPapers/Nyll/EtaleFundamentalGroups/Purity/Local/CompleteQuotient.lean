@@ -28,7 +28,9 @@ open ValuationTheory.DiscreteValuationField
 universe u
 
 /-- The quotient of a Noetherian adically complete ring is complete for the
-extension of the ideal of definition.-/
+extension of the ideal of definition.
+@isnad1 id=isadicco.0h2v.s8.e291346780f7 from=translated src=- shape=aa43fe41 vocab=15f59640
+-/
 theorem isAdicComplete_map_maximalIdeal_quotient
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     [IsAdicComplete (maximalIdeal R) R] (I : Ideal R) :
@@ -40,7 +42,9 @@ theorem isAdicComplete_map_maximalIdeal_quotient
     (S := R ⧸ I) (maximalIdeal R) (R ⧸ I)).2 hcomplete
 
 /-- A quotient of a Noetherian complete local ring by an ideal contained in
-the maximal ideal is Henselian local.-/
+the maximal ideal is Henselian local.
+@isnad1 id=henselia.1h2v.s6.17a2bab934a9 from=translated src=- shape=487272c3 vocab=51be7014
+-/
 theorem henselianLocalRing_quotient_of_isAdicComplete
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     [IsAdicComplete (maximalIdeal R) R]

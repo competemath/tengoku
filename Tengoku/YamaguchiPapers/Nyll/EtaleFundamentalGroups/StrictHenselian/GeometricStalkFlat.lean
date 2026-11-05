@@ -40,7 +40,9 @@ namespace EtaleFundamentalGroups.StrictHenselian
 universe u
 
 /-- Every actual pointed étale neighborhood has an affine pointed étale
-refinement, constructed by lifting the geometric point to an affine open.-/
+refinement, constructed by lifting the geometric point to an affine open.
+@isnad1 id=ex.0h5v.s10.cc2bce87c979 from=translated src=- shape=089a76fa vocab=29ea4f99
+-/
 theorem geometricStalk_exists_affine_refinement
     {S : Scheme.{u}} {Ω : Type u} [Field Ω]
     (s : Spec (.of Ω) ⟶ S) (W : S.Etale)

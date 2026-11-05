@@ -47,7 +47,9 @@ variable [IsLocalRing R] [IsNoetherianRing R]
 
 /-- Top-degree vanishing for a finite nonzero torsion-free module over a
 Noetherian local domain implies the same vanishing for the ring, for any
-support ideal.-/
+support ideal.
+@isnad1 id=iszero.2h4v.s7.6d47082f0421 from=translated src=- shape=2d4ed583 vocab=942d198d
+-/
 theorem derivedLocalCohomology_isZero_ring_of_finite_torsionFree
     (I : Ideal R) (K : ModuleCat.{u} R)
     [Module.Finite R K] [Module.IsTorsionFree R K] [Nontrivial K]

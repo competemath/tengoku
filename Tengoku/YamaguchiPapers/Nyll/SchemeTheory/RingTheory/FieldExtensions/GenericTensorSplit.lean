@@ -39,7 +39,9 @@ def genericTensorCancelRingEquiv :
   letI : Algebra S (K ⊗[R] S) := Algebra.TensorProduct.rightAlgebra
   exact (Algebra.IsPushout.cancelBaseChangeAlg R S K (K ⊗[R] S) B).toRingEquiv
 
-/-- The cancellation comparison on a double pure tensor.-/
+/-- The cancellation comparison on a double pure tensor.
+@isnad1 id=eq.0h7v.s11.fcc42ae5199e from=translated src=- shape=ee3f2e25 vocab=8e912aec
+-/
 theorem genericTensorCancelRingEquiv_tmul (k : K) (s : S) (b : B) :
     genericTensorCancelRingEquiv R K S B ((k ⊗ₜ[R] s) ⊗ₜ[K] b) =
       s ⊗ₜ[R] (k • b) := by
@@ -51,7 +53,9 @@ theorem genericTensorCancelRingEquiv_tmul (k : K) (s : S) (b : B) :
   change ((k ⊗ₜ[R] s) ⊗ₜ[K] b) = ((1 : K) ⊗ₜ[R] s) ⊗ₜ[K] (k • b)
   simp only [TensorProduct.tmul_smul, TensorProduct.smul_tmul', smul_eq_mul, mul_one]
 
-/-- The inverse comparison retains both original factors.-/
+/-- The inverse comparison retains both original factors.
+@isnad1 id=eq.0h6v.s11.b594e6acb5af from=translated src=- shape=a156936e vocab=21b4e055
+-/
 theorem genericTensorCancelRingEquiv_symm_tmul (s : S) (b : B) :
     (genericTensorCancelRingEquiv R K S B).symm (s ⊗ₜ[R] b) =
       ((1 : K) ⊗ₜ[R] s) ⊗ₜ[K] b := by
@@ -70,7 +74,9 @@ def genericTensorSplitEquiv (ι : Type v)
     (AlgEquiv.piCongrRight (fun _ : ι => (Algebra.TensorProduct.commRight R S K).symm)))
 
 /-- The transported forward map is the supplied splitting, followed by the
-literal commutation of each generic-fiber factor.-/
+literal commutation of each generic-fiber factor.
+@isnad1 id=eq.0h9v.s12.42f0b944f4e5 from=translated src=- shape=b81b5ec6 vocab=2e8a9617
+-/
 theorem genericTensorSplitEquiv_tmul (ι : Type v)
     (e : ((K ⊗[R] S) ⊗[K] B) ≃ₐ[K ⊗[R] S] (ι → K ⊗[R] S))
     (s : S) (b : B) (i : ι) :
@@ -81,7 +87,9 @@ theorem genericTensorSplitEquiv_tmul (ι : Type v)
   rw [genericTensorCancelRingEquiv_symm_tmul]
 
 /-- The transported inverse applies the supplied inverse to the literal
-commuted coordinates, then applies the constructed cancellation map.-/
+commuted coordinates, then applies the constructed cancellation map.
+@isnad1 id=eq.0h7v.s13.d96fcf0ff8cc from=translated src=- shape=16f0e030 vocab=ad889742
+-/
 theorem genericTensorSplitEquiv_symm_apply (ι : Type v)
     (e : ((K ⊗[R] S) ⊗[K] B) ≃ₐ[K ⊗[R] S] (ι → K ⊗[R] S))
     (y : ι → S ⊗[R] K) :

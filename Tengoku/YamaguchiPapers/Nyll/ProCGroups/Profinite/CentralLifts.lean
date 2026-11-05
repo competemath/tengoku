@@ -22,7 +22,9 @@ variable {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   [CompactSpace G] [TotallyDisconnectedSpace G]
 
 /-- Central elements in every finite quotient, each surviving a fixed open
-quotient, yield a nonidentity element of the actual profinite center.-/
+quotient, yield a nonidentity element of the actual profinite center.
+@isnad1 id=ex.1h2v.s7.e2bfce967fc4 from=translated src=- shape=fa95fe75 vocab=fda1cd82
+-/
 theorem exists_ne_one_mem_center_of_quotient_central_lifts
     (M : OpenNormalSubgroup G)
     (hlift : ∀ N : OpenNormalSubgroup G, ∃ z : G, z ∉ (M : Subgroup G) ∧

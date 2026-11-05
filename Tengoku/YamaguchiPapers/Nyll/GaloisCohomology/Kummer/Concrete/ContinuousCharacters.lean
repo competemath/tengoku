@@ -47,7 +47,9 @@ private theorem continuousCharacterExistsFiniteGaloisFixingSubgroupLeKer
 
 /-- Every continuous character of an infinite Galois group into a discrete
 group factors through the Galois group of a finite Galois intermediate
-field.-/
+field.
+@isnad1 id=ex.0h4v.s12.2064345cb7e1 from=translated src=- shape=f03e05c8 vocab=9b551848
+-/
 theorem continuousCharacter_factors_through_finiteGalois
     (χ : Gal(Ω/K) →ₜ* A) :
     ∃ (E : FiniteGaloisIntermediateField K Ω) (χE : Gal(E/K) →* A),

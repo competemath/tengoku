@@ -44,7 +44,9 @@ variable {S : Scheme.{u}} {Ω : Type u} [Field Ω]
   (s : Spec (.of Ω) ⟶ S)
 
 /-- A simple root at the geometric point lifts by the actual standard étale
-neighborhood obtained by adjoining a root and inverting its derivative.-/
+neighborhood obtained by adjoining a root and inverting its derivative.
+@isnad1 id=ex.3h7v.s18.e5e33f7cac17 from=translated src=- shape=d04f80a5 vocab=1ddcd273
+-/
 theorem geometricStalk_lift_simpleRoot (W : S.Etale)
     (t : (Scheme.pointEtaleNeighborhoods s).fiber.obj W)
     (q : Γ(W.left, ⊤)[X]) (hq : q.Monic) (α : Ω)
@@ -145,7 +147,9 @@ theorem geometricStalk_lift_simpleRoot (W : S.Etale)
   · exact (ConcreteCategory.congr_hom heval P.X).trans (P.lift_X α hα)
 
 /-- The maximal ideal of the constructed stalk is exactly the kernel of its
-evaluation at the geometric point.-/
+evaluation at the geometric point.
+@isnad1 id=iff.0h4v.s8.19f691eabc91 from=translated src=- shape=7789df2a vocab=9a6aefac
+-/
 theorem geometricStalk_mem_maximalIdeal_iff (a : geometricStalk s) :
     a ∈ IsLocalRing.maximalIdeal (geometricStalk s) ↔
       geometricStalkEvaluation s a = 0 := by

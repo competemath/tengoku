@@ -72,24 +72,32 @@ abbrev Hom.hom {G H : TopGrp.{u}} (f : G ⟶ H) : G →ₜ* H :=
 instance instCoeFunHom {G H : TopGrp.{u}} : CoeFun (G ⟶ H) (fun _ => G → H) where
   coe f := f.hom
 
-/-- The underlying homomorphism of the identity morphism is the identity continuous homomorphism.-/
+/-- The underlying homomorphism of the identity morphism is the identity continuous homomorphism.
+@isnad1 id=eq.0h1v.s5.5125feedcd94 from=translated src=- shape=98150753 vocab=c0bc4fa1
+-/
 @[simp] theorem hom_id {G : TopGrp.{u}} :
     (𝟙 G : G ⟶ G).hom = ContinuousMonoidHom.id G :=
   rfl
 
-/-- The underlying homomorphism of a composite is the composite of underlying homomorphisms.-/
+/-- The underlying homomorphism of a composite is the composite of underlying homomorphisms.
+@isnad1 id=eq.0h5v.s6.cd9ae8ef8523 from=translated src=- shape=f9bc9902 vocab=d34647cc
+-/
 @[simp] theorem hom_comp {G H K : TopGrp.{u}} (f : G ⟶ H) (g : H ⟶ K) :
     (f ≫ g).hom = g.hom.comp f.hom :=
   rfl
 
 /--
 The composite map is computed pointwise by applying the constituent coordinate formulas in
-succession.-/
+succession.
+@isnad1 id=eq.0h6v.s7.d306bc34efd1 from=translated src=- shape=7ee2be12 vocab=25600e54
+-/
 @[simp] theorem comp_apply {G H K : TopGrp.{u}} (f : G ⟶ H) (g : H ⟶ K) (x : G) :
     (f ≫ g) x = g (f x) :=
   rfl
 
-/-- Morphisms in TopGrp are equal when their underlying continuous homomorphisms are equal.-/
+/-- Morphisms in TopGrp are equal when their underlying continuous homomorphisms are equal.
+@isnad1 id=eq.1h4v.s6.0ae59920dc59 from=translated src=- shape=bce286ca vocab=00354fcc
+-/
 @[ext] theorem hom_ext {G H : TopGrp.{u}} {f g : G ⟶ H} (h : f.hom = g.hom) :
     f = g :=
   Hom.ext h
@@ -155,24 +163,32 @@ abbrev Hom.hom {G H : CommTopGrp.{u}} (f : G ⟶ H) : G →ₜ* H :=
 instance instCoeFunHom {G H : CommTopGrp.{u}} : CoeFun (G ⟶ H) (fun _ => G → H) where
   coe f := f.hom
 
-/-- The underlying homomorphism of the identity morphism is the identity continuous homomorphism.-/
+/-- The underlying homomorphism of the identity morphism is the identity continuous homomorphism.
+@isnad1 id=eq.0h1v.s5.976255e7f487 from=translated src=- shape=98150753 vocab=a83b8188
+-/
 @[simp] theorem hom_id {G : CommTopGrp.{u}} :
     (𝟙 G : G ⟶ G).hom = ContinuousMonoidHom.id G :=
   rfl
 
-/-- The underlying homomorphism of a composite is the composite of underlying homomorphisms.-/
+/-- The underlying homomorphism of a composite is the composite of underlying homomorphisms.
+@isnad1 id=eq.0h5v.s6.6237ea5a907b from=translated src=- shape=f9bc9902 vocab=4d71a9c0
+-/
 @[simp] theorem hom_comp {G H K : CommTopGrp.{u}} (f : G ⟶ H) (g : H ⟶ K) :
     (f ≫ g).hom = g.hom.comp f.hom :=
   rfl
 
 /--
 The composite map is computed pointwise by applying the constituent coordinate formulas in
-succession.-/
+succession.
+@isnad1 id=eq.0h6v.s8.af1402d0f4d7 from=translated src=- shape=7ee2be12 vocab=6ad75837
+-/
 @[simp] theorem comp_apply {G H K : CommTopGrp.{u}} (f : G ⟶ H) (g : H ⟶ K) (x : G) :
     (f ≫ g) x = g (f x) :=
   rfl
 
-/-- Morphisms in CommTopGrp are equal when their underlying continuous homomorphisms are equal.-/
+/-- Morphisms in CommTopGrp are equal when their underlying continuous homomorphisms are equal.
+@isnad1 id=eq.1h4v.s6.c0372a1d8df3 from=translated src=- shape=bce286ca vocab=7387df04
+-/
 @[ext] theorem hom_ext {G H : CommTopGrp.{u}} {f g : G ⟶ H} (h : f.hom = g.hom) :
     f = g :=
   Hom.ext h

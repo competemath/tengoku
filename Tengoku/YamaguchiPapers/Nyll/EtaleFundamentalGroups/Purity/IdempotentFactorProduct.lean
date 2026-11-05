@@ -30,6 +30,9 @@ noncomputable def quotientPiRingEquiv {D : Type*} [CommRing D] {e : I → D}
     (RingHom.pi fun i ↦ Ideal.Quotient.mk (Ideal.span {1 - e i}))
     he.bijective_pi
 
+/--
+@isnad1 id=eq.1h3v.s9.8cd197fb70ce from=translated src=- shape=2cb1f2a1 vocab=58a9791e
+-/
 @[simp]
 theorem quotientPiRingEquiv_toRingHom {D : Type*} [CommRing D] {e : I → D}
     (he : CompleteOrthogonalIdempotents e) :
@@ -37,6 +40,9 @@ theorem quotientPiRingEquiv_toRingHom {D : Type*} [CommRing D] {e : I → D}
       RingHom.pi fun i ↦ Ideal.Quotient.mk (Ideal.span {1 - e i}) :=
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s11.bef9bb5f5c37 from=translated src=- shape=f3f9fdb3 vocab=bf49ffa2
+-/
 @[simp]
 theorem quotientPiRingEquiv_apply {D : Type*} [CommRing D] {e : I → D}
     (he : CompleteOrthogonalIdempotents e) (x : D) (i : I) :
@@ -52,6 +58,9 @@ noncomputable def quotientPiAlgEquiv {B D : Type*} [CommRing B] [CommRing D]
     (AlgHom.pi fun i ↦ Ideal.Quotient.mkₐ B (Ideal.span {1 - e i}))
     he.bijective_pi
 
+/--
+@isnad1 id=eq.1h4v.s10.e4db3880985f from=translated src=- shape=43e1c8ea vocab=dd7f845d
+-/
 @[simp]
 theorem quotientPiAlgEquiv_toAlgHom {B D : Type*} [CommRing B] [CommRing D]
     [Algebra B D] {e : I → D} (he : CompleteOrthogonalIdempotents e) :
@@ -59,6 +68,9 @@ theorem quotientPiAlgEquiv_toAlgHom {B D : Type*} [CommRing B] [CommRing D]
       AlgHom.pi fun i ↦ Ideal.Quotient.mkₐ B (Ideal.span {1 - e i}) :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s10.583d3732ed9c from=translated src=- shape=ce11c036 vocab=05b42d0e
+-/
 @[simp]
 theorem quotientPiAlgEquiv_apply {B D : Type*} [CommRing B] [CommRing D]
     [Algebra B D] {e : I → D} (he : CompleteOrthogonalIdempotents e)

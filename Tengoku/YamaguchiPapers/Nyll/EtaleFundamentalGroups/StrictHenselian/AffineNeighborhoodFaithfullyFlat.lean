@@ -30,7 +30,9 @@ namespace EtaleFundamentalGroups.StrictHenselian
 universe u
 
 /-- The actual sections map of a pointed affine étale neighborhood is étale
-and faithfully flat over the local base ring.-/
+and faithfully flat over the local base ring.
+@isnad1 id=other.0h5v.s15.de5e12285b0a from=translated src=- shape=eb24acc9 vocab=8301f407
+-/
 theorem affineNeighborhood_structure_etale_faithfullyFlat
     {R Ω : Type u} [CommRing R] [Field Ω] [IsSepClosed Ω]
     (φ : R →+* Ω) [IsLocalHom φ]

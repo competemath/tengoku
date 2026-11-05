@@ -67,7 +67,9 @@ private theorem separableKummer_naturality
   rw [semilinearGaloisConjugate_apply, RingEquiv.symm_apply_apply, map_div₀]
 
 /-- If the base automorphism acts by a power on roots of unity, the
-constant-coefficient Kummer pairing transforms by the same power.-/
+constant-coefficient Kummer pairing transforms by the same power.
+@isnad1 id=eq.2h6v.s13.a84fb561b37d from=translated src=- shape=f5ba0336 vocab=72d37fca
+-/
 theorem separableAbsoluteKummerContinuousZModCharacterEquiv_naturality_of_pow_roots
     (n : ℕ+) [NeZero ((n : ℕ) : K)]
     (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
@@ -120,7 +122,9 @@ theorem separableAbsoluteKummerContinuousZModCharacterEquiv_naturality_of_pow_ro
     hτ (ζ : K) (congrArg Units.val hζpow), map_pow]
 
 /-- If the base automorphism fixes the `n`-th roots of unity, its actual
-absolute conjugation preserves the constant-coefficient Kummer pairing.-/
+absolute conjugation preserves the constant-coefficient Kummer pairing.
+@isnad1 id=eq.2h5v.s13.66bc14f3860c from=translated src=- shape=95b9cecf vocab=72d37fca
+-/
 theorem separableAbsoluteKummerContinuousZModCharacterEquiv_naturality_of_fixes_roots
     (n : ℕ+) [NeZero ((n : ℕ) : K)]
     (hmu : (primitiveRoots (n : ℕ) K).Nonempty)

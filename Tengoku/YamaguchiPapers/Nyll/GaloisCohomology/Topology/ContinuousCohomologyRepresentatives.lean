@@ -29,7 +29,9 @@ variable {G : Type v} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 open TopRep ContRepresentation
 
 /-- An actual homogeneous degree-two cocycle satisfies the alternating
-four-point identity, with no restriction on its coefficient action.-/
+four-point identity, with no restriction on its coefficient action.
+@isnad1 id=eq.0h8v.s13.17f81248bcf3 from=translated src=- shape=919eb9fc vocab=540ffb11
+-/
 theorem degreeTwo_cocycle_equation (X : TopRep.{v} R G)
     (z : ContinuousCohomology.cocycles X 2)
     (x₀ x₁ x₂ x₃ : G) :
@@ -53,7 +55,9 @@ theorem degreeTwo_cocycle_equation (X : TopRep.{v} R G)
   exact hzEval
 
 /-- An actual homogeneous degree-two cocycle is equivariant for its
-coefficient action.-/
+coefficient action.
+@isnad1 id=eq.0h8v.s13.7691ef5a29c4 from=translated src=- shape=eb332298 vocab=933a1f39
+-/
 theorem degreeTwo_equivariant (X : TopRep.{v} R G)
     (z : cocycles X 2) (g x₀ x₁ x₂ : G) :
     X.ρ g ((((homogeneousCochains X).iCycles 2).hom z).1 x₀ x₁ x₂) =
@@ -66,7 +70,9 @@ theorem degreeTwo_equivariant (X : TopRep.{v} R G)
       (g⁻¹ * (g * x₂))) = z₀.1 (g * x₀) (g * x₁) (g * x₂) at h
   simpa only [inv_mul_cancel_left] using h
 
-/-- Every continuous cohomology class has a homogeneous cocycle representative.-/
+/-- Every continuous cohomology class has a homogeneous cocycle representative.
+@isnad1 id=surjecti.0h4v.s10.3a58d6e28a5b from=translated src=- shape=9bc8aab6 vocab=1845ce61
+-/
 theorem π_surjective (A : TopRep.{v} R G) (n : ℕ) :
     Function.Surjective (π A n) := by
   let K := TopRep.homogeneousCochains A
@@ -96,7 +102,9 @@ theorem π_surjective (A : TopRep.{v} R G) (n : ℕ) :
   change S.leftHomologyIso.hom (S.leftHomologyπ x) = y
   rw [hx, hz]
 
-/-- A homogeneous cocycle whose cohomology class is zero is a boundary.-/
+/-- A homogeneous cocycle whose cohomology class is zero is a boundary.
+@isnad1 id=ex.1h5v.s12.2cd1375ebdfa from=translated src=- shape=19868ceb vocab=a8c215f9
+-/
 theorem exists_boundary_of_π_eq_zero (A : TopRep.{v} R G) (n : ℕ)
     (z : cocycles A (n + 1)) (hz : π A (n + 1) z = 0) :
     ∃ c : (TopRep.homogeneousCochains A).X n,

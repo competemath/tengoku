@@ -46,7 +46,9 @@ def ConvergesToOneAlongOpenSubgroups (X : Set G) : Prop :=
   ∀ U : OpenSubgroup G, (X \ (U : Set G)).Finite
 
 omit [IsTopologicalGroup G] in
-/-- A finite set converges to `1`.-/
+/-- A finite set converges to `1`.
+@isnad1 id=converge.1h2v.s4.2fff4bee1531 from=translated src=- shape=b36b1524 vocab=a2d3aada
+-/
 theorem ConvergesToOne.of_finite {X : Set G} (hX : X.Finite) :
     ConvergesToOne (G := G) X := by
   change Filter.Tendsto (fun x : X => (x : G)) Filter.cofinite (𝓝 (1 : G))
@@ -54,7 +56,9 @@ theorem ConvergesToOne.of_finite {X : Set G} (hX : X.Finite) :
   exact Filter.tendsto_bot
 
 omit [IsTopologicalGroup G] in
-/-- Every finite set satisfies the open-subgroup convergence condition.-/
+/-- Every finite set satisfies the open-subgroup convergence condition.
+@isnad1 id=converge.1h2v.s4.bb3458bc216c from=translated src=- shape=b36b1524 vocab=7fb5c0cd
+-/
 theorem ConvergesToOneAlongOpenSubgroups.of_finite {X : Set G} (hX : X.Finite) :
     ConvergesToOneAlongOpenSubgroups (G := G) X := by
   intro U
@@ -63,7 +67,9 @@ theorem ConvergesToOneAlongOpenSubgroups.of_finite {X : Set G} (hX : X.Finite) :
     exact hx.1)
 
 omit [IsTopologicalGroup G] in
-/-- Genuine convergence implies convergence when tested only on open subgroups.-/
+/-- Genuine convergence implies convergence when tested only on open subgroups.
+@isnad1 id=converge.1h2v.s4.d808eae34fb1 from=translated src=- shape=b36b1524 vocab=6520b90b
+-/
 theorem ConvergesToOne.to_alongOpenSubgroups {X : Set G}
     (hX : ConvergesToOne (G := G) X) :
     ConvergesToOneAlongOpenSubgroups (G := G) X := by
@@ -84,7 +90,9 @@ theorem ConvergesToOne.to_alongOpenSubgroups {X : Set G}
   exact (hbad.image fun x : X => (x : G)).subset hsubset
 
 omit [IsTopologicalGroup G] in
-/-- In a nonarchimedean group, testing against open subgroups detects genuine convergence.-/
+/-- In a nonarchimedean group, testing against open subgroups detects genuine convergence.
+@isnad1 id=converge.1h2v.s4.49ccbc7f20de from=translated src=- shape=9387b468 vocab=39ee531b
+-/
 theorem ConvergesToOneAlongOpenSubgroups.to_convergesToOne
     [NonarchimedeanGroup G] {X : Set G}
     (hX : ConvergesToOneAlongOpenSubgroups (G := G) X) :
@@ -108,7 +116,9 @@ theorem ConvergesToOneAlongOpenSubgroups.to_convergesToOne
     exact hxW (hUW hxU))
 
 omit [IsTopologicalGroup G] in
-/-- For nonarchimedean groups, the genuine and open-subgroup convergence predicates agree.-/
+/-- For nonarchimedean groups, the genuine and open-subgroup convergence predicates agree.
+@isnad1 id=iff.0h2v.s4.8183b4390d3b from=translated src=- shape=7a3c3b5c vocab=39ee531b
+-/
 theorem convergesToOne_iff_alongOpenSubgroups [NonarchimedeanGroup G] {X : Set G} :
     ConvergesToOne (G := G) X ↔
       ConvergesToOneAlongOpenSubgroups (G := G) X :=
@@ -149,7 +159,9 @@ noncomputable def convergentGeneratorRank
     else
       none
 
-/-- The topological rank is bounded by the cardinality of any topological generating set.-/
+/-- The topological rank is bounded by the cardinality of any topological generating set.
+@isnad1 id=le.1h2v.s5.c62d67e70651 from=translated src=- shape=fbcf0c4c vocab=f5362430
+-/
 theorem topologicalRank_le_mk_of_topologicallyGenerates {X : Set G}
     (hX : TopologicallyGenerates (G := G) X) :
     topologicalRank G ≤ Cardinal.mk X := by
@@ -157,13 +169,17 @@ theorem topologicalRank_le_mk_of_topologicallyGenerates {X : Set G}
     ∃ X : Set G, TopologicallyGenerates (G := G) X ∧ Cardinal.mk X = κ} ≤ Cardinal.mk X
   exact csInf_le' ⟨X, hX, rfl⟩
 
-/-- In particular, an open-subgroup-convergent generating set bounds the topological rank.-/
+/-- In particular, an open-subgroup-convergent generating set bounds the topological rank.
+@isnad1 id=le.1h2v.s5.928dac7979ff from=translated src=- shape=fbcf0c4c vocab=77dac3b8
+-/
 theorem topologicalRank_le_mk_of_generatesAndConvergesToOneAlongOpenSubgroups {X : Set G}
     (hX : GeneratesAndConvergesToOneAlongOpenSubgroups (G := G) X) :
     topologicalRank G ≤ Cardinal.mk X :=
   topologicalRank_le_mk_of_topologicallyGenerates hX.1
 
-/-- There is a topological generating set whose cardinality is exactly the topological rank.-/
+/-- There is a topological generating set whose cardinality is exactly the topological rank.
+@isnad1 id=ex.0h1v.s5.f83fd722aa20 from=translated src=- shape=e03ec610 vocab=9988a670
+-/
 theorem exists_topologicallyGenerates_card_eq_topologicalRank :
     ∃ X : Set G, TopologicallyGenerates (G := G) X ∧
       Cardinal.mk X = topologicalRank G := by
@@ -179,7 +195,9 @@ theorem exists_topologicallyGenerates_card_eq_topologicalRank :
     exact le_antisymm le_top (Subgroup.le_topologicalClosure _)
   simpa [topologicalRank, C] using (csInf_mem hC)
 
-/-- A nontrivial T1 topological group has nonzero topological rank.-/
+/-- A nontrivial T1 topological group has nonzero topological rank.
+@isnad1 id=ne.0h1v.s5.d79301e22849 from=translated src=- shape=8701aeba vocab=8fabcdc5
+-/
 theorem topologicalRank_ne_zero [T1Space G] [Nontrivial G] :
     topologicalRank G ≠ 0 := by
   intro hzero
@@ -216,7 +234,9 @@ def wordProducts (X : Set G) : ℕ → Set G
   | 0 => {1}
   | n + 1 => wordProducts X n * X
 
-/-- Topological generation is equivalently density of the abstract subgroup generated by the set.-/
+/-- Topological generation is equivalently density of the abstract subgroup generated by the set.
+@isnad1 id=iff.0h2v.s5.ac561d286adf from=translated src=- shape=126783c7 vocab=959bb4ad
+-/
 theorem topologicallyGenerates_iff_dense {X : Set G} :
     TopologicallyGenerates (G := G) X ↔ Dense ((Subgroup.closure X : Subgroup G) : Set G) := by
   rw [TopologicallyGenerates, SetLike.ext'_iff, Subgroup.topologicalClosure_coe, Subgroup.coe_top,
@@ -224,7 +244,9 @@ theorem topologicallyGenerates_iff_dense {X : Set G} :
 
 /--
 Continuous homomorphisms out of a topologically generated group are determined by their values
-on the generating set.-/
+on the generating set.
+@isnad1 id=eq.2h5v.s7.beaf0442bbc4 from=translated src=- shape=c16ccb64 vocab=b2d3a17a
+-/
 theorem continuousMonoidHom_ext_of_topologicallyGenerates
     {R : Type v} [Group R] [TopologicalSpace R] [T2Space R]
     {X : Set G} (hX : TopologicallyGenerates (G := G) X)
@@ -272,7 +294,9 @@ def closedSubgroupGeneratedMap {A : Type v} (φ : A → G) :
   fun a =>
     ⟨φ a, Subgroup.le_topologicalClosure _ (Subgroup.subset_closure ⟨a, rfl⟩)⟩
 
-/-- The canonical indexed family topologically generates its closed generated subgroup.-/
+/-- The canonical indexed family topologically generates its closed generated subgroup.
+@isnad1 id=topologi.0h3v.s7.9e6d7cfe66b8 from=translated src=- shape=1b40c981 vocab=cde552e8
+-/
 theorem closedSubgroupGeneratedMap_topologicallyGenerates {A : Type v} (φ : A → G) :
     TopologicallyGenerates
       (G := (closedSubgroupGenerated (G := G) (Set.range φ) : Subgroup G))
@@ -318,7 +342,9 @@ theorem closedSubgroupGeneratedMap_topologicallyGenerates {A : Type v} (φ : A �
 
 /--
 Membership in a closed generated subgroup is preserved by continuous homomorphisms, after
-mapping the generating set.-/
+mapping the generating set.
+@isnad1 id=mem.1h5v.s7.3a8d87afe369 from=translated src=- shape=89eb711a vocab=726f46f1
+-/
 theorem map_mem_closedSubgroupGenerated_image
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (φ : G →ₜ* H) {X : Set G} {y : G}
@@ -339,7 +365,9 @@ theorem map_mem_closedSubgroupGenerated_image
 
 /--
 Membership in a topologically generated cyclic closed subgroup is preserved by continuous
-homomorphisms.-/
+homomorphisms.
+@isnad1 id=mem.1h5v.s7.214a254c303d from=translated src=- shape=1a87f3d2 vocab=6978bad7
+-/
 theorem map_mem_closedSubgroupGenerated_singleton
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (φ : G →ₜ* H) (x : G) {y : G}
@@ -349,7 +377,9 @@ theorem map_mem_closedSubgroupGenerated_singleton
     (map_mem_closedSubgroupGenerated_image (G := G) (H := H) φ
       (X := ({x} : Set G)) hy)
 
-/-- The distinguished element g algebraically generates its subgroup of powers.-/
+/-- The distinguished element g algebraically generates its subgroup of powers.
+@isnad1 id=other.0h2v.s7.f3ec37441909 from=translated src=- shape=edf39d3e vocab=643c2c44
+-/
 theorem zpowers_subtype_topologically_generated_by_generator
     {G₀ : Type*} [Group G₀] (g : G₀) :
     let cyc : Subgroup G₀ := Subgroup.zpowers g
@@ -361,7 +391,9 @@ theorem zpowers_subtype_topologically_generated_by_generator
   apply Subtype.ext
   simpa [gcyc] using hk
 
-/-- A finite discrete image of a topologically cyclic group is algebraically cyclic.-/
+/-- A finite discrete image of a topologically cyclic group is algebraically cyclic.
+@isnad1 id=mem.1h5v.s7.8719848b9360 from=translated src=- shape=2b8b7978 vocab=604e072c
+-/
 theorem map_mem_zpowers_of_topologicallyGenerates_singleton
     {A : Type u} [TopologicalSpace A] [Group A] [IsTopologicalGroup A]
     {B : Type v} [TopologicalSpace B] [Group B] [IsTopologicalGroup B]
@@ -392,7 +424,9 @@ theorem map_mem_zpowers_of_topologicallyGenerates_singleton
     simpa [closedSubgroupGenerated, hclosure_eq] using hfa_closed
   simpa [Subgroup.zpowers_eq_closure] using hfa_closure
 
-/-- MonoidHom version of map_mem_zpowers_of_topologicallyGenerates_singleton.-/
+/-- MonoidHom version of map_mem_zpowers_of_topologicallyGenerates_singleton.
+@isnad1 id=mem.2h5v.s7.1f47e6b6d0ad from=translated src=- shape=9c5fcd40 vocab=b82675f6
+-/
 theorem monoidHom_map_mem_zpowers_of_topologicallyGenerates_singleton
     {A : Type u} [TopologicalSpace A] [Group A] [IsTopologicalGroup A]
     {B : Type v} [TopologicalSpace B] [Group B] [IsTopologicalGroup B]
@@ -412,7 +446,9 @@ theorem monoidHom_map_mem_zpowers_of_topologicallyGenerates_singleton
 
 /--
 Algebraic powers of the image of \(x\) lie in the image of the closed subgroup generated by
-\(x\).-/
+\(x\).
+@isnad1 id=le.0h4v.s7.fed0023dd66b from=translated src=- shape=c1d7b970 vocab=891c6118
+-/
 theorem zpowers_image_le_closedSubgroupGenerated_map
     {Q : Type u} [TopologicalSpace Q] [Group Q] [IsTopologicalGroup Q]
     {B : Type v} [Group B]
@@ -435,7 +471,9 @@ theorem zpowers_image_le_closedSubgroupGenerated_map
 
 /--
 A dense homomorphic image of the infinite cyclic group is topologically generated by the image
-of \(1\).-/
+of \(1\).
+@isnad1 id=topologi.1h2v.s7.1d96b362fc6a from=translated src=- shape=6489a7cf vocab=fe0fe006
+-/
 theorem topologicallyGenerates_singleton_of_denseRange_mint
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (f : Multiplicative ℤ →* H) (hf : DenseRange f) :
@@ -465,7 +503,9 @@ theorem topologicallyGenerates_singleton_of_denseRange_mint
     simp only [mem_univ]
   exact hclosure hx'
 
-/-- Topological generation is unchanged by closing the generating set.-/
+/-- Topological generation is unchanged by closing the generating set.
+@isnad1 id=iff.0h2v.s5.cf5d0d3186b5 from=translated src=- shape=bb0f0f99 vocab=93c94c09
+-/
 theorem topologicallyGenerates_closure_iff {X : Set G} :
     TopologicallyGenerates (G := G) X ↔ TopologicallyGenerates (G := G) (closure X) := by
   constructor
@@ -495,12 +535,16 @@ theorem topologicallyGenerates_closure_iff {X : Set G} :
       rw [hX]
     exact top_unique (htop.trans hle)
 
-/-- Adding \(1\) to a topological generating set does not change generation.-/
+/-- Adding \(1\) to a topological generating set does not change generation.
+@isnad1 id=iff.0h2v.s5.51ae4b55091b from=translated src=- shape=95210d8e vocab=6c7f54d6
+-/
 theorem topologicallyGenerates_insert_one_iff {X : Set G} :
     TopologicallyGenerates (G := G) (insert (1 : G) X) ↔ TopologicallyGenerates (G := G) X := by
   simp only [TopologicallyGenerates, Subgroup.closure_insert_one]
 
-/-- Union with \(\{1\}\) does not change topological generation.-/
+/-- Union with \(\{1\}\) does not change topological generation.
+@isnad1 id=iff.0h2v.s5.f146c260837a from=translated src=- shape=de3643d2 vocab=da94fa2a
+-/
 theorem topologicallyGenerates_union_one_iff {X : Set G} :
     TopologicallyGenerates (G := G) (X ∪ ({1} : Set G)) ↔ TopologicallyGenerates (G := G) X := by
   simpa [Set.union_singleton] using topologicallyGenerates_insert_one_iff (G := G) (X := X)
@@ -508,7 +552,9 @@ theorem topologicallyGenerates_union_one_iff {X : Set G} :
 omit [TopologicalSpace G] [IsTopologicalGroup G] in
 /--
 Removing occurrences of 1 from a parametrized generating range does not change its abstract
-subgroup closure.-/
+subgroup closure.
+@isnad1 id=eq.0h3v.s5.aaace49437b1 from=translated src=- shape=6708decb vocab=21f135d0
+-/
 theorem closure_nontrivial_range_eq_closure_range
     {α : Type v} (f : α → G) :
     Subgroup.closure ({g | ∃ a, g = f a ∧ g ≠ 1} : Set G) =
@@ -526,7 +572,9 @@ theorem closure_nontrivial_range_eq_closure_range
     refine (Subgroup.closure_mono hrange).trans ?_
     exact le_of_eq (Subgroup.closure_insert_one ({g | ∃ a, g = f a ∧ g ≠ 1} : Set G))
 
-/-- Topological generation is monotone in the generating set.-/
+/-- Topological generation is monotone in the generating set.
+@isnad1 id=topologi.2h3v.s5.701a3e169478 from=translated src=- shape=0f44c678 vocab=1b41937d
+-/
 theorem topologicallyGenerates_mono {X Y : Set G}
     (hX : TopologicallyGenerates (G := G) X) (hXY : X ⊆ Y) :
     TopologicallyGenerates (G := G) Y := by
@@ -539,7 +587,9 @@ theorem topologicallyGenerates_mono {X Y : Set G}
     simpa [TopologicallyGenerates] using (show TopologicallyGenerates (G := G) X from hX)
   exact top_unique (htop.trans hle)
 
-/-- A topological generating set may be replaced by any set whose abstract closure contains it.-/
+/-- A topological generating set may be replaced by any set whose abstract closure contains it.
+@isnad1 id=topologi.2h3v.s5.ff21c3f839cf from=translated src=- shape=6e1e09cc vocab=7e8ed3bb
+-/
 theorem topologicallyGenerates_of_subset_closure {X Y : Set G}
     (hX : TopologicallyGenerates (G := G) X)
     (hXY : X ⊆ ((Subgroup.closure Y : Subgroup G) : Set G)) :
@@ -555,7 +605,9 @@ theorem topologicallyGenerates_of_subset_closure {X Y : Set G}
     simpa [TopologicallyGenerates] using (show TopologicallyGenerates (G := G) X from hX)
   exact top_unique (htop.trans hle')
 
-/-- Topological generation pushes forward along continuous surjective homomorphisms.-/
+/-- Topological generation pushes forward along continuous surjective homomorphisms.
+@isnad1 id=topologi.3h4v.s7.3dccb3d99e56 from=translated src=- shape=e566d41a vocab=726a159d
+-/
 theorem topologicallyGenerates_image_of_continuousSurjective
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (f : G →* H) (hf : Continuous f) (hfsurj : Function.Surjective f)
@@ -574,7 +626,9 @@ theorem topologicallyGenerates_image_of_continuousSurjective
   rw [TopologicallyGenerates, ← hmap]
   exact htop
 
-/-- Continuous-homomorphism form of push-forward for topological generation.-/
+/-- Continuous-homomorphism form of push-forward for topological generation.
+@isnad1 id=topologi.2h4v.s7.3ddf02a57ca4 from=translated src=- shape=1e8c8340 vocab=46a48a24
+-/
 theorem topologicallyGenerates_image_of_continuousMonoidHom_surjective
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (f : G →ₜ* H) (hfsurj : Function.Surjective f)
@@ -586,7 +640,9 @@ theorem topologicallyGenerates_image_of_continuousMonoidHom_surjective
 omit [IsTopologicalGroup G] in
 /--
 A continuous homomorphism from a compact group onto a Hausdorff target is surjective as soon as
-its closed range contains a topological generating set of the target.-/
+its closed range contains a topological generating set of the target.
+@isnad1 id=surjecti.2h4v.s7.bbb759aaa0f2 from=translated src=- shape=c1b6af80 vocab=614b9b51
+-/
 theorem continuousMonoidHom_surjective_of_topologicallyGenerates_subset_range
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     [CompactSpace G] [T2Space H]
@@ -616,7 +672,9 @@ theorem continuousMonoidHom_surjective_of_topologicallyGenerates_subset_range
   intro y
   exact htop trivial
 
-/-- Topological generation descends to every quotient by a normal subgroup.-/
+/-- Topological generation descends to every quotient by a normal subgroup.
+@isnad1 id=topologi.1h3v.s7.cb2d57d4bb08 from=translated src=- shape=648413cf vocab=f517ebb0
+-/
 theorem topologicallyGenerates_quotient_image
     (N : Subgroup G) [N.Normal]
     {X : Set G} (hX : TopologicallyGenerates (G := G) X) :
@@ -629,7 +687,9 @@ theorem topologicallyGenerates_quotient_image
     (QuotientGroup.mk'_surjective N)
     hX
 
-/-- Topological generation is preserved by continuous multiplicative equivalences.-/
+/-- Topological generation is preserved by continuous multiplicative equivalences.
+@isnad1 id=topologi.1h4v.s7.02b27afe98d4 from=translated src=- shape=19cde601 vocab=c29793da
+-/
 theorem topologicallyGenerates_continuousMulEquiv_image
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (e : G ≃ₜ* H) {X : Set G} (hX : TopologicallyGenerates (G := G) X) :
@@ -637,7 +697,9 @@ theorem topologicallyGenerates_continuousMulEquiv_image
   topologicallyGenerates_image_of_continuousSurjective
     (G := G) (H := H) e.toMonoidHom e.continuous e.surjective hX
 
-/-- Topological generation is transported across a continuous multiplicative equivalence.-/
+/-- Topological generation is transported across a continuous multiplicative equivalence.
+@isnad1 id=iff.0h4v.s7.8d11719207cd from=translated src=- shape=ccc0e50a vocab=c29793da
+-/
 theorem topologicallyGenerates_continuousMulEquiv_image_iff
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (e : G ≃ₜ* H) {X : Set G} :

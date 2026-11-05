@@ -21,7 +21,9 @@ namespace Field.absoluteGaloisGroup
 variable {K L : Type*} [Field K] [Field L]
 
 /-- Any compatible closure embedding computes the same commutative character
-restriction as the chosen absolute Galois map.-/
+restriction as the chosen absolute Galois map.
+@isnad1 id=eq.2h8v.s11.3e1742c21a59 from=translated src=- shape=f467560a vocab=78384766
+-/
 theorem character_map_apply_of_lift
     {A : Type*} [CommGroup A] [TopologicalSpace A]
     (f : K →+* L) (j : AlgebraicClosure K →+* AlgebraicClosure L)

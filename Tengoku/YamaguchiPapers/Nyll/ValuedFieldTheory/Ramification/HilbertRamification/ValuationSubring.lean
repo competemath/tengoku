@@ -52,12 +52,16 @@ abbrev residueAction (A : _root_.ValuationSubring L) :
   MulSemiringAction.toRingAut
     (A.decompositionSubgroup K) (IsLocalRing.ResidueField A)
 
-/-- The inertia group is the kernel of the residue action.-/
+/-- The inertia group is the kernel of the residue action.
+@isnad1 id=eq.0h3v.s11.87aa694103d9 from=translated src=- shape=9c27ee21 vocab=9d8030ad
+-/
 theorem residueAction_ker (A : _root_.ValuationSubring L) :
     MonoidHom.ker (residueAction K A) = inertiaGroup K A := by
   rfl
 
-/-- Provides the instance `inertiaGroup_normal`.-/
+/-- Provides the instance `inertiaGroup_normal`.
+@isnad1 id=normal.0h3v.s8.9861b17b1177 from=translated src=- shape=325129f1 vocab=47d5ec5d
+-/
 instance inertiaGroup_normal (A : _root_.ValuationSubring L) :
     (inertiaGroup K A).Normal := by
   rw [← residueAction_ker (K := K) A]
@@ -72,14 +76,18 @@ def automorphismUnitQuotient
     Lˣ :=
   Units.mapEquiv ((σ : L ≃ₐ[K] L).toMulEquiv) x / x
 
-/-- States the theorem `automorphismUnitQuotient_one`.-/
+/-- States the theorem `automorphismUnitQuotient_one`.
+@isnad1 id=eq.0h4v.s9.c73bc4028bd5 from=translated src=- shape=ee33b340 vocab=9415e3f6
+-/
 @[simp] theorem automorphismUnitQuotient_one
     (A : _root_.ValuationSubring L) (x : Lˣ) :
     automorphismUnitQuotient K A 1 x = 1 := by
   ext
   simp [automorphismUnitQuotient]
 
-/-- States the theorem `automorphismUnitQuotient_mul`.-/
+/-- States the theorem `automorphismUnitQuotient_mul`.
+@isnad1 id=eq.0h6v.s11.8cc275ac1e37 from=translated src=- shape=de0b4eab vocab=6d4d0341
+-/
 theorem automorphismUnitQuotient_mul
     (A : _root_.ValuationSubring L) (σ τ : decompositionGroup K A) (x : Lˣ) :
     automorphismUnitQuotient K A (σ * τ) x =
@@ -141,7 +149,9 @@ def ramificationGroup (A : _root_.ValuationSubring L) :
     rw [hquot]
     exact hyinv
 
-/-- States the theorem `mem_ramificationGroup_iff`.-/
+/-- States the theorem `mem_ramificationGroup_iff`.
+@isnad1 id=iff.0h4v.s13.96473d2952c2 from=translated src=- shape=b5a3a7d3 vocab=9c46ccdb
+-/
 @[simp] theorem mem_ramificationGroup_iff
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) :
     σ ∈ ramificationGroup K A ↔
@@ -156,7 +166,9 @@ abbrev decompositionField (A : _root_.ValuationSubring L) :
     IntermediateField K L :=
   IntermediateField.fixedField (decompositionGroup K A)
 
-/-- States the theorem `mem_decompositionField_iff`.-/
+/-- States the theorem `mem_decompositionField_iff`.
+@isnad1 id=iff.0h4v.s8.6e9452a6ee8c from=translated src=- shape=1a98371e vocab=64606ea0
+-/
 @[simp] theorem mem_decompositionField_iff
     (A : _root_.ValuationSubring L) (x : L) :
     x ∈ decompositionField K A ↔
@@ -175,7 +187,9 @@ def inertiaGroupToAut (A : _root_.ValuationSubring L) :
     inertiaGroup K A →* (L ≃ₐ[K] L) :=
   (decompositionGroup K A).subtype.comp (inertiaGroup K A).subtype
 
-/-- States the theorem `inertiaGroupToAut_apply`.-/
+/-- States the theorem `inertiaGroupToAut_apply`.
+@isnad1 id=eq.0h4v.s14.e6c847d25b74 from=translated src=- shape=833c5444 vocab=1614368f
+-/
 @[simp] theorem inertiaGroupToAut_apply
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) :
     inertiaGroupToAut (K := K) A σ =
@@ -188,7 +202,9 @@ abbrev inertiaField (A : _root_.ValuationSubring L) :
     IntermediateField K L :=
   IntermediateField.fixedField (inertiaGroupInAut K A)
 
-/-- States the theorem `mem_inertiaField_iff`.-/
+/-- States the theorem `mem_inertiaField_iff`.
+@isnad1 id=iff.0h4v.s11.d2acebc5a5c0 from=translated src=- shape=7c029aef vocab=333ec969
+-/
 @[simp] theorem mem_inertiaField_iff
     (A : _root_.ValuationSubring L) (x : L) :
     x ∈ inertiaField K A ↔
@@ -203,7 +219,9 @@ abbrev inertiaField (A : _root_.ValuationSubring L) :
     exact h ⟨τ, hτ⟩
 
 /-- The inertia subgroup, viewed inside the full automorphism group, lies in
-the decomposition group.-/
+the decomposition group.
+@isnad1 id=le.0h3v.s7.9158adfb595a from=translated src=- shape=31712832 vocab=3c370381
+-/
 theorem inertiaGroupInAut_le_decompositionGroup
     (A : _root_.ValuationSubring L) :
     inertiaGroupInAut K A ≤ decompositionGroup K A := by
@@ -221,7 +239,9 @@ abbrev ramificationField (A : _root_.ValuationSubring L) :
     IntermediateField K L :=
   IntermediateField.fixedField (ramificationGroupInAut K A)
 
-/-- States the theorem `mem_ramificationField_iff`.-/
+/-- States the theorem `mem_ramificationField_iff`.
+@isnad1 id=iff.0h4v.s14.5e625e7e88c8 from=translated src=- shape=df90344d vocab=d87a9a7e
+-/
 @[simp] theorem mem_ramificationField_iff
     (A : _root_.ValuationSubring L) (x : L) :
     x ∈ ramificationField K A ↔
@@ -236,7 +256,9 @@ abbrev ramificationField (A : _root_.ValuationSubring L) :
     rcases hσ with ⟨τ, hτ, rfl⟩
     exact h ⟨τ, hτ⟩
 
-/-- The ramification subgroup, viewed in `G(L/K)`, lies in inertia.-/
+/-- The ramification subgroup, viewed in `G(L/K)`, lies in inertia.
+@isnad1 id=le.0h3v.s7.1a0c638a16dc from=translated src=- shape=31712832 vocab=6257ca58
+-/
 theorem ramificationGroupInAut_le_inertiaGroupInAut
     (A : _root_.ValuationSubring L) :
     ramificationGroupInAut K A ≤ inertiaGroupInAut K A := by
@@ -244,7 +266,9 @@ theorem ramificationGroupInAut_le_inertiaGroupInAut
   exact ⟨(τ : decompositionGroup K A), τ.property, rfl⟩
 
 /-- finite Galois ramification theory:
-the inertia field is contained in the ramification field.-/
+the inertia field is contained in the ramification field.
+@isnad1 id=le.0h3v.s6.61ac7de7d76e from=translated src=- shape=d02e1986 vocab=c7e1d905
+-/
 theorem inertiaField_le_ramificationField
     (A : _root_.ValuationSubring L) :
     inertiaField K A ≤ ramificationField K A :=
@@ -260,7 +284,9 @@ abbrev ramificationFieldOverInertiaField
   IntermediateField.extendScalars
     (inertiaField_le_ramificationField (K := K) A)
 
-/-- States the theorem `ramificationFieldOverInertiaField_restrictScalars`.-/
+/-- States the theorem `ramificationFieldOverInertiaField_restrictScalars`.
+@isnad1 id=eq.0h3v.s7.9893c7592636 from=translated src=- shape=05075ce9 vocab=3991369c
+-/
 @[simp] theorem ramificationFieldOverInertiaField_restrictScalars
     (A : _root_.ValuationSubring L) :
     (ramificationFieldOverInertiaField K A).restrictScalars K =
@@ -289,7 +315,9 @@ def ramificationGroupEquivGalRamificationField_of_finiteDimensional
     (IntermediateField.subgroupEquivAlgEquiv (ramificationGroupInAut K A))
 
 /-- finite Galois ramification theory:
-the decomposition field is contained in the inertia field.-/
+the decomposition field is contained in the inertia field.
+@isnad1 id=le.0h3v.s6.849cf94a04c8 from=translated src=- shape=d02e1986 vocab=8e14754f
+-/
 theorem decompositionField_le_inertiaField
     (A : _root_.ValuationSubring L) :
     decompositionField K A ≤ inertiaField K A :=
@@ -297,7 +325,9 @@ theorem decompositionField_le_inertiaField
     (inertiaGroupInAut_le_decompositionGroup (K := K) A)
 
 /-- finite Galois ramification theory:
-the decomposition field is contained in the ramification field.-/
+the decomposition field is contained in the ramification field.
+@isnad1 id=le.0h3v.s6.d19ceccfccf0 from=translated src=- shape=d02e1986 vocab=d1fbfaef
+-/
 theorem decompositionField_le_ramificationField
     (A : _root_.ValuationSubring L) :
     decompositionField K A ≤ ramificationField K A :=
@@ -313,7 +343,9 @@ abbrev ramificationFieldOverDecompositionField
   IntermediateField.extendScalars
     (decompositionField_le_ramificationField (K := K) A)
 
-/-- States the theorem `ramificationFieldOverDecompositionField_restrictScalars`.-/
+/-- States the theorem `ramificationFieldOverDecompositionField_restrictScalars`.
+@isnad1 id=eq.0h3v.s7.97983c25c567 from=translated src=- shape=05075ce9 vocab=1134c7fe
+-/
 @[simp] theorem ramificationFieldOverDecompositionField_restrictScalars
     (A : _root_.ValuationSubring L) :
     (ramificationFieldOverDecompositionField K A).restrictScalars K =
@@ -329,7 +361,9 @@ abbrev inertiaFieldOverDecompositionField
   IntermediateField.extendScalars
     (decompositionField_le_inertiaField (K := K) A)
 
-/-- States the theorem `mem_inertiaFieldOverDecompositionField_iff`.-/
+/-- States the theorem `mem_inertiaFieldOverDecompositionField_iff`.
+@isnad1 id=iff.0h4v.s12.00224f400ad5 from=translated src=- shape=3cf2fdd5 vocab=4f59d791
+-/
 @[simp] theorem mem_inertiaFieldOverDecompositionField_iff
     (A : _root_.ValuationSubring L) (x : L) :
     x ∈ inertiaFieldOverDecompositionField K A ↔
@@ -337,7 +371,9 @@ abbrev inertiaFieldOverDecompositionField
   rw [inertiaFieldOverDecompositionField, IntermediateField.mem_extendScalars,
     mem_inertiaField_iff]
 
-/-- States the theorem `inertiaFieldOverDecompositionField_restrictScalars`.-/
+/-- States the theorem `inertiaFieldOverDecompositionField_restrictScalars`.
+@isnad1 id=eq.0h3v.s7.c37d450f2ce1 from=translated src=- shape=05075ce9 vocab=ce3aa72e
+-/
 @[simp] theorem inertiaFieldOverDecompositionField_restrictScalars
     (A : _root_.ValuationSubring L) :
     (inertiaFieldOverDecompositionField K A).restrictScalars K =
@@ -353,14 +389,18 @@ def decompositionGroupEquivGalDecompositionField_of_finiteDimensional
 
 /-- The fixed-field description of decomposition source:
 `L/Z_w` is Galois because `Z_w` is the fixed field of the finite
-decomposition group action.-/
+decomposition group action.
+@isnad1 id=isgalois.0h3v.s7.63f7a891f50a from=translated src=- shape=28e96abd vocab=4a0d0193
+-/
 instance decompositionField_isGalois
     [FiniteDimensional K L] (A : _root_.ValuationSubring L) :
     IsGalois (decompositionField K A) L :=
   IsGalois.of_fixed_field L (decompositionGroup K A)
 
 /--
-States the theorem `decompositionGroupEquivGalDecompositionField_of_finiteDimensional_apply`.-/
+States the theorem `decompositionGroupEquivGalDecompositionField_of_finiteDimensional_apply`.
+@isnad1 id=eq.0h5v.s12.9a6672f8d7d1 from=translated src=- shape=7985af98 vocab=00349bff
+-/
 @[simp] theorem decompositionGroupEquivGalDecompositionField_of_finiteDimensional_apply
     [FiniteDimensional K L] (A : _root_.ValuationSubring L)
     (σ : decompositionGroup K A) (x : L) :
@@ -379,7 +419,9 @@ abbrev inertiaGroupOverDecompositionField
       (K := K) A).toMonoidHom
     (inertiaGroup K A)
 
-/-- States the theorem `mem_inertiaGroupOverDecompositionField_iff`.-/
+/-- States the theorem `mem_inertiaGroupOverDecompositionField_iff`.
+@isnad1 id=iff.0h4v.s13.e4a7666df1f9 from=translated src=- shape=6cbe93ca vocab=bce2969e
+-/
 @[simp] theorem mem_inertiaGroupOverDecompositionField_iff
     [FiniteDimensional K L] (A : _root_.ValuationSubring L)
     (σ : L ≃ₐ[decompositionField K A] L) :
@@ -393,7 +435,9 @@ abbrev inertiaGroupOverDecompositionField
   · rintro ⟨τ, rfl⟩
     exact ⟨(τ : decompositionGroup K A), τ.property, rfl⟩
 
-/-- The transported inertia subgroup is normal in `Gal(L/Z_w)`.-/
+/-- The transported inertia subgroup is normal in `Gal(L/Z_w)`.
+@isnad1 id=normal.0h3v.s8.b612095cdc0c from=translated src=- shape=685ecb89 vocab=ed1c64b7
+-/
 instance inertiaGroupOverDecompositionField_normal
     [FiniteDimensional K L] (A : _root_.ValuationSubring L) :
     (inertiaGroupOverDecompositionField (K := K) A).Normal := by
@@ -405,7 +449,9 @@ instance inertiaGroupOverDecompositionField_normal
       e.toMonoidHom e.surjective)
 
 /-- The inertia-field definition source:
-the fixed field of the transported inertia subgroup over `Z_w` is `T_w`.-/
+the fixed field of the transported inertia subgroup over `Z_w` is `T_w`.
+@isnad1 id=eq.0h3v.s7.e617c7941fac from=translated src=- shape=f4e8a206 vocab=2f81cb33
+-/
 theorem inertiaFieldOverDecompositionField_fixedField_eq_of_finiteDimensional
     [FiniteDimensional K L] (A : _root_.ValuationSubring L) :
     IntermediateField.fixedField
@@ -431,7 +477,9 @@ theorem inertiaFieldOverDecompositionField_fixedField_eq_of_finiteDimensional
     simpa using hx τ
 
 /-- The inertia-field definition source:
-`G(L/T_w)` over the decomposition field is the transported inertia subgroup.-/
+`G(L/T_w)` over the decomposition field is the transported inertia subgroup.
+@isnad1 id=eq.0h3v.s8.887901e61530 from=translated src=- shape=048caaf0 vocab=e446c2bb
+-/
 theorem inertiaFieldOverDecompositionField_fixingSubgroup_eq_of_finiteDimensional
     [FiniteDimensional K L] (A : _root_.ValuationSubring L) :
     (inertiaFieldOverDecompositionField K A).fixingSubgroup =
@@ -528,7 +576,9 @@ def restrictAutomorphismScalars : (L ≃ₐ[M] L) →* (L ≃ₐ[K] L) where
 
 /-- scalar-restriction compatibility of ramification subgroups, decomposition-group membership form:
 an `M`-automorphism stabilizes `A` exactly when the same automorphism, viewed
-over `K`, stabilizes `A`.-/
+over `K`, stabilizes `A`.
+@isnad1 id=iff.0h5v.s10.a721235b36cf from=translated src=- shape=1b5ad85f vocab=bc0f321e
+-/
 theorem mem_decompositionGroup_restrictScalars_iff
     (A : _root_.ValuationSubring L) (σ : L ≃ₐ[M] L) :
     restrictAutomorphismScalars (K := K) (M := M) σ ∈ decompositionGroup K A ↔
@@ -551,7 +601,9 @@ def decompositionGroupRestrictScalars
     rfl
 
 /-- scalar-restriction compatibility of ramification subgroups, inertia-group membership form:
-the residue action is unchanged by scalar restriction from `M` to `K`.-/
+the residue action is unchanged by scalar restriction from `M` to `K`.
+@isnad1 id=iff.0h5v.s13.f32f0d9a297b from=translated src=- shape=740c36da vocab=552ad2a7
+-/
 theorem mem_inertiaGroup_restrictScalars_iff
     (A : _root_.ValuationSubring L) (σ : decompositionGroup M A) :
     decompositionGroupRestrictScalars (K := K) (M := M) A σ ∈ inertiaGroup K A ↔
@@ -586,7 +638,9 @@ def quotientInertiaEquivResidueActionRange
       (residueAction_ker K A).symm).trans
     (QuotientGroup.quotientKerEquivRange (residueAction K A))
 
-/-- States the theorem `quotientInertiaEquivResidueActionRange_mk`.-/
+/-- States the theorem `quotientInertiaEquivResidueActionRange_mk`.
+@isnad1 id=eq.0h4v.s17.98c4bdfcd805 from=translated src=- shape=1556b1ba vocab=e1929da2
+-/
 @[simp] theorem quotientInertiaEquivResidueActionRange_mk
     (A : _root_.ValuationSubring L) (σ : decompositionGroup K A) :
     quotientInertiaEquivResidueActionRange (K := K) A

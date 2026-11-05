@@ -46,7 +46,9 @@ noncomputable def topContinuousMulEquiv
       exact Continuous.subtype_mk continuous_id (by intro x; simp only
           [_root_.OpenSubgroup.toSubgroup_top, id_eq, Subgroup.mem_top]) }
 
-/-- The open-subgroup comparison equivalence evaluates on representatives.-/
+/-- The open-subgroup comparison equivalence evaluates on representatives.
+@isnad1 id=eq.0h2v.s8.669a008131a4 from=translated src=- shape=b15fa1cb vocab=acacdb72
+-/
 @[simp] theorem topContinuousMulEquiv_apply
     (G : Type u) [TopologicalSpace G] [Group G]
     (x : ↥((⊤ : OpenSubgroup G) : Subgroup G)) :
@@ -55,7 +57,9 @@ noncomputable def topContinuousMulEquiv
 
 /--
 The inverse comparison equivalence is evaluated by the same coordinate data, read in the
-opposite direction.-/
+opposite direction.
+@isnad1 id=eq.0h2v.s9.b92bdcff08f7 from=translated src=- shape=579fa40c vocab=3e4036c0
+-/
 @[simp] theorem topContinuousMulEquiv_symm_apply
     (G : Type u) [TopologicalSpace G] [Group G] (x : G) :
     (topContinuousMulEquiv G).symm x = ⟨x, by simp only [_root_.OpenSubgroup.toSubgroup_top,

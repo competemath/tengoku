@@ -30,7 +30,9 @@ variable [∀ j, CommRing (A j)] [∀ j, IsLocalRing (A j)]
 variable [∀ j, Algebra R (A j)]
 
 /-- Ramification at a prime selecting one product coordinate is exactly
-ramification at the maximal ideal of that coordinate.-/
+ramification at the maximal ideal of that coordinate.
+@isnad1 id=eq.0h4v.s7.e1bf18df65d0 from=translated src=- shape=31d1e75e vocab=e66bf09e
+-/
 theorem productCoordinatePrime_ramificationIdx_eq (i : ι) :
     (productCoordinatePrime A i).ramificationIdx R =
       (IsLocalRing.maximalIdeal (A i)).ramificationIdx R := by
@@ -65,7 +67,9 @@ variable (B : ι → Type uB)
 variable [∀ j, CommRing (B j)] [∀ j, IsLocalRing (B j)]
 
 /-- Ramification is unchanged when a product-coordinate localization is
-pulled back along a ring equivalence.-/
+pulled back along a ring equivalence.
+@isnad1 id=eq.0h6v.s7.a4a2029617cc from=translated src=- shape=d8d4c545 vocab=d91e2d68
+-/
 theorem ringEquivProductCoordinatePrime_ramificationIdx_eq
     (e : U ≃+* (∀ j, B j)) (i : ι) :
     letI : Algebra U (B i) := ringEquivProductCoordinateAlgebra B i e

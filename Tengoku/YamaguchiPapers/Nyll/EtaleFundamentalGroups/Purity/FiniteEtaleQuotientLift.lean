@@ -32,7 +32,9 @@ open scoped TensorProduct
 universe u
 
 /-- A finite family of finite étale lifts can be assembled into a single lift
-by taking the product of the lifted algebras.-/
+by taking the product of the lifted algebras.
+@isnad1 id=ex.1h4v.s9.c13331ccb105 from=translated src=- shape=c9f4db4d vocab=76fda5f2
+-/
 theorem exists_finiteEtale_product_lift
     {R B J : Type u} [CommRing R] [CommRing B] [Algebra R B]
     [Finite J]

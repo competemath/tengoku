@@ -20,7 +20,9 @@ in a chosen overfield is identified with its actual intermediate field range.
 namespace KummerTheory
 universe u v w
 
-/-- Primary roots of a subfield inject into those of the ambient field.-/
+/-- Primary roots of a subfield inject into those of the ambient field.
+@isnad1 id=finite.0h4v.s8.890928146541 from=translated src=- shape=f0dc0993 vocab=c7838020
+-/
 theorem finite_primaryComponent_of_fieldEmbedding
     {E : Type u} {F : Type v} [Field E] [Field F] (f : E →+* F)
     (p : ℕ) [Finite (CommGroup.primaryComponent Fˣ p)] :
@@ -38,7 +40,9 @@ theorem finite_primaryComponent_of_fieldEmbedding
   apply f.injective
   exact congrArg (fun z : CommGroup.primaryComponent Fˣ p => ((z : Fˣ) : F)) hab
 
-/-- Root finiteness on finite intermediate fields applies to any embedded finite extension.-/
+/-- Root finiteness on finite intermediate fields applies to any embedded finite extension.
+@isnad1 id=finite.1h5v.s11.d0f11d908509 from=translated src=- shape=2f69dd0d vocab=16451470
+-/
 theorem finite_primaryComponent_of_finiteExtension_embedding
     {K : Type u} {E : Type v} {Ω : Type w}
     [Field K] [Field E] [Field Ω] [Algebra K E] [Algebra K Ω]

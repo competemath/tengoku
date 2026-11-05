@@ -27,7 +27,9 @@ namespace EtaleFundamentalGroups.Purity
 universe u v
 
 /-- A finite module over a Noetherian local ring, complete for the maximal
-ideal, is complete for every ideal contained in the maximal ideal.-/
+ideal, is complete for every ideal contained in the maximal ideal.
+@isnad1 id=isadicco.1h3v.s7.a7f59d1973f9 from=translated src=- shape=df6cc77b vocab=ebd642e1
+-/
 theorem isAdicComplete_of_le_maximalIdeal
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     {M : Type v} [AddCommGroup M] [Module R M] [Module.Finite R M]

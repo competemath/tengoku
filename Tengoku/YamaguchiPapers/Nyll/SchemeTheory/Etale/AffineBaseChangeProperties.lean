@@ -46,7 +46,9 @@ private theorem tensorSpecBaseChangeIso_hom_snd :
     Category.assoc, pullbackSymmetry_hom_comp_snd, pullbackSpecIso_inv_fst']
 
 /-- Etaleness of the actual affine pullback gives etaleness of the tensor
-algebra over the new base.-/
+algebra over the new base.
+@isnad1 id=etale.1h3v.s8.f91eca1031d5 from=translated src=- shape=e7266dae vocab=8f26d447
+-/
 theorem tensorProduct_etale_of_spec_baseChange
     (h : Etale (pullback.snd
       (Spec.map (CommRingCat.ofHom (algebraMap R B)))
@@ -60,7 +62,9 @@ theorem tensorProduct_etale_of_spec_baseChange
     ((HasRingHomProperty.Spec_iff (P := @Etale)).mp hcomp)
 
 /-- Finiteness of the actual affine pullback gives module finiteness of
-its canonical tensor algebra.-/
+its canonical tensor algebra.
+@isnad1 id=finite.1h3v.s8.51db7bc63c33 from=translated src=- shape=e7266dae vocab=b82f2d5e
+-/
 theorem tensorProduct_finite_of_spec_baseChange
     (h : IsFinite (pullback.snd
       (Spec.map (CommRingCat.ofHom (algebraMap R B)))
@@ -73,7 +77,9 @@ theorem tensorProduct_finite_of_spec_baseChange
   exact RingHom.finite_algebraMap.mp (IsFinite.SpecMap_iff _ |>.mp hcomp)
 
 /-- Etaleness after the actual base change to a prime localization implies
-etaleness at every target prime over that base prime.-/
+etaleness at every target prime over that base prime.
+@isnad1 id=isetalea.2h4v.s9.bbec818407f4 from=translated src=- shape=53de04a2 vocab=41b8d365
+-/
 theorem isEtaleAt_of_spec_baseChange_atPrime
     (p : PrimeSpectrum R)
     (h : Etale (pullback.snd

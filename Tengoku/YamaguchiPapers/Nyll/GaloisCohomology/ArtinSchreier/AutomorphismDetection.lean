@@ -24,7 +24,9 @@ open Field.absoluteGaloisGroup ValuationTheory.Completion
 variable (p : ℕ) [Fact p.Prime] {K : Type*} [Field K] [CharP K p]
 
 /-- A nonzero difference of Artin--Schreier classes detects the actual absolute
-Galois map associated to the field automorphism.-/
+Galois map associated to the field automorphism.
+@isnad1 id=ex.1h4v.s11.94c155b276e9 from=translated src=- shape=ff1f4627 vocab=835c6adc
+-/
 theorem exists_character_moved_by_map_of_pow_sub_ne
     (τ : K ≃+* K) (a : K) (ha : ∀ y : K, y ^ p - y ≠ τ a - a) :
     ∃ χ : Gal(AlgebraicClosure K/K) →ₜ* Multiplicative (ZMod p),

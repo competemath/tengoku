@@ -33,7 +33,9 @@ universe u v
 
 /-- Under a finite algebra, the support after restriction of scalars is
 exactly the image of the original support on prime spectra.  The reverse
-inclusion uses that an integral map is closed on spectra.-/
+inclusion uses that an integral map is closed on spectra.
+@isnad1 id=eq.0h3v.s8.79ed8ac861e8 from=translated src=- shape=43ff3d98 vocab=dd359354
+-/
 theorem image_comap_support_eq_support_of_finite
     {R : Type u} {S : Type v} {M : Type*}
     [CommRing R] [CommRing S] [Algebra R S]
@@ -62,7 +64,9 @@ theorem image_comap_support_eq_support_of_finite
         (algebraMap R S) (Module.annihilator S M)
 
 /-- Relative Kähler differentials of a finite algebra over a Noetherian ring
-are finite over the target.-/
+are finite over the target.
+@isnad1 id=finite.0h2v.s6.829e7448742d from=translated src=- shape=db5cec59 vocab=63914915
+-/
 theorem kaehlerDifferential_finite_of_finite_over_noetherian
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [Algebra R S] [IsNoetherianRing R] [Module.Finite R S] :
@@ -72,7 +76,9 @@ theorem kaehlerDifferential_finite_of_finite_over_noetherian
   infer_instance
 
 /-- First cotangent homology of a finite algebra over a Noetherian ring is
-finite over the target.  No projectivity assumption on `Ω[S⁄R]` is needed.-/
+finite over the target.  No projectivity assumption on `Ω[S⁄R]` is needed.
+@isnad1 id=finite.0h2v.s7.111921681fe6 from=translated src=- shape=db5cec59 vocab=d8f5126f
+-/
 theorem h1Cotangent_finite_of_finite_over_noetherian
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [Algebra R S] [IsNoetherianRing R] [Module.Finite R S] :
@@ -89,7 +95,9 @@ theorem h1Cotangent_finite_of_finite_over_noetherian
   exact Module.Finite.equiv P.equivH1Cotangent
 
 /-- Minimal primes in the annihilators of the two cotangent modules are
-associated primes once the algebra is finite over a Noetherian base.-/
+associated primes once the algebra is finite over a Noetherian base.
+@isnad1 id=and.0h2v.s8.5d8156f586cb from=translated src=- shape=563f3b8f vocab=3ee51b2b
+-/
 theorem cotangent_minimalPrimes_subset_associatedPrimes_of_finite_over_noetherian
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [Algebra R S] [IsNoetherianRing R] [Module.Finite R S] :

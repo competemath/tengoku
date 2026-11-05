@@ -79,7 +79,9 @@ private theorem exists_semidirect_lift
 
 /-- Solvability of all finite split embedding problems whose abelian kernel
 belongs to `C` passes to open subgroups. Only subgroup and finite-product
-closure of `C` are used; the whole covering and quotient groups are unrestricted.-/
+closure of `C` are used; the whole covering and quotient groups are unrestricted.
+@isnad1 id=hasfinit.3h3v.s6.d4068bcab114 from=translated src=- shape=34baec24 vocab=5ae8f03f
+-/
 theorem HasFiniteSplitAbelianKernelEmbeddingSolutions.openSubgroup
     (hsolve : HasFiniteSplitAbelianKernelEmbeddingSolutions C G)
     (hSub : C.SubgroupClosed) (hProd : C.FiniteProductClosed)

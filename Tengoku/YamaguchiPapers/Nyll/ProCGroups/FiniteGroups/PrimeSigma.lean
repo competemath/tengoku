@@ -22,7 +22,9 @@ namespace ProCGroups.FiniteGroupClass
 universe u
 
 /-- A finite group has no prime divisors outside `{p}` exactly when it is a
-finite p-group.-/
+finite p-group.
+@isnad1 id=iff.0h2v.s4.1ddf2002fa81 from=translated src=- shape=92e2b93c vocab=41f64a37
+-/
 theorem sigmaGroup_singleton_iff_pGroup (p : ℕ) [Fact p.Prime]
     (G : Type u) [Group G] : sigmaGroup {p} G ↔ pGroup p G := by
   constructor
@@ -47,7 +49,9 @@ theorem sigmaGroup_singleton_iff_pGroup (p : ℕ) [Fact p.Prime]
     exact IsSigmaNumber.prime_pow_of_mem (Set.mem_singleton p) (Fact.out : p.Prime)
 
 /-- Equality of the bundled finite classes also identifies their actual
-maximal residual quotient constructions, without a comparison hypothesis.-/
+maximal residual quotient constructions, without a comparison hypothesis.
+@isnad1 id=eq.0h1v.s4.5ddbba6389b8 from=translated src=- shape=9d3ab74b vocab=ccc46c83
+-/
 theorem sigmaGroup_singleton_eq_pGroup (p : ℕ) [Fact p.Prime] :
     sigmaGroup.{u} {p} = pGroup.{u} p := by
   have hpred : (sigmaGroup.{u} {p}).pred = (pGroup.{u} p).pred := by

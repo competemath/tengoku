@@ -28,7 +28,9 @@ variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 
 /-- A nonidentity automorphism of a prime-degree Galois extension admits
 an eigenunit with a primitive eigenvalue, constructed from roots of unity
-in the base field.-/
+in the base field.
+@isnad1 id=ex.4h4v.s9.f922aeddfe75 from=translated src=- shape=9720737f vocab=998d7cd8
+-/
 theorem exists_primitive_eigenunit_of_prime_degree
     [FiniteDimensional K L] [IsGalois K L]
     {p : ℕ} (hp : p.Prime) (hdeg : Module.finrank K L = p)

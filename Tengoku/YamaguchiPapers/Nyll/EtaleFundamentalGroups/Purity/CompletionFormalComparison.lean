@@ -28,7 +28,9 @@ variable [Algebra R A] [Algebra R S]
 
 /-- Maps from a formally étale algebra to an adically complete algebra are
 uniquely determined by, and uniquely lift from, their reduction modulo the
-ideal of definition.-/
+ideal of definition.
+@isnad1 id=bijectiv.0h4v.s7.8bbd48067b59 from=translated src=- shape=71821565 vocab=ebe16c5a
+-/
 theorem comp_bijective_of_isAdicComplete [FormallyEtale R A]
     (I : Ideal S) [IsAdicComplete I S] :
     Function.Bijective

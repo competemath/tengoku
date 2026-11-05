@@ -27,7 +27,9 @@ universe u
 
 /-- Etaleness of the simultaneous localization at a base prime descends,
 after localizing once more, to the original map at the prime below a target
-prime.-/
+prime.
+@isnad1 id=isetalea.1h4v.s9.55c94eb2dbd3 from=translated src=- shape=12752143 vocab=5984f758
+-/
 theorem isEtaleAt_under_of_localizedAlgebra_etale
     {R S : Type u} [CommRing R] [CommRing S]
     [Algebra R S]
@@ -64,7 +66,9 @@ theorem isEtaleAt_under_of_localizedAlgebra_etale
 
 /-- If a target prime lies over `p`, etaleness of the simultaneous
 localization at `p` implies etaleness of the original algebra at that target
-prime.-/
+prime.
+@isnad1 id=isetalea.2h4v.s7.0f3329f5cb35 from=translated src=- shape=a352c13a vocab=5984f758
+-/
 theorem isEtaleAt_of_localizedAlgebra_etale
     {R S : Type u} [CommRing R] [CommRing S]
     [Algebra R S]

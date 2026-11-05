@@ -24,7 +24,9 @@ namespace ProCGroups
 universe u v
 
 /-- An element centralizing an open subgroup modulo a quotient kernel is trivial
-when relative fixed points vanish and open supergroups detect centralizers.-/
+when relative fixed points vanish and open supergroups detect centralizers.
+@isnad1 id=eq.5h6v.s9.2a5547e8bcf9 from=translated src=- shape=2dadc1ee vocab=abe3a82a
+-/
 theorem quotient_eq_one_of_relative_fixedPoints
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [TotallyDisconnectedSpace G]

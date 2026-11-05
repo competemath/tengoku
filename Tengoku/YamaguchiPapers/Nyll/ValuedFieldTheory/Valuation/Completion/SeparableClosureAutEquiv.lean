@@ -44,13 +44,17 @@ def separableClosureAutEquiv :
       AlgEquiv.restrictNormalHom_surjective (F := K)
         (K₁ := SeparableClosure K) (E := AlgebraicClosure K)⟩
 
-/-- Restriction preserves the action on every element of the separable closure.-/
+/-- Restriction preserves the action on every element of the separable closure.
+@isnad1 id=eq.0h3v.s13.be39fc394e6c from=translated src=- shape=3c5bb387 vocab=dea21cb5
+-/
 theorem separableClosureAutEquiv_apply (σ : Gal(AlgebraicClosure K/K))
     (s : SeparableClosure K) :
     (separableClosureAutEquiv K σ s : AlgebraicClosure K) = σ (s : AlgebraicClosure K) :=
   AlgEquiv.restrictNormalHom_apply (separableClosure K (AlgebraicClosure K)) σ s
 
-/-- Restriction to the separable closure is continuous for the Krull topologies.-/
+/-- Restriction to the separable closure is continuous for the Krull topologies.
+@isnad1 id=continuo.0h1v.s13.a5927723e6b0 from=translated src=- shape=30d5eaa1 vocab=536a248c
+-/
 theorem continuous_separableClosureAutEquiv : Continuous (separableClosureAutEquiv K) :=
   InfiniteGalois.restrictNormalHom_continuous (separableClosure K (AlgebraicClosure K))
 

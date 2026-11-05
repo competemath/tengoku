@@ -42,7 +42,9 @@ private theorem character_evaluation_injective_of_isCyclic
   exact congrArg (fun z : kˣ ↦ z ^ n) heq
 
 /-- The production inertia character embeds tame inertia into the residue
-field once `ringExpChar` coprimality kills its ramification kernel.-/
+field once `ringExpChar` coprimality kills its ramification kernel.
+@isnad1 id=iscyclic.2h3v.s13.7f23ee317c96 from=translated src=- shape=c6b7e6fa vocab=d08009a6
+-/
 theorem inertiaGroup_isCyclic_of_card_coprime_ringExpChar
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L)
@@ -118,7 +120,9 @@ theorem inertiaGroup_isCyclic_of_card_coprime_ringExpChar
   exact Units.val_injective.comp (hx.comp hchi)
 
 /-- Ideal inertia at the maximal ideal of a valuation subring agrees with
-the kernel-of-residue-action inertia group.-/
+the kernel-of-residue-action inertia group.
+@isnad1 id=eq.0h3v.s11.729dbcdc4882 from=translated src=- shape=e0b26d7c vocab=1edcbd42
+-/
 theorem valuationSubring_maximalIdeal_inertia_eq
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) :

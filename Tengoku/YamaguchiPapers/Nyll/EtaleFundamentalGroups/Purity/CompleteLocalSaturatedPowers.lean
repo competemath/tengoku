@@ -44,7 +44,9 @@ def maximalIdealSaturation (I : Ideal R) : Ideal R :=
   (Ideal.primaryComponent (R ⧸ I) (maximalIdeal R)).comap I.mkQ
 
 /-- Saturation membership is annihilation modulo the ideal by some power
-of the maximal ideal.-/
+of the maximal ideal.
+@isnad1 id=iff.0h3v.s7.7375fda8ae69 from=translated src=- shape=3d5b950d vocab=9b1e8310
+-/
 theorem mem_maximalIdealSaturation_iff (I : Ideal R) (x : R) :
     x ∈ maximalIdealSaturation I ↔
       ∃ k : ℕ, ∀ a ∈ maximalIdeal R ^ k, a * x ∈ I := by
@@ -65,13 +67,17 @@ theorem mem_maximalIdealSaturation_iff (I : Ideal R) (x : R) :
     rw [← map_smul]
     exact (Submodule.Quotient.mk_eq_zero I).mpr (hk a a.property)
 
-/-- Every ideal is contained in its saturation.-/
+/-- Every ideal is contained in its saturation.
+@isnad1 id=le.0h2v.s6.9e7f808def2e from=translated src=- shape=530d50d6 vocab=2bed398b
+-/
 theorem le_maximalIdealSaturation (I : Ideal R) : I ≤ maximalIdealSaturation I := by
   intro x hx
   exact (mem_maximalIdealSaturation_iff I x).mpr
     ⟨0, fun a _ => I.mul_mem_left a hx⟩
 
-/-- Saturation preserves inclusions of ideals.-/
+/-- Saturation preserves inclusions of ideals.
+@isnad1 id=monotone.0h1v.s6.4663906f5609 from=translated src=- shape=66b9f7f3 vocab=b9b72eaf
+-/
 theorem maximalIdealSaturation_mono : Monotone (maximalIdealSaturation (R := R)) := by
   intro I J hIJ x hx
   obtain ⟨k, hk⟩ := (mem_maximalIdealSaturation_iff I x).mp hx
@@ -81,18 +87,24 @@ theorem maximalIdealSaturation_mono : Monotone (maximalIdealSaturation (R := R))
 def maximalIdealSaturatedPower (I : Ideal R) (n : ℕ) : Ideal R :=
   maximalIdealSaturation (I ^ n)
 
-/-- Ordinary powers are contained in their maximal-ideal saturations.-/
+/-- Ordinary powers are contained in their maximal-ideal saturations.
+@isnad1 id=le.0h3v.s6.26493006fb3b from=translated src=- shape=88882d65 vocab=bcce64cc
+-/
 theorem pow_le_maximalIdealSaturatedPower (I : Ideal R) (n : ℕ) :
     I ^ n ≤ maximalIdealSaturatedPower I n :=
   le_maximalIdealSaturation (I ^ n)
 
-/-- Saturated powers form a decreasing filtration.-/
+/-- Saturated powers form a decreasing filtration.
+@isnad1 id=antitone.0h2v.s6.5a43ffb80067 from=translated src=- shape=97ce0f06 vocab=7d653517
+-/
 theorem maximalIdealSaturatedPower_antitone (I : Ideal R) :
     Antitone (maximalIdealSaturatedPower I) := by
   intro n m hnm
   exact maximalIdealSaturation_mono (Ideal.pow_le_pow_right hnm)
 
-/-- The error module introduced by saturation has finite length.-/
+/-- The error module introduced by saturation has finite length.
+@isnad1 id=isfinite.0h2v.s9.e1d9b635a444 from=translated src=- shape=6174535b vocab=294ddab5
+-/
 theorem isFiniteLength_primaryComponent_quotient
     [IsNoetherianRing R] (I : Ideal R) :
     IsFiniteLength R (Ideal.primaryComponent (R ⧸ I) (maximalIdeal R)) := by
@@ -106,7 +118,9 @@ theorem isFiniteLength_primaryComponent_quotient
     (s := ((maximalIdeal R ^ k : Ideal R) : Set R)) (z : R ⧸ I)).mp hk ⟨a, ha⟩
 
 /-- A proper ideal whose radical is not the maximal ideal is contained
-in a nonmaximal prime.-/
+in a nonmaximal prime.
+@isnad1 id=ex.2h2v.s7.aba06ae43b30 from=translated src=- shape=779ba153 vocab=4ab23a46
+-/
 theorem exists_nonmaximal_prime_over_of_radical_ne
     (I : Ideal R) (hI : I ≠ ⊤) (hrad : I.radical ≠ maximalIdeal R) :
     ∃ P : Ideal R, I ≤ P ∧ P.IsPrime ∧ P ≠ maximalIdeal R := by

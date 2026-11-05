@@ -39,7 +39,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 omit [T2Space G] in
 /--
 A closed-normal quotient version of topological generation: \(X \cup N\) generates if and only
-if the image of \(X\) generates modulo every open normal subgroup containing \(N\).-/
+if the image of \(X\) generates modulo every open normal subgroup containing \(N\).
+@isnad1 id=iff.0h3v.s8.0486ee5e71f3 from=translated src=- shape=de39d298 vocab=2f864566
+-/
 theorem topologicallyGenerates_union_subgroup_iff_forall_openNormalQuotient
     {N : Subgroup G} [N.Normal]
     {X : Set G} :
@@ -181,7 +183,9 @@ theorem topologicallyGenerates_union_subgroup_iff_forall_openNormalQuotient
 omit [T2Space G] in
 /--
 This is the direct finite-quotient test for topological generation, phrased with the bundled
-quotient projections.-/
+quotient projections.
+@isnad1 id=iff.0h2v.s8.65de871fb1ed from=translated src=- shape=de9bed18 vocab=9c842df6
+-/
 theorem topologicallyGenerates_iff_forall_quotientProj_image
     {X : Set G} :
     TopologicallyGenerates (G := G) X ↔

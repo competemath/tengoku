@@ -17,7 +17,9 @@ order for every element of the quotient.
 
 namespace ProCGroups
 
-/-- Every element of a finite p-group quotient has a lift of p-power order.-/
+/-- Every element of a finite p-group quotient has a lift of p-power order.
+@isnad1 id=ex.2h5v.s7.69ae48529fa0 from=translated src=- shape=e4667819 vocab=9acd6ac1
+-/
 theorem exists_prime_power_order_lift_of_surjective
     {G H : Type*} [Group G] [Group H] [Finite G]
     (p : ℕ) [Fact p.Prime] (f : G →* H) (hf : Function.Surjective f)

@@ -43,7 +43,9 @@ open CategoryTheory Limits IsLocalRing
 variable {R : Type u} [CommRing R] [IsDomain R] [IsLocalRing R] [IsNoetherianRing R]
 
 /-- The linear dual of positive top local cohomology is torsion-free,
-because every nonzero scalar is surjective on the original module.-/
+because every nonzero scalar is surjective on the original module.
+@isnad1 id=istorsio.1h3v.s9.5936406e0462 from=translated src=- shape=5ce3eb4f vocab=ec350ab5
+-/
 theorem isTorsionFree_linearMap_topLocalCohomology
     (E : Type v) [AddCommGroup E] [Module R E] (d : ℕ)
     (hdim : ringKrullDim R = ((d + 1 : ℕ) : WithBot ℕ∞)) :
@@ -68,7 +70,9 @@ theorem isTorsionFree_linearMap_topLocalCohomology
 
 omit [IsDomain R] in
 /-- The dual with values in an injective module containing the residue
-field detects the nonzero top cohomology of a complete local domain.-/
+field detects the nonzero top cohomology of a complete local domain.
+@isnad1 id=nontrivi.2h4v.s9.1174703d3b5a from=translated src=- shape=4123eb4c vocab=7d42eafa
+-/
 theorem nontrivial_linearMap_topLocalCohomology
     [IsAdicComplete (maximalIdeal R) R]
     {E : Type u} [AddCommGroup E] [Module R E] [Module.Injective R E]
@@ -93,7 +97,9 @@ theorem nontrivial_linearMap_topLocalCohomology
 
 omit [IsDomain R] in
 /-- The dual of maximal-support local cohomology with values in the
-residue-field injective hull is finite over a complete local ring.-/
+residue-field injective hull is finite over a complete local ring.
+@isnad1 id=finite.2h5v.s9.0f4ffa32c1d6 from=translated src=- shape=e52c2a8c vocab=7e4b796f
+-/
 theorem finite_linearMap_localCohomology_maximalIdeal
     [IsAdicComplete (maximalIdeal R) R]
     {E : Type u} [AddCommGroup E] [Module R E] [Module.Injective R E]

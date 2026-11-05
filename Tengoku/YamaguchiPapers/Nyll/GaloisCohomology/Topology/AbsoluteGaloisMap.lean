@@ -27,7 +27,9 @@ noncomputable def closureLift (f : K →+* L) :
   let : Algebra K L := f.toAlgebra
   (IsAlgClosed.lift : AlgebraicClosure K →ₐ[K] AlgebraicClosure L).toRingHom
 
-/-- The chosen closure embedding extends the original field embedding.-/
+/-- The chosen closure embedding extends the original field embedding.
+@isnad1 id=eq.0h4v.s8.ec0fcb3e0182 from=translated src=- shape=dccaa823 vocab=c08aa324
+-/
 theorem closureLift_algebraMap (f : K →+* L) (x : K) :
     closureLift f (algebraMap K (AlgebraicClosure K) x) =
       algebraMap L (AlgebraicClosure L) (f x) := by
@@ -37,7 +39,9 @@ theorem closureLift_algebraMap (f : K →+* L) (x : K) :
   rw [AlgHom.commutes]
   rfl
 
-/-- Absolute Galois restriction commutes with its chosen closure embedding.-/
+/-- Absolute Galois restriction commutes with its chosen closure embedding.
+@isnad1 id=eq.0h5v.s9.436a4ef674f8 from=translated src=- shape=9960cfe6 vocab=aa6834db
+-/
 theorem map_closureLift (f : K →+* L)
     (σ : Gal(AlgebraicClosure L/L)) (x : AlgebraicClosure K) :
     closureLift f ((map f σ : Gal(AlgebraicClosure K/K)).toAlgHom x) = σ (closureLift f x) := by
@@ -56,7 +60,9 @@ private theorem exists_precomposition_aut
   exact j₂.restrictNormal_commutes (AlgebraicClosure K) x
 
 /-- Restriction to a commutative target is independent of the discrepancy between
-chosen closure embeddings, and hence respects composition of field embeddings.-/
+chosen closure embeddings, and hence respects composition of field embeddings.
+@isnad1 id=eq.0h7v.s10.68924b3ec183 from=translated src=- shape=aa6687c2 vocab=8f2f42b5
+-/
 theorem character_map_comp
     {A : Type*} [CommGroup A] [TopologicalSpace A]
     (f : K →+* L) (g : L →+* M)

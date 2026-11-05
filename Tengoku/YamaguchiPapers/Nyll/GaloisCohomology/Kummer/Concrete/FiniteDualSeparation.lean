@@ -43,7 +43,9 @@ def characterToNthRoots
     apply Subtype.ext
     exact map_mul φ g h
 
-/-- A finite character evaluates in the subgroup of `n`th roots of unity.-/
+/-- A finite character evaluates in the subgroup of `n`th roots of unity.
+@isnad1 id=eq.1h5v.s10.21937fe9ce0a from=translated src=- shape=c699b319 vocab=2b0a578f
+-/
 @[simp] theorem characterToNthRoots_apply
     {G K : Type*} [Group G] [Field K]
     (n : ℕ+) (hexponent : ∀ g : G, g ^ (n : ℕ) = 1)
@@ -52,7 +54,9 @@ def characterToNthRoots
   rfl
 
 /-- Characters with values in the actual `n`-th roots of unity of `K`
-separate points of a finite abelian group killed by `n`.-/
+separate points of a finite abelian group killed by `n`.
+@isnad1 id=ex.3h4v.s11.fc91c1db8544 from=translated src=- shape=b72de8e1 vocab=219d95b2
+-/
 theorem exists_nthRoots_character_apply_ne_one
     {G K : Type*} [CommGroup G] [Finite G] [Field K]
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
@@ -97,7 +101,9 @@ def nthRootsSubgroupMap
     apply Subtype.ext
     exact map_mul (Units.map (algebraMap K L).toMonoidHom) z.1 w.1
 
-/-- The canonical map from roots of unity into the `n`th-roots subgroup is injective.-/
+/-- The canonical map from roots of unity into the `n`th-roots subgroup is injective.
+@isnad1 id=injectiv.0h3v.s11.c3ec187934d6 from=translated src=- shape=646d9b07 vocab=c8896906
+-/
 theorem nthRootsSubgroupMap_injective
     (K L : Type*) [Field K] [Field L] [Algebra K L] (n : ℕ) :
     Function.Injective (nthRootsSubgroupMap K L n) := by
@@ -174,7 +180,9 @@ def unitCharactersEquivNthRoots
     rfl
 
 /-- Finite abelian duality with the character codomain restricted to the
-actual `n`-th roots of unity in an extension field.-/
+actual `n`-th roots of unity in an extension field.
+@isnad1 id=nonempty.2h4v.s10.4326986f48f1 from=translated src=- shape=4aa4b876 vocab=e7ff9ef1
+-/
 theorem finiteNthRootsCharacterDuality
     {G K L : Type*} [CommGroup G] [Finite G]
     [Field K] [Field L] [Algebra K L]
@@ -199,7 +207,9 @@ theorem finiteNthRootsCharacterDuality
     (unitCharactersEquivNthRoots n hexponent).symm |>.trans dual⟩
 
 /-- The same separation result with values in the roots of unity of an
-extension field `L`.-/
+extension field `L`.
+@isnad1 id=ex.3h5v.s11.bbc9cccfba42 from=translated src=- shape=e7718ca5 vocab=143c4e82
+-/
 theorem exists_nthRoots_character_apply_ne_one_in_extension
     {G K L : Type*} [CommGroup G] [Finite G]
     [Field K] [Field L] [Algebra K L]
@@ -235,7 +245,9 @@ def transposeCharacterEquiv
     intro r
     exact map_mul (e r) g h
 
-/-- The transposed character equivalence evaluates by pairing with the original character.-/
+/-- The transposed character equivalence evaluates by pairing with the original character.
+@isnad1 id=eq.0h6v.s9.67d41084470a from=translated src=- shape=4ab0abe8 vocab=ecfef685
+-/
 @[simp] theorem transposeCharacterEquiv_apply
     {G R M : Type*} [CommGroup G] [CommGroup R] [CommGroup M]
     (e : R ≃* (G →* M)) (g : G) (r : R) :
@@ -244,7 +256,9 @@ def transposeCharacterEquiv
 
 /-- Nondegeneracy on the Galois side of the finite Kummer pairing.  This is
 the injectivity source needed before the cardinality step can upgrade the
-transpose to the canonical isomorphism in the Kummer correspondence.-/
+transpose to the canonical isomorphism in the Kummer correspondence.
+@isnad1 id=injectiv.2h6v.s13.8c2f613125f6 from=translated src=- shape=97618a5c vocab=90f639ad
+-/
 theorem transposeCharacterEquiv_injective
     {G R K L : Type*} [CommGroup G] [Finite G] [CommGroup R]
     [Field K] [Field L] [Algebra K L]
@@ -270,7 +284,9 @@ theorem transposeCharacterEquiv_injective
 
 /-- The finite cardinality step upgrades nondegeneracy of the transposed
 Kummer pairing to surjectivity.  The needed equality of cardinalities is
-produced by finite abelian duality; it is not assumed.-/
+produced by finite abelian duality; it is not assumed.
+@isnad1 id=surjecti.2h6v.s13.084f26d7fb18 from=translated src=- shape=97618a5c vocab=01c5eeb6
+-/
 theorem transposeCharacterEquiv_surjective
     {G R K L : Type*} [CommGroup G] [Finite G] [CommGroup R]
     [Field K] [Field L] [Algebra K L]

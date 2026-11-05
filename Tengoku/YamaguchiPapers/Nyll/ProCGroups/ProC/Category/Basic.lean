@@ -53,13 +53,17 @@ def of (C : ProCGroups.FiniteGroupClass.{u})
 abbrev continuousHom {A B : ProCGrp C} (f : A ⟶ B) : A →ₜ* B :=
   ConcreteCategory.hom (C := ProCGrp C) f
 
-/-- Morphisms in ProCGrp are equal when their underlying continuous homomorphisms are equal.-/
+/-- Morphisms in ProCGrp are equal when their underlying continuous homomorphisms are equal.
+@isnad1 id=eq.1h5v.s7.cf74188712ea from=translated src=- shape=8dc2ed1d vocab=4d37a61e
+-/
 @[ext] theorem hom_ext {A B : ProCGrp C} {f g : A ⟶ B}
     (hf : continuousHom f = continuousHom g) :
     f = g :=
   ConcreteCategory.ext hf
 
-/-- On profinite groups the all-finite object property imposes no additional condition.-/
+/-- On profinite groups the all-finite object property imposes no additional condition.
+@isnad1 id=procobje.0h1v.s2.d51af54dd394 from=translated src=- shape=f5394aa3 vocab=351da25c
+-/
 @[simp] theorem allFinite_property (G : ProfiniteGrp.{u}) :
     ProCGroups.proCObjectProperty ProCGroups.FiniteGroupClass.allFinite G := by
   intro W hW h1W

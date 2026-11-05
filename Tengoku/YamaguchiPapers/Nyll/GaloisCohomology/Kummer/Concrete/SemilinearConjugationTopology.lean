@@ -28,7 +28,9 @@ open scoped Topology
 variable {K Ω : Type*} [Field K] [Field Ω] [Algebra K Ω]
   [Algebra.IsAlgebraic K Ω]
 
-/-- Semilinear conjugation is continuous for the Krull topology.-/
+/-- Semilinear conjugation is continuous for the Krull topology.
+@isnad1 id=continuo.1h4v.s10.b88d53713fa7 from=translated src=- shape=0ef247f6 vocab=c14953f2
+-/
 theorem semilinearGaloisConjugateEquiv_continuous (τ : K ≃+* K) (e : Ω ≃+* Ω)
     (he : ∀ k : K, e (algebraMap K Ω k) = algebraMap K Ω (τ k)) :
     Continuous (semilinearGaloisConjugateEquiv τ e he) := by
@@ -73,7 +75,9 @@ def semilinearGaloisConjugateContinuousEquiv (τ : K ≃+* K) (e : Ω ≃+* Ω)
     (semilinear_symm_algebraMap τ e he)
 
 /-- The continuous conjugation evaluates by the constructed algebraic
-conjugation.-/
+conjugation.
+@isnad1 id=eq.1h5v.s10.dd1a8ec5dcb5 from=translated src=- shape=6473d05c vocab=3f5628d7
+-/
 theorem semilinearGaloisConjugateContinuousEquiv_apply (τ : K ≃+* K) (e : Ω ≃+* Ω)
     (he : ∀ k : K, e (algebraMap K Ω k) = algebraMap K Ω (τ k))
     (σ : Gal(Ω/K)) :

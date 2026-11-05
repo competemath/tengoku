@@ -24,7 +24,9 @@ namespace ProCGroups.ProC
 
 universe u
 
-/-- The quotient by the pro-`C` residual core has an open-normal quotient basis in `C`.-/
+/-- The quotient by the pro-`C` residual core has an open-normal quotient basis in `C`.
+@isnad1 id=hasopenn.1h2v.s6.7a4dcbd3af6f from=translated src=- shape=100630dc vocab=b5c7368f
+-/
 theorem proCResidualCoreQuotient_hasOpenNormalBasisInClass
     {C : FiniteGroupClass.{u}}
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]

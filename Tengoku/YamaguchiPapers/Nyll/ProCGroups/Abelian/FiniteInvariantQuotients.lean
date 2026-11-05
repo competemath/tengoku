@@ -51,7 +51,9 @@ def invariantOpenNormalCore
         (ProC.OpenNormalSubgroup.quotientProj U).continuous_toFun.comp (hρ c) }
 
 /-- Membership in the invariant core is membership of every translate in the
-original open normal subgroup.-/
+original open normal subgroup.
+@isnad1 id=iff.1h5v.s9.e5d96f7fe217 from=translated src=- shape=ec1f71f7 vocab=f7ebdd5d
+-/
 theorem mem_invariantOpenNormalCore_iff
     (ρ : C →* MulAut A) (hρ : ∀ c : C, Continuous (ρ c))
     (U : OpenNormalSubgroup A) (x : A) :
@@ -65,7 +67,9 @@ theorem mem_invariantOpenNormalCore_iff
     funext c
     exact ProC.OpenNormalSubgroup.quotientProj_eq_one_iff.mpr (hx c)
 
-/-- The invariant core refines the original subgroup.-/
+/-- The invariant core refines the original subgroup.
+@isnad1 id=le.1h4v.s8.be4dae404ac3 from=translated src=- shape=e178aef1 vocab=13e423be
+-/
 theorem invariantOpenNormalCore_le
     (ρ : C →* MulAut A) (hρ : ∀ c : C, Continuous (ρ c))
     (U : OpenNormalSubgroup A) :
@@ -75,7 +79,9 @@ theorem invariantOpenNormalCore_le
   change x ∈ U
   simpa only [map_one, MulAut.one_apply] using h
 
-/-- Every element of the acting group preserves the invariant core.-/
+/-- Every element of the acting group preserves the invariant core.
+@isnad1 id=mem.2h6v.s9.6ea83fd0572e from=translated src=- shape=4009aeb8 vocab=f7ebdd5d
+-/
 theorem action_mem_invariantOpenNormalCore
     (ρ : C →* MulAut A) (hρ : ∀ c : C, Continuous (ρ c))
     (U : OpenNormalSubgroup A) (c : C) {x : A}
@@ -86,7 +92,9 @@ theorem action_mem_invariantOpenNormalCore
   have h := (mem_invariantOpenNormalCore_iff ρ hρ U x).mp hx (d * c)
   simpa only [map_mul, MulAut.mul_apply] using h
 
-/-- An automorphism in the action maps the invariant core onto itself.-/
+/-- An automorphism in the action maps the invariant core onto itself.
+@isnad1 id=eq.1h5v.s9.e0377158090f from=translated src=- shape=75913ec1 vocab=a37c4605
+-/
 theorem map_invariantOpenNormalCore
     (ρ : C →* MulAut A) (hρ : ∀ c : C, Continuous (ρ c))
     (U : OpenNormalSubgroup A) (c : C) :
@@ -130,7 +138,9 @@ def invariantOpenNormalQuotientAction
         (ρ c (ρ d x))
     rw [map_mul, MulAut.mul_apply]
 
-/-- The quotient projection is equivariant for the induced finite action.-/
+/-- The quotient projection is equivariant for the induced finite action.
+@isnad1 id=eq.1h6v.s12.0faed5413a0b from=translated src=- shape=6ee1ff7b vocab=d9a04623
+-/
 theorem invariantOpenNormalQuotientAction_apply_mk
     (ρ : C →* MulAut A) (hρ : ∀ c : C, Continuous (ρ c))
     (U : OpenNormalSubgroup A) (c : C) (x : A) :
@@ -143,7 +153,9 @@ theorem invariantOpenNormalQuotientAction_apply_mk
     (ρ c) (map_invariantOpenNormalCore ρ hρ U c) x
 
 /-- A nonidentity element of a profinite group can be excluded from an invariant
-open normal subgroup for any finite continuous action.-/
+open normal subgroup for any finite continuous action.
+@isnad1 id=ex.2h4v.s8.4b0f3adbb584 from=translated src=- shape=a519d43f vocab=55d4c011
+-/
 theorem exists_invariantOpenNormalCore_not_mem
     [CompactSpace A] [TotallyDisconnectedSpace A]
     (ρ : C →* MulAut A) (hρ : ∀ c : C, Continuous (ρ c))
@@ -160,7 +172,9 @@ theorem exists_invariantOpenNormalCore_not_mem
 
 /-- A faithful finite continuous action on a profinite group remains faithful
 on a finite quotient by an invariant open normal subgroup. No commutativity
-of the original group is required.-/
+of the original group is required.
+@isnad1 id=ex.2h3v.s11.f38fb84ba638 from=translated src=- shape=1044f193 vocab=12f34f1a
+-/
 theorem exists_faithful_invariantOpenNormalQuotientAction
     [CompactSpace A] [TotallyDisconnectedSpace A]
     (ρ : C →* MulAut A) (hρ : ∀ c : C, Continuous (ρ c))

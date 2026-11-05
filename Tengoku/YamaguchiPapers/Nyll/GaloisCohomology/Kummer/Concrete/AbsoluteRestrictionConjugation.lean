@@ -21,7 +21,9 @@ namespace KummerTheory
 variable {K A : Type*} [Field K] [CommGroup A] [TopologicalSpace A]
 
 /-- Character pullback along the inverse field automorphism is the existing
-semilinear conjugation action, independently of closure-lift choices.-/
+semilinear conjugation action, independently of closure-lift choices.
+@isnad1 id=eq.0h5v.s11.52a4eb2f2f68 from=translated src=- shape=85ea2dd3 vocab=35e91e7c
+-/
 theorem character_map_symm_eq_absoluteGaloisConjugate
     (τ : K ≃+* K) (χ : Gal(AlgebraicClosure K/K) →ₜ* A)
     (σ : Gal(AlgebraicClosure K/K)) :

@@ -76,6 +76,9 @@ def idealLocalizationValuationSubring
         rw [hcarrier]
         exact W.mem_or_inv_mem x }
 
+/--
+@isnad1 id=iff.1h4v.s7.72bed45242f3 from=translated src=- shape=b40969cd vocab=5c9e4b1d
+-/
 @[simp] theorem mem_idealLocalizationValuationSubring_iff
     (P : Ideal B) [P.IsPrime] (hP : P ≠ ⊥) (x : L) :
     x ∈ idealLocalizationValuationSubring B L P hP ↔
@@ -95,6 +98,9 @@ def idealLocalizationEquiv
   map_add' _ _ := rfl
   map_mul' _ _ := rfl
 
+/--
+@isnad1 id=eq.1h4v.s11.187a9b8db2f9 from=translated src=- shape=718d2420 vocab=73ab7861
+-/
 @[simp] theorem idealLocalizationEquiv_apply_coe
     (P : Ideal B) [P.IsPrime] (hP : P ≠ ⊥)
     (x : idealLocalizationSubalgebra B L P) :
@@ -102,6 +108,9 @@ def idealLocalizationEquiv
       idealLocalizationValuationSubring B L P hP) : L) = x :=
   rfl
 
+/--
+@isnad1 id=iff.1h4v.s11.7f2514472b77 from=translated src=- shape=8850f8a3 vocab=2c36a2d8
+-/
 theorem idealLocalizationEquiv_mem_maximalIdeal_iff
     (P : Ideal B) [P.IsPrime] (hP : P ≠ ⊥)
     (x : idealLocalizationSubalgebra B L P) :
@@ -133,6 +142,9 @@ variable [Algebra.IsAlgebraic K L]
 variable [IsDedekindDomain B]
 
 omit [IsFractionRing B L] [IsDedekindDomain B] in
+/--
+@isnad1 id=eq.0h6v.s9.d710dcde62f9 from=translated src=- shape=7560cce3 vocab=e7fb8a12
+-/
 @[simp] theorem algebraMap_normalization_smul
     (sigma : Gal(L/K)) (b : B) :
     letI := IsIntegralClosure.MulSemiringAction A K L B
@@ -383,7 +395,9 @@ def idealInertiaLocalizationMulEquiv :
   · intro sigma tau
     rfl
 
-/-- The global and localized inertia groups have the same cardinality.-/
+/-- The global and localized inertia groups have the same cardinality.
+@isnad1 id=eq.1h5v.s11.14bfdafee197 from=translated src=- shape=a45d48bd vocab=f0d3d4c6
+-/
 theorem natCard_idealInertia_eq_localInertia :
     letI := IsIntegralClosure.MulSemiringAction A K L B
     Nat.card (P.toAddSubgroup.inertia Gal(L/K)) =

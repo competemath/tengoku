@@ -99,12 +99,18 @@ def tensorProductDescentRight :
     S ⊗[R] M →ₗ[R] (S ⊗[R] S) ⊗[R] M :=
   (Algebra.TensorProduct.includeRight : S →ₐ[R] S ⊗[R] S).toLinearMap.rTensor M
 
+/--
+@isnad1 id=eq.0h5v.s10.e503df13ded5 from=translated src=- shape=a4d47e30 vocab=111fef4a
+-/
 @[simp]
 theorem tensorProductDescentLeft_tmul (s : S) (m : M) :
     tensorProductDescentLeft (s ⊗ₜ[R] m) =
       (s ⊗ₜ[R] 1) ⊗ₜ[R] m :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.a7d2b30ddeb0 from=translated src=- shape=30bde32e vocab=5b573877
+-/
 @[simp]
 theorem tensorProductDescentRight_tmul (s : S) (m : M) :
     tensorProductDescentRight (s ⊗ₜ[R] m) =
@@ -121,6 +127,9 @@ def tensorProductEqualizerMap :
     intro m
     simp [tensorProductDescentLeft, tensorProductDescentRight])
 
+/--
+@isnad1 id=eq.0h4v.s12.e5e5fd102582 from=translated src=- shape=e8a03f4d vocab=19a8cbf7
+-/
 @[simp]
 theorem tensorProductEqualizerMap_coe (m : M) :
     (tensorProductEqualizerMap (R := R) (S := S) (M := M) m : S ⊗[R] M) =

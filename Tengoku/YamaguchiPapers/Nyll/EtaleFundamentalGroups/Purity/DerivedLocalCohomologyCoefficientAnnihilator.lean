@@ -34,7 +34,9 @@ open CategoryTheory Limits Opposite
 variable {R : Type u} [CommRing R]
 
 /-- A scalar annihilating a coefficient module annihilates its local
-cohomology with any support, in every degree.-/
+cohomology with any support, in every degree.
+@isnad1 id=eq.1h6v.s9.3255843549bc from=translated src=- shape=56f4c86e vocab=22c0142c
+-/
 theorem derivedLocalCohomologyModule_smul_eq_zero_of_coefficients
     (I : Ideal R) (M : ModuleCat.{u} R) (n : ℕ) (a : R)
     (ha : ∀ m : M, a • m = 0)
@@ -58,7 +60,9 @@ theorem derivedLocalCohomologyModule_smul_eq_zero_of_coefficients
 
 /-- In a coefficient short exact sequence, an annihilator of the last
 module and an annihilator of the middle cohomology multiply to annihilate
-the first cohomology.-/
+the first cohomology.
+@isnad1 id=eq.3h7v.s12.afb652b5a912 from=translated src=- shape=cded1c45 vocab=c3d1a30f
+-/
 theorem derivedLocalCohomologyModule_mul_smul_eq_zero_of_shortExact
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) (a b : R) (ha : ∀ m : S.X₃, a • m = 0)
@@ -83,7 +87,9 @@ theorem derivedLocalCohomologyModule_mul_smul_eq_zero_of_shortExact
 
 /-- For a short exact sequence with injective middle term, an annihilator
 in degree `n` of the last coefficient annihilates degree `n + 1` of the
-first coefficient. This is scalar-compatible dimension shifting.-/
+first coefficient. This is scalar-compatible dimension shifting.
+@isnad1 id=eq.2h6v.s11.6e3d1f4869e2 from=translated src=- shape=315e8f9d vocab=b2926f2c
+-/
 theorem derivedLocalCohomologyModule_smul_eq_zero_of_injective_middle
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     [Module.Injective R S.X₂] (n : ℕ) (a : R)

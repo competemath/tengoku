@@ -20,7 +20,9 @@ namespace ProCGroups.FiniteStepSolvableQuotients
 
 universe u v
 
-/-- A homomorphism out of a prime-order group is injective exactly when it is nontrivial.-/
+/-- A homomorphism out of a prime-order group is injective exactly when it is nontrivial.
+@isnad1 id=iff.1h3v.s7.4d20aed70510 from=translated src=- shape=7ffd4440 vocab=82dc7433
+-/
 theorem injective_iff_ne_one_of_prime_card
     {B : Type u} {A : Type v} [Group B] [Group A]
     (ρ : B →* A) (hB : Nat.Prime (Nat.card B)) :
@@ -48,7 +50,9 @@ theorem injective_iff_ne_one_of_prime_card
     · exact (MonoidHom.ker_eq_bot_iff ρ).1 hbot
     · exact False.elim (hnontrivial (MonoidHom.ker_eq_top_iff.1 htop))
 
-/-- A noninjective homomorphism from a finite group has a prime-order subgroup in its kernel.-/
+/-- A noninjective homomorphism from a finite group has a prime-order subgroup in its kernel.
+@isnad1 id=ex.1h3v.s7.8fdd2c2846b5 from=translated src=- shape=92ec4def vocab=9738f563
+-/
 theorem exists_prime_card_subgroup_le_ker_of_not_injective
     {B : Type u} {A : Type v} [Group B] [Finite B] [Group A]
     (ρ : B →* A) (hρ : ¬ Function.Injective ρ) :

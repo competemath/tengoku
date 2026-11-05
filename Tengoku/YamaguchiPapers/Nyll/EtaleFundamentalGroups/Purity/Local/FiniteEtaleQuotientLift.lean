@@ -26,7 +26,9 @@ open scoped TensorProduct
 
 universe u
 
-/-- A surjective local homomorphism induces an isomorphism on residue fields.-/
+/-- A surjective local homomorphism induces an isomorphism on residue fields.
+@isnad1 id=bijectiv.1h3v.s8.2ddbd8294a0c from=translated src=- shape=4c8e581b vocab=e1c1a778
+-/
 theorem residueField_map_bijective_of_surjective
     {R S : Type u} [CommRing R] [CommRing S]
     [IsLocalRing R] [IsLocalRing S]

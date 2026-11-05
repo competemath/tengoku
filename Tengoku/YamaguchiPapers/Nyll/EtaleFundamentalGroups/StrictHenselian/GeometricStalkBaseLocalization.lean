@@ -50,7 +50,9 @@ def geometricStalkBaseLocalizationMap :
     (g := geometricStalkStructureMap φ) (geometricBaseDenominatorUnit φ)
 
 /-- The prime selected on an actual neighborhood lies over the actual kernel
-prime on the affine base.-/
+prime on the affine base.
+@isnad1 id=eq.0h5v.s16.ca772948ef80 from=translated src=- shape=dc6197a4 vocab=6c0d2ff3
+-/
 theorem geometricNeighborhoodPrime_comap_structure
     (V : (Spec (CommRingCat.of R)).Etale)
     (v : (Scheme.pointEtaleNeighborhoods (Spec.map (CommRingCat.ofHom φ))).fiber.obj V) :

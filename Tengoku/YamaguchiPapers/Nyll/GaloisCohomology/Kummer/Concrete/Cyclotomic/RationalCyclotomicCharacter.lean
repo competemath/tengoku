@@ -31,7 +31,9 @@ namespace KummerTheory
 open ClassFormation
 
 /-- The actual rational cyclotomic field contains primitive roots of
-unity of every nonzero order.-/
+unity of every nonzero order.
+@isnad1 id=hasenoug.0h1v.s10.12ea24cc5b34 from=translated src=- shape=c783079e vocab=cfcdc168
+-/
 noncomputable instance rationalCyclotomicField_hasEnoughRootsOfUnity
     (n : ℕ) [NeZero n] :
     HasEnoughRootsOfUnity rationalCyclotomicField n where
@@ -61,7 +63,9 @@ noncomputable def rationalCyclotomicCharacterPrimeProduct :
         p.1 ℚ rationalCyclotomicField
 
 /-- Evaluation at a prime is the corresponding mathlib cyclotomic
-character.-/
+character.
+@isnad1 id=eq.0h2v.s18.164b4786b14a from=translated src=- shape=32a9c970 vocab=2bd8bf97
+-/
 @[simp]
 theorem rationalCyclotomicCharacterPrimeProduct_apply
     (σ : rationalCyclotomicField ≃ₐ[ℚ] rationalCyclotomicField)
@@ -77,16 +81,24 @@ section PrimePowerCharacter
 
 -- Expose the exact prime-power index to instance synthesis. Both
 -- proposition-valued instances are supplied by the existing canonical factories.
+/--
+@isnad1 id=numberfi.0h2v.s12.ddd910d89f8f from=translated src=- shape=e27b3ee4 vocab=74e96882
+-/
 local instance primePowerLevelNumberField (p : Nat.Primes) (k : ℕ) :
     NumberField (rationalCyclotomicLevel ⟨p.1 ^ k, pow_pos p.2.pos k⟩) :=
   rationalCyclotomicLevel_numberField ⟨p.1 ^ k, pow_pos p.2.pos k⟩
 
+/--
+@isnad1 id=isgalois.0h2v.s14.68a1b9e29cc6 from=translated src=- shape=9b4ce121 vocab=9d6d76e8
+-/
 local instance primePowerLevelIsGalois (p : Nat.Primes) (k : ℕ) :
     IsGalois ℚ (rationalCyclotomicLevel ⟨p.1 ^ k, pow_pos p.2.pos k⟩) :=
   rationalCyclotomicLevel_isGalois ⟨p.1 ^ k, pow_pos p.2.pos k⟩
 
 /-- Reduction of the `p`-coordinate modulo `p ^ k` is the standard
-mathlib character of the finite internal cyclotomic level.-/
+mathlib character of the finite internal cyclotomic level.
+@isnad1 id=eq.0h3v.s20.cdbca72b273c from=translated src=- shape=06738a40 vocab=e5bc6d36
+-/
 theorem rationalCyclotomicCharacterPrimeProduct_toZModPow
     (σ : rationalCyclotomicField ≃ₐ[ℚ] rationalCyclotomicField)
     (p : Nat.Primes) (k : ℕ) :

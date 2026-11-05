@@ -83,7 +83,9 @@ noncomputable def initialGeneratorConvergingPair : GeneratorConvergingPair (G :=
       (top_unique (Subgroup.le_topologicalClosure (⊤ : Subgroup G)) :
         (⊤ : Subgroup G).topologicalClosure = ⊤)
 
-/-- A finite subset of a chain has an upper element from that subset.-/
+/-- A finite subset of a chain has an upper element from that subset.
+@isnad1 id=ex.3h3v.s6.f8ea7a5c2e57 from=translated src=- shape=f608accf vocab=a9c33801
+-/
 theorem finite_subset_chain_has_upper {α : Type*} [Preorder α] {c : Set α}
     (hc : IsChain (· ≤ ·) c) :
     ∀ s : Finset α, ↑s ⊆ c → s.Nonempty → ∃ m ∈ s, ∀ z ∈ s, z ≤ m := by
@@ -130,7 +132,9 @@ theorem finite_subset_chain_has_upper {α : Type*} [Preorder α] {c : Set α}
 omit [T2Space G] [TotallyDisconnectedSpace G] in
 /--
 If the infimum of the closed normal subgroups in a chain lies in an open subgroup, then one
-stage already lies in that open subgroup.-/
+stage already lies in that open subgroup.
+@isnad1 id=ex.3h3v.s7.947188ee363f from=translated src=- shape=63f9d043 vocab=cd75916f
+-/
 theorem exists_pair_le_openSubgroup_of_chain_iInf_le
     {c : Set (GeneratorConvergingPair (G := G))}
     (hc : IsChain (· ≤ ·) c) (hcne : c.Nonempty)
@@ -244,7 +248,9 @@ noncomputable def chainUpperBoundOfNonempty
       exact ⟨x, mem_iUnion.mpr ⟨p, hx⟩, rfl⟩)
 
 omit [T2Space G] in
-/-- The generator-converging-pair order is inductive over chains.-/
+/-- The generator-converging-pair order is inductive over chains.
+@isnad1 id=bddabove.1h2v.s6.25a08a56b88b from=translated src=- shape=f075b057 vocab=29a557b2
+-/
 theorem chain_bounded_generatorConvergingPair
     (c : Set (GeneratorConvergingPair (G := G)))
     (hc : IsChain (· ≤ ·) c) :
@@ -273,7 +279,9 @@ theorem chain_bounded_generatorConvergingPair
 omit [T2Space G] [TotallyDisconnectedSpace G] in
 /--
 An open-normal quotient of a closed normal subgroup has a finite generating set modulo the
-intersection with the open normal subgroup.-/
+intersection with the open normal subgroup.
+@isnad1 id=ex.1h3v.s7.d5a603bc7e15 from=translated src=- shape=288ab901 vocab=86670ae2
+-/
 theorem exists_finite_subset_generating_subgroup_mod_openNormal
     {M : Subgroup G}
     (hMclosed : IsClosed (M : Set G)) (U : OpenNormalSubgroup G) :

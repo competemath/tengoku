@@ -22,7 +22,9 @@ shows that the maximal pro-q quotient of a pro-p group is trivial.
 namespace ProCGroups.ProC
 universe u
 
-/-- A Hausdorff group which is both pro-p and pro-q for distinct primes is trivial.-/
+/-- A Hausdorff group which is both pro-p and pro-q for distinct primes is trivial.
+@isnad1 id=subsingl.3h3v.s5.5b0ea984af9b from=translated src=- shape=e6633e5f vocab=ca07a66b
+-/
 theorem subsingleton_of_hasOpenNormalBasisInClass_distinct_primes
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G]
     (p q : ℕ) [Fact p.Prime] [Fact q.Prime] (hpq : p ≠ q)
@@ -43,7 +45,9 @@ theorem subsingleton_of_hasOpenNormalBasisInClass_distinct_primes
       (orderOf_dvd_of_pow_eq_one ha) (orderOf_dvd_of_pow_eq_one hb))
   exact (QuotientGroup.eq_one_iff (N := (U.1 : Subgroup G)) x).mp heq
 
-/-- The maximal pro-q quotient of a pro-p group is trivial for distinct primes.-/
+/-- The maximal pro-q quotient of a pro-p group is trivial for distinct primes.
+@isnad1 id=subsingl.2h3v.s6.80be3af3111f from=translated src=- shape=baf50ff6 vocab=5871e369
+-/
 theorem residualQuotient_subsingleton_of_distinct_primes
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]

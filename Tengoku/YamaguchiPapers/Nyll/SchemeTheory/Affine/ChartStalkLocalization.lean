@@ -36,7 +36,9 @@ def IsAffineOpen.stalkIsoLocalization :
   asIso (hU.fromSpec.stalkMap p) ≪≫ Spec.stalkIso Γ(X, U) p
 
 /-- The affine-chart local-ring isomorphism intertwines the two actual maps
-back to the ambient scheme.-/
+back to the ambient scheme.
+@isnad1 id=eq.1h3v.s15.ac7a7e6b7353 from=translated src=- shape=6882eb93 vocab=9fa8100c
+-/
 @[reassoc]
 theorem IsAffineOpen.SpecMap_stalkIsoLocalization_fromSpecStalk :
     Spec.map (hU.stalkIsoLocalization p).hom ≫ X.fromSpecStalk (hU.fromSpec p) =

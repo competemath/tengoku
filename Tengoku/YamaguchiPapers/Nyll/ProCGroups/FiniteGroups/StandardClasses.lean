@@ -25,7 +25,9 @@ universe u v
 
 namespace FiniteGroupClass
 
-/-- If \(a \nmid b\), then some prime factor has a larger exponent in \(a\) than in \(b\).-/
+/-- If \(a \nmid b\), then some prime factor has a larger exponent in \(a\) than in \(b\).
+@isnad1 id=ex.3h2v.s6.3b95e07187fc from=translated src=- shape=0d5271cb vocab=ca401e7d
+-/
 theorem exists_factorization_lt_of_not_dvd
     {a b : ℕ} (ha : a ≠ 0) (hb : b ≠ 0) (hndvd : ¬ a ∣ b) :
     ∃ p, b.factorization p < a.factorization p := by
@@ -36,13 +38,17 @@ theorem exists_factorization_lt_of_not_dvd
     exact h p
   exact hndvd ((Nat.factorization_le_iff_dvd ha hb).1 hle)
 
-/-- The p-adic exponent of a positive integer is at most the integer itself.-/
+/-- The p-adic exponent of a positive integer is at most the integer itself.
+@isnad1 id=le.1h2v.s4.fee7bbf13c29 from=translated src=- shape=ea3a2371 vocab=06eca969
+-/
 theorem nat_factorization_le_self_of_prime
     {A p : ℕ} (hp : Nat.Prime p) :
     A.factorization p ≤ A :=
   Nat.factorization_le_of_le_pow (le_of_lt (Nat.lt_pow_self (n := A) (a := p) hp.one_lt))
 
-/-- The depth \((K*d)^(A+1)\) is large enough for the GCD-conditioned cyclic reduction.-/
+/-- The depth \((K*d)^(A+1)\) is large enough for the GCD-conditioned cyclic reduction.
+@isnad1 id=dvd.3h3v.s6.5b498bf1b06d from=translated src=- shape=ae764e35 vocab=f77181e3
+-/
 theorem gcd_mul_dvd_pow_depth
     {K d A : ℕ} (hK : 0 < K) (hd : 0 < d) (hA : 0 < A) :
     Nat.gcd (d * A) (K * (K * d) ^ (A + 1)) ∣ (K * d) ^ (A + 1) := by
@@ -168,20 +174,26 @@ def IsSigmaNumber (sigma : Set ℕ) (n : ℕ) : Prop :=
 
 namespace IsSigmaNumber
 
-/-- Every divisor of a \(\Sigma\)-number is again a \(\Sigma\)-number.-/
+/-- Every divisor of a \(\Sigma\)-number is again a \(\Sigma\)-number.
+@isnad1 id=issigman.2h3v.s4.5abb2dea2adb from=translated src=- shape=c3c20eef vocab=487557ac
+-/
 theorem of_dvd {sigma : Set ℕ} {m n : ℕ} (hn : IsSigmaNumber sigma n) (hmn : m ∣ n) :
     IsSigmaNumber sigma m := by
   intro p hp hpsigma hpm
   exact hn p hp hpsigma (dvd_trans hpm hmn)
 
-/-- The product of two \(\Sigma\)-numbers is a \(\Sigma\)-number.-/
+/-- The product of two \(\Sigma\)-numbers is a \(\Sigma\)-number.
+@isnad1 id=issigman.2h3v.s4.3a216841a6c4 from=translated src=- shape=26c66de5 vocab=154b890b
+-/
 theorem mul {sigma : Set ℕ} {m n : ℕ} (hm : IsSigmaNumber sigma m)
     (hn : IsSigmaNumber sigma n) :
     IsSigmaNumber sigma (m * n) := by
   intro p hp hpsigma hpmn
   exact (hp.not_dvd_mul (hm p hp hpsigma) (hn p hp hpsigma)) hpmn
 
-/-- A finite product of \(\Sigma\)-numbers is a \(\Sigma\)-number.-/
+/-- A finite product of \(\Sigma\)-numbers is a \(\Sigma\)-number.
+@isnad1 id=issigman.1h4v.s5.240a2bfc9653 from=translated src=- shape=a3676b75 vocab=39cde1e6
+-/
 theorem prod {sigma : Set ℕ} {ι : Type*} (s : Finset ι) (f : ι → ℕ)
     (hf : ∀ i ∈ s, IsSigmaNumber sigma (f i)) :
     IsSigmaNumber sigma (s.prod f) := by
@@ -196,7 +208,9 @@ theorem prod {sigma : Set ℕ} {ι : Type*} (s : Finset ι) (f : ι → ℕ)
         fun i hi => hf i (Finset.mem_insert_of_mem hi)
       simpa [Finset.prod_insert ha] using mul (sigma := sigma) hfa (hs hfs)
 
-/-- A natural-number power of a \(\Sigma\)-number is a \(\Sigma\)-number.-/
+/-- A natural-number power of a \(\Sigma\)-number is a \(\Sigma\)-number.
+@isnad1 id=issigman.1h3v.s4.3248b235e2cd from=translated src=- shape=cd8e4aa2 vocab=21f0334b
+-/
 theorem pow {sigma : Set ℕ} {n k : ℕ} (hn : IsSigmaNumber sigma n) :
     IsSigmaNumber sigma (n ^ k) := by
   induction k with
@@ -207,7 +221,9 @@ theorem pow {sigma : Set ℕ} {n k : ℕ} (hn : IsSigmaNumber sigma n) :
       rw [pow_succ]
       exact mul ih hn
 
-/-- A prime power whose prime lies in \(\Sigma\) is a \(\Sigma\)-number.-/
+/-- A prime power whose prime lies in \(\Sigma\) is a \(\Sigma\)-number.
+@isnad1 id=issigman.2h3v.s5.1499d874d69e from=translated src=- shape=58c8e679 vocab=7b343448
+-/
 theorem prime_pow_of_mem {sigma : Set ℕ} {p k : ℕ}
     (hpsigma : p ∈ sigma) (hp : Nat.Prime p) :
     IsSigmaNumber sigma (p ^ k) := by
@@ -253,7 +269,9 @@ section
 
 variable {p : ℕ}
 
-/-- Finite products of abstract \(p\)-groups are \(p\)-groups.-/
+/-- Finite products of abstract \(p\)-groups are \(p\)-groups.
+@isnad1 id=ispgroup.1h3v.s5.b63bee423bd4 from=translated src=- shape=4ca388a7 vocab=7cfccd02
+-/
 theorem isPGroup_pi {ι : Type u} [Finite ι] {G : ι → Type v}
     [∀ i, Group (G i)] (hG : ∀ i, IsPGroup p (G i)) :
     IsPGroup p ((i : ι) → G i) := by
@@ -273,7 +291,9 @@ theorem isPGroup_pi {ι : Type u} [Finite ι] {G : ι → Type v}
       rw [pow_mul]
     _ = 1 := by simp only [hk i, one_pow]
 
-/-- The class of finite \(p\)-groups is a formation.-/
+/-- The class of finite \(p\)-groups is a formation.
+@isnad1 id=formatio.0h1v.s3.c43cb9b23132 from=translated src=- shape=9ee3c16b vocab=cafb12f8
+-/
 theorem pGroup_formation (p : ℕ) [Fact (Nat.Prime p)] :
     FiniteGroupClass.Formation (FiniteGroupClass.pGroup p) := by
   refine ⟨?_, ?_⟩
@@ -286,13 +306,17 @@ theorem pGroup_formation (p : ℕ) [Fact (Nat.Prime p)] :
     have hPi : IsPGroup p ((i : ι) → H i) := isPGroup_pi (p := p) fun i => (hH i).2
     exact ⟨Finite.of_injective f hf, hPi.of_injective f hf⟩
 
-/-- Subgroups of finite \(p\)-groups are finite \(p\)-groups.-/
+/-- Subgroups of finite \(p\)-groups are finite \(p\)-groups.
+@isnad1 id=subgroup.0h1v.s3.a52728b5704b from=translated src=- shape=9ee3c16b vocab=4c09f0dd
+-/
 theorem pGroup_subgroupClosed (p : ℕ) [Fact (Nat.Prime p)] : SubgroupClosed (pGroup p) := by
   intro G _ H hG
   rcases hG with ⟨hfin, hpG⟩
   exact ⟨Finite.of_injective ((↑) : H → G) Subtype.coe_injective, hpG.to_subgroup H⟩
 
-/-- A group is finite when a normal subgroup and the corresponding quotient are finite.-/
+/-- A group is finite when a normal subgroup and the corresponding quotient are finite.
+@isnad1 id=finite.0h2v.s5.224ef92800c7 from=translated src=- shape=1ef1b324 vocab=4acbc589
+-/
 theorem finite_of_finite_normalSubgroup_and_quotient
     {E : Type u} [Group E] (N : Subgroup E) [N.Normal]
     [Finite N] [Finite (E ⧸ N)] :
@@ -313,7 +337,9 @@ theorem finite_of_finite_normalSubgroup_and_quotient
     simp only [QuotientGroup.mk'_apply, mul_assoc, inv_mul_cancel, mul_one, f, q]
   exact Finite.of_surjective f hsurj
 
-/-- Extensions of finite \(p\)-groups are finite \(p\)-groups.-/
+/-- Extensions of finite \(p\)-groups are finite \(p\)-groups.
+@isnad1 id=extensio.0h1v.s3.7c17c8f28c8e from=translated src=- shape=9ee3c16b vocab=a936ac5d
+-/
 theorem pGroup_extensionClosed (p : ℕ) [Fact (Nat.Prime p)] :
     ExtensionClosed (pGroup p) := by
   intro E _ N _ hN hQ
@@ -336,7 +362,9 @@ theorem pGroup_extensionClosed (p : ℕ) [Fact (Nat.Prime p)] :
       exact ⟨⟨x, by simp only [Subgroup.mem_top]⟩, rfl⟩
   exact ⟨hEfin, hEp⟩
 
-/-- The class of finite \(p\)-groups is hereditary under subgroups.-/
+/-- The class of finite \(p\)-groups is hereditary under subgroups.
+@isnad1 id=heredita.0h1v.s3.aecd7dd4ea69 from=translated src=- shape=9ee3c16b vocab=dd688186
+-/
 theorem pGroup_hereditary (p : ℕ) [Fact (Nat.Prime p)] : Hereditary (pGroup p) :=
   Hereditary.of_subgroupClosed_isomClosed
     (pGroup_subgroupClosed p)
@@ -348,7 +376,9 @@ section
 
 variable {sigma : Set ℕ}
 
-/-- `sigmaGroup` is closed under group isomorphism.-/
+/-- `sigmaGroup` is closed under group isomorphism.
+@isnad1 id=isomclos.0h1v.s2.c2d1fb045928 from=translated src=- shape=94c7f951 vocab=dee81195
+-/
 theorem sigmaGroup_isomClosed (sigma : Set ℕ) : IsomClosed (sigmaGroup sigma) := by
   intro G H _ _ hGH hG
   rcases hGH with ⟨e⟩
@@ -356,14 +386,18 @@ theorem sigmaGroup_isomClosed (sigma : Set ℕ) : IsomClosed (sigmaGroup sigma) 
   refine ⟨Finite.of_equiv G e.toEquiv, ?_⟩
   simpa [Nat.card_congr e.toEquiv] using hsigma
 
-/-- `sigmaGroup` is closed under subgroups.-/
+/-- `sigmaGroup` is closed under subgroups.
+@isnad1 id=subgroup.0h1v.s2.0e25e424b085 from=translated src=- shape=94c7f951 vocab=08d9cf79
+-/
 theorem sigmaGroup_subgroupClosed (sigma : Set ℕ) : SubgroupClosed (sigmaGroup sigma) := by
   intro G _ H hG
   rcases hG with ⟨hfin, hsigma⟩
   refine ⟨Finite.of_injective ((↑) : H → G) Subtype.coe_injective, ?_⟩
   exact IsSigmaNumber.of_dvd (sigma := sigma) hsigma (Subgroup.card_subgroup_dvd_card H)
 
-/-- `sigmaGroup` is closed under quotients.-/
+/-- `sigmaGroup` is closed under quotients.
+@isnad1 id=quotient.0h1v.s2.bf22ed7bf51e from=translated src=- shape=94c7f951 vocab=9f8b4bcc
+-/
 theorem sigmaGroup_quotientClosed (sigma : Set ℕ) : QuotientClosed (sigmaGroup sigma) := by
   intro G _ N _ hG
   rcases hG with ⟨hfin, hsigma⟩
@@ -371,7 +405,9 @@ theorem sigmaGroup_quotientClosed (sigma : Set ℕ) : QuotientClosed (sigmaGroup
   · infer_instance
   · exact IsSigmaNumber.of_dvd (sigma := sigma) hsigma (Subgroup.card_quotient_dvd_card N)
 
-/-- `sigmaGroup` is closed under finite products.-/
+/-- `sigmaGroup` is closed under finite products.
+@isnad1 id=finitepr.0h1v.s2.65420a948fbe from=translated src=- shape=94c7f951 vocab=6f68fd37
+-/
 theorem sigmaGroup_finiteProductClosed (sigma : Set ℕ) : FiniteProductClosed (sigmaGroup sigma)
     := by
   intro ι _ A _ hA
@@ -382,16 +418,22 @@ theorem sigmaGroup_finiteProductClosed (sigma : Set ℕ) : FiniteProductClosed (
       IsSigmaNumber.prod (sigma := sigma) Finset.univ (fun i => Nat.card (A i))
         (fun i _ => (hA i).2)
 
-/-- `sigmaGroup` is a finite-group variety.-/
+/-- `sigmaGroup` is a finite-group variety.
+@isnad1 id=variety.0h1v.s2.c2a2e72809f5 from=translated src=- shape=94c7f951 vocab=f4e025b4
+-/
 theorem sigmaGroup_variety (sigma : Set ℕ) : Variety (sigmaGroup sigma) := by
   refine ⟨sigmaGroup_subgroupClosed sigma, sigmaGroup_quotientClosed sigma,
     sigmaGroup_finiteProductClosed sigma⟩
 
-/-- `sigmaGroup` is a formation of finite groups.-/
+/-- `sigmaGroup` is a formation of finite groups.
+@isnad1 id=formatio.0h1v.s2.ae3d602b3a3d from=translated src=- shape=94c7f951 vocab=15e3648d
+-/
 theorem sigmaGroup_formation (sigma : Set ℕ) : Formation (sigmaGroup sigma) :=
   variety_formation (sigmaGroup_variety sigma) (sigmaGroup_isomClosed sigma)
 
-/-- Finite `Σ`-groups are closed under extensions.-/
+/-- Finite `Σ`-groups are closed under extensions.
+@isnad1 id=extensio.0h1v.s2.5975c90f7b0a from=translated src=- shape=94c7f951 vocab=81409cd6
+-/
 theorem sigmaGroup_extensionClosed (sigma : Set ℕ) :
     ExtensionClosed (sigmaGroup sigma) := by
   intro E _ N _ hN hQ
@@ -405,20 +447,26 @@ theorem sigmaGroup_extensionClosed (sigma : Set ℕ) :
   rw [hcard]
   exact IsSigmaNumber.mul hsigmaQ hsigmaN
 
-/-- Finite `Σ`-groups form a Melnikov formation.-/
+/-- Finite `Σ`-groups form a Melnikov formation.
+@isnad1 id=melnikov.0h1v.s2.2999cd8e9631 from=translated src=- shape=94c7f951 vocab=ca82b0c2
+-/
 theorem sigmaGroup_melnikovFormation (sigma : Set ℕ) :
     MelnikovFormation (sigmaGroup sigma) where
   formation := sigmaGroup_formation sigma
   normalSubgroupClosed := fun N _ hG => sigmaGroup_subgroupClosed sigma N hG
   extensionClosed := sigmaGroup_extensionClosed sigma
 
-/-- Finite `Σ`-groups form a full formation.-/
+/-- Finite `Σ`-groups form a full formation.
+@isnad1 id=fullform.0h1v.s2.06bc90657bd3 from=translated src=- shape=94c7f951 vocab=a2c8e8d8
+-/
 theorem sigmaGroup_fullFormation (sigma : Set ℕ) :
     FullFormation (sigmaGroup sigma) where
   melnikovFormation := sigmaGroup_melnikovFormation sigma
   subgroupClosed := sigmaGroup_subgroupClosed sigma
 
-/-- A positive `Σ`-number gives an allowed finite cyclic `Σ`-group.-/
+/-- A positive `Σ`-number gives an allowed finite cyclic `Σ`-group.
+@isnad1 id=pred.2h2v.s5.a2c797abf9b8 from=translated src=- shape=7a85edd2 vocab=e2fe61d8
+-/
 theorem sigmaGroup_cyclicZMod
     {sigma : Set ℕ} {n : ℕ} (hn : 0 < n)
     (hsigma : IsSigmaNumber sigma n) :
@@ -434,7 +482,9 @@ theorem sigmaGroup_cyclicZMod
       _ = n := by simp only [Nat.card_eq_fintype_card, Fintype.card_multiplicative, ZMod.card]
   simpa [hcard] using hsigma
 
-/-- A nonempty set of primes supplies a nontrivial finite cyclic `Σ`-group.-/
+/-- A nonempty set of primes supplies a nontrivial finite cyclic `Σ`-group.
+@isnad1 id=ex.1h1v.s5.9487e192b42c from=translated src=- shape=6a8bea40 vocab=8c8bc938
+-/
 theorem sigmaGroup_nontrivialCyclic
     {sigma : Set ℕ} (hsigma : ∃ p, p ∈ sigma ∧ Nat.Prime p) :
     ∃ (A : Type u) (_ : Group A) (_ : Finite A),
@@ -452,7 +502,9 @@ theorem sigmaGroup_nontrivialCyclic
     simpa using
       (IsSigmaNumber.prime_pow_of_mem (sigma := sigma) (p := p) (k := 1) hpsigma hp)
 
-/-- Product of a finite `Σ`-group with the concrete cyclic group `ZMod N`.-/
+/-- Product of a finite `Σ`-group with the concrete cyclic group `ZMod N`.
+@isnad1 id=pred.2h4v.s5.5e7281339bcb from=translated src=- shape=609628b4 vocab=7ae7dfaa
+-/
 theorem sigmaGroup_prod_multiplicativeZMod
     {sigma : Set ℕ} {Q : Type u} [Group Q]
     (hQ : sigmaGroup sigma Q)
@@ -469,7 +521,9 @@ theorem sigmaGroup_prod_multiplicativeZMod
   rw [Nat.card_prod, hcard]
   exact IsSigmaNumber.mul hQsigma hNsigma
 
-/-- A nontrivial finite `Σ`-group power supplies a coefficient prime and depth.-/
+/-- A nontrivial finite `Σ`-group power supplies a coefficient prime and depth.
+@isnad1 id=ex.1h5v.s6.50070f5dc7af from=translated src=- shape=1b089f0a vocab=fe871118
+-/
 theorem exists_prime_power_orderOf_gt_padicValNat_of_zpow_ne_one
     {sigma : Set ℕ} {G : Type u} [Group G] [Finite G]
     (hG : sigmaGroup sigma G) {g : G} {n : ℤ} (hgn : g ^ n ≠ 1) :
@@ -525,7 +579,9 @@ theorem exists_prime_power_orderOf_gt_padicValNat_of_zpow_ne_one
 
 end
 
-/-- Finite abelian groups are closed under subgroups.-/
+/-- Finite abelian groups are closed under subgroups.
+@isnad1 id=subgroup.0h0v.s1.9803db04f5b1 from=translated src=- shape=49959d42 vocab=469e8f1f
+-/
 theorem abelian_subgroupClosed : SubgroupClosed abelian := by
   intro G _ H hG
   rcases hG with ⟨hfin, hcomm⟩
@@ -533,7 +589,9 @@ theorem abelian_subgroupClosed : SubgroupClosed abelian := by
   intro a b
   exact Subtype.ext (hcomm a.val b.val)
 
-/-- Finite abelian groups are closed under quotients.-/
+/-- Finite abelian groups are closed under quotients.
+@isnad1 id=quotient.0h0v.s1.3a86d4605db9 from=translated src=- shape=49959d42 vocab=e8be67e3
+-/
 theorem abelian_quotientClosed : QuotientClosed abelian := by
   intro G _ N _ hG
   rcases hG with ⟨hfin, hcomm⟩
@@ -546,7 +604,9 @@ theorem abelian_quotientClosed : QuotientClosed abelian := by
       ((congrArg (QuotientGroup.mk' N) (hcomm x y)).trans
         ((QuotientGroup.mk' N).map_mul y x))
 
-/-- Finite abelian groups are closed under finite direct products.-/
+/-- Finite abelian groups are closed under finite direct products.
+@isnad1 id=finitepr.0h0v.s1.dae64603085b from=translated src=- shape=49959d42 vocab=ea3924e9
+-/
 theorem abelian_finiteProductClosed : FiniteProductClosed abelian := by
   intro ι _ G _ hG
   change Finite ((i : ι) → G i) ∧ ∀ a b : ((i : ι) → G i), a * b = b * a
@@ -557,12 +617,16 @@ theorem abelian_finiteProductClosed : FiniteProductClosed abelian := by
     funext i
     exact (hG i).2 (a i) (b i)
 
-/-- Finite abelian groups form a variety.-/
+/-- Finite abelian groups form a variety.
+@isnad1 id=variety.0h0v.s1.1c415a5d95ce from=translated src=- shape=49959d42 vocab=f1e6b7fc
+-/
 theorem abelian_variety : Variety abelian := by
   refine ⟨abelian_subgroupClosed, abelian_quotientClosed,
     abelian_finiteProductClosed⟩
 
-/-- Finite abelian groups are closed under isomorphism.-/
+/-- Finite abelian groups are closed under isomorphism.
+@isnad1 id=isomclos.0h0v.s1.e363d0c48d2a from=translated src=- shape=49959d42 vocab=2c0fd910
+-/
 theorem abelian_isomClosed : IsomClosed abelian := by
   intro G H _ _ hGH hG
   rcases hGH with ⟨e⟩
@@ -572,11 +636,15 @@ theorem abelian_isomClosed : IsomClosed abelian := by
   have h := hcomm (e.symm a) (e.symm b)
   simpa using congrArg e h
 
-/-- Finite abelian groups form a formation.-/
+/-- Finite abelian groups form a formation.
+@isnad1 id=formatio.0h0v.s1.039606e59739 from=translated src=- shape=49959d42 vocab=4ab0cf02
+-/
 theorem abelian_formation : Formation abelian :=
   variety_formation abelian_variety abelian_isomClosed
 
-/-- Subgroups of finite abelian groups of bounded exponent again have bounded exponent.-/
+/-- Subgroups of finite abelian groups of bounded exponent again have bounded exponent.
+@isnad1 id=subgroup.0h1v.s2.7aedfee58d2b from=translated src=- shape=76a08d12 vocab=f9694589
+-/
 theorem abelianExponent_subgroupClosed (n : ℕ) : SubgroupClosed (abelianExponent n) := by
   intro G _ H hG
   rcases hG with ⟨hfin, hcomm, hexp⟩
@@ -588,7 +656,9 @@ theorem abelianExponent_subgroupClosed (n : ℕ) : SubgroupClosed (abelianExpone
     ext
     exact hexp g.1
 
-/-- Quotients of finite abelian groups of bounded exponent again have bounded exponent.-/
+/-- Quotients of finite abelian groups of bounded exponent again have bounded exponent.
+@isnad1 id=quotient.0h1v.s2.e2d7b39b30ad from=translated src=- shape=76a08d12 vocab=d6b84391
+-/
 theorem abelianExponent_quotientClosed (n : ℕ) : QuotientClosed (abelianExponent n) := by
   intro G _ N _ hG
   rcases hG with ⟨hfin, hcomm, hexp⟩
@@ -601,7 +671,9 @@ theorem abelianExponent_quotientClosed (n : ℕ) : QuotientClosed (abelianExpone
   rw [hexp x]
   exact (QuotientGroup.mk' N).map_one
 
-/-- Finite products of finite abelian groups of bounded exponent again have bounded exponent.-/
+/-- Finite products of finite abelian groups of bounded exponent again have bounded exponent.
+@isnad1 id=finitepr.0h1v.s2.01d530e3bb8c from=translated src=- shape=76a08d12 vocab=34f72ca4
+-/
 theorem abelianExponent_finiteProductClosed (n : ℕ) :
     FiniteProductClosed (abelianExponent n) := by
   intro ι _ G _ hG
@@ -615,12 +687,16 @@ theorem abelianExponent_finiteProductClosed (n : ℕ) :
     funext i
     exact (hG i).2.2 (g i)
 
-/-- abelianExponent is a finite-group variety.-/
+/-- abelianExponent is a finite-group variety.
+@isnad1 id=variety.0h1v.s2.25f1c1974422 from=translated src=- shape=76a08d12 vocab=95fe8467
+-/
 theorem abelianExponent_variety (n : ℕ) : Variety (abelianExponent n) := by
   refine ⟨abelianExponent_subgroupClosed n,
     abelianExponent_quotientClosed n, abelianExponent_finiteProductClosed n⟩
 
-/-- Finite abelian groups of exponent dividing \(n\) are closed under isomorphism.-/
+/-- Finite abelian groups of exponent dividing \(n\) are closed under isomorphism.
+@isnad1 id=isomclos.0h1v.s2.6f75d8a6b699 from=translated src=- shape=76a08d12 vocab=3e857920
+-/
 theorem abelianExponent_isomClosed (n : ℕ) : IsomClosed (abelianExponent n) := by
   intro G H _ _ hGH hG
   rcases hGH with ⟨e⟩
@@ -633,11 +709,15 @@ theorem abelianExponent_isomClosed (n : ℕ) : IsomClosed (abelianExponent n) :=
     have h := hexp (e.symm a)
     simpa using congrArg e h
 
-/-- Finite abelian groups of exponent dividing \(n\) form a formation.-/
+/-- Finite abelian groups of exponent dividing \(n\) form a formation.
+@isnad1 id=formatio.0h1v.s2.af85b90bfd31 from=translated src=- shape=76a08d12 vocab=79840793
+-/
 theorem abelianExponent_formation (n : ℕ) : Formation (abelianExponent n) :=
   variety_formation (abelianExponent_variety n) (abelianExponent_isomClosed n)
 
-/-- Finite cyclic groups are closed under isomorphism.-/
+/-- Finite cyclic groups are closed under isomorphism.
+@isnad1 id=isomclos.0h0v.s1.b8db7462f58b from=translated src=- shape=49959d42 vocab=d06d802c
+-/
 theorem cyclic_isomClosed : IsomClosed cyclic := by
   intro G H _ _ hGH hG
   rcases hGH with ⟨e⟩
@@ -645,7 +725,9 @@ theorem cyclic_isomClosed : IsomClosed cyclic := by
   refine ⟨Finite.of_equiv G e.toEquiv, ?_⟩
   exact isCyclic_of_surjective e e.surjective
 
-/-- Finite cyclic groups are closed under quotients.-/
+/-- Finite cyclic groups are closed under quotients.
+@isnad1 id=quotient.0h0v.s1.dd7bcd6e963a from=translated src=- shape=49959d42 vocab=685f2707
+-/
 theorem cyclic_quotientClosed : QuotientClosed cyclic := by
   intro G _ N _ hG
   rcases hG with ⟨hfin, hcyc⟩
@@ -653,7 +735,9 @@ theorem cyclic_quotientClosed : QuotientClosed cyclic := by
   · infer_instance
   · exact isCyclic_of_surjective (QuotientGroup.mk' N) (QuotientGroup.mk'_surjective N)
 
-/-- Finite solvable groups are closed under isomorphism.-/
+/-- Finite solvable groups are closed under isomorphism.
+@isnad1 id=isomclos.0h0v.s1.6b2ee6c6c689 from=translated src=- shape=49959d42 vocab=543d4809
+-/
 theorem solvable_isomClosed : IsomClosed solvable := by
   intro G H _ _ hGH hG
   rcases hGH with ⟨e⟩
@@ -661,7 +745,9 @@ theorem solvable_isomClosed : IsomClosed solvable := by
   refine ⟨Finite.of_equiv G e.toEquiv, ?_⟩
   exact Group.isSolvable_of_surjective (f := e.toMonoidHom) e.surjective
 
-/-- Finite solvable groups are closed under quotients.-/
+/-- Finite solvable groups are closed under quotients.
+@isnad1 id=quotient.0h0v.s1.25560505a161 from=translated src=- shape=49959d42 vocab=3a3c566a
+-/
 theorem solvable_quotientClosed : QuotientClosed solvable := by
   intro G _ N _ hG
   rcases hG with ⟨hfin, hsolv⟩
@@ -669,7 +755,9 @@ theorem solvable_quotientClosed : QuotientClosed solvable := by
   · infer_instance
   · infer_instance
 
-/-- Finite nilpotent groups are closed under isomorphism.-/
+/-- Finite nilpotent groups are closed under isomorphism.
+@isnad1 id=isomclos.0h0v.s1.da8e342c8354 from=translated src=- shape=49959d42 vocab=65052031
+-/
 theorem nilpotent_isomClosed : IsomClosed nilpotent := by
   intro G H _ _ hGH hG
   rcases hGH with ⟨e⟩
@@ -677,7 +765,9 @@ theorem nilpotent_isomClosed : IsomClosed nilpotent := by
   refine ⟨Finite.of_equiv G e.toEquiv, ?_⟩
   exact Group.nilpotent_of_mulEquiv e
 
-/-- Finite nilpotent groups are closed under quotients.-/
+/-- Finite nilpotent groups are closed under quotients.
+@isnad1 id=quotient.0h0v.s1.45a8e89ad3e2 from=translated src=- shape=49959d42 vocab=8d0726a4
+-/
 theorem nilpotent_quotientClosed : QuotientClosed nilpotent := by
   intro G _ N _ hG
   rcases hG with ⟨hfin, hnil⟩
@@ -685,7 +775,9 @@ theorem nilpotent_quotientClosed : QuotientClosed nilpotent := by
   · infer_instance
   · infer_instance
 
-/-- Every finite cyclic group is finite nilpotent.-/
+/-- Every finite cyclic group is finite nilpotent.
+@isnad1 id=pred.0h2v.s3.3267061f9a2e from=translated src=- shape=05c25b1e vocab=c0733b78
+-/
 theorem cyclic_to_nilpotent {G : Type u} [Group G] :
     cyclic G → nilpotent G := by
   rintro ⟨hfin, hcyc⟩
@@ -693,20 +785,26 @@ theorem cyclic_to_nilpotent {G : Type u} [Group G] :
   exact ⟨⟨1, (Subgroup.upperCentralSeries_one_eq_top_iff (G := G)).mpr
     (IsCyclic.isMulCommutative (α := G))⟩⟩
 
-/-- Every finite cyclic group belongs to the finite solvable class.-/
+/-- Every finite cyclic group belongs to the finite solvable class.
+@isnad1 id=pred.0h2v.s3.95050a0b0ca9 from=translated src=- shape=05c25b1e vocab=2a2d6557
+-/
 theorem cyclic_to_solvable {G : Type u} [Group G] :
     cyclic G → solvable G := by
   rintro ⟨hfin, hcyc⟩
   have hnil : Group.IsNilpotent G := (cyclic_to_nilpotent ⟨hfin, hcyc⟩).2
   exact ⟨hfin, (inferInstance : Group.IsSolvable G)⟩
 
-/-- Every finite \(p\)-group belongs to the finite nilpotent class.-/
+/-- Every finite \(p\)-group belongs to the finite nilpotent class.
+@isnad1 id=pred.0h3v.s4.0e423a3856dc from=translated src=- shape=3b3d60e0 vocab=879fccdc
+-/
 theorem pGroup_to_nilpotent {p : ℕ} [Fact (Nat.Prime p)] {G : Type u} [Group G] :
     pGroup p G → nilpotent G := by
   rintro ⟨hfin, hpG⟩
   exact ⟨hfin, hpG.isNilpotent⟩
 
-/-- Every finite \(p\)-group belongs to the finite solvable class.-/
+/-- Every finite \(p\)-group belongs to the finite solvable class.
+@isnad1 id=pred.0h3v.s4.4c1d497fe2c6 from=translated src=- shape=3b3d60e0 vocab=69f288e7
+-/
 theorem pGroup_to_solvable {p : ℕ} [Fact (Nat.Prime p)] {G : Type u} [Group G] :
     pGroup p G → solvable G := by
   rintro ⟨hfin, hpG⟩

@@ -43,7 +43,9 @@ abbrev decompositionGroup
   MulAction.stabilizer G P
 
 /-- Membership in the decomposition group is exactly stabilization of the prime
-ideal.-/
+ideal.
+@isnad1 id=iff.0h4v.s8.0674099c5b1c from=translated src=- shape=99d095f3 vocab=0f8a9803
+-/
 @[simp]
 theorem mem_decompositionGroup_iff
     {P : Ideal B} {G : Type*} [Group G] [MulSemiringAction G B] {σ : G} :
@@ -57,7 +59,9 @@ abbrev inertiaGroup
     Subgroup G :=
   P.toAddSubgroup.inertia G
 
-/-- Membership in the inertia group is trivial action on the residue ring.-/
+/-- Membership in the inertia group is trivial action on the residue ring.
+@isnad1 id=iff.0h4v.s7.809021184de5 from=translated src=- shape=dd3d7f77 vocab=b2868f87
+-/
 @[simp]
 theorem mem_inertiaGroup_iff
     {P : Ideal B} {G : Type*} [Group G] [MulSemiringAction G B] {σ : G} :
@@ -73,7 +77,9 @@ abbrev residueStabilizerHom
   Ideal.Quotient.stabilizerHom P p G
 
 /-- prime-decomposition theory:
-the residue action is concretely `a mod P ↦ σ a mod P`.-/
+the residue action is concretely `a mod P ↦ σ a mod P`.
+@isnad1 id=eq.0h7v.s11.5691f68f801a from=translated src=- shape=dfb7722c vocab=3db8ceee
+-/
 @[simp] theorem residueStabilizerHom_apply
     (p : Ideal A) (P : Ideal B) [P.LiesOver p]
     (G : Type*) [Group G] [MulSemiringAction G B] [SMulCommClass G A B]
@@ -83,7 +89,9 @@ the residue action is concretely `a mod P ↦ σ a mod P`.-/
 
 /-- Inertia is normal inside the decomposition group.  The proof is the
 intrinsic conjugation argument: if `σ` is trivial mod `P`, then
-`τ σ τ⁻¹` is also trivial mod `P` because `τ` stabilizes `P`.-/
+`τ σ τ⁻¹` is also trivial mod `P` because `τ` stabilizes `P`.
+@isnad1 id=normal.0h3v.s6.a26c57a998c4 from=translated src=- shape=96877a4f vocab=d0049d2b
+-/
 instance inertiaSubgroupOfDecomposition_normal
     (P : Ideal B) (G : Type*) [Group G] [MulSemiringAction G B] :
     ((inertiaGroup P G).subgroupOf (decompositionGroup P G)).Normal := by
@@ -100,7 +108,9 @@ instance inertiaSubgroupOfDecomposition_normal
   simpa [y, smul_sub, mul_smul, inv_smul_smul] using hτy
 
 /-- prime-decomposition theory:
-the kernel of the residue action is the inertia group.-/
+the kernel of the residue action is the inertia group.
+@isnad1 id=eq.0h5v.s9.05ad6cc3677a from=translated src=- shape=940c1b1e vocab=1ac1c81f
+-/
 theorem dedekindRamification_residueAction_ker
     (p : Ideal A) (P : Ideal B) [P.LiesOver p]
     (G : Type*) [Group G] [MulSemiringAction G B] [SMulCommClass G A B] :
@@ -109,7 +119,9 @@ theorem dedekindRamification_residueAction_ker
   exact Ideal.Quotient.ker_stabilizerHom P p G
 
 /-- prime-decomposition theory:
-for a finite invariant Galois action, the residue action is surjective.-/
+for a finite invariant Galois action, the residue action is surjective.
+@isnad1 id=surjecti.0h5v.s10.a52d9c23b703 from=translated src=- shape=31a974f6 vocab=e13a4f91
+-/
 theorem dedekindRamification_residueAction_surjective
     (p : Ideal A) (P : Ideal B) [P.IsPrime] [P.LiesOver p]
     (G : Type*) [Group G] [Finite G] [MulSemiringAction G B] [SMulCommClass G A B]
@@ -133,7 +145,9 @@ def dedekindRamification_decompositionQuotientInertiaEquivResidueGalois
       (dedekindRamification_residueAction_surjective p P G))
 
 /-- A trivial-inertia special case:
-if the inertia group is trivial, then the residue action is injective.-/
+if the inertia group is trivial, then the residue action is injective.
+@isnad1 id=injectiv.1h5v.s10.e694e6b0ed53 from=translated src=- shape=1a7c51b9 vocab=8a41bfa6
+-/
 theorem dedekindRamification_residueAction_injective_of_inertiaGroup_eq_bot
     (p : Ideal A) (P : Ideal B) [P.LiesOver p]
     (G : Type*) [Group G] [MulSemiringAction G B] [SMulCommClass G A B]
@@ -144,7 +158,9 @@ theorem dedekindRamification_residueAction_injective_of_inertiaGroup_eq_bot
 
 /-- A trivial-inertia special case:
 if the inertia group is trivial, then the residue action identifies `G_P` with
-the residue Galois group.-/
+the residue Galois group.
+@isnad1 id=bijectiv.1h5v.s10.1961fd5e6eda from=translated src=- shape=ee456eab vocab=04012a6e
+-/
 theorem dedekindRamification_residueAction_bijective_of_inertiaGroup_eq_bot
     (p : Ideal A) (P : Ideal B) [P.IsPrime] [P.LiesOver p]
     (G : Type*) [Group G] [Finite G] [MulSemiringAction G B] [SMulCommClass G A B]
@@ -177,7 +193,9 @@ noncomputable def dedekindRamification_residueGaloisEmbeddingIntoG_of_inertiaGro
       p P G hI).symm.toMonoidHom
 
 /-- prime-decomposition theory, Galois fundamental identity:
-`r * e * f = |G|`, with `e` and `f` independent of the chosen prime above `p`.-/
+`r * e * f = |G|`, with `e` and `f` independent of the chosen prime above `p`.
+@isnad1 id=eq.1h4v.s7.6131d9b52d08 from=translated src=- shape=7f93c573 vocab=689e6aac
+-/
 theorem dedekindRamification_galois_fundamental_identity
     [IsDedekindDomain A] (p : Ideal A) [p.IsMaximal] (_hpb : p ≠ ⊥)
     (B : Type*) [CommRing B] [IsDedekindDomain B] [Algebra A B]
@@ -191,7 +209,9 @@ theorem dedekindRamification_galois_fundamental_identity
 
 /-- The prime-decomposition tower identity:
 orbit-stabilizer for the action on primes above `p`,
-`r * #G_P = #G`.-/
+`r * #G_P = #G`.
+@isnad1 id=eq.0h5v.s7.aa9a35c6a3f5 from=translated src=- shape=ce716fdf vocab=7fe1c2d6
+-/
 theorem dedekindRamification_ncard_primesOver_mul_decomposition_card
     (p : Ideal A) (P : Ideal B) [P.IsPrime] [P.LiesOver p]
     (G : Type*) [Group G] [Finite G] [MulSemiringAction G B]
@@ -203,7 +223,9 @@ theorem dedekindRamification_ncard_primesOver_mul_decomposition_card
     Nat.card_congr (MulAction.orbitProdStabilizerEquivGroup G P)
 
 /-- The prime-decomposition tower identity:
-the decomposition group has cardinality `e * f`.-/
+the decomposition group has cardinality `e * f`.
+@isnad1 id=eq.1h5v.s8.f9540e09027a from=translated src=- shape=f5d3c305 vocab=c05a5cd5
+-/
 theorem dedekindRamification_decomposition_card_eq_ramificationIdxIn_mul_inertiaDegIn
     [IsDedekindDomain A] [IsDedekindDomain B] [Module.Finite A B]
     [IsTorsionFree A B]
@@ -226,7 +248,9 @@ theorem dedekindRamification_decomposition_card_eq_ramificationIdxIn_mul_inertia
 
 /-- Prime-decomposition statement:
 the quotient of the decomposition group by inertia has cardinality equal to
-the inertia degree.-/
+the inertia degree.
+@isnad1 id=eq.0h5v.s8.28a2a640760d from=translated src=- shape=5db52a7d vocab=56c8aef5
+-/
 theorem dedekindRamification_decompositionQuotientInertia_card_eq_inertiaDeg
     (p : Ideal A) [p.IsMaximal]
     (P : Ideal B) [P.IsPrime] [P.LiesOver p] [P.IsMaximal]
@@ -257,7 +281,9 @@ theorem dedekindRamification_decompositionQuotientInertia_card_eq_inertiaDeg
       rw [Ideal.inertiaDeg_eq_of_isMaximal p P]
 
 /-- Prime-decomposition statement:
-the quotient cardinality is the Galois-invariant inertia degree `f`.-/
+the quotient cardinality is the Galois-invariant inertia degree `f`.
+@isnad1 id=eq.0h5v.s8.3d7d1eae49ce from=translated src=- shape=e4e6df33 vocab=3e0b3f22
+-/
 theorem dedekindRamification_decompositionQuotientInertia_card_eq_inertiaDegIn
     (p : Ideal A) [p.IsMaximal]
     (P : Ideal B) [P.IsPrime] [P.LiesOver p] [P.IsMaximal]
@@ -273,7 +299,9 @@ theorem dedekindRamification_decompositionQuotientInertia_card_eq_inertiaDegIn
   exact (Ideal.inertiaDegIn_eq_inertiaDeg p P G).symm
 
 /-- Prime-decomposition statement:
-`#G_P = #(G_P/I_P) * #I_P` for the exact residue sequence.-/
+`#G_P = #(G_P/I_P) * #I_P` for the exact residue sequence.
+@isnad1 id=eq.0h3v.s7.90c15fa8fb08 from=translated src=- shape=d0b05794 vocab=47fa40de
+-/
 theorem dedekindRamification_decomposition_card_eq_quotient_card_mul_inertia_card
     (P : Ideal B) (G : Type*) [Group G] [MulSemiringAction G B] :
     Nat.card (decompositionGroup P G) =
@@ -290,7 +318,9 @@ theorem dedekindRamification_decomposition_card_eq_quotient_card_mul_inertia_car
         (Ideal.inertia_le_stabilizer (M := G) P)).toEquiv
 
 /-- Prime-decomposition statement:
-`#G_P = #I_P * f`, with `f` the Galois-invariant inertia degree.-/
+`#G_P = #I_P * f`, with `f` the Galois-invariant inertia degree.
+@isnad1 id=eq.0h5v.s7.27923f89f0bc from=translated src=- shape=6a77badb vocab=56ba2451
+-/
 theorem dedekindRamification_decomposition_card_eq_inertia_card_mul_inertiaDegIn
     (p : Ideal A) [p.IsMaximal]
     (P : Ideal B) [P.IsPrime] [P.LiesOver p] [P.IsMaximal]
@@ -306,7 +336,9 @@ theorem dedekindRamification_decomposition_card_eq_inertia_card_mul_inertiaDegIn
     mul_comm]
 
 /-- prime-decomposition theory: the inertia subgroup has cardinality equal to the
-Galois ramification index.-/
+Galois ramification index.
+@isnad1 id=eq.1h5v.s8.5315ad30105a from=translated src=- shape=bb50503a vocab=eb085113
+-/
 theorem dedekindRamification_inertia_card_eq_ramificationIdxIn
     [IsDedekindDomain A] [IsDedekindDomain B] [Module.Finite A B]
     [IsTorsionFree A B]

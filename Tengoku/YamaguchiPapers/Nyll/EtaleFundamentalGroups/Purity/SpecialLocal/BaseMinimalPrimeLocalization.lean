@@ -28,7 +28,9 @@ universe u v
 /-- After localizing a finite algebra at a minimal bad base point, every
 target prime not lying over the closed point is etale.  The target prime is
 contracted through the prime-localization correspondence, where its base
-contraction becomes strictly smaller than the chosen minimal point.-/
+contraction becomes strictly smaller than the chosen minimal point.
+@isnad1 id=isetalea.2h4v.s10.0fa2516b0e92 from=translated src=- shape=bdb80602 vocab=9e0087b8
+-/
 theorem
     localizedFiniteAlgebra_isEtaleAt_away_from_closedPoint_of_minimal_base_nonEtaleCotangentSupport
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]

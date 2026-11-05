@@ -63,7 +63,9 @@ extension `E / F` embedded in `Omega` inherits an automorphism which inverts
 all finite-order units.
 
 The embedding is constructed canonically from separable closedness; `E`
-itself is not required to be a separable closure.-/
+itself is not required to be a separable closure.
+@isnad1 id=ex.1h5v.s9.7c1c95b97e22 from=translated src=- shape=1a5008d0 vocab=91ce6ab4
+-/
 theorem
     exists_normalAlgEquiv_inverting_torsionUnits_of_separableClosure_linearDisjoint_of_ratEquiv
     {k : Type u} {F : Type v} {E : Type x} {Omega : Type w}

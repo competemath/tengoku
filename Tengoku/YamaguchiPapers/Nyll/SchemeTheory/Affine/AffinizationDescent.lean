@@ -28,7 +28,9 @@ variable {X S T : Scheme.{u}} (f : X ⟶ S) (g : T ⟶ S)
 variable [IsAffine S] [IsAffine T] [QuasiCompact f] [QuasiSeparated f]
 variable [Flat g] [Surjective g]
 
-/-- The affine base-change map induced on global sections is fpqc.-/
+/-- The affine base-change map induced on global sections is fpqc.
+@isnad1 id=other.0h5v.s10.a260d24cf2e4 from=translated src=- shape=ed2a3744 vocab=79290166
+-/
 theorem fpqc_SpecMap_pullback_fst_appTop :
     (show CategoryTheory.MorphismProperty Scheme.{u} from
       @Surjective ⊓ @Flat ⊓ @QuasiCompact) (Spec.map (pullback.fst f g).appTop) := by
@@ -48,7 +50,9 @@ theorem fpqc_SpecMap_pullback_fst_appTop :
       h.flip inferInstance
 
 /-- Being an open immersion for the canonical affinization is detected
-after affine fpqc base change.-/
+after affine fpqc base change.
+@isnad1 id=isopenim.0h5v.s9.fffbcc28b51f from=translated src=- shape=a677b999 vocab=a3becda4
+-/
 theorem isOpenImmersion_toSpecΓ_of_flat_baseChange
     [IsOpenImmersion (pullback f g).toSpecΓ] : IsOpenImmersion X.toSpecΓ := by
   exact CategoryTheory.MorphismProperty.of_isPullback_of_descendsAlong

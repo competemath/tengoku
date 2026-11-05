@@ -28,7 +28,9 @@ namespace ProCGroups
 universe u
 
 /--
-Membership in a closed subset of a profinite group can be tested on all open-normal quotients.-/
+Membership in a closed subset of a profinite group can be tested on all open-normal quotients.
+@isnad1 id=iff.1h3v.s9.14862caf529c from=translated src=- shape=3b6efb71 vocab=973a4b44
+-/
 theorem mem_closed_iff_forall_openNormal_quotient
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [TotallyDisconnectedSpace G]
@@ -97,7 +99,9 @@ end OpenNormalSubgroup
 
 /--
 If the image of y modulo an open normal subgroup lies in the image of H, then y lies in H
-\(\sqcup\) U.-/
+\(\sqcup\) U.
+@isnad1 id=mem.1h4v.s8.6d3e9bb75055 from=translated src=- shape=7e8b590e vocab=30709180
+-/
 theorem mem_sup_of_quotient_mk_mem_map
     {Q : Type u} [TopologicalSpace Q] [Group Q]
     (H : Subgroup Q) (U : OpenNormalSubgroup Q)
@@ -123,7 +127,9 @@ theorem mem_sup_of_quotient_mk_mem_map
     (Subgroup.mem_sup_of_normal_right (s := H) (t := (U : Subgroup Q))).2
       ⟨h, hh, h⁻¹ * y, hU, by simp only [mul_inv_cancel_left]⟩
 
-/-- Closed-subgroup membership can be checked after adjoining every open normal subgroup.-/
+/-- Closed-subgroup membership can be checked after adjoining every open normal subgroup.
+@isnad1 id=mem.1h3v.s6.35ccb176d1cc from=translated src=- shape=f28528db vocab=2e8fa11a
+-/
 theorem mem_closedSubgroup_of_forall_openNormal_sup
     {Q : Type u} [TopologicalSpace Q] [Group Q] [IsTopologicalGroup Q]
     [CompactSpace Q] [TotallyDisconnectedSpace Q]
@@ -156,7 +162,9 @@ def openNormalSubgroup_inf
     change ((U : Subgroup Q) ⊓ (V : Subgroup Q)).Normal
     infer_instance
 
-/-- Cofinal separation from a closed subgroup by open normal subgroups.-/
+/-- Cofinal separation from a closed subgroup by open normal subgroups.
+@isnad1 id=ex.1h4v.s7.f5a35c504456 from=translated src=- shape=fcc452a8 vocab=b0c62bb1
+-/
 theorem exists_openNormalSubgroup_le_not_mem_sup_closedSubgroup
     {Q : Type u} [TopologicalSpace Q] [Group Q] [IsTopologicalGroup Q]
     [CompactSpace Q] [TotallyDisconnectedSpace Q]
@@ -201,7 +209,9 @@ def openNormalSubgroup_sup_normal
 
 /--
 The cofinal quotient condition obtained from a separation statement and finite-stage cyclic
-containment on quotients where \(x^n\) remains nontrivial modulo \(K\).-/
+containment on quotients where \(x^n\) remains nontrivial modulo \(K\).
+@isnad1 id=ex.2h6v.s10.38db8bb222f6 from=translated src=- shape=e1386295 vocab=36aaaf27
+-/
 theorem cofinal_openNormal_cyclic_containment_of_finite_lift
     {Q : Type u} [TopologicalSpace Q] [Group Q] [IsTopologicalGroup Q]
     [CompactSpace Q] [TotallyDisconnectedSpace Q]
@@ -235,7 +245,9 @@ theorem cofinal_openNormal_cyclic_containment_of_finite_lift
 
 /--
 Cofinal image criterion for bounding a centralizer by a cyclic subgroup joined with a closed
-normal subgroup.-/
+normal subgroup.
+@isnad1 id=le.2h4v.s9.ec91ccf75a7d from=translated src=- shape=50cdaa7a vocab=5724fa7c
+-/
 theorem centralizerOf_zpow_le_cyclic_join_closedNormal_of_cofinal_openNormal_image
     {Q : Type u} [TopologicalSpace Q] [Group Q] [IsTopologicalGroup Q]
     [CompactSpace Q] [T2Space Q] [TotallyDisconnectedSpace Q]
@@ -282,7 +294,9 @@ theorem centralizerOf_zpow_le_cyclic_join_closedNormal_of_cofinal_openNormal_ima
 
 /--
 Continuous homomorphisms into a profinite group are equal if they agree after every open-normal
-finite quotient of the target.-/
+finite quotient of the target.
+@isnad1 id=eq.1h4v.s8.2baa02aed16c from=translated src=- shape=e68538a2 vocab=fd90ff78
+-/
 theorem continuousMonoidHom_ext_openNormalQuotients
     {A : Type u} [Group A] [TopologicalSpace A]
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]

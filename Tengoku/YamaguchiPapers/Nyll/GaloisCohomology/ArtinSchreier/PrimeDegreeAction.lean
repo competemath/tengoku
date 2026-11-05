@@ -20,7 +20,9 @@ variable {K : Type u} {L : Type v} [Field K] [Field L]
   [CharP K p] [CharP L p] [Algebra K L] [IsGalois K L]
 
 /-- A degree-p Galois extension cannot fix all Artin–Schreier classes
-when the base field has infinitely many such classes.-/
+when the base field has infinitely many such classes.
+@isnad1 id=ex.1h3v.s9.b809b0e4c32d from=translated src=- shape=acd0797c vocab=e68d6c79
+-/
 theorem exists_moved_class_of_degree_eq_char
     [Infinite (K ⧸ ((frobenius K p).toAddMonoidHom - AddMonoidHom.id K).range)]
     (hdegree : Module.finrank K L = p) :

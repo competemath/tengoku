@@ -53,7 +53,9 @@ private theorem mem_decompositionGroup_iff_apply_mem
     simpa using (hsigma (sigma⁻¹ x)).symm
 
 /-- The valuation-subring decomposition group is closed in the Krull
-topology.-/
+topology.
+@isnad1 id=isclosed.0h3v.s7.b9b627021771 from=translated src=- shape=df91866b vocab=a8ac4c53
+-/
 theorem decompositionGroup_isClosed
     (A : _root_.ValuationSubring L) :
     IsClosed (decompositionGroup K A : Set (L ≃ₐ[K] L)) where

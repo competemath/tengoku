@@ -34,7 +34,9 @@ def rightCosetMulAction (H : Subgroup G) :
   _root_.ReidemeisterSchreier.rightCosetMulAction H
 
 /-- Acting on a represented right coset multiplies its representative by the inverse on the
-right.-/
+right.
+@isnad1 id=eq.0h4v.s6.cea865b32aca from=translated src=- shape=48daaf87 vocab=978d100c
+-/
 @[simp 900] theorem rightCosetMulAction_mk_smul
     (H : Subgroup G) (g a : G) :
     letI := rightCosetMulAction H
@@ -43,7 +45,9 @@ right.-/
   rfl
 
 /-- Acting by an inverse on a represented right coset multiplies its representative on the
-right.-/
+right.
+@isnad1 id=eq.0h4v.s6.514ae41c9ded from=translated src=- shape=b3fc57ba vocab=978d100c
+-/
 @[simp 900] theorem rightCosetMulAction_inv_mk_smul
     (H : Subgroup G) (g a : G) :
     letI := rightCosetMulAction H
@@ -58,7 +62,9 @@ section RightCosetTopology
 
 variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
-/-- For an open subgroup, the orbit map to the discrete right-coset space is continuous.-/
+/-- For an open subgroup, the orbit map to the discrete right-coset space is continuous.
+@isnad1 id=continuo.1h3v.s7.f2fffbac4ca1 from=translated src=- shape=2392ec80 vocab=1687182c
+-/
 theorem continuous_rightCosetMulAction_inv_smul_of_open
     (H : Subgroup G) (hH : IsOpen (H : Set G))
     [TopologicalSpace (Quotient (QuotientGroup.rightRel H))]
@@ -149,29 +155,39 @@ def permutationalWreathProductHomeomorphProd :
     simpa using (continuous_id : Continuous fun x : (S → A) × G => x)
 
 /-- The canonical equivalence from a permutational wreath product to its two factors is
-continuous.-/
+continuous.
+@isnad1 id=continuo.0h3v.s8.37c10b563a32 from=translated src=- shape=7e414df2 vocab=130cb5ca
+-/
 @[continuity] theorem continuous_permutationalWreathProduct_equivProd :
     Continuous
       (SemidirectProduct.equivProd :
         PermutationalWreathProduct A S G → (S → A) × G) :=
   continuous_induced_dom
 
-/-- Projection to the function factor of a permutational wreath product is continuous.-/
+/-- Projection to the function factor of a permutational wreath product is continuous.
+@isnad1 id=continuo.0h3v.s6.c80cbbccab1c from=translated src=- shape=7b552b95 vocab=132c7133
+-/
 @[continuity] theorem continuous_permutationalWreathProduct_left :
     Continuous (fun x : PermutationalWreathProduct A S G => x.left) :=
   continuous_fst.comp continuous_permutationalWreathProduct_equivProd
 
-/-- Projection to the acting-group factor of a permutational wreath product is continuous.-/
+/-- Projection to the acting-group factor of a permutational wreath product is continuous.
+@isnad1 id=continuo.0h3v.s6.07aa0495189d from=translated src=- shape=63535425 vocab=24c66b68
+-/
 @[continuity] theorem continuous_permutationalWreathProduct_right :
     Continuous (fun x : PermutationalWreathProduct A S G => x.right) :=
   continuous_snd.comp continuous_permutationalWreathProduct_equivProd
 
-/-- Evaluation of the function factor at a fixed index is continuous.-/
+/-- Evaluation of the function factor at a fixed index is continuous.
+@isnad1 id=continuo.0h4v.s6.c3fe9805952e from=translated src=- shape=9835fa0d vocab=132c7133
+-/
 @[continuity] theorem continuous_permutationalWreathProduct_left_apply (s : S) :
     Continuous (fun x : PermutationalWreathProduct A S G => x.left s) :=
   (continuous_apply s).comp continuous_permutationalWreathProduct_left
 
-/-- A permutational wreath product is Hausdorff when both group factors are Hausdorff.-/
+/-- A permutational wreath product is Hausdorff when both group factors are Hausdorff.
+@isnad1 id=t2space.0h3v.s5.e69198c09bea from=translated src=- shape=e3b91ed4 vocab=f44413de
+-/
 instance instT2SpacePermutationalWreathProduct [T2Space A] [T2Space G] :
     T2Space (PermutationalWreathProduct A S G) :=
   (permutationalWreathProductHomeomorphProd (A := A) (S := S) (G := G)).symm.t2Space
@@ -182,13 +198,17 @@ def functionPrecomp (g : G) (f : S → A) : S → A :=
   fun s => f (g⁻¹ • s)
 
 omit [Group A] [TopologicalSpace A] [TopologicalSpace G] in
-/-- Precomposition by the action evaluates at the inverse translate of the index.-/
+/-- Precomposition by the action evaluates at the inverse translate of the index.
+@isnad1 id=eq.0h6v.s6.14b4ee30ae31 from=translated src=- shape=f7185d9b vocab=dbe1c2aa
+-/
 @[simp] theorem functionPrecomp_apply (g : G) (f : S → A) (s : S) :
     functionPrecomp g f s = f (g⁻¹ • s) :=
   rfl
 
 omit [TopologicalSpace A] [TopologicalSpace G] in
-/-- Mathlib's action on the function factor is precomposition by the inverse permutation.-/
+/-- Mathlib's action on the function factor is precomposition by the inverse permutation.
+@isnad1 id=eq.0h5v.s9.83863c39358f from=translated src=- shape=ba644dc9 vocab=f622d4fe
+-/
 @[simp] theorem mulAutArrow_apply_eq_functionPrecomp (g : G) (f : S → A) :
     mulAutArrow (G := G) (A := S) (M := A) g f = functionPrecomp g f :=
   rfl
@@ -200,7 +220,9 @@ variable [ContinuousSMul G S] [ContinuousInv G]
 
 omit [Group A] in
 /-- Evaluation is jointly continuous on the product of a function space with a discrete index
-space.-/
+space.
+@isnad1 id=continuo.0h2v.s5.4f9a00278ad0 from=translated src=- shape=f8289338 vocab=15680bf2
+-/
 theorem continuous_eval_of_discreteIndex :
     Continuous (fun p : (S → A) × S => p.1 p.2) := by
   rw [continuous_iff_continuousAt]
@@ -221,7 +243,9 @@ theorem continuous_eval_of_discreteIndex :
 
 omit [Group A] in
 /-- The precomposition action on the function factor is continuous when the index space is
-discrete.-/
+discrete.
+@isnad1 id=continuo.0h3v.s6.ae73ea813dbf from=translated src=- shape=3414ca1c vocab=086dd034
+-/
 theorem continuous_functionPrecomp :
     Continuous (fun p : G × (S → A) => functionPrecomp p.1 p.2) := by
   refine continuous_pi ?_
@@ -237,7 +261,9 @@ theorem continuous_functionPrecomp :
 
 omit [TopologicalSpace A] [TopologicalSpace G] [TopologicalSpace S] [DiscreteTopology S]
     [ContinuousSMul G S] [ContinuousInv G] in
-/-- The function factor of a product is the first function times the translate of the second.-/
+/-- The function factor of a product is the first function times the translate of the second.
+@isnad1 id=eq.0h5v.s7.563da2bb1b75 from=translated src=- shape=2972e475 vocab=52b522f8
+-/
 @[simp 900] theorem permutationalWreathProduct_mul_left
     (x y : PermutationalWreathProduct A S G) :
     (x * y).left = x.left * functionPrecomp x.right y.left :=
@@ -245,7 +271,9 @@ omit [TopologicalSpace A] [TopologicalSpace G] [TopologicalSpace S] [DiscreteTop
 
 omit [TopologicalSpace A] [TopologicalSpace G] [TopologicalSpace S] [DiscreteTopology S]
     [ContinuousSMul G S] [ContinuousInv G] in
-/-- The function factor of an inverse is the translated pointwise inverse.-/
+/-- The function factor of an inverse is the translated pointwise inverse.
+@isnad1 id=eq.0h4v.s7.0e40fd37a2aa from=translated src=- shape=3e7450bf vocab=56ad4051
+-/
 @[simp 900] theorem permutationalWreathProduct_inv_left
     (x : PermutationalWreathProduct A S G) :
     x⁻¹.left = functionPrecomp x.right⁻¹ x.left⁻¹ :=
@@ -327,7 +355,9 @@ def permutationalWreathProductInlToKernelContinuousHom :
 
 omit [Fintype S] [TopologicalSpace S] [IsTopologicalGroup A] [IsTopologicalGroup G]
     [ContinuousSMul G S] in
-/-- Inclusion of the function factor is a bijection onto the kernel of the right projection.-/
+/-- Inclusion of the function factor is a bijection onto the kernel of the right projection.
+@isnad1 id=bijectiv.0h3v.s10.fea0cfa85608 from=translated src=- shape=02b8ad67 vocab=da06f9cd
+-/
 theorem permutationalWreathProductInlToKernel_bijective :
     Function.Bijective
       ((permutationalWreathProductInlToKernelContinuousHom (A := A) (S := S) (G := G)) :
@@ -372,13 +402,17 @@ section BasicLemmas
 variable {A : Type u} {S : Type v} {G : Type w}
 variable [Group A] [Group G] [MulAction G S]
 
-/-- Pointwise multiplication formula in the permutational wreath product.-/
+/-- Pointwise multiplication formula in the permutational wreath product.
+@isnad1 id=eq.0h6v.s8.74cad2e6eb0e from=translated src=- shape=97565064 vocab=7e5dc9ad
+-/
 @[simp] theorem permutationalWreathProduct_mul_left_apply
     (x y : PermutationalWreathProduct A S G) (s : S) :
     (x * y).left s = x.left s * y.left (x.right⁻¹ • s) :=
   rfl
 
-/-- Pointwise inversion formula in the permutational wreath product.-/
+/-- Pointwise inversion formula in the permutational wreath product.
+@isnad1 id=eq.0h5v.s7.0a210c3243c9 from=translated src=- shape=180286c0 vocab=cdc65be3
+-/
 @[simp] theorem permutationalWreathProduct_inv_left_apply
     (x : PermutationalWreathProduct A S G) (s : S) :
     x⁻¹.left s = (x.left (x.right • s))⁻¹ := by
@@ -387,19 +421,25 @@ variable [Group A] [Group G] [MulAction G S]
   change x.left⁻¹ ((x.right⁻¹)⁻¹ • s) = (x.left (x.right • s))⁻¹
   simp only [inv_inv, Pi.inv_apply]
 
-/-- The function coordinate of the left-factor inclusion is the included function.-/
+/-- The function coordinate of the left-factor inclusion is the included function.
+@isnad1 id=eq.0h5v.s8.0f5bad12cffe from=translated src=- shape=0e6670d3 vocab=ee6e3581
+-/
 @[simp] theorem permutationalWreathProduct_inl_left_apply
     (f : S → A) (s : S) :
     (SemidirectProduct.inl f : PermutationalWreathProduct A S G).left s = f s :=
   rfl
 
-/-- The function coordinate of the right-factor inclusion is constantly one.-/
+/-- The function coordinate of the right-factor inclusion is constantly one.
+@isnad1 id=eq.0h5v.s8.ec89deea0acf from=translated src=- shape=b8330aa6 vocab=6356a974
+-/
 @[simp] theorem permutationalWreathProduct_inr_left_apply
     (g : G) (s : S) :
     (SemidirectProduct.inr g : PermutationalWreathProduct A S G).left s = 1 :=
   rfl
 
-/-- The right projection is a retraction of the right-factor inclusion.-/
+/-- The right projection is a retraction of the right-factor inclusion.
+@isnad1 id=eq.0h3v.s8.1037fa4f4b00 from=translated src=- shape=a7d3ae84 vocab=a930bba1
+-/
 @[simp] theorem permutationalWreathProduct_rightHom_comp_inr :
     (SemidirectProduct.rightHom :
         PermutationalWreathProduct A S G →* G).comp SemidirectProduct.inr =
@@ -432,13 +472,17 @@ def permutationalWreathProductMapLeft (α : A →* B) :
     rfl
 
 /-- Mapping the left factor applies the given homomorphism pointwise to the function
-coordinate.-/
+coordinate.
+@isnad1 id=eq.0h7v.s8.78f9d8e5cbe7 from=translated src=- shape=7f07a26c vocab=c3e8aec8
+-/
 @[simp] theorem permutationalWreathProductMapLeft_left_apply
     (α : A →* B) (x : PermutationalWreathProduct A S G) (s : S) :
     (permutationalWreathProductMapLeft (S := S) (G := G) α x).left s = α (x.left s) :=
   rfl
 
-/-- Mapping the left factor leaves the acting-group coordinate unchanged.-/
+/-- Mapping the left factor leaves the acting-group coordinate unchanged.
+@isnad1 id=eq.0h6v.s8.604a459a1a2f from=translated src=- shape=45973c92 vocab=39efbc6c
+-/
 @[simp] theorem permutationalWreathProductMapLeft_right
     (α : A →* B) (x : PermutationalWreathProduct A S G) :
     (permutationalWreathProductMapLeft (S := S) (G := G) α x).right = x.right :=
@@ -505,7 +549,9 @@ noncomputable def rightTransversalSection {T : Set G}
     Quotient (QuotientGroup.rightRel H) → G :=
   fun q => (hT.rightQuotientEquiv q : G)
 
-/-- The representative selected by a right transversal lies over the prescribed right coset.-/
+/-- The representative selected by a right transversal lies over the prescribed right coset.
+@isnad1 id=eq.1h4v.s5.646b34b917d6 from=translated src=- shape=58f2c519 vocab=4fa1a4dd
+-/
 @[simp] theorem rightTransversalSection_spec {T : Set G}
     (hT : Subgroup.IsComplement (H : Set G) T)
     (q : Quotient (QuotientGroup.rightRel H)) :
@@ -566,7 +612,9 @@ noncomputable def rightQuotientSectionEmbedding
     · rfl
 
 /-- Pointwise formula for the standard wreath-product embedding attached to a right-quotient
-section.-/
+section.
+@isnad1 id=eq.1h5v.s9.98a0455f5eff from=translated src=- shape=ef276058 vocab=31335c30
+-/
 @[simp] theorem rightQuotientSectionEmbedding_left_apply
     (τ : Quotient (QuotientGroup.rightRel H) → G)
     (hτ : ∀ q, Quotient.mk'' (τ q) = q)
@@ -575,7 +623,9 @@ section.-/
       rightQuotientSectionCocycle (H := H) τ hτ g q :=
   rfl
 
-/-- The standard wreath-product embedding preserves the acting-group coordinate.-/
+/-- The standard wreath-product embedding preserves the acting-group coordinate.
+@isnad1 id=eq.1h4v.s9.c6fa2c5a1cf3 from=translated src=- shape=39cd44eb vocab=de86e942
+-/
 @[simp] theorem rightQuotientSectionEmbedding_right
     (τ : Quotient (QuotientGroup.rightRel H) → G)
     (hτ : ∀ q, Quotient.mk'' (τ q) = q)
@@ -583,7 +633,9 @@ section.-/
     (rightQuotientSectionEmbedding (H := H) τ hτ g).right = g :=
   rfl
 
-/-- The right projection is a retraction of the standard right-quotient embedding.-/
+/-- The right projection is a retraction of the standard right-quotient embedding.
+@isnad1 id=eq.1h3v.s10.010ff7d13a9b from=translated src=- shape=cc5db9eb vocab=594bf50e
+-/
 @[simp] theorem rightQuotientSectionEmbedding_rightHom
     (τ : Quotient (QuotientGroup.rightRel H) → G)
     (hτ : ∀ q, Quotient.mk'' (τ q) = q) :
@@ -623,7 +675,9 @@ def wreathLeftCoordinate
   fun g => (ψ g).left s
 
 /-- The cocycle formula for the left coordinates of a homomorphism into a wreath product whose
-right factor is the identity.-/
+right factor is the identity.
+@isnad1 id=eq.1h7v.s8.fcd0894840fb from=translated src=- shape=f543c398 vocab=fbccd504
+-/
 theorem wreathLeftCoordinate_mul
     (ψ : G →* PermutationalWreathProduct A S G)
     (hψ :
@@ -707,13 +761,17 @@ def wreathStabilizerProjection (s : S) :
       exact MulAction.mem_stabilizer_iff.mp x.right⁻¹.2
     simp only [permutationalWreathProduct_mul_left_apply, hx]
 
-/-- The stabilizer projection evaluates the function coordinate at the fixed point.-/
+/-- The stabilizer projection evaluates the function coordinate at the fixed point.
+@isnad1 id=eq.0h5v.s9.01b55b1bb3b7 from=translated src=- shape=221aa766 vocab=accd039b
+-/
 @[simp] theorem wreathStabilizerProjection_apply
     (s : S) (x : PermutationalWreathProduct A S (MulAction.stabilizer G s)) :
     wreathStabilizerProjection (A := A) (G := G) s x = x.left s :=
   rfl
 
-/-- The stabilizer projection is natural in the left factor.-/
+/-- The stabilizer projection is natural in the left factor.
+@isnad1 id=eq.0h7v.s11.b38a05917be7 from=translated src=- shape=120276ca vocab=93646ac8
+-/
 @[simp] theorem wreathStabilizerProjection_mapLeft
     {B : Type*} [Group B]
     (α : A →* B) (s : S)
@@ -730,7 +788,9 @@ variable {H : Subgroup G}
 
 /-- Basepoint form: on the subgroup `H`, the left coordinate of the standard
 embedding at the trivial right coset is the given element, provided the section is normalized at
-the basepoint.-/
+the basepoint.
+@isnad1 id=eq.3h4v.s10.37c27ced0031 from=translated src=- shape=70df8a3f vocab=e624bc82
+-/
 @[simp 900] theorem rightQuotientSectionEmbedding_left_basepoint_of_mem
     (τ : Quotient (QuotientGroup.rightRel H) → G)
     (hτ : ∀ q, Quotient.mk'' (τ q) = q)

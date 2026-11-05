@@ -18,7 +18,9 @@ the full-formation property used by maximal pro-p residual quotients.
 namespace ProCGroups.FiniteGroupClass
 
 /-- Finite p-groups form a full formation, using their established subgroup
-and extension closure properties.-/
+and extension closure properties.
+@isnad1 id=fullform.0h1v.s3.ac6d2ba5da4e from=translated src=- shape=9ee3c16b vocab=3e52010c
+-/
 theorem pGroup_fullFormation (p : ℕ) [Fact p.Prime] : FullFormation (pGroup p) where
   melnikovFormation :=
     { formation := pGroup_formation p

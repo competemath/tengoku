@@ -26,7 +26,9 @@ namespace EtaleFundamentalGroups.SpecialLocalPurity
 universe u v w
 
 /-- The normalization in a finite separable extension is etale at its
-generic point.-/
+generic point.
+@isnad1 id=isetalea.0h3v.s9.4c771dbecf65 from=translated src=- shape=7eb81066 vocab=00cb64d9
+-/
 theorem integralClosure_isEtaleAt_bot_of_finite_separable
     {R : Type u} {K : Type v} {L : Type w}
     [CommRing R] [IsDomain R]
@@ -56,7 +58,9 @@ theorem integralClosure_isEtaleAt_bot_of_finite_separable
 
 /-- If a finite separable normalization is not formally etale but is etale
 above every height-one base prime, its base cotangent support has a minimal
-point of neither height zero nor height one.-/
+point of neither height zero nor height one.
+@isnad1 id=ex.2h3v.s11.b181b5eba5e4 from=translated src=- shape=1fa635c7 vocab=4091f1a2
+-/
 theorem
     exists_minimal_integralClosure_base_nonEtaleCotangentSupport_codim_ge_two
     {R : Type u} {K : Type v} {L : Type w}
@@ -88,7 +92,9 @@ theorem
         hetale p P hPp hP
 
 /-- Numerical form of the preceding minimal-branch-point theorem: the bad
-base point has height at least two.-/
+base point has height at least two.
+@isnad1 id=ex.2h3v.s11.2b32806ed4dd from=translated src=- shape=ae815b5a vocab=186e7f1d
+-/
 theorem
     exists_minimal_integralClosure_base_nonEtaleCotangentSupport_height_two_le
     {R : Type u} {K : Type v} {L : Type w}

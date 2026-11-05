@@ -34,7 +34,9 @@ variable {R : Type u} [CommRing R] [IsDomain R]
 variable [IsLocalRing R] [IsNoetherianRing R]
 
 /-- Every nonzero scalar acts surjectively on top local cohomology of a
-finite torsion-free module, with arbitrary support ideal.-/
+finite torsion-free module, with arbitrary support ideal.
+@isnad1 id=surjecti.2h5v.s8.a7fba70ecc83 from=translated src=- shape=8c234107 vocab=bcb60ebd
+-/
 theorem derivedLocalCohomologyModule_smul_surjective_of_finite_torsionFree
     (I : Ideal R) (M : ModuleCat.{u} R)
     [Module.Finite R M] [Module.IsTorsionFree R M]
@@ -72,7 +74,9 @@ theorem derivedLocalCohomologyModule_smul_surjective_of_finite_torsionFree
   exact hsurj
 
 /-- A nonzero scalar annihilator forces top local cohomology with finite
-torsion-free coefficients to vanish.-/
+torsion-free coefficients to vanish.
+@isnad1 id=iszero.3h5v.s9.9048d91f86b1 from=translated src=- shape=c8bafb2a vocab=0be711bf
+-/
 theorem derivedLocalCohomology_isZero_of_finite_torsionFree_annihilator
     (I : Ideal R) (M : ModuleCat.{u} R)
     [Module.Finite R M] [Module.IsTorsionFree R M]

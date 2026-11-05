@@ -48,21 +48,27 @@ def separableClosureEquivOfEquiv (τ : K ≃+* K) :
       map_add' := fun x y => Subtype.ext (map_add e
         (x : AlgebraicClosure K) (y : AlgebraicClosure K)) }
 
-/-- The forward map is the actual chosen map on the algebraic closure.-/
+/-- The forward map is the actual chosen map on the algebraic closure.
+@isnad1 id=eq.0h3v.s10.f6497fc0248f from=translated src=- shape=0d46c457 vocab=3fbf68e5
+-/
 theorem separableClosureEquivOfEquiv_apply_coe
     (τ : K ≃+* K) (x : SeparableClosure K) :
     (separableClosureEquivOfEquiv τ x : AlgebraicClosure K) =
       IsAlgClosure.equivOfEquiv (AlgebraicClosure K) (AlgebraicClosure K) τ
         (x : AlgebraicClosure K) := rfl
 
-/-- The inverse is the inverse of the same chosen map, not a separate choice.-/
+/-- The inverse is the inverse of the same chosen map, not a separate choice.
+@isnad1 id=eq.0h3v.s10.25aa8ea18846 from=translated src=- shape=57eb765e vocab=85d46a92
+-/
 theorem separableClosureEquivOfEquiv_symm_apply_coe
     (τ : K ≃+* K) (x : SeparableClosure K) :
     ((separableClosureEquivOfEquiv τ).symm x : AlgebraicClosure K) =
       (IsAlgClosure.equivOfEquiv (AlgebraicClosure K) (AlgebraicClosure K) τ).symm
         (x : AlgebraicClosure K) := rfl
 
-/-- The restriction retains the original semilinearity over the base field.-/
+/-- The restriction retains the original semilinearity over the base field.
+@isnad1 id=eq.0h3v.s11.f9473e799924 from=translated src=- shape=c06b4e25 vocab=a10e5dab
+-/
 theorem separableClosureEquivOfEquiv_algebraMap (τ : K ≃+* K) (x : K) :
     separableClosureEquivOfEquiv τ (algebraMap K (SeparableClosure K) x) =
       algebraMap K (SeparableClosure K) (τ x) := by
@@ -74,7 +80,9 @@ theorem separableClosureEquivOfEquiv_algebraMap (τ : K ≃+* K) (x : K) :
     (AlgebraicClosure K) (AlgebraicClosure K) τ x
 
 /-- Restriction to the separable closure commutes with conjugation by the
-same actual semilinear automorphism of the algebraic closure.-/
+same actual semilinear automorphism of the algebraic closure.
+@isnad1 id=eq.0h3v.s14.9825fa6f4099 from=translated src=- shape=929dbcca vocab=8216f4b7
+-/
 theorem separableClosureAutEquiv_absoluteGaloisConjugate
     (τ : K ≃+* K) (σ : Gal(AlgebraicClosure K/K)) :
     ValuationTheory.Completion.separableClosureAutEquiv K

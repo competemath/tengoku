@@ -124,19 +124,25 @@ def zHatReduction (n : ℕ) (hn : 0 < n) :
 
 /-- Reduction agrees with the ordinary integer cast.  This is the public
 computation rule; it does not expose the closure model used to construct
-`ZHat`.-/
+`ZHat`.
+@isnad1 id=eq.1h2v.s6.36635f000842 from=translated src=- shape=d265a8f0 vocab=1fe351a1
+-/
 @[simp] theorem zHatReduction_intCast (n : ℕ) (hn : 0 < n) (a : ℤ) :
     zHatReduction n hn (a : ZHat) = (a : ZMod n) :=
   rfl
 
-/-- Reduction modulo one sends every profinite integer to the unique residue class.-/
+/-- Reduction modulo one sends every profinite integer to the unique residue class.
+@isnad1 id=eq.1h1v.s6.9e380683c5a4 from=translated src=- shape=1c760b75 vocab=c4369492
+-/
 @[simp] theorem zHatReduction_one (n : ℕ) (hn : 0 < n) :
     zHatReduction n hn (1 : ZHat) = 1 := by
   simpa only [Int.cast_one] using zHatReduction_intCast n hn 1
 
 namespace ZHat
 
-/-- Profinite integers are determined by all positive-modulus reductions.-/
+/-- Profinite integers are determined by all positive-modulus reductions.
+@isnad1 id=eq.1h2v.s7.32b404198169 from=translated src=- shape=26869509 vocab=c4369492
+-/
 @[ext]
 theorem ext {x y : ZHat}
     (h : ∀ n (hn : 0 < n), zHatReduction n hn x = zHatReduction n hn y) :
@@ -148,7 +154,9 @@ theorem ext {x y : ZHat}
 
 end ZHat
 
-/-- Reduction maps commute with reduction along a divisibility relation.-/
+/-- Reduction maps commute with reduction along a divisibility relation.
+@isnad1 id=eq.3h3v.s7.bf7b7a98580e from=translated src=- shape=b6f7e9c6 vocab=6fdd2b09
+-/
 theorem zHatReduction_transition {m n : ℕ}
     (hm : 0 < m) (hn : 0 < n) (hmn : m ∣ n) (x : ZHat) :
     ZMod.castHom hmn (ZMod m) (zHatReduction n hn x) =

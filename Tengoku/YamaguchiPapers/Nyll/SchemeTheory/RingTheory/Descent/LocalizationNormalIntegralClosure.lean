@@ -32,7 +32,9 @@ open scoped nonZeroDivisors
 universe u v
 
 /-- A ring is integrally closed in a localization by non-zero-divisors if its
-local rings at maximal ideals meeting the denominator submonoid are normal.-/
+local rings at maximal ideals meeting the denominator submonoid are normal.
+@isnad1 id=isintegr.2h3v.s8.15920034319a from=translated src=- shape=1cffa2c5 vocab=609b3b7e
+-/
 theorem isIntegrallyClosedIn_localization_of_normal_boundary
     {R : Type u} [CommRing R] (M : Submonoid R) (hM : M ≤ R⁰)
     (T : Type v) [CommRing T] [Algebra R T] [IsLocalization M T]

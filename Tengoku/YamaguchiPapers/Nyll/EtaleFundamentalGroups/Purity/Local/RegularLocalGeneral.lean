@@ -36,7 +36,9 @@ open IsLocalRing
 universe u
 
 /-- A hypersurface cut by a nonzero cotangent vector in a regular local domain
-is regular local.  This is valid in every finite Krull dimension.-/
+is regular local.  This is valid in every finite Krull dimension.
+@isnad1 id=isregula.2h2v.s7.c23bc85b3ab4 from=translated src=- shape=9074f520 vocab=9aaba33d
+-/
 theorem isRegularLocalRing_quotient_span_singleton_of_not_mem_maximalIdeal_sq
     {R : Type u} [CommRing R] [IsDomain R] [IsRegularLocalRing R]
     {x : R} (hxMem : x ∈ maximalIdeal R)
@@ -206,7 +208,9 @@ theorem isRegularLocalRing_quotient_span_singleton_of_not_mem_maximalIdeal_sq
 /-- A positive-dimensional regular local domain contains a parameter whose
 principal quotient is again regular local.  The parameter and its
 transversality to the square of the maximal ideal are produced internally
-from a nonzero cotangent vector.-/
+from a nonzero cotangent vector.
+@isnad1 id=ex.1h1v.s8.4a964eb23519 from=translated src=- shape=33fe8cb4 vocab=e381fc85
+-/
 theorem exists_parameter_with_regularLocalRing_quotient
     {R : Type u} [CommRing R] [IsDomain R] [IsRegularLocalRing R]
     (hdim : (1 : WithBot ℕ∞) ≤ ringKrullDim R) :
@@ -237,7 +241,9 @@ theorem exists_parameter_with_regularLocalRing_quotient
 
 /-- Cutting a regular local domain of dimension `n + 1` by the parameter
 constructed above gives a regular local ring of dimension exactly `n`.
-This is the dimension-decreasing datum used by induction in local purity.-/
+This is the dimension-decreasing datum used by induction in local purity.
+@isnad1 id=ex.1h2v.s8.611d98d3641c from=translated src=- shape=310af383 vocab=40dc8344
+-/
 theorem exists_parameter_with_regularLocalRing_quotient_ringKrullDim_eq
     {R : Type u} [CommRing R] [IsDomain R] [IsRegularLocalRing R]
     (n : ℕ)
@@ -278,7 +284,9 @@ theorem exists_parameter_with_regularLocalRing_quotient_ringKrullDim_eq
 
 /-- In dimension at least three, one can choose the regular parameter so that
 the regular local quotient still has dimension at least two.  This is the
-purely algebraic induction step preceding the local extension theorem.-/
+purely algebraic induction step preceding the local extension theorem.
+@isnad1 id=ex.1h1v.s8.4d0e432c577e from=translated src=- shape=c15bd67a vocab=e381fc85
+-/
 theorem exists_parameter_with_regularLocalRing_quotient_of_three_le_ringKrullDim
     {R : Type u} [CommRing R] [IsDomain R] [IsRegularLocalRing R]
     (hdim : (3 : WithBot ℕ∞) ≤ ringKrullDim R) :

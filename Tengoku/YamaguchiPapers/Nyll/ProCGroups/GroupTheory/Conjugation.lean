@@ -33,7 +33,9 @@ noncomputable def quotientMulEquiv
 
 /--
 The quotient equivalence induced by a characteristic subgroup sends representatives to
-representatives.-/
+representatives.
+@isnad1 id=eq.1h4v.s9.5411c24b5000 from=translated src=- shape=98ca1c1e vocab=7a2c1498
+-/
 @[simp] theorem quotientMulEquiv_mk
     (hH : H.Characteristic) (e : G ≃* G) (g : G) :
     quotientMulEquiv hH e (QuotientGroup.mk' H g) = QuotientGroup.mk' H (e g) :=
@@ -94,7 +96,9 @@ noncomputable def quotientConjugationOnCharacteristicQuotient
         (by simpa [div_eq_mul_inv] using hNactsTrivially ⟨g, hg⟩ x)
   exact QuotientGroup.lift N prequotientAction hNker
 
-/-- The algebraic conjugation action sends representatives to conjugates.-/
+/-- The algebraic conjugation action sends representatives to conjugates.
+@isnad1 id=eq.1h5v.s13.bc058e1155b0 from=translated src=- shape=14aefc91 vocab=7ee19b42
+-/
 @[simp] theorem quotientConjugationOnCharacteristicQuotient_mk_apply_mk
     {G : Type u} [Group G]
     (N : Subgroup G) [N.Normal] (K : Subgroup N) [K.Characteristic]

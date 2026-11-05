@@ -36,7 +36,9 @@ open IsLocalRing
 namespace EtaleFundamentalGroups.StrictHenselian
 
 /-- Krull intersection supplies the exact power of a generator of the maximal
-ideal dividing any nonzero element, even before the ring is known to be a domain.-/
+ideal dividing any nonzero element, even before the ring is known to be a domain.
+@isnad1 id=ex.2h3v.s7.fe7278a5e550 from=translated src=- shape=a56ff38c vocab=db97b644
+-/
 theorem exists_unit_mul_pow_of_principal_maximalIdeal
     {A : Type*} [CommRing A] [IsLocalRing A] [IsNoetherianRing A]
     (π : A) (hπ : maximalIdeal A = Ideal.span {π})
@@ -81,7 +83,9 @@ theorem exists_unit_mul_pow_of_principal_maximalIdeal
   exact ha.symm
 
 /-- A regular generator of the maximal ideal makes a Noetherian local ring
-an integral domain, by the unit--power factorizations just constructed.-/
+an integral domain, by the unit--power factorizations just constructed.
+@isnad1 id=isdomain.2h2v.s6.cb7dc79b5161 from=translated src=- shape=914fb594 vocab=f01a41bb
+-/
 theorem isDomain_of_principal_maximalIdeal_of_regular
     {A : Type*} [CommRing A] [IsLocalRing A] [IsNoetherianRing A]
     (π : A) (hπ : maximalIdeal A = Ideal.span {π}) (hreg : IsRegular π) :
@@ -103,7 +107,9 @@ variable (R B : Type*) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
 
 omit [Module.Flat R B] in
 /-- The image of a base uniformizer generates the maximal ideal of a local
-essentially finite type unramified algebra over a DVR.-/
+essentially finite type unramified algebra over a DVR.
+@isnad1 id=eq.1h3v.s7.a8a51dda6c7a from=translated src=- shape=85500bf7 vocab=cf03dca3
+-/
 theorem localUnramifiedOverDVR_maximalIdeal (π : R) (hπ : Irreducible π) :
     maximalIdeal B = Ideal.span {algebraMap R B π} := by
   rw [← Algebra.FormallyUnramified.map_maximalIdeal (R := R) (S := B),
@@ -111,7 +117,9 @@ theorem localUnramifiedOverDVR_maximalIdeal (π : R) (hπ : Irreducible π) :
 
 include R in
 /-- A local, flat, essentially finite type, formally unramified algebra over
-a DVR is a domain; the uniformizer is regular by flatness.-/
+a DVR is a domain; the uniformizer is regular by flatness.
+@isnad1 id=isdomain.0h2v.s7.30b37ee2d4d1 from=translated src=- shape=a897a747 vocab=14db74fc
+-/
 theorem localUnramifiedOverDVR_isDomain : IsDomain B := by
   let : IsNoetherianRing B := Algebra.EssFiniteType.isNoetherianRing R B
   obtain ⟨π, hπ⟩ := IsDiscreteValuationRing.exists_irreducible R
@@ -126,7 +134,9 @@ theorem localUnramifiedOverDVR_isDomain : IsDomain B := by
 
 include R in
 /-- With the domain structure supplied by `localUnramifiedOverDVR_isDomain`,
-the same algebra is a DVR. This uses actual unit--power factorizations.-/
+the same algebra is a DVR. This uses actual unit--power factorizations.
+@isnad1 id=isdiscre.0h2v.s7.e5e990e53d2f from=translated src=- shape=4f6886d3 vocab=14db74fc
+-/
 theorem localUnramifiedOverDVR_isDiscreteValuationRing [IsDomain B] :
     IsDiscreteValuationRing B := by
   let : IsNoetherianRing B := Algebra.EssFiniteType.isNoetherianRing R B

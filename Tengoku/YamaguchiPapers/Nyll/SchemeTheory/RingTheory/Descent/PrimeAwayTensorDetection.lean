@@ -31,7 +31,9 @@ open scoped TensorProduct nonZeroDivisors
 universe u v w w'
 
 /-- Localization of a torsion-free module embeds the module into its tensor
-extension, with the localization factor written on the right.-/
+extension, with the localization factor written on the right.
+@isnad1 id=injectiv.1h4v.s7.76a954fb3f55 from=translated src=- shape=33e5b031 vocab=b10fc6a9
+-/
 theorem tmul_one_injective_of_isTorsionFree
     {R : Type u} [CommRing R] [IsDomain R]
     (A : Type v) [CommRing A] [Algebra R A]
@@ -61,7 +63,9 @@ local notation "Aᵧ" => Localization.subalgebra.ofField F (Submonoid.powers y)
 
 include hxy in
 /-- Two principal-localization isomorphisms detect an isomorphism from a
-flat source when the first parameter acts regularly on the target.-/
+flat source when the first parameter acts regularly on the target.
+@isnad1 id=bijectiv.6h7v.s12.a440d53da7ce from=translated src=- shape=ca25170d vocab=dff52a25
+-/
 theorem linearMap_bijective_of_tensor_primeAwayPair
     {M : Type w} [AddCommGroup M] [Module R M] [Module.Flat R M]
     {N : Type w'} [AddCommGroup N] [Module R N] (hxN : IsSMulRegular N x)

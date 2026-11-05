@@ -35,7 +35,9 @@ abbrev RightQuotient (H : Subgroup G) :=
 def rightCoset (H : Subgroup G) (g : G) : RightQuotient H :=
   Quotient.mk'' g
 
-/-- A right coset is the base coset exactly when its representative lies in the subgroup.-/
+/-- A right coset is the base coset exactly when its representative lies in the subgroup.
+@isnad1 id=iff.0h3v.s5.2d55e2cf0ece from=translated src=- shape=ea94ee34 vocab=25f7fc81
+-/
 theorem rightCoset_eq_basepoint_iff_mem
     {H : Subgroup G} {g : G} :
     rightCoset H g = rightCoset H (1 : G) ↔ g ∈ H := by
@@ -74,7 +76,9 @@ theorem rightCoset_eq_basepoint_iff_mem
 attribute [instance] rightCosetMulAction
 
 /-- Acting on a represented right coset multiplies its representative by the inverse on the
-right.-/
+right.
+@isnad1 id=eq.0h4v.s6.649e6c7654db from=translated src=- shape=48daaf87 vocab=e4aa5ae3
+-/
 @[simp] theorem rightCosetMulAction_mk_smul
     (H : Subgroup G) (g a : G) :
     letI := rightCosetMulAction H
@@ -82,7 +86,9 @@ right.-/
   rfl
 
 /-- Acting by an inverse on a represented right coset multiplies its representative on the
-right.-/
+right.
+@isnad1 id=eq.0h4v.s6.ea3652f449be from=translated src=- shape=b3fc57ba vocab=e4aa5ae3
+-/
 @[simp] theorem rightCosetMulAction_inv_mk_smul
     (H : Subgroup G) (g a : G) :
     letI := rightCosetMulAction H

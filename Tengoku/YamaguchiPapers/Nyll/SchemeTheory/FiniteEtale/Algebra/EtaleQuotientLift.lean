@@ -58,7 +58,9 @@ section Coefficients
 variable (R₀ : Type*) [CommRing R₀] [Algebra R₀ R] [Algebra R₀ S]
   [IsScalarTower R₀ R S] [P.HasCoeffs R₀]
 
-/-- The Jacobian of the coefficient model becomes the original Jacobian after base change.-/
+/-- The Jacobian of the coefficient model becomes the original Jacobian after base change.
+@isnad1 id=eq.0h6v.s11.f0c588e0118a from=translated src=- shape=4d7b4e90 vocab=23216f00
+-/
 lemma tensorModel_jacobian :
     P.tensorModelOfHasCoeffsEquiv R₀
       (1 ⊗ₜ[R₀] (P.ofHasCoeffs R₀).jacobian) = P.jacobian := by

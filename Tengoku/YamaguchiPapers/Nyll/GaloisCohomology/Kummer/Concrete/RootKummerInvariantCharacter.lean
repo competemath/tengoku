@@ -29,7 +29,9 @@ open KummerTheory
 variable (K : Type*) [Field K] [CharZero K]
 
 /-- A unit which is an n-th root of unity has an invariant Kummer character
-under every field automorphism.-/
+under every field automorphism.
+@isnad1 id=eq.2h5v.s15.cc5e1b703e55 from=translated src=- shape=c05e7214 vocab=c49b646c
+-/
 theorem absoluteKummerContinuousNthRootsCharacterEquiv_conjugation_invariant_of_root
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (u : Kˣ) (hu : (u : K) ^ (n : ℕ) = 1) (τ : K ≃+* K)
@@ -49,7 +51,9 @@ theorem absoluteKummerContinuousNthRootsCharacterEquiv_conjugation_invariant_of_
   exact map_pow (QuotientGroup.mk' (powMonoidHom (n : ℕ) : Kˣ →* Kˣ).range) u a
 
 /-- The root's constant-coefficient Kummer character is fixed by the
-inverse-conjugation left action, with the original Kummer coordinate.-/
+inverse-conjugation left action, with the original Kummer coordinate.
+@isnad1 id=eq.2h4v.s15.13c749edb786 from=translated src=- shape=0f24a0fb vocab=d0e889e5
+-/
 theorem absoluteContinuousCharacterAction_kummer_root
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (u : Kˣ) (hu : (u : K) ^ (n : ℕ) = 1) (τ : K ≃+* K) :

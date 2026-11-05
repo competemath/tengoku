@@ -30,6 +30,9 @@ def classMap (f : K →+* L) :
     change (f b) ^ p - f b = f (b ^ p - b)
     rw [map_sub, map_pow])
 
+/--
+@isnad1 id=eq.0h5v.s13.e22a98669958 from=translated src=- shape=467e0801 vocab=4831ada7
+-/
 theorem classMap_mk (f : K →+* L) (a : K) :
     classMap p f (a : K ⧸
       ((frobenius K p).toAddMonoidHom - AddMonoidHom.id K).range) =
@@ -37,7 +40,9 @@ theorem classMap_mk (f : K →+* L) (a : K) :
 
 /-- In a finite Galois extension, restriction kills only finitely many
 Artin–Schreier classes. Such a class injects into its root-difference
-character on the finite relative Galois group.-/
+character on the finite relative Galois group.
+@isnad1 id=finite.0h3v.s12.35086bb0a347 from=translated src=- shape=b908a37d vocab=9c8ea2d2
+-/
 theorem finite_classMap_kernel [Algebra K L] [FiniteDimensional K L] [IsGalois K L] :
     Finite (classMap p (algebraMap K L)).ker := by
   classical

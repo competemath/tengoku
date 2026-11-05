@@ -30,7 +30,9 @@ open KummerTheory
 variable (K : Type*) [Field K] [CharZero K]
 
 /-- The actual left character action agrees with the action on Kummer
-classes when the coefficient roots are fixed.-/
+classes when the coefficient roots are fixed.
+@isnad1 id=eq.2h4v.s17.d2cfcc226fb1 from=translated src=- shape=3e2d3cfe vocab=c42881a3
+-/
 theorem absoluteKummerContinuousNthRootsCharacterEquiv_action_of_fixes_roots
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (τ : K ≃+* K) (hτ : ∀ ξ : K, ξ ^ (n : ℕ) = 1 → τ ξ = ξ) (u : Kˣ) :
@@ -62,7 +64,9 @@ theorem absoluteKummerContinuousNthRootsCharacterEquiv_action_of_fixes_roots
   exact hnatural
 
 /-- The same fixed cyclic-coordinate identification preserves the exact
-Kummer action formula.-/
+Kummer action formula.
+@isnad1 id=eq.2h4v.s15.df0b1fd657cc from=translated src=- shape=03459674 vocab=3f4fd997
+-/
 theorem absoluteKummerContinuousZModCharacterEquiv_action_of_fixes_roots
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (τ : K ≃+* K) (hτ : ∀ ξ : K, ξ ^ (n : ℕ) = 1 → τ ξ = ξ) (u : Kˣ) :
@@ -96,7 +100,9 @@ theorem absoluteKummerContinuousZModCharacterEquiv_action_of_fixes_roots
   exact congrArg e hvalue
 
 /-- An eigenunit retains its exact nontrivial Kummer-character difference,
-in the cyclic coordinates used by continuous H¹.-/
+in the cyclic coordinates used by continuous H¹.
+@isnad1 id=other.4h5v.s16.ac37da8ba18e from=translated src=- shape=778971ad vocab=6b9a0527
+-/
 theorem absoluteKummerContinuousZModCharacterEquiv_action_div_ne_one_of_eigenunit
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (τ : K ≃+* K) (hτ : ∀ ξ : K, ξ ^ (n : ℕ) = 1 → τ ξ = ξ)

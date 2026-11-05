@@ -49,7 +49,9 @@ def jacobianLocalizationPresentation :
     exact (IsLocalization.Away.algebraMap_isUnit P.jacobian).mul
       (IsLocalization.Away.algebraMap_isUnit P.jacobian)
 
-/-- The Jacobian localization preserves the relative dimension of the presentation.-/
+/-- The Jacobian localization preserves the relative dimension of the presentation.
+@isnad1 id=eq.0h5v.s8.4b752d68880c from=translated src=- shape=178451bc vocab=70346032
+-/
 lemma jacobianLocalizationPresentation_dimension [Finite ι] :
     (jacobianLocalizationPresentation P).dimension = P.dimension := by
   change ((PreSubmersivePresentation.localizationAway
@@ -59,7 +61,9 @@ lemma jacobianLocalizationPresentation_dimension [Finite ι] :
     P.dimension = P.dimension
   rw [Presentation.localizationAway_dimension_zero, zero_add]
 
-/-- A presentation of relative dimension zero becomes étale after inverting its Jacobian.-/
+/-- A presentation of relative dimension zero becomes étale after inverting its Jacobian.
+@isnad1 id=etale.1h5v.s7.6e03468d23e5 from=translated src=- shape=434e5dd3 vocab=38bcaa15
+-/
 lemma jacobianLocalization_etale [Finite ι] (h : P.dimension = 0) :
     Algebra.Etale R (Localization.Away P.jacobian) := by
   have : IsStandardSmoothOfRelativeDimension 0 R (Localization.Away P.jacobian) :=

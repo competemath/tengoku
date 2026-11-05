@@ -66,7 +66,9 @@ def inertiaConjugate
 
 /-- The finite-level inertia character is equivariant for conjugation: the
 decomposition element acts on the residue-unit value, while its inverse acts
-on the field-unit argument.-/
+on the field-unit argument.
+@isnad1 id=eq.0h6v.s17.89566a5f44be from=translated src=- shape=1c0bda1a vocab=9ad5f8fa
+-/
 theorem dvrInertiaCharacter_conjugate_apply_mk_mk
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]
@@ -103,7 +105,9 @@ theorem dvrInertiaCharacter_conjugate_apply_mk_mk
     inertiaToValueTrivialOfDVR, mul_assoc, div_eq_mul_inv]
 
 /-- A decomposition automorphism does not change the relative value-class
-argument of the DVR inertia character.-/
+argument of the DVR inertia character.
+@isnad1 id=eq.0h6v.s16.0fc2c4f186ac from=translated src=- shape=756bfd1e vocab=d2bf008a
+-/
 theorem dvrInertiaCharacter_mapEquiv_inv_argument
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]
@@ -123,7 +127,9 @@ theorem dvrInertiaCharacter_mapEquiv_inv_argument
     (automorphismUnitQuotient_mem_unitGroup_of_dvr K V
       (g⁻¹ : decompositionGroup K V) x)
 
-/-- Equivariance with the unchanged DVR value-class argument.-/
+/-- Equivariance with the unchanged DVR value-class argument.
+@isnad1 id=eq.0h6v.s17.78978400893a from=translated src=- shape=186301ad vocab=6f1a71fc
+-/
 theorem dvrInertiaCharacter_conjugate_apply
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]
@@ -138,7 +144,9 @@ theorem dvrInertiaCharacter_conjugate_apply
   rw [dvrInertiaCharacter_conjugate_apply_mk_mk,
     dvrInertiaCharacter_mapEquiv_inv_argument]
 
-/-- In residue characteristic zero, the DVR inertia character is faithful.-/
+/-- In residue characteristic zero, the DVR inertia character is faithful.
+@isnad1 id=injectiv.0h3v.s15.915bfbcd90ee from=translated src=- shape=c5ccdcd6 vocab=de522714
+-/
 theorem dvrInertiaCharacter_injective_of_residue_charZero
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]
@@ -157,7 +165,9 @@ theorem dvrInertiaCharacter_injective_of_residue_charZero
   rfl
 
 /-- Every value of a finite DVR inertia character has finite multiplicative
-order in the residue field.-/
+order in the residue field.
+@isnad1 id=isoffino.0h5v.s15.7fdb4b4db3e9 from=translated src=- shape=6c405b4e vocab=5ce69ce1
+-/
 theorem dvrInertiaCharacter_value_isOfFinOrder
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]
@@ -179,7 +189,9 @@ theorem dvrInertiaCharacter_value_isOfFinOrder
       (isOfFinOrder_of_finite sigma))
 
 /-- If a decomposition element acts by inversion on all values of the DVR
-inertia character, it conjugates every inertia element to its inverse.-/
+inertia character, it conjugates every inertia element to its inverse.
+@isnad1 id=eq.1h5v.s17.2bee8960aec6 from=translated src=- shape=0577f121 vocab=f32886e7
+-/
 theorem inertiaConjugate_eq_inv_of_character_inversion
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]
@@ -196,7 +208,9 @@ theorem inertiaConjugate_eq_inv_of_character_inversion
   rw [map_inv]
 
 /-- A decomposition element that inverts every residue-unit value of the DVR
-inertia character conjugates inertia elementwise to inversion.-/
+inertia character conjugates inertia elementwise to inversion.
+@isnad1 id=eq.1h5v.s17.7f6b47f1e3eb from=translated src=- shape=792eb933 vocab=e4703c12
+-/
 theorem inertiaConjugate_eq_inv_of_residue_inversion
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]
@@ -229,7 +243,9 @@ theorem inertiaConjugate_eq_inv_of_residue_inversion
   rw [dvrInertiaCharacter_conjugate_apply, hinv]
 
 /-- It is enough that the residue action invert finite-order units: all
-finite-level tame-inertia character values are such units.-/
+finite-level tame-inertia character values are such units.
+@isnad1 id=eq.1h5v.s16.6a4349205f70 from=translated src=- shape=b6f96ac8 vocab=a589d3f2
+-/
 theorem inertiaConjugate_eq_inv_of_torsion_residue_inversion
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [IsDiscreteValuationRing V]

@@ -18,7 +18,9 @@ open ProC
 universe u v w
 
 /-- A continuous discrete character on a closed subgroup of a profinite abelian
-group extends continuously after mapping its values to a divisible group.-/
+group extends continuously after mapping its values to a divisible group.
+@isnad1 id=ex.1h6v.s9.8652a605ccb8 from=translated src=- shape=01ecc439 vocab=daa994dd
+-/
 theorem exists_continuous_character_extension_divisible
     {A : Type u} [CommGroup A] [TopologicalSpace A] [IsTopologicalGroup A]
     [CompactSpace A] [T2Space A] [TotallyDisconnectedSpace A]

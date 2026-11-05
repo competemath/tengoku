@@ -63,7 +63,9 @@ def geometricStalk : CommRingCat.{u} :=
 
 /-- For a separably closed field, this is literally the existing presheaf fiber
 of the small étale site. Both constructions use the same functor of points
-and the same chosen colimit; topology is not used by `presheafFiber`.-/
+and the same chosen colimit; topology is not used by `presheafFiber`.
+@isnad1 id=eq.0h3v.s6.9ab0292540db from=translated src=- shape=9f8867d7 vocab=7b198fd9
+-/
 theorem geometricStalk_eq_smallEtale_presheafFiber [IsSepClosed Ω] :
     geometricStalk s = (Scheme.pointSmallEtale s).presheafFiber.obj (etaleSections S) :=
   rfl
@@ -89,7 +91,9 @@ def geometricStalkEvaluation : geometricStalk s ⟶ CommRingCat.of Ω :=
       rw [Scheme.Hom.comp_appTop t.left f.left, Category.assoc]
       rfl)
 
-/-- Evaluation of a germ is evaluation of its representing section.-/
+/-- Evaluation of a germ is evaluation of its representing section.
+@isnad1 id=eq.0h5v.s13.556bf56de096 from=translated src=- shape=657d8eb3 vocab=3924d1d5
+-/
 theorem geometricStalkGerm_evaluation (W : S.Etale)
     (t : (Scheme.pointEtaleNeighborhoods s).fiber.obj W) :
     geometricStalkGerm s W t ≫ geometricStalkEvaluation s =
@@ -97,19 +101,25 @@ theorem geometricStalkGerm_evaluation (W : S.Etale)
   (Scheme.pointEtaleNeighborhoods s).toPresheafFiber_presheafFiberDesc _ _ W t
 
 /-- Every element of the constructed colimit is represented on an actual
-pointed étale neighborhood.-/
+pointed étale neighborhood.
+@isnad1 id=ex.0h4v.s14.049b770aa017 from=translated src=- shape=437f1e8f vocab=ae71a82b
+-/
 theorem geometricStalk_exists_representative (a : geometricStalk s) :
     ∃ (W : S.Etale) (t : (Scheme.pointEtaleNeighborhoods s).fiber.obj W)
       (z : Γ(W.left, ⊤)), geometricStalkGerm s W t z = a :=
   (Scheme.pointEtaleNeighborhoods s).toPresheafFiber_jointly_surjective a
 
 /-- The constructed ring has distinct zero and one, since it has its actual
-evaluation homomorphism to a field.-/
+evaluation homomorphism to a field.
+@isnad1 id=nontrivi.0h3v.s4.b4f1aa5cf32e from=translated src=- shape=836319b7 vocab=e4c13098
+-/
 instance geometricStalk_nontrivial : Nontrivial (geometricStalk s) :=
   (geometricStalkEvaluation s).hom.domain_nontrivial
 
 /-- A nonzero value at the geometric point makes a germ invertible: restrict
-its representative to its basic open and use the filtered-colimit relation.-/
+its representative to its basic open and use the filtered-colimit relation.
+@isnad1 id=isunit.1h4v.s8.300ae7410e1f from=translated src=- shape=40df32f0 vocab=ad594d87
+-/
 theorem geometricStalk_isUnit_of_evaluation_ne_zero
     (a : geometricStalk s) (ha : geometricStalkEvaluation s a ≠ 0) :
     IsUnit a := by
@@ -162,7 +172,9 @@ theorem geometricStalk_isUnit_of_evaluation_ne_zero
   rw [← hgerm]
   exact hunitSection.map (geometricStalkGerm s T tV).hom
 
-/-- Units in the étale geometric stalk are detected by their actual values.-/
+/-- Units in the étale geometric stalk are detected by their actual values.
+@isnad1 id=iff.0h4v.s8.ed3d5432138e from=translated src=- shape=deb0ecdb vocab=ad594d87
+-/
 theorem geometricStalk_isUnit_iff (a : geometricStalk s) :
     IsUnit a ↔ geometricStalkEvaluation s a ≠ 0 := by
   constructor
@@ -170,7 +182,9 @@ theorem geometricStalk_isUnit_iff (a : geometricStalk s) :
     exact (ha.map (geometricStalkEvaluation s).hom).ne_zero
   · exact geometricStalk_isUnit_of_evaluation_ne_zero s a
 
-/-- The étale geometric stalk constructed as a filtered colimit is a local ring.-/
+/-- The étale geometric stalk constructed as a filtered colimit is a local ring.
+@isnad1 id=islocalr.0h3v.s5.5ace6ffb1c2b from=translated src=- shape=836319b7 vocab=43d2c462
+-/
 instance geometricStalk_isLocalRing : IsLocalRing (geometricStalk s) := by
   apply IsLocalRing.of_isUnit_or_isUnit_one_sub_self
   intro a

@@ -58,7 +58,9 @@ noncomputable def splitKernelSemidirectMulEquiv
     change e * (s (α e))⁻¹ * s (α e) = e
     rw [mul_assoc, inv_mul_cancel, mul_one]
 
-/-- The equivalence is the actual multiplication map determined by the section.-/
+/-- The equivalence is the actual multiplication map determined by the section.
+@isnad1 id=eq.1h6v.s11.44f0670a82c9 from=translated src=- shape=bdd8418b vocab=2c1950ef
+-/
 theorem splitKernelSemidirectMulEquiv_apply
     (α : E →* B) (s : B →* E) (hs : α.comp s = MonoidHom.id B)
     (a : α.ker) (b : B) :
@@ -66,7 +68,9 @@ theorem splitKernelSemidirectMulEquiv_apply
   rfl
 
 /-- The equivalence intertwines the original epimorphism and the projection
-to the second semidirect-product coordinate.-/
+to the second semidirect-product coordinate.
+@isnad1 id=eq.1h5v.s12.2cdc2e0f7241 from=translated src=- shape=c56c4a62 vocab=3178b4b8
+-/
 theorem splitKernelSemidirectMulEquiv_commutes
     (α : E →* B) (s : B →* E) (hs : α.comp s = MonoidHom.id B)
     (x : α.ker ⋊[(MulAut.conjNormal : E →* MulAut α.ker).comp s] B) :

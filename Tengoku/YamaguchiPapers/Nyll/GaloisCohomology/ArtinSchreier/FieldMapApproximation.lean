@@ -22,7 +22,9 @@ open Field.absoluteGaloisGroup ValuationTheory.Completion
 variable (p : ℕ) [Fact p.Prime] {K L : Type*} [Field K] [Field L]
   [CharP K p] [CharP L p]
 
-/-- A field embedding carries root differences to the restricted character.-/
+/-- A field embedding carries root differences to the restricted character.
+@isnad1 id=eq.2h7v.s14.6d4a7416bc1a from=translated src=- shape=01c92745 vocab=31a8cd18
+-/
 theorem rootCharacter_fieldMap (f : K →+* L) (a : K) (β : SeparableClosure K)
     (hβ : β ^ p - β = algebraMap K (SeparableClosure K) a)
     (hβL : (separableClosureLift f β) ^ p - separableClosureLift f β =
@@ -49,7 +51,9 @@ namespace ClassFieldTower.Martinet.Shafarevich
 open ArtinSchreierTheory Field.absoluteGaloisGroup ValuationTheory.Completion
 variable {ι K : Type*} [Field K] (L : ι → Type*) [∀ i, Field (L i)]
 
-/-- Simultaneously lift continuous cyclic characters from additive class approximation.-/
+/-- Simultaneously lift continuous cyclic characters from additive class approximation.
+@isnad1 id=surjecti.1h5v.s11.3625c6d45158 from=translated src=- shape=3b529a8e vocab=36e4f7e2
+-/
 theorem surjective_characters_of_artinSchreierClasses
     (p : ℕ) [Fact p.Prime] [CharP K p] [∀ i, CharP (L i) p]
     (f : ∀ i, K →+* L i)

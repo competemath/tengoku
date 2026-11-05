@@ -38,7 +38,9 @@ private theorem ideal_map_isNilpotent
 
 /-- If reduction to the extended quotient ideal is bijective on maps out of
 an algebra, then scalar extension to the quotient of the base ring is also
-bijective on those maps.-/
+bijective on those maps.
+@isnad1 id=bijectiv.1h4v.s10.3f2da4abd066 from=translated src=- shape=2a9759cb vocab=f24f8de5
+-/
 theorem baseChange_algHom_bijective_of_quotient_comp_bijective
     {R A B : Type u} [CommRing R] [CommRing A] [CommRing B]
     [Algebra R A] [Algebra R B] (I : Ideal R)
@@ -94,7 +96,9 @@ theorem baseChange_algHom_bijective_of_quotient_comp_bijective
         _ = f (1 ⊗ₜ[R] a) := by simp [gbar, qA]
 
 /-- For a formally etale source, scalar extension to a nilpotent quotient is
-bijective on algebra morphisms.-/
+bijective on algebra morphisms.
+@isnad1 id=bijectiv.1h4v.s9.c22e33f07c33 from=translated src=- shape=76d26629 vocab=c7eb249d
+-/
 theorem finiteEtale_baseChange_algHom_bijective_of_isNilpotent
     {R A B : Type u} [CommRing R] [CommRing A] [CommRing B]
     [Algebra R A] [Algebra R B] [Algebra.FormallyEtale R A]

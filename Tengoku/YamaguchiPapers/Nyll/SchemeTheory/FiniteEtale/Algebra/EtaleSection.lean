@@ -35,7 +35,9 @@ universe u v
 namespace AlgHom
 
 /-- A surjective map between étale algebras induces an open immersion.
-Its kernel is a finitely generated idempotent ideal.-/
+Its kernel is a finitely generated idempotent ideal.
+@isnad1 id=isopenim.1h4v.s7.52ee7dc8f462 from=translated src=- shape=4ddd407f vocab=6e5c14e3
+-/
 theorem isOpenImmersion_SpecMap_of_surjective_of_etale
     {R : Type v} {A B : Type u} [CommRing R] [CommRing A] [CommRing B]
     [Algebra R A] [Algebra R B] [Algebra.Etale R A] [Algebra.Etale R B]
@@ -58,6 +60,9 @@ section QuotientSection
 variable {R : Type u} {B : Type v} [CommRing R] [CommRing B] [Algebra R B]
     (I : Ideal R) (σ : B →ₐ[R] R ⧸ I)
 
+/--
+@isnad1 id=le.0h4v.s8.589a028f23a7 from=translated src=- shape=18625b82 vocab=f4aee26a
+-/
 lemma extendedIdeal_le_ker_quotientSection :
     I.map (algebraMap R B) ≤ RingHom.ker σ.toRingHom := by
   rw [Ideal.map_le_iff_le_comap]
@@ -72,12 +77,17 @@ def quotientSection : B ⧸ I.map (algebraMap R B) →ₐ[R ⧸ I] R ⧸ I :=
     (extendedIdeal_le_ker_quotientSection I σ)).extendScalarsOfSurjective
       Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=eq.0h5v.s10.3fe807a85651 from=translated src=- shape=ce39e2ba vocab=4228d15a
+-/
 @[simp]
 theorem quotientSection_mk (b : B) :
     quotientSection I σ (Ideal.Quotient.mk (I.map (algebraMap R B)) b) = σ b :=
   rfl
 
-/-- A section to the quotient base is surjective because it fixes base scalars.-/
+/-- A section to the quotient base is surjective because it fixes base scalars.
+@isnad1 id=surjecti.0h4v.s9.605fa55a8ba8 from=translated src=- shape=64f24cd1 vocab=f4cd39f1
+-/
 theorem quotientSection_surjective : Function.Surjective (quotientSection I σ) := by
   intro x
   exact ⟨algebraMap (R ⧸ I) (B ⧸ I.map (algebraMap R B)) x,
@@ -86,7 +96,9 @@ theorem quotientSection_surjective : Function.Surjective (quotientSection I σ) 
 end QuotientSection
 
 /-- A section of an étale algebra over a quotient base defines an open immersion
-into the quotient fiber. Its source is the base itself, hence is finite over it.-/
+into the quotient fiber. Its source is the base itself, hence is finite over it.
+@isnad1 id=isopenim.0h4v.s9.95fd31118c41 from=translated src=- shape=bfe686d1 vocab=5dfbf7a8
+-/
 theorem isOpenImmersion_SpecMap_quotientSection
     {R B : Type u} [CommRing R] [CommRing B] [Algebra R B] [Algebra.Etale R B]
     (I : Ideal R) (σ : B →ₐ[R] R ⧸ I) :

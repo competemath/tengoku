@@ -71,7 +71,9 @@ def derivedLocalCohomologyInjectiveComplex (I : Ideal R)
     CochainComplex (ModuleCat.{u} R) ℕ :=
   idealPowerTorsionComplex I J.cocomplex
 
-/-- The differential is the original differential restricted to torsion.-/
+/-- The differential is the original differential restricted to torsion.
+@isnad1 id=eq.0h6v.s12.32d20892eef1 from=translated src=- shape=f87ff8fb vocab=b255c560
+-/
 theorem idealPowerTorsionComplex_d_apply (I : Ideal R)
     (K : CochainComplex (ModuleCat.{u} R) ℕ) (p q : ℕ)
     (z : (idealPowerTorsionComplex I K).X p) :

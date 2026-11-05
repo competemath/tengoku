@@ -59,7 +59,9 @@ def unitGroupConjEquiv
       (valuationSubringConjRingEquiv (K := K) A τ).toMulEquiv).trans
       ((τ • A).unitGroupMulEquiv.symm))
 
-/-- States the theorem `unitGroupConjEquiv_coe`.-/
+/-- States the theorem `unitGroupConjEquiv_coe`.
+@isnad1 id=eq.0h5v.s11.a0a20a52850d from=translated src=- shape=f5185aa8 vocab=6fd48cbb
+-/
 @[simp] theorem unitGroupConjEquiv_coe
     (A : _root_.ValuationSubring L) (τ : L ≃ₐ[K] L)
     (u : A.unitGroup) :
@@ -87,7 +89,9 @@ def decompositionGroupConj
     ext x
     simp [mul_assoc]
 
-/-- States the theorem `decompositionGroupConj_apply`.-/
+/-- States the theorem `decompositionGroupConj_apply`.
+@isnad1 id=eq.0h5v.s13.a1157766427c from=translated src=- shape=0cd16b60 vocab=87672687
+-/
 @[simp] theorem decompositionGroupConj_apply
     (A : _root_.ValuationSubring L) (τ : L ≃ₐ[K] L)
     (σ : decompositionGroup K A) :
@@ -135,7 +139,9 @@ def decompositionGroupConjEquiv
     ext x
     simp [decompositionGroupConj, mul_assoc]
 
-/-- States the theorem `decompositionGroupConjEquiv_apply`.-/
+/-- States the theorem `decompositionGroupConjEquiv_apply`.
+@isnad1 id=eq.0h5v.s13.bc7dab666431 from=translated src=- shape=43cbb3bf vocab=26e01318
+-/
 @[simp] theorem decompositionGroupConjEquiv_apply
     (A : _root_.ValuationSubring L) (τ : L ≃ₐ[K] L)
     (σ : decompositionGroup K A) :

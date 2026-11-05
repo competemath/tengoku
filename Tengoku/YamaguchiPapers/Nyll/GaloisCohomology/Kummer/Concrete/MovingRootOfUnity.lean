@@ -23,7 +23,9 @@ variable (L E : Type*) [Field L] [Field E] [Algebra L E]
   [FiniteDimensional L E] [IsGalois L E]
 
 /-- A primitive root is moved by a Galois automorphism when the roots at its
-level do not all come from the base field.-/
+level do not all come from the base field.
+@isnad1 id=ex.2h3v.s8.ec511ec3cdbe from=translated src=- shape=a9fbdb5b vocab=17e6bc70
+-/
 theorem exists_moving_primitiveRoot_of_not_all_roots_in_base
     (m : ℕ+) (hmu : (primitiveRoots (m : ℕ) E).Nonempty)
     (hnot : ¬ ∀ ξ : E, ξ ^ (m : ℕ) = 1 →

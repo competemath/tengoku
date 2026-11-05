@@ -19,7 +19,9 @@ universe u v
 
 /-- A continuous character on a closed normal subgroup extends to an open
 normal supergroup inside any prescribed open normal neighborhood of that
-subgroup. The extension is constructed through an actual finite quotient.-/
+subgroup. The extension is constructed through an actual finite quotient.
+@isnad1 id=ex.1h5v.s10.76fe7f770114 from=translated src=- shape=cd8e51f8 vocab=6da2add9
+-/
 theorem exists_openNormal_character_extension
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]

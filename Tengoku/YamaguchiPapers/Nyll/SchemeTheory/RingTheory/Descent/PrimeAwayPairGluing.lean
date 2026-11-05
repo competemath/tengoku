@@ -94,7 +94,9 @@ private theorem existsUnique_tensor_pair_of_inf_eq_bot
     rw [hk, hku, hm.1, hm.2]
 
 /-- Compatible sections over two prime-away localizations glue uniquely
-after tensoring with any flat module.-/
+after tensoring with any flat module.
+@isnad1 id=existsun.4h7v.s13.b869090eca71 from=translated src=- shape=0e879cbb vocab=e96e500b
+-/
 theorem existsUnique_tensor_primeAwayPair
     {R : Type u} [CommRing R] [IsDomain R]
     (F : Type v) [Field F] [Algebra R F] [IsFractionRing R F]
@@ -131,7 +133,9 @@ local notation "Aᵧ" => Localization.subalgebra.ofField F (Submonoid.powers y)
   (Submonoid.powers_le.mpr (mem_nonZeroDivisors_iff_ne_zero.mpr hy))
 
 include hxy in
-/-- Equality can be tested on the two principal localizations.-/
+/-- Equality can be tested on the two principal localizations.
+@isnad1 id=eq.5h7v.s11.08f10a165600 from=translated src=- shape=9e7ad703 vocab=47083014
+-/
 theorem tensor_primeAwayPair_ext
     (M : Type w) [AddCommGroup M] [Module R M] [Module.Flat R M]
     {m n : M} (ha : m ⊗ₜ[R] (1 : Aₓ) = n ⊗ₜ[R] (1 : Aₓ))
@@ -147,7 +151,9 @@ theorem tensor_primeAwayPair_ext
 include hxy in
 /-- Compatible local linear maps to a flat module extend uniquely. A
 commuting action of another ring is preserved by the extension, so this
-also applies to linear maps over a completion or a tensor overlap.-/
+also applies to linear maps over a completion or a tensor overlap.
+@isnad1 id=existsun.4h9v.s13.67618908360c from=translated src=- shape=ceca64d4 vocab=ed7a83a6
+-/
 theorem existsUnique_linearMap_tensor_primeAwayPair
     (S : Type*) [Semiring S]
     (P : Type w') [AddCommGroup P] [Module S P]

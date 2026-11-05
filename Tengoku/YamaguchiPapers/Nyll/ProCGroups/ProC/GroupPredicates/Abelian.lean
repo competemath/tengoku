@@ -33,7 +33,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 namespace HasAbelianOpenNormalBasis
 
 omit [T2Space G] in
-/-- A profinite group with an abelian open-normal quotient basis is abelian.-/
+/-- A profinite group with an abelian open-normal quotient basis is abelian.
+@isnad1 id=eq.1h3v.s6.c0cdc8dda30b from=translated src=- shape=e887fdfe vocab=5afbe61a
+-/
 theorem isAbelian (hG : HasAbelianOpenNormalBasis G) : ∀ a b : G, a * b = b * a := by
   intro a b
   have hcomm_mem : ∀ U : OpenNormalSubgroup G, a * b * a⁻¹ * b⁻¹ ∈ (U : Subgroup G) := by

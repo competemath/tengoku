@@ -92,7 +92,9 @@ private theorem finiteRadicalToAmbient_mapped_root_pow
 variable [IsGalois K Ω]
 
 /-- Every continuous `μₙ(Ω)`-valued character is represented by a radical
-class when a primitive `n`-th root of unity lies in the base field.-/
+class when a primitive `n`-th root of unity lies in the base field.
+@isnad1 id=surjecti.1h3v.s12.d99990eeaf93 from=translated src=- shape=d3e298cd vocab=6014ebc0
+-/
 theorem infiniteKummerContinuousQuotientCharacter_surjective_of_primitiveRoots
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty) :
     Function.Surjective

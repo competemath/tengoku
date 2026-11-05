@@ -33,7 +33,9 @@ open scoped nonZeroDivisors
 universe u v
 
 /-- A ring with normal local rings on `V(d)` is integrally closed in its
-localization away from the non-zero-divisor `d`.-/
+localization away from the non-zero-divisor `d`.
+@isnad1 id=isintegr.2h3v.s7.2ddaa106d4a1 from=translated src=- shape=743ab064 vocab=7356349f
+-/
 theorem isIntegrallyClosedIn_away_of_normal_boundary
     {R : Type u} [CommRing R] (d : R) (hd : d ∈ R⁰)
     (T : Type v) [CommRing T] [Algebra R T] [IsLocalization.Away d T]
@@ -51,7 +53,9 @@ theorem isIntegrallyClosedIn_away_of_normal_boundary
 
 /-- A finite subalgebra which recovers `T` after inverting `d`, and is normal
 on its boundary, is the actual relative integral closure. The inclusion in
-`T` supplies the non-zero-divisor condition automatically.-/
+`T` supplies the non-zero-divisor condition automatically.
+@isnad1 id=eq.1h4v.s10.4049c36ca511 from=translated src=- shape=16a2d352 vocab=b2e95780
+-/
 theorem integralClosure_eq_finite_subalgebra_of_normal_boundary
     {R : Type u} {T : Type v} [CommRing R] [CommRing T] [Algebra R T]
     (C : Subalgebra R T) [Module.Finite R C]

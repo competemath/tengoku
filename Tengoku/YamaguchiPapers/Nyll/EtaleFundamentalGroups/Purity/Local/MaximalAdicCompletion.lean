@@ -38,7 +38,9 @@ open scoped TensorProduct
 universe u v
 
 /-- The maximal-adic completion of a Noetherian local ring is faithfully flat
-over the original ring.-/
+over the original ring.
+@isnad1 id=faithful.0h1v.s6.1af3514b3312 from=translated src=- shape=d7071ce9 vocab=eca1334a
+-/
 theorem maximalAdicCompletion_faithfullyFlat
     (R : Type u) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] :
     Module.FaithfullyFlat R
@@ -48,7 +50,9 @@ theorem maximalAdicCompletion_faithfullyFlat
 /-- A Noetherian maximal-adic completion has the same Krull dimension as its
 source.  The proof uses faithful flatness only through going down; the closed
 fibre has height zero because the source maximal ideal maps onto the target
-maximal ideal.-/
+maximal ideal.
+@isnad1 id=eq.0h1v.s7.d8f8d542aec9 from=translated src=- shape=31a5dcab vocab=11a1cc03
+-/
 theorem maximalAdicCompletion_ringKrullDim_eq_of_isNoetherianRing
     (R : Type u) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     [IsNoetherianRing (AdicCompletion (maximalIdeal R) R)] :
@@ -80,7 +84,9 @@ theorem maximalAdicCompletion_ringKrullDim_eq_of_isNoetherianRing
       IsLocalRing.maximalIdeal_height_eq_ringKrullDim
 
 /-- If the maximal-adic completion has been shown Noetherian, regularity of a
-Noetherian local source ascends to its completion.-/
+Noetherian local source ascends to its completion.
+@isnad1 id=isregula.0h1v.s6.4265aa331f46 from=translated src=- shape=7ffe33f5 vocab=4ea21bb0
+-/
 theorem maximalAdicCompletion_isRegularLocalRing_of_isNoetherianRing
     (R : Type u) [CommRing R] [IsRegularLocalRing R]
     [IsNoetherianRing (AdicCompletion (maximalIdeal R) R)] :
@@ -98,14 +104,18 @@ theorem maximalAdicCompletion_isRegularLocalRing_of_isNoetherianRing
     _ ≤ ringKrullDim (AdicCompletion (maximalIdeal R) R) := le_rfl
 
 /-- Maximal-adic completion preserves the Krull dimension of every
-Noetherian local ring.-/
+Noetherian local ring.
+@isnad1 id=eq.0h1v.s6.928ceb8be841 from=translated src=- shape=7be4b498 vocab=11a1cc03
+-/
 theorem maximalAdicCompletion_ringKrullDim_eq
     (R : Type u) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] :
     ringKrullDim (AdicCompletion (maximalIdeal R) R) =
       ringKrullDim R :=
   maximalAdicCompletion_ringKrullDim_eq_of_isNoetherianRing R
 
-/-- The maximal-adic completion of a regular local ring is regular local.-/
+/-- The maximal-adic completion of a regular local ring is regular local.
+@isnad1 id=isregula.0h1v.s5.8db76a7e2f89 from=translated src=- shape=776bb47b vocab=7abedeaf
+-/
 theorem maximalAdicCompletion_isRegularLocalRing
     (R : Type u) [CommRing R] [IsRegularLocalRing R] :
     IsRegularLocalRing (AdicCompletion (maximalIdeal R) R) :=

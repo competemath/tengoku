@@ -32,7 +32,9 @@ attribute [local instance] Ideal.Quotient.field
 
 /-- A prime above the maximal ideal of a discrete valuation base is nonzero.
 The torsion-free algebra instance is constructed from the specified integral
-closure rather than exposed as an additional hypothesis.-/
+closure rather than exposed as an additional hypothesis.
+@isnad1 id=ne.0h5v.s8.1d250c42e1dc from=translated src=- shape=356dd769 vocab=b6a36a47
+-/
 theorem dvrNormalizationPrime_ne_bot
     {A : Type uL} {B : Type uB} {K : Type uK} {L : Type uL}
     [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]

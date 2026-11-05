@@ -23,7 +23,9 @@ namespace ArtinSchreierTheory
 open Polynomial
 variable (p : ℕ) [Fact p.Prime] (Ω : Type*) [Field Ω] [CharP Ω p]
 
-/-- The fixed elements of the prime Frobenius come from the prime field.-/
+/-- The fixed elements of the prime Frobenius come from the prime field.
+@isnad1 id=ex.1h3v.s7.c27674d291f5 from=translated src=- shape=1687a15e vocab=dffe15ed
+-/
 theorem exists_zmod_of_pow_eq {x : Ω} (hx : x ^ p = x) :
     ∃ z : ZMod p, (ZMod.castHom (dvd_refl p) Ω) z = x := by
   let f : (ZMod p)[X] := X ^ p - X
@@ -40,7 +42,9 @@ theorem exists_zmod_of_pow_eq {x : Ω} (hx : x ^ p = x) :
     Polynomial.IsRoot.def, Polynomial.eval_sub, Polynomial.eval_pow, Polynomial.eval_X,
     hx, sub_self]
 
-/-- Every Artin–Schreier equation has a root in a separably closed field.-/
+/-- Every Artin–Schreier equation has a root in a separably closed field.
+@isnad1 id=ex.0h3v.s6.2fb24b6f78b1 from=translated src=- shape=6f74cbac vocab=467808a1
+-/
 theorem exists_root [IsSepClosed Ω] (a : Ω) : ∃ β : Ω, β ^ p - β = a := by
   obtain ⟨β, hβ⟩ := IsSepClosed.exists_root_C_mul_X_pow_add_C_mul_X_add_C
     (1 : Ω) (-1) (-a) (CharP.cast_eq_zero Ω p) (Fact.out : p.Prime).two_le
@@ -63,6 +67,9 @@ noncomputable def rootCharacterValue (a : K) (β : Ω)
     (hβ : β ^ p - β = algebraMap K Ω a) (σ : Gal(Ω/K)) : ZMod p :=
   (exists_zmod_of_pow_eq p Ω (rootDifference_pow_eq p Ω a β hβ σ)).choose
 
+/--
+@isnad1 id=eq.1h6v.s8.49e6d961abb1 from=translated src=- shape=79a59b90 vocab=1947d5fc
+-/
 theorem rootCharacterValue_cast (a : K) (β : Ω)
     (hβ : β ^ p - β = algebraMap K Ω a) (σ : Gal(Ω/K)) :
     (ZMod.castHom (dvd_refl p) Ω) (rootCharacterValue p Ω a β hβ σ) = σ β - β :=
@@ -103,12 +110,17 @@ noncomputable def rootCharacter (a : K) (β : Ω)
     apply (ZMod.castHom (dvd_refl p) Ω).injective
     rw [rootCharacterValue_cast, rootCharacterValue_cast, hconst τ hτ]
 
+/--
+@isnad1 id=eq.1h6v.s9.c60f1cea0e3a from=translated src=- shape=42c69a9d vocab=fab86c96
+-/
 theorem rootCharacter_cast (a : K) (β : Ω)
     (hβ : β ^ p - β = algebraMap K Ω a) (σ : Gal(Ω/K)) :
     (ZMod.castHom (dvd_refl p) Ω) ((rootCharacter p Ω a β hβ σ).toAdd) = σ β - β :=
   rootCharacterValue_cast p Ω a β hβ σ
 
-/-- The Artin–Schreier character is independent of the chosen root.-/
+/-- The Artin–Schreier character is independent of the chosen root.
+@isnad1 id=eq.2h6v.s8.f7c22f7102a8 from=translated src=- shape=1b346fb3 vocab=2f465dcc
+-/
 theorem rootCharacter_eq (a : K) (β γ : Ω)
     (hβ : β ^ p - β = algebraMap K Ω a)
     (hγ : γ ^ p - γ = algebraMap K Ω a) :

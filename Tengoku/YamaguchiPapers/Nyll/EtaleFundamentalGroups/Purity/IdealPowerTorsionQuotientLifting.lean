@@ -32,7 +32,9 @@ open CategoryTheory
 variable {R : Type u} [CommRing R]
 
 /-- Lifting maps from a cofinal family of ideal quotients gives
-surjectivity on ideal-power torsion.-/
+surjectivity on ideal-power torsion.
+@isnad1 id=surjecti.3h6v.s10.d2a7b6aa5a57 from=translated src=- shape=d46efdaf vocab=911ad892
+-/
 theorem idealPowerTorsionFunctor_map_surjective_of_quotient_lifting
     (I : Ideal R) (J : ℕ → Ideal R)
     (hJI : ∀ n : ℕ, ∃ m : ℕ, J m ≤ I ^ n)

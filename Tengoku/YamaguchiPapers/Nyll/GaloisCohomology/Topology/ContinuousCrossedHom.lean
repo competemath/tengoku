@@ -33,6 +33,9 @@ namespace CrossedHom
 variable {X : TopRep.{u} ℤ G}
 
 omit [IsTopologicalGroup G] in
+/--
+@isnad1 id=eq.0h3v.s7.877c58b8b0fd from=translated src=- shape=8ea1458d vocab=3edca75f
+-/
 theorem map_one (c : CrossedHom X) : c.toFun 1 = 0 := by
   have hc := c.map_mul 1 1
   rw [one_mul, _root_.map_one X.ρ, one_apply_eq_self] at hc
@@ -55,9 +58,15 @@ def homogeneous (c : CrossedHom X) : (homogeneousCochains X).X 1 := by
   rw [hh, hg]
   abel
 
+/--
+@isnad1 id=eq.0h5v.s11.f47e368b0524 from=translated src=- shape=14b0463b vocab=06740b4d
+-/
 theorem homogeneous_apply (c : CrossedHom X) (g h : G) :
     c.homogeneous.1 g h = c.toFun h - c.toFun g := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.7b7658a00605 from=translated src=- shape=0827bf5e vocab=a50d754a
+-/
 theorem homogeneous_mem_cycles (c : CrossedHom X) :
     ((homogeneousCochains X).d 1 2).hom c.homogeneous = 0 := by
   apply Subtype.ext
@@ -104,6 +113,9 @@ noncomputable def toCocycle (c : CrossedHom X) : cocycles X 1 := by
     scalarLine_comp_eq_zero c.homogeneous _ c.homogeneous_mem_cycles
   exact ((homogeneousCochains X).liftCycles line 2 (CochainComplex.next ℕ 1) hline) (ULift.up 1)
 
+/--
+@isnad1 id=eq.0h3v.s10.6f2adf69c401 from=translated src=- shape=e38ab6c3 vocab=5f46ac26
+-/
 theorem iCycles_toCocycle (c : CrossedHom X) :
     (homogeneousCochains X).iCycles 1 c.toCocycle = c.homogeneous := by
   change (homogeneousCochains X).iCycles 1
@@ -139,6 +151,9 @@ noncomputable def crossedHomOfCocycle (X : TopRep.{u} ℤ G) (z : cocycles X 1) 
   rw [← hinv'] at hc
   exact (eq_sub_iff_add_eq.mp (sub_eq_zero.mp hc)).symm.trans (add_comm _ _)
 
+/--
+@isnad1 id=eq.0h4v.s6.08c5a0645c4c from=translated src=- shape=2a6dc466 vocab=db4aa41f
+-/
 theorem crossedHomOfCocycle_toCocycle (X : TopRep.{u} ℤ G) (c : CrossedHom X) (g : G) :
     (crossedHomOfCocycle X c.toCocycle).toFun g = c.toFun g := by
   change ((homogeneousCochains X).iCycles 1 c.toCocycle).1 1 g = c.toFun g

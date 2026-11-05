@@ -26,7 +26,9 @@ namespace ClassFieldTower.Cohomology
 variable {G A : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   [CommGroup A] [TopologicalSpace A] [IsTopologicalGroup A]
 
-/-- Transfer from an open finite-index subgroup preserves continuity.-/
+/-- Transfer from an open finite-index subgroup preserves continuity.
+@isnad1 id=continuo.1h4v.s9.805097b44b5b from=translated src=- shape=b492fa9f vocab=9e7ff88c
+-/
 theorem continuous_transfer_of_openSubgroup
     (H : OpenSubgroup G) [H.toSubgroup.FiniteIndex]
     (φ : H →* A) (hφ : Continuous φ) : Continuous (MonoidHom.transfer φ) := by

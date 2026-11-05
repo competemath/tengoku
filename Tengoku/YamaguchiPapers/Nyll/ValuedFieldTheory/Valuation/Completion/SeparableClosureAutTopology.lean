@@ -32,7 +32,9 @@ open scoped Topology
 variable (K : Type*) [Field K]
 
 /-- Extending automorphisms from the separable closure to the algebraic
-closure is continuous in every characteristic.-/
+closure is continuous in every characteristic.
+@isnad1 id=continuo.0h1v.s13.8a82e86386d6 from=translated src=- shape=a193341c vocab=b7386d7f
+-/
 theorem continuous_separableClosureAutEquiv_symm :
     Continuous (separableClosureAutEquiv K).symm := by
   classical
@@ -85,7 +87,9 @@ def separableClosureAutContinuousEquiv :
   continuous_toFun := continuous_separableClosureAutEquiv K
   continuous_invFun := continuous_separableClosureAutEquiv_symm K
 
-/-- The topological group isomorphism retains restriction on field elements.-/
+/-- The topological group isomorphism retains restriction on field elements.
+@isnad1 id=eq.0h3v.s13.44c9592143ff from=translated src=- shape=3c5bb387 vocab=27459135
+-/
 @[simp] theorem separableClosureAutContinuousEquiv_apply
     (σ : Gal(AlgebraicClosure K/K)) (s : SeparableClosure K) :
     (separableClosureAutContinuousEquiv K σ s : AlgebraicClosure K) =
@@ -93,7 +97,9 @@ def separableClosureAutContinuousEquiv :
   separableClosureAutEquiv_apply K σ s
 
 /-- The algebraic-closure Galois group is compact even when the base field is
-imperfect: restriction is a homeomorphism onto the separable-closure group.-/
+imperfect: restriction is a homeomorphism onto the separable-closure group.
+@isnad1 id=compacts.0h1v.s6.e8b22528b550 from=translated src=- shape=2fe283a9 vocab=c303c3aa
+-/
 instance algebraicClosureAut_compactSpace : CompactSpace Gal(AlgebraicClosure K/K) :=
   (separableClosureAutContinuousEquiv K).symm.toHomeomorph.compactSpace
 

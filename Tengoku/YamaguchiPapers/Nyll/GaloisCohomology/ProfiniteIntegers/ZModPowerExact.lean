@@ -23,10 +23,16 @@ def mulPow (p n : ℕ) : ZMod (p ^ n) →+ ZMod (p ^ (n + 1)) :=
       change (p : ZMod (p ^ (n + 1))) * ((p ^ n : ℕ) : ℤ) = 0
       rw [Int.cast_natCast, ← Nat.cast_mul, ← pow_succ', ZMod.natCast_self]⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.72dc78d3a5df from=translated src=- shape=bef62c24 vocab=600864d9
+-/
 theorem mulPow_intCast (p n : ℕ) (a : ℤ) :
     mulPow p n (a : ZMod (p ^ n)) = (p : ZMod (p ^ (n + 1))) * a :=
   ZMod.lift_coe _ _ _
 
+/--
+@isnad1 id=injectiv.1h2v.s9.11c0bd7ac3c9 from=translated src=- shape=d8796718 vocab=19066aff
+-/
 theorem mulPow_injective {p : ℕ} (hp : p ≠ 0) (n : ℕ) :
     Function.Injective (mulPow p n) := by
   apply (injective_iff_map_eq_zero (mulPow p n)).2
@@ -44,7 +50,9 @@ theorem mulPow_injective {p : ℕ} (hp : p ≠ 0) (n : ℕ) :
   rw [ZMod.intCast_zmod_eq_zero_iff_dvd]
   simpa only [Nat.cast_pow] using hdiv
 
-/-- The image of multiplication by `p` is the kernel of reduction modulo `p`.-/
+/-- The image of multiplication by `p` is the kernel of reduction modulo `p`.
+@isnad1 id=ex.1h3v.s10.61ae2869e545 from=translated src=- shape=c159b367 vocab=68c21fdc
+-/
 theorem exists_mulPow_eq_of_castHom_eq_zero (p n : ℕ)
     (z : ZMod (p ^ (n + 1)))
     (hz : ZMod.castHom (pow_dvd_pow p (Nat.succ_le_succ (Nat.zero_le n)))
@@ -57,7 +65,9 @@ theorem exists_mulPow_eq_of_castHom_eq_zero (p n : ℕ)
   rw [mulPow_intCast, ha, Int.cast_mul, Int.cast_natCast]
 
 /-- Multiplication by `p` respects multiplication by a coefficient reduced
-from the larger residue ring.-/
+from the larger residue ring.
+@isnad1 id=eq.0h4v.s11.564d8cc1dc7c from=translated src=- shape=da20f4b0 vocab=c616e576
+-/
 theorem mulPow_mul_castHom (p n : ℕ) (a : ZMod (p ^ (n + 1))) (b : ZMod (p ^ n)) :
     mulPow p n (ZMod.castHom (pow_dvd_pow p (Nat.le_succ n)) (ZMod (p ^ n)) a * b) =
       a * mulPow p n b := by
@@ -66,7 +76,9 @@ theorem mulPow_mul_castHom (p n : ℕ) (a : ZMod (p ^ (n + 1))) (b : ZMod (p ^ n
   rw [map_intCast, ← Int.cast_mul, mulPow_intCast, mulPow_intCast, Int.cast_mul]
   exact mul_left_comm _ _ _
 
-/-- Reduction commutes with the additive maps given by multiplication by `p`.-/
+/-- Reduction commutes with the additive maps given by multiplication by `p`.
+@isnad1 id=eq.0h3v.s11.1852faab31b0 from=translated src=- shape=e2827758 vocab=2820897c
+-/
 theorem castHom_mulPow (p n : ℕ) (a : ZMod (p ^ (n + 1))) :
     ZMod.castHom (pow_dvd_pow p (Nat.le_succ (n + 1))) (ZMod (p ^ (n + 1)))
       (mulPow p (n + 1) a) =

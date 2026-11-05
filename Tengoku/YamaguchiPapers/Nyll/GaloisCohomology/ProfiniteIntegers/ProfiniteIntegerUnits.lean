@@ -51,7 +51,9 @@ noncomputable def zHatUnitsContinuousMulEquivPrimeProduct :
       ContinuousMulEquiv.piUnits
 
 /-- On underlying ring elements, the unit-group Chinese-remainder
-equivalence is the canonical `p`-adic coordinate map.-/
+equivalence is the canonical `p`-adic coordinate map.
+@isnad1 id=eq.0h2v.s10.970924803bb0 from=translated src=- shape=76cc2d6c vocab=9ac80a2b
+-/
 @[simp]
 theorem zHatUnitsContinuousMulEquivPrimeProduct_coe_apply
     (u : ZHatˣ) (p : Nat.Primes) :

@@ -29,19 +29,25 @@ open scoped Topology
 variable {K Ω : Type*} [Field K] [Field Ω] [Algebra K Ω]
   (L : IntermediateField K Ω)
 
-/-- The fixing subgroup equivalence preserves evaluation in the ambient field.-/
+/-- The fixing subgroup equivalence preserves evaluation in the ambient field.
+@isnad1 id=eq.0h5v.s12.ee7ddd0342bc from=translated src=- shape=131a0a30 vocab=fb7e5047
+-/
 theorem fixingSubgroupEquiv_apply (σ : L.fixingSubgroup) (x : Ω) :
     L.fixingSubgroupEquiv σ x = (σ : Gal(Ω/K)) x := by
   rfl
 
-/-- The inverse fixing subgroup equivalence preserves ambient evaluation.-/
+/-- The inverse fixing subgroup equivalence preserves ambient evaluation.
+@isnad1 id=eq.0h5v.s12.25e513917aab from=translated src=- shape=bd62384d vocab=51105189
+-/
 theorem fixingSubgroupEquiv_symm_apply (σ : Gal(Ω/L)) (x : Ω) :
     (L.fixingSubgroupEquiv.symm σ : Gal(Ω/K)) x = σ x := by
   rfl
 
 variable [FiniteDimensional K L]
 
-/-- Reinterpreting an ambient fixing automorphism as an `L`-automorphism is continuous.-/
+/-- Reinterpreting an ambient fixing automorphism as an `L`-automorphism is continuous.
+@isnad1 id=continuo.0h3v.s12.5bf975adc549 from=translated src=- shape=3c55d71f vocab=1e153818
+-/
 theorem fixingSubgroupEquiv_continuous : Continuous L.fixingSubgroupEquiv := by
   apply continuous_of_tendsto_nhds_one L.fixingSubgroupEquiv
   rw [Filter.tendsto_def]
@@ -61,7 +67,9 @@ theorem fixingSubgroupEquiv_continuous : Continuous L.fixingSubgroupEquiv := by
   rw [fixingSubgroupEquiv_apply]
   exact (IntermediateField.mem_fixingSubgroup_iff (E.restrictScalars K) σ.val).mp hσ x hx
 
-/-- Restricting scalars from `L` back to `K` is continuous into the fixing subgroup.-/
+/-- Restricting scalars from `L` back to `K` is continuous into the fixing subgroup.
+@isnad1 id=continuo.0h3v.s12.6717d1d93b96 from=translated src=- shape=37525341 vocab=9464677a
+-/
 theorem fixingSubgroupEquiv_symm_continuous : Continuous L.fixingSubgroupEquiv.symm := by
   apply Continuous.subtype_mk
   let r : Gal(Ω/L) →* Gal(Ω/K) :=
@@ -92,18 +100,24 @@ def fixingSubgroupContinuousEquiv : L.fixingSubgroup ≃ₜ* Gal(Ω/L) where
   continuous_toFun := fixingSubgroupEquiv_continuous L
   continuous_invFun := fixingSubgroupEquiv_symm_continuous L
 
-/-- Evaluation of the continuous fixing subgroup equivalence.-/
+/-- Evaluation of the continuous fixing subgroup equivalence.
+@isnad1 id=eq.0h4v.s13.ecdbd6c24e26 from=translated src=- shape=fa1f03a9 vocab=525bd1f0
+-/
 theorem fixingSubgroupContinuousEquiv_apply (σ : L.fixingSubgroup) :
     fixingSubgroupContinuousEquiv L σ = L.fixingSubgroupEquiv σ := by
   rfl
 
-/-- Evaluation of the inverse continuous fixing subgroup equivalence.-/
+/-- Evaluation of the inverse continuous fixing subgroup equivalence.
+@isnad1 id=eq.0h4v.s13.d4588ff4f869 from=translated src=- shape=aa469d66 vocab=37ce9bcc
+-/
 theorem fixingSubgroupContinuousEquiv_symm_apply (σ : Gal(Ω/L)) :
     (fixingSubgroupContinuousEquiv L).symm σ = L.fixingSubgroupEquiv.symm σ := by
   rfl
 
 /-- Every open subgroup of a Galois group is the relative Galois group
-of a finite intermediate field, with its actual Krull topology.-/
+of a finite intermediate field, with its actual Krull topology.
+@isnad1 id=ex.0h3v.s10.8d988cc414da from=translated src=- shape=ba2045d0 vocab=9b5e4776
+-/
 theorem exists_finiteIntermediateField_openSubgroup_equiv
     {K Ω : Type*} [Field K] [Field Ω] [Algebra K Ω] [IsGalois K Ω]
     (H : OpenSubgroup Gal(Ω/K)) :

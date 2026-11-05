@@ -19,7 +19,9 @@ coprime to the order and describes the action on every root at that order.
 namespace KummerTheory
 
 /-- A field automorphism acts on all roots at a primitive-root level by
-one bounded exponent coprime to that level.-/
+one bounded exponent coprime to that level.
+@isnad1 id=ex.1h3v.s8.566689e082c8 from=translated src=- shape=00e76baa vocab=ce1ba360
+-/
 theorem exists_bounded_coprime_power_action_on_roots
     (K : Type*) [Field K] (n : ℕ+)
     (hmu : (primitiveRoots (n : ℕ) K).Nonempty) (τ : K ≃+* K) :

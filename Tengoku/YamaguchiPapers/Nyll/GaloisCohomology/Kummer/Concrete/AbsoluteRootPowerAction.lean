@@ -24,7 +24,9 @@ open KummerTheory
 variable (K : Type*) [Field K]
 
 /-- The chosen lift of a base automorphism has the same power action on
-the roots in the algebraic closure as on the roots in the base field.-/
+the roots in the algebraic closure as on the roots in the base field.
+@isnad1 id=eq.2h5v.s10.b9bdf46af4b4 from=translated src=- shape=7700a575 vocab=0ce1ec03
+-/
 theorem absoluteGaloisLift_nthRoot_eq_pow
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (τ : K ≃+* K) (a : ℕ)

@@ -15,7 +15,9 @@ universe u v
 variable {K : Type u} {Ω : Type v} [Field K] [Field Ω] [Algebra K Ω]
   [IsGalois K Ω] [FiniteDimensional K Ω]
 
-/-- A trace-one element gives a primitive for every additive two-cocycle.-/
+/-- A trace-one element gives a primitive for every additive two-cocycle.
+@isnad1 id=ex.1h3v.s10.07c2ce52c53e from=translated src=- shape=b987ae29 vocab=f9901511
+-/
 theorem additiveH2_finite
     (z : Gal(Ω/K) → Gal(Ω/K) → Ω)
     (hz : ∀ σ τ υ : Gal(Ω/K),

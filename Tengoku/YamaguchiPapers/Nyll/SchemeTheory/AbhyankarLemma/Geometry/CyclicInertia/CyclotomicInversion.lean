@@ -29,7 +29,9 @@ namespace EtaleFundamentalGroups
 open ClassFormation KummerTheory
 
 /-- The rational cyclotomic extension has an automorphism which inverts every
-finite-order unit.-/
+finite-order unit.
+@isnad1 id=ex.0h0v.s15.3edb8d28260c from=translated src=- shape=9483d375 vocab=b646784a
+-/
 theorem exists_rationalCyclotomicAutomorphism_inverting_torsionUnits :
     ∃ sigma : rationalCyclotomicField ≃ₐ[ℚ] rationalCyclotomicField,
       ∀ z : rationalCyclotomicFieldˣ, IsOfFinOrder z →
@@ -184,7 +186,9 @@ private theorem exists_rationalCyclotomicAutomorphism_inverting_torsion :
   exact hinv
 
 /-- The separable closure of `ℚ` has an automorphism which inverts every
-finite-order element.-/
+finite-order element.
+@isnad1 id=ex.0h0v.s10.291b85e82877 from=translated src=- shape=5b46ba62 vocab=5b2c6e24
+-/
 theorem exists_separableClosureRatAutomorphism_inverting_torsion :
     ∃ sigma : SeparableClosure ℚ ≃ₐ[ℚ] SeparableClosure ℚ,
       ∀ z : SeparableClosure ℚ, IsOfFinOrder z → sigma z = z⁻¹ := by
@@ -227,7 +231,9 @@ theorem exists_separableClosureRatAutomorphism_inverting_torsion :
 /-- If a field is isomorphic to `ℚ`, a separable closure of `ℚ`, regarded
 through that isomorphism as an extension of the field, has an automorphism
 which inverts every finite-order element.  This formulation includes
-universe lifts of `ℚ`.-/
+universe lifts of `ℚ`.
+@isnad1 id=ex.0h2v.s11.3dae883423c4 from=translated src=- shape=ebc2b6de vocab=d25cf410
+-/
 theorem exists_separableClosureAutomorphism_inverting_torsion_of_ratEquiv
     (k : Type u) [Field k] [PerfectField k] (e : k ≃+* ℚ) :
     letI : Algebra k (SeparableClosure ℚ) :=
@@ -247,7 +253,9 @@ If `F` is linearly disjoint from the separable closure of `ℚ` inside
 `Omega`, then an `F`-automorphism of `Omega` inverts every finite-order
 unit.  The linear-disjointness hypothesis is the field-theoretic form of
 regularity used for geometrically integral characteristic-zero generic
-fibres.-/
+fibres.
+@isnad1 id=ex.1h2v.s8.d186966d9320 from=translated src=- shape=0ccc3d0d vocab=613cb9e1
+-/
 theorem exists_algEquiv_inverting_torsionUnits_of_separableClosure_linearDisjoint
     {F : Type u} {Omega : Type v}
     [Field F] [Field Omega]
@@ -318,7 +326,9 @@ theorem exists_algEquiv_inverting_torsionUnits_of_separableClosure_linearDisjoin
 
 /-- Cyclotomic inversion over a rational base field presented by a ring
 equivalence with `ℚ`.  This version applies directly to `ULift ℚ`, so it is
-compatible with arithmetic schemes in an arbitrary universe.-/
+compatible with arithmetic schemes in an arbitrary universe.
+@isnad1 id=ex.1h4v.s9.aa76d225d928 from=translated src=- shape=04ec24e4 vocab=c2624cbd
+-/
 theorem exists_algEquiv_inverting_torsionUnits_of_separableClosure_linearDisjoint_of_ratEquiv
     {k : Type u} {F : Type v} {Omega : Type w}
     [Field k] [PerfectField k] [Field F] [Field Omega]

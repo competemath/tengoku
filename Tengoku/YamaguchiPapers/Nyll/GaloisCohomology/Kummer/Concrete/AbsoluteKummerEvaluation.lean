@@ -24,7 +24,9 @@ open KummerTheory
 variable (K : Type*) [Field K] [CharZero K]
 
 /-- The absolute Kummer character of a unit class is computed from any
-`n`-th root of that unit in the algebraic closure.-/
+`n`-th root of that unit in the algebraic closure.
+@isnad1 id=eq.2h5v.s14.89aa2e29241b from=translated src=- shape=2a3d8778 vocab=1bf0589e
+-/
 theorem absoluteKummerContinuousNthRootsCharacterEquiv_apply_of_pow_eq
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (a : Kˣ) (β : (AlgebraicClosure K)ˣ)

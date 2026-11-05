@@ -24,7 +24,9 @@ namespace KummerTheory
 
 universe u v
 
-/-- An element fixed by the nonidentity quadratic automorphism lies in the base field.-/
+/-- An element fixed by the nonidentity quadratic automorphism lies in the base field.
+@isnad1 id=iff.2h4v.s8.09ec18accbff from=translated src=- shape=0cf49526 vocab=2e16321b
+-/
 theorem quadratic_aut_fixed_iff
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L] [IsGalois K L]
     (hdim : Module.finrank K L = 2) (τ : Gal(L/K)) (hτ : τ ≠ 1) (z : L) :
@@ -45,7 +47,9 @@ theorem quadratic_aut_fixed_iff
   · rintro ⟨x, rfl⟩
     exact τ.commutes x
 
-/-- Every automorphism of a quadratic Galois extension is an involution.-/
+/-- Every automorphism of a quadratic Galois extension is an involution.
+@isnad1 id=eq.1h4v.s7.891eeedfb0d5 from=translated src=- shape=d9d0f634 vocab=f946946b
+-/
 theorem quadratic_aut_apply_twice
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L] [IsGalois K L]
     (hdim : Module.finrank K L = 2) (τ : Gal(L/K)) (z : L) :
@@ -56,7 +60,9 @@ theorem quadratic_aut_apply_twice
   have heval := congrArg (fun σ : Gal(L/K) => σ z) hpow
   exact heval
 
-/-- In characteristic zero a nonidentity quadratic automorphism supplies a nonsquare radicand.-/
+/-- In characteristic zero a nonidentity quadratic automorphism supplies a nonsquare radicand.
+@isnad1 id=ex.2h3v.s9.f9ac201ccede from=translated src=- shape=f246dbb1 vocab=c6ae148d
+-/
 theorem exists_quadratic_antiInvariant
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L] [IsGalois K L]
     [CharZero K] (hdim : Module.finrank K L = 2) (τ : Gal(L/K)) (hτ : τ ≠ 1) :
@@ -90,7 +96,9 @@ theorem exists_quadratic_antiInvariant
   have hzero : (2 : L) * α = 0 := by linear_combination hneg
   exact hα0 ((mul_eq_zero.mp hzero).resolve_left (by norm_num))
 
-/-- A base-field element becomes a square exactly in the trivial or defining square class.-/
+/-- A base-field element becomes a square exactly in the trivial or defining square class.
+@isnad1 id=iff.5h6v.s9.d75b067d7d37 from=translated src=- shape=0e074234 vocab=85482a87
+-/
 theorem isSquare_algebraMap_iff_of_quadratic
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L] [IsGalois K L]
     (hdim : Module.finrank K L = 2) (τ : Gal(L/K)) (hτ : τ ≠ 1)

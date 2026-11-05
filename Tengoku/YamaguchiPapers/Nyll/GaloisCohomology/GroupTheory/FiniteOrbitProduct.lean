@@ -28,7 +28,9 @@ def finiteOrbitProduct {G A : Type*} [Monoid G] [Fintype G] [CommMonoid A]
     (ρ : G →* MulAut A) (C : A) : A :=
   ∏ g : G, ρ g C
 
-/-- Reindexing by left multiplication makes the orbit product invariant.-/
+/-- Reindexing by left multiplication makes the orbit product invariant.
+@isnad1 id=eq.0h5v.s8.09dc92403114 from=translated src=- shape=0f1c10e2 vocab=1ba9b9d1
+-/
 theorem finiteOrbitProduct_invariant
     {G A : Type*} [Group G] [Fintype G] [CommMonoid A]
     (ρ : G →* MulAut A) (C : A) (g : G) :
@@ -42,7 +44,9 @@ theorem finiteOrbitProduct_invariant
       rw [map_mul, MulAut.mul_apply]
     _ = ∏ h : G, ρ h C := Equiv.prod_comp (Equiv.mulLeft g) (fun h : G => ρ h C)
 
-/-- A fixed multiplicative difference accumulates once for each translate.-/
+/-- A fixed multiplicative difference accumulates once for each translate.
+@isnad1 id=eq.3h6v.s10.ff89732bee76 from=translated src=- shape=4dba4bd8 vocab=2bbd5ae6
+-/
 theorem finiteOrbitProduct_map_div
     {G A : Type*} [Monoid G] [Fintype G] [CommGroup A]
     (ρ : G →* MulAut A) (α : MulAut A) (C D : A)

@@ -26,7 +26,9 @@ universe u v
 variable {K : Type u} {Ω : Type v} [Field K] [Field Ω] [Algebra K Ω]
   [IsGalois K Ω]
 
-/-- An additive cocycle on a finite Galois extension is a coboundary.-/
+/-- An additive cocycle on a finite Galois extension is a coboundary.
+@isnad1 id=ex.1h3v.s9.d5c29b32a3ce from=translated src=- shape=06abfa78 vocab=f9901511
+-/
 theorem additiveHilbert90_finite [FiniteDimensional K Ω]
     (c : Gal(Ω/K) → Ω)
     (hc : ∀ σ τ : Gal(Ω/K), c (σ * τ) = σ (c τ) + c σ) :
@@ -117,7 +119,9 @@ private theorem additive_cocycle_finite_stage
     exact hc σ' τ'
   exact ⟨E, cE, hcE, hvalue⟩
 
-/-- Locally constant additive cocycles are coboundaries in any Galois extension.-/
+/-- Locally constant additive cocycles are coboundaries in any Galois extension.
+@isnad1 id=ex.2h3v.s9.825106ec2dfb from=translated src=- shape=2c0d0c70 vocab=2e7aac0e
+-/
 theorem additiveHilbert90_of_isLocallyConstant
     (c : Gal(Ω/K) → Ω)
     (hc : ∀ σ τ : Gal(Ω/K), c (σ * τ) = σ (c τ) + c σ)

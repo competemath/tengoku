@@ -94,7 +94,9 @@ def separableAbsoluteKummerContinuousZModCharacterEquiv
       (separableDiscreteNthRootsContinuousMulEquivMultiplicativeZMod K n hmu))
 
 /-- Evaluation is the existing separable Kummer character on the actual
-restriction of the absolute automorphism, followed by the root coefficient map.-/
+restriction of the absolute automorphism, followed by the root coefficient map.
+@isnad1 id=eq.1h4v.s16.9fdd8b5a1214 from=translated src=- shape=0b3a4a75 vocab=292ca03a
+-/
 theorem separableAbsoluteKummerContinuousZModCharacterEquiv_apply
     (n : ℕ+) [NeZero ((n : ℕ) : K)]
     (hmu : (primitiveRoots (n : ℕ) K).Nonempty)

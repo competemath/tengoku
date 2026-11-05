@@ -48,7 +48,9 @@ variable (P : Ideal B) [P.IsMaximal]
 variable (hP : P ≠ ⊥)
 
 omit [IsDedekindDomain B] in
-/-- The normalization action fixes the base ring.-/
+/-- The normalization action fixes the base ring.
+@isnad1 id=smulcomm.0h4v.s9.b71da19d9baa from=translated src=- shape=1cd16740 vocab=6b09b4ee
+-/
 theorem normalizationGaloisSMulCommClass :
     letI := IsIntegralClosure.MulSemiringAction A K L B
     SMulCommClass Gal(L/K) A B := by
@@ -89,13 +91,18 @@ def idealLocalizationRingHom :
   (idealLocalizationEquiv B L P hP).toRingHom.comp
     (algebraMap B (idealLocalizationSubalgebra B L P))
 
+/--
+@isnad1 id=eq.1h4v.s8.8d0269b29011 from=translated src=- shape=28f52bc9 vocab=62a09754
+-/
 @[simp] theorem idealLocalizationRingHom_apply_coe (b : B) :
     ((idealLocalizationRingHom (B := B) (L := L) P hP b :
       idealLocalizationValuationSubring B L P hP) : L) =
       algebraMap B L b :=
   rfl
 
-/-- Membership in `P` is detected by the maximal ideal after localization.-/
+/-- Membership in `P` is detected by the maximal ideal after localization.
+@isnad1 id=iff.1h4v.s9.31a515b33324 from=translated src=- shape=ea12bed1 vocab=ebc48935
+-/
 theorem idealLocalizationRingHom_mem_maximalIdeal_iff (b : B) :
     idealLocalizationRingHom (B := B) (L := L) P hP b ∈
         IsLocalRing.maximalIdeal
@@ -247,6 +254,9 @@ include L
 
 omit [IsFractionRing A K] [IsIntegralClosure B A L]
   [Algebra.IsAlgebraic K L] [IsGalois K L] in
+/--
+@isnad1 id=eq.1h7v.s12.deb2a697034f from=translated src=- shape=fd45f07a vocab=a3d53f84
+-/
 theorem localDecomposition_fixes_normalizationBase
     (sigma : decompositionGroup K
       (idealLocalizationValuationSubring B L P hP))
@@ -310,6 +320,9 @@ def normalizationBaseResidueToDecompositionResidueField :
 
 omit [IsFractionRing A K] [IsIntegralClosure B A L]
   [Algebra.IsAlgebraic K L] [IsGalois K L] in
+/--
+@isnad1 id=eq.1h6v.s14.b1b04a8a4d2a from=translated src=- shape=0374e8c1 vocab=de6dccf3
+-/
 @[simp] theorem normalizationBaseResidueToDecompositionResidueField_mk
     (a : A) :
     normalizationBaseResidueToDecompositionResidueField
@@ -324,6 +337,9 @@ omit [IsFractionRing A K] [IsIntegralClosure B A L]
   simp [normalizationBaseResidueToDecompositionResidueField]
 
 omit [Algebra.IsAlgebraic K L] [IsGalois K L] in
+/--
+@isnad1 id=eq.1h5v.s14.3fdf5ce31809 from=translated src=- shape=eafb4e3f vocab=bdc2eec9
+-/
 @[simp] theorem decompositionResidueField_algebraMap_mk
     (r : decompositionFixedSubring K
       (idealLocalizationValuationSubring B L P hP)) :

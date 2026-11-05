@@ -156,14 +156,18 @@ private theorem decompositionFixedSubring_isInvariant
   intro x hx
   exact ⟨⟨x, hx⟩, rfl⟩
 
-/-- Provides the instance `instSMulCommClass`.-/
+/-- Provides the instance `instSMulCommClass`.
+@isnad1 id=smulcomm.0h3v.s11.b9c82a1d8f57 from=translated src=- shape=e3ce3938 vocab=29138eef
+-/
 instance decompositionFixedSubring.instSMulCommClass
     (A : _root_.ValuationSubring L) :
     SMulCommClass (decompositionGroup K A)
       (decompositionFixedSubring K A) A :=
   decompositionFixedSubring_smulCommClass (K := K) A
 
-/-- Provides the instance `instLiesOver`.-/
+/-- Provides the instance `instLiesOver`.
+@isnad1 id=liesover.0h3v.s9.d93cfaf185a9 from=translated src=- shape=a43765b0 vocab=3bc6ef31
+-/
 instance selectedMaximalIdeal.instLiesOver
     (A : _root_.ValuationSubring L) :
     (IsLocalRing.maximalIdeal A).LiesOver
@@ -181,7 +185,9 @@ noncomputable instance selectedResidueField.instAlgebra
 
 omit [IsGalois K L] in
 /-- Every decomposition-group automorphism stabilizes the maximal ideal of
-the selected valuation ring.-/
+the selected valuation ring.
+@isnad1 id=eq.0h3v.s11.855ef053f83a from=translated src=- shape=fc814243 vocab=e334f164
+-/
 theorem decompositionGroup_maximalIdeal_stabilizer_eq_top
     (A : _root_.ValuationSubring L) :
     MulAction.stabilizer (decompositionGroup K A)
@@ -229,7 +235,9 @@ def decompositionGroupResidueAction
     (decompositionGroupToMaximalIdealStabilizer (K := K) A)
 
 omit [IsGalois K L] in
-/-- States the theorem `decompositionGroupResidueAction_residue`.-/
+/-- States the theorem `decompositionGroupResidueAction_residue`.
+@isnad1 id=eq.0h5v.s13.d05327ae5e16 from=translated src=- shape=ee4a566d vocab=8702b1cb
+-/
 @[simp] theorem decompositionGroupResidueAction_residue
     (A : _root_.ValuationSubring L)
     (sigma : decompositionGroup K A) (x : A) :
@@ -239,7 +247,9 @@ omit [IsGalois K L] in
   rfl
 
 omit [IsGalois K L] in
-/-- The residue-action homomorphism has the ordinary inertia group as kernel.-/
+/-- The residue-action homomorphism has the ordinary inertia group as kernel.
+@isnad1 id=eq.0h3v.s11.fd470d67067e from=translated src=- shape=19e93b81 vocab=a5ae4017
+-/
 theorem decompositionGroupResidueAction_ker
     (A : _root_.ValuationSubring L) :
     MonoidHom.ker (decompositionGroupResidueAction (K := K) A) =
@@ -261,7 +271,9 @@ theorem decompositionGroupResidueAction_ker
     exact h
 
 /-- The residue-action exact sequence, including the infinite case: reduction is onto the full
-residue Galois group.-/
+residue Galois group.
+@isnad1 id=surjecti.0h3v.s13.aba017b2acf6 from=translated src=- shape=0a73d63f vocab=d97fa983
+-/
 theorem decompositionGroupResidueAction_surjective
     (A : _root_.ValuationSubring L) :
     Function.Surjective (decompositionGroupResidueAction (K := K) A) := by
@@ -310,7 +322,9 @@ def decompositionQuotientEquivResidueGalois
       (decompositionGroupResidueAction (K := K) A)
       (decompositionGroupResidueAction_surjective (K := K) A))
 
-/-- States the theorem `decompositionQuotientEquivResidueGalois_mk`.-/
+/-- States the theorem `decompositionQuotientEquivResidueGalois_mk`.
+@isnad1 id=eq.0h4v.s15.8f65279ae662 from=translated src=- shape=0690fa32 vocab=cfe9f102
+-/
 @[simp] theorem decompositionQuotientEquivResidueGalois_mk
     (A : _root_.ValuationSubring L) (sigma : decompositionGroup K A) :
     decompositionQuotientEquivResidueGalois (K := K) A

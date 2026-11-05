@@ -32,14 +32,18 @@ noncomputable def separableClosureLift (f : K →+* L) :
   change IsSeparable L (j (s : AlgebraicClosure K))
   exact (IsSeparable.map j j.injective (mem_separableClosure_iff.mp s.property)).tower_top L
 
-/-- The separable-closure embedding extends the original field embedding.-/
+/-- The separable-closure embedding extends the original field embedding.
+@isnad1 id=eq.0h4v.s11.ee282fd7d18b from=translated src=- shape=d64a833b vocab=781126e2
+-/
 theorem separableClosureLift_algebraMap (f : K →+* L) (x : K) :
     separableClosureLift f (algebraMap K (SeparableClosure K) x) =
       algebraMap L (SeparableClosure L) (f x) := by
   apply Subtype.ext
   exact closureLift_algebraMap f x
 
-/-- Galois restriction intertwines the induced embedding of separable closures.-/
+/-- Galois restriction intertwines the induced embedding of separable closures.
+@isnad1 id=eq.0h5v.s14.3ddf987a1900 from=translated src=- shape=3fef848a vocab=e1b3ac3f
+-/
 theorem map_separableClosureLift (f : K →+* L)
     (σ : Gal(AlgebraicClosure L/L)) (s : SeparableClosure K) :
     separableClosureLift f

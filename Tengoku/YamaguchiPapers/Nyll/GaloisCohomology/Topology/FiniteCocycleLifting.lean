@@ -27,7 +27,9 @@ namespace GaloisCohomology
 variable {p : ℕ} [Fact p.Prime]
   {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
-/-- Vanishing of locally constant two-cocycles lifts crossed cocycles one prime-power level.-/
+/-- Vanishing of locally constant two-cocycles lifts crossed cocycles one prime-power level.
+@isnad1 id=ex.4h5v.s12.47584bf1b504 from=translated src=- shape=660136d2 vocab=b628bf1a
+-/
 theorem exists_lift_crossed_cocycle_succ
     (hH2 : ∀ z : G → G → ZMod p,
       (∀ σ τ υ : G, z σ (τ * υ) + z τ υ = z (σ * τ) υ + z σ τ) →

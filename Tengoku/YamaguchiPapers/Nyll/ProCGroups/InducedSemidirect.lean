@@ -38,7 +38,9 @@ def inducedEvaluationSemidirectHom :
     change inducedEvaluation J ((j : Q) • f) = j • inducedEvaluation J f
     exact inducedEvaluation_smul J j f)
 
-/-- Every pair has a preimage, supplied by the actual evaluation epimorphism.-/
+/-- Every pair has a preimage, supplied by the actual evaluation epimorphism.
+@isnad1 id=surjecti.0h3v.s15.7f9de867f89f from=translated src=- shape=68866555 vocab=816462d0
+-/
 theorem inducedEvaluationSemidirectHom_surjective :
     Function.Surjective (inducedEvaluationSemidirectHom (A := A) J) := by
   intro x

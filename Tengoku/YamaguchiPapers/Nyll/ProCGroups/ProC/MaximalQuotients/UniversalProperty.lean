@@ -30,7 +30,9 @@ universe u
 variable {C : FiniteGroupClass}
 
 /-- Any closed normal subgroup whose quotient has an open-normal quotient-in-\(C\) basis contains
-the residual core.-/
+the residual core.
+@isnad1 id=le.2h3v.s6.3721224854fc from=translated src=- shape=2182befa vocab=223b5a4c
+-/
 theorem proCResidualCore_le_of_proCQuotient
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     (K : Subgroup G) [K.Normal]
@@ -64,7 +66,9 @@ private theorem hasOpenNormalBasisInClass_quotient_ker
     (ContinuousMonoidHom.quotientKerContinuousMulEquivRange f).symm
 
 /-- Under hereditary finite quotients, continuous homomorphisms from compact groups send the
-residual core into the residual core.-/
+residual core into the residual core.
+@isnad1 id=le.2h4v.s7.de3cd3f52711 from=translated src=- shape=634938d4 vocab=6ca4a7b9
+-/
 theorem map_proCResidualCore_le_of_hom
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H] [T2Space H]
@@ -94,7 +98,9 @@ theorem map_proCResidualCore_le_of_hom
 
 /--
 A continuous monoid homomorphism sends the pro-\(C\) residual core of the source into the
-pro-\(C\) residual core of the target.-/
+pro-\(C\) residual core of the target.
+@isnad1 id=le.1h4v.s6.b92a722f130f from=translated src=- shape=863f2b1d vocab=611c94fb
+-/
 theorem map_proCResidualCore_le_of_continuousMonoidHom
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H] [T2Space H]
@@ -104,7 +110,9 @@ theorem map_proCResidualCore_le_of_continuousMonoidHom
   map_proCResidualCore_le_of_hom (C := C) hHer φ.toMonoidHom φ.continuous_toFun
 
 /-- Any continuous homomorphism from a compact group to a group with an open-normal
-quotient-in-\(C\) basis kills the residual core when `C` is hereditary.-/
+quotient-in-\(C\) basis kills the residual core when `C` is hereditary.
+@isnad1 id=le.2h4v.s6.86882793b4ae from=translated src=- shape=86119dcb vocab=89ca9a27
+-/
 theorem proCResidualCore_le_ker_of_continuousMonoidHom_to_proC
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H] [T2Space H]
@@ -136,7 +144,9 @@ noncomputable def lift_proCResidualCoreQuotient
   exact QuotientGroup.liftₜ R φ hRker
 
 /--
-The lifted map from the residual-core quotient agrees with the original map on quotient classes.-/
+The lifted map from the residual-core quotient agrees with the original map on quotient classes.
+@isnad1 id=eq.2h5v.s8.d9d4883d0146 from=translated src=- shape=805c07dc vocab=334755f4
+-/
 @[simp] theorem lift_proCResidualCoreQuotient_mk
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H] [T2Space H]
@@ -149,7 +159,9 @@ The lifted map from the residual-core quotient agrees with the original map on q
 
 /--
 The lift from the residual-core quotient is unique among continuous homomorphisms agreeing on
-all quotient classes.-/
+all quotient classes.
+@isnad1 id=eq.3h5v.s9.54101c6eb1f7 from=translated src=- shape=b2f5743c vocab=334755f4
+-/
 theorem lift_proCResidualCoreQuotient_unique
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G] [CompactSpace G]
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H] [T2Space H]
@@ -170,7 +182,9 @@ theorem lift_proCResidualCoreQuotient_unique
           exact (lift_proCResidualCoreQuotient_mk (C := C) hHer φ hH x).symm
 
 /-- Continuous epimorphisms carry the residual core onto the residual core for a full formation
-when the source residual quotient is pro-\(C\).-/
+when the source residual quotient is pro-\(C\).
+@isnad1 id=eq.4h4v.s7.45bc645d0ff9 from=translated src=- shape=73eb7f69 vocab=c186712b
+-/
 theorem map_proCResidualCore_eq_of_surjective
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
       [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]

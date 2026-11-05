@@ -22,7 +22,9 @@ namespace FieldTheory
 universe u v
 variable (F : Type u) (K : Type v) [Field F] [Field K] [Algebra F K]
 
-/-- Every root of unity lies in the relative algebraic closure.-/
+/-- Every root of unity lies in the relative algebraic closure.
+@isnad1 id=mem.1h3v.s6.891a64c6b64b from=translated src=- shape=25e68022 vocab=dd10e3ab
+-/
 theorem torsionUnit_mem_algebraicClosure (z : Kˣ) (hz : IsOfFinOrder z) :
     (z : K) ∈ algebraicClosure F K := by
   apply mem_algebraicClosure_iff'.mpr
@@ -32,7 +34,9 @@ theorem torsionUnit_mem_algebraicClosure (z : Kˣ) (hz : IsOfFinOrder z) :
   rw [hpow]
   exact isIntegral_one
 
-/-- A finite field of constants makes the full torsion subgroup of units finite.-/
+/-- A finite field of constants makes the full torsion subgroup of units finite.
+@isnad1 id=finite.0h2v.s7.8e29deeec568 from=translated src=- shape=e9e48a71 vocab=f0a52d3b
+-/
 theorem finite_torsion_units_of_finite_algebraicClosure
     [Finite (algebraicClosure F K)] : Finite (CommGroup.torsion Kˣ) := by
   let f : CommGroup.torsion Kˣ → algebraicClosure F K := fun z =>
@@ -42,7 +46,9 @@ theorem finite_torsion_units_of_finite_algebraicClosure
   apply Subtype.ext
   exact Units.ext (congrArg Subtype.val h)
 
-/-- In particular, every prime-primary root group is finite.-/
+/-- In particular, every prime-primary root group is finite.
+@isnad1 id=finite.0h3v.s7.66579846ab57 from=translated src=- shape=a2c511fe vocab=2e277e48
+-/
 theorem finite_primaryComponent_of_finite_algebraicClosure
     [Finite (algebraicClosure F K)] (p : ℕ) [Fact p.Prime] :
     Finite (CommGroup.primaryComponent Kˣ p) := by
@@ -55,7 +61,9 @@ theorem finite_primaryComponent_of_finite_algebraicClosure
   exact Finite.of_injective (Subgroup.inclusion hle) (Subgroup.inclusion_injective hle)
 
 /-- If the algebraic constant field is finite, `x ↦ x ^ n - x` is not onto
-for any exponent greater than one. This includes the Artin--Schreier map.-/
+for any exponent greater than one. This includes the Artin--Schreier map.
+@isnad1 id=ex.1h3v.s6.ac8f330f6d1c from=translated src=- shape=ad897404 vocab=b2682c9c
+-/
 theorem exists_not_pow_sub_of_finite_algebraicClosure
     [Finite (algebraicClosure F K)] (n : ℕ) (hn : 1 < n) :
     ∃ a : K, ∀ x : K, x ^ n - x ≠ a := by

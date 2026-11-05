@@ -30,7 +30,9 @@ variable {R : Type u} [CommRing R]
 
 /-- The linear dual of a flat module with values in an injective module
 is injective. The extension is obtained by tensoring, extending, and
-currying; no injectivity assumption on the dual is needed.-/
+currying; no injectivity assumption on the dual is needed.
+@isnad1 id=injectiv.0h3v.s7.15d146182f54 from=translated src=- shape=5d320cd6 vocab=a014fcc8
+-/
 theorem injective_linearMap_of_flat
     (F E : Type u) [AddCommGroup F] [Module R F] [Module.Flat R F]
     [AddCommGroup E] [Module R E] [Module.Injective R E] :

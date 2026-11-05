@@ -19,7 +19,9 @@ namespace ProCGroups.Abelian
 
 variable {A : Type*} [CommGroup A]
 
-/-- Multiplicative automorphisms preserve the subgroup of nth powers.-/
+/-- Multiplicative automorphisms preserve the subgroup of nth powers.
+@isnad1 id=eq.0h3v.s6.7325cfc12407 from=translated src=- shape=9f9530f0 vocab=f6cc1912
+-/
 theorem map_powerRange (n : ℕ) (e : MulAut A) :
     ((powMonoidHom (α := A) n).range).map e.toMonoidHom =
       (powMonoidHom (α := A) n).range := by
@@ -46,7 +48,9 @@ noncomputable def powerQuotientAction (n : ℕ) :
     obtain ⟨a, rfl⟩ := QuotientGroup.mk'_surjective (powMonoidHom (α := A) n).range x
     rfl
 
-/-- The quotient automorphism evaluates by applying the original automorphism.-/
+/-- The quotient automorphism evaluates by applying the original automorphism.
+@isnad1 id=eq.0h4v.s12.63fe94eacabb from=translated src=- shape=65611a4c vocab=97a0b0b5
+-/
 theorem powerQuotientAction_mk (n : ℕ) (e : MulAut A) (a : A) :
     powerQuotientAction n e (QuotientGroup.mk' (powMonoidHom (α := A) n).range a) =
       QuotientGroup.mk' (powMonoidHom (α := A) n).range (e a) := rfl

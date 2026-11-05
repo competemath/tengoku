@@ -25,7 +25,9 @@ variable {K : Type*} [Field K]
 
 /-- At the last available prime-power root level, a primitive root of prime
 order has nonidentity power class.  The missing next root level is supplied
-by maximality of `s` in the roots-downstairs argument.-/
+by maximality of `s` in the roots-downstairs argument.
+@isnad1 id=ne.3h4v.s10.afdf63f71293 from=translated src=- shape=39cecb19 vocab=25cb3c87
+-/
 theorem primitiveRoot_primePowerClass_ne_one
     {r : ℕ} (hr : r.Prime) (s : ℕ) {ζ : Kˣ}
     (hζ : IsPrimitiveRoot ζ r)

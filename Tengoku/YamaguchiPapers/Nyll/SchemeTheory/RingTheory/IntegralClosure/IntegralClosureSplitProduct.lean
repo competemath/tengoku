@@ -53,7 +53,9 @@ def integralClosureSplitProductEquiv
           exact (IsIntegral.of_finite R a).map (IsScalarTower.toAlgHom R (ι → R) (ι → K)) }
   exact IsIntegralClosure.equiv R (integralClosure R (ι → K)) (ι → K) (ι → R)
 
-/-- The actual integral closure of a finite split product is étale.-/
+/-- The actual integral closure of a finite split product is étale.
+@isnad1 id=etale.0h3v.s8.b626355cd93d from=translated src=- shape=9874c5ba vocab=cf231371
+-/
 theorem integralClosure_splitProduct_etale
     (R : Type u) (K : Type v) (ι : Type w)
     [CommRing R] [CommRing K] [Algebra R K]

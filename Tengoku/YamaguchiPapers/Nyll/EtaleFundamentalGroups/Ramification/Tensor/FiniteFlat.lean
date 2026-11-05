@@ -62,10 +62,16 @@ local instance tensorSquareRightAlgebra :
     Algebra S (R' ⊗[R] S) :=
   Algebra.TensorProduct.rightAlgebra
 
+/--
+@isnad1 id=isscalar.0h3v.s7.5b2e7817ef63 from=translated src=- shape=fd193388 vocab=b4bfa4d0
+-/
 local instance tensorSquareRightScalarTower :
     IsScalarTower R S (R' ⊗[R] S) :=
   Algebra.TensorProduct.right_isScalarTower
 
+/--
+@isnad1 id=flat.0h3v.s7.ca215e848236 from=translated src=- shape=3ab04e0c vocab=b3375579
+-/
 local instance tensorSquareRightFlat [Module.Flat R R'] :
     Module.Flat S (R' ⊗[R] S) :=
   Module.Flat.of_linearEquiv

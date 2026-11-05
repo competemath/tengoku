@@ -28,7 +28,9 @@ local instance (p : Nat.Primes) : Fact p.1.Prime :=
   ⟨p.2⟩
 
 /-- The `p ^ k` reduction of the cyclotomic character can be read from
-any finite cyclotomic level whose order is divisible by `p ^ k`.-/
+any finite cyclotomic level whose order is divisible by `p ^ k`.
+@isnad1 id=eq.1h4v.s20.8d0cff80f6f9 from=translated src=- shape=b1ee2f08 vocab=68f4d5b9
+-/
 theorem rationalCyclotomicCharacterPrimeProduct_toZModPow_of_dvd
     (σ : rationalCyclotomicField ≃ₐ[ℚ] rationalCyclotomicField)
     (p : Nat.Primes) (k : ℕ) (n : ℕ+)
@@ -120,7 +122,9 @@ theorem rationalCyclotomicCharacterPrimeProduct_toZModPow_of_dvd
           congr 1
 
 /-- The product of the `p`-adic cyclotomic characters separates
-automorphisms of the actual rational cyclotomic field.-/
+automorphisms of the actual rational cyclotomic field.
+@isnad1 id=injectiv.0h0v.s15.c34a4f9cea09 from=translated src=- shape=b26009dc vocab=3490f6e4
+-/
 theorem rationalCyclotomicCharacterPrimeProduct_injective :
     Function.Injective rationalCyclotomicCharacterPrimeProduct := by
   intro σ τ hστ
@@ -210,7 +214,9 @@ theorem rationalCyclotomicCharacterPrimeProduct_injective :
   change x ∈ AlgHom.equalizer σ.toAlgHom τ.toAlgHom at hx
   exact (AlgHom.mem_equalizer σ.toAlgHom τ.toAlgHom x).mp hx
 
-/-- The canonical rational cyclotomic character is injective.-/
+/-- The canonical rational cyclotomic character is injective.
+@isnad1 id=injectiv.0h0v.s15.1a28814f0e65 from=translated src=- shape=93f4aa41 vocab=09a7196a
+-/
 theorem rationalCyclotomicCharacter_injective :
     Function.Injective rationalCyclotomicCharacter := by
   intro σ τ hστ
@@ -222,7 +228,9 @@ theorem rationalCyclotomicCharacter_injective :
       hστ
   simpa [rationalCyclotomicCharacter] using h
 
-/-- The canonical rational cyclotomic character is surjective.-/
+/-- The canonical rational cyclotomic character is surjective.
+@isnad1 id=surjecti.0h0v.s15.9907d565bf74 from=translated src=- shape=93f4aa41 vocab=bb891e58
+-/
 theorem rationalCyclotomicCharacter_surjective :
     Function.Surjective rationalCyclotomicCharacter := by
   intro u
@@ -413,7 +421,9 @@ noncomputable def rationalCyclotomicCharacterContinuousMulEquiv :
 
 /-- Evaluating the actual profinite-unit cyclotomic character at a
 prime recovers the corresponding genuine `p`-adic cyclotomic
-character.-/
+character.
+@isnad1 id=eq.0h2v.s17.9597e814f4b8 from=translated src=- shape=dbb736cc vocab=6064630b
+-/
 @[simp]
 theorem
     zHatUnitsContinuousMulEquivPrimeProduct_rationalCyclotomicCharacter

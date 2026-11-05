@@ -47,7 +47,9 @@ def FiberProduct.subgroup (β₁ : H₁ →* H) (β₂ : H₂ →* H) : Subgroup
 abbrev FiberProduct.carrier (β₁ : H₁ →* H) (β₂ : H₂ →* H) :=
   ↥(FiberProduct.subgroup β₁ β₂)
 
-/-- Membership in the pullback subgroup is equivalent to the displayed coordinate condition.-/
+/-- Membership in the pullback subgroup is equivalent to the displayed coordinate condition.
+@isnad1 id=iff.0h6v.s7.de87975d54c4 from=translated src=- shape=4b733b8f vocab=b84ee510
+-/
 @[simp] theorem mem_pullbackSubgroup_iff {β₁ : H₁ →* H} {β₂ : H₂ →* H}
     {x : H₁ × H₂} :
     x ∈ FiberProduct.subgroup β₁ β₂ ↔ β₁ x.1 = β₂ x.2 :=
@@ -126,7 +128,9 @@ def FiberProduct.isLimitCone (β₁ : H₁ →* H) (β₂ : H₂ →* H) :
         congrArg (fun f : s.pt ⟶ GrpCat.of H₂ => f.hom) hsnd
       exact DFunLike.congr_fun hsnd' x
 
-/-- The concrete group fiber product is a pullback in mathlib's bundled category of groups.-/
+/-- The concrete group fiber product is a pullback in mathlib's bundled category of groups.
+@isnad1 id=ispullba.0h5v.s7.bb6330c7f94f from=translated src=- shape=810eb1b0 vocab=fef7cfaf
+-/
 theorem FiberProduct.isPullback (β₁ : H₁ →* H) (β₂ : H₂ →* H) :
     CategoryTheory.IsPullback
       (GrpCat.ofHom (FiberProduct.fst β₁ β₂))
@@ -136,7 +140,9 @@ theorem FiberProduct.isPullback (β₁ : H₁ →* H) (β₂ : H₂ →* H) :
 
 /--
 The kernel of the canonical map into a concrete pullback is the intersection of the two
-coordinate kernels.-/
+coordinate kernels.
+@isnad1 id=eq.1h8v.s8.0eb59d35f334 from=translated src=- shape=99ec19a3 vocab=c3b49f44
+-/
 @[simp] theorem ker_pullbackLift (β₁ : H₁ →* H) (β₂ : H₂ →* H)
     (φ₁ : K →* H₁) (φ₂ : K →* H₂)
     (h : ∀ k, β₁ (φ₁ k) = β₂ (φ₂ k)) :
@@ -151,7 +157,9 @@ coordinate kernels.-/
     apply Subtype.ext
     exact Prod.ext h₁ h₂
 
-/-- Composing the first projection with the canonical pullback lift gives \(\varphi_1\).-/
+/-- Composing the first projection with the canonical pullback lift gives \(\varphi_1\).
+@isnad1 id=eq.1h8v.s8.1bfff48c1327 from=translated src=- shape=1ff36fbe vocab=262cc879
+-/
 @[simp] theorem pullbackFst_pullbackLift (β₁ : H₁ →* H) (β₂ : H₂ →* H)
     (φ₁ : K →* H₁) (φ₂ : K →* H₂)
     (h : ∀ k, β₁ (φ₁ k) = β₂ (φ₂ k)) :
@@ -159,7 +167,9 @@ coordinate kernels.-/
   ext k
   rfl
 
-/-- Composing the second projection with the canonical pullback lift gives \(\varphi_2\).-/
+/-- Composing the second projection with the canonical pullback lift gives \(\varphi_2\).
+@isnad1 id=eq.1h8v.s8.6fdc89404e35 from=translated src=- shape=02f4825b vocab=57cd7c43
+-/
 @[simp] theorem pullbackSnd_pullbackLift (β₁ : H₁ →* H) (β₂ : H₂ →* H)
     (φ₁ : K →* H₁) (φ₂ : K →* H₂)
     (h : ∀ k, β₁ (φ₁ k) = β₂ (φ₂ k)) :
@@ -167,7 +177,9 @@ coordinate kernels.-/
   ext k
   rfl
 
-/-- Two homomorphisms into the concrete pullback are equal once both coordinates agree.-/
+/-- Two homomorphisms into the concrete pullback are equal once both coordinates agree.
+@isnad1 id=eq.2h8v.s10.6da78a94dca9 from=translated src=- shape=e0e942b1 vocab=1d61b4c1
+-/
 theorem FiberProduct.hom_ext {β₁ : H₁ →* H} {β₂ : H₂ →* H}
     {K : Type v} [Group K]
     {ψ ψ' : K →* FiberProduct.carrier β₁ β₂}
@@ -190,7 +202,9 @@ def congr {β₁ β₁' : H₁ →* H} {β₂ β₂' : H₂ →* H}
 
 end FiberProduct
 
-/-- The concrete pullback is reconstructed from its two projections by the canonical lift.-/
+/-- The concrete pullback is reconstructed from its two projections by the canonical lift.
+@isnad1 id=eq.0h7v.s8.f3117ff615e5 from=translated src=- shape=cadd8d32 vocab=cd78dbac
+-/
 @[simp 900] theorem pullbackLift_eta {β₁ : H₁ →* H} {β₂ : H₂ →* H}
     {K : Type v} [Group K]
     (ψ : K →* FiberProduct.carrier β₁ β₂) :
@@ -222,13 +236,17 @@ def pullbackSwap (β₁ : H₁ →* H) (β₂ : H₂ →* H) :
     apply Subtype.ext
     rfl
 
-/-- The first projection after swapping equals the original second projection.-/
+/-- The first projection after swapping equals the original second projection.
+@isnad1 id=eq.0h6v.s9.e78998441200 from=translated src=- shape=49d637b6 vocab=9cf165c7
+-/
 @[simp] theorem pullbackFst_pullbackSwap (β₁ : H₁ →* H) (β₂ : H₂ →* H)
     (x : FiberProduct.carrier β₁ β₂) :
     FiberProduct.fst β₂ β₁ (pullbackSwap β₁ β₂ x) = FiberProduct.snd β₁ β₂ x :=
   rfl
 
-/-- The second projection after swapping equals the original first projection.-/
+/-- The second projection after swapping equals the original first projection.
+@isnad1 id=eq.0h6v.s9.897ffbed8015 from=translated src=- shape=4d9b7634 vocab=9cf165c7
+-/
 @[simp] theorem pullbackSnd_pullbackSwap (β₁ : H₁ →* H) (β₂ : H₂ →* H)
     (x : FiberProduct.carrier β₁ β₂) :
     FiberProduct.snd β₂ β₁ (pullbackSwap β₁ β₂ x) = FiberProduct.fst β₁ β₂ x :=
@@ -236,7 +254,9 @@ def pullbackSwap (β₁ : H₁ →* H) (β₂ : H₂ →* H) :
 
 /--
 The symmetry map for the algebraic pullback is inverse to the corresponding swapped pullback
-comparison.-/
+comparison.
+@isnad1 id=eq.0h5v.s7.ce26711f1165 from=translated src=- shape=319c3b36 vocab=c5bdaddd
+-/
 @[simp] theorem pullbackSwap_symm (β₁ : H₁ →* H) (β₂ : H₂ →* H) :
     (pullbackSwap β₁ β₂).symm = pullbackSwap β₂ β₁ :=
   rfl

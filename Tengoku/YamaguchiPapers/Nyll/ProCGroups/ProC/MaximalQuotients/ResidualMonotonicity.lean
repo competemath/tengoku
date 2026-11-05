@@ -29,7 +29,9 @@ universe u
 variable {C D : FiniteGroupClass.{u}}
 variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
-/-- Inclusion of finite-group classes reverses inclusion of residual cores.-/
+/-- Inclusion of finite-group classes reverses inclusion of residual cores.
+@isnad1 id=le.0h4v.s5.912e3a818861 from=translated src=- shape=a15835aa vocab=aea9b3e2
+-/
 theorem proCResidualCore_antitone
     (hCD : ∀ {Q : Type u} [Group Q], C Q → D Q) :
     proCResidualCore D G ≤ proCResidualCore C G := by
@@ -57,7 +59,9 @@ noncomputable def residualQuotientMapOfClassInclusion
       intro x hx
       exact proCResidualCore_antitone hCD hx)
 
-/-- The class-inclusion map retains the original group representative.-/
+/-- The class-inclusion map retains the original group representative.
+@isnad1 id=eq.0h5v.s9.5b81893189e0 from=translated src=- shape=a53240ce vocab=ee89083f
+-/
 @[simp] theorem residualQuotientMapOfClassInclusion_apply_mk
     (hCD : ∀ {Q : Type u} [Group Q], C Q → D Q) (x : G) :
     residualQuotientMapOfClassInclusion hCD
@@ -65,7 +69,9 @@ noncomputable def residualQuotientMapOfClassInclusion
       QuotientGroup.mk' (proCResidualCore C G) x := rfl
 
 /-- Every class in the smaller-class quotient has the same representative
-in the larger-class quotient.-/
+in the larger-class quotient.
+@isnad1 id=surjecti.0h4v.s8.e4381a18a61f from=translated src=- shape=d3ce6c80 vocab=72fe266d
+-/
 theorem residualQuotientMapOfClassInclusion_surjective
     (hCD : ∀ {Q : Type u} [Group Q], C Q → D Q) :
     Function.Surjective (residualQuotientMapOfClassInclusion (G := G) hCD) := by

@@ -21,7 +21,9 @@ namespace FieldTheory
 variable {K : Type*} [Field K]
 
 /-- A field endomorphism which scales every element by an element of a fixed
-proper subfield is the identity.-/
+proper subfield is the identity.
+@isnad1 id=eq.2h3v.s7.9262779e7127 from=translated src=- shape=21d3c66c vocab=786abd69
+-/
 theorem ringHom_eq_id_of_div_mem_subfield
     (C : Subfield K) (hC : C ≠ ⊤) (τ : K →+* K)
     (hratio : ∀ x : K, x ≠ 0 → τ x / x ∈ C) : τ = RingHom.id K := by

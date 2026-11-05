@@ -68,23 +68,31 @@ def normalRestrictionKernelEquiv :
     intro x
     rfl
 
-/-- Forward reinterpretation leaves ambient evaluation unchanged.-/
+/-- Forward reinterpretation leaves ambient evaluation unchanged.
+@isnad1 id=eq.0h5v.s12.b2b8825b29a9 from=translated src=- shape=d96beabb vocab=a43b72a4
+-/
 @[simp] theorem normalRestrictionKernelEquiv_apply
     (σ : (AlgEquiv.restrictNormalHom M : Gal(Ω/K) →* Gal(M/K)).ker) (x : Ω) :
     normalRestrictionKernelEquiv M Ω σ x = (σ : Gal(Ω/K)) x := rfl
 
-/-- The inverse is actual restriction of scalars.-/
+/-- The inverse is actual restriction of scalars.
+@isnad1 id=eq.0h4v.s12.def055495640 from=translated src=- shape=965f2b86 vocab=7e60a59e
+-/
 @[simp] theorem normalRestrictionKernelEquiv_symm_apply (σ : Gal(Ω/M)) :
     ((normalRestrictionKernelEquiv (K := K) M Ω).symm σ : Gal(Ω/K)) =
       σ.restrictScalars K := rfl
 
-/-- An ambient automorphism is semilinear over its actual restriction to M.-/
+/-- An ambient automorphism is semilinear over its actual restriction to M.
+@isnad1 id=eq.0h5v.s9.abdfc874c1ff from=translated src=- shape=60a342cd vocab=4e58c269
+-/
 theorem normalRestriction_algebraMap (g : Gal(Ω/K)) (m : M) :
     g.toRingEquiv (algebraMap M Ω m) =
       algebraMap M Ω ((g.restrictNormal M).toRingEquiv m) :=
   (g.restrictNormal_commutes M m).symm
 
-/-- Kernel conjugation and semilinear conjugation use the same representative.-/
+/-- Kernel conjugation and semilinear conjugation use the same representative.
+@isnad1 id=eq.0h5v.s14.9deb1cff58a6 from=translated src=- shape=d28acc50 vocab=acdaf93c
+-/
 theorem normalRestrictionKernelEquiv_conjNormal (g : Gal(Ω/K))
     (σ : (AlgEquiv.restrictNormalHom M : Gal(Ω/K) →* Gal(M/K)).ker) :
     normalRestrictionKernelEquiv M Ω (MulAut.conjNormal g σ) =
@@ -143,18 +151,24 @@ def normalRestrictionKernelContinuousEquiv :
         (normalRestrictionKernelEquiv_continuous
           (K := K) M Ω).continuous_symm_of_equiv_compact_to_t2 }
 
-/-- Evaluation of the continuous equivalence preserves the representative.-/
+/-- Evaluation of the continuous equivalence preserves the representative.
+@isnad1 id=eq.0h5v.s12.659b39d5d991 from=translated src=- shape=659b46ee vocab=7d1ca90d
+-/
 @[simp] theorem normalRestrictionKernelContinuousEquiv_apply
     (σ : (AlgEquiv.restrictNormalHom M : Gal(Ω/K) →* Gal(M/K)).ker) (x : Ω) :
     normalRestrictionKernelContinuousEquiv M Ω σ x = (σ : Gal(Ω/K)) x := rfl
 
-/-- The inverse continuous equivalence restricts scalars on the representative.-/
+/-- The inverse continuous equivalence restricts scalars on the representative.
+@isnad1 id=eq.0h4v.s12.3ab95a957188 from=translated src=- shape=26d2ee55 vocab=39f81cc8
+-/
 @[simp] theorem normalRestrictionKernelContinuousEquiv_symm_apply (σ : Gal(Ω/M)) :
     ((normalRestrictionKernelContinuousEquiv (K := K) M Ω).symm σ : Gal(Ω/K)) =
       σ.restrictScalars K := rfl
 
 /-- Continuous kernel transport intertwines actual conjugation with
-semilinear conjugation by the same ambient lift.-/
+semilinear conjugation by the same ambient lift.
+@isnad1 id=eq.0h5v.s14.e5946c805113 from=translated src=- shape=bb3ce20f vocab=a8ffd8bd
+-/
 theorem normalRestrictionKernelContinuousEquiv_conjNormal (g : Gal(Ω/K))
     (σ : (AlgEquiv.restrictNormalHom M : Gal(Ω/K) →* Gal(M/K)).ker) :
     normalRestrictionKernelContinuousEquiv M Ω (MulAut.conjNormal g σ) =

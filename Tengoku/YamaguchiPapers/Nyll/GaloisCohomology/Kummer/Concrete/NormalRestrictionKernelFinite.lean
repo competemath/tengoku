@@ -30,7 +30,9 @@ variable {K M Ω : Type u} [Field K] [Field M] [Field Ω]
   [Algebra K M] [Algebra M Ω] [Algebra K Ω] [IsScalarTower K M Ω]
 
 /-- Restriction to a finite normal extension has open kernel in the actual
-upper Galois group, without algebraicity assumptions on the upper field.-/
+upper Galois group, without algebraicity assumptions on the upper field.
+@isnad1 id=isopen.0h3v.s8.65385ff90817 from=translated src=- shape=6c284685 vocab=a4438af0
+-/
 theorem normalRestrictionKernel_isOpen [FiniteDimensional K M] [Normal K M] :
     IsOpen (((AlgEquiv.restrictNormalHom M : Gal(Ω/K) →* Gal(M/K)).ker :
       Subgroup Gal(Ω/K)) : Set Gal(Ω/K)) := by
@@ -62,7 +64,9 @@ theorem normalRestrictionKernel_isOpen [FiniteDimensional K M] [Normal K M] :
   exact S.fixingSubgroup_isOpen
 
 /-- In a normal upper extension, the kernel of restriction to a finite
-Galois extension has index equal to that extension's degree.-/
+Galois extension has index equal to that extension's degree.
+@isnad1 id=eq.0h3v.s8.c378110c044d from=translated src=- shape=99312b76 vocab=6ca1733b
+-/
 theorem normalRestrictionKernel_index [FiniteDimensional K M] [IsGalois K M]
     [Normal K Ω] :
     (AlgEquiv.restrictNormalHom M : Gal(Ω/K) →* Gal(M/K)).ker.index =

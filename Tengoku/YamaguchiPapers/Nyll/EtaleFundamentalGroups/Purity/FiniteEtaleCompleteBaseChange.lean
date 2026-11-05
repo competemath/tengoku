@@ -33,7 +33,9 @@ universe u
 
 /-- If the Noetherian base is complete along an ideal, scalar extension to
 the quotient is bijective on maps out of a formally etale algebra and into a
-finite algebra.-/
+finite algebra.
+@isnad1 id=bijectiv.0h4v.s9.9903d4a36440 from=translated src=- shape=73bd7e81 vocab=7ef95d8e
+-/
 theorem finiteEtale_baseChange_algHom_bijective_of_isAdicComplete
     {R A B : Type u} [CommRing R] [CommRing A] [CommRing B]
     [Algebra R A] [Algebra R B] [Algebra.FormallyEtale R A]

@@ -82,13 +82,18 @@ def inducedEvaluation [Group G] (H : Subgroup G) [CommGroup B]
   map_one' := rfl
   map_mul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s10.09a654253343 from=translated src=- shape=b8470485 vocab=21964b8f
+-/
 @[simp] theorem inducedEvaluation_apply [Group G] (H : Subgroup G) [CommGroup B]
     [MulDistribMulAction H B] (f : InducedModule (B := B) H) :
     inducedEvaluation H f = f.1 1 :=
   rfl
 
 /-- Evaluation intertwines the restricted translation action and the
-original subgroup action.-/
+original subgroup action.
+@isnad1 id=eq.0h5v.s11.8ecea3d9fcb8 from=translated src=- shape=b046bd08 vocab=02a47873
+-/
 theorem inducedEvaluation_smul [Group G] (H : Subgroup G) [CommGroup B]
     [MulDistribMulAction H B] (h : H) (f : InducedModule (B := B) H) :
     inducedEvaluation H ((h : G) • f) = h • inducedEvaluation H f := by
@@ -96,7 +101,9 @@ theorem inducedEvaluation_smul [Group G] (H : Subgroup G) [CommGroup B]
   simpa only [one_mul, mul_one] using f.2 h 1
 
 /-- An arbitrary value at the identity extends to an equivariant function:
-use the original action on `H` and the identity value outside `H`.-/
+use the original action on `H` and the identity value outside `H`.
+@isnad1 id=surjecti.0h3v.s10.363fe092b29e from=translated src=- shape=3f60d406 vocab=fdad258a
+-/
 theorem inducedEvaluation_surjective [Group G] (H : Subgroup G) [CommGroup B]
     [MulDistribMulAction H B] : Function.Surjective (inducedEvaluation (B := B) H) := by
   classical

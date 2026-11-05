@@ -24,7 +24,9 @@ section Surjectivity
 variable (p : ℕ) [Fact p.Prime] {K Ω : Type*} [Field K] [Field Ω]
   [CharP Ω p] [Algebra K Ω] [IsGalois K Ω]
 
-/-- Every continuous cyclic character is the difference character of a root.-/
+/-- Every continuous cyclic character is the difference character of a root.
+@isnad1 id=ex.0h4v.s9.fdd503e2a687 from=translated src=- shape=6597d501 vocab=fc135e83
+-/
 theorem exists_rootCharacter_eq (χ : Gal(Ω/K) →ₜ* Multiplicative (ZMod p)) :
     ∃ (a : K) (β : Ω) (hβ : β ^ p - β = algebraMap K Ω a),
       rootCharacter p Ω a β hβ = χ := by
@@ -63,7 +65,9 @@ section Classes
 variable (p : ℕ) [Fact p.Prime] {K Ω : Type*} [Field K] [Field Ω]
   [CharP K p] [CharP Ω p] [Algebra K Ω] [Algebra.IsIntegral K Ω]
 
-/-- Equal additive Artin–Schreier classes give equal continuous characters.-/
+/-- Equal additive Artin–Schreier classes give equal continuous characters.
+@isnad1 id=eq.3h7v.s10.f45840d38e67 from=translated src=- shape=48cbcadd vocab=4414c69e
+-/
 theorem rootCharacter_eq_of_class_eq (a b : K) (β γ : Ω)
     (hβ : β ^ p - β = algebraMap K Ω a)
     (hγ : γ ^ p - γ = algebraMap K Ω b)

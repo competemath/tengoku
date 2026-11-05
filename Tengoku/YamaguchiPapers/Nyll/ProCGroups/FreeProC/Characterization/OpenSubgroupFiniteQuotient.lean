@@ -27,7 +27,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G]
 /-- A discrete quotient of an open subgroup factors through its actual image
 in a finite quotient of the ambient group. Both resulting maps are continuous
 and surjective, and the first map retains the ambient quotient projection.
-Finiteness of the given discrete target follows from these conclusions.-/
+Finiteness of the given discrete target follows from these conclusions.
+@isnad1 id=ex.1h4v.s13.7a7bf8d877e1 from=translated src=- shape=4831b113 vocab=5474a68a
+-/
 theorem exists_finiteQuotient_factor_of_openSubgroup (H : OpenSubgroup G)
     {B : Type v} [Group B] [TopologicalSpace B] [DiscreteTopology B]
     (π : H →ₜ* B) (hπ : Function.Surjective π) :

@@ -26,7 +26,9 @@ variable (F K L E : Type*) [Field F] [Field K] [Field L] [Field E]
   [IsScalarTower F K E] [IsScalarTower F L E] [Normal F K]
 
 /-- The two relative automorphism groups commute in the actual cyclotomic
-compositum; its generation is supplied by a primitive root in `L`.-/
+compositum; its generation is supplied by a primitive root in `L`.
+@isnad1 id=commute.0h7v.s9.e8ff524534e1 from=translated src=- shape=3b3f7ad3 vocab=9ec37cfa
+-/
 theorem cyclotomic_compositum_aut_commute
     (n : ℕ) [NeZero n]
     [IsCyclotomicExtension {n} F L] [IsCyclotomicExtension {n} K E]

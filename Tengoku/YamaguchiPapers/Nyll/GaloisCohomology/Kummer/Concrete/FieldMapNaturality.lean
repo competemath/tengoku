@@ -37,7 +37,9 @@ noncomputable def separableNthRootsFieldMapEquiv (f : K →+* L) (n : ℕ+)
       continuous_toFun := continuous_of_discreteTopology
       continuous_invFun := continuous_of_discreteTopology }
 
-/-- The coefficient equivalence is induced by the chosen closure embedding.-/
+/-- The coefficient equivalence is induced by the chosen closure embedding.
+@isnad1 id=eq.1h5v.s13.b9852a8a5ac0 from=translated src=- shape=ba9846a9 vocab=a4f96abe
+-/
 theorem separableNthRootsFieldMapEquiv_coe (f : K →+* L) (n : ℕ+)
     (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (u : DiscreteNthRootsSubgroup (SeparableClosure K) (n : ℕ)) :
@@ -56,7 +58,9 @@ theorem separableNthRootsFieldMapEquiv_coe (f : K →+* L) (n : ℕ+)
     separableClosureLift f (algebraMap K (SeparableClosure K) ((a : Kˣ) : K))
   exact (separableClosureLift_algebraMap f ((a : Kˣ) : K)).symm
 
-/-- The Kummer root quotient commutes with restriction along a field embedding.-/
+/-- The Kummer root quotient commutes with restriction along a field embedding.
+@isnad1 id=eq.2h6v.s17.a99a3a5327e5 from=translated src=- shape=c12b2a62 vocab=3fce7c96
+-/
 theorem separableKummerCharacter_fieldMap
     (f : K →+* L) (n : ℕ+) [NeZero ((n : ℕ) : K)] [NeZero ((n : ℕ) : L)]
     (hmuK : (primitiveRoots (n : ℕ) K).Nonempty)
@@ -107,7 +111,9 @@ theorem separableKummerCharacter_fieldMap
         (separableKummerContinuousNthRootsCharacterEquiv_apply_of_pow_eq L n hmuL
           (Units.map f.toMonoidHom a) βL hβL (separableClosureAutEquiv L σ)).symm)
 
-/-- Kummer characters are natural under the induced equivalence of root coefficients.-/
+/-- Kummer characters are natural under the induced equivalence of root coefficients.
+@isnad1 id=eq.2h6v.s17.7ff547df9840 from=translated src=- shape=fa7ce663 vocab=542396b2
+-/
 theorem separableKummerCharacter_fieldMap_equiv
     (f : K →+* L) (n : ℕ+) [NeZero ((n : ℕ) : K)] [NeZero ((n : ℕ) : L)]
     (hmuK : (primitiveRoots (n : ℕ) K).Nonempty)

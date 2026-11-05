@@ -70,14 +70,18 @@ def projectionImageSectionMap {I : Type u} [Preorder I]
 
 /--
 The section map from the projection-image inverse limit back to the closed subspace is
-continuous.-/
+continuous.
+@isnad1 id=continuo.0h4v.s6.0f5f25bf67d9 from=translated src=- shape=8e0a63e9 vocab=17d5d33a
+-/
 theorem continuous_projectionImageSectionMap {I : Type u} [Preorder I]
     (S : InverseSystem (I := I)) (Y : Set S.inverseLimit) (i : I) :
     Continuous (projectionImageSectionMap S Y i) := by
   exact Continuous.subtype_mk ((S.continuous_projection i).comp continuous_subtype_val)
     (fun y => ⟨y.1, y.2, rfl⟩)
 
-/-- The projection-image section maps are compatible with the inverse-system transition maps.-/
+/-- The projection-image section maps are compatible with the inverse-system transition maps.
+@isnad1 id=compatib.0h3v.s5.dd5ba809c85f from=translated src=- shape=a13873f3 vocab=9e422eb7
+-/
 theorem compatible_projectionImageSectionMap {I : Type u} [Preorder I]
     (S : InverseSystem (I := I)) (Y : Set S.inverseLimit) :
     (S.projectionImageSystem Y).CompatibleMaps (projectionImageSectionMap S Y) := by
@@ -86,7 +90,9 @@ theorem compatible_projectionImageSectionMap {I : Type u} [Preorder I]
   apply Subtype.ext
   exact S.projection_compatible y.1 i j hij
 
-/-- Each coordinate section map onto a projection image is surjective.-/
+/-- Each coordinate section map onto a projection image is surjective.
+@isnad1 id=surjecti.0h4v.s5.dcb631b4e92e from=translated src=- shape=8e0a63e9 vocab=aec34d10
+-/
 theorem surjective_projectionImageSectionMap {I : Type u} [Preorder I]
     (S : InverseSystem (I := I)) (Y : Set S.inverseLimit) (i : I) :
     Function.Surjective (projectionImageSectionMap S Y i) := by
@@ -107,7 +113,9 @@ def projectionImageLift {I : Type u} [Preorder I]
     (compatible_projectionImageSectionMap S Y)
 
 /--
-The lift from a closed subspace into the inverse limit of its projection images is continuous.-/
+The lift from a closed subspace into the inverse limit of its projection images is continuous.
+@isnad1 id=continuo.0h3v.s7.dffae628122c from=translated src=- shape=0c431ce1 vocab=76ff079d
+-/
 theorem continuous_projectionImageLift {I : Type u} [Preorder I]
     (S : InverseSystem (I := I)) (Y : Set S.inverseLimit) :
     Continuous (projectionImageLift S Y) := by
@@ -116,7 +124,9 @@ theorem continuous_projectionImageLift {I : Type u} [Preorder I]
 
 /--
 For a closed subset of a compact Hausdorff inverse limit, the canonical projection-image lift is
-surjective.-/
+surjective.
+@isnad1 id=surjecti.2h3v.s6.46652b35d059 from=translated src=- shape=c7e7dcda vocab=f9835079
+-/
 theorem surjective_projectionImageLift {I : Type u} [Preorder I] [Nonempty I]
     (S : InverseSystem (I := I)) [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
     (hdir : Directed (· ≤ ·) (id : I → I)) (Y : Set S.inverseLimit) (hY : IsClosed Y) :
@@ -132,7 +142,9 @@ theorem surjective_projectionImageLift {I : Type u} [Preorder I] [Nonempty I]
 
 /--
 Composing the projection-image lift with the inclusion morphism recovers the underlying point of
-the original inverse limit.-/
+the original inverse limit.
+@isnad1 id=eq.0h3v.s6.17f634cc378d from=translated src=- shape=ba0c8f9b vocab=a58ab184
+-/
 theorem projectionImageLift_comp_subtype {I : Type u} [Preorder I]
     (S : InverseSystem (I := I)) (Y : Set S.inverseLimit) :
     (S.projectionImageSystem Y).limMap (projectionImageInclusion S Y) ∘
@@ -150,7 +162,9 @@ theorem projectionImageLift_comp_subtype {I : Type u} [Preorder I]
     ((S.projectionImageSystem Y).projection_inverseLimitLift_apply
       (projectionImageSectionMap S Y) (compatible_projectionImageSectionMap S Y) i y)
 
-/-- The transition maps in the projection-image system are always surjective.-/
+/-- The transition maps in the projection-image system are always surjective.
+@isnad1 id=surjecti.1h5v.s5.23ffc614cb8e from=translated src=- shape=4da964f1 vocab=06f21583
+-/
 theorem InverseSystem.surjective_projectionImageSystem_map
     {I : Type u} [Preorder I] (S : InverseSystem (I := I)) (Y : Set S.inverseLimit)
     {i j : I} (hij : i ≤ j) :
@@ -194,7 +208,9 @@ noncomputable def InverseSystem.homeomorph_projectionImageSystem_of_isClosed
       ⟨he_inj, surjective_projectionImageLift S hdir Y hY⟩)
     (continuous_projectionImageLift S Y)
 
-/-- The range of the limit map is exactly the compatible inverse limit of the projection images.-/
+/-- The range of the limit map is exactly the compatible inverse limit of the projection images.
+@isnad1 id=eq.2h3v.s7.b44f7a7353f2 from=translated src=- shape=20d370ad vocab=2ab8418a
+-/
 theorem range_limMap_projectionImageInclusion_eq
     {I : Type u} [Preorder I] (S : InverseSystem (I := I)) [Nonempty I]
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
@@ -219,7 +235,9 @@ theorem range_limMap_projectionImageInclusion_eq
     refine ⟨projectionImageLift S Y ⟨y, hy⟩, ?_⟩
     simpa [Function.comp] using congrFun (projectionImageLift_comp_subtype S Y) ⟨y, hy⟩
 
-/-- Membership in the projected image system can be checked coordinatewise.-/
+/-- Membership in the projected image system can be checked coordinatewise.
+@isnad1 id=iff.2h4v.s7.79fe52ab51fb from=translated src=- shape=747296a9 vocab=83c60938
+-/
 theorem InverseSystem.mem_isClosed_iff_forall_projection_mem
     {I : Type u} [Preorder I] {S : InverseSystem (I := I)} [Nonempty I]
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
@@ -258,7 +276,9 @@ theorem InverseSystem.mem_isClosed_iff_forall_projection_mem
     rw [range_limMap_projectionImageInclusion_eq S hdir Y hY] at hxrange
     exact hxrange
 
-/-- A closed subspace of an inverse limit is again an inverse limit of its projection images.-/
+/-- A closed subspace of an inverse limit is again an inverse limit of its projection images.
+@isnad1 id=and.2h3v.s8.d9aca3467356 from=translated src=- shape=41a7a434 vocab=3c8134a8
+-/
 theorem InverseSystem.exists_homeomorph_closed_subspace_projection_images
     {I : Type u} [Preorder I] (S : InverseSystem (I := I)) [Nonempty I]
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
@@ -271,7 +291,9 @@ theorem InverseSystem.exists_homeomorph_closed_subspace_projection_images
     exact ⟨Homeomorph.refl _⟩
   · exact ⟨S.homeomorph_projectionImageSystem_of_isClosed hdir Y hY⟩
 
-/-- The projection of the closure of a subset equals the closure of the projection image.-/
+/-- The projection of the closure of a subset equals the closure of the projection image.
+@isnad1 id=eq.0h4v.s7.12f62e777dcd from=translated src=- shape=59180347 vocab=8a72de56
+-/
 theorem InverseSystem.projection_image_closure_eq_closure_projection_image
     {I : Type u} [Preorder I] (S : InverseSystem (I := I))
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
@@ -288,7 +310,9 @@ then identifies each of its stage images with the closure of the corresponding i
 -/
 /--
 The closure of a subset of an inverse limit is homeomorphic to the inverse limit of the
-projection-image system of that closure.-/
+projection-image system of that closure.
+@isnad1 id=and.1h3v.s9.b17cd8508d6a from=translated src=- shape=3891d154 vocab=6159af53
+-/
 theorem InverseSystem.exists_homeomorph_closure_projection_images
     {I : Type u} [Preorder I] (S : InverseSystem (I := I)) [Nonempty I]
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
@@ -300,7 +324,9 @@ theorem InverseSystem.exists_homeomorph_closure_projection_images
     isClosed_closure
 
 /--
-Closed subsets of the inverse limit are equal when their projection images agree at every stage.-/
+Closed subsets of the inverse limit are equal when their projection images agree at every stage.
+@isnad1 id=eq.2h4v.s8.1b164c382ce3 from=translated src=- shape=8d9e52ff vocab=312a7f33
+-/
 theorem InverseSystem.closure_eq_of_projection_images_eq
     {I : Type u} [Preorder I] (S : InverseSystem (I := I)) [Nonempty I]
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
@@ -325,7 +351,9 @@ theorem InverseSystem.closure_eq_of_projection_images_eq
 
 /--
 Equal raw projection images of two subsets force their closures in the inverse limit to be
-equal.-/
+equal.
+@isnad1 id=eq.2h4v.s7.8011aa93186b from=translated src=- shape=58fc3af2 vocab=312a7f33
+-/
 theorem InverseSystem.closure_eq_of_projection_images_eq_of_subsets
     {I : Type u} [Preorder I] (S : InverseSystem (I := I)) [Nonempty I]
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
@@ -356,7 +384,9 @@ noncomputable def InverseSystem.homeomorph_surjectiveProjectionImageSystem
 
 /--
 The projection-image system of the full inverse limit is surjective and has the same inverse
-limit as the original system.-/
+limit as the original system.
+@isnad1 id=and.1h2v.s7.d498cdfbe724 from=translated src=- shape=9808dfb6 vocab=f6db1709
+-/
 theorem InverseSystem.exists_homeomorph_surjectiveProjectionImageSystem
     {I : Type u} [Preorder I] (S : InverseSystem (I := I)) [Nonempty I]
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]

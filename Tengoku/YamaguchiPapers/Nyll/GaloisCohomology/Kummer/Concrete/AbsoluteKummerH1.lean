@@ -33,7 +33,9 @@ variable (K : Type*) [Field K]
 private abbrev AbsoluteRadicalDatum (n : ℕ+) :=
   chosenFiniteKummerRadicalDatum (K := K) (L := AlgebraicClosure K) n
 
-/-- Every base-field unit has an `n`-th root in the algebraic closure.-/
+/-- Every base-field unit has an `n`-th root in the algebraic closure.
+@isnad1 id=eq.0h2v.s6.c00873a397ed from=translated src=- shape=e22812ea vocab=bd5c0833
+-/
 theorem finiteKummerRadicalSubgroup_algebraicClosure_eq_top (n : ℕ+) :
     finiteKummerRadicalSubgroup (K := K) (L := AlgebraicClosure K) n = ⊤ := by
   apply top_unique
@@ -116,6 +118,9 @@ private noncomputable def nthRootsSubgroupEquivMultiplicativeZMod
 
 local instance discreteMultiplicativeZModTopologicalSpace (n : ℕ) :
     TopologicalSpace (Multiplicative (ZMod n)) := ⊥
+/--
+@isnad1 id=discrete.0h1v.s3.0c8517711d38 from=translated src=- shape=36b3d148 vocab=bd9a6e4e
+-/
 local instance discreteMultiplicativeZModDiscreteTopology (n : ℕ) :
     DiscreteTopology (Multiplicative (ZMod n)) :=
   discreteTopology_bot _

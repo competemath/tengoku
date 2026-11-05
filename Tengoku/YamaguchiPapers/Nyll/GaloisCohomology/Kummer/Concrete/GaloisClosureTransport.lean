@@ -28,7 +28,9 @@ variable {K Ω Ω' : Type*} [Field K] [Field Ω] [Field Ω']
   [Algebra K Ω] [Algebra K Ω']
 
 /-- Conjugation by an algebra equivalence is continuous for the Krull
-topologies on the relative Galois groups.-/
+topologies on the relative Galois groups.
+@isnad1 id=continuo.0h4v.s10.083efe18eee3 from=translated src=- shape=f43c9173 vocab=e0619b77
+-/
 theorem galoisClosureTransport_continuous (e : Ω ≃ₐ[K] Ω') :
     Continuous (AlgEquiv.autCongr e) := by
   apply continuous_of_tendsto_nhds_one (AlgEquiv.autCongr e)
@@ -57,23 +59,31 @@ def galoisClosureTransport (e : Ω ≃ₐ[K] Ω') : Gal(Ω/K) ≃ₜ* Gal(Ω'/K)
   continuous_toFun := galoisClosureTransport_continuous e
   continuous_invFun := galoisClosureTransport_continuous e.symm
 
-/-- Forgetting topology recovers the algebraic conjugation equivalence.-/
+/-- Forgetting topology recovers the algebraic conjugation equivalence.
+@isnad1 id=eq.0h4v.s9.df3a596a0a9a from=translated src=- shape=56af25a1 vocab=46e2ae16
+-/
 theorem galoisClosureTransport_toMulEquiv (e : Ω ≃ₐ[K] Ω') :
     (galoisClosureTransport e).toMulEquiv = AlgEquiv.autCongr e := by
   rfl
 
-/-- The transported automorphism evaluates by conjugating in the extension fields.-/
+/-- The transported automorphism evaluates by conjugating in the extension fields.
+@isnad1 id=eq.0h6v.s10.a74ee386ff02 from=translated src=- shape=abcfaa32 vocab=4772349b
+-/
 theorem galoisClosureTransport_apply (e : Ω ≃ₐ[K] Ω') (σ : Gal(Ω/K)) (x : Ω') :
     galoisClosureTransport e σ x = e (σ (e.symm x)) := by
   rfl
 
-/-- The inverse transport evaluates by the inverse field equivalence.-/
+/-- The inverse transport evaluates by the inverse field equivalence.
+@isnad1 id=eq.0h6v.s10.1654fdfb9b7b from=translated src=- shape=6c010c07 vocab=6e630456
+-/
 theorem galoisClosureTransport_symm_apply (e : Ω ≃ₐ[K] Ω')
     (σ : Gal(Ω'/K)) (x : Ω) :
     (galoisClosureTransport e).symm σ x = e.symm (σ (e x)) := by
   rfl
 
-/-- Transport in the reverse direction is transport by the inverse algebra equivalence.-/
+/-- Transport in the reverse direction is transport by the inverse algebra equivalence.
+@isnad1 id=eq.0h4v.s9.90d37b96f88d from=translated src=- shape=56467ff5 vocab=9cab6dc0
+-/
 theorem galoisClosureTransport_symm (e : Ω ≃ₐ[K] Ω') :
     (galoisClosureTransport e).symm = galoisClosureTransport e.symm := by
   apply ContinuousMulEquiv.ext

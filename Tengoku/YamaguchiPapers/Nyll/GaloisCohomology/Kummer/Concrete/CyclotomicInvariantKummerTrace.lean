@@ -64,7 +64,9 @@ variable {F K L E : Type*} [Field F] [Field K] [Field L] [Field E]
 -- Four fields, five algebras and two towers: eleven data structures.
 -- The sole new local instance is the cyclotomic finite-dimensionality proposition.
 /-- A root-valued eigenunit difference survives the actual cyclotomic orbit
-product. The root fixing and commutation are generated from the two fields.-/
+product. The root fixing and commutation are generated from the two fields.
+@isnad1 id=ex.5h9v.s17.74619d5c3f87 from=translated src=- shape=4739288e vocab=8f47c1f3
+-/
 theorem exists_invariant_moved_cyclotomicKummerTrace
     (p : ℕ) [Fact p.Prime]
     [IsCyclotomicExtension {p} F L] [IsCyclotomicExtension {p} K E]

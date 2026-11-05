@@ -30,7 +30,9 @@ namespace EtaleFundamentalGroups.SpecialLocalPurity
 universe u v
 
 /-- A minimal point of the support of a finite module is a minimal prime over
-its annihilator.-/
+its annihilator.
+@isnad1 id=mem.1h3v.s7.974f0e7d57ef from=translated src=- shape=6104312c vocab=d793ea32
+-/
 theorem mem_minimalPrimes_annihilator_of_minimal_mem_support
     {R : Type u} {M : Type v} [CommRing R] [AddCommGroup M] [Module R M]
     [Module.Finite R M] (P : PrimeSpectrum R)
@@ -44,7 +46,9 @@ theorem mem_minimalPrimes_annihilator_of_minimal_mem_support
   exact hP.2 hQSupport hqP
 
 /-- A minimal point of the support of a finite module over a Noetherian ring
-is an associated prime.-/
+is an associated prime.
+@isnad1 id=mem.1h3v.s7.b5a0320c9d41 from=translated src=- shape=f479c73f vocab=ec46fe69
+-/
 theorem mem_associatedPrimes_of_minimal_mem_support
     {R : Type u} {M : Type v} [CommRing R] [AddCommGroup M] [Module R M]
     [IsNoetherianRing R] [Module.Finite R M] (P : PrimeSpectrum R)
@@ -56,7 +60,9 @@ theorem mem_associatedPrimes_of_minimal_mem_support
 /-- If a finite algebra is not formally etale, the union of its two
 cotangent supports has a minimal point.  The point is obtained from a
 minimal prime over the intersection of the two annihilator ideals, so no
-Noetherian topological choice is hidden in the statement.-/
+Noetherian topological choice is hidden in the statement.
+@isnad1 id=ex.1h2v.s7.36677b4d3b25 from=translated src=- shape=a9122390 vocab=af8466ca
+-/
 theorem exists_minimal_nonEtaleCotangentSupport_of_not_formallyEtale
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [IsNoetherianRing R] [Algebra R S] [Module.Finite R S]
@@ -125,7 +131,9 @@ theorem exists_minimal_nonEtaleCotangentSupport_of_not_formallyEtale
   exact hp.2 ⟨Q.isPrime, hJQ⟩ hQP
 
 /-- Every prime strictly below a minimal point of the non-etale cotangent
-support lies in the etale locus.-/
+support lies in the etale locus.
+@isnad1 id=isetalea.2h4v.s7.761dde916fe0 from=translated src=- shape=4f13eb8a vocab=a4eddcfe
+-/
 theorem isEtaleAt_of_lt_minimal_nonEtaleCotangentSupport
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [Algebra R S]

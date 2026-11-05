@@ -39,7 +39,9 @@ variable {M : Type v} [AddCommGroup M] [Module R M]
 variable [Module.Finite R M] [Module.IsTorsionFree R M]
 
 /-- A nonzero vector in a finite torsion-free module is detected by an
-`R`-valued linear functional.-/
+`R`-valued linear functional.
+@isnad1 id=ex.1h3v.s8.5a2483eb475f from=translated src=- shape=13a86b91 vocab=8626ad93
+-/
 theorem exists_linearMap_apply_ne_zero_of_finite_torsionFree
     (z : M) (hz : z ≠ 0) : ∃ f : M →ₗ[R] R, f z ≠ 0 := by
   classical
@@ -92,7 +94,9 @@ theorem exists_linearMap_apply_ne_zero_of_finite_torsionFree
   exact hgz ((IsLocalization.smul_bijective (FractionRing R) c).injective hcz)
 
 /-- A finite nonzero torsion-free module over a domain has a nonzero
-linear functional into the domain.-/
+linear functional into the domain.
+@isnad1 id=ex.0h2v.s8.d28423154263 from=translated src=- shape=c0c1c12b vocab=74cd4c13
+-/
 theorem exists_ne_zero_linearMap_of_finite_torsionFree [Nontrivial M] :
     ∃ f : M →ₗ[R] R, f ≠ 0 := by
   obtain ⟨z, hz⟩ := exists_ne (0 : M)

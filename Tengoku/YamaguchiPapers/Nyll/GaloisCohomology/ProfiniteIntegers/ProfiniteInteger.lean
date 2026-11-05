@@ -32,7 +32,9 @@ def zHatMulNat (n : ℕ) : ContinuousAddMonoidHom ZHat ZHat where
   map_add' := fun x y => nsmul_add x y n
   continuous_toFun := continuous_nsmul n
 
-/-- The defining evaluation formula for `zHatMulNat` is `zHatMulNat n x = n • x`.-/
+/-- The defining evaluation formula for `zHatMulNat` is `zHatMulNat n x = n • x`.
+@isnad1 id=eq.0h2v.s6.70ab847d8c29 from=translated src=- shape=38f56c50 vocab=ff2f7c60
+-/
 @[simp]
 theorem zHatMulNat_apply (n : ℕ) (x : ZHat) :
     zHatMulNat n x = n • x :=
@@ -62,7 +64,9 @@ private theorem zmod_cast_eq_of_nsmul_eq
   apply (mul_dvd_mul_iff_left hn0).mp
   simpa [Nat.cast_mul] using hdiv
 
-/-- Multiplication by a positive integer is injective on `ℤ̂`.-/
+/-- Multiplication by a positive integer is injective on `ℤ̂`.
+@isnad1 id=injectiv.1h1v.s6.f5ac2c839c9d from=translated src=- shape=4c2f431f vocab=3d291a85
+-/
 theorem zHatMulNat_injective {n : ℕ} (hn : 0 < n) :
     Function.Injective (zHatMulNat n) := by
   intro x y hxy
@@ -78,7 +82,9 @@ theorem zHatMulNat_injective {n : ℕ} (hn : 0 < n) :
     ← zHatReduction_transition hm hnm hdiv y]
   exact zmod_cast_eq_of_nsmul_eq hn hj
 
-/-- Establishes the identity `zHatReduction n hn ((Int.castRingHom ZHat) a) = (a : ZMod n)`.-/
+/-- Establishes the identity `zHatReduction n hn ((Int.castRingHom ZHat) a) = (a : ZMod n)`.
+@isnad1 id=eq.1h2v.s7.b0ef7f0ee222 from=translated src=- shape=f0726e31 vocab=65c686ff
+-/
 @[simp]
 theorem zHatReduction_int (n : ℕ) (hn : 0 < n) (a : ℤ) :
     zHatReduction n hn
@@ -88,7 +94,9 @@ theorem zHatReduction_int (n : ℕ) (hn : 0 < n) (a : ℤ) :
 
 /--
 Establishes the identity `zHatMulNat n ((Int.castRingHom ZHat) a) = (Int.castRingHom ZHat) ((n :
-ℤ) * a)`.-/
+ℤ) * a)`.
+@isnad1 id=eq.0h2v.s7.8a72940ef1bb from=translated src=- shape=1036b1f5 vocab=78c1a4e8
+-/
 @[simp]
 theorem zHatMulNat_int (n : ℕ) (a : ℤ) :
     zHatMulNat n ((Int.castRingHom ZHat) a) =
@@ -119,7 +127,9 @@ noncomputable def zHatDivide (n : ℕ) (hn : 0 < n) :
     ContinuousAddMonoidHom ((zHatMulNat n).toAddMonoidHom.range) ZHat :=
   (zHatMulNatRangeEquiv n hn).symm
 
-/-- Establishes the identity `zHatMulNat n (zHatDivide n hn y) = y.1`.-/
+/-- Establishes the identity `zHatMulNat n (zHatDivide n hn y) = y.1`.
+@isnad1 id=eq.1h2v.s10.ba80fbd00c01 from=translated src=- shape=5c706741 vocab=4b054618
+-/
 @[simp]
 theorem zHatMulNat_zHatDivide (n : ℕ) (hn : 0 < n)
     (y : (zHatMulNat n).toAddMonoidHom.range) :
@@ -128,7 +138,9 @@ theorem zHatMulNat_zHatDivide (n : ℕ) (hn : 0 < n)
     ((zHatMulNatRangeEquiv n hn).symm y)).1 = y.1
   exact congrArg Subtype.val ((zHatMulNatRangeEquiv n hn).apply_symm_apply y)
 
-/-- Establishes the identity `zHatDivide n hn ⟨zHatMulNat n x, ⟨x, rfl⟩⟩ = x`.-/
+/-- Establishes the identity `zHatDivide n hn ⟨zHatMulNat n x, ⟨x, rfl⟩⟩ = x`.
+@isnad1 id=eq.1h2v.s10.8e98117acf25 from=translated src=- shape=0d66db5f vocab=7edd29d0
+-/
 @[simp]
 theorem zHatDivide_zHatMulNat (n : ℕ) (hn : 0 < n) (x : ZHat) :
     zHatDivide n hn

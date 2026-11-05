@@ -29,7 +29,9 @@ variable {C : FiniteGroupClass.{u}}
 variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
 /-- Every continuous map from a pro-`C` group to a finite discrete space factors through one
-open-normal quotient in `C`.-/
+open-normal quotient in `C`.
+@isnad1 id=ex.3h4v.s10.153ee2ba8935 from=translated src=- shape=460e95ef vocab=6fb9d955
+-/
 theorem exists_openNormalSubgroupInClass_factor_continuousMap_finite
     [CompactSpace G] [T2Space G]
     (hForm : FiniteGroupClass.Formation C)

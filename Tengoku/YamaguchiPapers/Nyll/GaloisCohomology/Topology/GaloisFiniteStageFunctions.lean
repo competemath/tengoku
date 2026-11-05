@@ -24,7 +24,9 @@ open ProCGroups ProCGroups.ProC
 universe u v w
 variable {K : Type u} {Ω : Type v} [Field K] [Field Ω] [Algebra K Ω] [IsGalois K Ω]
 
-/-- A common finite Galois stage controls both coordinates.-/
+/-- A common finite Galois stage controls both coordinates.
+@isnad1 id=ex.1h4v.s13.22077f60bcf2 from=translated src=- shape=1167a972 vocab=4e13b6bf
+-/
 theorem exists_finiteGalois_factor_continuous_pair
     {Y : Type w} [TopologicalSpace Y] [Finite Y] [DiscreteTopology Y]
     (z : Gal(Ω/K) × Gal(Ω/K) → Y) (hz : Continuous z) :

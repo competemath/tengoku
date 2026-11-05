@@ -29,7 +29,9 @@ namespace ValuationSubring
 variable (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
 
 /-- A decomposition-group automorphism preserves the principal unit group of
-the valuation subring it stabilizes.-/
+the valuation subring it stabilizes.
+@isnad1 id=mem.1h5v.s9.6ba280b97c8e from=translated src=- shape=0b36ed40 vocab=1b3964b4
+-/
 theorem decompositionGroup_mapEquiv_mem_principalUnitGroup
     (A : _root_.ValuationSubring L) (τ : decompositionGroup K A)
     {u : Lˣ} (hu : u ∈ A.principalUnitGroup) :
@@ -83,7 +85,9 @@ theorem decompositionGroup_mapEquiv_mem_principalUnitGroup
   exact huA'
 
 /-- The normality calculation for the ramification subgroup:
-the ramification group is normal in inertia.-/
+the ramification group is normal in inertia.
+@isnad1 id=normal.0h3v.s11.8f96257bbe90 from=translated src=- shape=824f1996 vocab=e85ce867
+-/
 instance ramificationGroup_normal (A : _root_.ValuationSubring L) :
     (ramificationGroup K A).Normal := by
   refine ⟨?_⟩
@@ -123,7 +127,9 @@ abbrev ramificationGroupInInertiaAut
   Subgroup.map (inertiaGroupEquivInAut (K := K) A).toMonoidHom
     (ramificationGroup K A)
 
-/-- States the theorem `mem_ramificationGroupInInertiaAut_iff`.-/
+/-- States the theorem `mem_ramificationGroupInInertiaAut_iff`.
+@isnad1 id=iff.0h4v.s15.86e129e299d3 from=translated src=- shape=7aa621c1 vocab=2f35780e
+-/
 @[simp] theorem mem_ramificationGroupInInertiaAut_iff
     (A : _root_.ValuationSubring L) (σ : inertiaGroupInAut K A) :
     σ ∈ ramificationGroupInInertiaAut K A ↔
@@ -135,7 +141,9 @@ abbrev ramificationGroupInInertiaAut
   · rintro ⟨τ, rfl⟩
     exact ⟨(τ : inertiaGroup K A), τ.property, rfl⟩
 
-/-- The ambient copy of `R_w` is normal inside the ambient copy of `I_w`.-/
+/-- The ambient copy of `R_w` is normal inside the ambient copy of `I_w`.
+@isnad1 id=normal.0h3v.s8.791ef90a7ea8 from=translated src=- shape=325129f1 vocab=3f536fcd
+-/
 instance ramificationGroupInInertiaAut_normal
     (A : _root_.ValuationSubring L) :
     (ramificationGroupInInertiaAut K A).Normal := by
@@ -157,7 +165,9 @@ def inertiaGroupQuotientRamificationEquivInertiaAutQuotient
     (inertiaGroupEquivInAut (K := K) A)
     rfl
 
-/-- States the theorem `inertiaGroupQuotientRamificationEquivInertiaAutQuotient_mk`.-/
+/-- States the theorem `inertiaGroupQuotientRamificationEquivInertiaAutQuotient_mk`.
+@isnad1 id=eq.0h4v.s18.84704144503d from=translated src=- shape=0e6c43eb vocab=203150f6
+-/
 @[simp] theorem inertiaGroupQuotientRamificationEquivInertiaAutQuotient_mk
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) :
     inertiaGroupQuotientRamificationEquivInertiaAutQuotient

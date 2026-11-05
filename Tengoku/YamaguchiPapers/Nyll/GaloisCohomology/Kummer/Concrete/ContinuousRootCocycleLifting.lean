@@ -26,7 +26,9 @@ universe u v
 variable {K : Type u} {Ω : Type v} [Field K] [Field Ω] [Algebra K Ω]
   [IsGalois K Ω]
 
-/-- A root quotient is locally constant in the Krull topology.-/
+/-- A root quotient is locally constant in the Krull topology.
+@isnad1 id=islocall.0h3v.s6.35e9ff285e7b from=translated src=- shape=0f7d9e07 vocab=2c557471
+-/
 theorem isLocallyConstant_rootQuotient (γ : Ωˣ) :
     IsLocallyConstant (rootQuotient (K := K) γ) := by
   exact (GaloisCohomology.isLocallyConstant_galois_units (K := K) γ).comp

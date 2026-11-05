@@ -86,7 +86,9 @@ def QuotientGeneratorConvergingPair.sourceOfY
 omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
 /--
 Every source element of a quotient generator pair is either the distinguished identity source or
-comes from an element of the generator set.-/
+comes from an element of the generator set.
+@isnad1 id=or.0h3v.s6.23d547c21487 from=translated src=- shape=06a3581d vocab=9bab945d
+-/
 theorem QuotientGeneratorConvergingPair.source_cases
     (A : QuotientGeneratorConvergingPair (G := G)) (x : A.Source) :
     x = A.sourceOne ∨ ∃ y : A.Y, x = A.sourceOfY y := by
@@ -277,7 +279,9 @@ noncomputable section
 omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
 /--
 The refinement relation includes the required compatibility between the source and target
-quotient data.-/
+quotient data.
+@isnad1 id=le.1h3v.s6.e5d9b0573ff6 from=translated src=- shape=66232269 vocab=2b62e6d1
+-/
 theorem QuotientGeneratorConvergingPair.le_hBA
     {A B : QuotientGeneratorConvergingPair (G := G)} (hAB : A ≤ B) :
     B.N ≤ A.N :=
@@ -294,14 +298,18 @@ noncomputable def QuotientGeneratorConvergingPair.le_map
 omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
 /--
 For a refinement of quotient generator pairs, the chosen lift map between source sets is
-continuous.-/
+continuous.
+@isnad1 id=continuo.1h3v.s6.ff82d8697900 from=translated src=- shape=f3e3b0f3 vocab=9ea6fa12
+-/
 theorem QuotientGeneratorConvergingPair.le_map_continuous
     {A B : QuotientGeneratorConvergingPair (G := G)} (hAB : A ≤ B) :
     Continuous (A.le_map hAB) :=
   (Classical.choose_spec (Classical.choose_spec hAB)).1
 
 omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
-/-- The quotient generator pair is compatible with the specified quotient map.-/
+/-- The quotient generator pair is compatible with the specified quotient map.
+@isnad1 id=eq.1h4v.s7.24eea06fb31e from=translated src=- shape=0e7c0fb4 vocab=ba4c59bd
+-/
 @[simp] theorem QuotientGeneratorConvergingPair.le_map_right
     {A B : QuotientGeneratorConvergingPair (G := G)} (hAB : A ≤ B)
     (x : A.Source) :
@@ -309,7 +317,9 @@ omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
   (Classical.choose_spec (Classical.choose_spec hAB)).2.1 x
 
 omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
-/-- A refinement map sends the distinguished source element over `1` to the identity.-/
+/-- A refinement map sends the distinguished source element over `1` to the identity.
+@isnad1 id=eq.1h3v.s7.119fc51a8a25 from=translated src=- shape=d395f8f9 vocab=3d002197
+-/
 @[simp] theorem QuotientGeneratorConvergingPair.le_map_one
     {A B : QuotientGeneratorConvergingPair (G := G)} (hAB : A ≤ B) :
     A.le_map hAB A.sourceOne = 1 :=
@@ -318,7 +328,9 @@ omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
 omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
 /--
 Under a refinement, the chosen lift map sends every distinguished generator of the smaller pair
-into the distinguished set of the larger pair.-/
+into the distinguished set of the larger pair.
+@isnad1 id=mem.1h4v.s6.125f99e9caeb from=translated src=- shape=47214f3b vocab=354627cf
+-/
 @[simp] theorem QuotientGeneratorConvergingPair.le_map_mem
     {A B : QuotientGeneratorConvergingPair (G := G)} (hAB : A ≤ B)
     (y : A.Y) :
@@ -328,7 +340,9 @@ into the distinguished set of the larger pair.-/
 omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
 /--
 Elements of the larger distinguished set not in the lifted image project to the identity in the
-smaller quotient.-/
+smaller quotient.
+@isnad1 id=le.1h3v.s8.e916f6e58b66 from=translated src=- shape=c0e5abbd vocab=2b3aebaf
+-/
 theorem QuotientGeneratorConvergingPair.le_map_diff
     {A B : QuotientGeneratorConvergingPair (G := G)} (hAB : A ≤ B) :
     B.Y \ A.yImage B (A.le_map hAB) ⊆
@@ -368,7 +382,9 @@ theorem QuotientGeneratorConvergingPair.eq_le_map_of_mem_of_proj_eq
     exact False.elim (hyne (hqproj.symm.trans hker))
 
 omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
-/-- The induced map between quotient generator pairs is compatible with refinement.-/
+/-- The induced map between quotient generator pairs is compatible with refinement.
+@isnad1 id=eq.3h5v.s7.47f89b1f8c56 from=translated src=- shape=765ba406 vocab=0bb567d8
+-/
 theorem QuotientGeneratorConvergingPair.le_map_compat
     {A B C : QuotientGeneratorConvergingPair (G := G)}
     (hAB : A ≤ B) (hAC : A ≤ C) (hBC : B ≤ C)
@@ -432,7 +448,9 @@ theorem QuotientGeneratorConvergingPair.le_map_compat
   exact A.eq_le_map_of_mem_of_proj_eq hAB y hqY hqproj
 
 omit [T2Space G] in
-/-- The range subtype of a pointed map contains the chosen basepoint.-/
+/-- The range subtype of a pointed map contains the chosen basepoint.
+@isnad1 id=converge.3h4v.s8.7b29cc8324fc from=translated src=- shape=0ede66ed vocab=1efaa8e2
+-/
 theorem ConvergesToOneAlongOpenSubgroups.range_subtype_pointed
     {H : Type v} [Group H] [TopologicalSpace H]
     {X : Set G}
@@ -489,7 +507,9 @@ theorem ConvergesToOneAlongOpenSubgroups.range_subtype_pointed
 omit [T2Space G] [TotallyDisconnectedSpace G] in
 /--
 The quotient generator-converging-pair construction is compatible with open-normal finite
-quotients and refinement maps.-/
+quotients and refinement maps.
+@isnad1 id=ex.3h3v.s7.dd122222d6f2 from=translated src=- shape=63f9d043 vocab=896037dc
+-/
 theorem exists_quotientPair_le_openSubgroup_of_chain_iInf_le
     {c : Set (QuotientGeneratorConvergingPair (G := G))}
     (hc : IsChain (· ≤ ·) c) (hcne : c.Nonempty)
@@ -533,7 +553,9 @@ theorem exists_quotientPair_le_openSubgroup_of_chain_iInf_le
 
 omit [T2Space G] [TotallyDisconnectedSpace G] in
 /--
-A chain of quotient generator pairs has a refinement lifting to the intersection of its kernels.-/
+A chain of quotient generator pairs has a refinement lifting to the intersection of its kernels.
+@isnad1 id=other.1h3v.s9.ded6ea7dbe2a from=translated src=- shape=29fad9ce vocab=1743f128
+-/
 theorem quotientGeneratorPair_exists_liftToInf
     {c : Set (QuotientGeneratorConvergingPair (G := G))}
     (hc : IsChain (· ≤ ·) c) (a : c) :
@@ -708,7 +730,9 @@ section Generators
 variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
   [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
 
-/-- Every nonempty chain of quotient generator pairs has an upper bound.-/
+/-- Every nonempty chain of quotient generator pairs has an upper bound.
+@isnad1 id=ex.2h2v.s6.2eb7eaad6c25 from=translated src=- shape=0c172b2d vocab=29e86c59
+-/
 theorem quotientGeneratorPair_exists_upperBound_of_chain
     (c : Set (QuotientGeneratorConvergingPair (G := G)))
     (hc : IsChain (· ≤ ·) c) (hcn : c.Nonempty) :
@@ -1240,7 +1264,9 @@ theorem quotientGeneratorPair_exists_upperBound_of_chain
       exact hstage_diff (a := a') (b := b) hab ⟨hbq, hq.2⟩
 
 omit [T2Space G] in
-/-- A surjective continuous homomorphism preserves generating sets converging to `1`.-/
+/-- A surjective continuous homomorphism preserves generating sets converging to `1`.
+@isnad1 id=generate.3h4v.s7.3e870392139c from=translated src=- shape=ec7207f6 vocab=8f5c56c7
+-/
 theorem GeneratesAndConvergesToOneAlongOpenSubgroups.image_of_continuousSurjective
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (f : G →* H) (hf : Continuous f) (hfsurj : Function.Surjective f)
@@ -1253,7 +1279,9 @@ theorem GeneratesAndConvergesToOneAlongOpenSubgroups.image_of_continuousSurjecti
       (G := G) (H := H) hf (by simp only [map_one]) hX.2
 
 omit [T2Space G] in
-/-- A continuous multiplicative equivalence preserves generating sets converging to `1`.-/
+/-- A continuous multiplicative equivalence preserves generating sets converging to `1`.
+@isnad1 id=generate.1h4v.s7.bda889603e1b from=translated src=- shape=1e64be1d vocab=fb8b2938
+-/
 theorem GeneratesAndConvergesToOneAlongOpenSubgroups.image_of_continuousMulEquiv
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (e : G ≃ₜ* H) {X : Set G}
@@ -1268,7 +1296,9 @@ theorem GeneratesAndConvergesToOneAlongOpenSubgroups.image_of_continuousMulEquiv
   EquivLike.coe_coe, map_one]) hX.2
 
 omit [T2Space G] in
-/-- A continuous multiplicative equivalence preserves and reflects convergence to `1`.-/
+/-- A continuous multiplicative equivalence preserves and reflects convergence to `1`.
+@isnad1 id=iff.0h4v.s7.d8281c68b6f4 from=translated src=- shape=196474cd vocab=eb69589f
+-/
 theorem ConvergesToOneAlongOpenSubgroups.image_of_continuousMulEquiv_iff
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     [CompactSpace H] [T2Space H] [TotallyDisconnectedSpace H]
@@ -1297,7 +1327,9 @@ theorem ConvergesToOneAlongOpenSubgroups.image_of_continuousMulEquiv_iff
   EquivLike.coe_coe, map_one]) h
 
 omit [T2Space G] in
-/-- A continuous multiplicative equivalence preserves and reflects the combined predicate.-/
+/-- A continuous multiplicative equivalence preserves and reflects the combined predicate.
+@isnad1 id=iff.0h4v.s7.39d0d2a2cba1 from=translated src=- shape=196474cd vocab=9afdf027
+-/
 theorem GeneratesAndConvergesToOneAlongOpenSubgroups.image_of_continuousMulEquiv_iff
     {H : Type v} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     [CompactSpace H] [T2Space H] [TotallyDisconnectedSpace H]
@@ -1317,7 +1349,9 @@ theorem GeneratesAndConvergesToOneAlongOpenSubgroups.image_of_continuousMulEquiv
         (G := G) (H := H) e (X := X)).2 h.2⟩
 
 omit [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] in
-/-- Topological rank is invariant under continuous multiplicative equivalence.-/
+/-- Topological rank is invariant under continuous multiplicative equivalence.
+@isnad1 id=eq.0h3v.s6.8240f6778b14 from=translated src=- shape=f1a8c792 vocab=397b1de3
+-/
 theorem topologicalRank_eq_of_continuousMulEquiv
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     [CompactSpace H] [T2Space H] [TotallyDisconnectedSpace H]

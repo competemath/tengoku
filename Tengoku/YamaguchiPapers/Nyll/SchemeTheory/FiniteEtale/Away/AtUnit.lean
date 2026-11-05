@@ -26,7 +26,9 @@ universe uA uB
 /-- If the image of `f` is a unit, etaleness of the literal Away map implies
 etaleness of the original algebra.  Indeed, the source localization is
 etale over the original source and the target localization is isomorphic to
-the original target.-/
+the original target.
+@isnad1 id=etale.2h3v.s8.2a14893802c6 from=translated src=- shape=b6698ae9 vocab=924a0ec3
+-/
 theorem etale_of_localization_awayMap_of_isUnit_image
     {A : Type uA} {B : Type uB}
     [CommRing A] [CommRing B] [Algebra A B]
@@ -54,7 +56,9 @@ theorem etale_of_localization_awayMap_of_isUnit_image
 
 /-- A local-local criterion for the literal Away map, indexed by the primes
 of the unlocalized target that survive the Away localization.  This is the
-form naturally supplied by normalization-localization comparisons.-/
+form naturally supplied by normalization-localization comparisons.
+@isnad1 id=etale.0h4v.s8.c6e2566031a8 from=translated src=- shape=9d29831e vocab=bc872ff2
+-/
 theorem localization_awayMap_etale_of_etale_localizationsAtPrime
     {A : Type uA} {B : Type uB}
     [CommRing A] [CommRing B] [Algebra A B]
@@ -103,7 +107,9 @@ theorem localization_awayMap_etale_of_etale_localizationsAtPrime
 is itself a literal Away map.  At a target prime avoiding the distinguished
 element, that element is a unit in the target local ring, so the auxiliary
 Away localization can be removed by
-`etale_of_localization_awayMap_of_isUnit_image`.-/
+`etale_of_localization_awayMap_of_isUnit_image`.
+@isnad1 id=etale.0h4v.s11.aeba995d023a from=translated src=- shape=de3279a3 vocab=7c886b38
+-/
 theorem localization_awayMap_etale_of_local_awayMapsAtPrime
     {A : Type uA} {B : Type uB}
     [CommRing A] [CommRing B] [Algebra A B]
@@ -147,7 +153,9 @@ theorem localization_awayMap_etale_of_local_awayMapsAtPrime
 /-- Ring-map form of
 `localization_awayMap_etale_of_local_awayMapsAtPrime`.  The conclusion keeps
 the supplied map literally, which is useful for a composite normalization
-map whose ambient `Algebra` instance is not canonical.-/
+map whose ambient `Algebra` instance is not canonical.
+@isnad1 id=etale.1h5v.s11.a68c403aaa06 from=translated src=- shape=70338b3a vocab=509885c5
+-/
 theorem ringHom_localization_awayMap_etale_of_local_awayMapsAtPrime
     {A : Type uA} {B : Type uB}
     [CommRing A] [CommRing B]

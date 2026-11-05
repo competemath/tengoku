@@ -49,7 +49,9 @@ noncomputable def absoluteCharacterAverage (n : ℕ)
       ∑ δ : Gal(E/K), (f δ σ).toAdd
     exact continuous_const.mul (continuous_finsetSum _ fun δ _ => (f δ).continuous)
 
-/-- Averaging is invariant under every relative field automorphism.-/
+/-- Averaging is invariant under every relative field automorphism.
+@isnad1 id=eq.0h6v.s11.adfebcf0a6fa from=translated src=- shape=821dedfa vocab=befa1577
+-/
 theorem absoluteCharacterAverage_map (n : ℕ)
     (χ : Gal(AlgebraicClosure E/E) →ₜ* Multiplicative (ZMod n))
     (τ : Gal(E/K)) (σ : Gal(AlgebraicClosure E/E)) :
@@ -72,7 +74,9 @@ theorem absoluteCharacterAverage_map (n : ℕ)
       Equiv.sum_comp (Equiv.mulLeft τ)
         (fun δ : Gal(E/K) => (χ (Field.absoluteGaloisGroup.map δ.toRingHom σ)).toAdd)
 
-/-- Averaging is invariant for the concrete conjugation action.-/
+/-- Averaging is invariant for the concrete conjugation action.
+@isnad1 id=eq.0h6v.s11.51dd0377f16a from=translated src=- shape=1f58f2b6 vocab=7a44c2a8
+-/
 theorem absoluteCharacterAverage_conjugate (n : ℕ)
     (χ : Gal(AlgebraicClosure E/E) →ₜ* Multiplicative (ZMod n))
     (τ : Gal(E/K)) (σ : Gal(AlgebraicClosure E/E)) :
@@ -82,7 +86,9 @@ theorem absoluteCharacterAverage_conjugate (n : ℕ)
     (absoluteCharacterAverage (K := K) n χ) σ).symm.trans
       (absoluteCharacterAverage_map n χ τ.symm σ)
 
-/-- A common value on an orbit is preserved when the group order is invertible.-/
+/-- A common value on an orbit is preserved when the group order is invertible.
+@isnad1 id=eq.2h6v.s11.2921ce3547f5 from=translated src=- shape=86329a5f vocab=d59b2007
+-/
 theorem absoluteCharacterAverage_eq_of_forall (n : ℕ)
     (hn : (Fintype.card Gal(E/K)).Coprime n)
     (χ : Gal(AlgebraicClosure E/E) →ₜ* Multiplicative (ZMod n))

@@ -23,7 +23,9 @@ namespace ValuationTheory.DiscreteValuationField
 open Polynomial
 
 /-- A cyclotomic extension above a finite normal extension is normal over
-the bottom field, with no characteristic or valuation hypothesis.-/
+the bottom field, with no characteristic or valuation hypothesis.
+@isnad1 id=normal.0h4v.s7.c3cf7cb621a0 from=translated src=- shape=4ed661d0 vocab=2b6d86c8
+-/
 theorem normal_cyclotomic_tower
     (F K E : Type*) [Field F] [Field K] [Field E]
     [Algebra F K] [Algebra F E] [Algebra K E] [IsScalarTower F K E]

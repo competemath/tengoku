@@ -18,7 +18,9 @@ namespace ProCGroups.Abelian
 universe u
 
 /-- A nonidentity element of a finite abelian p-group is detected by a character
-to a cyclic p-power group.-/
+to a cyclic p-power group.
+@isnad1 id=ex.2h3v.s9.79498f654d29 from=translated src=- shape=ccbdb1d0 vocab=4d4b5a3d
+-/
 theorem exists_primePower_character_finite
     {p : ℕ} [Fact p.Prime]
     {A : Type u} [CommGroup A] [Finite A]
@@ -57,7 +59,9 @@ theorem exists_primePower_character_finite
   apply ec.injective
   exact hχ.trans (map_one ec).symm
 
-/-- Continuous cyclic p-power characters separate a Hausdorff abelian pro-p group.-/
+/-- Continuous cyclic p-power characters separate a Hausdorff abelian pro-p group.
+@isnad1 id=ex.2h3v.s9.a2880a75b5f0 from=translated src=- shape=0e8680bf vocab=11c64e35
+-/
 theorem exists_primePower_character_proP
     {p : ℕ} [Fact p.Prime]
     {A : Type u} [CommGroup A] [TopologicalSpace A] [IsTopologicalGroup A]

@@ -34,7 +34,9 @@ open scoped TensorProduct
 universe u
 
 /-- If a maximal ideal is contained in the Jacobson radical, it is the unique
-maximal ideal.-/
+maximal ideal.
+@isnad1 id=islocalr.2h2v.s6.2c598eabe141 from=translated src=- shape=30aad390 vocab=ec520072
+-/
 theorem isLocalRing_of_isMaximal_of_le_jacobson
     {S : Type u} [CommRing S] (J : Ideal S) (hJ : J.IsMaximal)
     (hjac : J ≤ Ideal.jacobson (⊥ : Ideal S)) :
@@ -45,7 +47,9 @@ theorem isLocalRing_of_isMaximal_of_le_jacobson
   apply hJ.eq_of_le hM.ne_top
   exact hjac.trans (sInf_le ⟨bot_le, hM⟩)
 
-/-- An idempotent factor of a finite algebra is finite over the same base.-/
+/-- An idempotent factor of a finite algebra is finite over the same base.
+@isnad1 id=finite.0h3v.s8.7a02e12b3a3c from=translated src=- shape=8128a479 vocab=72f18a57
+-/
 theorem moduleFinite_quotient_span_one_sub
     {B D : Type u} [CommRing B] [CommRing D] [Algebra B D]
     [Module.Finite B D] (e : D) :
@@ -54,7 +58,9 @@ theorem moduleFinite_quotient_span_one_sub
     (Ideal.Quotient.mkₐ B (Ideal.span {1 - e})).toLinearMap
     (Ideal.Quotient.mkₐ_surjective B (Ideal.span {1 - e}))
 
-/-- An idempotent factor of an étale algebra is étale over the same base.-/
+/-- An idempotent factor of an étale algebra is étale over the same base.
+@isnad1 id=etale.1h3v.s7.67d4e97790b8 from=translated src=- shape=6905452a vocab=7443aad6
+-/
 theorem etale_quotient_span_one_sub_of_isIdempotentElem
     {B D : Type u} [CommRing B] [CommRing D] [Algebra B D]
     [Algebra.Etale B D] (e : D) (he : IsIdempotentElem e) :
@@ -66,7 +72,9 @@ theorem etale_quotient_span_one_sub_of_isIdempotentElem
   exact Algebra.Etale.comp B D (D ⧸ Ideal.span {1 - e})
 
 /-- The kernel of a coordinate map in a product decomposition is the kernel
-of the original map together with the complementary idempotent factor.-/
+of the original map together with the complementary idempotent factor.
+@isnad1 id=eq.1h8v.s9.89c6bad7b47d from=translated src=- shape=059567ff vocab=f0776114
+-/
 theorem ker_evalRingHom_comp_ringEquiv_comp_eq_sup_of_idempotent_lift
     {D F I : Type u} [CommRing D] [CommRing F]
     [Finite I] [DecidableEq I]
@@ -127,7 +135,9 @@ theorem ker_evalRingHom_comp_ringEquiv_comp_eq_sup_of_idempotent_lift
 
 /-- The field factors of the closed fibre of a finite étale algebra over a
 complete Noetherian local ring determine a complete orthogonal family of
-idempotents upstairs.-/
+idempotents upstairs.
+@isnad1 id=other.0h2v.s10.1241264a0232 from=translated src=- shape=a751b0b6 vocab=dfad1f5a
+-/
 theorem exists_closedFiber_fieldFactors_and_idempotents_lift
     {B D : Type u} [CommRing B] [IsLocalRing B] [IsNoetherianRing B]
     [IsAdicComplete (maximalIdeal B) B]

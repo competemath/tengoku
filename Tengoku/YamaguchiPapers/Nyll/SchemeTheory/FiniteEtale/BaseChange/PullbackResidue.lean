@@ -55,6 +55,9 @@ noncomputable def tensorIsoTensorProduct (T : Triplet f g) :
       (S.residueField T.s) (X.residueField T.x)
       (Y.residueField T.y))
 
+/--
+@isnad1 id=eq.0h6v.s13.75cee364b1d2 from=translated src=- shape=71c8a7fc vocab=ede167ce
+-/
 @[reassoc (attr := simp)]
 theorem tensorInl_tensorIsoTensorProduct_hom (T : Triplet f g) :
     letI : Algebra (S.residueField T.s) (X.residueField T.x) :=
@@ -80,6 +83,9 @@ theorem tensorInl_tensorIsoTensorProduct_hom (T : Triplet f g) :
       (S.residueField T.s) (X.residueField T.x)
       (Y.residueField T.y))
 
+/--
+@isnad1 id=eq.0h6v.s14.21fb8ddaa1d3 from=translated src=- shape=4d6b6df4 vocab=e08e34d1
+-/
 @[reassoc (attr := simp)]
 theorem tensorInr_tensorIsoTensorProduct_hom (T : Triplet f g) :
     letI : Algebra (S.residueField T.s) (X.residueField T.x) :=
@@ -146,7 +152,9 @@ private theorem ofPointTensor_SpecTensorTo_surjective
 
 /-- The canonical map from the tensor product of the projected residue
 fields to the residue field of a pullback point is surjective whenever the
-tensor product is Artinian.-/
+tensor product is Artinian.
+@isnad1 id=surjecti.0h6v.s8.d6e49438f78f from=translated src=- shape=a71c93af vocab=37bdd073
+-/
 theorem ofPointTensor_surjective_of_isArtinian
     (t : ↑(pullback f g))
     [IsArtinianRing (Triplet.ofPoint t).tensor] :

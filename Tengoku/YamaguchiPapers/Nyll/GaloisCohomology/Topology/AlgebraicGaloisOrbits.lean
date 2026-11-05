@@ -23,7 +23,9 @@ universe u v
 variable {K : Type u} {Ω : Type v} [Field K] [Field Ω] [Algebra K Ω]
   [Algebra.IsIntegral K Ω]
 
-/-- Evaluation at an algebraic element is locally constant.-/
+/-- Evaluation at an algebraic element is locally constant.
+@isnad1 id=islocall.0h3v.s7.4f598de8996b from=translated src=- shape=01d5b343 vocab=2b5eef5c
+-/
 theorem isLocallyConstant_galois_apply (x : Ω) :
     IsLocallyConstant (fun σ : Gal(Ω/K) => σ x) := by
   apply (IsLocallyConstant.iff_exists_open _).mpr
@@ -41,7 +43,9 @@ theorem isLocallyConstant_galois_apply (x : Ω) :
     change σ (ρ x) = σ x
     exact congrArg σ hfix
 
-/-- The Galois orbit of an algebraic unit is locally constant.-/
+/-- The Galois orbit of an algebraic unit is locally constant.
+@isnad1 id=islocall.0h3v.s9.fc48f03ff8cc from=translated src=- shape=4cb7b527 vocab=fcf4c5f6
+-/
 theorem isLocallyConstant_galois_units (x : Ωˣ) :
     IsLocallyConstant (fun σ : Gal(Ω/K) => σ • x) := by
   apply (IsLocallyConstant.iff_exists_open _).mpr

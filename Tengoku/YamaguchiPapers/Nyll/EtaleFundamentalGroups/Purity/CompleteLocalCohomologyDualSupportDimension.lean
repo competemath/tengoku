@@ -87,7 +87,9 @@ private theorem supportDim_linearMap_localCohomology_zero_le_zero
   rw [← f.map_smul, Module.mem_annihilator.mp (hk ha) z, map_zero]
 
 /-- The dual of maximal-support local cohomology in degree `n` has
-support dimension at most `n`.-/
+support dimension at most `n`.
+@isnad1 id=le.2h5v.s9.5b4d6a31536b from=translated src=- shape=7bebd9c4 vocab=90d43f44
+-/
 theorem supportDim_linearMap_localCohomology_maximalIdeal_le
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)
     (hess : IsEssentialSubmodule (LinearMap.range i))
@@ -142,7 +144,9 @@ theorem supportDim_linearMap_localCohomology_maximalIdeal_le
 
 /-- Below the ring dimension, a single nonzero scalar annihilates the
 dual cohomology. For a domain this supplies the torsion deficiency
-modules used in the truncation argument.-/
+modules used in the truncation argument.
+@isnad1 id=ex.3h5v.s10.d8a0eb758ae1 from=translated src=- shape=b2e8d340 vocab=830d8bac
+-/
 theorem exists_ne_zero_annihilator_linearMap_localCohomology_of_lt_dim
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)
     (hess : IsEssentialSubmodule (LinearMap.range i))
@@ -164,7 +168,9 @@ theorem exists_ne_zero_annihilator_linearMap_localCohomology_of_lt_dim
   exact ⟨a, ha0, Module.mem_annihilator.mp ha⟩
 
 /-- Over a domain the finitely many lower dual cohomology modules have
-one common nonzero annihilator.-/
+one common nonzero annihilator.
+@isnad1 id=ex.3h5v.s10.a5db2921f6e6 from=translated src=- shape=2dd4268f vocab=64f78748
+-/
 theorem exists_ne_zero_annihilator_lower_linearMap_localCohomology
     [IsDomain R]
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)

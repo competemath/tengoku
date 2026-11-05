@@ -27,7 +27,9 @@ open KummerTheory
 variable (K : Type*) [Field K]
 
 /-- Every base unit admits an `n`-th root in the separable closure when `n`
-is nonzero in the base field.-/
+is nonzero in the base field.
+@isnad1 id=eq.0h2v.s7.96836c67b6ca from=translated src=- shape=29156d17 vocab=d152540e
+-/
 theorem finiteKummerRadicalSubgroup_separableClosure_eq_top
     (n : ℕ+) [NeZero ((n : ℕ) : K)] :
     finiteKummerRadicalSubgroup (K := K) (L := SeparableClosure K) n = ⊤ := by
@@ -101,7 +103,9 @@ def separableKummerContinuousNthRootsCharacterEquiv
       (K := K) (Ω := SeparableClosure K) n hmu)
 
 /-- Evaluation uses any root with the prescribed power, independently of
-the root chosen in constructing the character equivalence.-/
+the root chosen in constructing the character equivalence.
+@isnad1 id=eq.2h5v.s16.9830301db66e from=translated src=- shape=fa95fb3c vocab=fd051deb
+-/
 theorem separableKummerContinuousNthRootsCharacterEquiv_apply_of_pow_eq
     (n : ℕ+) [NeZero ((n : ℕ) : K)]
     (hmu : (primitiveRoots (n : ℕ) K).Nonempty)

@@ -24,7 +24,9 @@ open KummerTheory ValuationTheory.Completion
 variable {ι K : Type*} [Field K] (L : ι → Type*) [∀ i, Field (L i)]
 
 /-- Under the roots-of-unity hypothesis, simultaneous lifting of power classes
-gives simultaneous extension of actual absolute Galois characters.-/
+gives simultaneous extension of actual absolute Galois characters.
+@isnad1 id=surjecti.2h5v.s11.a3da5c82effd from=translated src=- shape=40c10437 vocab=72a72fc8
+-/
 theorem surjective_characters_of_powerClasses
     (f : ∀ i, K →+* L i) (n : ℕ+) [NeZero ((n : ℕ) : K)]
     (hmu : (primitiveRoots (n : ℕ) K).Nonempty)

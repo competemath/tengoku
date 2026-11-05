@@ -17,7 +17,9 @@ namespace FieldTheory
 universe u v
 variable (R : Type u) (K : Type v) [CommRing R] [Field K] [Algebra R K]
 
-/-- Roots of unity are integral over any coefficient ring.-/
+/-- Roots of unity are integral over any coefficient ring.
+@isnad1 id=isintegr.1h3v.s6.41249d521ec2 from=translated src=- shape=35424d8d vocab=f1c07073
+-/
 theorem isIntegral_torsionUnit (z : Kˣ) (hz : IsOfFinOrder z) :
     IsIntegral R (z : K) := by
   apply IsIntegral.of_pow hz.orderOf_pos

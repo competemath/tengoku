@@ -26,7 +26,9 @@ universe u v
 
 namespace Algebra.Etale
 
-/-- The factor on which an idempotent becomes `1` is étale over the base.-/
+/-- The factor on which an idempotent becomes `1` is étale over the base.
+@isnad1 id=etale.1h3v.s7.0c52feba3499 from=translated src=- shape=6905452a vocab=7443aad6
+-/
 theorem quotient_one_sub_of_isIdempotentElem
     {R : Type u} {B : Type v} [CommRing R] [CommRing B] [Algebra R B]
     [Algebra.Etale R B] (e : B) (he : IsIdempotentElem e) :

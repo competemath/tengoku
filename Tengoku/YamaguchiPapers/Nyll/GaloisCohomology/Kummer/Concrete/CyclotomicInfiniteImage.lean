@@ -21,7 +21,9 @@ namespace KummerTheory
 universe u v
 variable {K : Type u} {Ω : Type v} [Field K] [Field Ω] [Algebra K Ω]
 
-/-- Roots of unbounded prime-power order give an infinite primary group.-/
+/-- Roots of unbounded prime-power order give an infinite primary group.
+@isnad1 id=infinite.0h2v.s7.924256f81b1c from=translated src=- shape=e23ebb10 vocab=68f341ac
+-/
 theorem infinite_primaryComponent_of_primitive_roots
     (p : ℕ) [Fact p.Prime] [∀ i : ℕ, HasEnoughRootsOfUnity Ω (p ^ i)] :
     Infinite (CommGroup.primaryComponent Ωˣ p) := by
@@ -39,7 +41,9 @@ theorem infinite_primaryComponent_of_primitive_roots
   exact (IsPrimitiveRoot.iff_orderOf.mp (hz a)).symm.trans
     ((congrArg orderOf he).trans (IsPrimitiveRoot.iff_orderOf.mp (hz b)))
 
-/-- Every primary root is fixed by the kernel of the cyclotomic character.-/
+/-- Every primary root is fixed by the kernel of the cyclotomic character.
+@isnad1 id=mem.0h4v.s10.5f9e4622afd4 from=translated src=- shape=1969e14f vocab=ad9acbd6
+-/
 theorem primaryUnit_mem_fixedField_cyclotomic_ker
     (p : ℕ) [Fact p.Prime] [∀ i : ℕ, HasEnoughRootsOfUnity Ω (p ^ i)]
     (z : CommGroup.primaryComponent Ωˣ p) :
@@ -57,7 +61,9 @@ theorem primaryUnit_mem_fixedField_cyclotomic_ker
   rw [hχ, Units.val_one, map_one, one_mul, ha] at he
   exact congrArg Units.val he
 
-/-- Finiteness of primary roots in finite subextensions forces infinite image.-/
+/-- Finiteness of primary roots in finite subextensions forces infinite image.
+@isnad1 id=infinite.1h3v.s11.d88931cc379b from=translated src=- shape=dcb654be vocab=55a05d14
+-/
 theorem infinite_range_cyclotomicCharacter_of_finite_primary
     [IsGalois K Ω]
     (p : ℕ) [Fact p.Prime] [∀ i : ℕ, HasEnoughRootsOfUnity Ω (p ^ i)]

@@ -44,7 +44,9 @@ local instance rightAlgebra :
     g.residueFieldMap T.y).hom).toAlgebra
 
 /-- Finiteness of the left residue-field extension makes the categorical
-pullback residue tensor Artinian.-/
+pullback residue tensor Artinian.
+@isnad1 id=isartini.0h6v.s7.3bc98aa9f250 from=translated src=- shape=772159cf vocab=11a7c9db
+-/
 theorem Triplet.tensor_isArtinian_of_finiteDimensional_left
     [FiniteDimensional (S.residueField T.s) (X.residueField T.x)] :
     IsArtinianRing T.tensor := by

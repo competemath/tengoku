@@ -25,7 +25,9 @@ open KummerTheory
 variable (K : Type*) [Field K] [CharZero K]
 
 /-- A power eigenclass whose exponent matches the actual cyclotomic action
-gives a Kummer character fixed by Galois conjugation.-/
+gives a Kummer character fixed by Galois conjugation.
+@isnad1 id=eq.4h6v.s15.1e705c166994 from=translated src=- shape=b1a74e61 vocab=d019770f
+-/
 theorem absoluteKummerContinuousNthRootsCharacterEquiv_conjugation_invariant_of_power_action
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (τ : K ≃+* K) (u : Kˣ) (a : ℕ) (ha : a.Coprime (n : ℕ))

@@ -19,7 +19,9 @@ extension.
 
 namespace Normal
 
-/-- A finite normal extension admits a nonzero splitting polynomial.-/
+/-- A finite normal extension admits a nonzero splitting polynomial.
+@isnad1 id=ex.0h2v.s7.df9e436f60d2 from=translated src=- shape=b1631664 vocab=02e0bbda
+-/
 theorem exists_ne_zero_isSplittingField
     (F K : Type*) [Field F] [Field K] [Algebra F K]
     [Normal F K] [FiniteDimensional F K] :

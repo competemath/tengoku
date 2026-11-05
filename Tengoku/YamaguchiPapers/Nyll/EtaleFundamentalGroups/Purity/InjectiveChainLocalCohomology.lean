@@ -58,6 +58,9 @@ def linearChainBoundaryHomologySequence
     (linearChainBoundaries K n).mkQ
     (LinearMap.exact_subtype_mkQ (linearChainBoundaries K n)).linearMap_comp_eq_zero
 
+/--
+@isnad1 id=shortexa.0h3v.s6.23f59ea20e83 from=translated src=- shape=35dc53b6 vocab=d334c9c8
+-/
 theorem linearChainBoundaryHomologySequence_shortExact
     (K : ChainComplex (ModuleCat.{u} R) ℕ) (n : ℕ) :
     (linearChainBoundaryHomologySequence K n).ShortExact :=
@@ -113,6 +116,9 @@ def linearChainCycleBoundarySequence
     (linearChainToCycles K n).rangeRestrict
     (linearChainCycleBoundary_comp_eq_zero K n)
 
+/--
+@isnad1 id=shortexa.0h3v.s6.27da87cb6a3f from=translated src=- shape=35dc53b6 vocab=1e8d9d8e
+-/
 theorem linearChainCycleBoundarySequence_shortExact
     (K : ChainComplex (ModuleCat.{u} R) ℕ) (n : ℕ) :
     (linearChainCycleBoundarySequence K n).ShortExact := by
@@ -185,7 +191,9 @@ private theorem linearChainCycles_localCohomology_one_eq_zero
 /-- The lower homology annihilator propagates along an injective chain.
 Surjectivity of the initial differential on ideal-power torsion supplies
 the degree-one base case; each subsequent homology term contributes one
-factor of the scalar.-/
+factor of the scalar.
+@isnad1 id=eq.2h6v.s15.51e33e3238b6 from=translated src=- shape=534c58d1 vocab=fd98f5ec
+-/
 theorem linearChainCycles_localCohomology_pow_smul_eq_zero
     (I : Ideal R) (K : ChainComplex (ModuleCat.{u} R) ℕ)
     [∀ j : ℕ, Module.Injective R (K.X j)]

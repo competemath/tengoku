@@ -27,7 +27,9 @@ variable {R : Type u} {A : Type v} {B : Type w}
 variable [CommRing R] [CommRing A] [CommRing B] [Algebra R A] [Algebra R B]
 
 /-- For a formally étale algebra, reduction modulo any nilpotent ideal is
-bijective on algebra homomorphisms.-/
+bijective on algebra homomorphisms.
+@isnad1 id=bijectiv.1h4v.s8.0608882cf1e8 from=translated src=- shape=99bcd5af vocab=56e6b804
+-/
 theorem comp_bijective_of_isNilpotent [FormallyEtale R A]
     (I : Ideal B) (hI : IsNilpotent I) :
     Function.Bijective
@@ -38,7 +40,9 @@ theorem comp_bijective_of_isNilpotent [FormallyEtale R A]
   · exact FormallySmooth.exists_lift I hI
 
 /-- A map from a formally étale algebra to a nilpotent quotient has a unique
-lift.-/
+lift.
+@isnad1 id=existsun.1h5v.s8.28b52f9314f8 from=translated src=- shape=e7152720 vocab=50a9634f
+-/
 theorem existsUnique_lift [FormallyEtale R A]
     (I : Ideal B) (hI : IsNilpotent I) (g : A →ₐ[R] B ⧸ I) :
     ∃! f : A →ₐ[R] B, (Ideal.Quotient.mkₐ R I).comp f = g := by
@@ -49,7 +53,9 @@ theorem existsUnique_lift [FormallyEtale R A]
 variable {C : Type x} [CommRing C] [Algebra R C]
 
 /-- Two formally étale nilpotent thickenings of the same algebra are uniquely
-isomorphic over the common quotient.-/
+isomorphic over the common quotient.
+@isnad1 id=existsun.4h6v.s9.f481187c5461 from=translated src=- shape=48e53042 vocab=1cf0e211
+-/
 theorem existsUnique_algEquiv_of_surjective
     [FormallyEtale R A] [FormallyEtale R B]
     (qA : A →ₐ[R] C) (qB : B →ₐ[R] C)

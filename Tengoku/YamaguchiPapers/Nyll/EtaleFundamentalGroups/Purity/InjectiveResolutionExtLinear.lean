@@ -48,7 +48,9 @@ def injectiveResolutionLinearCoyonedaShortComplexSucc
     ShortComplex (ModuleCat.{u} R) :=
   (injectiveResolutionLinearCoyonedaComplex J X).sc' n (n + 1) (n + 2)
 
-/-- Scalar compatibility of the injective-resolution cocycle constructor.-/
+/-- Scalar compatibility of the injective-resolution cocycle constructor.
+@isnad1 id=eq.2h8v.s11.03aa1f6fb676 from=translated src=- shape=0164c37b vocab=34f9c388
+-/
 theorem injectiveResolution_extMk_smul
     (J : InjectiveResolution M) {X : ModuleCat.{u} R} {n : ℕ}
     (f : X ⟶ J.cocomplex.X n) (m : ℕ) (hm : n + 1 = m)
@@ -73,6 +75,9 @@ def injectiveResolutionCyclesToExtSucc
   map_add' f g := (J.add_extMk f.1 g.1 (n + 2) (by omega) f.2 g.2).symm
   map_smul' a f := injectiveResolution_extMk_smul J f.1 (n + 2) (by omega) f.2 a
 
+/--
+@isnad1 id=surjecti.0h5v.s13.662d5d99c64c from=translated src=- shape=bee292cd vocab=3cf807fc
+-/
 theorem injectiveResolutionCyclesToExtSucc_surjective
     (J : InjectiveResolution M) (X : ModuleCat.{u} R) (n : ℕ) :
     Function.Surjective (injectiveResolutionCyclesToExtSucc J X n) := by
@@ -80,7 +85,9 @@ theorem injectiveResolutionCyclesToExtSucc_surjective
   obtain ⟨f, hf, rfl⟩ := J.extMk_surjective α (n + 2) (by omega)
   exact ⟨⟨f, hf⟩, rfl⟩
 
-/-- The kernel of the cocycle constructor is precisely the coboundaries.-/
+/-- The kernel of the cocycle constructor is precisely the coboundaries.
+@isnad1 id=eq.0h5v.s12.96a4c6d73236 from=translated src=- shape=2825b81d vocab=97bd18b0
+-/
 theorem injectiveResolutionCyclesToExtSucc_ker_eq_range
     (J : InjectiveResolution M) (X : ModuleCat.{u} R) (n : ℕ) :
     LinearMap.ker (injectiveResolutionCyclesToExtSucc J X n) =
@@ -108,6 +115,9 @@ def injectiveResolutionCocycleQuotientEquivExtSucc
     ((injectiveResolutionCyclesToExtSucc J X n).quotKerEquivOfSurjective
       (injectiveResolutionCyclesToExtSucc_surjective J X n))
 
+/--
+@isnad1 id=eq.0h6v.s16.96e90191c04b from=translated src=- shape=a5e2431d vocab=74db15c1
+-/
 theorem injectiveResolutionCocycleQuotientEquivExtSucc_apply_mk
     (J : InjectiveResolution M) (X : ModuleCat.{u} R) (n : ℕ)
     (f : LinearMap.ker
@@ -116,6 +126,9 @@ theorem injectiveResolutionCocycleQuotientEquivExtSucc_apply_mk
       J.extMk f.1 (n + 2) (by omega) f.2 :=
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s16.a3d73db28951 from=translated src=- shape=6dfcf4ba vocab=98aa2439
+-/
 theorem injectiveResolutionCocycleQuotientEquivExtSucc_symm_extMk
     (J : InjectiveResolution M) (X : ModuleCat.{u} R) (n : ℕ)
     (f : X ⟶ J.cocomplex.X (n + 1))

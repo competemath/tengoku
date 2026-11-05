@@ -69,7 +69,9 @@ noncomputable def map [CompactSpace G] [T2Space K] (H : ClosedSubgroup G)
     exact hcompact.isClosed
 
 omit [IsTopologicalGroup K] in
-/-- The underlying subgroup of the image closed subgroup is the image of the underlying subgroup.-/
+/-- The underlying subgroup of the image closed subgroup is the image of the underlying subgroup.
+@isnad1 id=eq.1h4v.s7.ead981cdc365 from=translated src=- shape=bd434301 vocab=d5318881
+-/
 @[simp, norm_cast]
 theorem toSubgroup_map [CompactSpace G] [T2Space K] (H : ClosedSubgroup G)
     (φ : G →* K) (hφ : Continuous φ) :
@@ -77,13 +79,17 @@ theorem toSubgroup_map [CompactSpace G] [T2Space K] (H : ClosedSubgroup G)
   rfl
 
 omit [IsTopologicalGroup K] in
-/-- Membership in the image closed subgroup is membership in the subgroup map.-/
+/-- Membership in the image closed subgroup is membership in the subgroup map.
+@isnad1 id=iff.1h5v.s7.638967f067d8 from=translated src=- shape=ac923f92 vocab=daba97bf
+-/
 theorem mem_map [CompactSpace G] [T2Space K] {H : ClosedSubgroup G}
     {φ : G →* K} (hφ : Continuous φ) {y : K} :
     y ∈ map H φ hφ ↔ ∃ x ∈ (H : Subgroup G), φ x = y := by
   rfl
 
-/-- Mapping a closed subgroup along the identity homomorphism gives the same closed subgroup.-/
+/-- Mapping a closed subgroup along the identity homomorphism gives the same closed subgroup.
+@isnad1 id=eq.0h2v.s5.71427ad8b605 from=translated src=- shape=9b258a88 vocab=cb58aa20
+-/
 @[simp]
 theorem map_id [CompactSpace G] [T2Space G] (H : ClosedSubgroup G) :
     map H (MonoidHom.id G) continuous_id = H := by
@@ -96,7 +102,9 @@ theorem map_id [CompactSpace G] [T2Space G] (H : ClosedSubgroup G) :
     exact ⟨x, hx, rfl⟩
 
 omit [IsTopologicalGroup K] in
-/-- Images of closed subgroups compose under composition of continuous homomorphisms.-/
+/-- Images of closed subgroups compose under composition of continuous homomorphisms.
+@isnad1 id=eq.2h6v.s8.57725e398722 from=translated src=- shape=2137ca00 vocab=f3d63b19
+-/
 theorem map_comp
     {L : Type w} [Group L] [TopologicalSpace L]
     [CompactSpace G] [T2Space K] [CompactSpace K] [T2Space L]
@@ -113,7 +121,9 @@ theorem map_comp
     exact ⟨φ x, (Subgroup.mem_map).2 ⟨x, hx, rfl⟩, rfl⟩
 
 omit [IsTopologicalGroup K] in
-/-- The image construction on closed subgroups is monotone.-/
+/-- The image construction on closed subgroups is monotone.
+@isnad1 id=le.2h5v.s7.565636e3642a from=translated src=- shape=e2b6d8e0 vocab=a8c9ea25
+-/
 theorem map_mono [CompactSpace G] [T2Space K] {H H' : ClosedSubgroup G}
     (hHH' : (H : Subgroup G) ≤ (H' : Subgroup G))
     (φ : G →* K) (hφ : Continuous φ) :
@@ -122,7 +132,9 @@ theorem map_mono [CompactSpace G] [T2Space K] {H H' : ClosedSubgroup G}
   Subgroup.map_mono hHH'
 
 omit [IsTopologicalGroup K] in
-/-- The image of the bottom closed subgroup is the bottom closed subgroup.-/
+/-- The image of the bottom closed subgroup is the bottom closed subgroup.
+@isnad1 id=eq.1h3v.s7.17c7d579dc78 from=translated src=- shape=93419b8f vocab=3c0e968f
+-/
 @[simp]
 theorem map_bot [CompactSpace G] [T1Space G] [T2Space K]
     (φ : G →* K) (hφ : Continuous φ) :
@@ -142,7 +154,9 @@ theorem map_bot [CompactSpace G] [T1Space G] [T2Space K]
     simp [hy]
 
 omit [IsTopologicalGroup K] in
-/-- The image of the top closed subgroup under a surjective homomorphism is top.-/
+/-- The image of the top closed subgroup under a surjective homomorphism is top.
+@isnad1 id=eq.2h4v.s7.41ce6b093f0f from=translated src=- shape=504148d8 vocab=33ea7755
+-/
 theorem map_eq_top_of_surjective [CompactSpace G] [T2Space K] (H : ClosedSubgroup G)
     (φ : G →* K) (hφ : Continuous φ)
     (hφH : ∀ y : K, ∃ x ∈ (H : Subgroup G), φ x = y) :
@@ -156,7 +170,9 @@ theorem map_eq_top_of_surjective [CompactSpace G] [T2Space K] (H : ClosedSubgrou
     exact hφH y
 
 omit [IsTopologicalGroup K] in
-/-- Image containment for closed subgroups is equivalent to containment in the comap.-/
+/-- Image containment for closed subgroups is equivalent to containment in the comap.
+@isnad1 id=iff.1h5v.s7.15e24cbbc02c from=translated src=- shape=62527d50 vocab=e838d127
+-/
 theorem map_le_iff_le_comap [CompactSpace G] [T2Space K]
     {H : ClosedSubgroup G} {L : ClosedSubgroup K}
     {φ : G →* K} (hφ : Continuous φ) :
@@ -204,7 +220,9 @@ noncomputable def quotientImage [CompactSpace G] (H : ClosedSubgroup G)
     (U : OpenNormalSubgroup G) : ClosedSubgroup (G ⧸ (U : Subgroup G)) :=
   ClosedSubgroup.map H (QuotientGroup.mk' (U : Subgroup G)) continuous_quotient_mk'
 
-/-- The subgroup underlying a quotient image is the image of the closed subgroup in the quotient.-/
+/-- The subgroup underlying a quotient image is the image of the closed subgroup in the quotient.
+@isnad1 id=eq.0h3v.s7.675879052ef4 from=translated src=- shape=1ea73b69 vocab=d158d1d1
+-/
 @[simp, norm_cast]
 theorem toSubgroup_quotientImage [CompactSpace G] (H : ClosedSubgroup G)
     (U : OpenNormalSubgroup G) :
@@ -213,7 +231,9 @@ theorem toSubgroup_quotientImage [CompactSpace G] (H : ClosedSubgroup G)
         (H : Subgroup G).map (QuotientGroup.mk' (U : Subgroup G)) :=
   rfl
 
-/-- Membership in a quotient image is membership in the image of the underlying closed subgroup.-/
+/-- Membership in a quotient image is membership in the image of the underlying closed subgroup.
+@isnad1 id=iff.0h4v.s9.dba5ebd7647c from=translated src=- shape=6f1fcf81 vocab=e5594692
+-/
 @[simp]
 theorem mem_quotientImage [CompactSpace G] {H : ClosedSubgroup G}
     {U : OpenNormalSubgroup G} {y : G ⧸ (U : Subgroup G)} :
@@ -223,7 +243,9 @@ theorem mem_quotientImage [CompactSpace G] {H : ClosedSubgroup G}
 
 /--
 Membership in a closed subgroup of a profinite group can be checked after all open-normal finite
-quotients.-/
+quotients.
+@isnad1 id=iff.0h3v.s8.d2b3ba0b0bba from=translated src=- shape=ccabe86b vocab=93654b0a
+-/
 theorem mem_closedSubgroup_iff_forall_quotientImage_mem
     [CompactSpace G] [TotallyDisconnectedSpace G]
     {H : ClosedSubgroup G} {x : G} :
@@ -287,7 +309,9 @@ theorem mem_closedSubgroup_iff_forall_quotientImage_mem
 
 /--
 Inclusion of closed subgroups of a profinite group can be checked on all open-normal finite
-quotients.-/
+quotients.
+@isnad1 id=iff.0h3v.s8.0e3757b28c44 from=translated src=- shape=8ad1fc43 vocab=94bb4092
+-/
 theorem closedSubgroup_le_iff_forall_quotientImages_le
     [CompactSpace G] [TotallyDisconnectedSpace G]
     {H K : ClosedSubgroup G} :
@@ -304,7 +328,9 @@ theorem closedSubgroup_le_iff_forall_quotientImages_le
       intro U
       exact hHK U ((Subgroup.mem_map).2 ⟨x, hx, rfl⟩))
 
-/-- Two closed subgroups are equal if their images agree in every finite quotient.-/
+/-- Two closed subgroups are equal if their images agree in every finite quotient.
+@isnad1 id=eq.1h3v.s6.3b1b16386a0a from=translated src=- shape=50d0917d vocab=049427d1
+-/
 theorem closedSubgroup_eq_of_quotientImages_eq
     [CompactSpace G] [TotallyDisconnectedSpace G]
     {H K : ClosedSubgroup G}
@@ -387,7 +413,9 @@ def inverseSystemStageHom {i j : I} (hij : i ≤ j) : S.X j →* S.X i where
 
 omit [∀ i, IsTopologicalGroup (S.X i)] [∀ i, CompactSpace (S.X i)]
   [∀ i, T2Space (S.X i)] in
-/-- The stage homomorphism associated to a group-valued inverse system is continuous.-/
+/-- The stage homomorphism associated to a group-valued inverse system is continuous.
+@isnad1 id=continuo.1h4v.s7.dd8858b15099 from=translated src=- shape=ba76b552 vocab=bb5cd95b
+-/
 theorem inverseSystemStageHom_continuous {i j : I} (hij : i ≤ j) :
     Continuous (inverseSystemStageHom (S := S) hij) := by
   simpa [inverseSystemStageHom] using (S.continuous_map hij :
@@ -449,7 +477,9 @@ instance compatibleClosedSubgroupSystem_group
   dsimp [compatibleClosedSubgroupSystem]
   infer_instance
 
-/-- A compatible closed-subgroup system is a group-valued inverse system.-/
+/-- A compatible closed-subgroup system is a group-valued inverse system.
+@isnad1 id=isgroups.1h3v.s7.d7f7f384ca1f from=translated src=- shape=a141ed87 vocab=a3ce0353
+-/
 instance compatibleClosedSubgroupSystem_isGroupSystem
     (L : ∀ i, ClosedSubgroup (S.X i))
     (hcompat : ∀ {i j : I} (hij : i ≤ j),

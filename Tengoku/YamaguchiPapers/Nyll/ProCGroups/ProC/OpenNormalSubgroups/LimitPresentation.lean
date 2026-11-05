@@ -32,7 +32,9 @@ namespace HasOpenNormalBasisInClass
 /-! ## Compatibility with mathlib's finite-quotient presentation -/
 
 /-- On open normal subgroups whose quotient lies in \(C\), mathlib's finite-quotient
-functor uses the same transition maps as `openNormalSubgroupInClassSystem`.-/
+functor uses the same transition maps as `openNormalSubgroupInClassSystem`.
+@isnad1 id=eq.1h5v.s12.8c1d02e7ba6d from=translated src=- shape=d6273771 vocab=77658274
+-/
 @[simp] theorem toFiniteQuotientFunctor_map_apply_openNormalSubgroupInClass
     [CompactSpace G] [TotallyDisconnectedSpace G]
     {U V : OpenNormalSubgroupInClass C G}
@@ -47,7 +49,9 @@ functor uses the same transition maps as `openNormalSubgroupInClassSystem`.-/
 normal subgroup is the quotient projection used by `openNormalSubgroupInClassSystem`.
 
 We state this through the explicit `.val` coordinate of `ProfiniteGrp.limit`; this avoids choosing
-a second, potentially non-definitionally-equal `HasLimit` instance merely to name the projection.-/
+a second, potentially non-definitionally-equal `HasLimit` instance merely to name the projection.
+@isnad1 id=eq.0h4v.s13.7e880315f912 from=translated src=- shape=cd64ad17 vocab=73779fa3
+-/
 @[simp] theorem toLimit_val_openNormalSubgroupInClass
     [CompactSpace G] [TotallyDisconnectedSpace G]
     (U : OpenNormalSubgroupInClass C G) (g : G) :
@@ -135,7 +139,9 @@ noncomputable def openNormalSubgroupInClassMulEquivInverseLimit
 
 /--
 Under the canonical equivalence from a pro-\(C\) group to the inverse limit of its open-normal
-\(C\)-quotients, the \(U\)-coordinate of an element is its quotient class modulo \(U\).-/
+\(C\)-quotients, the \(U\)-coordinate of an element is its quotient class modulo \(U\).
+@isnad1 id=eq.2h4v.s11.0c2ea1fae082 from=translated src=- shape=8e53a9b3 vocab=9d9c56a7
+-/
 @[simp] theorem openNormalSubgroupInClassMulEquivInverseLimit_projection
     [CompactSpace G] [T2Space G]
     (hForm : FiniteGroupClass.Formation C) (hG : HasOpenNormalBasisInClass C G)
@@ -153,7 +159,9 @@ Under the canonical equivalence from a pro-\(C\) group to the inverse limit of i
 /--
 A pro-\(C\) group is topologically isomorphic to an inverse limit of finite groups in \(C\),
 realized using the quotient system indexed by the open normal subgroups whose quotients lie in
-\(C\).-/
+\(C\).
+@isnad1 id=other.2h2v.s9.4f72fe8d5232 from=translated src=- shape=c560dfee vocab=a02194fd
+-/
 theorem isomorphic_to_inverseLimit_finiteGroupsInClass
     [CompactSpace G] [T2Space G]
     (hForm : FiniteGroupClass.Formation C) (hG : HasOpenNormalBasisInClass C G) :
@@ -181,7 +189,9 @@ def HasExactOpenNormalQuotientBasisInClass (C : FiniteGroupClass.{u})
         ∃ i, (((U i : Subgroup G) : Set G)) ⊆ W) ∧
       iInf (fun i => (U i : Subgroup G)) = (⊥ : Subgroup G)
 
-/-- An open-normal family with trivial intersection makes the group Hausdorff.-/
+/-- An open-normal family with trivial intersection makes the group Hausdorff.
+@isnad1 id=t2space.1h2v.s4.4adba4842517 from=translated src=- shape=10970928 vocab=e9271f32
+-/
 theorem t2Space_of_exactOpenNormalQuotientBasisInClass
     (hC : HasExactOpenNormalQuotientBasisInClass C G) : T2Space G := by
   rcases hC with ⟨_, ι, U, _, _, hInf⟩
@@ -227,7 +237,9 @@ theorem t2Space_of_exactOpenNormalQuotientBasisInClass
       (U i).mul_mem hx ((U i).inv_mem hg)
     simpa [mul_assoc] using hmul
 
-/-- An open-normal family yields a clopen basis and total disconnectedness.-/
+/-- An open-normal family yields a clopen basis and total disconnectedness.
+@isnad1 id=totallyd.1h2v.s4.89cf2bd7f86f from=translated src=- shape=10970928 vocab=fb7f5424
+-/
 theorem totallyDisconnectedSpace_of_exactOpenNormalQuotientBasisInClass
     (hC : HasExactOpenNormalQuotientBasisInClass C G) : TotallyDisconnectedSpace G := by
   have hC' := hC
@@ -262,7 +274,9 @@ theorem totallyDisconnectedSpace_of_exactOpenNormalQuotientBasisInClass
 omit [IsTopologicalGroup G] in
 /-- An exact open-normal quotient basis in \(C\) implies `HasOpenNormalBasisInClass C G`. This
 direction needs no formation closure because the chosen basis already supplies the required
-open-normal quotients in \(C\).-/
+open-normal quotients in \(C\).
+@isnad1 id=hasopenn.1h2v.s4.3c5f7843c443 from=translated src=- shape=3144e4c2 vocab=c352bcda
+-/
 theorem hasOpenNormalBasisInClass_of_hasExactOpenNormalQuotientBasisInClass
     (hC : HasExactOpenNormalQuotientBasisInClass C G) : HasOpenNormalBasisInClass C G := by
   rcases hC with ⟨_, ι, U, hCU, hbasis, _⟩

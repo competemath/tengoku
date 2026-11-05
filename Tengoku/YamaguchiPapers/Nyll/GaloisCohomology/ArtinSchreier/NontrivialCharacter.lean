@@ -17,7 +17,9 @@ variable (p : ℕ) [Fact p.Prime]
 variable {K : Type u} {Ω : Type v} [Field K] [Field Ω]
   [CharP Ω p] [Algebra K Ω] [IsGalois K Ω] [IsSepClosed Ω]
 
-/-- A failed Artin–Schreier equation gives a nontrivial continuous prime cyclic character.-/
+/-- A failed Artin–Schreier equation gives a nontrivial continuous prime cyclic character.
+@isnad1 id=ex.1h3v.s9.45f6a1a721f6 from=translated src=- shape=df65c71e vocab=157e02c6
+-/
 theorem exists_nontrivial_character_of_artinSchreier_not_surjective
     (hAS : ∃ a : K, ∀ x : K, x ^ p - x ≠ a) :
     ∃ χ : Gal(Ω/K) →ₜ* Multiplicative (ZMod p), ∃ σ : Gal(Ω/K), χ σ ≠ 1 := by

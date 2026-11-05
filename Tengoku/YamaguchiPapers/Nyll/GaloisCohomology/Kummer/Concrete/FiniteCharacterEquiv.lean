@@ -51,7 +51,9 @@ def finiteKummerRadicalSubgroup (n : ℕ+) : Subgroup Kˣ where
     rw [inv_pow, hα, map_inv]
 
 /-- The finite Kummer radical consists exactly of classes annihilated by every
-defining character.-/
+defining character.
+@isnad1 id=iff.0h4v.s8.7d9334dcaba2 from=translated src=- shape=f704c898 vocab=ce105e43
+-/
 @[simp] theorem mem_finiteKummerRadicalSubgroup_iff
     (n : ℕ+) {a : Kˣ} :
     a ∈ finiteKummerRadicalSubgroup (K := K) (L := L) n ↔
@@ -72,7 +74,9 @@ def NthRootsOfUnityInBase (n : ℕ+) : Prop :=
   ∀ u : Lˣ, u ^ (n : ℕ) = 1 →
     ∃ zeta : Kˣ, Units.map (algebraMap K L).toMonoidHom zeta = u
 
-/-- Under `mu_n subset K`, every Galois automorphism fixes `mu_n(L)`.-/
+/-- Under `mu_n subset K`, every Galois automorphism fixes `mu_n(L)`.
+@isnad1 id=eq.2h5v.s9.3dfd92302831 from=translated src=- shape=5212993d vocab=70e1638d
+-/
 theorem nthRootsOfUnity_fixed
     (n : ℕ+) (hmu : NthRootsOfUnityInBase (K := K) (L := L) n)
     (sigma : Gal(L/K)) (u : Lˣ) (hu : u ^ (n : ℕ) = 1) :
@@ -82,7 +86,9 @@ theorem nthRootsOfUnity_fixed
 
 /-- The root-choice-free Kummer character on the ambient-power quotient is
 surjective.  The preimage of a character is produced by Noether Hilbert 90,
-not supplied as a hypothesis.-/
+not supplied as a hypothesis.
+@isnad1 id=surjecti.1h3v.s13.8c8a3354c02d from=translated src=- shape=666e62e4 vocab=181ea28a
+-/
 theorem finiteKummerQuotientCharacter_surjective
     [FiniteDimensional K L] [IsGalois K L]
     (n : ℕ+) (hmu : NthRootsOfUnityInBase (K := K) (L := L) n) :

@@ -30,19 +30,25 @@ abbrev centralizer (S : Set G) : Subgroup G :=
 abbrev centralizerOf (g : G) : Subgroup G :=
   centralizer ({g} : Set G)
 
-/-- Membership in the centralizer is equivalent to the displayed commutation condition.-/
+/-- Membership in the centralizer is equivalent to the displayed commutation condition.
+@isnad1 id=iff.0h3v.s6.f65bfb77ccb6 from=translated src=- shape=fee746c9 vocab=4df7bcad
+-/
 @[simp] theorem mem_centralizer_iff {S : Set G} {g : G} :
     g ∈ centralizer S ↔ ∀ h ∈ S, h * g = g * h :=
   Iff.rfl
 
 /--
-Membership in the centralizer of a subset is equivalent to the displayed commutation condition.-/
+Membership in the centralizer of a subset is equivalent to the displayed commutation condition.
+@isnad1 id=iff.0h3v.s6.b6220ae93b6f from=translated src=- shape=44a8d7c3 vocab=71590fe9
+-/
 @[simp] theorem mem_centralizerOf_iff {x g : G} :
     x ∈ centralizerOf g ↔ x * g = g * x := by
   simpa [centralizerOf, centralizer] using
     (Subgroup.mem_centralizer_singleton_iff (g := g) (k := x))
 
-/-- Centralizing an element implies centralizing each of its natural powers.-/
+/-- Centralizing an element implies centralizing each of its natural powers.
+@isnad1 id=mem.1h4v.s6.3e97c0c5f52b from=translated src=- shape=ad4ceecd vocab=21fe5365
+-/
 theorem mem_centralizerOf_pow_of_mem {x y : G} (hy : y ∈ centralizerOf x) (n : ℕ) :
     y ∈ centralizerOf (x ^ n) := by
   rw [mem_centralizerOf_iff] at hy ⊢
@@ -59,7 +65,9 @@ theorem mem_centralizerOf_pow_of_mem {x y : G} (hy : y ∈ centralizerOf x) (n :
 
 /--
 Membership of an inverse in the centralizer of a subset is equivalent to the displayed
-commutation condition.-/
+commutation condition.
+@isnad1 id=iff.0h3v.s5.ea2d43aa38a0 from=translated src=- shape=f91a4498 vocab=4ad21c03
+-/
 theorem mem_centralizerOf_inv_iff {x y : G} :
     y ∈ centralizerOf x⁻¹ ↔ y ∈ centralizerOf x := by
   rw [mem_centralizerOf_iff, mem_centralizerOf_iff]
@@ -73,7 +81,9 @@ theorem mem_centralizerOf_inv_iff {x y : G} :
 
 /--
 Replacing a nonzero integer power by its positive absolute value does not change the
-centralizer.-/
+centralizer.
+@isnad1 id=eq.1h3v.s6.474caf6de293 from=translated src=- shape=c63e18c1 vocab=efecc2d5
+-/
 theorem centralizerOf_zpow_eq_natAbs (x : G) {n : ℤ} (_hn : n ≠ 0) :
     centralizerOf (x ^ n) = centralizerOf (x ^ (n.natAbs : ℤ)) := by
   cases n with
@@ -86,13 +96,17 @@ theorem centralizerOf_zpow_eq_natAbs (x : G) {n : ℤ} (_hn : n ≠ 0) :
 
 /--
 Centralizing a nonzero integer power is equivalent, for membership purposes, to centralizing the
-corresponding positive absolute power.-/
+corresponding positive absolute power.
+@isnad1 id=mem.2h4v.s6.a9282f9ea7a7 from=translated src=- shape=953f39fa vocab=d511a8c0
+-/
 theorem mem_centralizerOf_zpow_natAbs_of_mem_zpow {x y : G} {n : ℤ} (hn : n ≠ 0)
     (hy : y ∈ centralizerOf (x ^ n)) :
     y ∈ centralizerOf (x ^ (n.natAbs : ℤ)) := by
   rwa [← centralizerOf_zpow_eq_natAbs x hn]
 
-/-- If c and \(c * d\) centralize x, then d centralizes x.-/
+/-- If c and \(c * d\) centralize x, then d centralizes x.
+@isnad1 id=mem.2h4v.s6.8195b1186dfa from=translated src=- shape=9870abee vocab=71590fe9
+-/
 theorem right_factor_mem_centralizerOf_of_mul_mem_and_left_mem {x c d : G}
     (hc : c ∈ centralizerOf x) (hcd : c * d ∈ centralizerOf x) :
     d ∈ centralizerOf x := by
@@ -104,14 +118,18 @@ theorem right_factor_mem_centralizerOf_of_mul_mem_and_left_mem {x c d : G}
     _ = c⁻¹ * ((c * x) * d) := by rw [← hc]
     _ = x * d := by simp [mul_assoc]
 
-/-- In a Hausdorff topological group, the centralizer of one element is closed.-/
+/-- In a Hausdorff topological group, the centralizer of one element is closed.
+@isnad1 id=isclosed.0h2v.s5.b3783373bfaf from=translated src=- shape=531e1678 vocab=c47253d0
+-/
 theorem centralizerOf_isClosed
     [TopologicalSpace G] [ContinuousMul G] [T2Space G] (g : G) :
     IsClosed ((centralizerOf g : Subgroup G) : Set G) := by
   change IsClosed ({g} : Set G).centralizer
   exact Set.isClosed_centralizer (M := G) ({g} : Set G)
 
-/-- Topological generation preserves containment in a closed centralizer.-/
+/-- Topological generation preserves containment in a closed centralizer.
+@isnad1 id=le.1h3v.s6.fce6084854f7 from=translated src=- shape=64a2d037 vocab=a592fd1a
+-/
 theorem closedSubgroupGenerated_le_centralizer_of_subset
     [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G]
     {S T : Set G} (hS : S ⊆ (centralizer T : Set G)) :
@@ -127,7 +145,9 @@ theorem closedSubgroupGenerated_le_centralizer_of_subset
         change IsClosed T.centralizer
         exact Set.isClosed_centralizer (M := G) T)
 
-/-- A subgroup and its topological closure have the same centralizer.-/
+/-- A subgroup and its topological closure have the same centralizer.
+@isnad1 id=eq.0h2v.s5.07caf0fcfdab from=translated src=- shape=3c8bc1c7 vocab=019c8feb
+-/
 theorem centralizer_eq_centralizer_topologicalClosure
     [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G] (S : Subgroup G) :
     centralizer ((S.topologicalClosure : Subgroup G) : Set G) = centralizer (S : Set G) := by
@@ -147,7 +167,9 @@ theorem centralizer_eq_centralizer_topologicalClosure
     exact mem_centralizerOf_iff.mp (hclosure hx)
 
 /--
-The closed subgroup topologically generated by \(g\) centralizes every integer power of \(g\).-/
+The closed subgroup topologically generated by \(g\) centralizes every integer power of \(g\).
+@isnad1 id=le.0h3v.s6.6c62fc1f6f0c from=translated src=- shape=8d4ebee3 vocab=50dc2043
+-/
 theorem closedSubgroupGenerated_singleton_le_centralizerOf_zpow
     [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G]
     (g : G) (n : ℤ) :
@@ -169,7 +191,9 @@ theorem closedSubgroupGenerated_singleton_le_centralizerOf_zpow
 
 /--
 Every element in the closed subgroup topologically generated by \(x\) centralizes each integer
-power of \(x\).-/
+power of \(x\).
+@isnad1 id=mem.1h4v.s6.fe863dd82bcc from=translated src=- shape=5abf4b42 vocab=4d8863f2
+-/
 theorem mem_centralizerOf_zpow_of_mem_closedSubgroupGenerated
     [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G]
     {x c : G} (n : ℤ)
@@ -180,7 +204,9 @@ theorem mem_centralizerOf_zpow_of_mem_closedSubgroupGenerated
 
 /--
 If a single element topologically generates the group, the centralizer of any of its powers is
-the corresponding closed cyclic subgroup.-/
+the corresponding closed cyclic subgroup.
+@isnad1 id=eq.1h3v.s6.3f8cce81116b from=translated src=- shape=a0c38883 vocab=5a50d2ae
+-/
 theorem centralizerOf_zpow_eq_closedSubgroupGenerated_of_topologicallyGenerates
     [TopologicalSpace G] [IsTopologicalGroup G] [T2Space G]
     (x : G) (n : ℤ)

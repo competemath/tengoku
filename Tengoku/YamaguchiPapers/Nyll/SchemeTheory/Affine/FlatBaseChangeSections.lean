@@ -70,7 +70,9 @@ def affinePullbackSectionsTensorEquiv :
   exact e
 
 /-- The tensor comparison agrees with restriction from the source on its right
-factor; this fixes the actual map, as opposed to only its isomorphism class.-/
+factor; this fixes the actual map, as opposed to only its isomorphism class.
+@isnad1 id=other.3h7v.s16.b52627e8aae3 from=translated src=- shape=f1a5ca99 vocab=7f67c665
+-/
 theorem affinePullbackSectionsTensorEquiv_one_tmul :
     let : Algebra Γ(S, U) Γ(T, V) := (g.appLE U V hVU).hom.toAlgebra
     let : Algebra Γ(S, U) Γ(X, f ⁻¹ᵁ U) := (f.app U).hom.toAlgebra

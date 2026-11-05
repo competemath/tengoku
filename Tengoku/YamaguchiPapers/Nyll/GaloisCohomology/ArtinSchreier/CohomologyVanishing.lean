@@ -25,7 +25,9 @@ variable {K : Type u} {Ω : Type v} [Field K] [Field Ω] [Algebra K Ω] [IsGaloi
 variable (p : ℕ) [Fact p.Prime] [CharP Ω p]
 
 /-- A prime-field two-cocycle has a locally constant primitive with values in
-the separable Galois extension.-/
+the separable Galois extension.
+@isnad1 id=ex.2h4v.s10.4fe33239826d from=translated src=- shape=912d7b57 vocab=999124e3
+-/
 theorem exists_additive_primitive_of_zmod_two_cocycle
     (z : Gal(Ω/K) → Gal(Ω/K) → ZMod p)
     (hz : ∀ σ τ υ : Gal(Ω/K),
@@ -77,7 +79,9 @@ theorem exists_additive_primitive_of_zmod_two_cocycle
 variable [IsSepClosed Ω]
 
 /-- Every continuous prime-field two-cocycle of an absolute Galois group in
-characteristic `p` is a coboundary.-/
+characteristic `p` is a coboundary.
+@isnad1 id=ex.2h4v.s10.4ea2b9b00da5 from=translated src=- shape=ce7c5328 vocab=7612b5f4
+-/
 theorem exists_zmod_primitive_of_two_cocycle
     (z : Gal(Ω/K) → Gal(Ω/K) → ZMod p)
     (hz : ∀ σ τ υ : Gal(Ω/K),

@@ -56,7 +56,9 @@ def TopologicalFiberProduct.snd
   { FiberProduct.snd (β₁ : H₁ →* H) (β₂ : H₂ →* H) with
     continuous_toFun := continuous_snd.comp continuous_subtype_val }
 
-/-- Extensionality for continuous homomorphisms into the concrete continuous fiber product.-/
+/-- Extensionality for continuous homomorphisms into the concrete continuous fiber product.
+@isnad1 id=eq.2h8v.s12.2830c3a10f8e from=translated src=- shape=17a0cb9b vocab=fa74d8ab
+-/
 theorem TopologicalFiberProduct.hom_ext
     [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂] [TopologicalSpace K]
@@ -86,7 +88,9 @@ def TopologicalFiberProduct.lift
           intro k
           exact h k) }
 
-/-- Composing the first projection with the continuous pullback lift gives \(\varphi_1\).-/
+/-- Composing the first projection with the continuous pullback lift gives \(\varphi_1\).
+@isnad1 id=eq.1h8v.s9.74aa4b7623eb from=translated src=- shape=3f5bb511 vocab=3c9074ad
+-/
 @[simp] theorem pullbackFstCont_pullbackLiftCont
     [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂] [TopologicalSpace K]
@@ -97,7 +101,9 @@ def TopologicalFiberProduct.lift
   ext k
   rfl
 
-/-- Composing the second projection with the continuous pullback lift gives \(\varphi_2\).-/
+/-- Composing the second projection with the continuous pullback lift gives \(\varphi_2\).
+@isnad1 id=eq.1h8v.s9.6d862917872e from=translated src=- shape=dea78ade vocab=0670a39f
+-/
 @[simp] theorem pullbackSndCont_pullbackLiftCont
     [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂] [TopologicalSpace K]
@@ -108,7 +114,9 @@ def TopologicalFiberProduct.lift
   ext k
   rfl
 
-/-- The continuous pullback is reconstructed from its two projections by the canonical lift.-/
+/-- The continuous pullback is reconstructed from its two projections by the canonical lift.
+@isnad1 id=eq.0h7v.s10.1fb11e4d1256 from=translated src=- shape=72420244 vocab=bc41339f
+-/
 @[simp] theorem pullbackLiftCont_eta
     [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂] [TopologicalSpace K]
@@ -205,7 +213,9 @@ noncomputable def pullbackDescCont
     (hφ : β₁.comp φ₁ = β₂.comp φ₂) : K →ₜ* G :=
   Classical.choose (ExistsUnique.exists (hpb.2 (K := K) φ₁ φ₂ hφ))
 
-/-- Specification of the chosen continuous pullback descent map.-/
+/-- Specification of the chosen continuous pullback descent map.
+@isnad1 id=and.2h11v.s8.8e0f6e463ab9 from=translated src=- shape=3fe087b1 vocab=9e816aa2
+-/
 theorem pullbackDescCont_spec
     [Group G] [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace G] [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂]
@@ -220,7 +230,9 @@ theorem pullbackDescCont_spec
       α₂.comp (pullbackDescCont hpb φ₁ φ₂ hφ) = φ₂ :=
   Classical.choose_spec (ExistsUnique.exists (hpb.2 (K := K) φ₁ φ₂ hφ))
 
-/-- The left composite of the chosen continuous pullback descent map is the prescribed left leg.-/
+/-- The left composite of the chosen continuous pullback descent map is the prescribed left leg.
+@isnad1 id=eq.2h11v.s8.934037666e06 from=translated src=- shape=87efbd56 vocab=9e816aa2
+-/
 @[simp] theorem pullbackDescCont_left
     [Group G] [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace G] [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂]
@@ -235,7 +247,9 @@ theorem pullbackDescCont_spec
   (pullbackDescCont_spec hpb φ₁ φ₂ hφ).1
 
 /--
-The right composite of the chosen continuous pullback descent map is the prescribed right leg.-/
+The right composite of the chosen continuous pullback descent map is the prescribed right leg.
+@isnad1 id=eq.2h11v.s8.2711cbe3ddaa from=translated src=- shape=07b81878 vocab=9e816aa2
+-/
 @[simp] theorem pullbackDescCont_right
     [Group G] [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace G] [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂]
@@ -249,7 +263,9 @@ The right composite of the chosen continuous pullback descent map is the prescri
     α₂.comp (pullbackDescCont hpb φ₁ φ₂ hφ) = φ₂ :=
   (pullbackDescCont_spec hpb φ₁ φ₂ hφ).2
 
-/-- The concrete pullback subgroup is closed in \(H_1 \times H_2\).-/
+/-- The concrete pullback subgroup is closed in \(H_1 \times H_2\).
+@isnad1 id=isclosed.0h5v.s7.23f88072edee from=translated src=- shape=cc3edf39 vocab=d8fc086d
+-/
 theorem pullback_isClosed
     {H H₁ H₂ : Type u}
     [Group H] [Group H₁] [Group H₂]
@@ -261,7 +277,9 @@ theorem pullback_isClosed
   exact isClosed_eq (β₁.continuous_toFun.comp continuous_fst)
     (β₂.continuous_toFun.comp continuous_snd)
 
-/-- The concrete pullback of continuous maps between compact Hausdorff groups is compact.-/
+/-- The concrete pullback of continuous maps between compact Hausdorff groups is compact.
+@isnad1 id=compacts.0h5v.s7.45682326f2fa from=translated src=- shape=99cda3e9 vocab=eb98ff21
+-/
 noncomputable instance TopologicalFiberProduct.compactSpace
     {H H₁ H₂ : Type u}
     [Group H] [Group H₁] [Group H₂]
@@ -275,7 +293,9 @@ noncomputable instance TopologicalFiberProduct.compactSpace
 
 namespace TopologicalFiberProduct
 
-/-- Composing the first projection with a topological fiber-product lift gives the left map.-/
+/-- Composing the first projection with a topological fiber-product lift gives the left map.
+@isnad1 id=eq.1h8v.s9.74aa4b7623eb from=translated src=- shape=3f5bb511 vocab=3c9074ad
+-/
 @[simp] theorem fst_lift
     [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂] [TopologicalSpace K]
@@ -285,7 +305,9 @@ namespace TopologicalFiberProduct
     (fst β₁ β₂).comp (lift β₁ β₂ φ₁ φ₂ h) = φ₁ :=
   pullbackFstCont_pullbackLiftCont β₁ β₂ φ₁ φ₂ h
 
-/-- Composing the second projection with a topological fiber-product lift gives the right map.-/
+/-- Composing the second projection with a topological fiber-product lift gives the right map.
+@isnad1 id=eq.1h8v.s9.6d862917872e from=translated src=- shape=dea78ade vocab=0670a39f
+-/
 @[simp] theorem snd_lift
     [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂] [TopologicalSpace K]
@@ -295,7 +317,9 @@ namespace TopologicalFiberProduct
     (snd β₁ β₂).comp (lift β₁ β₂ φ₁ φ₂ h) = φ₂ :=
   pullbackSndCont_pullbackLiftCont β₁ β₂ φ₁ φ₂ h
 
-/-- The first projection of a lifted element is the value of the first coordinate map.-/
+/-- The first projection of a lifted element is the value of the first coordinate map.
+@isnad1 id=eq.1h9v.s10.23fcda3a2dfb from=translated src=- shape=a37a8cbb vocab=f91a7ba4
+-/
 @[simp] theorem fst_lift_apply
     [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂] [TopologicalSpace K]
@@ -305,7 +329,9 @@ namespace TopologicalFiberProduct
     fst β₁ β₂ (lift β₁ β₂ φ₁ φ₂ h k) = φ₁ k :=
   rfl
 
-/-- The second projection of a lifted element is the value of the second coordinate map.-/
+/-- The second projection of a lifted element is the value of the second coordinate map.
+@isnad1 id=eq.1h9v.s10.3e9af761d231 from=translated src=- shape=d53b5822 vocab=4720d7af
+-/
 @[simp] theorem snd_lift_apply
     [Group H] [Group H₁] [Group H₂] [Group K]
     [TopologicalSpace H] [TopologicalSpace H₁] [TopologicalSpace H₂] [TopologicalSpace K]

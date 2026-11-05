@@ -35,7 +35,9 @@ variable [AddCommGroup B] [Module R B]
 variable [AddCommGroup E] [Module R E] [Module.Injective R E]
 
 /-- Dualizing an exact pair whose second map is scalar multiplication
-embeds the scalar quotient of the middle dual into the first dual.-/
+embeds the scalar quotient of the middle dual into the first dual.
+@isnad1 id=ex.1h6v.s15.9c351fc13e70 from=translated src=- shape=c4cca794 vocab=bcda9a6f
+-/
 theorem exists_injective_dual_scalarQuotient_of_exact
     (δ : A →ₗ[R] B) (x : R)
     (hex : Function.Exact δ (x • (LinearMap.id : B →ₗ[R] B))) :

@@ -37,6 +37,9 @@ open scoped TensorProduct
 
 namespace EtaleLocNormalAux
 
+/--
+@isnad1 id=isintegr.1h3v.s5.8ceb9bcae50e from=translated src=- shape=7ccb9f92 vocab=08484c48
+-/
 theorem isIntegral_of_isIdempotentElem {T B : Type*} [CommRing T] [CommRing B] [Algebra T B]
     {e : B} (he : IsIdempotentElem e) : IsIntegral T e := by
   refine ⟨Polynomial.X * (Polynomial.X - Polynomial.C 1),
@@ -50,6 +53,9 @@ variable (R K : Type u) [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
 variable (S : Type u) [CommRing S] [Algebra R S]
 
 omit [IsDomain R] [IsIntegrallyClosed R] in
+/--
+@isnad1 id=injectiv.0h3v.s9.dce19c49c6af from=translated src=- shape=896bb8be vocab=d08fa4c9
+-/
 theorem algebraMap_genericFibre_injective [Module.Flat R S] :
     Function.Injective (algebraMap S (S ⊗[R] K)) := by
   have h := Algebra.TensorProduct.includeLeft_injective (S := S) (A := S) (B := K)
@@ -60,6 +66,9 @@ theorem algebraMap_genericFibre_injective [Module.Flat R S] :
 
 end Core
 
+/--
+@isnad1 id=isintegr.1h2v.s8.ddb00f4cb8c6 from=translated src=- shape=6edf270b vocab=fb88957a
+-/
 theorem isIntegrallyClosed_of_integralClosure_eq_bot (T A : Type*) [CommRing T]
     [IsDomain T] [CommRing A] [IsDomain A] [Algebra T A] [FaithfulSMul T A]
     [IsIntegrallyClosed A] (h : integralClosure T A = ⊥) :

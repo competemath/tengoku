@@ -17,7 +17,9 @@ namespace ProCGroups.Abelian
 universe u
 
 /-- If the `m`th-power map on a profinite abelian group is injective, every
-continuous character modulo `N` lifts to a character modulo `N*m`.-/
+continuous character modulo `N` lifts to a character modulo `N*m`.
+@isnad1 id=ex.1h4v.s9.8901370d5b66 from=translated src=- shape=3c5f3a8b vocab=eb4a74b7
+-/
 theorem exists_cyclic_character_lift_of_power_injective
     {A : Type u} [CommGroup A] [TopologicalSpace A] [IsTopologicalGroup A]
     [CompactSpace A] [T2Space A] [TotallyDisconnectedSpace A]

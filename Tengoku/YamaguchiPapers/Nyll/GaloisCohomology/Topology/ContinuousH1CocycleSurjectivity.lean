@@ -18,6 +18,9 @@ universe u
 
 variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
+/--
+@isnad1 id=eq.0h5v.s11.41fca11b657d from=translated src=- shape=5bac6b6e vocab=87239a23
+-/
 theorem homogeneous_oneCocycle_eq_difference
     (X : TopRep.{u} ℤ G) (z : cocycles X 1) (g h : G) :
     ((homogeneousCochains X).iCycles 1 z).1 g h =

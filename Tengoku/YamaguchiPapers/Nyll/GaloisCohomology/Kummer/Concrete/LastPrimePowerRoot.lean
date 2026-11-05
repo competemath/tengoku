@@ -23,7 +23,9 @@ namespace KummerTheory
 variable {K : Type*} [Field K]
 
 /-- A finite set of prime-power roots has a last primitive-root level. The
-maximality statement also bounds every other available level.-/
+maximality statement also bounds every other available level.
+@isnad1 id=ex.2h2v.s7.4227be512529 from=translated src=- shape=6ecd0638 vocab=bd06babe
+-/
 theorem exists_last_primePower_primitiveRoot {p : ℕ} (hp : p.Prime)
     (hfinite : Set.Finite {ζ : K | ∃ n : ℕ, ζ ^ (p ^ n) = 1}) :
     ∃ s : ℕ, (primitiveRoots (p ^ s) K).Nonempty ∧
@@ -49,7 +51,9 @@ theorem exists_last_primePower_primitiveRoot {p : ℕ} (hp : p.Prime)
   exact Nat.not_succ_le_self s (hmax (s + 1) hnext)
 
 /-- If a primitive root of prime order exists, finiteness of all prime-power
-roots supplies a positive last exponent and a nonidentity power class there.-/
+roots supplies a positive last exponent and a nonidentity power class there.
+@isnad1 id=ex.3h3v.s10.b70442285679 from=translated src=- shape=155c1f07 vocab=b4fc58d0
+-/
 theorem exists_last_primePowerRoot_nontrivial_class {p : ℕ} (hp : p.Prime)
     (hfinite : Set.Finite {ξ : K | ∃ n : ℕ, ξ ^ (p ^ n) = 1})
     {ζ : Kˣ} (hζ : IsPrimitiveRoot ζ p) :

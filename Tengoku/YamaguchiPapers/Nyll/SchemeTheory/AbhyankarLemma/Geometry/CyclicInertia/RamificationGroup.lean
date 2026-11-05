@@ -123,7 +123,9 @@ private theorem residue_natCast_eq_zero_of_ramification_prime_order
   simpa only [map_sum, map_zero, hresidue, Finset.sum_const,
     Finset.card_range, nsmul_eq_mul, mul_one] using hsumResidue
 
-/-- In residue characteristic zero the ramification group is trivial.-/
+/-- In residue characteristic zero the ramification group is trivial.
+@isnad1 id=eq.0h3v.s14.c4cebb450709 from=translated src=- shape=b3df4301 vocab=8eea1301
+-/
 theorem ramificationGroup_eq_bot_of_residue_charZero
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) [CharZero (IsLocalRing.ResidueField V)]
@@ -147,7 +149,9 @@ theorem ramificationGroup_eq_bot_of_residue_charZero
   exact hell.ne_one this
 
 /-- A finite ramification group is a `p`-group when the residue field has
-positive prime characteristic `p`.-/
+positive prime characteristic `p`.
+@isnad1 id=ispgroup.0h4v.s14.ee164b07d57b from=translated src=- shape=180e4377 vocab=449c0ac4
+-/
 theorem ramificationGroup_isPGroup_of_residue_charP
     (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
     (V : _root_.ValuationSubring L) (p : ℕ)

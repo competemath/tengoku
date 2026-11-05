@@ -51,7 +51,9 @@ def maximalIdealSaturationQuotientEquiv (I : Ideal R) :
     (f.quotKerEquivOfSurjective hf)
 
 /-- Quotients by maximal-ideal-saturated powers have no degree-zero
-maximal-ideal local cohomology.-/
+maximal-ideal local cohomology.
+@isnad1 id=iszero.0h3v.s6.339a565ac90f from=translated src=- shape=18815aa0 vocab=9c2c75b9
+-/
 theorem derivedLocalCohomology_maximalIdeal_saturatedPower_quotient_zero
     [IsNoetherianRing R] (I : Ideal R) (n : ℕ) :
     IsZero (derivedLocalCohomology (maximalIdeal R)

@@ -38,7 +38,9 @@ attribute [local instance] residualQuotient_totallyDisconnectedSpace
 
 /-- The canonical residual-core projection satisfies the maximal pro-C
 universal property. The quotient's separation properties are supplied from
-closedness of the actual core, rather than assumed.-/
+closedness of the actual core, rather than assumed.
+@isnad1 id=ismaxima.2h2v.s6.1a6708940783 from=translated src=- shape=a01637e2 vocab=76661763
+-/
 theorem isMaximalProCQuotient_residualCore
     {C : FiniteGroupClass.{u}}
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]

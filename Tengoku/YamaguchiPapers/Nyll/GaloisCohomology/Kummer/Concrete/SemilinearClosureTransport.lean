@@ -25,18 +25,24 @@ variable {K Ω Ω' : Type*} [Field K] [Field Ω] [Field Ω']
 def transportSemilinearEquiv (e : Ω ≃ₐ[K] Ω') (a : Ω ≃+* Ω) : Ω' ≃+* Ω' :=
   (e.symm.toRingEquiv.trans a).trans e.toRingEquiv
 
-/-- Evaluation of the transported field automorphism.-/
+/-- Evaluation of the transported field automorphism.
+@isnad1 id=eq.0h6v.s9.1abd69cb6277 from=translated src=- shape=499cb192 vocab=0e86be80
+-/
 theorem transportSemilinearEquiv_apply (e : Ω ≃ₐ[K] Ω') (a : Ω ≃+* Ω) (x : Ω') :
     transportSemilinearEquiv e a x = e (a (e.symm x)) := by
   rfl
 
-/-- Evaluation of its inverse.-/
+/-- Evaluation of its inverse.
+@isnad1 id=eq.0h6v.s9.334cd6bd1e73 from=translated src=- shape=9d99da25 vocab=bc497051
+-/
 theorem transportSemilinearEquiv_symm_apply (e : Ω ≃ₐ[K] Ω') (a : Ω ≃+* Ω)
     (x : Ω') :
     (transportSemilinearEquiv e a).symm x = e (a.symm (e.symm x)) := by
   rfl
 
-/-- Transport preserves the base automorphism of a semilinear map.-/
+/-- Transport preserves the base automorphism of a semilinear map.
+@isnad1 id=eq.1h7v.s10.ad5bd10252a6 from=translated src=- shape=2384bbaf vocab=db12cbea
+-/
 theorem transportSemilinearEquiv_algebraMap (τ : K ≃+* K)
     (e : Ω ≃ₐ[K] Ω') (a : Ω ≃+* Ω)
     (ha : ∀ k : K, a (algebraMap K Ω k) = algebraMap K Ω (τ k)) (k : K) :
@@ -44,7 +50,9 @@ theorem transportSemilinearEquiv_algebraMap (τ : K ≃+* K)
   rw [transportSemilinearEquiv_apply, e.symm.commutes, ha, e.commutes]
 
 /-- The Galois-group transport intertwines the two concrete semilinear
-conjugations, before passing to any quotient or character.-/
+conjugations, before passing to any quotient or character.
+@isnad1 id=eq.1h7v.s11.5826da02b957 from=translated src=- shape=9b4b0d0c vocab=c41917ed
+-/
 theorem autCongr_semilinearGaloisConjugate (τ : K ≃+* K)
     (e : Ω ≃ₐ[K] Ω') (a : Ω ≃+* Ω)
     (ha : ∀ k : K, a (algebraMap K Ω k) = algebraMap K Ω (τ k))

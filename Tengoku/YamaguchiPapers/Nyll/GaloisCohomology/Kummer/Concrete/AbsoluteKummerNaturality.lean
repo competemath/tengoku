@@ -27,7 +27,9 @@ open KummerTheory
 variable (K : Type*) [Field K] [CharZero K]
 
 /-- Absolute Kummer characters commute pointwise with the chosen extension
-of a base-field automorphism and its conjugation on the Galois group.-/
+of a base-field automorphism and its conjugation on the Galois group.
+@isnad1 id=eq.1h5v.s15.37b04b1c6b5d from=translated src=- shape=e8683711 vocab=1b69a852
+-/
 theorem absoluteKummerContinuousNthRootsCharacterEquiv_naturality
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (τ : K ≃+* K) (a : Kˣ) (σ : Gal(AlgebraicClosure K/K)) :
@@ -68,7 +70,9 @@ theorem absoluteKummerContinuousNthRootsCharacterEquiv_naturality
           K n hmu a β hβ σ).symm))
 
 /-- When the base-field automorphism fixes the `n`-th roots of unity,
-Kummer naturality has constant coefficients.-/
+Kummer naturality has constant coefficients.
+@isnad1 id=eq.2h5v.s15.592d074e313f from=translated src=- shape=4f3bc642 vocab=f83be38b
+-/
 theorem absoluteKummerContinuousNthRootsCharacterEquiv_naturality_of_fixes_roots
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
     (τ : K ≃+* K)
@@ -105,7 +109,9 @@ theorem absoluteKummerContinuousNthRootsCharacterEquiv_naturality_of_fixes_roots
 /-- An eigenunit with primitive prime-order multiplier yields a continuous
 character moved by conjugation when the prime-power roots form a finite set
 fixed by the base automorphism. The detecting exponent and character are
-constructed from the last available root level.-/
+constructed from the last available root level.
+@isnad1 id=ex.5h5v.s12.6380a11636bb from=translated src=- shape=2ab2a4a4 vocab=d5ff6a37
+-/
 theorem exists_moved_absoluteKummerCharacter_of_finite_primePowerRoots
     {p : ℕ} (hp : p.Prime)
     (hfinite : Set.Finite {ξ : K | ∃ m : ℕ, ξ ^ (p ^ m) = 1})

@@ -39,7 +39,9 @@ variable {S : Scheme.{u}} {Ω : Type u} [Field Ω]
   (s : Spec (.of Ω) ⟶ S)
 
 /-- Affine pointed neighborhoods form a weakly initial essentially small
-family. The proof uses only that `Spec Ω` has one point.-/
+family. The proof uses only that `Spec Ω` has one point.
+@isnad1 id=initiall.0h3v.s7.949f02ee5012 from=translated src=- shape=6ab82f57 vocab=54e30805
+-/
 theorem pointedEtaleNeighborhoods_initiallySmall :
     InitiallySmall.{u} (Etale.forget S ⋙ coyoneda.obj (op (Over.mk s))).Elements :=
   initiallySmall_of_essentiallySmall_weakly_initial_objectProperty

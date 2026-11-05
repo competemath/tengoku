@@ -29,7 +29,9 @@ namespace AlgebraicGeometry
 universe u
 
 /-- A regular global section of an affine scheme acts injectively on sections
-of every open subset.-/
+of every open subset.
+@isnad1 id=issmulre.1h3v.s13.143b80e85bf7 from=translated src=- shape=5d31aec8 vocab=549c3a5b
+-/
 theorem isSMulRegular_restrict_of_affine
     (X : Scheme.{u}) [IsAffine X] (U : X.Opens)
     (r : Γ(X, ⊤)) (hr : r ∈ nonZeroDivisors Γ(X, ⊤)) :
@@ -57,7 +59,9 @@ theorem isSMulRegular_restrict_of_affine
   exact mem_nonZeroDivisors_iff_left.mp hrp _ hz
 
 /-- Restriction to the nonvanishing locus of a regular section is injective
-on a quasi-compact, quasi-separated open.-/
+on a quasi-compact, quasi-separated open.
+@isnad1 id=injectiv.3h3v.s14.c69d598cda5f from=translated src=- shape=4d47e8fc vocab=51ae612a
+-/
 theorem restrict_basicOpen_injective_of_affine
     (X : Scheme.{u}) [IsAffine X] (U : X.Opens)
     (hU : IsCompact U.1) (hU' : IsQuasiSeparated U.1)

@@ -23,10 +23,16 @@ def mulPowPrime (p n : ℕ) : ZMod p →+ ZMod (p ^ (n + 1)) :=
       change ((p : ZMod (p ^ (n + 1))) ^ n) * (p : ℤ) = 0
       rw [Int.cast_natCast, ← pow_succ, ← Nat.cast_pow, ZMod.natCast_self]⟩
 
+/--
+@isnad1 id=eq.0h3v.s10.39ff1aaebc17 from=translated src=- shape=b0d5b037 vocab=40c8358f
+-/
 theorem mulPowPrime_intCast (p n : ℕ) (a : ℤ) :
     mulPowPrime p n (a : ZMod p) = (p ^ n : ZMod (p ^ (n + 1))) * a :=
   ZMod.lift_coe _ _ _
 
+/--
+@isnad1 id=injectiv.1h2v.s9.7b93f98a71a8 from=translated src=- shape=723ea092 vocab=6bc26b10
+-/
 theorem mulPowPrime_injective {p : ℕ} (hp : p ≠ 0) (n : ℕ) :
     Function.Injective (mulPowPrime p n) := by
   apply (injective_iff_map_eq_zero (mulPowPrime p n)).2
@@ -44,7 +50,9 @@ theorem mulPowPrime_injective {p : ℕ} (hp : p ≠ 0) (n : ℕ) :
   rw [ZMod.intCast_zmod_eq_zero_iff_dvd]
   exact hdiv
 
-/-- Every element killed by reduction modulo p^n is a multiple of p^n.-/
+/-- Every element killed by reduction modulo p^n is a multiple of p^n.
+@isnad1 id=ex.1h3v.s10.0f95d65a8025 from=translated src=- shape=af5ce49b vocab=ec0d6abc
+-/
 theorem exists_mulPowPrime_eq_of_castHom_eq_zero (p n : ℕ)
     (z : ZMod (p ^ (n + 1)))
     (hz : ZMod.castHom (pow_dvd_pow p (Nat.le_succ n)) (ZMod (p ^ n)) z = 0) :
@@ -55,6 +63,9 @@ theorem exists_mulPowPrime_eq_of_castHom_eq_zero (p n : ℕ)
   refine ⟨(a : ZMod p), ?_⟩
   rw [mulPowPrime_intCast, ha, Int.cast_mul, Int.cast_natCast, Nat.cast_pow]
 
+/--
+@isnad1 id=eq.0h3v.s10.7b99d6a73c5a from=translated src=- shape=71c31761 vocab=ec0d6abc
+-/
 theorem castHom_mulPowPrime (p n : ℕ) (a : ZMod p) :
     ZMod.castHom (pow_dvd_pow p (Nat.le_succ n)) (ZMod (p ^ n))
       (mulPowPrime p n a) = 0 := by
@@ -62,6 +73,9 @@ theorem castHom_mulPowPrime (p n : ℕ) (a : ZMod p) :
   rw [mulPowPrime_intCast, map_mul, map_pow, map_natCast, ← Nat.cast_pow,
     ZMod.natCast_self, zero_mul]
 
+/--
+@isnad1 id=eq.0h4v.s10.2a5f6b813cb1 from=translated src=- shape=2592a454 vocab=01136dbd
+-/
 theorem mulPowPrime_mul_castHom (p n : ℕ) (a : ZMod (p ^ (n + 1))) (b : ZMod p) :
     mulPowPrime p n (ZMod.castHom (dvd_pow_self p (Nat.succ_ne_zero n)) (ZMod p) a * b) =
       a * mulPowPrime p n b := by

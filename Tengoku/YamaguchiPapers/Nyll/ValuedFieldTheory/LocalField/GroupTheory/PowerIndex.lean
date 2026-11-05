@@ -35,7 +35,9 @@ variable (G : Type uG) (H : Type uH) (U : Type uU)
 variable [CommGroup G] [CommGroup H] [CommGroup U]
 
 /-- The identity element is an `n`-th power and hence lies in the range of the power endomorphism.
-The identity element is an `n`-th power and hence lies in the range of the power endomorphism.-/
+The identity element is an `n`-th power and hence lies in the range of the power endomorphism.
+@isnad1 id=mem.0h2v.s5.4d8e60d331d8 from=translated src=- shape=0e8ef545 vocab=01162371
+-/
 @[simp]
 theorem powMonoidHom_range_one_mem (n : ℕ) :
     (1 : G) ∈ (powMonoidHom n : G →* G).range := by
@@ -62,7 +64,9 @@ def nthPowerKernelEquivOfMulEquiv (n : ℕ) (e : G ≃* H) :
   map_mul' x y := Subtype.ext (map_mul e (x : G) (y : G))
 
 /-- A multiplicative equivalence carries the range of the `n`-th power map onto the corresponding
-range.-/
+range.
+@isnad1 id=eq.0h4v.s6.d464516272a7 from=translated src=- shape=2a524707 vocab=24c05232
+-/
 theorem powMonoidHom_range_map (n : ℕ) (e : G ≃* H) :
     ((powMonoidHom n : G →* G).range).map e.toMonoidHom = (powMonoidHom n : H →* H).range := by
   exact e.map_range_powMonoidHom n
@@ -74,7 +78,9 @@ def nthPowerQuotientEquivOfMulEquiv (n : ℕ) (e : G ≃* H) :
     (powMonoidHom_range_map G H n e)
 
 /-- The quotient equivalence induced by a multiplicative equivalence maps each power-class
-representative to its image.-/
+representative to its image.
+@isnad1 id=eq.0h5v.s11.904a90e7b634 from=translated src=- shape=fdc3ee0a vocab=d55fd72b
+-/
 @[simp]
 theorem nthPowerQuotientEquivOfMulEquiv_mk (n : ℕ) (e : G ≃* H) (x : G) :
     nthPowerQuotientEquivOfMulEquiv G H n e
@@ -123,7 +129,9 @@ def nthPowerProductQuotientHom (n : ℕ) :
   map_one' := rfl
   map_mul' _ _ := rfl
 
-/-- Every pair of power classes is represented by a power class in the product group.-/
+/-- Every pair of power classes is represented by a power class in the product group.
+@isnad1 id=surjecti.0h3v.s9.9297f2ed6802 from=translated src=- shape=c9f6843b vocab=1e1b7011
+-/
 theorem nthPowerProductQuotientHom_surjective (n : ℕ) :
     Function.Surjective (nthPowerProductQuotientHom G H n) := by
   intro q
@@ -134,7 +142,9 @@ theorem nthPowerProductQuotientHom_surjective (n : ℕ) :
   intro h
   exact ⟨(g, h), rfl⟩
 
-/-- The product power-class homomorphism has trivial kernel.-/
+/-- The product power-class homomorphism has trivial kernel.
+@isnad1 id=eq.0h3v.s8.297f13c0a0b1 from=translated src=- shape=dcc6764b vocab=3426a4b2
+-/
 theorem nthPowerProductQuotientHom_ker (n : ℕ) :
     (nthPowerProductQuotientHom G H n).ker =
       (powMonoidHom n : (G × H) →* (G × H)).range := by
@@ -186,7 +196,9 @@ def nthPowerProductQuotientEquiv (n : ℕ) :
       (nthPowerProductQuotientHom_surjective G H n))
 
 /-- For multiplicative integers, the range of the `n`-th power map is the subgroup of additive
-multiples of `n`.-/
+multiples of `n`.
+@isnad1 id=eq.0h1v.s5.cfe11d2c63e3 from=translated src=- shape=977b2395 vocab=848cae12
+-/
 theorem powMonoidHom_range_multiplicativeInt_eq_integerMultipleSubgroup
     (n : ℕ) :
     (powMonoidHom n : (Multiplicative ℤ) →* (Multiplicative ℤ)).range =
@@ -207,7 +219,9 @@ theorem powMonoidHom_range_multiplicativeInt_eq_integerMultipleSubgroup
     rw [powMonoidHom_apply, Int.toAdd_pow, toAdd_ofAdd, hk]
     ring
 
-/-- For nonzero `n`, multiplicative integers modulo `n`-th powers form a finite quotient.-/
+/-- For nonzero `n`, multiplicative integers modulo `n`-th powers form a finite quotient.
+@isnad1 id=finite.1h1v.s5.f0f2c7a01f32 from=translated src=- shape=db9c1ea0 vocab=83999535
+-/
 theorem finite_multiplicativeInt_nthPowerQuotient
     {n : ℕ} (hn : n ≠ 0) :
     Finite (Multiplicative ℤ ⧸ (powMonoidHom n : (Multiplicative ℤ) →* (Multiplicative
@@ -219,7 +233,9 @@ theorem finite_multiplicativeInt_nthPowerQuotient
     (Multiplicative (ZMod (n : ℤ).natAbs))
     (valueModIntegerMultipleSubgroupEquivZMod (n : ℤ)).symm.toEquiv
 
-/-- For nonzero `n`, the multiplicative-integer power quotient has cardinality `n`.-/
+/-- For nonzero `n`, the multiplicative-integer power quotient has cardinality `n`.
+@isnad1 id=eq.1h1v.s6.f2dbcb9f162f from=translated src=- shape=f6e0ede1 vocab=7ba7b975
+-/
 theorem card_multiplicativeInt_nthPowerQuotient
     {n : ℕ} (hn : n ≠ 0)
     [Finite (Multiplicative ℤ ⧸ (powMonoidHom n : (Multiplicative ℤ) →* (Multiplicative ℤ)).range)]
@@ -261,20 +277,26 @@ abbrev nsmulAddKernel (n : ℕ) : AddSubgroup A :=
   (nsmulAddMonoidHom n).ker
 
 /-- Membership in the image of multiplication by `n` is equivalent to being an `n`-fold additive
-multiple.-/
+multiple.
+@isnad1 id=iff.0h3v.s5.a51cab6278bd from=translated src=- shape=7c73f046 vocab=3c350f08
+-/
 @[simp]
 theorem mem_nsmulAddSubgroup_iff {n : ℕ} {x : A} :
     x ∈ nsmulAddSubgroup A n ↔ ∃ y : A, n • y = x := by
   simp [nsmulAddSubgroup, AddMonoidHom.mem_range]
 
-/-- Membership in the kernel of multiplication by `n` is equivalent to being annihilated by `n`.-/
+/-- Membership in the kernel of multiplication by `n` is equivalent to being annihilated by `n`.
+@isnad1 id=iff.0h3v.s6.1e1316ace8b6 from=translated src=- shape=79712d4b vocab=ef216460
+-/
 @[simp]
 theorem mem_nsmulAddKernel_iff {n : ℕ} {x : A} :
     x ∈ nsmulAddKernel A n ↔ n • x = 0 := by
   simp [nsmulAddKernel, AddMonoidHom.mem_ker]
 
 /-- Under the `Multiplicative` wrapper, `n`-th powers are exactly additive
-`n`-fold multiples.-/
+`n`-fold multiples.
+@isnad1 id=eq.0h2v.s7.787bb1b4b729 from=translated src=- shape=129ff629 vocab=b237cb9b
+-/
 theorem powMonoidHom_range_multiplicative_eq_nsmulAddSubgroup_toSubgroup
     (n : ℕ) :
     (powMonoidHom n : (Multiplicative A) →* (Multiplicative A)).range =
@@ -304,7 +326,9 @@ def multiplicativeNthPowerQuotientEquivAdditive (n : ℕ) :
   exact Equiv.refl _
 
 /-- Cardinality/index form of
-`powMonoidHom_range_multiplicative_eq_nsmulAddSubgroup_toSubgroup`.-/
+`powMonoidHom_range_multiplicative_eq_nsmulAddSubgroup_toSubgroup`.
+@isnad1 id=eq.0h2v.s6.14042aa56b2d from=translated src=- shape=f32a3015 vocab=489ed287
+-/
 theorem card_multiplicative_nthPowerQuotient_eq_nsmulAddSubgroup_index
     (n : ℕ)
     [Finite (Multiplicative A ⧸ (powMonoidHom n : (Multiplicative A) →* (Multiplicative A)).range)]
@@ -318,7 +342,9 @@ theorem card_multiplicative_nthPowerQuotient_eq_nsmulAddSubgroup_index
   exact AddSubgroup.index_toSubgroup _
 
 /-- Under logarithmic/additive notation, the `n`-th-power quotient is the
-additive quotient by `n`-fold multiples.-/
+additive quotient by `n`-fold multiples.
+@isnad1 id=eq.0h2v.s7.91040f7bacf9 from=translated src=- shape=65e5e620 vocab=35641b8d
+-/
 theorem card_multiplicative_nthPowerQuotient_eq_additive_nsmulQuotient
     (n : ℕ)
     [Finite (Multiplicative A ⧸ (powMonoidHom n : (Multiplicative A) →* (Multiplicative A)).range)]
@@ -330,7 +356,9 @@ theorem card_multiplicative_nthPowerQuotient_eq_additive_nsmulQuotient
   rw [AddSubgroup.index_eq_card]
 
 /-- Under the `Multiplicative` wrapper, `n`-torsion is exactly the additive
-kernel of `x ↦ n • x`.-/
+kernel of `x ↦ n • x`.
+@isnad1 id=eq.0h2v.s7.cf005cb4a4e8 from=translated src=- shape=129ff629 vocab=cd0a3241
+-/
 theorem powMonoidHom_ker_multiplicative_eq_nsmulAddKernel_toSubgroup
     (n : ℕ) :
     (powMonoidHom n : (Multiplicative A) →* (Multiplicative A)).ker =

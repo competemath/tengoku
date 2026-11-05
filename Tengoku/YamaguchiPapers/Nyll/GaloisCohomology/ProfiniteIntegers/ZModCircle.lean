@@ -13,7 +13,9 @@ import Tengoku.Seed.Topology.Instances.ZMod
 
 namespace ZMod
 
-/-- Every circle element annihilated by `N` comes from `ZMod N`.-/
+/-- Every circle element annihilated by `N` comes from `ZMod N`.
+@isnad1 id=ex.1h2v.s7.8111653d6137 from=translated src=- shape=ce4929fb vocab=d77dd56d
+-/
 theorem exists_toAddCircle_eq_of_nsmul_eq_zero
     (N : ℕ) [NeZero N] (z : UnitAddCircle) (hz : N • z = 0) :
     ∃ a : ZMod N, toAddCircle a = z := by
@@ -22,7 +24,9 @@ theorem exists_toAddCircle_eq_of_nsmul_eq_zero
   rw [toAddCircle_natCast]
   simpa only [mul_one] using hk
 
-/-- Reduction between finite cyclic groups becomes multiplication on the circle.-/
+/-- Reduction between finite cyclic groups becomes multiplication on the circle.
+@isnad1 id=eq.0h3v.s9.ca8d1fd4844d from=translated src=- shape=0ca9090a vocab=9cdedb24
+-/
 theorem toAddCircle_castHom_mul
     (N m : ℕ) [NeZero N] [NeZero m] (a : ZMod (N * m)) :
     toAddCircle (castHom (dvd_mul_right N m) (ZMod N) a) =
@@ -35,7 +39,9 @@ theorem toAddCircle_castHom_mul
     show (m : ℝ) ≠ 0 from Nat.cast_ne_zero.mpr (NeZero.ne m)]
 
 /-- A continuous circle-valued character of exponent `N` takes values in the
-embedded finite cyclic group.-/
+embedded finite cyclic group.
+@isnad1 id=ex.1h3v.s9.4ee054ba40b2 from=translated src=- shape=d85333a8 vocab=07ab8310
+-/
 theorem exists_continuous_zmod_character
     {A : Type*} [Group A] [TopologicalSpace A]
     (N : ℕ) [NeZero N] (f : A →ₜ* Multiplicative UnitAddCircle)

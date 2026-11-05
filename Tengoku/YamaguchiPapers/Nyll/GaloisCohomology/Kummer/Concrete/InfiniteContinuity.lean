@@ -65,7 +65,9 @@ def infiniteKummerRootCharacter
   (chosenFiniteKummerRadicalDatum (K := K) (L := Ω) n).rootCharacterToMuWithoutSection
     a (nthRootsOfUnity_fixed (K := K) (L := Ω) n hmu)
 
-/-- The infinite Kummer root character evaluates by the usual Galois ratio.-/
+/-- The infinite Kummer root character evaluates by the usual Galois ratio.
+@isnad1 id=eq.1h5v.s11.cbe8ceb12759 from=translated src=- shape=bc96237b vocab=e2730a50
+-/
 @[simp] theorem infiniteKummerRootCharacter_apply
     (n : ℕ+) (hmu : NthRootsOfUnityInBase (K := K) (L := Ω) n)
     (a : (chosenFiniteKummerRadicalDatum (K := K) (L := Ω) n).carrier)
@@ -78,7 +80,9 @@ def infiniteKummerRootCharacter
 variable [IsGalois K Ω]
 
 /-- The fixing subgroup of the finite Galois normal closure of the chosen
-root lies in the kernel of its Kummer character.-/
+root lies in the kernel of its Kummer character.
+@isnad1 id=le.1h4v.s9.34ba2b99a5f5 from=translated src=- shape=d00793e7 vocab=624d926c
+-/
 theorem fixingSubgroup_adjoin_root_le_infiniteKummerRootCharacter_ker
     (n : ℕ+) (hmu : NthRootsOfUnityInBase (K := K) (L := Ω) n)
     (a : (chosenFiniteKummerRadicalDatum (K := K) (L := Ω) n).carrier) :
@@ -101,7 +105,9 @@ theorem fixingSubgroup_adjoin_root_le_infiniteKummerRootCharacter_ker
       (Set.mem_singleton (D.root a : Ω)))
 
 /-- The kernel of an infinite Kummer root character is open in the Krull
-topology.-/
+topology.
+@isnad1 id=isopen.1h4v.s9.a8fd996204b2 from=translated src=- shape=85ae4fb5 vocab=be7404e2
+-/
 theorem infiniteKummerRootCharacter_isOpen_ker
     (n : ℕ+) (hmu : NthRootsOfUnityInBase (K := K) (L := Ω) n)
     (a : (chosenFiniteKummerRadicalDatum (K := K) (L := Ω) n).carrier) :
@@ -114,7 +120,9 @@ theorem infiniteKummerRootCharacter_isOpen_ker
         {((chosenFiniteKummerRadicalDatum (K := K) (L := Ω) n).root a : Ω)}).toIntermediateField)
 
 /-- Every Kummer root character for an infinite actual-field Galois extension
-is continuous into the discrete group `μₙ(Ω)`.-/
+is continuous into the discrete group `μₙ(Ω)`.
+@isnad1 id=continuo.1h4v.s11.79228dcbffa7 from=translated src=- shape=b169de9c vocab=d53bbff9
+-/
 theorem infiniteKummerRootCharacter_continuous
     (n : ℕ+) (hmu : NthRootsOfUnityInBase (K := K) (L := Ω) n)
     (a : (chosenFiniteKummerRadicalDatum (K := K) (L := Ω) n).carrier) :
@@ -180,7 +188,9 @@ def infiniteKummerContinuousQuotientCharacter
         (fun χ : Gal(Ω/K) →* nthRootsSubgroup Ω (n : ℕ) => χ σ) hker)
 
 /-- Forgetting continuity recovers the previously constructed algebraic
-Kummer character on the same ambient-power quotient.-/
+Kummer character on the same ambient-power quotient.
+@isnad1 id=eq.1h4v.s14.2a171cbaeef0 from=translated src=- shape=eed47c9f vocab=66428197
+-/
 @[simp] theorem infiniteKummerContinuousQuotientCharacter_toMonoidHom
     (n : ℕ+) (hmu : NthRootsOfUnityInBase (K := K) (L := Ω) n)
     (q : (chosenFiniteKummerRadicalDatum (K := K) (L := Ω) n).RadicalQuotient) :
@@ -195,7 +205,9 @@ Kummer character on the same ambient-power quotient.-/
 
 /-- The continuous character map on the ambient-power quotient is injective.  This is
 the existing algebraic kernel computation with the continuity structure
-forgotten; it does not use or assert surjectivity.-/
+forgotten; it does not use or assert surjectivity.
+@isnad1 id=injectiv.1h3v.s12.e8be286fc5b8 from=translated src=- shape=e0fb686c vocab=d09e95b0
+-/
 theorem infiniteKummerContinuousQuotientCharacter_injective
     (n : ℕ+) (hmu : NthRootsOfUnityInBase (K := K) (L := Ω) n) :
     Function.Injective (infiniteKummerContinuousQuotientCharacter n hmu) := by

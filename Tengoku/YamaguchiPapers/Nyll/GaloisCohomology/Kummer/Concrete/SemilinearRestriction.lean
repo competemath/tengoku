@@ -28,7 +28,9 @@ variable {K L Ω : Type*} [Field K] [Field L] [Field Ω]
   [Algebra K L] [Algebra K Ω] [Algebra L Ω] [IsScalarTower K L Ω]
 
 /-- Conjugation by one ambient automorphism commutes with restriction of
-scalars between its two fields of semilinearity.-/
+scalars between its two fields of semilinearity.
+@isnad1 id=eq.2h7v.s10.ca4bec911d0a from=translated src=- shape=a55fec9e vocab=bd94b803
+-/
 theorem semilinearGaloisConjugate_restrictScalars
     (τK : K ≃+* K) (τL : L ≃+* L) (a : Ω ≃+* Ω)
     (haK : ∀ x : K, a (algebraMap K Ω x) = algebraMap K Ω (τK x))
@@ -50,7 +52,9 @@ variable (F K L E : Type*) [Field F] [Field K] [Field L] [Field E]
   [IsScalarTower F K E] [IsScalarTower F L E] [Normal F K]
 
 /-- The actual restriction from `Gal(E/L)` to `Gal(K/F)` preserves evaluation
-on the embedded normal field. No compositum or surjectivity assumption is needed.-/
+on the embedded normal field. No compositum or surjectivity assumption is needed.
+@isnad1 id=eq.0h6v.s10.0f8ec93ec858 from=translated src=- shape=90c83b30 vocab=625c5d5a
+-/
 theorem restrictRestrictAlgEquivMapHom_algebraMap
     (τ : Gal(E/L)) (x : K) :
     τ (algebraMap K E x) = algebraMap K E
@@ -62,7 +66,9 @@ variable {Ω : Type*} [Field Ω] [Algebra K Ω] [Algebra E Ω]
 
 /-- A lift of the upper automorphism lies over its actual restriction to the
 normal field. The lower compatibility is generated from restriction and the
-scalar tower, rather than supplied as a comparison hypothesis.-/
+scalar tower, rather than supplied as a comparison hypothesis.
+@isnad1 id=eq.1h8v.s10.4ea4ff31e930 from=translated src=- shape=c599c2c1 vocab=66f8e9bb
+-/
 theorem semilinear_restrictRestrictAlgEquivMapHom_algebraMap
     (τ : Gal(E/L)) (a : Ω ≃+* Ω)
     (ha : ∀ x : E, a (algebraMap E Ω x) = algebraMap E Ω (τ x))

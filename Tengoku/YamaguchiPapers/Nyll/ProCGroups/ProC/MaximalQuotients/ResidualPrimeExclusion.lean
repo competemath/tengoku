@@ -23,7 +23,9 @@ namespace ProCGroups.ProC
 universe u v
 
 /-- A continuous map from a group with a pro-p basis to a finite discrete
-Sigma-group is trivial when `p` is excluded from `sigma`.-/
+Sigma-group is trivial when `p` is excluded from `sigma`.
+@isnad1 id=eq.2h7v.s6.6406761ff913 from=translated src=- shape=e8bb505b vocab=24893ce4
+-/
 theorem continuousMonoidHom_eq_one_of_proP_to_finite_sigmaGroup
     {G : Type u} [Group G] [TopologicalSpace G]
     {Q : Type v} [Group Q] [TopologicalSpace Q] [DiscreteTopology Q]
@@ -48,7 +50,9 @@ theorem continuousMonoidHom_eq_one_of_proP_to_finite_sigmaGroup
   exact congrArg (fun a : f.toMonoidHom.range => (a : Q)) hy
 
 /-- Finite Sigma quotients separate a Hausdorff group with a pro-Sigma basis,
-so every continuous map to it from a pro-p group is trivial for excluded p.-/
+so every continuous map to it from a pro-p group is trivial for excluded p.
+@isnad1 id=eq.3h6v.s7.15472ce656b8 from=translated src=- shape=b6e87ea1 vocab=d85b7e82
+-/
 theorem continuousMonoidHom_eq_one_of_proP_to_proSigma
     {G : Type u} [Group G] [TopologicalSpace G]
     {H : Type v} [Group H] [TopologicalSpace H] [ContinuousMul H] [T2Space H]
@@ -63,7 +67,9 @@ theorem continuousMonoidHom_eq_one_of_proP_to_proSigma
     ((OpenNormalSubgroup.quotientProj U.1).comp f) x
 
 /-- Every subgroup with a pro-p basis lies in the actual Sigma residual core
-when `p` is excluded. Neither closedness nor normality of the subgroup is needed.-/
+when `p` is excluded. Neither closedness nor normality of the subgroup is needed.
+@isnad1 id=le.2h4v.s6.1a7034627d76 from=translated src=- shape=06823a63 vocab=41179993
+-/
 theorem subgroup_le_sigmaResidualCore_of_proP
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     (p : ℕ) [Fact p.Prime] {sigma : Set ℕ} (hp : p ∉ sigma)

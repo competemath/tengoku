@@ -80,7 +80,9 @@ noncomputable def lift (hι : IsFreeProCGroup (C := C) ι)
     (hφ : Continuous φ) : F →* G :=
   Classical.choose (ExistsUnique.exists (hι.existsUnique_lift hG φ hφ))
 
-/-- The universal-property lift has the prescribed values on the chosen generators.-/
+/-- The universal-property lift has the prescribed values on the chosen generators.
+@isnad1 id=and.3h6v.s7.a363b8bfffc8 from=translated src=- shape=f7f0c8fe vocab=22672572
+-/
 theorem lift_spec (hι : IsFreeProCGroup (C := C) ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
@@ -89,7 +91,9 @@ theorem lift_spec (hι : IsFreeProCGroup (C := C) ι)
     Continuous (hι.lift hG φ hφ) ∧ ∀ x, hι.lift hG φ hφ (ι x) = φ x :=
   Classical.choose_spec (ExistsUnique.exists (hι.existsUnique_lift hG φ hφ))
 
-/-- The universal-property lift is unique among continuous maps with the prescribed values.-/
+/-- The universal-property lift is unique among continuous maps with the prescribed values.
+@isnad1 id=eq.5h7v.s8.37b04fd04f6b from=translated src=- shape=54aebffe vocab=22672572
+-/
 theorem lift_unique (hι : IsFreeProCGroup (C := C) ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
@@ -108,7 +112,9 @@ noncomputable def liftHom (hι : IsFreeProCGroup (C := C) ι)
   toMonoidHom := hι.lift hG φ hφ
   continuous_toFun := (hι.lift_spec hG φ hφ).1
 
-/-- Forgetting continuity from liftHom gives the underlying universal-property lift.-/
+/-- Forgetting continuity from liftHom gives the underlying universal-property lift.
+@isnad1 id=eq.3h6v.s7.d513b9091e92 from=translated src=- shape=6641da90 vocab=9f644e39
+-/
 @[simp] theorem liftHom_toMonoidHom (hι : IsFreeProCGroup (C := C) ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
@@ -119,7 +125,9 @@ noncomputable def liftHom (hι : IsFreeProCGroup (C := C) ι)
 
 /--
 The lift homomorphism from a free pro-\(C\) group evaluates according to the chosen generator
-map.-/
+map.
+@isnad1 id=eq.3h7v.s7.3ffd280f288f from=translated src=- shape=89ada55f vocab=92916f60
+-/
 @[simp] theorem liftHom_apply (hι : IsFreeProCGroup (C := C) ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
@@ -128,7 +136,9 @@ map.-/
     hι.liftHom hG φ hφ (ι x) = φ x :=
   (hι.lift_spec hG φ hφ).2 x
 
-/-- The lift homomorphism is uniquely determined by its values on the generators.-/
+/-- The lift homomorphism is uniquely determined by its values on the generators.
+@isnad1 id=eq.4h7v.s7.b532c169e380 from=translated src=- shape=e7b9ab51 vocab=92916f60
+-/
 theorem liftHom_unique (hι : IsFreeProCGroup (C := C) ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
@@ -142,7 +152,9 @@ theorem liftHom_unique (hι : IsFreeProCGroup (C := C) ι)
 
 /--
 Continuous homomorphisms out of a free pro-\(C\) group are determined by their values on the
-chosen generators.-/
+chosen generators.
+@isnad1 id=eq.5h7v.s8.9de6faebac50 from=translated src=- shape=bb9ad6f5 vocab=03fa2e28
+-/
 theorem hom_ext (hι : IsFreeProCGroup (C := C) ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
@@ -156,7 +168,9 @@ theorem hom_ext (hι : IsFreeProCGroup (C := C) ι)
     (hι.existsUnique_lift hG φ hφ).unique
       ⟨hf, fun _ => rfl⟩ ⟨hg, fun x => (hfg x).symm⟩
 
-/-- Two universal-property lifts are equal when they agree on all generators.-/
+/-- Two universal-property lifts are equal when they agree on all generators.
+@isnad1 id=eq.5h7v.s7.02e449048887 from=translated src=- shape=4e2c5dbe vocab=47d00539
+-/
 theorem lift_eq_of_forall (hι : IsFreeProCGroup (C := C) ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
@@ -173,7 +187,9 @@ theorem lift_eq_of_forall (hι : IsFreeProCGroup (C := C) ι)
     _ = ψ x := h x
     _ = hι.lift hG ψ hψ (ι x) := ((hι.lift_spec hG ψ hψ).2 x).symm
 
-/-- The lift of the canonical generator map to the same free pro-\(C\) group is the identity.-/
+/-- The lift of the canonical generator map to the same free pro-\(C\) group is the identity.
+@isnad1 id=eq.1h4v.s6.90963869cc8b from=translated src=- shape=f5fe811f vocab=e3179e83
+-/
 @[simp] theorem lift_id (hι : IsFreeProCGroup (C := C) ι) :
     hι.lift hι.hasOpenNormalBasisInClass ι hι.continuous_ι = MonoidHom.id F := by
   symm
@@ -181,13 +197,17 @@ theorem lift_eq_of_forall (hι : IsFreeProCGroup (C := C) ι)
     intro x
     rfl)
 
-/-- An endomorphism of a free pro-\(C\) group fixing the generators is the identity.-/
+/-- An endomorphism of a free pro-\(C\) group fixing the generators is the identity.
+@isnad1 id=eq.3h5v.s7.bab1358ce764 from=translated src=- shape=148ac1f6 vocab=0e90f9c3
+-/
 theorem endomorphism_eq_id (hι : IsFreeProCGroup (C := C) ι)
     {f : F →* F} (hf : Continuous f) (hfac : ∀ x, f (ι x) = ι x) :
     f = MonoidHom.id F := by
   exact hι.hom_ext hι.hasOpenNormalBasisInClass hf continuous_id hfac
 
-/-- Composition of free pro-\(C\) lifts is again the lift of the composed generator map.-/
+/-- Composition of free pro-\(C\) lifts is again the lift of the composed generator map.
+@isnad1 id=eq.5h8v.s8.cda083332b6c from=translated src=- shape=37da3a0f vocab=f33e2717
+-/
 theorem lift_comp (hι : IsFreeProCGroup (C := C) ι)
     {G H : Type u}
     [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
@@ -232,7 +252,9 @@ namespace FamilyConvergesToOne
 variable {X : Type v}
 variable {G : Type u} [Group G] [TopologicalSpace G]
 
-/-- Genuine family convergence implies convergence along open subgroups.-/
+/-- Genuine family convergence implies convergence along open subgroups.
+@isnad1 id=familyco.1h3v.s4.f17f63ae8d43 from=translated src=- shape=5597cdc3 vocab=00661805
+-/
 theorem to_alongOpenSubgroups {μ : X → G}
     (hμ : FamilyConvergesToOne (G := G) μ) :
     FamilyConvergesToOneAlongOpenSubgroups (G := G) μ := by
@@ -245,7 +267,9 @@ theorem to_alongOpenSubgroups {μ : X → G}
   rw [Filter.mem_cofinite] at heventually
   simpa only [Set.compl_ofPred, SetLike.mem_coe] using heventually
 
-/-- Convergence is preserved by a continuous homomorphism.-/
+/-- Convergence is preserved by a continuous homomorphism.
+@isnad1 id=familyco.1h5v.s6.a87de101854a from=translated src=- shape=e2462033 vocab=3372e069
+-/
 theorem comp
     {H : Type*} [TopologicalSpace H] [Group H]
     {μ : X → G}
@@ -255,7 +279,9 @@ theorem comp
   have hf1 : f.toContinuousMap (1 : G) = 1 := f.map_one
   simpa only [hf1] using (f.continuous.tendsto (1 : G)).comp hμ
 
-/-- Families indexed by a finite type converge to `1`.-/
+/-- Families indexed by a finite type converge to `1`.
+@isnad1 id=familyco.0h3v.s4.ffe75323bac5 from=translated src=- shape=5a43f871 vocab=dad17514
+-/
 theorem of_finite_domain [Finite X] (μ : X → G) :
     FamilyConvergesToOne (G := G) μ := by
   rw [FamilyConvergesToOne, Filter.tendsto_def]
@@ -264,7 +290,9 @@ theorem of_finite_domain [Finite X] (μ : X → G) :
   exact Set.toFinite _
 
 /-- On an infinite index type in a `T₁` space, a constant family converges to `1` exactly when
-its value is `1`. In particular, the old open-subgroup-only counterexample is rejected.-/
+its value is `1`. In particular, the old open-subgroup-only counterexample is rejected.
+@isnad1 id=iff.0h3v.s5.0423d6eb9831 from=translated src=- shape=70214822 vocab=94059221
+-/
 theorem const_iff [Infinite X] [T1Space G] (g : G) :
     FamilyConvergesToOne (G := G) (fun _ : X => g) ↔ g = 1 := by
   simp only [FamilyConvergesToOne, tendsto_const_nhds_iff]
@@ -276,7 +304,9 @@ namespace FamilyConvergesToOneAlongOpenSubgroups
 variable {X : Type v}
 variable {G : Type u} [Group G] [TopologicalSpace G]
 
-/-- A family converging to `1` has range converging to `1` as a set.-/
+/-- A family converging to `1` has range converging to `1` as a set.
+@isnad1 id=converge.1h3v.s4.0aa39a9fd89d from=translated src=- shape=4ad1a8cf vocab=8e6827e6
+-/
 theorem range {μ : X → G} (hμ : FamilyConvergesToOneAlongOpenSubgroups (G := G) μ) :
     Generation.ConvergesToOneAlongOpenSubgroups (G := G) (Set.range μ) := by
   intro U
@@ -286,7 +316,9 @@ theorem range {μ : X → G} (hμ : FamilyConvergesToOneAlongOpenSubgroups (G :=
     exact ⟨x, hxU, rfl⟩
   exact (hμ U).image μ |>.subset hsubset
 
-/-- Convergence to `1` is preserved by a continuous homomorphism.-/
+/-- Convergence to `1` is preserved by a continuous homomorphism.
+@isnad1 id=familyco.1h5v.s6.f8c25fb5782d from=translated src=- shape=e2462033 vocab=0b50ecac
+-/
 theorem comp
     {H : Type*} [TopologicalSpace H] [Group H]
     {μ : X → G}
@@ -303,7 +335,9 @@ theorem comp
         (hf := f.continuous) (x := μ x))
   exact hset ▸ hfinite
 
-/-- Range convergence implies family convergence for injectively indexed families.-/
+/-- Range convergence implies family convergence for injectively indexed families.
+@isnad1 id=familyco.2h3v.s5.9d3c39307e86 from=translated src=- shape=53c2e09a vocab=3d9de3a9
+-/
 theorem of_set_of_injective {μ : X → G}
     (hμ : Generation.ConvergesToOneAlongOpenSubgroups (G := G) (Set.range μ))
     (hinj : Function.Injective μ) :
@@ -324,13 +358,17 @@ theorem of_set_of_injective {μ : X → G}
     intro a _ b _ hab
     exact hinj hab)
 
-/-- Families indexed by a finite type converge to `1`.-/
+/-- Families indexed by a finite type converge to `1`.
+@isnad1 id=familyco.0h3v.s4.e0db1f7b5f16 from=translated src=- shape=5a43f871 vocab=eda5a9ad
+-/
 theorem of_finite_domain [Finite X] (μ : X → G) :
     FamilyConvergesToOneAlongOpenSubgroups (G := G) μ := by
   intro U
   exact Set.finite_univ.subset (by intro x _; trivial)
 
-/-- In a nonarchimedean group, open subgroups detect genuine family convergence.-/
+/-- In a nonarchimedean group, open subgroups detect genuine family convergence.
+@isnad1 id=familyco.1h3v.s5.363c95be3902 from=translated src=- shape=1bbfaf30 vocab=283ce6ab
+-/
 theorem to_familyConvergesToOne [NonarchimedeanGroup G] {μ : X → G}
     (hμ : FamilyConvergesToOneAlongOpenSubgroups (G := G) μ) :
     FamilyConvergesToOne (G := G) μ := by
@@ -346,7 +384,9 @@ theorem to_familyConvergesToOne [NonarchimedeanGroup G] {μ : X → G}
 end FamilyConvergesToOneAlongOpenSubgroups
 
 /-- For nonarchimedean groups, genuine family convergence is equivalent to the
-open-subgroup test.-/
+open-subgroup test.
+@isnad1 id=iff.0h3v.s5.223d80f65f01 from=translated src=- shape=8c2f4ce5 vocab=283ce6ab
+-/
 theorem familyConvergesToOne_iff_alongOpenSubgroups
     {X : Type v} {G : Type u} [Group G] [TopologicalSpace G]
     [NonarchimedeanGroup G] {μ : X → G} :
@@ -379,7 +419,9 @@ instance instCoeFunConvergingGeneratingMap :
     CoeFun (ConvergingGeneratingMap X G) (fun _ => X → G) where
   coe φ := φ.toFun
 
-/-- The stored function of a convergent generating map agrees with its function coercion.-/
+/-- The stored function of a convergent generating map agrees with its function coercion.
+@isnad1 id=eq.0h3v.s5.8673ea985463 from=translated src=- shape=b0cf5407 vocab=bb2926e8
+-/
 @[simp] theorem toFun_eq_coe (φ : ConvergingGeneratingMap X G) :
     φ.toFun = (φ : X → G) := rfl
 
@@ -406,7 +448,9 @@ def reindex (φ : ConvergingGeneratingMap X G) (e : Y ≃ X) :
     simpa [hrange] using φ.generates
 
 /-- The range of a convergent generating map generates the group and converges to one along open
-subgroups.-/
+subgroups.
+@isnad1 id=generate.0h3v.s5.650bdbd9aae0 from=translated src=- shape=f7185461 vocab=6ba4a389
+-/
 theorem generatesAndConvergesToOneAlongOpenSubgroups (φ : ConvergingGeneratingMap X G) :
     Generation.GeneratesAndConvergesToOneAlongOpenSubgroups (G := G) (Set.range (φ : X → G)) :=
   ⟨φ.generates, φ.convergesToOneAlongOpenSubgroups.range⟩
@@ -473,7 +517,9 @@ structure IsEpimorphicallyFreeProCGroupOnConvergingSet
           ∃! f : F →* G, Continuous f ∧ ∀ x, f (ι x) = φ x
 
 /-- The canonical map of a free pro-`C` group on a topological space is injective whenever the
-predicate supplies enough separating pro-`C` targets.-/
+predicate supplies enough separating pro-`C` targets.
+@isnad1 id=injectiv.2h4v.s7.339c36ab1359 from=translated src=- shape=d5471323 vocab=e856d2f4
+-/
 theorem freeProCGroupOn_injective
     {X : Type u} [TopologicalSpace X]
     {F : Type u} [Group F] [TopologicalSpace F] [IsTopologicalGroup F]
@@ -499,7 +545,9 @@ theorem freeProCGroupOn_injective
   exact hφxy hcontr
 
 /-- Under an explicit nontrivial cyclic pro-`C` target hypothesis, the identity does not lie in
-the image of the topological basis of a free pro-`C` group.-/
+the image of the topological basis of a free pro-`C` group.
+@isnad1 id=not.2h4v.s7.ddd6aa2e828e from=translated src=- shape=3240ddf4 vocab=9553a70c
+-/
 theorem one_not_mem_range_of_freeProCGroupOn
     {X : Type u} [TopologicalSpace X] [Nonempty X]
     {F : Type u} [Group F] [TopologicalSpace F] [IsTopologicalGroup F]
@@ -536,7 +584,9 @@ theorem one_not_mem_range_of_freeProCGroupOn
   exact ha1 haeq
 
 /-- Under an explicit nontrivial cyclic pro-`C` target hypothesis, the identity does not lie in a
-basis converging to `1`.-/
+basis converging to `1`.
+@isnad1 id=not.2h4v.s7.21f13f91d614 from=translated src=- shape=160f6f53 vocab=7f70078c
+-/
 theorem one_not_mem_range_of_epimorphicallyFreeProCGroupOnConvergingSet
     {X : Type u}
     {F : Type u} [Group F] [TopologicalSpace F] [IsTopologicalGroup F]
@@ -578,7 +628,9 @@ theorem one_not_mem_range_of_epimorphicallyFreeProCGroupOnConvergingSet
   exact ha1 haeq
 
 /-- Under the same nontrivial cyclic-target hypothesis, the basis map for a free pro-`C` group on
-a set converging to `1` is injective.-/
+a set converging to `1` is injective.
+@isnad1 id=injectiv.2h4v.s7.066a18294ab8 from=translated src=- shape=cd39aefa vocab=1f9f3272
+-/
 theorem epimorphicallyFreeProCGroupOnConvergingSet_injective
     {X : Type u}
     {F : Type u} [Group F] [TopologicalSpace F] [IsTopologicalGroup F]
@@ -627,7 +679,9 @@ theorem epimorphicallyFreeProCGroupOnConvergingSet_injective
     exact congrArg f hEq
   exact ha1 haeq
 
-/-- A nontrivial cyclic topological group has a nontrivial singleton topological generator.-/
+/-- A nontrivial cyclic topological group has a nontrivial singleton topological generator.
+@isnad1 id=ex.0h1v.s5.2a1dd32b10db from=translated src=- shape=27e8cbdc vocab=0fa3260e
+-/
 theorem exists_nontrivial_singleton_topologicalGenerator
     {A : Type u} [Group A] [TopologicalSpace A] [IsTopologicalGroup A]
     [IsCyclic A] [Nontrivial A] :
@@ -648,7 +702,9 @@ theorem exists_nontrivial_singleton_topologicalGenerator
     simpa [Subgroup.zpowers_eq_closure] using ha x
 
 /-- A concrete finite-group class containing a nontrivial finite cyclic group admits a
-nontrivial topologically cyclic pro-`C` model.-/
+nontrivial topologically cyclic pro-`C` model.
+@isnad1 id=ex.2h1v.s7.c08c0d1d1d31 from=translated src=- shape=74f3b113 vocab=28f89f5d
+-/
 theorem exists_nontrivial_topologicallyCyclic_proC_of_finiteGroupClass
     (C : ProCGroups.FiniteGroupClass.{u})
     (hquot : ProCGroups.FiniteGroupClass.QuotientClosed C)
@@ -672,7 +728,9 @@ theorem exists_nontrivial_topologicallyCyclic_proC_of_finiteGroupClass
 
 /--
 If a continuous homomorphism has range containing a topological generating set, then it is
-surjective between profinite groups.-/
+surjective between profinite groups.
+@isnad1 id=surjecti.3h5v.s7.f388a9c48318 from=translated src=- shape=bdd7a4a6 vocab=8d120f63
+-/
 theorem surjective_hom_of_rangeContainsGeneratingSet
     {X : Type u}
     {F : Type u} [Group F] [TopologicalSpace F] [CompactSpace F]
@@ -709,7 +767,9 @@ theorem surjective_hom_of_rangeContainsGeneratingSet
   simpa using hz
 
 /-- A fixed free pro-`C` group on a set converging to `1` admits a continuous epimorphism onto any
-profinite pro-`C` target generated by the image of its basis.-/
+profinite pro-`C` target generated by the image of its basis.
+@isnad1 id=ex.4h6v.s8.20a07edecdb6 from=translated src=- shape=728ecc77 vocab=0bcdd05a
+-/
 theorem exists_epimorphicallyFreeProCGroupOnConvergingSet_surjecting
     {X : Type u}
     {F : Type u} [Group F] [TopologicalSpace F] [IsTopologicalGroup F]
@@ -733,7 +793,9 @@ theorem exists_epimorphicallyFreeProCGroupOnConvergingSet_surjecting
   exact ⟨ψ, hψ.1, hψsurj, hψ.2⟩
 
 /-- The pro-`C` completion of the abstract free group on a finite basis is free pro-`C` on that
-basis.-/
+basis.
+@isnad1 id=isepimor.1h4v.s7.8d4735af0b4f from=translated src=- shape=5683d03e vocab=3882f031
+-/
 theorem proCCompletionOfAbstractFreeGroup_is_free
     {X : Type u} [Finite X]
     [TopologicalSpace (FreeGroup X)] [IsTopologicalGroup (FreeGroup X)]
@@ -813,7 +875,9 @@ noncomputable def lift
     F →* G :=
   Classical.choose (ExistsUnique.exists (hι.existsUnique_lift hG φ hφ hgen))
 
-/-- The universal-property lift has the prescribed values on the chosen generators.-/
+/-- The universal-property lift has the prescribed values on the chosen generators.
+@isnad1 id=and.4h6v.s7.db3e2140f542 from=translated src=- shape=f2693801 vocab=1eacd2e3
+-/
 theorem lift_spec
     (hι : IsEpimorphicallyFreeProCGroupOnConvergingSet (C := C) X F ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
@@ -825,7 +889,9 @@ theorem lift_spec
       ∀ x, hι.lift hG φ hφ hgen (ι x) = φ x :=
   Classical.choose_spec (ExistsUnique.exists (hι.existsUnique_lift hG φ hφ hgen))
 
-/-- The universal-property lift is unique among continuous maps with the prescribed values.-/
+/-- The universal-property lift is unique among continuous maps with the prescribed values.
+@isnad1 id=eq.6h7v.s8.fe5c3be7a8a5 from=translated src=- shape=50ba6073 vocab=1eacd2e3
+-/
 theorem lift_unique
     (hι : IsEpimorphicallyFreeProCGroupOnConvergingSet (C := C) X F ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
@@ -841,7 +907,9 @@ theorem lift_unique
 
 /-- For a concrete finite-group class, the generated-target universal property of a free
 pro-`C` group on a converging set extends any target map that converges to `1`.  This formulation
-supports retractions that collapse all but finitely many basis elements.-/
+supports retractions that collapse all but finitely many basis elements.
+@isnad1 id=existsun.5h6v.s7.d03cff79a4a6 from=translated src=- shape=c63e5de0 vocab=2aef296a
+-/
 theorem existsUnique_lift_of_convergesToOneAlongOpenSubgroups_of_finiteGroupClass
     (C : ProCGroups.FiniteGroupClass.{u})
     (hIso : ProCGroups.FiniteGroupClass.IsomClosed C)
@@ -941,7 +1009,9 @@ theorem existsUnique_lift_of_convergesToOneAlongOpenSubgroups_of_finiteGroupClas
     exact congrArg Subtype.val (congrArg (fun f : F →* ↥(K : Subgroup G) => f y) hgK_eq)
 
 /-- Continuous-homomorphism form of
-`existsUnique_lift_of_convergesToOneAlongOpenSubgroups_of_finiteGroupClass`.-/
+`existsUnique_lift_of_convergesToOneAlongOpenSubgroups_of_finiteGroupClass`.
+@isnad1 id=existsun.5h6v.s7.6461ca0f3562 from=translated src=- shape=06ad85e2 vocab=a4fafcf7
+-/
 theorem existsUnique_liftHom_of_convergesToOneAlongOpenSubgroups_of_finiteGroupClass
     (C : ProCGroups.FiniteGroupClass.{u})
     (hIso : ProCGroups.FiniteGroupClass.IsomClosed C)
@@ -965,7 +1035,9 @@ theorem existsUnique_liftHom_of_convergesToOneAlongOpenSubgroups_of_finiteGroupC
   apply ContinuousMonoidHom.toMonoidHom_injective
   exact huniq g.toMonoidHom ⟨g.continuous, hg⟩
 
-/-- In a free pro-`Σ` group with nonempty `Σ`, a free generator has no positive torsion.-/
+/-- In a free pro-`Σ` group with nonempty `Σ`, a free generator has no positive torsion.
+@isnad1 id=ne.3h6v.s6.9181f5e6041b from=translated src=- shape=e0eb8b2c vocab=57ee148b
+-/
 theorem generator_pow_ne_one_of_sigma
     {σ : Set ℕ} (hσ : ∃ p, p ∈ σ ∧ Nat.Prime p)
     (hι :
@@ -1041,7 +1113,9 @@ theorem generator_pow_ne_one_of_sigma
     exact hNmod hz
   exact hofAdd_ne (hcalc.symm.trans hf_pow)
 
-/-- Integer-power form of `generator_pow_ne_one_of_sigma`.-/
+/-- Integer-power form of `generator_pow_ne_one_of_sigma`.
+@isnad1 id=ne.3h6v.s6.0e1dc7cd1e81 from=translated src=- shape=51fd4614 vocab=7db3ee34
+-/
 theorem generator_zpow_ne_one_of_sigma
     {σ : Set ℕ} (hσ : ∃ p, p ∈ σ ∧ Nat.Prime p)
     (hι :
@@ -1087,7 +1161,9 @@ noncomputable def liftConvergingGeneratingMap
     F →ₜ* G :=
   hι.liftHom hG φ φ.convergesToOneAlongOpenSubgroups φ.generates
 
-/-- The bundled lift has the prescribed value on each generator.-/
+/-- The bundled lift has the prescribed value on each generator.
+@isnad1 id=eq.2h7v.s7.51d280b38b9a from=translated src=- shape=908be12f vocab=b8033a39
+-/
 @[simp] theorem liftConvergingGeneratingMap_apply
     (hι : IsEpimorphicallyFreeProCGroupOnConvergingSet (C := C) X F ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
@@ -1098,7 +1174,9 @@ noncomputable def liftConvergingGeneratingMap
   change hι.lift hG φ φ.convergesToOneAlongOpenSubgroups φ.generates (ι x) = φ x
   exact (hι.lift_spec hG φ φ.convergesToOneAlongOpenSubgroups φ.generates).2 x
 
-/-- `liftHom` has the prescribed value on each generator.-/
+/-- `liftHom` has the prescribed value on each generator.
+@isnad1 id=eq.4h7v.s7.c3da85b13135 from=translated src=- shape=0536aba0 vocab=aa06b449
+-/
 @[simp] theorem liftHom_apply
     (hι : IsEpimorphicallyFreeProCGroupOnConvergingSet (C := C) X F ι)
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
@@ -1119,7 +1197,9 @@ variable [CompactSpace F] [T2Space F] [TotallyDisconnectedSpace F]
 variable {ι : X → F}
 
 /-- The unique continuous endomorphism of a free pro-`C` group that keeps the finite set `S`
-of basis elements and sends the remaining basis elements to `1`.-/
+of basis elements and sends the remaining basis elements to `1`.
+@isnad1 id=existsun.1h5v.s7.b2ccaf6c9820 from=translated src=- shape=cf4eca05 vocab=3acfc118
+-/
 theorem existsUnique_collapseToFinset_of_finiteGroupClass
     (hι :
       IsEpimorphicallyFreeProCGroupOnConvergingSet
@@ -1151,7 +1231,9 @@ noncomputable def collapseToFinset
     F →ₜ* F :=
   Classical.choose (ExistsUnique.exists (hι.existsUnique_collapseToFinset_of_finiteGroupClass S))
 
-/-- Collapsing to a finite set fixes the selected generators.-/
+/-- Collapsing to a finite set fixes the selected generators.
+@isnad1 id=eq.2h6v.s7.cfc0d906fa95 from=translated src=- shape=fb7f19ee vocab=d7da0eea
+-/
 @[simp] theorem collapseToFinset_apply_mem
     (hι :
       IsEpimorphicallyFreeProCGroupOnConvergingSet
@@ -1162,7 +1244,9 @@ noncomputable def collapseToFinset
     (Classical.choose_spec
       (ExistsUnique.exists (hι.existsUnique_collapseToFinset_of_finiteGroupClass S)) x)
 
-/-- Collapsing to a finite set sends every unselected generator to the identity.-/
+/-- Collapsing to a finite set sends every unselected generator to the identity.
+@isnad1 id=eq.2h6v.s7.8d746abf2136 from=translated src=- shape=c2f29da8 vocab=d7da0eea
+-/
 @[simp] theorem collapseToFinset_apply_not_mem
     (hι :
       IsEpimorphicallyFreeProCGroupOnConvergingSet
@@ -1173,7 +1257,9 @@ noncomputable def collapseToFinset
     (Classical.choose_spec
       (ExistsUnique.exists (hι.existsUnique_collapseToFinset_of_finiteGroupClass S)) x)
 
-/-- Collapsing twice to the same finite set is the same as collapsing once.-/
+/-- Collapsing twice to the same finite set is the same as collapsing once.
+@isnad1 id=eq.1h5v.s7.6b9747d76ae2 from=translated src=- shape=3519c609 vocab=bc8dfd0a
+-/
 @[simp] theorem collapseToFinset_idempotent
     (hι :
       IsEpimorphicallyFreeProCGroupOnConvergingSet
@@ -1189,7 +1275,9 @@ noncomputable def collapseToFinset
       collapseToFinset_apply_not_mem, map_one]
 
 /-- A homomorphism that kills every basis element outside `S` is unchanged after precomposition
-with the finite-support retraction.-/
+with the finite-support retraction.
+@isnad1 id=eq.2h7v.s7.ffca15dce184 from=translated src=- shape=089b3fe9 vocab=756bbe04
+-/
 theorem comp_collapseToFinset_eq_of_eq_one_outside
     (hι :
       IsEpimorphicallyFreeProCGroupOnConvergingSet
@@ -1248,7 +1336,9 @@ noncomputable def finsetSupportBasis
 
 /-- If `S ⊆ T`, then collapsing first to `T` and then to `S` is the same as
 collapsing directly to `S`. This is the basic compatibility relation for the finite-basis
-projections.-/
+projections.
+@isnad1 id=eq.2h6v.s7.2a4ee8fa6df8 from=translated src=- shape=a04e09b1 vocab=e8c5ccde
+-/
 theorem collapseToFinset_small_comp_large_of_subset
     (hι :
       IsEpimorphicallyFreeProCGroupOnConvergingSet
@@ -1271,7 +1361,9 @@ hxS]
 
 /-- If `S ⊆ T`, then collapsing to `S` and then to `T` is again the collapse to `S`.
 Equivalently, the finite-support image for `S` is fixed by every larger finite-support
-projection.-/
+projection.
+@isnad1 id=eq.2h6v.s7.8b1797ad0d8d from=translated src=- shape=4e69db7c vocab=e8c5ccde
+-/
 theorem collapseToFinset_large_comp_small_of_subset
     (hι :
       IsEpimorphicallyFreeProCGroupOnConvergingSet
@@ -1303,7 +1395,9 @@ noncomputable def finsetSupportTransition
         (hι.collapseToFinsetInclusion T).continuous }
 
 /-- The transition from a larger finite support to a smaller one preserves the basis elements
-indexed by the smaller support.-/
+indexed by the smaller support.
+@isnad1 id=eq.2h7v.s10.a59700e85355 from=translated src=- shape=d07b0f5e vocab=a4441466
+-/
 @[simp] theorem finsetSupportTransition_apply_basis
     (hι :
       IsEpimorphicallyFreeProCGroupOnConvergingSet
@@ -1318,7 +1412,9 @@ indexed by the smaller support.-/
 
 end FiniteSupportRetracts
 
-/-- The lift of the canonical generator map to the same free pro-`C` group is the identity.-/
+/-- The lift of the canonical generator map to the same free pro-`C` group is the identity.
+@isnad1 id=eq.1h4v.s6.5937865632d3 from=translated src=- shape=9639e505 vocab=438e23a6
+-/
 @[simp 900] theorem lift_id
     (hι : IsEpimorphicallyFreeProCGroupOnConvergingSet (C := C) X F ι) :
     hι.lift hι.hasOpenNormalBasisInClass ι hι.convergesToOneAlongOpenSubgroups

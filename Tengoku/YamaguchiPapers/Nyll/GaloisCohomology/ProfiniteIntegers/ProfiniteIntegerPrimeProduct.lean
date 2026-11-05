@@ -40,6 +40,9 @@ def zHatReductionRingHom (n : ℕ) (hn : 0 < n) :
   map_add' _ _ := rfl
   map_mul' _ _ := rfl
 
+/--
+@isnad1 id=eq.1h2v.s7.0945c6285771 from=translated src=- shape=457bda70 vocab=9241ea4f
+-/
 @[simp]
 theorem zHatReductionRingHom_apply
     (n : ℕ) (hn : 0 < n) (z : ZHat) :
@@ -51,6 +54,9 @@ def zHatPadicReduction (p : Nat.Primes) (n : ℕ) :
     ZHat →+* ZMod (p.1 ^ n) :=
   zHatReductionRingHom (p.1 ^ n) (pow_pos p.2.pos n)
 
+/--
+@isnad1 id=eq.1h3v.s8.70b7841d81d5 from=translated src=- shape=f32d2061 vocab=ea6ee666
+-/
 theorem zHatPadicReduction_compatible
     (p : Nat.Primes) (m n : ℕ) (hmn : m ≤ n) :
     (ZMod.castHom (pow_dvd_pow p.1 hmn) (ZMod (p.1 ^ m))).comp
@@ -66,6 +72,9 @@ def zHatToPadicInt (p : Nat.Primes) :
     ZHat →+* ℤ_[p.1] :=
   PadicInt.lift (zHatPadicReduction_compatible p)
 
+/--
+@isnad1 id=eq.0h2v.s8.c3934dd05b20 from=translated src=- shape=9355aa6b vocab=527bb773
+-/
 @[simp]
 theorem toZModPow_zHatToPadicInt
     (p : Nat.Primes) (n : ℕ) :
@@ -78,6 +87,9 @@ def zHatToProfiniteIntegerPrimeProduct :
     ZHat →+* ProfiniteIntegerPrimeProduct :=
   RingHom.pi zHatToPadicInt
 
+/--
+@isnad1 id=eq.0h2v.s8.c73d4d04f745 from=translated src=- shape=14af7655 vocab=fe5e04b6
+-/
 @[simp]
 theorem zHatToProfiniteIntegerPrimeProduct_apply
     (z : ZHat) (p : Nat.Primes) :
@@ -85,7 +97,9 @@ theorem zHatToProfiniteIntegerPrimeProduct_apply
       zHatToPadicInt p z :=
   rfl
 
-/-- The prime-coordinate map separates profinite integers.-/
+/-- The prime-coordinate map separates profinite integers.
+@isnad1 id=injectiv.0h0v.s6.f137b7415234 from=translated src=- shape=f51e303a vocab=11308306
+-/
 theorem zHatToProfiniteIntegerPrimeProduct_injective :
     Function.Injective zHatToProfiniteIntegerPrimeProduct := by
   intro x y hxy
@@ -143,7 +157,9 @@ theorem zHatToProfiniteIntegerPrimeProduct_injective :
   rw [heval, heval]
   exact hcast
 
-/-- Each `p`-adic coordinate map is continuous.-/
+/-- Each `p`-adic coordinate map is continuous.
+@isnad1 id=continuo.0h1v.s7.751dcbf10f6c from=translated src=- shape=05f99a29 vocab=9f341000
+-/
 theorem continuous_zHatToPadicInt (p : Nat.Primes) :
     Continuous (zHatToPadicInt p) := by
   apply continuous_of_continuousAt_zero
@@ -184,13 +200,17 @@ theorem continuous_zHatToPadicInt (p : Nat.Primes) :
   exact (PadicInt.norm_le_pow_iff_mem_span_pow
     (zHatToPadicInt p z) n).2 hmem |>.trans hn.le
 
-/-- The canonical map to the full prime product is continuous.-/
+/-- The canonical map to the full prime product is continuous.
+@isnad1 id=continuo.0h0v.s7.f1e1c5f5422b from=translated src=- shape=f51e303a vocab=58ad713e
+-/
 theorem continuous_zHatToProfiniteIntegerPrimeProduct :
     Continuous zHatToProfiniteIntegerPrimeProduct :=
   continuous_pi continuous_zHatToPadicInt
 
 /-- The diagonal copy of `ℤ` is dense in the product of all `ℤ_p`.
-This is the topological form of the finite Chinese remainder theorem.-/
+This is the topological form of the finite Chinese remainder theorem.
+@isnad1 id=denseran.0h0v.s7.cd6adb125184 from=translated src=- shape=96c3ae6f vocab=ba5809aa
+-/
 theorem denseRange_intCast_profiniteIntegerPrimeProduct :
     DenseRange
       (Int.castRingHom ProfiniteIntegerPrimeProduct) := by
@@ -279,12 +299,18 @@ theorem denseRange_intCast_profiniteIntegerPrimeProduct :
       ((a : ℤ_[p.1]) - x p) (k pS)).2 hmem |>.trans
       (hk pS).le
 
+/--
+@isnad1 id=eq.0h2v.s7.fa6f7cdbdc1c from=translated src=- shape=0010813c vocab=819c0af1
+-/
 @[simp]
 theorem zHatToPadicInt_intCast
     (p : Nat.Primes) (a : ℤ) :
     zHatToPadicInt p (a : ZHat) = (a : ℤ_[p.1]) :=
   map_intCast (zHatToPadicInt p) a
 
+/--
+@isnad1 id=eq.0h1v.s8.508b143b9fbb from=translated src=- shape=d95741db vocab=871f1bd4
+-/
 @[simp]
 theorem zHatToProfiniteIntegerPrimeProduct_intCast
     (a : ℤ) :
@@ -295,7 +321,9 @@ theorem zHatToProfiniteIntegerPrimeProduct_intCast
 
 /-- The canonical map from the profinite integers to the product of all
 `p`-adic integers is onto.  Compactness closes its range, while the finite
-Chinese remainder theorem makes that range dense.-/
+Chinese remainder theorem makes that range dense.
+@isnad1 id=surjecti.0h0v.s6.084520ea320d from=translated src=- shape=f51e303a vocab=3660a636
+-/
 theorem zHatToProfiniteIntegerPrimeProduct_surjective :
     Function.Surjective zHatToProfiniteIntegerPrimeProduct := by
   have hsubset :
@@ -328,6 +356,9 @@ noncomputable def zHatRingEquivProfiniteIntegerPrimeProduct :
     ⟨zHatToProfiniteIntegerPrimeProduct_injective,
       zHatToProfiniteIntegerPrimeProduct_surjective⟩
 
+/--
+@isnad1 id=eq.0h1v.s9.462d10b2e828 from=translated src=- shape=011ad8da vocab=271fd920
+-/
 @[simp]
 theorem zHatRingEquivProfiniteIntegerPrimeProduct_apply
     (z : ZHat) :

@@ -22,7 +22,9 @@ namespace ProCGroups
 
 namespace Subgroup
 
-/-- An infimum of normal subgroups is normal.-/
+/-- An infimum of normal subgroups is normal.
+@isnad1 id=normal.0h3v.s5.0d1e4e96ef2b from=translated src=- shape=13b5f0c5 vocab=1bc54dfb
+-/
 instance normal_iInf
     {ι : Type*} {G : Type*} [Group G] (W : ι → Subgroup G)
     [∀ i, (W i).Normal] :
@@ -35,7 +37,9 @@ instance normal_iInf
 
 /--
 In a Hausdorff topological group, the join of a compact subgroup with a compact normal subgroup
-is closed.-/
+is closed.
+@isnad1 id=isclosed.2h3v.s6.05b9bb4e6088 from=translated src=- shape=31b4bbb2 vocab=069693ea
+-/
 theorem isClosed_sup_of_isCompact_of_normal_right
     {G : Type*} [TopologicalSpace G] [Group G] [IsTopologicalGroup G] [T2Space G]
     (U V : Subgroup G) [V.Normal]
@@ -63,7 +67,9 @@ theorem isClosed_sup_of_isCompact_of_normal_right
 
 /--
 In a compact Hausdorff topological group, the join of a closed subgroup with a closed normal
-subgroup is closed.-/
+subgroup is closed.
+@isnad1 id=isclosed.2h3v.s6.e2d2c9a9ccf6 from=translated src=- shape=609dad31 vocab=f8c52a66
+-/
 theorem isClosed_sup_of_normal
     {G : Type*} [TopologicalSpace G] [Group G] [IsTopologicalGroup G] [CompactSpace G]
     [T2Space G]
@@ -90,7 +96,9 @@ def quotientMapOfLE (M N : Subgroup G) [M.Normal] [N.Normal] (hMN : M ≤ N) :
     intro g hg
     exact hMN hg)
 
-/-- The quotient map induced by an inclusion sends a coset to its image coset.-/
+/-- The quotient map induced by an inclusion sends a coset to its image coset.
+@isnad1 id=eq.1h4v.s8.46cd576053dc from=translated src=- shape=56bb7bc7 vocab=00d5bbc0
+-/
 @[simp] theorem quotientMapOfLE_mk (M N : Subgroup G) [M.Normal] [N.Normal]
     (hMN : M ≤ N) (g : G) :
     quotientMapOfLE (G := G) M N hMN (QuotientGroup.mk g) = QuotientGroup.mk g :=
@@ -108,7 +116,9 @@ def quotientIInfToCoordinate {ι : Type v} (W : ι → Subgroup G) [∀ i, (W i)
 
 /--
 The map from the quotient by the infimum to a coordinate quotient sends a representative to its
-coordinate coset.-/
+coordinate coset.
+@isnad1 id=eq.0h5v.s9.8ec372ec5f4c from=translated src=- shape=23436f2b vocab=fabf3a59
+-/
 @[simp] theorem quotientIInfToCoordinate_mk {ι : Type v}
     (W : ι → Subgroup G) [∀ i, (W i).Normal] (i : ι) (g : G) :
     quotientIInfToCoordinate (G := G) W i (QuotientGroup.mk' (⨅ j, W j) g) =
@@ -117,7 +127,9 @@ coordinate coset.-/
 
 /--
 Quotient classes modulo an indexed intersection are equal when all coordinate quotients are
-equal.-/
+equal.
+@isnad1 id=eq.1h5v.s9.68b670624820 from=translated src=- shape=5a04124a vocab=86ad3890
+-/
 theorem quotient_iInf_isLimit {ι : Type v}
     (W : ι → Subgroup G) [∀ i, (W i).Normal]
     {x y : G ⧸ (⨅ i, W i)}
@@ -134,7 +146,9 @@ theorem quotient_iInf_isLimit {ι : Type v}
 
 /--
 Kernel of the quotient map induced by M \(\le\) N, after precomposition with the quotient map
-from \(G\).-/
+from \(G\).
+@isnad1 id=eq.1h3v.s7.36233eb67b7f from=translated src=- shape=a5442f8e vocab=dccdfef6
+-/
 @[simp] theorem ker_quotientMapOfLE_comp_mk (M N : Subgroup G) [M.Normal] [N.Normal]
     (hMN : M ≤ N) :
     ((quotientMapOfLE (G := G) M N hMN).comp (QuotientGroup.mk' M)).ker = N := by
@@ -159,14 +173,18 @@ def quotientToSupLeft : G ⧸ U →* G ⧸ (U ⊔ V) :=
 def quotientToSupRight : G ⧸ V →* G ⧸ (U ⊔ V) :=
   quotientMapOfLE (G := G) V (U ⊔ V) le_sup_right
 
-/-- Kernel of the left quotient-to-sup map after precomposition with the quotient map from \(G\).-/
+/-- Kernel of the left quotient-to-sup map after precomposition with the quotient map from \(G\).
+@isnad1 id=eq.0h3v.s8.27ed7fcf13eb from=translated src=- shape=e80c88f4 vocab=a91be8da
+-/
 @[simp] theorem ker_quotientToSupLeft_comp_mk :
     ((quotientToSupLeft (G := G) U V).comp (QuotientGroup.mk' U)).ker = U ⊔ V := by
   simp only [quotientToSupLeft, ker_quotientMapOfLE_comp_mk]
 
 /--
 This lemma identifies the kernel of the right quotient-to-sup map after precomposition with the
-quotient map from \(G\).-/
+quotient map from \(G\).
+@isnad1 id=eq.0h3v.s8.bb7546efd752 from=translated src=- shape=5373331e vocab=62e719bd
+-/
 @[simp] theorem ker_quotientToSupRight_comp_mk :
     ((quotientToSupRight (G := G) U V).comp (QuotientGroup.mk' V)).ker = U ⊔ V := by
   simp only [quotientToSupRight, ker_quotientMapOfLE_comp_mk]
@@ -182,7 +200,9 @@ def quotientMapOfLECont
 
 /--
 The quotient map sends the class of an element to the class of its image under the underlying
-group homomorphism.-/
+group homomorphism.
+@isnad1 id=eq.1h3v.s7.4d5502086b6f from=translated src=- shape=bb46356e vocab=0087ee7a
+-/
 @[simp] theorem quotientMapOfLECont_toMonoidHom
     {G : Type u} [Group G] [TopologicalSpace G]
     (M N : Subgroup G) [M.Normal] [N.Normal] (hMN : M ≤ N) :
@@ -193,7 +213,9 @@ group homomorphism.-/
       intro g hg
       exact hMN hg)
 
-/-- Evaluation of the continuous quotient map induced by inclusion on a quotient class.-/
+/-- Evaluation of the continuous quotient map induced by inclusion on a quotient class.
+@isnad1 id=eq.1h4v.s8.3a669484fb36 from=translated src=- shape=d4244c5b vocab=a6b4dbb9
+-/
 @[simp] theorem quotientMapOfLECont_mk
     {G : Type u} [Group G] [TopologicalSpace G]
     (M N : Subgroup G) [M.Normal] [N.Normal] (hMN : M ≤ N) (g : G) :
@@ -223,13 +245,17 @@ noncomputable def quotientInfToPullback :
   intro g
   rfl
 
-/-- The quotient-to-pullback map sends a coset to the corresponding pair of quotient cosets.-/
+/-- The quotient-to-pullback map sends a coset to the corresponding pair of quotient cosets.
+@isnad1 id=eq.0h4v.s11.3a5532b54431 from=translated src=- shape=fac176ae vocab=852a0e0f
+-/
 @[simp] theorem quotientInfToPullback_mk (g : G) :
     quotientInfToPullback (G := G) U V (QuotientGroup.mk g) =
       ⟨(QuotientGroup.mk g, QuotientGroup.mk g), rfl⟩ := by
   rfl
 
-/-- The first projection of the quotient-to-pullback map is the natural quotient map to \(G/U\).-/
+/-- The first projection of the quotient-to-pullback map is the natural quotient map to \(G/U\).
+@isnad1 id=eq.0h3v.s10.d4793bbca94f from=translated src=- shape=f807c715 vocab=92bf9eb4
+-/
 @[simp] theorem pullbackFst_quotientInfToPullback :
     (FiberProduct.fst _ _).comp
         (quotientInfToPullback (G := G) U V) =
@@ -240,7 +266,9 @@ noncomputable def quotientInfToPullback :
   intro g
   rfl
 
-/-- The second projection of the quotient-to-pullback map is the natural quotient map to \(G/V\).-/
+/-- The second projection of the quotient-to-pullback map is the natural quotient map to \(G/V\).
+@isnad1 id=eq.0h3v.s10.e8f69c804294 from=translated src=- shape=48c38d28 vocab=af22798c
+-/
 @[simp] theorem pullbackSnd_quotientInfToPullback :
     (FiberProduct.snd _ _).comp
         (quotientInfToPullback (G := G) U V) =
@@ -253,7 +281,9 @@ noncomputable def quotientInfToPullback :
 
 /--
 The canonical map from \(G/(U \cap V)\) to the pullback of \(G/U\) and \(G/V\) over \(G/(UV)\)
-is injective.-/
+is injective.
+@isnad1 id=injectiv.0h3v.s10.5f315eeb8a3f from=translated src=- shape=eece0cf4 vocab=d221ad8f
+-/
 theorem quotientInfToPullback_injective :
     Function.Injective (quotientInfToPullback (G := G) U V) := by
   intro x y hxy
@@ -271,7 +301,9 @@ theorem quotientInfToPullback_injective :
 
 /--
 The canonical map from the quotient by \(U \cap V\) to the pullback of the quotients by \(U\)
-and \(V\) is surjective.-/
+and \(V\) is surjective.
+@isnad1 id=surjecti.0h3v.s10.0600b8fb9a6c from=translated src=- shape=eece0cf4 vocab=6e5955f0
+-/
 theorem quotientInfToPullback_surjective :
     Function.Surjective (quotientInfToPullback (G := G) U V) := by
   intro x
@@ -325,7 +357,9 @@ theorem quotientInfToPullback_surjective :
       _ = QuotientGroup.mk' V b := hV
       _ = x.1.2 := hb
 
-/-- The canonical quotient-to-pullback map is bijective.-/
+/-- The canonical quotient-to-pullback map is bijective.
+@isnad1 id=bijectiv.0h3v.s10.4ac1cc874002 from=translated src=- shape=eece0cf4 vocab=6468d82b
+-/
 theorem quotientInfToPullback_bijective :
     Function.Bijective (quotientInfToPullback (G := G) U V) := by
   exact ⟨quotientInfToPullback_injective (G := G) U V,
@@ -338,7 +372,9 @@ noncomputable def quotientInfPullbackEquiv :
   MulEquiv.ofBijective (quotientInfToPullback (G := G) U V)
     (quotientInfToPullback_bijective (G := G) U V)
 
-/-- The first coordinate of the quotient pullback equivalence is the natural map to \(G/U\).-/
+/-- The first coordinate of the quotient pullback equivalence is the natural map to \(G/U\).
+@isnad1 id=eq.0h3v.s10.7b79a0b3d2e5 from=translated src=- shape=f4825518 vocab=27c70bd0
+-/
 @[simp] theorem quotientInfPullbackEquiv_fst :
     (FiberProduct.fst _ _).comp (quotientInfPullbackEquiv (G := G) U V).toMonoidHom =
       quotientInfToLeft (G := G) U V := by
@@ -346,7 +382,9 @@ noncomputable def quotientInfPullbackEquiv :
       quotientInfToLeft (G := G) U V
   exact pullbackFst_quotientInfToPullback (G := G) U V
 
-/-- The second coordinate of the quotient pullback equivalence is the natural map to \(G/V\).-/
+/-- The second coordinate of the quotient pullback equivalence is the natural map to \(G/V\).
+@isnad1 id=eq.0h3v.s10.308ce148aa60 from=translated src=- shape=b309e13e vocab=d94bad55
+-/
 @[simp] theorem quotientInfPullbackEquiv_snd :
     (FiberProduct.snd _ _).comp (quotientInfPullbackEquiv (G := G) U V).toMonoidHom =
       quotientInfToRight (G := G) U V := by
@@ -375,47 +413,63 @@ def quotientToSupRightCont : G ⧸ V →ₜ* G ⧸ (U ⊔ V) :=
   quotientMapOfLECont (G := G) V (U ⊔ V) le_sup_right
 
 /--
-Forgetting continuity from the left continuous quotient-square map recovers the algebraic map.-/
+Forgetting continuity from the left continuous quotient-square map recovers the algebraic map.
+@isnad1 id=eq.0h3v.s8.8c720adc1c65 from=translated src=- shape=e7413501 vocab=6ce25dfd
+-/
 @[simp] theorem quotientInfToLeftCont_toMonoidHom :
     (quotientInfToLeftCont (G := G) U V).toMonoidHom = quotientInfToLeft (G := G) U V :=
   rfl
 
 /-- Forgetting continuity from the right continuous quotient-square map recovers the
-algebraic map.-/
+algebraic map.
+@isnad1 id=eq.0h3v.s8.8c0ebcc5dc0a from=translated src=- shape=56360a52 vocab=f6fecf8d
+-/
 @[simp] theorem quotientInfToRightCont_toMonoidHom :
     (quotientInfToRightCont (G := G) U V).toMonoidHom = quotientInfToRight (G := G) U V :=
   rfl
 
 /--
 Forgetting continuity from the lower-left continuous quotient-square map recovers the algebraic
-map.-/
+map.
+@isnad1 id=eq.0h3v.s8.b00134064fa5 from=translated src=- shape=605dfb5f vocab=3a9f4fd2
+-/
 @[simp] theorem quotientToSupLeftCont_toMonoidHom :
     (quotientToSupLeftCont (G := G) U V).toMonoidHom = quotientToSupLeft (G := G) U V :=
   rfl
 
 /--
 Forgetting continuity from the lower-right continuous quotient-square map recovers the algebraic
-map.-/
+map.
+@isnad1 id=eq.0h3v.s8.3db2a4ef168f from=translated src=- shape=58f0892a vocab=3677e13f
+-/
 @[simp] theorem quotientToSupRightCont_toMonoidHom :
     (quotientToSupRightCont (G := G) U V).toMonoidHom = quotientToSupRight (G := G) U V :=
   rfl
 
-/-- Evaluation of the left continuous quotient-square map on a quotient class.-/
+/-- Evaluation of the left continuous quotient-square map on a quotient class.
+@isnad1 id=eq.0h4v.s8.c6f6e351a2a8 from=translated src=- shape=b5ff07b1 vocab=a41bfeef
+-/
 @[simp] theorem quotientInfToLeftCont_mk (g : G) :
     quotientInfToLeftCont (G := G) U V (QuotientGroup.mk g) = QuotientGroup.mk g := by
   simp only [quotientInfToLeftCont, quotientMapOfLECont_mk]
 
-/-- Evaluation of the right continuous quotient-square map on a quotient class.-/
+/-- Evaluation of the right continuous quotient-square map on a quotient class.
+@isnad1 id=eq.0h4v.s8.0f839f1f1fea from=translated src=- shape=9a16dfce vocab=da1a715a
+-/
 @[simp] theorem quotientInfToRightCont_mk (g : G) :
     quotientInfToRightCont (G := G) U V (QuotientGroup.mk g) = QuotientGroup.mk g := by
   simp only [quotientInfToRightCont, quotientMapOfLECont_mk]
 
-/-- Evaluation of the lower-left continuous quotient-square map on a quotient class.-/
+/-- Evaluation of the lower-left continuous quotient-square map on a quotient class.
+@isnad1 id=eq.0h4v.s9.9f4e29f8b8ff from=translated src=- shape=fdbadbad vocab=4f2059b4
+-/
 @[simp] theorem quotientToSupLeftCont_mk (g : G) :
     quotientToSupLeftCont (G := G) U V (QuotientGroup.mk g) = QuotientGroup.mk g := by
   simp only [quotientToSupLeftCont, quotientMapOfLECont_mk]
 
-/-- Evaluation of the lower-right continuous quotient-square map on a quotient class.-/
+/-- Evaluation of the lower-right continuous quotient-square map on a quotient class.
+@isnad1 id=eq.0h4v.s9.30261b44be78 from=translated src=- shape=249aa0da vocab=e65b46f6
+-/
 @[simp] theorem quotientToSupRightCont_mk (g : G) :
     quotientToSupRightCont (G := G) U V (QuotientGroup.mk g) = QuotientGroup.mk g := by
   simp only [quotientToSupRightCont, quotientMapOfLECont_mk]
@@ -441,7 +495,9 @@ def quotientInfToContinuousPullback :
 
 omit [IsTopologicalGroup G] in
 /--
-Forgetting continuity from the continuous quotient-to-pullback map recovers the algebraic one.-/
+Forgetting continuity from the continuous quotient-to-pullback map recovers the algebraic one.
+@isnad1 id=eq.0h3v.s12.25033c549817 from=translated src=- shape=fb4768cb vocab=5c187320
+-/
 @[simp] theorem quotientInfToContinuousPullback_toMonoidHom :
     (quotientInfToContinuousPullback (G := G) U V).toMonoidHom =
       quotientInfToPullback (G := G) U V := by
@@ -452,7 +508,9 @@ Forgetting continuity from the continuous quotient-to-pullback map recovers the 
   exact Subtype.ext <| Prod.ext rfl rfl
 
 omit [IsTopologicalGroup G] in
-/-- Evaluation formula for the continuous quotient-to-pullback map.-/
+/-- Evaluation formula for the continuous quotient-to-pullback map.
+@isnad1 id=eq.0h4v.s13.1b41e0e003dd from=translated src=- shape=aad96069 vocab=61eae333
+-/
 @[simp] theorem quotientInfToContinuousPullback_mk (g : G) :
     quotientInfToContinuousPullback (G := G) U V (QuotientGroup.mk g) =
       ⟨(QuotientGroup.mk g, QuotientGroup.mk g), rfl⟩ := by
@@ -460,7 +518,9 @@ omit [IsTopologicalGroup G] in
 
 omit [IsTopologicalGroup G] in
 /-- The first projection of the continuous quotient-to-pullback map is the natural quotient map to
-`G/U`.-/
+`G/U`.
+@isnad1 id=eq.0h3v.s11.8b5fb85c473c from=translated src=- shape=fc270667 vocab=e69c0f89
+-/
 @[simp] theorem pullbackFstCont_quotientInfToContinuousPullback :
     (TopologicalFiberProduct.fst _ _).comp (quotientInfToContinuousPullback (G := G) U V) =
       quotientInfToLeftCont (G := G) U V := by
@@ -472,7 +532,9 @@ omit [IsTopologicalGroup G] in
 
 omit [IsTopologicalGroup G] in
 /-- The second projection of the continuous quotient-to-pullback map is the natural quotient map to
-`G/V`.-/
+`G/V`.
+@isnad1 id=eq.0h3v.s11.adc79f6852cb from=translated src=- shape=aee88535 vocab=53b63f69
+-/
 @[simp] theorem pullbackSndCont_quotientInfToContinuousPullback :
     (TopologicalFiberProduct.snd _ _).comp (quotientInfToContinuousPullback (G := G) U V) =
       quotientInfToRightCont (G := G) U V := by
@@ -483,7 +545,9 @@ omit [IsTopologicalGroup G] in
   rfl
 
 omit [IsTopologicalGroup G] in
-/-- Injectivity of the continuous quotient-to-pullback map on the underlying groups.-/
+/-- Injectivity of the continuous quotient-to-pullback map on the underlying groups.
+@isnad1 id=injectiv.0h3v.s12.4739c54020e9 from=translated src=- shape=012e8edb vocab=0ce48b3a
+-/
 theorem quotientInfToContinuousPullback_injective :
     Function.Injective (quotientInfToContinuousPullback (G := G) U V) := by
   intro x y hxy
@@ -494,7 +558,9 @@ theorem quotientInfToContinuousPullback_injective :
   · exact congrArg (fun z => z.1.2) hxy
 
 omit [IsTopologicalGroup G] in
-/-- Surjectivity of the continuous quotient-to-pullback map on the underlying groups.-/
+/-- Surjectivity of the continuous quotient-to-pullback map on the underlying groups.
+@isnad1 id=surjecti.0h3v.s12.e9c39ba3c7a2 from=translated src=- shape=012e8edb vocab=74f8af10
+-/
 theorem quotientInfToContinuousPullback_surjective :
     Function.Surjective (quotientInfToContinuousPullback (G := G) U V) := by
   intro x
@@ -506,7 +572,9 @@ theorem quotientInfToContinuousPullback_surjective :
   · exact congrArg (fun z => z.1.2) hy
 
 omit [IsTopologicalGroup G] in
-/-- The continuous quotient-to-pullback map is bijective on the underlying groups.-/
+/-- The continuous quotient-to-pullback map is bijective on the underlying groups.
+@isnad1 id=bijectiv.0h3v.s12.277167ce0c4f from=translated src=- shape=012e8edb vocab=90d7d673
+-/
 theorem quotientInfToContinuousPullback_bijective :
     Function.Bijective (quotientInfToContinuousPullback (G := G) U V) := by
   exact ⟨quotientInfToContinuousPullback_injective (G := G) U V,
@@ -524,7 +592,9 @@ noncomputable def quotientInfContinuousPullbackEquiv
     (quotientInfToContinuousPullback (G := G) U V).continuous_toFun
     (quotientInfToContinuousPullback_bijective (G := G) U V)
 
-/-- The quotient pullback equivalence is induced by the canonical comparison map.-/
+/-- The quotient pullback equivalence is induced by the canonical comparison map.
+@isnad1 id=eq.2h3v.s14.927fd8d56c2d from=translated src=- shape=8bd298be vocab=87b4b101
+-/
 @[simp] theorem quotientInfContinuousPullbackEquiv_toContinuousMonoidHom
     [CompactSpace G] [T2Space G]
     (hUclosed : IsClosed (U : Set G)) (hVclosed : IsClosed (V : Set G)) :
@@ -535,7 +605,9 @@ noncomputable def quotientInfContinuousPullbackEquiv
   intro x
   exact Subtype.ext <| Prod.ext rfl rfl
 
-/-- Evaluation formula for the continuous quotient pullback equivalence on a quotient class.-/
+/-- Evaluation formula for the continuous quotient pullback equivalence on a quotient class.
+@isnad1 id=eq.2h4v.s13.f2a262832d6c from=translated src=- shape=55f79efb vocab=dee761d4
+-/
 @[simp] theorem quotientInfContinuousPullbackEquiv_mk
     [CompactSpace G] [T2Space G]
     (hUclosed : IsClosed (U : Set G)) (hVclosed : IsClosed (V : Set G)) (g : G) :
@@ -545,7 +617,9 @@ noncomputable def quotientInfContinuousPullbackEquiv
   exact quotientInfToContinuousPullback_mk (G := G) U V g
 
 /--
-The first coordinate of the continuous quotient pullback equivalence is the natural map to `G/U`.-/
+The first coordinate of the continuous quotient pullback equivalence is the natural map to `G/U`.
+@isnad1 id=eq.2h3v.s14.6c0b99a94a20 from=translated src=- shape=7c7eaccf vocab=36a19f1e
+-/
 @[simp] theorem quotientInfContinuousPullbackEquiv_fst
     [CompactSpace G] [T2Space G]
     (hUclosed : IsClosed (U : Set G)) (hVclosed : IsClosed (V : Set G)) :
@@ -558,7 +632,9 @@ The first coordinate of the continuous quotient pullback equivalence is the natu
   exact pullbackFstCont_quotientInfToContinuousPullback (G := G) U V
 
 /--
-The second coordinate of the continuous quotient pullback equivalence is the natural map to `G/V`.-/
+The second coordinate of the continuous quotient pullback equivalence is the natural map to `G/V`.
+@isnad1 id=eq.2h3v.s14.163503419e46 from=translated src=- shape=5243905c vocab=c05dfc83
+-/
 @[simp] theorem quotientInfContinuousPullbackEquiv_snd
     [CompactSpace G] [T2Space G]
     (hUclosed : IsClosed (U : Set G)) (hVclosed : IsClosed (V : Set G)) :

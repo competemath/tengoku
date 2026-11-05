@@ -47,7 +47,9 @@ noncomputable def residualQuotientContinuousMulEquiv
     exact ⟨e.symm x, hbackward ⟨x, hx, rfl⟩, e.apply_symm_apply x⟩
   exact QuotientGroup.congrₜ (proCResidualCore C G) (proCResidualCore C H) e hmap
 
-/-- The induced equivalence applies the original equivalence to representatives.-/
+/-- The induced equivalence applies the original equivalence to representatives.
+@isnad1 id=eq.1h5v.s10.1d84f41c36f5 from=translated src=- shape=dc0c2050 vocab=cdeb9858
+-/
 @[simp] theorem residualQuotientContinuousMulEquiv_apply_mk
     (hC : FiniteGroupClass.Hereditary C) (e : G ≃ₜ* H) (x : G) :
     residualQuotientContinuousMulEquiv hC e

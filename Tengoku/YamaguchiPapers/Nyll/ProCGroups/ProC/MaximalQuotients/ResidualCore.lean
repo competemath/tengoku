@@ -43,7 +43,9 @@ noncomputable def proCResidualCore
     (G : Type u) [Group G] [TopologicalSpace G] [IsTopologicalGroup G] : Subgroup G :=
   sInf (Set.range fun N : ProCQuotientKernel C G => N.toSubgroup)
 
-/-- The residual core is a normal subgroup.-/
+/-- The residual core is a normal subgroup.
+@isnad1 id=normal.0h2v.s4.7c8b28f3bb32 from=translated src=- shape=97e6c48e vocab=bad1d4fb
+-/
 @[instance]
 theorem proCResidualCore_normal
     (C : FiniteGroupClass)
@@ -56,7 +58,9 @@ theorem proCResidualCore_normal
       (a := fun N : ProCQuotientKernel C G => N.toSubgroup)
       (norm := fun N => N.normal))
 
-/-- The residual core is closed.-/
+/-- The residual core is closed.
+@isnad1 id=isclosed.0h2v.s5.8a03610ba840 from=translated src=- shape=e5399cdf vocab=8ae05205
+-/
 theorem proCResidualCore_isClosed
     (C : FiniteGroupClass)
     (G : Type u) [Group G] [TopologicalSpace G] [IsTopologicalGroup G] :

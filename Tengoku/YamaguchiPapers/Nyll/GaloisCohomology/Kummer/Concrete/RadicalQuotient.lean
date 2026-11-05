@@ -32,7 +32,9 @@ namespace RadicalDatum
 
 variable {n : ℕ+} (D : RadicalDatum (K := K) (L := L) n)
 
-/-- Multiplicativity of root characters does not require a multiplicative choice of roots.-/
+/-- Multiplicativity of root characters does not require a multiplicative choice of roots.
+@isnad1 id=eq.1h6v.s11.56de037c3247 from=translated src=- shape=0a5763d8 vocab=01388593
+-/
 theorem rootCharacter_mul_withoutSection
     (hfixed : ∀ σ : Gal(L/K), ∀ u : Lˣ, u ^ (n : ℕ) = 1 → σ • u = u)
     (a b : D.carrier) :
@@ -46,7 +48,9 @@ theorem rootCharacter_mul_withoutSection
   · rw [mul_pow, D.root_pow_eq_map, D.root_pow_eq_map]
     exact (map_mul (Units.map (algebraMap K L).toMonoidHom) a.1 b.1).symm
 
-/-- The root character of `1` is trivial, without choosing roots multiplicatively.-/
+/-- The root character of `1` is trivial, without choosing roots multiplicatively.
+@isnad1 id=eq.1h4v.s10.648baf519622 from=translated src=- shape=d06b1122 vocab=e6263c00
+-/
 theorem rootCharacter_one_withoutSection
     (hfixed : ∀ σ : Gal(L/K), ∀ u : Lˣ, u ^ (n : ℕ) = 1 → σ • u = u) :
     D.rootCharacter 1 hfixed = 1 := by
@@ -75,7 +79,9 @@ def rootCharacterToMuWithoutSection (a : D.carrier)
     exact map_mul (D.rootCharacter a hfixed) σ τ
 
 /-- The section-free root character evaluates as the quotient of the transported
-root by the root itself.-/
+root by the root itself.
+@isnad1 id=eq.1h6v.s11.819280c6d0ee from=translated src=- shape=2b903a32 vocab=41c7fb74
+-/
 @[simp] theorem rootCharacterToMuWithoutSection_apply (a : D.carrier)
     (hfixed : ∀ σ : Gal(L/K), ∀ u : Lˣ, u ^ (n : ℕ) = 1 → σ • u = u)
     (σ : Gal(L/K)) :
@@ -106,12 +112,16 @@ def kummerCharacterWithoutSection
 def ambientNthPowersSubgroup : Subgroup D.carrier :=
   (powMonoidHom (n : ℕ) : Kˣ →* Kˣ).range.comap D.carrier.subtype
 
-/-- An element belongs to the ambient power subgroup exactly when it is an `n`th power.-/
+/-- An element belongs to the ambient power subgroup exactly when it is an `n`th power.
+@isnad1 id=iff.0h5v.s10.ad463f4d6be9 from=translated src=- shape=96a830c0 vocab=00e67f3d
+-/
 theorem mem_ambientNthPowersSubgroup_iff {a : D.carrier} :
     a ∈ D.ambientNthPowersSubgroup ↔ ∃ b : Kˣ, b ^ (n : ℕ) = a.1 :=
   Iff.rfl
 
-/-- A root character is trivial on an ambient `n`-th power.-/
+/-- A root character is trivial on an ambient `n`-th power.
+@isnad1 id=eq.2h5v.s11.1c5a8a5b25bf from=translated src=- shape=5c3b113b vocab=2c41f2b7
+-/
 theorem rootCharacter_eq_one_of_mem_ambientNthPowers
     (hfixed : ∀ σ : Gal(L/K), ∀ u : Lˣ, u ^ (n : ℕ) = 1 → σ • u = u)
     {a : D.carrier} (ha : a ∈ D.ambientNthPowersSubgroup) :
@@ -125,7 +135,9 @@ theorem rootCharacter_eq_one_of_mem_ambientNthPowers
   · exact rootQuotient_algebraMap_unit (K := K) (L := L) b σ
   · rw [← map_pow, hb]
 
-/-- The ambient `n`-th-power subgroup lies in the kernel of the Kummer character.-/
+/-- The ambient `n`-th-power subgroup lies in the kernel of the Kummer character.
+@isnad1 id=le.1h4v.s12.43070cf1ba93 from=translated src=- shape=2df80eb5 vocab=80b981b3
+-/
 theorem ambientNthPowersSubgroup_le_ker
     (hfixed : ∀ σ : Gal(L/K), ∀ u : Lˣ, u ^ (n : ℕ) = 1 → σ • u = u) :
     D.ambientNthPowersSubgroup ≤ MonoidHom.ker (D.kummerCharacterWithoutSection hfixed) := by
@@ -139,7 +151,9 @@ theorem ambientNthPowersSubgroup_le_ker
 
 /-- For a Galois extension, triviality of the Kummer character forces the
 chosen root to come from the base field.  Consequently the kernel is exactly
-the subgroup of ambient `n`-th powers, not merely a subgroup containing it.-/
+the subgroup of ambient `n`-th powers, not merely a subgroup containing it.
+@isnad1 id=eq.1h4v.s12.eb9abc4a65c7 from=translated src=- shape=c633bd9a vocab=e64597a6
+-/
 theorem ker_kummerCharacterWithoutSection_eq_ambientNthPowers
     [IsGalois K L]
     (hfixed : ∀ σ : Gal(L/K), ∀ u : Lˣ, u ^ (n : ℕ) = 1 → σ • u = u) :
@@ -198,7 +212,9 @@ def radicalQuotientMulEquiv :
 def radicalQuotientMk : D.carrier →* D.RadicalQuotient :=
   QuotientGroup.mk' D.ambientNthPowersSubgroup
 
-/-- The named radical quotient projection agrees with the underlying quotient map.-/
+/-- The named radical quotient projection agrees with the underlying quotient map.
+@isnad1 id=eq.0h5v.s13.88d2f392637b from=translated src=- shape=0de6518e vocab=6098814e
+-/
 @[simp]
 theorem radicalQuotientMk_apply (a : D.carrier) :
     D.radicalQuotientMulEquiv (D.radicalQuotientMk a) =
@@ -206,7 +222,9 @@ theorem radicalQuotientMk_apply (a : D.carrier) :
   rfl
 
 /-- A radical quotient class is trivial exactly when its representative is an
-ambient `n`th power.-/
+ambient `n`th power.
+@isnad1 id=iff.0h5v.s11.a0d9d5645d64 from=translated src=- shape=48516d7b vocab=2bd2e04a
+-/
 @[simp]
 theorem radicalQuotientMk_eq_one_iff (a : D.carrier) :
     D.radicalQuotientMk a = 1 ↔ a ∈ D.ambientNthPowersSubgroup := by
@@ -216,7 +234,9 @@ theorem radicalQuotientMk_eq_one_iff (a : D.carrier) :
   exact QuotientGroup.eq_one_iff a
 
 /-- Two radical quotient representatives agree exactly when their ratio is an
-ambient `n`th power.-/
+ambient `n`th power.
+@isnad1 id=iff.0h6v.s12.52f941faa8c9 from=translated src=- shape=50ae70ca vocab=9a78ea4b
+-/
 @[simp]
 theorem radicalQuotientMk_eq_iff (a b : D.carrier) :
     D.radicalQuotientMk a = D.radicalQuotientMk b ↔
@@ -227,7 +247,9 @@ theorem radicalQuotientMk_eq_iff (a b : D.carrier) :
       a / b ∈ D.ambientNthPowersSubgroup
   exact QuotientGroup.eq_iff_div_mem
 
-/-- Every ambient radical class has a representative in `D.carrier`.-/
+/-- Every ambient radical class has a representative in `D.carrier`.
+@isnad1 id=surjecti.0h4v.s10.1f7e00522f18 from=translated src=- shape=9050814f vocab=7e35d0c8
+-/
 theorem radicalQuotientMk_surjective :
     Function.Surjective D.radicalQuotientMk := by
   change Function.Surjective
@@ -235,7 +257,9 @@ theorem radicalQuotientMk_surjective :
   exact QuotientGroup.mk'_surjective D.ambientNthPowersSubgroup
 
 /-- Eliminate a named ambient radical quotient through its canonical
-representatives.-/
+representatives.
+@isnad1 id=var.0h7v.s10.fbaf601dad1d from=translated src=- shape=658f332f vocab=12dcd936
+-/
 protected theorem radicalQuotient_inductionOn
     {motive : D.RadicalQuotient → Prop} (q : D.RadicalQuotient)
     (mk : ∀ a : D.carrier, motive (D.radicalQuotientMk a)) :
@@ -250,7 +274,9 @@ def radicalQuotientLift {M : Type*} [Group M]
   (QuotientGroup.lift D.ambientNthPowersSubgroup f hf).comp
     D.radicalQuotientMulEquiv.toMonoidHom
 
-/-- The radical quotient lift evaluates on a representative by the prescribed lift.-/
+/-- The radical quotient lift evaluates on a representative by the prescribed lift.
+@isnad1 id=eq.1h7v.s12.5ba59b680054 from=translated src=- shape=ce7126a7 vocab=c3b2b015
+-/
 @[simp]
 theorem radicalQuotientLift_mk {M : Type*} [Group M]
     (f : D.carrier →* M)
@@ -266,7 +292,9 @@ def quotientKummerCharacterWithoutSection
   D.radicalQuotientLift (D.kummerCharacterWithoutSection hfixed)
     (D.ambientNthPowersSubgroup_le_ker hfixed)
 
-/-- The section-free Kummer character on a quotient class is computed from any representative.-/
+/-- The section-free Kummer character on a quotient class is computed from any representative.
+@isnad1 id=eq.1h5v.s14.094c8d2d0476 from=translated src=- shape=26444e38 vocab=3051fc6f
+-/
 @[simp] theorem quotientKummerCharacterWithoutSection_mk (a : D.carrier)
     (hfixed : ∀ σ : Gal(L/K), ∀ u : Lˣ, u ^ (n : ℕ) = 1 → σ • u = u) :
     D.quotientKummerCharacterWithoutSection hfixed
@@ -275,7 +303,9 @@ def quotientKummerCharacterWithoutSection
   D.radicalQuotientLift_mk _ _ a
 
 /-- The character map on the ambient radical quotient is injective.  This is
-the kernel half of the canonical isomorphism in the finite Kummer character equivalence.-/
+the kernel half of the canonical isomorphism in the finite Kummer character equivalence.
+@isnad1 id=injectiv.1h4v.s13.e35895331c99 from=translated src=- shape=e755dd09 vocab=04514557
+-/
 theorem quotientKummerCharacterWithoutSection_injective
     [IsGalois K L]
     (hfixed : ∀ σ : Gal(L/K), ∀ u : Lˣ, u ^ (n : ℕ) = 1 → σ • u = u) :

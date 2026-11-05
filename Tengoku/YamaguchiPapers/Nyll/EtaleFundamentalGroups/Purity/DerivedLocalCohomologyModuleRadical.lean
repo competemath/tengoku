@@ -47,7 +47,9 @@ private theorem primaryComponent_le_of_pow_le
   exact (Submodule.mem_torsionBySet_iff ((I ^ n : Ideal R) : Set R) z).mp hn
     ⟨a, hle a.property⟩
 
-/-- Power torsion agrees as a submodule for ideals with the same radical.-/
+/-- Power torsion agrees as a submodule for ideals with the same radical.
+@isnad1 id=eq.1h4v.s7.9f2d0e14d177 from=translated src=- shape=c9639e76 vocab=7af758bb
+-/
 theorem primaryComponent_eq_of_sameRadical
     (M : ModuleCat.{u} R) {I J : Ideal R} (hIJ : I.radical = J.radical) :
     Ideal.primaryComponent M I = Ideal.primaryComponent M J := by

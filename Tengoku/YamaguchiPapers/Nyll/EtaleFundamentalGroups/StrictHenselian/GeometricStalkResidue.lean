@@ -41,7 +41,9 @@ variable {S : Scheme.{u}} {Ω : Type u} [Field Ω]
   (s : Spec (.of Ω) ⟶ S)
 
 /-- Evaluation is local because its nonzero values are precisely the units
-of the constructed geometric stalk.-/
+of the constructed geometric stalk.
+@isnad1 id=islocalh.0h3v.s7.24a0f0136d6b from=translated src=- shape=2d1ab408 vocab=9d8561df
+-/
 instance geometricStalkEvaluation_isLocalHom :
     IsLocalHom (geometricStalkEvaluation s).hom where
   map_nonunit a ha := geometricStalk_isUnit_of_evaluation_ne_zero s a ha.ne_zero

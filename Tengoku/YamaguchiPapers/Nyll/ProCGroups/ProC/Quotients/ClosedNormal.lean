@@ -25,7 +25,9 @@ namespace ProCGroups
 universe u v
 
 /-- A quotient by a closed normal subgroup of a compact Hausdorff totally disconnected
-topological group is totally disconnected.-/
+topological group is totally disconnected.
+@isnad1 id=totallyd.1h2v.s5.8289bad37308 from=translated src=- shape=a6bb022e vocab=76ae61a0
+-/
 theorem totallyDisconnectedSpace_quotient_closedNormal
     {G : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
@@ -121,7 +123,9 @@ noncomputable def quotientBotContinuousMulEquiv :
 omit [T2Space G] [TotallyDisconnectedSpace G] in
 /--
 Adding a closed normal subgroup to a generating set is equivalent to generating the quotient
-from the image of the set.-/
+from the image of the set.
+@isnad1 id=iff.1h3v.s7.f482dc6a9175 from=translated src=- shape=428cd140 vocab=a9b268ec
+-/
 theorem topologicallyGenerates_union_closedNormal_iff_quotient
     {N : Subgroup G} [N.Normal]
     (hNclosed : IsClosed (N : Set G)) {X : Set G} :
@@ -221,7 +225,9 @@ theorem topologicallyGenerates_union_closedNormal_iff_quotient
     exact H.mul_mem hhH' hdivH
 
 omit [T2Space G] [TotallyDisconnectedSpace G] in
-/-- The image of a closed subgroup in a quotient by a closed normal subgroup is closed.-/
+/-- The image of a closed subgroup in a quotient by a closed normal subgroup is closed.
+@isnad1 id=isclosed.2h3v.s7.5ef13de18c91 from=translated src=- shape=e827879b vocab=e8fb4704
+-/
 theorem isClosed_image_closedNormal_quotient
     {N N' : Subgroup G} [N'.Normal]
     (hNclosed : IsClosed (N : Set G)) (hN'closed : IsClosed (N' : Set G)) :
@@ -262,7 +268,9 @@ noncomputable def quotientQuotientContinuousMulEquiv
 
 omit [T2Space G] [TotallyDisconnectedSpace G] in
 /--
-A quotient section together with generators for the kernel generates the intermediate quotient.-/
+A quotient section together with generators for the kernel generates the intermediate quotient.
+@isnad1 id=topologi.6h6v.s8.64a06b5b74e6 from=translated src=- shape=fff2df1d vocab=00f1e420
+-/
 theorem topologicallyGenerates_of_quotient_section_union_kernel
     {N N' : Subgroup G} [N.Normal] [N'.Normal]
     (hNclosed : IsClosed (N : Set G)) (hN'closed : IsClosed (N' : Set G))

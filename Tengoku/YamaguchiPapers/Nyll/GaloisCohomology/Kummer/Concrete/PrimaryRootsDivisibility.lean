@@ -25,7 +25,9 @@ namespace KummerTheory
 universe u
 variable {K : Type u} [Field K]
 
-/-- An infinite primary group contains roots of every prime-power order.-/
+/-- An infinite primary group contains roots of every prime-power order.
+@isnad1 id=ex.0h3v.s7.9a9fa7d030c8 from=translated src=- shape=a40e1f77 vocab=c42df711
+-/
 theorem exists_primitiveRoot_prime_pow_of_infinite_primary
     (p : ℕ) [Fact p.Prime] [Infinite (CommGroup.primaryComponent Kˣ p)] (n : ℕ) :
     ∃ ζ : Kˣ, IsPrimitiveRoot ζ (p ^ n) := by
@@ -54,7 +56,9 @@ theorem exists_primitiveRoot_prime_pow_of_infinite_primary
   exact hprim.pow (pow_pos hp.pos m)
     (by rw [← pow_add, Nat.sub_add_cancel hmn])
 
-/-- Every prime-exponent power map is onto the infinite primary root group.-/
+/-- Every prime-exponent power map is onto the infinite primary root group.
+@isnad1 id=surjecti.1h3v.s10.2ffdf5251de1 from=translated src=- shape=c78c7823 vocab=8f391822
+-/
 theorem primaryComponent_prime_pow_surjective_of_infinite
     (p : ℕ) [Fact p.Prime] [Infinite (CommGroup.primaryComponent Kˣ p)]
     (q : ℕ) (hq : q.Prime) :
@@ -88,7 +92,9 @@ theorem primaryComponent_prime_pow_surjective_of_infinite
     rw [pow_right_comm]
     exact hi
 
-/-- Every positive power map is onto the infinite primary root group.-/
+/-- Every positive power map is onto the infinite primary root group.
+@isnad1 id=surjecti.1h3v.s10.911df6519c31 from=translated src=- shape=bc31afa5 vocab=50b0d901
+-/
 theorem primaryComponent_pow_surjective_of_infinite
     (p : ℕ) [Fact p.Prime] [Infinite (CommGroup.primaryComponent Kˣ p)]
     (n : ℕ) (hn : 0 < n) :
@@ -110,7 +116,9 @@ theorem primaryComponent_pow_surjective_of_infinite
     rw [← Nat.mul_div_cancel' hqn, pow_mul]
     exact (congrArg (fun a => a ^ (n / q)) hx).trans hy
 
-/-- Absence of nontrivial infinitely divisible units bounds each primary group.-/
+/-- Absence of nontrivial infinitely divisible units bounds each primary group.
+@isnad1 id=finite.1h2v.s8.8d829ffc5276 from=translated src=- shape=08e3b680 vocab=0f97cfab
+-/
 theorem finite_primaryComponent_of_no_infinitely_divisible_units
     (hK : ∀ z : Kˣ, (∀ n : ℕ, 0 < n → ∃ y : Kˣ, y ^ n = z) → z = 1)
     (p : ℕ) [Fact p.Prime] :

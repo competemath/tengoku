@@ -22,7 +22,9 @@ universe u v w
 
 attribute [local instance] MvPolynomial.algebraMvPolynomial FractionRing.liftAlgebra
 
-/-- An algebraic subextension of a finitely generated field extension is finite.-/
+/-- An algebraic subextension of a finitely generated field extension is finite.
+@isnad1 id=finite.0h3v.s7.6ded8f6f9e70 from=translated src=- shape=09d6d2f2 vocab=755ca0d7
+-/
 theorem finite_algebraic_subextension
     (F : Type u) (C : Type v) (K : Type w)
     [Field F] [Field C] [Field K] [Algebra F C] [Algebra F K] [Algebra C K]
@@ -64,7 +66,9 @@ theorem finite_algebraic_subextension
   exact Module.rank_lt_aleph0_iff.mp hfinite
 
 /-- The relative algebraic closure of a finite base field in a finitely
-generated extension is a finite field.-/
+generated extension is a finite field.
+@isnad1 id=finite.0h2v.s6.5e4d8a4dc67e from=translated src=- shape=1f612a08 vocab=ac70ecec
+-/
 theorem finite_algebraicClosure_of_finite_base
     (F : Type u) (K : Type v) [Field F] [Field K] [Algebra F K]
     [Finite F] [Algebra.EssFiniteType F K] :

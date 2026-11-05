@@ -137,7 +137,9 @@ private theorem topLocalCohomology_nonzero_and_notFinite
             Q d hdimQ x hx hreg)
 
 /-- A finite module of finite support dimension has nonzero local
-cohomology in that degree over a complete Noetherian local ring.-/
+cohomology in that degree over a complete Noetherian local ring.
+@isnad1 id=not.1h3v.s7.93421a3c6e31 from=translated src=- shape=ca6e3f20 vocab=aef6a4e1
+-/
 theorem derivedLocalCohomology_maximalIdeal_not_isZero_of_supportDim_eq
     (M : ModuleCat.{u} R) [Module.Finite R M] (d : ℕ)
     (hdim : Module.supportDim R M = (d : WithBot ℕ∞)) :
@@ -145,7 +147,9 @@ theorem derivedLocalCohomology_maximalIdeal_not_isZero_of_supportDim_eq
   (topLocalCohomology_nonzero_and_notFinite M d hdim).1
 
 /-- Top local cohomology in positive finite support dimension is not a
-finite module over a complete Noetherian local ring.-/
+finite module over a complete Noetherian local ring.
+@isnad1 id=not.2h3v.s7.80b67441daf3 from=translated src=- shape=d6262aeb vocab=8f252872
+-/
 theorem not_moduleFinite_derivedLocalCohomologyModule_maximalIdeal_of_supportDim_eq
     (M : ModuleCat.{u} R) [Module.Finite R M] (d : ℕ) (hd : 0 < d)
     (hdim : Module.supportDim R M = (d : WithBot ℕ∞)) :

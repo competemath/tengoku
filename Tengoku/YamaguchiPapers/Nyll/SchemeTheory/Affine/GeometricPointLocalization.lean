@@ -72,7 +72,9 @@ private theorem exists_geometricPoint_of_isIso_stalkMap
           Spec.map k ≫ X.fromSpecResidueField (f (h v))) hb
 
 /-- A point of any localization of a chart stalk lifts the prescribed
-geometric point downstairs, with its underlying point unchanged.-/
+geometric point downstairs, with its underlying point unchanged.
+@isnad1 id=ex.1h10v.s11.d0d87a0193ac from=translated src=- shape=d1f3b6a8 vocab=834c0fc7
+-/
 theorem exists_geometricPoint_localized_stalk
     {X U : Scheme.{u}} (f : U ⟶ X) [Etale f] (u : U)
     (M : Submonoid (U.presheaf.stalk u)) (S : Type u) [CommRing S]
@@ -103,7 +105,9 @@ theorem exists_geometricPoint_localized_stalk
 
 /-- The extension of a chosen chart branch to a prime localization carries a
 geometric point over the fixed geometric point downstairs. The prime itself
-and its inverse image are supplied by localization of the given inclusion.-/
+and its inverse image are supplied by localization of the given inclusion.
+@isnad1 id=ex.2h9v.s13.672c06d5b8f2 from=translated src=- shape=99d45893 vocab=24010aaa
+-/
 theorem exists_geometricPoint_localized_chart_branch
     {X U : Scheme.{u}} (f : U ⟶ X) [Etale f] (u : U)
     (q : Spec (U.presheaf.stalk u)) (P : Ideal (U.presheaf.stalk u)) [P.IsPrime]

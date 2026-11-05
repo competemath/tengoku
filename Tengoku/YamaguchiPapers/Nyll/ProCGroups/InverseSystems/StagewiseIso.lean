@@ -148,7 +148,9 @@ omit [∀ i, IsTopologicalGroup (S.X i)] [∀ i, IsTopologicalGroup (T.X i)] in
 /--
 The projection inverse limit continuous multiplicative equivalence is compatible with the
 profinite topology and gives the continuous map or equivalence determined by the finite-quotient
-data.-/
+data.
+@isnad1 id=eq.0h6v.s9.d3f3da27acd2 from=translated src=- shape=d8b7fe1a vocab=16adbf8e
+-/
 @[simp] theorem projection_inverseLimitContinuousMulEquiv
     (E : InverseSystemIso S T) (i : I) (x : S.inverseLimit) :
     T.projection i (E.inverseLimitContinuousMulEquiv x) =
@@ -161,7 +163,9 @@ omit [∀ i, IsTopologicalGroup (S.X i)] [∀ i, IsTopologicalGroup (T.X i)] in
 /--
 The inverse of the projection-induced inverse-limit continuous multiplicative equivalence is
 compatible with the profinite topology and gives the continuous map or equivalence determined by
-the finite-quotient data.-/
+the finite-quotient data.
+@isnad1 id=eq.0h6v.s9.c3bce87cb3b6 from=translated src=- shape=e4f4ce09 vocab=231d6486
+-/
 @[simp] theorem projection_inverseLimitContinuousMulEquiv_symm
     (E : InverseSystemIso S T) (i : I) (x : T.inverseLimit) :
     S.projection i (E.inverseLimitContinuousMulEquiv.symm x) =

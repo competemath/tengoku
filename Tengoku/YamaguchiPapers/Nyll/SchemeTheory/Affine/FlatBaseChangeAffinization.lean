@@ -30,7 +30,9 @@ variable {X S T : Scheme.{u}} (f : X ⟶ S) (g : T ⟶ S)
 variable [IsAffine S] [IsAffine T] [QuasiCompact f] [QuasiSeparated f] [Flat g]
 
 /-- The actual maps on global sections form a pushout after flat affine
-base change of a qcqs morphism.-/
+base change of a qcqs morphism.
+@isnad1 id=ispushou.0h5v.s10.d3fe38393546 from=translated src=- shape=0dc7e082 vocab=befa3a85
+-/
 theorem isPushout_appTop_of_flat :
     IsPushout f.appTop g.appTop (pullback.fst f g).appTop
       (pullback.snd f g).appTop := by
@@ -58,7 +60,9 @@ theorem isPushout_appTop_of_flat :
   exact hp
 
 /-- The canonical affinization morphism is compatible with flat affine
-base change, as an actual cartesian square.-/
+base change, as an actual cartesian square.
+@isnad1 id=ispullba.0h5v.s10.c5d53c67e97c from=translated src=- shape=6c878275 vocab=047268ff
+-/
 theorem isPullback_toSpecΓ_of_flat :
     IsPullback (pullback f g).toSpecΓ (pullback.fst f g)
       (Spec.map (pullback.fst f g).appTop) X.toSpecΓ := by

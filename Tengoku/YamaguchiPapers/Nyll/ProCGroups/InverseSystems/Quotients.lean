@@ -40,12 +40,16 @@ def transitionHom {i j : I} (hij : i ≤ j) : S.X j →* S.X i where
   map_mul' := IsGroupSystem.map_mul (S := S) hij
 
 omit [∀ i, IsTopologicalGroup (S.X i)] in
-/-- The bundled transition homomorphism evaluates to the underlying transition map of `S`.-/
+/-- The bundled transition homomorphism evaluates to the underlying transition map of `S`.
+@isnad1 id=eq.1h5v.s7.08483c19d3b7 from=translated src=- shape=e4272aa8 vocab=a7c94477
+-/
 @[simp] theorem transitionHom_apply {i j : I} (hij : i ≤ j) (x : S.X j) :
     S.transitionHom hij x = S.map hij x := rfl
 
 omit [∀ i, IsTopologicalGroup (S.X i)] in
-/-- The bundled transition homomorphism of an inverse system is continuous.-/
+/-- The bundled transition homomorphism of an inverse system is continuous.
+@isnad1 id=continuo.1h4v.s7.27e1f27cdb9b from=translated src=- shape=ba76b552 vocab=d57386a3
+-/
 theorem continuous_transitionHom {i j : I} (hij : i ≤ j) :
     Continuous (S.transitionHom hij) :=
   S.continuous_map hij
@@ -69,7 +73,9 @@ namespace CompatibleClosedNormalSubgroups
 variable {S}
 variable (Q : S.CompatibleClosedNormalSubgroups)
 
-/-- The chosen subgroup is normal.-/
+/-- The chosen subgroup is normal.
+@isnad1 id=normal.0h4v.s5.b4f19db92bd3 from=translated src=- shape=edb5def8 vocab=6efac6a9
+-/
 instance instNormalN (i : I) : (Q.N i).Normal := Q.normal i
 
 /-- The transition map induced on stage quotients.-/
@@ -80,7 +86,9 @@ def quotientMap {i j : I} (hij : i ≤ j) :
 omit [∀ i, IsTopologicalGroup (S.X i)] in
 /--
 The induced quotient transition sends the class of `x` modulo `N j` to the class of its
-transition image modulo `N i`.-/
+transition image modulo `N i`.
+@isnad1 id=eq.1h6v.s10.a76bdb0bd94a from=translated src=- shape=da7c51fe vocab=34897564
+-/
 @[simp] theorem quotientMap_mk {i j : I} (hij : i ≤ j) (x : S.X j) :
     Q.quotientMap hij (QuotientGroup.mk' (Q.N j) x) =
       QuotientGroup.mk' (Q.N i) (S.map hij x) := by
@@ -88,7 +96,9 @@ transition image modulo `N i`.-/
     (f := S.transitionHom hij) (Q.map_le hij) x
 
 omit [∀ i, IsTopologicalGroup (S.X i)] in
-/-- The induced map on stage quotients is continuous.-/
+/-- The induced map on stage quotients is continuous.
+@isnad1 id=continuo.1h5v.s9.84fc0c6a93fb from=translated src=- shape=859a6e95 vocab=1b9572fa
+-/
 theorem continuous_quotientMap {i j : I} (hij : i ≤ j) :
     Continuous (Q.quotientMap hij) := by
   refine (QuotientGroup.isQuotientMap_mk (N := Q.N j)).continuous_iff.2 ?_
@@ -131,7 +141,9 @@ private theorem quotientInverseSystem_stageT2Space (i : I) :
   have : IsClosed (Q.N i : Set (S.X i)) := Q.closed i
   exact QuotientGroup.instT2Space (H := Q.N i)
 
-/-- The induced quotient transitions preserve the group operations at every stage.-/
+/-- The induced quotient transitions preserve the group operations at every stage.
+@isnad1 id=isgroups.0h3v.s5.d91a85917e64 from=translated src=- shape=786353e1 vocab=f3176bbf
+-/
 instance quotientInverseSystem_isGroupSystem :
     IsGroupSystem Q.quotientInverseSystem where
   map_one := by
@@ -159,7 +171,9 @@ def inverseLimitKernel : Subgroup S.inverseLimit :=
 
 /--
 The intersection of the pullbacks of the normal subgroups `N i` along all limit projections is
-a normal subgroup of the inverse limit.-/
+a normal subgroup of the inverse limit.
+@isnad1 id=normal.0h3v.s5.babd47de8a60 from=translated src=- shape=e761f2ac vocab=c3ddafd6
+-/
 instance inverseLimitKernel_normal : Q.inverseLimitKernel.Normal where
   conj_mem x hx g := by
     rw [inverseLimitKernel] at hx ⊢
@@ -176,7 +190,9 @@ variable {Q}
 omit [∀ i, IsTopologicalGroup (S.X i)] in
 /--
 Membership in the named kernel is equivalent to vanishing under its defining quotient or
-augmentation map.-/
+augmentation map.
+@isnad1 id=iff.0h4v.s7.62392a918eea from=translated src=- shape=edb24e10 vocab=21eb2f72
+-/
 theorem mem_inverseLimitKernel_iff {x : S.inverseLimit} :
     x ∈ Q.inverseLimitKernel ↔ ∀ i, S.projection i x ∈ Q.N i := by
   simp only [inverseLimitKernel, projectionHom, Subgroup.mem_iInf, Subgroup.mem_comap,
@@ -238,7 +254,9 @@ noncomputable def quotientInverseLimitComparison :
 omit [∀ i, IsTopologicalGroup (S.X i)] in
 /--
 The quotient inverse-limit comparison sends a representative to its compatible family of
-quotient coordinates.-/
+quotient coordinates.
+@isnad1 id=eq.0h4v.s10.49d89c369f15 from=translated src=- shape=46e7cf72 vocab=d3543102
+-/
 @[simp] theorem quotientInverseLimitComparison_mk (x : S.inverseLimit) :
     Q.quotientInverseLimitComparison (QuotientGroup.mk' Q.inverseLimitKernel x) =
       S.limMap Q.toQuotientInverseSystem x :=
@@ -249,7 +267,9 @@ quotient coordinates.-/
 omit [∀ i, IsTopologicalGroup (S.X i)] in
 /--
 Projecting the quotient inverse-limit comparison gives the corresponding stage quotient
-representative.-/
+representative.
+@isnad1 id=eq.0h5v.s10.f7a358023f2f from=translated src=- shape=590e5a02 vocab=838c113e
+-/
 @[simp] theorem projection_quotientInverseLimitComparison_mk
     (i : I) (x : S.inverseLimit) :
     Q.quotientInverseSystem.projection i
@@ -259,7 +279,9 @@ representative.-/
   rfl
 
 omit [∀ i, IsTopologicalGroup (S.X i)] in
-/-- The comparison map has trivial kernel.-/
+/-- The comparison map has trivial kernel.
+@isnad1 id=eq.0h3v.s9.a412ff3a3936 from=translated src=- shape=f349083f vocab=1611be0f
+-/
 theorem ker_quotientInverseLimitComparison :
     Q.quotientInverseLimitComparison.toMonoidHom.ker = ⊥ := by
   ext a
@@ -282,13 +304,17 @@ theorem ker_quotientInverseLimitComparison :
     exact map_one Q.quotientInverseLimitComparison
 
 omit [∀ i, IsTopologicalGroup (S.X i)] in
-/-- The comparison map is injective: its kernel is exactly the subgroup used in the quotient.-/
+/-- The comparison map is injective: its kernel is exactly the subgroup used in the quotient.
+@isnad1 id=injectiv.0h3v.s9.3784a6e6f8bc from=translated src=- shape=1a297f89 vocab=ae57c102
+-/
 theorem injective_quotientInverseLimitComparison :
     Function.Injective Q.quotientInverseLimitComparison :=
   (MonoidHom.ker_eq_bot_iff (f := Q.quotientInverseLimitComparison.toMonoidHom)).mp
     Q.ker_quotientInverseLimitComparison
 
-/-- The comparison map is surjective for compact Hausdorff systems over a directed index.-/
+/-- The comparison map is surjective for compact Hausdorff systems over a directed index.
+@isnad1 id=surjecti.1h3v.s9.7b3ed6553def from=translated src=- shape=29b09bce vocab=520bf711
+-/
 theorem surjective_quotientInverseLimitComparison
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
     (hdir : Directed (· ≤ ·) (id : I → I)) :
@@ -304,7 +330,9 @@ theorem surjective_quotientInverseLimitComparison
   rw [Q.quotientInverseLimitComparison_mk]
   exact hx
 
-/-- The comparison map is bijective for compact Hausdorff systems over a directed index.-/
+/-- The comparison map is bijective for compact Hausdorff systems over a directed index.
+@isnad1 id=bijectiv.1h3v.s9.7c2a08fa3867 from=translated src=- shape=29b09bce vocab=5b966dd0
+-/
 theorem bijective_quotientInverseLimitComparison
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
     (hdir : Directed (· ≤ ·) (id : I → I)) :

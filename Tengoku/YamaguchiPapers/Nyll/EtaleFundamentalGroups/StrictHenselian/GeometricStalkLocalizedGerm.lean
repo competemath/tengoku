@@ -43,7 +43,9 @@ def geometricNeighborhoodPrime : PrimeSpectrum Γ(W.left, ⊤) :=
   ⟨RingHom.ker (t.left.appTop ≫ (Scheme.ΓSpecIso (CommRingCat.of Ω)).hom).hom,
     RingHom.ker_isPrime _⟩
 
-/-- A denominator outside the selected prime has an invertible germ.-/
+/-- A denominator outside the selected prime has an invertible germ.
+@isnad1 id=isunit.0h6v.s17.fd528a4a13cc from=translated src=- shape=d3a570fc vocab=d6e9fc5b
+-/
 theorem geometricStalkGerm_isUnit_of_mem_primeCompl
     (a : (geometricNeighborhoodPrime s W t).asIdeal.primeCompl) :
     IsUnit (geometricStalkGerm s W t a) := by

@@ -28,7 +28,9 @@ namespace AlgebraicGeometry
 universe u v
 
 /-- Clearing the denominator on a principal open gives an equality on the
-larger open, because the defining global section acts injectively there.-/
+larger open, because the defining global section acts injectively there.
+@isnad1 id=ex.4h4v.s13.d40e54de9975 from=translated src=- shape=3524f37f vocab=271bca53
+-/
 theorem exists_restrict_eq_pow_mul_of_basicOpen_le
     (X : Scheme.{u}) [IsAffine X] (U : X.Opens)
     (hU : IsCompact U.1) (hU' : IsQuasiSeparated U.1)

@@ -38,7 +38,9 @@ def finiteKummerRootSet (n : ℕ+) : Set L :=
     ∃ a : Kˣ, beta ^ (n : ℕ) = algebraMap K L (a : K)}
 
 /-- A primitive `n`-th root in `K` implies the field-level hypothesis that
-all `n`-th roots of unity occurring in `L` come from `K`.-/
+all `n`-th roots of unity occurring in `L` come from `K`.
+@isnad1 id=nthroots.1h3v.s5.6b0e75445ba3 from=translated src=- shape=084f9c87 vocab=54236ba2
+-/
 theorem nthRootsOfUnityInBase_of_primitiveRoots
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty) :
     NthRootsOfUnityInBase (K := K) (L := L) n := by

@@ -34,7 +34,9 @@ namespace ValuationSubring
 
 variable (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
 
-/-- The unit quotient is multiplicative in the unit argument.-/
+/-- The unit quotient is multiplicative in the unit argument.
+@isnad1 id=eq.0h6v.s8.eabbc657b4be from=translated src=- shape=e25c22b7 vocab=a56f3682
+-/
 theorem automorphismUnitQuotient_mul_arg
     (A : _root_.ValuationSubring L) (σ : decompositionGroup K A)
     (x y : Lˣ) :
@@ -45,14 +47,18 @@ theorem automorphismUnitQuotient_mul_arg
   simp [automorphismUnitQuotient, div_eq_mul_inv, mul_assoc, mul_left_comm,
     mul_comm]
 
-/-- The unit quotient is trivial on the unit `1`.-/
+/-- The unit quotient is trivial on the unit `1`.
+@isnad1 id=eq.0h4v.s8.683f13bd727e from=translated src=- shape=3f9c63ef vocab=9415e3f6
+-/
 theorem automorphismUnitQuotient_one_arg
     (A : _root_.ValuationSubring L) (σ : decompositionGroup K A) :
     automorphismUnitQuotient K A σ 1 = 1 := by
   ext
   simp [automorphismUnitQuotient]
 
-/-- A `K`-unit contributes trivially to the unit quotient.-/
+/-- A `K`-unit contributes trivially to the unit quotient.
+@isnad1 id=eq.0h5v.s9.7600e67097e3 from=translated src=- shape=bbe55e84 vocab=38e5a6dd
+-/
 theorem automorphismUnitQuotient_algebraMapUnit
     (A : _root_.ValuationSubring L) (σ : decompositionGroup K A) (a : Kˣ) :
     automorphismUnitQuotient K A σ
@@ -62,7 +68,9 @@ theorem automorphismUnitQuotient_algebraMapUnit
 
 /-- Prime-decomposition statement:
 an inertia element sends valuation-ring units to the same residue class, hence
-its unit quotient on such a unit is principal.-/
+its unit quotient on such a unit is principal.
+@isnad1 id=mem.1h5v.s11.0058d98e1655 from=translated src=- shape=47c85d5f vocab=76c9d9bf
+-/
 theorem inertia_automorphismUnitQuotient_mem_principalUnitGroup_of_mem_unitGroup
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A)
     {u : Lˣ} (hu : u ∈ A.unitGroup) :
@@ -142,7 +150,9 @@ abbrev inertiaUnitQuotientClass
   QuotientGroup.mk
     (automorphismUnitQuotient K A (σ : decompositionGroup K A) x)
 
-/-- States the theorem `inertiaUnitQuotientClass_eq_one_iff`.-/
+/-- States the theorem `inertiaUnitQuotientClass_eq_one_iff`.
+@isnad1 id=iff.0h5v.s12.ee5be68b84ef from=translated src=- shape=bf3eb95a vocab=df817aa9
+-/
 @[simp] theorem inertiaUnitQuotientClass_eq_one_iff
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) (x : Lˣ) :
     inertiaUnitQuotientClass K A σ x = 1 ↔
@@ -150,7 +160,9 @@ abbrev inertiaUnitQuotientClass
         A.principalUnitGroup :=
   QuotientGroup.eq_one_iff _
 
-/-- Valuation-ring units map to the trivial raw class.-/
+/-- Valuation-ring units map to the trivial raw class.
+@isnad1 id=eq.1h5v.s11.104198f795ff from=translated src=- shape=37caafde vocab=21d2f42e
+-/
 theorem inertiaUnitQuotientClass_eq_one_of_mem_unitGroup
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A)
     {u : Lˣ} (hu : u ∈ A.unitGroup) :
@@ -170,7 +182,9 @@ def principalUnitQuotientToValueClass
       intro x hx
       exact A.principal_units_le_units hx)
 
-/-- States the theorem `principalUnitQuotientToValueClass_mk`.-/
+/-- States the theorem `principalUnitQuotientToValueClass_mk`.
+@isnad1 id=eq.0h3v.s11.56433ca39e3f from=translated src=- shape=d6f78f85 vocab=5c722824
+-/
 @[simp] theorem principalUnitQuotientToValueClass_mk
     (A : _root_.ValuationSubring L) (x : Lˣ) :
     principalUnitQuotientToValueClass A
@@ -185,14 +199,18 @@ abbrev valueDisplacementClass
     Lˣ ⧸ A.unitGroup :=
   QuotientGroup.mk' A.unitGroup (automorphismUnitQuotient K A σ x)
 
-/-- States the theorem `valueDisplacementClass_eq_one_iff`.-/
+/-- States the theorem `valueDisplacementClass_eq_one_iff`.
+@isnad1 id=iff.0h5v.s9.5f2ae22cfcd6 from=translated src=- shape=68ff3ab8 vocab=5ef481d8
+-/
 @[simp] theorem valueDisplacementClass_eq_one_iff
     (A : _root_.ValuationSubring L) (σ : decompositionGroup K A) (x : Lˣ) :
     valueDisplacementClass K A σ x = 1 ↔
       automorphismUnitQuotient K A σ x ∈ A.unitGroup :=
   QuotientGroup.eq_one_iff _
 
-/-- States the theorem `principalUnitQuotientToValueClass_inertiaUnitQuotientClass`.-/
+/-- States the theorem `principalUnitQuotientToValueClass_inertiaUnitQuotientClass`.
+@isnad1 id=eq.0h5v.s12.ad6c5536967b from=translated src=- shape=517b3018 vocab=fe5d1258
+-/
 @[simp] theorem principalUnitQuotientToValueClass_inertiaUnitQuotientClass
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) (x : Lˣ) :
     principalUnitQuotientToValueClass A
@@ -222,7 +240,9 @@ def valueDisplacementHom
       (automorphismUnitQuotient K A σ x)
       (automorphismUnitQuotient K A σ y)
 
-/-- States the theorem `valueDisplacementHom_apply`.-/
+/-- States the theorem `valueDisplacementHom_apply`.
+@isnad1 id=eq.0h5v.s10.ab72c3143e74 from=translated src=- shape=4bf5819e vocab=794eab3f
+-/
 @[simp] theorem valueDisplacementHom_apply
     (A : _root_.ValuationSubring L) (σ : decompositionGroup K A) (x : Lˣ) :
     valueDisplacementHom K A σ x =
@@ -295,7 +315,9 @@ def valueTrivialAutomorphismUnit
       ((σ : inertiaGroup K A) : decompositionGroup K A) x).mp
       (σ.property x)⟩
 
-/-- States the theorem `valueTrivialAutomorphismUnit_coe`.-/
+/-- States the theorem `valueTrivialAutomorphismUnit_coe`.
+@isnad1 id=eq.0h5v.s14.2aa759daaf90 from=translated src=- shape=1afcc8f8 vocab=fd79c81a
+-/
 @[simp] theorem valueTrivialAutomorphismUnit_coe
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) (x : Lˣ) :
@@ -304,7 +326,9 @@ def valueTrivialAutomorphismUnit
         ((σ : inertiaGroup K A) : decompositionGroup K A) x :=
   rfl
 
-/-- States the theorem `valueTrivialAutomorphismUnit_one_arg`.-/
+/-- States the theorem `valueTrivialAutomorphismUnit_one_arg`.
+@isnad1 id=eq.0h4v.s13.2a06e289cfa1 from=translated src=- shape=dab7d1ca vocab=4d35f05f
+-/
 @[simp] theorem valueTrivialAutomorphismUnit_one_arg
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) :
@@ -312,7 +336,9 @@ def valueTrivialAutomorphismUnit
   ext
   simp [valueTrivialAutomorphismUnit, automorphismUnitQuotient_one_arg]
 
-/-- States the theorem `valueTrivialAutomorphismUnit_mul_arg`.-/
+/-- States the theorem `valueTrivialAutomorphismUnit_mul_arg`.
+@isnad1 id=eq.0h6v.s13.592c7cf2e35e from=translated src=- shape=c2ac3109 vocab=c1f99403
+-/
 theorem valueTrivialAutomorphismUnit_mul_arg
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) (x y : Lˣ) :
@@ -341,7 +367,9 @@ def valueTrivialInertiaResidueUnitHom
       (valueTrivialAutomorphismUnit K A σ x)
       (valueTrivialAutomorphismUnit K A σ y)
 
-/-- States the theorem `valueTrivialInertiaResidueUnitHom_apply`.-/
+/-- States the theorem `valueTrivialInertiaResidueUnitHom_apply`.
+@isnad1 id=eq.0h5v.s14.c118918356ea from=translated src=- shape=9792af01 vocab=bfbce4ec
+-/
 @[simp] theorem valueTrivialInertiaResidueUnitHom_apply
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) (x : Lˣ) :
@@ -350,7 +378,9 @@ def valueTrivialInertiaResidueUnitHom
         (valueTrivialAutomorphismUnit K A σ x) :=
   rfl
 
-/-- Valuation-ring units are killed by the residue-unit character.-/
+/-- Valuation-ring units are killed by the residue-unit character.
+@isnad1 id=le.0h4v.s13.599c397ac680 from=translated src=- shape=b405133c vocab=ab5b9cc4
+-/
 theorem unitGroup_le_valueTrivialInertiaResidueUnitHom_ker
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) :
@@ -371,7 +401,9 @@ theorem unitGroup_le_valueTrivialInertiaResidueUnitHom_ker
   change A.unitGroupToResidueFieldUnits uA = 1
   exact MonoidHom.mem_ker.mp hker
 
-/-- Base-field units are killed by the residue-unit character.-/
+/-- Base-field units are killed by the residue-unit character.
+@isnad1 id=eq.0h5v.s13.26107753c7d9 from=translated src=- shape=14d25a4d vocab=1f527de1
+-/
 theorem valueTrivialInertiaResidueUnitHom_baseUnit
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) (a : Kˣ) :
@@ -397,7 +429,9 @@ theorem valueTrivialInertiaResidueUnitHom_baseUnit
 
 /-- A value-trivial inertia element changes a unit representative only by a
 valuation-ring unit, hence every residue-unit character is unchanged after
-applying it to the representative.-/
+applying it to the representative.
+@isnad1 id=eq.0h6v.s15.cdcf389da807 from=translated src=- shape=f45e4ba1 vocab=2f0bf9d7
+-/
 theorem valueTrivialInertiaResidueUnitHom_mapEquiv_arg
     (A : _root_.ValuationSubring L)
     (σ τ : valueTrivialInertiaGroup K A) (x : Lˣ) :
@@ -428,7 +462,9 @@ theorem valueTrivialInertiaResidueUnitHom_mapEquiv_arg
         (K := K) A σ hq_mem)
   rw [hq, one_mul]
 
-/-- The identity inertia element gives the trivial residue-unit character.-/
+/-- The identity inertia element gives the trivial residue-unit character.
+@isnad1 id=eq.0h4v.s14.fe73c4dc81e7 from=translated src=- shape=78c6e6be vocab=20d4af1c
+-/
 theorem valueTrivialInertiaResidueUnitHom_one
     (A : _root_.ValuationSubring L) (x : Lˣ) :
     valueTrivialInertiaResidueUnitHom K A
@@ -443,7 +479,9 @@ theorem valueTrivialInertiaResidueUnitHom_one
   exact map_one A.unitGroupToResidueFieldUnits
 
 /-- Prime-decomposition statement:
-the residue-unit characters multiply with the inertia element.-/
+the residue-unit characters multiply with the inertia element.
+@isnad1 id=eq.0h6v.s16.cd51489b1ec7 from=translated src=- shape=984f194b vocab=5587da99
+-/
 theorem valueTrivialInertiaResidueUnitHom_mul
     (A : _root_.ValuationSubring L)
     (σ τ : valueTrivialInertiaGroup K A) (x : Lˣ) :
@@ -482,7 +520,9 @@ def valueClassToResidueUnits
     (valueTrivialInertiaResidueUnitHom K A σ)
     (unitGroup_le_valueTrivialInertiaResidueUnitHom_ker (K := K) A σ)
 
-/-- States the theorem `valueClassToResidueUnits_mk`.-/
+/-- States the theorem `valueClassToResidueUnits_mk`.
+@isnad1 id=eq.0h5v.s14.14a7cf93049e from=translated src=- shape=ec921082 vocab=861ceb52
+-/
 @[simp] theorem valueClassToResidueUnits_mk
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) (x : Lˣ) :
@@ -491,7 +531,9 @@ def valueClassToResidueUnits
       valueTrivialInertiaResidueUnitHom K A σ x :=
   rfl
 
-/-- States the theorem `valueTrivialInertiaResidueUnitHom_eq_one_of_mem_ramificationGroup`.-/
+/-- States the theorem `valueTrivialInertiaResidueUnitHom_eq_one_of_mem_ramificationGroup`.
+@isnad1 id=eq.1h5v.s15.c6a529afa732 from=translated src=- shape=6831e756 vocab=53677c28
+-/
 theorem valueTrivialInertiaResidueUnitHom_eq_one_of_mem_ramificationGroup
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A)
@@ -539,14 +581,18 @@ def inertiaUnitQuotientHom
       (automorphismUnitQuotient K A (σ : decompositionGroup K A) x)
       (automorphismUnitQuotient K A (σ : decompositionGroup K A) y)
 
-/-- States the theorem `inertiaUnitQuotientHom_apply`.-/
+/-- States the theorem `inertiaUnitQuotientHom_apply`.
+@isnad1 id=eq.0h5v.s11.8a2e73cb5e05 from=translated src=- shape=d2c5a11e vocab=4a190d98
+-/
 @[simp] theorem inertiaUnitQuotientHom_apply
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) (x : Lˣ) :
     inertiaUnitQuotientHom K A σ x =
       inertiaUnitQuotientClass K A σ x :=
   rfl
 
-/-- The raw quotient homomorphism kills the valuation-ring unit group.-/
+/-- The raw quotient homomorphism kills the valuation-ring unit group.
+@isnad1 id=le.0h4v.s11.d013d509b0d3 from=translated src=- shape=1b58b2f2 vocab=fcc0b24b
+-/
 theorem unitGroup_le_inertiaUnitQuotientHom_ker
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) :
     A.unitGroup ≤ (inertiaUnitQuotientHom K A σ).ker := by
@@ -565,7 +611,9 @@ def valueClassToPrincipalUnitQuotient
     (inertiaUnitQuotientHom K A σ)
     (unitGroup_le_inertiaUnitQuotientHom_ker (K := K) A σ)
 
-/-- States the theorem `valueClassToPrincipalUnitQuotient_mk`.-/
+/-- States the theorem `valueClassToPrincipalUnitQuotient_mk`.
+@isnad1 id=eq.0h5v.s12.6c4e3c5415d6 from=translated src=- shape=bad04679 vocab=b8226194
+-/
 @[simp] theorem valueClassToPrincipalUnitQuotient_mk
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) (x : Lˣ) :
     valueClassToPrincipalUnitQuotient K A σ
@@ -580,7 +628,9 @@ def baseUnitToValueClass (A : _root_.ValuationSubring L) :
   (QuotientGroup.mk' A.unitGroup).comp
     (Units.map (algebraMap K L).toMonoidHom)
 
-/-- States the theorem `baseUnitToValueClass_apply`.-/
+/-- States the theorem `baseUnitToValueClass_apply`.
+@isnad1 id=eq.0h4v.s11.8ea4c86a9121 from=translated src=- shape=11fd3b9c vocab=81bda725
+-/
 @[simp] theorem baseUnitToValueClass_apply
     (A : _root_.ValuationSubring L) (a : Kˣ) :
     baseUnitToValueClass K A a =
@@ -593,7 +643,9 @@ abbrev baseUnitValueClassSubgroup (A : _root_.ValuationSubring L) :
     Subgroup (Lˣ ⧸ A.unitGroup) :=
   (baseUnitToValueClass K A).range
 
-/-- Provides the instance `baseUnitValueClassSubgroup_normal`.-/
+/-- Provides the instance `baseUnitValueClassSubgroup_normal`.
+@isnad1 id=normal.0h3v.s7.f573e1433e91 from=translated src=- shape=16c22842 vocab=ff537ea7
+-/
 instance baseUnitValueClassSubgroup_normal
     (A : _root_.ValuationSubring L) :
     (baseUnitValueClassSubgroup K A).Normal :=
@@ -604,7 +656,9 @@ instance baseUnitValueClassSubgroup_normal
     rw [hconj]
     exact hn⟩
 
-/-- Base-field units map trivially under the descended raw character.-/
+/-- Base-field units map trivially under the descended raw character.
+@isnad1 id=eq.0h5v.s12.8997363cc61e from=translated src=- shape=c2dd0c8d vocab=2e5d638a
+-/
 theorem valueClassToPrincipalUnitQuotient_baseUnit
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) (a : Kˣ) :
     valueClassToPrincipalUnitQuotient K A σ
@@ -616,7 +670,9 @@ theorem valueClassToPrincipalUnitQuotient_baseUnit
       exact A.principalUnitGroup.one_mem)
 
 /-- The base-field value classes lie in the kernel of the descended raw
-character.-/
+character.
+@isnad1 id=le.0h4v.s11.c3e3f473a40a from=translated src=- shape=3bcf4ac6 vocab=5c9a911b
+-/
 theorem baseUnitValueClassSubgroup_le_valueClassToPrincipalUnitQuotient_ker
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) :
     baseUnitValueClassSubgroup K A ≤
@@ -638,7 +694,9 @@ def valueModuloBaseToPrincipalUnitQuotient
     (baseUnitValueClassSubgroup_le_valueClassToPrincipalUnitQuotient_ker
       (K := K) A σ)
 
-/-- States the theorem `valueModuloBaseToPrincipalUnitQuotient_mk`.-/
+/-- States the theorem `valueModuloBaseToPrincipalUnitQuotient_mk`.
+@isnad1 id=eq.0h5v.s13.633c28cecde8 from=translated src=- shape=d99937c3 vocab=d75997e5
+-/
 @[simp] theorem valueModuloBaseToPrincipalUnitQuotient_mk
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A)
     (x : Lˣ ⧸ A.unitGroup) :
@@ -647,7 +705,9 @@ def valueModuloBaseToPrincipalUnitQuotient
       valueClassToPrincipalUnitQuotient K A σ x :=
   rfl
 
-/-- States the theorem `valueModuloBaseToPrincipalUnitQuotient_mk_mk`.-/
+/-- States the theorem `valueModuloBaseToPrincipalUnitQuotient_mk_mk`.
+@isnad1 id=eq.0h5v.s13.9c8da1e57e28 from=translated src=- shape=51b23ec7 vocab=4efb0ae0
+-/
 @[simp] theorem valueModuloBaseToPrincipalUnitQuotient_mk_mk
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A) (x : Lˣ) :
     valueModuloBaseToPrincipalUnitQuotient K A σ
@@ -656,7 +716,9 @@ def valueModuloBaseToPrincipalUnitQuotient
       inertiaUnitQuotientClass K A σ x :=
   rfl
 
-/-- The base value classes are killed by the residue-unit character.-/
+/-- The base value classes are killed by the residue-unit character.
+@isnad1 id=le.0h4v.s13.02ee1c5d64b2 from=translated src=- shape=a45835db vocab=a3d60973
+-/
 theorem baseUnitValueClassSubgroup_le_valueClassToResidueUnits_ker
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) :
@@ -680,7 +742,9 @@ def valueModuloBaseToResidueUnits
     (baseUnitValueClassSubgroup_le_valueClassToResidueUnits_ker
       (K := K) A σ)
 
-/-- States the theorem `valueModuloBaseToResidueUnits_mk`.-/
+/-- States the theorem `valueModuloBaseToResidueUnits_mk`.
+@isnad1 id=eq.0h5v.s14.e17969266f89 from=translated src=- shape=115caf53 vocab=877325f9
+-/
 @[simp] theorem valueModuloBaseToResidueUnits_mk
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) (x : Lˣ ⧸ A.unitGroup) :
@@ -689,7 +753,9 @@ def valueModuloBaseToResidueUnits
       valueClassToResidueUnits K A σ x :=
   rfl
 
-/-- States the theorem `valueModuloBaseToResidueUnits_mk_mk`.-/
+/-- States the theorem `valueModuloBaseToResidueUnits_mk_mk`.
+@isnad1 id=eq.0h5v.s14.da5d18ef4af0 from=translated src=- shape=093552da vocab=609e672d
+-/
 @[simp] theorem valueModuloBaseToResidueUnits_mk_mk
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) (x : Lˣ) :
@@ -702,7 +768,9 @@ def valueModuloBaseToResidueUnits
 /-- The inertia-character construction satisfies:
 an element of `R_w` gives the trivial residue-unit character on
 `Delta/Gamma`.  This is the kernel direction for the canonical map from
-inertia to `Hom(Delta/Gamma, lambda*)`.-/
+inertia to `Hom(Delta/Gamma, lambda*)`.
+@isnad1 id=eq.1h4v.s15.b6e67a75d0b1 from=translated src=- shape=43c06420 vocab=6b16b162
+-/
 theorem valueModuloBaseToResidueUnits_eq_one_of_mem_ramificationGroup
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A)
@@ -759,7 +827,9 @@ def valueTrivialInertiaCharacterHom
       valueModuloBaseToResidueUnits_mk_mk]
     exact valueTrivialInertiaResidueUnitHom_mul (K := K) A σ τ x
 
-/-- States the theorem `valueTrivialInertiaCharacterHom_apply`.-/
+/-- States the theorem `valueTrivialInertiaCharacterHom_apply`.
+@isnad1 id=eq.0h4v.s17.a12af9b1c066 from=translated src=- shape=43efffb2 vocab=e19fcc13
+-/
 @[simp] theorem valueTrivialInertiaCharacterHom_apply
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) :
@@ -767,7 +837,9 @@ def valueTrivialInertiaCharacterHom
       valueModuloBaseToResidueUnits K A σ :=
   rfl
 
-/-- The ramification group is contained in the kernel of the character map.-/
+/-- The ramification group is contained in the kernel of the character map.
+@isnad1 id=mem.1h4v.s17.50a7cf9cf7c6 from=translated src=- shape=5dd7bba4 vocab=e9b4f825
+-/
 theorem valueTrivialInertiaCharacterHom_mem_ker_of_mem_ramificationGroup
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A)
@@ -778,7 +850,9 @@ theorem valueTrivialInertiaCharacterHom_mem_ker_of_mem_ramificationGroup
     (K := K) A σ hσ
 
 /-- Conversely, a value-trivial inertia element with trivial character lies in
-the ramification group.-/
+the ramification group.
+@isnad1 id=mem.1h4v.s17.38c829b33273 from=translated src=- shape=b5f70480 vocab=e9b4f825
+-/
 theorem mem_ramificationGroup_of_valueTrivialInertiaCharacterHom_mem_ker
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A)
@@ -817,7 +891,9 @@ theorem mem_ramificationGroup_of_valueTrivialInertiaCharacterHom_mem_ker
   simpa [valueTrivialAutomorphismUnit] using hker'
 
 /-- Prime-decomposition statement:
-on value-trivial inertia, the kernel of `σ ↦ χ_σ` is exactly `R_w`.-/
+on value-trivial inertia, the kernel of `σ ↦ χ_σ` is exactly `R_w`.
+@isnad1 id=iff.0h4v.s17.67706a26cfba from=translated src=- shape=b66aa416 vocab=e9b4f825
+-/
 theorem valueTrivialInertiaCharacterHom_mem_ker_iff
     (A : _root_.ValuationSubring L)
     (σ : valueTrivialInertiaGroup K A) :

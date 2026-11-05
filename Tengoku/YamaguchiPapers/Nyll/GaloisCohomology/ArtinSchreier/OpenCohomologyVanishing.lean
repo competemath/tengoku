@@ -18,7 +18,9 @@ variable {K : Type u} {Ω : Type v} [Field K] [Field Ω] [Algebra K Ω]
   [IsGalois K Ω] [IsSepClosed Ω]
 
 /-- Prime-field two-cocycles are coboundaries on every open Galois subgroup
-in characteristic `p`.-/
+in characteristic `p`.
+@isnad1 id=ex.2h5v.s13.12833e66b502 from=translated src=- shape=e436c1b2 vocab=d097e679
+-/
 theorem exists_zmod_primitive_of_two_cocycle_open
     (p : ℕ) [Fact p.Prime] [CharP Ω p]
     (H : OpenSubgroup Gal(Ω/K))

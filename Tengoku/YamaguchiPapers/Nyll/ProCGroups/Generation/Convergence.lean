@@ -32,7 +32,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
 /--
 A continuous map between topological groups that sends \(1\) to \(1\) carries convergent sets to
-convergent sets, provided the source is profinite.-/
+convergent sets, provided the source is profinite.
+@isnad1 id=converge.3h4v.s6.71631fe579af from=translated src=- shape=14268cfb vocab=45e9a90f
+-/
 theorem ConvergesToOneAlongOpenSubgroups.image_of_continuous_pointed
     {H : Type v} [Group H] [TopologicalSpace H]
     [CompactSpace G] [TotallyDisconnectedSpace G]
@@ -55,7 +57,9 @@ theorem ConvergesToOneAlongOpenSubgroups.image_of_continuous_pointed
   exact (hX V.toOpenSubgroup).image f |>.subset hsubset
 
 omit [IsTopologicalGroup G] in
-/-- Passing to a subset preserves convergence to \(1\).-/
+/-- Passing to a subset preserves convergence to \(1\).
+@isnad1 id=converge.2h3v.s5.007be21b466b from=translated src=- shape=d09f7fe0 vocab=19d70056
+-/
 theorem ConvergesToOneAlongOpenSubgroups.mono {X Y : Set G}
     (hX : ConvergesToOneAlongOpenSubgroups (G := G) X) (hYX : Y ⊆ X) :
     ConvergesToOneAlongOpenSubgroups (G := G) Y := by
@@ -65,7 +69,9 @@ theorem ConvergesToOneAlongOpenSubgroups.mono {X Y : Set G}
     exact ⟨hYX hy.1, hy.2⟩)
 
 omit [IsTopologicalGroup G] in
-/-- Finite enlargements preserve convergence to \(1\).-/
+/-- Finite enlargements preserve convergence to \(1\).
+@isnad1 id=converge.2h3v.s5.42c64e3e7a30 from=translated src=- shape=a59c6266 vocab=525da03a
+-/
 theorem ConvergesToOneAlongOpenSubgroups.union_finite {X F : Set G}
     (hX : ConvergesToOneAlongOpenSubgroups (G := G) X) (hF : F.Finite) :
     ConvergesToOneAlongOpenSubgroups (G := G) (X ∪ F) := by
@@ -85,7 +91,9 @@ theorem ConvergesToOneAlongOpenSubgroups.union_finite {X F : Set G}
 omit [IsTopologicalGroup G] in
 /--
 Convergence to \(1\) is preserved and reflected by the indicated finite union, insertion, or
-continuous equivalence operation.-/
+continuous equivalence operation.
+@isnad1 id=iff.1h3v.s5.38045142d13d from=translated src=- shape=1d3e6cc1 vocab=525da03a
+-/
 theorem ConvergesToOneAlongOpenSubgroups.union_finite_iff {X F : Set G}
     (hF : F.Finite) :
     ConvergesToOneAlongOpenSubgroups (G := G) (X ∪ F) ↔ ConvergesToOneAlongOpenSubgroups (G :=
@@ -101,7 +109,9 @@ theorem ConvergesToOneAlongOpenSubgroups.union_finite_iff {X F : Set G}
 omit [IsTopologicalGroup G] in
 /--
 Convergence to \(1\) is preserved and reflected by the indicated finite union, insertion, or
-continuous equivalence operation.-/
+continuous equivalence operation.
+@isnad1 id=iff.0h3v.s4.48590d9733f6 from=translated src=- shape=865792ce vocab=5681d0f8
+-/
 theorem ConvergesToOneAlongOpenSubgroups.insert_iff {X : Set G} {x : G} :
     ConvergesToOneAlongOpenSubgroups (G := G) (Set.insert x X) ↔
         ConvergesToOneAlongOpenSubgroups (G := G) X := by
@@ -123,7 +133,9 @@ theorem ConvergesToOneAlongOpenSubgroups.insert_iff {X : Set G} {x : G} :
 omit [IsTopologicalGroup G] in
 /--
 Convergence to \(1\) is preserved and reflected by the indicated finite union, insertion, or
-continuous equivalence operation.-/
+continuous equivalence operation.
+@isnad1 id=iff.0h2v.s5.1e76fb195bb0 from=translated src=- shape=33996a29 vocab=b2f23e5a
+-/
 theorem ConvergesToOneAlongOpenSubgroups.union_one_iff {X : Set G} :
     ConvergesToOneAlongOpenSubgroups (G := G) (X ∪ ({1} : Set G)) ↔
         ConvergesToOneAlongOpenSubgroups (G := G) X := by
@@ -132,7 +144,9 @@ theorem ConvergesToOneAlongOpenSubgroups.union_one_iff {X : Set G} :
 
 /--
 A set converging to \(1\) is discrete away from \(1\), and if it is infinite its closure is
-obtained by adjoining the unique possible limit point \(1\).-/
+obtained by adjoining the unique possible limit point \(1\).
+@isnad1 id=and.1h2v.s6.bda77e2cdf7d from=translated src=- shape=796bb682 vocab=54a797e7
+-/
 theorem closure_generatorsConvergingToOne
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] {X : Set G}
     (hX : ConvergesToOneAlongOpenSubgroups (G := G) X) :
@@ -229,7 +243,9 @@ theorem closure_generatorsConvergingToOne
           exact hxnot ⟨hxX, hxU⟩
         exact ⟨x, hUW hxU, hxX⟩
 
-/-- A convergent set containing its only possible limit point \(1\) is closed.-/
+/-- A convergent set containing its only possible limit point \(1\) is closed.
+@isnad1 id=isclosed.2h2v.s5.391c23d4a775 from=translated src=- shape=ed6e541d vocab=45d87867
+-/
 theorem ConvergesToOneAlongOpenSubgroups.isClosed_of_one_mem
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] {X : Set G}
     (hX : ConvergesToOneAlongOpenSubgroups (G := G) X) (h1 : (1 : G) ∈ X) :

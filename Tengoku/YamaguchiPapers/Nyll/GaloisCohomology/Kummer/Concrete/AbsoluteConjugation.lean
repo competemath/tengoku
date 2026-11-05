@@ -37,13 +37,17 @@ noncomputable def absoluteGaloisConjugateEquiv (τ : K ≃+* K) :
     (IsAlgClosure.equivOfEquiv (AlgebraicClosure K) (AlgebraicClosure K) τ)
     (IsAlgClosure.equivOfEquiv_algebraMap (AlgebraicClosure K) (AlgebraicClosure K) τ)
 
-/-- Evaluation of the bundled chosen conjugation.-/
+/-- Evaluation of the bundled chosen conjugation.
+@isnad1 id=eq.0h3v.s11.f99ba645722c from=translated src=- shape=75fa1064 vocab=c86cc89b
+-/
 theorem absoluteGaloisConjugateEquiv_apply (τ : K ≃+* K)
     (σ : Gal(AlgebraicClosure K/K)) :
     absoluteGaloisConjugateEquiv τ σ = absoluteGaloisConjugate τ σ := by
   rfl
 
-/-- The chosen conjugation is continuous in the Krull topology.-/
+/-- The chosen conjugation is continuous in the Krull topology.
+@isnad1 id=continuo.0h2v.s11.0e41662806ab from=translated src=- shape=1a4298ba vocab=e88cd470
+-/
 theorem absoluteGaloisConjugateEquiv_continuous (τ : K ≃+* K) :
     Continuous (absoluteGaloisConjugateEquiv τ) :=
   semilinearGaloisConjugateEquiv_continuous τ
@@ -57,13 +61,17 @@ noncomputable def absoluteGaloisConjugateContinuousEquiv (τ : K ≃+* K) :
     (IsAlgClosure.equivOfEquiv (AlgebraicClosure K) (AlgebraicClosure K) τ)
     (IsAlgClosure.equivOfEquiv_algebraMap (AlgebraicClosure K) (AlgebraicClosure K) τ)
 
-/-- Evaluation of the continuous chosen conjugation.-/
+/-- Evaluation of the continuous chosen conjugation.
+@isnad1 id=eq.0h3v.s11.460e619cc782 from=translated src=- shape=75fa1064 vocab=ac17846a
+-/
 theorem absoluteGaloisConjugateContinuousEquiv_apply (τ : K ≃+* K)
     (σ : Gal(AlgebraicClosure K/K)) :
     absoluteGaloisConjugateContinuousEquiv τ σ = absoluteGaloisConjugate τ σ := by
   rfl
 
-/-- The conjugated automorphism is evaluated by conjugating in the closure.-/
+/-- The conjugated automorphism is evaluated by conjugating in the closure.
+@isnad1 id=eq.0h4v.s10.6c111140abad from=translated src=- shape=1dc1f809 vocab=058e0cdf
+-/
 theorem absoluteGaloisConjugate_apply (τ : K ≃+* K)
     (σ : Gal(AlgebraicClosure K/K)) (x : AlgebraicClosure K) :
     absoluteGaloisConjugate τ σ x =
@@ -71,7 +79,9 @@ theorem absoluteGaloisConjugate_apply (τ : K ≃+* K)
         (σ ((IsAlgClosure.equivOfEquiv (AlgebraicClosure K) (AlgebraicClosure K) τ).symm x)) := by
   rfl
 
-/-- Root quotients commute with semilinear conjugation in the algebraic closure.-/
+/-- Root quotients commute with semilinear conjugation in the algebraic closure.
+@isnad1 id=eq.0h4v.s10.fd51a7e29db8 from=translated src=- shape=5add6cd2 vocab=cd579a86
+-/
 theorem rootQuotient_absoluteGaloisConjugate (τ : K ≃+* K)
     (β : (AlgebraicClosure K)ˣ) (σ : Gal(AlgebraicClosure K/K)) :
     rootQuotient (K := K)

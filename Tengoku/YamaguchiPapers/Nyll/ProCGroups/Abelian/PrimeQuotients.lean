@@ -16,7 +16,9 @@ import Tengoku.Seed.Algebra.BigOperators.Associated
 
 namespace ProCGroups.Abelian
 
-/-- A prime divisor of a finite abelian group order gives a cyclic quotient of that order.-/
+/-- A prime divisor of a finite abelian group order gives a cyclic quotient of that order.
+@isnad1 id=ex.1h2v.s7.a5db40040741 from=translated src=- shape=191af30e vocab=6075a139
+-/
 theorem exists_surjective_prime_character_finite
     {p : ℕ} [Fact p.Prime] {A : Type*} [CommGroup A] [Finite A]
     (hp : p ∣ Nat.card A) :
