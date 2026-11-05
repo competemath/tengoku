@@ -117,7 +117,9 @@ private lemma isContinuous_of_finite_colimit
     hom_apply_rho (Y := c.pt) (c.ι.app j) g y
 
 /-- Continuity of an action on a finite discrete space is closed under limits
-indexed by finite categories.-/
+indexed by finite categories.
+@isnad1 id=isclosed.0h2v.s6.451e6fa900f6 from=translated src=- shape=56e3ca1b vocab=a0236b51
+-/
 instance isClosedUnderLimitsOfShape_isContinuous
     {J : Type} [SmallCategory J] [FinCategory J] :
     ObjectProperty.IsClosedUnderLimitsOfShape
@@ -128,7 +130,9 @@ instance isClosedUnderLimitsOfShape_isContinuous
       h.isLimit h.prop_diag_obj
 
 /-- Continuity of an action on a finite discrete space is closed under colimits
-indexed by finite categories.-/
+indexed by finite categories.
+@isnad1 id=isclosed.0h2v.s6.2ed0f105988c from=translated src=- shape=56e3ca1b vocab=44277d60
+-/
 instance isClosedUnderColimitsOfShape_isContinuous
     {J : Type} [SmallCategory J] [FinCategory J] :
     ObjectProperty.IsClosedUnderColimitsOfShape
@@ -138,18 +142,24 @@ instance isClosedUnderColimitsOfShape_isContinuous
     exact isContinuous_of_finite_colimit h.diag h.toColimitPresentation.cocone
       h.isColimit h.prop_diag_obj
 
-/-- Finite continuous actions of a topological monoid have finite limits.-/
+/-- Finite continuous actions of a topological monoid have finite limits.
+@isnad1 id=hasfinit.0h1v.s7.969af72d3bb4 from=translated src=- shape=fc0fd344 vocab=4339c8d6
+-/
 noncomputable instance hasFiniteLimits :
     HasFiniteLimits (ContAction FintypeCat.{u} G) where
   out _ _ _ := inferInstance
 
-/-- Finite continuous actions of a topological monoid have finite colimits.-/
+/-- Finite continuous actions of a topological monoid have finite colimits.
+@isnad1 id=hasfinit.0h1v.s7.9a05c12bb146 from=translated src=- shape=fc0fd344 vocab=638eca7d
+-/
 noncomputable instance hasFiniteColimits :
     HasFiniteColimits (ContAction FintypeCat.{u} G) where
   out _ _ _ := inferInstance
 
 /-- The inherited forgetful functor from finite continuous actions to finite
-sets preserves finite limits.-/
+sets preserves finite limits.
+@isnad1 id=preserve.0h1v.s10.8045fbc409b8 from=translated src=- shape=66611f09 vocab=7183807f
+-/
 noncomputable instance forgetPreservesFiniteLimits :
     PreservesFiniteLimits
       (forget₂ (ContAction FintypeCat.{u} G) FintypeCat) where
@@ -161,7 +171,9 @@ noncomputable instance forgetPreservesFiniteLimits :
     infer_instance
 
 /-- The inherited forgetful functor from finite continuous actions to finite
-sets preserves finite colimits.-/
+sets preserves finite colimits.
+@isnad1 id=preserve.0h1v.s10.b6991a3e42a3 from=translated src=- shape=66611f09 vocab=0b65e3b6
+-/
 noncomputable instance forgetPreservesFiniteColimits :
     PreservesFiniteColimits
       (forget₂ (ContAction FintypeCat.{u} G) FintypeCat) where
@@ -172,7 +184,9 @@ noncomputable instance forgetPreservesFiniteColimits :
         Action.forget FintypeCat G)
     infer_instance
 
-/-- Restriction of finite continuous actions preserves finite limits.-/
+/-- Restriction of finite continuous actions preserves finite limits.
+@isnad1 id=preserve.0h3v.s8.c797112270c4 from=translated src=- shape=44a2cd4f vocab=dc2740c0
+-/
 noncomputable instance resPreservesFiniteLimits
     {H : Type w} [Monoid H] [TopologicalSpace H]
     (f : G →ₜ* H) :

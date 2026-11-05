@@ -54,7 +54,9 @@ instance (K : CochainComplex (ModuleCat.{u} R) ℕ) :
     funext n
     exact MonoidalPreadditive.add_whiskerRight (X := K.X n) f g
 
-/-- Flat terms preserve each coefficient short exact sequence.-/
+/-- Flat terms preserve each coefficient short exact sequence.
+@isnad1 id=shortexa.1h3v.s9.aadc02623935 from=translated src=- shape=bfa54028 vocab=e0d095c7
+-/
 theorem tensorComplexCoefficientFunctor_shortExact
     (K : CochainComplex (ModuleCat.{u} R) ℕ) [∀ n, Module.Flat R (K.X n)]
     {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact) :

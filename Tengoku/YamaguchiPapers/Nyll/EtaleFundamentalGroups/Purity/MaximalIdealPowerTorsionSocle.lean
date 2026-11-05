@@ -34,7 +34,9 @@ variable {R : Type u} [CommRing R]
 variable {M : Type v} [AddCommGroup M] [Module R M]
 
 /-- The vectors killed by an ideal form an essential submodule when each
-vector is killed by some power of that ideal.-/
+vector is killed by some power of that ideal.
+@isnad1 id=isessent.1h3v.s8.c2f485f01ea9 from=translated src=- shape=357c1cb5 vocab=4fef1a45
+-/
 theorem isEssentialSubmodule_torsionBySet_of_idealPower_torsion
     (I : Ideal R)
     (hM : ∀ z : M, ∃ n : ℕ, ∀ a ∈ I ^ n, a • z = 0) :
@@ -67,7 +69,9 @@ theorem isEssentialSubmodule_torsionBySet_of_idealPower_torsion
   obtain ⟨n, hn⟩ := hM z
   exact (Submodule.mem_bot R).mpr (hzero n z hz hn)
 
-/-- The socle of a maximal-ideal-power torsion module is essential.-/
+/-- The socle of a maximal-ideal-power torsion module is essential.
+@isnad1 id=isessent.1h2v.s8.d152855f586c from=translated src=- shape=091bb25b vocab=d15294e4
+-/
 theorem isEssentialSubmodule_torsionBySet_maximalIdeal_of_power_torsion
     [IsLocalRing R]
     (hM : ∀ z : M, ∃ n : ℕ,

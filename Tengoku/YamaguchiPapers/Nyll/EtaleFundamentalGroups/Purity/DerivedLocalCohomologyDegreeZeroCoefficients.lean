@@ -35,7 +35,9 @@ universe u
 
 variable {R : Type u} [CommRing R]
 
-/-- Degree-zero evaluation commutes with the second coefficient map.-/
+/-- Degree-zero evaluation commutes with the second coefficient map.
+@isnad1 id=eq.1h3v.s10.3e633ce193fe from=translated src=- shape=7b00049b vocab=4b494d50
+-/
 theorem derivedLocalCohomologyZeroToModule_comp_secondMap
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact) :
     (derivedLocalCohomologyZeroToModule I S.X₃).comp
@@ -68,7 +70,9 @@ theorem derivedLocalCohomologyZeroToModule_comp_secondMap
   rfl
 
 /-- A surjective coefficient map with ideal-power torsion source induces
-a surjection in degree-zero local cohomology.-/
+a surjection in degree-zero local cohomology.
+@isnad1 id=surjecti.2h3v.s11.d632fa8de613 from=translated src=- shape=0da77aca vocab=293a6744
+-/
 theorem derivedLocalCohomologyModuleCoefficientsSecondMap_surjective_zero_of_power_torsion
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (hT : ∀ z : S.X₂, ∃ n : ℕ, ∀ a ∈ I ^ n, a • z = 0) :
@@ -87,7 +91,9 @@ theorem derivedLocalCohomologyModuleCoefficientsSecondMap_surjective_zero_of_pow
     _ = derivedLocalCohomologyZeroToModule I S.X₃ z := by rw [hy, hb]
 
 /-- The same degree-zero surjection expressed in the additive-group
-category used by the coefficient long exact sequence.-/
+category used by the coefficient long exact sequence.
+@isnad1 id=epi.2h3v.s10.552e2c0de7d3 from=translated src=- shape=77c7b5c5 vocab=889c07c3
+-/
 theorem derivedLocalCohomologyCoefficientsSecondMap_epi_zero_of_power_torsion
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (hT : ∀ z : S.X₂, ∃ n : ℕ, ∀ a ∈ I ^ n, a • z = 0) :

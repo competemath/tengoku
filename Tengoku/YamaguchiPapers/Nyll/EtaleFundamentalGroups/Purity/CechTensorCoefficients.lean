@@ -152,7 +152,9 @@ def singleTensorComplexIso (M : ModuleCat.{u} R)
     (fun i j _ => singleTensorInto_comm M K i j)
 
 /-- The coefficient comparison includes the unique single-factor
-summand in each degree.-/
+summand in each degree.
+@isnad1 id=eq.0h4v.s11.f683634d895a from=translated src=- shape=9b20c86d vocab=63e427ab
+-/
 theorem singleTensorComplexIso_hom_f (M : ModuleCat.{u} R)
     (K : CochainComplex (ModuleCat.{u} R) ℕ) (n : ℕ) :
     (singleTensorComplexIso M K).hom.f n =

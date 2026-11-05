@@ -37,7 +37,9 @@ private theorem eqToHom_stalk_eq_stalkCongr
   exact (T.presheaf.stalkSpecializes_refl x).symm
 
 /-- Identifying function fields with generic-point residue fields commutes
-with the maps induced by a dense morphism of integral schemes.-/
+with the maps induced by a dense morphism of integral schemes.
+@isnad1 id=other.1h3v.s10.05a2aca88b56 from=translated src=- shape=84cf047a vocab=57289de9
+-/
 theorem functionFieldResidueFieldRingEquiv_naturality
     [IsIntegral X] [IsIntegral Z]
     (g : Z ⟶ X) (hg : DenseRange g) :

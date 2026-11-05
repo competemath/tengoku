@@ -30,7 +30,9 @@ namespace EtaleFundamentalGroups
 
 /-- A constant number field in a smooth finite arithmetic cover has degree
 one. The base charts cover `Spec ℤ`, while their common function field is
-geometrically disjoint from the constant number field.-/
+geometrically disjoint from the constant number field.
+@isnad1 id=eq.1h7v.s9.d808b30a86b0 from=translated src=- shape=bdb3d729 vocab=a9238919
+-/
 theorem numberField_finrank_eq_one_of_smooth_finite_arithmetic_cover
     {ι : Type} [Finite ι] (B A : ι → Type)
     [∀ i, CommRing (B i)] [∀ i, CommRing (A i)] [∀ i, IsDomain (A i)]

@@ -40,6 +40,9 @@ def pureRadicalAdjoinRootToField
   apply AdjoinRoot.liftAlgHom (X ^ m - C t) (Algebra.ofId A F) β
   simp [hβpow, IsScalarTower.algebraMap_apply A K F]
 
+/--
+@isnad1 id=eq.1h6v.s11.35144ebc47ee from=translated src=- shape=ca41cb03 vocab=01945a73
+-/
 @[simp]
 theorem pureRadicalAdjoinRootToField_root
     {A : Type u} {K : Type v} {F : Type w}
@@ -56,7 +59,9 @@ fraction field.
 
 The fraction-field assertion is proved inside the theorem.  It is not an
 input: fractions in the root algebra form an intermediate field containing
-both `K` and `β`, hence all of `F`.-/
+both `K` and `β`, hence all of `F`.
+@isnad1 id=other.4h6v.s11.5fada3d46c20 from=translated src=- shape=d98bf77d vocab=d398afe5
+-/
 theorem isFractionRing_adjoinRoot_of_pureRadical
     {A : Type u} {K : Type v} {F : Type w}
     [CommRing A] [IsDomain A]
@@ -214,7 +219,9 @@ theorem isFractionRing_adjoinRoot_of_pureRadical
 
 /-- A normal pure-radical root algebra is canonically the integral closure in
 the generated fraction field.  The equivalence sends the radical root to the
-prescribed field generator.-/
+prescribed field generator.
+@isnad1 id=ex.4h6v.s12.bb9a8f1c1730 from=translated src=- shape=dbce3d8d vocab=97d1dada
+-/
 theorem exists_adjoinRoot_algEquiv_integralClosure_of_pureRadical
     {A : Type u} {K : Type v} {F : Type w}
     [CommRing A] [IsDomain A]

@@ -76,7 +76,9 @@ def affineNormalizationDeck (σ : B ≃ₐ[R] B) :
       exact (σ.commutes r).symm)
 
 /-- The canonical affine normalization isomorphism intertwines the extension
-by `normalizationDesc` with the literal restricted ring automorphism.-/
+by `normalizationDesc` with the literal restricted ring automorphism.
+@isnad1 id=eq.0h3v.s10.c31207249f60 from=translated src=- shape=e6ff0ea4 vocab=ec8b7021
+-/
 @[reassoc]
 theorem affineNormalizationDeck_specNormalizationIso_hom
     (σ : B ≃ₐ[R] B) :
@@ -105,7 +107,9 @@ theorem affineNormalizationDeck_specNormalizationIso_hom
       rw [← Category.assoc, toNormalization_specNormalizationIso_hom]
 
 /-- An algebra automorphism belongs to ideal inertia exactly when its actual
-normalization extension fixes the corresponding geometric point.-/
+normalization extension fixes the corresponding geometric point.
+@isnad1 id=iff.0h5v.s11.157c965e8621 from=translated src=- shape=967d7e1f vocab=9a2e7c60
+-/
 theorem mem_idealInertia_iff_fixes_affineNormalizationGeometricPoint
     {Ω : Type u} [Field Ω]
     (φ : integralClosure R B →+* Ω) (σ : B ≃ₐ[R] B) :
@@ -164,7 +168,9 @@ def affineNormalizationGeometricPointStabilizer
         ((mem_idealInertia_iff_fixes_affineNormalizationGeometricPoint R B φ σ).mpr hσ))
 
 /-- The actual normalization geometric-point stabilizer is the ideal-inertia
-subgroup for the integral-closure restriction action.-/
+subgroup for the integral-closure restriction action.
+@isnad1 id=eq.0h4v.s10.2a1b880ceb7e from=translated src=- shape=31cbe84d vocab=c4e13071
+-/
 theorem affineNormalizationGeometricPointStabilizer_eq_idealInertia
     {Ω : Type u} [Field Ω] (φ : integralClosure R B →+* Ω) :
     letI : MulSemiringAction (B ≃ₐ[R] B) (integralClosure R B) :=
@@ -177,7 +183,9 @@ theorem affineNormalizationGeometricPointStabilizer_eq_idealInertia
   exact (mem_idealInertia_iff_fixes_affineNormalizationGeometricPoint R B φ σ).symm
 
 /-- For the canonical geometric point obtained from a prime's residue field,
-the stabilizer ideal is the given prime itself.-/
+the stabilizer ideal is the given prime itself.
+@isnad1 id=eq.0h3v.s14.c5c39eedba35 from=translated src=- shape=6fae67da vocab=b842e3cd
+-/
 theorem affineNormalizationResidueGeometricPointStabilizer_eq_idealInertia
     (P : Ideal (integralClosure R B)) [P.IsPrime] :
     letI : MulSemiringAction (B ≃ₐ[R] B) (integralClosure R B) :=

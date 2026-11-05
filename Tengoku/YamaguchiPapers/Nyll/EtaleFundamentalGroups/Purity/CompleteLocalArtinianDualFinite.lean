@@ -46,7 +46,9 @@ variable [AddCommGroup E] [Module R E] [Module.Injective R E]
 
 /-- The dual into a residue-field injective hull of an Artinian module
 whose elements are killed by maximal-ideal powers is finitely generated
-over the complete Noetherian local ring.-/
+over the complete Noetherian local ring.
+@isnad1 id=finite.3h4v.s9.774b30d49dcb from=translated src=- shape=fdbf84fb vocab=b6f3457c
+-/
 theorem finite_linearMap_to_completeLocal_residueFieldHull_of_artinian
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)
     (hess : IsEssentialSubmodule (LinearMap.range i))

@@ -32,7 +32,9 @@ variable {R E : Type u} [CommRing R] [IsLocalRing R]
 variable [AddCommGroup E] [Module R E] [Module.Injective R E]
 
 /-- On the submodule annihilated by an ideal with finite-length quotient,
-every endomorphism of an injective residue-field hull is scalar.-/
+every endomorphism of an injective residue-field hull is scalar.
+@isnad1 id=ex.3h5v.s9.6d021e9c6d52 from=translated src=- shape=36f47853 vocab=07195552
+-/
 theorem exists_smul_eq_on_torsionBySet_of_finiteLength_quotient
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)
     (hess : IsEssentialSubmodule (LinearMap.range i))
@@ -56,7 +58,9 @@ theorem exists_smul_eq_on_torsionBySet_of_finiteLength_quotient
 
 /-- If the difference of two scalars kills all elements annihilated by
 `J`, that difference belongs to `J`.  This separation statement does not
-require the quotient by `J` to have finite length.-/
+require the quotient by `J` to have finite length.
+@isnad1 id=mem.2h6v.s9.634407011af1 from=translated src=- shape=f6c33e7a vocab=dc2f8698
+-/
 theorem sub_mem_ideal_of_smul_eq_zero_on_torsionBySet
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)
     (J : Ideal R) (r s : R)

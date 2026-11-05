@@ -28,7 +28,9 @@ universe u
 variable {R : Type u} [CommRing R] [IsNoetherianRing R]
 
 /-- The ideal-primary component of an injective module over a Noetherian
-ring is injective.-/
+ring is injective.
+@isnad1 id=injectiv.0h3v.s7.1b78a1898da3 from=translated src=- shape=daca6ce4 vocab=d39f8005
+-/
 theorem moduleInjective_primaryComponent (I : Ideal R)
     (E : Type u) [AddCommGroup E] [Module R E] [Module.Injective R E] :
     Module.Injective R (Ideal.primaryComponent E I) := by

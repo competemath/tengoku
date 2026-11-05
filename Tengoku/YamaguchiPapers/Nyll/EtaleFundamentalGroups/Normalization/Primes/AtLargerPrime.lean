@@ -38,7 +38,9 @@ variable [Algebra R S'] [IsScalarTower R S S'] [IsScalarTower R R' S']
 /-- Simultaneously localizing the source and target preserves the
 ramification index of every target prime disjoint from the target-side
 multiplicative set.  The source localization need not be at the contraction
-of that prime.-/
+of that prime.
+@isnad1 id=eq.1h7v.s8.f6d1372c5809 from=translated src=- shape=4eb39f0a vocab=9d51103e
+-/
 theorem ramificationIdx_map_eq_of_isLocalization
     (M : Submonoid R) (T : Submonoid S)
     [IsLocalization M R'] [IsLocalization T S']
@@ -123,7 +125,9 @@ private theorem normalizationPrime_disjoint_algebraMapSubmonoid
 
 omit [IsDomain A] in
 /-- The image of `q` in the normalization over `A_P` is prime whenever the
-contraction of `q` is contained in `P`.-/
+contraction of `q` is contained in `P`.
+@isnad1 id=isprime.1h5v.s9.21798db93c3e from=translated src=- shape=c35f1f9c vocab=d1189172
+-/
 theorem localizedNormalizationPrime_isPrime_of_under_le
     (q : Ideal (integralClosure A L)) [q.IsPrime]
     (hqP : q.under A ≤ P) :
@@ -147,7 +151,9 @@ theorem localizedNormalizationPrime_isPrime_of_under_le
 
 omit [IsDomain A] in
 /-- The image of `q` lies over the image in `A_P` of its original
-contraction to `A`.-/
+contraction to `A`.
+@isnad1 id=liesover.1h5v.s10.6ba01b7e7693 from=translated src=- shape=8a4adb45 vocab=1f84f775
+-/
 theorem localizedNormalizationPrime_liesOver_map_under
     (q : Ideal (integralClosure A L)) [q.IsPrime]
     (hqP : q.under A ≤ P) :
@@ -182,7 +188,9 @@ theorem localizedNormalizationPrime_liesOver_map_under
 
 omit [IsDomain A] in
 /-- Localizing the base at a prime containing the contraction of `q`
-preserves the ramification index at `q`.-/
+preserves the ramification index at `q`.
+@isnad1 id=eq.1h5v.s10.e628422267d7 from=translated src=- shape=3d2a6a18 vocab=4f99b896
+-/
 theorem localizedNormalizationPrime_ramificationIdx_of_under_le
     (q : Ideal (integralClosure A L)) [q.IsPrime]
     (hqP : q.under A ≤ P) :

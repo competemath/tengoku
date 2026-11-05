@@ -143,7 +143,9 @@ private theorem selectedDivisorGeometry_of_algEquiv
 /-- If every stage of a conditional root cover has exponent one, a selected
 member of a regular parameter pair retains its prime regular-divisor
 geometry.  No radicand is required to lie in the maximal ideal: the entire
-root tower is first identified with the base ring.-/
+root tower is first identified with the base ring.
+@isnad1 id=other.3h6v.s12.cdb8f1fcbdb2 from=translated src=- shape=3e6dd194 vocab=9d4b5e43
+-/
 theorem allOneRootCover_selectedDivisor_geometry
     {R : Type u} [CommRing R] [IsDomain R] [IsLocalRing R]
     [IsNoetherianRing R]

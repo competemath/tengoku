@@ -33,7 +33,9 @@ open scoped TensorProduct
 universe u v w
 
 /-- For a finite basis, surjectivity of the trace-pairing map is equivalent to the
-discriminant being a unit.-/
+discriminant being a unit.
+@isnad1 id=iff.0h4v.s9.7aa0ee50c5af from=translated src=- shape=c134fb54 vocab=27f7ce1a
+-/
 theorem traceForm_surjective_iff_isUnit_discr
     {R : Type u} {S : Type v} {ι : Type w}
     [CommRing R] [CommRing S] [Algebra R S]
@@ -85,7 +87,9 @@ theorem traceForm_surjective_iff_isUnit_discr
     Matrix.isUnit_iff_isUnit_det, Algebra.discr_def, hM]
 
 /-- A unit trace discriminant makes the trace-pairing map injective.  This direction works over
-an arbitrary commutative base because the corresponding trace matrix is invertible.-/
+an arbitrary commutative base because the corresponding trace matrix is invertible.
+@isnad1 id=injectiv.1h4v.s9.38fb54e66f6b from=translated src=- shape=d7710c7f vocab=d484e1cb
+-/
 theorem traceForm_injective_of_isUnit_discr
     {R : Type u} {S : Type v} {ι : Type w}
     [CommRing R] [CommRing S] [Algebra R S]
@@ -118,7 +122,9 @@ theorem traceForm_injective_of_isUnit_discr
 
 /-- Surjectivity of the trace pairing produces the separability element witnessing formal
 unramifiedness.  The element is the Casimir tensor associated to a basis and its trace-dual
-family; both its multiplication and centrality identities are proved from the trace pairing.-/
+family; both its multiplication and centrality identities are proved from the trace pairing.
+@isnad1 id=formally.1h4v.s8.56b3290fa7ff from=translated src=- shape=3434a42f vocab=1d61f8a2
+-/
 theorem formallyUnramified_of_traceForm_surjective
     {R : Type u} {S : Type v} {ι : Type w}
     [CommRing R] [CommRing S] [Algebra R S]

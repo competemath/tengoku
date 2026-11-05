@@ -43,6 +43,9 @@ def adjoinRootPowerMapOfDvd
   rw [← pow_mul, Nat.div_mul_cancel hdiv]
   rw [adjoinRoot_root_pow, AdjoinRoot.algebraMap_eq, sub_self]
 
+/--
+@isnad1 id=eq.1h4v.s12.2d36403d1501 from=translated src=- shape=cfce1ba9 vocab=4c35872b
+-/
 @[simp]
 theorem adjoinRootPowerMapOfDvd_root
     {A : Type u} [CommRing A] {e N : ℕ} (hdiv : e ∣ N) (a : A) :
@@ -52,7 +55,9 @@ theorem adjoinRootPowerMapOfDvd_root
   simp [adjoinRootPowerMapOfDvd]
 
 /-- The pure positive root polynomial of a prime element over a DVR is
-prime, hence its adjoin-root algebra is a domain.-/
+prime, hence its adjoin-root algebra is a domain.
+@isnad1 id=isdomain.2h3v.s9.789f52d1dbeb from=translated src=- shape=5f2377db vocab=4b57bf04
+-/
 theorem isDomain_adjoinRoot_X_pow_sub_C_of_prime
     {V : Type u} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
     {N : ℕ} (hN : 0 < N) (varpi : V) (hvarpi : Prime varpi) :

@@ -38,7 +38,9 @@ noncomputable def functionFieldResidueFieldRingEquivAtSourceGeneric
     (X.residueFieldCongr
       (g.map_genericPoint_of_denseRange hg).symm).commRingCatIsoToRingEquiv
 
-/-- Naturality of the source-generic-point function-field identification.-/
+/-- Naturality of the source-generic-point function-field identification.
+@isnad1 id=eq.1h3v.s11.7fb227126b5e from=translated src=- shape=05460b33 vocab=d0f71a68
+-/
 theorem functionFieldResidueFieldRingEquivAtSourceGeneric_naturality
     [IsIntegral X] [IsIntegral Z]
     (g : Z ⟶ X) (hg : DenseRange g) :

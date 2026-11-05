@@ -42,7 +42,9 @@ private theorem maximalIdeal_pow_quotient_artinian (k : ℕ) :
       exact Set.mem_singleton (maximalIdeal C)
 
 /-- The images of a descending sequence of ideals modulo a fixed power of
-the maximal ideal stabilize.-/
+the maximal ideal stabilize.
+@isnad1 id=ex.1h3v.s8.bc9e8af2e118 from=translated src=- shape=fb4bbb70 vocab=a0ee5e2d
+-/
 theorem exists_eq_iInf_sup_maximalIdeal_pow
     (J : ℕ → Ideal C) (hJ : Antitone J) (k : ℕ) :
     ∃ N : ℕ, J N ⊔ maximalIdeal C ^ k =
@@ -69,7 +71,9 @@ theorem exists_eq_iInf_sup_maximalIdeal_pow
       sup_le_sup_right (hJ (le_max_right N n)) _
 
 /-- Every ideal of a Noetherian local ring is closed for the topology
-defined by powers of the maximal ideal.-/
+defined by powers of the maximal ideal.
+@isnad1 id=mem.1h3v.s7.7c3f9c61c644 from=translated src=- shape=25f432cf vocab=b4fc9a5d
+-/
 theorem mem_ideal_of_mem_sup_maximalIdeal_pow
     (J : Ideal C) (x : C)
     (hx : ∀ n : ℕ, x ∈ J ⊔ maximalIdeal C ^ n) : x ∈ J := by
@@ -89,7 +93,9 @@ theorem mem_ideal_of_mem_sup_maximalIdeal_pow
 
 /-- **Chevalley's lemma**: in a complete Noetherian local ring, every
 descending sequence of ideals with zero intersection is eventually contained
-in each power of the maximal ideal.-/
+in each power of the maximal ideal.
+@isnad1 id=ex.2h3v.s8.1c9a14070ff1 from=translated src=- shape=4d16d5bd vocab=f69745f2
+-/
 theorem exists_le_maximalIdeal_pow_of_antitone_iInf_eq_bot
     [IsAdicComplete (maximalIdeal C) C]
     (J : ℕ → Ideal C) (hJ : Antitone J)

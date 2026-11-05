@@ -33,7 +33,9 @@ open CategoryTheory Limits IsLocalRing
 variable {R : Type u} [CommRing R] [IsNoetherianRing R]
 
 /-- Removing the maximal-ideal-primary component of a finite coefficient
-module makes its degree-zero maximal-support local cohomology vanish.-/
+module makes its degree-zero maximal-support local cohomology vanish.
+@isnad1 id=iszero.0h2v.s8.8ca128f5704a from=translated src=- shape=9b5ff7be vocab=92b79e78
+-/
 theorem derivedLocalCohomology_maximalIdeal_isZero_zero_quotient_primaryComponent
     [IsLocalRing R] (M : ModuleCat.{u} R) [Module.Finite R M] :
     IsZero (derivedLocalCohomology (maximalIdeal R)

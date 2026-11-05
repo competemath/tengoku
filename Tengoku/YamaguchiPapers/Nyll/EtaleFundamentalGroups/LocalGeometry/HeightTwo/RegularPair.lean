@@ -110,7 +110,9 @@ private theorem isSMulRegular_of_span_singleton_eq_maximalIdeal_of_not_krullDimL
   exact hdim (Ring.KrullDimLE.of_isMaximal_nilradical S)
 
 /-- In a two-dimensional Noetherian local domain, two minimal generators of
-the maximal ideal form a regular sequence.-/
+the maximal ideal form a regular sequence.
+@isnad1 id=isregula.3h3v.s7.0d4fe0ba8660 from=translated src=- shape=279c5257 vocab=a11a9c25
+-/
 theorem isRegular_pair_of_finrank_cotangentSpace_eq_two_of_span_eq
     {R : Type u} [CommRing R] [IsDomain R] [IsLocalRing R]
     [IsNoetherianRing R]
@@ -217,7 +219,9 @@ theorem isRegular_pair_of_finrank_cotangentSpace_eq_two_of_span_eq
   exact IsRegular.of_isWeaklyRegular_of_mem_maximalIdeal (L := R) hmem hweak
 
 /-- A two-dimensional regular local domain admits a regular pair generating
-its maximal ideal, with no prescribed first parameter.-/
+its maximal ideal, with no prescribed first parameter.
+@isnad1 id=ex.2h1v.s7.99cb6e544a17 from=translated src=- shape=0fa10a12 vocab=a11a9c25
+-/
 theorem exists_regular_pair_of_finrank_cotangentSpace_eq_two_unconstrained
     {R : Type u} [CommRing R] [IsDomain R] [IsLocalRing R]
     [IsNoetherianRing R]
@@ -282,7 +286,9 @@ theorem exists_regular_pair_of_finrank_cotangentSpace_eq_two_unconstrained
     hspan⟩
 
 /-- A height-two localization of a regular domain has an unconstrained
-regular pair of parameters.-/
+regular pair of parameters.
+@isnad1 id=ex.1h2v.s8.2f7b73b25d09 from=translated src=- shape=a98efd90 vocab=03bcff07
+-/
 theorem exists_regular_pair_localizationAtPrime_of_height_eq_two_unconstrained
     {A : Type u} [CommRing A] [IsDomain A] [IsRegularRing A]
     (P : Ideal A) [P.IsPrime] (hP : P.height = 2) :

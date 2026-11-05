@@ -29,7 +29,9 @@ universe u v w x
 /-- For a specified base uniformizer in a valued extension of discrete
 valuation fields, one can choose a target valuation-ring unit expressing its
 image as that unit times the corresponding power of any specified target
-uniformizer.-/
+uniformizer.
+@isnad1 id=ex.2h6v.s9.a259951623ec from=translated src=- shape=2b0ede6a vocab=705b376d
+-/
 theorem exists_unit_mul_target_uniformizer_pow_eq_base_uniformizer_image_of_dvf
     {K : Type u} {L : Type w} [Field K] [Field L] [Algebra K L]
     (base : DVF.{u, v} K) (target : DVF.{w, x} L)
@@ -141,7 +143,9 @@ theorem exists_unit_mul_target_uniformizer_pow_eq_base_uniformizer_image_of_dvf
 base uniformizer, a target uniformizer, and a target valuation-ring unit such
 that the image of the base uniformizer is the unit times the target
 uniformizer raised to the ramification index.  No completeness, Henselianity,
-finite-dimensionality, or total-ramification hypothesis is needed.-/
+finite-dimensionality, or total-ramification hypothesis is needed.
+@isnad1 id=ex.0h4v.s9.84d446b4c5b0 from=translated src=- shape=a7285aa3 vocab=705b376d
+-/
 theorem exists_uniformizers_unit_mul_target_uniformizer_pow_eq_base_uniformizer_image
     {K : Type u} {L : Type w} [Field K] [Field L] [Algebra K L]
     (base : DVF.{u, v} K) (target : DVF.{w, x} L)

@@ -38,7 +38,9 @@ open CategoryTheory Limits
 variable {R : Type u} [CommRing R]
 
 /-- Positive-degree derived local cohomology of an injective coefficient
-module vanishes termwise in its defining Ext diagram.-/
+module vanishes termwise in its defining Ext diagram.
+@isnad1 id=iszero.0h4v.s6.caa51dce04f3 from=translated src=- shape=dc74f975 vocab=0d13dbab
+-/
 theorem derivedLocalCohomology_isZero_succ_of_injective
     (I : Ideal R) (M : ModuleCat.{u} R) [Module.Injective R M] (n : ℕ) :
     IsZero (derivedLocalCohomology I M (n + 1)) := by
@@ -50,7 +52,9 @@ theorem derivedLocalCohomology_isZero_succ_of_injective
     (ModuleCat.of R (R ⧸ I ^ k)) M n
 
 /-- Ideal-power torsion coefficient modules over a Noetherian ring have
-zero derived local cohomology in every positive degree.-/
+zero derived local cohomology in every positive degree.
+@isnad1 id=iszero.1h4v.s8.67e283357030 from=translated src=- shape=199710da vocab=21a5bdf0
+-/
 theorem derivedLocalCohomology_isZero_succ_of_power_torsion
     [IsNoetherianRing R] (I : Ideal R) (M : ModuleCat.{u} R)
     (hM : ∀ z : M, ∃ k : ℕ, ∀ a ∈ I ^ k, a • z = 0) (n : ℕ) :

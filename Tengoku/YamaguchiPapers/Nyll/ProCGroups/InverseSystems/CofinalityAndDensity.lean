@@ -36,7 +36,9 @@ variable (S : InverseSystem (I := I))
 
 /--
 Every open neighborhood in the inverse limit contains the inverse image of an open set along one
-projection.-/
+projection.
+@isnad1 id=ex.3h4v.s7.8917f2037811 from=translated src=- shape=ed652ad4 vocab=a87535b8
+-/
 theorem exists_projection_preimage_subset [Nonempty I]
     (hdir : Directed (· ≤ ·) (id : I → I)) {x : S.inverseLimit} {U : Set S.inverseLimit}
     (hU : IsOpen U) (hx : x ∈ U) :
@@ -96,7 +98,9 @@ theorem exists_projection_preimage_subset [Nonempty I]
 
 /--
 A compatible family of surjections over a nonempty directed index preorder induces a dense map
-to the inverse limit.-/
+to the inverse limit.
+@isnad1 id=denseran.3h4v.s6.f258f3c0ec61 from=translated src=- shape=f544db4b vocab=131beef4
+-/
 theorem denseRange_lift {X : Type w} [Nonempty I]
     (ρ : ∀ i, X → S.X i) (hρ : S.CompatibleMaps ρ)
     (hsurj : ∀ i, Function.Surjective (ρ i)) (hdir : Directed (· ≤ ·) (id : I → I)) :
@@ -208,7 +212,9 @@ noncomputable def homeomorph_reindex_cofinal {K : Type w} [Preorder K]
 
 /--
 After cofinal reindexing, the projection to \(k\) composed with the reindexing homeomorphism is
-the original projection to \(\sigma k\).-/
+the original projection to \(\sigma k\).
+@isnad1 id=eq.3h5v.s8.5c28c34f24c8 from=translated src=- shape=afec68dc vocab=36f97eb0
+-/
 @[simp 900] theorem π_comp_homeomorph_reindex_cofinal {K : Type w} [Preorder K]
     (σ : K → I) (hσ : Monotone σ) (hdirK : Directed (· ≤ ·) (id : K → K))
     (hcofinal : ∀ i : I, ∃ k : K, i ≤ σ k) (k : K) :
@@ -237,7 +243,9 @@ noncomputable def homeomorph_restrict_cofinal (J : Set I)
 
 /--
 For a cofinal restriction, projecting to \(j\) after the restriction homeomorphism is the same
-as the original projection to the underlying index of \(j\).-/
+as the original projection to the underlying index of \(j\).
+@isnad1 id=eq.2h4v.s9.2e726d8f9fc6 from=translated src=- shape=99b7e4d1 vocab=e23282a8
+-/
 @[simp 900] theorem π_comp_homeomorph_restrict_cofinal (J : Set I)
     (hdirJ : Directed (· ≤ ·) (id : J → J)) (hcofinal : ∀ i, ∃ j : J, i ≤ j.1) (j : J) :
     (S.restrict J).projection j ∘ S.homeomorph_restrict_cofinal J hdirJ hcofinal = S.projection
@@ -248,7 +256,9 @@ as the original projection to the underlying index of \(j\).-/
 
 /--
 In a surjective inverse system of compact Hausdorff nonempty spaces, each projection from the
-inverse limit is surjective.-/
+inverse limit is surjective.
+@isnad1 id=surjecti.2h3v.s6.41d78f327325 from=translated src=- shape=907cd468 vocab=d1060470
+-/
 theorem surjective_π [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
     (hdir : Directed (· ≤ ·) (id : I → I))
     (hsurj : ∀ {i j : I} (hij : i ≤ j), Function.Surjective (S.map hij)) (j : I) :
@@ -327,7 +337,9 @@ end
 
 /--
 If each component has a chosen basis, then the inverse images of basis elements under the
-projection maps form a basis of the inverse limit.-/
+projection maps form a basis of the inverse limit.
+@isnad1 id=istopolo.2h3v.s7.0ef888e9bdef from=translated src=- shape=5530b893 vocab=a78f451a
+-/
 theorem InverseSystem.isTopologicalBasis_projection_preimages {I : Type u} [Preorder I]
     (S : InverseSystem (I := I)) [Nonempty I] (hdir : Directed (· ≤ ·) (id : I → I))
     (B : ∀ i, Set (Set (S.X i))) (hB : ∀ i, TopologicalSpace.IsTopologicalBasis (B i)) :

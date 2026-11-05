@@ -38,7 +38,9 @@ universe u
 variable {R : Type u} [CommRing R]
 
 /-- The degree-zero evaluation image is the primary component for the
-support ideal.-/
+support ideal.
+@isnad1 id=eq.0h3v.s7.b49175ebf91f from=translated src=- shape=2764384e vocab=69e12ddb
+-/
 theorem range_derivedLocalCohomologyZeroToModule
     (I : Ideal R) (M : ModuleCat.{u} R) :
     LinearMap.range (derivedLocalCohomologyZeroToModule I M) =
@@ -69,7 +71,9 @@ def derivedLocalCohomologyZeroEquivPrimaryComponent
     obtain ⟨w, hw⟩ := hz
     exact ⟨w, Subtype.ext hw⟩
 
-/-- The degree-zero equivalence retains the original evaluation map.-/
+/-- The degree-zero equivalence retains the original evaluation map.
+@isnad1 id=eq.0h4v.s10.af73653d30d8 from=translated src=- shape=5bf95a1a vocab=f8881f93
+-/
 theorem derivedLocalCohomologyZeroEquivPrimaryComponent_apply_val
     (I : Ideal R) (M : ModuleCat.{u} R)
     (z : derivedLocalCohomologyModule I M 0) :
@@ -78,7 +82,9 @@ theorem derivedLocalCohomologyZeroEquivPrimaryComponent_apply_val
   rfl
 
 /-- Removing an ideal-power torsion first coefficient term induces a
-bijection in every positive cohomological degree.-/
+bijection in every positive cohomological degree.
+@isnad1 id=bijectiv.2h4v.s11.6f896091d542 from=translated src=- shape=83179b5c vocab=c4609ae7
+-/
 theorem derivedLocalCohomologyModuleCoefficientsSecondMap_bijective_succ_of_power_torsion
     [IsNoetherianRing R]
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)

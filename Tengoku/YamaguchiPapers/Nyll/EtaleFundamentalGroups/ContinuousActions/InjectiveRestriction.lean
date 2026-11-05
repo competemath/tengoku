@@ -322,7 +322,9 @@ private theorem injective_of_exists_epi_mono_span
 /--
 A continuous homomorphism of profinite groups is injective exactly when every
 nonempty transitive finite continuous source action has an epimorphism from
-a finite continuous source action that embeds in a restricted target action.-/
+a finite continuous source action that embeds in a restricted target action.
+@isnad1 id=iff.0h3v.s12.5b81c1461fb7 from=translated src=- shape=ebd92ab6 vocab=705097ee
+-/
 @[stacks 0BN7]
 theorem injective_iff_exists_epi_mono_span
     (h : G' →ₜ* G) :

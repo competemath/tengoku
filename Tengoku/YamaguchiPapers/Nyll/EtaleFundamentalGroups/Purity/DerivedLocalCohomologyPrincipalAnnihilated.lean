@@ -41,7 +41,9 @@ section CoefficientExactnessCorollaries
 variable {R : Type u} [CommRing R]
 
 /-- If the first coefficient term vanishes in degree `n`, the second
-coefficient map is a monomorphism.-/
+coefficient map is a monomorphism.
+@isnad1 id=mono.2h4v.s7.ba192c370cc8 from=translated src=- shape=0d22a8e0 vocab=3743666b
+-/
 theorem derivedLocalCohomologyCoefficientsSecondMap_mono_of_first_isZero
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) (hzero : IsZero (derivedLocalCohomology I S.X₁ n)) :
@@ -50,7 +52,9 @@ theorem derivedLocalCohomologyCoefficientsSecondMap_mono_of_first_isZero
     (hzero.eq_of_src _ _)
 
 /-- If the third coefficient term vanishes in degree `n`, the first
-coefficient map is an epimorphism.-/
+coefficient map is an epimorphism.
+@isnad1 id=epi.2h4v.s7.4aba62dd91a6 from=translated src=- shape=0d22a8e0 vocab=a35c86a8
+-/
 theorem derivedLocalCohomologyCoefficientsFirstMap_epi_of_third_isZero
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) (hzero : IsZero (derivedLocalCohomology I S.X₃ n)) :
@@ -59,7 +63,9 @@ theorem derivedLocalCohomologyCoefficientsFirstMap_epi_of_third_isZero
     (hzero.eq_of_tgt _ _)
 
 /-- If the next first coefficient term vanishes, the second coefficient map
-is an epimorphism.-/
+is an epimorphism.
+@isnad1 id=epi.2h4v.s7.9497339a9fd7 from=translated src=- shape=5ba9aff9 vocab=4500510a
+-/
 theorem derivedLocalCohomologyCoefficientsSecondMap_epi_of_next_first_isZero
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) (hzero : IsZero (derivedLocalCohomology I S.X₁ (n + 1))) :
@@ -68,7 +74,9 @@ theorem derivedLocalCohomologyCoefficientsSecondMap_epi_of_next_first_isZero
     (hzero.eq_of_tgt _ _)
 
 /-- If the middle coefficient term vanishes in degree `n`, the connecting
-map out of degree `n` is a monomorphism.-/
+map out of degree `n` is a monomorphism.
+@isnad1 id=mono.2h4v.s7.266c6fa47b22 from=translated src=- shape=25c441cb vocab=bcfc095f
+-/
 theorem derivedLocalCohomologyCoefficientsConnectingMap_mono_of_middle_isZero
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) (hzero : IsZero (derivedLocalCohomology I S.X₂ n)) :
@@ -77,7 +85,9 @@ theorem derivedLocalCohomologyCoefficientsConnectingMap_mono_of_middle_isZero
     (hzero.eq_of_src _ _)
 
 /-- If the next middle coefficient term vanishes, the connecting map into
-the next degree is an epimorphism.-/
+the next degree is an epimorphism.
+@isnad1 id=epi.2h4v.s7.c97d9075ec54 from=translated src=- shape=f1be35c1 vocab=d6be19a6
+-/
 theorem derivedLocalCohomologyCoefficientsConnectingMap_epi_of_next_middle_isZero
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) (hzero : IsZero (derivedLocalCohomology I S.X₂ (n + 1))) :
@@ -86,7 +96,9 @@ theorem derivedLocalCohomologyCoefficientsConnectingMap_epi_of_next_middle_isZer
     (hzero.eq_of_tgt _ _)
 
 /-- If the previous third coefficient term vanishes, the first coefficient
-map in the next degree is a monomorphism.-/
+map in the next degree is a monomorphism.
+@isnad1 id=mono.2h4v.s7.2c0f97fbf236 from=translated src=- shape=3eafa383 vocab=b107a1fd
+-/
 theorem derivedLocalCohomologyCoefficientsFirstMap_mono_of_previous_third_isZero
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) (hzero : IsZero (derivedLocalCohomology I S.X₃ n)) :
@@ -217,7 +229,9 @@ private theorem derivedLocalCohomology_span_singleton_succ_transition_one_eq_zer
   rw [CategoryTheory.Abelian.Ext.mk₀_zero, CategoryTheory.Abelian.Ext.comp_zero]
 
 /-- If `x` annihilates `M`, then degree-one derived local cohomology of `M`
-supported at the principal ideal `(x)` vanishes.-/
+supported at the principal ideal `(x)` vanishes.
+@isnad1 id=iszero.1h3v.s8.4766278e6bb2 from=translated src=- shape=abd37d51 vocab=42ceeb2c
+-/
 theorem derivedLocalCohomology_span_singleton_isZero_one_of_smul_id_eq_zero
     (x : R) (M : ModuleCat.{u} R) (hx : x • 𝟙 M = 0) :
     IsZero (derivedLocalCohomology (Ideal.span {x}) M 1) := by

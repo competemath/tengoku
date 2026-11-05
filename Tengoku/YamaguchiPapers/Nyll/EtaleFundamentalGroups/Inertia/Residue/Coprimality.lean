@@ -21,7 +21,9 @@ ramification or inertia.
 namespace EtaleFundamentalGroups
 
 /-- A natural number that is invertible in a nontrivial ring of prime
-characteristic `p` is coprime to `p`.-/
+characteristic `p` is coprime to `p`.
+@isnad1 id=coprime.2h3v.s5.0ba87a09f734 from=translated src=- shape=d7932544 vocab=41b1f819
+-/
 theorem natCoprime_of_isUnit_natCast_of_charP
     {k : Type*} [CommRing k] [Nontrivial k]
     (p n : ℕ) [CharP k p] (hp : p.Prime)

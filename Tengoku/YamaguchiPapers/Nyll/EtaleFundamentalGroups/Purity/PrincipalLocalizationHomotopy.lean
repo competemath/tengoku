@@ -57,6 +57,9 @@ def principalLocalizationSequence (x : R) (M : ModuleCat.{u} R) :
     (LocalizedModule.mkLinearMap (Submonoid.powers x) M)
     (primaryComponent_localization_comp_eq_zero x M)
 
+/--
+@isnad1 id=shortexa.0h3v.s6.4722fef76571 from=translated src=- shape=2e8a4980 vocab=6119fa72
+-/
 theorem principalLocalizationSequence_shortExact
     [IsNoetherianRing R] (x : R) (M : ModuleCat.{u} R) [Module.Injective R M] :
     (principalLocalizationSequence x M).ShortExact := by
@@ -69,7 +72,9 @@ theorem principalLocalizationSequence_shortExact
   rw [Submodule.range_subtype, ker_localizedModule_mkLinearMap_powers]
 
 /-- Localization of an injective module at one element is injective,
-as a retract of the original module.-/
+as a retract of the original module.
+@isnad1 id=injectiv.0h3v.s7.dcd0c8e55373 from=translated src=- shape=cc550ef0 vocab=35962333
+-/
 theorem moduleInjective_localizedModule_powers
     [IsNoetherianRing R] (x : R) (M : ModuleCat.{u} R) [Module.Injective R M] :
     Module.Injective R (LocalizedModule (Submonoid.powers x) M) := by
@@ -131,7 +136,9 @@ private theorem principalLocalizationInclusion_quasiIsoAt_zero
   · exact C.shape 0 0 (by change ¬ ((0 : ℕ) + 1 = 0); omega)
 
 /-- The torsion inclusion is a quasi-isomorphism for injective
-coefficients over a Noetherian ring.-/
+coefficients over a Noetherian ring.
+@isnad1 id=quasiiso.0h3v.s9.e4d6edd348a4 from=translated src=- shape=9e1a4cdc vocab=0a890013
+-/
 theorem principalLocalizationInclusion_quasiIso
     [IsNoetherianRing R] (x : R) (M : ModuleCat.{u} R) [Module.Injective R M] :
     QuasiIso (principalLocalizationInclusion x M) := by
@@ -189,13 +196,17 @@ def principalLocalizationHomotopyEquiv
       (principalLocalizationComplex x M) :=
   (principalLocalizationHomotopyData x M).val
 
-/-- The forward map of the contraction is the specified torsion inclusion.-/
+/-- The forward map of the contraction is the specified torsion inclusion.
+@isnad1 id=eq.0h3v.s10.445f135b74e1 from=translated src=- shape=d4edc3e5 vocab=646c98f9
+-/
 theorem principalLocalizationHomotopyEquiv_hom
     [IsNoetherianRing R] (x : R) (M : ModuleCat.{u} R) [Module.Injective R M] :
     (principalLocalizationHomotopyEquiv x M).hom = principalLocalizationInclusion x M := by
   exact (principalLocalizationHomotopyData x M).property
 
-/-- In degree zero the specified forward map is the inclusion of torsion.-/
+/-- In degree zero the specified forward map is the inclusion of torsion.
+@isnad1 id=eq.0h3v.s10.4723b8dc1871 from=translated src=- shape=92a02a18 vocab=1adb7e1e
+-/
 theorem principalLocalizationHomotopyEquiv_hom_f_zero
     [IsNoetherianRing R] (x : R) (M : ModuleCat.{u} R) [Module.Injective R M] :
     (principalLocalizationHomotopyEquiv x M).hom.f 0 =

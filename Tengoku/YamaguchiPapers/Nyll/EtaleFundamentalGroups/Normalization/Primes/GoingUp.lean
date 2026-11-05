@@ -25,7 +25,9 @@ universe uA uL
 
 /-- A chosen normalization prime can be followed, by going-up, to every
 larger prime of the base.  The resulting prime contains the original chosen
-prime and lies over the prescribed larger base prime.-/
+prime and lies over the prescribed larger base prime.
+@isnad1 id=ex.1h5v.s10.b5b5c1549424 from=translated src=- shape=adc0e4fe vocab=10fad433
+-/
 theorem exists_normalizationPrime_over_largerPrime
     {A : Type uA} {L : Type uL}
     [CommRing A] [Field L] [Algebra A L]

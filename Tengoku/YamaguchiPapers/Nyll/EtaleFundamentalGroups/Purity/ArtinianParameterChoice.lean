@@ -78,7 +78,9 @@ private theorem exists_mem_maximalIdeal_avoiding_finite_primes
   exact hx (Set.mem_iUnion.mpr ⟨P, Set.mem_iUnion.mpr ⟨hP, hxP⟩⟩)
 
 /-- A parameter can avoid any fixed finite set of nonmaximal primes while
-having finite-length cokernel on an Artinian module.-/
+having finite-length cokernel on an Artinian module.
+@isnad1 id=ex.1h3v.s10.dcad6b3ce894 from=translated src=- shape=bbd05049 vocab=dfb932af
+-/
 theorem exists_mem_maximalIdeal_avoiding_primes_finiteLength_quotient
     [IsNoetherianRing R]
     (M : Type v) [AddCommGroup M] [Module R M] [IsArtinian R M]

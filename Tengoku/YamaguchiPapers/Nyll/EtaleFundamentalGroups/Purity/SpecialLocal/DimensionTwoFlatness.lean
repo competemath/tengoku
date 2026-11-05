@@ -42,7 +42,9 @@ private theorem free_of_free_quotSMulTop
   (Module.free_quotSMulTop_iff_free R M hx hregular).mp hfree
 
 /-- A finite module is free if an element generating the maximal ideal acts
-regularly.  This is the one-step lifting used for the second parameter below.-/
+regularly.  This is the one-step lifting used for the second parameter below.
+@isnad1 id=free.2h3v.s7.c0f8ed799309 from=translated src=- shape=81e69719 vocab=0a8fe6c3
+-/
 theorem module_free_of_isSMulRegular_of_span_eq_maximalIdeal
     {R : Type u} {M : Type v} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     [AddCommGroup M] [Module R M] [Module.Finite R M]
@@ -60,7 +62,9 @@ theorem module_free_of_isSMulRegular_of_span_eq_maximalIdeal
   exact Module.Free.of_divisionRing (R ⧸ Ideal.span {x}) (QuotSMulTop x M)
 
 /-- A finite module is free if two elements generate the maximal ideal and
-form a regular sequence on the module.-/
+form a regular sequence on the module.
+@isnad1 id=free.2h4v.s6.00d17eb6fb38 from=translated src=- shape=dc6463eb vocab=770709fe
+-/
 theorem module_free_of_isRegular_pair_of_span_eq_maximalIdeal
     {R : Type u} {M : Type v} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     [AddCommGroup M] [Module R M] [Module.Finite R M]

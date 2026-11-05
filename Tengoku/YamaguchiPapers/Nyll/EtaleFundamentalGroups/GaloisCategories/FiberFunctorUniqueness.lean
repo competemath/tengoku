@@ -956,6 +956,9 @@ private theorem fiberComparison_bijective
   ⟨fiberComparison_injective G F X,
     fiberComparison_surjective G F X⟩
 
+/--
+@isnad1 id=nonempty.0h2v.s11.a19051671c37 from=translated src=- shape=c312a02b vocab=00ce090c
+-/
 @[stacks 0BMV]
 theorem nonempty_iso_forget_of_exact
     (F : ContAction FintypeCat.{u} G ⥤ FintypeCat.{u})

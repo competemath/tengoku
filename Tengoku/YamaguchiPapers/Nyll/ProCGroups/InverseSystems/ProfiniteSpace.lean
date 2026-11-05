@@ -26,13 +26,17 @@ namespace ProCGroups.InverseSystems
 
 universe u v w
 
-/-- A compact Hausdorff totally disconnected space has a basis of clopen sets.-/
+/-- A compact Hausdorff totally disconnected space has a basis of clopen sets.
+@isnad1 id=istopolo.0h1v.s4.15bc8c574581 from=translated src=- shape=4763a9f7 vocab=6729c769
+-/
 theorem isTopologicalBasis_isClopen_of_compact_t2_totallyDisconnected {X : Type w}
     [TopologicalSpace X] [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X] :
     TopologicalSpace.IsTopologicalBasis {s : Set X | IsClopen s} :=
   isTopologicalBasis_isClopen
 
-/-- Every open neighborhood in a profinite space contains a clopen neighborhood of the point.-/
+/-- Every open neighborhood in a profinite space contains a clopen neighborhood of the point.
+@isnad1 id=ex.2h3v.s5.603d3641d2e5 from=translated src=- shape=de1ed696 vocab=47189f88
+-/
 theorem exists_clopen_subset_of_mem_open {X : Type w} [TopologicalSpace X]
     [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X]
     {x : X} {U : Set X} (hU : IsOpen U) (hx : x ∈ U) :
@@ -107,7 +111,9 @@ noncomputable def homeomorph_inverseLimit_discreteQuotientSystem (X : Type w)
 
 /--
 The homeomorphism from a compact Hausdorff totally disconnected space to the inverse limit of
-its discrete quotients has \(Q\)-coordinate equal to the quotient projection of the point.-/
+its discrete quotients has \(Q\)-coordinate equal to the quotient projection of the point.
+@isnad1 id=eq.0h3v.s9.6534d245e065 from=translated src=- shape=b9548c65 vocab=fb503799
+-/
 @[simp] theorem discreteQuotientSystem_projection_homeomorph (X : Type w)
     [TopologicalSpace X] [CompactSpace X] [T2Space X] [TotallyDisconnectedSpace X]
     (Q : OrderDual (DiscreteQuotient X)) (x : X) :
@@ -121,7 +127,9 @@ its discrete quotients has \(Q\)-coordinate equal to the quotient projection of 
     (show DiscreteQuotient X from Q).proj x
   rfl
 
-/-- A Hausdorff space with a clopen basis is totally disconnected.-/
+/-- A Hausdorff space with a clopen basis is totally disconnected.
+@isnad1 id=totallyd.1h1v.s4.996398a4c9b9 from=translated src=- shape=c532f695 vocab=0b497842
+-/
 theorem totallyDisconnectedSpace_of_t2_basis_clopen (X : Type w) [TopologicalSpace X] [T2Space X]
     (hX : TopologicalSpace.IsTopologicalBasis {s : Set X | IsClopen s}) :
     TotallyDisconnectedSpace X := by

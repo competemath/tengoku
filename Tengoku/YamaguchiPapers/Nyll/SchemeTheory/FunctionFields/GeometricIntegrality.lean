@@ -29,7 +29,9 @@ namespace Algebra
 namespace TensorProduct
 
 /-- Base change of a domain along a fraction field remains a domain whenever
-the base change of the original domain is a domain.-/
+the base change of the original domain is a domain.
+@isnad1 id=isdomain.0h4v.s8.cdfe4da205e1 from=translated src=- shape=9526bdab vocab=a778600d
+-/
 theorem isDomain_of_isFractionRing_left
     {k R K L : Type u}
     [Field k] [CommRing R] [IsDomain R] [Algebra k R]
@@ -89,7 +91,9 @@ end Algebra
 namespace AlgebraicGeometry
 
 /-- A surjective open subscheme of a geometrically integral scheme is
-geometrically integral over the same base.-/
+geometrically integral over the same base.
+@isnad1 id=geometri.0h5v.s5.b6537edd1926 from=translated src=- shape=aa8a0ab5 vocab=1699cc01
+-/
 theorem GeometricallyIntegral.comp_of_isOpenImmersion
     {U X S : Scheme.{u}} (i : U ⟶ X) (f : X ⟶ S)
     [IsOpenImmersion i] [GeometricallyIntegral f] [Surjective (i ≫ f)] :
@@ -99,7 +103,9 @@ theorem GeometricallyIntegral.comp_of_isOpenImmersion
   exact GeometricallyIntegral.of_geometricallyReduced_of_geometricallyIrreducible _
 
 /-- If `K` is a fraction field of a geometrically integral `k`-domain `R`, then
-`Spec K` is geometrically integral over `k`.-/
+`Spec K` is geometrically integral over `k`.
+@isnad1 id=geometri.0h3v.s7.c94755a73cab from=translated src=- shape=29f1d398 vocab=8eb70f7e
+-/
 theorem GeometricallyIntegral.spec_of_isFractionRing
     {k R K : Type u}
     [Field k] [CommRing R] [IsDomain R] [Algebra k R]
@@ -251,7 +257,9 @@ private lemma functionFieldAlgebra_eq_comp_sectionAlgebra
     (f.appTop ((Scheme.ΓSpecIso (.of k)).inv a))).symm
 
 /-- The function field of an integral, geometrically integral scheme over a
-field is geometrically integral over that field.-/
+field is geometrically integral over that field.
+@isnad1 id=geometri.0h3v.s6.05d8935532b6 from=translated src=- shape=8ac36cd3 vocab=2241ad8d
+-/
 theorem GeometricallyIntegral.spec_functionField
     {k : Type u} [Field k] {X : Scheme.{u}} [IsIntegral X]
     (f : X ⟶ Spec (.of k)) [GeometricallyIntegral f] :

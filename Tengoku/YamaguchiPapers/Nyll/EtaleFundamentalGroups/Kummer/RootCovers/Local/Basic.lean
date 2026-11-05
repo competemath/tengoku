@@ -38,7 +38,9 @@ def localRootCoverClosedIdeal
 
 /--
 If `a` belongs to the closed point of a local ring and `n` is positive, the
-explicit closed-point ideal of `R[X] / (X ^ n - a)` is maximal.-/
+explicit closed-point ideal of `R[X] / (X ^ n - a)` is maximal.
+@isnad1 id=ismaxima.2h3v.s9.9af3ffa603f0 from=translated src=- shape=9ffa35e0 vocab=dd5e90e3
+-/
 theorem localRootCoverClosedIdeal_isMaximal
     {R : Type u} [CommRing R] [IsLocalRing R] {n : ℕ} (hn : 0 < n)
     {a : R} (ha : a ∈ IsLocalRing.maximalIdeal R) :
@@ -112,7 +114,9 @@ theorem localRootCoverClosedIdeal_isMaximal
 
 /--
 The unique maximal ideal of the local root cover is the image of the base
-maximal ideal together with the adjoined root.-/
+maximal ideal together with the adjoined root.
+@isnad1 id=eq.2h3v.s11.2924f2378504 from=translated src=- shape=2667118d vocab=5fc960a0
+-/
 theorem maximalIdeal_adjoinRoot_X_pow_sub_C
     {R : Type u} [CommRing R] [IsLocalRing R] {n : ℕ} (hn : 0 < n)
     {a : R} (ha : a ∈ IsLocalRing.maximalIdeal R)

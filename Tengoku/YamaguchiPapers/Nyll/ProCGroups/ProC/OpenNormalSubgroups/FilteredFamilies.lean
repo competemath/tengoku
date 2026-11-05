@@ -30,7 +30,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
 /--
 A nonempty finite subfamily of a directed family of sets has a common lower bound for the
-reverse-inclusion order.-/
+reverse-inclusion order.
+@isnad1 id=ex.2h4v.s6.0d26a6462167 from=translated src=- shape=b24180e7 vocab=b04192ee
+-/
 theorem directed_finset_has_lower_bound {α : Type*} {ι : Type*} {U : ι → Set α}
     (hdir : Directed (· ⊇ ·) U) :
     ∀ s : Finset ι, s.Nonempty → ∃ k : ι, ∀ i ∈ s, U k ⊆ U i := by
@@ -60,7 +62,9 @@ theorem directed_finset_has_lower_bound {α : Type*} {ι : Type*} {U : ι → Se
 
 /--
 For a closed subgroup of a profinite group, multiplication by the intersection of a filtered
-family of closed sets is the intersection of the products.-/
+family of closed sets is the intersection of the products.
+@isnad1 id=eq.2h4v.s7.2d4b18a2add5 from=translated src=- shape=0f9c54ed vocab=643b6674
+-/
 theorem closedSubgroup_mul_iInter_eq_iInter_mul [CompactSpace G]
     (H : ClosedSubgroup G) {ι : Type v} (U : ι → Set G)
     (hclosed : ∀ i, IsClosed (U i))
@@ -115,7 +119,9 @@ theorem closedSubgroup_mul_iInter_eq_iInter_mul [CompactSpace G]
 
 /--
 Continuous surjections commute with the intersection of a filtered family of closed sets in a
-compact domain.-/
+compact domain.
+@isnad1 id=eq.4h5v.s6.ccf5f5cba4c5 from=translated src=- shape=b1de35cb vocab=2d43bc7f
+-/
 theorem continuous_surjective_image_iInter_eq_iInter_image {X : Type u}
     [TopologicalSpace X] [CompactSpace X] {R : Type v} [TopologicalSpace R] [T2Space R]
     (φ : X → R) (hφ : Continuous φ) (hsurj : Function.Surjective φ)
@@ -164,7 +170,9 @@ theorem continuous_surjective_image_iInter_eq_iInter_image {X : Type u}
 
 /--
 Every open subgroup containing a closed subgroup also contains a set of the form \(H U\) with
-\(U\) open and normal.-/
+\(U\) open and normal.
+@isnad1 id=ex.1h3v.s6.89aa0e203d2c from=translated src=- shape=2ae2c1af vocab=7eaf59ab
+-/
 theorem exists_openNormalSubgroup_mul_subset_openSubgroup [CompactSpace G]
     (H : ClosedSubgroup G) (V : OpenSubgroup G)
     (hHV : (H : Subgroup G) ≤ (V : Subgroup G)) :
@@ -180,7 +188,9 @@ theorem exists_openNormalSubgroup_mul_subset_openSubgroup [CompactSpace G]
 
 /--
 A closed normal subgroup of a profinite group is the intersection of all open normal subgroups
-containing it.-/
+containing it.
+@isnad1 id=eq.0h2v.s6.179ad52fa046 from=translated src=- shape=2c9bf965 vocab=8f723507
+-/
 theorem closedSubgroup_eq_sInf_openNormal [CompactSpace G] [TotallyDisconnectedSpace G]
     (H : ClosedSubgroup G) [((H : Subgroup G).Normal)] :
     (H : Subgroup G) =
@@ -221,7 +231,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G]
 open subgroup, then already a finite subfamily has the same property.
 
 We formulate the family as plain subgroups together with explicit closedness hypotheses in order
-to keep the later API flexible.-/
+to keep the later API flexible.
+@isnad1 id=ex.2h4v.s7.eec85bb35c67 from=translated src=- shape=00b4d7bc vocab=5f02ae09
+-/
 theorem finite_iInter_subgroup_subset_openSubgroup [CompactSpace G] {ι : Type v}
     (H : ι → Subgroup G)
     (hclosed : ∀ i, IsClosed (((H i : Subgroup G) : Set G)))
@@ -250,7 +262,9 @@ theorem finite_iInter_subgroup_subset_openSubgroup [CompactSpace G] {ι : Type v
   exact (Set.disjoint_left.mp hs) hxK hx
 
 /-- If a family of open subgroups of a profinite group has trivial total
-intersection, then finite intersections of members of the family form a neighborhood basis of `1`.-/
+intersection, then finite intersections of members of the family form a neighborhood basis of `1`.
+@isnad1 id=ex.3h4v.s7.ec72cadaf8c9 from=translated src=- shape=955a5e8d vocab=89c5df1a
+-/
 theorem finite_openSubgroup_intersections_form_nhds_basis [CompactSpace G]
     [IsTopologicalGroup G] [TotallyDisconnectedSpace G] {ι : Type v} (U : ι → OpenSubgroup G)
     (hInter : (⋂ i, (((U i : Subgroup G) : Set G))) = ({1} : Set G)) :

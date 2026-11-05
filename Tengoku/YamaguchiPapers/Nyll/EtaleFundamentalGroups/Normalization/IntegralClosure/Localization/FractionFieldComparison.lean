@@ -62,6 +62,9 @@ noncomputable def
     localizationAtPrimeToFractionField_isFractionRing (K := M) q
   exact FractionRing.algEquiv D M
 
+/--
+@isnad1 id=other.0h5v.s14.eeb08d5477d2 from=translated src=- shape=35b4e9bc vocab=27643bb7
+-/
 @[simp]
 theorem integralClosureLocalizationFractionRingAlgEquiv_algebraMap
     {B : Type uB} {K : Type uK} {M : Type uM}

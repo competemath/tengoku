@@ -25,7 +25,9 @@ universe u v
 namespace DiscreteValuationField
 
 /-- The idempotent polynomial `X^2 - X` is monic in every nontrivial
-coefficient ring.-/
+coefficient ring.
+@isnad1 id=monic.0h1v.s6.62bbd8314b3f from=translated src=- shape=4efda187 vocab=4a69c0d5
+-/
 theorem idempotentPolynomial_monic
     {R : Type*} [CommRing R] [Nontrivial R] :
     (Polynomial.X ^ 2 - Polynomial.X : Polynomial R).Monic := by
@@ -33,7 +35,9 @@ theorem idempotentPolynomial_monic
     rw [Polynomial.degree_X]
     norm_num)
 
-/-- A quotient idempotent is an approximate root of `X^2 - X`.-/
+/-- A quotient idempotent is an approximate root of `X^2 - X`.
+@isnad1 id=mem.1h3v.s8.7043b635af34 from=translated src=- shape=7581f818 vocab=b8d08268
+-/
 theorem idempotentPolynomial_eval_mem_of_quotient_idempotent
     {R : Type*} [CommRing R] {I : Ideal R} (a0 : R)
     (ha0 : IsIdempotentElem (Ideal.Quotient.mk I a0)) :
@@ -45,7 +49,9 @@ theorem idempotentPolynomial_eval_mem_of_quotient_idempotent
   simpa [pow_two] using sub_eq_zero.mpr ha0.eq
 
 /-- At a quotient idempotent, the derivative of `X^2 - X` is a unit in the
-quotient.-/
+quotient.
+@isnad1 id=isunit.1h3v.s9.bc271d5f95c7 from=translated src=- shape=a50fbd96 vocab=12e19127
+-/
 theorem idempotentPolynomial_derivative_eval_isUnit_of_quotient_idempotent
     {R : Type*} [CommRing R] {I : Ideal R} (a0 : R)
     (ha0 : IsIdempotentElem (Ideal.Quotient.mk I a0)) :
@@ -88,7 +94,9 @@ theorem idempotentPolynomial_derivative_eval_isUnit_of_quotient_idempotent
 ideal.
 
 This is the `X^2 - X` simple-root form of Hensel's lemma.  At an idempotent,
-the derivative `2X - 1` is a unit because its square is `1`.-/
+the derivative `2X - 1` is a unit because its square is `1`.
+@isnad1 id=ex.2h4v.s7.4bcead46201b from=translated src=- shape=8970c97f vocab=62586167
+-/
 theorem exists_idempotent_lift_of_surjective_henselianRing_ker
     {R S : Type*} [CommRing R] [CommRing S] (f : R →+* S)
     (hf : Function.Surjective f)
@@ -165,23 +173,31 @@ abbrev residueMap (F : HenselianDVF.{u, v} K) :
     RingHom F.valuationSubring F.residueField :=
   F.toDVF.residueMap
 
-/-- The valuation subring of the henselian model is a discrete valuation ring.-/
+/-- The valuation subring of the henselian model is a discrete valuation ring.
+@isnad1 id=isdiscre.0h2v.s4.6bba61db31a1 from=translated src=- shape=1fcfa16f vocab=7839ef4e
+-/
 theorem valuationSubring_isDiscreteValuationRing (F : HenselianDVF.{u, v} K) :
     IsDiscreteValuationRing F.valuationSubring :=
   F.toDVF.valuationSubring_isDiscreteValuationRing
 
-/-- The valuation subring of the henselian discrete valuation field is henselian.-/
+/-- The valuation subring of the henselian discrete valuation field is henselian.
+@isnad1 id=henselia.0h2v.s4.d7688277dbfa from=translated src=- shape=18cb2c77 vocab=5cdb94b5
+-/
 theorem henselianRing (F : HenselianDVF.{u, v} K) :
     HenselianRing F.valuationSubring F.maximalIdeal := by
   change HenselianRing F.toDVF.valuationSubring F.toDVF.maximalIdeal
   infer_instance
 
-/-- The maximal ideal of a Henselian DVF valuation ring is nonzero.-/
+/-- The maximal ideal of a Henselian DVF valuation ring is nonzero.
+@isnad1 id=ne.0h2v.s8.6d3ba6a7f874 from=translated src=- shape=6f5c5ab9 vocab=c8612ec5
+-/
 theorem maximalIdeal_ne_bot (F : HenselianDVF.{u, v} K) :
     F.maximalIdeal ≠ ⊥ :=
   F.toDVF.maximalIdeal_ne_bot
 
-/-- Hensel's lemma in the simple-root form used by mathlib.-/
+/-- Hensel's lemma in the simple-root form used by mathlib.
+@isnad1 id=ex.3h4v.s11.83a0ee6eb157 from=translated src=- shape=6cd79853 vocab=02da2156
+-/
 theorem exists_lift_root_simple (F : HenselianDVF.{u, v} K)
     (f : Polynomial F.valuationSubring) (hf : f.Monic) (a0 : F.valuationSubring)
     (hroot : f.eval a0 ∈ F.maximalIdeal)

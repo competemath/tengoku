@@ -29,7 +29,9 @@ variable (R K L : Type u) [CommRing R] [Field K] [Field L]
   [IsFractionRing R K] [Algebra.IsAlgebraic K L]
 
 /-- Fraction-ring restriction and literal restriction define the same
-homomorphism into the automorphisms of the integral closure.-/
+homomorphism into the automorphisms of the integral closure.
+@isnad1 id=eq.0h3v.s12.29220ac9d1e1 from=translated src=- shape=2c6e7b5a vocab=ce680c4c
+-/
 theorem galRestrict_integralClosure_eq :
     (galRestrict R K L (integralClosure R L)).toMonoidHom =
       (integralClosureAutHom R L).comp (AlgEquiv.restrictScalarsHom R) := by
@@ -41,7 +43,9 @@ theorem galRestrict_integralClosure_eq :
   exact algebraMap_galRestrict_apply R σ b
 
 /-- The normalization-ring action in ramification theory is the actual
-restriction action on the same integral closure, with no choice of comparison.-/
+restriction action on the same integral closure, with no choice of comparison.
+@isnad1 id=eq.0h3v.s11.e9373b59101e from=translated src=- shape=86be7739 vocab=fd607f6c
+-/
 theorem integralClosureGaloisAction_eq :
     IsIntegralClosure.MulSemiringAction R K L (integralClosure R L) =
       MulSemiringAction.compHom (integralClosure R L)

@@ -33,7 +33,9 @@ namespace EtaleFundamentalGroups
 universe u
 
 /-- Local cohomology in degree `i` vanishes when every ideal-power quotient
-has projective dimension strictly less than a fixed bound `d ≤ i`.-/
+has projective dimension strictly less than a fixed bound `d ≤ i`.
+@isnad1 id=iszero.2h5v.s8.ff0894b757f0 from=translated src=- shape=55403f26 vocab=e2eedfb6
+-/
 theorem localCohomology_isZero_of_quotientPowers_hasProjectiveDimensionLT
     {R : Type u} [CommRing R]
     (I : Ideal R) (M : ModuleCat.{u} R) (d i : ℕ) (hdi : d ≤ i)
@@ -51,7 +53,9 @@ theorem localCohomology_isZero_of_quotientPowers_hasProjectiveDimensionLT
     (legacyExt_isZero_of_subsingleton_derivedExt N M i hDerived)
 
 /-- A quotient by a regular element in the maximal ideal has projective
-dimension strictly less than two.-/
+dimension strictly less than two.
+@isnad1 id=hasproje.2h2v.s7.f7c21aa68e10 from=translated src=- shape=8e05fda7 vocab=3a4bcfb4
+-/
 theorem quotient_span_singleton_hasProjectiveDimensionLT_two
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (x : R) (hxreg : IsSMulRegular R x)
@@ -83,7 +87,9 @@ theorem quotient_span_singleton_hasProjectiveDimensionLT_two
     (M := Q) (N := ModuleCat.of R (R ⧸ Ideal.span {x})) e.symm 1
 
 /-- Local cohomology supported on a principal regular ideal vanishes in
-degrees at least two.-/
+degrees at least two.
+@isnad1 id=iszero.3h4v.s7.c8cea4f27995 from=translated src=- shape=58d251fc vocab=2ac95f5c
+-/
 theorem localCohomology_span_singleton_isZero_of_isSMulRegular
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (x : R) (hxreg : IsSMulRegular R x)

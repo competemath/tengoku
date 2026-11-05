@@ -24,7 +24,9 @@ section
 
 variable {I : Type u} [Preorder I]
 
-/-- A finite subset of a directed preorder admits an upper bound.-/
+/-- A finite subset of a directed preorder admits an upper bound.
+@isnad1 id=ex.2h2v.s5.6278cdc15c6a from=translated src=- shape=460c092f vocab=97e5bae9
+-/
 theorem exists_upperBound_finset (hdir : Directed (· ≤ ·) (id : I → I)) :
     ∀ s : Finset I, s.Nonempty → ∃ j, ∀ i ∈ s, i ≤ j := by
   classical

@@ -24,7 +24,9 @@ section
 variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
 /--
-A closed subgroup of a profinite group is the intersection of all open subgroups containing it.-/
+A closed subgroup of a profinite group is the intersection of all open subgroups containing it.
+@isnad1 id=eq.0h2v.s6.005b54ec15c8 from=translated src=- shape=2e19ac67 vocab=6a74a073
+-/
 theorem closedSubgroup_eq_sInf_open [CompactSpace G] [TotallyDisconnectedSpace G]
     (H : ClosedSubgroup G) :
     (H : Subgroup G) = sInf {N : Subgroup G | IsOpen (N : Set G) ∧ (H : Subgroup G) ≤ N} := by
@@ -73,7 +75,9 @@ variable {G : Type u} [Group G]
 
 /--
 If the intersection of a family of subgroups is trivial, every nonidentity element is omitted by
-at least one member of the family.-/
+at least one member of the family.
+@isnad1 id=ex.2h4v.s6.96fb955f3988 from=translated src=- shape=b9e4efb7 vocab=23b8e21c
+-/
 theorem exists_not_mem_of_iInf_eq_bot {ι : Type v} (U : ι → Subgroup G)
     (hU : iInf U = (⊥ : Subgroup G)) {x : G} (hx : x ≠ 1) :
     ∃ i : ι, x ∉ U i := by
@@ -88,7 +92,9 @@ theorem exists_not_mem_of_iInf_eq_bot {ι : Type v} (U : ι → Subgroup G)
     simpa [hU] using hxinf
   exact hx (by simpa using hxbot)
 
-/-- Distinct left cosets of a subgroup are disjoint.-/
+/-- Distinct left cosets of a subgroup are disjoint.
+@isnad1 id=disjoint.1h4v.s7.2946df810ad8 from=translated src=- shape=dd2a44b3 vocab=fbcdf2c6
+-/
 theorem disjoint_leftCoset_of_not_mem (U : Subgroup G) {x y : G} (hxy : x⁻¹ * y ∉ U) :
     Disjoint {g : G | x⁻¹ * g ∈ U} {g : G | y⁻¹ * g ∈ U} := by
   refine Set.disjoint_left.2 ?_
@@ -99,7 +105,9 @@ theorem disjoint_leftCoset_of_not_mem (U : Subgroup G) {x y : G} (hxy : x⁻¹ *
 
 variable [TopologicalSpace G] [IsTopologicalGroup G]
 
-/-- The left coset of an open subgroup is clopen.-/
+/-- The left coset of an open subgroup is clopen.
+@isnad1 id=isclopen.0h3v.s6.6e67d120f3db from=translated src=- shape=d1484072 vocab=cead8e84
+-/
 theorem isClopen_leftCoset_openSubgroup (U : OpenSubgroup G) (x : G) :
     IsClopen {g : G | x⁻¹ * g ∈ (U : Subgroup G)} := by
   let f : G → G := fun g => x⁻¹ * g

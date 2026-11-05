@@ -23,7 +23,9 @@ namespace EtaleFundamentalGroups
 universe uA uL uP
 
 /-- A source-produced bijective field map transports the primitive
-boundary-away map between the corresponding integral closures.-/
+boundary-away map between the corresponding integral closures.
+@isnad1 id=etale.2h4v.s12.da1c234a422a from=translated src=- shape=a2ad0a6b vocab=33fa9f96
+-/
 theorem integralClosure_boundaryAway_of_bijective_fieldTower_algebraMap
     {A : Type uA} {L : Type uL} {P : Type uP}
     [CommRing A] [Field L] [Field P]

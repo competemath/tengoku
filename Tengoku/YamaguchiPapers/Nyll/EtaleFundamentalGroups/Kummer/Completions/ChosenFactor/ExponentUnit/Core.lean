@@ -31,7 +31,9 @@ universe u
 
 /-- If `C / A` is faithfully flat, chosen-factor coordinates identify the iterated radical
 extension over `C` with `D`, and the corresponding away algebra over the original ring `A`
-is étale, then every radical exponent is already a unit in the original ring `A`.-/
+is étale, then every radical exponent is already a unit in the original ring `A`.
+@isnad1 id=isunit.4h8v.s9.e41c12df3603 from=translated src=- shape=cf367c45 vocab=09a91fcf
+-/
 theorem all_exponents_isUnit_of_iteratedRadical_chosenFactorCoordinates
     {A C D : Type u}
     [CommRing A] [IsDomain A]

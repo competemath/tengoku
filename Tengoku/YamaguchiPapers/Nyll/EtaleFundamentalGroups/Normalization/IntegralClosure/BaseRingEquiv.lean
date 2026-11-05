@@ -79,7 +79,9 @@ noncomputable def integralClosureBaseRingAlgEquiv
     exact (congrArg (fun k : R →+* A ↦ k r) h).symm
 
 /-- Etaleness of a normalization is invariant under replacing its base ring
-by an equivalent ring with the same map to the ambient ring.-/
+by an equivalent ring with the same map to the ambient ring.
+@isnad1 id=etale.2h4v.s8.4309d7d56edb from=translated src=- shape=3e9ed56b vocab=0174e4c8
+-/
 theorem integralClosure_etale_of_baseRingEquiv
     (e : R ≃+* S)
     (h : (algebraMap S A).comp e.toRingHom = algebraMap R A)
@@ -133,7 +135,9 @@ noncomputable def integralClosureAlgEquivOfBaseAndAmbientEquiv
     (integralClosureBaseRingAlgEquiv eBase hBase)
 
 /-- Etaleness of a normalization is invariant under simultaneous compatible
-equivalences of its base and ambient rings.-/
+equivalences of its base and ambient rings.
+@isnad1 id=etale.2h6v.s8.6bd7e721eb4e from=translated src=- shape=e554d989 vocab=0174e4c8
+-/
 theorem integralClosure_etale_of_baseAndAmbientEquiv
     (eBase : R ≃+* S) (eAmbient : A ≃+* B)
     (h : eAmbient.toRingHom.comp (algebraMap R A) =

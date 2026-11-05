@@ -79,13 +79,17 @@ def quotientHomEquivTorsionBySet (I : Ideal R) :
   map_add' f g := Subtype.ext rfl
   map_smul' a f := Subtype.ext rfl
 
-/-- The quotient-Hom equivalence evaluates a linear map at the class of one.-/
+/-- The quotient-Hom equivalence evaluates a linear map at the class of one.
+@isnad1 id=eq.0h4v.s11.5984e9d761ae from=translated src=- shape=7aa5e1f7 vocab=bc809ab3
+-/
 theorem quotientHomEquivTorsionBySet_apply
     (I : Ideal R) (f : (R ⧸ I) →ₗ[R] E) :
     (quotientHomEquivTorsionBySet (R := R) (E := E) I f : E) =
       f (Ideal.Quotient.mk I 1) := rfl
 
-/-- The inverse quotient-Hom equivalence sends the class of `a` to `a • z`.-/
+/-- The inverse quotient-Hom equivalence sends the class of `a` to `a • z`.
+@isnad1 id=eq.0h5v.s11.8274a5538811 from=translated src=- shape=d9274715 vocab=5abd6b3e
+-/
 theorem quotientHomEquivTorsionBySet_symm_apply_mk
     (I : Ideal R) (z : Submodule.torsionBySet R E I) (a : R) :
     (quotientHomEquivTorsionBySet (R := R) (E := E) I).symm z
@@ -94,7 +98,9 @@ theorem quotientHomEquivTorsionBySet_symm_apply_mk
 variable [IsLocalRing R]
 
 /-- In an essential extension of a residue-field image, that image is
-exactly the submodule annihilated by the maximal ideal.-/
+exactly the submodule annihilated by the maximal ideal.
+@isnad1 id=eq.1h3v.s8.342861615f87 from=translated src=- shape=79cee5fe vocab=13553780
+-/
 theorem torsionBySet_maximalIdeal_eq_range
     (i : (R ⧸ IsLocalRing.maximalIdeal R) →ₗ[R] E)
     (hess : IsEssentialSubmodule (LinearMap.range i)) :

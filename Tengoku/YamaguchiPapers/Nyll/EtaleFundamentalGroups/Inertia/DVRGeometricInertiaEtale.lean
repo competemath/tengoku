@@ -26,7 +26,9 @@ namespace EtaleFundamentalGroups.Inertia
 
 universe u
 
-/-- The actual affine normalization isomorphism commutes with its base map.-/
+/-- The actual affine normalization isomorphism commutes with its base map.
+@isnad1 id=eq.0h2v.s9.9a36f4de9600 from=translated src=- shape=bf71f72a vocab=9a05f562
+-/
 @[reassoc]
 theorem specNormalizationIso_hom_base
     (R B : Type u) [CommRing R] [CommRing B] [Algebra R B] :

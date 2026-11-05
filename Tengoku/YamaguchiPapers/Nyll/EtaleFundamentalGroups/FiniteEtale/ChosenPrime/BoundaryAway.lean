@@ -34,7 +34,9 @@ the image of `pᶜ`.
 
 The divisibility condition in the localization criterion is produced by
 integrality and uniqueness of the prime; it is not an additional comparison
-hypothesis.-/
+hypothesis.
+@isnad1 id=islocali.1h4v.s7.d4197d904005 from=translated src=- shape=eb0594f8 vocab=a2cecfb0
+-/
 theorem isLocalization_localizationAtPrime_of_primesOver_eq_singleton
     {A : Type uA} {B : Type uB}
     [CommRing A] [CommRing B] [Algebra A B]
@@ -73,7 +75,9 @@ universe uR uC uS
 
 /-- The primitive Away hypothesis on `R → S` survives passage to the finite
 Tag idempotent factor.  Finiteness of that factor is exactly the production
-output of Tag 00UJ.-/
+output of Tag 00UJ.
+@isnad1 id=etale.2h5v.s13.eeb521f48a02 from=translated src=- shape=f90499a7 vocab=14a678d5
+-/
 theorem etaleChosenAway_boundaryAway
     {R : Type uR} {C : Type uC} {S : Type uS}
     [CommRing R] [CommRing C] [CommRing S]
@@ -107,7 +111,9 @@ The singleton-fibre assertion supplied by Tag 00UJ makes the chosen local
 factor a pushout from the pointed base localization.  Hence this conclusion
 is produced solely from the original normalization's Away hypothesis and
 the literal Tag data.  In particular, no root cover, generic component, or
-comparison equivalence occurs in the statement.-/
+comparison equivalence occurs in the statement.
+@isnad1 id=other.4h7v.s16.5e0243bb4755 from=translated src=- shape=38357bf5 vocab=fd2d9e5b
+-/
 theorem etaleChosenLocalFactor_pointed_boundaryAway
     {R : Type uR} {C : Type uC} {S : Type uS}
     [CommRing R] [CommRing C] [CommRing S]

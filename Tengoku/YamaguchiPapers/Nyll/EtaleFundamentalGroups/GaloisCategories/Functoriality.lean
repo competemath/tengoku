@@ -34,7 +34,9 @@ open _root_.CategoryTheory.Functor
 variable {C : Type u₁} [Category.{u₂} C]
 variable {C' : Type v₁} [Category.{v₂} C']
 
-/-- Precomposition induces a continuous map on automorphism groups.-/
+/-- Precomposition induces a continuous map on automorphism groups.
+@isnad1 id=continuo.0h4v.s11.139423872830 from=translated src=- shape=7953db48 vocab=bf110061
+-/
 lemma continuous_mapAut_whiskeringLeft
     (H : C ⥤ C') (F' : C' ⥤ FintypeCat.{w}) :
     Continuous (((whiskeringLeft C C' FintypeCat.{w}).obj H).mapAut F') := by
@@ -46,7 +48,9 @@ lemma continuous_mapAut_whiskeringLeft
   change Continuous fun a ↦ autEmbedding F' a (H.obj X)
   fun_prop
 
-/-- Conjugation by a natural isomorphism is continuous on automorphism groups.-/
+/-- Conjugation by a natural isomorphism is continuous on automorphism groups.
+@isnad1 id=continuo.0h4v.s9.86cdc4590bed from=translated src=- shape=03b85a6b vocab=81e4df23
+-/
 lemma continuous_conjAut
     {F G : C ⥤ FintypeCat.{w}} (t : F ≅ G) :
     Continuous t.conjAut := by
@@ -84,6 +88,9 @@ def transportedPointOfCompIso
     (X : C) (x : F.obj X) : F'.obj (H.obj X) :=
   (t.inv.app X ≫ eqToHom (Functor.comp_obj H F' X)) x
 
+/--
+@isnad1 id=eq.0h7v.s11.6d50b3e0454b from=translated src=- shape=f2b2ef64 vocab=622f03ba
+-/
 @[simp]
 lemma autHomOfCompIso_apply
     (H : C ⥤ C') {F : C ⥤ FintypeCat.{w}}
@@ -93,7 +100,9 @@ lemma autHomOfCompIso_apply
   rfl
 
 /-- The stabilizer of a transported point is the inverse image of its original
-stabilizer under the homomorphism induced on automorphism groups.-/
+stabilizer under the homomorphism induced on automorphism groups.
+@isnad1 id=eq.0h8v.s8.5e9d629d76db from=translated src=- shape=17d6968d vocab=976f55d7
+-/
 theorem stabilizer_transportedPointOfCompIso
     (H : C ⥤ C') {F : C ⥤ FintypeCat.{w}}
     {F' : C' ⥤ FintypeCat.{w}} (t : H ⋙ F' ≅ F)
@@ -121,7 +130,9 @@ theorem stabilizer_transportedPointOfCompIso
 
 /--
 Changing the comparison isomorphism changes the induced homomorphism by
-conjugation with the explicit automorphism `t₁.symm ≪≫ t₂`.-/
+conjugation with the explicit automorphism `t₁.symm ≪≫ t₂`.
+@isnad1 id=eq.0h8v.s11.34c8417b2843 from=translated src=- shape=1375b892 vocab=d38b44e2
+-/
 @[stacks 0BN5 "changing the fiber-functor comparison conjugates the induced homomorphism"]
 theorem autHomOfCompIso_eq_conj
     (H : C ⥤ C') {F : C ⥤ FintypeCat.{w}}

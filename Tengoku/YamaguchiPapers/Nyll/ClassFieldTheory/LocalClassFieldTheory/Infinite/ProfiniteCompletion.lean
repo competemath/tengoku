@@ -35,7 +35,9 @@ section Completion
 
 variable (G : Type u) [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
-/-- The canonical map has dense image in the open-quotient completion.-/
+/-- The canonical map has dense image in the open-quotient completion.
+@isnad1 id=denseran.0h1v.s7.44f8c304969a from=translated src=- shape=51946565 vocab=17eba7d5
+-/
 theorem topologicalProfiniteCompletionMap_denseRange :
     DenseRange (topologicalProfiniteCompletionMap G) := by
   let S : Subgroup (openFiniteQuotientProduct G) :=
@@ -73,7 +75,9 @@ def topologicalProfiniteCompletionProjection
   map_mul' _ _ := rfl
   continuous_toFun := (continuous_apply H).comp continuous_subtype_val
 
-/-- Projecting the canonical completion image of `g` gives its quotient class.-/
+/-- Projecting the canonical completion image of `g` gives its quotient class.
+@isnad1 id=eq.0h3v.s9.2be4c2ec07e8 from=translated src=- shape=8e91be8a vocab=61bd6e20
+-/
 @[simp]
 theorem topologicalProfiniteCompletionProjection_map
     (H : OpenFiniteIndexNormalSubgroup G) (g : G) :
@@ -147,7 +151,9 @@ def topologicalProfiniteCompletionFiniteProjection
     (topologicalProfiniteCompletionProjection G
       (topologicalProfiniteCompletionPreimageIndex P f N))
 
-/-- The induced finite projection sends the completion image of `g` to the class of `f g`.-/
+/-- The induced finite projection sends the completion image of `g` to the class of `f g`.
+@isnad1 id=eq.0h5v.s13.0e5ffc92c1a3 from=translated src=- shape=ef7ca29c vocab=19516a4f
+-/
 @[simp]
 theorem topologicalProfiniteCompletionFiniteProjection_map
     (P : ProfiniteGrp.{v}) (f : G →ₜ* P) (N : OpenNormalSubgroup P) (g : G) :
@@ -157,7 +163,9 @@ theorem topologicalProfiniteCompletionFiniteProjection_map
   rfl
 
 /-- The finite projections induced by a map to a profinite group commute with
-the transition maps between the target's open finite quotients.-/
+the transition maps between the target's open finite quotients.
+@isnad1 id=eq.0h7v.s14.b8a5e9a396da from=translated src=- shape=4a995c57 vocab=d6ac0060
+-/
 theorem topologicalProfiniteCompletionFiniteProjection_transition
     (P : ProfiniteGrp.{v}) (f : G →ₜ* P)
     {N M : OpenNormalSubgroup P} (i : N ⟶ M)
@@ -216,7 +224,9 @@ noncomputable def topologicalProfiniteCompletionLift
     (ProfiniteGrp.continuousMulEquivLimittoFiniteQuotientFunctor P).symm).comp
     (topologicalProfiniteCompletionToFiniteQuotientLimit P f)
 
-/-- The canonical lift agrees with the original homomorphism on the dense image of `G`.-/
+/-- The canonical lift agrees with the original homomorphism on the dense image of `G`.
+@isnad1 id=eq.0h4v.s9.f132991afaf5 from=translated src=- shape=655d810b vocab=f3c36344
+-/
 @[simp]
 theorem topologicalProfiniteCompletionLift_map
     (P : ProfiniteGrp.{v}) (f : G →ₜ* P) (g : G) :
@@ -233,7 +243,9 @@ theorem topologicalProfiniteCompletionLift_map
   rfl
 
 /-- The canonical lift composed with the completion map is the original
-continuous homomorphism.-/
+continuous homomorphism.
+@isnad1 id=eq.0h3v.s8.701640bd1408 from=translated src=- shape=b84d514b vocab=2d9512b9
+-/
 @[simp]
 theorem topologicalProfiniteCompletionLift_comp_map
     (P : ProfiniteGrp.{v}) (f : G →ₜ* P) :
@@ -253,7 +265,9 @@ noncomputable def topologicalProfiniteCompletionMapHom (f : G →ₜ* H) :
   topologicalProfiniteCompletionLift (TopologicalProfiniteCompletion H)
     ((topologicalProfiniteCompletionMap H).comp f)
 
-/-- The map induced on completions carries canonical images to canonical images.-/
+/-- The map induced on completions carries canonical images to canonical images.
+@isnad1 id=eq.0h4v.s9.4a1932d8b966 from=translated src=- shape=f1c538d9 vocab=0fa606c0
+-/
 @[simp]
 theorem topologicalProfiniteCompletionMapHom_map
     (f : G →ₜ* H) (g : G) :
@@ -264,7 +278,9 @@ theorem topologicalProfiniteCompletionMapHom_map
     (TopologicalProfiniteCompletion H)
     ((topologicalProfiniteCompletionMap H).comp f) g
 
-/-- The homomorphism induced by the identity is the identity on the completion.-/
+/-- The homomorphism induced by the identity is the identity on the completion.
+@isnad1 id=eq.0h1v.s7.f43279b4e254 from=translated src=- shape=c0bff442 vocab=440e73b3
+-/
 @[simp]
 theorem topologicalProfiniteCompletionMapHom_id :
     topologicalProfiniteCompletionMapHom
@@ -294,7 +310,9 @@ theorem topologicalProfiniteCompletionMapHom_id :
 
 variable {J : Type w} [Group J] [TopologicalSpace J] [IsTopologicalGroup J]
 
-/-- Passing to topological profinite completions preserves composition.-/
+/-- Passing to topological profinite completions preserves composition.
+@isnad1 id=eq.0h5v.s8.5a951fa5c744 from=translated src=- shape=fedff17d vocab=66f76921
+-/
 @[simp]
 theorem topologicalProfiniteCompletionMapHom_comp
     (f : G →ₜ* H) (g : H →ₜ* J) :

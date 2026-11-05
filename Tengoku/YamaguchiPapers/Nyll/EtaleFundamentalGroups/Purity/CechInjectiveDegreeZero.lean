@@ -38,7 +38,9 @@ universe u
 
 variable {R : Type u} [CommRing R]
 
-/-- The coefficient comparison inserts the unique zero-degree summand.-/
+/-- The coefficient comparison inserts the unique zero-degree summand.
+@isnad1 id=eq.0h3v.s10.3667ace0d21c from=translated src=- shape=e0d4f526 vocab=6891a613
+-/
 theorem singleTensorComplexIso_hom_f_zero (M : ModuleCat.{u} R)
     (K : CochainComplex (ModuleCat.{u} R) ℕ) :
     (singleTensorComplexIso M K).hom.f 0 =
@@ -53,7 +55,9 @@ theorem singleTensorComplexIso_hom_f_zero (M : ModuleCat.{u} R)
       rw [id_whiskerRight]
       exact Category.id_comp _
 
-/-- The inverse coefficient comparison projects the unique zero-degree summand.-/
+/-- The inverse coefficient comparison projects the unique zero-degree summand.
+@isnad1 id=eq.0h3v.s10.0ee44d0fff64 from=translated src=- shape=3eebac45 vocab=661c7bd5
+-/
 theorem singleTensorComplexIso_inv_f_zero (M : ModuleCat.{u} R)
     (K : CochainComplex (ModuleCat.{u} R) ℕ) :
     (singleTensorComplexIso M K).inv.f 0 =
@@ -64,13 +68,17 @@ theorem singleTensorComplexIso_inv_f_zero (M : ModuleCat.{u} R)
     Iso.ext (singleTensorComplexIso_hom_f_zero M K)
   exact congrArg Iso.inv h
 
-/-- The principal coefficient comparison is the right unitor in degree zero.-/
+/-- The principal coefficient comparison is the right unitor in degree zero.
+@isnad1 id=eq.0h3v.s9.d1e8d3c0c6f7 from=translated src=- shape=9c77c16c vocab=35314412
+-/
 theorem principalLocalizationTensorCoefficientsIso_inv_f_zero
     (x : R) (M : ModuleCat.{u} R) :
     (principalLocalizationTensorCoefficientsIso x M).inv.f 0 = (ρ_ M).inv := rfl
 
 /-- Tensor maps act on the unique degree-zero summand by their two
-zeroth components.-/
+zeroth components.
+@isnad1 id=eq.0h7v.s11.33443a490832 from=translated src=- shape=41da3f32 vocab=74204d50
+-/
 theorem tensorComplexZeroIso_hom_naturality
     {K L K' L' : CochainComplex (ModuleCat.{u} R) ℕ} (f : K ⟶ K') (g : L ⟶ L') :
     (tensorComplexZeroIso K L).hom ≫ (HomologicalComplex.tensorHom f g).f 0 =
@@ -85,7 +93,9 @@ theorem tensorComplexZeroIso_hom_naturality
     (fun k : K.X 0 ⊗ L.X 0 ⟶ K'.X 0 ⊗ L'.X 0 =>
       k ≫ (tensorComplexZeroIso K' L').hom) (tensorHom_def (f.f 0) (g.f 0)).symm
 
-/-- The inverse degree-zero identification also commutes with tensor maps.-/
+/-- The inverse degree-zero identification also commutes with tensor maps.
+@isnad1 id=eq.0h7v.s11.e2fc1ad8e548 from=translated src=- shape=7965f259 vocab=db647eb9
+-/
 theorem tensorComplexZeroIso_inv_naturality
     {K L K' L' : CochainComplex (ModuleCat.{u} R) ℕ} (f : K ⟶ K') (g : L ⟶ L') :
     (HomologicalComplex.tensorHom f g).f 0 ≫ (tensorComplexZeroIso K' L').inv =
@@ -96,7 +106,9 @@ theorem tensorComplexZeroIso_inv_naturality
     ← Category.assoc, Iso.hom_inv_id, Category.id_comp]
 
 /-- The associator on complexes is the usual tensor associator on the
-unique summands in degree zero.-/
+unique summands in degree zero.
+@isnad1 id=eq.0h4v.s12.3dc18ac4e15c from=translated src=- shape=6f834356 vocab=ba7b75e7
+-/
 theorem tensorComplexZeroIso_associator_hom
     (K L B : CochainComplex (ModuleCat.{u} R) ℕ) :
     ((tensorComplexZeroIso K L).hom ▷ B.X 0) ≫
@@ -235,7 +247,9 @@ private theorem cechPrincipalTensor_zero (x : R) (xs : List R) (M T : ModuleCat.
   exact he
 
 /-- The injection in the Čech contraction is the canonical torsion inclusion
-under the degree-zero coefficient identification.-/
+under the degree-zero coefficient identification.
+@isnad1 id=eq.0h3v.s11.ab13937d1fd3 from=translated src=- shape=5dc3ed2a vocab=8b788acb
+-/
 theorem cechInjectiveHomotopyEquiv_inv_f_zero [IsNoetherianRing R]
     (xs : List R) (M : ModuleCat.{u} R) [Module.Injective R M] :
     (cechInjectiveHomotopyEquiv xs M).inv.f 0 ≫

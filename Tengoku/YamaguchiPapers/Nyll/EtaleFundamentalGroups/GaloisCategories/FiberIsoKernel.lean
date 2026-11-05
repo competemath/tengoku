@@ -27,7 +27,9 @@ universe u v u' v' w
 variable {C : Type u} [Category.{v} C] {C' : Type u'} [Category.{v'} C']
 
 /-- Changing the source and target fiber comparisons preserves the kernel of
-restriction along a functor.-/
+restriction along a functor.
+@isnad1 id=eq.1h11v.s11.2bc8c36cd9ef from=translated src=- shape=1abc3991 vocab=0be4540c
+-/
 theorem autHomOfCompIso_conj_eq_one_of_eq_one
     (H : C ⥤ C') {F G : C' ⥤ FintypeCat.{w}}
     {F₀ G₀ : C ⥤ FintypeCat.{w}}
@@ -49,7 +51,9 @@ theorem autHomOfCompIso_conj_eq_one_of_eq_one
         (map_one r.conjAut)))
 
 /-- A fixed fiber after conjugating by a natural isomorphism was already fixed
-before transport.-/
+before transport.
+@isnad1 id=eq.1h7v.s10.59b36d68ec94 from=translated src=- shape=47fa0b04 vocab=fc4a370e
+-/
 theorem fiber_fixed_of_conj_fixed
     {F G : C ⥤ FintypeCat.{w}} (t : F ≅ G) (a : Aut F)
     (W : C) (ha : ∀ w : G.obj W, continuousConjAut t a • w = w) :

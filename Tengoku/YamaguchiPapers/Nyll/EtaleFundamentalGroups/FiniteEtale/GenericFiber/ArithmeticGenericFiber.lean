@@ -26,7 +26,9 @@ open AlgebraicGeometry CategoryTheory CategoryTheory.Limits TopologicalSpace
 namespace EtaleFundamentalGroups
 
 /-- A characteristic-zero field point of the integer scheme is its generic
-point.-/
+point.
+@isnad1 id=eq.0h2v.s8.5faa90ef2876 from=translated src=- shape=6ce2a80c vocab=b320f071
+-/
 theorem specMap_int_field_eq_genericPoint
     (K : Type) [Field K] [CharZero K] (x : Spec (CommRingCat.of K)) :
     (Spec.map (CommRingCat.ofHom (algebraMap ℤ K))) x =
@@ -38,7 +40,9 @@ theorem specMap_int_field_eq_genericPoint
   exact Ideal.comap_bot_of_injective (algebraMap ℤ K) Int.cast_injective
 
 /-- Geometric integrality of the arithmetic generic fiber gives geometric
-integrality after every characteristic-zero field extension.-/
+integrality after every characteristic-zero field extension.
+@isnad1 id=geometri.0h3v.s7.9e90ca7a5bee from=translated src=- shape=e1654221 vocab=4a118d7a
+-/
 theorem geometricallyIntegral_pullback_of_arithmetic_genericFiber
     {X : Scheme} (f : X ⟶ Spec (CommRingCat.of ℤ))
     [GeometricallyIntegral

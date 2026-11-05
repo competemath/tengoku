@@ -29,7 +29,9 @@ universe u
 namespace Scheme
 
 /-- A closed immersion induces an isomorphism on residue fields at every
-point of its source.-/
+point of its source.
+@isnad1 id=bijectiv.0h4v.s10.5a166e3e26d8 from=translated src=- shape=10393556 vocab=4bc98d31
+-/
 theorem Hom.residueFieldMap_bijective_of_isClosedImmersion
     {Z X : Scheme.{u}} (i : Z ⟶ X) [IsClosedImmersion i] (z : Z) :
     Function.Bijective (i.residueFieldMap z) := by
@@ -124,7 +126,9 @@ private theorem geometricallyIntegral_specMap_transport_ringEquiv
 
 /-- Geometric integrality of a field over the base is invariant under a
 ring equivalence, with the target algebra structure transported along that
-equivalence.-/
+equivalence.
+@isnad1 id=geometri.1h4v.s8.f82009a466e6 from=translated src=- shape=6ced6a44 vocab=46d1b47d
+-/
 theorem geometricallyIntegral_specMap_transport_ringEquiv'
     {k R S : Type u} [Field k] [Field R] [Field S]
     [Algebra k R] (e : R ≃+* S)
@@ -137,7 +141,9 @@ theorem geometricallyIntegral_specMap_transport_ringEquiv'
   geometricallyIntegral_specMap_transport_ringEquiv e h
 
 /-- Geometric integrality of the residue field at a point represented in a
-stalk transports to the residue field of the corresponding stalk prime.-/
+stalk transports to the residue field of the corresponding stalk prime.
+@isnad1 id=other.1h4v.s14.f3aa79c008ef from=translated src=- shape=0e7ccd7b vocab=332129de
+-/
 theorem Scheme.geometricallyIntegral_residueFieldFromSpecStalk
     {k : Type u} [Field k] (X : Scheme.{u}) (x : X)
     (p : Spec (X.presheaf.stalk x))
@@ -159,7 +165,9 @@ theorem Scheme.geometricallyIntegral_residueFieldFromSpecStalk
 
 /-- Geometric integrality of the affine divisor cut out by a prime gives
 geometric integrality of the prime's residue field.  The algebra structure is
-transported through the canonical quotient-function-field equivalence.-/
+transported through the canonical quotient-function-field equivalence.
+@isnad1 id=other.1h3v.s10.cbe3bf56d506 from=translated src=- shape=90a138f2 vocab=3b99a7a5
+-/
 theorem geometricallyIntegral_primeResidueField_of_specQuotient
     {k A : Type u} [Field k] [CommRing A]
     (P : Ideal A) [P.IsPrime] [Algebra k (A ⧸ P)]
@@ -189,7 +197,9 @@ theorem geometricallyIntegral_primeResidueField_of_specQuotient
 /-- Geometric integrality of an integral closed component over a field gives
 geometric integrality of the ambient residue field at the component's
 generic point, with the algebra structure transported by the canonical
-residue/function-field equivalence.-/
+residue/function-field equivalence.
+@isnad1 id=other.1h5v.s13.12a9ca3032bc from=translated src=- shape=e1278178 vocab=740577d5
+-/
 theorem Scheme.Hom.geometricallyIntegral_genericSourceResidue
     {k : Type u} [Field k] {Z X : Scheme.{u}} [IsIntegral Z]
     (i : Z ⟶ X) [IsClosedImmersion i]

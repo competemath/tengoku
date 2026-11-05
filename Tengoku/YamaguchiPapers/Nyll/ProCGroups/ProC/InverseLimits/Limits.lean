@@ -40,7 +40,9 @@ variable [∀ i, Group (S.X i)]
 variable [∀ i, IsTopologicalGroup (S.X i)]
 variable [InverseSystems.IsGroupSystem S]
 
-/-- A directed inverse limit of pro-\(C\) groups is pro-\(C\).-/
+/-- A directed inverse limit of pro-\(C\) groups is pro-\(C\).
+@isnad1 id=hasopenn.4h3v.s7.fe4abea7ab5f from=translated src=- shape=bdc01f16 vocab=de695bcd
+-/
 theorem inverseLimit
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
     [∀ i, TotallyDisconnectedSpace (S.X i)]
@@ -85,7 +87,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
 /--
 If \(G\) is pro-\(C\) and \(C\) is closed under quotients, then every quotient of \(G\) by a
-closed normal subgroup is again pro-\(C\).-/
+closed normal subgroup is again pro-\(C\).
+@isnad1 id=hasopenn.4h3v.s6.09fafbe95c3f from=translated src=- shape=5dcafc21 vocab=56dafb4d
+-/
 theorem quotient_closedNormalSubgroup
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
     (hIso : FiniteGroupClass.IsomClosed C)

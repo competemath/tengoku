@@ -26,7 +26,9 @@ namespace Algebra.TensorProduct
 
 /-- A domain tensor product remains a domain after localizing its flat left
 factor to a fraction field. Injectivity of the right structure map ensures
-that the denominators remain nonzero in the tensor product.-/
+that the denominators remain nonzero in the tensor product.
+@isnad1 id=isdomain.1h4v.s8.a0bf9d97e4b5 from=translated src=- shape=449bc591 vocab=a3f78100
+-/
 theorem isDomain_of_isFractionRing_left_of_flat
     {R B F K : Type*} [CommRing R] [CommRing B] [IsDomain B] [Algebra R B]
     [CommRing F] [Algebra R F] [Algebra B F] [IsScalarTower R B F]
@@ -63,7 +65,9 @@ theorem isDomain_of_isFractionRing_left_of_flat
   exact nonZeroDivisors.ne_zero hb (hinj (hzero.trans (map_zero _).symm))
 
 /-- An integral tensor product over the integers controls the rational tensor
-product after passage to the fraction field of a flat domain.-/
+product after passage to the fraction field of a flat domain.
+@isnad1 id=isdomain.0h3v.s7.588fdf7b9277 from=translated src=- shape=e7f8f250 vocab=c85f9426
+-/
 theorem isDomain_ratTensor_of_isFractionRing_intTensor
     {B F K : Type*} [CommRing B] [IsDomain B] [Module.Flat ℤ B]
     [Field F] [CharZero F] [Algebra B F] [IsFractionRing B F]

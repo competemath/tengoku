@@ -29,7 +29,9 @@ universe u
 If `AdjoinRoot f` is formally unramified over its coefficient ring, then the
 derivative of `f` at the distinguished root is a unit.
 
-No monicity hypothesis is needed for this direction.-/
+No monicity hypothesis is needed for this direction.
+@isnad1 id=isunit.0h2v.s8.e6369505a53f from=translated src=- shape=5f82200f vocab=1ebe2b60
+-/
 theorem isUnit_aeval_derivative_of_formallyUnramified
     {R : Type u} [CommRing R] (f : R[X])
     [Algebra.FormallyUnramified R (AdjoinRoot f)] :

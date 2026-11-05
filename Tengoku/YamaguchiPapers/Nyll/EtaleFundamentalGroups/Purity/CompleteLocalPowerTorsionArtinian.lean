@@ -42,7 +42,9 @@ variable [IsAdicComplete (maximalIdeal R) R]
 variable {M : Type v} [AddCommGroup M] [Module R M]
 
 /-- Over a complete Noetherian local ring, a finite-length essential
-submodule forces the entire module to be Artinian.-/
+submodule forces the entire module to be Artinian.
+@isnad1 id=isartini.2h3v.s7.2295b6726f07 from=translated src=- shape=77f453c7 vocab=873572da
+-/
 theorem isArtinian_of_completeLocal_finiteLength_essential_submodule
     (N : Submodule R M) (hN : IsEssentialSubmodule N) (hlen : IsFiniteLength R N) :
     IsArtinian R M := by
@@ -53,7 +55,9 @@ theorem isArtinian_of_completeLocal_finiteLength_essential_submodule
   exact isArtinian_of_finiteLength_essential_submodule i hi hess N hN hlen
 
 /-- Maximal-ideal-power torsion and an Artinian socle imply that a module
-over a complete Noetherian local ring is Artinian.-/
+over a complete Noetherian local ring is Artinian.
+@isnad1 id=isartini.1h2v.s8.273e4ba8d64a from=translated src=- shape=b20e2b45 vocab=ba501b3a
+-/
 theorem isArtinian_of_maximalIdealPower_torsion_of_artinian_socle
     [IsArtinian R (Submodule.torsionBySet R M (maximalIdeal R))]
     (hM : ∀ z : M, ∃ n : ℕ, ∀ a ∈ maximalIdeal R ^ n, a • z = 0) :
@@ -64,7 +68,9 @@ theorem isArtinian_of_maximalIdealPower_torsion_of_artinian_socle
     (isFiniteLength_torsionBySet_maximalIdeal_of_artinian M)
 
 /-- A scalar kernel containing the socle gives the Artinian criterion
-used with coefficient exact sequences in local cohomology.-/
+used with coefficient exact sequences in local cohomology.
+@isnad1 id=isartini.2h3v.s9.2c9ab3f126de from=translated src=- shape=cae2e54c vocab=1e5e85cf
+-/
 theorem isArtinian_of_maximalIdealPower_torsion_of_artinian_scalarKernel
     (x : R) (hx : x ∈ maximalIdeal R)
     [IsArtinian R (LinearMap.ker (x • (LinearMap.id : M →ₗ[R] M)))]

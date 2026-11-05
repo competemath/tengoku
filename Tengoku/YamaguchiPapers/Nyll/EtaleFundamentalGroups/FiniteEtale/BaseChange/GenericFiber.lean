@@ -72,7 +72,9 @@ abbrev selectedGenericFiberIdeal
     (f : (T ⊗[R] K) →ₐ[R] Ω) : Ideal (T ⊗[R] K) :=
   RingHom.ker f
 
-/-- A surjective generic-fibre map to a field selects a maximal ideal.-/
+/-- A surjective generic-fibre map to a field selects a maximal ideal.
+@isnad1 id=ismaxima.1h5v.s9.00d2f1cd4a4a from=translated src=- shape=c95b9054 vocab=03fc5cb7
+-/
 theorem selectedGenericFiberIdeal_isMaximal
     {R : Type uA} {T : Type uT} {K : Type uK} {Ω : Type uΩ}
     [CommRing R] [CommRing T] [Algebra R T]

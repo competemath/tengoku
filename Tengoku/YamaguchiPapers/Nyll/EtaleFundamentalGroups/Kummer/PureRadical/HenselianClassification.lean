@@ -35,7 +35,9 @@ Henselian base.
 The unit condition on `n` makes `X ^ n - 1` separable at every root.  The
 root is first pulled into the integral closure, its residue is lifted by
 Hensel's lemma, and uniqueness of a simple root in the target local domain
-identifies the two lifts.-/
+identifies the two lifts.
+@isnad1 id=mem.3h6v.s9.2963eaea286f from=translated src=- shape=4e9200f4 vocab=79955578
+-/
 theorem rootOfUnity_mem_fractionBase_of_henselian_of_residue_bijective
     {A : Type u} {B : Type v} {K : Type w} {L : Type x}
     [CommRing A] [CommRing B] [IsDomain B]
@@ -129,7 +131,9 @@ theorem rootOfUnity_mem_fractionBase_of_henselian_of_residue_bijective
 /-- Henselian integral-model form of the pure-radical intermediate-field
 classification.  The roots-of-unity hypothesis of the abstract theorem is
 produced from the normal local integral model and its unchanged residue
-field.-/
+field.
+@isnad1 id=ex.5h6v.s9.b7159ae5b2a8 from=translated src=- shape=2355b29a vocab=c59e2554
+-/
 theorem exists_intermediateField_eq_adjoin_pow_of_henselian_pureRadical
     {A : Type u} {B : Type v} {K : Type w} {L : Type x}
     [CommRing A] [CommRing B] [IsDomain B]

@@ -35,7 +35,9 @@ open RingTheory.Sequence
 universe u
 
 /-- A prime divisor with regular quotient in a two-dimensional regular local
-domain has nonzero cotangent class.-/
+domain has nonzero cotangent class.
+@isnad1 id=not.3h2v.s7.29d5d8ca81e9 from=translated src=- shape=31949126 vocab=6e54829b
+-/
 theorem prime_not_mem_maximalIdeal_sq_of_regular_quotient_dimension_two
     {R : Type u} [CommRing R] [IsDomain R] [IsRegularLocalRing R]
     {p : R} (hp : Prime p)
@@ -155,7 +157,9 @@ theorem prime_not_mem_maximalIdeal_sq_of_regular_quotient_dimension_two
   omega
 
 /-- A prime divisor with regular quotient extends to a regular parameter pair
-in dimension two.-/
+in dimension two.
+@isnad1 id=ex.3h2v.s7.c38d6dfacaf9 from=translated src=- shape=c3f2fd43 vocab=856e4b84
+-/
 theorem exists_regular_pair_of_prime_regular_quotient_dimension_two
     {R : Type u} [CommRing R] [IsDomain R] [IsRegularLocalRing R]
     {p : R} (hp : Prime p)

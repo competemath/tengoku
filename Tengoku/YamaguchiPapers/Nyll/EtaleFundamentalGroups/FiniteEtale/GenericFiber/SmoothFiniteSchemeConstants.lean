@@ -34,7 +34,9 @@ open scoped TensorProduct NumberField
 namespace EtaleFundamentalGroups
 
 /-- A dominant arithmetic integral scheme has characteristic-zero function
-field, via the actual map from the fraction field of the integers.-/
+field, via the actual map from the fraction field of the integers.
+@isnad1 id=charzero.0h2v.s5.ce81cdaf8e44 from=translated src=- shape=5097d95d vocab=80a3afd9
+-/
 theorem charZero_functionField_of_dominant_integers
     {X : Scheme.{0}} [IsIntegral X]
     (p : X ⟶ Spec (CommRingCat.of ℤ)) [IsDominant p] :
@@ -60,7 +62,9 @@ private theorem smooth_int_sections
     ((HasRingHomProperty.Spec_iff (P := @Smooth)).mp hsm)
 
 /-- A finite surjective arithmetic cover that is smooth and normal admits no
-nontrivial constant number field disjoint from the base function field.-/
+nontrivial constant number field disjoint from the base function field.
+@isnad1 id=eq.0h6v.s8.55bb233da3d2 from=translated src=- shape=9a0d62ce vocab=76fdc2f5
+-/
 theorem numberField_finrank_eq_one_of_smooth_finite_scheme_cover
     {X Y : Scheme.{0}} [IsIntegral X] [IsIntegral Y] [IsNormalIntegral X]
     (f : X ⟶ Y) [IsFinite f] [Flat f] [Surjective f]

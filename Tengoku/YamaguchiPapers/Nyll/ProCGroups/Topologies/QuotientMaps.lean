@@ -31,7 +31,9 @@ variable {G : Type u} {H : Type v} [Group G] [Group H]
 
 /--
 The comap of a quotient subgroup is determined by the representative-level map when the kernel
-condition holds.-/
+condition holds.
+@isnad1 id=eq.2h5v.s6.f9256df5b7f7 from=translated src=- shape=710a452b vocab=802e3a73
+-/
 theorem comap_eq_of_map_eq_of_ker_le
     (f : G →* H) {N : Subgroup G} {M : Subgroup H}
     (hmap : N.map f = M) (hker : f.ker ≤ N) :
@@ -86,7 +88,9 @@ noncomputable def mapMulEquivOfSurjective
     (MonoidHom.ker_eq_bot_iff (f := φ)).1 hkerφ
   exact MulEquiv.ofBijective φ ⟨hinj, hsurj⟩
 
-/-- A surjective homomorphism induces the expected multiplicative equivalence on quotient groups.-/
+/-- A surjective homomorphism induces the expected multiplicative equivalence on quotient groups.
+@isnad1 id=eq.3h6v.s9.44571313e73a from=translated src=- shape=59595a1f vocab=d2457057
+-/
 @[simp] theorem mapMulEquivOfSurjective_apply_mk
     (f : G →* H) {N : Subgroup G} {M : Subgroup H} [N.Normal] [M.Normal]
     (hf : Function.Surjective f) (hmap : N.map f = M) (hker : f.ker ≤ N) (g : G) :
@@ -191,14 +195,18 @@ noncomputable def mapContinuousMulEquivOfSurjective
 
 /--
 The lifted continuous quotient map evaluates on quotient classes by applying the underlying map
-to representatives.-/
+to representatives.
+@isnad1 id=eq.1h5v.s8.1b60bbd1022f from=translated src=- shape=c277e5d5 vocab=f642dd9d
+-/
 @[simp] theorem liftₜ_apply_mk
     (N : Subgroup G) [N.Normal] (f : G →ₜ* H)
     (hN : N ≤ f.toMonoidHom.ker) (g : G) :
     liftₜ (G := G) (H := H) N f hN (QuotientGroup.mk' N g) = f g := by
   rfl
 
-/-- The monoid homomorphism underlying `liftₜ` is the usual quotient lift.-/
+/-- The monoid homomorphism underlying `liftₜ` is the usual quotient lift.
+@isnad1 id=eq.1h4v.s7.10028fd64cab from=translated src=- shape=039360ba vocab=14cafca5
+-/
 @[simp] theorem liftₜ_toMonoidHom
     (N : Subgroup G) [N.Normal] (f : G →ₜ* H)
     (hN : N ≤ f.toMonoidHom.ker) :
@@ -206,7 +214,9 @@ to representatives.-/
       QuotientGroup.lift N f.toMonoidHom hN := by
   rfl
 
-/-- The induced continuous monoid homomorphism sends a quotient class to the class of its image.-/
+/-- The induced continuous monoid homomorphism sends a quotient class to the class of its image.
+@isnad1 id=eq.1h6v.s9.dbfecc309966 from=translated src=- shape=c7fceb1c vocab=a614f7f1
+-/
 @[simp] theorem mapContinuousMonoidHom_apply_mk
     (f : G →ₜ* H) {N : Subgroup G} {M : Subgroup H} [N.Normal] [M.Normal]
     (hNM : N ≤ M.comap f.toMonoidHom) (g : G) :
@@ -215,7 +225,9 @@ to representatives.-/
       QuotientGroup.mk' M (f g) := by
   rfl
 
-/-- The continuous quotient map sends the class of \(g\) to the class of \(f(g)\).-/
+/-- The continuous quotient map sends the class of \(g\) to the class of \(f(g)\).
+@isnad1 id=eq.1h6v.s9.64e22b0be1c3 from=translated src=- shape=5b5a2943 vocab=477e07de
+-/
 @[simp] theorem mapₜ_apply_mk
     (N : Subgroup G) (M : Subgroup H) [N.Normal] [M.Normal]
     (f : G →ₜ* H) (hNM : N ≤ M.comap f.toMonoidHom) (g : G) :
@@ -223,7 +235,9 @@ to representatives.-/
       QuotientGroup.mk' M (f g) := by
   rfl
 
-/-- The monoid homomorphism underlying `mapₜ` is the usual map between quotient groups.-/
+/-- The monoid homomorphism underlying `mapₜ` is the usual map between quotient groups.
+@isnad1 id=eq.1h5v.s8.2a9133c74df8 from=translated src=- shape=13dbbf2b vocab=20adef8e
+-/
 @[simp] theorem mapₜ_toMonoidHom
     (N : Subgroup G) (M : Subgroup H) [N.Normal] [M.Normal]
     (f : G →ₜ* H) (hNM : N ≤ M.comap f.toMonoidHom) :
@@ -233,7 +247,9 @@ to representatives.-/
 
 /--
 The continuous quotient congruence map evaluates on quotient classes by applying the underlying
-map to representatives.-/
+map to representatives.
+@isnad1 id=eq.1h6v.s9.c174c3c4e8e5 from=translated src=- shape=ade41a85 vocab=ea053bf0
+-/
 @[simp] theorem congrₜ_apply_mk
     (N : Subgroup G) (M : Subgroup H) [N.Normal] [M.Normal]
     (e : G ≃ₜ* H) (h : N.map e.toMulEquiv.toMonoidHom = M) (g : G) :
@@ -243,7 +259,9 @@ map to representatives.-/
 
 /--
 The induced continuous multiplicative equivalence sends a quotient class to the class of its
-image.-/
+image.
+@isnad1 id=eq.3h6v.s9.a788ecfbc3c3 from=translated src=- shape=ab4f3e21 vocab=a2806797
+-/
 @[simp 900] theorem mapContinuousMulEquivOfSurjective_apply_mk
     (f : G →ₜ* H) {N : Subgroup G} {M : Subgroup H} [N.Normal] [M.Normal]
     [CompactSpace (G ⧸ N)] [T2Space (H ⧸ M)]
@@ -285,7 +303,9 @@ def restrictPreimage (f : G →ₜ* Q) (H : Subgroup Q) :
         exact hcont.subtype_mk (by intro x; exact x.2) }
 
 omit [IsTopologicalGroup G] [IsTopologicalGroup Q] in
-/-- The restriction to a subgroup preimage is surjective if the original map is surjective.-/
+/-- The restriction to a subgroup preimage is surjective if the original map is surjective.
+@isnad1 id=surjecti.1h4v.s9.deeed05e1863 from=translated src=- shape=3986b191 vocab=bc50210b
+-/
 theorem restrictPreimage_surjective (f : G →ₜ* Q) (hf : Function.Surjective f)
     (H : Subgroup Q) :
     Function.Surjective (restrictPreimage f H) := by
@@ -297,7 +317,9 @@ theorem restrictPreimage_surjective (f : G →ₜ* Q) (hf : Function.Surjective 
   · exact Subtype.ext hx
 
 omit [IsTopologicalGroup G] [IsTopologicalGroup Q] in
-/-- The kernel of the restriction to a subgroup preimage is detected by the ambient map.-/
+/-- The kernel of the restriction to a subgroup preimage is detected by the ambient map.
+@isnad1 id=iff.0h5v.s9.44ede232f0f8 from=translated src=- shape=648163d3 vocab=2b8b0b9e
+-/
 theorem restrictPreimage_eq_one_iff {f : G →ₜ* Q} {H : Subgroup Q}
     {x : H.comap f.toMonoidHom} :
     restrictPreimage f H x = 1 ↔ f x.1 = 1 := by

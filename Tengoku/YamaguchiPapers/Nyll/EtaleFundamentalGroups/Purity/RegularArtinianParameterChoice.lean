@@ -31,7 +31,9 @@ variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
 /-- A scalar in the maximal ideal can be chosen simultaneously regular on
 a finite module and with finite-length cokernel on an Artinian module,
-provided the maximal ideal is not associated to the finite module.-/
+provided the maximal ideal is not associated to the finite module.
+@isnad1 id=ex.1h3v.s10.17f1ae27f066 from=translated src=- shape=f1cb4633 vocab=ee1c26c7
+-/
 theorem exists_regular_mem_maximalIdeal_finiteLength_quotient
     (M : Type v) [AddCommGroup M] [Module R M] [Module.Finite R M]
     (A : Type w) [AddCommGroup A] [Module R A] [IsArtinian R A]

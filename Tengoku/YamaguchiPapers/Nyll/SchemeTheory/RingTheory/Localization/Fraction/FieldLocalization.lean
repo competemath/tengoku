@@ -27,7 +27,9 @@ universe uA uK uL
 
 /-- An algebraic extension of the displayed fraction field is the fraction
 field of the actual integral closure. This is the existing normalization
-supplier, now shared without changing its proof.-/
+supplier, now shared without changing its proof.
+@isnad1 id=isfracti.0h3v.s8.d80868eeb8c8 from=translated src=- shape=fc9bd63e vocab=6394b7d9
+-/
 theorem integralClosure_isFractionRing_of_fractionField_algebraic
     (A : Type uA) (K : Type uK) (L : Type uL)
     [CommRing A] [IsDomain A] [Field K] [Field L]
@@ -62,7 +64,9 @@ noncomputable abbrev localizationAtPrimeToFractionFieldAlgebra
 
 omit [IsDomain A] in
 /-- The fraction-field map from a prime localization extends the original
-map from `A`.-/
+map from `A`.
+@isnad1 id=other.0h3v.s7.46b4e6dec9d2 from=translated src=- shape=316a7af0 vocab=05290b59
+-/
 theorem localizationAtPrimeToFractionField_isScalarTower
     (P : Ideal A) [P.IsPrime] :
     let : Algebra (Localization.AtPrime P) K :=
@@ -72,7 +76,9 @@ theorem localizationAtPrimeToFractionField_isScalarTower
   exact IsScalarTower.of_algebraMap_eq' (IsLocalization.lift_comp _).symm
 
 /-- A chosen fraction field of `A` is also a fraction field of every prime
-localization of `A`, for the canonical map above.-/
+localization of `A`, for the canonical map above.
+@isnad1 id=other.0h3v.s7.1cbfc1a4c0b8 from=translated src=- shape=ef0e98a0 vocab=3430af1f
+-/
 theorem localizationAtPrimeToFractionField_isFractionRing
     (P : Ideal A) [P.IsPrime] :
     let : Algebra (Localization.AtPrime P) K :=
@@ -98,7 +104,9 @@ noncomputable abbrev localizationAtPrimeToExtensionAlgebra
 
 omit [IsDomain A] in
 /-- The prime-localization, fraction-field, and extension maps form a scalar
-tower by construction.-/
+tower by construction.
+@isnad1 id=other.0h4v.s8.7fe46daa5c1a from=translated src=- shape=d8d8c7cf vocab=eb9672b5
+-/
 theorem localizationAtPrimeToFractionFieldToExtension_isScalarTower
     (P : Ideal A) [P.IsPrime] :
     let : Algebra (Localization.AtPrime P) K :=
@@ -113,7 +121,9 @@ variable [Algebra A L] [IsScalarTower A K L]
 
 omit [IsDomain A] in
 /-- The canonical localization map is compatible with the original map
-`A → L`.-/
+`A → L`.
+@isnad1 id=other.0h4v.s8.d224dc0920fd from=translated src=- shape=51661902 vocab=c85f67d3
+-/
 theorem localizationAtPrimeToExtension_isScalarTower
     (P : Ideal A) [P.IsPrime] :
     let : Algebra (Localization.AtPrime P) L :=

@@ -27,7 +27,9 @@ namespace EtaleFundamentalGroups
 universe u
 
 /-- A uniform projective-dimension bound on the ideal-power quotients forces
-the corresponding derived local-cohomology colimit to vanish.-/
+the corresponding derived local-cohomology colimit to vanish.
+@isnad1 id=iszero.2h5v.s7.f8d00267414b from=translated src=- shape=6b21f028 vocab=1f4a96b8
+-/
 theorem derivedLocalCohomology_isZero_of_quotientPowers_hasProjectiveDimensionLT
     {R : Type u} [CommRing R]
     (I : Ideal R) (M : ModuleCat.{u} R) (d i : ℕ) (hdi : d ≤ i)
@@ -41,7 +43,9 @@ theorem derivedLocalCohomology_isZero_of_quotientPowers_hasProjectiveDimensionLT
   exact HasProjectiveDimensionLT.subsingleton N d i hdi M
 
 /-- Derived local cohomology supported on a principal regular ideal vanishes
-in every degree at least two.-/
+in every degree at least two.
+@isnad1 id=iszero.3h4v.s6.3f91eb717214 from=translated src=- shape=e1a50671 vocab=d0051d77
+-/
 theorem derivedLocalCohomology_span_singleton_isZero_of_isSMulRegular
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (x : R) (hxreg : IsSMulRegular R x)

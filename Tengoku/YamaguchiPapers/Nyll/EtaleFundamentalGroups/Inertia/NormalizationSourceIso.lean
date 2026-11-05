@@ -56,6 +56,9 @@ def normalizationSourceIso : f.normalization ≅ g.normalization := by
     · simp only [Category.assoc, Scheme.Hom.normalizationDesc_comp]
     · exact Category.id_comp _
 
+/--
+@isnad1 id=eq.1h6v.s7.f9ac42766061 from=translated src=- shape=d8a7b8b2 vocab=06235c25
+-/
 @[reassoc]
 theorem toNormalization_normalizationSourceIso_hom :
     f.toNormalization ≫ (normalizationSourceIso f g e he).hom =
@@ -63,6 +66,9 @@ theorem toNormalization_normalizationSourceIso_hom :
   Scheme.Hom.toNormalization_normalizationDesc f (e.hom ≫ g.toNormalization)
     g.fromNormalization (by rw [Category.assoc, Scheme.Hom.toNormalization_fromNormalization, he])
 
+/--
+@isnad1 id=eq.1h6v.s7.2dc435ae47a1 from=translated src=- shape=ac2fcf27 vocab=156b190f
+-/
 @[reassoc]
 theorem normalizationSourceIso_hom_fromNormalization :
     (normalizationSourceIso f g e he).hom ≫ g.fromNormalization = f.fromNormalization :=
@@ -70,7 +76,9 @@ theorem normalizationSourceIso_hom_fromNormalization :
     g.fromNormalization (by rw [Category.assoc, Scheme.Hom.toNormalization_fromNormalization, he])
 
 /-- Extending commuting endomorphisms preserves their commutation with the
-actual source isomorphism.-/
+actual source isomorphism.
+@isnad1 id=eq.4h8v.s8.2af748b8160e from=translated src=- shape=acd183df vocab=af09a73d
+-/
 @[reassoc]
 theorem normalizationSourceIso_hom_endomorphism
     (sigma : A ⟶ A) (hsigma : sigma ≫ f = f)
@@ -89,7 +97,9 @@ theorem normalizationSourceIso_hom_endomorphism
   · simp only [Category.assoc, normalizationSourceIso_hom_fromNormalization,
       normalizationEndomorphism_fromNormalization]
 
-/-- The resulting comparison preserves exact fixed geometric-point morphisms.-/
+/-- The resulting comparison preserves exact fixed geometric-point morphisms.
+@isnad1 id=iff.4h10v.s8.453d184ceb62 from=translated src=- shape=bfc7aedd vocab=af09a73d
+-/
 theorem normalizationSourceIso_fixes_iff
     {T : Scheme.{u}} (z : T ⟶ f.normalization)
     (sigma : A ⟶ A) (hsigma : sigma ≫ f = f)

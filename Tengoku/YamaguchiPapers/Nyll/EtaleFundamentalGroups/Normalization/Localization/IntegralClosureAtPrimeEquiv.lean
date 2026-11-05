@@ -95,7 +95,9 @@ noncomputable def localizationIntegralClosureAtPrimeAlgEquiv
 
 omit [IsDomain A] [IsScalarTower A K L] in
 /-- Etaleness of the normalization after localizing the base gives exactly
-the localized-normalization target used by the height-one input of purity.-/
+the localized-normalization target used by the height-one input of purity.
+@isnad1 id=etale.1h4v.s10.5cd5bfa82f7d from=translated src=- shape=a0aa4408 vocab=78c5d711
+-/
 theorem localization_integralClosure_etale_of_local_integralClosure_etale
     [IsScalarTower A K L]
     (P : Ideal A) [P.IsPrime] :

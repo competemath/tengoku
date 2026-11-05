@@ -31,7 +31,9 @@ universe u v
 
 /--
 If the total relative Kummer algebra is formally unramified over the
-original base, then its prefix is formally unramified too.-/
+original base, then its prefix is formally unramified too.
+@isnad1 id=formally.1h4v.s9.072bbe3c235d from=translated src=- shape=66437ce5 vocab=2807a135
+-/
 theorem formallyUnramified_prefix_of_formallyUnramified_relativeRadical
     {A : Type u} {T : Type v}
     [CommRing A] [CommRing T] [Algebra A T]

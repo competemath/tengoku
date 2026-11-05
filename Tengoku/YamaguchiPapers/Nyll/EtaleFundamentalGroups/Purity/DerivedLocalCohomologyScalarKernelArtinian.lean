@@ -40,7 +40,9 @@ variable [IsAdicComplete (maximalIdeal R) R]
 
 /-- If a scalar in the maximal ideal is regular on the coefficients,
 Artinianness in degree `n` of the coefficient quotient implies
-Artinianness in degree `n + 1` of the original coefficients.-/
+Artinianness in degree `n + 1` of the original coefficients.
+@isnad1 id=isartini.2h4v.s9.0c5ad8953783 from=translated src=- shape=a2fe14ff vocab=908ae610
+-/
 theorem isArtinian_derivedLocalCohomologyModule_succ_of_regular_smulQuotient
     (M : ModuleCat.{u} R) (x : R) (hx : x ∈ maximalIdeal R)
     (hxreg : IsSMulRegular M x) (n : ℕ)

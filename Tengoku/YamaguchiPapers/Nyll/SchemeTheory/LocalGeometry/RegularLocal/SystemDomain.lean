@@ -34,7 +34,9 @@ universe u
 
 /-- In a Noetherian local ring, one prime regular element forces the zero
 ideal to be prime.  Krull intersection rules out infinite divisibility by the
-chosen element.-/
+chosen element.
+@isnad1 id=isdomain.2h2v.s5.1af7b09a189a from=translated src=- shape=f4172323 vocab=25eabe94
+-/
 theorem isDomain_of_prime_isSMulRegular
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     {p : R} (hp : Prime p) (hpreg : IsSMulRegular R p) : IsDomain R := by
@@ -114,7 +116,9 @@ theorem isDomain_of_prime_isSMulRegular
   exact IsDomain.of_bot_isPrime R
 
 /-- Removing the first member of a regular system leaves a regular system in
-the quotient, still generating its maximal ideal.-/
+the quotient, still generating its maximal ideal.
+@isnad1 id=other.2h3v.s9.b95ee00e4d7a from=translated src=- shape=c1fe0350 vocab=f70aa690
+-/
 theorem regularSystem_quotientHead
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     {p : R} {ps : List R}
@@ -167,7 +171,9 @@ theorem regularSystem_quotientHead
 tail as a regular system generating the quotient maximal ideal.
 
 Unlike iterating `regularSystem_quotientHead`, this theorem presents the
-result directly over the single quotient by `Ideal.ofList xs`.-/
+result directly over the single quotient by `Ideal.ofList xs`.
+@isnad1 id=other.2h3v.s9.e87ec22ad197 from=translated src=- shape=33a1441c vocab=ea256501
+-/
 theorem regularSystem_quotientPrefix
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (xs ys : List R)
@@ -253,7 +259,9 @@ theorem regularSystem_quotientPrefix
       (L := S) hmem hweakS, hgenS⟩
 
 /-- A regular system generating the maximal ideal makes a Noetherian local
-ring a domain.-/
+ring a domain.
+@isnad1 id=isdomain.2h2v.s6.5706e58e1448 from=translated src=- shape=1c011a0b vocab=f3bb8112
+-/
 theorem isDomain_of_regularSystem
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (ps : List R) (hreg : IsRegular R ps)
@@ -317,7 +325,9 @@ theorem isDomain_of_regularSystem
 termination_by ps.length
 
 /-- A regular system which generates the maximal ideal makes its Noetherian
-local ring regular local.-/
+local ring regular local.
+@isnad1 id=isregula.2h2v.s6.61c6f84fd63f from=translated src=- shape=1c011a0b vocab=101bdf24
+-/
 theorem isRegularLocalRing_of_regularSystem
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (ps : List R) (hreg : IsRegular R ps)
@@ -346,7 +356,9 @@ theorem isRegularLocalRing_of_regularSystem
     _ = ringKrullDim R := by simpa using hdim
 
 /-- The length of a regular system generating the maximal ideal is the
-Krull dimension of the local ring.-/
+Krull dimension of the local ring.
+@isnad1 id=eq.2h2v.s6.03e68660008a from=translated src=- shape=6a680440 vocab=3d26b1fe
+-/
 theorem regularSystem_length_eq_ringKrullDim
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (ps : List R) (hreg : IsRegular R ps)
@@ -363,7 +375,9 @@ theorem regularSystem_length_eq_ringKrullDim
   simpa using hdim
 
 /-- A single quotient by an initial segment of a regular system is again a
-regular local domain.  No normality of any intermediate quotient is used.-/
+regular local domain.  No normality of any intermediate quotient is used.
+@isnad1 id=and.2h3v.s7.225662e6379f from=translated src=- shape=adacc564 vocab=6629a39f
+-/
 theorem quotientPrefix_geometry_of_regularSystem
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (xs ys : List R)
@@ -398,7 +412,9 @@ theorem quotientPrefix_geometry_of_regularSystem
     isRegularLocalRing_of_regularSystem _ hregS hgenS⟩
 
 /-- The Krull dimension of the direct prefix quotient is the length of the
-remaining regular system.-/
+remaining regular system.
+@isnad1 id=eq.2h3v.s7.8bbcb39530d0 from=translated src=- shape=56a8205f vocab=d0c06095
+-/
 theorem quotientPrefix_ringKrullDim_eq_length_of_regularSystem
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (xs ys : List R)
@@ -431,7 +447,9 @@ theorem quotientPrefix_ringKrullDim_eq_length_of_regularSystem
   simpa only [I, S, List.length_map] using hdim.symm
 
 /-- If precisely two parameters remain, the direct prefix quotient supplies
-the regular local domain of dimension two needed by punctured purity.-/
+the regular local domain of dimension two needed by punctured purity.
+@isnad1 id=and.2h4v.s7.29fd580ce1f0 from=translated src=- shape=20b31c88 vocab=b0dad8b8
+-/
 theorem quotientPrefix_geometry_dimension_two_of_regularSystem
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (xs : List R) (y z : R)
@@ -449,7 +467,9 @@ theorem quotientPrefix_geometry_dimension_two_of_regularSystem
     (quotientPrefix_ringKrullDim_eq_length_of_regularSystem
       xs [y, z] hreg hgen)
 
-/-- Every member of a regular system generating the maximal ideal is prime.-/
+/-- Every member of a regular system generating the maximal ideal is prime.
+@isnad1 id=prime.3h3v.s6.0a703ac07139 from=translated src=- shape=550c1ae3 vocab=eea13783
+-/
 theorem prime_of_mem_regularSystem
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     {ps : List R} (hreg : IsRegular R ps)
@@ -513,7 +533,9 @@ theorem prime_of_mem_regularSystem
   simpa [I] using hIprime
 
 /-- Quotienting by any member of a regular system again gives a regular local
-domain.  This packages the divisor geometry needed after a root construction.-/
+domain.  This packages the divisor geometry needed after a root construction.
+@isnad1 id=and.3h3v.s7.7296f8317c16 from=translated src=- shape=56b7e016 vocab=06132eb2
+-/
 theorem quotient_geometry_of_mem_regularSystem
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     {ps : List R} (hreg : IsRegular R ps)

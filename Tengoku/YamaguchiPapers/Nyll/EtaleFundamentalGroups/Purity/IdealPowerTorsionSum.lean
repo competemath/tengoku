@@ -27,7 +27,9 @@ variable {R : Type u} [CommRing R]
 variable (M : Type u) [AddCommGroup M] [Module R M]
 
 /-- Power torsion for a sum is the intersection of the power-torsion
-submodules for the two summands.-/
+submodules for the two summands.
+@isnad1 id=eq.0h4v.s7.42cb03a4ef55 from=translated src=- shape=329bb5db vocab=c50b7f3f
+-/
 theorem primaryComponent_ideal_sup (I J : Ideal R) :
     Ideal.primaryComponent M (I ⊔ J) =
       Ideal.primaryComponent M I ⊓ Ideal.primaryComponent M J := by
@@ -82,7 +84,9 @@ noncomputable def primaryComponentIteratedLinearEquiv (I J : Ideal R) :
     (Submodule.comapSubtypeEquivOfLe (show Ideal.primaryComponent M (I ⊔ J) ≤
       Ideal.primaryComponent M I from by rw [primaryComponent_ideal_sup]; exact inf_le_left))
 
-/-- The iterated torsion equivalence preserves the underlying vector.-/
+/-- The iterated torsion equivalence preserves the underlying vector.
+@isnad1 id=eq.0h5v.s12.fbf55ad16c62 from=translated src=- shape=c7c99241 vocab=6f9cec29
+-/
 theorem primaryComponentIteratedLinearEquiv_apply_val (I J : Ideal R)
     (z : Ideal.primaryComponent (Ideal.primaryComponent M I) J) :
     (primaryComponentIteratedLinearEquiv M I J z : M) = (z.1 : M) := by

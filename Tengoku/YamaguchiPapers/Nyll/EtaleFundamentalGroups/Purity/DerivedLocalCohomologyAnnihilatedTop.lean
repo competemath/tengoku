@@ -35,7 +35,9 @@ namespace EtaleFundamentalGroups
 universe u
 
 /-- A nonzero nonunit in a local domain of dimension `d + 1` extends to a
-list of `d + 1` parameters with maximal radical.-/
+list of `d + 1` parameters with maximal radical.
+@isnad1 id=ex.3h3v.s7.00249e8532c1 from=translated src=- shape=f3e1c92d vocab=c4d6cbd3
+-/
 theorem exists_parameter_list_radical_eq_maximalIdeal_of_ringKrullDim_eq_succ
     {R : Type u} [CommRing R] [IsDomain R] [IsLocalRing R]
     [IsNoetherianRing R]
@@ -90,7 +92,9 @@ theorem exists_parameter_list_radical_eq_maximalIdeal_of_ringKrullDim_eq_succ
     simpa only [Ideal.ofList_cons, I] using hradical
 
 /-- In every positive finite dimension, a nonzero member of the maximal
-ideal annihilating the coefficients forces top local cohomology to vanish.-/
+ideal annihilating the coefficients forces top local cohomology to vanish.
+@isnad1 id=iszero.4h4v.s8.3dfa6a99043d from=translated src=- shape=4ef38117 vocab=2872f90d
+-/
 theorem derivedLocalCohomology_maximalIdeal_isZero_succ_of_smul_id_eq_zero
     {R : Type u} [CommRing R] [IsDomain R] [IsLocalRing R]
     [IsNoetherianRing R]

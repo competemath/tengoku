@@ -52,7 +52,9 @@ def HasOpenNormalBasisInClassAcrossUniverses (C : FiniteGroupClass.{u})
     ∃ U : OpenNormalSubgroup G,
       ((U : Subgroup G) : Set G) ⊆ W ∧ C.MemAcrossUniverses (G ⧸ (U : Subgroup G))
 
-/-- In the native universe of `C`, the universe-independent and original basis predicates agree.-/
+/-- In the native universe of `C`, the universe-independent and original basis predicates agree.
+@isnad1 id=iff.0h2v.s4.03d3e16a5b58 from=translated src=- shape=58eded28 vocab=67172429
+-/
 theorem hasOpenNormalBasisInClassAcrossUniverses_iff
     {C : FiniteGroupClass.{u}} {G : Type u} [Group G] [TopologicalSpace G] :
     HasOpenNormalBasisInClassAcrossUniverses C G ↔ HasOpenNormalBasisInClass C G := by
@@ -68,7 +70,9 @@ namespace HasOpenNormalBasisInClass
 
 /--
 The existence of an open-normal basis in a class is monotone under enlarging the finite-group
-class.-/
+class.
+@isnad1 id=hasopenn.1h4v.s5.8a66edded341 from=translated src=- shape=de9fa3a7 vocab=1de54fc2
+-/
 theorem mono {C D : FiniteGroupClass.{u}} {G : Type u} [Group G] [TopologicalSpace G]
     (hbasis : HasOpenNormalBasisInClass C G)
     (hmono : ∀ {Q : Type u} [Group Q], C Q → D Q) :
@@ -98,7 +102,9 @@ def ofOpenNormal (U : OpenNormalSubgroup G) (hU : C (G ⧸ (U : Subgroup G))) :
     OpenNormalSubgroupInClass C G :=
   ⟨U, hU⟩
 
-/-- The quotient attached to a normal subgroup in the finite-quotient index family lies in \(C\).-/
+/-- The quotient attached to a normal subgroup in the finite-quotient index family lies in \(C\).
+@isnad1 id=pred.0h3v.s7.f28aa3b16a39 from=translated src=- shape=13d7ba81 vocab=5934f70b
+-/
 theorem quotient_mem (U : OpenNormalSubgroupInClass C G) :
     C (G ⧸ (U.1 : Subgroup G)) :=
   U.2
@@ -122,7 +128,9 @@ def top [FiniteGroupClass.ContainsTrivialQuotients C] :
       exact QuotientGroup.eq.2 (by simp only [Subgroup.mem_top])
     exact FiniteGroupClass.ContainsTrivialQuotients.of_subsingleton hsub⟩
 
-/-- There is an open-normal-in-class subgroup whenever the class contains trivial quotients.-/
+/-- There is an open-normal-in-class subgroup whenever the class contains trivial quotients.
+@isnad1 id=nonempty.0h2v.s4.0a17adbf46a6 from=translated src=- shape=7231addf vocab=f7f738ec
+-/
 theorem nonempty_of_containsTrivialQuotients [FiniteGroupClass.ContainsTrivialQuotients C] :
     Nonempty (OpenNormalSubgroupInClass C G) :=
   ⟨top (C := C) (G := G)⟩
@@ -218,38 +226,50 @@ def quotientProj (U : OpenNormalSubgroupInClass C G) :
     G →ₜ* G ⧸ (U.1 : Subgroup G) :=
   OpenNormalSubgroup.quotientProj U.1
 
-/-- The quotient projection evaluates to the quotient class of the element.-/
+/-- The quotient projection evaluates to the quotient class of the element.
+@isnad1 id=eq.0h4v.s10.e743f0bb8b62 from=translated src=- shape=c15fc62d vocab=c46c67e9
+-/
 @[simp]
 theorem quotientProj_apply (U : OpenNormalSubgroupInClass C G) (x : G) :
     quotientProj (C := C) U x = QuotientGroup.mk' (U.1 : Subgroup G) x :=
   rfl
 
-/-- The quotient projection attached to an open-normal-in-class subgroup is surjective.-/
+/-- The quotient projection attached to an open-normal-in-class subgroup is surjective.
+@isnad1 id=surjecti.0h3v.s9.197d0b9c1cdc from=translated src=- shape=c00c40cd vocab=1dc480fc
+-/
 @[simp]
 theorem quotientProj_surjective (U : OpenNormalSubgroupInClass C G) :
     Function.Surjective (quotientProj (C := C) U) :=
   OpenNormalSubgroup.quotientProj_surjective U.1
 
-/-- The kernel predicate of the quotient projection is membership in the subgroup.-/
+/-- The kernel predicate of the quotient projection is membership in the subgroup.
+@isnad1 id=iff.0h4v.s10.1c42fcae69f7 from=translated src=- shape=fecb7b57 vocab=f47eaa6b
+-/
 @[simp]
 theorem quotientProj_eq_one_iff {U : OpenNormalSubgroupInClass C G} {x : G} :
     quotientProj (C := C) U x = 1 ↔ x ∈ (U.1 : Subgroup G) :=
   OpenNormalSubgroup.quotientProj_eq_one_iff (U := U.1)
 
-/-- Equality in the quotient attached to an open-normal-in-class subgroup.-/
+/-- Equality in the quotient attached to an open-normal-in-class subgroup.
+@isnad1 id=iff.0h5v.s10.b1e94cf52fdc from=translated src=- shape=d718e309 vocab=1a9a8b7a
+-/
 theorem quotientProj_eq_quotientProj_iff {U : OpenNormalSubgroupInClass C G} {x y : G} :
     quotientProj (C := C) U x = quotientProj (C := C) U y ↔
       x / y ∈ (U.1 : Subgroup G) :=
   OpenNormalSubgroup.quotientProj_eq_quotientProj_iff (U := U.1)
 
-/-- Kernel membership for the quotient projection attached to an open-normal-in-class subgroup.-/
+/-- Kernel membership for the quotient projection attached to an open-normal-in-class subgroup.
+@isnad1 id=iff.0h4v.s8.0ca8806f0989 from=translated src=- shape=5ad2988f vocab=9101b669
+-/
 @[simp]
 theorem mem_ker_quotientProj [ContinuousMul G] {U : OpenNormalSubgroupInClass C G} {x : G} :
     x ∈ OpenNormalSubgroup.ker (quotientProj (C := C) U) ↔
       x ∈ (U.1 : Subgroup G) :=
   OpenNormalSubgroup.mem_ker_quotientProj (U := U.1)
 
-/-- The open-normal kernel of the quotient projection is the original subgroup.-/
+/-- The open-normal kernel of the quotient projection is the original subgroup.
+@isnad1 id=eq.0h3v.s8.627c2f90448c from=translated src=- shape=b0fa01fa vocab=9c2d7f18
+-/
 @[simp]
 theorem ker_quotientProj [ContinuousMul G] (U : OpenNormalSubgroupInClass C G) :
     ((OpenNormalSubgroup.ker (quotientProj (C := C) U) : OpenNormalSubgroup G) :
@@ -264,7 +284,9 @@ def map {U V : OpenNormalSubgroupInClass C G}
     G ⧸ (V.1 : Subgroup G) →* G ⧸ (U.1 : Subgroup G) :=
   QuotientGroup.map _ _ (MonoidHom.id G) hUV
 
-/-- These transition maps are the natural quotient epimorphisms.-/
+/-- These transition maps are the natural quotient epimorphisms.
+@isnad1 id=surjecti.1h4v.s10.38584b023709 from=translated src=- shape=1eb0ec43 vocab=ce871590
+-/
 theorem map_surjective {U V : OpenNormalSubgroupInClass C G}
     (hUV : (V.1 : Subgroup G) ≤ (U.1 : Subgroup G)) :
     Function.Surjective (map (C := C) (G := G) hUV) := by
@@ -272,12 +294,16 @@ theorem map_surjective {U V : OpenNormalSubgroupInClass C G}
   rcases QuotientGroup.mk'_surjective (U.1 : Subgroup G) x with ⟨g, rfl⟩
   exact ⟨QuotientGroup.mk' (V.1 : Subgroup G) g, rfl⟩
 
-/-- The identity transition map is the identity monoid homomorphism.-/
+/-- The identity transition map is the identity monoid homomorphism.
+@isnad1 id=eq.0h3v.s10.62e34490b7fc from=translated src=- shape=4e60c3f0 vocab=994d6da3
+-/
 theorem map_id (U : OpenNormalSubgroupInClass C G) :
     map (C := C) (G := G) (le_rfl : (U.1 : Subgroup G) ≤ (U.1 : Subgroup G)) = MonoidHom.id _ := by
   exact QuotientGroup.map_id (N := (U.1 : Subgroup G)) (h := fun _ hx => hx)
 
-/-- Maps induced on topological abelianizations compose as expected.-/
+/-- Maps induced on topological abelianizations compose as expected.
+@isnad1 id=eq.2h5v.s11.f7abe0d04b5b from=translated src=- shape=03337c8f vocab=2f9ae388
+-/
 theorem map_comp {U V W : OpenNormalSubgroupInClass C G}
     (hUV : (V.1 : Subgroup G) ≤ (U.1 : Subgroup G))
     (hVW : (W.1 : Subgroup G) ≤ (V.1 : Subgroup G)) :
@@ -295,7 +321,9 @@ def transition {U V : OpenNormalSubgroupInClass C G}
     G ⧸ (U.1 : Subgroup G) →ₜ* G ⧸ (V.1 : Subgroup G) :=
   OpenNormalSubgroup.transition (G := G) (U := U.1) (V := V.1) hUV
 
-/-- Transition maps send quotient classes to the corresponding quotient classes.-/
+/-- Transition maps send quotient classes to the corresponding quotient classes.
+@isnad1 id=eq.1h5v.s11.2a565ffcda86 from=translated src=- shape=0ad7bd1c vocab=c1391e78
+-/
 @[simp]
 theorem transition_mk {U V : OpenNormalSubgroupInClass C G}
     (hUV : (U.1 : Subgroup G) ≤ (V.1 : Subgroup G)) (x : G) :
@@ -305,7 +333,9 @@ theorem transition_mk {U V : OpenNormalSubgroupInClass C G}
 
 /--
 Composing the transition map with the smaller quotient projection gives the larger quotient
-projection.-/
+projection.
+@isnad1 id=eq.1h4v.s10.10581f0e9ec6 from=translated src=- shape=a95eecd8 vocab=2ba5f0c7
+-/
 @[simp]
 theorem transition_comp_quotientProj {U V : OpenNormalSubgroupInClass C G}
     (hUV : (U.1 : Subgroup G) ≤ (V.1 : Subgroup G)) :
@@ -313,7 +343,9 @@ theorem transition_comp_quotientProj {U V : OpenNormalSubgroupInClass C G}
       quotientProj (C := C) V :=
   OpenNormalSubgroup.transition_comp_quotientProj (G := G) (U := U.1) (V := V.1) hUV
 
-/-- Transition maps between quotients by nested open-normal-in-class subgroups are surjective.-/
+/-- Transition maps between quotients by nested open-normal-in-class subgroups are surjective.
+@isnad1 id=surjecti.1h4v.s10.f7015290809b from=translated src=- shape=63f21df2 vocab=4c851107
+-/
 theorem transition_surjective {U V : OpenNormalSubgroupInClass C G}
     (hUV : (U.1 : Subgroup G) ≤ (V.1 : Subgroup G)) :
     Function.Surjective (transition (C := C) (G := G) hUV) :=
@@ -369,7 +401,9 @@ def openNormalSubgroupInClassProj
     G →* G ⧸ (((OrderDual.ofDual U).1 : OpenNormalSubgroup G) : Subgroup G) :=
   QuotientGroup.mk' (((OrderDual.ofDual U).1 : OpenNormalSubgroup G) : Subgroup G)
 
-/-- The canonical quotient homomorphisms are compatible with the transition maps.-/
+/-- The canonical quotient homomorphisms are compatible with the transition maps.
+@isnad1 id=compatib.0h2v.s10.61a8f4c84ece from=translated src=- shape=d5e591ac vocab=2bf0a8a6
+-/
 theorem openNormalSubgroupInClassProj_compatible :
     (openNormalSubgroupInClassSystem C G).CompatibleMaps
       (fun U : OrderDual (OpenNormalSubgroupInClass C G) =>
@@ -378,7 +412,9 @@ theorem openNormalSubgroupInClassProj_compatible :
   funext g
   rfl
 
-/-- The quotient system attached to open normal subgroups in \(C\) is group-valued.-/
+/-- The quotient system attached to open normal subgroups in \(C\) is group-valued.
+@isnad1 id=isgroups.0h2v.s6.375baf7e331b from=translated src=- shape=48774b71 vocab=a29062cb
+-/
 instance instIsGroupSystemOpenNormalSubgroupInClassSystem :
     InverseSystems.IsGroupSystem (openNormalSubgroupInClassSystem C G) where
   map_one := by
@@ -422,14 +458,18 @@ instance instIsGroupSystemOpenNormalSubgroupInClassSystem :
         (U := OrderDual.ofDual i) (V := OrderDual.ofDual j) hij).map_inv x
 
 omit [IsTopologicalGroup G] in
-/-- Each projection from \(G\) to an open-normal-in-class quotient is surjective.-/
+/-- Each projection from \(G\) to an open-normal-in-class quotient is surjective.
+@isnad1 id=surjecti.0h3v.s10.4a3a9df17da8 from=translated src=- shape=d513a32e vocab=d9835cf0
+-/
 theorem openNormalSubgroupInClassProj_surjective
     (U : OrderDual (OpenNormalSubgroupInClass C G)) :
     Function.Surjective (openNormalSubgroupInClassProj (C := C) (G := G) U) :=
   QuotientGroup.mk'_surjective _
 
 omit [IsTopologicalGroup G] in
-/-- The open-normal-in-class index family is directed under reverse inclusion.-/
+/-- The open-normal-in-class index family is directed under reverse inclusion.
+@isnad1 id=directed.1h2v.s6.ef9b7cac367b from=translated src=- shape=891ec340 vocab=d19af439
+-/
 theorem directed_openNormalSubgroupInClass
     (hForm : FiniteGroupClass.Formation C) :
     Directed (α := OrderDual (OpenNormalSubgroupInClass C G)) (· ≤ ·) fun U => U := by
@@ -453,7 +493,9 @@ namespace HasOpenNormalBasisInClass
 
 omit [IsTopologicalGroup G] in
 /-- The open-normal quotient-basis property is preserved by continuous multiplicative
-equivalences.-/
+equivalences.
+@isnad1 id=hasopenn.1h4v.s5.bb73e918119c from=translated src=- shape=e1a74667 vocab=4dca9229
+-/
 theorem ofContinuousMulEquiv
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (hG : HasOpenNormalBasisInClass C G) (e : G ≃ₜ* H) :
@@ -477,7 +519,9 @@ theorem ofContinuousMulEquiv
 
 omit [IsTopologicalGroup G] in
 /-- With isomorphism and quotient closure, the basis property implies that every open-normal
-quotient lies in the class.-/
+quotient lies in the class.
+@isnad1 id=pred.3h3v.s5.db5fe2c49b0e from=translated src=- shape=a84d3b4f vocab=a3601687
+-/
 theorem hasAllOpenNormalQuotientsInClass_of_basis_of_quotientClosed
     (hIso : FiniteGroupClass.IsomClosed C)
     (hQuot : FiniteGroupClass.QuotientClosed C)
@@ -497,7 +541,9 @@ theorem hasAllOpenNormalQuotientsInClass_of_basis_of_quotientClosed
 
 omit [IsTopologicalGroup G] in
 /-- For a group with an open-normal \(C\)-basis, every open-normal quotient lies in `C` when `C`
-is a formation.-/
+is a formation.
+@isnad1 id=pred.2h3v.s5.6af9632a799b from=translated src=- shape=92a5c8d7 vocab=a2e8d517
+-/
 theorem quotient_mem (hForm : FiniteGroupClass.Formation C)
     (hG : HasOpenNormalBasisInClass C G) (U : OpenNormalSubgroup G) :
     C (G ⧸ (U : Subgroup G)) :=
@@ -506,7 +552,9 @@ theorem quotient_mem (hForm : FiniteGroupClass.Formation C)
 
 omit [IsTopologicalGroup G] in
 /-- Every open neighborhood of `1` contains an indexed open normal subgroup whose quotient lies
-in `C`.-/
+in `C`.
+@isnad1 id=ex.3h3v.s6.f91452e85c08 from=translated src=- shape=fb5655a7 vocab=dd312e9d
+-/
 theorem exists_openNormalSubgroupInClass_sub_open_nhds_of_one (hG : HasOpenNormalBasisInClass C G)
     {W : Set G} (hW : IsOpen W) (h1W : (1 : G) ∈ W) :
     ∃ U : OpenNormalSubgroupInClass C G, (((U.1 : Subgroup G) : Set G)) ⊆ W := by
@@ -517,7 +565,9 @@ section DiscreteCoset
 
 omit [IsTopologicalGroup G] in
 /-- A continuous map to a discrete target is locally fixed on a sufficiently small right coset,
-with the small subgroup chosen from the open normal subgroups whose quotients lie in `C`.-/
+with the small subgroup chosen from the open normal subgroups whose quotients lie in `C`.
+@isnad1 id=ex.2h5v.s7.f3a8a25bf079 from=translated src=- shape=5b3b94aa vocab=d2780f1e
+-/
 theorem exists_openNormalSubgroupInClass_eq_on_right_coset_of_continuous_discrete
     (hG : HasOpenNormalBasisInClass C G)
     [ContinuousMul G]
@@ -547,7 +597,9 @@ variable [T2Space G]
 
 omit [IsTopologicalGroup G] in
 /-- In a Hausdorff group with an open-normal \(C\)-basis, the open normal subgroups whose quotients
-lie in `C` have trivial total intersection.-/
+lie in `C` have trivial total intersection.
+@isnad1 id=eq.1h2v.s6.e4d53f2422d4 from=translated src=- shape=4c0d7060 vocab=ab515af3
+-/
 theorem iInf_openNormalSubgroupInClass_eq_bot (hG : HasOpenNormalBasisInClass C G) :
     iInf (fun U : OpenNormalSubgroupInClass C G => (U.1 : Subgroup G)) = (⊥ : Subgroup G) := by
   apply le_antisymm
@@ -571,7 +623,9 @@ theorem iInf_openNormalSubgroupInClass_eq_bot (hG : HasOpenNormalBasisInClass C 
   · exact bot_le
 
 omit [IsTopologicalGroup G] in
-/-- Set-theoretic form of the trivial-intersection statement.-/
+/-- Set-theoretic form of the trivial-intersection statement.
+@isnad1 id=eq.1h2v.s6.660418b6243f from=translated src=- shape=6ae6cf25 vocab=97a26a04
+-/
 theorem iInter_openNormalSubgroupInClass_eq_singleton (hG : HasOpenNormalBasisInClass C G) :
     (⋂ U : OpenNormalSubgroupInClass C G, (((U.1 : Subgroup G) : Set G))) = ({1} : Set G) := by
   ext x
@@ -586,7 +640,9 @@ theorem iInter_openNormalSubgroupInClass_eq_singleton (hG : HasOpenNormalBasisIn
     simp only [OpenSubgroup.coe_toSubgroup, Set.mem_iInter, SetLike.mem_coe, one_mem, implies_true]
 
 omit [IsTopologicalGroup G] in
-/-- Explicit family form of the open-normal basis and trivial-intersection package.-/
+/-- Explicit family form of the open-normal basis and trivial-intersection package.
+@isnad1 id=ex.1h2v.s7.4c35f107aacd from=translated src=- shape=e9023d7a vocab=c9f3fbaf
+-/
 theorem exists_openNormalBasisInClassFamily (hG : HasOpenNormalBasisInClass C G) :
     ∃ ι : Type u, ∃ U : ι → OpenNormalSubgroup G,
       (∀ i, C (G ⧸ (U i : Subgroup G))) ∧
@@ -613,7 +669,9 @@ theorem eq_one_of_mem_all_openNormalSubgroupInClass (hG : HasOpenNormalBasisInCl
   simpa using hxbot
 
 omit [IsTopologicalGroup G] in
-/-- If `x ≠ 1`, then some open normal subgroup in the class-family omits `x`.-/
+/-- If `x ≠ 1`, then some open normal subgroup in the class-family omits `x`.
+@isnad1 id=ex.2h3v.s6.1e03f94f1caf from=translated src=- shape=d7351765 vocab=2f3c9680
+-/
 theorem exists_openNormalSubgroupInClass_not_mem (hG : HasOpenNormalBasisInClass C G) {x : G}
     (hx : x ≠ 1) :
     ∃ U : OpenNormalSubgroupInClass C G, x ∉ (U.1 : Subgroup G) := by
@@ -660,7 +718,9 @@ theorem eq_of_forall_openNormalSubgroupInClassProj_eq (hG : HasOpenNormalBasisIn
 end Hausdorff
 
 /-- For a profinite group, the stronger all-open-normal-quotient condition supplies an open-normal
-\(C\)-basis.-/
+\(C\)-basis.
+@isnad1 id=hasopenn.0h3v.s6.435c4ee9af33 from=translated src=- shape=7f755287 vocab=99b9115d
+-/
 theorem of_allOpenNormalQuotients [CompactSpace G] [T2Space G]
     [TotallyDisconnectedSpace G]
     (hquot : ∀ U : OpenNormalSubgroup G, C (G ⧸ (U : Subgroup G))) :
@@ -670,7 +730,9 @@ theorem of_allOpenNormalQuotients [CompactSpace G] [T2Space G]
   exact ⟨U, hUW, hquot U⟩
 
 omit [IsTopologicalGroup G] in
-/-- An open-normal \(C\)-basis contains at least one subgroup.-/
+/-- An open-normal \(C\)-basis contains at least one subgroup.
+@isnad1 id=nonempty.1h2v.s4.99c0304d67ec from=translated src=- shape=b3d84c03 vocab=4e83b33b
+-/
 theorem openNormalSubgroupInClass_nonempty (hG : HasOpenNormalBasisInClass C G) :
     Nonempty (OpenNormalSubgroupInClass C G) := by
   rcases hG.exists_openNormalSubgroupInClass_sub_open_nhds_of_one

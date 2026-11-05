@@ -54,7 +54,9 @@ def fiberOver : Over X ⥤ FintypeCat.{w} where
     exact FintypeCat.comp_apply (F.map f.left) (F.map g.left) y.1
 
 /-- The underlying point of a mapped element is obtained by applying `F` to
-the underlying morphism in the over-category.-/
+the underlying morphism in the over-category.
+@isnad1 id=eq.0h8v.s10.22e0edda4571 from=translated src=- shape=0449ca4a vocab=fdcddca2
+-/
 @[simp]
 theorem fiberOver_map_val {U V : Over X} (f : U ⟶ V) (y : (fiberOver F x).obj U) :
     ((fiberOver F x).map f y).1 = F.map f.left y.1 :=
@@ -176,6 +178,9 @@ def productFiberEquivComparison (Y : C) :
     F.obj Y ≃ (fiberOver F x).obj ((productOver (X := X)).obj Y) :=
   productFiberEquiv F x Y
 
+/--
+@isnad1 id=eq.0h6v.s10.4ec17da9207c from=translated src=- shape=0292e707 vocab=c0527b78
+-/
 @[simp]
 theorem productFiberEquivComparison_symm_apply
     (Y : C) (z : (fiberOver F x).obj ((productOver (X := X)).obj Y)) :
@@ -192,7 +197,9 @@ private theorem extendFiberOverAut_hom_app_apply
         (a.hom.app ((productOver (X := X)).obj Y) (productFiberEquiv F x Y y)) := by
   rfl
 
-/-- Evaluation formula for the extension of a fiber-over automorphism.-/
+/-- Evaluation formula for the extension of a fiber-over automorphism.
+@isnad1 id=eq.0h7v.s11.218f21b062f9 from=translated src=- shape=640c20da vocab=9db200d7
+-/
 theorem extendFiberOverAut_hom_app_apply_eq
     (a : Aut (fiberOver F x)) (Y : C) (y : F.obj Y) :
     (extendFiberOverAut F x a).hom.app Y y =

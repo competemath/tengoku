@@ -38,14 +38,18 @@ noncomputable def quotientOpenSubgroupSection (U : Subgroup G) :
   exact if hq : q = QuotientGroup.mk (s := U) (1 : G) then 1
     else Classical.choose (Quotient.exists_rep q)
 
-/-- The normalized set-theoretic section sends the identity coset to the identity.-/
+/-- The normalized set-theoretic section sends the identity coset to the identity.
+@isnad1 id=eq.0h2v.s5.de7988b2cc58 from=translated src=- shape=6400b9f5 vocab=a42eadb6
+-/
 @[simp] theorem quotientOpenSubgroupSection_one
     (U : Subgroup G) :
     quotientOpenSubgroupSection U (QuotientGroup.mk (s := U) (1 : G)) = 1 := by
   classical
   simp only [quotientOpenSubgroupSection, ↓reduceDIte]
 
-/-- The normalized section is a genuine right inverse to the quotient map.-/
+/-- The normalized section is a genuine right inverse to the quotient map.
+@isnad1 id=rightinv.0h2v.s4.29f3b9932f51 from=translated src=- shape=d9bfde09 vocab=0613470b
+-/
 theorem quotientOpenSubgroupSection_rightInverse
     (U : Subgroup G) :
     Function.RightInverse (quotientOpenSubgroupSection U)
@@ -58,7 +62,9 @@ theorem quotientOpenSubgroupSection_rightInverse
   · simpa [quotientOpenSubgroupSection, hq] using
       (Classical.choose_spec (Quotient.exists_rep q))
 
-/-- The normalized section by an open subgroup is continuous because the quotient is discrete.-/
+/-- The normalized section by an open subgroup is continuous because the quotient is discrete.
+@isnad1 id=continuo.1h2v.s5.00e035725a5e from=translated src=- shape=18b7632d vocab=059e4a79
+-/
 theorem continuous_quotientOpenSubgroupSection
     [TopologicalSpace G]
     [IsTopologicalGroup G]
@@ -70,7 +76,9 @@ theorem continuous_quotientOpenSubgroupSection
 /--
 Helper for the finite/open case: the canonical quotient map by an open normal subgroup of a
 profinite group admits a continuous section normalized by \(s(1)=1\). The actual section data is
-provided by quotientOpenSubgroupSection.-/
+provided by quotientOpenSubgroupSection.
+@isnad1 id=ex.0h2v.s9.a75e64fd4d89 from=translated src=- shape=96c9bba7 vocab=3657d5bf
+-/
 theorem quotient_openNormalSubgroup_hasContinuousSection
     [TopologicalSpace G]
     [IsTopologicalGroup G]
@@ -90,7 +98,9 @@ theorem quotient_openNormalSubgroup_hasContinuousSection
       (QuotientGroup.mk (s := (U : Subgroup G)) (1 : G)) = 1
     exact quotientOpenSubgroupSection_one (G := G) (U : Subgroup G)
 
-/-- Finite-index case of the section theorem for left quotient projections.-/
+/-- Finite-index case of the section theorem for left quotient projections.
+@isnad1 id=ex.2h3v.s8.dba1c5919ec0 from=translated src=- shape=21215011 vocab=6294127f
+-/
 theorem leftQuotientProjection_hasContinuousSection_of_openSubgroup
     [TopologicalSpace G]
     [IsTopologicalGroup G]

@@ -26,7 +26,9 @@ namespace PrimeSpectrum
 universe u
 
 /-- Compatible prime ideals lift to a prime of the tensor product, with both
-contractions prescribed. No dominance or flatness assumption is required.-/
+contractions prescribed. No dominance or flatness assumption is required.
+@isnad1 id=ex.1h5v.s9.a4263f6750d9 from=translated src=- shape=23e46569 vocab=d8aee30e
+-/
 theorem exists_tensorProduct_of_comap_eq
     (R B C : Type u) [CommRing R] [CommRing B] [CommRing C]
     [Algebra R B] [Algebra R C]

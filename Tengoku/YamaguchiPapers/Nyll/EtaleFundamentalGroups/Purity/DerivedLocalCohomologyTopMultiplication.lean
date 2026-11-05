@@ -36,7 +36,9 @@ universe u
 variable {R : Type u} [CommRing R]
 
 /-- The first coefficient map acts on representatives by postcomposition
-with the degree-zero Ext class of the first coefficient morphism.-/
+with the degree-zero Ext class of the first coefficient morphism.
+@isnad1 id=eq.1h6v.s11.696dea16bf39 from=translated src=- shape=ab65b815 vocab=d6673c5b
+-/
 theorem derivedLocalCohomologyCoefficientsFirstMap_ι_apply
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (i n : ℕ)
@@ -70,7 +72,9 @@ theorem derivedLocalCohomologyCoefficientsFirstMap_ι_apply
           derivedLocalCohomology I S.X₂ i ↦ f α) h
 
 /-- For the regular multiplication short complex, the first coefficient
-map is the scalar endomorphism on local cohomology.-/
+map is the scalar endomorphism on local cohomology.
+@isnad1 id=eq.1h5v.s8.d86abd04e98d from=translated src=- shape=5e4ab74d vocab=78573449
+-/
 theorem derivedLocalCohomologyCoefficientsFirstMap_smulShortComplex
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
     (x : R) (hx : IsSMulRegular M x) :
@@ -108,7 +112,9 @@ theorem derivedLocalCohomologyCoefficientsFirstMap_smulShortComplex
   exact (CategoryTheory.Abelian.Ext.smul_eq_comp_mk₀ α x).symm
 
 /-- The third term `M / xM` of the multiplication short complex is
-annihilated by `x`.-/
+annihilated by `x`.
+@isnad1 id=eq.0h3v.s9.133b1c2240aa from=translated src=- shape=e472129d vocab=70d58d37
+-/
 theorem smulShortComplex_smul_id_third_eq_zero
     (M : ModuleCat.{u} R) (x : R) :
     x • 𝟙 (M.smulShortComplex x).X₃ = 0 := by
@@ -123,7 +129,9 @@ theorem smulShortComplex_smul_id_third_eq_zero
           (Submodule.mem_top))
 
 /-- A nonzero member of the maximal ideal acts epimorphically on top
-maximal-support local cohomology of a Noetherian local domain.-/
+maximal-support local cohomology of a Noetherian local domain.
+@isnad1 id=epi.3h3v.s7.a9259e506663 from=translated src=- shape=7b4f3820 vocab=d8eab9be
+-/
 theorem derivedLocalCohomologyScalarMap_maximalIdeal_epi_succ
     [IsDomain R] [IsLocalRing R] [IsNoetherianRing R]
     (d : ℕ) (hdim : ringKrullDim R = ((d + 1 : ℕ) : WithBot ℕ∞))
@@ -149,7 +157,9 @@ theorem derivedLocalCohomologyScalarMap_maximalIdeal_epi_succ
     (maximalIdeal R) (ModuleCat.of R R) (d + 1) x hxreg] at hepi
   exact hepi
 
-/-- Elementwise surjectivity of multiplication on top local cohomology.-/
+/-- Elementwise surjectivity of multiplication on top local cohomology.
+@isnad1 id=surjecti.3h3v.s9.cc1f4e877bbf from=translated src=- shape=0527bb70 vocab=bf2406a2
+-/
 theorem derivedLocalCohomologyScalarMap_maximalIdeal_surjective_succ
     [IsDomain R] [IsLocalRing R] [IsNoetherianRing R]
     (d : ℕ) (hdim : ringKrullDim R = ((d + 1 : ℕ) : WithBot ℕ∞))

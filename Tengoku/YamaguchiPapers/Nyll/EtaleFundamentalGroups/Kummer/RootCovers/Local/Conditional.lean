@@ -39,7 +39,9 @@ def adjoinRootOneAlgEquiv
   · change (R[X] ⧸ Ideal.span ({X - C a} : Set R[X])) ≃ₐ[R] R
     exact Polynomial.quotientSpanXSubCAlgEquiv a
 
-/-- The algebra map into a degree-one root-adjunction is bijective.-/
+/-- The algebra map into a degree-one root-adjunction is bijective.
+@isnad1 id=bijectiv.0h2v.s11.cec5229a9db2 from=translated src=- shape=345f2ccb vocab=1a75e1ab
+-/
 theorem algebraMap_bijective_adjoinRootOne
     {R : Type u} [CommRing R] (a : R) :
     Function.Bijective (algebraMap R (AdjoinRoot (X ^ 1 - C a))) := by

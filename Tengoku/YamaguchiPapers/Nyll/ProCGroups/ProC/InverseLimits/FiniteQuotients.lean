@@ -31,7 +31,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
 namespace HasOpenNormalBasisInClass
 
-/-- Any finite discrete group already lying in the class \(C\) is pro-\(C\).-/
+/-- Any finite discrete group already lying in the class \(C\) is pro-\(C\).
+@isnad1 id=hasopenn.1h3v.s5.a69d5b357016 from=translated src=- shape=be9dd773 vocab=7ceb1058
+-/
 theorem of_finite_discrete (hquot : FiniteGroupClass.QuotientClosed C)
     [Finite G] [DiscreteTopology G] (hCG : C G) : HasOpenNormalBasisInClass C G := by
   refine HasOpenNormalBasisInClass.of_allOpenNormalQuotients (C := C) (G := G) ?_
@@ -40,7 +42,9 @@ theorem of_finite_discrete (hquot : FiniteGroupClass.QuotientClosed C)
 
 /--
 If \(G\) is pro-\(C\) and \(C\) is closed under quotients, then every quotient of \(G\) by an
-open normal subgroup is again pro-\(C\).-/
+open normal subgroup is again pro-\(C\).
+@isnad1 id=hasopenn.2h3v.s6.388786134d2a from=translated src=- shape=c0984f07 vocab=8b4ec3d8
+-/
 theorem quotient_openNormalSubgroup
     (hForm : FiniteGroupClass.Formation C)
     [CompactSpace G] [T2Space G]
@@ -49,7 +53,9 @@ theorem quotient_openNormalSubgroup
   exact HasOpenNormalBasisInClass.of_finite_discrete (C := C) (G := G ⧸ (U : Subgroup G))
     hForm.quotientClosed (hG.quotient_mem hForm U)
 
-/-- Quotients by open normal subgroups in the class-indexing family are pro-\(C\).-/
+/-- Quotients by open normal subgroups in the class-indexing family are pro-\(C\).
+@isnad1 id=hasopenn.1h3v.s7.c5ea571fb4b2 from=translated src=- shape=e58a3361 vocab=dd7749d2
+-/
 theorem quotient_openNormalSubgroupInClass
     (hquot : FiniteGroupClass.QuotientClosed C)
     (U : OpenNormalSubgroupInClass C G) :
@@ -61,7 +67,9 @@ theorem quotient_openNormalSubgroupInClass
 
 -- Product permanence for pro-`C` groups reduces an open normal subgroup of a product to a finite
 -- product of open normal subgroups, then uses formation closure for the resulting finite quotient.
-/-- Arbitrary products of pro-\(C\) groups remain pro-\(C\) when \(C\) is a formation.-/
+/-- Arbitrary products of pro-\(C\) groups remain pro-\(C\) when \(C\) is a formation.
+@isnad1 id=hasopenn.2h3v.s6.0e375ac1f451 from=translated src=- shape=5062b999 vocab=c5c90528
+-/
 theorem pi {α : Type u} {β : α → Type u}
     [∀ a, Group (β a)] [∀ a, TopologicalSpace (β a)] [∀ a, IsTopologicalGroup (β a)]
     [∀ a, CompactSpace (β a)] [∀ a, T2Space (β a)]
@@ -174,7 +182,9 @@ theorem pi {α : Type u} {β : α → Type u}
 
 end HasOpenNormalBasisInClass
 
-/-- Every profinite group has an open-normal basis with finite quotients.-/
+/-- Every profinite group has an open-normal basis with finite quotients.
+@isnad1 id=hasopenn.0h1v.s4.50955eb9b3ad from=translated src=- shape=885be948 vocab=7ad730bd
+-/
 theorem hasOpenNormalBasisInClass_allFinite
     {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G] :

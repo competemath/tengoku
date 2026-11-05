@@ -42,6 +42,9 @@ section Minpoly
 variable {k F M : Type*} [Field k] [Field F] [Field M] [Algebra k F] [Algebra F M]
   [Algebra k M] [IsScalarTower k F M]
 
+/--
+@isnad1 id=eq.2h4v.s8.5c1d74387564 from=translated src=- shape=89161028 vocab=7ddf9d6e
+-/
 theorem natDegree_minpoly_eq (hsc : ∀ y : F, IsSeparable k y → y ∈ (algebraMap k F).range)
     {β : M} (hβ : IsSeparable k β) :
     (minpoly F β).natDegree = (minpoly k β).natDegree := by
@@ -92,6 +95,9 @@ section Overfield
 variable {k F K Ω : Type*} [Field k] [Field F] [Field K] [Field Ω]
   [Algebra k F] [Algebra k K] [Algebra k Ω] (fa : F →ₐ[k] Ω) (fb : K →ₐ[k] Ω)
 
+/--
+@isnad1 id=mem.2h5v.s10.b776afe73a56 from=translated src=- shape=da82e4de vocab=55f36246
+-/
 theorem hsc_range (hsc : ∀ y : F, IsSeparable k y → y ∈ (algebraMap k F).range)
     (y : fa.fieldRange) (hy : IsSeparable k y) : y ∈ (algebraMap k fa.fieldRange).range := by
   have h0 : IsSeparable k (fa.fieldRange.val y) :=
@@ -103,6 +109,9 @@ theorem hsc_range (hsc : ∀ y : F, IsSeparable k y → y ∈ (algebraMap k F).r
   change algebraMap k Ω c = fa z
   rw [← hc, fa.commutes]
 
+/--
+@isnad1 id=lineardi.2h5v.s7.28757eac2e62 from=translated src=- shape=39705429 vocab=a3ab572c
+-/
 theorem linearDisjoint_adjoin_singleton
     (hsc : ∀ y : F, IsSeparable k y → y ∈ (algebraMap k F).range)
     {x : Ω} (hx : IsSeparable k x) :
@@ -125,6 +134,9 @@ theorem linearDisjoint_adjoin_singleton
   rw [← hdim] at hli
   exact hli
 
+/--
+@isnad1 id=ex.1h5v.s8.838fbaca2c5a from=translated src=- shape=5ef1e5a4 vocab=16041fb4
+-/
 theorem exists_le_adjoin_singleton [Algebra.IsSeparable k K]
     (B' : Subalgebra k Ω) (hB' : B' ≤ fb.range) [Module.Finite k B'] :
     ∃ β : K, B' ≤ Algebra.adjoin k {fb β} := by
@@ -158,6 +170,9 @@ theorem exists_le_adjoin_singleton [Algebra.IsSeparable k K]
   rintro _ ⟨_, ⟨i, rfl⟩, rfl⟩
   exact hmem i
 
+/--
+@isnad1 id=lineardi.1h6v.s8.69a63950a7db from=translated src=- shape=cd319f77 vocab=fa10476e
+-/
 theorem linearDisjoint_range [Algebra.IsSeparable k K]
     (hsc : ∀ y : F, IsSeparable k y → y ∈ (algebraMap k F).range) :
     fa.fieldRange.toSubalgebra.LinearDisjoint fb.range := by

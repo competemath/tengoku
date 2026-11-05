@@ -26,7 +26,9 @@ namespace SchemeTheory
 universe u v
 
 /-- A closed point of a finite algebra lifts to the fixed algebraic closure
-of the local base's residue field, preserving the actual base map.-/
+of the local base's residue field, preserving the actual base map.
+@isnad1 id=ex.0h3v.s9.d218f0c96dd6 from=translated src=- shape=f92f7208 vocab=7a891999
+-/
 theorem exists_finite_residue_geometricPoint
     (R : Type u) [CommRing R] [IsLocalRing R]
     (B : Type v) [CommRing B] [Algebra R B] [Module.Finite R B]

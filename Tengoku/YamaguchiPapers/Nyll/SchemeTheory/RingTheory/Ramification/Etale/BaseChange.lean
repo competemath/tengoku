@@ -29,7 +29,9 @@ namespace EtaleFundamentalGroups
 /-- Ramification indices are unchanged after an étale tensor base change.
 
 Here `Q` is a prime of `C ⊗[R] B` lying over `q` through the right tensor-factor map.  This is
-the precise contraction equality produced by the chosen-prime part of Tag 00UJ.-/
+the precise contraction equality produced by the chosen-prime part of Tag 00UJ.
+@isnad1 id=eq.1h5v.s9.1350aae9b594 from=translated src=- shape=d56de201 vocab=554f7eaf
+-/
 theorem ramificationIdx_tensorProduct_eq_of_etale
     {R B C : Type*} [CommRing R] [CommRing B] [CommRing C]
     [Algebra R B] [Algebra R C] [Algebra.Etale R C]

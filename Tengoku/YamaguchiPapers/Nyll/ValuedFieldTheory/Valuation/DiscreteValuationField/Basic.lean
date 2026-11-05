@@ -26,7 +26,9 @@ universe u v
 
 namespace ValuationSubring
 
-/-- A valuation subring has the characteristic of its ambient field.-/
+/-- A valuation subring has the characteristic of its ambient field.
+@isnad1 id=charp.0h3v.s6.f839e806f253 from=translated src=- shape=27f1de12 vocab=d6a6133f
+-/
 instance charP {K : Type u} [Field K] (R : ValuationSubring K) (p : ℕ) [CharP K p] :
     CharP R p :=
   CharP.subring K p R.toSubring
@@ -61,12 +63,16 @@ instance valuationSubring.commRing (F : DVF.{u, v} K) :
     CommRing F.valuationSubring :=
   ValuationSubring.instCommRingSubtypeMem F.valuation.valuationSubring
 
-/-- The valuation subring of a discrete valuation field is local.-/
+/-- The valuation subring of a discrete valuation field is local.
+@isnad1 id=islocalr.0h2v.s5.ffe90a8923e9 from=translated src=- shape=1fcfa16f vocab=06fa32be
+-/
 instance valuationSubring.isLocalRing (F : DVF.{u, v} K) :
     IsLocalRing F.valuationSubring :=
   ValuationSubring.isLocalRing F.valuation.valuationSubring
 
-/-- The valuation subring of a discrete valuation field is an integral domain.-/
+/-- The valuation subring of a discrete valuation field is an integral domain.
+@isnad1 id=isdomain.0h2v.s5.e6a3004e3e13 from=translated src=- shape=1fcfa16f vocab=9d61d28e
+-/
 instance valuationSubring.isDomain (F : DVF.{u, v} K) :
     IsDomain F.valuationSubring :=
   ValuationSubring.instIsDomainSubtypeMem F.valuation.valuationSubring
@@ -88,35 +94,47 @@ abbrev residueMap (F : DVF.{u, v} K) :
     RingHom F.valuationSubring F.residueField :=
   IsLocalRing.residue F.valuationSubring
 
-/-- The valuation subring of a DVF is a DVR.-/
+/-- The valuation subring of a DVF is a DVR.
+@isnad1 id=isdiscre.0h2v.s4.e692a2b28456 from=translated src=- shape=1fcfa16f vocab=1e80761e
+-/
 theorem valuationSubring_isDiscreteValuationRing (F : DVF.{u, v} K) :
     IsDiscreteValuationRing F.valuationSubring :=
   Valuation.valuationSubring_isDiscreteValuationRing F.valuation
 
-/-- The valuation ring of a DVF is a fraction ring inside the field.-/
+/-- The valuation ring of a DVF is a fraction ring inside the field.
+@isnad1 id=isfracti.0h2v.s6.16167b5ede56 from=translated src=- shape=8b78379e vocab=c8c7928f
+-/
 theorem valuationSubring_isFractionRing (F : DVF.{u, v} K) :
     IsFractionRing F.valuationSubring K :=
   (Valuation.valuationSubring.integers (v := F.valuation)).isFractionRing
 
-/-- The valuation ring of a DVF is integrally closed.-/
+/-- The valuation ring of a DVF is integrally closed.
+@isnad1 id=isintegr.0h2v.s4.c0ea8a9ea271 from=translated src=- shape=1fcfa16f vocab=56ace22f
+-/
 theorem valuationSubring_isIntegrallyClosed (F : DVF.{u, v} K) :
     IsIntegrallyClosed F.valuationSubring := by
   change IsIntegrallyClosed F.valuation.valuationSubring
   infer_instance
 
-/-- The valuation ring of a DVF is Noetherian.-/
+/-- The valuation ring of a DVF is Noetherian.
+@isnad1 id=isnoethe.0h2v.s5.50d78236f780 from=translated src=- shape=1fcfa16f vocab=3ef43970
+-/
 theorem valuationSubring_isNoetherianRing (F : DVF.{u, v} K) :
     IsNoetherianRing F.valuationSubring := by
   have : IsDiscreteValuationRing F.valuationSubring :=
     F.valuationSubring_isDiscreteValuationRing
   infer_instance
 
-/-- Membership in the valuation subring is `v x <= 1`.-/
+/-- Membership in the valuation subring is `v x <= 1`.
+@isnad1 id=iff.0h3v.s7.8f6720a80d80 from=translated src=- shape=c360bd7c vocab=843d912c
+-/
 theorem mem_valuationSubring_iff (F : DVF.{u, v} K) (x : K) :
     x ∈ F.valuation.valuationSubring ↔ F.valuation x <= 1 :=
   Valuation.mem_valuationSubring_iff (v := F.valuation) x
 
-/-- Maximal-ideal membership is `v x < 1`.-/
+/-- Maximal-ideal membership is `v x < 1`.
+@isnad1 id=iff.0h3v.s8.d55013578864 from=translated src=- shape=5f8c1570 vocab=05f9f284
+-/
 theorem mem_maximalIdeal_iff (F : DVF.{u, v} K)
     (x : F.valuationSubring) :
     x ∈ F.maximalIdeal ↔ F.valuation (x : K) < 1 := by
@@ -125,7 +143,9 @@ theorem mem_maximalIdeal_iff (F : DVF.{u, v} K)
     (F.valuation (x : K) < 1)
   exact Valuation.mem_maximalIdeal_iff (v := F.valuation)
 
-/-- Zero residue is equivalent to membership in the maximal ideal.-/
+/-- Zero residue is equivalent to membership in the maximal ideal.
+@isnad1 id=iff.0h3v.s8.ec09db048146 from=translated src=- shape=70818a76 vocab=88452958
+-/
 theorem residue_eq_zero_iff (F : DVF.{u, v} K)
     (x : F.valuationSubring) :
     F.residueMap x = 0 ↔ x ∈ F.maximalIdeal := by
@@ -135,33 +155,43 @@ theorem residue_eq_zero_iff (F : DVF.{u, v} K)
   exact IsLocalRing.residue_eq_zero_iff x
 
 /-- A residue class in a DVF valuation ring is nonzero exactly when its
-representative is a unit of the valuation ring.-/
+representative is a unit of the valuation ring.
+@isnad1 id=iff.0h3v.s8.ca4217c96475 from=translated src=- shape=6f15ab5f vocab=9c734e01
+-/
 theorem residue_ne_zero_iff_isUnit (F : DVF.{u, v} K)
     (x : F.valuationSubring) :
     F.residueMap x ≠ 0 ↔ IsUnit x := by
   change IsLocalRing.residue F.valuation.valuationSubring x ≠ 0 ↔ IsUnit x
   exact IsLocalRing.residue_ne_zero_iff_isUnit x
 
-/-- The residue map is surjective.-/
+/-- The residue map is surjective.
+@isnad1 id=surjecti.0h2v.s7.0e5c6978786f from=translated src=- shape=82667425 vocab=a88ad944
+-/
 theorem residue_surjective (F : DVF.{u, v} K) :
     Function.Surjective F.residueMap :=
   IsLocalRing.residue_surjective (R := F.valuation.valuationSubring)
 
-/-- A DVF has a uniformizer in its valuation subring.-/
+/-- A DVF has a uniformizer in its valuation subring.
+@isnad1 id=ex.0h2v.s6.9a94a4368613 from=translated src=- shape=2a90f5ce vocab=8c04e1c7
+-/
 theorem exists_uniformizer (F : DVF.{u, v} K) :
     Exists (fun pi : F.valuationSubring => F.valuation.IsUniformizer (pi : K)) := by
   change Exists
     (fun pi : F.valuation.valuationSubring => F.valuation.IsUniformizer (pi : K))
   exact Valuation.exists_isUniformizer_of_isCyclic_of_nontrivial F.valuation
 
-/-- A uniformizer lies in the maximal ideal.-/
+/-- A uniformizer lies in the maximal ideal.
+@isnad1 id=mem.1h3v.s8.e204574a5684 from=translated src=- shape=40a79787 vocab=7e19a26f
+-/
 theorem uniformizer_mem_maximalIdeal (F : DVF.{u, v} K)
     {pi : F.valuationSubring} (hpi : F.valuation.IsUniformizer (pi : K)) :
     pi ∈ F.maximalIdeal := by
   change pi ∈ IsLocalRing.maximalIdeal F.valuation.valuationSubring
   exact (Valuation.mem_maximalIdeal_iff (v := F.valuation)).2 hpi.val_lt_one
 
-/-- A uniformizer generates the maximal ideal.-/
+/-- A uniformizer generates the maximal ideal.
+@isnad1 id=eq.1h3v.s7.3831db392cb8 from=translated src=- shape=990f473b vocab=895a4591
+-/
 theorem maximalIdeal_eq_span_uniformizer (F : DVF.{u, v} K)
     {pi : F.valuationSubring} (hpi : F.valuation.IsUniformizer (pi : K)) :
     F.maximalIdeal = Ideal.span (Set.singleton pi) := by
@@ -170,7 +200,9 @@ theorem maximalIdeal_eq_span_uniformizer (F : DVF.{u, v} K)
   exact Valuation.IsUniformizer.is_generator (v := F.valuation) hpi
 
 /-- Powers of the maximal ideal are generated by powers of any chosen
-uniformizer.-/
+uniformizer.
+@isnad1 id=eq.1h4v.s8.a7c9446b12c6 from=translated src=- shape=1d8c7972 vocab=cc560bd7
+-/
 theorem maximalIdeal_pow_eq_span_uniformizer_pow (F : DVF.{u, v} K)
     {pi : F.valuationSubring} (hpi : F.valuation.IsUniformizer (pi : K))
     (n : ℕ) :
@@ -179,7 +211,9 @@ theorem maximalIdeal_pow_eq_span_uniformizer_pow (F : DVF.{u, v} K)
   exact Ideal.span_singleton_pow pi n
 
 /-- Membership in a power of the maximal ideal is divisibility by the
-corresponding power of a uniformizer.-/
+corresponding power of a uniformizer.
+@isnad1 id=iff.1h5v.s9.a985859e2ec3 from=translated src=- shape=3e6520ee vocab=d22a0b60
+-/
 theorem mem_maximalIdeal_pow_iff_uniformizer_pow_dvd (F : DVF.{u, v} K)
     {pi x : F.valuationSubring}
     (hpi : F.valuation.IsUniformizer (pi : K)) (n : ℕ) :
@@ -188,7 +222,9 @@ theorem mem_maximalIdeal_pow_iff_uniformizer_pow_dvd (F : DVF.{u, v} K)
     Ideal.mem_span_singleton]
 
 /-- No power of a uniformizer lies one step deeper in the maximal-ideal
-filtration.-/
+filtration.
+@isnad1 id=not.1h4v.s9.63a81832ffda from=translated src=- shape=a6099583 vocab=6d7bf222
+-/
 theorem uniformizer_pow_not_mem_maximalIdeal_pow_succ
     (F : DVF.{u, v} K)
     {pi : F.valuationSubring} (hpi : F.valuation.IsUniformizer (pi : K))
@@ -212,7 +248,9 @@ theorem uniformizer_pow_not_mem_maximalIdeal_pow_succ
   exact hpi.not_isUnit hunit
 
 /-- Every nonzero ideal in the valuation ring of a DVF is a power of the maximal
-ideal.-/
+ideal.
+@isnad1 id=ex.1h3v.s9.443d41fcecc7 from=translated src=- shape=d8d13e7c vocab=a2dfebc3
+-/
 theorem nonzero_ideal_eq_maximalIdeal_pow (F : DVF.{u, v} K)
     (I : Ideal F.valuationSubring) (hI : I ≠ ⊥) :
     ∃ n : ℕ, I = F.maximalIdeal ^ n := by
@@ -225,7 +263,9 @@ theorem nonzero_ideal_eq_maximalIdeal_pow (F : DVF.{u, v} K)
   rw [← Ideal.span_singleton_pow]
   rw [← hpi.maximalIdeal_eq]
 
-/-- The maximal ideal of a DVF valuation ring is nonzero.-/
+/-- The maximal ideal of a DVF valuation ring is nonzero.
+@isnad1 id=ne.0h2v.s7.c6f679bf3d4f from=translated src=- shape=6f5c5ab9 vocab=b0830b97
+-/
 theorem maximalIdeal_ne_bot (F : DVF.{u, v} K) :
     F.maximalIdeal ≠ ⊥ := by
   rcases F.exists_uniformizer with ⟨pi, hpi⟩
@@ -294,7 +334,9 @@ def maximalIdealPowSuccQuotMk (F : DVF.{u, v} K) (n : ℕ) :
           F.maximalIdealPowSuccSubmodule n)
   exact Submodule.mkQ (F.maximalIdealPowSuccSubmodule n)
 
-/-- The concrete linear equivalence sends a quotient representative to the same coset.-/
+/-- The concrete linear equivalence sends a quotient representative to the same coset.
+@isnad1 id=eq.0h4v.s14.222bf89b924c from=translated src=- shape=d46d3e64 vocab=f0d77c39
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotConcreteLinearEquiv_mk
     (F : DVF.{u, v} K) (n : ℕ)
@@ -304,7 +346,9 @@ theorem maximalIdealPowSuccQuotConcreteLinearEquiv_mk
       Submodule.Quotient.mk a :=
   rfl
 
-/-- Eliminate an ideal-power quotient class through its canonical map.-/
+/-- Eliminate an ideal-power quotient class through its canonical map.
+@isnad1 id=var.0h6v.s12.60c08aca32c2 from=translated src=- shape=81cf878a vocab=af152560
+-/
 protected theorem MaximalIdealPowSuccQuot.inductionOn
     (F : DVF.{u, v} K) (n : ℕ)
     {motive : F.MaximalIdealPowSuccQuot n → Prop}
@@ -320,7 +364,9 @@ protected theorem MaximalIdealPowSuccQuot.inductionOn
   intro a
   exact h a
 
-/-- Binary elimination through arbitrary ideal-power representatives.-/
+/-- Binary elimination through arbitrary ideal-power representatives.
+@isnad1 id=var.0h7v.s12.7f1e5094e931 from=translated src=- shape=f53810ef vocab=af152560
+-/
 protected theorem MaximalIdealPowSuccQuot.inductionOn₂
     (F : DVF.{u, v} K) (n : ℕ)
     {motive : F.MaximalIdealPowSuccQuot n →
@@ -359,7 +405,9 @@ def maximalIdealPowSuccQuotLift
   exact h a b
     ((Submodule.Quotient.eq (F.maximalIdealPowSuccSubmodule n)).1 hq)
 
-/-- A lift from the successive ideal quotient evaluates on representatives by the supplied map.-/
+/-- A lift from the successive ideal quotient evaluates on representatives by the supplied map.
+@isnad1 id=eq.1h6v.s13.703eb0a7101e from=translated src=- shape=bef13839 vocab=bdd13f55
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotLift_mk
     (F : DVF.{u, v} K) {P : Sort*} (n : ℕ)
@@ -384,7 +432,9 @@ def maximalIdealPowSuccQuotLinearLift
       F.maximalIdealPowSuccSubmodule n) →ₗ[F.valuationSubring] M
   exact (F.maximalIdealPowSuccSubmodule n).liftQ f h
 
-/-- The linear lift from a successive ideal quotient has the prescribed value on representatives.-/
+/-- The linear lift from a successive ideal quotient has the prescribed value on representatives.
+@isnad1 id=eq.1h6v.s13.1ca258982c9d from=translated src=- shape=b0364c44 vocab=a822a2ff
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotLinearLift_mk
     (F : DVF.{u, v} K) {M : Type*} [AddCommGroup M]
@@ -398,7 +448,9 @@ theorem maximalIdealPowSuccQuotLinearLift_mk
   rfl
 
 /-- A successive ideal-quotient class is zero exactly when its representative
-lies in the next power.-/
+lies in the next power.
+@isnad1 id=iff.0h4v.s12.b9fea41c4fc6 from=translated src=- shape=409e872f vocab=37ec5a7e
+-/
 theorem maximalIdealPowSuccQuotMk_eq_zero_iff (F : DVF.{u, v} K) (n : ℕ)
     (a : ((F.maximalIdeal ^ n : Ideal F.valuationSubring) : Type u)) :
     F.maximalIdealPowSuccQuotMk n a = 0 ↔
@@ -410,7 +462,9 @@ theorem maximalIdealPowSuccQuotMk_eq_zero_iff (F : DVF.{u, v} K) (n : ℕ)
   rfl
 
 /-- Two successive ideal-quotient classes agree exactly when their difference
-lies in the next power.-/
+lies in the next power.
+@isnad1 id=iff.0h5v.s13.b012e4391d52 from=translated src=- shape=aafff7ff vocab=a6e72d36
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotMk_eq_iff
     (F : DVF.{u, v} K) (n : ℕ)
@@ -425,7 +479,9 @@ theorem maximalIdealPowSuccQuotMk_eq_iff
   exact Submodule.Quotient.eq (F.maximalIdealPowSuccSubmodule n)
 
 /-- Multiplication by the corresponding uniformizer power lands in the required
-maximal-ideal power.-/
+maximal-ideal power.
+@isnad1 id=mem.1h5v.s9.49f5b34762f6 from=translated src=- shape=de202dd3 vocab=79086de8
+-/
 theorem mul_uniformizer_pow_mem_maximalIdeal_pow (F : DVF.{u, v} K)
     {pi : F.valuationSubring} (hpi : F.valuation.IsUniformizer (pi : K))
     (n : ℕ) (r : F.valuationSubring) :
@@ -448,7 +504,9 @@ def maximalIdealPowMulUniformizerPowMap (F : DVF.{u, v} K)
     simp [mul_assoc]
 
 /-- After multiplying by a uniformizer power, next-level membership is equivalent
-to maximal-ideal membership.-/
+to maximal-ideal membership.
+@isnad1 id=iff.1h5v.s9.84f9b23b6735 from=translated src=- shape=64974a1a vocab=202c0baf
+-/
 theorem mul_uniformizer_pow_mem_maximalIdeal_pow_succ_iff (F : DVF.{u, v} K)
     {pi : F.valuationSubring} (hpi : F.valuation.IsUniformizer (pi : K))
     (n : ℕ) (r : F.valuationSubring) :
@@ -484,7 +542,9 @@ def maximalIdealPowSuccQuotMulUniformizerPowMap (F : DVF.{u, v} K)
   (F.maximalIdealPowSuccQuotMk n).comp
     (F.maximalIdealPowMulUniformizerPowMap hpi n)
 
-/-- The kernel of multiplication by a uniformizer power is the residue-level defining submodule.-/
+/-- The kernel of multiplication by a uniformizer power is the residue-level defining submodule.
+@isnad1 id=eq.1h4v.s8.a3d8e608f491 from=translated src=- shape=53177c0a vocab=987f1629
+-/
 theorem maximalIdealPowSuccQuotMulUniformizerPowMap_ker (F : DVF.{u, v} K)
     {pi : F.valuationSubring} (hpi : F.valuation.IsUniformizer (pi : K)) (n : ℕ) :
     LinearMap.ker (F.maximalIdealPowSuccQuotMulUniformizerPowMap hpi n) =
@@ -498,7 +558,9 @@ theorem maximalIdealPowSuccQuotMulUniformizerPowMap_ker (F : DVF.{u, v} K)
   change r * pi ^ n ∈ F.maximalIdeal ^ (n + 1) ↔ r ∈ F.maximalIdeal
   exact F.mul_uniformizer_pow_mem_maximalIdeal_pow_succ_iff hpi n r
 
-/-- Multiplication by a uniformizer power surjects onto the successive ideal quotient.-/
+/-- Multiplication by a uniformizer power surjects onto the successive ideal quotient.
+@isnad1 id=surjecti.1h4v.s9.4ae5ea255543 from=translated src=- shape=72e4496e vocab=14b48d3d
+-/
 theorem maximalIdealPowSuccQuotMulUniformizerPowMap_surjective (F : DVF.{u, v} K)
     {pi : F.valuationSubring} (hpi : F.valuation.IsUniformizer (pi : K)) (n : ℕ) :
     Function.Surjective (F.maximalIdealPowSuccQuotMulUniformizerPowMap hpi n) := by
@@ -540,7 +602,9 @@ noncomputable def residueAddEquivMaximalIdealPowSuccQuotOfUniformizer
   (F.residueLinearEquivMaximalIdealPowSuccQuotOfUniformizer hpi n).toAddEquiv
 
 /-- The residue-to-graded-piece equivalence sends a residue class to its
-uniformizer-scaled quotient class.-/
+uniformizer-scaled quotient class.
+@isnad1 id=eq.1h5v.s9.481e897350bb from=translated src=- shape=4277f9c2 vocab=202e9ef2
+-/
 @[simp] theorem residueAddEquivMaximalIdealPowSuccQuotOfUniformizer_residue
     (F : DVF.{u, v} K) {pi : F.valuationSubring}
     (hpi : F.valuation.IsUniformizer (pi : K)) (n : ℕ)

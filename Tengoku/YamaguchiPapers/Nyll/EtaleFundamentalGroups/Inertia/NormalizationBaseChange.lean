@@ -45,12 +45,18 @@ def pullbackEndomorphism (σ : X ⟶ X) (hσ : σ ≫ f = f) :
     (by rw [Category.comp_id, hσ])
     (by rw [Category.comp_id, Category.id_comp])
 
+/--
+@isnad1 id=eq.1h6v.s7.5ab4e23132a9 from=translated src=- shape=27d92bfa vocab=dd3c103e
+-/
 @[reassoc]
 theorem pullbackEndomorphism_fst (σ : X ⟶ X) (hσ : σ ≫ f = f) :
     pullbackEndomorphism f g σ hσ ≫ pullback.fst f g =
       pullback.fst f g ≫ σ :=
   pullback.lift_fst _ _ _
 
+/--
+@isnad1 id=eq.1h6v.s6.7812d05579c8 from=translated src=- shape=cfcd8001 vocab=2e581a42
+-/
 @[reassoc]
 theorem pullbackEndomorphism_snd (σ : X ⟶ X) (hσ : σ ≫ f = f) :
     pullbackEndomorphism f g σ hσ ≫ pullback.snd f g = pullback.snd f g := by
@@ -68,6 +74,9 @@ def normalizationEndomorphism (σ : X ⟶ X) (hσ : σ ≫ f = f) :
   f.normalizationDesc (σ ≫ f.toNormalization) f.fromNormalization (by
     rw [Category.assoc, Scheme.Hom.toNormalization_fromNormalization, hσ])
 
+/--
+@isnad1 id=eq.1h4v.s6.4fe174eede07 from=translated src=- shape=4fb1fbc0 vocab=d85ee1ef
+-/
 @[reassoc]
 theorem toNormalization_normalizationEndomorphism
     (σ : X ⟶ X) (hσ : σ ≫ f = f) :
@@ -75,6 +84,9 @@ theorem toNormalization_normalizationEndomorphism
       σ ≫ f.toNormalization :=
   Scheme.Hom.toNormalization_normalizationDesc _ _ _ _
 
+/--
+@isnad1 id=eq.1h4v.s6.346a9f4619e6 from=translated src=- shape=38f57102 vocab=f34ce395
+-/
 @[reassoc]
 theorem normalizationEndomorphism_fromNormalization
     (σ : X ⟶ X) (hσ : σ ≫ f = f) :
@@ -82,7 +94,9 @@ theorem normalizationEndomorphism_fromNormalization
   Scheme.Hom.normalizationDesc_comp _ _ _ _
 
 /-- Normalization/base-change comparison intertwines the actual extended
-endomorphisms.  Smoothness is unnecessary for this commuting square.-/
+endomorphisms.  Smoothness is unnecessary for this commuting square.
+@isnad1 id=eq.1h6v.s8.5852fd84dbcc from=translated src=- shape=e627b991 vocab=163877ec
+-/
 @[reassoc]
 theorem normalizationPullback_endomorphism
     (σ : X ⟶ X) (hσ : σ ≫ f = f) :
@@ -113,7 +127,9 @@ theorem normalizationPullback_endomorphism
 
 /-- Whenever the canonical comparison is an isomorphism, it conjugates the
 two normalization endomorphisms. This applies to smooth base change and to
-the canonical comparison constructed for an affine localization.-/
+the canonical comparison constructed for an affine localization.
+@isnad1 id=eq.1h6v.s8.5dc97f81c4ea from=translated src=- shape=9b462f06 vocab=822ce7c7
+-/
 theorem normalizationPullback_conjugates_endomorphism [IsIso (f.normalizationPullback g)]
     (σ : X ⟶ X) (hσ : σ ≫ f = f) :
     normalizationEndomorphism (pullback.snd f g)
@@ -132,7 +148,9 @@ theorem normalizationPullback_conjugates_endomorphism [IsIso (f.normalizationPul
 and its compatible lift have exactly the same fixing endomorphisms.
 For a geometric point, take `T = Spec Ω`.
 The lifted point is constructed by the pullback universal property and the
-inverse of the actual normalization comparison.-/
+inverse of the actual normalization comparison.
+@isnad1 id=iff.2h9v.s9.06da32e9067a from=translated src=- shape=31f52151 vocab=1e84c6fa
+-/
 theorem normalizationPullback_fixes_point_iff [IsIso (f.normalizationPullback g)]
     {T : Scheme.{u}} (z : T ⟶ f.normalization) (y : T ⟶ Y)
     (hzy : z ≫ f.fromNormalization = y ≫ g)

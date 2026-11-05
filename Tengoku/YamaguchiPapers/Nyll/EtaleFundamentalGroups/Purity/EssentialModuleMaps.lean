@@ -25,7 +25,9 @@ variable {R : Type u} [Ring R]
 variable {M : Type v} [AddCommGroup M] [Module R M]
 
 /-- Essentiality in a submodule is equivalent to the ambient disjointness
-test restricted to submodules lying in that submodule.-/
+test restricted to submodules lying in that submodule.
+@isnad1 id=iff.1h4v.s8.5706934aea09 from=translated src=- shape=25721650 vocab=3eb1d811
+-/
 theorem isEssentialSubmodule_comap_subtype_iff
     (N S : Submodule R M) (hNS : N ≤ S) :
     IsEssentialSubmodule (N.comap S.subtype) ↔
@@ -58,7 +60,9 @@ theorem isEssentialSubmodule_comap_subtype_iff
     exact hzero
 
 /-- An essential submodule of an essential submodule is essential in the
-ambient module.-/
+ambient module.
+@isnad1 id=isessent.3h4v.s8.ddd9cd629d03 from=translated src=- shape=06933cd8 vocab=6c65a507
+-/
 theorem IsEssentialSubmodule.trans_subtype
     {N S : Submodule R M} (hNS : N ≤ S)
     (hN : IsEssentialSubmodule (N.comap S.subtype))

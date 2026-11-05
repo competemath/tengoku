@@ -31,7 +31,9 @@ universe u
 /-- A two-dimensional regular local domain is integrally closed.
 
 The regular pair is produced from a basis of the cotangent space and is not
-part of the theorem's input.-/
+part of the theorem's input.
+@isnad1 id=isintegr.1h1v.s5.3d3cd11c5e0a from=translated src=- shape=c10f3d4d vocab=7b43cc12
+-/
 theorem isIntegrallyClosed_of_isRegularLocalRing_dimension_two
     {A : Type u} [CommRing A] [IsDomain A] [IsRegularLocalRing A]
     (hdim : ringKrullDim A = ((2 : ℕ∞) : WithBot ℕ∞)) :
@@ -49,7 +51,9 @@ theorem isIntegrallyClosed_of_isRegularLocalRing_dimension_two
     isIntegrallyClosed_of_isRegular_pair_of_span_eq_maximalIdeal
       A x y hregular hspan
 
-/-- Every height-two localization of a regular domain is integrally closed.-/
+/-- Every height-two localization of a regular domain is integrally closed.
+@isnad1 id=isintegr.1h2v.s6.90596ba1afd1 from=translated src=- shape=aa1556dc vocab=a28453e2
+-/
 theorem isIntegrallyClosed_localizationAtPrime_of_height_eq_two
     {A : Type u} [CommRing A] [IsDomain A] [IsRegularRing A]
     (P : Ideal A) [P.IsPrime] (hP : P.height = 2) :

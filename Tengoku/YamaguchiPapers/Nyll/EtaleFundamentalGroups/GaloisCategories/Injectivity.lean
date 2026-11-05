@@ -140,7 +140,9 @@ private theorem action_span_of_categorical_span
 /--
 The homomorphism on profinite automorphism groups induced by `H` and `t` is
 injective exactly when every connected object of the target admits an
-epimorphism from an object that embeds into an object in the image of `H`.-/
+epimorphism from an object that embeds into an object in the image of `H`.
+@isnad1 id=iff.0h6v.s9.6ab50b6b88ed from=translated src=- shape=63cec839 vocab=f754f85e
+-/
 @[stacks 0BN7]
 theorem autHomOfCompIso_injective_iff_exists_epi_mono_span
     (H : C ⥤ C') (t : H ⋙ F' ≅ F) :
@@ -161,7 +163,9 @@ theorem autHomOfCompIso_injective_iff_exists_epi_mono_span
 
 /-- Restriction of automorphisms along an essentially surjective functor is
 injective. No fullness assumption is needed: every target object is already
-isomorphic to an object in the image.-/
+isomorphic to an object in the image.
+@isnad1 id=injectiv.0h6v.s8.627621b15507 from=translated src=- shape=a2a8226c vocab=842fff38
+-/
 theorem autHomOfCompIso_injective_of_essSurj
     (H : Functor C C') [H.EssSurj] (t : H ⋙ F' ≅ F) :
     Function.Injective (autHomOfCompIso H t) := by

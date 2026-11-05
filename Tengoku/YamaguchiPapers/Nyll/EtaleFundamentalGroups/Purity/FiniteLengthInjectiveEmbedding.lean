@@ -36,7 +36,9 @@ variable {R E : Type u} [CommRing R] [IsLocalRing R]
 variable [AddCommGroup E] [Module R E] [Module.Injective R E]
 
 /-- Finitely many maps into an injective residue-field hull jointly
-embed each finite-length module.-/
+embed each finite-length module.
+@isnad1 id=ex.3h4v.s9.117ec8898e17 from=translated src=- shape=47765a98 vocab=1b27f523
+-/
 theorem exists_injective_linearMap_pi_of_finiteLength
     (i : (R ⧸ IsLocalRing.maximalIdeal R) →ₗ[R] E)
     (hi : Function.Injective i) (hess : IsEssentialSubmodule (LinearMap.range i))
@@ -67,7 +69,9 @@ theorem exists_injective_linearMap_pi_of_finiteLength
 
 /-- Extending an embedding of an essential finite-length submodule into
 a finite product of Artinian injective hulls proves that the ambient
-module is Artinian.-/
+module is Artinian.
+@isnad1 id=isartini.4h5v.s9.ac050e5d6eb8 from=translated src=- shape=cf998de7 vocab=c2ffee8f
+-/
 theorem isArtinian_of_finiteLength_essential_submodule
     [IsArtinian R E]
     (i : (R ⧸ IsLocalRing.maximalIdeal R) →ₗ[R] E)

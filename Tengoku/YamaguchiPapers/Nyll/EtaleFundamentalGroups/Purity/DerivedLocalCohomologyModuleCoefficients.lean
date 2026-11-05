@@ -37,7 +37,9 @@ universe u
 variable {R : Type u} [CommRing R]
 
 /-- The second coefficient map acts on representatives by postcomposition
-with the degree-zero class of the second coefficient morphism.-/
+with the degree-zero class of the second coefficient morphism.
+@isnad1 id=eq.1h6v.s11.91ef5a7a7d3c from=translated src=- shape=ab65b815 vocab=2980bdfc
+-/
 theorem derivedLocalCohomologyCoefficientsSecondMap_ι_apply
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (i n : ℕ)
@@ -68,7 +70,9 @@ theorem derivedLocalCohomologyCoefficientsSecondMap_ι_apply
           derivedLocalCohomology I S.X₃ i ↦ f α) h
 
 /-- The connecting map acts on representatives by postcomposition with
-the extension class of the coefficient short exact sequence.-/
+the extension class of the coefficient short exact sequence.
+@isnad1 id=eq.1h6v.s11.865df9252bf4 from=translated src=- shape=8815b5c3 vocab=63cbc8b4
+-/
 theorem derivedLocalCohomologyCoefficientsConnectingMap_ι_apply
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (i n : ℕ)
@@ -208,7 +212,9 @@ def derivedLocalCohomologyModuleCoefficientsConnectingMap
                 (congrArg (derivedLocalCohomologyScalarMap I S.X₁ (i + 1) a)
                   (derivedLocalCohomologyCoefficientsConnectingMap_ι_apply I hS i n α).symm))))
 
-/-- Same-degree exactness of the linear coefficient maps.-/
+/-- Same-degree exactness of the linear coefficient maps.
+@isnad1 id=exact.1h4v.s10.80e893d9663c from=translated src=- shape=e9fe5c77 vocab=38928931
+-/
 theorem derivedLocalCohomologyModuleCoefficients_sameDegree_exact
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (i : ℕ) :
@@ -217,7 +223,9 @@ theorem derivedLocalCohomologyModuleCoefficients_sameDegree_exact
   (ShortComplex.ab_exact_iff_function_exact _).mp
     (derivedLocalCohomologyCoefficients_sameDegree_exact I hS i)
 
-/-- Exactness immediately before the linear connecting map.-/
+/-- Exactness immediately before the linear connecting map.
+@isnad1 id=exact.1h4v.s11.9a3b7b7fd81f from=translated src=- shape=7e36f9d8 vocab=003b1de7
+-/
 theorem derivedLocalCohomologyModuleCoefficients_beforeConnecting_exact
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (i : ℕ) :
@@ -227,7 +235,9 @@ theorem derivedLocalCohomologyModuleCoefficients_beforeConnecting_exact
     (derivedLocalCohomologyCoefficients_beforeConnecting_exact I hS i)
 
 /-- The image of the linear connecting map is the kernel of the next
-linear coefficient map.-/
+linear coefficient map.
+@isnad1 id=exact.1h4v.s11.d281cc8979fc from=translated src=- shape=cdc1fb1a vocab=5e7070f4
+-/
 theorem derivedLocalCohomologyModuleCoefficients_afterConnecting_exact
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (i : ℕ) :
@@ -237,7 +247,9 @@ theorem derivedLocalCohomologyModuleCoefficients_afterConnecting_exact
     (derivedLocalCohomologyCoefficients_afterConnecting_exact I hS i)
 
 /-- For a regular multiplication sequence, the first linear coefficient
-map is multiplication by the chosen scalar.-/
+map is multiplication by the chosen scalar.
+@isnad1 id=eq.1h5v.s10.ac68ca8caca8 from=translated src=- shape=e8f3d4e8 vocab=a879ea71
+-/
 theorem derivedLocalCohomologyModuleCoefficientsFirstMap_smulShortComplex
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
     (x : R) (hx : IsSMulRegular M x) :

@@ -51,6 +51,9 @@ private theorem normalizationSquareLift_base :
 def normalizationMapOfSquare : f.normalization ⟶ g.normalization :=
   normalizationSquareLift f g a b h ≫ pullback.fst g.fromNormalization b
 
+/--
+@isnad1 id=eq.1h8v.s7.af1cf01ba901 from=translated src=- shape=bfcf9bcb vocab=bad0be9f
+-/
 @[reassoc]
 theorem normalizationMapOfSquare_source :
     f.toNormalization ≫ normalizationMapOfSquare f g a b h =
@@ -58,6 +61,9 @@ theorem normalizationMapOfSquare_source :
   rw [normalizationMapOfSquare, ← Category.assoc, normalizationSquareLift_source,
     pullback.lift_fst]
 
+/--
+@isnad1 id=eq.1h8v.s7.739132e6dbee from=translated src=- shape=f9984a50 vocab=cda1c9c5
+-/
 @[reassoc]
 theorem normalizationMapOfSquare_base :
     normalizationMapOfSquare f g a b h ≫ g.fromNormalization =
@@ -66,7 +72,9 @@ theorem normalizationMapOfSquare_base :
     ← Category.assoc, normalizationSquareLift_base]
 
 /-- The induced normalization map intertwines actual compatible source
-endomorphisms. No comparison of the induced actions is assumed.-/
+endomorphisms. No comparison of the induced actions is assumed.
+@isnad1 id=eq.4h10v.s8.26e925641584 from=translated src=- shape=50bd8657 vocab=c72b4b78
+-/
 @[reassoc]
 theorem normalizationMapOfSquare_endomorphism
     (τ : A ⟶ A) (hτ : τ ≫ f = f)

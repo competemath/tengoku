@@ -30,7 +30,9 @@ variable {K : Type u} {L : Type w} [Field K] [Field L]
 variable {Γ : Type v} [LinearOrderedCommGroupWithZero Γ]
 
 /-- Pulling a valuation back along a field equivalence does not change its
-value group.-/
+value group.
+@isnad1 id=eq.0h5v.s8.86bc1f4b8d04 from=translated src=- shape=2f5b71db vocab=da57e6ab
+-/
 theorem valueGroup_comap_ringEquiv
     (v : _root_.Valuation K Γ) (e : L ≃+* K) :
     MonoidWithZeroHom.valueGroup
@@ -83,7 +85,9 @@ theorem valueGroup_comap_ringEquiv
     simpa [hδ_eq] using hδ
 
 /-- Rank-one discreteness is preserved by pulling a valuation back along a
-field equivalence.-/
+field equivalence.
+@isnad1 id=isrankon.0h5v.s8.c7991f6a82fd from=translated src=- shape=c0ea6878 vocab=fe36514a
+-/
 instance isRankOneDiscrete_comap_ringEquiv
     (v : _root_.Valuation K Γ) [v.IsRankOneDiscrete] (e : L ≃+* K) :
     (v.comap (e : L →+* K)).IsRankOneDiscrete where
@@ -111,7 +115,9 @@ noncomputable def valuationSubringRingEquivOfComap
   map_mul' x y := Subtype.ext (map_mul e (x : L) (y : L))
   map_add' x y := Subtype.ext (map_add e (x : L) (y : L))
 
-/-- The valuation-subring equivalence induced by a comap acts through the ambient ring map.-/
+/-- The valuation-subring equivalence induced by a comap acts through the ambient ring map.
+@isnad1 id=eq.0h6v.s12.a7a9d652277e from=translated src=- shape=d018e6d4 vocab=24e716a9
+-/
 @[simp] theorem valuationSubringRingEquivOfComap_apply
     (v : _root_.Valuation K Γ) (e : L ≃+* K)
     (x : (v.comap (e : L →+* K)).valuationSubring) :
@@ -120,7 +126,9 @@ noncomputable def valuationSubringRingEquivOfComap
   rfl
 
 /-- The valuation-ring equivalence attached to a comap carries maximal-ideal
-membership exactly.-/
+membership exactly.
+@isnad1 id=iff.0h6v.s13.4f1a2b95af23 from=translated src=- shape=4824579c vocab=a4a96764
+-/
 theorem valuationSubringRingEquivOfComap_mem_maximalIdeal_iff
     (v : _root_.Valuation K Γ) (e : L ≃+* K)
     (x : (v.comap (e : L →+* K)).valuationSubring) :
@@ -133,7 +141,9 @@ theorem valuationSubringRingEquivOfComap_mem_maximalIdeal_iff
   rfl
 
 /-- Map form of maximal-ideal preservation for the valuation-ring equivalence
-attached to a comap.-/
+attached to a comap.
+@isnad1 id=eq.0h5v.s13.a489f76580ff from=translated src=- shape=d702bfdc vocab=dc4deff8
+-/
 @[simp] theorem maximalIdeal_map_valuationSubringRingEquivOfComap
     (v : _root_.Valuation K Γ) (e : L ≃+* K) :
     (IsLocalRing.maximalIdeal
@@ -158,7 +168,9 @@ attached to a comap.-/
         (r.symm y)).1 (by simpa [r] using hy)
 
 /-- Comap form of maximal-ideal preservation for the valuation-ring
-equivalence attached to a comap.-/
+equivalence attached to a comap.
+@isnad1 id=eq.0h5v.s13.1429688a777e from=translated src=- shape=2aa68fc3 vocab=5dc24c93
+-/
 @[simp] theorem maximalIdeal_comap_valuationSubringRingEquivOfComap
     (v : _root_.Valuation K Γ) (e : L ≃+* K) :
     (IsLocalRing.maximalIdeal v.valuationSubring).comap

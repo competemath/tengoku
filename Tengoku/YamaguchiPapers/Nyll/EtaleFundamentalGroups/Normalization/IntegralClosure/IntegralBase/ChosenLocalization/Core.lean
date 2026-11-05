@@ -40,7 +40,9 @@ universe uA uB uC uD uL
 /-- A finite formally-etale extension of an algebra already etale away from
 `f` remains etale after applying the literal away map from the original
 base.  This is the map-level composition needed after selecting a finite
-local factor of a normalization.-/
+local factor of a normalization.
+@isnad1 id=etale.1h4v.s9.42dd55262dd8 from=translated src=- shape=66d814bb vocab=df7bddcf
+-/
 theorem localization_awayMap_etale_of_finite_formallyEtale_extension
     {A : Type uA} {C : Type uC} {D : Type uD}
     [CommRing A] [CommRing C] [CommRing D]

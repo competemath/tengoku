@@ -105,7 +105,9 @@ def homeomorph_inverseLimit_finiteSubsetProductSystem {α : Type u} (X : α → 
 
 /--
 A continuous map from a profinite inverse limit to a finite discrete space factors through one
-projection.-/
+projection.
+@isnad1 id=ex.2h4v.s7.cf771fcc2b8c from=translated src=- shape=d07852e5 vocab=68da32a0
+-/
 theorem InverseSystem.factors_through_projection_finite
     {I : Type u} [Preorder I] (S : InverseSystem (I := I)) [Nonempty I]
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
@@ -276,7 +278,9 @@ instance finiteSubsetProductSystem_instGroup {α : Type u} (X : α → Type v)
 
 /--
 A continuous homomorphism from an inverse limit of profinite groups to a finite discrete group
-factors through one of the projections.-/
+factors through one of the projections.
+@isnad1 id=ex.2h4v.s9.0fd5547fa59d from=translated src=- shape=7a76d48e vocab=6bb95005
+-/
 theorem InverseSystem.factors_through_projection_finite_group_hom [Nonempty I]
     [∀ i, Group (S.X i)] [IsGroupSystem S] [∀ i, IsTopologicalGroup (S.X i)]
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]
@@ -563,7 +567,9 @@ theorem InverseSystem.factors_through_projection_finite_group_hom [Nonempty I]
 
 /--
 A continuous additive homomorphism from an inverse limit of profinite additive groups to a
-finite discrete additive group factors through one finite stage.-/
+finite discrete additive group factors through one finite stage.
+@isnad1 id=ex.2h4v.s9.c2b546317d06 from=translated src=- shape=7a76d48e vocab=3c8308cf
+-/
 theorem InverseSystem.factors_through_projection_finite_addMonoidHom [Nonempty I]
     [∀ i, AddCommGroup (S.X i)] [IsAddGroupSystem S] [∀ i, IsTopologicalAddGroup (S.X i)]
     [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)]

@@ -80,7 +80,9 @@ def cechCoefficientZeroIso (xs : List R) (M : ModuleCat.{u} R) :
   (tensorLeft M).mapIso (cechLocalizationZeroIso xs) ≪≫ ρ_ M
 
 /-- Degree-zero coefficient identification commutes with every
-coefficient morphism.-/
+coefficient morphism.
+@isnad1 id=eq.0h5v.s10.8260ed06c0c3 from=translated src=- shape=2af276f2 vocab=f3a6b6cd
+-/
 theorem cechCoefficientZeroIso_naturality (xs : List R)
     {M N : ModuleCat.{u} R} (f : M ⟶ N) :
     ((tensorComplexCoefficientFunctor (cechLocalizationComplex xs)).map f).f 0 ≫
@@ -104,13 +106,17 @@ def cechHomologyZeroToModule (xs : List R) (M : ModuleCat.{u} R) :
   (CochainComplex.isoHomologyπ₀ K).inv ≫ K.iCycles 0 ≫ (cechCoefficientZeroIso xs M).hom
 
 /-- The zeroth cohomology embeds because a nonnegative cochain complex
-has no incoming boundaries in degree zero.-/
+has no incoming boundaries in degree zero.
+@isnad1 id=mono.0h3v.s8.77d019374adc from=translated src=- shape=d8442198 vocab=4ced1537
+-/
 instance cechHomologyZeroToModule_mono (xs : List R) (M : ModuleCat.{u} R) :
     Mono (cechHomologyZeroToModule xs M) := by
   dsimp only [cechHomologyZeroToModule]
   infer_instance
 
-/-- The embedding of degree-zero cohomology is natural in coefficients.-/
+/-- The embedding of degree-zero cohomology is natural in coefficients.
+@isnad1 id=eq.0h5v.s10.8859c5762ee5 from=translated src=- shape=38b7afdd vocab=ba04f4c3
+-/
 theorem cechHomologyZeroToModule_naturality (xs : List R)
     {M N : ModuleCat.{u} R} (f : M ⟶ N) :
     homologyMap ((tensorComplexCoefficientFunctor (cechLocalizationComplex xs)).map f) 0 ≫

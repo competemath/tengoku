@@ -27,7 +27,9 @@ variable {R : Type u} [Ring R]
   {M : Type v} [AddCommGroup M] [Module R M]
 
 /-- A submodule admits a maximal essential extension inside any fixed
-ambient module.-/
+ambient module.
+@isnad1 id=ex.0h3v.s9.1f214e4010dd from=translated src=- shape=c8da5c4d vocab=6c65a507
+-/
 theorem exists_maximal_essential_extension (N : Submodule R M) :
     ∃ E : Submodule R M, N ≤ E ∧
       IsEssentialSubmodule (N.comap E.subtype) ∧

@@ -28,7 +28,9 @@ namespace EtaleFundamentalGroups
 universe uR uA
 
 /-- A prime of an integral algebra lying over the zero ideal of the base is
-a minimal prime of the algebra.-/
+a minimal prime of the algebra.
+@isnad1 id=mem.0h3v.s6.48f394c429c8 from=translated src=- shape=1d1447fa vocab=771c5e7f
+-/
 theorem prime_liesOver_bot_mem_minimalPrimes
     {R : Type uR} {A : Type uA}
     [CommRing R] [CommRing A] [Algebra R A] [Algebra.IsIntegral R A]
@@ -42,7 +44,9 @@ theorem prime_liesOver_bot_mem_minimalPrimes
   exact hmin
 
 /-- A minimal prime contained in `Q` maps to zero in the localization at
-`Q`, provided that localization has already been proved to be a domain.-/
+`Q`, provided that localization has already been proved to be a domain.
+@isnad1 id=eq.2h3v.s9.b2b033d3bbee from=translated src=- shape=5c778814 vocab=b7ec5868
+-/
 theorem minimalPrime_map_eq_bot_localizationAtPrime_of_isDomain
     {A : Type uA} [CommRing A]
     (N Q : Ideal A) [N.IsPrime] [Q.IsPrime]
@@ -70,7 +74,9 @@ theorem minimalPrime_map_eq_bot_localizationAtPrime_of_isDomain
 
 /-- Combined integral-generic-prime form: after domainhood of the
 localization at a containing prime has been established, a prime lying over
-the base generic point vanishes there.-/
+the base generic point vanishes there.
+@isnad1 id=eq.1h4v.s9.4d17c3425a98 from=translated src=- shape=ec0c9e7c vocab=18df2eff
+-/
 theorem prime_liesOver_bot_map_eq_bot_localizationAtPrime_of_isDomain
     {R : Type uR} {A : Type uA}
     [CommRing R] [CommRing A] [Algebra R A] [Algebra.IsIntegral R A]

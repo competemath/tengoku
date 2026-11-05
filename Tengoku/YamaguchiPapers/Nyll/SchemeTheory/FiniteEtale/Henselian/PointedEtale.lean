@@ -31,7 +31,9 @@ open Polynomial
 universe u v
 
 /-- If a prime lies over the maximal ideal of a local base, the canonical map
-from the base to the localization at that prime is local.-/
+from the base to the localization at that prime is local.
+@isnad1 id=islocalh.0h3v.s8.4546c072f6c1 from=translated src=- shape=9238ef67 vocab=0331c0fa
+-/
 theorem isLocalHom_algebraMap_localizationAtPrime_of_liesOver_maximalIdeal
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [Algebra R S]
     [IsLocalRing R] (P : Ideal S) [P.IsPrime]
@@ -56,7 +58,9 @@ noncomputable def localizationAtMaximalIdealAlgEquiv
 induces a bijection on the residue fields of the local map `R → S_P`.
 
 The source comparison is the canonical equivalence
-`R ≃ R_{m_R}`.-/
+`R ≃ R_{m_R}`.
+@isnad1 id=bijectiv.1h3v.s10.ee8cae29ddac from=translated src=- shape=401463ce vocab=8619b3b4
+-/
 theorem localResidueFieldMap_bijective_of_residueFieldMap_bijective
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [Algebra R S]
     [IsLocalRing R] (P : Ideal S) [P.IsPrime]
@@ -115,7 +119,9 @@ residue field at the chosen prime, has trivial local ring.
 
 No module-finiteness assumption on `S` is used.  Tag 00UE supplies a
 standard-etale neighborhood of `P`; Hensel's lemma moves its distinguished
-simple root into `R`, and localization clears the remaining denominators.-/
+simple root into `R`, and localization clears the remaining denominators.
+@isnad1 id=bijectiv.1h3v.s10.a43da906dc83 from=translated src=- shape=21217fab vocab=1808981f
+-/
 theorem algebraMap_localizationAtPrime_bijective_of_henselian_of_etale_of_residueFieldMap_bijective
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [Algebra R S]
     [HenselianLocalRing R] [Algebra.Etale R S]

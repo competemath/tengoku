@@ -24,7 +24,9 @@ namespace EtaleFundamentalGroups
 universe u v
 
 /-- A chosen prime-local factor of an etale algebra over a Henselian local ring is finite
-over the base ring.-/
+over the base ring.
+@isnad1 id=finite.0h3v.s7.cc246aef3321 from=translated src=- shape=483a9aa3 vocab=ea01c9f7
+-/
 theorem moduleFinite_localizationAtPrime_of_henselian_of_etale
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [Algebra R S]
     [HenselianLocalRing R] [Algebra.Etale R S]

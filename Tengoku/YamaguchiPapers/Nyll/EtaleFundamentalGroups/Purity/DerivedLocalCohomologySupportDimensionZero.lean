@@ -35,7 +35,9 @@ open CategoryTheory Limits IsLocalRing
 variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
 /-- Zero-dimensional finite coefficients are killed by a single power
-of the maximal ideal.-/
+of the maximal ideal.
+@isnad1 id=ex.1h2v.s7.f7475f4b3076 from=translated src=- shape=65acbf12 vocab=36a50032
+-/
 theorem exists_maximalIdeal_pow_le_annihilator_of_supportDim_eq_zero
     (M : ModuleCat.{u} R) [Module.Finite R M]
     (hdim : Module.supportDim R M = 0) :
@@ -63,7 +65,9 @@ def derivedLocalCohomologyZeroEquivOfSupportDimEqZero
         exact ⟨k, fun a ha => Module.mem_annihilator.mp (hk ha) z⟩))
 
 /-- A finite module of support dimension zero has nonzero degree-zero
-maximal-support local cohomology.-/
+maximal-support local cohomology.
+@isnad1 id=not.1h2v.s6.848dcf5ea250 from=translated src=- shape=48fa08b5 vocab=a7e9f472
+-/
 theorem derivedLocalCohomology_maximalIdeal_not_isZero_of_supportDim_eq_zero
     (M : ModuleCat.{u} R) [Module.Finite R M]
     (hdim : Module.supportDim R M = 0) :

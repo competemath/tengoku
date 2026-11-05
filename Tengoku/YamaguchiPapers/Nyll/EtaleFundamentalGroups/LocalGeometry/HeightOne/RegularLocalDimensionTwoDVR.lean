@@ -31,7 +31,9 @@ open IsLocalRing
 universe u
 
 /-- The localization of a two-dimensional regular local domain at a
-height-one prime is a discrete valuation ring.-/
+height-one prime is a discrete valuation ring.
+@isnad1 id=isdiscre.2h2v.s6.b10b84c01af3 from=translated src=- shape=c2fe7243 vocab=55a0ee26
+-/
 theorem isDiscreteValuationRing_localizationAtPrime_of_isRegularLocalRing_dimension_two
     {D : Type u} [CommRing D] [IsDomain D] [IsRegularLocalRing D]
     (hdim : ringKrullDim D = ((2 : ℕ∞) : WithBot ℕ∞))

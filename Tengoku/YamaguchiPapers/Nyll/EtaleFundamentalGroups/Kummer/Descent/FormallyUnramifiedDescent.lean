@@ -26,7 +26,9 @@ universe uR uS uT
 
 /--
 If `T` is formally unramified over `R`, and `T/S` is both formally etale and
-faithfully flat, then `S` is formally unramified over `R`.-/
+faithfully flat, then `S` is formally unramified over `R`.
+@isnad1 id=formally.0h3v.s7.287506855aff from=translated src=- shape=a89a38ec vocab=8dcc239a
+-/
 theorem formallyUnramified_of_formallyEtale_faithfullyFlat
     {R : Type uR} {S : Type uS} {T : Type uT}
     [CommRing R] [CommRing S] [CommRing T]

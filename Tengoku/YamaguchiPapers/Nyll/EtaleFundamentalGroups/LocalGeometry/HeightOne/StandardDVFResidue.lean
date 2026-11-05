@@ -28,7 +28,9 @@ open ValuationTheory.DiscreteValuationField
 universe uV uK
 
 /-- Characteristic zero of a DVR's closed-point quotient is preserved by
-the standard `DVF` package attached to a chosen fraction field.-/
+the standard `DVF` package attached to a chosen fraction field.
+@isnad1 id=charzero.1h2v.s7.16c149069e97 from=translated src=- shape=897b7cf9 vocab=d276b881
+-/
 theorem charZero_standardDVFOfDVR_residueField
     {V : Type uV} {K : Type uK}
     [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]

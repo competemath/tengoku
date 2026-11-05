@@ -31,7 +31,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 namespace HasOpenNormalBasisInClass
 
 omit [IsTopologicalGroup G] in
-/-- A closed subgroup of a pro-\(C\) group is pro-\(C\).-/
+/-- A closed subgroup of a pro-\(C\) group is pro-\(C\).
+@isnad1 id=hasopenn.3h3v.s6.c9a7f3499fc7 from=translated src=- shape=e3815d01 vocab=d94bea95
+-/
 theorem of_closedSubgroup
     (hIso : FiniteGroupClass.IsomClosed C)
     (hSub : FiniteGroupClass.SubgroupClosed C)
@@ -76,7 +78,9 @@ theorem of_closedSubgroup
   exact ⟨VH, hVHW, hQuotVH⟩
 
 omit [IsTopologicalGroup G] in
-/-- A closed ordinary subgroup of a pro-\(C\) group is pro-\(C\) with the induced topology.-/
+/-- A closed ordinary subgroup of a pro-\(C\) group is pro-\(C\) with the induced topology.
+@isnad1 id=hasopenn.4h3v.s6.2d0872912bf4 from=translated src=- shape=d8bc2115 vocab=ef471895
+-/
 theorem of_isClosed_subgroup
     (hIso : FiniteGroupClass.IsomClosed C)
     (hSub : FiniteGroupClass.SubgroupClosed C)
@@ -86,7 +90,9 @@ theorem of_isClosed_subgroup
   exact of_closedSubgroup (C := C) hIso hSub hG HC
 
 omit [IsTopologicalGroup G] in
-/-- Closed-subgroup permanence for pro-\(C\) groups from a full formation package.-/
+/-- Closed-subgroup permanence for pro-\(C\) groups from a full formation package.
+@isnad1 id=hasopenn.2h3v.s6.41a3c916f871 from=translated src=- shape=23dc7271 vocab=c52d8f86
+-/
 theorem of_closedSubgroup_of_fullFormation
     (hC : FiniteGroupClass.FullFormation C)
     (hG : HasOpenNormalBasisInClass C G) (H : ClosedSubgroup G) :
@@ -94,7 +100,9 @@ theorem of_closedSubgroup_of_fullFormation
   of_closedSubgroup hC.isomClosed hC.subgroupClosed hG H
 
 omit [IsTopologicalGroup G] in
-/-- Closed-subgroup permanence in ordinary subgroup form from a full formation package.-/
+/-- Closed-subgroup permanence in ordinary subgroup form from a full formation package.
+@isnad1 id=hasopenn.3h3v.s6.7de876113d56 from=translated src=- shape=48763538 vocab=98e3c120
+-/
 theorem of_isClosed_subgroup_of_fullFormation
     (hC : FiniteGroupClass.FullFormation C)
     (hG : HasOpenNormalBasisInClass C G) (H : Subgroup G) (hH : IsClosed (H : Set G)) :
@@ -103,7 +111,9 @@ theorem of_isClosed_subgroup_of_fullFormation
 
 /--
 The range of a continuous homomorphism from a pro-\(C\) group to a Hausdorff topological group
-is again pro-\(C\), with the induced subtype topology.-/
+is again pro-\(C\), with the induced subtype topology.
+@isnad1 id=hasopenn.3h4v.s7.83e35ff3a6a8 from=translated src=- shape=50d62d38 vocab=e75ed312
+-/
 theorem range
     (hIso : FiniteGroupClass.IsomClosed C)
     (hQuot : FiniteGroupClass.QuotientClosed C)
@@ -124,7 +134,9 @@ theorem range
 end HasOpenNormalBasisInClass
 
 /-- A Hausdorff continuous quotient of a group with an open-normal \(C\)-basis again has such a
-basis.-/
+basis.
+@isnad1 id=hasopenn.3h4v.s6.c7a92c747b10 from=translated src=- shape=008d6ddf vocab=5ef17644
+-/
 theorem HasOpenNormalBasisInClass.of_surjective
     (hForm : FiniteGroupClass.Formation C)
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
@@ -157,7 +169,9 @@ variable {E : Type u} [Group E] [TopologicalSpace E] [IsTopologicalGroup E]
 
 /--
 If E is profinite, K is a normal pro-\(C\) subgroup of E, and E/K is pro-\(C\), then E is
-pro-\(C\).-/
+pro-\(C\).
+@isnad1 id=hasopenn.6h3v.s7.b524d218bfa0 from=translated src=- shape=74af1c9e vocab=9170ec20
+-/
 theorem extension
     (hIso : FiniteGroupClass.IsomClosed C)
     (hQuot : FiniteGroupClass.QuotientClosed C)

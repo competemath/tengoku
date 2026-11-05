@@ -156,7 +156,9 @@ private theorem derivedLocalCohomologyZeroToModule_ι
   derivedLocalCohomologyZeroEvaluation_ι I M n α
 
 /-- Evaluation of a degree-zero representative given by a quotient
-homomorphism is its value at one.-/
+homomorphism is its value at one.
+@isnad1 id=eq.0h5v.s12.a6e6249df6d4 from=translated src=- shape=2247d723 vocab=840003c9
+-/
 theorem derivedLocalCohomologyZeroToModule_ι_mk₀
     (I : Ideal R) (M : ModuleCat.{u} R) (n : ℕ)
     (f : ModuleCat.of R (R ⧸ I ^ n) ⟶ M) :
@@ -174,7 +176,9 @@ private theorem eq_zero_of_map_eq_of_eq_zero
     _ = f 0 := congrArg (ConcreteCategory.hom f) hx
     _ = 0 := map_zero _
 
-/-- No degree-zero class is lost on evaluation in the coefficient module.-/
+/-- No degree-zero class is lost on evaluation in the coefficient module.
+@isnad1 id=injectiv.0h3v.s8.81948d45e797 from=translated src=- shape=3af752d7 vocab=3c045b87
+-/
 theorem derivedLocalCohomologyZeroToModule_injective (I : Ideal R) (M : ModuleCat.{u} R) :
     Function.Injective (derivedLocalCohomologyZeroToModule I M) := by
   let : PreservesFilteredColimitsOfSize.{0, 0} (forget AddCommGrpCat.{u}) :=
@@ -195,7 +199,9 @@ theorem derivedLocalCohomologyZeroToModule_injective (I : Ideal R) (M : ModuleCa
     (colimit.ι (derivedLocalCohomologyPowersDiagram I M 0) (op (op n))) hzero hα
 
 /-- Every ideal-power torsion vector is represented by a degree-zero
-local-cohomology class.-/
+local-cohomology class.
+@isnad1 id=ex.1h4v.s9.8409df920c37 from=translated src=- shape=0939ce56 vocab=5b2fb07b
+-/
 theorem derivedLocalCohomologyZeroToModule_exists_preimage
     (I : Ideal R) (M : ModuleCat.{u} R) (z : M)
     (hz : ∃ n : ℕ, ∀ a ∈ I ^ n, a • z = 0) :
@@ -211,7 +217,9 @@ theorem derivedLocalCohomologyZeroToModule_exists_preimage
     (derivedLocalCohomologyZeroToModule_ι I M n α).trans hα⟩
 
 /-- The image of degree-zero evaluation consists exactly of the
-ideal-power torsion vectors.-/
+ideal-power torsion vectors.
+@isnad1 id=iff.0h4v.s9.4fb21ff5143c from=translated src=- shape=9406c6ef vocab=8a3da957
+-/
 theorem mem_range_derivedLocalCohomologyZeroToModule_iff
     (I : Ideal R) (M : ModuleCat.{u} R) (z : M) :
     z ∈ LinearMap.range (derivedLocalCohomologyZeroToModule I M) ↔
@@ -226,7 +234,9 @@ theorem mem_range_derivedLocalCohomologyZeroToModule_iff
   · exact derivedLocalCohomologyZeroToModule_exists_preimage I M z
 
 /-- On an ideal-power torsion module, degree-zero local cohomology is
-the entire coefficient module.-/
+the entire coefficient module.
+@isnad1 id=bijectiv.1h3v.s9.e1a44f75e661 from=translated src=- shape=1b7bda38 vocab=81967e4b
+-/
 theorem derivedLocalCohomologyZeroToModule_bijective_of_power_torsion
     (I : Ideal R) (M : ModuleCat.{u} R)
     (hM : ∀ z : M, ∃ n : ℕ, ∀ a ∈ I ^ n, a • z = 0) :

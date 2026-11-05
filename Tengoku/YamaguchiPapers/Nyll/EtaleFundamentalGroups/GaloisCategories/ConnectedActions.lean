@@ -32,7 +32,9 @@ variable {C : Type u₁} [Category.{u₂} C] [GaloisCategory C]
 variable (F : C ⥤ FintypeCat.{w}) [FiberFunctor F]
 
 /-- An object with nonempty fiber is connected if the canonical `Aut F`-action
-on its fiber is pretransitive.-/
+on its fiber is pretransitive.
+@isnad1 id=isconnec.0h3v.s8.ba12525e7d86 from=translated src=- shape=c5d0056e vocab=5e595f27
+-/
 theorem FiberFunctor.isConnected_of_isPretransitive
     (X : C) [Nonempty (F.obj X)]
     [MulAction.IsPretransitive (Aut F) (F.obj X)] :

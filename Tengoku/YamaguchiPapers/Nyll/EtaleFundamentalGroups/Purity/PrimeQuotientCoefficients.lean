@@ -30,7 +30,9 @@ variable {R : Type u} [CommRing R] [IsLocalRing R]
 variable {N : Type v} [AddCommGroup N] [Module R N]
 
 /-- The maximal ideal kills any module linearly equivalent to the
-residue field.-/
+residue field.
+@isnad1 id=eq.1h5v.s8.9b900fd7b5a7 from=translated src=- shape=f233a1ac vocab=d155fe07
+-/
 theorem maximalIdeal_smul_eq_zero_of_equiv_residueField
     (e : N ≃ₗ[R] (R ⧸ maximalIdeal R))
     (a : R) (ha : a ∈ maximalIdeal R) (z : N) : a • z = 0 := by
@@ -44,7 +46,9 @@ theorem maximalIdeal_smul_eq_zero_of_equiv_residueField
 
 /-- A prime quotient different from the residue field admits a regular
 scalar in the maximal ideal, also after transporting the coefficients
-along a linear equivalence.-/
+along a linear equivalence.
+@isnad1 id=ex.1h4v.s8.833d5d73c179 from=translated src=- shape=8493269b vocab=5db23098
+-/
 theorem exists_regular_maximalIdeal_scalar_of_equiv_primeQuotient
     (p : PrimeSpectrum R) (e : N ≃ₗ[R] (R ⧸ p.asIdeal))
     (hp : p.asIdeal ≠ maximalIdeal R) :

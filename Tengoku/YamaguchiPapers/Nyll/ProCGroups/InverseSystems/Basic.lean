@@ -52,14 +52,18 @@ namespace InverseSystem
 
 variable (S : InverseSystem.{u, v} (I := I))
 
-/-- The transition map along \(i \le i\) is the identity on points.-/
+/-- The transition map along \(i \le i\) is the identity on points.
+@isnad1 id=eq.0h4v.s5.18cd618d94ed from=translated src=- shape=2a53f0ce vocab=9142982c
+-/
 @[simp] theorem map_id_apply (i : I) (x : S.X i) :
     S.map (le_rfl : i ≤ i) x = x := by
   simpa using congrFun (S.map_id i) x
 
 /--
 Following the transition from `k` to `j` by the transition from `j` to `i` agrees pointwise with
-the direct transition from `k` to `i`.-/
+the direct transition from `k` to `i`.
+@isnad1 id=eq.2h6v.s6.bf8d2434aecd from=translated src=- shape=90f2e8d3 vocab=37489529
+-/
 @[simp] theorem map_comp_apply {i j k : I} (hij : i ≤ j) (hjk : j ≤ k) (x : S.X k) :
     S.map hij (S.map hjk x) = S.map (hij.trans hjk) x := by
   simpa [Function.comp] using congrFun (S.map_comp hij hjk) x
@@ -91,7 +95,9 @@ def IsLinearSystem {R : Type w} [Semiring R] (S : InverseSystem (I := I))
 
 namespace IsLinearSystem
 
-/-- Maps in a linear inverse system commute with scalar multiplication.-/
+/-- Maps in a linear inverse system commute with scalar multiplication.
+@isnad1 id=eq.2h7v.s8.1970746db9d2 from=translated src=- shape=d7430bb0 vocab=54e5c7ac
+-/
 theorem map_smul {R : Type w} [Semiring R] {S : InverseSystem (I := I)}
     [∀ i, AddCommMonoid (S.X i)] [∀ i, Module R (S.X i)]
     [AddCommMonoid S.inverseLimit] [Module R S.inverseLimit]
@@ -99,7 +105,9 @@ theorem map_smul {R : Type w} [Semiring R] {S : InverseSystem (I := I)}
     S.map hij (r • x) = r • S.map hij x :=
   hS.1 hij r x
 
-/-- The finite-stage projection commutes with scalar multiplication by coefficients.-/
+/-- The finite-stage projection commutes with scalar multiplication by coefficients.
+@isnad1 id=eq.1h6v.s8.c27012c1b496 from=translated src=- shape=92c4dca4 vocab=a8aaec16
+-/
 theorem projection_smul {R : Type w} [Semiring R] {S : InverseSystem (I := I)}
     [∀ i, AddCommMonoid (S.X i)] [∀ i, Module R (S.X i)]
     [AddCommMonoid S.inverseLimit] [Module R S.inverseLimit]
@@ -109,26 +117,36 @@ theorem projection_smul {R : Type w} [Semiring R] {S : InverseSystem (I := I)}
 
 end IsLinearSystem
 
-/-- Applying a projection to an inverse-limit element returns its corresponding stage coordinate.-/
+/-- Applying a projection to an inverse-limit element returns its corresponding stage coordinate.
+@isnad1 id=eq.0h4v.s5.da8128b6a7ea from=translated src=- shape=84d321e1 vocab=aecfce13
+-/
 @[simp] theorem projection_apply (i : I) (x : S.inverseLimit) :
     S.projection i x = x.1 i := rfl
 
-/-- Projections from the inverse limit are compatible with the transition maps.-/
+/-- Projections from the inverse limit are compatible with the transition maps.
+@isnad1 id=eq.1h5v.s5.f7bb61972db5 from=translated src=- shape=17c7331b vocab=21abaaa4
+-/
 theorem projection_compatible (x : S.inverseLimit) (i j : I) (hij : i ≤ j) :
     S.map hij (S.projection j x) = S.projection i x := by
   exact x.2 i j hij
 
-/-- The canonical projections form a compatible family of maps.-/
+/-- The canonical projections form a compatible family of maps.
+@isnad1 id=compatib.0h2v.s4.7d36f7a3885d from=translated src=- shape=c82894bd vocab=3267600d
+-/
 theorem projection_compatibleMaps : S.CompatibleMaps S.projection := by
   intro i j hij
   funext x
   exact S.projection_compatible x i j hij
 
-/-- Each canonical projection from an inverse limit is continuous.-/
+/-- Each canonical projection from an inverse limit is continuous.
+@isnad1 id=continuo.0h3v.s5.89c780a7a9a6 from=translated src=- shape=d87627d1 vocab=c643ad86
+-/
 theorem continuous_projection (i : I) : Continuous (S.projection i) :=
   (continuous_apply i).comp continuous_subtype_val
 
-/-- Two inverse-limit points are equal when all their projections are equal.-/
+/-- Two inverse-limit points are equal when all their projections are equal.
+@isnad1 id=eq.1h4v.s5.3a12c52120ed from=translated src=- shape=1736595d vocab=86564a86
+-/
 @[ext] theorem ext {x y : S.inverseLimit}
     (h : ∀ i, S.projection i x = S.projection i y) : x = y := by
   apply Subtype.ext
@@ -143,17 +161,23 @@ def inverseLimitLift {Y : Type w} (ψ : ∀ i, Y → S.X i)
       intro i j hij
       exact congrFun (hcompat i j hij) y⟩
 
-/-- Composing a canonical projection with the lift recovers the corresponding compatible map.-/
+/-- Composing a canonical projection with the lift recovers the corresponding compatible map.
+@isnad1 id=eq.1h5v.s6.2f51e1fac867 from=translated src=- shape=a851d0f8 vocab=d17aca48
+-/
 @[simp] theorem projection_comp_inverseLimitLift {Y : Type w} (ψ : ∀ i, Y → S.X i)
     (hcompat : S.CompatibleMaps ψ) (i : I) :
     S.projection i ∘ S.inverseLimitLift ψ hcompat = ψ i := rfl
 
-/-- Applying a projection to an inverse-limit lift returns the corresponding stage map value.-/
+/-- Applying a projection to an inverse-limit lift returns the corresponding stage map value.
+@isnad1 id=eq.1h6v.s5.31416a0669dd from=translated src=- shape=5c7d6c93 vocab=28b3a393
+-/
 @[simp] theorem projection_inverseLimitLift_apply {Y : Type w} (ψ : ∀ i, Y → S.X i)
     (hcompat : S.CompatibleMaps ψ) (i : I) (y : Y) :
     S.projection i (S.inverseLimitLift ψ hcompat y) = ψ i y := rfl
 
-/-- A map into the subtype inverse limit is uniquely determined by its projections.-/
+/-- A map into the subtype inverse limit is uniquely determined by its projections.
+@isnad1 id=eq.2h5v.s6.c3611601531a from=translated src=- shape=7d7ab965 vocab=d17aca48
+-/
 theorem inverseLimitLift_unique {Y : Type w} (ψ : ∀ i, Y → S.X i)
     (hcompat : S.CompatibleMaps ψ) {f : Y → S.inverseLimit}
     (hf : ∀ i, S.projection i ∘ f = ψ i) :
@@ -165,7 +189,9 @@ theorem inverseLimitLift_unique {Y : Type w} (ψ : ∀ i, Y → S.X i)
     (congrFun (hf i) y).trans
       (S.projection_inverseLimitLift_apply ψ hcompat i y).symm
 
-/-- A lift from a topological space is continuous when all of its component maps are continuous.-/
+/-- A lift from a topological space is continuous when all of its component maps are continuous.
+@isnad1 id=continuo.2h4v.s6.ff04a589b803 from=translated src=- shape=826ae3c1 vocab=4317073c
+-/
 theorem continuous_inverseLimitLift {Y : Type w} [TopologicalSpace Y] (ψ : ∀ i, Y → S.X i)
     (hψ : ∀ i, Continuous (ψ i))
     (hcompat : S.CompatibleMaps ψ) :
@@ -195,7 +221,9 @@ variable {L : Type w} [TopologicalSpace L] {π : ∀ i, L → S.X i}
 
 /-- The large-universe universal property induces the usual universal property for sources in
 the carrier universe.  The `ULift` is essential: universe levels cannot themselves be quantified
-inside a structure field.-/
+inside a structure field.
+@isnad1 id=existsun.3h6v.s6.53a4ad65c62e from=translated src=- shape=6ad559b2 vocab=0f57bd0b
+-/
 theorem existsUnique_lift_sameUniverse (hπ : S.IsInverseLimit π)
     {Y : Type w} [TopologicalSpace Y]
     (ψ : ∀ i, Y → S.X i) (hψ : ∀ i, Continuous (ψ i))
@@ -235,7 +263,9 @@ noncomputable def lift (hπ : S.IsInverseLimit π)
   Classical.choose (ExistsUnique.exists
     (hπ.existsUnique_lift_sameUniverse ψ hψ hcompat))
 
-/-- The universal-property lift is continuous and has the prescribed projections.-/
+/-- The universal-property lift is continuous and has the prescribed projections.
+@isnad1 id=and.3h6v.s7.af5d2a5f6294 from=translated src=- shape=136fbf38 vocab=604b2a22
+-/
 theorem lift_spec (hπ : S.IsInverseLimit π)
     {Y : Type w} [TopologicalSpace Y]
     (ψ : ∀ i, Y → S.X i) (hψ : ∀ i, Continuous (ψ i)) (hcompat : S.CompatibleMaps ψ) :
@@ -244,14 +274,18 @@ theorem lift_spec (hπ : S.IsInverseLimit π)
   Classical.choose_spec (ExistsUnique.exists
     (hπ.existsUnique_lift_sameUniverse ψ hψ hcompat))
 
-/-- The lift into the inverse limit is continuous when all coordinate maps are continuous.-/
+/-- The lift into the inverse limit is continuous when all coordinate maps are continuous.
+@isnad1 id=continuo.3h6v.s6.70ec9589b706 from=translated src=- shape=9c14ca1f vocab=c0878dad
+-/
 theorem continuous_lift (hπ : S.IsInverseLimit π)
     {Y : Type w} [TopologicalSpace Y]
     (ψ : ∀ i, Y → S.X i) (hψ : ∀ i, Continuous (ψ i)) (hcompat : S.CompatibleMaps ψ) :
     Continuous (hπ.lift ψ hψ hcompat) :=
   (hπ.lift_spec ψ hψ hcompat).1
 
-/-- The universal-property lift has the prescribed i-th projection.-/
+/-- The universal-property lift has the prescribed i-th projection.
+@isnad1 id=eq.3h7v.s6.27705ebcc86f from=translated src=- shape=281e6b6b vocab=604b2a22
+-/
 theorem fac (hπ : S.IsInverseLimit π)
     {Y : Type w} [TopologicalSpace Y]
     (ψ : ∀ i, Y → S.X i) (hψ : ∀ i, Continuous (ψ i)) (hcompat : S.CompatibleMaps ψ)
@@ -259,7 +293,9 @@ theorem fac (hπ : S.IsInverseLimit π)
     π i ∘ hπ.lift ψ hψ hcompat = ψ i :=
   (hπ.lift_spec ψ hψ hcompat).2 i
 
-/-- The universal-property lift is the unique continuous map with the prescribed projections.-/
+/-- The universal-property lift is the unique continuous map with the prescribed projections.
+@isnad1 id=eq.5h7v.s7.4b9a977f1d14 from=translated src=- shape=cb70c707 vocab=604b2a22
+-/
 theorem uniq (hπ : S.IsInverseLimit π)
     {Y : Type w} [TopologicalSpace Y]
     (ψ : ∀ i, Y → S.X i) (hψ : ∀ i, Continuous (ψ i)) (hcompat : S.CompatibleMaps ψ)
@@ -268,14 +304,18 @@ theorem uniq (hπ : S.IsInverseLimit π)
   (hπ.existsUnique_lift_sameUniverse ψ hψ hcompat).unique ⟨hf, hfac⟩
     (hπ.lift_spec ψ hψ hcompat)
 
-/-- Lifting the projection family of an inverse limit gives the identity map.-/
+/-- Lifting the projection family of an inverse limit gives the identity map.
+@isnad1 id=eq.1h4v.s5.9755f4551ea1 from=translated src=- shape=d3b65967 vocab=0883f0db
+-/
 theorem lift_self (hπ : S.IsInverseLimit π) :
     hπ.lift (Y := L) π hπ.continuous_proj hπ.compatible = id := by
   symm
   exact hπ.uniq (Y := L) π hπ.continuous_proj hπ.compatible continuous_id fun _ => rfl
 
 /-- The large-universe universal property also supplies the comparison map from the concrete
-compatible-family model; this is a theorem, not duplicate structure data.-/
+compatible-family model; this is a theorem, not duplicate structure data.
+@isnad1 id=existsun.1h4v.s6.5e5a6ab0c053 from=translated src=- shape=c15481ef vocab=5cbc4087
+-/
 theorem existsUnique_lift_from_inverseLimit (hπ : S.IsInverseLimit π) :
     ∃! f : S.inverseLimit → L,
       Continuous f ∧ ∀ i, π i ∘ f = S.projection i := by
@@ -311,7 +351,9 @@ noncomputable def liftFromInverseLimit (hπ : S.IsInverseLimit π) :
     S.inverseLimit → L :=
   Classical.choose (ExistsUnique.exists hπ.existsUnique_lift_from_inverseLimit)
 
-/-- The concrete inverse-limit lift is continuous and has the prescribed projections.-/
+/-- The concrete inverse-limit lift is continuous and has the prescribed projections.
+@isnad1 id=and.1h4v.s6.57bb884b3be5 from=translated src=- shape=7f9f4a81 vocab=89092f62
+-/
 theorem liftFromInverseLimit_spec (hπ : S.IsInverseLimit π) :
     Continuous hπ.liftFromInverseLimit ∧
       ∀ i, π i ∘ hπ.liftFromInverseLimit = S.projection i :=
@@ -360,7 +402,9 @@ noncomputable def homeomorph {L' : Type z} [TopologicalSpace L'] {π' : ∀ i, L
 
 end IsInverseLimit
 
-/-- The subtype model carries the inverse-limit universal property.-/
+/-- The subtype model carries the inverse-limit universal property.
+@isnad1 id=isinvers.0h2v.s5.170209a4ae2e from=translated src=- shape=c82894bd vocab=665d2d78
+-/
 theorem isInverseLimit_projection : S.IsInverseLimit S.projection := by
   refine ⟨S.continuous_projection, S.projection_compatibleMaps, ?_⟩
   intro Y _ ψ hψ hcompat
@@ -370,7 +414,9 @@ theorem isInverseLimit_projection : S.IsInverseLimit S.projection := by
   · intro f hf
     exact S.inverseLimitLift_unique ψ hcompat hf.2
 
-/-- The inverse limit is a closed subspace of the product.-/
+/-- The inverse limit is a closed subspace of the product.
+@isnad1 id=isclosed.0h2v.s5.ab5465e7a4ac from=translated src=- shape=b2c5b411 vocab=251ded83
+-/
 theorem isClosed_setOf_compatible [∀ i, T2Space (S.X i)] :
     IsClosed {x : ∀ i, S.X i | S.Compatible x} := by
   simp only [Compatible, Set.ofPred_forall]
@@ -379,21 +425,29 @@ theorem isClosed_setOf_compatible [∀ i, T2Space (S.X i)] :
 
 /--
 The constructed object carries the compact space structure inherited from its profinite
-construction.-/
+construction.
+@isnad1 id=compacts.0h2v.s6.a64c085903b7 from=translated src=- shape=209fb26f vocab=30d3f63c
+-/
 instance instCompactSpaceInverseLimit [∀ i, CompactSpace (S.X i)] [∀ i, T2Space (S.X i)] :
     CompactSpace S.inverseLimit := by
   let hs : IsClosed {x : ∀ i, S.X i | S.Compatible x} := S.isClosed_setOf_compatible
   exact hs.isClosedEmbedding_subtypeVal.compactSpace
 
-/-- Inverse limits of Hausdorff spaces are Hausdorff.-/
+/-- Inverse limits of Hausdorff spaces are Hausdorff.
+@isnad1 id=t2space.0h2v.s5.75e03d1be8a3 from=translated src=- shape=ea638903 vocab=5211a00e
+-/
 theorem t2Space_inverseLimit [∀ i, T2Space (S.X i)] :
     T2Space S.inverseLimit := inferInstance
 
-/-- Inverse limits of totally disconnected spaces are totally disconnected.-/
+/-- Inverse limits of totally disconnected spaces are totally disconnected.
+@isnad1 id=totallyd.0h2v.s5.d1bd34747d7e from=translated src=- shape=ea638903 vocab=3bd98902
+-/
 theorem totallyDisconnectedSpace_inverseLimit [∀ i, TotallyDisconnectedSpace (S.X i)] :
     TotallyDisconnectedSpace S.inverseLimit := inferInstance
 
-/-- A surjective projection from a compact inverse limit to a Hausdorff stage is a quotient map.-/
+/-- A surjective projection from a compact inverse limit to a Hausdorff stage is a quotient map.
+@isnad1 id=isquotie.1h3v.s6.ed1c75c20759 from=translated src=- shape=4220d0fc vocab=08947e7b
+-/
 theorem isQuotientMap_projection_of_surjective [∀ i, CompactSpace (S.X i)]
     [∀ i, T2Space (S.X i)] {i : I} (hsurj : Function.Surjective (S.projection i)) :
     Topology.IsQuotientMap (S.projection i) :=
@@ -446,14 +500,20 @@ instance instInvInverseLimit : Inv S.inverseLimit where
         simpa using IsGroupSystem.map_inv (S := S) hij (S.projection j x)
       _ = (S.projection i x)⁻¹ := by rw [S.projection_compatible x i j hij]⟩
 
-/-- The projection of the identity element is the identity at each stage.-/
+/-- The projection of the identity element is the identity at each stage.
+@isnad1 id=eq.0h3v.s6.7f5e0352b01f from=translated src=- shape=90b5b0b6 vocab=871e892b
+-/
 @[simp] theorem projection_one (i : I) : S.projection i (1 : S.inverseLimit) = 1 := rfl
 
-/-- Projection commutes with multiplication in a group-valued inverse system.-/
+/-- Projection commutes with multiplication in a group-valued inverse system.
+@isnad1 id=eq.0h5v.s7.60e4ef88fc03 from=translated src=- shape=bb8f794d vocab=c7d1204c
+-/
 @[simp] theorem projection_mul (i : I) (x y : S.inverseLimit) :
     S.projection i (x * y) = S.projection i x * S.projection i y := rfl
 
-/-- Projection commutes with inversion in a group-valued inverse system.-/
+/-- Projection commutes with inversion in a group-valued inverse system.
+@isnad1 id=eq.0h4v.s6.b6fb34fb5eff from=translated src=- shape=4c2759f5 vocab=5afa1c82
+-/
 @[simp] theorem projection_inv (i : I) (x : S.inverseLimit) :
     S.projection i x⁻¹ = (S.projection i x)⁻¹ := rfl
 
@@ -485,7 +545,9 @@ instance instGroupInverseLimit : Group S.inverseLimit where
     change (x.1 i)⁻¹ * x.1 i = 1
     simp only [inv_mul_cancel]
 
-/-- The object is a topological group with the induced group operations and topology.-/
+/-- The object is a topological group with the induced group operations and topology.
+@isnad1 id=istopolo.0h2v.s6.b929b01623d1 from=translated src=- shape=e2b3ee6b vocab=372043e5
+-/
 instance instIsTopologicalGroupInverseLimit [∀ i, IsTopologicalGroup (S.X i)] :
     IsTopologicalGroup S.inverseLimit where
   continuous_mul := by
@@ -517,7 +579,9 @@ def projectionHom (i : I) : S.inverseLimit →* S.X i where
 
 /--
 Applying a homomorphic projection to an inverse-limit element returns its corresponding stage
-coordinate.-/
+coordinate.
+@isnad1 id=eq.0h4v.s7.42bf401f1290 from=translated src=- shape=8009a7cf vocab=bdf1bd3e
+-/
 @[simp] theorem projectionHom_apply (i : I) (x : S.inverseLimit) :
     projectionHom (S := S) i x = S.projection i x := rfl
 
@@ -618,18 +682,26 @@ instance instSMulIntAddInverseLimit : SMul ℤ S.inverseLimit where
         change n • S.map hij (S.projection j x) = n • S.projection i x
         rw [S.projection_compatible x i j hij]⟩
 
-/-- The projection of zero is zero at each stage.-/
+/-- The projection of zero is zero at each stage.
+@isnad1 id=eq.0h3v.s6.82fe27e43113 from=translated src=- shape=90b5b0b6 vocab=a6864f8d
+-/
 @[simp] theorem projection_zero (i : I) : S.projection i (0 : S.inverseLimit) = 0 := rfl
 
-/-- Projection commutes with addition in an additive inverse system.-/
+/-- Projection commutes with addition in an additive inverse system.
+@isnad1 id=eq.0h5v.s7.5d1fc588354c from=translated src=- shape=bb8f794d vocab=acf4d77e
+-/
 @[simp] theorem projection_add (i : I) (x y : S.inverseLimit) :
     S.projection i (x + y) = S.projection i x + S.projection i y := rfl
 
-/-- Projection commutes with negation in an additive inverse system.-/
+/-- Projection commutes with negation in an additive inverse system.
+@isnad1 id=eq.0h4v.s6.a4403dbb7a82 from=translated src=- shape=4c2759f5 vocab=d943641d
+-/
 @[simp] theorem projection_neg (i : I) (x : S.inverseLimit) :
     S.projection i (-x) = -S.projection i x := rfl
 
-/-- Projection commutes with subtraction in an additive inverse system.-/
+/-- Projection commutes with subtraction in an additive inverse system.
+@isnad1 id=eq.0h5v.s7.36257edd3ea1 from=translated src=- shape=bb8f794d vocab=59b626ac
+-/
 @[simp] theorem projection_sub (i : I) (x y : S.inverseLimit) :
     S.projection i (x - y) = S.projection i x - S.projection i y := rfl
 
@@ -658,7 +730,9 @@ instance instSMulInverseLimitOfIsModuleSystem : SMul R S.inverseLimit where
     rw [IsModuleSystem.map_smul (S := S) hij, S.projection_compatible x i j hij]⟩
 
 omit [IsAddGroupSystem S] in
-/-- Projection commutes with scalar multiplication in a module-valued inverse system.-/
+/-- Projection commutes with scalar multiplication in a module-valued inverse system.
+@isnad1 id=eq.0h6v.s8.9d0cad48f50f from=translated src=- shape=e95bec09 vocab=df092e17
+-/
 @[simp] theorem projection_smul_of_isModuleSystem (i : I) (r : R) (x : S.inverseLimit) :
     S.projection i (r • x) = r • S.projection i x :=
   rfl
@@ -683,7 +757,9 @@ def projectionAddHom (i : I) : S.inverseLimit →+ S.X i where
 
 /--
 Applying an additive projection to an inverse-limit element returns its corresponding stage
-coordinate.-/
+coordinate.
+@isnad1 id=eq.0h4v.s7.4eb2f13db95d from=translated src=- shape=8009a7cf vocab=30872909
+-/
 @[simp] theorem projectionAddHom_apply (i : I) (x : S.inverseLimit) :
     projectionAddHom (S := S) i x = S.projection i x := rfl
 
@@ -718,13 +794,17 @@ def mapRingHom {i j : I} (hij : i ≤ j) : S.X j →+* S.X i where
 
 /--
 The bundled ring homomorphism has the same underlying function as the coordinatewise
-construction.-/
+construction.
+@isnad1 id=eq.1h5v.s7.d2090f361d20 from=translated src=- shape=e4272aa8 vocab=f1a56982
+-/
 @[simp]
 theorem mapRingHom_apply {i j : I} (hij : i ≤ j) (x : S.X j) :
     mapRingHom (S := S) hij x = S.map hij x := rfl
 
 /-- The additive system underlying a ring system. This remains explicit so that importing ring
-systems does not install a second global path to the additive inverse-limit instances.-/
+systems does not install a second global path to the additive inverse-limit instances.
+@isnad1 id=isaddgro.0h2v.s5.79eaac3b7152 from=translated src=- shape=49bc3551 vocab=6e8d22b1
+-/
 theorem isAddGroupSystemOfIsRingSystem : IsAddGroupSystem S where
   map_zero := IsRingSystem.map_zero (S := S)
   map_add := IsRingSystem.map_add (S := S)
@@ -782,26 +862,36 @@ instance instIntCastRingInverseLimit : IntCast S.inverseLimit where
     change S.map hij (Int.cast n) = Int.cast n
     exact map_intCast (mapRingHom (S := S) hij) n⟩
 
-/-- The inverse-limit projection preserves \(1\).-/
+/-- The inverse-limit projection preserves \(1\).
+@isnad1 id=eq.0h3v.s6.5e0d05f679d8 from=translated src=- shape=90b5b0b6 vocab=c42fc8f7
+-/
 @[simp]
 theorem projection_ring_one (i : I) : S.projection i (1 : S.inverseLimit) = 1 := rfl
 
-/-- The inverse-limit projection preserves multiplication.-/
+/-- The inverse-limit projection preserves multiplication.
+@isnad1 id=eq.0h5v.s7.33ee95cb1143 from=translated src=- shape=bb8f794d vocab=18b8e9b0
+-/
 @[simp]
 theorem projection_ring_mul (i : I) (x y : S.inverseLimit) :
     S.projection i (x * y) = S.projection i x * S.projection i y := rfl
 
-/-- The inverse-limit projection preserves powers.-/
+/-- The inverse-limit projection preserves powers.
+@isnad1 id=eq.0h5v.s6.b29ae26d4c94 from=translated src=- shape=8a71b43b vocab=ac58f7cc
+-/
 @[simp]
 theorem projection_ring_pow (i : I) (x : S.inverseLimit) (n : ℕ) :
     S.projection i (x ^ n) = S.projection i x ^ n := rfl
 
-/-- The inverse-limit projection preserves natural number casts.-/
+/-- The inverse-limit projection preserves natural number casts.
+@isnad1 id=eq.0h4v.s6.4d8aba26d624 from=translated src=- shape=1d8e836e vocab=5af54a66
+-/
 @[simp]
 theorem projection_ring_natCast (i : I) (n : ℕ) :
     S.projection i (Nat.cast n : S.inverseLimit) = Nat.cast n := rfl
 
-/-- The inverse-limit projection preserves integer casts.-/
+/-- The inverse-limit projection preserves integer casts.
+@isnad1 id=eq.0h4v.s6.685e0c073173 from=translated src=- shape=1d8e836e vocab=91ea8c9e
+-/
 @[simp]
 theorem projection_ring_intCast (i : I) (n : ℤ) :
     S.projection i (Int.cast n : S.inverseLimit) = Int.cast n := rfl
@@ -839,14 +929,18 @@ def projectionRingHom (i : I) : S.inverseLimit →+* S.X i where
 
 /--
 The ring-homomorphism projection has the same underlying coordinate map as the finite-stage
-projection.-/
+projection.
+@isnad1 id=eq.0h4v.s7.563f42f71dba from=translated src=- shape=8009a7cf vocab=e880b897
+-/
 @[simp]
 theorem projectionRingHom_apply (i : I) (x : S.inverseLimit) :
     projectionRingHom (S := S) i x = S.projection i x := rfl
 
 /--
 Composing the ring-valued transition from \(j\) to \(i\) with the projection at \(j\) gives the
-projection at \(i\).-/
+projection at \(i\).
+@isnad1 id=eq.1h4v.s7.699e07dda44d from=translated src=- shape=d03f04a8 vocab=d6826346
+-/
 theorem mapRingHom_comp_projectionRingHom {i j : I} (hij : i ≤ j) :
     (mapRingHom (S := S) hij).comp (projectionRingHom (S := S) j) =
       projectionRingHom (S := S) i := by

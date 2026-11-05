@@ -33,7 +33,9 @@ universe uR uI uA
 
 /-- An element of a finite product is integral exactly when all of its
 coordinates are integral.  The reverse implication uses the product of one
-monic annihilating polynomial for each coordinate.-/
+monic annihilating polynomial for each coordinate.
+@isnad1 id=iff.0h4v.s6.ddc29bb6eff0 from=translated src=- shape=3fa774c4 vocab=a3430cd7
+-/
 theorem isIntegral_pi_iff
     {R : Type uR} {I : Type uI} {A : I → Type uA}
     [CommRing R] [∀ i, CommRing (A i)] [∀ i, Algebra R (A i)]
@@ -86,6 +88,9 @@ noncomputable def integralClosurePiAlgEquiv
       ext x i
       rfl)
 
+/--
+@isnad1 id=eq.0h5v.s11.5e2bbb8a9f10 from=translated src=- shape=47710bd7 vocab=b11711fc
+-/
 @[simp]
 theorem integralClosurePiAlgEquiv_apply
     {R : Type uR} {I : Type uI} (A : I → Type uA)
@@ -96,7 +101,9 @@ theorem integralClosurePiAlgEquiv_apply
   rfl
 
 /-- If every completed field factor has étale normalization, then the
-normalization in their finite product is étale as well.-/
+normalization in their finite product is étale as well.
+@isnad1 id=etale.0h3v.s9.4edf860ea950 from=translated src=- shape=9d346294 vocab=ab0e6096
+-/
 theorem integralClosure_pi_etale
     {R : Type uR} {I : Type uI} (A : I → Type uA)
     [CommRing R] [∀ i, CommRing (A i)] [∀ i, Algebra R (A i)]

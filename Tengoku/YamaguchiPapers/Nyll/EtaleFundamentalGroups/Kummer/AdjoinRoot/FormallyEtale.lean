@@ -28,7 +28,9 @@ universe u
 
 /--
 If a monic polynomial has unit derivative at its adjoined root, then its
-adjoined-root algebra is formally etale.-/
+adjoined-root algebra is formally etale.
+@isnad1 id=formally.2h2v.s8.627b7aca0345 from=translated src=- shape=0f2c3ed2 vocab=18665b49
+-/
 theorem formallyEtale_adjoinRoot_of_monic_of_isUnit_aeval_derivative
     {A : Type u} [CommRing A] {f : A[X]} (hf : f.Monic)
     (hDerivative : IsUnit (aeval (AdjoinRoot.root f) f.derivative)) :
@@ -57,7 +59,9 @@ theorem formallyEtale_adjoinRoot_of_monic_of_isUnit_aeval_derivative
 
 /--
 The Kummer algebra `A[X]/(X ^ n - a)` is formally etale when the positive
-exponent and the constant term are units.-/
+exponent and the constant term are units.
+@isnad1 id=formally.3h3v.s9.22bc4f273546 from=translated src=- shape=f3b981f9 vocab=7e350a85
+-/
 theorem formallyEtale_adjoinRoot_X_pow_sub_C
     {A : Type u} [CommRing A] {n : ℕ} (hn : 0 < n) {a : A}
     (hnUnit : IsUnit (n : A)) (ha : IsUnit a) :

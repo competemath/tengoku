@@ -37,11 +37,16 @@ namespace IsNormalIntegral
 
 variable {X : Scheme.{u}} [IsIntegral X] [IsNormalIntegral X]
 
+/--
+@isnad1 id=isintegr.1h2v.s8.beafee64d10c from=translated src=- shape=7992e98d vocab=832b06de
+-/
 theorem affine_isIntegrallyClosed (U : X.Opens) (hU : IsAffineOpen U) [Nonempty U] :
     IsIntegrallyClosed Γ(X, U) :=
   IsNormalIntegral.isIntegrallyClosed U hU
 
-/-- Every local ring of a normal integral scheme is integrally closed.-/
+/-- Every local ring of a normal integral scheme is integrally closed.
+@isnad1 id=isintegr.0h2v.s6.8737ff0aeb6a from=translated src=- shape=34280a11 vocab=af09adbd
+-/
 theorem stalk_isIntegrallyClosed (x : X) :
     IsIntegrallyClosed (X.presheaf.stalk x) := by
   obtain ⟨U, hU, hxU, -⟩ :=
@@ -62,7 +67,9 @@ theorem stalk_isIntegrallyClosed (x : X) :
 end IsNormalIntegral
 
 /-- An integral scheme is normal if all of its local rings are integrally
-closed.  This is the stalkwise constructor for `IsNormalIntegral`.-/
+closed.  This is the stalkwise constructor for `IsNormalIntegral`.
+@isnad1 id=isnormal.1h1v.s6.9b9d9f81f979 from=translated src=- shape=377d926b vocab=af09adbd
+-/
 theorem IsNormalIntegral.of_stalks
     (X : Scheme.{u}) [IsIntegral X]
     (h : ∀ x : X, IsIntegrallyClosed (X.presheaf.stalk x)) :
@@ -93,7 +100,9 @@ closed is normal.
 
 For an affine open `U`, normality of `Γ(X, U)` is checked at maximal ideals.
 The corresponding localizations are the stalks of `X`; those stalks are
-localizations of the integrally closed ring `Γ(X, ⊤)`.-/
+localizations of the integrally closed ring `Γ(X, ⊤)`.
+@isnad1 id=isnormal.0h1v.s8.484c491feb00 from=translated src=- shape=c47e45b7 vocab=31703728
+-/
 theorem IsNormalIntegral.of_isAffine
     (X : Scheme.{u}) [IsIntegral X] [IsAffine X]
     [IsIntegrallyClosed Γ(X, ⊤)] :
@@ -132,7 +141,9 @@ theorem IsNormalIntegral.of_isAffine
     exact IsIntegrallyClosed.of_equiv e.symm.toRingEquiv
 
 /-- The spectrum of an integrally closed domain is a normal integral
-scheme.-/
+scheme.
+@isnad1 id=isnormal.0h1v.s4.f4ca632f8868 from=translated src=- shape=6c73d483 vocab=c10d20e6
+-/
 instance isNormalIntegral_spec (R : CommRingCat.{u})
     [IsDomain R] [IsIntegrallyClosed R] :
     IsNormalIntegral (Spec R) := by

@@ -72,7 +72,9 @@ private theorem compatibleUpTo_mono {j j' : I} (hjj' : j ≤ j') :
     _ = S.map (hkj.trans hjj') (x j') := by rw [S.map_comp_apply hkj hjj']
     _ = x k := hx k (hkj.trans hjj')
 
-/-- The inverse limit of nonempty compact Hausdorff spaces is nonempty.-/
+/-- The inverse limit of nonempty compact Hausdorff spaces is nonempty.
+@isnad1 id=nonempty.1h2v.s6.8733338ca33c from=translated src=- shape=841d5158 vocab=9fa95493
+-/
 theorem nonempty_inverseLimit [∀ i, Nonempty (S.X i)] [∀ i, CompactSpace (S.X i)]
     [∀ i, T2Space (S.X i)] (hdir : Directed (· ≤ ·) (id : I → I)) :
     Nonempty S.inverseLimit := by
@@ -97,7 +99,9 @@ theorem nonempty_inverseLimit [∀ i, Nonempty (S.X i)] [∀ i, CompactSpace (S.
   intro i j hij
   exact (mem_iInter.mp hx j) i hij
 
-/-- Special case for inverse systems of nonempty finite discrete spaces.-/
+/-- Special case for inverse systems of nonempty finite discrete spaces.
+@isnad1 id=nonempty.1h2v.s5.49639e0df89a from=translated src=- shape=6db86515 vocab=c8a578d8
+-/
 theorem nonempty_inverseLimit_of_finite [∀ i, Finite (S.X i)] [∀ i, Nonempty (S.X i)]
     [∀ i, DiscreteTopology (S.X i)] (hdir : Directed (· ≤ ·) (id : I → I)) :
     Nonempty S.inverseLimit := by
@@ -117,7 +121,9 @@ namespace Morphism
 variable {S}
 variable {T U : InverseSystem (I := I)}
 
-/-- A morphism of inverse systems commutes pointwise with transition maps.-/
+/-- A morphism of inverse systems commutes pointwise with transition maps.
+@isnad1 id=eq.1h7v.s6.c1658e5e0c53 from=translated src=- shape=a088ebea vocab=b95d204d
+-/
 @[simp] theorem comm_apply (Θ : S.Morphism T) {i j : I} (hij : i ≤ j) (x : S.X j) :
     T.map hij (Θ.map j x) = Θ.map i (S.map hij x) := by
   simpa [Function.comp] using congrFun (Θ.comm hij) x
@@ -130,7 +136,9 @@ def id (S : InverseSystem (I := I)) : S.Morphism S where
     funext x
     rfl
 
-/-- The identity morphism of an inverse system acts as the identity at each stage.-/
+/-- The identity morphism of an inverse system acts as the identity at each stage.
+@isnad1 id=eq.0h4v.s5.89017dfd71f5 from=translated src=- shape=e9eafa3f vocab=15b49f45
+-/
 @[simp] theorem id_apply (i : I) (x : S.X i) :
     (id S).map i x = x := rfl
 
@@ -149,13 +157,17 @@ def comp (Φ : T.Morphism U) (Θ : S.Morphism T) : S.Morphism U where
       _ = ((Φ.map i ∘ Θ.map i) ∘ S.map hij) x := by
         rfl
 
-/-- At stage `i`, the composite morphism applies the stage map of `Θ` followed by that of `Φ`.-/
+/-- At stage `i`, the composite morphism applies the stage map of `Θ` followed by that of `Φ`.
+@isnad1 id=eq.0h8v.s6.0a63a3bab878 from=translated src=- shape=0060f76c vocab=df136f6d
+-/
 @[simp] theorem comp_apply (Φ : T.Morphism U) (Θ : S.Morphism T) (i : I) (x : S.X i) :
     (comp Φ Θ).map i x = Φ.map i (Θ.map i x) := rfl
 
 end Morphism
 
-/-- A morphism of inverse systems sends inverse-limit projections to a compatible family.-/
+/-- A morphism of inverse systems sends inverse-limit projections to a compatible family.
+@isnad1 id=compatib.0h4v.s5.1046aad99ffc from=translated src=- shape=7a5f487b vocab=9fff6c8e
+-/
 theorem compatibleMaps_morphism {T : InverseSystem (I := I)} (Θ : S.Morphism T) :
     T.CompatibleMaps (fun i => Θ.map i ∘ S.projection i) := by
   intro i j hij
@@ -170,14 +182,18 @@ def limMap {T : InverseSystem (I := I)} (Θ : S.Morphism T) :
     S.inverseLimit → T.inverseLimit :=
   T.inverseLimitLift (fun i => Θ.map i ∘ S.projection i) (S.compatibleMaps_morphism Θ)
 
-/-- Projection after the inverse-system limit map agrees with the corresponding stage map.-/
+/-- Projection after the inverse-system limit map agrees with the corresponding stage map.
+@isnad1 id=eq.0h5v.s6.72e96e54aa28 from=translated src=- shape=ff078ffa vocab=1aaeda0e
+-/
 @[simp] theorem π_comp_limMap {T : InverseSystem (I := I)} (Θ : S.Morphism T) (i : I) :
     T.projection i ∘ S.limMap Θ = Θ.map i ∘ S.projection i := by
   simp only [limMap, projection_comp_inverseLimitLift]
 
 /--
 Projecting the induced map on inverse limits to stage \(i\) gives the corresponding stage map
-after projection.-/
+after projection.
+@isnad1 id=eq.0h6v.s5.c1e6476df79f from=translated src=- shape=2592166c vocab=fdb21c45
+-/
 @[simp] theorem π_limMap_apply {T : InverseSystem (I := I)} (Θ : S.Morphism T)
     (i : I) (x : S.inverseLimit) :
     T.projection i (S.limMap Θ x) = Θ.map i (S.projection i x) := by
@@ -185,7 +201,9 @@ after projection.-/
 
 /--
 A projection after the induced map on inverse limits is the corresponding stage map after
-projection.-/
+projection.
+@isnad1 id=continuo.0h4v.s6.256140dee768 from=translated src=- shape=cd175edb vocab=e15725f5
+-/
 theorem continuous_limMap {T : InverseSystem (I := I)} (Θ : S.Morphism T) :
     Continuous (S.limMap Θ) := by
   refine T.continuous_inverseLimitLift (fun i => Θ.map i ∘ S.projection i) ?_
@@ -193,7 +211,9 @@ theorem continuous_limMap {T : InverseSystem (I := I)} (Θ : S.Morphism T) :
   intro i
   exact (Θ.continuous_map i).comp (S.continuous_projection i)
 
-/-- The inverse-limit map induced by the identity morphism is the identity.-/
+/-- The inverse-limit map induced by the identity morphism is the identity.
+@isnad1 id=eq.0h2v.s5.2e6076574f56 from=translated src=- shape=60458aa2 vocab=7c04fd54
+-/
 @[simp] theorem limMap_id :
     S.limMap (Morphism.id S) = id := by
   funext x
@@ -203,7 +223,9 @@ theorem continuous_limMap {T : InverseSystem (I := I)} (Θ : S.Morphism T) :
   rw [S.π_limMap_apply (Θ := Morphism.id S)]
   rfl
 
-/-- The inverse-limit map induced by a composite morphism is the composite of the induced maps.-/
+/-- The inverse-limit map induced by a composite morphism is the composite of the induced maps.
+@isnad1 id=eq.0h6v.s6.e681e68baddc from=translated src=- shape=89b334ed vocab=91fed87c
+-/
 @[simp] theorem limMap_comp {T U : InverseSystem (I := I)} (Φ : T.Morphism U) (Θ : S.Morphism T) :
     S.limMap (Morphism.comp Φ Θ) = T.limMap Φ ∘ S.limMap Θ := by
   funext x
@@ -217,7 +239,9 @@ theorem continuous_limMap {T : InverseSystem (I := I)} (Θ : S.Morphism T) :
     _ = U.projection i ((T.limMap Φ ∘ S.limMap Θ) x) := by
       rw [Function.comp, T.π_limMap_apply (Θ := Φ), S.π_limMap_apply (Θ := Θ)]
 
-/-- The induced map on inverse limits is injective when all stage maps are injective.-/
+/-- The induced map on inverse limits is injective when all stage maps are injective.
+@isnad1 id=injectiv.1h4v.s5.e20a9612d5f9 from=translated src=- shape=700b0adc vocab=9f6087bf
+-/
 theorem injective_limMap {T : InverseSystem (I := I)} (Θ : S.Morphism T)
     (hinj : ∀ i, Function.Injective (Θ.map i)) :
     Function.Injective (S.limMap Θ) := by
@@ -235,7 +259,9 @@ theorem injective_limMap {T : InverseSystem (I := I)} (Θ : S.Morphism T)
 
 /--
 If all components of a morphism of inverse systems are embeddings, then the induced map on
-inverse limits is an embedding.-/
+inverse limits is an embedding.
+@isnad1 id=isembedd.1h4v.s6.e4dc08543058 from=translated src=- shape=700b0adc vocab=b39bd776
+-/
 theorem embedding_limMap {T : InverseSystem (I := I)} (Θ : S.Morphism T)
     (hemb : ∀ i, Topology.IsEmbedding (Θ.map i)) :
     Topology.IsEmbedding (S.limMap Θ) := by
@@ -259,7 +285,9 @@ theorem embedding_limMap {T : InverseSystem (I := I)} (Θ : S.Morphism T)
 
 /--
 If all components of a morphism of inverse systems are surjective, then the induced map on
-inverse limits is surjective.-/
+inverse limits is surjective.
+@isnad1 id=surjecti.2h4v.s6.55d4803fc17b from=translated src=- shape=8208f48f vocab=7de24327
+-/
 theorem surjective_limMap {T : InverseSystem (I := I)} [∀ i, CompactSpace (S.X i)]
     [∀ i, T2Space (S.X i)] [∀ i, T2Space (T.X i)] (hdir : Directed (· ≤ ·) (id : I → I))
     (Θ : S.Morphism T) (hsurj : ∀ i, Function.Surjective (Θ.map i)) :
@@ -315,7 +343,9 @@ theorem surjective_limMap {T : InverseSystem (I := I)} [∀ i, CompactSpace (S.X
           Θ.map i (y.1 i).1 := S.π_limMap_apply Θ i _
       _ = T.projection i xlim := (y.1 i).2
 
-/-- Compatible surjections from a compact space induce a surjection onto the inverse limit.-/
+/-- Compatible surjections from a compact space induce a surjection onto the inverse limit.
+@isnad1 id=surjecti.4h4v.s6.c49193a8f1d3 from=translated src=- shape=f4e4784f vocab=cab27d20
+-/
 theorem surjective_inverseLimitLift {X : Type w} [TopologicalSpace X] [CompactSpace X]
     [Nonempty I]
     (ψ : ∀ i, X → S.X i) (hψ : ∀ i, Continuous (ψ i)) (hcompat : S.CompatibleMaps ψ)
@@ -353,7 +383,9 @@ theorem surjective_inverseLimitLift {X : Type w} [TopologicalSpace X] [CompactSp
       rfl
     _ = S.projection i xlim := mem_iInter.mp hx i
 
-/-- If an inverse limit over a directed index set is finite, one projection separates all points.-/
+/-- If an inverse limit over a directed index set is finite, one projection separates all points.
+@isnad1 id=ex.1h2v.s5.c03b56a95e00 from=translated src=- shape=1687d545 vocab=9eec0385
+-/
 theorem exists_injective_projection_of_finite_inverseLimit [Nonempty I]
     (hdir : Directed (· ≤ ·) (id : I → I)) [Finite S.inverseLimit] :
     ∃ k, Function.Injective (S.projection k) := by

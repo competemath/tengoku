@@ -44,6 +44,9 @@ noncomputable def finiteEtaleGenericFiberToFractionField :
     (IsScalarTower.toAlgHom R K L)
     (fun _ _ ↦ Commute.all _ _)
 
+/--
+@isnad1 id=eq.0h6v.s9.3ad23ae706e8 from=translated src=- shape=ece44edb vocab=32bb0a24
+-/
 @[simp]
 theorem finiteEtaleGenericFiberToFractionField_tmul (x : T) (y : K) :
     finiteEtaleGenericFiberToFractionField (R := R) (T := T) (K := K) (L := L)
@@ -52,7 +55,9 @@ theorem finiteEtaleGenericFiberToFractionField_tmul (x : T) (y : K) :
   simp [finiteEtaleGenericFiberToFractionField]
 
 /-- If `K` and `L` are fraction fields of `R` and `T`, respectively, the
-canonical generic-fibre map `T ⊗[R] K ⟶ L` is surjective.-/
+canonical generic-fibre map `T ⊗[R] K ⟶ L` is surjective.
+@isnad1 id=surjecti.0h4v.s9.0adaa08741fb from=translated src=- shape=6b779832 vocab=ad55672e
+-/
 theorem finiteEtaleGenericFiberToFractionField_surjective
     [IsDomain R] [IsDomain T]
     [Module.Finite R T] [Algebra.Etale R T]

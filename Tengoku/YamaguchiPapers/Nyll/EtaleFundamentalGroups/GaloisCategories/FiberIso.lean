@@ -40,7 +40,9 @@ def continuousConjAut (t : F ≅ G) : Aut F ≃ₜ* Aut G where
     Continuous.continuous_symm_of_equiv_compact_to_t2
       (f := t.conjAut.toEquiv) (continuous_conjAut t)
 
-/-- Changing the natural isomorphism changes the group isomorphism by conjugation.-/
+/-- Changing the natural isomorphism changes the group isomorphism by conjugation.
+@isnad1 id=eq.0h6v.s12.cf61da5c4ef0 from=translated src=- shape=a0e13977 vocab=31f08eb0
+-/
 theorem continuousConjAut_eq_conj (t₁ t₂ : F ≅ G) (a : Aut F) :
     continuousConjAut t₂ a =
       MulAut.conj (G := Aut G) (t₁.symm ≪≫ t₂) (continuousConjAut t₁ a) := by

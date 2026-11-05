@@ -44,7 +44,9 @@ private theorem surjective_pow_smul_of_surjective_smul
       exact ⟨v, by simpa only [pow_succ', mul_smul, hv] using hw⟩
 
 /-- On a nonzero secondary module, precisely the scalars outside the
-radical annihilator act surjectively.-/
+radical annihilator act surjectively.
+@isnad1 id=iff.1h3v.s7.66e68d931c0a from=translated src=- shape=b39cbde8 vocab=a629cada
+-/
 theorem IsSecondaryModule.surjective_smul_iff
     (hM : IsSecondaryModule R M) (r : R) :
     Function.Surjective (fun z : M => r • z) ↔
@@ -62,7 +64,9 @@ theorem IsSecondaryModule.surjective_smul_iff
     · exact False.elim (hr ⟨n, Module.mem_annihilator.mpr hn⟩)
 
 /-- The radical of the annihilator of a nonzero secondary module is a
-prime ideal.  No finiteness assumption on the module is needed.-/
+prime ideal.  No finiteness assumption on the module is needed.
+@isnad1 id=isprime.1h2v.s5.ae4b3df7a0cb from=translated src=- shape=80dd2e9a vocab=b7644e9a
+-/
 theorem IsSecondaryModule.radical_annihilator_isPrime
     (hM : IsSecondaryModule R M) :
     (Module.annihilator R M).radical.IsPrime := by

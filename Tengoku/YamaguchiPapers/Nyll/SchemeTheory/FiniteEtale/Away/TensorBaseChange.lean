@@ -29,7 +29,9 @@ universe uA uB uC uD
 
 /-- A literal etale away map remains etale in any pushout square.  All
 localization algebras are constructed internally, and the conclusion is the
-literal `Localization.awayMap` for the lower horizontal map.-/
+literal `Localization.awayMap` for the lower horizontal map.
+@isnad1 id=etale.1h5v.s10.a02a346f3a7a from=translated src=- shape=c66f6cc4 vocab=8d303b7b
+-/
 theorem localization_awayMap_etale_of_isPushout
     {A : Type uA} {B : Type uB} {C : Type uC} {D : Type uD}
     [CommRing A] [CommRing B] [CommRing C] [CommRing D]
@@ -173,7 +175,9 @@ theorem localization_awayMap_etale_of_isPushout
 universe uR uX uY
 
 /-- Tensor-product specialization of
-`localization_awayMap_etale_of_isPushout`.-/
+`localization_awayMap_etale_of_isPushout`.
+@isnad1 id=etale.1h4v.s11.61c33ae0efea from=translated src=- shape=427d49b5 vocab=bbdfdbd7
+-/
 theorem localization_awayMap_tensorProduct_etale
     {R : Type uR} {X : Type uX} {Y : Type uY}
     [CommRing R] [CommRing X] [CommRing Y]

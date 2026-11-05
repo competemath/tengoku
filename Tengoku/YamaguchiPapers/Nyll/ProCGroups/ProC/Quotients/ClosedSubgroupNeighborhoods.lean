@@ -31,7 +31,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 
 /--
 Given an open subgroup of a closed subgroup of a profinite group, one can shrink it to the
-intersection with an ambient open normal subgroup.-/
+intersection with an ambient open normal subgroup.
+@isnad1 id=ex.0h3v.s8.c398934282d8 from=translated src=- shape=cb8031ef vocab=c1c487c9
+-/
 theorem exists_openNormalSubgroup_inter_closedSubgroup_le
     [CompactSpace G] [T2Space G] [TotallyDisconnectedSpace G]
     (H : ClosedSubgroup G) (U : OpenSubgroup H) :
@@ -53,7 +55,9 @@ theorem exists_openNormalSubgroup_inter_closedSubgroup_le
 omit [IsTopologicalGroup G] in
 /--
 Class-restricted version of \(exists_openNormalSubgroup_inter_closedSubgroup_le\) for a closed
-subgroup of a pro-\(C\) group.-/
+subgroup of a pro-\(C\) group.
+@isnad1 id=ex.1h4v.s8.e279d8157d52 from=translated src=- shape=be78c507 vocab=e2789bc1
+-/
 theorem exists_openNormalSubgroupInClass_inter_closedSubgroup_le
     {C : FiniteGroupClass.{u}} (hG : HasOpenNormalBasisInClass C G)
     (H : ClosedSubgroup G) (U : OpenSubgroup H) :

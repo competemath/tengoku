@@ -43,7 +43,9 @@ variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 variable {E : Type u} [AddCommGroup E] [Module R E] [Module.Injective R E]
 
 /-- Every endomorphism of an injective residue-field hull over a complete
-Noetherian local ring is multiplication by an element of the ring.-/
+Noetherian local ring is multiplication by an element of the ring.
+@isnad1 id=ex.2h4v.s9.d6d443bf0f54 from=translated src=- shape=fc55d497 vocab=dd74d1e1
+-/
 theorem exists_smul_eq_of_completeLocal_residueFieldHull
     [IsAdicComplete (maximalIdeal R) R]
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)
@@ -82,7 +84,9 @@ theorem exists_smul_eq_of_completeLocal_residueFieldHull
       exact hn (r n - a) (hdiff n)
 
 /-- An injective hull of the residue field of a complete Noetherian local
-ring is Artinian as a module over that ring.-/
+ring is Artinian as a module over that ring.
+@isnad1 id=isartini.2h3v.s9.f55e21c8f9fd from=translated src=- shape=d8d153a1 vocab=32f81347
+-/
 theorem isArtinian_of_completeLocal_residueFieldHull
     [IsAdicComplete (maximalIdeal R) R]
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)

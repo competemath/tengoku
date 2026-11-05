@@ -38,7 +38,9 @@ open scoped Pointwise
 variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
 /-- Finite top local cohomology vanishes when the finite coefficient
-module admits a regular scalar in the maximal ideal.-/
+module admits a regular scalar in the maximal ideal.
+@isnad1 id=iszero.3h4v.s8.d6c732af26d3 from=translated src=- shape=73939a27 vocab=08aa1f62
+-/
 theorem derivedLocalCohomology_maximalIdeal_isZero_succ_of_finite_of_regular
     (M : ModuleCat.{u} R) [Module.Finite R M] (d : ℕ)
     (hdim : Module.supportDim R M = ((d + 1 : ℕ) : WithBot ℕ∞))

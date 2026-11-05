@@ -178,7 +178,9 @@ private theorem traceDual_one_ne_bot :
 For `I = Bᵛ`, an element of `Iᵛ` stabilizes `I`: this follows by moving
 the extra factor across the commutative trace pairing.  Since `I` is nonzero
 and finite, the determinant trick makes that element integral over `B`; the
-integral closedness of `B` inside `L` then puts it back in `B`.-/
+integral closedness of `B` inside `L` then puts it back in `B`.
+@isnad1 id=eq.0h3v.s11.cf570cd16709 from=translated src=- shape=bbfe5795 vocab=420eba66
+-/
 theorem traceDual_traceDual_one_eq_one_of_finite :
     Submodule.traceDual A K
       (Submodule.traceDual A K (1 : Submodule B L)) = 1 := by
@@ -212,7 +214,9 @@ finite normalization in a finite separable field extension.
 
 Concretely, if `y * b = x * c` in the normalization and `[x, y]` is regular
 on `A`, then `x` divides `b` in the normalization.  This proof uses neither a
-UFD instance, integral closedness of `A`, nor primality of `x`.-/
+UFD instance, integral closedness of `A`, nor primality of `x`.
+@isnad1 id=ex.2h7v.s11.e434adacd639 from=translated src=- shape=e84472ff vocab=d932accb
+-/
 theorem exists_integralClosure_factor_of_mul_eq_mul_of_isRegular
     {x y : A} (hregular : IsRegular A [x, y])
     {b c : B}

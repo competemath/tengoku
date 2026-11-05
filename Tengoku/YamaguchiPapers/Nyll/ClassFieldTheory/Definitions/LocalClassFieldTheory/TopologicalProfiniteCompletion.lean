@@ -41,12 +41,16 @@ def toOpenNormalSubgroup (H : OpenFiniteIndexNormalSubgroup G) :
     OpenNormalSubgroup G :=
   H.1
 
-/-- The finite-index witness carried by the subtype.-/
+/-- The finite-index witness carried by the subtype.
+@isnad1 id=finitein.0h2v.s4.3d9d6c0e2dc2 from=translated src=- shape=8f83a4da vocab=05669998
+-/
 theorem finiteIndex' (H : OpenFiniteIndexNormalSubgroup G) :
     H.toOpenNormalSubgroup.toSubgroup.FiniteIndex :=
   H.2
 
-/-- Finite-index open normal subgroups are determined by their underlying open normal subgroups.-/
+/-- Finite-index open normal subgroups are determined by their underlying open normal subgroups.
+@isnad1 id=eq.1h3v.s5.29fe35baad5f from=translated src=- shape=27c4d4a0 vocab=cd48d015
+-/
 @[ext]
 theorem ext {H K : OpenFiniteIndexNormalSubgroup G}
     (h : H.toOpenNormalSubgroup = K.toOpenNormalSubgroup) : H = K :=
@@ -67,7 +71,9 @@ instance : SmallCategory (OpenFiniteIndexNormalSubgroup G) :=
   Preorder.smallCategory _
 
 /-- A morphism of open finite-index normal subgroups induces inclusion of the
-underlying subgroups.-/
+underlying subgroups.
+@isnad1 id=le.0h4v.s6.811ca01a15d1 from=translated src=- shape=0f04d10a vocab=94cb588e
+-/
 theorem le_of_hom {H K : OpenFiniteIndexNormalSubgroup G} (f : H ⟶ K) :
     H.toOpenNormalSubgroup.toSubgroup ≤ K.toOpenNormalSubgroup.toSubgroup := by
   have h : H ≤ K := CategoryTheory.leOfHom f
@@ -120,7 +126,9 @@ def openFiniteQuotientProductMapMonoidHom :
     funext H
     rfl
 
-/-- The diagonal map into the product of open finite quotients is continuous.-/
+/-- The diagonal map into the product of open finite quotients is continuous.
+@isnad1 id=continuo.0h1v.s7.34c7c0582276 from=translated src=- shape=196491a5 vocab=13a0d626
+-/
 theorem openFiniteQuotientProductMapMonoidHom_continuous :
     Continuous (openFiniteQuotientProductMapMonoidHom G) := by
   apply continuous_pi

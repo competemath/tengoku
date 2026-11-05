@@ -32,7 +32,9 @@ section CovariantSequenceNaturality
 variable {C : Type u} [Category.{v} C] [Abelian C] [HasExt.{w} C]
 
 /-- Precomposition in the first variable of `Ext` commutes with
-postcomposition by a degree-zero morphism in the second variable.-/
+postcomposition by a degree-zero morphism in the second variable.
+@isnad1 id=eq.0h8v.s8.329de5dd3623 from=translated src=- shape=e49d9c9a vocab=119526c2
+-/
 theorem derivedExtContravariantMap_postcomp
     {X X' Y Y' : C} (f : X ⟶ X') (g : Y ⟶ Y') (n : ℕ) :
     AddCommGrpCat.ofHom
@@ -54,7 +56,9 @@ theorem derivedExtContravariantMap_postcomp
   omega
 
 /-- Precomposition in the first variable of `Ext` commutes with the
-connecting morphism of a short exact complex in the second variable.-/
+connecting morphism of a short exact complex in the second variable.
+@isnad1 id=eq.2h7v.s9.d5d308287185 from=translated src=- shape=b8de8b1a vocab=1aa90496
+-/
 theorem derivedExtContravariantMap_covariantConnecting
     {X X' : C} {S : ShortComplex C} (hS : S.ShortExact)
     (f : X ⟶ X') (n₀ n₁ : ℕ) (h : n₀ + 1 = n₁) :
@@ -95,7 +99,9 @@ def derivedExtCovariantSequenceMap
     (derivedExtContravariantMap_postcomp f S.g n₁)
 
 /-- The map of covariant six-term sequences induced by an identity in the
-first variable is the identity.-/
+first variable is the identity.
+@isnad1 id=eq.2h5v.s8.51d5e43f0d14 from=translated src=- shape=454f7752 vocab=854cb142
+-/
 @[simp]
 theorem derivedExtCovariantSequenceMap_id
     {X : C} {S : ShortComplex C} (hS : S.ShortExact)
@@ -116,7 +122,9 @@ theorem derivedExtCovariantSequenceMap_id
     apply derivedExtContravariantMap_id
 
 /-- Composition law for the contravariant maps between covariant six-term
-`Ext` sequences.-/
+`Ext` sequences.
+@isnad1 id=eq.2h9v.s8.43aae4e0d887 from=translated src=- shape=a22d4041 vocab=37acb8b6
+-/
 @[reassoc]
 theorem derivedExtCovariantSequenceMap_comp
     {X₁ X₂ X₃ : C} {S : ShortComplex C} (hS : S.ShortExact)
@@ -174,7 +182,9 @@ def derivedExtCovariantSequenceDiagram
     apply derivedExtCovariantSequenceMap_comp
 
 /-- Every object of the diagram of covariant six-term `Ext` sequences is
-exact.-/
+exact.
+@isnad1 id=exact.2h7v.s7.d972239c67f2 from=translated src=- shape=9988b8b4 vocab=50e3bbbf
+-/
 theorem derivedExtCovariantSequenceDiagram_obj_exact
     (F : D ⥤ C) {S : ShortComplex C} (hS : S.ShortExact)
     (n₀ n₁ : ℕ) (h : n₀ + 1 = n₁) (d : Dᵒᵖ) :
@@ -200,7 +210,9 @@ def derivedLocalCohomologyCoefficientsPowersSequenceDiagram
     hS n₀ n₁ h
 
 /-- Every powers-indexed covariant six-term derived-`Ext` sequence is
-exact.-/
+exact.
+@isnad1 id=exact.2h6v.s7.c905945cde0f from=translated src=- shape=45ad6bd7 vocab=b7e6240a
+-/
 theorem derivedLocalCohomologyCoefficientsPowersSequenceDiagram_obj_exact
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n₀ n₁ : ℕ) (h : n₀ + 1 = n₁) (d : (ℕᵒᵖ)ᵒᵖ) :
@@ -226,7 +238,9 @@ def derivedLocalCohomologyCoefficientsPowersAdjacentShortComplex
     k hk
 
 /-- Every adjacent three-term window is exact in the powers-diagram
-category.-/
+category.
+@isnad1 id=exact.3h6v.s7.55cabb9eaaca from=translated src=- shape=b733820d vocab=9c0280f1
+-/
 theorem derivedLocalCohomologyCoefficientsPowersAdjacentShortComplex_exact
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n₀ n₁ : ℕ) (h : n₀ + 1 = n₁)
@@ -252,7 +266,9 @@ def derivedLocalCohomologyCoefficientsAdjacentColimitShortComplex
       I hS n₀ n₁ h k hk)
 
 /-- Filtered colimits preserve exactness of every adjacent three-term
-window in the coefficient long exact sequence for derived local cohomology.-/
+window in the coefficient long exact sequence for derived local cohomology.
+@isnad1 id=exact.3h6v.s7.40f1776a042a from=translated src=- shape=ab3c0987 vocab=df2ebb1b
+-/
 theorem derivedLocalCohomologyCoefficientsAdjacentColimitShortComplex_exact
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n₀ n₁ : ℕ) (h : n₀ + 1 = n₁)
@@ -295,6 +311,9 @@ def derivedLocalCohomologyCoefficientsConnectingMap
   (derivedLocalCohomologyCoefficientsAdjacentColimitShortComplex
     I hS n (n + 1) rfl 1 (by omega)).g
 
+/--
+@isnad1 id=eq.1h4v.s8.697a3955196c from=translated src=- shape=a1553537 vocab=faac2f36
+-/
 theorem derivedLocalCohomologyCoefficientsFirstMap_comp_secondMap
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) :
@@ -304,6 +323,9 @@ theorem derivedLocalCohomologyCoefficientsFirstMap_comp_secondMap
     (derivedLocalCohomologyCoefficientsAdjacentColimitShortComplex
       I hS n (n + 1) rfl 0 (by omega)).zero
 
+/--
+@isnad1 id=eq.1h4v.s9.e7f2737bf88e from=translated src=- shape=e193a7ac vocab=9e6d9c7f
+-/
 theorem derivedLocalCohomologyCoefficientsSecondMap_comp_connectingMap
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) :
@@ -313,6 +335,9 @@ theorem derivedLocalCohomologyCoefficientsSecondMap_comp_connectingMap
     (derivedLocalCohomologyCoefficientsAdjacentColimitShortComplex
       I hS n (n + 1) rfl 1 (by omega)).zero
 
+/--
+@isnad1 id=eq.1h4v.s9.fd86a07179e6 from=translated src=- shape=d0c77c9f vocab=327196c4
+-/
 theorem derivedLocalCohomologyCoefficientsConnectingMap_comp_firstMap
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) :
@@ -322,7 +347,9 @@ theorem derivedLocalCohomologyCoefficientsConnectingMap_comp_firstMap
     (derivedLocalCohomologyCoefficientsAdjacentColimitShortComplex
       I hS n (n + 1) rfl 2 (by omega)).zero
 
-/-- Exactness at the middle coefficient in a fixed degree.-/
+/-- Exactness at the middle coefficient in a fixed degree.
+@isnad1 id=exact.1h4v.s7.1252db1fc6e8 from=translated src=- shape=fe99e61b vocab=121e418f
+-/
 theorem derivedLocalCohomologyCoefficients_sameDegree_exact
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) :
@@ -338,7 +365,9 @@ theorem derivedLocalCohomologyCoefficients_sameDegree_exact
     I hS n (n + 1) rfl 0 (by omega)
 
 /-- Exactness at the last coefficient in degree `n`, immediately before the
-connecting morphism.-/
+connecting morphism.
+@isnad1 id=exact.1h4v.s7.adc042e84a8f from=translated src=- shape=655dc92e vocab=c0f033dd
+-/
 theorem derivedLocalCohomologyCoefficients_beforeConnecting_exact
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) :
@@ -353,7 +382,9 @@ theorem derivedLocalCohomologyCoefficients_beforeConnecting_exact
   exact derivedLocalCohomologyCoefficientsAdjacentColimitShortComplex_exact
     I hS n (n + 1) rfl 1 (by omega)
 
-/-- Exactness immediately after the connecting morphism.-/
+/-- Exactness immediately after the connecting morphism.
+@isnad1 id=exact.1h4v.s7.3527c07d4f57 from=translated src=- shape=00bfea20 vocab=0cea84bf
+-/
 theorem derivedLocalCohomologyCoefficients_afterConnecting_exact
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     (n : ℕ) :

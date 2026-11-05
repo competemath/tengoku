@@ -70,7 +70,9 @@ def cechNilHomotopyEquiv (M N : ModuleCat.{u} R) (e : M ≅ N) :
       (CochainComplex.single₀ (ModuleCat.{u} R)).mapIso ((ρ_ M) ≪≫ e))
 
 /-- The inverse empty-list contraction is the coefficient comparison
-followed by the inverse unit map in degree zero.-/
+followed by the inverse unit map in degree zero.
+@isnad1 id=eq.0h4v.s10.c6badcae83fa from=translated src=- shape=7d706aa0 vocab=1ab83a0d
+-/
 theorem cechNilHomotopyEquiv_inv_f_zero (M N : ModuleCat.{u} R) (e : M ≅ N) :
     (cechNilHomotopyEquiv M N e).inv.f 0 = e.inv ≫ (ρ_ M).inv := by
   change (((CochainComplex.single₀ (ModuleCat.{u} R)).map (e.inv ≫ (ρ_ M).inv)) ≫
@@ -105,7 +107,9 @@ def cechNilTorsionIso (M : ModuleCat.{u} R) :
   intro a
   rw [show (a : R) = 0 from a.property, zero_smul]
 
-/-- The inverse empty-support identification is the specified inclusion.-/
+/-- The inverse empty-support identification is the specified inclusion.
+@isnad1 id=eq.0h2v.s10.ccd7e3321816 from=translated src=- shape=7553fb75 vocab=9be2b98b
+-/
 theorem cechNilTorsionIso_inv (M : ModuleCat.{u} R) :
     (cechNilTorsionIso M).inv =
       ModuleCat.ofHom (Ideal.primaryComponent M (Ideal.ofList ([] : List R))).subtype := by
@@ -154,7 +158,9 @@ def cechInjectiveHomotopyEquiv [IsNoetherianRing R]
             (h.trans (HomotopyEquiv.ofIso
               ((CochainComplex.single₀ (ModuleCat.{u} R)).mapIso q.toModuleIso)))))
 
-/-- Positive Čech cohomology vanishes on injective modules.-/
+/-- Positive Čech cohomology vanishes on injective modules.
+@isnad1 id=exactat.0h4v.s8.dbb89d362862 from=translated src=- shape=8501046d vocab=41660508
+-/
 theorem cechInjective_exactAt_succ [IsNoetherianRing R]
     (xs : List R) (M : ModuleCat.{u} R) [Module.Injective R M] (n : ℕ) :
     (((tensorLeft M).mapHomologicalComplex (ComplexShape.up ℕ)).obj

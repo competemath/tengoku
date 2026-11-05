@@ -30,7 +30,9 @@ open IsLocalRing
 variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
 /-- Quotients of a Noetherian local ring by powers of its maximal ideal
-have finite length as modules over the original ring.-/
+have finite length as modules over the original ring.
+@isnad1 id=isfinite.0h2v.s7.3d26d02d5b0d from=translated src=- shape=26ad63ae vocab=89baec26
+-/
 theorem isFiniteLength_quotient_maximalIdeal_pow (n : ℕ) :
     IsFiniteLength R (R ⧸ maximalIdeal R ^ n) := by
   have hart : IsArtinianRing (R ⧸ maximalIdeal R ^ n) := by

@@ -39,7 +39,9 @@ that is unramified at every maximal ideal is finite etale.
 Torsion-freeness produces flatness over the Dedekind base.  At each prime of
 the target, choose a maximal ideal above it.  Unramifiedness at that maximal
 ideal and flatness give etaleness there, and stability under generalization
-then gives etaleness at the original prime.-/
+then gives etaleness at the original prime.
+@isnad1 id=etale.1h2v.s6.31ba346da5d7 from=translated src=- shape=84aa6b82 vocab=880eaab2
+-/
 theorem etale_of_dedekind_of_finite_torsionFree_of_isUnramifiedAt_all_maximalIdeals
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [IsDedekindDomain R] [Algebra R S]
@@ -71,7 +73,9 @@ unramified at every maximal ideal is finite etale.
 This formulation directly consumes the all-maximal-ideals output of the DVR
 Abhyankar theorem.  Finite torsion-freeness over the PID underlying the DVR
 produces flatness; openness and generalization-stability of the etale locus
-then propagate etaleness from the maximal points to every prime.-/
+then propagate etaleness from the maximal points to every prime.
+@isnad1 id=etale.1h2v.s6.59f47bce5cac from=translated src=- shape=a6a09ec0 vocab=675de13d
+-/
 theorem etale_of_dvr_of_finite_torsionFree_of_isUnramifiedAt_all_maximalIdeals
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [IsDomain R] [IsDiscreteValuationRing R] [Algebra R S]
@@ -88,7 +92,9 @@ that is unramified at its closed point is finite etale.
 
 The torsion-free hypothesis is supplied by the normalization sitting inside
 its fraction field.  Flatness is produced in the proof from finite
-torsion-freeness over the PID underlying the DVR.-/
+torsion-freeness over the PID underlying the DVR.
+@isnad1 id=etale.0h2v.s6.2a74bf30dec6 from=translated src=- shape=21916097 vocab=b3152f18
+-/
 theorem etale_of_dvr_of_finite_torsionFree_of_isUnramifiedAt_maximalIdeal
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [IsDomain R] [IsDiscreteValuationRing R] [Algebra R S]

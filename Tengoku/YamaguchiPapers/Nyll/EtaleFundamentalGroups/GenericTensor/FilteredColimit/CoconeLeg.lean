@@ -46,6 +46,9 @@ def filteredTensorToColimitAlgHom
   Algebra.TensorProduct.map
     (CommRingCat.toAlgHom (c.ι.app i)) (AlgHom.id R A)
 
+/--
+@isnad1 id=eq.0h8v.s12.1629cb8f6c38 from=translated src=- shape=209e3385 vocab=4c04fef7
+-/
 @[simp]
 theorem filteredTensorToColimitAlgHom_tmul
     {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
@@ -66,6 +69,9 @@ def filteredBaseChangeCoconeLegAlgHom
   Algebra.TensorProduct.map
     (AlgHom.id A A) (CommRingCat.toAlgHom (c.ι.app i))
 
+/--
+@isnad1 id=eq.0h8v.s12.627f5ee3f322 from=translated src=- shape=7c2f36b7 vocab=92fecbce
+-/
 @[simp]
 theorem filteredBaseChangeCoconeLegAlgHom_tmul
     {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
@@ -77,7 +83,9 @@ theorem filteredBaseChangeCoconeLegAlgHom_tmul
   rfl
 
 /-- The literal base-change leg is exactly the leg of the categorically
-mapped cocone after forgetting back to `Under`.-/
+mapped cocone after forgetting back to `Under`.
+@isnad1 id=eq.0h6v.s11.4f34a04d1d13 from=translated src=- shape=383716d4 vocab=fd9ca09a
+-/
 theorem filteredBaseChangeCoconeLegAlgHom_toUnder
     {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
     {J : Type u} [SmallCategory J]
@@ -86,7 +94,9 @@ theorem filteredBaseChangeCoconeLegAlgHom_toUnder
       ((CommRingCat.tensorProd (CommRingCat.of R) (CommRingCat.of A)).mapCocone c).ι.app i :=
   rfl
 
-/-- Naturality of the literal base-change cocone legs.-/
+/-- Naturality of the literal base-change cocone legs.
+@isnad1 id=eq.0h8v.s11.02a753f8a1ff from=translated src=- shape=a5735db7 vocab=377ea2de
+-/
 theorem filteredBaseChangeCoconeLegAlgHom_naturality
     {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
     {J : Type u} [SmallCategory J]
@@ -105,7 +115,9 @@ theorem filteredBaseChangeCoconeLegAlgHom_naturality
   exact congrArg (fun y ↦ (1 : A) ⊗ₜ[R] y) h
 
 /-- Swapping tensor factors intertwines the two literal versions of a cocone
-leg.-/
+leg.
+@isnad1 id=eq.0h7v.s13.0edcdebf7fb5 from=translated src=- shape=d7357b68 vocab=2f8bdf71
+-/
 theorem filteredBaseChangeCoconeLegAlgHom_comm
     {R A : Type u} [CommRing R] [CommRing A] [Algebra R A]
     {J : Type u} [SmallCategory J]

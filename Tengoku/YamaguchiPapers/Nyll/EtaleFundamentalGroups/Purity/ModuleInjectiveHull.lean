@@ -32,7 +32,9 @@ universe u
 variable {R : Type u} [Ring R]
 
 /-- Every module admits an embedding with essential image into an
-injective module in the same universe.-/
+injective module in the same universe.
+@isnad1 id=ex.0h2v.s8.0ed2586a3ff3 from=translated src=- shape=94b1da8a vocab=223cba90
+-/
 theorem exists_module_injective_hull (M : ModuleCat.{u} R) :
     ∃ (E : ModuleCat.{u} R) (i : M →ₗ[R] E),
       Function.Injective i ∧ IsEssentialSubmodule (LinearMap.range i) ∧

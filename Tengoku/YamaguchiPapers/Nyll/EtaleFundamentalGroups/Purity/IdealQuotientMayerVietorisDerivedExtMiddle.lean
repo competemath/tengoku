@@ -131,7 +131,9 @@ def pointwiseBiprodColimitIso
 
 variable {R : Type u} [CommRing R]
 
-/-- Derived Ext in its contravariant variable is additive.-/
+/-- Derived Ext in its contravariant variable is additive.
+@isnad1 id=additive.0h3v.s6.95985897c449 from=translated src=- shape=b9033d5c vocab=0885fc39
+-/
 instance derivedExtContravariantFunctor_additive
     (M : ModuleCat.{u} R) (n : ℕ) :
     (derivedExtContravariantFunctor M n).Additive := by
@@ -258,7 +260,9 @@ def idealQuotientMayerVietorisDerivedExtPowersMiddleColimitIso
       (derivedLocalCohomologyPowersDiagram J M n₁)
 
 /-- If both support-local-cohomology objects vanish, then the middle colimit
-in the Mayer--Vietoris sequence vanishes.-/
+in the Mayer--Vietoris sequence vanishes.
+@isnad1 id=iszero.3h6v.s8.2f4f9465bba8 from=translated src=- shape=abc5c754 vocab=03d0e8f3
+-/
 theorem idealQuotientMayerVietorisDerivedExtPowersMiddleColimit_isZero
     (I J : Ideal R) (M : ModuleCat.{u} R)
     (n₀ n₁ : ℕ) (h : 1 + n₀ = n₁)

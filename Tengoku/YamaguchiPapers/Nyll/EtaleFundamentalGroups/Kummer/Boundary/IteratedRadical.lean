@@ -28,7 +28,9 @@ universe u v
 
 /--
 Every exponent of a formally unramified iterated Kummer radical on a full
-prime-boundary complement is already a unit in the original domain.-/
+prime-boundary complement is already a unit in the original domain.
+@isnad1 id=isunit.3h6v.s8.c6e37ab48161 from=translated src=- shape=1109a47e vocab=e41113b5
+-/
 theorem all_exponents_isUnit_of_formallyUnramified_boundaryIteratedRadical
     {R : Type u} {S : Type v} [CommRing R] [IsDomain R]
     [CommRing S] [Algebra R S]

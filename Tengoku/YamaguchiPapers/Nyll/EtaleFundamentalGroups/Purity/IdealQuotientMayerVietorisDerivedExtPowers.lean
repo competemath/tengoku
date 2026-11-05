@@ -37,7 +37,9 @@ def derivedExtContravariantMap {X X' : C} (f : X ⟶ X') (Y : C) (n : ℕ) :
   AddCommGrpCat.ofHom
     ((CategoryTheory.Abelian.Ext.mk₀ f).precomp Y (zero_add n))
 
-/-- Contravariant derived-Ext sends an identity to an identity.-/
+/-- Contravariant derived-Ext sends an identity to an identity.
+@isnad1 id=eq.0h4v.s6.a0ceaa300c43 from=translated src=- shape=d192e665 vocab=4077e0d5
+-/
 @[simp]
 theorem derivedExtContravariantMap_id (X Y : C) (n : ℕ) :
     derivedExtContravariantMap (𝟙 X) Y n = 𝟙 _ := by
@@ -45,7 +47,9 @@ theorem derivedExtContravariantMap_id (X Y : C) (n : ℕ) :
   dsimp [derivedExtContravariantMap]
   exact CategoryTheory.Abelian.Ext.mk₀_id_comp x
 
-/-- Composition law for the contravariant maps on derived Ext.-/
+/-- Composition law for the contravariant maps on derived Ext.
+@isnad1 id=eq.0h8v.s7.b84c94bf8169 from=translated src=- shape=6bfdbd23 vocab=d39c20fa
+-/
 @[reassoc]
 theorem derivedExtContravariantMap_comp
     {X₁ X₂ X₃ : C} (f : X₁ ⟶ X₂) (g : X₂ ⟶ X₃)
@@ -63,7 +67,9 @@ theorem derivedExtContravariantMap_comp
   rw [CategoryTheory.Abelian.Ext.mk₀_comp_mk₀_assoc]
 
 /-- Contravariant derived-Ext maps carry a commutative square in the first
-argument to a commutative square of Ext groups.-/
+argument to a commutative square of Ext groups.
+@isnad1 id=eq.1h11v.s8.1d902ff09e07 from=translated src=- shape=258987f9 vocab=b0860c9d
+-/
 theorem derivedExtContravariantMap_square
     {X₁ X₂ X₁' X₂' : C}
     (a : X₁ ⟶ X₂) (b : X₁' ⟶ X₂')
@@ -89,7 +95,9 @@ theorem derivedExtContravariantMap_square
   rw [hsq]
 
 /-- The connecting morphism in the contravariant derived-Ext sequence is
-natural in morphisms of short exact complexes.-/
+natural in morphisms of short exact complexes.
+@isnad1 id=eq.3h7v.s9.0a710e7bf48b from=translated src=- shape=660883be vocab=fa3af0d3
+-/
 theorem derivedExtConnectingMap_naturality
     {S₁ S₂ : ShortComplex C}
     (h₁ : S₁.ShortExact) (h₂ : S₂.ShortExact) (f : S₁ ⟶ S₂)
@@ -144,7 +152,9 @@ def derivedExtContravariantSequenceMap
       f.comm₁₂ Y n₁)
 
 /-- The contravariant map of six-term sequences induced by an identity is
-the identity.-/
+the identity.
+@isnad1 id=eq.2h5v.s8.4fe049e3f11f from=translated src=- shape=70461616 vocab=e13dbe9f
+-/
 @[simp]
 theorem derivedExtContravariantSequenceMap_id
     {S : ShortComplex C} (hS : S.ShortExact)
@@ -164,7 +174,9 @@ theorem derivedExtContravariantSequenceMap_id
   · change derivedExtContravariantMap (𝟙 S.X₁) Y n₁ = 𝟙 _
     exact derivedExtContravariantMap_id S.X₁ Y n₁
 
-/-- Composition law for the contravariant maps of six-term sequences.-/
+/-- Composition law for the contravariant maps of six-term sequences.
+@isnad1 id=eq.4h9v.s9.8b1bd431cca4 from=translated src=- shape=39ba83d3 vocab=57ba9efd
+-/
 @[reassoc]
 theorem derivedExtContravariantSequenceMap_comp
     {S₁ S₂ S₃ : ShortComplex C}
@@ -222,7 +234,9 @@ def derivedExtContravariantSequenceDiagram
     symm
     apply derivedExtContravariantSequenceMap_comp
 
-/-- Each six-term sequence in the contravariant diagram is exact.-/
+/-- Each six-term sequence in the contravariant diagram is exact.
+@isnad1 id=exact.2h7v.s7.7953bac673f2 from=translated src=- shape=ea9e018b vocab=a19fff2d
+-/
 theorem derivedExtContravariantSequenceDiagram_obj_exact
     (F : D ⥤ ShortComplex C) (hF : ∀ d, (F.obj d).ShortExact)
     (Y : C) (n₀ n₁ : ℕ) (h : 1 + n₀ = n₁) (d : Dᵒᵖ) :
@@ -250,7 +264,9 @@ def idealQuotientMayerVietorisDerivedExtPowersDiagram
     M n₀ n₁ h
 
 /-- Every object of the powers-derived-Ext diagram is an exact six-term
-sequence.-/
+sequence.
+@isnad1 id=exact.1h7v.s7.49dca8ebf6d0 from=translated src=- shape=6d5ce483 vocab=3878af6f
+-/
 theorem idealQuotientMayerVietorisDerivedExtPowersDiagram_obj_exact
     (I J : Ideal R) (M : ModuleCat.{u} R)
     (n₀ n₁ : ℕ) (h : 1 + n₀ = n₁) (d : (ℕᵒᵖ)ᵒᵖ) :

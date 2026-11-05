@@ -66,18 +66,27 @@ private theorem exists_monic_residue_polynomial_lift :
 noncomputable def finiteEtaleResidueLiftPolynomial : R[X] :=
   Classical.choose (exists_monic_residue_polynomial_lift R l)
 
+/--
+@isnad1 id=eq.0h2v.s7.98bd9489afc2 from=translated src=- shape=f67fd7be vocab=0c6a29e3
+-/
 theorem finiteEtaleResidueLiftPolynomial_map :
     (finiteEtaleResidueLiftPolynomial R l).map (IsLocalRing.residue R) =
       minpoly (IsLocalRing.ResidueField R)
         (finiteEtaleResidueLiftPowerBasis R l).gen :=
   (Classical.choose_spec (exists_monic_residue_polynomial_lift R l)).1
 
+/--
+@isnad1 id=eq.0h2v.s7.3482efadf0c8 from=translated src=- shape=4e8cee54 vocab=29316e83
+-/
 theorem finiteEtaleResidueLiftPolynomial_natDegree :
     (finiteEtaleResidueLiftPolynomial R l).natDegree =
       (minpoly (IsLocalRing.ResidueField R)
         (finiteEtaleResidueLiftPowerBasis R l).gen).natDegree :=
   (Classical.choose_spec (exists_monic_residue_polynomial_lift R l)).2.1
 
+/--
+@isnad1 id=monic.0h2v.s7.c60f2e5fcbeb from=translated src=- shape=9fbe8d36 vocab=e9db03c2
+-/
 theorem finiteEtaleResidueLiftPolynomial_monic :
     (finiteEtaleResidueLiftPolynomial R l).Monic :=
   (Classical.choose_spec (exists_monic_residue_polynomial_lift R l)).2.2
@@ -103,6 +112,9 @@ noncomputable def finiteEtaleResidueLiftSpecialFiberRingEquiv :
     (IsLocalRing.maximalIdeal R)
     (finiteEtaleResidueLiftPolynomial R l)
 
+/--
+@isnad1 id=eq.0h3v.s12.5836649f8f41 from=translated src=- shape=f801e7c0 vocab=c2437d93
+-/
 @[simp]
 theorem finiteEtaleResidueLiftSpecialFiberRingEquiv_mk (g : R[X]) :
     finiteEtaleResidueLiftSpecialFiberRingEquiv R l
@@ -116,7 +128,9 @@ theorem finiteEtaleResidueLiftSpecialFiberRingEquiv_mk (g : R[X]) :
     (IsLocalRing.maximalIdeal R)
     (finiteEtaleResidueLiftPolynomial R l) g
 
-/-- The extended closed point in the explicit lift is maximal.-/
+/-- The extended closed point in the explicit lift is maximal.
+@isnad1 id=ismaxima.0h2v.s7.f6685b723ab6 from=translated src=- shape=fcc977c9 vocab=fdc97738
+-/
 theorem finiteEtaleResidueLiftClosedIdeal_isMaximal :
     (finiteEtaleResidueLiftClosedIdeal R l).IsMaximal := by
   let q := (finiteEtaleResidueLiftPolynomial R l).map
@@ -133,7 +147,9 @@ theorem finiteEtaleResidueLiftClosedIdeal_isMaximal :
     (finiteEtaleResidueLiftSpecialFiberRingEquiv R l).toMulEquiv.isField
       (Field.toIsField (AdjoinRoot q))
 
-/-- The maximal ideal of the explicit lift is the extended base maximal ideal.-/
+/-- The maximal ideal of the explicit lift is the extended base maximal ideal.
+@isnad1 id=eq.0h2v.s7.0e73830ef079 from=translated src=- shape=065bb6d9 vocab=188e73c6
+-/
 theorem maximalIdeal_finiteEtaleResidueLift
     [IsLocalRing (FiniteEtaleResidueLift R l)] :
     IsLocalRing.maximalIdeal (FiniteEtaleResidueLift R l) =
@@ -141,7 +157,9 @@ theorem maximalIdeal_finiteEtaleResidueLift
   (IsLocalRing.eq_maximalIdeal
     (finiteEtaleResidueLiftClosedIdeal_isMaximal R l)).symm
 
-/-- The explicit residue lift is finite as a module.-/
+/-- The explicit residue lift is finite as a module.
+@isnad1 id=finite.0h2v.s7.a72936ed60c6 from=translated src=- shape=9fbe8d36 vocab=19ec7393
+-/
 theorem moduleFinite_finiteEtaleResidueLift :
     Module.Finite R (FiniteEtaleResidueLift R l) :=
   (finiteEtaleResidueLiftPolynomial_monic R l).finite_adjoinRoot

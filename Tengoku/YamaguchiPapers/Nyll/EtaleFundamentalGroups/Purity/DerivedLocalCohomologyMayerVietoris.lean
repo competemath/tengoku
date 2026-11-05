@@ -28,7 +28,9 @@ universe u
 variable {R : Type u} [CommRing R] [IsNoetherianRing R]
 
 /-- The local-cohomology Mayer--Vietoris vanishing implication obtained from
-the exact filtered colimit of the derived-Ext powers sequences.-/
+the exact filtered colimit of the derived-Ext powers sequences.
+@isnad1 id=iszero.4h6v.s7.a2897ee28076 from=translated src=- shape=655cfa3d vocab=f80e50aa
+-/
 theorem derivedLocalCohomology_sup_isZero_of_mayerVietoris
     (I J : Ideal R) (M : ModuleCat.{u} R)
     (n₀ n₁ : ℕ) (h : 1 + n₀ = n₁)

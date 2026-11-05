@@ -44,7 +44,9 @@ namespace AlgebraicGeometry
 universe u
 
 /-- The stalk map of `Spec S ⟶ Spec R` is an isomorphism when `S` is a
-localization of `R`, independently of the chosen localization model.-/
+localization of `R`, independently of the chosen localization model.
+@isnad1 id=isiso.0h4v.s8.f28f4f476564 from=translated src=- shape=6f7888f5 vocab=a05dda36
+-/
 theorem isIso_stalkMap_SpecMap_of_isLocalization
     {R S : CommRingCat.{u}} (M : Submonoid R)
     [Algebra R S] [IsLocalization M S]
@@ -78,7 +80,9 @@ theorem isIso_stalkMap_SpecMap_of_isLocalization
           (Spec.stalkIso R (x.comap (algebraMap R S))).hom))
 
 /-- Every stalk map of the canonical morphism from the spectrum of a stalk,
-computed inside a chosen affine neighbourhood, is an isomorphism.-/
+computed inside a chosen affine neighbourhood, is an isomorphism.
+@isnad1 id=isiso.2h4v.s9.451c8418a8b6 from=translated src=- shape=4530474a vocab=7160f547
+-/
 theorem IsAffineOpen.isIso_fromSpecStalk_stalkMap
     {X : Scheme.{u}} {U : X.Opens} (hU : IsAffineOpen U)
     (x : X) (hx : x ∈ U) (p : PrimeSpectrum (X.presheaf.stalk x)) :
@@ -100,7 +104,9 @@ theorem IsAffineOpen.isIso_fromSpecStalk_stalkMap
 
 /-- Every stalk map of the canonical morphism `Spec 𝒪_{X,x} ⟶ X` is an
 isomorphism.  Equivalently, the local ring at a generalization of `x` is the
-corresponding prime localization of `𝒪_{X,x}`.-/
+corresponding prime localization of `𝒪_{X,x}`.
+@isnad1 id=isiso.0h3v.s9.5bc8c8a88bbe from=translated src=- shape=104cb5df vocab=ea684fe4
+-/
 theorem Scheme.isIso_fromSpecStalk_stalkMap
     (X : Scheme.{u}) (x : X) (p : PrimeSpectrum (X.presheaf.stalk x)) :
     IsIso ((X.fromSpecStalk x).stalkMap p) := by
@@ -122,7 +128,9 @@ noncomputable def Scheme.stalkFromSpecStalkEquivLocalization
     Spec.stalkIso (X.presheaf.stalk x) p).commRingCatIsoToRingEquiv
 
 /-- The dimension of the local ring at the point represented by `p` in
-`Spec 𝒪_{X,x}` is the height of `p`.-/
+`Spec 𝒪_{X,x}` is the height of `p`.
+@isnad1 id=eq.0h3v.s10.3d4fbd1eb5fc from=translated src=- shape=be62c2ed vocab=13ca8c15
+-/
 theorem Scheme.ringKrullDim_stalk_fromSpecStalk_eq_height
     (X : Scheme.{u}) (x : X) (p : PrimeSpectrum (X.presheaf.stalk x)) :
     ringKrullDim (X.presheaf.stalk (X.fromSpecStalk x p)) =

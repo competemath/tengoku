@@ -48,7 +48,9 @@ instance instCoeFunFiniteGroupClass : CoeFun FiniteGroupClass (fun _ => GroupCla
 
 namespace FiniteGroupClass
 
-/-- Members of a bundled finite-group class are finite.-/
+/-- Members of a bundled finite-group class are finite.
+@isnad1 id=finite.0h3v.s3.cfb58360feff from=translated src=- shape=0ba84cc8 vocab=09fd370f
+-/
 theorem finite {C : FiniteGroupClass.{u}} {G : Type u} [Group G] (hG : C G) : Finite G :=
   C.finite_of_mem hG
 
@@ -57,31 +59,41 @@ equivalent to a member represented in the carrier universe of `C`.-/
 def MemAcrossUniverses (C : FiniteGroupClass.{u}) (G : Type v) [Group G] : Prop :=
   ∃ H : FiniteGrp.{u}, C H ∧ Nonempty (H ≃* G)
 
-/-- Cross-universe membership still certifies that the represented group is finite.-/
+/-- Cross-universe membership still certifies that the represented group is finite.
+@isnad1 id=finite.1h2v.s3.c84aee28a72c from=translated src=- shape=1a515689 vocab=3ce659ba
+-/
 theorem finite_of_memAcrossUniverses {C : FiniteGroupClass.{u}}
     {G : Type v} [Group G] (hG : C.MemAcrossUniverses G) : Finite G := by
   rcases hG with ⟨H, _hH, ⟨e⟩⟩
   exact Finite.of_equiv H e.toEquiv
 
-/-- Native membership gives cross-universe membership in the class's own universe.-/
+/-- Native membership gives cross-universe membership in the class's own universe.
+@isnad1 id=memacros.0h3v.s4.63c5d245163f from=translated src=- shape=09db61c9 vocab=abe940eb
+-/
 theorem memAcrossUniverses_of_mem {C : FiniteGroupClass.{u}}
     {G : Type u} [Group G] (hG : C G) : C.MemAcrossUniverses G := by
   let : Finite G := C.finite hG
   exact ⟨FiniteGrp.of G, hG, ⟨MulEquiv.refl G⟩⟩
 
-/-- In the class's own universe, cross-universe membership reduces to native membership.-/
+/-- In the class's own universe, cross-universe membership reduces to native membership.
+@isnad1 id=pred.1h2v.s4.b9941ee44410 from=translated src=- shape=91f3e203 vocab=abe940eb
+-/
 theorem mem_of_memAcrossUniverses {C : FiniteGroupClass.{u}}
     {G : Type u} [Group G] (hG : C.MemAcrossUniverses G) : C G := by
   rcases hG with ⟨H, hH, ⟨e⟩⟩
   exact C.mem_of_mulEquiv e hH
 
-/-- Cross-universe membership agrees with the original predicate in the original universe.-/
+/-- Cross-universe membership agrees with the original predicate in the original universe.
+@isnad1 id=iff.0h2v.s4.806c97c6ffe3 from=translated src=- shape=f9b496f6 vocab=abe940eb
+-/
 theorem memAcrossUniverses_iff (C : FiniteGroupClass.{u})
     {G : Type u} [Group G] : C.MemAcrossUniverses G ↔ C G :=
   ⟨mem_of_memAcrossUniverses, memAcrossUniverses_of_mem⟩
 
 /-- Cross-universe membership is invariant under a multiplicative equivalence, even when the two
-carriers live in different universes.-/
+carriers live in different universes.
+@isnad1 id=iff.0h4v.s5.4aae89c7e70b from=translated src=- shape=1f280f71 vocab=c86efd79
+-/
 theorem memAcrossUniverses_iff_of_mulEquiv (C : FiniteGroupClass.{u})
     {G : Type v} {K : Type w} [Group G] [Group K] (e : G ≃* K) :
     C.MemAcrossUniverses G ↔ C.MemAcrossUniverses K := by
@@ -92,13 +104,17 @@ theorem memAcrossUniverses_iff_of_mulEquiv (C : FiniteGroupClass.{u})
     exact ⟨H, hH, ⟨hHK.trans e.symm⟩⟩
 
 /-- `ULift` does not affect cross-universe membership. This is the preferred public replacement
-for ad hoc Type-0 lowering lemmas.-/
+for ad hoc Type-0 lowering lemmas.
+@isnad1 id=iff.0h2v.s4.97b5a6c81ce8 from=translated src=- shape=3a384d91 vocab=01df41e6
+-/
 theorem memAcrossUniverses_ulift_iff (C : FiniteGroupClass.{u})
     (G : Type v) [Group G] :
     C.MemAcrossUniverses (ULift.{w} G) ↔ C.MemAcrossUniverses G :=
   C.memAcrossUniverses_iff_of_mulEquiv MulEquiv.ulift
 
-/-- In the native universe, `ULift` invariance also holds for the original predicate.-/
+/-- In the native universe, `ULift` invariance also holds for the original predicate.
+@isnad1 id=iff.0h2v.s4.81846b9189d0 from=translated src=- shape=7de28ed7 vocab=efdbaef0
+-/
 theorem ulift_mem_iff (C : FiniteGroupClass.{u}) (G : Type u) [Group G] :
     C (ULift.{u} G) ↔ C G :=
   ⟨fun h => C.mem_of_mulEquiv MulEquiv.ulift h,
@@ -122,7 +138,9 @@ class ContainsTrivialQuotients (C : FiniteGroupClass.{u}) : Prop where
 def IsomClosed (C : FiniteGroupClass.{u}) : Prop :=
   ∀ {G H : Type u} [Group G] [Group H], Nonempty (G ≃* H) → C G → C H
 
-/-- Every finite-group class is invariant under multiplicative equivalence by construction.-/
+/-- Every finite-group class is invariant under multiplicative equivalence by construction.
+@isnad1 id=isomclos.0h1v.s2.0713ae3f5468 from=translated src=- shape=5c11bb93 vocab=a1a0cb71
+-/
 theorem isomClosed (C : FiniteGroupClass.{u}) : IsomClosed C := by
   intro G H _ _ hGH hG
   exact C.mem_of_mulEquiv hGH.some hG
@@ -221,12 +239,16 @@ structure FullFormation (C : FiniteGroupClass.{u}) : Prop where
   /-- Arbitrary subgroups of members of `C` again belong to `C`.-/
   subgroupClosed : SubgroupClosed C
 
-/-- A formation is closed under isomorphism.-/
+/-- A formation is closed under isomorphism.
+@isnad1 id=isomclos.1h1v.s2.e591ea1c976d from=translated src=- shape=6321fd23 vocab=7e93d157
+-/
 theorem Formation.isomClosed {C : FiniteGroupClass.{u}} (_hForm : Formation C) :
     IsomClosed C :=
   C.isomClosed
 
-/-- Every formation is closed under finite direct products.-/
+/-- Every formation is closed under finite direct products.
+@isnad1 id=finitepr.1h1v.s2.fccd9b0f65f0 from=translated src=- shape=6321fd23 vocab=810d3ef6
+-/
 theorem Formation.finiteProductClosed {C : FiniteGroupClass.{u}}
     (hForm : Formation C) : FiniteProductClosed C := by
   classical
@@ -242,7 +264,9 @@ theorem Formation.finiteProductClosed {C : FiniteGroupClass.{u}}
 /--
 Every formation contains the trivial group. This is the standard trivial-object clause. In this
 version it is derived from the empty finite subdirect product, so no separate hypothesis
-asserting that the trivial group belongs to the class is needed.-/
+asserting that the trivial group belongs to the class is needed.
+@isnad1 id=pred.1h1v.s3.221e0c43f831 from=translated src=- shape=dce406a4 vocab=40d62c1a
+-/
 theorem Formation.one_mem {C : FiniteGroupClass.{u}} (hForm : Formation C) :
     C PUnit := by
   let G : PEmpty → Type u := fun _ => PUnit
@@ -266,7 +290,9 @@ theorem Formation.one_mem {C : FiniteGroupClass.{u}} (hForm : Formation C) :
 
 /--
 Use a specified multiplicative equivalence to transport membership in an isomorphism-closed
-finite-group class.-/
+finite-group class.
+@isnad1 id=pred.1h5v.s5.efd5eef9d57c from=translated src=- shape=2197a5da vocab=3f462518
+-/
 theorem IsomClosed.of_mulEquiv {C : FiniteGroupClass.{u}}
     (hIso : IsomClosed C) {G H : Type u} [Group G] [Group H]
     (e : G ≃* H) (hG : C G) :
@@ -275,14 +301,18 @@ theorem IsomClosed.of_mulEquiv {C : FiniteGroupClass.{u}}
 
 /--
 Membership in an isomorphism-closed finite-group class is invariant under a specified
-multiplicative equivalence.-/
+multiplicative equivalence.
+@isnad1 id=iff.1h4v.s5.b19164db2723 from=translated src=- shape=6ee3e62e vocab=3f462518
+-/
 theorem IsomClosed.iff_of_mulEquiv {C : FiniteGroupClass.{u}}
     (hIso : IsomClosed C) {G H : Type u} [Group G] [Group H]
     (e : G ≃* H) :
     C G ↔ C H :=
   ⟨hIso.of_mulEquiv e, hIso.of_mulEquiv e.symm⟩
 
-/-- An isomorphism-closed class containing the trivial group contains every trivial group.-/
+/-- An isomorphism-closed class containing the trivial group contains every trivial group.
+@isnad1 id=contains.1h2v.s3.0b63c5a6faf3 from=translated src=- shape=a107bebc vocab=e1a51ed2
+-/
 theorem containsTrivialQuotients_of_isomClosed_one_mem {C : FiniteGroupClass.{u}}
     (hIso : IsomClosed C) (hOne : C PUnit) :
     ContainsTrivialQuotients C := by
@@ -303,7 +333,9 @@ theorem containsTrivialQuotients_of_isomClosed_one_mem {C : FiniteGroupClass.{u}
         exact Subsingleton.elim (h := hQ) _ _ }
   exact hIso ⟨e⟩ hOne
 
-/-- A formation contains the trivial quotients required by the pro-\(C\) construction.-/
+/-- A formation contains the trivial quotients required by the pro-\(C\) construction.
+@isnad1 id=contains.1h1v.s2.83de267e986f from=translated src=- shape=6321fd23 vocab=589e0547
+-/
 theorem Formation.containsTrivialQuotients {C : FiniteGroupClass.{u}}
     (hForm : Formation C) :
     ContainsTrivialQuotients C :=
@@ -311,7 +343,9 @@ theorem Formation.containsTrivialQuotients {C : FiniteGroupClass.{u}}
 
 /--
 Any isomorphism-closed subgroup-closed class that is closed under finite direct products is also
-closed under finite subdirect products.-/
+closed under finite subdirect products.
+@isnad1 id=finitesu.3h1v.s3.37e32759bcd7 from=translated src=- shape=72dc95cc vocab=19dbdfc0
+-/
 theorem finiteSubdirectProductClosed_of_isomClosed_subgroupClosed_finiteProductClosed
     {C : FiniteGroupClass.{u}}
     (hIso : IsomClosed C)
@@ -328,7 +362,9 @@ theorem finiteSubdirectProductClosed_of_isomClosed_subgroupClosed_finiteProductC
     ⟨hRangeRestrictInj, f.rangeRestrict_surjective⟩
   exact hIso ⟨e.symm⟩ hRange
 
-/-- An isomorphism-closed variety contains the trivial group.-/
+/-- An isomorphism-closed variety contains the trivial group.
+@isnad1 id=pred.2h1v.s3.3a3c211c9a71 from=translated src=- shape=e5beebd9 vocab=be2b1875
+-/
 theorem variety_one_mem_of_isomClosed {C : FiniteGroupClass.{u}}
     (hVar : Variety C) (hIso : IsomClosed C) :
     C PUnit := by
@@ -354,7 +390,9 @@ theorem variety_one_mem_of_isomClosed {C : FiniteGroupClass.{u}}
 
 /--
 Any subgroup-closed, isomorphism-closed class that contains at least one group also contains the
-trivial group.-/
+trivial group.
+@isnad1 id=pred.2h3v.s4.a1aceddbfa6e from=translated src=- shape=8f8c437a vocab=8d363206
+-/
 theorem one_mem_of_subgroupClosed_isomClosed {C : FiniteGroupClass.{u}}
     (hSub : SubgroupClosed C) (hIso : IsomClosed C)
     {G : Type u} [Group G] (hG : C G) :
@@ -374,7 +412,9 @@ theorem one_mem_of_subgroupClosed_isomClosed {C : FiniteGroupClass.{u}}
         rfl }
   exact hIso ⟨eBot⟩ (hSub (⊥ : Subgroup G) hG)
 
-/-- Subgroup- and isomorphism-closure imply the injective-hom hereditary form.-/
+/-- Subgroup- and isomorphism-closure imply the injective-hom hereditary form.
+@isnad1 id=heredita.2h1v.s3.e5c5241aa388 from=translated src=- shape=cbe5c5ba vocab=6bfe5bae
+-/
 theorem Hereditary.of_subgroupClosed_isomClosed {C : FiniteGroupClass.{u}}
     (hSub : SubgroupClosed C) (hIso : IsomClosed C) :
     Hereditary C := by
@@ -388,7 +428,9 @@ theorem Hereditary.of_subgroupClosed_isomClosed {C : FiniteGroupClass.{u}}
     f.rangeRestrict_surjective⟩
   exact hIso ⟨e.symm⟩ hRange
 
-/-- The finite group class is closed under taking subgroups.-/
+/-- The finite group class is closed under taking subgroups.
+@isnad1 id=subgroup.1h1v.s2.a46f4f648f3d from=translated src=- shape=6321fd23 vocab=febb9938
+-/
 theorem Hereditary.subgroupClosed {C : FiniteGroupClass.{u}}
     (hHer : Hereditary C) :
     SubgroupClosed C := by
@@ -397,7 +439,9 @@ theorem Hereditary.subgroupClosed {C : FiniteGroupClass.{u}}
 
 /--
 Use a specified multiplicative equivalence to transport membership in an isomorphism-closed
-finite-group class.-/
+finite-group class.
+@isnad1 id=pred.1h5v.s5.2b94ab59d5e6 from=translated src=- shape=397869fb vocab=0d067beb
+-/
 theorem Hereditary.of_mulEquiv {C : FiniteGroupClass.{u}}
     (hHer : Hereditary C) {G H : Type u} [Group G] [Group H]
     (e : G ≃* H) (hH : C H) :
@@ -406,14 +450,18 @@ theorem Hereditary.of_mulEquiv {C : FiniteGroupClass.{u}}
 
 /--
 Membership in an isomorphism-closed finite-group class is invariant under a specified
-multiplicative equivalence.-/
+multiplicative equivalence.
+@isnad1 id=iff.1h4v.s5.d47b454f0698 from=translated src=- shape=6ee3e62e vocab=0d067beb
+-/
 theorem Hereditary.iff_of_mulEquiv {C : FiniteGroupClass.{u}}
     (hHer : Hereditary C) {G H : Type u} [Group G] [Group H]
     (e : G ≃* H) :
     C G ↔ C H :=
   ⟨fun hG => hHer.of_mulEquiv e.symm hG, fun hH => hHer.of_mulEquiv e hH⟩
 
-/-- A Melnikov formation is closed under quotients.-/
+/-- A Melnikov formation is closed under quotients.
+@isnad1 id=quotient.1h1v.s2.53e7d7940b79 from=translated src=- shape=6321fd23 vocab=50fb7caf
+-/
 theorem MelnikovFormation.quotientClosed {C : FiniteGroupClass.{u}}
     (hC : MelnikovFormation C) : QuotientClosed C :=
   hC.formation.quotientClosed
@@ -421,23 +469,31 @@ theorem MelnikovFormation.quotientClosed {C : FiniteGroupClass.{u}}
 /--
 Every formation contains the trivial group. This is the standard trivial-object clause. In this
 version it is derived from the empty finite subdirect product, so no separate hypothesis
-asserting that the trivial group belongs to the class is needed.-/
+asserting that the trivial group belongs to the class is needed.
+@isnad1 id=pred.1h1v.s3.3ee9092636ca from=translated src=- shape=dce406a4 vocab=91f567dc
+-/
 theorem MelnikovFormation.one_mem {C : FiniteGroupClass.{u}}
     (hC : MelnikovFormation C) : C PUnit :=
   hC.formation.one_mem
 
-/-- A Melnikov formation contains the trivial quotients.-/
+/-- A Melnikov formation contains the trivial quotients.
+@isnad1 id=contains.1h1v.s2.22254c309e90 from=translated src=- shape=6321fd23 vocab=13f560ac
+-/
 theorem MelnikovFormation.containsTrivialQuotients {C : FiniteGroupClass.{u}}
     (hC : MelnikovFormation C) :
     ContainsTrivialQuotients C :=
   hC.formation.containsTrivialQuotients
 
-/-- A Melnikov formation is closed under isomorphism.-/
+/-- A Melnikov formation is closed under isomorphism.
+@isnad1 id=isomclos.1h1v.s2.e35e02a5473a from=translated src=- shape=6321fd23 vocab=fbb18d8d
+-/
 theorem MelnikovFormation.isomClosed {C : FiniteGroupClass.{u}}
     (hC : MelnikovFormation C) : IsomClosed C :=
   hC.formation.isomClosed
 
-/-- A full formation is closed under quotients.-/
+/-- A full formation is closed under quotients.
+@isnad1 id=quotient.1h1v.s2.e39eee11272e from=translated src=- shape=6321fd23 vocab=61ab32a3
+-/
 theorem FullFormation.quotientClosed {C : FiniteGroupClass.{u}}
     (hC : FullFormation C) : QuotientClosed C :=
   hC.melnikovFormation.quotientClosed
@@ -445,40 +501,54 @@ theorem FullFormation.quotientClosed {C : FiniteGroupClass.{u}}
 /--
 Every formation contains the trivial group. This is the standard trivial-object clause. In this
 version it is derived from the empty finite subdirect product, so no separate hypothesis
-asserting that the trivial group belongs to the class is needed.-/
+asserting that the trivial group belongs to the class is needed.
+@isnad1 id=pred.1h1v.s3.f318ca5d53c6 from=translated src=- shape=dce406a4 vocab=61842018
+-/
 theorem FullFormation.one_mem {C : FiniteGroupClass.{u}}
     (hC : FullFormation C) : C PUnit :=
   hC.melnikovFormation.one_mem
 
-/-- A full formation contains the trivial quotients.-/
+/-- A full formation contains the trivial quotients.
+@isnad1 id=contains.1h1v.s2.0065ebd265e2 from=translated src=- shape=6321fd23 vocab=a704fde7
+-/
 theorem FullFormation.containsTrivialQuotients {C : FiniteGroupClass.{u}}
     (hC : FullFormation C) :
     ContainsTrivialQuotients C :=
   hC.melnikovFormation.containsTrivialQuotients
 
-/-- A full formation is closed under isomorphism.-/
+/-- A full formation is closed under isomorphism.
+@isnad1 id=isomclos.1h1v.s2.95ac24534900 from=translated src=- shape=6321fd23 vocab=c763f6a6
+-/
 theorem FullFormation.isomClosed {C : FiniteGroupClass.{u}}
     (hC : FullFormation C) : IsomClosed C :=
   hC.melnikovFormation.isomClosed
 
-/-- A full formation is closed under normal subgroups.-/
+/-- A full formation is closed under normal subgroups.
+@isnad1 id=normalsu.1h1v.s2.cc33152b18f5 from=translated src=- shape=6321fd23 vocab=c1cb3cd4
+-/
 theorem FullFormation.normalSubgroupClosed {C : FiniteGroupClass.{u}}
     (hC : FullFormation C) : NormalSubgroupClosed C :=
   hC.melnikovFormation.normalSubgroupClosed
 
-/-- A formation is closed under extensions.-/
+/-- A formation is closed under extensions.
+@isnad1 id=extensio.1h1v.s2.08cae8a4d42c from=translated src=- shape=6321fd23 vocab=e5bdde12
+-/
 theorem FullFormation.extensionClosed {C : FiniteGroupClass.{u}}
     (hC : FullFormation C) : ExtensionClosed C :=
   hC.melnikovFormation.extensionClosed
 
 /--
 The subgroup-closed part of a full formation, in the injective-hom form used by finite quotient
-pullbacks.-/
+pullbacks.
+@isnad1 id=heredita.1h1v.s2.a6fd71e3481b from=translated src=- shape=6321fd23 vocab=87c83ed1
+-/
 theorem FullFormation.hereditary {C : FiniteGroupClass.{u}}
     (hC : FullFormation C) : Hereditary C :=
   Hereditary.of_subgroupClosed_isomClosed hC.subgroupClosed hC.isomClosed
 
-/-- An isomorphism-closed variety is a formation in the unbundled FiniteGroupClass formulation.-/
+/-- An isomorphism-closed variety is a formation in the unbundled FiniteGroupClass formulation.
+@isnad1 id=formatio.2h1v.s3.f79045a9678c from=translated src=- shape=cbe5c5ba vocab=0aaf7e84
+-/
 theorem variety_formation {C : FiniteGroupClass.{u}}
     (hVar : Variety C) (hIso : IsomClosed C) :
     Formation C := by
@@ -488,7 +558,9 @@ theorem variety_formation {C : FiniteGroupClass.{u}}
 
 /--
 A variety together with extension-closure packages the standard finite-class closure hypotheses
-used by the pro-\(C\) formulation.-/
+used by the pro-\(C\) formulation.
+@isnad1 id=and.3h1v.s4.d6706f51932d from=translated src=- shape=2e596eeb vocab=37e1f6dc
+-/
 theorem Variety.closureBundle_of_isomClosed_extensionClosed {C : FiniteGroupClass.{u}}
     (hVar : Variety C)
     (hIso : IsomClosed C)
@@ -498,7 +570,9 @@ theorem Variety.closureBundle_of_isomClosed_extensionClosed {C : FiniteGroupClas
 
 /--
 For a Melnikov formation, the quotients by two normal subgroups lying in the class force the
-quotient by their intersection to lie in the class as well.-/
+quotient by their intersection to lie in the class as well.
+@isnad1 id=pred.1h6v.s6.e37fc07746bb from=translated src=- shape=28fe8b35 vocab=6efd28b8
+-/
 theorem MelnikovFormation.quotient_inf_mem {C : FiniteGroupClass.{u}}
     (hC : MelnikovFormation C)
     {G : Type u} [Group G]
@@ -565,7 +639,9 @@ theorem MelnikovFormation.quotient_inf_mem {C : FiniteGroupClass.{u}}
     exact hC.isomClosed ⟨(e₀.trans e₁).trans e₂⟩ hQuotN₁
   exact hC.extensionClosed L hL hQuotL
 
-/-- A Melnikov formation with subgroup closure gives the standard finite-class closure bundle.-/
+/-- A Melnikov formation with subgroup closure gives the standard finite-class closure bundle.
+@isnad1 id=and.2h1v.s4.86509c3d1ada from=translated src=- shape=bb04803c vocab=aaa6b715
+-/
 theorem MelnikovFormation.closureBundle_of_subgroupClosed {C : FiniteGroupClass.{u}}
     (hC : MelnikovFormation C)
     (hSub : SubgroupClosed C) :
@@ -574,7 +650,9 @@ theorem MelnikovFormation.closureBundle_of_subgroupClosed {C : FiniteGroupClass.
 
 /--
 For a formation, the quotient by the intersection of two normal subgroups whose individual
-quotients lie in \(C\) also lies in \(C\). This is the two-factor form of (C4).-/
+quotients lie in \(C\) also lies in \(C\). This is the two-factor form of (C4).
+@isnad1 id=pred.1h6v.s6.dd0fe20f0dff from=translated src=- shape=28fe8b35 vocab=23e0f04f
+-/
 theorem Formation.quotient_inf_mem {C : FiniteGroupClass.{u}}
     (hC : Formation C) {G : Type u} [Group G]
     (N₁ N₂ : Subgroup G) [N₁.Normal] [N₂.Normal]

@@ -51,7 +51,9 @@ private theorem dvd_left_of_dvd_mul_finsetProduct_of_primes_of_not_dvd
 /--
 Let `S` be obtained by inverting a finite product of prime elements.  An
 element divisible by none of those primes was already a unit if its image is
-a unit in `S`.-/
+a unit in `S`.
+@isnad1 id=isunit.3h6v.s7.b7fbf5ccdceb from=translated src=- shape=45c41dfe vocab=0f5de7c7
+-/
 theorem isUnit_of_isUnit_algebraMap_away_finsetProduct_of_primes_of_not_dvd
     {R : Type u} {S : Type v} {ι : Type w}
     [CommRing R] [IsDomain R] [CommRing S] [Algebra R S]
@@ -76,7 +78,9 @@ theorem isUnit_of_isUnit_algebraMap_away_finsetProduct_of_primes_of_not_dvd
 /--
 For a positive natural number, characteristic zero on every boundary
 component supplies all nondivisibility inputs needed by multi-boundary unit
-descent.-/
+descent.
+@isnad1 id=isunit.4h6v.s8.27bf603143cb from=translated src=- shape=9811158f vocab=fc4c2f87
+-/
 theorem isUnit_natCast_of_isUnit_algebraMap_away_finsetProduct
     {R : Type u} {S : Type v} {ι : Type w}
     [CommRing R] [IsDomain R] [CommRing S] [Algebra R S]

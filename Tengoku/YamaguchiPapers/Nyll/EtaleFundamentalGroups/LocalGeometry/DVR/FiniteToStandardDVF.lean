@@ -47,7 +47,9 @@ identifies the original ramification index with the ramification index of
 the target local ring's maximal ideal.
 
 This is the maximal-ideal endpoint available for a raw selected prime.  It
-does not require, and does not produce, module finiteness of the local map.-/
+does not require, and does not produce, module finiteness of the local map.
+@isnad1 id=other.1h4v.s7.1e2dbdad2590 from=translated src=- shape=8d82b97a vocab=b898e5e8
+-/
 theorem localizationAtPrime_maximalIdeal_ramificationIdx_eq
     {R : Type uR} {S : Type uS}
     [CommRing R] [CommRing S] [Algebra R S]
@@ -83,7 +85,9 @@ compatible chosen fraction fields.
 
 The proof first base-changes the finite module to the source fraction field
 and then uses the canonical generic-fibre equivalence.  This is the
-finite-dimensionality producer used for genuine finite local DVR factors.-/
+finite-dimensionality producer used for genuine finite local DVR factors.
+@isnad1 id=finitedi.0h4v.s8.45e9e22db55f from=translated src=- shape=38445859 vocab=53b94b41
+-/
 theorem fractionFields_finiteDimensional_of_moduleFinite
     {V : Type uV} {W : Type uW} {K : Type uK} {L : Type uL}
     [CommRing V] [IsDomain V]
@@ -106,7 +110,9 @@ subrings of the two standard `DVF` packages.
 The source and target valuation subrings are ring-equivalent to the original
 DVRs.  `Module.Finite.of_equiv_equiv` transports both scalar and module
 rings at once; no separability hypothesis and no raw-prime finiteness claim
-is involved.-/
+is involved.
+@isnad1 id=other.0h4v.s9.ab16976f82b3 from=translated src=- shape=16e40443 vocab=d01241a3
+-/
 theorem standardDVFOfDVR_valuationSubring_moduleFinite_of_moduleFinite
     {V : Type uV} {W : Type uW} {K : Type uK} {L : Type uL}
     [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
@@ -157,7 +163,9 @@ theorem standardDVFOfDVR_valuationSubring_moduleFinite_of_moduleFinite
 
 Both finiteness conclusions are produced from `Module.Finite V W`, the
 finite local factor supplied upstream.  In particular the theorem does not
-take either desired standard-`DVF` conclusion as a hypothesis.-/
+take either desired standard-`DVF` conclusion as a hypothesis.
+@isnad1 id=other.0h4v.s9.91f94e79f4a4 from=translated src=- shape=9931fcb5 vocab=64ac9199
+-/
 theorem standardDVFOfDVR_finite_ramificationData_of_moduleFinite
     {V : Type uV} {W : Type uW} {K : Type uK} {L : Type uL}
     [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
@@ -209,7 +217,9 @@ Once the local maximal-ideal ramification index has been computed (for a raw
 prime this is supplied by
 `localizationAtPrime_maximalIdeal_ramificationIdx_eq`), a genuine finite DVR
 factor produces exactly the finite valuation-subring data and the standard
-`DVF` equality required by the exact-root/action layer.-/
+`DVF` equality required by the exact-root/action layer.
+@isnad1 id=other.1h5v.s9.54d1586f978d from=translated src=- shape=56f03ccb vocab=64ac9199
+-/
 theorem standardDVFOfDVR_finite_ramificationData_eq_of_moduleFinite
     {V : Type uV} {W : Type uW} {K : Type uK} {L : Type uL}
     [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]

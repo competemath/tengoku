@@ -24,7 +24,9 @@ namespace EtaleFundamentalGroups.Kummer
 universe u v w x
 
 /-- Concrete generator and degree coordinates for an intermediate field of
-a pure radical extension.-/
+a pure radical extension.
+@isnad1 id=ex.4h5v.s11.58aa6e789cfd from=translated src=- shape=cab69ab1 vocab=3ad10d0a
+-/
 theorem exists_intermediateField_generator_pow_eq_of_pureRadical
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -69,7 +71,9 @@ theorem exists_intermediateField_generator_pow_eq_of_pureRadical
 
 /-- Henselian integral-model source for the concrete intermediate-field
 generator.  The roots-of-unity condition is derived from the normal local
-model and the residue-field equivalence.-/
+model and the residue-field equivalence.
+@isnad1 id=ex.5h7v.s11.898ba3e3ae57 from=translated src=- shape=1ecbd184 vocab=45c9b8ae
+-/
 theorem exists_intermediateField_generator_pow_eq_of_henselian_pureRadical
     {A : Type u} {B : Type v} {K : Type w} {L : Type x}
     [CommRing A] [CommRing B] [IsDomain B]

@@ -32,7 +32,9 @@ variable {E : Type v} [AddCommGroup E] [Module R E]
 
 /-- Every element of an essential extension of the residue field is
 annihilated by a power of the maximal ideal.  The embedding furnished by
-an injective hull supplies `i` and `hi`; its injectivity is not needed here.-/
+an injective hull supplies `i` and `hi`; its injectivity is not needed here.
+@isnad1 id=ex.1h4v.s8.2c185ecc68ea from=translated src=- shape=edf453bc vocab=c743e0e4
+-/
 theorem exists_maximalIdeal_pow_smul_eq_zero_of_essential_residueField_range
     [IsNoetherianRing R]
     (i : R ⧸ maximalIdeal R →ₗ[R] E)

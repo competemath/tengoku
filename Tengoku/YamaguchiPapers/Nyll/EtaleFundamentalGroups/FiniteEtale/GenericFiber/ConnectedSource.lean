@@ -33,7 +33,9 @@ open CategoryTheory TopologicalSpace
 universe u
 
 /-- The inclusion of the generic fibre of an open morphism to an
-irreducible scheme has dense range.-/
+irreducible scheme has dense range.
+@isnad1 id=denseran.1h3v.s9.06ffbaa2f304 from=translated src=- shape=13e3d1db vocab=e7160cc5
+-/
 theorem denseRange_genericFiberι_of_isOpenMap
     {X S : Scheme.{u}} [IrreducibleSpace S]
     (f : X ⟶ S) (hf : IsOpenMap f) :
@@ -43,7 +45,9 @@ theorem denseRange_genericFiberι_of_isOpenMap
   exact (dense_iff_closure_eq.mpr (genericPoint_closure S)).preimage hf
 
 /-- For a universally open morphism to an irreducible base, a geometrically
-connected generic fibre forces the source itself to be connected.-/
+connected generic fibre forces the source itself to be connected.
+@isnad1 id=connecte.0h3v.s6.f525fb2fb7f9 from=translated src=- shape=80f97d9f vocab=53c23fb9
+-/
 theorem connectedSpace_of_geometricallyConnected_genericFiber
     {X S : Scheme.{u}} [IrreducibleSpace S]
     (f : X ⟶ S) [UniversallyOpen f]

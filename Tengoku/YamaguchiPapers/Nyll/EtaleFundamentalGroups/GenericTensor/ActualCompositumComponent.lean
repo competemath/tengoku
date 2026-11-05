@@ -45,7 +45,9 @@ noncomputable def actualCompositumGenericComponentMap
     (iteratedGenericFiberEquiv A F K' T E eGeneric).toAlgHom
 
 /-- On the right integral factor, the actual-compositum map is the original
-generic-fibre coordinate followed by the literal ambient inclusion.-/
+generic-fibre coordinate followed by the literal ambient inclusion.
+@isnad1 id=eq.0h8v.s12.95ef7f32a91c from=translated src=- shape=3b9ea975 vocab=e047b61a
+-/
 @[simp]
 theorem actualCompositumGenericComponentMap_tmul_right_coe
     {A : Type uA} {T : Type uT} {F : Type uF} {Omega : Type uOmega}
@@ -62,7 +64,9 @@ theorem actualCompositumGenericComponentMap_tmul_right_coe
   simp [actualCompositumGenericComponentMap,
     iteratedGenericFiberEquiv, supFlipProductMapRightAlgHom]
 
-/-- The actual-compositum generic map is onto.-/
+/-- The actual-compositum generic map is onto.
+@isnad1 id=surjecti.0h7v.s12.b36fe3308eef from=translated src=- shape=7fd7fd01 vocab=d3239982
+-/
 theorem actualCompositumGenericComponentMap_surjective
     {A : Type uA} {T : Type uT} {F : Type uF} {Omega : Type uOmega}
     [CommRing A] [CommRing T] [Algebra A T]
@@ -108,7 +112,9 @@ noncomputable def actualCompositumGenericComponentAlgEquiv
   Ideal.quotientKerAlgEquivOfSurjective
     (actualCompositumGenericComponentMap_surjective E K' eGeneric)
 
-/-- The quotient comparison is induced by the literal compositum map.-/
+/-- The quotient comparison is induced by the literal compositum map.
+@isnad1 id=eq.0h8v.s14.31f243f47bda from=translated src=- shape=3dcf88a0 vocab=ff15db75
+-/
 @[simp]
 theorem actualCompositumGenericComponentAlgEquiv_mk
     {A : Type uA} {T : Type uT} {F : Type uF} {Omega : Type uOmega}

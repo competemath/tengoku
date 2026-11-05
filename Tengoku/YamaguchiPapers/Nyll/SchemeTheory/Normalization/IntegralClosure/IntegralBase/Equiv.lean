@@ -38,7 +38,9 @@ noncomputable def integralClosureIntegralBaseAlgebra :
   (IsIntegralClosure.lift A (integralClosure A L) L).toRingHom.toAlgebra
 
 /-- The canonical lift of `B` into the `A`-integral closure is compatible
-with the original map `A → B`.-/
+with the original map `A → B`.
+@isnad1 id=isscalar.0h3v.s8.3306439953ab from=translated src=- shape=f1e5b386 vocab=c377fa58
+-/
 theorem integralClosureIntegralBase_isScalarTower :
     letI : Algebra B (integralClosure A L) :=
       integralClosureIntegralBaseAlgebra
@@ -49,7 +51,9 @@ theorem integralClosureIntegralBase_isScalarTower :
     (IsIntegralClosure.lift A (integralClosure A L) L).commutes a |>.symm
 
 /-- The canonical lift into the integral closure has the expected composite
-map to the ambient ring.-/
+map to the ambient ring.
+@isnad1 id=isscalar.0h3v.s8.bf2fc9dfee88 from=translated src=- shape=0be222e9 vocab=c377fa58
+-/
 theorem integralClosureIntegralBase_toAmbient_isScalarTower :
     letI : Algebra B (integralClosure A L) :=
       integralClosureIntegralBaseAlgebra
@@ -78,7 +82,9 @@ noncomputable def integralClosureIntegralBaseAlgEquiv :
     (integralClosure A L)
 
 /-- Module finiteness over the enlarged base is unchanged by writing the
-same normalization as the integral closure over the original base.-/
+same normalization as the integral closure over the original base.
+@isnad1 id=finite.0h3v.s8.88b690efa1d5 from=translated src=- shape=3948c88d vocab=38ae0326
+-/
 theorem moduleFinite_integralClosure_of_integralBase
     [Module.Finite B (integralClosure B L)] :
     letI : Algebra B (integralClosure A L) :=
@@ -90,7 +96,9 @@ theorem moduleFinite_integralClosure_of_integralBase
     integralClosureIntegralBaseAlgEquiv.toLinearEquiv
 
 /-- Etaleness over the enlarged integral base transports to the same
-normalization written as the integral closure over the original base.-/
+normalization written as the integral closure over the original base.
+@isnad1 id=etale.1h3v.s8.ea26f41f0cbe from=translated src=- shape=3948c88d vocab=9cdb64fd
+-/
 theorem integralClosure_etale_of_integralBase
     (hEtale : Algebra.Etale B (integralClosure B L)) :
     letI : Algebra B (integralClosure A L) :=
@@ -102,7 +110,9 @@ theorem integralClosure_etale_of_integralBase
   exact Algebra.Etale.of_equiv integralClosureIntegralBaseAlgEquiv
 
 /-- The preceding equivalence is the identity after coercion to the common
-ambient ring.-/
+ambient ring.
+@isnad1 id=eq.0h4v.s10.a7917e1282b2 from=translated src=- shape=e4dbe476 vocab=6414cbbe
+-/
 @[simp]
 theorem algebraMap_integralClosureIntegralBaseAlgEquiv
     (x : integralClosure B L) :

@@ -32,7 +32,9 @@ universe u v w
 /-- A normalization in a finite separable extension of the fraction field of
 a two-dimensional regular local domain is finite.  Normality of the base is
 produced from regularity and dimension two; finiteness then follows from the
-trace-dual theorem for separable extensions.-/
+trace-dual theorem for separable extensions.
+@isnad1 id=finite.1h3v.s8.7492cadfb786 from=translated src=- shape=b531344e vocab=49f647f0
+-/
 theorem integralClosure_finite_of_isRegularLocalRing_dimension_two
     {A : Type u} {K : Type v} {L : Type w}
     [CommRing A] [IsDomain A] [IsRegularLocalRing A]
@@ -46,7 +48,9 @@ theorem integralClosure_finite_of_isRegularLocalRing_dimension_two
   exact IsIntegralClosure.finite A K L (integralClosure A L)
 
 /-- A finite normalization over a two-dimensional regular local domain is
-free.  The parameter pair is produced internally from the cotangent space.-/
+free.  The parameter pair is produced internally from the cotangent space.
+@isnad1 id=free.1h3v.s8.09467fb3ee09 from=translated src=- shape=b531344e vocab=e6d7efa6
+-/
 theorem integralClosure_free_of_isRegularLocalRing_dimension_two
     {A : Type u} {K : Type v} {L : Type w}
     [CommRing A] [IsDomain A] [IsRegularLocalRing A]
@@ -70,7 +74,9 @@ theorem integralClosure_free_of_isRegularLocalRing_dimension_two
   exact integralClosure_free_of_regular_pair (K := K) hregular hspan
 
 /-- A finite normalization over a two-dimensional regular local domain is
-flat.-/
+flat.
+@isnad1 id=flat.1h3v.s8.4152b470b830 from=translated src=- shape=b531344e vocab=8330096f
+-/
 theorem integralClosure_flat_of_isRegularLocalRing_dimension_two
     {A : Type u} {K : Type v} {L : Type w}
     [CommRing A] [IsDomain A] [IsRegularLocalRing A]
@@ -85,7 +91,9 @@ theorem integralClosure_flat_of_isRegularLocalRing_dimension_two
   infer_instance
 
 /-- At a height-two prime of a regular domain, every normalization in a
-finite separable extension of the local fraction field is finite.-/
+finite separable extension of the local fraction field is finite.
+@isnad1 id=finite.1h4v.s10.01b420de73b6 from=translated src=- shape=488fde17 vocab=68843ad7
+-/
 theorem integralClosure_finite_localizationAtPrime_of_height_eq_two
     {A : Type u} [CommRing A] [IsDomain A] [IsRegularRing A]
     (P : Ideal A) [P.IsPrime] (hP : P.height = 2)
@@ -111,7 +119,9 @@ theorem integralClosure_finite_localizationAtPrime_of_height_eq_two
     (K := K) hdim
 
 /-- At a height-two prime of a regular domain, every finite normalization in
-a finite separable extension of the local fraction field is free.-/
+a finite separable extension of the local fraction field is free.
+@isnad1 id=free.1h4v.s10.dad2ca82884d from=translated src=- shape=488fde17 vocab=5110c950
+-/
 theorem integralClosure_free_localizationAtPrime_of_height_eq_two
     {A : Type u} [CommRing A] [IsDomain A] [IsRegularRing A]
     (P : Ideal A) [P.IsPrime] (hP : P.height = 2)
@@ -137,7 +147,9 @@ theorem integralClosure_free_localizationAtPrime_of_height_eq_two
     (K := K) hdim
 
 /-- The finite normalization in the preceding height-two localization theorem
-is flat.-/
+is flat.
+@isnad1 id=flat.1h4v.s10.e9e1d86e2f88 from=translated src=- shape=488fde17 vocab=e0af18d5
+-/
 theorem integralClosure_flat_localizationAtPrime_of_height_eq_two
     {A : Type u} [CommRing A] [IsDomain A] [IsRegularRing A]
     (P : Ideal A) [P.IsPrime] (hP : P.height = 2)

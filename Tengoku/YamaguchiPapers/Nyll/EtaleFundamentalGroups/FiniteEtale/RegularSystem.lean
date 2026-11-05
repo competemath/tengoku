@@ -37,7 +37,9 @@ under an étale local extension.
 
 The regularity is faithfully-flat descent along the local flat map.  The
 maximal-ideal equality is the cotangent-space consequence of formal
-unramifiedness, rather than an extra assumption on the residue extension.-/
+unramifiedness, rather than an extra assumption on the residue extension.
+@isnad1 id=and.2h3v.s8.e0de8e12e141 from=translated src=- shape=20a8aaaa vocab=90638d61
+-/
 theorem regularSystem_map_of_etale_local
     {A : Type u} {C : Type v}
     [CommRing A] [CommRing C] [Algebra A C]
@@ -68,7 +70,9 @@ local extension of a Noetherian local ring.
 
 No domain, regular-local, or primality hypothesis is imposed on the target.
 They are all produced from the mapped regular system.  In particular, every
-mapped parameter cuts out a regular local domain.-/
+mapped parameter cuts out a regular local domain.
+@isnad1 id=and.2h3v.s9.ebcca3c4b310 from=translated src=- shape=37ba1fa4 vocab=171aaa70
+-/
 theorem finiteEtale_regularSystem_geometry
     {A : Type u} {C : Type v}
     [CommRing A] [CommRing C] [Algebra A C]

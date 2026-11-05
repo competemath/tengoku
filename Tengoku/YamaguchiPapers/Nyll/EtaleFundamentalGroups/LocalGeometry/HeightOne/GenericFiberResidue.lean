@@ -27,7 +27,9 @@ namespace AlgebraicGeometry
 universe u
 
 /-- Geometric integrality of a field extension is invariant under a ring
-equivalence, with the algebra structure transported along that equivalence.-/
+equivalence, with the algebra structure transported along that equivalence.
+@isnad1 id=geometri.1h4v.s8.f82009a466e6 from=translated src=- shape=6ced6a44 vocab=46d1b47d
+-/
 theorem GeometricallyIntegral.specMap_transport_ringEquiv
     {k R T : Type u} [Field k] [Field R] [Field T]
     [Algebra k R] (e : R ≃+* T)
@@ -64,7 +66,9 @@ variable {X S : Scheme.{u}}
 /-- Geometric integrality of the generic fibre gives geometric integrality
 of the source residue field at its generic point.  The algebra structure is
 transported through the canonical generic-fibre residue/function-field
-equivalence.-/
+equivalence.
+@isnad1 id=other.2h3v.s11.5654f4d5e03c from=translated src=- shape=0becaf7d vocab=7ccc7a86
+-/
 theorem geometricallyIntegral_spec_genericPointResidue_of_genericFiber
     [IsIntegral X] [IsIntegral S]
     (f : X ⟶ S) (hη : f (genericPoint X) = genericPoint S)
@@ -105,7 +109,9 @@ theorem geometricallyIntegral_spec_genericPointResidue_of_genericFiber
 
 /-- Geometric integrality of a generic fibre gives geometric integrality of
 the ambient residue field at the generic point of an integral closed
-component.-/
+component.
+@isnad1 id=other.2h5v.s13.ea58ad083224 from=translated src=- shape=26ea8e3d vocab=97d91e26
+-/
 theorem geometricallyIntegral_genericSourceResidue_of_genericFiber
     {C A S : Scheme.{u}} [IsIntegral C] [IsIntegral S]
     (i : C ⟶ A) [IsClosedImmersion i]
@@ -154,7 +160,9 @@ theorem geometricallyIntegral_genericSourceResidue_of_genericFiber
 /-- Existence form of
 `geometricallyIntegral_genericSourceResidue_of_genericFiber`, convenient
 when only the canonical transported field structure and its geometric
-integrality are needed downstream.-/
+integrality are needed downstream.
+@isnad1 id=other.2h5v.s12.cd79a013058c from=translated src=- shape=29df5c41 vocab=0c6649eb
+-/
 theorem exists_algebra_geometricallyIntegral_genericSourceResidue_of_genericFiber
     {C A S : Scheme.{u}} [IsIntegral C] [IsIntegral S]
     (i : C ⟶ A) [IsClosedImmersion i]

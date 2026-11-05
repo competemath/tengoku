@@ -71,7 +71,9 @@ private theorem ideal_le_prime_colon_of_essential_power_torsion
   exact hP.one_notMem hOne
 
 /-- Over a Noetherian ring, every vector in an essential extension of an
-ideal-power torsion module is killed by some power of that ideal.-/
+ideal-power torsion module is killed by some power of that ideal.
+@isnad1 id=ex.2h5v.s9.47118a466fd8 from=translated src=- shape=ec90bd23 vocab=439608c3
+-/
 theorem exists_ideal_pow_smul_eq_zero_of_essential_submodule
     [IsNoetherianRing R]
     (I : Ideal R) (N : Submodule R E) (hN : IsEssentialSubmodule N)

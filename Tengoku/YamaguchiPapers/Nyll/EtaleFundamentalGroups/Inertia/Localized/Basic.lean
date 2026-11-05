@@ -32,7 +32,9 @@ variable [Algebra K L] [Algebra A L] [IsScalarTower A K L]
 omit [IsDomain A] [Algebra A L] [IsScalarTower A K L] in
 /-- The canonical Galois action on `L` commutes with scalars from the prime
 localization of `A`.  This is a named non-instance producer so consumers can
-reuse the same local instance without adding a global typeclass path.-/
+reuse the same local instance without adding a global typeclass path.
+@isnad1 id=smulcomm.0h4v.s8.6e22a4a4daed from=translated src=- shape=32fb4642 vocab=5f2dad75
+-/
 theorem localizationAtPrime_galois_smulCommClass
     (P : Ideal A) [P.IsPrime] :
     letI := localizationAtPrimeToFractionFieldAlgebra (K := K) P

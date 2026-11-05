@@ -23,7 +23,9 @@ namespace Module.FaithfullyFlat
 universe u v w
 
 /-- A finite family of domain algebras with injective structure maps and
-jointly surjective spectra has faithfully flat product over a Dedekind domain.-/
+jointly surjective spectra has faithfully flat product over a Dedekind domain.
+@isnad1 id=faithful.2h3v.s8.4f30a8c4c778 from=translated src=- shape=b4af8ce3 vocab=0779a956
+-/
 theorem pi_of_dedekind_spectrum_cover
     (R : Type u) [CommRing R] [IsDedekindDomain R]
     {ι : Type v} [Finite ι] (A : ι → Type w)

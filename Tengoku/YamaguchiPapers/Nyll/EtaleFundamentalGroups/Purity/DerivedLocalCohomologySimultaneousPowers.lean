@@ -44,7 +44,9 @@ def idealSupPowersDiagram (I J : Ideal R) : ℕᵒᵖ ⥤ Ideal R where
     (Ideal.pow_le_pow_right f.unop.down.down)⟩⟩
 
 /-- Artin--Rees makes the simultaneous intersections of powers cofinal with
-the powers of the intersection.-/
+the powers of the intersection.
+@isnad1 id=ex.0h4v.s8.dfcc0c57b3aa from=translated src=- shape=7083295a vocab=6d80835b
+-/
 theorem exists_inf_pow_le_inf_pow (I J : Ideal R) [IsNoetherianRing R]
     (m : ℕ) : ∃ n : ℕ, I ^ n ⊓ J ^ n ≤ (I ⊓ J) ^ m := by
   obtain ⟨k, hk⟩ := Ideal.exists_pow_inf_eq_pow_smul I (J ^ m)
@@ -102,7 +104,9 @@ def idealSupPowersToSelfLERadical (I J : Ideal R) :
         (Ideal.pow_mem_pow hx (unop n))
 
 /-- The simultaneous intersection-power diagram is initial in the full
-category of ideals with radical containing `I ⊓ J`.-/
+category of ideals with radical containing `I ⊓ J`.
+@isnad1 id=initial.0h3v.s6.51812e8c41d7 from=translated src=- shape=ebae90eb vocab=30a1633c
+-/
 instance idealInfPowersToSelfLERadical_initial (I J : Ideal R) :
     Functor.Initial (idealInfPowersToSelfLERadical I J) where
   out K := by
@@ -122,7 +126,9 @@ instance idealInfPowersToSelfLERadical_initial (I J : Ideal R) :
         exact ⟨CostructuredArrow.homMk (homOfLE h).op rfl⟩
 
 /-- The simultaneous supremum-power diagram is initial in the full category
-of ideals with radical containing `I ⊔ J`.-/
+of ideals with radical containing `I ⊔ J`.
+@isnad1 id=initial.0h3v.s7.4d5e045eb209 from=translated src=- shape=ebae90eb vocab=a5d69fe0
+-/
 instance idealSupPowersToSelfLERadical_initial (I J : Ideal R) :
     Functor.Initial (idealSupPowersToSelfLERadical I J) where
   out K := by

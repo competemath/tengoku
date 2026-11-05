@@ -74,6 +74,9 @@ def iteratedLocalRootCoverParameterList
     (rs : List A) : List (iteratedRadical A r n a) :=
   (iteratedLocalRootCoverConstructionList A n a rs).reverse
 
+/--
+@isnad1 id=eq.0h4v.s5.cf50b38aa79f from=translated src=- shape=d80b8fb1 vocab=428145f7
+-/
 @[simp]
 theorem iteratedLocalRootCoverRoots_length
     (A : Type u) [CommRing A] {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A) :
@@ -91,6 +94,9 @@ theorem iteratedLocalRootCoverRoots_length
         ih (Fin.init n) (Fin.init a)]
       rw [List.length_singleton]
 
+/--
+@isnad1 id=eq.0h5v.s5.acbbd8ef7e50 from=translated src=- shape=024447f0 vocab=3e14d842
+-/
 @[simp]
 theorem iteratedLocalRootCoverParameterList_length
     (A : Type u) [CommRing A] {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A)

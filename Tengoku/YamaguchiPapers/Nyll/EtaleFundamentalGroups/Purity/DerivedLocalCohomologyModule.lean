@@ -33,7 +33,9 @@ universe u
 
 variable {R : Type u} [CommRing R]
 
-/-- Scalar endomorphisms of derived local cohomology respect addition.-/
+/-- Scalar endomorphisms of derived local cohomology respect addition.
+@isnad1 id=eq.0h6v.s7.a5c430db0384 from=translated src=- shape=57ca1d71 vocab=3f0df9be
+-/
 theorem derivedLocalCohomologyScalarMap_add
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) (a b : R) :
     derivedLocalCohomologyScalarMap I M i (a + b) =
@@ -65,7 +67,9 @@ theorem derivedLocalCohomologyScalarMap_add
               (derivedLocalCohomologyScalarMap_ι_apply I M i a n α).symm
               (derivedLocalCohomologyScalarMap_ι_apply I M i b n α).symm)))
 
-/-- The zero scalar induces the zero endomorphism.-/
+/-- The zero scalar induces the zero endomorphism.
+@isnad1 id=eq.0h4v.s6.3e9a129c5b13 from=translated src=- shape=922c3f5d vocab=d12d7899
+-/
 theorem derivedLocalCohomologyScalarMap_zero
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) :
     derivedLocalCohomologyScalarMap I M i 0 = 0 := by
@@ -113,7 +117,9 @@ def derivedLocalCohomologyModule
   exact ModuleCat.of R (derivedLocalCohomology I M i)
 
 /-- Forgetting the module action recovers the original additive-group
-colimit, including its existing additive-group structure.-/
+colimit, including its existing additive-group structure.
+@isnad1 id=eq.0h4v.s8.601fdceddfdc from=translated src=- shape=4a4e9c66 vocab=abf1f7d3
+-/
 theorem derivedLocalCohomologyModule_forget
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) :
     (forget₂ (ModuleCat.{u} R) AddCommGrpCat.{u}).obj
@@ -122,7 +128,9 @@ theorem derivedLocalCohomologyModule_forget
   rfl
 
 /-- Scalar multiplication in the bundled module is the previously
-constructed colimit endomorphism.-/
+constructed colimit endomorphism.
+@isnad1 id=eq.0h6v.s9.1079b7483e11 from=translated src=- shape=b2a07640 vocab=9c5d6f58
+-/
 theorem derivedLocalCohomologyModule_smul
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) (a : R)
     (z : derivedLocalCohomologyModule I M i) :
@@ -151,7 +159,9 @@ def derivedLocalCohomologyModuleι
     exact (derivedLocalCohomologyScalarMap_ι_apply I M i a n α).symm
 
 /-- Every class in the local-cohomology module is annihilated by every
-member of some power of the support ideal.-/
+member of some power of the support ideal.
+@isnad1 id=ex.0h5v.s9.719df8573d22 from=translated src=- shape=1aa764f8 vocab=1452131f
+-/
 theorem derivedLocalCohomologyModule_exists_idealPower_smul_eq_zero
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
     (z : derivedLocalCohomologyModule I M i) :

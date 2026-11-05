@@ -49,7 +49,9 @@ def iteratedRadical (A : Type u) [CommRing A] :
 
 /-- A finite positive iterated radical is finite over its original base.
 The finite-module structures are installed only along the induction, so
-consumers do not ask typeclass search to unfold the recursive presentation.-/
+consumers do not ask typeclass search to unfold the recursive presentation.
+@isnad1 id=finite.1h4v.s7.0f5cc67aac27 from=translated src=- shape=f4532fbf vocab=bc56798e
+-/
 theorem finite_iteratedRadical
     {A : Type u} [CommRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A)
@@ -77,7 +79,9 @@ theorem finite_iteratedRadical
 
 The proof composes the canonical monic `AdjoinRoot` bases one stage at a
 time.  Keeping this as a named producer prevents completion consumers from
-asking typeclass search to unfold the recursive ring presentation.-/
+asking typeclass search to unfold the recursive ring presentation.
+@isnad1 id=free.1h4v.s7.bb9cd8ce85f0 from=translated src=- shape=f4532fbf vocab=24868526
+-/
 theorem free_iteratedRadical
     {A : Type u} [CommRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A)
@@ -104,7 +108,9 @@ theorem free_iteratedRadical
 /--
 A positive-degree finite iterated radical is faithfully flat over its
 original base.  At each step, monicity gives a free extension; faithful
-flatness is then composed through the canonical scalar tower.-/
+flatness is then composed through the canonical scalar tower.
+@isnad1 id=faithful.1h4v.s7.901ade3218ce from=translated src=- shape=a7d73489 vocab=c8577ba2
+-/
 theorem faithfullyFlat_iteratedRadical
     {A : Type u} [CommRing A] [Nontrivial A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A)
@@ -131,7 +137,9 @@ theorem faithfullyFlat_iteratedRadical
 
 /--
 If a finite diagonal iterated Kummer radical is formally unramified over its
-base, then every exponent is a unit in that base.-/
+base, then every exponent is a unit in that base.
+@isnad1 id=isunit.1h5v.s6.8ecd0ecc91e9 from=translated src=- shape=0a44c1ba vocab=de874da3
+-/
 theorem all_exponents_isUnit_of_formallyUnramified_iteratedRadical
     {A : Type u} [CommRing A] [Nontrivial A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A)

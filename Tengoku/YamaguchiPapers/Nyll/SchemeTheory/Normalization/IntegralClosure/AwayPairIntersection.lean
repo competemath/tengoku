@@ -34,7 +34,9 @@ open nonZeroDivisors
 universe u v w
 
 /-- Integrality over `A` is detected by the two principal localizations at a
-prime `x` and at an element `y` not divisible by `x`.-/
+prime `x` and at an element `y` not divisible by `x`.
+@isnad1 id=isintegr.3h8v.s8.371a2a1cb2c2 from=translated src=- shape=ec0830b6 vocab=289605cb
+-/
 theorem isIntegral_of_isIntegral_localizationAway_pair_of_prime
     {A : Type u} {K : Type v} {L : Type w}
     [CommRing A] [IsDomain A] [IsIntegrallyClosed A]

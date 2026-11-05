@@ -40,7 +40,9 @@ def arithmeticConstantsTensorToNormalDomain (g : K →ₐ[ℚ] L) :
     (ringOfIntegersToNormalDomain A K L g) (fun _ _ ↦ Commute.all _ _)
 
 /-- The constant-extension map is dominant, as witnessed by injectivity
-of its coordinate ring homomorphism.-/
+of its coordinate ring homomorphism.
+@isnad1 id=injectiv.0h6v.s9.f074ee98a624 from=translated src=- shape=87b454f5 vocab=5a1cf2d6
+-/
 theorem arithmeticConstantsTensorToNormalDomain_injective
     [FaithfulSMul B A] [IsDomain (F ⊗[ℚ] K)]
     (g : K →ₐ[ℚ] L) :
@@ -78,7 +80,9 @@ theorem arithmeticConstantsTensorToNormalDomain_injective
   apply hi
   exact congrArg a hxy
 
-/-- A finite cover is surjective onto its integral constant extension.-/
+/-- A finite cover is surjective onto its integral constant extension.
+@isnad1 id=surjecti.0h6v.s9.1180697ba49e from=translated src=- shape=345c39c8 vocab=15bf1e0d
+-/
 theorem arithmeticConstantsTensorToNormalDomain_comap_surjective
     [FaithfulSMul B A] [Module.Finite B A]
     [IsDomain (F ⊗[ℚ] K)] (g : K →ₐ[ℚ] L) :

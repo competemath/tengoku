@@ -42,7 +42,9 @@ extracted from the given prime; neither is supplied as auxiliary data.
 The computation on algebra maps records that this is the literal evaluation
 map.  It is the local form of `PrimeSpectrum.exists_comap_evalRingHom_eq`
 needed when a generic tensor product is decomposed into its field
-components.-/
+components.
+@isnad1 id=ex.0h3v.s12.c9a58320d41a from=translated src=- shape=834d60f2 vocab=dd76aed2
+-/
 theorem exists_localizationAtPrime_pi_factor_ringEquiv
     {I : Type uI} [Finite I]
     (A : I → Type uA) [∀ i, CommRing (A i)]
@@ -78,7 +80,9 @@ theorem exists_localizationAtPrime_pi_factor_ringEquiv
 
 /-- Algebra-linear form of
 `exists_localizationAtPrime_pi_factor_ringEquiv`.  The algebra structures on
-the product and the selected factor are the canonical coordinatewise ones.-/
+the product and the selected factor are the canonical coordinatewise ones.
+@isnad1 id=ex.0h4v.s9.0a0321265ac6 from=translated src=- shape=6bd9ca12 vocab=0cd16b5e
+-/
 theorem exists_localizationAtPrime_pi_factor_algEquiv
     {R : Type uBase} [CommRing R]
     {I : Type uI} [Finite I]
@@ -110,7 +114,9 @@ comes from one actual residue-field component of that algebra.
 
 Both the component and the prime in its normalization are extracted from the
 given prime.  This is the normalization-level coordinate producer used after
-smooth base change of the Tag 00UJ tensor product.-/
+smooth base change of the Tag 00UJ tensor product.
+@isnad1 id=ex.0h3v.s13.3d1b859184fe from=translated src=- shape=9112bb17 vocab=598d9dec
+-/
 theorem
     exists_integralClosure_artinianComponent_localizationAtPrime_algEquiv
     {B : Type uB} {G : Type uG}
@@ -160,7 +166,9 @@ noncomputable def etaleChosenAwayPrime
   P'.map (algebraMap (TensorProduct R C S) (Localization.Away e))
 
 /-- A Tag prime avoiding the chosen idempotent remains prime in the Away
-factor.-/
+factor.
+@isnad1 id=isprime.1h5v.s10.262d1107524a from=translated src=- shape=64176743 vocab=ceaf84ba
+-/
 theorem etaleChosenAwayPrime_isPrime
     (e : TensorProduct R C S)
     (P' : Ideal (TensorProduct R C S)) [P'.IsPrime]
@@ -176,7 +184,9 @@ theorem etaleChosenAwayPrime_isPrime
   exact IsLocalization.isPrime_of_isPrime_disjoint
     (.powers e) D P' inferInstance hdisj
 
-/-- The prime in the Away factor contracts to the original Tag prime.-/
+/-- The prime in the Away factor contracts to the original Tag prime.
+@isnad1 id=liesover.1h5v.s10.e33955cfdcb7 from=translated src=- shape=091764d1 vocab=9062c488
+-/
 theorem etaleChosenAwayPrime_liesOver
     (e : TensorProduct R C S)
     (P' : Ideal (TensorProduct R C S)) [P'.IsPrime]
@@ -192,7 +202,9 @@ theorem etaleChosenAwayPrime_liesOver
     (.powers e) D hdisj
 
 /-- Tag uniqueness before localization is exactly uniqueness of the prime
-over the pointed base prime in the idempotent Away factor.-/
+over the pointed base prime in the idempotent Away factor.
+@isnad1 id=eq.2h6v.s12.14e1495acf79 from=translated src=- shape=99fb0321 vocab=429301f7
+-/
 theorem etaleChosenAway_primesOver_eq_singleton
     (P : Ideal C) [P.IsPrime]
     (e : TensorProduct R C S)
@@ -239,7 +251,9 @@ theorem etaleChosenAway_primesOver_eq_singleton
 
 /-- The chosen prime-local factor is finite over the pointed localization.
 This is the non-Henselian finiteness step: the singleton fibre, rather than
-Hensel's lemma, is what makes localization preserve module finiteness.-/
+Hensel's lemma, is what makes localization preserve module finiteness.
+@isnad1 id=other.3h6v.s13.f2f9e8bcae53 from=translated src=- shape=706e835a vocab=20d49c97
+-/
 theorem moduleFinite_etaleChosenAway_localizationAtPrime
     (P : Ideal C) [P.IsPrime]
     (e : TensorProduct R C S)
@@ -321,7 +335,9 @@ noncomputable def etaleChosenLocalFactorToIntegralClosureAlgHom
       (by rfl) (Algebra.IsIntegral.isIntegral x)
 
 /-- The canonical local-factor map to the normalization in its total fraction
-ring is injective.-/
+ring is injective.
+@isnad1 id=other.3h6v.s21.87d1445c5132 from=translated src=- shape=1f97dded vocab=f8cc1507
+-/
 theorem etaleChosenLocalFactorToIntegralClosureAlgHom_injective
     (P : Ideal C) [P.IsPrime]
     (e : TensorProduct R C S)
@@ -414,7 +430,9 @@ noncomputable def etaleChosenPointedTensorPrime
   P'.map (etaleChosenPointedTensorBaseChangeAlgHom
     (R := R) (S := S) P).toRingHom
 
-/-- The actual Tag prime remains prime after pointed-base localization.-/
+/-- The actual Tag prime remains prime after pointed-base localization.
+@isnad1 id=isprime.0h5v.s9.9e1faeba1642 from=translated src=- shape=0f2db793 vocab=8a07d8ba
+-/
 theorem etaleChosenPointedTensorPrime_isPrime
     (P : Ideal C) [P.IsPrime]
     (P' : Ideal (C ⊗[R] S)) [P'.IsPrime] [P'.LiesOver P] :
@@ -447,7 +465,9 @@ theorem etaleChosenPointedTensorPrime_isPrime
     (Algebra.algebraMapSubmonoid T P.primeCompl) BS P'
     inferInstance (Ideal.disjoint_primeCompl_of_liesOver P' P)
 
-/-- The pointed-base Tag prime contracts to the original Tag prime.-/
+/-- The pointed-base Tag prime contracts to the original Tag prime.
+@isnad1 id=eq.0h5v.s11.8c33b43a7053 from=translated src=- shape=ee4825ff vocab=8b22e141
+-/
 theorem etaleChosenPointedTensorPrime_comap
     (P : Ideal C) [P.IsPrime]
     (P' : Ideal (C ⊗[R] S)) [P'.IsPrime] [P'.LiesOver P] :
@@ -726,7 +746,9 @@ the Tag tensor product with the normalization in its generic algebra.  That
 generic algebra is a reduced Artinian algebra over `L`; hence the transported
 Tag prime canonically selects one literal maximal-ideal quotient field and a
 prime in its normalization.  The resulting local ring is the original Tag
-local factor, as an algebra over the pointed local base.-/
+local factor, as an algebra over the pointed local base.
+@isnad1 id=other.1h6v.s17.a8af6d447a98 from=translated src=- shape=2a83e584 vocab=0602c4c3
+-/
 theorem
     exists_etaleChosenLocalFactor_finiteGenericFiberComponent_algEquiv
     [Algebra.Etale R C]

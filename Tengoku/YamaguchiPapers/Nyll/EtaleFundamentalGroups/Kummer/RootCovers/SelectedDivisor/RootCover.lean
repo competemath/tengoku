@@ -41,7 +41,9 @@ open RingTheory.Sequence
 universe u
 
 /-- Modding out the second member of a regular parameter pair leaves the first
-member regular and generating the quotient maximal ideal.-/
+member regular and generating the quotient maximal ideal.
+@isnad1 id=other.2h3v.s9.c54ec8b87bfb from=translated src=- shape=5918b11c vocab=c858aa62
+-/
 theorem regular_quotient_parameter_of_regular_pair
     {R : Type u} [CommRing R] [IsDomain R] [IsLocalRing R]
     [IsNoetherianRing R]

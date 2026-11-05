@@ -49,6 +49,9 @@ def affineMorphismAlgEquiv (f : A ⟶ Spec (.of R)) (sigma : A ≅ A)
     (fun k => (Scheme.ΓSpecIso (.of R)).inv ≫ k) h
   exact ConcreteCategory.congr_hom h' r
 
+/--
+@isnad1 id=other.1h4v.s12.4e6d847bd093 from=translated src=- shape=e51d84e0 vocab=718f7876
+-/
 theorem affineMorphismAlgEquiv_toRingHom (f : A ⟶ Spec (.of R))
     (sigma : A ≅ A) (hsigma : sigma.hom ≫ f = f) :
     let : Algebra R Γ(A, ⊤) := affineMorphismAlgebra R f
@@ -59,7 +62,9 @@ theorem affineMorphismAlgEquiv_toRingHom (f : A ⟶ Spec (.of R))
 variable [IsAffine A]
 
 /-- The affine coordinate structure map is the actual morphism, expressed
-through the canonical source isomorphism.-/
+through the canonical source isomorphism.
+@isnad1 id=other.0h3v.s11.9d0570f64104 from=translated src=- shape=3e92470d vocab=5c9373bb
+-/
 theorem isoSpec_affineMorphismAlgebra (f : A ⟶ Spec (.of R)) :
     let : Algebra R Γ(A, ⊤) := affineMorphismAlgebra R f
     A.isoSpec.hom ≫ Spec.map (CommRingCat.ofHom (algebraMap R Γ(A, ⊤))) = f := by
@@ -81,7 +86,9 @@ def affineMorphismNormalizationIso (f : A ⟶ Spec (.of R))
     A.isoSpec (isoSpec_affineMorphismAlgebra R f)
 
 /-- Passing from an affine cover to its coordinate ring preserves the exact
-normalization-point stabilizer of every actual deck transformation.-/
+normalization-point stabilizer of every actual deck transformation.
+@isnad1 id=other.1h6v.s14.a1dd195eaf05 from=translated src=- shape=63cb554f vocab=f25d5fd2
+-/
 theorem affineMorphismNormalizationIso_fixes_iff
     (f : A ⟶ Spec (.of R)) [QuasiCompact f] [QuasiSeparated f]
     (sigma : A ≅ A) (hsigma : sigma.hom ≫ f = f)

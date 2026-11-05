@@ -35,7 +35,9 @@ The radicand may be any element of `T`; no unit or descent hypothesis on it
 is needed for this direction.
 
 Taking `T` to be the algebra obtained from all preceding radicals gives the
-last-exponent step for an iterated Kummer construction.-/
+last-exponent step for an iterated Kummer construction.
+@isnad1 id=isunit.1h4v.s9.f8b920df4256 from=translated src=- shape=517df8d4 vocab=b64b6a57
+-/
 theorem isUnit_natCast_of_formallyUnramified_relativeRadical
     {A : Type u} {T : Type v}
     [CommRing A] [CommRing T] [Algebra A T]

@@ -36,7 +36,9 @@ universe u
 ring with separably closed residue field is bijective.
 
 `FaithfulSMul R S` is the injectivity input naturally available for the
-finite normalization factors used in the one-point inertia argument.-/
+finite normalization factors used in the one-point inertia argument.
+@isnad1 id=bijectiv.0h2v.s7.a55c620c3d8f from=translated src=- shape=878e9832 vocab=0b458953
+-/
 theorem algebraMap_bijective_of_henselian_of_isSepClosed_residue_of_finiteEtale_local
     {R S : Type u} [CommRing R] [CommRing S]
     [Algebra R S] [HenselianLocalRing R] [IsLocalRing S]

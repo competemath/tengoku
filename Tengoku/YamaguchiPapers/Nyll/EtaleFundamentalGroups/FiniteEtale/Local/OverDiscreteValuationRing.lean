@@ -33,7 +33,9 @@ universe u v
 valuation ring is a discrete valuation ring.  These are exactly the pieces
 of etaleness used by the proof; this form remains applicable to arbitrary
 prime localizations, whose map need not itself be presented as an `Etale`
-instance.-/
+instance.
+@isnad1 id=ex.0h2v.s7.db18d0ce9f58 from=translated src=- shape=07db4d21 vocab=e2977962
+-/
 theorem
     isDiscreteValuationRing_of_flat_of_formallyUnramified_of_isLocalHom
     {V : Type u} {C : Type v}
@@ -99,7 +101,9 @@ theorem
 
 /-- A prime localization of an etale algebra over a discrete valuation ring
 is a discrete valuation ring whenever the prime lies over the closed point.
-The localized algebra need not be module-finite over the base.-/
+The localized algebra need not be module-finite over the base.
+@isnad1 id=ex.0h3v.s7.d515ee3abd75 from=translated src=- shape=698ef554 vocab=4987989c
+-/
 theorem
     exists_isDiscreteValuationRing_localizationAtPrime_of_etale_liesOver_maximalIdeal
     {V : Type u} {E : Type v}
@@ -135,7 +139,9 @@ theorem
       (V := V) (C := C)
 
 /-- A local etale algebra over a discrete valuation ring is a discrete
-valuation ring.  No module-finiteness of the target is required.-/
+valuation ring.  No module-finiteness of the target is required.
+@isnad1 id=ex.0h2v.s7.2c5d30808e07 from=translated src=- shape=60d3a616 vocab=cceaed54
+-/
 theorem isDiscreteValuationRing_of_etale_of_isLocalHom
     {V : Type u} {C : Type v}
     [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]

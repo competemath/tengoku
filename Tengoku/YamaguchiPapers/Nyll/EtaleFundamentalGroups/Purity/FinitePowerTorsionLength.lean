@@ -32,7 +32,9 @@ variable {R : Type u} [CommRing R]
 variable {M : Type v} [AddCommGroup M] [Module R M]
 
 /-- Elementwise ideal-power torsion on a finite module has a uniform
-annihilating exponent.-/
+annihilating exponent.
+@isnad1 id=ex.1h3v.s8.b4ef4e1a553e from=translated src=- shape=c33a9a5b vocab=a471e594
+-/
 theorem exists_ideal_pow_le_annihilator_of_finite
     [Module.Finite R M] (I : Ideal R)
     (hM : ∀ z : M, ∃ n : ℕ, ∀ a ∈ I ^ n, a • z = 0) :
@@ -54,7 +56,9 @@ theorem exists_ideal_pow_le_annihilator_of_finite
   exact hspan (Submodule.mem_top : z ∈ (⊤ : Submodule R M))
 
 /-- A finite module whose elements are killed by powers of the maximal
-ideal of a Noetherian local ring has finite length.-/
+ideal of a Noetherian local ring has finite length.
+@isnad1 id=isfinite.1h2v.s7.d41e1b4b936e from=translated src=- shape=88422048 vocab=b2b65a4b
+-/
 theorem isFiniteLength_of_finite_of_maximalIdealPower_torsion
     [IsLocalRing R] [IsNoetherianRing R] [Module.Finite R M]
     (hM : ∀ z : M, ∃ n : ℕ,

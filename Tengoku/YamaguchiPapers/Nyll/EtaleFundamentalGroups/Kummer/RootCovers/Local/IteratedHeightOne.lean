@@ -50,7 +50,9 @@ def iteratedRadicalRoot
         (fun j ↦ AdjoinRoot.of f
           (iteratedRadicalRoot A (Fin.init n) (Fin.init a) j)) i
 
-/-- The last distinguished root is the root of the final adjunction.-/
+/-- The last distinguished root is the root of the final adjunction.
+@isnad1 id=eq.0h4v.s12.39ea59a3e303 from=translated src=- shape=8dc8c7bd vocab=83e0c81f
+-/
 theorem iteratedRadicalRoot_last {A : Type u} [CommRing A] {r : ℕ}
     (n : Fin (r + 1) → ℕ) (a : Fin (r + 1) → A) :
     iteratedRadicalRoot A n a (Fin.last r) =
@@ -63,7 +65,9 @@ theorem iteratedRadicalRoot_last {A : Type u} [CommRing A] {r : ℕ}
     (fun k => AdjoinRoot.of p (iteratedRadicalRoot A (Fin.init n) (Fin.init a) k))
     (Fin.last r) = AdjoinRoot.root p
   exact Fin.lastCases_last
-/-- Earlier distinguished roots enter the final adjunction through its canonical map.-/
+/-- Earlier distinguished roots enter the final adjunction through its canonical map.
+@isnad1 id=eq.0h5v.s16.4af74d619bd3 from=translated src=- shape=ace0fc61 vocab=5c5f03cb
+-/
 theorem iteratedRadicalRoot_castSucc {A : Type u} [CommRing A] {r : ℕ}
     (n : Fin (r + 1) → ℕ) (a : Fin (r + 1) → A) (j : Fin r) :
     iteratedRadicalRoot A n a j.castSucc =
@@ -79,7 +83,9 @@ theorem iteratedRadicalRoot_castSucc {A : Type u} [CommRing A] {r : ℕ}
   exact Fin.lastCases_castSucc j
 
 /-- Each indexed root satisfies its original diagonal Kummer equation in the
-final iterated radical.-/
+final iterated radical.
+@isnad1 id=eq.0h5v.s10.2e67a1c69681 from=translated src=- shape=ea5aab9e vocab=98cefc7b
+-/
 theorem iteratedRadicalRoot_pow
     {A : Type u} [CommRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A) (i : Fin r) :
@@ -110,7 +116,9 @@ theorem iteratedRadicalRoot_pow
         rfl
 
 /-- The product of the base radicands becomes the product of the corresponding
-root powers in the final iterated cover.-/
+root powers in the final iterated cover.
+@isnad1 id=eq.0h4v.s10.423f1d0b7be7 from=translated src=- shape=647f9777 vocab=738f7763
+-/
 theorem algebraMap_prod_radicands_eq_prod_iteratedRadicalRoot_pow
     {A : Type u} [CommRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A) :
@@ -122,7 +130,9 @@ theorem algebraMap_prod_radicands_eq_prod_iteratedRadicalRoot_pow
 
 /-- A prime avoiding every adjoined root is disjoint from the powers of the
 full boundary product.  Thus it defines a prime on the boundary-complement
-Away localization.-/
+Away localization.
+@isnad1 id=disjoint.1h5v.s10.5b120bb30898 from=translated src=- shape=52f9942a vocab=c5d2ef01
+-/
 theorem disjoint_powers_prod_radicands_of_iteratedRadicalRoots_not_mem
     {A : Type u} [CommRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A)
@@ -142,7 +152,9 @@ theorem disjoint_powers_prod_radicands_of_iteratedRadicalRoots_not_mem
   exact havoid i ((inferInstance : q.IsPrime).mem_of_pow_mem (n i) hpow)
 
 /-- The explicit prime on the Away localization supplied by a height-one
-prime which misses every root.-/
+prime which misses every root.
+@isnad1 id=isprime.1h5v.s14.53dac40ff561 from=translated src=- shape=9f256f53 vocab=0fcc3c60
+-/
 theorem map_to_away_prod_radicands_isPrime_of_iteratedRadicalRoots_not_mem
     {A : Type u} [CommRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A)
@@ -162,7 +174,9 @@ theorem map_to_away_prod_radicands_isPrime_of_iteratedRadicalRoots_not_mem
 
 /-- A height-one prime meeting the `i`-th root contracts to the corresponding
 prime boundary branch in the base.  The contraction equality is produced
-from faithful flatness and going down; it is not an input hypothesis.-/
+from faithful flatness and going down; it is not an input hypothesis.
+@isnad1 id=eq.4h6v.s8.dc1e9ca3d3e0 from=translated src=- shape=6754590d vocab=c2101be7
+-/
 theorem under_eq_span_radicand_of_height_eq_one_of_iteratedRadicalRoot_mem
     {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A)
@@ -205,7 +219,9 @@ root, then the exponent `n i` divides its ramification index over the original
 base.  Flatness makes the base radicand regular on the cover, hence its root is
 regular as well.  Additivity of order of vanishing then computes the quotient
 length of the root power.  In particular, the root is not assumed prime or a
-uniformizer.-/
+uniformizer.
+@isnad1 id=dvd.4h6v.s8.86edabadc430 from=translated src=- shape=689b2714 vocab=935d8378
+-/
 theorem exponent_dvd_ramificationIdx_of_height_eq_one_of_iteratedRadicalRoot_mem
     {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A)
@@ -265,7 +281,9 @@ theorem exponent_dvd_ramificationIdx_of_height_eq_one_of_iteratedRadicalRoot_mem
 /-- Every height-one prime of the positive iterated root cover either extends
 to the full boundary-complement Away localization, or meets a labelled root;
 in the latter case its base contraction and the resulting ramification-index
-divisibility are both produced by the construction.-/
+divisibility are both produced by the construction.
+@isnad1 id=or.3h5v.s10.6735f65fd095 from=translated src=- shape=48a774b1 vocab=60f5ff2d
+-/
 theorem heightOnePrime_away_or_exists_branch_under_eq_and_exponent_dvd
     {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A)

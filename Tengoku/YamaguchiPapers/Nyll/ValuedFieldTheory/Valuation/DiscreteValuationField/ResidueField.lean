@@ -32,7 +32,9 @@ section LocalRing
 
 variable [CommRing R] [IsLocalRing R]
 
-/-- Equality in the residue field is equality modulo the maximal ideal.-/
+/-- Equality in the residue field is equality modulo the maximal ideal.
+@isnad1 id=iff.0h3v.s8.9c9ac7280400 from=translated src=- shape=553f29f6 vocab=575e4663
+-/
 theorem residue_eq_residue_iff_sub_mem_maximalIdeal (x y : R) :
     IsLocalRing.residue R x = IsLocalRing.residue R y ↔
       x - y ∈ IsLocalRing.maximalIdeal R := by
@@ -53,12 +55,16 @@ variable [CommRing R] [IsLocalRing R] [CommRing S] [IsLocalRing S]
 variable (f : R →+* S) [IsLocalHom f]
 
 /-- A local homomorphism pulls back the target maximal ideal to the source
-maximal ideal.-/
+maximal ideal.
+@isnad1 id=eq.0h3v.s7.eeebfaf2aa94 from=translated src=- shape=f0bd6817 vocab=b094da4a
+-/
 theorem comap_maximalIdeal_eq :
     (IsLocalRing.maximalIdeal S).comap f = IsLocalRing.maximalIdeal R :=
   IsLocalRing.maximalIdeal_comap f
 
-/-- A local homomorphism induces an injective map on residue fields.-/
+/-- A local homomorphism induces an injective map on residue fields.
+@isnad1 id=injectiv.0h3v.s7.1458658fca09 from=translated src=- shape=6182662a vocab=1f4489a6
+-/
 theorem map_injective :
     Function.Injective (IsLocalRing.ResidueField.map f) := by
   intro x y hxy
@@ -75,7 +81,9 @@ theorem map_injective :
   have hpre : r - s ∈ (IsLocalRing.maximalIdeal S).comap f := hsubS
   rwa [comap_maximalIdeal_eq f] at hpre
 
-/-- A residue-field map induced by a local homomorphism has trivial kernel.-/
+/-- A residue-field map induced by a local homomorphism has trivial kernel.
+@isnad1 id=iff.0h4v.s8.73f92e12089c from=translated src=- shape=527132d3 vocab=a6fd8c83
+-/
 theorem map_eq_zero_iff (x : IsLocalRing.ResidueField R) :
     IsLocalRing.ResidueField.map f x = 0 ↔ x = 0 := by
   constructor
@@ -92,7 +100,9 @@ noncomputable def ringEquivOfSurjective
   RingEquiv.ofBijective (IsLocalRing.ResidueField.map f)
     ⟨map_injective f, hsurj⟩
 
-/-- The residue-ring equivalence induced by a surjective map evaluates by that map.-/
+/-- The residue-ring equivalence induced by a surjective map evaluates by that map.
+@isnad1 id=eq.1h4v.s9.51ef37f438d0 from=translated src=- shape=6ed24566 vocab=219ad544
+-/
 @[simp]
 theorem ringEquivOfSurjective_apply
     (hsurj : Function.Surjective (IsLocalRing.ResidueField.map f))
@@ -109,7 +119,9 @@ variable [CommRing R] [IsLocalRing R] [CommRing S] [IsLocalRing S]
 variable [Algebra R S] [IsLocalHom (algebraMap R S)]
 
 /-- For a local algebra map, mathlib's residue-field algebra map agrees with
-the residue-field map induced by the structure homomorphism.-/
+the residue-field map induced by the structure homomorphism.
+@isnad1 id=eq.0h2v.s7.ab71859bc61a from=translated src=- shape=0c35a7c1 vocab=8bb62ede
+-/
 theorem algebraMap_eq_map_algebraMap :
     algebraMap (IsLocalRing.ResidueField R)
         (IsLocalRing.ResidueField S) =
@@ -119,7 +131,9 @@ theorem algebraMap_eq_map_algebraMap :
   simp [IsLocalRing.ResidueField.map_residue,
     IsLocalRing.ResidueField.algebraMap_residue]
 
-/-- The residue-field map induced by a local algebra map is injective.-/
+/-- The residue-field map induced by a local algebra map is injective.
+@isnad1 id=injectiv.0h2v.s8.38998bb93f9b from=translated src=- shape=72bcbe37 vocab=3a9a54b5
+-/
 theorem map_algebraMap_injective :
     Function.Injective
       (IsLocalRing.ResidueField.map (algebraMap R S)) :=
@@ -153,7 +167,9 @@ noncomputable def algEquivOfAlgEquiv
           IsLocalRing.ResidueField.map_residue, e.commutes t] }
 
 /-- The residue-field equivalence induced by an algebra equivalence acts through
-residue representatives.-/
+residue representatives.
+@isnad1 id=eq.0h5v.s9.005a5a5624ad from=translated src=- shape=c1683fbf vocab=2d354ca4
+-/
 @[simp]
 theorem algEquivOfAlgEquiv_apply
     (e : R ≃ₐ[T] S)
@@ -162,7 +178,9 @@ theorem algEquivOfAlgEquiv_apply
       IsLocalRing.ResidueField.map e.toRingEquiv x :=
   rfl
 
-/-- The inverse induced residue equivalence agrees with the inverse quotient-map equivalence.-/
+/-- The inverse induced residue equivalence agrees with the inverse quotient-map equivalence.
+@isnad1 id=eq.0h5v.s9.0752a435eaf6 from=translated src=- shape=dc2a2dc2 vocab=7a98eea6
+-/
 theorem algEquivOfAlgEquiv_symm_apply_eq_mapEquiv
     (e : R ≃ₐ[T] S)
     (x : IsLocalRing.ResidueField S) :
@@ -171,7 +189,9 @@ theorem algEquivOfAlgEquiv_symm_apply_eq_mapEquiv
   rfl
 
 /-- The induced residue equivalence sends the residue of an integral element to
-its transported residue.-/
+its transported residue.
+@isnad1 id=eq.0h5v.s9.b0998a5c9a48 from=translated src=- shape=a98876de vocab=1710526a
+-/
 @[simp]
 theorem algEquivOfAlgEquiv_apply_residue
     (e : R ≃ₐ[T] S) (x : R) :
@@ -184,7 +204,9 @@ theorem algEquivOfAlgEquiv_apply_residue
   rfl
 
 /-- The inverse induced residue equivalence sends residues back along the inverse
-algebra equivalence.-/
+algebra equivalence.
+@isnad1 id=eq.0h5v.s9.02d12c15d2db from=translated src=- shape=1bab2118 vocab=2c746c58
+-/
 @[simp]
 theorem algEquivOfAlgEquiv_symm_apply_residue
     (e : R ≃ₐ[T] S) (x : S) :
@@ -197,7 +219,9 @@ theorem algEquivOfAlgEquiv_symm_apply_residue
       (IsLocalRing.residue S x) = IsLocalRing.residue R (e.symm x)
   rfl
 
-/-- Passing to residue fields commutes with inversion of algebra equivalences.-/
+/-- Passing to residue fields commutes with inversion of algebra equivalences.
+@isnad1 id=eq.0h4v.s8.242eba5ff38c from=translated src=- shape=99178d05 vocab=6ced865a
+-/
 @[simp]
 theorem algEquivOfAlgEquiv_symm
     (e : R ≃ₐ[T] S) :
@@ -205,7 +229,9 @@ theorem algEquivOfAlgEquiv_symm
   ext x
   rfl
 
-/-- The identity algebra equivalence induces the identity on residue fields.-/
+/-- The identity algebra equivalence induces the identity on residue fields.
+@isnad1 id=eq.0h2v.s8.28a3727de9e2 from=translated src=- shape=ac5db100 vocab=8018f0a3
+-/
 @[simp]
 theorem algEquivOfAlgEquiv_refl :
     algEquivOfAlgEquiv (AlgEquiv.refl : R ≃ₐ[T] R) =
@@ -215,7 +241,9 @@ theorem algEquivOfAlgEquiv_refl :
   ext x
   simp [algEquivOfAlgEquiv]
 
-/-- Residue-field equivalences respect composition of algebra equivalences.-/
+/-- Residue-field equivalences respect composition of algebra equivalences.
+@isnad1 id=eq.0h6v.s9.5a10baceff89 from=translated src=- shape=73b71e84 vocab=e9320e51
+-/
 @[simp]
 theorem algEquivOfAlgEquiv_trans
     {U : Type*} [CommRing U] [IsLocalRing U] [Algebra T U]

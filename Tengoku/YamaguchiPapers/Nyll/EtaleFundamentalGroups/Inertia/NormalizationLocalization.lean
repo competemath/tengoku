@@ -39,7 +39,9 @@ namespace EtaleFundamentalGroups.Inertia
 universe u
 
 /-- The canonical affine normalization isomorphism also intertwines the maps
-to the base.  This follows from the actual integral-closure inclusion.-/
+to the base.  This follows from the actual integral-closure inclusion.
+@isnad1 id=eq.0h2v.s9.9a36f4de9600 from=translated src=- shape=bf71f72a vocab=9a05f562
+-/
 @[reassoc]
 theorem specNormalizationIso_hom_structureMap
     (R B : Type u) [CommRing R] [CommRing B] [Algebra R B] :
@@ -79,7 +81,9 @@ variable [IsLocalization (Algebra.algebraMapSubmonoid B M) Bm]
 include M
 /-- Integral closure gives a literal pushout square after localizing the base.
 The algebra structure on the target closure is constructed from the displayed
-map, and its scalar-tower laws are proved from that map.-/
+map, and its scalar-tower laws are proved from that map.
+@isnad1 id=ispushou.0h5v.s9.37c98fbeb106 from=translated src=- shape=f9544189 vocab=0e8fb0d4
+-/
 theorem integralClosureLocalization_isPushout :
     IsPushout
       (CommRingCat.ofHom (algebraMap R (integralClosure R B)))
@@ -111,7 +115,9 @@ def affineNormalizationLocalizationMap :
       (specNormalizationIso R B).inv
 
 /-- The comparison is the canonical extension of the original localization
-map, as witnessed by its composite with the normalization maps.-/
+map, as witnessed by its composite with the normalization maps.
+@isnad1 id=eq.0h4v.s8.79d9bd38beb1 from=translated src=- shape=71527323 vocab=cc84e314
+-/
 @[reassoc]
 theorem toNormalization_affineNormalizationLocalizationMap :
     (Spec.map (CommRingCat.ofHom (algebraMap Rm Bm))).toNormalization ≫
@@ -129,7 +135,9 @@ theorem toNormalization_affineNormalizationLocalizationMap :
 include M
 /-- The relative-normalization square associated with an arbitrary localization
 of affine schemes is cartesian.  All arrows are the actual structure maps or
-the map constructed from the integral closures.-/
+the map constructed from the integral closures.
+@isnad1 id=ispullba.0h5v.s8.a31b7f4ea17c from=translated src=- shape=9fde2146 vocab=41a36802
+-/
 theorem affineNormalizationLocalization_isPullback :
     IsPullback
       (affineNormalizationLocalizationMap R B Rm Bm)
@@ -161,6 +169,9 @@ def affineNormalizationLocalizationIso :
         (Spec.map (CommRingCat.ofHom (algebraMap R Rm))) :=
   (affineNormalizationLocalization_isPullback R B Rm Bm M).isoPullback
 
+/--
+@isnad1 id=eq.0h5v.s9.c967d3330a57 from=translated src=- shape=5ae64912 vocab=e4a1247f
+-/
 @[reassoc]
 theorem affineNormalizationLocalizationIso_hom_fst :
     (affineNormalizationLocalizationIso R B Rm Bm M).hom ≫
@@ -170,6 +181,9 @@ theorem affineNormalizationLocalizationIso_hom_fst :
       affineNormalizationLocalizationMap R B Rm Bm :=
   (affineNormalizationLocalization_isPullback R B Rm Bm M).isoPullback_hom_fst
 
+/--
+@isnad1 id=eq.0h5v.s9.c6daeba57c2a from=translated src=- shape=738f8d59 vocab=0b13e633
+-/
 @[reassoc]
 theorem affineNormalizationLocalizationIso_hom_snd :
     (affineNormalizationLocalizationIso R B Rm Bm M).hom ≫

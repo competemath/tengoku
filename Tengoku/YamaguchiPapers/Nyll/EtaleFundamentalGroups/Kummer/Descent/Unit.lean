@@ -30,7 +30,9 @@ parameter cannot divide a positive natural number.
 
 This is the arithmetic input needed by unit descent.  It is produced directly
 from the quotient characteristic rather than being exposed as a hypothesis of
-the Kummer obstruction.-/
+the Kummer obstruction.
+@isnad1 id=not.1h3v.s7.b60b784f6556 from=translated src=- shape=c8a8d4a1 vocab=b9473428
+-/
 theorem not_dvd_natCast_of_charZero_quotient
     {R : Type u} [CommRing R] {t : R}
     [CharZero (R ⧸ Ideal.span {t})] (n : ℕ) (hn : 0 < n) :
@@ -50,7 +52,9 @@ already implies invertibility in `R`.
 In the Kummer application, `a` is the exponent.  Its nondivisibility by the
 horizontal boundary parameter comes from characteristic zero on that
 component; invertibility after localization is produced by the derivative of
-the Kummer polynomial.-/
+the Kummer polynomial.
+@isnad1 id=isunit.3h4v.s7.6ad2a8ac6ca3 from=translated src=- shape=2b387f53 vocab=b73681c1
+-/
 theorem isUnit_of_isUnit_algebraMap_away_of_prime_of_not_dvd
     {R : Type u} {S : Type v} [CommRing R] [IsDomain R]
     [CommRing S] [Algebra R S] {t a : R} [IsLocalization.Away t S]
@@ -72,7 +76,9 @@ The quotient `R ⧸ (t)` having characteristic zero says that the horizontal
 parameter `t` cannot divide a positive natural number.  If a characteristic
 `p` specialization of `R` exists and `p ∣ n`, then `n` cannot be a unit in
 `R[1/t]`: otherwise unit descent would make `n` a unit in `R`, and hence in
-the characteristic-`p` target, where it is zero.-/
+the characteristic-`p` target, where it is zero.
+@isnad1 id=not.3h7v.s8.5fc4d441ea5b from=translated src=- shape=49a82c70 vocab=01525f9c
+-/
 theorem natCast_not_isUnit_algebraMap_away_of_dvd_char
     {R : Type u} {S : Type v} {k : Type*}
     [CommRing R] [IsDomain R] [CommRing S] [Algebra R S]

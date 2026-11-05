@@ -34,7 +34,9 @@ universe uV uW
 source maximal ideal is the target maximal ideal.
 
 Domainhood of the target is produced from the mapped one-element regular
-system before the DVR criterion is applied; it is not a hypothesis.-/
+system before the DVR criterion is applied; it is not a hypothesis.
+@isnad1 id=ex.1h2v.s7.4a8be6726d94 from=translated src=- shape=b0a4c97c vocab=f03af9d5
+-/
 theorem
     exists_isDomain_isDiscreteValuationRing_of_flat_local_of_map_maximalIdeal_eq
     {V : Type uV} {W : Type uW}

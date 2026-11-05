@@ -27,7 +27,9 @@ open Polynomial
 
 universe u v
 
-/-- A prime element does not belong to the square of its principal ideal.-/
+/-- A prime element does not belong to the square of its principal ideal.
+@isnad1 id=not.1h2v.s7.d80591ff3467 from=translated src=- shape=c4b2fb32 vocab=58ded1c5
+-/
 theorem prime_notMem_span_singleton_sq
     {R : Type u} [CommRing R] [IsDomain R] {t : R} (ht : Prime t) :
     t ∉ (Ideal.span ({t} : Set R)) ^ 2 := by
@@ -40,7 +42,9 @@ theorem prime_notMem_span_singleton_sq
   apply mul_left_cancel₀ ht.ne_zero
   simpa [pow_two, mul_assoc] using ha
 
-/-- `X ^ n - t` is Eisenstein at `(t)` when `t` is prime and `n` is positive.-/
+/-- `X ^ n - t` is Eisenstein at `(t)` when `t` is prime and `n` is positive.
+@isnad1 id=iseisens.2h3v.s7.9b8a6acee0e2 from=translated src=- shape=0779f32d vocab=86b969a3
+-/
 theorem isEisensteinAt_X_pow_sub_C_of_prime
     {R : Type u} [CommRing R] [IsDomain R] {t : R} (ht : Prime t)
     {n : ℕ} (hn : 0 < n) :
@@ -58,7 +62,9 @@ theorem isEisensteinAt_X_pow_sub_C_of_prime
   · simpa [Polynomial.coeff_X_pow, hn.ne'.symm, Ideal.neg_mem_iff] using
       prime_notMem_span_singleton_sq ht
 
-/-- `X ^ n - t` is irreducible when `t` is prime and `n` is positive.-/
+/-- `X ^ n - t` is irreducible when `t` is prime and `n` is positive.
+@isnad1 id=irreduci.2h3v.s7.5a45a4f31d07 from=translated src=- shape=312db579 vocab=b6e3457d
+-/
 theorem irreducible_X_pow_sub_C_of_prime
     {R : Type u} [CommRing R] [IsDomain R] {t : R} (ht : Prime t)
     {n : ℕ} (hn : 0 < n) :
@@ -71,7 +77,9 @@ theorem irreducible_X_pow_sub_C_of_prime
 /--
 The explicit Kummer polynomial remains irreducible over any chosen fraction
 field of an integrally closed original domain.  The only coefficient map in
-the statement is the canonical `algebraMap R K`.-/
+the statement is the canonical `algebraMap R K`.
+@isnad1 id=irreduci.2h4v.s8.859efad0e5fe from=translated src=- shape=2eb28ed2 vocab=a0f6bf9e
+-/
 theorem irreducible_X_pow_sub_C_fractionRing_of_prime
     {R : Type u} {K : Type v} [CommRing R] [IsDomain R] [IsIntegrallyClosed R]
     [Field K] [Algebra R K] [IsFractionRing R K] {t : R} (ht : Prime t)
@@ -86,7 +94,9 @@ theorem irreducible_X_pow_sub_C_fractionRing_of_prime
 /--
 After inverting the boundary parameter, the same Kummer polynomial remains
 irreducible.  The proof uses the single canonical map from the localization
-to the chosen fraction field; it does not introduce an algebra tower.-/
+to the chosen fraction field; it does not introduce an algebra tower.
+@isnad1 id=irreduci.2h5v.s8.34fdedac98f9 from=translated src=- shape=347dcd58 vocab=feada350
+-/
 theorem irreducible_X_pow_sub_C_away_of_prime
     {R : Type u} {S : Type v} {K : Type*}
     [CommRing R] [IsDomain R] [IsIntegrallyClosed R]

@@ -39,6 +39,9 @@ def idealQuotientMapOfLE {I J : Ideal R} (h : I ≤ J) :
     (R ⧸ I) →ₗ[R] (R ⧸ J) :=
   Submodule.mapQ I J LinearMap.id h
 
+/--
+@isnad1 id=eq.1h4v.s8.605ab610b1d4 from=translated src=- shape=f834a66d vocab=b7cbde92
+-/
 @[simp]
 theorem idealQuotientMapOfLE_mk {I J : Ideal R} (h : I ≤ J) (r : R) :
     idealQuotientMapOfLE h (Submodule.Quotient.mk r) =
@@ -61,6 +64,9 @@ def idealQuotientMayerVietorisDifference (I J : Ideal R) :
     (idealQuotientMapOfLE le_sup_right).comp
       (LinearMap.snd R (R ⧸ I) (R ⧸ J))
 
+/--
+@isnad1 id=eq.0h3v.s11.41deafccaeb6 from=translated src=- shape=ca63c5bc vocab=143881e3
+-/
 theorem idealQuotientMayerVietorisDifference_comp_diagonal
     (I J : Ideal R) :
     (idealQuotientMayerVietorisDifference I J).comp
@@ -73,6 +79,9 @@ theorem idealQuotientMayerVietorisDifference_comp_diagonal
         (Ideal.Quotient.mk (I ⊔ J)) r = 0
       exact sub_self _
 
+/--
+@isnad1 id=injectiv.0h3v.s9.5fb46b7f2bbf from=translated src=- shape=535676f7 vocab=2452363d
+-/
 theorem idealQuotientMayerVietorisDiagonal_injective (I J : Ideal R) :
     Function.Injective (idealQuotientMayerVietorisDiagonal I J) := by
   intro x y hxy
@@ -89,6 +98,9 @@ theorem idealQuotientMayerVietorisDiagonal_injective (I J : Ideal R) :
         exact (Submodule.Quotient.eq J).mp h
       exact ⟨hI, hJ⟩
 
+/--
+@isnad1 id=surjecti.0h3v.s10.cf1c592c01cb from=translated src=- shape=187a9408 vocab=74b20cec
+-/
 theorem idealQuotientMayerVietorisDifference_surjective (I J : Ideal R) :
     Function.Surjective (idealQuotientMayerVietorisDifference I J) := by
   intro z
@@ -99,6 +111,9 @@ theorem idealQuotientMayerVietorisDifference_surjective (I J : Ideal R) :
         (Ideal.Quotient.mk (I ⊔ J)) r
       exact sub_zero _
 
+/--
+@isnad1 id=exact.0h3v.s11.8968bb2db80d from=translated src=- shape=198cd74f vocab=8d53203b
+-/
 theorem idealQuotientMayerVietoris_functionExact (I J : Ideal R) :
     Function.Exact (idealQuotientMayerVietorisDiagonal I J)
       (idealQuotientMayerVietorisDifference I J) := by
@@ -148,7 +163,9 @@ def idealQuotientMayerVietorisShortComplex (I J : Ideal R) :
     (idealQuotientMayerVietorisDifference I J)
     (idealQuotientMayerVietorisDifference_comp_diagonal I J)
 
-/-- The standard Mayer--Vietoris sequence of ideal quotients is short exact.-/
+/-- The standard Mayer--Vietoris sequence of ideal quotients is short exact.
+@isnad1 id=shortexa.0h3v.s5.8425360f7b82 from=translated src=- shape=1a83d9fd vocab=be682d1c
+-/
 theorem idealQuotientMayerVietorisShortComplex_shortExact (I J : Ideal R) :
     (idealQuotientMayerVietorisShortComplex I J).ShortExact := by
   exact ModuleCat.shortComplex_shortExact _
@@ -157,7 +174,9 @@ theorem idealQuotientMayerVietorisShortComplex_shortExact (I J : Ideal R) :
     (idealQuotientMayerVietorisDifference_surjective I J)
 
 /-- Contravariant derived Ext sends the ideal-quotient Mayer--Vietoris
-short exact sequence to its exact six-term sequence in adjacent degrees.-/
+short exact sequence to its exact six-term sequence in adjacent degrees.
+@isnad1 id=exact.0h5v.s6.301729e77dd5 from=translated src=- shape=e00d71e1 vocab=be24c1f1
+-/
 theorem idealQuotientMayerVietorisExtSequence_exact
     (I J : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) :
     (CategoryTheory.Abelian.Ext.contravariantSequence

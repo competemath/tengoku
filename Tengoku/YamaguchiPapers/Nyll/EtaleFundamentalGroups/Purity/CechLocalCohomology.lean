@@ -87,7 +87,9 @@ private theorem cechHomologyZero_range_injective
     exact ConcreteCategory.congr_hom heval ⟨z, hz⟩
 
 /-- The natural degree-zero Čech embedding has exactly the expected
-ideal-power torsion image for every coefficient module.-/
+ideal-power torsion image for every coefficient module.
+@isnad1 id=eq.0h3v.s10.698d9a61654a from=translated src=- shape=281ea463 vocab=4865b2c5
+-/
 theorem cechHomologyZeroToModule_range (xs : List R) (M : ModuleCat.{u} R) :
     LinearMap.range (cechHomologyZeroToModule xs M).hom =
       Ideal.primaryComponent M (Ideal.ofList xs) := by

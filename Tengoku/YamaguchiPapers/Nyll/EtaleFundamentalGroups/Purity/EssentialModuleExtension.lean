@@ -34,7 +34,9 @@ def IsEssentialSubmodule (N : Submodule R M) : Prop :=
 
 /-- Every submodule has a submodule maximal among those disjoint from it.
 The maximality assertion concerns actual submodules of the given ambient
-module, so no choice of a larger universe is required.-/
+module, so no choice of a larger universe is required.
+@isnad1 id=ex.0h3v.s7.0c1aa5e02240 from=translated src=- shape=85798ce4 vocab=93444d6b
+-/
 theorem exists_maximal_disjoint_submodule (N : Submodule R M) :
     ∃ P : Submodule R M, Disjoint N P ∧
       ∀ L : Submodule R M, Disjoint N L → P ≤ L → L = P := by
@@ -59,7 +61,9 @@ theorem exists_maximal_disjoint_submodule (N : Submodule R M) :
   exact le_antisymm (hP.eq_of_le hL hPL).ge hPL
 
 /-- Quotienting by a maximal disjoint submodule gives an essential
-extension of the image of the original submodule.-/
+extension of the image of the original submodule.
+@isnad1 id=ex.0h3v.s7.a6373e5542f3 from=translated src=- shape=5faee5c9 vocab=f27bd001
+-/
 theorem exists_disjoint_essential_quotient (N : Submodule R M) :
     ∃ P : Submodule R M, Disjoint N P ∧
       IsEssentialSubmodule (N.map P.mkQ) := by

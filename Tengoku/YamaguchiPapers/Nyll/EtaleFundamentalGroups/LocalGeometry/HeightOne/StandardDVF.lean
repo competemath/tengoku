@@ -105,7 +105,9 @@ private theorem valuation_hasExtension_of_local_valuationSubring_map
     rwa [hcoe] at hzMap
 
 /-- A local map of DVRs which induces the prescribed map of fraction fields
-produces an extension between their standard rank-one discrete valuations.-/
+produces an extension between their standard rank-one discrete valuations.
+@isnad1 id=hasexten.1h5v.s8.05f91fba7477 from=translated src=- shape=09a32309 vocab=4acf6569
+-/
 theorem standardDVFOfDVR_hasExtension
     {V : Type uV} {W : Type uW} {K : Type uK} {L : Type uL}
     [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]
@@ -185,7 +187,9 @@ private theorem ramificationIdx'_eq_of_map_eq
   rw [h]
 
 /-- The ramification index of the standard `DVF` packages is the
-ideal-theoretic ramification index of the original local map of DVRs.-/
+ideal-theoretic ramification index of the original local map of DVRs.
+@isnad1 id=other.1h4v.s8.5172576af4ff from=translated src=- shape=e941eb34 vocab=9d5d8d6f
+-/
 theorem standardDVFOfDVR_ramificationIndex_eq_ramificationIdx
     {V : Type uV} {W : Type uW} {K : Type uK} {L : Type uL}
     [CommRing V] [IsDomain V] [IsDiscreteValuationRing V]

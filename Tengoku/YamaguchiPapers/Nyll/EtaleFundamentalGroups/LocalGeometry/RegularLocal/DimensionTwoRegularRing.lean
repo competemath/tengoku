@@ -29,7 +29,9 @@ open IsLocalRing
 
 universe u
 
-/-- A two-dimensional regular local domain is regular at every prime.-/
+/-- A two-dimensional regular local domain is regular at every prime.
+@isnad1 id=isregula.1h1v.s5.3df9f4733b00 from=translated src=- shape=c10f3d4d vocab=01660619
+-/
 theorem isRegularRing_of_isRegularLocalRing_dimension_two
     {R : Type u} [CommRing R] [IsDomain R] [IsRegularLocalRing R]
     (hdim : ringKrullDim R = ((2 : ℕ∞) : WithBot ℕ∞)) :

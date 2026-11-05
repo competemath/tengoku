@@ -46,7 +46,9 @@ instance supLeftAlgebra (L K' : IntermediateField K Ω) :
 
 /-- The field-level product map `K' ⊗_K L -> Ω` has image exactly the
 compositum subalgebra `L ⊔ K'`.  This is the order matching the later
-valuation-ring tensor product `O_K' ⊗_{O_K} O_L`.-/
+valuation-ring tensor product `O_K' ⊗_{O_K} O_L`.
+@isnad1 id=eq.0h4v.s10.761d7049224f from=translated src=- shape=6b8a4848 vocab=3558a015
+-/
 theorem sup_flip_productMap_range
     (L K' : IntermediateField K Ω) [FiniteDimensional K L] :
     (Algebra.TensorProduct.productMap K'.val L.val).range =
@@ -57,7 +59,9 @@ theorem sup_flip_productMap_range
 
 /-- Every element of the compositum is represented by a tensor under the
 field-level product map `K' ⊗_K L -> Ω`, in the order matching the valuation
-ring tensor product.-/
+ring tensor product.
+@isnad1 id=ex.1h5v.s12.6e0d480de580 from=translated src=- shape=27c5a8d1 vocab=ffb212b9
+-/
 theorem exists_flip_tensor_productMap_eq_of_mem_sup
     (L K' : IntermediateField K Ω) [FiniteDimensional K L]
     {x : Ω} (hx : x ∈ (L ⊔ K' : IntermediateField K Ω)) :
@@ -70,7 +74,9 @@ theorem exists_flip_tensor_productMap_eq_of_mem_sup
   exact ⟨z, hz⟩
 
 /-- The product map `K' ⊗_K L -> L ⊔ K'` agrees with the ambient product map
-after coercing the target back to `Ω`.-/
+after coercing the target back to `Ω`.
+@isnad1 id=eq.0h4v.s11.ba2be7867c27 from=translated src=- shape=f99ee4f3 vocab=326a9d8b
+-/
 theorem sup_flip_productMap_val_comp
     (L K' : IntermediateField K Ω) :
     (L ⊔ K').val.comp
@@ -85,7 +91,9 @@ theorem sup_flip_productMap_val_comp
       rfl
 
 /-- Every element of the compositum subtype is represented by a tensor under
-the intrinsic product map `K' ⊗_K L -> L ⊔ K'`.-/
+the intrinsic product map `K' ⊗_K L -> L ⊔ K'`.
+@isnad1 id=ex.0h5v.s12.96f169008c38 from=translated src=- shape=7100ec96 vocab=65e4601d
+-/
 theorem exists_sup_flip_tensor_productMap_eq
     (L K' : IntermediateField K Ω) [FiniteDimensional K L]
     (x : (L ⊔ K' : IntermediateField K Ω)) :
@@ -104,7 +112,9 @@ theorem exists_sup_flip_tensor_productMap_eq
 
 /-- The intrinsic field-level product map `K' ⊗_K L -> L ⊔ K'` is
 surjective.  This is the source form aligned with the valuation-ring tensor
-map used in the unramified base-change construction.-/
+map used in the unramified base-change construction.
+@isnad1 id=surjecti.0h4v.s12.1b9baaa9233b from=translated src=- shape=fe309c0c vocab=9fce98b6
+-/
 theorem sup_flip_productMap_surjective
     (L K' : IntermediateField K Ω) [FiniteDimensional K L] :
     Function.Surjective
@@ -128,7 +138,9 @@ noncomputable def supFlipProductMapRightAlgHom
       intro c x
       simp [Algebra.smul_def, RingHom.algebraMap_toAlgebra])
 
-/-- The `K'`-algebra product map `K' ⊗_K L -> L ⊔ K'` is surjective.-/
+/-- The `K'`-algebra product map `K' ⊗_K L -> L ⊔ K'` is surjective.
+@isnad1 id=surjecti.0h4v.s12.77320a712fa9 from=translated src=- shape=d3dec4e7 vocab=c07cc374
+-/
 theorem supFlipProductMapRightAlgHom_surjective
     (L K' : IntermediateField K Ω) [FiniteDimensional K L] :
     Function.Surjective
@@ -142,7 +154,9 @@ the left factor is finite over the base.
 This is the finite-dimensional source needed for unramified base change:
 base change by an arbitrary algebraic extension is reduced elementwise to a
 finite right subextension, but the finiteness of the right branch itself comes
-from the finite left factor.-/
+from the finite left factor.
+@isnad1 id=finitedi.0h4v.s9.15025ba1c6dd from=translated src=- shape=34d63a6f vocab=129ce9f5
+-/
 theorem finiteDimensional_sup_over_right_of_left
     (L K' : IntermediateField K Ω) [FiniteDimensional K L] :
     FiniteDimensional K' (L ⊔ K' : IntermediateField K Ω) := by

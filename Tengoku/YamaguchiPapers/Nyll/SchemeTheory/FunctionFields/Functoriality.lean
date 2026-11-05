@@ -36,7 +36,9 @@ private theorem eqToHom_stalk_eq_stalkCongr
   exact (Z.presheaf.stalkSpecializes_refl z).symm
 
 /-- A dense morphism between irreducible schemes sends the generic point to
-the generic point.-/
+the generic point.
+@isnad1 id=eq.1h3v.s8.079c3555735c from=translated src=- shape=b6aa5a16 vocab=52966a6c
+-/
 theorem map_genericPoint_of_denseRange
     (f : Y ⟶ X) [IrreducibleSpace X] [IrreducibleSpace Y]
     (hf : DenseRange f) :
@@ -58,7 +60,9 @@ noncomputable def functionFieldMap
     f.stalkMap (genericPoint Y)).hom
 
 /-- The function-field map of a dense morphism of integral schemes is
-injective.-/
+injective.
+@isnad1 id=injectiv.1h3v.s8.b461d55e409a from=translated src=- shape=f96664c9 vocab=20b32d16
+-/
 theorem functionFieldMap_injective
     (f : Y ⟶ X) [IsIntegral X] [IsIntegral Y]
     (hf : DenseRange f) :
@@ -67,7 +71,9 @@ theorem functionFieldMap_injective
 
 /-- On global sections, the function-field map of a dense morphism is the
 map obtained by first pulling back the section and then taking its germ at
-the generic point.-/
+the generic point.
+@isnad1 id=other.1h3v.s12.64444238d8dc from=translated src=- shape=ce8b8156 vocab=90e786e5
+-/
 theorem functionFieldMap_comp_germToFunctionField_top
     (f : Y ⟶ X) [IsIntegral X] [IsIntegral Y]
     (hf : DenseRange f) :

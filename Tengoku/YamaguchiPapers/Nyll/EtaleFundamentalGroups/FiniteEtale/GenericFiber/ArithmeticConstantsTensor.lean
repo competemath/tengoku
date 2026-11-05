@@ -45,7 +45,9 @@ def ringOfIntegersToNormalDomain
       exact IsIntegrallyClosed.algebraMap_eq_of_integral (hz.tower_top (A := A))))
 
 /-- The constructed map of integer rings has the prescribed value in the
-original fraction field.-/
+original fraction field.
+@isnad1 id=eq.0h5v.s8.0f5480e16815 from=translated src=- shape=54f22adf vocab=e39295e6
+-/
 theorem algebraMap_ringOfIntegersToNormalDomain
     (A K L : Type) [CommRing A] [IsDomain A] [IsIntegrallyClosed A]
     [Field K] [NumberField K] [Field L] [CharZero L]
@@ -60,7 +62,9 @@ theorem algebraMap_ringOfIntegersToNormalDomain
   exact congrArg Subtype.val (e.apply_symm_apply _)
 
 /-- An integral constant extension embeds in a common overfield when the
-corresponding rational tensor product is a domain.-/
+corresponding rational tensor product is a domain.
+@isnad1 id=injectiv.1h7v.s10.1981cb1ee5e4 from=translated src=- shape=a7ffd64f vocab=5cfd9b9d
+-/
 theorem arithmeticConstantsTensor_lift_injective
     {B F K L : Type} [CommRing B] [Field F] [CharZero F]
     [Field K] [NumberField K] [Field L] [CharZero L]

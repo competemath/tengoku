@@ -26,7 +26,9 @@ namespace EtaleFundamentalGroups
 universe u
 
 /-- A local-cohomology module vanishes if every Ext module in its defining
-ideal-powers diagram vanishes.-/
+ideal-powers diagram vanishes.
+@isnad1 id=iszero.1h4v.s8.bfa9dffa4c3b from=translated src=- shape=66edda93 vocab=a9939810
+-/
 theorem localCohomology_isZero_of_subsingleton_ext_powers
     {R : Type u} [CommRing R] (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
     (hExt : ∀ n : ℕ, Subsingleton

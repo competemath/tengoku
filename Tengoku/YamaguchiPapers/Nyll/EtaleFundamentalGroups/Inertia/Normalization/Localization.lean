@@ -35,7 +35,9 @@ variable [Algebra K L] [Algebra A L] [IsScalarTower A K L]
 
 /-- Inertia at a normalization prime is unchanged after localizing the base
 at any larger prime.  The contraction of `Q` need only be contained in the
-localization prime; it need not equal it.-/
+localization prime; it need not equal it.
+@isnad1 id=eq.1h5v.s10.7b2f65fdd372 from=translated src=- shape=bc1bec79 vocab=4c81b1fb
+-/
 theorem normalizationInertia_eq_localizedNormalizationInertia_of_under_le
     (P : Ideal A) [P.IsPrime]
     (Q : Ideal (integralClosure A L)) [Q.IsPrime]
@@ -121,7 +123,9 @@ theorem normalizationInertia_eq_localizedNormalizationInertia_of_under_le
 
 /-- Inertia at a normalization prime is unchanged after localizing the base
 at its contraction.  Both sides use the canonical action obtained by
-restricting the action of `Gal(L/K)` on `L` to the relevant integral closure.-/
+restricting the action of `Gal(L/K)` on `L` to the relevant integral closure.
+@isnad1 id=eq.0h5v.s10.1839b08b5260 from=translated src=- shape=86ca677f vocab=8cbe9cc6
+-/
 theorem normalizationInertia_eq_localizedNormalizationInertia
     (P : Ideal A) [P.IsPrime]
     (Q : Ideal (integralClosure A L)) [Q.IsPrime] [Q.LiesOver P] :

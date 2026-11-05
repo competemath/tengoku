@@ -31,7 +31,9 @@ section
 
 variable {R : Type u} [CommRing R]
 
-/-- The submodule underlying `(x) ^ n` is `x ^ n R`.-/
+/-- The submodule underlying `(x) ^ n` is `x ^ n R`.
+@isnad1 id=eq.0h3v.s9.573e1cb41cb0 from=translated src=- shape=2f6b859e vocab=12961267
+-/
 theorem principalIdealPower_submodule_eq_smulTop (x : R) (n : ℕ) :
     ((Ideal.span {x}) ^ n : Submodule R R) =
       x ^ n • (⊤ : Submodule R R) := by
@@ -69,7 +71,9 @@ def quotSMulTopPowerTransition (x : R) {n m : ℕ} (h : n ≤ m) :
   Submodule.mapQ _ _ LinearMap.id (by simpa using hle)
 
 /-- The canonical identifications of principal ideal-power quotients commute
-with their standard transition maps.-/
+with their standard transition maps.
+@isnad1 id=eq.1h4v.s12.4bb7b2ec80c8 from=translated src=- shape=9495a13f vocab=f3cb0800
+-/
 theorem principalPowerQuotientLinearEquiv_transition (x : R)
     {n m : ℕ} (h : n ≤ m) :
     (quotSMulTopPowerTransition x h).comp

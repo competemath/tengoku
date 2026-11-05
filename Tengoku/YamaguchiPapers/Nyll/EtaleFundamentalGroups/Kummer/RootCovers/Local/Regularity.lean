@@ -77,7 +77,9 @@ private theorem exists_lift_ltSeries
     · simpa using hlen
     · simpa [Q'] using hQcomap
 
-/-- A faithfully integral extension cannot decrease Krull dimension.-/
+/-- A faithfully integral extension cannot decrease Krull dimension.
+@isnad1 id=le.0h2v.s6.7e0ec02b1627 from=translated src=- shape=7d7e0e84 vocab=a734a706
+-/
 theorem ringKrullDim_le_of_faithfully_integral
     {R : Type u} {S : Type v} [CommRing R] [CommRing S]
     [Nontrivial R] [Algebra R S] [Algebra.IsIntegral R S] [FaithfulSMul R S] :
@@ -101,6 +103,9 @@ def localRootCoverParameterList
   AdjoinRoot.root (X ^ n - C a) ::
     rs.map (AdjoinRoot.of (X ^ n - C a))
 
+/--
+@isnad1 id=eq.0h4v.s7.a8ec0dad6bab from=translated src=- shape=16242c58 vocab=345657ca
+-/
 @[simp]
 theorem localRootCoverParameterList_length
     (R : Type u) [CommRing R] (n : ℕ) (a : R) (rs : List R) :

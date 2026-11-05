@@ -28,7 +28,9 @@ open CategoryTheory
 
 variable {R : Type u} [CommRing R]
 
-/-- Injective middle coefficients make every connecting map surjective.-/
+/-- Injective middle coefficients make every connecting map surjective.
+@isnad1 id=surjecti.1h4v.s10.22bd7deb6bfc from=translated src=- shape=443fe285 vocab=ac3e100e
+-/
 theorem derivedLocalCohomologyConnecting_surjective_of_injective
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     [Module.Injective R S.X₂] (n : ℕ) :
@@ -40,7 +42,9 @@ theorem derivedLocalCohomologyConnecting_surjective_of_injective
   exact (derivedLocalCohomologyModuleCoefficients_afterConnecting_exact I hS n z).mp
     (Subsingleton.elim _ _)
 
-/-- In positive source degree the same connecting map is also injective.-/
+/-- In positive source degree the same connecting map is also injective.
+@isnad1 id=bijectiv.1h4v.s10.bb1705d12711 from=translated src=- shape=7b990c07 vocab=9a41d4a5
+-/
 theorem derivedLocalCohomologyConnecting_bijective_succ_of_injective
     (I : Ideal R) {S : ShortComplex (ModuleCat.{u} R)} (hS : S.ShortExact)
     [Module.Injective R S.X₂] (n : ℕ) :

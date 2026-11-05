@@ -168,7 +168,9 @@ noncomputable def sumUnitEquivPowerSeries [CommSemiring R] :
 end MvPowerSeriesFinite
 
 /-- Formal power series in `n` variables over a Noetherian coefficient ring
-form a Noetherian ring.-/
+form a Noetherian ring.
+@isnad1 id=isnoethe.0h2v.s4.2581ed7f22fa from=translated src=- shape=65f277ad vocab=897e9348
+-/
 theorem isNoetherianRing_mvPowerSeries_fin
     (R : Type u) [CommRing R] [IsNoetherianRing R] (n : ℕ) :
     IsNoetherianRing (MvPowerSeries (Fin n) R) := by
@@ -191,7 +193,9 @@ theorem isNoetherianRing_mvPowerSeries_fin
         (PowerSeries (MvPowerSeries (Fin n) R)) e.symm
 
 /-- A multivariate formal-power-series ring over a Noetherian ring is
-Noetherian whenever its variable type is finite.-/
+Noetherian whenever its variable type is finite.
+@isnad1 id=isnoethe.0h2v.s4.f877cd49412a from=translated src=- shape=bd740773 vocab=dcdd6526
+-/
 theorem isNoetherianRing_mvPowerSeries_finite
     {R : Type u} {σ : Type v} [CommRing R] [IsNoetherianRing R] [Finite σ] :
     IsNoetherianRing (MvPowerSeries σ R) := by
@@ -203,14 +207,18 @@ theorem isNoetherianRing_mvPowerSeries_finite
     (MvPowerSeries.renameEquiv R e.symm).toRingEquiv
 
 /-- Typeclass form of the finite-variable formal-power-series Hilbert basis
-theorem.-/
+theorem.
+@isnad1 id=isnoethe.0h2v.s4.f877cd49412a from=translated src=- shape=bd740773 vocab=dcdd6526
+-/
 instance mvPowerSeries_isNoetherianRing_of_finite
     {R : Type u} {σ : Type v} [CommRing R] [IsNoetherianRing R] [Finite σ] :
     IsNoetherianRing (MvPowerSeries σ R) :=
   isNoetherianRing_mvPowerSeries_finite
 
 /-- A finite family generating the closed point presents the maximal-adic
-completion as a quotient of a Noetherian finite-variable power-series ring.-/
+completion as a quotient of a Noetherian finite-variable power-series ring.
+@isnad1 id=isnoethe.1h3v.s7.794607686cf1 from=translated src=- shape=cb634b9f vocab=b0fa9b9e
+-/
 theorem maximalAdicCompletion_isNoetherianRing_of_generators
     {B : Type u} [CommRing B] [IsLocalRing B] [IsNoetherianRing B]
     {ι : Type v} [Finite ι] (t : ι → B)
@@ -223,7 +231,9 @@ theorem maximalAdicCompletion_isNoetherianRing_of_generators
 
 /-- The maximal-adic completion of every Noetherian local ring is
 Noetherian.  A finite generating family is obtained from Noetherianity, so
-no regular-system hypothesis or bound on the dimension is required.-/
+no regular-system hypothesis or bound on the dimension is required.
+@isnad1 id=isnoethe.0h1v.s6.8e3fe6282085 from=translated src=- shape=c213fe69 vocab=fae34159
+-/
 theorem maximalAdicCompletion_isNoetherianRing
     {B : Type u} [CommRing B] [IsLocalRing B] [IsNoetherianRing B] :
     IsNoetherianRing (AdicCompletion (maximalIdeal B) B) := by
@@ -244,7 +254,9 @@ theorem maximalAdicCompletion_isNoetherianRing
       _ = maximalIdeal B := (maximalIdeal B).span_generators
   exact maximalAdicCompletion_isNoetherianRing_of_generators t hgen
 
-/-- Typeclass form of Noetherianity of maximal-adic completion.-/
+/-- Typeclass form of Noetherianity of maximal-adic completion.
+@isnad1 id=isnoethe.0h1v.s6.8e3fe6282085 from=translated src=- shape=c213fe69 vocab=fae34159
+-/
 instance maximalAdicCompletion_isNoetherianRing_instance
     {B : Type u} [CommRing B] [IsLocalRing B] [IsNoetherianRing B] :
     IsNoetherianRing (AdicCompletion (maximalIdeal B) B) :=

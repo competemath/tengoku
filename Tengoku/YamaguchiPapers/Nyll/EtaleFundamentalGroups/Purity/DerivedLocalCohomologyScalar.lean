@@ -33,7 +33,9 @@ universe u
 
 variable {R : Type u} [CommRing R]
 
-/-- Every member of `J` annihilates derived Ext out of `R / J`.-/
+/-- Every member of `J` annihilates derived Ext out of `R / J`.
+@isnad1 id=eq.1h6v.s11.d5ebdb05c3c3 from=translated src=- shape=d044ebf9 vocab=e5f39122
+-/
 theorem derivedExt_quotient_smul_eq_zero
     (J : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
     (a : R) (ha : a ∈ J)
@@ -96,7 +98,9 @@ def derivedLocalCohomologyScalarMap
   colim.map (derivedLocalCohomologyPowersScalarMap I M i a)
 
 /-- The scalar endomorphism acts on a colimit representative by its usual
-scalar action in derived Ext.-/
+scalar action in derived Ext.
+@isnad1 id=eq.0h7v.s12.56fa88d54b95 from=translated src=- shape=8d92eb81 vocab=2ab33a8d
+-/
 theorem derivedLocalCohomologyScalarMap_ι_apply
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) (a : R) (n : ℕ)
     (α : CategoryTheory.Abelian.Ext.{u}
@@ -116,7 +120,9 @@ theorem derivedLocalCohomologyScalarMap_ι_apply
   exact h
 
 /-- Each local-cohomology class is annihilated by a power of the support
-ideal.  The exponent can depend on the class.-/
+ideal.  The exponent can depend on the class.
+@isnad1 id=ex.0h5v.s8.249a00771ad8 from=translated src=- shape=a777537e vocab=d3cb0605
+-/
 theorem derivedLocalCohomology_exists_idealPower_scalarMap_eq_zero
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
     (z : derivedLocalCohomology I M i) :
@@ -140,7 +146,9 @@ theorem derivedLocalCohomology_exists_idealPower_scalarMap_eq_zero
       (derivedExt_quotient_smul_eq_zero (I ^ n) M i a ha α)).trans
         (map_zero ι))
 
-/-- In particular, a member of the support ideal acts locally nilpotently.-/
+/-- In particular, a member of the support ideal acts locally nilpotently.
+@isnad1 id=ex.1h6v.s8.a9527d28f1e6 from=translated src=- shape=2cb2e124 vocab=d3cb0605
+-/
 theorem derivedLocalCohomology_exists_pow_scalarMap_eq_zero
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
     (a : R) (ha : a ∈ I) (z : derivedLocalCohomology I M i) :
@@ -149,7 +157,9 @@ theorem derivedLocalCohomology_exists_pow_scalarMap_eq_zero
     derivedLocalCohomology_exists_idealPower_scalarMap_eq_zero I M i z
   exact ⟨n, hn (a ^ n) (Ideal.pow_mem_pow ha n)⟩
 
-/-- The unit scalar induces the identity endomorphism.-/
+/-- The unit scalar induces the identity endomorphism.
+@isnad1 id=eq.0h4v.s6.053fe2453bde from=translated src=- shape=6e053a59 vocab=3a206db6
+-/
 theorem derivedLocalCohomologyScalarMap_one
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) :
     derivedLocalCohomologyScalarMap I M i 1 =
@@ -170,7 +180,9 @@ theorem derivedLocalCohomologyScalarMap_one
     (congrArg ι
       (one_smul R α))
 
-/-- Scalar multiplication on the colimit respects multiplication in `R`.-/
+/-- Scalar multiplication on the colimit respects multiplication in `R`.
+@isnad1 id=eq.0h6v.s6.bd5c903ede4b from=translated src=- shape=bc6de87d vocab=feffecc9
+-/
 theorem derivedLocalCohomologyScalarMap_mul
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) (a b : R) :
     derivedLocalCohomologyScalarMap I M i (a * b) =
@@ -199,7 +211,9 @@ theorem derivedLocalCohomologyScalarMap_mul
             (derivedLocalCohomologyScalarMap_ι_apply I M i b n α).symm)))
 
 /-- An injective scalar from the support ideal forces local cohomology to
-vanish: its powers are injective, whereas every class is killed by a power.-/
+vanish: its powers are injective, whereas every class is killed by a power.
+@isnad1 id=iszero.2h5v.s8.6a85873599d1 from=translated src=- shape=daedbe42 vocab=ae303fa5
+-/
 theorem derivedLocalCohomology_isZero_of_scalarMap_injective
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
     (a : R) (ha : a ∈ I)

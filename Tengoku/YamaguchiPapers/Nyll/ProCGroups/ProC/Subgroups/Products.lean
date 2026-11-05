@@ -33,7 +33,9 @@ variable [∀ i, TopologicalSpace (Gs i)]
 variable [∀ i, IsTopologicalGroup (Gs i)]
 variable [∀ i, T2Space (Gs i)]
 
-/-- A closed subgroup of a product of groups with open-normal \(C\)-bases again has such a basis.-/
+/-- A closed subgroup of a product of groups with open-normal \(C\)-bases again has such a basis.
+@isnad1 id=hasopenn.4h4v.s8.b2f3ba11ae67 from=translated src=- shape=a58fcc61 vocab=b1fd124e
+-/
 theorem HasOpenNormalBasisInClass.of_closedSubgroup_pi
     [∀ i, CompactSpace (Gs i)] [∀ i, TotallyDisconnectedSpace (Gs i)]
     {H : Subgroup ((i : ι) → Gs i)}
@@ -55,7 +57,9 @@ theorem HasOpenNormalBasisInClass.of_closedSubgroup_pi
 
 omit [∀ i, IsTopologicalGroup (Gs i)] in
 /-- A profinite group embedded as a subdirect product of groups with open-normal \(C\)-bases again
-has such a basis; the coordinatewise finite-subdirect-product criterion is exposed for reuse.-/
+has such a basis; the coordinatewise finite-subdirect-product criterion is exposed for reuse.
+@isnad1 id=hasopenn.5h5v.s8.e79669aa38cf from=translated src=- shape=6c4b3cbd vocab=325c637a
+-/
 theorem HasOpenNormalBasisInClass.of_subdirectProduct
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     [CompactSpace H] [T2Space H] [TotallyDisconnectedSpace H]

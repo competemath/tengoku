@@ -29,7 +29,9 @@ universe u
 
 variable {X Y : Scheme.{u}}
 
-/-- A morphism surjective on stalks induces bijections on residue fields.-/
+/-- A morphism surjective on stalks induces bijections on residue fields.
+@isnad1 id=bijectiv.0h4v.s10.3846cfa9a14e from=translated src=- shape=10393556 vocab=b269119d
+-/
 theorem Scheme.Hom.residueFieldMap_bijective_of_surjectiveOnStalks
     (f : X ⟶ Y) [SurjectiveOnStalks f] (x : X) :
     Function.Bijective (f.residueFieldMap x) := by
@@ -41,7 +43,9 @@ theorem Scheme.Hom.residueFieldMap_bijective_of_surjectiveOnStalks
   exact congr($(Scheme.residue_residueFieldMap f x) b)
 
 /-- The inclusion of a scheme-theoretic fibre does not change residue
-fields.-/
+fields.
+@isnad1 id=bijectiv.0h5v.s10.7716ac912651 from=translated src=- shape=acce4a3c vocab=1549cb8f
+-/
 theorem Scheme.Hom.fiberι_residueFieldMap_bijective
     (f : X ⟶ Y) (y : Y) (z : f.fiber y) :
     Function.Bijective ((f.fiberι y).residueFieldMap z) :=
@@ -57,7 +61,9 @@ noncomputable def Scheme.Hom.fiberιResidueFieldRingEquiv
 
 /-- If the generic point of an integral source maps to the generic point of
 an integral target, the generic point of the generic fibre maps back to the
-generic point of the source.-/
+generic point of the source.
+@isnad1 id=eq.1h3v.s9.62ddb9614194 from=translated src=- shape=5f9f4c98 vocab=4b0323ac
+-/
 theorem Scheme.Hom.fiberι_genericPoint_eq_genericPoint
     [IsIntegral X] [IsIntegral Y]
     (f : X ⟶ Y) (hη : f (genericPoint X) = genericPoint Y)

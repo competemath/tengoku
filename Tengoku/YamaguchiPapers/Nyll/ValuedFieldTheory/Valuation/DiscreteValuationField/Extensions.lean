@@ -45,7 +45,9 @@ def degree (_base : DVF.{u, v} K) (_target : DVF.{w, x} L) : ℕ :=
 
 omit [FiniteDimensional K L]
     [base.valuation.HasExtension target.valuation] in
-/-- The degree of a finite extension of discrete valuation fields is its linear `finrank`.-/
+/-- The degree of a finite extension of discrete valuation fields is its linear `finrank`.
+@isnad1 id=eq.0h4v.s6.974bf1814122 from=translated src=- shape=d2a81f83 vocab=2892ba06
+-/
 @[simp] theorem degree_eq_finrank :
     degree base target = Module.finrank K L :=
   rfl
@@ -69,7 +71,9 @@ def integerMap :
   algebraMap base.valuationSubring target.valuationSubring
 
 omit [FiniteDimensional K L] in
-/-- The induced map between valuation subrings is injective.-/
+/-- The induced map between valuation subrings is injective.
+@isnad1 id=injectiv.0h4v.s8.6d5485dd40c0 from=translated src=- shape=b769c090 vocab=798c1b2c
+-/
 theorem integerMap_injective :
     Function.Injective (integerMap base target) := by
   change Function.Injective
@@ -79,7 +83,9 @@ theorem integerMap_injective :
     (vK := base.valuation) (vA := target.valuation)
 
 omit [FiniteDimensional K L] in
-/-- The valuation-subring map evaluates through the ambient algebra map.-/
+/-- The valuation-subring map evaluates through the ambient algebra map.
+@isnad1 id=eq.0h5v.s8.cce875ca3de6 from=translated src=- shape=7935cef4 vocab=0c99ce43
+-/
 @[simp] theorem integerMap_apply (a : base.valuationSubring) :
     (((integerMap base target) a : target.valuationSubring) : L) =
       algebraMap K L (a : K) := by
@@ -88,7 +94,9 @@ omit [FiniteDimensional K L] in
   rfl
 
 omit [FiniteDimensional K L] in
-/-- Maximal-ideal membership is reflected by a valued extension.-/
+/-- Maximal-ideal membership is reflected by a valued extension.
+@isnad1 id=iff.0h5v.s9.73f266cb3996 from=translated src=- shape=b55dd5de vocab=b160298f
+-/
 theorem integerMap_mem_maximalIdeal_iff (a : base.valuationSubring) :
     integerMap base target a ∈ target.maximalIdeal ↔
       a ∈ base.maximalIdeal := by
@@ -98,7 +106,9 @@ theorem integerMap_mem_maximalIdeal_iff (a : base.valuationSubring) :
     (vR := base.valuation) (vA := target.valuation) (a : K)
 
 omit [FiniteDimensional K L] in
-/-- The target maximal ideal pulls back to the base maximal ideal.-/
+/-- The target maximal ideal pulls back to the base maximal ideal.
+@isnad1 id=eq.0h4v.s8.4ad9077c0a02 from=translated src=- shape=a2bd4131 vocab=f233027f
+-/
 theorem maximalIdeal_comap_integerMap_eq :
     target.maximalIdeal.comap (integerMap base target) =
       base.maximalIdeal := by
@@ -106,7 +116,9 @@ theorem maximalIdeal_comap_integerMap_eq :
   exact integerMap_mem_maximalIdeal_iff base target a
 
 omit [FiniteDimensional K L] in
-/-- The image of the source maximal ideal in the target valuation ring is nonzero.-/
+/-- The image of the source maximal ideal in the target valuation ring is nonzero.
+@isnad1 id=ne.0h4v.s9.dd82535b3051 from=translated src=- shape=3d261ca8 vocab=03023a54
+-/
 theorem maximalIdeal_map_integerMap_ne_bot :
     Ideal.map (integerMap base target) base.maximalIdeal ≠ ⊥ := by
   intro h
@@ -115,7 +127,9 @@ theorem maximalIdeal_map_integerMap_ne_bot :
       (integerMap_injective base target)).1 h)
 
 omit [FiniteDimensional K L] in
-/-- The source maximal ideal maps into the target maximal ideal.-/
+/-- The source maximal ideal maps into the target maximal ideal.
+@isnad1 id=le.0h4v.s9.1740d6b4822c from=translated src=- shape=60418346 vocab=40f27141
+-/
 theorem maximalIdeal_map_integerMap_le :
     Ideal.map (integerMap base target) base.maximalIdeal ≤
       target.maximalIdeal := by
@@ -130,7 +144,9 @@ def residueMap :
   algebraMap base.residueField target.residueField
 
 omit [FiniteDimensional K L] in
-/-- The residue-field map sends the residue of an integer to its target residue.-/
+/-- The residue-field map sends the residue of an integer to its target residue.
+@isnad1 id=eq.0h5v.s9.922e769f7a3d from=translated src=- shape=ba89b431 vocab=9d4e6aa3
+-/
 @[simp] theorem residueMap_residue (a : base.valuationSubring) :
     residueMap base target (base.residueMap a) =
       target.residueMap (integerMap base target a) := by
@@ -145,7 +161,9 @@ omit [FiniteDimensional K L] in
   rfl
 
 omit [FiniteDimensional K L] in
-/-- The residue-field map of a valued extension is injective.-/
+/-- The residue-field map of a valued extension is injective.
+@isnad1 id=injectiv.0h4v.s7.a803350d91a7 from=translated src=- shape=b769c090 vocab=e97c3c71
+-/
 theorem residueMap_injective :
     Function.Injective (residueMap base target) := by
   change Function.Injective
@@ -157,7 +175,9 @@ theorem residueMap_injective :
 
 omit [FiniteDimensional K L] in
 /-- Surjectivity of the residue map upgrades its canonical injectivity to
-bijectivity.-/
+bijectivity.
+@isnad1 id=bijectiv.1h4v.s8.6c4044c20930 from=translated src=- shape=f10e1bd3 vocab=a4067e45
+-/
 theorem residueMap_bijective_of_surjective
     (hSurj : Function.Surjective (residueMap base target)) :
     Function.Bijective (residueMap base target) :=
@@ -172,7 +192,9 @@ noncomputable def residueFieldEquivOfSurjective
     (residueMap_bijective_of_surjective base target hSurj)
 
 omit [FiniteDimensional K L] in
-/-- The residue-field equivalence induced by surjectivity evaluates by the residue map.-/
+/-- The residue-field equivalence induced by surjectivity evaluates by the residue map.
+@isnad1 id=eq.1h5v.s9.3890927f783a from=translated src=- shape=c4f43b80 vocab=b1c93dc0
+-/
 @[simp] theorem residueFieldEquivOfSurjective_apply
     (hSurj : Function.Surjective (residueMap base target))
     (z : base.residueField) :
@@ -181,7 +203,9 @@ omit [FiniteDimensional K L] in
   rfl
 
 omit [FiniteDimensional K L] in
-/-- The inverse residue-field equivalence recovers a source class after applying the residue map.-/
+/-- The inverse residue-field equivalence recovers a source class after applying the residue map.
+@isnad1 id=eq.1h5v.s9.7e0499940d17 from=translated src=- shape=7225a87a vocab=cb7ef6df
+-/
 @[simp] theorem residueFieldEquivOfSurjective_symm_apply_residueMap
     (hSurj : Function.Surjective (residueMap base target))
     (z : base.residueField) :
@@ -192,7 +216,9 @@ omit [FiniteDimensional K L] in
 
 omit [FiniteDimensional K L] in
 /-- Applying the residue map after the inverse residue-field equivalence recovers
-the target class.-/
+the target class.
+@isnad1 id=eq.1h5v.s9.a615aba92196 from=translated src=- shape=1b6a8c79 vocab=cb7ef6df
+-/
 @[simp] theorem residueMap_residueFieldEquivOfSurjective_symm_apply
     (hSurj : Function.Surjective (residueMap base target))
     (z : target.residueField) :
@@ -206,7 +232,9 @@ def unitMap :
   Units.map (integerMap base target).toMonoidHom
 
 omit [FiniteDimensional K L] in
-/-- The induced unit map agrees with the valuation-ring map on underlying elements.-/
+/-- The induced unit map agrees with the valuation-ring map on underlying elements.
+@isnad1 id=eq.0h5v.s10.de35a41f47fb from=translated src=- shape=9e85ddb8 vocab=be130395
+-/
 @[simp] theorem unitMap_apply (a : base.valuationSubringˣ) :
     ((unitMap base target a : target.valuationSubringˣ) :
         target.valuationSubring) =
@@ -214,14 +242,18 @@ omit [FiniteDimensional K L] in
   rfl
 
 omit [FiniteDimensional K L] in
-/-- The induced map on residue-field units is injective.-/
+/-- The induced map on residue-field units is injective.
+@isnad1 id=injectiv.0h4v.s9.876120bcd54b from=translated src=- shape=ea56c728 vocab=95efac4a
+-/
 theorem residueUnitsMap_injective :
     Function.Injective
       (Units.map (residueMap base target).toMonoidHom) :=
   Units.map_injective (residueMap_injective base target)
 
 omit [FiniteDimensional K L] in
-/-- Surjectivity of the residue map implies surjectivity on residue-field units.-/
+/-- Surjectivity of the residue map implies surjectivity on residue-field units.
+@isnad1 id=surjecti.1h4v.s9.2fe9ad4e3590 from=translated src=- shape=a25a34e4 vocab=53850936
+-/
 theorem residueUnitsMap_surjective_of_residueMap_surjective
     (hSurj : Function.Surjective (residueMap base target)) :
     Function.Surjective
@@ -236,7 +268,9 @@ theorem residueUnitsMap_surjective_of_residueMap_surjective
   simpa using hz
 
 omit [FiniteDimensional K L] in
-/-- A surjective residue map induces a bijection on residue-field units.-/
+/-- A surjective residue map induces a bijection on residue-field units.
+@isnad1 id=bijectiv.1h4v.s9.30c34ad2240b from=translated src=- shape=dd59db95 vocab=2129a784
+-/
 theorem residueUnitsMap_bijective_of_residueMap_surjective
     (hSurj : Function.Surjective (residueMap base target)) :
     Function.Bijective
@@ -254,7 +288,9 @@ noncomputable def residueUnitsEquivOfResidueMapSurjective
       base target hSurj)
 
 omit [FiniteDimensional K L] in
-/-- The residue-unit equivalence evaluates by the induced residue-unit map.-/
+/-- The residue-unit equivalence evaluates by the induced residue-unit map.
+@isnad1 id=eq.1h5v.s10.289af16c00d8 from=translated src=- shape=6d32e2b1 vocab=7cf7338e
+-/
 @[simp] theorem residueUnitsEquivOfResidueMapSurjective_apply
     (hSurj : Function.Surjective (residueMap base target))
     (a : base.residueFieldˣ) :
@@ -263,7 +299,9 @@ omit [FiniteDimensional K L] in
   rfl
 
 omit [FiniteDimensional K L] in
-/-- The residue-field equivalence sends a source residue to the corresponding target residue.-/
+/-- The residue-field equivalence sends a source residue to the corresponding target residue.
+@isnad1 id=eq.1h5v.s10.43162a196124 from=translated src=- shape=c107e7a1 vocab=69f30445
+-/
 @[simp] theorem residueFieldEquivOfSurjective_apply_residue
     (hSurj : Function.Surjective (residueMap base target))
     (a : base.valuationSubring) :
@@ -273,7 +311,9 @@ omit [FiniteDimensional K L] in
     residueMap_residue]
 
 omit [FiniteDimensional K L] in
-/-- The inverse residue-field equivalence sends a target residue back to its source residue.-/
+/-- The inverse residue-field equivalence sends a target residue back to its source residue.
+@isnad1 id=eq.1h5v.s10.4c12953bde27 from=translated src=- shape=d7cf04f7 vocab=6d2f3567
+-/
 @[simp] theorem residueFieldEquivOfSurjective_symm_apply_target_residue
     (hSurj : Function.Surjective (residueMap base target))
     (a : base.valuationSubring) :

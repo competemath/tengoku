@@ -36,7 +36,9 @@ open RingTheory.Sequence
 universe u v w
 
 /-- If `x` and `y` are relatively prime and `y * b = x * c` in the
-normalization, then `b` is divisible by `x` in the normalization.-/
+normalization, then `b` is divisible by `x` in the normalization.
+@isnad1 id=ex.5h7v.s11.5839c91fda87 from=translated src=- shape=62d6c7b5 vocab=48fad233
+-/
 theorem exists_integralClosure_factor_of_mul_eq_mul
     {A : Type u} {K : Type v} {L : Type w}
     [CommRing A] [IsDomain A] [IsIntegrallyClosed A]
@@ -154,7 +156,9 @@ theorem exists_integralClosure_factor_of_mul_eq_mul
 /-- For a relatively-prime nonzero pair `x, y`, multiplication by `y` is
 injective on the normalization modulo `x`.  This is the second regularity
 condition needed for the parameter pair in the dimension-two flatness
-argument.-/
+argument.
+@isnad1 id=issmulre.4h5v.s12.9b7fc365e18a from=translated src=- shape=ea96bdbd vocab=8357c530
+-/
 theorem isSMulRegular_quotSMulTop_integralClosure_of_isRelPrime
     {A : Type u} {K : Type v} {L : Type w}
     [CommRing A] [IsDomain A] [IsIntegrallyClosed A]
@@ -183,7 +187,9 @@ normalization in a finite separable extension.
 Unlike `isSMulRegular_quotSMulTop_integralClosure_of_isRelPrime`, this
 finite-separable form needs neither integral closedness of the base nor a
 primality hypothesis on the first parameter.  The trace-dual divisibility
-theorem supplies precisely the saturation statement needed in the quotient.-/
+theorem supplies precisely the saturation statement needed in the quotient.
+@isnad1 id=issmulre.1h5v.s12.445b192a92b0 from=translated src=- shape=8f68e58b vocab=98a58bae
+-/
 theorem isSMulRegular_quotSMulTop_integralClosure_of_isRegular
     {A : Type u} {K : Type v} {L : Type w}
     [CommRing A] [IsDomain A] [IsNoetherianRing A]

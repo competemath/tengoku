@@ -77,7 +77,9 @@ theorem eq_zero_of_idealPower_torsion_quotient_primaryComponent
     (Submodule.mem_colon_singleton.mp (hpower a.property))
 
 /-- The maximal ideal is not associated to the quotient by the
-maximal-ideal-primary component of a finite module.-/
+maximal-ideal-primary component of a finite module.
+@isnad1 id=not.0h2v.s7.b188453c12bc from=translated src=- shape=bbd46f6b vocab=05f0a966
+-/
 theorem maximalIdeal_not_mem_associatedPrimes_quotient_primaryComponent
     [IsLocalRing R] :
     IsLocalRing.maximalIdeal R ∉

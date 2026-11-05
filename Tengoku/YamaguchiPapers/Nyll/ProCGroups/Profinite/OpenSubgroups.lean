@@ -27,22 +27,30 @@ section OpenSubgroups
 
 variable {G : Type u} [Group G] [TopologicalSpace G]
 
-/-- An open subgroup is open as a subset.-/
+/-- An open subgroup is open as a subset.
+@isnad1 id=isopen.0h2v.s4.a962ca2f1314 from=translated src=- shape=b82487ba vocab=d51c2aa1
+-/
 theorem openSubgroup_isOpen (U : OpenSubgroup G) :
     IsOpen ((U : Subgroup G) : Set G) := by
   exact U.isOpen
 
-/-- An open subgroup is closed as a subset.-/
+/-- An open subgroup is closed as a subset.
+@isnad1 id=isclosed.0h2v.s5.0a29560bf035 from=translated src=- shape=e20b88b0 vocab=c203643b
+-/
 theorem openSubgroup_isClosed [ContinuousMul G] (U : OpenSubgroup G) :
     IsClosed ((U : Subgroup G) : Set G) := by
   exact OpenSubgroup.isClosed U
 
-/-- An open normal subgroup is open as a subset.-/
+/-- An open normal subgroup is open as a subset.
+@isnad1 id=isopen.0h2v.s5.79f9eb2e3213 from=translated src=- shape=88675009 vocab=ec6d08a2
+-/
 theorem openNormalSubgroup_isOpen (U : OpenNormalSubgroup G) :
     IsOpen ((U : Subgroup G) : Set G) := by
   exact U.toOpenSubgroup.isOpen
 
-/-- An open normal subgroup is closed as a subset.-/
+/-- An open normal subgroup is closed as a subset.
+@isnad1 id=isclosed.0h2v.s5.56c7b0e7ea0c from=translated src=- shape=63d3a488 vocab=51d58065
+-/
 theorem openNormalSubgroup_isClosed [ContinuousMul G] (U : OpenNormalSubgroup G) :
     IsClosed ((U : Subgroup G) : Set G) := by
   exact OpenSubgroup.isClosed U.toOpenSubgroup
@@ -57,7 +65,9 @@ def comap {H : Type v} [Group H] [TopologicalSpace H]
       change ((U : Subgroup H).comap f).Normal
       infer_instance }
 
-/-- The subgroup underlying the comap of an open subgroup is the subgroup comap.-/
+/-- The subgroup underlying the comap of an open subgroup is the subgroup comap.
+@isnad1 id=eq.1h4v.s7.7435b30a13a8 from=translated src=- shape=ff9d6114 vocab=ff7ac80c
+-/
 @[simp, norm_cast]
 theorem toSubgroup_comap {H : Type v} [Group H] [TopologicalSpace H]
     (f : G →* H) (hf : Continuous f) (U : OpenNormalSubgroup H) :
@@ -65,7 +75,9 @@ theorem toSubgroup_comap {H : Type v} [Group H] [TopologicalSpace H]
       (U : Subgroup H).comap f :=
   rfl
 
-/-- Membership in the comap of an open subgroup is membership after applying the homomorphism.-/
+/-- Membership in the comap of an open subgroup is membership after applying the homomorphism.
+@isnad1 id=iff.1h5v.s7.56f46992b31b from=translated src=- shape=0dab2a36 vocab=4a24ce00
+-/
 @[simp]
 theorem mem_comap {H : Type v} [Group H] [TopologicalSpace H]
     {f : G →* H} {hf : Continuous f} {U : OpenNormalSubgroup H} {x : G} :
@@ -76,20 +88,26 @@ end OpenNormalSubgroup
 
 /--
 An open subgroup of a compact topological group has finite coset space, equivalently finite
-index.-/
+index.
+@isnad1 id=finite.0h2v.s5.073c892a3386 from=translated src=- shape=d943d760 vocab=4bf899a8
+-/
 theorem openSubgroup_finiteQuotient [ContinuousMul G] [CompactSpace G]
     (U : OpenSubgroup G) :
     Finite (G ⧸ (U : Subgroup G)) := by
   exact Subgroup.quotient_finite_of_isOpen (U : Subgroup G) (openSubgroup_isOpen (G := G) U)
 
-/-- Any open normal subgroup of a compact topological group has finite quotient.-/
+/-- Any open normal subgroup of a compact topological group has finite quotient.
+@isnad1 id=finite.0h2v.s5.ff477403ab08 from=translated src=- shape=20d9ac1c vocab=647ec5a7
+-/
 theorem openNormalSubgroup_finiteQuotient [ContinuousMul G] [CompactSpace G]
     (U : OpenNormalSubgroup G) :
     Finite (G ⧸ (U : Subgroup G)) := by
   exact Subgroup.quotient_finite_of_isOpen (U : Subgroup G)
     (openNormalSubgroup_isOpen (G := G) U)
 
-/-- In a compact topological group, every element has a positive power in any open subgroup.-/
+/-- In a compact topological group, every element has a positive power in any open subgroup.
+@isnad1 id=ex.0h3v.s6.bafe96ca17df from=translated src=- shape=2c52feab vocab=ac77c6f4
+-/
 theorem exists_pos_pow_mem_openSubgroup [ContinuousMul G] [CompactSpace G]
     (U : OpenSubgroup G) (g : G) :
     ∃ n : ℕ, 0 < n ∧ g ^ n ∈ (U : Subgroup G) := by
@@ -105,7 +123,9 @@ theorem exists_pos_pow_mem_openSubgroup [ContinuousMul G] [CompactSpace G]
 /--
 In a compact topological group, a subgroup is open if and only if it is closed and the quotient
 is finite. Equivalently, the subgroup is closed of finite index; in this version, Finite
-(\(G/U\)) is the most direct encoding of finite index.-/
+(\(G/U\)) is the most direct encoding of finite index.
+@isnad1 id=iff.0h2v.s6.e14baf037d63 from=translated src=- shape=ebb81a6a vocab=427e5c25
+-/
 theorem subgroup_isOpen_iff_isClosed_finite_quotient [ContinuousMul G] [CompactSpace G]
     {U : Subgroup G} :
     IsOpen (U : Set G) ↔ IsClosed (U : Set G) ∧ Finite (G ⧸ U) := by

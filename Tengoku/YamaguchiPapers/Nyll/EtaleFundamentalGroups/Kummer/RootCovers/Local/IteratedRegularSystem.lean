@@ -60,7 +60,9 @@ private theorem constructionList_cons
       rw [ih (Fin.init n) (Fin.init a), List.map_cons]
       congr 1
 
-/-- Every indexed root occurs in the final regular parameter list.-/
+/-- Every indexed root occurs in the final regular parameter list.
+@isnad1 id=mem.0h6v.s6.96dc1bbf813b from=translated src=- shape=085da741 vocab=d8b600b9
+-/
 theorem iteratedRadicalRoot_mem_parameterList
     {A : Type u} [CommRing A] {r : ℕ}
     (n : Fin r → ℕ) (a : Fin r → A) (rs : List A) (i : Fin r) :
@@ -93,7 +95,9 @@ theorem iteratedRadicalRoot_mem_parameterList
           (List.mem_map.mpr ⟨_, ih (Fin.init n) (Fin.init a) j, rfl⟩)
 
 /-- Every remaining base parameter occurs, via the algebra map, in the final
-regular parameter list.-/
+regular parameter list.
+@isnad1 id=mem.1h6v.s10.6fc0ec43fa4e from=translated src=- shape=aa72f9fa vocab=044d3739
+-/
 theorem algebraMap_mem_iteratedLocalRootCoverParameterList
     {A : Type u} [CommRing A] {r : ℕ}
     (n : Fin r → ℕ) (a : Fin r → A) (rs : List A)

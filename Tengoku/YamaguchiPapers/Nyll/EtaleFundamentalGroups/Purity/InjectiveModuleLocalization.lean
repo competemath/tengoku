@@ -33,7 +33,9 @@ variable {R : Type u} [CommRing R]
 variable (E : Type u) [AddCommGroup E] [Module R E]
 
 /-- Localization of an injective module over a Noetherian ring is a quotient
-of the original module.-/
+of the original module.
+@isnad1 id=surjecti.0h3v.s8.b6469cd2a642 from=translated src=- shape=112a5311 vocab=964b22e8
+-/
 theorem localizedModule_mkLinearMap_surjective_of_injective
     [IsNoetherianRing R] [Module.Injective R E] (S : Submonoid R) :
     Function.Surjective (LocalizedModule.mkLinearMap S E) := by
@@ -95,7 +97,9 @@ theorem localizedModule_mkLinearMap_surjective_of_injective
   rw [one_smul, ← mul_smul, ← pow_succ]
   exact hdivide
 
-/-- The kernel of principal localization is principal ideal-power torsion.-/
+/-- The kernel of principal localization is principal ideal-power torsion.
+@isnad1 id=eq.0h3v.s7.3ecabaa6e4fe from=translated src=- shape=4e58feac vocab=8fa8d2ec
+-/
 theorem ker_localizedModule_mkLinearMap_powers (x : R) :
     LinearMap.ker (LocalizedModule.mkLinearMap (Submonoid.powers x) E) =
       Ideal.primaryComponent E (Ideal.span {x}) := by

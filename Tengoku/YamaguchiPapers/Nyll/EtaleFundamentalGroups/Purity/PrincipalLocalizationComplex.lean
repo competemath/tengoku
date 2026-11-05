@@ -52,7 +52,9 @@ def principalLocalizationComplex (x : R) (M : ModuleCat.{u} R) :
       | zero => exact comp_zero
       | succ n => exact zero_comp)
 
-/-- No terms of a principal localization complex occur above degree one.-/
+/-- No terms of a principal localization complex occur above degree one.
+@isnad1 id=iszero.1h4v.s6.1422ee5a94ec from=translated src=- shape=54495888 vocab=121fdf8e
+-/
 theorem principalLocalizationComplex_isZero_X (x : R) (M : ModuleCat.{u} R)
     (n : ℕ) (hn : 1 < n) :
     IsZero ((principalLocalizationComplex x M).X n) := by
@@ -61,7 +63,9 @@ theorem principalLocalizationComplex_isZero_X (x : R) (M : ModuleCat.{u} R)
   exact ModuleCat.isZero_of_subsingleton _
 
 /-- The degree-zero cycles are exactly the elements annihilated by some
-power of the principal ideal.-/
+power of the principal ideal.
+@isnad1 id=eq.0h3v.s9.6d871f63ea26 from=translated src=- shape=a9d032fe vocab=74d4c8e1
+-/
 theorem principalLocalizationComplex_ker_d_zero (x : R) (M : ModuleCat.{u} R) :
     LinearMap.ker ((principalLocalizationComplex x M).d 0 1).hom =
       Ideal.primaryComponent M (Ideal.span {x}) := by
@@ -69,7 +73,9 @@ theorem principalLocalizationComplex_ker_d_zero (x : R) (M : ModuleCat.{u} R) :
   exact ker_localizedModule_mkLinearMap_powers M x
 
 /-- A principal localization complex of an injective module is exact in
-all strictly positive degrees.-/
+all strictly positive degrees.
+@isnad1 id=exactat.0h4v.s6.ae6bad237126 from=translated src=- shape=8e68cc23 vocab=fe82e93d
+-/
 theorem principalLocalizationComplex_exactAt_succ
     [IsNoetherianRing R] (x : R) (M : ModuleCat.{u} R) [Module.Injective R M]
     (n : ℕ) : (principalLocalizationComplex x M).ExactAt (n + 1) := by
@@ -87,7 +93,9 @@ theorem principalLocalizationComplex_exactAt_succ
     exact principalLocalizationComplex_isZero_X x M (n + 1 + 1) (by omega)
 
 /-- Every term of the principal localization complex of a flat module is
-flat over the original ring.-/
+flat over the original ring.
+@isnad1 id=flat.0h4v.s8.ad5881227ca8 from=translated src=- shape=199aa1ef vocab=36359edd
+-/
 theorem principalLocalizationComplex_flat_X (x : R) (M : ModuleCat.{u} R)
     [Module.Flat R M] (n : ℕ) :
     Module.Flat R ((principalLocalizationComplex x M).X n) := by

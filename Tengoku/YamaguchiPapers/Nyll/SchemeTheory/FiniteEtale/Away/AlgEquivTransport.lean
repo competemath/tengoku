@@ -27,7 +27,9 @@ namespace EtaleFundamentalGroups
 universe uA uC uD₀ uD₁
 
 /-- A literal etale Away map is invariant under an equivalence of its target
-as an algebra over the base.-/
+as an algebra over the base.
+@isnad1 id=etale.1h5v.s9.952435933334 from=translated src=- shape=d3c08b3d vocab=51d32d7b
+-/
 theorem localization_awayMap_etale_of_algEquiv
     {A : Type uA} {D₀ : Type uD₀} {D₁ : Type uD₁}
     [CommRing A] [CommRing D₀] [CommRing D₁]
@@ -47,7 +49,9 @@ theorem localization_awayMap_etale_of_algEquiv
       (A := A) (B := D₀) (C := A) (D := D₁) f hAway)
 
 /-- An equivalence of the source transports a literal etale Away map to
-its composite over the original scalar ring.-/
+its composite over the original scalar ring.
+@isnad1 id=etale.1h5v.s9.3beb86f0ad09 from=translated src=- shape=976fda08 vocab=57cc2252
+-/
 theorem localization_awayMap_etale_of_source_algEquiv
     {A : Type uA} {C : Type uC} {D : Type uD₀}
     [CommRing A] [CommRing C] [CommRing D]
@@ -84,7 +88,9 @@ theorem localization_awayMap_etale_of_source_algEquiv
 
 /-- A target equivalence over an intermediate algebra transports the literal
 Away map over the original base, provided both target actions are the actual
-scalar-tower composites.-/
+scalar-tower composites.
+@isnad1 id=etale.1h6v.s9.8e515ec24402 from=translated src=- shape=8232f802 vocab=57cc2252
+-/
 theorem localization_awayMap_etale_of_tower_algEquiv
     {A : Type uA} {C : Type uC}
     {D₀ : Type uD₀} {D₁ : Type uD₁}

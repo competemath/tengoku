@@ -52,7 +52,9 @@ noncomputable def normalizationPrimeFromLocalization
   exact fun q ↦ q.under (integralClosure A L)
 
 omit [IsDomain A] in
-/-- Contraction of a localized normalization prime is prime.-/
+/-- Contraction of a localized normalization prime is prime.
+@isnad1 id=isprime.1h5v.s9.f81e1c345365 from=translated src=- shape=8dbeb3dc vocab=33c57b26
+-/
 theorem normalizationPrimeFromLocalization_isPrime
     :
     letI := localizationAtPrimeToExtensionAlgebra (K := K) (L := L) P
@@ -71,7 +73,9 @@ theorem normalizationPrimeFromLocalization_isPrime
 
 omit [IsDomain A] in
 /-- If the localized prime lies over the closed point of `A_P`, its
-contraction to the original normalization lies over `P`.-/
+contraction to the original normalization lies over `P`.
+@isnad1 id=liesover.2h5v.s10.f3e29d4e36d2 from=translated src=- shape=627101e7 vocab=ee74eca6
+-/
 theorem normalizationPrimeFromLocalization_liesOver
     :
     letI := localizationAtPrimeToExtensionAlgebra (K := K) (L := L) P
@@ -110,7 +114,9 @@ theorem normalizationPrimeFromLocalization_liesOver
 
 omit [IsDomain A] in
 /-- Localizing the recovered contraction gives back the original localized
-normalization prime.-/
+normalization prime.
+@isnad1 id=eq.1h5v.s10.c4765747200c from=translated src=- shape=24b4f57c vocab=d96a22eb
+-/
 theorem localizedNormalizationPrime_normalizationPrimeFromLocalization
     :
     letI := localizationAtPrimeToExtensionAlgebra (K := K) (L := L) P
@@ -138,7 +144,9 @@ theorem localizedNormalizationPrime_normalizationPrimeFromLocalization
 
 omit [IsDomain A] in
 /-- Recovering a prime from the localized normalization and localizing again
-identifies its local ramification index with the global one.-/
+identifies its local ramification index with the global one.
+@isnad1 id=eq.2h5v.s11.9c9110054d83 from=translated src=- shape=9e1737de vocab=891b648e
+-/
 theorem normalizationPrimeFromLocalization_ramificationIdx
     :
     letI := localizationAtPrimeToExtensionAlgebra (K := K) (L := L) P

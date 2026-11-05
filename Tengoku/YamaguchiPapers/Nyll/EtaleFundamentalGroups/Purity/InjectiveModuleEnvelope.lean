@@ -33,7 +33,9 @@ namespace EtaleFundamentalGroups.Purity
 universe u
 
 /-- A submodule of an injective module admits an injective essential
-extension within that same ambient module.-/
+extension within that same ambient module.
+@isnad1 id=ex.0h3v.s8.05fc5f311b21 from=translated src=- shape=79986fa8 vocab=68cf4880
+-/
 theorem exists_injective_essential_extension
     {R M : Type u} [Ring R] [AddCommGroup M] [Module R M]
     [Module.Injective R M] (N : Submodule R M) :

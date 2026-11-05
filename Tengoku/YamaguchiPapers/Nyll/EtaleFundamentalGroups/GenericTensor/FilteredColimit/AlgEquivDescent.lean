@@ -47,7 +47,9 @@ local instance underCommRingCatAlgebraDescent
 /-- Descend one tensor-product morphism to a finite stage of the coefficient
 colimit. Only the source algebra needs a finite presentation. The descended
 map is an actual algebra homomorphism between the two stage tensor products,
-and its scalar extension recovers the given morphism along the literal cocone maps.-/
+and its scalar extension recovers the given morphism along the literal cocone maps.
+@isnad1 id=ex.0h8v.s13.f2fe772afa4d from=translated src=- shape=a4038daf vocab=137f33cc
+-/
 theorem exists_tensorProduct_algHom_stage_of_filteredColimit
     {R B D : Type u} [CommRing R] [CommRing B] [CommRing D]
     [Algebra R B] [Algebra R D]
@@ -573,7 +575,9 @@ is preserved without an additional comparison hypothesis.
 This endpoint deliberately uses one universe for the rings and the filtered
 index category.  That is the universe in which Mathlib currently exposes
 `CommRingCat.isFinitelyPresentable_under`; applications with a larger index
-universe must first choose an equivalent small filtered presentation.-/
+universe must first choose an equivalent small filtered presentation.
+@isnad1 id=ex.0h8v.s14.e177b5be0f88 from=translated src=- shape=fcfb3f4f vocab=5a9e7184
+-/
 theorem exists_tensorProduct_algEquiv_stage_of_filteredColimit
     {R B D : Type u} [CommRing R] [CommRing B] [CommRing D]
     [Algebra R B] [Algebra R D]
@@ -837,7 +841,9 @@ theorem exists_tensorProduct_algEquiv_stage_of_filteredColimit
 /-- A finite family of equalities after tensor passage to the filtered
 colimit holds after one common stage transition. The auxiliary source is a
 polynomial algebra in finitely many variables over the fixed tensor factor;
-no finite presentation of that fixed factor over the original base is used.-/
+no finite presentation of that fixed factor over the original base is used.
+@isnad1 id=ex.1h10v.s13.07bf56e9d985 from=translated src=- shape=a2c8ee8b vocab=8925fc85
+-/
 theorem exists_tensorProduct_family_eq_stage_of_filteredColimit
     {R B : Type u} [CommRing R] [CommRing B] [Algebra R B]
     {J : Type u} [SmallCategory J] [IsFiltered J]

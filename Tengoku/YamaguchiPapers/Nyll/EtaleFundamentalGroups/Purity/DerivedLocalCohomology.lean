@@ -76,7 +76,9 @@ def derivedLocalCohomology
     (localCohomology.idealPowersDiagram I) M i
 
 /-- The object at exponent `n` is the expected derived Ext group against
-`R / I^n`.-/
+`R / I^n`.
+@isnad1 id=eq.0h5v.s9.9293926fa20d from=translated src=- shape=d9d87f06 vocab=9d8baae0
+-/
 theorem derivedLocalCohomologyPowersDiagram_obj
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) (n : (ℕᵒᵖ)ᵒᵖ) :
     (derivedLocalCohomologyPowersDiagram I M i).obj n =
@@ -86,7 +88,9 @@ theorem derivedLocalCohomologyPowersDiagram_obj
   rfl
 
 /-- If every derived Ext group in the powers diagram is trivial, then so is
-its colimit.-/
+its colimit.
+@isnad1 id=iszero.1h4v.s8.a8ad679f3795 from=translated src=- shape=76d6e69e vocab=3f6c33bc
+-/
 theorem derivedLocalCohomology_isZero_of_subsingleton_ext_powers
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
     (hExt : ∀ n : ℕ, Subsingleton

@@ -35,7 +35,9 @@ universe u
 /-- Over a Noetherian local domain, an annihilating support generator lowers
 by one the generator-count bound for local cohomology of the coefficient
 module.  No regularity or nonzero assumption on the annihilating generator
-is needed.-/
+is needed.
+@isnad1 id=iszero.2h5v.s8.739c8dcf3048 from=translated src=- shape=ea94e04f vocab=f1dddc77
+-/
 theorem derivedLocalCohomology_ofList_cons_isZero_of_smul_id_eq_zero
     {R : Type u} [CommRing R] [IsDomain R] [IsLocalRing R]
     [IsNoetherianRing R]

@@ -57,7 +57,9 @@ noncomputable def standardCompleteDVFOfCompleteDVR
         rw [hmap] at hcomplete
         exact hcomplete }
 
-/-- Forgetting completeness recovers the standard DVR valuation exactly.-/
+/-- Forgetting completeness recovers the standard DVR valuation exactly.
+@isnad1 id=eq.0h2v.s6.794c06b58adf from=translated src=- shape=37b26bb7 vocab=988a3ce7
+-/
 @[simp]
 theorem standardCompleteDVFOfCompleteDVR_toDVF
     (V : Type uV) (K : Type uK)

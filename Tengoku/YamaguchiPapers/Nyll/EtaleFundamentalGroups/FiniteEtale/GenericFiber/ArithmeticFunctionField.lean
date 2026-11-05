@@ -31,7 +31,9 @@ namespace EtaleFundamentalGroups
 
 /-- The function field of an integral arithmetic scheme with geometrically
 integral generic fiber remains a domain after every characteristic-zero
-field extension of its rational constants.-/
+field extension of its rational constants.
+@isnad1 id=isdomain.0h3v.s8.9364b871a369 from=translated src=- shape=a5e031c7 vocab=a619c015
+-/
 theorem isDomain_functionField_ratTensor_of_arithmetic_genericFiber
     {X : Scheme} [IsIntegral X] [CharZero X.functionField]
     (f : X ⟶ Spec (.of ℤ))

@@ -56,7 +56,9 @@ def cechLocalizationComplex : List R → CochainComplex (ModuleCat.{u} R) ℕ
   | x :: xs => HomologicalComplex.tensorObj
       (principalLocalizationComplex x (ModuleCat.of R R)) (cechLocalizationComplex xs)
 
-/-- A finite Čech complex has no terms above the length of its list.-/
+/-- A finite Čech complex has no terms above the length of its list.
+@isnad1 id=iszero.1h3v.s6.b00947d3368b from=translated src=- shape=7db0c22b vocab=af70221a
+-/
 theorem cechLocalizationComplex_isZero_X (xs : List R) (n : ℕ)
     (hn : xs.length < n) : IsZero ((cechLocalizationComplex xs).X n) := by
   induction xs generalizing n with
@@ -88,7 +90,9 @@ private theorem flat_finite_coproduct {ι : Type} [Finite ι]
     Module.Flat.of_linearEquiv (DFinsupp.linearEquivFunOnFintype (R := R) (M := fun i => M i)).symm
   exact Module.Flat.of_linearEquiv e.toLinearEquiv
 
-/-- Every term of a finite Čech complex is flat over the original ring.-/
+/-- Every term of a finite Čech complex is flat over the original ring.
+@isnad1 id=flat.0h3v.s7.e8b6f9752883 from=translated src=- shape=208b1b32 vocab=94b405fa
+-/
 theorem cechLocalizationComplex_flat_X (xs : List R) (n : ℕ) :
     Module.Flat R ((cechLocalizationComplex xs).X n) := by
   induction xs generalizing n with

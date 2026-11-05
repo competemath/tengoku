@@ -46,7 +46,9 @@ noncomputable def ofHomInv
     continuous_toFun := f.continuous_toFun
     continuous_invFun := g.continuous_toFun }
 
-/-- The continuous equivalence is evaluated by the corresponding comparison formula.-/
+/-- The continuous equivalence is evaluated by the corresponding comparison formula.
+@isnad1 id=eq.2h5v.s8.45aed03ac7fd from=translated src=- shape=066dfa2f vocab=ca3a4e46
+-/
 @[simp] theorem ofHomInv_apply
     (f : G →ₜ* H) (g : H →ₜ* G)
     (hleft : Function.LeftInverse g f)
@@ -76,7 +78,9 @@ noncomputable def ofBijectiveCompactToT2
 
 /--
 The composite map is computed pointwise by applying the constituent coordinate formulas in
-succession.-/
+succession.
+@isnad1 id=eq.2h4v.s8.18b79ee7afca from=translated src=- shape=e21f5fd4 vocab=9f5442bc
+-/
 @[simp 900] theorem ofBijectiveCompactToT2_apply
     {G : Type u} {H : Type v}
     [Group G] [TopologicalSpace G]
@@ -89,7 +93,9 @@ succession.-/
   rfl
 
 /-- Transport a jointly continuous action through an equivalence, after one
-fixed action on its target. The algebraic action is the existing `MulAut.congr`.-/
+fixed action on its target. The algebraic action is the existing `MulAut.congr`.
+@isnad1 id=ex.1h6v.s11.63ebfd8d88c9 from=translated src=- shape=7c3fc9d0 vocab=5fa6f1d2
+-/
 theorem exists_conjugated_action
     {Γ B H : Type*} [Group Γ] [Group B] [Group H]
     [TopologicalSpace Γ] [TopologicalSpace B] [TopologicalSpace H]
@@ -150,7 +156,9 @@ noncomputable def quotientKerContinuousMulEquivRange
   exact ContinuousMulEquiv.ofBijectiveCompactToT2 φ hφcont
     (QuotientGroup.quotientKerEquivRange f.toMonoidHom).bijective
 
-/-- The quotient-by-kernel equivalence to the range sends a representative to its image.-/
+/-- The quotient-by-kernel equivalence to the range sends a representative to its image.
+@isnad1 id=eq.0h4v.s11.b95c81e2dde2 from=translated src=- shape=76f1599d vocab=62d756a6
+-/
 @[simp] theorem quotientKerContinuousMulEquivRange_mk
     {G : Type u} {H : Type v}
     [Group G] [TopologicalSpace G] [CompactSpace G]
@@ -163,7 +171,9 @@ noncomputable def quotientKerContinuousMulEquivRange
 
 /--
 Coercing the quotient-by-kernel equivalence to the codomain gives the original homomorphism
-value.-/
+value.
+@isnad1 id=eq.0h4v.s10.7a94a2262f4f from=translated src=- shape=5e98e4e3 vocab=35c8af1f
+-/
 @[simp] theorem coe_quotientKerContinuousMulEquivRange_mk
     {G : Type u} {H : Type v}
     [Group G] [TopologicalSpace G] [CompactSpace G]

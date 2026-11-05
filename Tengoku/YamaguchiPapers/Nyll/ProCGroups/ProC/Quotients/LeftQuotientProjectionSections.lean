@@ -28,7 +28,9 @@ open InverseSystems
 
 /--
 If an intermediate closed subgroup is not contained in the base subgroup, the set-theoretic
-difference contains an element.-/
+difference contains an element.
+@isnad1 id=ex.1h3v.s6.ef5b146d329f from=translated src=- shape=804e321a vocab=80b618a5
+-/
 theorem exists_mem_of_not_le {G : Type u} [Group G] [TopologicalSpace G] {K L : ClosedSubgroup G}
     (hnotle : ¬ (L : Subgroup G) ≤ (K : Subgroup G)) :
     ∃ x : G, x ∈ (L : Subgroup G) ∧ x ∉ (K : Subgroup G) := by
@@ -45,7 +47,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
 omit [T2Space G] in
 /--
 For any nontrivial element of a profinite group, there is an open normal subgroup that does not
-contain it.-/
+contain it.
+@isnad1 id=ex.1h2v.s6.174f8b90ea44 from=translated src=- shape=530bf834 vocab=6e00b680
+-/
 theorem exists_openNormalSubgroup_not_mem
     {x : G} (hx : x ≠ 1) :
     ∃ U : OpenNormalSubgroup G, x ∉ (U : Subgroup G) := by
@@ -65,7 +69,9 @@ theorem exists_openNormalSubgroup_not_mem
 omit [T2Space G] in
 /--
 A point outside a closed subgroup of a profinite group is omitted by some open subgroup
-containing that closed subgroup.-/
+containing that closed subgroup.
+@isnad1 id=ex.1h3v.s6.0c142bd923c6 from=translated src=- shape=3dd3bff7 vocab=66e328cf
+-/
 theorem exists_openSubgroup_ge_closedSubgroup_not_mem
     (K : ClosedSubgroup G) {x : G} (hx : x ∉ (K : Set G)) :
     ∃ U : OpenSubgroup G, (K : Subgroup G) ≤ (U : Subgroup G) ∧ x ∉ (U : Set G) := by
@@ -101,7 +107,9 @@ noncomputable def quotientBotHomeomorph :
       exact QuotientGroup.continuous_mk)
 
 omit [T2Space G] in
-/-- The continuous equivalence is evaluated by the corresponding comparison formula.-/
+/-- The continuous equivalence is evaluated by the corresponding comparison formula.
+@isnad1 id=eq.0h2v.s7.b4a615be4ac8 from=translated src=- shape=2a1af5c7 vocab=71e023ef
+-/
 @[simp 900] theorem quotientBotHomeomorph_apply (g : G) :
     quotientBotHomeomorph (G := G) g = QuotientGroup.mk (s := (⊥ : Subgroup G)) g :=
   rfl
@@ -177,7 +185,9 @@ def top (hKH : (K : Subgroup G) ≤ (H : Subgroup G)) :
   one_eq := rfl
 
 omit [T2Space G] [TotallyDisconnectedSpace G] in
-/-- Any nonempty chain of partial sections admits an upper bound over the infimum subgroup.-/
+/-- Any nonempty chain of partial sections admits an upper bound over the infimum subgroup.
+@isnad1 id=ex.2h4v.s7.9fc1f0222746 from=translated src=- shape=a0329cde vocab=5812db2e
+-/
 theorem exists_upperBound_of_chain
     (c : Set (LeftQuotientSectionData (G := G) K H))
     (hc : IsChain (· ≤ ·) c) (hcn : c.Nonempty) :

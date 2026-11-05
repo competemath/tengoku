@@ -28,7 +28,9 @@ universe u
 variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
 /-- Degree-zero local cohomology of a finite module over a Noetherian
-local ring has finite length.-/
+local ring has finite length.
+@isnad1 id=isfinite.0h2v.s6.b48990c8a2b7 from=translated src=- shape=4f897a49 vocab=b069d905
+-/
 theorem isFiniteLength_derivedLocalCohomologyModule_maximalIdeal_zero
     (M : ModuleCat.{u} R) [Module.Finite R M] :
     IsFiniteLength R
@@ -43,7 +45,9 @@ theorem isFiniteLength_derivedLocalCohomologyModule_maximalIdeal_zero
       (IsLocalRing.maximalIdeal R) M 0)
 
 /-- In particular degree-zero maximal-support local cohomology of a
-finite module is Artinian.-/
+finite module is Artinian.
+@isnad1 id=isartini.0h2v.s7.fb5160f2757e from=translated src=- shape=4f897a49 vocab=5da79005
+-/
 theorem isArtinian_derivedLocalCohomologyModule_maximalIdeal_zero
     (M : ModuleCat.{u} R) [Module.Finite R M] :
     IsArtinian R

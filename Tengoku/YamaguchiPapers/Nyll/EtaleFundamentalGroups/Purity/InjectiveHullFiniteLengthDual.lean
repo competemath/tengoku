@@ -39,7 +39,9 @@ universe u v
 variable {R E : Type u} [CommRing R] [AddCommGroup E] [Module R E]
 
 /-- Every map from a submodule into an injective module extends to the
-ambient module, so the linear restriction map is surjective.-/
+ambient module, so the linear restriction map is surjective.
+@isnad1 id=surjecti.0h4v.s10.1276225a6fd8 from=translated src=- shape=ba8ae172 vocab=bf054546
+-/
 theorem injective_dualRestriction_surjective [Module.Injective R E]
     {M : Type v} [AddCommGroup M] [Module R M] (N : Submodule R M) :
     Function.Surjective (LinearMap.lcomp R E N.subtype) := by
@@ -70,7 +72,9 @@ private theorem length_linearMap_to_residueFieldHull_of_simple
     _ = Module.length R M := (Module.length_eq_one R M).symm
 
 /-- Duality into an injective hull of the residue field preserves the
-length of each finite-length module.-/
+length of each finite-length module.
+@isnad1 id=eq.3h4v.s9.3ecfaae2a3bd from=translated src=- shape=ac38a442 vocab=b4356114
+-/
 theorem length_linearMap_to_residueFieldHull_of_finiteLength
     [Module.Injective R E]
     (i : (R ⧸ IsLocalRing.maximalIdeal R) →ₗ[R] E)
@@ -102,7 +106,9 @@ theorem length_linearMap_to_residueFieldHull_of_finiteLength
           exact horiginal.symm
 
 /-- The dual of a finite-length module into an injective residue-field
-hull again has finite length.-/
+hull again has finite length.
+@isnad1 id=isfinite.3h4v.s9.91a08c9c217b from=translated src=- shape=5b66068c vocab=2cebdd29
+-/
 theorem isFiniteLength_linearMap_to_residueFieldHull
     [Module.Injective R E]
     (i : (R ⧸ IsLocalRing.maximalIdeal R) →ₗ[R] E)
@@ -116,7 +122,9 @@ theorem isFiniteLength_linearMap_to_residueFieldHull
 /-- Evaluation into the double dual is bijective on finite-length
 modules.  Injectivity separates elements using the residue field;
 surjectivity follows because a proper submodule has strictly smaller
-length.-/
+length.
+@isnad1 id=bijectiv.3h4v.s10.1e38e3d0c2d8 from=translated src=- shape=b8dc8c9d vocab=f9ba05a9
+-/
 theorem bijective_residueFieldHullEvaluation_of_finiteLength
     [Module.Injective R E]
     (i : (R ⧸ IsLocalRing.maximalIdeal R) →ₗ[R] E)
@@ -158,6 +166,9 @@ noncomputable def residueFieldHullBidualEquiv
   LinearEquiv.ofBijective (residueFieldHullEvaluation R E M)
     (bijective_residueFieldHullEvaluation_of_finiteLength i hi hess hM)
 
+/--
+@isnad1 id=eq.3h6v.s11.1810be520448 from=translated src=- shape=f40922f3 vocab=d0b4c1fd
+-/
 theorem residueFieldHullBidualEquiv_apply
     [Module.Injective R E]
     (i : (R ⧸ IsLocalRing.maximalIdeal R) →ₗ[R] E)

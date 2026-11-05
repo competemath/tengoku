@@ -24,7 +24,9 @@ namespace MonoidHom
 universe u v
 
 /--
-A homomorphism from a topological group to a discrete group is continuous if its kernel is open.-/
+A homomorphism from a topological group to a discrete group is continuous if its kernel is open.
+@isnad1 id=continuo.1h3v.s6.167ced89c4fd from=translated src=- shape=d459881f vocab=1fbbc83e
+-/
 theorem continuous_of_isOpen_ker_to_discrete
     {G : Type u} {Q : Type v}
     [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
@@ -79,7 +81,9 @@ def subtype (K : Subgroup G) : K →ₜ* G where
 
 /--
 The continuous homomorphism induced by a subgroup inclusion evaluates to the underlying subgroup
-element.-/
+element.
+@isnad1 id=eq.0h3v.s8.83f947c4f1d6 from=translated src=- shape=c43bb38f vocab=a914ad3d
+-/
 @[simp] theorem subtype_apply (K : Subgroup G) (x : K) :
     subtype K x = x :=
   rfl
@@ -93,7 +97,9 @@ def quotientMk (K : Subgroup G) [K.Normal] : G →ₜ* G ⧸ K where
 
 /--
 The continuous quotient homomorphism evaluates by taking the quotient class of the input
-element.-/
+element.
+@isnad1 id=eq.0h3v.s8.2a6e0d2638a2 from=translated src=- shape=1b2325ba vocab=1c6a31f6
+-/
 @[simp] theorem quotientMk_apply (K : Subgroup G) [K.Normal] (x : G) :
     quotientMk K x = QuotientGroup.mk' K x :=
   rfl
@@ -105,19 +111,25 @@ def rangeRestrict (f : G →ₜ* H) : G →ₜ* f.toMonoidHom.range where
 
 /--
 The range-restricted continuous homomorphism evaluates to the image element together with its
-range-membership certificate.-/
+range-membership certificate.
+@isnad1 id=eq.0h4v.s10.39a0849d71b1 from=translated src=- shape=6098cf82 vocab=942d7232
+-/
 @[simp] theorem rangeRestrict_apply (f : G →ₜ* H) (x : G) :
     f.rangeRestrict x = f.toMonoidHom.rangeRestrict x :=
   rfl
 
 /--
 Coercing the range-restricted homomorphism back to the codomain recovers the original
-homomorphism value.-/
+homomorphism value.
+@isnad1 id=eq.0h4v.s9.dd19db68be49 from=translated src=- shape=c7e1f987 vocab=fe81f0bd
+-/
 @[simp] theorem coe_rangeRestrict_apply (f : G →ₜ* H) (x : G) :
     (f.rangeRestrict x : H) = f x :=
   rfl
 
-/-- The kernel of a continuous homomorphism to a \(T_1\) group is closed.-/
+/-- The kernel of a continuous homomorphism to a \(T_1\) group is closed.
+@isnad1 id=isclosed.0h3v.s6.efb3f8cc4178 from=translated src=- shape=19920012 vocab=9a9b9351
+-/
 theorem isClosed_ker [T1Space H] (f : G →ₜ* H) :
     IsClosed ((f.toMonoidHom.ker : Subgroup G) : Set G) := by
   have hker :
@@ -129,7 +141,9 @@ theorem isClosed_ker [T1Space H] (f : G →ₜ* H) :
   rw [hker]
   exact (isClosed_singleton (x := (1 : H))).preimage f.continuous_toFun
 
-/-- The range of a continuous homomorphism from a compact space to a Hausdorff space is closed.-/
+/-- The range of a continuous homomorphism from a compact space to a Hausdorff space is closed.
+@isnad1 id=isclosed.0h3v.s6.525a725882af from=translated src=- shape=2c38c3ed vocab=f7ee479f
+-/
 theorem isClosed_range [CompactSpace G] [T2Space H] (f : G →ₜ* H) :
     IsClosed ((f.toMonoidHom.range : Subgroup H) : Set H) := by
   have himage : IsCompact (f '' (Set.univ : Set G)) :=

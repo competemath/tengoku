@@ -36,6 +36,9 @@ def residueFieldHullEvaluation (R : Type u) (E : Type v) (M : Type w)
     [AddCommGroup M] [Module R M] : M →ₗ[R] ((M →ₗ[R] E) →ₗ[R] E) :=
   LinearMap.flip (LinearMap.id : (M →ₗ[R] E) →ₗ[R] (M →ₗ[R] E))
 
+/--
+@isnad1 id=eq.0h5v.s10.10d21c6c1268 from=translated src=- shape=aad56d13 vocab=16e3412a
+-/
 theorem residueFieldHullEvaluation_apply
     (R : Type u) (E : Type v) (M : Type w)
     [CommRing R] [AddCommGroup E] [Module R E]
@@ -46,7 +49,9 @@ variable {R E : Type u} [CommRing R] [IsLocalRing R]
 variable [AddCommGroup E] [Module R E] [Module.Injective R E]
 
 /-- Maps into an injective module containing the residue field detect every
-nonzero element.  Essentiality of the residue-field image is not needed.-/
+nonzero element.  Essentiality of the residue-field image is not needed.
+@isnad1 id=ex.2h5v.s9.6995e929ccff from=translated src=- shape=cdae17a1 vocab=62875830
+-/
 theorem exists_linearMap_apply_ne_zero_of_injective_residueField
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)
     {M : Type v} [AddCommGroup M] [Module R M] (x : M) (hx : x ≠ 0) :
@@ -78,7 +83,9 @@ theorem exists_linearMap_apply_ne_zero_of_injective_residueField
   exact one_ne_zero (hi h10)
 
 /-- Evaluation into the double dual is injective when the target is
-injective and contains the residue field.-/
+injective and contains the residue field.
+@isnad1 id=injectiv.1h4v.s10.e14c447b8b6d from=translated src=- shape=c9295e18 vocab=a2077059
+-/
 theorem injective_eval_to_injective_residueField
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)
     (M : Type v) [AddCommGroup M] [Module R M] :

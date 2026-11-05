@@ -29,7 +29,9 @@ open ValuationTheory.DiscreteValuationField
 universe u
 
 /-- A finite étale local algebra over a Noetherian complete local ring is
-complete for its maximal ideal.-/
+complete for its maximal ideal.
+@isnad1 id=isadicco.0h2v.s7.721cf7dc43c0 from=translated src=- shape=edac5468 vocab=12bcafc8
+-/
 theorem isAdicComplete_maximalIdeal_of_finiteEtale_local
     {R S : Type u} [CommRing R] [CommRing S] [Algebra R S]
     [IsLocalRing R] [IsLocalRing S] [IsNoetherianRing R]
@@ -48,7 +50,9 @@ theorem isAdicComplete_maximalIdeal_of_finiteEtale_local
     (R := R) (S := S) (IsLocalRing.maximalIdeal R)).2 hcomplete
 
 /-- A finite étale local algebra over a Noetherian complete local ring is
-Henselian local.-/
+Henselian local.
+@isnad1 id=henselia.0h2v.s6.17ea9d95f55b from=translated src=- shape=eb396bf3 vocab=0278391a
+-/
 theorem henselianLocalRing_of_finiteEtale_of_isAdicComplete
     {R S : Type u} [CommRing R] [CommRing S] [Algebra R S]
     [IsLocalRing R] [IsLocalRing S] [IsNoetherianRing R]
@@ -64,7 +68,9 @@ theorem henselianLocalRing_of_finiteEtale_of_isAdicComplete
     (hderivative.map (Ideal.Quotient.mk (IsLocalRing.maximalIdeal S)))
 
 /-- Finite étale local algebras over a Noetherian complete local ring with
-isomorphic residue-field extensions are isomorphic over the base.-/
+isomorphic residue-field extensions are isomorphic over the base.
+@isnad1 id=nonempty.0h4v.s8.c4aa97316b7f from=translated src=- shape=5d1300ef vocab=11641a42
+-/
 theorem exists_finiteEtaleLocalAlgEquivOfResidueAlgEquiv
     {R S T : Type u} [CommRing R] [CommRing S] [CommRing T]
     [Algebra R S] [Algebra R T]

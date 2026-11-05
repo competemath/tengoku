@@ -40,7 +40,9 @@ variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 variable [IsAdicComplete (maximalIdeal R) R]
 
 /-- Maximal-support local cohomology of a finite module over a complete
-Noetherian local ring is Artinian in every degree.-/
+Noetherian local ring is Artinian in every degree.
+@isnad1 id=isartini.0h3v.s7.54e5e8d138a2 from=translated src=- shape=ea0f99c9 vocab=5b0cb939
+-/
 theorem isArtinian_derivedLocalCohomologyModule_maximalIdeal
     (M : ModuleCat.{u} R) [Module.Finite R M] (n : ℕ) :
     IsArtinian R (derivedLocalCohomologyModule (maximalIdeal R) M n) := by

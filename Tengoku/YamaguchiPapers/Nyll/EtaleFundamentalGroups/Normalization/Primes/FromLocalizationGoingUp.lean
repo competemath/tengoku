@@ -27,7 +27,9 @@ universe uA uK uL
 
 /-- A normalization prime chosen after localizing at `p` comes from a prime
 of the original normalization and that same prime can be followed to every
-larger base prime `P`.-/
+larger base prime `P`.
+@isnad1 id=ex.3h6v.s11.d6b092f25d66 from=translated src=- shape=b7c60c48 vocab=ec0a15dd
+-/
 theorem exists_normalizationPrimes_over_largerPrime_of_localized
     {A : Type uA} {K : Type uK} {L : Type uL}
     [CommRing A] [IsDomain A]

@@ -25,7 +25,9 @@ open CategoryTheory
 namespace CategoryTheory.PreGaloisCategory
 
 /-- The kernel of a pointed Galois quotient fixes the entire fiber, not just
-the chosen point. Transitivity of cover automorphisms supplies every other point.-/
+the chosen point. Transitivity of cover automorphisms supplies every other point.
+@isnad1 id=eq.1h6v.s9.b5bb3ae84073 from=translated src=- shape=7e8190e5 vocab=dfd37c75
+-/
 theorem fiber_fixed_of_galoisObjectQuotient_eq_one
     {C : Type*} [Category C] [GaloisCategory C]
     (F : C ⥤ FintypeCat) [FiberFunctor F]

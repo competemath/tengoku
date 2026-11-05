@@ -24,7 +24,9 @@ noncomputable section
 namespace EtaleFundamentalGroups
 
 /-- A finite complete family of orthogonal idempotents lifts along a
-surjective ring homomorphism whose kernel is a Henselian ideal.-/
+surjective ring homomorphism whose kernel is a Henselian ideal.
+@isnad1 id=ex.2h5v.s7.0b6b9ea0edfd from=translated src=- shape=42d14264 vocab=2a4ccde7
+-/
 theorem exists_completeOrthogonalIdempotents_lift_of_surjective_henselianRing_ker
     {R S ι : Type*} [CommRing R] [CommRing S] [Fintype ι]
     (f : R →+* S) (hf : Function.Surjective f)

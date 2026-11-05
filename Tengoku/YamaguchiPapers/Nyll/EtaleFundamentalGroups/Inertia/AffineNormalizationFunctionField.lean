@@ -43,7 +43,9 @@ variable (R B L : Type u) [CommRing R] [CommRing B] [IsDomain B]
 
 omit [IsDomain B] in
 /-- Normality of `B` makes its integral closure over `R` equal to the
-integral closure computed in its actual fraction field.-/
+integral closure computed in its actual fraction field.
+@isnad1 id=bijectiv.0h3v.s9.adcc52aac1c8 from=translated src=- shape=4d849742 vocab=09f5eeb8
+-/
 theorem integralClosureToFractionField_bijective :
     Function.Bijective (IsScalarTower.toAlgHom R B L).mapIntegralClosure := by
   refine ⟨?_, ?_⟩
@@ -68,7 +70,9 @@ def integralClosureFractionFieldEquiv :
     (integralClosureToFractionField_bijective R B L)
 
 omit [IsDomain B] in
-/-- The comparison agrees with the original inclusion into the fraction field.-/
+/-- The comparison agrees with the original inclusion into the fraction field.
+@isnad1 id=eq.0h4v.s9.8a5f72b8d302 from=translated src=- shape=286348a4 vocab=01f16bfe
+-/
 @[simp]
 theorem integralClosureFractionFieldEquiv_val (b : integralClosure R B) :
     (integralClosureFractionFieldEquiv R B L b : L) = algebraMap B L (b : B) :=
@@ -77,7 +81,9 @@ theorem integralClosureFractionFieldEquiv_val (b : integralClosure R B) :
 omit [IsDomain B] in
 /-- The integral-closure comparison intertwines a ring automorphism with
 its actual extension to the fraction field. Compatibility is a consequence
-of the fraction-field construction, not an additional input.-/
+of the fraction-field construction, not an additional input.
+@isnad1 id=eq.0h5v.s11.4877c2d251eb from=translated src=- shape=1989b123 vocab=416aa80c
+-/
 theorem integralClosureFractionFieldEquiv_mapIntegralClosure
     (σ : B ≃ₐ[R] B) (b : integralClosure R B) :
     integralClosureFractionFieldEquiv R B L (σ.mapIntegralClosure b) =
@@ -100,7 +106,9 @@ def affineNormalizationFunctionFieldIso :
 
 omit [IsDomain B] in
 /-- The point from the fraction field has its canonical integral-closure
-coordinates under the normalization comparison.-/
+coordinates under the normalization comparison.
+@isnad1 id=eq.0h3v.s9.c14409536584 from=translated src=- shape=57085573 vocab=056ce004
+-/
 @[reassoc]
 theorem fractionField_toNormalization_affineNormalizationFunctionFieldIso :
     Spec.map (CommRingCat.ofHom (algebraMap B L)) ≫
@@ -124,7 +132,9 @@ theorem fractionField_toNormalization_affineNormalizationFunctionFieldIso :
 
 omit [IsDomain B] in
 /-- The function-field normalization comparison preserves the structure
-map to the original affine base.-/
+map to the original affine base.
+@isnad1 id=eq.0h3v.s9.3b735b146ea3 from=translated src=- shape=926a8d45 vocab=12482076
+-/
 @[reassoc]
 theorem affineNormalizationFunctionFieldIso_hom_structureMap :
     (affineNormalizationFunctionFieldIso R B L).hom ≫
@@ -147,7 +157,9 @@ theorem affineNormalizationFunctionFieldIso_hom_structureMap :
 omit [IsDomain B] in
 /-- Under the function-field normalization comparison, the actual
 normalization deck extension is the restriction of the actual fraction-field
-automorphism to its integral closure.-/
+automorphism to its integral closure.
+@isnad1 id=eq.0h4v.s10.c4e8f7838003 from=translated src=- shape=b4f9822b vocab=a99f2888
+-/
 @[reassoc]
 theorem affineNormalizationDeck_affineNormalizationFunctionFieldIso
     (σ : B ≃ₐ[R] B) :

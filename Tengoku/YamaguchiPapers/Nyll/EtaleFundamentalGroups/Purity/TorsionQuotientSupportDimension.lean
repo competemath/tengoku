@@ -60,7 +60,9 @@ private theorem support_primaryComponent_maximalIdeal_subset_closedPoint :
   exact hz (a ^ n) hapow haz
 
 /-- Removing maximal-ideal-power torsion preserves support whenever the
-original module has positive support dimension.-/
+original module has positive support dimension.
+@isnad1 id=eq.1h2v.s7.4e5c89ca2c91 from=translated src=- shape=0b6f28be vocab=6a1ecca9
+-/
 theorem support_quotient_primaryComponent_maximalIdeal_eq_of_supportDim_pos
     (hpos : 0 < Module.supportDim R M) :
     Module.support R (M ⧸ Ideal.primaryComponent M (maximalIdeal R)) =
@@ -94,7 +96,9 @@ theorem support_quotient_primaryComponent_maximalIdeal_eq_of_supportDim_pos
     · exact hpQ
 
 /-- Quotienting by the maximal-ideal-primary component preserves every
-positive support dimension.-/
+positive support dimension.
+@isnad1 id=eq.1h2v.s7.579d5bf8e6d3 from=translated src=- shape=364f65af vocab=e9de8340
+-/
 theorem supportDim_quotient_primaryComponent_maximalIdeal_eq_of_pos
     (hpos : 0 < Module.supportDim R M) :
     Module.supportDim R (M ⧸ Ideal.primaryComponent M (maximalIdeal R)) =

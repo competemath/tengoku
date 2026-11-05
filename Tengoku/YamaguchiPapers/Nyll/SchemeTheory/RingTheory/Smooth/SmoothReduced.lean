@@ -40,7 +40,9 @@ private theorem _root_.Algebra.Etale.isReduced_of_field
   exact Algebra.FormallyUnramified.isReduced_of_field K B
 
 end Algebra.Etale
-/-- An etale algebra over a domain is reduced, by flat injection into its generic fiber.-/
+/-- An etale algebra over a domain is reduced, by flat injection into its generic fiber.
+@isnad1 id=isreduce.0h2v.s5.371bd698129e from=translated src=- shape=4a6f1c60 vocab=4d4bb79c
+-/
 theorem Algebra.Etale.isReduced_of_isDomain
     {R B : Type*} [CommRing R] [IsDomain R] [CommRing B] [Algebra R B] [Algebra.Etale R B] :
     IsReduced B := by

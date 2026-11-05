@@ -44,7 +44,9 @@ open scoped Pointwise
 variable {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
 
 /-- Local cohomology of a finite module over a Noetherian local ring,
-with any support ideal, vanishes above the dimension of the module's support.-/
+with any support ideal, vanishes above the dimension of the module's support.
+@isnad1 id=iszero.1h4v.s6.118db4cb3f14 from=translated src=- shape=a7961788 vocab=984b8cd0
+-/
 theorem derivedLocalCohomology_isZero_of_supportDim_lt
     (I : Ideal R) (M : ModuleCat.{u} R) [Module.Finite R M] (n : ℕ)
     (hdim : Module.supportDim R M < (n : WithBot ℕ∞)) :
@@ -151,7 +153,9 @@ theorem derivedLocalCohomology_isZero_of_supportDim_lt
   exact hall n M hdim
 
 /-- Maximal-support local cohomology of a finite module over a Noetherian
-local ring vanishes in every degree above the dimension of its support.-/
+local ring vanishes in every degree above the dimension of its support.
+@isnad1 id=iszero.1h3v.s6.ca515c80c5ff from=translated src=- shape=2baddf16 vocab=a0bdd71b
+-/
 theorem derivedLocalCohomology_maximalIdeal_isZero_of_supportDim_lt
     (M : ModuleCat.{u} R) [Module.Finite R M] (n : ℕ)
     (hdim : Module.supportDim R M < (n : WithBot ℕ∞)) :

@@ -33,7 +33,9 @@ namespace CategoryTheory.PreGaloisCategory.FiberFunctor
 variable {C : Type u₁} [Category.{u₂} C] [GaloisCategory C]
 variable (F : C ⥤ FintypeCat.{w}) [FiberFunctor F]
 
-/-- A fiber functor from a Galois category preserves finite colimits.-/
+/-- A fiber functor from a Galois category preserves finite colimits.
+@isnad1 id=preserve.0h2v.s5.76b7f423dc18 from=translated src=- shape=4aa852b7 vocab=009ec337
+-/
 noncomputable instance preservesFiniteColimits :
     PreservesFiniteColimits F := by
   let E := functorToContAction F

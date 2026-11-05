@@ -30,7 +30,9 @@ open nonZeroDivisors
 universe u v
 
 /-- If `x` is prime and `x ∤ y`, then a fraction lying in both `A[1/x]` and
-`A[1/y]` already lies in `A`.-/
+`A[1/y]` already lies in `A`.
+@isnad1 id=mem.5h5v.s9.138a76020358 from=translated src=- shape=a16f1deb vocab=6a7737c8
+-/
 theorem mem_bot_of_mem_localizationAway_pair_of_prime
     {A : Type u} {K : Type v}
     [CommRing A] [IsDomain A]

@@ -34,7 +34,9 @@ without a Noetherian hypothesis.
 
 The proof writes the module as a finite product of copies of the base and uses
 the canonical equivalence between the completion of a finite product and the
-finite product of completions.-/
+finite product of completions.
+@isnad1 id=isadicco.0h3v.s6.20be35d1c905 from=translated src=- shape=4dd2353f vocab=fd6a077a
+-/
 theorem isAdicComplete_of_moduleFinite_of_moduleFree
     {R : Type u} {M : Type v} [CommRing R]
     [AddCommGroup M] [Module R M]
@@ -76,7 +78,9 @@ without a Noetherian hypothesis.
 
 Localness and local-hom status are primitive inputs.  The latter is exactly
 what lets formal unramifiedness identify the extended base maximal ideal with
-the target maximal ideal.-/
+the target maximal ideal.
+@isnad1 id=henselia.0h2v.s7.3bab1e0d46de from=translated src=- shape=59c0a4ec vocab=bae42799
+-/
 theorem henselianLocalRing_of_finiteEtale_local_of_isAdicComplete
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [Algebra R S]
     [IsLocalRing R] [IsLocalRing S] [IsLocalHom (algebraMap R S)]

@@ -63,14 +63,18 @@ def tensorScalarExtendAlgHom (η : E →ₐ[K] T)
     ((Algebra.TensorProduct.map η (AlgHom.id K D)).comp
       ((f.restrictScalars K).comp Algebra.TensorProduct.includeRight))
 
-/-- The extended map has its specified value on every pure tensor.-/
+/-- The extended map has its specified value on every pure tensor.
+@isnad1 id=eq.0h9v.s11.001d636ebba6 from=translated src=- shape=1f2b3ede vocab=667fc42a
+-/
 theorem tensorScalarExtendAlgHom_tmul (η : E →ₐ[K] T)
     (f : (E ⊗[K] B) →ₐ[E] (E ⊗[K] D)) (t : T) (b : B) :
     tensorScalarExtendAlgHom η f (t ⊗ₜ[K] b) =
       t • Algebra.TensorProduct.map η (AlgHom.id K D) (f ((1 : E) ⊗ₜ[K] b)) := by
   exact AlgHom.liftEquiv_tmul _ t b
 
-/-- A literal forward compatibility square survives extension of scalars.-/
+/-- A literal forward compatibility square survives extension of scalars.
+@isnad1 id=eq.1h10v.s11.35bf72828071 from=translated src=- shape=d719bde7 vocab=44c80dd8
+-/
 theorem tensorScalarExtendAlgHom_square
     {F : Type u} [CommRing F] [Algebra K F]
     (η : E →ₐ[K] T) (σ : T →ₐ[K] F)

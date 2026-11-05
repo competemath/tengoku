@@ -20,7 +20,9 @@ filtrations between equivalent valuation rings.
 
 namespace ValuationTheory
 
-/-- A local-ring equivalence maps the maximal ideal onto the maximal ideal.-/
+/-- A local-ring equivalence maps the maximal ideal onto the maximal ideal.
+@isnad1 id=eq.0h3v.s7.e70be39cd0bd from=translated src=- shape=0b6b07a4 vocab=aaa50781
+-/
 theorem ringEquiv_map_maximalIdeal
     {R S : Type*} [CommRing R] [CommRing S]
     [IsLocalRing R] [IsLocalRing S] (e : R ≃+* S) :
@@ -42,7 +44,9 @@ theorem ringEquiv_map_maximalIdeal
     exact hy (h.map e.toRingHom)
 
 /-- For an injective local map of discrete valuation rings, the image of the
-maximal ideal is the power prescribed by the ramification index.-/
+maximal ideal is the power prescribed by the ramification index.
+@isnad1 id=eq.1h2v.s8.cb6727aafa5a from=translated src=- shape=3cc50048 vocab=5b5ea788
+-/
 theorem map_maximalIdeal_eq_pow_ramificationIdx
     {R S : Type*} [CommRing R] [IsDomain R]
     [CommRing S] [IsDomain S]

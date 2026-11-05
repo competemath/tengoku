@@ -33,7 +33,9 @@ changing its ramification index.
 
 The data before `Q` are the finite chosen factor supplied by Tag 00UJ.  The additional prime `Q`
 is obtained by going down from `P'` along the right tensor-factor map.  Its explicit contraction
-equality is the input expected by `ramificationIdx_tensorProduct_eq_of_etale`.-/
+equality is the input expected by `ramificationIdx_tensorProduct_eq_of_etale`.
+@isnad1 id=ex.1h5v.s12.d567456c44bc from=translated src=- shape=30c7b582 vocab=4ad4a619
+-/
 theorem exists_etale_factor_prime_le_ramificationIdx_eq
     {R : Type u} {B : Type v}
     [CommRing R] [CommRing B] [Algebra R B] [Algebra.FiniteType R B]

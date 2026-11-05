@@ -76,6 +76,9 @@ def specNormalizationRingIso :
   exact (affineStructureMap R B).normalizationObjIso
     (isAffineOpen_top (Spec (CommRingCat.of R))) ≪≫ specIntegralClosureIso R B
 
+/--
+@isnad1 id=eq.0h2v.s11.0a01ab93670f from=translated src=- shape=59f4fca4 vocab=8afe299f
+-/
 @[reassoc]
 lemma specNormalizationRingIso_hom_val :
     (specNormalizationRingIso R B).hom ≫
@@ -127,7 +130,9 @@ def specNormalizationIso :
     Scheme.Spec.mapIso (specNormalizationRingIso R B).symm.op
 
 /-- The affine normalization comparison sends the canonical normalization map
-to the map induced by the actual integral-closure inclusion.-/
+to the map induced by the actual integral-closure inclusion.
+@isnad1 id=eq.0h2v.s9.a7a24f6e8807 from=translated src=- shape=723a0092 vocab=5542a437
+-/
 @[reassoc]
 lemma toNormalization_specNormalizationIso_hom :
     (Spec.map (CommRingCat.ofHom (algebraMap R B))).toNormalization ≫
@@ -144,7 +149,9 @@ lemma toNormalization_specNormalizationIso_hom :
 
 /-- Morphisms from an affine relative normalization to an affine scheme are
 uniquely determined by their composites with the original affine scheme.
-The integral-closure inclusion is injective on coordinate rings.-/
+The integral-closure inclusion is injective on coordinate rings.
+@isnad1 id=eq.1h5v.s8.fc94b2ff5ddf from=translated src=- shape=cf306efc vocab=1ef957e8
+-/
 theorem spec_toNormalization_hom_ext
     {T : Scheme.{u}} [IsAffine T]
     {f g : (Spec.map (CommRingCat.ofHom (algebraMap R B))).normalization ⟶ T}
@@ -175,7 +182,9 @@ theorem spec_toNormalization_hom_ext
   exact congrArg (fun k : Γ(T, ⊤) ⟶ Γ(Spec (CommRingCat.of B), ⊤) ↦ k x) hΓ
 
 /-- Zariski's main theorem for the literal integral-closure inclusion of a
-quasi-finite algebra of finite type.-/
+quasi-finite algebra of finite type.
+@isnad1 id=isopenim.0h2v.s8.5a054ae11413 from=translated src=- shape=1a09b922 vocab=6f989bcf
+-/
 theorem isOpenImmersion_spec_integralClosure
     [Algebra.FiniteType R B] [Algebra.QuasiFinite R B] :
     IsOpenImmersion

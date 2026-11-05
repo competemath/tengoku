@@ -126,7 +126,9 @@ omit [IsDomain A] in
 /-- Transport a literal local Away map from the normalization after base
 localization back to the local ring of the original normalization prime.
 The target is the literal `Localization.AtPrime Q` required by the global
-target-prime criterion.-/
+target-prime criterion.
+@isnad1 id=other.0h7v.s14.fb020eee96b0 from=translated src=- shape=1bdb0dbd vocab=a08746a0
+-/
 theorem localization_awayMap_integralClosurePrime_etale_of_localized
     (P : Ideal A) [P.IsPrime]
     (Q : Ideal (integralClosure A L)) [Q.IsPrime] [Q.LiesOver P]

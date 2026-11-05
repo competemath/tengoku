@@ -38,7 +38,9 @@ namespace EtaleFundamentalGroups
 universe u v
 
 /-- In a filtered colimit of additive commutative groups, a canonical class
-is zero exactly when some later transition kills its representative.-/
+is zero exactly when some later transition kills its representative.
+@isnad1 id=iff.0h4v.s9.0bb7fe0625aa from=translated src=- shape=ccc1ebc7 vocab=b5d0c9ef
+-/
 theorem colimit_ι_eq_zero_iff_eventually_zero
     {J : Type v} [SmallCategory J] [IsFiltered J]
     (D : J ⥤ AddCommGrpCat.{u}) [HasColimit D]
@@ -62,7 +64,9 @@ theorem colimit_ι_eq_zero_iff_eventually_zero
     simpa using hx'
 
 /-- A colimit of additive groups is zero if every element at every stage is
-killed by some later transition.-/
+killed by some later transition.
+@isnad1 id=iszero.1h2v.s8.17deab06330c from=translated src=- shape=1dc02f0b vocab=09a205c7
+-/
 theorem colimit_isZero_of_elementwise_eventually_zero
     {J : Type v} [SmallCategory J] (D : J ⥤ AddCommGrpCat.{u})
     [HasColimit D]
@@ -81,7 +85,9 @@ theorem colimit_isZero_of_elementwise_eventually_zero
   rw [hf, map_zero]
 
 /-- A filtered colimit of additive commutative groups is zero exactly when
-every representative is killed by some later transition.-/
+every representative is killed by some later transition.
+@isnad1 id=iff.0h2v.s9.b4bee876c14e from=translated src=- shape=44353625 vocab=4a8a1022
+-/
 theorem colimit_isZero_iff_elementwise_eventually_zero
     {J : Type v} [SmallCategory J] [IsFiltered J]
     (D : J ⥤ AddCommGrpCat.{u}) [HasColimit D]
@@ -99,7 +105,9 @@ theorem colimit_isZero_iff_elementwise_eventually_zero
   · exact colimit_isZero_of_elementwise_eventually_zero D
 
 /-- A colimit of additive groups is zero if every stage maps trivially to
-some later stage.  Individual objects of the diagram need not be zero.-/
+some later stage.  Individual objects of the diagram need not be zero.
+@isnad1 id=iszero.1h2v.s7.ddfea1d9671a from=translated src=- shape=a4260c3e vocab=757f115c
+-/
 theorem colimit_isZero_of_eventually_zero_map
     {J : Type v} [SmallCategory J] (D : J ⥤ AddCommGrpCat.{u})
     [HasColimit D]
@@ -113,7 +121,9 @@ theorem colimit_isZero_of_eventually_zero_map
   rfl
 
 /-- The elementwise criterion for a diagram indexed by the double opposite
-of the natural numbers.-/
+of the natural numbers.
+@isnad1 id=iszero.1h1v.s9.2e358fc8a466 from=translated src=- shape=ab1e25ac vocab=51319683
+-/
 theorem colimit_natDoubleOp_isZero_of_elementwise_eventually_zero
     (D : (ℕᵒᵖ)ᵒᵖ ⥤ AddCommGrpCat.{u})
     (hzero : ∀ n : ℕ, ∀ x : D.obj (op (op n)),
@@ -126,7 +136,9 @@ theorem colimit_natDoubleOp_isZero_of_elementwise_eventually_zero
   exact ⟨op (op m), (homOfLE hnm).op.op, hm⟩
 
 /-- A natural-number form of the preceding criterion for the double-opposite
-indexing category used by ideal powers.-/
+indexing category used by ideal powers.
+@isnad1 id=iszero.1h1v.s8.23600d54653f from=translated src=- shape=e56f216d vocab=a15ed376
+-/
 theorem colimit_natDoubleOp_isZero_of_eventually_zero_map
     (D : (ℕᵒᵖ)ᵒᵖ ⥤ AddCommGrpCat.{u})
     (hzero : ∀ n : ℕ, ∃ m : ℕ, ∃ hnm : n ≤ m,
@@ -138,7 +150,9 @@ theorem colimit_natDoubleOp_isZero_of_eventually_zero_map
   exact ⟨op (op m), (homOfLE hnm).op.op, hm⟩
 
 /-- Derived local cohomology vanishes if the transition maps in its
-ideal-powers derived-Ext diagram are eventually zero.-/
+ideal-powers derived-Ext diagram are eventually zero.
+@isnad1 id=iszero.1h4v.s8.5a64ade6fc39 from=translated src=- shape=a81228f6 vocab=bc020796
+-/
 theorem derivedLocalCohomology_isZero_of_eventually_zero_transition
     {R : Type u} [CommRing R]
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
@@ -150,7 +164,9 @@ theorem derivedLocalCohomology_isZero_of_eventually_zero_transition
     (derivedLocalCohomologyPowersDiagram I M i) hzero
 
 /-- It is enough to kill every individual derived-Ext class at a later power
-of the support ideal.-/
+of the support ideal.
+@isnad1 id=iszero.1h4v.s10.e22e7d5b6603 from=translated src=- shape=8f362ca9 vocab=d62e167e
+-/
 theorem derivedLocalCohomology_isZero_of_elementwise_eventually_zero_transition
     {R : Type u} [CommRing R]
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ)
@@ -167,7 +183,9 @@ theorem derivedLocalCohomology_isZero_of_elementwise_eventually_zero_transition
   exact hzero n x
 
 /-- Derived local cohomology is zero exactly when every derived-Ext class at
-one ideal power is killed after passing to some later power.-/
+one ideal power is killed after passing to some later power.
+@isnad1 id=iff.0h4v.s10.7b14e58ef0e3 from=translated src=- shape=00955119 vocab=d62e167e
+-/
 theorem derivedLocalCohomology_isZero_iff_elementwise_eventually_zero_transition
     {R : Type u} [CommRing R]
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) :
@@ -200,7 +218,9 @@ theorem derivedLocalCohomology_isZero_iff_elementwise_eventually_zero_transition
         I M i
 
 /-- Nonvanishing of derived local cohomology is equivalently witnessed by
-one derived-Ext class which survives every later ideal-power transition.-/
+one derived-Ext class which survives every later ideal-power transition.
+@isnad1 id=iff.0h4v.s10.795d3e7c9ceb from=translated src=- shape=438a207b vocab=d62e167e
+-/
 theorem derivedLocalCohomology_not_isZero_iff_exists_persistent_transition
     {R : Type u} [CommRing R]
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) :
@@ -219,7 +239,9 @@ theorem derivedLocalCohomology_not_isZero_iff_exists_persistent_transition
 
 /-- A Noetherian local ring of dimension `d` admits a list of exactly `d`
 elements whose generated ideal has maximal radical.  For `d = 0`, the list
-is empty and the assertion says that the nilradical is the maximal ideal.-/
+is empty and the assertion says that the nilradical is the maximal ideal.
+@isnad1 id=ex.1h2v.s6.fe264ae34129 from=translated src=- shape=fb3077cf vocab=f6cd9b2f
+-/
 theorem exists_ofList_radical_eq_maximalIdeal_of_ringKrullDim_eq
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (d : ℕ)
@@ -269,7 +291,9 @@ theorem exists_ofList_radical_eq_maximalIdeal_of_ringKrullDim_eq
     rw [hofList, hJradical]
 
 /-- In exact dimension `d`, maximal-support derived local cohomology can be
-computed using an ideal generated by a list of exactly `d` parameters.-/
+computed using an ideal generated by a list of exactly `d` parameters.
+@isnad1 id=ex.1h3v.s6.3261987bc146 from=translated src=- shape=649b71fb vocab=489e565d
+-/
 theorem exists_derivedLocalCohomology_ofList_iso_maximalIdeal_of_ringKrullDim_eq
     {R : Type u} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (d : ℕ)
@@ -293,7 +317,9 @@ theorem exists_derivedLocalCohomology_ofList_iso_maximalIdeal_of_ringKrullDim_eq
       (hradical.trans hmaxRadical.symm) M d⟩
 
 /-- Derived local-cohomology vanishing can be checked after replacing the
-support ideal by its radical.-/
+support ideal by its radical.
+@isnad1 id=iff.0h4v.s6.eedb8a710e7f from=translated src=- shape=cb1f9b97 vocab=d6742455
+-/
 theorem derivedLocalCohomology_isZero_iff_radical
     {R : Type u} [CommRing R] [IsNoetherian R R]
     (I : Ideal R) (M : ModuleCat.{u} R) (i : ℕ) :
@@ -303,7 +329,9 @@ theorem derivedLocalCohomology_isZero_iff_radical
     (Ideal.radical_idem I).symm M i).isZero_iff
 
 /-- A proper ideal in a local ring with nonmaximal radical is contained in a
-prime ideal strictly below the maximal ideal.-/
+prime ideal strictly below the maximal ideal.
+@isnad1 id=ex.2h2v.s7.78ce49a8d18f from=translated src=- shape=0a98223f vocab=aae3bd7f
+-/
 theorem exists_prime_over_lt_maximalIdeal_of_radical_ne
     {R : Type u} [CommRing R] [IsLocalRing R]
     (I : Ideal R) (hI : I ≠ ⊤)
@@ -338,7 +366,9 @@ theorem exists_prime_over_lt_maximalIdeal_of_radical_ne
 
 /-- For a proper ideal of a local ring, having nonmaximal radical is
 equivalent to the existence of a prime over it strictly below the maximal
-ideal.-/
+ideal.
+@isnad1 id=iff.1h2v.s7.f17e3f8da463 from=translated src=- shape=43e728de vocab=aae3bd7f
+-/
 theorem radical_ne_maximalIdeal_iff_exists_prime_over_lt
     {R : Type u} [CommRing R] [IsLocalRing R]
     (I : Ideal R) (hI : I ≠ ⊤) :

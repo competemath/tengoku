@@ -73,7 +73,9 @@ private theorem localizedNormalizationPrime_isPrime
 
 omit [IsDomain A] in
 /-- The localized normalization prime lies over the maximal ideal of the
-prime localization of the base.-/
+prime localization of the base.
+@isnad1 id=liesover.0h5v.s9.1d3b4e809f9f from=translated src=- shape=5b7d6d9a vocab=0ee4bf02
+-/
 theorem localizedNormalizationPrime_liesOver
     (Q : Ideal (integralClosure A L)) [Q.IsPrime] [Q.LiesOver P] :
     (localizedNormalizationPrime (K := K) (L := L) P Q).LiesOver
@@ -106,7 +108,9 @@ theorem localizedNormalizationPrime_liesOver
     (integralClosure (Localization.AtPrime P) L) Q
 
 omit [IsDomain A] in
-/-- The localized normalization prime is maximal.-/
+/-- The localized normalization prime is maximal.
+@isnad1 id=ismaxima.0h5v.s9.d6571f6390b6 from=translated src=- shape=a88b8914 vocab=da934f15
+-/
 theorem localizedNormalizationPrime_isMaximal
     (Q : Ideal (integralClosure A L)) [Q.IsPrime] [Q.LiesOver P] :
     (localizedNormalizationPrime (K := K) (L := L) P Q).IsMaximal := by
@@ -122,7 +126,9 @@ theorem localizedNormalizationPrime_isMaximal
 
 omit [IsDomain A] in
 /-- Localization at `P` preserves the ramification index of a normalization
-prime above `P`.-/
+prime above `P`.
+@isnad1 id=eq.0h5v.s10.e68e2f7bb545 from=translated src=- shape=d8bedda2 vocab=0681a306
+-/
 theorem localizedNormalizationPrime_ramificationIdx
     (Q : Ideal (integralClosure A L)) [Q.IsPrime] [Q.LiesOver P] :
     (localizedNormalizationPrime (K := K) (L := L) P Q).ramificationIdx

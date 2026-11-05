@@ -32,7 +32,9 @@ variable {R E : Type u} [CommRing R] [IsLocalRing R]
 variable [AddCommGroup E] [Module R E] [Module.Injective R E]
 
 /-- Scalar endomorphisms and injectivity recover each submodule from its
-annihilator.-/
+annihilator.
+@isnad1 id=eq.2h4v.s9.2245daf5cf2e from=translated src=- shape=b0952603 vocab=bbfa0aa3
+-/
 theorem torsionBySet_annihilator_eq_of_scalar_endomorphisms
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)
     (hscalar : ∀ f : E →ₗ[R] E, ∃ r : R, ∀ z : E, f z = r • z)
@@ -63,7 +65,9 @@ theorem torsionBySet_annihilator_eq_of_scalar_endomorphisms
 
 /-- If every endomorphism of an injective module containing the residue
 field is scalar, Noetherianity of the ring implies Artinianness of the
-module.  The complete-local hull supplies the scalar property separately.-/
+module.  The complete-local hull supplies the scalar property separately.
+@isnad1 id=isartini.2h3v.s9.21b98bd2ff6c from=translated src=- shape=45b330ea vocab=28e4acc3
+-/
 theorem isArtinian_of_injective_residueField_and_scalar_endomorphisms
     [IsNoetherianRing R]
     (i : (R ⧸ maximalIdeal R) →ₗ[R] E) (hi : Function.Injective i)

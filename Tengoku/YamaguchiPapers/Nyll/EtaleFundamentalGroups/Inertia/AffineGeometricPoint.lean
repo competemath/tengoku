@@ -42,7 +42,9 @@ namespace EtaleFundamentalGroups.Inertia
 universe u v
 
 /-- An element fixes an affine geometric point precisely when its action on
-the coordinate ring is trivial modulo the point's prime kernel.-/
+the coordinate ring is trivial modulo the point's prime kernel.
+@isnad1 id=iff.0h5v.s8.cd09141dd763 from=translated src=- shape=9be50e24 vocab=23b72ffb
+-/
 theorem mem_idealInertia_iff_fixes_affineGeometricPoint
     (G : Type v) [Group G]
     {B Ω : Type u} [CommRing B] [Field Ω] [MulSemiringAction G B]
@@ -66,7 +68,9 @@ theorem mem_idealInertia_iff_fixes_affineGeometricPoint
 
 /-- The geometric point obtained from the algebraic closure of the residue
 field at `P` has stabilizer exactly the ideal-inertia subgroup at `P`.
-Fixing the geometric point includes acting trivially on its residue field.-/
+Fixing the geometric point includes acting trivially on its residue field.
+@isnad1 id=iff.0h4v.s11.06c9ab1b6e79 from=translated src=- shape=b07b7462 vocab=6b608851
+-/
 theorem mem_idealInertia_iff_fixes_residueGeometricPoint
     (G : Type v) [Group G]
     {B : Type u} [CommRing B] [MulSemiringAction G B]

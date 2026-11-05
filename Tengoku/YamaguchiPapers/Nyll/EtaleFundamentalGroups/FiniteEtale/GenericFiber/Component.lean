@@ -41,6 +41,9 @@ noncomputable def artinianSelectedComponentIdempotent
   exact (IsArtinianRing.equivPi G).symm
     (Pi.single (⟨m, inferInstance⟩ : MaximalSpectrum G) 1)
 
+/--
+@isnad1 id=eq.1h3v.s8.e8cfaefbc3d0 from=translated src=- shape=1133d168 vocab=740c4cc8
+-/
 theorem quotient_artinianSelectedComponentIdempotent_eq_zero
     (m : Ideal G) [m.IsMaximal] (M : MaximalSpectrum G)
     (hM : M ≠ (⟨m, inferInstance⟩ : MaximalSpectrum G)) :
@@ -61,6 +64,9 @@ theorem quotient_artinianSelectedComponentIdempotent_eq_zero
     _ = v M := congrFun hev M
     _ = _ := by simp [v, M₀, hM]
 
+/--
+@isnad1 id=eq.0h2v.s8.6997bc02d1dd from=translated src=- shape=a7981b30 vocab=cd60191a
+-/
 @[simp]
 theorem quotient_artinianSelectedComponentIdempotent
     (m : Ideal G) [m.IsMaximal] :
@@ -81,6 +87,9 @@ theorem quotient_artinianSelectedComponentIdempotent
     _ = v M₀ := congrFun hev M₀
     _ = _ := by simp [v, M₀]
 
+/--
+@isnad1 id=isidempo.0h2v.s6.51496ddef631 from=translated src=- shape=52a20d91 vocab=674eb54c
+-/
 theorem artinianSelectedComponentIdempotent_isIdempotentElem
     (m : Ideal G) [m.IsMaximal] :
     IsIdempotentElem (artinianSelectedComponentIdempotent m) := by
@@ -94,7 +103,9 @@ theorem artinianSelectedComponentIdempotent_isIdempotentElem
   · rw [quotient_artinianSelectedComponentIdempotent_eq_zero m M hM, zero_mul]
 
 /-- Multiplication by the selected primitive idempotent kills exactly the
-elements vanishing in the specified field component.-/
+elements vanishing in the specified field component.
+@isnad1 id=iff.0h3v.s8.ea7f431127e9 from=translated src=- shape=c616b6aa vocab=30b4a212
+-/
 theorem artinianSelectedComponentIdempotent_mul_eq_zero_iff
     (m : Ideal G) [m.IsMaximal] (x : G) :
     artinianSelectedComponentIdempotent m * x = 0 ↔
@@ -115,7 +126,9 @@ theorem artinianSelectedComponentIdempotent_mul_eq_zero_iff
 
 /-- An integral element of a specified residue-field component, extended by
 zero on every other Artinian component, is represented by an integral element
-of the whole Artinian ring.-/
+of the whole Artinian ring.
+@isnad1 id=ex.1h4v.s8.a9627aeb712f from=translated src=- shape=9e317804 vocab=49ae0880
+-/
 theorem exists_integral_artinianElement_supported_at_component
     {R : Type uR} [CommRing R] [Algebra R G]
     (m : Ideal G) [m.IsMaximal]

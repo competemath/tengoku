@@ -29,14 +29,18 @@ open Polynomial
 
 universe u v
 
-/-- The defining equation of `AdjoinRoot (X ^ n - C a)`, over any commutative ring.-/
+/-- The defining equation of `AdjoinRoot (X ^ n - C a)`, over any commutative ring.
+@isnad1 id=eq.0h3v.s12.5db2cc2e4db2 from=translated src=- shape=ab2a94b1 vocab=d6e514c7
+-/
 theorem adjoinRoot_root_pow
     {A : Type u} [CommRing A] (n : ℕ) (a : A) :
     (AdjoinRoot.root (X ^ n - C a)) ^ n =
       AdjoinRoot.of (X ^ n - C a) a := by
   rw [← sub_eq_zero, ← AdjoinRoot.eval₂_root, eval₂_sub, eval₂_C, eval₂_pow, eval₂_X]
 
-/-- A root of `X ^ n - a` is a unit when `a` is a unit and `n` is positive.-/
+/-- A root of `X ^ n - a` is a unit when `a` is a unit and `n` is positive.
+@isnad1 id=isunit.2h3v.s10.5d9cdbb04de5 from=translated src=- shape=208e0e47 vocab=e7ac5bff
+-/
 theorem isUnit_adjoinRoot_root_of_isUnit
     {A : Type u} [CommRing A] {n : ℕ} (hn : 0 < n) {a : A}
     (ha : IsUnit a) :
@@ -45,7 +49,9 @@ theorem isUnit_adjoinRoot_root_of_isUnit
   rw [adjoinRoot_root_pow]
   exact ha.map (AdjoinRoot.of (X ^ n - C a))
 
-/-- Evaluation of the derivative of the explicit Kummer polynomial at its adjoined root.-/
+/-- Evaluation of the derivative of the explicit Kummer polynomial at its adjoined root.
+@isnad1 id=eq.0h3v.s13.25c8e52b6d05 from=translated src=- shape=17a60d7a vocab=8f92708c
+-/
 theorem aeval_derivative_X_pow_sub_C
     {A : Type u} [CommRing A] (n : ℕ) (a : A) :
     aeval (AdjoinRoot.root (X ^ n - C a)) (X ^ n - C a).derivative =
@@ -58,7 +64,9 @@ The positive-degree monic Kummer algebra is faithfully flat over a nontrivial
 base ring.
 
 Indeed the monic quotient is free.  Positive degree makes it nontrivial over
-a nontrivial base, hence free-module faithful flatness applies.-/
+a nontrivial base, hence free-module faithful flatness applies.
+@isnad1 id=faithful.1h3v.s10.89777ac21b96 from=translated src=- shape=af04229c vocab=cb9efa29
+-/
 theorem faithfullyFlat_adjoinRoot_X_pow_sub_C
     {A : Type u} [CommRing A] [Nontrivial A] {n : ℕ} (hn : 0 < n)
     (a : A) :
@@ -77,7 +85,9 @@ theorem faithfullyFlat_adjoinRoot_X_pow_sub_C
   infer_instance
 
 /--
-The base ring detects units inside the positive-degree monic Kummer algebra.-/
+The base ring detects units inside the positive-degree monic Kummer algebra.
+@isnad1 id=iff.1h4v.s11.4deae4bd2d0e from=translated src=- shape=47a5b876 vocab=bd5f208f
+-/
 theorem isUnit_algebraMap_adjoinRoot_X_pow_sub_C_iff
     {A : Type u} [CommRing A] [Nontrivial A] {n : ℕ} (hn : 0 < n)
     (a b : A) :
@@ -88,7 +98,9 @@ theorem isUnit_algebraMap_adjoinRoot_X_pow_sub_C_iff
 
 /--
 For a Kummer polynomial with invertible constant term, its formal derivative at the
-adjoined root is a unit exactly when the exponent is a unit in the base.-/
+adjoined root is a unit exactly when the exponent is a unit in the base.
+@isnad1 id=iff.2h3v.s12.380ae6a2f2ea from=translated src=- shape=78e9abe1 vocab=81bc5c2c
+-/
 theorem isUnit_aeval_derivative_iff_isUnit_natCast
     {A : Type u} [CommRing A] [Nontrivial A] {n : ℕ} (hn : 0 < n)
     {a : A} (ha : IsUnit a) :
@@ -111,7 +123,9 @@ On the complement of a prime boundary parameter `t`, derivative invertibility
 for `X ^ n - t` is equivalent to invertibility of the localized exponent.
 
 The right side is exactly the input consumed by the unit-descent lemma for
-the map `R → R[1/t]`.-/
+the map `R → R[1/t]`.
+@isnad1 id=iff.2h4v.s12.2b19cf097dab from=translated src=- shape=2ef45d90 vocab=872ef168
+-/
 theorem isUnit_aeval_derivative_iff_isUnit_algebraMap_natCast_away
     {R : Type u} {S : Type v} [CommRing R] [IsDomain R]
     [CommRing S] [Algebra R S] {t : R} [IsLocalization.Away t S]

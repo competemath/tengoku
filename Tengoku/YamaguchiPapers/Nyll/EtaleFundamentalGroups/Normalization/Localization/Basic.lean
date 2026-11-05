@@ -75,7 +75,9 @@ noncomputable def integralClosureLocalizationAlgHom
 
 omit [IsDomain A] in
 /-- The normalization of the prime localization inside `L` is the localization
-of the original normalization at the image of `Pᶜ`.-/
+of the original normalization at the image of `Pᶜ`.
+@isnad1 id=other.0h4v.s10.f388e3684114 from=translated src=- shape=43ee8a52 vocab=52fe6e37
+-/
 theorem isLocalization_integralClosure_localizationAtPrime
     (P : Ideal A) [P.IsPrime] :
     let : Algebra (Localization.AtPrime P) L :=
@@ -110,7 +112,9 @@ omit [IsDomain A] in
 /-- Finiteness of a normalization is preserved when the base is localized
 at a prime.  The target normalization is identified with the corresponding
 localization of the original normalization, so no finiteness assumption on
-the localized ring is needed.-/
+the localized ring is needed.
+@isnad1 id=other.0h4v.s10.8622fa4fb74b from=translated src=- shape=0a61b4d4 vocab=9b5c9977
+-/
 theorem moduleFinite_integralClosure_localizationAtPrime
     [Module.Finite A (integralClosure A L)]
     (P : Ideal A) [P.IsPrime] :

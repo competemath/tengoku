@@ -28,7 +28,9 @@ universe u v
 
 variable {R : Type u} [CommRing R] [IsLocalRing R]
 
-/-- An Artinian socle over a Noetherian local ring has finite length.-/
+/-- An Artinian socle over a Noetherian local ring has finite length.
+@isnad1 id=isfinite.0h2v.s8.1aa38271f907 from=translated src=- shape=24bc2fac vocab=4c6d2de5
+-/
 theorem isFiniteLength_torsionBySet_maximalIdeal_of_artinian
     [IsNoetherianRing R] (M : Type v) [AddCommGroup M] [Module R M]
     [IsArtinian R (Submodule.torsionBySet R M (IsLocalRing.maximalIdeal R))] :

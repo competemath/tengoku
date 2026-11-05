@@ -26,7 +26,9 @@ namespace EtaleFundamentalGroups.Kummer
 universe u
 
 /-- A prime element is either still prime or becomes a unit after
-localization at a prime ideal.-/
+localization at a prime ideal.
+@isnad1 id=or.1h3v.s9.e7fff5d325fc from=translated src=- shape=8f51f1f8 vocab=8bd62d3e
+-/
 theorem prime_or_isUnit_algebraMap_localizationAtPrime
     {A : Type u} [CommRing A] [IsDomain A]
     (P : Ideal A) [P.IsPrime] {t : A} (ht : Prime t) :
@@ -55,7 +57,9 @@ theorem prime_or_isUnit_algebraMap_localizationAtPrime
         (Localization.AtPrime P) P t).mpr htP
 
 /-- Characteristic zero along a prime divisor is preserved when localizing
-at a larger prime containing that divisor.-/
+at a larger prime containing that divisor.
+@isnad1 id=charzero.3h3v.s10.0fb145cd51ca from=translated src=- shape=22b09e8e vocab=f315a0b7
+-/
 theorem charZero_quotient_algebraMap_localizationAtPrime
     {A : Type u} [CommRing A] [IsDomain A]
     (P : Ideal A) [P.IsPrime] {t : A} (ht : Prime t)

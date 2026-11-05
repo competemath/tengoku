@@ -65,6 +65,9 @@ noncomputable def galoisObjectQuotientMonoidHom
       _ = F.map ((e.symm (h • a) * e.symm (g • a)).hom) a := rfl
 
 include hNatural in
+/--
+@isnad1 id=eq.0h6v.s8.00aa12ae64c1 from=translated src=- shape=a0d2ffed vocab=b6dbe0c3
+-/
 @[simp]
 theorem galoisObjectQuotientMonoidHom_unop_apply
     (A : C) [IsGalois A] (a : F.obj A) (g : G) :
@@ -74,7 +77,9 @@ theorem galoisObjectQuotientMonoidHom_unop_apply
 
 include hNatural in
 /-- Evaluating the cover automorphism selected by the quotient recovers the
-fundamental-group action on the chosen point.-/
+fundamental-group action on the chosen point.
+@isnad1 id=eq.0h6v.s9.a23e6510a040 from=translated src=- shape=0af6f813 vocab=2c5707cf
+-/
 @[simp]
 theorem galoisObjectQuotientMonoidHom_evaluation
     (A : C) [IsGalois A] (a : F.obj A) (g : G) :
@@ -82,7 +87,9 @@ theorem galoisObjectQuotientMonoidHom_evaluation
   exact evaluationEquivOfIsGalois_symm_fiber F A a (g • a)
 
 /-- The kernel of the finite quotient represented by a pointed Galois object
-is exactly the stabilizer of the chosen fiber point.-/
+is exactly the stabilizer of the chosen fiber point.
+@isnad1 id=eq.0h5v.s7.771929c48e71 from=translated src=- shape=9d870164 vocab=14d7dfec
+-/
 theorem galoisObjectQuotientMonoidHom_ker
     (A : C) [IsGalois A] (a : F.obj A) :
     (galoisObjectQuotientMonoidHom F G A a).ker =
@@ -102,7 +109,9 @@ theorem galoisObjectQuotientMonoidHom_ker
     simp only [Functor.map_id, FintypeCat.id_apply]
 
 /-- A transitive fundamental-group action makes the quotient represented by
-a Galois object surjective.-/
+a Galois object surjective.
+@isnad1 id=surjecti.0h5v.s8.0de966289759 from=translated src=- shape=5ef12c76 vocab=425e7873
+-/
 theorem galoisObjectQuotientMonoidHom_surjective
     (A : C) [IsGalois A] (a : F.obj A)
     [MulAction.IsPretransitive G (F.obj A)] :
@@ -118,7 +127,9 @@ theorem galoisObjectQuotientMonoidHom_surjective
 
 /-- Pointed finite Galois quotients separate the automorphisms of a fiber
 functor. A natural automorphism fixing the fiber of every Galois object fixes
-every fiber, since every fiber point is the image of a pointed Galois object.-/
+every fiber, since every fiber point is the image of a pointed Galois object.
+@isnad1 id=eq.0h2v.s9.7680e0a3e983 from=translated src=- shape=d34daff7 vocab=a6d123dc
+-/
 theorem iInf_galoisObjectQuotientMonoidHom_ker :
     (⨅ (A : C) (hA : IsGalois A) (a : F.obj A),
       (letI : IsGalois A := hA

@@ -29,7 +29,9 @@ namespace CategoryTheory.PreGaloisCategory
 variable {C : Type u₁} [Category.{u₂} C] [GaloisCategory C]
 
 /-- Any exact finite-set-valued functor on a Galois category is isomorphic to
-a chosen fiber functor.-/
+a chosen fiber functor.
+@isnad1 id=nonempty.0h3v.s6.60a1b0824f0a from=translated src=- shape=bbeb212d vocab=dd9518f2
+-/
 theorem nonempty_iso_of_exact
     (F : C ⥤ FintypeCat.{w}) [FiberFunctor F]
     (P : C ⥤ FintypeCat.{w})
@@ -70,7 +72,9 @@ theorem nonempty_iso_of_exact
 variable {C' : Type v₁} [Category.{v₂} C'] [GaloisCategory C']
 
 /-- An exact functor between Galois categories commutes with chosen fiber
-functors up to isomorphism.-/
+functors up to isomorphism.
+@isnad1 id=nonempty.0h5v.s6.96a7698c0d62 from=translated src=- shape=965fd397 vocab=28e6f2a9
+-/
 @[stacks 0BN5 "an exact functor commutes with chosen fiber functors up to isomorphism"]
 theorem nonempty_iso_comp_of_exact
     (F : C ⥤ FintypeCat.{w}) [FiberFunctor F]

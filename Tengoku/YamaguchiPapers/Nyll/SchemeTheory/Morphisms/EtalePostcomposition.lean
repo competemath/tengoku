@@ -32,7 +32,9 @@ namespace AlgebraicGeometry
 universe u
 
 /-- An open subscheme of a geometrically reduced scheme remains geometrically
-reduced over the same base.-/
+reduced over the same base.
+@isnad1 id=geometri.0h5v.s5.55073b4a0c42 from=translated src=- shape=aa4db468 vocab=1318f591
+-/
 lemma GeometricallyReduced.comp_of_isOpenImmersion
     {U X S : Scheme.{u}} (i : U ⟶ X) (f : X ⟶ S)
     [IsOpenImmersion i] [GeometricallyReduced f] :
@@ -56,7 +58,9 @@ lemma GeometricallyReduced.comp_of_isOpenImmersion
 
 /-- Flatness, local finite presentation, and geometric reducedness descend
 through etale postcomposition by expressing the first map as its open graph
-followed by the base change of the composite.-/
+followed by the base change of the composite.
+@isnad1 id=and.0h5v.s6.130fa5cdb1cf from=translated src=- shape=67f65809 vocab=98f695f5
+-/
 lemma flat_finitePresentation_geometricallyReduced_of_comp_etale
     {X Y S : Scheme.{u}} (f : X ⟶ Y) (g : Y ⟶ S)
     [Etale g] [Flat (f ≫ g)] [LocallyOfFinitePresentation (f ≫ g)]

@@ -116,7 +116,9 @@ def finiteGenericFiberAlgEquiv
 /-- The generic-fibre equivalence is the natural product map on pure
 tensors.  Keeping this computation theorem public avoids unfolding the
 localization proof when a later component construction must track a
-distinguished integral element.-/
+distinguished integral element.
+@isnad1 id=eq.0h6v.s9.bf89e196f980 from=translated src=- shape=7317cad4 vocab=38adaac3
+-/
 @[simp]
 theorem finiteGenericFiberAlgEquiv_tmul
     {R : Type uR} {C : Type uC} {K : Type uK} {E : Type uE}

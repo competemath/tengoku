@@ -28,7 +28,9 @@ namespace EtaleFundamentalGroups
 universe u v
 
 /-- Vanishing of degree-zero derived-category Ext forces vanishing of the
-degree-zero legacy Ext object.-/
+degree-zero legacy Ext object.
+@isnad1 id=iszero.1h3v.s7.6079991041ac from=translated src=- shape=b471bf55 vocab=48b678f6
+-/
 theorem legacyExt_isZero_of_subsingleton_derivedExt_zero
     {R : Type u} [CommRing R] [Small.{v} R]
     (X Y : ModuleCat.{v} R)
@@ -56,7 +58,9 @@ theorem legacyExt_isZero_of_subsingleton_derivedExt_zero
 
 /-- Vanishing of positive-degree derived-category Ext forces vanishing of the
 corresponding legacy Ext object.  Both sides are computed using the same
-projective resolution.-/
+projective resolution.
+@isnad1 id=iszero.1h4v.s7.37e66bae879b from=translated src=- shape=07fcc5ca vocab=f9669f3c
+-/
 theorem legacyExt_isZero_of_subsingleton_derivedExt_succ
     {R : Type u} [CommRing R] [Small.{v} R]
     (X Y : ModuleCat.{v} R) (n : ℕ)
@@ -79,7 +83,9 @@ theorem legacyExt_isZero_of_subsingleton_derivedExt_succ
   exact ⟨g, hg⟩
 
 /-- Vanishing of derived-category Ext in any degree forces vanishing of the
-corresponding legacy Ext object used by `localCohomology`.-/
+corresponding legacy Ext object used by `localCohomology`.
+@isnad1 id=iszero.1h4v.s7.71675d377569 from=translated src=- shape=4019d52a vocab=48b678f6
+-/
 theorem legacyExt_isZero_of_subsingleton_derivedExt
     {R : Type u} [CommRing R] [Small.{v} R]
     (X Y : ModuleCat.{v} R) (i : ℕ)

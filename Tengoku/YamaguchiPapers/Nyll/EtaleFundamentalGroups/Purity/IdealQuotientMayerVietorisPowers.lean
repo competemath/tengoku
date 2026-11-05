@@ -35,6 +35,9 @@ def idealQuotientMayerVietorisProductMap
     ((R ⧸ I) × (R ⧸ J)) →ₗ[R] ((R ⧸ I') × (R ⧸ J')) :=
   (idealQuotientMapOfLE hI).prodMap (idealQuotientMapOfLE hJ)
 
+/--
+@isnad1 id=eq.2h6v.s10.002fc967adce from=translated src=- shape=6e00769d vocab=111dbd91
+-/
 @[simp]
 theorem idealQuotientMayerVietorisProductMap_apply
     {I J I' J' : Ideal R} (hI : I ≤ I') (hJ : J ≤ J')
@@ -43,7 +46,9 @@ theorem idealQuotientMayerVietorisProductMap_apply
       (idealQuotientMapOfLE hI z.1, idealQuotientMapOfLE hJ z.2) :=
   rfl
 
-/-- Quotient maps induced by ideal inclusions compose.-/
+/-- Quotient maps induced by ideal inclusions compose.
+@isnad1 id=eq.2h4v.s8.613b76e920df from=translated src=- shape=a99bd7b2 vocab=dafe794a
+-/
 theorem idealQuotientMapOfLE_comp
     {I I' I'' : Ideal R} (h : I ≤ I') (h' : I' ≤ I'') :
     (idealQuotientMapOfLE h').comp (idealQuotientMapOfLE h) =
@@ -53,7 +58,9 @@ theorem idealQuotientMapOfLE_comp
   induction z using Submodule.Quotient.induction_on with
   | _ r => rfl
 
-/-- The quotient map induced by a reflexive inclusion is the identity.-/
+/-- The quotient map induced by a reflexive inclusion is the identity.
+@isnad1 id=eq.0h2v.s7.0d0f42102c72 from=translated src=- shape=b1bcd205 vocab=02ed581e
+-/
 theorem idealQuotientMapOfLE_refl (I : Ideal R) :
     idealQuotientMapOfLE (le_refl I) = LinearMap.id := by
   apply LinearMap.ext
@@ -62,7 +69,9 @@ theorem idealQuotientMapOfLE_refl (I : Ideal R) :
   | _ r => rfl
 
 /-- The diagonal maps in the ideal-quotient Mayer--Vietoris complexes are
-natural in inclusions of both ideals.-/
+natural in inclusions of both ideals.
+@isnad1 id=eq.2h5v.s10.8642ef555edd from=translated src=- shape=e07a5b95 vocab=b4497c3d
+-/
 theorem idealQuotientMayerVietorisDiagonal_naturality
     {I J I' J' : Ideal R} (hI : I ≤ I') (hJ : J ≤ J') :
     (idealQuotientMayerVietorisDiagonal I' J').comp
@@ -75,7 +84,9 @@ theorem idealQuotientMayerVietorisDiagonal_naturality
   | _ r => rfl
 
 /-- The difference maps in the ideal-quotient Mayer--Vietoris complexes are
-natural in inclusions of both ideals.-/
+natural in inclusions of both ideals.
+@isnad1 id=eq.2h5v.s10.9555c1d1988a from=translated src=- shape=24d33b77 vocab=f9818f25
+-/
 theorem idealQuotientMayerVietorisDifference_naturality
     {I J I' J' : Ideal R} (hI : I ≤ I') (hJ : J ≤ J') :
     (idealQuotientMayerVietorisDifference I' J').comp
@@ -117,7 +128,9 @@ def idealQuotientMayerVietorisHom
       exact idealQuotientMayerVietorisDifference_naturality hI hJ)
 
 /-- The morphism induced by reflexive inclusions is the identity morphism of
-the Mayer--Vietoris short complex.-/
+the Mayer--Vietoris short complex.
+@isnad1 id=eq.0h3v.s7.3ea1946846cb from=translated src=- shape=eaf9c169 vocab=9ed84122
+-/
 @[simp]
 theorem idealQuotientMayerVietorisHom_refl (I J : Ideal R) :
     idealQuotientMayerVietorisHom (le_refl I) (le_refl J) =
@@ -134,7 +147,9 @@ theorem idealQuotientMayerVietorisHom_refl (I J : Ideal R) :
       𝟙 (ModuleCat.of R (R ⧸ (I ⊔ J)))
     rw [idealQuotientMapOfLE_refl, ModuleCat.ofHom_id]
 
-/-- Mayer--Vietoris morphisms induced by inclusions compose.-/
+/-- Mayer--Vietoris morphisms induced by inclusions compose.
+@isnad1 id=eq.4h7v.s8.9db60f869052 from=translated src=- shape=bfad15a9 vocab=e4fcff21
+-/
 @[reassoc]
 theorem idealQuotientMayerVietorisHom_comp
     {I₀ J₀ I₁ J₁ I₂ J₂ : Ideal R}
@@ -171,7 +186,9 @@ def idealQuotientMayerVietorisPowersDiagram (I J : Ideal R) :
     rw [idealQuotientMayerVietorisHom_comp]
 
 /-- Every object of the powers diagram is the standard short exact
-ideal-quotient Mayer--Vietoris sequence.-/
+ideal-quotient Mayer--Vietoris sequence.
+@isnad1 id=shortexa.0h4v.s6.b90a7c18cbe1 from=translated src=- shape=8d8bc711 vocab=94dbcaaa
+-/
 theorem idealQuotientMayerVietorisPowersDiagram_obj_shortExact
     (I J : Ideal R) (n : ℕᵒᵖ) :
     ((idealQuotientMayerVietorisPowersDiagram I J).obj n).ShortExact :=

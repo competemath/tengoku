@@ -38,7 +38,9 @@ def closedSubgroup_sInf (L : I → ClosedSubgroup G) : ClosedSubgroup G where
     simp only [Subsemigroup.mem_carrier, Submonoid.mem_toSubsemigroup, Subgroup.mem_toSubmonoid,
   Subgroup.mem_iInf, mem_iInter]
 
-/-- The infimum subgroup is contained in each term of the family.-/
+/-- The infimum subgroup is contained in each term of the family.
+@isnad1 id=le.0h4v.s5.1b4df65b98ec from=translated src=- shape=099f288b vocab=3e7a0a48
+-/
 theorem closedSubgroup_sInf_le {I : Type v} {G : Type u} [Group G] [TopologicalSpace G]
     (L : I → ClosedSubgroup G) (i : I) :
     (closedSubgroup_sInf L : Subgroup G) ≤ (L i : Subgroup G) := by
@@ -70,7 +72,9 @@ def descendingClosedSubgroupSystem (L : I → ClosedSubgroup G)
 omit [T2Space G] [TotallyDisconnectedSpace G] in
 /--
 A compatible family of maps into a decreasing family of left quotient spaces lifts uniquely to
-the quotient by the infimum subgroup.-/
+the quotient by the infimum subgroup.
+@isnad1 id=ex.5h6v.s8.42bce4426e94 from=translated src=- shape=240e996d vocab=0d45cf37
+-/
 theorem exists_continuous_leftQuotient_lift_of_directed
     (L : I → ClosedSubgroup G)
     (hL : ∀ {i j}, i ≤ j → (L j : Subgroup G) ≤ (L i : Subgroup G))

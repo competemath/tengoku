@@ -37,7 +37,9 @@ universe u v
 
 /-- Evaluation at any finite generating family of the closed point is a
 surjection from the corresponding multivariate power-series ring onto the
-maximal-adic completion.-/
+maximal-adic completion.
+@isnad1 id=ex.1h3v.s9.6cc451e78339 from=translated src=- shape=98f9c3ae vocab=328f04a0
+-/
 theorem mvPowerSeries_surjective_maximalAdicCompletion_of_generators
     {B : Type u} [CommRing B] [IsLocalRing B] [IsNoetherianRing B]
     {ι : Type v} [Finite ι]
@@ -142,7 +144,9 @@ theorem mvPowerSeries_surjective_maximalAdicCompletion_of_generators
     surjective_of_mk_map_comp_surjective f hresidueSurj
   exact ⟨f, hfSurj⟩
 
-/-- Fin-indexed form of the finite-generator presentation.-/
+/-- Fin-indexed form of the finite-generator presentation.
+@isnad1 id=ex.1h3v.s9.7b46d05c6584 from=translated src=- shape=0f98955b vocab=fd44c7d1
+-/
 theorem mvPowerSeries_fin_surjective_maximalAdicCompletion_of_generators
     {B : Type u} [CommRing B] [IsLocalRing B] [IsNoetherianRing B]
     (n : ℕ) (t : Fin n → B)

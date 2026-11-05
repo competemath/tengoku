@@ -35,7 +35,9 @@ open RingTheory.Sequence
 universe u
 
 /-- In cotangent dimension two, a prime element with nonzero cotangent class
-can be completed to a regular pair generating the maximal ideal.-/
+can be completed to a regular pair generating the maximal ideal.
+@isnad1 id=ex.4h2v.s8.b49ae5cf81d7 from=translated src=- shape=6b59d041 vocab=326264ea
+-/
 theorem exists_regular_pair_of_finrank_cotangentSpace_eq_two
     {R : Type u} [CommRing R] [IsDomain R] [IsLocalRing R]
     [IsNoetherianRing R]
@@ -146,7 +148,9 @@ theorem exists_regular_pair_of_finrank_cotangentSpace_eq_two
     hspan⟩
 
 /-- At a height-two prime of a regular domain, a transverse prime equation
-extends to a regular pair of parameters in the local ring.-/
+extends to a regular pair of parameters in the local ring.
+@isnad1 id=ex.4h3v.s10.15909c4bcb2e from=translated src=- shape=46194f40 vocab=ce55507e
+-/
 theorem exists_regular_pair_localizationAtPrime_of_height_eq_two
     {A : Type u} [CommRing A] [IsDomain A] [IsRegularRing A]
     (P : Ideal A) [P.IsPrime] (hP : P.height = 2)

@@ -41,7 +41,9 @@ def injectivePresentationShortComplex
     i.exact_map_mkQ_range.linearMap_comp_eq_zero
 
 /-- An injective linear map and its range quotient form a short exact
-coefficient complex.-/
+coefficient complex.
+@isnad1 id=shortexa.1h4v.s8.3ff261e37e4f from=translated src=- shape=c34ce2f6 vocab=1cc2af76
+-/
 theorem injectivePresentationShortComplex_shortExact
     {M E : ModuleCat.{u} R} (i : M →ₗ[R] E) (hi : Function.Injective i) :
     (injectivePresentationShortComplex i).ShortExact :=
@@ -49,7 +51,9 @@ theorem injectivePresentationShortComplex_shortExact
     i.exact_map_mkQ_range hi (Submodule.mkQ_surjective (LinearMap.range i))
 
 /-- Every ideal-power torsion module over a Noetherian ring embeds into
-an injective ideal-power torsion module with ideal-power torsion quotient.-/
+an injective ideal-power torsion module with ideal-power torsion quotient.
+@isnad1 id=ex.1h3v.s11.acc6089049fc from=translated src=- shape=3ae507d8 vocab=12ec5313
+-/
 theorem exists_idealPowerTorsion_injective_presentation
     [IsNoetherianRing R] (I : Ideal R) (M : ModuleCat.{u} R)
     (hM : ∀ z : M, ∃ n : ℕ, ∀ a ∈ I ^ n, a • z = 0) :

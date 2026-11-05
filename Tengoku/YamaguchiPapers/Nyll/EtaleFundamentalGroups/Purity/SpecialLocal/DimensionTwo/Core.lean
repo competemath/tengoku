@@ -37,7 +37,9 @@ open RingTheory.Sequence
 universe u v
 
 /-- A nonzero nonunit in a Noetherian domain is contained in a height-one
-prime.  The prime is chosen minimal over the element's principal ideal.-/
+prime.  The prime is chosen minimal over the element's principal ideal.
+@isnad1 id=ex.2h2v.s7.6895a461a9cd from=translated src=- shape=3a301bab vocab=0c05e201
+-/
 theorem exists_height_one_prime_containing_of_nonzero_nonunit
     {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A]
     {d : A} (hd : d ≠ 0) (hdu : ¬ IsUnit d) :
@@ -60,7 +62,9 @@ theorem exists_height_one_prime_containing_of_nonzero_nonunit
     hpMin.le (Ideal.mem_span_singleton_self d)⟩
 
 /-- In a Noetherian domain, a nonzero element which becomes a unit at
-every height-one localization is a unit.-/
+every height-one localization is a unit.
+@isnad1 id=isunit.2h2v.s8.e68d6b1ce691 from=translated src=- shape=017fc0bc vocab=9d7fdc6e
+-/
 theorem isUnit_of_isUnit_localizationAtPrime_height_one
     {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A]
     {d : A} (hd : d ≠ 0)
@@ -81,7 +85,9 @@ theorem isUnit_of_isUnit_localizationAtPrime_height_one
   exact hdNotUnit hdUnit
 
 /-- A regular pair generating the maximal ideal of a Noetherian local
-domain produces a height-one prime.-/
+domain produces a height-one prime.
+@isnad1 id=ex.2h3v.s6.c824c17bc894 from=translated src=- shape=057ea583 vocab=b0dd91b8
+-/
 theorem exists_height_one_prime_of_regular_pair
     {A : Type u} [CommRing A] [IsDomain A] [IsNoetherianRing A]
     [IsLocalRing A]

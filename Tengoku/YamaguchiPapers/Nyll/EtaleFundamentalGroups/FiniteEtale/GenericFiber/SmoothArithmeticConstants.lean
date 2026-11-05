@@ -77,7 +77,9 @@ private theorem unramifiedAt_of_radical_specialFiber
       Localization.AtPrime.map_eq_maximalIdeal
 
 /-- Smoothness over the integers and faithful flatness over the ring of
-integers force every finite prime of that ring of integers to be unramified.-/
+integers force every finite prime of that ring of integers to be unramified.
+@isnad1 id=isunrami.0h4v.s7.1c8e4bd51921 from=translated src=- shape=76d4823c vocab=223409e0
+-/
 theorem ringOfIntegers_unramifiedAt_of_smooth_faithfullyFlat
     (K A : Type) [Field K] [NumberField K] [CommRing A]
     [Algebra (𝓞 K) A] [Module.FaithfullyFlat (𝓞 K) A] [Algebra.Smooth ℤ A]
@@ -102,7 +104,9 @@ theorem ringOfIntegers_unramifiedAt_of_smooth_faithfullyFlat
 
 /-- A number field with a faithfully flat algebra smooth over `ℤ` is `ℚ`
 in degree. In the geometric application the algebra comes from a finite
-affine cover of the smooth arithmetic covering scheme.-/
+affine cover of the smooth arithmetic covering scheme.
+@isnad1 id=eq.0h2v.s6.f3ad29fa0be3 from=translated src=- shape=ef65dbd6 vocab=b2020116
+-/
 theorem numberField_finrank_eq_one_of_smooth_faithfullyFlat_ringOfIntegers
     (K A : Type) [Field K] [NumberField K] [CommRing A]
     [Algebra (𝓞 K) A] [Module.FaithfullyFlat (𝓞 K) A] [Algebra.Smooth ℤ A] :

@@ -158,7 +158,9 @@ private theorem terminal_coproduct_iso_smul_eq
 /--
 An object of a Galois category is a finite coproduct of terminal objects
 exactly when every automorphism of a fiber functor fixes every point of its
-fiber.-/
+fiber.
+@isnad1 id=iff.0h3v.s8.bdb2bb81268f from=translated src=- shape=0a60eef9 vocab=6454e42b
+-/
 theorem exists_iso_finite_coproduct_terminal_iff_fixed
     (Z : C'') :
     (∃ (ι : Type) (_ : Finite ι),
@@ -205,7 +207,9 @@ private theorem terminal_decomposition_composite_trivial
 /--
 The composite homomorphism on automorphism groups is trivial exactly when
 every object in the image of the composite functor is a finite coproduct of
-terminal objects.-/
+terminal objects.
+@isnad1 id=iff.0h10v.s10.6a9c92956aaf from=translated src=- shape=c2603e7f vocab=4b511e22
+-/
 @[stacks 0BS8]
 theorem autHomOfCompIso_comp_eq_one_iff
     (t : H ⋙ F' ≅ F) (t' : H' ⋙ F'' ≅ F') :

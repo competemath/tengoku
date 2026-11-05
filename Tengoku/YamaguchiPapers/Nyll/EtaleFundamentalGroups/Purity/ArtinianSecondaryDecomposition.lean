@@ -45,7 +45,9 @@ def IsSecondaryModule (R : Type u) (M : Type v)
 
 /-- If an endomorphism of an Artinian module is neither surjective nor
 nilpotent, a kernel and range of the same power are proper and sum to the
-whole module.  No Noetherian hypothesis is needed for this sum.-/
+whole module.  No Noetherian hypothesis is needed for this sum.
+@isnad1 id=ex.2h3v.s9.bb2c1a04f595 from=translated src=- shape=c80cfb3d vocab=220c0d86
+-/
 theorem exists_ker_pow_lt_top_range_pow_lt_top
     [IsArtinian R M] (f : Module.End R M)
     (hsurj : ¬ Function.Surjective f) (hnil : ¬ IsNilpotent f) :
@@ -70,7 +72,9 @@ theorem exists_ker_pow_lt_top_range_pow_lt_top
     simpa only [pow_succ', Module.End.mul_apply] using hx
 
 /-- Every Artinian module is the sum of finitely many nonzero secondary
-submodules; the zero module has the empty decomposition.-/
+submodules; the zero module has the empty decomposition.
+@isnad1 id=ex.0h2v.s8.d137180bd35c from=translated src=- shape=81ac945a vocab=f71eeae0
+-/
 theorem exists_finset_secondarySubmodules_sup_eq_top [IsArtinian R M] :
     ∃ s : Finset (Submodule R M),
       (∀ N ∈ s, IsSecondaryModule R N) ∧ s.sup id = ⊤ := by

@@ -57,7 +57,9 @@ def exactComposableArrowsDiagramAdjacentShortComplex
     exact (hQ d).toIsComplex.zero k hk
 
 /-- Objectwise exactness of the finite sequences produces exactness of every
-adjacent short complex in the functor category.-/
+adjacent short complex in the functor category.
+@isnad1 id=exact.2h5v.s7.2efff61700a1 from=translated src=- shape=86588982 vocab=1d74d6a9
+-/
 theorem exactComposableArrowsDiagramAdjacentShortComplex_exact
     (Q : D ⥤ ComposableArrows C n) (hQ : ∀ d, (Q.obj d).Exact)
     (k : ℕ) (hk : k + 2 ≤ n) :
@@ -94,7 +96,9 @@ def shortComplexExactColimit (S : ShortComplex (D ⥤ C)) : ShortComplex C :=
 
 /-- Exact colimits preserve exactness of the standard colimit short
 complex. This is the direct `colim.exact_mapShortComplex` interface used by
-the Mayer--Vietoris powers diagram.-/
+the Mayer--Vietoris powers diagram.
+@isnad1 id=exact.1h3v.s6.117a148c71da from=translated src=- shape=1b70f382 vocab=f9d4c328
+-/
 theorem shortComplexExactColimit_exact
     (S : ShortComplex (D ⥤ C)) (hS : S.Exact) :
     (shortComplexExactColimit S).Exact := by
@@ -123,7 +127,9 @@ def idealQuotientMayerVietorisDerivedExtPowersAdjacentShortComplex
     k hk
 
 /-- Every adjacent three-term window of the powers-derived-Ext diagram is
-exact in the functor category.-/
+exact in the functor category.
+@isnad1 id=exact.2h7v.s7.27decdf0eca9 from=translated src=- shape=4d10c805 vocab=98f1d265
+-/
 theorem idealQuotientMayerVietorisDerivedExtPowersAdjacentShortComplex_exact
     (I J : Ideal R) (M : ModuleCat.{u} R)
     (n₀ n₁ : ℕ) (h : 1 + n₀ = n₁)
@@ -148,7 +154,9 @@ def idealQuotientMayerVietorisDerivedExtPowersAdjacentColimitShortComplex
       I J M n₀ n₁ h k hk)
 
 /-- Filtered colimits preserve exactness of every adjacent three-term
-window in the powers-derived-Ext Mayer--Vietoris diagram.-/
+window in the powers-derived-Ext Mayer--Vietoris diagram.
+@isnad1 id=exact.2h7v.s6.8268c4772ab8 from=translated src=- shape=e30254bb vocab=49c7f35f
+-/
 theorem
     idealQuotientMayerVietorisDerivedExtPowersAdjacentColimitShortComplex_exact
     (I J : Ideal R) (M : ModuleCat.{u} R)

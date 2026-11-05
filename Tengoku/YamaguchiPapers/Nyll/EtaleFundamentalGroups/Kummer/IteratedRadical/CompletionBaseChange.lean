@@ -98,7 +98,9 @@ noncomputable def iteratedRadicalCompletionRightAlgEquiv
 
 /-- Completion base change is faithfully flat over the original iterated
 radical.  This is ordinary faithful-flat base change, transported through
-the canonical radical coordinates.-/
+the canonical radical coordinates.
+@isnad1 id=other.0h4v.s8.2a85f114c533 from=translated src=- shape=ad8aaf0f vocab=f476c089
+-/
 theorem faithfullyFlat_iteratedRadicalCompletion
     {A : Type u} [CommRing A] [IsLocalRing A] [IsNoetherianRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A) :
@@ -131,7 +133,9 @@ theorem faithfullyFlat_iteratedRadicalCompletion
   exact Module.FaithfullyFlat.of_linearEquiv
     (R := B) (M := B ⊗[A] Ahat) e.symm.toLinearEquiv
 
-/-- The two coefficient maps into the completed iterated radical agree.-/
+/-- The two coefficient maps into the completed iterated radical agree.
+@isnad1 id=other.0h5v.s12.1f79d4fb6072 from=translated src=- shape=57263757 vocab=1d9095e8
+-/
 theorem iteratedRadicalCompletion_algebraMap_comp_apply
     {A : Type u} [CommRing A] [IsLocalRing A]
     {r : ℕ} (n : Fin r → ℕ) (a : Fin r → A) (x : A) :
