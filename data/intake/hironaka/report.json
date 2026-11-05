@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "5e4db76247dffa2f6df07f3ad5ff3489af85f588d270b2151db8796115522ec3",
+ "gate2_unjudged": [],
+ "library": "hironaka",
+ "lint_mode": "proposed",
+ "modules": 163,
+ "part": 1,
+ "theorems": 1306
+}
