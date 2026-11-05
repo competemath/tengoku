@@ -49,6 +49,7 @@ import Tengoku.Vcvio
 import Tengoku.LanaHeights
 import Tengoku.AtPalomar
 import Tengoku.EpsilonSml
+import Tengoku.SplittingDensityRationality
 import Tengoku.Causalean
 import Tengoku.ErdosUnitDistance1
 import Tengoku.ErdosLean
