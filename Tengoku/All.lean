@@ -54,6 +54,7 @@ import Tengoku.SplittingDensityRationality
 import Tengoku.Causalean
 import Tengoku.ErdosUnitDistance1
 import Tengoku.ErdosLean
+import Tengoku.AclGeom
 import Tengoku.Certifyinginvariantsnf
 import Tengoku.LanaOrbicurveCores
 import Tengoku.AsymptoticTrianglePacking

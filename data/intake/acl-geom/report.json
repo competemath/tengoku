@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "60d649fd2ca296e4a66df69c0a176dd89285f1ac9afcc5a198777c60dba32ca1",
+ "gate2_unjudged": [],
+ "library": "acl-geom",
+ "lint_mode": "proposed",
+ "modules": 139,
+ "part": 1,
+ "theorems": 607
+}
