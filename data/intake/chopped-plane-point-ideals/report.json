@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "a531143960ad05ec94c0bb0f95e9030641052fa151210a4fe41af393eac8ff6d",
+ "gate2_unjudged": [],
+ "library": "chopped-plane-point-ideals",
+ "lint_mode": "proposed",
+ "modules": 140,
+ "part": 1,
+ "theorems": 1298
+}
