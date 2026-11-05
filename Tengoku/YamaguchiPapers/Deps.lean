@@ -1,0 +1,1 @@
+-- YamaguchiPapers: a factory bundle (data/intake/yamaguchi-papers). This file only marks the library for Tengoku/All.lean.
