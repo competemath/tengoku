@@ -118,7 +118,9 @@ structure Hom (Y C : AffOrbicurve k) where
   etale : ∀ w : Ideal Y.A, w.IsMaximal →
     (letI := f.toRingHom.toAlgebra; w.ramificationIdx C.A) * Y.mult w = C.mult (w.comap f)
 
-/-- Morphisms are determined by their map of coordinate rings.-/
+/-- Morphisms are determined by their map of coordinate rings.
+@isnad1 id=eq.1h5v.s6.14a06e54884d from=translated src=- shape=ce400759 vocab=de8a27e5
+-/
 @[ext] lemma Hom.ext {Y C : AffOrbicurve k} {φ ψ : Hom Y C} (h : φ.f = ψ.f) : φ = ψ := by
   cases φ; cases ψ; cases h; rfl
 

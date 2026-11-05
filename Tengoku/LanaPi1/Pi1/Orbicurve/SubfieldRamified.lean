@@ -30,7 +30,9 @@ variable {F N : IntermediateField (K₀ k t) Ω} (hFN : F ≤ N) [FiniteDimensio
 
 include ht in
 set_option maxHeartbeats 1000000 in
-/-- **Only finitely many maximal ideals ramify** in `coordRing k t N / coordRing k t F`.-/
+/-- **Only finitely many maximal ideals ramify** in `coordRing k t N / coordRing k t F`.
+@isnad1 id=finite.2h5v.s15.464f11526031 from=translated src=- shape=eb607cd0 vocab=71fd9d08
+-/
 theorem finite_ramified :
     {v : Ideal (coordRing k t F) | v.IsMaximal ∧
       (letI := algRing t hFN; v.ramificationIdxIn (coordRing k t N)) ≠ 1}.Finite := by

@@ -51,14 +51,23 @@ variable (t) in
 def toΩ (L : IntermediateField (K₀ k t) Ω) : coordRing k t L →+* Ω :=
   (L.val : L →+* Ω).comp (coordRing k t L).val.toRingHom
 
+/--
+@isnad1 id=eq.0h5v.s15.b1910988e3da from=translated src=- shape=35caf37e vocab=731bb589
+-/
 @[simp] lemma toΩ_apply (L : IntermediateField (K₀ k t) Ω) (a : coordRing k t L) :
     toΩ t L a = ((a : L) : Ω) := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s15.e1ecc136ba80 from=translated src=- shape=14efd117 vocab=380705fb
+-/
 lemma toΩ_injective (L : IntermediateField (K₀ k t) Ω) : Function.Injective (toΩ t L) :=
   fun _ _ h => Subtype.val_injective (Subtype.val_injective h)
 
 variable {W : ValuationSubring Ω}
 
+/--
+@isnad1 id=mem.1h5v.s7.58710784f67f from=translated src=- shape=2f42a907 vocab=bad9ebe6
+-/
 lemma A₀_le (hW : IsCentered k t W) (x : A₀ k t) : (x : Ω) ∈ W := by
   have key : ∀ y ∈ Algebra.adjoin k {t}, y ∈ W := by
     intro y hy
@@ -70,7 +79,9 @@ lemma A₀_le (hW : IsCentered k t W) (x : A₀ k t) : (x : Ω) ∈ W := by
   exact key x x.2
 
 /-- Elements of the coordinate ring lie in every valuation subring centered on the `t`-line
-(valuation rings are integrally closed).-/
+(valuation rings are integrally closed).
+@isnad1 id=mem.1h6v.s15.c66e10230d3e from=translated src=- shape=83655369 vocab=6cfeeab2
+-/
 lemma toΩ_mem (hW : IsCentered k t W) (L : IntermediateField (K₀ k t) Ω) (a : coordRing k t L) :
     toΩ t L a ∈ W := by
   obtain ⟨p, hp, hpa⟩ := a.2
@@ -106,38 +117,57 @@ instance (hW : IsCentered k t W) (L : IntermediateField (K₀ k t) Ω) :
     (centerIdeal hW L).IsPrime :=
   Ideal.comap_isPrime _ _
 
+/--
+@isnad1 id=iff.1h6v.s16.8c6c072abbdc from=translated src=- shape=4948ff72 vocab=812afb00
+-/
 lemma mem_centerIdeal (hW : IsCentered k t W) {L : IntermediateField (K₀ k t) Ω}
     {a : coordRing k t L} : a ∈ centerIdeal hW L ↔ W.valuation (toΩ t L a) < 1 :=
   W.valuation_lt_one_iff (toW hW L a)
 
+/--
+@isnad1 id=iff.1h6v.s16.41f17d4cbce0 from=translated src=- shape=ed9c3581 vocab=1fea4ac8
+-/
 lemma mem_centerIdeal_iff_mem_nonunits (hW : IsCentered k t W)
     {L : IntermediateField (K₀ k t) Ω} {a : coordRing k t L} :
     a ∈ centerIdeal hW L ↔ (⟨toΩ t L a, toΩ_mem hW L a⟩ : W) ∈ nonunits W :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.2h6v.s16.8581d84c45b6 from=translated src=- shape=45fce5dc vocab=3c5476f4
+-/
 lemma valuation_eq_one_of_notMem (hW : IsCentered k t W) {L : IntermediateField (K₀ k t) Ω}
     {a : coordRing k t L} (ha : a ∉ centerIdeal hW L) : W.valuation (toΩ t L a) = 1 := by
   rw [mem_centerIdeal, not_lt] at ha
   exact le_antisymm ((W.valuation_le_one_iff _).mpr (toΩ_mem hW L a)) ha
 
+/--
+@isnad1 id=le.1h6v.s15.0bafa392a187 from=translated src=- shape=9cea47dc vocab=4cb49cdf
+-/
 lemma valuation_le_one (hW : IsCentered k t W) {L : IntermediateField (K₀ k t) Ω}
     (a : coordRing k t L) : W.valuation (toΩ t L a) ≤ 1 :=
   (W.valuation_le_one_iff _).mpr (toΩ_mem hW L a)
 
-/-- `u_W(L)` is maximal when nonzero.-/
+/-- `u_W(L)` is maximal when nonzero.
+@isnad1 id=ismaxima.3h5v.s15.e3eaaa1df071 from=translated src=- shape=c75827aa vocab=c6d98ea3
+-/
 lemma isMaximal_centerIdeal (ht : Transcendental k t) (hW : IsCentered k t W)
     (L : IntermediateField (K₀ k t) Ω) [FiniteDimensional (K₀ k t) L]
     [Algebra.IsSeparable (K₀ k t) L] (h : centerIdeal hW L ≠ ⊥) : (centerIdeal hW L).IsMaximal :=
   haveI := isDedekindDomain_ring t ht L
   Ring.DimensionLEOne.maximalOfPrime h inferInstance
 
-/-- The centers are compatible: `u_W(M) ∩ coordRing k t L = u_W(L)` for `L ⊆ M`.-/
+/-- The centers are compatible: `u_W(M) ∩ coordRing k t L = u_W(L)` for `L ⊆ M`.
+@isnad1 id=eq.2h6v.s15.ef5b3f5a05ed from=translated src=- shape=6a451009 vocab=8dacb194
+-/
 lemma comap_centerIdeal (hW : IsCentered k t W) {L M : IntermediateField (K₀ k t) Ω}
     (h : L ≤ M) : (centerIdeal hW M).comap (ringMap t h) = centerIdeal hW L := by
   ext a
   simp only [Ideal.mem_comap, mem_centerIdeal]
   rfl
 
+/--
+@isnad1 id=ne.3h6v.s16.eace87645c6b from=translated src=- shape=73acce84 vocab=afd2fe01
+-/
 lemma centerIdeal_ne_bot_of_le (hW : IsCentered k t W) {L M : IntermediateField (K₀ k t) Ω}
     (h : L ≤ M) (hL : centerIdeal hW L ≠ ⊥) : centerIdeal hW M ≠ ⊥ := by
   intro hM
@@ -157,18 +187,30 @@ variable (W) in
 def IsInertialOn (M : IntermediateField (K₀ k t) Ω) (σ : Ω ≃ₐ[K₀ k t] Ω) : Prop :=
   ∀ b : coordRing k t M, W.valuation (σ (toΩ t M b) - toΩ t M b) < 1
 
+/--
+@isnad1 id=isinerti.2h6v.s9.7f28f2ebae56 from=translated src=- shape=80929202 vocab=d7043ddf
+-/
 lemma isInertialOn_of_mem_inertia (hW : IsCentered k t W) (M : IntermediateField (K₀ k t) Ω)
     {σ : Ω ≃ₐ[K₀ k t] Ω} (hσ : σ ∈ GaloisPi1.inertia W) : IsInertialOn W M σ :=
   fun b => hσ _ (toΩ_mem hW M b)
 
+/--
+@isnad1 id=isinerti.2h7v.s9.4dc09283b511 from=translated src=- shape=4ea08da9 vocab=1ea59679
+-/
 lemma IsInertialOn.mono {L M : IntermediateField (K₀ k t) Ω} (h : L ≤ M) {σ : Ω ≃ₐ[K₀ k t] Ω}
     (hσ : IsInertialOn W M σ) : IsInertialOn W L σ :=
   fun b => hσ (ringMap t h b)
 
+/--
+@isnad1 id=eq.0h6v.s12.448a5d3e319d from=translated src=- shape=c76e7bff vocab=aedc6cc7
+-/
 @[simp] lemma coe_restrictNormal_apply (N : IntermediateField (K₀ k t) Ω) [Normal (K₀ k t) N]
     (σ : Ω ≃ₐ[K₀ k t] Ω) (x : N) : ((σ.restrictNormal N x : N) : Ω) = σ (x : Ω) :=
   AlgEquiv.restrictNormal_apply N σ x
 
+/--
+@isnad1 id=iff.1h6v.s17.cd44c1b7daf8 from=translated src=- shape=28e891ea vocab=ec4690c8
+-/
 lemma mem_inertia_centerIdeal_iff (hW : IsCentered k t W) (N : IntermediateField (K₀ k t) Ω)
     (ρ : N ≃ₐ[K₀ k t] N) :
     ρ ∈ (centerIdeal hW N).inertia (N ≃ₐ[K₀ k t] N) ↔
@@ -179,7 +221,9 @@ lemma mem_inertia_centerIdeal_iff (hW : IsCentered k t W) (N : IntermediateField
   rfl
 
 /-- The restriction of `σ` to `N` lies in the inertia group of `u_W(N)` iff `σ` acts trivially
-on `coordRing k t N` modulo the maximal ideal of `W`.-/
+on `coordRing k t N` modulo the maximal ideal of `W`.
+@isnad1 id=iff.1h6v.s16.e15fe4075041 from=translated src=- shape=aab904d5 vocab=d7828845
+-/
 lemma restrictNormal_mem_inertia_iff (hW : IsCentered k t W) (N : IntermediateField (K₀ k t) Ω)
     [Normal (K₀ k t) N] (σ : Ω ≃ₐ[K₀ k t] Ω) :
     σ.restrictNormal N ∈ (centerIdeal hW N).inertia (N ≃ₐ[K₀ k t] N) ↔ IsInertialOn W N σ := by
@@ -188,13 +232,17 @@ lemma restrictNormal_mem_inertia_iff (hW : IsCentered k t W) (N : IntermediateFi
   rfl
 
 /-- **Restriction of inertia**: the restriction to `N` (normal over `K₀`) of an element of the
-inertia group of `W` lies in the inertia group of the center `u_W(N)`.-/
+inertia group of `W` lies in the inertia group of the center `u_W(N)`.
+@isnad1 id=mem.2h6v.s16.d409db721263 from=translated src=- shape=401a1db4 vocab=82512ed1
+-/
 theorem restrictNormal_mem_inertia (hW : IsCentered k t W) (N : IntermediateField (K₀ k t) Ω)
     [Normal (K₀ k t) N] {σ : Ω ≃ₐ[K₀ k t] Ω} (hσ : σ ∈ GaloisPi1.inertia W) :
     σ.restrictNormal N ∈ (centerIdeal hW N).inertia (N ≃ₐ[K₀ k t] N) :=
   (restrictNormal_mem_inertia_iff hW N σ).mpr (isInertialOn_of_mem_inertia hW N hσ)
 
-/-- The restriction to `N` of an automorphism fixing `L` lies in `Gal(N / L) = fixSub t N L`.-/
+/-- The restriction to `N` of an automorphism fixing `L` lies in `Gal(N / L) = fixSub t N L`.
+@isnad1 id=mem.1h6v.s14.f025e73d0338 from=translated src=- shape=de545715 vocab=34a6d80d
+-/
 theorem restrictNormal_mem_fixSub (N : IntermediateField (K₀ k t) Ω) [Normal (K₀ k t) N]
     {L : IntermediateField (K₀ k t) Ω} {σ : Ω ≃ₐ[K₀ k t] Ω} (hσ : σ ∈ L.fixingSubgroup) :
     σ.restrictNormal N ∈ fixSub t N L := by
@@ -204,7 +252,9 @@ theorem restrictNormal_mem_fixSub (N : IntermediateField (K₀ k t) Ω) [Normal 
   exact (IntermediateField.mem_fixingSubgroup_iff _ _).mp hσ _ hx
 
 /-- **Restriction of inertia** (relative version): for `σ ∈ I_W ∩ Aut(Ω / L)`, the restriction
-of `σ` to `N` lies in `I_{u_W(N)}(N / K₀) ∩ Gal(N / L)`.-/
+of `σ` to `N` lies in `I_{u_W(N)}(N / K₀) ∩ Gal(N / L)`.
+@isnad1 id=mem.3h7v.s16.67e0ef6780cc from=translated src=- shape=13c85ba5 vocab=8c3643d2
+-/
 theorem restrictNormal_mem_inertia_inf_fixSub (hW : IsCentered k t W)
     (N : IntermediateField (K₀ k t) Ω) [Normal (K₀ k t) N] {L : IntermediateField (K₀ k t) Ω}
     {σ : Ω ≃ₐ[K₀ k t] Ω} (hσ : σ ∈ GaloisPi1.inertia W) (hσL : σ ∈ L.fixingSubgroup) :
@@ -220,7 +270,9 @@ variable {W : ValuationSubring Ω}
 set_option maxHeartbeats 1000000 in
 /-- If `u_W(M) ≠ 0`, every element of `W ∩ M` is a quotient `b / s` of elements of the coordinate
 ring of `M` with `s ∉ u_W(M)` (`W ∩ M` is the localization of the coordinate ring at `u_W(M)`,
-a discrete valuation ring).-/
+a discrete valuation ring).
+@isnad1 id=ex.5h6v.s17.2fb43a604914 from=translated src=- shape=99b532fb vocab=2da58cc6
+-/
 lemma exists_eq_div (ht : Transcendental k t) (hW : IsCentered k t W)
     (M : IntermediateField (K₀ k t) Ω) [FiniteDimensional (K₀ k t) M]
     [Algebra.IsSeparable (K₀ k t) M] (hM : centerIdeal hW M ≠ ⊥) {x : Ω} (hxM : x ∈ M)
@@ -289,7 +341,9 @@ lemma exists_eq_div (ht : Transcendental k t) (hW : IsCentered k t W)
     rw [hx', div_eq_div_iff hs₀' hd', ← h1', mul_comm]
 
 /-- If `σ` acts trivially on the coordinate ring of `M` modulo the maximal ideal of `W` and
-`u_W(M) ≠ 0`, then `σ` acts trivially on `W ∩ M` modulo the maximal ideal of `W`.-/
+`u_W(M) ≠ 0`, then `σ` acts trivially on `W ∩ M` modulo the maximal ideal of `W`.
+@isnad1 id=lt.6h7v.s15.56da5c9dfc0c from=translated src=- shape=212e53d0 vocab=4a50c839
+-/
 lemma valuation_sub_lt_one (ht : Transcendental k t) (hW : IsCentered k t W)
     (M : IntermediateField (K₀ k t) Ω) [FiniteDimensional (K₀ k t) M]
     [Algebra.IsSeparable (K₀ k t) M] (hM : centerIdeal hW M ≠ ⊥) {σ : Ω ≃ₐ[K₀ k t] Ω}
@@ -323,6 +377,9 @@ section Lifting
 
 variable {W : ValuationSubring Ω}
 
+/--
+@isnad1 id=eq.0h4v.s13.d777b33f3d5d from=translated src=- shape=71f75b69 vocab=ded7252d
+-/
 lemma fixSub_bot (N : IntermediateField (K₀ k t) Ω) : fixSub t N ⊥ = ⊤ := by
   refine eq_top_iff.mpr fun σ _ x hx => ?_
   obtain ⟨c, hc⟩ := IntermediateField.mem_bot.mp hx

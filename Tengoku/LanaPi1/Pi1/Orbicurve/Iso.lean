@@ -25,6 +25,9 @@ namespace AffOrbicurve
 
 variable {k : Type u} [Field k]
 
+/--
+@isnad1 id=eq.0h4v.s7.bf601a7d0053 from=translated src=- shape=50eb4533 vocab=88e69550
+-/
 lemma comap_comap_symm {A B : Type*} [CommRing A] [CommRing B] (ψ : A ≃+* B) (w : Ideal A) :
     (w.comap ψ.symm.toRingHom).comap ψ.toRingHom = w := by
   ext x
@@ -59,7 +62,9 @@ def Iso.ofAlgEquiv {X Y : AffOrbicurve k} (ψ : X.A ≃ₐ[k] Y.A)
   hom_inv := AlgHom.ext fun x => ψ.symm_apply_apply x
   inv_hom := AlgHom.ext fun x => ψ.apply_symm_apply x
 
-/-- **Ramification indices are invariant under compatible ring isomorphisms.**-/
+/-- **Ramification indices are invariant under compatible ring isomorphisms.**
+@isnad1 id=eq.2h9v.s9.c05473293689 from=translated src=- shape=42377896 vocab=b2c736ab
+-/
 lemma ramificationIdx_congr {R S R' S' : Type*} [CommRing R] [CommRing S] [CommRing R']
     [CommRing S'] [IsDedekindDomain R] [IsDedekindDomain S] [IsDedekindDomain R']
     [IsDedekindDomain S'] (f : R →+* S) (f' : R' →+* S') (α : R ≃+* R') (β : S ≃+* S')
@@ -85,6 +90,9 @@ variable {R S R' S' : Type*} [CommRing R] [CommRing S] [CommRing R'] [CommRing S
   (h : ∀ r, β (algebraMap R S r) = algebraMap R' S' (α r))
 
 include h in
+/--
+@isnad1 id=isintegr.2h7v.s9.941363cf19c8 from=translated src=- shape=79e2dd92 vocab=a522b2e3
+-/
 lemma isIntegral_map_equiv {x : S} (hx : IsIntegral R x) : IsIntegral R' (β x) := by
   obtain ⟨p, hp, hpx⟩ := hx
   refine ⟨p.map α.toRingHom, hp.map _, ?_⟩
@@ -97,6 +105,9 @@ lemma isIntegral_map_equiv {x : S} (hx : IsIntegral R x) : IsIntegral R' (β x) 
   exact this.symm
 
 include h in
+/--
+@isnad1 id=iff.1h7v.s9.7d819f58ea91 from=translated src=- shape=a20bb47c vocab=a522b2e3
+-/
 lemma isIntegral_map_equiv_iff {x : S} : IsIntegral R' (β x) ↔ IsIntegral R x := by
   refine ⟨fun hx => ?_, isIntegral_map_equiv α β h⟩
   have h' : ∀ r', β.symm (algebraMap R' S' r') = algebraMap R S (α.symm r') := by
@@ -117,6 +128,9 @@ def integralClosureEquiv : integralClosure R S ≃+* integralClosure R' S' where
   map_mul' x y := Subtype.ext (map_mul β (x : S) y)
   map_add' x y := Subtype.ext (map_add β (x : S) y)
 
+/--
+@isnad1 id=eq.1h7v.s11.b9025609bfca from=translated src=- shape=47c1c2e3 vocab=e2da2398
+-/
 @[simp] lemma coe_integralClosureEquiv (x : integralClosure R S) :
     ((integralClosureEquiv α β h x : integralClosure R' S') : S') = β x := rfl
 

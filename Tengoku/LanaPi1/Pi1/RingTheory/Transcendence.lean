@@ -12,6 +12,9 @@ universe u
 
 variable (k K : Type u) [Field k] [Field K] [Algebra k K]
 
+/--
+@isnad1 id=finite.1h2v.s7.6f1e8cb4cba6 from=translated src=- shape=628cacde vocab=251ccdf6
+-/
 lemma Algebra.finite_of_intermediateFieldFG_of_isAlgebraic
     (h : IntermediateField.FG (⊤ : IntermediateField k K)) [Algebra.IsAlgebraic k K] :
     Module.Finite k K := by
@@ -24,7 +27,9 @@ lemma Algebra.finite_of_intermediateFieldFG_of_isAlgebraic
   exact Algebra.IsIntegral.finite
 
 /-- If `S` is of finite type over `R` and `K` the fraction field of `S`,
-then `K` is finitely generated over `R` as a field.-/
+then `K` is finitely generated over `R` as a field.
+@isnad1 id=fg.0h3v.s8.a84e47f8dda8 from=translated src=- shape=26856878 vocab=9ad94553
+-/
 lemma Algebra.FiniteType.FG_top_of_isFractionRing {R S K : Type*} [Field R]
     [CommRing S] [Field K] [Algebra R S] [Algebra R K]
     [Algebra S K] [IsScalarTower R S K] [IsFractionRing S K]

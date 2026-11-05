@@ -26,7 +26,9 @@ namespace Algebra.FormallyUnramified
 
 variable {R B K : Type*} [CommRing R] [CommRing B] [Algebra R B] [Field K] [Algebra R K]
 
-/-- **Unramified maps into a valuation ring are determined modulo its maximal ideal.**-/
+/-- **Unramified maps into a valuation ring are determined modulo its maximal ideal.**
+@isnad1 id=eq.3h6v.s9.fb0299e5b5f1 from=translated src=- shape=58492d77 vocab=41aa65da
+-/
 theorem algHom_eq_of_valuation [FormallyUnramified R B] [EssFiniteType R B]
     (W : ValuationSubring K) (f g : B →ₐ[R] K) (hf : ∀ b, f b ∈ W) (hg : ∀ b, g b ∈ W)
     (h : ∀ b, W.valuation (f b - g b) < 1) : f = g := by

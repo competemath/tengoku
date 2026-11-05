@@ -49,6 +49,9 @@ lemma Etale.eq_and :
   ext
   rw [etale_iff_formallyUnramified_and_smooth]
 
+/--
+@isnad1 id=iff.0h3v.s5.1a58fb1b4483 from=translated src=- shape=fccd47d3 vocab=cb4cd9fb
+-/
 theorem Etale.iff_locally_isStandardSmoothOfRelativeDimension
     {R S : Type u} [CommRing R] [CommRing S] (f : R →+* S) :
     f.Etale ↔ Locally (IsStandardSmoothOfRelativeDimension 0) f := by

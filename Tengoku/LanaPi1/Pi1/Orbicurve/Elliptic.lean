@@ -77,7 +77,9 @@ instance : FiniteDimensional (FractionRing k[X]) E.toAffine.FunctionField :=
   Module.Finite.of_isLocalization k[X] E.toAffine.CoordinateRing (nonZeroDivisors k[X])
 
 omit [CharZero k] [E.IsElliptic] in
-/-- The `x`-line `A¹ = Spec k[x]` is a curve.-/
+/-- The `x`-line `A¹ = Spec k[x]` is a curve.
+@isnad1 id=not.0h1v.s4.31966fe27e8d from=translated src=- shape=fba248a8 vocab=db7ec88c
+-/
 lemma polynomial_not_isField : ¬ IsField k[X] := Polynomial.not_isField k
 
 /-- **The once-punctured elliptic curve** `E ∖ {0}`: the normalization of the `x`-line in the

@@ -61,20 +61,35 @@ instance : Algebra.IsIntegral (A₀ k t) (CoordRing k t F) :=
 
 variable {F}
 
+/--
+@isnad1 id=eq.1h6v.s8.41834e64ce6e from=translated src=- shape=71e55f61 vocab=0f3e50d8
+-/
 lemma ext {x y : CoordRing k t F}
     (h : algebraMap (CoordRing k t F) Ω x = algebraMap (CoordRing k t F) Ω y) : x = y :=
   Subtype.ext (Subtype.ext h)
 
+/--
+@isnad1 id=injectiv.0h4v.s8.114301107921 from=translated src=- shape=627fae89 vocab=fdb23857
+-/
 lemma algebraMap_injective : Function.Injective (algebraMap (CoordRing k t F) Ω) :=
   fun _ _ h => ext h
 
+/--
+@isnad1 id=mem.0h5v.s9.0d4e1b4f0ed1 from=translated src=- shape=fc4d31ba vocab=0f3e50d8
+-/
 lemma algebraMap_mem (x : CoordRing k t F) : algebraMap (CoordRing k t F) Ω x ∈ F :=
   (show coordRing k t F from x).1.2
 
+/--
+@isnad1 id=iff.0h5v.s11.1ef636a0ba97 from=translated src=- shape=4adfaacd vocab=2821ee9c
+-/
 lemma isIntegral_coe_iff (y : F) : IsIntegral (A₀ k t) (y : Ω) ↔ IsIntegral (A₀ k t) y :=
   isIntegral_algHom_iff ((IntermediateField.val F).restrictScalars (A₀ k t))
     (IntermediateField.val F).injective
 
+/--
+@isnad1 id=isintegr.0h5v.s8.4b23db6c4562 from=translated src=- shape=1c4f9adf vocab=4de0a908
+-/
 lemma isIntegral_algebraMap (x : CoordRing k t F) :
     IsIntegral (A₀ k t) (algebraMap (CoordRing k t F) Ω x) :=
   (isIntegral_coe_iff (show coordRing k t F from x).1).2 (show coordRing k t F from x).2
@@ -84,6 +99,9 @@ of `F`.-/
 def mk (x : Ω) (hF : x ∈ F) (hx : IsIntegral (A₀ k t) x) : CoordRing k t F :=
   (⟨⟨x, hF⟩, (isIntegral_coe_iff (F := F) ⟨x, hF⟩).1 hx⟩ : coordRing k t F)
 
+/--
+@isnad1 id=eq.2h5v.s9.d3118345d6c7 from=translated src=- shape=8185b486 vocab=6d666aeb
+-/
 @[simp] lemma algebraMap_mk (x : Ω) (hF : x ∈ F) (hx : IsIntegral (A₀ k t) x) :
     algebraMap (CoordRing k t F) Ω (mk x hF hx) = x := rfl
 
@@ -98,6 +116,9 @@ instance algebraK (F : IntermediateField (K₀ k t) Ω) : Algebra k (CoordRing k
 
 end CoordRing
 
+/--
+@isnad1 id=isintegr.1h5v.s9.9091a0263d36 from=translated src=- shape=5611105c vocab=0d5e4121
+-/
 lemma isIntegral_aut (σ : Ω ≃ₐ[K₀ k t] Ω) {x : Ω} (hx : IsIntegral (A₀ k t) x) :
     IsIntegral (A₀ k t) (σ x) :=
   hx.map ((σ : Ω →ₐ[K₀ k t] Ω).restrictScalars (A₀ k t))
@@ -127,12 +148,17 @@ def coordAut (F : IntermediateField (K₀ k t) Ω) (G : Subgroup (Ω ≃ₐ[K₀
   map_one' := RingEquiv.ext fun x => CoordRing.ext rfl
   map_mul' g h := RingEquiv.ext fun x => CoordRing.ext rfl
 
+/--
+@isnad1 id=eq.1h7v.s14.b12e3a572377 from=translated src=- shape=b79c6fd3 vocab=bb724ccd
+-/
 @[simp] lemma algebraMap_coordAut (F : IntermediateField (K₀ k t) Ω)
     (G : Subgroup (Ω ≃ₐ[K₀ k t] Ω)) (hG : ∀ g ∈ G, ∀ x ∈ F, g x ∈ F) (g : G)
     (x : CoordRing k t F) :
     algebraMap (CoordRing k t F) Ω (coordAut F G hG g x) = g.1 (algebraMap _ Ω x) := rfl
 
-/-- If `G` normalizes `U`, then `G` stabilizes the fixed field of `U`.-/
+/-- If `G` normalizes `U`, then `G` stabilizes the fixed field of `U`.
+@isnad1 id=mem.3h7v.s13.3e74dd281c5e from=translated src=- shape=558354f6 vocab=43444fe0
+-/
 lemma mem_fixedField_of_normalizes {U G : Subgroup (Ω ≃ₐ[K₀ k t] Ω)}
     (hUG : ∀ g ∈ G, ∀ u ∈ U, g⁻¹ * u * g ∈ U) :
     ∀ g ∈ G, ∀ x ∈ IntermediateField.fixedField U, g x ∈ IntermediateField.fixedField U := by
@@ -169,11 +195,20 @@ namespace GaloisData
 
 variable {k t} (D : GaloisData k t)
 
+/--
+@isnad1 id=isopen.0h4v.s9.8160581f2c76 from=translated src=- shape=5b830fa0 vocab=13ecefe6
+-/
 lemma isOpen_H : IsOpen (D.H : Set (Ω ≃ₐ[K₀ k t] Ω)) := Subgroup.isOpen_mono D.le D.isOpen_HL
 
+/--
+@isnad1 id=isclosed.0h4v.s9.125d9acd8cdf from=translated src=- shape=5b830fa0 vocab=6a7255a9
+-/
 lemma isClosed_H : IsClosed (D.H : Set (Ω ≃ₐ[K₀ k t] Ω)) :=
   Subgroup.isClosed_of_isOpen _ D.isOpen_H
 
+/--
+@isnad1 id=mem.2h6v.s12.4112bedbcdf0 from=translated src=- shape=8105be6d vocab=0e08a5fb
+-/
 lemma conj_mem' {h : Ω ≃ₐ[K₀ k t] Ω} (hh : h ∈ D.H) {n : Ω ≃ₐ[K₀ k t] Ω} (hn : n ∈ D.HL) :
     h⁻¹ * n * h ∈ D.HL := by
   simpa using D.conj_mem h⁻¹ (D.H.inv_mem hh) n hn
@@ -192,12 +227,18 @@ instance : (D.HL.subgroupOf D.H).Normal :=
     rw [Subgroup.mem_subgroupOf] at hn ⊢
     exact D.conj_mem g g.2 n hn⟩
 
+/--
+@isnad1 id=mem.2h6v.s10.34c909f5ec6e from=translated src=- shape=892f6ff1 vocab=75d069c0
+-/
 lemma stable : ∀ g ∈ D.H, ∀ x ∈ D.L, g x ∈ D.L :=
   mem_fixedField_of_normalizes fun _ hg _ hu => D.conj_mem' hg hu
 
 /-- The action of `H` on `R`.-/
 def actR : D.H →* RingAut D.R := coordAut D.L D.H D.stable
 
+/--
+@isnad1 id=le.0h4v.s13.1f732682a6b1 from=translated src=- shape=afdbe69d vocab=83025350
+-/
 lemma subgroupOf_le_ker : D.HL.subgroupOf D.H ≤ D.actR.ker := by
   intro n hn
   rw [Subgroup.mem_subgroupOf] at hn
@@ -210,6 +251,9 @@ lemma subgroupOf_le_ker : D.HL.subgroupOf D.H ≤ D.actR.ker := by
 instance : MulSemiringAction D.A D.R :=
   MulSemiringAction.compHom _ (QuotientGroup.lift _ D.actR D.subgroupOf_le_ker)
 
+/--
+@isnad1 id=eq.0h6v.s15.bfd48404524f from=translated src=- shape=27f5d452 vocab=78f0c5db
+-/
 lemma algebraMap_smul (h : D.H) (r : D.R) :
     algebraMap D.R Ω ((h : D.A) • r) = (h : Ω ≃ₐ[K₀ k t] Ω) (algebraMap D.R Ω r) := rfl
 
@@ -222,11 +266,20 @@ def S : Set (Ω ≃ₐ[K₀ k t] Ω) :=
 /-- A section of `H → A = H ⧸ H_L` mapping `1` to `1`.-/
 noncomputable def sec (a : D.A) : D.H := Quotient.out a * (Quotient.out (1 : D.A))⁻¹
 
+/--
+@isnad1 id=eq.0h5v.s12.31ea56caedad from=translated src=- shape=e0da546c vocab=0f053aaa
+-/
 @[simp] lemma mk_sec (a : D.A) : (D.sec a : D.A) = a := by
   simp [sec]
 
+/--
+@isnad1 id=eq.0h4v.s12.b4a4ab5245ac from=translated src=- shape=06fdb9da vocab=8b2ab460
+-/
 @[simp] lemma sec_one : D.sec 1 = 1 := mul_inv_cancel _
 
+/--
+@isnad1 id=eq.0h6v.s14.c86d4ef6637b from=translated src=- shape=17718c25 vocab=99ead6f1
+-/
 lemma mk_sec_mul_sec_inv (a b : D.A) : ((D.sec b * (D.sec (a⁻¹ * b))⁻¹ : D.H) : D.A) = a := by
   rw [QuotientGroup.mk_mul, QuotientGroup.mk_inv, mk_sec, mk_sec]
   group

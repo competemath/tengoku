@@ -34,10 +34,16 @@ noncomputable def coordRingVal : coordRing k t B →+* Ω :=
   B.val.toRingHom.comp (coordRing k t B).val.toRingHom
 
 omit [IsAlgClosed Ω] [FiniteDimensional (K₀ k t) B] in
+/--
+@isnad1 id=injectiv.0h4v.s15.58f62e789738 from=translated src=- shape=14efd117 vocab=6c751c6c
+-/
 lemma coordRingVal_injective : Function.Injective (coordRingVal t (B := B)) :=
   fun _ _ h => Subtype.val_injective (Subtype.val_injective h)
 
 omit [IsAlgClosed Ω] [FiniteDimensional (K₀ k t) B] in
+/--
+@isnad1 id=isintegr.1h5v.s13.9dc0fb062a4d from=translated src=- shape=e23865da vocab=936a8d91
+-/
 lemma isIntegral_A₀_of_coordRing {x : Ω} (h : IsIntegral (coordRing k t B) x) :
     IsIntegral (A₀ k t) x := by
   haveI : IsScalarTower (A₀ k t) (coordRing k t B) Ω :=

@@ -43,20 +43,32 @@ IntermediateField.adjoin k {t}
 variable {t} (ht : Transcendental k t)
 
 include ht in
+/--
+@isnad1 id=isprinci.1h3v.s7.71a7424e42ca from=translated src=- shape=8b4f015a vocab=fc2ae1fb
+-/
 lemma isPrincipalIdealRing_A₀ : IsPrincipalIdealRing (A₀ k t) :=
   IsPrincipalIdealRing.of_surjective (Polynomial.algEquivOfTranscendental k t ht).toRingHom
     (Polynomial.algEquivOfTranscendental k t ht).surjective
 
 include ht in
+/--
+@isnad1 id=isdedeki.1h3v.s6.9d0f8478a705 from=translated src=- shape=8b4f015a vocab=364bffae
+-/
 lemma isDedekindDomain_A₀ : IsDedekindDomain (A₀ k t) :=
   haveI := isPrincipalIdealRing_A₀ ht
   inferInstance
 
 include ht in
+/--
+@isnad1 id=finitety.1h3v.s7.f493497b94c0 from=translated src=- shape=5158192e vocab=40704cec
+-/
 lemma finiteType_A₀ : Algebra.FiniteType k (A₀ k t) :=
   Algebra.FiniteType.equiv inferInstance (Polynomial.algEquivOfTranscendental k t ht)
 
 include ht in
+/--
+@isnad1 id=not.1h3v.s7.de6c423bcfd7 from=translated src=- shape=96241f94 vocab=ccfe1a13
+-/
 lemma not_isField_A₀ : ¬ IsField (A₀ k t) := by
   intro h
   exact Polynomial.not_isField k
@@ -88,16 +100,25 @@ variable (L : IntermediateField (K₀ k t) Ω) [FiniteDimensional (K₀ k t) L]
   [Algebra.IsSeparable (K₀ k t) L]
 
 include ht in
+/--
+@isnad1 id=isdedeki.1h4v.s13.7b82090378d2 from=translated src=- shape=98315035 vocab=d579fdea
+-/
 lemma isDedekindDomain_ring : IsDedekindDomain (coordRing k t L) :=
   haveI := isDedekindDomain_A₀ ht
   integralClosure.isDedekindDomain (A₀ k t) (K₀ k t) L
 
 include ht in
+/--
+@isnad1 id=finite.1h4v.s14.66f203c6111c from=translated src=- shape=ff251c7a vocab=bf44a1f6
+-/
 lemma finite_ring : Module.Finite (A₀ k t) (coordRing k t L) :=
   haveI := isDedekindDomain_A₀ ht
   IsIntegralClosure.finite (A₀ k t) (K₀ k t) L (coordRing k t L)
 
 include ht in
+/--
+@isnad1 id=finitety.1h4v.s13.586ac088bad5 from=translated src=- shape=e39e2995 vocab=e560e764
+-/
 lemma finiteType_ring : Algebra.FiniteType k (coordRing k t L) :=
   haveI := finite_ring t ht L
   haveI := finiteType_A₀ ht
@@ -105,6 +126,9 @@ lemma finiteType_ring : Algebra.FiniteType k (coordRing k t L) :=
 
 omit [FiniteDimensional (K₀ k t) L] [Algebra.IsSeparable (K₀ k t) L] in
 include ht in
+/--
+@isnad1 id=not.1h4v.s12.cc4472fa3338 from=translated src=- shape=de0ab621 vocab=90d22c80
+-/
 lemma not_isField_ring : ¬ IsField (coordRing k t L) := by
   intro hC
   refine not_isField_A₀ ht (isField_of_isIntegral_of_isField ?_ hC)
@@ -146,14 +170,23 @@ noncomputable def ringMap : coordRing k t L →ₐ[k] coordRing k t L' where
   map_add' _ _ := rfl
   commutes' _ := rfl
 
+/--
+@isnad1 id=eq.1h6v.s16.ebab87ecf4a1 from=translated src=- shape=1462bc6e vocab=34244e4c
+-/
 @[simp] lemma coe_ringMap (a : coordRing k t L) : ((ringMap t h a : L') : Ω) = ((a : L) : Ω) := rfl
 
+/--
+@isnad1 id=injectiv.1h5v.s16.a59961765db0 from=translated src=- shape=b5382077 vocab=c999c133
+-/
 lemma ringMap_injective : Function.Injective (ringMap t h) := by
   intro a b hab
   have := congrArg (fun c : coordRing k t L' => ((c : L') : Ω)) hab
   simp only [coe_ringMap] at this
   exact Subtype.val_injective (Subtype.val_injective this)
 
+/--
+@isnad1 id=isintegr.1h5v.s15.b16bf9c0b9c3 from=translated src=- shape=f5416131 vocab=6f76e000
+-/
 lemma ringMap_isIntegral : (ringMap t h).toRingHom.IsIntegral := by
   intro b
   obtain ⟨p, hp, hpb⟩ := integralClosure.isIntegral (R := A₀ k t) (A := L') b

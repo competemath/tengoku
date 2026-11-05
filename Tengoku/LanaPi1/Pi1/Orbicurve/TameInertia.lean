@@ -34,6 +34,9 @@ variable {B : Type*} [CommRing B] [IsDedekindDomain B]
 
 local notation "R" => Localization.AtPrime u
 
+/--
+@isnad1 id=eq.1h4v.s7.639a12d836fe from=translated src=- shape=5df1c37d vocab=89bce9cb
+-/
 lemma comap_eq_of_mem_inertia {σ : G} (hσ : σ ∈ u.inertia G) :
     u = u.comap (MulSemiringAction.toRingHom G B σ) := by
   ext x
@@ -51,22 +54,33 @@ lemma comap_eq_of_mem_inertia {σ : G} (hσ : σ ∈ u.inertia G) :
 noncomputable def loc {σ : G} (hσ : σ ∈ u.inertia G) : R →+* R :=
   Localization.localRingHom u u (MulSemiringAction.toRingHom G B σ) (comap_eq_of_mem_inertia u hσ)
 
+/--
+@isnad1 id=eq.1h5v.s9.93411ccf635b from=translated src=- shape=c00d7675 vocab=7bb8b9ab
+-/
 lemma loc_algebraMap {σ : G} (hσ : σ ∈ u.inertia G) (b : B) :
     loc u hσ (algebraMap B R b) = algebraMap B R (σ • b) :=
   Localization.localRingHom_to_map _ _ _ _ b
 
+/--
+@isnad1 id=eq.2h5v.s8.fe2f37c9291c from=translated src=- shape=caaf97f6 vocab=df5aab7d
+-/
 lemma loc_mul {σ τ : G} (hσ : σ ∈ u.inertia G) (hτ : τ ∈ u.inertia G) :
     loc u (Subgroup.mul_mem _ hσ hτ) = (loc u hσ).comp (loc u hτ) := by
   apply IsLocalization.ringHom_ext u.primeCompl
   ext b
   simp only [RingHom.comp_apply, loc_algebraMap, mul_smul]
 
+/--
+@isnad1 id=eq.0h3v.s7.41ef1f7728a0 from=translated src=- shape=c02c8273 vocab=7dfbfc66
+-/
 lemma loc_one : loc u (Subgroup.one_mem (u.inertia G)) = RingHom.id R := by
   apply IsLocalization.ringHom_ext u.primeCompl
   ext b
   simp [loc_algebraMap]
 
-/-- Inertia elements act trivially on the residue field of `B_u`.-/
+/-- Inertia elements act trivially on the residue field of `B_u`.
+@isnad1 id=mem.1h5v.s9.d1410c837686 from=translated src=- shape=e4bb3009 vocab=3d773952
+-/
 lemma loc_sub_mem {σ : G} (hσ : σ ∈ u.inertia G) (r : R) :
     loc u hσ r - r ∈ maximalIdeal R := by
   obtain ⟨⟨b, s⟩, rfl⟩ := IsLocalization.mk'_surjective u.primeCompl r
@@ -88,16 +102,24 @@ lemma loc_sub_mem {σ : G} (hσ : σ ∈ u.inertia G) (r : R) :
   exact u.sub_mem (u.mul_mem_right _ h1) (u.mul_mem_left _ h2)
 
 include hu0 in
+/--
+@isnad1 id=isdiscre.1h2v.s6.7c94c7e27965 from=translated src=- shape=dd6f6261 vocab=e8f722c8
+-/
 lemma isDVR : IsDiscreteValuationRing R :=
   IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain B hu0 R
 
-/-- The inverse of an inertia element acts as the inverse of `loc`.-/
+/-- The inverse of an inertia element acts as the inverse of `loc`.
+@isnad1 id=eq.1h4v.s8.49d36b26bb5c from=translated src=- shape=587a9799 vocab=2e183adb
+-/
 lemma loc_inv_comp {σ : G} (hσ : σ ∈ u.inertia G) :
     (loc u ((u.inertia G).inv_mem hσ)).comp (loc u hσ) = RingHom.id R := by
   rw [← loc_mul u, ← loc_one u (G := G)]
   congr 1
   exact inv_mul_cancel σ
 
+/--
+@isnad1 id=eq.1h4v.s8.243564693981 from=translated src=- shape=cb0266f3 vocab=2e183adb
+-/
 lemma loc_comp_inv {σ : G} (hσ : σ ∈ u.inertia G) :
     (loc u hσ).comp (loc u ((u.inertia G).inv_mem hσ)) = RingHom.id R := by
   rw [← loc_mul u, ← loc_one u (G := G)]
@@ -112,6 +134,9 @@ noncomputable def locEquiv {σ : G} (hσ : σ ∈ u.inertia G) : R ≃+* R :=
 section Uniformizer
 
 include hu0 in
+/--
+@isnad1 id=ex.3h5v.s9.3dbeb37a3dcf from=translated src=- shape=4390d052 vocab=cb6c2e86
+-/
 lemma exists_unit {π : R} (hπ : Irreducible π) {σ : G} (hσ : σ ∈ u.inertia G) :
     ∃ a : Rˣ, loc u hσ π = π * a := by
   haveI := isDVR u hu0
@@ -126,11 +151,17 @@ noncomputable def unitOf {π : R} (hπ : Irreducible π) {σ : G} (hσ : σ ∈ 
   (exists_unit u hu0 hπ hσ).choose
 
 include hu0 in
+/--
+@isnad1 id=eq.3h5v.s9.acd45fd08963 from=translated src=- shape=8dbd98e7 vocab=effafc1e
+-/
 lemma unitOf_spec {π : R} (hπ : Irreducible π) {σ : G} (hσ : σ ∈ u.inertia G) :
     loc u hσ π = π * unitOf u hu0 hπ hσ :=
   (exists_unit u hu0 hπ hσ).choose_spec
 
 include hu0 in
+/--
+@isnad1 id=eq.4h6v.s9.9b7a00fda936 from=translated src=- shape=443b3326 vocab=6accc497
+-/
 lemma unitOf_mul {π : R} (hπ : Irreducible π) {σ τ : G} (hσ : σ ∈ u.inertia G)
     (hτ : τ ∈ u.inertia G) :
     (unitOf u hu0 hπ (Subgroup.mul_mem _ hσ hτ) : R) =
@@ -161,6 +192,9 @@ noncomputable def tameChar {π : R} (hπ : Irreducible π) : u.inertia G →* (R
     rw [← sub_eq_zero, ← map_sub, residue_eq_zero_iff]
     exact loc_sub_mem u σ.2 _
 
+/--
+@isnad1 id=eq.1h6v.s9.af63b39c3d33 from=translated src=- shape=87f5f3ef vocab=fbdc9c70
+-/
 lemma loc_pow {σ : G} (hσ : σ ∈ u.inertia G) (n : ℕ) (x : R) :
     loc u (Subgroup.pow_mem _ hσ n) x = (loc u hσ)^[n] x := by
   induction n generalizing x with
@@ -176,7 +210,9 @@ lemma loc_pow {σ : G} (hσ : σ ∈ u.inertia G) (n : ℕ) (x : R) :
     rw [this, RingHom.comp_apply, ih, ← Function.iterate_succ_apply' (loc u hσ) n x]
 
 include hu0 in
-/-- **Injectivity of the tame character** (residue characteristic `0`).-/
+/-- **Injectivity of the tame character** (residue characteristic `0`).
+@isnad1 id=injectiv.2h4v.s11.1ac943805f13 from=translated src=- shape=5f559b45 vocab=654cb526
+-/
 theorem tameChar_injective [CharZero (ResidueField R)] [FaithfulSMul G B] {π : R}
     (hπ : Irreducible π) : Function.Injective (tameChar (G := G) u hu0 hπ) := by
   haveI := isDVR u hu0
@@ -319,7 +355,9 @@ end Uniformizer
 include hu0 in
 /-- **Tame inertia is cyclic**: if the residue field at `u` has characteristic `0` and `G` acts
 faithfully, the inertia group of `u` embeds into the units of the residue field, hence is
-cyclic.-/
+cyclic.
+@isnad1 id=iscyclic.1h3v.s8.36bc82439ae5 from=translated src=- shape=a73fe170 vocab=26c8c5ac
+-/
 theorem isCyclic_inertia [CharZero (ResidueField R)] [FaithfulSMul G B] :
     IsCyclic (u.inertia G) := by
   haveI := isDVR u hu0

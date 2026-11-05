@@ -43,6 +43,9 @@ def Hom.id (X : AffOrbicurve k) : Hom X X where
     rw [halg, Ideal.ramificationIdx_eq_one w X.A, one_mul]
     rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.7e2b22270752 from=translated src=- shape=a6926b71 vocab=d76cc344
+-/
 lemma ramificationIdx_comp {A B C : Type*} [CommRing A] [CommRing B] [CommRing C]
     [IsDedekindDomain B] (g : A →+* B) (f : B →+* C) [IsDomain C]
     (hf : Function.Injective f) (w : Ideal C) :
@@ -74,9 +77,15 @@ def Hom.comp {Z Y C : AffOrbicurve k} (φ : Hom Z Y) (ψ : Hom Y C) : Hom Z C wh
       φ.etale w hw]
     exact ψ.etale _ hq
 
+/--
+@isnad1 id=eq.0h6v.s7.d457cbb695a3 from=translated src=- shape=1774c00b vocab=019eb6c0
+-/
 @[simp] lemma Hom.comp_f {Z Y C : AffOrbicurve k} (φ : Hom Z Y) (ψ : Hom Y C) :
     (φ.comp ψ).f = φ.f.comp ψ.f := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.e96afd284e1c from=translated src=- shape=07823d09 vocab=437e2c6c
+-/
 @[simp] lemma Hom.id_f (X : AffOrbicurve k) : (Hom.id X).f = AlgHom.id k X.A := rfl
 
 /-- **Isomorphisms** of affine orbicurves.-/
@@ -95,15 +104,26 @@ end Hom
 
 section Core
 
+/--
+@isnad1 id=locbar.0h2v.s3.8ba5b67d70c3 from=translated src=- shape=82448d51 vocab=243005b0
+-/
 lemma LocBar.self (X : AffOrbicurve k) : LocBar X X := ⟨X, ⟨Hom.id X⟩, ⟨Hom.id X⟩⟩
 
+/--
+@isnad1 id=locbar.0h4v.s4.0916b1da04f9 from=translated src=- shape=a0fd56a0 vocab=ab807f9d
+-/
 lemma LocBar.of_hom {X Y : AffOrbicurve k} (φ : Hom Y X) : LocBar X Y := ⟨Y, ⟨φ⟩, ⟨Hom.id Y⟩⟩
 
+/--
+@isnad1 id=locbar.1h5v.s5.8c5ab63c66a9 from=translated src=- shape=1cbfe3fc vocab=ab807f9d
+-/
 lemma LocBar.trans_hom {A B Y : AffOrbicurve k} (φ : Hom A B) (h : LocBar A Y) : LocBar B Y := by
   obtain ⟨Z, ⟨f⟩, ⟨g⟩⟩ := h
   exact ⟨Z, ⟨f.comp φ⟩, ⟨g⟩⟩
 
-/-- If `A → B` is finite étale, the `k`-core of `B` is the `k`-core of `A`.-/
+/-- If `A → B` is finite étale, the `k`-core of `B` is the `k`-core of `A`.
+@isnad1 id=iscoreof.1h5v.s5.7ce0fd6a3a34 from=translated src=- shape=b49871f2 vocab=218ac9f4
+-/
 theorem IsCoreOf.of_hom {A B C : AffOrbicurve k} (φ : Hom A B) (h : IsCoreOf B C) :
     IsCoreOf A C := by
   refine ⟨?_, fun Y hY => h.2 Y (hY.trans_hom φ)⟩
@@ -111,7 +131,9 @@ theorem IsCoreOf.of_hom {A B C : AffOrbicurve k} (φ : Hom A B) (h : IsCoreOf B 
   exact ⟨A, ⟨Hom.id A⟩, ψ⟩
 
 /-- If `A → B` is finite étale and every finite étale `Z → B` is dominated by a finite étale
-`Z' → A` (e.g. by a component of `Z ×_B A`), the `k`-core of `A` is the `k`-core of `B`.-/
+`Z' → A` (e.g. by a component of `Z ×_B A`), the `k`-core of `A` is the `k`-core of `B`.
+@isnad1 id=iscoreof.2h5v.s6.f7db45839f28 from=translated src=- shape=2e99c1f9 vocab=146fd37c
+-/
 theorem IsCoreOf.of_hom_of_pullback {A B C : AffOrbicurve k} (φ : Hom A B)
     (hpb : ∀ Z : AffOrbicurve k, Hom Z B → ∃ Z' : AffOrbicurve k,
       Nonempty (Hom Z' Z) ∧ Nonempty (Hom Z' A))
@@ -121,7 +143,9 @@ theorem IsCoreOf.of_hom_of_pullback {A B C : AffOrbicurve k} (φ : Hom A B)
   obtain ⟨Z', ⟨p⟩, ⟨q⟩⟩ := hpb Z f
   exact ⟨Z', ⟨q⟩, ⟨p.comp g⟩⟩
 
-/-- Cores are invariant under isomorphisms of the core.-/
+/-- Cores are invariant under isomorphisms of the core.
+@isnad1 id=iscoreof.1h5v.s5.f3d1e0418c5e from=translated src=- shape=842356ac vocab=46403648
+-/
 theorem IsCoreOf.congr_right {X C C' : AffOrbicurve k} (e : Iso C C') (h : IsCoreOf X C) :
     IsCoreOf X C' := by
   refine ⟨?_, fun Y hY => ?_⟩
@@ -134,7 +158,9 @@ theorem IsCoreOf.congr_right {X C C' : AffOrbicurve k} (e : Iso C C') (h : IsCor
     have h2 := congrArg (fun φ : Hom Y C => (Hom.f φ).comp e.hom.f) this
     simpa only [Hom.comp_f, AlgHom.comp_assoc, e.inv_hom, AlgHom.comp_id] using h2
 
-/-- Cores are invariant under isomorphisms of the curve.-/
+/-- Cores are invariant under isomorphisms of the curve.
+@isnad1 id=iscoreof.1h5v.s5.49c604d0b9a2 from=translated src=- shape=1cbfe3fc vocab=46403648
+-/
 theorem IsCoreOf.congr_left {X X' C : AffOrbicurve k} (e : Iso X X') (h : IsCoreOf X C) :
     IsCoreOf X' C := by
   refine ⟨h.1.trans_hom e.hom, fun Y hY => h.2 Y (hY.trans_hom e.inv)⟩

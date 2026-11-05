@@ -38,17 +38,29 @@ variable (A₀ : Type u) [CommRing A₀] [IsDedekindDomain A₀] [Algebra k A₀
 
 include K
 
+/--
+@isnad1 id=isdedeki.0h3v.s7.38643cc6b8f7 from=translated src=- shape=e5d27333 vocab=1e8f5178
+-/
 lemma integralClosure_isDedekindDomain : IsDedekindDomain (integralClosure A₀ L) :=
   integralClosure.isDedekindDomain A₀ K L
 
+/--
+@isnad1 id=finite.0h3v.s8.2d526a3184de from=translated src=- shape=764cc8a1 vocab=74db38a9
+-/
 lemma integralClosure_finite : Module.Finite A₀ (integralClosure A₀ L) :=
   IsIntegralClosure.finite A₀ K L (integralClosure A₀ L)
 
+/--
+@isnad1 id=finitety.0h4v.s8.cf0de5438336 from=translated src=- shape=02d8c803 vocab=01d4e7a0
+-/
 lemma integralClosure_finiteType : Algebra.FiniteType k (integralClosure A₀ L) := by
   have := integralClosure_finite A₀ K L
   exact Algebra.FiniteType.trans (S := A₀) inferInstance inferInstance
 
 omit [IsDedekindDomain A₀] [FiniteDimensional K L] [Algebra.IsSeparable K L] in
+/--
+@isnad1 id=not.1h3v.s7.1b66e496535d from=translated src=- shape=52e9bcad vocab=1fb34aca
+-/
 lemma integralClosure_not_isField (h : ¬ IsField A₀) : ¬ IsField (integralClosure A₀ L) := by
   intro hC
   refine h (isField_of_isIntegral_of_isField ?_ hC)
@@ -83,7 +95,9 @@ end IntegralClosure
 section Localization
 
 /-- The fraction field of a domain `S` algebraic over a domain `R` is its localization at the
-nonzero elements of `R`.-/
+nonzero elements of `R`.
+@isnad1 id=islocali.0h3v.s7.5481328dbe38 from=translated src=- shape=238c34bf vocab=3b0ae95c
+-/
 theorem isLocalization_algebraMapSubmonoid_of_isAlgebraic (R S L : Type*) [CommRing R]
     [IsDomain R] [CommRing S] [IsDomain S] [Algebra R S] [Algebra.IsAlgebraic R S]
     [FaithfulSMul R S] [Field L] [Algebra S L] [IsFractionRing S L] :
@@ -119,7 +133,9 @@ variable {R S : Type*} [CommRing R] [IsDedekindDomain R] [CommRing S]
 
 /-- Only finitely many maximal ideals of a Dedekind domain `A` ramify in a finite separable
 extension `B`: a prime `P` of `B` with `e(P) ≥ 2` divides the different ideal, which is
-nonzero.-/
+nonzero.
+@isnad1 id=finite.0h2v.s8.a6c2403fbeeb from=translated src=- shape=33a8e5a8 vocab=338c3bb6
+-/
 lemma finite_setOf_ramificationIdxIn_ne_one :
     {v : Ideal R | v.IsMaximal ∧ v.ramificationIdxIn S ≠ 1}.Finite := by
   classical
