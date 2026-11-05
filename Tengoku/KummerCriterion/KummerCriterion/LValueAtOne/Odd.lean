@@ -42,7 +42,9 @@ noncomputable def evenLValueRhs (χ : DirichletCharacter ℂ p) : ℂ :=
   -(gaussSum χ⁻¹ (ZMod.stdAddChar (N := p)))⁻¹ * evenLValueLogSum p χ
 
 /-- Functional-equation reduction of the odd `L(1, χ)` formula to the special
-value formula for `L(0, χ⁻¹)`.-/
+value formula for `L(0, χ⁻¹)`.
+@isnad1 id=eq.3h2v.s7.1c905f5f65aa from=translated src=- shape=00bcaca8 vocab=e9b12044
+-/
 theorem odd_LFunction_one_eq_oddLValueRhs_of_LFunction_inv_zero
     {χ : DirichletCharacter ℂ p} (hχ_prim : χ.IsPrimitive) (hχ_odd : χ.Odd)
     (hχ0 : DirichletCharacter.LFunction χ⁻¹ 0 = -BernoulliGen χ⁻¹ 1) :
@@ -108,7 +110,9 @@ section LValueAtOne
 variable (p : ℕ) [hp : Fact p.Prime]
 
 /-- Rewrite `L(0, χ)` for an odd character as a finite sum of the values
-`sinZeta (a / p) 1`.-/
+`sinZeta (a / p) 1`.
+@isnad1 id=eq.1h2v.s7.50023efcabb7 from=translated src=- shape=d539a0e3 vocab=dc91376c
+-/
 theorem odd_LFunction_zero_eq_pi_inv_mul_sum_sinZeta_one
     {χ : DirichletCharacter ℂ p} (hχ_odd : χ.Odd) :
     DirichletCharacter.LFunction χ 0 =
@@ -145,7 +149,9 @@ theorem odd_LFunction_zero_eq_pi_inv_mul_sum_sinZeta_one
 
 /-- The odd special value `L(0, χ) = -B_{1,χ}` follows from the classical
 boundary-value formula `sinZeta (a / p) 1 = π (1 / 2 - a / p)`
-nonzero residues `a`.-/
+nonzero residues `a`.
+@isnad1 id=eq.3h2v.s8.b0f2ac013973 from=translated src=- shape=e0424e1c vocab=8f2184c1
+-/
 theorem odd_LFunction_zero_eq_neg_BernoulliGen_one_of_sinZeta_one_formula
     {χ : DirichletCharacter ℂ p} (hχ_odd : χ.Odd) (hχ_ne_one : χ ≠ 1)
     (hsin : ∀ a : ZMod p, a ≠ 0 →
@@ -207,7 +213,9 @@ theorem odd_LFunction_zero_eq_neg_BernoulliGen_one_of_sinZeta_one_formula
 /-- Odd special value `L(0, χ) = -BernoulliGen χ 1`
 odd nontrivial Dirichlet characters modulo `p`, packaged independently of the
 endpoint layer by feeding the endpoint identity
-`sinZeta_toAddCircle_one_eq_boundary` into the generic reduction lemma.-/
+`sinZeta_toAddCircle_one_eq_boundary` into the generic reduction lemma.
+@isnad1 id=eq.2h2v.s6.44714f52bf2e from=translated src=- shape=e72a4a97 vocab=4e982d66
+-/
 theorem odd_LFunction_zero_eq_neg_BernoulliGen_one
     {χ : DirichletCharacter ℂ p} (hχ_odd : χ.Odd) (hχ_ne_one : χ ≠ 1) :
     DirichletCharacter.LFunction χ 0 = -BernoulliGen χ 1 :=
@@ -218,7 +226,9 @@ theorem odd_LFunction_zero_eq_neg_BernoulliGen_one
 /-- `L(1, χ)` for odd primitive characters
 modulo `p`. Closes the full odd-side formula by applying the functional-equation
 reduction `odd_LFunction_one_eq_oddLValueRhs_of_LFunction_inv_zero` to the
-packaged odd special-value theorem at `χ⁻¹`.-/
+packaged odd special-value theorem at `χ⁻¹`.
+@isnad1 id=eq.3h2v.s6.a4e2f49e36a7 from=translated src=- shape=434b3ae2 vocab=6c0217b7
+-/
 theorem odd_LFunction_one_eq_oddLValueRhs
     {χ : DirichletCharacter ℂ p} (hχ_prim : χ.IsPrimitive) (hχ_odd : χ.Odd)
     (hχ_ne_one : χ ≠ 1) :

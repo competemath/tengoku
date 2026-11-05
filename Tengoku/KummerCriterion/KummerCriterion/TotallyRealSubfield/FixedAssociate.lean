@@ -29,7 +29,9 @@ variable (p : ℕ) [hp : Fact p.Prime] (hp_odd : p ≠ 2)
   (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {p} ℚ K]
 
 include hp_odd in
-/-- Twisting by a suitable square root yields a conjugation-fixed associate.-/
+/-- Twisting by a suitable square root yields a conjugation-fixed associate.
+@isnad1 id=ex.4h4v.s10.604a4d1a66e3 from=translated src=- shape=073eac3c vocab=7685450d
+-/
 theorem exists_conj_fixed_associate_of_zeta_pow [IsCMField K]
     {hζ : IsPrimitiveRoot (IsCyclotomicExtension.zeta p ℚ K) p}
     (a : 𝓞 K) (u : (𝓞 K)ˣ)
@@ -78,7 +80,9 @@ theorem exists_conj_fixed_associate_of_zeta_pow [IsCMField K]
     dsimp [b]
     exact (associated_mul_unit_right a (μ : (𝓞 K)ˣ) μ.isUnit).symm
 
-/-- If `b` is fixed by conjugation, then it comes from `𝒪_{K⁺}`.-/
+/-- If `b` is fixed by conjugation, then it comes from `𝒪_{K⁺}`.
+@isnad1 id=mem.1h2v.s10.9c6b04f22b46 from=translated src=- shape=cc103372 vocab=484ab035
+-/
 theorem mem_ringOfIntegers_of_conj_eq_self [IsCMField K]
     (b : 𝓞 K) (hb : ringOfIntegersComplexConj K b = b) :
     b ∈ Set.range (algebraMap (𝓞 (NumberField.maximalRealSubfield K)) (𝓞 K)) :=

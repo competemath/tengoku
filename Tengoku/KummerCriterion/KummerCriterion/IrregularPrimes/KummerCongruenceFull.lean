@@ -36,7 +36,9 @@ namespace KummerCriterion
 
 /-! ### Basic congruence and p-unit bookkeeping -/
 
-/-- A natural number not divisible by `p` is a unit in `ℤ_[p]`.-/
+/-- A natural number not divisible by `p` is a unit in `ℤ_[p]`.
+@isnad1 id=isunit.1h2v.s5.132488615380 from=translated src=- shape=27c641db vocab=dfd45e2a
+-/
 theorem padicInt_natCast_isUnit_of_not_dvd
     {p n : ℕ} [Fact p.Prime] (h : ¬ p ∣ n) :
     IsUnit ((n : ℕ) : ℤ_[p]) := by
@@ -44,19 +46,25 @@ theorem padicInt_natCast_isUnit_of_not_dvd
   rw [PadicInt.isUnit_iff, PadicInt.norm_natCast_eq_one_iff]
   exact hp.coprime_iff_not_dvd.mpr h
 
-/-- Split a positive natural number into its exact `p`-power and p-prime part.-/
+/-- Split a positive natural number into its exact `p`-power and p-prime part.
+@isnad1 id=eq.1h2v.s6.3ceff669fa59 from=translated src=- shape=ebbc842c vocab=1d547ed8
+-/
 theorem nat_eq_primePow_factorization_mul_unitPart
     {p n : ℕ} (_hn : n ≠ 0) :
     n = p ^ n.factorization p * (n / p ^ n.factorization p) :=
   (Nat.ordProj_mul_ordCompl_eq_self n p).symm
 
-/-- The p-prime part of a nonzero natural number is not divisible by `p`.-/
+/-- The p-prime part of a nonzero natural number is not divisible by `p`.
+@isnad1 id=not.2h2v.s5.cca8fbf6d75a from=translated src=- shape=96555f24 vocab=15a8eeb0
+-/
 theorem prime_not_dvd_factorization_unitPart
     {p n : ℕ} (hp : p.Prime) (hn : n ≠ 0) :
     ¬ p ∣ n / p ^ n.factorization p :=
   hp.coprime_iff_not_dvd.mp (Nat.coprime_ordCompl hp hn)
 
-/-- Cast the exact `p`-power decomposition of a natural number to `ℚ_[p]`.-/
+/-- Cast the exact `p`-power decomposition of a natural number to `ℚ_[p]`.
+@isnad1 id=eq.1h2v.s7.e9f09d86f5de from=translated src=- shape=9f3d17fe vocab=bc8fb00a
+-/
 theorem qpadic_natCast_eq_primePow_mul_unitPart
     {p n : ℕ} [Fact p.Prime] (hn : n ≠ 0) :
     ((n : ℕ) : ℚ_[p]) =
@@ -69,7 +77,9 @@ theorem qpadic_natCast_eq_primePow_mul_unitPart
 
 /-- Divide a natural numerator by a natural denominator after the numerator has
 enough exact `p`-power to cover the denominator's `p`-part and an additional
-`p^r`.  The remaining denominator is a p-adic unit.-/
+`p^r`.  The remaining denominator is a p-adic unit.
+@isnad1 id=ex.2h4v.s7.1564387a5615 from=translated src=- shape=dae45a29 vocab=f62dbc31
+-/
 theorem qpadic_natCast_div_natCast_eq_primePow_mul_of_primePow_dvd
     {p A q r : ℕ} [Fact p.Prime] (hq_pos : 0 < q)
     (hdiv : p ^ (q.factorization p + r) ∣ A) :
@@ -117,7 +127,9 @@ theorem qpadic_natCast_div_natCast_eq_primePow_mul_of_primePow_dvd
 
 /-- Under the non-boundary even-index hypotheses of Kummer, an odd prime is
 automatically at least `5`: the only excluded odd prime case is `p = 3`, where
-`p - 1 = 2` divides every even index.-/
+`p - 1 = 2` divides every even index.
+@isnad1 id=le.3h2v.s5.97ed76c89a01 from=translated src=- shape=08389d19 vocab=49c8f890
+-/
 theorem five_le_of_odd_prime_and_even_nonboundary
     {p n : ℕ} [Fact p.Prime] (hp_odd : p ≠ 2)
     (hn_even : Even n) (hnot : ¬ (p - 1) ∣ n) :
@@ -133,7 +145,9 @@ theorem five_le_of_odd_prime_and_even_nonboundary
 /-- Numerical valuation estimate from the elementary Voronoi proof.  For
 `p ≥ 5`, the combined `p`-adic contributions of consecutive denominators
 `s` and `s + 1` leave at least two powers beyond the `p`-adic contribution
-already present in the index `h`.-/
+already present in the index `h`.
+@isnad1 id=le.2h2v.s6.6b238d16e93e from=translated src=- shape=3a115ae3 vocab=13985c3d
+-/
 theorem factorization_add_succ_factorization_add_two_le
     {p s : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p) (hs : 2 ≤ s) :
     s.factorization p + (s + 1).factorization p + 2 ≤ s := by
@@ -164,7 +178,9 @@ theorem factorization_add_succ_factorization_add_two_le
 /-- Binomial-strength divisibility for the higher Faulhaber terms.  The
 factor `Nat.choose h s` supplies the difference between `v_p(s)` and
 `v_p(h)`, while `p^(s+1)` has enough remaining p-power to absorb the
-denominator `s + 1` and leave three extra powers relative to `h`.-/
+denominator `s + 1` and leave three extra powers relative to `h`.
+@isnad1 id=dvd.3h3v.s7.2b70e2aef4c3 from=translated src=- shape=bb240560 vocab=0bb970a0
+-/
 theorem primePow_succFactorization_add_indexFactorization_add_three_dvd_choose_mul_primePow
     {p h s : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hs_two : 2 ≤ s) (hs_le : s ≤ h) :
@@ -194,7 +210,9 @@ theorem primePow_succFactorization_add_indexFactorization_add_three_dvd_choose_m
       simp [Nat.Prime.factorization_self hp]
 
 /-- Convert a `p^(v_p(h)+3)` factor into an `h*p^3` multiple.  This is used before
-multiplying by a Bernoulli number, whose denominator may contain one `p`.-/
+multiplying by a Bernoulli number, whose denominator may contain one `p`.
+@isnad1 id=ex.1h3v.s8.7189c9b9c626 from=translated src=- shape=44616b29 vocab=0973ca86
+-/
 theorem primePow_indexFactorization_add_three_mul_padicInt_eq_natCast_mul_primeCubed
     {p h : ℕ} [Fact p.Prime] (hh_pos : 0 < h) (z : ℤ_[p]) :
     ∃ w : ℤ_[p],
@@ -235,7 +253,9 @@ theorem primePow_indexFactorization_add_three_mul_padicInt_eq_natCast_mul_primeC
       ring
 
 /-- Cubic-strength version of `binomial_divisor_term_mem_h_p_sq`, used before
-the possible single `p` in a Bernoulli denominator is absorbed.-/
+the possible single `p` in a Bernoulli denominator is absorbed.
+@isnad1 id=ex.4h3v.s8.b6a049f83072 from=translated src=- shape=5717898a vocab=e30b0feb
+-/
 theorem binomial_divisor_term_mem_h_p_cubed
     {p h s : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hh_pos : 0 < h) (hs_two : 2 ≤ s) (hs_le : s ≤ h) :
@@ -264,7 +284,9 @@ theorem binomial_divisor_term_mem_h_p_cubed
     _ = (h : ℚ_[p]) * (p : ℚ_[p]) ^ 3 * (w : ℚ_[p]) := hw
 
 /-- Von Staudt denominator control in the only form needed by the strong
-Faulhaber proof: `p*B_n` is always p-adically integral.-/
+Faulhaber proof: `p*B_n` is always p-adically integral.
+@isnad1 id=ex.1h2v.s6.b7ba1853e61b from=translated src=- shape=ad35d4f6 vocab=09434f6d
+-/
 theorem p_mul_bernoulli_mem_padicInt
     {p n : ℕ} [Fact p.Prime] (hp_odd : p ≠ 2) :
     ∃ z : ℤ_[p],
@@ -301,7 +323,9 @@ theorem p_mul_bernoulli_mem_padicInt
 
 /-- Shifted higher Faulhaber terms with `s ≥ 2`: after multiplying by the
 Bernoulli factor, the cubic coefficient bound loses at most one `p` and still
-lands in `h*p^2`.-/
+lands in `h*p^2`.
+@isnad1 id=ex.4h3v.s8.beab4dfa6118 from=translated src=- shape=d327eeb6 vocab=8b66c957
+-/
 theorem shifted_faulhaber_term_mem_h_p_sq_of_two_le
     {p h s : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hh_pos : 0 < h) (hs_two : 2 ≤ s) (hs_le : s ≤ h) :
@@ -321,7 +345,9 @@ theorem shifted_faulhaber_term_mem_h_p_sq_of_two_le
 
 /-- The exceptional shifted term `s = 1` in the strong Faulhaber proof.  For
 `h > 2` it vanishes by odd Bernoulli zeroes; for `h = 2`, the denominator `4`
-is a p-adic unit because `p ≥ 5`.-/
+is a p-adic unit because `p ≥ 5`.
+@isnad1 id=ex.3h2v.s8.b5245830687f from=translated src=- shape=fb64a895 vocab=813956df
+-/
 theorem shifted_faulhaber_one_term_mem_h_p_sq
     {p h : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hh_pos : 0 < h) (hh_even : Even h) :
@@ -365,7 +391,9 @@ theorem shifted_faulhaber_one_term_mem_h_p_sq
     ring
 
 /-- Algebraic binomial reindexing used to pass from mathlib's Faulhaber
-summand indexed by `i` to the TeX summand indexed by `s = h - i`.-/
+summand indexed by `i` to the TeX summand indexed by `s = h - i`.
+@isnad1 id=eq.1h3v.s7.d7060e8d699b from=translated src=- shape=7604d546 vocab=2d2a4d89
+-/
 theorem choose_succ_div_eq_choose_div
     {p h s : ℕ} [Fact p.Prime] (hs : s ≤ h) :
     ((Nat.choose (h + 1) (h - s) : ℕ) : ℚ_[p]) / ((h + 1 : ℕ) : ℚ_[p]) =
@@ -389,7 +417,9 @@ theorem choose_succ_div_eq_choose_div
   rw [hmul]
 
 /-- Each non-leading Faulhaber summand is an `h*p^2` multiple, after
-reindexing `i < h` as `s = h - i`.-/
+reindexing `i < h` as `s = h - i`.
+@isnad1 id=ex.4h3v.s8.d7abbf0b2423 from=translated src=- shape=07951397 vocab=e1026e6e
+-/
 theorem faulhaber_remainder_term_mem_h_p_sq
     {p h i : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hh_pos : 0 < h) (hh_even : Even h) (hi : i < h) :
@@ -454,7 +484,9 @@ theorem faulhaber_remainder_term_mem_h_p_sq
           rw [hcoef]
       _ = (h : ℚ_[p]) * (p : ℚ_[p]) ^ 2 * (z : ℚ_[p]) := hz
 
-/-- Sum of all non-leading Faulhaber summands.-/
+/-- Sum of all non-leading Faulhaber summands.
+@isnad1 id=ex.3h2v.s8.2c966dd65ee1 from=translated src=- shape=615f2704 vocab=f859c343
+-/
 theorem faulhaber_remainder_sum_mem_h_p_sq
     {p h : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hh_pos : 0 < h) (hh_even : Even h) :
@@ -480,7 +512,9 @@ theorem faulhaber_remainder_sum_mem_h_p_sq
     simp [PadicInt.coe_sum, Finset.mul_sum]
 
 /-- Strong Faulhaber power-sum congruence from the TeX proof: the usual
-`S_h(p) - p*B_h` difference carries the stronger modulus `h*p^2`.-/
+`S_h(p) - p*B_h` difference carries the stronger modulus `h*p^2`.
+@isnad1 id=ex.4h2v.s8.ad80f2fda77c from=translated src=- shape=d0131127 vocab=3fdbb2e0
+-/
 theorem sum_range_pow_sub_p_mul_bernoulli_strong
     {p h : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hh_pos : 0 < h) (hh_even : Even h)
@@ -527,7 +561,9 @@ theorem sum_range_pow_sub_p_mul_bernoulli_strong
 /-! ### Strong Voronoi binomial expansion bookkeeping -/
 
 /-- For `p ≥ 5`, every `ν ≥ 2` carries enough p-power to leave two powers
-after removing the exact p-part of `ν`.-/
+after removing the exact p-part of `ν`.
+@isnad1 id=le.2h2v.s6.244878362756 from=translated src=- shape=b860cd0d vocab=13985c3d
+-/
 theorem factorization_add_two_le_self
     {p nu : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p) (hnu_two : 2 ≤ nu) :
     nu.factorization p + 2 ≤ nu := by
@@ -544,7 +580,9 @@ theorem factorization_add_two_le_self
   omega
 
 /-- The high-order Voronoi binomial coefficient `choose h ν * p^ν`, with
-`ν ≥ 2`, is divisible by the p-part of `h` and two more powers of `p`.-/
+`ν ≥ 2`, is divisible by the p-part of `h` and two more powers of `p`.
+@isnad1 id=dvd.3h3v.s6.7cd1b585c4f4 from=translated src=- shape=cfc04933 vocab=0bb970a0
+-/
 theorem primePow_indexFactorization_add_two_dvd_choose_mul_primePow
     {p h nu : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hnu_two : 2 ≤ nu) (hnu_le : nu ≤ h) :
@@ -570,7 +608,9 @@ theorem primePow_indexFactorization_add_two_dvd_choose_mul_primePow
       simp [Nat.Prime.factorization_self hp]
 
 /-- Convert a `p^(v_p(h)+2)` multiple into the strong Voronoi modulus
-`h*p^2`.-/
+`h*p^2`.
+@isnad1 id=ex.1h3v.s8.b95fa6559610 from=translated src=- shape=44616b29 vocab=0973ca86
+-/
 theorem primePow_indexFactorization_add_two_mul_padicInt_eq_natCast_mul_primeSq
     {p h : ℕ} [Fact p.Prime] (hh_pos : 0 < h) (z : ℤ_[p]) :
     ∃ w : ℤ_[p],
@@ -611,7 +651,9 @@ theorem primePow_indexFactorization_add_two_mul_padicInt_eq_natCast_mul_primeSq
       ring
 
 /-- P-adic form of
-`primePow_indexFactorization_add_two_dvd_choose_mul_primePow`.-/
+`primePow_indexFactorization_add_two_dvd_choose_mul_primePow`.
+@isnad1 id=ex.4h3v.s8.273360e09e00 from=translated src=- shape=63fded55 vocab=e03dbbf2
+-/
 theorem choose_mul_primePow_mem_h_p_sq
     {p h nu : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hh_pos : 0 < h) (hnu_two : 2 ≤ nu) (hnu_le : nu ≤ h) :
@@ -636,7 +678,9 @@ theorem choose_mul_primePow_mem_h_p_sq
     _ = (h : ℚ_[p]) * (p : ℚ_[p]) ^ 2 * (w : ℚ_[p]) := hw
 
 /-- A high-order binomial term in `(X - p*Y)^h`, with order `ν ≥ 2`, is a
-multiple of `h*p^2`.-/
+multiple of `h*p^2`.
+@isnad1 id=ex.4h5v.s8.5ea46403ad51 from=translated src=- shape=3cc6a1a7 vocab=3b50f07b
+-/
 theorem binomial_high_term_mem_h_p_sq
     {p h nu X Y : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hh_pos : 0 < h) (hnu_two : 2 ≤ nu) (hnu_le : nu ≤ h) :
@@ -655,7 +699,9 @@ theorem binomial_high_term_mem_h_p_sq
   linear_combination
     ((X : ℚ_[p]) ^ (h - nu) * (-1 : ℚ_[p]) ^ nu * (Y : ℚ_[p]) ^ nu) * hc
 
-/-- Pointwise strong Voronoi binomial approximation for one residue.-/
+/-- Pointwise strong Voronoi binomial approximation for one residue.
+@isnad1 id=ex.2h4v.s9.aa6c3001f689 from=translated src=- shape=5c83caf4 vocab=4d700aca
+-/
 theorem voronoi_term_mod_h_p_sq
     {p a h j : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p) (hh_pos : 0 < h) :
     ∃ z : ℤ_[p],
@@ -742,7 +788,9 @@ theorem voronoi_term_mod_h_p_sq
 
 /-- Strong Voronoi binomial/permutation identity with modulus `h*p^2`.  This
 is the side-condition-free replacement for the old `p^2` identity in the
-Voronoi route.-/
+Voronoi route.
+@isnad1 id=ex.3h3v.s9.295a22bc2db0 from=translated src=- shape=0a642fc7 vocab=c3b2475f
+-/
 theorem voronoi_sum_mod_h_p_sq
     {p a h : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (ha_coprime : ¬ p ∣ a) (hh_pos : 0 < h) :
@@ -829,7 +877,9 @@ theorem voronoi_sum_mod_h_p_sq
 
 /-- Side-condition-free Voronoi congruence modulo `p`, obtained by
 substituting the strong Faulhaber congruence into `voronoi_sum_mod_h_p_sq`
-and cancelling the nonzero rational factor `h*p` in `ℚ_[p]`.-/
+and cancelling the nonzero rational factor `h*p` in `ℚ_[p]`.
+@isnad1 id=ex.5h3v.s9.6416f4515437 from=translated src=- shape=f2abb4bd vocab=18743548
+-/
 theorem voronoi_congruence_mod_p_strong
     {p a h : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (ha_coprime : ¬ p ∣ a)
@@ -891,7 +941,9 @@ theorem voronoi_congruence_mod_p_strong
   exact htarget
 
 /-- Powers of a chosen unit generator only depend on the exponent modulo
-`p - 1`, once the generator order has been identified with `p - 1`.-/
+`p - 1`, once the generator order has been identified with `p - 1`.
+@isnad1 id=eq.2h4v.s8.595ab5623134 from=translated src=- shape=6cab56e3 vocab=c69026bc
+-/
 theorem primitiveRoot_unit_pow_eq_of_modEq
     {p m n : ℕ} [Fact p.Prime] {g : (ZMod p)ˣ}
     (hg_order : orderOf g = p - 1)
@@ -901,7 +953,9 @@ theorem primitiveRoot_unit_pow_eq_of_modEq
   exact hmn
 
 /-- If two predecessor exponents are congruent modulo `p - 1`, the Voronoi
-floor sums differ by a multiple of `p` in `ℚ_[p]`.-/
+floor sums differ by a multiple of `p` in `ℚ_[p]`.
+@isnad1 id=ex.3h4v.s8.397e3961300d from=translated src=- shape=c94a1fec vocab=e142fa25
+-/
 theorem voronoi_floor_sum_sModEq_of_pred_modEq
     {p a m n : ℕ} [Fact p.Prime]
     (_hm_pos : 0 < m) (_hn_pos : 0 < n)
@@ -968,7 +1022,9 @@ theorem voronoi_floor_sum_sModEq_of_pred_modEq
   linear_combination hzQ
 
 /-- Full divided-Bernoulli Kummer congruence for primes `p ≥ 5`, proved from
-the side-condition-free Voronoi congruence.-/
+the side-condition-free Voronoi congruence.
+@isnad1 id=ex.7h3v.s7.3845cea3b9b8 from=translated src=- shape=5bb8202c vocab=ab2d536c
+-/
 theorem bernoulli_div_sModEq_of_modEq_full_geFive
     {p m n : ℕ} [Fact p.Prime] (hp_ge_five : 5 ≤ p)
     (hm_pos : 0 < m) (hn_pos : 0 < n)
@@ -1203,7 +1259,9 @@ theorem bernoulli_div_sModEq_of_modEq_full_geFive
 
 This is the public full congruence used by the Carlitz route.  The odd-prime
 case reduces to `p ≥ 5`: if `p = 3`, then `p - 1 = 2` divides every even
-non-boundary exponent, contradicting the hypotheses.-/
+non-boundary exponent, contradicting the hypotheses.
+@isnad1 id=ex.7h3v.s7.bc3e83272ff9 from=translated src=- shape=38871dee vocab=ab2d536c
+-/
 theorem bernoulli_div_sModEq_of_modEq_full
     {p m n : ℕ} [Fact p.Prime] (hp_odd : p ≠ 2)
     (hm_pos : 0 < m) (hn_pos : 0 < n)

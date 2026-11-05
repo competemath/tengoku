@@ -106,7 +106,9 @@ private theorem coe_unit'_eq_toInteger :
     ((zeta_spec p ℚ K).unit' : 𝓞 K) = (zeta_spec p ℚ K).toInteger :=
   rfl
 
-/-- Complex conjugation multiplies `ζ - 1` by `-ζ^{p-1}`.-/
+/-- Complex conjugation multiplies `ζ - 1` by `-ζ^{p-1}`.
+@isnad1 id=eq.0h2v.s9.a294a4109972 from=translated src=- shape=ea058621 vocab=ca127aac
+-/
 theorem complexConj_zetaSubOne_eq [IsCMField K] :
     ringOfIntegersComplexConj K (zetaSubOne p K) =
       ((zetaSubOneConjUnit p K : (𝓞 K)ˣ) : 𝓞 K) * zetaSubOne p K := by
@@ -130,7 +132,9 @@ theorem complexConj_zetaSubOne_eq [IsCMField K] :
     linear_combination -key
   rw [lhs_eq, rhs_eq]
 
-/-- `σ(ζ - 1)` is associated to `ζ - 1` in `𝓞 K`.-/
+/-- `σ(ζ - 1)` is associated to `ζ - 1` in `𝓞 K`.
+@isnad1 id=associat.0h2v.s9.86b213254240 from=translated src=- shape=9467b6b9 vocab=b3836290
+-/
 theorem associated_complexConj_zetaSubOne [IsCMField K] :
     Associated (zetaSubOne p K) (ringOfIntegersComplexConj K (zetaSubOne p K)) :=
   ⟨zetaSubOneConjUnit p K, by rw [complexConj_zetaSubOne_eq]; ring⟩
@@ -187,14 +191,18 @@ variable (p : ℕ) [hp : Fact p.Prime]
 noncomputable def cyclotomicUnit (k : ℕ) : 𝓞 K :=
   ∑ j ∈ Finset.range k, (zeta_spec p ℚ K).unit' ^ j
 
-/-- Recursive identity: `cyclotomicUnit (k+1) = cyclotomicUnit k + ζ^k`.-/
+/-- Recursive identity: `cyclotomicUnit (k+1) = cyclotomicUnit k + ζ^k`.
+@isnad1 id=eq.0h3v.s7.97ad1976cf31 from=translated src=- shape=3feb1da5 vocab=44be7095
+-/
 theorem cyclotomicUnit_succ (k : ℕ) :
     cyclotomicUnit p K (k + 1) =
       cyclotomicUnit p K k + ((zeta_spec p ℚ K).unit' : 𝓞 K) ^ k :=
   Finset.sum_range_succ _ _
 
 /-- The cyclotomic-unit telescoping identity:
-`(1 - ζ) · cyclotomicUnit k = 1 - ζ^k` in `𝓞 K`.-/
+`(1 - ζ) · cyclotomicUnit k = 1 - ζ^k` in `𝓞 K`.
+@isnad1 id=eq.0h3v.s8.baf4c9f23d51 from=translated src=- shape=34ff4201 vocab=a7c446df
+-/
 theorem one_sub_zeta_mul_cyclotomicUnit (k : ℕ) :
     (1 - (zeta_spec p ℚ K).unit') * cyclotomicUnit p K k =
       1 - ((zeta_spec p ℚ K).unit' : 𝓞 K) ^ k := by
@@ -206,14 +214,18 @@ theorem one_sub_zeta_mul_cyclotomicUnit (k : ℕ) :
     rw [Finset.sum_range_succ, ih]
     ring
 
-/-- Reversed sign form: `(ζ - 1) · cyclotomicUnit k = ζ^k - 1`.-/
+/-- Reversed sign form: `(ζ - 1) · cyclotomicUnit k = ζ^k - 1`.
+@isnad1 id=eq.0h3v.s8.4bebfeca6199 from=translated src=- shape=a52370cb vocab=a7c446df
+-/
 theorem zeta_sub_one_mul_cyclotomicUnit (k : ℕ) :
     (((zeta_spec p ℚ K).unit' : 𝓞 K) - 1) * cyclotomicUnit p K k =
       ((zeta_spec p ℚ K).unit' : 𝓞 K) ^ k - 1 := by
   linear_combination -(one_sub_zeta_mul_cyclotomicUnit p K k)
 
 /-- `cyclotomicUnit k ≡ k (mod ζ - 1)` in `𝓞 K`: the difference
-`cyclotomicUnit k - k` is divisible by `ζ - 1`.-/
+`cyclotomicUnit k - k` is divisible by `ζ - 1`.
+@isnad1 id=dvd.0h3v.s7.e3be6de37e5d from=translated src=- shape=885954f0 vocab=698b51db
+-/
 theorem zetaSubOne_dvd_cyclotomicUnit_sub_natCast (k : ℕ) :
     ((zeta_spec p ℚ K).unit' : 𝓞 K) - 1 ∣
       cyclotomicUnit p K k - (k : 𝓞 K) := by
@@ -233,7 +245,9 @@ theorem zetaSubOne_dvd_cyclotomicUnit_sub_natCast (k : ℕ) :
     exact ⟨cyclotomicUnit p K n, (zeta_sub_one_mul_cyclotomicUnit p K n).symm⟩
 
 /-- The complex conjugate of `cyclotomicUnit k` is also congruent to `k`
-modulo `ζ - 1`.-/
+modulo `ζ - 1`.
+@isnad1 id=dvd.0h3v.s9.dd33fae709f2 from=translated src=- shape=e47fea02 vocab=a38496a1
+-/
 theorem zetaSubOne_dvd_complexConj_cyclotomicUnit_sub_natCast [IsCMField K] (k : ℕ) :
     ((zeta_spec p ℚ K).unit' : 𝓞 K) - 1 ∣
       ringOfIntegersComplexConj K (cyclotomicUnit p K k) - (k : 𝓞 K) := by
@@ -259,7 +273,9 @@ theorem zetaSubOne_dvd_complexConj_cyclotomicUnit_sub_natCast [IsCMField K] (k :
   exact hassoc.symm.dvd.trans h_apply
 
 /-- The cyclotomic unit `(1 - ζ^k)/(1 - ζ)` is a unit in `𝓞 K` when
-`k` is coprime to `p`.-/
+`k` is coprime to `p`.
+@isnad1 id=isunit.2h3v.s6.04397a4f86b9 from=translated src=- shape=12bbcb36 vocab=ce0cef05
+-/
 theorem isUnit_cyclotomicUnit (k : ℕ) (hk : k.Coprime p) (hp_two : 2 ≤ p) :
     IsUnit (cyclotomicUnit p K k) := by
   unfold cyclotomicUnit
@@ -270,12 +286,17 @@ noncomputable def cyclotomicUnitUnit (k : ℕ) (hk : k.Coprime p) (hp_two : 2 �
     (𝓞 K)ˣ :=
   (isUnit_cyclotomicUnit p K k hk hp_two).unit
 
+/--
+@isnad1 id=eq.2h3v.s6.23e3328faac5 from=translated src=- shape=e078bcfd vocab=1e6d839a
+-/
 @[simp]
 theorem cyclotomicUnitUnit_val (k : ℕ) (hk : k.Coprime p) (hp_two : 2 ≤ p) :
     (cyclotomicUnitUnit p K k hk hp_two : 𝓞 K) = cyclotomicUnit p K k :=
   IsUnit.unit_spec _
 
-/-- `(ζ - 1) ∣ (ζ^k - 1)` in `𝓞 K` for any natural `k`.-/
+/-- `(ζ - 1) ∣ (ζ^k - 1)` in `𝓞 K` for any natural `k`.
+@isnad1 id=dvd.0h3v.s8.b9aa434a8fb1 from=translated src=- shape=908ddf14 vocab=cfc060b8
+-/
 theorem zetaSubOne_dvd_zeta_pow_sub_one (k : ℕ) :
     (((zeta_spec p ℚ K).unit' : 𝓞 K) - 1) ∣
       (((zeta_spec p ℚ K).unit' : 𝓞 K) ^ k - 1) :=

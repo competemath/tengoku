@@ -43,6 +43,9 @@ namespace FiniteArtinHasseFormal
 
 open PowerSeries
 
+/--
+@isnad1 id=eq.2h4v.s8.8105708e4b87 from=translated src=- shape=68c11677 vocab=e2427a50
+-/
 theorem coeff_pow_eq_zero_of_lt_of_constantCoeff_eq_zero
     {A : Type*} [CommRing A] (F : PowerSeries A)
     (hF0 : PowerSeries.constantCoeff F = 0) {n d : ℕ} (hdn : d < n) :
@@ -51,6 +54,9 @@ theorem coeff_pow_eq_zero_of_lt_of_constantCoeff_eq_zero
     PowerSeries.le_order_pow_of_constantCoeff_eq_zero n hF0
   exact PowerSeries.coeff_of_lt_order d ((ENat.natCast_lt_natCast.mpr hdn).trans_le hle)
 
+/--
+@isnad1 id=eq.1h3v.s9.0520e10c406c from=translated src=- shape=25d37bc8 vocab=0df3e45d
+-/
 theorem coeff_subst_log_eq_sum_Icc
     {A : Type*} [CommRing A] [Algebra ℚ A] (F : PowerSeries A)
     (hF0 : PowerSeries.constantCoeff F = 0) (d : ℕ) :

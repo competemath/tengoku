@@ -25,6 +25,9 @@ section SignInvariant
 
 variable (p : ℕ) [hp : Fact p.Prime]
 
+/--
+@isnad1 id=eq.0h1v.s6.fa3a2f15e721 from=translated src=- shape=90f50ef1 vocab=9e02feb4
+-/
 theorem fourierBaseRoot_eq_exp_neg_one_div :
     fourierBaseRoot (p := p) = Complex.exp (2 * Real.pi * Complex.I * ((-1 : ℤ) / p)) := by
   rw [fourierBaseRoot]
@@ -38,6 +41,9 @@ theorem fourierBaseRoot_eq_exp_neg_one_div :
           push_cast
           field_simp [hp0]
 
+/--
+@isnad1 id=isprimit.0h1v.s3.cc917d0e2042 from=translated src=- shape=f92dadb1 vocab=f901ef24
+-/
 theorem fourierBaseRoot_isPrimitiveRoot :
     IsPrimitiveRoot (fourierBaseRoot (p := p)) p := by
   have hcop : IsCoprime (-1 : ℤ) p := by
@@ -45,6 +51,9 @@ theorem fourierBaseRoot_isPrimitiveRoot :
   rw [fourierBaseRoot_eq_exp_neg_one_div (p := p)]
   exact Complex.isPrimitiveRoot_exp_of_isCoprime (-1) p hp.out.ne_zero hcop
 
+/--
+@isnad1 id=eq.0h2v.s6.3f711dceb5a2 from=translated src=- shape=c42c6375 vocab=e6691ee9
+-/
 theorem fourierBaseRoot_pow_eq_exp_neg (r : ℕ) :
     fourierBaseRoot (p := p) ^ r =
       Complex.exp ((-(2 * Real.pi * (r : ℝ) / p)) * Complex.I) := by
@@ -67,6 +76,9 @@ theorem fourierBaseRoot_pow_eq_exp_neg (r : ℕ) :
           push_cast
           field_simp [hp0]
 
+/--
+@isnad1 id=eq.1h2v.s6.5976ea234789 from=translated src=- shape=419b31f3 vocab=bd5b5ac6
+-/
 theorem doubleSin_complement {k : ℕ} (hk : k ≤ p) :
     2 * Real.sin (Real.pi * ((p - k : ℕ) / p : ℝ)) =
       2 * Real.sin (Real.pi * (k : ℝ) / p) := by
@@ -77,6 +89,9 @@ theorem doubleSin_complement {k : ℕ} (hk : k ≤ p) :
       field_simp [hp0]]
   rw [Real.sin_pi_sub]
 
+/--
+@isnad1 id=lt.2h2v.s6.806ac9495853 from=translated src=- shape=a5a06a2e vocab=ab0305ef
+-/
 theorem doubleSin_pos {k : ℕ} (hk0 : 0 < k) (hkp : k < p) :
     0 < 2 * Real.sin (Real.pi * (k : ℝ) / p) := by
   have hp0 : (0 : ℝ) < p := by
@@ -95,6 +110,9 @@ theorem doubleSin_pos {k : ℕ} (hk0 : 0 < k) (hkp : k < p) :
     Real.sin_pos_of_mem_Ioo hang
   positivity
 
+/--
+@isnad1 id=eq.1h2v.s6.f0125632ca19 from=translated src=- shape=22733044 vocab=7a1c7cf3
+-/
 theorem fourierPow_eq_exp_pos_complement {k : ℕ} (hkp : k ≤ p) :
     fourierBaseRoot (p := p) ^ k =
       Complex.exp ((2 * Real.pi * ((p - k : ℕ) : ℝ) / p) * Complex.I) := by
@@ -122,6 +140,9 @@ theorem fourierPow_eq_exp_pos_complement {k : ℕ} (hkp : k ≤ p) :
     _ = Complex.exp ((2 * Real.pi * ((p - k : ℕ) : ℝ) / p) * Complex.I) := by
           rw [Complex.exp_add, hperiod, mul_one]
 
+/--
+@isnad1 id=eq.2h2v.s6.e83725de4da8 from=translated src=- shape=81c3f140 vocab=f2e340e7
+-/
 theorem one_sub_fourierPow_norm_eq_doubleSin {k : ℕ} (hk0 : 0 < k) (hkp : k < p) :
     ‖1 - fourierBaseRoot (p := p) ^ k‖ = 2 * Real.sin (Real.pi * (k : ℝ) / p) := by
   have ht0 : 0 < 2 * Real.pi * ((p - k : ℕ) : ℝ) / p := by
@@ -152,6 +173,9 @@ theorem one_sub_fourierPow_norm_eq_doubleSin {k : ℕ} (hk0 : 0 < k) (hkp : k < 
             Real.pi * ((p - k : ℕ) / p : ℝ) by ring]
           exact doubleSin_complement (p := p) hkp.le
 
+/--
+@isnad1 id=eq.1h2v.s7.c03f78ea7b8d from=translated src=- shape=4dbd6c25 vocab=96158faa
+-/
 theorem one_sub_fourierPow_mul_one_sub_fourierPow_complement_eq_doubleSin_sq
     {k : ℕ} (hkp : k ≤ p) :
     (1 - fourierBaseRoot (p := p) ^ k) * (1 - fourierBaseRoot (p := p) ^ (p - k)) =
@@ -195,6 +219,9 @@ theorem one_sub_fourierPow_mul_one_sub_fourierPow_complement_eq_doubleSin_sq
     _ = (2 * Complex.sin (Real.pi * (k : ℝ) / p)) ^ 2 := by
           simpa [Complex.ofReal_sin] using congrArg (fun x : ℝ => (x : ℂ)) hnorm
 
+/--
+@isnad1 id=eq.0h1v.s6.9f99a17b37e2 from=translated src=- shape=2870d33f vocab=374956d9
+-/
 theorem fourierBaseRoot_prod_one_sub_pow_eq_order :
     ∏ d ∈ Finset.range (p - 1), (1 - fourierBaseRoot (p := p) ^ (d + 1)) = p := by
   have hp_eq : (p - 1 : ℕ) + 1 = p := by
@@ -207,6 +234,9 @@ theorem fourierBaseRoot_prod_one_sub_pow_eq_order :
         (n := p - 1) (μ := fourierBaseRoot (p := p)) hμ) using 1
   simpa [Nat.cast_add] using congrArg (fun n : ℕ => (n : ℂ)) hp_eq.symm
 
+/--
+@isnad1 id=eq.1h1v.s7.be2c7c58e9b5 from=translated src=- shape=a0c8e1a4 vocab=07a00fe2
+-/
 theorem fourierCyclotomicSingleDifferenceProduct_eq_weightedPairProduct
     (hp2 : p ≠ 2) :
     fourierCyclotomicSingleDifferenceProduct p =
@@ -278,6 +308,9 @@ theorem fourierCyclotomicSingleDifferenceProduct_eq_weightedPairProduct
     omega
   rw [hhalf]
 
+/--
+@isnad1 id=eq.1h1v.s6.3cf7045278a5 from=translated src=- shape=f72475a5 vocab=2529ad69
+-/
 theorem two_mul_sum_range_halfWeightedExponent_eq_choose_three_succ
     (hp2 : p ≠ 2) :
     2 * (∑ d ∈ Finset.range ((p - 1) / 2), (d + 1) * (p - (d + 1))) = (p + 1).choose 3 := by
@@ -330,6 +363,9 @@ theorem two_mul_sum_range_halfWeightedExponent_eq_choose_three_succ
     _ = (p + 1).choose 3 := by
           simpa using (sum_range_weightedRootExponent_eq_choose_three (n := p + 1))
 
+/--
+@isnad1 id=dvd.1h1v.s6.fdf43c3e8be9 from=translated src=- shape=88bb5506 vocab=421c61df
+-/
 theorem dvd_chooseThree_add_halfWeightedExponent (hp2 : p ≠ 2) :
     p ∣ p.choose 3 + ∑ d ∈ Finset.range ((p - 1) / 2), (d + 1) * (p - (d + 1)) := by
   let n : ℕ := (p - 1) / 2
@@ -368,6 +404,9 @@ theorem dvd_chooseThree_add_halfWeightedExponent (hp2 : p ≠ 2) :
     exact dvd_add (dvd_mul_right p ((p - 1).choose 2)) hdvd_choose2
   exact (hp.out.odd_of_ne_two hp2).coprime_two_right.dvd_of_dvd_mul_left hdvd2
 
+/--
+@isnad1 id=eq.1h1v.s6.c548a5bd143c from=translated src=- shape=6bae8756 vocab=62b4a0b8
+-/
 theorem fourierBaseRoot_pow_chooseThree_add_halfWeightedExponent_eq_one
     (hp2 : p ≠ 2) :
     fourierBaseRoot (p := p) ^
@@ -376,6 +415,9 @@ theorem fourierBaseRoot_pow_chooseThree_add_halfWeightedExponent_eq_one
   rw [hm, pow_mul, (fourierBaseRoot_isPrimitiveRoot (p := p)).pow_eq_one]
   simp
 
+/--
+@isnad1 id=eq.1h1v.s6.f3be7004e34b from=translated src=- shape=9ee5eb8d vocab=abf3282d
+-/
 theorem halfRangeDoubleSinProduct_eq_sqrt_order (hp2 : p ≠ 2) :
     ∏ d ∈ Finset.range ((p - 1) / 2),
       2 * Real.sin (Real.pi * ((d + 1 : ℕ) / p : ℝ)) = Real.sqrt p := by
@@ -450,6 +492,9 @@ theorem halfRangeDoubleSinProduct_eq_sqrt_order (hp2 : p ≠ 2) :
       exact_mod_cast hp.out.pos
     linarith
 
+/--
+@isnad1 id=eq.1h1v.s6.5339022f1219 from=translated src=- shape=580242b8 vocab=acd81061
+-/
 theorem negI_pow_orderHalfMul_eq_I_pow_half (hp2 : p ≠ 2) :
     (-Complex.I) ^ (p * ((p - 1) / 2)) = Complex.I ^ ((p - 1) / 2) := by
   let n : ℕ := (p - 1) / 2

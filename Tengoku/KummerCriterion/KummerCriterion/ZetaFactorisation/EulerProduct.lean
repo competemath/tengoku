@@ -27,6 +27,9 @@ variable (p : ℕ) [hp : Fact p.Prime]
 
 /-! ### Step E — Euler-product assembly skeleton -/
 
+/--
+@isnad1 id=eq.0h3v.s5.35288adbd340 from=translated src=- shape=2e22fa73 vocab=ddcfd964
+-/
 lemma idealNormMultiplicity_p_pow_eq_one (k : ℕ) :
     idealNormMultiplicity K (p ^ k) = 1 := by
   classical
@@ -133,6 +136,9 @@ lemma idealNormMultiplicity_p_pow_eq_one (k : ℕ) :
         simpa [m, hm] using hI_pow }
   exact Nat.card_unique
 
+/--
+@isnad1 id=le.2h4v.s9.d98c1b849afd from=translated src=- shape=f7d82b6f vocab=9995f860
+-/
 lemma normalizedFactors_subset_primesOverFinset_of_absNorm_prime_pow
     {q : Nat.Primes} {I : Ideal (𝓞 K)} (hI_ne : I ≠ ⊥)
     {k : ℕ} (hI_norm : Ideal.absNorm I = (q : ℕ) ^ k) :
@@ -168,6 +174,9 @@ lemma normalizedFactors_subset_primesOverFinset_of_absNorm_prime_pow
     simpa [rationalPrimeIdeal] using hP_lies
   exact (mem_primesOverFinset_iff (K := K) (ℓ := (q : ℕ))).2 hP_over
 
+/--
+@isnad1 id=eq.2h4v.s8.e270c8b0a871 from=translated src=- shape=05efe235 vocab=f6d43109
+-/
 lemma absNorm_eq_q_pow_localResidueDegree_of_mem_primesOverFinset
     {q : Nat.Primes} [Fact (q : ℕ).Prime] (hq : (q : ℕ) ≠ p) {P : Ideal (𝓞 K)}
     (hP : P ∈ primesOverFinset K (q : ℕ)) :
@@ -182,6 +191,9 @@ lemma absNorm_eq_q_pow_localResidueDegree_of_mem_primesOverFinset
   rw [← primesOver_inertiaDeg_eq_localResidueDegree p K hq P hP_over]
   exact (Ideal.pow_inertiaDeg (q : ℕ) P).symm
 
+/--
+@isnad1 id=eq.3h5v.s9.bcc5f89fef8b from=translated src=- shape=3c887008 vocab=9408377c
+-/
 lemma normalizedFactors_card_mul_localResidueDegree_of_absNorm_prime_pow
     {q : Nat.Primes} [Fact (q : ℕ).Prime] (hq : (q : ℕ) ≠ p)
     {I : Ideal (𝓞 K)} (hI_ne : I ≠ ⊥)
@@ -219,6 +231,9 @@ lemma normalizedFactors_card_mul_localResidueDegree_of_absNorm_prime_pow
       _ = (q : ℕ) ^ k := hI_norm
   exact Nat.pow_right_injective q.2.one_lt hpow
 
+/--
+@isnad1 id=eq.2h4v.s6.5b2c902f7e52 from=translated src=- shape=53dfd45b vocab=18974fab
+-/
 lemma idealNormMultiplicity_prime_pow_eq_zero_of_not_dvd
     {q : Nat.Primes} [Fact (q : ℕ).Prime] (hq : (q : ℕ) ≠ p) {k : ℕ}
     (hk : ¬ localResidueDegree (p := p) (q : ℕ) hq ∣ k) :
@@ -233,6 +248,9 @@ lemma idealNormMultiplicity_prime_pow_eq_zero_of_not_dvd
     normalizedFactors_card_mul_localResidueDegree_of_absNorm_prime_pow
       (p := p) (K := K) hq hI_ne hI_norm |>.symm
 
+/--
+@isnad1 id=eq.1h4v.s8.f0bbe4a45c02 from=translated src=- shape=38088ab5 vocab=f2a019a1
+-/
 lemma idealNormMultiplicity_prime_pow_mul_localResidueDegree_eq_card_sym
     {q : Nat.Primes} [Fact (q : ℕ).Prime] (hq : (q : ℕ) ≠ p) (n : ℕ) :
     idealNormMultiplicity K
@@ -356,6 +374,9 @@ lemma idealNormMultiplicity_prime_pow_mul_localResidueDegree_eq_card_sym
   simpa [β, α, hd, Nat.card_eq_fintype_card] using
     Nat.card_congr (⟨toSym, ofSym, hleft, hright⟩ : β ≃ Sym α n)
 
+/--
+@isnad1 id=eq.1h3v.s7.e75ec337d325 from=translated src=- shape=630c969b vocab=ee94b154
+-/
 lemma dedekind_prime_power_series_eq_localFactor_at_p {s : ℂ} (hs : 1 < s.re) :
     (∑' k : ℕ, (idealNormMultiplicity K (p ^ k) : ℂ) *
       (((p ^ k : ℕ) : ℂ) ^ (-s))) =
@@ -373,6 +394,9 @@ lemma dedekind_prime_power_series_eq_localFactor_at_p {s : ℂ} (hs : 1 < s.re) 
       Complex.cpow_mul_nat]
   · simpa using tsum_geometric_of_norm_lt_one hnorm
 
+/--
+@isnad1 id=eq.1h4v.s7.f2e28a259529 from=translated src=- shape=2a028e1c vocab=797c37a1
+-/
 lemma dedekind_prime_power_series_eq_localFactor
     (p : ℕ) [Fact p.Prime] (K : Type*) [Field K] [NumberField K]
     [IsCyclotomicExtension {p} ℚ K] {q : Nat.Primes} {s : ℂ} (hs : 1 < s.re) :
@@ -466,6 +490,9 @@ lemma dedekind_prime_power_series_eq_localFactor
       simpa [z, hd, hα_card] using hf_hasSum
     simpa [f] using hf_hasSum'.tsum_eq
 
+/--
+@isnad1 id=eq.1h3v.s7.86949530103f from=translated src=- shape=7225d854 vocab=3275181a
+-/
 lemma LFunction_eq_prime_tprod_of_localFactors (χ : DirichletCharacter ℂ p) {s : ℂ}
     (hs : 1 < s.re) :
     DirichletCharacter.LFunction χ s =
@@ -474,12 +501,18 @@ lemma LFunction_eq_prime_tprod_of_localFactors (χ : DirichletCharacter ℂ p) {
     ← DirichletCharacter.LSeries_eulerProduct_tprod χ hs]
 
 omit hp in
+/--
+@isnad1 id=eq.1h2v.s7.e3496eddb214 from=translated src=- shape=73faadc0 vocab=7bac510c
+-/
 lemma finite_character_product_tprod_swap (f : DirichletCharacter ℂ p → Nat.Primes → ℂ)
     (hmul : ∀ χ : DirichletCharacter ℂ p, Multipliable (f χ)) :
     (∏ χ : DirichletCharacter ℂ p, ∏' q : Nat.Primes, f χ q) =
       ∏' q : Nat.Primes, ∏ χ : DirichletCharacter ℂ p, f χ q :=
   (Multipliable.tprod_finsetProd (fun χ _ => hmul χ)).symm
 
+/--
+@isnad1 id=eq.1h2v.s7.649beb30ba45 from=translated src=- shape=2b730780 vocab=89f42108
+-/
 lemma LProduct_eq_tprod_localFactors {s : ℂ} (hs : 1 < s.re) :
     LProduct (p := p) s =
       ∏' q : Nat.Primes, ∏ χ : DirichletCharacter ℂ p,
@@ -490,12 +523,18 @@ lemma LProduct_eq_tprod_localFactors {s : ℂ} (hs : 1 < s.re) :
     (fun χ q => (1 - χ ((q : ℕ) : ZMod p) * ((q : ℕ) : ℂ) ^ (-s))⁻¹)
     (fun χ => (DirichletCharacter.LSeries_eulerProduct_hasProd χ hs).multipliable)
 
+/--
+@isnad1 id=eq.1h4v.s6.3b6f3d72245e from=translated src=- shape=a742b528 vocab=7ec7ddd8
+-/
 lemma localFactors_agree_prime_ne_p {q : Nat.Primes} (hq : (q : ℕ) ≠ p) {s : ℂ} :
     dedekindLocalFactor K (q : ℕ) s = charLocalFactor (p := p) (q : ℕ) s := by
   have : Fact (q : ℕ).Prime := ⟨q.2⟩
   rw [dedekindLocalFactor_eq_pow_localResidueDegree (p := p) (K := K) hq,
     charLocalFactor_eq_pow_localResidueDegree (p := p) hq]
 
+/--
+@isnad1 id=eq.1h2v.s5.1d54c1f747cb from=translated src=- shape=26d5fed5 vocab=0f4221a6
+-/
 lemma LProduct_eq_eulerProduct {s : ℂ} (hs : 1 < s.re) :
     LProduct (p := p) s =
       ∏' q : Nat.Primes, (charLocalFactor (p := p) (q : ℕ) s)⁻¹ := by
@@ -504,6 +543,9 @@ lemma LProduct_eq_eulerProduct {s : ℂ} (hs : 1 < s.re) :
   unfold charLocalFactor
   rw [Finset.prod_inv_distrib]
 
+/--
+@isnad1 id=eq.1h3v.s6.02c9c360362d from=translated src=- shape=be055bd9 vocab=3d7741d1
+-/
 lemma dedekindZeta_eq_eulerProduct
   (p : ℕ) [Fact p.Prime] (K : Type*) [Field K] [NumberField K]
   [IsCyclotomicExtension {p} ℚ K] {s : ℂ} (hs : 1 < s.re) :
@@ -518,7 +560,9 @@ all characters mod `p` equals `(1 - p^{-s}) · ζ_K(s)`.
 The extra `(1 - p^{-s})` factor arises because `LFunctionTrivChar p s =
 (1 - p^{-s}) · ζ(s)` uses the imprimitive convention for the trivial character
 mod `p`, whereas the classical `ζ_K(s) = ∏_χ L(s, χ̃)` (Washington Thm 4.3)
-uses the *primitive* `L`-function `ζ(s)` for the trivial character.-/
+uses the *primitive* `L`-function `ζ(s)` for the trivial character.
+@isnad1 id=eq.1h3v.s6.59a94036f625 from=translated src=- shape=68807bae vocab=393e1f05
+-/
 theorem LProduct_eq_one_sub_p_neg_s_mul_dedekindZeta_of_one_lt_re {s : ℂ} (hs : 1 < s.re) :
     LProduct (p := p) s = (1 - (p : ℂ) ^ (-s)) * NumberField.dedekindZeta K s := by
   classical
@@ -569,6 +613,9 @@ theorem LProduct_eq_one_sub_p_neg_s_mul_dedekindZeta_of_one_lt_re {s : ℂ} (hs 
     exact lt_irrefl 1 hpnorm
   field_simp
 
+/--
+@isnad1 id=eq.0h2v.s4.3d150b2da5e5 from=translated src=- shape=ddecf86e vocab=e3e03fef
+-/
 lemma LProduct_eq_trivial_mul_nontrivial {s : ℂ} :
     LProduct (p := p) s =
       DirichletCharacter.LFunctionTrivChar p s * nontrivialLProduct p s := by
@@ -578,6 +625,9 @@ lemma LProduct_eq_trivial_mul_nontrivial {s : ℂ} :
     ← Finset.mul_prod_erase Finset.univ (fun χ => DirichletCharacter.LFunction χ s)
       (Finset.mem_univ 1)]
 
+/--
+@isnad1 id=eq.0h2v.s4.81d8a2a15cd4 from=translated src=- shape=ddecf86e vocab=d7c52ab7
+-/
 lemma nontrivialLProduct_eq_even_mul_odd {s : ℂ} :
     nontrivialLProduct p s = evenLProduct p s * oddLProduct p s := by
   classical
@@ -609,7 +659,9 @@ lemma nontrivialLProduct_eq_even_mul_odd {s : ℂ} :
   rw [hunion, Finset.prod_union hdisj]
 
 /-- The classical Washington Thm 4.3 formula: `ζ_K(s) = ζ(s) · ∏_{χ≠1} L(s, χ)`
-for `K = ℚ(ζ_p)`.-/
+for `K = ℚ(ζ_p)`.
+@isnad1 id=eq.1h3v.s6.9d63967d730d from=translated src=- shape=5fd2fc78 vocab=efe0d4d0
+-/
 theorem dedekindZeta_eq_riemannZeta_mul_nontrivialLProduct_of_one_lt_re {s : ℂ}
     (hs : 1 < s.re) :
     NumberField.dedekindZeta K s = riemannZeta s * nontrivialLProduct p s := by

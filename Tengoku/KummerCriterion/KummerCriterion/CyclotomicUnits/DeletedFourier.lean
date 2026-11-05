@@ -46,7 +46,9 @@ abbrev Nonidentity (G : Type*) [One G] := {g : G // g ≠ 1}
 abbrev NontrivChar (G : Type*) [CommMonoid G] :=
   {χ : MulChar G ℂ // χ ≠ 1}
 
-/-- A subtype sum over `x ≠ a₀` as an erased finite-set sum.-/
+/-- A subtype sum over `x ≠ a₀` as an erased finite-set sum.
+@isnad1 id=eq.0h3v.s6.948dbd4ca3f5 from=translated src=- shape=d3d786a4 vocab=d23c3cad
+-/
 theorem sum_subtype_ne_eq_sum_erase {α : Type*} [Fintype α] [DecidableEq α]
     (a₀ : α) (f : α → ℂ) [Fintype {x : α // x ≠ a₀}] :
     ∑ x : {x : α // x ≠ a₀}, f x.val =
@@ -57,7 +59,9 @@ section FiniteGroup
 
 variable {G : Type*} [CommGroup G] [Fintype G]
 
-/-- The deleted set has one fewer element than the group.-/
+/-- The deleted set has one fewer element than the group.
+@isnad1 id=eq.0h1v.s6.24ea6f9e0983 from=translated src=- shape=636fe6fc vocab=3033fa1c
+-/
 theorem card_nonidentity_add_one [DecidableEq G] :
     Fintype.card (Nonidentity G) + 1 = Fintype.card G := by
   have hnon :
@@ -66,12 +70,16 @@ theorem card_nonidentity_add_one [DecidableEq G] :
   rw [hnon]
   exact Nat.sub_add_cancel (Nat.succ_le_of_lt (Fintype.card_pos_iff.mpr ⟨(1 : G)⟩))
 
-/-- The cardinality of a finite group is nonzero as a complex number.-/
+/-- The cardinality of a finite group is nonzero as a complex number.
+@isnad1 id=ne.0h1v.s4.ee2d6bb53fc8 from=translated src=- shape=6d554f3a vocab=e254b31d
+-/
 theorem card_group_ne_zero_complex :
     ((Fintype.card G : ℕ) : ℂ) ≠ 0 := by
   exact_mod_cast (Fintype.card_pos_iff.mpr ⟨(1 : G)⟩).ne'
 
-/-- The restricted sum of a nontrivial character over `G \ {1}` is `-1`.-/
+/-- The restricted sum of a nontrivial character over `G \ {1}` is `-1`.
+@isnad1 id=eq.1h2v.s8.f8da0635b901 from=translated src=- shape=c51f75cf vocab=c428515d
+-/
 theorem sum_nonidentity_mulChar_eq_neg_one
     [DecidableEq G]
     (χ : MulChar G ℂ) (hχ : χ ≠ 1) :
@@ -84,7 +92,9 @@ theorem sum_nonidentity_mulChar_eq_neg_one
     simpa using hfull
   linear_combination hsplit
 
-/-- Orthogonality after deleting the identity row.-/
+/-- Orthogonality after deleting the identity row.
+@isnad1 id=eq.0h3v.s8.55f6c87d641b from=translated src=- shape=ce7ad5ed vocab=ac42c82a
+-/
 theorem sum_nonidentity_inv_mulChar_mul
     [DecidableEq G]
     [DecidableEq (MulChar G ℂ)]
@@ -129,7 +139,9 @@ def deletedCharacterMatrixLeftInverse
   Matrix.of fun χ h =>
     ((Fintype.card G : ℕ) : ℂ)⁻¹ * ((χ.val (ρ h).val)⁻¹ - 1)
 
-/-- The corrected deleted character matrix inverse is a left inverse.-/
+/-- The corrected deleted character matrix inverse is a left inverse.
+@isnad1 id=eq.0h2v.s8.6839f6f55ffa from=translated src=- shape=a9e22a0b vocab=8d18abe1
+-/
 theorem deletedCharacterMatrix_leftInverse
     [Fintype (MulChar G ℂ)] [DecidableEq (MulChar G ℂ)]
     (ρ : NontrivChar G ≃ Nonidentity G) :
@@ -172,7 +184,9 @@ theorem deletedCharacterMatrix_leftInverse
       hχψ (Subtype.ext h)
     simp [hval, hχψ]
 
-/-- Full Fourier reindexing for the inverse-character convention.-/
+/-- Full Fourier reindexing for the inverse-character convention.
+@isnad1 id=eq.0h4v.s7.d5d0104fc74d from=translated src=- shape=9fdc0100 vocab=0a2cb990
+-/
 theorem sum_translate_inv_mulChar
     (q : G → ℂ) (χ : MulChar G ℂ) (h : G) :
     ∑ k : G, q (h * k⁻¹) * χ k =
@@ -202,7 +216,9 @@ theorem sum_translate_inv_mulChar
   rw [Finset.sum_congr rfl (fun t _ => hterm t)]
   rw [← Finset.mul_sum]
 
-/-- The first summand of the deleted convolution-character product.-/
+/-- The first summand of the deleted convolution-character product.
+@isnad1 id=eq.0h4v.s8.82431a5d69d0 from=translated src=- shape=e7ed8e78 vocab=f04beef1
+-/
 theorem sum_nonidentity_translate_inv_mulChar
     [DecidableEq G]
     (q : G → ℂ) (χ : MulChar G ℂ) (h : G) :
@@ -220,7 +236,9 @@ theorem sum_nonidentity_translate_inv_mulChar
   linear_combination hsplit
 
 /-- Deleted convolution against a nontrivial character gives the Fourier
-coefficient eigenvalue.-/
+coefficient eigenvalue.
+@isnad1 id=eq.1h4v.s8.2032d360cfcd from=translated src=- shape=8aaa4548 vocab=f04beef1
+-/
 theorem sum_nonidentity_deletedConvolution_mulChar
     [DecidableEq G]
     (q : G → ℂ) (χ : MulChar G ℂ) (hχ : χ ≠ 1) (h : G) :
@@ -251,7 +269,9 @@ def deletedConvolutionMatrixOnNonidentity (q : G → ℂ) :
 
 omit [Fintype G] in
 /-- Reindexing the literal deleted convolution matrix by `ρ` gives the
-character-indexed matrix used in the diagonalization proof.-/
+character-indexed matrix used in the diagonalization proof.
+@isnad1 id=eq.0h3v.s8.5c77c3b465dc from=translated src=- shape=0b4ff331 vocab=e532608f
+-/
 theorem deletedConvolutionMatrix_eq_submatrix
     (ρ : NontrivChar G ≃ Nonidentity G) (q : G → ℂ) :
     deletedConvolutionMatrix (G := G) ρ q =
@@ -259,7 +279,9 @@ theorem deletedConvolutionMatrix_eq_submatrix
   ext h k
   rfl
 
-/-- Deleted convolution diagonalizes against the deleted character matrix.-/
+/-- Deleted convolution diagonalizes against the deleted character matrix.
+@isnad1 id=eq.0h3v.s9.0cc9e2ebdd12 from=translated src=- shape=f297ece9 vocab=7bd1d665
+-/
 theorem deletedConvolution_mul_deletedCharacter
     [Fintype (MulChar G ℂ)] [DecidableEq (MulChar G ℂ)]
     (ρ : NontrivChar G ≃ Nonidentity G) (q : G → ℂ) :
@@ -283,7 +305,9 @@ theorem deletedConvolution_mul_deletedCharacter
   · intro hmem
     exact absurd (Finset.mem_univ χ) hmem
 
-/-- Deleted Fourier determinant identity, in the `hk⁻¹` convention.-/
+/-- Deleted Fourier determinant identity, in the `hk⁻¹` convention.
+@isnad1 id=eq.0h3v.s9.a8bf5d8a492a from=translated src=- shape=b0f61067 vocab=3458797f
+-/
 theorem det_deletedConvolutionMatrix_eq_prod_deletedFourierCoeff
     [Fintype (MulChar G ℂ)] [DecidableEq (MulChar G ℂ)]
     (ρ : NontrivChar G ≃ Nonidentity G) (q : G → ℂ) :
@@ -299,7 +323,9 @@ theorem det_deletedConvolutionMatrix_eq_prod_deletedFourierCoeff
   exact mul_right_cancel₀ hP (by
     simpa [mul_comm, mul_left_comm, mul_assoc] using hdet)
 
-/-- The deleted Fourier determinant identity in literal `G \ {1}` indices.-/
+/-- The deleted Fourier determinant identity in literal `G \ {1}` indices.
+@isnad1 id=eq.0h3v.s9.456c308b69f8 from=translated src=- shape=553c2718 vocab=bd81645f
+-/
 theorem det_deletedConvolutionMatrixOnNonidentity_eq_prod_deletedFourierCoeff
     [DecidableEq G] [Fintype (MulChar G ℂ)] [DecidableEq (MulChar G ℂ)]
     (ρ : NontrivChar G ≃ Nonidentity G) (q : G → ℂ) :
@@ -334,7 +360,9 @@ def deletedConvolutionMulMatrixAtReindexed (h₀ : G) (q : G → ℂ) :
   Matrix.of fun h k => q (h₀ * h.val * k.val) - q (h₀ * h.val)
 
 omit [Fintype G] in
-/-- Reindexing rows by `h = h₀ * r` in the `hk` convention translates `q`.-/
+/-- Reindexing rows by `h = h₀ * r` in the `hk` convention translates `q`.
+@isnad1 id=eq.0h3v.s6.a485c3edf64d from=translated src=- shape=84e5be72 vocab=ef270e62
+-/
 theorem deletedConvolutionMulMatrixAtReindexed_eq_translated
     (h₀ : G) (q : G → ℂ) :
     deletedConvolutionMulMatrixAtReindexed (G := G) h₀ q =
@@ -345,7 +373,9 @@ theorem deletedConvolutionMulMatrixAtReindexed_eq_translated
 
 omit [Fintype G] in
 /-- The `hk` matrix is a row-inversion permutation of the `hk⁻¹` matrix
-`x ↦ q(x⁻¹)`.-/
+`x ↦ q(x⁻¹)`.
+@isnad1 id=eq.0h2v.s8.d80be42d9c58 from=translated src=- shape=b6fd291f vocab=3a611c86
+-/
 theorem deletedConvolutionMulMatrix_eq_invRow_submatrix (q : G → ℂ) :
     deletedConvolutionMulMatrixOnNonidentity (G := G) q =
       (deletedConvolutionMatrixOnNonidentity (G := G) (fun x => q x⁻¹)).submatrix
@@ -360,7 +390,9 @@ def deletedFourierCoeffMul (q : G → ℂ) (χ : MulChar G ℂ) : ℂ :=
 
 omit [Fintype G] in
 /-- The product of all character values at a fixed group element has square
-one.-/
+one.
+@isnad1 id=eq.0h2v.s7.7cd63fe24b7e from=translated src=- shape=42e32021 vocab=acfa0ac6
+-/
 theorem prod_mulChar_apply_sq_eq_one
     [Fintype (MulChar G ℂ)] (h₀ : G) :
     (∏ χ : MulChar G ℂ, χ h₀) ^ 2 = 1 := by
@@ -389,7 +421,9 @@ theorem prod_mulChar_apply_sq_eq_one
 
 omit [Fintype G] in
 /-- The product of the nontrivial character values at a fixed group element
-has square one.-/
+has square one.
+@isnad1 id=eq.0h2v.s8.37945759652e from=translated src=- shape=109a5ed7 vocab=5b847753
+-/
 theorem prod_nontriv_mulChar_apply_sq_eq_one
     [Fintype (MulChar G ℂ)] [DecidableEq (MulChar G ℂ)] (h₀ : G) :
     (∏ χ : NontrivChar G, χ.val h₀) ^ 2 = 1 := by
@@ -417,7 +451,9 @@ theorem prod_nontriv_mulChar_apply_sq_eq_one
 
 omit [Fintype G] in
 /-- The product of inverse nontrivial character values at a fixed group
-element also has square one.-/
+element also has square one.
+@isnad1 id=eq.0h2v.s8.5dafccd3d722 from=translated src=- shape=0563e53f vocab=e401b59d
+-/
 theorem prod_nontriv_mulChar_apply_inv_sq_eq_one
     [Fintype (MulChar G ℂ)] [DecidableEq (MulChar G ℂ)] (h₀ : G) :
     (∏ χ : NontrivChar G, (χ.val h₀)⁻¹) ^ 2 = 1 := by
@@ -428,7 +464,9 @@ theorem prod_nontriv_mulChar_apply_inv_sq_eq_one
   rw [inv_pow, prod_nontriv_mulChar_apply_sq_eq_one (G := G) h₀, inv_one]
 
 /-- Translating the input of `q` by `h₀` multiplies the non-inverse-character
-Fourier coefficient by `(χ h₀)⁻¹`.-/
+Fourier coefficient by `(χ h₀)⁻¹`.
+@isnad1 id=eq.0h4v.s6.67445ae95eb2 from=translated src=- shape=2defb411 vocab=351c42e5
+-/
 theorem deletedFourierCoeffMul_mulLeft
     (q : G → ℂ) (χ : MulChar G ℂ) (h₀ : G) :
     deletedFourierCoeffMul (G := G) (fun h => q (h₀ * h)) χ =
@@ -455,7 +493,9 @@ theorem deletedFourierCoeffMul_mulLeft
   rw [← Finset.mul_sum]
 
 /-- Inverting the argument changes the inverse-character coefficient into the
-non-inverse-character coefficient.-/
+non-inverse-character coefficient.
+@isnad1 id=eq.0h3v.s5.852f6d88608c from=translated src=- shape=9ecdae83 vocab=b404b80d
+-/
 theorem deletedFourierCoeff_invArg_eq_mul
     (q : G → ℂ) (χ : MulChar G ℂ) :
     deletedFourierCoeff (G := G) (fun x => q x⁻¹) χ =
@@ -479,7 +519,9 @@ theorem deletedFourierCoeff_invArg_eq_mul
   rw [mul_comm]
 
 /-- Squared determinant identity in the `hk` convention. The square removes
-the sign of the row-inversion permutation.-/
+the sign of the row-inversion permutation.
+@isnad1 id=eq.0h3v.s9.8e82ec526eb7 from=translated src=- shape=2e176e33 vocab=30c7a20b
+-/
 theorem det_deletedConvolutionMulMatrixOnNonidentity_sq_eq_prod_deletedFourierCoeffMul_sq
     [DecidableEq G] [Fintype (MulChar G ℂ)] [DecidableEq (MulChar G ℂ)]
     (ρ : NontrivChar G ≃ Nonidentity G) (q : G → ℂ) :
@@ -506,7 +548,9 @@ theorem det_deletedConvolutionMulMatrixOnNonidentity_sq_eq_prod_deletedFourierCo
     exact_mod_cast h_cast
 
 /-- Arbitrary omitted-row determinant identity in the `hk` convention, squared.
-The explicit character factor is kept; in applications it is a sign.-/
+The explicit character factor is kept; in applications it is a sign.
+@isnad1 id=eq.0h4v.s9.2eebea81cc29 from=translated src=- shape=b57ce948 vocab=044afbad
+-/
 theorem det_deletedConvolutionMulMatrixAtReindexed_sq_eq_charFactor_mul_prod_sq
     [DecidableEq G] [Fintype (MulChar G ℂ)] [DecidableEq (MulChar G ℂ)]
     (ρ : NontrivChar G ≃ Nonidentity G) (h₀ : G) (q : G → ℂ) :
@@ -522,7 +566,9 @@ theorem det_deletedConvolutionMulMatrixAtReindexed_sq_eq_charFactor_mul_prod_sq
   rw [Finset.prod_mul_distrib]
 
 /-- Arbitrary omitted-row determinant identity in the `hk` convention, squared,
-with the harmless character factor removed.-/
+with the harmless character factor removed.
+@isnad1 id=eq.0h4v.s9.f27c8518d5f7 from=translated src=- shape=faf67705 vocab=d9867bb0
+-/
 theorem det_deletedConvolutionMulMatrixAtReindexed_sq_eq_prod_deletedFourierCoeffMul_sq
     [DecidableEq G] [Fintype (MulChar G ℂ)] [DecidableEq (MulChar G ℂ)]
     (ρ : NontrivChar G ≃ Nonidentity G) (h₀ : G) (q : G → ℂ) :

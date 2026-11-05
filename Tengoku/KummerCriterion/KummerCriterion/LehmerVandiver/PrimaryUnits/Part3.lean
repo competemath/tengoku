@@ -46,7 +46,9 @@ variable (p : ℕ) [hp : Fact p.Prime]
   (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {p} ℚ K]
 
 /-- The real cyclotomic combination descends to `𝓞 K⁺`: there exists
-`y ∈ 𝓞 K⁺` with `algebraMap y = realCyclotomicUnit p K k`.-/
+`y ∈ 𝓞 K⁺` with `algebraMap y = realCyclotomicUnit p K k`.
+@isnad1 id=ex.0h3v.s9.ded145f0964d from=translated src=- shape=c5489ef7 vocab=2a1c9e4f
+-/
 theorem exists_realCyclotomicUnit_descent [IsCMField K] (k : ℕ) :
     ∃ y : 𝓞 (NumberField.maximalRealSubfield K),
       algebraMap (𝓞 (NumberField.maximalRealSubfield K)) (𝓞 K) y =
@@ -60,7 +62,9 @@ noncomputable def realCyclotomicUnitPlus [IsCMField K] (k : ℕ) :
     𝓞 (NumberField.maximalRealSubfield K) :=
   (exists_realCyclotomicUnit_descent p K k).choose
 
-/-- `algebraMap (realCyclotomicUnitPlus p K k) = realCyclotomicUnit p K k`.-/
+/-- `algebraMap (realCyclotomicUnitPlus p K k) = realCyclotomicUnit p K k`.
+@isnad1 id=eq.0h3v.s9.5caddd388e66 from=translated src=- shape=a272ca8d vocab=8e05a4b0
+-/
 theorem algebraMap_realCyclotomicUnitPlus [IsCMField K] (k : ℕ) :
     algebraMap (𝓞 (NumberField.maximalRealSubfield K)) (𝓞 K)
         (realCyclotomicUnitPlus p K k) =
@@ -68,7 +72,9 @@ theorem algebraMap_realCyclotomicUnitPlus [IsCMField K] (k : ℕ) :
   (exists_realCyclotomicUnit_descent p K k).choose_spec
 
 /-- The K⁺-side real cyclotomic unit is itself a unit when `k` is coprime
-to `p`.-/
+to `p`.
+@isnad1 id=isunit.2h3v.s7.3e002bb79f84 from=translated src=- shape=bc2faefb vocab=cb0dd894
+-/
 theorem isUnit_realCyclotomicUnitPlus [IsCMField K] (k : ℕ)
     (hk : k.Coprime p) (hp_two : 2 ≤ p) :
     IsUnit (realCyclotomicUnitPlus p K k) := by
@@ -92,6 +98,9 @@ noncomputable def realCyclotomicUnitPlusUnit [IsCMField K] (k : ℕ)
     (𝓞 (NumberField.maximalRealSubfield K))ˣ :=
   (isUnit_realCyclotomicUnitPlus p K k hk hp_two).unit
 
+/--
+@isnad1 id=eq.2h3v.s8.7e338946d8c8 from=translated src=- shape=0dc390f2 vocab=3e181e1a
+-/
 @[simp]
 theorem realCyclotomicUnitPlusUnit_val [IsCMField K] (k : ℕ)
     (hk : k.Coprime p) (hp_two : 2 ≤ p) :

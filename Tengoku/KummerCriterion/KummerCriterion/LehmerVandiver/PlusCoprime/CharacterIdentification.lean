@@ -40,7 +40,9 @@ expressed in the inversion-free multiplicative form.
 
 Proof: multiply by `(ζ - 1)`. The LHS becomes
 `ζ^c · (ζ^{p-c} - 1) = ζ^p - ζ^c = 1 - ζ^c = -(ζ^c - 1)`. The RHS becomes
-`-(ζ - 1) · cyclotomicUnit c = -(ζ^c - 1)`. Cancel `(ζ - 1) ≠ 0`.-/
+`-(ζ - 1) · cyclotomicUnit c = -(ζ^c - 1)`. Cancel `(ζ - 1) ≠ 0`.
+@isnad1 id=eq.1h3v.s7.2689b2f17be6 from=translated src=- shape=2d0ca35c vocab=8bb11064
+-/
 theorem zeta_pow_mul_cyclotomicUnit_p_sub_eq_neg
     (c : ℕ) (hc : c ≤ p) :
     ((zeta_spec p ℚ K).unit' : 𝓞 K) ^ c * cyclotomicUnit p K (p - c) =
@@ -69,7 +71,9 @@ theorem zeta_pow_mul_cyclotomicUnit_p_sub_eq_neg
 `cyclotomicUnit p K d = -ζ^d · cyclotomicUnit p K (p - d)` in `𝓞 K`.
 
 Derived from `zeta_pow_mul_cyclotomicUnit_p_sub_eq_neg` by multiplying
-through by `ζ^d` and using `ζ^p = 1` to collapse `ζ^d · ζ^{p-d} = 1`.-/
+through by `ζ^d` and using `ζ^p = 1` to collapse `ζ^d · ζ^{p-d} = 1`.
+@isnad1 id=eq.1h3v.s7.d79ee254900e from=translated src=- shape=d0390984 vocab=8bb11064
+-/
 theorem cyclotomicUnit_eq_neg_zeta_pow_mul_cyclotomicUnit_p_sub
     (d : ℕ) (hd : d ≤ p) :
     cyclotomicUnit p K d =

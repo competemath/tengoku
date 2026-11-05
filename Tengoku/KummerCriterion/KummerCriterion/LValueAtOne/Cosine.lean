@@ -28,7 +28,9 @@ section LValueAtOne
 
 variable (p : ℕ) [hp : Fact p.Prime]
 
-/-- Partial sums of the cosine kernel stay uniformly bounded away from the endpoints.-/
+/-- Partial sums of the cosine kernel stay uniformly bounded away from the endpoints.
+@isnad1 id=le.2h2v.s7.b2b71af3ae9a from=translated src=- shape=d8ce7311 vocab=d301b0a3
+-/
 lemma norm_sum_range_cos_le {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) (n : ℕ) :
     ‖∑ i ∈ Finset.range n, Real.cos (2 * Real.pi * x * i)‖ ≤
       2 / ‖(1 : ℂ) - Complex.exp ((2 * Real.pi * x) * Complex.I)‖ := by
@@ -57,7 +59,9 @@ lemma norm_sum_range_cos_le {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) (n : ℕ) 
     _ = 2 / ‖(1 : ℂ) - Complex.exp ((2 * Real.pi * x) * Complex.I)‖ := by
       simp [z, norm_sub_rev]
 
-/-- Continuity in the exponent of a single shifted cosine term.-/
+/-- Continuity in the exponent of a single shifted cosine term.
+@isnad1 id=continuo.0h2v.s6.c4672313805b from=translated src=- shape=bee2642c vocab=e3ac9775
+-/
 lemma continuous_shiftedCosTerm (x : ℝ) (i : ℕ) :
     Continuous fun s : ℝ =>
       Real.cos (2 * Real.pi * x * (i + 1)) / ((i + 1 : ℂ) ^ (s : ℂ)) := by
@@ -66,7 +70,9 @@ lemma continuous_shiftedCosTerm (x : ℝ) (i : ℕ) :
   · intro s h
     exact (Nat.cast_add_one_ne_zero i) ((Complex.cpow_eq_zero_iff _ _).mp h).1
 
-/-- Repackage `hasSum_nat_cosZeta` with the harmless zero term removed.-/
+/-- Repackage `hasSum_nat_cosZeta` with the harmless zero term removed.
+@isnad1 id=hassum.1h2v.s7.257c0c35a56d from=translated src=- shape=02558ae6 vocab=00d6f660
+-/
 lemma hasSum_shifted_cosZeta (x s : ℝ) (hs : 1 < s) :
     HasSum (fun n : ℕ => Real.cos (2 * Real.pi * x * (n + 1)) / ((n + 1 : ℂ) ^ (s : ℂ)))
       (HurwitzZeta.cosZeta x s) := by
@@ -85,7 +91,9 @@ lemma hasSum_shifted_cosZeta (x s : ℝ) (hs : 1 < s) :
     simpa [hf0] using this
   exact hvalue ▸ hshift.congr_fun (fun n => by simp [f])
 
-/-- Uniform tail bound for the shifted cosine Dirichlet series on the half-line `s ≥ 1`.-/
+/-- Uniform tail bound for the shifted cosine Dirichlet series on the half-line `s ≥ 1`.
+@isnad1 id=le.3h4v.s8.22405845f587 from=translated src=- shape=37e12dd3 vocab=02b99ad7
+-/
 lemma norm_sum_range_shifted_cos_term_le {x s : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) (hs : 1 ≤ s)
     (m n : ℕ) :
     ‖∑ i ∈ Finset.range n,
@@ -170,7 +178,9 @@ lemma norm_sum_range_shifted_cos_term_le {x s : ℝ} (hx₀ : 0 < x) (hx₁ : x 
             ring
           rw [hcoef]
 
-/-- The endpoint cosine series converges on `(0, 1)` by Dirichlet's test.-/
+/-- The endpoint cosine series converges on `(0, 1)` by Dirichlet's test.
+@isnad1 id=ex.2h1v.s6.b9b9344438c6 from=translated src=- shape=0e2e4642 vocab=4ac60cd0
+-/
 lemma exists_tendsto_sum_range_cos_div_nat {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     ∃ l : ℝ,
       Tendsto
@@ -268,7 +278,9 @@ lemma exists_tendsto_sum_range_cos_div_nat {x : ℝ} (hx₀ : 0 < x) (hx₁ : x 
   exact hseries ▸ hl
 
 /-- The endpoint cosine series converges to the classical boundary value
-`-log (2 * sin (πx))` on `(0, 1)`.-/
+`-log (2 * sin (πx))` on `(0, 1)`.
+@isnad1 id=tendsto.2h1v.s7.43d6e66e78d8 from=translated src=- shape=bf9a64da vocab=3bb8926f
+-/
 lemma tendsto_sum_range_cos_div_nat {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     Tendsto
       (fun n ↦ ∑ i ∈ Finset.range n, if i = 0 then 0 else Real.cos (2 * Real.pi * x * i) / i)
@@ -344,7 +356,9 @@ lemma tendsto_sum_range_cos_div_nat {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     tendsto_nhds_unique habel' (by simpa [hnorm_value] using hcont)
   simpa [hl_eq] using hl
 
-/-- The shifted endpoint cosine series converges to the same boundary value.-/
+/-- The shifted endpoint cosine series converges to the same boundary value.
+@isnad1 id=tendsto.2h1v.s7.956a8d775985 from=translated src=- shape=cce4f3d9 vocab=639b1d76
+-/
 lemma tendsto_sum_range_shifted_cos_one {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     Tendsto
       (fun n : ℕ => ∑ i ∈ Finset.range n,
@@ -364,7 +378,9 @@ lemma tendsto_sum_range_shifted_cos_one {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1
       (fun i : ℕ => (((if i = 0 then 0 else Real.cos (2 * Real.pi * x * i) / i : ℝ)) : ℂ)) 1 n
   simpa [F, add_comm, add_left_comm, add_assoc] using hsum
 
-/-- The shifted cosine Dirichlet partial sums are uniformly Cauchy on the half-line `s ≥ 1`.-/
+/-- The shifted cosine Dirichlet partial sums are uniformly Cauchy on the half-line `s ≥ 1`.
+@isnad1 id=uniformc.2h1v.s7.57c69dd7937c from=translated src=- shape=9408ba90 vocab=16ccab8c
+-/
 lemma uniformCauchySeqOn_shiftedCosPartialSums {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     UniformCauchySeqOn
       (fun n (s : ℝ) => ∑ i ∈ Finset.range n,
@@ -439,7 +455,9 @@ lemma uniformCauchySeqOn_shiftedCosPartialSums {x : ℝ} (hx₀ : 0 < x) (hx₁ 
   · exact htail_bound hm hmn s hs
   · simpa [dist_comm] using htail_bound hn hnm s hs
 
-/-- The cosine zeta function takes the classical boundary value at `s = 1` for `x ∈ (0, 1)`.-/
+/-- The cosine zeta function takes the classical boundary value at `s = 1` for `x ∈ (0, 1)`.
+@isnad1 id=eq.2h1v.s6.3db3d3cbc2f6 from=translated src=- shape=c83496e6 vocab=a4096f92
+-/
 theorem cosZeta_one_eq_boundary {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     HurwitzZeta.cosZeta x 1 = (((-Real.log (2 * Real.sin (Real.pi * x)) : ℝ) : ℂ)) := by
   let boundary : ℂ := (((-Real.log (2 * Real.sin (Real.pi * x)) : ℝ) : ℂ))
@@ -500,7 +518,9 @@ theorem cosZeta_one_eq_boundary {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
   simpa [boundary] using (tendsto_nhds_unique hcos_right hcos_cont).symm
 
 /-- For a nonzero residue class, `cosZeta` at the corresponding point of `UnitAddCircle`
-takes the classical boundary value used on the even side of the `L(1, χ)` formula.-/
+takes the classical boundary value used on the even side of the `L(1, χ)` formula.
+@isnad1 id=eq.1h2v.s7.514002be78af from=translated src=- shape=019238bb vocab=51b12c21
+-/
 theorem cosZeta_toAddCircle_one_eq_boundary {a : ZMod p} (ha : a ≠ 0) :
     HurwitzZeta.cosZeta (ZMod.toAddCircle a) 1 =
       (((-Real.log (2 * Real.sin (Real.pi * (a.val / p : ℝ))) : ℝ) : ℂ)) := by
@@ -508,7 +528,9 @@ theorem cosZeta_toAddCircle_one_eq_boundary {a : ZMod p} (ha : a ≠ 0) :
   rw [ZMod.toAddCircle_apply]
   exact cosZeta_one_eq_boundary (x := (a.val / p : ℝ)) hx.1 hx.2
 
-/-- The norm of `1 - ζ_p^a` matches the trigonometric boundary term.-/
+/-- The norm of `1 - ζ_p^a` matches the trigonometric boundary term.
+@isnad1 id=eq.1h2v.s7.d28440bbaa70 from=translated src=- shape=1e797faf vocab=694c0cf5
+-/
 lemma norm_one_sub_stdAddChar {a : ZMod p} (ha : a ≠ 0) :
     ‖(1 : ℂ) - ZMod.stdAddChar (N := p) a‖ =
       2 * Real.sin (Real.pi * (a.val / p : ℝ)) := by

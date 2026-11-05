@@ -25,7 +25,9 @@ open scoped BigOperators Topology
 
 namespace KummerCriterion
 
-/-- Summation by parts bound for a weighted series with bounded partial sums.-/
+/-- Summation by parts bound for a weighted series with bounded partial sums.
+@isnad1 id=le.3h5v.s7.951190ea4319 from=translated src=- shape=ec13d017 vocab=3f700d6b
+-/
 lemma norm_sum_range_smul_le_of_antitone_of_nonneg_of_bounded
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {a : ℕ → ℝ} {z : ℕ → E} {B : ℝ}
@@ -102,7 +104,9 @@ lemma norm_sum_range_smul_le_of_antitone_of_nonneg_of_bounded
       _ ≤ B * a (n - 1) + B * (a 0 - a (n - 1)) := add_le_add hfirst hsum_le
       _ = B * a 0 := by ring
 
-/-- Partial sums over a shifted sequence are controlled by the same bound up to a factor `2`.-/
+/-- Partial sums over a shifted sequence are controlled by the same bound up to a factor `2`.
+@isnad1 id=le.1h5v.s6.ef0631a77da2 from=translated src=- shape=e443c8f8 vocab=7364fc4c
+-/
 lemma norm_sum_range_shift_le_of_bounded
     {E : Type*} [NormedAddCommGroup E]
     {z : ℕ → E} {B : ℝ}
@@ -122,7 +126,9 @@ lemma norm_sum_range_shift_le_of_bounded
     _ ≤ B + B := add_le_add (hbound _) (hbound _)
     _ = 2 * B := by ring
 
-/-- Tail sums of a weighted series inherit the same summation-by-parts bound.-/
+/-- Tail sums of a weighted series inherit the same summation-by-parts bound.
+@isnad1 id=le.3h6v.s7.0ae8d4dd2dd2 from=translated src=- shape=d5d2c295 vocab=01c41ed1
+-/
 lemma norm_sum_range_shift_smul_le_of_antitone_of_nonneg_of_bounded
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {a : ℕ → ℝ} {z : ℕ → E} {B : ℝ}

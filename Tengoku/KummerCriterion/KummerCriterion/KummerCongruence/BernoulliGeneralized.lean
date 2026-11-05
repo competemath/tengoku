@@ -51,7 +51,9 @@ noncomputable def BernoulliGen [NeZero N]
 
 /-- Intermediate form: for a non-trivial Dirichlet character `χ`,
 the `1/2` constant term in `B_1(a/N) = a/N - 1/2` does not contribute
-after summing, because `∑ χ(a) = 0`.-/
+after summing, because `∑ χ(a) = 0`.
+@isnad1 id=eq.1h3v.s7.490575eaffce from=translated src=- shape=94f86364 vocab=ddc96e3f
+-/
 lemma BernoulliGen_one_of_ne_one [IsDomain R] [NeZero N]
     {χ : DirichletCharacter R N} (hχ : χ ≠ 1) :
     BernoulliGen χ 1 =
@@ -68,7 +70,9 @@ lemma BernoulliGen_one_of_ne_one [IsDomain R] [NeZero N]
 
 /-- **Diekmann eq. 24/27**, cleared form: `N · B_{1, χ} = ∑_a χ(a) · a`
 for non-trivial `χ`. Cleared of denominators so it holds in any commutative
-`ℚ`-algebra.-/
+`ℚ`-algebra.
+@isnad1 id=eq.1h3v.s7.172bfafeb508 from=translated src=- shape=93d3a514 vocab=3445e3d7
+-/
 lemma natCast_mul_BernoulliGen_one_of_ne_one [IsDomain R] [NeZero N]
     {χ : DirichletCharacter R N} (hχ : χ ≠ 1) :
     (N : R) * BernoulliGen χ 1 =
@@ -89,17 +93,26 @@ noncomputable def teichmullerCharQp (p : ℕ) [Fact p.Prime] : DirichletCharacte
 
 variable (p : ℕ) [Fact p.Prime]
 
+/--
+@isnad1 id=eq.0h2v.s8.90757eab3c0c from=translated src=- shape=20113565 vocab=3117ffb3
+-/
 lemma teichmullerCharQp_pow_eq_ringHomComp (n : ℕ) :
     (teichmullerCharQp p) ^ n =
       ((teichmullerChar p) ^ n).ringHomComp PadicInt.Coe.ringHom := by
   simpa [teichmullerCharQp] using
     (MulChar.ringHomComp_pow (χ := teichmullerChar p) (f := PadicInt.Coe.ringHom) (n := n))
 
+/--
+@isnad1 id=eq.0h1v.s8.87c78d9faeb7 from=translated src=- shape=439efdd7 vocab=5461d88e
+-/
 lemma teichmullerCharQp_pow_sub_one_eq_one :
     (teichmullerCharQp p) ^ (p - 1) = 1 := by
   rw [teichmullerCharQp_pow_eq_ringHomComp (p := p) (n := p - 1)]
   simp [teichmullerChar_pow_sub_one_eq_one (p := p)]
 
+/--
+@isnad1 id=eq.0h1v.s7.9dd1a5cc6526 from=translated src=- shape=6829b6c2 vocab=b79aa57a
+-/
 lemma orderOf_teichmullerCharQp :
     orderOf (teichmullerCharQp p) = p - 1 := by
   refine Nat.dvd_antisymm
@@ -115,7 +128,9 @@ lemma orderOf_teichmullerCharQp :
   simpa [orderOf_teichmullerChar (p := p)] using orderOf_dvd_of_pow_eq_one hpowZ
 
 /-- Bernoulli numbers below the boundary `p - 1` are `p`-adic integers.
-This is stated as equality with the image of some `z : ℤ_[p]` in `ℚ_[p]`.-/
+This is stated as equality with the image of some `z : ℤ_[p]` in `ℚ_[p]`.
+@isnad1 id=ex.2h2v.s6.1ca4b85c77ba from=translated src=- shape=2cac0f41 vocab=1d2d5e48
+-/
 theorem bernoulli_mem_padicInt_of_lt_sub_one {p : ℕ} [hp : Fact p.Prime]
     (hp_odd : p ≠ 2) (k : ℕ) (hk : k < p - 1) :
     ∃ z : ℤ_[p], (bernoulli k : ℚ_[p]) = (z : ℚ_[p]) := by
@@ -182,7 +197,9 @@ theorem bernoulli_mem_padicInt_of_lt_sub_one {p : ℕ} [hp : Fact p.Prime]
 classical Bernoulli number is prime to `p`.
 
 This is the denominator form of the p-integrality statement used in the proof
-of Diekmann Theorem 42: if `n < p - 1`, then `p ∤ (bernoulli n).den`.-/
+of Diekmann Theorem 42: if `n < p - 1`, then `p ∤ (bernoulli n).den`.
+@isnad1 id=not.2h2v.s5.f94708f7570e from=translated src=- shape=e110ea95 vocab=e1688b93
+-/
 theorem prime_not_dvd_bernoulli_den_of_lt_sub_one {p n : ℕ} [hp : Fact p.Prime]
     (hp_odd : p ≠ 2) (hn : n < p - 1) :
     ¬ p ∣ (_root_.bernoulli n).den := by
@@ -193,6 +210,9 @@ theorem prime_not_dvd_bernoulli_den_of_lt_sub_one {p n : ℕ} [hp : Fact p.Prime
   rw [PadicInt.isUnit_iff, PadicInt.norm_natCast_eq_one_iff] at hunit
   exact hp.out.coprime_iff_not_dvd.mp hunit
 
+/--
+@isnad1 id=eq.1h1v.s6.fba447d59352 from=translated src=- shape=1e8e420c vocab=388fd326
+-/
 lemma bernoulli_factor_mul_den (n : ℕ) (hn : n ≠ 0) :
     ((-(1 / 2 : ℚ)) * (((_root_.bernoulli n : ℚ) / n : ℚ))) *
         (2 * (_root_.bernoulli n).den * n : ℚ) =

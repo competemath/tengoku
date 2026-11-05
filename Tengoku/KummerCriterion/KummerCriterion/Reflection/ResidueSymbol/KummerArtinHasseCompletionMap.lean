@@ -41,7 +41,9 @@ def lambdaRationalHeightOneSpectrum : IsDedekindDomain.HeightOneSpectrum ℤ whe
     rw [lambdaRationalPrimeIdeal, ne_eq, Ideal.span_singleton_eq_bot]
     exact_mod_cast (Fact.out : Nat.Prime p).ne_zero
 
-/-- The cyclotomic `lambda` prime lies over the rational prime `(p)`.-/
+/-- The cyclotomic `lambda` prime lies over the rational prime `(p)`.
+@isnad1 id=liesover.0h2v.s6.ea7331ebc925 from=translated src=- shape=6fa64ffb vocab=1138ea5c
+-/
 theorem zetaPrime_liesOver_lambdaRationalPrimeIdeal :
     (zetaPrime p K).LiesOver (lambdaRationalPrimeIdeal p) := by
   have : IsCyclotomicExtension {p ^ (0 + 1)} ℚ K := by
@@ -135,7 +137,9 @@ abbrev lambdaPadicPrime : Nat.Primes :=
   ⟨p, Fact.out⟩
 
 /-- Integer membership in the cyclotomic `lambda` prime is exactly membership
-in the rational prime `(p)`.-/
+in the rational prime `(p)`.
+@isnad1 id=iff.0h3v.s7.365fcc1bb824 from=translated src=- shape=6d5dcad2 vocab=c0109539
+-/
 theorem intCast_mem_zetaPrime_iff_mem_lambdaRationalPrimeIdeal (n : ℤ) :
     algebraMap ℤ (𝓞 K) n ∈ zetaPrime p K ↔
       n ∈ lambdaRationalPrimeIdeal p := by
@@ -146,7 +150,9 @@ theorem intCast_mem_zetaPrime_iff_mem_lambdaRationalPrimeIdeal (n : ℤ) :
       (P := zetaPrime p K) (p := lambdaRationalPrimeIdeal p) n).symm
 
 /-- The rational `p`-adic valuation detects exactly whether the denominator
-is prime to `(p)`.-/
+is prime to `(p)`.
+@isnad1 id=iff.0h2v.s7.9cc080d529eb from=translated src=- shape=6b0b34ed vocab=5447661b
+-/
 theorem lambdaRationalValuation_le_one_iff_den (x : ℚ) :
     (lambdaRationalHeightOneSpectrum p).valuation ℚ x ≤ 1 ↔
       (x.den : ℤ) ∉ lambdaRationalPrimeIdeal p := by
@@ -154,6 +160,9 @@ theorem lambdaRationalValuation_le_one_iff_den (x : ℚ) :
     (Rat.valuation_le_one_iff_den
       (R := ℤ) (𝔭 := lambdaRationalHeightOneSpectrum p) (x := x))
 
+/--
+@isnad1 id=eq.0h1v.s5.9ad226013870 from=translated src=- shape=03ae60b0 vocab=f89159b8
+-/
 theorem lambdaRationalHeightOneSpectrum_eq_primesEquiv_symm :
     lambdaRationalHeightOneSpectrum p =
       (Rat.HeightOneSpectrum.primesEquiv (R := ℤ)).symm (lambdaPadicPrime p) := by
@@ -165,6 +174,9 @@ theorem lambdaRationalHeightOneSpectrum_eq_primesEquiv_symm :
   simp [lambdaRationalPrimeIdeal, Rat.IsIntegralClosure.intEquiv,
     Ideal.mem_span_singleton]
 
+/--
+@isnad1 id=eq.0h1v.s5.c5cc2cfa8518 from=translated src=- shape=b11f63ee vocab=9e267596
+-/
 theorem primesEquiv_lambdaRationalHeightOneSpectrum :
     Rat.HeightOneSpectrum.primesEquiv
         (R := ℤ) (lambdaRationalHeightOneSpectrum p) =
@@ -173,7 +185,9 @@ theorem primesEquiv_lambdaRationalHeightOneSpectrum :
   exact Rat.HeightOneSpectrum.primesEquiv.apply_symm_apply (lambdaPadicPrime p)
 
 /-- The lambda valuation on `K`, restricted to rational elements, detects the
-same denominators as the rational `p`-adic valuation.-/
+same denominators as the rational `p`-adic valuation.
+@isnad1 id=iff.0h3v.s7.728e26ee8c95 from=translated src=- shape=09ff4ed1 vocab=6782472a
+-/
 theorem lambdaValuation_algebraMap_rat_le_one_iff_den (x : ℚ) :
     (lambdaHeightOneSpectrum p K).valuation K (algebraMap ℚ K x) ≤ 1 ↔
       (x.den : ℤ) ∉ lambdaRationalPrimeIdeal p := by
@@ -213,7 +227,9 @@ theorem lambdaValuation_algebraMap_rat_le_one_iff_den (x : ℚ) :
             (p := p) (K := K) (x.den : ℤ)))
 
 /-- The lambda valuation on `K`, pulled back to `ℚ`, is equivalent to the
-rational `p`-adic valuation.-/
+rational `p`-adic valuation.
+@isnad1 id=isequiv.0h2v.s7.a0f67d4def0b from=translated src=- shape=820dd3b7 vocab=dd92fa66
+-/
 theorem lambdaValuation_comap_rat_isEquiv :
     ((lambdaRationalHeightOneSpectrum p).valuation ℚ).IsEquiv
       (((lambdaHeightOneSpectrum p K).valuation K).comap (algebraMap ℚ K)) := by
@@ -242,7 +258,9 @@ def rationalToLambdaWithValRingHom :
 
 /-- Continuity of the rational `p`-adic valued map into the lambda-valued
 cyclotomic field. This is the theorem consumed by
-`UniformSpace.Completion.mapRingHom`.-/
+`UniformSpace.Completion.mapRingHom`.
+@isnad1 id=continuo.0h2v.s10.1ad855d939f0 from=translated src=- shape=c66b5e6a vocab=32104be6
+-/
 theorem continuous_rationalToLambdaWithValRingHom :
     Continuous (rationalToLambdaWithValRingHom (p := p) (K := K)) := by
   let vQ := (lambdaRationalHeightOneSpectrum p).valuation ℚ
@@ -321,6 +339,9 @@ def rationalToLambdaCompletionRingHom :
         (IsDedekindDomain.HeightOneSpectrum.adicCompletion.equiv ℚ
           (lambdaRationalHeightOneSpectrum p)).toRingHom
 
+/--
+@isnad1 id=eq.0h3v.s10.b236c22f7a1b from=translated src=- shape=e6008ca1 vocab=8c97e1e1
+-/
 @[simp]
 theorem rationalToLambdaCompletionRingHom_coe
     (x : WithVal ((lambdaRationalHeightOneSpectrum p).valuation ℚ)) :
@@ -340,6 +361,9 @@ def rationalCompletionToLambdaAlgebra :
       (LambdaValuedCompletion p K) :=
   (rationalToLambdaCompletionRingHom (p := p) (K := K)).toAlgebra
 
+/--
+@isnad1 id=continuo.0h2v.s9.22be74543459 from=translated src=- shape=27fbf0ec vocab=cea68beb
+-/
 theorem continuous_algebraMap_rationalCompletionToLambdaAlgebra :
     letI : Algebra ((lambdaRationalHeightOneSpectrum p).adicCompletion ℚ)
         (LambdaValuedCompletion p K) :=

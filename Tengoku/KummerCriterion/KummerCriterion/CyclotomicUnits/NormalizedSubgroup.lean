@@ -19,6 +19,9 @@ an odd prime `p` divides `[G: H]` exactly when it divides `[G: K]`.
 
 namespace KummerCriterion
 
+/--
+@isnad1 id=not.3h3v.s5.baf96e9e4a12 from=translated src=- shape=27736b5b vocab=a799fb17
+-/
 theorem prime_not_dvd_of_dvd_two_pow {p n r : ℕ} (hp : Nat.Prime p) (hp_odd : p ≠ 2)
     (hn : n ∣ 2 ^ r) : ¬ p ∣ n := by
   intro hpn
@@ -27,6 +30,9 @@ theorem prime_not_dvd_of_dvd_two_pow {p n r : ℕ} (hp : Nat.Prime p) (hp_odd : 
   have hp_le_two : p ≤ 2 := Nat.le_of_dvd (by decide) hp_dvd_two
   exact hp_odd (le_antisymm hp_le_two hp.two_le)
 
+/--
+@isnad1 id=iff.3h4v.s6.850d4188844d from=translated src=- shape=21f262ab vocab=93abe03f
+-/
 theorem subgroup_index_prime_dvd_iff_of_not_dvd_relIndex {G : Type*} [Group G]
     {H K : Subgroup G} (hHK : H ≤ K) {p : ℕ} (hp : Nat.Prime p)
     (hrel : ¬ p ∣ H.relIndex K) :
@@ -43,6 +49,9 @@ theorem subgroup_index_prime_dvd_iff_of_not_dvd_relIndex {G : Type*} [Group G]
     rw [← Subgroup.relIndex_mul_index hHK]
     exact dvd_mul_of_dvd_right hK (H.relIndex K)
 
+/--
+@isnad1 id=iff.4h5v.s6.bebbe6d97495 from=translated src=- shape=d7015ecb vocab=4451cf85
+-/
 theorem subgroup_index_prime_dvd_iff_of_relIndex_dvd_two_pow {G : Type*} [Group G]
     {H K : Subgroup G} (hHK : H ≤ K) {p r : ℕ} (hp : Nat.Prime p) (hp_odd : p ≠ 2)
     (hrel : H.relIndex K ∣ 2 ^ r) :
@@ -91,16 +100,25 @@ def normalizedCPlus (hp_odd : p ≠ 2) (hp_three : 3 ≤ p) : Subgroup (𝓞 K�
     ({(-1 : (𝓞 K⁺)ˣ)} ∪
       Set.range (normalizedCPlusGenerator (p := p) (K := K) hp_odd hp_three))
 
+/--
+@isnad1 id=mem.2h2v.s11.4e4b76746e47 from=translated src=- shape=2a2e0f0b vocab=5dbb415b
+-/
 theorem neg_one_mem_normalizedCPlus (hp_odd : p ≠ 2) (hp_three : 3 ≤ p) :
     (-1 : (𝓞 K⁺)ˣ) ∈ normalizedCPlus (p := p) (K := K) hp_odd hp_three :=
   Subgroup.subset_closure (by left; rfl)
 
+/--
+@isnad1 id=mem.2h3v.s10.3c5248265cec from=translated src=- shape=65ca1392 vocab=4a616e64
+-/
 theorem normalizedCPlusGenerator_mem (hp_odd : p ≠ 2) (hp_three : 3 ≤ p)
     (i : Fin ((p - 3) / 2)) :
     normalizedCPlusGenerator (p := p) (K := K) hp_odd hp_three i ∈
       normalizedCPlus (p := p) (K := K) hp_odd hp_three :=
   Subgroup.subset_closure (by right; exact ⟨i, rfl⟩)
 
+/--
+@isnad1 id=eq.2h3v.s10.647222a7baba from=translated src=- shape=e9de3e57 vocab=b7cea31a
+-/
 theorem normalizedCPlusGenerator_sq_eq_CPlusGenerator
     (hp_odd : p ≠ 2) (hp_three : 3 ≤ p)
     (i : Fin ((p - 3) / 2)) :
@@ -113,6 +131,9 @@ theorem normalizedCPlusGenerator_sq_eq_CPlusGenerator
     (CPlusGeneratorIndex_two_le (p := p) hp_three i)
     (CPlusGeneratorIndex_le_half (p := p) hp_three i)
 
+/--
+@isnad1 id=mem.2h3v.s11.2548caa67d88 from=translated src=- shape=7ac365ee vocab=cf52808c
+-/
 theorem normalizedCPlusGenerator_sq_mem_CPlus
     (hp_odd : p ≠ 2) (hp_three : 3 ≤ p)
     (i : Fin ((p - 3) / 2)) :
@@ -123,7 +144,9 @@ theorem normalizedCPlusGenerator_sq_mem_CPlus
   exact CPlusGenerator_mem (p := p) (K := K) hp_three i
 
 /-- The older squared-family subgroup is contained in the normalized TeX
-subgroup.-/
+subgroup.
+@isnad1 id=le.2h2v.s10.2f28d958ad29 from=translated src=- shape=79cbe83d vocab=1536daa6
+-/
 theorem CPlus_le_normalizedCPlus (hp_odd : p ≠ 2) (hp_three : 3 ≤ p) :
     CPlus (p := p) (K := K) hp_three ≤
       normalizedCPlus (p := p) (K := K) hp_odd hp_three := by
@@ -138,11 +161,17 @@ theorem CPlus_le_normalizedCPlus (hp_odd : p ≠ 2) (hp_three : 3 ≤ p) :
     exact Subgroup.pow_mem _
       (normalizedCPlusGenerator_mem (p := p) (K := K) hp_odd hp_three i) 2
 
+/--
+@isnad1 id=fg.2h2v.s11.20602a590da0 from=translated src=- shape=1389fa8e vocab=0f310411
+-/
 instance normalizedCPlus_fg (hp_odd : p ≠ 2) (hp_three : 3 ≤ p) :
     Group.FG (normalizedCPlus (p := p) (K := K) hp_odd hp_three) := by
   unfold normalizedCPlus
   infer_instance
 
+/--
+@isnad1 id=mem.3h3v.s12.22158ad9d636 from=translated src=- shape=450ae67f vocab=d19ddf2a
+-/
 theorem normalizedCPlus_sq_mem_CPlus (hp_odd : p ≠ 2) (hp_three : 3 ≤ p)
     {x : (𝓞 K⁺)ˣ}
     (hx : x ∈ normalizedCPlus (p := p) (K := K) hp_odd hp_three) :
@@ -165,6 +194,9 @@ theorem normalizedCPlus_sq_mem_CPlus (hp_odd : p ≠ 2) (hp_three : 3 ≤ p)
       simpa [pow_two] using
         (CPlus (p := p) (K := K) hp_three).inv_mem hx
 
+/--
+@isnad1 id=eq.2h3v.s16.752ccf078386 from=translated src=- shape=2ccd0b03 vocab=2cb81f5e
+-/
 theorem normalizedCPlus_quotient_pow_two_eq_one (hp_odd : p ≠ 2) (hp_three : 3 ≤ p)
     (x :
       normalizedCPlus (p := p) (K := K) hp_odd hp_three ⧸
@@ -178,6 +210,9 @@ theorem normalizedCPlus_quotient_pow_two_eq_one (hp_odd : p ≠ 2) (hp_three : 3
   simpa using
     normalizedCPlus_sq_mem_CPlus (p := p) (K := K) hp_odd hp_three x.property
 
+/--
+@isnad1 id=dvd.2h2v.s13.9b4da7ba8025 from=translated src=- shape=8b37ff18 vocab=b00604de
+-/
 theorem CPlus_relIndex_normalizedCPlus_dvd_two_pow (hp_odd : p ≠ 2) (hp_three : 3 ≤ p) :
     (CPlus (p := p) (K := K) hp_three).relIndex
         (normalizedCPlus (p := p) (K := K) hp_odd hp_three) ∣
@@ -194,6 +229,9 @@ theorem CPlus_relIndex_normalizedCPlus_dvd_two_pow (hp_odd : p ≠ 2) (hp_three 
       (normalizedCPlus_quotient_pow_two_eq_one
         (p := p) (K := K) hp_odd hp_three))
 
+/--
+@isnad1 id=iff.2h2v.s9.6499f9524fe9 from=translated src=- shape=38e9219d vocab=be49a4e6
+-/
 theorem CPlus_index_prime_dvd_iff_normalizedCPlus_index_prime_dvd
     (hp_odd : p ≠ 2) (hp_three : 3 ≤ p) :
     p ∣ (CPlus (p := p) (K := K) hp_three).index ↔

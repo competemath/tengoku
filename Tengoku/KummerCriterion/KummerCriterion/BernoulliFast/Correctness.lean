@@ -37,9 +37,15 @@ def binomSum.loop (m : ℕ) (bs : List ℚ) : ℕ → ℚ → ℚ → ℚ :=
         (acc + c * b))
     bs
 
+/--
+@isnad1 id=eq.0h4v.s4.63aecd1e0f24 from=translated src=- shape=27cfd349 vocab=ff64058a
+-/
 theorem binomSum_loop_nil (m k : ℕ) (c acc : ℚ) :
     binomSum.loop m [] k c acc = acc := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.5b554e44ab6e from=translated src=- shape=5bebe072 vocab=f0fdb366
+-/
 theorem binomSum_loop_cons (m k : ℕ) (b : ℚ) (rest : List ℚ) (c acc : ℚ) :
     binomSum.loop m (b :: rest) k c acc =
       binomSum.loop m rest (k + 1)
@@ -67,8 +73,14 @@ def bernoulliList (n : ℕ) : List ℚ :=
       prev ++ [-s / ((n : ℚ) + 2)])
     n
 
+/--
+@isnad1 id=eq.0h0v.s4.055e7b60c0b1 from=translated src=- shape=d7f1834c vocab=fbfe0809
+-/
 theorem bernoulliList_zero : bernoulliList 0 = [(1 : ℚ)] := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.5cc7a3fcc423 from=translated src=- shape=db1db9bc vocab=4089ff2e
+-/
 theorem bernoulliList_succ (n : ℕ) :
     bernoulliList (n + 1) =
       bernoulliList n ++
@@ -98,7 +110,9 @@ open Finset Nat
 /-- The multiplicative recurrence for binomial coefficients, cast to `ℚ`:
 `↑C(m, k+1) = ↑C(m, k) · (↑m − ↑k) / (↑k + 1)`.
 
-Follows from `(k+1) · C(m, k+1) = (m − k) · C(m, k)` for `k < m`.-/
+Follows from `(k+1) · C(m, k+1) = (m − k) · C(m, k)` for `k < m`.
+@isnad1 id=eq.1h2v.s6.5101bcf45d8c from=translated src=- shape=fd0b6398 vocab=b1617e94
+-/
 theorem cast_choose_mul_eq (m k : ℕ) (hk : k < m) :
     (↑(m.choose (k + 1)) : ℚ) =
       ↑(m.choose k) * ((m : ℚ) - k) / ((k : ℚ) + 1) := by
@@ -113,13 +127,17 @@ theorem cast_choose_mul_eq (m k : ℕ) (hk : k < m) :
     add_comm, add_left_comm, add_assoc,
     sub_eq_add_neg, mul_comm, mul_left_comm, mul_assoc] using hq
 
-/-- When `k ≥ m`, `C(m, k+1) = 0` and the incremental formula also gives 0.-/
+/-- When `k ≥ m`, `C(m, k+1) = 0` and the incremental formula also gives 0.
+@isnad1 id=eq.1h2v.s5.88864d8512f5 from=translated src=- shape=108c4f06 vocab=b3dd5926
+-/
 theorem cast_choose_mul_eq_of_le (m k : ℕ) (hk : m ≤ k) :
     (↑(m.choose (k + 1)) : ℚ) = 0 := by
   norm_num [Nat.choose_eq_zero_of_lt (Nat.lt_succ_of_le hk)]
 
 /-- Loop invariant: `binomSum.loop m bs k c acc` equals
-`acc + ∑_{j<|bs|} ↑C(m, k+j) · bs.getD j 0` provided `c = ↑C(m, k)`.-/
+`acc + ∑_{j<|bs|} ↑C(m, k+j) · bs.getD j 0` provided `c = ↑C(m, k)`.
+@isnad1 id=eq.1h5v.s6.fbe1bc3b85d8 from=translated src=- shape=f2413b7b vocab=d98082c1
+-/
 theorem binomSum_loop_eq (m : ℕ) (bs : List ℚ) (k : ℕ) (c acc : ℚ)
     (hc : c = ↑(m.choose k)) :
     binomSum.loop m bs k c acc =
@@ -152,7 +170,9 @@ theorem binomSum_loop_eq (m : ℕ) (bs : List ℚ) (k : ℕ) (c acc : ℚ)
       rw [hc]
       simp [add_assoc, add_left_comm, add_comm, mul_comm]
 
-/-- `binomSum bs m = ∑_{k<|bs|} C(m,k) · bs.getD k 0`.-/
+/-- `binomSum bs m = ∑_{k<|bs|} C(m,k) · bs.getD k 0`.
+@isnad1 id=eq.0h2v.s5.2c45890e34a3 from=translated src=- shape=ccd354ea vocab=339a007e
+-/
 theorem binomSum_eq (bs : List ℚ) (m : ℕ) :
     binomSum bs m =
       ∑ k ∈ range bs.length, ↑(m.choose k) * bs.getD k 0 := by
@@ -160,6 +180,9 @@ theorem binomSum_eq (bs : List ℚ) (m : ℕ) :
   rw [binomSum_loop_eq m bs 0 1 0 (by simp)]
   simp
 
+/--
+@isnad1 id=eq.0h1v.s4.0b0d8b07999c from=translated src=- shape=73ed59bb vocab=4809548e
+-/
 theorem bernoulliList_length (n : ℕ) : (bernoulliList n).length = n + 1 := by
   induction n with
   | zero =>
@@ -168,6 +191,9 @@ theorem bernoulliList_length (n : ℕ) : (bernoulliList n).length = n + 1 := by
       rw [bernoulliList_succ]
       simp [ih]
 
+/--
+@isnad1 id=eq.1h2v.s5.4831aa508cc5 from=translated src=- shape=449f0440 vocab=ec463514
+-/
 theorem bernoulliList_getD_lt (n k : ℕ) (hk : k ≤ n) :
     (bernoulliList (n + 1)).getD k 0 = (bernoulliList n).getD k 0 := by
   simpa [bernoulliList_succ] using
@@ -175,6 +201,9 @@ theorem bernoulliList_getD_lt (n k : ℕ) (hk : k ≤ n) :
       [- binomSum (bernoulliList n) (n + 2) / ((n : ℚ) + 2)] 0 k
       (by simpa [bernoulliList_length] using Nat.lt_succ_of_le hk))
 
+/--
+@isnad1 id=eq.1h2v.s4.037fc5c2ecd8 from=translated src=- shape=792bd66d vocab=822e7eb5
+-/
 theorem bernoulliList_getD_eq :
     ∀ n k : ℕ, k ≤ n → (bernoulliList n).getD k 0 = bernoulli k := by
   intro n
@@ -225,7 +254,9 @@ theorem bernoulliList_getD_eq :
             linarith
           exact ((eq_div_iff hden).2 hmul).symm
 
-/-- `bernoulliCompute n = bernoulli n`.-/
+/-- `bernoulliCompute n = bernoulli n`.
+@isnad1 id=eq.0h1v.s3.4b5a088c61f5 from=translated src=- shape=b70c6bb1 vocab=5c9b0c37
+-/
 theorem bernoulliCompute_eq (n : ℕ) : bernoulliCompute n = bernoulli n := by
   unfold bernoulliCompute
   rw [List.getLast!_eq_getElem!, List.getElem!_eq_getElem?_getD,

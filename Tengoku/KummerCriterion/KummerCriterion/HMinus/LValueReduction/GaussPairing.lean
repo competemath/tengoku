@@ -25,7 +25,9 @@ section GaussSum
 variable (p : ℕ) [hp : Fact p.Prime]
 
 /-- In the `p ≡ 3 [ZMOD 4]` branch, the quadratic Gauss sum
-the raw quadratic character equals `I * √p`.-/
+the raw quadratic character equals `I * √p`.
+@isnad1 id=eq.2h1v.s6.55faf4552bb0 from=translated src=- shape=fdb3335c vocab=21df5375
+-/
 theorem gaussSum_quadraticChar_stdAddChar_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
     gaussSum ((quadraticChar (ZMod p)).ringHomComp (Int.castRingHom ℂ))
@@ -89,6 +91,9 @@ noncomputable def oddCharacterInvPair (χ : DirichletCharacter ℂ p) :
   classical
   exact {χ, χ⁻¹}
 
+/--
+@isnad1 id=eq.1h2v.s6.53053fa13a3d from=translated src=- shape=7031e4e6 vocab=4a3e05c4
+-/
 theorem oddCharacterInvClass_eq_pair
     {χ : DirichletCharacter ℂ p} (hχ : χ ∈ oddCharacters (p := p)) :
     oddCharacterInvClass (p := p) χ = oddCharacterInvPair (p := p) χ := by
@@ -132,6 +137,9 @@ section GaussPairing
 
 variable (p : ℕ) [hp : Fact p.Prime]
 
+/--
+@isnad1 id=eq.3h2v.s6.d56015c57e18 from=translated src=- shape=c414a715 vocab=6fbd96e1
+-/
 theorem oddCharacterInvClass_card
     (hp_odd' : p ≠ 2) (hp₄ : p % 4 = 1) {χ : DirichletCharacter ℂ p}
     (hχ : χ ∈ oddCharacters (p := p)) :
@@ -144,7 +152,9 @@ theorem oddCharacterInvClass_card
   simp [oddCharacterInvPair, hχ_ne]
 
 /-- In the `p ≡ 1 [ZMOD 4]` case, the odd Gauss product is the
-pair product `(-(p: ℂ))` repeated once for each inversion class.-/
+pair product `(-(p: ℂ))` repeated once for each inversion class.
+@isnad1 id=eq.2h1v.s6.df2f63307b56 from=translated src=- shape=ade34092 vocab=1785560a
+-/
 theorem rawGaussProduct_of_mod_four_eq_one
     (hp_odd' : p ≠ 2) (hp₄ : p % 4 = 1) :
     Finset.prod (oddCharacters (p := p))
@@ -215,6 +225,9 @@ noncomputable def oddCharactersWithoutQuadratic :
   classical
   exact (oddCharacters (p := p)).erase (quadraticCharComplex p)
 
+/--
+@isnad1 id=mem.2h1v.s6.f2df7ca40ce3 from=translated src=- shape=da0383e0 vocab=a449fe3f
+-/
 theorem quadraticCharComplex_mem_oddCharacters_of_mod_four_eq_three
     (hp_odd' : p ≠ 2) (hp₄ : p % 4 = 3) :
     quadraticCharComplex p ∈ oddCharacters (p := p) := by
@@ -223,6 +236,9 @@ theorem quadraticCharComplex_mem_oddCharacters_of_mod_four_eq_three
     ⟨Finset.mem_univ _,
       quadraticCharComplex_odd_of_mod_four_eq_three_lvalue (p := p) hp_odd' hp₄⟩
 
+/--
+@isnad1 id=eq.2h1v.s6.034a0946c0f9 from=translated src=- shape=8aa86db3 vocab=15c4ddc5
+-/
 theorem card_oddCharactersWithoutQuadratic_of_mod_four_eq_three
     (hp_odd' : p ≠ 2) (hp₄ : p % 4 = 3) :
     (oddCharactersWithoutQuadratic (p := p)).card = (p - 3) / 2 := by
@@ -234,6 +250,9 @@ theorem card_oddCharactersWithoutQuadratic_of_mod_four_eq_three
   rcases hp.out.odd_of_ne_two hp_odd' with ⟨k, hk⟩
   omega
 
+/--
+@isnad1 id=mem.1h2v.s7.22f0103fb63e from=translated src=- shape=d814bd15 vocab=6e4a9aef
+-/
 theorem inv_mem_oddCharactersWithoutQuadratic {χ : DirichletCharacter ℂ p}
     (hχ : χ ∈ oddCharactersWithoutQuadratic (p := p)) :
     χ⁻¹ ∈ oddCharactersWithoutQuadratic (p := p) := by
@@ -254,6 +273,9 @@ noncomputable def oddCharacterInvClassWithoutQuadratic
     Quotient.mk (oddCharacterInvSetoid (p := p)) ψ =
       Quotient.mk (oddCharacterInvSetoid (p := p)) χ) (oddCharactersWithoutQuadratic (p := p))
 
+/--
+@isnad1 id=eq.1h2v.s6.5290b3b33903 from=translated src=- shape=0e100ec4 vocab=32988389
+-/
 theorem oddCharacterInvClassWithoutQuadratic_eq_pair
     {χ : DirichletCharacter ℂ p} (hχ : χ ∈ oddCharactersWithoutQuadratic (p := p)) :
     oddCharacterInvClassWithoutQuadratic (p := p) χ = oddCharacterInvPair (p := p) χ := by
@@ -294,6 +316,9 @@ theorem oddCharacterInvClassWithoutQuadratic_eq_pair
           rfl)
       simpa [oddCharacterInvClassWithoutQuadratic] using this
 
+/--
+@isnad1 id=eq.2h2v.s6.de746a0725ac from=translated src=- shape=9d417b38 vocab=ec9b9015
+-/
 theorem oddCharacterInvClassWithoutQuadratic_card
     (hp_odd' : p ≠ 2) {χ : DirichletCharacter ℂ p}
     (hχ : χ ∈ oddCharactersWithoutQuadratic (p := p)) :
@@ -310,6 +335,9 @@ theorem oddCharacterInvClassWithoutQuadratic_card
   rw [oddCharacterInvClassWithoutQuadratic_eq_pair (p := p) hχ]
   simp [oddCharacterInvPair, hχ_ne]
 
+/--
+@isnad1 id=eq.2h1v.s6.124514af5ec6 from=translated src=- shape=ade34092 vocab=22cac6a9
+-/
 theorem rawGaussProduct_withoutQuadratic_of_mod_four_eq_three
     (hp_odd' : p ≠ 2) (hp₄ : p % 4 = 3) :
     Finset.prod (oddCharactersWithoutQuadratic (p := p))
@@ -387,7 +415,9 @@ theorem rawGaussProduct_withoutQuadratic_of_mod_four_eq_three
           rw [hqcard]
 
 /-- In the `p ≡ 3 [ZMOD 4]` case, isolate the quadratic character
-and pair the remaining odd characters by inversion.-/
+and pair the remaining odd characters by inversion.
+@isnad1 id=eq.2h1v.s7.33425af36dc9 from=translated src=- shape=55e68177 vocab=350c7e31
+-/
 theorem rawGaussProduct_of_mod_four_eq_three
     (hp_odd' : p ≠ 2) (hp₄ : p % 4 = 3) :
     Finset.prod (oddCharacters (p := p))

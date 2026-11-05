@@ -30,11 +30,16 @@ variable (p : ℕ) [hp : Fact p.Prime] (hp_odd : p ≠ 2)
 
 local notation3 "K⁺" => NumberField.maximalRealSubfield K
 
+/--
+@isnad1 id=eq.0h2v.s6.60c2da143a38 from=translated src=- shape=d2563b3f vocab=6d2f72ee
+-/
 theorem zeta_toInteger_pow_eq_one :
     ((zeta_spec p ℚ K).toInteger : 𝓞 K) ^ p = 1 :=
   (zeta_spec p ℚ K).toInteger_isPrimitiveRoot.pow_eq_one
 
-/-- `ζ^{p-1} · ζ = 1`, i.e. `ζ⁻¹ = ζ^{p-1}`.-/
+/-- `ζ^{p-1} · ζ = 1`, i.e. `ζ⁻¹ = ζ^{p-1}`.
+@isnad1 id=eq.0h2v.s7.596a99f9abaa from=translated src=- shape=0bd224d5 vocab=d45589ec
+-/
 theorem zeta_toInteger_pow_pred_mul :
     ((zeta_spec p ℚ K).toInteger : 𝓞 K) ^ (p - 1) *
       ((zeta_spec p ℚ K).toInteger : 𝓞 K) = 1 := by
@@ -47,12 +52,17 @@ distinguished primitive `p`-th root of unity
 noncomputable def zetaPrime : Ideal (𝓞 K) :=
   Ideal.span {((zeta_spec p ℚ K).toInteger - 1 : 𝓞 K)}
 
+/--
+@isnad1 id=isprime.0h2v.s5.bd65ccc4319f from=translated src=- shape=f7e344b7 vocab=5bcab5f5
+-/
 instance zetaPrime_isPrime : (zetaPrime p K).IsPrime :=
   (Ideal.span_singleton_prime
     (zeta_spec p ℚ K).zeta_sub_one_prime'.ne_zero).mpr
     (zeta_spec p ℚ K).zeta_sub_one_prime'
 
-/-- `zetaPrime` is nonzero.-/
+/-- `zetaPrime` is nonzero.
+@isnad1 id=ne.0h2v.s6.d4f0e0389ac8 from=translated src=- shape=0344edf2 vocab=f7a2f452
+-/
 theorem zetaPrime_ne_bot : zetaPrime p K ≠ ⊥ := by
   rw [zetaPrime, Ne, Ideal.span_singleton_eq_bot]
   exact (zeta_spec p ℚ K).zeta_sub_one_prime'.ne_zero
@@ -68,7 +78,9 @@ instance [IsCMField K] : (zetaPrime p K).LiesOver (zetaPrimePlus p K) :=
   Ideal.over_under _
 
 /-- On the distinguished root of unity, `c(ζ) = ζ^{p-1}` as integers.
-This is the key algebraic identity making `c` act on 𝓞 K.-/
+This is the key algebraic identity making `c` act on 𝓞 K.
+@isnad1 id=eq.0h2v.s9.2268f227f766 from=translated src=- shape=64e36d97 vocab=edb67d08
+-/
 lemma complexConj_apply_zeta [IsCMField K] :
     (ringOfIntegersComplexConj K (zeta_spec p ℚ K).toInteger : 𝓞 K) =
       ((zeta_spec p ℚ K).toInteger : 𝓞 K) ^ (p - 1) := by
@@ -88,7 +100,9 @@ lemma complexConj_apply_zeta [IsCMField K] :
   rfl
 
 /-- Complex conjugation `c` acts as the identity on the residue field
-`𝓞 K / 𝔓`: equivalently, `c(x) ≡ x (mod 𝔓)` for every `x : 𝓞 K`.-/
+`𝓞 K / 𝔓`: equivalently, `c(x) ≡ x (mod 𝔓)` for every `x : 𝓞 K`.
+@isnad1 id=mem.0h3v.s9.a1aa1fc70f07 from=translated src=- shape=5f075cc8 vocab=3674d12e
+-/
 theorem complexConj_sub_mem_zetaPrime [IsCMField K] (x : 𝓞 K) :
     (ringOfIntegersComplexConj K x : 𝓞 K) - x ∈ zetaPrime p K := by
   have hζ := IsCyclotomicExtension.zeta_spec p ℚ K
@@ -143,7 +157,9 @@ theorem complexConj_sub_mem_zetaPrime [IsCMField K] (x : 𝓞 K) :
       (Ideal.mul_mem_left _ _ hpy)
 
 /-- Key algebraic identity: `π · c(π) = -ζ^{p-1} · π²` in `𝓞 K`, where
-`π = ζ - 1`. Consequence: `π · c(π)` is associate to `π²`.-/
+`π = ζ - 1`. Consequence: `π · c(π)` is associate to `π²`.
+@isnad1 id=eq.0h2v.s9.1034a0580d2d from=translated src=- shape=b97be5af vocab=613ccd66
+-/
 lemma pi_mul_complexConj_pi_eq [IsCMField K] :
     ((zeta_spec p ℚ K).toInteger - 1 : 𝓞 K) *
       ringOfIntegersComplexConj K ((zeta_spec p ℚ K).toInteger - 1) =
@@ -158,7 +174,9 @@ lemma pi_mul_complexConj_pi_eq [IsCMField K] :
   rw [hc_pi]
   linear_combination (hζ.toInteger - 1) * hpow_succ
 
-/-- `π · c(π)` is fixed by complex conjugation, hence lies in `𝓞_{K⁺}`.-/
+/-- `π · c(π)` is fixed by complex conjugation, hence lies in `𝓞_{K⁺}`.
+@isnad1 id=eq.0h2v.s10.ee542ac9f945 from=translated src=- shape=4394a314 vocab=5c4c85e9
+-/
 lemma complexConj_pi_mul_complexConj_pi [IsCMField K] :
     ringOfIntegersComplexConj K
         (((zeta_spec p ℚ K).toInteger - 1) *
@@ -177,6 +195,9 @@ noncomputable def piPlus [IsCMField K] : 𝓞 (K⁺) := by
     RingOfIntegers.complexConj_eq_self_iff] at hfix
   exact hfix.choose
 
+/--
+@isnad1 id=eq.0h2v.s10.3e0d8a7cbf18 from=translated src=- shape=ef8303af vocab=82d87507
+-/
 lemma algebraMap_piPlus [IsCMField K] :
     (algebraMap (𝓞 (K⁺)) (𝓞 K)) (piPlus p K) =
       ((zeta_spec p ℚ K).toInteger - 1 : 𝓞 K) *
@@ -188,7 +209,9 @@ lemma algebraMap_piPlus [IsCMField K] :
   rw [← hfix.choose_spec]; rfl
 
 /-- `(piPlus) · 𝓞 K = 𝔓²`. Concrete form of the ramification fact
-`e(𝔓 | 𝔓⁺) = 2`.-/
+`e(𝔓 | 𝔓⁺) = 2`.
+@isnad1 id=eq.0h2v.s10.66c9226ab9ce from=translated src=- shape=6ec7f0e3 vocab=0794b1ea
+-/
 theorem map_span_piPlus_eq_zetaPrime_sq [IsCMField K] :
     (Ideal.span {piPlus p K}).map (algebraMap (𝓞 (K⁺)) (𝓞 K)) =
       zetaPrime p K ^ 2 := by

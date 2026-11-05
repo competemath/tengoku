@@ -42,12 +42,16 @@ noncomputable def dirichletCharacterMulEquivUnits : DirichletCharacter ℂ p ≃
   letI : NeZero p := ⟨hp.1.ne_zero⟩
   exact (DirichletCharacter.mulEquiv_units ℂ p).some
 
-/-- There are exactly `p - 1` complex-valued Dirichlet characters modulo `p`.-/
+/-- There are exactly `p - 1` complex-valued Dirichlet characters modulo `p`.
+@isnad1 id=eq.0h1v.s5.009662a88c45 from=translated src=- shape=35d740fc vocab=0be882ce
+-/
 lemma card_dirichletCharacter_complex : Nat.card (DirichletCharacter ℂ p) = p - 1 := by
   rw [DirichletCharacter.card_eq_totient_of_hasEnoughRootsOfUnity, Nat.totient_prime hp.1]
 
 /-- For prime modulus `p`, the `L`-function of the trivial character is
-`(1 - p^{-s}) ζ(s)`.-/
+`(1 - p^{-s}) ζ(s)`.
+@isnad1 id=eq.1h2v.s5.e1ccc4c50167 from=translated src=- shape=640164ad vocab=0407620e
+-/
 lemma LFunction_trivial_eq_mul_riemannZeta {s : ℂ} (hs : s ≠ 1) :
     DirichletCharacter.LFunctionTrivChar p s =
       (1 - (p : ℂ) ^ (-s)) * riemannZeta s := by
@@ -81,7 +85,9 @@ noncomputable def oddCharacters : Finset (DirichletCharacter ℂ p) := by
   classical
   exact Finset.univ.filter fun χ => χ.Odd
 
-/-- The inverse of an odd Dirichlet character stays in `oddCharacters`.-/
+/-- The inverse of an odd Dirichlet character stays in `oddCharacters`.
+@isnad1 id=mem.1h2v.s7.6819356d85e0 from=translated src=- shape=b9fd9b86 vocab=77746b47
+-/
 theorem inv_mem_oddCharacters (p : ℕ) {χ : DirichletCharacter ℂ p}
     (hχ : χ ∈ oddCharacters p) : χ⁻¹ ∈ oddCharacters p := by
   classical
@@ -129,7 +135,9 @@ noncomputable def zetaInteger : 𝓞 K :=
 
 /-! ### Step C — character-side local factor skeleton -/
 
-/-- If `ℓ` is a prime different from `p`, then `p` and `ℓ` are coprime.-/
+/-- If `ℓ` is a prime different from `p`, then `p` and `ℓ` are coprime.
+@isnad1 id=coprime.1h2v.s4.27510cf9c2ad from=translated src=- shape=f25fe126 vocab=cbd0eef3
+-/
 lemma coprime_of_prime_ne {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) : p.Coprime ℓ :=
   (Nat.coprime_primes hp.out (Fact.out : ℓ.Prime)).mpr (Ne.symm hℓp)
 
@@ -147,19 +155,27 @@ group cardinality.-/
 noncomputable def localPrimeCount (ℓ : ℕ) [Fact ℓ.Prime] (hℓp : ℓ ≠ p) : ℕ :=
   Nat.card (DirichletCharacter ℂ p) / localResidueDegree (p := p) ℓ hℓp
 
+/--
+@isnad1 id=dvd.1h2v.s5.432d2b40f9b9 from=translated src=- shape=81cdc46a vocab=54fdc0e9
+-/
 lemma localResidueDegree_dvd_card_characters {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) :
     localResidueDegree (p := p) ℓ hℓp ∣ Nat.card (DirichletCharacter ℂ p) := by
   rw [card_dirichletCharacter_complex (p := p)]
   simpa [localResidueDegree, ZMod.card_units p] using
     (orderOf_dvd_card (x := unitOfPrimeNe (p := p) ℓ hℓp))
 
+/--
+@isnad1 id=eq.1h2v.s5.4adc8c7af192 from=translated src=- shape=f3b9ff90 vocab=f58f4397
+-/
 lemma localPrimeCount_mul_localResidueDegree {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) :
     localPrimeCount (p := p) ℓ hℓp * localResidueDegree (p := p) ℓ hℓp =
       Nat.card (DirichletCharacter ℂ p) :=
   Nat.div_mul_cancel (localResidueDegree_dvd_card_characters (p := p) hℓp)
 
 /-- Classical polynomial identity in `ℂ`: the product of `(1 - ζ T)` over all
-`d`-th roots of unity equals `1 - T^d`.-/
+`d`-th roots of unity equals `1 - T^d`.
+@isnad1 id=eq.1h2v.s6.e31d5bf9953b from=translated src=- shape=c9d21d66 vocab=4c7b64bb
+-/
 lemma prod_nthRootsFinset_one_sub_mul (d : ℕ) (hd : 0 < d) (T : ℂ) :
     ∏ ζ ∈ Polynomial.nthRootsFinset d (1 : ℂ), (1 - ζ * T) = 1 - T ^ d := by
   by_cases hT : T = 0
@@ -190,7 +206,9 @@ lemma _root_.IsPrimitiveRoot.pow_isPrimitiveRoot_div_gcd
   exact hω.pow_div_gcd a (Nat.ne_of_gt (Nat.gcd_pos_of_pos_left a hn))
 
 /-- Polynomial identity: for `ω` a primitive `n`-th root of unity in `ℂ` and any
-`a: ℕ`, `∏_{k = 0..n-1} (1 - ω^{ka} T) = (1 - T^{n/gcd(n,a)})^{gcd(n,a)}`.-/
+`a: ℕ`, `∏_{k = 0..n-1} (1 - ω^{ka} T) = (1 - T^{n/gcd(n,a)})^{gcd(n,a)}`.
+@isnad1 id=eq.2h4v.s7.63bf354128c5 from=translated src=- shape=3e842a80 vocab=d5dec083
+-/
 lemma prod_pow_primRoot_eq_pow {n : ℕ} (hn : 0 < n) (a : ℕ)
     {ω : ℂ} (hω : IsPrimitiveRoot ω n) (T : ℂ) :
     ∏ k ∈ Finset.range n, (1 - ω ^ (k * a) * T) =
@@ -285,7 +303,9 @@ lemma prod_pow_primRoot_eq_pow {n : ℕ} (hn : 0 < n) (a : ℕ)
 for `u: (ZMod p)ˣ` with `orderOf u = d`, as `χ` ranges over
 `DirichletCharacter ℂ p`, the values `χ(u)` hit each `d`-th root of unity
 exactly `(p - 1) / d` times, so the product `∏_χ (1 - χ(u) T)` is
-`(1 - T^d)^{(p-1)/d}`.-/
+`(1 - T^d)^{(p-1)/d}`.
+@isnad1 id=eq.0h3v.s8.f88e3e0ba9ed from=translated src=- shape=86d362a7 vocab=9ebc10f9
+-/
 lemma prod_characters_eval_eq_pow (u : (ZMod p)ˣ) (T : ℂ) :
     (∏ χ : DirichletCharacter ℂ p, (1 - χ (u : ZMod p) * T)) =
       (1 - T ^ orderOf u) ^ (Nat.card (DirichletCharacter ℂ p) / orderOf u) := by
@@ -369,6 +389,9 @@ lemma prod_characters_eval_eq_pow (u : (ZMod p)ˣ) (T : ℂ) :
           rw [hχAt_u k]
   rw [h_transfer, prod_pow_primRoot_eq_pow hn_pos a hω T, ← hd_eq, hn_div_d]
 
+/--
+@isnad1 id=eq.1h3v.s6.77ce01c7cd76 from=translated src=- shape=2981d9d4 vocab=0b0dc471
+-/
 lemma charLocalFactor_prime_ne_p_via_unit_order {ℓ : ℕ} [Fact ℓ.Prime]
     (hℓp : ℓ ≠ p) {s : ℂ} :
     charLocalFactor (p := p) ℓ s =
@@ -381,6 +404,9 @@ lemma charLocalFactor_prime_ne_p_via_unit_order {ℓ : ℕ} [Fact ℓ.Prime]
   unfold localResidueDegree
   exact prod_characters_eval_eq_pow p (unitOfPrimeNe p ℓ hℓp) ((ℓ : ℂ) ^ (-s))
 
+/--
+@isnad1 id=eq.1h3v.s6.330660f0da8f from=translated src=- shape=0267bd0b vocab=96f6043e
+-/
 lemma charLocalFactor_eq_pow_localResidueDegree {ℓ : ℕ} [Fact ℓ.Prime]
     (hℓp : ℓ ≠ p) {s : ℂ} :
     charLocalFactor (p := p) ℓ s =
@@ -398,7 +424,9 @@ lemma charLocalFactor_eq_pow_localResidueDegree {ℓ : ℕ} [Fact ℓ.Prime]
 (since `0` is not a unit), so each factor `(1 - χ(p)·p^{-s})` equals `1` and the
 full character-side local factor is `1`. This differs from the Dedekind-side
 local factor `1 - p^{-s}` by exactly the `(1 - p^{-s})` factor distinguishing
-`LFunctionTrivChar p s` from the primitive `ζ(s)`.-/
+`LFunctionTrivChar p s` from the primitive `ζ(s)`.
+@isnad1 id=eq.0h2v.s4.ecfea35d4ffe from=translated src=- shape=9fe17447 vocab=24a4ea3e
+-/
 lemma charLocalFactor_at_p {s : ℂ} :
     charLocalFactor (p := p) p s = 1 :=
   Finset.prod_eq_one fun χ _ => by
@@ -406,6 +434,9 @@ lemma charLocalFactor_at_p {s : ℂ} :
 
 /-! ### Step D — Dedekind-side local factor skeleton -/
 
+/--
+@isnad1 id=iff.0h3v.s7.c95341bbc34b from=translated src=- shape=920fbb84 vocab=a32b8750
+-/
 lemma mem_primesOverFinset_iff {ℓ : ℕ} [Fact ℓ.Prime] {P : Ideal (𝓞 K)} :
     P ∈ primesOverFinset K ℓ ↔ P ∈ Ideal.primesOver (rationalPrimeIdeal ℓ) (𝓞 K) := by
   have : (rationalPrimeIdeal ℓ).IsMaximal := Int.ideal_span_isMaximal_of_prime ℓ
@@ -414,14 +445,23 @@ lemma mem_primesOverFinset_iff {ℓ : ℕ} [Fact ℓ.Prime] {P : Ideal (𝓞 K)}
     exact_mod_cast (Fact.out : ℓ.Prime).ne_zero
   exact IsDedekindDomain.mem_primesOverFinset_iff hne (𝓞 K)
 
+/--
+@isnad1 id=eq.0h2v.s9.8c1218c82f5a from=translated src=- shape=e08ae44e vocab=90136af0
+-/
 lemma zetaInteger_isIntegralGenerator :
     Algebra.adjoin ℤ ({zetaInteger (p := p) (K := K)} : Set (𝓞 K)) = ⊤ := by
   exact IsCyclotomicExtension.Rat.adjoin_singleton_eq_top (IsCyclotomicExtension.zeta_spec p ℚ K)
 
+/--
+@isnad1 id=eq.0h2v.s5.ff9420612736 from=translated src=- shape=24b5e0db vocab=84560f2b
+-/
 lemma zetaInteger_exponent_eq_one :
     RingOfIntegers.exponent (zetaInteger (p := p) (K := K)) = 1 :=
   RingOfIntegers.exponent_eq_one_iff.mpr (zetaInteger_isIntegralGenerator (p := p) (K := K))
 
+/--
+@isnad1 id=not.0h3v.s5.f2c7e96176ee from=translated src=- shape=1d7447f0 vocab=d00e9226
+-/
 lemma prime_not_dvd_zetaInteger_exponent {ℓ : ℕ} [Fact ℓ.Prime] :
     ¬ ℓ ∣ RingOfIntegers.exponent (zetaInteger (p := p) (K := K)) := by
   rw [zetaInteger_exponent_eq_one]
@@ -434,6 +474,9 @@ noncomputable def primesOverEquivMonicFactorsMod (ℓ : ℕ) [Fact ℓ.Prime] :
     (K := K) (θ := zetaInteger (p := p) (K := K))
     (p := ℓ) (prime_not_dvd_zetaInteger_exponent (p := p) (K := K) (ℓ := ℓ))
 
+/--
+@isnad1 id=eq.1h3v.s6.1c23890437e1 from=translated src=- shape=3c8525dd vocab=40215b26
+-/
 lemma monicFactorsMod_card_eq_localPrimeCount {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) :
     (RingOfIntegers.monicFactorsMod (θ := zetaInteger (p := p) (K := K)) (p := ℓ)).card =
       localPrimeCount (p := p) ℓ hℓp := by
@@ -454,10 +497,16 @@ lemma monicFactorsMod_card_eq_localPrimeCount {ℓ : ℕ} [Fact ℓ.Prime] (hℓ
     ← orderOf_units (y := ZMod.unitOfCoprime ℓ _), ZMod.coe_unitOfCoprime,
     ZMod.coe_unitOfCoprime, pow_one]
 
+/--
+@isnad1 id=eq.0h2v.s6.5a632706dcd4 from=translated src=- shape=41f38d3d vocab=ff0949d8
+-/
 lemma ncard_primesOver_at_p_eq_one :
     (Ideal.primesOver (rationalPrimeIdeal p) (𝓞 K)).ncard = 1 :=
   IsCyclotomicExtension.Rat.ncard_primesOver_of_prime p K
 
+/--
+@isnad1 id=eq.1h3v.s7.73aa9cebd926 from=translated src=- shape=af1db2d2 vocab=58e297ad
+-/
 lemma primesOver_inertiaDeg_eq_one_at_p (P : Ideal (𝓞 K))
     (hP : P ∈ Ideal.primesOver (rationalPrimeIdeal p) (𝓞 K)) :
     P.inertiaDeg ℤ = 1 := by
@@ -466,6 +515,9 @@ lemma primesOver_inertiaDeg_eq_one_at_p (P : Ideal (𝓞 K))
     simpa [rationalPrimeIdeal] using hP.2
   simpa [rationalPrimeIdeal] using IsCyclotomicExtension.Rat.inertiaDeg_eq_of_prime p K P
 
+/--
+@isnad1 id=eq.2h4v.s7.c1158c1737ec from=translated src=- shape=bd60f306 vocab=e09bf6cc
+-/
 lemma primesOver_inertiaDeg_eq_localResidueDegree {ℓ : ℕ} [Fact ℓ.Prime]
     (hℓp : ℓ ≠ p) (P : Ideal (𝓞 K))
     (hP : P ∈ Ideal.primesOver (rationalPrimeIdeal ℓ) (𝓞 K)) :
@@ -479,6 +531,9 @@ lemma primesOver_inertiaDeg_eq_localResidueDegree {ℓ : ℕ} [Fact ℓ.Prime]
   rw [← orderOf_units]
   rfl
 
+/--
+@isnad1 id=eq.2h4v.s7.1e6d29081260 from=translated src=- shape=2aa8360b vocab=fc210771
+-/
 lemma primesOver_ramificationIdx_eq_one {ℓ : ℕ} [Fact ℓ.Prime]
     (hℓp : ℓ ≠ p) (P : Ideal (𝓞 K))
     (hP : P ∈ Ideal.primesOver (rationalPrimeIdeal ℓ) (𝓞 K)) :
@@ -489,6 +544,9 @@ lemma primesOver_ramificationIdx_eq_one {ℓ : ℕ} [Fact ℓ.Prime]
     (Fact.out : ℓ.Prime) hp.out).mp h)
   exact IsCyclotomicExtension.Rat.ramificationIdx_eq_of_not_dvd ℓ K P hcop
 
+/--
+@isnad1 id=eq.1h3v.s6.0b5c95c3a0cd from=translated src=- shape=bd858633 vocab=426404a4
+-/
 lemma ncard_primesOver_eq_localPrimeCount {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) :
     (Ideal.primesOver (rationalPrimeIdeal ℓ) (𝓞 K)).ncard =
       localPrimeCount (p := p) ℓ hℓp := by
@@ -497,6 +555,9 @@ lemma ncard_primesOver_eq_localPrimeCount {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : 
     ← Nat.card_coe_set_eq, Nat.card_congr (primesOverEquivMonicFactorsMod (p := p) (K := K) ℓ),
     Nat.card_eq_finsetCard]
 
+/--
+@isnad1 id=eq.1h4v.s6.d52d232fdcaa from=translated src=- shape=310f303f vocab=3b5e4f97
+-/
 lemma dedekindLocalFactor_eq_pow_localResidueDegree {ℓ : ℕ} [Fact ℓ.Prime]
     (hℓp : ℓ ≠ p) {s : ℂ} :
     dedekindLocalFactor K ℓ s =
@@ -536,6 +597,9 @@ lemma dedekindLocalFactor_eq_pow_localResidueDegree {ℓ : ℕ} [Fact ℓ.Prime]
       this]
   rw [Finset.prod_congr rfl hprod_eq, Finset.prod_const, hcard_eq]
 
+/--
+@isnad1 id=eq.0h3v.s6.84faadedcf08 from=translated src=- shape=d4a979ec vocab=3c9a5126
+-/
 lemma dedekindLocalFactor_at_p {s : ℂ} :
     dedekindLocalFactor K p s = 1 - (p : ℂ) ^ (-s) := by
   classical

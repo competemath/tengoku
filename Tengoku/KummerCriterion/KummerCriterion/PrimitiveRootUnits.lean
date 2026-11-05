@@ -24,10 +24,16 @@ noncomputable def unit' {K : Type*} [Field K] [CharZero K] {ζ : K} {k : ℕ}
     [NeZero k] (hζ : IsPrimitiveRoot ζ k) : (𝓞 K)ˣ :=
   (hζ.toInteger_isPrimitiveRoot.isUnit (NeZero.ne k)).unit
 
+/--
+@isnad1 id=isprimit.1h3v.s6.a5dea534c528 from=translated src=- shape=8e6e032b vocab=99027ecb
+-/
 lemma unit'_coe {K : Type*} [Field K] [CharZero K] {ζ : K} {k : ℕ}
     [NeZero k] (hζ : IsPrimitiveRoot ζ k) : IsPrimitiveRoot (hζ.unit' : 𝓞 K) k :=
   hζ.toInteger_isPrimitiveRoot
 
+/--
+@isnad1 id=eq.1h3v.s7.23f4c5dc1d78 from=translated src=- shape=b8413e22 vocab=e6dc1791
+-/
 lemma unit'_pow {K : Type*} [Field K] [CharZero K] {ζ : K} {k : ℕ}
     [NeZero k] (hζ : IsPrimitiveRoot ζ k) : hζ.unit' ^ k = 1 :=
   Units.ext hζ.toInteger_isPrimitiveRoot.pow_eq_one

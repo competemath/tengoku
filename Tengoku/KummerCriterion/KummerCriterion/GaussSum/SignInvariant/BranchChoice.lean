@@ -31,7 +31,9 @@ variable (p : ℕ) [hp : Fact p.Prime]
 attribute [local instance] Classical.decEq Classical.propDecidable
 
 /-- The even complex Dirichlet characters modulo `p` have cardinality
-`(p - 1) / 2`.-/
+`(p - 1) / 2`.
+@isnad1 id=eq.1h1v.s6.3bfedb96b7d9 from=translated src=- shape=e827cb13 vocab=b3b84ea0
+-/
 theorem card_even_characters (hp₂ : p ≠ 2) :
     (Finset.univ.filter fun χ : DirichletCharacter ℂ p => χ.Even).card = (p - 1) / 2 := by
   classical
@@ -105,13 +107,22 @@ theorem card_even_characters (hp₂ : p ≠ 2) :
     omega
   simpa [E] using hcardE
 
+/--
+@isnad1 id=eq.0h2v.s7.d2abc198bc97 from=translated src=- shape=bf8222f5 vocab=544690ff
+-/
 theorem inv_eval_neg_one_eq (χ : DirichletCharacter ℂ p) :
     χ⁻¹ (-1 : ZMod p) = χ (-1) := by
   rw [MulChar.inv_apply', inv_neg_one]
 
+/--
+@isnad1 id=iff.0h2v.s5.45337696e3e7 from=translated src=- shape=b4299c56 vocab=8965dc6f
+-/
 theorem even_inv_iff {χ : DirichletCharacter ℂ p} : χ⁻¹.Even ↔ χ.Even := by
   simp [DirichletCharacter.Even, inv_eval_neg_one_eq (p := p) χ]
 
+/--
+@isnad1 id=odd.2h1v.s5.72c9bfb56f23 from=translated src=- shape=4367746b vocab=2a9e99e8
+-/
 theorem quadraticCharComplex_odd_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
     (quadraticCharComplex p).Odd := by
@@ -126,16 +137,25 @@ noncomputable def evenNonselfdualCharacterFinset : Finset (DirichletCharacter �
 noncomputable def evenNonselfdualCharacterReps : Finset (DirichletCharacter ℂ p) :=
   (nonselfdualCharacterReps (p := p)).filter fun χ => χ.Even
 
+/--
+@isnad1 id=iff.0h2v.s7.9a5d63272f3f from=translated src=- shape=6441d8b0 vocab=4c26fa9c
+-/
 theorem mem_evenNonselfdualCharacterFinset_iff (χ : DirichletCharacter ℂ p) :
     χ ∈ evenNonselfdualCharacterFinset (p := p) ↔
       χ ∈ nonselfdualCharacterFinset (p := p) ∧ χ.Even := by
   simp [evenNonselfdualCharacterFinset]
 
+/--
+@isnad1 id=iff.0h2v.s7.9106979936a8 from=translated src=- shape=6441d8b0 vocab=6f472195
+-/
 theorem mem_evenNonselfdualCharacterReps_iff (χ : DirichletCharacter ℂ p) :
     χ ∈ evenNonselfdualCharacterReps (p := p) ↔
       χ ∈ nonselfdualCharacterReps (p := p) ∧ χ.Even := by
   simp [evenNonselfdualCharacterReps]
 
+/--
+@isnad1 id=eq.1h1v.s7.ab6433312c15 from=translated src=- shape=077ac455 vocab=bee2c31a
+-/
 theorem evenNonselfdualCharacterFinset_eq_union_evenReps_image_inv (hp₂ : p ≠ 2) :
     evenNonselfdualCharacterFinset (p := p) =
       evenNonselfdualCharacterReps (p := p) ∪
@@ -166,6 +186,9 @@ theorem evenNonselfdualCharacterFinset_eq_union_evenReps_image_inv (hp₂ : p �
             ((mem_nonselfdualCharacterReps_iff (p := p) ψ).1 hψrep' |>.1),
           (even_inv_iff (p := p) (χ := ψ)).2 hψeven⟩
 
+/--
+@isnad1 id=disjoint.0h1v.s6.d56b7916218a from=translated src=- shape=356fe337 vocab=1b302387
+-/
 theorem disjoint_evenNonselfdualCharacterReps_image_inv :
     Disjoint (evenNonselfdualCharacterReps (p := p))
       ((evenNonselfdualCharacterReps (p := p)).image fun χ => χ⁻¹) := by
@@ -180,6 +203,9 @@ theorem disjoint_evenNonselfdualCharacterReps_image_inv :
     simpa [hψ] using hχrep'
   exact (inv_not_mem_nonselfdualCharacterReps (p := p) hψrep') hψinv
 
+/--
+@isnad1 id=eq.2h1v.s6.c24ec850c52e from=translated src=- shape=8aa86db3 vocab=89855654
+-/
 theorem card_evenNonselfdualCharacterFinset_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
     (evenNonselfdualCharacterFinset (p := p)).card = (p - 3) / 2 := by
@@ -214,6 +240,9 @@ theorem card_evenNonselfdualCharacterFinset_of_mod_four_eq_three
     omega
   · simpa [E] using htriv_even
 
+/--
+@isnad1 id=eq.2h1v.s6.2661681f2278 from=translated src=- shape=8aa86db3 vocab=dfc3983c
+-/
 theorem card_evenNonselfdualCharacterReps_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
     (evenNonselfdualCharacterReps (p := p)).card = (p - 3) / 4 := by
@@ -235,6 +264,9 @@ theorem card_evenNonselfdualCharacterReps_of_mod_four_eq_three
     reps.card = ((p - 3) / 2) / 2 := hdiv.symm
     _ = (p - 3) / 4 := hquarter
 
+/--
+@isnad1 id=eq.0h1v.s7.36eef71d9780 from=translated src=- shape=f68497ea vocab=e3d2f004
+-/
 theorem prod_pairBlockDeterminants_eq_negOnePow_card_evenReps :
     Finset.prod (nonselfdualCharacterReps (p := p)) (fun χ => -(χ (-1))) =
       (-1 : ℂ) ^ (evenNonselfdualCharacterReps (p := p)).card := by
@@ -271,6 +303,9 @@ theorem prod_pairBlockDeterminants_eq_negOnePow_card_evenReps :
     _ = (-1 : ℂ) ^ (evenNonselfdualCharacterReps (p := p)).card := by
           simp [evenNonselfdualCharacterReps, reps]
 
+/--
+@isnad1 id=eq.2h1v.s7.dc1830469c13 from=translated src=- shape=dc002ca7 vocab=a20655ab
+-/
 theorem prod_pairBlockDeterminants_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
     Finset.prod (nonselfdualCharacterReps (p := p)) (fun χ => -(χ (-1))) =
@@ -279,7 +314,9 @@ theorem prod_pairBlockDeterminants_of_mod_four_eq_three
     card_evenNonselfdualCharacterReps_of_mod_four_eq_three (p := p) hp₂ hp₄]
 
 /-- On the quadratic line, the block scalar is the negative normalized
-quadratic Gauss sum in the `p ≡ 3 [ZMOD 4]` branch.-/
+quadratic Gauss sum in the `p ≡ 3 [ZMOD 4]` branch.
+@isnad1 id=eq.2h1v.s6.bf7af8c3da17 from=translated src=- shape=33cac8de vocab=334269ab
+-/
 theorem normalizedDft_quadraticScalar_eq_neg_scaledGaussSum_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
     normalizedDftConstOneBasisScalar (p := p) (some (quadraticCharComplex p)) =
@@ -290,7 +327,9 @@ theorem normalizedDft_quadraticScalar_eq_neg_scaledGaussSum_of_mod_four_eq_three
   simp [normalizedDftConstOneBasisScalar, hq_ne, quadraticCharComplex_inv (p := p),
     quadraticCharComplex_eval_neg_one_of_mod_four_eq_three (p := p) hp₂ hp₄]
 
-/-- In the imaginary branch, the quadratic block scalar is `-I`.-/
+/-- In the imaginary branch, the quadratic block scalar is `-I`.
+@isnad1 id=eq.2h1v.s5.fa33e9354c30 from=translated src=- shape=7cdf4020 vocab=8dbe9ed2
+-/
 theorem normalizedDft_quadraticScalar_eq_neg_I_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
     normalizedDftConstOneBasisScalar (p := p) (some (quadraticCharComplex p)) = -Complex.I := by
@@ -325,7 +364,9 @@ theorem normalizedDft_quadraticScalar_eq_neg_I_of_mod_four_eq_three
     _ = Complex.I * (-1 : ℂ) := by rw [hneg]
     _ = -Complex.I := by ring
 
-/-- In the `p ≡ 3 [ZMOD 4]` branch, the quadratic Gauss sum is `I * √p`.-/
+/-- In the `p ≡ 3 [ZMOD 4]` branch, the quadratic Gauss sum is `I * √p`.
+@isnad1 id=eq.2h1v.s6.1cad31a720c9 from=translated src=- shape=9cf40083 vocab=6b541780
+-/
 theorem gaussSum_quadraticCharComplex_eq_I_mul_sqrt_of_mod_four_eq_three
     (hp₂ : p ≠ 2) (hp₄ : p % 4 = 3) :
     gaussSum (quadraticCharComplex p) (ZMod.stdAddChar (N := p)) =

@@ -24,7 +24,9 @@ section LValueAtOne
 
 variable (p : ℕ) [hp : Fact p.Prime]
 
-/-- `L(1, χ)` for even primitive characters modulo `p`.-/
+/-- `L(1, χ)` for even primitive characters modulo `p`.
+@isnad1 id=eq.3h2v.s6.e98ee52a285c from=translated src=- shape=434b3ae2 vocab=cb914265
+-/
 theorem even_LFunction_one_eq_evenLValueRhs
     {χ : DirichletCharacter ℂ p} (hχ_prim : χ.IsPrimitive) (hχ_even : χ.Even)
     (hχ_ne_one : χ ≠ 1) :

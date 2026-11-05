@@ -43,12 +43,17 @@ values in `ℂ`.-/
 def dirichletCharacterUnitMonoidHom (χ : DirichletCharacter ℂ p) : (ZMod p)ˣ →* ℂ :=
   (Units.coeHom ℂ).comp χ.toUnitHom
 
+/--
+@isnad1 id=injectiv.0h1v.s6.6d25aa52eb6e from=translated src=- shape=0c8b67aa vocab=8cd6d3f4
+-/
 theorem dirichletCharacterUnitMonoidHom_injective :
     Function.Injective (dirichletCharacterUnitMonoidHom (p := p)) := fun χ ψ hχψ =>
   (DirichletCharacter.toUnitHom_inj χ ψ).mp
     (MonoidHom.ext fun u => Units.ext (DFunLike.congr_fun hχψ u))
 
-/-- Dirichlet characters are linearly independent on the unit group.-/
+/-- Dirichlet characters are linearly independent on the unit group.
+@isnad1 id=linearin.0h1v.s8.2259abe878c9 from=translated src=- shape=74b93aac vocab=c787f0b8
+-/
 theorem linearIndependent_dirichletCharactersOnUnits :
     LinearIndependent ℂ (fun χ : DirichletCharacter ℂ p =>
       (dirichletCharacterUnitMonoidHom (p := p) χ : (ZMod p)ˣ → ℂ)) :=
@@ -62,10 +67,16 @@ def evalAtZeroLinear : (ZMod p → ℂ) →ₗ[ℂ] ℂ where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.d6b7adc3d3ad from=translated src=- shape=e8789427 vocab=64907573
+-/
 @[simp] theorem dirichletCharacter_apply_zero (χ : DirichletCharacter ℂ p) :
     χ (0 : ZMod p) = 0 :=
   MulChar.map_zero χ
 
+/--
+@isnad1 id=eq.0h1v.s7.762f57c86a08 from=translated src=- shape=823fb799 vocab=8c9998d6
+-/
 theorem normalizedDft_deltaZero :
     normalizedDft p (deltaZeroFunction (p := p)) =
       (Real.sqrt p : ℂ)⁻¹ • (fun _ : ZMod p => (1 : ℂ)) := by
@@ -73,6 +84,9 @@ theorem normalizedDft_deltaZero :
   rw [normalizedDft_apply, deltaZeroFunction, dft_deltaZero_eq_constOne]
   simp [smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h1v.s7.eb227bbc2580 from=translated src=- shape=44cdcb36 vocab=13ba4b2c
+-/
 theorem normalizedDft_constOne :
     normalizedDft p (fun _ : ZMod p => (1 : ℂ)) =
       (((Real.sqrt p : ℂ)⁻¹) * p) • deltaZeroFunction (p := p) := by
@@ -115,6 +129,9 @@ def constOneDirichletCharacterFamily (χ : DirichletCharacter ℂ p) : ZMod p �
   exact if hχ : χ = 1 then fun _ : ZMod p => (1 : ℂ) else (χ : ZMod p → ℂ)
 
 omit hp in
+/--
+@isnad1 id=eq.0h1v.s5.95f2f6c602d0 from=translated src=- shape=5d438aaa vocab=289693b6
+-/
 @[simp] theorem constOneDirichletCharacterFamily_one :
     constOneDirichletCharacterFamily (p := p) (1 : DirichletCharacter ℂ p) =
       (fun _ : ZMod p => (1 : ℂ)) := by
@@ -123,6 +140,9 @@ omit hp in
   simp
 
 omit hp in
+/--
+@isnad1 id=eq.1h2v.s6.0f8c2ab06c83 from=translated src=- shape=230e590d vocab=babf5bf4
+-/
 theorem constOneDirichletCharacterFamily_eq_character {χ : DirichletCharacter ℂ p}
     (hχ : χ ≠ 1) :
     constOneDirichletCharacterFamily (p := p) χ = (χ : ZMod p → ℂ) := by
@@ -130,12 +150,18 @@ theorem constOneDirichletCharacterFamily_eq_character {χ : DirichletCharacter �
   rw [constOneDirichletCharacterFamily]
   simp [hχ]
 
+/--
+@isnad1 id=eq.0h1v.s8.69d94837ae34 from=translated src=- shape=bc6d945d vocab=1e5aaade
+-/
 @[simp] theorem restrictUnits_deltaZero :
     restrictUnitsLinear (p := p) (deltaZeroFunction (p := p)) = 0 := by
   ext u
   have hu : ((u : (ZMod p)) ≠ 0) := Units.ne_zero u
   simp [restrictUnitsLinear, deltaZeroFunction, hu]
 
+/--
+@isnad1 id=eq.0h2v.s9.46bdc055567f from=translated src=- shape=e2282992 vocab=6afea7f9
+-/
 @[simp] theorem restrictUnits_constOneDirichletCharacterFamily
     (χ : DirichletCharacter ℂ p) :
     restrictUnitsLinear (p := p) (constOneDirichletCharacterFamily (p := p) χ) =
@@ -151,7 +177,9 @@ theorem constOneDirichletCharacterFamily_eq_character {χ : DirichletCharacter �
     simp [restrictUnitsLinear, dirichletCharacterUnitMonoidHom]
 
 /-- The characters remain linearly independent after replacing the trivial
-character by the constant-`1` function.-/
+character by the constant-`1` function.
+@isnad1 id=linearin.0h1v.s5.0c99250daff1 from=translated src=- shape=bb94f6cd vocab=57bce4ff
+-/
 theorem linearIndependent_constOneDirichletCharacterFamily :
     LinearIndependent ℂ (constOneDirichletCharacterFamily (p := p)) := by
   classical
@@ -164,6 +192,9 @@ theorem linearIndependent_constOneDirichletCharacterFamily :
     (Fintype.linearIndependent_iff.mp
       (linearIndependent_dirichletCharactersOnUnits (p := p))) a h_units χ
 
+/--
+@isnad1 id=not.0h1v.s7.ef6421db5bbc from=translated src=- shape=b2074681 vocab=1210a046
+-/
 theorem deltaZero_not_mem_span_constOneDirichletCharacterFamily :
     deltaZeroFunction (p := p) ∉
       Submodule.span ℂ
@@ -194,6 +225,9 @@ def deltaZeroConstOneDirichletCharacterFamily :
   fun o => Option.casesOn' o (deltaZeroFunction (p := p))
     (constOneDirichletCharacterFamily (p := p))
 
+/--
+@isnad1 id=linearin.0h1v.s5.da53a1f4d45f from=translated src=- shape=ed436806 vocab=37261e55
+-/
 theorem linearIndependent_deltaZeroConstOneDirichletCharacterFamily :
     LinearIndependent ℂ (deltaZeroConstOneDirichletCharacterFamily (p := p)) := by
   simpa [deltaZeroConstOneDirichletCharacterFamily] using!
@@ -213,12 +247,18 @@ def deltaZeroConstOneDirichletCharacterBasis :
       rw [Module.finrank_fintype_fun_eq_card, ZMod.card]
       exact Nat.sub_add_cancel hp.out.one_le
 
+/--
+@isnad1 id=eq.0h1v.s7.e9146803bed2 from=translated src=- shape=b212168d vocab=98233a60
+-/
 @[simp] theorem deltaZeroConstOneDirichletCharacterBasis_apply_none :
     deltaZeroConstOneDirichletCharacterBasis (p := p) none = deltaZeroFunction (p := p) := by
   rw [deltaZeroConstOneDirichletCharacterBasis,
     coe_basisOfLinearIndependentOfCardEqFinrank]
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.8d6a1dd840b8 from=translated src=- shape=eb9b77c8 vocab=1143ea02
+-/
 @[simp] theorem deltaZeroConstOneDirichletCharacterBasis_apply_some
     (χ : DirichletCharacter ℂ p) :
     deltaZeroConstOneDirichletCharacterBasis (p := p) (some χ) =
@@ -227,12 +267,18 @@ def deltaZeroConstOneDirichletCharacterBasis :
     coe_basisOfLinearIndependentOfCardEqFinrank]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.3e9437fb6bad from=translated src=- shape=c0272955 vocab=8ab7a870
+-/
 @[simp] theorem deltaZeroConstOneDirichletCharacterBasis_apply_some_one :
     deltaZeroConstOneDirichletCharacterBasis (p := p)
         (some (1 : DirichletCharacter ℂ p)) =
       (fun _ : ZMod p => (1 : ℂ)) := by
   simp [deltaZeroConstOneDirichletCharacterBasis_apply_some, constOneDirichletCharacterFamily_one]
 
+/--
+@isnad1 id=eq.1h2v.s7.b3cb1696244d from=translated src=- shape=183a3e01 vocab=8ab7a870
+-/
 theorem deltaZeroConstOneDirichletCharacterBasis_apply_some_ne_one
     {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) :
     deltaZeroConstOneDirichletCharacterBasis (p := p) (some χ) = (χ : ZMod p → ℂ) := by
@@ -299,6 +345,9 @@ def normalizedDftConstOneBasisScalar (i : Option (DirichletCharacter ℂ p)) : �
       else ((Real.sqrt p : ℂ)⁻¹) *
         (χ⁻¹ (-1) * gaussSum χ (ZMod.stdAddChar (N := p)))
 
+/--
+@isnad1 id=eq.0h2v.s9.016550c9a775 from=translated src=- shape=772dd6bc vocab=407163c8
+-/
 theorem normalizedDft_deltaZeroConstOneDirichletCharacterBasis_eq_smul_perm
     (i : Option (DirichletCharacter ℂ p)) :
     normalizedDft p (deltaZeroConstOneDirichletCharacterBasis (p := p) i) =
@@ -334,6 +383,9 @@ theorem normalizedDft_deltaZeroConstOneDirichletCharacterBasis_eq_smul_perm
           constOneDirichletCharacterFamily_eq_character, smul_eq_mul,
           mul_left_comm, mul_comm]
 
+/--
+@isnad1 id=eq.0h1v.s10.be5a12241c35 from=translated src=- shape=ce13cb6e vocab=a89dee3c
+-/
 theorem toMatrix_deltaZeroConstOneDirichletCharacterBasis_normalizedDft :
     LinearMap.toMatrix
         (deltaZeroConstOneDirichletCharacterBasis (p := p))
@@ -363,6 +415,9 @@ theorem toMatrix_deltaZeroConstOneDirichletCharacterBasis_normalizedDft :
       Equiv.Perm.coe_inv, Option.mem_def, Option.some.injEq, ite_mul, one_mul, zero_mul, hneq',
       ite_false] using hsingle
 
+/--
+@isnad1 id=eq.0h1v.s10.cb24325e3dae from=translated src=- shape=b020e4ac vocab=e0b5d20d
+-/
 theorem det_normalizedDft_eq_sign_mul_prod_basisScalars :
     LinearMap.det (normalizedDft p) =
       (Equiv.Perm.sign (normalizedDftConstOneBasisPerm (p := p)) : ℂ) *
@@ -375,6 +430,9 @@ theorem det_normalizedDft_eq_sign_mul_prod_basisScalars :
   simp
 
 omit hp in
+/--
+@isnad1 id=eq.0h1v.s7.488e21d1fc34 from=translated src=- shape=76c19229 vocab=9d4000f3
+-/
 theorem normalizedDftConstOneBasisPerm_sq :
     (normalizedDftConstOneBasisPerm (p := p)) ^ 2 = 1 := by
   ext i
@@ -396,6 +454,9 @@ theorem normalizedDftConstOneBasisPerm_sq :
         simp [pow_two, normalizedDftConstOneBasisPerm, normalizedDftConstOneBasisPermFun, hχ,
           hχinv]
 
+/--
+@isnad1 id=iff.1h2v.s7.bd4569eb79fa from=translated src=- shape=d45ec9c9 vocab=39717890
+-/
 theorem mem_fixedPoints_normalizedDftConstOneBasisPerm_iff
     (hp₂ : p ≠ 2) (i : Option (DirichletCharacter ℂ p)) :
     i ∈ Function.fixedPoints (normalizedDftConstOneBasisPerm (p := p)) ↔
@@ -433,6 +494,9 @@ theorem mem_fixedPoints_normalizedDftConstOneBasisPerm_iff
           simp [Function.IsFixedPt, normalizedDftConstOneBasisPerm,
             normalizedDftConstOneBasisPermFun, hquad_ne, quadraticCharComplex_inv]
 
+/--
+@isnad1 id=eq.1h1v.s8.0e5ff6362954 from=translated src=- shape=9e89f76e vocab=231753c7
+-/
 theorem card_fixedPoints_normalizedDftConstOneBasisPerm (hp₂ : p ≠ 2) :
     Fintype.card (Function.fixedPoints (normalizedDftConstOneBasisPerm (p := p))) = 1 := by
   classical
@@ -443,6 +507,9 @@ theorem card_fixedPoints_normalizedDftConstOneBasisPerm (hp₂ : p ≠ 2) :
     exact Subtype.ext <|
       (mem_fixedPoints_normalizedDftConstOneBasisPerm_iff (p := p) hp₂ x.1).1 x.2
 
+/--
+@isnad1 id=eq.1h1v.s8.4b6b8fd78cfa from=translated src=- shape=6df0ae71 vocab=1298bc40
+-/
 theorem sign_normalizedDftConstOneBasisPerm (hp₂ : p ≠ 2) :
     (Equiv.Perm.sign (normalizedDftConstOneBasisPerm (p := p)) : ℂ) =
       (-1 : ℂ) ^ ((p - 1) / 2) := by
@@ -455,12 +522,18 @@ theorem sign_normalizedDftConstOneBasisPerm (hp₂ : p ≠ 2) :
   rw [Nat.sub_add_cancel hp.out.one_le]
   simp
 
+/--
+@isnad1 id=eq.1h1v.s10.ab58875e4263 from=translated src=- shape=0ecbc6c9 vocab=a4092348
+-/
 theorem det_normalizedDft_eq_signContribution_mul_prod_basisScalars (hp₂ : p ≠ 2) :
     LinearMap.det (normalizedDft p) =
       (-1 : ℂ) ^ ((p - 1) / 2) * ∏ i, normalizedDftConstOneBasisScalar (p := p) i := by
   rw [det_normalizedDft_eq_sign_mul_prod_basisScalars (p := p),
     sign_normalizedDftConstOneBasisPerm (p := p) hp₂]
 
+/--
+@isnad1 id=eq.1h2v.s7.71889aeccc58 from=translated src=- shape=b5bc9cf3 vocab=0521a427
+-/
 theorem normalizedDftConstOneBasisScalar_mul_inv_eq_eval_neg_one
     {χ : DirichletCharacter ℂ p} (hχ : χ ≠ 1) :
     normalizedDftConstOneBasisScalar (p := p) (some χ) *
@@ -521,6 +594,9 @@ these are exactly the non-self-dual characters.-/
 def nonselfdualCharacterFinset : Finset (DirichletCharacter ℂ p) :=
   (Finset.univ.erase (1 : DirichletCharacter ℂ p)).erase (quadraticCharComplex p)
 
+/--
+@isnad1 id=eq.1h1v.s7.313098a15674 from=translated src=- shape=9e9e2fde vocab=bf871a3e
+-/
 theorem prod_basisScalars_eq_quadraticScalar_mul_prod_nonselfdualScalars (hp₂ : p ≠ 2) :
     ∏ i, normalizedDftConstOneBasisScalar (p := p) i =
       normalizedDftConstOneBasisScalar (p := p) (some (quadraticCharComplex p)) *
@@ -605,6 +681,9 @@ theorem prod_basisScalars_eq_quadraticScalar_mul_prod_nonselfdualScalars (hp₂ 
             (fun χ => normalizedDftConstOneBasisScalar (p := p) (some χ)) := by
             simp [q]
 
+/--
+@isnad1 id=eq.1h1v.s10.492e1830fce2 from=translated src=- shape=ee0d492c vocab=1365dc0d
+-/
 theorem det_normalizedDft_eq_quadraticScalar_mul_prod_nonselfdualScalars (hp₂ : p ≠ 2) :
     LinearMap.det (normalizedDft p) =
       (-1 : ℂ) ^ ((p - 1) / 2) *
@@ -620,6 +699,9 @@ noncomputable def characterIndexEquiv :
     DirichletCharacter ℂ p ≃ Fin (Fintype.card (DirichletCharacter ℂ p)) :=
   Fintype.equivFin (DirichletCharacter ℂ p)
 
+/--
+@isnad1 id=iff.0h2v.s7.f3680cb6307a from=translated src=- shape=8a372bb2 vocab=3a81334f
+-/
 theorem mem_nonselfdualCharacterFinset_iff (χ : DirichletCharacter ℂ p) :
     χ ∈ nonselfdualCharacterFinset (p := p) ↔
       χ ≠ 1 ∧ χ ≠ quadraticCharComplex p := by
@@ -631,6 +713,9 @@ theorem mem_nonselfdualCharacterFinset_iff (χ : DirichletCharacter ℂ p) :
   · intro h
     simp [nonselfdualCharacterFinset, h.1, h.2]
 
+/--
+@isnad1 id=mem.1h2v.s7.f8a4af233a3b from=translated src=- shape=d814bd15 vocab=f26528d6
+-/
 theorem inv_mem_nonselfdualCharacterFinset {χ : DirichletCharacter ℂ p}
     (hχ : χ ∈ nonselfdualCharacterFinset (p := p)) :
     χ⁻¹ ∈ nonselfdualCharacterFinset (p := p) := by
@@ -650,6 +735,9 @@ theorem inv_mem_nonselfdualCharacterFinset {χ : DirichletCharacter ℂ p}
       _ = (quadraticCharComplex p)⁻¹ := by rw [hχinvquad]
       _ = quadraticCharComplex p := by simp [quadraticCharComplex_inv (p := p)]
 
+/--
+@isnad1 id=ne.2h2v.s6.26396b4cf700 from=translated src=- shape=f8b7994c vocab=f26528d6
+-/
 theorem ne_inv_of_mem_nonselfdualCharacterFinset {hp₂ : p ≠ 2} {χ : DirichletCharacter ℂ p}
     (hχ : χ ∈ nonselfdualCharacterFinset (p := p)) :
     χ ≠ χ⁻¹ := by
@@ -666,12 +754,18 @@ noncomputable def nonselfdualCharacterReps :
   (nonselfdualCharacterFinset (p := p)).filter
     fun χ => characterIndexEquiv (p := p) χ < characterIndexEquiv (p := p) χ⁻¹
 
+/--
+@isnad1 id=iff.0h2v.s8.23e9f0d0f651 from=translated src=- shape=0113a7ab vocab=153d677e
+-/
 theorem mem_nonselfdualCharacterReps_iff (χ : DirichletCharacter ℂ p) :
     χ ∈ nonselfdualCharacterReps (p := p) ↔
       χ ∈ nonselfdualCharacterFinset (p := p) ∧
         characterIndexEquiv (p := p) χ < characterIndexEquiv (p := p) χ⁻¹ := by
   simp [nonselfdualCharacterReps]
 
+/--
+@isnad1 id=not.1h2v.s7.65655d866887 from=translated src=- shape=291a5f4d vocab=7cc6d393
+-/
 theorem inv_not_mem_nonselfdualCharacterReps {χ : DirichletCharacter ℂ p}
     (hχ : χ ∈ nonselfdualCharacterReps (p := p)) :
     χ⁻¹ ∉ nonselfdualCharacterReps (p := p) := by
@@ -682,6 +776,9 @@ theorem inv_not_mem_nonselfdualCharacterReps {χ : DirichletCharacter ℂ p}
     simpa using ((mem_nonselfdualCharacterReps_iff (p := p) χ⁻¹).1 hχinv).2
   exact lt_irrefl _ (lt_trans hlt hlt_inv)
 
+/--
+@isnad1 id=or.2h2v.s7.50ac363c3a76 from=translated src=- shape=63b3ae2f vocab=f5cc66b7
+-/
 theorem mem_reps_or_inv_mem_reps {hp₂ : p ≠ 2} {χ : DirichletCharacter ℂ p}
     (hχ : χ ∈ nonselfdualCharacterFinset (p := p)) :
     χ ∈ nonselfdualCharacterReps (p := p) ∨ χ⁻¹ ∈ nonselfdualCharacterReps (p := p) := by
@@ -697,6 +794,9 @@ theorem mem_reps_or_inv_mem_reps {hp₂ : p ≠ 2} {χ : DirichletCharacter ℂ 
     exact (mem_nonselfdualCharacterReps_iff (p := p) χ⁻¹).2
       ⟨inv_mem_nonselfdualCharacterFinset (p := p) hχ, by simpa using hgt⟩
 
+/--
+@isnad1 id=eq.1h1v.s6.c1f5ce032316 from=translated src=- shape=077ac455 vocab=785ed191
+-/
 theorem nonselfdualCharacterFinset_eq_union_reps_image_inv (hp₂ : p ≠ 2) :
     nonselfdualCharacterFinset (p := p) =
       nonselfdualCharacterReps (p := p) ∪
@@ -715,6 +815,9 @@ theorem nonselfdualCharacterFinset_eq_union_reps_image_inv (hp₂ : p ≠ 2) :
         (mem_nonselfdualCharacterReps_iff (p := p) ψ).1 hψrep |>.1
       simpa [← hψ] using inv_mem_nonselfdualCharacterFinset (p := p) hψnon
 
+/--
+@isnad1 id=disjoint.0h1v.s6.4802571a902a from=translated src=- shape=356fe337 vocab=f4717406
+-/
 theorem disjoint_nonselfdualCharacterReps_image_inv :
     Disjoint (nonselfdualCharacterReps (p := p))
       ((nonselfdualCharacterReps (p := p)).image fun χ => χ⁻¹) := by
@@ -725,6 +828,9 @@ theorem disjoint_nonselfdualCharacterReps_image_inv :
     simpa [hψ] using hχrep
   exact (inv_not_mem_nonselfdualCharacterReps (p := p) hψrep) hψinv
 
+/--
+@isnad1 id=eq.1h1v.s7.f32883fca60c from=translated src=- shape=e7d4d4e2 vocab=3ba577d4
+-/
 theorem prod_nonselfdualScalars_eq_prod_reps_eval_neg_one (hp₂ : p ≠ 2) :
     Finset.prod (nonselfdualCharacterFinset (p := p))
       (fun χ => normalizedDftConstOneBasisScalar (p := p) (some χ)) =
@@ -753,6 +859,9 @@ theorem prod_nonselfdualScalars_eq_prod_reps_eval_neg_one (hp₂ : p ≠ 2) :
           exact normalizedDftConstOneBasisScalar_mul_inv_eq_eval_neg_one (p := p)
             ((mem_nonselfdualCharacterFinset_iff (p := p) χ).1 hχnon).1
 
+/--
+@isnad1 id=eq.1h1v.s5.0041516c78a6 from=translated src=- shape=6a00d6f6 vocab=c2e4aadb
+-/
 theorem card_nonselfdualCharacterReps (hp₂ : p ≠ 2) :
     (nonselfdualCharacterReps (p := p)).card = (p - 3) / 2 := by
   let reps := nonselfdualCharacterReps (p := p)
@@ -782,6 +891,9 @@ theorem card_nonselfdualCharacterReps (hp₂ : p ≠ 2) :
     omega
   exact (Nat.div_eq_of_eq_mul_left (by decide : 0 < 2) htwice).symm
 
+/--
+@isnad1 id=eq.1h1v.s10.1664056d5a85 from=translated src=- shape=bcf4c011 vocab=899f15ab
+-/
 theorem det_normalizedDft_eq_trivialBlock_mul_quadraticScalar_mul_prod_pairBlockDeterminants
     (hp₂ : p ≠ 2) :
     LinearMap.det (normalizedDft p) =

@@ -60,6 +60,9 @@ noncomputable def artinHasseLogSeries (r : ℕ) [Fact (Nat.Prime r)] :
       (1 : ℚ) / (r : ℚ) ^ Nat.log r n
     else 0
 
+/--
+@isnad1 id=eq.0h2v.s7.086b3d41c6e1 from=translated src=- shape=8a1ae537 vocab=a53c9395
+-/
 @[simp] theorem artinHasseLogSeries_coeff (r : ℕ) [Fact (Nat.Prime r)] (n : ℕ) :
     (PowerSeries.coeff (R := ℚ) n) (artinHasseLogSeries r) =
       if r ^ Nat.log r n = n ∧ n ≠ 0 then
@@ -68,12 +71,18 @@ noncomputable def artinHasseLogSeries (r : ℕ) [Fact (Nat.Prime r)] :
   unfold artinHasseLogSeries
   exact PowerSeries.coeff_mk n _
 
+/--
+@isnad1 id=eq.0h1v.s5.154f11b8b8a8 from=translated src=- shape=c29e1501 vocab=1fafdf55
+-/
 @[simp] theorem artinHasseLogSeries_constantCoeff (r : ℕ) [Fact (Nat.Prime r)] :
     (PowerSeries.constantCoeff (R := ℚ)) (artinHasseLogSeries r) = 0 := by
   unfold artinHasseLogSeries
   rw [PowerSeries.constantCoeff_mk]
   simp
 
+/--
+@isnad1 id=hassubst.0h1v.s3.d5af9d17cfe0 from=translated src=- shape=47ccca8d vocab=8d6fb9e0
+-/
 theorem artinHasseLogSeries_hasSubst (r : ℕ) [Fact (Nat.Prime r)] :
     PowerSeries.HasSubst (artinHasseLogSeries r) :=
   PowerSeries.HasSubst.of_constantCoeff_zero' (artinHasseLogSeries_constantCoeff r)
@@ -161,7 +170,9 @@ private theorem artinHasseExpSeries_coeff_eq_exp_of_lt
       rw [PowerSeries.X_subst]
 
 /-- Below degree `r`, the Artin-Hasse exponential has the same coefficients as
-the ordinary exponential.-/
+the ordinary exponential.
+@isnad1 id=eq.1h2v.s6.671c9e44e788 from=translated src=- shape=f7881435 vocab=18711ee6
+-/
 theorem artinHasseExpSeries_coeff_eq_inv_factorial_of_lt
     (r : ℕ) [Fact (Nat.Prime r)] {n : ℕ} (hn : n < r) :
     (PowerSeries.coeff (R := ℚ) n) (artinHasseExpSeries r) =
@@ -175,6 +186,9 @@ noncomputable def artinHasseExpMinusOneSeries (r : ℕ) [Fact (Nat.Prime r)] :
     PowerSeries ℚ :=
   artinHasseExpSeries r - 1
 
+/--
+@isnad1 id=eq.0h1v.s6.95c861008d7c from=translated src=- shape=6654d5d3 vocab=01ea7036
+-/
 @[simp] theorem artinHasseExpMinusOneSeries_coeff_one
     (r : ℕ) [Fact (Nat.Prime r)] :
     (PowerSeries.coeff (R := ℚ) 1) (artinHasseExpMinusOneSeries r) = 1 := by
@@ -197,6 +211,9 @@ noncomputable def artinHasseExpInverseSeries (r : ℕ) [Fact (Nat.Prime r)] :
     exact invertibleOfNonzero (by norm_num : (1 : ℚ) ≠ 0)
   PowerSeries.substInv P
 
+/--
+@isnad1 id=eq.0h1v.s5.372c079496f4 from=translated src=- shape=c29e1501 vocab=b7e717cf
+-/
 @[simp] theorem artinHasseExpInverseSeries_constantCoeff
     (r : ℕ) [Fact (Nat.Prime r)] :
     (PowerSeries.constantCoeff (R := ℚ)) (artinHasseExpInverseSeries r) = 0 := by
@@ -205,6 +222,9 @@ noncomputable def artinHasseExpInverseSeries (r : ℕ) [Fact (Nat.Prime r)] :
     simp [P]
   simp [artinHasseExpInverseSeries]
 
+/--
+@isnad1 id=eq.0h1v.s6.49e70525ab0d from=translated src=- shape=6654d5d3 vocab=23d6193a
+-/
 @[simp] theorem artinHasseExpInverseSeries_coeff_one
     (r : ℕ) [Fact (Nat.Prime r)] :
     (PowerSeries.coeff (R := ℚ) 1) (artinHasseExpInverseSeries r) = 1 := by

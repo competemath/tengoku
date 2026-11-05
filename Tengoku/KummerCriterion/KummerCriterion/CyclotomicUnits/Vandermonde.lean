@@ -50,16 +50,25 @@ def vandermondeTeichmullerEvenSubOneMatrix (hp_three : 3 ≤ p) :
   fun j a => teichmullerEvenNode (p := p) hp_three a ^ ((j : ℕ) + 1) - 1
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=le.1h2v.s4.0e3c9668fb63 from=translated src=- shape=6b60da63 vocab=ea3ca928
+-/
 theorem kummerLogColumnIndex_two_le
     (hp_three : 3 ≤ p) (a : Fin (kummerLogRank p)) :
     2 ≤ kummerLogColumnIndex (p := p) hp_three a :=
   CPlusGeneratorIndex_two_le (p := p) hp_three a
 
+/--
+@isnad1 id=le.1h2v.s5.362df172f0ea from=translated src=- shape=278a5344 vocab=2705cb23
+-/
 theorem kummerLogColumnIndex_le_half
     (hp_three : 3 ≤ p) (a : Fin (kummerLogRank p)) :
     kummerLogColumnIndex (p := p) hp_three a ≤ (p - 1) / 2 :=
   CPlusGeneratorIndex_le_half (p := p) hp_three a
 
+/--
+@isnad1 id=lt.1h2v.s4.0648a5cc3a4a from=translated src=- shape=9cf8273c vocab=da642d2b
+-/
 theorem kummerLogColumnIndex_lt_p
     (hp_three : 3 ≤ p) (a : Fin (kummerLogRank p)) :
     kummerLogColumnIndex (p := p) hp_three a < p := by
@@ -68,6 +77,9 @@ theorem kummerLogColumnIndex_lt_p
   omega
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=eq.3h3v.s5.d21260737332 from=translated src=- shape=7cf5dc46 vocab=3fec6054
+-/
 theorem zmod_natCast_eq_of_lt {a b p : ℕ} (ha : a < p) (hb : b < p)
     (h : (a : ZMod p) = (b : ZMod p)) :
     a = b := by
@@ -75,12 +87,18 @@ theorem zmod_natCast_eq_of_lt {a b p : ℕ} (ha : a < p) (hb : b < p)
   exact h
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=ne.2h2v.s5.8cd453429100 from=translated src=- shape=06e5558c vocab=3fec6054
+-/
 theorem zmod_natCast_ne_zero_of_pos_lt {a p : ℕ} (ha_pos : 0 < a) (ha_lt : a < p) :
     (a : ZMod p) ≠ 0 := by
   intro hzero
   rw [ZMod.natCast_eq_zero_iff] at hzero
   exact (not_le_of_gt ha_lt) (Nat.le_of_dvd ha_pos hzero)
 
+/--
+@isnad1 id=ne.1h3v.s6.2d4240dced25 from=translated src=- shape=0bc6b46f vocab=46e4b441
+-/
 theorem kummerLogColumnIndex_add_ne_zero
     (hp_three : 3 ≤ p) (a b : Fin (kummerLogRank p)) :
     ((kummerLogColumnIndex (p := p) hp_three a +
@@ -94,6 +112,9 @@ theorem kummerLogColumnIndex_add_ne_zero
       simpa [Nat.mul_comm] using Nat.div_mul_le_self (p - 1) 2
     omega
 
+/--
+@isnad1 id=injectiv.1h1v.s4.6dc87c7b91f9 from=translated src=- shape=a667deb9 vocab=8c94b045
+-/
 theorem teichmullerEvenNode_injective (hp_three : 3 ≤ p) :
     Function.Injective (teichmullerEvenNode (p := p) hp_three) := by
   intro a b hsq
@@ -122,6 +143,9 @@ theorem teichmullerEvenNode_injective (hp_three : 3 ≤ p) :
     exfalso
     exact (kummerLogColumnIndex_add_ne_zero (p := p) hp_three a b) hadd_nat
 
+/--
+@isnad1 id=ne.1h2v.s5.ea1774c38450 from=translated src=- shape=7c9839b1 vocab=85f246a0
+-/
 theorem teichmullerEvenNode_ne_one (hp_three : 3 ≤ p) (a : Fin (kummerLogRank p)) :
     teichmullerEvenNode (p := p) hp_three a ≠ 1 := by
   intro h
@@ -158,6 +182,9 @@ theorem teichmullerEvenNode_ne_one (hp_three : 3 ≤ p) (a : Fin (kummerLogRank 
 def geomPolynomial (j : Fin (kummerLogRank p)) : (ZMod p)[X] :=
   ∑ i ∈ Finset.range ((j : ℕ) + 1), (X : (ZMod p)[X]) ^ i
 
+/--
+@isnad1 id=eq.0h2v.s5.fd1efe20f356 from=translated src=- shape=1fbcc1d2 vocab=6e5c8b84
+-/
 theorem geomPolynomial_natDegree (j : Fin (kummerLogRank p)) :
     (geomPolynomial (p := p) j).natDegree = (j : ℕ) := by
   unfold geomPolynomial
@@ -170,11 +197,17 @@ theorem geomPolynomial_natDegree (j : Fin (kummerLogRank p)) :
     exact (Polynomial.natDegree_X_pow_le i).trans (Nat.lt_succ_iff.mp (Finset.mem_range.mp hi))
   · simp
 
+/--
+@isnad1 id=monic.0h2v.s4.da76c448dc0b from=translated src=- shape=290722ec vocab=471041c4
+-/
 theorem geomPolynomial_monic (j : Fin (kummerLogRank p)) :
     (geomPolynomial (p := p) j).Monic := by
   unfold geomPolynomial
   exact Polynomial.monic_geom_sum_X (R := ZMod p) (by omega)
 
+/--
+@isnad1 id=eq.1h3v.s6.0b9518bed649 from=translated src=- shape=164787ea vocab=aa498105
+-/
 theorem geomPolynomial_eval (hp_three : 3 ≤ p)
     (a j : Fin (kummerLogRank p)) :
     (geomPolynomial (p := p) j).eval (teichmullerEvenNode (p := p) hp_three a) =
@@ -188,6 +221,9 @@ def geomEvaluationMatrix (hp_three : 3 ≤ p) :
     Matrix (Fin (kummerLogRank p)) (Fin (kummerLogRank p)) (ZMod p) :=
   fun a j => (geomPolynomial (p := p) j).eval (teichmullerEvenNode (p := p) hp_three a)
 
+/--
+@isnad1 id=ne.1h1v.s5.9fa7617db61f from=translated src=- shape=b72c9f33 vocab=3402972c
+-/
 theorem det_geomEvaluationMatrix_ne_zero (hp_three : 3 ≤ p) :
     (geomEvaluationMatrix (p := p) hp_three).det ≠ 0 := by
   have hdet :=
@@ -203,6 +239,9 @@ theorem det_geomEvaluationMatrix_ne_zero (hp_three : 3 ≤ p) :
       (teichmullerEvenNode_injective (p := p) hp_three)
   simpa [geomEvaluationMatrix] using hdet ▸ hvand_ne
 
+/--
+@isnad1 id=eq.1h1v.s7.d752ab9075c4 from=translated src=- shape=ca4e5fea vocab=5fb56e6e
+-/
 theorem transpose_vandermondeTeichmullerEvenSubOneMatrix_eq_diagonal_mul_geomEvaluationMatrix
     (hp_three : 3 ≤ p) :
     (vandermondeTeichmullerEvenSubOneMatrix (p := p) hp_three)ᵀ =
@@ -215,6 +254,9 @@ theorem transpose_vandermondeTeichmullerEvenSubOneMatrix_eq_diagonal_mul_geomEva
   simpa [mul_comm, mul_left_comm, mul_assoc] using
     (geom_sum_mul (teichmullerEvenNode (p := p) hp_three a) ((j : ℕ) + 1)).symm
 
+/--
+@isnad1 id=ne.1h1v.s5.6e933ab728f4 from=translated src=- shape=b72c9f33 vocab=7127e2fd
+-/
 theorem vandermonde_teichmuller_even_sub_one_det_ne_zero
     (hp_three : 3 ≤ p) :
     (vandermondeTeichmullerEvenSubOneMatrix (p := p) hp_three).det ≠ 0 := by

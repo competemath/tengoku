@@ -43,14 +43,23 @@ namespace DieudonneDwork
 /-- A rational is `r`-integral iff its denominator is coprime to `r`.-/
 def IsRIntegralRat (r : ℕ) (q : ℚ) : Prop := (q.den : ℕ).Coprime r
 
+/--
+@isnad1 id=isrinteg.0h1v.s3.bd8b96f6a439 from=translated src=- shape=8ba9e24c vocab=2a633411
+-/
 theorem IsRIntegralRat.zero (r : ℕ) : IsRIntegralRat r 0 := by
   unfold IsRIntegralRat
   simp
 
+/--
+@isnad1 id=isrinteg.0h1v.s3.325ee46820cb from=translated src=- shape=8ba9e24c vocab=2a633411
+-/
 theorem IsRIntegralRat.one (r : ℕ) : IsRIntegralRat r 1 := by
   unfold IsRIntegralRat
   simp
 
+/--
+@isnad1 id=isrinteg.2h3v.s4.98f68a7b5fe1 from=translated src=- shape=d203bb48 vocab=006d016c
+-/
 theorem IsRIntegralRat.add {r : ℕ} {q₁ q₂ : ℚ}
     (h₁ : IsRIntegralRat r q₁) (h₂ : IsRIntegralRat r q₂) :
     IsRIntegralRat r (q₁ + q₂) := by
@@ -58,18 +67,27 @@ theorem IsRIntegralRat.add {r : ℕ} {q₁ q₂ : ℚ}
   refine Nat.Coprime.coprime_dvd_left (Rat.add_den_dvd q₁ q₂) ?_
   exact h₁.mul_left h₂
 
+/--
+@isnad1 id=isrinteg.1h2v.s3.c51de7eefeb3 from=translated src=- shape=d086edac vocab=1efd6160
+-/
 theorem IsRIntegralRat.neg {r : ℕ} {q : ℚ} (h : IsRIntegralRat r q) :
     IsRIntegralRat r (-q) := by
   unfold IsRIntegralRat at h ⊢
   rw [Rat.neg_den]
   exact h
 
+/--
+@isnad1 id=isrinteg.2h3v.s4.4e9e3838ed5e from=translated src=- shape=d203bb48 vocab=888f2d81
+-/
 theorem IsRIntegralRat.sub {r : ℕ} {q₁ q₂ : ℚ}
     (h₁ : IsRIntegralRat r q₁) (h₂ : IsRIntegralRat r q₂) :
     IsRIntegralRat r (q₁ - q₂) := by
   rw [sub_eq_add_neg]
   exact h₁.add h₂.neg
 
+/--
+@isnad1 id=isrinteg.2h3v.s4.7a8d1f80d05a from=translated src=- shape=d203bb48 vocab=4ee0c680
+-/
 theorem IsRIntegralRat.mul {r : ℕ} {q₁ q₂ : ℚ}
     (h₁ : IsRIntegralRat r q₁) (h₂ : IsRIntegralRat r q₂) :
     IsRIntegralRat r (q₁ * q₂) := by
@@ -86,18 +104,30 @@ The denominator is coprime to `r`, so it is a unit in `ZMod r`; the residue is
 noncomputable def toZMod {r : ℕ} (q : ℚ) (_h : IsRIntegralRat r q) : ZMod r :=
   (q.num : ZMod r) * (q.den : ZMod r)⁻¹
 
+/--
+@isnad1 id=eq.0h1v.s5.233b966ffc62 from=translated src=- shape=00199951 vocab=ba6223d1
+-/
 @[simp]
 theorem toZMod_zero (r : ℕ) : toZMod (r := r) 0 (IsRIntegralRat.zero r) = 0 := by
   simp [toZMod]
 
+/--
+@isnad1 id=eq.0h1v.s5.963ed71a4715 from=translated src=- shape=00199951 vocab=c123fc04
+-/
 @[simp]
 theorem toZMod_one (r : ℕ) : toZMod (r := r) 1 (IsRIntegralRat.one r) = 1 := by
   simp [toZMod]
 
+/--
+@isnad1 id=isunit.1h2v.s5.de34099df10c from=translated src=- shape=28058d0f vocab=7b54dd01
+-/
 theorem isUnit_den_zmod {r : ℕ} (q : ℚ) (h : IsRIntegralRat r q) :
     IsUnit (q.den : ZMod r) :=
   (ZMod.unitOfCoprime q.den h).isUnit
 
+/--
+@isnad1 id=eq.1h2v.s6.a8213c0237d0 from=translated src=- shape=83cf0cfc vocab=e0ad9362
+-/
 theorem den_mul_toZMod {r : ℕ} (q : ℚ) (h : IsRIntegralRat r q) :
     (q.den : ZMod r) * toZMod q h = (q.num : ZMod r) := by
   unfold toZMod
@@ -106,11 +136,17 @@ theorem den_mul_toZMod {r : ℕ} (q : ℚ) (h : IsRIntegralRat r q) :
         = (q.num : ZMod r) * ((q.den : ZMod r) * (q.den : ZMod r)⁻¹) := by ring
     _ = (q.num : ZMod r) := by rw [ZMod.coe_mul_inv_eq_one q.den h, mul_one]
 
+/--
+@isnad1 id=eq.2h3v.s6.af789d4ddea5 from=translated src=- shape=cf3c2ca6 vocab=e0ad9362
+-/
 theorem toZMod_eq_of_den_mul_eq {r : ℕ} {q : ℚ} (h : IsRIntegralRat r q)
     {x : ZMod r} (hx : (q.den : ZMod r) * x = (q.num : ZMod r)) :
     x = toZMod q h :=
   (isUnit_den_zmod q h).mul_left_cancel (by rw [hx, den_mul_toZMod])
 
+/--
+@isnad1 id=eq.2h3v.s5.f8c2877ed053 from=translated src=- shape=de188246 vocab=57091523
+-/
 theorem toZMod_add {r : ℕ} {q₁ q₂ : ℚ}
     (h₁ : IsRIntegralRat r q₁) (h₂ : IsRIntegralRat r q₂) :
     toZMod (q₁ + q₂) (h₁.add h₂) = toZMod q₁ h₁ + toZMod q₂ h₂ := by
@@ -142,15 +178,24 @@ theorem toZMod_add {r : ℕ} {q₁ q₂ : ℚ}
       _ = N * (d₁ * d₂) := by rw [← hcross]; ring
       _ = (d₁ * d₂) * N := by ring
 
+/--
+@isnad1 id=eq.1h2v.s5.f5d8ea588896 from=translated src=- shape=dfaf8b4e vocab=2ab6819a
+-/
 theorem toZMod_neg {r : ℕ} {q : ℚ} (h : IsRIntegralRat r q) :
     toZMod (-q) h.neg = -toZMod q h := by
   simp [toZMod]
 
+/--
+@isnad1 id=eq.2h3v.s6.4d6ae394c2f9 from=translated src=- shape=de188246 vocab=d907660b
+-/
 theorem toZMod_sub {r : ℕ} {q₁ q₂ : ℚ}
     (h₁ : IsRIntegralRat r q₁) (h₂ : IsRIntegralRat r q₂) :
     toZMod (q₁ - q₂) (h₁.sub h₂) = toZMod q₁ h₁ - toZMod q₂ h₂ := by
   simpa [sub_eq_add_neg, toZMod_neg h₂] using toZMod_add h₁ h₂.neg
 
+/--
+@isnad1 id=eq.2h3v.s5.4c469abed48a from=translated src=- shape=de188246 vocab=a1aad1b9
+-/
 theorem toZMod_mul {r : ℕ} {q₁ q₂ : ℚ}
     (h₁ : IsRIntegralRat r q₁) (h₂ : IsRIntegralRat r q₂) :
     toZMod (q₁ * q₂) (h₁.mul h₂) = toZMod q₁ h₁ * toZMod q₂ h₂ := by
@@ -182,6 +227,9 @@ theorem toZMod_mul {r : ℕ} {q₁ q₂ : ℚ}
       _ = N * (d₁ * d₂) := by rw [← hcross]; ring
       _ = (d₁ * d₂) * N := by ring
 
+/--
+@isnad1 id=eq.2h4v.s7.1823c29b1d89 from=translated src=- shape=41f98d74 vocab=b62497ac
+-/
 theorem toZMod_finset_sum {r : ℕ} {ι : Type*} (s : Finset ι)
     (f : ι → ℚ) (hf : ∀ i ∈ s, IsRIntegralRat r (f i))
     (hsum : IsRIntegralRat r (Finset.sum s f)) :
@@ -209,6 +257,9 @@ theorem toZMod_finset_sum {r : ℕ} {ι : Type*} (s : Finset ι)
             rw [ih hfs hsum_s, Finset.sum_insert ha]
             rfl
 
+/--
+@isnad1 id=ex.2h2v.s5.3a77850637ba from=translated src=- shape=6a9da611 vocab=196da2f6
+-/
 theorem exists_eq_natCast_mul_of_toZMod_eq_zero {r : ℕ} {q : ℚ}
     (h : IsRIntegralRat r q) (hz : toZMod q h = 0) :
     ∃ q' : ℚ, IsRIntegralRat r q' ∧ q = (r : ℚ) * q' := by
@@ -267,6 +318,9 @@ noncomputable def rIntegralToZMod (r : ℕ) : rIntegralRatSubring r →+* ZMod r
         IsRIntegralRat.toZMod (q₂ : ℚ) h₂
     simpa [h₁, h₂] using IsRIntegralRat.toZMod_mul h₁ h₂
 
+/--
+@isnad1 id=eq.0h2v.s8.a31b6283e883 from=translated src=- shape=8a880597 vocab=eba8633f
+-/
 @[simp]
 theorem rIntegralToZMod_apply (r : ℕ) (q : rIntegralRatSubring r) :
     rIntegralToZMod r q =
@@ -274,6 +328,9 @@ theorem rIntegralToZMod_apply (r : ℕ) (q : rIntegralRatSubring r) :
         (show IsRIntegralRat r (q : ℚ) from q.property) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.c1cef4f896e2 from=translated src=- shape=80b21770 vocab=6fcacbe6
+-/
 theorem powerSeries_expand_zmod {p : ℕ} [Fact p.Prime] (F : PowerSeries (ZMod p)) :
     PowerSeries.expand p ((Fact.out : Nat.Prime p).ne_zero) F = F ^ p := by
   have h :=
@@ -286,29 +343,44 @@ theorem powerSeries_expand_zmod {p : ℕ} [Fact p.Prime] (F : PowerSeries (ZMod 
 def IsRIntegralPS (r : ℕ) (F : PowerSeries ℚ) : Prop :=
   ∀ n : ℕ, IsRIntegralRat r ((PowerSeries.coeff (R := ℚ) n) F)
 
+/--
+@isnad1 id=isrinteg.0h1v.s3.0ab74d93f465 from=translated src=- shape=83a34da1 vocab=7f3dd717
+-/
 theorem IsRIntegralPS.one (r : ℕ) : IsRIntegralPS r 1 := fun n => by
   rw [PowerSeries.coeff_one]
   by_cases h : n = 0
   · simp [h, IsRIntegralRat.one]
   · simp [h, IsRIntegralRat.zero]
 
+/--
+@isnad1 id=isrinteg.2h3v.s5.99f6f282c55e from=translated src=- shape=c66a59ad vocab=35a87a54
+-/
 theorem IsRIntegralPS.add {r : ℕ} {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G) :
     IsRIntegralPS r (F + G) := fun n => by
   rw [map_add]
   exact (hF n).add (hG n)
 
+/--
+@isnad1 id=isrinteg.1h2v.s5.cc362cb18d54 from=translated src=- shape=085e0dcf vocab=00b54455
+-/
 theorem IsRIntegralPS.neg {r : ℕ} {F : PowerSeries ℚ} (hF : IsRIntegralPS r F) :
     IsRIntegralPS r (-F) := fun n => by
   rw [map_neg]
   exact (hF n).neg
 
+/--
+@isnad1 id=isrinteg.2h3v.s5.5fa0fcc201c1 from=translated src=- shape=c66a59ad vocab=a9d19de8
+-/
 theorem IsRIntegralPS.sub {r : ℕ} {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G) :
     IsRIntegralPS r (F - G) := fun n => by
   rw [map_sub]
   exact (hF n).sub (hG n)
 
+/--
+@isnad1 id=isrinteg.2h3v.s5.ba0207b36abf from=translated src=- shape=c66a59ad vocab=e7ae39af
+-/
 theorem IsRIntegralPS.mul {r : ℕ} {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G) :
     IsRIntegralPS r (F * G) := fun n => by
@@ -316,12 +388,18 @@ theorem IsRIntegralPS.mul {r : ℕ} {F G : PowerSeries ℚ}
   exact Finset.sum_induction _ _ (fun _ _ ha hb => ha.add hb) (IsRIntegralRat.zero r)
     fun ⟨i, j⟩ _ => (hF i).mul (hG j)
 
+/--
+@isnad1 id=isrinteg.1h3v.s5.665ebb37b443 from=translated src=- shape=f986cd54 vocab=36ce3f3d
+-/
 theorem IsRIntegralPS.pow {r : ℕ} {F : PowerSeries ℚ} (hF : IsRIntegralPS r F)
     (k : ℕ) : IsRIntegralPS r (F ^ k) := by
   induction k with
   | zero => simpa using IsRIntegralPS.one r
   | succ k ih => rw [pow_succ]; exact ih.mul hF
 
+/--
+@isnad1 id=isrinteg.2h3v.s5.b4b3fa7cbab4 from=translated src=- shape=819b657e vocab=3e781c54
+-/
 theorem IsRIntegralPS.subst_X_pow {r k : ℕ} (hk : k ≠ 0) {F : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) :
     IsRIntegralPS r (PowerSeries.subst (PowerSeries.X ^ k) F) := fun n => by
@@ -330,6 +408,9 @@ theorem IsRIntegralPS.subst_X_pow {r k : ℕ} (hk : k ≠ 0) {F : PowerSeries �
   · simp [hkn, hF (n / k)]
   · simp [hkn, IsRIntegralRat.zero]
 
+/--
+@isnad1 id=isrinteg.1h2v.s5.ae7178155240 from=translated src=- shape=d48654bc vocab=9ab7ae89
+-/
 theorem IsRIntegralPS.C {r : ℕ} {q : ℚ} (hq : IsRIntegralRat r q) :
     IsRIntegralPS r (PowerSeries.C q) := fun n => by
   rw [PowerSeries.coeff_C]
@@ -337,6 +418,9 @@ theorem IsRIntegralPS.C {r : ℕ} {q : ℚ} (hq : IsRIntegralRat r q) :
   · simp [hn, hq]
   · simp [hn, IsRIntegralRat.zero]
 
+/--
+@isnad1 id=isrinteg.0h1v.s2.bf9dd024f4df from=translated src=- shape=4ee14ae4 vocab=e1866c46
+-/
 theorem IsRIntegralPS.X (r : ℕ) :
     IsRIntegralPS r (PowerSeries.X : PowerSeries ℚ) := fun n => by
   rw [PowerSeries.coeff_X]
@@ -344,10 +428,16 @@ theorem IsRIntegralPS.X (r : ℕ) :
   · simp [hn, IsRIntegralRat.one]
   · simp [hn, IsRIntegralRat.zero]
 
+/--
+@isnad1 id=isrinteg.1h3v.s6.02e06f89212a from=translated src=- shape=76545abe vocab=7dc36499
+-/
 theorem IsRIntegralPS.C_mul_X_pow {r : ℕ} {q : ℚ} (hq : IsRIntegralRat r q)
     (n : ℕ) : IsRIntegralPS r (PowerSeries.C q * PowerSeries.X ^ n) :=
   (IsRIntegralPS.C hq).mul ((IsRIntegralPS.X r).pow n)
 
+/--
+@isnad1 id=isrinteg.1h4v.s5.d8a67dd5c6d4 from=translated src=- shape=4aeb2aac vocab=b35a81c6
+-/
 theorem IsRIntegralPS.finset_sum {r : ℕ} {ι : Type*} (s : Finset ι)
     (F : ι → PowerSeries ℚ) (hF : ∀ i ∈ s, IsRIntegralPS r (F i)) :
     IsRIntegralPS r (∑ i ∈ s, F i) := fun n => by
@@ -356,6 +446,9 @@ theorem IsRIntegralPS.finset_sum {r : ℕ} {ι : Type*} (s : Finset ι)
   exact Finset.sum_induction _ _ (fun _ _ ha hb => ha.add hb) (IsRIntegralRat.zero r)
     fun i hi => hF i hi n
 
+/--
+@isnad1 id=isrinteg.3h3v.s6.d382cdd26141 from=translated src=- shape=de0242c5 vocab=b890bf93
+-/
 theorem IsRIntegralPS.subst {r : ℕ} {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G)
     (hG0 : PowerSeries.constantCoeff G = 0) :
@@ -375,6 +468,9 @@ theorem IsRIntegralPS.subst {r : ℕ} {F G : PowerSeries ℚ}
   exact Finset.sum_induction _ _ (fun _ _ ha hb => ha.add hb) (IsRIntegralRat.zero r)
     fun d _ => hterm d
 
+/--
+@isnad1 id=isrinteg.3h2v.s8.e7f62a862457 from=translated src=- shape=35efe14c vocab=71510cfc
+-/
 theorem IsRIntegralPS.substInv_of_constantCoeff_zero_coeff_one
     {r : ℕ} {P : PowerSeries ℚ}
     [Invertible ((PowerSeries.coeff (R := ℚ) 1) P)]
@@ -419,6 +515,9 @@ theorem IsRIntegralPS.substInv_of_constantCoeff_zero_coeff_one
 
 namespace IsRMultipleIntegralPS
 
+/--
+@isnad1 id=ex.3h4v.s8.44a08e7e3c37 from=translated src=- shape=8acdbd51 vocab=78634250
+-/
 theorem coeff_mul_left_multiple_pos_right_integral_lt {r n : ℕ} {F G : PowerSeries ℚ}
     (hF0 : (PowerSeries.coeff (R := ℚ) 0) F = 0)
     (hFpos : ∀ i : ℕ, 1 ≤ i →
@@ -498,6 +597,9 @@ noncomputable def toSubringPS {r : ℕ} {F : PowerSeries ℚ}
   PowerSeries.mk fun n =>
     (⟨(PowerSeries.coeff (R := ℚ) n) F, hF n⟩ : rIntegralRatSubring r)
 
+/--
+@isnad1 id=eq.1h3v.s11.e2c5fe1f0da8 from=translated src=- shape=4a0d7414 vocab=fe2e2f12
+-/
 @[simp]
 theorem coeff_toSubringPS {r : ℕ} {F : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (n : ℕ) :
@@ -505,6 +607,9 @@ theorem coeff_toSubringPS {r : ℕ} {F : PowerSeries ℚ}
       (⟨(PowerSeries.coeff (R := ℚ) n) F, hF n⟩ : rIntegralRatSubring r) := by
   simp [toSubringPS]
 
+/--
+@isnad1 id=eq.1h2v.s9.09d6ae3fc647 from=translated src=- shape=215aaf03 vocab=94ef0e64
+-/
 @[simp]
 theorem map_toSubringPS_subtype {r : ℕ} {F : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) :
@@ -512,6 +617,9 @@ theorem map_toSubringPS_subtype {r : ℕ} {F : PowerSeries ℚ}
   ext n
   simp
 
+/--
+@isnad1 id=eq.2h2v.s9.531fcfa6a72a from=translated src=- shape=f14f8cea vocab=8f3ebd92
+-/
 theorem constantCoeff_toSubringPS_eq_zero {r : ℕ} {F : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hF0 : PowerSeries.constantCoeff F = 0) :
     PowerSeries.constantCoeff hF.toSubringPS = 0 := by
@@ -519,6 +627,9 @@ theorem constantCoeff_toSubringPS_eq_zero {r : ℕ} {F : PowerSeries ℚ}
   change (PowerSeries.coeff (R := ℚ) 0) F = 0
   simpa [PowerSeries.coeff_zero_eq_constantCoeff] using hF0
 
+/--
+@isnad1 id=eq.3h3v.s8.59b73dd58c7a from=translated src=- shape=48174a56 vocab=83030542
+-/
 theorem toSubringPS_subst {r : ℕ} {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G)
     (hG0 : PowerSeries.constantCoeff G = 0) :
@@ -550,6 +661,9 @@ noncomputable def toZModPS {r : ℕ} {F : PowerSeries ℚ} (hF : IsRIntegralPS r
   PowerSeries.mk fun n =>
     IsRIntegralRat.toZMod ((PowerSeries.coeff (R := ℚ) n) F) (hF n)
 
+/--
+@isnad1 id=eq.1h3v.s8.797d7fdcd558 from=translated src=- shape=0d8a5528 vocab=544e7c5c
+-/
 @[simp]
 theorem coeff_toZModPS {r : ℕ} {F : PowerSeries ℚ} (hF : IsRIntegralPS r F)
     (n : ℕ) :
@@ -565,6 +679,9 @@ noncomputable def mapTo {r : ℕ} {A : Type*} [CommSemiring A]
   PowerSeries.mk fun n =>
     φ (⟨(PowerSeries.coeff (R := ℚ) n) F, hF n⟩ : rIntegralRatSubring r)
 
+/--
+@isnad1 id=eq.1h4v.s9.96d3acda9173 from=translated src=- shape=45d72f5e vocab=fc4cc6ab
+-/
 theorem mapTo_eq_map_toSubringPS {r : ℕ} {A : Type*} [CommSemiring A]
     (φ : rIntegralRatSubring r →+* A) {F : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) :
@@ -572,6 +689,9 @@ theorem mapTo_eq_map_toSubringPS {r : ℕ} {A : Type*} [CommSemiring A]
   ext n
   simp [mapTo, toSubringPS]
 
+/--
+@isnad1 id=eq.1h5v.s9.358d9995e814 from=translated src=- shape=ff058402 vocab=b6b961e2
+-/
 @[simp]
 theorem coeff_mapTo {r : ℕ} {A : Type*} [CommSemiring A]
     (φ : rIntegralRatSubring r →+* A) {F : PowerSeries ℚ}
@@ -580,6 +700,9 @@ theorem coeff_mapTo {r : ℕ} {A : Type*} [CommSemiring A]
       φ (⟨(PowerSeries.coeff (R := ℚ) n) F, hF n⟩ : rIntegralRatSubring r) := by
   simp [mapTo]
 
+/--
+@isnad1 id=eq.1h6v.s8.fb215a34e9ae from=translated src=- shape=c55f5d33 vocab=4e80f929
+-/
 theorem map_mapTo {r : ℕ} {A B : Type*} [CommSemiring A] [CommSemiring B]
     (φ : rIntegralRatSubring r →+* A) (ψ : A →+* B) {F : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) :
@@ -587,12 +710,18 @@ theorem map_mapTo {r : ℕ} {A B : Type*} [CommSemiring A] [CommSemiring B]
   ext n
   simp [mapTo]
 
+/--
+@isnad1 id=eq.2h4v.s7.7b8e35b29ba6 from=translated src=- shape=aeac9f56 vocab=e62c2c97
+-/
 theorem mapTo_congr_proof {r : ℕ} {A : Type*} [CommSemiring A]
     (φ : rIntegralRatSubring r →+* A) {F : PowerSeries ℚ}
     (hF hF' : IsRIntegralPS r F) : hF.mapTo φ = hF'.mapTo φ := by
   ext n
   simp [mapTo]
 
+/--
+@isnad1 id=eq.3h5v.s7.b5d6685a43f2 from=translated src=- shape=dc934308 vocab=e62c2c97
+-/
 theorem mapTo_eq_of_eq {r : ℕ} {A : Type*} [CommSemiring A]
     (φ : rIntegralRatSubring r →+* A) {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G) (h : F = G) :
@@ -600,6 +729,9 @@ theorem mapTo_eq_of_eq {r : ℕ} {A : Type*} [CommSemiring A]
   subst h
   exact mapTo_congr_proof φ hF hG
 
+/--
+@isnad1 id=eq.0h3v.s7.06310a67f537 from=translated src=- shape=fd72fc3b vocab=c437dbbb
+-/
 @[simp]
 theorem mapTo_one {r : ℕ} {A : Type*} [CommSemiring A]
     (φ : rIntegralRatSubring r →+* A) :
@@ -629,6 +761,9 @@ theorem mapTo_one {r : ℕ} {A : Type*} [CommSemiring A]
       _ = (PowerSeries.coeff (R := A) n) (1 : PowerSeries A) := by
             simp only [PowerSeries.coeff_one, hn, ↓reduceIte]
 
+/--
+@isnad1 id=eq.0h3v.s7.73d3d3d1dbfc from=translated src=- shape=00b753b2 vocab=e94fd7a5
+-/
 @[simp]
 theorem mapTo_X {r : ℕ} {A : Type*} [CommSemiring A]
     (φ : rIntegralRatSubring r →+* A) :
@@ -659,6 +794,9 @@ theorem mapTo_X {r : ℕ} {A : Type*} [CommSemiring A]
       _ = (PowerSeries.coeff (R := A) n) (PowerSeries.X : PowerSeries A) := by
             simp only [PowerSeries.coeff_X, hn, ↓reduceIte]
 
+/--
+@isnad1 id=eq.2h5v.s7.e269122226f9 from=translated src=- shape=ff2afdcc vocab=ee835529
+-/
 theorem mapTo_add {r : ℕ} {A : Type*} [CommSemiring A]
     (φ : rIntegralRatSubring r →+* A) {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G) :
@@ -683,6 +821,9 @@ theorem mapTo_add {r : ℕ} {A : Type*} [CommSemiring A]
     _ = (PowerSeries.coeff (R := A) n) (hF.mapTo φ + hG.mapTo φ) := by
           simp [mapTo]
 
+/--
+@isnad1 id=eq.1h4v.s7.0c887f971c9f from=translated src=- shape=b162e377 vocab=2d46e90b
+-/
 theorem mapTo_neg {r : ℕ} {A : Type*} [CommRing A]
     (φ : rIntegralRatSubring r →+* A) {F : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) :
@@ -704,6 +845,9 @@ theorem mapTo_neg {r : ℕ} {A : Type*} [CommRing A]
     _ = (PowerSeries.coeff (R := A) n) (-hF.mapTo φ) := by
           simp [mapTo]
 
+/--
+@isnad1 id=eq.2h5v.s7.8cba5aa025c3 from=translated src=- shape=ff2afdcc vocab=0d595afa
+-/
 theorem mapTo_sub {r : ℕ} {A : Type*} [CommRing A]
     (φ : rIntegralRatSubring r →+* A) {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G) :
@@ -717,6 +861,9 @@ theorem mapTo_sub {r : ℕ} {A : Type*} [CommRing A]
     _ = hF.mapTo φ - hG.mapTo φ := by
           rw [mapTo_neg φ hG, sub_eq_add_neg]
 
+/--
+@isnad1 id=eq.2h5v.s7.0c051450cbbd from=translated src=- shape=ff2afdcc vocab=4702f854
+-/
 theorem mapTo_mul {r : ℕ} {A : Type*} [CommSemiring A]
     (φ : rIntegralRatSubring r →+* A) {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G) :

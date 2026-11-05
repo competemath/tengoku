@@ -48,14 +48,23 @@ def irregularBaseBound (S : Finset ℕ) : ℕ :=
 def irregularBase (S : Finset ℕ) : ℕ :=
   2 * (irregularBaseBound S)!
 
+/--
+@isnad1 id=even.0h1v.s3.90e8e68e7589 from=translated src=- shape=0ae065e3 vocab=b7e847d3
+-/
 theorem even_irregularBase (S : Finset ℕ) : Even (irregularBase S) := by
   unfold irregularBase
   exact even_two.mul_right _
 
+/--
+@isnad1 id=lt.0h1v.s3.5898f4c51c5e from=translated src=- shape=b29cab32 vocab=0b668575
+-/
 theorem pos_irregularBase (S : Finset ℕ) : 0 < irregularBase S := by
   unfold irregularBase
   exact mul_pos (by norm_num) (Nat.factorial_pos _)
 
+/--
+@isnad1 id=dvd.2h2v.s5.3295ef579b93 from=translated src=- shape=0efd72be vocab=aa1cae69
+-/
 theorem sub_one_dvd_irregularBase_of_mem
     {S : Finset ℕ} {p : ℕ}
     (hpS : p ∈ S) (hp : p.Prime) :
@@ -70,6 +79,9 @@ theorem sub_one_dvd_irregularBase_of_mem
     Nat.dvd_factorial hpos hle
   simpa [irregularBase] using dvd_mul_of_dvd_right hdvd_fact 2
 
+/--
+@isnad1 id=dvd.2h2v.s5.78db105c64fd from=translated src=- shape=4e46631d vocab=c19ff025
+-/
 theorem sub_one_dvd_irregularBase_of_prime_dvd_irregularBase
     {S : Finset ℕ} {q : ℕ}
     (hq : q.Prime) (hqdvd : q ∣ irregularBase S) :
@@ -88,6 +100,9 @@ theorem sub_one_dvd_irregularBase_of_prime_dvd_irregularBase
       Nat.dvd_factorial hpos hle
     exact dvd_mul_of_dvd_right hdvd_fact 2
 
+/--
+@isnad1 id=dvd.2h3v.s6.3331ac85c858 from=translated src=- shape=64fb7900 vocab=ddd46bc1
+-/
 theorem sub_one_dvd_m_of_prime_dvd_m
     {S : Finset ℕ} {q t : ℕ}
     (hq : q.Prime) (hqdvd : q ∣ irregularBase S * 2 ^ t) :

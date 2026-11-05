@@ -27,6 +27,9 @@ section GaussProduct
 variable (p : ℕ) [hp : Fact p.Prime]
   (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {p} ℚ K] [IsCMField K]
 
+/--
+@isnad1 id=eq.2h1v.s7.e746c0ac40db from=translated src=- shape=20b7bf8f vocab=771ee5a7
+-/
 theorem rawGaussProduct_rhs_of_mod_four_eq_one
     (hp_odd' : p ≠ 2) (hp₄ : p % 4 = 1) :
     (-(p : ℂ)) ^ ((p - 1) / 4) =
@@ -64,6 +67,9 @@ theorem rawGaussProduct_rhs_of_mod_four_eq_one
     _ = (Complex.I ^ n) * (((Real.sqrt ((p : ℝ) ^ n) : ℝ) : ℂ)) := by
           rw [hI, hsqrt]
 
+/--
+@isnad1 id=eq.2h1v.s7.c4cd87e904c1 from=translated src=- shape=27763810 vocab=771ee5a7
+-/
 theorem rawGaussProduct_rhs_of_mod_four_eq_three
     (hp_odd' : p ≠ 2) (hp₄ : p % 4 = 3) :
     (Complex.I * (Real.sqrt p : ℂ)) * (-(p : ℂ)) ^ ((p - 3) / 4) =
@@ -117,7 +123,9 @@ theorem rawGaussProduct_rhs_of_mod_four_eq_three
     _ = (Complex.I ^ n) * (((Real.sqrt ((p : ℝ) ^ n) : ℝ) : ℂ)) := by
           rw [hI, hsqrt]
 
-/-- Merge the two `mod 4` branches into the raw odd Gauss-product formula.-/
+/-- Merge the two `mod 4` branches into the raw odd Gauss-product formula.
+@isnad1 id=eq.1h1v.s7.ab2bf77f7a7a from=translated src=- shape=d19f0476 vocab=c2daa0e8
+-/
 theorem rawGaussProduct
     (hp_odd' : p ≠ 2) :
     Finset.prod (oddCharacters (p := p))

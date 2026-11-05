@@ -35,7 +35,9 @@ extra p-adic package assumptions.
 namespace KummerCriterion
 
 /-- If a rational number has real absolute value greater than `1`, then the
-reduced numerator has a prime divisor.-/
+reduced numerator has a prime divisor.
+@isnad1 id=ex.1h1v.s5.ad8dae8e150a from=translated src=- shape=4327a390 vocab=a2ed611e
+-/
 theorem exists_prime_dvd_num_of_one_lt_abs
     {q : ℚ} (hq : (1 : ℝ) < |(q : ℝ)|) :
     ∃ p : ℕ, p.Prime ∧ (p : ℤ) ∣ q.num := by
@@ -56,7 +58,9 @@ theorem exists_prime_dvd_num_of_one_lt_abs
   exact ⟨p, hp, (Int.natCast_dvd (m := p) (n := q.num)).mpr hpdvd⟩
 
 /-- If a prime divides the reduced numerator of a rational number, then the
-rational is congruent to zero modulo `p` in the `p`-adic integers.-/
+rational is congruent to zero modulo `p` in the `p`-adic integers.
+@isnad1 id=ex.1h2v.s6.97e6e3217ad3 from=translated src=- shape=8caaeb51 vocab=9f5437c0
+-/
 theorem padic_eq_p_mul_of_prime_dvd_num
     {p : ℕ} [Fact p.Prime] {q : ℚ}
     (hdiv : (p : ℤ) ∣ q.num) :
@@ -89,7 +93,9 @@ theorem padic_eq_p_mul_of_prime_dvd_num
   simp [z, r]
 
 /-- If a rational number is `p` times a `p`-adic integer, then `p` divides its
-reduced numerator.-/
+reduced numerator.
+@isnad1 id=dvd.1h2v.s6.e2d92645fdaa from=translated src=- shape=827a8a50 vocab=9f5437c0
+-/
 theorem prime_dvd_num_of_padic_eq_p_mul
     {p : ℕ} [Fact p.Prime] {q : ℚ}
     (hzero : ∃ z : ℤ_[p], (q : ℚ_[p]) = (p : ℚ_[p]) * (z : ℚ_[p])) :
@@ -113,7 +119,9 @@ theorem prime_dvd_num_of_padic_eq_p_mul
   have hnorm : ‖(q.num : ℤ_[p])‖ < 1 := (PadicInt.norm_lt_one_iff_dvd _).2 hpadic
   exact (PadicInt.norm_int_lt_one_iff_dvd (p := p) q.num).mp hnorm
 
-/-- Transport numerator divisibility across a `p`-adic congruence.-/
+/-- Transport numerator divisibility across a `p`-adic congruence.
+@isnad1 id=dvd.2h3v.s7.02ddbc778058 from=translated src=- shape=801bcdf5 vocab=40769dc1
+-/
 theorem prime_dvd_num_of_padic_sub_eq_p_mul
     {p : ℕ} [Fact p.Prime] {q r : ℚ}
     (hdiv : (p : ℤ) ∣ q.num)
@@ -135,7 +143,9 @@ theorem prime_dvd_num_of_padic_sub_eq_p_mul
       ring
 
 /-- For a positive natural denominator, any prime divisor of the reduced
-numerator of `q / n` already divides the reduced numerator of `q`.-/
+numerator of `q / n` already divides the reduced numerator of `q`.
+@isnad1 id=dvd.2h3v.s5.e8024065ba1b from=translated src=- shape=2bbed505 vocab=8f682afc
+-/
 theorem dvd_num_of_dvd_div_nat_num
     {p n : ℕ} {q : ℚ} (hn_pos : 0 < n)
     (hdiv : (p : ℤ) ∣ ((q / n : ℚ).num)) :

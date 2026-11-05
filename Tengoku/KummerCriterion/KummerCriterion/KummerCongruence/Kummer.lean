@@ -35,7 +35,9 @@ namespace KummerCriterion
 positive integers `m ≡ n (mod p-1)` with
 `(p-1) ∤ n`, `p ∤ m`, `p ∤ n`, `p ∤ (m+1)`, `p ∤ (n+1)`,
  `B_m/m ≡ B_n/n (mod p)`,
-with both sides `p`-integral.-/
+with both sides `p`-integral.
+@isnad1 id=ex.13h3v.s8.86020d8824c9 from=translated src=- shape=7faf8527 vocab=dd656ea1
+-/
 theorem bernoulli_div_sModEq_of_modEq
     {p : ℕ} [hp : Fact p.Prime] (hp_odd : p ≠ 2)
     {m n : ℕ} (hm_pos : 0 < m) (hn_pos : 0 < n)

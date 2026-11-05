@@ -36,16 +36,22 @@ local notation3 "K⁺" => NumberField.maximalRealSubfield K
 
 include hp_odd in
 /-- Any `p`-th cyclotomic extension of `ℚ` is a CM field for `p` an odd
-prime.-/
+prime.
+@isnad1 id=iscmfiel.1h2v.s5.bd72e894946a from=translated src=- shape=17123208 vocab=a505d507
+-/
 theorem isCMField_of_cyclotomic : IsCMField K :=
   Rat.isCMField (S := {p}) _ ⟨p, by grind [hp.1.two_le]⟩
 
-/-- `[K: K⁺] = 2`.-/
+/-- `[K: K⁺] = 2`.
+@isnad1 id=eq.0h1v.s7.b06ff2dc916f from=translated src=- shape=a47e6312 vocab=57fb6d60
+-/
 theorem finrank_K_over_Kplus [IsCMField K] :
     Module.finrank (K⁺) K = 2 :=
   IsQuadraticExtension.finrank_eq_two _ _
 
-/-- `[K⁺: ℚ] = (p-1)/2`.-/
+/-- `[K⁺: ℚ] = (p-1)/2`.
+@isnad1 id=eq.0h2v.s8.8487e6025d16 from=translated src=- shape=f744b933 vocab=f6bb593b
+-/
 theorem finrank_Kplus_over_rat [IsCMField K] :
     Module.finrank ℚ (K⁺) = (p - 1) / 2 := by
   have h1 : Module.finrank (K⁺) K = 2 := finrank_K_over_Kplus K
@@ -91,7 +97,9 @@ variable (p : ℕ) [hp : Fact p.Prime] (hp_odd : p ≠ 2)
 
 local notation3 "K⁺" => NumberField.maximalRealSubfield K
 
-/-- Extending and contracting ideals along `𝓞(L⁺) ⊆ 𝓞 L` is the identity.-/
+/-- Extending and contracting ideals along `𝓞(L⁺) ⊆ 𝓞 L` is the identity.
+@isnad1 id=eq.0h2v.s10.ceeeaa81693d from=translated src=- shape=1a897872 vocab=2940338c
+-/
 theorem map_comap_eq_ringOfIntegers
     (L : Type*) [Field L] [NumberField L]
     (J : Ideal (𝓞 (NumberField.maximalRealSubfield L))) :
@@ -99,7 +107,9 @@ theorem map_comap_eq_ringOfIntegers
         (algebraMap (𝓞 (NumberField.maximalRealSubfield L)) (𝓞 L)) = J := by
   simpa using Ideal.comap_map_eq_self_of_faithfullyFlat J
 
-/-- If `I · 𝒪_K = (b)` with `b` descending from `𝒪_{K⁺}`, then `I` is principal.-/
+/-- If `I · 𝒪_K = (b)` with `b` descending from `𝒪_{K⁺}`, then `I` is principal.
+@isnad1 id=isprinci.1h3v.s10.13de64207213 from=translated src=- shape=33912a6d vocab=b8494ea2
+-/
 theorem isPrincipal_of_map_eq_span_singleton_of_mem
     (I : Ideal (𝓞 (K⁺)))
     (b₀ : 𝓞 (K⁺))

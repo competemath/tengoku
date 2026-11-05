@@ -35,6 +35,9 @@ ideal `(ℓ)`.-/
 noncomputable def primesOverFinsetPlus (ℓ : ℕ) : Finset (Ideal (𝓞 (K⁺))) :=
   IsDedekindDomain.primesOverFinset (rationalPrimeIdeal ℓ) (𝓞 (K⁺))
 
+/--
+@isnad1 id=eq.0h2v.s9.acc2066c107b from=translated src=- shape=ca10be63 vocab=312083dd
+-/
 lemma primesOverFinsetPlus_card_eq_ncard (ℓ : ℕ) [Fact ℓ.Prime] :
     (primesOverFinsetPlus (K := K) ℓ).card =
       (Ideal.primesOver (rationalPrimeIdeal ℓ) (𝓞 (K⁺))).ncard := by
@@ -46,6 +49,9 @@ lemma primesOverFinsetPlus_card_eq_ncard (ℓ : ℕ) [Fact ℓ.Prime] :
   unfold primesOverFinsetPlus
   rw [← Set.ncard_coe_finset, IsDedekindDomain.coe_primesOverFinset hne]
 
+/--
+@isnad1 id=iff.0h3v.s10.8660d26450be from=translated src=- shape=ccc39b94 vocab=4abbff7d
+-/
 lemma mem_primesOverFinsetPlus_iff {ℓ : ℕ} [Fact ℓ.Prime] {P : Ideal (𝓞 (K⁺))} :
     P ∈ primesOverFinsetPlus (K := K) ℓ ↔
       P ∈ Ideal.primesOver (rationalPrimeIdeal ℓ) (𝓞 (K⁺)) := by
@@ -55,6 +61,9 @@ lemma mem_primesOverFinsetPlus_iff {ℓ : ℕ} [Fact ℓ.Prime] {P : Ideal (𝓞
     exact_mod_cast (Fact.out : ℓ.Prime).ne_zero
   exact IsDedekindDomain.mem_primesOverFinset_iff hne (𝓞 (K⁺))
 
+/--
+@isnad1 id=mem.1h3v.s9.df7865ae53b4 from=translated src=- shape=c6838a95 vocab=12b65a2d
+-/
 lemma under_mem_primesOverFinsetPlus {ℓ : ℕ} [Fact ℓ.Prime] {P : Ideal (𝓞 K)}
     (hP : P ∈ primesOverFinset K ℓ) :
     P.under (𝓞 (K⁺)) ∈ primesOverFinsetPlus (K := K) ℓ := by
@@ -68,6 +77,9 @@ lemma under_mem_primesOverFinsetPlus {ℓ : ℕ} [Fact ℓ.Prime] {P : Ideal (�
 
 variable [IsCMField K]
 
+/--
+@isnad1 id=or.0h2v.s9.5ed7a44b7f07 from=translated src=- shape=52dfdef9 vocab=40edc18d
+-/
 lemma algEquiv_eq_one_or_complexConj (σ : K ≃ₐ[K⁺] K) :
     σ = 1 ∨ σ = complexConj K := by
   by_cases hσ : σ = 1
@@ -78,6 +90,9 @@ lemma algEquiv_eq_one_or_complexConj (σ : K ≃ₐ[K⁺] K) :
     rw [Nat.card_eq_two_iff' (1 : K ≃ₐ[K⁺] K)] at hcard
     exact ExistsUnique.unique hcard hσ (complexConj_ne_one K)
 
+/--
+@isnad1 id=eq.0h1v.s9.5dac1e7ad9c5 from=translated src=- shape=122d646c vocab=4996aed0
+-/
 lemma toRingHom_complexConj_eq_ringOfIntegersComplexConj :
     MulSemiringAction.toRingHom (K ≃ₐ[K⁺] K) (𝓞 K) (complexConj K) =
       (ringOfIntegersComplexConj K).toRingEquiv.toRingHom := by
@@ -85,10 +100,16 @@ lemma toRingHom_complexConj_eq_ringOfIntegersComplexConj :
   change (((complexConj K) • x : 𝓞 K) : K) = ((ringOfIntegersComplexConj K x : 𝓞 K) : K)
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s10.817c1cf1b67b from=translated src=- shape=ee2a0001 vocab=c24a3abd
+-/
 lemma pointwise_smul_complexConj_eq_map (P : Ideal (𝓞 K)) :
     complexConj K • P = P.map (ringOfIntegersComplexConj K).toRingEquiv.toRingHom := by
   rw [Ideal.pointwise_smul_def, toRingHom_complexConj_eq_ringOfIntegersComplexConj (K := K)]
 
+/--
+@isnad1 id=mem.1h3v.s9.e0f13421091b from=translated src=- shape=06cf5fe5 vocab=53ab64d6
+-/
 lemma map_ringOfIntegersComplexConj_mem_primesOverFinset {ℓ : ℕ} [Fact ℓ.Prime]
     {P : Ideal (𝓞 K)} (hP : P ∈ primesOverFinset K ℓ) :
     P.map (ringOfIntegersComplexConj K).toRingEquiv.toRingHom ∈ primesOverFinset K ℓ := by
@@ -115,6 +136,9 @@ lemma map_ringOfIntegersComplexConj_mem_primesOverFinset {ℓ : ℕ} [Fact ℓ.P
   rw [mem_primesOverFinset_iff (K := K) (ℓ := ℓ)]
   exact ⟨inferInstance, hmap_liesOver⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.43b7fe2c4e14 from=translated src=- shape=ed781110 vocab=8bc197ca
+-/
 lemma under_map_ringOfIntegersComplexConj_eq_under (P : Ideal (𝓞 K)) :
     (P.map (ringOfIntegersComplexConj K).toRingEquiv.toRingHom).under (𝓞 (K⁺)) =
       P.under (𝓞 (K⁺)) := by
@@ -153,6 +177,9 @@ lemma eq_or_eq_map_ringOfIntegersComplexConj_of_under_eq {ℓ : ℕ} [Fact ℓ.P
     rw [pointwise_smul_complexConj_eq_map (K := K) P] at hσ
     exact hσ.symm
 
+/--
+@isnad1 id=other.1h3v.s11.e7a9b3cac60f from=translated src=- shape=e833871b vocab=b13220b2
+-/
 lemma primesOverFinsetContractionToPlus_fiber_eq_singleton_or_pair {ℓ : ℕ} [Fact ℓ.Prime]
     {P : Ideal (𝓞 K)} (hP : P ∈ primesOverFinset K ℓ) :
     let Pconj := P.map (ringOfIntegersComplexConj K).toRingEquiv.toRingHom
@@ -222,6 +249,9 @@ noncomputable def complexConjRat (hp_odd : p ≠ 2) : Gal(K/ℚ) := by
     complexConjRat (p := p) (K := K) hp_odd x = complexConj K x := by
   rfl
 
+/--
+@isnad1 id=eq.1h2v.s9.e54f59fad993 from=translated src=- shape=3472d830 vocab=74cadca5
+-/
 lemma toRingHom_complexConjRat_eq_ringOfIntegersComplexConj (hp_odd : p ≠ 2) :
     MulSemiringAction.toRingHom Gal(K/ℚ) (𝓞 K)
         (complexConjRat (p := p) (K := K) hp_odd) =
@@ -231,6 +261,9 @@ lemma toRingHom_complexConjRat_eq_ringOfIntegersComplexConj (hp_odd : p ≠ 2) :
       ((ringOfIntegersComplexConj K x : 𝓞 K) : K)
   simp [complexConjRat_apply, coe_ringOfIntegersComplexConj]
 
+/--
+@isnad1 id=eq.1h3v.s10.83df825abb4a from=translated src=- shape=5a811df5 vocab=49c57785
+-/
 lemma pointwise_smul_complexConjRat_eq_map (hp_odd : p ≠ 2) (P : Ideal (𝓞 K)) :
     (complexConjRat (p := p) (K := K) hp_odd • P) =
       P.map (ringOfIntegersComplexConj K).toRingEquiv.toRingHom := by
@@ -238,6 +271,9 @@ lemma pointwise_smul_complexConjRat_eq_map (hp_odd : p ≠ 2) (P : Ideal (𝓞 K
     (p := p) (K := K) hp_odd]
 
 omit [IsCMField K] in
+/--
+@isnad1 id=eq.1h2v.s9.e4228572d69c from=translated src=- shape=f0fe0282 vocab=a67f9991
+-/
 lemma galEquivZMod_complexConj_eq_neg_one (hp_odd : p ≠ 2) :
     IsCyclotomicExtension.Rat.galEquivZMod p K
         (complexConjRat (p := p) (K := K) hp_odd) = -1 := by
@@ -270,6 +306,9 @@ lemma galEquivZMod_complexConj_eq_neg_one (hp_odd : p ≠ 2) :
     ZMod.natCast_self, zero_sub, Nat.cast_one] at hpow'
   simpa [c] using hpow'
 
+/--
+@isnad1 id=eq.2h2v.s8.5ed26cb5efe1 from=translated src=- shape=a278d05d vocab=4ff90286
+-/
 lemma unitOfPrimeNe_pow_localResidueDegreePlus_eq_neg_one_of_even
     {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p)
     (hd_even : Even (localResidueDegree (p := p) ℓ hℓp)) :
@@ -299,6 +338,9 @@ lemma unitOfPrimeNe_pow_localResidueDegreePlus_eq_neg_one_of_even
   · apply Units.ext
     simpa [u, Units.val_pow_eq_pow_val] using hpow
 
+/--
+@isnad1 id=iff.2h2v.s8.1ae3921ee280 from=translated src=- shape=72fb26ba vocab=ea106a32
+-/
 lemma neg_one_mem_zpowers_unitOfPrimeNe_iff_even_localResidueDegree
     (hp_odd : p ≠ 2) {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) :
     (-1 : (ZMod p)ˣ) ∈ Subgroup.zpowers (unitOfPrimeNe (p := p) ℓ hℓp) ↔
@@ -318,6 +360,9 @@ lemma neg_one_mem_zpowers_unitOfPrimeNe_iff_even_localResidueDegree
     exact unitOfPrimeNe_pow_localResidueDegreePlus_eq_neg_one_of_even (p := p) hℓp hd_even
 
 omit [IsCMField K] in
+/--
+@isnad1 id=iff.3h4v.s9.1b39c67a738b from=translated src=- shape=113ad8b8 vocab=65483e38
+-/
 lemma complexConjRat_mem_stabilizer_iff_even_localResidueDegree
     (hp_odd : p ≠ 2) {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p)
     {P : Ideal (𝓞 K)} (hP : P ∈ primesOverFinset K ℓ) :
@@ -357,6 +402,9 @@ lemma complexConjRat_mem_stabilizer_iff_even_localResidueDegree
     subst hc_eq
     exact hσ
 
+/--
+@isnad1 id=iff.3h4v.s9.cc4f0b297d3f from=translated src=- shape=c09b1019 vocab=25569706
+-/
 lemma map_ringOfIntegersComplexConj_eq_self_iff_even_localResidueDegree
     (hp_odd : p ≠ 2) {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p)
     {P : Ideal (𝓞 K)} (hP : P ∈ primesOverFinset K ℓ) :
@@ -379,6 +427,9 @@ lemma map_ringOfIntegersComplexConj_eq_self_iff_even_localResidueDegree
     rw [pointwise_smul_complexConjRat_eq_map (p := p) (K := K) hp_odd] at hsmul
     exact hsmul
 
+/--
+@isnad1 id=iff.3h4v.s9.570a6feeda93 from=translated src=- shape=5cb30ee1 vocab=f608dd82
+-/
 lemma map_ringOfIntegersComplexConj_eq_self_iff_localResidueDegreePlus_eq_half
     (hp_odd : p ≠ 2) {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p)
     {P : Ideal (𝓞 K)} (hP : P ∈ primesOverFinset K ℓ) :
@@ -398,6 +449,9 @@ lemma map_ringOfIntegersComplexConj_eq_self_iff_localResidueDegreePlus_eq_half
     omega
 
 omit [IsCMField K] in
+/--
+@isnad1 id=other.2h4v.s10.c27769c51140 from=translated src=- shape=f3d960b3 vocab=16307e86
+-/
 lemma primesOverFinsetContractionToPlus_fiber_card_eq_ncard_primesOver {ℓ : ℕ} [Fact ℓ.Prime]
     {P : Ideal (𝓞 K)} (hP : P ∈ primesOverFinset K ℓ)
     {PPlus : Ideal (𝓞 (K⁺))} (hPPlus : P.under (𝓞 (K⁺)) = PPlus) :
@@ -439,6 +493,9 @@ lemma primesOverFinsetContractionToPlus_fiber_card_eq_ncard_primesOver {ℓ : �
     rw [← Set.ncard_coe_finset, hfiber])
 
 omit [IsCMField K] in
+/--
+@isnad1 id=eq.3h4v.s10.0e4ec0e5b0b9 from=translated src=- shape=ed8f945e vocab=507dda19
+-/
 lemma primesOver_inertiaDeg_eq_localResidueDegreePlus
     (hp_odd : p ≠ 2) {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p)
     (PPlus : Ideal (𝓞 (K⁺)))
@@ -561,6 +618,9 @@ lemma primesOver_inertiaDeg_eq_localResidueDegreePlus
     omega
 
 omit [IsCMField K] in
+/--
+@isnad1 id=eq.2h4v.s10.bd3a68a59194 from=translated src=- shape=f206ccdd vocab=9e1a5e5b
+-/
 lemma primesOverPlus_ramificationIdx_eq_one {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p)
     (PPlus : Ideal (𝓞 (K⁺)))
     (hPPlus : PPlus ∈ Ideal.primesOver (rationalPrimeIdeal ℓ) (𝓞 (K⁺))) :
@@ -584,6 +644,9 @@ lemma primesOverPlus_ramificationIdx_eq_one {ℓ : ℕ} [Fact ℓ.Prime] (hℓp 
   rw [← hram_tower, hram_abs]
 
 omit [IsCMField K] in
+/--
+@isnad1 id=mem.0h2v.s6.b488c57ebef5 from=translated src=- shape=cc386fa4 vocab=eb2dcc37
+-/
 lemma zetaPrime_mem_primesOver_at_p :
     zetaPrime p K ∈ Ideal.primesOver (rationalPrimeIdeal p) (𝓞 K) := by
   refine ⟨zetaPrime_isPrime p K, ?_⟩
@@ -594,6 +657,9 @@ lemma zetaPrime_mem_primesOver_at_p :
       (K := K) (hζ := IsCyclotomicExtension.zeta_spec (p ^ (0 + 1)) ℚ K))
 
 omit [IsCMField K] in
+/--
+@isnad1 id=eq.0h2v.s7.e132289ec301 from=translated src=- shape=30f9b751 vocab=ad8cdc83
+-/
 lemma primesOver_at_p_eq_singleton_zetaPrime :
     Ideal.primesOver (rationalPrimeIdeal p) (𝓞 K) = {zetaPrime p K} := by
   classical
@@ -605,6 +671,9 @@ lemma primesOver_at_p_eq_singleton_zetaPrime :
     simpa using hzeta_mem
   simpa [hzeta] using hP
 
+/--
+@isnad1 id=mem.0h2v.s9.e229d7761534 from=translated src=- shape=672c38cb vocab=9924c059
+-/
 lemma zetaPrimePlus_mem_primesOver_at_p :
     zetaPrimePlus p K ∈ Ideal.primesOver (rationalPrimeIdeal p) (𝓞 (K⁺)) := by
   refine ⟨inferInstance, ?_⟩
@@ -617,6 +686,9 @@ lemma zetaPrimePlus_mem_primesOver_at_p :
   rw [Ideal.liesOver_iff, zetaPrimePlus, Ideal.under_under]
   exact Ideal.over_def (P := zetaPrime p K) (A := ℤ) (p := rationalPrimeIdeal p)
 
+/--
+@isnad1 id=eq.0h2v.s9.e36899b0ceb5 from=translated src=- shape=b30327c8 vocab=9924c059
+-/
 lemma primesOverPlus_at_p_eq_singleton_zetaPrimePlus :
     Ideal.primesOver (rationalPrimeIdeal p) (𝓞 (K⁺)) = {zetaPrimePlus p K} := by
   classical
@@ -641,11 +713,17 @@ lemma primesOverPlus_at_p_eq_singleton_zetaPrimePlus :
     rw [Set.mem_singleton_iff] at hPPlus
     simpa [hPPlus] using zetaPrimePlus_mem_primesOver_at_p (p := p) (K := K)
 
+/--
+@isnad1 id=eq.0h2v.s8.3c81b63d4c80 from=translated src=- shape=88a3b51b vocab=32cc8cd6
+-/
 lemma ncard_primesOverPlus_at_p_eq_one :
     (Ideal.primesOver (rationalPrimeIdeal p) (𝓞 (K⁺))).ncard = 1 := by
   rw [primesOverPlus_at_p_eq_singleton_zetaPrimePlus (p := p) (K := K)]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s7.eafad0549f1c from=translated src=- shape=230aa6d1 vocab=ef3d2cb0
+-/
 lemma zetaPrimePlus_inertiaDeg_eq_one_at_p :
     (zetaPrimePlus p K).inertiaDeg ℤ = 1 := by
   have hinertia_tower :
@@ -662,6 +740,9 @@ lemma zetaPrimePlus_inertiaDeg_eq_one_at_p :
   exact Nat.eq_one_of_dvd_one <|
     ⟨(zetaPrime p K).inertiaDeg (𝓞 (K⁺)), hinertia_tower⟩
 
+/--
+@isnad1 id=eq.1h3v.s10.8bbe6037f75f from=translated src=- shape=9ee31eec vocab=5fcd2d5f
+-/
 lemma primesOverPlus_inertiaDeg_eq_one_at_p (PPlus : Ideal (𝓞 (K⁺)))
     (hPPlus : PPlus ∈ Ideal.primesOver (rationalPrimeIdeal p) (𝓞 (K⁺))) :
     PPlus.inertiaDeg ℤ = 1 := by

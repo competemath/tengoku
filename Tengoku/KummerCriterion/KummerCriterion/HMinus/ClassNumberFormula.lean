@@ -29,7 +29,9 @@ namespace KummerCriterion
 variable (p : ℕ) [hp : Fact p.Prime] (hp_odd : p ≠ 2)
   (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {p} ℚ K] [IsCMField K]
 
-/-- The class number formula for `K`, rearranged to solve for `h`.-/
+/-- The class number formula for `K`, rearranged to solve for `h`.
+@isnad1 id=eq.0h1v.s7.2cf78b97910e from=translated src=- shape=681a96f6 vocab=fbd05ff6
+-/
 theorem h_formula :
     (h K : ℝ) =
       NumberField.dedekindZeta_residue K *
@@ -63,7 +65,9 @@ theorem h_formula :
           simp [A, B]
 
 /-- The class number formula for the maximal real subfield `K⁺`, rearranged to
-solve for `h⁺`.-/
+solve for `h⁺`.
+@isnad1 id=eq.0h1v.s8.31393982fa80 from=translated src=- shape=7bddd1a6 vocab=3509593d
+-/
 theorem hPlus_formula :
     (hPlus K : ℝ) =
       NumberField.dedekindZeta_residue (NumberField.maximalRealSubfield K) *
@@ -100,11 +104,17 @@ theorem hPlus_formula :
           simp [A, B]
 
 omit [IsCMField K] in
+/--
+@isnad1 id=eq.0h1v.s5.f5d623d78687 from=translated src=- shape=e63adbaf vocab=b1f3c51e
+-/
 lemma nrComplexPlaces_maximalRealSubfield_eq_zero :
     NumberField.InfinitePlace.nrComplexPlaces (NumberField.maximalRealSubfield K) = 0 :=
   NumberField.IsTotallyReal.nrComplexPlaces_eq_zero
       (K := NumberField.maximalRealSubfield K)
 
+/--
+@isnad1 id=eq.0h2v.s6.2e62515dbab7 from=translated src=- shape=c0044089 vocab=b3a6caa5
+-/
 lemma nrRealPlaces_maximalRealSubfield_eq_prime_sub_one_div_two :
     NumberField.InfinitePlace.nrRealPlaces (NumberField.maximalRealSubfield K) = (p - 1) / 2 := by
   let L := NumberField.maximalRealSubfield K
@@ -114,6 +124,9 @@ lemma nrRealPlaces_maximalRealSubfield_eq_prime_sub_one_div_two :
     _ = (p - 1) / 2 := by
       rw [finrank_Kplus_over_rat (p := p) (K := K)]
 
+/--
+@isnad1 id=eq.0h2v.s7.fdaafe793da5 from=translated src=- shape=0eeb03f0 vocab=583ae332
+-/
 lemma maximalRealSubfield_archimedeanFactor_eq_pow :
     2 ^ NumberField.InfinitePlace.nrRealPlaces (NumberField.maximalRealSubfield K) *
         (2 * Real.pi) ^ NumberField.InfinitePlace.nrComplexPlaces
@@ -123,6 +136,9 @@ lemma maximalRealSubfield_archimedeanFactor_eq_pow :
     nrRealPlaces_maximalRealSubfield_eq_prime_sub_one_div_two (p := p) (K := K)]
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=or.0h2v.s12.58f934c021fd from=translated src=- shape=f6bfc27d vocab=c1b9746d
+-/
 lemma maximalRealSubfield_torsion_eq_one_or_neg_one
     (x : NumberField.Units.torsion (NumberField.maximalRealSubfield K)) :
     (x : (𝓞 (NumberField.maximalRealSubfield K))ˣ) = 1 ∨
@@ -141,6 +157,9 @@ lemma maximalRealSubfield_torsion_eq_one_or_neg_one
       simp [← Units.val_inj, hi]
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h1v.s5.067b3a979ea3 from=translated src=- shape=750154d8 vocab=468a700e
+-/
 lemma maximalRealSubfield_torsionOrder_eq_two :
     Units.torsionOrder (NumberField.maximalRealSubfield K) = 2 := by
   let L := NumberField.maximalRealSubfield K
@@ -154,6 +173,9 @@ lemma maximalRealSubfield_torsionOrder_eq_two :
   exact maximalRealSubfield_torsion_eq_one_or_neg_one (K := K) x
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.1h2v.s6.ab81bf26e096 from=translated src=- shape=5d155228 vocab=69de4b53
+-/
 lemma cyclotomic_torsionOrder_eq_two_mul_prime (hp_odd' : p ≠ 2) :
     Units.torsionOrder K = 2 * p := by
   have hneven : ¬ Even p := fun h =>
@@ -161,6 +183,9 @@ lemma cyclotomic_torsionOrder_eq_two_mul_prime (hp_odd' : p ≠ 2) :
   simpa [hneven, two_mul] using
     (IsCyclotomicExtension.Rat.torsionOrder_eq (n := p) (K := K))
 
+/--
+@isnad1 id=eq.0h2v.s6.ad4b62eb72b3 from=translated src=- shape=e7b2038a vocab=5e51584f
+-/
 lemma units_rank_eq_prime_sub_three_div_two :
     Units.rank K = (p - 3) / 2 := by
   let L := NumberField.maximalRealSubfield K
@@ -177,6 +202,9 @@ lemma units_rank_eq_prime_sub_three_div_two :
     _ = (p - 3) / 2 := by omega
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h2v.s6.e676701d9222 from=translated src=- shape=4a93b931 vocab=16fa52bb
+-/
 lemma abs_discr_cyclotomic_eq_pow :
     |((NumberField.discr K : ℤ) : ℝ)| = (p : ℝ) ^ (p - 2) := by
   rw [IsCyclotomicExtension.Rat.discr_prime (p := p) (K := K)]
@@ -185,6 +213,9 @@ lemma abs_discr_cyclotomic_eq_pow :
   simp [abs_of_nonneg (show 0 ≤ ((p : ℝ) ^ (p - 2)) by positivity)]
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=not.1h2v.s6.8d4d3ca44f34 from=translated src=- shape=2ac75c02 vocab=d2fdbf1a
+-/
 lemma zeta_not_mem_maximalRealSubfield (hp_odd' : p ≠ 2) :
     IsCyclotomicExtension.zeta p ℚ K ∉ NumberField.maximalRealSubfield K := by
   classical
@@ -227,6 +258,9 @@ lemma zeta_not_mem_maximalRealSubfield (hp_odd' : p ≠ 2) :
     exact hneq hneg
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=not.1h2v.s8.0d28edd3d37f from=translated src=- shape=da90964d vocab=9093eaa5
+-/
 lemma zetaInteger_not_mem_field_range (hp_odd' : p ≠ 2) :
     (((IsCyclotomicExtension.zeta_spec p ℚ K).toInteger : 𝓞 K) : K) ∉
       Set.range (algebraMap (NumberField.maximalRealSubfield K) K) := by
@@ -239,6 +273,9 @@ lemma zetaInteger_not_mem_field_range (hp_odd' : p ≠ 2) :
   exact zeta_not_mem_maximalRealSubfield (p := p) (K := K) hp_odd' hzmem
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=not.1h2v.s9.64a79b34ef78 from=translated src=- shape=0977075e vocab=29f77532
+-/
 lemma zetaInteger_not_mem_ring_range (hp_odd' : p ≠ 2) :
     (IsCyclotomicExtension.zeta_spec p ℚ K).toInteger ∉
       Set.range (algebraMap (𝓞 (NumberField.maximalRealSubfield K)) (𝓞 K)) := by
@@ -248,6 +285,9 @@ lemma zetaInteger_not_mem_ring_range (hp_odd' : p ≠ 2) :
   exact congrArg (fun y : 𝓞 K => (y : K)) hx
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.1h2v.s10.c5eac72c4a78 from=translated src=- shape=365ba9fb vocab=62918be9
+-/
 lemma zetaInteger_adjoin_eq_top_maximalRealSubfield (hp_odd' : p ≠ 2) :
     Algebra.adjoin (NumberField.maximalRealSubfield K)
       ({(((IsCyclotomicExtension.zeta_spec p ℚ K).toInteger : 𝓞 K) : K)} : Set K) = ⊤ := by
@@ -272,6 +312,9 @@ lemma zetaInteger_adjoin_eq_top_maximalRealSubfield (hp_odd' : p ≠ 2) :
   exact Algebra.adjoin_eq_top_of_primitive_element hzeta_alg hL
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=isunit.1h2v.s7.8da00b734aaf from=translated src=- shape=3baacc75 vocab=37129737
+-/
 lemma one_add_zetaInteger_isUnit (hp_odd' : p ≠ 2) :
     IsUnit (1 + ((IsCyclotomicExtension.zeta_spec p ℚ K).toInteger : 𝓞 K)) := by
   have h :=
@@ -280,18 +323,27 @@ lemma one_add_zetaInteger_isUnit (hp_odd' : p ≠ 2) :
   simpa [Finset.sum_range_succ] using h
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h2v.s7.382255e068bd from=translated src=- shape=1fa4648e vocab=7acf3603
+-/
 lemma zetaInteger_pow_pred_mul_eq_one :
     (((IsCyclotomicExtension.zeta_spec p ℚ K).toInteger : 𝓞 K) ^ (p - 1) *
         (IsCyclotomicExtension.zeta_spec p ℚ K).toInteger : 𝓞 K) = 1 :=
   zeta_toInteger_pow_pred_mul p K
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h2v.s7.75fdabdbee45 from=translated src=- shape=7a88d77f vocab=7acf3603
+-/
 lemma zetaInteger_mul_pow_pred_eq_one :
     (((IsCyclotomicExtension.zeta_spec p ℚ K).toInteger : 𝓞 K) *
         (IsCyclotomicExtension.zeta_spec p ℚ K).toInteger ^ (p - 1) : 𝓞 K) = 1 := by
   simpa [mul_comm] using zetaInteger_pow_pred_mul_eq_one (p := p) (K := K)
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=isunit.1h2v.s7.6c0c329aa563 from=translated src=- shape=0a31f5ed vocab=715ca335
+-/
 lemma one_add_zetaInteger_pow_pred_isUnit (hp_odd' : p ≠ 2) :
     IsUnit (1 + ((IsCyclotomicExtension.zeta_spec p ℚ K).toInteger : 𝓞 K) ^ (p - 1)) := by
   let ζi : 𝓞 K := (IsCyclotomicExtension.zeta_spec p ℚ K).toInteger
@@ -304,6 +356,9 @@ lemma one_add_zetaInteger_pow_pred_isUnit (hp_odd' : p ≠ 2) :
   exact hzeta_unit.mul (one_add_zetaInteger_isUnit (p := p) (K := K) hp_odd')
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h2v.s9.c75baeb21e55 from=translated src=- shape=a95c950f vocab=cff0f73c
+-/
 lemma algebraMap_piPlus_eq_two_sub_zeta_sub_zetaPowPred :
     (algebraMap (𝓞 (NumberField.maximalRealSubfield K)) (𝓞 K)) (piPlus p K) =
       (2 : 𝓞 K) - (IsCyclotomicExtension.zeta_spec p ℚ K).toInteger -
@@ -323,6 +378,9 @@ lemma algebraMap_piPlus_eq_two_sub_zeta_sub_zetaPowPred :
           ring_nf
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.0h2v.s12.2364eaaa6952 from=translated src=- shape=d8ab57e2 vocab=63583094
+-/
 lemma aeval_zetaInteger_quadratic_eq_zero :
     Polynomial.aeval (IsCyclotomicExtension.zeta_spec p ℚ K).toInteger
       (Polynomial.X ^ 2 + Polynomial.C (piPlus p K - 2) * Polynomial.X + 1 :
@@ -341,6 +399,9 @@ lemma aeval_zetaInteger_quadratic_eq_zero :
     using! hcalc
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.1h2v.s12.052730d1ae82 from=translated src=- shape=4a340ce1 vocab=19f42093
+-/
 lemma minpoly_maximalRealSubfield_zetaInteger_eq_quadratic (hp_odd' : p ≠ 2) :
     minpoly (𝓞 (NumberField.maximalRealSubfield K))
         ((IsCyclotomicExtension.zeta_spec p ℚ K).toInteger : 𝓞 K) =
@@ -377,6 +438,9 @@ lemma minpoly_maximalRealSubfield_zetaInteger_eq_quadratic (hp_odd' : p ≠ 2) :
     exact hdeg.trans (minpoly.min (A := A) (x := ζi) hQ hQroot)
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.1h2v.s12.9ae70ace3ea5 from=translated src=- shape=f639e469 vocab=c740534e
+-/
 lemma aeval_derivative_minpoly_zetaInteger_eq_zeta_sub_complexConj_zeta (hp_odd' : p ≠ 2) :
     Polynomial.aeval (IsCyclotomicExtension.zeta_spec p ℚ K).toInteger
       (Polynomial.derivative
@@ -396,6 +460,9 @@ lemma aeval_derivative_minpoly_zetaInteger_eq_zeta_sub_complexConj_zeta (hp_odd'
         ζi - ζi ^ (p - 1) by ring)
 
 set_option linter.unusedSectionVars false in
+/--
+@isnad1 id=eq.1h2v.s7.69ae343e1e6e from=translated src=- shape=a1c1f412 vocab=a358cb67
+-/
 lemma span_zetaInteger_sub_zetaPowPred_eq_zetaPrime (hp_odd' : p ≠ 2) :
     Ideal.span
         ({((IsCyclotomicExtension.zeta_spec p ℚ K).toInteger : 𝓞 K) -
@@ -417,7 +484,9 @@ lemma span_zetaInteger_sub_zetaPowPred_eq_zetaPrime (hp_odd' : p ≠ 2) :
   exact one_add_zetaInteger_pow_pred_isUnit (p := p) (K := K) hp_odd'
 
 /-- The class number formula for the prime cyclotomic field, with the standard
-cyclotomic invariants made explicit.-/
+cyclotomic invariants made explicit.
+@isnad1 id=eq.1h2v.s7.3b722a0de561 from=translated src=- shape=d7ab59a4 vocab=e87607cb
+-/
 theorem h_formula_cyclotomic (hp_odd' : p ≠ 2) :
     (h K : ℝ) =
       NumberField.dedekindZeta_residue K *

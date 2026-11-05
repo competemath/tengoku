@@ -27,7 +27,9 @@ section LValueAtOne
 variable (p : ℕ) [hp : Fact p.Prime]
 
 /-- For a nonzero residue `a: ZMod p`, the standard real representative lies
-strictly between `0` and `1` after dividing by `p`.-/
+strictly between `0` and `1` after dividing by `p`.
+@isnad1 id=mem.1h2v.s6.d7c6a68d2137 from=translated src=- shape=1056ac69 vocab=b39934d9
+-/
 lemma zmod_val_div_prime_mem_Ioo {a : ZMod p} (ha : a ≠ 0) :
     (a.val / p : ℝ) ∈ Set.Ioo 0 1 := by
   have hp_pos : 0 < p := hp.out.pos
@@ -40,12 +42,16 @@ lemma zmod_val_div_prime_mem_Ioo {a : ZMod p} (ha : a ≠ 0) :
   · exact (div_lt_one (Nat.cast_pos.mpr hp_pos)).2 <| Nat.cast_lt.mpr (ZMod.val_lt a)
 
 /-- Rewrite `sinZeta` at `ZMod.toAddCircle a` using the standard real
-representative `a.val / p`.-/
+representative `a.val / p`.
+@isnad1 id=eq.0h3v.s7.68c02a8a7e35 from=translated src=- shape=f752833d vocab=e0a700ef
+-/
 lemma sinZeta_toAddCircle_eq_val_div_prime (a : ZMod p) (s : ℂ) :
     HurwitzZeta.sinZeta (ZMod.toAddCircle a) s = HurwitzZeta.sinZeta (a.val / p : ℝ) s := by
   rw [ZMod.toAddCircle_apply]
 
-/-- The unit-circle point with argument `2πx` is nontrivial when `0 < x < 1`.-/
+/-- The unit-circle point with argument `2πx` is nontrivial when `0 < x < 1`.
+@isnad1 id=ne.2h1v.s6.2d421467dd04 from=translated src=- shape=b24fe6f6 vocab=f9f5775f
+-/
 lemma exp_two_pi_mul_I_ne_one {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     Complex.exp ((2 * Real.pi * x) * Complex.I) ≠ 1 := by
   intro hexp
@@ -59,7 +65,9 @@ lemma exp_two_pi_mul_I_ne_one {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
   omega
 
 /-- Multiplying a unit-circle exponential by a nonnegative real scales its
-norm by that real.-/
+norm by that real.
+@isnad1 id=eq.1h2v.s6.a8f7355eea45 from=translated src=- shape=1de872ab vocab=6a9c7940
+-/
 lemma norm_real_mul_exp_two_pi_mul_I (x : ℝ) {r : ℝ} (hr : 0 ≤ r) :
     ‖(r : ℂ) * Complex.exp ((2 * Real.pi * x) * Complex.I)‖ = r := by
   rw [norm_mul, Complex.norm_real, Real.norm_of_nonneg hr]
@@ -68,7 +76,9 @@ lemma norm_real_mul_exp_two_pi_mul_I (x : ℝ) {r : ℝ} (hr : 0 ≤ r) :
   simp
 
 /-- Partial sums of powers of a nontrivial unit complex number are bounded by
-`2 / ‖z - 1‖`.-/
+`2 / ‖z - 1‖`.
+@isnad1 id=le.2h2v.s6.ef12c4f3a25f from=translated src=- shape=963192bc vocab=b9bd7034
+-/
 lemma norm_geom_sum_le_two_div_norm_sub_one {z : ℂ} (hz_norm : ‖z‖ = 1)
     (hz_ne_one : z ≠ 1) (n : ℕ) :
     ‖∑ i ∈ Finset.range n, z ^ i‖ ≤ 2 / ‖z - 1‖ := by
@@ -86,7 +96,9 @@ lemma norm_geom_sum_le_two_div_norm_sub_one {z : ℂ} (hz_norm : ‖z‖ = 1)
       simpa [div_eq_mul_inv] using
         mul_le_mul_of_nonneg_right hnum (inv_nonneg.mpr hden.le)
 
-/-- The reciprocal chord-length bound used for trigonometric partial sums.-/
+/-- The reciprocal chord-length bound used for trigonometric partial sums.
+@isnad1 id=le.2h1v.s6.53f868c10c4c from=translated src=- shape=45a4cf0a vocab=92a3eee0
+-/
 lemma one_le_two_div_norm_one_sub_exp_two_pi_mul_I {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     1 ≤ 2 / ‖(1 : ℂ) - Complex.exp ((2 * Real.pi * x) * Complex.I)‖ := by
   have hnorm : ‖(1 : ℂ) - Complex.exp ((2 * Real.pi * x) * Complex.I)‖ ≤ 2 := by
@@ -103,7 +115,9 @@ lemma one_le_two_div_norm_one_sub_exp_two_pi_mul_I {x : ℝ} (hx₀ : 0 < x) (hx
     norm_pos_iff.mpr hzero
   simpa using (one_le_div hden_pos).2 hnorm
 
-/-- Rewriting `1 - e^{it}` in polar form on the upper unit semicircle.-/
+/-- Rewriting `1 - e^{it}` in polar form on the upper unit semicircle.
+@isnad1 id=eq.0h1v.s7.52cdf1d9edd3 from=translated src=- shape=1431b9ed vocab=c4211958
+-/
 lemma one_sub_exp_ofReal_mul_I (t : ℝ) :
     (1 : ℂ) - Complex.exp (t * Complex.I) =
       (2 * Real.sin (t / 2) : ℝ) *
@@ -125,7 +139,9 @@ lemma one_sub_exp_ofReal_mul_I (t : ℝ) :
             simp [Real.cos_sub_pi_div_two, Real.sin_sub_pi_div_two, sq]
             ring
 
-/-- The principal argument of `1 - e^{it}` for `0 < t < 2π`.-/
+/-- The principal argument of `1 - e^{it}` for `0 < t < 2π`.
+@isnad1 id=eq.2h1v.s6.b2a1e9219025 from=translated src=- shape=8e77583c vocab=ebfa0637
+-/
 lemma arg_one_sub_exp_ofReal_mul_I {t : ℝ} (ht₀ : 0 < t) (ht₂π : t < 2 * Real.pi) :
     Complex.arg ((1 : ℂ) - Complex.exp (t * Complex.I)) = t / 2 - Real.pi / 2 := by
   have hs : 0 < 2 * Real.sin (t / 2) := by
@@ -140,7 +156,9 @@ lemma arg_one_sub_exp_ofReal_mul_I {t : ℝ} (ht₀ : 0 < t) (ht₂π : t < 2 * 
   rw [one_sub_exp_ofReal_mul_I]
   simpa using (Complex.arg_mul_cos_add_sin_mul_I hs hθ)
 
-/-- The logarithm in the Abel sum formula has the expected boundary imaginary part.-/
+/-- The logarithm in the Abel sum formula has the expected boundary imaginary part.
+@isnad1 id=eq.2h1v.s6.612a3c8ede5a from=translated src=- shape=437f1da6 vocab=e3bccc72
+-/
 lemma neg_log_one_sub_exp_ofReal_mul_I_im {t : ℝ} (ht₀ : 0 < t) (ht₂π : t < 2 * Real.pi) :
     (-Complex.log ((1 : ℂ) - Complex.exp (t * Complex.I))).im = Real.pi / 2 - t / 2 := by
   rw [show (-Complex.log ((1 : ℂ) - Complex.exp (t * Complex.I))).im =
@@ -148,7 +166,9 @@ lemma neg_log_one_sub_exp_ofReal_mul_I_im {t : ℝ} (ht₀ : 0 < t) (ht₂π : t
   rw [Complex.log_im, arg_one_sub_exp_ofReal_mul_I ht₀ ht₂π]
   ring
 
-/-- Abel summation identity for the damped sine series attached to `sinZeta` at `s = 1`.-/
+/-- Abel summation identity for the damped sine series attached to `sinZeta` at `s = 1`.
+@isnad1 id=hassum.2h2v.s7.831868f40ba8 from=translated src=- shape=1ff533c3 vocab=9b71a1dd
+-/
 lemma hasSum_mul_rpow_sin (x r : ℝ) (hr₀ : 0 ≤ r) (hr₁ : r < 1) :
     HasSum (fun n : ℕ => (r ^ n / n) * Real.sin (2 * Real.pi * x * n))
       (-Complex.log ((1 : ℂ) - (r : ℂ) * Complex.exp ((2 * Real.pi * x) * Complex.I))).im := by
@@ -170,7 +190,9 @@ lemma hasSum_mul_rpow_sin (x r : ℝ) (hr₀ : 0 ≤ r) (hr₁ : r < 1) :
     rw [Complex.exp_ofReal_mul_I_im]
     ring
 
-/-- Abel summation identity for the damped cosine series attached to `cosZeta` at `s = 1`.-/
+/-- Abel summation identity for the damped cosine series attached to `cosZeta` at `s = 1`.
+@isnad1 id=hassum.2h2v.s7.9512500cbf84 from=translated src=- shape=8c5156a3 vocab=d748a6da
+-/
 lemma hasSum_mul_rpow_cos (x r : ℝ) (hr₀ : 0 ≤ r) (hr₁ : r < 1) :
     HasSum (fun n : ℕ => (r ^ n / n) * Real.cos (2 * Real.pi * x * n))
       (-Real.log ‖(1 : ℂ) - (r : ℂ) * Complex.exp ((2 * Real.pi * x) * Complex.I)‖) := by
@@ -201,7 +223,9 @@ lemma hasSum_mul_rpow_cos (x r : ℝ) (hr₀ : 0 ≤ r) (hr₁ : r < 1) :
     simpa using congrArg Neg.neg (Complex.log_re ((1 : ℂ) - z))
   simpa [hvalue, z] using hsum'
 
-/-- The norm of `1 - e^{it}` on the upper unit semicircle.-/
+/-- The norm of `1 - e^{it}` on the upper unit semicircle.
+@isnad1 id=eq.2h1v.s6.643be6471cbd from=translated src=- shape=fcb5fdb5 vocab=50496d06
+-/
 lemma norm_one_sub_exp_ofReal_mul_I {t : ℝ} (ht₀ : 0 < t) (ht₂π : t < 2 * Real.pi) :
     ‖(1 : ℂ) - Complex.exp (t * Complex.I)‖ = 2 * Real.sin (t / 2) := by
   rw [← norm_neg, neg_sub, mul_comm, Complex.norm_exp_I_mul_ofReal_sub_one, Real.norm_eq_abs,

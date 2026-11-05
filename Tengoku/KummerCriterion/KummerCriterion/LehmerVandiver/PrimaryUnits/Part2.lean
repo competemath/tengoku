@@ -45,12 +45,16 @@ variable (p : ℕ) [hp : Fact p.Prime]
   (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {p} ℚ K]
 
 /-- `cyclotomicUnit p K p = 0`, since `∑_{j=0}^{p-1} ζ^j = 0`
-(cyclotomic identity).-/
+(cyclotomic identity).
+@isnad1 id=eq.0h2v.s6.e99c68a664ad from=translated src=- shape=1026c58b vocab=364fefa5
+-/
 theorem cyclotomicUnit_p_eq_zero : cyclotomicUnit p K p = 0 :=
   (zeta_spec p ℚ K).unit'_coe.geom_sum_eq_zero
     (Nat.lt_of_lt_of_le one_lt_two hp.1.two_le)
 
-/-- `cyclotomicUnit p K (p - 1) = -ζ^{p-1}`.-/
+/-- `cyclotomicUnit p K (p - 1) = -ζ^{p-1}`.
+@isnad1 id=eq.0h2v.s7.39b1638ca7f4 from=translated src=- shape=1b092c62 vocab=164743a2
+-/
 theorem cyclotomicUnit_p_sub_one :
     cyclotomicUnit p K (p - 1) = -((zeta_spec p ℚ K).unit' : 𝓞 K) ^ (p - 1) := by
   have hp_pos : 1 ≤ p := hp.1.pos
@@ -76,7 +80,9 @@ unit `(1 - ζ^k)(1 - ζ^{-k})/((1 - ζ)(1 - ζ^{-1}))`.-/
 noncomputable def realCyclotomicUnit [IsCMField K] (k : ℕ) : 𝓞 K :=
   cyclotomicUnit p K k * ringOfIntegersComplexConj K (cyclotomicUnit p K k)
 
-/-- The real cyclotomic combination is fixed by complex conjugation.-/
+/-- The real cyclotomic combination is fixed by complex conjugation.
+@isnad1 id=eq.0h3v.s9.f62455e66e01 from=translated src=- shape=5da21901 vocab=774a0ab0
+-/
 theorem realCyclotomicUnit_complexConj [IsCMField K] (k : ℕ) :
     ringOfIntegersComplexConj K (realCyclotomicUnit p K k) =
       realCyclotomicUnit p K k := by
@@ -89,7 +95,9 @@ theorem realCyclotomicUnit_complexConj [IsCMField K] (k : ℕ) :
     simp]
   ring
 
-/-- `realCyclotomicUnit k ≡ k² (mod ζ - 1)` in `𝓞 K`.-/
+/-- `realCyclotomicUnit k ≡ k² (mod ζ - 1)` in `𝓞 K`.
+@isnad1 id=dvd.0h3v.s8.12ee44b783f9 from=translated src=- shape=133cfe28 vocab=43a4d810
+-/
 theorem zetaSubOne_dvd_realCyclotomicUnit_sub_sq [IsCMField K] (k : ℕ) :
     ((zeta_spec p ℚ K).unit' : 𝓞 K) - 1 ∣
       realCyclotomicUnit p K k - (k : 𝓞 K) ^ 2 := by
@@ -105,7 +113,9 @@ theorem zetaSubOne_dvd_realCyclotomicUnit_sub_sq [IsCMField K] (k : ℕ) :
     ((zetaSubOne_dvd_complexConj_cyclotomicUnit_sub_natCast p K k).mul_left _)
     ((zetaSubOne_dvd_cyclotomicUnit_sub_natCast p K k).mul_left _)
 
-/-- The real cyclotomic combination is a unit when `k` is coprime to `p`.-/
+/-- The real cyclotomic combination is a unit when `k` is coprime to `p`.
+@isnad1 id=isunit.2h3v.s6.9c72db06761f from=translated src=- shape=f79960a9 vocab=e62d1db9
+-/
 theorem isUnit_realCyclotomicUnit [IsCMField K] (k : ℕ) (hk : k.Coprime p)
     (hp_two : 2 ≤ p) :
     IsUnit (realCyclotomicUnit p K k) := by

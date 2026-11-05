@@ -26,7 +26,9 @@ namespace Furtwaengler
 universe u v w
 
 /-- Substitution of a nilpotent constant into a power series is the finite
-polynomial evaluation at that constant.-/
+polynomial evaluation at that constant.
+@isnad1 id=eq.1h4v.s8.bf8424d2cdfb from=translated src=- shape=e949e18a vocab=e60a58ae
+-/
 theorem powerSeries_subst_C_eq_C_sum_range_of_pow_succ_eq_zero
     {A : Type*} [CommRing A] (a : A) (N : ℕ) (ha : a ^ (N + 1) = 0)
     (F : PowerSeries A) :
@@ -61,7 +63,9 @@ theorem powerSeries_subst_C_eq_C_sum_range_of_pow_succ_eq_zero
       simp [hcoeff]
 
 /-- Substitution of a nilpotent constant into a power series is the constant
-power series attached to the finite truncation evaluation.-/
+power series attached to the finite truncation evaluation.
+@isnad1 id=eq.1h4v.s8.2f11c13cd6e9 from=translated src=- shape=0509b269 vocab=27decfd4
+-/
 theorem powerSeries_subst_C_eq_C_eval₂_trunc_of_pow_succ_eq_zero
     {A : Type*} [CommRing A] (a : A) (N : ℕ) (ha : a ^ (N + 1) = 0)
     (F : PowerSeries A) :
@@ -73,7 +77,9 @@ theorem powerSeries_subst_C_eq_C_eval₂_trunc_of_pow_succ_eq_zero
   rw [PowerSeries.eval₂_trunc_eq_sum_range]
   simp
 
-/-- Finite truncation evaluation at a nilpotent element is multiplicative.-/
+/-- Finite truncation evaluation at a nilpotent element is multiplicative.
+@isnad1 id=eq.1h5v.s9.117aee593ef1 from=translated src=- shape=bbee4d21 vocab=5e052e11
+-/
 theorem powerSeries_trunc_eval₂_mul_of_pow_succ_eq_zero
     {A : Type*} [CommRing A] (a : A) (N : ℕ) (ha : a ^ (N + 1) = 0)
     (F G : PowerSeries A) :

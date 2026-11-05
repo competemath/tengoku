@@ -46,11 +46,17 @@ def kummerLogRowIndex (j : Fin (kummerLogRank p)) : ℕ :=
   (j : ℕ) + 1
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=le.0h2v.s4.0b54a25ef00f from=translated src=- shape=161cbf40 vocab=cc6385ec
+-/
 theorem kummerLogRowIndex_one_le (j : Fin (kummerLogRank p)) :
     1 ≤ kummerLogRowIndex (p := p) j := by
   simp [kummerLogRowIndex]
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=le.0h2v.s5.ffcca96882ed from=translated src=- shape=894aad4b vocab=db878e6e
+-/
 theorem two_mul_kummerLogRowIndex_le_sub_three
     (j : Fin (kummerLogRank p)) :
     2 * kummerLogRowIndex (p := p) j ≤ p - 3 := by
@@ -63,7 +69,9 @@ theorem two_mul_kummerLogRowIndex_le_sub_three
     Nat.mul_le_mul_left 2 hjle
   simpa [kummerLogRowIndex] using hle.trans hmulrank
 
-/-- The unit factor for the selected matrix row is nonzero modulo `p`.-/
+/-- The unit factor for the selected matrix row is nonzero modulo `p`.
+@isnad1 id=ne.1h2v.s5.acfe7764bfff from=translated src=- shape=e413441d vocab=77ccb347
+-/
 theorem formalKummerLogCoeffModP_column_unit_ne_zero
     (_hp_five : 5 ≤ p) (j : Fin (kummerLogRank p)) :
     kummerLogUnitFactor p (kummerLogRowIndex (p := p) j) ≠ 0 :=
@@ -73,7 +81,9 @@ theorem formalKummerLogCoeffModP_column_unit_ne_zero
     (two_mul_kummerLogRowIndex_le_sub_three (p := p) j)
 
 /-- specialization of the formal coefficient identity at the Kummer
-column residue.-/
+column residue.
+@isnad1 id=eq.2h3v.s8.f7f33b3c08bb from=translated src=- shape=ecc909c1 vocab=3013aa1a
+-/
 theorem formalKummerLogCoeffModP_eval_kummerLogColumnIndex
     (hp_three : 3 ≤ p) (_hp_five : 5 ≤ p)
     (j a : Fin (kummerLogRank p)) :
@@ -96,7 +106,9 @@ def kummerLogCoeffCongrRhs
         (2 * kummerLogRowIndex (p := p) j) - 1)
 
 /-- Formal coefficient congruence after specializing the scalar at the Kummer
-column residue, in the normalized-family coefficient convention.-/
+column residue, in the normalized-family coefficient convention.
+@isnad1 id=eq.2h3v.s6.909e187060e6 from=translated src=- shape=a384bf08 vocab=27291818
+-/
 theorem formalKummerLogCoeff_congr
     (hp_three : 3 ≤ p) (hp_five : 5 ≤ p)
     (j a : Fin (kummerLogRank p)) :
@@ -108,7 +120,9 @@ theorem formalKummerLogCoeff_congr
   rfl
 
 /-- The unit factor appearing in the row of the formal Kummer congruence is
-nonzero.-/
+nonzero.
+@isnad1 id=ne.1h2v.s5.acfe7764bfff from=translated src=- shape=e413441d vocab=77ccb347
+-/
 theorem kummerLogCoeffCongrRhs_unit_ne_zero
     (hp_five : 5 ≤ p) (j : Fin (kummerLogRank p)) :
     kummerLogUnitFactor p (kummerLogRowIndex (p := p) j) ≠ 0 :=
@@ -121,6 +135,9 @@ has this extra factor `2`.-/
 def squaredKummerLogUnitFactor (p j : ℕ) [Fact p.Prime] : ZMod p :=
   (2 : ZMod p) * kummerLogUnitFactor p j
 
+/--
+@isnad1 id=ne.1h1v.s6.97033146a4d3 from=translated src=- shape=2207af8f vocab=346366e3
+-/
 theorem two_zmod_ne_zero_of_five_le (hp_five : 5 ≤ p) :
     (2 : ZMod p) ≠ 0 := by
   intro hzero
@@ -129,7 +146,9 @@ theorem two_zmod_ne_zero_of_five_le (hp_five : 5 ≤ p) :
   have hp_le_two : p ≤ 2 := Nat.le_of_dvd (by norm_num) hp_dvd
   omega
 
-/-- The squared-family unit factor is nonzero in the Kummer row range.-/
+/-- The squared-family unit factor is nonzero in the Kummer row range.
+@isnad1 id=ne.1h2v.s5.49116465acdd from=translated src=- shape=e413441d vocab=c42c8b5e
+-/
 theorem squaredKummerLogUnitFactor_ne_zero
     (hp_five : 5 ≤ p) (j : Fin (kummerLogRank p)) :
     squaredKummerLogUnitFactor p (kummerLogRowIndex (p := p) j) ≠ 0 :=
@@ -148,6 +167,9 @@ def squaredKummerLogCoeffCongrRhs
       ((kummerLogColumnIndex (p := p) hp_three a : ZMod p) ^
         (2 * kummerLogRowIndex (p := p) j) - 1)
 
+/--
+@isnad1 id=eq.1h3v.s6.e34b2bd55ea0 from=translated src=- shape=48639189 vocab=2601e84b
+-/
 theorem squaredKummerLogCoeffCongrRhs_eq_two_mul
     (hp_three : 3 ≤ p) (j a : Fin (kummerLogRank p)) :
     squaredKummerLogCoeffCongrRhs (p := p) hp_three j a =

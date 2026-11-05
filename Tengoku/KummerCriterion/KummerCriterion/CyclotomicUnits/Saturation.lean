@@ -26,7 +26,9 @@ variable {K : Type*} [Field K] [NumberField K] [IsCyclotomicExtension {p} ℚ K]
 local notation3 "K⁺" => NumberField.maximalRealSubfield K
 
 /-- Indices `2 ≤ a ≤ (p - 1) / 2` are automatically coprime to the prime
-conductor `p`.-/
+conductor `p`.
+@isnad1 id=coprime.2h2v.s5.c8b2dbb41cf6 from=translated src=- shape=12fd4e5b vocab=873b6855
+-/
 theorem realCyclotomicUnit_index_coprime {a : ℕ}
     (ha_two : 2 ≤ a) (ha_le : a ≤ (p - 1) / 2) : a.Coprime p := by
   have hp_prime : Nat.Prime p := Fact.out
@@ -45,6 +47,9 @@ noncomputable def realCyclotomicUnit (a : ℕ)
     (realCyclotomicUnit_index_coprime (p := p) ha_two ha_le)
     (Fact.out : Nat.Prime p).two_le
 
+/--
+@isnad1 id=eq.2h3v.s8.12eeb0e6d07a from=translated src=- shape=af888759 vocab=288cb752
+-/
 @[simp]
 theorem realCyclotomicUnit_val (a : ℕ)
     (ha_two : 2 ≤ a) (ha_le : a ≤ (p - 1) / 2) :
@@ -54,7 +59,9 @@ theorem realCyclotomicUnit_val (a : ℕ)
   rw [LehmerVandiver.realCyclotomicUnitPlusUnit_val]
 
 /-- The image of the real cyclotomic unit in `𝓞 K` is the σ-fixed product
-`cyclotomicUnit a * σ(cyclotomicUnit a)`.-/
+`cyclotomicUnit a * σ(cyclotomicUnit a)`.
+@isnad1 id=eq.2h3v.s9.8d4bf3a3f6f5 from=translated src=- shape=b61a640b vocab=9572496b
+-/
 theorem algebraMap_realCyclotomicUnit (a : ℕ)
     (ha_two : 2 ≤ a) (ha_le : a ≤ (p - 1) / 2) :
     algebraMap (𝓞 K⁺) (𝓞 K)
@@ -93,10 +100,16 @@ abbrev CPlusGeneratorIndex (_hp_three : 3 ≤ p) (i : Fin ((p - 3) / 2)) : ℕ :
   (i : ℕ) + 2
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=le.1h2v.s5.adf804832bad from=translated src=- shape=5f3b484e vocab=07016863
+-/
 theorem CPlusGeneratorIndex_two_le (hp_three : 3 ≤ p) (i : Fin ((p - 3) / 2)) :
     2 ≤ CPlusGeneratorIndex (p := p) hp_three i := by
   simp [CPlusGeneratorIndex]
 
+/--
+@isnad1 id=le.1h2v.s6.b89c3025c2d2 from=translated src=- shape=7c2586b0 vocab=da61c8a1
+-/
 theorem CPlusGeneratorIndex_le_half (hp_three : 3 ≤ p) (i : Fin ((p - 3) / 2)) :
     CPlusGeneratorIndex (p := p) hp_three i ≤ (p - 1) / 2 := by
   have hi : (i : ℕ) < (p - 3) / 2 := i.isLt
@@ -122,10 +135,16 @@ def CPlus (hp_three : 3 ≤ p) : Subgroup (𝓞 K⁺)ˣ :=
   Subgroup.closure
     ({(-1 : (𝓞 K⁺)ˣ)} ∪ Set.range (CPlusGenerator (p := p) (K := K) hp_three))
 
+/--
+@isnad1 id=mem.1h2v.s11.883f529f3c53 from=translated src=- shape=e50fe29b vocab=73922cde
+-/
 theorem neg_one_mem_CPlus (hp_three : 3 ≤ p) :
     (-1 : (𝓞 K⁺)ˣ) ∈ CPlus (p := p) (K := K) hp_three :=
   Subgroup.subset_closure (by left; rfl)
 
+/--
+@isnad1 id=mem.1h3v.s10.94a270e71384 from=translated src=- shape=8c2aa473 vocab=7d1f09d6
+-/
 theorem CPlusGenerator_mem (hp_three : 3 ≤ p) (i : Fin ((p - 3) / 2)) :
     CPlusGenerator (p := p) (K := K) hp_three i ∈ CPlus (p := p) (K := K) hp_three :=
   Subgroup.subset_closure (by right; exact ⟨i, rfl⟩)
@@ -153,12 +172,18 @@ def pPowerSubgroup {G : Type*} [CommGroup G] (H : Subgroup G) (p : ℕ) : Subgro
 def pSaturated {G : Type*} [CommGroup G] (H E : Subgroup G) (p : ℕ) : Prop :=
   H ≤ E ∧ H ⊓ pPowerSubgroup E p ≤ pPowerSubgroup H p
 
+/--
+@isnad1 id=mem.3h5v.s6.5a220e668f87 from=translated src=- shape=47b5e09a vocab=e092a233
+-/
 theorem pSaturated.mem_pPowerSubgroup_of_mem {G : Type*} [CommGroup G]
     {H E : Subgroup G} {p : ℕ} (h : pSaturated H E p) {x : G}
     (hxH : x ∈ H) (hxEpow : x ∈ pPowerSubgroup E p) :
     x ∈ pPowerSubgroup H p :=
   h.2 ⟨hxH, hxEpow⟩
 
+/--
+@isnad1 id=le.1h2v.s10.2ce05cf122bc from=translated src=- shape=9efb3b06 vocab=69a1fabc
+-/
 theorem CPlus_le_EPlus (hp_three : 3 ≤ p) :
     CPlus (p := p) (K := K) hp_three ≤ EPlus (K := K) := by
   simp [EPlus]
@@ -170,6 +195,9 @@ noncomputable def CPlusExponentProduct (hp_three : 3 ≤ p) (s : ℤ)
     ∏ a : Fin ((p - 3) / 2),
       CPlusGenerator (p := p) (K := K) hp_three a ^ e a
 
+/--
+@isnad1 id=eq.1h6v.s10.6a8732a7954e from=translated src=- shape=4c031a5c vocab=29a59268
+-/
 theorem CPlusExponentProduct_mul (hp_three : 3 ≤ p) (s t : ℤ)
     (e f : Fin ((p - 3) / 2) → ℤ) :
     CPlusExponentProduct (p := p) (K := K) hp_three s e *
@@ -178,6 +206,9 @@ theorem CPlusExponentProduct_mul (hp_three : 3 ≤ p) (s t : ℤ)
   classical
   simp [CPlusExponentProduct, zpow_add, Finset.prod_mul_distrib, mul_assoc, mul_left_comm]
 
+/--
+@isnad1 id=eq.1h4v.s9.9c0db8e169e8 from=translated src=- shape=01914ef5 vocab=2b948d4b
+-/
 theorem CPlusExponentProduct_inv (hp_three : 3 ≤ p) (s : ℤ)
     (e : Fin ((p - 3) / 2) → ℤ) :
     (CPlusExponentProduct (p := p) (K := K) hp_three s e)⁻¹ =
@@ -185,6 +216,9 @@ theorem CPlusExponentProduct_inv (hp_three : 3 ≤ p) (s : ℤ)
   classical
   simp [CPlusExponentProduct, Finset.prod_inv_distrib, mul_comm]
 
+/--
+@isnad1 id=eq.1h3v.s8.d9a59ec31406 from=translated src=- shape=9780394c vocab=8a384ec4
+-/
 theorem CPlusExponentProduct_single (hp_three : 3 ≤ p) (i : Fin ((p - 3) / 2)) :
     CPlusExponentProduct (p := p) (K := K) hp_three 0
         (fun j => if j = i then 1 else 0) =
@@ -199,6 +233,9 @@ theorem CPlusExponentProduct_single (hp_three : 3 ≤ p) (i : Fin ((p - 3) / 2))
   · intro hi
     exact False.elim (hi (Finset.mem_univ i))
 
+/--
+@isnad1 id=mem.1h4v.s10.809b126f66f7 from=translated src=- shape=d83e7c9b vocab=8166e8d1
+-/
 theorem CPlusExponentProduct_mem_CPlus (hp_three : 3 ≤ p) (s : ℤ)
     (e : Fin ((p - 3) / 2) → ℤ) :
     CPlusExponentProduct (p := p) (K := K) hp_three s e ∈
@@ -213,7 +250,9 @@ theorem CPlusExponentProduct_mem_CPlus (hp_three : 3 ≤ p) (s : ℤ)
         (CPlusGenerator_mem (p := p) (K := K) hp_three a) (e a))
 
 /-- Every element of `CPlus` has an integer-exponent expression in the sign and
-the finite cyclotomic-unit generators.-/
+the finite cyclotomic-unit generators.
+@isnad1 id=ex.2h3v.s10.8b9b5debde19 from=translated src=- shape=816014a0 vocab=8166e8d1
+-/
 theorem exists_CPlusExponentProduct_of_mem_CPlus (hp_three : 3 ≤ p)
     {x : (𝓞 K⁺)ˣ} (hx : x ∈ CPlus (p := p) (K := K) hp_three) :
     ∃ (s : ℤ) (e : Fin ((p - 3) / 2) → ℤ),
@@ -242,6 +281,9 @@ theorem exists_CPlusExponentProduct_of_mem_CPlus (hp_three : 3 ≤ p)
       refine ⟨-s, -e, ?_⟩
       rw [← hx, ← CPlusExponentProduct_inv]
 
+/--
+@isnad1 id=eq.2h4v.s7.936832b2c12d from=translated src=- shape=7833dd55 vocab=53acfb50
+-/
 theorem zpow_pow_eq_self_of_sq_eq_one_of_odd {G : Type*} [CommGroup G] {x : G}
     (hx_sq : x ^ 2 = 1) {n : ℕ} (hn_odd : n % 2 = 1) (s : ℤ) :
     (x ^ s) ^ n = x ^ s := by
@@ -264,6 +306,9 @@ theorem zpow_pow_eq_self_of_sq_eq_one_of_odd {G : Type*} [CommGroup G] {x : G}
     _ = x ^ s := by rw [hxs_sq]; simp
 
 omit [NumberField K] [IsCyclotomicExtension {p} ℚ K] [IsCMField K] in
+/--
+@isnad1 id=eq.1h3v.s12.70d4ea9b07a2 from=translated src=- shape=68afd80d vocab=9b44c904
+-/
 theorem neg_one_zpow_pow_eq_self (hp_odd : p ≠ 2) (s : ℤ) :
     ((-1 : (𝓞 K⁺)ˣ) ^ s) ^ p = (-1 : (𝓞 K⁺)ˣ) ^ s := by
   have hp_mod : p % 2 = 1 :=
@@ -273,6 +318,9 @@ theorem neg_one_zpow_pow_eq_self (hp_odd : p ≠ 2) (s : ℤ) :
     simp
   exact zpow_pow_eq_self_of_sq_eq_one_of_odd hneg_sq hp_mod s
 
+/--
+@isnad1 id=eq.3h5v.s10.0e4b2b1ea7c7 from=translated src=- shape=b0391ca7 vocab=9c5e265e
+-/
 theorem CPlusExponentProduct_pow_of_exponents_eq_mul (hp_odd : p ≠ 2)
     (hp_three : 3 ≤ p) (s : ℤ) (e k : Fin ((p - 3) / 2) → ℤ)
     (hk : ∀ a, e a = (p : ℤ) * k a) :
@@ -294,7 +342,9 @@ theorem CPlusExponentProduct_pow_of_exponents_eq_mul (hp_odd : p ≠ 2)
     _ = CPlusGenerator (p := p) (K := K) hp_three a ^ e a := by
           rw [hk a]
 
-/-- Concrete group-theoretic saturation criterion for `CPlus`.-/
+/-- Concrete group-theoretic saturation criterion for `CPlus`.
+@isnad1 id=psaturat.3h2v.s11.28827d933baf from=translated src=- shape=abc5a16d vocab=f05b9841
+-/
 theorem CPlus_pSaturated_of_generator_exponents_modP_zero (hp_odd : p ≠ 2)
     (hp_three : 3 ≤ p)
     (h : ∀ (s : ℤ) (e : Fin ((p - 3) / 2) → ℤ),

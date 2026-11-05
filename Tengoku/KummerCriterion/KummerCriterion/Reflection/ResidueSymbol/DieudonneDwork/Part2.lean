@@ -45,6 +45,9 @@ namespace DieudonneDwork
 
 namespace IsRIntegralPS
 
+/--
+@isnad1 id=eq.1h5v.s7.3475cb4eed35 from=translated src=- shape=c8a2976c vocab=3ea601c1
+-/
 theorem mapTo_pow {r : ℕ} {A : Type*} [CommSemiring A]
     (φ : rIntegralRatSubring r →+* A) {F : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (k : ℕ) :
@@ -65,6 +68,9 @@ theorem mapTo_pow {r : ℕ} {A : Type*} [CommSemiring A]
         _ = (hF.pow k).mapTo φ * hF.mapTo φ := mapTo_mul φ (hF.pow k) hF
         _ = hF.mapTo φ ^ (k + 1) := by rw [ih, pow_succ]
 
+/--
+@isnad1 id=eq.3h5v.s7.ddbac6819696 from=translated src=- shape=97e65780 vocab=ef9d1f3e
+-/
 theorem mapTo_subst {r : ℕ} {A : Type*} [CommRing A]
     (φ : rIntegralRatSubring r →+* A) {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G)
@@ -87,17 +93,26 @@ theorem mapTo_subst {r : ℕ} {A : Type*} [CommRing A]
     _ = PowerSeries.subst (hG.mapTo φ) (hF.mapTo φ) := by
           rw [← mapTo_eq_map_toSubringPS φ hG, ← mapTo_eq_map_toSubringPS φ hF]
 
+/--
+@isnad1 id=eq.2h2v.s4.057b0445f744 from=translated src=- shape=e244f221 vocab=4aa4a3b6
+-/
 theorem toZModPS_congr_proof {r : ℕ} {F : PowerSeries ℚ}
     (hF hF' : IsRIntegralPS r F) : hF.toZModPS = hF'.toZModPS := by
   ext n
   simp [toZModPS, IsRIntegralRat.toZMod]
 
+/--
+@isnad1 id=eq.3h3v.s5.78ff17dc240f from=translated src=- shape=12bb3c0a vocab=4aa4a3b6
+-/
 theorem toZModPS_eq_of_eq {r : ℕ} {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G) (h : F = G) :
     hF.toZModPS = hG.toZModPS := by
   subst h
   exact toZModPS_congr_proof hF hG
 
+/--
+@isnad1 id=eq.0h1v.s5.fe4de2ffc376 from=translated src=- shape=610c1241 vocab=38b0fef8
+-/
 @[simp]
 theorem toZModPS_one (r : ℕ) :
     (IsRIntegralPS.one r).toZModPS = (1 : PowerSeries (ZMod r)) := by
@@ -106,12 +121,18 @@ theorem toZModPS_one (r : ℕ) :
   · simp [toZModPS, hn]
   · simp [toZModPS, hn]
 
+/--
+@isnad1 id=eq.2h3v.s6.fbd48bede2d7 from=translated src=- shape=27e99387 vocab=2729d28f
+-/
 theorem toZModPS_sub {r : ℕ} {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G) :
     (hF.sub hG).toZModPS = hF.toZModPS - hG.toZModPS := by
   ext n
   simpa [toZModPS, map_sub] using IsRIntegralRat.toZMod_sub (hF n) (hG n)
 
+/--
+@isnad1 id=eq.2h3v.s6.fe044a7c2a61 from=translated src=- shape=27e99387 vocab=511d060a
+-/
 theorem toZModPS_mul {r : ℕ} {F G : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (hG : IsRIntegralPS r G) :
     (hF.mul hG).toZModPS = hF.toZModPS * hG.toZModPS := by
@@ -140,6 +161,9 @@ theorem toZModPS_mul {r : ℕ} {F G : PowerSeries ℚ}
     _ = (PowerSeries.coeff (R := ZMod r) n) (hF.toZModPS * hG.toZModPS) := by
           simp [s, toZModPS, PowerSeries.coeff_mul]
 
+/--
+@isnad1 id=eq.1h3v.s6.b6d455afe06e from=translated src=- shape=5c61ce19 vocab=e53ed304
+-/
 theorem toZModPS_pow {r : ℕ} {F : PowerSeries ℚ} (hF : IsRIntegralPS r F)
     (k : ℕ) :
     (hF.pow k).toZModPS = hF.toZModPS ^ k := by
@@ -159,6 +183,9 @@ theorem toZModPS_pow {r : ℕ} {F : PowerSeries ℚ} (hF : IsRIntegralPS r F)
         _ = (hF.pow k).toZModPS * hF.toZModPS := toZModPS_mul (hF.pow k) hF
         _ = hF.toZModPS ^ (k + 1) := by rw [ih, pow_succ]
 
+/--
+@isnad1 id=eq.2h3v.s7.5db8c24aff33 from=translated src=- shape=adebc79f vocab=f9b532cd
+-/
 theorem toZModPS_subst_X_pow {r k : ℕ} (hk : k ≠ 0) {F : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) :
     (hF.subst_X_pow hk).toZModPS =
@@ -170,7 +197,9 @@ theorem toZModPS_subst_X_pow {r k : ℕ} (hk : k ≠ 0) {F : PowerSeries ℚ}
 
 /-- Freshman's dream for `r`-integral power series: if `F ∈ ℚ[[T]]` has
 `r`-integral coefficients, then every coefficient of `F ^ r - F(T ^ r)` is an
-`r`-multiple in the localized sense encoded by `IsRIntegralRat`.-/
+`r`-multiple in the localized sense encoded by `IsRIntegralRat`.
+@isnad1 id=ex.1h3v.s7.835f9133ee25 from=translated src=- shape=fc4d3407 vocab=d4ad246c
+-/
 theorem pow_r_sub_subst_X_pow_r_in_r_smul
     (r : ℕ) [Fact (Nat.Prime r)] {F : PowerSeries ℚ}
     (hF : IsRIntegralPS r F) (n : ℕ) :
@@ -388,7 +417,9 @@ private theorem coeff_pow_eq_trunc_add
 
 /-- Dieudonné-Dwork `(⇐)` direction: if the quotient
 `F(T)^r / F(T^r) - 1` has positive coefficients in `r·ℤ_(r)`, then `F` has
-`r`-integral coefficients.-/
+`r`-integral coefficients.
+@isnad1 id=isrinteg.2h2v.s8.7f2e7ab738e7 from=translated src=- shape=43e464e1 vocab=8c4a7a7f
+-/
 theorem dieudonneDwork_mpr
     (r : ℕ) [Fact (Nat.Prime r)] {F : PowerSeries ℚ}
     (hF1 : PowerSeries.constantCoeff F = 1)

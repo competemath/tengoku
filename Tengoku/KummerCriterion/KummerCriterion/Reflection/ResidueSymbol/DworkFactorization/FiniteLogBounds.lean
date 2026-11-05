@@ -30,14 +30,18 @@ valuation `v_ell(n)` is written as `n.factorization ell`.
 namespace Nat
 
 /-- Bernoulli's inequality in the natural-number form needed for valuation
-bounds.-/
+bounds.
+@isnad1 id=le.1h2v.s6.5b04194208f3 from=translated src=- shape=35d64902 vocab=3e115a59
+-/
 theorem mul_pred_le_pow_sub_one (a n : ℕ) (ha : 1 ≤ a) :
     n * (a - 1) ≤ a ^ n - 1 := by
   have := one_add_le_pow_of_two_add_nonneg (Nat.zero_le (2 + (a - 1))) n
   rw [Nat.cast_id, Nat.add_sub_cancel' ha] at this
   omega
 
-/-- For nonzero `n`, `(ell - 1) * v_ell(n)` is at most `n - 1`.-/
+/-- For nonzero `n`, `(ell - 1) * v_ell(n)` is at most `n - 1`.
+@isnad1 id=le.2h2v.s6.2e447fb52d1a from=translated src=- shape=3a9ccea0 vocab=d01a52be
+-/
 theorem factorization_mul_pred_le_pred {ell n : ℕ}
     (hell : ell.Prime) (hn : n ≠ 0) :
     n.factorization ell * (ell - 1) ≤ n - 1 := by
@@ -50,7 +54,9 @@ theorem factorization_mul_pred_le_pred {ell n : ℕ}
     Nat.mul_pred_le_pow_sub_one ell f hell.pos
   exact hmul_le.trans (Nat.sub_le_sub_right hpow_le 1)
 
-/-- Version: `n - (ell - 1) * v_ell(n) >= 1` for nonzero `n`.-/
+/-- Version: `n - (ell - 1) * v_ell(n) >= 1` for nonzero `n`.
+@isnad1 id=le.2h2v.s6.3432cdb7f96c from=translated src=- shape=2407e63a vocab=d01a52be
+-/
 theorem one_le_sub_pred_mul_factorization {ell n : ℕ}
     (hell : ell.Prime) (hn : n ≠ 0) :
     1 ≤ n - (ell - 1) * n.factorization ell := by
@@ -59,7 +65,9 @@ theorem one_le_sub_pred_mul_factorization {ell n : ℕ}
   omega
 
 /-- A sharper denominator estimate: after removing `(ell - 1) * v_ell(n)`,
-at least `n / ell` remains.-/
+at least `n / ell` remains.
+@isnad1 id=le.1h2v.s6.9d8f25754f8f from=translated src=- shape=aa19b425 vocab=deeb8073
+-/
 theorem pred_mul_factorization_add_div_le {ell n : ℕ}
     (hell : ell.Prime) :
     (ell - 1) * n.factorization ell + n / ell ≤ n := by
@@ -105,7 +113,9 @@ theorem pred_mul_factorization_add_div_le {ell n : ℕ}
     _ = n := hn_eq
 
 /-- Tail bound:
-`n >= ell * (N+1) -> n - (ell - 1) * v_ell(n) >= N+1`.-/
+`n >= ell * (N+1) -> n - (ell - 1) * v_ell(n) >= N+1`.
+@isnad1 id=le.2h3v.s6.d357a88e4fe4 from=translated src=- shape=3152c1b0 vocab=96aa8888
+-/
 theorem succ_le_sub_pred_mul_factorization_of_mul_succ_le {ell N n : ℕ}
     (hell : ell.Prime) (hn : ell * (N + 1) ≤ n) :
     N + 1 ≤ n - (ell - 1) * n.factorization ell := by
@@ -116,7 +126,9 @@ theorem succ_le_sub_pred_mul_factorization_of_mul_succ_le {ell N n : ℕ}
   omega
 
 /-- If `n <= d`, then replacing `d` by the smaller denominator index `n`
-costs at most `d - n` after division by `ell`.-/
+costs at most `d - n` after division by `ell`.
+@isnad1 id=le.2h3v.s5.4b2b18c4e432 from=translated src=- shape=34caf06e vocab=351ef22b
+-/
 theorem div_le_div_add_sub {ell n d : ℕ} (hell : 0 < ell) (hnd : n ≤ d) :
     d / ell ≤ n / ell + (d - n) := by
   rw [Nat.div_le_iff_le_mul_add_pred hell]
@@ -142,7 +154,9 @@ theorem div_le_div_add_sub {ell n d : ℕ} (hell : 0 < ell) (hnd : n ≤ d) :
 /-- Total-degree tail bound for logarithm terms: if a homogeneous piece has
 total degree at least `ell * (N+1)` and comes from the `n`-th logarithm term
 with `n <= d`, then its `Q`-order is still at least `N+1` after cancelling the
-`ell`-power part of the denominator.-/
+`ell`-power part of the denominator.
+@isnad1 id=le.3h4v.s6.58222de4b2f3 from=translated src=- shape=767fdbe5 vocab=96aa8888
+-/
 theorem succ_le_sub_factorization_mul_pred_of_mul_succ_le_of_le {ell N n d : ℕ}
     (hell : ell.Prime) (hd : ell * (N + 1) ≤ d) (hnd : n ≤ d) :
     N + 1 ≤ d - n.factorization ell * (ell - 1) := by

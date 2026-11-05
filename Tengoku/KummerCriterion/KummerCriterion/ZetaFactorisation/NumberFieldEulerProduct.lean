@@ -33,6 +33,9 @@ abbrev NonzeroIdeal : Type _ := {I : Ideal (𝓞 L) // I ≠ ⊥}
 noncomputable def idealNormMultiplicity (n : ℕ) : ℕ :=
   Nat.card {I : NonzeroIdeal L // Ideal.absNorm I.1 = n}
 
+/--
+@isnad1 id=eq.0h1v.s4.7eda01bec6f5 from=translated src=- shape=0586f221 vocab=cd4cf24a
+-/
 lemma idealNormMultiplicity_zero : idealNormMultiplicity L 0 = 0 := by
   unfold idealNormMultiplicity
   rw [Nat.card_eq_zero]
@@ -40,6 +43,9 @@ lemma idealNormMultiplicity_zero : idealNormMultiplicity L 0 = 0 := by
   rintro ⟨⟨I, hI⟩, hnorm⟩
   exact hI (Ideal.absNorm_eq_zero_iff.mp hnorm)
 
+/--
+@isnad1 id=eq.0h1v.s4.e16f15111492 from=translated src=- shape=0586f221 vocab=cd4cf24a
+-/
 lemma idealNormMultiplicity_one : idealNormMultiplicity L 1 = 1 := by
   have : Unique {I : NonzeroIdeal L // Ideal.absNorm I.1 = 1} :=
     { default := ⟨⟨⊤, by simp⟩, Ideal.absNorm_top⟩
@@ -48,6 +54,9 @@ lemma idealNormMultiplicity_one : idealNormMultiplicity L 1 = 1 := by
         exact Subtype.ext (Subtype.ext (Ideal.absNorm_eq_one_iff.mp hnorm)) }
   exact Nat.card_unique
 
+/--
+@isnad1 id=eq.1h3v.s5.998cf48ecdeb from=translated src=- shape=a121235d vocab=31d6d3f3
+-/
 lemma idealNormMultiplicity_mul {m n : ℕ} (hcop : Nat.Coprime m n) :
     idealNormMultiplicity L (m * n) =
       idealNormMultiplicity L m * idealNormMultiplicity L n := by
@@ -248,6 +257,9 @@ lemma idealNormMultiplicity_mul {m n : ℕ} (hcop : Nat.Coprime m n) :
     interval_cases n
     simp [idealNormMultiplicity_one]
 
+/--
+@isnad1 id=eq.1h2v.s6.8453286932b0 from=translated src=- shape=ca9f3550 vocab=74d85f73
+-/
 lemma dedekindZeta_eq_tsum_idealNormMultiplicity {s : ℂ} (hs : 1 < s.re) :
     NumberField.dedekindZeta L s =
       ∑' n : ℕ, (idealNormMultiplicity L n : ℂ) * (n : ℂ) ^ (-s) := by
@@ -283,6 +295,9 @@ lemma dedekindZeta_eq_tsum_idealNormMultiplicity {s : ℂ} (hs : 1 < s.re) :
       omega
     exact (Nat.card_congr hequiv).symm ▸ rfl
 
+/--
+@isnad1 id=and.1h2v.s7.72594a264e92 from=translated src=- shape=94bfeaf0 vocab=9f18933b
+-/
 lemma summable_tsum_symGeometric (α : Type*) [Fintype α] [Finite α] {z : ℂ}
     (hz : ‖z‖ < 1) :
     Summable (fun n : ℕ => (Fintype.card (Sym α n) : ℂ) * z ^ n) ∧
@@ -323,10 +338,16 @@ lemma summable_tsum_symGeometric (α : Type*) [Fintype α] [Finite α] {z : ℂ}
         _ = ((1 - z)⁻¹) ^ (k + 1) := by simp [one_div]
         _ = ((1 - z)⁻¹) ^ Fintype.card α := by simp [hk]
 
+/--
+@isnad1 id=eq.1h2v.s6.87d17260591c from=translated src=- shape=73211796 vocab=9247f286
+-/
 lemma tsum_symGeometric (α : Type*) [Fintype α] [Finite α] {z : ℂ} (hz : ‖z‖ < 1) :
     (∑' n : ℕ, (Fintype.card (Sym α n) : ℂ) * z ^ n) = ((1 - z)⁻¹) ^ Fintype.card α :=
   (summable_tsum_symGeometric α hz).2
 
+/--
+@isnad1 id=summable.1h2v.s6.f3a0a1a2190d from=translated src=- shape=091106b0 vocab=bb301e3b
+-/
 lemma summable_idealNormMultiplicity_mul_cpow_neg {s : ℂ} (hs : 1 < s.re) :
     Summable fun n : ℕ => ‖(idealNormMultiplicity L n : ℂ) * (n : ℂ) ^ (-s)‖ := by
   classical
@@ -386,6 +407,9 @@ lemma summable_idealNormMultiplicity_mul_cpow_neg {s : ℂ} (hs : 1 < s.re) :
   exact (h_term_eq ▸ h_lss :
     Summable fun n => (idealNormMultiplicity L n : ℂ) * (n : ℂ) ^ (-s)).norm
 
+/--
+@isnad1 id=eq.1h2v.s7.d71f1e8aa8b6 from=translated src=- shape=81d21a34 vocab=062e3acd
+-/
 lemma dedekindZeta_eq_tprod_primePowerSeries {s : ℂ} (hs : 1 < s.re) :
     NumberField.dedekindZeta L s =
       ∏' q : Nat.Primes,

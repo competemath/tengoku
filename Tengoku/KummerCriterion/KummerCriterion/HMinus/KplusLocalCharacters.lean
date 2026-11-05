@@ -33,16 +33,25 @@ noncomputable def localPrimeCountPlus (ℓ : ℕ) [Fact ℓ.Prime] (hℓp : ℓ 
   let c := localPrimeCount (p := p) ℓ hℓp
   if Even d then c else c / 2
 
+/--
+@isnad1 id=eq.2h2v.s5.46397252311f from=translated src=- shape=d12e5dc9 vocab=73527589
+-/
 lemma localResidueDegreePlus_eq_half {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p)
     (hd_even : Even (localResidueDegree (p := p) ℓ hℓp)) :
     localResidueDegreePlus (p := p) ℓ hℓp = localResidueDegree (p := p) ℓ hℓp / 2 := by
   simp [localResidueDegreePlus, hd_even]
 
+/--
+@isnad1 id=eq.2h2v.s5.fdf3b889cf23 from=translated src=- shape=eecef131 vocab=07ad0503
+-/
 lemma localResidueDegreePlus_eq_self {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p)
     (hd_odd : ¬ Even (localResidueDegree (p := p) ℓ hℓp)) :
     localResidueDegreePlus (p := p) ℓ hℓp = localResidueDegree (p := p) ℓ hℓp := by
   simp [localResidueDegreePlus, hd_odd]
 
+/--
+@isnad1 id=or.1h2v.s7.59cd3d74bde4 from=translated src=- shape=3a4b7c53 vocab=2b44a479
+-/
 lemma unitOfPrimeNe_pow_localResidueDegreePlus_eq_one_or_neg_one
     {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) :
     (((unitOfPrimeNe (p := p) ℓ hℓp : (ZMod p)ˣ) : ZMod p) ^
@@ -93,6 +102,9 @@ lemma unitOfPrimeNe_pow_localResidueDegreePlus_eq_one_or_neg_one
       exact congrArg (fun x : (ZMod p)ˣ => ((x : ZMod p))) (pow_orderOf_eq_one u)
     simpa [localResidueDegreePlus, d, hd_even] using hpow
 
+/--
+@isnad1 id=eq.1h2v.s7.6ecf101e8c61 from=translated src=- shape=3e877a97 vocab=28439213
+-/
 lemma orderOf_unitOfPrimeNe_sq_eq_localResidueDegreePlus
     {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) :
     orderOf ((unitOfPrimeNe (p := p) ℓ hℓp) ^ 2) =
@@ -122,10 +134,16 @@ lemma orderOf_unitOfPrimeNe_sq_eq_localResidueDegreePlus
 
 attribute [local instance] Classical.decEq Classical.propDecidable
 
+/--
+@isnad1 id=eq.1h1v.s6.3bfedb96b7d9 from=translated src=- shape=e827cb13 vocab=b3b84ea0
+-/
 lemma card_even_characters_kplus (hp_odd' : p ≠ 2) :
     (Finset.univ.filter fun χ : DirichletCharacter ℂ p => χ.Even).card = (p - 1) / 2 :=
   card_even_characters p hp_odd'
 
+/--
+@isnad1 id=eq.1h1v.s5.429431a94eea from=translated src=- shape=6a00d6f6 vocab=4f6e8da9
+-/
 lemma card_evenNontrivialCharacters (hp_odd' : p ≠ 2) :
     (evenNontrivialCharacters (p := p)).card = (p - 3) / 2 := by
   classical
@@ -144,6 +162,9 @@ lemma card_evenNontrivialCharacters (hp_odd' : p ≠ 2) :
     omega
   · simp [htriv_even]
 
+/--
+@isnad1 id=eq.2h2v.s6.f4ee8f218502 from=translated src=- shape=fb1329b6 vocab=be0401cc
+-/
 lemma localPrimeCountPlus_mul_localResidueDegreePlus
     (hp_odd' : p ≠ 2) {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) :
     localPrimeCountPlus (p := p) ℓ hℓp * localResidueDegreePlus (p := p) ℓ hℓp =
@@ -216,7 +237,9 @@ lemma localPrimeCountPlus_mul_localResidueDegreePlus
     rw [hlhs, hhalf, hjk]
 
 /-- The product over all even characters at `ℓ ≠ p` is a single local factor of
-degree `localResidueDegreePlus`, repeated `localPrimeCountPlus` times.-/
+degree `localResidueDegreePlus`, repeated `localPrimeCountPlus` times.
+@isnad1 id=eq.2h3v.s7.e7159b7def3e from=translated src=- shape=45a9daa4 vocab=2f2382ff
+-/
 lemma prod_even_characters_eval_eq_pow_localResidueDegreePlus
     (hp_odd' : p ≠ 2) {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) (T : ℂ) :
     Finset.prod (Finset.univ.filter fun χ : DirichletCharacter ℂ p => χ.Even)
@@ -410,6 +433,9 @@ lemma prod_even_characters_eval_eq_pow_localResidueDegreePlus
   simpa [E] using
     (Eq.trans hprod_transfer (Eq.trans hcollapse (by rw [← hlocalResidue, ← hlocalPrimeCount])))
 
+/--
+@isnad1 id=eq.2h3v.s7.d8c5b9c44996 from=translated src=- shape=785ea3de vocab=bfdab139
+-/
 lemma trivial_mul_evenCharLocalFactor_eq_pow_localResidueDegreePlus
     (hp_odd' : p ≠ 2) {ℓ : ℕ} [Fact ℓ.Prime] (hℓp : ℓ ≠ p) {s : ℂ} :
     (1 - (ℓ : ℂ) ^ (-s)) * evenCharLocalFactor p ℓ s =

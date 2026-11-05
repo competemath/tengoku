@@ -31,6 +31,9 @@ def cyclotomicClassNumberFactor : ℂ :=
   (((((2 * p : ℕ) : ℝ) * Real.sqrt ((p : ℝ) ^ (p - 2))) /
     ((2 * Real.pi) ^ ((p - 1) / 2) * Units.regulator K) : ℝ) : ℂ)
 
+/--
+@isnad1 id=eq.1h2v.s6.7c2575350995 from=translated src=- shape=2a87bf18 vocab=b3c263ce
+-/
 lemma h_formula_cyclotomic_complex (hp_odd' : p ≠ 2) :
     ((h K : ℕ) : ℂ) =
       ((NumberField.dedekindZeta_residue K : ℝ) : ℂ) *
@@ -45,6 +48,9 @@ def maximalRealSubfieldClassNumberFactor : ℂ :=
       (2 * Real.pi) ^ InfinitePlace.nrComplexPlaces (NumberField.maximalRealSubfield K) *
         Units.regulator (NumberField.maximalRealSubfield K)) : ℝ) : ℂ))
 
+/--
+@isnad1 id=eq.0h1v.s6.895cc13590b7 from=translated src=- shape=45a47e1e vocab=0868c108
+-/
 lemma hPlus_formula_complex :
     ((hPlus K : ℕ) : ℂ) =
       ((NumberField.dedekindZeta_residue (NumberField.maximalRealSubfield K) : ℝ) : ℂ) *
@@ -52,6 +58,9 @@ lemma hPlus_formula_complex :
   simpa [maximalRealSubfieldClassNumberFactor] using congrArg (fun x : ℝ => (x : ℂ))
     (hPlus_formula (K := K))
 
+/--
+@isnad1 id=eq.1h2v.s6.5cd8e0b7f4ce from=translated src=- shape=4b52fb3d vocab=0868c108
+-/
 theorem hPlus_formula_of_Kplus_residue
     {KplusResidue : ℂ}
     (hresPlus :
@@ -63,6 +72,9 @@ theorem hPlus_formula_of_Kplus_residue
   ring
 
 omit [IsCMField K] in
+/--
+@isnad1 id=ne.0h1v.s4.17848ec9277b from=translated src=- shape=21777def vocab=c80651f1
+-/
 lemma maximalRealSubfieldClassNumberFactor_ne_zero :
   maximalRealSubfieldClassNumberFactor (K := K) ≠ 0 := by
   let L := NumberField.maximalRealSubfield K
@@ -92,6 +104,9 @@ abbrev cyclotomicHPlusFactor : ℂ :=
   maximalRealSubfieldClassNumberFactor (K := K)
 
 omit hp [IsCyclotomicExtension {p} ℚ K] [IsCMField K] in
+/--
+@isnad1 id=eq.0h2v.s5.dafc98ae1b40 from=translated src=- shape=53d669ca vocab=e1be02fc
+-/
 lemma cyclotomicClassNumberFactor_eq_relative_coefficient_mul_hPlusFactor :
     cyclotomicClassNumberFactor (p := p) (K := K) =
       cyclotomicRelativeLValueCoefficient (p := p) (K := K) *

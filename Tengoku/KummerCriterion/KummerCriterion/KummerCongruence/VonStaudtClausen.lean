@@ -36,7 +36,9 @@ namespace KummerCriterion
 /-- **Pointwise Faulhaber term bound** (helper for Step 2): for `i < t`
 with `t` even and `t ≥ 2`, each Faulhaber summand `B_i · C(t+1, i) · p^{t+1-i}`
 is in `p² · ℤ_p`, assuming the lower even Bernoulli terms satisfy the
-unified `p · B_j` integrality bound.-/
+unified `p · B_j` integrality bound.
+@isnad1 id=ex.5h3v.s8.4a3dba28a39e from=translated src=- shape=ce284c85 vocab=aea7a340
+-/
 lemma faulhaber_term_mem_p_sq
     {p : ℕ} [hp : Fact p.Prime] (hp_odd : p ≠ 2)
     {t : ℕ} (ht_two : 2 ≤ t) (ht_even : Even t)
@@ -92,7 +94,9 @@ lemma faulhaber_term_mem_p_sq
     rw [bernoulli_eq_zero_of_odd hi_odd hi_gt]; push_cast; ring
 
 /-- **Pre-division Step 2**: the `(t+1)`-weighted Faulhaber identity
-`∑ a^t − p · B_t`, assuming the lower even `p · B_j` integrality bounds.-/
+`∑ a^t − p · B_t`, assuming the lower even `p · B_j` integrality bounds.
+@isnad1 id=ex.4h2v.s8.75fcf1a41d0a from=translated src=- shape=5d75aeea vocab=f73c17af
+-/
 theorem sum_range_pow_sub_p_mul_bernoulli_weighted
     {p : ℕ} [hp : Fact p.Prime] (hp_odd : p ≠ 2)
     {t : ℕ} (ht_two : 2 ≤ t) (ht_even : Even t)
@@ -148,7 +152,9 @@ theorem sum_range_pow_sub_p_mul_bernoulli_weighted
 /-- For an odd prime `p` and even `t ≥ 2`
 with `p ∤ (t+1)`, the power sum `∑_{a=0}^{p-1} a^t` is congruent to
 `p · B_t` modulo `p²` (viewed in `ℚ_[p]`, with the difference a `p`-adic
-integer times `p²`).-/
+integer times `p²`).
+@isnad1 id=ex.5h2v.s8.c20a51b18eba from=translated src=- shape=04bb187c vocab=9013727b
+-/
 theorem sum_range_pow_sModEq_p_mul_bernoulli
     {p : ℕ} [hp : Fact p.Prime] (hp_odd : p ≠ 2)
     {t : ℕ} (ht_two : 2 ≤ t) (ht_even : Even t)
@@ -185,7 +191,9 @@ every even `k ≥ 2` with `¬ p^3 ∣ (k+1)` we have `p · B_k ∈ ℤ_[p]`. Thi
 subsumes both the classical boundary case `(p-1) ∣ k` (where the naive
 statement `B_k ∈ ℤ_[p]` fails) and the generic case `(p-1) ∤ k` (where
 the stronger `B_k ∈ ℤ_[p]` is known; multiplying by `p` still holds).
-The extra factor of `p` absorbs the potential pole in `B_k`.-/
+The extra factor of `p` absorbs the potential pole in `B_k`.
+@isnad1 id=ex.4h2v.s7.ad63c5124998 from=translated src=- shape=1f8c4940 vocab=e89e6525
+-/
 theorem p_mul_bernoulli_mem_padicInt_restricted
     {p : ℕ} [hp : Fact p.Prime] (hp_odd : p ≠ 2)
     {k : ℕ} (hk_two : 2 ≤ k) (hk_even : Even k)

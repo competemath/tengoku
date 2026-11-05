@@ -32,6 +32,9 @@ abbrev NonzeroIdealNF (L : Type*) [Field L] [NumberField L] : Type _ := NonzeroI
 abbrev idealNormMultiplicityNF (L : Type*) [Field L] [NumberField L] (n : ℕ) : ℕ :=
   idealNormMultiplicity L n
 
+/--
+@isnad1 id=eq.1h2v.s7.8ec3035236c0 from=translated src=- shape=81d21a34 vocab=4fb4f3f5
+-/
 lemma dedekindZeta_eq_tprod_primePowerSeriesNF
     (L : Type*) [Field L] [NumberField L] {s : ℂ} (hs : 1 < s.re) :
     NumberField.dedekindZeta L s =
@@ -41,6 +44,9 @@ lemma dedekindZeta_eq_tprod_primePowerSeriesNF
   simpa [idealNormMultiplicityNF] using
     (dedekindZeta_eq_tprod_primePowerSeries (L := L) hs)
 
+/--
+@isnad1 id=eq.1h3v.s6.3acf422a1672 from=translated src=- shape=7c4cda8c vocab=f57e778f
+-/
 lemma idealNormMultiplicityNF_p_pow_eq_one_plus (hp_odd : p ≠ 2) (k : ℕ) :
     idealNormMultiplicityNF K⁺ (p ^ k) = 1 := by
   classical
@@ -144,6 +150,9 @@ lemma idealNormMultiplicityNF_p_pow_eq_one_plus (hp_odd : p ≠ 2) (k : ℕ) :
         simpa [m, hm] using hI_pow }
   exact Nat.card_unique
 
+/--
+@isnad1 id=le.2h4v.s12.661a208bf356 from=translated src=- shape=890d473a vocab=a369126c
+-/
 lemma normalizedFactors_subset_primesOverFinsetPlus_of_absNorm_prime_pow
     {q : Nat.Primes} {I : Ideal (𝓞 K⁺)} (hI_ne : I ≠ ⊥)
     {k : ℕ} (hI_norm : Ideal.absNorm I = (q : ℕ) ^ k) :
@@ -179,6 +188,9 @@ lemma normalizedFactors_subset_primesOverFinsetPlus_of_absNorm_prime_pow
     simpa [rationalPrimeIdeal] using hPPlus_lies
   exact (mem_primesOverFinsetPlus_iff (K := K) (ℓ := (q : ℕ))).2 hPPlus_over
 
+/--
+@isnad1 id=eq.3h4v.s11.d5866022b893 from=translated src=- shape=877629c8 vocab=d42facab
+-/
 lemma absNorm_eq_q_pow_localResidueDegreePlus_of_mem_primesOverFinsetPlus
     (hp_odd : p ≠ 2) {q : Nat.Primes} [Fact (q : ℕ).Prime] (hq : (q : ℕ) ≠ p)
     {PPlus : Ideal (𝓞 K⁺)}
@@ -195,6 +207,9 @@ lemma absNorm_eq_q_pow_localResidueDegreePlus_of_mem_primesOverFinsetPlus
     (p := p) (K := K) hp_odd hq PPlus hPPlus_over]
   exact (Ideal.pow_inertiaDeg (q : ℕ) PPlus).symm
 
+/--
+@isnad1 id=eq.4h5v.s12.fb972be1d24c from=translated src=- shape=2e07d0a2 vocab=24b70f71
+-/
 lemma normalizedFactors_card_mul_localResidueDegreePlus_of_absNorm_prime_pow
     (hp_odd : p ≠ 2) {q : Nat.Primes} [Fact (q : ℕ).Prime] (hq : (q : ℕ) ≠ p)
     {I : Ideal (𝓞 K⁺)} (hI_ne : I ≠ ⊥) {k : ℕ}
@@ -233,6 +248,9 @@ lemma normalizedFactors_card_mul_localResidueDegreePlus_of_absNorm_prime_pow
       _ = (q : ℕ) ^ k := hI_norm
   exact Nat.pow_right_injective q.2.one_lt hpow
 
+/--
+@isnad1 id=eq.3h4v.s7.3680f509c64c from=translated src=- shape=cf6f02b8 vocab=64bf9b3a
+-/
 lemma idealNormMultiplicityNF_prime_pow_eq_zero_of_not_dvd_plus
     (hp_odd : p ≠ 2) {q : Nat.Primes} [Fact (q : ℕ).Prime] (hq : (q : ℕ) ≠ p)
     {k : ℕ} (hk : ¬ localResidueDegreePlus (p := p) (q : ℕ) hq ∣ k) :
@@ -247,6 +265,9 @@ lemma idealNormMultiplicityNF_prime_pow_eq_zero_of_not_dvd_plus
     (normalizedFactors_card_mul_localResidueDegreePlus_of_absNorm_prime_pow
       (p := p) (K := K) hp_odd hq hI_ne hI_norm).symm
 
+/--
+@isnad1 id=eq.2h4v.s11.b9a6e74db50b from=translated src=- shape=31dfdcb7 vocab=41066a85
+-/
 lemma idealNormMultiplicityNF_prime_pow_mul_localResidueDegreePlus_eq_card_sym
     (hp_odd : p ≠ 2) {q : Nat.Primes} [Fact (q : ℕ).Prime] (hq : (q : ℕ) ≠ p) (n : ℕ) :
     idealNormMultiplicityNF K⁺
@@ -386,6 +407,9 @@ lemma idealNormMultiplicityNF_prime_pow_mul_localResidueDegreePlus_eq_card_sym
   simpa [β, α, hd, Nat.card_eq_fintype_card] using
     Nat.card_congr (⟨toSym, ofSym, hleft, hright⟩ : β ≃ Sym α n)
 
+/--
+@isnad1 id=eq.1h2v.s7.f0eae31d0d7b from=translated src=- shape=94b3b82a vocab=1257ecba
+-/
 lemma evenLProduct_eq_tprod_localFactors {s : ℂ} (hs : 1 < s.re) :
     evenLProduct p s =
       ∏' q : Nat.Primes,
@@ -398,6 +422,9 @@ lemma evenLProduct_eq_tprod_localFactors {s : ℂ} (hs : 1 < s.re) :
     (s := evenNontrivialCharacters (p := p))
     (fun χ _ => (DirichletCharacter.LSeries_eulerProduct_hasProd χ hs).multipliable)).symm
 
+/--
+@isnad1 id=eq.1h2v.s5.8195b3572688 from=translated src=- shape=26d5fed5 vocab=cfe3baf8
+-/
 lemma evenLProduct_eq_eulerProduct {s : ℂ} (hs : 1 < s.re) :
     evenLProduct p s =
       ∏' q : Nat.Primes, (evenCharLocalFactor (p := p) (q : ℕ) s)⁻¹ := by
@@ -407,12 +434,18 @@ lemma evenLProduct_eq_eulerProduct {s : ℂ} (hs : 1 < s.re) :
   unfold evenCharLocalFactor
   rw [Finset.prod_inv_distrib]
 
+/--
+@isnad1 id=eq.0h2v.s4.20ba5c367ebd from=translated src=- shape=9fe17447 vocab=83034160
+-/
 lemma evenCharLocalFactor_at_p {s : ℂ} :
     evenCharLocalFactor (p := p) p s = 1 := by
   classical
   exact Finset.prod_eq_one fun χ _ => by
     rw [ZMod.natCast_self, MulChar.map_nonunit _ not_isUnit_zero, zero_mul, sub_zero]
 
+/--
+@isnad1 id=tendsto.0h1v.s6.367240d1e47c from=translated src=- shape=c446f754 vocab=ece4eb2b
+-/
 theorem tendsto_sub_one_mul_riemannZeta_mul_evenLProduct :
     Filter.Tendsto
       (fun s : ℝ ↦ (s - 1) * (riemannZeta (s : ℂ) * evenLProduct p (s : ℂ)))

@@ -99,6 +99,9 @@ def lambdaPiIntegral
     𝓞 K :=
   (zeta_spec p ℚ K).toInteger - 1
 
+/--
+@isnad1 id=ne.0h2v.s6.c4d1bac1da18 from=translated src=- shape=35043a47 vocab=04ab8c9b
+-/
 @[simp]
 theorem lambdaPiIntegral_ne_zero
     (p : ℕ) [Fact p.Prime]
@@ -116,6 +119,9 @@ def lambdaPiFieldUnit
     ((FaithfulSMul.algebraMap_injective (𝓞 K) K).ne
       (lambdaPiIntegral_ne_zero (p := p) (K := K)))
 
+/--
+@isnad1 id=eq.0h2v.s7.f88d84ed817f from=translated src=- shape=df6543ac vocab=c4c065b2
+-/
 @[simp]
 theorem lambdaPiFieldUnit_val
     (p : ℕ) [Fact p.Prime]
@@ -132,7 +138,9 @@ abbrev lambdaHeightOne
   Reflection.SingularKummer.SingularPair.cyclotomicLambdaHeightOne (p := p) K
 
 /-- The explicit cyclotomic uniformizer has normalized lambda valuation
-`exp (-1)`.-/
+`exp (-1)`.
+@isnad1 id=eq.0h2v.s7.e4bf9eaa92c9 from=translated src=- shape=47499aa6 vocab=d0d7c1c2
+-/
 theorem lambdaPiFieldUnit_valuation
     (p : ℕ) [Fact p.Prime]
     (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {p} ℚ K] :
@@ -248,20 +256,31 @@ complete local ring, this is the corrected Dwork parameter.-/
 abbrev inverseSeries : PowerSeries ℚ :=
   Furtwaengler.artinHasseExpInverseSeries p
 
+/--
+@isnad1 id=hassubst.0h1v.s3.fcea81e4cc23 from=translated src=- shape=47ccca8d vocab=f040e0bb
+-/
 theorem logSeries_hasSubst :
     PowerSeries.HasSubst (logSeries p) :=
   Furtwaengler.artinHasseLogSeries_hasSubst p
 
+/--
+@isnad1 id=eq.0h1v.s5.21913855c9f5 from=translated src=- shape=c29e1501 vocab=4e278f4a
+-/
 @[simp]
 theorem inverseSeries_constantCoeff :
     PowerSeries.constantCoeff (inverseSeries p) = 0 :=
   Furtwaengler.artinHasseExpInverseSeries_constantCoeff p
 
+/--
+@isnad1 id=hassubst.0h1v.s3.01b640c0584a from=translated src=- shape=47ccca8d vocab=10ff962f
+-/
 theorem inverseSeries_hasSubst :
     PowerSeries.HasSubst (inverseSeries p) :=
   PowerSeries.HasSubst.of_constantCoeff_zero' (inverseSeries_constantCoeff p)
 
-/-- For odd `p`, the Artin-Hasse logarithm is an odd formal series.-/
+/-- For odd `p`, the Artin-Hasse logarithm is an odd formal series.
+@isnad1 id=eq.1h1v.s6.79934c088e14 from=translated src=- shape=50107d8e vocab=5adf8443
+-/
 theorem logSeries_rescale_neg (hp_two : 2 < p) :
     PowerSeries.rescale (-1 : ℚ) (logSeries p) = -logSeries p := by
   have hp_odd : Odd p := by
@@ -281,6 +300,9 @@ theorem logSeries_rescale_neg (hp_two : 2 < p) :
   · rw [ite_eq_right hpow]
     ring
 
+/--
+@isnad1 id=eq.0h1v.s7.d023ff874b8d from=translated src=- shape=6170acaf vocab=8c7cee4f
+-/
 theorem subst_logSeries_evalNeg_exp :
     PowerSeries.subst (logSeries p) (PowerSeries.evalNegHom (PowerSeries.exp ℚ)) =
       PowerSeries.subst (-(logSeries p)) (PowerSeries.exp ℚ) := by
@@ -296,6 +318,9 @@ theorem subst_logSeries_evalNeg_exp :
   · exact PowerSeries.HasSubst.smul_X (-1 : ℚ) ()
   · exact logSeries_hasSubst p
 
+/--
+@isnad1 id=eq.0h1v.s6.698ee7224319 from=translated src=- shape=fe82949f vocab=20503cca
+-/
 theorem subst_neg_log_exp_mul_expSeries :
     PowerSeries.subst (-(logSeries p)) (PowerSeries.exp ℚ) * expSeries p = 1 := by
   have h0 := congrArg
@@ -314,7 +339,9 @@ theorem subst_neg_log_exp_mul_expSeries :
   simpa [expSeries, Furtwaengler.artinHasseExpSeries, mul_comm] using h
 
 /-- Formal identity `E_p(-T) = E_p(T)^{-1}`, stated without choosing the
-inverse: the product is `1`.-/
+inverse: the product is `1`.
+@isnad1 id=eq.1h1v.s6.8280bf79ce81 from=translated src=- shape=3cc90150 vocab=0dc34cb1
+-/
 theorem expSeries_rescale_neg_mul_self (hp_two : 2 < p) :
     PowerSeries.rescale (-1 : ℚ) (expSeries p) * expSeries p = 1 := by
   have hneg :
@@ -335,7 +362,9 @@ theorem expSeries_rescale_neg_mul_self (hp_two : 2 < p) :
   exact subst_neg_log_exp_mul_expSeries p
 
 /-- The same sign identity in terms of `H_p(T) = E_p(T)-1`. This is the
-formal source of the conjugation relation for the corrected local parameter.-/
+formal source of the conjugation relation for the corrected local parameter.
+@isnad1 id=eq.1h1v.s7.16420067e53f from=translated src=- shape=36da0edc vocab=688b028b
+-/
 theorem one_add_rescale_neg_expMinusOneSeries_mul_self (hp_two : 2 < p) :
     (1 + PowerSeries.rescale (-1 : ℚ) (expMinusOneSeries p)) *
         (1 + expMinusOneSeries p) = 1 := by
@@ -350,12 +379,18 @@ def artinHasseTailValuationIndex (n : ℕ) : ℤ :=
   (p : ℤ) ^ n - 1 - (n : ℤ) * ((p : ℤ) - 1)
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=eq.0h1v.s5.8461573e9bb0 from=translated src=- shape=e76bc6dc vocab=04064112
+-/
 theorem artinHasseTailValuationIndex_two :
     artinHasseTailValuationIndex p 2 = ((p : ℤ) - 1) ^ 2 := by
   unfold artinHasseTailValuationIndex
   ring
 
 omit [Fact p.Prime] in
+/--
+@isnad1 id=eq.0h2v.s6.6c70bd646377 from=translated src=- shape=9bda198d vocab=db803a63
+-/
 theorem artinHasseTailValuationIndex_succ_sub (n : ℕ) :
     artinHasseTailValuationIndex p (n + 1) -
         artinHasseTailValuationIndex p n =
@@ -364,7 +399,9 @@ theorem artinHasseTailValuationIndex_succ_sub (n : ℕ) :
   push_cast
   ring
 
-/-- The predicted tail valuations strictly increase after the first term.-/
+/-- The predicted tail valuations strictly increase after the first term.
+@isnad1 id=lt.1h2v.s5.838e3b1cfbca from=translated src=- shape=b97b0f30 vocab=53c373a2
+-/
 theorem artinHasseTailValuationIndex_lt_succ {n : ℕ} (hn : 1 ≤ n) :
     artinHasseTailValuationIndex p n <
       artinHasseTailValuationIndex p (n + 1) := by
@@ -378,6 +415,9 @@ theorem artinHasseTailValuationIndex_lt_succ {n : ℕ} (hn : 1 ≤ n) :
     nlinarith
   nlinarith
 
+/--
+@isnad1 id=le.1h2v.s4.c34339e29e72 from=translated src=- shape=89e2d0d3 vocab=d1614879
+-/
 theorem artinHasseTailValuationIndex_ge_two {n : ℕ} (hn : 2 ≤ n) :
     artinHasseTailValuationIndex p 2 ≤
       artinHasseTailValuationIndex p n := by
@@ -388,7 +428,9 @@ theorem artinHasseTailValuationIndex_ge_two {n : ℕ} (hn : 2 ≤ n) :
         (le_of_lt (artinHasseTailValuationIndex_lt_succ (p := p) (by omega)))
 
 /-- Every predicted tail valuation is at least the `n = 2` valuation
-`(p - 1)^2`.-/
+`(p - 1)^2`.
+@isnad1 id=le.1h2v.s5.eaff1c1dd6a8 from=translated src=- shape=f997e026 vocab=d3844727
+-/
 theorem artinHasseTailValuationIndex_ge_sq {n : ℕ} (hn : 2 ≤ n) :
     ((p : ℤ) - 1) ^ 2 ≤ artinHasseTailValuationIndex p n := by
   rw [← artinHasseTailValuationIndex_two (p := p)]
@@ -423,6 +465,9 @@ def valuedCyclotomicZetaInteger : ValuedIntegerRing p K :=
 def valuedCyclotomicZeta : ValuedCompletion p K :=
   Furtwaengler.KummerArtinHasse.lambdaValuedZeta p K
 
+/--
+@isnad1 id=eq.0h2v.s7.7d0845ba6316 from=translated src=- shape=d5068358 vocab=3a1c7576
+-/
 @[simp]
 theorem valuedCyclotomicZeta_pow_eq_one :
     valuedCyclotomicZeta p K ^ p = 1 := by
@@ -434,13 +479,18 @@ theorem valuedCyclotomicZeta_pow_eq_one :
 def globalCyclotomicLambdaFieldUnit : Kˣ :=
   Furtwaengler.KummerArtinHasse.lambdaPiFieldUnit p K
 
+/--
+@isnad1 id=eq.0h2v.s7.d55a0188af96 from=translated src=- shape=47499aa6 vocab=e23ad083
+-/
 theorem globalCyclotomicLambdaFieldUnit_valuation :
     (Furtwaengler.KummerArtinHasse.lambdaHeightOne p K).valuation K
         (globalCyclotomicLambdaFieldUnit p K : K) =
       WithZero.exp (-1 : ℤ) :=
   Furtwaengler.KummerArtinHasse.lambdaPiFieldUnit_valuation (p := p) (K := K)
 
-/-- The lambda valuation of `zeta_p - 1` in the valuation completion.-/
+/-- The lambda valuation of `zeta_p - 1` in the valuation completion.
+@isnad1 id=eq.0h2v.s8.0ec791b3bf69 from=translated src=- shape=fbe297ca vocab=1310ce9f
+-/
 theorem valuedCyclotomicLambda_valuation :
     Valued.v (valuedCyclotomicLambda p K) = WithZero.exp (-1 : ℤ) := by
   change Valued.v

@@ -45,6 +45,9 @@ def oneUnitsSubgroup (I : Ideal R) : Subgroup Rˣ where
     exact (Ideal.unit_mul_mem_iff_mem (I := I) (x := ((u⁻¹ : Rˣ) : R) - 1)
       (y := (u : R)) u.isUnit).mp hmul
 
+/--
+@isnad1 id=iff.0h3v.s7.823ba4e79615 from=translated src=- shape=280e5cef vocab=219e8f2a
+-/
 @[simp]
 theorem mem_oneUnitsSubgroup {R : Type*} [CommRing R] {I : Ideal R} {u : Rˣ} :
     u ∈ Ideal.oneUnitsSubgroup I ↔ (u : R) - 1 ∈ I :=
@@ -97,6 +100,9 @@ section CompletionLift
 
 variable {R : Type*} [CommRing R] (I : Ideal R)
 
+/--
+@isnad1 id=eq.1h5v.s11.5351efccb775 from=translated src=- shape=067b426b vocab=75659cae
+-/
 theorem evalₐ_factor_pow_le {m n : ℕ} (hmn : m ≤ n) (x : AdicCompletion I R) :
     Ideal.Quotient.factor (Ideal.pow_le_pow_right hmn) (AdicCompletion.evalₐ I n x) =
       AdicCompletion.evalₐ I m x := by
@@ -115,17 +121,26 @@ theorem evalₐ_factor_pow_le {m n : ℕ} (hmn : m ≤ n) (x : AdicCompletion I 
   | h r =>
     rfl
 
+/--
+@isnad1 id=eq.1h4v.s9.a683271b606e from=translated src=- shape=7640a231 vocab=5ab16a45
+-/
 theorem ideal_pow_map_ringEquiv_eq_of_map_eq
     (e : R ≃+* R) (he : I.map (e : R →+* R) = I) (n : ℕ) :
     (I ^ n).map (e : R →+* R) = I ^ n := by
   rw [Ideal.map_pow, he]
 
+/--
+@isnad1 id=le.1h4v.s9.71cef51e13d4 from=translated src=- shape=091fd24f vocab=0e96ebfc
+-/
 theorem ideal_pow_le_comap_ringEquiv_of_map_eq
     (e : R ≃+* R) (he : I.map (e : R →+* R) = I) (n : ℕ) :
     I ^ n ≤ (I ^ n).comap (e : R →+* R) := by
   rw [← Ideal.map_le_iff_le_comap]
   exact (ideal_pow_map_ringEquiv_eq_of_map_eq (I := I) e he n).le
 
+/--
+@isnad1 id=eq.1h3v.s8.0dead4899bdc from=translated src=- shape=5434597b vocab=188fd76c
+-/
 theorem ideal_map_ringEquiv_symm_eq_of_map_eq
     (e : R ≃+* R) (he : I.map (e : R →+* R) = I) :
     I.map (e.symm : R →+* R) = I := by
@@ -139,6 +154,9 @@ noncomputable def adicCompletionRingHomOfIdealMapEqFamily
     (ideal_pow_le_comap_ringEquiv_of_map_eq (I := I) e he n)).comp
     (AdicCompletion.evalₐ I n).toRingHom
 
+/--
+@isnad1 id=eq.2h5v.s10.323f9e0f232a from=translated src=- shape=c48faee1 vocab=cdf8e4b9
+-/
 theorem adicCompletionRingHomOfIdealMapEqFamily_compatible
     (e : R ≃+* R) (he : I.map (e : R →+* R) = I)
     {m n : ℕ} (hmn : m ≤ n) :
@@ -168,6 +186,9 @@ noncomputable def adicCompletionRingHomOfIdealMapEq
     (adicCompletionRingHomOfIdealMapEqFamily (I := I) e he)
     (fun hmn => adicCompletionRingHomOfIdealMapEqFamily_compatible (I := I) e he hmn)
 
+/--
+@isnad1 id=eq.1h5v.s11.3301efd88439 from=translated src=- shape=c3f3a320 vocab=be487b3f
+-/
 @[simp]
 theorem evalₐ_adicCompletionRingHomOfIdealMapEq
     (e : R ≃+* R) (he : I.map (e : R →+* R) = I)
@@ -181,6 +202,9 @@ theorem evalₐ_adicCompletionRingHomOfIdealMapEq
     (fun hmn => adicCompletionRingHomOfIdealMapEqFamily_compatible (I := I) e he hmn)
     n x
 
+/--
+@isnad1 id=eq.1h5v.s11.3c1cafe756e9 from=translated src=- shape=f6d8db5c vocab=cfd719e1
+-/
 theorem quotientMap_ringEquiv_symm_apply_quotientMap_ringEquiv
     (e : R ≃+* R) (he : I.map (e : R →+* R) = I)
     (n : ℕ) (x : R ⧸ I ^ n) :
@@ -196,6 +220,9 @@ theorem quotientMap_ringEquiv_symm_apply_quotientMap_ringEquiv
       Ideal.Quotient.mk (I ^ n) r
     rw [RingEquiv.symm_apply_apply]
 
+/--
+@isnad1 id=eq.1h5v.s11.3b55503c8832 from=translated src=- shape=25506df8 vocab=cfd719e1
+-/
 theorem quotientMap_ringEquiv_apply_quotientMap_ringEquiv_symm
     (e : R ≃+* R) (he : I.map (e : R →+* R) = I)
     (n : ℕ) (x : R ⧸ I ^ n) :
@@ -243,6 +270,9 @@ noncomputable def adicCompletionRingEquivOfIdealMapEq
       evalₐ_adicCompletionRingHomOfIdealMapEq,
       quotientMap_ringEquiv_apply_quotientMap_ringEquiv_symm (I := I) e he n]
 
+/--
+@isnad1 id=eq.1h5v.s11.04b6c7fb5808 from=translated src=- shape=dc4df987 vocab=ad18de9e
+-/
 @[simp]
 theorem evalₐ_adicCompletionRingEquivOfIdealMapEq
     (e : R ≃+* R) (he : I.map (e : R →+* R) = I)
@@ -261,7 +291,9 @@ variable (p : ℕ) [Fact p.Prime]
   (K : Type*) [Field K] [NumberField K] [IsCyclotomicExtension {p} ℚ K]
 
 /-- The cyclotomic automorphism sends `zeta_p - 1` into the distinguished
-prime `(zeta_p - 1)`.-/
+prime `(zeta_p - 1)`.
+@isnad1 id=mem.0h3v.s8.fb99595c7c18 from=translated src=- shape=4dbdc0c6 vocab=aeb02b08
+-/
 theorem cyclotomicRingOfIntegersEquiv_zeta_sub_one_mem_lambda
     (a : CyclotomicUnitDelta p) :
     cyclotomicRingOfIntegersEquiv (p := p) K a
@@ -281,6 +313,9 @@ theorem cyclotomicRingOfIntegersEquiv_zeta_sub_one_mem_lambda
   rw [cyclotomicSigmaOfUnit_smul_zetaInteger]
   exact hdiv
 
+/--
+@isnad1 id=le.0h3v.s9.0aee368cb82d from=translated src=- shape=c2d3e928 vocab=32c9f89e
+-/
 theorem cyclotomicRingOfIntegersEquiv_map_lambda_le (a : CyclotomicUnitDelta p) :
     (cyclotomicLambda p K).map
         (cyclotomicRingOfIntegersEquiv (p := p) K a : 𝓞 K →+* 𝓞 K) ≤
@@ -291,6 +326,9 @@ theorem cyclotomicRingOfIntegersEquiv_map_lambda_le (a : CyclotomicUnitDelta p) 
   subst hy
   exact cyclotomicRingOfIntegersEquiv_zeta_sub_one_mem_lambda (p := p) (K := K) a
 
+/--
+@isnad1 id=eq.0h3v.s8.80e912388a7d from=translated src=- shape=8e34ff20 vocab=5635364b
+-/
 theorem cyclotomicRingOfIntegersEquiv_comap_lambda (a : CyclotomicUnitDelta p) :
     cyclotomicLambda p K =
       (cyclotomicLambda p K).comap

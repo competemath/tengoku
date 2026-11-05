@@ -40,7 +40,9 @@ namespace KummerCriterion
 def vonStaudtPrimesFor (n : ℕ) : Finset ℕ :=
   (Finset.range (n + 2)).filter fun q => q.Prime ∧ (q - 1) ∣ n
 
-/-- Public even-index wrapper around mathlib's von Staudt-Clausen theorem.-/
+/-- Public even-index wrapper around mathlib's von Staudt-Clausen theorem.
+@isnad1 id=mem.1h1v.s5.d5a6b4a9746f from=translated src=- shape=7204a2d0 vocab=d3133d39
+-/
 theorem bernoulli_add_vonStaudtCorrection_mem_int {n : ℕ} (hn_even : Even n) :
     bernoulli n + ∑ q ∈ vonStaudtPrimesFor n, (1 : ℚ) / q ∈ Set.range Int.cast := by
   obtain ⟨k, hk⟩ := hn_even
@@ -48,7 +50,9 @@ theorem bernoulli_add_vonStaudtCorrection_mem_int {n : ℕ} (hn_even : Even n) :
   simpa [vonStaudtPrimesFor, two_mul, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
     using Bernoulli.vonStaudt_clausen k
 
-/-- The correction sum with the `p`-term removed has denominator prime to `p`.-/
+/-- The correction sum with the `p`-term removed has denominator prime to `p`.
+@isnad1 id=not.1h2v.s5.c153446c0cbf from=translated src=- shape=8143b1a2 vocab=fdf03225
+-/
 theorem vonStaudtCorrection_rest_den_not_dvd {p n : ℕ} (hp : p.Prime) :
     ¬ p ∣ (∑ q ∈ (vonStaudtPrimesFor n).filter (fun q => q ≠ p), (1 : ℚ) / q).den := by
   let F := (vonStaudtPrimesFor n).filter (fun q => q ≠ p)
@@ -65,7 +69,9 @@ theorem vonStaudtCorrection_rest_den_not_dvd {p n : ℕ} (hp : p.Prime) :
     Nat.Coprime.of_dvd_left hden_dvd hprod_coprime
   exact (Nat.Prime.coprime_iff_not_dvd hp).1 hden_coprime.symm
 
-/-- Split the von Staudt correction sum into the `p`-term and the rest.-/
+/-- Split the von Staudt correction sum into the `p`-term and the rest.
+@isnad1 id=eq.3h2v.s6.d09c0ea4f08e from=translated src=- shape=8ae8a107 vocab=018b194d
+-/
 theorem vonStaudtCorrection_split {p n : ℕ} (hp : p.Prime) (hn_pos : 0 < n)
     (hdiv : p - 1 ∣ n) :
     ∑ q ∈ vonStaudtPrimesFor n, (1 : ℚ) / q =
@@ -80,7 +86,9 @@ theorem vonStaudtCorrection_split {p n : ℕ} (hp : p.Prime) (hn_pos : 0 < n)
   rw [Finset.filter_ne']
   exact (Finset.add_sum_erase (vonStaudtPrimesFor n) (fun q => (1 : ℚ) / q) hp_mem).symm
 
-/-- If `p - 1 ∣ n`, the denominator of `B_n + 1/p` is prime to `p`.-/
+/-- If `p - 1 ∣ n`, the denominator of `B_n + 1/p` is prime to `p`.
+@isnad1 id=not.4h2v.s6.b509cd63a62d from=translated src=- shape=6aaa71ee vocab=1f675057
+-/
 theorem not_dvd_den_bernoulli_add_inv_of_sub_one_dvd
     {p n : ℕ} (hp : p.Prime) (hn_pos : 0 < n) (hn_even : Even n)
     (hdiv : p - 1 ∣ n) :
@@ -104,14 +112,18 @@ theorem not_dvd_den_bernoulli_add_inv_of_sub_one_dvd
   intro hpden
   exact hRden (hpden.trans hden_dvd)
 
-/-- A normalized expression for adding `1/p` to a rational.-/
+/-- A normalized expression for adding `1/p` to a rational.
+@isnad1 id=eq.1h2v.s6.c5f8cd9dd9e6 from=translated src=- shape=fbc593c2 vocab=6055cf7b
+-/
 theorem rat_add_inv_prime_eq_divInt {p : ℕ} (hp : p.Prime) (q : ℚ) :
     q + (1 : ℚ) / p = Rat.divInt (q.num * (p : ℤ) + q.den) (q.den * (p : ℤ)) := by
   rw [Rat.add_num_den]
   simp [Rat.divInt_eq_div, hp.ne_zero, hp.pos]
 
 /-- If `p` divides the reduced numerator of `q`, then `q + 1/p` has denominator
-divisible by `p`.-/
+divisible by `p`.
+@isnad1 id=dvd.2h2v.s5.7762b99ed98b from=translated src=- shape=7dfc66d1 vocab=09930244
+-/
 theorem dvd_den_add_inv_of_dvd_num {p : ℕ} (hp : p.Prime) {q : ℚ}
     (hdiv : (p : ℤ) ∣ q.num) :
     p ∣ (q + (1 : ℚ) / p).den := by
@@ -153,14 +165,18 @@ theorem dvd_den_add_inv_of_dvd_num {p : ℕ} (hp : p.Prime) {q : ℚ}
   have hpden_nat : p ∣ q.den := Int.natCast_dvd_natCast.mp hpden_int
   exact Nat.not_coprime_of_dvd_of_dvd hp.one_lt hpnum_nat hpden_nat q.reduced
 
-/-- Contrapositive form of `dvd_den_add_inv_of_dvd_num`.-/
+/-- Contrapositive form of `dvd_den_add_inv_of_dvd_num`.
+@isnad1 id=not.2h2v.s5.accc431d2fb3 from=translated src=- shape=c2fd5763 vocab=09930244
+-/
 theorem not_dvd_num_of_add_inv_den_not_dvd
     {p : ℕ} (hp : p.Prime) {q : ℚ}
     (hden_add : ¬ p ∣ (q + (1 : ℚ) / p).den) :
     ¬ (p : ℤ) ∣ q.num := fun hdiv =>
   hden_add (dvd_den_add_inv_of_dvd_num hp hdiv)
 
-/-- If `p - 1 ∣ n`, then `p` cannot divide the reduced numerator of `B_n`.-/
+/-- If `p - 1 ∣ n`, then `p` cannot divide the reduced numerator of `B_n`.
+@isnad1 id=not.4h2v.s5.1991eaee13ff from=translated src=- shape=6701de38 vocab=f1a15d7c
+-/
 theorem not_dvd_num_bernoulli_of_sub_one_dvd
     {p n : ℕ} (hp : p.Prime) (hn_pos : 0 < n) (hn_even : Even n)
     (hdiv : p - 1 ∣ n) :
@@ -171,7 +187,9 @@ theorem not_dvd_num_bernoulli_of_sub_one_dvd
     (Bernoulli.not_dvd_num_bernoulli (p := p) (k := k) (by omega)
       (by simpa [two_mul] using hdiv))
 
-/-- If `p - 1 ∣ n`, then `p` cannot divide the reduced numerator of `B_n / n`.-/
+/-- If `p - 1 ∣ n`, then `p` cannot divide the reduced numerator of `B_n / n`.
+@isnad1 id=not.4h2v.s5.ea8f36406a64 from=translated src=- shape=aa4fa6ce vocab=9a0ee1b0
+-/
 theorem not_dvd_num_bernoulli_div_self_of_sub_one_dvd
     {p n : ℕ} (hp : p.Prime) (hn_pos : 0 < n) (hn_even : Even n)
     (hdiv : p - 1 ∣ n) :
@@ -179,7 +197,9 @@ theorem not_dvd_num_bernoulli_div_self_of_sub_one_dvd
   not_dvd_num_bernoulli_of_sub_one_dvd hp hn_pos hn_even hdiv
     (dvd_num_of_dvd_div_nat_num (q := bernoulli n) hn_pos hnum)
 
-/-- A numerator prime for `B_n / n` cannot satisfy `p - 1 ∣ n`.-/
+/-- A numerator prime for `B_n / n` cannot satisfy `p - 1 ∣ n`.
+@isnad1 id=not.4h2v.s5.c49e4004a889 from=translated src=- shape=10395fee vocab=9a0ee1b0
+-/
 theorem sub_one_not_dvd_of_dvd_num_bernoulli_div_self
     {p n : ℕ} (hp : p.Prime) (hn_pos : 0 < n) (hn_even : Even n)
     (hnum : (p : ℤ) ∣ (((bernoulli n : ℚ) / n : ℚ).num)) :
@@ -187,7 +207,9 @@ theorem sub_one_not_dvd_of_dvd_num_bernoulli_div_self
   not_dvd_num_bernoulli_div_self_of_sub_one_dvd hp hn_pos hn_even hdiv hnum
 
 /-- For a prime correction term `1/q`, multiplying by `p` gives a
-`p`-adic integer.-/
+`p`-adic integer.
+@isnad1 id=ex.1h2v.s6.e122b211cabf from=translated src=- shape=c115024e vocab=83326d32
+-/
 theorem p_mul_inv_nat_prime_mem_padicInt
     {p q : ℕ} [Fact p.Prime] (hq : q.Prime) :
     ∃ z : ℤ_[p], (((p : ℚ) * ((1 : ℚ) / q) : ℚ) : ℚ_[p]) = (z : ℚ_[p]) := by
@@ -212,7 +234,9 @@ theorem p_mul_inv_nat_prime_mem_padicInt
     refine ⟨⟨(r : ℚ_[p]), Padic.norm_rat_le_one hden⟩, rfl⟩
 
 /-- The von Staudt correction sum becomes `p`-integral after multiplication
-by `p`.-/
+by `p`.
+@isnad1 id=ex.0h2v.s6.4ad48b115850 from=translated src=- shape=8b28fd54 vocab=2a87e786
+-/
 theorem p_mul_vonStaudtCorrection_mem_padicInt
     {p n : ℕ} [Fact p.Prime] :
     ∃ z : ℤ_[p],
@@ -239,7 +263,9 @@ theorem p_mul_vonStaudtCorrection_mem_padicInt
   exact this
 
 /-- Direct von Staudt-Clausen consequence: for every even index, `p * B_n`
-is a `p`-adic integer.-/
+is a `p`-adic integer.
+@isnad1 id=ex.1h2v.s6.cb74279d759d from=translated src=- shape=3dec3cb6 vocab=4e1660f8
+-/
 theorem p_mul_bernoulli_mem_padicInt_vonStaudt
     {p n : ℕ} [Fact p.Prime] (hn_even : Even n) :
     ∃ z : ℤ_[p], (p : ℚ_[p]) * ((bernoulli n : ℚ) : ℚ_[p]) = (z : ℚ_[p]) := by

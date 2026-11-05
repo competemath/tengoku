@@ -26,6 +26,9 @@ section SignInvariant
 
 variable (p : ℕ) [hp : Fact p.Prime]
 
+/--
+@isnad1 id=eq.2h2v.s7.561f3c365dca from=translated src=- shape=fd42b7f6 vocab=a854aa2c
+-/
 theorem one_sub_fourierPow_complement_eq_negI_mul_exp_mul_doubleSin
   {k : ℕ} (_hk0 : 0 < k) (hkp : k < p) :
     (1 : ℂ) - fourierBaseRoot (p := p) ^ (p - k) =
@@ -65,6 +68,9 @@ theorem one_sub_fourierPow_complement_eq_negI_mul_exp_mul_doubleSin
           ((2 * Real.sin (Real.pi * (k : ℝ) / p) : ℝ) : ℂ) := by
             simp [a, S]
 
+/--
+@isnad1 id=eq.2h2v.s7.771e5240caa0 from=translated src=- shape=d8c99517 vocab=0e6a2672
+-/
 theorem one_sub_fourierPow_complement_pow_order_eq_negI_pow_mul_negOnePow_mul_doubleSin_pow
     {k : ℕ} (hk0 : 0 < k) (hkp : k < p) :
     ((1 : ℂ) - fourierBaseRoot (p := p) ^ (p - k)) ^ p =
@@ -102,6 +108,9 @@ theorem one_sub_fourierPow_complement_pow_order_eq_negI_pow_mul_negOnePow_mul_do
         (x * (((2 * Real.sin (Real.pi * (k : ℝ) / p) : ℝ) : ℂ) ^ p))) hexp
   simpa [a, mul_assoc, mul_left_comm, mul_comm] using hfinal
 
+/--
+@isnad1 id=eq.2h2v.s8.20c7d4af282d from=translated src=- shape=200b5c46 vocab=0e6a2672
+-/
 theorem weightedPairFactor_eq_negI_pow_mul_root_mul_doubleSin_pow
     {k : ℕ} (hk0 : 0 < k) (hkp : k < p) :
     ((fourierBaseRoot (p := p)) ^ k - 1) ^ (p - k) *
@@ -170,6 +179,9 @@ theorem weightedPairFactor_eq_negI_pow_mul_root_mul_doubleSin_pow
               hsign]
             simp [mul_assoc, mul_left_comm, mul_comm]
 
+/--
+@isnad1 id=eq.1h1v.s8.e6efd3a1a1e7 from=translated src=- shape=2983696b vocab=25fa512f
+-/
 theorem
     fourierCyclotomicSingleDifferenceProduct_eq_negI_pow_mul_rootPower_mul_halfRangeDoubleSinPow
     (hp2 : p ≠ 2) :
@@ -228,7 +240,9 @@ theorem
             simp [n, S]
 
 /-- The determinant of the normalized finite Fourier transform is the explicit
-fourth root of unity `I ^ ((p - 1) / 2)`.-/
+fourth root of unity `I ^ ((p - 1) / 2)`.
+@isnad1 id=eq.1h1v.s9.c90a6380260d from=translated src=- shape=97fd5300 vocab=16ffc2f5
+-/
 theorem det_normalizedDft_eq_I_pow_orderHalf (hp2 : p ≠ 2) :
     LinearMap.det (normalizedDft p) = Complex.I ^ ((p - 1) / 2) := by
   let n : ℕ := (p - 1) / 2
@@ -290,7 +304,9 @@ theorem det_normalizedDft_eq_I_pow_orderHalf (hp2 : p ≠ 2) :
     _ = Complex.I ^ ((p - 1) / 2) := by
           simpa [n] using KummerCriterion.negI_pow_orderHalfMul_eq_I_pow_half (p := p) hp2
 
-/-- If `p ≡ 3 (mod 4)`, the determinant is in the imaginary branch.-/
+/-- If `p ≡ 3 (mod 4)`, the determinant is in the imaginary branch.
+@isnad1 id=eq.2h1v.s10.c414550fb92c from=translated src=- shape=3a376153 vocab=2538f8ab
+-/
 theorem det_normalizedDft_eq_negOnePow_mul_I_of_mod_four_eq_three
     (hp2 : p ≠ 2) (hp4 : p % 4 = 3) :
     LinearMap.det (normalizedDft p) = (-1 : ℂ) ^ ((p - 3) / 4) * Complex.I := by

@@ -33,7 +33,9 @@ namespace KummerCriterion
 /-- **Voronoi polynomial identity** (helper): in any commutative ring `R`,
 for `k ≥ 1` and any `x y: R`,
  `(x - p·y)^k = x^k - k · x^{k-1} · p · y + p² · z`
-for some `z : R`.-/
+for some `z : R`.
+@isnad1 id=ex.1h5v.s8.2c5328e9c0f3 from=translated src=- shape=89875af9 vocab=3014663d
+-/
 lemma voronoi_sub_pow_linear_approx {R : Type*} [CommRing R]
     (p : R) {k : ℕ} (hk : 1 ≤ k) (x y : R) :
     ∃ z : R,
@@ -58,7 +60,9 @@ lemma voronoi_sub_pow_linear_approx {R : Type*} [CommRing R]
 /-- **Voronoi permutation** (helper): if `a` is coprime to `p` (odd prime),
 then multiplication by `a` permutes residues mod `p`. Hence for any function
 `f: ℕ → R` (where `R` is an additive commutative monoid),
- `∑_{j < p} f((j * a) % p) = ∑_{j < p} f(j)`.-/
+ `∑_{j < p} f((j * a) % p) = ∑_{j < p} f(j)`.
+@isnad1 id=eq.1h4v.s6.cc3eca2791fe from=translated src=- shape=922ac718 vocab=f445495b
+-/
 lemma voronoi_permutation
     {p : ℕ} [hp : Fact p.Prime] {a : ℕ} (ha_coprime : ¬ (p : ℕ) ∣ a)
     {R : Type*} [AddCommMonoid R] (f : ℕ → R) :
@@ -100,7 +104,9 @@ lemma voronoi_permutation
 /-- **Voronoi sum identity mod p²** (helper): in `ℤ_[p]`, for `k ≥ 1`,
 `a` coprime to `p`,
  `(a^k - 1) · ∑_{j<p} j^k - k · a^{k-1} · p · ∑_{j<p} j^{k-1} · ⌊ja/p⌋ ∈ p²·ℤ_p`.
-This is the summed binomial approximation after permuting residues.-/
+This is the summed binomial approximation after permuting residues.
+@isnad1 id=ex.2h3v.s9.f9e824e2e290 from=translated src=- shape=f3bae433 vocab=da4370aa
+-/
 lemma voronoi_sum_mod_p_sq
     {p : ℕ} [hp : Fact p.Prime]
     {a : ℕ} (ha_coprime : ¬ (p : ℕ) ∣ a)
@@ -199,7 +205,9 @@ lemma voronoi_sum_mod_p_sq
 
 For `a, p` coprime, `k ≥ 2` even with `(p-1) ∤ k` and `p ∤ (k+1)`:
  `(a^k - 1) · B_k ≡ k · a^{k-1} · ∑_{j=0}^{p-1} j^{k-1} · ⌊ja/p⌋ (mod p)`
-in `ℚ_[p]`, with the difference a multiple of `p`.-/
+in `ℚ_[p]`, with the difference a multiple of `p`.
+@isnad1 id=ex.7h3v.s9.5d5a5e98563c from=translated src=- shape=147d6e4f vocab=0770ab09
+-/
 theorem voronoi_congruence_mod_p
     {p : ℕ} [hp : Fact p.Prime] (hp_odd : p ≠ 2)
     {a : ℕ} (ha_coprime : ¬ (p : ℕ) ∣ a)
