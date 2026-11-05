@@ -66,11 +66,29 @@ instance : Inv (SemilinearAut R A B) :=
     apply g.σ.injective
     simp [g.map_algebraMap, smul_smul]⟩⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.00e9f49418ff from=translated src=- shape=5b527fd9 vocab=41419e1f
+-/
 @[simp] lemma one_a : (1 : SemilinearAut R A B).a = 1 := rfl
+/--
+@isnad1 id=eq.0h3v.s7.f3133bc2574c from=translated src=- shape=844c6391 vocab=a073eed1
+-/
 @[simp] lemma one_σ : (1 : SemilinearAut R A B).σ = RingEquiv.refl B := rfl
+/--
+@isnad1 id=eq.0h5v.s7.575cbb72b729 from=translated src=- shape=e5f45ad2 vocab=a6291ef7
+-/
 @[simp] lemma mul_a (g h : SemilinearAut R A B) : (g * h).a = g.a * h.a := rfl
+/--
+@isnad1 id=eq.0h5v.s7.ffcb935ccd9b from=translated src=- shape=b4bd57ec vocab=6b9300e1
+-/
 @[simp] lemma mul_σ (g h : SemilinearAut R A B) : (g * h).σ = h.σ.trans g.σ := rfl
+/--
+@isnad1 id=eq.0h4v.s6.514a69dcf967 from=translated src=- shape=1d5ff0bd vocab=46bc73ef
+-/
 @[simp] lemma inv_a (g : SemilinearAut R A B) : g⁻¹.a = g.a⁻¹ := rfl
+/--
+@isnad1 id=eq.0h4v.s7.8c7d6ac136f7 from=translated src=- shape=f38d09aa vocab=aa273133
+-/
 @[simp] lemma inv_σ (g : SemilinearAut R A B) : g⁻¹.σ = g.σ.symm := rfl
 
 instance : Group (SemilinearAut R A B) where
@@ -85,9 +103,14 @@ def toA : SemilinearAut R A B →* A where
   map_one' := rfl
   map_mul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.e4d8adf5d672 from=translated src=- shape=a77b5c39 vocab=39fbee16
+-/
 @[simp] lemma toA_apply (g : SemilinearAut R A B) : toA g = g.a := rfl
 
-/-- An element of `G_B⁰ = ker (G_B → A)` is `R`-linear.-/
+/-- An element of `G_B⁰ = ker (G_B → A)` is `R`-linear.
+@isnad1 id=eq.1h5v.s8.e7942fc4db66 from=translated src=- shape=370e03f6 vocab=4658bbc0
+-/
 lemma σ_algebraMap_of_a_eq_one {g : SemilinearAut R A B} (hg : g.a = 1) (r : R) :
     g.σ (algebraMap R B r) = algebraMap R B r := by
   rw [g.map_algebraMap, hg, one_smul]

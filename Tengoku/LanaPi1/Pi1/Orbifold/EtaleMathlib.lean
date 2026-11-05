@@ -44,6 +44,9 @@ section Equivalence
 variable {C : Type u} [Category.{v} C] {C' : Type*} [Category* C'] {F : C ⥤ Type w}
   {F' : C' ⥤ Type w}
 
+/--
+@isnad1 id=eq.0h7v.s11.786bab4b84e4 from=translated src=- shape=eb5417d7 vocab=a3c33b43
+-/
 lemma restrict_eq_conjAut (G : C' ⥤ C) [G.IsEquivalence] (e : G ⋙ F ≅ F') (σ : FibreAut F) :
     restrict G e σ = e.conjAut
       (((Functor.FullyFaithful.ofFullyFaithful
@@ -52,6 +55,9 @@ lemma restrict_eq_conjAut (G : C' ⥤ C) [G.IsEquivalence] (e : G ⋙ F ≅ F') 
   rw [Iso.conjAut_apply]
   rfl
 
+/--
+@isnad1 id=bijectiv.0h6v.s7.0df1608d1f57 from=translated src=- shape=8ce712e9 vocab=02202e4e
+-/
 lemma restrict_bijective (G : C' ⥤ C) [G.IsEquivalence] (e : G ⋙ F ≅ F') :
     Function.Bijective (restrict G e) := by
   have : ⇑(restrict G e) = ⇑(((Functor.FullyFaithful.ofFullyFaithful
@@ -70,6 +76,9 @@ noncomputable def equivOfIsEquivalence (G : C' ⥤ C) [G.IsEquivalence] (e : G �
     (continuous_restrict G e).continuous_symm_of_equiv_compact_to_t2
       (f := Equiv.ofBijective _ (restrict_bijective G e))
 
+/--
+@isnad1 id=eq.0h7v.s8.84c47f4f19b0 from=translated src=- shape=fbb4cff8 vocab=4b5f537c
+-/
 @[simp] lemma equivOfIsEquivalence_apply (G : C' ⥤ C) [G.IsEquivalence] (e : G ⋙ F ≅ F')
     [CompactSpace (FibreAut F)] (σ : FibreAut F) :
     equivOfIsEquivalence G e σ = restrict G e σ := rfl
@@ -140,6 +149,9 @@ variable (R : Type u) [CommRing R] (Ω : Type u) [Field Ω] [Algebra R Ω]
 
 namespace EquivEtale
 
+/--
+@isnad1 id=eq.0h4v.s12.f8ac12a1614e from=translated src=- shape=6bb2e7a6 vocab=663b8158
+-/
 lemma act_punit_σ (X : EquivEtale R PUnit.{u + 1}) (a : PUnit.{u + 1}) (y : X.B) :
     (X.act a).σ y = y := by
   obtain rfl : a = 1 := Subsingleton.elim _ _

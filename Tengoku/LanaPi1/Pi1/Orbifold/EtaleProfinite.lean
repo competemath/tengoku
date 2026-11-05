@@ -30,6 +30,9 @@ noncomputable section
 variable (R : Type u) [CommRing R] (A : Type u) [Group A] [MulSemiringAction A R]
   (Ω : Type u) [Field Ω] [Algebra R Ω]
 
+/--
+@isnad1 id=finite.0h4v.s6.d3376f703282 from=translated src=- shape=1d317e21 vocab=c7846a13
+-/
 instance EquivEtale.finite_etaleFibre (X : EquivEtale R A) :
     Finite ((etaleFibre R A Ω).obj X) :=
   letI := X.finite

@@ -70,7 +70,13 @@ instance : Category (EquivEtale R A) where
   comp_id _ := rfl
   assoc _ _ _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.42ef7a24c3af from=translated src=- shape=412f9722 vocab=0cbd1366
+-/
 @[simp] lemma id_f (X : EquivEtale R A) : Hom.f (𝟙 X) = AlgHom.id R X.B := rfl
+/--
+@isnad1 id=eq.0h7v.s10.e664e5071f69 from=translated src=- shape=9d1c7b9f vocab=63e28ada
+-/
 @[simp] lemma comp_f {X Y Z : EquivEtale R A} (φ : X ⟶ Y) (ψ : Y ⟶ Z) :
     (φ ≫ ψ).f = φ.f.comp ψ.f := rfl
 

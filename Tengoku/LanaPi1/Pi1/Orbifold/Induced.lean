@@ -60,25 +60,43 @@ variable {D} (V : D.Level)
 /-- The subgroup `U` as a subgroup of `Gal`.-/
 def Ug : Subgroup (Ω ≃ₐ[K₀ k t] Ω) := V.U.map D.H.subtype
 
+/--
+@isnad1 id=iff.0h6v.s13.5171f7d1bcae from=translated src=- shape=9ce3cd8c vocab=8ae47ff0
+-/
 lemma mem_Ug {σ : D.H} : (σ : Ω ≃ₐ[K₀ k t] Ω) ∈ V.Ug ↔ σ ∈ V.U :=
   Subgroup.mem_map_iff_mem (Subgroup.subtype_injective _)
 
+/--
+@isnad1 id=le.0h5v.s9.670829c5c561 from=translated src=- shape=8313d55e vocab=92767244
+-/
 lemma Ug_le : V.Ug ≤ D.HL := by
   rintro _ ⟨σ, hσ, rfl⟩
   exact (Subgroup.mem_subgroupOf).1 (V.le hσ)
 
+/--
+@isnad1 id=isopen.0h5v.s9.abca0f2b5416 from=translated src=- shape=d9a2cfb4 vocab=8c9dcdb6
+-/
 lemma isOpen_Ug : IsOpen (V.Ug : Set (Ω ≃ₐ[K₀ k t] Ω)) := by
   simp only [Ug, Subgroup.coe_map, Subgroup.coe_subtype]
   exact D.isOpen_H.isOpenMap_subtype_val _ V.isOpen
 
+/--
+@isnad1 id=isclosed.0h5v.s9.e9d31e825482 from=translated src=- shape=d9a2cfb4 vocab=299acadf
+-/
 lemma isClosed_Ug : IsClosed (V.Ug : Set (Ω ≃ₐ[K₀ k t] Ω)) :=
   Subgroup.isClosed_of_isOpen _ V.isOpen_Ug
 
 /-- The fixed field `L_U` of `U`.-/
 def LU : IntermediateField (K₀ k t) Ω := IntermediateField.fixedField V.Ug
 
+/--
+@isnad1 id=le.0h5v.s8.2fb542076961 from=translated src=- shape=c651ac63 vocab=06b8c2f3
+-/
 lemma L_le : D.L ≤ V.LU := IntermediateField.fixedField_le V.Ug_le
 
+/--
+@isnad1 id=mem.2h7v.s10.244c70d88bbb from=translated src=- shape=f66d0fd0 vocab=6234f3a8
+-/
 lemma stable : ∀ g ∈ D.H, ∀ x ∈ V.LU, g x ∈ V.LU := by
   refine mem_fixedField_of_normalizes fun g hg u hu => ?_
   obtain ⟨u, hu, rfl⟩ := hu
@@ -95,9 +113,15 @@ instance : IsScalarTower D.R V.RU Ω := IsScalarTower.of_algebraMap_eq fun _ => 
 /-- The action of `H` on `R_U`.-/
 def actU : D.H →* RingAut V.RU := coordAut V.LU D.H V.stable
 
+/--
+@isnad1 id=eq.0h7v.s14.f5ca294b4154 from=translated src=- shape=15dad082 vocab=6202b676
+-/
 lemma algebraMap_actU (g : D.H) (x : V.RU) :
     algebraMap V.RU Ω (V.actU g x) = (g : Ω ≃ₐ[K₀ k t] Ω) (algebraMap V.RU Ω x) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s15.0ee7bd565a6f from=translated src=- shape=c9243cf9 vocab=6a470b20
+-/
 lemma actU_apply_actU (g h : D.H) (x : V.RU) : V.actU g (V.actU h x) = V.actU (g * h) x := by
   rw [map_mul]; rfl
 
@@ -108,6 +132,9 @@ instance : CommRing V.Ind := inferInstanceAs (CommRing (D.A → V.RU))
 
 instance : Algebra D.R V.Ind := inferInstanceAs (Algebra D.R (D.A → V.RU))
 
+/--
+@isnad1 id=eq.0h7v.s9.5c38b56ce0cd from=translated src=- shape=2f60aaa0 vocab=be2fc1a4
+-/
 lemma algebraMap_Ind_apply (r : D.R) (b : D.A) :
     (algebraMap D.R V.Ind r : D.A → V.RU) b = algebraMap D.R V.RU r := rfl
 
@@ -115,14 +142,23 @@ lemma algebraMap_Ind_apply (r : D.R) (b : D.A) :
 def indSmul (a : D.A) (φ : V.Ind) : V.Ind :=
   fun b => V.actU (D.sec b * (D.sec (a⁻¹ * b))⁻¹) ((φ : D.A → V.RU) (a⁻¹ * b))
 
+/--
+@isnad1 id=eq.0h8v.s14.3b0fa731c686 from=translated src=- shape=7cf8e30f vocab=faff7971
+-/
 lemma indSmul_apply (a : D.A) (φ : V.Ind) (b : D.A) :
     (V.indSmul a φ : D.A → V.RU) b =
       V.actU (D.sec b * (D.sec (a⁻¹ * b))⁻¹) ((φ : D.A → V.RU) (a⁻¹ * b)) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s10.4df26628c3fd from=translated src=- shape=4ee1ad6c vocab=37f05f19
+-/
 lemma indSmul_one (φ : V.Ind) : V.indSmul 1 φ = φ := by
   funext b
   simp [indSmul_apply]
 
+/--
+@isnad1 id=eq.0h8v.s10.dc3c0d538699 from=translated src=- shape=59051393 vocab=4c0379c1
+-/
 lemma indSmul_mul (a a' : D.A) (φ : V.Ind) :
     V.indSmul (a * a') φ = V.indSmul a (V.indSmul a' φ) := by
   funext b
@@ -139,6 +175,9 @@ def indAut (a : D.A) : V.Ind ≃+* V.Ind where
   map_mul' φ ψ := funext fun b => map_mul (V.actU _) _ _
   map_add' φ ψ := funext fun b => map_add (V.actU _) _ _
 
+/--
+@isnad1 id=eq.0h7v.s9.adb4021fbe74 from=translated src=- shape=0e56dae2 vocab=19cbfed0
+-/
 lemma indAut_apply (a : D.A) (φ : V.Ind) : V.indAut a φ = V.indSmul a φ := rfl
 
 /-- The lift `A →* SemilinearAut R A Ind` of the action of `A`.-/

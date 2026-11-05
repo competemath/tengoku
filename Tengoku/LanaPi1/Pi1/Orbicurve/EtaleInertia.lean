@@ -37,7 +37,9 @@ section Centers
 
 /-- **Every maximal ideal of a coordinate ring is a center**: for a maximal ideal `Q` of
 `coordRing k t M` there is a valuation subring `W` of `Ω` centered on the `t`-line with
-`u_W(M) = Q` (extend the local ring at `Q` to a valuation subring of `Ω`).-/
+`u_W(M) = Q` (extend the local ring at `Q` to a valuation subring of `Ω`).
+@isnad1 id=ex.0h5v.s14.b1d37a73ad4c from=translated src=- shape=8e90251b vocab=1f4f1d24
+-/
 theorem exists_isCentered_centerIdeal_eq (M : IntermediateField (K₀ k t) Ω)
     (Q : Ideal (coordRing k t M)) [hQ : Q.IsMaximal] :
     ∃ (W : ValuationSubring Ω) (hW : IsCentered k t W), centerIdeal hW M = Q := by
@@ -86,7 +88,9 @@ lemma eq_one_of_forall_coordRing (M : IntermediateField (K₀ k t) Ω)
   exact congrArg₂ (fun y z : M => ((y / z : M) : Ω)) (h a) (h b)
 
 /-- If the center of `W` on `M` is zero (`W` is trivial on `k(t)`), the inertia group of `W`
-fixes `M`.-/
+fixes `M`.
+@isnad1 id=eq.4h7v.s15.804e4d7fb8b5 from=translated src=- shape=3f831eb0 vocab=fd0fe071
+-/
 lemma fixes_of_centerIdeal_eq_bot {W : ValuationSubring Ω} (hW : IsCentered k t W)
     (M : IntermediateField (K₀ k t) Ω) [FiniteDimensional (K₀ k t) M] [Normal (K₀ k t) M]
     (hne : centerIdeal hW M = ⊥) {σ : Ω ≃ₐ[K₀ k t] Ω} (hσ : σ ∈ GaloisPi1.inertia W) :
@@ -107,9 +111,15 @@ variable [CharZero k]
 
 section Finite
 
+/--
+@isnad1 id=charzero.0h3v.s7.7c9c38c66af5 from=translated src=- shape=42b1705f vocab=c0671815
+-/
 instance charZero_K₀ : CharZero (K₀ k t) :=
   charZero_of_injective_algebraMap (algebraMap k (K₀ k t)).injective
 
+/--
+@isnad1 id=issepara.0h4v.s11.c8030309a8a8 from=translated src=- shape=eb6db941 vocab=da5d90f0
+-/
 lemma isSeparable_of_charZero (N : IntermediateField (K₀ k t) Ω) [FiniteDimensional (K₀ k t) N] :
     Algebra.IsSeparable (K₀ k t) N :=
   Algebra.IsAlgebraic.isSeparable_of_perfectField

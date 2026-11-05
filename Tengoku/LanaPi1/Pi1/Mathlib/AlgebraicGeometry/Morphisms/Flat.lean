@@ -12,6 +12,9 @@ open TensorProduct
 
 open CategoryTheory Limits MorphismProperty
 
+/--
+@isnad1 id=isopenma.2h3v.s6.d8f29377f4fe from=translated src=- shape=2e492377 vocab=3bdb542e
+-/
 lemma RingHom.Flat.isOpenMap_comap_of_finitePresentation
     {R S : Type*} [CommRing R] [CommRing S] {f : R →+* S} (hf : f.Flat)
     (hfin : f.FinitePresentation) :
@@ -21,6 +24,9 @@ lemma RingHom.Flat.isOpenMap_comap_of_finitePresentation
 
 namespace AlgebraicGeometry
 
+/--
+@isnad1 id=isopenim.0h3v.s5.e9b379037858 from=translated src=- shape=0db353a6 vocab=3d08553e
+-/
 instance (priority := low) Flat.isOpenImmersion {X Y : Scheme.{u}} (f : X ⟶ Y) [Flat f]
     [LocallyOfFinitePresentation f] [Mono f] : IsOpenImmersion f :=
   IsOpenImmersion.of_flat_of_mono f

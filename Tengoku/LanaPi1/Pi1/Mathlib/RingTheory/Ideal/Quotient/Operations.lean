@@ -6,6 +6,9 @@ public import Tengoku.Seed.RingTheory.Ideal.Quotient.Operations
 
 @[expose] public section
 
+/--
+@isnad1 id=eq.1h4v.s11.299a08815e3a from=translated src=- shape=826f005c vocab=f825f87f
+-/
 @[simp]
 lemma Ideal.quotientInfRingEquivPiQuotient_mk {R ι : Type*} [Finite ι] [CommRing R]
     (I : ι → Ideal R) (hI : Pairwise (Function.onFun IsCoprime I)) (x : R) :

@@ -32,7 +32,9 @@ namespace AffOrbicurve
 section Group
 
 /-- In a finite cyclic group, if two subgroups have index dividing `m`, so does their
-intersection.-/
+intersection.
+@isnad1 id=dvd.2h4v.s5.c1c6b35046c8 from=translated src=- shape=f1df0f96 vocab=938538de
+-/
 lemma index_inf_dvd_of_isCyclic {C : Type*} [Group C] [Finite C] [IsCyclic C]
     {H₁ H₂ : Subgroup C} {m : ℕ} (h₁ : H₁.index ∣ m) (h₂ : H₂.index ∣ m) :
     (H₁ ⊓ H₂).index ∣ m := by
@@ -56,7 +58,9 @@ lemma index_inf_dvd_of_isCyclic {C : Type*} [Group C] [Finite C] [IsCyclic C]
   exact hmem g
 
 /-- A version of `index_inf_dvd_of_isCyclic` for subgroups of a cyclic subgroup, in terms of
-cardinalities.-/
+cardinalities.
+@isnad1 id=dvd.7h8v.s8.8064d96200d8 from=translated src=- shape=ad059830 vocab=bdf01fc2
+-/
 lemma dvd_of_card_inf {G : Type*} [Group G] [Finite G] {C H₁ H₂ : Subgroup G} [IsCyclic C]
     (h₁ : H₁ ≤ C) (h₂ : H₂ ≤ C) {d₁ d₂ e m : ℕ}
     (hd₁ : d₁ * Nat.card H₁ = Nat.card C) (hd₂ : d₂ * Nat.card H₂ = Nat.card C)
@@ -81,7 +85,9 @@ lemma dvd_of_card_inf {G : Type*} [Group G] [Finite G] {C H₁ H₂ : Subgroup G
 
 end Group
 
-/-- A ring isomorphism is unramified.-/
+/-- A ring isomorphism is unramified.
+@isnad1 id=eq.0h4v.s6.b66c278f8644 from=translated src=- shape=530daa0f vocab=ca44ae1f
+-/
 lemma ramificationIdx_ringEquiv {A B : Type*} [CommRing A] [CommRing B] [IsDedekindDomain A]
     [IsDedekindDomain B] (ψ : A ≃+* B) (w : Ideal B) [w.IsPrime] :
     (letI := ψ.toRingHom.toAlgebra; w.ramificationIdx A) = 1 := by
@@ -109,7 +115,9 @@ section Galois
 
 variable {N : IntermediateField (K₀ k t) Ω}
 
-/-- `Gal(N / L ⊔ L') = Gal(N / L) ∩ Gal(N / L')`.-/
+/-- `Gal(N / L ⊔ L') = Gal(N / L) ∩ Gal(N / L')`.
+@isnad1 id=eq.2h6v.s13.c6e51f3635aa from=translated src=- shape=e6c0aa1a vocab=cecb7622
+-/
 lemma fixSub_sup {L L' : IntermediateField (K₀ k t) Ω} (hL : L ≤ N) (hL' : L' ≤ N) :
     fixSub t N (L ⊔ L') = fixSub t N L ⊓ fixSub t N L' := by
   refine le_antisymm (le_inf (fixSub_antitone t le_sup_left) (fixSub_antitone t le_sup_right)) ?_
@@ -141,7 +149,9 @@ lemma fixSub_sup {L L' : IntermediateField (K₀ k t) Ω} (hL : L ≤ N) (hL' : 
 variable (N) [FiniteDimensional (K₀ k t) N] [IsGalois (K₀ k t) N]
 
 omit [IsGalois (K₀ k t) N] in
-/-- `Gal(N / K₀)` acts faithfully on the coordinate ring of `N`.-/
+/-- `Gal(N / K₀)` acts faithfully on the coordinate ring of `N`.
+@isnad1 id=faithful.0h4v.s17.40544ddb28cd from=translated src=- shape=e248befc vocab=50e80757
+-/
 lemma faithfulSMul_coordRing : FaithfulSMul (N ≃ₐ[K₀ k t] N) (coordRing k t N) := by
   refine ⟨fun {σ τ} h => ?_⟩
   have hc : ∀ (ρ : N ≃ₐ[K₀ k t] N) (b : coordRing k t N), ((ρ • b : coordRing k t N) : N) = ρ b :=
@@ -157,7 +167,9 @@ lemma faithfulSMul_coordRing : FaithfulSMul (N ≃ₐ[K₀ k t] N) (coordRing k 
 variable [CharZero k]
 
 /-- **Tame inertia is cyclic**: the inertia groups of `Gal(N / K₀)` at the maximal ideals of the
-coordinate ring of `N` are cyclic (characteristic `0`).-/
+coordinate ring of `N` are cyclic (characteristic `0`).
+@isnad1 id=iscyclic.2h5v.s17.2344fcfc7b7f from=translated src=- shape=586f5891 vocab=7db11a0f
+-/
 theorem isCyclic_inertia_coordRing (ht : Transcendental k t) (u : Ideal (coordRing k t N))
     [u.IsMaximal] (hu0 : u ≠ ⊥) : IsCyclic (u.inertia (N ≃ₐ[K₀ k t] N)) := by
   haveI := isDedekindDomain_ring t ht N

@@ -26,6 +26,9 @@ section
 variable {R M M' : Type*} [CommRing R]
     (S : Submonoid R) [AddCommGroup M] [Module R M] [AddCommGroup M'] [Module R M'] (f : M →ₗ[R] M')
 
+/--
+@isnad1 id=subsingl.1h5v.s7.e69332a44168 from=translated src=- shape=a5a20702 vocab=02897591
+-/
 lemma IsLocalizedModule.subsingleton [IsLocalizedModule S f] (h : 0 ∈ S) :
     Subsingleton M' := by
   refine ⟨fun a b ↦ ?_⟩
@@ -40,6 +43,9 @@ variable {R M N M' N' : Type*} [CommSemiring R] (S : Submonoid R)
   [AddCommMonoid M'] [Module R M'] [AddCommMonoid N'] [Module R N']
   (g₁ : M →ₗ[R] M') (g₂ : N →ₗ[R] N')
 
+/--
+@isnad1 id=iff.0h9v.s11.7ffd792722c4 from=translated src=- shape=40dabd75 vocab=24109330
+-/
 lemma IsLocalizedModule.map_injective_iff_localizedModule_map_injective
     [IsLocalizedModule S g₁] [IsLocalizedModule S g₂] (l : M →ₗ[R] N) :
     Function.Injective (IsLocalizedModule.map S g₁ g₂ l) ↔
@@ -52,6 +58,9 @@ lemma IsLocalizedModule.map_injective_iff_localizedModule_map_injective
   rw [this]
   simp
 
+/--
+@isnad1 id=iff.0h9v.s11.a31e598f4a55 from=translated src=- shape=40dabd75 vocab=4a4a7dc6
+-/
 lemma IsLocalizedModule.map_surjective_iff_localizedModule_map_surjective
     [IsLocalizedModule S g₁] [IsLocalizedModule S g₂] (l : M →ₗ[R] N) :
     Function.Surjective (IsLocalizedModule.map S g₁ g₂ l) ↔
@@ -64,6 +73,9 @@ lemma IsLocalizedModule.map_surjective_iff_localizedModule_map_surjective
   rw [this]
   simp
 
+/--
+@isnad1 id=iff.0h9v.s11.ca328a3f540a from=translated src=- shape=40dabd75 vocab=a2f4f466
+-/
 lemma IsLocalizedModule.map_bijective_iff_localizedModule_map_bijective
     [IsLocalizedModule S g₁] [IsLocalizedModule S g₂] (l : M →ₗ[R] N) :
     Function.Bijective (IsLocalizedModule.map S g₁ g₂ l) ↔
@@ -85,6 +97,9 @@ variable {R : Type*} [CommSemiring R] (S : Submonoid R) {M M' M'' : Type*}
   [AddCommMonoid M''] [Module R M] [Module R M'] [Module R M'']
   (f : M →ₗ[R] M') (g : M →ₗ[R] M'') [IsLocalizedModule S f]
 
+/--
+@isnad1 id=eq.0h6v.s9.5ad5aadf918e from=translated src=- shape=17c64642 vocab=674f54a5
+-/
 @[simp]
 lemma IsLocalizedModule.iso_symm_apply'' (x) : (iso S f).symm (f x) = LocalizedModule.mk x 1 := by
   show ((iso S f).symm.toLinearMap.comp f) x = _
@@ -127,6 +142,9 @@ variable {R M : Type*} [CommRing R] [AddCommGroup M] [Module R M]
 
 include b
 
+/--
+@isnad1 id=ex.0h11v.s10.61096d66734d from=translated src=- shape=25009995 vocab=2a6e2c3e
+-/
 lemma FinitePresentation.exists_basis_of_isLocalizedModule_powers :
     ∃ (t : R) (ht : t ∈ S) (b' : Basis I (Rₜ t) (Mₜ t)),
       ∀ (i : I), (IsLocalizedModule.lift (.powers t) (fₜ t) f
@@ -164,6 +182,9 @@ variable {R M N : Type*} [CommRing R] [AddCommGroup M] [AddCommGroup N]
   [Module R M] [Module R N]
 
 open LinearMap in
+/--
+@isnad1 id=ex.1h5v.s13.36d739d50830 from=translated src=- shape=3e17e35e vocab=5b2f57bc
+-/
 lemma exists_of_surjective [Module.Finite R N] (f : M →ₗ[R] N)
     (p : Ideal R) [p.IsPrime] (hf : Function.Surjective (LocalizedModule.map p.primeCompl f)) :
     ∃ g ∉ p, Function.Surjective (LocalizedModule.map (Submonoid.powers g) f) := by
@@ -195,6 +216,9 @@ lemma exists_of_surjective [Module.Finite R N] (f : M →ₗ[R] N)
   rw [← LinearMap.range_eq_top, ← Submodule.Quotient.subsingleton_iff]
   apply eq.subsingleton
 
+/--
+@isnad1 id=ex.1h9v.s12.0e3caa3c8873 from=translated src=- shape=4a9e5a71 vocab=bd93c231
+-/
 lemma exists_of_surjective' [Module.Finite R N] (f : M →ₗ[R] N)
     (p : Ideal R) [p.IsPrime] {Mₚ Nₚ : Type*}
     [AddCommGroup Mₚ] [AddCommGroup Nₚ] [Module R Mₚ] [Module R Nₚ]
@@ -206,6 +230,9 @@ lemma exists_of_surjective' [Module.Finite R N] (f : M →ₗ[R] N)
   simp_rw [IsLocalizedModule.map_surjective_iff_localizedModule_map_surjective] at hf ⊢
   exact exists_of_surjective f p hf
 
+/--
+@isnad1 id=ex.1h14v.s11.1141a94edeb5 from=translated src=- shape=13fe1115 vocab=3e80bcb3
+-/
 lemma exists_of_bijective' [Module.Finite R M] [Module.FinitePresentation R N] (f : M →ₗ[R] N)
     (p : Ideal R) [p.IsPrime] {Rₚ Mₚ Nₚ : Type*}
     [CommRing Rₚ] [Algebra R Rₚ] [IsLocalization.AtPrime Rₚ p]
@@ -225,6 +252,9 @@ lemma exists_of_bijective' [Module.Finite R M] [Module.FinitePresentation R N] (
   obtain ⟨g, hg, h⟩ := exists_bijective_map_powers p.primeCompl fM fN f hf
   exact ⟨g, hg, h g (by rfl)⟩
 
+/--
+@isnad1 id=ex.1h10v.s12.848b1b3fe052 from=translated src=- shape=57db5e8d vocab=72c19adb
+-/
 lemma exists_of_bijective [Module.Finite R M] [Module.FinitePresentation R N] (f : M →ₗ[R] N)
     (p : Ideal R) [p.IsPrime] {Rₚ Mₚ Nₚ : Type*}
     [CommRing Rₚ] [Algebra R Rₚ] [IsLocalization.AtPrime Rₚ p]
@@ -248,6 +278,9 @@ section
 variable [Algebra R S]
 
 variable (R) in
+/--
+@isnad1 id=issmooth.0h3v.s5.6565fc019c3e from=translated src=- shape=e0504f65 vocab=d82d56ba
+-/
 lemma isSmoothAt_of_smooth [Smooth R S] (p : Ideal S) [p.IsPrime] :
     IsSmoothAt R p := by
   have : smoothLocus R S = Set.univ := by

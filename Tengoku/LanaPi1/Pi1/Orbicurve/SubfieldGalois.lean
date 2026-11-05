@@ -49,14 +49,23 @@ def fixSub (F : IntermediateField (K₀ k t) Ω) : Subgroup (N ≃ₐ[K₀ k t] 
 
 variable {N}
 
+/--
+@isnad1 id=iff.0h6v.s14.5579fac96fc8 from=translated src=- shape=871279f7 vocab=ae6ac2ec
+-/
 lemma mem_fixSub {F : IntermediateField (K₀ k t) Ω} {σ : N ≃ₐ[K₀ k t] N} :
     σ ∈ fixSub t N F ↔ ∀ x : N, (x : Ω) ∈ F → σ x = x := Iff.rfl
 
+/--
+@isnad1 id=le.1h6v.s13.4fbef6d78e28 from=translated src=- shape=eeb7ae2c vocab=b0433e37
+-/
 lemma fixSub_antitone {F L : IntermediateField (K₀ k t) Ω} (h : F ≤ L) :
     fixSub t N L ≤ fixSub t N F := fun _ hσ x hx => hσ x (h hx)
 
 variable {F : IntermediateField (K₀ k t) Ω} (hFN : F ≤ N)
 
+/--
+@isnad1 id=eq.1h5v.s12.06d77a3b9d39 from=translated src=- shape=3592d574 vocab=dacf0f38
+-/
 lemma fixSub_eq_fixingSubgroup :
     fixSub t N F = (IntermediateField.restrict hFN).fixingSubgroup := by
   ext σ
@@ -71,6 +80,9 @@ lemma fixSub_eq_fixingSubgroup :
 noncomputable abbrev algRing : Algebra (coordRing k t F) (coordRing k t N) :=
   (ringMap t hFN).toRingHom.toAlgebra
 
+/--
+@isnad1 id=finite.2h5v.s15.babc341f7542 from=translated src=- shape=6dea21f6 vocab=e342c411
+-/
 lemma module_finite_ringMap [FiniteDimensional (K₀ k t) N] [Algebra.IsSeparable (K₀ k t) N]
     (ht : Transcendental k t) (hFN : F ≤ N) :
     @Module.Finite (coordRing k t F) (coordRing k t N) _ _ (algRing t hFN).toModule := by
@@ -88,6 +100,9 @@ lemma module_finite_ringMap [FiniteDimensional (K₀ k t) N] [Algebra.IsSeparabl
 /-- The inclusion `F → N` as an algebra structure.-/
 noncomputable abbrev algFN : Algebra F N := (IntermediateField.inclusion hFN).toAlgebra
 
+/--
+@isnad1 id=eq.1h5v.s15.0c6f8eab3a8b from=translated src=- shape=5d0b0b5d vocab=1c18c700
+-/
 lemma fixSub_eq_fixingSubgroup_range :
     letI := algFN t hFN
     fixSub t N F = _root_.fixingSubgroup (N ≃ₐ[K₀ k t] N) (Set.range (algebraMap F N)) := by
@@ -100,13 +115,18 @@ lemma fixSub_eq_fixingSubgroup_range :
   · intro h x hx
     exact h x ⟨⟨x, hx⟩, rfl⟩
 
+/--
+@isnad1 id=isfracti.0h4v.s13.0fdf8149f7b5 from=translated src=- shape=b9e94b52 vocab=ceb943ef
+-/
 lemma isFractionRing_coordRing (L : IntermediateField (K₀ k t) Ω) [FiniteDimensional (K₀ k t) L] :
     IsFractionRing (coordRing k t L) L :=
   IsIntegralClosure.isFractionRing_of_finite_extension (A₀ k t) (K₀ k t) L (coordRing k t L)
 
 variable [FiniteDimensional (K₀ k t) N] [IsGalois (K₀ k t) N]
 
-/-- **`Gal(N / F)` is a Galois group of `coordRing k t N` over `coordRing k t F`.**-/
+/-- **`Gal(N / F)` is a Galois group of `coordRing k t N` over `coordRing k t F`.**
+@isnad1 id=isgalois.2h5v.s15.268051a8e8e5 from=translated src=- shape=64cd4920 vocab=63c73848
+-/
 theorem isGaloisGroup_fixSub (ht : Transcendental k t) :
     letI := algRing t hFN
     IsGaloisGroup (fixSub t N F) (coordRing k t F) (coordRing k t N) := by
@@ -138,7 +158,9 @@ variable [CharZero k] (ht : Transcendental k t)
 
 include ht in
 set_option maxHeartbeats 1000000 in
-/-- **`e(u | v) = |I_u(N / F)|`**.-/
+/-- **`e(u | v) = |I_u(N / F)|`**.
+@isnad1 id=eq.2h6v.s16.1e1f366f69f5 from=translated src=- shape=b1ab609d vocab=047128fb
+-/
 theorem ramificationIdx_eq_card_inertia (hFN : F ≤ N) (u : Ideal (coordRing k t N))
     [hu : u.IsMaximal] :
     letI := algRing t hFN
@@ -173,7 +195,9 @@ theorem ramificationIdx_eq_card_inertia (hFN : F ≤ N) (u : Ideal (coordRing k 
     Subgroup.card_map_of_injective (Subgroup.subtype_injective _)]
 
 include ht in
-/-- `e(u ∩ L | u ∩ F) · |I_u(N / L)| = |I_u(N / F)|`.-/
+/-- `e(u ∩ L | u ∩ F) · |I_u(N / L)| = |I_u(N / F)|`.
+@isnad1 id=eq.3h7v.s18.c67d6896ef97 from=translated src=- shape=f3a458e8 vocab=fcc9a4cc
+-/
 theorem ramificationIdx_mul_card {L : IntermediateField (K₀ k t) Ω} (hFL : F ≤ L) (hLN : L ≤ N)
     (u : Ideal (coordRing k t N)) [hu : u.IsMaximal] :
     (letI := algRing t hFL; (u.comap (ringMap t hLN)).ramificationIdx (coordRing k t F)) *
@@ -194,6 +218,9 @@ theorem ramificationIdx_mul_card {L : IntermediateField (K₀ k t) Ω} (hFL : F 
   rw [← ramificationIdx_eq_card_inertia t ht hFN u, ← ramificationIdx_eq_card_inertia t ht hLN u]
   exact htower.symm
 
+/--
+@isnad1 id=eq.2h7v.s19.ea758d6b6d9b from=translated src=- shape=5eff913b vocab=c44bcc1f
+-/
 lemma card_inertia_inf_conj (σ : N ≃ₐ[K₀ k t] N) (H : Subgroup (N ≃ₐ[K₀ k t] N))
     (hH : ∀ τ ∈ H, σ * τ * σ⁻¹ ∈ H) (hH' : ∀ τ ∈ H, σ⁻¹ * τ * σ ∈ H)
     (u : Ideal (coordRing k t N)) :
@@ -231,7 +258,9 @@ set_option maxHeartbeats 1000000 in
 set_option synthInstance.maxHeartbeats 400000 in
 /-- **Galois invariance of ramification indices**: if `Gal(N / L)` is normal in `Gal(N / F)`
 (i.e. `L / F` is Galois), all primes of `coordRing k t L` over a given prime of
-`coordRing k t F` have the same ramification index.-/
+`coordRing k t F` have the same ramification index.
+@isnad1 id=eq.5h8v.s18.f6c6cdfa302b from=translated src=- shape=17102dce vocab=26746ac8
+-/
 theorem ramificationIdx_eq_of_normal {L : IntermediateField (K₀ k t) Ω} (hFL : F ≤ L)
     (hLN : L ≤ N) (hnorm : ∀ σ ∈ fixSub t N F, ∀ τ ∈ fixSub t N L, σ * τ * σ⁻¹ ∈ fixSub t N L)
     (w w' : Ideal (coordRing k t L)) [hw : w.IsMaximal] [hw' : w'.IsMaximal]

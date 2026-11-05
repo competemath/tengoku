@@ -43,6 +43,9 @@ namespace GaloisData
 
 variable (D : GaloisData k t)
 
+/--
+@isnad1 id=mem.1h5v.s13.639f6cffabef from=translated src=- shape=c024aca9 vocab=6b249a36
+-/
 lemma mem_kernel_of_mem_S (s : D.H) (hs : (s : Ω ≃ₐ[K₀ k t] Ω) ∈ D.S) :
     s ∈ GaloisPi1.kernel D.H D.S := by
   rw [GaloisPi1.kernel, Subgroup.mem_subgroupOf]
@@ -50,6 +53,9 @@ lemma mem_kernel_of_mem_S (s : D.H) (hs : (s : Ω ≃ₐ[K₀ k t] Ω) ∈ D.S) 
 
 variable [IsGalois (K₀ k t) Ω]
 
+/--
+@isnad1 id=compacts.0h4v.s11.9cc0d755bbf1 from=translated src=- shape=dcf8fd95 vocab=3fb1fd15
+-/
 instance compactSpace_H : CompactSpace D.H := GaloisPi1.compactSpace_of_isClosed _ D.isClosed_H
 
 /-- The level `U = core_H(V₀)` attached to an open subgroup `V₀ ≤ H_L` containing the
@@ -67,12 +73,18 @@ def Level.ofOpen (V₀ : Subgroup D.H) (hV₀ : IsOpen (V₀ : Set D.H))
   le := (Subgroup.normalCore_le _).trans hle
   S_le σ hσ := fun g => hS σ hσ g
 
+/--
+@isnad1 id=le.3h5v.s15.635f29b7a8e2 from=translated src=- shape=90e82275 vocab=9092920f
+-/
 lemma Level.ofOpen_U_le (V₀ : Subgroup D.H) (hV₀ : IsOpen (V₀ : Set D.H))
     (hle : V₀ ≤ D.HL.subgroupOf D.H)
     (hS : ∀ σ : D.H, (σ : Ω ≃ₐ[K₀ k t] Ω) ∈ D.S → ∀ g : D.H, g * σ * g⁻¹ ∈ V₀) :
     (Level.ofOpen D V₀ hV₀ hle hS).U ≤ V₀ :=
   Subgroup.normalCore_le _
 
+/--
+@isnad1 id=mem.4h7v.s16.40a821d7a534 from=translated src=- shape=e523062f vocab=9092920f
+-/
 lemma Level.ofOpen_conj_mem {V₀ : Subgroup D.H} {hV₀ : IsOpen (V₀ : Set D.H)}
     {hle : V₀ ≤ D.HL.subgroupOf D.H}
     {hS : ∀ σ : D.H, (σ : Ω ≃ₐ[K₀ k t] Ω) ∈ D.S → ∀ g : D.H, g * σ * g⁻¹ ∈ V₀} {u : D.H}

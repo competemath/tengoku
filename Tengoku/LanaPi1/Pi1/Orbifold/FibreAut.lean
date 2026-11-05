@@ -52,23 +52,41 @@ variable {F}
 /-- The action of an automorphism on the fibre `F.obj c`.-/
 def app (σ : FibreAut F) (c : C) (x : F.obj c) : F.obj c := (show F ≅ F from σ).hom.app c x
 
+/--
+@isnad1 id=eq.0h4v.s6.e6880dde598d from=translated src=- shape=746f1190 vocab=ed44bd0a
+-/
 @[simp] lemma one_app (c : C) (x : F.obj c) : (1 : FibreAut F).app c x = x := rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.a999d9de879d from=translated src=- shape=5102e98e vocab=88d9b4f3
+-/
 lemma mul_app (σ τ : FibreAut F) (c : C) (x : F.obj c) :
     (σ * τ).app c x = σ.app c (τ.app c x) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.1f77c816ef7f from=translated src=- shape=937b3389 vocab=4b58ee23
+-/
 @[simp] lemma inv_app_app (σ : FibreAut F) (c : C) (x : F.obj c) :
     σ⁻¹.app c (σ.app c x) = x :=
   Iso.hom_inv_id_app_apply (show F ≅ F from σ) c x
 
+/--
+@isnad1 id=eq.0h5v.s6.adf7beba11ae from=translated src=- shape=dcc87e17 vocab=4b58ee23
+-/
 @[simp] lemma app_inv_app (σ : FibreAut F) (c : C) (x : F.obj c) :
     σ.app c (σ⁻¹.app c x) = x :=
   Iso.inv_hom_id_app_apply (show F ≅ F from σ) c x
 
+/--
+@isnad1 id=eq.0h7v.s7.1b3564adb972 from=translated src=- shape=71f9a061 vocab=ae92d1f9
+-/
 lemma app_naturality (σ : FibreAut F) {c d : C} (f : c ⟶ d) (x : F.obj c) :
     σ.app d (F.map f x) = F.map f (σ.app c x) :=
   NatTrans.naturality_apply (show F ≅ F from σ).hom f x
 
+/--
+@isnad1 id=eq.1h4v.s5.c5d1040ba224 from=translated src=- shape=7079cf77 vocab=ed44bd0a
+-/
 @[ext] lemma ext {σ τ : FibreAut F} (h : ∀ c x, σ.app c x = τ.app c x) : σ = τ :=
   Aut.ext (NatTrans.ext (funext fun c => ConcreteCategory.hom_ext _ _ fun x => h c x))
 
@@ -86,9 +104,15 @@ def stabilizer (S : Finset (Σ c : C, F.obj c)) : Subgroup (FibreAut F) where
 
 variable {F}
 
+/--
+@isnad1 id=iff.0h4v.s7.3edf7e97d873 from=translated src=- shape=7481c9d1 vocab=66a98fe9
+-/
 lemma mem_stabilizer {S : Finset (Σ c : C, F.obj c)} {σ : FibreAut F} :
     σ ∈ stabilizer F S ↔ ∀ p ∈ S, σ.app p.1 p.2 = p.2 := Iff.rfl
 
+/--
+@isnad1 id=le.1h4v.s7.f7fe80d21da3 from=translated src=- shape=0a8659a7 vocab=2a591187
+-/
 lemma stabilizer_anti {S T : Finset (Σ c : C, F.obj c)} (h : S ⊆ T) :
     stabilizer F T ≤ stabilizer F S :=
   fun _ hσ p hp => hσ p (h hp)
@@ -99,6 +123,9 @@ noncomputable def translate (τ : FibreAut F) (S : Finset (Σ c : C, F.obj c)) :
     Finset (Σ c : C, F.obj c) :=
   S.image fun p => ⟨p.1, τ.app p.1 p.2⟩
 
+/--
+@isnad1 id=mem.1h5v.s8.410fb2c6a86c from=translated src=- shape=1edb87b3 vocab=dc7f710b
+-/
 lemma conj_mem_stabilizer {S : Finset (Σ c : C, F.obj c)} (τ : FibreAut F) {σ : FibreAut F}
     (hσ : σ ∈ stabilizer F (translate τ⁻¹ S)) : τ * σ * τ⁻¹ ∈ stabilizer F S := by
   classical
@@ -138,6 +165,9 @@ instance : TopologicalSpace (FibreAut F) := (groupFilterBasis F).topology
 
 instance : IsTopologicalGroup (FibreAut F) := (groupFilterBasis F).isTopologicalGroup
 
+/--
+@isnad1 id=hasbasis.0h2v.s6.0522e6822ccf from=translated src=- shape=bd444fe6 vocab=f20b3beb
+-/
 lemma nhds_one_hasBasis :
     (nhds (1 : FibreAut F)).HasBasis (fun _ => True)
       fun S : Finset (Σ c : C, F.obj c) => (stabilizer F S : Set (FibreAut F)) := by
@@ -150,16 +180,24 @@ lemma nhds_one_hasBasis :
   · rintro ⟨S, -, hS⟩
     exact ⟨_, ⟨S, rfl⟩, hS⟩
 
+/--
+@isnad1 id=mem.0h3v.s6.e52f122b711e from=translated src=- shape=6736780a vocab=71199b21
+-/
 lemma stabilizer_mem_nhds_one (S : Finset (Σ c : C, F.obj c)) :
     (stabilizer F S : Set (FibreAut F)) ∈ nhds (1 : FibreAut F) :=
   (nhds_one_hasBasis F).mem_of_mem trivial
 
+/--
+@isnad1 id=isopen.0h3v.s5.e76c98c2cdf8 from=translated src=- shape=4fc504ab vocab=e6b52c9c
+-/
 lemma isOpen_stabilizer (S : Finset (Σ c : C, F.obj c)) :
     IsOpen (stabilizer F S : Set (FibreAut F)) :=
   Subgroup.isOpen_of_mem_nhds _ (stabilizer_mem_nhds_one F S)
 
 open Classical in
-/-- The stabilizer of a single fibre element is open.-/
+/-- The stabilizer of a single fibre element is open.
+@isnad1 id=isopen.0h4v.s5.fb05f1ae7397 from=translated src=- shape=29adc84e vocab=b01d418d
+-/
 lemma isOpen_stabilizer_singleton (c : C) (x : F.obj c) :
     IsOpen {σ : FibreAut F | σ.app c x = x} := by
   have := isOpen_stabilizer F {⟨c, x⟩}
@@ -168,7 +206,9 @@ lemma isOpen_stabilizer_singleton (c : C) (x : F.obj c) :
   simp [mem_stabilizer]
 
 /-- The evaluation `σ ↦ σ x` on a fibre is locally constant, i.e. continuous for the discrete
-topology on the fibre.-/
+topology on the fibre.
+@isnad1 id=isopen.0h5v.s6.07b5948743bc from=translated src=- shape=ba06f2e3 vocab=b01d418d
+-/
 lemma isOpen_setOf_app_eq (c : C) (x y : F.obj c) :
     IsOpen {σ : FibreAut F | σ.app c x = y} := by
   rw [isOpen_iff_forall_mem_open]
@@ -194,7 +234,9 @@ def openStabilizer (S : Finset (Σ c : C, F.obj c)) : OpenSubgroup (FibreAut F) 
   ⟨stabilizer F S, isOpen_stabilizer F S⟩
 
 /-- A homomorphism into `FibreAut F` is continuous as soon as the preimage of every
-pointwise stabilizer is a neighbourhood of `1`.-/
+pointwise stabilizer is a neighbourhood of `1`.
+@isnad1 id=continuo.1h4v.s8.738639fff8c4 from=translated src=- shape=053b43b7 vocab=25446cda
+-/
 lemma continuous_of_stabilizer {H : Type*} [Group H] [TopologicalSpace H]
     [IsTopologicalGroup H] (φ : H →* FibreAut F)
     (h : ∀ S : Finset (Σ c : C, F.obj c), φ ⁻¹' (stabilizer F S : Set (FibreAut F)) ∈ nhds 1) :
@@ -224,9 +266,15 @@ def restrict (G : C' ⥤ C) (e : G ⋙ F ≅ F') : FibreAut F →* FibreAut F' w
     rw [Iso.hom_inv_id_app_apply]
     rfl
 
+/--
+@isnad1 id=eq.0h9v.s9.aa952c75f988 from=translated src=- shape=bb4caa71 vocab=9cb15854
+-/
 lemma restrict_app (G : C' ⥤ C) (e : G ⋙ F ≅ F') (σ : FibreAut F) (c : C') (x : F'.obj c) :
     (restrict G e σ).app c x = e.hom.app c (σ.app (G.obj c) (e.inv.app c x)) := rfl
 
+/--
+@isnad1 id=continuo.0h6v.s7.ff3f91d9cbaf from=translated src=- shape=24258d21 vocab=7a9b512f
+-/
 lemma continuous_restrict (G : C' ⥤ C) (e : G ⋙ F ≅ F') : Continuous (restrict G e) := by
   classical
   refine continuous_of_stabilizer _ _ fun S => ?_
@@ -250,7 +298,9 @@ namespace FibreAut
 
 variable {C : Type u} [Category.{v} C] (F : C ⥤ Type w)
 
-/-- The set of automorphisms taking a prescribed value at a fibre element is clopen.-/
+/-- The set of automorphisms taking a prescribed value at a fibre element is clopen.
+@isnad1 id=isclopen.0h5v.s6.5fcf54b9df98 from=translated src=- shape=ba06f2e3 vocab=970cfb7d
+-/
 lemma isClopen_setOf_app_eq (c : C) (x y : F.obj c) :
     IsClopen {σ : FibreAut F | σ.app c x = y} := by
   refine ⟨?_, isOpen_setOf_app_eq F c x y⟩
@@ -269,7 +319,9 @@ instance : TotallySeparatedSpace (FibreAut F) := by
   exact ⟨_, isClopen_setOf_app_eq F c x (σ.app c x), rfl, h.symm⟩
 
 /-- If all fibres are finite, the automorphism group of the fibre functor is compact (it is then
-a profinite group).-/
+a profinite group).
+@isnad1 id=compacts.0h2v.s4.fb517d6edbfc from=translated src=- shape=a4e450c6 vocab=e29a41bd
+-/
 lemma compactSpace_of_finite [∀ c, Finite (F.obj c)] : CompactSpace (FibreAut F) := by
   refine ⟨isCompact_iff_ultrafilter_le_nhds.2 fun 𝒰 _ => ?_⟩
   have key : ∀ (c : C) (x : F.obj c), ∃ y, {τ : FibreAut F | τ.app c x = y} ∈ 𝒰 := by
