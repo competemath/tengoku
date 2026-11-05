@@ -1,0 +1,155 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.Seed.AlgebraicGeometry.FunctionField
+import Tengoku.Seed.AlgebraicGeometry.Normalization
+import Tengoku.Seed.RingTheory.LocalProperties.IntegrallyClosed
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Normal integral schemes
+
+This file provides a focused normality interface for integral schemes.  The
+definition is phrased on affine charts, and the basic stalk consequence is
+recorded here so that normalization and divisor developments can share the
+same notion without importing one another.
+-/
+
+noncomputable section
+
+open TopologicalSpace
+
+namespace AlgebraicGeometry
+
+universe u
+
+/-- An integral scheme is normal when its nonempty affine charts are integrally closed.-/
+class IsNormalIntegral (X : Scheme.{u}) [IsIntegral X] : Prop where
+  /-- The section ring of every nonempty affine chart is integrally closed.-/
+  isIntegrallyClosed (U : X.Opens) (hU : IsAffineOpen U) [Nonempty U] :
+    IsIntegrallyClosed Γ(X, U)
+
+namespace IsNormalIntegral
+
+variable {X : Scheme.{u}} [IsIntegral X] [IsNormalIntegral X]
+
+/--
+@isnad1 id=isintegr.1h2v.s8.beafee64d10c from=translated src=- shape=7992e98d vocab=832b06de
+-/
+theorem affine_isIntegrallyClosed (U : X.Opens) (hU : IsAffineOpen U) [Nonempty U] :
+    IsIntegrallyClosed Γ(X, U) :=
+  IsNormalIntegral.isIntegrallyClosed U hU
+
+/-- Every local ring of a normal integral scheme is integrally closed.
+@isnad1 id=isintegr.0h2v.s6.8737ff0aeb6a from=translated src=- shape=34280a11 vocab=af09adbd
+-/
+theorem stalk_isIntegrallyClosed (x : X) :
+    IsIntegrallyClosed (X.presheaf.stalk x) := by
+  obtain ⟨U, hU, hxU, -⟩ :=
+    exists_isAffineOpen_mem_and_subset (X := X) (U := ⊤) (x := x) (by trivial)
+  let : Nonempty U := ⟨x, hxU⟩
+  let : IsIntegrallyClosed Γ(X, U) :=
+    IsNormalIntegral.affine_isIntegrallyClosed U hU
+  let : Algebra Γ(X, U) (X.presheaf.stalk x) :=
+    (X.presheaf.germ U x hxU).hom.toAlgebra
+  let : IsLocalization.AtPrime (X.presheaf.stalk x)
+      (hU.primeIdealOf ⟨x, hxU⟩).asIdeal :=
+    hU.isLocalization_stalk ⟨x, hxU⟩
+  exact isIntegrallyClosed_of_isLocalization
+    (X.presheaf.stalk x)
+    (hU.primeIdealOf ⟨x, hxU⟩).asIdeal.primeCompl
+    (hU.primeIdealOf ⟨x, hxU⟩).asIdeal.primeCompl_le_nonZeroDivisors
+
+end IsNormalIntegral
+
+/-- An integral scheme is normal if all of its local rings are integrally
+closed.  This is the stalkwise constructor for `IsNormalIntegral`.
+@isnad1 id=isnormal.1h1v.s6.9b9d9f81f979 from=translated src=- shape=377d926b vocab=af09adbd
+-/
+theorem IsNormalIntegral.of_stalks
+    (X : Scheme.{u}) [IsIntegral X]
+    (h : ∀ x : X, IsIntegrallyClosed (X.presheaf.stalk x)) :
+    IsNormalIntegral X where
+  isIntegrallyClosed U hU := by
+    intro hUnonempty
+    let : Nonempty U := hUnonempty
+    apply IsIntegrallyClosed.of_isLocalization_maximal
+      (fun P [_] ↦ Localization.AtPrime P)
+    intro P hP
+    let : P.IsMaximal := hP
+    let : P.IsPrime := hP.isPrime
+    let y : PrimeSpectrum Γ(X, U) := ⟨P, inferInstance⟩
+    let x : X := hU.fromSpec y
+    have hxU : x ∈ U := (hU.isoSpec.inv y).2
+    let : IsIntegrallyClosed (X.presheaf.stalk x) := h x
+    let : Algebra Γ(X, U) (X.presheaf.stalk x) :=
+      (X.presheaf.germ U x hxU).hom.toAlgebra
+    let : IsLocalization.AtPrime (X.presheaf.stalk x) P := by
+      exact hU.isLocalization_stalk' y hxU
+    let e : Localization.AtPrime P ≃ₐ[Γ(X, U)] X.presheaf.stalk x :=
+      IsLocalization.algEquiv P.primeCompl
+        (Localization.AtPrime P) (X.presheaf.stalk x)
+    exact IsIntegrallyClosed.of_equiv e.symm.toRingEquiv
+
+/-- An integral affine scheme whose ring of global sections is integrally
+closed is normal.
+
+For an affine open `U`, normality of `Γ(X, U)` is checked at maximal ideals.
+The corresponding localizations are the stalks of `X`; those stalks are
+localizations of the integrally closed ring `Γ(X, ⊤)`.
+@isnad1 id=isnormal.0h1v.s8.484c491feb00 from=translated src=- shape=c47e45b7 vocab=31703728
+-/
+theorem IsNormalIntegral.of_isAffine
+    (X : Scheme.{u}) [IsIntegral X] [IsAffine X]
+    [IsIntegrallyClosed Γ(X, ⊤)] :
+    IsNormalIntegral X where
+  isIntegrallyClosed U hU := by
+    intro hUnonempty
+    let : Nonempty U := hUnonempty
+    apply IsIntegrallyClosed.of_isLocalization_maximal
+      (fun P [_] ↦ Localization.AtPrime P)
+    intro P hP
+    let : P.IsMaximal := hP
+    let : P.IsPrime := hP.isPrime
+    let y : PrimeSpectrum Γ(X, U) := ⟨P, inferInstance⟩
+    let x : X := hU.fromSpec y
+    have hxU : x ∈ U := (hU.isoSpec.inv y).2
+    let xTop : (⊤ : X.Opens) := ⟨x, by trivial⟩
+    let : Algebra Γ(X, ⊤) (X.presheaf.stalk x) :=
+      (X.presheaf.germ ⊤ x (by trivial)).hom.toAlgebra
+    let : IsLocalization.AtPrime (X.presheaf.stalk x)
+        ((isAffineOpen_top X).primeIdealOf xTop).asIdeal :=
+      (isAffineOpen_top X).isLocalization_stalk xTop
+    have hxNormal : IsIntegrallyClosed (X.presheaf.stalk x) :=
+      isIntegrallyClosed_of_isLocalization
+        (X.presheaf.stalk x)
+        ((isAffineOpen_top X).primeIdealOf xTop).asIdeal.primeCompl
+        ((isAffineOpen_top X).primeIdealOf
+          xTop).asIdeal.primeCompl_le_nonZeroDivisors
+    let : IsIntegrallyClosed (X.presheaf.stalk x) := hxNormal
+    let : Algebra Γ(X, U) (X.presheaf.stalk x) :=
+      (X.presheaf.germ U x hxU).hom.toAlgebra
+    let : IsLocalization.AtPrime (X.presheaf.stalk x) P := by
+      exact hU.isLocalization_stalk' y hxU
+    let e : Localization.AtPrime P ≃ₐ[Γ(X, U)] X.presheaf.stalk x :=
+      IsLocalization.algEquiv P.primeCompl
+        (Localization.AtPrime P) (X.presheaf.stalk x)
+    exact IsIntegrallyClosed.of_equiv e.symm.toRingEquiv
+
+/-- The spectrum of an integrally closed domain is a normal integral
+scheme.
+@isnad1 id=isnormal.0h1v.s4.f4ca632f8868 from=translated src=- shape=6c73d483 vocab=c10d20e6
+-/
+instance isNormalIntegral_spec (R : CommRingCat.{u})
+    [IsDomain R] [IsIntegrallyClosed R] :
+    IsNormalIntegral (Spec R) := by
+  let : IsIntegrallyClosed Γ(Spec R, ⊤) :=
+    IsIntegrallyClosed.of_equiv
+      (Scheme.ΓSpecIso R).symm.commRingCatIsoToRingEquiv
+  exact IsNormalIntegral.of_isAffine (Spec R)
+
+end AlgebraicGeometry

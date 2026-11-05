@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "0aea990e26a78847a1818ffcef6450f5304470043769d2e18cc059680aa08fc9",
+ "gate2_unjudged": [],
+ "library": "yamaguchi-papers",
+ "lint_mode": "proposed",
+ "modules": 285,
+ "part": 1,
+ "theorems": 844
+}
