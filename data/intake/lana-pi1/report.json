@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "e1979d408deee015088e966dcbdeefc63ab73c545f8e3d0c2d2079f07238322b",
+ "gate2_unjudged": [],
+ "library": "lana-pi1",
+ "lint_mode": "proposed",
+ "modules": 38,
+ "part": 1,
+ "theorems": 176
+}
