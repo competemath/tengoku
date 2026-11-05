@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "f3a0f947f60fc69e1d33c10c6d6ce838d436eb23108d56a1614a55fd908a0369",
+ "gate2_unjudged": [],
+ "library": "kummer-criterion",
+ "lint_mode": "proposed",
+ "modules": 68,
+ "part": 1,
+ "theorems": 660
+}
