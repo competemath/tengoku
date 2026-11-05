@@ -42,7 +42,9 @@ private theorem mvPowerSeries_X_ne_zero {σ A : Type} [CommRing A] [Nontrivial A
   simpa [h] using MvPowerSeries.coeff_index_single_self_X (R := A) s
 
 /-- A series lies in `(T^a X^b)` iff its coefficients vanish outside the quadrant
-`a ≤ m 0, b ≤ m 1`.-/
+`a ≤ m 0, b ≤ m 1`.
+@isnad1 id=iff.0h4v.s8.57686d02ac65 from=translated src=- shape=c52dc3a7 vocab=5cfddc54
+-/
 theorem monomialIdeal_mem_iff (k : Type) [CommRing k] (a b : ℕ) (φ : TwoSeries k) :
     φ ∈ monomialIdeal k a b ↔ ∀ m : Fin 2 →₀ ℕ, ¬(a ≤ m 0 ∧ b ≤ m 1) →
     MvPowerSeries.coeff m φ = 0 := by
@@ -70,7 +72,9 @@ theorem monomialIdeal_mem_iff (k : Type) [CommRing k] (a b : ℕ) (φ : TwoSerie
     · rw [hψ, tsub_add_cancel_of_le hm]
     · exact h m (by rwa [hle] at hm)
 
-/-- A two-variable series lies in `(X 0, X 1)` iff its constant coefficient vanishes.-/
+/-- A two-variable series lies in `(X 0, X 1)` iff its constant coefficient vanishes.
+@isnad1 id=iff.0h2v.s8.e4d613811eca from=translated src=- shape=df085ddd vocab=e3ce9f79
+-/
 theorem mvPowerSeries_fin_two_mem_variableIdeal_iff (A : Type) [CommRing A]
     (g : MvPowerSeries (Fin 2) A) :
     g ∈ Ideal.span {(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) A), MvPowerSeries.X 1} ↔
@@ -158,7 +162,9 @@ private theorem mvPowerSeries_var_dvd_of_var_dvd_mul (σ A : Type) [CommRing A] 
   · simp
 
 /-- If `P` has nonzero constant coefficient over a domain, then `X s` is a nonzerodivisor
-modulo `P`.-/
+modulo `P`.
+@isnad1 id=injectiv.1h4v.s10.7e4cda216c50 from=translated src=- shape=1ef41ad5 vocab=ea503513
+-/
 theorem mvPowerSeries_quotient_var_regular (σ A : Type) [CommRing A] [IsDomain A] (s : σ)
     (P : MvPowerSeries σ A) (hP : MvPowerSeries.constantCoeff P ≠ 0) :
     Function.Injective
@@ -188,7 +194,9 @@ private theorem mvPowerSeries_var_dvd_of_var_dvd_other_var_mul (σ A : Type) [Co
   simpa using h
 
 /-- If `P` has nonzero constant coefficient over a domain, then `X t` is a nonzerodivisor
-modulo `(P, X s)` for `s ≠ t`.-/
+modulo `(P, X s)` for `s ≠ t`.
+@isnad1 id=injectiv.2h4v.s15.624a730f49e8 from=translated src=- shape=688d340f vocab=cd5d0977
+-/
 theorem mvPowerSeries_fin_two_quotient_var_regular_mod_var (A : Type) [CommRing A] [IsDomain A]
     (s t : Fin 2) (hst : s ≠ t) (P : MvPowerSeries (Fin 2) A)
     (hP : MvPowerSeries.constantCoeff P ≠ 0) :
@@ -238,7 +246,9 @@ theorem mvPowerSeries_fin_two_quotient_var_regular_mod_var (A : Type) [CommRing 
   rw [map_mul, map_mul, map_sub, map_sub]
   linear_combination hab
 
-/-- Values of `nilpotentEval` on constants and on the two variables.-/
+/-- Values of `nilpotentEval` on constants and on the two variables.
+@isnad1 id=and.2h5v.s8.cd9135259564 from=translated src=- shape=28d1b099 vocab=403102fa
+-/
 theorem nilpotentEval_apply_generators (O S : Type) [CommRing O] [CommRing S] (φ : O →+* S)
     (e z : S) (he : IsNilpotent e) (hz : IsNilpotent z) :
     (∀ c : O, nilpotentEval φ e z he hz (MvPowerSeries.C c) = φ c) ∧
@@ -328,7 +338,9 @@ private theorem coeff_residueKillT (O : Type) [CommRing O] [IsLocalRing O] (g : 
   rw [← coeff_killT]
   rfl
 
-/-- Values of `residueKillT` on generators; it is surjective with kernel `(π, T)`.-/
+/-- Values of `residueKillT` on generators; it is surjective with kernel `(π, T)`.
+@isnad1 id=and.1h2v.s10.ce3522f0c8dc from=translated src=- shape=f1ae8e33 vocab=f4d46d5c
+-/
 theorem residueKillT_apply_ker (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     (pi : O) (hpi : Irreducible pi) :
     (∀ c : O, residueKillT O (MvPowerSeries.C c) = PowerSeries.C (IsLocalRing.residue O c)) ∧
@@ -377,7 +389,9 @@ theorem residueKillT_apply_ker (O : Type) [CommRing O] [IsDomain O] [IsDiscreteV
 
 /-! ### One-variable power series and polynomials -/
 
-/-- The point-count expression evaluates to `(1/δ) ∑_{j ∣ δ} μ(j) q^(δ/j)`.-/
+/-- The point-count expression evaluates to `(1/δ) ∑_{j ∣ δ} μ(j) q^(δ/j)`.
+@isnad1 id=eq.0h2v.s6.654c0bc8e939 from=translated src=- shape=303f8bb9 vocab=0db2718e
+-/
 theorem pointCount_eval (δ : ℕ) (q : ℚ) :
     (pointCount δ).eval q = (1/(δ:ℚ)) * ∑ j ∈ δ.divisors, ((ArithmeticFunction.moebius j : ℤ) : ℚ) *
     q ^ (δ / j) := by
@@ -391,7 +405,9 @@ theorem pointCount_eval (δ : ℕ) (q : ℚ) :
   simp [Expr.eval, expression_pow_eval]
 
 /-- Hensel uniqueness: two roots of `f` congruent modulo the maximal ideal coincide when
-`f'(x)` is a unit.-/
+`f'(x)` is a unit.
+@isnad1 id=eq.4h4v.s8.e1206390094c from=translated src=- shape=76245770 vocab=93102311
+-/
 theorem polynomial_root_unique_of_derivative_isUnit (S : Type) [CommRing S] [IsLocalRing S]
     (f : Polynomial S) (x y : S) (hx : Polynomial.eval x f = 0) (hy : Polynomial.eval y f = 0)
     (hxy : y - x ∈ IsLocalRing.maximalIdeal S)
@@ -417,7 +433,9 @@ private theorem powerSeries_quotient_X_pow_length (k : Type) [Field k] (r : ℕ)
   exact IsDiscreteValuationRing.length_quotient_pow_maximalIdeal _ r
 
 /-- `k[[X]]/(g)` has length equal to the order of `g`, and multiplication by `g` is injective
-iff `g ≠ 0`.-/
+iff `g ≠ 0`.
+@isnad1 id=and.0h2v.s7.0292b9c853d4 from=translated src=- shape=824d5d1f vocab=0af4d2ce
+-/
 theorem powerSeries_quotient_length_eq_order (k : Type) [Field k] (g : PowerSeries k) :
     Module.length (PowerSeries k) (PowerSeries k ⧸ Ideal.span {g}) = g.order ∧
     (Function.Injective (fun w : PowerSeries k ↦ g * w) ↔ g ≠ 0) := by
@@ -446,7 +464,9 @@ theorem powerSeries_quotient_length_eq_order (k : Type) [Field k] (g : PowerSeri
 
 /-! ### Residue basis families -/
 
-/-- A residue basis family of a quotient `Q` of `M` (with kernel `π M`) lifts to `M`.-/
+/-- A residue basis family of a quotient `Q` of `M` (with kernel `π M`) lifts to `M`.
+@isnad1 id=ex.3h7v.s8.d78a352faed9 from=translated src=- shape=919d58bb vocab=61008182
+-/
 theorem residue_basis_family_lift_along_reduction (O M Q : Type) [CommRing O] [AddCommGroup M]
     [Module O M] [AddCommGroup Q] [Module O Q] (pi : O) (q : M →ₗ[O] Q) (hq : Function.Surjective q)
     (hkq : ∀ m : M, q m = 0 ↔ ∃ w : M, m = pi • w) {N : ℕ} (γ : Fin N → Q)
@@ -564,7 +584,9 @@ private theorem residue_basis_family_of_simple_quotient (O B M : Type) [CommRing
       exact hm'⟩
     exact fun i ↦ Fin.lastCases ⟨y, hy⟩ hcast i
 
-/-- A module of length `N` killed by `π` has a residue basis family of size `N`.-/
+/-- A module of length `N` killed by `π` has a residue basis family of size `N`.
+@isnad1 id=ex.4h5v.s9.f81b98b7014d from=translated src=- shape=eca2e4e9 vocab=7c36a281
+-/
 theorem residue_basis_family_of_length (O B M : Type) [CommRing O] [CommRing B] [IsLocalRing B]
     [Algebra O B] [AddCommGroup M] [Module B M] [Module O M] [IsScalarTower O B M] (pi : O)
     (hsurj : ∀ b : B, ∃ c : O, b - algebraMap O B c ∈ IsLocalRing.maximalIdeal B)
@@ -650,7 +672,9 @@ private theorem residue_basis_family_spans (O M : Type) [CommRing O] [AddCommGro
   rw [key]
   exact Submodule.sum_mem _ fun i _ ↦ Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩)
 
-/-- A residue basis family of a separated torsion-free module over a complete ring is a basis.-/
+/-- A residue basis family of a separated torsion-free module over a complete ring is a basis.
+@isnad1 id=ex.2h5v.s8.b62251f95899 from=translated src=- shape=1df6da5f vocab=1f2f75bd
+-/
 theorem residue_basis_family_basis (O M : Type) [CommRing O] [AddCommGroup M] [Module O M] (pi : O)
     [IsAdicComplete (Ideal.span {pi}) O] [IsHausdorff (Ideal.span {pi}) M]
     (hreg : ∀ m : M, pi • m = 0 → m = 0) {N : ℕ} (β : Fin N → M) (hβ : ResidueBasisFamily pi β) :
@@ -661,7 +685,9 @@ theorem residue_basis_family_basis (O M : Type) [CommRing O] [AddCommGroup M] [M
 /-! ### Concrete surfaces -/
 
 /-- In the concrete surface, the image of `s` minus its constant coefficient lies in the
-parameter ideal `(t, x)`.-/
+parameter ideal `(t, x)`.
+@isnad1 id=mem.0h6v.s9.4ce7e4b0eef1 from=translated src=- shape=f8e6be71 vocab=515892b5
+-/
 theorem concrete_surface_sub_constantCoeff_mem_parameterIdeal (O : Type) [CommRing O] (pi : O)
     (u : (TwoSeries O)ˣ) (a b : ℕ) (s : TwoSeries O) :
     surfaceMk O pi u a b s -
@@ -702,7 +728,9 @@ private theorem residueSeries_surfaceRelation (O : Type) [CommRing O] [IsLocalRi
   unfold surfaceRelation
   rw [map_sub, map_mul, map_mul, map_pow, map_pow, hT, hX, hC, zero_sub]
 
-/-- The constant coefficient of the surface relation is `π` (when `a > 0`).-/
+/-- The constant coefficient of the surface relation is `π` (when `a > 0`).
+@isnad1 id=eq.1h5v.s7.c5a0f3f9f93e from=translated src=- shape=365e82cf vocab=917f7eac
+-/
 theorem surfaceRelation_constantCoeff (O : Type) [CommRing O] (pi : O) (u : (TwoSeries O)ˣ)
     (a b : ℕ) (ha : 0 < a) :
     MvPowerSeries.constantCoeff (surfaceRelation O pi u a b) = pi := by
@@ -710,7 +738,9 @@ theorem surfaceRelation_constantCoeff (O : Type) [CommRing O] (pi : O) (u : (Two
     simp [axisT, MvPowerSeries.constantCoeff_X]
   simp [surfaceRelation, hT, ha.ne']
 
-/-- `π` is a nonzerodivisor in the concrete surface.-/
+/-- `π` is a nonzerodivisor in the concrete surface.
+@isnad1 id=injectiv.1h5v.s8.b46999b0db6b from=translated src=- shape=d8a886d8 vocab=69ddd69a
+-/
 theorem concrete_surface_pi_regular (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ) :
     Function.Injective
@@ -753,7 +783,9 @@ theorem concrete_surface_pi_regular (O : Type) [CommRing O] [IsDomain O] [IsDisc
   rw [← Ideal.Quotient.eq_zero_iff_mem, map_mul, map_sub, mul_sub, sub_eq_zero]
   exact hrs
 
-/-- The structure map `O → O[[T,X]]/(π - u T^a X^b)` is injective.-/
+/-- The structure map `O → O[[T,X]]/(π - u T^a X^b)` is injective.
+@isnad1 id=injectiv.2h5v.s7.78c6356aa528 from=translated src=- shape=d75f41be vocab=d4822e0c
+-/
 theorem concrete_surface_base_injective (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) :
@@ -794,7 +826,9 @@ theorem concrete_surface_base_injective (O : Type) [CommRing O] [IsDomain O]
   exact (Ideal.mem_bot).1 this
 
 /-- The special fiber of the concrete surface is `k[[T,X]]/(T^a X^b)`, compatibly with
-reduction of coefficients.-/
+reduction of coefficients.
+@isnad1 id=ex.1h5v.s13.1b542930125e from=translated src=- shape=ffb8dd38 vocab=6e934c90
+-/
 theorem concrete_surface_special_fiber_equiv (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ) :
     ∃ e : (ConcreteSurface O pi u a b ⧸ Ideal.span {algebraMap O (ConcreteSurface O pi u a b) pi})
@@ -839,7 +873,9 @@ theorem concrete_surface_special_fiber_equiv (O : Type) [CommRing O] [IsDomain O
     fun _ ↦ rfl⟩
 
 /-- Transport of `powerSeries_quotient_length_eq_order` along an identification of the
-concrete surface modulo `t` with `k[[X]]`.-/
+concrete surface modulo `t` with `k[[X]]`.
+@isnad1 id=and.0h9v.s14.db5eed695403 from=translated src=- shape=f05e1223 vocab=70751ade
+-/
 theorem concrete_surface_equiv_curve_length_and_regular (S : Type) [CommRing S] (O' : Type)
     [CommRing O'] [IsDomain O'] [IsDiscreteValuationRing O'] (pi' : O')
     (u' : (TwoSeries O')ˣ) (a' b' : ℕ) (Eq : S ≃+* ConcreteSurface O' pi' u' a' b')
@@ -896,7 +932,9 @@ theorem concrete_surface_equiv_curve_length_and_regular (S : Type) [CommRing S] 
       simp [map_mul, hψ]
     rw [hfun, ψ.symm.injective.of_comp_iff, Function.Injective.of_comp_iff' _ ψ.bijective, hinj]
 
-/-- The concrete surface modulo `(t, x)` is the residue field of `O`.-/
+/-- The concrete surface modulo `(t, x)` is the residue field of `O`.
+@isnad1 id=ex.2h5v.s11.9e03d414426c from=translated src=- shape=2974c891 vocab=f5198b1d
+-/
 theorem concrete_surface_quotient_parameters_equiv (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) :
@@ -951,7 +989,9 @@ theorem concrete_surface_quotient_parameters_equiv (O : Type) [CommRing O] [IsDo
   exact ⟨(Ideal.quotEquivOfEq hker).symm.trans (RingHom.quotientKerEquivOfSurjective hψsurj),
     fun _ ↦ rfl⟩
 
-/-- The parameter ideal `(t, x)` of the concrete surface is maximal.-/
+/-- The parameter ideal `(t, x)` of the concrete surface is maximal.
+@isnad1 id=ismaxima.2h5v.s6.1a18af4b1fc4 from=translated src=- shape=48684b19 vocab=a06142bb
+-/
 theorem concrete_surface_parameterIdeal_isMaximal (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) :
@@ -959,14 +999,18 @@ theorem concrete_surface_parameterIdeal_isMaximal (O : Type) [CommRing O] [IsDom
   obtain ⟨e, -⟩ := concrete_surface_quotient_parameters_equiv O pi hpi u a b ha
   exact Ideal.Quotient.maximal_of_isField _ (e.toMulEquiv.isField (Field.toIsField _))
 
-/-- The maximal ideal of the (local) concrete surface is `(t, x)`.-/
+/-- The maximal ideal of the (local) concrete surface is `(t, x)`.
+@isnad1 id=eq.2h5v.s7.a4bd7937d28e from=translated src=- shape=5b4a680b vocab=590af70d
+-/
 theorem concrete_surface_maximalIdeal_eq (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) [IsLocalRing (ConcreteSurface O pi u a b)] :
     IsLocalRing.maximalIdeal (ConcreteSurface O pi u a b) = surfaceParameterIdeal O pi u a b :=
   (IsLocalRing.eq_maximalIdeal (concrete_surface_parameterIdeal_isMaximal O pi hpi u a b ha)).symm
 
-/-- The residue field of the concrete surface is that of `O`, compatibly with `O → R`.-/
+/-- The residue field of the concrete surface is that of `O`, compatibly with `O → R`.
+@isnad1 id=ex.2h5v.s11.e554b41bcf62 from=translated src=- shape=c5e3b82c vocab=ca5b62d0
+-/
 theorem concrete_surface_residueField_equiv (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) [IsLocalRing (ConcreteSurface O pi u a b)] :
@@ -981,7 +1025,9 @@ theorem concrete_surface_residueField_equiv (O : Type) [CommRing O] [IsDomain O]
   exact ⟨g.symm, fun c ↦ g.symm_apply_eq.2
     ((hf (.C c)).trans (congrArg _ (MvPowerSeries.constantCoeff_C ..))).symm⟩
 
-/-- The maximal ideal of the concrete surface is generated by two elements.-/
+/-- The maximal ideal of the concrete surface is generated by two elements.
+@isnad1 id=le.2h5v.s7.9f0569610f27 from=translated src=- shape=6220c017 vocab=0bf4e127
+-/
 theorem concrete_surface_spanFinrank_le_two (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) [IsLocalRing (ConcreteSurface O pi u a b)] :
@@ -992,7 +1038,9 @@ theorem concrete_surface_spanFinrank_le_two (O : Type) [CommRing O] [IsDomain O]
   calc _ ≤ Set.ncard {surfaceX O pi u a b} + 1 := Set.ncard_insert_le _ _
     _ = 2 := by rw [Set.ncard_singleton]
 
-/-- The surface ideal is proper when `π` is not a unit and `a > 0`.-/
+/-- The surface ideal is proper when `π` is not a unit and `a > 0`.
+@isnad1 id=ne.2h5v.s7.2efd8e026aed from=translated src=- shape=86ff5b12 vocab=c946f924
+-/
 theorem surfaceIdeal_ne_top (O : Type) [CommRing O] (pi : O) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (hpi : ¬ IsUnit pi) (ha : 0 < a) :
     surfaceIdeal O pi u a b ≠ ⊤ := by
@@ -1000,7 +1048,9 @@ theorem surfaceIdeal_ne_top (O : Type) [CommRing O] (pi : O) (u : (TwoSeries O)�
   rw [surfaceIdeal, Ideal.span_singleton_eq_top] at h
   exact hpi (surfaceRelation_constantCoeff O pi u a b ha ▸ MvPowerSeries.isUnit_constantCoeff _ h)
 
-/-- The concrete surface over a local ring is local when `π` is not a unit and `a > 0`.-/
+/-- The concrete surface over a local ring is local when `π` is not a unit and `a > 0`.
+@isnad1 id=islocalr.2h5v.s6.6d45107f6e4c from=translated src=- shape=338973fe vocab=d92e51be
+-/
 theorem concrete_surface_isLocalRing (O : Type) [CommRing O] (pi : O) (u : (TwoSeries O)ˣ) (a b : ℕ)
     [IsLocalRing O] (hpi : ¬ IsUnit pi) (ha : 0 < a) :
     IsLocalRing (ConcreteSurface O pi u a b) := by

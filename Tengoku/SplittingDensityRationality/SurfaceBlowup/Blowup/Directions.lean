@@ -106,7 +106,9 @@ end
 
 open scoped Classical in
 /-- The multiplicity of an affine direction `φ` in `c · divisorAffinePolynomial Dv` is `Dv φ`;
-in particular `φ` divides it iff `Dv φ > 0`.-/
+in particular `φ` divides it iff `Dv φ > 0`.
+@isnad1 id=and.1h4v.s9.0191442d8558 from=translated src=- shape=d90421ad vocab=2e17cc6e
+-/
 theorem count_normalizedFactors_divisorAffinePolynomial (k : Type) [Field k]
     (Dv : ExceptionalDivisor k) (lc : k) (hlc : lc ≠ 0) (φ : AffineDirection k) :
     Multiset.count φ.val (UniqueFactorizationMonoid.normalizedFactors

@@ -54,7 +54,9 @@ open scoped BigOperators ENNReal
 
 /-! ### Measurability of form products -/
 
-/-- The reduced form-product map is Borel measurable.-/
+/-- The reduced form-product map is Borel measurable.
+@isnad1 id=measurab.4h6v.s8.6cc3dc1d82cf from=translated src=- shape=0d2a7b54 vocab=e4789a62
+-/
 theorem form_product_measurable (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     [TopologicalSpace O] [IsTopologicalRing O] [CompactSpace O] [T2Space O]

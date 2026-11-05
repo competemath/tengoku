@@ -42,7 +42,9 @@ open scoped ENNReal
 /-! ### Invariants of DVR extensions -/
 
 /-- `O`-isomorphic integral DVR extensions of a DVR `O` have the same ramification index and
-inertia degree.-/
+inertia degree.
+@isnad1 id=and.2h4v.s8.978641211326 from=translated src=- shape=8a3a7cdd vocab=ab7efbd2
+-/
 theorem dvr_algEquiv_ramification_inertia (O B B' : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [CommRing B] [IsDomain B] [IsDiscreteValuationRing B] [CommRing B']
     [IsDomain B'] [IsDiscreteValuationRing B'] [Algebra O B] [Algebra O B'] [Algebra.IsIntegral O B]
@@ -72,7 +74,9 @@ theorem dvr_algEquiv_ramification_inertia (O B B' : Type) [CommRing O] [IsDomain
 /-! ### Monic polynomials and coefficient vectors -/
 
 /-- If monic `G, G'` of degree `n` are congruent modulo `πⁱ` (with `π` a nonzerodivisor), then
-`G' - G = πⁱ H` with `deg H < n`; moreover `πⁱ x ∈ (πⁱ⁺¹)` implies `x ∈ (π)`.-/
+`G' - G = πⁱ H` with `deg H < n`; moreover `πⁱ x ∈ (πⁱ⁺¹)` implies `x ∈ (π)`.
+@isnad1 id=and.6h6v.s9.f904a05101b6 from=translated src=- shape=d698caec vocab=0843cb03
+-/
 theorem monic_congruent_difference_factor (O : Type) [CommRing O] (pi : O)
     (hreg : ∀ x : O, pi * x = 0 → x = 0) (i n : ℕ) (G G' : Polynomial O) (hG : G.Monic)
     (hG' : G'.Monic) (hn : G.natDegree = n) (hn' : G'.natDegree = n)
@@ -100,7 +104,9 @@ theorem monic_congruent_difference_factor (O : Type) [CommRing O] (pi : O)
       rw [mul_sub, ← hy, pow_succ]; ring))).symm⟩
 
 /-- `monicPolyO a = Xⁿ + Σ aᵢ Xⁱ` is monic of degree `n` with lower coefficients `a`, and every
-monic polynomial of degree `n` arises from its coefficient vector.-/
+monic polynomial of degree `n` arises from its coefficient vector.
+@isnad1 id=and.0h3v.s6.47006f63f182 from=translated src=- shape=454cfb84 vocab=6a62723f
+-/
 theorem monic_poly_reconstruct (O : Type) [CommRing O] [Nontrivial O] (n : ℕ) (a : Fin n → O) :
     (monicPolyO a).Monic ∧ (monicPolyO a).natDegree = n
       ∧ (∀ i : Fin n, (monicPolyO a).coeff i = a i)
@@ -126,7 +132,9 @@ theorem monic_poly_reconstruct (O : Type) [CommRing O] [Nontrivial O] (n : ℕ) 
     rw [Fin.sum_univ_eq_sum_range (fun i ↦ Polynomial.C (F.coeff i) * Polynomial.X ^ i)]
 
 /-- Over a complete local ring, multiplying monic lifts gives a bijection from the product of the
-residue cells of pairwise coprime monic `gᵢ` onto the residue cell of `∏ gᵢ` (Hensel).-/
+residue cells of pairwise coprime monic `gᵢ` onto the residue cell of `∏ gᵢ` (Hensel).
+@isnad1 id=bijon.2h3v.s8.f05a2546e975 from=translated src=- shape=1780c28b vocab=5d39e936
+-/
 theorem factor_product_bijection (O : Type) [CommRing O] [IsLocalRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] (ι : Type) [Fintype ι]
     (g : ι → Polynomial (IsLocalRing.ResidueField O)) (hg : ∀ i, (g i).Monic)
@@ -176,7 +184,9 @@ theorem factor_product_bijection (O : Type) [CommRing O] [IsLocalRing O]
       simp only [coeffVec]
       exact (R _ c).2.2.1 j
 
-/-- A monic `F` over a field with `K[X]/(F)` reduced is a product of distinct monic irreducibles.-/
+/-- A monic `F` over a field with `K[X]/(F)` reduced is a product of distinct monic irreducibles.
+@isnad1 id=ex.2h2v.s8.7236e00b061c from=translated src=- shape=de60a0f8 vocab=76629b88
+-/
 theorem monic_squarefree_factors_of_reduced (K : Type) [Field K] (F : Polynomial K)
     (hF : F.Monic) (hred : IsReduced (AdjoinRoot F)) :
     ∃ gs : List (Polynomial K), (∀ g ∈ gs, g.Monic ∧ Irreducible g) ∧
@@ -210,7 +220,9 @@ theorem monic_squarefree_factors_of_reduced (K : Type) [Field K] (F : Polynomial
 
 /-- The normalized form cell of `g` (residues prescribed, coordinate `ν` normalized to `1`) is a
 nonempty measurable residue class of mass `q^{-d}`; its normalized cell measure is a probability
-measure giving each congruence ball mod `m^L` mass `q^{-d(L-1)}`.-/
+measure giving each congruence ball mod `m^L` mass `q^{-d(L-1)}`.
+@isnad1 id=and.2h4v.s9.6e2912a15022 from=translated src=- shape=1b459167 vocab=c1db8f52
+-/
 theorem normalized_form_cell_cylinder_mass (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O]
     [Finite (IsLocalRing.ResidueField O)] [TopologicalSpace O] [IsTopologicalRing O]
@@ -368,7 +380,9 @@ private lemma algEquiv_single_eq_single {K ι ι' : Type} [Field K] [DecidableEq
 
 open scoped Classical in
 /-- A `K`-algebra isomorphism of finite products of fields `∏ Lᵢ ≃ ∏ L'ⱼ` is induced by a
-bijection `π` of the index sets and isomorphisms `Lᵢ ≃ L'_{π i}`.-/
+bijection `π` of the index sets and isomorphisms `Lᵢ ≃ L'_{π i}`.
+@isnad1 id=ex.0h6v.s10.b0f4b425f401 from=translated src=- shape=339e6fa6 vocab=ba55d410
+-/
 theorem pi_fields_algEquiv_index_bijection (K ι ι' : Type) [Field K]
     (L : ι → Type) (L' : ι' → Type) [∀ i, Field (L i)] [∀ i, Field (L' i)]
     [∀ i, Algebra K (L i)] [∀ i, Algebra K (L' i)] (e : (∀ i, L i) ≃ₐ[K] (∀ i, L' i)) :
@@ -413,7 +427,9 @@ theorem pi_fields_algEquiv_index_bijection (K ι ι' : Type) [Field K]
 /-! ### Polynomial congruences and the Chinese remainder theorem -/
 
 /-- Two polynomials agree modulo `I` iff their coefficients do, and coefficientwise congruence
-mod `I` is preserved by finite products.-/
+mod `I` is preserved by finite products.
+@isnad1 id=and.0h2v.s8.85812645ce72 from=translated src=- shape=0a18329e vocab=8bf5490f
+-/
 theorem polynomial_congruence_and_product (O : Type) [CommRing O] (I : Ideal O) :
     (∀ P Q : Polynomial O, P.map (Ideal.Quotient.mk I) = Q.map (Ideal.Quotient.mk I) ↔
         ∀ j, P.coeff j - Q.coeff j ∈ I) ∧
@@ -428,7 +444,9 @@ theorem polynomial_congruence_and_product (O : Type) [CommRing O] (I : Ideal O) 
   exact Finset.prod_congr rfl fun i _ ↦ (h1 _ _).2 (h i)
 
 /-- For distinct monic irreducibles `gᵢ` over a field, `K[X]/(∏ gᵢ) ≃ ∏ K[X]/(gᵢ)` (Chinese
-remainder), compatibly with `mk`.-/
+remainder), compatibly with `mk`.
+@isnad1 id=ex.2h2v.s11.1a01fd3c0340 from=translated src=- shape=64bf266c vocab=739fe972
+-/
 theorem polynomial_quotient_product_equiv (K : Type) [Field K] (gs : List (Polynomial K))
     (hgs : ∀ g ∈ gs, g.Monic ∧ Irreducible g) (hd : gs.Pairwise (fun g h ↦ g ≠ h)) :
     ∃ e : AdjoinRoot gs.prod ≃ₐ[K] (∀ i : Fin gs.length, AdjoinRoot (gs.get i)),
@@ -480,7 +498,9 @@ private theorem adjoinRoot_algEquiv_of_dvd_map (K L : Type) [Field K] [Field L] 
   exact ⟨AlgEquiv.ofBijective φ ⟨hinj, hsurj⟩⟩
 
 /-- For the unramified extension `Kδ/K` of degree `δ = deg Φ`, a monic irreducible `g` over `Kδ`
-dividing a monic irreducible `H` over `K` of degree `δ · deg g` has `K[X]/(H) ≃ Kδ[X]/(g)`.-/
+dividing a monic irreducible `H` over `K` of degree `δ · deg g` has `K[X]/(H) ≃ Kδ[X]/(g)`.
+@isnad1 id=nonempty.7h5v.s11.b93f607b1bf6 from=translated src=- shape=0a7de514 vocab=73e0ceba
+-/
 theorem root_field_algEquiv_conjugate_orbit (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O]
     [Finite (IsLocalRing.ResidueField O)] (Φ : Polynomial O)

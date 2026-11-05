@@ -40,7 +40,9 @@ namespace SurfaceBlowup
 
 /-- Over a finite field `k`, the number of nonboundary closed directions of degree `δ > 0` is
 the value at `q = #k` of `availablePoints` (with offset `-1` at a crossing state, where the
-zero direction is also boundary).-/
+zero direction is also boundary).
+@isnad1 id=eq.1h3v.s6.958efa04f9b2 from=translated src=- shape=b482fa6e vocab=379f8b2e
+-/
 theorem nonboundary_direction_count (k : Type) [Field k] [Finite k] (s : State) (δ : ℕ)
     (hδ : 0 < δ) :
     ((Nat.card {Q : ClosedDirection k // Q ∉ boundaryDirections k s ∧
@@ -114,7 +116,9 @@ section Colorings
 
 variable (k : Type) [Field k]
 
-/-- Every closed direction has positive degree.-/
+/-- Every closed direction has positive degree.
+@isnad1 id=lt.0h2v.s4.1c373a6a9975 from=translated src=- shape=13e264ab vocab=bdbbada6
+-/
 theorem directionDegree_pos (Q : ClosedDirection k) : 0 < directionDegree k Q := by
   cases Q with
   | none => simp [directionDegree]
@@ -495,7 +499,9 @@ end Colorings
 
 /-- Over a finite field, the exceptional divisors with tangent pattern `P` are in bijection
 with tuples, indexed by degrees `i + 1`, of colorings of the nonboundary directions of that
-degree by `Fin s.degree ⊕ none` with color counts `P.other (i, j)`.-/
+degree by `Fin s.degree ⊕ none` with color counts `P.other (i, j)`.
+@isnad1 id=nonempty.2h3v.s8.d772d26c05d7 from=translated src=- shape=e8124527 vocab=6774c60a
+-/
 theorem patternDivisors_equiv_colorings (k : Type) [Field k] [Finite k] (s : State)
     (P : TangentPattern s.degree) (hP : P.rt.val + P.rx.val + patternWeight P.other = P.d.val)
     (hrx : ∀ a c, s = State.single a c → P.rx.val = 0) :
@@ -528,7 +534,9 @@ private theorem card_colorings (T : Type) [Finite T] (r : ℕ) (m : Fin r → �
   rw [Nat.card_congr hequiv, colored_subset_count]
 
 /-- For an allowed pattern over a finite field `k`, there are finitely many divisors with
-pattern `P`, and their number is `tangentCount s P` evaluated at `#k`.-/
+pattern `P`, and their number is `tangentCount s P` evaluated at `#k`.
+@isnad1 id=and.1h3v.s5.70754be0dede from=translated src=- shape=f41f7daa vocab=e9f3f8ac
+-/
 theorem pattern_divisor_count (k : Type) [Field k] [Finite k] (s : State)
     (P : TangentPattern s.degree) (hP : Allowed s P) :
     Finite (patternDivisors k s P) ∧
@@ -553,7 +561,9 @@ theorem pattern_divisor_count (k : Type) [Field k] [Finite k] (s : State)
   refine List.map_congr_left fun j _ ↦ ?_
   cases s <;> simp [Expr.sub, Expr.neg, Expr.eval, sub_eq_add_neg]
 
-/-- Tangent counts are nonnegative at prime powers (they count divisors over `GF(p, e)`).-/
+/-- Tangent counts are nonnegative at prime powers (they count divisors over `GF(p, e)`).
+@isnad1 id=le.2h3v.s4.363c8558f597 from=translated src=- shape=6e4bd119 vocab=28cae7d2
+-/
 theorem tangent_count_nonneg (Q : ℕ) (hQ : PrimePower Q) (s : State)
     (P : TangentPattern s.degree) (hP : Allowed s P) :
     0 ≤ (tangentCount s P).eval Q := by
@@ -614,7 +624,9 @@ private theorem stateLawFuel_coeff_nonneg (k : ℕ) :
     | crossing a b c h => exact hterms σ
 
 /-- At a prime power `Q`, the coefficients of the law of a valid state, and of all its
-descents, are nonnegative.-/
+descents, are nonnegative.
+@isnad1 id=and.2h3v.s5.3e31b63aa1f4 from=translated src=- shape=e24bf84a vocab=7cae0ed2
+-/
 theorem state_law_coeff_nonneg (Q : ℕ) (hQ : PrimePower Q) (s : State) (hs : s.Valid)
     (σ : FactorType) :
     0 ≤ (lawCoeff (stateLaw s) σ).eval Q ∧
@@ -626,7 +638,9 @@ theorem state_law_coeff_nonneg (Q : ℕ) (hQ : PrimePower Q) (s : State) (hs : s
 /-! ### Continuity of congruence-compatible maps -/
 
 /-- A map between finite products of adic rings that preserves congruence modulo `I₁ ^ L`
-(sending it to congruence modulo `I₂ ^ L`) on a set `C` is continuous on `C`.-/
+(sending it to congruence modulo `I₂ ^ L`) on a set `C` is continuous on `C`.
+@isnad1 id=continuo.3h9v.s8.602c9b9a97b3 from=translated src=- shape=60b72f4a vocab=33c89f64
+-/
 theorem continuousOn_of_congruence_compatible (O₁ O₂ : Type) [CommRing O₁] [TopologicalSpace O₁]
     [IsTopologicalRing O₁] (I₁ : Ideal O₁) (h₁ : IsAdic I₁) [CommRing O₂] [TopologicalSpace O₂]
     [IsTopologicalRing O₂] (I₂ : Ideal O₂) (h₂ : IsAdic I₂) (ι : Type) [Finite ι] (d : ι → ℕ)

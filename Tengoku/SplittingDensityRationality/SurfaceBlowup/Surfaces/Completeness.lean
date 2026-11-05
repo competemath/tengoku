@@ -55,7 +55,9 @@ private theorem surfaceRelation_span_axisT_eq (O : Type) [CommRing O] (pi : O) (
     Ideal.span_pair_add_mul_right]
 
 /-- The quotient of the concrete surface by `t` is the power series ring `k[[X]]` over the
-residue field, compatibly with `residueKillT`.-/
+residue field, compatibly with `residueKillT`.
+@isnad1 id=ex.2h5v.s12.6ff60f1f63dd from=translated src=- shape=19549ba1 vocab=5f2fda40
+-/
 theorem concrete_surface_quotient_T_equiv (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) :
@@ -82,7 +84,9 @@ private theorem surfaceRelation_span_axisT_isPrime (O : Type) [CommRing O] [IsDo
   simpa [axisT] using mvPowerSeries_fin_two_span_C_var_isPrime O pi
     (by rw [← hpi.maximalIdeal_eq]; infer_instance) 0
 
-/-- The ideal `(t)` of the concrete surface is prime.-/
+/-- The ideal `(t)` of the concrete surface is prime.
+@isnad1 id=isprime.2h5v.s7.c5f1c30d40d3 from=translated src=- shape=da132378 vocab=fe03c51b
+-/
 theorem concrete_surface_span_T_isPrime (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) :
@@ -101,7 +105,9 @@ theorem concrete_surface_span_T_isPrime (O : Type) [CommRing O] [IsDomain O]
 
 /-- Let `e` be a non-zero-divisor of a noetherian local ring `S` with `S / (e) ≃ k[[X]]`, and
 let `g` have nonzero image in `k[[X]]`. Then `e` is a non-zero-divisor modulo `g`, `g` is a
-non-zero-divisor modulo `e`, and `(g, e)` contains a power of the maximal ideal.-/
+non-zero-divisor modulo `e`, and `(g, e)` contains a power of the maximal ideal.
+@isnad1 id=and.2h5v.s11.e0684489c281 from=translated src=- shape=e5bce07f vocab=3c920835
+-/
 theorem transverse_of_reduction_ne_zero (S : Type) [CommRing S] [IsLocalRing S]
     [IsNoetherianRing S] (e g : S) (hereg : Function.Injective (fun y : S ↦ e * y)) (k : Type)
     [Field k] (q : (S ⧸ Ideal.span {e}) ≃+* PowerSeries k)
@@ -161,7 +167,9 @@ private theorem twoSeries_mem_variableIdeal_pow_of_coeff_eq_zero (O : Type) [Com
   (axis_ideal_pow_mem_iff O N g).2 hg
 
 /-- Two ring maps out of `O[[T,X]]` that agree on constants, `T` and `X`, and send `T` and
-`X` to nilpotent elements, are equal.-/
+`X` to nilpotent elements, are equal.
+@isnad1 id=eq.5h4v.s9.dafbe1bed1a9 from=translated src=- shape=7f22c2b9 vocab=b7bbbc46
+-/
 theorem twoSeries_ringHom_ext_of_isNilpotent (O S : Type) [CommRing O] [CommRing S]
     (φ ψ : TwoSeries O →+* S) (hC : ∀ c : O, φ (MvPowerSeries.C c) = ψ (MvPowerSeries.C c))
     (hT : φ (axisT O) = ψ (axisT O)) (hX : φ (axisX O) = ψ (axisX O))
@@ -201,7 +209,9 @@ theorem twoSeries_ringHom_ext_of_isNilpotent (O S : Type) [CommRing O] [CommRing
   exact congrArg (fun F ↦ F p) hpoly
 
 /-- Two ring maps out of the concrete surface that agree on constants, `t` and `x`, and send
-`t` and `x` to nilpotent elements, are equal.-/
+`t` and `x` to nilpotent elements, are equal.
+@isnad1 id=eq.5h8v.s10.f51acec800bd from=translated src=- shape=f7c9a37b vocab=db557a5d
+-/
 theorem concrete_surface_ringHom_ext_of_isNilpotent (O S : Type) [CommRing O] [CommRing S]
     (pi : O) (u : (TwoSeries O)ˣ) (a b : ℕ) (φ ψ : ConcreteSurface O pi u a b →+* S)
     (hC : ∀ c : O, φ (algebraMap O (ConcreteSurface O pi u a b) c) =
@@ -214,7 +224,9 @@ theorem concrete_surface_ringHom_ext_of_isNilpotent (O S : Type) [CommRing O] [C
     (twoSeries_ringHom_ext_of_isNilpotent O S _ _ (fun c ↦ hC c) hT hX hTn hXn)
 
 /-- Over a ring `S` complete for an ideal `I`, any ring map `O' → S` extends to an evaluation
-`O'[[T,X]] → S` sending `T ↦ e` and `X ↦ z` for given `e, z ∈ I`.-/
+`O'[[T,X]] → S` sending `T ↦ e` and `X ↦ z` for given `e, z ∈ I`.
+@isnad1 id=ex.2h6v.s9.5c22c98cc006 from=translated src=- shape=5602d10b vocab=05108d47
+-/
 theorem twoSeries_eval_exists_of_isAdicComplete (S : Type) [CommRing S] (I : Ideal S)
     [IsAdicComplete I S] (O' : Type) [CommRing O'] (κ : O' →+* S) (e z : S) (he : e ∈ I)
     (hz : z ∈ I) :
@@ -253,7 +265,9 @@ theorem twoSeries_eval_exists_of_isAdicComplete (S : Type) [CommRing S] (I : Ide
 /-! ### Unramified extensions -/
 
 /-- The reduction of an unramified lift `Φ` to the quotient of the concrete surface by its
-parameter ideal `(t, x)` is irreducible.-/
+parameter ideal `(t, x)` is irreducible.
+@isnad1 id=irreduci.3h6v.s11.854651ca8a7e from=translated src=- shape=83379209 vocab=eb18eadd
+-/
 theorem unramified_lift_map_parameter_quotient_irreducible (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) :
@@ -274,7 +288,9 @@ theorem unramified_lift_map_parameter_quotient_irreducible (O : Type) [CommRing 
   exact key _ _ _ e fun c ↦ (he (.C c)).trans (congrArg _ (MvPowerSeries.constantCoeff_C ..))
 
 /-- If `Φ` is an unramified lift of degree at least `2` over a complete local ring with finite
-residue field, then the root of `Φ` in `O[X]/(Φ)` is a unit.-/
+residue field, then the root of `Φ` in `O[X]/(Φ)` is a unit.
+@isnad1 id=isunit.2h2v.s6.185c043fdb26 from=translated src=- shape=761d0e5e vocab=0c70eb61
+-/
 theorem unramified_root_isUnit_of_two_le_natDegree (O : Type) [CommRing O] [IsLocalRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) (h2 : 2 ≤ Φ.natDegree) :
@@ -317,7 +333,9 @@ private theorem variableIdeal_ne_top (O : Type) [CommRing O] [Nontrivial O] :
   rw [variableIdeal, axisT, axisX, mvPowerSeries_fin_two_mem_variableIdeal_iff] at h1
   simp at h1
 
-/-- The concrete surface is complete for its parameter ideal `(t, x)`.-/
+/-- The concrete surface is complete for its parameter ideal `(t, x)`.
+@isnad1 id=isadicco.0h5v.s7.5d39c94b79cd from=translated src=- shape=64e11e8f vocab=053877f1
+-/
 theorem concrete_surface_isAdicComplete_parameterIdeal (O : Type) [CommRing O] [IsLocalRing O]
     [IsNoetherianRing O] (pi : O) (u : (TwoSeries O)ˣ) (a b : ℕ) :
     IsAdicComplete (surfaceParameterIdeal O pi u a b) (ConcreteSurface O pi u a b) := by
@@ -331,7 +349,9 @@ theorem concrete_surface_isAdicComplete_parameterIdeal (O : Type) [CommRing O] [
     (surfaceIdeal O pi u a b)
     (iInf_sup_pow_eq_of_isLocalRing (TwoSeries O) _ _ (variableIdeal_ne_top O))
 
-/-- The concrete surface is complete for its maximal ideal.-/
+/-- The concrete surface is complete for its maximal ideal.
+@isnad1 id=isadicco.2h5v.s8.cb8d48a9438d from=translated src=- shape=d1e0fbfd vocab=56cc77ef
+-/
 theorem concrete_surface_isAdicComplete_maximalIdeal (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) [IsLocalRing (ConcreteSurface O pi u a b)] :
@@ -340,7 +360,9 @@ theorem concrete_surface_isAdicComplete_maximalIdeal (O : Type) [CommRing O] [Is
   rw [concrete_surface_maximalIdeal_eq O pi hpi u a b ha]
   exact concrete_surface_isAdicComplete_parameterIdeal O pi u a b
 
-/-- The concrete surface is complete for the ideal generated by the image of `π`.-/
+/-- The concrete surface is complete for the ideal generated by the image of `π`.
+@isnad1 id=isadicco.2h5v.s8.ae11997a7611 from=translated src=- shape=b76cfb09 vocab=506fa137
+-/
 theorem concrete_surface_isAdicComplete_span_pi (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) :
@@ -368,7 +390,9 @@ theorem concrete_surface_isAdicComplete_span_pi (O : Type) [CommRing O] [IsDomai
       (Ideal.pow_mem_of_mem _ (Ideal.subset_span (by simp)) a ha))
   exact ne_top_of_le_ne_top (IsLocalRing.maximalIdeal.isMaximal _).ne_top hle
 
-/-- Every principal quotient of the concrete surface is `π`-adically complete.-/
+/-- Every principal quotient of the concrete surface is `π`-adically complete.
+@isnad1 id=isadicco.2h6v.s9.f5d34bf4e92b from=translated src=- shape=16ac9f51 vocab=3f92f326
+-/
 theorem concrete_surface_curve_isAdicComplete (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) (f : ConcreteSurface O pi u a b) :
@@ -391,7 +415,9 @@ theorem concrete_surface_curve_isAdicComplete (O : Type) [CommRing O] [IsDomain 
   convert hc using 2
   rfl
 
-/-- The concrete surface is `π`-adically complete as an `O`-module.-/
+/-- The concrete surface is `π`-adically complete as an `O`-module.
+@isnad1 id=isadicco.2h5v.s8.4e93a75264c0 from=translated src=- shape=5581350c vocab=c2e1486d
+-/
 theorem concrete_surface_isAdicComplete_span_pi_base (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a) :
@@ -401,7 +427,9 @@ theorem concrete_surface_isAdicComplete_span_pi_base (O : Type) [CommRing O] [Is
     exact concrete_surface_isAdicComplete_span_pi O pi hpi u a b ha
 
 /-- Over a complete discrete valuation ring, `Oⁿ × R` is `π`-adically complete, where `R` is the
-concrete surface.-/
+concrete surface.
+@isnad1 id=isadicco.2h6v.s8.85d412bdc654 from=translated src=- shape=1d4dae23 vocab=6d8419ed
+-/
 theorem division_coordinate_module_isAdicComplete (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O] (pi : O)
     (hpi : Irreducible pi) (u : (TwoSeries O)ˣ) (a b : ℕ) (ha : 0 < a) (n : ℕ) :

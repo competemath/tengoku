@@ -100,7 +100,9 @@ variable {O R : Type} [CommRing O] [CommRing R] [Algebra O R]
 /-- The lift `∑ i, zᵢ • bᵢ` of coordinates `z ∈ O^n` along representatives `b`.-/
 def coordinateLift {n : ℕ} (b : Fin n → R) (z : Fin n → O) : R := ∑ i, z i • b i
 
-/-- Scaling the coordinates by `a ∈ O` multiplies their lift by the image of `a`.-/
+/-- Scaling the coordinates by `a ∈ O` multiplies their lift by the image of `a`.
+@isnad1 id=eq.0h6v.s7.f68c2af7c44d from=translated src=- shape=7912c46c vocab=6f7dd928
+-/
 theorem coordinateLift_smul_eq_mul {n : ℕ} (b : Fin n → R) (a : O) (z : Fin n → O) :
     coordinateLift b (a • z) = algebraMap O R a * coordinateLift b z := by
   simp only [coordinateLift, Finset.mul_sum, Pi.smul_apply, smul_eq_mul, Algebra.smul_def, map_mul,
@@ -186,7 +188,9 @@ def IsDivisionChart (pi : O) {n : ℕ} (f : R) (b : Fin n → R) : Prop :=
       y * Ideal.Quotient.mk (Ideal.span {algebraMap O R pi}) f)
 
 variable {O R} in
-/-- The centre and representatives of an ideal chart form a division chart.-/
+/-- The centre and representatives of an ideal chart form a division chart.
+@isnad1 id=isdivisi.0h5v.s5.e05db56b1427 from=translated src=- shape=b686c6f5 vocab=aefbac6c
+-/
 theorem IdealChart.isDivisionChart {pi : O} {n : ℕ} (C : IdealChart O R pi n) :
     IsDivisionChart O R pi C.f C.b :=
   ⟨⟨C.E, C.division⟩, C.regular⟩
@@ -267,7 +271,9 @@ end
 /-! ### Polynomial zero sets are null -/
 
 /-- The zero set of a nonzero multivariate polynomial over a domain is null for any finite
-product of copies of an atomless finite measure.-/
+product of copies of an atomless finite measure.
+@isnad1 id=eq.1h4v.s8.21264e411f1d from=translated src=- shape=139729a5 vocab=f0683089
+-/
 theorem mvPolynomial_zero_null {R : Type} [CommRing R] [IsDomain R]
     [TopologicalSpace R] [IsTopologicalRing R] [T2Space R] [SecondCountableTopology R]
     [MeasurableSpace R] [BorelSpace R]
@@ -310,7 +316,9 @@ theorem mvPolynomial_zero_null {R : Type} [CommRing R] [IsDomain R]
 
 /-! ### Adic congruences -/
 
-/-- Adic congruences in an `O`-algebra are compatible with multiplication.-/
+/-- Adic congruences in an `O`-algebra are compatible with multiplication.
+@isnad1 id=adiccong.2h8v.s7.0405795903a5 from=translated src=- shape=6b042d78 vocab=c20f1e24
+-/
 theorem algebra_product_congruence (O R : Type) [CommRing O] [CommRing R] [Algebra O R]
     (I : Ideal O) (j : ℕ) (x x2 y y2 : R) (hx : adicCongr I j x x2) (hy : adicCongr I j y y2) :
     adicCongr I j (x*y) (x2*y2) := by
@@ -342,7 +350,9 @@ private lemma otherChildren_volume_prod (x : ℚ) (n a : ℕ) (m : Pattern n) :
   rw [inv_pow, ← pow_mul, ← pow_mul, mul_assoc]
 
 /-- The volume recursion: the children of an allowed tangent pattern `P` at a state `s`,
-weighted by `q^(-tri d)`, have total volume `divisorProbability s d · stateVolume s`.-/
+weighted by `q^(-tri d)`, have total volume `divisorProbability s d · stateVolume s`.
+@isnad1 id=eq.3h3v.s7.29e0e6b5e415 from=translated src=- shape=8e691e08 vocab=44e9bc99
+-/
 theorem child_volume_ratio (s : State) (hs : s.Valid) (P : TangentPattern s.degree)
     (hP : Allowed s P) (q : ℕ) (hq : 2 ≤ q) :
     ((q:ℚ)⁻¹^(tri P.d.val))
@@ -521,7 +531,9 @@ private theorem prod_range_sub_eq_descFactorial (Q M : ℕ) :
     · simp [Nat.descFactorial_eq_zero_iff_lt.mpr (show Q < k by omega)]
 
 /-- The number of maps `Fin Q → Option (Fin r)` with exactly `m i` points of colour `i` is
-`Q (Q-1) ⋯ (Q - ∑ m + 1) / ∏ (m i)!`.-/
+`Q (Q-1) ⋯ (Q - ∑ m + 1) / ∏ (m i)!`.
+@isnad1 id=eq.0h3v.s7.78519bd6bcab from=translated src=- shape=353b4d38 vocab=a4ab74bb
+-/
 theorem colored_subset_count (Q r : ℕ) (m : Fin r → ℕ) :
     ((Nat.card {f : Fin Q→Option (Fin r) //
       ∀ i : Fin r, Nat.card {x : Fin Q // f x=some i}=m i} : ℕ) : ℚ) =
@@ -533,7 +545,9 @@ theorem colored_subset_count (Q r : ℕ) (m : Fin r → ℕ) :
 /-! ### Assorted coordinate lemmas -/
 
 /-- If each component `e j` divides a power of `π` up to `d`-th powers, then a single exponent
-`s ≥ s₀` works for all components of the finite product simultaneously.-/
+`s ≥ s₀` works for all components of the finite product simultaneously.
+@isnad1 id=ex.1h7v.s9.06c59bf330de from=translated src=- shape=ae885d60 vocab=5b0ba1da
+-/
 theorem common_vertical_exponent (O : Type) [CommRing O] (ι : Type) [Finite ι] (C : ι → Type)
     [∀ j, CommRing (C j)] [∀ j, Algebra O (C j)] (pi : O) (e : ∀ j, C j) (d : ℕ)
     (hvert : ∀ j, ∃ (s : ℕ) (cj : C j), algebraMap O (C j) pi ^ s = e j ^ d * cj) (s₀ : ℕ) :
@@ -550,7 +564,9 @@ theorem common_vertical_exponent (O : Type) [CommRing O] (ι : Type) [Finite ι]
   rw [mul_assoc]
 
 /-- A surjection preserving and reflecting all adic congruences is measurable for the adic
-cylinder σ-algebra.-/
+cylinder σ-algebra.
+@isnad1 id=measurab.3h4v.s6.c1124b12b5a9 from=translated src=- shape=02c6ce98 vocab=c9cf9f96
+-/
 theorem congruence_bijection_measurable (O V : Type) [CommRing O] [AddCommGroup V] [Module O V]
     (I : Ideal O) [MeasurableSpace V] (hgen : ‹MeasurableSpace V› = adicCylinderSpace I V)
     (F : V → V) (honto : Function.Surjective F)
@@ -567,7 +583,9 @@ theorem congruence_bijection_measurable (O V : Type) [CommRing O] [AddCommGroup 
     exact this ▸ MeasurableSpace.measurableSet_generateFrom (Or.inr ⟨j, b, rfl⟩)
 
 /-- Over a finite field `k`, the number of `f : ι → k` vanishing on `A` and nonvanishing on a
-disjoint `B` is `(|k| - 1)^|B| · |k|^(|ι| - |A| - |B|)`.-/
+disjoint `B` is `(|k| - 1)^|B| · |k|^(|ι| - |A| - |B|)`.
+@isnad1 id=eq.1h4v.s7.a2ea6bd2dbd9 from=translated src=- shape=215ec38b vocab=802d6dce
+-/
 theorem coordinate_constraint_count (k ι : Type) [Field k] [Fintype k] [Fintype ι]
     (A B : Finset ι) (hAB : Disjoint A B) :
     Nat.card {f : ι→k // (∀ i∈A, f i=0) ∧ (∀ i∈B, f i≠0)}
@@ -606,7 +624,9 @@ theorem coordinate_constraint_count (k ι : Type) [Field k] [Fintype k] [Fintype
     ext i; simp
   rw [h1, h2, Finset.card_compl, Finset.card_union_of_disjoint hAB, Nat.sub_sub]
 
-/-- The curve ideal `(f + π ∑ zᵢ bᵢ)` lies in the residue cell of `f`.-/
+/-- The curve ideal `(f + π ∑ zᵢ bᵢ)` lies in the residue cell of `f`.
+@isnad1 id=mem.0h7v.s7.389c99c72307 from=translated src=- shape=f6b3d301 vocab=386c817e
+-/
 theorem coordinate_ideal_in_residue_cell (O R : Type) [CommRing O] [CommRing R] [Algebra O R]
     (n : ℕ) (pi : O) (b : Fin n → R) (f : R) (z : Fin n → O) :
     coordinateIdeal pi f b z ∈ residueIdealCell (algebraMap O R pi) f := by
@@ -619,7 +639,9 @@ theorem coordinate_ideal_in_residue_cell (O R : Type) [CommRing O] [CommRing R] 
   exact Ideal.mul_mem_right _ _ (Ideal.mem_span_singleton_self _)
 
 /-- For a free module `V ≅ O^n` over a DVR with uniformizer `π`, multiplication by `π` is
-injective and `V / πV` has length `n`.-/
+injective and `V / πV` has length `n`.
+@isnad1 id=and.1h5v.s9.c9dae9c4f034 from=translated src=- shape=7df6aba5 vocab=a851fe99
+-/
 theorem coordinate_module_pi_quotient_length (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [Finite (IsLocalRing.ResidueField O)] (pi : O)
     (hpi : Irreducible pi) (n : ℕ) (V : Type) [AddCommGroup V] [Module O V]
@@ -660,7 +682,9 @@ theorem coordinate_module_pi_quotient_length (O : Type) [CommRing O] [IsDomain O
   rw [e.length_eq, Module.length_pi, Module.length_eq_one]
   simp
 
-/-- The coordinate remainder `(z, v) ↦ π • E (v ∑ zᵢ bᵢ)` raises `π`-adic order.-/
+/-- The coordinate remainder `(z, v) ↦ π • E (v ∑ zᵢ bᵢ)` raises `π`-adic order.
+@isnad1 id=raisesad.0h6v.s8.adc209a15eb5 from=translated src=- shape=d0a3865c vocab=29620c01
+-/
 theorem coordinate_remainder_raises_order (O R : Type) [CommRing O] [CommRing R] [Algebra O R]
     (n : ℕ) (pi : O) (b : Fin n → R) (E : R ≃ₗ[O] ((Fin n → O) × R)) :
     RaisesAdicOrder (Ideal.span {pi}) (coordinateRemainder pi b E) := by
@@ -762,7 +786,9 @@ private theorem card_quot_divisionChart (O R : Type) [CommRing O] [IsDomain O]
       rw [IsLocalRing.residue_eq_zero_iff, hmax]
       exact Ideal.mul_mem_right _ _ (Ideal.subset_span rfl)
 
-/-- Two division charts whose centres generate the same ideal modulo `π` have the same rank.-/
+/-- Two division charts whose centres generate the same ideal modulo `π` have the same rank.
+@isnad1 id=eq.4h9v.s11.bd4394280168 from=translated src=- shape=281ca611 vocab=8ee1c779
+-/
 theorem division_chart_rank_eq_of_residue_ideal_eq (O R : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [Finite (IsLocalRing.ResidueField O)] [CommRing R] [Algebra O R]
     (pi : O) (hpi : Irreducible pi) (n n' : ℕ) (f g : R) (b : Fin n → R) (c : Fin n' → R)
@@ -822,7 +848,9 @@ private theorem division_coordinates_surjective (O R : Type) [CommRing O] [CommR
 
 /-- Recentring: if the regular element `f` and the chart centre `g` (with division equivalence
 `Ec`) generate the same ideal modulo `π`, then the chart can be rescaled by a unit so that its new
-centre `g'` satisfies `f = g' + π h₀`, with the same curve ideals.-/
+centre `g'` satisfies `f = g' + π h₀`, with the same curve ideals.
+@isnad1 id=ex.4h8v.s12.d350651da380 from=translated src=- shape=f5d63412 vocab=5e520af8
+-/
 theorem division_data_same_cell_recenter (O R : Type) [CommRing O] [CommRing R] [Algebra O R]
     [IsLocalRing R] (pi : O) (hpm : algebraMap O R pi ∈ IsLocalRing.maximalIdeal R) (n : ℕ)
     (f g : R) (c : Fin n → R)
@@ -880,7 +908,9 @@ theorem division_data_same_cell_recenter (O R : Type) [CommRing O] [CommRing R] 
     rw [← hlift, ← mul_add, Ideal.span_singleton_mul_left_unit (Units.isUnit _)]
 
 /-- Recentring for two division charts of the same rank whose centres generate the same ideal
-modulo `π` (see `division_data_same_cell_recenter`).-/
+modulo `π` (see `division_data_same_cell_recenter`).
+@isnad1 id=ex.4h8v.s12.91b82a1f7d28 from=translated src=- shape=5609e21d vocab=574f2e10
+-/
 theorem division_chart_same_cell_recenter (O R : Type) [CommRing O] [CommRing R] [Algebra O R]
     [IsLocalRing R] (pi : O) (hpm : algebraMap O R pi ∈ IsLocalRing.maximalIdeal R) (n : ℕ)
     (f g : R) (b c : Fin n → R) (hb : IsDivisionChart O R pi f b) (hc : IsDivisionChart O R pi g c)
@@ -895,7 +925,9 @@ theorem division_chart_same_cell_recenter (O R : Type) [CommRing O] [CommRing R]
   division_data_same_cell_recenter O R pi hpm n f g c hb.2 Ec hEc hres
 
 /-- If `b` lifts an `O`-basis of `R/(f)` with `f ≠ 0` in a domain, the division map is the
-inverse of an `O`-linear equivalence `R ≃ O^n × R`.-/
+inverse of an `O`-linear equivalence `R ≃ O^n × R`.
+@isnad1 id=ex.2h6v.s10.0181d24121d0 from=translated src=- shape=d9b0b4f1 vocab=d40252be
+-/
 theorem division_linear_equivalence (O R : Type) [CommRing O] [CommRing R] [Algebra O R] (n : ℕ)
     (f : R) (B : Module.Basis (Fin n) O (R ⧸ Ideal.span {f})) (b : Fin n → R)
     (hb : ∀ i, Ideal.Quotient.mk (Ideal.span {f}) (b i) = B i) [IsDomain R] (hf : f ≠ 0) :
@@ -917,7 +949,9 @@ theorem division_linear_equivalence (O R : Type) [CommRing O] [CommRing R] [Alge
 
 /-! ### Finite coordinate spaces -/
 
-/-- On `O^n`, `x ≡ y (mod I^j)` holds iff it holds coordinatewise.-/
+/-- On `O^n`, `x ≡ y (mod I^j)` holds iff it holds coordinatewise.
+@isnad1 id=iff.0h6v.s7.7a559ea53e7c from=translated src=- shape=59098930 vocab=b9712975
+-/
 theorem finite_coordinate_adic_congruence (O : Type) [CommRing O] (n : ℕ) (I : Ideal O) (j : ℕ)
     (x y : Fin n → O) :
     adicCongr I j x y ↔ ∀ i, x i - y i ∈ I^j := by
@@ -937,7 +971,9 @@ theorem finite_coordinate_adic_congruence (O : Type) [CommRing O] (n : ℕ) (I :
     exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem_smul (h i) Submodule.mem_top
 
 /-- For the `I`-adic topology on `O`, the adic cylinders form a basis of the product topology
-of `O^n`.-/
+of `O^n`.
+@isnad1 id=istopolo.1h3v.s6.4510ba577012 from=translated src=- shape=9810679d vocab=a5ddc059
+-/
 theorem finite_coordinate_cylinder_basis (O : Type) [CommRing O] [TopologicalSpace O]
     [IsTopologicalRing O] (I : Ideal O) (htop : IsAdic I) (n : ℕ) :
     TopologicalSpace.IsTopologicalBasis (adicCylinders I (Fin n → O)) := by
@@ -974,7 +1010,9 @@ theorem finite_coordinate_cylinder_basis (O : Type) [CommRing O] [TopologicalSpa
         hJ i hi (y i) (Ideal.pow_le_pow_right (Finset.le_sup hi) (hy i))
 
 /-- For the `I`-adic topology on `O`, the Borel σ-algebra of `O^n` is generated by the adic
-cylinders.-/
+cylinders.
+@isnad1 id=eq.1h3v.s6.df542daf841c from=translated src=- shape=5469d9c6 vocab=69726312
+-/
 theorem finite_coordinate_borel_cylinders (O : Type) [CommRing O] [TopologicalSpace O]
     [IsTopologicalRing O] (I : Ideal O) (htop : IsAdic I) (n : ℕ) [SecondCountableTopology O]
     [MeasurableSpace O] [BorelSpace O] :
@@ -982,7 +1020,9 @@ theorem finite_coordinate_borel_cylinders (O : Type) [CommRing O] [TopologicalSp
   rw [BorelSpace.measurable_eq (α := Fin n → O)]
   exact (finite_coordinate_cylinder_basis O I htop n).borel_eq_generateFrom
 
-/-- Every `O`-linear map `O^m → O^n` is continuous.-/
+/-- Every `O`-linear map `O^m → O^n` is continuous.
+@isnad1 id=continuo.0h4v.s8.c286fbfcac31 from=translated src=- shape=7269131e vocab=bad33e7c
+-/
 theorem finite_coordinate_linear_continuous (O : Type) [CommRing O] [TopologicalSpace O]
     [IsTopologicalRing O] (m n : ℕ) (L : (Fin m → O) →ₗ[O] (Fin n → O)) :
     Continuous L :=

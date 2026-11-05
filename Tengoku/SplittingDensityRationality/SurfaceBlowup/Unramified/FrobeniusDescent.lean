@@ -79,7 +79,9 @@ private theorem unramified_base_invariants (O Oδ : Type) [CommRing O] [IsDomain
   exact ⟨he, h251⟩
 
 /-- In a tower `O → O_δ → B` with `O_δ` unramified of rank `δ` over `O`, inertia degrees over `O`
-are `δ` times inertia degrees over `O_δ`.-/
+are `δ` times inertia degrees over `O_δ`.
+@isnad1 id=eq.3h5v.s8.9a26a4e37a00 from=translated src=- shape=71a3287c vocab=0a144cf1
+-/
 theorem inertiaDeg_unramified_tower (O Oδ B : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [CommRing Oδ] [IsDomain Oδ] [IsDiscreteValuationRing Oδ]
     [CommRing B] [IsDomain B] [IsDiscreteValuationRing B] [Algebra O Oδ] [Algebra O B]
@@ -95,7 +97,9 @@ theorem inertiaDeg_unramified_tower (O Oδ B : Type) [CommRing O] [IsDomain O]
     (IsLocalRing.maximalIdeal B), (unramified_base_invariants O Oδ δ hrank pi hpi hpiδ).2]
 
 /-- In a tower `O → O_δ → B` with `O_δ` unramified over `O`, ramification indices over `O` and
-over `O_δ` agree.-/
+over `O_δ` agree.
+@isnad1 id=eq.3h5v.s8.25d556424e39 from=translated src=- shape=8e47795c vocab=57a1cb4d
+-/
 theorem ramificationIdx_unramified_tower (O Oδ B : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [CommRing Oδ] [IsDomain Oδ] [IsDiscreteValuationRing Oδ]
     [CommRing B] [IsDomain B] [IsDiscreteValuationRing B] [Algebra O Oδ] [Algebra O B]
@@ -113,7 +117,9 @@ theorem ramificationIdx_unramified_tower (O Oδ B : Type) [CommRing O] [IsDomain
 
 /-- For an unramified lift `Φ` with `O[X]/(Φ)` a domain, there is a unique ring map of fraction
 fields extending `O → O[X]/(Φ)`; it is injective and makes the target a field extension of degree
-`deg Φ`.-/
+`deg Φ`.
+@isnad1 id=ex.1h2v.s11.4f875496aae9 from=translated src=- shape=dae954f5 vocab=41535b25
+-/
 theorem unramified_fraction_field_lift (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O]
     [Finite (IsLocalRing.ResidueField O)] (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ)
@@ -157,7 +163,9 @@ theorem unramified_fraction_field_lift (O : Type) [CommRing O] [IsDomain O]
     rw [hrank, ← hmon.natDegree_map (IsLocalRing.residue O)]
     exact Irreducible.natDegree_pos hΦ.2
 
-/-- For monic `Φ`, `O[X]/(Φ)` is a free `O`-module of finite rank `deg Φ`.-/
+/-- For monic `Φ`, `O[X]/(Φ)` is a free `O`-module of finite rank `deg Φ`.
+@isnad1 id=and.1h2v.s7.81c314024b20 from=translated src=- shape=871c0dd9 vocab=590174de
+-/
 theorem unramified_free_module (O : Type) [CommRing O] [Nontrivial O] (Φ : Polynomial O)
     (hΦ : Φ.Monic) :
     Module.Free O (AdjoinRoot Φ) ∧ Module.Finite O (AdjoinRoot Φ) ∧
@@ -195,7 +203,9 @@ private theorem unramified_adic_complete (O : Type) [CommRing O] [IsLocalRing O]
     exact hc _ this
 
 /-- For an unramified lift `Φ`, the extended ideal `𝔪 O[X]/(Φ)` is maximal, units can be detected
-modulo it, and `O[X]/(Φ)` is local with that maximal ideal.-/
+modulo it, and `O[X]/(Φ)` is local with that maximal ideal.
+@isnad1 id=and.1h2v.s8.22bae6149a44 from=translated src=- shape=e13f6747 vocab=5467da02
+-/
 theorem base_ideal_maximal_local (O : Type) [CommRing O] [IsLocalRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) :
@@ -222,7 +232,9 @@ theorem base_ideal_maximal_local (O : Type) [CommRing O] [IsLocalRing O]
   exact ⟨hmax, hunit, inferInstance, (IsLocalRing.eq_maximalIdeal hmax).symm⟩
 
 /-- An approximate root of `Φ` in `O[X]/(Φ)` (a root modulo `𝔪`) is a simple root: the derivative
-of `Φ` there is a unit, already modulo `𝔪`.-/
+of `Φ` there is a unit, already modulo `𝔪`.
+@isnad1 id=and.2h3v.s10.bd1eb5a2e8fa from=translated src=- shape=b7d1ee90 vocab=98acce73
+-/
 theorem simple_root_derivative_unit (O : Type) [CommRing O] [IsLocalRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) (a : AdjoinRoot Φ)
@@ -393,7 +405,9 @@ private theorem frobenius_fixed_mod_pow (O : Type) [CommRing O] [IsDomain O]
       rw [← he]; ring, map_add, map_mul, map_pow]
     ring
 
-/-- The elements of `O[X]/(Φ)` fixed by the Frobenius are exactly the elements of `O`.-/
+/-- The elements of `O[X]/(Φ)` fixed by the Frobenius are exactly the elements of `O`.
+@isnad1 id=ex.2h3v.s8.3f2937beb7ad from=translated src=- shape=6df11471 vocab=2543a965
+-/
 theorem frobenius_fixed_ring (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) (a : AdjoinRoot Φ)
@@ -455,7 +469,9 @@ private theorem root_unique_of_congruent (O : Type) [CommRing O] [IsLocalRing O]
   exact (sub_eq_zero.mp this).symm
 
 /-- The `deg Φ`-th iterate of the Frobenius is the identity; in particular the Frobenius is
-bijective.-/
+bijective.
+@isnad1 id=and.1h2v.s8.605e2357c2f0 from=translated src=- shape=675a5869 vocab=a8fa570c
+-/
 theorem frobenius_pow_degree_eq_id (O : Type) [CommRing O] [IsLocalRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) :
@@ -642,7 +658,9 @@ private theorem conjugate_product_invariant (O : Type) [CommRing O] [IsDomain O]
     exact hres i _
 
 /-- The descent of a block lies in the residue cell of `residuePoly Φ ^ r`, and its monic
-polynomial lifts to the conjugate product of the block.-/
+polynomial lifts to the conjugate product of the block.
+@isnad1 id=and.2h4v.s8.009f40d57dd6 from=translated src=- shape=6a079dc8 vocab=b6ae7738
+-/
 theorem descend_block_mem_cell (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) (r : ℕ) (b : Fin r → AdjoinRoot Φ)

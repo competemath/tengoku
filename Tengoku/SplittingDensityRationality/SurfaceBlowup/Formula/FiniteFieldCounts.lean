@@ -28,7 +28,9 @@ finite_length_module_card}` (moved from `Unramified/LocalDescent.lean` and
 namespace SurfaceBlowup
 
 /-- The number of monic irreducible polynomials of degree `δ > 0` over a finite field `k` is the
-value of the point-count polynomial `pointCount δ` at `#k`.-/
+value of the point-count polynomial `pointCount δ` at `#k`.
+@isnad1 id=eq.1h2v.s6.c95282d9592d from=translated src=- shape=01ad2cfc vocab=ceab248e
+-/
 theorem finite_field_irreducible_count (k : Type) [Field k] [Finite k] (δ : ℕ) (hδ : 0 < δ) :
     ((Nat.card {g : Polynomial k // g.Monic ∧ Irreducible g
       ∧ g.natDegree = δ} : ℕ) : ℚ) = (pointCount δ).eval (Nat.card k) := by
@@ -36,7 +38,9 @@ theorem finite_field_irreducible_count (k : Type) [Field k] [Finite k] (δ : ℕ
   have : (δ : ℚ) ≠ 0 := Nat.cast_ne_zero.mpr hδ.ne'
   field_simp
 
-/-- The cardinality of a finite field is a prime power.-/
+/-- The cardinality of a finite field is a prime power.
+@isnad1 id=primepow.0h1v.s3.fc9ba2bdb787 from=translated src=- shape=76d92355 vocab=9aa66334
+-/
 theorem finite_field_card_primePower (K : Type) [Field K] [Finite K] :
     PrimePower (Nat.card K) := by
   have : Fintype K := Fintype.ofFinite K
@@ -44,7 +48,9 @@ theorem finite_field_card_primePower (K : Type) [Field K] [Finite K] :
   exact ⟨p, n, hp, n.pos, by rw [Nat.card_eq_fintype_card, hcard]⟩
 
 /-- A module of length `ℓ` over a local ring with finite residue field `k` has `|k|^ℓ`
-elements.-/
+elements.
+@isnad1 id=eq.1h3v.s6.1d78a3b4aff8 from=translated src=- shape=e2265a0e vocab=d1d6aa13
+-/
 theorem finite_length_module_card (O : Type) [CommRing O] [IsLocalRing O]
     [Finite (IsLocalRing.ResidueField O)] (M : Type) [AddCommGroup M] [Module O M] (ℓ : ℕ)
     (hℓ : Module.length O M = ℓ) :

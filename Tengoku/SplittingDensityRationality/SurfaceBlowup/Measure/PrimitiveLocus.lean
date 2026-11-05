@@ -44,7 +44,9 @@ open scoped BigOperators ENNReal
 namespace SurfaceBlowup
 
 /-- The normalization identity `(1 + π v)(f + π ∑ zᵢ bᵢ) = f + π E⁻¹(s + remainder s)` for a
-division chart.-/
+division chart.
+@isnad1 id=eq.1h8v.s10.1b72d3c53521 from=translated src=- shape=67bcded7 vocab=11f65a13
+-/
 theorem scaled_normalization_identity (O R : Type) [CommRing O] [CommRing R] [Algebra O R] (n : ℕ)
     (pi : O) (f : R) (b : Fin n → R) (E : R ≃ₗ[O] ((Fin n → O) × R))
     (hE : ∀ s, E.symm s = divisionMap f b s) (s : (Fin n → O) × R) :
@@ -55,7 +57,9 @@ theorem scaled_normalization_identity (O R : Type) [CommRing O] [CommRing R] [Al
   simp only [Algebra.smul_def]
   ring
 
-/-- An atlas whose chart maps are measurable has total state mass `#charts · q^(-n)`.-/
+/-- An atlas whose chart maps are measurable has total state mass `#charts · q^(-n)`.
+@isnad1 id=eq.2h6v.s8.8497961aff35 from=translated src=- shape=d2f304bb vocab=c7bb4a17
+-/
 theorem state_measure_total_mass (O R : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     [TopologicalSpace O] [IsTopologicalRing O] [CompactSpace O] [T2Space O]
@@ -73,7 +77,9 @@ theorem state_measure_total_mass (O R : Type) [CommRing O] [IsDomain O] [IsDiscr
   simp only [h, Finset.sum_const, Finset.card_univ, nsmul_eq_mul, mul_one, smul_eq_mul]
   rw [mul_comm]
 
-/-- Units of `R/I` lift to units of `R` when `I` lies in the maximal ideal of the local ring `R`.-/
+/-- Units of `R/I` lift to units of `R` when `I` lies in the maximal ideal of the local ring `R`.
+@isnad1 id=ex.1h3v.s8.de18ce15dfa9 from=translated src=- shape=896b136c vocab=709ec1d6
+-/
 theorem units_lift_from_local_quotient (R : Type) [CommRing R] [IsLocalRing R] (I : Ideal R)
     (hI : I ≤ IsLocalRing.maximalIdeal R) (v : (R ⧸ I)ˣ) :
     ∃ u : Rˣ, Ideal.Quotient.mk I (u : R) = (v : R ⧸ I) := by
@@ -90,7 +96,9 @@ theorem units_lift_from_local_quotient (R : Type) [CommRing R] [IsLocalRing R] (
     simp at h1
   exact ⟨hunit.unit, by simpa using ha⟩
 
-/-- Every ideal in the residue cell of a regular `f` has a generator of the form `f + π h`.-/
+/-- Every ideal in the residue cell of a regular `f` has a generator of the form `f + π h`.
+@isnad1 id=ex.3h4v.s9.b877dcbf1ebc from=translated src=- shape=aaf09d2f vocab=ca2680d0
+-/
 theorem residue_ideal_has_fixed_generator_lift (R : Type) [CommRing R] [IsLocalRing R] (pi f : R)
     (hp : pi ∈ IsLocalRing.maximalIdeal R)
     (hf : Function.Injective
@@ -114,7 +122,9 @@ theorem residue_ideal_has_fixed_generator_lift (R : Type) [CommRing R] [IsLocalR
   exact Ideal.span_singleton_mul_left_unit (Units.isUnit _) _
 
 /-- The unramified coefficient measure on `O[X]/(Φ)` is an additive Haar probability measure,
-and the ball `x + (base ideal)^L` has mass `q^(-δL)`.-/
+and the ball `x + (base ideal)^L` has mass `q^(-δL)`.
+@isnad1 id=and.4h2v.s9.b2d783817cc6 from=translated src=- shape=43676509 vocab=9bbc8440
+-/
 theorem unramified_coefficient_measure_haar (O : Type) [CommRing O] [IsDomain O]
     [TopologicalSpace O] [IsTopologicalRing O] [CompactSpace O] [T2Space O]
     [SecondCountableTopology O] [MeasurableSpace O] [BorelSpace O] (Φ : Polynomial O) (hm : Φ.Monic)
@@ -184,7 +194,9 @@ private theorem integral_closure_finite_reduction (O K L : Type) [CommRing O] [I
   exact Finite.of_equiv _ (Submodule.Quotient.restrictScalarsEquiv O _).toEquiv
 
 /-- The integral closure of a complete DVR with finite residue field in a finite extension
-(assumed `O`-finite) is a local ring.-/
+(assumed `O`-finite) is a local ring.
+@isnad1 id=islocalr.0h3v.s8.26f382807791 from=translated src=- shape=38bafd27 vocab=25e3a5ed
+-/
 theorem integral_closure_is_local (O K L : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [Field K] [Algebra O K] [IsFractionRing O K] [Field L] [Algebra K L]
     [Algebra O L] [IsScalarTower O K L] [FiniteDimensional K L]
@@ -217,7 +229,9 @@ private theorem irreducible_factor_invariant_degree (O : Type) [CommRing O] [IsD
   rw [dite_eq_left hloc]
   exact ⟨h.1, h.2.1, h.2.2.trans hdeg⟩
 
-/-- A polynomial type of `F` is a valid factor type of degree `deg F`.-/
+/-- A polynomial type of `F` is a valid factor type of degree `deg F`.
+@isnad1 id=and.1h3v.s7.d4fe85cd6063 from=translated src=- shape=cd370ef5 vocab=166f7898
+-/
 theorem polynomial_type_degree (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     (F : Polynomial (BaseField O)) (σ : FactorType) (hF : HasPolynomialTypeF O F σ) :
@@ -243,7 +257,9 @@ theorem polynomial_type_degree (O : Type) [CommRing O] [IsDomain O] [IsDiscreteV
         Multiset.sum_cons, List.prod_cons] at ih' ⊢
       rw [Polynomial.Monic.natDegree_mul hg.1 hm, ih', this.2.2]
 
-/-- The ring of integers of a finite extension of `ℚ_[p]` has finite residue field.-/
+/-- The ring of integers of a finite extension of `ℚ_[p]` has finite residue field.
+@isnad1 id=finite.1h2v.s7.84789c687875 from=translated src=- shape=fd479be1 vocab=8eb9b3fc
+-/
 theorem padicIntegers_residueField_finite (p : ℕ) [Fact p.Prime] (K : Type) [Field K]
     [Algebra ℚ_[p] K] [Algebra ℤ_[p] K] [IsScalarTower ℤ_[p] ℚ_[p] K] [FiniteDimensional ℚ_[p] K]
     (hdvr : IsDiscreteValuationRing (padicIntegers p K)) :
@@ -262,7 +278,9 @@ theorem padicIntegers_residueField_finite (p : ℕ) [Fact p.Prime] (K : Type) [F
     rw [Ideal.map_le_iff_le_comap, h2]
   exact Finite.of_surjective (Ideal.Quotient.factor hle) (Ideal.Quotient.factor_surjective hle)
 
-/-- The length of a quotient ring over itself depends only on its ring isomorphism class.-/
+/-- The length of a quotient ring over itself depends only on its ring isomorphism class.
+@isnad1 id=eq.0h5v.s8.e7bc3dd9b8ee from=translated src=- shape=4e6a1e25 vocab=a5115b1b
+-/
 theorem quotient_ring_length_intrinsic (S S' : Type) [CommRing S] [CommRing S'] (I : Ideal S)
     (J : Ideal S') (e : (S ⧸ I) ≃+* (S' ⧸ J)) :
     Module.length S (S ⧸ I) = Module.length S' (S' ⧸ J) := by

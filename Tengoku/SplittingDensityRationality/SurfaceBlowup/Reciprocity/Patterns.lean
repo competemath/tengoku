@@ -145,28 +145,38 @@ private theorem patternSum_extend (ε : ℤ) (a N N' w : ℕ) (hNN' : N ≤ N') 
         adamsCoef (i + 1) (lawCoef (stateLaw (State.single a (j + 1)))) ^ k) fun _ _ ↦ pow_zero _]
 
 /-- The pattern sum of weight `w` is independent of the ambient dimension, as long as it is at
-least `w`.-/
+least `w`.
+@isnad1 id=eq.2h5v.s5.65e42048cdad from=translated src=- shape=023a61c1 vocab=094aa35f
+-/
 theorem patternSum_eq_of_le (ε : ℤ) (a N N' w : ℕ) (hN : w ≤ N) (hN' : w ≤ N') :
     patternSum ε a N w = patternSum ε a N' w := by
   rw [patternSum_extend ε a N (max N N') w (le_max_left _ _) hN,
     patternSum_extend ε a N' (max N N') w (le_max_right _ _) hN']
 
-/-- The laws of valid states consist of well-formed expressions.-/
+/-- The laws of valid states consist of well-formed expressions.
+@isnad1 id=lawwf.1h1v.s3.9c0cf15f4c31 from=translated src=- shape=58f8d12c vocab=0d47e527
+-/
 theorem lawWf_stateLaw (s : State) (hs : s.Valid) : LawWf (stateLaw s) :=
   (local_law_safe s hs).lawWf
 
-/-- The global laws consist of well-formed expressions.-/
+/-- The global laws consist of well-formed expressions.
+@isnad1 id=lawwf.0h2v.s3.9c9f6fe69f22 from=translated src=- shape=c57da3d9 vocab=b5f57d8a
+-/
 theorem lawWf_globalLaw (ε : Bool) (n : ℕ) : LawWf (globalLaw ε n) :=
   (global_law_safe n ε).lawWf
 
 /-- The `σ`-coefficient of the global monic law, read in `Coef`, is the rational function of
-`monicExpr n σ`.-/
+`monicExpr n σ`.
+@isnad1 id=eq.0h2v.s6.0c214323861f from=translated src=- shape=382c0b77 vocab=92eaf4ba
+-/
 theorem coeff_lawCoef_globalLaw_false (n : ℕ) (σ : FactorType) :
     (lawCoef (globalLaw false n)).coeff σ = (monicExpr n σ).rational :=
   coeff_lawCoef _ (lawWf_globalLaw false n) σ
 
 /-- The `σ`-coefficient of the global projective law, read in `Coef`, is the rational function
-of `projectiveExpr n σ`.-/
+of `projectiveExpr n σ`.
+@isnad1 id=eq.0h2v.s6.a6d515e0b5ca from=translated src=- shape=382c0b77 vocab=e8343e87
+-/
 theorem coeff_lawCoef_globalLaw_true (n : ℕ) (σ : FactorType) :
     (lawCoef (globalLaw true n)).coeff σ = (projectiveExpr n σ).rational :=
   coeff_lawCoef _ (lawWf_globalLaw true n) σ
@@ -222,7 +232,9 @@ private theorem rational_subst_inv_var (x : Expr) (hx : x.wf) :
     (by rw [Expr.rational_inv, Expr.rational_var, recipRat_X]) hx
 
 /-- For a well-formed law, the `σ`-coefficient of `lawCoef L` with `q ↦ 1/q` applied is the
-rational function of the coefficient expression with `q ↦ 1/q` substituted.-/
+rational function of the coefficient expression with `q ↦ 1/q` substituted.
+@isnad1 id=eq.1h2v.s7.9eb694a659ed from=translated src=- shape=fbcd499f vocab=977cebce
+-/
 theorem coeff_recipCoef_lawCoef (L : Law) (hL : LawWf L) (σ : FactorType) :
     (recipCoef (lawCoef L)).coeff σ = ((lawCoeff L σ).subst (.inv .var)).rational := by
   rw [recipCoef_coeff, coeff_lawCoef L hL σ, rational_subst_inv_var _ (hL.wf_lawCoeff σ)]
@@ -302,7 +314,9 @@ private theorem lawCoef_crossing_term (a b c h : ℕ) (ha : 0 < a) (hb : 0 < b) 
   all_goals first | rfl | exact fun h1 ↦ hv (1, _) (by rw [hch]; simp [h1])
 
 /-- Summing the pattern terms `scalar (divisorCount ε m · Y) · B · Π ψ_{i+1}(F_{S(a;j+1)})^{m(i,j)}`
-over the patterns `m` of weight `w` gives `scalar Y · B · patternSum ε a N w`.-/
+over the patterns `m` of weight `w` gives `scalar Y · B · patternSum ε a N w`.
+@isnad1 id=eq.0h6v.s9.fd18d7785bc0 from=translated src=- shape=98a5c9e7 vocab=0b0883db
+-/
 theorem sum_patterns_scalar_mul_eq_patternSum (ε : ℤ) (a N w : ℕ) (Y : RatFunc ℚ) (B : Coef) :
     ∑ m ∈ (Finset.univ : Finset (Pattern N)).filter (fun m ↦ patternWeight m = w),
       scalar ((divisorCount ε m).rational * Y) * (B * ∏ ij : Fin N × Fin N,
@@ -360,7 +374,9 @@ private theorem lawCoef_residue_flatMap (n : ℕ) (b : Bool) :
   rw [lawCoef_lawScale, lawCoef_otherChildren 1 n Nat.one_pos m, Algebra.smul_def]
   rfl
 
-/-- The global monic law is `q^{-n}` times the pattern sum `patternSum 0 1 n n`.-/
+/-- The global monic law is `q^{-n}` times the pattern sum `patternSum 0 1 n n`.
+@isnad1 id=eq.0h1v.s5.dff326f8c373 from=translated src=- shape=fd7f08f9 vocab=f6ad823d
+-/
 theorem lawCoef_globalLaw_false (n : ℕ) :
     lawCoef (globalLaw false n) = qpow (-(n : ℤ)) * patternSum 0 1 n n := by
   have k0 := lawCoef_residue_flatMap n false
@@ -371,7 +387,9 @@ theorem lawCoef_globalLaw_false (n : ℕ) :
     zpow_neg, zpow_natCast]
 
 /-- The global projective law is the pattern sum `patternSum 1 1 n n` divided by
-`1 + q + ⋯ + qⁿ`.-/
+`1 + q + ⋯ + qⁿ`.
+@isnad1 id=eq.0h1v.s6.419281a0d296 from=translated src=- shape=976aaf64 vocab=4a3c54c3
+-/
 theorem lawCoef_globalLaw_true (n : ℕ) :
     lawCoef (globalLaw true n) =
       scalar (((projectiveNormalizer n).rational)⁻¹) * patternSum 1 1 n n := by
@@ -382,7 +400,9 @@ theorem lawCoef_globalLaw_true (n : ℕ) :
   rw [lawCoef_lawScale, k1, Expr.rational_inv]
 
 /-- The contribution of an allowed tangent pattern `P` of `S(a;n)` to its recursion, as an element
-of `Coef`.-/
+of `Coef`.
+@isnad1 id=eq.3h3v.s9.c31e7ed29704 from=translated src=- shape=f778b8eb vocab=e71fe83d
+-/
 theorem lawCoef_single_term (a n : ℕ) (ha : 0 < a) (hn : 0 < n)
     (P : TangentPattern (State.single a n).degree) (hP : Allowed (State.single a n) P) :
     lawCoef (lawScale (.mul (tangentCount (State.single a n) P)
@@ -409,7 +429,9 @@ theorem lawCoef_single_term (a n : ℕ) (ha : 0 < a) (hn : 0 < n)
 
 /-! ### Closed forms of the weights -/
 
-/-- The divisor probability of `S(a;c)` at degree `d` is `q^{-tri d} (q-1)^{[d < c]}`.-/
+/-- The divisor probability of `S(a;c)` at degree `d` is `q^{-tri d} (q-1)^{[d < c]}`.
+@isnad1 id=eq.0h3v.s7.0281aac521c2 from=translated src=- shape=33956c27 vocab=a06471fa
+-/
 theorem rational_divisorProbability_single (a c d : ℕ) :
     (divisorProbability (State.single a c) d).rational =
       ((RatFunc.X : RatFunc ℚ) ^ tri d)⁻¹ *
@@ -429,7 +451,9 @@ private theorem rational_divisorProbability_crossing (a b c h d : ℕ) :
   rw [Expr.rational_mul, Expr.rational_inv, Expr.rational_pow, Expr.rational_var]
   split_ifs <;> simp [Expr.rational_inv, Expr.rational_pow, rational_eminusOne]
 
-/-- The return weight is `q · q^{-tri c}`.-/
+/-- The return weight is `q · q^{-tri c}`.
+@isnad1 id=eq.0h1v.s6.8aa26ab6f51f from=translated src=- shape=0921cfe3 vocab=0e69f88f
+-/
 theorem rational_returnWeight (c : ℕ) :
     (returnWeight c).rational = (RatFunc.X : RatFunc ℚ) * ((RatFunc.X : RatFunc ℚ) ^ tri c)⁻¹ := by
   simp only [returnWeight, Expr.rational_mul, Expr.rational_inv, Expr.rational_pow,
@@ -465,7 +489,9 @@ private theorem X_mul_X_inv_sub_X_zpow_neg_tri (n : ℕ) :
       (-(tri n : ℤ))) = 1 - (returnWeight n).rational := by
   rw [rational_returnWeight n, zpow_neg, zpow_natCast, mul_sub, mul_inv_cancel₀ RatFunc.X_ne_zero]
 
-/-- For `n ≥ 2`, the return weight is not `1`: `1 - returnWeight n ≠ 0`.-/
+/-- For `n ≥ 2`, the return weight is not `1`: `1 - returnWeight n ≠ 0`.
+@isnad1 id=ne.1h1v.s5.5573f26577df from=translated src=- shape=e71ed452 vocab=bf6ed6b8
+-/
 theorem one_sub_rational_returnWeight_ne_zero (n : ℕ) (hn : 2 ≤ n) :
     1 - (returnWeight n).rational ≠ 0 := by
   have h3 : 3 ≤ tri n := by
@@ -486,7 +512,9 @@ theorem one_sub_rational_returnWeight_ne_zero (n : ℕ) (hn : 2 ≤ n) :
   simp at this
   omega
 
-/-- For `n ≥ 2`, the scalar `q⁻¹ - q^{-tri n}` is nonzero.-/
+/-- For `n ≥ 2`, the scalar `q⁻¹ - q^{-tri n}` is nonzero.
+@isnad1 id=ne.1h1v.s6.6d9ee872c622 from=translated src=- shape=10f1a44a vocab=dfe17708
+-/
 theorem X_inv_sub_X_zpow_neg_tri_ne_zero (n : ℕ) (hn : 2 ≤ n) :
     (RatFunc.X : RatFunc ℚ)⁻¹ - (RatFunc.X : RatFunc ℚ) ^ (-(tri n : ℤ)) ≠ 0 := fun h ↦ by
   have := X_mul_X_inv_sub_X_zpow_neg_tri n
@@ -589,7 +617,9 @@ private theorem lawCoef_stateLaw_crossing_comm (a b c h : ℕ) (ha : 0 < a) (hb 
       rintro ⟨y, x, z⟩; exact hc1 ⟨x, y, by omega⟩
     rw [ite_eq_right hc1, ite_eq_right hc2]
 
-/-- The contact series `U_{a,b}` has constant term `1`.-/
+/-- The contact series `U_{a,b}` has constant term `1`.
+@isnad1 id=eq.0h2v.s5.b224d400afd3 from=translated src=- shape=ca00472b vocab=704de75a
+-/
 theorem crossingQ_zero_zero (a b : ℕ) : crossingQ a b 0 0 = 1 := by simp [crossingQ]
 
 /-- The contact series `U_{a,b}` vanishes on the axes away from `(0,0)`.-/
@@ -604,7 +634,9 @@ private theorem crossingQ_of_pos (a b c h : ℕ) (hc : 0 < c) (hh : 0 < h) :
   have : ¬ (c = 0 ∧ h = 0) := by omega
   simp [crossingQ, this, hc, hh]
 
-/-- The symmetry `U_{a,b}(c,h) = U_{b,a}(h,c)`.-/
+/-- The symmetry `U_{a,b}(c,h) = U_{b,a}(h,c)`.
+@isnad1 id=eq.2h4v.s5.de636e8c4406 from=translated src=- shape=f4c1c65d vocab=2ebbe53d
+-/
 theorem crossingQ_symm (a b c h : ℕ) (ha : 0 < a) (hb : 0 < b) :
     crossingQ a b c h = crossingQ b a h c := by
   by_cases h1 : c = 0 ∧ h = 0
@@ -696,7 +728,9 @@ private theorem coeff_eulerSer_eq_coeff_prod (ε : ℤ) (a n : ℕ) :
   exact pPow_scongr_prod_formalPow_adamsSer ε (clusterSer a) hB n n le_rfl
 
 /-- The `n`-th coefficient of the Euler transform `eulerSer ε a` is the pattern sum
-`patternSum ε a n n`.-/
+`patternSum ε a n n`.
+@isnad1 id=eq.0h3v.s9.40f16348c52e from=translated src=- shape=607129ee vocab=253100b4
+-/
 theorem coeff_eulerSer (ε : ℤ) (a n : ℕ) :
     PowerSeries.coeff n (eulerSer ε a) = patternSum ε a n n := by
   rw [coeff_eulerSer_eq_coeff_prod,
@@ -833,7 +867,9 @@ private theorem qmul_qplus_qdiag_qminus_crossingQ_apply (a b c h : ℕ) (ha : 0 
     (crossing_factorization_term a b c h d rt rx ha hb (Finset.mem_Icc.1 hd).2).symm
 
 /-- **Crossing factorization.** `U_{a,b} = U_{a+b,b}⁺ · J(P_{a+b}) · U_{a,a+b}⁻`, where `J` is the
-diagonal substitution and `P_{a+b} = eulerSer (-1) (a+b)`.-/
+diagonal substitution and `P_{a+b} = eulerSer (-1) (a+b)`.
+@isnad1 id=eq.2h4v.s6.9983b2193cea from=translated src=- shape=7ad40513 vocab=a8638fc8
+-/
 theorem crossingQ_eq_qmul_qplus_qdiag_qminus (a b c h : ℕ) (ha : 0 < a) (hb : 0 < b) :
     crossingQ a b c h = qmul (qmul (qplus (crossingQ (a + b) b)) (qdiag (eulerSer (-1) (a + b))))
         (qminus (crossingQ a (a + b))) c h := by
@@ -852,7 +888,9 @@ theorem crossingQ_eq_qmul_qplus_qdiag_qminus (a b c h : ℕ) (ha : 0 < a) (hb : 
       rw [Q2.qmul (qPositive_crossingQ _ _).qminus c h z h00, qPositive_crossingQ a b c h z h00]
 
 /-- If `G_b ≡ S(B_bᵛ)` through degree `M` for all `b > 0`, then `U_{a,b}` is unitary,
-`U_{a,b} U_{a,b}† ≡ 1`, through total contact degree `2M + 1`.-/
+`U_{a,b} U_{a,b}† ≡ 1`, through total contact degree `2M + 1`.
+@isnad1 id=qcongr.4h4v.s6.8964248eca17 from=translated src=- shape=72d2e2de vocab=ab278b7f
+-/
 theorem qcongr_crossingQ_mul_qdagger (M : ℕ) (hS : ∀ a : ℕ, 0 < a →
     SCongr M (eulerSer 0 a) (dilate (recipSer (clusterSer a)))) (j : ℕ) (hj : j ≤ 2 * M + 1)
     (a b : ℕ) (ha : 0 < a) (hb : 0 < b) :
@@ -899,7 +937,9 @@ theorem qcongr_crossingQ_mul_qdagger (M : ℕ) (hS : ∀ a : ℕ, 0 < a →
     rw [qone_qmul, ← qplus_qmul]
     exact hA
 
-/-- The degree-one coefficient of `G_a = eulerSer 0 a` is `q Z_{a,1}`.-/
+/-- The degree-one coefficient of `G_a = eulerSer 0 a` is `q Z_{a,1}`.
+@isnad1 id=eq.0h1v.s9.5757cfd9abd7 from=translated src=- shape=e50b0ded vocab=182e5f4f
+-/
 theorem coeff_one_eulerSer_zero (a : ℕ) :
     PowerSeries.coeff 1 (eulerSer 0 a) = qpow 1 * AddMonoidAlgebra.single ({(a, 1)} : FactorType)
         1 := by
@@ -933,7 +973,9 @@ theorem coeff_one_eulerSer_zero (a : ℕ) :
     simp [m1, rational_availablePoints]
   rw [hP, hD, Algebra.smul_def, qpow_one, scalar_eq_algebraMap]
 
-/-- Base case of cluster reciprocity: `G_a ≡ S(B_aᵛ)` through degree `1`.-/
+/-- Base case of cluster reciprocity: `G_a ≡ S(B_aᵛ)` through degree `1`.
+@isnad1 id=scongr.0h1v.s4.74c9f0e8cb1b from=translated src=- shape=37f7f646 vocab=39b81d8a
+-/
 theorem cluster_reciprocity_one (a : ℕ) :
     SCongr 1 (eulerSer 0 a) (dilate (recipSer (clusterSer a))) := by
   intro m hm
@@ -942,7 +984,9 @@ theorem cluster_reciprocity_one (a : ℕ) :
   · rw [coeff_one_eulerSer_zero a, coeff_one_dilate_recipSer_clusterSer]
 
 /-- The `n`-th coefficient of `ρ(U_{a,a}) Φ(G_a)`, expanded by divisor degree `d` and crossing
-depth `r` into crossing laws and pattern sums (plus `1` in degree `0`).-/
+depth `r` into crossing laws and pattern sums (plus `1` in degree `0`).
+@isnad1 id=eq.1h2v.s10.781ee27a85ef from=translated src=- shape=6a391312 vocab=872a72a2
+-/
 theorem coeff_qact_crossingQ_gaussPhi_eulerSer (a n : ℕ) (ha : 0 < a) :
     PowerSeries.coeff n (qact (crossingQ a a) (gaussPhi (eulerSer 0 a))) =
         (∑ d ∈ Finset.Icc 1 n, ∑ r ∈ Finset.range (d + 1),
@@ -993,7 +1037,9 @@ theorem coeff_qact_crossingQ_gaussPhi_eulerSer (a n : ℕ) (ha : 0 < a) :
     by_cases hn : n = 0 <;> simp [hn]
 
 /-- The self-pattern term of the recursion of `S(a;n)` (`n ≥ 2`) is
-`q^{-tri n} · q · F_{S(a;n)}`.-/
+`q^{-tri n} · q · F_{S(a;n)}`.
+@isnad1 id=eq.4h3v.s7.a67365261d9c from=translated src=- shape=c9257661 vocab=84c29306
+-/
 theorem lawCoef_single_self_term (a n : ℕ) (ha : 0 < a) (hn : 2 ≤ n)
     (P : TangentPattern (State.single a n).degree) (hP : Allowed (State.single a n) P)
     (hself : SelfPattern (State.single a n) P) :

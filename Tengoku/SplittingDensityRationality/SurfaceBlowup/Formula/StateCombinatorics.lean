@@ -179,7 +179,9 @@ private theorem tangentCount_selfPattern_eval (a c q : ℕ) (hc : 0 < c) (hca : 
 open scoped Classical in
 /-- A single-branch state `S(a; c)` with `c ≥ 2` has exactly one self pattern (of
 multiplicity `d = c`, with the state itself as only child), whose tangent count at `q` is
-`q`.-/
+`q`.
+@isnad1 id=and.2h3v.s7.bba539e0539c from=translated src=- shape=54b14c5f vocab=12dcd82f
+-/
 theorem self_patterns_of_single_state (a c q : ℕ) (ha : 0 < a) (hc : 2 ≤ c) :
     (∀ P : TangentPattern (State.single a c).degree, Allowed (State.single a c) P →
         SelfPattern (State.single a c) P →
@@ -253,7 +255,9 @@ private theorem rank_lt_of_weight_gt (s u : State) (hs : s.Valid) (hu : u.Valid)
   rw [hN] at h2 ⊢
   omega
 
-/-- Every child of a non-self allowed pattern has strictly smaller rank than its parent.-/
+/-- Every child of a non-self allowed pattern has strictly smaller rank than its parent.
+@isnad1 id=lt.4h3v.s5.073012b06110 from=translated src=- shape=e627d3ae vocab=0194ed90
+-/
 theorem nonself_child_rank_lt (s : State) (hs : s.Valid) (P : TangentPattern s.degree)
     (hP : Allowed s P) (hself : ¬ SelfPattern s P) (z : ℕ × State) (hz : z ∈ children s P) :
     z.2.rank < s.rank := by
@@ -331,7 +335,9 @@ private theorem stateLawFuel_stable (n : ℕ) : ∀ (s : State), s.Valid → s.r
     | crossing a b c h =>
       simp only [stateLawFuel]; rw [hterms]
 
-/-- The fuel-based recursion is stable: any fuel `k > rank s` computes `stateLaw s`.-/
+/-- The fuel-based recursion is stable: any fuel `k > rank s` computes `stateLaw s`.
+@isnad1 id=eq.2h2v.s4.b1657c09d1e8 from=translated src=- shape=acb96903 vocab=1716e9bd
+-/
 theorem state_fuel_stable (s : State) (hs : s.Valid) (k : ℕ) (hk : s.rank < k) :
     stateLawFuel k s = stateLaw s :=
   stateLawFuel_stable (s.rank + 1) s hs (by omega) k (s.rank + 1) hk (by omega)
@@ -366,7 +372,9 @@ private theorem flatMap_terms_eq_exitLaw (s : State) (hs : s.Valid) :
       (nonself_child_rank_lt s hs P hA hself z hz)]
 
 /-- Unfolding of the state law: for a single state it is the exit law rescaled by
-`1 / (1 - returnWeight c)`, and for a crossing state it is the exit law itself.-/
+`1 / (1 - returnWeight c)`, and for a crossing state it is the exit law itself.
+@isnad1 id=and.2h1v.s5.dcd30e83dc56 from=translated src=- shape=953d5ef0 vocab=7f1cfd56
+-/
 theorem state_law_unfold (s : State) (hs : s.Valid) (hnt : s.terminal = false) :
     (∀ a c : ℕ, s = State.single a c → stateLaw s =
       lawScale (.inv (.sub (.const 1) (returnWeight c))) (exitLaw s)) ∧
@@ -390,12 +398,16 @@ private theorem tangent_weight_safe (s : State) (P : TangentPattern s.degree) :
     (Expr.mul (tangentCount s P) (divisorProbability s P.d.val)).allSafe := fun q hq ↦
   ⟨divisor_count_safe s.degree _ P.other q hq, divisor_probability_safe s P.d.val q hq⟩
 
-/-- The law of the terminal state `S(a; 1)` is the atom `[(a, 1)]`.-/
+/-- The law of the terminal state `S(a; 1)` is the atom `[(a, 1)]`.
+@isnad1 id=eq.0h1v.s4.36327bffbbaa from=translated src=- shape=427c85f6 vocab=accbf639
+-/
 theorem terminal_law (a : ℕ) :
     stateLaw (State.single a 1) = lawAtom a 1 := by
   rw [stateLaw, State.rank, stateLawFuel]
 
-/-- `tri d = chooseTwo d + d`.-/
+/-- `tri d = chooseTwo d + d`.
+@isnad1 id=eq.0h1v.s4.cac821344bde from=translated src=- shape=5d930500 vocab=ee1202b5
+-/
 theorem tri_chooseTwo (d : ℕ) :
     tri d = chooseTwo d + d := by
   cases d with
@@ -414,7 +426,9 @@ private theorem tri_ge_three (c : ℕ) (hc : 2 ≤ c) :
   omega
 
 /-- For `q, c ≥ 2`, the return weight `q · q^(-tri c)` lies in `(0, q⁻²]`, in particular
-below `1`.-/
+below `1`.
+@isnad1 id=and.2h2v.s6.243d5d39ac36 from=translated src=- shape=957d014a vocab=6bd719e9
+-/
 theorem return_weight_bounds (q c : ℕ) (hq : 2 ≤ q) (hc : 2 ≤ c) :
     0 < (returnWeight c).eval q ∧ (returnWeight c).eval q ≤ (q : ℚ)⁻¹^2 ∧
       (returnWeight c).eval q < 1 := by
@@ -434,7 +448,9 @@ theorem return_weight_bounds (q c : ℕ) (hq : 2 ≤ q) (hc : 2 ≤ c) :
   have h0 : (0:ℚ) ≤ (q:ℚ)⁻¹ := by positivity
   nlinarith
 
-/-- Divisor probabilities and the inverse `1 / (1 - returnWeight c)` are positive at `q ≥ 2`.-/
+/-- Divisor probabilities and the inverse `1 / (1 - returnWeight c)` are positive at `q ≥ 2`.
+@isnad1 id=and.2h4v.s6.d37066b0e268 from=translated src=- shape=2a777cc8 vocab=860ad354
+-/
 theorem divisor_probability_pos (q : ℕ) (hq : 2 ≤ q) (s : State) (d c : ℕ) (hc : 2 ≤ c) :
     0 < (divisorProbability s d).eval q ∧
       0 < (Expr.inv (.sub (.const 1) (returnWeight c))).eval q := by
@@ -498,7 +514,9 @@ private theorem stateLaw_terms_safe (s : State) (hs : s.Valid)
     rw [state_fuel_stable w.2 hv _ hr]
     exact law_safe_descend _ (children_residue_degree_pos s P w hw) _ (ih _ hr hv)
 
-/-- The local law of every valid state is safe.-/
+/-- The local law of every valid state is safe.
+@isnad1 id=lawsafe.1h1v.s3.5f10c40a963f from=translated src=- shape=58f8d12c vocab=1b8ca3c6
+-/
 theorem local_law_safe (s : State) (hs : s.Valid) :
     LawSafe (stateLaw s) := by
   classical
@@ -538,7 +556,9 @@ theorem local_law_safe (s : State) (hs : s.Valid) :
     rw [stateLawFuel]
     exact hT
 
-/-- The global law (monic for `ε = false`, projective for `ε = true`) of degree `n` is safe.-/
+/-- The global law (monic for `ε = false`, projective for `ε = true`) of degree `n` is safe.
+@isnad1 id=lawsafe.0h2v.s3.25d54d1e2669 from=translated src=- shape=3e5b6169 vocab=8644a239
+-/
 theorem global_law_safe (n : ℕ) (ε : Bool) :
     LawSafe (globalLaw ε n) := by
   have normSafe : (Expr.inv (if ε then projectiveNormalizer n else .pow .var n)).allSafe := by
@@ -562,7 +582,9 @@ theorem global_law_safe (n : ℕ) (ε : Bool) :
   rintro _ ⟨w, ⟨ij, _, _, rfl⟩, rfl⟩
   exact law_safe_descend _ (Nat.succ_pos _) _ (local_law_safe _ ⟨Nat.one_pos, Nat.succ_pos _⟩)
 
-/-- The coefficients of the monic and projective global laws are safe.-/
+/-- The coefficients of the monic and projective global laws are safe.
+@isnad1 id=and.0h2v.s3.b9e6e1ecac2f from=translated src=- shape=13e63043 vocab=c630de3a
+-/
 theorem global_coefficients_safe (n : ℕ) (σ : FactorType) :
     (monicExpr n σ).allSafe ∧ (projectiveExpr n σ).allSafe := by
   have hsafe : ∀ L : Law, LawSafe L → (lawCoeff L σ).allSafe := by
@@ -574,7 +596,9 @@ theorem global_coefficients_safe (n : ℕ) (σ : FactorType) :
     · simp [h, Expr.safe]
   exact ⟨hsafe _ (global_law_safe n false), hsafe _ (global_law_safe n true)⟩
 
-/-- The global formula is regular at every prime power.-/
+/-- The global formula is regular at every prime power.
+@isnad1 id=formular.0h2v.s2.5f08b5726595 from=translated src=- shape=e63d90d8 vocab=036b8a28
+-/
 theorem global_formula_regular (n : ℕ) (σ : FactorType) :
     FormulaRegular n σ := by
   intro q hq
@@ -595,7 +619,9 @@ private theorem type_degree_scale (δ : ℕ) (σ : FactorType) :
   ring
 
 /-- Scaling by `δ > 0` is injective on types, preserves validity, and multiplies the degree
-by `δ`.-/
+by `δ`.
+@isnad1 id=and.1h3v.s5.e921121738a7 from=translated src=- shape=56bad920 vocab=e591fe76
+-/
 theorem scale_type_valid_degree_iff (δ r : ℕ) (hδ : 0 < δ) (τ : FactorType) :
     ((ValidType (scaleType δ τ) ∧ typeDegree (scaleType δ τ) = δ * r) ↔
       (ValidType τ ∧ typeDegree τ = r)) ∧ Function.Injective (scaleType δ) := by

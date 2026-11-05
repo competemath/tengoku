@@ -79,7 +79,9 @@ def factorProduct {ι : Type} [Fintype ι] (d : ι → ℕ) (a : ∀ i, Fin (d i
     Fin (∑ i, d i) → O :=
   coeffVec (∑ i, d i) (∏ i, monicPolyO (a i))
 end
-/-- The integral monic polynomial maps to the fraction-field monic polynomial `monicPolynomial`.-/
+/-- The integral monic polynomial maps to the fraction-field monic polynomial `monicPolynomial`.
+@isnad1 id=eq.0h3v.s7.0e1f61a70787 from=translated src=- shape=25248d1c vocab=7b5ac222
+-/
 theorem monicPolyO_map_fraction (O : Type) [CommRing O] [IsDomain O] {n : ℕ} (a : Fin n → O) :
     (monicPolyO a).map (algebraMap O (BaseField O)) = monicPolynomial O a := by
   simp [monicPolyO, monicPolynomial, Polynomial.map_sum]
@@ -250,7 +252,9 @@ end
 
 /-! ### Commutative algebra toolkit -/
 
-/-- If `J^k ≤ I ≤ J`, then a module is `I`-adically complete iff it is `J`-adically complete.-/
+/-- If `J^k ≤ I ≤ J`, then a module is `I`-adically complete iff it is `J`-adically complete.
+@isnad1 id=iff.2h5v.s7.3e5c4513fed2 from=translated src=- shape=80cc02f3 vocab=325d5b63
+-/
 theorem adic_complete_iff_of_pow_le (R M : Type) [CommRing R] [AddCommGroup M] [Module R M]
     (I J : Ideal R) (k : ℕ) (h1 : J ^ k ≤ I) (h2 : I ≤ J) :
     IsAdicComplete I M ↔ IsAdicComplete J M := by
@@ -318,7 +322,9 @@ private theorem mem_smul_top_iff_repr {R M ι : Type} [CommRing R] [AddCommGroup
   exact Submodule.sum_mem _ fun i _ => Submodule.smul_mem_smul (h i) trivial
 
 /-- An element of `O[X]/(Φ)` lies in `(m_O O_δ)^L` iff all its coordinates in the power basis
-lie in `m_O^L`.-/
+lie in `m_O^L`.
+@isnad1 id=iff.1h4v.s10.8521642677a0 from=translated src=- shape=9f8fd1b5 vocab=5dee5452
+-/
 theorem base_ideal_coordinates (O : Type) [CommRing O] [IsLocalRing O] (Φ : Polynomial O)
     (hΦ : Φ.Monic) (L : ℕ) (x : AdjoinRoot Φ) :
     x ∈ (baseIdeal O Φ)^L ↔ ∀ i, (AdjoinRoot.powerBasis' hΦ).basis.repr x i ∈
@@ -327,7 +333,9 @@ theorem base_ideal_coordinates (O : Type) [CommRing O] [IsLocalRing O] (Φ : Pol
     ← Ideal.map_pow, AdjoinRoot.algebraMap_eq]
 
 /-- A base element `c ∈ O` lies in `(m_O O_δ)^L` iff `c ∈ m_O^L` (for `Φ` monic of positive
-degree).-/
+degree).
+@isnad1 id=iff.2h4v.s8.fb1c413bd7b6 from=translated src=- shape=bfdef42b vocab=543ee6b7
+-/
 theorem base_ideal_pure (O : Type) [CommRing O] [IsLocalRing O] (Φ : Polynomial O) (hΦ : Φ.Monic)
     (hdeg : 0 < Φ.natDegree) (L : ℕ) (c : O) :
     algebraMap O (AdjoinRoot Φ) c ∈ (baseIdeal O Φ)^L ↔ c ∈ (IsLocalRing.maximalIdeal O)^L := by
@@ -408,7 +416,9 @@ private theorem conjugate_irreducible_factors_distinct (O : Type) [CommRing O] [
 
 open scoped Classical in
 /-- For pairwise coprime monic `g i` over a field, `∑ h i ∏_{j ≠ i} g j = 0` with
-`deg h i < deg g i` forces all `h i = 0`.-/
+`deg h i < deg g i` forces all `h i = 0`.
+@isnad1 id=eq.4h5v.s8.17d37b082286 from=translated src=- shape=aa67f676 vocab=976270dc
+-/
 theorem coprime_family_linear_injective (k ι : Type) [Field k] [Fintype ι] (g : ι → Polynomial k)
     (hg : ∀ i, (g i).Monic) (hc : ∀ i j, i ≠ j → IsCoprime (g i) (g j)) (h : ι → Polynomial k)
     (hdeg : ∀ i, (h i).degree < ((g i).natDegree : WithBot ℕ))
@@ -437,14 +447,18 @@ theorem coprime_family_linear_injective (k ι : Type) [Field k] [Fintype ι] (g 
   exact hdeg i
 
 /-- Monic polynomials over a local ring `R` with coprime reductions stay coprime over any
-`R`-algebra `K` (classically: the fraction field of a DVR).-/
+`R`-algebra `K` (classically: the fraction field of a DVR).
+@isnad1 id=iscoprim.3h4v.s7.df984700d0ea from=translated src=- shape=f48162cc vocab=e0dc62dd
+-/
 theorem coprime_of_coprime_residue_dvr (R K : Type) [CommRing R] [IsLocalRing R] [CommRing K]
     [Algebra R K] (A B : Polynomial R) (hA : A.Monic) (hB : B.Monic)
     (hc : IsCoprime (A.map (IsLocalRing.residue R)) (B.map (IsLocalRing.residue R))) :
     IsCoprime (A.map (algebraMap R K)) (B.map (algebraMap R K)) :=
   (isCoprime_of_isCoprime_map_residue hA hB hc).map (Polynomial.mapRingHom (algebraMap R K))
 
-/-- Distinct monic irreducible polynomials over a field are coprime.-/
+/-- Distinct monic irreducible polynomials over a field are coprime.
+@isnad1 id=iscoprim.5h3v.s7.62ac7022b062 from=translated src=- shape=74e08493 vocab=a35a613a
+-/
 theorem distinct_monic_irreducible_coprime (K : Type) [Field K] (g h : Polynomial K) (hg : g.Monic)
     (hh : h.Monic) (hgi : Irreducible g) (hhi : Irreducible h) (hne : g ≠ h) :
     IsCoprime g h := by
@@ -453,7 +467,9 @@ theorem distinct_monic_irreducible_coprime (K : Type) [Field K] (g h : Polynomia
   exact hne (Polynomial.eq_of_monic_of_associated hg hh (hgi.associated_of_dvd hhi hd))
 
 /-- For an integral injective extension of DVRs `O → B`, `m_O B = m_B^e` with `e` the
-ramification index.-/
+ramification index.
+@isnad1 id=eq.1h2v.s7.fc57e48251d5 from=translated src=- shape=beed7bbb vocab=f6616010
+-/
 theorem dvr_extension_maximalIdeal_map_eq_pow (O B : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [CommRing B] [IsDomain B] [IsDiscreteValuationRing B] [Algebra O B]
     [Algebra.IsIntegral O B] (hinj : Function.Injective (algebraMap O B)) :
@@ -482,7 +498,9 @@ theorem dvr_extension_maximalIdeal_map_eq_pow (O B : Type) [CommRing O] [IsDomai
       Multiset.count_nsmul, Multiset.count_singleton_self, mul_one]
   rw [he, hk]
 
-/-- In a DVR, `n ↦ m^n` is injective.-/
+/-- In a DVR, `n ↦ m^n` is injective.
+@isnad1 id=eq.1h3v.s7.f08df9e5ef21 from=translated src=- shape=b633d919 vocab=23724112
+-/
 theorem dvr_maximalIdeal_pow_injective (B : Type) [CommRing B] [IsDomain B]
     [IsDiscreteValuationRing B] (a b : ℕ)
     (h : (IsLocalRing.maximalIdeal B) ^ a = (IsLocalRing.maximalIdeal B) ^ b) :
@@ -493,7 +511,9 @@ theorem dvr_maximalIdeal_pow_injective (B : Type) [CommRing B] [IsDomain B]
   have h1 : IsLocalRing.maximalIdeal B ≠ ⊤ := (IsLocalRing.maximalIdeal.isMaximal B).ne_top
   exact (Ideal.pow_right_strictAnti _ h0 h1).injective h
 
-/-- Over a finite field `k` with `q` elements, `P(y^q) = P(y)^q` for `P ∈ k[X]`.-/
+/-- Over a finite field `k` with `q` elements, `P(y^q) = P(y)^q` for `P ∈ k[X]`.
+@isnad1 id=eq.0h5v.s6.a73b2e1c804e from=translated src=- shape=97f2fcf9 vocab=1d90c8fd
+-/
 theorem eval_at_pow_card (k K : Type) [Field k] [Finite k] [CommRing K] (ρ : k →+* K)
     (P : Polynomial k) (y : K) :
     P.eval₂ ρ (y ^ Nat.card k) = (P.eval₂ ρ y) ^ Nat.card k := by
@@ -503,7 +523,9 @@ theorem eval_at_pow_card (k K : Type) [Field k] [Finite k] [CommRing K] (ρ : k 
     Polynomial.map_pow, Polynomial.eval_pow]
 
 /-- The factor product map (coefficients of a product of monic polynomials) is continuous and
-measurable.-/
+measurable.
+@isnad1 id=and.0h3v.s8.61d50600a7c5 from=translated src=- shape=1cc348f1 vocab=c6a72fa7
+-/
 theorem factor_product_continuous (O : Type) [CommRing O] [TopologicalSpace O] [IsTopologicalRing O]
     [SecondCountableTopology O] [MeasurableSpace O] [BorelSpace O] (ι : Type) [Fintype ι]
     (d : ι → ℕ) :
@@ -523,7 +545,9 @@ theorem factor_product_continuous (O : Type) [CommRing O] [TopologicalSpace O] [
   exact ⟨hc, hc.measurable⟩
 
 /-- For a finite field `k ↪ K`, the solutions of `x^q = x` in the field `K` are exactly the image
-of `k`.-/
+of `k`.
+@isnad1 id=iff.0h4v.s6.d0b37726e09a from=translated src=- shape=c628f0df vocab=2a8f34dd
+-/
 theorem finite_field_frobenius_fixed_points (k K : Type) [Field k] [Finite k] [Field K]
     (ρ : k →+* K) (x : K) :
     x ^ Nat.card k = x ↔ x ∈ Set.range ρ := by
@@ -559,7 +583,9 @@ theorem finite_field_frobenius_fixed_points (k K : Type) [Field k] [Finite k] [F
   · rintro ⟨c, rfl⟩
     exact himg c
 
-/-- A finite free module over an `I`-adically complete ring is `I`-adically complete.-/
+/-- A finite free module over an `I`-adically complete ring is `I`-adically complete.
+@isnad1 id=isadicco.0h3v.s6.a0e801cb607f from=translated src=- shape=f29a94dc vocab=a931a000
+-/
 theorem finite_free_adic_complete (O M : Type) [CommRing O] [AddCommGroup M] [Module O M]
     [Module.Finite O M] [Module.Free O M] (I : Ideal O) [IsAdicComplete I O] :
     IsAdicComplete I M := by
@@ -586,7 +612,9 @@ theorem finite_free_adic_complete (O M : Type) [CommRing O] [AddCommGroup M] [Mo
     refine ⟨∑ i, L i • b i, fun n => (hM n _ _).2 fun i => ?_⟩
     simpa [Finsupp.single_apply] using hL i n
 
-/-- If `O/I` is finite, then so is `M/IM` for a finite free `O`-module `M`.-/
+/-- If `O/I` is finite, then so is `M/IM` for a finite free `O`-module `M`.
+@isnad1 id=finite.0h3v.s7.0b66b0c41730 from=translated src=- shape=38a5ba5b vocab=fc158cc2
+-/
 theorem finite_free_residue_quotient (O M : Type) [CommRing O] [AddCommGroup M] [Module O M]
     [Module.Finite O M] [Module.Free O M] (I : Ideal O) [Finite (O ⧸ I)] :
     Finite (M ⧸ (I • ⊤ : Submodule O M)) := by
@@ -627,7 +655,9 @@ private theorem finite_ring_local_of_idempotents (A : Type) [CommRing A] [Nontri
   · exact Or.inr (eq_sub_of_add_eq' hab ▸ IsNilpotent.isUnit_one_sub ⟨n, h⟩)
   · exact Or.inl (IsUnit.of_pow_eq_one h hn.ne')
 
-/-- A domain that is `I`-adically complete with `A/I` finite is local.-/
+/-- A domain that is `I`-adically complete with `A/I` finite is local.
+@isnad1 id=islocalr.0h2v.s5.8b1a5bb12d29 from=translated src=- shape=41e903e9 vocab=d7e2fe05
+-/
 theorem complete_domain_finite_quotient_local (A : Type) [CommRing A] [IsDomain A] (I : Ideal A)
     [IsAdicComplete I A] [Finite (A ⧸ I)] :
     IsLocalRing A := by
@@ -668,7 +698,9 @@ private theorem natDegree_formPoly_le (a : Fin (n + 1) → A) : (formPoly a).nat
 private theorem formPoly_eq_zero (a : Fin (n + 1) → A) (h : formPoly a = 0) : a = 0 :=
   funext fun j => by rw [← coeff_formPoly a j, h, coeff_zero, Pi.zero_apply]
 
-/-- `formPoly` is additive.-/
+/-- `formPoly` is additive.
+@isnad1 id=eq.0h4v.s7.bc17c8df3bf5 from=translated src=- shape=eb5a5b0b vocab=0f767751
+-/
 theorem formPoly_add (a b : Fin (n + 1) → A) :
     formPoly (a + b) = formPoly a + formPoly b := by
   simp [formPoly, add_mul, Finset.sum_add_distrib]
@@ -687,7 +719,9 @@ private theorem formProd_map {B : Type} [CommRing B] (f : A →+* B) {ι : Type}
 end FormPolyLemmas
 
 /-- The normalized product of factor cells lands in the product cell, has the expected
-reduction and unit `μ`-coordinate, and preserves congruences modulo `m^L`.-/
+reduction and unit `μ`-coordinate, and preserves congruences modulo `m^L`.
+@isnad1 id=and.3h8v.s9.50626da9c768 from=translated src=- shape=d5583d6e vocab=650c9723
+-/
 theorem form_product_maps_to_and_preserves (O : Type) [CommRing O] [IsLocalRing O] (ι : Type)
     [Fintype ι] (d : ι → ℕ) (ν : ∀ i, Fin (d i + 1))
     (g : ∀ i, Fin (d i + 1) → IsLocalRing.ResidueField O)
@@ -771,7 +805,9 @@ theorem form_product_maps_to_and_preserves (O : Type) [CommRing O] [IsLocalRing 
 
 open scoped Classical in
 /-- Injectivity of the partial-fraction map for pairwise coprime binary forms: if
-`∑ h i ∏_{j ≠ i} g j = c ∏ g i` with `h i` vanishing at `ν i`, then all `h i = 0`.-/
+`∑ h i ∏_{j ≠ i} g j = c ∏ g i` with `h i` vanishing at `ν i`, then all `h i = 0`.
+@isnad1 id=eq.5h8v.s9.9d4541240b74 from=translated src=- shape=4ebd6b96 vocab=9ac66a7f
+-/
 theorem forms_linear_injective (k ι : Type) [Field k] [Fintype ι] (d : ι → ℕ)
     (g : ∀ i, Fin (d i + 1) → k) (hg : ∀ i, g i ≠ 0) (hc : FormsCoprime d g)
     (ν : ∀ i, Fin (d i + 1)) (hν : ∀ i, g i (ν i) ≠ 0) (h : ∀ i, Fin (d i + 1) → k)
@@ -866,7 +902,9 @@ private theorem natDegree_partial_fraction_le {k ι : Type} [Field k] [Fintype �
 
 open scoped Classical in
 /-- Every binary form of degree `∑ d i` is `∑ h i ∏_{j ≠ i} g j + c ∏ g i` with `h i (ν i) = 0`
-(partial fractions for pairwise coprime binary forms).-/
+(partial fractions for pairwise coprime binary forms).
+@isnad1 id=ex.3h6v.s9.94be77aeb68f from=translated src=- shape=2e5b78ea vocab=9ac66a7f
+-/
 theorem forms_linear_bijective (k ι : Type) [Field k] [Fintype ι] (d : ι → ℕ)
     (g : ∀ i, Fin (d i + 1) → k) (hg : ∀ i, g i ≠ 0) (hc : FormsCoprime d g)
     (ν : ∀ i, Fin (d i + 1)) (hν : ∀ i, g i (ν i) ≠ 0) (w : Fin ((∑ i, d i) + 1) → k) :
@@ -955,7 +993,9 @@ theorem forms_linear_bijective (k ι : Type) [Field k] [Fintype ι] (d : ι → 
         coeff_eq_zero_of_natDegree_lt (lt_of_le_of_lt (hPdeg _) (by omega))]
 
 /-- Over a local ring, a monic factorization `B C = B' C'` with `B ≡ B'` and `B̄, C̄`
-coprime is unique.-/
+coprime is unique.
+@isnad1 id=and.7h5v.s8.a13fc0c06f02 from=translated src=- shape=7e3c36ff vocab=635719e1
+-/
 theorem hensel_factor_unique_of_dvd (O : Type) [CommRing O] [IsLocalRing O]
     (B C B' C' : Polynomial O) (hB : B.Monic) (hC : C.Monic) (hB' : B'.Monic) (hC' : C'.Monic)
     (hp : B * C = B' * C')
@@ -970,7 +1010,9 @@ theorem hensel_factor_unique_of_dvd (O : Type) [CommRing O] [IsLocalRing O]
   exact SurfaceBlowup.hensel_pair_unique O B C B' C' hB hC hB' hC' hred hCC hc hp
 
 /-- Over a local ring, a factorization into monic factors with pairwise coprime reductions
-is determined by the reductions.-/
+is determined by the reductions.
+@isnad1 id=eq.5h4v.s8.5e61e40c1b5d from=translated src=- shape=2e8456b3 vocab=ec15f592
+-/
 theorem hensel_family_unique (O ι : Type) [CommRing O] [IsLocalRing O] [Fintype ι]
     (G G' : ι → Polynomial O) (hG : ∀ i, (G i).Monic) (hG' : ∀ i, (G' i).Monic)
     (hred : ∀ i, (G i).map (IsLocalRing.residue O) = (G' i).map (IsLocalRing.residue O))
@@ -1064,7 +1106,9 @@ private theorem irreducible_of_map_eq_orbit_product {K L : Type} [Field K] [Fiel
   · exact Or.inl (key B A (by rw [hAB, mul_comm]) h)
 
 /-- The Frobenius orbit products of the irreducible factors of `F` descend to distinct monic
-irreducible polynomials over `Frac O` whose product is the conjugate product of `F`.-/
+irreducible polynomials over `Frac O` whose product is the conjugate product of `F`.
+@isnad1 id=ex.12h6v.s14.3b92929b26aa from=translated src=- shape=6cc29638 vocab=08a52488
+-/
 theorem invariant_orbit_factors (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) [IsDomain (AdjoinRoot Φ)]
@@ -1147,7 +1191,9 @@ theorem invariant_orbit_factors (O : Type) [CommRing O] [IsDomain O] [IsDiscrete
     rw [← Fin.prod_univ_fun_getElem]
     rfl
 
-/-- An algebra isomorphism of local rings identifies the maximal ideals (via `comap` and `map`).-/
+/-- An algebra isomorphism of local rings identifies the maximal ideals (via `comap` and `map`).
+@isnad1 id=and.0h4v.s8.ad62d50b9f4e from=translated src=- shape=1c1f1ac6 vocab=c447c340
+-/
 theorem local_algEquiv_maximalIdeal (O B B' : Type) [CommRing O] [CommRing B] [CommRing B']
     [IsLocalRing B] [IsLocalRing B'] [Algebra O B] [Algebra O B'] (φ : B ≃ₐ[O] B') :
     (IsLocalRing.maximalIdeal B').comap (φ : B →+* B') = IsLocalRing.maximalIdeal B ∧

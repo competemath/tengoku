@@ -516,7 +516,9 @@ end Hensel
 
 /-- Hensel's lemma: over a complete local ring, a coprime monic factorization `g * h` of the
 residue reduction of a monic `F` lifts to a monic factorization `F = G * H` with the same
-degrees.-/
+degrees.
+@isnad1 id=ex.5h4v.s9.6ba7c77297fe from=translated src=- shape=35aabaff vocab=46d7d193
+-/
 theorem hensel_pair_exists (O : Type) [CommRing O] [IsLocalRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] (F : Polynomial O) (hF : F.Monic)
     (g h : Polynomial (IsLocalRing.ResidueField O)) (hg : g.Monic) (hh : h.Monic)
@@ -525,7 +527,9 @@ theorem hensel_pair_exists (O : Type) [CommRing O] [IsLocalRing O]
       H.map (IsLocalRing.residue O)=h ∧ G.natDegree=g.natDegree ∧ H.natDegree=h.natDegree :=
   Hensel.exists_monic_factorization hF hg hh hc hred
 
-/-- Hensel's lemma for finitely many pairwise coprime monic residue factors.-/
+/-- Hensel's lemma for finitely many pairwise coprime monic residue factors.
+@isnad1 id=ex.4h4v.s8.b4f5f5b31b0b from=translated src=- shape=6b8b1a89 vocab=360adb22
+-/
 theorem hensel_family_exists (O ι : Type) [CommRing O] [IsLocalRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Fintype ι] (F : Polynomial O) (hF : F.Monic)
     (g : ι → Polynomial (IsLocalRing.ResidueField O)) (hg : ∀ i, (g i).Monic)
@@ -568,7 +572,9 @@ theorem hensel_family_exists (O ι : Type) [CommRing O] [IsLocalRing O]
   exact ⟨G, fun i => h1 i (Finset.mem_univ i), h2, fun i => h3 i (Finset.mem_univ i),
     fun i => h4 i (Finset.mem_univ i)⟩
 
-/-- Monic polynomials over a local ring whose residue reductions are coprime are coprime.-/
+/-- Monic polynomials over a local ring whose residue reductions are coprime are coprime.
+@isnad1 id=iscoprim.3h3v.s7.58569c0c514c from=translated src=- shape=f88593b9 vocab=fcf856f8
+-/
 theorem isCoprime_of_isCoprime_map_residue {O : Type*} [CommRing O] [IsLocalRing O]
     {A B : Polynomial O} (hA : A.Monic) (hB : B.Monic)
     (h : IsCoprime (A.map (IsLocalRing.residue O)) (B.map (IsLocalRing.residue O))) :
@@ -579,7 +585,9 @@ theorem isCoprime_of_isCoprime_map_residue {O : Type*} [CommRing O] [IsLocalRing
   exact (isUnit_map_iff (IsLocalRing.residue O) _).1 h'
 
 /-- Uniqueness in Hensel's lemma: monic factorizations with the same coprime residue factors
-are equal.-/
+are equal.
+@isnad1 id=and.8h5v.s8.2219b8f83d1f from=translated src=- shape=7c0bdb62 vocab=635719e1
+-/
 theorem hensel_pair_unique (O : Type) [CommRing O] [IsLocalRing O]
     (G H G₁ H₁ : Polynomial O) (hG : G.Monic) (hH : H.Monic) (hG₁ : G₁.Monic) (hH₁ : H₁.Monic)
     (hg : G.map (IsLocalRing.residue O) = G₁.map (IsLocalRing.residue O))
@@ -599,7 +607,9 @@ theorem hensel_pair_unique (O : Type) [CommRing O] [IsLocalRing O]
   exact ⟨(Polynomial.eq_of_monic_of_dvd_of_natDegree_le hG hG₁ d1 (deg _ _ hG₁ hG hg.symm).le).symm,
     (Polynomial.eq_of_monic_of_dvd_of_natDegree_le hH hH₁ d2 (deg _ _ hH₁ hH hh.symm).le).symm⟩
 
-/-- A finite product of `I`-adically complete modules is `I`-adically complete.-/
+/-- A finite product of `I`-adically complete modules is `I`-adically complete.
+@isnad1 id=isadicco.0h4v.s6.a73d93136821 from=translated src=- shape=a7a57c86 vocab=6edfd1f8
+-/
 theorem isAdicComplete_pi (O : Type) [CommRing O] (I : Ideal O) (ι : Type) [Finite ι]
     (M : ι → Type) [∀ j, AddCommGroup (M j)] [∀ j, Module O (M j)] [∀ j, IsAdicComplete I (M j)] :
     IsAdicComplete I (∀ j, M j) := by
@@ -643,7 +653,9 @@ theorem isAdicComplete_pi (O : Type) [CommRing O] (I : Ideal O) (ι : Type) [Fin
     simpa [SModEq.sub_mem] using hL j n
   exact { toIsHausdorff := H1, toIsPrecomplete := H2 }
 
-/-- Linear maps preserve adic congruences.-/
+/-- Linear maps preserve adic congruences.
+@isnad1 id=adiccong.1h8v.s7.deab0d3a0d50 from=translated src=- shape=9dbf467e vocab=2149c450
+-/
 theorem linear_map_preserves_adic_congruence (O M N : Type) [CommRing O] [AddCommGroup M]
     [Module O M] [AddCommGroup N] [Module O N] (I : Ideal O) (L : M →ₗ[O] N) (j : ℕ) (x y : M)
     (h : adicCongr I j x y) :
@@ -652,7 +664,9 @@ theorem linear_map_preserves_adic_congruence (O M N : Type) [CommRing O] [AddCom
   rw [← map_sub]
   exact Submodule.smul_top_le_comap_smul_top (I ^ j) L h
 
-/-- Over a local ring, `𝔪 ^ N` annihilates every module of length `N`.-/
+/-- Over a local ring, `𝔪 ^ N` annihilates every module of length `N`.
+@isnad1 id=eq.1h3v.s7.6fddcab05573 from=translated src=- shape=9856e1e1 vocab=f1a5ff08
+-/
 theorem maximal_ideal_power_kills (R M : Type) [CommRing R] [IsLocalRing R] [AddCommGroup M]
     [Module R M] (N : ℕ) (hN : Module.length R M = N) :
     (IsLocalRing.maximalIdeal R)^N • (⊤ : Submodule R M)=⊥ := by
@@ -704,7 +718,9 @@ theorem maximal_ideal_power_kills (R M : Type) [CommRing R] [IsLocalRing R] [Add
     exact this.eq_bot
 
 /-- If `coker D` has length `k` over a local ring with principal maximal ideal `(π)`, then
-`π ^ k • w ∈ range D` for every `w`.-/
+`π ^ k • w ∈ range D` for every `w`.
+@isnad1 id=mem.2h7v.s8.1a8c5f16a3b2 from=translated src=- shape=e95cf89f vocab=1932614b
+-/
 theorem linear_image_bound_from_cokernel_length (O V W : Type) [CommRing O] [IsLocalRing O]
     [AddCommGroup V] [Module O V] [AddCommGroup W] [Module O W] (pi : O)
     (hpi : IsLocalRing.maximalIdeal O = Ideal.span {pi}) (D : V →ₗ[O] W) (k : ℕ)
@@ -722,7 +738,9 @@ theorem linear_image_bound_from_cokernel_length (O V W : Type) [CommRing O] [IsL
     Submodule.Quotient.mk_eq_zero] at h2
   exact h2
 
-/-- A countable product of measurable embeddings is a measurable embedding.-/
+/-- A countable product of measurable embeddings is a measurable embedding.
+@isnad1 id=measurab.1h4v.s6.247388c298c4 from=translated src=- shape=4f1022cc vocab=7a70bdfd
+-/
 theorem measurableEmbedding_pi (ι : Type) [Countable ι] (X Y : ι → Type)
     [∀ j, MeasurableSpace (X j)] [∀ j, MeasurableSpace (Y j)] (f : ∀ j, X j → Y j)
     (hf : ∀ j, MeasurableEmbedding (f j)) :
@@ -763,14 +781,18 @@ theorem measurableEmbedding_pi (ι : Type) [Countable ι] (X Y : ι → Type)
     have : S = ∅ := Set.eq_empty_of_isEmpty S
     rw [this]; simp
 
-/-- Over a finite field `k` there are `|k| ^ n` monic polynomials of degree `n`.-/
+/-- Over a finite field `k` there are `|k| ^ n` monic polynomials of degree `n`.
+@isnad1 id=eq.0h2v.s6.3e374022a6ab from=translated src=- shape=395e0486 vocab=a33d1649
+-/
 theorem monic_residue_polynomial_count (k : Type) [Field k] [Finite k] (n : ℕ) :
     Nat.card {F : Polynomial k // F.Monic ∧ F.natDegree=n}=(Nat.card k)^n := by
   rw [Nat.card_congr ((Polynomial.monicEquivDegreeLT n).trans
     (Polynomial.degreeLTEquiv k n).toEquiv), Nat.card_fun]
   simp
 
-/-- If `π` maps into the maximal ideal of the local `O`-algebra `R`, then `1 + π • v` is a unit.-/
+/-- If `π` maps into the maximal ideal of the local `O`-algebra `R`, then `1 + π • v` is a unit.
+@isnad1 id=isunit.1h4v.s7.bafc62acf991 from=translated src=- shape=0ba5c228 vocab=ded91302
+-/
 theorem normalizing_factor_is_unit (O R : Type) [CommRing O] [CommRing R] [Algebra O R]
     [IsLocalRing R] (pi : O) (hpi : algebraMap O R pi ∈ IsLocalRing.maximalIdeal R) (v : R) :
     IsUnit (1 + pi • v) := by
@@ -779,7 +801,9 @@ theorem normalizing_factor_is_unit (O R : Type) [CommRing O] [CommRing R] [Algeb
   simpa using IsLocalRing.isUnit_one_sub_self_of_mem_nonunits _ hm
 
 /-- In a finite product of local `O`-algebras in which `π` is non-invertible, `π` lies in the
-Jacobson radical, and a componentwise regular element is regular.-/
+Jacobson radical, and a componentwise regular element is regular.
+@isnad1 id=and.2h5v.s9.69082f7d81a5 from=translated src=- shape=260c8123 vocab=42882032
+-/
 theorem pi_algebraMap_mem_jacobson_bot (O : Type) [CommRing O] (ι : Type) (C : ι → Type)
     [∀ j, CommRing (C j)] [∀ j, Algebra O (C j)] [∀ j, IsLocalRing (C j)] (pi : O)
     (hpi : ∀ j, algebraMap O (C j) pi ∈ IsLocalRing.maximalIdeal (C j)) (e : ∀ j, C j)
@@ -791,7 +815,9 @@ theorem pi_algebraMap_mem_jacobson_bot (O : Type) [CommRing O] (ι : Type) (C : 
   simpa [Algebra.smul_def, mul_comm, add_comm] using
     normalizing_factor_is_unit O (C j) pi (hpi j) (y j)
 
-/-- An ideal of a finite product of rings is determined by its images in the factors.-/
+/-- An ideal of a finite product of rings is determined by its images in the factors.
+@isnad1 id=and.0h3v.s9.eb44459f6c07 from=translated src=- shape=88657c73 vocab=fed1fb2f
+-/
 theorem pi_ideal_mem_iff_map_eval (ι : Type) [Finite ι] (R : ι → Type) [∀ j, CommRing (R j)]
     (I : Ideal (∀ j, R j)) :
     (∀ x : ∀ j, R j, x ∈ I ↔ ∀ j, x j ∈ I.map (Pi.evalRingHom R j)) ∧ ∀ J : Ideal (∀ j, R j),
@@ -836,7 +862,9 @@ private theorem pi_quotient_linearEquiv_of_mem_iff (O : Type) [CommRing O] (ι :
     (Ideal.quotientKerAlgEquivOfSurjective hsurj)).toLinearEquiv, fun x => rfl⟩
 
 /-- Quotients of a finite product of `O`-algebras by `(g)` and by `(g, e)` are the products of the
-componentwise quotients.-/
+componentwise quotients.
+@isnad1 id=and.0h5v.s14.415c63eaa7eb from=translated src=- shape=7b720780 vocab=6584a820
+-/
 theorem pi_quotient_span_linearEquiv (O : Type) [CommRing O] (ι : Type) (C : ι → Type)
     [∀ j, CommRing (C j)] [∀ j, Algebra O (C j)] (g e : ∀ j, C j) :
     (∃ ψ : ((∀ j, C j) ⧸ Ideal.span {g}) ≃ₗ[O] (∀ j, C j ⧸ Ideal.span {g j}),
@@ -869,7 +897,9 @@ theorem pi_quotient_span_linearEquiv (O : Type) [CommRing O] (ι : Type) (C : ι
 
 /-- With the topology and σ-algebra transported along the power-basis coordinates, `O[X]/(Φ)` is a
 compact Hausdorff second-countable Borel topological ring, and the coordinates are a
-homeomorphism and a measurable equivalence.-/
+homeomorphism and a measurable equivalence.
+@isnad1 id=and.3h2v.s11.3eecf7732764 from=translated src=- shape=ae51709c vocab=f95ebd8f
+-/
 theorem power_coordinates_transport (O : Type) [CommRing O] [IsDomain O] [TopologicalSpace O]
     [IsTopologicalRing O] [CompactSpace O] [T2Space O] [SecondCountableTopology O]
     [MeasurableSpace O] [BorelSpace O] (Φ : Polynomial O) (hm : Φ.Monic)
@@ -918,7 +948,9 @@ theorem power_coordinates_transport (O : Type) [CommRing O] [IsDomain O] [Topolo
   refine ⟨{ }, h.symm.compactSpace, h.symm.t2Space, h.secondCountableTopology, hborel,
     hc, hcs, h.measurable, h.symm.measurable⟩
 
-/-- In a finite local ring, `#{generators of (f)} · #{a | a f = 0} = #Bˣ` for `f ≠ 0`.-/
+/-- In a finite local ring, `#{generators of (f)} · #{a | a f = 0} = #Bˣ` for `f ≠ 0`.
+@isnad1 id=eq.1h2v.s7.b2411ffddcf8 from=translated src=- shape=009e00ee vocab=32115232
+-/
 theorem principal_generator_orbit_count (B : Type) [CommRing B] [IsLocalRing B] [Finite B] (f : B)
     (hf : f ≠ 0) :
     Nat.card {g : B // Ideal.span {g}=Ideal.span {f}} * Nat.card {a : B // a*f=0} =
@@ -982,7 +1014,9 @@ theorem principal_generator_orbit_count (B : Type) [CommRing B] [IsLocalRing B] 
 
 /-- Coordinates on a finite product of free extensions: a measurable `O`-linear equivalence
 `O^n ≃ ∏ⱼ Oⱼ^(nⱼ)` (with `n = ∑ δⱼ nⱼ`) and representatives `bc` compatible with given
-representatives `bc' j` in each factor.-/
+representatives `bc' j` in each factor.
+@isnad1 id=ex.3h9v.s12.d43d2f9f5ace from=translated src=- shape=df40654f vocab=b0c5ea89
+-/
 theorem product_coordinates_exist (O : Type) [CommRing O] [MeasurableSpace O] (ι : Type) [Fintype ι]
     (Oj : ι → Type) [∀ j, CommRing (Oj j)] [∀ j, Algebra O (Oj j)] [∀ j, MeasurableSpace (Oj j)]
     (R : ι → Type) [∀ j, CommRing (R j)] [∀ j, Algebra O (R j)] [∀ j, Algebra (Oj j) (R j)]
@@ -1051,7 +1085,9 @@ theorem product_coordinates_exist (O : Type) [CommRing O] [MeasurableSpace O] (�
       rw [Pi.single_eq_of_ne (Ne.symm hj'), smul_zero]
     · simp
 
-/-- Division equivalences in the factors assemble into a division equivalence on the product.-/
+/-- Division equivalences in the factors assemble into a division equivalence on the product.
+@isnad1 id=ex.2h11v.s12.4a3c839177f4 from=translated src=- shape=a3f5a10c vocab=70a5c487
+-/
 theorem product_division_equiv (O : Type) [CommRing O] (ι : Type) (Oj : ι → Type)
     [∀ j, CommRing (Oj j)] [∀ j, Algebra O (Oj j)] (R : ι → Type) [∀ j, CommRing (R j)]
     [∀ j, Algebra O (R j)] [∀ j, Algebra (Oj j) (R j)] [∀ j, IsScalarTower O (Oj j) (R j)]
@@ -1102,7 +1138,9 @@ theorem product_division_equiv (O : Type) [CommRing O] (ι : Type) (Oj : ι → 
     simp
   exact ⟨(LinearEquiv.ofBijective L ⟨hinj, hsurj⟩).symm, fun w => rfl⟩
 
-/-- `(C/I) / e(C/I) ≃ C/(I + (e))` as `O`-modules, compatibly with the quotient maps.-/
+/-- `(C/I) / e(C/I) ≃ C/(I + (e))` as `O`-modules, compatibly with the quotient maps.
+@isnad1 id=ex.0h4v.s14.c7098ea91f59 from=translated src=- shape=b4e75e61 vocab=6b4b7d6b
+-/
 theorem quotient_mul_range_equiv (O C : Type) [CommRing O] [CommRing C] [Algebra O C] (I : Ideal C)
     (e : C) :
     ∃ φ : ((C ⧸ I) ⧸ LinearMap.range (LinearMap.mulLeft O (Ideal.Quotient.mk I e))) ≃ₗ[O]
@@ -1143,7 +1181,9 @@ theorem quotient_mul_range_equiv (O C : Type) [CommRing O] [CommRing C] [Algebra
   simp only [LinearEquiv.trans_apply, LinearEquiv.symm_apply_apply]
   rfl
 
-/-- Two generators of the same principal ideal, one of them regular, differ by a unit.-/
+/-- Two generators of the same principal ideal, one of them regular, differ by a unit.
+@isnad1 id=ex.2h3v.s6.d4e34743d2e0 from=translated src=- shape=73b70f16 vocab=45f08449
+-/
 theorem regular_principal_generators_associated (A : Type) [CommRing A] (f g : A)
     (hf : Function.Injective (fun x : A => x*f)) (hfg : Ideal.span {f} = Ideal.span {g}) :
     ∃ u : Aˣ, g = (u : A)*f := by
@@ -1157,7 +1197,9 @@ theorem regular_principal_generators_associated (A : Type) [CommRing A] (f g : A
     rw [mul_assoc, hb, ha]
   refine ⟨⟨b, a, by rw [mul_comm]; exact hab, hab⟩, hb.symm⟩
 
-/-- In a DVR with finite residue field, `#(O/𝔪^L) = q ^ L`.-/
+/-- In a DVR with finite residue field, `#(O/𝔪^L) = q ^ L`.
+@isnad1 id=eq.0h2v.s6.72a5e7c7696e from=translated src=- shape=0b26cfa7 vocab=28dda5d5
+-/
 theorem residue_quotient_card (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [Finite (IsLocalRing.ResidueField O)] (L : ℕ) :
     Nat.card (O ⧸ (IsLocalRing.maximalIdeal O)^L)=(Nat.card (IsLocalRing.ResidueField O))^L := by
@@ -1165,7 +1207,9 @@ theorem residue_quotient_card (O : Type) [CommRing O] [IsDomain O] [IsDiscreteVa
     (IsDiscreteValuationRing.not_a_field O) (i := L)
   rwa [Submodule.cardQuot_apply, Submodule.cardQuot_apply] at h
 
-/-- The coefficient measure of a ball `a + (𝔪^L)^n` in `O^n` is `q^(-nL)`.-/
+/-- The coefficient measure of a ball `a + (𝔪^L)^n` in `O^n` is `q^(-nL)`.
+@isnad1 id=eq.1h4v.s8.27c5a3999b10 from=translated src=- shape=7e4c9037 vocab=34f61916
+-/
 theorem coefficient_cylinder_mass (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     [TopologicalSpace O] [IsTopologicalRing O] [CompactSpace O] [T2Space O]
@@ -1226,7 +1270,9 @@ theorem coefficient_cylinder_mass (O : Type) [CommRing O] [IsDomain O] [IsDiscre
   rw [← ENNReal.inv_pow]
   exact ENNReal.eq_inv_of_mul_eq_one_left (by rw [mul_comm]; exact hsum.symm)
 
-/-- The coefficient measure of `O^n` is a probability measure.-/
+/-- The coefficient measure of `O^n` is a probability measure.
+@isnad1 id=isprobab.1h2v.s6.6c9fdd0cb0ab from=translated src=- shape=272fac69 vocab=0baaac7e
+-/
 theorem coefficient_measure_probability (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O]
     [Finite (IsLocalRing.ResidueField O)] [TopologicalSpace O] [IsTopologicalRing O]
@@ -1235,7 +1281,9 @@ theorem coefficient_measure_probability (O : Type) [CommRing O] [IsDomain O]
     MeasureTheory.IsProbabilityMeasure (coefficientMeasure O n) :=
   ⟨by simpa using coefficient_cylinder_mass O htop n 0 0⟩
 
-/-- A chart measure with measurable chart map has total mass one.-/
+/-- A chart measure with measurable chart map has total mass one.
+@isnad1 id=eq.2h5v.s7.4469dbb236f5 from=translated src=- shape=11ccbeb5 vocab=2a445445
+-/
 theorem chart_measure_total_mass (O R : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     [TopologicalSpace O] [IsTopologicalRing O] [CompactSpace O] [T2Space O]
@@ -1247,7 +1295,9 @@ theorem chart_measure_total_mass (O R : Type) [CommRing O] [IsDomain O] [IsDiscr
   have := coefficient_measure_probability O htop n
   rw [chartMeasure, Measure.map_apply hc MeasurableSet.univ, Set.preimage_univ, measure_univ]
 
-/-- The coefficient measure of a `π`-adic cylinder of level `j` in `O^n` is `q^(-nj)`.-/
+/-- The coefficient measure of a `π`-adic cylinder of level `j` in `O^n` is `q^(-nj)`.
+@isnad1 id=eq.2h5v.s8.bdd47ad0a610 from=translated src=- shape=bcbf55d9 vocab=d58632be
+-/
 theorem coefficient_uniformizer_cylinder_mass (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O]
     [Finite (IsLocalRing.ResidueField O)] [TopologicalSpace O] [IsTopologicalRing O]

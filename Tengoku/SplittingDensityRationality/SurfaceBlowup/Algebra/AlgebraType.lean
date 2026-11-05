@@ -124,7 +124,9 @@ def integralClosureTowerEquiv (O Oδ L : Type) [CommRing O] [CommRing Oδ] [Alge
     map_add' := fun _ _ ↦ rfl
     commutes' := fun _ ↦ rfl }
 
-/-- `O` embeds into any `O`-subring `S` of a field `L` over `K = Frac O`.-/
+/-- `O` embeds into any `O`-subring `S` of a field `L` over `K = Frac O`.
+@isnad1 id=injectiv.0h3v.s8.86bf9ffa1cde from=translated src=- shape=34fbe684 vocab=ae16f148
+-/
 theorem algebraMap_injective_of_tower (O : Type) [CommRing O] [IsDomain O] (S L : Type)
     [CommRing S] [Field L] [Algebra O S] [Algebra S L] [Algebra (BaseField O) L] [Algebra O L]
     [IsScalarTower O S L] [IsScalarTower O (BaseField O) L] :
@@ -135,14 +137,18 @@ theorem algebraMap_injective_of_tower (O : Type) [CommRing O] [IsDomain O] (S L 
   exact (algebraMap (BaseField O) L).injective.comp (IsFractionRing.injective O (BaseField O))
 
 /-- Closure finiteness descends along a finite extension `O → Oδ`: the two integral closures
-coincide, and finite over `Oδ` finite over `O` is finite over `O`.-/
+coincide, and finite over `Oδ` finite over `O` is finite over `O`.
+@isnad1 id=finite.1h3v.s8.603ad4348184 from=translated src=- shape=11260ac1 vocab=5cea223b
+-/
 theorem closure_finite_descent (O Oδ L : Type) [CommRing O] [CommRing Oδ] [Algebra O Oδ]
     [Module.Finite O Oδ] [CommRing L] [Algebra O L] [Algebra Oδ L] [IsScalarTower O Oδ L]
     (h : Module.Finite Oδ (integralClosure Oδ L)) : Module.Finite O (integralClosure O L) :=
   have : Module.Finite O (integralClosure Oδ L) := .trans Oδ _
   .equiv (integralClosureTowerEquiv O Oδ L).symm.toLinearEquiv
 
-/-- Closure finiteness ascends along a finite extension `O → Oδ` acting on the same ring.-/
+/-- Closure finiteness ascends along a finite extension `O → Oδ` acting on the same ring.
+@isnad1 id=finite.1h3v.s8.0c29a3891675 from=translated src=- shape=646ab8fb vocab=5cea223b
+-/
 theorem closure_finite_ascent (O Oδ L : Type) [CommRing O] [CommRing Oδ] [Algebra O Oδ]
     [Module.Finite O Oδ] [CommRing L] [Algebra O L] [Algebra Oδ L] [IsScalarTower O Oδ L]
     (h : Module.Finite O (integralClosure O L)) : Module.Finite Oδ (integralClosure Oδ L) :=
@@ -156,7 +162,9 @@ private theorem faithfulSMul_of_isFractionRing (O K L : Type) [CommRing O] [IsDo
   exact (algebraMap K L).injective.comp (IsFractionRing.injective O K)
 
 /-- The integral closure of a DVR `O` in a finite extension `L` of `K = Frac O`, assumed finite
-over `O`, is a Dedekind domain.-/
+over `O`, is a Dedekind domain.
+@isnad1 id=isdedeki.0h3v.s8.5731aea51da4 from=translated src=- shape=37548bc9 vocab=bf4ec6f4
+-/
 theorem integral_closure_is_dedekind (O K L : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [Field K] [Algebra O K] [IsFractionRing O K] [Field L] [Algebra K L]
     [Algebra O L] [IsScalarTower O K L] [FiniteDimensional K L]
@@ -221,7 +229,9 @@ private theorem adjoinRoot_tensor (R A : Type) [CommRing R] [CommRing A] [Algebr
   rfl
 
 /-- Base change of `O[X]/(F)` to the fraction field `K` of `O` is `K[X]/(F)`, compatibly with
-`mk`.-/
+`mk`.
+@isnad1 id=ex.0h2v.s13.516e753bdde6 from=translated src=- shape=fc7fe238 vocab=b7deae0d
+-/
 theorem adjoinRoot_base_change (O : Type) [CommRing O] [IsDomain O] (F : Polynomial O) :
     ∃ e : TensorProduct O (BaseField O) (AdjoinRoot F) ≃ₐ[BaseField O]
       AdjoinRoot (F.map (algebraMap O (BaseField O))), ∀ P : Polynomial O,
@@ -233,7 +243,9 @@ section Fields
 
 variable (K K' : Type) [Field K] [Field K'] [Algebra K K']
 
-/-- A nonzero `q` with `K'[X]/(q)` reduced is squarefree.-/
+/-- A nonzero `q` with `K'[X]/(q)` reduced is squarefree.
+@isnad1 id=squarefr.2h2v.s7.e2c027585223 from=translated src=- shape=7d699792 vocab=4612a746
+-/
 theorem squarefree_of_isReduced_adjoinRoot (q : K'[X]) (hq : q ≠ 0)
     (hred : IsReduced (AdjoinRoot q)) : Squarefree q := by
   rintro g ⟨h, rfl⟩
@@ -244,7 +256,9 @@ theorem squarefree_of_isReduced_adjoinRoot (q : K'[X]) (hq : q ≠ 0)
   exact isUnit_of_dvd_one ((mul_dvd_mul_iff_right hgh).1 (by simpa using h0))
 
 /-- Along a finite separable extension `K'/K`, the image of an irreducible polynomial stays
-squarefree (`K' ⊗_K K[X]/(g)` is formally unramified over the field `K[X]/(g)`, hence reduced).-/
+squarefree (`K' ⊗_K K[X]/(g)` is formally unramified over the field `K[X]/(g)`, hence reduced).
+@isnad1 id=squarefr.0h3v.s7.89f70d755bbc from=translated src=- shape=ba157573 vocab=344745dd
+-/
 theorem squarefree_map_of_isSeparable [FiniteDimensional K K'] [Algebra.IsSeparable K K']
     (g : K[X]) [Fact (Irreducible g)] : Squarefree (g.map (algebraMap K K')) := by
   have : Algebra.FormallyUnramified K K' := .of_isSeparable K K'
@@ -295,7 +309,9 @@ end Fields
 /-- The ascent step: let `O → Oδ` be finite, `K = Frac O`, and `Kδ/K` finite separable (with
 compatible structures). If `g` is monic irreducible over `K` with finite `O`-closure of
 `K[X]/(g)`, and `h` is an irreducible factor of `g` over `Kδ`, then the `Oδ`-closure of
-`Kδ[X]/(h)` is finite over `Oδ`.-/
+`Kδ[X]/(h)` is finite over `Oδ`.
+@isnad1 id=finite.5h6v.s10.108540bf76bd from=translated src=- shape=5e373c7b vocab=eba3c05e
+-/
 theorem closure_finite_ascent_root (O Oδ K Kδ : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [CommRing Oδ] [Algebra O Oδ] [Module.Finite O Oδ]
     [Field K] [Algebra O K] [IsFractionRing O K] [Field Kδ] [Algebra K Kδ] [Algebra O Kδ]
@@ -333,7 +349,9 @@ private theorem adjoinRoot_isSeparable {K : Type} [Field K] (g : K[X]) [Fact (Ir
   exact IntermediateField.algebra_adjoin_le_adjoin K _ this
 
 /-- For `g` irreducible and separable over `Frac O`, the integral closure of `O` in `K[X]/(g)` is
-a finite `O`-module.-/
+a finite `O`-module.
+@isnad1 id=finite.2h2v.s11.aa192f3af0ac from=translated src=- shape=e00178b2 vocab=0212cddc
+-/
 theorem closure_finite_of_separable (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (g : (FractionRing O)[X]) (hirr : Irreducible g)
     (hs : g.Separable) : Module.Finite O (integralClosure O (AdjoinRoot g)) := by
@@ -343,14 +361,18 @@ theorem closure_finite_of_separable (O : Type) [CommRing O] [IsDomain O]
   have := adjoinRoot_isSeparable g hs
   exact IsIntegralClosure.finite O (FractionRing O) (AdjoinRoot g) _
 
-/-- A route-F polynomial type is a polynomial type (forget the closure-finiteness witnesses).-/
+/-- A route-F polynomial type is a polynomial type (forget the closure-finiteness witnesses).
+@isnad1 id=haspolyn.1h3v.s5.dac88d1a18ea from=translated src=- shape=aeabfa05 vocab=225a3d11
+-/
 theorem HasPolynomialTypeF.to_original {O : Type} [CommRing O] [IsDomain O]
     {F : (BaseField O)[X]} {σ : FactorType} (h : HasPolynomialTypeF O F σ) :
     HasPolynomialType O F σ :=
   let ⟨gs, h1, h2, hF, hσ, _⟩ := h; ⟨gs, h1, h2, hF, hσ⟩
 
 /-- For separable `F` the route-F and original polynomial types agree: every factor is
-separable, so its closure is finite by `closure_finite_of_separable`.-/
+separable, so its closure is finite by `closure_finite_of_separable`.
+@isnad1 id=iff.1h3v.s6.60e495c821c5 from=translated src=- shape=87ba865b vocab=f66e308b
+-/
 theorem hasPolynomialTypeF_iff_of_separable (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] {F : (BaseField O)[X]} {σ : FactorType} (hs : F.Separable) :
     HasPolynomialTypeF O F σ ↔ HasPolynomialType O F σ :=
@@ -364,7 +386,9 @@ section TypeDvd
 open UniqueFactorizationMonoid
 
 open scoped Classical in
-/-- A squarefree monic polynomial whose irreducible factors have finite closures has a type.-/
+/-- A squarefree monic polynomial whose irreducible factors have finite closures has a type.
+@isnad1 id=ex.3h2v.s11.bf34f19d468f from=translated src=- shape=cc002374 vocab=52326304
+-/
 theorem squarefree_monic_has_polynomial_type (O : Type) [CommRing O] [IsDomain O]
     (F : Polynomial (BaseField O)) (hF : F.Monic) (hsq : Squarefree F)
     (hfin : ∀ g ∈ normalizedFactors F, Module.Finite O (integralClosure O (AdjoinRoot g))) :
@@ -385,7 +409,9 @@ theorem squarefree_monic_has_polynomial_type (O : Type) [CommRing O] [IsDomain O
     rw [← Multiset.coe_nodup, Multiset.coe_toList]
     exact (squarefree_iff_nodup_normalizedFactors h0).1 hsq
 
-/-- A monic divisor of a polynomial with a type has a type.-/
+/-- A monic divisor of a polynomial with a type has a type.
+@isnad1 id=ex.3h4v.s8.f428d0d7d598 from=translated src=- shape=b3c1698f vocab=e60967ca
+-/
 theorem polynomial_type_dvd (O : Type) [CommRing O] [IsDomain O]
     (F G : Polynomial (BaseField O)) (σ : FactorType)
     (hF : HasPolynomialTypeF O F σ) (hG : G.Monic) (hdvd : G ∣ F) :
@@ -408,7 +434,9 @@ end TypeDvd
 
 /-! ### Algebra types -/
 
-/-- Algebra types are invariant under `O`-algebra isomorphism.-/
+/-- Algebra types are invariant under `O`-algebra isomorphism.
+@isnad1 id=hasalgeb.1h5v.s6.b60a8fced625 from=translated src=- shape=32fb8253 vocab=4d40ef6d
+-/
 theorem algebra_type_algEquiv (O : Type) [CommRing O] [IsDomain O] (B B' : Type) [CommRing B]
     [CommRing B'] [Algebra O B] [Algebra O B'] (e : B ≃ₐ[O] B') (σ : FactorType)
     (h : HasAlgebraType O B σ) : HasAlgebraType O B' σ := by
@@ -417,7 +445,9 @@ theorem algebra_type_algEquiv (O : Type) [CommRing O] [IsDomain O] (B B' : Type)
     (Algebra.TensorProduct.congr AlgEquiv.refl e).symm.trans e₀, hσ⟩
 
 /-- Algebra types only depend on the generic fibre: an isomorphism `K ⊗_O A ≃ K ⊗_O B` transports
-the type of `B` to `A`.-/
+the type of `B` to `A`.
+@isnad1 id=hasalgeb.1h5v.s9.f0cfa82a3a31 from=translated src=- shape=f907a0bd vocab=b336e7c5
+-/
 theorem algebra_type_of_generic_fibre_equiv (O : Type) [CommRing O] [IsDomain O] (A B : Type)
     [CommRing A] [Algebra O A] [CommRing B] [Algebra O B]
     (e : TensorProduct O (BaseField O) A ≃ₐ[BaseField O] TensorProduct O (BaseField O) B)
@@ -425,7 +455,9 @@ theorem algebra_type_of_generic_fibre_equiv (O : Type) [CommRing O] [IsDomain O]
   obtain ⟨ι, i1, L, i2, i3, i4, i5, i6, g, hg⟩ := h
   exact ⟨ι, i1, L, i2, i3, i4, i5, i6, e.trans g, hg⟩
 
-/-- The type of a finite product of algebras is the sum of their types.-/
+/-- The type of a finite product of algebras is the sum of their types.
+@isnad1 id=hasalgeb.1h4v.s7.91568ed731c9 from=translated src=- shape=706e76b7 vocab=b7cb4545
+-/
 theorem algebra_type_pi (O : Type) [CommRing O] [IsDomain O] (n : ℕ) (B : Fin n → Type)
     [∀ j, CommRing (B j)] [∀ j, Algebra O (B j)] (σ : Fin n → FactorType)
     (h : ∀ j, HasAlgebraType O (B j) (σ j)) : HasAlgebraType O (∀ j, B j) (∑ j, σ j) := by
@@ -446,7 +478,9 @@ theorem algebra_type_pi (O : Type) [CommRing O] [IsDomain O] (n : ℕ) (B : Fin 
 
 /-! ### Integral closures in finite extensions -/
 
-/-- An `O`-algebra isomorphism `L ≃ L'` restricts to the integral closures of `O`.-/
+/-- An `O`-algebra isomorphism `L ≃ L'` restricts to the integral closures of `O`.
+@isnad1 id=ex.0h4v.s10.5bbf5358d2cc from=translated src=- shape=39e955b4 vocab=14cbdc1d
+-/
 theorem integral_closure_algEquiv (O L L' : Type) [CommRing O] [CommRing L] [CommRing L']
     [Algebra O L] [Algebra O L'] (e : L ≃ₐ[O] L') :
     ∃ φ : integralClosure O L ≃ₐ[O] integralClosure O L',
@@ -455,7 +489,9 @@ theorem integral_closure_algEquiv (O L L' : Type) [CommRing O] [CommRing L] [Com
     (Subalgebra.equivOfEq _ _ (integralClosure_map_algEquiv e)), fun _ ↦ rfl⟩
 
 /-- If the integral closure of a DVR `O` in a finite extension `L/K` is finite over `O`, it is
-free of rank `[L : K]`.-/
+free of rank `[L : K]`.
+@isnad1 id=and.0h3v.s9.17c4f442d6b4 from=translated src=- shape=00bd8b97 vocab=609b9409
+-/
 theorem integral_closure_finite_free (O K L : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [Field K] [Algebra O K] [IsFractionRing O K] [Field L]
     [Algebra K L] [Algebra O L] [IsScalarTower O K L] [FiniteDimensional K L]
@@ -474,7 +510,9 @@ theorem integral_closure_finite_free (O K L : Type) [CommRing O] [IsDomain O]
       (Module.Free.chooseBasis O (integralClosure O L)))]
 
 /-- Over a complete DVR with finite residue field, if the (finite) integral closure of `O` in
-`L` is local, its ramification index and inertia degree are positive with `e · f = [L : K]`.-/
+`L` is local, its ramification index and inertia degree are positive with `e · f = [L : K]`.
+@isnad1 id=and.1h3v.s10.447d42378182 from=translated src=- shape=41157c8c vocab=a07ae06e
+-/
 theorem integral_closure_invariants_degree (O K L : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [Field K] [Algebra O K] [IsFractionRing O K] [Field L] [Algebra K L]
     [Algebra O L] [IsScalarTower O K L] [FiniteDimensional K L]
@@ -490,7 +528,9 @@ theorem integral_closure_invariants_degree (O K L : Type) [CommRing O] [IsDomain
   rw [finite_flat_local_ramification_degree O (integralClosure O L), hrank]
 
 /-- The integral closure of a DVR `O` in a finite extension of `K = Frac O`, assumed finite over
-`O`, is not a field.-/
+`O`, is not a field.
+@isnad1 id=not.0h3v.s8.4376da90d7b2 from=translated src=- shape=d5a3b961 vocab=8469c729
+-/
 theorem integral_closure_not_field (O K L : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [Field K] [Algebra O K] [IsFractionRing O K] [Field L]
     [Algebra K L] [Algebra O L] [IsScalarTower O K L] [FiniteDimensional K L]
@@ -500,7 +540,9 @@ theorem integral_closure_not_field (O K L : Type) [CommRing O] [IsDomain O]
     (fun a b hab ↦ FaithfulSMul.algebraMap_injective O L (congrArg Subtype.val hab)) h)
 
 /-- The maximal ideals of a finite product of fields `∏ Lᵢ` are exactly the kernels of the
-projections, and distinct projections have distinct kernels.-/
+projections, and distinct projections have distinct kernels.
+@isnad1 id=and.0h3v.s9.a82a977ad610 from=translated src=- shape=ff951849 vocab=8cae00ac
+-/
 theorem pi_field_maximal_ideals (ι : Type) [Finite ι] (L : ι → Type) [∀ i, Field (L i)]
     (m : Ideal (∀ i, L i)) :
     (m.IsMaximal ↔ ∃ i, m = RingHom.ker (Pi.evalRingHom L i)) ∧ ∀ i j : ι,
@@ -541,7 +583,9 @@ theorem pi_field_maximal_ideals (ι : Type) [Finite ι] (L : ι → Type) [∀ i
 /-! ### Unramified base change -/
 
 /-- For a finite free extension of DVRs `O → Oδ` of rank `δ` in which a uniformizer stays
-irreducible, `K ⊗_O Oδ` is a field of degree `δ` over `K` and a fraction field of `Oδ`.-/
+irreducible, `K ⊗_O Oδ` is a field of degree `δ` over `K` and a fraction field of `Oδ`.
+@isnad1 id=and.3h4v.s10.1381204d3aae from=translated src=- shape=de503547 vocab=a2eedbb2
+-/
 theorem unramified_fraction_base_change (O Oδ : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [CommRing Oδ] [IsDomain Oδ] [IsDiscreteValuationRing Oδ]
     [Algebra O Oδ] [Module.Finite O Oδ] [Module.Free O Oδ] (δ : ℕ) (hrank : Module.finrank O Oδ = δ)
@@ -580,7 +624,9 @@ theorem unramified_fraction_base_change (O Oδ : Type) [CommRing O] [IsDomain O]
 
 /-- In the unramified situation of `unramified_fraction_base_change`, a presentation of the
 `Oδ`-generic fibre of an `Oδ`-algebra `B` as a product of fields `Lᵢ` induces compatible
-`K`- and `O`-structures on the `Lᵢ` and a presentation of the `O`-generic fibre of `B`.-/
+`K`- and `O`-structures on the `Lᵢ` and a presentation of the `O`-generic fibre of `B`.
+@isnad1 id=ex.3h8v.s11.c96444940172 from=translated src=- shape=0165d09d vocab=946bdb44
+-/
 theorem unramified_generic_fibre_witness (O Oδ : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [CommRing Oδ] [IsDomain Oδ] [IsDiscreteValuationRing Oδ]
     [Algebra O Oδ] [Module.Finite O Oδ] [Module.Free O Oδ] (δ : ℕ) (hrank : Module.finrank O Oδ = δ)

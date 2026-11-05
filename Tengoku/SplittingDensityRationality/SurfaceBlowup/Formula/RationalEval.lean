@@ -54,7 +54,9 @@ private theorem expression_rational_eval (x : Expr) (q : ℚ) (hx : x.safe q) :
   exact h3.symm
 
 /-- The rational functions of the monic and projective expressions evaluate correctly at
-prime powers.-/
+prime powers.
+@isnad1 id=and.1h3v.s6.441a4b7604cb from=translated src=- shape=30b2b9e7 vocab=1f5d323f
+-/
 theorem global_rational_eval (n : ℕ) (σ : FactorType) :
     ∀ q : ℕ, PrimePower q → RatFunc.eval (RingHom.id ℚ) q (monicExpr n σ).rational =
         (monicExpr n σ).eval q ∧ RatFunc.eval (RingHom.id ℚ) q (projectiveExpr n σ).rational =

@@ -68,21 +68,27 @@ end State
 
 /-! ### Evaluation and safety of expressions -/
 
-/-- Evaluation of a formal power: `(x ^ n)(q) = x(q) ^ n`.-/
+/-- Evaluation of a formal power: `(x ^ n)(q) = x(q) ^ n`.
+@isnad1 id=eq.0h3v.s4.171b6c1face1 from=translated src=- shape=a4281a21 vocab=54697a02
+-/
 theorem expression_pow_eval (x : Expr) (q : ℚ) (n : ℕ) :
     (x.pow n).eval q = (x.eval q)^n := by
   induction n with
   | zero => simp [Expr.pow, Expr.eval]
   | succ n ih => simp [Expr.pow, Expr.eval, ih, pow_succ]
 
-/-- A formal power of a safe expression is safe.-/
+/-- A formal power of a safe expression is safe.
+@isnad1 id=safe.1h3v.s3.6013193cb664 from=translated src=- shape=c21f3306 vocab=8da2f53e
+-/
 theorem expression_pow_safe (x : Expr) (q : ℚ) (n : ℕ) (hx : x.safe q) :
     (x.pow n).safe q := by
   induction n with
   | zero => simp [Expr.pow, Expr.safe]
   | succ n ih => exact ⟨ih, hx⟩
 
-/-- Evaluation of a formal product is the product of the evaluations.-/
+/-- Evaluation of a formal product is the product of the evaluations.
+@isnad1 id=eq.0h2v.s4.1a4d2dd631ab from=translated src=- shape=501ec267 vocab=d077ebe2
+-/
 theorem expression_prod_eval (xs : List Expr) (q : ℚ) :
     (Expr.prod xs).eval q = (xs.map (Expr.eval q)).prod := by
   induction xs <;> simp_all [Expr.prod, Expr.eval]
@@ -92,12 +98,16 @@ private theorem expression_prod_safe (xs : List Expr) (q : ℚ) (h : ∀ x ∈ x
     (Expr.prod xs).safe q := by
   induction xs <;> simp_all [Expr.prod, Expr.safe]
 
-/-- Evaluation of a formal sum is the sum of the evaluations.-/
+/-- Evaluation of a formal sum is the sum of the evaluations.
+@isnad1 id=eq.0h2v.s4.f87dfb0f786d from=translated src=- shape=501ec267 vocab=8946f93f
+-/
 theorem expression_sum_eval (xs : List Expr) (q : ℚ) :
     (Expr.sum xs).eval q = (xs.map (Expr.eval q)).sum := by
   induction xs <;> simp_all [Expr.sum, Expr.eval]
 
-/-- A formal sum of safe expressions is safe.-/
+/-- A formal sum of safe expressions is safe.
+@isnad1 id=safe.1h2v.s4.eaa757ffdc90 from=translated src=- shape=e0afc4bf vocab=74f01c5c
+-/
 theorem expression_sum_safe (xs : List Expr) (q : ℚ) (h : ∀ x ∈ xs, x.safe q) :
     (Expr.sum xs).safe q := by
   induction xs <;> simp_all [Expr.sum, Expr.safe]
@@ -119,7 +129,9 @@ private theorem expression_subst_safe (x y : Expr) (q : ℚ) (hy : y.safe q)
   | inv a iha => exact ⟨iha hx.1, by rw [expression_subst_eval]; exact hx.2⟩
 
 /-- At a point where `x` is safe, the denominator of `x.fraction` does not vanish and `x`
-evaluates to numerator over denominator.-/
+evaluates to numerator over denominator.
+@isnad1 id=and.1h2v.s6.53a494186ba3 from=translated src=- shape=5748a240 vocab=8faac9f6
+-/
 theorem expression_fraction (x : Expr) (q : ℚ) (hx : x.safe q) :
     x.fraction.2.eval q ≠ 0 ∧ x.eval q = x.fraction.1.eval q / x.fraction.2.eval q := by
   induction x with
@@ -143,12 +155,16 @@ theorem expression_fraction (x : Expr) (q : ℚ) (hx : x.safe q) :
     simp only [Expr.fraction, Expr.eval]
     exact ⟨fun h ↦ hne (by rw [hx2, h, zero_div]), by rw [hx2, inv_div]⟩
 
-/-- The rational function of an expression is regular at every point where it is safe.-/
+/-- The rational function of an expression is regular at every point where it is safe.
+@isnad1 id=regulara.1h2v.s3.2e2460efc6cd from=translated src=- shape=1ca98ecd vocab=a43d3329
+-/
 theorem expression_regular (x : Expr) (q : ℚ) (hx : x.safe q) :
     RegularAt x.rational q :=
   ⟨x.fraction.1, x.fraction.2, (expression_fraction x q hx).1, rfl⟩
 
-/-- Positivity of the projective normalizer `1 + q + ⋯ + qⁿ` at `q ≥ 0`.-/
+/-- Positivity of the projective normalizer `1 + q + ⋯ + qⁿ` at `q ≥ 0`.
+@isnad1 id=lt.1h2v.s4.fd4871600144 from=translated src=- shape=92d51a0f vocab=124328c0
+-/
 theorem projective_normalizer_positive (n : ℕ) (q : ℚ) (hq : 0 ≤ q) :
     0 < (projectiveNormalizer n).eval q := by
   simp only [projectiveNormalizer, expression_sum_eval, List.map_map, Function.comp_def,
@@ -158,7 +174,9 @@ theorem projective_normalizer_positive (n : ℕ) (q : ℚ) (hq : 0 ≤ q) :
     List.sum_nonneg (by simp only [List.mem_map]; rintro _ ⟨_, _, rfl⟩; positivity)
   linarith
 
-/-- A prime power is at least `2`.-/
+/-- A prime power is at least `2`.
+@isnad1 id=le.1h1v.s3.75db79e47488 from=translated src=- shape=7d122e43 vocab=d45992ab
+-/
 theorem prime_power_ge_two (q : ℕ) (hq : PrimePower q) :
     2 ≤ q := by
   obtain ⟨p, r, hp, hr, rfl⟩ := hq
@@ -177,7 +195,9 @@ private theorem otherChildren_degree_sum {n : ℕ} (a : ℕ) (m : Pattern n) :
   ring
 
 /-- Degree identity for one blowup step: for an allowed pattern, `∑ e · deg(child) = deg(s)`
-over the children `(e, child)`.-/
+over the children `(e, child)`.
+@isnad1 id=eq.2h2v.s5.525ca1c33923 from=translated src=- shape=438fba2f vocab=82819460
+-/
 theorem children_degree_identity (s : State) (hs : s.Valid) (P : TangentPattern s.degree)
     (hP : Allowed s P) :
     ((children s P).map fun z ↦ z.1 * z.2.degree).sum = s.degree := by
@@ -220,7 +240,9 @@ theorem children_degree_identity (s : State) (hs : s.Valid) (P : TangentPattern 
       (try (obtain rfl := e1 ‹R = 0›; subst ‹R = 0›)) <;>
       (try (obtain rfl := e2 ‹X = 0›; subst ‹X = 0›)) <;> ring
 
-/-- Every child of a tangent pattern has positive residue degree.-/
+/-- Every child of a tangent pattern has positive residue degree.
+@isnad1 id=lt.1h3v.s5.4f33b284bc3f from=translated src=- shape=ca1b82d7 vocab=dba1d702
+-/
 theorem children_residue_degree_pos (s : State) (P : TangentPattern s.degree) (z : ℕ × State)
     (hz : z ∈ children s P) :
     0 < z.1 := by
@@ -233,7 +255,9 @@ theorem children_residue_degree_pos (s : State) (P : TangentPattern s.degree) (z
   · exact hz.elim (fun hz ↦ by split_ifs at hz <;> simp_all) (hO _ _)
   · exact hz.elim (fun hz ↦ by rcases hz with hz | hz <;> split_ifs at hz <;> simp_all) (hO _ _)
 
-/-- Each child of an allowed pattern has degree at most that of the parent state.-/
+/-- Each child of an allowed pattern has degree at most that of the parent state.
+@isnad1 id=le.3h3v.s5.a207ff8efc75 from=translated src=- shape=8dbf9881 vocab=74fbbddb
+-/
 theorem child_degree_le (s : State) (hs : s.Valid) (P : TangentPattern s.degree)
     (hP : Allowed s P) (z : ℕ × State) (hz : z ∈ children s P) :
     z.2.degree ≤ s.degree := by
@@ -243,7 +267,9 @@ theorem child_degree_le (s : State) (hs : s.Valid) (P : TangentPattern s.degree)
         List.single_le_sum (by simp) _ (List.mem_map.2 ⟨z, hz, rfl⟩)
     _ = _ := children_degree_identity s hs P hP
 
-/-- Children of an allowed pattern on a valid state are valid states.-/
+/-- Children of an allowed pattern on a valid state are valid states.
+@isnad1 id=valid.3h3v.s5.ccbc5bd306cd from=translated src=- shape=61c9737d vocab=28851d55
+-/
 theorem children_valid (s : State) (hs : s.Valid) (P : TangentPattern s.degree)
     (hP : Allowed s P) (z : ℕ × State) (hz : z ∈ children s P) :
     z.2.Valid := by
@@ -282,7 +308,9 @@ theorem children_valid (s : State) (hs : s.Valid) (P : TangentPattern s.degree)
     · exact other (a+b) _ (by omega) hz
 
 /-- Counting the "other" children of residue degree `δ` and contact `r` of a unit-weight
-pattern, their shape, and their total number.-/
+pattern, their shape, and their total number.
+@isnad1 id=and.0h4v.s8.a5e82fa8a8ca from=translated src=- shape=4d9d83cc vocab=56c72fb7
+-/
 theorem other_children_count (n : ℕ) (m : Pattern n) (δ r : ℕ) :
     List.count (δ, State.single 1 r) (otherChildren 1 m) =
         (if h : 1 ≤ δ ∧ δ ≤ n ∧ 1 ≤ r ∧ r ≤ n then
@@ -320,7 +348,9 @@ theorem other_children_count (n : ℕ) (m : Pattern n) (δ r : ℕ) :
     exact ⟨ij, (List.mem_replicate.mp h).2⟩
   · simp [otherChildren, List.length_flatMap, Finset.sum_map_toList]
 
-/-- Among valid states, smaller degree forces smaller rank.-/
+/-- Among valid states, smaller degree forces smaller rank.
+@isnad1 id=lt.2h2v.s4.682ce1af1834 from=translated src=- shape=c24b6103 vocab=ea07a88f
+-/
 theorem rank_lt_of_degree_lt (s u : State) (hu : u.Valid)
     (h : u.degree < s.degree) :
     u.rank < s.rank := by
@@ -333,7 +363,9 @@ theorem rank_lt_of_degree_lt (s u : State) (hu : u.Valid)
 /-! ### Density values and safety of divisor counts -/
 
 /-- Arithmetic of `densityValue` (multiplicativity, additivity, values on `q⁻ⁿ` and `1`,
-finiteness and positivity) and positivity of state volumes at an integer `q ≥ 2`.-/
+finiteness and positivity) and positivity of state volumes at an integer `q ≥ 2`.
+@isnad1 id=and.4h5v.s7.b0909bc8c4c9 from=translated src=- shape=14bff5da vocab=2438d4b2
+-/
 theorem density_value_arith (q : ℕ) (hq : 2 ≤ q) (x y : Expr) (hx : 0 ≤ x.eval q)
     (hy : 0 ≤ y.eval q) (n : ℕ) (s : State) (hs : s.Valid) :
     densityValue (.mul x y) q = densityValue x q * densityValue y q ∧
@@ -366,7 +398,9 @@ theorem density_value_arith (q : ℕ) (hq : 2 ≤ q) (x y : Expr) (hx : 0 ≤ x.
       ENNReal.ofReal_natCast, ENNReal.inv_pow]
   · simp [densityValue, Expr.eval]
 
-/-- Every divisor count expression is safe at every integer `q ≥ 2`.-/
+/-- Every divisor count expression is safe at every integer `q ≥ 2`.
+@isnad1 id=allsafe.0h3v.s3.a9b39b328030 from=translated src=- shape=4e6bca47 vocab=06f711d6
+-/
 theorem divisor_count_safe (n : ℕ) (offset : ℤ) (m : Pattern n) :
     (divisorCount offset m).allSafe := by
   intro q _
@@ -387,7 +421,9 @@ theorem divisor_count_safe (n : ℕ) (offset : ℤ) (m : Pattern n) :
   rintro _ ⟨j, _, rfl⟩
   exact ⟨hav _, trivial, trivial⟩
 
-/-- Every divisor probability expression is safe at every integer `q ≥ 2`.-/
+/-- Every divisor probability expression is safe at every integer `q ≥ 2`.
+@isnad1 id=allsafe.0h2v.s3.da50f52ea0d2 from=translated src=- shape=c57da3d9 vocab=26483ca1
+-/
 theorem divisor_probability_safe (s : State) (d : ℕ) :
     (divisorProbability s d).allSafe := by
   intro q hq
@@ -428,7 +464,9 @@ private theorem lawCoeff_eval (L : Law) (σ : FactorType) (q : ℚ) :
   split_ifs <;> simp [Expr.eval, *]
 
 /-- Coefficients of a descended law: `lawDescend δ L` has coefficient `L_τ(q^δ)` at
-`scaleType δ τ` and vanishing coefficients at types not of this form.-/
+`scaleType δ τ` and vanishing coefficients at types not of this form.
+@isnad1 id=and.1h4v.s6.8ef3b3f4f620 from=translated src=- shape=3dfb860f vocab=d8a4c69e
+-/
 theorem law_coeff_descend (δ : ℕ) (hδ : 0 < δ) (L : Law) (τ : FactorType) (q : ℚ) :
     (lawCoeff (lawDescend δ L) (scaleType δ τ)).eval q = (lawCoeff L τ).eval (q ^ δ) ∧
       ∀ σ : FactorType, (∀ τ' : FactorType, σ ≠ scaleType δ τ') →
@@ -457,20 +495,28 @@ section lawInterp
 
 variable {S : Type*} [Semiring S] (v : Expr → S)
 
-/-- The interpretation of the empty law is `0`.-/
+/-- The interpretation of the empty law is `0`.
+@isnad1 id=eq.0h2v.s5.9323aadd1375 from=translated src=- shape=2703a9ac vocab=14787e03
+-/
 theorem lawInterp_nil : lawInterp v [] = 0 := rfl
 
-/-- The interpretation is additive on concatenation.-/
+/-- The interpretation is additive on concatenation.
+@isnad1 id=eq.0h4v.s6.23de26d0295c from=translated src=- shape=b11b362e vocab=7b161633
+-/
 theorem lawInterp_append (L M : Law) : lawInterp v (L ++ M) = lawInterp v L + lawInterp v M := by
   simp [lawInterp]
 
-/-- The interpretation sends a `flatMap` to the sum of the pieces.-/
+/-- The interpretation sends a `flatMap` to the sum of the pieces.
+@isnad1 id=eq.0h5v.s6.799a37fcecf7 from=translated src=- shape=994ec80b vocab=9f9bfc5a
+-/
 theorem lawInterp_flatMap {α : Type} (xs : List α) (g : α → Law) :
     lawInterp v (xs.flatMap g) = (xs.map fun u ↦ lawInterp v (g u)).sum := by
   simp [lawInterp, List.flatMap_def, List.map_flatten, List.sum_flatten, List.map_map,
     Function.comp_def]
 
-/-- For a multiplicative valuation, the interpretation is multiplicative on `lawMul`.-/
+/-- For a multiplicative valuation, the interpretation is multiplicative on `lawMul`.
+@isnad1 id=eq.1h4v.s6.db936ccff1c1 from=translated src=- shape=a82f893a vocab=21a3d8c8
+-/
 theorem lawInterp_lawMul (hv : ∀ x y, v (.mul x y) = v x * v y) (L M : Law) :
     lawInterp v (lawMul L M) = lawInterp v L * lawInterp v M := by
   simp only [lawInterp, lawMul, List.flatMap_def, List.map_flatten, List.sum_flatten,
@@ -478,21 +524,27 @@ theorem lawInterp_lawMul (hv : ∀ x y, v (.mul x y) = v x * v y) (L M : Law) :
   simp [← List.sum_map_mul_left, AddMonoidAlgebra.single_mul_single, hv]
 
 /-- For a multiplicative valuation, the interpretation turns `lawScale x` into multiplication
-by the scalar `v x`.-/
+by the scalar `v x`.
+@isnad1 id=eq.1h4v.s6.e8c450378a66 from=translated src=- shape=c9d76ffe vocab=137aeae4
+-/
 theorem lawInterp_lawScale (hv : ∀ x y, v (.mul x y) = v x * v y) (x : Expr) (L : Law) :
     lawInterp v (lawScale x L) = AddMonoidAlgebra.single 0 (v x) * lawInterp v L := by
   simp [lawInterp, lawScale, List.map_map, Function.comp_def, ← List.sum_map_mul_left,
     AddMonoidAlgebra.single_mul_single, hv]
 
 /-- For a multiplicative valuation with `v 1 = 1`, the interpretation is multiplicative on
-finite products `lawProd`.-/
+finite products `lawProd`.
+@isnad1 id=eq.2h3v.s6.0d212ddde805 from=translated src=- shape=3405ab11 vocab=ce074422
+-/
 theorem lawInterp_lawProd (hv : ∀ x y, v (.mul x y) = v x * v y) (h1 : v (.const 1) = 1)
     (Ls : List Law) : lawInterp v (lawProd Ls) = (Ls.map (lawInterp v)).prod := by
   induction Ls with
   | nil => simp [lawProd, lawOne, lawInterp, h1, AddMonoidAlgebra.one_def]
   | cons L Ls ih => rw [lawProd, List.foldr_cons, ← lawProd, lawInterp_lawMul v hv, ih]; rfl
 
-/-- The coefficients of the interpretation: the sum of the values of the matching entries.-/
+/-- The coefficients of the interpretation: the sum of the values of the matching entries.
+@isnad1 id=eq.0h4v.s6.4980ecdb482b from=translated src=- shape=a5b90b8f vocab=ba52ea6b
+-/
 theorem lawInterp_coeff (L : Law) (σ : FactorType) :
     (lawInterp v L).coeff σ = (L.map fun z ↦ if z.1 = σ then v z.2 else 0).sum := by
   rw [lawInterp, ← AddMonoidAlgebra.coeffAddEquiv_apply, map_list_sum,
@@ -515,7 +567,9 @@ private theorem lawCoeff_eval_interp (L : Law) (σ : FactorType) (q : ℚ) :
   (lawCoeff_eval L σ q).trans (lawInterp_coeff _ L σ).symm
 
 /-- Coefficients are additive under concatenation, vanish on the empty law, and sum over a
-`flatMap`.-/
+`flatMap`.
+@isnad1 id=and.0h7v.s6.334cfd489eb6 from=translated src=- shape=dd55f58b vocab=67b3f6ee
+-/
 theorem law_coeff_flatMap (α : Type) (xs : List α) (f : α → Law) (L M : Law) (σ : FactorType)
     (q : ℚ) :
     (lawCoeff (L ++ M) σ).eval q = (lawCoeff L σ).eval q + (lawCoeff M σ).eval q ∧
@@ -528,7 +582,9 @@ theorem law_coeff_flatMap (α : Type) (xs : List α) (f : α → Law) (L M : Law
     map_list_sum, List.map_map, List.map_map]
   rfl
 
-/-- Coefficient formula for a product of two laws: a convolution over the types of `L`.-/
+/-- Coefficient formula for a product of two laws: a convolution over the types of `L`.
+@isnad1 id=eq.0h4v.s7.e8bf6679f405 from=translated src=- shape=de7d561b vocab=887d8efa
+-/
 theorem law_coeff_mul (L M : Law) (σ : FactorType) (q : ℚ) :
     (lawCoeff (lawMul L M) σ).eval q = ∑ τ ∈ (L.map Prod.fst).toFinset,
       (if τ ≤ σ then (lawCoeff L τ).eval q * (lawCoeff M (σ - τ)).eval q else 0) := by
@@ -564,7 +620,9 @@ private theorem sum_piFinset_succ (n : ℕ) (t : Fin (n + 1) → Finset FactorTy
     exact fun i ↦ Fin.cases (by simpa using hp.1) (fun j ↦ by simpa using hp.2 j) i
   all_goals intros; simp
 
-/-- Coefficient formula for a product of descended laws `∏ⱼ lawDescend δⱼ Lⱼ`.-/
+/-- Coefficient formula for a product of descended laws `∏ⱼ lawDescend δⱼ Lⱼ`.
+@isnad1 id=eq.1h3v.s8.637d6a025449 from=translated src=- shape=2a8c971c vocab=3869aae4
+-/
 theorem law_coeff_prod_descend (Ls : List (ℕ × Law)) (hδ : ∀ z ∈ Ls, 0 < z.1)
     (σ : FactorType) (q : ℚ) :
     (lawCoeff (lawProd (Ls.map fun z ↦ lawDescend z.1 z.2)) σ).eval q =
@@ -607,7 +665,9 @@ theorem law_coeff_prod_descend (Ls : List (ℕ × Law)) (hδ : ∀ z ∈ Ls, 0 <
       exact hle (h ▸ le_self_add)
 
 /-- Coefficient formula for a finite product of laws `∏ⱼ Dl j`, and vanishing of the
-coefficients of a law at types that do not occur in it.-/
+coefficients of a law at types that do not occur in it.
+@isnad1 id=and.0h4v.s7.58bcb0c82ce8 from=translated src=- shape=ffd193b2 vocab=0b831484
+-/
 theorem law_coeff_prod_formula (L : ℕ) (Dl : Fin L → Law) (σ : FactorType) (q : ℚ) :
     ((lawCoeff (lawProd (List.ofFn Dl)) σ).eval q =
         ∑ τ ∈ Fintype.piFinset (fun j ↦ ((Dl j).map Prod.fst).toFinset),
@@ -634,7 +694,9 @@ theorem law_coeff_prod_formula (L : ℕ) (Dl : Fin L → Law) (σ : FactorType) 
   · rw [lawCoeff_eval_interp]
     exact lawInterp_coeff_eq_zero _ M τ h
 
-/-- Coefficients of a scaled law: `(x · L)_σ = x · L_σ`.-/
+/-- Coefficients of a scaled law: `(x · L)_σ = x · L_σ`.
+@isnad1 id=eq.0h4v.s5.b8fb5307427d from=translated src=- shape=03940b29 vocab=5a227e9f
+-/
 theorem law_coeff_scale (x : Expr) (L : Law) (σ : FactorType) (q : ℚ) :
     (lawCoeff (lawScale x L) σ).eval q = x.eval q * (lawCoeff L σ).eval q := by
   rw [lawCoeff_eval_interp, lawCoeff_eval_interp,
@@ -642,7 +704,9 @@ theorem law_coeff_scale (x : Expr) (L : Law) (σ : FactorType) (q : ℚ) :
 
 /-- Nonnegativity of law coefficients at `q` is preserved by scaling by nonnegative
 expressions, products, finite products, flat maps and descents, and holds for atoms and the
-unit law; the empty law has zero coefficients.-/
+unit law; the empty law has zero coefficients.
+@isnad1 id=and.0h1v.s8.22e52582da9c from=translated src=- shape=032100ef vocab=03600f23
+-/
 theorem law_coeff_nonneg_closure (q : ℚ) :
     (∀ (x : Expr) (L : Law), 0 ≤ x.eval q → (∀ σ : FactorType, 0 ≤ (lawCoeff L σ).eval q) →
       ∀ σ : FactorType, 0 ≤ (lawCoeff (lawScale x L) σ).eval q) ∧
@@ -695,7 +759,9 @@ theorem law_coeff_nonneg_closure (q : ℚ) :
     simp only [lawCoeff_eval, lawAtom, List.map_cons, List.map_nil, List.sum_cons, List.sum_nil]
     split_ifs <;> simp [Expr.eval]
 
-/-- Descents of safe laws are safe.-/
+/-- Descents of safe laws are safe.
+@isnad1 id=lawsafe.2h2v.s4.2efb3a64f645 from=translated src=- shape=1f5dabc5 vocab=bcae6e5d
+-/
 theorem law_safe_descend (δ : ℕ) (hδ : 0 < δ) (L : Law) (hL : LawSafe L) :
     LawSafe (lawDescend δ L) := by
   intro z hz
@@ -710,7 +776,9 @@ theorem law_safe_descend (δ : ℕ) (hδ : 0 < δ) (L : Law) (hL : LawSafe L) :
   rw [this]
   exact hL w hw _ (hq.trans (Nat.le_self_pow (by omega) q))
 
-/-- Products of safe laws are safe.-/
+/-- Products of safe laws are safe.
+@isnad1 id=lawsafe.2h2v.s3.b95f45199487 from=translated src=- shape=03e07a40 vocab=06c0d505
+-/
 theorem law_safe_mul (L M : Law) (hL : LawSafe L) (hM : LawSafe M) :
     LawSafe (lawMul L M) := by
   intro z hz
@@ -718,7 +786,9 @@ theorem law_safe_mul (L M : Law) (hL : LawSafe L) (hM : LawSafe M) :
   obtain ⟨a, ha, b, hb, rfl⟩ := hz
   exact fun q hq ↦ ⟨hL a ha q hq, hM b hb q hq⟩
 
-/-- Scaling a safe law by an everywhere-safe expression gives a safe law.-/
+/-- Scaling a safe law by an everywhere-safe expression gives a safe law.
+@isnad1 id=lawsafe.2h2v.s3.09439c4ed569 from=translated src=- shape=81969d23 vocab=16d8e921
+-/
 theorem law_safe_scale (x : Expr) (L : Law) (hx : x.allSafe) (hL : LawSafe L) :
     LawSafe (lawScale x L) := by
   intro z hz
@@ -729,7 +799,9 @@ theorem law_safe_scale (x : Expr) (L : Law) (hx : x.allSafe) (hL : LawSafe L) :
 /-! ### Algebraic and topological facts -/
 
 /-- For an `I`-adic topology, the congruence cylinders `{b | ∀ j, b j - a j ∈ I ^ L}` are
-clopen (hence compact when `O` is compact), and their products are closed.-/
+clopen (hence compact when `O` is compact), and their products are closed.
+@isnad1 id=and.1h3v.s9.37f3c3a7b2a4 from=translated src=- shape=2db69419 vocab=cb63c0a3
+-/
 theorem coordinate_cylinder_clopen (O : Type) [CommRing O] [TopologicalSpace O]
     [IsTopologicalRing O] (I : Ideal O) (htop : IsAdic I) (L : ℕ) :
     (∀ (n : ℕ) (a : Fin n → O), IsOpen {b : Fin n → O | ∀ j, b j - a j ∈ I ^ L} ∧
@@ -757,7 +829,9 @@ theorem coordinate_cylinder_clopen (O : Type) [CommRing O] [TopologicalSpace O]
 
 open Polynomial in
 /-- Over a discrete valuation ring `R` with fraction field `K`, a monic polynomial `A` and a
-polynomial `B` reducing to `1` modulo the maximal ideal are coprime over `K`.-/
+polynomial `B` reducing to `1` modulo the maximal ideal are coprime over `K`.
+@isnad1 id=iscoprim.2h4v.s8.72037ed97a57 from=translated src=- shape=f295e1e2 vocab=1fb6c82f
+-/
 theorem coprime_of_monic_reduction_one (R K : Type) [CommRing R] [IsDomain R]
     [IsDiscreteValuationRing R] [Field K] [Algebra R K] [IsFractionRing R K] (A B : Polynomial R)
     (hA : A.Monic) (hB : B.map (IsLocalRing.residue R) = 1) :
@@ -797,7 +871,9 @@ theorem coprime_of_monic_reduction_one (R K : Type) [CommRing R] [IsDomain R]
   omega
 
 /-- For an integral extension of local rings, the maximal ideal of `B` lies over that of `O`,
-and it is the only prime of `B` lying over it.-/
+and it is the only prime of `B` lying over it.
+@isnad1 id=and.0h2v.s7.ac02ac87a5e0 from=translated src=- shape=3ce8abdc vocab=19dcfdea
+-/
 theorem integral_local_extension_unique_prime (O B : Type) [CommRing O] [IsLocalRing O]
     [CommRing B] [IsLocalRing B] [Algebra O B] [Algebra.IsIntegral O B] :
     (IsLocalRing.maximalIdeal B).comap (algebraMap O B) = IsLocalRing.maximalIdeal O ∧
@@ -808,7 +884,9 @@ theorem integral_local_extension_unique_prime (O B : Type) [CommRing O] [IsLocal
   have hm : (Q.comap (algebraMap O B)).IsMaximal := by rw [hc]; infer_instance
   exact IsLocalRing.eq_maximalIdeal (Ideal.isMaximal_of_isIntegral_of_isMaximal_comap Q hm)
 
-/-- For a finite flat extension of local rings `O → B`, `e · f = [B : O]`.-/
+/-- For a finite flat extension of local rings `O → B`, `e · f = [B : O]`.
+@isnad1 id=eq.0h2v.s7.08f72401d2bb from=translated src=- shape=ff35d332 vocab=ca041c00
+-/
 theorem finite_flat_local_ramification_degree (O B : Type) [CommRing O] [IsDomain O]
     [IsLocalRing O] [CommRing B] [IsLocalRing B] [Algebra O B] [Module.Finite O B]
     [Module.Flat O B] :
@@ -826,7 +904,9 @@ theorem finite_flat_local_ramification_degree (O B : Type) [CommRing O] [IsDomai
     show (default : (IsLocalRing.maximalIdeal O).primesOver B) = m from Subsingleton.elim _ _]
     at this
 
-/-- There are finitely many valid factorization types of a given degree.-/
+/-- There are finitely many valid factorization types of a given degree.
+@isnad1 id=finite.0h1v.s4.694b570c67a1 from=translated src=- shape=b95c71f4 vocab=98a0a1d8
+-/
 theorem finite_types_of_degree (n : ℕ) :
     Set.Finite {σ : FactorType | ValidType σ ∧ typeDegree σ = n} := by
   set s : Finset (ℕ × ℕ) := Finset.range (n+1) ×ˢ Finset.range (n+1)
@@ -856,7 +936,9 @@ theorem finite_types_of_degree (n : ℕ) :
     exact (Multiset.count_le_card _ _).trans hcard
   · simp [Multiset.count_eq_zero_of_notMem hz]
 
-/-- Geometric series with an exit weight: `∑ⱼ λʲ G = G / (1 - λ)` for `0 ≤ λ < 1`.-/
+/-- Geometric series with an exit weight: `∑ⱼ λʲ G = G / (1 - λ)` for `0 ≤ λ < 1`.
+@isnad1 id=hassum.2h2v.s6.2f0c67790cb2 from=translated src=- shape=a08ff1c7 vocab=5d04b269
+-/
 theorem geometric_exit_sum (lam G : ℝ) (hlam : 0 ≤ lam) (hlam1 : lam < 1) :
     HasSum (fun j : ℕ ↦ lam^j * G) (G / (1 - lam)) := by
   have h : ‖lam‖ < 1 := by rwa [Real.norm_eq_abs, abs_of_nonneg hlam]
@@ -864,7 +946,9 @@ theorem geometric_exit_sum (lam G : ℝ) (hlam : 0 ≤ lam) (hlam1 : lam < 1) :
   exact (hasSum_geometric_of_norm_lt_one h).mul_right G
 
 /-- The image of a measurable set under a map that is continuous and injective on a closed
-subset of a compact space (into a Hausdorff space) is measurable.-/
+subset of a compact space (into a Hausdorff space) is measurable.
+@isnad1 id=measurab.4h5v.s6.9b931c792846 from=translated src=- shape=d529a9a0 vocab=febee657
+-/
 theorem image_measurable_of_continuousOn_injOn_compact (X Y : Type) [TopologicalSpace X]
     [CompactSpace X] [MeasurableSpace X] [BorelSpace X] [TopologicalSpace Y] [T2Space Y]
     [MeasurableSpace Y] [BorelSpace Y] (f : X → Y) (C : Set X) (hC : IsClosed C)
@@ -876,7 +960,9 @@ theorem image_measurable_of_continuousOn_injOn_compact (X Y : Type) [Topological
   have h := hemb.measurableSet_image.mpr (measurable_subtype_coe hU)
   rwa [Set.domRestrict_eq, Set.image_comp, Subtype.image_preimage_coe, Set.inter_comm] at h
 
-/-- The number of positions at which a list takes the value `x` is `l.count x`.-/
+/-- The number of positions at which a list takes the value `x` is `l.count x`.
+@isnad1 id=eq.0h3v.s5.767bb696a48f from=translated src=- shape=7ac3e90c vocab=b2880c88
+-/
 theorem list_get_fiber_card (α : Type) [DecidableEq α] (l : List α) (x : α) :
     Nat.card {j : Fin l.length // l.get j = x} = l.count x := by
   induction l with
@@ -901,7 +987,9 @@ theorem list_get_fiber_card (α : Type) [DecidableEq α] (l : List α) (x : α) 
     · have : IsEmpty {_u : Unit // a = x} := ⟨fun u ↦ h u.2⟩
       simp [h]
 
-/-- The polynomial `Xⁿ + ∑ aᵢ Xⁱ` is monic of degree `n`.-/
+/-- The polynomial `Xⁿ + ∑ aᵢ Xⁱ` is monic of degree `n`.
+@isnad1 id=and.0h3v.s6.7661f59b1faf from=translated src=- shape=aa9eeb71 vocab=a7f363a6
+-/
 theorem monic_polynomial_degree (O : Type) [CommRing O] [IsDomain O] (n : ℕ) (a : Fin n → O) :
     (monicPolynomial O a).Monic ∧ (monicPolynomial O a).natDegree = n := by
   have hdeg : (∑ i : Fin n, Polynomial.C (algebraMap O (BaseField O) (a i)) *

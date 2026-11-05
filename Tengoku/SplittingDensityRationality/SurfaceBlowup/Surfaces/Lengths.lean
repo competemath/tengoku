@@ -134,7 +134,9 @@ section
 variable (O : Type) [CommRing O]
 /-- The family killing X: the first variable goes to the one-variable variable, the second to 0.-/
 noncomputable def killXFamily : Fin 2 → PowerSeries O := ![PowerSeries.X, 0]
-/-- The family `killXFamily` is substitutable (zero constant coefficients).-/
+/-- The family `killXFamily` is substitutable (zero constant coefficients).
+@isnad1 id=hassubst.0h1v.s4.303ca207bf2b from=translated src=- shape=9db008c1 vocab=987f3e48
+-/
 theorem killXFamily_hasSubst : MvPowerSeries.HasSubst (killXFamily O) := by
   refine MvPowerSeries.hasSubst_of_constantCoeff_zero (fun s ↦ ?_)
   fin_cases s <;> simp [killXFamily, PowerSeries.X]
@@ -153,7 +155,9 @@ variable (O : Type) [CommRing O]
 /-- The substitution family of the t-chart point Z = α: T ↦ T, X ↦ T·(X + α) (x = tZ, Z = X + α).-/
 noncomputable def tChartFamily (α : O) : Fin 2 → TwoSeries O :=
   ![axisT O, axisT O * (axisX O + MvPowerSeries.C α)]
-/-- The family `tChartFamily` is substitutable (zero constant coefficients).-/
+/-- The family `tChartFamily` is substitutable (zero constant coefficients).
+@isnad1 id=hassubst.0h2v.s4.887cb1c62907 from=translated src=- shape=ba66887b vocab=ffdec9a3
+-/
 theorem tChartFamily_hasSubst (α : O) : MvPowerSeries.HasSubst (tChartFamily O α) := by
   refine MvPowerSeries.hasSubst_of_constantCoeff_zero (fun s ↦ ?_)
   fin_cases s <;> simp [tChartFamily, axisT, axisX]
@@ -162,7 +166,9 @@ noncomputable def chartSubst (α : O) : TwoSeries O →ₐ[O] TwoSeries O :=
   MvPowerSeries.substAlgHom (tChartFamily_hasSubst O α)
 /-- The substitution family of the x-chart point W = 0: T ↦ T·X, X ↦ T (t = xW, T = x, X = W).-/
 noncomputable def xChartFamily : Fin 2 → TwoSeries O := ![axisT O * axisX O, axisT O]
-/-- The family `xChartFamily` is substitutable (zero constant coefficients).-/
+/-- The family `xChartFamily` is substitutable (zero constant coefficients).
+@isnad1 id=hassubst.0h1v.s4.11e088ab34e3 from=translated src=- shape=7b7e1a25 vocab=8b26c96f
+-/
 theorem xChartFamily_hasSubst : MvPowerSeries.HasSubst (xChartFamily O) := by
   refine MvPowerSeries.hasSubst_of_constantCoeff_zero (fun s ↦ ?_)
   fin_cases s <;> simp [xChartFamily, axisT, axisX]
@@ -189,7 +195,9 @@ noncomputable def baseChangeUnit {O' : Type} [CommRing O'] (ρ : O →+* O') (u 
   Units.map (MvPowerSeries.map ρ).toMonoidHom u
 /-- The family killing T: T ↦ 0, X ↦ X, with values in one-variable power series.-/
 noncomputable def killTFamily : Fin 2 → PowerSeries O := ![0, PowerSeries.X]
-/-- The family `killTFamily` is substitutable (zero constant coefficients).-/
+/-- The family `killTFamily` is substitutable (zero constant coefficients).
+@isnad1 id=hassubst.0h1v.s4.f7603656c05f from=translated src=- shape=9db008c1 vocab=8ba7f5a2
+-/
 theorem killTFamily_hasSubst : MvPowerSeries.HasSubst (killTFamily O) := by
   refine MvPowerSeries.hasSubst_of_constantCoeff_zero (fun s ↦ ?_)
   fin_cases s <;> simp [killTFamily, PowerSeries.X]
@@ -206,7 +214,9 @@ variable {O S : Type} [CommRing O] [CommRing S]
 /-- The constant family (e, z) of a ring S, viewed in `MvPowerSeries Unit S`.-/
 noncomputable def nilpotentFamily (e z : S) : Fin 2 → MvPowerSeries Unit S :=
   ![MvPowerSeries.C e, MvPowerSeries.C z]
-/-- A family of two nilpotent constants is substitutable.-/
+/-- A family of two nilpotent constants is substitutable.
+@isnad1 id=hassubst.2h3v.s6.ce8a98751221 from=translated src=- shape=d25b23a5 vocab=6144cd52
+-/
 theorem nilpotentFamily_hasSubst (e z : S) (he : IsNilpotent e) (hz : IsNilpotent z) :
     MvPowerSeries.HasSubst (nilpotentFamily e z) := by
   refine MvPowerSeries.hasSubst_of_constantCoeff_nilpotent (fun s ↦ ?_)
@@ -327,7 +337,9 @@ private theorem X_pow_card_pow_sub_X_eq_prod_irreducible (k : Type) [Field k] [F
   rw [← hset, Finset.prod_eq_multiset_prod, Multiset.toFinset_val, Multiset.map_id',
     Multiset.dedup_eq_self.mpr hnodup, hprod]
 
-/-- Gauss's formula: `q^m = ∑_{d ∣ m} d · #{monic irreducible polynomials of degree d}`.-/
+/-- Gauss's formula: `q^m = ∑_{d ∣ m} d · #{monic irreducible polynomials of degree d}`.
+@isnad1 id=eq.1h2v.s7.75d227efd8e5 from=translated src=- shape=0320db7c vocab=5d770de7
+-/
 theorem card_pow_eq_sum_irreducible_degrees (k : Type) [Field k] [Finite k] (m : ℕ) (hm : 0 < m) :
     (Nat.card k) ^ m = ∑ d ∈ m.divisors, d *
     Nat.card {g : Polynomial k // g.Monic ∧ Irreducible g ∧ g.natDegree = d} := by
@@ -364,7 +376,9 @@ theorem card_pow_eq_sum_irreducible_degrees (k : Type) [Field k] [Finite k] (m :
   rw [Finset.mem_filter, hS]
   exact ⟨fun ⟨⟨h1, h2, _⟩, h4⟩ ↦ ⟨h1, h2, h4⟩, fun ⟨h1, h2, h4⟩ ↦ ⟨⟨h1, h2, h4 ▸ hd'⟩, h4⟩⟩
 
-/-- Möbius inversion of Gauss's formula: `δ · N_δ = ∑_{j ∣ δ} μ(j) q^(δ/j)`.-/
+/-- Möbius inversion of Gauss's formula: `δ · N_δ = ∑_{j ∣ δ} μ(j) q^(δ/j)`.
+@isnad1 id=eq.1h2v.s7.5e2320c54964 from=translated src=- shape=b3fab499 vocab=e90106f5
+-/
 theorem irreducible_count_moebius (k : Type) [Field k] [Finite k] (δ : ℕ) (hδ : 0 < δ) :
     (δ : ℚ) * (Nat.card {g : Polynomial k // g.Monic ∧ Irreducible g ∧ g.natDegree = δ} : ℕ) =
     ∑ j ∈ δ.divisors, ((ArithmeticFunction.moebius j : ℤ) : ℚ) * (Nat.card k : ℚ) ^ (δ / j) := by
@@ -466,13 +480,17 @@ private lemma lowOrderIdeal_le_pow (k : Type) [CommRing k] (L : ℕ) :
     exact Ideal.add_mem _ (Ideal.mul_mem_mul (Ideal.subset_span (by simp [axisT])) (ih hA))
       (Ideal.mul_mem_mul (Ideal.subset_span (by simp [axisX])) (ih hB))
 
-/-- A series lies in `(T, X)^L` iff all its coefficients of total degree `< L` vanish.-/
+/-- A series lies in `(T, X)^L` iff all its coefficients of total degree `< L` vanish.
+@isnad1 id=iff.0h3v.s9.ba8bdda45d6e from=translated src=- shape=44cff2aa vocab=2754c76c
+-/
 theorem axis_ideal_pow_mem_iff (k : Type) [CommRing k] (L : ℕ) (φ : TwoSeries k) :
     φ ∈ (Ideal.span {axisT k, axisX k})^L ↔ ∀ m : Fin 2 →₀ ℕ, m 0 + m 1 < L →
     MvPowerSeries.coeff m φ = 0 :=
   ⟨fun h ↦ pow_le_lowOrderIdeal k L h, fun h ↦ lowOrderIdeal_le_pow k L h⟩
 
-/-- The quotient of `k[[T,X]]` by one variable has infinite length.-/
+/-- The quotient of `k[[T,X]]` by one variable has infinite length.
+@isnad1 id=eq.1h3v.s8.438cc36f3d38 from=translated src=- shape=d6b7c32e vocab=c132e8b2
+-/
 theorem axis_quotient_length_top (k : Type) [Field k] (s t : Fin 2) (hst : s ≠ t) :
     Module.length (TwoSeries k) (TwoSeries k ⧸ Ideal.span {(MvPowerSeries.X s : TwoSeries k)}) =
     ⊤ := by
@@ -506,7 +524,9 @@ theorem axis_quotient_length_top (k : Type) [Field k] (s t : Fin 2) (hst : s ≠
   exact hn (hlt n)
 
 /-- Coefficients of a substitution `T ↦ Y, X ↦ 0` (or `T ↦ 0, X ↦ Y`) into one-variable power
-series: the `n`-th coefficient is the coefficient of `Y^n` on the surviving axis `t`.-/
+series: the `n`-th coefficient is the coefficient of `Y^n` on the surviving axis `t`.
+@isnad1 id=eq.4h6v.s9.741b106b72ce from=translated src=- shape=0f67e66b vocab=f1381191
+-/
 theorem coeff_substAlgHom_kill (O : Type) [CommRing O] (f : Fin 2 → PowerSeries O)
     (hf : MvPowerSeries.HasSubst f) (s t : Fin 2) (hst : s ≠ t) (hs : f s = 0)
     (ht : f t = PowerSeries.X) (g : TwoSeries O) (n : ℕ) :
@@ -530,7 +550,9 @@ theorem coeff_substAlgHom_kill (O : Type) [CommRing O] (f : Fin 2 → PowerSerie
       simp [h0, PowerSeries.coeff_X_pow, Ne.symm h1]
     · simp [zero_pow h0]
 
-/-- A series lies in `(c, X s)` iff `c` divides every coefficient whose `s`-exponent is zero.-/
+/-- A series lies in `(c, X s)` iff `c` divides every coefficient whose `s`-exponent is zero.
+@isnad1 id=iff.0h5v.s8.81eea77699dc from=translated src=- shape=1cd06f19 vocab=7fe3e3c5
+-/
 theorem mvPowerSeries_mem_span_C_var_iff (σ A : Type) [CommRing A] (c : A) (s : σ)
     (g : MvPowerSeries σ A) :
     g ∈ Ideal.span {(MvPowerSeries.C c : MvPowerSeries σ A), MvPowerSeries.X s} ↔
@@ -563,7 +585,9 @@ theorem mvPowerSeries_mem_span_C_var_iff (σ A : Type) [CommRing A] (c : A) (s :
     ring
 
 /-- If `(c)` is prime in `A`, then `(c, X s)` is prime in `A[[X 0, X 1]]`: it is the kernel of
-killing `X s` and reducing the coefficients modulo `c`, with values in the domain `(A/(c))[[Y]]`.-/
+killing `X s` and reducing the coefficients modulo `c`, with values in the domain `(A/(c))[[Y]]`.
+@isnad1 id=isprime.1h3v.s7.864da2943820 from=translated src=- shape=b4fec832 vocab=c73eb6b1
+-/
 theorem mvPowerSeries_fin_two_span_C_var_isPrime (A : Type) [CommRing A] (c : A)
     (hc : (Ideal.span {c}).IsPrime) (s : Fin 2) :
     (Ideal.span {(MvPowerSeries.C c : MvPowerSeries (Fin 2) A), MvPowerSeries.X s}).IsPrime := by
@@ -585,12 +609,16 @@ theorem mvPowerSeries_fin_two_span_C_var_isPrime (A : Type) [CommRing A] (c : A)
   · simp [hm, hts.symm]
   · simp
 
-/-- Each variable generates a prime ideal of `k[[T,X]]`.-/
+/-- Each variable generates a prime ideal of `k[[T,X]]`.
+@isnad1 id=isprime.0h2v.s6.ba22fe990342 from=translated src=- shape=2c174a27 vocab=a35be4f2
+-/
 theorem axis_span_isPrime (k : Type) [CommRing k] [IsDomain k] (s : Fin 2) :
     (Ideal.span {(MvPowerSeries.X s : TwoSeries k)}).IsPrime := by
   simpa using mvPowerSeries_fin_two_span_C_var_isPrime k 0 (by simpa using Ideal.isPrime_bot) s
 
-/-- If `F` is not divisible by the variable `X s`, then `X s ^ n * G ∈ (F)` implies `G ∈ (F)`.-/
+/-- If `F` is not divisible by the variable `X s`, then `X s ^ n * G ∈ (F)` implies `G ∈ (F)`.
+@isnad1 id=mem.2h5v.s9.462799742fc2 from=translated src=- shape=f49ea96b vocab=7d660087
+-/
 theorem axis_pow_mul_mem_span_cancel (k : Type) [Field k] (s : Fin 2) (F : TwoSeries k)
     (hF : F ∉ Ideal.span {(MvPowerSeries.X s : TwoSeries k)}) (n : ℕ) (G : TwoSeries k)
     (hG : (MvPowerSeries.X s : TwoSeries k) ^ n * G ∈ Ideal.span {F}) :
@@ -617,7 +645,9 @@ theorem axis_pow_mul_mem_span_cancel (k : Type) [Field k] (s : Fin 2) (F : TwoSe
 /-! ### Chart substitutions -/
 
 /-- Values of the chart substitutions `chartSubst`, `xChartSubst` and `killT` on constants and
-on the two variables.-/
+on the two variables.
+@isnad1 id=and.0h2v.s11.439b50347af5 from=translated src=- shape=d1001b53 vocab=8b63bab3
+-/
 theorem chartSubst_apply_generators (O : Type) [CommRing O] (α : O) :
     (∀ c : O, chartSubst O α (MvPowerSeries.C c) = MvPowerSeries.C c) ∧
     chartSubst O α (axisT O) = axisT O ∧
@@ -652,7 +682,9 @@ private theorem chartSubst_surfaceRelation (O O' : Type) [CommRing O] [CommRing 
   ring
 
 /-- The surface relation after the t-chart substitution at a unit `θ` (with base change)
-and after the x-chart substitution is again a surface relation.-/
+and after the x-chart substitution is again a surface relation.
+@isnad1 id=and.0h7v.s9.9ad1f01af110 from=translated src=- shape=d87263cd vocab=f7e4fd9e
+-/
 theorem chartSubst_surfaceRelation_base_change_and_x_chart (O O' : Type) [CommRing O] [CommRing O']
     (ρ : O →+* O') (pi : O) (u : (TwoSeries O)ˣ) (a b : ℕ) :
     (∀ (θ : O') (hθ : IsUnit θ), chartSubst O' θ
@@ -675,7 +707,9 @@ theorem chartSubst_surfaceRelation_base_change_and_x_chart (O O' : Type) [CommRi
     ring
 
 /-- The surface relation after the t-chart substitution at the origin and at a unit point is
-again a surface relation.-/
+again a surface relation.
+@isnad1 id=and.0h5v.s9.1f3659b73366 from=translated src=- shape=656418b5 vocab=661d16e4
+-/
 theorem chartSubst_surfaceRelation_origin_and_unit_point (O : Type) [CommRing O] (pi : O)
     (u : (TwoSeries O)ˣ) (a b : ℕ) :
     chartSubst O 0 (surfaceRelation O pi u a b) = surfaceRelation O pi (substUnit O 0 u) (a + b) b ∧
@@ -701,7 +735,9 @@ theorem chartSubst_surfaceRelation_origin_and_unit_point (O : Type) [CommRing O]
 /-! ### Concrete surfaces -/
 
 /-- The pullback of the maximal ideal of a local ring `S` along `Λ : A → S` is maximal when
-`Λ` is surjective modulo the maximal ideal.-/
+`Λ` is surjective modulo the maximal ideal.
+@isnad1 id=ismaxima.1h3v.s7.80e57e5ededb from=translated src=- shape=eef44a3d vocab=a8183567
+-/
 theorem chart_point_isMaximal_of_residue_surjective (A S : Type) [CommRing A] [CommRing S]
     [IsLocalRing S] (Λ : A →+* S) (hsurj : ∀ y : S, ∃ x : A, Λ x - y ∈ IsLocalRing.maximalIdeal S) :
     ((IsLocalRing.maximalIdeal S).comap Λ).IsMaximal := by
@@ -715,14 +751,18 @@ theorem chart_point_isMaximal_of_residue_surjective (A S : Type) [CommRing A] [C
     (K := (⊥ : Ideal (S ⧸ IsLocalRing.maximalIdeal S))) _ hs
   rwa [← Ideal.comap_comap, ← RingHom.ker_eq_comap_bot, Ideal.mk_ker] at h
 
-/-- The concrete surface over a Noetherian ring is Noetherian.-/
+/-- The concrete surface over a Noetherian ring is Noetherian.
+@isnad1 id=isnoethe.0h5v.s6.fcc4f89edd9d from=translated src=- shape=014dbfd6 vocab=9ba17d43
+-/
 theorem concrete_surface_isNoetherianRing (O : Type) [CommRing O] (pi : O) (u : (TwoSeries O)ˣ)
     (a b : ℕ) [IsNoetherianRing O] :
     IsNoetherianRing (ConcreteSurface O pi u a b) :=
   inferInstance
 
 /-- An element of the concrete surface whose image in the special fiber is a nonzerodivisor
-is a nonzerodivisor modulo `π`.-/
+is a nonzerodivisor modulo `π`.
+@isnad1 id=injectiv.1h7v.s14.e8db205e5223 from=translated src=- shape=ae0c0749 vocab=9f206b80
+-/
 theorem concrete_surface_residue_regular_of_special_fiber (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (f : ConcreteSurface O pi u a b)
@@ -738,7 +778,9 @@ theorem concrete_surface_residue_regular_of_special_fiber (O : Type) [CommRing O
   fun w₁ w₂ h ↦ e.injective <| hreg <| by simpa only [map_mul] using congrArg e h
 
 /-- A special-fiber identification compatible with reduction sends `t`, `x` and constants to
-the corresponding elements of `k[[T,X]]/(T^a X^b)`.-/
+the corresponding elements of `k[[T,X]]/(T^a X^b)`.
+@isnad1 id=and.1h6v.s15.e7d068c148a7 from=translated src=- shape=32c32394 vocab=7aea8f81
+-/
 theorem concrete_surface_special_fiber_equiv_parameters (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (e : (ConcreteSurface O pi u a b ⧸ Ideal.span {algebraMap O (ConcreteSurface O pi u a b) pi})
@@ -767,7 +809,9 @@ theorem concrete_surface_special_fiber_equiv_parameters (O : Type) [CommRing O] 
       rfl
     rw [h1, he, hres, MvPowerSeries.map_C]
 
-/-- The vertical equation `π = u · t^a · x^b` holds in the concrete surface.-/
+/-- The vertical equation `π = u · t^a · x^b` holds in the concrete surface.
+@isnad1 id=eq.0h5v.s9.27cfd1c9868f from=translated src=- shape=9a9292ba vocab=b1a95520
+-/
 theorem concrete_surface_vertical (O : Type) [CommRing O] (pi : O) (u : (TwoSeries O)ˣ) (a b : ℕ) :
     algebraMap O (ConcreteSurface O pi u a b) pi =
     (surfaceUnit O pi u a b : ConcreteSurface O pi u a b) * surfaceT O pi u a b ^ a *
@@ -813,7 +857,9 @@ private theorem length_quotient_sup_eq_contact {R SF : Type} [CommRing R] [CommR
   exact ((Submodule.quotEquivOfEq _ _ hker).symm.trans E).length_eq
 
 /-- Contact lengths against `t` (and against `x` when `b > 0`) in the concrete surface agree
-with the corresponding contacts in the special fiber.-/
+with the corresponding contacts in the special fiber.
+@isnad1 id=and.2h7v.s15.493fc4f6227c from=translated src=- shape=cf234267 vocab=c5d735a5
+-/
 theorem concrete_surface_contact_eq_special_fiber_contact (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (pi : O) (u : (TwoSeries O)ˣ) (a b : ℕ)
     (ha : 0 < a)
@@ -871,7 +917,9 @@ private theorem pairwise_disjoint_residueIdealCell {R SF : Type} [CommRing R] [C
   rw [← hF I, ← hF I', ← ideal_map_span_singleton e, ← ideal_map_span_singleton e, ← h1, ← h2]
 
 /-- The crossing state set of the concrete surface is the disjoint union of the residue cells
-lifting the crossing residue ideals.-/
+lifting the crossing residue ideals.
+@isnad1 id=and.10h10v.s14.859be8c7efba from=translated src=- shape=0580e262 vocab=c0e5d323
+-/
 theorem concrete_crossing_state_eq_union_cells (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O]
     [Finite (IsLocalRing.ResidueField O)] (pi : O) (u : (TwoSeries O)ˣ)
@@ -930,7 +978,9 @@ theorem concrete_crossing_state_eq_union_cells (O : Type) [CommRing O] [IsDomain
   · exact pairwise_disjoint_residueIdealCell _ e F hF
 
 /-- The single state set of the concrete surface is the disjoint union of the residue cells
-lifting the single residue ideals.-/
+lifting the single residue ideals.
+@isnad1 id=and.7h8v.s15.11b6f306cf72 from=translated src=- shape=094597ff vocab=966f37a0
+-/
 theorem concrete_single_state_eq_union_cells (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O]
     [Finite (IsLocalRing.ResidueField O)] (pi : O) (u : (TwoSeries O)ˣ)
@@ -982,7 +1032,9 @@ theorem concrete_single_state_eq_union_cells (O : Type) [CommRing O] [IsDomain O
 
 /-! ### Complete local rings -/
 
-/-- A complete DVR is adically complete for the ideal generated by any uniformizer.-/
+/-- A complete DVR is adically complete for the ideal generated by any uniformizer.
+@isnad1 id=isadicco.1h2v.s6.4cad467e07bc from=translated src=- shape=51cf02b2 vocab=72a3c085
+-/
 theorem dvr_isAdicComplete_span_uniformizer (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] [IsAdicComplete (IsLocalRing.maximalIdeal O) O] (pi : O)
     (hpi : Irreducible pi) :
@@ -990,7 +1042,9 @@ theorem dvr_isAdicComplete_span_uniformizer (O : Type) [CommRing O] [IsDomain O]
   rw [← hpi.maximalIdeal_eq]
   infer_instance
 
-/-- Krull intersection: in a Noetherian local ring, `⋂ₙ (J + Iⁿ) = J` for every proper `I`.-/
+/-- Krull intersection: in a Noetherian local ring, `⋂ₙ (J + Iⁿ) = J` for every proper `I`.
+@isnad1 id=eq.1h3v.s7.f78d100b9044 from=translated src=- shape=f3fbacbc vocab=18b034fc
+-/
 theorem iInf_sup_pow_eq_of_isLocalRing (S : Type) [CommRing S] [IsNoetherianRing S] [IsLocalRing S]
     (I J : Ideal S) (hI : I ≠ ⊤) :
     (⨅ n : ℕ, J ⊔ I ^ n) = J := by
@@ -1010,13 +1064,17 @@ theorem iInf_sup_pow_eq_of_isLocalRing (S : Type) [CommRing S] [IsNoetherianRing
   rw [h, Submodule.mem_bot] at hm
   exact (Submodule.Quotient.mk_eq_zero J).1 hm
 
-/-- Every ideal of a Noetherian local ring is closed in the `𝔪`-adic topology.-/
+/-- Every ideal of a Noetherian local ring is closed in the `𝔪`-adic topology.
+@isnad1 id=eq.0h2v.s7.e3ee5aba85e1 from=translated src=- shape=ab3a92ea vocab=9a984251
+-/
 theorem ideal_closed_noetherian_local (A : Type) [CommRing A] [IsNoetherianRing A] [IsLocalRing A]
     (I : Ideal A) :
     ⨅ n : ℕ, (I ⊔ (IsLocalRing.maximalIdeal A)^n) = I :=
   iInf_sup_pow_eq_of_isLocalRing A _ I (Ideal.IsMaximal.ne_top inferInstance)
 
-/-- A Noetherian local ring complete for `𝔪` is complete for every proper ideal.-/
+/-- A Noetherian local ring complete for `𝔪` is complete for every proper ideal.
+@isnad1 id=isadicco.1h2v.s6.51475499d2fa from=translated src=- shape=dd4ce92a vocab=1c4f835a
+-/
 theorem isAdicComplete_of_isAdicComplete_maximalIdeal (A : Type) [CommRing A] [IsNoetherianRing A]
     [IsLocalRing A] [IsAdicComplete (IsLocalRing.maximalIdeal A) A] (J : Ideal A) (hJ : J ≠ ⊤) :
     IsAdicComplete J A := by
@@ -1043,7 +1101,9 @@ theorem isAdicComplete_of_isAdicComplete_maximalIdeal (A : Type) [CommRing A] [I
     Ideal.pow_le_pow_right (le_max_right n N) ((key m _ _ _).1 (hL (max n N)))
   simpa using Ideal.add_mem _ (Ideal.mem_sup_left h1) (Ideal.mem_sup_right h2)
 
-/-- A product of two `I`-adically complete modules is `I`-adically complete.-/
+/-- A product of two `I`-adically complete modules is `I`-adically complete.
+@isnad1 id=isadicco.0h4v.s6.69b40ce4acb7 from=translated src=- shape=621e7a53 vocab=83eb5e2a
+-/
 theorem isAdicComplete_prod (O M N : Type) [CommRing O] [AddCommGroup M] [Module O M]
     [AddCommGroup N] [Module O N] (I : Ideal O) [IsAdicComplete I M] [IsAdicComplete I N] :
     IsAdicComplete I (M × N) := by
@@ -1081,7 +1141,9 @@ theorem isAdicComplete_prod (O M N : Type) [CommRing O] [AddCommGroup M] [Module
     exact ⟨(a, b), fun n ↦ (hmod _ _ _).2 ⟨ha n, hb n⟩⟩
 
 /-- The quotient of an `I`-adically complete ring by an `I`-closed ideal `J` is complete for
-the image of `I`.-/
+the image of `I`.
+@isnad1 id=isadicco.1h3v.s8.5049517e59ec from=translated src=- shape=d260b505 vocab=b9c77423
+-/
 theorem isAdicComplete_quotient_of_iInf_sup_pow (S : Type) [CommRing S] (I J : Ideal S)
     [IsAdicComplete I S] (hJ : (⨅ n : ℕ, J ⊔ I ^ n) = J) :
     IsAdicComplete (I.map (Ideal.Quotient.mk J)) (S ⧸ J) := by
@@ -1135,7 +1197,9 @@ theorem isAdicComplete_quotient_of_iInf_sup_pow (S : Type) [CommRing S] (I J : I
   exact { toIsHausdorff := h1, toIsPrecomplete := h2 }
 
 /-- A nontrivial ring with a nonzerodivisor `e` generating a prime ideal and with
-`⋂ₙ (e)ⁿ = 0` is a domain.-/
+`⋂ₙ (e)ⁿ = 0` is a domain.
+@isnad1 id=isdomain.3h2v.s7.d81cd7059596 from=translated src=- shape=e309a708 vocab=ba787fbc
+-/
 theorem isDomain_of_regular_prime_element (A : Type) [CommRing A] [Nontrivial A] (e : A)
     (he : Function.Injective (fun a : A ↦ e * a)) (hprime : (Ideal.span {e}).IsPrime)
     (hinf : (⨅ n : ℕ, (Ideal.span {e})^n) = ⊥) :
@@ -1174,7 +1238,9 @@ theorem isDomain_of_regular_prime_element (A : Type) [CommRing A] [Nontrivial A]
 
 /-! ### Lengths of quotients -/
 
-/-- Length of `(A/J)/I(A/J)` over `A/J` equals the length of `A/(J + I)` over `A`.-/
+/-- Length of `(A/J)/I(A/J)` over `A/J` equals the length of `A/(J + I)` over `A`.
+@isnad1 id=eq.0h3v.s9.ef462d234631 from=translated src=- shape=38b20a7e vocab=8d3f720a
+-/
 theorem length_double_quotient_eq (A : Type) [CommRing A] (J I : Ideal A) :
     Module.length (A ⧸ J) ((A ⧸ J) ⧸ Ideal.map (Ideal.Quotient.mk J) I) =
     Module.length A (A ⧸ (J ⊔ I)) := by
@@ -1185,7 +1251,9 @@ theorem length_double_quotient_eq (A : Type) [CommRing A] (J I : Ideal A) :
   exact (DoubleQuot.quotQuotEquivQuotSupₐ A J I).toLinearEquiv.length_eq
 
 /-- If `s` is a nonzerodivisor modulo `I`, then
-`ℓ(R/(I + (t s))) = ℓ(R/(I + (t))) + ℓ(R/(I + (s)))`.-/
+`ℓ(R/(I + (t s))) = ℓ(R/(I + (t))) + ℓ(R/(I + (s)))`.
+@isnad1 id=eq.1h4v.s9.04feec75c55a from=translated src=- shape=9b6ffbd5 vocab=7a464a53
+-/
 theorem length_quotient_sup_mul_eq_add (R : Type) [CommRing R] (I : Ideal R) (s t : R)
     (hs : ∀ x, s * x ∈ I → x ∈ I) :
     Module.length R (R ⧸ (I ⊔ Ideal.span {t * s})) = Module.length R (R ⧸ (I ⊔ Ideal.span {t})) +
@@ -1240,7 +1308,9 @@ theorem length_quotient_sup_mul_eq_add (R : Type) [CommRing R] (I : Ideal R) (s 
       exact (mem s _).2 ⟨-i, I.neg_mem hi, y - u * t, by simp [μ] at hu; linear_combination -hu⟩
   exact Module.length_eq_add_of_exact f g hf hg H
 
-/-- If `t` is a nonzerodivisor modulo `I`, then `ℓ(R/(I + (tⁿ))) = n · ℓ(R/(I + (t)))`.-/
+/-- If `t` is a nonzerodivisor modulo `I`, then `ℓ(R/(I + (tⁿ))) = n · ℓ(R/(I + (t)))`.
+@isnad1 id=eq.1h4v.s9.8c60b5b756aa from=translated src=- shape=e13d2e47 vocab=3d766da8
+-/
 theorem length_quotient_sup_pow_eq_mul (R : Type) [CommRing R] (I : Ideal R) (t : R)
     (ht : ∀ x, t * x ∈ I → x ∈ I) (n : ℕ) :
     Module.length R (R ⧸ (I ⊔ Ideal.span {t ^ n})) = (n : ℕ∞) *
@@ -1257,7 +1327,9 @@ theorem length_quotient_sup_pow_eq_mul (R : Type) [CommRing R] (I : Ideal R) (t 
     push_cast
     rw [add_mul, one_mul]
 
-/-- Lengths of quotients are invariant under ring isomorphisms.-/
+/-- Lengths of quotients are invariant under ring isomorphisms.
+@isnad1 id=eq.0h4v.s9.fca0d7d0b007 from=translated src=- shape=bed801be vocab=507a74b4
+-/
 theorem module_length_quotient_ringEquiv (S S' : Type) [CommRing S] [CommRing S'] (e : S ≃+* S')
     (I : Ideal S) :
     Module.length S (S ⧸ I) = Module.length S' (S' ⧸ Ideal.map (e : S →+* S') I) := by

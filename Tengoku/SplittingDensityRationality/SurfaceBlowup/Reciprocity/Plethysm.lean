@@ -40,13 +40,17 @@ families_to_pattern, lawCoef_coeff, lawWf_safe, safe_wf}`.
 
 namespace SurfaceBlowup
 
-/-- Truncated agreement `f ≡ g mod x^{n+1}` is preserved by `plethSum = Σ ψ_k/k`.-/
+/-- Truncated agreement `f ≡ g mod x^{n+1}` is preserved by `plethSum = Σ ψ_k/k`.
+@isnad1 id=scongr.1h3v.s4.f0caea4143b4 from=translated src=- shape=ed8f0edd vocab=56e6bc8a
+-/
 theorem SCongr.plethSum {n : ℕ} {f g : Ser} (h : SCongr n f g) :
     SCongr n (SurfaceBlowup.plethSum f) (SurfaceBlowup.plethSum g) := fun m hm ↦ by
   simp only [SurfaceBlowup.plethSum, PowerSeries.coeff_mk,
     fun k ↦ h (m / k) ((Nat.div_le_self m k).trans hm)]
 
-/-- Truncated agreement `f ≡ g mod x^{n+1}` is preserved by `moebiusSum = Σ μ(k) ψ_k/k`.-/
+/-- Truncated agreement `f ≡ g mod x^{n+1}` is preserved by `moebiusSum = Σ μ(k) ψ_k/k`.
+@isnad1 id=scongr.1h3v.s4.d71363e27f60 from=translated src=- shape=ed8f0edd vocab=d2b92924
+-/
 theorem SCongr.moebiusSum {n : ℕ} {f g : Ser} (h : SCongr n f g) :
     SCongr n (SurfaceBlowup.moebiusSum f) (SurfaceBlowup.moebiusSum g) := fun m hm ↦ by
   simp only [SurfaceBlowup.moebiusSum, PowerSeries.coeff_mk,
@@ -130,7 +134,9 @@ theorem eq_of_mul_derivative_eq_mul (g w E F : Ser) (hg : PowerSeries.constantCo
       exact hc
   exact sub_eq_zero.mp (show D = 0 from PowerSeries.ext fun n ↦ by simpa using key n n le_rfl)
 
-/-- The exponential is additive-to-multiplicative on series with zero constant term.-/
+/-- The exponential is additive-to-multiplicative on series with zero constant term.
+@isnad1 id=eq.2h2v.s9.01b5a8165663 from=translated src=- shape=7d308bb6 vocab=502d60bb
+-/
 theorem expSer_add (f g : Ser) (hf : PowerSeries.constantCoeff f = 0)
     (hg : PowerSeries.constantCoeff g = 0) :
     expSer (f + g) = expSer f * expSer g := by
@@ -144,7 +150,9 @@ theorem expSer_add (f g : Ser) (hf : PowerSeries.constantCoeff f = 0)
   · rw [constantCoeff_expSer _ hfg, map_mul, constantCoeff_expSer f hf, constantCoeff_expSer g hg,
       mul_one]
 
-/-- `exp ∘ log = id` on series with constant term `1`.-/
+/-- `exp ∘ log = id` on series with constant term `1`.
+@isnad1 id=eq.1h1v.s7.eda56a08cc7b from=translated src=- shape=2f3348cb vocab=1ecb94c8
+-/
 theorem expSer_logSer (g : Ser) (hg : PowerSeries.constantCoeff g = 1) : expSer (logSer g) = g := by
   have hL0 := constantCoeff_logSer g hg
   apply eq_of_mul_derivative_eq_mul g (PowerSeries.derivative Coef g) _ _ hg
@@ -152,7 +160,9 @@ theorem expSer_logSer (g : Ser) (hg : PowerSeries.constantCoeff g = 1) : expSer 
   · exact mul_comm _ _
   · rw [constantCoeff_expSer _ hL0, hg]
 
-/-- `log ∘ exp = id` on series with constant term `0`.-/
+/-- `log ∘ exp = id` on series with constant term `0`.
+@isnad1 id=eq.1h1v.s7.cfce286debf4 from=translated src=- shape=2f3348cb vocab=1ecb94c8
+-/
 theorem logSer_expSer (f : Ser) (hf : PowerSeries.constantCoeff f = 0) : logSer (expSer f) = f := by
   have hE0 := constantCoeff_expSer f hf
   have hu : IsUnit (expSer f) := by
@@ -182,7 +192,9 @@ private theorem mul_derivative_formalPow (c : RatFunc ℚ) (g : Ser)
   ring
 
 /-- Binomial expansion of the formal power: the `n`-th coefficient of `g^c` is
-`Σ_{k ≤ n} (1/k!) c(c-1)⋯(c-k+1) [xⁿ](g-1)^k`.-/
+`Σ_{k ≤ n} (1/k!) c(c-1)⋯(c-k+1) [xⁿ](g-1)^k`.
+@isnad1 id=eq.1h3v.s10.563a304ad9b7 from=translated src=- shape=7b691a3e vocab=4ab54f63
+-/
 theorem coeff_formalPow (c : RatFunc ℚ) (g : Ser) (hg : PowerSeries.constantCoeff g = 1)
     (n : ℕ) :
     PowerSeries.coeff n (formalPow c g) = ∑ k ∈ Finset.range (n + 1), ((k.factorial : ℚ)⁻¹) •
@@ -394,7 +406,9 @@ private theorem scongr_prod {ι : Type*} (n : ℕ) (s : Finset ι) (f g : ι →
     exact (h x (Finset.mem_insert_self _ _)).mul (ih fun i hi ↦ h i (Finset.mem_insert_of_mem hi))
 
 /-- Truncated product expansion of `Π_{m=1}^n ψ_m(B_a)^{C_m}` as a sum over exponent families
-`K i r`, obtained by multiplying the expansions of `formalPow_adamsSer_clusterSer_scongr`.-/
+`K i r`, obtained by multiplying the expansions of `formalPow_adamsSer_clusterSer_scongr`.
+@isnad1 id=scongr.0h3v.s10.25b3d3c2165a from=translated src=- shape=72778ec6 vocab=f4a413d9
+-/
 theorem prod_formalPow_adamsSer_clusterSer_scongr (ε : ℤ) (a n : ℕ) :
     SCongr n (∏ m ∈ Finset.Icc 1 n, formalPow (availablePoints ε m).rational
         (adamsSer m (clusterSer a))) (∑ K : Fin n → Fin n → Fin (n + 1),
@@ -443,7 +457,9 @@ private theorem pExp_pLog (g : Ser) (hg : PowerSeries.constantCoeff g = 1) : pEx
 private theorem pLog_pExp (f : Ser) (hf : PowerSeries.constantCoeff f = 0) : pLog (pExp f) = f := by
   rw [pExp, pLog, logSer_expSer _ (constantCoeff_plethSum f), moebiusSum_plethSum f hf]
 
-/-- The plethystic power `P_w(g)` has constant term `1`.-/
+/-- The plethystic power `P_w(g)` has constant term `1`.
+@isnad1 id=eq.0h2v.s7.e0948dbb11b4 from=translated src=- shape=8976d327 vocab=eaee7980
+-/
 theorem constantCoeff_pPow (w : RatFunc ℚ) (g : Ser) : PowerSeries.constantCoeff (pPow w g) = 1 :=
   constantCoeff_pExp _
 
@@ -451,12 +467,16 @@ private theorem constantCoeff_C_mul_pLog (a : RatFunc ℚ) (g : Ser) :
     PowerSeries.constantCoeff (PowerSeries.C (scalar a) * pLog g) = 0 := by
   simp [constantCoeff_pLog]
 
-/-- `P_w ∘ P_z = P_{wz}`.-/
+/-- `P_w ∘ P_z = P_{wz}`.
+@isnad1 id=eq.0h3v.s5.748baa151c82 from=translated src=- shape=d0efed3a vocab=6cab9c4e
+-/
 theorem pPow_pPow (w z : RatFunc ℚ) (g : Ser) : pPow w (pPow z g) = pPow (w * z) g := by
   rw [pPow, pPow, pLog_pExp _ (constantCoeff_C_mul_pLog z g), ← mul_assoc, ← map_mul,
     ← scalar_mul, pPow]
 
-/-- `P_w P_z = P_{w+z}`.-/
+/-- `P_w P_z = P_{w+z}`.
+@isnad1 id=eq.0h3v.s6.e69c3037f6a0 from=translated src=- shape=e7ace2a6 vocab=34fb425a
+-/
 theorem pPow_mul_pPow (w z : RatFunc ℚ) (g : Ser) : pPow w g * pPow z g = pPow (w + z) g := by
   rw [pPow, pPow, pPow, ← pExp_add, scalar_add, map_add, add_mul]
 
@@ -465,7 +485,9 @@ private theorem pPow_one (g : Ser) (hg : PowerSeries.constantCoeff g = 1) : pPow
   rw [pPow, scalar_one, map_one, one_mul, pExp_pLog g hg]
 
 /-- If `g ≡ h` below degree `n`, then the degree-`n` coefficients of `P_w(g)` and `P_w(h)` differ
-by `w` times those of `g` and `h`.-/
+by `w` times those of `g` and `h`.
+@isnad1 id=eq.4h4v.s11.b6239ec4a11f from=translated src=- shape=13a85033 vocab=9a31662c
+-/
 theorem coeff_pPow_sub_of_scongr (n : ℕ) (hn : 0 < n) (w : RatFunc ℚ) (g h : Ser)
     (hg : PowerSeries.constantCoeff g = 1) (hh : PowerSeries.constantCoeff h = 1)
     (hgh : SCongr (n - 1) g h) :
@@ -481,7 +503,9 @@ theorem coeff_pPow_sub_of_scongr (n : ℕ) (hn : 0 < n) (w : RatFunc ℚ) (g h :
 
 /-- A sum over the allowed tangent patterns of `S(a;n)` depending only on the divisor degree `d`,
 the tangent depth `r`, and the off-boundary pattern, reindexed as a sum over `d`, `r` and patterns
-of weight `d - r`.-/
+of weight `d - r`.
+@isnad1 id=eq.1h3v.s9.9ea810ed0063 from=translated src=- shape=55b1bf92 vocab=9292d6c3
+-/
 theorem sum_allowedPatterns_single (a n : ℕ) (ha : 0 < a)
     (F : ℕ → ℕ → Pattern (State.single a n).degree → Coef) :
     ∑ P ∈ allowedPatterns (State.single a n), F P.d.val P.rt.val P.other =
@@ -548,7 +572,9 @@ private theorem otherChildren_eq_single_iff (a n N : ℕ) (hn : 1 ≤ n) (hnN : 
       · exact absurd rfl hij
 
 /-- An allowed tangent pattern of `S(a;n)` (`n ≥ 2`) is the self pattern exactly when `d = n`,
-there is no tangent part, and the off-boundary pattern is the single point of type `(1, n-1)`.-/
+there is no tangent part, and the off-boundary pattern is the single point of type `(1, n-1)`.
+@isnad1 id=iff.3h3v.s8.06f20a501ec2 from=translated src=- shape=b18d5cf0 vocab=bff214c4
+-/
 theorem selfPattern_single_iff (a n : ℕ) (ha : 0 < a) (hn : 2 ≤ n)
     (P : TangentPattern (State.single a n).degree) (hP : Allowed (State.single a n) P) :
     SelfPattern (State.single a n) P ↔ (P.d.val = n ∧ P.rt.val = 0 ∧ P.rx.val = 0 ∧
@@ -589,7 +615,9 @@ theorem selfPattern_single_iff (a n : ℕ) (ha : 0 < a) (hn : 2 ≤ n)
     rw [hch, ite_eq_left hrt0, List.nil_append]
     exact hO.2 hm
 
-/-- For `n ≥ 2`, `S(a;n)` has exactly one allowed self pattern.-/
+/-- For `n ≥ 2`, `S(a;n)` has exactly one allowed self pattern.
+@isnad1 id=ex.2h2v.s6.525742e1ec07 from=translated src=- shape=07a16a48 vocab=ff425e9e
+-/
 theorem exists_unique_selfPattern_single (a n : ℕ) (ha : 0 < a) (hn : 2 ≤ n) :
     ∃ P₀ : TangentPattern (State.single a n).degree, Allowed (State.single a n) P₀ ∧
         SelfPattern (State.single a n) P₀ ∧ ∀ Q : TangentPattern (State.single a n).degree,
@@ -644,7 +672,9 @@ theorem exists_unique_selfPattern_single (a n : ℕ) (ha : 0 < a) (hn : 2 ≤ n)
     rw [e1, e2, e3, e4]
 
 /-- Reindexing a triple sum over `(rx, m, rt)` with `rx + m + rt ≤ K` by the total
-`d = rx + m + rt`.-/
+`d = rx + m + rt`.
+@isnad1 id=eq.1h3v.s8.a91d6e57ebfa from=translated src=- shape=b5135d2a vocab=c30b8796
+-/
 theorem sum_triple_reindex (c K : ℕ) (hK : K ≤ c) (G : ℕ → ℕ → ℕ → Coef) :
     ∑ rx ∈ Finset.range (c + 1), ∑ m ∈ Finset.range (c + 1), ∑ rt ∈ Finset.range (c + 1),
         (if rx + m + rt ≤ K then G rx m rt else 0) = ∑ d ∈ Finset.range (c + 1),
@@ -693,7 +723,9 @@ private theorem Expr.wf_of_safe (x : Expr) (q : ℚ) (hx : x.safe q) : x.wf := b
     obtain ⟨_, h2⟩ := expression_fraction a q hx.1
     rw [h2, h]; simp
 
-/-- Powers of well-formed expressions are well formed.-/
+/-- Powers of well-formed expressions are well formed.
+@isnad1 id=wf.1h2v.s3.0292b93d8cdb from=translated src=- shape=1b0527e2 vocab=b76877bf
+-/
 theorem Expr.wf_pow {x : Expr} (hx : x.wf) (k : ℕ) : (Expr.pow x k).wf := by
   induction k with
   | zero => simp [Expr.pow, Expr.wf]
@@ -728,11 +760,15 @@ private theorem wf_availablePoints (ε : ℤ) (δ : ℕ) : (availablePoints ε �
   · exact ⟨trivial, trivial⟩
   · exact wf_pointCount δ
 
-/-- The return weights are well formed.-/
+/-- The return weights are well formed.
+@isnad1 id=wf.0h1v.s2.fc170caa5a64 from=translated src=- shape=76a08d12 vocab=fd1fe7d0
+-/
 theorem wf_returnWeight (c : ℕ) : (returnWeight c).wf :=
   ⟨trivial, Expr.wf_pow (x := Expr.var) trivial _, fraction_pow_var_ne_zero _⟩
 
-/-- A well-formed expression has nonzero denominator.-/
+/-- A well-formed expression has nonzero denominator.
+@isnad1 id=ne.1h1v.s4.90937cf98c89 from=translated src=- shape=dbe9b78a vocab=295c9423
+-/
 theorem Expr.fraction_snd_ne_zero {x : Expr} (hx : x.wf) : x.fraction.2 ≠ 0 := by
   induction x with
   | const r => simp [Expr.fraction]
@@ -740,7 +776,9 @@ theorem Expr.fraction_snd_ne_zero {x : Expr} (hx : x.wf) : x.fraction.2 ≠ 0 :=
   | add a b iha ihb | mul a b iha ihb => exact mul_ne_zero (iha hx.1) (ihb hx.2)
   | inv a _ => exact hx.2
 
-/-- `Expr.rational` is additive on well-formed expressions.-/
+/-- `Expr.rational` is additive on well-formed expressions.
+@isnad1 id=eq.2h2v.s5.1a811fd26209 from=translated src=- shape=bcd47941 vocab=4cb4c96d
+-/
 theorem Expr.rational_add {x y : Expr} (hx : x.wf) (hy : y.wf) :
     (Expr.add x y).rational = x.rational + y.rational := by
   have h1' := RatFunc.algebraMap_ne_zero (Expr.fraction_snd_ne_zero hx)
@@ -749,28 +787,40 @@ theorem Expr.rational_add {x y : Expr} (hx : x.wf) (hy : y.wf) :
   rw [div_add_div _ _ h1' h2', mul_comm (algebraMap (Polynomial ℚ) (RatFunc ℚ) x.fraction.2)
     (algebraMap (Polynomial ℚ) (RatFunc ℚ) y.fraction.1)]
 
-/-- `Expr.rational` is multiplicative.-/
+/-- `Expr.rational` is multiplicative.
+@isnad1 id=eq.0h2v.s5.c7469ace1aa1 from=translated src=- shape=571db123 vocab=4a681c6b
+-/
 theorem Expr.rational_mul (x y : Expr) : (Expr.mul x y).rational = x.rational * y.rational := by
   simp only [Expr.rational, Expr.fraction, map_mul]
   rw [div_mul_div_comm]
 
-/-- `Expr.rational` commutes with inversion.-/
+/-- `Expr.rational` commutes with inversion.
+@isnad1 id=eq.0h1v.s4.b077d523946c from=translated src=- shape=e1ba4b03 vocab=7ac8d59d
+-/
 theorem Expr.rational_inv (x : Expr) : (Expr.inv x).rational = x.rational⁻¹ := by
   simp only [Expr.rational, Expr.fraction]
   rw [inv_div]
 
-/-- The rational function of a constant.-/
+/-- The rational function of a constant.
+@isnad1 id=eq.0h1v.s6.cc95e5d20f72 from=translated src=- shape=8096865d vocab=9d9da9d7
+-/
 theorem Expr.rational_const (r : ℚ) : (Expr.const r).rational = RatFunc.C r := by
   simp [Expr.rational, Expr.fraction, RatFunc.algebraMap_C]
 
-/-- The rational function of the variable is `q`.-/
+/-- The rational function of the variable is `q`.
+@isnad1 id=eq.0h0v.s3.098df5ecb776 from=translated src=- shape=0a817633 vocab=44badbf6
+-/
 theorem Expr.rational_var : Expr.var.rational = (RatFunc.X : RatFunc ℚ) := by
   simp [Expr.rational, Expr.fraction, RatFunc.algebraMap_X]
 
-/-- `lawCoef` of the empty law is `0`.-/
+/-- `lawCoef` of the empty law is `0`.
+@isnad1 id=eq.0h0v.s5.1ae06e9b4f85 from=translated src=- shape=1ac0e04f vocab=dcbae223
+-/
 theorem lawCoef_nil : lawCoef ([] : Law) = 0 := lawInterp_nil _
 
-/-- `lawCoef` turns `lawScale x` into multiplication by the scalar `x.rational`.-/
+/-- `lawCoef` turns `lawScale x` into multiplication by the scalar `x.rational`.
+@isnad1 id=eq.0h2v.s5.e60391ad47ad from=translated src=- shape=e2d67ead vocab=5877b3fa
+-/
 theorem lawCoef_lawScale (x : Expr) (L : Law) :
     lawCoef (lawScale x L) = scalar x.rational * lawCoef L :=
   lawInterp_lawScale _ Expr.rational_mul x L
@@ -780,36 +830,50 @@ private theorem lawCoef_lawAtom (e f : ℕ) :
     lawCoef (lawAtom e f) = AddMonoidAlgebra.single ({(e, f)} : FactorType) (1 : RatFunc ℚ) := by
   simp [lawCoef, lawAtom, Expr.rational_const]
 
-/-- `lawCoef` sends `flatMap` to the sum of the pieces.-/
+/-- `lawCoef` sends `flatMap` to the sum of the pieces.
+@isnad1 id=eq.0h3v.s6.aa1fa1e36090 from=translated src=- shape=f3587a98 vocab=46c67199
+-/
 theorem lawCoef_flatMap {α : Type} (xs : List α) (g : α → Law) :
     lawCoef (xs.flatMap g) = (xs.map fun u ↦ lawCoef (g u)).sum :=
   lawInterp_flatMap _ xs g
 
 /-! ### The cluster series -/
 
-/-- The constant term of the cluster series `B_a` is `1`.-/
+/-- The constant term of the cluster series `B_a` is `1`.
+@isnad1 id=eq.0h1v.s9.338d3fea140a from=translated src=- shape=98aee8c7 vocab=a5c2d7ed
+-/
 theorem coeff_zero_clusterSer (a : ℕ) : PowerSeries.coeff 0 (clusterSer a) = 1 := by
   simp [clusterSer, PowerSeries.coeff_mk]
 
-/-- The constant term of the cluster series `B_a` is `1`.-/
+/-- The constant term of the cluster series `B_a` is `1`.
+@isnad1 id=eq.0h1v.s7.5c85dfc3ab39 from=translated src=- shape=dcb63727 vocab=50817061
+-/
 theorem constantCoeff_clusterSer (a : ℕ) : PowerSeries.constantCoeff (clusterSer a) = 1 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, coeff_zero_clusterSer]
 
-/-- The coefficient of `x^{n+1}` in `B_a` is the law of `S(a;n+1)`.-/
+/-- The coefficient of `x^{n+1}` in `B_a` is the law of `S(a;n+1)`.
+@isnad1 id=eq.0h2v.s9.bf02c52387f7 from=translated src=- shape=937e1637 vocab=2012a4ff
+-/
 theorem coeff_succ_clusterSer (a n : ℕ) :
     PowerSeries.coeff (n + 1) (clusterSer a) = lawCoef (stateLaw (State.single a (n + 1))) := by
   simp [clusterSer, PowerSeries.coeff_mk]
 
-/-- The degree-one coefficient of `B_a` is `Z_{a,1}`.-/
+/-- The degree-one coefficient of `B_a` is `Z_{a,1}`.
+@isnad1 id=eq.0h1v.s9.f1f12dacdc6d from=translated src=- shape=19aa3760 vocab=973f0bcc
+-/
 theorem coeff_one_clusterSer (a : ℕ) :
     PowerSeries.coeff 1 (clusterSer a) = AddMonoidAlgebra.single ({(a, 1)} : FactorType) 1 := by
   rw [coeff_succ_clusterSer a 0, zero_add, terminal_law, lawCoef_lawAtom]
 
-/-- The Euler transforms `eulerSer ε a` have constant term `1`.-/
+/-- The Euler transforms `eulerSer ε a` have constant term `1`.
+@isnad1 id=eq.0h2v.s7.aa595f5f0550 from=translated src=- shape=ec0dfbeb vocab=2937f154
+-/
 theorem constantCoeff_eulerSer (ε : ℤ) (a : ℕ) : PowerSeries.constantCoeff (eulerSer ε a) = 1 :=
   constantCoeff_pPow _ _
 
-/-- The Euler transforms `eulerSer ε a` have constant term `1`.-/
+/-- The Euler transforms `eulerSer ε a` have constant term `1`.
+@isnad1 id=eq.0h2v.s9.1793fff4b736 from=translated src=- shape=0217e18c vocab=276af8d9
+-/
 theorem coeff_zero_eulerSer (ε : ℤ) (a : ℕ) : PowerSeries.coeff 0 (eulerSer ε a) = 1 := by
   rw [PowerSeries.coeff_zero_eq_constantCoeff_apply, constantCoeff_eulerSer]
 
@@ -818,13 +882,17 @@ private theorem coeff_dilate_recipSer_clusterSer (a m : ℕ) :
       qpow (m : ℤ) * recipCoef (PowerSeries.coeff m (clusterSer a)) := by
   rw [coeff_dilate, coeff_recipSer]
 
-/-- The constant term of `S(B_aᵛ)` is `1`.-/
+/-- The constant term of `S(B_aᵛ)` is `1`.
+@isnad1 id=eq.0h1v.s9.54d4768220ae from=translated src=- shape=3bb294a2 vocab=8255d161
+-/
 theorem coeff_zero_dilate_recipSer_clusterSer (a : ℕ) :
     PowerSeries.coeff 0 (dilate (recipSer (clusterSer a))) = 1 := by
   rw [coeff_dilate_recipSer_clusterSer, coeff_zero_clusterSer, map_one, mul_one, Nat.cast_zero,
     qpow_zero]
 
-/-- The degree-one coefficient of `S(B_aᵛ)` is `q Z_{a,1}`.-/
+/-- The degree-one coefficient of `S(B_aᵛ)` is `q Z_{a,1}`.
+@isnad1 id=eq.0h1v.s9.d0d2a5b7d4e8 from=translated src=- shape=4fd9d74d vocab=acc5bb34
+-/
 theorem coeff_one_dilate_recipSer_clusterSer (a : ℕ) :
     PowerSeries.coeff 1 (dilate (recipSer (clusterSer a))) =
       qpow 1 * AddMonoidAlgebra.single ({(a, 1)} : FactorType) 1 := by
@@ -832,7 +900,9 @@ theorem coeff_one_dilate_recipSer_clusterSer (a : ℕ) :
   rfl
 
 /-- If `G_b ≡ S(B_bᵛ)` through degree `M` for every `b > 0`, then `S(P_sᵛ) · P_s ≡ 1` through
-degree `M`, where `P_s = eulerSer (-1) s`.-/
+degree `M`, where `P_s = eulerSer (-1) s`.
+@isnad1 id=scongr.2h2v.s7.7d106efb44ae from=translated src=- shape=c9f1a7df vocab=d314abdb
+-/
 theorem dilate_recipSer_eulerSer_mul_scongr_one (M s : ℕ) (hs : 0 < s) (hS : ∀ a : ℕ, 0 < a →
     SCongr M (eulerSer 0 a) (dilate (recipSer (clusterSer a)))) :
     SCongr M (dilate (recipSer (eulerSer (-1) s)) * eulerSer (-1) s) 1 := by
@@ -866,18 +936,24 @@ theorem dilate_recipSer_eulerSer_mul_scongr_one (M s : ℕ) (hs : 0 < s) (hS : �
   rw [one_mul, mul_assoc]
   exact h4'.symm.trans h3
 
-/-- `lawCoef` is multiplicative on finite products `lawProd`.-/
+/-- `lawCoef` is multiplicative on finite products `lawProd`.
+@isnad1 id=eq.0h1v.s6.60533105a8eb from=translated src=- shape=875ec862 vocab=78208e01
+-/
 theorem lawCoef_lawProd (Ls : List Law) : lawCoef (lawProd Ls) = (Ls.map lawCoef).prod :=
   lawInterp_lawProd _ Expr.rational_mul (by simp [Expr.rational_const]) Ls
 
 /-- `B_a = P_{1/q}(G_a)`: the Euler transform with parameter `q` is inverted by the plethystic
-power `1/q`.-/
+power `1/q`.
+@isnad1 id=eq.0h1v.s4.054f1b4254dc from=translated src=- shape=6148c307 vocab=9502fcc4
+-/
 theorem clusterSer_eq_pPow (a : ℕ) :
     clusterSer a = pPow (RatFunc.X : RatFunc ℚ)⁻¹ (eulerSer 0 a) := by
   rw [eulerSer, Int.cast_zero, add_zero, pPow_pPow, inv_mul_cancel₀ RatFunc.X_ne_zero,
     pPow_one _ (constantCoeff_clusterSer a)]
 
-/-- `S(G_aᵛ) = P_{1/q}(S(B_aᵛ))`.-/
+/-- `S(G_aᵛ) = P_{1/q}(S(B_aᵛ))`.
+@isnad1 id=eq.0h1v.s4.26766e191716 from=translated src=- shape=0a3c903c vocab=da429227
+-/
 theorem dilate_recipSer_eulerSer_eq_pPow (a : ℕ) :
     dilate (recipSer (eulerSer 0 a)) =
       pPow (RatFunc.X : RatFunc ℚ)⁻¹ (dilate (recipSer (clusterSer a))) := by
@@ -887,7 +963,9 @@ theorem dilate_recipSer_eulerSer_eq_pPow (a : ℕ) :
   rw [eulerSer, Int.cast_zero, add_zero, recipSer_pPow _ _ (constantCoeff_clusterSer a),
     recipRat_X, dilate_pPow _ _ hR]
 
-/-- `Expr.rational` is additive on sums of well-formed expressions.-/
+/-- `Expr.rational` is additive on sums of well-formed expressions.
+@isnad1 id=eq.1h1v.s5.462a84acd6a1 from=translated src=- shape=25df640b vocab=bfb142ca
+-/
 theorem Expr.rational_sum {xs : List Expr} (h : ∀ z ∈ xs, z.wf) :
     (Expr.sum xs).rational = (xs.map Expr.rational).sum := by
   induction xs with
@@ -906,7 +984,9 @@ private theorem Expr.rational_prod (xs : List Expr) :
     change (Expr.mul a (Expr.prod t)).rational = _
     rw [Expr.rational_mul, ih]; simp
 
-/-- `Expr.rational` commutes with powers.-/
+/-- `Expr.rational` commutes with powers.
+@isnad1 id=eq.0h2v.s5.29bbba8b24fe from=translated src=- shape=0ec58a8b vocab=f17c094e
+-/
 theorem Expr.rational_pow (x : Expr) (n : ℕ) : (Expr.pow x n).rational = x.rational ^ n := by
   induction n with
   | zero => simpa [Expr.pow] using Expr.rational_const 1
@@ -918,14 +998,18 @@ private theorem Expr.rational_neg (x : Expr) : (Expr.neg x).rational = - x.ratio
   change (Expr.mul (Expr.const (-1)) x).rational = _
   rw [Expr.rational_mul, Expr.rational_const]; simp
 
-/-- `Expr.rational` is additive on differences of well-formed expressions.-/
+/-- `Expr.rational` is additive on differences of well-formed expressions.
+@isnad1 id=eq.2h2v.s5.9c81560437c7 from=translated src=- shape=bcd47941 vocab=ea4ca1e2
+-/
 theorem Expr.rational_sub {x y : Expr} (hx : x.wf) (hy : y.wf) :
     (Expr.sub x y).rational = x.rational - y.rational := by
   change (Expr.add x y.neg).rational = _
   rw [Expr.rational_add hx (show (Expr.neg y).wf from ⟨trivial, hy⟩), Expr.rational_neg,
     sub_eq_add_neg]
 
-/-- The rational function of `eminusOne` is `q - 1`.-/
+/-- The rational function of `eminusOne` is `q - 1`.
+@isnad1 id=eq.0h0v.s5.7f4209ac0a95 from=translated src=- shape=1e719311 vocab=99654b34
+-/
 theorem rational_eminusOne : eminusOne.rational = (RatFunc.X : RatFunc ℚ) - 1 := by
   change (Expr.sub Expr.var (Expr.const 1)).rational = _
   rw [Expr.rational_sub (x := Expr.var) (y := Expr.const 1) trivial trivial, Expr.rational_var,
@@ -933,7 +1017,9 @@ theorem rational_eminusOne : eminusOne.rational = (RatFunc.X : RatFunc ℚ) - 1 
   simp
 
 /-- The rational function of the divisor count of a pattern `m`: a product over rows `i` of
-generalized binomial coefficients in `availablePoints ε (i+1)`.-/
+generalized binomial coefficients in `availablePoints ε (i+1)`.
+@isnad1 id=eq.0h3v.s8.427b68d5ba64 from=translated src=- shape=cc91ed1d vocab=08521a63
+-/
 theorem rational_divisorCount (N : ℕ) (ε : ℤ) (m : Pattern N) :
     (divisorCount ε m).rational = ∏ i : Fin N, ((∏ j ∈ Finset.range (∑ j : Fin N, (m (i, j)).val),
         ((availablePoints ε (i.val + 1)).rational - RatFunc.C (j : ℚ))) *
@@ -969,7 +1055,9 @@ theorem rational_divisorCount (N : ℕ) (ε : ℤ) (m : Pattern N) :
 
 /-- The degree-`n` coefficient of the family expansion of
 `prod_formalPow_adamsSer_clusterSer_scongr` is the
-pattern sum `patternSum ε a n n`.-/
+pattern sum `patternSum ε a n n`.
+@isnad1 id=eq.0h3v.s10.fa18feb37af3 from=translated src=- shape=ae54cf29 vocab=9d555d74
+-/
 theorem coeff_euler_families_eq_patternSum (ε : ℤ) (a n : ℕ) :
     PowerSeries.coeff n (∑ K : Fin n → Fin n → Fin (n + 1),
         PowerSeries.C (scalar (∏ i : Fin n, ((∏ j ∈ Finset.range (∑ r : Fin n, (K i r).val),
@@ -995,7 +1083,9 @@ theorem coeff_euler_families_eq_patternSum (ε : ℤ) (a n : ℕ) :
     simp only [Equiv.curry_symm_apply, Function.uncurry_apply_pair, Fintype.prod_prod_type, one_div]
 
 /-- For a well-formed law, the `σ`-coefficient of `lawCoef L` is the rational function of
-`lawCoeff L σ`.-/
+`lawCoeff L σ`.
+@isnad1 id=eq.1h2v.s6.d3bacbb3d2b2 from=translated src=- shape=c8a04424 vocab=c831e49a
+-/
 theorem coeff_lawCoef (L : Law) (hL : LawWf L) (σ : FactorType) :
     (lawCoef L).coeff σ = (lawCoeff L σ).rational := by
   have hw : ∀ z ∈ L.map (fun z ↦ if z.1 = σ then z.2 else Expr.const 0), z.wf := by
@@ -1020,11 +1110,15 @@ theorem coeff_lawCoef (L : Law) (hL : LawWf L) (σ : FactorType) :
       rw [(Expr.rational_const 0)]
       simp [AddMonoidAlgebra.coeff_single, h]
 
-/-- Safe laws are well formed.-/
+/-- Safe laws are well formed.
+@isnad1 id=lawwf.1h1v.s2.1d7a5aad22f5 from=translated src=- shape=6321fd23 vocab=ccac2962
+-/
 theorem LawSafe.lawWf {L : Law} (h : LawSafe L) : LawWf L :=
   fun z hz ↦ Expr.wf_of_safe _ 2 (h z hz 2 le_rfl)
 
-/-- The `σ`-coefficient of a well-formed law is well formed.-/
+/-- The `σ`-coefficient of a well-formed law is well formed.
+@isnad1 id=wf.1h2v.s3.cf8569f0f0b3 from=translated src=- shape=2f425f95 vocab=d7981833
+-/
 theorem LawWf.wf_lawCoeff {L : Law} (h : LawWf L) (σ : FactorType) : (lawCoeff L σ).wf := by
   unfold lawCoeff
   refine Expr.wf_sum fun x hx ↦ ?_

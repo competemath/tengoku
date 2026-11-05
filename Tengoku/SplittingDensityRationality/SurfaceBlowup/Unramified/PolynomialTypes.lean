@@ -38,7 +38,9 @@ namespace SurfaceBlowup
 
 open scoped ENNReal
 
-/-- The polynomial type of a product of coprime polynomials is the sum of their types.-/
+/-- The polynomial type of a product of coprime polynomials is the sum of their types.
+@isnad1 id=haspolyn.3h5v.s8.441dedca7260 from=translated src=- shape=9438caa1 vocab=f9042314
+-/
 theorem polynomial_type_mul_coprime (O : Type) [CommRing O] [IsDomain O]
     (G H : Polynomial (BaseField O)) (σ τ : FactorType) (hG : HasPolynomialTypeF O G σ)
     (hH : HasPolynomialTypeF O H τ) (hc : IsCoprime G H) :
@@ -58,7 +60,9 @@ theorem polynomial_type_mul_coprime (O : Type) [CommRing O] [IsDomain O]
   · rw [List.map_append, hg4, hh4]; rfl
   · exact fun g hg => (List.mem_append.1 hg).elim (hg5 g) (hh5 g)
 
-/-- A polynomial has at most one polynomial type.-/
+/-- A polynomial has at most one polynomial type.
+@isnad1 id=eq.2h4v.s6.d2c5337863a9 from=translated src=- shape=3701feb7 vocab=fb7dccc8
+-/
 theorem polynomial_type_unique (O : Type) [CommRing O] [IsDomain O] (F : Polynomial (BaseField O))
     (σ τ : FactorType) (hσ : HasPolynomialTypeF O F σ) (hτ : HasPolynomialTypeF O F τ) :
     σ = τ := by
@@ -78,7 +82,9 @@ theorem polynomial_type_unique (O : Type) [CommRing O] [IsDomain O] (F : Polynom
   rw [Multiset.coe_eq_coe] at h2 ⊢
   exact (List.Perm.map _ h2)
 
-/-- A coefficient vector is primitive iff its reduction is nonzero.-/
+/-- A coefficient vector is primitive iff its reduction is nonzero.
+@isnad1 id=iff.0h3v.s7.0943717c1278 from=translated src=- shape=468ec072 vocab=3809320d
+-/
 theorem primitive_iff_residue_ne_zero (O : Type) [CommRing O] [IsLocalRing O] (n : ℕ)
     (a : Fin (n + 1) → O) :
     primitive O a ↔ residueVector O a ≠ 0 := by
@@ -272,7 +278,9 @@ private theorem form_congruence_step {O : Type} [CommRing O] [IsDomain O]
   exact ⟨y, by rw [hH i k, hy]; ring⟩
 
 /-- The normalized form-product map reflects congruences: if the products of two families in
-the factor cells agree modulo `m^L`, so do the families.-/
+the factor cells agree modulo `m^L`, so do the families.
+@isnad1 id=mem.6h11v.s9.dfaf2eaff8d5 from=translated src=- shape=4e0098dc vocab=dbb67160
+-/
 theorem form_product_congruence_reflects (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (ι : Type) [Fintype ι] (d : ι → ℕ) (ν : ∀ i, Fin (d i + 1))
     (g : ∀ i, Fin (d i + 1) → IsLocalRing.ResidueField O) (hgν : ∀ i, g i (ν i) = 1)
@@ -445,7 +453,9 @@ private theorem eq_zero_of_forall_mem_pow (O : Type) [CommRing O] [IsLocalRing O
     simpa [SModEq.zero, smul_eq_mul, Ideal.mul_top] using h n
 
 /-- Over a complete DVR, the normalized form-product map is a bijection from the product of the
-factor cells onto the product cell.-/
+factor cells onto the product cell.
+@isnad1 id=bijon.3h6v.s8.be0106040567 from=translated src=- shape=9bf76052 vocab=68710544
+-/
 theorem form_product_bijection (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] (ι : Type) [Fintype ι] (d : ι → ℕ)
     (ν : ∀ i, Fin (d i + 1)) (g : ∀ i, Fin (d i + 1) → IsLocalRing.ResidueField O)
@@ -536,7 +546,9 @@ theorem form_product_bijection (O : Type) [CommRing O] [IsDomain O] [IsDiscreteV
     simpa only [sub_add_sub_cancel] using add_mem h1 h2
 
 /-- Hensel uniqueness modulo `m^L`: monic factors with pairwise coprime reductions whose products
-agree modulo `m^L` agree factorwise modulo `m^L`.-/
+agree modulo `m^L` agree factorwise modulo `m^L`.
+@isnad1 id=mem.7h8v.s9.f8c4d6331de1 from=translated src=- shape=ae7f8fac vocab=6bcaad48
+-/
 theorem hensel_family_unique_mod_pow (O ι : Type) [CommRing O] [IsLocalRing O] [Fintype ι] (pi : O)
     (hpi : IsLocalRing.maximalIdeal O = Ideal.span {pi}) (hreg : ∀ x : O, pi * x = 0 → x = 0)
     (G G' : ι → Polynomial O) (hG : ∀ i, (G i).Monic) (hG' : ∀ i, (G' i).Monic)
@@ -619,7 +631,9 @@ private theorem coeff_eq_of_monic_of_le {R : Type} [CommRing R] {n : ℕ} {P Q :
       Polynomial.coeff_eq_zero_of_natDegree_lt (by omega)]
 
 /-- For monic polynomials of the same degree `N`, coefficientwise congruence modulo `I` below
-degree `N` is equivalent to congruence of all coefficients.-/
+degree `N` is equivalent to congruence of all coefficients.
+@isnad1 id=iff.4h5v.s7.c934c18b3f68 from=translated src=- shape=48ba4085 vocab=c5d1876e
+-/
 theorem monic_coeff_sub_mem_iff {O : Type} [CommRing O] (I : Ideal O) (N : ℕ)
     (P Q : Polynomial O) (hP : P.Monic) (hQ : Q.Monic) (hPd : P.natDegree = N)
     (hQd : Q.natDegree = N) :
@@ -629,7 +643,9 @@ theorem monic_coeff_sub_mem_iff {O : Type} [CommRing O] (I : Ideal O) (N : ℕ)
   exact I.zero_mem
 
 /-- For factor families in the residue cells of pairwise coprime monic `g i`, the factor products
-are congruent modulo `m^L` iff the families are.-/
+are congruent modulo `m^L` iff the families are.
+@isnad1 id=iff.3h6v.s9.b81ad29524e9 from=translated src=- shape=8de4c3c8 vocab=5da00ddd
+-/
 theorem factor_product_congruence_iff (O : Type) [CommRing O] [IsDomain O]
     [IsDiscreteValuationRing O] (ι : Type) [Fintype ι]
     (g : ι → Polynomial (IsLocalRing.ResidueField O))
@@ -684,7 +700,9 @@ theorem factor_product_congruence_iff (O : Type) [CommRing O] [IsDomain O]
     exact (polynomial_congruence_and_product O I).2 ι G G' (fun i => (hcomp i).1 (h i))
 
 /-- The projective normalizer evaluates to `1 + q + ⋯ + q^n`, and
-`(1 + ⋯ + q^n)(q − 1) = q^(n+1) − 1`.-/
+`(1 + ⋯ + q^n)(q − 1) = q^(n+1) − 1`.
+@isnad1 id=and.0h2v.s6.283d105bfdef from=translated src=- shape=56fea81c vocab=fb5f1156
+-/
 theorem projective_normalizer_eval (q : ℚ) (n : ℕ) :
     (projectiveNormalizer n).eval q = ∑ i ∈ Finset.range (n+1), q ^ i ∧
       (∑ i ∈ Finset.range (n+1), q ^ i) * (q - 1) = q ^ (n+1) - 1 := by
@@ -709,7 +727,9 @@ theorem projective_normalizer_eval (q : ℚ) (n : ℕ) :
   simp [Finset.sum, Finset.range_val, Multiset.range]
 
 /-- A residue cell is a congruence class modulo `m` around any of its points; it is nonempty iff
-`G` is monic of degree `n`.-/
+`G` is monic of degree `n`.
+@isnad1 id=and.0h3v.s8.2cd4233f5a50 from=translated src=- shape=e39c44e5 vocab=714255b2
+-/
 theorem residue_cell_cylinder (O : Type) [CommRing O] [IsLocalRing O] (n : ℕ)
     (G : Polynomial (IsLocalRing.ResidueField O)) :
     (∀ a ∈ residueCell O n G, residueCell O n G =
@@ -752,7 +772,9 @@ theorem residue_cell_cylinder (O : Type) [CommRing O] [IsLocalRing O] (n : ℕ)
     exact ⟨hma.map _, (hma.natDegree_map _).trans hna⟩
 
 /-- The residue extension `O_δ / m_O O_δ` is isomorphic to `k[X]/(Φ̄)`, compatibly with
-reduction.-/
+reduction.
+@isnad1 id=ex.0h2v.s11.7f731c64c44d from=translated src=- shape=03c37d74 vocab=6febb3f3
+-/
 theorem residue_extension_equiv (O : Type) [CommRing O] [IsLocalRing O] (Φ : Polynomial O) :
     ∃ e : residueExtension O Φ ≃+* AdjoinRoot (residuePoly O Φ),
       (∀ p : Polynomial O, e (baseReduce O Φ (AdjoinRoot.mk Φ p)) = AdjoinRoot.mk (residuePoly O Φ)
@@ -769,7 +791,9 @@ theorem residue_extension_equiv (O : Type) [CommRing O] [IsLocalRing O] (Φ : Po
   rwa [AdjoinRoot.mk_C, Polynomial.map_C, AdjoinRoot.mk_C] at this
 
 /-- For an unramified lift `Φ`, the residue extension is a finite field with `q^(deg Φ)`
-elements.-/
+elements.
+@isnad1 id=and.1h2v.s6.054f8f431d5a from=translated src=- shape=888c3d73 vocab=f213163c
+-/
 theorem residue_extension_field (O : Type) [CommRing O] [IsLocalRing O]
     [Finite (IsLocalRing.ResidueField O)] (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) :
     IsField (residueExtension O Φ) ∧ Finite (residueExtension O Φ) ∧ Nat.card
@@ -788,7 +812,9 @@ theorem residue_extension_field (O : Type) [CommRing O] [IsLocalRing O]
 
 open Polynomial in
 /-- Translation `X ↦ X + θ` maps the block cell bijectively onto the `X^r` cell and preserves
-congruences modulo powers of `m_O O_δ`.-/
+congruences modulo powers of `m_O O_δ`.
+@isnad1 id=and.1h3v.s9.86784e4ca79b from=translated src=- shape=e20c5391 vocab=2a2b3b6c
+-/
 theorem block_translation (O : Type) [CommRing O] [IsLocalRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) (r : ℕ) :
@@ -922,7 +948,9 @@ private theorem monic_eq_prod_X_sub_C (K : Type) [CommRing K] (hK : IsField K) (
   rw [← Finset.prod_eq_multiset_prod, Finset.prod_image (fun a _ b _ h => hr h)]
 
 /-- The residue roots `θ̄^(q^i)`, `i < deg Φ`, are pairwise distinct roots of `Φ̄` in `k_δ`, so `Φ̄`
-splits there as the product of the pairwise coprime conjugate factors.-/
+splits there as the product of the pairwise coprime conjugate factors.
+@isnad1 id=and.1h2v.s10.f42aa49b3b81 from=translated src=- shape=552a918b vocab=9eda2b3e
+-/
 theorem conjugate_roots_distinct (O : Type) [CommRing O] [IsLocalRing O]
     [IsAdicComplete (IsLocalRing.maximalIdeal O) O] [Finite (IsLocalRing.ResidueField O)]
     (Φ : Polynomial O) (hΦ : IsUnramifiedLift O Φ) :
@@ -1003,7 +1031,9 @@ theorem conjugate_roots_distinct (O : Type) [CommRing O] [IsLocalRing O]
   exact ⟨hcomp, ρ.injective, hroot, hdist, hfac, hcop⟩
 
 /-- The nonzero scalar multiples of a nonzero vector over a finite field `k` form a finite set of
-`|k| − 1` nonzero vectors.-/
+`|k| − 1` nonzero vectors.
+@isnad1 id=and.1h3v.s8.06f8f48dbb19 from=translated src=- shape=ce21ebe1 vocab=fae86377
+-/
 theorem scalar_class_card (k : Type) [Field k] [Finite k] (n : ℕ) (v : Fin (n + 1) → k)
     (hv : v ≠ 0) :
     Nat.card (scalarClass v) = Nat.card k - 1 ∧ (∀ w ∈ scalarClass v, w ≠ 0) ∧

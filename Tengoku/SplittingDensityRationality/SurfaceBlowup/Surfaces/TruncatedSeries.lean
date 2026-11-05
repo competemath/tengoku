@@ -50,7 +50,9 @@ private theorem axisIdeal_isMaximal (k : Type) [Field k] :
   rw [this]
   exact RingHom.ker_isMaximal_of_surjective _ (fun x => ⟨MvPowerSeries.C x, by simp⟩)
 
-/-- The maximal ideal of `k⟦T, X⟧` is `(T, X)`.-/
+/-- The maximal ideal of `k⟦T, X⟧` is `(T, X)`.
+@isnad1 id=eq.0h1v.s6.8cbf3bb50a37 from=translated src=- shape=555ebdf1 vocab=443c14ea
+-/
 theorem maximalIdeal_twoSeries (k : Type) [Field k] :
     IsLocalRing.maximalIdeal (TwoSeries k) = Ideal.span {axisT k, axisX k} :=
   (IsLocalRing.eq_maximalIdeal (axisIdeal_isMaximal k)).symm
@@ -67,7 +69,9 @@ private theorem eq_single_of_apply_eq_zero {s t : Fin 2} (hst : s ≠ t) {m : Fi
 noncomputable def axisQuotientLength (k : Type) [Field k] (s : Fin 2) (F : TwoSeries k) : ℕ∞ :=
   Module.length (TwoSeries k) (TwoSeries k ⧸ (Ideal.span {F} ⊔ Ideal.span {MvPowerSeries.X s}))
 
-/-- If `F` vanishes on the axis `X_t`, then `ℓ(k⟦T, X⟧ ⧸ (F, X_s)) = ⊤`.-/
+/-- If `F` vanishes on the axis `X_t`, then `ℓ(k⟦T, X⟧ ⧸ (F, X_s)) = ⊤`.
+@isnad1 id=eq.2h4v.s8.0377b8f6ce1e from=translated src=- shape=e92cc65a vocab=5952c06c
+-/
 theorem axisQuotientLength_eq_top (k : Type) [Field k] {s t : Fin 2} (hst : s ≠ t)
     (F : TwoSeries k)
     (h : ∀ j, MvPowerSeries.coeff (Finsupp.single t j) F = 0) : axisQuotientLength k s F = ⊤ := by
@@ -79,7 +83,9 @@ theorem axisQuotientLength_eq_top (k : Type) [Field k] {s t : Fin 2} (hst : s �
   exact axis_quotient_length_top k s t hst
 
 /-- If the restriction of `F` to the axis `X_t` has order `d`, then
-`ℓ(k⟦T, X⟧ ⧸ (F, X_s)) = d`.-/
+`ℓ(k⟦T, X⟧ ⧸ (F, X_s)) = d`.
+@isnad1 id=eq.3h5v.s9.1260a5c3951a from=translated src=- shape=0c828b4c vocab=821371fd
+-/
 theorem axisQuotientLength_eq (k : Type) [Field k] {s t : Fin 2} (hst : s ≠ t)
     (F : TwoSeries k)
     (d : ℕ) (hlow : ∀ j < d, MvPowerSeries.coeff (Finsupp.single t j) F = 0)
@@ -139,7 +145,9 @@ theorem axisQuotientLength_eq (k : Type) [Field k] {s t : Fin 2} (hst : s ≠ t)
   rw [axisQuotientLength, hid, length_quotient_sup_pow_eq_mul _ _ _ hcancel d, h1, mul_one]
 
 /-- `ℓ(k⟦T, X⟧ ⧸ (F, X_s)) = c` iff the restriction of `F` to the other axis `X_t` has order
-exactly `c`.-/
+exactly `c`.
+@isnad1 id=iff.1h5v.s9.fe40843aac24 from=translated src=- shape=395f6324 vocab=821371fd
+-/
 theorem axisQuotientLength_eq_iff (k : Type) [Field k] {s t : Fin 2} (hst : s ≠ t) (F : TwoSeries k)
     (c : ℕ) : axisQuotientLength k s F = c ↔
       (∀ j < c, MvPowerSeries.coeff (Finsupp.single t j) F = 0) ∧
@@ -156,7 +164,9 @@ theorem axisQuotientLength_eq_iff (k : Type) [Field k] {s t : Fin 2} (hst : s �
     exact absurd (h.symm.trans (axisQuotientLength_eq_top k hst F hex)) (ENat.natCast_ne_top c)
 
 /-- On the special fibre `k⟦T, X⟧ ⧸ (T^a X^b)` with `0 < a`, the contact of `F` with `T` is
-`ℓ(k⟦T, X⟧ ⧸ (F, T))`.-/
+`ℓ(k⟦T, X⟧ ⧸ (F, T))`.
+@isnad1 id=eq.1h4v.s9.646b46518032 from=translated src=- shape=7f041d8c vocab=81e73568
+-/
 theorem contact_fiberT_eq_axisQuotientLength (k : Type) [Field k] (a b : ℕ) (ha : 0 < a)
     (F : TwoSeries k) :
     contact (Ideal.Quotient.mk (monomialIdeal k a b) F) (fiberT k a b) =
@@ -170,7 +180,9 @@ theorem contact_fiberT_eq_axisQuotientLength (k : Type) [Field k] (a b : ℕ) (h
   rw [contact, fiberT, h1, axisQuotientLength, ← Ideal.span_insert]; rfl
 
 /-- On the special fibre `k⟦T, X⟧ ⧸ (T^a X^b)` with `0 < b`, the contact of `F` with `X` is
-`ℓ(k⟦T, X⟧ ⧸ (F, X))`.-/
+`ℓ(k⟦T, X⟧ ⧸ (F, X))`.
+@isnad1 id=eq.1h4v.s9.77bb2b0d4be2 from=translated src=- shape=2d280af2 vocab=6cb34d93
+-/
 theorem contact_fiberX_eq_axisQuotientLength (k : Type) [Field k] (a b : ℕ) (hb : 0 < b)
     (F : TwoSeries k) :
     contact (Ideal.Quotient.mk (monomialIdeal k a b) F) (fiberX k a b) =
@@ -189,7 +201,9 @@ def truncIndex (a b L : ℕ) : Finset (ℕ × ℕ) :=
   (Finset.range L ×ˢ Finset.range L).filter fun ij => ij.1+ij.2<L ∧ ¬(a ≤ ij.1 ∧ b ≤ ij.2)
 
 /-- An initial segment `{e 0, …, e (c - 1)}` of an axis `f = 0` (parametrized by `g`) inside
-`truncIndex a b L` has `c` elements.-/
+`truncIndex a b L` has `c` elements.
+@isnad1 id=eq.3h7v.s9.332280c33350 from=translated src=- shape=4810e345 vocab=6b4b6618
+-/
 theorem card_truncIndex_axis_segment (a b L c : ℕ) (f g : ℕ × ℕ → ℕ) (e : ℕ → ℕ × ℕ)
     (hfe : ∀ j, f (e j) = 0 ∧ g (e j) = j) (hef : ∀ x, f x = 0 → e (g x) = x)
     (hmem : ∀ j < c, e j ∈ truncIndex a b L) :
@@ -219,7 +233,9 @@ noncomputable def truncCoeffs (k : Type) [Field k] (a b L : ℕ) : TwoSeries k �
     (truncIndex a b L → k) :=
   LinearMap.pi (fun s => MvPowerSeries.coeff (truncExponent s.1))
 
-/-- Evaluation of `truncCoeffs`.-/
+/-- Evaluation of `truncCoeffs`.
+@isnad1 id=eq.0h6v.s9.f8788bd9df1f from=translated src=- shape=a3e27dff vocab=30147a34
+-/
 theorem truncCoeffs_apply (k : Type) [Field k] (a b L : ℕ) (F : TwoSeries k)
     (s : truncIndex a b L) :
     truncCoeffs k a b L F s = MvPowerSeries.coeff (truncExponent s.1) F := rfl
@@ -305,7 +321,9 @@ private theorem truncIdeal_le_axisIdeal (k : Type) [Field k] (a b L : ℕ) (ha :
   · exact Ideal.pow_le_self hL.ne'
 
 /-- For `0 < a` and `0 < L`, the class of `F` in `k⟦T, X⟧ ⧸ truncIdeal k a b L` is a unit iff
-the constant coefficient of `F` is nonzero.-/
+the constant coefficient of `F` is nonzero.
+@isnad1 id=iff.2h5v.s9.507399ebb1b3 from=translated src=- shape=5d1ebedd vocab=6de9447f
+-/
 theorem isUnit_mk_truncIdeal_iff (k : Type) [Field k] (a b L : ℕ) (ha : 0 < a) (hL : 0 < L)
     (F : TwoSeries k) :
     IsUnit (Ideal.Quotient.mk (truncIdeal k a b L) F) ↔ MvPowerSeries.constantCoeff F ≠ 0 := by
@@ -324,7 +342,9 @@ private theorem truncIdeal_ne_top (k : Type) [Field k] (a b L : ℕ) (ha : 0 < a
     truncIdeal k a b L ≠ ⊤ := fun h =>
   (axisIdeal_isMaximal k).ne_top (top_le_iff.mp (h ▸ truncIdeal_le_axisIdeal k a b L ha hL))
 
-/-- In a finite commutative ring, the annihilator of `x` and `B ⧸ (x)` have the same cardinality.-/
+/-- In a finite commutative ring, the annihilator of `x` and `B ⧸ (x)` have the same cardinality.
+@isnad1 id=eq.0h2v.s6.8422c730a2f2 from=translated src=- shape=560ee234 vocab=3880c70d
+-/
 theorem card_mul_eq_zero_eq_card_quotient (B : Type) [CommRing B] [Finite B] (x : B) :
     Nat.card {r : B // r * x = 0} = Nat.card (B ⧸ Ideal.span {x}) := by
   let μ := LinearMap.toSpanSingleton B B x
@@ -450,7 +470,9 @@ private theorem comap_factor_span_singleton {S : Type} [CommRing S] {I J : Ideal
 /-- Count of the principal ideals `(f)` of the special fibre `k⟦T, X⟧ ⧸ (T^a X^b)` whose generator
 satisfies a unit-invariant condition `P` of colength `N` that, read on the truncation
 `k⟦T, X⟧ ⧸ truncIdeal k a b (N + 1)`, says: the coefficients on `A` vanish and those on `B` do not.
-With `q = #k`, the count times `(q - 1) q^(#A + #B - 1)` is `(q - 1)^#B q^N`.-/
+With `q = #k`, the count times `(q - 1) q^(#A + #B - 1)` is `(q - 1)^#B q^N`.
+@isnad1 id=eq.7h9v.s12.88dfbb71b8d7 from=translated src=- shape=935a5f4f vocab=fddc03a3
+-/
 theorem principal_residue_ideal_count (k : Type) [Field k] [Finite k] (a b N : ℕ) (ha : 0 < a)
     (P : TwoSeries k → Prop) (Q : SpecialFiber k a b → Prop)
     (hQ : ∀ F, Q (Ideal.Quotient.mk _ F) ↔ P F) (hunit : ∀ U F, IsUnit U → P F → P (U * F))

@@ -61,7 +61,9 @@ def recipPoly : Polynomial ℚ →+* RatFunc ℚ :=
 /-- Polynomials evaluated at X^δ in ℚ(X).-/
 private def adamsPoly (δ : ℕ) : Polynomial ℚ →+* RatFunc ℚ :=
   Polynomial.eval₂RingHom (RatFunc.C : ℚ →+* RatFunc ℚ) (RatFunc.X ^ δ)
-/-- Evaluating a polynomial at `X` in `ℚ(X)` is the canonical embedding.-/
+/-- Evaluating a polynomial at `X` in `ℚ(X)` is the canonical embedding.
+@isnad1 id=eq.0h1v.s7.085027440ddc from=translated src=- shape=06aa1ebb vocab=4d6988d7
+-/
 theorem eval₂_C_X_eq_algebraMap (g : Polynomial ℚ) :
     Polynomial.eval₂ (RatFunc.C : ℚ →+* RatFunc ℚ) (RatFunc.X : RatFunc ℚ) g =
       algebraMap (Polynomial ℚ) (RatFunc ℚ) g := by
@@ -241,13 +243,17 @@ def gaussPhiInv (f : Ser) : Ser := PowerSeries.mk fun n ↦ qpow (tri n : ℤ) *
 
 /-! ### Gaussian exponents and `qpow` -/
 
-/-- `2 · tri n = n(n+1)`, as integers.-/
+/-- `2 · tri n = n(n+1)`, as integers.
+@isnad1 id=eq.0h1v.s5.4ac51d8f0921 from=translated src=- shape=5c8ba419 vocab=8d00c146
+-/
 theorem two_mul_tri (n : ℕ) : 2 * (tri n : ℤ) = n * (n + 1) := by
   have : 2 * tri n = n * (n + 1) := by
     unfold tri; exact Nat.two_mul_div_two_of_even (Nat.even_mul_succ_self n)
   exact_mod_cast this
 
-/-- `2 · C(n,2) = n(n-1)`, as integers.-/
+/-- `2 · C(n,2) = n(n-1)`, as integers.
+@isnad1 id=eq.0h1v.s5.e24fe203abe7 from=translated src=- shape=5c8ba419 vocab=c07a58ab
+-/
 theorem two_mul_chooseTwo (n : ℕ) : 2 * (chooseTwo n : ℤ) = n * (n - 1) := by
   have h : 2 * chooseTwo n = n * (n - 1) := by
     unfold chooseTwo; exact Nat.two_mul_div_two_of_even (Nat.even_mul_pred_self n)
@@ -261,17 +267,23 @@ private theorem tri_add (r m : ℕ) : (tri (r + m) : ℤ) = tri r + r * m + tri 
   have := two_mul_tri (r + m); have := two_mul_tri r; have := two_mul_tri m
   push_cast at *; linarith
 
-/-- Additivity defect of `C(·,2)`: `C(r + s, 2) = C(r,2) + C(s,2) + r s`.-/
+/-- Additivity defect of `C(·,2)`: `C(r + s, 2) = C(r,2) + C(s,2) + r s`.
+@isnad1 id=eq.0h2v.s5.496ea87be4e5 from=translated src=- shape=f5316d46 vocab=cde4833e
+-/
 theorem chooseTwo_add (r s : ℕ) :
     (chooseTwo (r + s) : ℤ) = chooseTwo r + chooseTwo s + r * s := by
   have := two_mul_chooseTwo (r + s); have := two_mul_chooseTwo r; have := two_mul_chooseTwo s
   push_cast at *; linarith
 
-/-- `q^{j+k} = q^j q^k` in `Coef`.-/
+/-- `q^{j+k} = q^j q^k` in `Coef`.
+@isnad1 id=eq.0h2v.s5.87ecb6b2dd9e from=translated src=- shape=0438c7a3 vocab=77e2c507
+-/
 theorem qpow_add (j k : ℤ) : qpow (j + k) = qpow j * qpow k := by
   simp [qpow, scalar, AddMonoidAlgebra.single_mul_single, zpow_add₀ (RatFunc.X_ne_zero (K := ℚ))]
 
-/-- `q^0 = 1` in `Coef`.-/
+/-- `q^0 = 1` in `Coef`.
+@isnad1 id=eq.0h0v.s5.ef2bc0f29faa from=translated src=- shape=1ac31801 vocab=d98ec81b
+-/
 theorem qpow_zero : qpow 0 = 1 := by simp [qpow, scalar, AddMonoidAlgebra.one_def]
 
 /-! ### The substitutions `q ↦ q^δ` and `q ↦ q⁻¹` on `ℚ(q)` -/
@@ -281,20 +293,28 @@ private theorem adamsRat_algebraMap (δ : ℕ) (hδ : 0 < δ) (g : Polynomial �
     adamsRat δ (algebraMap (Polynomial ℚ) (RatFunc ℚ) g) = adamsPoly δ g := by
   unfold adamsRat; rw [dite_eq_left hδ]; simp
 
-/-- `recipRat` extends `recipPoly`.-/
+/-- `recipRat` extends `recipPoly`.
+@isnad1 id=eq.0h1v.s8.f708fc50136a from=translated src=- shape=0cc58545 vocab=8ae3e30a
+-/
 theorem recipRat_algebraMap (g : Polynomial ℚ) :
     recipRat (algebraMap (Polynomial ℚ) (RatFunc ℚ) g) = recipPoly g := by
   simp [recipRat]
 
-/-- `recipRat` fixes the constants.-/
+/-- `recipRat` fixes the constants.
+@isnad1 id=eq.0h1v.s8.b3152a861088 from=translated src=- shape=e7c49e4f vocab=43000739
+-/
 theorem recipRat_C (r : ℚ) : recipRat (RatFunc.C r) = RatFunc.C r := by
   rw [← RatFunc.algebraMap_C, recipRat_algebraMap]; simp [recipPoly]
 
-/-- `adamsRat δ q = q^δ` for `δ > 0`.-/
+/-- `adamsRat δ q = q^δ` for `δ > 0`.
+@isnad1 id=eq.1h1v.s7.92a859db65f8 from=translated src=- shape=abe555f4 vocab=d4647595
+-/
 theorem adamsRat_X (δ : ℕ) (hδ : 0 < δ) : adamsRat δ RatFunc.X = RatFunc.X ^ δ := by
   rw [← RatFunc.algebraMap_X, adamsRat_algebraMap δ hδ]; simp [adamsPoly]
 
-/-- `recipRat q = q⁻¹`.-/
+/-- `recipRat q = q⁻¹`.
+@isnad1 id=eq.0h0v.s6.484ed44c4343 from=translated src=- shape=679f7b47 vocab=d92bcdfc
+-/
 theorem recipRat_X : recipRat RatFunc.X = RatFunc.X⁻¹ := by
   rw [← RatFunc.algebraMap_X, recipRat_algebraMap]; simp [recipPoly]
 
@@ -310,7 +330,9 @@ private theorem ringHom_eval₂ (φ : RatFunc ℚ →+* RatFunc ℚ) (g : Polyno
   congr 1
   ext r; simp
 
-/-- The Adams substitution commutes with `q ↦ q⁻¹`.-/
+/-- The Adams substitution commutes with `q ↦ q⁻¹`.
+@isnad1 id=eq.1h2v.s8.edcd7177199b from=translated src=- shape=1a3b2f85 vocab=82266de5
+-/
 theorem adamsRat_recipRat (δ : ℕ) (hδ : 0 < δ) (f : RatFunc ℚ) :
     adamsRat δ (recipRat f) = recipRat (adamsRat δ f) := by
   refine DFunLike.congr_fun (ratFunc_ringHom_ext ((adamsRat δ).comp recipRat)
@@ -320,7 +342,9 @@ theorem adamsRat_recipRat (δ : ℕ) (hδ : 0 < δ) (f : RatFunc ℚ) :
   change adamsRat δ (g.eval₂ RatFunc.C (RatFunc.X)⁻¹) = recipRat (g.eval₂ RatFunc.C (RatFunc.X ^ δ))
   rw [ringHom_eval₂, ringHom_eval₂, map_inv₀, map_pow, adamsRat_X δ hδ, recipRat_X, inv_pow]
 
-/-- `ψ_δ ∘ ψ_k = ψ_{δk}` on `ℚ(q)`.-/
+/-- `ψ_δ ∘ ψ_k = ψ_{δk}` on `ℚ(q)`.
+@isnad1 id=eq.2h3v.s8.433052c311bd from=translated src=- shape=93b32959 vocab=7e13b68b
+-/
 theorem adamsRat_adamsRat (δ k : ℕ) (hδ : 0 < δ) (hk : 0 < k) (f : RatFunc ℚ) :
     adamsRat δ (adamsRat k f) = adamsRat (δ * k) f := by
   refine DFunLike.congr_fun (ratFunc_ringHom_ext ((adamsRat δ).comp (adamsRat k))
@@ -330,42 +354,56 @@ theorem adamsRat_adamsRat (δ k : ℕ) (hδ : 0 < δ) (hk : 0 < k) (f : RatFunc 
   change adamsRat δ (g.eval₂ RatFunc.C (RatFunc.X ^ k)) = g.eval₂ RatFunc.C (RatFunc.X ^ (δ * k))
   rw [ringHom_eval₂, map_pow, adamsRat_X δ hδ, pow_mul]
 
-/-- `ψ_1` is the identity of `ℚ(q)`.-/
+/-- `ψ_1` is the identity of `ℚ(q)`.
+@isnad1 id=eq.0h1v.s6.6fa437f33d21 from=translated src=- shape=3065069f vocab=18617f61
+-/
 theorem adamsRat_one (f : RatFunc ℚ) : adamsRat 1 f = f := by
   refine DFunLike.congr_fun (ratFunc_ringHom_ext (adamsRat 1) (RingHom.id _) fun g ↦ ?_) f
   rw [adamsRat_algebraMap 1 one_pos]
   change g.eval₂ RatFunc.C (RatFunc.X ^ 1) = _
   rw [pow_one, eval₂_C_X_eq_algebraMap]; rfl
 
-/-- `ψ_δ (q^j) = q^{δj}` for integer `j`.-/
+/-- `ψ_δ (q^j) = q^{δj}` for integer `j`.
+@isnad1 id=eq.1h2v.s7.58eff1b799dc from=translated src=- shape=a954a87c vocab=8d47f8e9
+-/
 theorem adamsRat_zpow_X (δ : ℕ) (hδ : 0 < δ) (j : ℤ) :
     adamsRat δ ((RatFunc.X : RatFunc ℚ) ^ j) = (RatFunc.X : RatFunc ℚ) ^ ((δ : ℤ) * j) := by
   rw [map_zpow₀, adamsRat_X δ hδ, ← zpow_natCast, ← zpow_mul]
 
 /-! ### Adams operations on series -/
 
-/-- `[xⁿ] ψ_k f = ψ_k([x^{n/k}] f)` if `k ∣ n`, and `0` otherwise (`k ≠ 0`).-/
+/-- `[xⁿ] ψ_k f = ψ_k([x^{n/k}] f)` if `k ∣ n`, and `0` otherwise (`k ≠ 0`).
+@isnad1 id=eq.1h3v.s10.69f9353d3478 from=translated src=- shape=f201afaa vocab=763e52d8
+-/
 theorem coeff_adamsSer (k : ℕ) (hk : k ≠ 0) (f : Ser) (n : ℕ) :
     PowerSeries.coeff n (adamsSer k f) =
       if k ∣ n then adamsCoef k (PowerSeries.coeff (n / k) f) else 0 := by
   simp only [adamsSer, dite_eq_right hk, PowerSeries.coeff_expand, PowerSeries.coeff_map]
 
-/-- The constant term of `ψ_k f` is `ψ_k` of the constant term of `f` (`k ≠ 0`).-/
+/-- The constant term of `ψ_k f` is `ψ_k` of the constant term of `f` (`k ≠ 0`).
+@isnad1 id=eq.1h2v.s9.f6d4df5dad61 from=translated src=- shape=5803c372 vocab=8527cf3c
+-/
 theorem constantCoeff_adamsSer (k : ℕ) (hk : k ≠ 0) (f : Ser) :
     PowerSeries.constantCoeff (adamsSer k f) = adamsCoef k (PowerSeries.constantCoeff f) := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply, coeff_adamsSer k hk]; simp
 
-/-- `ψ_k 1 = 1` (`k ≠ 0`).-/
+/-- `ψ_k 1 = 1` (`k ≠ 0`).
+@isnad1 id=eq.1h1v.s6.a0e728ddd6f1 from=translated src=- shape=be06c720 vocab=98e6346f
+-/
 theorem adamsSer_one (k : ℕ) (hk : k ≠ 0) : adamsSer k (1 : Ser) = 1 := by
   simp [adamsSer, dite_eq_right hk]
 
-/-- `ψ_k` on series is additive on differences (`k ≠ 0`).-/
+/-- `ψ_k` on series is additive on differences (`k ≠ 0`).
+@isnad1 id=eq.1h3v.s6.060b7cfc9177 from=translated src=- shape=36fcb751 vocab=dd9a2964
+-/
 theorem adamsSer_sub (k : ℕ) (hk : k ≠ 0) (f g : Ser) :
     adamsSer k (f - g) = adamsSer k f - adamsSer k g := by
   simp [adamsSer, dite_eq_right hk]
 
 /-- Through degree `n`, `ψ_m(B_a) - 1` is the finite sum
-`Σ_{r < n} ψ_m(F_{S(a;r+1)}) x^{m(r+1)}`.-/
+`Σ_{r < n} ψ_m(F_{S(a;r+1)}) x^{m(r+1)}`.
+@isnad1 id=scongr.1h3v.s9.e9faa871b69e from=translated src=- shape=c325a45e vocab=57da0ddc
+-/
 theorem adamsSer_clusterSer_sub_one_scongr (a m n : ℕ) (hm : 0 < m) :
     SCongr n (adamsSer m (clusterSer a) - 1)
       (∑ r : Fin n, PowerSeries.C (adamsCoef m (lawCoef (stateLaw (State.single a (r.val + 1))))) *
@@ -394,7 +432,9 @@ theorem adamsSer_clusterSer_sub_one_scongr (a m n : ℕ) (hm : 0 < m) :
 
 /-! ### Exponential, logarithm and binomial series -/
 
-/-- The binomial series `Σ C(c,n) xⁿ` solves `(1 + x) y' = c y`.-/
+/-- The binomial series `Σ C(c,n) xⁿ` solves `(1 + x) y' = c y`.
+@isnad1 id=eq.0h1v.s10.5d1ba0e4166a from=translated src=- shape=71508508 vocab=a1dda46d
+-/
 theorem binomial_series_ode (c : RatFunc ℚ) :
     (1 + PowerSeries.X) * PowerSeries.derivative Coef (PowerSeries.mk fun n ↦
       ((n.factorial : ℚ)⁻¹) • ∏ j ∈ Finset.range n, (scalar c - (j : ℚ) • (1 : Coef))) =
@@ -420,7 +460,9 @@ theorem binomial_series_ode (c : RatFunc ℚ) :
     simp [hb]
   · rw [PowerSeries.coeff_succ_X_mul, hd, hd, key, sub_mul, smul_mul_assoc, one_mul, sub_add_cancel]
 
-/-- `exp f` has constant term `1` when `f(0) = 0`.-/
+/-- `exp f` has constant term `1` when `f(0) = 0`.
+@isnad1 id=eq.1h1v.s8.cabc3dad7793 from=translated src=- shape=1554af78 vocab=7aaf1def
+-/
 theorem constantCoeff_expSer (f : Ser) (hf : PowerSeries.constantCoeff f = 0) :
     PowerSeries.constantCoeff (expSer f) = 1 := by
   change MvPowerSeries.constantCoeff _ = 1
@@ -432,24 +474,32 @@ theorem constantCoeff_expSer (f : Ser) (hf : PowerSeries.constantCoeff f = 0) :
     have h0 : MvPowerSeries.constantCoeff f = 0 := hf
     simp [h0, zero_pow hd]
 
-/-- The chain rule `(exp f)' = f' · exp f` (for `f(0) = 0`).-/
+/-- The chain rule `(exp f)' = f' · exp f` (for `f(0) = 0`).
+@isnad1 id=eq.1h1v.s10.3fac96dc1b23 from=translated src=- shape=656da57b vocab=98855c0c
+-/
 theorem derivative_expSer (f : Ser) (hf : PowerSeries.constantCoeff f = 0) :
     PowerSeries.derivative Coef (expSer f) = PowerSeries.derivative Coef f * expSer f := by
   rw [expSer, PowerSeries.derivative_subst (PowerSeries.HasSubst.of_constantCoeff_zero' hf),
     PowerSeries.derivative_exp, mul_comm]
 
-/-- `exp 0 = 1`.-/
+/-- `exp 0 = 1`.
+@isnad1 id=eq.0h0v.s6.780c4a2a0318 from=translated src=- shape=3c26ae4f vocab=1445bddf
+-/
 theorem expSer_zero : expSer (0 : Ser) = 1 := by
   rw [expSer, PowerSeries.subst_zero_eq_C_constantCoeff]
   ext n
   simp
 
-/-- `log g` has constant term `0` when `g(0) = 1`.-/
+/-- `log g` has constant term `0` when `g(0) = 1`.
+@isnad1 id=eq.1h1v.s8.d376f21cd6d5 from=translated src=- shape=1554af78 vocab=98dc9a3c
+-/
 theorem constantCoeff_logSer (g : Ser) (hg : PowerSeries.constantCoeff g = 1) :
     PowerSeries.constantCoeff (logSer g) = 0 :=
   PowerSeries.constantCoeff_logOf hg
 
-/-- The logarithmic derivative `g · (log g)' = g'` (for `g(0) = 1`).-/
+/-- The logarithmic derivative `g · (log g)' = g'` (for `g(0) = 1`).
+@isnad1 id=eq.1h1v.s10.88a82bacf1dd from=translated src=- shape=3f8ef824 vocab=746bd3fd
+-/
 theorem mul_derivative_logSer (g : Ser) (hg : PowerSeries.constantCoeff g = 1) :
     g * PowerSeries.derivative Coef (logSer g) = PowerSeries.derivative Coef g := by
   have hs : PowerSeries.HasSubst (g - 1) :=
@@ -502,7 +552,9 @@ private theorem coeff_pow_eq_of_scongr (n : ℕ) (hn : 0 < n) (f g : Ser)
   · simp [hi, hf, hg]
   rw [hk p.1 (by omega), h p.2 (by omega)]
 
-/-- The `n`-th coefficient of `P ∘ f` (for `f(0) = 0`) only involves the powers `f^d`, `d ≤ n`.-/
+/-- The `n`-th coefficient of `P ∘ f` (for `f(0) = 0`) only involves the powers `f^d`, `d ≤ n`.
+@isnad1 id=eq.1h3v.s11.db3e4954407d from=translated src=- shape=bb2d7250 vocab=316bcf74
+-/
 theorem coeff_subst_eq_sum (n : ℕ) (P f : Ser) (hf : PowerSeries.constantCoeff f = 0) :
     PowerSeries.coeff n (P.subst f) =
       ∑ d ∈ Finset.range (n + 1), PowerSeries.coeff d P • PowerSeries.coeff n (f ^ d) := by
@@ -527,7 +579,9 @@ private theorem coeff_subst_sub (n : ℕ) (hn : 0 < n) (P f g : Ser)
   · intro h1; simp at h1; omega
 
 /-- If `f ≡ g` through degree `n - 1`, then the degree-`n` discrepancy of `exp f` and `exp g`
-equals that of `f` and `g`.-/
+equals that of `f` and `g`.
+@isnad1 id=eq.4h3v.s11.af69ec4e7d9c from=translated src=- shape=5503fc2c vocab=82a4f5f6
+-/
 theorem coeff_expSer_sub_of_scongr (n : ℕ) (hn : 0 < n) (f g : Ser)
     (hf : PowerSeries.constantCoeff f = 0) (hg : PowerSeries.constantCoeff g = 0)
     (h : SCongr (n - 1) f g) :
@@ -537,7 +591,9 @@ theorem coeff_expSer_sub_of_scongr (n : ℕ) (hn : 0 < n) (f g : Ser)
   simp only [Nat.factorial_one, Nat.cast_one, div_one, map_one, one_smul]
 
 /-- If `u ≡ v` through degree `n - 1`, then the degree-`n` discrepancy of `log u` and `log v`
-equals that of `u` and `v`.-/
+equals that of `u` and `v`.
+@isnad1 id=eq.4h3v.s11.1e8658d45c62 from=translated src=- shape=5503fc2c vocab=aa10f5f0
+-/
 theorem coeff_logSer_sub_of_scongr (n : ℕ) (hn : 0 < n) (u v : Ser)
     (hu : PowerSeries.constantCoeff u = 1) (hv : PowerSeries.constantCoeff v = 1)
     (huv : SCongr (n - 1) u v) :
@@ -553,7 +609,9 @@ theorem coeff_logSer_sub_of_scongr (n : ℕ) (hn : 0 < n) (u v : Ser)
 /-- A sum over the allowed tangent patterns of a state `s` whose summand depends only on the data
 `(d, rt, rx)` and the off-boundary pattern, reindexed by `d ∈ [1, D]`, `rt, rx ≤ d` and the
 off-boundary patterns of weight `d - rt - rx`. Here `D` bounds the divisor degree and `Q` is the
-boundary condition on `(d, rt, rx)` in the description `hmem` of the allowed patterns.-/
+boundary condition on `(d, rt, rx)` in the description `hmem` of the allowed patterns.
+@isnad1 id=eq.2h4v.s9.b1c4ba234cd1 from=translated src=- shape=53688715 vocab=d652d1c7
+-/
 theorem sum_allowedPatterns_reindex (s : State) (D : ℕ) (hD : D ≤ s.degree)
     (Q : ℕ → ℕ → ℕ → Prop) [∀ d rt rx, Decidable (Q d rt rx)]
     (hmem : ∀ P, P ∈ allowedPatterns s ↔ 0 < P.d.val ∧
@@ -603,7 +661,9 @@ theorem sum_allowedPatterns_reindex (s : State) (D : ℕ) (hD : D ≤ s.degree)
     exact ⟨h4, by omega⟩
 
 /-- Reindexing the allowed patterns of the crossing state `T(a,b;c,h)` by their data
-`(d, rt, rx)` and the off-boundary pattern of weight `d - rt - rx`.-/
+`(d, rt, rx)` and the off-boundary pattern of weight `d - rt - rx`.
+@isnad1 id=eq.3h5v.s9.125953d143bb from=translated src=- shape=07c62113 vocab=6ffa26d2
+-/
 theorem sum_allowedPatterns_crossing (a b c h : ℕ) (ha : 0 < a) (hb : 0 < b)
     (hh : 0 < h) (F : ℕ → ℕ → ℕ → Pattern (State.crossing a b c h).degree → Coef) :
     ∑ P ∈ allowedPatterns (State.crossing a b c h), F P.d.val P.rt.val P.rx.val P.other =
@@ -624,7 +684,9 @@ theorem sum_allowedPatterns_crossing (a b c h : ℕ) (ha : 0 < a) (hb : 0 < b)
 private theorem X_sub_one_ne_zero : (RatFunc.X - 1 : RatFunc ℚ) ≠ 0 := by
   simpa using RatFunc.algebraMap_ne_zero (Polynomial.X_sub_C_ne_zero (1 : ℚ))
 
-/-- `(q-1) · w_j = (q-1)^j` for the crossing weight `w_0 = (q-1)⁻¹`, `w_j = (q-1)^{j-1}`.-/
+/-- `(q-1) · w_j = (q-1)^j` for the crossing weight `w_0 = (q-1)⁻¹`, `w_j = (q-1)^{j-1}`.
+@isnad1 id=eq.0h1v.s8.26494075d424 from=translated src=- shape=161fe9b3 vocab=eefbcb9b
+-/
 theorem X_sub_one_mul_crossingWeight (j : ℕ) :
     (RatFunc.X - 1) * (if j = 0 then (RatFunc.X - 1 : RatFunc ℚ)⁻¹ else (RatFunc.X - 1) ^ (j - 1))
       = (RatFunc.X - 1) ^ j := by
@@ -637,12 +699,16 @@ private theorem pattern_entry_mul_le (N : ℕ) (m : Pattern N) (ij : Fin N × Fi
   Finset.single_le_sum (f := fun ij : Fin N × Fin N ↦ (ij.1.val+1)*(ij.2.val+1)*(m ij).val)
     (fun _ _ ↦ Nat.zero_le _) (Finset.mem_univ ij)
 
-/-- Each entry of a pattern is bounded by its weight.-/
+/-- Each entry of a pattern is bounded by its weight.
+@isnad1 id=le.0h3v.s5.077869cf15f4 from=translated src=- shape=271cfbb5 vocab=93b7938d
+-/
 theorem pattern_entry_le_patternWeight (N : ℕ) (m : Pattern N) (ij : Fin N × Fin N) :
     (m ij).val ≤ patternWeight m :=
   le_trans (Nat.le_mul_of_pos_left _ (by positivity)) (pattern_entry_mul_le N m ij)
 
-/-- An entry `m(i,j)` of a pattern of weight `< (i+1)(j+1)` vanishes.-/
+/-- An entry `m(i,j)` of a pattern of weight `< (i+1)(j+1)` vanishes.
+@isnad1 id=eq.1h3v.s6.cf0bfd6f1ce1 from=translated src=- shape=731d3fc8 vocab=fdda416c
+-/
 theorem pattern_entry_eq_zero_of_lt (N : ℕ) (m : Pattern N) (ij : Fin N × Fin N)
     (h : patternWeight m < (ij.1.val + 1) * (ij.2.val + 1)) : (m ij).val = 0 := by
   have h1 := pattern_entry_mul_le N m ij
@@ -650,7 +716,9 @@ theorem pattern_entry_eq_zero_of_lt (N : ℕ) (m : Pattern N) (ij : Fin N × Fin
   have := Nat.le_mul_of_pos_right ((ij.1.val + 1) * (ij.2.val + 1)) (Nat.pos_of_ne_zero hne)
   omega
 
-/-- Multinomial expansion of `(Σ_{r<n} b_{r+1} x^{m(r+1)})^k`.-/
+/-- Multinomial expansion of `(Σ_{r<n} b_{r+1} x^{m(r+1)})^k`.
+@isnad1 id=eq.0h4v.s9.5bbfb6982ffc from=translated src=- shape=1229afbf vocab=ac5dea74
+-/
 theorem sum_C_mul_X_pow_pow (m n k : ℕ) (b : ℕ → Coef) :
     (∑ r : Fin n, PowerSeries.C (b (r.val + 1)) * (PowerSeries.X : Ser) ^ (m * (r.val + 1))) ^ k =
     ∑ κ ∈ Finset.piAntidiag (Finset.univ : Finset (Fin n)) k,
@@ -669,7 +737,9 @@ theorem sum_C_mul_X_pow_pow (m n k : ℕ) (b : ℕ → Coef) :
 
 /-! ### The representation `qact` and the Gauss twist -/
 
-/-- If `U ≡ V` through total degree `n`, then `ρ(U) f ≡ ρ(V) f` through degree `n`.-/
+/-- If `U ≡ V` through total degree `n`, then `ρ(U) f ≡ ρ(V) f` through degree `n`.
+@isnad1 id=scongr.1h4v.s4.78a46f634444 from=translated src=- shape=c12d0c19 vocab=04aec528
+-/
 theorem QCongr.qact_scongr {n : ℕ} {U V : QSer} (hUV : QCongr n U V) (f : Ser) :
     SCongr n (qact U f) (qact V f) := fun m hm ↦ by
   simp only [qact, PowerSeries.coeff_mk]
@@ -678,7 +748,9 @@ theorem QCongr.qact_scongr {n : ℕ} {U V : QSer} (hUV : QCongr n U V) (f : Ser)
   rw [hUV r.1 r.2 (by omega)]
 
 /-- Coefficients of `ρ(U)(Φ f)` as a double sum over the total degree `d` and the first contact
-index `r`.-/
+index `r`.
+@isnad1 id=eq.0h3v.s10.44bfc287411e from=translated src=- shape=02cd52f8 vocab=afe2665e
+-/
 theorem coeff_qact_gaussPhi (U : QSer) (f : Ser) (n : ℕ) :
     PowerSeries.coeff n (qact U (gaussPhi f)) = ∑ d ∈ Finset.range (n + 1),
       ∑ r ∈ Finset.range (d + 1),
@@ -703,7 +775,9 @@ theorem coeff_qact_gaussPhi (U : QSer) (f : Ser) (n : ℕ) :
     rw [show n - (r + (n - i)) = i - r by omega, show r + (n - i) - r = n - i by omega]
 
 /-- Leading term: if `f` vanishes below degree `n` and `U₀₀ = 1`, then
-`[xⁿ] ρ(U)(Φ f) = q^{-tri n} [xⁿ] f`.-/
+`[xⁿ] ρ(U)(Φ f) = q^{-tri n} [xⁿ] f`.
+@isnad1 id=eq.2h3v.s10.6dc43857c687 from=translated src=- shape=ce12d624 vocab=6885edbe
+-/
 theorem coeff_qact_gaussPhi_of_lt (U : QSer) (hU0 : U 0 0 = 1) (f : Ser) (n : ℕ)
     (hf : ∀ m : ℕ, m < n → PowerSeries.coeff m f = 0) :
     PowerSeries.coeff n (qact U (gaussPhi f)) = qpow (-(tri n : ℤ)) * PowerSeries.coeff n f := by
@@ -717,7 +791,9 @@ theorem coeff_qact_gaussPhi_of_lt (U : QSer) (hU0 : U 0 0 = 1) (f : Ser) (n : �
     exact Finset.sum_eq_zero fun r _ ↦ by simp [PowerSeries.coeff_mk, hf _ this]
   · simp
 
-/-- `ρ` is multiplicative: `ρ(U V) = ρ(U) ∘ ρ(V)`.-/
+/-- `ρ` is multiplicative: `ρ(U V) = ρ(U) ∘ ρ(V)`.
+@isnad1 id=eq.0h3v.s4.9d3edde363f2 from=translated src=- shape=4ebd5895 vocab=5a654119
+-/
 theorem qact_qmul (U V : QSer) (f : Ser) : qact (qmul U V) f = qact U (qact V f) := by
   refine PowerSeries.ext fun n ↦ ?_
   simp only [qact, qmul, PowerSeries.coeff_mk, Finset.mul_sum, Finset.sum_mul]
@@ -745,7 +821,9 @@ theorem qact_qmul (U V : QSer) (f : Ser) : qact (qmul U V) f = qact U (qact V f)
       ring
     linear_combination (U e h * V g k * PowerSeries.coeff b f) * key
 
-/-- `ρ(1) = id`.-/
+/-- `ρ(1) = id`.
+@isnad1 id=eq.0h1v.s3.ef3e4d1e7c96 from=translated src=- shape=29edb2d9 vocab=89898632
+-/
 theorem qact_qone (f : Ser) : qact qone f = f := by
   ext n
   simp only [qact, PowerSeries.coeff_mk]
@@ -760,23 +838,31 @@ theorem qact_qone (f : Ser) : qact qone f = f := by
     simp [qone, this]
   · simp
 
-/-- `ρ(U)` is additive on differences.-/
+/-- `ρ(U)` is additive on differences.
+@isnad1 id=eq.0h3v.s6.874c49e34c96 from=translated src=- shape=c66a92ec vocab=b96f82da
+-/
 theorem qact_sub (U : QSer) (f g : Ser) : qact U (f - g) = qact U f - qact U g := by
   ext n
   simp [qact, mul_sub, Finset.sum_sub_distrib]
 
 /-! ### The twisted product -/
 
-/-- Congruence of contact series through degree `j` implies congruence through any `i ≤ j`.-/
+/-- Congruence of contact series through degree `j` implies congruence through any `i ≤ j`.
+@isnad1 id=qcongr.2h4v.s4.e7270f3e8a03 from=translated src=- shape=cb09ede1 vocab=7ab81307
+-/
 theorem QCongr.mono {i j : ℕ} {U V : QSer} (h : QCongr j U V) (hij : i ≤ j) : QCongr i U V :=
   fun c k hck ↦ h c k (hck.trans hij)
 
-/-- Congruence of contact series is transitive.-/
+/-- Congruence of contact series is transitive.
+@isnad1 id=qcongr.2h4v.s4.a9de5d905b59 from=translated src=- shape=31ac16df vocab=66d0043c
+-/
 theorem QCongr.trans {j : ℕ} {U V W : QSer} (h : QCongr j U V) (h' : QCongr j V W) :
     QCongr j U W :=
   fun c k hck ↦ (h c k hck).trans (h' c k hck)
 
-/-- Congruence of contact series is compatible with the twisted product.-/
+/-- Congruence of contact series is compatible with the twisted product.
+@isnad1 id=qcongr.2h5v.s4.2fc378f4a9f3 from=translated src=- shape=4d4e92be vocab=db6ea83d
+-/
 theorem QCongr.qmul {j : ℕ} {U U' V V' : QSer} (hU : QCongr j U U') (hV : QCongr j V V') :
     QCongr j (qmul U V) (qmul U' V') := fun c h hch ↦ by
   refine Finset.sum_congr rfl fun p hp ↦ Finset.sum_congr rfl fun r hr ↦ ?_
@@ -784,7 +870,9 @@ theorem QCongr.qmul {j : ℕ} {U U' V V' : QSer} (hU : QCongr j U U') (hV : QCon
   rw [hU p.1 r.1 (by omega), hV p.2 r.2 (by omega)]
 
 /-- Diagonal substitution doubles the congruence degree: `f ≡ g` through `M` gives
-`qdiag f ≡ qdiag g` through `2M + 1`.-/
+`qdiag f ≡ qdiag g` through `2M + 1`.
+@isnad1 id=qcongr.1h3v.s5.8a5b1313f97f from=translated src=- shape=72b414d4 vocab=be92ab5d
+-/
 theorem SCongr.qdiag {M : ℕ} {f g : Ser} (h : SCongr M f g) :
     QCongr (2 * M + 1) (qdiag f) (qdiag g) := by
   intro c k hck
@@ -818,7 +906,9 @@ private theorem antidiagonal_shift_sum_eq_zero {c k : ℕ} {p : ℕ × ℕ}
   rw [ite_eq_right]
   omega
 
-/-- `ι₊` is multiplicative for the twisted product.-/
+/-- `ι₊` is multiplicative for the twisted product.
+@isnad1 id=eq.0h2v.s3.eafc3c6505ea from=translated src=- shape=5059057e vocab=7d4882df
+-/
 theorem qplus_qmul (U V : QSer) : qplus (qmul U V) = qmul (qplus U) (qplus V) := by
   funext c k
   simp only [qplus, qmul]
@@ -868,11 +958,15 @@ private theorem qtranspose_qmul (U V : QSer) :
   simp only [Prod.fst_swap, Prod.snd_swap]
   rw [mul_comm (U _ _), mul_comm (r.1 : ℤ)]
 
-/-- `ι₋` is multiplicative for the twisted product.-/
+/-- `ι₋` is multiplicative for the twisted product.
+@isnad1 id=eq.0h2v.s3.08d423bc8d14 from=translated src=- shape=5059057e vocab=ada0750b
+-/
 theorem qminus_qmul (U V : QSer) : qminus (qmul U V) = qmul (qminus U) (qminus V) := by
   simp only [qminus_eq_transpose, qtranspose_qmul, qplus_qmul]
 
-/-- `E_{0,0}` is a left unit for the twisted product.-/
+/-- `E_{0,0}` is a left unit for the twisted product.
+@isnad1 id=eq.0h1v.s3.313d04381180 from=translated src=- shape=29edb2d9 vocab=8476687d
+-/
 theorem qone_qmul (U : QSer) : qmul qone U = U := by
   funext c h
   simp only [qmul, qone]
@@ -955,7 +1049,9 @@ private theorem qtripleTerm_eq (A Cq : QSer) (D : Ser) {c h rx m rt : ℕ}
     ring
   rw [hq]; ring
 
-/-- Expansion of the coefficient `(ι₊(A) · qdiag(D) · ι₋(C))_{c,h}` as a triple sum.-/
+/-- Expansion of the coefficient `(ι₊(A) · qdiag(D) · ι₋(C))_{c,h}` as a triple sum.
+@isnad1 id=eq.0h5v.s10.efd826cdaae7 from=translated src=- shape=ae0808d9 vocab=c7c714c0
+-/
 theorem qmul_qplus_qdiag_qminus_apply (A Cq : QSer) (D : Ser) (c h : ℕ) :
     qmul (qmul (qplus A) (qdiag D)) (qminus Cq) c h =
       ∑ rx ∈ Finset.range (c + 1), ∑ m ∈ Finset.range (c + 1), ∑ rt ∈ Finset.range (c + 1),
@@ -1017,7 +1113,9 @@ theorem qmul_qplus_qdiag_qminus_apply (A Cq : QSer) (D : Ser) (c h : ℕ) :
     exact hval _ _ _ (hT0 x hx).1 (hT0 x hx).2
 
 /-- If `U` is positive and agrees with `1` through degree `j - 1`, then `ι₊ U` agrees with `1`
-through degree `j`.-/
+through degree `j`.
+@isnad1 id=qcongr.2h2v.s4.93f3b2a7d078 from=translated src=- shape=9c034cc5 vocab=467307ba
+-/
 theorem qcongr_qplus_qone (j : ℕ) (U : QSer) (hU : QPositive U) (h : QCongr (j - 1) U qone) :
     QCongr j (qplus U) qone := by
   intro c k hck
@@ -1036,7 +1134,9 @@ private theorem qtranspose_qcongr_qone {j : ℕ} {U : QSer} (h : QCongr j U qone
   simpa [qtranspose, qone, and_comm] using h k c (by omega)
 
 /-- If `U` is positive and agrees with `1` through degree `j - 1`, then `ι₋ U` agrees with `1`
-through degree `j`.-/
+through degree `j`.
+@isnad1 id=qcongr.2h2v.s4.568356f0a6ca from=translated src=- shape=9c034cc5 vocab=7a28ef94
+-/
 theorem qcongr_qminus_qone (j : ℕ) (U : QSer) (hU : QPositive U) (h : QCongr (j - 1) U qone) :
     QCongr j (qminus U) qone := by
   rw [qminus_eq_transpose]

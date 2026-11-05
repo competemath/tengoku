@@ -43,7 +43,9 @@ open scoped ENNReal
 /-! ### Adic congruences -/
 
 /-- Congruence modulo `I^j M` is an equivalence relation, coarser for smaller `j`, and trivial
-for `j = 0`.-/
+for `j = 0`.
+@isnad1 id=and.0h3v.s7.385764ccd6b2 from=translated src=- shape=815bc41a vocab=9be74941
+-/
 theorem adic_congruence_rules (R M : Type) [CommRing R] [AddCommGroup M] [Module R M] (I : Ideal R)
     :
     (∀ j (x : M), adicCongr I j x x) ∧ (∀ j (x y : M), adicCongr I j x y → adicCongr I j y x) ∧
@@ -56,7 +58,9 @@ theorem adic_congruence_rules (R M : Type) [CommRing R] [AddCommGroup M] [Module
     fun _ _ _ _ hij h => Submodule.smul_mono_left (Ideal.pow_le_pow_right hij) h, fun _ _ => by
         simp⟩
 
-/-- Adic cylinders form a π-system.-/
+/-- Adic cylinders form a π-system.
+@isnad1 id=ispisyst.0h3v.s5.230fccca2e81 from=translated src=- shape=3c2bc620 vocab=573d38d3
+-/
 theorem adic_cylinders_intersection (R M : Type) [CommRing R] [AddCommGroup M] [Module R M]
     (I : Ideal R) :
     IsPiSystem (adicCylinders I M) := by
@@ -83,7 +87,9 @@ theorem adic_cylinders_intersection (R M : Type) [CommRing R] [AddCommGroup M] [
     exact key j i x' x z h hzt hzs
 
 /-- Perturbing by a map that raises adic order preserves and reflects congruence modulo
-`I^j M`.-/
+`I^j M`.
+@isnad1 id=iff.1h7v.s6.a4faf28d75ad from=translated src=- shape=0b551b91 vocab=5e5c4334
+-/
 theorem adic_perturb_congruence_iff (R M : Type) [CommRing R] [AddCommGroup M] [Module R M]
     (I : Ideal R) (r : M → M) (hr : RaisesAdicOrder I r) (j : ℕ) (x y : M) :
     adicCongr I j (adicPerturb r x) (adicPerturb r y) ↔ adicCongr I j x y := by
@@ -108,7 +114,9 @@ theorem adic_perturb_congruence_iff (R M : Type) [CommRing R] [AddCommGroup M] [
     exact Submodule.add_mem _ h hk
 
 /-- The image of a measurable set of coordinates under a division chart is measurable for
-the chart σ-algebra on ideals.-/
+the chart σ-algebra on ideals.
+@isnad1 id=measurab.2h7v.s6.c744b33e26ac from=translated src=- shape=91d64ec6 vocab=696e524a
+-/
 theorem chart_image_measurable_chart_sigma (O R : Type) [CommRing O] [CommRing R] [Algebra O R]
     [MeasurableSpace O] (pi : O) (n : ℕ) (f : R) (b : Fin n → R)
     (hchart : IsDivisionChart O R pi f b) (S : Set (Fin n → O)) (hS : MeasurableSet S) :
@@ -178,7 +186,9 @@ private theorem digit_limit_solves (R M : Type) [CommRing R] [AddCommGroup M] [M
   rw [key]
   exact neg_mem (add_mem h1 h2)
 
-/-- On an `I`-adically complete module, `x ↦ x + r x` is bijective when `r` raises adic order.-/
+/-- On an `I`-adically complete module, `x ↦ x + r x` is bijective when `r` raises adic order.
+@isnad1 id=bijectiv.1h4v.s5.dbd41f0fac97 from=translated src=- shape=bf3ce9fa vocab=5c16f9eb
+-/
 theorem adic_perturb_bijective (R M : Type) [CommRing R] [AddCommGroup M] [Module R M] (I : Ideal R)
     (r : M → M) (hr : RaisesAdicOrder I r) [IsAdicComplete I M] :
     Function.Bijective (adicPerturb r) := by
@@ -204,7 +214,9 @@ private theorem adic_perturb_cylinder_preimage (R M : Type) [CommRing R] [AddCom
   rw [← hx]
   exact adic_perturb_congruence_iff R M I r hr j y x
 
-/-- An adic perturbation is measurable for the adic cylinder σ-algebra.-/
+/-- An adic perturbation is measurable for the adic cylinder σ-algebra.
+@isnad1 id=measurab.2h4v.s6.7dfce4b0980a from=translated src=- shape=82666373 vocab=acbb0736
+-/
 theorem adic_perturb_measurable (R M : Type) [CommRing R] [AddCommGroup M] [Module R M]
     (I : Ideal R) (r : M → M) (hr : RaisesAdicOrder I r) [IsAdicComplete I M] [MeasurableSpace M]
     (hgen : ‹MeasurableSpace M› = adicCylinderSpace I M) :
@@ -219,7 +231,9 @@ theorem adic_perturb_measurable (R M : Type) [CommRing R] [AddCommGroup M] [Modu
     rw [hx]
     exact MeasurableSpace.measurableSet_generateFrom (Or.inr ⟨j, x, rfl⟩)
 
-/-- Two finite measures that agree on adic cylinders are equal, if the cylinders generate.-/
+/-- Two finite measures that agree on adic cylinders are equal, if the cylinders generate.
+@isnad1 id=eq.2h5v.s6.d0bccfbaa5ed from=translated src=- shape=db5beb1a vocab=e079d580
+-/
 theorem finite_measures_from_cylinders (R M : Type) [CommRing R] [AddCommGroup M] [Module R M]
     (I : Ideal R) [MeasurableSpace M] (mu nu : MeasureTheory.Measure M)
     [MeasureTheory.IsFiniteMeasure mu] (hgen : ‹MeasurableSpace M› = adicCylinderSpace I M)
@@ -234,7 +248,9 @@ theorem finite_measures_from_cylinders (R M : Type) [CommRing R] [AddCommGroup M
     exact h ▸ heq 0 0
 
 /-- Under an invariant probability measure, each fibre of a surjection onto a finite group
-has mass `1/|Q|`.-/
+has mass `1/|Q|`.
+@isnad1 id=eq.2h5v.s8.d3c4f3427def from=translated src=- shape=18896af5 vocab=b1bb4037
+-/
 theorem finite_quotient_fiber_mass (G Q : Type) [AddCommGroup G] [AddCommGroup Q] [Finite Q]
     [MeasurableSpace G] [MeasurableAdd G] (mu : MeasureTheory.Measure G)
     [MeasureTheory.IsProbabilityMeasure mu] [MeasureTheory.Measure.IsAddLeftInvariant mu]
@@ -265,7 +281,9 @@ theorem finite_quotient_fiber_mass (G Q : Type) [AddCommGroup G] [AddCommGroup Q
   rw [← one_mul (mu _), ← ENNReal.inv_mul_cancel hpos (by simp), mul_assoc, ← hsum, mul_one]
 
 /-- An adic perturbation preserves an invariant probability measure with finite adic
-quotients.-/
+quotients.
+@isnad1 id=measurep.3h5v.s6.50b39ce338f0 from=translated src=- shape=3d013efb vocab=e5f49cd3
+-/
 theorem adic_perturb_measure_preserving (R M : Type) [CommRing R] [AddCommGroup M] [Module R M]
     (I : Ideal R) (r : M → M) (hr : RaisesAdicOrder I r) [IsAdicComplete I M] [MeasurableSpace M]
     [MeasurableAdd M] (mu : MeasureTheory.Measure M) [MeasureTheory.IsProbabilityMeasure mu]
@@ -305,7 +323,9 @@ theorem adic_perturb_measure_preserving (R M : Type) [CommRing R] [AddCommGroup 
   rw [MeasureTheory.Measure.map_apply hmeas (hball j z), hx, hmass, hmass]
 
 /-- Under an invariant probability measure, the preimage of `S ⊆ Q` under a surjection onto a
-finite group has mass `|S|/|Q|`.-/
+finite group has mass `|S|/|Q|`.
+@isnad1 id=eq.2h5v.s8.718cabec5f04 from=translated src=- shape=c1e1f48f vocab=3256a682
+-/
 theorem finite_quotient_event_mass (G Q : Type) [AddCommGroup G] [AddCommGroup Q] [Finite Q]
     [MeasurableSpace G] [MeasurableAdd G] (mu : MeasureTheory.Measure G)
     [MeasureTheory.IsProbabilityMeasure mu] [MeasureTheory.Measure.IsAddLeftInvariant mu]

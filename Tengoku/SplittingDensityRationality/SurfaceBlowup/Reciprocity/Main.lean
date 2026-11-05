@@ -92,7 +92,9 @@ private theorem lawCoef_exitLaw_single_add_self (a n : ℕ) (ha : 0 < a) (hn : 2
   · rw [ite_eq_right hcond, ite_eq_right hcond]
 
 /-- **Operator equation.** The cluster series is obtained from its Euler transform by the
-Gaussian twist and the contact representation: `B_a = ρ(U_{a,a}) Φ(G_a)`, coefficientwise.-/
+Gaussian twist and the contact representation: `B_a = ρ(U_{a,a}) Φ(G_a)`, coefficientwise.
+@isnad1 id=eq.1h2v.s10.b9b2dbab778d from=translated src=- shape=3be3d13c vocab=5b54e9ff
+-/
 theorem coeff_clusterSer_eq_coeff_qact (a n : ℕ) (ha : 0 < a) :
     PowerSeries.coeff n (clusterSer a) =
       PowerSeries.coeff n (qact (crossingQ a a) (gaussPhi (eulerSer 0 a))) := by
@@ -209,7 +211,9 @@ private theorem cluster_reciprocity_step (n : ℕ) (hn : 2 ≤ n)
     exact sub_eq_zero.mp hδ
 
 /-- **Cluster reciprocity.** For every `a > 0`, the Euler transform `G_a` agrees with the
-dilated reciprocal cluster series `S(B_aᵛ)` in every degree `≤ n`.-/
+dilated reciprocal cluster series `S(B_aᵛ)` in every degree `≤ n`.
+@isnad1 id=scongr.1h2v.s4.c9ade08b3dcf from=translated src=- shape=23f95ce8 vocab=21fb00f9
+-/
 theorem cluster_reciprocity (n a : ℕ) (ha : 0 < a) :
     SCongr n (eulerSer 0 a) (dilate (recipSer (clusterSer a))) := by
   induction n using Nat.strong_induction_on generalizing a with
@@ -221,7 +225,9 @@ theorem cluster_reciprocity (n a : ℕ) (ha : 0 < a) :
 /-! ### Coefficient forms and Theorem R -/
 
 /-- **Affine reciprocity.** The global monic law is the reciprocal of the root law:
-`F_global(q) = F_{S(1;n)}(1/q)` as elements of `Coef`.-/
+`F_global(q) = F_{S(1;n)}(1/q)` as elements of `Coef`.
+@isnad1 id=eq.1h1v.s7.62e157f3249c from=translated src=- shape=9cebd675 vocab=2de8af24
+-/
 theorem lawCoef_globalLaw_false_eq_recipCoef (n : ℕ) (hn : 0 < n) :
     lawCoef (globalLaw false n) = recipCoef (lawCoef (rootLaw n)) := by
   have h1 := (cluster_reciprocity n 1 one_pos) n le_rfl
@@ -236,7 +242,9 @@ theorem lawCoef_globalLaw_false_eq_recipCoef (n : ℕ) (hn : 0 < n) :
     qpow_neg_mul_qpow, one_mul]
 
 /-- **Projective self-reciprocity.** The normalised global projective law `R_n` is invariant
-under reciprocal substitution: `R_n(1/q) = R_n(q)` as elements of `Coef`.-/
+under reciprocal substitution: `R_n(1/q) = R_n(q)` as elements of `Coef`.
+@isnad1 id=eq.0h1v.s7.373db22390a3 from=translated src=- shape=8160be2c vocab=fef0a15b
+-/
 theorem recipCoef_lawCoef_globalLaw_true (n : ℕ) :
     recipCoef (lawCoef (globalLaw true n)) = lawCoef (globalLaw true n) := by
   set B := clusterSer 1 with hBdef
@@ -284,7 +292,9 @@ the universal monic density is the root-law coefficient with `q ↦ 1/q` substit
 `R_{n,σ}(1/q) = R_{n,σ}(q)`; both as identities of rational functions in `q`.
 
 The certified form also assumed `ValidType σ` and `typeDegree σ = n`, which the proof does not use.
-The hypothesis `0 < n` is used (`rootLaw 0` is defined separately).-/
+The hypothesis `0 < n` is used (`rootLaw 0` is defined separately).
+@isnad1 id=and.1h2v.s5.c3921dfffa12 from=translated src=- shape=b714a590 vocab=2bd19bb1
+-/
 theorem recip_main (n : ℕ) (hn : 0 < n) (σ : FactorType) :
     (monicExpr n σ).rational =
       ((lawCoeff (rootLaw n) σ).subst (.inv .var)).rational ∧
