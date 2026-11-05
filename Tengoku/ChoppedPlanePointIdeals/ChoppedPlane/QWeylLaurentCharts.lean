@@ -29,6 +29,9 @@ def chartDualZ (φ : BinaryRing K →ₐ[K] A) (q : K) (s : CubicProfile) :
     Module.End A (Fin 3 → A) :=
   cyclicZDual (fun i => φ (profileFactors q s i))
 
+/--
+@isnad1 id=eq.1h5v.s10.c029e13acfca from=translated src=- shape=0a7f8fb1 vocab=eb57401e
+-/
 theorem chartDualZ_cube (φ : BinaryRing K →ₐ[K] A) (q : K)
     (hq : q ^ 2 + q + 1 = 0) (s : CubicProfile) :
     chartDualZ φ q s ^ 3 = φ (binaryCubic K) • 1 := by
@@ -57,11 +60,17 @@ def chartZ (φ : BinaryRing K →ₐ[K] A) : ChartCubicRing φ :=
 def chartCoefficient (φ : BinaryRing K →ₐ[K] A) (a : A) : ChartCubicRing φ :=
   cyclicCoefficientHom (φ (binaryCubic K)) a
 
+/--
+@isnad1 id=eq.1h4v.s9.342a84905cbd from=translated src=- shape=18bda5cb vocab=1a0b49bf
+-/
 theorem chartU_unit (φ : BinaryRing K →ₐ[K] A) (a : A)
     (hu : φ (binaryU K) * a = 1) : chartU φ * chartCoefficient φ a = 1 := by
   change cyclicCoefficientHom _ _ * cyclicCoefficientHom _ _ = 1
   rw [← map_mul, hu, map_one]
 
+/--
+@isnad1 id=eq.1h4v.s9.3a23ab10585a from=translated src=- shape=18bda5cb vocab=5ef66d35
+-/
 theorem chartV_unit (φ : BinaryRing K →ₐ[K] A) (a : A)
     (hv : φ (binaryV K) * a = 1) : chartV φ * chartCoefficient φ a = 1 := by
   change cyclicCoefficientHom _ _ * cyclicCoefficientHom _ _ = 1
@@ -88,7 +97,9 @@ def chartCrossMatrix (φ : BinaryRing K →ₐ[K] A) :
     Matrix (Fin 3) (Fin 3) (ChartCubicRing φ) :=
   crossMatrix (chartU φ) (chartV φ) (chartZ φ)
 
-/-- The local cross quotient for the actual dual cyclic module, on `u`.-/
+/-- The local cross quotient for the actual dual cyclic module, on `u`.
+@isnad1 id=iff.2h7v.s15.f926bbd42a75 from=translated src=- shape=01aa7576 vocab=0daa4e9e
+-/
 theorem chart_dual_cross_kernel_u
     (φ : BinaryRing K →ₐ[K] A) (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (a : A) (hu : φ (binaryU K) * a = 1) :
@@ -99,7 +110,9 @@ theorem chart_dual_cross_kernel_u
   let _ := chartDualModuleStructure φ q hq s
   exact (chartCrossPresentationU φ a hu).cross_kernel
 
-/-- The same local exactness calculation on `v`.-/
+/-- The same local exactness calculation on `v`.
+@isnad1 id=iff.2h7v.s15.885001b4b42f from=translated src=- shape=01aa7576 vocab=dfe93dba
+-/
 theorem chart_dual_cross_kernel_v
     (φ : BinaryRing K →ₐ[K] A) (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (a : A) (hv : φ (binaryV K) * a = 1) :
@@ -110,7 +123,9 @@ theorem chart_dual_cross_kernel_v
   let _ := chartDualModuleStructure φ q hq s
   exact (chartCrossPresentationV φ a hv).cross_kernel
 
-/-- Homogeneous local exactness for the actual cyclic module on `u`.-/
+/-- Homogeneous local exactness for the actual cyclic module on `u`.
+@isnad1 id=ex.4h8v.s15.7538aed59de8 from=translated src=- shape=f146d0fc vocab=7b924c4d
+-/
 theorem chart_dual_cross_kernel_homogeneous_u
     (φ : BinaryRing K →ₐ[K] A) (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (a : A) (hu : φ (binaryU K) * a = 1) (n : ℕ) :
@@ -122,7 +137,9 @@ theorem chart_dual_cross_kernel_homogeneous_u
   intro P hP hcross
   exact (chartCrossPresentationU φ a hu).cross_kernel_homogeneous hP hcross
 
-/-- Homogeneous local exactness for the actual cyclic module on `v`.-/
+/-- Homogeneous local exactness for the actual cyclic module on `v`.
+@isnad1 id=ex.4h8v.s15.2530209c45d3 from=translated src=- shape=f146d0fc vocab=393f8b9f
+-/
 theorem chart_dual_cross_kernel_homogeneous_v
     (φ : BinaryRing K →ₐ[K] A) (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (a : A) (hv : φ (binaryV K) * a = 1) (n : ℕ) :
@@ -136,7 +153,9 @@ theorem chart_dual_cross_kernel_homogeneous_v
 
 variable [CharZero K]
 
-/-- Every homogeneous local derivative kernel has a cross representative.-/
+/-- Every homogeneous local derivative kernel has a cross representative.
+@isnad1 id=ex.4h8v.s15.21c1446721e2 from=translated src=- shape=fc3c2fda vocab=3eeb0848
+-/
 theorem chart_dual_cross_range_homogeneous_u
     (φ : BinaryRing K →ₐ[K] A) (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (a : A) (hu : φ (binaryU K) * a = 1) (n : ℕ) :
@@ -148,6 +167,9 @@ theorem chart_dual_cross_range_homogeneous_u
   intro P hP hdP
   exact (chartCrossPresentationU φ a hu).cross_range_homogeneous (K := K) hP hdP
 
+/--
+@isnad1 id=ex.4h8v.s15.f0cd9e81f84a from=translated src=- shape=fc3c2fda vocab=a5eb6ac1
+-/
 theorem chart_dual_cross_range_homogeneous_v
     (φ : BinaryRing K →ₐ[K] A) (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (a : A) (hv : φ (binaryV K) * a = 1) (n : ℕ) :

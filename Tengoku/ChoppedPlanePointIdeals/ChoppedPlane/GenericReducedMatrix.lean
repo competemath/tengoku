@@ -25,7 +25,9 @@ variable {K : Type*} [Field K] {c : ℕ} {κ : Type*} [Fintype κ] [DecidableEq 
 set_option maxHeartbeats 1000000 in
 /-- A concrete split witness and the primitive degree-cut open give an actual
 reduced finite-algebra open; quotient bases and multiplication matrices are
-constructed in the proof.-/
+constructed in the proof.
+@isnad1 id=ex.4h8v.s16.c43e2007261b from=translated src=- shape=d61241b2 vocab=1842e344
+-/
 theorem universalRowMatrix_reduced_principal_open
     (δ : Fin (c + 1) → ℕ) (N : ℕ)
     (H₀ : MvPolynomial (RowMatrixParameter δ) K)

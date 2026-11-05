@@ -22,6 +22,9 @@ def profileMultiplicity : CubicProfile → ℕ
 
 def quarticRootMultiplier : BinaryRing K := binaryU K ^ 3 - binaryV K ^ 3
 
+/--
+@isnad1 id=eq.0h1v.s8.9a353198db42 from=translated src=- shape=9b56b64b vocab=242c1797
+-/
 theorem quarticSubstitution_cubic :
     quarticSubstitution K (binaryCubic K) =
       binaryCubic K * quarticRootMultiplier (K := K) ^ 3 := by
@@ -34,11 +37,17 @@ def quarticCubicHom :
   cyclicScaledBaseChangeHom (quarticSubstitution K).toRingHom
     (binaryCubic K) (binaryCubic K) quarticRootMultiplier quarticSubstitution_cubic
 
+/--
+@isnad1 id=eq.0h1v.s11.dbeea6e24392 from=translated src=- shape=7572838b vocab=aacfca20
+-/
 @[simp] theorem quarticCubicHom_root :
     quarticCubicHom (K := K) (cyclicRoot (binaryCubic K)) =
       cyclicCoefficientHom (binaryCubic K) quarticRootMultiplier * cyclicRoot (binaryCubic K) :=
   cyclicScaledBaseChangeHom_root _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s11.158a75b6307e from=translated src=- shape=4eb1de1c vocab=8dc1a923
+-/
 @[simp] theorem quarticCubicHom_coefficient (b : BinaryRing K) :
     quarticCubicHom (K := K) (cyclicCoefficientHom (binaryCubic K) b) =
       cyclicCoefficientHom (binaryCubic K) (quarticSubstitution K b) :=
@@ -60,12 +69,18 @@ def profileDualPullback (q : K) (s : CubicProfile) :
   weightedVectorBaseChange (quarticSubstitution K).toRingHom
     (binaryProfileDualPullbackWeights q s)
 
+/--
+@isnad1 id=eq.0h3v.s7.5113e7ffd911 from=translated src=- shape=5690fb71 vocab=77b9aa10
+-/
 theorem profileFactors_eq_cyclicCoefficients (q : K) (s : CubicProfile) :
     profileFactors q s = cyclicProfileCoefficients (binaryU K) (binaryV K) (C q) s := by
   funext i
   cases s <;> fin_cases i <;>
     simp [profileFactors, cubicLinearFactors, cyclicProfileCoefficients, map_pow]
 
+/--
+@isnad1 id=eq.0h4v.s9.0e88e8478302 from=translated src=- shape=a11b433e vocab=1e8eca56
+-/
 theorem quarticSubstitution_profileFactors (q : K) (s : CubicProfile) (i : Fin 3) :
     quarticSubstitution K (profileFactors q s i) =
       cyclicProfileCoefficients (quarticU (binaryU K) (binaryV K))
@@ -73,6 +88,9 @@ theorem quarticSubstitution_profileFactors (q : K) (s : CubicProfile) (i : Fin 3
   cases s <;> fin_cases i <;>
     simp [profileFactors, cubicLinearFactors, cyclicProfileCoefficients, map_pow]
 
+/--
+@isnad1 id=eq.1h4v.s12.b39257c57590 from=translated src=- shape=282c4709 vocab=7584d404
+-/
 theorem profilePullback_intertwines (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (m : BinaryVector K) :
     profilePullback q s (cyclicZ (profileFactors q s) m) =
@@ -89,6 +107,9 @@ theorem profilePullback_intertwines (q : K) (hq : q ^ 2 + q + 1 = 0)
   simpa only [binaryProfilePullbackWeights, quarticRootMultiplier] using
     profilePullbackWeights_intertwine (binaryU K) (binaryV K) (C q) hq' s i
 
+/--
+@isnad1 id=eq.1h4v.s12.62184ea4587f from=translated src=- shape=282c4709 vocab=a2fac1d5
+-/
 theorem profileDualPullback_intertwines (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (m : BinaryVector K) :
     profileDualPullback q s (cyclicZDual (profileFactors q s) m) =
@@ -123,20 +144,32 @@ def profileDualModulePullback (q : K) (hq : q ^ 2 + q + 1 = 0) (s : CubicProfile
     (profileDualPullback q s) (cyclicZDual (profileFactors q s)) (cyclicZDual (profileFactors q s))
     (profileZDual_cube q hq s) (profileZDual_cube q hq s) (profileDualPullback_intertwines q hq s)
 
+/--
+@isnad1 id=eq.1h4v.s11.99b90a9d3870 from=translated src=- shape=d09d2545 vocab=5e6f9226
+-/
 @[simp] theorem profileModulePullback_apply (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (m : BinaryVector K) :
     profileModulePullback q hq s m = profilePullback q s m := rfl
 
+/--
+@isnad1 id=eq.1h4v.s11.2e75a16e4580 from=translated src=- shape=d09d2545 vocab=ffb605f1
+-/
 @[simp] theorem profileDualModulePullback_apply (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (m : BinaryVector K) :
     profileDualModulePullback q hq s m = profileDualPullback q s m := rfl
 
+/--
+@isnad1 id=ne.0h2v.s8.88ee3426b689 from=translated src=- shape=28d0d210 vocab=32cbb8d0
+-/
 theorem binaryLinearDifference_ne_zero (q : K) :
     binaryU K - C q * binaryV K ≠ 0 := by
   intro h
   have he := congrArg (MvPolynomial.eval ![(1 : K), 0]) h
   simp [binaryU, binaryV] at he
 
+/--
+@isnad1 id=ne.0h4v.s6.45f6712be146 from=translated src=- shape=4ed6fc46 vocab=c6825d76
+-/
 theorem binaryProfilePullbackWeights_ne_zero (q : K) (s : CubicProfile) (i : Fin 3) :
     binaryProfilePullbackWeights q s i ≠ 0 := by
   have h0 := binaryLinearDifference_ne_zero (K := K) 1
@@ -148,6 +181,9 @@ theorem binaryProfilePullbackWeights_ne_zero (q : K) (s : CubicProfile) (i : Fin
     simp [binaryProfilePullbackWeights, profilePullbackWeights, weightZero, weightOne,
       weightTwo, h0, h1, h2]
 
+/--
+@isnad1 id=ne.0h4v.s6.c71836954d1e from=translated src=- shape=4ed6fc46 vocab=3c73c0a5
+-/
 theorem binaryProfileDualPullbackWeights_ne_zero (q : K) (s : CubicProfile) (i : Fin 3) :
     binaryProfileDualPullbackWeights q s i ≠ 0 := by
   have h0 := binaryLinearDifference_ne_zero (K := K) 1
@@ -158,11 +194,17 @@ theorem binaryProfileDualPullbackWeights_ne_zero (q : K) (s : CubicProfile) (i :
   cases s <;> fin_cases i <;>
     simp [binaryProfileDualPullbackWeights, profileDualPullbackWeights, h0, h1, h2]
 
+/--
+@isnad1 id=injectiv.0h3v.s10.e0dbd6d93ed0 from=translated src=- shape=c8a976bf vocab=12fda0dc
+-/
 theorem profilePullback_injective [CharZero K] (q : K) (s : CubicProfile) :
     Function.Injective (profilePullback q s) :=
   weightedVectorBaseChange_injective _ quarticSubstitution_injective _
     (binaryProfilePullbackWeights_ne_zero q s)
 
+/--
+@isnad1 id=injectiv.0h3v.s10.a9e12b66a145 from=translated src=- shape=c8a976bf vocab=b84b06fd
+-/
 theorem profileDualPullback_injective [CharZero K] (q : K) (s : CubicProfile) :
     Function.Injective (profileDualPullback q s) :=
   weightedVectorBaseChange_injective _ quarticSubstitution_injective _
@@ -174,10 +216,16 @@ def pullbackWeightDegrees (s : CubicProfile) (i : Fin 3) : ℕ :=
 def dualPullbackWeightDegrees (s : CubicProfile) (i : Fin 3) : ℕ :=
   3 * dualGeneratorWeights s i - profileMultiplicity s
 
+/--
+@isnad1 id=ishomoge.0h2v.s8.6eec6694de4f from=translated src=- shape=2c81f7c2 vocab=df0a6f98
+-/
 theorem binaryLinearDifference_homogeneous (q : K) :
     (binaryU K - C q * binaryV K).IsHomogeneous 1 :=
   (isHomogeneous_X K 0).sub ((isHomogeneous_X K 1).C_mul q)
 
+/--
+@isnad1 id=ishomoge.0h4v.s5.3485f801e09f from=translated src=- shape=3e60f262 vocab=62c79731
+-/
 theorem binaryProfilePullbackWeights_homogeneous (q : K) (s : CubicProfile) (i : Fin 3) :
     (binaryProfilePullbackWeights q s i).IsHomogeneous (pullbackWeightDegrees s i) := by
   have h0 : (binaryU K - binaryV K).IsHomogeneous 1 :=
@@ -196,6 +244,9 @@ theorem binaryProfilePullbackWeights_homogeneous (q : K) (s : CubicProfile) (i :
   · exact (h0.mul (h1.pow 2)).mul h2
   · exact (h0.pow 2).mul (h2.pow 2)
 
+/--
+@isnad1 id=ishomoge.0h4v.s5.e5ec6d938bb1 from=translated src=- shape=3e60f262 vocab=8f2067a1
+-/
 theorem binaryProfileDualPullbackWeights_homogeneous (q : K) (s : CubicProfile) (i : Fin 3) :
     (binaryProfileDualPullbackWeights q s i).IsHomogeneous (dualPullbackWeightDegrees s i) := by
   have h0 : (binaryU K - binaryV K).IsHomogeneous 1 :=
@@ -215,7 +266,9 @@ theorem binaryProfileDualPullbackWeights_homogeneous (q : K) (s : CubicProfile) 
   · exact h1.pow 2
 
 /-- Signed components, including negative degrees, pull back to four times
-their original degree.-/
+their original degree.
+@isnad1 id=mem.1h3v.s9.ebe23ae88c2f from=translated src=- shape=f52cd67e vocab=f350cf5f
+-/
 theorem quarticSubstitution_mem_signedForms {t : ℤ} {p : BinaryRing K}
     (hp : p ∈ signedForms K 2 t) :
     quarticSubstitution K p ∈ signedForms K 2 (4 * t) := by
@@ -233,6 +286,9 @@ def weightedQuarticLinear (ρ : Fin 3 → BinaryRing K) : BinaryVector K →ₗ[
   LinearMap.pi fun i => (LinearMap.mulRight K (ρ i)).comp
     ((quarticSubstitution K).toLinearMap.comp (LinearMap.proj i))
 
+/--
+@isnad1 id=eq.0h4v.s9.ab195e3c8c13 from=translated src=- shape=7f85f644 vocab=c8184216
+-/
 @[simp] theorem weightedQuarticLinear_apply (ρ : Fin 3 → BinaryRing K)
     (m : BinaryVector K) (i : Fin 3) :
     weightedQuarticLinear ρ m i = quarticSubstitution K (m i) * ρ i := rfl
@@ -279,18 +335,27 @@ def gradedProfileDualPullback (q : K) (s : CubicProfile) (t : ℤ) :
         rw [he] at h
         simpa only [mul_comm] using h)
 
+/--
+@isnad1 id=eq.0h5v.s12.4b451041d7e7 from=translated src=- shape=b326066b vocab=5cb89cce
+-/
 @[simp] theorem gradedProfilePullback_val (q : K) (s : CubicProfile) (t : ℤ)
     (m : GradedBinaryVector (K := K) (generatorWeights s) t) :
     gradedBinaryVectorVal (generatorWeights s) (4*t+profileMultiplicity s)
       (gradedProfilePullback q s t m) =
     profilePullback q s (gradedBinaryVectorVal (generatorWeights s) t m) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.6353979fd3ff from=translated src=- shape=b326066b vocab=dd71267a
+-/
 @[simp] theorem gradedProfileDualPullback_val (q : K) (s : CubicProfile) (t : ℤ)
     (m : GradedBinaryVector (K := K) (dualGeneratorWeights s) t) :
     gradedBinaryVectorVal (dualGeneratorWeights s) (4*t-profileMultiplicity s)
       (gradedProfileDualPullback q s t m) =
     profileDualPullback q s (gradedBinaryVectorVal (dualGeneratorWeights s) t m) := rfl
 
+/--
+@isnad1 id=injectiv.0h4v.s11.5cf35d21d6f0 from=translated src=- shape=ad3404aa vocab=a915670a
+-/
 theorem gradedProfilePullback_injective [CharZero K] (q : K) (s : CubicProfile) (t : ℤ) :
     Function.Injective (gradedProfilePullback (K := K) q s t) := by
   intro m n h
@@ -299,6 +364,9 @@ theorem gradedProfilePullback_injective [CharZero K] (q : K) (s : CubicProfile) 
   simpa using congrArg (gradedBinaryVectorVal (K := K) (generatorWeights s)
     (4*t+profileMultiplicity s)) h
 
+/--
+@isnad1 id=injectiv.0h4v.s11.b41a248615a6 from=translated src=- shape=ad3404aa vocab=f8dc0a92
+-/
 theorem gradedProfileDualPullback_injective [CharZero K] (q : K) (s : CubicProfile) (t : ℤ) :
     Function.Injective (gradedProfileDualPullback (K := K) q s t) := by
   intro m n h

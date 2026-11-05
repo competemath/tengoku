@@ -34,7 +34,9 @@ variable [AddCommMonoid B₂] [Module R B₂]
 /-- A two-chart diagram chase, stated directly in terms of polynomial and
 Laurent representatives.  The left side says that the upper quotient map is
 injective.  The right side says that a compatible pair of local lower
-quotient representatives comes from a local upper representative.-/
+quotient representatives comes from a local upper representative.
+@isnad1 id=iff.3h9v.s9.7da6a2abba22 from=translated src=- shape=a4b4ba05 vocab=6799c092
+-/
 theorem linear_cech_vanishing_iff
     (dA : A₁ →ₗ[R] A₂) (dB : B₁ →ₗ[R] B₂)
     (l₁ : A₁ →ₗ[R] B₁) (l₂ : A₂ →ₗ[R] B₂)
@@ -76,7 +78,9 @@ variable [AddCommMonoid C₂] [Module R C₂]
 
 /-- Apply the two-chart chase to local cross-product maps.  The third
 horizontal map is the difference map on directional kernels.  Its
-injectivity says that the global directional kernel vanishes.-/
+injectivity says that the global directional kernel vanishes.
+@isnad1 id=mem.8h15v.s9.053d3f970a31 from=translated src=- shape=2bebe3e6 vocab=7fe0b081
+-/
 theorem linear_cech_cross_descent
     (dA : A₁ →ₗ[R] A₂) (dB : B₁ →ₗ[R] B₂)
     (l₁ : A₁ →ₗ[R] B₁) (l₂ : A₂ →ₗ[R] B₂)
@@ -126,6 +130,9 @@ def crossKernelCoordinates (u v z a : R) : Matrix (Fin 3) (Fin 3) R :=
 def crossKernelCoordinatesInv (u v z a : R) : Matrix (Fin 3) (Fin 3) R :=
   !![u, 0, 0; v, 0, a; z, -a, 0]
 
+/--
+@isnad1 id=and.1h5v.s8.3d603f7be000 from=translated src=- shape=2867e000 vocab=30087fcc
+-/
 theorem quotientCoordinates_inverse (u v z a : R) (hua : u * a = 1) :
     quotientCoordinates u v z * quotientCoordinatesInv v z a = 1 ∧
       quotientCoordinatesInv v z a * quotientCoordinates u v z = 1 := by
@@ -134,6 +141,9 @@ theorem quotientCoordinates_inverse (u v z a : R) (hua : u * a = 1) :
     simp [quotientCoordinates, quotientCoordinatesInv, Matrix.mul_apply,
       Fin.sum_univ_three, ← mul_assoc, hua, hau]
 
+/--
+@isnad1 id=and.1h5v.s8.add84831f4a3 from=translated src=- shape=7609a9cf vocab=58e7fd7f
+-/
 theorem crossKernelCoordinates_inverse (u v z a : R) (hua : u * a = 1) :
     crossKernelCoordinates u v z a * crossKernelCoordinatesInv u v z a = 1 ∧
       crossKernelCoordinatesInv u v z a * crossKernelCoordinates u v z a = 1 := by
@@ -142,12 +152,18 @@ theorem crossKernelCoordinates_inverse (u v z a : R) (hua : u * a = 1) :
     simp [crossKernelCoordinates, crossKernelCoordinatesInv, Matrix.mul_apply,
       Fin.sum_univ_three, hua, hau] <;> ring
 
+/--
+@isnad1 id=eq.1h6v.s7.a5136fab2cb4 from=translated src=- shape=6db01b28 vocab=670afbff
+-/
 theorem crossKernelCoordinates_derivative (u v z a : R) (hua : u * a = 1) :
     ∀ i : Fin 3, ∑ j, (![u,v,z] : Fin 3 → R) j *
       crossKernelCoordinates u v z a i j = if i = 0 then 1 else 0 := by
   intro i
   fin_cases i <;> simp [crossKernelCoordinates, Fin.sum_univ_three, hua] <;> ring
 
+/--
+@isnad1 id=eq.0h2v.s8.cf970ca0ead2 from=translated src=- shape=37c728ed vocab=01f68cf5
+-/
 @[simp] theorem zeroFirst_X (i : Fin 3) :
     zeroFirst (X i : Aux R) = if i = 0 then 0 else X i := by
   classical
@@ -161,6 +177,9 @@ theorem crossKernelCoordinates_derivative (u v z a : R) (hua : u * a = 1) :
 def firstProjectionMatrix : Matrix (Fin 3) (Fin 3) R :=
   !![0, 0, 0; 0, 1, 0; 0, 0, 1]
 
+/--
+@isnad1 id=eq.0h1v.s8.ad8996859a1f from=translated src=- shape=959a0d43 vocab=a0bbb9c3
+-/
 theorem zeroFirst_asLinearChange :
     (zeroFirst : Aux R →ₗ[R] Aux R) =
       (linearChange firstProjectionMatrix).toLinearMap := by
@@ -174,7 +193,9 @@ theorem zeroFirst_asLinearChange :
   exact congrArg AlgHom.toLinearMap h
 
 /-- Cross-product substitution, after quotient coordinates, is a binary
-projection followed by an invertible kernel-coordinate transformation.-/
+projection followed by an invertible kernel-coordinate transformation.
+@isnad1 id=eq.0h5v.s10.e329855dc720 from=translated src=- shape=2ceefb0e vocab=0da7b328
+-/
 theorem cross_projection_factorization (u v z a : R) :
     ((linearChange (crossMatrix u v z)).toLinearMap).comp
       (linearChange (quotientCoordinates u v z)).toLinearMap =
@@ -207,6 +228,9 @@ def crossKernelCoordinatesV (u v z a : R) : Matrix (Fin 3) (Fin 3) R :=
 def crossKernelCoordinatesVInv (u v z a : R) : Matrix (Fin 3) (Fin 3) R :=
   !![u, 0, -a; v, 0, 0; z, a, 0]
 
+/--
+@isnad1 id=and.1h5v.s8.c3110c853375 from=translated src=- shape=27271ae0 vocab=cb2d4646
+-/
 theorem quotientCoordinatesV_inverse (u v z a : R) (hva : v * a = 1) :
     quotientCoordinatesV u v z * quotientCoordinatesVInv u z a = 1 ∧
       quotientCoordinatesVInv u z a * quotientCoordinatesV u v z = 1 := by
@@ -215,6 +239,9 @@ theorem quotientCoordinatesV_inverse (u v z a : R) (hva : v * a = 1) :
     simp [quotientCoordinatesV, quotientCoordinatesVInv, Matrix.mul_apply,
       Fin.sum_univ_three, ← mul_assoc, hva, hav]
 
+/--
+@isnad1 id=and.1h5v.s8.140dc637964d from=translated src=- shape=6659f7e1 vocab=78bb65a1
+-/
 theorem crossKernelCoordinatesV_inverse (u v z a : R) (hva : v * a = 1) :
     crossKernelCoordinatesV u v z a * crossKernelCoordinatesVInv u v z a = 1 ∧
       crossKernelCoordinatesVInv u v z a * crossKernelCoordinatesV u v z a = 1 := by
@@ -223,12 +250,18 @@ theorem crossKernelCoordinatesV_inverse (u v z a : R) (hva : v * a = 1) :
     simp [crossKernelCoordinatesV, crossKernelCoordinatesVInv, Matrix.mul_apply,
       Fin.sum_univ_three, hva, hav] <;> ring
 
+/--
+@isnad1 id=eq.1h6v.s7.536c36479fc7 from=translated src=- shape=a66a0adc vocab=bd0cdc58
+-/
 theorem crossKernelCoordinatesV_derivative (u v z a : R) (hva : v * a = 1) :
     ∀ i : Fin 3, ∑ j, (![u,v,z] : Fin 3 → R) j *
       crossKernelCoordinatesV u v z a i j = if i = 0 then 1 else 0 := by
   intro i
   fin_cases i <;> simp [crossKernelCoordinatesV, Fin.sum_univ_three, hva] <;> ring
 
+/--
+@isnad1 id=eq.0h5v.s10.666157224d29 from=translated src=- shape=2ceefb0e vocab=7f695781
+-/
 theorem cross_projection_factorizationV (u v z a : R) :
     ((linearChange (crossMatrix u v z)).toLinearMap).comp
       (linearChange (quotientCoordinatesV u v z)).toLinearMap =
@@ -259,6 +292,9 @@ def divideFirst : Aux R →ₗ[R] Aux R where
 
 def multiplyFirst : Aux R →ₗ[R] Aux R := LinearMap.mulLeft R (X 0)
 
+/--
+@isnad1 id=eq.0h3v.s8.2b8042da73dc from=translated src=- shape=f947d9b7 vocab=27a9849e
+-/
 theorem zeroFirst_coeff (P : Aux R) (s : Fin 3 →₀ ℕ) :
     (zeroFirst P).coeff s = if s 0 = 0 then P.coeff s else 0 := by
   classical
@@ -276,6 +312,9 @@ theorem zeroFirst_coeff (P : Aux R) (s : Fin 3 →₀ ℕ) :
     · by_cases ht : t 0 = 0 <;> by_cases hs : s 0 = 0 <;>
         simp [zeroFirst_monomial, ht, hs, coeff_monomial, hts]
 
+/--
+@isnad1 id=eq.0h2v.s8.0ec34b3e7e63 from=translated src=- shape=383a5758 vocab=99e10007
+-/
 theorem zeroFirst_eq_modMonomial (P : Aux R) :
     zeroFirst P = P.modMonomial (Finsupp.single 0 1) := by
   ext s
@@ -286,16 +325,25 @@ theorem zeroFirst_eq_modMonomial (P : Aux R) :
   · rw [ite_eq_right hs, coeff_modMonomial_of_le]
     exact Finsupp.single_le_iff.mpr (Nat.one_le_iff_ne_zero.mpr hs)
 
+/--
+@isnad1 id=eq.0h2v.s9.531afe11ed6e from=translated src=- shape=288cd0fb vocab=00c837c4
+-/
 theorem multiplyFirst_divideFirst_add_zeroFirst (P : Aux R) :
     multiplyFirst (divideFirst P) + zeroFirst P = P := by
   rw [zeroFirst_eq_modMonomial]
   exact P.divMonomial_add_modMonomial_single 0
 
+/--
+@isnad1 id=eq.0h2v.s9.68357eafd248 from=translated src=- shape=b701e06c vocab=1252e4e5
+-/
 @[simp] theorem divideFirst_multiplyFirst (P : Aux R) :
     divideFirst (multiplyFirst P) = P := by
   change (X 0 * P).divMonomial (Finsupp.single 0 1) = P
   simpa only [X] using divMonomial_monomial_mul (Finsupp.single 0 1) P
 
+/--
+@isnad1 id=eq.0h2v.s9.4c6bbcca7116 from=translated src=- shape=c111bc58 vocab=bcd36205
+-/
 @[simp] theorem zeroFirst_multiplyFirst (P : Aux R) :
     zeroFirst (multiplyFirst P) = 0 := by
   change binaryEmbedding (R := R)
@@ -305,6 +353,9 @@ theorem multiplyFirst_divideFirst_add_zeroFirst (P : Aux R) :
     simp [binaryRestriction]
   rw [hx, zero_mul, map_zero]
 
+/--
+@isnad1 id=eq.0h3v.s10.69157e525b2c from=translated src=- shape=bfe86429 vocab=2c3e0939
+-/
 theorem divideFirst_homogeneousComponent (n : ℕ) (P : Aux R) :
     homogeneousComponent n (divideFirst P) =
       divideFirst (homogeneousComponent (n + 1) P) := by
@@ -330,6 +381,9 @@ def tensorMultiplyFirst : AuxTensor (R := R) (M := M) →ₗ[R] AuxTensor (R := 
 def tensorDivideFirst : AuxTensor (R := R) (M := M) →ₗ[R] AuxTensor (R := R) (M := M) :=
   divideFirst.rTensor M
 
+/--
+@isnad1 id=eq.0h3v.s10.ee67fbc61635 from=translated src=- shape=86bd2dc3 vocab=01a07b76
+-/
 theorem tensor_first_variable_split (P : AuxTensor (R := R) (M := M)) :
     tensorMultiplyFirst (tensorDivideFirst P) + tensorZeroFirst P = P := by
   have hs : multiplyFirst.comp divideFirst + (zeroFirst : Aux R →ₗ[R] Aux R) =
@@ -341,6 +395,9 @@ theorem tensor_first_variable_split (P : AuxTensor (R := R) (M := M)) :
   simp only [LinearMap.rTensor_add, LinearMap.rTensor_comp, LinearMap.rTensor_id] at ht
   exact LinearMap.congr_fun ht P
 
+/--
+@isnad1 id=eq.0h3v.s10.a24243c59523 from=translated src=- shape=542ed94e vocab=dcfc5233
+-/
 @[simp] theorem tensor_divideFirst_multiplyFirst (P : AuxTensor (R := R) (M := M)) :
     tensorDivideFirst (tensorMultiplyFirst P) = P := by
   have hs : divideFirst.comp (multiplyFirst : Aux R →ₗ[R] Aux R) = LinearMap.id := by
@@ -351,6 +408,9 @@ theorem tensor_first_variable_split (P : AuxTensor (R := R) (M := M)) :
   simp only [LinearMap.rTensor_comp, LinearMap.rTensor_id] at ht
   exact LinearMap.congr_fun ht P
 
+/--
+@isnad1 id=eq.0h3v.s10.801f3e0fe616 from=translated src=- shape=155eff40 vocab=787b73e2
+-/
 @[simp] theorem tensor_zeroFirst_multiplyFirst (P : AuxTensor (R := R) (M := M)) :
     tensorZeroFirst (tensorMultiplyFirst P) = 0 := by
   have hs : zeroFirst.comp (multiplyFirst : Aux R →ₗ[R] Aux R) = 0 := by
@@ -362,7 +422,9 @@ theorem tensor_first_variable_split (P : AuxTensor (R := R) (M := M)) :
   exact LinearMap.congr_fun ht P
 
 /-- The zero-first-coordinate projection has exactly the first-coordinate
-multiple kernel, even with arbitrary coefficient modules.-/
+multiple kernel, even with arbitrary coefficient modules.
+@isnad1 id=iff.0h3v.s10.8850efce6ecd from=translated src=- shape=c6e8f9ee vocab=eee01582
+-/
 theorem tensor_zeroFirst_kernel (P : AuxTensor (R := R) (M := M)) :
     tensorZeroFirst P = 0 ↔ P ∈ LinearMap.range tensorMultiplyFirst := by
   constructor
@@ -372,6 +434,9 @@ theorem tensor_zeroFirst_kernel (P : AuxTensor (R := R) (M := M)) :
   · rintro ⟨Q, rfl⟩
     exact tensor_zeroFirst_multiplyFirst Q
 
+/--
+@isnad1 id=injectiv.0h2v.s9.c3cbb942572e from=translated src=- shape=f8005a45 vocab=551e157b
+-/
 theorem tensor_multiplyFirst_injective :
     Function.Injective (tensorMultiplyFirst (R := R) (M := M)) := by
   intro P Q h
@@ -386,6 +451,9 @@ def tensorMultiplyLinear (f : Fin 3 → R) :
     AuxTensor (R := R) (M := M) →ₗ[R] AuxTensor (R := R) (M := M) :=
   (LinearMap.mulLeft R (linearForm f)).rTensor M
 
+/--
+@isnad1 id=eq.0h6v.s10.b732e027c761 from=translated src=- shape=e5df25fa vocab=d150f658
+-/
 theorem tensor_cross_projection_factorization (u v z a : R) :
     (tensorChange (M := M) (crossMatrix u v z)).comp
       (tensorChange (quotientCoordinates u v z)) =
@@ -394,6 +462,9 @@ theorem tensor_cross_projection_factorization (u v z a : R) :
     (cross_projection_factorization u v z a)
   simpa [tensorChange, tensorZeroFirst, LinearMap.rTensor_comp] using h
 
+/--
+@isnad1 id=eq.0h5v.s10.52f2423801cd from=translated src=- shape=e8e48c7d vocab=000bc958
+-/
 theorem tensor_quotientCoordinates_multiplyFirst (u v z : R) :
     (tensorChange (M := M) (quotientCoordinates u v z)).comp tensorMultiplyFirst =
       (tensorMultiplyLinear ![u,v,z]).comp
@@ -411,12 +482,18 @@ theorem tensor_quotientCoordinates_multiplyFirst (u v z : R) :
   simpa [tensorChange, tensorMultiplyFirst, tensorMultiplyLinear,
     LinearMap.rTensor_comp] using ht
 
+/--
+@isnad1 id=eq.0h3v.s10.3c1e8b1476fc from=translated src=- shape=1bd8a307 vocab=a5bac819
+-/
 theorem tensorZeroFirst_eq_binaryProjection (P : AuxTensor (R := R) (M := M)) :
     tensorZeroFirst P = tensorBinaryEmbedding (tensorBinaryRestriction P) := by
   have h := LinearMap.rTensor_comp M binaryEmbedding.toLinearMap
     (binaryRestriction.toLinearMap : Aux R →ₗ[R] Binary R)
   exact LinearMap.congr_fun h P
 
+/--
+@isnad1 id=tensorho.1h4v.s9.8eb17435144a from=translated src=- shape=f749a34b vocab=a8d1e4fc
+-/
 theorem tensorDivideFirst_homogeneous {n : ℕ}
     {P : AuxTensor (R := R) (M := M)} (hP : TensorHomogeneous (n + 1) P) :
     TensorHomogeneous n (tensorDivideFirst P) := by
@@ -431,13 +508,18 @@ theorem tensorDivideFirst_homogeneous {n : ℕ}
   dsimp only [TensorHomogeneous, tensorDivideFirst, LinearMap.comp_apply] at hP ⊢
   simpa only [LinearMap.comp_apply, hP] using htP
 
+/--
+@isnad1 id=tensorho.1h5v.s9.e7532af59390 from=translated src=- shape=5dc27bb5 vocab=2b046b96
+-/
 theorem tensorChange_homogeneous (A : Matrix (Fin 3) (Fin 3) R) {n : ℕ}
     {P : AuxTensor (R := R) (M := M)} (hP : TensorHomogeneous n P) :
     TensorHomogeneous n (tensorChange A P) := by
   exact tensor_linearSubstitution_homogeneous (linearChange A) (by intro i; simp) hP
 
 /-- On a chart on which `u` is a unit, the cross-product kernel is exactly
-the auxiliary linear-form multiples.  This remains true for every module.-/
+the auxiliary linear-form multiples.  This remains true for every module.
+@isnad1 id=iff.1h7v.s10.20071c094fec from=translated src=- shape=7cd40365 vocab=4a5d98f1
+-/
 theorem tensor_cross_kernel (u v z a : R) (hua : u * a = 1)
     (P : AuxTensor (R := R) (M := M)) :
     tensorChange (crossMatrix u v z) P = 0 ↔
@@ -467,7 +549,9 @@ theorem tensor_cross_kernel (u v z a : R) (hua : u * a = 1)
     rw [heq, hcross, tensor_zeroFirst_multiplyFirst, map_zero]
 
 /-- Multiplication by the auxiliary linear form is injective when one
-coefficient is a unit; the proof tensors an explicit polynomial division.-/
+coefficient is a unit; the proof tensors an explicit polynomial division.
+@isnad1 id=injectiv.1h6v.s9.0cb76c73c1fe from=translated src=- shape=c148f527 vocab=008050bf
+-/
 theorem tensorMultiplyLinear_injective (u v z a : R) (hua : u * a = 1) :
     Function.Injective (tensorMultiplyLinear (M := M) ![u,v,z]) := by
   obtain ⟨hDD', hD'D⟩ := quotientCoordinates_inverse u v z a hua
@@ -543,6 +627,9 @@ def kernelEquiv : AuxTensor (R := R) (M := M) ≃ₗ[R] AuxTensor (R := R) (M :=
   (linearChangeEquiv T.kernel T.kernelInv
     T.kernel_mul_inv T.kernel_inv_mul).toLinearEquiv.rTensor M
 
+/--
+@isnad1 id=eq.0h7v.s11.b3b0df9bb192 from=translated src=- shape=381dc00b vocab=8a836b1d
+-/
 theorem cross_projection (P : AuxTensor (R := R) (M := M)) :
     tensorChange (crossMatrix u v z) (T.quotientEquiv P) =
       T.kernelEquiv (tensorZeroFirst P) := by
@@ -551,6 +638,9 @@ theorem cross_projection (P : AuxTensor (R := R) (M := M)) :
   simp only [LinearMap.rTensor_comp] at h
   exact LinearMap.congr_fun h P
 
+/--
+@isnad1 id=eq.0h7v.s11.23feed295eca from=translated src=- shape=bb8e28e5 vocab=4e38585c
+-/
 theorem quotient_multiplyFirst (P : AuxTensor (R := R) (M := M)) :
     T.quotientEquiv (tensorMultiplyFirst P) =
       tensorMultiplyLinear ![u,v,z] (T.quotientEquiv P) := by
@@ -566,14 +656,23 @@ theorem quotient_multiplyFirst (P : AuxTensor (R := R) (M := M)) :
   simp only [LinearMap.rTensor_comp] at ht
   exact LinearMap.congr_fun ht P
 
+/--
+@isnad1 id=tensorho.1h8v.s9.4ea847f48c10 from=translated src=- shape=bacba7b4 vocab=fea541e4
+-/
 theorem quotient_homogeneous {n : ℕ} {P : AuxTensor (R := R) (M := M)}
     (hP : TensorHomogeneous n P) : TensorHomogeneous n (T.quotientEquiv P) :=
   tensorChange_homogeneous T.quotient hP
 
+/--
+@isnad1 id=tensorho.1h8v.s10.0df07aa22020 from=translated src=- shape=ad7064b3 vocab=4f37cb7c
+-/
 theorem quotient_symm_homogeneous {n : ℕ} {P : AuxTensor (R := R) (M := M)}
     (hP : TensorHomogeneous n P) : TensorHomogeneous n (T.quotientEquiv.symm P) :=
   tensorChange_homogeneous T.quotientInv hP
 
+/--
+@isnad1 id=iff.0h7v.s10.4b80aa2cae84 from=translated src=- shape=f3bedffd vocab=f90240d1
+-/
 theorem cross_kernel (P : AuxTensor (R := R) (M := M)) :
     tensorChange (crossMatrix u v z) P = 0 ↔
       P ∈ LinearMap.range (tensorMultiplyLinear ![u,v,z]) := by
@@ -591,7 +690,9 @@ theorem cross_kernel (P : AuxTensor (R := R) (M := M)) :
       rw [T.quotient_multiplyFirst, T.quotientEquiv.apply_symm_apply]
     rw [heq, T.cross_projection, tensor_zeroFirst_multiplyFirst, map_zero]
 
-/-- The local exact sequence respects the auxiliary degree.-/
+/-- The local exact sequence respects the auxiliary degree.
+@isnad1 id=ex.2h8v.s10.58cf339a5df0 from=translated src=- shape=6a2b70fe vocab=f1153af6
+-/
 theorem cross_kernel_homogeneous {n : ℕ}
     {P : AuxTensor (R := R) (M := M)} (hP : TensorHomogeneous (n + 1) P)
     (hcross : tensorChange (crossMatrix u v z) P = 0) :
@@ -607,6 +708,9 @@ theorem cross_kernel_homogeneous {n : ℕ}
   rw [hz, add_zero] at hsplit
   rw [hsplit, T.quotientEquiv.apply_symm_apply]
 
+/--
+@isnad1 id=injectiv.0h6v.s9.e889e7b3dc70 from=translated src=- shape=dc203fa7 vocab=09cf75d2
+-/
 theorem multiply_injective :
     Function.Injective (tensorMultiplyLinear (M := M) ![u,v,z]) := by
   intro P Q h
@@ -622,7 +726,9 @@ variable {K : Type*} [Field K] [CharZero K] [Algebra K R]
 include K
 
 /-- Every homogeneous directional kernel element has a homogeneous cross
-representative on either unit chart.-/
+representative on either unit chart.
+@isnad1 id=ex.2h9v.s10.aa7ac86666f9 from=translated src=- shape=015e6ac0 vocab=b8b78ae5
+-/
 theorem cross_range_homogeneous {n : ℕ}
     {P : AuxTensor (R := R) (M := M)} (hP : TensorHomogeneous n P)
     (hdP : tensorDirectional ![u,v,z] P = 0) :
@@ -646,7 +752,9 @@ include K
 
 /-- The cross-product quotient is the directional-derivative kernel on a
 unit chart.  Together with `tensor_cross_kernel` this is the local exact
-sequence used in the two-chart coefficient proof.-/
+sequence used in the two-chart coefficient proof.
+@isnad1 id=iff.1h8v.s10.f9e0a5770a35 from=translated src=- shape=a7ac153d vocab=3ea754b5
+-/
 theorem tensor_cross_range (u v z a : R) (hua : u * a = 1)
     (P : AuxTensor (R := R) (M := M)) :
     P ∈ LinearMap.range (tensorChange (crossMatrix u v z)) ↔

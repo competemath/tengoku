@@ -23,7 +23,9 @@ variable {K ι V W U : Type*} [Field K]
   [AddCommGroup V] [Module K V] [AddCommGroup W] [Module K W]
   [AddCommGroup U] [Module K U]
 
-/-- Independent vectors admit simultaneous coordinate functionals.-/
+/-- Independent vectors admit simultaneous coordinate functionals.
+@isnad1 id=ex.1h4v.s8.537122eb4a1e from=translated src=- shape=ba1f5537 vocab=719e4c43
+-/
 theorem exists_coordinate_functionals {r : ℕ} (q : Fin r → V)
     (hq : LinearIndependent K q) :
     ∃ dual : Fin r → V →ₗ[K] K, ∀ i j, dual i (q j) = if i = j then 1 else 0 := by
@@ -41,6 +43,9 @@ def polynomialOfLinear [Fintype ι] [DecidableEq ι]
     (L : (ι → K) →ₗ[K] K) : MvPolynomial ι K :=
   ∑ i, C (L (Pi.single i 1)) * X i
 
+/--
+@isnad1 id=eq.0h4v.s8.1edf8d694f39 from=translated src=- shape=73e144ff vocab=86893174
+-/
 theorem eval_polynomialOfLinear [Fintype ι] [DecidableEq ι]
     (L : (ι → K) →ₗ[K] K) (a : ι → K) :
     eval a (polynomialOfLinear L) = L a := by
@@ -52,31 +57,47 @@ theorem eval_polynomialOfLinear [Fintype ι] [DecidableEq ι]
 def IsPolynomialFamily (f : (ι → K) → V) : Prop :=
   ∀ ell : V →ₗ[K] K, ∃ p : MvPolynomial ι K, ∀ a, eval a p = ell (f a)
 
+/--
+@isnad1 id=ispolyno.0h4v.s5.80171d02d5a3 from=translated src=- shape=1f5dfed4 vocab=bc3a6e1d
+-/
 theorem isPolynomialFamily_const (v : V) : IsPolynomialFamily (fun _ : ι → K => v) := by
   intro ell
   exact ⟨C (ell v), by simp⟩
 
-/-- Evaluating a fixed parameter polynomial gives a scalar polynomial family.-/
+/-- Evaluating a fixed parameter polynomial gives a scalar polynomial family.
+@isnad1 id=ispolyno.0h3v.s7.91995a2df4c5 from=translated src=- shape=a3fe61c3 vocab=5ca6ff9d
+-/
 theorem isPolynomialFamily_eval (p : MvPolynomial ι K) :
     IsPolynomialFamily (fun a : ι → K => eval a p) := by
   intro ell
   refine ⟨C (ell 1) * p, fun a => ?_⟩
   simp [mul_comm]
 
-/-- A single parameter coordinate is a polynomial family.-/
+/-- A single parameter coordinate is a polynomial family.
+@isnad1 id=ispolyno.0h3v.s5.fe6c66f5a434 from=translated src=- shape=658bac5d vocab=af875648
+-/
 theorem isPolynomialFamily_coordinate (i : ι) :
     IsPolynomialFamily (fun a : ι → K => a i) := by
   simpa using isPolynomialFamily_eval (X i : MvPolynomial ι K)
 
+/--
+@isnad1 id=ispolyno.0h4v.s8.f42c3432317a from=translated src=- shape=16eaf536 vocab=83073f61
+-/
 theorem isPolynomialFamily_linear [Fintype ι] [DecidableEq ι] (f : (ι → K) →ₗ[K] V) : IsPolynomialFamily f := by
   intro ell
   exact ⟨polynomialOfLinear (ell.comp f), fun a => eval_polynomialOfLinear _ a⟩
 
+/--
+@isnad1 id=ispolyno.1h6v.s7.af2f5e48b2a6 from=translated src=- shape=f6cb56a7 vocab=d0a02e18
+-/
 theorem IsPolynomialFamily.linear_comp {f : (ι → K) → V}
     (hf : IsPolynomialFamily f) (L : V →ₗ[K] W) : IsPolynomialFamily (fun a => L (f a)) := by
   intro ell
   exact hf (ell.comp L)
 
+/--
+@isnad1 id=ispolyno.2h5v.s6.2d2b74c6b338 from=translated src=- shape=b8908492 vocab=fbcdd97f
+-/
 theorem IsPolynomialFamily.add {f g : (ι → K) → V}
     (hf : IsPolynomialFamily f) (hg : IsPolynomialFamily g) :
     IsPolynomialFamily (fun a => f a + g a) := by
@@ -85,6 +106,9 @@ theorem IsPolynomialFamily.add {f g : (ι → K) → V}
   obtain ⟨q, hq⟩ := hg ell
   exact ⟨p + q, fun a => by rw [map_add, hp, hq, map_add]⟩
 
+/--
+@isnad1 id=ispolyno.2h5v.s7.116e37f2380e from=translated src=- shape=cae92a1d vocab=24a01a76
+-/
 theorem IsPolynomialFamily.smul {f : (ι → K) → K} {g : (ι → K) → V}
     (hf : IsPolynomialFamily f) (hg : IsPolynomialFamily g) :
     IsPolynomialFamily (fun a => f a • g a) := by
@@ -94,6 +118,9 @@ theorem IsPolynomialFamily.smul {f : (ι → K) → K} {g : (ι → K) → V}
   refine ⟨p * q, fun a => ?_⟩
   simp only [map_mul, hp, hq, LinearMap.id_apply, map_smul, smul_eq_mul]
 
+/--
+@isnad1 id=ispolyno.1h5v.s6.88edee0c9314 from=translated src=- shape=c83dad4c vocab=57bf4369
+-/
 theorem IsPolynomialFamily.sum {J : Type*} [Fintype J]
     {f : J → (ι → K) → V} (hf : ∀ j, IsPolynomialFamily (f j)) :
     IsPolynomialFamily (fun a => ∑ j, f j a) := by
@@ -102,7 +129,9 @@ theorem IsPolynomialFamily.sum {J : Type*} [Fintype J]
   refine ⟨∑ j, p j, fun a => ?_⟩
   simp only [map_sum, hp]
 
-/-- Polynomial families are closed under any bilinear map between finite-dimensional spaces.-/
+/-- Polynomial families are closed under any bilinear map between finite-dimensional spaces.
+@isnad1 id=ispolyno.2h8v.s9.7ec03d989057 from=translated src=- shape=e1a6873d vocab=7d814ed2
+-/
 theorem IsPolynomialFamily.bilinear [FiniteDimensional K V]
     {f : (ι → K) → V} {g : (ι → K) → W}
     (hf : IsPolynomialFamily f) (hg : IsPolynomialFamily g) (B : V →ₗ[K] W →ₗ[K] U) :
@@ -120,7 +149,9 @@ theorem IsPolynomialFamily.bilinear [FiniteDimensional K V]
   rw [heq] at hsum
   exact hsum
 
-/-- Pairing polynomial families preserves polynomial dependence.-/
+/-- Pairing polynomial families preserves polynomial dependence.
+@isnad1 id=ispolyno.2h6v.s6.5cd4a90aa0e6 from=translated src=- shape=738d8096 vocab=88a03a1b
+-/
 theorem IsPolynomialFamily.prod_mk {f : (ι → K) → V} {g : (ι → K) → W}
     (hf : IsPolynomialFamily f) (hg : IsPolynomialFamily g) :
     IsPolynomialFamily (fun a => (f a, g a)) := by
@@ -129,7 +160,9 @@ theorem IsPolynomialFamily.prod_mk {f : (ι → K) → V} {g : (ι → K) → W}
   simpa only [LinearMap.inl_apply, LinearMap.inr_apply, Prod.mk_add_mk, add_zero, zero_add] using h
 
 /-- To prove polynomial dependence of a family of linear maps, it suffices
-to check its application to each fixed input.-/
+to check its application to each fixed input.
+@isnad1 id=ispolyno.1h5v.s8.4b7be19b3f17 from=translated src=- shape=7b64d801 vocab=7d814ed2
+-/
 theorem isPolynomialFamily_linearMap [FiniteDimensional K V]
     (A : (ι → K) → (V →ₗ[K] W))
     (hA : ∀ x : V, IsPolynomialFamily (fun a => A a x)) : IsPolynomialFamily A := by
@@ -154,7 +187,9 @@ theorem isPolynomialFamily_linearMap [FiniteDimensional K V]
   rw [heq] at h
   exact h
 
-/-- A finite independent polynomial family stays independent on a determinant open.-/
+/-- A finite independent polynomial family stays independent on a determinant open.
+@isnad1 id=ex.2h6v.s8.eb944be6ac67 from=translated src=- shape=a0ace8d3 vocab=6fe5667e
+-/
 theorem independent_polynomial_principal_open {r : ℕ}
     (q : Fin r → (ι → K) → V) (hqpoly : ∀ i, IsPolynomialFamily (q i))
     (a₀ : ι → K) (hq : LinearIndependent K (fun i => q i a₀)) :
@@ -181,7 +216,9 @@ theorem independent_polynomial_principal_open {r : ℕ}
     let L : V →ₗ[K] (Fin r → K) := LinearMap.pi dual
     exact LinearIndependent.of_comp L (Matrix.linearIndependent_cols_of_det_ne_zero ha)
 
-/-- A polynomial family of linear maps has at least its witness rank on a principal open.-/
+/-- A polynomial family of linear maps has at least its witness rank on a principal open.
+@isnad1 id=ex.1h6v.s9.50fbbaabd7f2 from=translated src=- shape=605352fb vocab=099d3fe3
+-/
 theorem rank_polynomial_principal_open [FiniteDimensional K V] [FiniteDimensional K W]
     (A : (ι → K) → (V →ₗ[K] W)) (hA : IsPolynomialFamily A) (a₀ : ι → K) :
     ∃ D : MvPolynomial ι K, eval a₀ D ≠ 0 ∧ ∀ a, eval a D ≠ 0 →
@@ -207,7 +244,9 @@ theorem rank_polynomial_principal_open [FiniteDimensional K V] [FiniteDimensiona
   have h := Submodule.finrank_mono hle
   rwa [finrank_span_eq_card (hfamily a ha), Fintype.card_fin] at h
 
-/-- Injectivity at one parameter gives a nonempty determinant open of injective maps.-/
+/-- Injectivity at one parameter gives a nonempty determinant open of injective maps.
+@isnad1 id=ex.2h6v.s9.a6c826b7d6c5 from=translated src=- shape=9aea1af9 vocab=eda469c4
+-/
 theorem injective_polynomial_principal_open [FiniteDimensional K V] [FiniteDimensional K W]
     (A : (ι → K) → (V →ₗ[K] W)) (hA : IsPolynomialFamily A) (a₀ : ι → K)
     (ha₀ : Function.Injective (A a₀)) :
@@ -221,7 +260,9 @@ theorem injective_polynomial_principal_open [FiniteDimensional K V] [FiniteDimen
   apply LinearMap.ker_eq_bot.mp
   exact Submodule.finrank_eq_zero.mp (by omega)
 
-/-- Every finite-dimensional family has a parameter attaining its largest rank.-/
+/-- Every finite-dimensional family has a parameter attaining its largest rank.
+@isnad1 id=ex.0h5v.s9.e3ba35f2d42f from=translated src=- shape=4891e3ed vocab=f4acf3e1
+-/
 theorem exists_maximum_rank [FiniteDimensional K W]
     (A : (ι → K) → (V →ₗ[K] W)) :
     ∃ a₀ : ι → K, ∀ a, finrank K (LinearMap.range (A a)) ≤
@@ -236,7 +277,9 @@ theorem exists_maximum_rank [FiniteDimensional K W]
   obtain ⟨a₀, rfl⟩ := hr
   exact ⟨a₀, fun a => hmax ⟨a, rfl⟩⟩
 
-/-- A polynomial family has constant maximum rank on a nonempty principal open.-/
+/-- A polynomial family has constant maximum rank on a nonempty principal open.
+@isnad1 id=ex.1h5v.s10.960116d87105 from=translated src=- shape=fe287942 vocab=099d3fe3
+-/
 theorem maximum_rank_polynomial_principal_open [FiniteDimensional K V]
     [FiniteDimensional K W]
     (A : (ι → K) → (V →ₗ[K] W)) (hA : IsPolynomialFamily A) :
@@ -250,7 +293,9 @@ theorem maximum_rank_polynomial_principal_open [FiniteDimensional K V]
   obtain ⟨D, hD, hlow⟩ := rank_polynomial_principal_open A hA a₀
   exact ⟨a₀, D, hD, hmax, fun a ha => le_antisymm (hmax a) (hlow a ha)⟩
 
-/-- Nonzero determinant polynomials have a simultaneous nonvanishing parameter.-/
+/-- Nonzero determinant polynomials have a simultaneous nonvanishing parameter.
+@isnad1 id=ex.1h4v.s7.8fef43106b66 from=translated src=- shape=08595c0b vocab=9a4d3d84
+-/
 theorem nonempty_principal_intersection [Infinite K] {J : Type*} [Fintype J]
     (D : J → MvPolynomial ι K) (hD : ∀ j, D j ≠ 0) :
     ∃ a : ι → K, ∀ j, eval a (D j) ≠ 0 := by
@@ -266,7 +311,9 @@ theorem nonempty_principal_intersection [Infinite K] {J : Type*} [Fintype J]
   exact Finset.prod_eq_zero (Finset.mem_univ j) hj
 
 /-- Finitely many principal-open conditions, possibly witnessed at different
-points, can be imposed simultaneously over an infinite field.-/
+points, can be imposed simultaneously over an infinite field.
+@isnad1 id=ex.1h4v.s8.0421b5d85436 from=translated src=- shape=1ab41f5f vocab=9a4d3d84
+-/
 theorem simultaneous_principal_properties [Infinite K] {J : Type*} [Fintype J]
     (P : J → (ι → K) → Prop)
     (hP : ∀ j, ∃ D : MvPolynomial ι K, (∃ a, eval a D ≠ 0) ∧
@@ -281,7 +328,9 @@ theorem simultaneous_principal_properties [Infinite K] {J : Type*} [Fintype J]
   exact ⟨a, fun j => hprop j a (ha j)⟩
 
 /-- Finitely many polynomial map families achieve their maximum ranks on one
-nonempty principal open over an infinite field.-/
+nonempty principal open over an infinite field.
+@isnad1 id=ex.1h6v.s9.2d3f7a78d1ba from=translated src=- shape=1d78b9a5 vocab=8bdf30cf
+-/
 theorem simultaneous_maximum_rank_principal_open [Infinite K]
     [FiniteDimensional K V] [FiniteDimensional K W]
     {J : Type*} [Fintype J]

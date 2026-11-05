@@ -35,12 +35,18 @@ def universalDegreeCofactorMap (δ : Fin (c + 1) → ℕ) (N : ℕ)
       (map_smul (gradedCofactorMap (rowMatrixVal δ (universalRowMatrix δ u)) δ
         (rowMatrixVal_homogeneous δ _) ((N : ℤ) - ∑ i, δ i)) k v)
 
+/--
+@isnad1 id=eq.0h6v.s13.57b2fdd36854 from=translated src=- shape=8cb6ebdb vocab=0deca545
+-/
 @[simp] theorem universalDegreeCofactorMap_val (δ : Fin (c + 1) → ℕ) (N : ℕ)
     (u : RowMatrixParameter δ → K) (v : rowForms K 3 δ ((N : ℤ) - ∑ i, δ i)) :
     (universalDegreeCofactorMap δ N u v).val =
       (gradedCofactorMap (rowMatrixVal δ (universalRowMatrix δ u)) δ
         (rowMatrixVal_homogeneous δ _) ((N : ℤ) - ∑ i, δ i) v).val := rfl
 
+/--
+@isnad1 id=ispolyno.0h4v.s12.af01d1849ce1 from=translated src=- shape=6ce92a54 vocab=cd2d962a
+-/
 theorem universalDegreeCofactorMap_isPolynomialFamily (δ : Fin (c + 1) → ℕ)
     (N : ℕ) :
     IsPolynomialFamily (fun u : RowMatrixParameter δ → K =>
@@ -64,6 +70,9 @@ theorem universalDegreeCofactorMap_isPolynomialFamily (δ : Fin (c + 1) → ℕ)
     Submodule.subtype_apply] using
       (homogeneousComponent_eq_self (universalDegreeCofactorMap δ N u v).property).symm
 
+/--
+@isnad1 id=eq.0h5v.s12.7bba8f380a0f from=translated src=- shape=a059fa27 vocab=1e38815c
+-/
 theorem universalDegreeCofactorMap_range (δ : Fin (c + 1) → ℕ) (N : ℕ)
     (u : RowMatrixParameter δ → K) :
     (universalDegreeCofactorMap δ N u).range =
@@ -93,7 +102,9 @@ theorem universalDegreeCofactorMap_range (δ : Fin (c + 1) → ℕ) (N : ℕ)
     exact congrArg (fun x : signedForms K 3
       ((N : ℤ) - ∑ i, δ i + ∑ i, δ i) => x.val) hv
 
-/-- The actual cofactor ideal commutes with coefficient-ring maps.-/
+/-- The actual cofactor ideal commutes with coefficient-ring maps.
+@isnad1 id=eq.0h5v.s8.ceaf3cefc76e from=translated src=- shape=1171efb8 vocab=6c9fad6c
+-/
 theorem maximalMinorIdeal_map {R : Type*} [CommRing R]
     (φ : Poly K 3 →+* R) (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3)) :
     (maximalMinorIdeal B).map φ =
@@ -108,7 +119,9 @@ theorem maximalMinorIdeal_map {R : Type*} [CommRing R]
     exact ⟨signedMaximalMinor B i, ⟨i, rfl⟩, (signedMaximalMinor_map φ B i).symm⟩
 
 /-- Primitive row matrices of the same degrees have identical genuine
-homogeneous quotient dimensions.-/
+homogeneous quotient dimensions.
+@isnad1 id=eq.2h6v.s12.fbc578705519 from=translated src=- shape=f0712140 vocab=fd0f6855
+-/
 theorem rowMatrix_quotient_finrank_eq (δ : Fin (c + 1) → ℕ)
     (B C : HomogeneousRowMatrix K δ)
     (hB : PrimitiveMaximalMinors (rowMatrixVal δ B))
@@ -124,7 +137,9 @@ theorem rowMatrix_quotient_finrank_eq (δ : Fin (c + 1) → ℕ)
   rw [hdegree, signedForms_nat] at hb hc
   exact_mod_cast hb.trans hc.symm
 
-/-- Binary primitive minors make the genuine ternary ideal `z`-saturated.-/
+/-- Binary primitive minors make the genuine ternary ideal `z`-saturated.
+@isnad1 id=mem.2h5v.s9.9052c974cf1b from=translated src=- shape=656ad406 vocab=c7a48237
+-/
 theorem rowMatrix_z_saturated (δ : Fin (c + 1) → ℕ) (B : HomogeneousRowMatrix K δ)
     (hB : PrimitiveMaximalMinors ((rowMatrixVal δ B).map Ferrers.infinityMap)) :
     ∀ p : Poly K 3, X 2 * p ∈ maximalMinorIdeal (rowMatrixVal δ B) →
@@ -133,7 +148,9 @@ theorem rowMatrix_z_saturated (δ : Fin (c + 1) → ℕ) (B : HomogeneousRowMatr
   exact mem_cofactorIdeal_of_mul (rowMatrixVal δ B) (X 2) (X_ne_zero _)
     Ferrers.infinityMap Ferrers.infinityMap_surjective Ferrers.infinityMap_ker hB p hp
 
-/-- The binary cut is the ternary cut needed for affine finiteness.-/
+/-- The binary cut is the ternary cut needed for affine finiteness.
+@isnad1 id=mem.1h6v.s11.40af1fd95b71 from=translated src=- shape=fd6e3c2f vocab=7ffcff53
+-/
 theorem rowMatrix_form_cut_of_binary (δ : Fin (c + 1) → ℕ)
     (B : HomogeneousRowMatrix K δ) (N : ℕ)
     (hcut : ∀ f : Forms K 2 N,

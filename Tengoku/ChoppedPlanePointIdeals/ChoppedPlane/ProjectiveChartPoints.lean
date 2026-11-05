@@ -21,7 +21,9 @@ open MvPolynomial Module
 attribute [local instance] MvPolynomial.gradedAlgebra
 variable {K : Type*} [Field K]
 
-/-- Evaluation on the normalized chart commutes with actual dehomogenization.-/
+/-- Evaluation on the normalized chart commutes with actual dehomogenization.
+@isnad1 id=eq.0h3v.s9.c6a548e9d603 from=translated src=- shape=4a9ca26b vocab=1bb5f939
+-/
 theorem affineDehom_eval (f : Poly K 3) (a : Fin 2 → K) :
     eval ![a 0, a 1, 1] f = eval a (affineDehom f) := by
   have h : (aeval a).comp (affineDehom (K := K)) =
@@ -32,7 +34,9 @@ theorem affineDehom_eval (f : Poly K 3) (a : Fin 2 → K) :
   exact (AlgHom.congr_fun h f).symm
 
 /-- The plane degree map of an affine presentation is evaluation at its actual
-normalized coordinates.-/
+normalized coordinates.
+@isnad1 id=eq.0h5v.s9.5f95fcfc3d6e from=translated src=- shape=23f9cc6b vocab=270050dc
+-/
 theorem affinePresentation_plane_apply {p : ℕ}
     (φ : Poly K 2 →ₐ[K] (Fin p → K)) (f : Poly K 3) (i : Fin p) :
     φ (affineDehom f) i = eval (chartPoint K (affinePresentationCoordinates φ) i) f := by
@@ -41,7 +45,9 @@ theorem affinePresentation_plane_apply {p : ℕ}
 
 /-- A finite reduced chart of length `p` supplies actual distinct points whose
 homogeneous equations are exactly those of the original ideal. Evaluation is
-surjective in every degree past the cut at infinity.-/
+surjective in every degree past the cut at infinity.
+@isnad1 id=ex.4h4v.s12.ac143f356b5c from=translated src=- shape=5aa6f37a vocab=b2f95db5
+-/
 theorem exists_projective_chart_points [IsAlgClosed K] {p : ℕ}
     (I : Ideal (Poly K 3))
     (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
@@ -80,7 +86,9 @@ theorem exists_projective_chart_points [IsAlgClosed K] {p : ℕ}
         (fun _ hf => affineQuotientMap_eq_zero_of_mem I hf) N t hNt hcut)
 
 /-- Every Hilbert function of the resulting actual point ideal equals the
-homogeneous Hilbert function of the original ideal.-/
+homogeneous Hilbert function of the original ideal.
+@isnad1 id=eq.1h5v.s11.65c5ea51a312 from=translated src=- shape=b2c23a68 vocab=82381554
+-/
 theorem pointHilbertFunction_eq_of_idealFormPiece {p : ℕ}
     (I : Ideal (Poly K 3)) (a : PointCoordinates K p)
     (hpieces : ∀ t, pointDegreePiece K a t = idealFormPiece I t) (t : ℕ) :

@@ -20,7 +20,9 @@ namespace ChoppedPlane
 open MvPolynomial Module
 variable {K : Type*} [Field K]
 
-/-- Equality of actual ideal pieces identifies the two quotient dimensions.-/
+/-- Equality of actual ideal pieces identifies the two quotient dimensions.
+@isnad1 id=eq.1h5v.s5.330e41e1cff6 from=translated src=- shape=e6330fe9 vocab=fb07dc68
+-/
 theorem choppedHilbertFunction_eq_point_of_piece_eq {p d t : ℕ}
     (a : PointCoordinates K p) (h : ChopEqualsPointPiece K a d t) :
     choppedHilbertFunction a d t = pointHilbertFunction K a t := by
@@ -35,7 +37,9 @@ theorem choppedHilbertFunction_eq_point_of_piece_eq {p d t : ℕ}
   exact (formToRingQuotient t (pointDegreeSpace K a d)).quotKerEquivRange.finrank_eq.symm
 
 /-- A degree chop always agrees with the original point ideal in its own
-generating degree.-/
+generating degree.
+@isnad1 id=eq.0h4v.s6.db0efcf9fb38 from=translated src=- shape=059efcce vocab=830448a4
+-/
 theorem pointDegreeSpace_eq_chop_generating_degree {p d : ℕ}
     (a : PointCoordinates K p) :
     pointDegreeSpace K a d = idealDegreeSpace (choppedIdeal K a d) d := by
@@ -47,7 +51,9 @@ theorem pointDegreeSpace_eq_chop_generating_degree {p d : ℕ}
     exact ⟨hf.1, choppedIdeal_le_pointIdeal a hf.2⟩
 
 /-- Interpolation one degree below the chop makes its homogeneous pieces
-agree with the point ideal in all degrees above the chop.-/
+agree with the point ideal in all degrees above the chop.
+@isnad1 id=chopequa.3h5v.s11.3960cfe522a5 from=translated src=- shape=a465a7d9 vocab=57ef72db
+-/
 theorem chopEqualsPointPiece_of_interpolation {p d : ℕ} (a : PointCoordinates K p)
     (hd : 1 ≤ d)
     (hsurj : Function.Surjective (pointEvaluation K a (d - 1))) :
@@ -61,14 +67,18 @@ theorem chopEqualsPointPiece_of_interpolation {p d : ℕ} (a : PointCoordinates 
   have hh := congrArg (fun U : Submodule K (Poly K 3) => f.val ∈ U) heq
   simpa [idealDegreeSpace, f.property] using hh.symm
 
-/-- The dimension of ternary forms increases strictly at every positive degree.-/
+/-- The dimension of ternary forms increases strictly at every positive degree.
+@isnad1 id=lt.1h1v.s4.1e7235853d97 from=translated src=- shape=dda2d6a5 vocab=1d6104ca
+-/
 theorem N_pred_lt {d : ℕ} (hd : 1 ≤ d) : N (d - 1) < N d := by
   have hs := N_succ (d - 1)
   rw [show d - 1 + 1 = d by omega] at hs
   omega
 
 /-- The entire main conclusion follows in the range `p ≤ N(d-1)` from the
-point Hilbert function on a single configuration.-/
+point Hilbert function on a single configuration.
+@isnad1 id=mainconc.4h4v.s6.f0f40fb66a2a from=translated src=- shape=1997681a vocab=0daaed4d
+-/
 theorem mainConclusion_of_small_point_count {p d : ℕ} (a : PointCoordinates K p)
     (hd : 1 ≤ d) (hp : p ≤ N (d - 1)) (hdist : DistinctPoints K a)
     (hpoint : ∀ t, pointHilbertFunction K a t = min (N t) p) :
@@ -95,7 +105,9 @@ theorem mainConclusion_of_small_point_count {p d : ℕ} (a : PointCoordinates K 
     omega
 
 /-- The entire main conclusion follows in the range `N(d) ≤ p` from the
-point Hilbert function on a single configuration.-/
+point Hilbert function on a single configuration.
+@isnad1 id=mainconc.4h4v.s5.cda8616b9e5f from=translated src=- shape=daae4ec3 vocab=73f3997c
+-/
 theorem mainConclusion_of_large_point_count {p d : ℕ} (a : PointCoordinates K p)
     (hd : 1 ≤ d) (hp : N d ≤ p) (hdist : DistinctPoints K a)
     (hpoint : ∀ t, pointHilbertFunction K a t = min (N t) p) :
@@ -124,7 +136,9 @@ theorem mainConclusion_of_large_point_count {p d : ℕ} (a : PointCoordinates K 
     omega
 
 /-- A single nonempty principal open proves every conclusion in the two
-point-count ranges outside `N(d-1) < p < N(d)`.-/
+point-count ranges outside `N(d-1) < p < N(d)`.
+@isnad1 id=genericc.2h3v.s5.3bf4cac4c984 from=translated src=- shape=56774ce9 vocab=168d5cc0
+-/
 theorem genericChoppedConclusion_outside_intermediate [CharZero K]
     (d p : ℕ) (hd : 1 ≤ d) (houtside : p ≤ N (d - 1) ∨ N d ≤ p) :
     GenericChoppedConclusion K d p := by

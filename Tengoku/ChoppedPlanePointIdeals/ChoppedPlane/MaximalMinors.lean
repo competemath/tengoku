@@ -21,7 +21,9 @@ def maximalMinor (B : Matrix (Fin (c + 1)) (Fin c) R) (i : Fin (c + 1)) : R :=
 def signedMaximalMinor (B : Matrix (Fin (c + 1)) (Fin c) R) (i : Fin (c + 1)) : R :=
   (-1) ^ i.val * maximalMinor B i
 
-/-- Determinantal cofactors annihilate every column of the matrix.-/
+/-- Determinantal cofactors annihilate every column of the matrix.
+@isnad1 id=eq.0h4v.s7.d443f6095d4e from=translated src=- shape=03800356 vocab=49f2f49b
+-/
 theorem signedMaximalMinor_relation (B : Matrix (Fin (c + 1)) (Fin c) R) (j : Fin c) :
     ∑ i, signedMaximalMinor B i * B i j = 0 := by
   classical
@@ -39,7 +41,9 @@ theorem signedMaximalMinor_relation (B : Matrix (Fin (c + 1)) (Fin c) R) (j : Fi
     exact Fin.cases_succ l
   simpa [signedMaximalMinor, maximalMinor, hm, M, mul_assoc, mul_comm, mul_left_comm] using hzero
 
-/-- A determinant with fixed homogeneous row degrees has their sum as degree.-/
+/-- A determinant with fixed homogeneous row degrees has their sum as degree.
+@isnad1 id=ishomoge.1h5v.s6.4a8465111be2 from=translated src=- shape=70693758 vocab=083f1e41
+-/
 theorem determinant_homogeneous_rows {K : Type*} [Field K] {n m : ℕ}
     (B : Matrix (Fin m) (Fin m) (Poly K n)) (δ : Fin m → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (δ i)) :
@@ -55,7 +59,9 @@ theorem determinant_homogeneous_rows {K : Type*} [Field K] {n m : ℕ}
   change (σ.sign : ℤ) • (∏ i, B (σ i) i) ∈ (Forms K n (∑ i, δ i)).toAddSubgroup
   exact (Forms K n (∑ i, δ i)).toAddSubgroup.zsmul_mem hp (σ.sign : ℤ)
 
-/-- The maximal minor deleting row `i` has the sum of the other row degrees.-/
+/-- The maximal minor deleting row `i` has the sum of the other row degrees.
+@isnad1 id=ishomoge.1h6v.s7.6928ee5d1299 from=translated src=- shape=ff24682e vocab=907ece03
+-/
 theorem maximalMinor_homogeneous {K : Type*} [Field K] {n : ℕ}
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (δ : Fin (c + 1) → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (δ i)) (i : Fin (c + 1)) :

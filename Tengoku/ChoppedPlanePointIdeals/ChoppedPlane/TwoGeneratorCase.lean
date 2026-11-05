@@ -18,7 +18,9 @@ namespace ChoppedPlane
 open MvPolynomial Module
 variable {K : Type*} [Field K] {d p : ℕ}
 
-/-- Positive-degree relatively prime forms are independent generators.-/
+/-- Positive-degree relatively prime forms are independent generators.
+@isnad1 id=linearin.3h3v.s10.244f738b866e from=translated src=- shape=3e859794 vocab=f95027c0
+-/
 theorem pair_forms_linearIndependent (q : Fin 2 → Forms K 3 d) (hd : 0 < d)
     (hq : (q 0).val ≠ 0) (hcop : IsRelPrime (q 0).val (q 1).val) :
     LinearIndependent K q := by
@@ -41,7 +43,9 @@ theorem pair_forms_linearIndependent (q : Fin 2 → Forms K 3 d) (hd : 0 < d)
   simpa [a] using hh
 
 /-- A regular pair spanning the actual degree equations supplies the full
-conclusion in the two-generator range.-/
+conclusion in the two-generator range.
+@isnad1 id=mainconc.9h5v.s10.4823159bf494 from=translated src=- shape=771da8ce vocab=90e8ffdb
+-/
 theorem mainConclusion_two_generator (a : PointCoordinates K p)
     (hd : 2 ≤ d) (hlo : N (d - 1) < p) (hhi : p < N d) (hr : N d - p = 2)
     (hdist : DistinctPoints K a)
@@ -74,7 +78,9 @@ theorem mainConclusion_two_generator (a : PointCoordinates K p)
     · intro h; omega
 
 /-- The grid witness supplies two actual equations spanning precisely the
-configuration's degree-`d` ideal.-/
+configuration's degree-`d` ideal.
+@isnad1 id=ex.1h2v.s11.80546172d014 from=translated src=- shape=2051a703 vocab=a750ddbd
+-/
 theorem exists_two_generator_witness [CharZero K] (d : ℕ) (hd : 0 < d) :
     ∃ (a : PointCoordinates K ((d + 2).choose 2 - 2)) (q : Fin 2 → Forms K 3 d),
       pointDegreePiece K a d = Submodule.span K (Set.range q) ∧
@@ -96,7 +102,9 @@ theorem exists_two_generator_witness [CharZero K] (d : ℕ) (hd : 0 < d) :
   · rintro ⟨b,c,h⟩; exact ⟨b,c,h.symm⟩
 
 /-- A regular degree-`d` pair spanning point equations survives on a genuine
-nonempty polynomial neighborhood of the witness.-/
+nonempty polynomial neighborhood of the witness.
+@isnad1 id=ex.1h2v.s11.a2ecea7bd607 from=translated src=- shape=e80ace2e vocab=3e3be8e1
+-/
 theorem regular_pair_point_principal_open [CharZero K] (d : ℕ) (hd : 0 < d) :
     ∃ D : MvPolynomial (Fin ((d + 2).choose 2 - 2) × Fin 2) K,
       (∃ a, eval a D ≠ 0) ∧ ∀ a, eval a D ≠ 0 →
@@ -170,7 +178,9 @@ theorem regular_pair_point_principal_open [CharZero K] (d : ℕ) (hd : 0 < d) :
   rfl
 
 /-- Full Theorem 1.1 in the two-generator range, with no extra rank or regularity
-hypothesis and one common open for all degrees.-/
+hypothesis and one common open for all degrees.
+@isnad1 id=genericc.5h3v.s6.3ab4f2b876b2 from=translated src=- shape=7c02be04 vocab=4ac1c2c1
+-/
 theorem genericChoppedConclusion_two_generator [CharZero K]
     (hd : 2 ≤ d) (_hp : 1 ≤ p) (hlo : N (d - 1) < p) (hhi : p < N d)
     (hr : N d - p = 2) : GenericChoppedConclusion K d p := by

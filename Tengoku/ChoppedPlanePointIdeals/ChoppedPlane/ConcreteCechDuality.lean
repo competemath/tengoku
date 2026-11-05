@@ -41,12 +41,17 @@ def topMap (g : ι → ℤ) (h : κ → ℤ) (a b : ℤ)
   (topProjection h b).comp ((overlapMap g h a b L hL).comp
     (Submodule.inclusion (topGrade_le_overlapGrade g a)))
 
+/--
+@isnad1 id=eq.1h9v.s11.2a05d386b960 from=translated src=- shape=09633b2e vocab=9b86bf04
+-/
 @[simp] theorem overlapMap_val (g : ι → ℤ) (h : κ → ℤ) (a b : ℤ)
     (L : FreeLaurent K ι →ₗ[K] FreeLaurent K κ)
     (hL : ∀ p ∈ overlapGrade g a, L p ∈ overlapGrade h b)
     (p : overlapGrade (K := K) g a) : (overlapMap g h a b L hL p).val = L p.val := rfl
 
-/-- The actual top operator is literal negative-exponent projection after multiplication.-/
+/-- The actual top operator is literal negative-exponent projection after multiplication.
+@isnad1 id=eq.1h9v.s12.25eb71d8946d from=translated src=- shape=732daa30 vocab=5c9cafd7
+-/
 theorem topMap_val (g : ι → ℤ) (h : κ → ℤ) (a b : ℤ)
     (L : FreeLaurent K ι →ₗ[K] FreeLaurent K κ)
     (hL : ∀ p ∈ overlapGrade g a, L p ∈ overlapGrade h b)
@@ -68,7 +73,9 @@ theorem topMap_val (g : ι → ℤ) (h : κ → ℤ) (a b : ℤ)
         (hL p.val (topGrade_le_overlapGrade g a p.property)) (i,e) hg
     simp [topIndices, hg, hz]
 
-/-- A top representative is unchanged by projecting it to the top quotient.-/
+/-- A top representative is unchanged by projecting it to the top quotient.
+@isnad1 id=eq.0h5v.s12.65ed07131631 from=translated src=- shape=4739dade vocab=14eb7a8b
+-/
 theorem topProjection_inclusion (g : ι → ℤ) (a : ℤ) (p : topGrade (K := K) g a) :
     topProjection g a (Submodule.inclusion (topGrade_le_overlapGrade g a) p) = p := by
   apply Subtype.ext
@@ -78,7 +85,9 @@ theorem topProjection_inclusion (g : ι → ℤ) (a : ℤ) (p : topGrade (K := K
   · simp [he]
   · simp [he, (Finsupp.mem_supported' K _).mp p.property e he]
 
-/-- The coefficient-level cross chase on the genuine chart supports.-/
+/-- The coefficient-level cross chase on the genuine chart supports.
+@isnad1 id=mem.10h15v.s12.d5ed1c0878d6 from=translated src=- shape=31533f96 vocab=955d37f5
+-/
 theorem overlap_preimage_of_cross
     (g : ι → ℤ) (h : κ → ℤ) (j : η → ℤ) (a b c : ℤ)
     (L : FreeLaurent K ι →ₗ[K] FreeLaurent K κ)
@@ -123,7 +132,9 @@ theorem overlap_preimage_of_cross
   exact Submodule.add_mem_sup hx hy
 
 /-- If the global directional kernel vanishes, multiplication on the actual
-finite top Laurent quotient is injective.-/
+finite top Laurent quotient is injective.
+@isnad1 id=injectiv.9h14v.s13.da9d9b60296e from=translated src=- shape=b5d5f7a4 vocab=d3af4f66
+-/
 theorem topMap_injective_of_cross
     (g : ι → ℤ) (h : κ → ℤ) (j : η → ℤ) (a b c : ℤ)
     (L : FreeLaurent K ι →ₗ[K] FreeLaurent K κ)

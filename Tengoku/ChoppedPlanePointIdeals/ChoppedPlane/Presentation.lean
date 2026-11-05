@@ -35,7 +35,9 @@ def residualMap (φ : V × W →ₗ[K] M) :
   (choppedSubmodule φ).mkQ.comp (φ.comp (LinearMap.inr K V W))
 
 /-- The relations among the remaining generators are exactly the projected
-original relations.-/
+original relations.
+@isnad1 id=eq.1h7v.s9.c6fa5ad7efd7 from=translated src=- shape=9e32c2d8 vocab=661b93d0
+-/
 theorem ker_residualMap (A : E →ₗ[K] V × W) (φ : V × W →ₗ[K] M)
     (hexact : LinearMap.ker φ = LinearMap.range A) :
     LinearMap.ker (residualMap φ) =
@@ -70,7 +72,9 @@ theorem ker_residualMap (A : E →ₗ[K] V × W) (φ : V × W →ₗ[K] M)
     simpa [LinearMap.mem_ker, residualMap] using hw'
 
 /-- Surjectivity of a presentation is preserved after removing the chopped
-summand of generators.-/
+summand of generators.
+@isnad1 id=surjecti.1h5v.s9.d6b75bb39cf2 from=translated src=- shape=ec335031 vocab=eace67f7
+-/
 theorem residualMap_surjective (φ : V × W →ₗ[K] M)
     (hsurj : Function.Surjective φ) : Function.Surjective (residualMap φ) := by
   intro q
@@ -99,7 +103,9 @@ noncomputable def choppedQuotientEquiv (A : E →ₗ[K] V × W)
     ((residualMap φ).quotKerEquivOfSurjective
       (residualMap_surjective φ hsurj))).symm
 
-/-- The equivalence carries each remaining generator to its cokernel class.-/
+/-- The equivalence carries each remaining generator to its cokernel class.
+@isnad1 id=eq.2h8v.s11.a2929c233f64 from=translated src=- shape=9744e308 vocab=0373454f
+-/
 @[simp] theorem choppedQuotientEquiv_residualMap (A : E →ₗ[K] V × W)
     (φ : V × W →ₗ[K] M) (hsurj : Function.Surjective φ)
     (hexact : LinearMap.ker φ = LinearMap.range A) (w : W) :
@@ -109,7 +115,9 @@ noncomputable def choppedQuotientEquiv (A : E →ₗ[K] V × W)
   simp [choppedQuotientEquiv]
 
 /-- An exact presentation gives the quotient dimension by subtracting the rank
-of its projected relation matrix.-/
+of its projected relation matrix.
+@isnad1 id=eq.2h7v.s10.b4a62ce33b67 from=translated src=- shape=c0cbf1d9 vocab=c8df7ed6
+-/
 theorem finrank_choppedQuotient [FiniteDimensional K W]
     (A : E →ₗ[K] V × W) (φ : V × W →ₗ[K] M)
     (hsurj : Function.Surjective φ)
@@ -121,7 +129,9 @@ theorem finrank_choppedQuotient [FiniteDimensional K W]
   exact Submodule.finrank_quotient _
 
 /-- Maximal rank of the projected relations yields the positive-part formula
-in natural-number subtraction.-/
+in natural-number subtraction.
+@isnad1 id=eq.3h7v.s10.344a4a1d814f from=translated src=- shape=c907971c vocab=ceb62ca6
+-/
 theorem finrank_choppedQuotient_of_maximalRank
     [FiniteDimensional K E] [FiniteDimensional K W]
     (A : E →ₗ[K] V × W) (φ : V × W →ₗ[K] M)

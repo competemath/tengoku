@@ -20,7 +20,9 @@ namespace ChoppedPlane
 open MvPolynomial Module
 variable {K σ : Type*} [Field K]
 
-/-- Multiplication by a degree-one form shifts homogeneous components.-/
+/-- Multiplication by a degree-one form shifts homogeneous components.
+@isnad1 id=eq.1h5v.s9.7c2cadada5aa from=translated src=- shape=00ec2e27 vocab=6171f57d
+-/
 theorem homogeneousComponent_mul_degree_one_succ
     {z : MvPolynomial σ K} (hz : z.IsHomogeneous 1)
     (n : ℕ) (g : MvPolynomial σ K) :
@@ -37,7 +39,9 @@ theorem homogeneousComponent_mul_degree_one_succ
   | add g h hg hh =>
     simp only [mul_add, map_add, hg, hh]
 
-/-- A degree-one form contributes no degree-zero component to a product.-/
+/-- A degree-one form contributes no degree-zero component to a product.
+@isnad1 id=eq.1h4v.s8.c8f2ebeeb924 from=translated src=- shape=ed4c7aba vocab=0fb2737a
+-/
 theorem homogeneousComponent_mul_degree_one_zero
     {z : MvPolynomial σ K} (hz : z.IsHomogeneous 1)
     (g : MvPolynomial σ K) : homogeneousComponent 0 (z * g) = 0 := by
@@ -54,7 +58,9 @@ theorem homogeneousComponent_mul_degree_one_zero
 attribute [local instance] MvPolynomial.gradedAlgebra
 
 /-- A homogeneous element cannot become zero after setting a regular
-degree-one element equal to one in a homogeneous quotient.-/
+degree-one element equal to one in a homogeneous quotient.
+@isnad1 id=mem.5h7v.s10.9ce1aee0fb8a from=translated src=- shape=956e3b9d vocab=2b5b4412
+-/
 theorem homogeneous_mem_of_sub_coordinate_one_mul
     (I : Ideal (MvPolynomial σ K))
     (hI : I.IsHomogeneous (homogeneousSubmodule σ K))
@@ -123,7 +129,9 @@ theorem homogeneous_mem_of_sub_coordinate_one_mul
     ring
 
 /-- Homogeneous membership in a saturated homogeneous ideal is preserved and
-reflected by the affine chart in the last coordinate.-/
+reflected by the affine chart in the last coordinate.
+@isnad1 id=iff.3h4v.s11.cbd75ae3cd27 from=translated src=- shape=256cfcdd vocab=52a737e4
+-/
 theorem affineDehom_mem_map_iff
     (I : Ideal (Poly K 3))
     (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))

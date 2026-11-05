@@ -19,7 +19,9 @@ variable {K : Type*} [Field K]
 variable {R : Type*} [CommRing R]
 variable {M : Type*} [AddCommGroup M] [Module R M]
 
-/-- Literal monomial coefficients of the actual finite tensor linear multiplication.-/
+/-- Literal monomial coefficients of the actual finite tensor linear multiplication.
+@isnad1 id=eq.0h6v.s10.a29ffe277f36 from=translated src=- shape=10eb8724 vocab=4c947c35
+-/
 theorem finiteMultiply_monomial_coefficients (f : Fin 3 → R) (t : ℕ)
     (q : Sym (Fin 3) t → M) (b : Sym (Fin 3) (t + 1)) :
     finiteMultiply f t q b = ∑ s : Sym (Fin 3) t, ∑ i : Fin 3,
@@ -44,9 +46,14 @@ variable [Algebra K R] [Module K M] [IsScalarTower K R M]
 def scalarAction (a : R) : M →ₗ[K] M :=
   (a • (LinearMap.id : M →ₗ[R] M)).restrictScalars K
 
+/--
+@isnad1 id=eq.0h5v.s8.c496502887f4 from=translated src=- shape=d41fd6c4 vocab=bec9eccb
+-/
 @[simp] theorem scalarAction_apply (a : R) (m : M) : scalarAction (K := K) a m = a • m := rfl
 
-/-- Derivative monomial coefficients commute with extension of coefficients.-/
+/-- Derivative monomial coefficients commute with extension of coefficients.
+@isnad1 id=eq.0h5v.s10.53acc137751d from=translated src=- shape=6732061a vocab=940d9149
+-/
 theorem algebraMap_pderiv_monomial_coeff (s b : Fin 3 →₀ ℕ) (i : Fin 3) :
     algebraMap K R ((pderiv i (monomial b 1 : Poly K 3)).coeff s) =
       (pderiv i (monomial b 1 : MvPolynomial (Fin 3) R)).coeff s := by
@@ -54,7 +61,9 @@ theorem algebraMap_pderiv_monomial_coeff (s b : Fin 3 →₀ ℕ) (i : Fin 3) :
   rw [← pderiv_map]
   simp
 
-/-- Variable-multiplication monomial coefficients commute with extension of coefficients.-/
+/-- Variable-multiplication monomial coefficients commute with extension of coefficients.
+@isnad1 id=eq.0h5v.s9.89e7c9cfa96a from=translated src=- shape=4365e580 vocab=aece9c58
+-/
 theorem algebraMap_X_monomial_coeff (s b : Fin 3 →₀ ℕ) (i : Fin 3) :
     algebraMap K R ((X i * monomial s 1 : Poly K 3).coeff b) =
       (X i * monomial s 1 : MvPolynomial (Fin 3) R).coeff b := by
@@ -62,7 +71,9 @@ theorem algebraMap_X_monomial_coeff (s b : Fin 3 →₀ ℕ) (i : Fin 3) :
   simp
 
 /-- The actual finite tensor multiplication is precisely the three-operator
-variable multiplication in scalar-action coordinates.-/
+variable multiplication in scalar-action coordinates.
+@isnad1 id=eq.0h6v.s10.896387a26cd5 from=translated src=- shape=1a78f1c5 vocab=458f69e8
+-/
 theorem finiteMultiply_eq_auxiliaryOperatorMultiply (f : Fin 3 → R) (t : ℕ)
     (q : Sym (Fin 3) t → M) :
     finiteMultiply f t q = auxiliaryOperatorMultiply (fun i => scalarAction (K := K) (f i)) t q := by

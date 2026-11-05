@@ -22,7 +22,9 @@ variable {K : Type*} [Field K]
 variable {U V W : Type*} [AddCommGroup U] [AddCommGroup V] [AddCommGroup W]
 variable [Module K U] [Module K V] [Module K W]
 
-/-- Project an actual local preimage to its required coefficient degree.-/
+/-- Project an actual local preimage to its required coefficient degree.
+@isnad1 id=ex.6h13v.s10.c4d5f0313162 from=translated src=- shape=1672d111 vocab=87f3a231
+-/
 theorem graded_preimage
     (G : ℤ → Submodule K U) (H : ℤ → Submodule K V)
     (pU : ℤ → U →ₗ[K] U) (pV : ℤ → V →ₗ[K] V)
@@ -39,7 +41,9 @@ theorem graded_preimage
   change L (pU a u) = pV b (L u) at hc
   rw [hc, hu, hpV b v hv]
 
-/-- Kernel/range exactness also gives graded preimages under projection.-/
+/-- Kernel/range exactness also gives graded preimages under projection.
+@isnad1 id=ex.6h13v.s10.474ef0e6fd66 from=translated src=- shape=f0dff39d vocab=27dc52a6
+-/
 theorem graded_preimage_of_kernel_range
     (G : ℤ → Submodule K U) (H : ℤ → Submodule K V)
     (pU : ℤ → U →ₗ[K] U) (pV : ℤ → V →ₗ[K] V)
@@ -59,13 +63,18 @@ def gradedRestriction (L : U →ₗ[K] V) (G : Submodule K U) (H : Submodule K V
     (hL : ∀ u, u ∈ G → L u ∈ H) : G →ₗ[K] H :=
   (L.domRestrict G).codRestrict H (fun u => hL u.val u.property)
 
+/--
+@isnad1 id=eq.1h7v.s10.b814de58a747 from=translated src=- shape=2114869e vocab=3e24c53e
+-/
 @[simp] theorem gradedRestriction_val (L : U →ₗ[K] V)
     (G : Submodule K U) (H : Submodule K V)
     (hL : ∀ u, u ∈ G → L u ∈ H) (u : G) :
     (gradedRestriction L G H hL u).val = L u.val := rfl
 
 /-- Restricting an actual local complex to compatible coefficient degrees
-preserves exactness; no graded preimage hypothesis is postulated.-/
+preserves exactness; no graded preimage hypothesis is postulated.
+@isnad1 id=eq.5h12v.s10.36c80c6cd7b3 from=translated src=- shape=b5fc4c43 vocab=4d8680cb
+-/
 theorem graded_kernel_range
     (G : ℤ → Submodule K U) (H : ℤ → Submodule K V)
     (pU : ℤ → U →ₗ[K] U) (pV : ℤ → V →ₗ[K] V)
@@ -88,7 +97,9 @@ theorem graded_kernel_range
   · rintro ⟨u, rfl⟩
     exact (hexact _).mpr ⟨u.val, rfl⟩
 
-/-- The degree-`d` version, with the necessary preimage degree `k-d`.-/
+/-- The degree-`d` version, with the necessary preimage degree `k-d`.
+@isnad1 id=ex.6h13v.s10.c52861655f5d from=translated src=- shape=bcf95233 vocab=b1794b30
+-/
 theorem graded_preimage_of_shift
     (G : ℤ → Submodule K U) (H : ℤ → Submodule K V)
     (pU : ℤ → U →ₗ[K] U) (pV : ℤ → V →ₗ[K] V)
@@ -108,7 +119,9 @@ open LaurentPairing LaurentChartComplex BinaryChartRings
 variable {ι κ : Type*} [Finite ι]
 
 /-- Project an actual `u` chart preimage into the necessary coefficient degree.
-The preimage lies in the image of the genuine chart-ring module.-/
+The preimage lies in the image of the genuine chart-ring module.
+@isnad1 id=ex.3h8v.s11.b874d7e9f89c from=translated src=- shape=f2a33b4a vocab=495dc319
+-/
 theorem uChart_preimage_by_projection
     (g : ι → ℤ) (h : κ → ℤ)
     (L : FreeLaurent K ι →ₗ[K] FreeLaurent K κ)
@@ -130,7 +143,9 @@ theorem uChart_preimage_by_projection
     exact (mem_overlapGrade_iff_gradeProjection_eq h k p).mp
       (uChartGrade_le_overlapGrade (K := K) h k hp)
 
-/-- Project an actual `v` chart preimage into the necessary coefficient degree.-/
+/-- Project an actual `v` chart preimage into the necessary coefficient degree.
+@isnad1 id=ex.3h8v.s11.e917db9a0a89 from=translated src=- shape=f2a33b4a vocab=e2054962
+-/
 theorem vChart_preimage_by_projection
     (g : ι → ℤ) (h : κ → ℤ)
     (L : FreeLaurent K ι →ₗ[K] FreeLaurent K κ)
@@ -154,7 +169,9 @@ theorem vChart_preimage_by_projection
 
 variable [Finite κ]
 
-/-- Actual `u` chart local exactness specializes to its coefficient grades.-/
+/-- Actual `u` chart local exactness specializes to its coefficient grades.
+@isnad1 id=ex.4h10v.s11.b623723593b7 from=translated src=- shape=a8805b5f vocab=b5ba9453
+-/
 theorem uChart_graded_local_preimage
     (g : ι → ℤ) (h : κ → ℤ)
     (L : FreeLaurent K ι →ₗ[K] FreeLaurent K κ)
@@ -173,7 +190,9 @@ theorem uChart_graded_local_preimage
   rw [uChartGrade_eq_overlap_inf_range] at hp
   exact hp.2
 
-/-- Actual `v` chart local exactness specializes to its coefficient grades.-/
+/-- Actual `v` chart local exactness specializes to its coefficient grades.
+@isnad1 id=ex.4h10v.s11.eba6f551f26c from=translated src=- shape=a8805b5f vocab=77a9f395
+-/
 theorem vChart_graded_local_preimage
     (g : ι → ℤ) (h : κ → ℤ)
     (L : FreeLaurent K ι →ₗ[K] FreeLaurent K κ)

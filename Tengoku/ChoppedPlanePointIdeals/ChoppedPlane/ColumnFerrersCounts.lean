@@ -13,7 +13,9 @@ open scoped BigOperators
 variable {c : ℕ}
 
 /-- The weak upper triangle adds precisely the diagonal square blocks to the
-strict upper triangle.-/
+strict upper triangle.
+@isnad1 id=eq.0h2v.s8.8681c15c4602 from=translated src=- shape=d3177b3e vocab=862bf464
+-/
 theorem selected_card_eq_diagonal_add_pairs (ε : Fin c → ℕ) :
     Fintype.card (SelectedIndex ε) = (∑ i, ε i ^ 2) + Ferrers.weightedPairs ε := by
   classical
@@ -48,7 +50,9 @@ theorem selected_card_eq_diagonal_add_pairs (ε : Fin c → ℕ) :
       exact hpoint ij
     _ = _ := by rw [Finset.sum_add_distrib, hdiag, hlt]
 
-/-- The universal doubled cardinality formula for the column profile.-/
+/-- The universal doubled cardinality formula for the column profile.
+@isnad1 id=eq.0h2v.s8.2b0c18af2c5f from=translated src=- shape=f1c3e07c vocab=a41cde69
+-/
 theorem selected_card_square (ε : Fin c → ℕ) :
     2 * Fintype.card (SelectedIndex ε) = (∑ i, ε i) ^ 2 + (∑ i, ε i ^ 2) := by
   rw [selected_card_eq_diagonal_add_pairs]
@@ -56,7 +60,9 @@ theorem selected_card_square (ε : Fin c → ℕ) :
   omega
 
 /-- For a column profile of total degree `d` and `q = d + 1 - r`
-quadratic entries, the actual seed has `N(d) - r` selected points.-/
+quadratic entries, the actual seed has `N(d) - r` selected points.
+@isnad1 id=eq.3h5v.s9.6ded0a4e2bd9 from=translated src=- shape=390ce733 vocab=d832687d
+-/
 theorem selected_card_of_sums (ε : Fin c → ℕ) (d r q : ℕ)
     (hsum : (∑ i, ε i) = d)
     (hsquares : (∑ i, ε i ^ 2) = d + 2 * q)
@@ -70,7 +76,9 @@ theorem selected_card_of_sums (ε : Fin c → ℕ) (d r q : ℕ)
   omega
 
 /-- Any positive column profile with only linear and quadratic entries already
-has exactly the point count required by its Hilbert–Burch generating degree.-/
+has exactly the point count required by its Hilbert–Burch generating degree.
+@isnad1 id=eq.1h2v.s8.b51747cbcc81 from=translated src=- shape=9eee87cb vocab=d98c3078
+-/
 theorem selected_card_one_two (ε : Fin c → ℕ) (hε : ∀ j, ε j = 1 ∨ ε j = 2) :
     Fintype.card (SelectedIndex ε) = N (∑ j, ε j) - (c + 1) := by
   classical
@@ -102,10 +110,16 @@ theorem selected_card_one_two (ε : Fin c → ℕ) (hε : ∀ j, ε j = 1 ∨ ε
 /-- The column profile with `q` quadratics among `c` positive entries.-/
 def columnProfile (c q : ℕ) : Fin c → ℕ := fun i => if i.val < q then 2 else 1
 
+/--
+@isnad1 id=lt.0h3v.s4.921143d32733 from=translated src=- shape=c9da32a2 vocab=80c6715f
+-/
 theorem columnProfile_pos (c q : ℕ) (i : Fin c) : 0 < columnProfile c q i := by
   unfold columnProfile
   split_ifs <;> omega
 
+/--
+@isnad1 id=eq.1h2v.s5.377dbf74a36e from=translated src=- shape=cda96af0 vocab=84a0b191
+-/
 theorem columnProfile_sum (c q : ℕ) (hq : q ≤ c) :
     (∑ i, columnProfile c q i) = c + q := by
   let e : Fin (q + (c - q)) ≃ Fin c := finCongr (by omega)
@@ -116,6 +130,9 @@ theorem columnProfile_sum (c q : ℕ) (hq : q ≤ c) :
   rw [Ferrers.positiveProfile_sum] at h
   omega
 
+/--
+@isnad1 id=eq.1h2v.s6.ee3478ee4ed5 from=translated src=- shape=732e6a2c vocab=0f25d02c
+-/
 theorem columnProfile_square_sum (c q : ℕ) (hq : q ≤ c) :
     (∑ i, columnProfile c q i ^ 2) = c + 3 * q := by
   let e : Fin (q + (c - q)) ≃ Fin c := finCongr (by omega)
@@ -128,7 +145,9 @@ theorem columnProfile_square_sum (c q : ℕ) (hq : q ≤ c) :
   omega
 
 /-- The nonpositive-extra-generator range uses `c = r - 1` columns and
-`q = d + 1 - r` quadratic columns.-/
+`q = d + 1 - r` quadratic columns.
+@isnad1 id=eq.3h2v.s11.50aed3a2c0f9 from=translated src=- shape=0c524f61 vocab=10478dd2
+-/
 theorem columnProfile_selected_card {d r : ℕ} (hr : 1 ≤ r) (hupper : r ≤ d + 1)
     (hlower : d + 2 ≤ 2 * r) :
     Fintype.card (SelectedIndex (columnProfile (r - 1) (d + 1 - r))) =

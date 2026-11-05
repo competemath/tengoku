@@ -29,6 +29,9 @@ def operatorTensorDifferential (T : Fin 3 → V →ₗ[K] W) :
     AuxTensor (R := K) (M := V) →ₗ[K] AuxTensor (R := K) (M := W) :=
   ∑ i : Fin 3, TensorProduct.map (pderiv i).toLinearMap (T i)
 
+/--
+@isnad1 id=eq.0h6v.s10.44734730d424 from=translated src=- shape=1872cbae vocab=9f5c45ea
+-/
 @[simp] theorem operatorTensorDifferential_tmul
     (T : Fin 3 → V →ₗ[K] W) (f : Aux K) (v : V) :
     operatorTensorDifferential T (f ⊗ₜ[K] v) =
@@ -36,7 +39,9 @@ def operatorTensorDifferential (T : Fin 3 → V →ₗ[K] W) :
   simp [operatorTensorDifferential]
 
 /-- Differentiating the synthesized monomials gives exactly the finite
-coefficient operator, without assuming any freeness of the modules.-/
+coefficient operator, without assuming any freeness of the modules.
+@isnad1 id=eq.0h6v.s10.9bcdadc77cc3 from=translated src=- shape=aee9e883 vocab=7cc2a219
+-/
 theorem operatorTensorDifferential_synthesis_coefficients
     (T : Fin 3 → V →ₗ[K] W) (t : ℕ) (x : Sym (Fin 3) (t + 1) → V) :
     homogeneousTensorCoefficientVector t

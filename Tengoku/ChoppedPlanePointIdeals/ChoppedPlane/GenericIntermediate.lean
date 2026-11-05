@@ -21,7 +21,9 @@ open MvPolynomial Module
 variable {K : Type*} [Field K] {p d e : ℕ}
 
 /-- Equal quotient dimensions force equality of the two actual homogeneous
-pieces, because the chopped piece is contained in the point-ideal piece.-/
+pieces, because the chopped piece is contained in the point-ideal piece.
+@isnad1 id=iff.0h5v.s5.24dbc7a0a0c6 from=translated src=- shape=a1ddd1ba vocab=984a31f0
+-/
 theorem chopEqualsPointPiece_iff_hilbert_eq (a : PointCoordinates K p) :
     ChopEqualsPointPiece K a d (d + e) ↔
       choppedHilbertFunction a d (d + e) = pointHilbertFunction K a (d + e) := by
@@ -44,7 +46,9 @@ theorem chopEqualsPointPiece_iff_hilbert_eq (a : PointCoordinates K p) :
     rw [hEq]
     exact (homogeneous_mem_pointIdeal_iff a f).symm
 
-/-- Convert formwise equality to equality of ambient homogeneous pieces.-/
+/-- Convert formwise equality to equality of ambient homogeneous pieces.
+@isnad1 id=eq.1h5v.s6.20c8f4552c59 from=translated src=- shape=9a5fbd7e vocab=9f45c421
+-/
 theorem pointDegreeSpace_eq_chop_of_piece_eq {t : ℕ} (a : PointCoordinates K p)
     (h : ChopEqualsPointPiece K a d t) :
     pointDegreeSpace K a t = idealDegreeSpace (choppedIdeal K a d) t := by
@@ -57,7 +61,9 @@ theorem pointDegreeSpace_eq_chop_of_piece_eq {t : ℕ} (a : PointCoordinates K p
     exact ⟨hhom,(h ⟨P,hhom⟩).mp hmem⟩
 
 /-- Interpolation in the chopped degree propagates equality at any later base
-    degree to all degrees beyond that base.-/
+    degree to all degrees beyond that base.
+@isnad1 id=chopequa.4h6v.s11.cb00432da770 from=translated src=- shape=c656ac8c vocab=a6069efe
+-/
 theorem chopEqualsPointPiece_above {q : ℕ} (a : PointCoordinates K p)
     (hq : d + 1 ≤ q) (hs : Function.Surjective (pointEvaluation K a d))
     (hbase : ChopEqualsPointPiece K a d q) :
@@ -73,7 +79,9 @@ theorem chopEqualsPointPiece_above {q : ℕ} (a : PointCoordinates K p)
   simpa [idealDegreeSpace,f.property] using hh.symm
 
 /-- In the intermediate range, the expected maximum equals the point count
-    precisely at and beyond the numerical cutoff.-/
+    precisely at and beyond the numerical cutoff.
+@isnad1 id=iff.3h3v.s6.9aad73af800e from=translated src=- shape=39d9adfd vocab=05642f1f
+-/
 theorem intermediate_max_eq_point_iff {d p e : ℕ}
     (hp : p < N d) (hr : 3 ≤ N d - p) (he : 1 ≤ e) :
     max p (N (d + e) - (N d - p) * N e) = p ↔ cutoff d (N d - p) ≤ e := by
@@ -103,7 +111,9 @@ open MvPolynomial Module
 variable {K : Type*} [Field K]
 
 /-- The expected point quotient is already constant from the chopped degree in
-    the intermediate point-count range.-/
+    the intermediate point-count range.
+@isnad1 id=eq.2h5v.s5.92dde57a63fb from=translated src=- shape=8d7c09bb vocab=64274f70
+-/
 theorem pointHilbertFunction_above_intermediate {p d e : ℕ} (a : PointCoordinates K p)
     (hp : p < N d) (hpoint : ∀ t, pointHilbertFunction K a t = min (N t) p) :
     pointHilbertFunction K a (d + e) = p := by
@@ -111,7 +121,9 @@ theorem pointHilbertFunction_above_intermediate {p d e : ℕ} (a : PointCoordina
   exact hp.le.trans (by dsimp [N]; exact Nat.choose_le_choose 2 (by omega))
 
 /-- All numerical maximum formulas imply the complete actual-ideal conclusion,
-    including the least positive filling degree.-/
+    including the least positive filling degree.
+@isnad1 id=mainconc.7h4v.s7.19d435aed528 from=translated src=- shape=863347b4 vocab=5988b3f0
+-/
 theorem mainConclusion_of_intermediate_formula {p d : ℕ} (a : PointCoordinates K p)
     (hd : 2 ≤ d) (hlo : N (d - 1) < p) (hhi : p < N d) (hr : 3 ≤ N d - p)
     (hdist : DistinctPoints K a)
@@ -147,7 +159,9 @@ theorem mainConclusion_of_intermediate_formula {p d : ℕ} (a : PointCoordinates
       exact intermediate_max_eq_point_iff hhi hr he
 
 /-- Interpolation and the finite formulas through the cutoff imply all formulas
-    in every degree, by propagation in the actual point ideal.-/
+    in every degree, by propagation in the actual point ideal.
+@isnad1 id=eq.5h5v.s11.3ca56d5f8c9e from=translated src=- shape=876ee40c vocab=9518ed51
+-/
 theorem intermediate_formula_of_finite_witness {p d : ℕ} (a : PointCoordinates K p)
     (hhi : p < N d) (hr : 3 ≤ N d - p)
     (hpoint : ∀ t, pointHilbertFunction K a t = min (N t) p)
@@ -181,7 +195,9 @@ variable {K : Type*} [Field K]
 /-- A single interpolation witness attaining the predicted chopped dimensions
     in finitely many degrees proves the complete generic theorem in the
     many-generator range. The finite witness is an explicit construction
-    obligation, rather than an assumption hidden in the statement.-/
+    obligation, rather than an assumption hidden in the statement.
+@isnad1 id=genericc.6h4v.s11.e16e6b1557fe from=translated src=- shape=a638984e vocab=58b2cbfe
+-/
 theorem genericChoppedConclusion_intermediate_of_witness [CharZero K]
     (d p : ℕ) (hd : 2 ≤ d) (hlo : N (d - 1) < p) (hhi : p < N d)
     (hr : 3 ≤ N d - p) (a₀ : PointCoordinates K p)

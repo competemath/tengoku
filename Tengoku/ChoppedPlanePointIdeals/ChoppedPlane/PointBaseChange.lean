@@ -24,16 +24,24 @@ def formsMap (k : K →+* L) : Forms K n d →ₛₗ[k] Forms L n d where
     change map k (c • f.val) = k c • map k f.val
     simp only [smul_eq_C_mul, map_mul, map_C]
 
+/--
+@isnad1 id=eq.0h6v.s11.880c0e9d45e5 from=translated src=- shape=5bb41980 vocab=c50157a5
+-/
 @[simp] theorem formsMap_val (k : K →+* L) (f : Forms K n d) :
     (formsMap k f).val = map k f.val := rfl
 
+/--
+@isnad1 id=eq.0h6v.s12.fc7abbb1a984 from=translated src=- shape=59c7abda vocab=5c342d12
+-/
 @[simp] theorem formsMap_basis (k : K →+* L) (i : Sym (Fin n) d) :
     formsMap k (formsBasis K n d i) = formsBasis L n d i := by
   apply Subtype.ext
   exact formsBasis_map K n d k i
 
 /-- The monomial coordinates of coefficient-extended forms are the extended
-original coordinates.-/
+original coordinates.
+@isnad1 id=eq.0h7v.s12.74911defd7a1 from=translated src=- shape=960dced6 vocab=e90b4336
+-/
 theorem formsMap_coordinates (k : K →+* L) (f : Forms K n d) (i : Sym (Fin n) d) :
     (formsBasis L n d).repr (formsMap k f) i = k ((formsBasis K n d).repr f i) := by
   classical
@@ -51,7 +59,9 @@ def pointPolynomialMatrix (K : Type*) [Field K] (p d : ℕ) :
   fun i j => chartEvaluationPolynomial (formsBasis K 3 d j) i
 
 /-- The universal evaluation matrix specializes to the genuine homogeneous
-point evaluation map over every extension field.-/
+point evaluation map over every extension field.
+@isnad1 id=eq.0h6v.s12.5d0beb4b23f3 from=translated src=- shape=c464c65c vocab=d61d8a69
+-/
 theorem pointPolynomialMatrix_eval (k : K →+* L) (a : PointCoordinates L p) :
     polynomialMatrixEval k a (pointPolynomialMatrix K p d) =
       LinearMap.toMatrix (formsBasis L 3 d) (Pi.basisFun L (Fin p))
@@ -74,6 +84,9 @@ theorem pointPolynomialMatrix_eval (k : K →+* L) (a : PointCoordinates L p) :
   rw [hv, ← eval_map, formsBasis_map]
 
 set_option backward.isDefEq.respectTransparency.types false in
+/--
+@isnad1 id=eq.0h7v.s12.07d2a77854e6 from=translated src=- shape=318cc44d vocab=b2df4eb8
+-/
 theorem pointPolynomialMatrix_coordinates (k : K →+* L) (a : PointCoordinates L p)
     (f : Forms L 3 d) :
     (polynomialMatrixEval k a (pointPolynomialMatrix K p d)).mulVecLin
@@ -86,6 +99,9 @@ theorem pointPolynomialMatrix_coordinates (k : K →+* L) (a : PointCoordinates 
   rw [← pointPolynomialMatrix_eval k a] at hh
   simpa only [Basis.equivFun_apply, Pi.basisFun_repr, Matrix.mulVecLin_apply] using hh
 
+/--
+@isnad1 id=iff.0h6v.s11.1158cc0a5112 from=translated src=- shape=03fe636b vocab=7893a300
+-/
 theorem pointPolynomialMatrix_surjective_iff (k : K →+* L) (a : PointCoordinates L p) :
     Function.Surjective (polynomialMatrixEval k a (pointPolynomialMatrix K p d)).mulVecLin ↔
       Function.Surjective (pointEvaluation L a d) := by
@@ -101,7 +117,9 @@ theorem pointPolynomialMatrix_surjective_iff (k : K →+* L) (a : PointCoordinat
     exact ⟨b.equivFun f, (pointPolynomialMatrix_coordinates k a f).trans hf⟩
 
 /-- Evaluation rank is the point Hilbert function, including at parameters
-whose coordinates lie in an extension field.-/
+whose coordinates lie in an extension field.
+@isnad1 id=eq.0h6v.s6.08c40fbc51a8 from=translated src=- shape=1f21dedd vocab=f7e7fa5f
+-/
 theorem pointPolynomialMatrix_rank (k : K →+* L) (a : PointCoordinates L p) :
     (polynomialMatrixEval k a (pointPolynomialMatrix K p d)).rank =
       pointHilbertFunction L a d := by
@@ -111,7 +129,9 @@ theorem pointPolynomialMatrix_rank (k : K →+* L) (a : PointCoordinates L p) :
     Matrix.toLin_toMatrix, pointHilbertFunction_eq_rank]
 
 /-- Point Hilbert functions at original-field configurations are unchanged
-by coefficient-field extension.-/
+by coefficient-field extension.
+@isnad1 id=eq.0h6v.s6.070103052e46 from=translated src=- shape=83e97bf0 vocab=78d15ce5
+-/
 theorem pointHilbertFunction_baseChange (k : K →+* L) (a : PointCoordinates K p) :
     pointHilbertFunction L (k ∘ a) d = pointHilbertFunction K a d := by
   rw [← pointPolynomialMatrix_rank k (k ∘ a),
@@ -124,6 +144,9 @@ def formProductCoordinates (K : Type*) [Field K] (d e : ℕ) :
   fun t ij => (formsBasis K 3 (d + e)).repr
     (formProductBilinear (formsBasis K 3 d ij.1) (formsBasis K 3 e ij.2)) t
 
+/--
+@isnad1 id=eq.0h5v.s7.cc619da06451 from=translated src=- shape=f8bea2bf vocab=82d62b2d
+-/
 theorem formProductCoordinates_map (k : K →+* L) :
     (formProductCoordinates K d e).map k = formProductCoordinates L d e := by
   ext t ij
@@ -149,7 +172,9 @@ def kernelProductPolynomialMatrix {ι : Type*}
   fun t ij => ∑ s, C s ij.1 * MvPolynomial.C (formProductCoordinates K d e t (s,ij.2))
 
 /-- Product matrices specialize to the monomial coordinates of actual
-products of chart columns, over every extension field.-/
+products of chart columns, over every extension field.
+@isnad1 id=eq.0h10v.s14.227faf46b9e5 from=translated src=- shape=1bf2c5c1 vocab=e35a1e46
+-/
 theorem kernelProductPolynomialMatrix_eval {ι : Type*} (k : K →+* L) (a : ι → L)
     (C : Matrix (Sym (Fin 3) d) (Sym (Fin 3) d) (MvPolynomial ι K))
     (t : Sym (Fin 3) (d + e)) (ij : Sym (Fin 3) d × Sym (Fin 3) e) :
@@ -170,7 +195,9 @@ theorem kernelProductPolynomialMatrix_eval {ι : Type*} (k : K →+* L) (a : ι 
   exact congrArg (fun c : L => eval₂Hom k a (C s ij.1) * c) (hcoeff s)
 
 /-- Products of spanning first factors with all basis monomials span the
-full product space.-/
+full product space.
+@isnad1 id=eq.0h5v.s14.a41acaf11fe5 from=translated src=- shape=81485666 vocab=699fda0c
+-/
 theorem kernelProductSpace_span_basis {J : Type*} [Fintype J]
     (q : J → Forms K 3 d) :
     Submodule.span K (Set.range (fun ij : J × Sym (Fin 3) e =>
@@ -196,7 +223,9 @@ theorem kernelProductSpace_span_basis {J : Type*} [Fintype J]
     exact Submodule.subset_span ⟨(i,j),rfl⟩
 
 /-- The rank of the universal product matrix is the dimension of the actual
-product space of its chart-column forms, over every extension field.-/
+product space of its chart-column forms, over every extension field.
+@isnad1 id=eq.0h8v.s13.add0ee7f20cd from=translated src=- shape=2b54eec0 vocab=64967f0b
+-/
 theorem kernelProductPolynomialMatrix_rank {ι : Type*} (k : K →+* L) (a : ι → L)
     (C : Matrix (Sym (Fin 3) d) (Sym (Fin 3) d) (MvPolynomial ι K)) :
     (polynomialMatrixEval k a (kernelProductPolynomialMatrix C e)).rank =
@@ -221,7 +250,9 @@ theorem kernelProductPolynomialMatrix_rank {ι : Type*} (k : K →+* L) (a : ι 
     LinearEquiv.finrank_map_eq, kernelProductSpace_span_basis]
 
 /-- The reconstructed polynomial chart columns span the actual degree
-equations over every coefficient extension on the chart determinant open.-/
+equations over every coefficient extension on the chart determinant open.
+@isnad1 id=eq.1h7v.s10.ff832caef4b7 from=translated src=- shape=5346e55e vocab=4d5ca8e1
+-/
 theorem point_kernel_chart_columns_span (k : K →+* L) (a : PointCoordinates L p)
     (S : Matrix (Sym (Fin 3) d) (Fin p) (MvPolynomial (Fin p × Fin 2) K))
     (hdet : eval₂ k a (pointPolynomialMatrix K p d * S).det ≠ 0) :
@@ -252,7 +283,9 @@ theorem point_kernel_chart_columns_span (k : K →+* L) (a : PointCoordinates L 
   rfl
 
 /-- The universal chart product matrix measures the actual chopped Hilbert
-function on its determinant open, over every coefficient extension.-/
+function on its determinant open, over every coefficient extension.
+@isnad1 id=eq.1h8v.s9.3c0af1e79a2f from=translated src=- shape=92dfe8e6 vocab=d64313de
+-/
 theorem choppedHilbertFunction_add_matrix_rank (k : K →+* L) (a : PointCoordinates L p)
     (S : Matrix (Sym (Fin 3) d) (Fin p) (MvPolynomial (Fin p × Fin 2) K))
     (hdet : eval₂ k a (pointPolynomialMatrix K p d * S).det ≠ 0) (e : ℕ) :
@@ -269,7 +302,9 @@ theorem choppedHilbertFunction_add_matrix_rank (k : K →+* L) (a : PointCoordin
 
 /-- Actual extension-field chopped-Hilbert-function witnesses descend to one
 nonempty principal open over the original infinite field. Only finitely many
-degrees need witnesses; all rank descent is unconditional linear algebra.-/
+degrees need witnesses; all rank descent is unconditional linear algebra.
+@isnad1 id=ex.2h9v.s11.0970be84eda9 from=translated src=- shape=3b3a453d vocab=53ff8ca5
+-/
 theorem choppedHilbertFunction_extension_witnesses [Infinite K]
     {J : Type*} [Fintype J] (k : K →+* L)
     (S : Matrix (Sym (Fin 3) d) (Fin p) (MvPolynomial (Fin p × Fin 2) K))
@@ -304,7 +339,9 @@ theorem choppedHilbertFunction_extension_witnesses [Infinite K]
 
 /-- Extension witnesses can first be moved into the fixed chart open without
 increasing their chopped Hilbert functions. Thus no chart-membership
-assumption is required of the supplied extension-field configurations.-/
+assumption is required of the supplied extension-field configurations.
+@isnad1 id=ex.2h9v.s12.88e3e5538383 from=translated src=- shape=b5eab579 vocab=95602a6b
+-/
 theorem choppedHilbertFunction_extension_witnesses_of_surjective [Infinite K]
     {J : Type*} [Fintype J] (k : K →+* L)
     (S : Matrix (Sym (Fin 3) d) (Fin p) (MvPolynomial (Fin p × Fin 2) K))
@@ -339,7 +376,9 @@ theorem choppedHilbertFunction_extension_witnesses_of_surjective [Infinite K]
   exact ⟨hs,fun j => (hr j).trans (hle j)⟩
 
 /-- Finite actual chopped-Hilbert-function witnesses over any extension field
-descend to a common principal open over the original infinite field.-/
+descend to a common principal open over the original infinite field.
+@isnad1 id=ex.2h8v.s12.2e7eca02c1d1 from=translated src=- shape=731f0c2d vocab=07eedce8
+-/
 theorem choppedHilbertFunction_descend [Infinite K]
     {J : Type*} [Fintype J] (k : K →+* L) (hp : p ≤ (d + 2).choose 2)
     (e : J → ℕ) (a₀ : J → PointCoordinates L p)

@@ -21,7 +21,9 @@ variable (F : BinaryRing K) (Z : End (BinaryRing K) (BinaryVector K))
   (hZ : Z ^ 3 = F • 1)
 local notation "Cubic" => CyclicCubicRing (BinaryRing K) F
 
-/-- The cubic quotient acts by binary-linear maps on the free coefficient module.-/
+/-- The cubic quotient acts by binary-linear maps on the free coefficient module.
+@isnad1 id=other.1h3v.s12.72f9246c906e from=translated src=- shape=981f6ddd vocab=1ac12bb1
+-/
 theorem cubic_scalar_free_expansion :
     let := cyclicModuleStructure F Z hZ
     ∀ (r : Cubic) (m : BinaryVector K) (i : Fin 3),
@@ -43,7 +45,9 @@ theorem cubic_scalar_free_expansion :
   exact mul_comm _ _
 
 /-- A symmetric expression whose actual columns start at degree `2n` cannot
-contain a homogeneous coefficient vector of smaller weighted degree.-/
+contain a homogeneous coefficient vector of smaller weighted degree.
+@isnad1 id=other.1h3v.s16.d7fda03d192b from=translated src=- shape=b2ab48bd vocab=79c6bade
+-/
 theorem symmetric_kernel_zero_of_weighted_columns :
     let := cyclicModuleStructure F Z hZ
     ∀ (w : Fin 3 → ℕ) (t : ℤ) (n : ℕ)

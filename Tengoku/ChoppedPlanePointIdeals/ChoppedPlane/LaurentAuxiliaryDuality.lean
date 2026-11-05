@@ -16,7 +16,9 @@ open Module MvPolynomial SymmetricDerivative
 variable {K : Type*} [Field K] {J : Type*}
 
 /-- Exact pointwise transpose identity under the genuine perfect residue
-pairing, for the actual three-operator finite auxiliary maps.-/
+pairing, for the actual three-operator finite auxiliary maps.
+@isnad1 id=eq.1h9v.s16.3a66d71f7f6a from=translated src=- shape=b5422f5d vocab=4883a14e
+-/
 theorem auxiliaryCoefficientResidueDualEquiv_adjoint [Finite J] [CharZero K]
     (g : J → ℤ) (r : ℤ)
     (T : Fin 3 → positiveGrade (K := K) g r →ₗ[K] positiveGrade (K := K) g (r + 1))
@@ -53,7 +55,9 @@ theorem auxiliaryCoefficientResidueDualEquiv_adjoint [Finite J] [CharZero K]
     _ = _ := by ring
 
 /-- Surjectivity of the actual positive differential is equivalent to
-injectivity of the actual projected multiplication on the negative dual.-/
+injectivity of the actual projected multiplication on the negative dual.
+@isnad1 id=iff.1h7v.s14.6d55ac96b405 from=translated src=- shape=5608bead vocab=218f3b2f
+-/
 theorem operatorDifferential_surjective_iff_auxiliaryMultiply_injective
     [Finite J] [CharZero K] (g : J → ℤ) (r : ℤ)
     (T : Fin 3 → positiveGrade (K := K) g r →ₗ[K] positiveGrade (K := K) g (r + 1))

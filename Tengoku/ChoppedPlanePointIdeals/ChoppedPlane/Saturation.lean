@@ -26,14 +26,18 @@ variable {R : Type*} [CommRing R] {c : ℕ}
 def cofactorIdeal (B : Matrix (Fin (c + 1)) (Fin c) R) : Ideal R :=
   Ideal.span (Set.range (signedMaximalMinor B))
 
-/-- Membership in the cofactor ideal is an actual linear combination.-/
+/-- Membership in the cofactor ideal is an actual linear combination.
+@isnad1 id=iff.0h4v.s8.e922ed9519fc from=translated src=- shape=bf123ab8 vocab=d7169c06
+-/
 theorem mem_cofactorIdeal_iff (B : Matrix (Fin (c + 1)) (Fin c) R) (p : R) :
     p ∈ cofactorIdeal B ↔ ∃ v, cofactorMap B v = p := by
   change p ∈ Submodule.span R (Set.range (signedMaximalMinor B)) ↔ _
   rw [← cofactorMap_range_eq_span]
   rfl
 
-/-- Changing alternating signs does not change the maximal-minor ideal.-/
+/-- Changing alternating signs does not change the maximal-minor ideal.
+@isnad1 id=eq.0h3v.s6.0fb93d8373fc from=translated src=- shape=90a67dc9 vocab=2f3e9a33
+-/
 theorem cofactorIdeal_eq_span_maximalMinor
     (B : Matrix (Fin (c + 1)) (Fin c) R) :
     cofactorIdeal B = Ideal.span (Set.range (maximalMinor B)) := by
@@ -52,7 +56,9 @@ theorem cofactorIdeal_eq_span_maximalMinor
 variable {S : Type*} [IsDomain R]
   [CommRing S] [IsDomain S] [UniqueFactorizationMonoid S]
 
-/-- Primitive minors modulo `z` make the cofactor ideal saturated by `z`.-/
+/-- Primitive minors modulo `z` make the cofactor ideal saturated by `z`.
+@isnad1 id=mem.5h7v.s8.b4f29444796d from=translated src=- shape=3063dcd6 vocab=a48bc835
+-/
 theorem mem_cofactorIdeal_of_mul
     (B : Matrix (Fin (c + 1)) (Fin c) R) (z : R) (hz : z ≠ 0)
     (φ : R →+* S) (hφ : Function.Surjective φ)
@@ -91,7 +97,9 @@ theorem mem_cofactorIdeal_of_mul
     _ = cofactorMap B v := by rw [map_sub, cofactorMap_mulVec, sub_zero]
     _ = z * p := hv
 
-/-- Multiplication by `z` preserves and reflects cofactor-ideal membership.-/
+/-- Multiplication by `z` preserves and reflects cofactor-ideal membership.
+@isnad1 id=iff.4h7v.s8.d8c07a04bcd6 from=translated src=- shape=5d36c6a3 vocab=a48bc835
+-/
 theorem mul_mem_cofactorIdeal_iff
     (B : Matrix (Fin (c + 1)) (Fin c) R) (z : R) (hz : z ≠ 0)
     (φ : R →+* S) (hφ : Function.Surjective φ)
@@ -102,7 +110,9 @@ theorem mul_mem_cofactorIdeal_iff
   · intro hp
     exact (cofactorIdeal B).mul_mem_left z hp
 
-/-- The same saturation holds for every power of `z`.-/
+/-- The same saturation holds for every power of `z`.
+@isnad1 id=iff.4h8v.s8.b5ff8b1ee8e2 from=translated src=- shape=405b1af5 vocab=2462c568
+-/
 theorem pow_mul_mem_cofactorIdeal_iff
     (B : Matrix (Fin (c + 1)) (Fin c) R) (z : R) (hz : z ≠ 0)
     (φ : R →+* S) (hφ : Function.Surjective φ)

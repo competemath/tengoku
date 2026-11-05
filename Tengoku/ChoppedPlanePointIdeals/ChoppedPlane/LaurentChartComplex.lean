@@ -46,15 +46,23 @@ def uChartGrade (g : ι → ℤ) (k : ℤ) : Submodule K (FreeLaurent K ι) :=
 def vChartGrade (g : ι → ℤ) (k : ℤ) : Submodule K (FreeLaurent K ι) :=
   Finsupp.supported K K (vChartIndices g k)
 
+/--
+@isnad1 id=le.0h4v.s8.9bdf24187d8f from=translated src=- shape=b77b94ec vocab=0cd0fd91
+-/
 theorem uChartGrade_le_overlapGrade (g : ι → ℤ) (k : ℤ) :
     uChartGrade (K := K) g k ≤ overlapGrade (K := K) g k :=
   Finsupp.supported_mono fun _ h => h.1
 
+/--
+@isnad1 id=le.0h4v.s8.6ac28f6375b4 from=translated src=- shape=b77b94ec vocab=4a34a9ca
+-/
 theorem vChartGrade_le_overlapGrade (g : ι → ℤ) (k : ℤ) :
     vChartGrade (K := K) g k ≤ overlapGrade (K := K) g k :=
   Finsupp.supported_mono fun _ h => h.1
 
-/-- The two genuine affine charts intersect in binary polynomials.-/
+/-- The two genuine affine charts intersect in binary polynomials.
+@isnad1 id=eq.0h4v.s7.492283614aa4 from=translated src=- shape=e7e2f201 vocab=f406a66f
+-/
 theorem chart_intersection (g : ι → ℤ) (k : ℤ) :
     uChartGrade (K := K) g k ⊓ vChartGrade (K := K) g k = positiveGrade (K := K) g k := by
   rw [uChartGrade, vChartGrade, ← Finsupp.supported_inter, positiveGrade]
@@ -64,11 +72,17 @@ theorem chart_intersection (g : ι → ℤ) (k : ℤ) :
     positiveIndices, Set.mem_ofPred_eq]
   tauto
 
+/--
+@isnad1 id=le.0h4v.s8.08a758280a3d from=translated src=- shape=b77b94ec vocab=dfe645d1
+-/
 theorem positiveGrade_le_uChartGrade (g : ι → ℤ) (k : ℤ) :
     positiveGrade (K := K) g k ≤ uChartGrade (K := K) g k := by
   rw [← chart_intersection]
   exact inf_le_left
 
+/--
+@isnad1 id=le.0h4v.s8.084eeb5baa13 from=translated src=- shape=b77b94ec vocab=84cff359
+-/
 theorem positiveGrade_le_vChartGrade (g : ι → ℤ) (k : ℤ) :
     positiveGrade (K := K) g k ≤ vChartGrade (K := K) g k := by
   rw [← chart_intersection]
@@ -92,6 +106,9 @@ def chartDifference (g : ι → ℤ) (k : ℤ) :
     change c • p.1.val - c • p.2.val = c • (p.1.val - p.2.val)
     exact (smul_sub c p.1.val p.2.val).symm
 
+/--
+@isnad1 id=eq.0h5v.s12.868d045e014d from=translated src=- shape=9583032a vocab=493c7f03
+-/
 @[simp] theorem chartDifference_val (g : ι → ℤ) (k : ℤ)
     (p : uChartGrade (K := K) g k × vChartGrade (K := K) g k) :
     (chartDifference (K := K) g k p).val = p.1.val - p.2.val := rfl
@@ -102,17 +119,29 @@ def chartDiagonal (g : ι → ℤ) (k : ℤ) :
   (Submodule.inclusion (positiveGrade_le_uChartGrade (K := K) g k)).prod
     (Submodule.inclusion (positiveGrade_le_vChartGrade (K := K) g k))
 
+/--
+@isnad1 id=eq.0h5v.s12.83d8dccfd832 from=translated src=- shape=81acc906 vocab=485090e5
+-/
 @[simp] theorem chartDiagonal_val_fst (g : ι → ℤ) (k : ℤ)
     (p : positiveGrade (K := K) g k) : (chartDiagonal (K := K) g k p).1.val = p.val := rfl
 
+/--
+@isnad1 id=eq.0h5v.s12.91e3504c5628 from=translated src=- shape=a1d1256f vocab=fc793677
+-/
 @[simp] theorem chartDiagonal_val_snd (g : ι → ℤ) (k : ℤ)
     (p : positiveGrade (K := K) g k) : (chartDiagonal (K := K) g k p).2.val = p.val := rfl
 
+/--
+@isnad1 id=eq.0h5v.s13.8da498039e5b from=translated src=- shape=031a1eb6 vocab=2d19d475
+-/
 @[simp] theorem chartDifference_diagonal (g : ι → ℤ) (k : ℤ)
     (p : positiveGrade (K := K) g k) : chartDifference (K := K) g k (chartDiagonal (K := K) g k p) = 0 := by
   apply Subtype.ext
   simp
 
+/--
+@isnad1 id=iff.0h5v.s12.47fd409cd5ab from=translated src=- shape=cc05ebf8 vocab=61c05d81
+-/
 theorem chartDifference_eq_zero_iff (g : ι → ℤ) (k : ℤ)
     (p : uChartGrade (K := K) g k × vChartGrade (K := K) g k) :
     chartDifference (K := K) g k p = 0 ↔ p.1.val = p.2.val := by
@@ -120,7 +149,9 @@ theorem chartDifference_eq_zero_iff (g : ι → ℤ) (k : ℤ)
   change p.1.val - p.2.val = 0 ↔ _
   exact sub_eq_zero
 
-/-- Exactness at the actual pair of graded chart spaces.-/
+/-- Exactness at the actual pair of graded chart spaces.
+@isnad1 id=eq.0h4v.s12.2a15fc8d52ea from=translated src=- shape=4d28f31b vocab=70cc00e7
+-/
 theorem ker_chartDifference (g : ι → ℤ) (k : ℤ) :
     LinearMap.ker (chartDifference (K := K) g k) = LinearMap.range (chartDiagonal (K := K) g k) := by
   ext p
@@ -137,7 +168,9 @@ theorem ker_chartDifference (g : ι → ℤ) (k : ℤ) :
   · rintro ⟨q, rfl⟩
     rfl
 
-/-- A polynomial component below all generator degrees is zero.-/
+/-- A polynomial component below all generator degrees is zero.
+@isnad1 id=eq.1h4v.s7.b02c28b7cf72 from=translated src=- shape=a39bd33e vocab=a4b6f6df
+-/
 theorem positiveGrade_eq_bot_of_lt (g : ι → ℤ) (k : ℤ) (hk : ∀ i, k < g i) :
     positiveGrade (K := K) g k = ⊥ := by
   have hs : positiveIndices g k = ∅ := by
@@ -148,7 +181,9 @@ theorem positiveGrade_eq_bot_of_lt (g : ι → ℤ) (k : ℤ) (hk : ∀ i, k < g
     omega
   rw [positiveGrade, hs, Finsupp.supported_empty]
 
-/-- There are no nonzero polynomial sections in a degree below every generator.-/
+/-- There are no nonzero polynomial sections in a degree below every generator.
+@isnad1 id=eq.1h5v.s9.a685fede7a97 from=translated src=- shape=9e75b17f vocab=7d6f2aee
+-/
 theorem positiveGrade_zero_of_lt (g : ι → ℤ) (k : ℤ) (hk : ∀ i, k < g i)
     (p : positiveGrade (K := K) g k) : p = 0 := by
   apply Subtype.ext
@@ -157,7 +192,9 @@ theorem positiveGrade_zero_of_lt (g : ι → ℤ) (k : ℤ) (hk : ∀ i, k < g i
     heq ▸ p.property
   exact (Submodule.mem_bot K).mp hp
 
-/-- Injectivity of the genuine chart difference in the negative range.-/
+/-- Injectivity of the genuine chart difference in the negative range.
+@isnad1 id=injectiv.1h4v.s12.cfb2e1e52f43 from=translated src=- shape=44147123 vocab=afd4cb9d
+-/
 theorem chartDifference_injective_of_lt (g : ι → ℤ) (k : ℤ) (hk : ∀ i, k < g i) :
     Function.Injective (chartDifference (K := K) g k) := by
   intro p q hpq
@@ -181,7 +218,9 @@ theorem chartDifference_injective_of_lt (g : ι → ℤ) (k : ℤ) (hk : ∀ i, 
   · exact sub_eq_zero.mp (heq.symm.trans hz)
 
 /-- The chart sum consists of the degree-`k` monomials with at least one
-nonnegative exponent.-/
+nonnegative exponent.
+@isnad1 id=eq.0h4v.s9.e717774b6922 from=translated src=- shape=b44d9510 vocab=9363354d
+-/
 theorem chart_sum_eq_supported (g : ι → ℤ) (k : ℤ) :
     uChartGrade (K := K) g k ⊔ vChartGrade (K := K) g k =
       Finsupp.supported K K
@@ -192,7 +231,9 @@ theorem chart_sum_eq_supported (g : ι → ℤ) (k : ℤ) :
   simp only [Set.mem_union, uChartIndices, vChartIndices, Set.mem_ofPred_eq]
   tauto
 
-/-- The image of the actual chart difference is the actual sum of chart spaces.-/
+/-- The image of the actual chart difference is the actual sum of chart spaces.
+@isnad1 id=iff.0h5v.s12.7f06037b26e1 from=translated src=- shape=319de362 vocab=bdbf399f
+-/
 theorem chartDifference_mem_range_iff (g : ι → ℤ) (k : ℤ)
     (p : overlapGrade (K := K) g k) :
     p ∈ LinearMap.range (chartDifference (K := K) g k) ↔
@@ -216,6 +257,9 @@ def topIndices (g : ι → ℤ) (k : ℤ) : Set (ι × (ℤ × ℤ)) :=
 def topGrade (g : ι → ℤ) (k : ℤ) : Submodule K (FreeLaurent K ι) :=
   Finsupp.supported K K (topIndices g k)
 
+/--
+@isnad1 id=le.0h4v.s8.5a5f8d735580 from=translated src=- shape=b77b94ec vocab=635d139f
+-/
 theorem topGrade_le_overlapGrade (g : ι → ℤ) (k : ℤ) :
     topGrade (K := K) g k ≤ overlapGrade (K := K) g k :=
   Finsupp.supported_mono fun _ h => h.1
@@ -226,6 +270,9 @@ def topProjection (g : ι → ℤ) (k : ℤ) :
   classical
   exact (Finsupp.restrictDom K K (topIndices g k)).comp (overlapGrade (K := K) g k).subtype
 
+/--
+@isnad1 id=eq.0h6v.s11.720908cb50db from=translated src=- shape=57e75d0c vocab=f12533f4
+-/
 @[simp] theorem topProjection_coeff (g : ι → ℤ) (k : ℤ)
     (p : overlapGrade (K := K) g k) (e : ι × (ℤ × ℤ)) :
     (topProjection (K := K) g k p).val e = if e ∈ topIndices g k then p.val e else 0 := by
@@ -233,6 +280,9 @@ def topProjection (g : ι → ℤ) (k : ℤ) :
   change (p.val.filter (· ∈ topIndices g k)) e = _
   simp [Finsupp.filter]
 
+/--
+@isnad1 id=surjecti.0h4v.s11.63353708798b from=translated src=- shape=78146224 vocab=e6f98dba
+-/
 theorem topProjection_surjective (g : ι → ℤ) (k : ℤ) :
     Function.Surjective (topProjection (K := K) g k) := by
   intro p
@@ -243,7 +293,9 @@ theorem topProjection_surjective (g : ι → ℤ) (k : ℤ) :
   · simp [he]
   · simp [he, (Finsupp.mem_supported' K _).mp p.property e he]
 
-/-- Projection vanishes exactly on the sum of the actual affine-chart spaces.-/
+/-- Projection vanishes exactly on the sum of the actual affine-chart spaces.
+@isnad1 id=iff.0h5v.s11.c505ba334a9e from=translated src=- shape=e5204a13 vocab=bb1db8e7
+-/
 theorem topProjection_eq_zero_iff (g : ι → ℤ) (k : ℤ)
     (p : overlapGrade (K := K) g k) :
     topProjection (K := K) g k p = 0 ↔ p.val ∈ uChartGrade (K := K) g k ⊔ vChartGrade (K := K) g k := by
@@ -270,13 +322,17 @@ theorem topProjection_eq_zero_iff (g : ι → ℤ) (k : ℤ)
       simp [he, hp e hn]
     · simp [he]
 
-/-- Exactness of the genuine graded two-chart complex at the overlap.-/
+/-- Exactness of the genuine graded two-chart complex at the overlap.
+@isnad1 id=eq.0h4v.s11.468e05acf2af from=translated src=- shape=617899cb vocab=e1d86e0f
+-/
 theorem ker_topProjection (g : ι → ℤ) (k : ℤ) :
     LinearMap.ker (topProjection (K := K) g k) = LinearMap.range (chartDifference (K := K) g k) := by
   ext p
   rw [LinearMap.mem_ker, topProjection_eq_zero_iff, chartDifference_mem_range_iff]
 
-/-- Compatibility with the shifted dual grade used by the residue pairing.-/
+/-- Compatibility with the shifted dual grade used by the residue pairing.
+@isnad1 id=eq.0h4v.s6.79ebb7872d17 from=translated src=- shape=e9085fad vocab=1098c101
+-/
 theorem topGrade_eq_negativeGrade (g : ι → ℤ) (k : ℤ) :
     topGrade (K := K) g k = negativeGrade (fun i => 2 - g i) (-k) := by
   rw [topGrade, negativeGrade]
@@ -286,7 +342,9 @@ theorem topGrade_eq_negativeGrade (g : ι → ℤ) (k : ℤ) :
   omega
 
 /-- In the `2-g` shifted chart module, the actual quotient has exactly the
-negative grade paired with degree-`r` polynomials.-/
+negative grade paired with degree-`r` polynomials.
+@isnad1 id=eq.0h4v.s6.41c936d90c55 from=translated src=- shape=8f2967e2 vocab=1098c101
+-/
 theorem topGrade_dual_shift_eq (g : ι → ℤ) (r : ℤ) :
     topGrade (K := K) (fun i => 2 - g i) (-r) = negativeGrade (K := K) g r := by
   rw [topGrade, negativeGrade]
@@ -311,17 +369,25 @@ def gradeProjection (g : ι → ℤ) (k : ℤ) : FreeLaurent K ι →ₗ[K] Free
   (overlapGrade (K := K) g k).subtype.comp
     (Finsupp.restrictDom K K (gradeIndices g k))
 
+/--
+@isnad1 id=eq.0h6v.s8.0b3ae4e1654b from=translated src=- shape=5595c661 vocab=e11b8849
+-/
 @[simp] theorem gradeProjection_coeff (g : ι → ℤ) (k : ℤ)
     (p : FreeLaurent K ι) (e : ι × (ℤ × ℤ)) :
     gradeProjection g k p e = if e ∈ gradeIndices g k then p e else 0 := by
   change (p.filter (· ∈ gradeIndices g k)) e = _
   simp [Finsupp.filter]
 
+/--
+@isnad1 id=mem.0h5v.s8.c45c59ddd597 from=translated src=- shape=110c7615 vocab=d06656d2
+-/
 theorem gradeProjection_mem_overlapGrade (g : ι → ℤ) (k : ℤ) (p : FreeLaurent K ι) :
     gradeProjection g k p ∈ overlapGrade (K := K) g k :=
   (Finsupp.restrictDom K K (gradeIndices g k) p).property
 
-/-- Fixed points of the coefficient projection are exactly the actual graded space.-/
+/-- Fixed points of the coefficient projection are exactly the actual graded space.
+@isnad1 id=iff.0h5v.s9.fb00a234b870 from=translated src=- shape=e461312d vocab=d06656d2
+-/
 theorem mem_overlapGrade_iff_gradeProjection_eq (g : ι → ℤ) (k : ℤ)
     (p : FreeLaurent K ι) :
     p ∈ overlapGrade (K := K) g k ↔ gradeProjection g k p = p := by
@@ -335,6 +401,9 @@ theorem mem_overlapGrade_iff_gradeProjection_eq (g : ι → ℤ) (k : ℤ)
     rw [← hp]
     exact gradeProjection_mem_overlapGrade g k p
 
+/--
+@isnad1 id=eq.0h6v.s8.9436a0fa6231 from=translated src=- shape=617901ad vocab=f034b265
+-/
 @[simp] theorem gradeProjection_single (g : ι → ℤ) (k : ℤ)
     (e : ι × (ℤ × ℤ)) (c : K) :
     gradeProjection g k (Finsupp.single e c) =
@@ -344,7 +413,9 @@ theorem mem_overlapGrade_iff_gradeProjection_eq (g : ι → ℤ) (k : ℤ)
   · rw [Finsupp.filter_single_of_pos (· ∈ gradeIndices g k) he, ite_eq_left he]
   · rw [Finsupp.filter_single_of_neg (· ∈ gradeIndices g k) he, ite_eq_right he]
 
-/-- A pure component has zero projection to any different degree.-/
+/-- A pure component has zero projection to any different degree.
+@isnad1 id=eq.2h6v.s9.41166501c4d5 from=translated src=- shape=e34c248e vocab=d06656d2
+-/
 theorem gradeProjection_zero_of_ne (g : ι → ℤ) {j k : ℤ} (hjk : j ≠ k)
     (p : FreeLaurent K ι) (hp : p ∈ overlapGrade (K := K) g j) :
     gradeProjection g k p = 0 := by
@@ -356,7 +427,9 @@ theorem gradeProjection_zero_of_ne (g : ι → ℤ) {j k : ℤ} (hjk : j ≠ k)
     simp [he, (Finsupp.mem_supported' K p).mp hp e hj]
   · simp [he]
 
-/-- Coefficient projection preserves the actual `u` chart support.-/
+/-- Coefficient projection preserves the actual `u` chart support.
+@isnad1 id=mem.1h5v.s9.3e63b4ed33f7 from=translated src=- shape=6f7730d5 vocab=d4c2c242
+-/
 theorem gradeProjection_preserves_uChartSupport (g : ι → ℤ) (k : ℤ)
     (p : FreeLaurent K ι)
     (hp : p ∈ Finsupp.supported K K {e : ι × (ℤ × ℤ) | 0 ≤ e.2.2}) :
@@ -370,7 +443,9 @@ theorem gradeProjection_preserves_uChartSupport (g : ι → ℤ) (k : ℤ)
     simp [hg, (Finsupp.mem_supported' K p).mp hp e hu]
   · simp [hg]
 
-/-- Coefficient projection preserves the actual `v` chart support.-/
+/-- Coefficient projection preserves the actual `v` chart support.
+@isnad1 id=mem.1h5v.s9.40344edc1728 from=translated src=- shape=5b9a8255 vocab=b7e7c1e2
+-/
 theorem gradeProjection_preserves_vChartSupport (g : ι → ℤ) (k : ℤ)
     (p : FreeLaurent K ι)
     (hp : p ∈ Finsupp.supported K K {e : ι × (ℤ × ℤ) | 0 ≤ e.2.1}) :
@@ -386,7 +461,9 @@ theorem gradeProjection_preserves_vChartSupport (g : ι → ℤ) (k : ℤ)
 
 /-- Any actual operator of a fixed degree shift commutes with graded projection.
 The hypothesis only states closure of concrete supported subspaces; the proof
-expands the finitely supported input into its actual Laurent monomials.-/
+expands the finitely supported input into its actual Laurent monomials.
+@isnad1 id=eq.1h8v.s10.c68feb80259b from=translated src=- shape=6a9df990 vocab=1453b0ce
+-/
 theorem gradeProjection_commutes_of_degree_shift {κ : Type*}
     (g : ι → ℤ) (h : κ → ℤ) (d : ℤ)
     (T : FreeLaurent K ι →ₗ[K] FreeLaurent K κ)
@@ -432,14 +509,23 @@ def vFreeEmbedding : (ι → VRing K) →ₗ[K] FreeLaurent K ι :=
   (freeLaurentEquiv (K := K) (ι := ι)).symm.toLinearMap.comp
     ((vEmbedding (K := K)).toLinearMap.compLeft ι)
 
+/--
+@isnad1 id=eq.0h4v.s10.f9256e50d5a7 from=translated src=- shape=b2403207 vocab=3d605707
+-/
 @[simp] theorem freeLaurentEquiv_uFreeEmbedding (p : ι → URing K) (i : ι) :
     freeLaurentEquiv (uFreeEmbedding p) i = uEmbedding (p i) := by
   simp [uFreeEmbedding]
 
+/--
+@isnad1 id=eq.0h4v.s10.008b05d5b0ae from=translated src=- shape=b2403207 vocab=20ca7d27
+-/
 @[simp] theorem freeLaurentEquiv_vFreeEmbedding (p : ι → VRing K) (i : ι) :
     freeLaurentEquiv (vFreeEmbedding p) i = vEmbedding (p i) := by
   simp [vFreeEmbedding]
 
+/--
+@isnad1 id=injectiv.0h2v.s8.6774999ec883 from=translated src=- shape=ba281b99 vocab=f9f3fe40
+-/
 theorem uFreeEmbedding_injective : Function.Injective (uFreeEmbedding (K := K) (ι := ι)) := by
   intro p q hpq
   funext i
@@ -447,6 +533,9 @@ theorem uFreeEmbedding_injective : Function.Injective (uFreeEmbedding (K := K) (
   have hi := congrArg (fun f => freeLaurentEquiv f i) hpq
   simpa using hi
 
+/--
+@isnad1 id=injectiv.0h2v.s8.25609ca17302 from=translated src=- shape=ba281b99 vocab=4375f523
+-/
 theorem vFreeEmbedding_injective : Function.Injective (vFreeEmbedding (K := K) (ι := ι)) := by
   intro p q hpq
   funext i
@@ -454,7 +543,9 @@ theorem vFreeEmbedding_injective : Function.Injective (vFreeEmbedding (K := K) (
   have hi := congrArg (fun f => freeLaurentEquiv f i) hpq
   simpa using hi
 
-/-- Actual free chart modules have exactly the expected Laurent support.-/
+/-- Actual free chart modules have exactly the expected Laurent support.
+@isnad1 id=eq.0h2v.s8.ddaa44523fb8 from=translated src=- shape=b05c1f78 vocab=1ee6bb82
+-/
 theorem range_uFreeEmbedding :
     LinearMap.range (uFreeEmbedding (K := K) (ι := ι)) =
       Finsupp.supported K K {e : ι × (ℤ × ℤ) | 0 ≤ e.2.2} := by
@@ -487,7 +578,9 @@ theorem range_uFreeEmbedding :
     funext i
     simpa using hq i
 
-/-- Actual free chart modules have exactly the expected Laurent support.-/
+/-- Actual free chart modules have exactly the expected Laurent support.
+@isnad1 id=eq.0h2v.s8.1adb142f3f17 from=translated src=- shape=b05c1f78 vocab=96e3ffc2
+-/
 theorem range_vFreeEmbedding :
     LinearMap.range (vFreeEmbedding (K := K) (ι := ι)) =
       Finsupp.supported K K {e : ι × (ℤ × ℤ) | 0 ≤ e.2.1} := by
@@ -520,13 +613,17 @@ theorem range_vFreeEmbedding :
     funext i
     simpa using hq i
 
-/-- The supported degree space is the actual embedded `u` chart module of that degree.-/
+/-- The supported degree space is the actual embedded `u` chart module of that degree.
+@isnad1 id=eq.0h4v.s8.4f1eea744c1c from=translated src=- shape=0b7dc825 vocab=fdba1417
+-/
 theorem uChartGrade_eq_overlap_inf_range (g : ι → ℤ) (k : ℤ) :
     uChartGrade (K := K) g k = overlapGrade (K := K) g k ⊓ LinearMap.range uFreeEmbedding := by
   rw [range_uFreeEmbedding, overlapGrade, ← Finsupp.supported_inter, uChartGrade]
   rfl
 
-/-- The supported degree space is the actual embedded `v` chart module of that degree.-/
+/-- The supported degree space is the actual embedded `v` chart module of that degree.
+@isnad1 id=eq.0h4v.s8.42af1b720ec5 from=translated src=- shape=0b7dc825 vocab=a00672a3
+-/
 theorem vChartGrade_eq_overlap_inf_range (g : ι → ℤ) (k : ℤ) :
     vChartGrade (K := K) g k = overlapGrade (K := K) g k ⊓ LinearMap.range vFreeEmbedding := by
   rw [range_vFreeEmbedding, overlapGrade, ← Finsupp.supported_inter, vChartGrade]

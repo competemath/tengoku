@@ -17,6 +17,9 @@ namespace ChoppedPlane.LaurentPairing
 open Module
 variable {K : Type*} [Field K] {ι : Type*}
 
+/--
+@isnad1 id=eq.0h6v.s9.42d7b512659f from=translated src=- shape=a8e61a03 vocab=6dacb782
+-/
 theorem vectorResidueFunctional_scalar_transpose [Fintype ι] (w : ι → K)
     (c : BinaryLaurent K) (q p : ι → BinaryLaurent K) :
     vectorResidueFunctional w q (fun i => c * p i) =
@@ -26,6 +29,9 @@ theorem vectorResidueFunctional_scalar_transpose [Fintype ι] (w : ι → K)
   intro i hi
   rw [← mul_assoc, mul_comm (q i) c]
 
+/--
+@isnad1 id=mem.1h5v.s9.8eea911d61bc from=translated src=- shape=f4454b60 vocab=c1c3970a
+-/
 theorem freeNegativePart_mem_negativeGrade_of_overlap (g : ι → ℤ) (r : ℤ)
     (p : FreeLaurent K ι)
     (hp : p ∈ LaurentChartComplex.overlapGrade (fun i => 2 - g i) (-r)) :
@@ -40,6 +46,9 @@ theorem freeNegativePart_mem_negativeGrade_of_overlap (g : ι → ℤ) (r : ℤ)
     exact ⟨hneg.1,hneg.2,hdeg⟩
   · exact False.elim (hn rfl)
 
+/--
+@isnad1 id=mem.0h5v.s9.3dd7c1ff6b76 from=translated src=- shape=830da090 vocab=db1a5f0e
+-/
 theorem negativeGrade_mem_overlap (g : ι → ℤ) (r : ℤ)
     (p : negativeGrade (K := K) g r) :
     p.val ∈ LaurentChartComplex.overlapGrade (fun i => 2 - g i) (-r) := by
@@ -65,6 +74,9 @@ def rawLaurentProfileDualOperators (q : K) (s : CubicProfile) :
     Fin 3 → (FreeLaurent K (Fin 3) →ₗ[K] FreeLaurent K (Fin 3)) :=
   ![laurentScalar U, laurentScalar V, laurentCyclicZDual q s]
 
+/--
+@isnad1 id=eq.0h1v.s5.79b7cef08205 from=translated src=- shape=ce08f92e vocab=25466d4b
+-/
 theorem dualGeneratorWeights_int (s : CubicProfile) :
     (fun i => (dualGeneratorWeights s i : ℤ)) =
       (fun i => 2 - (generatorWeights s i : ℤ)) := by
@@ -72,7 +84,9 @@ theorem dualGeneratorWeights_int (s : CubicProfile) :
   cases s <;> fin_cases i <;> norm_num [dualGeneratorWeights, generatorWeights]
 
 /-- The raw dual Laurent operators are precisely the three actions of the
-actual chart cubic quotient ring.-/
+actual chart cubic quotient ring.
+@isnad1 id=eq.1h5v.s12.f8ed1ad69f60 from=translated src=- shape=6569aa54 vocab=d37d414e
+-/
 theorem rawLaurentProfileDualOperators_chart_action
     (q : K) (hq : q ^ 2 + q + 1 = 0) (s : CubicProfile) :
     letI := chartDualModuleStructure (binaryChartLaurentMap (K := K)) q hq s

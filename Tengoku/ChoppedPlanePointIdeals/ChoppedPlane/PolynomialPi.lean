@@ -11,7 +11,9 @@ namespace ChoppedPlane
 variable {K ι J V : Type*} [Field K] [Fintype J]
   [AddCommGroup V] [Module K V]
 
-/-- A finite tuple of polynomial vector families is a polynomial family.-/
+/-- A finite tuple of polynomial vector families is a polynomial family.
+@isnad1 id=ispolyno.1h5v.s6.7abc18f7a306 from=translated src=- shape=c9358b2a vocab=df73d80d
+-/
 theorem IsPolynomialFamily.finite_pi {f : (ι → K) → J → V}
     (hf : ∀ j, IsPolynomialFamily (fun a => f a j)) : IsPolynomialFamily f := by
   classical

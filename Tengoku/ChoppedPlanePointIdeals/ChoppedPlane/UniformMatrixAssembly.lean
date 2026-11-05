@@ -12,7 +12,9 @@ namespace ChoppedPlane
 variable {K : Type*} [Field K]
 
 /-- The row budget can be split into one excess-three block and balanced
-excess-two blocks with common rank thresholds.-/
+excess-two blocks with common rank thresholds.
+@isnad1 id=ex.2h3v.s7.71abc975989d from=translated src=- shape=d7230443 vocab=923b6325
+-/
 theorem odd_block_row_budget (a k m : ℕ)
     (hlow : (2*k+3)*m ≤ 2*a) (hhigh : 2*a < (2*k+3)*(m+1)) :
     ∃ A r : ℕ, r ≤ k ∧ a = A + (k*m+r) ∧

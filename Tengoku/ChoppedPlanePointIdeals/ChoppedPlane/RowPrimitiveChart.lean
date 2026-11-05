@@ -20,13 +20,18 @@ def ferrersHomogeneousRowMatrix (δ : Fin (c + 1) → ℕ)
     (α β : Ferrers.RootIndex δ → K) : HomogeneousRowMatrix K δ :=
   fun i j => ⟨Ferrers.seedMatrix δ α β i j, Ferrers.seedMatrix_homogeneous δ α β i j⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.3311af5e4914 from=translated src=- shape=6bed8cbd vocab=dc6eca64
+-/
 @[simp] theorem rowMatrixVal_ferrers (δ : Fin (c + 1) → ℕ)
     (α β : Ferrers.RootIndex δ → K) :
     rowMatrixVal δ (ferrersHomogeneousRowMatrix δ α β) = Ferrers.seedMatrix δ α β := rfl
 
 /-- Fixed vertical and horizontal multipliers turn the extreme cofactors into
 coprime equal-degree products at the split seed. Their polynomial families
-therefore provide a primitive-minor open for arbitrary positive total degree.-/
+therefore provide a primitive-minor open for arbitrary positive total degree.
+@isnad1 id=ex.1h5v.s12.a109ae69898b from=translated src=- shape=78f33aab vocab=5f557162
+-/
 theorem universalRowMatrix_primitive_principal_open
     (δ : Fin (c + 1) → ℕ) (hdegree : 0 < ∑ i, δ i)
     (α β : Ferrers.RootIndex δ → K) :
@@ -107,7 +112,9 @@ theorem universalRowMatrix_primitive_principal_open
     hdegree a₀ hnonzero hcop
 
 /-- One explicit seed supplies a single open with primitive original and
-binary minors and a complete binary degree cut.-/
+binary minors and a complete binary degree cut.
+@isnad1 id=ex.1h5v.s12.362c7e6fac01 from=translated src=- shape=1196fbe0 vocab=9bd515c7
+-/
 theorem universalRowMatrix_primitive_cut_principal_open
     (δ : Fin (c + 1) → ℕ) (hdegree : 0 < ∑ i, δ i)
     (α β : Ferrers.RootIndex δ → K) :

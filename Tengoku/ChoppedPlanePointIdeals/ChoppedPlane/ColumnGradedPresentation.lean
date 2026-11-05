@@ -14,7 +14,9 @@ namespace ChoppedPlane
 open MvPolynomial Matrix Module
 variable {K : Type*} [Field K] {n c : ℕ}
 
-/-- A determinant with homogeneous column weights has their sum as degree.-/
+/-- A determinant with homogeneous column weights has their sum as degree.
+@isnad1 id=ishomoge.1h5v.s6.22fcc3f06ab6 from=translated src=- shape=e3ecc902 vocab=083f1e41
+-/
 theorem determinant_homogeneous_columns {m : ℕ}
     (B : Matrix (Fin m) (Fin m) (Poly K n)) (ε : Fin m → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j)) :
@@ -22,13 +24,18 @@ theorem determinant_homogeneous_columns {m : ℕ}
   have h := determinant_homogeneous_rows B.transpose ε (fun i j => hB j i)
   simpa only [Matrix.det_transpose] using h
 
-/-- Every maximal minor of a column-weighted matrix has the same degree.-/
+/-- Every maximal minor of a column-weighted matrix has the same degree.
+@isnad1 id=ishomoge.1h6v.s7.7929e325b86f from=translated src=- shape=d60af668 vocab=6bf2a2b6
+-/
 theorem maximalMinor_homogeneous_columns
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j)) (i : Fin (c + 1)) :
     (maximalMinor B i).IsHomogeneous (∑ j, ε j) :=
   determinant_homogeneous_columns _ ε (fun j k => hB (i.succAbove j) k)
 
+/--
+@isnad1 id=ishomoge.1h6v.s7.19020b15cc77 from=translated src=- shape=d60af668 vocab=9b766b6d
+-/
 theorem signedMaximalMinor_homogeneous_columns
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j)) (i : Fin (c + 1)) :
@@ -56,6 +63,9 @@ def signedVectorComponent (m : ℕ) (e : ℤ) :
   map_add' _ _ := by ext i; simp
   map_smul' _ _ := by ext i; simp
 
+/--
+@isnad1 id=eq.0h5v.s11.f46da11b5642 from=translated src=- shape=39cfde50 vocab=e9f380d6
+-/
 @[simp] theorem signedVectorComponent_self (m : ℕ) (e : ℤ)
     (v : Fin m → signedForms K n e) :
     signedVectorComponent m e (signedVectorVal v) = v := by
@@ -77,7 +87,9 @@ def columnFormsComponent (ε : Fin c → ℕ) (e : ℤ) :
   map_add' _ _ := by ext j; simp
   map_smul' _ _ := by ext j; simp
 
-/-- Homogeneous extraction from a column-weighted matrix equation.-/
+/-- Homogeneous extraction from a column-weighted matrix equation.
+@isnad1 id=eq.1h8v.s11.3225a5f02566 from=translated src=- shape=5f8902cd vocab=985c23d6
+-/
 theorem signedComponent_mulVec_columns
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j))
@@ -106,7 +118,9 @@ def columnGradedMatrixMap
   map_add' w u := by ext i; simp [Matrix.mulVec, dotProduct, columnFormsVal, mul_add, Finset.sum_add_distrib]
   map_smul' r w := by ext i; simp [Matrix.mulVec, dotProduct, columnFormsVal, Finset.smul_sum]
 
-/-- Homogeneous extraction from a cofactor combination of equal-degree generators.-/
+/-- Homogeneous extraction from a cofactor combination of equal-degree generators.
+@isnad1 id=eq.1h7v.s12.0c9a0a1e18a0 from=translated src=- shape=0018c9f5 vocab=15ed7267
+-/
 theorem signedComponent_cofactorMap_columns
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j))
@@ -136,7 +150,9 @@ def columnGradedCofactorMap
     simp [cofactorMap_apply, signedVectorVal]
 
 /-- Every homogeneous syzygy is obtained from homogeneous coefficients of the
-column-dependent degrees, by actual UFD Hilbert–Burch exactness.-/
+column-dependent degrees, by actual UFD Hilbert–Burch exactness.
+@isnad1 id=eq.2h6v.s11.ed77bda98c4c from=translated src=- shape=f7eaa07f vocab=341ef660
+-/
 theorem columnGraded_ker_cofactor_eq_range
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j))
@@ -158,7 +174,9 @@ theorem columnGraded_ker_cofactor_eq_range
     apply Subtype.ext
     exact cofactorMap_mulVec B (columnFormsVal w)
 
-/-- The graded first map is injective in the column-weighted presentation.-/
+/-- The graded first map is injective in the column-weighted presentation.
+@isnad1 id=injectiv.2h6v.s11.f3c1e1ee8141 from=translated src=- shape=8e2f7aae vocab=3ff303af
+-/
 theorem columnGradedMatrixMap_injective
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j))
@@ -178,7 +196,9 @@ def columnMinorIdealPiece
     Submodule K (signedForms K n (e + ∑ j, ε j)) :=
   (maximalMinorIdeal B).restrictScalars K |>.comap (signedForms K n (e + ∑ j, ε j)).subtype
 
-/-- The graded cofactor image is the actual homogeneous piece of its ideal.-/
+/-- The graded cofactor image is the actual homogeneous piece of its ideal.
+@isnad1 id=eq.1h6v.s10.b96732789d47 from=translated src=- shape=4673dfbb vocab=729f507f
+-/
 theorem columnGradedCofactorMap_range_eq_idealPiece
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j)) (e : ℤ) :
@@ -200,7 +220,9 @@ theorem columnGradedCofactorMap_range_eq_idealPiece
     rw [← signedComponent_cofactorMap_columns B ε hB, hv]
     exact signedComponent_self _ f
 
-/-- The column-dependent source dimension is the sum of its signed form dimensions.-/
+/-- The column-dependent source dimension is the sum of its signed form dimensions.
+@isnad1 id=eq.0h4v.s9.23f0c8e3e486 from=translated src=- shape=e590e8d1 vocab=18ae393d
+-/
 theorem finrank_columnPlaneForms (ε : Fin c → ℕ) (e : ℤ) :
     (finrank K (columnForms K 3 ε e) : ℤ) = ∑ j, N₂ (e - ε j) := by
   rw [Module.finrank_pi_fintype, Nat.cast_sum]
@@ -208,7 +230,9 @@ theorem finrank_columnPlaneForms (ε : Fin c → ℕ) (e : ℤ) :
   intro j _
   exact finrank_signedPlaneForms (e - ε j)
 
-/-- The actual column-weighted ideal-piece dimension from graded exactness.-/
+/-- The actual column-weighted ideal-piece dimension from graded exactness.
+@isnad1 id=eq.2h5v.s11.ffe8640169f2 from=translated src=- shape=b0d8dcc8 vocab=de968855
+-/
 theorem columnMinorIdealPiece_finrank
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j))
@@ -227,7 +251,9 @@ theorem columnMinorIdealPiece_finrank
   rw [Nat.cast_add, finrank_columnPlaneForms, hmid] at hcast
   omega
 
-/-- The genuine quotient component has the column-weighted Hilbert–Burch coefficients.-/
+/-- The genuine quotient component has the column-weighted Hilbert–Burch coefficients.
+@isnad1 id=eq.2h5v.s10.6f6fb02433e4 from=translated src=- shape=3d3f4914 vocab=2f42e110
+-/
 theorem columnMinorQuotient_finrank
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j))
@@ -239,6 +265,9 @@ theorem columnMinorQuotient_finrank
   rw [Nat.cast_add, finrank_signedPlaneForms, columnMinorIdealPiece_finrank B ε hB hprimitive] at hcast
   omega
 
+/--
+@isnad1 id=eq.0h6v.s9.74cc01bcd43f from=translated src=- shape=c33a3698 vocab=a8dd9b21
+-/
 theorem minorFormToRingQuotient_ker_columns
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (ε : Fin c → ℕ) (e : ℤ) :
     (minorFormToRingQuotient B (e + ∑ j, ε j)).ker = columnMinorIdealPiece B ε e := by
@@ -246,7 +275,9 @@ theorem minorFormToRingQuotient_ker_columns
   change Ideal.Quotient.mk (maximalMinorIdeal B) f.val = 0 ↔ f.val ∈ maximalMinorIdeal B
   exact Ideal.Quotient.eq_zero_iff_mem
 
-/-- The actual polynomial-ring-quotient Hilbert function in every integer degree.-/
+/-- The actual polynomial-ring-quotient Hilbert function in every integer degree.
+@isnad1 id=eq.2h5v.s7.8f9e7961478d from=translated src=- shape=a973c6be vocab=54b03099
+-/
 theorem minorHilbertFunction_columns_formula
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j))
@@ -259,7 +290,9 @@ theorem minorHilbertFunction_columns_formula
   rw [← h]
   exact columnMinorQuotient_finrank B ε hB hprimitive e
 
-/-- The column-weighted Hilbert function indexed directly by the target degree.-/
+/-- The column-weighted Hilbert function indexed directly by the target degree.
+@isnad1 id=eq.2h5v.s7.681c30e29a9c from=translated src=- shape=bc25ff88 vocab=54b03099
+-/
 theorem minorHilbertFunction_columns_at_degree
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j))
@@ -275,14 +308,18 @@ def minorGeneratorSpace
   Submodule.span K (Set.range (signedMaximalMinor B))
 
 /-- Taking the coefficient-field span before the ideal span does not change
-which actual ideal is generated by the minors.-/
+which actual ideal is generated by the minors.
+@isnad1 id=eq.0h4v.s7.0785385fb561 from=translated src=- shape=cdb35423 vocab=6ebbc71f
+-/
 theorem minorGeneratorSpace_idealSpan
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) :
     Ideal.span (minorGeneratorSpace B : Set (Poly K n)) = maximalMinorIdeal B :=
   Submodule.span_span_of_tower K (Poly K n) _
 
 /-- The generic generated-Hilbert-function API measures the same actual
-quotient-ring image as the maximal-minor Hilbert function.-/
+quotient-ring image as the maximal-minor Hilbert function.
+@isnad1 id=eq.0h5v.s5.fe0e2090c002 from=translated src=- shape=44564f81 vocab=190d9649
+-/
 theorem generatedHilbertFunction_minorGeneratorSpace
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (t : ℕ) :
     generatedHilbertFunction (minorGeneratorSpace B) t = minorHilbertFunction B t := by
@@ -313,6 +350,9 @@ def columnMinorGeneratorFamily
     Fin (c + 1) → Forms K n (∑ j, ε j) :=
   fun i => ⟨signedMaximalMinor B i, signedMaximalMinor_homogeneous_columns B ε hB i⟩
 
+/--
+@isnad1 id=le.1h5v.s7.a6857f60d435 from=translated src=- shape=fae1b3ef vocab=5eaa854e
+-/
 theorem minorGeneratorSpace_homogeneous_columns
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j)) :
@@ -321,7 +361,9 @@ theorem minorGeneratorSpace_homogeneous_columns
   rintro _ ⟨i, rfl⟩
   exact signedMaximalMinor_homogeneous_columns B ε hB i
 
-/-- Column-weighted Hilbert–Burch in the generic generated-ideal Hilbert-function API.-/
+/-- Column-weighted Hilbert–Burch in the generic generated-ideal Hilbert-function API.
+@isnad1 id=eq.2h5v.s8.d173789bbaec from=translated src=- shape=1b518478 vocab=fc47bcb0
+-/
 theorem generatedHilbertFunction_columns_formula
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3)) (ε : Fin c → ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (ε j))

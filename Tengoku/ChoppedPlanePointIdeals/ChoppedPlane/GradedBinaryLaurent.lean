@@ -16,7 +16,9 @@ namespace ChoppedPlane.QWeyl
 open MvPolynomial Module LaurentPairing
 variable {K : Type*} [Field K]
 
-/-- Signed homogeneous membership is the literal support-degree condition.-/
+/-- Signed homogeneous membership is the literal support-degree condition.
+@isnad1 id=iff.0h3v.s8.e24f15e4be45 from=translated src=- shape=7bfa082b vocab=135153dc
+-/
 theorem mem_signedBinaryForms_iff_coeff (t : ℤ) (f : BinaryRing K) :
     f ∈ signedForms K 2 t ↔ ∀ s : Fin 2 →₀ ℕ,
       f.coeff s ≠ 0 → (s.degree : ℤ) = t := by
@@ -51,6 +53,9 @@ def binaryVectorCoefficients : BinaryVector K ≃ₗ[K]
     ((Finsupp.linearEquivFunOnFinite K ((Fin 2 →₀ ℕ) →₀ K) (Fin 3)).symm.trans
       (Finsupp.curryLinearEquiv K).symm)
 
+/--
+@isnad1 id=eq.0h4v.s9.99362ac62b54 from=translated src=- shape=fe8f5cf7 vocab=39dddabf
+-/
 @[simp] theorem binaryVectorCoefficients_apply (m : BinaryVector K)
     (i : Fin 3) (s : Fin 2 →₀ ℕ) :
     binaryVectorCoefficients m (i,s) = (m i).coeff s := by
@@ -60,6 +65,9 @@ def binaryVectorCoefficients : BinaryVector K ≃ₗ[K]
 def binaryVectorExponent (a : Fin 3 × (Fin 2 →₀ ℕ)) : Fin 3 × (ℤ × ℤ) :=
   (a.1, ((a.2 0 : ℤ), (a.2 1 : ℤ)))
 
+/--
+@isnad1 id=injectiv.0h0v.s4.d3602ec0e063 from=translated src=- shape=49ba05a5 vocab=c93daf82
+-/
 theorem binaryVectorExponent_injective : Function.Injective binaryVectorExponent := by
   intro a b h
   have hi : a.1 = b.1 := by
@@ -76,6 +84,9 @@ theorem binaryVectorExponent_injective : Function.Injective binaryVectorExponent
   · exact h0
   · exact h1
 
+/--
+@isnad1 id=iff.0h1v.s6.b45fbabce80a from=translated src=- shape=04bec768 vocab=21bfe778
+-/
 theorem mem_range_binaryVectorExponent (e : Fin 3 × (ℤ × ℤ)) :
     e ∈ Set.range binaryVectorExponent ↔ 0 ≤ e.2.1 ∧ 0 ≤ e.2.2 := by
   constructor
@@ -89,6 +100,9 @@ theorem mem_range_binaryVectorExponent (e : Fin 3 × (ℤ × ℤ)) :
 def binaryVectorLaurent : BinaryVector K →ₗ[K] FreeLaurent K (Fin 3) :=
   (Finsupp.lmapDomain K K binaryVectorExponent).comp binaryVectorCoefficients.toLinearMap
 
+/--
+@isnad1 id=injectiv.0h1v.s8.bc40af5be2c1 from=translated src=- shape=4eba824d vocab=aa7edd1a
+-/
 theorem binaryVectorLaurent_injective : Function.Injective (binaryVectorLaurent (K := K)) :=
   (Finsupp.mapDomain_injective binaryVectorExponent_injective).comp
     binaryVectorCoefficients.injective

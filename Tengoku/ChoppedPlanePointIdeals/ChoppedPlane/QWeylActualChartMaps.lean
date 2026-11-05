@@ -22,6 +22,9 @@ open BinaryChartRings LaurentPairing
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h1v.s7.66474977ead7 from=translated src=- shape=77f5ed07 vocab=d9a7c44e
+-/
 theorem binaryChartLaurentMap_eq_binaryLaurentEmbedding :
     binaryChartLaurentMap (K := K) = binaryLaurentEmbedding := rfl
 
@@ -74,14 +77,23 @@ abbrev uFiniteEmbedding (n : ℕ) :=
 abbrev vFiniteEmbedding (n : ℕ) :=
   chartFiniteBaseChange (vEmbedding (K := K)) n
 
+/--
+@isnad1 id=eq.0h5v.s10.747c3df37701 from=translated src=- shape=08c7f916 vocab=1dea8359
+-/
 @[simp] theorem uFiniteEmbedding_apply (n : ℕ) (c : UChartFiniteVector K n)
     (i : Sym (Fin 3) n) (j : Fin 3) :
     uFiniteEmbedding n c i j = uEmbedding (c i j) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.c75efa305d75 from=translated src=- shape=08c7f916 vocab=90b664b2
+-/
 @[simp] theorem vFiniteEmbedding_apply (n : ℕ) (c : VChartFiniteVector K n)
     (i : Sym (Fin 3) n) (j : Fin 3) :
     vFiniteEmbedding n c i j = vEmbedding (c i j) := rfl
 
+/--
+@isnad1 id=injectiv.0h2v.s10.071e7941ea8e from=translated src=- shape=533ac179 vocab=9a5e4e00
+-/
 theorem uFiniteEmbedding_injective (n : ℕ) :
     Function.Injective (uFiniteEmbedding (K := K) n) := by
   intro c d h
@@ -89,6 +101,9 @@ theorem uFiniteEmbedding_injective (n : ℕ) :
   apply uEmbedding_injective
   exact congrFun (congrFun h i) j
 
+/--
+@isnad1 id=injectiv.0h2v.s10.49065dbb2010 from=translated src=- shape=533ac179 vocab=6b1f265e
+-/
 theorem vFiniteEmbedding_injective (n : ℕ) :
     Function.Injective (vFiniteEmbedding (K := K) n) := by
   intro c d h
@@ -96,7 +111,9 @@ theorem vFiniteEmbedding_injective (n : ℕ) :
   apply vEmbedding_injective
   exact congrFun (congrFun h i) j
 
-/-- The actual Laurent `u` unit is the image of the inverse in the `u` chart.-/
+/-- The actual Laurent `u` unit is the image of the inverse in the `u` chart.
+@isnad1 id=eq.0h1v.s9.56dd288328fb from=translated src=- shape=56f3056a vocab=699e43bf
+-/
 theorem binaryChartLaurentMap_U_mul_inv :
     binaryChartLaurentMap (binaryU K) * uEmbedding (uUInv (K := K)) = 1 := by
   simpa only [map_mul, map_one, uEmbedding_u, binaryChartLaurentMap_binaryU] using

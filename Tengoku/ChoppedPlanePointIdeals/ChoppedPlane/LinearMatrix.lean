@@ -40,6 +40,9 @@ def multiplyLinear (q : Forms K 3 1) (f : Forms K 3 t) : Forms K 3 (t + 1) :=
     change (q.val * f.val).IsHomogeneous (t + 1)
     simpa only [Nat.add_comm] using q.property.mul f.property⟩
 
+/--
+@isnad1 id=eq.0h4v.s10.a1cd7fd360b8 from=translated src=- shape=6f25cedf vocab=68537af7
+-/
 @[simp] theorem multiplyLinear_val (q : Forms K 3 1) (f : Forms K 3 t) :
     (multiplyLinear q f).val = q.val * f.val := rfl
 
@@ -63,16 +66,23 @@ def linearMatrixMap (L : LinearMatrix K a c) (t : ℕ) :
     apply Subtype.ext
     simp [Finset.smul_sum]
 
+/--
+@isnad1 id=eq.0h7v.s12.03e68a2e59bc from=translated src=- shape=20c3fb2f vocab=0d1e880b
+-/
 @[simp] theorem linearMatrixMap_val (L : LinearMatrix K a c) (t : ℕ)
     (v : MatrixSource K c t) (i : Fin a) :
     (linearMatrixMap L t v i).val = ∑ j, (L i j).val * (v j).val := rfl
 
-/-- Source dimension of the degree-`t` matrix map.-/
+/-- Source dimension of the degree-`t` matrix map.
+@isnad1 id=eq.0h3v.s9.8535cba7913f from=translated src=- shape=72475ebb vocab=aa62b472
+-/
 theorem finrank_matrixSource (K : Type*) [Field K] (c t : ℕ) :
     finrank K (MatrixSource K c t) = c * (t + 2).choose 2 := by
   simp [MatrixSource, Module.finrank_pi_fintype, finrank_plane_forms]
 
-/-- Target dimension of the degree-`t` matrix map.-/
+/-- Target dimension of the degree-`t` matrix map.
+@isnad1 id=eq.0h3v.s9.70a2e020411e from=translated src=- shape=72475ebb vocab=24f90fa5
+-/
 theorem finrank_matrixTarget (K : Type*) [Field K] (a t : ℕ) :
     finrank K (MatrixTarget K a t) = a * (t + 3).choose 2 := by
   simp [MatrixTarget, Module.finrank_pi_fintype, finrank_plane_forms, Nat.add_assoc]
@@ -86,7 +96,9 @@ def LinearMatrixMaximalRank (L : LinearMatrix K a c) (t : ℕ) : Prop :=
 abbrev LinearMatrixCokernel (L : LinearMatrix K a c) (t : ℕ) :=
   MatrixTarget K a t ⧸ (linearMatrixMap L t).range
 
-/-- Polynomial multiplication commutes with the matrix map.-/
+/-- Polynomial multiplication commutes with the matrix map.
+@isnad1 id=eq.0h7v.s13.6e8f30bca00e from=translated src=- shape=8c845268 vocab=f4f7bf81
+-/
 theorem linearMatrixMap_multiplyVector (L : LinearMatrix K a c)
     (q : Forms K 3 1) (v : MatrixSource K c t) :
     linearMatrixMap L (t + 1) (multiplyVector q v) =
@@ -96,7 +108,9 @@ theorem linearMatrixMap_multiplyVector (L : LinearMatrix K a c)
   simp [linearMatrixMap, multiplyVector, multiplyLinear, Finset.mul_sum,
     mul_left_comm]
 
-/-- A nonzero linear form multiplies homogeneous vectors injectively.-/
+/-- A nonzero linear form multiplies homogeneous vectors injectively.
+@isnad1 id=injectiv.1h4v.s10.09313c96deab from=translated src=- shape=b42719e6 vocab=7c8322dd
+-/
 theorem multiplyVector_injective {b : ℕ} (q : Forms K 3 1) (hq : q.val ≠ 0) :
     Function.Injective (multiplyVector (b := b) (t := t) q) := by
   intro v w h
@@ -104,7 +118,9 @@ theorem multiplyVector_injective {b : ℕ} (q : Forms K 3 1) (hq : q.val ≠ 0) 
   apply Subtype.ext
   exact mul_left_cancel₀ hq (congrArg Subtype.val (congrFun h i))
 
-/-- Injectivity in one twist implies injectivity in the preceding twist.-/
+/-- Injectivity in one twist implies injectivity in the preceding twist.
+@isnad1 id=injectiv.1h5v.s12.162005915708 from=translated src=- shape=860cb2ac vocab=9768adea
+-/
 theorem linearMatrixMap_injective_of_succ (L : LinearMatrix K a c)
     (h : Function.Injective (linearMatrixMap L (t + 1))) :
     Function.Injective (linearMatrixMap L t) := by
@@ -115,7 +131,9 @@ theorem linearMatrixMap_injective_of_succ (L : LinearMatrix K a c)
   apply h
   rw [linearMatrixMap_multiplyVector, linearMatrixMap_multiplyVector, hvw]
 
-/-- Injectivity propagates to all lower twists.-/
+/-- Injectivity propagates to all lower twists.
+@isnad1 id=injectiv.2h6v.s12.e5a51024dceb from=translated src=- shape=3c976322 vocab=ccf725ed
+-/
 theorem linearMatrixMap_injective_downward (L : LinearMatrix K a c)
     {s t : ℕ} (hst : s ≤ t) (h : Function.Injective (linearMatrixMap L t)) :
     Function.Injective (linearMatrixMap L s) := by
@@ -131,7 +149,9 @@ theorem linearMatrixMap_injective_downward (L : LinearMatrix K a c)
     · apply ih (by omega : s ≤ t)
       exact linearMatrixMap_injective_of_succ L h
 
-/-- Surjectivity in one twist implies surjectivity in the next twist.-/
+/-- Surjectivity in one twist implies surjectivity in the next twist.
+@isnad1 id=surjecti.1h5v.s12.589829e2e85d from=translated src=- shape=62a3126d vocab=9a412880
+-/
 theorem linearMatrixMap_surjective_succ (L : LinearMatrix K a c)
     (h : Function.Surjective (linearMatrixMap L t)) :
     Function.Surjective (linearMatrixMap L (t + 1)) := by
@@ -188,7 +208,9 @@ theorem linearMatrixMap_surjective_succ (L : LinearMatrix K a c)
     rwa [heq] at hsum
   exact hy
 
-/-- Surjectivity propagates to all higher twists.-/
+/-- Surjectivity propagates to all higher twists.
+@isnad1 id=surjecti.2h6v.s12.5dade28320f8 from=translated src=- shape=0cf7c139 vocab=9acf647c
+-/
 theorem linearMatrixMap_surjective_upward (L : LinearMatrix K a c)
     {s t : ℕ} (hst : s ≤ t) (h : Function.Surjective (linearMatrixMap L s)) :
     Function.Surjective (linearMatrixMap L t) := by
@@ -196,7 +218,9 @@ theorem linearMatrixMap_surjective_upward (L : LinearMatrix K a c)
   | base => exact h
   | succ t hst ih => exact linearMatrixMap_surjective_succ L ih
 
-/-- An injective matrix map has maximal rank.-/
+/-- An injective matrix map has maximal rank.
+@isnad1 id=linearma.1h5v.s11.6b9300d3efc1 from=translated src=- shape=3acf5dad vocab=0b6bb0b6
+-/
 theorem linearMatrixMaximalRank_of_injective (L : LinearMatrix K a c) (t : ℕ)
     (h : Function.Injective (linearMatrixMap L t)) : LinearMatrixMaximalRank L t := by
   have hr := LinearMap.finrank_range_of_inj h
@@ -204,7 +228,9 @@ theorem linearMatrixMaximalRank_of_injective (L : LinearMatrix K a c) (t : ℕ)
   rw [hr] at hle
   exact hr.trans (min_eq_left hle).symm
 
-/-- A surjective matrix map has maximal rank.-/
+/-- A surjective matrix map has maximal rank.
+@isnad1 id=linearma.1h5v.s11.acaf0e26d3c8 from=translated src=- shape=3acf5dad vocab=3cc68cc1
+-/
 theorem linearMatrixMaximalRank_of_surjective (L : LinearMatrix K a c) (t : ℕ)
     (h : Function.Surjective (linearMatrixMap L t)) : LinearMatrixMaximalRank L t := by
   have hr : (linearMatrixMap L t).range = ⊤ := LinearMap.range_eq_top.mpr h
@@ -213,7 +239,9 @@ theorem linearMatrixMaximalRank_of_surjective (L : LinearMatrix K a c) (t : ℕ)
   dsimp [LinearMatrixMaximalRank]
   rw [hr, finrank_top, min_eq_right hdim]
 
-/-- When the source is smaller, maximal rank is equivalent to injectivity.-/
+/-- When the source is smaller, maximal rank is equivalent to injectivity.
+@isnad1 id=iff.1h5v.s12.5fb90d1cf542 from=translated src=- shape=1d7917d5 vocab=e2177a6c
+-/
 theorem linearMatrixMaximalRank_iff_injective (L : LinearMatrix K a c) (t : ℕ)
     (hsize : finrank K (MatrixSource K c t) ≤ finrank K (MatrixTarget K a t)) :
     LinearMatrixMaximalRank L t ↔ Function.Injective (linearMatrixMap L t) := by
@@ -227,7 +255,9 @@ theorem linearMatrixMaximalRank_iff_injective (L : LinearMatrix K a c) (t : ℕ)
     omega
   · exact linearMatrixMaximalRank_of_injective L t
 
-/-- When the target is smaller, maximal rank is equivalent to surjectivity.-/
+/-- When the target is smaller, maximal rank is equivalent to surjectivity.
+@isnad1 id=iff.1h5v.s12.0e4fa6077630 from=translated src=- shape=e7f1568a vocab=c0974391
+-/
 theorem linearMatrixMaximalRank_iff_surjective (L : LinearMatrix K a c) (t : ℕ)
     (hsize : finrank K (MatrixTarget K a t) ≤ finrank K (MatrixSource K c t)) :
     LinearMatrixMaximalRank L t ↔ Function.Surjective (linearMatrixMap L t) := by
@@ -239,7 +269,9 @@ theorem linearMatrixMaximalRank_iff_surjective (L : LinearMatrix K a c) (t : ℕ
     exact Submodule.eq_top_of_finrank_eq h
   · exact linearMatrixMaximalRank_of_surjective L t
 
-/-- Maximal rank means injectivity or surjectivity.-/
+/-- Maximal rank means injectivity or surjectivity.
+@isnad1 id=iff.0h5v.s12.b21d5d6686d3 from=translated src=- shape=e41783a8 vocab=76000c64
+-/
 theorem linearMatrixMaximalRank_iff (L : LinearMatrix K a c) (t : ℕ) :
     LinearMatrixMaximalRank L t ↔
       Function.Injective (linearMatrixMap L t) ∨
@@ -253,7 +285,9 @@ theorem linearMatrixMaximalRank_iff (L : LinearMatrix K a c) (t : ℕ) :
     · exact linearMatrixMaximalRank_of_injective L t h
     · exact linearMatrixMaximalRank_of_surjective L t h
 
-/-- Maximal rank gives the expected nonnegative cokernel dimension.-/
+/-- Maximal rank gives the expected nonnegative cokernel dimension.
+@isnad1 id=eq.1h5v.s12.ba0958a6442c from=translated src=- shape=53b3dab3 vocab=d5ecc734
+-/
 theorem finrank_linearMatrixCokernel (L : LinearMatrix K a c) (t : ℕ)
     (h : LinearMatrixMaximalRank L t) :
     finrank K (LinearMatrixCokernel L t) =
@@ -264,7 +298,9 @@ theorem finrank_linearMatrixCokernel (L : LinearMatrix K a c) (t : ℕ)
   dsimp [LinearMatrixCokernel]
   omega
 
-/-- Two consecutive injectivity and surjectivity checks cover every twist.-/
+/-- Two consecutive injectivity and surjectivity checks cover every twist.
+@isnad1 id=linearma.2h6v.s12.8c05f2ca93fa from=translated src=- shape=765c6792 vocab=76000c64
+-/
 theorem linearMatrixMaximalRank_all_of_two_checks (L : LinearMatrix K a c)
     (t₀ : ℕ) (hinj : Function.Injective (linearMatrixMap L t₀))
     (hsurj : Function.Surjective (linearMatrixMap L (t₀ + 1))) :
@@ -276,7 +312,9 @@ theorem linearMatrixMaximalRank_all_of_two_checks (L : LinearMatrix K a c)
   · exact linearMatrixMaximalRank_of_surjective L t
       (linearMatrixMap_surjective_upward L (by omega) hsurj)
 
-/-- The two-check statement expressed using maximal ranks at the crossing.-/
+/-- The two-check statement expressed using maximal ranks at the crossing.
+@isnad1 id=linearma.4h6v.s11.8afc1785adc8 from=translated src=- shape=02b1f626 vocab=35ff86f9
+-/
 theorem linearMatrixMaximalRank_all_of_critical_checks (L : LinearMatrix K a c)
     (t₀ : ℕ)
     (hsmall : finrank K (MatrixSource K c t₀) ≤ finrank K (MatrixTarget K a t₀))
@@ -289,7 +327,9 @@ theorem linearMatrixMaximalRank_all_of_critical_checks (L : LinearMatrix K a c)
     ((linearMatrixMaximalRank_iff_injective L t₀ hsmall).mp hleft)
     ((linearMatrixMaximalRank_iff_surjective L (t₀ + 1) hlarge).mp hright)
 
-/-- A single bijective twist suffices for maximal rank in every twist.-/
+/-- A single bijective twist suffices for maximal rank in every twist.
+@isnad1 id=linearma.1h6v.s11.6a9b856c2f40 from=translated src=- shape=e3be4dff vocab=9f0e63f3
+-/
 theorem linearMatrixMaximalRank_all_of_bijective (L : LinearMatrix K a c)
     (t₀ : ℕ) (h : Function.Bijective (linearMatrixMap L t₀)) :
     ∀ t, LinearMatrixMaximalRank L t := by
@@ -300,7 +340,9 @@ theorem linearMatrixMaximalRank_all_of_bijective (L : LinearMatrix K a c)
   · exact linearMatrixMaximalRank_of_surjective L t
       (linearMatrixMap_surjective_upward L (by omega) h.2)
 
-/-- For `a + 2` columns the source and target agree at twist `a - 1`.-/
+/-- For `a + 2` columns the source and target agree at twist `a - 1`.
+@isnad1 id=eq.1h2v.s11.e25626452536 from=translated src=- shape=673e3435 vocab=08441b19
+-/
 theorem two_extra_columns_crossing (K : Type*) [Field K] {a : ℕ} (ha : 0 < a) :
     finrank K (MatrixSource K (a + 2) (a - 1)) =
       finrank K (MatrixTarget K a (a - 1)) := by
@@ -312,7 +354,9 @@ theorem two_extra_columns_crossing (K : Type*) [Field K] {a : ℕ} (ha : 0 < a) 
   have hsub : a + 1 + 1 - 2 = a := by omega
   simpa only [Nat.add_assoc, Nat.one_add, hsub, Nat.mul_comm] using h
 
-/-- Injectivity at the equal-dimensional twist gives all ranks for `a + 2` columns.-/
+/-- Injectivity at the equal-dimensional twist gives all ranks for `a + 2` columns.
+@isnad1 id=linearma.2h4v.s12.d701358287e7 from=translated src=- shape=868fa579 vocab=11c64a7a
+-/
 theorem linearMatrixMaximalRank_all_of_two_extra_columns
     (L : LinearMatrix K a (a + 2)) (ha : 0 < a)
     (h : Function.Injective (linearMatrixMap L (a - 1))) :
@@ -322,7 +366,9 @@ theorem linearMatrixMaximalRank_all_of_two_extra_columns
   have hsurj := (linearMatrixMaximalRank_iff_surjective L (a - 1) hdim.ge).mp hmax
   exact linearMatrixMaximalRank_all_of_bijective L (a - 1) ⟨h, hsurj⟩
 
-/-- The dimension comparison reduces to a linear inequality in the twist.-/
+/-- The dimension comparison reduces to a linear inequality in the twist.
+@isnad1 id=iff.0h4v.s10.ba9218feb7f1 from=translated src=- shape=e0ecddde vocab=08823d60
+-/
 theorem matrixSource_le_target_iff (K : Type*) [Field K] (a c t : ℕ) :
     finrank K (MatrixSource K c t) ≤ finrank K (MatrixTarget K a t) ↔
       c * (t + 1) ≤ a * (t + 3) := by
@@ -356,7 +402,9 @@ theorem matrixSource_le_target_iff (K : Type*) [Field K] (a c t : ℕ) :
         _ = a * (t + 3).choose 2 * (t + 1) := by ring
     exact Nat.le_of_mul_le_mul_right h' (by omega)
 
-/-- The reverse dimension comparison has the same linear description.-/
+/-- The reverse dimension comparison has the same linear description.
+@isnad1 id=iff.0h4v.s10.54c043bf8c17 from=translated src=- shape=b466854e vocab=08823d60
+-/
 theorem matrixTarget_le_source_iff (K : Type*) [Field K] (a c t : ℕ) :
     finrank K (MatrixTarget K a t) ≤ finrank K (MatrixSource K c t) ↔
       a * (t + 3) ≤ c * (t + 1) := by
@@ -393,7 +441,9 @@ theorem matrixTarget_le_source_iff (K : Type*) [Field K] (a c t : ℕ) :
 /-- The first twist strictly past the source/target dimension crossing.-/
 def linearMatrixCriticalTwist (a c : ℕ) : ℕ := (2 * a) / (c - a)
 
-/-- The source is at least as large as the target at the critical twist.-/
+/-- The source is at least as large as the target at the critical twist.
+@isnad1 id=le.1h3v.s10.31e71ecd50c0 from=translated src=- shape=e9f89c05 vocab=273c7ac9
+-/
 theorem criticalTwist_target_le_source (K : Type*) [Field K] {a c : ℕ} (hac : a < c) :
     finrank K (MatrixTarget K a (linearMatrixCriticalTwist a c)) ≤
       finrank K (MatrixSource K c (linearMatrixCriticalTwist a c)) := by
@@ -404,7 +454,9 @@ theorem criticalTwist_target_le_source (K : Type*) [Field K] {a c : ℕ} (hac : 
   dsimp [linearMatrixCriticalTwist]
   nlinarith
 
-/-- Just before a positive critical twist, the source is the smaller space.-/
+/-- Just before a positive critical twist, the source is the smaller space.
+@isnad1 id=le.2h3v.s11.217fc811a555 from=translated src=- shape=d79889f2 vocab=3aa74134
+-/
 theorem before_criticalTwist_source_le_target (K : Type*) [Field K] {a c : ℕ}
     (hac : a < c) (hpos : 0 < linearMatrixCriticalTwist a c) :
     finrank K (MatrixSource K c (linearMatrixCriticalTwist a c - 1)) ≤
@@ -420,7 +472,9 @@ theorem before_criticalTwist_source_le_target (K : Type*) [Field K] {a c : ℕ}
   nlinarith
 
 /-- All ranks follow from the two numerical critical-twist tests.
-When the critical twist is zero, the right-hand test alone suffices.-/
+When the critical twist is zero, the right-hand test alone suffices.
+@isnad1 id=linearma.3h5v.s6.0d80c179b414 from=translated src=- shape=868bf7f6 vocab=ca5bc01d
+-/
 theorem linearMatrixMaximalRank_all_of_numeric_critical_checks
     (L : LinearMatrix K a c) (hac : a < c)
     (hleft : 0 < linearMatrixCriticalTwist a c →

@@ -33,6 +33,9 @@ def topAuxiliaryResidueMap [Finite J] [CharZero K]
   (topGradeAuxiliaryResidueDualEquiv g r t).toLinearMap.comp
     (topProjection (fun i : J × Sym (Fin 3) t => 2 - g i.1) (-r))
 
+/--
+@isnad1 id=surjecti.0h5v.s12.6b4c8ef14c5f from=translated src=- shape=9c82776c vocab=ea6251f0
+-/
 theorem topAuxiliaryResidueMap_surjective [Finite J] [CharZero K]
     (g : J → ℤ) (r : ℤ) (t : ℕ) :
     Function.Surjective (topAuxiliaryResidueMap (K := K) g r t) :=
@@ -40,7 +43,9 @@ theorem topAuxiliaryResidueMap_surjective [Finite J] [CharZero K]
     (topProjection_surjective (fun i : J × Sym (Fin 3) t => 2 - g i.1) (-r))
 
 /-- The actual chart boundaries are exactly the kernel of the surjective
-perfect residue map, proving the top cohomology quotient interpretation.-/
+perfect residue map, proving the top cohomology quotient interpretation.
+@isnad1 id=eq.0h5v.s12.7036b8b687df from=translated src=- shape=ceb0dad8 vocab=feede01c
+-/
 theorem ker_topAuxiliaryResidueMap [Finite J] [CharZero K]
     (g : J → ℤ) (r : ℤ) (t : ℕ) :
     LinearMap.ker (topAuxiliaryResidueMap (K := K) g r t) =

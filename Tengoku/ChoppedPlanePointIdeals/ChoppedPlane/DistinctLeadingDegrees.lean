@@ -21,7 +21,9 @@ open scoped MonomialOrder
 variable {σ α R : Type*} [CommSemiring R]
 
 /-- A finite nonempty family of nonzero polynomials with pairwise distinct
-leading degrees has a nonzero sum, for any monomial order.-/
+leading degrees has a nonzero sum, for any monomial order.
+@isnad1 id=ne.3h6v.s7.298bc10532fa from=translated src=- shape=ecdc97bc vocab=1aa98638
+-/
 theorem sum_ne_zero_of_degree_injOn (m : MonomialOrder σ)
     (s : Finset α) (f : α → MvPolynomial σ R) (hs : s.Nonempty)
     (hnz : ∀ i ∈ s, f i ≠ 0)

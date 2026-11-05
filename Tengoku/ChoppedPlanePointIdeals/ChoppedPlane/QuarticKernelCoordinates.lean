@@ -37,7 +37,9 @@ def quarticKernelInverseV (u v z a : R) : Matrix (Fin 3) (Fin 3) R :=
     ![quarticV u v, 0, 0],
     ![quarticZ u v z, -u ^ 2 * a, v * z * a]]
 
-/-- The `u`-minor chart supplies a lift and the two quadratic kernel vectors.-/
+/-- The `u`-minor chart supplies a lift and the two quadratic kernel vectors.
+@isnad1 id=eq.2h6v.s8.ad557c8a5090 from=translated src=- shape=10d9f383 vocab=9897c302
+-/
 theorem quarticKernelMatrixU_direction (u v z a : R)
     (hz : z ^ 3 = u ^ 3 + v ^ 3) (ha : quarticU u v * a = 1) :
     ∀ i, ∑ j, quarticRow u v z j * quarticKernelMatrixU u v z a i j =
@@ -50,7 +52,9 @@ theorem quarticKernelMatrixU_direction (u v z a : R)
   · simpa [Fin.sum_univ_succ, quarticRow, quarticKernelMatrixU, quadraticTwo,
       sub_eq_add_neg, add_assoc] using quartic_quadratic_syzygy_two u v z hz
 
-/-- The `v`-minor chart supplies the same quadratic kernel vectors.-/
+/-- The `v`-minor chart supplies the same quadratic kernel vectors.
+@isnad1 id=eq.2h6v.s8.d1038d46699f from=translated src=- shape=10d9f383 vocab=1d0e943d
+-/
 theorem quarticKernelMatrixV_direction (u v z a : R)
     (hz : z ^ 3 = u ^ 3 + v ^ 3) (ha : quarticV u v * a = 1) :
     ∀ i, ∑ j, quarticRow u v z j * quarticKernelMatrixV u v z a i j =
@@ -63,7 +67,9 @@ theorem quarticKernelMatrixV_direction (u v z a : R)
   · simpa [Fin.sum_univ_succ, quarticRow, quarticKernelMatrixV, quadraticTwo,
       sub_eq_add_neg, add_assoc] using quartic_quadratic_syzygy_two u v z hz
 
-/-- The explicit inverse on the first scalar-minor chart.-/
+/-- The explicit inverse on the first scalar-minor chart.
+@isnad1 id=eq.2h5v.s8.f67c9f719c14 from=translated src=- shape=26d44f95 vocab=912960c6
+-/
 theorem quarticKernelMatrixU_mul_inverse (u v z a : R)
     (hz : z ^ 3 = u ^ 3 + v ^ 3) (ha : quarticU u v * a = 1) :
     quarticKernelMatrixU u v z a * quarticKernelInverseU u v z a = 1 := by
@@ -90,7 +96,9 @@ theorem quarticKernelMatrixU_mul_inverse (u v z a : R)
         _ = _ := by rw [hz]; ring
     exact h.trans ha
 
-/-- The explicit inverse on the second scalar-minor chart.-/
+/-- The explicit inverse on the second scalar-minor chart.
+@isnad1 id=eq.2h5v.s8.07ab28d5ce1b from=translated src=- shape=26d44f95 vocab=29bd9d87
+-/
 theorem quarticKernelMatrixV_mul_inverse (u v z a : R)
     (hz : z ^ 3 = u ^ 3 + v ^ 3) (ha : quarticV u v * a = 1) :
     quarticKernelMatrixV u v z a * quarticKernelInverseV u v z a = 1 := by
@@ -127,6 +135,9 @@ def quarticClearV (u v z : R) : Fin 3 → Binary R :=
   ![-C (z ^ 2) * X 0 - C (u * v) * X 1, 0,
     -C (u ^ 2) * X 0 + C (v * z) * X 1]
 
+/--
+@isnad1 id=eq.0h5v.s9.af6021fd5b62 from=translated src=- shape=728b74ea vocab=433d0f33
+-/
 theorem quarticCoordinatesU_substitution (u v z a : R) :
     binaryRestriction.comp (linearChange (quarticKernelInverseU u v z a)) =
       aeval (fun i => a • quarticClearU u v z i) := by
@@ -140,6 +151,9 @@ theorem quarticCoordinatesU_substitution (u v z a : R) :
       quarticKernelInverseU, quarticClearU,
       Algebra.smul_def, algebraMap_eq, map_mul, map_pow, map_neg] <;> ring
 
+/--
+@isnad1 id=eq.0h5v.s9.2e4865a9d707 from=translated src=- shape=728b74ea vocab=74805740
+-/
 theorem quarticCoordinatesV_substitution (u v z a : R) :
     binaryRestriction.comp (linearChange (quarticKernelInverseV u v z a)) =
       aeval (fun i => a • quarticClearV u v z i) := by
@@ -157,7 +171,9 @@ open scoped TensorProduct
 variable {M : Type*} [AddCommGroup M] [Module R M]
 
 /-- The exact denominator exponent on the first scalar-minor chart is the
-auxiliary homogeneous degree.-/
+auxiliary homogeneous degree.
+@isnad1 id=eq.2h8v.s11.e286b41f2740 from=translated src=- shape=1ebcba72 vocab=113c5869
+-/
 theorem quarticCoordinatesU_clear (u v z a : R) (ha : quarticU u v * a = 1)
     {n : ℕ} (P : AuxTensor (R := R) (M := M)) (hP : TensorHomogeneous n P) :
     quarticU u v ^ n • kernelCoordinates (quarticKernelInverseU u v z a) P =
@@ -170,7 +186,9 @@ theorem quarticCoordinatesU_clear (u v z a : R) (ha : quarticU u v * a = 1)
       LinearMap.rTensor_comp] using LinearMap.congr_fun h P
   rw [hs, tensor_substitution_scale a _ P hP, smul_smul, ← mul_pow, ha, one_pow, one_smul]
 
-/-- The second chart has the same exact denominator exponent.-/
+/-- The second chart has the same exact denominator exponent.
+@isnad1 id=eq.2h8v.s11.52b0706f971d from=translated src=- shape=1ebcba72 vocab=817ef616
+-/
 theorem quarticCoordinatesV_clear (u v z a : R) (ha : quarticV u v * a = 1)
     {n : ℕ} (P : AuxTensor (R := R) (M := M)) (hP : TensorHomogeneous n P) :
     quarticV u v ^ n • kernelCoordinates (quarticKernelInverseV u v z a) P =
@@ -186,7 +204,9 @@ theorem quarticCoordinatesV_clear (u v z a : R) (ha : quarticV u v * a = 1)
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- The two scalar quartic minors are relatively prime; their explicit Bezout
-identities reduce a common divisor to a divisor of both coordinate powers.-/
+identities reduce a common divisor to a divisor of both coordinate powers.
+@isnad1 id=isrelpri.0h1v.s8.a0fcb4f5711f from=translated src=- shape=a557fc2a vocab=c57c702a
+-/
 theorem quartic_binary_relPrime :
     IsRelPrime (quarticU (X 0 : ChoppedPlane.Poly K 2) (X 1))
       (quarticV (X 0 : ChoppedPlane.Poly K 2) (X 1)) := by

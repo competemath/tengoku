@@ -27,6 +27,9 @@ def coefficientWeightEquiv [Finite ι] (w : ι → K) (hw : ∀ i, w i ≠ 0) :
     ((LinearEquiv.piCongrRight (fun i => LinearEquiv.smulOfNeZero K K (w i) (hw i))).trans
       (Finsupp.linearEquivFunOnFinite K K ι).symm)
 
+/--
+@isnad1 id=eq.1h5v.s9.afacac046e04 from=translated src=- shape=5a7184aa vocab=77da2b47
+-/
 @[simp] theorem coefficientWeightEquiv_apply [Finite ι] (w : ι → K)
     (hw : ∀ i, w i ≠ 0) (p : ι →₀ K) (i : ι) :
     coefficientWeightEquiv w hw p i = w i * p i := rfl
@@ -39,6 +42,9 @@ def weightedNegativeCoordinates [Finite ι] (g : ι → ℤ) (r : ℤ)
   (negativeCoordinates g r).trans
     (coefficientWeightEquiv (fun e : PositiveIndex g r => w e.val.1) (fun e => hw e.val.1))
 
+/--
+@isnad1 id=eq.1h7v.s11.68eb49c97ff4 from=translated src=- shape=794de362 vocab=dbe700f2
+-/
 @[simp] theorem weightedNegativeCoordinates_apply [Finite ι] (g : ι → ℤ) (r : ℤ)
     (w : ι → K) (hw : ∀ i, w i ≠ 0) (q : negativeGrade (K := K) g r)
     (e : PositiveIndex g r) :
@@ -59,7 +65,9 @@ def weightedResiduePair [Finite ι] (g : ι → ℤ) (r : ℤ)
   (weightedResidueDualEquiv g r w hw).toLinearMap
 
 /-- Pairing with an actual positive monomial reads its weighted complementary
-Laurent coefficient.-/
+Laurent coefficient.
+@isnad1 id=eq.1h7v.s12.6177d9d580b1 from=translated src=- shape=ae447f3b vocab=b9a89213
+-/
 @[simp] theorem weightedResiduePair_basis [Finite ι] (g : ι → ℤ) (r : ℤ)
     (w : ι → K) (hw : ∀ i, w i ≠ 0) (q : negativeGrade (K := K) g r)
     (e : PositiveIndex g r) :
@@ -76,7 +84,9 @@ Laurent coefficient.-/
   exact weightedNegativeCoordinates_apply g r w hw q e
 
 /-- Polynomial coordinate multiplication and projected Laurent coordinate
-multiplication remain adjoint under the same generator weight.-/
+multiplication remain adjoint under the same generator weight.
+@isnad1 id=eq.1h8v.s14.aded96b7eb66 from=translated src=- shape=ba0397ab vocab=c2fbf229
+-/
 theorem weightedResiduePair_shift [Finite ι] (g : ι → ℤ) (r : ℤ) (m : ℕ × ℕ)
     (w : ι → K) (hw : ∀ i, w i ≠ 0)
     (q : negativeGrade (K := K) g (r+m.1+m.2)) (p : positiveGrade (K := K) g r) :
@@ -100,7 +110,9 @@ theorem weightedResiduePair_shift [Finite ι] (g : ι → ℤ) (r : ℤ) (m : �
   exact LinearMap.congr_fun h p
 
 /-- Under the actual free Laurent module identification, exponent translation
-is literal multiplication by its coefficient-one Laurent monomial.-/
+is literal multiplication by its coefficient-one Laurent monomial.
+@isnad1 id=eq.0h5v.s10.3b688289aca2 from=translated src=- shape=502b1458 vocab=86e99999
+-/
 theorem freeLaurentEquiv_shift_mul [Finite ι] (m : ℤ × ℤ)
     (p : FreeLaurent K ι) (i : ι) :
     freeLaurentEquiv (shift m p) i =
@@ -111,7 +123,9 @@ theorem freeLaurentEquiv_shift_mul [Finite ι] (m : ℤ × ℤ)
   exact congrArg (fun z : ℤ × ℤ => p (i,z)) (Prod.ext (by simp; omega) (by simp; omega))
 
 /-- Negative coefficient projection is the actual componentwise negative
-Laurent representative map.-/
+Laurent representative map.
+@isnad1 id=eq.0h4v.s10.adb92c82d231 from=translated src=- shape=4dbeed66 vocab=cef2108b
+-/
 theorem freeLaurentEquiv_negativePart [Finite ι] (p : FreeLaurent K ι) (i : ι) :
     freeLaurentEquiv (freeNegativePart p) i = negativePart (freeLaurentEquiv p i) := by
   ext e
@@ -128,6 +142,9 @@ def auxiliaryFactorialWeight (n : ℕ) : J × Sym (Fin 3) n → K :=
   fun i => ChoppedPlane.factorialWeight K
     (SymmetricDerivative.homogeneousTensorExponent n i.2)
 
+/--
+@isnad1 id=ne.0h4v.s5.e591ca8dabf4 from=translated src=- shape=515da7db vocab=e93bd96e
+-/
 theorem auxiliaryFactorialWeight_ne_zero [CharZero K] (n : ℕ)
     (i : J × Sym (Fin 3) n) : auxiliaryFactorialWeight (K := K) n i ≠ 0 :=
   ChoppedPlane.factorialWeight_ne_zero K _
@@ -145,6 +162,9 @@ def auxiliaryResiduePair [Finite J] [CharZero K] (g : J → ℤ) (r : ℤ) (n : 
       positiveGrade (K := K) (auxiliaryGeneratorWeights g n) r →ₗ[K] K :=
   (auxiliaryResidueDualEquiv g r n).toLinearMap
 
+/--
+@isnad1 id=eq.0h7v.s13.0e104c3c2bf9 from=translated src=- shape=27778923 vocab=36d7782d
+-/
 @[simp] theorem auxiliaryResiduePair_basis [Finite J] [CharZero K]
     (g : J → ℤ) (r : ℤ) (n : ℕ)
     (q : negativeGrade (K := K) (auxiliaryGeneratorWeights g n) r)

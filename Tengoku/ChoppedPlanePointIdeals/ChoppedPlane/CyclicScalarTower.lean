@@ -41,6 +41,9 @@ abbrev cyclicModuleSMulCommClass (F : A) (Z : Module.End A (Fin 3 → A))
   rw [hsmul, hsmul]
   exact ((cyclicActionHom F Z hZ r).map_smul (algebraMap K A k) m).symm
 
+/--
+@isnad1 id=eq.1h6v.s10.a308c8b21e8b from=translated src=- shape=9d052c53 vocab=02894b84
+-/
 theorem cyclicModule_algebraMap_smul (F : A) (Z : Module.End A (Fin 3 → A))
     (hZ : Z ^ 3 = F • 1) :
     letI := cyclicModuleStructure F Z hZ

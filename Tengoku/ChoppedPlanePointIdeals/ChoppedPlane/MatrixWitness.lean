@@ -20,6 +20,9 @@ def linearMatrixBlock {a₁ a₂ c₁ c₂ : ℕ}
     LinearMatrix K (a₁ + a₂) (c₁ + c₂) :=
   (Matrix.fromBlocks L₁ 0 0 L₂).submatrix finSumFinEquiv.symm finSumFinEquiv.symm
 
+/--
+@isnad1 id=eq.0h10v.s12.90ef7b6b7b4e from=translated src=- shape=45dbbb9e vocab=9f890c4c
+-/
 @[simp] theorem linearMatrixBlock_left {a₁ a₂ c₁ c₂ t : ℕ}
     (L₁ : LinearMatrix K a₁ c₁) (L₂ : LinearMatrix K a₂ c₂)
     (v : MatrixSource K (c₁+c₂) t) (i : Fin a₁) :
@@ -28,6 +31,9 @@ def linearMatrixBlock {a₁ a₂ c₁ c₂ : ℕ}
   apply Subtype.ext
   simp [linearMatrixMap_val, linearMatrixBlock, Fin.sum_univ_add]
 
+/--
+@isnad1 id=eq.0h10v.s12.5acbb6cdee86 from=translated src=- shape=e22378e5 vocab=14442868
+-/
 @[simp] theorem linearMatrixBlock_right {a₁ a₂ c₁ c₂ t : ℕ}
     (L₁ : LinearMatrix K a₁ c₁) (L₂ : LinearMatrix K a₂ c₂)
     (v : MatrixSource K (c₁+c₂) t) (i : Fin a₂) :
@@ -36,6 +42,9 @@ def linearMatrixBlock {a₁ a₂ c₁ c₂ : ℕ}
   apply Subtype.ext
   simp [linearMatrixMap_val, linearMatrixBlock, Fin.sum_univ_add]
 
+/--
+@isnad1 id=injectiv.2h8v.s13.16ddabe8789e from=translated src=- shape=552dc3c2 vocab=7c6288dd
+-/
 theorem linearMatrixBlock_injective {a₁ a₂ c₁ c₂ t : ℕ}
     (L₁ : LinearMatrix K a₁ c₁) (L₂ : LinearMatrix K a₂ c₂)
     (h₁ : Function.Injective (linearMatrixMap L₁ t))
@@ -58,6 +67,9 @@ theorem linearMatrixBlock_injective {a₁ a₂ c₁ c₂ t : ℕ}
   | inl j => simpa using congrFun hleft j
   | inr j => simpa using congrFun hright j
 
+/--
+@isnad1 id=surjecti.2h8v.s13.61933c30b397 from=translated src=- shape=552dc3c2 vocab=ce4c7030
+-/
 theorem linearMatrixBlock_surjective {a₁ a₂ c₁ c₂ t : ℕ}
     (L₁ : LinearMatrix K a₁ c₁) (L₂ : LinearMatrix K a₂ c₂)
     (h₁ : Function.Surjective (linearMatrixMap L₁ t))

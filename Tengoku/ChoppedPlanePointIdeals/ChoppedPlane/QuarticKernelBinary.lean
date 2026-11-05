@@ -18,6 +18,9 @@ variable {K : Type*} [Field K] [CharZero K]
 def quarticCyclicZ {A : Type*} [CommRing A] (dual : Bool) (γ : Fin 3 → A) :
     End A (Fin 3 → A) := if dual then cyclicZDual γ else cyclicZ γ
 
+/--
+@isnad1 id=eq.0h3v.s10.223869d09d76 from=translated src=- shape=31db446f vocab=92322d4b
+-/
 theorem quarticCyclicZ_cube {A : Type*} [CommRing A]
     (dual : Bool) (γ : Fin 3 → A) :
     quarticCyclicZ dual γ ^ 3 = (γ 0 * γ 1 * γ 2) • 1 := by
@@ -25,6 +28,9 @@ theorem quarticCyclicZ_cube {A : Type*} [CommRing A]
   · exact cyclicZ_cube γ
   · exact cyclicZDual_cube γ
 
+/--
+@isnad1 id=eq.0h6v.s10.1a84d5bf9b06 from=translated src=- shape=49a98c8f vocab=4af92aa9
+-/
 theorem quarticCyclicZ_baseChange {A A' : Type*} [CommRing A] [CommRing A']
     (φ : A →+* A') (dual : Bool) (γ : Fin 3 → A) (m : Fin 3 → A) :
     cyclicVectorBaseChange φ (quarticCyclicZ dual γ m) =
@@ -33,12 +39,18 @@ theorem quarticCyclicZ_baseChange {A A' : Type*} [CommRing A] [CommRing A']
   · exact cyclicZ_baseChange φ γ m
   · exact cyclicZDual_baseChange φ γ m
 
+/--
+@isnad1 id=ne.0h1v.s6.d7fd96ef4dde from=translated src=- shape=5a6c01d0 vocab=1570730e
+-/
 theorem quarticU_binary_ne_zero :
     quarticU (binaryU K) (binaryV K) ≠ 0 := by
   intro h
   have he := congrArg (eval ![1,0]) h
   simp [quarticU, binaryU, binaryV] at he
 
+/--
+@isnad1 id=ne.0h1v.s6.886d34b90e90 from=translated src=- shape=5a6c01d0 vocab=6cdef75d
+-/
 theorem quarticV_binary_ne_zero :
     quarticV (binaryU K) (binaryV K) ≠ 0 := by
   intro h

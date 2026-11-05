@@ -27,11 +27,17 @@ def kernelProductSpace (B : V →ₗ[K] W →ₗ[K] T) (Q : Submodule K V) :
     Submodule K T :=
   Submodule.span K {z | ∃ v ∈ Q, ∃ w, B v w = z}
 
+/--
+@isnad1 id=mem.1h8v.s9.b7ff2b1cec34 from=translated src=- shape=55ecbfdc vocab=7e929603
+-/
 theorem mem_kernelProductSpace (B : V →ₗ[K] W →ₗ[K] T)
     (Q : Submodule K V) {v : V} (hv : v ∈ Q) (w : W) :
     B v w ∈ kernelProductSpace B Q :=
   Submodule.subset_span ⟨v, hv, w, rfl⟩
 
+/--
+@isnad1 id=le.1h7v.s8.156d1fe70916 from=translated src=- shape=ff8df205 vocab=a092291c
+-/
 theorem kernelProductSpace_mono (B : V →ₗ[K] W →ₗ[K] T)
     {P Q : Submodule K V} (h : P ≤ Q) :
     kernelProductSpace B P ≤ kernelProductSpace B Q := by
@@ -46,11 +52,17 @@ def kernelProductMap (B : V →ₗ[K] W →ₗ[K] T) (q : J → V) :
     (J → W) →ₗ[K] T :=
   ∑ j, (B (q j)).comp (LinearMap.proj j)
 
+/--
+@isnad1 id=eq.0h8v.s9.f2a2ecc01c07 from=translated src=- shape=26e60cdd vocab=377b467e
+-/
 theorem kernelProductMap_apply (B : V →ₗ[K] W →ₗ[K] T)
     (q : J → V) (w : J → W) :
     kernelProductMap B q w = ∑ j, B (q j) (w j) := by
   simp [kernelProductMap]
 
+/--
+@isnad1 id=eq.0h9v.s9.9c84b0e153df from=translated src=- shape=a07eaa60 vocab=e6cf2e6e
+-/
 theorem kernelProductMap_single [DecidableEq J] (B : V →ₗ[K] W →ₗ[K] T)
     (q : J → V) (j : J) (w : W) :
     kernelProductMap B q (Pi.single j w) = B (q j) w := by
@@ -61,6 +73,9 @@ theorem kernelProductMap_single [DecidableEq J] (B : V →ₗ[K] W →ₗ[K] T)
     simp [hi]
   · simp
 
+/--
+@isnad1 id=le.1h8v.s8.9677effa9043 from=translated src=- shape=d3e959e8 vocab=fbb32059
+-/
 theorem range_kernelProductMap_le (B : V →ₗ[K] W →ₗ[K] T)
     (q : J → V) (Q : Submodule K V) (hq : ∀ j, q j ∈ Q) :
     LinearMap.range (kernelProductMap B q) ≤ kernelProductSpace B Q := by
@@ -68,7 +83,9 @@ theorem range_kernelProductMap_le (B : V →ₗ[K] W →ₗ[K] T)
   rw [kernelProductMap_apply]
   exact Submodule.sum_mem _ fun j _ => mem_kernelProductSpace B Q (hq j) (w j)
 
-/-- A spanning set in the first factor generates the entire product space.-/
+/-- A spanning set in the first factor generates the entire product space.
+@isnad1 id=eq.1h8v.s8.c5b4dcfb93cc from=translated src=- shape=5eb31842 vocab=99f5c2b4
+-/
 theorem range_kernelProductMap_eq (B : V →ₗ[K] W →ₗ[K] T)
     (q : J → V) (Q : Submodule K V)
     (hq : Submodule.span K (Set.range q) = Q) :
@@ -98,7 +115,9 @@ theorem range_kernelProductMap_eq (B : V →ₗ[K] W →ₗ[K] T)
       rw [map_smul, LinearMap.smul_apply]
       exact Submodule.smul_mem _ c hx
 
-/-- Polynomial first factors give a polynomial family of product maps.-/
+/-- Polynomial first factors give a polynomial family of product maps.
+@isnad1 id=ispolyno.1h8v.s8.09c21688f000 from=translated src=- shape=95ed23bc vocab=7aa04f5c
+-/
 theorem isPolynomialFamily_kernelProductMap [FiniteDimensional K W]
     (B : V →ₗ[K] W →ₗ[K] T)
     (q : J → (ι → K) → V) (hq : ∀ j, IsPolynomialFamily (q j)) :
@@ -110,7 +129,9 @@ theorem isPolynomialFamily_kernelProductMap [FiniteDimensional K W]
   simpa only [kernelProductMap_apply, LinearMap.flip_apply] using h
 
 /-- Polynomial generators that span the witness kernel preserve its product
-dimension on a principal open containing the witness.-/
+dimension on a principal open containing the witness.
+@isnad1 id=ex.3h11v.s10.cc34d06532d0 from=translated src=- shape=4ec057a4 vocab=e397ac92
+-/
 theorem kernelProduct_polynomial_principal_open
     [FiniteDimensional K W] [FiniteDimensional K T]
     (B : V →ₗ[K] W →ₗ[K] T) (E : (ι → K) → (V →ₗ[K] U))
@@ -134,7 +155,9 @@ theorem kernelProduct_polynomial_principal_open
   exact (h a ha).trans (Submodule.finrank_mono hle)
 
 /-- A polynomial map whose image is contained in every kernel and equals the
-witness kernel supplies the polynomial generators automatically.-/
+witness kernel supplies the polynomial generators automatically.
+@isnad1 id=ex.3h11v.s10.4108a3733b12 from=translated src=- shape=c8d4a4f9 vocab=9f25cd3a
+-/
 theorem kernelProduct_range_polynomial_principal_open
     {S : Type*} [AddCommGroup S] [Module K S] [FiniteDimensional K S]
     [FiniteDimensional K W] [FiniteDimensional K T]

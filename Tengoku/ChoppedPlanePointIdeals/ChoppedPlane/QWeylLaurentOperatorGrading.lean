@@ -17,6 +17,9 @@ open LaurentPairing LaurentChartComplex FiniteCech SymmetricDerivative
 
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.1h4v.s10.41eaeb415970 from=translated src=- shape=a0a9e4a8 vocab=7a0be4ac
+-/
 @[simp] theorem chartLaurentU_smul (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (m : Fin 3 → BinaryLaurent K) :
     letI := chartDualModuleStructure (binaryChartLaurentMap (K := K)) q hq s
@@ -28,6 +31,9 @@ variable {K : Type*} [Field K]
   funext i
   simp
 
+/--
+@isnad1 id=eq.1h4v.s10.4068e6cc632a from=translated src=- shape=a0a9e4a8 vocab=6154ba0d
+-/
 @[simp] theorem chartLaurentV_smul (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (m : Fin 3 → BinaryLaurent K) :
     letI := chartDualModuleStructure (binaryChartLaurentMap (K := K)) q hq s
@@ -39,6 +45,9 @@ variable {K : Type*} [Field K]
   funext i
   simp
 
+/--
+@isnad1 id=eq.1h4v.s11.4127c9bb62f1 from=translated src=- shape=78d30b59 vocab=684ee723
+-/
 @[simp] theorem chartLaurentZ_smul (q : K) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (m : Fin 3 → BinaryLaurent K) :
     letI := chartDualModuleStructure (binaryChartLaurentMap (K := K)) q hq s

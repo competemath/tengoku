@@ -23,6 +23,9 @@ variable {K : Type*} [Field K] {ι : Type*}
 def residueCoefficient : BinaryLaurent K →ₗ[K] K :=
   (Finsupp.lapply (-1,-1)).comp (AddMonoidAlgebra.coeffLinearEquiv K).toLinearMap
 
+/--
+@isnad1 id=eq.0h2v.s8.f07a2382ef88 from=translated src=- shape=db52458d vocab=f98b5869
+-/
 @[simp] theorem residueCoefficient_apply (p : BinaryLaurent K) :
     residueCoefficient p = p.coeff (-1,-1) := rfl
 
@@ -35,6 +38,9 @@ def vectorResidueFunctional [Finite ι] (w : ι → K) (q : ι → BinaryLaurent
   exact ∑ i, w i • ((residueCoefficient (K := K)).comp
     ((LinearMap.mulLeft K (q i)).comp (LinearMap.proj i)))
 
+/--
+@isnad1 id=eq.0h5v.s8.ddd3ecf99a16 from=translated src=- shape=cf61d056 vocab=a247fec2
+-/
 theorem vectorResidueFunctional_apply [Fintype ι] (w : ι → K)
     (q p : ι → BinaryLaurent K) :
     vectorResidueFunctional w q p =
@@ -50,7 +56,9 @@ theorem vectorResidueFunctional_apply [Fintype ι] (w : ι → K)
     rfl
 
 /-- A positive coefficient basis vector is its literal Laurent monomial in
-one component of the actual free Laurent module.-/
+one component of the actual free Laurent module.
+@isnad1 id=eq.0h6v.s10.9d37d2d473e8 from=translated src=- shape=21207c66 vocab=e75c5962
+-/
 theorem freeLaurentEquiv_positiveBasis [Finite ι] (g : ι → ℤ) (r : ℤ)
     (e : PositiveIndex g r) (i : ι) :
     freeLaurentEquiv (positiveBasis (K := K) g r e).val i =
@@ -64,7 +72,9 @@ theorem freeLaurentEquiv_positiveBasis [Finite ι] (g : ι → ℤ) (r : ℤ)
     simp [positiveBasis_val, Finsupp.single_apply, Prod.ext_iff, hi]
 
 /-- The literal product residue agrees with the weighted complementary
-coefficient on every actual polynomial basis monomial.-/
+coefficient on every actual polynomial basis monomial.
+@isnad1 id=eq.0h7v.s11.4e844b88e33e from=translated src=- shape=f953eae0 vocab=118d7612
+-/
 theorem vectorResidueFunctional_basis [Finite ι] (g : ι → ℤ) (r : ℤ)
     (w : ι → K) (q : negativeGrade (K := K) g r) (e : PositiveIndex g r) :
     vectorResidueFunctional w (freeLaurentEquiv q.val)
@@ -83,7 +93,9 @@ theorem vectorResidueFunctional_basis [Finite ι] (g : ι → ℤ) (r : ℤ)
     simp [Ne.symm hne]
   · simp
 
-/-- The perfect finite pairing is literally residue of the Laurent product.-/
+/-- The perfect finite pairing is literally residue of the Laurent product.
+@isnad1 id=eq.1h7v.s12.d58e7680e953 from=translated src=- shape=38f92302 vocab=ad8dae70
+-/
 theorem weightedResiduePair_eq_vectorResidue [Finite ι] (g : ι → ℤ) (r : ℤ)
     (w : ι → K) (hw : ∀ i, w i ≠ 0)
     (q : negativeGrade (K := K) g r) (p : positiveGrade (K := K) g r) :
@@ -99,7 +111,9 @@ theorem weightedResiduePair_eq_vectorResidue [Finite ι] (g : ι → ℤ) (r : �
   exact LinearMap.congr_fun h p
 
 /-- Actual Laurent cyclic multiplication and its literal transpose have the
-same residue, including any common coefficient weight.-/
+same residue, including any common coefficient weight.
+@isnad1 id=eq.0h5v.s11.72e4df94062d from=translated src=- shape=6dbfc7c5 vocab=adc50d64
+-/
 theorem vectorResidueFunctional_cyclic_transpose (c : K)
     (γ m q : Fin 3 → BinaryLaurent K) :
     vectorResidueFunctional (fun _ : Fin 3 => c) q (QWeyl.cyclicZ γ m) =

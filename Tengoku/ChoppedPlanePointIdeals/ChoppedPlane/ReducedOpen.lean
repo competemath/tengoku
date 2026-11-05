@@ -35,7 +35,9 @@ variable (A : (ι → K) → Type*)
   (b : ∀ a, Basis κ K (A a))
 
 /-- Specializing the polynomial trace matrix gives the actual trace pairing
-matrix, with the square of any common denominator as scalar factor.-/
+matrix, with the square of any common denominator as scalar factor.
+@isnad1 id=eq.1h8v.s11.c3f2b3e4af2b from=translated src=- shape=ec33bb1b vocab=9913c57b
+-/
 theorem polynomialTraceGram_specialize_scaled
     (M : κ → Matrix κ κ (MvPolynomial ι K))
     (a : ι → K) (h : K)
@@ -54,7 +56,9 @@ theorem polynomialTraceGram_specialize_scaled
   rw [← hm, ← Algebra.trace_eq_matrix_trace (b a), Algebra.traceForm_toMatrix]
 
 /-- The discriminant specializes to the actual trace discriminant multiplied
-by the appropriate even power of the chart denominator.-/
+by the appropriate even power of the chart denominator.
+@isnad1 id=eq.1h8v.s11.5570e6011170 from=translated src=- shape=7af910c5 vocab=32a8b15f
+-/
 theorem polynomialTraceDiscriminant_specialize_scaled
     (M : κ → Matrix κ κ (MvPolynomial ι K))
     (a : ι → K) (h : K)
@@ -67,7 +71,9 @@ theorem polynomialTraceDiscriminant_specialize_scaled
   rw [polynomialTraceGram_specialize_scaled A b M a h hM, Matrix.det_smul]
 
 /-- A split witness gives a nonempty open of reduced algebras when a common
-polynomial denominator clears their multiplication matrices.-/
+polynomial denominator clears their multiplication matrices.
+@isnad1 id=ex.2h9v.s10.228f66769b99 from=translated src=- shape=e823bd81 vocab=3b7024d7
+-/
 theorem reduced_principal_open_of_split_scaled
     (M : κ → Matrix κ κ (MvPolynomial ι K)) (H : MvPolynomial ι K)
     (hM : ∀ a, eval a H ≠ 0 → ∀ i,
@@ -96,7 +102,9 @@ theorem reduced_principal_open_of_split_scaled
     exact isReduced_of_traceForm_det_ne_zero (b a) (mul_ne_zero_iff.mp hGa).2
 
 /-- Polynomial multiplication matrices and a split witness give a nonempty
-principal open of reduced finite algebras.-/
+principal open of reduced finite algebras.
+@isnad1 id=ex.1h8v.s9.fde7acbdeef3 from=translated src=- shape=a7c677fa vocab=9c49e507
+-/
 theorem reduced_principal_open_of_split
     (M : κ → Matrix κ κ (MvPolynomial ι K))
     (hM : ∀ a i, (M i).map (eval a) = Algebra.leftMulMatrix (b a) (b a i))
@@ -111,7 +119,9 @@ theorem reduced_principal_open_of_split
 
 /-- The denominator chart need only carry bases on its own principal open.
 This is the form applicable to quotient algebras whose dimensions can change
-outside the chart.-/
+outside the chart.
+@isnad1 id=ex.2h9v.s10.1a88c7e940a7 from=translated src=- shape=93d7ed01 vocab=3b7024d7
+-/
 theorem reduced_principal_open_of_split_chart
     (M : κ → Matrix κ κ (MvPolynomial ι K)) (H : MvPolynomial ι K)
     (bChart : ∀ a, eval a H ≠ 0 → Basis κ K (A a))

@@ -14,6 +14,9 @@ variable {K V W V' W' : Type*} [Field K]
     [AddCommGroup V] [Module K V] [AddCommGroup W] [Module K W]
     [AddCommGroup V'] [Module K V'] [AddCommGroup W'] [Module K W']
 
+/--
+@isnad1 id=eq.1h11v.s11.4dc1955caaf7 from=translated src=- shape=b944736a vocab=e33b699d
+-/
 theorem operatorDifferential_equiv_apply
     (E : V ≃ₗ[K] V') (F : W ≃ₗ[K] W')
     (T : Fin 3 → V →ₗ[K] W) (T' : Fin 3 → V' →ₗ[K] W')
@@ -29,6 +32,9 @@ theorem operatorDifferential_equiv_apply
   intro i hi
   rw [h]
 
+/--
+@isnad1 id=iff.1h10v.s10.fe1e759cb188 from=translated src=- shape=9033988e vocab=a16a0e8a
+-/
 theorem operatorDifferential_surjective_iff_of_equiv
     (E : V ≃ₗ[K] V') (F : W ≃ₗ[K] W')
     (T : Fin 3 → V →ₗ[K] W) (T' : Fin 3 → V' →ₗ[K] W')

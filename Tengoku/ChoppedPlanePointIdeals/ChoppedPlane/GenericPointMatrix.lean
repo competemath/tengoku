@@ -34,7 +34,9 @@ def ferrersRowMatrix_splitWitness (δ : Fin (c + 1) → ℕ)
   exact Ferrers.affineCofactorQuotientAlgEquiv δ α β hα hβ
 
 /-- Positive total row degree suffices for an unconditional nonempty open of
-primitive matrices with finite reduced affine quotients of the correct length.-/
+primitive matrices with finite reduced affine quotients of the correct length.
+@isnad1 id=ex.1h3v.s15.14ada9984be4 from=translated src=- shape=91bce7b2 vocab=21643aac
+-/
 theorem universalRowMatrix_points_principal_open [Infinite K]
     (δ : Fin (c + 1) → ℕ) (hdegree : 0 < ∑ i, δ i) :
     ∃ D : MvPolynomial (RowMatrixParameter δ) K,
@@ -67,7 +69,9 @@ theorem universalRowMatrix_points_principal_open [Infinite K]
   exact ⟨hprim, hbinary, hcut, hred, hfinite, hlen⟩
 
 /-- Over an algebraically closed field the open gives literal distinct points,
-and the actual point ideal agrees with the cofactor ideal in every degree.-/
+and the actual point ideal agrees with the cofactor ideal in every degree.
+@isnad1 id=ex.1h3v.s14.d5dae822bdd2 from=translated src=- shape=e1483761 vocab=4b7433b1
+-/
 theorem universalRowMatrix_actual_points_principal_open [Infinite K] [IsAlgClosed K]
     (δ : Fin (c + 1) → ℕ) (hdegree : 0 < ∑ i, δ i) :
     ∃ D : MvPolynomial (RowMatrixParameter δ) K,

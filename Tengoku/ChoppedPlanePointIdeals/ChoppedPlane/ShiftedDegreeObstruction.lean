@@ -14,7 +14,9 @@ open MvPolynomial
 variable {K : Type*} [Field K] {n : ℕ} {ι κ : Type*} [Fintype κ]
 
 /-- Row-dependent homogeneous degrees satisfy the same obstruction, including
-negative degree spaces. Polynomial coefficients cannot lower any entry degree.-/
+negative degree spaces. Polynomial coefficients cannot lower any entry degree.
+@isnad1 id=eq.4h9v.s8.15ab942b7541 from=translated src=- shape=edc8e6d0 vocab=7c8ea02c
+-/
 theorem signed_homogeneous_vector_zero_of_lower_degree
     (B : Matrix ι κ (Poly K n)) (δ : ι → κ → ℤ) (t : ι → ℤ)
     (hB : ∀ i j, B i j ∈ signedForms K n (δ i j))
@@ -40,7 +42,9 @@ theorem signed_homogeneous_vector_zero_of_lower_degree
   · simpa only [signedForms, ite_eq_right hi, Submodule.mem_bot, Pi.zero_apply] using hf i
 
 /-- In a free module with component shifts `w`, every generator has total
-degree `degree j`. A homogeneous element of smaller total degree is zero.-/
+degree `degree j`. A homogeneous element of smaller total degree is zero.
+@isnad1 id=eq.4h10v.s8.4721410bd4d8 from=translated src=- shape=6d4fbe37 vocab=dfd4d5d0
+-/
 theorem weighted_homogeneous_vector_zero_of_lower_degree
     (B : Matrix ι κ (Poly K n)) (w : ι → ℤ) (degree : κ → ℤ) (t : ℤ)
     (hB : ∀ i j, B i j ∈ signedForms K n (degree j - w i))

@@ -14,11 +14,16 @@ namespace ChoppedPlane
 open Module MvPolynomial Matrix
 variable {K L ι m n : Type*} [Field K] [Field L] [Fintype m] [Fintype n]
 
+/--
+@isnad1 id=eq.0h5v.s7.da896a38675d from=translated src=- shape=1a8c084a vocab=c542bd71
+-/
 theorem matrix_det_map {R S j : Type*} [CommRing R] [CommRing S]
     [Fintype j] [DecidableEq j] (k : R →+* S) (A : Matrix j j R) :
     (A.map k).det = k A.det := (k.map_det A).symm
 
-/-- A finite matrix over a field has a nonzero minor of size equal to its rank.-/
+/-- A finite matrix over a field has a nonzero minor of size equal to its rank.
+@isnad1 id=ex.0h4v.s7.11bce5974b1c from=translated src=- shape=2f2dd6ff vocab=a320acc7
+-/
 theorem exists_rank_minor (A : Matrix m n K) :
     ∃ (rows : Fin A.rank → m) (cols : Fin A.rank → n),
       (A.submatrix rows cols).det ≠ 0 := by
@@ -46,7 +51,9 @@ theorem exists_rank_minor (A : Matrix m n K) :
     Matrix.linearIndependent_rows_iff_isUnit.mp (hrow.symm ▸ hwli)
   exact (Matrix.isUnit_iff_isUnit_det _).mp hunit |>.ne_zero
 
-/-- The rank of a finite matrix is unchanged by an embedding of fields.-/
+/-- The rank of a finite matrix is unchanged by an embedding of fields.
+@isnad1 id=eq.0h6v.s6.c3b6e47f1c2a from=translated src=- shape=c354fb97 vocab=8c2877d9
+-/
 theorem matrix_rank_map_field (k : K →+* L) (A : Matrix m n K) :
     (A.map k).rank = A.rank := by
   classical
@@ -73,12 +80,18 @@ def polynomialMatrixEval (k : K →+* L) (a : ι → L)
   A.map (eval₂Hom k a)
 
 omit [Fintype m] [Fintype n] in
+/--
+@isnad1 id=eq.0h11v.s7.79f59b66a30b from=translated src=- shape=1ce6c4c8 vocab=628eb0f7
+-/
 theorem polynomialMatrixEval_submatrix {r : ℕ} (k : K →+* L) (a : ι → L)
     (A : Matrix m n (MvPolynomial ι K)) (rows : Fin r → m) (cols : Fin r → n) :
     (polynomialMatrixEval k a A).submatrix rows cols =
       (A.submatrix rows cols).map (eval₂Hom k a) := rfl
 
 omit [Fintype m] [Fintype n] in
+/--
+@isnad1 id=eq.0h8v.s7.c1be2ffcd2bb from=translated src=- shape=703cf35e vocab=975c760b
+-/
 theorem polynomialMatrixEval_map_parameter (k : K →+* L) (a : ι → K)
     (A : Matrix m n (MvPolynomial ι K)) :
     polynomialMatrixEval k (k ∘ a) A =
@@ -87,7 +100,9 @@ theorem polynomialMatrixEval_map_parameter (k : K →+* L) (a : ι → K)
   exact (eval₂_comp k a (A i j)).symm
 
 /-- At parameters over the original field, evaluation rank is unchanged
-after passing to the extension field.-/
+after passing to the extension field.
+@isnad1 id=eq.0h8v.s7.781c3654ab6e from=translated src=- shape=c0d06f8a vocab=7f52722b
+-/
 theorem polynomialMatrixEval_rank_map_parameter (k : K →+* L) (a : ι → K)
     (A : Matrix m n (MvPolynomial ι K)) :
     (polynomialMatrixEval k (k ∘ a) A).rank =
@@ -95,7 +110,9 @@ theorem polynomialMatrixEval_rank_map_parameter (k : K →+* L) (a : ι → K)
   rw [polynomialMatrixEval_map_parameter, matrix_rank_map_field]
 
 /-- A rank witnessed over an extension field holds on a nonempty principal
-open over the original infinite field. No extension parameter has to descend.-/
+open over the original infinite field. No extension parameter has to descend.
+@isnad1 id=ex.0h8v.s8.698e11f975ce from=translated src=- shape=233af233 vocab=d437a4a6
+-/
 theorem polynomial_matrix_rank_descent [Infinite K] (k : K →+* L)
     (A : Matrix m n (MvPolynomial ι K)) (a₀ : ι → L) :
     ∃ D : MvPolynomial ι K, (∃ a : ι → K, eval a D ≠ 0) ∧
@@ -125,7 +142,9 @@ theorem polynomial_matrix_rank_descent [Infinite K] (k : K →+* L)
 omit [Fintype m] [Fintype n] in
 /-- Finitely many ranks witnessed over an extension field descend together
 to one nonempty principal open, while retaining any prescribed original
-nonempty principal-open condition. The matrix sizes may vary with the index.-/
+nonempty principal-open condition. The matrix sizes may vary with the index.
+@isnad1 id=ex.1h10v.s9.a652be843b13 from=translated src=- shape=e625303f vocab=d437a4a6
+-/
 theorem polynomial_matrix_ranks_descent [Infinite K]
     {J : Type*} [Fintype J] {rows cols : J → Type*}
     [∀ j, Fintype (rows j)] [∀ j, Fintype (cols j)]
@@ -160,7 +179,9 @@ def matrixKernelChart {R : Type*} [CommRing R] [DecidableEq m] [DecidableEq n]
   (E * S).det • 1 - S * (E * S).adjugate * E
 
 /-- A surjective parameter over the original field supplies a constant
-polynomial right-inverse matrix whose chart determinant equals one there.-/
+polynomial right-inverse matrix whose chart determinant equals one there.
+@isnad1 id=ex.1h6v.s9.a87519b2f9dd from=translated src=- shape=be3f74c0 vocab=b6f84dfc
+-/
 theorem exists_matrix_kernel_chart [DecidableEq m] [DecidableEq n]
     (E : Matrix m n (MvPolynomial ι K)) (a₀ : ι → K)
     (hsurj : Function.Surjective (polynomialMatrixEval (RingHom.id K) a₀ E).mulVecLin) :
@@ -186,7 +207,9 @@ theorem exists_matrix_kernel_chart [DecidableEq m] [DecidableEq n]
   rw [hprod, Matrix.det_one]
 
 /-- Wherever the chart determinant is nonzero, the adjugate chart spans exactly
-the kernel and the original map is surjective, over any field.-/
+the kernel and the original map is surjective, over any field.
+@isnad1 id=and.1h5v.s9.1280359e19ea from=translated src=- shape=1b9aec43 vocab=ebd43af1
+-/
 theorem matrixKernelChart_range_ker [DecidableEq m] [DecidableEq n]
     (E : Matrix m n K) (S : Matrix n m K) (hdet : (E * S).det ≠ 0) :
     LinearMap.range (matrixKernelChart E S).mulVecLin = LinearMap.ker E.mulVecLin ∧
@@ -219,7 +242,9 @@ theorem matrixKernelChart_range_ker [DecidableEq m] [DecidableEq n]
     rw [map_smul, hright, smul_smul, inv_mul_cancel₀ hdet, one_smul]
 
 /-- The kernel chart formula commutes with evaluation in every coefficient
-field extension.-/
+field extension.
+@isnad1 id=eq.0h9v.s7.29849a07af77 from=translated src=- shape=3d00dbde vocab=90e0dfaa
+-/
 theorem polynomialMatrixEval_kernelChart [DecidableEq m] [DecidableEq n]
     (k : K →+* L) (a : ι → L)
     (E : Matrix m n (MvPolynomial ι K)) (S : Matrix n m (MvPolynomial ι K)) :
@@ -241,7 +266,9 @@ theorem polynomialMatrixEval_kernelChart [DecidableEq m] [DecidableEq n]
   rfl
 
 /-- The universal polynomial chart remains a kernel chart over any field
-extension, on the original determinant open.-/
+extension, on the original determinant open.
+@isnad1 id=and.1h9v.s9.ede24a1ffa7a from=translated src=- shape=66c9b29f vocab=311354d8
+-/
 theorem polynomial_kernel_chart_baseChange [DecidableEq m] [DecidableEq n]
     (k : K →+* L) (a : ι → L)
     (E : Matrix m n (MvPolynomial ι K)) (S : Matrix n m (MvPolynomial ι K))

@@ -28,29 +28,47 @@ def factorialWeightNat (s : Fin 3 →₀ ℕ) : ℕ :=
 def factorialWeight (K : Type*) [CommSemiring K] (s : Fin 3 →₀ ℕ) : K :=
   ∏ i : Fin 3, ((s i).factorial : K)
 
+/--
+@isnad1 id=eq.0h0v.s5.ced233b9b92e from=translated src=- shape=0703c490 vocab=74c72c98
+-/
 @[simp] theorem factorialWeightNat_zero : factorialWeightNat 0 = 1 := by
   simp [factorialWeightNat]
 
+/--
+@isnad1 id=eq.0h1v.s5.93a980ced9bc from=translated src=- shape=966d00ae vocab=3c4e0bdc
+-/
 @[simp] theorem factorialWeight_zero (K : Type*) [CommSemiring K] :
     factorialWeight K 0 = 1 := by
   simp [factorialWeight]
 
+/--
+@isnad1 id=eq.0h2v.s5.4505d321e6e1 from=translated src=- shape=2747c268 vocab=7c58d63e
+-/
 @[simp] theorem factorialWeight_eq_cast (K : Type*) [CommSemiring K]
     (s : Fin 3 →₀ ℕ) :
     factorialWeight K s = (factorialWeightNat s : K) := by
   simp [factorialWeight, factorialWeightNat]
 
+/--
+@isnad1 id=ne.0h1v.s4.c943c3e2c459 from=translated src=- shape=3f887cf3 vocab=74c72c98
+-/
 theorem factorialWeightNat_ne_zero (s : Fin 3 →₀ ℕ) :
     factorialWeightNat s ≠ 0 := by
   apply Finset.prod_ne_zero_iff.mpr
   intro i hi
   exact Nat.factorial_ne_zero (s i)
 
+/--
+@isnad1 id=ne.0h2v.s5.81d0bfbc9795 from=translated src=- shape=6bd4be8d vocab=572fc446
+-/
 theorem factorialWeight_ne_zero (K : Type*) [CommSemiring K] [CharZero K]
     (s : Fin 3 →₀ ℕ) : factorialWeight K s ≠ 0 := by
   rw [factorialWeight_eq_cast]
   exact_mod_cast factorialWeightNat_ne_zero s
 
+/--
+@isnad1 id=eq.0h2v.s7.0c4d03866656 from=translated src=- shape=3f4709ac vocab=66275fa8
+-/
 theorem factorialWeightNat_add_single (s : Fin 3 →₀ ℕ) (i : Fin 3) :
     factorialWeightNat (s + Finsupp.single i 1) = (s i + 1) * factorialWeightNat s := by
   classical
@@ -71,7 +89,9 @@ theorem factorialWeightNat_add_single (s : Fin 3 →₀ ℕ) (i : Fin 3) :
   rw [hprod]
   simp [Nat.factorial_succ, mul_assoc]
 
-/-- Increasing one exponent multiplies its weight by the new exponent.-/
+/-- Increasing one exponent multiplies its weight by the new exponent.
+@isnad1 id=eq.0h3v.s7.04a470c2866b from=translated src=- shape=ecd2352a vocab=c5de9cff
+-/
 theorem factorialWeight_add_single (K : Type*) [CommSemiring K]
     (s : Fin 3 →₀ ℕ) (i : Fin 3) :
     factorialWeight K (s + Finsupp.single i 1) =
@@ -79,14 +99,18 @@ theorem factorialWeight_add_single (K : Type*) [CommSemiring K]
   rw [factorialWeight_eq_cast, factorialWeightNat_add_single, Nat.cast_mul,
     factorialWeight_eq_cast]
 
-/-- A commuted form convenient for weighted coefficient calculations.-/
+/-- A commuted form convenient for weighted coefficient calculations.
+@isnad1 id=eq.0h3v.s7.4850100bdee4 from=translated src=- shape=9f3b6cca vocab=c5de9cff
+-/
 theorem factorialWeight_add_single_comm (K : Type*) [CommSemiring K]
     (s : Fin 3 →₀ ℕ) (i : Fin 3) :
     factorialWeight K (s + Finsupp.single i 1) =
       factorialWeight K s * ((s i + 1 : ℕ) : K) := by
   rw [factorialWeight_add_single, mul_comm]
 
-/-- Factorial-weighted partial derivative coefficients have no scalar factor.-/
+/-- Factorial-weighted partial derivative coefficients have no scalar factor.
+@isnad1 id=eq.0h4v.s9.9cac7e1db7ce from=translated src=- shape=776be462 vocab=b43a3699
+-/
 theorem factorialWeight_mul_coeff_pderiv (K : Type*) [CommSemiring K]
     (s : Fin 3 →₀ ℕ) (i : Fin 3) (f : MvPolynomial (Fin 3) K) :
     factorialWeight K s * (pderiv i f).coeff s =
@@ -97,7 +121,9 @@ theorem factorialWeight_mul_coeff_pderiv (K : Type*) [CommSemiring K]
   ring
 
 /-- On monomials, multiplication by a variable and partial differentiation
-have transposed matrix entries for the factorial-weighted coefficient pairing.-/
+have transposed matrix entries for the factorial-weighted coefficient pairing.
+@isnad1 id=eq.0h4v.s9.f4b2345146da from=translated src=- shape=c6123901 vocab=1b430606
+-/
 theorem factorialWeight_pderiv_monomial_pair (K : Type*) [CommSemiring K]
     (s b : Fin 3 →₀ ℕ) (i : Fin 3) :
     factorialWeight K s *

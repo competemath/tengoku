@@ -17,7 +17,9 @@ variable {V W P Q : Type*} [AddCommGroup V] [Module K V]
   [AddCommGroup W] [Module K W] [AddCommGroup P] [Module K P]
   [AddCommGroup Q] [Module K Q]
 
-/-- Actual coefficient projection after three-operator differentiation.-/
+/-- Actual coefficient projection after three-operator differentiation.
+@isnad1 id=eq.0h10v.s10.89266ef8a2e9 from=translated src=- shape=eef7b532 vocab=2f39e013
+-/
 theorem operatorDifferential_project (T : Fin 3 → V →ₗ[K] W)
     (ι : P →ₗ[K] V) (ρ : W →ₗ[K] Q) (t : ℕ) (p : Sym (Fin 3) (t + 1) → P) :
     operatorDifferential (fun i => ρ.comp ((T i).comp ι)) t p =
@@ -25,7 +27,9 @@ theorem operatorDifferential_project (T : Fin 3 → V →ₗ[K] W)
   funext s
   simp only [operatorDifferential_coeff, map_sum, map_smul, LinearMap.comp_apply]
 
-/-- Actual coefficient projection after three-operator auxiliary multiplication.-/
+/-- Actual coefficient projection after three-operator auxiliary multiplication.
+@isnad1 id=eq.0h10v.s10.594c1c36e6b8 from=translated src=- shape=74dafac0 vocab=bde3c77b
+-/
 theorem auxiliaryOperatorMultiply_project (T : Fin 3 → V →ₗ[K] W)
     (ι : P →ₗ[K] V) (ρ : W →ₗ[K] Q) (t : ℕ) (p : Sym (Fin 3) t → P) :
     auxiliaryOperatorMultiply (fun i => ρ.comp ((T i).comp ι)) t p =
@@ -38,7 +42,9 @@ variable {R : Type*} [CommRing R] [Algebra K R]
 variable {M : Type*} [AddCommGroup M] [Module R M] [Module K M] [IsScalarTower K R M]
 
 /-- A literal projected finite tensor multiplication is its projected
-scalar-action auxiliary coefficient operator.-/
+scalar-action auxiliary coefficient operator.
+@isnad1 id=eq.0h10v.s10.5dfdfbaf4ae9 from=translated src=- shape=ca70f381 vocab=eb05f281
+-/
 theorem finiteMultiply_project (f : Fin 3 → R) (ι : P →ₗ[K] M) (ρ : M →ₗ[K] Q)
     (t : ℕ) (p : Sym (Fin 3) t → P) :
     auxiliaryOperatorMultiply (fun i => ρ.comp ((scalarAction (K := K) (f i)).comp ι)) t p =

@@ -18,11 +18,16 @@ def ferrersSeedRowMatrix (δ : Fin (c + 1) → ℕ)
   fun i j => ⟨Ferrers.seedMatrix δ α β i j,
     Ferrers.seedMatrix_homogeneous δ α β i j⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.feb0fef40080 from=translated src=- shape=6bed8cbd vocab=5f2e4453
+-/
 @[simp] theorem rowMatrixVal_ferrersSeedRowMatrix (δ : Fin (c + 1) → ℕ)
     (α β : Ferrers.RootIndex δ → K) :
     rowMatrixVal δ (ferrersSeedRowMatrix δ α β) = Ferrers.seedMatrix δ α β := rfl
 
-/-- The infinity degree-cut open is nonempty at every Ferrers specialization.-/
+/-- The infinity degree-cut open is nonempty at every Ferrers specialization.
+@isnad1 id=ex.0h5v.s10.261fd9a65b08 from=translated src=- shape=b5ef5961 vocab=fe1a5147
+-/
 theorem ferrers_universalInfinity_degree_cut_principal_open
     (δ : Fin (c + 1) → ℕ) (α β : Ferrers.RootIndex δ → K) :
     ∃ D : MvPolynomial (RowMatrixParameter δ) K,

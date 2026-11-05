@@ -23,6 +23,9 @@ def chartEvaluationPolynomial {p d : ℕ} (f : Forms K 3 d) (i : Fin p) :
     MvPolynomial (Fin p × Fin 2) K :=
   eval₂ C ![X (i, 0), X (i, 1), 1] f.val
 
+/--
+@isnad1 id=eq.0h6v.s11.bb3965a01d56 from=translated src=- shape=a0695b56 vocab=806eb9fe
+-/
 @[simp] theorem eval_chartEvaluationPolynomial {p d : ℕ} (f : Forms K 3 d)
     (i : Fin p) (a : PointCoordinates K p) :
     eval a (chartEvaluationPolynomial f i) = pointEvaluation K a d f i := by
@@ -34,7 +37,9 @@ def chartEvaluationPolynomial {p d : ℕ} (f : Forms K 3 d) (i : Fin p) :
   funext j
   fin_cases j <;> simp [chartPoint]
 
-/-- Point evaluation depends polynomially on the actual chart coefficients.-/
+/-- Point evaluation depends polynomially on the actual chart coefficients.
+@isnad1 id=ispolyno.0h3v.s10.b4d8a56a3c13 from=translated src=- shape=adcb3ff0 vocab=57a9dd29
+-/
 theorem pointEvaluation_isPolynomialFamily (p d : ℕ) :
     IsPolynomialFamily (fun a : PointCoordinates K p => pointEvaluation K a d) := by
   apply isPolynomialFamily_linearMap
@@ -54,7 +59,9 @@ theorem pointEvaluation_isPolynomialFamily (p d : ℕ) :
   exact heq ▸ hs
 
 /-- The expected Hilbert function in any fixed degree holds on a genuine
-nonempty determinant open of the chart configuration space.-/
+nonempty determinant open of the chart configuration space.
+@isnad1 id=ex.0h3v.s8.8d72d9882f49 from=translated src=- shape=5894fcb3 vocab=ca41b51c
+-/
 theorem generic_pointHilbertFunction_at [Infinite K] (p d : ℕ) :
     ∃ D : MvPolynomial (Fin p × Fin 2) K,
       (∃ a : PointCoordinates K p, eval a D ≠ 0) ∧
@@ -69,7 +76,9 @@ theorem generic_pointHilbertFunction_at [Infinite K] (p d : ℕ) :
   exact hl
 
 /-- Multiplication by the chart coordinate `z` preserves evaluation and
-propagates surjectivity to every higher degree.-/
+propagates surjectivity to every higher degree.
+@isnad1 id=surjecti.2h5v.s12.a91707c22443 from=translated src=- shape=911edc95 vocab=80ce7f78
+-/
 theorem pointEvaluation_surjective_above {p q t : ℕ} (a : PointCoordinates K p)
     (hqt : q ≤ t) (h : Function.Surjective (pointEvaluation K a q)) :
     Function.Surjective (pointEvaluation K a t) := by
@@ -83,7 +92,9 @@ theorem pointEvaluation_surjective_above {p q t : ℕ} (a : PointCoordinates K p
   change eval (chartPoint K a i) (f.val * X 2 ^ (t - q)) = y i
   simpa [chartPoint] using congrFun hf i
 
-/-- An evaluation rank equal to the point count means the map is surjective.-/
+/-- An evaluation rank equal to the point count means the map is surjective.
+@isnad1 id=surjecti.1h4v.s11.32cd364134a2 from=translated src=- shape=a30c0f03 vocab=909e067c
+-/
 theorem pointEvaluation_surjective_of_hilbert_eq {p q : ℕ} (a : PointCoordinates K p)
     (h : pointHilbertFunction K a q = p) :
     Function.Surjective (pointEvaluation K a q) := by
@@ -91,7 +102,9 @@ theorem pointEvaluation_surjective_of_hilbert_eq {p q : ℕ} (a : PointCoordinat
   apply Submodule.eq_top_of_finrank_eq
   simpa [pointHilbertFunction_eq_rank, Module.finrank_pi_fintype] using h
 
-/-- Surjective evaluation gives the constant point count in every higher degree.-/
+/-- Surjective evaluation gives the constant point count in every higher degree.
+@isnad1 id=eq.2h5v.s5.42cb146e459b from=translated src=- shape=5bf30e5b vocab=7860002c
+-/
 theorem pointHilbertFunction_constant_above {p q t : ℕ} (a : PointCoordinates K p)
     (hqt : q ≤ t) (h : pointHilbertFunction K a q = p) :
     pointHilbertFunction K a t = p := by
@@ -100,7 +113,9 @@ theorem pointHilbertFunction_constant_above {p q t : ℕ} (a : PointCoordinates 
       (pointEvaluation_surjective_of_hilbert_eq a h)), finrank_top]
   simp
 
-/-- An explicit degree sufficient for interpolation of any `p` points.-/
+/-- An explicit degree sufficient for interpolation of any `p` points.
+@isnad1 id=le.0h1v.s4.d365f578fda4 from=translated src=- shape=e9b79378 vocab=8264a478
+-/
 theorem point_count_le_forms (p : ℕ) : p ≤ (p + 2).choose 2 := by
   induction p with
   | zero => omega
@@ -115,7 +130,9 @@ def distinctnessPolynomial (K : Type*) [Field K] (p : ℕ) :
     MvPolynomial (Fin p × Fin 2) K :=
   ∏ ij : {ij : Fin p × Fin p // ij.1 < ij.2}, (X (ij.val.1, 0) - X (ij.val.2, 0))
 
-/-- The displayed configuration condition is genuinely nonempty.-/
+/-- The displayed configuration condition is genuinely nonempty.
+@isnad1 id=ex.0h2v.s7.0640e576d294 from=translated src=- shape=dc342a88 vocab=88ab84ea
+-/
 theorem distinctnessPolynomial_nonempty [CharZero K] (p : ℕ) :
     ∃ a : PointCoordinates K p, eval a (distinctnessPolynomial K p) ≠ 0 := by
   classical
@@ -127,7 +144,9 @@ theorem distinctnessPolynomial_nonempty [CharZero K] (p : ℕ) :
   apply sub_ne_zero.mpr
   exact_mod_cast (ne_of_lt ij.property : ij.val.1.val ≠ ij.val.2.val)
 
-/-- Nonvanishing of the separation polynomial guarantees distinct projective points.-/
+/-- Nonvanishing of the separation polynomial guarantees distinct projective points.
+@isnad1 id=distinct.1h3v.s7.3948d856239b from=translated src=- shape=39bd6dd9 vocab=49f51ec0
+-/
 theorem distinctPoints_of_polynomial_ne_zero {p : ℕ} (a : PointCoordinates K p)
     (h : eval a (distinctnessPolynomial K p) ≠ 0) : DistinctPoints K a := by
   classical
@@ -144,7 +163,9 @@ theorem distinctPoints_of_polynomial_ne_zero {p : ℕ} (a : PointCoordinates K p
   · exact hall ⟨(j, i), hgt⟩ (by simp [heq])
 
 /-- One nonempty principal open gives distinct points and the expected point
-Hilbert function in every degree simultaneously.-/
+Hilbert function in every degree simultaneously.
+@isnad1 id=ex.0h2v.s8.5c37692e2966 from=translated src=- shape=3598bf92 vocab=d2bf2d7c
+-/
 theorem generic_pointHilbertFunction [CharZero K] (p : ℕ) :
     ∃ D : MvPolynomial (Fin p × Fin 2) K,
       (∃ a : PointCoordinates K p, eval a D ≠ 0) ∧

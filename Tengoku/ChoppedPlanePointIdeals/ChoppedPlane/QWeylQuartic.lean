@@ -21,10 +21,16 @@ def weightedVectorBaseChange (φ : A →+* A') (ρ : Fin 3 → A') :
   map_add' m n := by funext i; simp [add_mul]
   map_smul' a m := by funext i; simp [mul_assoc]
 
+/--
+@isnad1 id=eq.0h6v.s8.89c0997b76a5 from=translated src=- shape=0bfa03dc vocab=00d655e7
+-/
 @[simp] theorem weightedVectorBaseChange_apply (φ : A →+* A')
     (ρ : Fin 3 → A') (m : Fin 3 → A) (i : Fin 3) :
     weightedVectorBaseChange φ ρ m i = φ (m i) * ρ i := rfl
 
+/--
+@isnad1 id=injectiv.2h4v.s8.d86aecf2d29e from=translated src=- shape=abd12317 vocab=9d190c48
+-/
 theorem weightedVectorBaseChange_injective [IsDomain A']
     (φ : A →+* A') (hφ : Function.Injective φ) (ρ : Fin 3 → A')
     (hρ : ∀ i, ρ i ≠ 0) : Function.Injective (weightedVectorBaseChange φ ρ) := by
@@ -36,6 +42,9 @@ theorem weightedVectorBaseChange_injective [IsDomain A']
 /-- Next component in the cyclic order.-/
 def cyclicNext : Fin 3 → Fin 3 := ![1, 2, 0]
 
+/--
+@isnad1 id=eq.1h8v.s10.b526e3166f9d from=translated src=- shape=71b6886e vocab=f28a5cba
+-/
 theorem weightedVectorBaseChange_cyclicZ
     (φ : A →+* A') (γ : Fin 3 → A) (γ' ρ : Fin 3 → A') (H : A')
     (h : ∀ i, φ (γ i) * ρ (cyclicNext i) = H * γ' i * ρ i)
@@ -66,6 +75,9 @@ theorem weightedVectorBaseChange_cyclicZ
       _ = (φ (γ 1) * ρ 2) * φ (m 1) := by ring
       _ = _ := by rw [h1]; ring
 
+/--
+@isnad1 id=eq.1h8v.s10.2cf173bb45e3 from=translated src=- shape=700a8a8f vocab=6d0e5cac
+-/
 theorem weightedVectorBaseChange_cyclicZDual
     (φ : A →+* A') (γ : Fin 3 → A) (γ' ρ : Fin 3 → A') (H : A')
     (h : ∀ i, φ (γ i) * ρ i = H * γ' i * ρ (cyclicNext i))
@@ -116,12 +128,18 @@ def cyclicScaledBaseChangeHom (φ : A →+* A') (F : A) (F' H : A')
       rw [mul_pow, cyclicRoot_cube, hF, map_mul, map_pow]
       ring)
 
+/--
+@isnad1 id=eq.1h6v.s9.d22c7dee290f from=translated src=- shape=4c76313c vocab=d40ee50f
+-/
 @[simp] theorem cyclicScaledBaseChangeHom_root (φ : A →+* A') (F : A) (F' H : A')
     (hF : φ F = F' * H ^ 3) :
     cyclicScaledBaseChangeHom φ F F' H hF (cyclicRoot F) =
       cyclicCoefficientHom F' H * cyclicRoot F' := by
   simp [cyclicScaledBaseChangeHom, cyclicRoot]
 
+/--
+@isnad1 id=eq.1h7v.s9.a7316b7cb739 from=translated src=- shape=887dc5a6 vocab=c9432902
+-/
 @[simp] theorem cyclicScaledBaseChangeHom_coefficient
     (φ : A →+* A') (F : A) (F' H : A') (hF : φ F = F' * H ^ 3) (a : A) :
     cyclicScaledBaseChangeHom φ F F' H hF (cyclicCoefficientHom F a) =
@@ -129,7 +147,9 @@ def cyclicScaledBaseChangeHom (φ : A →+* A') (F : A) (F' H : A')
   simp [cyclicScaledBaseChangeHom, cyclicCoefficientHom]
 
 /-- Polynomial evaluation after the scaled extension is evaluation at the
-scaled endomorphism.-/
+scaled endomorphism.
+@isnad1 id=eq.2h8v.s12.aba26fa6649f from=translated src=- shape=b484cab8 vocab=52e6f85f
+-/
 theorem cyclicActionHom_scaledBaseChange_polynomial
     (φ : A →+* A') (F : A) (F' H : A') (hF : φ F = F' * H ^ 3)
     (Z' : Module.End A' (Fin 3 → A')) (hZ' : Z' ^ 3 = F' • 1)
@@ -145,7 +165,9 @@ theorem cyclicActionHom_scaledBaseChange_polynomial
       cyclicActionHom_coefficient, cyclicActionHom_root,
       Algebra.algebraMap_eq_smul_one]
 
-/-- The weighted coefficient map intertwines the genuine cubic actions.-/
+/-- The weighted coefficient map intertwines the genuine cubic actions.
+@isnad1 id=eq.4h11v.s12.b9015f338362 from=translated src=- shape=355565fd vocab=eca87bfd
+-/
 theorem cyclicActionHom_scaledBaseChange
     (φ : A →+* A') (F : A) (F' H : A') (hF : φ F = F' * H ^ 3)
     (T : (Fin 3 → A) →ₛₗ[φ] (Fin 3 → A'))
@@ -183,6 +205,9 @@ def cyclicModuleScaledBaseChange
       map_smul' := fun r m =>
         cyclicActionHom_scaledBaseChange φ F F' H hF T Z Z' hZ hZ' hT r m }
 
+/--
+@isnad1 id=eq.4h10v.s12.bbe609e75817 from=translated src=- shape=d15a8f9a vocab=a04673e5
+-/
 @[simp] theorem cyclicModuleScaledBaseChange_apply
     (φ : A →+* A') (F : A) (F' H : A') (hF : φ F = F' * H ^ 3)
     (T : (Fin 3 → A) →ₛₗ[φ] (Fin 3 → A'))
@@ -214,6 +239,9 @@ def profileDualPullbackWeights (u v q : A) : CubicProfile → Fin 3 → A
   | .degreeOne => ![(u-v)^2*(u-q*v)*(u-q^2*v)^2,
       (u-v)*(u-q^2*v), (u-q*v)^2]
 
+/--
+@isnad1 id=eq.1h6v.s8.9d36383df7ee from=translated src=- shape=76781b7e vocab=cf99f3cb
+-/
 theorem profilePullbackWeights_intertwine (u v q : A) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (i : Fin 3) :
     cyclicProfileCoefficients (quarticU u v) (quarticV u v) q s i *
@@ -253,6 +281,9 @@ theorem profilePullbackWeights_intertwine (u v q : A) (hq : q ^ 2 + q + 1 = 0)
     · convert h.2.2.symm using 1 <;>
         dsimp [cyclicProfileCoefficients, profilePullbackWeights, cyclicNext] <;> ring
 
+/--
+@isnad1 id=eq.1h6v.s8.0b2569e63da4 from=translated src=- shape=c257a356 vocab=161d35bb
+-/
 theorem profileDualPullbackWeights_intertwine (u v q : A) (hq : q ^ 2 + q + 1 = 0)
     (s : CubicProfile) (i : Fin 3) :
     cyclicProfileCoefficients (quarticU u v) (quarticV u v) q s i *

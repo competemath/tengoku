@@ -33,6 +33,9 @@ def positiveRowColumns (r a : ℕ) : ℕ := r + a - 1
 def positiveRowProfile (r a : ℕ) : Fin (positiveRowColumns r a + 1) → ℕ :=
   fun i => if i.val < r then 2 else 1
 
+/--
+@isnad1 id=eq.1h2v.s5.484ee01d62fd from=translated src=- shape=f43758c0 vocab=d3d73ecb
+-/
 theorem positiveRowColumns_rows (r a : ℕ) (hr : 0 < r) :
     positiveRowColumns r a + 1 = r + a := by
   unfold positiveRowColumns
@@ -44,9 +47,15 @@ def positiveLinearRowIndex {r a : ℕ} (hr : 0 < r) (i : Fin a) :
       have h := positiveRowColumns_rows r a hr
       omega⟩
 
+/--
+@isnad1 id=eq.1h3v.s5.e9f68714d890 from=translated src=- shape=acc24d07 vocab=e76e6ad1
+-/
 @[simp] theorem positiveLinearRowIndex_val {r a : ℕ} (hr : 0 < r) (i : Fin a) :
     (positiveLinearRowIndex hr i).val = r + i.val := rfl
 
+/--
+@isnad1 id=eq.1h3v.s5.094c53d06340 from=translated src=- shape=d086f84a vocab=b19df4fa
+-/
 @[simp] theorem positiveRowProfile_linear {r a : ℕ} (hr : 0 < r) (i : Fin a) :
     positiveRowProfile r a (positiveLinearRowIndex hr i) = 1 := by
   simp [positiveRowProfile, positiveLinearRowIndex]
@@ -61,6 +70,9 @@ def positiveLinearBlock {r a : ℕ} (hr : 0 < r) :
   map_add' B C := by funext i j; apply Subtype.ext; rfl
   map_smul' k B := by funext i j; apply Subtype.ext; rfl
 
+/--
+@isnad1 id=eq.1h6v.s12.f78df6f894b0 from=translated src=- shape=d48dff94 vocab=3365a83f
+-/
 @[simp] theorem positiveLinearBlock_val {r a : ℕ} (hr : 0 < r)
     (B : HomogeneousRowMatrix K (positiveRowProfile r a))
     (i : Fin a) (j : Fin (positiveRowColumns r a)) :
@@ -81,6 +93,9 @@ def positiveRowLift {r a : ℕ} (hr : 0 < r)
         omega⟩ j).property
       simpa only [positiveRowProfile, hi, ite_false] using hf⟩
 
+/--
+@isnad1 id=eq.1h4v.s12.adacb5c89506 from=translated src=- shape=331b279a vocab=55228893
+-/
 @[simp] theorem positiveLinearBlock_lift {r a : ℕ} (hr : 0 < r)
     (L : LinearMatrix K a (positiveRowColumns r a)) :
     positiveLinearBlock hr (positiveRowLift hr L) = L := by
@@ -89,6 +104,9 @@ def positiveRowLift {r a : ℕ} (hr : 0 < r)
   change (positiveRowLift hr L (positiveLinearRowIndex hr i) j).val = (L i j).val
   simp [positiveRowLift, positiveLinearRowIndex]
 
+/--
+@isnad1 id=surjecti.1h3v.s12.4a077047c7c3 from=translated src=- shape=112645f8 vocab=8cd7071c
+-/
 theorem positiveLinearBlock_surjective {r a : ℕ} (hr : 0 < r) :
     Function.Surjective (positiveLinearBlock (K := K) (a := a) hr) := by
   intro L
@@ -100,11 +118,17 @@ def universalPositiveLinearBlock {r a : ℕ} (hr : 0 < r) :
       LinearMatrix K a (positiveRowColumns r a) :=
   (positiveLinearBlock hr).comp (universalRowMatrix (positiveRowProfile r a))
 
+/--
+@isnad1 id=ispolyno.1h3v.s11.158c5d6cb187 from=translated src=- shape=c76343fc vocab=3c9901ff
+-/
 theorem universalPositiveLinearBlock_isPolynomialFamily {r a : ℕ} (hr : 0 < r) :
     IsPolynomialFamily (universalPositiveLinearBlock (K := K) (a := a) hr) := by
   classical
   exact isPolynomialFamily_linear _
 
+/--
+@isnad1 id=surjecti.1h3v.s11.63d301068a7d from=translated src=- shape=19250dbb vocab=d6c0a888
+-/
 theorem universalPositiveLinearBlock_surjective {r a : ℕ} (hr : 0 < r) :
     Function.Surjective (universalPositiveLinearBlock (K := K) (a := a) hr) := by
   intro L
@@ -113,7 +137,9 @@ theorem universalPositiveLinearBlock_surjective {r a : ℕ} (hr : 0 < r) :
     (universalRowMatrix _ (rowMatrixCoordinates _ (positiveRowLift hr L))) = L
   rw [universalRowMatrix_coordinates, positiveLinearBlock_lift]
 
-/-- A genuine matrix witness gives an all-twist open in the full row parameter space.-/
+/-- A genuine matrix witness gives an all-twist open in the full row parameter space.
+@isnad1 id=ex.2h3v.s11.97fa10907396 from=translated src=- shape=0a637feb vocab=20cee574
+-/
 theorem positiveRow_linearBlock_allTwists_open {r a : ℕ} (hr : 2 ≤ r)
     (hw : ∃ L : LinearMatrix K a (positiveRowColumns r a),
       ∀ t, LinearMatrixMaximalRank L t) :
@@ -126,6 +152,9 @@ theorem positiveRow_linearBlock_allTwists_open {r a : ℕ} (hr : 2 ≤ r)
     (universalPositiveLinearBlock_isPolynomialFamily _)
     (universalPositiveLinearBlock_surjective _) (by unfold positiveRowColumns; omega) hw
 
+/--
+@isnad1 id=eq.1h2v.s6.24ce464aeb52 from=translated src=- shape=c9fe433d vocab=92922a09
+-/
 theorem positiveRowProfile_sum (r a : ℕ) (hr : 0 < r) :
     (∑ i, positiveRowProfile r a i) = 2 * r + a := by
   calc
@@ -134,7 +163,9 @@ theorem positiveRowProfile_sum (r a : ℕ) (hr : 0 < r) :
       Fintype.sum_equiv (finCongr (positiveRowColumns_rows r a hr)) _ _ (fun _ => rfl)
     _ = 2 * r + a := Ferrers.positiveProfile_sum r a
 
-/-- Sum a function of the row degree, separating the two blocks.-/
+/-- Sum a function of the row degree, separating the two blocks.
+@isnad1 id=eq.1h3v.s7.df1b3d9e81bb from=translated src=- shape=016a32fc vocab=a94c8603
+-/
 theorem positiveRowProfile_function_sum (r a : ℕ) (hr : 0 < r) (g : ℕ → ℤ) :
     (∑ i, g (positiveRowProfile r a i)) = (r : ℤ) * g 2 + (a : ℤ) * g 1 := by
   have heq : (∑ i, g (positiveRowProfile r a i)) =
@@ -151,13 +182,18 @@ theorem positiveRowProfile_function_sum (r a : ℕ) (hr : 0 < r) (g : ℕ → �
 /-- The generator degree of the quadratic-row cofactors.-/
 def positiveRowGeneratorDegree (r a : ℕ) : ℕ := 2 * r + a - 2
 
+/--
+@isnad1 id=and.1h2v.s5.2ed06f206fe1 from=translated src=- shape=22486256 vocab=273ff544
+-/
 theorem positiveRow_counts {r a : ℕ} (hr : 0 < r) :
     aCount (positiveRowGeneratorDegree r a) r = a ∧
       cCount (positiveRowGeneratorDegree r a) r = positiveRowColumns r a := by
   dsimp [aCount, cCount, positiveRowGeneratorDegree, positiveRowColumns]
   omega
 
-/-- Hilbert--Burch computes the literal quotient Hilbert function for this row profile.-/
+/-- Hilbert--Burch computes the literal quotient Hilbert function for this row profile.
+@isnad1 id=eq.2h5v.s6.0de29d3202f9 from=translated src=- shape=26873794 vocab=d6035efb
+-/
 theorem positiveRow_minorHilbertFunction
     {r a : ℕ} (hr : 0 < r)
     (B : HomogeneousRowMatrix K (positiveRowProfile r a))
@@ -181,7 +217,9 @@ theorem positiveRow_minorHilbertFunction
   rw [h₂, h₁, h₀]
   ring
 
-/-- Above the generator degree, the actual quotient has `N(d) - r` dimensions.-/
+/-- Above the generator degree, the actual quotient has `N(d) - r` dimensions.
+@isnad1 id=eq.2h5v.s7.c8d8e2c8ac6f from=translated src=- shape=74c67c31 vocab=3020d49e
+-/
 theorem positiveRow_minorHilbertFunction_formula
     {r a : ℕ} (hr : 0 < r)
     (B : HomogeneousRowMatrix K (positiveRowProfile r a))

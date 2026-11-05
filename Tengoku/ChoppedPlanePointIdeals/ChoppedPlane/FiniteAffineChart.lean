@@ -28,10 +28,15 @@ variable {A : Type*} [CommRing A] [Algebra K A]
 def formChartMap (π : Poly K 3 →ₐ[K] A) (N : ℕ) : Forms K 3 N →ₗ[K] A :=
   π.toLinearMap.comp (Forms K 3 N).subtype
 
+/--
+@isnad1 id=eq.0h5v.s11.53e285a84899 from=translated src=- shape=8756fabe vocab=48d42485
+-/
 @[simp] theorem formChartMap_apply (π : Poly K 3 →ₐ[K] A) (N : ℕ)
     (f : Forms K 3 N) : formChartMap π N f = π f.val := rfl
 
-/-- The degree cut on the line at infinity gives homogeneous descent.-/
+/-- The degree cut on the line at infinity gives homogeneous descent.
+@isnad1 id=ex.3h4v.s11.20a42ca7d263 from=translated src=- shape=ccfa747e vocab=940c20b2
+-/
 theorem exists_form_descent (I : Ideal (Poly K 3))
     (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
     (N : ℕ) (hN : 0 < N)
@@ -54,7 +59,9 @@ theorem exists_form_descent (I : Ideal (Poly K 3))
   rw [← hc, add_sub_cancel_right]
   exact haN
 
-/-- Degree zero vanishing at infinity annihilates the constant piece.-/
+/-- Degree zero vanishing at infinity annihilates the constant piece.
+@isnad1 id=mem.2h3v.s11.79c36a20f54f from=translated src=- shape=0193e834 vocab=9a6b3d1e
+-/
 theorem form_zero_mem_of_cut (I : Ideal (Poly K 3))
     (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
     (hcut : ∀ f : Forms K 3 0, f.val ∈ I ⊔ Ideal.span {X (R := K) 2})
@@ -69,14 +76,18 @@ theorem form_zero_mem_of_cut (I : Ideal (Poly K 3))
   rw [map_add, homogeneousComponent_eq_self f.property, hm, add_zero] at hc
   exact hc ▸ homogeneousComponent_mem_of_mem hI ha 0
 
-/-- The image of a fixed homogeneous degree contains all scalar constants.-/
+/-- The image of a fixed homogeneous degree contains all scalar constants.
+@isnad1 id=mem.1h5v.s10.ce9db4f197b3 from=translated src=- shape=bb7f110d vocab=3653ef3b
+-/
 theorem constant_mem_range_formChartMap (π : Poly K 3 →ₐ[K] A)
     (hz : π (X 2) = 1) (N : ℕ) (a : K) :
     algebraMap K A a ∈ LinearMap.range (formChartMap π N) := by
   refine ⟨⟨C a * X 2 ^ N, (isHomogeneous_X_pow 2 N).C_mul a⟩, ?_⟩
   simp [formChartMap_apply, hz]
 
-/-- Degree descent makes the homogeneous image stable under the chart variables.-/
+/-- Degree descent makes the homogeneous image stable under the chart variables.
+@isnad1 id=mem.4h7v.s12.3a1477c80a9e from=translated src=- shape=4e78cfa4 vocab=3a99f3db
+-/
 theorem variable_mul_mem_range_formChartMap (π : Poly K 3 →ₐ[K] A)
     (hz : π (X 2) = 1) (I : Ideal (Poly K 3))
     (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
@@ -96,7 +107,9 @@ theorem variable_mul_mem_range_formChartMap (π : Poly K 3 →ₐ[K] A)
     · simpa [show 1 + (N - 1) = N by omega] using (isHomogeneous_X K i).mul g.property
     · simp [formChartMap_apply, map_mul, heq]
 
-/-- All classes in an affine chart are represented by the one homogeneous degree.-/
+/-- All classes in an affine chart are represented by the one homogeneous degree.
+@isnad1 id=surjecti.5h5v.s12.e89cbb9630c0 from=translated src=- shape=c8d9fa0c vocab=523daa72
+-/
 theorem formChartMap_surjective (π : Poly K 3 →ₐ[K] A)
     (hπ : Function.Surjective π) (hz : π (X 2) = 1)
     (I : Ideal (Poly K 3)) (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
@@ -116,7 +129,9 @@ theorem formChartMap_surjective (π : Poly K 3 →ₐ[K] A)
   obtain ⟨p, rfl⟩ := hπ a
   exact hmem p
 
-/-- The resulting affine coordinate algebra is finite over the coefficient field.-/
+/-- The resulting affine coordinate algebra is finite over the coefficient field.
+@isnad1 id=finite.5h5v.s11.327a2ad5a4fb from=translated src=- shape=ea336772 vocab=f6c7f2b6
+-/
 theorem finite_of_form_cut (π : Poly K 3 →ₐ[K] A)
     (hπ : Function.Surjective π) (hz : π (X 2) = 1)
     (I : Ideal (Poly K 3)) (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
@@ -126,7 +141,9 @@ theorem finite_of_form_cut (π : Poly K 3 →ₐ[K] A)
   Module.Finite.of_surjective (formChartMap π N)
     (formChartMap_surjective π hπ hz I hI hker N hcut)
 
-/-- A cut in one homogeneous degree contains every later degree as well.-/
+/-- A cut in one homogeneous degree contains every later degree as well.
+@isnad1 id=mem.2h5v.s11.08a335c766ed from=translated src=- shape=7775ff29 vocab=903fa74d
+-/
 theorem form_cut_of_le (I : Ideal (Poly K 3)) (N t : ℕ) (hNt : N ≤ t)
     (hcut : ∀ f : Forms K 3 N, f.val ∈ I ⊔ Ideal.span {X (R := K) 2})
     (f : Forms K 3 t) : f.val ∈ I ⊔ Ideal.span {X (R := K) 2} := by
@@ -139,7 +156,9 @@ theorem form_cut_of_le (I : Ideal (Poly K 3)) (N t : ℕ) (hNt : N ≤ t)
   · intro p q hp hq
     exact Ideal.add_mem _ hp hq
 
-/-- The same affine chart is represented by every homogeneous degree past the cut.-/
+/-- The same affine chart is represented by every homogeneous degree past the cut.
+@isnad1 id=surjecti.6h6v.s12.48e5eb3c1ee9 from=translated src=- shape=75ad73eb vocab=ddf076c8
+-/
 theorem formChartMap_surjective_of_le (π : Poly K 3 →ₐ[K] A)
     (hπ : Function.Surjective π) (hz : π (X 2) = 1)
     (I : Ideal (Poly K 3)) (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
@@ -149,7 +168,9 @@ theorem formChartMap_surjective_of_le (π : Poly K 3 →ₐ[K] A)
   formChartMap_surjective π hπ hz I hI hker t (form_cut_of_le I N t hNt hcut)
 
 /-- Vanishing of the degree after restriction to `z = 0` is exactly the cut
-condition used for affine finiteness.-/
+condition used for affine finiteness.
+@isnad1 id=mem.3h6v.s11.e5fa01b51325 from=translated src=- shape=74ae3859 vocab=f2ada702
+-/
 theorem form_cut_of_map {S : Type*} [CommRing S]
     (φ : Poly K 3 →+* S) (hφ : Function.Surjective φ)
     (hker : RingHom.ker φ = Ideal.span {X (R := K) 2})
@@ -161,10 +182,15 @@ theorem form_cut_of_map {S : Type*} [CommRing S]
   rw [Ideal.comap_map_of_surjective' φ hφ I, hker] at hf
   exact hf
 
+/--
+@isnad1 id=iff.0h4v.s11.fbd14430a0e2 from=translated src=- shape=df530b3e vocab=c32d6733
+-/
 @[simp] theorem mem_idealFormPiece (I : Ideal (Poly K 3)) (N : ℕ)
     (f : Forms K 3 N) : f ∈ idealFormPiece I N ↔ f.val ∈ I := Iff.rfl
 
-/-- Identifying a homogeneous chart kernel identifies the quotient degree piece.-/
+/-- Identifying a homogeneous chart kernel identifies the quotient degree piece.
+@isnad1 id=eq.1h5v.s11.0f2c235634cf from=translated src=- shape=e80d6395 vocab=17c4ba9f
+-/
 theorem ker_formChartMap (π : Poly K 3 →ₐ[K] A) (I : Ideal (Poly K 3)) (N : ℕ)
     (hker : ∀ f : Forms K 3 N, π f.val = 0 ↔ f.val ∈ I) :
     LinearMap.ker (formChartMap π N) = idealFormPiece I N := by
@@ -183,6 +209,9 @@ def formChartQuotientEquiv (π : Poly K 3 →ₐ[K] A)
     ((formChartMap π N).quotKerEquivOfSurjective
       (formChartMap_surjective π hπ hz I hI hker N hcut))
 
+/--
+@isnad1 id=eq.6h6v.s14.98e0a41bd932 from=translated src=- shape=df6ba6ca vocab=9c0f5369
+-/
 @[simp] theorem formChartQuotientEquiv_mk (π : Poly K 3 →ₐ[K] A)
     (hπ : Function.Surjective π) (hz : π (X 2) = 1)
     (I : Ideal (Poly K 3)) (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
@@ -195,7 +224,9 @@ def formChartQuotientEquiv (π : Poly K 3 →ₐ[K] A)
     Submodule.quotEquivOfEq_mk, LinearMap.quotKerEquivOfSurjective_apply_mk,
     formChartMap_apply]
 
-/-- The algebra length is the homogeneous Hilbert function in the cut degree.-/
+/-- The algebra length is the homogeneous Hilbert function in the cut degree.
+@isnad1 id=eq.6h5v.s12.9bb962176f38 from=translated src=- shape=4c69e9bd vocab=5ad56f70
+-/
 theorem finrank_formChartQuotient (π : Poly K 3 →ₐ[K] A)
     (hπ : Function.Surjective π) (hz : π (X 2) = 1)
     (I : Ideal (Poly K 3)) (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
@@ -213,22 +244,36 @@ abbrev AffineCoordinateAlgebra (I : Ideal (Poly K 3)) :=
 def affineQuotientMap (I : Ideal (Poly K 3)) : Poly K 3 →ₐ[K] AffineCoordinateAlgebra I :=
   (Ideal.Quotient.mkₐ K (Ideal.map (affineDehom (K := K)).toRingHom I)).comp affineDehom
 
+/--
+@isnad1 id=eq.0h3v.s12.33ce6736f116 from=translated src=- shape=0aa7ff06 vocab=eece027a
+-/
 @[simp] theorem affineQuotientMap_apply (I : Ideal (Poly K 3)) (f : Poly K 3) :
     affineQuotientMap I f = Ideal.Quotient.mk _ (affineDehom f) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s11.985c1354a62c from=translated src=- shape=393b1016 vocab=5a079c16
+-/
 @[simp] theorem affineQuotientMap_z (I : Ideal (Poly K 3)) :
     affineQuotientMap I (X 2) = 1 := by
   simp only [affineQuotientMap, AlgHom.comp_apply, affineDehom_X_two, map_one]
 
+/--
+@isnad1 id=surjecti.0h2v.s11.b95cdd0fe376 from=translated src=- shape=0cac4921 vocab=44d1c341
+-/
 theorem affineQuotientMap_surjective (I : Ideal (Poly K 3)) :
     Function.Surjective (affineQuotientMap I) :=
   (Ideal.Quotient.mkₐ_surjective K _).comp affineDehom_surjective
 
+/--
+@isnad1 id=eq.1h3v.s11.de69403aa2bd from=translated src=- shape=6405010e vocab=81b7d96a
+-/
 theorem affineQuotientMap_eq_zero_of_mem (I : Ideal (Poly K 3))
     {f : Poly K 3} (hf : f ∈ I) : affineQuotientMap I f = 0 :=
   Ideal.Quotient.eq_zero_iff_mem.mpr (Ideal.mem_map_of_mem _ hf)
 
-/-- Degree `N` maps onto the actual affine coordinate algebra.-/
+/-- Degree `N` maps onto the actual affine coordinate algebra.
+@isnad1 id=surjecti.2h3v.s12.0177d7cbd62d from=translated src=- shape=67066ac0 vocab=5be2efff
+-/
 theorem affineFormMap_surjective (I : Ideal (Poly K 3))
     (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K)) (N : ℕ)
     (hcut : ∀ f : Forms K 3 N, f.val ∈ I ⊔ Ideal.span {X (R := K) 2}) :
@@ -236,14 +281,18 @@ theorem affineFormMap_surjective (I : Ideal (Poly K 3))
   formChartMap_surjective (affineQuotientMap I) (affineQuotientMap_surjective I)
     (affineQuotientMap_z I) I hI (fun _ hf => affineQuotientMap_eq_zero_of_mem I hf) N hcut
 
-/-- A homogeneous cut at infinity makes the actual affine algebra finite.-/
+/-- A homogeneous cut at infinity makes the actual affine algebra finite.
+@isnad1 id=finite.2h3v.s11.05ca5cbf3bb5 from=translated src=- shape=4e3e5202 vocab=5962e67e
+-/
 theorem affineCoordinateAlgebra_finite (I : Ideal (Poly K 3))
     (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K)) (N : ℕ)
     (hcut : ∀ f : Forms K 3 N, f.val ∈ I ⊔ Ideal.span {X (R := K) 2}) :
     Module.Finite K (AffineCoordinateAlgebra I) :=
   Module.Finite.of_surjective _ (affineFormMap_surjective I hI N hcut)
 
-/-- Saturation identifies the affine chart kernel on every homogeneous degree.-/
+/-- Saturation identifies the affine chart kernel on every homogeneous degree.
+@isnad1 id=iff.2h4v.s12.9247d69fe4df from=translated src=- shape=c39cf1b1 vocab=36a7f463
+-/
 theorem affineQuotientMap_form_eq_zero_iff (I : Ideal (Poly K 3))
     (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
     (hsat : ∀ p, (X 2 : Poly K 3) * p ∈ I → p ∈ I) (N : ℕ)
@@ -262,6 +311,9 @@ def affineFormQuotientEquiv (I : Ideal (Poly K 3))
     (affineQuotientMap_z I) I hI (fun _ hf => affineQuotientMap_eq_zero_of_mem I hf)
     N hcut (affineQuotientMap_form_eq_zero_iff I hI hsat N)
 
+/--
+@isnad1 id=eq.3h4v.s14.f9ee96cbca2f from=translated src=- shape=25091411 vocab=0c3307bb
+-/
 @[simp] theorem affineFormQuotientEquiv_mk (I : Ideal (Poly K 3))
     (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
     (hsat : ∀ p, (X 2 : Poly K 3) * p ∈ I → p ∈ I) (N : ℕ)
@@ -271,7 +323,9 @@ def affineFormQuotientEquiv (I : Ideal (Poly K 3))
       affineQuotientMap I f.val := by
   exact formChartQuotientEquiv_mk _ _ _ _ _ _ _ _ _ f
 
-/-- The affine algebra's length is the Hilbert function in the cut degree.-/
+/-- The affine algebra's length is the Hilbert function in the cut degree.
+@isnad1 id=eq.3h3v.s12.7a707e0cf186 from=translated src=- shape=d790842a vocab=03fa46cd
+-/
 theorem finrank_affineCoordinateAlgebra (I : Ideal (Poly K 3))
     (hI : I.IsHomogeneous (homogeneousSubmodule (Fin 3) K))
     (hsat : ∀ p, (X 2 : Poly K 3) * p ∈ I → p ∈ I) (N : ℕ)

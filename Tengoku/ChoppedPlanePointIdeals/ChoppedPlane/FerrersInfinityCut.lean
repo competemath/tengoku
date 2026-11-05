@@ -21,7 +21,9 @@ open MvPolynomial
 variable {K : Type*} [Field K]
 
 /-- Two pure powers force every sufficiently high binary homogeneous piece
-into an ideal.-/
+into an ideal.
+@isnad1 id=mem.3h5v.s10.006297f06907 from=translated src=- shape=1d3c7cb3 vocab=38fd1811
+-/
 theorem binary_degree_cut_of_pure_powers (I : Ideal (Poly K 2)) (D t : ℕ)
     (hx : (X 0 : Poly K 2) ^ D ∈ I) (hy : (X 1 : Poly K 2) ^ D ∈ I)
     (ht : 2 * D ≤ t) (f : Forms K 2 t) : f.val ∈ I := by
@@ -47,7 +49,9 @@ namespace Ferrers
 variable {c : ℕ}
 
 /-- Mapping a Ferrers cofactor equation maps it into the actual binary
-maximal-minor ideal.-/
+maximal-minor ideal.
+@isnad1 id=mem.1h6v.s9.27bb91d65954 from=translated src=- shape=1a7a83d1 vocab=0baba947
+-/
 theorem infinityMap_mem_maximalMinorIdeal (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) {p : Poly K 3} (hp : p ∈ cofactorIdeal δ α β) :
     infinityMap p ∈ maximalMinorIdeal ((seedMatrix δ α β).map infinityMap) := by
@@ -57,7 +61,9 @@ theorem infinityMap_mem_maximalMinorIdeal (δ : Fin (c + 1) → ℕ)
   apply (mem_cofactorIdeal_iff _ _).mpr
   exact ⟨fun i => infinityMap (v i), by rw [cofactorMap_map, hv]⟩
 
-/-- The vertical pure power lies in the restricted seed's minor ideal.-/
+/-- The vertical pure power lies in the restricted seed's minor ideal.
+@isnad1 id=mem.0h5v.s9.d5ab7b6008b8 from=translated src=- shape=9fa3e3c6 vocab=7ceb1041
+-/
 theorem seed_infinity_X_zero_pow_mem (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     (X 0 : Poly K 2) ^ (∑ i, δ i) ∈
@@ -65,7 +71,9 @@ theorem seed_infinity_X_zero_pow_mem (δ : Fin (c + 1) → ℕ)
   have h := infinityMap_mem_maximalMinorIdeal δ α β (totalFirst_mem δ α β)
   simpa only [map_prod, infinityMap_rowFirst, Finset.prod_pow_eq_pow_sum] using h
 
-/-- The horizontal pure power lies in the restricted seed's minor ideal.-/
+/-- The horizontal pure power lies in the restricted seed's minor ideal.
+@isnad1 id=mem.0h5v.s9.b5f97dd39c9b from=translated src=- shape=9fa3e3c6 vocab=7ceb1041
+-/
 theorem seed_infinity_X_one_pow_mem (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     (X 1 : Poly K 2) ^ (∑ i, δ i) ∈
@@ -74,7 +82,9 @@ theorem seed_infinity_X_one_pow_mem (δ : Fin (c + 1) → ℕ)
   simpa only [map_prod, infinityMap_rowSecond, Finset.prod_pow_eq_pow_sum] using h
 
 /-- Every binary form of twice the total row degree belongs to the restricted
-Ferrers seed's maximal-minor ideal. No distinctness assumptions are needed.-/
+Ferrers seed's maximal-minor ideal. No distinctness assumptions are needed.
+@isnad1 id=mem.0h6v.s10.03b4bac77be5 from=translated src=- shape=a2489f16 vocab=ab4a5d25
+-/
 theorem seed_binary_degree_cut (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (f : Forms K 2 (2 * ∑ i, δ i)) :
     f.val ∈ maximalMinorIdeal ((seedMatrix δ α β).map infinityMap) := by
@@ -82,7 +92,9 @@ theorem seed_binary_degree_cut (δ : Fin (c + 1) → ℕ)
     (seed_infinity_X_zero_pow_mem δ α β) (seed_infinity_X_one_pow_mem δ α β)
     le_rfl f
 
-/-- Restricting the seed preserves its row degrees.-/
+/-- Restricting the seed preserves its row degrees.
+@isnad1 id=ishomoge.0h7v.s8.45f531614349 from=translated src=- shape=676b68e9 vocab=9dc0fc28
+-/
 theorem seed_infinity_homogeneous (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (i : Fin (c + 1)) (j : Fin c) :
     (((seedMatrix δ α β).map infinityMap) i j).IsHomogeneous (δ i) := by
@@ -94,7 +106,9 @@ theorem seed_infinity_homogeneous (δ : Fin (c + 1) → ℕ)
   · exact isHomogeneous_X_pow _ _
   · exact isHomogeneous_zero (Fin 2) K (δ i)
 
-/-- The binary graded cofactor map is onto at the explicit degree cut.-/
+/-- The binary graded cofactor map is onto at the explicit degree cut.
+@isnad1 id=surjecti.0h5v.s12.2aa054c55882 from=translated src=- shape=019413a2 vocab=046e3386
+-/
 theorem seed_infinity_gradedCofactorMap_surjective (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     Function.Surjective (gradedCofactorMap ((seedMatrix δ α β).map infinityMap)

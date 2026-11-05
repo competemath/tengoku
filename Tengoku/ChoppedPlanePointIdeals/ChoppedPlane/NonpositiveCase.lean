@@ -14,7 +14,9 @@ open MvPolynomial
 variable {K : Type*} [Field K] [CharZero K]
 
 /-- The column-weighted split grid proves the full theorem when `a ≤ 0`,
-including the actual ideal equality and least positive filling degree.-/
+including the actual ideal equality and least positive filling degree.
+@isnad1 id=genericc.5h3v.s6.122b6754f4b2 from=translated src=- shape=cf242cfe vocab=f25a6317
+-/
 theorem genericChoppedConclusion_nonpositive
     (d p : ℕ) (hd : 2 ≤ d) (hlo : N (d - 1) < p) (hhi : p < N d)
     (hr : 3 ≤ N d - p) (ha : aCount d (N d - p) ≤ 0) :

@@ -16,7 +16,9 @@ open MvPolynomial
 variable {K : Type*} [Field K] {n : ℕ} {ι κ : Type*} [Fintype κ]
 
 /-- Polynomial coefficients cannot lower the homogeneous degree of a family
-of homogeneous columns.-/
+of homogeneous columns.
+@isnad1 id=eq.4h9v.s7.a24fe217fdf0 from=translated src=- shape=d5cc6d94 vocab=25d698f6
+-/
 theorem homogeneous_vector_zero_of_lower_degree
     (B : Matrix ι κ (Poly K n)) (δ : κ → ℕ) (t : ℕ)
     (hB : ∀ i j, (B i j).IsHomogeneous (δ j))
@@ -31,7 +33,9 @@ theorem homogeneous_vector_zero_of_lower_degree
     fun j => homogeneousComponent_mul_eq_zero_of_lt t (ht j) _ _ (hB i j)
   simpa only [hz, Finset.sum_const_zero, Pi.zero_apply] using heq.symm
 
-/-- A finite family of homogeneous vector columns obeys the same obstruction.-/
+/-- A finite family of homogeneous vector columns obeys the same obstruction.
+@isnad1 id=eq.4h9v.s7.438fbe87f087 from=translated src=- shape=f4d0afbe vocab=1bf082e7
+-/
 theorem homogeneous_sum_zero_of_lower_degree
     (B : κ → ι → Poly K n) (δ : κ → ℕ) (t : ℕ)
     (hB : ∀ i j, (B j i).IsHomogeneous (δ j))

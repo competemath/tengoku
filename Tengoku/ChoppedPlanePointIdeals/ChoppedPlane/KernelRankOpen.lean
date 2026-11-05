@@ -20,14 +20,18 @@ variable {K ι V U W T : Type*} [Field K]
   [AddCommGroup V] [Module K V] [AddCommGroup U] [Module K U]
   [AddCommGroup W] [Module K W] [AddCommGroup T] [Module K T]
 
-/-- Subtraction preserves polynomial dependence.-/
+/-- Subtraction preserves polynomial dependence.
+@isnad1 id=ispolyno.2h5v.s6.19ede2445900 from=translated src=- shape=b8908492 vocab=14ae058a
+-/
 theorem IsPolynomialFamily.sub {f g : (ι → K) → V}
     (hf : IsPolynomialFamily f) (hg : IsPolynomialFamily g) :
     IsPolynomialFamily (fun a => f a - g a) := by
   simpa only [LinearMap.neg_apply, LinearMap.id_apply, sub_eq_add_neg] using
     hf.add (hg.linear_comp (-LinearMap.id))
 
-/-- A matrix of parameter polynomials specializes to a polynomial map family.-/
+/-- A matrix of parameter polynomials specializes to a polynomial map family.
+@isnad1 id=ispolyno.0h9v.s10.d4aeb8463612 from=translated src=- shape=a3109740 vocab=a8ae8f78
+-/
 theorem isPolynomialFamily_matrix_toLin
     {m n : Type*} [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
     [FiniteDimensional K V]
@@ -50,7 +54,9 @@ theorem isPolynomialFamily_matrix_toLin
   simpa only [Matrix.toLin_apply, Matrix.mulVec, dotProduct, Matrix.map_apply,
     Finset.sum_smul] using h
 
-/-- Polynomial matrices represent polynomial families of finite-dimensional maps.-/
+/-- Polynomial matrices represent polynomial families of finite-dimensional maps.
+@isnad1 id=ex.1h9v.s10.e1185d1f3ca1 from=translated src=- shape=1a915aec vocab=c5112cb8
+-/
 theorem polynomial_matrix_representation [FiniteDimensional K V]
     {m n : Type*} [Fintype m] [DecidableEq m] [Fintype n] [DecidableEq n]
     (bV : Basis n K V) (bU : Basis m K U)
@@ -68,7 +74,9 @@ theorem polynomial_matrix_representation [FiniteDimensional K V]
 
 /-- A polynomial endomorphism with image equal to the kernel on a nonempty
 principal open containing any surjective witness. It restricts to the identity
-on the witness kernel.-/
+on the witness kernel.
+@isnad1 id=ex.2h6v.s10.1fabd6c1f791 from=translated src=- shape=3b81f165 vocab=73f66d67
+-/
 theorem polynomial_kernel_chart [FiniteDimensional K V] [FiniteDimensional K U]
     (E : (ι → K) → (V →ₗ[K] U)) (hE : IsPolynomialFamily E)
     (a₀ : ι → K) (hsurj : Function.Surjective (E a₀)) :
@@ -145,7 +153,9 @@ theorem polynomial_kernel_chart [FiniteDimensional K V] [FiniteDimensional K U]
 
 /-- The actual kernel product space has at least its witness dimension on a
 principal open around a surjective witness. The kernel dimension itself is
-constant there.-/
+constant there.
+@isnad1 id=ex.2h9v.s10.39aac734ad84 from=translated src=- shape=a7c41955 vocab=ae4aeade
+-/
 theorem kernelProduct_surjective_principal_open
     [FiniteDimensional K V] [FiniteDimensional K U]
     [FiniteDimensional K W] [FiniteDimensional K T]

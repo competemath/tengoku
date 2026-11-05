@@ -19,7 +19,9 @@ namespace ChoppedPlane
 open MvPolynomial
 variable {K : Type*} [Field K] {n d : ℕ}
 
-/-- Projection of a product with a homogeneous form has the expected degree.-/
+/-- Projection of a product with a homogeneous form has the expected degree.
+@isnad1 id=eq.1h6v.s9.796494336c59 from=translated src=- shape=3fecc764 vocab=22f313ba
+-/
 theorem homogeneousComponent_mul_form (e : ℕ) (f p : Poly K n)
     (hf : f.IsHomogeneous d) :
     homogeneousComponent (d + e) (f * p) = f * homogeneousComponent e p := by
@@ -33,7 +35,9 @@ theorem homogeneousComponent_mul_form (e : ℕ) (f p : Poly K n)
       · simp [Ne.symm h]
   | add p q hp hq => simp only [mul_add, map_add, hp, hq]
 
-/-- Every homogeneous part of a generated ideal is represented by homogeneous multipliers.-/
+/-- Every homogeneous part of a generated ideal is represented by homogeneous multipliers.
+@isnad1 id=mem.2h6v.s10.a2daf028d7e9 from=translated src=- shape=d0cba651 vocab=dc60df80
+-/
 theorem homogeneousComponent_mem_products (e : ℕ) (W : Submodule K (Poly K n))
     (hW : W ≤ Forms K n d) {p : Poly K n}
     (hp : p ∈ Ideal.span (W : Set (Poly K n))) :
@@ -56,7 +60,9 @@ theorem homogeneousComponent_mem_products (e : ℕ) (W : Submodule K (Poly K n))
         exact ih (a * b)
   simpa using hall 1
 
-/-- For a homogeneous target, generated-ideal membership is exactly product membership.-/
+/-- For a homogeneous target, generated-ideal membership is exactly product membership.
+@isnad1 id=iff.1h6v.s10.3cc77b2aed6d from=translated src=- shape=136fffb9 vocab=97e2bf28
+-/
 theorem form_mem_ideal_iff (e : ℕ) (W : Submodule K (Poly K n))
     (hW : W ≤ Forms K n d) (p : Forms K n (d + e)) :
     p.val ∈ Ideal.span (W : Set (Poly K n)) ↔ p.val ∈ W * Forms K n e := by
@@ -86,6 +92,9 @@ def generatedProducts (W : Submodule K (Poly K n)) (e : ℕ) :
     Submodule K (Forms K n (d + e)) :=
   (W * Forms K n e).comap (Forms K n (d + e)).subtype
 
+/--
+@isnad1 id=eq.1h5v.s10.01de06a621b2 from=translated src=- shape=9327e7a4 vocab=3c465019
+-/
 theorem ker_formToRingQuotient (W : Submodule K (Poly K n))
     (hW : W ≤ Forms K n d) (e : ℕ) :
     LinearMap.ker (formToRingQuotient (d + e) W) = generatedProducts W e := by
@@ -103,13 +112,18 @@ def generatedQuotientEquivImage (W : Submodule K (Poly K n))
   (Submodule.quotEquivOfEq _ _ (ker_formToRingQuotient W hW e).symm).trans
     (formToRingQuotient (d + e) W).quotKerEquivRange
 
+/--
+@isnad1 id=eq.1h5v.s11.5fe498d769d9 from=translated src=- shape=3dcc698f vocab=f0e17076
+-/
 theorem generated_finrank_eq_hilbertFunction (W : Submodule K (Poly K n))
     (hW : W ≤ Forms K n d) (e : ℕ) :
     Module.finrank K (Forms K n (d + e) ⧸ generatedProducts W e) =
       generatedHilbertFunction W (d + e) :=
   (generatedQuotientEquivImage W hW e).finrank_eq
 
-/-- An ideal generated in degree `d` has no components in smaller degrees.-/
+/-- An ideal generated in degree `d` has no components in smaller degrees.
+@isnad1 id=eq.2h6v.s8.49822e3f691a from=translated src=- shape=fbc3bcdd vocab=d21cb358
+-/
 theorem homogeneousComponent_mul_eq_zero_of_lt (j : ℕ) (hj : j < d)
     (f p : Poly K n) (hf : f.IsHomogeneous d) :
     homogeneousComponent j (f * p) = 0 := by
@@ -121,6 +135,9 @@ theorem homogeneousComponent_mul_eq_zero_of_lt (j : ℕ) (hj : j < d)
       simp [show j ≠ d + a.degree by omega]
   | add p q hp hq => simp only [mul_add, map_add, hp, hq, add_zero]
 
+/--
+@isnad1 id=eq.3h6v.s10.24c945f23804 from=translated src=- shape=882f6270 vocab=d29e84c4
+-/
 theorem homogeneousComponent_ideal_eq_zero (j : ℕ) (hj : j < d)
     (W : Submodule K (Poly K n)) (hW : W ≤ Forms K n d) {p : Poly K n}
     (hp : p ∈ Ideal.span (W : Set (Poly K n))) : homogeneousComponent j p = 0 := by
@@ -135,7 +152,9 @@ theorem homogeneousComponent_ideal_eq_zero (j : ℕ) (hj : j < d)
     | smul b p hp ih => intro a; exact (mul_assoc a b p).symm ▸ ih (a * b)
   simpa using hall 1
 
-/-- Below the generating degree, the quotient map is injective.-/
+/-- Below the generating degree, the quotient map is injective.
+@isnad1 id=injectiv.2h5v.s11.90f213dee035 from=translated src=- shape=909996ef vocab=210369df
+-/
 theorem formToRingQuotient_injective_of_lt (j : ℕ) (hj : j < d)
     (W : Submodule K (Poly K n)) (hW : W ≤ Forms K n d) :
     Function.Injective (formToRingQuotient j W) := by
@@ -147,13 +166,18 @@ theorem formToRingQuotient_injective_of_lt (j : ℕ) (hj : j < d)
   rw [homogeneousComponent_eq_self p.property] at hz
   exact Subtype.ext hz
 
+/--
+@isnad1 id=eq.2h5v.s8.57c5a220c731 from=translated src=- shape=2be1c2a6 vocab=fa85c3cf
+-/
 theorem generatedHilbertFunction_below_degree (j : ℕ) (hj : j < d)
     (W : Submodule K (Poly K n)) (hW : W ≤ Forms K n d) :
     generatedHilbertFunction W j = (n + j - 1).choose j :=
   (LinearMap.finrank_range_of_inj (formToRingQuotient_injective_of_lt j hj W hW)).trans
     (finrank_forms K n j)
 
-/-- Containing every degree-`d` form makes the quotient vanish in all later degrees.-/
+/-- Containing every degree-`d` form makes the quotient vanish in all later degrees.
+@isnad1 id=eq.2h5v.s12.8d0f544880a5 from=translated src=- shape=5f785b05 vocab=bcbbc7b9
+-/
 theorem formToRingQuotient_eq_zero_of_forms_le (j : ℕ) (hj : d ≤ j)
     (W : Submodule K (Poly K n)) (hW : Forms K n d ≤ W) :
     formToRingQuotient j W = 0 := by
@@ -169,6 +193,9 @@ theorem formToRingQuotient_eq_zero_of_forms_le (j : ℕ) (hj : d ≤ j)
   · intro f g hf hg
     exact Ideal.add_mem _ hf hg
 
+/--
+@isnad1 id=eq.2h5v.s8.508969ad9792 from=translated src=- shape=1e23ac5a vocab=b1fd0a9f
+-/
 theorem generatedHilbertFunction_zero_of_forms_le (j : ℕ) (hj : d ≤ j)
     (W : Submodule K (Poly K n)) (hW : Forms K n d ≤ W) :
     generatedHilbertFunction W j = 0 := by

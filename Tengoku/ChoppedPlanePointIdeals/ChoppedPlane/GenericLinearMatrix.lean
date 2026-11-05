@@ -48,6 +48,9 @@ def universalLinearMatrix (a c : ℕ) :
 def linearMatrixCoordinates {a c : ℕ} (L : LinearMatrix K a c) :
     LinearMatrixParameter a c → K := fun p => (formsBasis K 3 1).repr (L p.1 p.2.1) p.2.2
 
+/--
+@isnad1 id=eq.0h4v.s11.c8d79f4ca4b8 from=translated src=- shape=4f2ddaba vocab=2729f719
+-/
 @[simp] theorem universalLinearMatrix_coordinates {a c : ℕ} (L : LinearMatrix K a c) :
     universalLinearMatrix K a c (linearMatrixCoordinates K L) = L := by
   funext i j
@@ -67,7 +70,9 @@ def linearMatrixApplyParameter (t : ℕ) (v : MatrixSource K c t) :
     ext i
     simp [linearMatrixMap, Finset.smul_sum]
 
-/-- Any polynomial family of entries gives polynomial multiplication maps.-/
+/-- Any polynomial family of entries gives polynomial multiplication maps.
+@isnad1 id=ispolyno.1h6v.s12.eb8866f53c25 from=translated src=- shape=f58ce762 vocab=a9a32673
+-/
 theorem linearMatrixMap_polynomial_family {ι : Type*}
     (F : (ι → K) → LinearMatrix K a c) (hF : IsPolynomialFamily F) (t : ℕ) :
     IsPolynomialFamily (fun u => linearMatrixMap (F u) t) := by
@@ -75,7 +80,9 @@ theorem linearMatrixMap_polynomial_family {ι : Type*}
   intro v
   exact hF.linear_comp (linearMatrixApplyParameter t v)
 
-/-- Every twist of the universal multiplication map has polynomial coefficients.-/
+/-- Every twist of the universal multiplication map has polynomial coefficients.
+@isnad1 id=ispolyno.0h4v.s13.cfa2ddd8c223 from=translated src=- shape=a4235b47 vocab=b1c15a90
+-/
 theorem universalLinearMatrixMap_isPolynomialFamily (a c t : ℕ) :
     IsPolynomialFamily (fun u : LinearMatrixParameter a c → K =>
       linearMatrixMap (universalLinearMatrix K a c u) t) := by
@@ -87,7 +94,9 @@ theorem universalLinearMatrixMap_isPolynomialFamily (a c t : ℕ) :
 
 /-- A witness in any polynomial parameter family persists in every twist on
 one finite determinant open. This allows the linear block to share parameters
-with the quadratic rows of a Hilbert--Burch matrix.-/
+with the quadratic rows of a Hilbert--Burch matrix.
+@isnad1 id=ex.3h6v.s10.908215b59a7a from=translated src=- shape=bb6dcb6e vocab=31865304
+-/
 theorem linearMatrixFamily_allTwists_principal_open {ι : Type*}
     (F : (ι → K) → LinearMatrix K a c) (hF : IsPolynomialFamily F)
     (hac : a < c) (u₀ : ι → K) (h₀ : ∀ t, LinearMatrixMaximalRank (F u₀) t) :
@@ -117,7 +126,9 @@ theorem linearMatrixFamily_allTwists_principal_open {ι : Type*}
     (fun _ => hmax (q - 1) (hleft u hu₀)) (hmax q (hright u hu₁))
 
 /-- A surjective coefficient family can use a witness built in a different
-coordinate system, and obtains a nonempty all-twist principal open.-/
+coordinate system, and obtains a nonempty all-twist principal open.
+@isnad1 id=ex.4h5v.s10.34f91e64c872 from=translated src=- shape=208e36bc vocab=fbac0297
+-/
 theorem linearMatrixFamily_allTwists_principal_open_of_surjective {ι : Type*}
     (F : (ι → K) → LinearMatrix K a c) (hF : IsPolynomialFamily F)
     (hFsurj : Function.Surjective F) (hac : a < c)
@@ -130,7 +141,9 @@ theorem linearMatrixFamily_allTwists_principal_open_of_surjective {ι : Type*}
     (by simpa only [hu₀] using hL)
   exact ⟨D, ⟨u₀, hD⟩, h⟩
 
-/-- A maximal-rank witness supplies a determinant open of maximal-rank maps.-/
+/-- A maximal-rank witness supplies a determinant open of maximal-rank maps.
+@isnad1 id=ex.1h5v.s11.38b26731a1c8 from=translated src=- shape=61b4876b vocab=06ad6f88
+-/
 theorem universalLinearMatrix_maximalRank_principal_open
     (L : LinearMatrix K a c) (t : ℕ) (hL : LinearMatrixMaximalRank L t) :
     ∃ D : MvPolynomial (LinearMatrixParameter a c) K,
@@ -148,7 +161,9 @@ theorem universalLinearMatrix_maximalRank_principal_open
   exact le_antisymm
     (le_min (LinearMap.finrank_range_le _) (Submodule.finrank_le _)) hlow
 
-/-- The critical pair has constant maximum attainable ranks on one nonempty open.-/
+/-- The critical pair has constant maximum attainable ranks on one nonempty open.
+@isnad1 id=ex.0h3v.s15.3382fe2a1e83 from=translated src=- shape=a2fc0562 vocab=2a45db58
+-/
 theorem universalLinearMatrix_critical_maximum_open [Infinite K] (a c : ℕ) :
     ∃ D : MvPolynomial (LinearMatrixParameter a c) K,
       (∃ u, eval u D ≠ 0) ∧
@@ -188,7 +203,9 @@ theorem universalLinearMatrix_critical_maximum_open [Infinite K] (a c : ℕ) :
     rw [universalLinearMatrix_coordinates] at h
     exact h
 
-/-- One actual all-twist witness produces one nonempty determinant open for all twists.-/
+/-- One actual all-twist witness produces one nonempty determinant open for all twists.
+@isnad1 id=ex.2h4v.s11.91d0356ce9da from=translated src=- shape=f4ed3d8b vocab=9077cf0c
+-/
 theorem universalLinearMatrix_allTwists_principal_open
     (hac : a < c) (L : LinearMatrix K a c)
     (hL : ∀ t, LinearMatrixMaximalRank L t) :
@@ -207,7 +224,9 @@ theorem universalLinearMatrix_allTwists_principal_open
   exact linearMatrixMaximalRank_all_of_numeric_critical_checks _ hac
     (fun _ => h₀ u hu₀) (h₁ u hu₁)
 
-/-- Existence of a genuine witness, stated separately from the resulting open.-/
+/-- Existence of a genuine witness, stated separately from the resulting open.
+@isnad1 id=ex.2h3v.s11.29e225101d98 from=translated src=- shape=27886d57 vocab=cc3b5f26
+-/
 theorem exists_allTwists_principal_open_of_witness
     (hac : a < c) (h : ∃ L : LinearMatrix K a c, ∀ t, LinearMatrixMaximalRank L t) :
     ∃ D : MvPolynomial (LinearMatrixParameter a c) K,

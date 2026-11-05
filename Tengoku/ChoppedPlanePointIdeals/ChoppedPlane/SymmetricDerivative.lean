@@ -36,17 +36,29 @@ def linearForm (v : Fin 3 → R) : Aux R := ∑ i, C (v i) * X i
 def linearChange (A : Matrix (Fin 3) (Fin 3) R) : Aux R →ₐ[R] Aux R :=
   aeval (fun i => linearForm (A i))
 
+/--
+@isnad1 id=eq.0h3v.s8.97501832990b from=translated src=- shape=d57f3e2c vocab=81f483cc
+-/
 @[simp] theorem linearChange_X (A : Matrix (Fin 3) (Fin 3) R) (i : Fin 3) :
     linearChange A (X i) = linearForm (A i) := by simp [linearChange]
 
+/--
+@isnad1 id=eq.0h3v.s9.54a3a6a1b3c1 from=translated src=- shape=44934ab8 vocab=98739b70
+-/
 @[simp] theorem linearChange_C (A : Matrix (Fin 3) (Fin 3) R) (r : R) :
     linearChange A (C r) = C r := by simp [linearChange]
 
+/--
+@isnad1 id=eq.0h2v.s6.5a1a28ffcf70 from=translated src=- shape=84531586 vocab=31dcb351
+-/
 @[simp] theorem linearForm_one_row (i : Fin 3) :
     linearForm ((1 : Matrix (Fin 3) (Fin 3) R) i) = X i := by
   classical
   simp [linearForm, Matrix.one_apply]
 
+/--
+@isnad1 id=eq.0h3v.s8.2f93edddc07d from=translated src=- shape=59b612ae vocab=7885309a
+-/
 theorem linearChange_linearForm (A : Matrix (Fin 3) (Fin 3) R) (v : Fin 3 → R) :
     linearChange A (linearForm v) = linearForm (fun k => ∑ j, v j * A j k) := by
   classical
@@ -60,6 +72,9 @@ theorem linearChange_linearForm (A : Matrix (Fin 3) (Fin 3) R) (v : Fin 3 → R)
   intro j hj
   ring
 
+/--
+@isnad1 id=eq.0h3v.s8.03c4b13e9283 from=translated src=- shape=1e3358a8 vocab=ed7d95eb
+-/
 theorem linearChange_comp (A B : Matrix (Fin 3) (Fin 3) R) :
     (linearChange A).comp (linearChange B) = linearChange (B * A) := by
   apply MvPolynomial.algHom_ext
@@ -67,6 +82,9 @@ theorem linearChange_comp (A B : Matrix (Fin 3) (Fin 3) R) :
   simp only [AlgHom.comp_apply, linearChange_X, linearChange_linearForm]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s8.d4be993746fd from=translated src=- shape=1454c082 vocab=5a9ce89a
+-/
 @[simp] theorem linearChange_one :
     linearChange (1 : Matrix (Fin 3) (Fin 3) R) = AlgHom.id R (Aux R) := by
   ext i
@@ -83,12 +101,21 @@ def linearChangeEquiv (A B : Matrix (Fin 3) (Fin 3) R)
 def directional (f : Fin 3 → R) : Derivation R (Aux R) (Aux R) :=
   mkDerivation R (fun i => C (f i))
 
+/--
+@isnad1 id=eq.0h3v.s8.e5d898d2e977 from=translated src=- shape=abadd1b6 vocab=0d86c738
+-/
 @[simp] theorem directional_X (f : Fin 3 → R) (i : Fin 3) :
     directional f (X i) = C (f i) := by simp [directional]
 
+/--
+@isnad1 id=eq.0h3v.s9.2b9f80762fbf from=translated src=- shape=f205166c vocab=e50466f3
+-/
 @[simp] theorem directional_C (f : Fin 3 → R) (r : R) :
     directional f (C r) = 0 := by simp
 
+/--
+@isnad1 id=eq.0h3v.s9.026b049a7a7d from=translated src=- shape=dacdaeff vocab=1bdf4d7b
+-/
 @[simp] theorem directional_linearForm (f v : Fin 3 → R) :
     directional f (linearForm v) = C (∑ i, f i * v i) := by
   calc
@@ -100,7 +127,9 @@ def directional (f : Fin 3 → R) : Derivation R (Aux R) (Aux R) :=
       intro i hi
       rw [← map_mul, mul_comm]
 
-/-- Chain rule in coordinates whose first row is a lift and other rows lie in the kernel.-/
+/-- Chain rule in coordinates whose first row is a lift and other rows lie in the kernel.
+@isnad1 id=eq.1h4v.s10.6571c0b64034 from=translated src=- shape=dd1615e5 vocab=d4149ed1
+-/
 theorem directional_linearChange (f : Fin 3 → R)
     (A : Matrix (Fin 3) (Fin 3) R)
     (hA : ∀ i, ∑ j, f j * A i j = if i = 0 then 1 else 0)
@@ -122,6 +151,9 @@ def binaryRestriction : Aux R →ₐ[R] Binary R :=
 /-- Include the two binary auxiliary variables as the last two ternary variables.-/
 def binaryEmbedding : Binary R →ₐ[R] Aux R := rename Fin.succ
 
+/--
+@isnad1 id=eq.0h2v.s9.d2b553b5d9b8 from=translated src=- shape=24321f52 vocab=41e94fb0
+-/
 @[simp] theorem binaryRestriction_embedding (P : Binary R) :
     binaryRestriction (binaryEmbedding P) = P := by
   have h : binaryRestriction.comp binaryEmbedding = AlgHom.id R (Binary R) := by
@@ -133,6 +165,9 @@ def binaryEmbedding : Binary R →ₐ[R] Aux R := rename Fin.succ
 def zeroFirst : Aux R →ₗ[R] Aux R :=
   binaryEmbedding.toLinearMap.comp binaryRestriction.toLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s9.2be34ad5049c from=translated src=- shape=fd632849 vocab=178513f2
+-/
 @[simp] theorem zeroFirst_monomial (s : Fin 3 →₀ ℕ) (r : R) :
     zeroFirst (monomial s r) = if s 0 = 0 then monomial s r else 0 := by
   classical
@@ -180,6 +215,9 @@ def integrateFirst : Aux R →ₗ[R] Aux R :=
     algebraMap K R (((s 0 + 1 : ℕ) : K)⁻¹) • monomial (s + Finsupp.single 0 1) 1)
 
 omit [CharZero K] in
+/--
+@isnad1 id=eq.0h4v.s9.e11b32f04aea from=translated src=- shape=ae1ac7b4 vocab=0e1c3999
+-/
 @[simp] theorem integrateFirst_monomial (s : Fin 3 →₀ ℕ) (r : R) :
     integrateFirst (K := K) (monomial s r) =
       monomial (s + Finsupp.single 0 1)
@@ -192,7 +230,9 @@ omit [CharZero K] in
   rw [hr, map_smul, hb, smul_smul, smul_monomial]
   simp
 
-/-- Integration splits the derivative: the only missing term is the binary projection.-/
+/-- Integration splits the derivative: the only missing term is the binary projection.
+@isnad1 id=eq.0h3v.s10.67eb962c0137 from=translated src=- shape=1587cd5d vocab=e810786d
+-/
 theorem integrateFirst_pderiv_add_zeroFirst (P : Aux R) :
     integrateFirst (K := K) (pderiv 0 P) + zeroFirst P = P := by
   classical
@@ -222,7 +262,9 @@ theorem integrateFirst_pderiv_add_zeroFirst (P : Aux R) :
           ring
         _ = r := by rw [mul_inv_cancel₀ hcast, map_one, mul_one]
 
-/-- The scalar splitting identity as an equality of linear maps.-/
+/-- The scalar splitting identity as an equality of linear maps.
+@isnad1 id=eq.0h2v.s11.6663dc03af4d from=translated src=- shape=75a4d51b vocab=d3766d3e
+-/
 theorem first_derivative_split :
     (integrateFirst (K := K)).comp (pderiv (R := R) (0 : Fin 3)).toLinearMap +
       zeroFirst = LinearMap.id := by
@@ -232,7 +274,9 @@ theorem first_derivative_split :
 
 end Integration
 
-/-- The embedded binary polynomials have zero first partial derivative.-/
+/-- The embedded binary polynomials have zero first partial derivative.
+@isnad1 id=eq.0h2v.s9.05421e41f3c4 from=translated src=- shape=2a294667 vocab=4fc89efd
+-/
 @[simp] theorem pderiv_binaryEmbedding (P : Binary R) :
     pderiv (0 : Fin 3) (binaryEmbedding P) = 0 := by
   induction P using MvPolynomial.induction_on with
@@ -262,6 +306,9 @@ def tensorBinaryEmbedding : BinaryTensor (R := R) (M := M) →ₗ[R] AuxTensor (
 def tensorBinaryRestriction : AuxTensor (R := R) (M := M) →ₗ[R] BinaryTensor (R := R) (M := M) :=
   binaryRestriction.toLinearMap.rTensor M
 
+/--
+@isnad1 id=eq.0h3v.s10.3aa8d5df62ec from=translated src=- shape=30954d1a vocab=2f6b5aba
+-/
 @[simp] theorem tensorBinaryRestriction_embedding (P : BinaryTensor (R := R) (M := M)) :
     tensorBinaryRestriction (tensorBinaryEmbedding P) = P := by
   have h : tensorBinaryRestriction.comp tensorBinaryEmbedding =
@@ -274,12 +321,17 @@ def tensorBinaryRestriction : AuxTensor (R := R) (M := M) →ₗ[R] BinaryTensor
     simp [tensorBinaryRestriction, tensorBinaryEmbedding]
   exact LinearMap.congr_fun h P
 
+/--
+@isnad1 id=injectiv.0h2v.s9.e6c0dab9f466 from=translated src=- shape=9cca1f38 vocab=3aa793f8
+-/
 theorem tensorBinaryEmbedding_injective :
     Function.Injective (tensorBinaryEmbedding (R := R) (M := M)) := by
   intro P Q h
   simpa using congrArg (tensorBinaryRestriction (R := R) (M := M)) h
 
-/-- Tensoring the explicit integration splitting requires no flatness assumption.-/
+/-- Tensoring the explicit integration splitting requires no flatness assumption.
+@isnad1 id=eq.0h4v.s12.e23ac86b81e1 from=translated src=- shape=af76417b vocab=011f8a24
+-/
 theorem tensor_first_derivative_split (P : AuxTensor (R := R) (M := M)) :
     (integrateFirst (K := K)).rTensor M ((pderiv (R := R) (0 : Fin 3)).toLinearMap.rTensor M P) +
       tensorBinaryEmbedding (tensorBinaryRestriction P) = P := by
@@ -292,7 +344,9 @@ theorem tensor_first_derivative_split (P : AuxTensor (R := R) (M := M)) :
 
 include K
 
-/-- The kernel of the first derivative is exactly the binary module, with unique coordinates.-/
+/-- The kernel of the first derivative is exactly the binary module, with unique coordinates.
+@isnad1 id=iff.0h4v.s11.0970c5384905 from=translated src=- shape=71def100 vocab=7653155f
+-/
 theorem tensor_pderiv_kernel (P : AuxTensor (R := R) (M := M)) :
     (pderiv (R := R) (0 : Fin 3)).toLinearMap.rTensor M P = 0 ↔
       ∃! Q : BinaryTensor (R := R) (M := M), tensorBinaryEmbedding Q = P := by
@@ -319,7 +373,9 @@ def kernelEmbedding (A : Matrix (Fin 3) (Fin 3) R) :
   ((linearChange A).toLinearMap.rTensor M).comp tensorBinaryEmbedding
 
 /-- The directional kernel is the symmetric algebra on the two kernel coordinates.
-The first row of `A` is a unimodular lift, the last two rows are the kernel basis.-/
+The first row of `A` is a unimodular lift, the last two rows are the kernel basis.
+@isnad1 id=iff.3h7v.s10.e06b9dd403c6 from=translated src=- shape=80f64358 vocab=da94e333
+-/
 theorem tensor_directional_kernel
     (f : Fin 3 → R) (A B : Matrix (Fin 3) (Fin 3) R)
     (hAB : A * B = 1) (hBA : B * A = 1)
@@ -375,7 +431,9 @@ end Tensor
 section Homogeneous
 variable {σ τ : Type*}
 
-/-- Any substitution by linear forms preserves homogeneous degree.-/
+/-- Any substitution by linear forms preserves homogeneous degree.
+@isnad1 id=ishomoge.2h6v.s9.05b9d3e790d0 from=translated src=- shape=caea680d vocab=74e211c5
+-/
 theorem linearSubstitution_homogeneous
     (φ : MvPolynomial σ R →ₐ[R] MvPolynomial τ R)
     (hφ : ∀ i, (φ (X i)).IsHomogeneous 1)
@@ -384,7 +442,9 @@ theorem linearSubstitution_homogeneous
   rw [aeval_unique φ]
   simpa only [one_mul] using hP.aeval (φ ∘ X) hφ
 
-/-- Linear substitution commutes with extraction of every homogeneous component.-/
+/-- Linear substitution commutes with extraction of every homogeneous component.
+@isnad1 id=eq.1h6v.s10.55f519beccec from=translated src=- shape=bb04724c vocab=8637ec55
+-/
 theorem linearSubstitution_homogeneousComponent
     (φ : MvPolynomial σ R →ₐ[R] MvPolynomial τ R)
     (hφ : ∀ i, (φ (X i)).IsHomogeneous 1)
@@ -399,21 +459,33 @@ theorem linearSubstitution_homogeneousComponent
       homogeneousComponent_of_mem hp]
     split_ifs <;> simp
 
+/--
+@isnad1 id=ishomoge.0h2v.s5.2c34953a5433 from=translated src=- shape=3611e570 vocab=d093ab26
+-/
 @[simp] theorem linearForm_homogeneous (v : Fin 3 → R) :
     (linearForm v).IsHomogeneous 1 :=
   IsHomogeneous.sum _ _ _ (fun _i _ => isHomogeneous_C_mul_X _ _)
 
+/--
+@isnad1 id=ishomoge.1h4v.s8.c926829b1cc9 from=translated src=- shape=18dc76e6 vocab=c0c89bf2
+-/
 @[simp] theorem linearChange_homogeneous (A : Matrix (Fin 3) (Fin 3) R)
     {n : ℕ} {P : Aux R} (hP : P.IsHomogeneous n) :
     (linearChange A P).IsHomogeneous n :=
   linearSubstitution_homogeneous (linearChange A) (by intro i; simp) hP
 
+/--
+@isnad1 id=ishomoge.0h2v.s8.59a36371c79a from=translated src=- shape=4f4b3576 vocab=49b70b91
+-/
 theorem binaryRestriction_X_homogeneous (i : Fin 3) :
     (binaryRestriction (R := R) (X i)).IsHomogeneous 1 := by
   refine Fin.cases ?_ (fun j => ?_) i
   · simpa [binaryRestriction] using (isHomogeneous_zero (σ := Fin 2) R 1)
   · simpa [binaryRestriction] using (isHomogeneous_X R j)
 
+/--
+@isnad1 id=ishomoge.0h2v.s8.2b5b607212a8 from=translated src=- shape=4f4b3576 vocab=6fdf2780
+-/
 theorem binaryEmbedding_X_homogeneous (i : Fin 2) :
     (binaryEmbedding (R := R) (X i)).IsHomogeneous 1 := by
   simpa [binaryEmbedding] using (isHomogeneous_X R i.succ)
@@ -424,7 +496,9 @@ variable {M : Type*} [AddCommGroup M] [Module R M]
 def TensorHomogeneous (n : ℕ) (P : MvPolynomial σ R ⊗[R] M) : Prop :=
   (homogeneousComponent n).rTensor M P = P
 
-/-- Linear auxiliary substitutions also preserve homogeneous degree for module coefficients.-/
+/-- Linear auxiliary substitutions also preserve homogeneous degree for module coefficients.
+@isnad1 id=tensorho.2h7v.s11.39cc1f756332 from=translated src=- shape=0f59d73b vocab=5eb427a5
+-/
 theorem tensor_linearSubstitution_homogeneous
     (φ : MvPolynomial σ R →ₐ[R] MvPolynomial τ R)
     (hφ : ∀ i, (φ (X i)).IsHomogeneous 1)
@@ -446,7 +520,9 @@ def kernelCoordinates (B : Matrix (Fin 3) (Fin 3) R) :
     AuxTensor (R := R) (M := M) →ₗ[R] BinaryTensor (R := R) (M := M) :=
   tensorBinaryRestriction.comp ((linearChange B).toLinearMap.rTensor M)
 
-/-- The coordinates are unique because this map is a left inverse to the kernel embedding.-/
+/-- The coordinates are unique because this map is a left inverse to the kernel embedding.
+@isnad1 id=eq.1h5v.s10.ba492a69c7e3 from=translated src=- shape=dc0637c2 vocab=6aeed39a
+-/
 theorem kernelCoordinates_embedding (A B : Matrix (Fin 3) (Fin 3) R)
     (hAB : A * B = 1) (Q : BinaryTensor (R := R) (M := M)) :
     kernelCoordinates B (kernelEmbedding A Q) = Q := by
@@ -465,7 +541,9 @@ theorem kernelCoordinates_embedding (A B : Matrix (Fin 3) (Fin 3) R)
     rw [hab, binaryRestriction_embedding]
   exact LinearMap.congr_fun hs Q
 
-/-- The inverse-coordinate map preserves auxiliary homogeneous degree.-/
+/-- The inverse-coordinate map preserves auxiliary homogeneous degree.
+@isnad1 id=tensorho.1h5v.s9.dde153ddb65e from=translated src=- shape=05e31fef vocab=f8971290
+-/
 theorem kernelCoordinates_homogeneous (B : Matrix (Fin 3) (Fin 3) R)
     {n : ℕ} {P : AuxTensor (R := R) (M := M)} (hP : TensorHomogeneous n P) :
     TensorHomogeneous n (kernelCoordinates B P) := by
@@ -477,7 +555,9 @@ variable {K : Type*} [Field K] [CharZero K] [Algebra K R]
 include K
 
 /-- In each homogeneous degree the directional kernel is the symmetric power of
-its two split kernel coordinates, with unique module-valued binary coefficients.-/
+its two split kernel coordinates, with unique module-valued binary coefficients.
+@isnad1 id=iff.4h8v.s10.cc3d7cdd3d82 from=translated src=- shape=dd113868 vocab=b2f16d66
+-/
 theorem tensor_directional_homogeneous_kernel
     (f : Fin 3 → R) (A B : Matrix (Fin 3) (Fin 3) R)
     (hAB : A * B = 1) (hBA : B * A = 1)

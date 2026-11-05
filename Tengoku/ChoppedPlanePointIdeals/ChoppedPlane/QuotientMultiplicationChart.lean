@@ -27,7 +27,9 @@ variable {K ι V α κ : Type*} [Field K] [AddCommGroup V] [Module K V]
 omit [DecidableEq κ] in
 /-- The adjugate of a polynomial square combination chart is a polynomial
 right inverse multiplied by a determinant.  The determinant is normalized to
-one at the witness by using its combined vectors as the reference basis.-/
+one at the witness by using its combined vectors as the reference basis.
+@isnad1 id=ex.3h8v.s10.89131d14e0d7 from=translated src=- shape=f30d2b29 vocab=06b761e9
+-/
 theorem polynomial_combination_adjugate_chart
     (r : α → (ι → K) → V) (l : κ → (ι → K) → V)
     (hr : ∀ i, IsPolynomialFamily (r i))
@@ -83,7 +85,9 @@ theorem polynomial_combination_adjugate_chart
 
 omit [FiniteDimensional K V] [DecidableEq κ] in
 /-- Quotient coordinates discard the relation coordinates of a combined
-relation-and-lift expression.-/
+relation-and-lift expression.
+@isnad1 id=eq.2h11v.s10.e8fe74b7cd43 from=translated src=- shape=81fb9b6b vocab=8f9c8d06
+-/
 theorem combined_quotient_coordinates
     {A : Type*} [AddCommGroup A] [Module K A]
     (q : V →ₗ[K] A) (r : α → V) (l : κ → V) (b : Basis κ K A)
@@ -99,7 +103,9 @@ theorem combined_quotient_coordinates
 omit [DecidableEq κ] in
 /-- A polynomial relation map supplies a polynomial relation basis adapted to
 any fixed lifts of a witness quotient basis.  Only source preimages at the
-witness are chosen; the same preimages are used for every specialization.-/
+witness are chosen; the same preimages are used for every specialization.
+@isnad1 id=ex.3h11v.s12.1b211326357a from=translated src=- shape=c393b458 vocab=887ddcad
+-/
 theorem polynomial_relations_for_quotient_basis
     {U W : Type*} [AddCommGroup U] [Module K U] [FiniteDimensional K U]
     [AddCommGroup W] [Module K W] [FiniteDimensional K W]
@@ -157,7 +163,9 @@ variable (A : (ι → K) → Type*)
 
 /-- Actual polynomial relations, lifts and products determine polynomial
 multiplication matrices with one common determinant denominator.  The bases
-can be provided only on a pre-existing principal open.-/
+can be provided only on a pre-existing principal open.
+@isnad1 id=ex.8h13v.s11.bf6ca4f1f53a from=translated src=- shape=94b6f1fe vocab=ca4c2162
+-/
 theorem polynomial_quotient_multiplication_chart
     (H₀ : MvPolynomial ι K)
     (b : ∀ a, eval a H₀ ≠ 0 → Basis κ K (A a))
@@ -214,7 +222,9 @@ theorem polynomial_quotient_multiplication_chart
 
 /-- A split witness and a polynomial relation-and-product chart give a
 principal open of reduced quotient algebras.  No multiplication matrices are
-assumed: the preceding adjugate construction supplies them.-/
+assumed: the preceding adjugate construction supplies them.
+@isnad1 id=ex.8h14v.s11.87a5ad114b6c from=translated src=- shape=373c09db vocab=f2ef7427
+-/
 theorem reduced_principal_open_of_polynomial_quotient_chart
     (H₀ : MvPolynomial ι K)
     (b : ∀ a, eval a H₀ ≠ 0 → Basis κ K (A a))

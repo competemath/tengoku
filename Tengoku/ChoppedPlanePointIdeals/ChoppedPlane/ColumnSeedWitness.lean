@@ -21,29 +21,47 @@ variable {K : Type*} [Field K] {p q : ℕ}
 def castPointCoordinates (h : p = q) (a : PointCoordinates K p) : PointCoordinates K q := h ▸ a
 
 omit [Field K] in
+/--
+@isnad1 id=iff.1h4v.s4.2750fdda9337 from=translated src=- shape=2feedcee vocab=c9f2267d
+-/
 @[simp] theorem distinct_castPointCoordinates (h : p = q) (a : PointCoordinates K p) :
     DistinctPoints K (castPointCoordinates h a) ↔ DistinctPoints K a := by cases h; rfl
 
+/--
+@isnad1 id=iff.1h5v.s12.1899c35a4c24 from=translated src=- shape=ff77b669 vocab=034831fe
+-/
 @[simp] theorem surjective_castPointCoordinates (h : p = q) (a : PointCoordinates K p) (d : ℕ) :
     Function.Surjective (pointEvaluation K (castPointCoordinates h a) d) ↔
       Function.Surjective (pointEvaluation K a d) := by cases h; rfl
 
+/--
+@isnad1 id=eq.1h5v.s5.16077764ed6f from=translated src=- shape=53691d26 vocab=23dcf3c5
+-/
 @[simp] theorem pointHilbertFunction_castPointCoordinates (h : p = q)
     (a : PointCoordinates K p) (t : ℕ) :
     pointHilbertFunction K (castPointCoordinates h a) t = pointHilbertFunction K a t := by
   cases h
   rfl
 
+/--
+@isnad1 id=eq.1h6v.s5.c7ac12ea90ef from=translated src=- shape=d86205d1 vocab=1556d2a4
+-/
 @[simp] theorem choppedHilbertFunction_castPointCoordinates (h : p = q)
     (a : PointCoordinates K p) (d t : ℕ) :
     choppedHilbertFunction (castPointCoordinates h a) d t = choppedHilbertFunction a d t := by
   cases h
   rfl
 
+/--
+@isnad1 id=eq.1h5v.s6.261fa2755c19 from=translated src=- shape=e05ed286 vocab=570f1614
+-/
 @[simp] theorem choppedIdeal_castPointCoordinates (h : p = q)
     (a : PointCoordinates K p) (d : ℕ) :
     choppedIdeal K (castPointCoordinates h a) d = choppedIdeal K a d := by cases h; rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.c842391c189e from=translated src=- shape=258a9b8e vocab=263c09a7
+-/
 @[simp] theorem pointIdeal_castPointCoordinates (h : p = q) (a : PointCoordinates K p) :
     pointIdeal K (castPointCoordinates h a) = pointIdeal K a := by cases h; rfl
 
@@ -72,7 +90,9 @@ def canonicalColumnCoordinates (d r : ℕ) :
     (Ferrers.canonicalRoots (K := K) _) (Ferrers.canonicalRoots (K := K) _)
 
 /-- The canonical seed realizes the general-point Hilbert function in every
-degree, and the chop already equals its actual saturated point ideal.-/
+degree, and the chop already equals its actual saturated point ideal.
+@isnad1 id=and.3h3v.s15.71e78f061eab from=translated src=- shape=e2236278 vocab=eaf1382b
+-/
 theorem canonicalColumnCoordinates_properties {d r : ℕ}
     (hr : 1 ≤ r) (hupper : r ≤ d + 1) (hlower : d + 2 ≤ 2 * r) :
     DistinctPoints K (canonicalColumnCoordinates (K := K) d r) ∧
@@ -120,6 +140,9 @@ def columnSeedCoordinates (d r : ℕ) (hr : 1 ≤ r)
   castPointCoordinates (columnProfile_selected_card hr hupper hlower)
     (canonicalColumnCoordinates (K := K) d r)
 
+/--
+@isnad1 id=and.3h3v.s11.7bfa290d9e06 from=translated src=- shape=00a7278b vocab=3256915b
+-/
 theorem columnSeedCoordinates_properties {d r : ℕ} (hr : 1 ≤ r)
     (hupper : r ≤ d + 1) (hlower : d + 2 ≤ 2 * r) :
     DistinctPoints K (columnSeedCoordinates (K := K) d r hr hupper hlower) ∧
@@ -135,7 +158,9 @@ theorem columnSeedCoordinates_properties {d r : ℕ} (hr : 1 ≤ r)
     (canonicalColumnCoordinates_properties (K := K) hr hupper hlower)
 
 /-- Existence on the paper's exact number of ordered points, witnessed by the
-displayed canonical-root matrix construction.-/
+displayed canonical-root matrix construction.
+@isnad1 id=ex.3h3v.s11.295b69840fdf from=translated src=- shape=0adbc0c8 vocab=e35885b1
+-/
 theorem exists_columnSeedWitness {d r : ℕ} (hr : 1 ≤ r)
     (hupper : r ≤ d + 1) (hlower : d + 2 ≤ 2 * r) :
     ∃ a : PointCoordinates K (N d - r), DistinctPoints K a ∧

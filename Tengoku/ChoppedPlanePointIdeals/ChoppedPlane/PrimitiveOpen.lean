@@ -15,7 +15,9 @@ namespace ChoppedPlane
 open MvPolynomial
 variable {K : Type*} [Field K] {c d : ℕ}
 
-/-- A common divisor of all maximal minors divides the entire cofactor ideal.-/
+/-- A common divisor of all maximal minors divides the entire cofactor ideal.
+@isnad1 id=le.1h4v.s7.00f711735b95 from=translated src=- shape=cdcd731f vocab=5595b7ce
+-/
 theorem cofactorIdeal_le_principal_of_common_divisor
     {R : Type*} [CommRing R] (B : Matrix (Fin (c + 1)) (Fin c) R) (u : R)
     (hu : ∀ i, u ∣ maximalMinor B i) : cofactorIdeal B ≤ Ideal.span {u} := by
@@ -25,7 +27,9 @@ theorem cofactorIdeal_le_principal_of_common_divisor
   apply Ideal.mem_span_singleton.mpr
   exact dvd_mul_of_dvd_right (hu i) ((-1) ^ i.val)
 
-/-- Relatively prime members of the minor ideal force primitive maximal minors.-/
+/-- Relatively prime members of the minor ideal force primitive maximal minors.
+@isnad1 id=primitiv.3h5v.s7.a1fcc12da8c5 from=translated src=- shape=c6539041 vocab=c996ee9f
+-/
 theorem primitiveMaximalMinors_of_relPrime_ideal_pair
     {R : Type*} [CommRing R] (B : Matrix (Fin (c + 1)) (Fin c) R)
     (f g : R) (hf : f ∈ cofactorIdeal B) (hg : g ∈ cofactorIdeal B)
@@ -36,7 +40,9 @@ theorem primitiveMaximalMinors_of_relPrime_ideal_pair
     ((Ideal.mem_span_singleton).mp (hle hg))
 
 /-- A polynomial family with a coprime equal-degree minor pair has primitive
-maximal minors on a nonempty principal open containing the witness.-/
+maximal minors on a nonempty principal open containing the witness.
+@isnad1 id=ex.6h9v.s11.825f91052628 from=translated src=- shape=cadbe5d0 vocab=f891ef5e
+-/
 theorem primitiveMaximalMinors_principal_open_of_pair {ι : Type*}
     (F : (ι → K) → Matrix (Fin (c + 1)) (Fin c) (Poly K 3))
     (q : (ι → K) → Fin 2 → Forms K 3 d) (hpoly : IsPolynomialFamily q)
@@ -54,7 +60,9 @@ theorem primitiveMaximalMinors_principal_open_of_pair {ι : Type*}
   exact (hgood a ha).1
 
 /-- The same rank-open argument applies to any equal-degree pair lying in the
-cofactor ideal, including its signed maximal-minor generators.-/
+cofactor ideal, including its signed maximal-minor generators.
+@isnad1 id=ex.5h7v.s11.4b3f9dd64ffd from=translated src=- shape=7df74a05 vocab=3897ed12
+-/
 theorem primitiveMaximalMinors_principal_open_of_ideal_pair {ι : Type*}
     (F : (ι → K) → Matrix (Fin (c + 1)) (Fin c) (Poly K 3))
     (q : (ι → K) → Fin 2 → Forms K 3 d) (hpoly : IsPolynomialFamily q)
@@ -69,7 +77,9 @@ theorem primitiveMaximalMinors_principal_open_of_ideal_pair {ι : Type*}
     _ _ (hq a 0) (hq a 1) (hgood a ha).1⟩
 
 /-- A binary degree cut makes the restricted minors primitive as soon as the
-coordinate powers are relatively prime.-/
+coordinate powers are relatively prime.
+@isnad1 id=primitiv.2h4v.s10.9610bee4bf89 from=translated src=- shape=b0b5ea8d vocab=1d4ba076
+-/
 theorem primitiveMaximalMinors_of_binary_degree_cut
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 2)) (N : ℕ)
     (hcut : ∀ f : Forms K 2 N, f.val ∈ cofactorIdeal B)

@@ -24,6 +24,9 @@ def auxiliaryCoefficientResidueDualEquiv [Finite J] [CharZero K]
   (negativeGradeSplit g r).symm.trans
     ((auxiliaryResidueDualEquiv g r t).trans (positiveGradeSplit g r).symm.dualMap)
 
+/--
+@isnad1 id=eq.0h7v.s14.a0037c2c2771 from=translated src=- shape=7d10c0d6 vocab=e33f2f8e
+-/
 @[simp] theorem auxiliaryCoefficientResidueDualEquiv_apply [Finite J] [CharZero K]
     (g : J → ℤ) (r : ℤ) (t : ℕ)
     (q : Sym (Fin 3) t → negativeGrade (K := K) g r)

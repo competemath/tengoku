@@ -47,6 +47,9 @@ def rowMatrixCoordinates (δ : Fin (c + 1) → ℕ) (B : HomogeneousRowMatrix K 
     RowMatrixParameter δ → K :=
   fun p => (formsBasis K 3 (δ p.1)).repr (B p.1 p.2.1) p.2.2
 
+/--
+@isnad1 id=eq.0h4v.s12.ae1388d07ee6 from=translated src=- shape=3e6137d0 vocab=a980d842
+-/
 @[simp] theorem universalRowMatrix_coordinates (δ : Fin (c + 1) → ℕ)
     (B : HomogeneousRowMatrix K δ) :
     universalRowMatrix δ (rowMatrixCoordinates δ B) = B := by
@@ -57,6 +60,9 @@ def rowMatrixCoordinates (δ : Fin (c + 1) → ℕ) (B : HomogeneousRowMatrix K 
 def rowMatrixVal (δ : Fin (c + 1) → ℕ) (B : HomogeneousRowMatrix K δ) :
     Matrix (Fin (c + 1)) (Fin c) (Poly K 3) := fun i j => (B i j).val
 
+/--
+@isnad1 id=ishomoge.0h6v.s6.256f37fac1c4 from=translated src=- shape=807bc3f7 vocab=a4ac0378
+-/
 theorem rowMatrixVal_homogeneous (δ : Fin (c + 1) → ℕ)
     (B : HomogeneousRowMatrix K δ) :
     ∀ i j, (rowMatrixVal δ B i j).IsHomogeneous (δ i) := fun i j => (B i j).property
@@ -67,7 +73,9 @@ def coefficientSpecialization {ι R : Type*} [CommRing R] [Algebra K R]
   eval₂Hom (RingHom.id R) (fun i => algebraMap K R (u i))
 
 /-- A polynomial with algebra-valued coefficients is a polynomial vector
-family; no finite-dimensionality of its coefficient algebra is required.-/
+family; no finite-dimensionality of its coefficient algebra is required.
+@isnad1 id=ispolyno.0h4v.s7.40114f496c45 from=translated src=- shape=96fe7553 vocab=79d5a396
+-/
 theorem coefficientSpecialization_isPolynomialFamily {ι R : Type*}
     [CommRing R] [Algebra K R] (P : MvPolynomial ι R) :
     IsPolynomialFamily (fun u : ι → K => coefficientSpecialization u P) := by
@@ -86,6 +94,9 @@ def universalRowEntryPolynomial (δ : Fin (c + 1) → ℕ)
     MvPolynomial (RowMatrixParameter δ) (Poly K 3) :=
   ∑ s, C (formsBasis K 3 (δ i) s).val * X ⟨i, j, s⟩
 
+/--
+@isnad1 id=eq.0h6v.s12.9dbde729bc45 from=translated src=- shape=f840c678 vocab=934198ea
+-/
 @[simp] theorem universalRowEntryPolynomial_specialize (δ : Fin (c + 1) → ℕ)
     (u : RowMatrixParameter δ → K) (i : Fin (c + 1)) (j : Fin c) :
     coefficientSpecialization u (universalRowEntryPolynomial δ i j) =
@@ -98,6 +109,9 @@ def universalSignedCofactorPolynomial (δ : Fin (c + 1) → ℕ)
     (i : Fin (c + 1)) : MvPolynomial (RowMatrixParameter δ) (Poly K 3) :=
   signedMaximalMinor (universalRowEntryPolynomial δ) i
 
+/--
+@isnad1 id=eq.0h5v.s12.36e4e3e8b6c4 from=translated src=- shape=e7692774 vocab=a85e6d67
+-/
 @[simp] theorem universalSignedCofactorPolynomial_specialize
     (δ : Fin (c + 1) → ℕ) (u : RowMatrixParameter δ → K) (i : Fin (c + 1)) :
     coefficientSpecialization u (universalSignedCofactorPolynomial δ i) =
@@ -110,7 +124,9 @@ def universalSignedCofactorPolynomial (δ : Fin (c + 1) → ℕ)
   funext j k
   exact universalRowEntryPolynomial_specialize δ u _ _
 
-/-- Cofactors vary polynomially as vectors in the polynomial ring.-/
+/-- Cofactors vary polynomially as vectors in the polynomial ring.
+@isnad1 id=ispolyno.0h4v.s12.1338c152bc15 from=translated src=- shape=3cff43f2 vocab=fe63a7f3
+-/
 theorem universalSignedCofactor_isPolynomialFamily (δ : Fin (c + 1) → ℕ)
     (i : Fin (c + 1)) :
     IsPolynomialFamily (fun u : RowMatrixParameter δ → K =>
@@ -126,7 +142,9 @@ def universalRowCofactorForm (δ : Fin (c + 1) → ℕ)
   ⟨signedMaximalMinor (rowMatrixVal δ (universalRowMatrix δ u)) i,
     signedMaximalMinor_homogeneous_total _ δ (rowMatrixVal_homogeneous δ _) i⟩
 
-/-- Cofactor polynomiality holds in the finite-dimensional homogeneous space.-/
+/-- Cofactor polynomiality holds in the finite-dimensional homogeneous space.
+@isnad1 id=ispolyno.0h4v.s9.d0e7dc9375e2 from=translated src=- shape=38be8c5d vocab=6ae0ddbe
+-/
 theorem universalRowCofactorForm_isPolynomialFamily (δ : Fin (c + 1) → ℕ)
     (i : Fin (c + 1)) :
     IsPolynomialFamily (fun u : RowMatrixParameter δ → K =>
@@ -143,7 +161,9 @@ theorem universalRowCofactorForm_isPolynomialFamily (δ : Fin (c + 1) → ℕ)
 
 attribute [local instance] MvPolynomial.gradedAlgebra
 
-/-- Homogeneity of the actual maximal-minor ideal, for arbitrary row degrees.-/
+/-- Homogeneity of the actual maximal-minor ideal, for arbitrary row degrees.
+@isnad1 id=ishomoge.1h5v.s8.33e9e27f8b53 from=translated src=- shape=4a9c2067 vocab=48e7c82c
+-/
 theorem maximalMinorIdeal_homogeneous {n : ℕ}
     (δ : Fin (c + 1) → ℕ)
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n))
@@ -157,6 +177,9 @@ theorem maximalMinorIdeal_homogeneous {n : ℕ}
 def signedProjection (n : ℕ) (t : ℤ) : Poly K n →ₗ[K] signedForms K n t :=
   (signedComponent t).codRestrict _ (signedComponent_mem t)
 
+/--
+@isnad1 id=eq.0h4v.s10.a8cf2fbeddd9 from=translated src=- shape=ab9b0687 vocab=5936451d
+-/
 @[simp] theorem signedProjection_self (n : ℕ) (t : ℤ) (f : signedForms K n t) :
     signedProjection n t f.val = f := by
   apply Subtype.ext
@@ -168,7 +191,9 @@ def polynomialMulRight (n : ℕ) (p : Poly K n) : Poly K n →ₗ[K] Poly K n wh
   map_add' f g := add_mul f g p
   map_smul' k f := smul_mul_assoc k f p
 
-/-- Every twist of the universal cofactor map has polynomial coefficients.-/
+/-- Every twist of the universal cofactor map has polynomial coefficients.
+@isnad1 id=ispolyno.0h4v.s13.dd7008e7a374 from=translated src=- shape=81a72cda vocab=50b7e8ca
+-/
 theorem universalRowCofactorMap_isPolynomialFamily (δ : Fin (c + 1) → ℕ)
     (e : ℤ) :
     IsPolynomialFamily (fun u : RowMatrixParameter δ → K =>
@@ -191,7 +216,9 @@ theorem universalRowCofactorMap_isPolynomialFamily (δ : Fin (c + 1) → ℕ)
     (gradedCofactorMap (rowMatrixVal δ (universalRowMatrix δ u)) δ
       (rowMatrixVal_homogeneous δ _) e v)).symm
 
-/-- Restriction to the line at infinity preserves the homogeneous degree.-/
+/-- Restriction to the line at infinity preserves the homogeneous degree.
+@isnad1 id=ishomoge.1h3v.s7.0875472858fb from=translated src=- shape=2d657b4f vocab=35d771fa
+-/
 theorem infinityMap_homogeneous {t : ℕ} {f : Poly K 3} (hf : f.IsHomogeneous t) :
     (Ferrers.infinityMap f).IsHomogeneous t := by
   change (eval₂ (C : K →+* Poly K 2) ![X 0, X 1, 0] f).IsHomogeneous t
@@ -217,11 +244,17 @@ def universalInfinityMatrix (δ : Fin (c + 1) → ℕ)
     (u : RowMatrixParameter δ → K) : Matrix (Fin (c + 1)) (Fin c) (Poly K 2) :=
   (rowMatrixVal δ (universalRowMatrix δ u)).map Ferrers.infinityMap
 
+/--
+@isnad1 id=ishomoge.0h6v.s6.6415f8eeea33 from=translated src=- shape=b62f5d31 vocab=e3848514
+-/
 theorem universalInfinityMatrix_homogeneous (δ : Fin (c + 1) → ℕ)
     (u : RowMatrixParameter δ → K) :
     ∀ i j, (universalInfinityMatrix δ u i j).IsHomogeneous (δ i) :=
   fun i j => infinityMap_homogeneous (rowMatrixVal_homogeneous δ _ i j)
 
+/--
+@isnad1 id=ispolyno.0h4v.s7.9d086fb8f356 from=translated src=- shape=720aeb61 vocab=fb39033a
+-/
 theorem universalInfinitySignedCofactor_isPolynomialFamily
     (δ : Fin (c + 1) → ℕ) (i : Fin (c + 1)) :
     IsPolynomialFamily (fun u : RowMatrixParameter δ → K =>
@@ -230,7 +263,9 @@ theorem universalInfinitySignedCofactor_isPolynomialFamily
     LinearMap.coe_mk, AddHom.coe_mk] using
     (universalSignedCofactor_isPolynomialFamily δ i).linear_comp infinityLinear
 
-/-- The binary cofactor multiplication maps also have polynomial coefficients.-/
+/-- The binary cofactor multiplication maps also have polynomial coefficients.
+@isnad1 id=ispolyno.0h4v.s12.3d4d6232f8f2 from=translated src=- shape=c7da7813 vocab=438c03cc
+-/
 theorem universalInfinityCofactorMap_isPolynomialFamily
     (δ : Fin (c + 1) → ℕ) (e : ℤ) :
     IsPolynomialFamily (fun u : RowMatrixParameter δ → K =>
@@ -253,7 +288,9 @@ theorem universalInfinityCofactorMap_isPolynomialFamily
     (gradedCofactorMap (universalInfinityMatrix δ u) δ
       (universalInfinityMatrix_homogeneous δ u) e v)).symm
 
-/-- A surjective polynomial map stays surjective on a principal open.-/
+/-- A surjective polynomial map stays surjective on a principal open.
+@isnad1 id=ex.2h6v.s9.81e9644a5010 from=translated src=- shape=b3d99c28 vocab=371684ad
+-/
 theorem surjective_polynomial_principal_open {ι V W : Type*}
     [AddCommGroup V] [Module K V] [FiniteDimensional K V]
     [AddCommGroup W] [Module K W] [FiniteDimensional K W]
@@ -271,7 +308,9 @@ theorem surjective_polynomial_principal_open {ι V W : Type*}
   exact hr
 
 /-- An actual binary cofactor-map witness supplies a nonempty degree-cut open.
-Its hypothesis is a finite surjectivity calculation at that displayed matrix.-/
+Its hypothesis is a finite surjectivity calculation at that displayed matrix.
+@isnad1 id=ex.1h5v.s12.3cb47592b682 from=translated src=- shape=04f024b9 vocab=b1a3ebd0
+-/
 theorem universalInfinity_surjective_principal_open
     (δ : Fin (c + 1) → ℕ) (e : ℤ) (B : HomogeneousRowMatrix K δ)
     (hB : Function.Surjective
@@ -287,7 +326,9 @@ theorem universalInfinity_surjective_principal_open
   simpa only [universalInfinityMatrix, universalRowMatrix_coordinates] using hB
 
 /-- On the degree-cut open every binary form of the specified degree belongs
-to the actual maximal-minor ideal at infinity.-/
+to the actual maximal-minor ideal at infinity.
+@isnad1 id=ex.1h5v.s12.bcde256779cb from=translated src=- shape=7686943f vocab=7ef2eebc
+-/
 theorem universalInfinity_degree_cut_principal_open
     (δ : Fin (c + 1) → ℕ) (N : ℕ) (B : HomogeneousRowMatrix K δ)
     (hB : Function.Surjective

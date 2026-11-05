@@ -13,7 +13,9 @@ namespace ChoppedPlane.QWeyl
 open Module
 variable {K : Type*} [Field K]
 
-/-- The stated critical auxiliary degree is exactly the numerical matrix crossing.-/
+/-- The stated critical auxiliary degree is exactly the numerical matrix crossing.
+@isnad1 id=eq.0h2v.s4.4fbd36aef17b from=translated src=- shape=31e35a53 vocab=03a59409
+-/
 theorem profileLinearMatrix_criticalTwist (s : CubicProfile) (r : ℕ) :
     linearMatrixCriticalTwist (profileRows s r) (profileRows s r+3) =
       profileCriticalDegree s r := by

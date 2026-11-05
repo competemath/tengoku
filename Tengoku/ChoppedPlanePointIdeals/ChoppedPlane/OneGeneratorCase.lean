@@ -18,7 +18,9 @@ open MvPolynomial Module
 variable {K : Type*} [Field K] {d p : ℕ}
 
 /-- Every distinct configuration with the usual point Hilbert function obeys
-all conclusions of Theorem 1.1 in the one-generator range.-/
+all conclusions of Theorem 1.1 in the one-generator range.
+@isnad1 id=mainconc.6h4v.s6.16c47b3ee96e from=translated src=- shape=f7fa8ad9 vocab=7f92436a
+-/
 theorem mainConclusion_one_generator (a : PointCoordinates K p)
     (hd : 1 ≤ d) (hlo : N (d - 1) < p) (hhi : p < N d)
     (hr : N d - p = 1) (hdist : DistinctPoints K a)
@@ -51,7 +53,9 @@ theorem mainConclusion_one_generator (a : PointCoordinates K p)
       omega
 
 /-- The full one-generator case holds on one actual nonempty principal open,
-with every homogeneous degree covered simultaneously.-/
+with every homogeneous degree covered simultaneously.
+@isnad1 id=genericc.5h3v.s6.5a7aeb487cf9 from=translated src=- shape=7c02be04 vocab=4ac1c2c1
+-/
 theorem genericChoppedConclusion_one_generator [CharZero K]
     (hd : 1 ≤ d) (_hp : 1 ≤ p) (hlo : N (d - 1) < p) (hhi : p < N d)
     (hr : N d - p = 1) : GenericChoppedConclusion K d p := by

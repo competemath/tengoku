@@ -19,7 +19,9 @@ namespace ChoppedPlane
 
 variable {K : Type*} [AddZeroClass K]
 
-/-- A coefficient below the row diagonal propagates to the left boundary.-/
+/-- A coefficient below the row diagonal propagates to the left boundary.
+@isnad1 id=eq.5h6v.s7.ef7d94e158f2 from=translated src=- shape=22fdfff2 vocab=062bb632
+-/
 theorem binary_coeff_lower_left {a t : ℕ} (A : ℕ → ℕ → K)
     (hleft : ∀ i < a, A (i + 1) 0 = 0)
     (hrec : ∀ i < a, ∀ j < t, A (i + 1) (j + 1) + A i j = 0)
@@ -35,7 +37,9 @@ theorem binary_coeff_lower_left {a t : ℕ} (A : ℕ → ℕ → K)
       have h := hrec r (by omega) j (by omega)
       simpa only [hprev, add_zero] using h
 
-/-- A coefficient with room above it propagates to the right boundary.-/
+/-- A coefficient with room above it propagates to the right boundary.
+@isnad1 id=eq.4h6v.s7.548235018261 from=translated src=- shape=8979abd6 vocab=bf69e74b
+-/
 theorem binary_coeff_upper_right {a t : ℕ} (A : ℕ → ℕ → K)
     (hright : ∀ i < a, A i t = 0)
     (hrec : ∀ i < a, ∀ j < t, A (i + 1) (j + 1) + A i j = 0)
@@ -52,7 +56,9 @@ theorem binary_coeff_upper_right {a t : ℕ} (A : ℕ → ℕ → K)
       have h := hrec i (by omega) (t - (k + 1)) (by omega)
       simpa only [hprev, zero_add] using h
 
-/-- Every binary coefficient is zero when the degree is below the row count.-/
+/-- Every binary coefficient is zero when the degree is below the row count.
+@isnad1 id=eq.6h6v.s7.0d738b084bc4 from=translated src=- shape=409795dc vocab=062bb632
+-/
 theorem binary_coeff_boundary_zero {a t : ℕ} (A : ℕ → ℕ → K)
     (hleft : ∀ i < a, A (i + 1) 0 = 0)
     (hright : ∀ i < a, A i t = 0)

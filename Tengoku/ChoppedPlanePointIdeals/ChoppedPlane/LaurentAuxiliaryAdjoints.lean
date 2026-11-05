@@ -32,10 +32,16 @@ def splitFreeLaurentEquiv [Finite S] :
   (Finsupp.domLCongr auxiliaryLaurentIndexEquiv).trans
     ((Finsupp.curryLinearEquiv K).trans (Finsupp.linearEquivFunOnFinite K _ S))
 
+/--
+@isnad1 id=eq.0h6v.s9.ce7114dbcc67 from=translated src=- shape=1282c81c vocab=e4f67097
+-/
 @[simp] theorem splitFreeLaurentEquiv_apply [Finite S]
     (p : FreeLaurent K (J × S)) (s : S) (e : J × (ℤ × ℤ)) :
     splitFreeLaurentEquiv p s e = p ((e.1,s),e.2) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.54b95c368c38 from=translated src=- shape=103f02a3 vocab=9ad61513
+-/
 @[simp] theorem splitFreeLaurentEquiv_symm_apply [Finite S]
     (p : S → FreeLaurent K J) (e : (J × S) × (ℤ × ℤ)) :
     splitFreeLaurentEquiv.symm p e = p e.1.2 (e.1.1,e.2) := rfl
@@ -66,6 +72,9 @@ def positiveGradeSplit [Finite S] (g : J → ℤ) (r : ℤ) :
     apply Subtype.ext
     exact congrFun (map_smul splitFreeLaurentEquiv c p.val) s
 
+/--
+@isnad1 id=eq.0h8v.s12.a0f2f1f0aa27 from=translated src=- shape=ccc18dc3 vocab=7c64a0c9
+-/
 @[simp] theorem positiveGradeSplit_apply [Finite S] (g : J → ℤ) (r : ℤ)
     (p : positiveGrade (K := K) (fun i : J × S => g i.1) r)
     (s : S) (e : J × (ℤ × ℤ)) :
@@ -97,19 +106,26 @@ def negativeGradeSplit [Finite S] (g : J → ℤ) (r : ℤ) :
     apply Subtype.ext
     exact congrFun (map_smul splitFreeLaurentEquiv c p.val) s
 
+/--
+@isnad1 id=eq.0h8v.s12.6e0563a60d52 from=translated src=- shape=ccc18dc3 vocab=10b817c5
+-/
 @[simp] theorem negativeGradeSplit_apply [Finite S] (g : J → ℤ) (r : ℤ)
     (p : negativeGrade (K := K) (fun i : J × S => g i.1) r)
     (s : S) (e : J × (ℤ × ℤ)) :
     (negativeGradeSplit g r p s).val e = p.val ((e.1,s),e.2) := rfl
 
-/-- Flattening commutes with the actual componentwise Laurent polynomial map.-/
+/-- Flattening commutes with the actual componentwise Laurent polynomial map.
+@isnad1 id=eq.0h6v.s10.e768953bbe80 from=translated src=- shape=cdcb5be8 vocab=30f5d344
+-/
 @[simp] theorem freeLaurentEquiv_split [Finite J] [Finite S]
     (p : FreeLaurent K (J × S)) (j : J) (s : S) :
     freeLaurentEquiv p (j,s) = freeLaurentEquiv (splitFreeLaurentEquiv p s) j := by
   ext e
   rfl
 
-/-- A constant-one coefficient weight is the original perfect residue pairing.-/
+/-- A constant-one coefficient weight is the original perfect residue pairing.
+@isnad1 id=eq.0h6v.s13.054009bd6cce from=translated src=- shape=25550573 vocab=f05d1d3b
+-/
 theorem weightedResiduePair_one [Finite J] (g : J → ℤ) (r : ℤ)
     (q : negativeGrade (K := K) g r) (p : positiveGrade (K := K) g r) :
     weightedResiduePair g r (fun _ => 1) (fun _ => one_ne_zero) q p =
@@ -121,7 +137,9 @@ theorem weightedResiduePair_one [Finite J] (g : J → ℤ) (r : ℤ)
     simp only [weightedResiduePair_basis, residuePair_basis, one_mul]
   exact LinearMap.congr_fun h p
 
-/-- The unweighted perfect pairing is the literal product residue.-/
+/-- The unweighted perfect pairing is the literal product residue.
+@isnad1 id=eq.0h6v.s12.8059bb31b4a3 from=translated src=- shape=460d7daf vocab=7a0291f9
+-/
 theorem residuePair_eq_vectorResidue [Finite J] (g : J → ℤ) (r : ℤ)
     (q : negativeGrade (K := K) g r) (p : positiveGrade (K := K) g r) :
     residuePair g r q p = vectorResidueFunctional (fun _ => 1)
@@ -141,6 +159,9 @@ def auxiliaryOperatorMultiply (L : Fin 3 → W' →ₗ[K] V') (t : ℕ) :
     (X i * monomial (homogeneousTensorExponent t s) 1 : Poly K 3).coeff
       (homogeneousTensorExponent (t + 1) b) • (L i).comp (LinearMap.proj s)
 
+/--
+@isnad1 id=eq.0h7v.s10.3af0a897b5ba from=translated src=- shape=d4b38aa7 vocab=a1a269db
+-/
 @[simp] theorem auxiliaryOperatorMultiply_apply (L : Fin 3 → W' →ₗ[K] V') (t : ℕ)
     (q : Sym (Fin 3) t → W') (b : Sym (Fin 3) (t + 1)) :
     auxiliaryOperatorMultiply L t q b = ∑ s : Sym (Fin 3) t, ∑ i : Fin 3,
@@ -155,7 +176,9 @@ def auxiliaryCoefficientPair (β : W' →ₗ[K] W →ₗ[K] K) (t : ℕ)
   ∑ s : Sym (Fin 3) t, factorialWeight K (homogeneousTensorExponent t s) * β (q s) (p s)
 
 /-- The perfect pairing on flattened coefficients equals the actual sum of
-base residue pairings with their auxiliary factorial weights.-/
+base residue pairings with their auxiliary factorial weights.
+@isnad1 id=eq.0h7v.s14.44f99d077c4a from=translated src=- shape=bf144d1d vocab=9992bdae
+-/
 theorem auxiliaryResiduePair_eq_coefficientPair [Finite J] [CharZero K]
     (g : J → ℤ) (r : ℤ) (t : ℕ)
     (q : negativeGrade (K := K) (auxiliaryGeneratorWeights g t) r)
@@ -182,7 +205,9 @@ theorem auxiliaryResiduePair_eq_coefficientPair [Finite J] [CharZero K]
 
 /-- Auxiliary differentiation and multiplication are adjoint whenever their
 actual three coefficient operators are adjoint. The proof uses literal
-partial-derivative and variable-multiplication matrix coefficients.-/
+partial-derivative and variable-multiplication matrix coefficients.
+@isnad1 id=eq.1h12v.s11.4dfc1f3c4175 from=translated src=- shape=e0d31021 vocab=e4a66acb
+-/
 theorem auxiliaryCoefficientPair_adjoint
     (α : V' →ₗ[K] V →ₗ[K] K) (β : W' →ₗ[K] W →ₗ[K] K)
     (T : Fin 3 → V →ₗ[K] W) (L : Fin 3 → W' →ₗ[K] V')

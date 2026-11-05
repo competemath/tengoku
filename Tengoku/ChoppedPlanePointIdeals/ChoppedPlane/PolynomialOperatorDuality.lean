@@ -22,7 +22,9 @@ variable {K : Type*} [Field K]
 variable {V W : Type*} [AddCommGroup V] [Module K V]
   [AddCommGroup W] [Module K W] {a c : ℕ}
 
-/-- The homogeneous monomial in the shared finite exponent coordinates.-/
+/-- The homogeneous monomial in the shared finite exponent coordinates.
+@isnad1 id=eq.0h3v.s10.f59396fc1634 from=translated src=- shape=30c0679f vocab=28472e66
+-/
 theorem formsBasis_val_tensorExponent (n : ℕ) (s : Sym (Fin 3) n) :
     (formsBasis K 3 n s).val = monomial (homogeneousTensorExponent n s) 1 := by
   simpa only [homogeneousTensorExponent, homogeneousTensorExponentEquiv, exponentEquiv]
@@ -36,6 +38,9 @@ def operatorDifferential (T : Fin 3 → V →ₗ[K] W) (t : ℕ) :
     (pderiv i (monomial (homogeneousTensorExponent (t + 1) b) 1 : Poly K 3)).coeff
         (homogeneousTensorExponent t s) • (T i).comp (LinearMap.proj b)
 
+/--
+@isnad1 id=eq.0h7v.s10.71a0edecf6c0 from=translated src=- shape=701e6c7d vocab=d2aaa7bb
+-/
 @[simp] theorem operatorDifferential_coeff (T : Fin 3 → V →ₗ[K] W) (t : ℕ)
     (x : Sym (Fin 3) (t + 1) → V) (s : Sym (Fin 3) t) :
     operatorDifferential T t x s = ∑ b : Sym (Fin 3) (t + 1), ∑ i : Fin 3,
@@ -50,6 +55,9 @@ def operatorLinearMatrix (bV : Basis (Fin a) K V) (bW : Basis (Fin c) K W)
     (T : Fin 3 → V →ₗ[K] W) : LinearMatrix K a c := fun k j =>
   ∑ i : Fin 3, (bW.repr (T i (bV k)) j) • (⟨X i, isHomogeneous_X K i⟩ : Forms K 3 1)
 
+/--
+@isnad1 id=eq.0h10v.s10.a28dac388d9c from=translated src=- shape=9b0bbd34 vocab=fa0d0d2b
+-/
 @[simp] theorem operatorLinearMatrix_val (bV : Basis (Fin a) K V)
     (bW : Basis (Fin c) K W) (T : Fin 3 → V →ₗ[K] W) (k : Fin a) (j : Fin c) :
     (operatorLinearMatrix bV bW T k j).val =
@@ -61,6 +69,9 @@ def polynomialVectorCoefficient {n : ℕ} (k : Fin a) (s : Fin 3 →₀ ℕ) :
     (Fin a → Forms K 3 n) →ₗ[K] K :=
   (lcoeff K s).comp ((Forms K 3 n).subtype.comp (LinearMap.proj k))
 
+/--
+@isnad1 id=eq.0h6v.s11.818170354b3a from=translated src=- shape=08bad5b3 vocab=96f65a9b
+-/
 @[simp] theorem polynomialVectorCoefficient_apply {n : ℕ} (k : Fin a)
     (s : Fin 3 →₀ ℕ) (g : Fin a → Forms K 3 n) :
     polynomialVectorCoefficient k s g = (g k).val.coeff s := rfl
@@ -77,6 +88,9 @@ def operatorFactorialDualMap (b : Basis (Fin a) K V) (n : ℕ) :
   map_smul' q x := by
     simp [map_smul, Finset.smul_sum, smul_smul, smul_eq_mul, mul_left_comm]
 
+/--
+@isnad1 id=eq.0h7v.s13.6f15e871e67c from=translated src=- shape=dae4aad0 vocab=5dcb001d
+-/
 @[simp] theorem operatorFactorialDualMap_apply (b : Basis (Fin a) K V) (n : ℕ)
     (x : Sym (Fin 3) n → V) (g : Fin a → Forms K 3 n) :
     operatorFactorialDualMap b n x g = ∑ s : Sym (Fin 3) n, ∑ k : Fin a,
@@ -85,7 +99,9 @@ def operatorFactorialDualMap (b : Basis (Fin a) K V) (n : ℕ) :
   simp [operatorFactorialDualMap, LinearMap.sum_apply, LinearMap.smul_apply, smul_eq_mul]
 
 /-- Testing the pairing on a single coefficient-one monomial reads precisely
-one module coordinate, multiplied by its nonzero factorial.-/
+one module coordinate, multiplied by its nonzero factorial.
+@isnad1 id=eq.0h8v.s13.7c4f87bbb569 from=translated src=- shape=ce39a47e vocab=d542becb
+-/
 @[simp] theorem operatorFactorialDualMap_single_basis
     (b : Basis (Fin a) K V) (n : ℕ) (x : Sym (Fin 3) n → V)
     (k : Fin a) (s : Sym (Fin 3) n) :
@@ -108,6 +124,9 @@ one module coordinate, multiplied by its nonzero factorial.-/
       simp [formsBasis_val_tensorExponent, coeff_monomial,
         (homogeneousTensorExponent_injective n).eq_iff]
 
+/--
+@isnad1 id=injectiv.0h5v.s13.d7a7441fe18f from=translated src=- shape=2eff0f22 vocab=95bd1e08
+-/
 theorem operatorFactorialDualMap_injective [CharZero K]
     (b : Basis (Fin a) K V) (n : ℕ) :
     Function.Injective (operatorFactorialDualMap b n) := by
@@ -129,10 +148,16 @@ def operatorFactorialDual [CharZero K] (b : Basis (Fin a) K V) (n : ℕ) :
   simp [Module.finrank_pi_fintype, Module.finrank_eq_card_basis b,
     Module.finrank_eq_card_basis (formsBasis K 3 n), mul_comm]
 
+/--
+@isnad1 id=eq.0h6v.s14.ee72fd806aaf from=translated src=- shape=28f5c1ca vocab=a23805af
+-/
 @[simp] theorem operatorFactorialDual_apply [CharZero K] (b : Basis (Fin a) K V)
     (n : ℕ) (x : Sym (Fin 3) n → V) :
     operatorFactorialDual b n x = operatorFactorialDualMap b n x := rfl
 
+/--
+@isnad1 id=eq.0h8v.s10.8b409f9cf14c from=translated src=- shape=f85501a1 vocab=efbbfd71
+-/
 @[simp] theorem operatorDifferential_single (T : Fin 3 → V →ₗ[K] W) (t : ℕ)
     (b : Sym (Fin 3) (t + 1)) (v : V) (s : Sym (Fin 3) t) :
     operatorDifferential T t (Pi.single b v) s = ∑ i : Fin 3,
@@ -145,6 +170,9 @@ def operatorFactorialDual [CharZero K] (b : Basis (Fin a) K V) (n : ℕ) :
     simp [hq]
   · simp
 
+/--
+@isnad1 id=eq.0h11v.s11.23a0c7906034 from=translated src=- shape=de2d3705 vocab=508951b6
+-/
 @[simp] theorem operatorDifferential_single_repr (bW : Basis (Fin c) K W)
     (T : Fin 3 → V →ₗ[K] W) (t : ℕ) (b : Sym (Fin 3) (t + 1))
     (v : V) (s : Sym (Fin 3) t) (j : Fin c) :
@@ -154,6 +182,9 @@ def operatorFactorialDual [CharZero K] (b : Basis (Fin a) K V) (n : ℕ) :
   rw [operatorDifferential_single]
   simp only [map_sum, map_smul, Finsupp.finsetSum_apply, Finsupp.smul_apply, smul_eq_mul]
 
+/--
+@isnad1 id=eq.0h8v.s13.b01706869046 from=translated src=- shape=5a86d25f vocab=e9b7a722
+-/
 @[simp] theorem operatorFactorialDualMap_single_module_basis
     (b : Basis (Fin a) K V) (n : ℕ) (s : Sym (Fin 3) n)
     (k : Fin a) (g : Fin a → Forms K 3 n) :
@@ -167,7 +198,9 @@ def operatorFactorialDual [CharZero K] (b : Basis (Fin a) K V) (n : ℕ) :
     simp [hq]
   · simp
 
-/-- Literal multiplication coefficients of the transposed operator matrix.-/
+/-- Literal multiplication coefficients of the transposed operator matrix.
+@isnad1 id=eq.0h13v.s12.cb00dc64f3d0 from=translated src=- shape=daa1e068 vocab=531274a0
+-/
 theorem operatorLinearMatrix_mul_single_coeff
     (bV : Basis (Fin a) K V) (bW : Basis (Fin c) K W)
     (T : Fin 3 → V →ₗ[K] W) (t : ℕ) (j : Fin c) (s : Sym (Fin 3) t)
@@ -194,7 +227,9 @@ theorem operatorLinearMatrix_mul_single_coeff
   rw [mul_assoc, coeff_C_mul]
 
 /-- The actual differential and actual polynomial matrix are adjoint under
-the concrete factorial pairing. This is the coefficient transpose theorem.-/
+the concrete factorial pairing. This is the coefficient transpose theorem.
+@isnad1 id=eq.0h9v.s14.1147efa610bf from=translated src=- shape=74392fb4 vocab=4af2e37a
+-/
 theorem operatorFactorialDual_adjoint [CharZero K]
     (bV : Basis (Fin a) K V) (bW : Basis (Fin c) K W)
     (T : Fin 3 → V →ₗ[K] W) (t : ℕ) :
@@ -229,6 +264,9 @@ theorem operatorFactorialDual_adjoint [CharZero K]
       rw [factorialWeight_pderiv_monomial_pair]
     _ = _ := by ring
 
+/--
+@isnad1 id=iff.0h9v.s12.38e348510b75 from=translated src=- shape=1a41c48b vocab=5cc3aade
+-/
 theorem operatorDifferential_injective_iff_linearMatrixMap_surjective [CharZero K]
     (bV : Basis (Fin a) K V) (bW : Basis (Fin c) K W)
     (T : Fin 3 → V →ₗ[K] W) (t : ℕ) :
@@ -253,6 +291,9 @@ theorem operatorDifferential_injective_iff_linearMatrixMap_surjective [CharZero 
     apply (LinearMap.dualMap_injective_iff.mpr hF)
     rw [← hadj, ← hadj, hxy]
 
+/--
+@isnad1 id=iff.0h9v.s12.87892c18cfdb from=translated src=- shape=1a41c48b vocab=5cc3aade
+-/
 theorem operatorDifferential_surjective_iff_linearMatrixMap_injective [CharZero K]
     (bV : Basis (Fin a) K V) (bW : Basis (Fin c) K W)
     (T : Fin 3 → V →ₗ[K] W) (t : ℕ) :
@@ -285,13 +326,18 @@ def operatorRaisedIndex (t : ℕ) (s : Sym (Fin 3) t) (i : Fin 3) :
     ⟨homogeneousTensorExponent t s + Finsupp.single i 1, by
       simp only [map_add, homogeneousTensorExponent_degree, Finsupp.degree_single]⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.2bdc16f340ce from=translated src=- shape=91efbd74 vocab=4c4e484a
+-/
 @[simp] theorem operatorRaisedIndex_exponent (t : ℕ) (s : Sym (Fin 3) t) (i : Fin 3) :
     homogeneousTensorExponent (t + 1) (operatorRaisedIndex t s i) =
       homogeneousTensorExponent t s + Finsupp.single i 1 := by
   simp [operatorRaisedIndex, homogeneousTensorExponent]
 
 /-- The differential has exactly the usual partial-derivative coefficient
-recurrence, expressed in the finite homogeneous monomial indices.-/
+recurrence, expressed in the finite homogeneous monomial indices.
+@isnad1 id=eq.0h7v.s9.4ab114421d7d from=translated src=- shape=c401288c vocab=fe9bb945
+-/
 theorem operatorDifferential_apply (T : Fin 3 → V →ₗ[K] W) (t : ℕ)
     (x : Sym (Fin 3) (t + 1) → V) (s : Sym (Fin 3) t) :
     operatorDifferential T t x s = ∑ i : Fin 3,

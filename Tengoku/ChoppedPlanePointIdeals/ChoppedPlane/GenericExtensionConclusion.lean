@@ -16,7 +16,9 @@ variable {K L : Type*} [Field K] [Field L]
 
 /-- The matrix witnesses may supply a different point configuration in each
 of the finitely many relevant degrees, and may be built over an extension.
-They still yield one nonempty open over the original field, valid in all degrees.-/
+They still yield one nonempty open over the original field, valid in all degrees.
+@isnad1 id=genericc.5h5v.s11.170a8288f3ba from=translated src=- shape=c4967b24 vocab=1d2af9c1
+-/
 theorem genericChoppedConclusion_of_extension_witnesses [CharZero K]
     (k : K →+* L) (d p : ℕ) (hd : 2 ≤ d)
     (hlo : N (d - 1) < p) (hhi : p < N d) (hr : 3 ≤ N d - p)

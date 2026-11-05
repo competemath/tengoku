@@ -19,17 +19,28 @@ def quarticSubstitution : BinaryRing K →ₐ[K] BinaryRing K :=
     quarticV (binaryU K) (binaryV K)]
 
 variable {K}
+/--
+@isnad1 id=eq.0h1v.s8.dea4bf73679d from=translated src=- shape=13e3b436 vocab=5ab1a417
+-/
 @[simp] theorem quarticSubstitution_u :
     quarticSubstitution K (binaryU K) = quarticU (binaryU K) (binaryV K) := by
   simp [quarticSubstitution, binaryU]
+/--
+@isnad1 id=eq.0h1v.s8.5ca2f3449f9f from=translated src=- shape=0670e20a vocab=c5f8b057
+-/
 @[simp] theorem quarticSubstitution_v :
     quarticSubstitution K (binaryV K) = quarticV (binaryU K) (binaryV K) := by
   simp [quarticSubstitution, binaryV]
+/--
+@isnad1 id=eq.0h2v.s9.dd1937b021ac from=translated src=- shape=83741f2c vocab=8e0ed669
+-/
 @[simp] theorem quarticSubstitution_C (s : K) :
     quarticSubstitution K (C s) = C s := by
   simp [quarticSubstitution]
 
-/-- Both coordinate quartics are actual homogeneous binary forms.-/
+/-- Both coordinate quartics are actual homogeneous binary forms.
+@isnad1 id=ishomoge.0h1v.s5.1fd722e6eeae from=translated src=- shape=bc119e43 vocab=51233e5e
+-/
 theorem quarticU_homogeneous :
     (quarticU (binaryU K) (binaryV K)).IsHomogeneous 4 := by
   have hu : (X (R := K) (0 : Fin 2)).IsHomogeneous 1 := isHomogeneous_X K 0
@@ -37,6 +48,9 @@ theorem quarticU_homogeneous :
   have hv3 : ((X (1 : Fin 2) : BinaryRing K) ^ 3).IsHomogeneous 3 := isHomogeneous_X_pow _ _
   simpa [quarticU, binaryU, binaryV, map_ofNat] using hu.mul (hu3.add (hv3.C_mul (2 : K)))
 
+/--
+@isnad1 id=ishomoge.0h1v.s5.3d9611c03274 from=translated src=- shape=bc119e43 vocab=65d02b74
+-/
 theorem quarticV_homogeneous :
     (quarticV (binaryU K) (binaryV K)).IsHomogeneous 4 := by
   have hv : (X (R := K) (1 : Fin 2)).IsHomogeneous 1 := isHomogeneous_X K 1
@@ -44,7 +58,9 @@ theorem quarticV_homogeneous :
   have hv3 : ((X (1 : Fin 2) : BinaryRing K) ^ 3).IsHomogeneous 3 := isHomogeneous_X_pow _ _
   simpa [quarticV, binaryU, binaryV, map_ofNat] using hv.neg.mul ((hu3.C_mul (2 : K)).add hv3)
 
-/-- The actual quartic substitution multiplies each homogeneous degree by four.-/
+/-- The actual quartic substitution multiplies each homogeneous degree by four.
+@isnad1 id=ishomoge.1h3v.s8.f32e424d1f3a from=translated src=- shape=fdbb880d vocab=937751d9
+-/
 theorem quarticSubstitution_homogeneous {p : BinaryRing K} {d : ℕ}
     (hp : p.IsHomogeneous d) : (quarticSubstitution K p).IsHomogeneous (4 * d) := by
   apply hp.aeval
@@ -132,12 +148,21 @@ private theorem quarticV_leadingCoeff :
 def quarticExponent (d : Fin 2 →₀ ℕ) : Fin 2 →₀ ℕ :=
   d 0 • Finsupp.single 0 4 + d 1 • (Finsupp.single 0 3 + Finsupp.single 1 1)
 
+/--
+@isnad1 id=eq.0h1v.s7.c7a84f1775d5 from=translated src=- shape=025d52b8 vocab=4ca510ce
+-/
 @[simp] theorem quarticExponent_zero (d : Fin 2 →₀ ℕ) :
     quarticExponent d 0 = 4 * d 0 + 3 * d 1 := by
   simp [quarticExponent, mul_comm]
+/--
+@isnad1 id=eq.0h1v.s6.ab4d77c39c88 from=translated src=- shape=4a156faf vocab=b546c436
+-/
 @[simp] theorem quarticExponent_one (d : Fin 2 →₀ ℕ) :
     quarticExponent d 1 = d 1 := by simp [quarticExponent]
 
+/--
+@isnad1 id=injectiv.0h0v.s4.b122b1f04ad4 from=translated src=- shape=4e5b465f vocab=e44248cf
+-/
 theorem quarticExponent_injective : Function.Injective quarticExponent := by
   intro s t h
   have h0 := congrArg (fun q : Fin 2 →₀ ℕ => q 0) h
@@ -193,7 +218,9 @@ private theorem quarticSubstitution_monomial_degree
     MonomialOrder.degree_C, zero_add, quarticU_degree, quarticV_degree]
   rfl
 
-/-- The quartic pullback preserves nonzero binary polynomials.-/
+/-- The quartic pullback preserves nonzero binary polynomials.
+@isnad1 id=ne.1h2v.s8.fc345b4f5d47 from=translated src=- shape=41cf2fe6 vocab=74870504
+-/
 theorem quarticSubstitution_ne_zero {p : BinaryRing K} (hp : p ≠ 0) :
     quarticSubstitution K p ≠ 0 := by
   classical
@@ -210,7 +237,9 @@ theorem quarticSubstitution_ne_zero {p : BinaryRing K} (hp : p ≠ 0) :
       quarticSubstitution_monomial_degree e (MvPolynomial.mem_support_iff.mp he)] at h
     exact h
 
-/-- The actual quartic binary substitution is injective in characteristic zero.-/
+/-- The actual quartic binary substitution is injective in characteristic zero.
+@isnad1 id=injectiv.0h1v.s8.0cfdad35b4e6 from=translated src=- shape=e37866b3 vocab=5c4e4547
+-/
 theorem quarticSubstitution_injective : Function.Injective (quarticSubstitution K) := by
   intro p q hpq
   apply sub_eq_zero.mp

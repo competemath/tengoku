@@ -14,7 +14,9 @@ namespace ChoppedPlane
 open MvPolynomial Module
 variable {K : Type*} [Field K] {p c : ℕ}
 
-/-- Equality of actual generated ideals identifies their homogeneous quotient dimensions.-/
+/-- Equality of actual generated ideals identifies their homogeneous quotient dimensions.
+@isnad1 id=eq.1h5v.s8.7475b02e47a1 from=translated src=- shape=e78443cc vocab=4fdd2ffa
+-/
 theorem generatedHilbertFunction_eq_pointHilbertFunction_of_ideal_eq
     (a : PointCoordinates K p) (U : Submodule K (Poly K 3))
     (hI : Ideal.span (U : Set (Poly K 3)) = pointIdeal K a) (t : ℕ) :
@@ -29,7 +31,9 @@ theorem generatedHilbertFunction_eq_pointHilbertFunction_of_ideal_eq
   rw [hker] at h
   exact h.symm
 
-/-- A Hilbert–Burch ideal equal to a point ideal has the actual point Hilbert function.-/
+/-- A Hilbert–Burch ideal equal to a point ideal has the actual point Hilbert function.
+@isnad1 id=eq.1h6v.s6.9dc644bdf718 from=translated src=- shape=f70e16e7 vocab=2c3171b4
+-/
 theorem pointHilbertFunction_eq_minorHilbertFunction_of_ideal_eq
     (B : Matrix (Fin (c+1)) (Fin c) (Poly K 3)) (a : PointCoordinates K p)
     (hI : maximalMinorIdeal B = pointIdeal K a) (t : ℕ) :
@@ -41,12 +45,18 @@ theorem pointHilbertFunction_eq_minorHilbertFunction_of_ideal_eq
 
 namespace Ferrers
 
+/--
+@isnad1 id=eq.2h5v.s10.085f9714004a from=translated src=- shape=d77421e0 vocab=61232b2a
+-/
 theorem seedMatrix_maximalMinorIdeal_eq_pointIdeal (δ : Fin (c+1) → ℕ)
     (α β : RootIndex δ → K) (hα : Function.Injective α) (hβ : Function.Injective β) :
     maximalMinorIdeal (seedMatrix δ α β) = pointIdeal K (pointCoordinates δ α β) := by
   change ChoppedPlane.cofactorIdeal (seedMatrix δ α β) = _
   rw [seedMatrix_cofactorIdeal,cofactorIdeal_eq_pointIdeal δ α β hα hβ]
 
+/--
+@isnad1 id=eq.2h6v.s10.5d1f2f4d074c from=translated src=- shape=dbabb4b8 vocab=59a7399d
+-/
 theorem pointHilbertFunction_eq_minorHilbertFunction (δ : Fin (c+1) → ℕ)
     (α β : RootIndex δ → K) (hα : Function.Injective α) (hβ : Function.Injective β)
     (t : ℕ) :
@@ -55,6 +65,9 @@ theorem pointHilbertFunction_eq_minorHilbertFunction (δ : Fin (c+1) → ℕ)
   pointHilbertFunction_eq_minorHilbertFunction_of_ideal_eq _ _
     (seedMatrix_maximalMinorIdeal_eq_pointIdeal δ α β hα hβ) t
 
+/--
+@isnad1 id=eq.2h6v.s11.5ee30ace4cbe from=translated src=- shape=3fe5484b vocab=5da0e0a5
+-/
 theorem pointHilbertFunction_formula (δ : Fin (c+1) → ℕ) (α β : RootIndex δ → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) (t : ℕ) :
     (pointHilbertFunction K (pointCoordinates δ α β) t : ℤ) = N₂ t -
@@ -67,12 +80,18 @@ theorem pointHilbertFunction_formula (δ : Fin (c+1) → ℕ) (α β : RootIndex
 end Ferrers
 namespace ColumnFerrers
 
+/--
+@isnad1 id=eq.2h5v.s8.a84fd2d42d3e from=translated src=- shape=2423948c vocab=c5c3b878
+-/
 theorem seedMatrix_maximalMinorIdeal_eq_pointIdeal (ε : Fin c → ℕ)
     (α β : RootIndex ε → K) (hα : Function.Injective α) (hβ : Function.Injective β) :
     maximalMinorIdeal (seedMatrix ε α β) = pointIdeal K (pointCoordinates ε α β) := by
   change ChoppedPlane.cofactorIdeal (seedMatrix ε α β) = _
   rw [seedMatrix_cofactorIdeal,cofactorIdeal_eq_pointIdeal ε α β hα hβ]
 
+/--
+@isnad1 id=eq.2h6v.s8.049860db2e13 from=translated src=- shape=60dba0e2 vocab=b60b4fe0
+-/
 theorem pointHilbertFunction_eq_minorHilbertFunction (ε : Fin c → ℕ)
     (α β : RootIndex ε → K) (hα : Function.Injective α) (hβ : Function.Injective β)
     (t : ℕ) :
@@ -81,6 +100,9 @@ theorem pointHilbertFunction_eq_minorHilbertFunction (ε : Fin c → ℕ)
   pointHilbertFunction_eq_minorHilbertFunction_of_ideal_eq _ _
     (seedMatrix_maximalMinorIdeal_eq_pointIdeal ε α β hα hβ) t
 
+/--
+@isnad1 id=eq.2h6v.s9.d5e8efef00e8 from=translated src=- shape=bc0b6837 vocab=ddae301d
+-/
 theorem pointHilbertFunction_formula (ε : Fin c → ℕ) (α β : RootIndex ε → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) (t : ℕ) :
     (pointHilbertFunction K (pointCoordinates ε α β) t : ℤ) = N₂ t -
@@ -90,7 +112,9 @@ theorem pointHilbertFunction_formula (ε : Fin c → ℕ) (α β : RootIndex ε 
   exact minorHilbertFunction_columns_at_degree _ ε (seedMatrix_homogeneous ε α β)
     (seedMatrix_primitive ε α β) t
 
-/-- All column-seed cofactors lie in one degree, so chopping there recovers the whole point ideal.-/
+/-- All column-seed cofactors lie in one degree, so chopping there recovers the whole point ideal.
+@isnad1 id=eq.2h5v.s9.4b6397fb4e03 from=translated src=- shape=e050c4bb vocab=67348207
+-/
 theorem choppedIdeal_eq_pointIdeal (ε : Fin c → ℕ) (α β : RootIndex ε → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     choppedIdeal K (pointCoordinates ε α β) (∑ j, ε j) =
@@ -109,6 +133,9 @@ theorem choppedIdeal_eq_pointIdeal (ε : Fin c → ℕ) (α β : RootIndex ε �
   apply (homogeneous_mem_pointIdeal_iff _ g).mp
   exact cofactorIdeal_le_pointIdeal ε α β (Ideal.subset_span ⟨k,rfl⟩)
 
+/--
+@isnad1 id=eq.2h6v.s9.d0763836cfe1 from=translated src=- shape=f1bc3d8a vocab=b8e19aeb
+-/
 theorem choppedHilbertFunction_eq_pointHilbertFunction (ε : Fin c → ℕ)
     (α β : RootIndex ε → K) (hα : Function.Injective α) (hβ : Function.Injective β)
     (t : ℕ) :
@@ -117,7 +144,9 @@ theorem choppedHilbertFunction_eq_pointHilbertFunction (ε : Fin c → ℕ)
   generatedHilbertFunction_eq_pointHilbertFunction_of_ideal_eq _ _
     (choppedIdeal_eq_pointIdeal ε α β hα hβ) t
 
-/-- Before the generating degree, the column seed has no nonzero equations.-/
+/-- Before the generating degree, the column seed has no nonzero equations.
+@isnad1 id=eq.3h6v.s8.c5405f493aa7 from=translated src=- shape=0d8b01c1 vocab=3a11f2f5
+-/
 theorem pointHilbertFunction_below_generatingDegree (ε : Fin c → ℕ)
     (α β : RootIndex ε → K) (hα : Function.Injective α) (hβ : Function.Injective β)
     {t : ℕ} (ht : t < ∑ j, ε j) :
@@ -132,7 +161,9 @@ theorem pointHilbertFunction_below_generatingDegree (ε : Fin c → ℕ)
   simp only [mul_zero,sub_zero,Finset.sum_const_zero,add_zero] at h
   exact_mod_cast h
 
-/-- Hilbert–Burch and the selected-cell count give actual degree-`d` interpolation.-/
+/-- Hilbert–Burch and the selected-cell count give actual degree-`d` interpolation.
+@isnad1 id=eq.4h5v.s10.0e0a072067b6 from=translated src=- shape=053bb14b vocab=cbfe0372
+-/
 theorem pointHilbertFunction_at_generatingDegree (ε : Fin c → ℕ)
     (α β : RootIndex ε → K) (hα : Function.Injective α) (hβ : Function.Injective β)
     (hε : ∀ j, 0 < ε j)
@@ -151,6 +182,9 @@ theorem pointHilbertFunction_at_generatingDegree (ε : Fin c → ℕ)
   simp only [Finset.sum_const_zero,add_zero,mul_one] at h
   omega
 
+/--
+@isnad1 id=surjecti.4h5v.s12.1a9f80200abc from=translated src=- shape=b07bafe1 vocab=19f5813f
+-/
 theorem pointEvaluation_surjective_at_generatingDegree (ε : Fin c → ℕ)
     (α β : RootIndex ε → K) (hα : Function.Injective α) (hβ : Function.Injective β)
     (hε : ∀ j, 0 < ε j)
@@ -159,7 +193,9 @@ theorem pointEvaluation_surjective_at_generatingDegree (ε : Fin c → ℕ)
   pointEvaluation_surjective_of_hilbert_eq _
     (pointHilbertFunction_at_generatingDegree ε α β hα hβ hε hcard)
 
-/-- This explicit distinct configuration has the full Hilbert function of general points.-/
+/-- This explicit distinct configuration has the full Hilbert function of general points.
+@isnad1 id=eq.4h6v.s10.993a1f36ff32 from=translated src=- shape=84c68532 vocab=5a7be745
+-/
 theorem fullPointHilbertFunction (ε : Fin c → ℕ) (α β : RootIndex ε → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) (hε : ∀ j, 0 < ε j)
     (hcard : Fintype.card (SelectedIndex ε) = N (∑ j, ε j) - (c+1)) (t : ℕ) :

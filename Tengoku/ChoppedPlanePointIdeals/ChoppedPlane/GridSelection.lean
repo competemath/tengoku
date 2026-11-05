@@ -22,7 +22,9 @@ def gridEvaluation {d : ℕ} (α β : Fin d → K) (ij : Fin d × Fin d) :
     Module.Dual K (Forms K 3 d) := evaluationLinear K 3 d ![α ij.1, β ij.2, 1]
 
 omit [Infinite K] in
-/-- The two grid equations are linearly independent as homogeneous forms.-/
+/-- The two grid equations are linearly independent as homogeneous forms.
+@isnad1 id=linearin.1h4v.s10.a774a8761d8d from=translated src=- shape=0acc6a30 vocab=fadcb5e9
+-/
 theorem first_second_linearIndependent {d : ℕ} (hd : 0 < d) (α β : Fin d → K) :
     LinearIndependent K (![firstForm α, secondForm β] : Fin 2 → Forms K 3 d) := by
   apply Fintype.linearIndependent_iff.mpr
@@ -35,7 +37,9 @@ theorem first_second_linearIndependent {d : ℕ} (hd : 0 < d) (α β : Fin d →
   obtain ⟨h0,h1⟩ := grid_equations_independent hd α β hc'
   fin_cases i <;> assumption
 
-/-- The simultaneous grid vanishing space is the two-dimensional equation span.-/
+/-- The simultaneous grid vanishing space is the two-dimensional equation span.
+@isnad1 id=eq.3h4v.s12.5379f470ed4d from=translated src=- shape=99af7b89 vocab=3a71b521
+-/
 theorem grid_span_coannihilator {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     (span K (Set.range (gridEvaluation α β))).dualCoannihilator =
@@ -51,7 +55,9 @@ theorem grid_span_coannihilator {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
     · rintro ⟨a,b,h⟩
       exact ⟨a,b,h.symm⟩)
 
-/-- The full-grid evaluation rank is precisely `N_d - 2`.-/
+/-- The full-grid evaluation rank is precisely `N_d - 2`.
+@isnad1 id=eq.3h4v.s13.593f61989b38 from=translated src=- shape=faf05b0c vocab=5e6c3777
+-/
 theorem grid_span_finrank {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     finrank K (span K (Set.range (gridEvaluation α β))) = (d + 2).choose 2 - 2 := by
@@ -74,7 +80,9 @@ theorem grid_span_finrank {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
   omega
 
 /-- Select exactly `N_d - 2` pairwise distinct grid coordinates whose evaluations
-    span all full-grid evaluations.-/
+    span all full-grid evaluations.
+@isnad1 id=ex.3h4v.s12.aaa69e778433 from=translated src=- shape=795e5b8e vocab=155ba05e
+-/
 theorem exists_spanning_grid_coordinates {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     ∃ sel : Fin ((d + 2).choose 2 - 2) → Fin d × Fin d,
@@ -103,7 +111,9 @@ theorem exists_spanning_grid_coordinates {d : ℕ} (hd : 0 < d) (α β : Fin d �
   exact hspan
 
 /-- A subset of exactly `N_d - 2` distinct points retains the exact kernel of the
-    complete grid, and its two degree-`d` equations form a regular sequence.-/
+    complete grid, and its two degree-`d` equations form a regular sequence.
+@isnad1 id=ex.3h4v.s12.2cb7da62b4e4 from=translated src=- shape=8fd763e9 vocab=86bc51c1
+-/
 theorem exists_grid_subset {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     ∃ coords : PointCoordinates K ((d + 2).choose 2 - 2),
@@ -148,12 +158,18 @@ open MvPolynomial
 variable {K : Type*} [Field K] [Infinite K]
 
 omit [Infinite K] in
+/--
+@isnad1 id=eq.1h3v.s8.9168655d75c9 from=translated src=- shape=a49d2a8b vocab=6732dd97
+-/
 @[simp] theorem planeFirst_eval_other_infinity {d : ℕ} (hd : 0 < d) (α : Fin d → K) :
     eval ![0,1,0] (planeFirst α) = 0 := by
   classical
   simp [planeFirst, Finset.prod_const, Nat.ne_of_gt hd]
 
 omit [Infinite K] in
+/--
+@isnad1 id=eq.1h3v.s8.17b339730c80 from=translated src=- shape=a49d2a8b vocab=b799023e
+-/
 @[simp] theorem planeSecond_eval_other_infinity {d : ℕ} (hd : 0 < d) (β : Fin d → K) :
     eval ![1,0,0] (planeSecond β) = 0 := by
   classical
@@ -161,7 +177,9 @@ omit [Infinite K] in
 
 omit [Infinite K] in
 /-- Retaining the two-equation kernel in degree `d` also forces injectivity in
-    every smaller degree.-/
+    every smaller degree.
+@isnad1 id=eq.4h8v.s12.71f49dcc5af4 from=translated src=- shape=17880881 vocab=a8196cc6
+-/
 theorem lower_form_eq_zero_of_grid_kernel {p d t : ℕ} (hd : 0 < d)
     (α β : Fin d → K) (coords : PointCoordinates K p)
     (hkernel : ∀ f : Forms K 3 d,
@@ -192,7 +210,9 @@ theorem lower_form_eq_zero_of_grid_kernel {p d t : ℕ} (hd : 0 < d)
 
 /-- The complete-intersection witness exists over every infinite field. It has
     exactly `N_d - 2` distinct normalized projective points, a regular pair of
-    degree-`d` equations, and no equations of smaller degree.-/
+    degree-`d` equations, and no equations of smaller degree.
+@isnad1 id=ex.1h2v.s13.5b37f16ce58e from=translated src=- shape=2042b334 vocab=5ca934f8
+-/
 theorem exists_two_generator_witness (d : ℕ) (hd : 0 < d) :
     ∃ (coords : PointCoordinates K ((d + 2).choose 2 - 2))
       (f g : Forms K 3 d),
@@ -218,7 +238,9 @@ open Module Submodule MvPolynomial
 variable {K : Type*} [Field K] [Infinite K]
 
 omit [Infinite K] in
-/-- Dimension of the genuine homogeneous equation span.-/
+/-- Dimension of the genuine homogeneous equation span.
+@isnad1 id=eq.1h4v.s13.6e0f11d42d53 from=translated src=- shape=6ebaeee2 vocab=0e2c3c43
+-/
 theorem grid_equation_span_finrank {d : ℕ} (hd : 0 < d) (α β : Fin d → K) :
     finrank K (span K ({firstForm α,secondForm β} : Set (Forms K 3 d))) = 2 := by
   have hrange : Set.range (![firstForm α, secondForm β] : Fin 2 → Forms K 3 d) =
@@ -235,7 +257,9 @@ theorem grid_equation_span_finrank {d : ℕ} (hd : 0 < d) (α β : Fin d → K) 
   simp
 
 omit [Infinite K] in
-/-- The degree-`d` piece is the actual two-equation span.-/
+/-- The degree-`d` piece is the actual two-equation span.
+@isnad1 id=eq.1h6v.s12.7da70fbe499d from=translated src=- shape=25096125 vocab=3cc3c469
+-/
 theorem degree_piece_eq_grid_span {p d : ℕ} (α β : Fin d → K)
     (coords : PointCoordinates K p)
     (hkernel : ∀ f : Forms K 3 d,
@@ -249,7 +273,9 @@ theorem degree_piece_eq_grid_span {p d : ℕ} (α β : Fin d → K)
     constructor <;> rintro ⟨a,b,h⟩ <;> exact ⟨a,b,h.symm⟩)
 
 omit [Infinite K] in
-/-- The selected grid evaluations attain full target rank in degree `d`.-/
+/-- The selected grid evaluations attain full target rank in degree `d`.
+@isnad1 id=surjecti.2h5v.s12.fa4ffe0d7d9b from=translated src=- shape=a4d6c4e9 vocab=6b35799c
+-/
 theorem grid_subset_evaluation_surjective {d : ℕ} (hd : 0 < d)
     (α β : Fin d → K) (coords : PointCoordinates K ((d + 2).choose 2 - 2))
     (hkernel : ∀ f : Forms K 3 d,
@@ -269,7 +295,9 @@ theorem grid_subset_evaluation_surjective {d : ℕ} (hd : 0 < d)
   omega
 
 /-- The r=2 witness with exactly the evaluation-rank conditions used in the
-    general-point open conditions.-/
+    general-point open conditions.
+@isnad1 id=ex.1h2v.s13.980b05e60d2f from=translated src=- shape=5d5eca3a vocab=8b9aeaaa
+-/
 theorem exists_two_generator_rank_witness (d : ℕ) (hd : 0 < d) :
     ∃ (coords : PointCoordinates K ((d + 2).choose 2 - 2)) (f g : Forms K 3 d),
       DistinctPoints K coords ∧

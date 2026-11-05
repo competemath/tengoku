@@ -23,7 +23,9 @@ open MvPolynomial
 variable {K : Type*} [Field K]
 
 /-- A genuine all-twist matrix witness yields a nonempty open of actual points
-and homogeneous row matrices satisfying both geometric and rank conditions.-/
+and homogeneous row matrices satisfying both geometric and rank conditions.
+@isnad1 id=ex.2h3v.s13.95c182bc905e from=translated src=- shape=94b2f940 vocab=5e8212d6
+-/
 theorem positiveRow_point_matrix_principal_open [Infinite K] [IsAlgClosed K]
     {r a : ℕ} (hr : 2 ≤ r)
     (hw : ∃ M : LinearMatrix K a (positiveRowColumns r a),
@@ -74,7 +76,9 @@ theorem positiveRow_point_matrix_principal_open [Infinite K] [IsAlgClosed K]
     exact ⟨hprimitive, z, hdist, hpieces, hrank u hparts.2, hsurj, hconstant⟩
 
 /-- The principal-open intersection gives one actual point configuration and
-one universal row matrix, with the required length and all-twist ranks.-/
+one universal row matrix, with the required length and all-twist ranks.
+@isnad1 id=ex.2h3v.s13.eecd2a3a308a from=translated src=- shape=f60c5b18 vocab=0b839892
+-/
 theorem positiveRow_exists_point_matrix_witness [Infinite K] [IsAlgClosed K]
     {r a : ℕ} (hr : 2 ≤ r)
     (hw : ∃ M : LinearMatrix K a (positiveRowColumns r a),

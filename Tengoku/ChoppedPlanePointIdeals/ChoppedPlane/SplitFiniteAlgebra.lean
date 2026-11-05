@@ -34,7 +34,9 @@ noncomputable def finiteReducedAlgebraEquiv : A ≃ₐ[K] (MaximalSpectrum A →
   exact ((IsArtinianRing.equivPi A).restrictScalars K).trans
     (AlgEquiv.piCongrRight residueFieldEquiv)
 
-/-- The number of factors is the vector-space dimension of the algebra.-/
+/-- The number of factors is the vector-space dimension of the algebra.
+@isnad1 id=eq.0h2v.s6.dda59d17f8ea from=translated src=- shape=da8a3c9f vocab=a32f0adc
+-/
 theorem card_maximalSpectrum_eq_finrank :
     Nat.card (MaximalSpectrum A) = Module.finrank K A := by
   let : IsArtinianRing A := IsArtinianRing.of_finite K A

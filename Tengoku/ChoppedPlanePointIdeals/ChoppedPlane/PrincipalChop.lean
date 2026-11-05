@@ -18,7 +18,9 @@ namespace ChoppedPlane
 open MvPolynomial Module
 variable {K : Type*} [Field K] {p d : ℕ}
 
-/-- A one-dimensional evaluation kernel has a nonzero homogeneous generator.-/
+/-- A one-dimensional evaluation kernel has a nonzero homogeneous generator.
+@isnad1 id=ex.1h4v.s12.ccd04afc885f from=translated src=- shape=769ad5a2 vocab=96beb2c0
+-/
 theorem exists_principal_pointDegreeSpace (a : PointCoordinates K p)
     (hdim : finrank K (pointDegreePiece K a d) = 1) :
     ∃ f : Forms K 3 d, f.val ≠ 0 ∧
@@ -35,7 +37,9 @@ theorem exists_principal_pointDegreeSpace (a : PointCoordinates K p)
     simp only [Set.image_singleton, Submodule.subtype_apply]
 
 /-- Every nonzero homogeneous form of positive degree is a regular sequence
-of length one in the genuine polynomial ring.-/
+of length one in the genuine polynomial ring.
+@isnad1 id=isregula.2h3v.s10.6a4809de501e from=translated src=- shape=016961c9 vocab=132a4608
+-/
 theorem nonzero_form_regular_singleton (f : Forms K 3 d) (hf : f.val ≠ 0)
     (hd : 0 < d) : RingTheory.Sequence.IsRegular (Poly K 3) [f.val] := by
   refine ⟨(RingTheory.Sequence.isWeaklyRegular_singleton_iff (Poly K 3) f.val).mpr ?_, ?_⟩
@@ -51,7 +55,9 @@ theorem nonzero_form_regular_singleton (f : Forms K 3 d) (hf : f.val ≠ 0)
     omega
 
 /-- Taking the ideal span after the coefficient-field span preserves the
-single generator.-/
+single generator.
+@isnad1 id=eq.1h5v.s10.4c54ea6f7186 from=translated src=- shape=cc89a620 vocab=bbee639a
+-/
 theorem choppedIdeal_eq_singleton_of_space_eq (a : PointCoordinates K p)
     (f : Forms K 3 d)
     (hspan : pointDegreeSpace K a d = Submodule.span K {f.val}) :
@@ -60,7 +66,9 @@ theorem choppedIdeal_eq_singleton_of_space_eq (a : PointCoordinates K p)
   exact Submodule.span_span_of_tower K (Poly K 3) {f.val}
 
 /-- The coefficient of `(1-u^d)/(1-u)^3` is the Hilbert function of the
-actual principal chop in every degree.-/
+actual principal chop in every degree.
+@isnad1 id=eq.2h6v.s10.06c5f48552e9 from=translated src=- shape=b5a5ab97 vocab=a2a28b7e
+-/
 theorem principal_chop_hilbert_coefficients (a : PointCoordinates K p)
     (f : Forms K 3 d) (hf : f.val ≠ 0)
     (hspan : pointDegreeSpace K a d = Submodule.span K {f.val}) (t : ℕ) :
@@ -80,7 +88,9 @@ theorem principal_chop_hilbert_coefficients (a : PointCoordinates K p)
     exact Nat.cast_sub hN
 
 /-- All assertions of the one-generator case, without assuming an already
-proved Hilbert formula or regularity for the point configuration.-/
+proved Hilbert formula or regularity for the point configuration.
+@isnad1 id=ex.2h4v.s12.e7726eaafca6 from=translated src=- shape=149b0709 vocab=a26499f0
+-/
 theorem principal_chop_conclusion (a : PointCoordinates K p) (hd : 0 < d)
     (hdim : finrank K (pointDegreePiece K a d) = 1) :
     ∃ f : Forms K 3 d,
@@ -95,7 +105,9 @@ theorem principal_chop_conclusion (a : PointCoordinates K p) (hd : 0 < d)
     principal_chop_hilbert_coefficients a f hf hspan⟩
 
 /-- The regular-generator witness in the finite-family format of the main
-statement.-/
+statement.
+@isnad1 id=ex.2h4v.s12.e6b909f1042b from=translated src=- shape=5f63223d vocab=c11821a7
+-/
 theorem principal_chop_regular_generators (a : PointCoordinates K p) (hd : 0 < d)
     (hdim : finrank K (pointDegreePiece K a d) = 1) :
     ∃ f : Fin 1 → Forms K 3 d,
@@ -106,7 +118,9 @@ theorem principal_chop_regular_generators (a : PointCoordinates K p) (hd : 0 < d
   · simpa using hIdeal.symm
   · simpa using hregular
 
-/-- Natural-valued version of every principal-chop Hilbert coefficient.-/
+/-- Natural-valued version of every principal-chop Hilbert coefficient.
+@isnad1 id=eq.2h6v.s10.fff081fc1e77 from=translated src=- shape=65972319 vocab=6b9b035d
+-/
 theorem principal_chop_hilbert_coefficients_nat (a : PointCoordinates K p)
     (f : Forms K 3 d) (hf : f.val ≠ 0)
     (hspan : pointDegreeSpace K a d = Submodule.span K {f.val}) (t : ℕ) :

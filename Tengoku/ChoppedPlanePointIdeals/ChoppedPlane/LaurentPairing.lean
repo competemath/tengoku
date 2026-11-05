@@ -40,6 +40,9 @@ def negativePart : BinaryLaurent K →ₗ[K] BinaryLaurent K := by
       (Finsupp.restrictDom K K negativeExponents)).comp
       (AddMonoidAlgebra.coeffLinearEquiv K).toLinearMap)
 
+/--
+@isnad1 id=eq.0h3v.s8.848e5a4fac9d from=translated src=- shape=6ea77026 vocab=525b3289
+-/
 @[simp] theorem negativePart_coeff (p : BinaryLaurent K) (e : ℤ × ℤ) :
     (negativePart p).coeff e = if e.1 < 0 ∧ e.2 < 0 then p.coeff e else 0 := by
   classical
@@ -47,12 +50,18 @@ def negativePart : BinaryLaurent K →ₗ[K] BinaryLaurent K := by
   by_cases he : e.1 < 0 ∧ e.2 < 0 <;>
     simp [Finsupp.filter, negativeExponents, he]
 
+/--
+@isnad1 id=mem.0h2v.s8.a75f0f7e1fc7 from=translated src=- shape=283fbdee vocab=090447d3
+-/
 theorem negativePart_mem (p : BinaryLaurent K) : negativePart p ∈ negativeSpace := by
   apply AddMonoidAlgebra.mem_supported'.mpr
   intro e he
   rw [negativePart_coeff]
   exact ite_eq_right he
 
+/--
+@isnad1 id=eq.1h2v.s8.fc52d6115b83 from=translated src=- shape=1c4b4acb vocab=090447d3
+-/
 theorem negativePart_eq_self {p : BinaryLaurent K} (hp : p ∈ negativeSpace) :
     negativePart p = p := by
   ext e
@@ -62,7 +71,9 @@ theorem negativePart_eq_self {p : BinaryLaurent K} (hp : p ∈ negativeSpace) :
     simp [he, hz]
 
 /-- The two chart subspaces cover exactly the monomials surviving neither
-strictly negative exponent condition.-/
+strictly negative exponent condition.
+@isnad1 id=eq.0h1v.s8.782ca5335476 from=translated src=- shape=04751441 vocab=ac271f1d
+-/
 theorem chart_sup_eq_supported :
     (chartU (K := K)) ⊔ chartV =
       AddMonoidAlgebra.supported K K {e : ℤ × ℤ | 0 ≤ e.2 ∨ 0 ≤ e.1} := by
@@ -70,7 +81,9 @@ theorem chart_sup_eq_supported :
     ← Submodule.map_sup, ← Finsupp.supported_union]
   rfl
 
-/-- The kernel of negative projection is the sum of the two actual charts.-/
+/-- The kernel of negative projection is the sum of the two actual charts.
+@isnad1 id=eq.0h1v.s8.a6eea4166021 from=translated src=- shape=48d88d67 vocab=b5aa8cb6
+-/
 theorem ker_negativePart : LinearMap.ker (negativePart (K := K)) = chartU ⊔ chartV := by
   rw [chart_sup_eq_supported]
   ext p
@@ -91,10 +104,16 @@ theorem ker_negativePart : LinearMap.ker (negativePart (K := K)) = chartU ⊔ ch
 def negativeProjection : BinaryLaurent K →ₗ[K] negativeSpace (K := K) :=
   (negativePart (K := K)).codRestrict (negativeSpace (K := K)) negativePart_mem
 
+/--
+@isnad1 id=surjecti.0h1v.s10.b67fa168f741 from=translated src=- shape=d68e1e45 vocab=826f02f5
+-/
 theorem negativeProjection_surjective : Function.Surjective (negativeProjection (K := K)) := by
   intro p
   refine ⟨p.val, Subtype.ext (negativePart_eq_self p.property)⟩
 
+/--
+@isnad1 id=eq.0h1v.s9.9cad0e7722ff from=translated src=- shape=b135f3cd vocab=ddb2bd33
+-/
 theorem ker_negativeProjection : LinearMap.ker (negativeProjection (K := K)) = chartU ⊔ chartV := by
   rw [← ker_negativePart]
   ext p
@@ -106,6 +125,9 @@ def negativeQuotientEquiv : (BinaryLaurent K ⧸ (chartU (K := K) ⊔ chartV (K 
   (Submodule.quotEquivOfEq _ _ ker_negativeProjection.symm).trans
     ((negativeProjection (K := K)).quotKerEquivOfSurjective negativeProjection_surjective)
 
+/--
+@isnad1 id=eq.0h2v.s13.36778c870e9e from=translated src=- shape=745408fb vocab=024a62f2
+-/
 @[simp] theorem negativeQuotientEquiv_mk (p : BinaryLaurent K) :
     negativeQuotientEquiv ((chartU ⊔ chartV).mkQ p) = negativeProjection p := by
   simp [negativeQuotientEquiv]
@@ -145,6 +167,9 @@ def complementIndex (g : ι → ℤ) (r : ℤ) : PositiveIndex g r ≃ NegativeI
   left_inv e := by apply Subtype.ext; simp
   right_inv e := by apply Subtype.ext; simp
 
+/--
+@isnad1 id=finite.0h3v.s4.a7f434f89193 from=translated src=- shape=a4dfd744 vocab=7c2caf9b
+-/
 instance positiveIndexFinite [Finite ι] (g : ι → ℤ) (r : ℤ) : Finite (PositiveIndex g r) := by
   let f : PositiveIndex g r → Σ i : ι, Fin ((r - g i).toNat + 1) × Fin ((r - g i).toNat + 1) :=
     fun e => ⟨e.val.1, ⟨e.val.2.1.toNat, by
@@ -215,23 +240,37 @@ def freeLaurentEquiv [Finite ι] : FreeLaurent K ι ≃ₗ[K] (ι → BinaryLaur
     ((Finsupp.linearEquivFunOnFinite K ((ℤ × ℤ) →₀ K) ι).trans
       (LinearEquiv.piCongrRight fun _ => (AddMonoidAlgebra.coeffLinearEquiv K).symm))
 
+/--
+@isnad1 id=eq.0h5v.s9.55607f52e3a9 from=translated src=- shape=62accb6c vocab=d74651f1
+-/
 @[simp] theorem freeLaurentEquiv_coeff [Finite ι] (p : FreeLaurent K ι)
     (i : ι) (e : ℤ × ℤ) : (freeLaurentEquiv p i).coeff e = p (i, e) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.cc44ce527102 from=translated src=- shape=0360c95f vocab=57a8bb7e
+-/
 @[simp] theorem positiveCoordinates_apply (g : ι → ℤ) (r : ℤ)
     (p : positiveGrade (K := K) g r) (e : PositiveIndex g r) :
     positiveCoordinates g r p e = p.val e.val := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.9e6d1c4e274c from=translated src=- shape=77e2048d vocab=fbc23887
+-/
 @[simp] theorem negativeCoordinates_apply (g : ι → ℤ) (r : ℤ)
     (p : negativeGrade (K := K) g r) (e : PositiveIndex g r) :
     negativeCoordinates g r p e = p.val (complementIndex g r e).val := rfl
 
+/--
+@isnad1 id=eq.0h5v.s10.b0997ecbe094 from=translated src=- shape=3a6dc403 vocab=41be3143
+-/
 @[simp] theorem positiveBasis_val (g : ι → ℤ) (r : ℤ) (e : PositiveIndex g r) :
     (positiveBasis (K := K) g r e).val = Finsupp.single e.val 1 := by
   classical
   exact Finsupp.supportedEquivFinsupp_symm_single (positiveIndices g r) e 1
 
-/-- Residues on a polynomial monomial are exactly the complementary Laurent coefficient.-/
+/-- Residues on a polynomial monomial are exactly the complementary Laurent coefficient.
+@isnad1 id=eq.0h6v.s12.f41375968a14 from=translated src=- shape=7f00ffa5 vocab=346f8bdf
+-/
 @[simp] theorem residuePair_basis [Finite ι] (g : ι → ℤ) (r : ℤ)
     (q : negativeGrade (K := K) g r) (e : PositiveIndex g r) :
     residuePair g r q (positiveBasis g r e) = q.val (complementIndex g r e).val := by
@@ -254,6 +293,9 @@ def shift (m : ℤ × ℤ) : FreeLaurent K ι →ₗ[K] FreeLaurent K ι := by
   classical
   exact (Finsupp.domLCongr (exponentTranslate m)).toLinearMap
 
+/--
+@isnad1 id=eq.0h6v.s8.90ab12af25db from=translated src=- shape=6b0346a8 vocab=b958f89e
+-/
 @[simp] theorem shift_apply (m : ℤ × ℤ) (p : FreeLaurent K ι) (i : ι) (e : ℤ × ℤ) :
     shift m p (i,e) = p (i,(e.1-m.1,e.2-m.2)) := rfl
 
@@ -263,6 +305,9 @@ def freeNegativePart : FreeLaurent K ι →ₗ[K] FreeLaurent K ι := by
   exact (Finsupp.supported K K {e : ι × (ℤ × ℤ) | e.2.1 < 0 ∧ e.2.2 < 0}).subtype.comp
     (Finsupp.restrictDom K K {e : ι × (ℤ × ℤ) | e.2.1 < 0 ∧ e.2.2 < 0})
 
+/--
+@isnad1 id=eq.0h5v.s8.3337d9fd05ba from=translated src=- shape=5575af97 vocab=2a3dcc18
+-/
 @[simp] theorem freeNegativePart_apply (p : FreeLaurent K ι) (i : ι) (e : ℤ × ℤ) :
     freeNegativePart p (i,e) = if e.1 < 0 ∧ e.2 < 0 then p (i,e) else 0 := by
   classical
@@ -308,10 +353,16 @@ def negativeShift (g : ι → ℤ) (r : ℤ) (m : ℕ × ℕ) :
         exact ⟨hneg.1,hneg.2, by omega⟩
       · rfl)
 
+/--
+@isnad1 id=eq.0h8v.s11.56054714cf93 from=translated src=- shape=0329391d vocab=1ee63c4a
+-/
 @[simp] theorem positiveShift_apply (g : ι → ℤ) (r : ℤ) (m : ℕ × ℕ)
     (p : positiveGrade (K := K) g r) (i : ι) (e : ℤ × ℤ) :
     (positiveShift g r m p).val (i,e) = p.val (i,(e.1-m.1,e.2-m.2)) := rfl
 
+/--
+@isnad1 id=eq.0h8v.s11.19b36c3094c9 from=translated src=- shape=b1ca2339 vocab=9f87665c
+-/
 @[simp] theorem negativeShift_apply (g : ι → ℤ) (r : ℤ) (m : ℕ × ℕ)
     (p : negativeGrade (K := K) g (r+m.1+m.2)) (i : ι) (e : ℤ × ℤ) :
     (negativeShift g r m p).val (i,e) =
@@ -326,6 +377,9 @@ def positiveIndexShift (g : ι → ℤ) (r : ℤ) (m : ℕ × ℕ)
       (e.val.2.1 + (m.1 : ℤ)) + (e.val.2.2 + (m.2 : ℤ)) + g e.val.1 = r + m.1 + m.2
     omega⟩
 
+/--
+@isnad1 id=eq.0h6v.s12.66d9c3e29b6a from=translated src=- shape=e69601ea vocab=7cd7a183
+-/
 @[simp] theorem positiveShift_basis (g : ι → ℤ) (r : ℤ) (m : ℕ × ℕ)
     (e : PositiveIndex g r) :
     positiveShift g r m (positiveBasis (K := K) g r e) =
@@ -336,7 +390,9 @@ def positiveIndexShift (g : ι → ℤ) (r : ℤ) (m : ℕ × ℕ)
   rw [positiveBasis_val, positiveBasis_val]
   exact Finsupp.domLCongr_single (exponentTranslate _) e.val 1
 
-/-- Polynomial monomial multiplication and projected Laurent multiplication are adjoint.-/
+/-- Polynomial monomial multiplication and projected Laurent multiplication are adjoint.
+@isnad1 id=eq.0h7v.s14.b41dbae29a74 from=translated src=- shape=866ff5ad vocab=bd70aa7d
+-/
 theorem residuePair_shift [Finite ι] (g : ι → ℤ) (r : ℤ) (m : ℕ × ℕ)
     (q : negativeGrade (K := K) g (r+m.1+m.2)) (p : positiveGrade (K := K) g r) :
     residuePair g (r+m.1+m.2) q (positiveShift g r m p) =

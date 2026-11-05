@@ -54,25 +54,33 @@ def selectedX (δ : Fin m → ℕ) (α : RootIndex δ → K) (s : SelectedIndex 
 def selectedY (δ : Fin m → ℕ) (β : RootIndex δ → K) (s : SelectedIndex δ) : K :=
   β ⟨s.1.val.2, s.2.2⟩
 
-/-- The point count is the sum of the sizes of all selected rectangular blocks.-/
+/-- The point count is the sum of the sizes of all selected rectangular blocks.
+@isnad1 id=eq.0h2v.s9.d5c8914221fd from=translated src=- shape=40e833c9 vocab=7be3a202
+-/
 theorem selected_card (δ : Fin m → ℕ) :
     Fintype.card (SelectedIndex δ) =
       ∑ ij : {ij : Fin m × Fin m // ij.1 < ij.2}, δ ij.val.1 * δ ij.val.2 := by
   simp [SelectedIndex, Fintype.card_sigma, Fintype.card_prod]
 
-/-- The vertical row product has its stated homogeneous degree.-/
+/-- The vertical row product has its stated homogeneous degree.
+@isnad1 id=ishomoge.0h5v.s5.6f1f68f807d3 from=translated src=- shape=76fa1d9e vocab=1196bcb7
+-/
 theorem rowFirst_homogeneous (δ : Fin m → ℕ) (α : RootIndex δ → K) (i : Fin m) :
     (rowFirst δ α i).IsHomogeneous (δ i) := by
   simpa [rowFirst, Grid.planeFirst] using
     Grid.planeFirst_homogeneous (fun a : Fin (δ i) => α ⟨i, a⟩)
 
-/-- The horizontal row product has its stated homogeneous degree.-/
+/-- The horizontal row product has its stated homogeneous degree.
+@isnad1 id=ishomoge.0h5v.s5.6201d988bef7 from=translated src=- shape=76fa1d9e vocab=723c406b
+-/
 theorem rowSecond_homogeneous (δ : Fin m → ℕ) (β : RootIndex δ → K) (i : Fin m) :
     (rowSecond δ β i).IsHomogeneous (δ i) := by
   simpa [rowSecond, Grid.planeSecond] using
     Grid.planeSecond_homogeneous (fun b : Fin (δ i) => β ⟨i, b⟩)
 
-/-- Each displayed product is homogeneous in the sum of the retained row degrees.-/
+/-- Each displayed product is homogeneous in the sum of the retained row degrees.
+@isnad1 id=ishomoge.0h6v.s6.9262daec020b from=translated src=- shape=bb7bd8b7 vocab=b45bcb97
+-/
 theorem cofactorProduct_homogeneous (δ : Fin m → ℕ) (α β : RootIndex δ → K)
     (j : Fin m) :
     (cofactorProduct δ α β j).IsHomogeneous
@@ -82,6 +90,9 @@ theorem cofactorProduct_homogeneous (δ : Fin m → ℕ) (α β : RootIndex δ �
   exact (IsHomogeneous.prod _ _ _ (fun i _ => rowFirst_homogeneous δ α i)).mul
     (IsHomogeneous.prod _ _ _ (fun i _ => rowSecond_homogeneous δ β i))
 
+/--
+@isnad1 id=eq.0h6v.s8.23db12957a41 from=translated src=- shape=4f910028 vocab=e1ebd13a
+-/
 @[simp] theorem rowFirst_eval_root (δ : Fin m → ℕ) (α : RootIndex δ → K)
     (u : RootIndex δ) (y : K) :
     eval ![α u, y, 1] (rowFirst δ α u.1) = 0 := by
@@ -90,6 +101,9 @@ theorem cofactorProduct_homogeneous (δ : Fin m → ℕ) (α β : RootIndex δ �
   simp only [Matrix.cons_val_zero, Matrix.cons_val_two ]
   exact Finset.prod_eq_zero (Finset.mem_univ u.2) (by simp)
 
+/--
+@isnad1 id=eq.0h6v.s8.47f187f64d25 from=translated src=- shape=16179529 vocab=809640b0
+-/
 @[simp] theorem rowSecond_eval_root (δ : Fin m → ℕ) (β : RootIndex δ → K)
     (u : RootIndex δ) (x : K) :
     eval ![x, β u, 1] (rowSecond δ β u.1) = 0 := by
@@ -98,7 +112,9 @@ theorem cofactorProduct_homogeneous (δ : Fin m → ℕ) (α β : RootIndex δ �
   simp only [Matrix.cons_val_one, Matrix.cons_val_two ]
   exact Finset.prod_eq_zero (Finset.mem_univ u.2) (by simp)
 
-/-- Every minor product vanishes at every selected Ferrers point.-/
+/-- Every minor product vanishes at every selected Ferrers point.
+@isnad1 id=eq.0h7v.s8.dded8e48a0e6 from=translated src=- shape=ec734bb8 vocab=3279ec1a
+-/
 theorem cofactorProduct_eval_selected (δ : Fin m → ℕ) (α β : RootIndex δ → K)
     (s : SelectedIndex δ) (k : Fin m) :
     eval ![selectedX δ α s, selectedY δ β s, 1] (cofactorProduct δ α β k) = 0 := by
@@ -116,7 +132,9 @@ theorem cofactorProduct_eval_selected (δ : Fin m → ℕ) (α β : RootIndex δ
     · exact rowSecond_eval_root δ β ⟨s.1.val.2, s.2.2⟩ _
 
 omit [Field K] in
-/-- Distinct roots in each coordinate give pairwise distinct selected points.-/
+/-- Distinct roots in each coordinate give pairwise distinct selected points.
+@isnad1 id=injectiv.2h5v.s5.32a05f6b04b0 from=translated src=- shape=2847cce7 vocab=138cdaf3
+-/
 theorem selected_injective (δ : Fin m → ℕ) (α β : RootIndex δ → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     Function.Injective (fun s : SelectedIndex δ => (selectedX δ α s, selectedY δ β s)) := by
@@ -138,6 +156,9 @@ def pointCoordinates (δ : Fin m → ℕ) (α β : RootIndex δ → K) :
   if ik.2 = 0 then selectedX δ α s else selectedY δ β s
 
 omit [Field K] in
+/--
+@isnad1 id=eq.0h6v.s11.3971eecf8c63 from=translated src=- shape=fd1aa65c vocab=cf75f0c8
+-/
 @[simp] theorem pointCoordinates_first (δ : Fin m → ℕ) (α β : RootIndex δ → K)
     (i : Fin (Fintype.card (SelectedIndex δ))) :
     pointCoordinates δ α β (i, 0) =
@@ -145,6 +166,9 @@ omit [Field K] in
   simp [pointCoordinates]
 
 omit [Field K] in
+/--
+@isnad1 id=eq.0h6v.s11.ece17f04a4ac from=translated src=- shape=6be5ff6c vocab=ec582efe
+-/
 @[simp] theorem pointCoordinates_second (δ : Fin m → ℕ) (α β : RootIndex δ → K)
     (i : Fin (Fintype.card (SelectedIndex δ))) :
     pointCoordinates δ α β (i, 1) =
@@ -152,7 +176,9 @@ omit [Field K] in
   simp [pointCoordinates]
 
 omit [Field K] in
-/-- The displayed points are distinct as normalized projective points.-/
+/-- The displayed points are distinct as normalized projective points.
+@isnad1 id=distinct.2h5v.s8.37a29f3b69d5 from=translated src=- shape=25a8482c vocab=2e26d354
+-/
 theorem distinct_pointCoordinates (δ : Fin m → ℕ) (α β : RootIndex δ → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     DistinctPoints K (pointCoordinates δ α β) := by
@@ -167,7 +193,9 @@ def seedMatrix {c : ℕ} (δ : Fin (c + 1) → ℕ) (α β : RootIndex δ → K)
     Matrix (Fin (c + 1)) (Fin c) (Poly K 3) :=
   ferrersBidiagonal (rowFirst δ α) (rowSecond δ β)
 
-/-- Its deleted-row determinants are precisely the displayed Ferrers products.-/
+/-- Its deleted-row determinants are precisely the displayed Ferrers products.
+@isnad1 id=eq.0h6v.s7.971837a6330f from=translated src=- shape=c1c306ad vocab=0e11b6b0
+-/
 theorem seedMatrix_deletedRow_det {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (j : Fin (c + 1)) :
     (seedMatrix δ α β |>.submatrix j.succAbove id).det = cofactorProduct δ α β j := by
@@ -175,7 +203,9 @@ theorem seedMatrix_deletedRow_det {c : ℕ} (δ : Fin (c + 1) → ℕ)
     ferrersDeletedRow_det (rowFirst δ α) (rowSecond δ β) j
 
 /-- The minor ideal is contained in the actual saturated point ideal of the
-selected chart points.-/
+selected chart points.
+@isnad1 id=le.0h5v.s9.5e3f0f0012a6 from=translated src=- shape=c3a3fdb2 vocab=fe43c34e
+-/
 theorem cofactorIdeal_le_pointIdeal (δ : Fin m → ℕ) (α β : RootIndex δ → K) :
     cofactorIdeal δ α β ≤ pointIdeal K (pointCoordinates δ α β) := by
   apply Ideal.span_le.mpr
@@ -189,7 +219,9 @@ theorem cofactorIdeal_le_pointIdeal (δ : Fin m → ℕ) (α β : RootIndex δ �
   exact cofactorProduct_eval_selected δ α β
     ((Fintype.equivFin (SelectedIndex δ)).symm i) j
 
-/-- A vertical product has no zero at a root belonging to a different row.-/
+/-- A vertical product has no zero at a root belonging to a different row.
+@isnad1 id=ne.2h7v.s8.97d6d50ade6f from=translated src=- shape=3d67a33a vocab=0924d020
+-/
 theorem rowFirst_eval_ne_zero (δ : Fin m → ℕ) (α : RootIndex δ → K)
     (hα : Function.Injective α) (u : RootIndex δ) (i : Fin m)
     (hi : i ≠ u.1) (y : K) :
@@ -205,7 +237,9 @@ theorem rowFirst_eval_ne_zero (δ : Fin m → ℕ) (α : RootIndex δ → K)
     exact hi (congrArg Sigma.fst (hα h)).symm
   simpa using sub_ne_zero.mpr hneq
 
-/-- A horizontal product has no zero at a root belonging to a different row.-/
+/-- A horizontal product has no zero at a root belonging to a different row.
+@isnad1 id=ne.2h7v.s8.d481411687f9 from=translated src=- shape=fdd21ca5 vocab=779432a6
+-/
 theorem rowSecond_eval_ne_zero (δ : Fin m → ℕ) (β : RootIndex δ → K)
     (hβ : Function.Injective β) (v : RootIndex δ) (i : Fin m)
     (hi : i ≠ v.1) (x : K) :
@@ -222,7 +256,9 @@ theorem rowSecond_eval_ne_zero (δ : Fin m → ℕ) (β : RootIndex δ → K)
   simpa using sub_ne_zero.mpr hneq
 
 /-- Inside the full Cartesian root grid, the minor products select exactly the
-Ferrers pairs. Distinctness excludes every unwanted block.-/
+Ferrers pairs. Distinctness excludes every unwanted block.
+@isnad1 id=iff.2h7v.s8.0ee3cd1fd45c from=translated src=- shape=a1162600 vocab=bb9a2758
+-/
 theorem cofactorProducts_vanish_iff_selected (δ : Fin m → ℕ)
     (α β : RootIndex δ → K) (hα : Function.Injective α) (hβ : Function.Injective β)
     (u v : RootIndex δ) :
@@ -249,7 +285,9 @@ theorem cofactorProducts_vanish_iff_selected (δ : Fin m → ℕ)
   · intro huv j
     exact cofactorProduct_eval_selected δ α β ⟨⟨(u.1,v.1),huv⟩,(u.2,v.2)⟩ j
 
-/-- The initial cofactor is the product of all horizontal rows after row zero.-/
+/-- The initial cofactor is the product of all horizontal rows after row zero.
+@isnad1 id=eq.0h5v.s8.038780d57d49 from=translated src=- shape=cfc36d63 vocab=2d7b612a
+-/
 @[simp] theorem cofactorProduct_zero {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     cofactorProduct δ α β 0 =
@@ -257,7 +295,9 @@ theorem cofactorProducts_vanish_iff_selected (δ : Fin m → ℕ)
   classical
   simp [cofactorProduct]
 
-/-- The final cofactor is the product of all vertical rows before the last row.-/
+/-- The final cofactor is the product of all vertical rows before the last row.
+@isnad1 id=eq.0h5v.s8.16bd89134853 from=translated src=- shape=65ff8328 vocab=c03cbcdd
+-/
 @[simp] theorem cofactorProduct_last {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     cofactorProduct δ α β (Fin.last c) =
@@ -270,7 +310,9 @@ theorem cofactorProducts_vanish_iff_selected (δ : Fin m → ℕ)
   rw [cofactorProduct, hfilter, Finset.prod_empty, mul_one]
 
 /-- Any product of the vertical factors is relatively prime to any product of
-the horizontal factors.-/
+the horizontal factors.
+@isnad1 id=isrelpri.0h7v.s7.69825553fe9a from=translated src=- shape=ccd9540d vocab=7907a5fb
+-/
 theorem firstProducts_relPrime_secondProducts (δ : Fin m → ℕ)
     (α β : RootIndex δ → K) (s t : Finset (Fin m)) :
     IsRelPrime (∏ i ∈ s, rowFirst δ α i) (∏ j ∈ t, rowSecond δ β j) := by
@@ -285,7 +327,9 @@ theorem firstProducts_relPrime_secondProducts (δ : Fin m → ℕ)
   have hh := map_dvd (eval ![0,1,0]) hdvd
   simp [rowSecond] at hh
 
-/-- The maximal minors of the explicit seed have no common nonunit factor.-/
+/-- The maximal minors of the explicit seed have no common nonunit factor.
+@isnad1 id=primitiv.0h5v.s6.d139c72f8a3a from=translated src=- shape=8d239413 vocab=c0f522d6
+-/
 theorem seedMatrix_primitive {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) : PrimitiveMaximalMinors (seedMatrix δ α β) := by
   apply primitiveMaximalMinors_of_relPrime_pair _ (Fin.last c) 0
@@ -296,7 +340,9 @@ theorem seedMatrix_primitive {c : ℕ} (δ : Fin (c + 1) → ℕ)
   rw [hlast, hzero, cofactorProduct_last, cofactorProduct_zero]
   exact firstProducts_relPrime_secondProducts δ α β _ _
 
-/-- The signed-minor ideal of the matrix is the ideal of the product formulas.-/
+/-- The signed-minor ideal of the matrix is the ideal of the product formulas.
+@isnad1 id=eq.0h5v.s7.9ee1e3d90d8b from=translated src=- shape=79fd9650 vocab=f47ebead
+-/
 theorem seedMatrix_cofactorIdeal {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     ChoppedPlane.cofactorIdeal (seedMatrix δ α β) = cofactorIdeal δ α β := by
@@ -308,7 +354,9 @@ theorem seedMatrix_cofactorIdeal {c : ℕ} (δ : Fin (c + 1) → ℕ)
   rfl
 
 /-- Pure-power bidiagonal matrices also have primitive maximal minors. This
-applies to the seed after setting the homogeneous coordinate to zero.-/
+applies to the seed after setting the homogeneous coordinate to zero.
+@isnad1 id=primitiv.1h5v.s7.7c458b2cc219 from=translated src=- shape=62b41195 vocab=f4fdb2a3
+-/
 theorem pureSeed_primitive {R : Type*} [CommRing R] [IsDomain R]
     [UniqueFactorizationMonoid R] {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (x y : R) (hxy : IsRelPrime x y) :
@@ -339,6 +387,9 @@ def canonicalRoots [Infinite K] (δ : Fin m → ℕ) : RootIndex δ → K :=
   fun u => Infinite.natEmbedding K ((Fintype.equivFin (RootIndex δ) u).val)
 
 omit [Field K] in
+/--
+@isnad1 id=injectiv.0h3v.s4.de30e40fd41b from=translated src=- shape=c7f744f3 vocab=647bb559
+-/
 theorem canonicalRoots_injective [Infinite K] (δ : Fin m → ℕ) :
     Function.Injective (canonicalRoots (K := K) δ) := by
   intro u v huv
@@ -350,19 +401,27 @@ theorem canonicalRoots_injective [Infinite K] (δ : Fin m → ℕ) :
 def infinityMap : Poly K 3 →+* Poly K 2 :=
   eval₂Hom C ![X 0, X 1, 0]
 
+/--
+@isnad1 id=eq.0h5v.s8.65002d2dd74a from=translated src=- shape=b2eac762 vocab=88bab3c7
+-/
 @[simp] theorem infinityMap_rowFirst {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α : RootIndex δ → K) (i : Fin (c + 1)) :
     infinityMap (rowFirst δ α i) = (X 0 : Poly K 2) ^ δ i := by
   classical
   simp [infinityMap, rowFirst]
 
+/--
+@isnad1 id=eq.0h5v.s8.dcd188a0fdea from=translated src=- shape=b2eac762 vocab=38362e83
+-/
 @[simp] theorem infinityMap_rowSecond {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (β : RootIndex δ → K) (i : Fin (c + 1)) :
     infinityMap (rowSecond δ β i) = (X 1 : Poly K 2) ^ δ i := by
   classical
   simp [infinityMap, rowSecond]
 
-/-- Restriction of the split seed is a pure-power bidiagonal matrix.-/
+/-- Restriction of the split seed is a pure-power bidiagonal matrix.
+@isnad1 id=eq.0h5v.s9.b31b3e29a819 from=translated src=- shape=4ff1bffe vocab=12f23609
+-/
 theorem seedMatrix_map_infinity {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     (seedMatrix δ α β).map infinityMap =
@@ -373,7 +432,9 @@ theorem seedMatrix_map_infinity {c : ℕ} (δ : Fin (c + 1) → ℕ)
     else if i.val = j.val + 1 then rowSecond δ β i else 0) = _
   split_ifs <;> simp [ferrersBidiagonal, *]
 
-/-- The two distinct variables are relatively prime in the binary polynomial ring.-/
+/-- The two distinct variables are relatively prime in the binary polynomial ring.
+@isnad1 id=isrelpri.0h1v.s6.cb0af58adc99 from=translated src=- shape=90982485 vocab=e467cfd8
+-/
 theorem binary_X_relPrime : IsRelPrime (X 0 : Poly K 2) (X 1) := by
   have hx : Irreducible (X 0 : Poly K 2) := by
     have hh := irreducible_mul_X_add (1 : Poly K 2) 0 (0 : Fin 2)
@@ -384,14 +445,18 @@ theorem binary_X_relPrime : IsRelPrime (X 0 : Poly K 2) (X 1) := by
   have hh := map_dvd (eval ![0,1]) hdvd
   simp at hh
 
-/-- The seed has primitive maximal minors after quotienting by `z`.-/
+/-- The seed has primitive maximal minors after quotienting by `z`.
+@isnad1 id=primitiv.0h5v.s8.f48680d8ec8d from=translated src=- shape=94704718 vocab=953d5beb
+-/
 theorem seedMatrix_primitive_atInfinity {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     PrimitiveMaximalMinors ((seedMatrix δ α β).map infinityMap) := by
   rw [seedMatrix_map_infinity]
   exact pureSeed_primitive δ _ _ binary_X_relPrime
 
-/-- Restriction to `z = 0` is surjective.-/
+/-- Restriction to `z = 0` is surjective.
+@isnad1 id=surjecti.0h1v.s7.46a5aed4a550 from=translated src=- shape=78b01269 vocab=3e0daff0
+-/
 theorem infinityMap_surjective : Function.Surjective (infinityMap (K := K)) := by
   have hcomp : (infinityMap (K := K)).comp (rename Fin.castSucc).toRingHom =
       RingHom.id (Poly K 2) := by
@@ -404,7 +469,9 @@ theorem infinityMap_surjective : Function.Surjective (infinityMap (K := K)) := b
   refine ⟨rename Fin.castSucc p, ?_⟩
   exact congrArg (fun f : Poly K 2 →+* Poly K 2 => f p) hcomp
 
-/-- Its kernel is the actual principal ideal generated by `z`.-/
+/-- Its kernel is the actual principal ideal generated by `z`.
+@isnad1 id=eq.0h1v.s8.b3e991603f39 from=translated src=- shape=b86a399e vocab=bf7c0291
+-/
 theorem infinityMap_ker : RingHom.ker (infinityMap (K := K)) = Ideal.span {X 2} := by
   let I : Ideal (Poly K 3) := Ideal.span {X 2}
   let q : Fin 3 → Poly K 3 := ![X 0, X 1, 0]
@@ -438,7 +505,9 @@ theorem infinityMap_ker : RingHom.ker (infinityMap (K := K)) = Ideal.span {X 2} 
     simp [infinityMap]
 
 /-- The actual minor ideal is saturated by every power of the homogeneous
-coordinate, with all exactness hypotheses discharged for the split seed.-/
+coordinate, with all exactness hypotheses discharged for the split seed.
+@isnad1 id=iff.0h7v.s9.1de1bc2ab932 from=translated src=- shape=529d0b1a vocab=e47b38ff
+-/
 theorem cofactorIdeal_z_saturated {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (n : ℕ) (p : Poly K 3) :
     X 2 ^ n * p ∈ cofactorIdeal δ α β ↔ p ∈ cofactorIdeal δ α β := by
@@ -447,7 +516,9 @@ theorem cofactorIdeal_z_saturated {c : ℕ} (δ : Fin (c + 1) → ℕ)
     infinityMap infinityMap_surjective infinityMap_ker
     (seedMatrix_primitive_atInfinity δ α β) n p
 
-/-- Each matrix entry has exactly its row's prescribed homogeneous degree.-/
+/-- Each matrix entry has exactly its row's prescribed homogeneous degree.
+@isnad1 id=ishomoge.0h7v.s6.8c2be70437c3 from=translated src=- shape=9ee1725e vocab=be163604
+-/
 theorem seedMatrix_homogeneous {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (i : Fin (c + 1)) (j : Fin c) :
     (seedMatrix δ α β i j).IsHomogeneous (δ i) := by
@@ -461,14 +532,18 @@ theorem seedMatrix_homogeneous {c : ℕ} (δ : Fin (c + 1) → ℕ)
 attribute [local instance] MvPolynomial.gradedAlgebra
 
 /-- The actual minor ideal is homogeneous, with generator degrees explicitly
-proved above.-/
+proved above.
+@isnad1 id=ishomoge.0h5v.s8.2c51819e6be8 from=translated src=- shape=713d70ea vocab=e29ffff3
+-/
 theorem cofactorIdeal_homogeneous (δ : Fin m → ℕ) (α β : RootIndex δ → K) :
     (cofactorIdeal δ α β).IsHomogeneous (homogeneousSubmodule (Fin 3) K) := by
   apply Ideal.homogeneous_span
   rintro f ⟨j,rfl⟩
   exact ⟨_,cofactorProduct_homogeneous δ α β j⟩
 
-/-- Actual point ideals are closed under homogeneous components.-/
+/-- Actual point ideals are closed under homogeneous components.
+@isnad1 id=ishomoge.0h3v.s7.7b95d32f12f2 from=translated src=- shape=cadb161a vocab=40c5d83d
+-/
 theorem pointIdeal_homogeneous {p : ℕ} (a : PointCoordinates K p) :
     (pointIdeal K a).IsHomogeneous (homogeneousSubmodule (Fin 3) K) := by
   apply Ideal.IsHomogeneous.iInf
@@ -478,7 +553,9 @@ theorem pointIdeal_homogeneous {p : ℕ} (a : PointCoordinates K p) :
   · exact ⟨1,(isHomogeneous_X K 0).sub (isHomogeneous_C_mul_X (a (i,0)) 2)⟩
   · exact ⟨1,(isHomogeneous_X K 1).sub (isHomogeneous_C_mul_X (a (i,1)) 2)⟩
 
-/-- The full vertical root product belongs to the minor ideal.-/
+/-- The full vertical root product belongs to the minor ideal.
+@isnad1 id=mem.0h5v.s8.3a06c0bd496d from=translated src=- shape=63a66cba vocab=a4b3d504
+-/
 theorem totalFirst_mem {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     (∏ i, rowFirst δ α i) ∈ cofactorIdeal δ α β := by
@@ -495,7 +572,9 @@ theorem totalFirst_mem {c : ℕ} (δ : Fin (c + 1) → ℕ)
   have hh := (cofactorIdeal δ α β).mul_mem_left (rowFirst δ α (Fin.last c)) hmem
   rwa [Finset.mul_prod_erase Finset.univ (rowFirst δ α) (Finset.mem_univ _)] at hh
 
-/-- The full horizontal root product belongs to the minor ideal.-/
+/-- The full horizontal root product belongs to the minor ideal.
+@isnad1 id=mem.0h5v.s8.02f54ac5c6dc from=translated src=- shape=bd27543f vocab=80bd9463
+-/
 theorem totalSecond_mem {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     (∏ i, rowSecond δ β i) ∈ cofactorIdeal δ α β := by
@@ -518,11 +597,16 @@ def flatRoots (δ : Fin m → ℕ) (α : RootIndex δ → K) :
   fun i => α ((Fintype.equivFin (RootIndex δ)).symm i)
 
 omit [Field K] in
+/--
+@isnad1 id=injectiv.1h4v.s5.51306c3d6ceb from=translated src=- shape=3f67b787 vocab=bd4dcf26
+-/
 theorem flatRoots_injective (δ : Fin m → ℕ) (α : RootIndex δ → K)
     (hα : Function.Injective α) : Function.Injective (flatRoots δ α) :=
   hα.comp (Fintype.equivFin (RootIndex δ)).symm.injective
 
-/-- The full vertical product is the familiar split grid equation.-/
+/-- The full vertical product is the familiar split grid equation.
+@isnad1 id=eq.0h4v.s6.f488575c92ac from=translated src=- shape=6126ba10 vocab=faae7163
+-/
 theorem totalFirst_eq_planeFirst (δ : Fin m → ℕ) (α : RootIndex δ → K) :
     (∏ i, rowFirst δ α i) = Grid.planeFirst (flatRoots δ α) := by
   classical
@@ -535,7 +619,9 @@ theorem totalFirst_eq_planeFirst (δ : Fin m → ℕ) (α : RootIndex δ → K) 
     intro u
     simp [flatRoots])
 
-/-- The full horizontal product is the split grid equation in the second variable.-/
+/-- The full horizontal product is the split grid equation in the second variable.
+@isnad1 id=eq.0h4v.s6.6715d2dd1297 from=translated src=- shape=6126ba10 vocab=55e7b03f
+-/
 theorem totalSecond_eq_planeSecond (δ : Fin m → ℕ) (β : RootIndex δ → K) :
     (∏ i, rowSecond δ β i) = Grid.planeSecond (flatRoots δ β) := by
   classical
@@ -552,7 +638,9 @@ theorem totalSecond_eq_planeSecond (δ : Fin m → ℕ) (β : RootIndex δ → K
 def affineCofactorIdeal {c : ℕ} (δ : Fin (c + 1) → ℕ) (α β : RootIndex δ → K) :
     Ideal (Poly K 2) := (cofactorIdeal δ α β).map (affineDehom (K := K)).toRingHom
 
-/-- Plane evaluation commutes with setting `z = 1`.-/
+/-- Plane evaluation commutes with setting `z = 1`.
+@isnad1 id=eq.0h4v.s9.8f84f53bde48 from=translated src=- shape=01fb7265 vocab=1bb5f939
+-/
 theorem eval_affineDehom (f : Poly K 3) (x y : K) :
     eval ![x,y] (affineDehom f) = eval ![x,y,1] f := by
   have h : (aeval ![x,y]).comp (affineDehom (K := K)) = aeval ![x,y,1] := by
@@ -561,7 +649,9 @@ theorem eval_affineDehom (f : Poly K 3) (x y : K) :
     fin_cases i <;> simp [affineDehom, AlgHom.comp_apply]
   exact AlgHom.congr_fun h f
 
-/-- The affine minor ideal contains both equations of the full Cartesian root grid.-/
+/-- The affine minor ideal contains both equations of the full Cartesian root grid.
+@isnad1 id=le.0h5v.s9.1fab10e5f3b4 from=translated src=- shape=748971cd vocab=93aac7f8
+-/
 theorem mvAffineGridIdeal_le_affineCofactorIdeal {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) :
     Grid.mvAffineGridIdeal (flatRoots δ α) (flatRoots δ β) ≤ affineCofactorIdeal δ α β := by
@@ -583,7 +673,9 @@ def selectedGridSet (δ : Fin m → ℕ) :
     ((Fintype.equivFin (RootIndex δ)).symm ij.2).1}
 
 /-- Every unwanted full-grid cell is separated by an actual minor in the
-actual affine ideal.-/
+actual affine ideal.
+@isnad1 id=ex.3h6v.s11.a61a657815b6 from=translated src=- shape=6259ef33 vocab=3665af96
+-/
 theorem affineCofactor_separator {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (hα : Function.Injective α) (hβ : Function.Injective β)
     (ij : Fin (Fintype.card (RootIndex δ)) × Fin (Fintype.card (RootIndex δ)))
@@ -605,7 +697,9 @@ theorem affineCofactor_separator {c : ℕ} (δ : Fin (c + 1) → ℕ)
 
 /-- A homogeneous equation of the displayed selected points belongs to the
 actual minor ideal. Full-grid interpolation proves the affine membership;
-proven `z` saturation lifts it back to the homogeneous polynomial ring.-/
+proven `z` saturation lifts it back to the homogeneous polynomial ring.
+@isnad1 id=mem.3h7v.s11.b64f4cb4f03d from=translated src=- shape=f1e64122 vocab=13ecc88d
+-/
 theorem homogeneous_mem_cofactorIdeal_of_pointIdeal {c t : ℕ}
     (δ : Fin (c + 1) → ℕ) (α β : RootIndex δ → K)
     (hα : Function.Injective α) (hβ : Function.Injective β)
@@ -644,7 +738,9 @@ theorem homogeneous_mem_cofactorIdeal_of_pointIdeal {c t : ℕ}
     selectedX,selectedY,s,u,v] using hh
 
 /-- The explicit split seed generates exactly the saturated ideal of the
-selected distinct chart points, as actual ideals in the polynomial ring.-/
+selected distinct chart points, as actual ideals in the polynomial ring.
+@isnad1 id=eq.2h5v.s10.e41f1796509e from=translated src=- shape=46e15542 vocab=ee300f3a
+-/
 theorem cofactorIdeal_eq_pointIdeal {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (hα : Function.Injective α) (hβ : Function.Injective β) :
     cofactorIdeal δ α β = pointIdeal K (pointCoordinates δ α β) := by
@@ -657,7 +753,9 @@ theorem cofactorIdeal_eq_pointIdeal {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (homogeneousComponent_mem_of_mem (pointIdeal_homogeneous (pointCoordinates δ α β)) hf t)
 
 /-- The affine seed quotient is reduced over the given field; the proof uses
-only separated split roots and the full-grid interpolation quotient.-/
+only separated split roots and the full-grid interpolation quotient.
+@isnad1 id=isreduce.2h5v.s9.b0b513bbf28f from=translated src=- shape=c89d9787 vocab=d7c0c072
+-/
 theorem affineCofactorIdeal_quotient_reduced {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (hα : Function.Injective α) (hβ : Function.Injective β) :
     IsReduced (Poly K 2 ⧸ affineCofactorIdeal δ α β) :=

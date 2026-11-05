@@ -17,21 +17,41 @@ variable {K : Type*} [Field K]
 def affineDehom : Poly K 3 →ₐ[K] Poly K 2 :=
   MvPolynomial.aeval ![X 0, X 1, 1]
 
+/--
+@isnad1 id=eq.0h1v.s8.7dfcb8f8514b from=translated src=- shape=83807368 vocab=42c99524
+-/
 @[simp] theorem affineDehom_X_zero : affineDehom (X 0 : Poly K 3) = X 0 := by
   simp [affineDehom]
 
+/--
+@isnad1 id=eq.0h1v.s8.de8750e85f09 from=translated src=- shape=83807368 vocab=42c99524
+-/
 @[simp] theorem affineDehom_X_one : affineDehom (X 1 : Poly K 3) = X 1 := by
   simp [affineDehom]
 
+/--
+@isnad1 id=eq.0h1v.s8.059b5c35b036 from=translated src=- shape=53f6a7e0 vocab=42c99524
+-/
 @[simp] theorem affineDehom_X_two : affineDehom (X 2 : Poly K 3) = 1 := by
   simp [affineDehom]
 
+/--
+@isnad1 id=eq.0h1v.s8.7dfcb8f8514b from=translated src=- shape=83807368 vocab=42c99524
+-/
 alias affineDehom_X0 := affineDehom_X_zero
+/--
+@isnad1 id=eq.0h1v.s8.de8750e85f09 from=translated src=- shape=83807368 vocab=42c99524
+-/
 alias affineDehom_X1 := affineDehom_X_one
+/--
+@isnad1 id=eq.0h1v.s8.059b5c35b036 from=translated src=- shape=53f6a7e0 vocab=42c99524
+-/
 alias affineDehom_X2 := affineDehom_X_two
 
 /-- Renaming the two affine variables into the first two plane variables is a
-right inverse to dehomogenization.-/
+right inverse to dehomogenization.
+@isnad1 id=eq.0h1v.s9.41838215cfc7 from=translated src=- shape=184060e7 vocab=66b3f6b4
+-/
 theorem affineDehom_comp_rename :
     (affineDehom (K := K)).comp (MvPolynomial.rename (Fin.castSucc : Fin 2 → Fin 3)) =
       AlgHom.id K (Poly K 2) := by
@@ -39,14 +59,22 @@ theorem affineDehom_comp_rename :
   intro i
   fin_cases i <;> simp [affineDehom]
 
+/--
+@isnad1 id=eq.0h2v.s9.bdab0d23f057 from=translated src=- shape=5d28e5cb vocab=144a480a
+-/
 @[simp] theorem affineDehom_rename (p : Poly K 2) :
     affineDehom (MvPolynomial.rename (Fin.castSucc : Fin 2 → Fin 3) p) = p :=
   AlgHom.congr_fun affineDehom_comp_rename p
 
+/--
+@isnad1 id=surjecti.0h1v.s8.b6237d73bc04 from=translated src=- shape=0404eb73 vocab=7bdf8b21
+-/
 theorem affineDehom_surjective : Function.Surjective (affineDehom (K := K)) :=
   fun p => ⟨MvPolynomial.rename (Fin.castSucc : Fin 2 → Fin 3) p, affineDehom_rename p⟩
 
-/-- The dehomogenization kernel is the equation that the last coordinate is one.-/
+/-- The dehomogenization kernel is the equation that the last coordinate is one.
+@isnad1 id=eq.0h1v.s9.3a9517cadd85 from=translated src=- shape=7a74d192 vocab=ef0b9104
+-/
 theorem affineDehom_ker : RingHom.ker (affineDehom (K := K)).toRingHom =
     Ideal.span {(X 2 : Poly K 3) - 1} := by
   classical
@@ -78,7 +106,9 @@ theorem affineDehom_ker : RingHom.ker (affineDehom (K := K)).toRingHom =
     simpa only [AlgHom.comp_apply, hp0, map_zero, q, Ideal.Quotient.mkₐ_eq_mk] using h.symm
   · exact hle
 
-/-- Equality after dehomogenization is divisibility by the chart equation.-/
+/-- Equality after dehomogenization is divisibility by the chart equation.
+@isnad1 id=iff.0h3v.s10.82b6b71308fa from=translated src=- shape=99dd276d vocab=09153a86
+-/
 theorem affineDehom_eq_iff (f g : Poly K 3) :
     affineDehom f = affineDehom g ↔ (X 2 - 1 : Poly K 3) ∣ f - g := by
   rw [← sub_eq_zero, ← map_sub]

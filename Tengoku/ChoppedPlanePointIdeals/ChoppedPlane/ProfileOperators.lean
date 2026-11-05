@@ -25,6 +25,9 @@ def gradedBinaryMultiply (f : Forms K 2 1) (w : Fin 3 → ℕ) (t : ℤ) :
     ext i
     simp
 
+/--
+@isnad1 id=eq.0h5v.s12.47b73c46d45a from=translated src=- shape=75141acb vocab=7455e0a0
+-/
 @[simp] theorem gradedBinaryMultiply_val (f : Forms K 2 1) (w : Fin 3 → ℕ)
     (t : ℤ) (m : GradedBinaryVector (K := K) w t) :
     gradedBinaryVectorVal w (t+1) (gradedBinaryMultiply f w t m) =
@@ -36,6 +39,9 @@ def gradedBinaryCoordinate (j : Fin 2) (w : Fin 3 → ℕ) (t : ℤ) :
       GradedBinaryVector (K := K) w (t+1) :=
   gradedBinaryMultiply ⟨X j, isHomogeneous_X K j⟩ w t
 
+/--
+@isnad1 id=eq.0h5v.s12.a709c933d100 from=translated src=- shape=b651b68c vocab=887aa6f6
+-/
 @[simp] theorem gradedBinaryCoordinate_val (j : Fin 2) (w : Fin 3 → ℕ)
     (t : ℤ) (m : GradedBinaryVector (K := K) w t) :
     gradedBinaryVectorVal w (t+1) (gradedBinaryCoordinate j w t m) =

@@ -50,13 +50,18 @@ theorem eq_zero_of_grid_eval_eq_zero {m n : ℕ} (α : Fin m → K) (β : Fin n 
 def coordinatePolynomial {d : ℕ} (α : Fin d → K) : K[X] :=
   ∏ i, (X - C (α i))
 
+/--
+@isnad1 id=eq.0h4v.s5.db8157fce310 from=translated src=- shape=079ad92a vocab=28225c85
+-/
 @[simp] theorem coordinatePolynomial_eval {d : ℕ} (α : Fin d → K) (i : Fin d) :
     (coordinatePolynomial α).eval (α i) = 0 := by
   classical
   simp only [coordinatePolynomial, eval_prod, eval_sub, eval_X, eval_C]
   exact Finset.prod_eq_zero (Finset.mem_univ i) (sub_self _)
 
-/-- Every selected coordinate is a root, and root counting excludes all others.-/
+/-- Every selected coordinate is a root, and root counting excludes all others.
+@isnad1 id=iff.0h4v.s5.7bd2547414a6 from=translated src=- shape=50742063 vocab=28225c85
+-/
 theorem coordinatePolynomial_eval_eq_zero_iff {d : ℕ} (α : Fin d → K) (x : K) :
     (coordinatePolynomial α).eval x = 0 ↔ ∃ i, x = α i := by
   classical
@@ -70,7 +75,9 @@ def firstEquation {d : ℕ} (α : Fin d → K) : K[X][Y] := C (coordinatePolynom
 def secondEquation {d : ℕ} (β : Fin d → K) : K[X][Y] :=
   (coordinatePolynomial β).map C
 
-/-- The two equations cut out exactly the Cartesian product, as a set.-/
+/-- The two equations cut out exactly the Cartesian product, as a set.
+@isnad1 id=iff.0h6v.s6.42a25f2d5b3c from=translated src=- shape=0eb84715 vocab=67af4e50
+-/
 theorem affine_zero_set {d : ℕ} (α β : Fin d → K) (x y : K) :
     (firstEquation α).evalEval x y = 0 ∧ (secondEquation β).evalEval x y = 0 ↔
       (∃ i, x = α i) ∧ (∃ j, y = β j) := by
@@ -78,7 +85,9 @@ theorem affine_zero_set {d : ℕ} (α β : Fin d → K) (x y : K) :
     coordinatePolynomial_eval_eq_zero_iff]
 
 omit [Field K] in
-/-- Pairwise distinct coordinates yield pairwise distinct grid points.-/
+/-- Pairwise distinct coordinates yield pairwise distinct grid points.
+@isnad1 id=injectiv.2h5v.s5.fc30da18c662 from=translated src=- shape=7b3c1518 vocab=4519babc
+-/
 theorem grid_injective {m n : ℕ} (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     Function.Injective (fun ij : Fin m × Fin n => (α ij.1, β ij.2)) := by
@@ -93,15 +102,24 @@ open Polynomial
 open scoped Polynomial.Bivariate
 variable {K : Type*} [Field K]
 
+/--
+@isnad1 id=eq.0h3v.s4.55330f5b5492 from=translated src=- shape=833ca3e9 vocab=e207898a
+-/
 @[simp] theorem coordinatePolynomial_natDegree {d : ℕ} (α : Fin d → K) :
     (coordinatePolynomial α).natDegree = d := by
   classical
   simpa only [coordinatePolynomial, Finset.card_univ, Fintype.card_fin] using
     natDegree_finsetProd_X_sub_C_eq_card Finset.univ α
 
+/--
+@isnad1 id=monic.0h3v.s4.0fa8d610005f from=translated src=- shape=d798f006 vocab=185e95b8
+-/
 theorem coordinatePolynomial_monic {d : ℕ} (α : Fin d → K) :
     (coordinatePolynomial α).Monic := monic_prod_X_sub_C α Finset.univ
 
+/--
+@isnad1 id=eq.0h3v.s5.9953e6a7a529 from=translated src=- shape=8f768b10 vocab=dab6c1c9
+-/
 @[simp] theorem coordinatePolynomial_coeff_degree {d : ℕ} (α : Fin d → K) :
     (coordinatePolynomial α).coeff d = 1 := by
   simpa only [coordinatePolynomial_natDegree] using
@@ -112,11 +130,17 @@ theorem coordinatePolynomial_monic {d : ℕ} (α : Fin d → K) :
 def TotalDegreeLE (d : ℕ) (P : K[X][Y]) : Prop :=
   ∀ i j : ℕ, d < i + j → (P.coeff j).coeff i = 0
 
+/--
+@isnad1 id=eq.0h5v.s6.6037735da001 from=translated src=- shape=a28b8a22 vocab=79abba6a
+-/
 @[simp] theorem firstEquation_coeff_coeff {d : ℕ} (α : Fin d → K) (i j : ℕ) :
     ((firstEquation α).coeff j).coeff i =
       if j = 0 then (coordinatePolynomial α).coeff i else 0 := by
   by_cases hj : j = 0 <;> simp [firstEquation, hj, coeff_C]
 
+/--
+@isnad1 id=eq.0h5v.s6.938c0115a88d from=translated src=- shape=ea94bdd0 vocab=c9cf02ac
+-/
 @[simp] theorem secondEquation_coeff_coeff {d : ℕ} (β : Fin d → K) (i j : ℕ) :
     ((secondEquation β).coeff j).coeff i =
       if i = 0 then (coordinatePolynomial β).coeff j else 0 := by
@@ -127,6 +151,9 @@ def gridRemainder {d : ℕ} (α β : Fin d → K) (P : K[X][Y]) : K[X][Y] :=
   P - (P.coeff 0).coeff d • firstEquation α -
     (P.coeff d).coeff 0 • secondEquation β
 
+/--
+@isnad1 id=eq.3h7v.s6.e084d0f34556 from=translated src=- shape=d42fb4fe vocab=a34f4f69
+-/
 theorem gridRemainder_coeff_vanish {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
     (P : K[X][Y]) (hP : TotalDegreeLE d P) (i j : ℕ) (hij : d ≤ i ∨ d ≤ j) :
     ((gridRemainder α β P).coeff j).coeff i = 0 := by
@@ -151,7 +178,9 @@ theorem gridRemainder_coeff_vanish {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
   simp
 
 /-- In degree at most `d`, the full-grid vanishing space is exactly the span of
-    the two defining equations.-/
+    the two defining equations.
+@isnad1 id=iff.4h5v.s9.328298fa8b3c from=translated src=- shape=d7acb1c9 vocab=26a7d0d7
+-/
 theorem grid_kernel {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
     (hα : Function.Injective α) (hβ : Function.Injective β)
     (P : K[X][Y]) (hP : TotalDegreeLE d P) :
@@ -187,7 +216,9 @@ theorem grid_kernel {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
       evalEval_C, evalEval_map_C, coordinatePolynomial_eval, smul_zero, add_zero]
 
 /-- The two equations are linearly independent: their pure degree-`d`
-    coefficients distinguish them.-/
+    coefficients distinguish them.
+@isnad1 id=and.2h6v.s9.0d65b45ee186 from=translated src=- shape=59c42678 vocab=84ffff24
+-/
 theorem grid_equations_independent {d : ℕ} (hd : 0 < d) (α β : Fin d → K)
     {a b : K} (h : a • firstEquation α + b • secondEquation β = 0) :
     a = 0 ∧ b = 0 := by

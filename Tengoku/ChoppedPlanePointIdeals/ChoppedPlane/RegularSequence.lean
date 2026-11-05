@@ -16,7 +16,9 @@ namespace ChoppedPlane
 open scoped Pointwise
 
 /-- In a domain with divisor decomposition, a relatively prime pair is a
-    regular sequence whenever its generated ideal is proper.-/
+    regular sequence whenever its generated ideal is proper.
+@isnad1 id=isregula.3h3v.s7.0df36462c42f from=translated src=- shape=e2311a85 vocab=984a272f
+-/
 theorem regular_pair_of_relPrime {R : Type*} [CommRing R] [IsDomain R]
     [DecompositionMonoid R] (f g : R) (hf : f ≠ 0) (hcop : IsRelPrime f g)
     (hproper : Ideal.ofList [f,g] ≠ ⊤) :
@@ -41,14 +43,18 @@ theorem regular_pair_of_relPrime {R : Type*} [CommRing R] [IsDomain R]
     apply hproper
     simpa only [Ideal.smul_eq_mul, Ideal.mul_top] using h.symm
 
-/-- Positive-degree homogeneous forms vanish at the affine origin.-/
+/-- Positive-degree homogeneous forms vanish at the affine origin.
+@isnad1 id=eq.1h4v.s9.6e2e3ed6306f from=translated src=- shape=59c6c93c vocab=9faa38f1
+-/
 theorem homogeneous_eval_origin_eq_zero {K : Type*} [Field K] {n d : ℕ}
     (hd : 0 < d) (f : Forms K n d) : MvPolynomial.eval (fun _ => 0) f.val = 0 := by
   have h := homogeneous_eval_scale f.property (fun _ => (0 : K)) 0
   simpa [zero_pow (Nat.ne_zero_of_lt hd)] using h
 
 /-- Relatively prime positive-degree homogeneous forms form a regular sequence
-    in the actual polynomial ring.-/
+    in the actual polynomial ring.
+@isnad1 id=isregula.3h5v.s10.6416cffaba51 from=translated src=- shape=960a116b vocab=55f52667
+-/
 theorem homogeneous_regular_pair {K : Type*} [Field K] {n d : ℕ}
     (hd : 0 < d) (f g : Forms K n d) (hf : f.val ≠ 0)
     (hcop : IsRelPrime f.val g.val) :

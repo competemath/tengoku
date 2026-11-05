@@ -16,6 +16,9 @@ variable {K : Type*} [Field K] {p d e : ℕ}
 def choppedHilbertFunction (a : PointCoordinates K p) (d t : ℕ) : ℕ :=
   generatedHilbertFunction (pointDegreeSpace K a d) t
 
+/--
+@isnad1 id=eq.1h5v.s5.09612d5c1985 from=translated src=- shape=7e9a6071 vocab=736b98e2
+-/
 theorem choppedHilbertFunction_below_degree (a : PointCoordinates K p)
     {t : ℕ} (ht : t < d) :
     choppedHilbertFunction a d t = (t + 2).choose 2 := by
@@ -24,6 +27,9 @@ theorem choppedHilbertFunction_below_degree (a : PointCoordinates K p)
   simpa [choppedHilbertFunction, show 3 + t - 1 = t + 2 by omega,
     ← Nat.choose_symm (by omega : t ≤ t + 2)] using h
 
+/--
+@isnad1 id=le.0h5v.s11.bc2b8289ba01 from=translated src=- shape=30d310d2 vocab=135a4b70
+-/
 theorem generatedProducts_le_pointDegreePiece (a : PointCoordinates K p) :
     generatedProducts (d := d) (pointDegreeSpace K a d) e ≤
       pointDegreePiece K a (d + e) := by
@@ -32,7 +38,9 @@ theorem generatedProducts_le_pointDegreePiece (a : PointCoordinates K p) :
   apply choppedIdeal_le_pointIdeal a
   exact (form_mem_ideal_iff e _ (pointDegreeSpace_homogeneous a) f).mpr hf
 
-/-- Chopping can only increase the Hilbert function of the point quotient.-/
+/-- Chopping can only increase the Hilbert function of the point quotient.
+@isnad1 id=le.0h5v.s5.7011031a53e5 from=translated src=- shape=c080f27e vocab=272d806c
+-/
 theorem pointHilbertFunction_le_choppedHilbertFunction (a : PointCoordinates K p) :
     pointHilbertFunction K a (d + e) ≤ choppedHilbertFunction a d (d + e) := by
   have hle := Submodule.finrank_mono (generatedProducts_le_pointDegreePiece (d := d) (e := e) a)
@@ -44,7 +52,9 @@ theorem pointHilbertFunction_le_choppedHilbertFunction (a : PointCoordinates K p
   dsimp [pointHilbertFunction]
   omega
 
-/-- Multiplication by one nonzero generator accounts for its entire generated ideal.-/
+/-- Multiplication by one nonzero generator accounts for its entire generated ideal.
+@isnad1 id=eq.1h4v.s10.a6253c8def64 from=translated src=- shape=407ceb5d vocab=98602e63
+-/
 theorem single_generator_hilbertFunction (f : Forms K 3 d) (hf : f.val ≠ 0) :
     generatedHilbertFunction (Submodule.span K {f.val}) (d + e) =
       (d + e + 2).choose 2 - (e + 2).choose 2 := by
@@ -67,7 +77,9 @@ theorem single_generator_hilbertFunction (f : Forms K 3 d) (hf : f.val ≠ 0) :
   rw [hq, hdim, finrank_plane_forms] at h
   omega
 
-/-- Dimension of the degree-`d` equation space from the point quotient.-/
+/-- Dimension of the degree-`d` equation space from the point quotient.
+@isnad1 id=eq.0h4v.s11.4ca6a01f5e3b from=translated src=- shape=8da910e2 vocab=984724b2
+-/
 theorem pointDegreePiece_finrank (a : PointCoordinates K p) (d : ℕ) :
     finrank K (pointDegreePiece K a d) =
       (d + 2).choose 2 - pointHilbertFunction K a d := by
@@ -76,11 +88,16 @@ theorem pointDegreePiece_finrank (a : PointCoordinates K p) (d : ℕ) :
   change pointHilbertFunction K a d + _ = _ at h
   omega
 
-/-- Degree-`d` injective evaluation means that the entire chopped ideal is zero.-/
+/-- Degree-`d` injective evaluation means that the entire chopped ideal is zero.
+@isnad1 id=eq.1h4v.s11.f05e3e88cc6d from=translated src=- shape=78e0fd22 vocab=e5033ede
+-/
 theorem choppedIdeal_eq_bot_of_injective (a : PointCoordinates K p)
     (hi : Function.Injective (pointEvaluation K a d)) : choppedIdeal K a d = ⊥ := by
   simp [choppedIdeal, pointDegreeSpace, pointDegreePiece, LinearMap.ker_eq_bot.mpr hi]
 
+/--
+@isnad1 id=eq.1h4v.s7.0458d425ba4d from=translated src=- shape=77e2f7f2 vocab=71734bb6
+-/
 theorem choppedIdeal_eq_bot_of_pointHilbertFunction (a : PointCoordinates K p)
     (hh : pointHilbertFunction K a d = (d + 2).choose 2) : choppedIdeal K a d = ⊥ := by
   apply choppedIdeal_eq_bot_of_injective a
@@ -89,11 +106,16 @@ theorem choppedIdeal_eq_bot_of_pointHilbertFunction (a : PointCoordinates K p)
   change finrank K (pointDegreePiece K a d) = 0
   rw [pointDegreePiece_finrank, hh, Nat.sub_self]
 
+/--
+@isnad1 id=eq.0h3v.s7.4451556d0a5a from=translated src=- shape=851e441a vocab=aa976b16
+-/
 theorem generatedHilbertFunction_bot (n t : ℕ) :
     generatedHilbertFunction (⊥ : Submodule K (Poly K n)) t = (n + t - 1).choose t := by
   exact generatedHilbertFunction_below_degree (d := t + 1) t (by omega) ⊥ bot_le
 
-/-- If the degree chop has no equations, its quotient is the full polynomial ring.-/
+/-- If the degree chop has no equations, its quotient is the full polynomial ring.
+@isnad1 id=eq.1h5v.s11.73640c871c03 from=translated src=- shape=b7d2728f vocab=745af173
+-/
 theorem choppedHilbertFunction_of_injective (a : PointCoordinates K p)
     (hi : Function.Injective (pointEvaluation K a d)) (t : ℕ) :
     choppedHilbertFunction a d t = (t + 2).choose 2 := by
@@ -104,7 +126,9 @@ theorem choppedHilbertFunction_of_injective (a : PointCoordinates K p)
   rw [show 3 + t - 1 = t + 2 by omega, ← Nat.choose_symm (by omega : t ≤ t + 2)]
   simp
 
-/-- A basis of the actual equation space supplies a family of homogeneous generators.-/
+/-- A basis of the actual equation space supplies a family of homogeneous generators.
+@isnad1 id=ex.0h4v.s13.e2dd0cb293b0 from=translated src=- shape=17f5c678 vocab=78175152
+-/
 theorem exists_degree_generators (a : PointCoordinates K p) (d : ℕ) :
     ∃ q : Fin (finrank K (pointDegreePiece K a d)) → Forms K 3 d,
       generatorSpace q = pointDegreeSpace K a d := by
@@ -125,7 +149,9 @@ theorem exists_degree_generators (a : PointCoordinates K p) (d : ℕ) :
     have h := congrArg (fun z : Forms K 3 d => z.val) hc
     simpa [q, b, Submodule.coe_sum] using h.symm
 
-/-- The two universal lower bounds in equation (5.1).-/
+/-- The two universal lower bounds in equation (5.1).
+@isnad1 id=le.0h5v.s11.10d284c96bad from=translated src=- shape=e84d10d2 vocab=edffaffe
+-/
 theorem choppedHilbertFunction_lower_bounds (a : PointCoordinates K p) :
     max (pointHilbertFunction K a (d + e))
       ((d + e + 2).choose 2 -

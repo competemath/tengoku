@@ -23,6 +23,9 @@ def signedForms (K : Type*) [Field K] (n : ℕ) (t : ℤ) : Submodule K (Poly K 
 def signedComponent (t : ℤ) : Poly K n →ₗ[K] Poly K n :=
   if 0 ≤ t then homogeneousComponent t.toNat else 0
 
+/--
+@isnad1 id=finite.0h3v.s7.052334f558cc from=translated src=- shape=bad79076 vocab=63b4d411
+-/
 instance signedFormsFinite (t : ℤ) : Module.Finite K (signedForms K n t) := by
   by_cases ht : 0 ≤ t
   · rw [signedForms, ite_eq_left ht]
@@ -30,19 +33,31 @@ instance signedFormsFinite (t : ℤ) : Module.Finite K (signedForms K n t) := by
   · rw [signedForms, ite_eq_right ht]
     infer_instance
 
+/--
+@isnad1 id=eq.0h3v.s5.f45ff5c49c11 from=translated src=- shape=e96e4b17 vocab=e865ad09
+-/
 @[simp] theorem signedForms_nat (t : ℕ) : signedForms K n t = Forms K n t := by
   simp [signedForms]
 
+/--
+@isnad1 id=eq.0h3v.s6.97515cc5ba34 from=translated src=- shape=b670fb21 vocab=520fbcde
+-/
 @[simp] theorem signedComponent_nat (t : ℕ) :
     (signedComponent (K := K) (n := n) t) = homogeneousComponent t := by
   simp [signedComponent]
 
+/--
+@isnad1 id=mem.0h4v.s8.aca4706a2d86 from=translated src=- shape=5c167e63 vocab=848f8ee6
+-/
 theorem signedComponent_mem (t : ℤ) (f : Poly K n) :
     signedComponent t f ∈ signedForms K n t := by
   by_cases ht : 0 ≤ t
   · simpa [signedComponent, signedForms, ht] using homogeneousComponent_mem t.toNat f
   · simp [signedComponent, signedForms, ht]
 
+/--
+@isnad1 id=eq.0h4v.s9.6d3939a8af17 from=translated src=- shape=3dbf6d10 vocab=9482410d
+-/
 theorem signedComponent_self (t : ℤ) (f : signedForms K n t) :
     signedComponent t f.val = f.val := by
   by_cases ht : 0 ≤ t
@@ -51,6 +66,9 @@ theorem signedComponent_self (t : ℤ) (f : signedForms K n t) :
   · have hf : f.val = 0 := by simpa [signedForms, ht] using f.property
     simp [signedComponent, ht, hf]
 
+/--
+@isnad1 id=iff.0h4v.s8.30e74bff6f08 from=translated src=- shape=7d07cb0b vocab=848f8ee6
+-/
 theorem mem_signedForms_iff_component_self (t : ℤ) (f : Poly K n) :
     f ∈ signedForms K n t ↔ signedComponent t f = f := by
   constructor
@@ -60,7 +78,9 @@ theorem mem_signedForms_iff_component_self (t : ℤ) (f : Poly K n) :
     exact h ▸ signedComponent_mem t f
 
 /-- Homogeneous-component extraction commutes with a homogeneous factor even
-when the coefficient degree is negative.-/
+when the coefficient degree is negative.
+@isnad1 id=eq.1h6v.s8.ca3c85b26696 from=translated src=- shape=b7b211e1 vocab=9f33333b
+-/
 theorem signedComponent_mul_form (t : ℤ) {δ : ℕ} (f p : Poly K n)
     (hf : f.IsHomogeneous δ) :
     signedComponent (t + δ) (f * p) = f * signedComponent t p := by
@@ -76,7 +96,9 @@ theorem signedComponent_mul_form (t : ℤ) {δ : ℕ} (f p : Poly K n)
       exact homogeneousComponent_mul_eq_zero_of_lt _ hsmall f p hf
     · simp [signedComponent, ht, hsum]
 
-/-- Signed cofactor minors have the complementary row degree.-/
+/-- Signed cofactor minors have the complementary row degree.
+@isnad1 id=ishomoge.1h6v.s7.92b3f3755c1b from=translated src=- shape=fe5ed96c vocab=1a7e839b
+-/
 theorem signedMaximalMinor_homogeneous_total
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))
@@ -108,10 +130,16 @@ def rowFormsComponent (δ : Fin m → ℕ) (e : ℤ) :
   map_add' v w := by ext i; simp
   map_smul' r v := by ext i; simp
 
+/--
+@isnad1 id=eq.0h7v.s10.246d7a2dd0a4 from=translated src=- shape=8fc4cb24 vocab=433ed497
+-/
 @[simp] theorem rowFormsComponent_val (δ : Fin m → ℕ) (e : ℤ)
     (v : Fin m → Poly K n) (i : Fin m) :
     (rowFormsComponent δ e v i).val = signedComponent (e + δ i) (v i) := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.8ba384b871d2 from=translated src=- shape=dde16d9c vocab=9cfc3c67
+-/
 @[simp] theorem rowFormsComponent_self (δ : Fin m → ℕ) (e : ℤ)
     (v : rowForms K n δ e) : rowFormsComponent δ e (rowFormsVal v) = v := by
   funext i
@@ -119,7 +147,9 @@ def rowFormsComponent (δ : Fin m → ℕ) (e : ℤ) :
   exact signedComponent_self _ (v i)
 
 /-- Homogeneous projection of the matrix equation is its equation on the
-projected coefficients.-/
+projected coefficients.
+@isnad1 id=eq.1h8v.s9.acae49d6b2ca from=translated src=- shape=6540b0f1 vocab=56de218c
+-/
 theorem signedComponent_mulVec
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))
@@ -145,6 +175,9 @@ def gradedMatrixMap
     ext i
     simp [Matrix.mulVec, dotProduct, Finset.smul_sum, smul_eq_mul]
 
+/--
+@isnad1 id=eq.1h8v.s11.0a723b1f798a from=translated src=- shape=6f60f8fa vocab=920846b8
+-/
 @[simp] theorem gradedMatrixMap_val
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))
@@ -152,7 +185,9 @@ def gradedMatrixMap
     (gradedMatrixMap B δ hB e w i).val = B.mulVec (fun j => (w j).val) i := rfl
 
 /-- Projecting an ungraded cofactor combination extracts exactly its shifted
-homogeneous coefficients.-/
+homogeneous coefficients.
+@isnad1 id=eq.1h7v.s12.1025ce3ebb68 from=translated src=- shape=fed4d038 vocab=cdcfb5c1
+-/
 theorem signedComponent_cofactorMap
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))
@@ -187,6 +222,9 @@ def gradedCofactorMap
     apply Subtype.ext
     simp [cofactorMap_apply, rowFormsVal]
 
+/--
+@isnad1 id=eq.1h7v.s12.f87c9ff0f831 from=translated src=- shape=de9ad074 vocab=67ce64ee
+-/
 @[simp] theorem gradedCofactorMap_val
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))
@@ -194,7 +232,9 @@ def gradedCofactorMap
     (gradedCofactorMap B δ hB e v).val = cofactorMap B (rowFormsVal v) := rfl
 
 /-- Genuine Hilbert–Burch exactness restricts to every homogeneous degree,
-including negative coefficient degrees.-/
+including negative coefficient degrees.
+@isnad1 id=eq.2h6v.s11.c2e353c02035 from=translated src=- shape=23cc397e vocab=a79a724c
+-/
 theorem graded_ker_cofactor_eq_range
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))
@@ -221,7 +261,9 @@ theorem graded_ker_cofactor_eq_range
     exact cofactorMap_mulVec B (fun j => (w j).val)
 
 /-- The first graded map is injective, as a consequence of the genuine
-ungraded maximal-minor theorem.-/
+ungraded maximal-minor theorem.
+@isnad1 id=injectiv.2h6v.s11.a551d31f1ca4 from=translated src=- shape=a005a53d vocab=54cdbab0
+-/
 theorem gradedMatrixMap_injective
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))
@@ -248,7 +290,9 @@ def gradedMinorIdealPiece
   (maximalMinorIdeal B).restrictScalars K |>.comap (signedForms K n (e + ∑ i, δ i)).subtype
 
 /-- Every homogeneous equation in the maximal-minor ideal has homogeneous
-cofactor coefficients of the required complementary degrees.-/
+cofactor coefficients of the required complementary degrees.
+@isnad1 id=eq.1h6v.s10.33e6b7c12be5 from=translated src=- shape=dd512294 vocab=784b8640
+-/
 theorem gradedCofactorMap_range_eq_idealPiece
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i)) (e : ℤ) :
@@ -271,7 +315,9 @@ theorem gradedCofactorMap_range_eq_idealPiece
     rw [← signedComponent_cofactorMap B δ hB, hv]
     exact signedComponent_self _ f
 
-/-- The dimension of each signed ternary form space is the paper's `N₂`.-/
+/-- The dimension of each signed ternary form space is the paper's `N₂`.
+@isnad1 id=eq.0h2v.s8.c54638a8fbf3 from=translated src=- shape=b31cce57 vocab=83df35d4
+-/
 theorem finrank_signedPlaneForms (t : ℤ) :
     (finrank K (signedForms K 3 t) : ℤ) = N₂ t := by
   by_cases ht : 0 ≤ t
@@ -280,7 +326,9 @@ theorem finrank_signedPlaneForms (t : ℤ) :
   · rw [signedForms, ite_eq_right ht]
     simp [N₂, ht]
 
-/-- The dimension of the graded free middle term is the sum of its row dimensions.-/
+/-- The dimension of the graded free middle term is the sum of its row dimensions.
+@isnad1 id=eq.0h4v.s9.92e80b0c8fd1 from=translated src=- shape=37a9a4e3 vocab=1130d0d7
+-/
 theorem finrank_rowPlaneForms (δ : Fin m → ℕ) (e : ℤ) :
     (finrank K (rowForms K 3 δ e) : ℤ) = ∑ i, N₂ (e + δ i) := by
   rw [Module.finrank_pi_fintype, Nat.cast_sum]
@@ -289,7 +337,9 @@ theorem finrank_rowPlaneForms (δ : Fin m → ℕ) (e : ℤ) :
   exact finrank_signedPlaneForms (e + δ i)
 
 /-- The Hilbert–Burch image dimension in every degree follows by finite
-rank-nullity from the actual exact sequence.-/
+rank-nullity from the actual exact sequence.
+@isnad1 id=eq.2h5v.s11.d7123180d209 from=translated src=- shape=3fcf2098 vocab=9df907f7
+-/
 theorem gradedMinorIdealPiece_finrank
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))
@@ -308,7 +358,9 @@ theorem gradedMinorIdealPiece_finrank
   omega
 
 /-- The genuine homogeneous quotient by the maximal-minor ideal has the
-Hilbert–Burch numerator coefficients, in every integer degree.-/
+Hilbert–Burch numerator coefficients, in every integer degree.
+@isnad1 id=eq.2h5v.s11.79e2d24e03d8 from=translated src=- shape=3947c2a7 vocab=3db79673
+-/
 theorem gradedMinorQuotient_finrank
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))
@@ -334,6 +386,9 @@ def minorHilbertFunction
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n)) (t : ℤ) : ℕ :=
   finrank K (minorFormToRingQuotient B t).range
 
+/--
+@isnad1 id=eq.0h6v.s10.f6abf7f6416b from=translated src=- shape=bf52860c vocab=a573c590
+-/
 theorem minorFormToRingQuotient_ker
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K n))
     (δ : Fin (c + 1) → ℕ) (e : ℤ) :
@@ -343,7 +398,9 @@ theorem minorFormToRingQuotient_ker
   exact Ideal.Quotient.eq_zero_iff_mem
 
 /-- Hilbert–Burch computes the homogeneous image in the actual quotient ring,
-not merely a formal alternating dimension expression.-/
+not merely a formal alternating dimension expression.
+@isnad1 id=eq.2h5v.s8.391f2aceb9c2 from=translated src=- shape=d7fc7b70 vocab=54b03099
+-/
 theorem minorHilbertFunction_formula
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))
@@ -357,7 +414,9 @@ theorem minorHilbertFunction_formula
   exact gradedMinorQuotient_finrank B δ hB hprimitive e
 
 /-- The equivalent formula indexed by the target degree instead of the
-coefficient degree.-/
+coefficient degree.
+@isnad1 id=eq.2h5v.s8.2d6138216d9a from=translated src=- shape=33ce1659 vocab=54b03099
+-/
 theorem minorHilbertFunction_at_degree
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3))
     (δ : Fin (c + 1) → ℕ) (hB : ∀ i j, (B i j).IsHomogeneous (δ i))

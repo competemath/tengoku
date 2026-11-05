@@ -24,17 +24,24 @@ variable {K : Type*} [Field K]
 def idealDegreeSpace {n : ℕ} (I : Ideal (Poly K n)) (d : ℕ) :
     Submodule K (Poly K n) := Forms K n d ⊓ I.restrictScalars K
 
+/--
+@isnad1 id=iff.0h5v.s8.aee965088678 from=translated src=- shape=62971124 vocab=c45e5b1c
+-/
 @[simp] theorem mem_idealDegreeSpace {n d : ℕ} (I : Ideal (Poly K n)) (f : Poly K n) :
     f ∈ idealDegreeSpace I d ↔ f.IsHomogeneous d ∧ f ∈ I := Iff.rfl
 
-/-- Multiplication preserves ideal membership and adds homogeneous degrees.-/
+/-- Multiplication preserves ideal membership and adds homogeneous degrees.
+@isnad1 id=le.0h5v.s9.625cbf2ec66f from=translated src=- shape=74964d2e vocab=ba9193ab
+-/
 theorem idealDegreeSpace_mul_forms_le {n d e : ℕ} (I : Ideal (Poly K n)) :
     idealDegreeSpace I d * Forms K n e ≤ idealDegreeSpace I (d + e) := by
   apply Submodule.mul_le.mpr
   intro f hf g hg
   exact ⟨hf.1.mul hg, Ideal.mul_mem_right _ _ hf.2⟩
 
-/-- An actual ideal contains every product with its underlying submodule.-/
+/-- An actual ideal contains every product with its underlying submodule.
+@isnad1 id=le.0h4v.s10.5ad17aaaff71 from=translated src=- shape=3e6faef6 vocab=d5fb9aab
+-/
 theorem forms_mul_ideal_le {n d : ℕ} (I : Ideal (Poly K n)) :
     Forms K n d * I.restrictScalars K ≤ I.restrictScalars K := by
   apply Submodule.mul_le.mpr
@@ -42,7 +49,9 @@ theorem forms_mul_ideal_le {n d : ℕ} (I : Ideal (Poly K n)) :
   exact Ideal.mul_mem_left _ _ hg
 
 /-- A recurrence by degree-one multiplication propagates containment in an
-actual subideal. The recurrence is an explicit helper hypothesis.-/
+actual subideal. The recurrence is an explicit helper hypothesis.
+@isnad1 id=le.3h6v.s10.7b7fdfa31172 from=translated src=- shape=ba151cd2 vocab=d062dca3
+-/
 theorem idealDegreeSpace_le_of_recurrence {n q : ℕ}
     (I J : Ideal (Poly K n))
     (hbase : idealDegreeSpace I q ≤ J.restrictScalars K)
@@ -63,7 +72,9 @@ theorem idealDegreeSpace_le_of_recurrence {n q : ℕ}
     exact hprod.trans (forms_mul_ideal_le J)
 
 /-- Equality of actual homogeneous ideal pieces propagates under the stated
-recurrence.-/
+recurrence.
+@isnad1 id=eq.4h6v.s9.a313d70c3b99 from=translated src=- shape=05faaa24 vocab=ba9193ab
+-/
 theorem idealDegreeSpace_eq_of_recurrence {n q : ℕ}
     (I J : Ideal (Poly K n)) (hJI : J ≤ I)
     (hbase : idealDegreeSpace I q = idealDegreeSpace J q)
@@ -78,7 +89,9 @@ theorem idealDegreeSpace_eq_of_recurrence {n q : ℕ}
   · exact inf_le_inf_left _ hJI
 
 /-- The kernel-defined point piece equals the homogeneous piece of the actual
-vanishing ideal.-/
+vanishing ideal.
+@isnad1 id=eq.0h4v.s6.7d660b55df3a from=translated src=- shape=015fd870 vocab=fe1e27f1
+-/
 theorem pointDegreeSpace_eq_idealDegreeSpace {p d : ℕ} (a : PointCoordinates K p) :
     pointDegreeSpace K a d = idealDegreeSpace (pointIdeal K a) d := by
   ext f
@@ -89,7 +102,9 @@ theorem pointDegreeSpace_eq_idealDegreeSpace {p d : ℕ} (a : PointCoordinates K
     exact ⟨⟨f, hf.1⟩, (homogeneous_mem_pointIdeal_iff a ⟨f, hf.1⟩).mp hf.2, rfl⟩
 
 /-- Multiplication by powers of `z`, which evaluates to one on the chosen
-chart, propagates surjectivity of point evaluation.-/
+chart, propagates surjectivity of point evaluation.
+@isnad1 id=surjecti.1h5v.s12.e86be67d688d from=translated src=- shape=86b4c829 vocab=90b8ced7
+-/
 theorem pointEvaluation_surjective_add {p d : ℕ} (a : PointCoordinates K p)
     (hsurj : Function.Surjective (pointEvaluation K a d)) (e : ℕ) :
     Function.Surjective (pointEvaluation K a (d + e)) := by
@@ -99,7 +114,9 @@ theorem pointEvaluation_surjective_add {p d : ℕ} (a : PointCoordinates K p)
   ext i
   simpa [pointEvaluation_apply, chartPoint, map_mul] using congrFun hf i
 
-/-- Surjectivity of point evaluation persists at every later degree.-/
+/-- Surjectivity of point evaluation persists at every later degree.
+@isnad1 id=surjecti.2h5v.s12.b1e048d67c83 from=translated src=- shape=c438a4d7 vocab=80ce7f78
+-/
 theorem pointEvaluation_surjective_of_le {p d t : ℕ} (a : PointCoordinates K p)
     (hsurj : Function.Surjective (pointEvaluation K a d)) (hdt : d ≤ t) :
     Function.Surjective (pointEvaluation K a t) := by
@@ -110,11 +127,16 @@ theorem pointEvaluation_surjective_of_le {p d t : ℕ} (a : PointCoordinates K p
 def coordinateForms : Fin 3 → Forms K 3 1 :=
   fun i => ⟨X i, isHomogeneous_X K i⟩
 
+/--
+@isnad1 id=eq.0h2v.s8.3ff88d0aea50 from=translated src=- shape=bcce0b5c vocab=9131955b
+-/
 @[simp] theorem coordinateForms_val (i : Fin 3) :
     (coordinateForms (K := K) i).val = X i := rfl
 
 /-- Every ternary form of positive degree is a sum of its coordinates times
-forms of one lower degree.-/
+forms of one lower degree.
+@isnad1 id=ex.0h3v.s10.127f449e253d from=translated src=- shape=8d92ba52 vocab=2b0c95db
+-/
 theorem exists_coordinate_decomposition (d : ℕ) (f : Forms K 3 (d + 1)) :
     ∃ b : Fin 3 → Forms K 3 d, f.val = ∑ i, X i * (b i).val := by
   have hgen : generatorSpace (coordinateForms (K := K)) = Forms K 3 1 := by
@@ -131,6 +153,9 @@ theorem exists_coordinate_decomposition (d : ℕ) (f : Forms K 3 (d + 1)) :
   rw [multiplication_val] at hb
   simpa using hb.symm
 
+/--
+@isnad1 id=iff.0h5v.s8.d29b605dade2 from=translated src=- shape=22c729c4 vocab=f8e0b326
+-/
 @[simp] theorem mem_pointDegreeSpace {p d : ℕ} (a : PointCoordinates K p)
     (f : Poly K 3) :
     f ∈ pointDegreeSpace K a d ↔ f.IsHomogeneous d ∧
@@ -142,7 +167,9 @@ theorem exists_coordinate_decomposition (d : ℕ) (f : Forms K 3 (d + 1)) :
     exact ⟨⟨f, hf⟩, (mem_pointDegreePiece a ⟨f, hf⟩).mpr heval, rfl⟩
 
 /-- Interpolation one degree below the equations forces generation of the
-next homogeneous piece by multiplication by the coordinates.-/
+next homogeneous piece by multiplication by the coordinates.
+@isnad1 id=eq.1h4v.s11.e4107d4641c8 from=translated src=- shape=59baa419 vocab=1b6093c0
+-/
 theorem pointDegreeSpace_succ_eq {p t : ℕ} (a : PointCoordinates K p)
     (hsurj : Function.Surjective (pointEvaluation K a t)) :
     pointDegreeSpace K a (t + 2) =
@@ -207,7 +234,9 @@ theorem pointDegreeSpace_succ_eq {p t : ℕ} (a : PointCoordinates K p)
       idealDegreeSpace_mul_forms_le (d := t + 1) (e := 1) (pointIdeal K a)
 
 /-- The interpolation hypothesis gives the genuine ideal recurrence at every
-subsequent degree.-/
+subsequent degree.
+@isnad1 id=eq.3h5v.s11.04a9b6a6f01b from=translated src=- shape=21f86608 vocab=fc851463
+-/
 theorem pointDegreeSpace_recurrence {p q : ℕ} (a : PointCoordinates K p)
     (hq : 1 ≤ q)
     (hsurj : Function.Surjective (pointEvaluation K a (q - 1)))
@@ -220,7 +249,9 @@ theorem pointDegreeSpace_recurrence {p q : ℕ} (a : PointCoordinates K p)
   simpa [show d - 1 + 1 = d by omega, show d - 1 + 2 = d + 1 by omega] using hh
 
 /-- Interpolation and equality in degree `q` suffice to propagate equality
-with any actual subideal in all higher degrees.-/
+with any actual subideal in all higher degrees.
+@isnad1 id=eq.5h6v.s11.fa75dad10b0f from=translated src=- shape=1f1073da vocab=2cc72368
+-/
 theorem pointDegreeSpace_eq_of_degree_eq {p q : ℕ} (a : PointCoordinates K p)
     (hq : 1 ≤ q)
     (hsurj : Function.Surjective (pointEvaluation K a (q - 1)))

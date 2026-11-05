@@ -20,13 +20,18 @@ def finiteCombination (v : κ → V) : (κ → K) →ₗ[K] V :=
   ∑ i, (LinearMap.toSpanSingleton K V (v i)).comp (LinearMap.proj i)
 
 omit [FiniteDimensional K V] in
+/--
+@isnad1 id=eq.0h5v.s8.82112cf21be3 from=translated src=- shape=6379c589 vocab=6e596e22
+-/
 @[simp] theorem finiteCombination_apply (v : κ → V) (c : κ → K) :
     finiteCombination (K := K) v c = ∑ i, c i • v i := by
   simp [finiteCombination]
 
 omit [FiniteDimensional K V] in
 /-- On an invertible combined relation-and-lift chart, the lifts span the
-quotient.-/
+quotient.
+@isnad1 id=surjecti.2h7v.s9.5c2750530c52 from=translated src=- shape=f2d2f33e vocab=77e89a9f
+-/
 theorem quotient_lifts_surjective (Q : Submodule K V) (r : α → V) (b : κ → V)
     (hr : ∀ i, r i ∈ Q)
     (h : Function.Surjective (finiteCombination (K := K) (Sum.elim r b))) :
@@ -58,6 +63,9 @@ noncomputable def quotientBasisOfCombined (Q : Submodule K V) (r : α → V) (b 
   exact (Pi.basisFun K κ).map (LinearEquiv.ofBijective F ⟨hi, hs⟩)
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=eq.3h8v.s9.9d7e36559b48 from=translated src=- shape=5b709c75 vocab=a4d19cf9
+-/
 @[simp] theorem quotientBasisOfCombined_apply [DecidableEq κ]
     (Q : Submodule K V) (r : α → V) (b : κ → V) (hr) (h) (hdim) (i : κ) :
     quotientBasisOfCombined Q r b hr h hdim i = Q.mkQ (b i) := by
@@ -67,7 +75,9 @@ set_option backward.isDefEq.respectTransparency false in
   simp [finiteCombination_apply, Pi.single_apply]
 
 omit [FiniteDimensional K V] in
-/-- Polynomial dependence of a finite linear-combination map.-/
+/-- Polynomial dependence of a finite linear-combination map.
+@isnad1 id=ispolyno.1h5v.s8.f54d11b460a8 from=translated src=- shape=9e5ec8df vocab=f867df8f
+-/
 theorem finiteCombination_isPolynomialFamily
     (v : κ → (ι → K) → V) (hv : ∀ i, IsPolynomialFamily (v i)) :
     IsPolynomialFamily (fun a => finiteCombination (K := K) (fun i => v i a)) := by
@@ -78,7 +88,9 @@ theorem finiteCombination_isPolynomialFamily
   simpa only [finiteCombination_apply] using hs
 
 /-- Fixed quotient lifts form a basis wherever one polynomial determinant is
-nonzero. A quotient-dimension hypothesis is needed only on that chart.-/
+nonzero. A quotient-dimension hypothesis is needed only on that chart.
+@isnad1 id=ex.3h9v.s10.84887f3cbba6 from=translated src=- shape=6def5fcd vocab=93d7886b
+-/
 theorem quotient_basis_principal_open
     (Q : (ι → K) → Submodule K V)
     (r : α → (ι → K) → V) (b : κ → V)

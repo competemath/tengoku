@@ -35,7 +35,9 @@ def multiplicationLinear {r : ℕ} (e : ℕ) :
     apply Subtype.ext
     simp [multiplication_val, ← Finset.smul_sum]
 
-/-- Every polynomial relation of a relatively prime pair is a Koszul relation.-/
+/-- Every polynomial relation of a relatively prime pair is a Koszul relation.
+@isnad1 id=ex.3h6v.s8.885f7fa870fe from=translated src=- shape=07961b56 vocab=9971457a
+-/
 theorem pair_syzygy_relPrime (f g u v : Poly K n) (hf : f ≠ 0)
     (hcop : IsRelPrime f g) (h : f * u + g * v = 0) :
     ∃ w, u = -g * w ∧ v = f * w := by
@@ -46,7 +48,9 @@ theorem pair_syzygy_relPrime (f g u v : Poly K n) (hf : f ≠ 0)
   rw [hw] at h
   linear_combination h
 
-/-- In a low multiplier degree, a relatively prime pair has no nonzero relation.-/
+/-- In a low multiplier degree, a relatively prime pair has no nonzero relation.
+@isnad1 id=injectiv.3h5v.s12.42f4efab8729 from=translated src=- shape=8f481a32 vocab=23547c66
+-/
 theorem pair_multiplication_injective_below (q : Fin 2 → Forms K n d)
     (hq : (q 0).val ≠ 0) (hcop : IsRelPrime (q 0).val (q 1).val)
     (hed : e < d) : Function.Injective (multiplication (e := e) q) := by
@@ -79,6 +83,9 @@ def pairKoszul (q : Fin 2 → Forms K n d) (hed : d ≤ e) :
   map_add' u v := by ext i; fin_cases i <;> simp [mul_add]
   map_smul' c u := by ext i; fin_cases i <;> simp
 
+/--
+@isnad1 id=injectiv.2h5v.s12.0274ac585537 from=translated src=- shape=fa4c82e0 vocab=745836a3
+-/
 theorem pairKoszul_injective (q : Fin 2 → Forms K n d) (hed : d ≤ e)
     (hq : (q 0).val ≠ 0) : Function.Injective (pairKoszul q hed) := by
   intro u v huv
@@ -86,7 +93,9 @@ theorem pairKoszul_injective (q : Fin 2 → Forms K n d) (hed : d ≤ e)
   have h := congrArg (fun a : Fin 2 → Forms K n e => (a 1).val) huv
   exact mul_left_cancel₀ hq h
 
-/-- In every degree, the Koszul map presents the entire homogeneous relation space.-/
+/-- In every degree, the Koszul map presents the entire homogeneous relation space.
+@isnad1 id=eq.3h5v.s12.c71373441db6 from=translated src=- shape=228b95e8 vocab=42aee63a
+-/
 theorem range_pairKoszul (q : Fin 2 → Forms K n d) (hed : d ≤ e)
     (hq : (q 0).val ≠ 0) (hcop : IsRelPrime (q 0).val (q 1).val) :
     (pairKoszul q hed).range = (multiplication (e := e) q).ker := by
@@ -119,7 +128,9 @@ theorem range_pairKoszul (q : Fin 2 → Forms K n d) (hed : d ≤ e)
     · exact Subtype.ext hu.symm
     · exact Subtype.ext hv.symm
 
-/-- The exact quotient dimension above the generators in a low multiplier degree.-/
+/-- The exact quotient dimension above the generators in a low multiplier degree.
+@isnad1 id=eq.3h5v.s11.60e88ee64f22 from=translated src=- shape=24f1801b vocab=e1b24bf0
+-/
 theorem pair_hilbert_below_double (q : Fin 2 → Forms K n d)
     (hq : (q 0).val ≠ 0) (hcop : IsRelPrime (q 0).val (q 1).val)
     (hed : e < d) :
@@ -130,7 +141,9 @@ theorem pair_hilbert_below_double (q : Fin 2 → Forms K n d)
     Module.finrank_pi_fintype] at h
   simpa using h
 
-/-- The exact quotient dimension in all later degrees, including the second Koszul term.-/
+/-- The exact quotient dimension in all later degrees, including the second Koszul term.
+@isnad1 id=eq.3h5v.s11.9f4aa56b3ae5 from=translated src=- shape=ab342597 vocab=14a049eb
+-/
 theorem pair_hilbert_above_double (q : Fin 2 → Forms K n d) (hed : d ≤ e)
     (hq : (q 0).val ≠ 0) (hcop : IsRelPrime (q 0).val (q 1).val) :
     generatedHilbertFunction (generatorSpace q) (d + e) +
@@ -145,7 +158,9 @@ theorem pair_hilbert_above_double (q : Fin 2 → Forms K n d) (hed : d ≤ e)
   omega
 
 /-- Testing multiplication at coefficient degree `d-1` detects every common
-nonunit divisor; no assertion about homogeneous greatest common divisors is used.-/
+nonunit divisor; no assertion about homogeneous greatest common divisors is used.
+@isnad1 id=isrelpri.2h3v.s12.6b237e325459 from=translated src=- shape=9a4baaf0 vocab=e616e58a
+-/
 theorem pair_relPrime_of_multiplication_injective (q : Fin 2 → Forms K 3 d)
     (hq : (q 0).val ≠ 0)
     (hinj : Function.Injective (multiplication (e := d - 1) q)) :
@@ -209,7 +224,9 @@ theorem pair_relPrime_of_multiplication_injective (q : Fin 2 → Forms K 3 d)
   exact (mul_ne_zero (neg_ne_zero.mpr hjn) hz) hcun
 
 /-- For positive degree, the concrete finite multiplication test characterizes
-relative primeness of a nonzero pair.-/
+relative primeness of a nonzero pair.
+@isnad1 id=iff.2h3v.s12.bd44814a5e1a from=translated src=- shape=09ad6cc4 vocab=8d866c76
+-/
 theorem pair_relPrime_iff_multiplication_injective (q : Fin 2 → Forms K 3 d)
     (hd : 0 < d) (hq : (q 0).val ≠ 0) :
     IsRelPrime (q 0).val (q 1).val ↔
@@ -217,7 +234,9 @@ theorem pair_relPrime_iff_multiplication_injective (q : Fin 2 → Forms K 3 d)
   ⟨fun h => pair_multiplication_injective_below q hq h (by omega),
     pair_relPrime_of_multiplication_injective q hq⟩
 
-/-- Injective multiplication by a pair forces its first generator to be nonzero.-/
+/-- Injective multiplication by a pair forces its first generator to be nonzero.
+@isnad1 id=ne.1h4v.s12.654723314bb3 from=translated src=- shape=e2d415c6 vocab=080574b2
+-/
 theorem pair_first_ne_zero_of_multiplication_injective (q : Fin 2 → Forms K 3 d)
     (hinj : Function.Injective (multiplication (e := e) q)) : (q 0).val ≠ 0 := by
   intro hq
@@ -232,7 +251,9 @@ theorem pair_first_ne_zero_of_multiplication_injective (q : Fin 2 → Forms K 3 
   exact pow_ne_zero e (MvPolynomial.X_ne_zero 2) hz
 
 /-- The coefficients of `(1-u^d)^2/(1-u)^3` are the genuine quotient dimensions
-of a relatively prime degree-`d` pair, in every degree simultaneously.-/
+of a relatively prime degree-`d` pair, in every degree simultaneously.
+@isnad1 id=eq.2h4v.s10.805c7c3d13a9 from=translated src=- shape=1f3a40fc vocab=e4c08284
+-/
 theorem pair_generatedHilbertFunction (q : Fin 2 → Forms K 3 d)
     (hq : (q 0).val ≠ 0) (hcop : IsRelPrime (q 0).val (q 1).val) (t : ℕ) :
     (generatedHilbertFunction (generatorSpace q) t : ℤ) =
@@ -270,7 +291,9 @@ theorem pair_generatedHilbertFunction (q : Fin 2 → Forms K 3 d)
 
 set_option backward.isDefEq.respectTransparency.types false in
 /-- A relatively prime witness in a polynomial family gives an actual nonempty
-principal open of regular pairs and their complete all-degree Hilbert formula.-/
+principal open of regular pairs and their complete all-degree Hilbert formula.
+@isnad1 id=ex.4h5v.s12.cece7ba5ef89 from=translated src=- shape=644ac999 vocab=eec7b064
+-/
 theorem pair_regular_principal_open {ι : Type*} (hd : 0 < d)
     (q : (ι → K) → (Fin 2 → Forms K 3 d)) (hpoly : IsPolynomialFamily q)
     (a₀ : ι → K) (hq₀ : (q a₀ 0).val ≠ 0)

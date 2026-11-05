@@ -26,7 +26,9 @@ def affinePresentationCoordinates
     (φ : MvPolynomial (Fin 2) K →ₐ[K] (Fin p → K)) : PointCoordinates K p :=
   fun ij => φ (X ij.2) ij.1
 
-/-- Every coordinate of an affine presentation is point evaluation.-/
+/-- Every coordinate of an affine presentation is point evaluation.
+@isnad1 id=eq.0h5v.s9.529f742d5654 from=translated src=- shape=7cd2388e vocab=805e5a86
+-/
 theorem affinePresentation_apply
     (φ : MvPolynomial (Fin 2) K →ₐ[K] (Fin p → K))
     (f : MvPolynomial (Fin 2) K) (i : Fin p) :
@@ -38,7 +40,9 @@ theorem affinePresentation_apply
     simp [affinePresentationCoordinates]
   exact congrArg (fun g : MvPolynomial (Fin 2) K →ₐ[K] K => g f) h
 
-/-- Surjectivity rules out repeated affine coordinates.-/
+/-- Surjectivity rules out repeated affine coordinates.
+@isnad1 id=distinct.1h3v.s8.d22736587281 from=translated src=- shape=34970b46 vocab=c7082bee
+-/
 theorem affinePresentation_distinct
     (φ : MvPolynomial (Fin 2) K →ₐ[K] (Fin p → K))
     (hφ : Function.Surjective φ) : DistinctPoints K (affinePresentationCoordinates φ) := by
@@ -57,7 +61,9 @@ theorem affinePresentation_distinct
   rw [hf] at he
   simp [Ne.symm hne] at he
 
-/-- The presentation kernel is exactly simultaneous vanishing at its points.-/
+/-- The presentation kernel is exactly simultaneous vanishing at its points.
+@isnad1 id=iff.0h4v.s9.7c6188e391a1 from=translated src=- shape=8b377cb2 vocab=805e5a86
+-/
 theorem affinePresentation_ker
     (φ : MvPolynomial (Fin 2) K →ₐ[K] (Fin p → K))
     (f : MvPolynomial (Fin 2) K) :
@@ -65,7 +71,9 @@ theorem affinePresentation_ker
   simp only [funext_iff, Pi.zero_apply, affinePresentation_apply]
 
 /-- A reduced finite quotient over an algebraically closed field supplies
-an actual distinct-point presentation with the original ideal as its kernel.-/
+an actual distinct-point presentation with the original ideal as its kernel.
+@isnad1 id=ex.1h3v.s11.98f18064d215 from=translated src=- shape=00b557f8 vocab=bca06565
+-/
 theorem exists_affine_point_presentation [IsAlgClosed K]
     (I : Ideal (MvPolynomial (Fin 2) K))
     [Module.Finite K (MvPolynomial (Fin 2) K ⧸ I)]

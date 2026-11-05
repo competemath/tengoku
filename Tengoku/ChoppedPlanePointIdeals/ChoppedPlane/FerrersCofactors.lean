@@ -27,6 +27,9 @@ def ferrersDeletedRow (f g : Fin (c + 1) → R) (k : Fin (c + 1)) :
     Matrix (Fin c) (Fin c) R :=
   (ferrersBidiagonal f g).submatrix k.succAbove id
 
+/--
+@isnad1 id=eq.1h7v.s7.263a2ff89581 from=translated src=- shape=ad25ac29 vocab=fd3f68e7
+-/
 theorem ferrersDeletedRow_before (f g : Fin (c + 1) → R) (k : Fin (c + 1))
     (i j : Fin c) (hi : i.val < k.val) :
     ferrersDeletedRow f g k i j =
@@ -35,6 +38,9 @@ theorem ferrersDeletedRow_before (f g : Fin (c + 1) → R) (k : Fin (c + 1))
   · rfl
   · exact hi
 
+/--
+@isnad1 id=eq.1h7v.s7.775b9d9f5f1a from=translated src=- shape=ea0619f1 vocab=64cf1aea
+-/
 theorem ferrersDeletedRow_after (f g : Fin (c + 1) → R) (k : Fin (c + 1))
     (i j : Fin c) (hi : ¬i.val < k.val) :
     ferrersDeletedRow f g k i j =
@@ -44,7 +50,9 @@ theorem ferrersDeletedRow_after (f g : Fin (c + 1) → R) (k : Fin (c + 1))
   · exact Nat.le_of_not_gt hi
 
 /-- The deleted matrix separates into a lower triangular block before the hole
-and an upper triangular block after the hole.-/
+and an upper triangular block after the hole.
+@isnad1 id=eq.0h5v.s8.c567f5b865f2 from=translated src=- shape=79c37938 vocab=92c34c9e
+-/
 theorem ferrersDeletedRow_det_subtype (f g : Fin (c + 1) → R) (k : Fin (c + 1)) :
     (ferrersDeletedRow f g k).det =
       (∏ i : {i : Fin c // i.val < k.val}, f i.val.castSucc) *
@@ -111,7 +119,9 @@ private def ferrersAfterRowEquiv (k : Fin (c + 1)) :
     omega
 
 /-- The ordered maximal minor has no sign factor: it is the product of the
-diagonal entries before the deleted row and the subdiagonal entries after it.-/
+diagonal entries before the deleted row and the subdiagonal entries after it.
+@isnad1 id=eq.0h5v.s8.80c0e888b79b from=translated src=- shape=52319268 vocab=21a5a779
+-/
 theorem ferrersDeletedRow_det (f g : Fin (c + 1) → R) (k : Fin (c + 1)) :
     (ferrersDeletedRow f g k).det =
       (∏ i ∈ Finset.univ.filter (fun i : Fin (c + 1) => i.val < k.val), f i) *
@@ -130,6 +140,9 @@ theorem ferrersDeletedRow_det (f g : Fin (c + 1) → R) (k : Fin (c + 1)) :
 def ferrersSignedCofactor (f g : Fin (c + 1) → R) (k : Fin (c + 1)) : R :=
   (-1) ^ k.val * (ferrersDeletedRow f g k).det
 
+/--
+@isnad1 id=eq.0h5v.s8.40fb0c6bbb92 from=translated src=- shape=1c744b3b vocab=091db381
+-/
 theorem ferrersSignedCofactor_eq (f g : Fin (c + 1) → R) (k : Fin (c + 1)) :
     ferrersSignedCofactor f g k = (-1) ^ k.val *
       ((∏ i ∈ Finset.univ.filter (fun i : Fin (c + 1) => i.val < k.val), f i) *

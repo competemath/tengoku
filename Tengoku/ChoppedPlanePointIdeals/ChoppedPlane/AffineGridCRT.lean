@@ -30,12 +30,17 @@ def affineGridEvaluation (α : Fin m → K) (β : Fin n → K) :
     K[X][Y] →+* (Fin m × Fin n → K) :=
   RingHom.pi (fun ij => evalEvalRingHom (α ij.1) (β ij.2))
 
+/--
+@isnad1 id=eq.0h7v.s8.be53e3c599e8 from=translated src=- shape=b99af09a vocab=6dfc9bca
+-/
 @[simp] theorem affineGridEvaluation_apply (α : Fin m → K) (β : Fin n → K)
     (P : K[X][Y]) (ij : Fin m × Fin n) :
     affineGridEvaluation α β P ij = P.evalEval (α ij.1) (β ij.2) := rfl
 
 /-- A polynomial vanishing at every distinct coordinate is divisible by the
-monic product of the corresponding linear factors.-/
+monic product of the corresponding linear factors.
+@isnad1 id=dvd.2h4v.s7.ed2d22450b57 from=translated src=- shape=461385da vocab=24585338
+-/
 theorem coordinatePolynomial_dvd_of_eval_zero (α : Fin m → K)
     (hα : Function.Injective α) (P : K[X]) (hP : ∀ i, P.eval (α i) = 0) :
     coordinatePolynomial α ∣ P := by
@@ -58,6 +63,9 @@ theorem coordinatePolynomial_dvd_of_eval_zero (α : Fin m → K)
   · simpa only [coordinatePolynomial_natDegree, Fintype.card_fin] using
       natDegree_modByMonic_lt P hf hf1
 
+/--
+@isnad1 id=le.0h5v.s9.e79cfd250b47 from=translated src=- shape=63715029 vocab=df2cc78d
+-/
 theorem affineGridIdeal_le_evaluation_ker (α : Fin m → K) (β : Fin n → K) :
     affineGridIdeal α β ≤ RingHom.ker (affineGridEvaluation α β) := by
   apply Ideal.span_le.mpr
@@ -70,7 +78,9 @@ theorem affineGridIdeal_le_evaluation_ker (α : Fin m → K) (β : Fin n → K) 
     simp [secondEquation, evalEval_map_C]
 
 /-- The two defining equations generate the full vanishing ideal in every
-degree, proved by monic division in the second variable and root counting.-/
+degree, proved by monic division in the second variable and root counting.
+@isnad1 id=eq.2h5v.s8.66a74e2a2b18 from=translated src=- shape=293e49af vocab=7ff7275c
+-/
 theorem affineGridEvaluation_ker (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     RingHom.ker (affineGridEvaluation α β) = affineGridIdeal α β := by
@@ -130,7 +140,9 @@ theorem affineGridEvaluation_ker (α : Fin m → K) (β : Fin n → K)
   exact (affineGridIdeal α β).add_mem hQmem hGmem
 
 /-- Lagrange interpolation independently in the two coordinates makes full
-grid evaluation surjective.-/
+grid evaluation surjective.
+@isnad1 id=surjecti.2h5v.s8.c56f387a1150 from=translated src=- shape=8632cc09 vocab=9c78fc09
+-/
 theorem affineGridEvaluation_surjective (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     Function.Surjective (affineGridEvaluation α β) := by
@@ -167,7 +179,9 @@ def affineGridQuotientEquiv (α : Fin m → K) (β : Fin n → K)
     ((affineGridEvaluation α β).quotientKerEquivOfSurjective
       (affineGridEvaluation_surjective α β hα hβ))
 
-/-- The full-grid quotient is reduced.-/
+/-- The full-grid quotient is reduced.
+@isnad1 id=isreduce.2h5v.s9.8796ad4933ec from=translated src=- shape=87763a14 vocab=6256191f
+-/
 theorem affineGridQuotient_reduced (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     IsReduced (K[X][Y] ⧸ affineGridIdeal α β) :=
@@ -183,7 +197,9 @@ open scoped BigOperators
 variable {R K ι : Type*} [CommRing R] [Field K] [Fintype ι]
 
 /-- A surjection onto a finite product of fields detects every ideal containing
-its kernel by the coordinates on which that ideal vanishes.-/
+its kernel by the coordinates on which that ideal vanishes.
+@isnad1 id=mem.4h7v.s9.03266e0a0091 from=translated src=- shape=4dce45cc vocab=3eeef8fe
+-/
 theorem mem_ideal_of_vanish_on_selected (e : R →+* (ι → K))
     (he : Function.Surjective e) (I : Ideal R) (hker : RingHom.ker e ≤ I)
     (S : Set ι) (hsep : ∀ x, x ∉ S → ∃ g ∈ I, e g x ≠ 0)
@@ -220,6 +236,9 @@ theorem mem_ideal_of_vanish_on_selected (e : R →+* (ι → K))
     rw [map_sub, hPe, sub_self]
   simpa only [sub_add_cancel] using I.add_mem hdiff hP
 
+/--
+@isnad1 id=iff.4h7v.s9.ad7fc9175bb0 from=translated src=- shape=4000b5de vocab=3eeef8fe
+-/
 theorem mem_ideal_iff_vanish_on_selected (e : R →+* (ι → K))
     (he : Function.Surjective e) (I : Ideal R) (hker : RingHom.ker e ≤ I)
     (S : Set ι) (hvan : ∀ g ∈ I, ∀ x ∈ S, e g x = 0)
@@ -229,7 +248,9 @@ theorem mem_ideal_iff_vanish_on_selected (e : R →+* (ι → K))
 
 omit [Fintype ι] in
 /-- Every ideal above the kernel of a surjection onto a product of fields is
-radical: coordinatewise inverses produce `f = f²q` modulo the kernel.-/
+radical: coordinatewise inverses produce `f = f²q` modulo the kernel.
+@isnad1 id=isradica.2h5v.s7.75fe9ae82833 from=translated src=- shape=f1c01c43 vocab=0e5eef96
+-/
 theorem isRadical_of_surjective_pi_kernel_le (e : R →+* (ι → K))
     (he : Function.Surjective e) (I : Ideal R) (hker : RingHom.ker e ≤ I) :
     I.IsRadical := by
@@ -249,6 +270,9 @@ theorem isRadical_of_surjective_pi_kernel_le (e : R →+* (ι → K))
   simpa only [sub_add_cancel] using I.add_mem hdiff hprod
 
 omit [Fintype ι] in
+/--
+@isnad1 id=isreduce.2h5v.s8.618c31403ebb from=translated src=- shape=0615ae97 vocab=6232d2bf
+-/
 theorem quotient_reduced_of_surjective_pi_kernel_le (e : R →+* (ι → K))
     (he : Function.Surjective e) (I : Ideal R) (hker : RingHom.ker e ≤ I) :
     IsReduced (R ⧸ I) :=
@@ -264,6 +288,9 @@ open scoped Polynomial.Bivariate BigOperators
 
 variable {K : Type*} [Field K] {m n : ℕ}
 
+/--
+@isnad1 id=isreduce.3h6v.s9.d55e68d5e41e from=translated src=- shape=2f16ddaa vocab=0e989684
+-/
 theorem quotient_reduced_of_affineGridIdeal_le (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β)
     (I : Ideal K[X][Y]) (hI : affineGridIdeal α β ≤ I) : IsReduced (K[X][Y] ⧸ I) := by
@@ -286,20 +313,32 @@ def mvAffineGridEvaluation (α : Fin m → K) (β : Fin n → K) :
     MvPolynomial (Fin 2) K →+* (Fin m × Fin n → K) :=
   (affineGridEvaluation α β).comp (Bivariate.equivMvPolynomial K).symm.toRingHom
 
+/--
+@isnad1 id=eq.0h3v.s8.c8f948c9704f from=translated src=- shape=1ed4955f vocab=84ae8890
+-/
 @[simp] theorem equivMvPolynomial_firstEquation (α : Fin m → K) :
     Bivariate.equivMvPolynomial K (firstEquation α) = affineFirstProduct α := by
   simp [firstEquation, coordinatePolynomial, affineFirstProduct, map_prod]
 
+/--
+@isnad1 id=eq.0h3v.s8.ce4c4401d097 from=translated src=- shape=1ed4955f vocab=c1113fde
+-/
 @[simp] theorem equivMvPolynomial_secondEquation (β : Fin n → K) :
     Bivariate.equivMvPolynomial K (secondEquation β) = affineSecondProduct β := by
   simp [secondEquation, coordinatePolynomial, affineSecondProduct, Polynomial.map_prod, map_prod]
 
+/--
+@isnad1 id=eq.0h5v.s9.6ce6fb6924ed from=translated src=- shape=90436531 vocab=d79cb3de
+-/
 theorem equivMvPolynomial_map_affineGridIdeal (α : Fin m → K) (β : Fin n → K) :
     (affineGridIdeal α β).map (Bivariate.equivMvPolynomial K).toRingHom =
       mvAffineGridIdeal α β := by
   rw [affineGridIdeal, Ideal.map_span]
   simp [mvAffineGridIdeal]
 
+/--
+@isnad1 id=eq.0h7v.s8.49cba1e93745 from=translated src=- shape=b2c104c9 vocab=76f9bdbf
+-/
 @[simp] theorem mvAffineGridEvaluation_apply (α : Fin m → K) (β : Fin n → K)
     (P : MvPolynomial (Fin 2) K) (ij : Fin m × Fin n) :
     mvAffineGridEvaluation α β P ij =
@@ -314,6 +353,9 @@ theorem equivMvPolynomial_map_affineGridIdeal (α : Fin m → K) (β : Fin n →
       fin_cases i <;> simp [e]
   exact congrArg (fun φ : MvPolynomial (Fin 2) K →+* K => φ P) h
 
+/--
+@isnad1 id=surjecti.2h5v.s7.b73d99387991 from=translated src=- shape=af90af27 vocab=527a4639
+-/
 theorem mvAffineGridEvaluation_surjective (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     Function.Surjective (mvAffineGridEvaluation α β) :=
@@ -321,7 +363,9 @@ theorem mvAffineGridEvaluation_surjective (α : Fin m → K) (β : Fin n → K)
     (Bivariate.equivMvPolynomial K).symm.surjective
 
 /-- The kernel in `MvPolynomial (Fin 2) K` is exactly the ideal generated by
-the displayed separated products.-/
+the displayed separated products.
+@isnad1 id=eq.2h5v.s8.6f88cb261517 from=translated src=- shape=d06fdfc5 vocab=3b8c07e7
+-/
 theorem mvAffineGridEvaluation_ker (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     RingHom.ker (mvAffineGridEvaluation α β) = mvAffineGridIdeal α β := by
@@ -331,6 +375,9 @@ theorem mvAffineGridEvaluation_ker (α : Fin m → K) (β : Fin n → K)
       (Ideal.map_comap_of_equiv (Bivariate.equivMvPolynomial K).toRingEquiv).symm
     _ = mvAffineGridIdeal α β := equivMvPolynomial_map_affineGridIdeal α β
 
+/--
+@isnad1 id=isreduce.3h6v.s9.a4be6d215748 from=translated src=- shape=5592eff9 vocab=c2b1355b
+-/
 theorem quotient_reduced_of_mvAffineGridIdeal_le (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β)
     (I : Ideal (MvPolynomial (Fin 2) K)) (hI : mvAffineGridIdeal α β ≤ I) :
@@ -372,24 +419,36 @@ def mvAffineGridQuotientAlgEquiv (α : Fin m → K) (β : Fin n → K)
     (Ideal.quotientKerAlgEquivOfSurjective (f := mvAffineGridEvaluationAlg α β)
       (mvAffineGridEvaluation_surjective α β hα hβ))
 
+/--
+@isnad1 id=finite.2h5v.s9.828f73081a2a from=translated src=- shape=70021a82 vocab=1463a4d3
+-/
 theorem affineGridQuotient_finite (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     Module.Finite K (K[X][Y] ⧸ affineGridIdeal α β) :=
   Module.Finite.of_surjective (affineGridQuotientAlgEquiv α β hα hβ).symm.toLinearMap
     (affineGridQuotientAlgEquiv α β hα hβ).symm.surjective
 
+/--
+@isnad1 id=eq.2h5v.s9.fa278da32078 from=translated src=- shape=02d195dc vocab=0bb25aad
+-/
 theorem affineGridQuotient_finrank (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     Module.finrank K (K[X][Y] ⧸ affineGridIdeal α β) = m * n := by
   rw [(affineGridQuotientAlgEquiv α β hα hβ).toLinearEquiv.finrank_eq]
   simp [Fintype.card_prod]
 
+/--
+@isnad1 id=finite.2h5v.s9.1a4fe7b78bc1 from=translated src=- shape=2cbfffa8 vocab=081efc43
+-/
 theorem mvAffineGridQuotient_finite (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     Module.Finite K (MvPolynomial (Fin 2) K ⧸ mvAffineGridIdeal α β) :=
   Module.Finite.of_surjective (mvAffineGridQuotientAlgEquiv α β hα hβ).symm.toLinearMap
     (mvAffineGridQuotientAlgEquiv α β hα hβ).symm.surjective
 
+/--
+@isnad1 id=eq.2h5v.s9.cd2ee8f3b672 from=translated src=- shape=5a70caa6 vocab=6bafae1d
+-/
 theorem mvAffineGridQuotient_finrank (α : Fin m → K) (β : Fin n → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     Module.finrank K (MvPolynomial (Fin 2) K ⧸ mvAffineGridIdeal α β) = m * n := by

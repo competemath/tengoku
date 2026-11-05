@@ -23,6 +23,9 @@ def selectedGridIndex (δ : Fin m → ℕ) (s : SelectedIndex δ) :
   (Fintype.equivFin (RootIndex δ) ⟨s.1.val.1, s.2.1⟩,
    Fintype.equivFin (RootIndex δ) ⟨s.1.val.2, s.2.2⟩)
 
+/--
+@isnad1 id=injectiv.0h2v.s5.f21181ac44ae from=translated src=- shape=784e5de1 vocab=1b5041fe
+-/
 theorem selectedGridIndex_injective (δ : Fin m → ℕ) :
     Function.Injective (selectedGridIndex δ) := by
   intro s t h
@@ -36,6 +39,9 @@ theorem selectedGridIndex_injective (δ : Fin m → ℕ) :
   cases hy
   rfl
 
+/--
+@isnad1 id=mem.0h3v.s7.beca86a67353 from=translated src=- shape=04a35bba vocab=b978dce8
+-/
 @[simp] theorem selectedGridIndex_mem (δ : Fin m → ℕ) (s : SelectedIndex δ) :
     selectedGridIndex δ s ∈ selectedGridSet δ := by
   simpa [selectedGridIndex, selectedGridSet] using s.1.property
@@ -50,11 +56,16 @@ def selectedAffineEvaluation (δ : Fin m → ℕ) (α β : RootIndex δ → K) :
     change eval ![selectedX δ α s, selectedY δ β s] (C a) = a
     simp
 
+/--
+@isnad1 id=eq.0h7v.s9.9414010be5a0 from=translated src=- shape=7542b258 vocab=a2f747d7
+-/
 @[simp] theorem selectedAffineEvaluation_apply (δ : Fin m → ℕ)
     (α β : RootIndex δ → K) (f : Poly K 2) (s : SelectedIndex δ) :
     selectedAffineEvaluation δ α β f s = eval ![selectedX δ α s, selectedY δ β s] f := rfl
 
-/-- Selected evaluation is full-grid evaluation followed by restriction.-/
+/-- Selected evaluation is full-grid evaluation followed by restriction.
+@isnad1 id=eq.0h7v.s9.76113de1872b from=translated src=- shape=0c1f6b75 vocab=07034364
+-/
 theorem selectedAffineEvaluation_eq_full (δ : Fin m → ℕ) (α β : RootIndex δ → K)
     (f : Poly K 2) (s : SelectedIndex δ) :
     selectedAffineEvaluation δ α β f s =
@@ -63,7 +74,9 @@ theorem selectedAffineEvaluation_eq_full (δ : Fin m → ℕ) (α β : RootIndex
     selectedX, selectedY]
 
 /-- Arbitrary values on selected points are realized by actual affine
-polynomials.-/
+polynomials.
+@isnad1 id=surjecti.2h5v.s8.ebfac79abce7 from=translated src=- shape=d32a31d3 vocab=707ab2fb
+-/
 theorem selectedAffineEvaluation_surjective (δ : Fin m → ℕ) (α β : RootIndex δ → K)
     (hα : Function.Injective α) (hβ : Function.Injective β) :
     Function.Surjective (selectedAffineEvaluation δ α β) := by
@@ -77,7 +90,9 @@ theorem selectedAffineEvaluation_surjective (δ : Fin m → ℕ) (α β : RootIn
   rw [selectedAffineEvaluation_eq_full, hf]
   exact congrFun hw s
 
-/-- Every affine cofactor vanishes on the selected diagram.-/
+/-- Every affine cofactor vanishes on the selected diagram.
+@isnad1 id=le.0h5v.s9.b6ff5ed9031c from=translated src=- shape=b1226187 vocab=6a0674b8
+-/
 theorem affineCofactorIdeal_le_selectedAffineEvaluation_ker {c : ℕ}
     (δ : Fin (c + 1) → ℕ) (α β : RootIndex δ → K) :
     affineCofactorIdeal δ α β ≤ RingHom.ker (selectedAffineEvaluation δ α β).toRingHom := by
@@ -90,7 +105,9 @@ theorem affineCofactorIdeal_le_selectedAffineEvaluation_ker {c : ℕ}
     cofactorProduct_eval_selected δ α β s j
 
 /-- The actual affine cofactor ideal is exactly the kernel of selected-point
-evaluation.-/
+evaluation.
+@isnad1 id=eq.2h5v.s9.60e3878bf093 from=translated src=- shape=8d3ec49f vocab=0da2fe5a
+-/
 theorem selectedAffineEvaluation_ker {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (hα : Function.Injective α) (hβ : Function.Injective β) :
     RingHom.ker (selectedAffineEvaluation δ α β).toRingHom = affineCofactorIdeal δ α β := by
@@ -127,13 +144,18 @@ def affineCofactorQuotientAlgEquiv {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (Ideal.quotientKerAlgEquivOfSurjective (f := selectedAffineEvaluation δ α β)
       (selectedAffineEvaluation_surjective δ α β hα hβ))
 
+/--
+@isnad1 id=finite.2h5v.s9.19e3363f421c from=translated src=- shape=93c6b3ef vocab=96fb1f05
+-/
 theorem affineCofactorQuotient_finite {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (hα : Function.Injective α) (hβ : Function.Injective β) :
     Module.Finite K (Poly K 2 ⧸ affineCofactorIdeal δ α β) :=
   Module.Finite.of_surjective (affineCofactorQuotientAlgEquiv δ α β hα hβ).symm.toLinearMap
     (affineCofactorQuotientAlgEquiv δ α β hα hβ).symm.surjective
 
-/-- The actual affine quotient length is the exact number of selected cells.-/
+/-- The actual affine quotient length is the exact number of selected cells.
+@isnad1 id=eq.2h5v.s11.f98d23555a39 from=translated src=- shape=b052d532 vocab=32ab39f5
+-/
 theorem affineCofactorQuotient_finrank {c : ℕ} (δ : Fin (c + 1) → ℕ)
     (α β : RootIndex δ → K) (hα : Function.Injective α) (hβ : Function.Injective β) :
     Module.finrank K (Poly K 2 ⧸ affineCofactorIdeal δ α β) = Fintype.card (SelectedIndex δ) := by

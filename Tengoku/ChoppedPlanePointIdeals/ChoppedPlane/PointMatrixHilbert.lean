@@ -15,7 +15,9 @@ namespace ChoppedPlane
 open Module MvPolynomial
 variable {K : Type*} [Field K] {c p : ℕ}
 
-/-- In natural degrees the two actual quotient-image definitions agree.-/
+/-- In natural degrees the two actual quotient-image definitions agree.
+@isnad1 id=eq.0h4v.s6.7ccd32ed65d6 from=translated src=- shape=796ef17f vocab=b1cd5a2a
+-/
 theorem minorHilbertFunction_nat
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3)) (t : ℕ) :
     minorHilbertFunction B (t : ℤ) =
@@ -25,7 +27,9 @@ theorem minorHilbertFunction_nat
   rfl
 
 /-- Agreement of all homogeneous ideal pieces identifies the actual point
-Hilbert function with the actual cofactor quotient Hilbert function.-/
+Hilbert function with the actual cofactor quotient Hilbert function.
+@isnad1 id=eq.1h6v.s9.5d653fd0a482 from=translated src=- shape=800b1678 vocab=e8af4a08
+-/
 theorem pointHilbertFunction_eq_minor_of_pieces
     (B : Matrix (Fin (c + 1)) (Fin c) (Poly K 3)) (a : PointCoordinates K p)
     (hpieces : ∀ t, pointDegreePiece K a t = idealFormPiece (maximalMinorIdeal B) t)
@@ -33,7 +37,9 @@ theorem pointHilbertFunction_eq_minor_of_pieces
   rw [pointHilbertFunction_eq_of_idealFormPiece _ a hpieces,
     finrank_idealFormQuotient, minorHilbertFunction_nat]
 
-/-- The one/two row profile has exactly the paper's required number of points.-/
+/-- The one/two row profile has exactly the paper's required number of points.
+@isnad1 id=eq.1h2v.s11.451180999546 from=translated src=- shape=b4de9a8b vocab=89cb8783
+-/
 theorem positiveRowProfile_selected_card (r a : ℕ) (hr : 0 < r) :
     Fintype.card (Ferrers.SelectedIndex (positiveRowProfile r a)) =
       N (positiveRowGeneratorDegree r a) - r := by
@@ -51,7 +57,9 @@ theorem positiveRowProfile_selected_card (r a : ℕ) (hr : 0 < r) :
     omega
 
 /-- Actual points extracted from a primitive matrix of this profile interpolate
-in degree `d` and have constant point Hilbert function above it.-/
+in degree `d` and have constant point Hilbert function above it.
+@isnad1 id=and.3h5v.s11.4575734931fc from=translated src=- shape=56f7dada vocab=3ed1cd39
+-/
 theorem positiveRow_points_properties
     {r a : ℕ} (hr : 0 < r)
     (B : HomogeneousRowMatrix K (positiveRowProfile r a))

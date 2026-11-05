@@ -15,6 +15,9 @@ open Module
 open scoped Classical
 variable {K : Type*} [Field K] {ι : Type*}
 
+/--
+@isnad1 id=eq.0h7v.s11.8411b8d8e80f from=translated src=- shape=753cfdec vocab=e45953c7
+-/
 theorem vectorResidueFunctional_basis_free [Finite ι] (g : ι → ℤ) (r : ℤ)
     (w : ι → K) (q : FreeLaurent K ι) (e : PositiveIndex g r) :
     vectorResidueFunctional w (freeLaurentEquiv q)
@@ -34,7 +37,9 @@ theorem vectorResidueFunctional_basis_free [Finite ι] (g : ι → ℤ) (r : ℤ
   · simp
 
 /-- Projection to the genuine top Laurent representatives changes no
-residue against any polynomial representative.-/
+residue against any polynomial representative.
+@isnad1 id=eq.0h7v.s11.8006ba87dfc4 from=translated src=- shape=d7bdb107 vocab=9cc3161d
+-/
 theorem vectorResidueFunctional_freeNegativePart [Finite ι]
     (g : ι → ℤ) (r : ℤ) (w : ι → K) (q : FreeLaurent K ι)
     (p : positiveGrade (K := K) g r) :
@@ -56,7 +61,9 @@ theorem vectorResidueFunctional_freeNegativePart [Finite ι]
     rfl
   exact LinearMap.congr_fun h p
 
-/-- The same exact projection identity on the actual componentwise Laurent module.-/
+/-- The same exact projection identity on the actual componentwise Laurent module.
+@isnad1 id=eq.0h7v.s11.2695a8c9bc8c from=translated src=- shape=de4af13a vocab=31752cc4
+-/
 theorem vectorResidueFunctional_componentNegativePart [Finite ι]
     (g : ι → ℤ) (r : ℤ) (w : ι → K) (q : ι → BinaryLaurent K)
     (p : positiveGrade (K := K) g r) :
@@ -73,7 +80,9 @@ theorem vectorResidueFunctional_componentNegativePart [Finite ι]
   exact h
 
 /-- The actual top-Laurent cyclic transpose is cyclic multiplication followed
-by the actual strictly negative exponent projection.-/
+by the actual strictly negative exponent projection.
+@isnad1 id=eq.0h7v.s12.e90066a6136a from=translated src=- shape=332a3b82 vocab=59461974
+-/
 theorem vectorResidueFunctional_projected_cyclic_transpose
     (g : Fin 3 → ℤ) (r : ℤ) (c : K) (γ q : Fin 3 → BinaryLaurent K)
     (p : positiveGrade (K := K) g r) :

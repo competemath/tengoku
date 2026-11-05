@@ -21,7 +21,9 @@ variable {B F K : Type*} [CommRing B] [IsDomain B] [UniqueFactorizationMonoid B]
   [Field F] [Algebra B F] [IsFractionRing B F]
   [Field K] [CharZero K] [Algebra K F]
 
-/-- The two chart matrices use the same symmetric kernel basis.-/
+/-- The two chart matrices use the same symmetric kernel basis.
+@isnad1 id=eq.0h9v.s6.343cfb41a0d5 from=translated src=- shape=5dd882ca vocab=84f79b39
+-/
 theorem quarticKernelSynthesis_charts {R : Type*} [CommRing R]
     {M : Type*} [AddCommGroup M] [Module R M]
     (u v z a b : R) (n : ℕ) (c : Fin (n + 1) → M) :
@@ -30,7 +32,9 @@ theorem quarticKernelSynthesis_charts {R : Type*} [CommRing R]
   simp only [kernelSynthesis, quarticKernelMatrixU, quarticKernelMatrixV,
     Matrix.cons_val_one, Matrix.cons_val_two]
 
-/-- The row-zero lift has no influence on the symmetric kernel expression.-/
+/-- The row-zero lift has no influence on the symmetric kernel expression.
+@isnad1 id=eq.0h9v.s6.e648dcc1ccb3 from=translated src=- shape=5dd882ca vocab=58ff6555
+-/
 theorem quarticKernelSynthesis_lift {R : Type*} [CommRing R]
     {M : Type*} [AddCommGroup M] [Module R M]
     (u v z a b : R) (n : ℕ) (c : Fin (n + 1) → M) :
@@ -39,7 +43,9 @@ theorem quarticKernelSynthesis_lift {R : Type*} [CommRing R]
   simp only [kernelSynthesis, quarticKernelMatrixU,
     Matrix.cons_val_one, Matrix.cons_val_two]
 
-/-- Both cleared substitutions are integral and commute with coefficient maps.-/
+/-- Both cleared substitutions are integral and commute with coefficient maps.
+@isnad1 id=eq.0h6v.s8.383ad0f9b5e8 from=translated src=- shape=df785fc8 vocab=ad05615e
+-/
 theorem quarticClearU_map {R S : Type*} [CommRing R] [CommRing S]
     (θ : R →+* S) (u v z : R) :
     (fun i => MvPolynomial.map θ (quarticClearU u v z i)) =
@@ -47,6 +53,9 @@ theorem quarticClearU_map {R S : Type*} [CommRing R] [CommRing S]
   funext i
   fin_cases i <;> simp [quarticClearU]
 
+/--
+@isnad1 id=eq.0h6v.s8.def36c37f9fa from=translated src=- shape=df785fc8 vocab=8218f1aa
+-/
 theorem quarticClearV_map {R S : Type*} [CommRing R] [CommRing S]
     (θ : R →+* S) (u v z : R) :
     (fun i => MvPolynomial.map θ (quarticClearV u v z i)) =

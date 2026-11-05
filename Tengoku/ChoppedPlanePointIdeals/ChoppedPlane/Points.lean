@@ -65,24 +65,39 @@ def pointHilbertFunction {p : ℕ} (a : PointCoordinates K p) (d : ℕ) : ℕ :=
 
 variable {K}
 
+/--
+@isnad1 id=eq.0h6v.s11.3850d9d1f1f4 from=translated src=- shape=00c865bf vocab=502b503e
+-/
 @[simp] theorem pointEvaluation_apply {p d : ℕ} (a : PointCoordinates K p)
     (f : Forms K 3 d) (i : Fin p) :
     pointEvaluation K a d f i = eval (chartPoint K a i) f.val := rfl
 
+/--
+@isnad1 id=iff.0h5v.s11.931c3d6fc34a from=translated src=- shape=d3d324e2 vocab=02d0f7b8
+-/
 @[simp] theorem mem_pointDegreePiece {p d : ℕ} (a : PointCoordinates K p)
     (f : Forms K 3 d) :
     f ∈ pointDegreePiece K a d ↔ ∀ i, eval (chartPoint K a i) f.val = 0 := by
   simp [pointDegreePiece, LinearMap.mem_ker, funext_iff]
 
+/--
+@isnad1 id=le.0h4v.s8.f0ba9ab8aa0c from=translated src=- shape=306d33e4 vocab=4ca49b91
+-/
 theorem pointDegreeSpace_homogeneous {p d : ℕ} (a : PointCoordinates K p) :
     pointDegreeSpace K a d ≤ Forms K 3 d := by
   rintro f ⟨g, hg, rfl⟩
   exact g.property
 
+/--
+@isnad1 id=eq.0h4v.s11.96c69fd37f51 from=translated src=- shape=8ac0e53d vocab=336dcdf7
+-/
 theorem pointHilbertFunction_eq_rank {p d : ℕ} (a : PointCoordinates K p) :
     pointHilbertFunction K a d = finrank K (pointEvaluation K a d).range :=
   (pointEvaluation K a d).quotKerEquivRange.finrank_eq
 
+/--
+@isnad1 id=le.0h4v.s5.5a04948c9cea from=translated src=- shape=84378a42 vocab=4f8414e0
+-/
 theorem pointHilbertFunction_le {p d : ℕ} (a : PointCoordinates K p) :
     pointHilbertFunction K a d ≤ min ((d + 2).choose 2) p := by
   rw [pointHilbertFunction_eq_rank]
@@ -92,7 +107,9 @@ theorem pointHilbertFunction_le {p d : ℕ} (a : PointCoordinates K p) :
     simpa [Module.finrank_pi_fintype] using h
 
 /-- Substitution by polynomials congruent to the variables changes a polynomial
-by an element of the specified actual ideal.-/
+by an element of the specified actual ideal.
+@isnad1 id=mem.1h4v.s9.e4393e04b04f from=translated src=- shape=9b903f00 vocab=f8130295
+-/
 theorem sub_substitution_mem (I : Ideal (Poly K 3)) (q : Fin 3 → Poly K 3)
     (hq : ∀ i, X i - q i ∈ I) (f : Poly K 3) :
     f - eval₂ C q f ∈ I := by
@@ -108,7 +125,9 @@ theorem sub_substitution_mem (I : Ideal (Poly K 3)) (q : Fin 3 → Poly K 3)
   exact (congrArg (fun h : Poly K 3 →+* Poly K 3 ⧸ I => h f) heq).symm
 
 /-- A homogeneous form vanishes at `[a:b:1]` exactly when it belongs to the
-actual ideal `⟨x-a*z, y-b*z⟩`.-/
+actual ideal `⟨x-a*z, y-b*z⟩`.
+@isnad1 id=iff.0h5v.s10.51e6acf803c7 from=translated src=- shape=e10c2fdc vocab=43e911c4
+-/
 theorem homogeneous_mem_singlePointIdeal_iff {d : ℕ} (a b : K)
     (f : Forms K 3 d) :
     f.val ∈ singlePointIdeal K a b ↔ eval ![a, b, 1] f.val = 0 := by
@@ -138,7 +157,9 @@ theorem homogeneous_mem_singlePointIdeal_iff {d : ℕ} (a b : K)
     have hh := sub_substitution_mem I q hq f.val
     simpa [hz, I] using hh
 
-/-- The evaluation kernel is exactly the actual point ideal's homogeneous piece.-/
+/-- The evaluation kernel is exactly the actual point ideal's homogeneous piece.
+@isnad1 id=iff.0h5v.s11.34f0b7bacff8 from=translated src=- shape=7a8a394a vocab=52897a47
+-/
 theorem homogeneous_mem_pointIdeal_iff {p d : ℕ} (a : PointCoordinates K p)
     (f : Forms K 3 d) :
     f.val ∈ pointIdeal K a ↔ f ∈ pointDegreePiece K a d := by
@@ -147,14 +168,18 @@ theorem homogeneous_mem_pointIdeal_iff {p d : ℕ} (a : PointCoordinates K p)
   intro i
   exact homogeneous_mem_singlePointIdeal_iff _ _ f
 
-/-- Every generator of the chop belongs to the actual point ideal.-/
+/-- Every generator of the chop belongs to the actual point ideal.
+@isnad1 id=le.0h4v.s8.3ec58013fd2c from=translated src=- shape=ef539939 vocab=541c0b8d
+-/
 theorem choppedIdeal_le_pointIdeal {p d : ℕ} (a : PointCoordinates K p) :
     choppedIdeal K a d ≤ pointIdeal K a := by
   apply Ideal.span_le.mpr
   rintro f ⟨g, hg, rfl⟩
   exact (homogeneous_mem_pointIdeal_iff a g).mpr hg
 
-/-- Affine chart evaluations detect every genuine homogeneous form.-/
+/-- Affine chart evaluations detect every genuine homogeneous form.
+@isnad1 id=eq.1h3v.s10.3072fffb8c5c from=translated src=- shape=30c33734 vocab=11c806bc
+-/
 theorem homogeneous_eq_zero_of_chart_evaluations [Infinite K] {d : ℕ}
     (f : Forms K 3 d) (h : ∀ a b : K, eval ![a, b, 1] f.val = 0) : f = 0 := by
   have hz : (X 2 : Poly K 3) * f.val = 0 := by
@@ -173,7 +198,9 @@ theorem homogeneous_eq_zero_of_chart_evaluations [Infinite K] {d : ℕ}
   have hf : f.val = 0 := (mul_eq_zero.mp hz).resolve_left (MvPolynomial.X_ne_zero 2)
   exact Subtype.ext hf
 
-/-- The evaluations on chart points span the entire dual homogeneous space.-/
+/-- The evaluations on chart points span the entire dual homogeneous space.
+@isnad1 id=eq.0h2v.s12.32adefaf1a23 from=translated src=- shape=3d873647 vocab=d32aa19c
+-/
 theorem chart_evaluations_span_dual [Infinite K] (d : ℕ) :
     Submodule.span K (Set.range (fun u : Fin 2 → K =>
       evaluationLinear K 3 d ![u 0, u 1, 1])) = ⊤ := by
@@ -185,7 +212,9 @@ theorem chart_evaluations_span_dual [Infinite K] (d : ℕ) :
   intro a b
   exact h (evaluationLinear K 3 d ![a, b, 1]) ⟨![a, b], by simp⟩
 
-/-- Successively choose independent evaluation coordinates.-/
+/-- Successively choose independent evaluation coordinates.
+@isnad1 id=ex.1h3v.s10.ebefc717c590 from=translated src=- shape=51c3d66f vocab=8d159523
+-/
 theorem exists_independent_chart_evaluations [Infinite K] (d q : ℕ)
     (hq : q ≤ (d + 2).choose 2) :
     ∃ u : Fin q → Fin 2 → K,
@@ -225,7 +254,9 @@ theorem exists_independent_chart_evaluations [Infinite K] (d q : ℕ)
       exact linearIndependent_finSnoc.mpr ⟨hu, hv⟩
 
 /-- A degree-`d` evaluation map of maximal possible rank exists, without an
-unproved interpolation or generic-rank hypothesis.-/
+unproved interpolation or generic-rank hypothesis.
+@isnad1 id=ex.0h3v.s5.ea559620fbb5 from=translated src=- shape=193e9c80 vocab=100535e5
+-/
 theorem exists_pointHilbertFunction_maximal [Infinite K] (p d : ℕ) :
     ∃ a : PointCoordinates K p,
       pointHilbertFunction K a d = min ((d + 2).choose 2) p := by
