@@ -16,6 +16,7 @@ import Tengoku.Degiorgi
 import Tengoku.FixedPointTheoremsLean4
 import Tengoku.Expdb
 import Tengoku.DerivedAlgGeoLean
+import Tengoku.Polyfun
 import Tengoku.Hironaka
 import Tengoku.KummerCriterion
 import Tengoku.FltRegular
