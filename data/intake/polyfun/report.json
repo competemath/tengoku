@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "2d0725894e28b2ace254166de7fd353e954ddef4c4dbc26afc2c825a11f3647e",
+ "gate2_unjudged": [],
+ "library": "polyfun",
+ "lint_mode": "proposed",
+ "modules": 3,
+ "part": 1,
+ "theorems": 7
+}
