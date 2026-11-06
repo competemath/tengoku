@@ -71,6 +71,7 @@ import Tengoku
 import Tengoku.Ieantn
 import Tengoku.GroebnerProj
 import Tengoku.Azurite
+import Tengoku.Compply
 import Tengoku.SpherePackingOrig
 import Tengoku.ChebotarevDensity
 import Tengoku.Compfiles
