@@ -44,6 +44,68 @@ def block(text, name):
     return text[start:i]
 
 
+class RootPrefixedNames(unittest.TestCase):
+    """`theorem _root_.A.B.c` declares exactly `A.B.c`. The tagger compared the written text with the name as it stands, found `_root_.` in front, called the theorem "generated" and skipped it:
+    the module stayed untagged and autotag_push refused the PR (Tengoku yamaguchi-papers part 3, ten modules, 6 Nov 2026)."""
+
+    NAMES = [
+        "A.c",
+        "A.B.c",
+        "AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral",
+        "Foo.«b.c»",
+        "Foo.α_β",
+        "x",
+        "A.B.C.D.e'",
+        "Mathlib.Foo.bar_apply",
+    ]
+    NAMESPACES = ["", "X.", "X.Y.", "AlgebraicCurves.Geometry.Curves.Proofs.GeometricallyIntegral_of_isPullback_of_geometricallyIntegral."]
+
+    def test_grid(self):
+        cases = 0
+        for name in self.NAMES:
+            written = "_root_." + name
+            self.assertTrue(tag.declared_name_matches(name, written), name)
+            for ns in self.NAMESPACES:
+                cases += 1
+                # a name in a namespace written in full or as its last components is still found (the old rule), `_root_` or not
+                self.assertTrue(tag.declared_name_matches(ns + name, name))
+                self.assertTrue(tag.declared_name_matches(ns + name, ns + name))
+                # `_root_.` means no namespace: it never matches a name that has one in front
+                if ns:
+                    self.assertFalse(tag.declared_name_matches(ns + name, written), (ns, name))
+            # another name, a prefix, a suffix, or `_root_` twice, never matches
+            for other in (name + "x", "Q." + name, name.rsplit(".", 1)[-1] + "z", "_root_." + written, "_root_" + name):
+                cases += 1
+                self.assertFalse(tag.declared_name_matches(name, "_root_." + other) and other != name, (name, other))
+        self.assertGreaterEqual(cases, 60)
+
+    def test_the_real_module_of_part_3(self):
+        """`theorem _root_.AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral` under two stacked `open ... in`, inside three namespaces
+        (Tengoku/YamaguchiPapers/Nyll/SchemeTheory/Morphisms/GeometricallyIntegralFieldDescent.lean): it is placed, and tagged."""
+        text = (
+            "namespace AlgebraicCurves.Geometry.Curves.Proofs\nnamespace GeometricallyIntegral_of_isPullback_of_geometricallyIntegral\n\n"
+            "open _root_.AlgebraicGeometry in\nopen GeometricallyIntegral_of_isPullback_of_geometricallyIntegral.AlgebraicGeometry in\n"
+            "theorem _root_.AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral {X Y : Type} : True := trivial\n\n"
+            "end GeometricallyIntegral_of_isPullback_of_geometricallyIntegral\nend AlgebraicCurves.Geometry.Curves.Proofs\n"
+        )
+        line = text.split("\n").index(next(l for l in text.split("\n") if l.startswith("theorem "))) + 1
+        written = "_root_.AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral"
+        it = tag.Item(
+            "AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral",
+            (line, 0, line, 200),
+            (line, len("theorem "), line, len("theorem ") + len(written)),
+            TAG,
+        )
+        placed, skipped = tag.locate(text, [it])
+        self.assertEqual(skipped, [])
+        self.assertEqual(len(placed), 1)
+        new, counts, more = tag.tag_text(text, [it])
+        self.assertEqual(counts["created"], 1)
+        self.assertEqual(more, [])
+        self.assertIn(TAG, new)
+        self.assertTrue(tag.equivalent(text, new))
+
+
 class Fixture(unittest.TestCase):
     def test_every_range_points_at_its_theorem_name(self):
         # the fixture and its ranges belong together: the text at each selection range is the declared name (but for the twin `ext` generated, which points at `ext`)
