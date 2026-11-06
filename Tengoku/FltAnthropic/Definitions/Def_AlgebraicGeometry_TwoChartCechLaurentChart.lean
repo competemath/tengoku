@@ -1,0 +1,242 @@
+import Tengoku
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicGeometry_TwoChartCech
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+noncomputable section
+
+universe u v
+
+namespace LaurentSeries
+
+variable (R : Type*) [CommRing R]
+
+/--
+@isnad1 id=eq.0h3v.s8.eee83f838ae5 from=translated src=- shape=3d5da688 vocab=c7461f9f
+-/
+theorem derivative_coeff (x : LaurentSeries R) (n : ℤ) :
+    (derivative R x).coeff n = (n + 1) • x.coeff (n + 1) := by
+  simp only [derivative_apply, hasseDeriv_coeff, Nat.cast_one, Ring.choose_one_right]
+
+/--
+@isnad1 id=eq.0h3v.s10.e7534ea9dd0b from=translated src=- shape=b673eb58 vocab=a59ee8cf
+-/
+theorem derivative_single_one_mul (n : ℤ) (x : LaurentSeries R) :
+    derivative R (HahnSeries.single n (1 : R) * x) =
+      HahnSeries.single (n - 1) (n : R) * x + HahnSeries.single n (1 : R) * derivative R x := by
+  ext m
+  simp only [HahnSeries.coeff_add, derivative_coeff, HahnSeries.coeff_single_mul, one_mul, zsmul_eq_mul]
+  rw [show m - (n - 1) = m - n + 1 by ring, show m + 1 - n = m - n + 1 by ring]
+  push_cast
+  ring
+
+/--
+@isnad1 id=eq.1h3v.s7.9b4d307ff527 from=translated src=- shape=8a4291ab vocab=6ca2f719
+-/
+theorem coeff_ofPowerSeries_of_neg (p : PowerSeries R) {m : ℤ} (hm : m < 0) :
+    (HahnSeries.ofPowerSeries ℤ R p).coeff m = 0 := by
+  rw [HahnSeries.ofPowerSeries_apply]
+  apply HahnSeries.embDomain_of_notMem_range
+  rintro ⟨k, hk⟩
+  change (k : ℤ) = m at hk
+  omega
+
+/--
+@isnad1 id=eq.0h2v.s9.a6455d904222 from=translated src=- shape=ac96172a vocab=70dade73
+-/
+theorem derivative_ofPowerSeries (p : PowerSeries R) :
+    derivative R (HahnSeries.ofPowerSeries ℤ R p) =
+      HahnSeries.ofPowerSeries ℤ R (PowerSeries.derivative R p) := by
+  ext m
+  rw [derivative_coeff]
+  rcases lt_trichotomy m (-1) with hm | rfl | hm
+  · rw [coeff_ofPowerSeries_of_neg R _ (by omega), coeff_ofPowerSeries_of_neg R _ (by omega), smul_zero]
+  · rw [neg_add_cancel, zero_smul, coeff_ofPowerSeries_of_neg R _ (by omega)]
+  · obtain ⟨k, rfl⟩ : ∃ k : ℕ, m = k := ⟨m.toNat, by omega⟩
+    have : (k : ℤ) + 1 = ((k + 1 : ℕ) : ℤ) := by push_cast; ring
+    rw [this, HahnSeries.ofPowerSeries_apply_coeff, HahnSeries.ofPowerSeries_apply_coeff,
+      PowerSeries.coeff_derivative, zsmul_eq_mul]
+    push_cast
+    ring
+
+/--
+@isnad1 id=eq.0h3v.s10.76a6003a1ef1 from=translated src=- shape=9d40ffce vocab=c9fb9739
+-/
+theorem derivative_mul_def (x y : LaurentSeries R) :
+    derivative R (x * y) = x * derivative R y + derivative R x * y := by
+
+  obtain ⟨a, P, rfl⟩ :
+      ∃ (a : ℤ) (P : PowerSeries R), x = HahnSeries.single a (1 : R) * HahnSeries.ofPowerSeries ℤ R P :=
+    ⟨x.order, x.powerSeriesPart, (single_order_mul_powerSeriesPart x).symm⟩
+  obtain ⟨b, Q, rfl⟩ :
+      ∃ (b : ℤ) (Q : PowerSeries R), y = HahnSeries.single b (1 : R) * HahnSeries.ofPowerSeries ℤ R Q :=
+    ⟨y.order, y.powerSeriesPart, (single_order_mul_powerSeriesPart y).symm⟩
+  have hab : HahnSeries.single (a + b) (1 : R) = HahnSeries.single a 1 * HahnSeries.single b 1 := by
+    rw [HahnSeries.single_mul_single, one_mul]
+  have h1 : HahnSeries.single (a + b - 1) (((a + b : ℤ)) : R) =
+      HahnSeries.single (a - 1) (a : R) * HahnSeries.single b 1 +
+        HahnSeries.single a 1 * HahnSeries.single (b - 1) (b : R) := by
+    rw [HahnSeries.single_mul_single, HahnSeries.single_mul_single, mul_one, one_mul,
+      show a - 1 + b = a + b - 1 by ring, show a + (b - 1) = a + b - 1 by ring, ← HahnSeries.single_add,
+      Int.cast_add]
+  have hPQ : HahnSeries.single a (1 : R) * HahnSeries.ofPowerSeries ℤ R P *
+        (HahnSeries.single b 1 * HahnSeries.ofPowerSeries ℤ R Q) =
+      HahnSeries.single (a + b) 1 * HahnSeries.ofPowerSeries ℤ R (P * Q) := by
+    rw [map_mul, hab]; ring
+  rw [hPQ, derivative_single_one_mul, derivative_ofPowerSeries, (PowerSeries.derivative R).leibniz, smul_eq_mul,
+    smul_eq_mul, map_add, map_mul, map_mul, map_mul, derivative_single_one_mul, derivative_single_one_mul,
+    derivative_ofPowerSeries, derivative_ofPowerSeries, hab, h1]
+  ring
+
+def residue : LaurentSeries R →ₗ[R] R := HahnSeries.coeff.linearMap (-1)
+
+/--
+@isnad1 id=eq.0h2v.s8.176f8f8b75bf from=translated src=- shape=9b3e63db vocab=b6bceba1
+-/
+@[simp] theorem residue_apply (x : LaurentSeries R) : residue R x = x.coeff (-1) := rfl
+
+end LaurentSeries
+
+namespace TwoChartCech.Cover
+
+variable {R : Type u} [CommRing R]
+
+structure LaurentChart (𝒰 : Cover.{u, v} R) where
+
+  expand : 𝒰.A01 →+* LaurentSeries R
+
+  expand_algebraMap : ∀ r : R, expand (algebraMap R 𝒰.A01 r) = HahnSeries.C r
+
+namespace LaurentChart
+
+variable {𝒰 : Cover.{u, v} R} (Λ : 𝒰.LaurentChart)
+
+abbrev expandModule : Module 𝒰.A01 (LaurentSeries R) := Module.compHom (LaurentSeries R) Λ.expand
+
+/--
+@isnad1 id=eq.0h5v.s8.f063bd427962 from=translated src=- shape=aadb09d4 vocab=97ec7ba2
+-/
+theorem expand_smul (r : R) (a : 𝒰.A01) : Λ.expand (r • a) = r • Λ.expand a := by
+  rw [Algebra.smul_def, map_mul, expand_algebraMap, HahnSeries.C_mul_eq_smul]
+
+/--
+@isnad1 id=isscalar.0h3v.s8.79815bf2bc39 from=translated src=- shape=d62d06f3 vocab=3a08b4bf
+-/
+theorem isScalarTower_expandModule :
+    letI := Λ.expandModule
+    IsScalarTower R 𝒰.A01 (LaurentSeries R) :=
+  letI := Λ.expandModule
+  ⟨fun r a x => by
+    change Λ.expand (r • a) * x = r • (Λ.expand a * x)
+    rw [expand_smul, ← HahnSeries.C_mul_eq_smul, ← HahnSeries.C_mul_eq_smul, mul_assoc]⟩
+
+def expandLinear : 𝒰.A01 →ₗ[R] LaurentSeries R where
+  toFun := Λ.expand
+  map_add' := map_add _
+  map_smul' := Λ.expand_smul
+
+/--
+@isnad1 id=eq.0h4v.s8.8d0d3e0c62ab from=translated src=- shape=3dfa7774 vocab=5e6f4785
+-/
+@[simp] theorem expandLinear_apply (a : 𝒰.A01) : Λ.expandLinear a = Λ.expand a := rfl
+
+def expandDerivation :
+    letI := Λ.expandModule
+    Derivation R 𝒰.A01 (LaurentSeries R) :=
+  letI := Λ.expandModule
+  Derivation.mk' (LaurentSeries.derivative R ∘ₗ Λ.expandLinear) fun f g => by
+    change LaurentSeries.derivative R (Λ.expand (f * g)) =
+      Λ.expand f * LaurentSeries.derivative R (Λ.expand g) + Λ.expand g * LaurentSeries.derivative R (Λ.expand f)
+    rw [map_mul, LaurentSeries.derivative_mul_def, mul_comm (LaurentSeries.derivative R (Λ.expand f))]
+
+def expandKaehler :
+    letI := Λ.expandModule
+    Ω[𝒰.A01⁄R] →ₗ[𝒰.A01] LaurentSeries R :=
+  letI := Λ.expandModule
+  haveI := Λ.isScalarTower_expandModule
+  Λ.expandDerivation.liftKaehlerDifferential
+
+def residue : Ω[𝒰.A01⁄R] →ₗ[R] R where
+  toFun ω := letI := Λ.expandModule; LaurentSeries.residue R (Λ.expandKaehler ω)
+  map_add' ω ω' := by
+    letI := Λ.expandModule
+    change LaurentSeries.residue R (Λ.expandKaehler (ω + ω')) = _
+    rw [map_add, map_add]
+  map_smul' r ω := by
+    letI := Λ.expandModule
+    haveI := Λ.isScalarTower_expandModule
+    change LaurentSeries.residue R (Λ.expandKaehler (r • ω)) = r • LaurentSeries.residue R (Λ.expandKaehler ω)
+    have h1 : Λ.expandKaehler (r • ω) = r • Λ.expandKaehler ω := by
+      rw [← IsScalarTower.algebraMap_smul 𝒰.A01 r ω, LinearMap.map_smul]
+      change Λ.expand (algebraMap R 𝒰.A01 r) * Λ.expandKaehler ω = _
+      rw [expand_algebraMap, HahnSeries.C_mul_eq_smul]
+    rw [h1, map_smul]
+
+def IsRegular {B : Type*} [CommRing B] [Algebra R B] (ρ : B →ₐ[R] 𝒰.A01) : Prop :=
+  ∀ b : B, Λ.expand (ρ b) ∈ (HahnSeries.ofPowerSeries ℤ R).range
+
+def HasParameter {B : Type*} [CommRing B] [Algebra R B] (ρ : B →ₐ[R] 𝒰.A01) : Prop :=
+  ∃ b : B, Λ.expand (ρ b) = HahnSeries.single 1 1
+
+end LaurentChart
+
+def formalDisc (R : Type u) [CommRing R] : Cover.{u, u} R :=
+  letI : Algebra R (LaurentSeries R) := (HahnSeries.C : R →+* LaurentSeries R).toAlgebra
+  letI : Algebra R (PowerSeries R) := inferInstance
+  { A0 := LaurentSeries R
+    A1 := PowerSeries R
+    A01 := LaurentSeries R
+    ρ0 := AlgHom.id R _
+    ρ1 := { (HahnSeries.ofPowerSeries ℤ R) with
+      commutes' := fun r => by
+        change HahnSeries.ofPowerSeries ℤ R (algebraMap R (PowerSeries R) r) = HahnSeries.C r
+        rw [PowerSeries.algebraMap_eq, HahnSeries.ofPowerSeries_C] } }
+
+def formalDiscChart (R : Type u) [CommRing R] : (formalDisc R).LaurentChart where
+  expand := RingHom.id _
+  expand_algebraMap _ := rfl
+
+end TwoChartCech.Cover
+
+namespace TwoChartCech.Cover.LaurentChart
+
+variable {R : Type u} [CommRing R] {𝒰 : Cover.{u, v} R}
+
+structure IsCompletionAlong (Λ : 𝒰.LaurentChart) {B : Type*} [CommRing B] [Algebra R B]
+    (ρ : B →ₐ[R] 𝒰.A01) (e : B →ₐ[R] R) : Prop where
+
+  isRegular : Λ.IsRegular ρ
+
+  exists_coeff_eq : ∀ (n : ℕ) (p : PowerSeries R), ∃ b : B,
+    ∀ k : ℕ, k < n → (Λ.expand (ρ b)).coeff (k : ℤ) = PowerSeries.coeff k p
+
+  forall_coeff_eq_zero_iff : ∀ (n : ℕ) (b : B),
+    (∀ k : ℕ, k < n → (Λ.expand (ρ b)).coeff (k : ℤ) = 0) ↔ b ∈ RingHom.ker e.toRingHom ^ n
+
+end TwoChartCech.Cover.LaurentChart
+
+/--
+@isnad1 id=iff.0h3v.s8.73d41ef1a2b3 from=translated src=- shape=7c9759c3 vocab=1ab8eb55
+-/
+theorem PowerSeries.forall_coeff_eq_zero_iff_mem_ker_constantCoeff_pow (R : Type*) [CommRing R] (n : ℕ)
+    (a : PowerSeries R) :
+    (∀ k : ℕ, k < n → PowerSeries.coeff k a = 0) ↔ a ∈ RingHom.ker (PowerSeries.constantCoeff (R := R)) ^ n := by
+  have hker : RingHom.ker (PowerSeries.constantCoeff (R := R)) = Ideal.span {PowerSeries.X} := by
+    ext φ
+    rw [RingHom.mem_ker, Ideal.mem_span_singleton, PowerSeries.X_dvd_iff]
+  rw [hker, Ideal.span_singleton_pow, Ideal.mem_span_singleton, PowerSeries.X_pow_dvd_iff]
+
+namespace TwoChartCech.Cover
+
+def formalDiscPoint (R : Type u) [CommRing R] : (formalDisc R).A1 →ₐ[R] R :=
+  { (PowerSeries.constantCoeff : PowerSeries R →+* R) with
+    commutes' := fun r => by
+      change PowerSeries.constantCoeff (algebraMap R (PowerSeries R) r) = r
+      rw [PowerSeries.algebraMap_eq]
+      exact PowerSeries.constantCoeff_C r }
+
+end TwoChartCech.Cover
+
+end

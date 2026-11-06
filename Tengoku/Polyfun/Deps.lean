@@ -1,0 +1,1 @@
+-- Polyfun: a factory bundle (data/intake/polyfun). This file only marks the library for Tengoku/All.lean.

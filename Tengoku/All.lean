@@ -16,6 +16,7 @@ import Tengoku.Degiorgi
 import Tengoku.FixedPointTheoremsLean4
 import Tengoku.Expdb
 import Tengoku.DerivedAlgGeoLean
+import Tengoku.Polyfun
 import Tengoku.Hironaka
 import Tengoku.KummerCriterion
 import Tengoku.FltRegular
@@ -27,6 +28,7 @@ import Tengoku.Leanslt
 import Tengoku.EntropyConstrainedMissingMass
 import Tengoku.AddCombi
 import Tengoku.LanaFormalSchemes
+import Tengoku.FltAnthropic
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
 import Tengoku.Erdos1196
