@@ -32,9 +32,15 @@ section NonBinaryField
 
 variable {F : Type*} [NonBinaryField F]
 
+/--
+@isnad1 id=eq.0h1v.s6.26b5333b1f46 from=translated src=- shape=2e52a355 vocab=b501b1e2
+-/
 @[simp]
 lemma two_mul_inv_two : (2 : F) * 2⁻¹ = 1 := by simp
 
+/--
+@isnad1 id=eq.0h1v.s6.d9f4ba175155 from=translated src=- shape=2e2f7e7d vocab=b501b1e2
+-/
 @[simp]
 lemma inv_two_mul_two : 2⁻¹ * (2 : F) = 1 := by simp
 
@@ -54,6 +60,9 @@ private lemma coeffs_of_comp_minus_x_pos_degree {f : Polynomial F} {n : ℕ} (h 
   · rintro _ _ _ (_ | _) <;> aesop (add simp [Nat.even_add_one, Nat.even_iff])
   · rintro _ _ _ _ (_ | _) <;> aesop
 
+/--
+@isnad1 id=eq.0h3v.s6.3fa3e9fc05fc from=translated src=- shape=3f6287fe vocab=0f25567e
+-/
 theorem coeffs_of_comp_minus_x {f : Polynomial F} {n : ℕ} :
     (f.comp (-X)).coeff n = if Even n then f.coeff n else -f.coeff n := by
     by_cases hpos : 0 < f.degree
@@ -78,6 +87,9 @@ private lemma comp_x_square_coeff_pos_deg {f : Polynomial F} {n : ℕ} (h : 0 < 
     have : (n + 1 + 1) / 2 = n / 2 + 1 := by omega
     simp_all only [coeff_C_succ, add_zero]
 
+/--
+@isnad1 id=eq.0h3v.s7.c6610dbbac4a from=translated src=- shape=32769dee vocab=26f66c7b
+-/
 theorem comp_x_square_coeff {f : Polynomial F} {n : ℕ} :
     (f.comp (X * X)).coeff n = if Even n then f.coeff (n / 2) else 0 := by
   by_cases hpos : 0 < f.degree

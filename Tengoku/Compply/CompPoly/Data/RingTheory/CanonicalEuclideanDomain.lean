@@ -248,6 +248,9 @@ noncomputable instance Polynomial.instCanonicalEuclideanDomainPoly {F : Type u} 
       have h_impossible := lt_of_le_of_lt h_lhs_deg h_rhs_deg
       exact (lt_irrefl _ h_impossible).elim
 
+/--
+@isnad1 id=eq.1h3v.s5.38a216eb4be0 from=translated src=- shape=b1f1e1c3 vocab=ca78f741
+-/
 lemma Field.mod_eq_zero {K : Type u} [Field K] (a b : K) (hb : b ≠ 0) :
     a % b = 0 := by
   rw [Field.mod_eq, mul_div_cancel_right₀ a hb, sub_self]
@@ -287,7 +290,9 @@ section DivisionUniqueness
 
 /-- The Fundamental Theorem of Canonical Euclidean Domains.
     If you find ANY pair (q, r) that satisfies the division equation
-    AND the canonical condition, then q MUST be the result of the division operation.-/
+    AND the canonical condition, then q MUST be the result of the division operation.
+@isnad1 id=eq.3h5v.s6.b6c6784c9f0c from=translated src=- shape=d812b096 vocab=9bc01c8d
+-/
 theorem div_eq_of_canonical_eq_mul_add {a b q r : R} (hb : b ≠ 0)
     (h_eq : a = b * q + r)
     (h_can : is_canonical_remainder b r) :
@@ -314,7 +319,9 @@ theorem div_eq_of_canonical_eq_mul_add {a b q r : R} (hb : b ≠ 0)
 
 /-- The Fundamental Theorem of CEDs:
 Satisfying the division equation + size constraint is EQUIVALENT
-to being the output of the division function.-/
+to being the output of the division function.
+@isnad1 id=iff.1h5v.s6.59eee0bc500a from=translated src=- shape=67cbccc4 vocab=25fd769d
+-/
 theorem div_eq_and_mod_eq_iff {a b q r : R} (hn : b ≠ 0) :
     (a / b = q ∧ a % b = r) ↔ (a = b * q + r ∧ is_canonical_remainder b r) := by
   constructor
@@ -346,7 +353,9 @@ section DivisionCommonAlgebra
 
 /-- Generalized `add_mul_div_right`: `(a + b * r) / b = a / b + r`
 In a standard ED, this isn't always true (the quotient is not unique).
-In a CED, it is always true.-/
+In a CED, it is always true.
+@isnad1 id=eq.1h4v.s6.7f84a2240eec from=translated src=- shape=a1350d45 vocab=0cc1dd2d
+-/
 theorem add_mul_div_right (a b r : R) (hb : b ≠ 0) :
     (a + b * r) / b = a / b + r := by
   -- We prove that (a/b + r) is THE quotient for (a + b*r).
@@ -366,7 +375,9 @@ theorem add_mul_div_right (a b r : R) (hb : b ≠ 0) :
 
 /--
 Generalized `add_mul_mod_right`: (a + b * r) % b = a % b
-The remainder ignores multiples of the divisor.-/
+The remainder ignores multiples of the divisor.
+@isnad1 id=eq.1h4v.s6.3d363b87ca57 from=translated src=- shape=fafe7f46 vocab=e52415be
+-/
 theorem add_mul_mod_right (a b r : R) (hb : b ≠ 0) :
     (a + b * r) % b = a % b := by
   -- We use the same logic as above. Since (a/b + r) is the quotient,
@@ -383,7 +394,9 @@ theorem add_mul_mod_right (a b r : R) (hb : b ≠ 0) :
       (remainder_is_canonical a b hb))
   rw [←h_unique.2]
 
-/-- `If a = b + n * r, then a % n = b % n.`-/
+/-- `If a = b + n * r, then a % n = b % n.`
+@isnad1 id=eq.2h5v.s6.c2f6fcd63523 from=translated src=- shape=1445f4d5 vocab=e52415be
+-/
 theorem mod_eq_of_eq_add_mul {a b n q : R} (h_eq_add_mul : a = b + n * q) (hn : n ≠ 0) :
     a % n = b % n := by
   rw [h_eq_add_mul]
@@ -391,7 +404,9 @@ theorem mod_eq_of_eq_add_mul {a b n q : R} (h_eq_add_mul : a = b + n * q) (hn : 
 
 /-! # Arithmetic Modulo Properties -/
 
-/-- `(a * b) % n = ((a % n) * b) % n`-/
+/-- `(a * b) % n = ((a % n) * b) % n`
+@isnad1 id=eq.1h4v.s6.4d9aae5342aa from=translated src=- shape=1b9a1040 vocab=2fedc236
+-/
 theorem mul_mod_eq_mul_mod_left (a b n : R) (hn : n ≠ 0) :
     (a * b) % n = ((a % n) * b) % n := by
   -- Let a = qn + r. Then ab = (qn + r)b = qnb + rb = n(qb) + rb.
@@ -400,7 +415,9 @@ theorem mul_mod_eq_mul_mod_left (a b n : R) (hn : n ≠ 0) :
   rw [add_mul, mul_assoc, add_comm]
   rw [add_mul_mod_right (hb := hn)]
 
-/-- `(a * b) % n = 0` if `a % n = 0`-/
+/-- `(a * b) % n = 0` if `a % n = 0`
+@isnad1 id=eq.2h4v.s6.9ebf18b0519e from=translated src=- shape=02e0c7c4 vocab=2fedc236
+-/
 theorem mul_mod_eq_zero_of_mod_dvd (a b n : R) (hn : n ≠ 0)
     (h_mod_eq_zero : a % n = 0) : (a * b) % n = 0 := by
   -- If a % n = 0, then (a * b) % n = ((a % n) * b) % n = (0 * b) % n = 0 % n = 0
@@ -409,20 +426,26 @@ theorem mul_mod_eq_zero_of_mod_dvd (a b n : R) (hn : n ≠ 0)
   rw [zero_mul]
   rw [EuclideanDomain.zero_mod]
 
-/-- `(a + b) % n = ((a % n) + b) % n`-/
+/-- `(a + b) % n = ((a % n) + b) % n`
+@isnad1 id=eq.1h4v.s6.9b3b7f5ecc4a from=translated src=- shape=1b9a1040 vocab=7004c4e8
+-/
 theorem add_mod_eq_add_mod_left (a b n : R) (hn : n ≠ 0) :
     (a + b) % n = ((a % n) + b) % n := by
   nth_rw 1 [← EuclideanDomain.div_add_mod a n]
   rw [add_assoc, add_comm (a%n), add_comm]
   rw [add_mul_mod_right (hb := hn)]
 
-/-- `(a + b) % n = (a % n + b % n) % n`-/
+/-- `(a + b) % n = (a % n + b % n) % n`
+@isnad1 id=eq.1h4v.s6.95deec73b236 from=translated src=- shape=c25a5366 vocab=7004c4e8
+-/
 theorem add_mod_eq (a b n : R) (hn : n ≠ 0) :
     (a + b) % n = (a % n + b % n) % n := by
   rw [add_mod_eq_add_mod_left a b n hn]
   rw [add_comm, add_mod_eq_add_mod_left b (a%n) n hn, add_comm]
 
-/-- `(a * b) % n = ((a % n) * (b % n)) % n`-/
+/-- `(a * b) % n = ((a % n) * (b % n)) % n`
+@isnad1 id=eq.1h4v.s6.876efc6e368c from=translated src=- shape=c25a5366 vocab=2fedc236
+-/
 theorem mul_mod_eq (a b n : R) (hn : n ≠ 0) :
     (a * b) % n = ((a % n) * (b % n)) % n := by
   rw [mul_mod_eq_mul_mod_left a b n hn]
@@ -430,14 +453,18 @@ theorem mul_mod_eq (a b n : R) (hn : n ≠ 0) :
   rw [mul_mod_eq_mul_mod_left b (a%n) n hn]
   rw [mul_comm]
 
-/-- `(a % n) % n = a % n`-/
+/-- `(a % n) % n = a % n`
+@isnad1 id=eq.1h3v.s6.8018ba221887 from=translated src=- shape=b1bafa71 vocab=5e6c369c
+-/
 theorem mod_mod_eq_mod (a n : R) (hn : n ≠ 0) :
     (a % n) % n = a % n := by
   apply Eq.symm
   apply CanonicalEuclideanDomain.mod_eq_of_eq_add_mul (a := a) (b := a % n)
     (q := a / n) (hn := hn) (h_eq_add_mul := by exact Eq.symm (EuclideanDomain.mod_add_div a n))
 
-/-- `b | a - (a % b)`-/
+/-- `b | a - (a % b)`
+@isnad1 id=dvd.0h3v.s6.1fb7ce764190 from=translated src=- shape=fe28eeba vocab=6dad8811
+-/
 theorem dvd_sub_mod (a b : R) :
     b ∣ a - (a % b) := by
 -- We start with the fundamental division identity: a = b * (a / b) + (a % b)

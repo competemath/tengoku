@@ -35,6 +35,9 @@ namespace DTreeMap
 variable {α : Type u} {β : Type v} {cmp : α → α → Ordering}
 
 -- Folding alters at keys ≠ `k` does not change `get? _ k`.
+/--
+@isnad1 id=eq.1h7v.s7.79b21b006235 from=translated src=- shape=b0b5f971 vocab=858569ba
+-/
 theorem Const.get?_foldl_no_touch
     [TransCmp cmp] [LawfulEqCmp cmp]
     (k : α) (f : α → β → β → β)
@@ -67,6 +70,9 @@ theorem Const.get?_foldl_no_touch
     simpa only [List.foldl, hstep'] using ih'
 
 -- Pointwise description of `mergeWith` on `get?` at a fixed key.
+/--
+@isnad1 id=eq.0h7v.s6.780475f378cf from=translated src=- shape=bab0e3f1 vocab=7f993203
+-/
 theorem Const.get?_mergeWith [TransCmp cmp] [LawfulEqCmp cmp]
     (f : α → β → β → β) (t₁ t₂ : DTreeMap α (fun _ => β) cmp) (k : α) :
     get? (mergeWith f t₁ t₂) k =

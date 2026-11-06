@@ -21,7 +21,9 @@ Upstreaming candidate.
 
 namespace WithBot
 
-/-- Strict monotonicity of `+` on `WithBot ℕ`: `a < b → c < d → a + c < b + d`.-/
+/-- Strict monotonicity of `+` on `WithBot ℕ`: `a < b → c < d → a + c < b + d`.
+@isnad1 id=lt.2h4v.s6.b4c89db23b47 from=translated src=- shape=ed79da37 vocab=da92daf6
+-/
 lemma add_lt_add {a b c d : WithBot ℕ} (h1 : a < b) (h2 : c < d) : a + c < b + d := by
   cases a <;> cases b <;> cases c <;> cases d <;> simp_all [← WithBot.coe_add]; omega
 

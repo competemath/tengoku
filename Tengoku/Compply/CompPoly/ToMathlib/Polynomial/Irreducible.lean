@@ -38,7 +38,9 @@ A reducible polynomial of positive degree `n` has an irreducible factor of degre
 `n / 2`.
 
 Writing `P = a * b` with both factors non-units, their degrees sum to `n`, so the smaller one
-has degree at most `n / 2`; any irreducible factor of it works.-/
+has degree at most `n / 2`; any irreducible factor of it works.
+@isnad1 id=ex.3h3v.s7.095c3d3add71 from=translated src=- shape=c688ad0d vocab=a33fe366
+-/
 theorem exists_factor_natDegree_le_of_reducible (P : R[X]) {n : ℕ}
     (h_deg : P.natDegree = n) (h_pos : 0 < n) (h_red : ¬ Irreducible P) :
     ∃ q, Irreducible q ∧ q ∣ P ∧ q.natDegree ≤ n / 2 := by

@@ -54,6 +54,9 @@ noncomputable instance : Algebra Right (Left ⊗[K] Right) := Algebra.TensorProd
 local notation "e" => Algebra.TensorProduct.comm K Right Left
 
 -- The lemma with the completed proof.
+/--
+@isnad1 id=eq.0h6v.s10.dcc153363e8b from=translated src=- shape=8901f3a2 vocab=31275975
+-/
 lemma comm_map_smul_tmul (s s' : Right) (m : Left) :
     e (s • (s' ⊗ₜ[K] m)) = s • (e (s' ⊗ₜ[K] m)) := by
   -- Unfold the scalar multiplication on both sides using its fundamental definition.
@@ -76,6 +79,9 @@ lemma comm_map_smul_tmul (s s' : Right) (m : Left) :
     Algebra.TensorProduct.comm_tmul, AlgHom.toRingHom_eq_coe, RingHom.coe_coe,
     Algebra.TensorProduct.includeRight_apply]
 
+/--
+@isnad1 id=eq.2h6v.s12.ba92385edf8b from=translated src=- shape=7433d490 vocab=1b087e3c
+-/
 lemma comm_map_smul_add (s : Right) (x y : Right ⊗[K] Left)
     (hx : e (s • x) = s • (e x)) (hy : e (s • y) = s • (e y)) :
     e (s • x) + e (s • y) = s • e x + s • e y := by
@@ -114,6 +120,9 @@ noncomputable def Basis.baseChangeRight (b : Basis ι K Left) : Basis ι Right (
   -- We now call our helper with explicit arguments.
   exact (b.baseChange Right).map (commSEquiv (Right:=Right) (Left:=Left))
 
+/--
+@isnad1 id=eq.0h8v.s10.a63b3196b328 from=translated src=- shape=047c2440 vocab=b6ff68ec
+-/
 lemma Basis.baseChangeRight_repr_tmul (b : Basis ι K Left) (x y i) :
     (Basis.baseChangeRight (b:=b) (Right:=Right)).repr (x ⊗ₜ y) i = b.repr x i • y := by
   rw [Basis.baseChangeRight]
@@ -123,6 +132,9 @@ lemma Basis.baseChangeRight_repr_tmul (b : Basis ι K Left) (x y i) :
     LinearEquiv.trans_apply, LinearEquiv.coe_symm_mk, Algebra.TensorProduct.comm_tmul,
     Basis.baseChange_repr_tmul]
 
+/--
+@isnad1 id=eq.0h6v.s8.20527a10cd03 from=translated src=- shape=0c24f7bf vocab=e81f0f0b
+-/
 @[simp]
 lemma Basis.baseChangeRight_apply (b : Basis ι K Left) (i : ι) :
     (Basis.baseChangeRight (b:=b) (Right:=Right)) i = b i ⊗ₜ[K] 1 := by

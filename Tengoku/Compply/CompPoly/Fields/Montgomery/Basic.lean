@@ -24,7 +24,9 @@ Word-specific implementations refine these results in sibling modules.
 namespace Montgomery
 
 /-- The Montgomery divisibility identity: if `(negInv * p) % R = R - 1` (i.e.
-`negInv = -p⁻¹ mod R`), then `R ∣ x + ((x mod R)·negInv mod R)·p` for every `x`.-/
+`negInv = -p⁻¹ mod R`), then `R ∣ x + ((x mod R)·negInv mod R)·p` for every `x`.
+@isnad1 id=dvd.2h4v.s6.4ad6f16c3d22 from=translated src=- shape=e8913df8 vocab=fa1cbd68
+-/
 theorem dvd_add (R p negInv : ℕ) (hR : 0 < R)
     (hnegInv : negInv * p % R = R - 1) (x : ℕ) :
     R ∣ x + ((x % R * negInv) % R) * p := by

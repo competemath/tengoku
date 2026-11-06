@@ -25,9 +25,15 @@ section Prelude
 
 -- Some missing theorems about `cast` and `congrArg`
 
+/--
+@isnad1 id=iff.2h5v.s5.c0a4eb8cc570 from=translated src=- shape=3776f1b6 vocab=a550bca0
+-/
 theorem cast_eq_cast_iff {α β γ : Sort u} {h : α = γ} {h' : β = γ} {a : α} {b : β} :
     cast h a = cast h' b ↔ a = cast (h'.trans h.symm) b := by cases h'; cases h; simp
 
+/--
+@isnad1 id=iff.1h4v.s4.07bd93ec1a58 from=translated src=- shape=9825eedc vocab=830205cc
+-/
 theorem cast_symm {α β : Sort u} {h : α = β} {a : α} {b : β} :
     cast h a = b ↔ a = cast h.symm b := by
   cases h; simp
@@ -54,25 +60,43 @@ instance (priority := low) : DCast α β where
   dcast h := cast (congrArg β h)
   dcast_id := by intro a; funext b; simp only [cast_eq, id_eq]
 
+/--
+@isnad1 id=eq.0h4v.s4.13d0db850506 from=translated src=- shape=a14ce85c vocab=07290b4c
+-/
 @[simp]
 theorem dcast_eq : dcast (Eq.refl a) b = b := by
   simp
 
+/--
+@isnad1 id=eq.2h6v.s5.b110ad7cc0b8 from=translated src=- shape=8f7c2dfe vocab=1ae34964
+-/
 theorem dcast_symm (ha : a = a') (hb : dcast ha b = b') : dcast (ha.symm) b' = b := by
   cases ha; cases hb; simp
 
+/--
+@isnad1 id=eq.2h6v.s5.5856e9c18fb4 from=translated src=- shape=52e3df37 vocab=9d003c66
+-/
 @[simp]
 theorem dcast_trans (h : a = a') (h' : a' = a'') :
     dcast h' (dcast h b) = dcast (h.trans h') b := by
   cases h; cases h'; simp
 
+/--
+@isnad1 id=iff.2h7v.s6.b776375298fe from=translated src=- shape=2d30f242 vocab=47519c05
+-/
 theorem dcast_eq_dcast_iff (h : a = a'') (h' : a' = a'') :
     dcast h b = dcast h' b' ↔ b = dcast (h'.trans h.symm) b' := by
   cases h; cases h'; simp
 
+/--
+@isnad1 id=heq.2h6v.s5.40be919285ec from=translated src=- shape=a2320859 vocab=f97a86f4
+-/
 theorem heq_of_dcast (ha : a = a') (hb : dcast ha b = b') : HEq b b' := by
   cases ha; cases hb; simp
 
+/--
+@isnad1 id=eq.0h6v.s6.d3df2dabe48e from=translated src=- shape=3e534c16 vocab=2e6265f6
+-/
 theorem dcast_fun {γ : (a : α) → β a → Sort*} {f : (b : β a) → γ a b} :
     f (dcast rfl b) = dcast (α := β a) (β := γ a) dcast_eq.symm (f b) := by
   rw! [dcast_eq]
@@ -80,6 +104,9 @@ theorem dcast_fun {γ : (a : α) → β a → Sort*} {f : (b : β a) → γ a b}
 
 -- TODO: figure out the most general form of these composition / naturality theorems
 
+/--
+@isnad1 id=eq.1h5v.s5.91945dacb171 from=translated src=- shape=5eeb73e0 vocab=a1e909d7
+-/
 theorem dcast_eq_root_cast (h : a = a') : dcast h b = _root_.cast (congrArg β h) b := by
   cases h; simp
 
@@ -110,14 +137,23 @@ instance (priority := low) : DCast₂ α β γ where
     cases ha; simp at hb; cases hb; rfl
   dcast₂_id := by intros; rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.2ef22e35f724 from=translated src=- shape=e1c3d0f9 vocab=42061355
+-/
 @[simp]
 theorem dcast₂_eq : dcast₂ (Eq.refl a) dcast_eq c = c := by
   simp
 
+/--
+@isnad1 id=eq.2h6v.s6.4cf53d053c1c from=translated src=- shape=7709cd7c vocab=8b486a58
+-/
 @[simp]
 theorem dcast₂_eq' (h : a = a) (h' : dcast h b = b) : dcast₂ h h' c = c := by
   cases h; simp
 
+/--
+@isnad1 id=eq.4h10v.s7.6c77ba05bd08 from=translated src=- shape=f1de7054 vocab=88d5e85a
+-/
 @[simp]
 theorem dcast₂_trans (ha : a = a') (ha' : a' = a'')
     (hb : dcast ha b = b') (hb' : dcast ha' b' = b'') :
@@ -178,10 +214,16 @@ instance (priority := low) : DCast₃ α β γ δ where
     cases ha; simp at hb; cases hb; simp at hc; cases hc; rfl
   dcast₃_id := by intros; rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.734f9b892218 from=translated src=- shape=bc2787b3 vocab=fcd4b9cc
+-/
 @[simp]
 theorem dcast₃_eq : dcast₃ (Eq.refl a) dcast_eq dcast₂_eq d = d := by
   simp
 
+/--
+@isnad1 id=eq.6h14v.s7.0495cd7737cf from=translated src=- shape=e9f18aef vocab=5d8a5156
+-/
 @[simp]
 theorem dcast₃_trans (ha : a = a') (ha' : a' = a'')
     (hb : dcast ha b = b') (hb' : dcast ha' b' = b'')

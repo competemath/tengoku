@@ -23,11 +23,17 @@ namespace Array
 
 variable {α : Type*} {unit : α}
 
+/--
+@isnad1 id=eq.0h4v.s4.0c532978d831 from=translated src=- shape=14cd7e17 vocab=30e4fe5e
+-/
 lemma rightpad_toList {a : Array α} {n : Nat} {unit : α} :
     a.rightpad n unit = mk (a.toList.rightpad n unit) := by
   cases a
   simp
 
+/--
+@isnad1 id=eq.1h5v.s5.fa9fdb69394c from=translated src=- shape=88aa94d6 vocab=e7adcad1
+-/
 lemma rightpad_getElem_eq_getD {a : Array α} {n : Nat} {unit : α} {i : Nat}
     (h : i < (a.rightpad n unit).size) : (a.rightpad n unit)[i] = a.getD i unit := by
   simp_rw [rightpad_toList] at h ⊢
@@ -62,7 +68,9 @@ where
       else
         find ⟨ i, Nat.lt_of_succ_lt h ⟩
 
-/-- if findIdxRev? finds an index, the condition is satisfied on that element-/
+/-- if findIdxRev? finds an index, the condition is satisfied on that element
+@isnad1 id=eq.1h4v.s6.66409a980d40 from=translated src=- shape=20c58303 vocab=d729790e
+-/
 lemma findIdxRev?_def {cond} {as : Array α} {k : Fin as.size} :
     findIdxRev? cond as = some k → cond as[k] := by
   suffices aux : ∀ i, findIdxRev?.find cond as i = some k → cond as[k] by apply aux
@@ -73,7 +81,9 @@ lemma findIdxRev?_def {cond} {as : Array α} {k : Fin as.size} :
   | case2 => simp [*]; rintro rfl; assumption
   | case3 => unfold findIdxRev?.find; simp [*]; assumption
 
-/-- if findIdxRev? finds an index, then for every greater index the condition doesn't hold-/
+/-- if findIdxRev? finds an index, then for every greater index the condition doesn't hold
+@isnad1 id=not.2h5v.s6.36e10c02764c from=translated src=- shape=a2dde431 vocab=09972d88
+-/
 lemma findIdxRev?_maximal {cond} {as : Array α} {k : Fin as.size} :
     findIdxRev? cond as = some k → ∀ j : Fin as.size, j > k → ¬ cond as[j] := by
   suffices aux : ∀ i, findIdxRev?.find cond as i = some k →
@@ -98,7 +108,9 @@ lemma findIdxRev?_maximal {cond} {as : Array α} {k : Fin as.size} :
       rwa [Bool.not_eq_true] at ih
     · simp only [not_true]
 
-/-- if the condition is false on all elements, then findIdxRev? finds nothing-/
+/-- if the condition is false on all elements, then findIdxRev? finds nothing
+@isnad1 id=eq.1h3v.s5.c66946d1b6b0 from=translated src=- shape=bd0b6543 vocab=97027010
+-/
 lemma findIdxRev?_eq_none {cond} {as : Array α} (h : ∀ i, (hi : i < as.size) → ¬ cond as[i]) :
     findIdxRev? cond as = none := by
   apply aux
@@ -116,13 +128,18 @@ where
       -- recursively invoke the theorem we are proving!
       apply aux
 
+/--
+@isnad1 id=eq.1h3v.s5.2add565890dd from=translated src=- shape=d535121d vocab=913eefb7
+-/
 lemma findIdxRev?_empty_none {cond} {as : Array α} (h : as = #[]) :
     findIdxRev? cond as = none := by
   rw [h]
   apply findIdxRev?_eq_none
   simp
 
-/-- if the condition is true on some element, then findIdxRev? finds something-/
+/-- if the condition is true on some element, then findIdxRev? finds something
+@isnad1 id=ex.1h3v.s6.bdcee83b8539 from=translated src=- shape=e85a1ba0 vocab=a6c25f39
+-/
 lemma findIdxRev?_eq_some {cond} {as : Array α} (h : ∃ i, ∃ hi : i < as.size, cond as[i]) :
     ∃ k : Fin as.size, findIdxRev? cond as = some k := by
   obtain ⟨ i, hi, hcond ⟩ := h

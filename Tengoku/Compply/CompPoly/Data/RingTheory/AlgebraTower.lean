@@ -46,13 +46,17 @@ variable {ι : Type*} [Preorder ι]
   {B : ι → Type*} [∀ i, CommSemiring (B i)] [AlgebraTower B]
   {C : ι → Type*} [∀ i, CommSemiring (C i)] [AlgebraTower C]
 
-/-- The tower map from level `i` to itself is the identity for every proof of `i ≤ i`.-/
+/-- The tower map from level `i` to itself is the identity for every proof of `i ≤ i`.
+@isnad1 id=eq.1h3v.s6.c21abba8ae34 from=translated src=- shape=958e85b2 vocab=0e3e550d
+-/
 @[simp]
 lemma AlgebraTower.algebraMap_self (i : ι) (h : i ≤ i) :
     AlgebraTower.algebraMap (AT := A) i i h = RingHom.id (A i) :=
   AlgebraTower.algebraMap_self' i
 
-/-- The tower map from level `i` to itself fixes every element of that level.-/
+/-- The tower map from level `i` to itself fixes every element of that level.
+@isnad1 id=eq.1h4v.s6.327237b1a41b from=translated src=- shape=af7f6c4c vocab=7f4829dd
+-/
 lemma AlgebraTower.algebraMap_self_apply (i : ι) (h : i ≤ i) (x : A i) :
     AlgebraTower.algebraMap (AT := A) i i h x = x := by
   rw [AlgebraTower.algebraMap_self, RingHom.id_apply]
@@ -61,6 +65,9 @@ lemma AlgebraTower.algebraMap_self_apply (i : ι) (h : i ≤ i) (x : A i) :
 abbrev AlgebraTower.toAlgebra {i j : ι} (h : i ≤ j) : Algebra (A i) (A j) :=
   (AlgebraTower.algebraMap (i:=i) (j:=j) (h:=h)).toAlgebra
 
+/--
+@isnad1 id=isscalar.2h6v.s7.08d488861c2f from=translated src=- shape=6bad97c5 vocab=b13e853b
+-/
 @[simp]
 instance AlgebraTower.toIsScalarTower (a : AlgebraTower C) {i j k : ι}
     (h1 : i ≤ j) (h2 : j ≤ k) :
@@ -91,6 +98,9 @@ structure AlgebraTowerEquiv (A : ι → Type*) [∀ i, CommSemiring (A i)] [a : 
       (b.algebraMap (i:=i) (j:=j) (h:=h)) ((toRingEquiv i) r) =
       (toRingEquiv j) (a.algebraMap (i:=i) (j:=j) (h:=h) r)
 
+/--
+@isnad1 id=eq.1h7v.s9.fb71cf7b9bc7 from=translated src=- shape=8de9e4e7 vocab=53955731
+-/
 lemma AlgebraTowerEquiv.commutesRight' (e : AlgebraTowerEquiv A B)
     {i j : ι} (h : i ≤ j) (r : B i) :
   AlgebraTower.algebraMap (AT:=A) (i:=i) (j:=j) (h:=h) ((e.toRingEquiv i).symm r) =

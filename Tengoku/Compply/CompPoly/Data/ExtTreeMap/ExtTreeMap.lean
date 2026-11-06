@@ -43,6 +43,9 @@ variable {k : α} {m m₁ m₂ : Std.ExtTreeMap α β cmp} {f : α → β → β
 variable [TransCmp cmp] [LawfulEqCmp cmp]
 
 -- Pointwise characterization of `mergeWith` on optional access at a key.
+/--
+@isnad1 id=eq.0h7v.s7.498954427f92 from=translated src=- shape=abff2c36 vocab=8da2be81
+-/
 theorem getElem?_mergeWith_at
     {m₁ m₂ : ExtTreeMap α β cmp} {f : α → β → β → β} {k : α} :
   (m₁.mergeWith f m₂)[k]? =
@@ -69,6 +72,9 @@ theorem getElem?_mergeWith_at
           cases h₂ : DTreeMap.Const.get? t₂ k <;>
           simp only [mergeValues, DTreeMap.Const.get?_mergeWith, h₁, h₂]
 
+/--
+@isnad1 id=eq.2h7v.s7.2b3eb303fca2 from=translated src=- shape=5ef790eb vocab=3478e3ea
+-/
 lemma mergeWith_of_mem_mem (h₁ : k ∈ m₁) (h₂ : k ∈ m₂) :
     (m₁.mergeWith f m₂)[k]? = .some (f k m₁[k] m₂[k]) := by
   have h₁' : m₁[k]? = .some m₁[k] :=
@@ -77,6 +83,9 @@ lemma mergeWith_of_mem_mem (h₁ : k ∈ m₁) (h₂ : k ∈ m₂) :
     getElem?_eq_some_getElem (t := m₂) (a := k) h₂
   simp only [getElem?_mergeWith_at, h₁', h₂']
 
+/--
+@isnad1 id=eq.2h7v.s7.1c724bbbc611 from=translated src=- shape=71959c55 vocab=b0561a72
+-/
 lemma mergeWith_of_mem_left (h₁ : k ∈ m₁) (h₂ : k ∉ m₂) :
     (m₁.mergeWith f m₂)[k]? = m₁[k]? := by
   have h₁' : m₁[k]? = .some m₁[k] :=
@@ -85,6 +94,9 @@ lemma mergeWith_of_mem_left (h₁ : k ∈ m₁) (h₂ : k ∉ m₂) :
     getElem?_eq_none (t := m₂) (a := k) h₂
   simp only [getElem?_mergeWith_at, h₁', h₂']
 
+/--
+@isnad1 id=eq.2h7v.s7.c4891741a376 from=translated src=- shape=3836ad0a vocab=b0561a72
+-/
 lemma mergeWith_of_mem_right (h₁ : k ∉ m₁) (h₂ : k ∈ m₂) :
     (m₁.mergeWith f m₂)[k]? = m₂[k]? := by
   have h₁' : m₁[k]? = .none :=
@@ -93,6 +105,9 @@ lemma mergeWith_of_mem_right (h₁ : k ∉ m₁) (h₂ : k ∈ m₂) :
     getElem?_eq_some_getElem (t := m₂) (a := k) h₂
   simp only [getElem?_mergeWith_at, h₁', h₂']
 
+/--
+@isnad1 id=eq.2h7v.s6.9f940c655c20 from=translated src=- shape=f4cad81f vocab=08e72048
+-/
 lemma mergeWith_of_not_mem (h₁ : k ∉ m₁) (h₂ : k ∉ m₂) :
     (m₁.mergeWith f m₂)[k]? = .none := by
   have h₁' : m₁[k]? = .none :=
