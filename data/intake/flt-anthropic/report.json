@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "42b74c8c0210528b0ad0beec2b555de2d7bfb38e6905a54566e4f7461d737cf8",
+ "gate2_unjudged": [],
+ "library": "flt-anthropic",
+ "lint_mode": "proposed",
+ "modules": 99,
+ "part": 1,
+ "theorems": 116
+}
