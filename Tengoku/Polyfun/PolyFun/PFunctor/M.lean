@@ -46,7 +46,9 @@ variable {P : PFunctor.{uA, uB}} {α : Type v}
 
 /-- `M.dest_corec` with the result `Sigma` unpacked. The shape of `M.dest`'s
 output is `(g x).1`; the children component, after applying the `PFunctor.map`
-on the RHS of `M.dest_corec`, is `M.corec g ∘ (g x).2`.-/
+on the RHS of `M.dest_corec`, is `M.corec g ∘ (g x).2`.
+@isnad1 id=eq.0h4v.s6.8541138cb473 from=translated src=- shape=2157bdac vocab=8b8d5a5a
+-/
 theorem dest_corec_apply (g : α → P α) (x : α) :
     M.dest (M.corec g x) = ⟨(g x).1, fun b => M.corec g ((g x).2 b)⟩ := by
   rw [M.dest_corec]

@@ -146,13 +146,22 @@ export LawfulComonad (map_eq_extend_extract extend_extract extract_extend extend
 section LawfulnessProofs
 variable {w : Type u → Type v} [Comonad w] [LawfulComonad w]
 
+/--
+@isnad1 id=eq.0h3v.s5.d67b199c1249 from=translated src=- shape=bd69cac0 vocab=70711cd9
+-/
 theorem comonad_id_map {α : Type u} (wa : w α) : Functor.map id wa = wa :=
   id_map wa
 
+/--
+@isnad1 id=eq.0h7v.s6.209b85560f16 from=translated src=- shape=086d07bd vocab=a1ec3c10
+-/
 @[simp] theorem comonad_comp_map {α β γ : Type u} (f : β → γ) (g : α → β) (wa : w α) :
     Functor.map (f ∘ g) wa = Functor.map f (Functor.map g wa) :=
   comp_map g f wa
 
+/--
+@isnad1 id=eq.0h5v.s5.521f9d4a7acb from=translated src=- shape=4278d538 vocab=d59eb031
+-/
 @[simp] theorem extract_map {α β : Type u} (f : α → β) (wa : w α) :
     extract (Functor.map f wa) = f (extract wa) := by
   rw [map_eq_extend_extract, extract_extend, Function.comp_apply]
@@ -174,19 +183,31 @@ def duplicate {α : Type u} (wa : w α) : w (w α) :=
 variable [LawfulComonad w]
 variable {α : Type u} (wa : w α)
 
+/--
+@isnad1 id=eq.0h3v.s5.1cc7ea424af8 from=translated src=- shape=062c1ca2 vocab=43405045
+-/
 theorem extract_duplicate_eq_id : extract (duplicate wa) = wa :=
   extract_extend wa id
 
+/--
+@isnad1 id=eq.0h3v.s5.d15459464527 from=translated src=- shape=7d1b4b08 vocab=4582cb8e
+-/
 theorem map_extract_duplicate_eq_id : Functor.map extract (duplicate wa) = wa := by
   rw [duplicate, map_eq_extend_extract, extend_assoc]
   simp only [Function.comp_apply, extract_extend, id_def]
   rw [extend_extract]
 
+/--
+@isnad1 id=eq.0h5v.s5.8456d9130076 from=translated src=- shape=01bbb692 vocab=d3c048f9
+-/
 theorem extend_eq_map_duplicate {β : Type u} (f : w α → β) :
     extend wa f = Functor.map f (duplicate wa) := by
   rw [duplicate, map_eq_extend_extract, extend_assoc]
   simp only [Function.comp_apply, extract_extend, id_def]
 
+/--
+@isnad1 id=eq.0h3v.s5.d1d567e489b7 from=translated src=- shape=37531ff2 vocab=7083df5b
+-/
 theorem duplicate_duplicate_eq_map_duplicate :
     duplicate (duplicate wa) = Functor.map duplicate (duplicate wa) := by
   have h_lhs : duplicate (duplicate wa) = extend wa duplicate := by
