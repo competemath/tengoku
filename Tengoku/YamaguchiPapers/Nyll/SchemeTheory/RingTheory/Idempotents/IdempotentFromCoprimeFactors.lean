@@ -32,7 +32,9 @@ universe u v
 namespace Algebra
 
 /-- Coprime factors reducing to `(X - 1) ^ n` and `X ^ n` construct a lift
-of a quotient idempotent by evaluating a Bézout identity.-/
+of a quotient idempotent by evaluating a Bézout identity.
+@isnad1 id=ex.6h7v.s11.8ec6b86f09a7 from=translated src=- shape=0cc430b5 vocab=042e494b
+-/
 theorem exists_idempotent_lift_of_coprime_polynomial_factors
     {R : Type u} {B : Type v} [CommRing R] [CommRing B] [Algebra R B]
     (I : Ideal R) (b : B)

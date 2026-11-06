@@ -36,7 +36,9 @@ open KummerTheory ValuationTheory.DiscreteValuationField
 -- characteristic, Galoisness and nontriviality propositions are added locally.
 /-- A mixed-characteristic discrete valuation and the original prime-degree
 extension produce a last root level and, in the roots-downstairs branch, an
-actual invariant character moved by an internally selected automorphism.-/
+actual invariant character moved by an internally selected automorphism.
+@isnad1 id=ex.1h6v.s17.bb0fe8a0c9d6 from=translated src=- shape=cbd5aeee vocab=438fd3de
+-/
 theorem exists_lastLevel_invariant_moved_cyclotomicKummerTrace
     (F K L E : Type*) [Field F] [Field K] [Field L] [Field E]
     [Algebra F K] [Algebra F L] [Algebra F E] [Algebra K E] [Algebra L E]

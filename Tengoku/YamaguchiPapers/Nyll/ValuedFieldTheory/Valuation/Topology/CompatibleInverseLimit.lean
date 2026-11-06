@@ -97,7 +97,9 @@ def compatibleGroupFamiliesEval
     compatibleGroupFamilies G transition →* G i :=
   (Pi.evalMonoidHom G i).comp (compatibleGroupFamilies G transition).subtype
 
-/-- Evaluation of a compatible group family returns its component at the chosen index.-/
+/-- Evaluation of a compatible group family returns its component at the chosen index.
+@isnad1 id=eq.0h5v.s10.fd0dcf10330b from=translated src=- shape=adca65e5 vocab=13719ef8
+-/
 @[simp]
 theorem compatibleGroupFamiliesEval_apply
     {ι : Type*} [Preorder ι] (G : ι → Type*) [∀ i, Group (G i)]
@@ -106,7 +108,9 @@ theorem compatibleGroupFamiliesEval_apply
     compatibleGroupFamiliesEval G transition i x = x.1 i :=
   rfl
 
-/-- The named compatibility law for an inverse-limit family.-/
+/-- The named compatibility law for an inverse-limit family.
+@isnad1 id=eq.1h6v.s11.93783a83de17 from=translated src=- shape=50624f6e vocab=a82dfb70
+-/
 theorem compatibleGroupFamilies_transition
     {ι : Type*} [Preorder ι] (G : ι → Type*) [∀ i, Group (G i)]
     (transition : ∀ {i j : ι}, i ≤ j → G j →* G i)
@@ -116,7 +120,9 @@ theorem compatibleGroupFamilies_transition
   x.2 hij
 
 /-- Compatible families are equal when all named coordinate evaluations
-agree.-/
+agree.
+@isnad1 id=eq.1h5v.s11.8693b90afe63 from=translated src=- shape=29d6f729 vocab=a82dfb70
+-/
 @[ext]
 theorem compatibleGroupFamilies_ext
     {ι : Type*} [Preorder ι] (G : ι → Type*) [∀ i, Group (G i)]

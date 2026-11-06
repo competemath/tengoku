@@ -32,12 +32,18 @@ def henselFactorization_henselIterate {R : Type*} [CommRing R]
       henselFactorization_henselIterate π F0 corr n +
         Polynomial.C (π ^ (n + 1)) * corr (n + 1)
 
+/--
+@isnad1 id=eq.0h4v.s5.623bfc434902 from=translated src=- shape=9f86e5b5 vocab=bc3c8a07
+-/
 @[simp]
 theorem henselFactorization_henselIterate_zero
     {R : Type*} [CommRing R] (π : R) (F0 : R[X]) (corr : ℕ → R[X]) :
     henselFactorization_henselIterate π F0 corr 0 = F0 :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.c43236639156 from=translated src=- shape=51f7656f vocab=466bb027
+-/
 @[simp]
 theorem henselFactorization_henselIterate_succ
     {R : Type*} [CommRing R] (π : R) (F0 : R[X]) (corr : ℕ → R[X])
@@ -49,7 +55,9 @@ theorem henselFactorization_henselIterate_succ
 
 /-- every recursive iterate is congruent to its initial lift
 modulo `(π)`.  This is built into the update formula and does not require
-`(π)` to be the maximal ideal.-/
+`(π)` to be the maximal ideal.
+@isnad1 id=mem.0h6v.s7.3575743790cd from=translated src=- shape=5c0e50a7 vocab=9dc4bd22
+-/
 theorem henselFactorization_henselIterate_span_singleton
     {R : Type*} [CommRing R] {π : R}
     (F0 : R[X]) (corr : ℕ → R[X]) :
@@ -72,7 +80,9 @@ theorem henselFactorization_henselIterate_span_singleton
           (Nat.succ_pos n) ih i)
 
 /-- changing a correction coefficient at a later index does
-not change an earlier Hensel iterate.-/
+not change an earlier Hensel iterate.
+@isnad1 id=eq.1h7v.s6.76054f43f46b from=translated src=- shape=951542ce vocab=ba7cb632
+-/
 theorem henselFactorization_henselIterate_update_of_lt
     {R : Type*} [CommRing R] (π : R) (F0 : R[X])
     (corr : ℕ → R[X]) {n k : ℕ} (c : R[X]) (h : n < k) :
@@ -90,7 +100,9 @@ theorem henselFactorization_henselIterate_update_of_lt
       rw [Function.update_of_ne hne]
 
 /-- extending the correction sequence at the next index gives
-the expected next Hensel iterate.-/
+the expected next Hensel iterate.
+@isnad1 id=eq.0h6v.s8.bf1b4bea15b4 from=translated src=- shape=cb3bbfae vocab=07cf34f0
+-/
 theorem henselFactorization_henselIterate_update_next
     {R : Type*} [CommRing R] (π : R) (F0 : R[X])
     (corr : ℕ → R[X]) (n : ℕ) (c : R[X]) :
@@ -104,7 +116,9 @@ theorem henselFactorization_henselIterate_update_next
   rw [Function.update_self]
 
 /-- updating the correction functions at `n+1` preserves all
-factorization invariants already established up to stage `n`.-/
+factorization invariants already established up to stage `n`.
+@isnad1 id=eq.2h12v.s9.63ad5c8fbc79 from=translated src=- shape=8e3435d0 vocab=e61028f3
+-/
 theorem henselFactorization_henselIterate_update_preserves_factor_of_le
     {R : Type*} [CommRing R] {π : R}
     {f g0 h0 : R[X]} (pCorr qCorr : ℕ → R[X])
@@ -126,7 +140,9 @@ theorem henselFactorization_henselIterate_update_preserves_factor_of_le
   exact hfactor
 
 /-- the one-step factorization statement rewritten in terms
-of the updated Hensel iterates.-/
+of the updated Hensel iterates.
+@isnad1 id=eq.1h11v.s9.e431ff3a9b17 from=translated src=- shape=4053a813 vocab=2d22c2d3
+-/
 theorem henselFactorization_henselIterate_update_next_factor
     {R : Type*} [CommRing R] {π : R}
     {f g0 h0 : R[X]} (pCorr qCorr : ℕ → R[X])
@@ -150,7 +166,9 @@ theorem henselFactorization_henselIterate_update_next_factor
 
 /-- a global correction-degree bound is preserved when one
 correction coefficient is replaced by another coefficient satisfying the same
-bound.-/
+bound.
+@isnad1 id=le.2h6v.s6.8e62e21aaa29 from=translated src=- shape=d63021b9 vocab=71575454
+-/
 theorem henselFactorization_update_corr_natDegree_le
     {R : Type*} [CommRing R] {corr : ℕ → R[X]} {k M : ℕ} {c : R[X]}
     (hcorr : ∀ r : ℕ, (corr r).natDegree ≤ M)

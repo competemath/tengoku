@@ -23,7 +23,9 @@ corresponding integer sequence using `padicValNat` therefore attains a minimum.
 namespace LocalFieldTheory.DiscreteValuationField
 
 /-- The logarithmic denominator estimate has an integer lower bound uniform in
-the series index. This arithmetic statement does not require `p` to be prime.-/
+the series index. This arithmetic statement does not require `p` to be prime.
+@isnad1 id=ex.0h2v.s6.39b95e11a7fb from=translated src=- shape=5ee7b547 vocab=f1a83c4e
+-/
 theorem exists_int_lt_log_denominator_bound (p e : ℕ) :
     ∃ b : ℤ, ∀ n : ℕ,
       (b : ℝ) < ((n + 1 : ℕ) : ℝ) -
@@ -40,7 +42,9 @@ theorem exists_int_lt_log_denominator_bound (p e : ℕ) :
   exact ⟨b, fun n => hb.trans_le (hc (Set.mem_range_self n))⟩
 
 /-- The exact integer denominator estimate attains a minimum at some series
-index, with the lower bound constructed from logarithmic domination.-/
+index, with the lower bound constructed from logarithmic domination.
+@isnad1 id=ex.0h2v.s6.38a93f45d404 from=translated src=- shape=7f1881ea vocab=1dfe5a32
+-/
 theorem exists_log_denominator_min (p e : ℕ) [Fact p.Prime] :
     ∃ m : ℕ, ∀ n : ℕ,
       ((m + 1 : ℕ) : ℤ) - (e : ℤ) * (padicValNat p (m + 1) : ℤ) ≤

@@ -82,6 +82,9 @@ def absoluteValueExponentialValuation
         (((LubinTate.Valuations.strong_triangle_of_nonarchimedean abv hnonarch)
           x y).trans (max_eq_left hyx).le)
 
+/--
+@isnad1 id=eq.2h3v.s6.d1066be5f5b2 from=translated src=- shape=c24f980f vocab=d02a9889
+-/
 @[simp] theorem absoluteValueExponentialValuation_apply_ne_zero
     (abv : AbsoluteValue K ℝ) (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue abv)
     {x : K} (hx : x ≠ 0) :

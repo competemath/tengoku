@@ -29,6 +29,9 @@ section ProofImplementation
 namespace AlgebraicCurves.Foundations.CommutativeAlgebra.Proofs
 namespace isRegularLocalRing_localization_atPrime_of_isStandardSmooth
 
+/--
+@isnad1 id=isregula.0h3v.s6.85c287a6e98d from=translated src=- shape=aff9a903 vocab=e34cf456
+-/
 theorem _root_.isRegularLocalRing_localization_atPrime_of_isStandardSmooth
     (k B : Type*) [Field k] [CommRing B] [Algebra k B]
     [Algebra.IsStandardSmooth k B] (q : Ideal B) [q.IsPrime] :

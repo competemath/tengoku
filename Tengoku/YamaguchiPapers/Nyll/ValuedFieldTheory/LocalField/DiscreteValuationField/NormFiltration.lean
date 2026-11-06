@@ -50,7 +50,9 @@ def mapLevelOfMapsFiltrationLevels
 
 /--
 The defining evaluation formula for `mapLevelOfMapsFiltrationLevels` is
-`(mapLevelOfMapsFiltrationLevels N UG UH targetLevel hN n x : G) = N.toHom x.1`.-/
+`(mapLevelOfMapsFiltrationLevels N UG UH targetLevel hN n x : G) = N.toHom x.1`.
+@isnad1 id=eq.1h10v.s9.b56f98efa87c from=translated src=- shape=9616fcc0 vocab=ffb5cdff
+-/
 @[simp] theorem mapLevelOfMapsFiltrationLevels_apply
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     (x : UH.principalUnitSubgroup n) :
@@ -73,7 +75,9 @@ def quotientMapOfMapsFiltrationLevels
 /--
 The defining evaluation formula for `quotientMapOfMapsFiltrationLevels` is
 `quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n (QuotientGroup.mk x) =
-QuotientGroup.mk (N.toHom x)`.-/
+QuotientGroup.mk (N.toHom x)`.
+@isnad1 id=eq.1h10v.s9.433a65899f9a from=translated src=- shape=47069901 vocab=63d8e974
+-/
 @[simp] theorem quotientMapOfMapsFiltrationLevels_apply_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -86,7 +90,9 @@ QuotientGroup.mk (N.toHom x)`.-/
 /--
 Establishes the identity `quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n
 (QuotientGroup.mk' (UH.principalUnitSubgroup n) x) = QuotientGroup.mk' (UG.principalUnitSubgroup
-(targetLevel n)) (N.toHom x)`.-/
+(targetLevel n)) (N.toHom x)`.
+@isnad1 id=eq.1h10v.s9.2e57bbe154bf from=translated src=- shape=66fd7e0f vocab=7456ad83
+-/
 @[simp] theorem quotientMapOfMapsFiltrationLevels_apply_mk'
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -103,13 +109,17 @@ def filtrationPreimageSubgroup (n : ℕ) : Subgroup H :=
 
 /--
 Characterizes `x ∈ N.filtrationPreimageSubgroup UG targetLevel n` by the equivalent condition
-`N.toHom x ∈ UG.principalUnitSubgroup (targetLevel n)`.-/
+`N.toHom x ∈ UG.principalUnitSubgroup (targetLevel n)`.
+@isnad1 id=iff.0h9v.s7.82ff572f3fa0 from=translated src=- shape=c79c8047 vocab=f4607d25
+-/
 @[simp] theorem mem_filtrationPreimageSubgroup_iff (n : ℕ) (x : H) :
     x ∈ N.filtrationPreimageSubgroup UG targetLevel n ↔
       N.toHom x ∈ UG.principalUnitSubgroup (targetLevel n) :=
   Iff.rfl
 
-/-- The subgroup appearing in `(N.filtrationPreimageSubgroup UG targetLevel n).Normal` is normal.-/
+/-- The subgroup appearing in `(N.filtrationPreimageSubgroup UG targetLevel n).Normal` is normal.
+@isnad1 id=normal.0h8v.s5.8e51f6aa5db0 from=translated src=- shape=0f3170f9 vocab=dcd9481d
+-/
 instance filtrationPreimageSubgroup_normal
     (n : ℕ) [(UG.principalUnitSubgroup (targetLevel n)).Normal] :
     (N.filtrationPreimageSubgroup UG targetLevel n).Normal := by
@@ -126,7 +136,9 @@ def filtrationPreimageClassInQuotient (n : ℕ)
 
 /--
 The subgroup appearing in `(N.filtrationPreimageClassInQuotient UG UH targetLevel n).Normal` is
-normal.-/
+normal.
+@isnad1 id=normal.0h9v.s6.69f78cfe825a from=translated src=- shape=222b7a18 vocab=1b52d04d
+-/
 instance filtrationPreimageClassInQuotient_normal
     (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -136,7 +148,9 @@ instance filtrationPreimageClassInQuotient_normal
   infer_instance
 
 /-- The kernel of the quotient norm map is the class of the preimage of the
-target filtration subgroup in the source quotient.-/
+target filtration subgroup in the source quotient.
+@isnad1 id=eq.1h9v.s7.62fac7670b57 from=translated src=- shape=94dadb85 vocab=0220a696
+-/
 theorem quotientMapOfMapsFiltrationLevels_ker_eq_filtrationPreimageClass
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -164,7 +178,9 @@ noncomputable def quotientModuloFiltrationPreimageClassEquivRange
 /--
 Establishes the identity `N.quotientModuloFiltrationPreimageClassEquivRange UG UH targetLevel hN n
 (QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel n) q) =
-(quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n).rangeRestrict q`.-/
+(quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n).rangeRestrict q`.
+@isnad1 id=eq.1h10v.s12.b2c81df095c3 from=translated src=- shape=f267d1da vocab=25405cf0
+-/
 @[simp] theorem quotientModuloFiltrationPreimageClassEquivRange_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -181,7 +197,9 @@ Establishes the identity `N.quotientModuloFiltrationPreimageClassEquivRange UG U
 Establishes the identity `N.quotientModuloFiltrationPreimageClassEquivRange UG UH targetLevel hN n
 (QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel n) (QuotientGroup.mk'
 (UH.principalUnitSubgroup n) x)) = (quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN
-n).rangeRestrict (QuotientGroup.mk' (UH.principalUnitSubgroup n) x)`.-/
+n).rangeRestrict (QuotientGroup.mk' (UH.principalUnitSubgroup n) x)`.
+@isnad1 id=eq.1h10v.s12.c5d408828d01 from=translated src=- shape=09927972 vocab=25405cf0
+-/
 @[simp] theorem quotientModuloFiltrationPreimageClassEquivRange_mk_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -199,7 +217,9 @@ n).rangeRestrict (QuotientGroup.mk' (UH.principalUnitSubgroup n) x)`.-/
 Establishes the identity `((N.quotientModuloFiltrationPreimageClassEquivRange UG UH targetLevel hN
 n (QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel n) q) :
 (quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n).range) : G ⧸ UG.principalUnitSubgroup
-(targetLevel n)) = quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n q`.-/
+(targetLevel n)) = quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n q`.
+@isnad1 id=eq.1h10v.s12.76762996e160 from=translated src=- shape=8953b14b vocab=816e586a
+-/
 @[simp] theorem coe_quotientModuloFiltrationPreimageClassEquivRange_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -221,7 +241,9 @@ Establishes the identity `((N.quotientModuloFiltrationPreimageClassEquivRange UG
 n (QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel n) (QuotientGroup.mk'
 (UH.principalUnitSubgroup n) x)) : (quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN
 n).range) : G ⧸ UG.principalUnitSubgroup (targetLevel n)) = QuotientGroup.mk'
-(UG.principalUnitSubgroup (targetLevel n)) (N.toHom x)`.-/
+(UG.principalUnitSubgroup (targetLevel n)) (N.toHom x)`.
+@isnad1 id=eq.1h10v.s12.fda35dca703d from=translated src=- shape=9c6f60d6 vocab=2de17ad4
+-/
 @[simp] theorem coe_quotientModuloFiltrationPreimageClassEquivRange_mk_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -243,7 +265,9 @@ n).range) : G ⧸ UG.principalUnitSubgroup (targetLevel n)) = QuotientGroup.mk'
 /--
 Establishes the identity `(N.quotientModuloFiltrationPreimageClassEquivRange UG UH targetLevel hN
 n).symm ((quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n).rangeRestrict q) =
-QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel n) q`.-/
+QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel n) q`.
+@isnad1 id=eq.1h10v.s12.25ebf6f62dd6 from=translated src=- shape=fd5f34c5 vocab=3f5bb16a
+-/
 @[simp] theorem quotientModuloFiltrationPreimageClassEquivRange_symm_rangeRestrict
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -279,7 +303,9 @@ Establishes the identity `(N.quotientModuloFiltrationPreimageClassEquivRange UG 
 n).symm ((quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n).rangeRestrict
 (QuotientGroup.mk' (UH.principalUnitSubgroup n) x)) = QuotientGroup.mk'
 (N.filtrationPreimageClassInQuotient UG UH targetLevel n) (QuotientGroup.mk'
-(UH.principalUnitSubgroup n) x)`.-/
+(UH.principalUnitSubgroup n) x)`.
+@isnad1 id=eq.1h10v.s13.1a696d70b25c from=translated src=- shape=678280b9 vocab=3f5bb16a
+-/
 @[simp] theorem quotientModuloFiltrationPreimageClassEquivRange_symm_rangeRestrict_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -313,7 +339,9 @@ noncomputable def quotientModuloFiltrationPreimageClassEquivTargetOfSurjective
 /--
 Establishes the identity `N.quotientModuloFiltrationPreimageClassEquivTargetOfSurjective UG UH
 targetLevel hN n hSurj (QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel
-n) q) = quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n q`.-/
+n) q) = quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n q`.
+@isnad1 id=eq.2h10v.s11.d421ca64824b from=translated src=- shape=4159454b vocab=34067dce
+-/
 @[simp] theorem quotientModuloFiltrationPreimageClassEquivTargetOfSurjective_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -340,7 +368,9 @@ n) q) = quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n q`.-/
 Establishes the identity `N.quotientModuloFiltrationPreimageClassEquivTargetOfSurjective UG UH
 targetLevel hN n hSurj (QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel
 n) (QuotientGroup.mk' (UH.principalUnitSubgroup n) x)) = QuotientGroup.mk'
-(UG.principalUnitSubgroup (targetLevel n)) (N.toHom x)`.-/
+(UG.principalUnitSubgroup (targetLevel n)) (N.toHom x)`.
+@isnad1 id=eq.2h10v.s12.5d1a5f7284cf from=translated src=- shape=7657d5c6 vocab=b3eee551
+-/
 @[simp] theorem quotientModuloFiltrationPreimageClassEquivTargetOfSurjective_mk_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -361,7 +391,9 @@ n) (QuotientGroup.mk' (UH.principalUnitSubgroup n) x)) = QuotientGroup.mk'
 /--
 Establishes the identity `(N.quotientModuloFiltrationPreimageClassEquivTargetOfSurjective UG UH
 targetLevel hN n hSurj).symm (quotientMapOfMapsFiltrationLevels N UG UH targetLevel hN n q) =
-QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel n) q`.-/
+QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel n) q`.
+@isnad1 id=eq.2h10v.s12.d11b3013b111 from=translated src=- shape=07610b83 vocab=61f723a7
+-/
 @[simp] theorem quotientModuloFiltrationPreimageClassEquivTargetOfSurjective_symm_map
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -398,7 +430,9 @@ QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel n) q`.-
 Establishes the identity `(N.quotientModuloFiltrationPreimageClassEquivTargetOfSurjective UG UH
 targetLevel hN n hSurj).symm (QuotientGroup.mk' (UG.principalUnitSubgroup (targetLevel n))
 (N.toHom x)) = QuotientGroup.mk' (N.filtrationPreimageClassInQuotient UG UH targetLevel n)
-(QuotientGroup.mk' (UH.principalUnitSubgroup n) x)`.-/
+(QuotientGroup.mk' (UH.principalUnitSubgroup n) x)`.
+@isnad1 id=eq.2h10v.s12.28008999dcf9 from=translated src=- shape=f38f03ef vocab=b74c08e6
+-/
 @[simp] theorem quotientModuloFiltrationPreimageClassEquivTargetOfSurjective_symm_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     [(UH.principalUnitSubgroup n).Normal]
@@ -440,7 +474,9 @@ def principalUnitSubquotientMapOfMapsFiltrationLevels
 The defining evaluation formula for `principalUnitSubquotientMapOfMapsFiltrationLevels` is
 `N.principalUnitSubquotientMapOfMapsFiltrationLevels UG UH targetLevel hN hmn htarget
 (UH.principalUnitSubquotientMk m n x) = UG.principalUnitSubquotientMk (targetLevel m) (targetLevel
-n) (mapLevelOfMapsFiltrationLevels N UG UH targetLevel hN m x)`.-/
+n) (mapLevelOfMapsFiltrationLevels N UG UH targetLevel hN m x)`.
+@isnad1 id=eq.3h11v.s10.faa0978d140c from=translated src=- shape=a8c37cd1 vocab=1157981f
+-/
 @[simp] theorem principalUnitSubquotientMapOfMapsFiltrationLevels_apply_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) {m n : ℕ}
     (hmn : m ≤ n) (htarget : targetLevel m ≤ targetLevel n)
@@ -455,7 +491,9 @@ n) (mapLevelOfMapsFiltrationLevels N UG UH targetLevel hN m x)`.-/
   rfl
 
 /-- The subquotient norm map agrees with the ambient quotient norm map under
-the canonical embeddings of subquotients as classes in ambient quotients.-/
+the canonical embeddings of subquotients as classes in ambient quotients.
+@isnad1 id=eq.3h11v.s11.df3a4b00ebe5 from=translated src=- shape=83c60190 vocab=d9cef1b9
+-/
 @[simp] theorem coe_principalUnitSubquotientEquivClassInQuotient_map
     (hN : MapsFiltrationLevels N UG UH targetLevel) {m n : ℕ}
     (hmn : m ≤ n) (htarget : targetLevel m ≤ targetLevel n)
@@ -509,7 +547,9 @@ def principalUnitGradedPieceMapOfMapsFiltrationLevels
 The defining evaluation formula for `principalUnitGradedPieceMapOfMapsFiltrationLevels` is
 `N.principalUnitGradedPieceMapOfMapsFiltrationLevels UG UH targetLevel hN n htarget
 (UH.principalUnitGradedPieceMk n x) = UG.principalUnitSubquotientMk (targetLevel n) (targetLevel
-(n + 1)) (mapLevelOfMapsFiltrationLevels N UG UH targetLevel hN n x)`.-/
+(n + 1)) (mapLevelOfMapsFiltrationLevels N UG UH targetLevel hN n x)`.
+@isnad1 id=eq.2h10v.s11.4670d5c44422 from=translated src=- shape=c97e42e2 vocab=6106642e
+-/
 @[simp] theorem principalUnitGradedPieceMapOfMapsFiltrationLevels_apply_mk
     (hN : MapsFiltrationLevels N UG UH targetLevel) (n : ℕ)
     (htarget : targetLevel n ≤ targetLevel (n + 1))

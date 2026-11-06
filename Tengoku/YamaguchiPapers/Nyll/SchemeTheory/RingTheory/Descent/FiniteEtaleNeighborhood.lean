@@ -23,7 +23,9 @@ namespace SchemeTheory
 universe u v
 
 /-- If an integral finitely presented algebra is etale at every prime over
-`p`, it is etale on the preimage of a principal neighborhood of `p`.-/
+`p`, it is etale on the preimage of a principal neighborhood of `p`.
+@isnad1 id=ex.1h3v.s8.69aaf6e288f2 from=translated src=- shape=8ee82301 vocab=54aeb678
+-/
 theorem exists_etale_away_of_isEtaleAt_fiber
     {R : Type u} {B : Type v} [CommRing R] [CommRing B]
     [Algebra R B] [Algebra.IsIntegral R B] [Algebra.FinitePresentation R B]

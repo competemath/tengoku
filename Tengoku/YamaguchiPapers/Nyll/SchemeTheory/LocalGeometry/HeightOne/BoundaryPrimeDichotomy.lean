@@ -51,7 +51,9 @@ private theorem heightOnePrime_eq_span_of_prime_mem
 
 /-- If a boundary equation is associated to a prime parameter, a height-one
 prime is either the corresponding parameter divisor or is disjoint from all
-powers of the boundary equation.-/
+powers of the boundary equation.
+@isnad1 id=or.3h4v.s7.4a7a4d4a60c9 from=translated src=- shape=19f33634 vocab=d3b9066c
+-/
 theorem heightOnePrime_eq_span_or_disjoint_powers_of_associated
     {B : Type u} [CommRing B] [IsDomain B]
     {f y : B} (hy : Prime y) (hfy : Associated f y)
@@ -69,7 +71,9 @@ of a second prime parameter, a height-one prime is one of the two parameter
 divisors or is disjoint from all powers of the boundary equation.
 
 No positivity assumption on `n` is needed: for `n = 0` the statement reduces
-to the one-branch case.-/
+to the one-branch case.
+@isnad1 id=or.4h6v.s8.27c2768c03bc from=translated src=- shape=608586e7 vocab=c743a755
+-/
 theorem heightOnePrime_eq_span_or_eq_span_or_disjoint_powers_of_associated_mul_pow
     {B : Type u} [CommRing B] [IsDomain B]
     {f y z : B} {n : ℕ}

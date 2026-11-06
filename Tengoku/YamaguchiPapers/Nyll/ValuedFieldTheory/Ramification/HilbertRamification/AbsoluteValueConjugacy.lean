@@ -50,6 +50,9 @@ def absoluteValueConjugate
     (w : AbsoluteValue L ℝ) (σ : L ≃ₐ[K] L) : AbsoluteValue L ℝ :=
   w.comp (f := σ.toRingEquiv.toRingHom) σ.injective
 
+/--
+@isnad1 id=eq.0h5v.s7.eabfb8f4ec35 from=translated src=- shape=f91e405b vocab=fb519c3b
+-/
 @[simp] theorem absoluteValueConjugate_apply
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     (w : AbsoluteValue L ℝ) (σ : L ≃ₐ[K] L) (x : L) :
@@ -57,7 +60,9 @@ def absoluteValueConjugate
   rfl
 
 /-- Conjugating an extension by a ground-field automorphism gives another
-exact extension of the same base absolute value.-/
+exact extension of the same base absolute value.
+@isnad1 id=extends.0h5v.s6.31fb88675f25 from=translated src=- shape=67b1beaa vocab=9d64fa32
+-/
 theorem absoluteValueConjugate_extends
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     (vK : AbsoluteValue K ℝ) (w : AbsoluteValueExtension vK L)

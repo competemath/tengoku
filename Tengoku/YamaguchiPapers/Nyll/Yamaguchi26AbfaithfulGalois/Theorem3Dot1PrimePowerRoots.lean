@@ -23,7 +23,9 @@ universe u v
 
 /-- Lemma 3.1 of [Yamaguchi, arXiv:2610.05634v1](https://arxiv.org/abs/2610.05634v1):
 a mixed-characteristic discrete valuation
-bounds the exponent of the `p`-power roots of unity in the field.-/
+bounds the exponent of the `p`-power roots of unity in the field.
+@isnad1 id=finite.0h3v.s6.ff067d4c0304 from=translated src=- shape=55b16ce7 vocab=ee516aa5
+-/
 theorem finite_primePowerRoots_of_mixedChar
     {K : Type u} [Field K] [CharZero K]
     (base : DVF.{u, v} K) (p : ℕ) [Fact p.Prime]

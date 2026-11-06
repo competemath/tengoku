@@ -22,7 +22,9 @@ namespace ValuationTheory.Henselian
 
 variable {R S : Type*} [CommRing R] [CommRing S]
 
-/-- Ring equivalences transport a Henselian pair to the image ideal.-/
+/-- Ring equivalences transport a Henselian pair to the image ideal.
+@isnad1 id=henselia.0h4v.s7.f95c3d7df16b from=translated src=- shape=59f885b4 vocab=57016e8e
+-/
 theorem henselianRing_map_of_ringEquiv
     (e : R ≃+* S) (I : Ideal R) [HenselianRing R I] :
     HenselianRing S (I.map (e : R →+* S)) where
@@ -57,7 +59,9 @@ theorem henselianRing_map_of_ringEquiv
       rwa [map_sub, e.apply_symm_apply] at hmem
 
 /-- A ring equivalence transports the Henselian property at the maximal
-ideal between local rings. Locality of the target can be supplied by `e.isLocalRing`.-/
+ideal between local rings. Locality of the target can be supplied by `e.isLocalRing`.
+@isnad1 id=henselia.0h3v.s6.9ee1ff87e7ad from=translated src=- shape=3e122edd vocab=aef16457
+-/
 theorem henselianRing_maximalIdeal_of_ringEquiv
     [IsLocalRing R] [IsLocalRing S] (e : R ≃+* S)
     [HenselianRing R (IsLocalRing.maximalIdeal R)] :

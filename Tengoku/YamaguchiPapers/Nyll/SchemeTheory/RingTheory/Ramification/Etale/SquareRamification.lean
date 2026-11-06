@@ -33,7 +33,9 @@ vertical maps are essentially of finite type and formally unramified, and
 whose right vertical map is flat.
 
 This is the local form needed for prime localizations of etale scheme
-stalks: those maps need not be finitely presented.-/
+stalks: those maps need not be finitely presented.
+@isnad1 id=eq.0h6v.s8.e2a9f829541d from=translated src=- shape=51061056 vocab=b3edf982
+-/
 theorem ramificationIdx_eq_of_formallyUnramified_flat_square
     {R : Type uR} {B : Type uB} {C : Type uC} {S : Type uS}
     [CommRing R] [CommRing B] [CommRing C] [CommRing S]
@@ -94,7 +96,9 @@ vertical maps are etale.
 
 The prime `q` is the literal contraction of `Q` through `B → S`, expressed
 by its `LiesOver` instance.  No residue-degree, tensor-kernel, or component
-comparison is required.-/
+comparison is required.
+@isnad1 id=eq.0h6v.s7.09131d18d62d from=translated src=- shape=b2043317 vocab=c0defbe4
+-/
 theorem ramificationIdx_eq_of_etale_square
     {R : Type uR} {B : Type uB} {C : Type uC} {S : Type uS}
     [CommRing R] [CommRing B] [CommRing C] [CommRing S]

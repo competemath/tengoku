@@ -52,7 +52,9 @@ variable {Γ : Type v} [LinearOrderedCommGroupWithZero Γ] [Valued K Γ]
 variable [(Valued.v : _root_.Valuation K Γ).RankOne] [CompleteSpace K]
 
 /-- The field norm satisfies the valuation triangle inequality over a complete
-rank-one valued base, including for inseparable finite extensions.-/
+rank-one valued base, including for inseparable finite extensions.
+@isnad1 id=le.0h5v.s8.3d49eeb17c0f from=translated src=- shape=63e277b4 vocab=7d9f579a
+-/
 theorem valuation_norm_add_le_max (x y : L) :
     (Valued.v : _root_.Valuation K Γ) (Algebra.norm K (x + y)) ≤
       max (Valued.v (Algebra.norm K x)) (Valued.v (Algebra.norm K y)) := by
@@ -91,7 +93,9 @@ def finiteNormValuation : _root_.Valuation L Γ where
   map_mul' x y := by rw [map_mul, map_mul]
   map_add_le_max' := valuation_norm_add_le_max
 
-/-- Restriction of the norm valuation to the base field.-/
+/-- Restriction of the norm valuation to the base field.
+@isnad1 id=eq.0h4v.s8.a1b5a58ac7ad from=translated src=- shape=2a58d3d9 vocab=084f64af
+-/
 theorem finiteNormValuation_algebraMap (x : K) :
     finiteNormValuation (K := K) (L := L) (Γ := Γ) (algebraMap K L x) =
       (Valued.v : _root_.Valuation K Γ) x ^ Module.finrank K L := by
@@ -99,7 +103,9 @@ theorem finiteNormValuation_algebraMap (x : K) :
   rw [Algebra.norm_algebraMap, map_pow]
 
 /-- The actual norm valuation extends the original valuation in the
-valuation-ring sense.-/
+valuation-ring sense.
+@isnad1 id=hasexten.0h3v.s7.8da43061ef8a from=translated src=- shape=8c9891c9 vocab=65e9e273
+-/
 theorem finiteNormValuation_hasExtension :
     (Valued.v : _root_.Valuation K Γ).HasExtension
       (finiteNormValuation (K := K) (L := L) (Γ := Γ)) := by
@@ -112,7 +118,9 @@ theorem finiteNormValuation_hasExtension :
     (Nat.ne_of_gt (Module.finrank_pos (R := K) (M := L)))
 
 /-- The norm valuation is nontrivial because its restriction is a positive
-power of the nontrivial base valuation.-/
+power of the nontrivial base valuation.
+@isnad1 id=isnontri.0h3v.s6.9740609fa7e2 from=translated src=- shape=09a3d506 vocab=f027abde
+-/
 theorem finiteNormValuation_isNontrivial :
     (finiteNormValuation (K := K) (L := L) (Γ := Γ)).IsNontrivial := by
   obtain ⟨x, hx0, hx1⟩ :=
@@ -127,7 +135,9 @@ theorem finiteNormValuation_isNontrivial :
 end General
 
 /-- In the integer-valued case the actual finite-extension norm valuation is
-discrete: its nonzero value group is a nontrivial subgroup of the integers.-/
+discrete: its nonzero value group is a nontrivial subgroup of the integers.
+@isnad1 id=isrankon.0h2v.s7.5bdaa5ba4737 from=translated src=- shape=589ccca7 vocab=bd51199c
+-/
 theorem finiteNormValuation_isRankOneDiscrete
     {K : Type u} {L : Type w} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L] [Valued K (WithZero (Multiplicative ℤ))]

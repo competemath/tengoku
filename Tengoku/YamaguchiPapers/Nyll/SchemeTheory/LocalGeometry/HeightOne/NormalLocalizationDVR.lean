@@ -28,7 +28,9 @@ open IsLocalRing
 
 universe u
 
-/-- A height-one localization of a Noetherian normal domain is a DVR.-/
+/-- A height-one localization of a Noetherian normal domain is a DVR.
+@isnad1 id=isdiscre.1h2v.s6.86f829fb8f87 from=translated src=- shape=7bcc1847 vocab=e21e5fac
+-/
 theorem
     isDiscreteValuationRing_localizationAtPrime_of_normal_noetherian_height_one
     {S : Type u} [CommRing S] [IsDomain S] [IsNoetherianRing S]

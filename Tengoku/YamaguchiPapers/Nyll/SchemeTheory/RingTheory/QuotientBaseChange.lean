@@ -34,7 +34,9 @@ variable {R : Type u} {A : Type v} {B : Type w}
   [CommRing R] [CommRing A] [CommRing B] [Algebra R A] [Algebra R B]
 
 /-- An algebra map carries the ideal extended from the base to the corresponding
-extended ideal in the target.-/
+extended ideal in the target.
+@isnad1 id=eq.0h5v.s8.2cb05f2a6c69 from=translated src=- shape=54d7dd76 vocab=e5f4c0df
+-/
   theorem map_extendedIdeal (f : A →ₐ[R] B) (I : Ideal R) :
     (I.map (algebraMap R A)).map f.toRingHom = I.map (algebraMap R B) := by
   rw [Ideal.map_map]
@@ -49,13 +51,18 @@ def quotientBaseChange (f : A →ₐ[R] B) (I : Ideal R) :
     (Ideal.map_le_iff_le_comap.mp (f.map_extendedIdeal I).le)).extendScalarsOfSurjective
       Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=eq.0h6v.s11.5404a9729958 from=translated src=- shape=32bd0ca8 vocab=24e23d0f
+-/
 @[simp]
 theorem quotientBaseChange_mk (f : A →ₐ[R] B) (I : Ideal R) (a : A) :
     f.quotientBaseChange I (Ideal.Quotient.mk (I.map (algebraMap R A)) a) =
       Ideal.Quotient.mk (I.map (algebraMap R B)) (f a) := rfl
 
 /-- The concrete quotient map agrees with tensor-product base change under
-the canonical quotient/tensor comparisons.-/
+the canonical quotient/tensor comparisons.
+@isnad1 id=eq.0h5v.s11.ef75c19c4230 from=translated src=- shape=81aa7342 vocab=dc35b0c6
+-/
 theorem quotientBaseChange_tensorProduct (f : A →ₐ[R] B) (I : Ideal R) :
     (Algebra.TensorProduct.quotIdealMapEquivQuotTensor B I).toAlgHom.comp
         (f.quotientBaseChange I) =

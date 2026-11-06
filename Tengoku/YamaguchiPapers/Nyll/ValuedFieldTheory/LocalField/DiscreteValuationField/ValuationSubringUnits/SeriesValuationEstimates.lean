@@ -29,7 +29,9 @@ namespace MultiplicativeIntegerValuation
 variable {K : Type u} [Field K]
 
 /-- Positive-degree exponential terms have positive integer valuation when
-the input has valuation strictly bigger than one.-/
+the input has valuation strictly bigger than one.
+@isnad1 id=lt.4h5v.s8.69c9831c5b26 from=translated src=- shape=49f46732 vocab=6ccb533b
+-/
 theorem ofWithZeroValuation_val_pow_div_natCast_factorial_pos_of_one_lt
     (v : _root_.Valuation K (WithZero (Multiplicative ℤ)))
     {p n : ℕ} [Fact p.Prime] (x : Kˣ)

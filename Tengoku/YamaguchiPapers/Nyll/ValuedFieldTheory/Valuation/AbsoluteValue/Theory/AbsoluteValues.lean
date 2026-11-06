@@ -34,14 +34,18 @@ namespace Valuations
 def absoluteValueDist {K : Type*} [Field K] (v : AbsoluteValue K ℝ) (x y : K) : ℝ :=
   v (x - y)
 
-/-- The absolute-value distance separates points.-/
+/-- The absolute-value distance separates points.
+@isnad1 id=iff.0h4v.s5.2c69732815da from=translated src=- shape=ecf0ece7 vocab=8d0eea66
+-/
 theorem absoluteValueDist_eq_zero_iff
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) (x y : K) :
     absoluteValueDist v x y = 0 ↔ x = y := by
   change v (x - y) = 0 ↔ x = y
   exact AbsoluteValue.map_sub_eq_zero_iff (abv := v) x y
 
-/-- The absolute-value distance from a point to itself is zero.-/
+/-- The absolute-value distance from a point to itself is zero.
+@isnad1 id=eq.0h3v.s5.d2b3de65e901 from=translated src=- shape=966e96bf vocab=8d0eea66
+-/
 @[simp]
 theorem absoluteValueDist_self
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) (x : K) :
@@ -53,7 +57,9 @@ def TrivialAbsoluteValue {K : Type*} [Field K] (v : AbsoluteValue K ℝ) : Prop 
   ∀ x : K, x ≠ 0 → v x = 1
 
 /-- Being nontrivial is exactly having some nonzero element whose value is not
-`1`.-/
+`1`.
+@isnad1 id=iff.0h2v.s6.2df3d54abbbc from=translated src=- shape=60c24b4e vocab=a46aac89
+-/
 theorem not_trivialAbsoluteValue_iff_exists_ne_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) :
     ¬ TrivialAbsoluteValue v ↔ ∃ x : K, x ≠ 0 ∧ v x ≠ 1 := by
@@ -69,13 +75,17 @@ theorem not_trivialAbsoluteValue_iff_exists_ne_one
     exact hvx (htriv x hx)
 
 /-- excluding the trivial absolute value is mathlib's nontriviality
-condition for absolute values.-/
+condition for absolute values.
+@isnad1 id=iff.0h2v.s5.39b669bb854b from=translated src=- shape=df495a8e vocab=f76cb432
+-/
 theorem not_trivialAbsoluteValue_iff_isNontrivial
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) :
     ¬ TrivialAbsoluteValue v ↔ v.IsNontrivial := by
   exact not_trivialAbsoluteValue_iff_exists_ne_one v
 
-/-- Finite triangle inequality for a absolute values.-/
+/-- Finite triangle inequality for a absolute values.
+@isnad1 id=le.0h5v.s6.ff6af665e3c5 from=translated src=- shape=953868cf vocab=1ec51afb
+-/
 theorem absoluteValue_finset_sum_le
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     {ι : Type*} (s : Finset ι) (f : ι → K) :
@@ -89,7 +99,9 @@ def EquivalentAbsoluteValues {K : Type*} [Field K]
   IsHomeomorph (WithAbs.congr v w (.refl K))
 
 /-- absolute-value equivalence is the same as mathlib's equivalence relation on real
-absolute values.-/
+absolute values.
+@isnad1 id=iff.0h3v.s5.9e755c6b7a76 from=translated src=- shape=7a5ac97d vocab=7592d036
+-/
 theorem equivalentAbsoluteValues_iff_isEquiv
     {K : Type*} [Field K] (v w : AbsoluteValue K ℝ) :
     EquivalentAbsoluteValues v w ↔ v.IsEquiv w :=
@@ -97,7 +109,9 @@ theorem equivalentAbsoluteValues_iff_isEquiv
 
 /-- The first construction in the proof of the weak approximation theorem:
 for any one valuation in a finite pairwise-inequivalent family, there is an
-element large for it and small for all the others.-/
+element large for it and small for all the others.
+@isnad1 id=ex.2h4v.s7.553f40b38b2b from=translated src=- shape=3163fd44 vocab=44d8733d
+-/
 theorem absoluteValueApproximation_exists_separating_element
     {K : Type*} [Field K] {ι : Type*} [Finite ι]
     (v : ι → AbsoluteValue K ℝ)
@@ -114,7 +128,9 @@ theorem absoluteValueApproximation_exists_separating_element
 
 /-- The bump-function construction in the proof of the weak approximation theorem: from an element
 large at `i` and small at the other valuations, produce an element close to `1` at `i` and close
-to `0` at the others.-/
+to `0` at the others.
+@isnad1 id=ex.3h6v.s8.fc2080028718 from=translated src=- shape=7742a767 vocab=0960ccc4
+-/
 theorem absoluteValueApproximation_exists_bump_element
     {K : Type*} [Field K] {ι : Type*} [Finite ι]
     (v : ι → AbsoluteValue K ℝ) {i : ι} {z : K}
@@ -166,7 +182,9 @@ theorem absoluteValueApproximation_exists_bump_element
   · intro j hji
     exact (hN N le_rfl).2 j hji
 
-/-- Finite bump family used in the proof of the weak approximation theorem.-/
+/-- Finite bump family used in the proof of the weak approximation theorem.
+@isnad1 id=ex.3h4v.s7.b53f3f3f95fd from=translated src=- shape=a35d3d9c vocab=b1bcfe82
+-/
 theorem absoluteValueApproximation_exists_bump_family
     {K : Type*} [Field K] {ι : Type*} [Finite ι]
     (v : ι → AbsoluteValue K ℝ)
@@ -189,7 +207,9 @@ theorem absoluteValueApproximation_exists_bump_family
   choose e he using hbump
   exact ⟨e, he⟩
 
-/-- Algebraic decomposition of the final approximation sum in the weak approximation theorem.-/
+/-- Algebraic decomposition of the final approximation sum in the weak approximation theorem.
+@isnad1 id=eq.0h5v.s7.8d756c84d40f from=translated src=- shape=f632f229 vocab=7d656362
+-/
 theorem absoluteValueApproximation_sum_sub
     {K : Type*} [Field K] {ι : Type*} [Fintype ι] [DecidableEq ι]
     (a e : ι → K) (i : ι) :
@@ -212,7 +232,9 @@ theorem absoluteValueApproximation_sum_sub
             · simp [hji]
 
 /-- The finite-sum estimate in the weak approximation theorem, after the bump
-functions have been chosen with errors already weighted by the coefficients.-/
+functions have been chosen with errors already weighted by the coefficients.
+@isnad1 id=ex.3h7v.s8.239556d71929 from=translated src=- shape=e1f28558 vocab=01423330
+-/
 theorem absoluteValueApproximation_from_weighted_bump_family
     {K : Type*} [Field K] {ι : Type*} [Fintype ι]
     (v : ι → AbsoluteValue K ℝ) (a e : ι → K) {ε δ : ℝ}
@@ -258,7 +280,9 @@ theorem absoluteValueApproximation_from_weighted_bump_family
     _ < ε := hsum_bound
 
 /-- A single positive precision small enough after multiplication by all finitely
-many coefficients appearing in the weak approximation theorem.-/
+many coefficients appearing in the weak approximation theorem.
+@isnad1 id=ex.1h5v.s6.35eab5a2143f from=translated src=- shape=b135414c vocab=a33016ce
+-/
 theorem absoluteValueApproximation_exists_coefficient_precision
     {K : Type*} [Field K] {ι : Type*} [Finite ι]
     (v : ι → AbsoluteValue K ℝ) (a : ι → K) {δ : ℝ} (hδ : 0 < δ) :
@@ -305,7 +329,9 @@ theorem absoluteValueApproximation_exists_coefficient_precision
       hC_mul_eta_lt
 
 /-- The weak approximation theorem, Approximation Theorem for a finite family of pairwise
-inequivalent nontrivial absolute values.-/
+inequivalent nontrivial absolute values.
+@isnad1 id=ex.3h5v.s7.b8d859e84e11 from=translated src=- shape=a195a206 vocab=b1bcfe82
+-/
 theorem absoluteValueApproximation
     {K : Type*} [Field K] {ι : Type*} [Finite ι]
     (v : ι → AbsoluteValue K ℝ)
@@ -369,14 +395,18 @@ def StrongTriangle {K : Type*} [Field K] (v : AbsoluteValue K ℝ) : Prop :=
   ∀ x y : K, v (x + y) ≤ max (v x) (v y)
 
 /-- The boundedness characterization of nonarchimedean absolute values, strong triangle inequality
-as mathlib's `IsNonarchimedean` predicate.-/
+as mathlib's `IsNonarchimedean` predicate.
+@isnad1 id=iff.0h2v.s6.4b3d70d829d3 from=translated src=- shape=8f224581 vocab=65ce717f
+-/
 theorem strong_triangle_iff_isNonarchimedean
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) :
     StrongTriangle v ↔ IsNonarchimedean (v : K → ℝ) :=
   Iff.rfl
 
 /-- The easy direction of the boundedness characterization of nonarchimedean absolute values: the
-strong triangle inequality bounds the values of the natural numbers by `1`.-/
+strong triangle inequality bounds the values of the natural numbers by `1`.
+@isnad1 id=le.1h3v.s6.3843f0f4dc01 from=translated src=- shape=46183d67 vocab=d2e4d802
+-/
 theorem nat_le_one_of_strong_triangle
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hstrong : StrongTriangle v) (n : ℕ) :
@@ -386,7 +416,9 @@ theorem nat_le_one_of_strong_triangle
 
 /-- The easy direction of the boundedness characterization of nonarchimedean absolute values: a
 valuation satisfying the strong triangle inequality is nonarchimedean in the
-boundedness-on-integers sense.-/
+boundedness-on-integers sense.
+@isnad1 id=nonarchi.1h2v.s4.f83efac1b1ed from=translated src=- shape=ba33bff4 vocab=f2141080
+-/
 theorem nonarchimedean_of_strong_triangle
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hstrong : StrongTriangle v) :
@@ -394,7 +426,9 @@ theorem nonarchimedean_of_strong_triangle
   ⟨1, nat_le_one_of_strong_triangle v hstrong⟩
 
 /-- In the boundedness characterization of nonarchimedean absolute values, any bound for the
-values of the natural numbers is at least `1`.-/
+values of the natural numbers is at least `1`.
+@isnad1 id=le.1h3v.s6.48a2f8133e11 from=translated src=- shape=4dab4f0a vocab=a85796f1
+-/
 theorem nat_bound_ge_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) {C : ℝ}
     (hC : ∀ n : ℕ, v (n : K) ≤ C) :
@@ -403,7 +437,9 @@ theorem nat_bound_ge_one
 
 /-- The binomial-estimate step in the proof of the boundedness characterization of nonarchimedean
 absolute values: boundedness of the values of natural numbers gives a polynomial factor in the
-estimate for `(x + y)^n`.-/
+estimate for `(x + y)^n`.
+@isnad1 id=le.1h6v.s8.2645ee9f8791 from=translated src=- shape=f5793da8 vocab=82a045dc
+-/
 theorem add_pow_le_of_bounded_nat
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) {C : ℝ}
     (hC : ∀ n : ℕ, v (n : K) ≤ C) (x y : K) (n : ℕ) :
@@ -463,7 +499,9 @@ theorem add_pow_le_of_bounded_nat
           simp [Finset.sum_const, nsmul_eq_mul, mul_assoc]
 
 /-- The real-variable limit used at the end of the boundedness characterization of nonarchimedean
-absolute values: after taking `n`-th roots, the polynomial factor `(n+1)C` disappears.-/
+absolute values: after taking `n`-th roots, the polynomial factor `(n+1)C` disappears.
+@isnad1 id=tendsto.1h1v.s6.09fae90f626b from=translated src=- shape=80612264 vocab=abee3455
+-/
 theorem tendsto_linear_bound_rpow_inv
     {C : ℝ} (hC : 0 < C) :
     Tendsto
@@ -502,7 +540,9 @@ theorem tendsto_linear_bound_rpow_inv
   simpa using htarget
 
 /-- The root form of the binomial estimate in the boundedness characterization of nonarchimedean
-absolute values.-/
+absolute values.
+@isnad1 id=le.2h6v.s7.fb6eedeca6a0 from=translated src=- shape=661e2d56 vocab=257eea42
+-/
 theorem add_le_root_bound_of_bounded_nat
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) {C : ℝ}
     (hC : ∀ n : ℕ, v (n : K) ≤ C) (x y : K)
@@ -552,7 +592,9 @@ theorem add_le_root_bound_of_bounded_nat
             rfl
 
 /-- The converse direction of the boundedness characterization of nonarchimedean absolute values:
-a bounded-on-integers valuation satisfies the strong triangle inequality.-/
+a bounded-on-integers valuation satisfies the strong triangle inequality.
+@isnad1 id=strongtr.1h2v.s4.b963a5ea0440 from=translated src=- shape=ba33bff4 vocab=f2141080
+-/
 theorem strong_triangle_of_nonarchimedean
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : NonarchimedeanAbsoluteValue v) :

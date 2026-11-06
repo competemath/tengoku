@@ -58,7 +58,9 @@ noncomputable def formalLogOnePlusProductArgumentChoiceFromMixedLeft
 Establishes the identity `formalLogOnePlusProductArgumentChoiceFromMixedLeft q M L i = if i ∈ M
 then formalLogOnePlusProductArgumentBasicFactorMixed else if i ∈ L then
 formalLogOnePlusProductArgumentBasicFactorLeft else
-formalLogOnePlusProductArgumentBasicFactorRight`.-/
+formalLogOnePlusProductArgumentBasicFactorRight`.
+@isnad1 id=eq.1h4v.s7.ff84101210c7 from=translated src=- shape=b5ec0fc7 vocab=108fb128
+-/
 @[simp] theorem formalLogOnePlusProductArgumentChoiceFromMixedLeft_apply_of_mem
     {q : ℕ} {M L : Finset ℕ} {i : ℕ} (hi : i ∈ Finset.range q) :
     formalLogOnePlusProductArgumentChoiceFromMixedLeft q M L i =
@@ -68,7 +70,9 @@ formalLogOnePlusProductArgumentBasicFactorRight`.-/
   have hlt : i < q := Finset.mem_range.mp hi
   simp [formalLogOnePlusProductArgumentChoiceFromMixedLeft, hlt]
 
-/-- Establishes the identity `formalLogOnePlusProductArgumentChoiceFromMixedLeft q M L i = 0`.-/
+/-- Establishes the identity `formalLogOnePlusProductArgumentChoiceFromMixedLeft q M L i = 0`.
+@isnad1 id=eq.1h4v.s7.13a3031f0634 from=translated src=- shape=2fd77493 vocab=2e6e25e9
+-/
 @[simp] theorem formalLogOnePlusProductArgumentChoiceFromMixedLeft_apply_of_not_mem
     {q : ℕ} {M L : Finset ℕ} {i : ℕ} (hi : i ∉ Finset.range q) :
     formalLogOnePlusProductArgumentChoiceFromMixedLeft q M L i = 0 := by

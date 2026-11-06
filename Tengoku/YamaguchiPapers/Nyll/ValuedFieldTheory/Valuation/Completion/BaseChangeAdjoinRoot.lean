@@ -40,7 +40,9 @@ noncomputable def powerBasisBaseChange
     rw [Algebra.TensorProduct.basis_apply, pb.basis_eq_pow]
     simp [Algebra.TensorProduct.tmul_pow]
 
-/-- The generator of a base-changed power basis is the tensor of one with the old generator.-/
+/-- The generator of a base-changed power basis is the tensor of one with the old generator.
+@isnad1 id=eq.0h4v.s8.7619cb630009 from=translated src=- shape=0bd21782 vocab=1e1913af
+-/
 @[simp]
 theorem powerBasisBaseChange_gen
     {K A L : Type*} [Field K] [Field A] [Field L]
@@ -49,7 +51,9 @@ theorem powerBasisBaseChange_gen
     (powerBasisBaseChange (A := A) pb).gen = 1 ⊗ₜ[K] pb.gen :=
   rfl
 
-/-- The mapped primitive polynomial vanishes at `1 ⊗ α`.-/
+/-- The mapped primitive polynomial vanishes at `1 ⊗ α`.
+@isnad1 id=eq.0h4v.s9.0620c02ac025 from=translated src=- shape=da472702 vocab=f7ad57d9
+-/
 theorem minpoly_map_aeval_one_tmul
     {K A L : Type*} [Field K] [Field A] [Field L]
     [Algebra K A] [Algebra K L]
@@ -76,7 +80,9 @@ noncomputable def adjoinRootToBaseChange
         ((minpoly K pb.gen).map (algebraMap K A)) = 0
       exact minpoly_map_aeval_one_tmul (A := A) pb)
 
-/-- The map from an adjoined-root algebra to its base change sends root to root.-/
+/-- The map from an adjoined-root algebra to its base change sends root to root.
+@isnad1 id=eq.0h4v.s10.5f4d11f15a4a from=translated src=- shape=612465c6 vocab=f997859f
+-/
 @[simp]
 theorem adjoinRootToBaseChange_root
     {K A L : Type*} [Field K] [Field A] [Field L]
@@ -87,7 +93,9 @@ theorem adjoinRootToBaseChange_root
       1 ⊗ₜ[K] pb.gen := by
   simp [adjoinRootToBaseChange]
 
-/-- The canonical map from the adjoined-root algebra onto its base change is surjective.-/
+/-- The canonical map from the adjoined-root algebra onto its base change is surjective.
+@isnad1 id=surjecti.0h4v.s10.3c42fe0dd4d5 from=translated src=- shape=f5ab93c9 vocab=a1dbf06b
+-/
 theorem adjoinRootToBaseChange_surjective
     {K A L : Type*} [Field K] [Field A] [Field L]
     [Algebra K A] [Algebra K L]
@@ -108,7 +116,9 @@ theorem adjoinRootToBaseChange_surjective
     adjoinRootToBaseChange_root]
   rw [powerBasisBaseChange_gen, Algebra.TensorProduct.tmul_pow, one_pow]
 
-/-- The mapped primitive quotient and scalar extension have equal dimension.-/
+/-- The mapped primitive quotient and scalar extension have equal dimension.
+@isnad1 id=eq.0h4v.s9.10f68aa15b28 from=translated src=- shape=4728a259 vocab=1edcd618
+-/
 theorem adjoinRoot_baseChange_finrank_eq
     {K A L : Type*} [Field K] [Field A] [Field L]
     [Algebra K A] [Algebra K L]
@@ -149,7 +159,9 @@ noncomputable def adjoinRootEquivBaseChange
       (adjoinRootToBaseChange_surjective (A := A) pb),
       adjoinRootToBaseChange_surjective (A := A) pb⟩
 
-/-- The adjoined-root/base-change equivalence preserves the distinguished root.-/
+/-- The adjoined-root/base-change equivalence preserves the distinguished root.
+@isnad1 id=eq.0h4v.s10.b8c9df442cb2 from=translated src=- shape=612465c6 vocab=69cb44bf
+-/
 @[simp]
 theorem adjoinRootEquivBaseChange_root
     {K A L : Type*} [Field K] [Field A] [Field L]
@@ -171,7 +183,9 @@ noncomputable def baseChangeEquivAdjoinRoot
       AdjoinRoot ((minpoly K pb.gen).map (algebraMap K A)) :=
   (adjoinRootEquivBaseChange (A := A) pb).symm
 
-/-- The inverse base-change equivalence sends `1 ⊗ gen` to the adjoined root.-/
+/-- The inverse base-change equivalence sends `1 ⊗ gen` to the adjoined root.
+@isnad1 id=eq.0h4v.s10.0a115454110c from=translated src=- shape=e0d2f9f6 vocab=c6c64d3b
+-/
 @[simp]
 theorem baseChangeEquivAdjoinRoot_one_tmul_gen
     {K A L : Type*} [Field K] [Field A] [Field L]

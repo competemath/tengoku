@@ -19,7 +19,9 @@ topology on the quotient. This source has no local-field dependencies.
 
 namespace LocalFieldTheory.DiscreteValuationField.CompleteDVF.higherPrincipalUnitGroup
 
-/-- The kernel of reduction `Z_p -> ZMod (p^n)` is open.-/
+/-- The kernel of reduction `Z_p -> ZMod (p^n)` is open.
+@isnad1 id=isopen.0h2v.s8.9993b34b7ebb from=translated src=- shape=dc12bd83 vocab=0dc84be9
+-/
 theorem isOpen_ker_padicIntToZModPow
     (p : ℕ) [Fact p.Prime] (n : ℕ) :
     IsOpen
@@ -42,7 +44,9 @@ theorem isOpen_ker_padicIntToZModPow
   exact hball
 
 /-- Reduction of p-adic integers modulo `p^n` is continuous for the
-discrete topology on the target.-/
+discrete topology on the target.
+@isnad1 id=continuo.0h2v.s9.b1e02d7bdf02 from=translated src=- shape=c72c9bde vocab=ff6437d6
+-/
 theorem Internal.continuous_padicIntToZModPow
     (p : ℕ) [Fact p.Prime] (n : ℕ) :
     @Continuous ℤ_[p] (ZMod (p ^ n))

@@ -131,7 +131,9 @@ private theorem prime_order_mod_p_eq_one
     exact ρ.averageMap_invariant x (⟨T, Subgroup.mem_zpowers T⟩ : Γ)
 
 /-- A finite-order automorphism of a separated torsion-free `ℤ_p`-module
-which acts trivially modulo the odd prime `p` is the identity.-/
+which acts trivially modulo the odd prime `p` is the identity.
+@isnad1 id=eq.4h3v.s10.c113539fad16 from=translated src=- shape=f960133a vocab=e0c9e541
+-/
 theorem finite_order_mod_p_3_3
     {p : ℕ} [Fact p.Prime] (hp2 : p ≠ 2)
     {M : Type u} [AddCommGroup M] [Module ℤ_[p] M] [Module.IsTorsionFree ℤ_[p] M]

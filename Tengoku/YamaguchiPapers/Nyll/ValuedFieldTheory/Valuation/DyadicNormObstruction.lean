@@ -38,7 +38,9 @@ private theorem valuation_one_add_eq_one_of_one_sub_sq_value
     _ = v (1 + b) := one_mul _
 
 /-- Minimality within a nonsquare unit class forces the dyadic Hensel bound
-to be attained if the norm of 1 + sqrt(a) lies in either allowed square class.-/
+to be attained if the norm of 1 + sqrt(a) lies in either allowed square class.
+@isnad1 id=eq.5h3v.s9.2d086d160e11 from=translated src=- shape=c19aadac vocab=af128c86
+-/
 theorem valuation_sub_one_eq_two_sq_of_minimal_squareClass
     {K : Type*} [Field K] [CharZero K]
     (v : Valuation K (WithZero (Multiplicative ℤ)))
@@ -117,7 +119,9 @@ theorem valuation_sub_one_eq_two_sq_of_minimal_squareClass
     exact (not_lt_of_ge (hmin c hcval)) hsmall
 
 /-- At the dyadic Hensel boundary, a uniformizer supplies a quadratic norm
-outside both possible square classes.-/
+outside both possible square classes.
+@isnad1 id=ex.4h4v.s9.287f7aba1b3f from=translated src=- shape=32506e05 vocab=107f21b0
+-/
 theorem exists_quadraticForm_outside_squareClasses_of_boundary
     {K : Type*} [Field K] [CharZero K]
     (v : Valuation K (WithZero (Multiplicative ℤ)))
@@ -191,7 +195,9 @@ theorem exists_quadraticForm_outside_squareClasses_of_boundary
     exact not_isSquare_of_valuation_sub_one_eq_exp_neg_one v h2 hcdiv
 
 /-- A nonsquare unit in a Henselian dyadic field has a quadratic norm outside
-the two square classes that become squares in the quadratic extension.-/
+the two square classes that become squares in the quadratic extension.
+@isnad1 id=ex.4h4v.s9.c7c2f31581b8 from=translated src=- shape=3ed59a10 vocab=c4e43ca7
+-/
 theorem exists_quadraticForm_outside_squareClasses_of_unit
     {K : Type*} [Field K] [CharZero K]
     (v : Valuation K (WithZero (Multiplicative ℤ)))
@@ -250,6 +256,9 @@ theorem exists_quadraticForm_outside_squareClasses_of_unit
     v h2 a' π ha' hπ hboundary
   exact (hnorm' x y).elim hx hy
 
+/--
+@isnad1 id=not.2h4v.s6.e8d3038cbbdb from=translated src=- shape=52bf0b13 vocab=623a6c78
+-/
 theorem not_isSquare_of_valuation_eq_exp_odd
     {K : Type*} [Field K]
     (v : Valuation K (WithZero (Multiplicative ℤ)))
@@ -265,7 +274,9 @@ theorem not_isSquare_of_valuation_eq_exp_odd
   obtain ⟨k, hk⟩ := hn
   omega
 
-/-- The ramified normalized square class already gives the required norm at (1,1).-/
+/-- The ramified normalized square class already gives the required norm at (1,1).
+@isnad1 id=ex.2h3v.s8.048b203aa845 from=translated src=- shape=86122a56 vocab=dda43dc0
+-/
 theorem exists_quadraticForm_outside_squareClasses_of_uniformizer_value
     {K : Type*} [Field K]
     (v : Valuation K (WithZero (Multiplicative ℤ)))
@@ -289,7 +300,9 @@ theorem exists_quadraticForm_outside_squareClasses_of_uniformizer_value
     exact not_isSquare_of_valuation_eq_exp_odd v ((1 - a) / a) 1 (by decide) hdiv
 
 /-- Every nontrivial quadratic square class over a Henselian dyadic discretely valued
-field has a norm which stays outside the two classes killed in the extension.-/
+field has a norm which stays outside the two classes killed in the extension.
+@isnad1 id=ex.3h4v.s9.f240d0f5b191 from=translated src=- shape=58cb2cd0 vocab=c4e43ca7
+-/
 theorem exists_quadraticForm_outside_squareClasses
     {K : Type*} [Field K] [CharZero K]
     (v : Valuation K (WithZero (Multiplicative ℤ)))

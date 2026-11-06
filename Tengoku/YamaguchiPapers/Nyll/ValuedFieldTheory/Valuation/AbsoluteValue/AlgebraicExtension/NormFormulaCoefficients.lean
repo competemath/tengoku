@@ -29,7 +29,9 @@ namespace Valuations
 /-- The normalized residual factor input from the irreducible-polynomial coefficient bounds
 contradicts
 irreducibility as soon as the valuation ring satisfies the construction's
-factorization form of Hensel's lemma.-/
+factorization form of Hensel's lemma.
+@isnad1 id=not.10h5v.s13.a5ea6fc157d1 from=translated src=- shape=f98ef7bd vocab=a42cf5b6
+-/
 theorem normFormula_hensel_reduction_factor_input_not_irreducible_of_henselFactorization
     {K : Type*} [Field K]
     (v : AbsoluteValue K ℝ) (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -77,7 +79,9 @@ theorem normFormula_hensel_reduction_factor_input_not_irreducible_of_henselFacto
 
 /-- Scaling by a coefficient of positive maximum value and applying the construction
 Hensel factorization contradicts irreducibility when both endpoint values are
-strictly below that maximum.-/
+strictly below that maximum.
+@isnad1 id=other.7h5v.s8.04b88736864e from=translated src=- shape=57fb9140 vocab=881cef39
+-/
 theorem normFormula_normalized_scale_not_irreducible_of_henselFactorization
     {K : Type*} [Field K]
     (v : AbsoluteValue K ℝ) (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -101,7 +105,9 @@ theorem normFormula_normalized_scale_not_irreducible_of_henselFactorization
       hFmap hFdegree
 
 /-- Under primitive Hensel factorization, a positive coefficient maximum of an
-irreducible polynomial is bounded by the larger endpoint value.-/
+irreducible polynomial is bounded by the larger endpoint value.
+@isnad1 id=le.6h5v.s8.3a6fafbe7d4e from=translated src=- shape=96a82b8d vocab=8abda765
+-/
 theorem normFormula_coeff_max_le_endpoint_max_of_irreducible_of_henselFactorization
     {K : Type*} [Field K]
     (v : AbsoluteValue K ℝ) (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -131,7 +137,9 @@ theorem normFormula_coeff_max_le_endpoint_max_of_irreducible_of_henselFactorizat
   exact hscaled_not_irreducible hscaled_irreducible
 
 /-- the finite norm-formula theorem coefficient source: primitive Hensel factorization alone bounds
-every coefficient of an irreducible polynomial by its two endpoint values.-/
+every coefficient of an irreducible polynomial by its two endpoint values.
+@isnad1 id=le.3h4v.s7.b43027c85301 from=translated src=- shape=d5c30fa7 vocab=7e414c07
+-/
 theorem normFormula_coeff_abs_le_endpoint_max_of_irreducible_of_henselFactorization
     {K : Type*} [Field K]
     (v : AbsoluteValue K ℝ) (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -149,7 +157,9 @@ theorem normFormula_coeff_abs_le_endpoint_max_of_irreducible_of_henselFactorizat
 
 /-- the finite norm-formula theorem monic specialization: if the constant coefficient of an
 irreducible monic polynomial lies in the closed unit ball, then every
-coefficient lies there.-/
+coefficient lies there.
+@isnad1 id=le.5h4v.s7.6286c1f0ab0e from=translated src=- shape=453848cb vocab=12e05b92
+-/
 theorem normFormula_monic_coeff_abs_le_one_of_const_abs_le_one_of_henselFactorization
     {K : Type*} [Field K]
     (v : AbsoluteValue K ℝ) (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)

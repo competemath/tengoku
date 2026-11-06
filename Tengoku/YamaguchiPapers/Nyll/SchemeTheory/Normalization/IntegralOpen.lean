@@ -54,7 +54,9 @@ def integralOpenNormalizationIso :
   exact sq.isoPullback ≪≫ asIso q.toNormalization ≪≫
     asIso ((p ≫ j).normalizationPullback j)
 
-/-- The comparison preserves the original integral projection to the open.-/
+/-- The comparison preserves the original integral projection to the open.
+@isnad1 id=eq.0h5v.s7.09d87ab169cf from=translated src=- shape=445c99dc vocab=c6ca9b27
+-/
 @[reassoc]
 theorem integralOpenNormalizationIso_hom_snd :
     (integralOpenNormalizationIso p j).hom ≫
@@ -63,7 +65,9 @@ theorem integralOpenNormalizationIso_hom_snd :
     normalizationPullback_snd, toNormalization_fromNormalization,
     IsPullback.isoPullback_hom_snd]
 
-/-- The other projection is the actual canonical normalization map.-/
+/-- The other projection is the actual canonical normalization map.
+@isnad1 id=eq.0h5v.s7.2b4f52a04839 from=translated src=- shape=70accdf7 vocab=c3500681
+-/
 @[reassoc]
 theorem integralOpenNormalizationIso_hom_fst :
     (integralOpenNormalizationIso p j).hom ≫
@@ -73,14 +77,18 @@ theorem integralOpenNormalizationIso_hom_fst :
     IsPullback.isoPullback_hom_fst_assoc, Category.id_comp]
 
 /-- The integral morphism extends to the ambient scheme with the original
-source as an actual open subscheme of the extension.-/
+source as an actual open subscheme of the extension.
+@isnad1 id=isopenim.0h5v.s6.9bc35b61c696 from=translated src=- shape=6a762030 vocab=613e4ce4
+-/
 theorem isOpenImmersion_toNormalization_integral_open :
     IsOpenImmersion (p ≫ j).toNormalization := by
   rw [← integralOpenNormalizationIso_hom_fst p j]
   infer_instance
 
 /-- The open source is precisely the preimage of the original open under
-the extended integral morphism.-/
+the extended integral morphism.
+@isnad1 id=eq.0h5v.s9.91c080d4c76c from=translated src=- shape=9356912c vocab=bc84ea31
+-/
 theorem range_toNormalization_integral_open :
     Set.range (p ≫ j).toNormalization =
       (p ≫ j).fromNormalization ⁻¹' Set.range j := by

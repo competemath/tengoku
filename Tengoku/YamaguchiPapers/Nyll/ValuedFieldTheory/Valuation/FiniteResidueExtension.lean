@@ -26,7 +26,9 @@ variable {K L Γ Δ : Type*} [Field K] [Field L] [Algebra K L]
 variable [LinearOrderedCommGroupWithZero Γ] [LinearOrderedCommGroupWithZero Δ]
 variable (v : Valuation K Γ) (w : Valuation L Δ) [v.HasExtension w]
 
-/-- Linearly independent residues have linearly independent representatives.-/
+/-- Linearly independent residues have linearly independent representatives.
+@isnad1 id=linearin.1h8v.s10.c79ff23dc426 from=translated src=- shape=efabef86 vocab=903108fa
+-/
 theorem linearIndependent_lifts_residue {ι : Type*}
     (b : ι → w.valuationSubring)
     (hb : LinearIndependent (ResidueField v.valuationSubring)
@@ -81,7 +83,9 @@ theorem linearIndependent_lifts_residue {ι : Type*}
   rw [hcj, map_one] at hjres
   exact one_ne_zero hjres
 
-/-- A finite valued extension has finite residue degree.-/
+/-- A finite valued extension has finite residue degree.
+@isnad1 id=finitedi.0h6v.s8.63fe1a74f821 from=translated src=- shape=e9e12f81 vocab=2fddaaa5
+-/
 theorem finiteDimensional_residueField [FiniteDimensional K L] :
     FiniteDimensional (ResidueField v.valuationSubring) (ResidueField w.valuationSubring) := by
   classical

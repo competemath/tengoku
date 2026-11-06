@@ -26,7 +26,9 @@ namespace Valuations
 /-- extend a finite Hensel prefix by one step in the
 displayed-factor principal-element form.  The current iterates are automatically
 congruent to the initial lifts modulo `(π)`, so the extension uses only
-`π ∈ m` and the displayed Bezout-error factor.-/
+`π ∈ m` and the displayed Bezout-error factor.
+@isnad1 id=ex.14h15v.s11.8f58b4cc675b from=translated src=- shape=e4e13770 vocab=a5d6ac46
+-/
 theorem henselFactorization_extend_finite_prefix_one_step_of_mem_span
     {R : Type*} [CommRing R] [IsLocalRing R] [NoZeroDivisors R]
     {π : R} (hπne : π ≠ 0)

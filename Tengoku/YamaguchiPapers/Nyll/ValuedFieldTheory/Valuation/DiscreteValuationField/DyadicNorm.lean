@@ -24,7 +24,9 @@ namespace ValuationTheory.DiscreteValuationField.HenselianDVF
 universe u v
 
 /-- Every nontrivial quadratic square class over a Henselian dyadic DVF has a norm
-outside the two square classes that become squares in the quadratic extension.-/
+outside the two square classes that become squares in the quadratic extension.
+@isnad1 id=ex.1h3v.s8.5486afde8abc from=translated src=- shape=b3e396cb vocab=6aed63ee
+-/
 theorem exists_quadraticForm_outside_squareClasses
     {K : Type u} [Field K] [CharZero K]
     (base : HenselianDVF.{u, v} K) [CharP base.residueField 2]

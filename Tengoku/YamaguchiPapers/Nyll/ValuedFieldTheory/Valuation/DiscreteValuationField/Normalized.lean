@@ -22,7 +22,9 @@ namespace ValuationTheory.DiscreteValuationField.DVF
 
 universe u v
 
-/-- Normalize a discrete valuation together with an element of value exp(-1).-/
+/-- Normalize a discrete valuation together with an element of value exp(-1).
+@isnad1 id=ex.0h2v.s7.ce8afb621852 from=translated src=- shape=9c106638 vocab=3e970cda
+-/
 theorem exists_normalized_valuation_with_uniformizer
     {K : Type u} [Field K] (base : DVF.{u, v} K) :
     ∃ w : _root_.Valuation K (WithZero (Multiplicative ℤ)),
@@ -53,7 +55,9 @@ theorem exists_normalized_valuation_with_uniformizer
     exact ⟨⟨x, hx⟩, trivial, rfl⟩
 
 /-- Every discrete valuation can be normalized to integer values while
-retaining exactly the same valuation subring in the original field.-/
+retaining exactly the same valuation subring in the original field.
+@isnad1 id=ex.0h2v.s6.f970bdefc19c from=translated src=- shape=97a28cb5 vocab=17c34d5a
+-/
 theorem exists_normalized_valuation
     {K : Type u} [Field K] (base : DVF.{u, v} K) :
     ∃ w : _root_.Valuation K (WithZero (Multiplicative ℤ)),

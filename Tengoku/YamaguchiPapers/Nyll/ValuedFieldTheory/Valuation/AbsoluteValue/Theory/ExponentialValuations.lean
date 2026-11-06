@@ -67,14 +67,18 @@ def exponentialValuationRing {K : Type*} [Field K]
     (v : ExponentialValuation K) : Set K :=
   {x | (0 : WithTop ℝ) ≤ v x}
 
-/-- Nonzero elements have finite value for a exponential valuation.-/
+/-- Nonzero elements have finite value for a exponential valuation.
+@isnad1 id=ne.1h3v.s5.c6f3f6e4bdfb from=translated src=- shape=50492fb6 vocab=811daf53
+-/
 theorem exponentialValuation_ne_top_of_ne_zero {K : Type*} [Field K]
     (v : ExponentialValuation K) {x : K} (hx : x ≠ 0) :
     v x ≠ ⊤ := by
   intro htop
   exact hx ((v.eq_top_iff x).mp htop)
 
-/-- A nonzero element has a real-valued exponential valuation.-/
+/-- A nonzero element has a real-valued exponential valuation.
+@isnad1 id=ex.1h3v.s5.da54032aa466 from=translated src=- shape=aa3f8315 vocab=d8ece82c
+-/
 theorem exponentialValuation_exists_real_of_ne_zero {K : Type*} [Field K]
     (v : ExponentialValuation K) {x : K} (hx : x ≠ 0) :
     ∃ r : ℝ, v x = (r : WithTop ℝ) := by
@@ -82,7 +86,9 @@ theorem exponentialValuation_exists_real_of_ne_zero {K : Type*} [Field K]
       (exponentialValuation_ne_top_of_ne_zero v hx) with ⟨r, hr⟩
   exact ⟨r, hr.symm⟩
 
-/-- The value of `1` is `0` for a exponential valuation.-/
+/-- The value of `1` is `0` for a exponential valuation.
+@isnad1 id=eq.0h2v.s5.1b3ca70f74af from=translated src=- shape=d7f30f44 vocab=d00a5fcb
+-/
 @[simp]
 theorem exponentialValuation_one {K : Type*} [Field K]
     (v : ExponentialValuation K) :
@@ -96,7 +102,9 @@ theorem exponentialValuation_one {K : Type*} [Field K]
   have hr0 : r = 0 := by linarith
   simp [hr, hr0]
 
-/-- The value of `-1` is `0` for a exponential valuation.-/
+/-- The value of `-1` is `0` for a exponential valuation.
+@isnad1 id=eq.0h2v.s5.c08c477e5199 from=translated src=- shape=ac79fe14 vocab=ef25e8de
+-/
 @[simp]
 theorem exponentialValuation_neg_one {K : Type*} [Field K]
     (v : ExponentialValuation K) :
@@ -112,14 +120,18 @@ theorem exponentialValuation_neg_one {K : Type*} [Field K]
   have hr0 : r = 0 := by linarith
   simp [hr, hr0]
 
-/-- Negation does not change a exponential valuation.-/
+/-- Negation does not change a exponential valuation.
+@isnad1 id=eq.0h3v.s5.c2d0627c6cfc from=translated src=- shape=08b84969 vocab=ef25e8de
+-/
 @[simp]
 theorem exponentialValuation_neg {K : Type*} [Field K]
     (v : ExponentialValuation K) (x : K) :
     v (-x) = v x := by
   rw [← neg_one_mul, v.map_mul, exponentialValuation_neg_one, zero_add]
 
-/-- An element of value zero is nonzero.-/
+/-- An element of value zero is nonzero.
+@isnad1 id=ne.1h3v.s5.80da0048cad1 from=translated src=- shape=f8b6304b vocab=d00a5fcb
+-/
 theorem exponentialValuation_ne_zero_of_value_eq_zero {K : Type*} [Field K]
     (v : ExponentialValuation K) {x : K} (hx : v x = 0) :
     x ≠ 0 := by
@@ -128,7 +140,9 @@ theorem exponentialValuation_ne_zero_of_value_eq_zero {K : Type*} [Field K]
   rw [hx] at htop
   exact WithTop.coe_ne_top htop
 
-/-- The inverse of a value-zero element again has value zero.-/
+/-- The inverse of a value-zero element again has value zero.
+@isnad1 id=eq.1h3v.s6.a39f513de598 from=translated src=- shape=829dc06c vocab=47742ef4
+-/
 theorem exponentialValuation_inv_of_value_eq_zero {K : Type*} [Field K]
     (v : ExponentialValuation K) {x : K} (hx : v x = 0) :
     v x⁻¹ = 0 := by
@@ -137,7 +151,9 @@ theorem exponentialValuation_inv_of_value_eq_zero {K : Type*} [Field K]
   rw [mul_inv_cancel₀ hx0, exponentialValuation_one v, hx] at hmul
   simpa using hmul.symm
 
-/-- Finite inverse-value formula for a exponential valuation.-/
+/-- Finite inverse-value formula for a exponential valuation.
+@isnad1 id=eq.2h4v.s6.edb29d1e9a54 from=translated src=- shape=f9722cd7 vocab=f506ac97
+-/
 theorem exponentialValuation_inv_value {K : Type*} [Field K]
     (v : ExponentialValuation K) {x : K} (hx : x ≠ 0) {r : ℝ}
     (hval : v x = (r : WithTop ℝ)) :
@@ -178,7 +194,9 @@ def exponentialValuationSubring {K : Type*} [Field K]
     rw [v.map_mul]
     exact add_nonneg hx hy
 
-/-- Every element of the field or its inverse lies in the exponential-valuation ring.-/
+/-- Every element of the field or its inverse lies in the exponential-valuation ring.
+@isnad1 id=or.0h3v.s5.1e5e6964d194 from=translated src=- shape=90a0b37d vocab=2ebbff4e
+-/
 theorem exponentialValuationRing_mem_or_inv_mem {K : Type*} [Field K]
     (v : ExponentialValuation K) (x : K) :
     x ∈ exponentialValuationRing v ∨ x⁻¹ ∈ exponentialValuationRing v := by
@@ -202,7 +220,9 @@ theorem exponentialValuationRing_mem_or_inv_mem {K : Type*} [Field K]
       exact WithTop.coe_le_coe.mpr hneg_nonneg
 
 /-- The absolute values subring satisfies mathlib's valuation-subring
-membership alternative.-/
+membership alternative.
+@isnad1 id=or.0h3v.s6.92ad37cc8a80 from=translated src=- shape=90a0b37d vocab=d0d43c68
+-/
 theorem exponentialValuationSubring_mem_or_inv_mem {K : Type*} [Field K]
     (v : ExponentialValuation K) (x : K) :
     x ∈ exponentialValuationSubring v ∨
@@ -251,7 +271,9 @@ def exponentialMaxIdeal {K : Type*} [Field K]
         (add_le_add ha (le_rfl : v (x : K) ≤ v (x : K)))
     exact lt_of_lt_of_le hx hx_le
 
-/-- The unit element is not in the positive-value ideal.-/
+/-- The unit element is not in the positive-value ideal.
+@isnad1 id=not.0h2v.s9.72768c31646f from=translated src=- shape=95f7eb09 vocab=40a090d4
+-/
 theorem one_not_mem_exponentialMaxIdeal {K : Type*} [Field K]
     (v : ExponentialValuation K) :
     (1 : exponentialValuationSubring v) ∉ exponentialMaxIdeal v := by
@@ -260,7 +282,9 @@ theorem one_not_mem_exponentialMaxIdeal {K : Type*} [Field K]
   exact lt_irrefl _
 
 /-- Inside the valuation ring, not lying in the positive-value ideal is the same
-as having value zero.-/
+as having value zero.
+@isnad1 id=iff.0h3v.s9.8e0fd5b75a80 from=translated src=- shape=55858c1d vocab=4e4551f1
+-/
 theorem not_mem_exponentialMaxIdeal_iff_value_eq_zero {K : Type*} [Field K]
     (v : ExponentialValuation K) (x : exponentialValuationSubring v) :
     x ∉ exponentialMaxIdeal v ↔ v (x : K) = 0 := by
@@ -272,7 +296,9 @@ theorem not_mem_exponentialMaxIdeal_iff_value_eq_zero {K : Type*} [Field K]
     change ¬ (0 : WithTop ℝ) < v (x : K)
     simp [hx]
 
-/-- Value-zero elements of the valuation ring are units of that ring.-/
+/-- Value-zero elements of the valuation ring are units of that ring.
+@isnad1 id=isunit.1h3v.s8.1ea672f0bc8f from=translated src=- shape=8a06226e vocab=09b8301b
+-/
 theorem isUnit_of_exponentialValuation_eq_zero {K : Type*} [Field K]
     (v : ExponentialValuation K) {x : exponentialValuationSubring v}
     (hx : v (x : K) = 0) :
@@ -283,7 +309,9 @@ theorem isUnit_of_exponentialValuation_eq_zero {K : Type*} [Field K]
   · change (0 : WithTop ℝ) ≤ v ((x : K)⁻¹)
     simp [exponentialValuation_inv_of_value_eq_zero v hx]
 
-/-- Units of the valuation ring have value zero.-/
+/-- Units of the valuation ring have value zero.
+@isnad1 id=eq.1h3v.s8.7982f5855210 from=translated src=- shape=4d18ce02 vocab=09b8301b
+-/
 theorem exponentialValuation_eq_zero_of_isUnit {K : Type*} [Field K]
     (v : ExponentialValuation K) {x : exponentialValuationSubring v}
     (hx : IsUnit x) :
@@ -301,7 +329,9 @@ theorem exponentialValuation_eq_zero_of_isUnit {K : Type*} [Field K]
       _ = 0 := hmul.symm
   exact le_antisymm hx_le_zero hx_nonneg
 
-/-- A valuation-ring element outside the positive-value ideal is a unit.-/
+/-- A valuation-ring element outside the positive-value ideal is a unit.
+@isnad1 id=isunit.1h3v.s9.4547eaa91af7 from=translated src=- shape=c920902f vocab=5a7bd91c
+-/
 theorem isUnit_of_not_mem_exponentialMaxIdeal {K : Type*} [Field K]
     (v : ExponentialValuation K) {x : exponentialValuationSubring v}
     (hx : x ∉ exponentialMaxIdeal v) :
@@ -309,7 +339,9 @@ theorem isUnit_of_not_mem_exponentialMaxIdeal {K : Type*} [Field K]
   isUnit_of_exponentialValuation_eq_zero v
     ((not_mem_exponentialMaxIdeal_iff_value_eq_zero v x).mp hx)
 
-/-- Units of the valuation ring do not lie in the positive-value ideal.-/
+/-- Units of the valuation ring do not lie in the positive-value ideal.
+@isnad1 id=not.1h3v.s9.a7f88a2ceee9 from=translated src=- shape=51374b9a vocab=5a7bd91c
+-/
 theorem not_mem_exponentialMaxIdeal_of_isUnit {K : Type*} [Field K]
     (v : ExponentialValuation K) {x : exponentialValuationSubring v}
     (hx : IsUnit x) :
@@ -320,7 +352,9 @@ theorem not_mem_exponentialMaxIdeal_of_isUnit {K : Type*} [Field K]
   simp [hzero]
 
 /-- In the valuation ring, the units are exactly the complement of the
-positive-value ideal.-/
+positive-value ideal.
+@isnad1 id=iff.0h3v.s9.76443c554e07 from=translated src=- shape=8045bd34 vocab=5a7bd91c
+-/
 theorem isUnit_iff_not_mem_exponentialMaxIdeal {K : Type*} [Field K]
     (v : ExponentialValuation K) (x : exponentialValuationSubring v) :
     IsUnit x ↔ x ∉ exponentialMaxIdeal v := by
@@ -328,7 +362,9 @@ theorem isUnit_iff_not_mem_exponentialMaxIdeal {K : Type*} [Field K]
   · exact not_mem_exponentialMaxIdeal_of_isUnit v
   · exact isUnit_of_not_mem_exponentialMaxIdeal v
 
-/-- The positive-value ideal is maximal in the exponential-valuation ring.-/
+/-- The positive-value ideal is maximal in the exponential-valuation ring.
+@isnad1 id=ismaxima.0h2v.s6.7599b61f1010 from=translated src=- shape=3ce259da vocab=a04166d4
+-/
 theorem exponentialMaxIdeal_isMaximal {K : Type*} [Field K]
     (v : ExponentialValuation K) :
     (exponentialMaxIdeal v).IsMaximal := by
@@ -340,7 +376,9 @@ theorem exponentialMaxIdeal_isMaximal {K : Type*} [Field K]
       (J.eq_top_of_isUnit_mem hxJ
         ((isUnit_iff_not_mem_exponentialMaxIdeal v x).mpr hx_not_mem))
 
-/-- The exponential-valuation ring is local.-/
+/-- The exponential-valuation ring is local.
+@isnad1 id=islocalr.0h2v.s6.c7b5a102649a from=translated src=- shape=bdb1469b vocab=a01a4988
+-/
 instance exponentialValuationSubringIsLocalRing {K : Type*} [Field K]
     (v : ExponentialValuation K) :
     IsLocalRing (exponentialValuationSubring v) :=
@@ -357,7 +395,9 @@ instance exponentialValuationSubringIsLocalRing {K : Type*} [Field K]
       (not_mem_exponentialMaxIdeal_of_isUnit v hxy_unit) hxy_mem
 
 /-- The positive-value ideal agrees with mathlib's maximal ideal of the
-valuation ring.-/
+valuation ring.
+@isnad1 id=eq.0h2v.s7.a1b05352ccaf from=translated src=- shape=64e61878 vocab=8efc5dbb
+-/
 theorem exponentialMaxIdeal_eq_maximalIdeal {K : Type*} [Field K]
     (v : ExponentialValuation K) :
     exponentialMaxIdeal v =
@@ -395,7 +435,9 @@ def primeElementInValuationSubring {K : Type*} [Field K]
     change ((0 : ℝ) : WithTop ℝ) ≤ ((1 : ℝ) : WithTop ℝ)
     exact WithTop.coe_le_coe.mpr zero_le_one⟩
 
-/-- A normalized prime element lies in the positive-value maximal ideal.-/
+/-- A normalized prime element lies in the positive-value maximal ideal.
+@isnad1 id=mem.1h3v.s9.0c3b0dc7d696 from=translated src=- shape=9cadb240 vocab=265c4633
+-/
 theorem primeElement_mem_exponentialMaxIdeal
     {K : Type*} [Field K] (v : ExponentialValuation K) {π : K}
     (hπ : PrimeElementFor v π) :
@@ -405,7 +447,9 @@ theorem primeElement_mem_exponentialMaxIdeal
   change ((0 : ℝ) : WithTop ℝ) < ((1 : ℝ) : WithTop ℝ)
   exact WithTop.coe_lt_coe.mpr zero_lt_one
 
-/-- A normalized prime element lies in mathlib's maximal ideal of the valuation ring.-/
+/-- A normalized prime element lies in mathlib's maximal ideal of the valuation ring.
+@isnad1 id=mem.1h3v.s9.855ec3f5b031 from=translated src=- shape=edd5fc8b vocab=f4a48219
+-/
 theorem primeElement_mem_maximalIdeal
     {K : Type*} [Field K] (v : ExponentialValuation K) {π : K}
     (hπ : PrimeElementFor v π) :
@@ -414,7 +458,9 @@ theorem primeElement_mem_maximalIdeal
   rw [← exponentialMaxIdeal_eq_maximalIdeal v]
   exact primeElement_mem_exponentialMaxIdeal v hπ
 
-/-- A normalized prime element is nonzero as an element of the valuation ring.-/
+/-- A normalized prime element is nonzero as an element of the valuation ring.
+@isnad1 id=ne.1h3v.s7.0e64f94288b5 from=translated src=- shape=a7bce9c0 vocab=1161836d
+-/
 theorem primeElementInValuationSubring_ne_zero
     {K : Type*} [Field K] (v : ExponentialValuation K) {π : K}
     (hπ : PrimeElementFor v π) :
@@ -424,7 +470,9 @@ theorem primeElementInValuationSubring_ne_zero
     simpa [primeElementInValuationSubring] using
       congrArg (fun x : exponentialValuationSubring v => (x : K)) hzero)
 
-/-- The inverse of a normalized prime element has value `-1`.-/
+/-- The inverse of a normalized prime element has value `-1`.
+@isnad1 id=eq.1h3v.s5.02d3ce012777 from=translated src=- shape=03397768 vocab=9ace43a7
+-/
 theorem primeElementFor_inv_value {K : Type*} [Field K]
     (v : ExponentialValuation K) {π : K}
     (hπ : PrimeElementFor v π) :
@@ -439,7 +487,9 @@ theorem primeElementFor_inv_value {K : Type*} [Field K]
     linarith
   simp [hs, hs_eq]
 
-/-- Powers of a normalized prime element have the expected normalized value.-/
+/-- Powers of a normalized prime element have the expected normalized value.
+@isnad1 id=eq.1h4v.s5.eec2964a33be from=translated src=- shape=7336dddb vocab=49e17f7f
+-/
 theorem primeElementFor_pow_value {K : Type*} [Field K]
     (v : ExponentialValuation K) {π : K}
     (hπ : PrimeElementFor v π) (n : ℕ) :
@@ -452,7 +502,9 @@ theorem primeElementFor_pow_value {K : Type*} [Field K]
       norm_num [Nat.cast_succ, WithTop.coe_add]
 
 /-- In a normalized exponential valuation, a normalized prime element generates the
-positive-value maximal ideal.-/
+positive-value maximal ideal.
+@isnad1 id=eq.2h3v.s8.15f3a8079201 from=translated src=- shape=d27c0527 vocab=b2274c7c
+-/
 theorem exponentialMaxIdeal_eq_span_primeElement_of_normalized
     {K : Type*} [Field K] {v : ExponentialValuation K}
     (hv : NormalizedExponentialValuation v) {π : K}
@@ -509,7 +561,9 @@ theorem exponentialMaxIdeal_eq_span_primeElement_of_normalized
         (primeElement_mem_exponentialMaxIdeal v hπ)
 
 /-- In a normalized exponential valuation, powers of the positive-value
-maximal ideal are generated by powers of a normalized prime element.-/
+maximal ideal are generated by powers of a normalized prime element.
+@isnad1 id=eq.2h4v.s10.50d72785b735 from=translated src=- shape=eb249399 vocab=6b881357
+-/
 theorem exponentialMaxIdeal_pow_eq_span_primeElement_pow_of_normalized
     {K : Type*} [Field K] {v : ExponentialValuation K}
     (hv : NormalizedExponentialValuation v) {π : K}
@@ -527,7 +581,9 @@ def uniformizerPowerIdeal {O : Type*} [CommRing O] (π : O) (n : ℕ) : Ideal O 
 
 /-- Value description of a principal power ideal from the value of powers of
 its generator.  This is the common calculation behind both the normalized
-and the scaled discrete forms of the ideal structure theorem for discrete valuation rings.-/
+and the scaled discrete forms of the ideal structure theorem for discrete valuation rings.
+@isnad1 id=iff.3h7v.s10.ab544facf755 from=translated src=- shape=9f4e822b vocab=21c209c9
+-/
 theorem uniformizerPowerIdeal_mem_iff_value_ge_of_pow_value
     {K : Type*} [Field K] (v : ExponentialValuation K)
     {π : K} (πR : exponentialValuationSubring v)
@@ -593,7 +649,9 @@ theorem uniformizerPowerIdeal_mem_iff_value_ge_of_pow_value
       rw [hπR, mul_assoc, inv_mul_cancel₀ hpow_ne, mul_one]
 
 /-- If an ideal contains an element whose value is exactly the value of
-`π^n`, then it contains the principal ideal generated by `π^n`.-/
+`π^n`, then it contains the principal ideal generated by `π^n`.
+@isnad1 id=le.5h8v.s10.dd760e11f516 from=translated src=- shape=1a3191d2 vocab=21c209c9
+-/
 theorem uniformizerPowerIdeal_le_ideal_of_mem_value_eq_of_pow_value
     {K : Type*} [Field K] {v : ExponentialValuation K}
     {π : K} (πR : exponentialValuationSubring v)
@@ -643,7 +701,9 @@ theorem uniformizerPowerIdeal_le_ideal_of_mem_value_eq_of_pow_value
 /-- A nonzero ideal has an element of least indexed value whenever every
 nonzero element has a value in a monotone sequence.  This isolates the
 well-ordering argument shared by the normalized and scaled forms of
-the ideal structure theorem for discrete valuation rings.-/
+the ideal structure theorem for discrete valuation rings.
+@isnad1 id=ex.3h5v.s8.f4a5799d1258 from=translated src=- shape=eaa9083f vocab=694ca882
+-/
 theorem ideal_exists_min_value_of_nat_indexed_values
     {O α : Type*} [CommRing O] [Preorder α]
     (value : O → α) (weight : ℕ → α) (hweight : Monotone weight)
@@ -677,7 +737,9 @@ theorem ideal_exists_min_value_of_nat_indexed_values
 /-- The ideal structure theorem for discrete valuation rings, value description of the ideals
 `π^n𝒪`: for a normalized
 prime element, membership in the principal power ideal is exactly the lower
-bound `v(x) ≥ n`.-/
+bound `v(x) ≥ n`.
+@isnad1 id=iff.1h5v.s9.73a1a496fdae from=translated src=- shape=e9943a43 vocab=1aa6a396
+-/
 theorem uniformizerPowerIdeal_mem_iff_value_ge
     {K : Type*} [Field K] (v : ExponentialValuation K) {π : K}
     (hπ : PrimeElementFor v π) (n : ℕ)
@@ -694,7 +756,9 @@ theorem uniformizerPowerIdeal_mem_iff_value_ge
 
 /-- A nonnegative member of a positive real lattice has a natural-number
 index.  This is the order-theoretic step common to normalized and scaled
-discrete valuations.-/
+discrete valuations.
+@isnad1 id=ex.3h2v.s6.931cd8f602e2 from=translated src=- shape=1f31440e vocab=f3185c66
+-/
 theorem exists_nat_index_of_nonneg_int_multiple
     {a : WithTop ℝ} {s : ℝ} (ha : 0 ≤ a) (hs : 0 < s)
     (h : ∃ m : ℤ, a = (((m : ℝ) * s : ℝ) : WithTop ℝ)) :
@@ -713,7 +777,9 @@ theorem exists_nat_index_of_nonneg_int_multiple
         (mul_neg_of_neg_of_pos hmneg hs)
 
 /-- In a normalized exponential valuation, a nonzero element of the valuation
-ring has a natural-number value.-/
+ring has a natural-number value.
+@isnad1 id=ex.2h3v.s7.084ef84ba293 from=translated src=- shape=7f440fdf vocab=9ac3f3a5
+-/
 theorem normalizedExponentialValuation_subring_exists_nat_value
     {K : Type*} [Field K] {v : ExponentialValuation K}
     (hv : NormalizedExponentialValuation v)
@@ -728,7 +794,9 @@ theorem normalizedExponentialValuation_subring_exists_nat_value
   exact ⟨n, by simpa using hn⟩
 
 /-- If an ideal contains an element of value exactly `n`, then it contains
-`π^n𝒪`.-/
+`π^n𝒪`.
+@isnad1 id=le.3h6v.s10.a03565f0b8d9 from=translated src=- shape=9ebcac32 vocab=1aa6a396
+-/
 theorem uniformizerPowerIdeal_le_ideal_of_mem_value_eq
     {K : Type*} [Field K] {v : ExponentialValuation K} {π : K}
     (hπ : PrimeElementFor v π)
@@ -747,7 +815,9 @@ theorem uniformizerPowerIdeal_le_ideal_of_mem_value_eq
 
 /-- The ideal structure theorem for discrete valuation rings, ideal classification part: every
 nonzero ideal of a
-normalized exponential-valuation ring is one of the ideals `π^n𝒪`.-/
+normalized exponential-valuation ring is one of the ideals `π^n𝒪`.
+@isnad1 id=ex.3h4v.s9.c66a655fbb74 from=translated src=- shape=7d84a3aa vocab=ca7309e0
+-/
 theorem nonzero_ideal_eq_uniformizerPowerIdeal
     {K : Type*} [Field K] {v : ExponentialValuation K}
     (hv : NormalizedExponentialValuation v) {π : K}
@@ -785,7 +855,9 @@ theorem nonzero_ideal_eq_uniformizerPowerIdeal
 
 /-- The ideal structure theorem for discrete valuation rings, PID part: the valuation ring of a
 normalized
-exponential valuation is a principal ideal ring.-/
+exponential valuation is a principal ideal ring.
+@isnad1 id=isprinci.2h3v.s7.aef7375a7f12 from=translated src=- shape=6d92a803 vocab=5bdb4af0
+-/
 theorem normalizedExponentialValuationSubring_isPrincipalIdealRing
     {K : Type*} [Field K] {v : ExponentialValuation K}
     (hv : NormalizedExponentialValuation v) {π : K}
@@ -803,7 +875,9 @@ theorem normalizedExponentialValuationSubring_isPrincipalIdealRing
 
 /-- The ideal structure theorem for discrete valuation rings, DVR part: the valuation ring of a
 normalized
-exponential valuation is a discrete valuation ring.-/
+exponential valuation is a discrete valuation ring.
+@isnad1 id=isdiscre.2h3v.s6.b73d389b8226 from=translated src=- shape=6d92a803 vocab=3ca6f7ef
+-/
 theorem normalizedExponentialValuationSubring_isDiscreteValuationRing
     {K : Type*} [Field K] {v : ExponentialValuation K}
     (hv : NormalizedExponentialValuation v) {π : K}
@@ -835,7 +909,9 @@ def discretePrimeElementInValuationSubring
     rw [hπ]
     exact WithTop.coe_le_coe.mpr hs⟩
 
-/-- A finite positive value forces the chosen discrete prime element to be nonzero.-/
+/-- A finite positive value forces the chosen discrete prime element to be nonzero.
+@isnad1 id=ne.1h4v.s5.ad2e7b311ce1 from=translated src=- shape=8bcc5449 vocab=d8ece82c
+-/
 theorem discretePrimeElement_ne_zero_of_value
     {K : Type*} [Field K] (v : ExponentialValuation K)
     {π : K} {s : ℝ} (hπ : v π = (s : WithTop ℝ)) :
@@ -845,7 +921,9 @@ theorem discretePrimeElement_ne_zero_of_value
   rw [hπ] at htop
   exact WithTop.coe_ne_top htop
 
-/-- Powers of a discrete prime element have the expected scaled value.-/
+/-- Powers of a discrete prime element have the expected scaled value.
+@isnad1 id=eq.1h5v.s6.aa12908b1739 from=translated src=- shape=2fbe440c vocab=ff48f5a5
+-/
 theorem discretePrimeElement_pow_value
     {K : Type*} [Field K] (v : ExponentialValuation K)
     {π : K} {s : ℝ} (hπ : v π = (s : WithTop ℝ)) (n : ℕ) :
@@ -862,7 +940,9 @@ theorem discretePrimeElement_pow_value
       ring
 
 /-- A nonzero element of the valuation ring of a discrete valuation has a
-nonnegative integer multiple of the least positive value.-/
+nonnegative integer multiple of the least positive value.
+@isnad1 id=ex.3h4v.s7.2112fd12fcd9 from=translated src=- shape=4b9ee68e vocab=a9a94adc
+-/
 theorem discreteExponentialValuation_subring_exists_nat_value
     {K : Type*} [Field K] {v : ExponentialValuation K}
     {s : ℝ} (hs : 0 < s)
@@ -874,7 +954,9 @@ theorem discreteExponentialValuation_subring_exists_nat_value
 
 /-- The ideal structure theorem for discrete valuation rings, scaled value description for a
 non-normalized discrete
-prime element: membership in `π^n𝒪` is the lower bound `n * s ≤ v(x)`.-/
+prime element: membership in `π^n𝒪` is the lower bound `n * s ≤ v(x)`.
+@isnad1 id=iff.2h6v.s9.c613762d0c53 from=translated src=- shape=ae298f59 vocab=65be8ed0
+-/
 theorem discrete_uniformizerPowerIdeal_mem_iff_value_ge
     {K : Type*} [Field K] (v : ExponentialValuation K)
     {π : K} {s : ℝ} (hs : 0 < s) (hπ : v π = (s : WithTop ℝ))

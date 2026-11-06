@@ -29,7 +29,9 @@ namespace ValuationTheory.Completion
 open Polynomial IntermediateField
 
 /-- A finite separable simple extension of a complete nonarchimedean field
-has a generator separable over any dense subfield, with the same degree.-/
+has a generator separable over any dense subfield, with the same degree.
+@isnad1 id=ex.2h3v.s9.275fb4f9667b from=translated src=- shape=7fe18b9e vocab=5a942adb
+-/
 theorem exists_isSeparable_adjoin_eq_of_denseRange
     {K A : Type*} [Field K] [NontriviallyNormedField A]
     [CompleteSpace A] [IsUltrametricDist A] [Algebra K A]

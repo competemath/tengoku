@@ -73,7 +73,9 @@ noncomputable abbrev finiteExtensionAtPrimeFractionRingAlgebra
       (L := FractionRing D)
 
 omit [Module.Finite S D] in
-/-- The maps `Sₚ → Frac(S) → Frac(D)` form the defining scalar tower.-/
+/-- The maps `Sₚ → Frac(S) → Frac(D)` form the defining scalar tower.
+@isnad1 id=isscalar.0h3v.s8.54673646b23d from=translated src=- shape=74a65bef vocab=97593b48
+-/
 theorem finiteExtensionAtPrime_fractionRingTower
     (p : Ideal S) [p.IsPrime] :
     letI : Algebra (Localization.AtPrime p) (FractionRing S) :=
@@ -94,7 +96,9 @@ theorem finiteExtensionAtPrime_fractionRingTower
 
 omit [Module.Finite S D] in
 /-- The direct map from `Sₚ` to `Frac(D)` extends through the literal
-fraction field of `Sₚ`.-/
+fraction field of `Sₚ`.
+@isnad1 id=isscalar.0h3v.s9.f0c70b92ee19 from=translated src=- shape=0594080d vocab=45c5788a
+-/
 theorem finiteExtensionAtPrime_literalFractionRingTower
     (p : Ideal S) [p.IsPrime] :
     letI : Algebra (Localization.AtPrime p) (FractionRing D) :=
@@ -120,7 +124,9 @@ theorem finiteExtensionAtPrime_literalFractionRingTower
     (V := Localization.AtPrime p) (K := FractionRing S)
       (L := FractionRing D)
 
-/-- `Frac(D)` is finite over the literal fraction field of `Sₚ`.-/
+/-- `Frac(D)` is finite over the literal fraction field of `Sₚ`.
+@isnad1 id=finitedi.0h3v.s9.9a82369996ed from=translated src=- shape=568b98a9 vocab=19a9ed6f
+-/
 theorem finiteExtensionAtPrime_fractionRing_finiteDimensional
     (p : Ideal S) [p.IsPrime] :
     letI : Algebra (FractionRing (Localization.AtPrime p))
@@ -144,7 +150,9 @@ theorem finiteExtensionAtPrime_fractionRing_finiteDimensional
 
 omit [Module.Finite S D] in
 /-- The two canonical routes `Sₚ → D_q → Frac(D)` and
-`Sₚ → Frac(S) → Frac(D)` agree.-/
+`Sₚ → Frac(S) → Frac(D)` agree.
+@isnad1 id=isscalar.0h4v.s8.3a8ebed89c2b from=translated src=- shape=dd15d993 vocab=4b6f3223
+-/
 theorem finiteLiesOverLocalization_fractionRingTower
     (p : Ideal S) (q : Ideal D) [p.IsPrime] [q.IsPrime] [q.LiesOver p] :
     letI : Algebra (Localization.AtPrime p) (Localization.AtPrime q) :=

@@ -24,7 +24,9 @@ open ValuationTheory.DiscreteValuationField
 variable {K : Type*} [Field K] (V : ValuationSubring K)
   [HenselianRing V (IsLocalRing.maximalIdeal V)]
 
-/-- The simple-root Henselian condition supplies monic coprime-factor lifting.-/
+/-- The simple-root Henselian condition supplies monic coprime-factor lifting.
+@isnad1 id=monicres.0h2v.s6.dc7a139ff9d0 from=translated src=- shape=8a26db5b vocab=78d5675e
+-/
 theorem monicResidualCoprimeFactorLifting_of_henselianRing :
     MonicResidualCoprimeFactorLifting V := by
   intro f gbar hbar hf hgbar hhbar hfac hcop
@@ -34,7 +36,9 @@ theorem monicResidualCoprimeFactorLifting_of_henselianRing :
   exact ⟨g, h, hg, hh, hgh, hgmap, hhmap⟩
 
 /-- A Henselian valuation ring satisfies the full primitive factorization
-form of Hensel's lemma, without completeness or rank assumptions.-/
+form of Hensel's lemma, without completeness or rank assumptions.
+@isnad1 id=henselfa.0h2v.s6.5e9f830d10d6 from=translated src=- shape=8a26db5b vocab=9f6475aa
+-/
 theorem henselFactorization_of_henselianRing : HenselFactorizationProperty V :=
   henselianValuationExtension V (monicResidualCoprimeFactorLifting_of_henselianRing V)
 

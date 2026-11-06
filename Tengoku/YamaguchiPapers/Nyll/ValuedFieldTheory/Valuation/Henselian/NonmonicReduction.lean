@@ -28,7 +28,9 @@ universe u
 
 /-- If the roots of a primitive irreducible polynomial all have the same
 value in a splitting field, then the nonunit-leading-coefficient branch has
-constant reduction.-/
+constant reduction.
+@isnad1 id=eq.4h5v.s10.ea65321434ad from=translated src=- shape=ed3f3c8d vocab=1a5b04f9
+-/
 theorem primitive_irreducible_reduction_natDegree_zero_of_leadingCoeff_nonunit_of_roots_eq
     {K L : Type u} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (B : ValuationSubring L)

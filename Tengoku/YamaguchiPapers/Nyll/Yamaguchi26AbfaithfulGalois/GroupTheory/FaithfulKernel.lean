@@ -21,7 +21,9 @@ universe u v
 
 variable {E : Type u} [Group E] {B : Type v} [Group B]
 
-/-- An abelian kernel acts trivially on itself by conjugation.-/
+/-- An abelian kernel acts trivially on itself by conjugation.
+@isnad1 id=le.1h3v.s8.c76d3d11351f from=translated src=- shape=507e494a vocab=392e373c
+-/
 theorem abelianKernel_le_ker_conjNormal (α : E →* B)
     (hcomm : ∀ a b : α.ker, Commute (a : E) (b : E)) :
     α.ker ≤ (MulAut.conjNormal : E →* MulAut α.ker).ker := by
@@ -41,7 +43,9 @@ noncomputable def abelianKernelConjugation (α : E →* B)
     (abelianKernel_le_ker_conjNormal α hcomm)).comp
       (QuotientGroup.quotientKerEquivOfSurjective α hsurj).symm.toMonoidHom
 
-/-- The descended action agrees with conjugation by every lift.-/
+/-- The descended action agrees with conjugation by every lift.
+@isnad1 id=eq.2h5v.s11.b09f30d4fdd8 from=translated src=- shape=c5ba6a85 vocab=4b46baa9
+-/
 theorem abelianKernelConjugation_apply (α : E →* B)
     (hsurj : Function.Surjective α)
     (hcomm : ∀ a b : α.ker, Commute (a : E) (b : E))
@@ -59,7 +63,9 @@ theorem abelianKernelConjugation_apply (α : E →* B)
   rw [hclass]
   rfl
 
-/-- Faithfulness is equivalent to the abelian kernel being self-centralizing.-/
+/-- Faithfulness is equivalent to the abelian kernel being self-centralizing.
+@isnad1 id=iff.2h3v.s9.c2bbd11f1eed from=translated src=- shape=61c8bc94 vocab=453fc46b
+-/
 theorem abelianKernelConjugation_injective_iff (α : E →* B)
     (hsurj : Function.Surjective α)
     (hcomm : ∀ a b : α.ker, Commute (a : E) (b : E)) :

@@ -24,7 +24,9 @@ namespace AlgebraicNumberTheory
 namespace Valuations
 
 /-- the remainder estimate before reducing
-coefficients.-/
+coefficients.
+@isnad1 id=le.2h4v.s6.d87a67edc771 from=translated src=- shape=c89d5551 vocab=390f0d35
+-/
 theorem henselFactorization_remainder_natDegree_le_of_degree_lt
     {R : Type*} [CommRing R] {g0 p : R[X]} {m : ℕ}
     (hg0nat : g0.natDegree = m) (hpdeg : p.degree < g0.degree) :

@@ -35,6 +35,9 @@ universe u v w
 
 open TensorProduct
 
+/--
+@isnad1 id=finiteet.0h3v.s7.084286c6ad18 from=translated src=- shape=8e66a4b4 vocab=2139751d
+-/
 lemma Algebra.FiniteEtale.of_finiteEtale_tensorProduct_of_faithfullyFlat {R S : Type u}
     [CommRing R] [CommRing S] [Algebra R S]
     (T : Type u) [CommRing T] [Algebra R T] [Module.FaithfullyFlat R T]

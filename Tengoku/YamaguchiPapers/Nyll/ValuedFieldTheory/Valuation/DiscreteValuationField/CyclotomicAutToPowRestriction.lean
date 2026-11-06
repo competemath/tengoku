@@ -30,7 +30,9 @@ private theorem restrictRestrict_algebraMap (σ : E ≃ₐ[L] E) (x : K) :
   (MulSemiringAction.toAlgAut (E ≃ₐ[L] E) F E σ).restrictNormal_commutes K x
 
 /-- The actual restriction homomorphism preserves the cyclotomic exponent,
-independently of the primitive roots chosen in the two fields.-/
+independently of the primitive roots chosen in the two fields.
+@isnad1 id=eq.2h8v.s10.dc9b696e1946 from=translated src=- shape=dedd09b6 vocab=ea637c3b
+-/
 theorem autToPow_restrictRestrictAlgEquivMapHom (n : ℕ) [NeZero n]
     {ζ : K} {η : E} (hζ : IsPrimitiveRoot ζ n) (hη : IsPrimitiveRoot η n)
     (σ : E ≃ₐ[L] E) :

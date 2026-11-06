@@ -26,7 +26,9 @@ namespace FieldTheory
 universe u
 
 /-- A finitely generated field has an affine integral model inside any
-valuation subring, containing any prescribed integral element.-/
+valuation subring, containing any prescribed integral element.
+@isnad1 id=ex.2h3v.s8.766d99bbd9c8 from=translated src=- shape=04fe0b16 vocab=08b24204
+-/
 theorem exists_finiteType_int_model_le_valuationSubring
     (K : Type u) [Field K] (hfg : Field.FG K)
     (V : ValuationSubring K) (y : K) (hy : y ∈ V) :

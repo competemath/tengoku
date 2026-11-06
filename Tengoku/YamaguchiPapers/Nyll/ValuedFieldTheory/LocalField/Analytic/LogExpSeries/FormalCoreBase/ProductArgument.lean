@@ -39,7 +39,9 @@ def formalLogOnePlusProductArgumentPolynomial
     MvPolynomial.X (0 : Fin 2) * MvPolynomial.X (1 : Fin 2)
 
 /-- Evaluating the polynomial product argument at `(x,y)` gives
-`x + y + xy`.-/
+`x + y + xy`.
+@isnad1 id=eq.0h3v.s7.0498b146f5f7 from=translated src=- shape=5dfc3efc vocab=ac1179d0
+-/
 @[simp] theorem formalLogOnePlusProductArgumentPolynomial_eval_pair
     (A : Type*) [CommSemiring A] (x y : A) :
     MvPolynomial.eval (fun i : Fin 2 => if i = 0 then x else y)
@@ -49,7 +51,9 @@ def formalLogOnePlusProductArgumentPolynomial
 
 /--
 Establishes the identity `formalLogOnePlusProductArgument A = (1 + MvPowerSeries.X (0 : Fin 2)) *
-(1 + MvPowerSeries.X (1 : Fin 2)) - 1`.-/
+(1 + MvPowerSeries.X (1 : Fin 2)) - 1`.
+@isnad1 id=eq.0h1v.s8.5145607bcdc8 from=translated src=- shape=12da40c7 vocab=f1e82b7d
+-/
 theorem formalLogOnePlusProductArgument_eq_mul_sub_one
     (A : Type*) [CommRing A] :
     formalLogOnePlusProductArgument A =
@@ -61,7 +65,9 @@ theorem formalLogOnePlusProductArgument_eq_mul_sub_one
   ring
 
 /--
-Establishes the identity `MvPowerSeries.constantCoeff (formalLogOnePlusProductArgument A) = 0`.-/
+Establishes the identity `MvPowerSeries.constantCoeff (formalLogOnePlusProductArgument A) = 0`.
+@isnad1 id=eq.0h1v.s7.7a5dddac952f from=translated src=- shape=5a08073f vocab=d19bba07
+-/
 theorem formalLogOnePlusProductArgument_constantCoeff
     (A : Type*) [CommRing A] :
     MvPowerSeries.constantCoeff (formalLogOnePlusProductArgument A) = 0 := by
@@ -70,7 +76,9 @@ theorem formalLogOnePlusProductArgument_constantCoeff
 
 /--
 The formal product argument has zero constant coefficient, so it admits substitution into the
-logarithm power series.-/
+logarithm power series.
+@isnad1 id=hassubst.0h1v.s4.2299da9fbe97 from=translated src=- shape=5e04a8bc vocab=e0f6733b
+-/
 theorem formalLogOnePlusProductArgument_hasSubst
     (A : Type*) [CommRing A] :
     PowerSeries.HasSubst (formalLogOnePlusProductArgument A) :=
@@ -80,7 +88,9 @@ theorem formalLogOnePlusProductArgument_hasSubst
 /--
 Establishes the identity `MvPowerSeries.coeff e (MvPowerSeries.X (0 : Fin 2) * MvPowerSeries.X (1
 : Fin 2) : MvPowerSeries (Fin 2) A) = if e = Finsupp.single (0 : Fin 2) 1 + Finsupp.single (1 :
-Fin 2) 1 then 1 else 0`.-/
+Fin 2) 1 then 1 else 0`.
+@isnad1 id=eq.0h2v.s9.161819b1e2c5 from=translated src=- shape=68d347a4 vocab=2d21a8cf
+-/
 theorem formalLogOnePlusProductArgument_mulVariables_coeff
     (A : Type*) [CommRing A] (e : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff e
@@ -101,7 +111,9 @@ theorem formalLogOnePlusProductArgument_mulVariables_coeff
 /--
 Establishes the identity `MvPowerSeries.coeff e (formalLogOnePlusProductArgument A) = (if e =
 Finsupp.single (0 : Fin 2) 1 then 1 else 0) + (if e = Finsupp.single (1 : Fin 2) 1 then 1 else 0)
-+ (if e = Finsupp.single (0 : Fin 2) 1 + Finsupp.single (1 : Fin 2) 1 then 1 else 0)`.-/
++ (if e = Finsupp.single (0 : Fin 2) 1 + Finsupp.single (1 : Fin 2) 1 then 1 else 0)`.
+@isnad1 id=eq.0h2v.s9.3f902be2f612 from=translated src=- shape=2dbeb849 vocab=0b6830d5
+-/
 theorem formalLogOnePlusProductArgument_coeff
     (A : Type*) [CommRing A] (e : Fin 2 →₀ ℕ) :
     MvPowerSeries.coeff e (formalLogOnePlusProductArgument A) =
@@ -114,7 +126,9 @@ theorem formalLogOnePlusProductArgument_coeff
   simp [formalLogOnePlusProductArgument, MvPowerSeries.coeff_X,
     formalLogOnePlusProductArgument_mulVariables_coeff]
 
-/-- Establishes the identity `MvPowerSeries.coeff e (formalLogOnePlusProductArgument A) = 0`.-/
+/-- Establishes the identity `MvPowerSeries.coeff e (formalLogOnePlusProductArgument A) = 0`.
+@isnad1 id=eq.3h2v.s8.9ed81917b7a7 from=translated src=- shape=11aa9739 vocab=4285c7f1
+-/
 theorem formalLogOnePlusProductArgument_coeff_eq_zero_of_not_basic
     (A : Type*) [CommRing A] (e : Fin 2 →₀ ℕ)
     (hleft : e ≠ Finsupp.single (0 : Fin 2) 1)
@@ -127,7 +141,9 @@ theorem formalLogOnePlusProductArgument_coeff_eq_zero_of_not_basic
   rw [formalLogOnePlusProductArgument_coeff]
   simp [hleft, hright, hmixed]
 
-/-- Establishes the inequality `Finsupp.single (0 : Fin 2) 1 ≠ Finsupp.single (1 : Fin 2) 1`.-/
+/-- Establishes the inequality `Finsupp.single (0 : Fin 2) 1 ≠ Finsupp.single (1 : Fin 2) 1`.
+@isnad1 id=ne.0h0v.s6.e6c81b400d74 from=translated src=- shape=dbfa929c vocab=804f4db2
+-/
 theorem finsupp_fin_two_single_left_ne_single_right :
     Finsupp.single (0 : Fin 2) 1 ≠ Finsupp.single (1 : Fin 2) 1 := by
   intro h
@@ -136,7 +152,9 @@ theorem finsupp_fin_two_single_left_ne_single_right :
 
 /--
 Establishes the inequality `Finsupp.single (0 : Fin 2) 1 ≠ Finsupp.single (0 : Fin 2) 1 +
-Finsupp.single (1 : Fin 2) 1`.-/
+Finsupp.single (1 : Fin 2) 1`.
+@isnad1 id=ne.0h0v.s7.69ea5152dc40 from=translated src=- shape=2f11f440 vocab=2e17a859
+-/
 theorem finsupp_fin_two_single_left_ne_mixed :
     Finsupp.single (0 : Fin 2) 1 ≠
       Finsupp.single (0 : Fin 2) 1 +
@@ -147,7 +165,9 @@ theorem finsupp_fin_two_single_left_ne_mixed :
 
 /--
 Establishes the inequality `Finsupp.single (1 : Fin 2) 1 ≠ Finsupp.single (0 : Fin 2) 1 +
-Finsupp.single (1 : Fin 2) 1`.-/
+Finsupp.single (1 : Fin 2) 1`.
+@isnad1 id=ne.0h0v.s7.251fab2bac2f from=translated src=- shape=2f11f440 vocab=2e17a859
+-/
 theorem finsupp_fin_two_single_right_ne_mixed :
     Finsupp.single (1 : Fin 2) 1 ≠
       Finsupp.single (0 : Fin 2) 1 +
@@ -158,7 +178,9 @@ theorem finsupp_fin_two_single_right_ne_mixed :
 
 /--
 Establishes the identity `MvPowerSeries.coeff (Finsupp.single (0 : Fin 2) 1)
-(formalLogOnePlusProductArgument A) = 1`.-/
+(formalLogOnePlusProductArgument A) = 1`.
+@isnad1 id=eq.0h1v.s8.52c9b7fc8593 from=translated src=- shape=090df0f3 vocab=d6dde24b
+-/
 @[simp] theorem formalLogOnePlusProductArgument_coeff_single_left
     (A : Type*) [CommRing A] :
     MvPowerSeries.coeff (Finsupp.single (0 : Fin 2) 1)
@@ -168,7 +190,9 @@ Establishes the identity `MvPowerSeries.coeff (Finsupp.single (0 : Fin 2) 1)
 
 /--
 Establishes the identity `MvPowerSeries.coeff (Finsupp.single (1 : Fin 2) 1)
-(formalLogOnePlusProductArgument A) = 1`.-/
+(formalLogOnePlusProductArgument A) = 1`.
+@isnad1 id=eq.0h1v.s8.e3c815c1736e from=translated src=- shape=090df0f3 vocab=d6dde24b
+-/
 @[simp] theorem formalLogOnePlusProductArgument_coeff_single_right
     (A : Type*) [CommRing A] :
     MvPowerSeries.coeff (Finsupp.single (1 : Fin 2) 1)
@@ -182,7 +206,9 @@ Establishes the identity `MvPowerSeries.coeff (Finsupp.single (1 : Fin 2) 1)
 
 /--
 Establishes the identity `MvPowerSeries.coeff (Finsupp.single (0 : Fin 2) 1 + Finsupp.single (1 :
-Fin 2) 1) (formalLogOnePlusProductArgument A) = 1`.-/
+Fin 2) 1) (formalLogOnePlusProductArgument A) = 1`.
+@isnad1 id=eq.0h1v.s8.638b61c7c919 from=translated src=- shape=b842db35 vocab=4285c7f1
+-/
 @[simp] theorem formalLogOnePlusProductArgument_coeff_mixed
     (A : Type*) [CommRing A] :
     MvPowerSeries.coeff
@@ -202,7 +228,9 @@ Fin 2) 1) (formalLogOnePlusProductArgument A) = 1`.-/
     finsupp_fin_two_single_right_ne_mixed.symm
   simp [hmixedLeft, hmixedRight]
 
-/-- Proves the bound `e (0 : Fin 2) ≤ 1`.-/
+/-- Proves the bound `e (0 : Fin 2) ≤ 1`.
+@isnad1 id=le.1h2v.s8.2c4a154b468e from=translated src=- shape=13f2efea vocab=0fe0550c
+-/
 theorem formalLogOnePlusProductArgument_coeff_ne_zero_left_coord_le_one
     (A : Type*) [CommRing A] (e : Fin 2 →₀ ℕ)
     (hcoeff : MvPowerSeries.coeff e
@@ -229,7 +257,9 @@ theorem formalLogOnePlusProductArgument_coeff_ne_zero_left_coord_le_one
     (formalLogOnePlusProductArgument_coeff_eq_zero_of_not_basic
       A e hleft hright hmixed)
 
-/-- Proves the bound `e (1 : Fin 2) ≤ 1`.-/
+/-- Proves the bound `e (1 : Fin 2) ≤ 1`.
+@isnad1 id=le.1h2v.s8.c9630a97c98e from=translated src=- shape=13f2efea vocab=0fe0550c
+-/
 theorem formalLogOnePlusProductArgument_coeff_ne_zero_right_coord_le_one
     (A : Type*) [CommRing A] (e : Fin 2 →₀ ℕ)
     (hcoeff : MvPowerSeries.coeff e

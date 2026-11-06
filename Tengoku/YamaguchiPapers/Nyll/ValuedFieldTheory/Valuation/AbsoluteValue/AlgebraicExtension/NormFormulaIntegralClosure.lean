@@ -28,7 +28,9 @@ open scoped Polynomial
 
 /-- A closed unit for the finite norm-formula value is integral over the base
 valuation ring, using only the primitive factorization definition's primitive factorization
-property.-/
+property.
+@isnad1 id=isintegr.3h4v.s7.33d9eb5e7425 from=translated src=- shape=3d87d6bf vocab=2794a10f
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_isIntegral_of_le_one_of_henselFactorization
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]

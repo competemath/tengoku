@@ -42,7 +42,9 @@ def PrimitiveIrreducibleReductionProperty
             a.natDegree = 0 ∨ b.natDegree = 0
 
 /-- A primitive irreducible reduction satisfying the primitive factorization property divides
-exactly one side of every coprime residual product that it divides.-/
+exactly one side of every coprime residual product that it divides.
+@isnad1 id=or.5h5v.s12.6a0711399bfd from=translated src=- shape=d28727c3 vocab=698ac8ea
+-/
 theorem primitiveIrreducibleReduction_dvd_left_or_right_of_coprime
     {K : Type*} [Field K] (V : ValuationSubring K)
     (hproperty : PrimitiveIrreducibleReductionProperty V)
@@ -101,7 +103,9 @@ theorem primitiveIrreducibleReduction_dvd_left_or_right_of_coprime
 /-- Partition primitive irreducible factors along a coprime residual
 factorization.  Factors with constant reduction are placed on the right;
 therefore the left lifted factor has exactly the degree of the prescribed
-left residual factor.-/
+left residual factor.
+@isnad1 id=ex.4h5v.s11.5c30fc1732dc from=translated src=- shape=a79b98f0 vocab=8033233d
+-/
 theorem partition_primitive_irreducible_factors_along_coprime_reduction
     {K : Type*} [Field K] (V : ValuationSubring K)
     (hproperty : PrimitiveIrreducibleReductionProperty V)
@@ -282,7 +286,9 @@ theorem partition_primitive_irreducible_factors_along_coprime_reduction
 /-- The common last step of the unique-extension criterion and the factor-lifting criterion: the
 construction's
 primitive irreducible reduction property implies the exact degree-controlled
-factorization form of Hensel's lemma from the primitive factorization definition.-/
+factorization form of Hensel's lemma from the primitive factorization definition.
+@isnad1 id=henselfa.1h2v.s4.8958e7c35dd8 from=translated src=- shape=93e860ac vocab=1f63073d
+-/
 theorem henselFactorization_of_primitiveIrreducibleReductionProperty
     {K : Type*} [Field K] (V : ValuationSubring K)
     (hproperty : PrimitiveIrreducibleReductionProperty V) :

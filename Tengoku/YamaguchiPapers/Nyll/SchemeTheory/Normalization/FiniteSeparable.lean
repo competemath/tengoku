@@ -63,7 +63,9 @@ local instance : IsScalarTower Γ(X, U.1) X.functionField L :=
 
 /-- On a nonempty affine chart of a normal locally Noetherian integral scheme,
 the integral closure in a finite separable extension of the function field is
-module-finite.-/
+module-finite.
+@isnad1 id=finite.0h3v.s12.1e46c29f992d from=translated src=- shape=2ed1b286 vocab=1a8a9bd9
+-/
 theorem affineIntegralClosure_finite :
     Module.Finite Γ(X, U.1) (integralClosure Γ(X, U.1) L) := by
   let : IsNoetherianRing Γ(X, U.1) :=
@@ -90,7 +92,9 @@ local instance : IsScalarTower (X.presheaf.stalk x) X.functionField L :=
   IsScalarTower.of_algebraMap_eq' rfl
 
 /-- The integral closure of any local ring in a finite separable extension
-of the function field is module-finite.-/
+of the function field is module-finite.
+@isnad1 id=finite.0h3v.s10.9d5c69901064 from=translated src=- shape=1bd18ebb vocab=0b716810
+-/
 theorem stalkIntegralClosure_finite :
     Module.Finite (X.presheaf.stalk x)
       (integralClosure (X.presheaf.stalk x) L) := by
@@ -108,6 +112,9 @@ def genericExtensionMorphism (L : Type u) [CommRing L] [Algebra X.functionField 
   Spec.map (CommRingCat.ofHom (algebraMap X.functionField L)) ≫
     X.fromSpecStalk (genericPoint X)
 
+/--
+@isnad1 id=eq.0h2v.s8.76d5bb6f130b from=translated src=- shape=d303e114 vocab=386173a0
+-/
 @[simp]
 lemma genericExtensionMorphism_apply_closedPoint (L : Type u) [Field L]
     [Algebra X.functionField L] :
@@ -115,6 +122,9 @@ lemma genericExtensionMorphism_apply_closedPoint (L : Type u) [Field L]
   erw [genericExtensionMorphism, Scheme.Hom.comp_apply, Spec_closedPoint,
     Scheme.fromSpecStalk_closedPoint]
 
+/--
+@isnad1 id=eq.0h3v.s8.ef262475df74 from=translated src=- shape=75ad80f8 vocab=60292c2f
+-/
 lemma genericExtensionMorphism_preimage_eq_top (L : Type u) [Field L]
     [Algebra X.functionField L] (U : X.Opens) [Nonempty U] :
     X.genericExtensionMorphism L ⁻¹ᵁ U = ⊤ := by
@@ -140,6 +150,9 @@ def genericExtensionSectionsIso (L : Type u) [Field L]
         (X.genericExtensionMorphism L) hU).symm).op ≪≫
     Scheme.ΓSpecIso (.of L)
 
+/--
+@isnad1 id=eq.0h4v.s12.943f6dc6bf74 from=translated src=- shape=6176830a vocab=7330fc89
+-/
 lemma genericExtensionSectionsIso_hom_app (L : Type u) [Field L]
     [Algebra X.functionField L] (U : X.Opens) [Nonempty U] (r : Γ(X, U)) :
     (X.genericExtensionSectionsIso L U).hom
@@ -214,7 +227,9 @@ private theorem isFinite_fromNormalization_of_finite_integralClosure
       hfinite U hU)
 
 /-- The relative normalization of a normal locally Noetherian integral scheme
-in a finite separable extension of its function field is finite.-/
+in a finite separable extension of its function field is finite.
+@isnad1 id=isfinite.0h2v.s7.d3cc3abe5260 from=translated src=- shape=718e619e vocab=9ebb7c96
+-/
 theorem isFinite_fromNormalization_genericExtension
     (X : Scheme.{u}) [IsIntegral X] [IsNormalIntegral X] [IsLocallyNoetherian X]
     (L : Type u) [Field L] [Algebra X.functionField L]

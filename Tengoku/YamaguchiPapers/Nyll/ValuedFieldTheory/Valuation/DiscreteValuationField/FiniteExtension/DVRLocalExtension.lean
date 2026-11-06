@@ -24,7 +24,9 @@ namespace ValuationTheory.DiscreteValuationField
 variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 
 /-- A local map of valuation subrings over the field inclusion determines
-the extension property, without completeness or discreteness assumptions.-/
+the extension property, without completeness or discreteness assumptions.
+@isnad1 id=hasexten.1h7v.s10.4e1f5840dd94 from=translated src=- shape=f5131232 vocab=79fa6c55
+-/
 theorem hasExtension_of_local_valuationSubring_map
     {ΓK ΓL : Type*} [LinearOrderedCommGroupWithZero ΓK]
     [LinearOrderedCommGroupWithZero ΓL]
@@ -61,7 +63,9 @@ theorem hasExtension_of_local_valuationSubring_map
     have hmem := (f (⟨z, hz⟩ : vK.valuationSubring)).property
     rwa [hcoe] at hmem
 
-/-- Evaluation of the DVR-to-valuation-subring equivalence is the fraction map.-/
+/-- Evaluation of the DVR-to-valuation-subring equivalence is the fraction map.
+@isnad1 id=eq.0h3v.s10.77ae18abe985 from=translated src=- shape=6991e277 vocab=b1673e65
+-/
 theorem dvr_equivValuationSubring_coe
     (A : Type*) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     [Algebra A L] [IsFractionRing A L] (x : A) :
@@ -70,7 +74,9 @@ theorem dvr_equivValuationSubring_coe
   rfl
 
 /-- A local DVR over the base valuation ring, with compatible fraction map,
-supplies an actual extension of the base discrete valuation.-/
+supplies an actual extension of the base discrete valuation.
+@isnad1 id=hasexten.0h4v.s9.18687e673435 from=translated src=- shape=764ade7d vocab=65748f3e
+-/
 theorem hasExtension_dvr_valuation_of_isLocalHom (base : DVF K)
     (A : Type*) [CommRing A] [IsDomain A] [IsDiscreteValuationRing A]
     [Algebra A L] [IsFractionRing A L] [Algebra base.valuationSubring A]

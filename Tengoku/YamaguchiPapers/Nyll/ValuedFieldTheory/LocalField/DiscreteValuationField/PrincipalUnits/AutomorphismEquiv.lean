@@ -33,7 +33,9 @@ noncomputable def equivOfPreserves
       (MulEquiv.subgroupCongr
         (higherPrincipalUnitGroup_map_valuationSubringUnitEquivOfPreserves F e hmem n))
 
-/-- The restricted automorphism retains the original action on field elements.-/
+/-- The restricted automorphism retains the original action on field elements.
+@isnad1 id=eq.1h5v.s13.26079ac43322 from=translated src=- shape=36e7a243 vocab=70c33a93
+-/
 @[simp] theorem equivOfPreserves_apply_coe
     (e : K ≃+* K)
     (hmem : ∀ x : K, x ∈ F.valuation.valuationSubring ↔ e x ∈ F.valuation.valuationSubring)
@@ -46,7 +48,9 @@ noncomputable def equivOfPreserves
   rw [valuationSubringUnitEquivOfPreserves_apply]
   rfl
 
-/-- Restriction preserves the identity automorphism.-/
+/-- Restriction preserves the identity automorphism.
+@isnad1 id=eq.0h3v.s11.00f7a7682a7d from=translated src=- shape=4fdd61fa vocab=6b47a074
+-/
 @[simp] theorem equivOfPreserves_refl (n : ℕ) :
     equivOfPreserves F (RingEquiv.refl K) (fun _ => Iff.rfl) n =
       MulEquiv.refl (higherPrincipalUnitGroup F n) := by

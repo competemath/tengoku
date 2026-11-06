@@ -256,6 +256,9 @@ variable [hPbc : P.IsStableUnderBaseChange]
 
 variable (J : Type) [SmallCategory J] [FinCategory J]
 
+/--
+@isnad1 id=var.3h5v.s8.a8b57ce05214 from=translated src=- shape=22ef9f68 vocab=9279e9b6
+-/
 lemma _root_.CommRingCat.Under.property_limit_of_hasFiniteProducts_of_hasEqualizers
     (hQi : RingHom.RespectsIso Q) (hQp : RingHom.HasFiniteProducts Q)
     (hQe : RingHom.HasEqualizers Q)
@@ -381,6 +384,9 @@ def createsFiniteColimits (hQi : RingHom.RespectsIso Q) (hQp : RingHom.HasFinite
     ⟨A.toComma, hA⟩ (eqToIso rfl)
 
 include hPbc in
+/--
+@isnad1 id=hasfinit.3h3v.s7.dc7cbf5e6dc6 from=translated src=- shape=0eb9a509 vocab=6735af5d
+-/
 lemma hasFiniteColimits (hQi : RingHom.RespectsIso Q) (hQp : RingHom.HasFiniteProducts Q)
     (hQe : RingHom.HasEqualizers Q) :
     HasFiniteColimits (P.Over ⊤ X) := by
@@ -393,6 +399,9 @@ lemma hasFiniteColimits (hQi : RingHom.RespectsIso Q) (hQp : RingHom.HasFinitePr
   apply CategoryTheory.hasColimit_of_created D (toAffine P X)
 
 include hPbc in
+/--
+@isnad1 id=preserve.3h3v.s7.0f99a1dfa025 from=translated src=- shape=95bcad61 vocab=5cd1926a
+-/
 lemma preservesFiniteColimits_toAffine (hQi : RingHom.RespectsIso Q)
     (hQp : RingHom.HasFiniteProducts Q) (hQe : RingHom.HasEqualizers Q) :
     PreservesFiniteColimits (toAffine P X) := by
@@ -400,6 +409,9 @@ lemma preservesFiniteColimits_toAffine (hQi : RingHom.RespectsIso Q)
   have := createsFiniteColimits (X := X) P hQi hQp hQe
   infer_instance
 
+/--
+@isnad1 id=preserve.0h4v.s8.894c9cdfda4b from=translated src=- shape=75a017f9 vocab=dfc54909
+-/
 theorem preservesFiniteLimits_pullback
     [P.IsStableUnderComposition] [P.ContainsIdentities]
     [P.HasOfPostcompProperty P] {Y : Scheme.{u}} (f : X ⟶ Y) :
@@ -425,11 +437,17 @@ def ΓProp (hQi : RingHom.RespectsIso Q) (S : Scheme.{u}) [IsAffine S] :
 
 omit [P.IsStableUnderBaseChange] in
 -- `simps` generates this with `appLE` on the RHS
+/--
+@isnad1 id=eq.1h6v.s13.fbc0e3371389 from=translated src=- shape=d4c250e9 vocab=c346ee16
+-/
 @[simp]
 lemma ΓProp_map_right (hQi : RingHom.RespectsIso Q) (S : Scheme.{u}) [IsAffine S]
     {X Y : (P.Over ⊤ S)ᵒᵖ} (f : X ⟶ Y) :
     ((ΓProp P hQi S).map f).right = f.unop.left.appTop := rfl
 
+/--
+@isnad1 id=bijectiv.0h2v.s8.abd92af51982 from=translated src=- shape=fab21f1d vocab=67e1f4d4
+-/
 lemma _root_.AlgebraicGeometry.Scheme.Hom.appTop_bijective_of_isAffine
       {X Y : Scheme.{u}} [IsAffine X] [IsAffine Y] :
     Function.Bijective (fun (f : X ⟶ Y) ↦ f.appTop) := by
@@ -459,6 +477,9 @@ lemma _root_.AlgebraicGeometry.Scheme.Hom.appTop_bijective_of_isAffine
       _ = f := Category.id_comp _
 
 omit [P.IsStableUnderBaseChange] in
+/--
+@isnad1 id=faithful.1h3v.s9.ae84393a4d63 from=translated src=- shape=eee9e9f0 vocab=7f97b23a
+-/
 lemma faithful_ΓProp (hQi : RingHom.RespectsIso Q) {S : Scheme.{u}} [IsAffine S] :
     (ΓProp P hQi S).Faithful where
   map_injective := by
@@ -480,6 +501,9 @@ lemma faithful_ΓProp (hQi : RingHom.RespectsIso Q) {S : Scheme.{u}} [IsAffine S
     rw [this]
 
 omit [P.IsStableUnderBaseChange] in
+/--
+@isnad1 id=full.1h3v.s9.b75086c6e130 from=translated src=- shape=eee9e9f0 vocab=51d675ec
+-/
 lemma full_ΓProp (hQi : RingHom.RespectsIso Q) {S : Scheme.{u}} [IsAffine S] :
     (ΓProp P hQi S).Full where
   map_surjective := by
@@ -517,6 +541,9 @@ lemma full_ΓProp (hQi : RingHom.RespectsIso Q) {S : Scheme.{u}} [IsAffine S] :
     exact h
 
 omit [P.IsStableUnderBaseChange] in
+/--
+@isnad1 id=esssurj.1h3v.s9.c76c49ee8c84 from=translated src=- shape=eee9e9f0 vocab=d91bdcbf
+-/
 lemma essSurj_ΓProp (hQi : RingHom.RespectsIso Q) {S : Scheme.{u}} [IsAffine S] :
     (ΓProp P hQi S).EssSurj where
   mem_essImage R := by
@@ -560,6 +587,9 @@ lemma essSurj_ΓProp (hQi : RingHom.RespectsIso Q) {S : Scheme.{u}} [IsAffine S]
       _ = r := Category.id_comp _
 
 omit [P.IsStableUnderBaseChange] in
+/--
+@isnad1 id=isequiva.1h3v.s9.2991f85dc3f5 from=translated src=- shape=eee9e9f0 vocab=3ea0d4d4
+-/
 lemma isEquivalence_ΓProp (hQi : RingHom.RespectsIso Q) {S : Scheme.{u}} [IsAffine S] :
     (ΓProp P hQi S).IsEquivalence where
   faithful := faithful_ΓProp ..
@@ -743,6 +773,9 @@ def overSpecEquivUnderCompPushoutIso (hQi : RingHom.RespectsIso Q) {R S : CommRi
       Functor.isoWhiskerRight (pullbackΓPropIso P hQi _).symm _ ≪≫
       Functor.associator _ _ _
 
+/--
+@isnad1 id=iff.1h6v.s9.39e4929f41ea from=translated src=- shape=e16978ea vocab=c54d80cc
+-/
 lemma preservesColimitsOfShape_pullback_iff_preservesLimitsOfShape (hQi : RingHom.RespectsIso Q)
     {R S : CommRingCat.{u}} (f : R ⟶ S) {J : Type*} [Category J]
     [(RingHom.toMorphismProperty Q).IsStableUnderCobaseChange] :
@@ -793,6 +826,9 @@ section
 
 variable (P : MorphismProperty Scheme.{u}) [IsZariskiLocalAtTarget P]
 
+/--
+@isnad1 id=iff.0h6v.s7.01d61e7cf54a from=translated src=- shape=2bda6aa7 vocab=d5d70f66
+-/
 lemma _root_.AlgebraicGeometry.IsLocalAtTarget.iff_of_openCover_of_over
     {X Y S : Scheme.{u}} [X.Over S] [Y.Over S]
     (f : X ⟶ Y) [f.IsOver S] (𝒰 : S.OpenCover) :
@@ -893,6 +929,9 @@ variable {W Q : MorphismProperty Scheme.{u}} [Q.IsMultiplicative]
 variable [W.IsStableUnderBaseChange] [Q.IsStableUnderBaseChange]
 
 variable {P} in
+/--
+@isnad1 id=iff.0h8v.s11.f226045651c8 from=translated src=- shape=05053a6f vocab=99b43223
+-/
 lemma _root_.AlgebraicGeometry.IsLocalAtTarget.left_iff_of_openCover
     {S : Scheme.{u}} {X Y : W.Over Q S} {f : X ⟶ Y} (𝒰 : S.OpenCover) :
     P f.left ↔ ∀ i : 𝒰.I₀,

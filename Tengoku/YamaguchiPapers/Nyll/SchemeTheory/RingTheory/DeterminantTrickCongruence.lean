@@ -26,7 +26,9 @@ universe u v w
 namespace LinearMap
 
 /-- A finite spanning family on which an endomorphism is diagonal modulo an ideal
-gives an annihilating polynomial with the corresponding prescribed reduction.-/
+gives an annihilating polynomial with the corresponding prescribed reduction.
+@isnad1 id=ex.2h7v.s10.6603a3560fe4 from=translated src=- shape=53484c17 vocab=089c4425
+-/
 theorem exists_monic_aeval_eq_zero_map_eq_prod_of_residual_diagonal
     {R : Type u} {M : Type v} {ι : Type w}
     [CommRing R] [AddCommGroup M] [Module R M] [Fintype ι]

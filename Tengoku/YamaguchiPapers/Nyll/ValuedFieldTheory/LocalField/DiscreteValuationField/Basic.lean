@@ -58,7 +58,9 @@ abbrev residueMap (F : LocalField.{u, v} K) :
     RingHom F.valuationSubring F.residueField :=
   F.toCompleteDVF.residueMap
 
-/-- A local field package has a uniformizer.-/
+/-- A local field package has a uniformizer.
+@isnad1 id=ex.0h2v.s6.4d961b12c694 from=translated src=- shape=31e035f9 vocab=8cfe70ce
+-/
 theorem exists_uniformizer (F : LocalField.{u, v} K) :
     ∃ pi : F.valuationSubring, F.toCompleteDVF.valuation.IsUniformizer (pi : K) :=
   F.toCompleteDVF.exists_uniformizer

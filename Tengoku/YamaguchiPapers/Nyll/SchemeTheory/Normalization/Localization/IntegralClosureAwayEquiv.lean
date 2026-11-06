@@ -51,7 +51,9 @@ noncomputable def localizationAwayToExtensionAlgebra
 
 omit [IsDomain A] in
 /-- The canonical away-localization map to the extension field extends the
-original map from `A`.-/
+original map from `A`.
+@isnad1 id=isscalar.1h4v.s8.a1a92eb36e15 from=translated src=- shape=55b458e3 vocab=57bb5e9a
+-/
 theorem localizationAwayToExtension_isScalarTower
     (f : A) (hf : f ≠ 0) :
     letI : Algebra (Localization.Away f) L :=
@@ -148,7 +150,9 @@ noncomputable def localizationIntegralClosureAwayAlgEquiv
 
 omit [IsDomain A] in
 /-- Étaleness of the normalization after inverting `f` transports to the
-literal away localization of the original normalization.-/
+literal away localization of the original normalization.
+@isnad1 id=other.1h4v.s12.310dba328012 from=translated src=- shape=98a12ecb vocab=e1bcf800
+-/
 theorem localization_integralClosure_away_etale_of_local_integralClosure_etale
     (f : A) (hf : f ≠ 0) :
     let S := Localization.Away f

@@ -23,7 +23,9 @@ namespace RamificationTheory.HilbertRamification.ValuationSubring
 variable (K : Type*) {L : Type*} [Field K] [Field L] [Algebra K L]
 
 /-- A finite-order decomposition automorphism does not change the argument of
-an inertia character, because it preserves the value of every field element.-/
+an inertia character, because it preserves the value of every field element.
+@isnad1 id=eq.1h6v.s14.363b449c051f from=translated src=- shape=61d273b7 vocab=e7e35c45
+-/
 theorem valueTrivialInertiaResidueUnitHom_decomposition_arg
     (A : _root_.ValuationSubring L) (τ : valueTrivialInertiaGroup K A)
     (g : decompositionGroup K A) (hg : IsOfFinOrder g) (x : Lˣ) :
@@ -43,7 +45,9 @@ theorem valueTrivialInertiaResidueUnitHom_decomposition_arg
   rw [heq, map_mul,
     MonoidHom.mem_ker.mp (unitGroup_le_valueTrivialInertiaResidueUnitHom_ker K A τ hq), one_mul]
 
-/-- The actual residue-unit character intertwines conjugation with residue action.-/
+/-- The actual residue-unit character intertwines conjugation with residue action.
+@isnad1 id=other.0h6v.s17.6ddee047ea2f from=translated src=- shape=b29e20e8 vocab=b4101e4d
+-/
 theorem valueTrivialInertiaResidueUnitHom_conj
     (A : _root_.ValuationSubring L) [Finite (inertiaGroup K A)]
     (g : decompositionGroup K A) (τ : inertiaGroup K A) (x : Lˣ) :
@@ -72,7 +76,9 @@ theorem valueTrivialInertiaResidueUnitHom_conj
         ((g : Gal(L/K)).symm (x : L)))
   rw [map_div₀, AlgEquiv.apply_symm_apply]
 
-/-- In residue characteristic zero the finite inertia character is injective.-/
+/-- In residue characteristic zero the finite inertia character is injective.
+@isnad1 id=injectiv.0h3v.s17.cf2b2d905c57 from=translated src=- shape=ba3e94f8 vocab=66539e4a
+-/
 theorem valueTrivialInertiaCharacterHom_injective_of_residueCharZero
     (A : _root_.ValuationSubring L) [Finite (inertiaGroup K A)]
     [CharZero (IsLocalRing.ResidueField A)] :

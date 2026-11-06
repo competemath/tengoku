@@ -28,7 +28,9 @@ namespace Valuations
 def henselFactorization_lowPart {R : Type*} [Semiring R] (N : ℕ) (P : R[X]) : R[X] :=
   Finset.sum (Finset.range (N + 1)) fun i => Polynomial.monomial i (P.coeff i)
 
-/-- coefficients at degrees kept by `lowPart`.-/
+/-- coefficients at degrees kept by `lowPart`.
+@isnad1 id=eq.1h4v.s5.f9cf1c94f4f2 from=translated src=- shape=3b450f5e vocab=5d8398d5
+-/
 theorem henselFactorization_lowPart_coeff_of_le
     {R : Type*} [Semiring R] {N n : ℕ} (P : R[X]) (hn : n ≤ N) :
     (henselFactorization_lowPart N P).coeff n = P.coeff n := by
@@ -42,7 +44,9 @@ theorem henselFactorization_lowPart_coeff_of_le
   · intro hnot
     exact False.elim (hnot (Finset.mem_range.mpr (Nat.lt_succ_of_le hn)))
 
-/-- coefficients above the cutoff vanish in `lowPart`.-/
+/-- coefficients above the cutoff vanish in `lowPart`.
+@isnad1 id=eq.1h4v.s5.a2837809aa98 from=translated src=- shape=10faf318 vocab=9c2ce07c
+-/
 theorem henselFactorization_lowPart_coeff_eq_zero_of_lt
     {R : Type*} [Semiring R] {N n : ℕ} (P : R[X]) (hn : N < n) :
     (henselFactorization_lowPart N P).coeff n = 0 := by
@@ -57,7 +61,9 @@ theorem henselFactorization_lowPart_coeff_eq_zero_of_lt
     exact (Nat.not_lt_of_ge hn_le) hn
   simp [Polynomial.coeff_monomial, hbn]
 
-/-- `lowPart` has the intended degree bound.-/
+/-- `lowPart` has the intended degree bound.
+@isnad1 id=le.0h3v.s4.c93202a68445 from=translated src=- shape=61b1528c vocab=80e6b54c
+-/
 theorem henselFactorization_lowPart_natDegree_le
     {R : Type*} [Semiring R] (N : ℕ) (P : R[X]) :
     (henselFactorization_lowPart N P).natDegree ≤ N := by
@@ -66,7 +72,9 @@ theorem henselFactorization_lowPart_natDegree_le
   exact henselFactorization_lowPart_coeff_eq_zero_of_lt (P := P) hn
 
 /-- omitting high coefficients already in the kernel does not
-change the residual polynomial.-/
+change the residual polynomial.
+@isnad1 id=eq.1h5v.s7.ed1c39454205 from=translated src=- shape=b0033600 vocab=e7ab775f
+-/
 theorem henselFactorization_lowPart_map_eq_of_high_coeff_mem_ker
     {R k : Type*} [CommRing R] [CommRing k] (φ : R →+* k)
     (N : ℕ) (P : R[X])
@@ -85,7 +93,9 @@ theorem henselFactorization_lowPart_map_eq_of_high_coeff_mem_ker
 
 /-- kernel-level truncation: the correction congruence
 survives replacing a provisional correction polynomial by its low-degree part
-when the omitted coefficients already lie in the same coefficient-map kernel.-/
+when the omitted coefficients already lie in the same coefficient-map kernel.
+@isnad1 id=and.2h9v.s9.4fde041fa1ad from=translated src=- shape=7faaa20a vocab=92aa131d
+-/
 theorem henselFactorization_correction_after_lowPart_ker
     {R k : Type*} [CommRing R] [CommRing k] (φ : R →+* k)
     {g0 h0 fn p Q : R[X]} (N : ℕ)
@@ -122,7 +132,9 @@ theorem henselFactorization_correction_after_lowPart_ker
 
 /-- ideal-level truncation: the correction congruence survives
 replacing a provisional correction polynomial by its low-degree part when the
-omitted coefficients already lie in the same ideal.-/
+omitted coefficients already lie in the same ideal.
+@isnad1 id=and.2h8v.s9.f375e18d3e78 from=translated src=- shape=74630f02 vocab=67bdc3af
+-/
 theorem henselFactorization_correction_after_lowPart_ideal
     {R : Type*} [CommRing R] {I : Ideal R}
     {g0 h0 fn p Q : R[X]} (N : ℕ)
@@ -151,7 +163,9 @@ theorem henselFactorization_correction_after_lowPart_ideal
 
 /-- principal-ideal truncation: if the provisional correction
 is congruent modulo `(π)` and all omitted coefficients are divisible by `π`,
-then the truncated correction keeps the same congruence modulo `(π)`.-/
+then the truncated correction keeps the same congruence modulo `(π)`.
+@isnad1 id=and.2h8v.s9.dc3fb83091d1 from=translated src=- shape=4657771a vocab=2c0fb80d
+-/
 theorem henselFactorization_correction_after_lowPart_span_singleton
     {R : Type*} [CommRing R] {π : R}
     {g0 h0 fn p Q : R[X]} (N : ℕ)
@@ -170,7 +184,9 @@ theorem henselFactorization_correction_after_lowPart_span_singleton
 /-- unit-leading degree division over an arbitrary
 commutative ring: if the product with a degree-`m` polynomial whose leading
 coefficient is a unit has degree at most `d`, then the right factor has degree
-at most `d - m`.  This is the form needed over `O/(π)` in the iterative proof.-/
+at most `d - m`.  This is the form needed over `O/(π)` in the iterative proof.
+@isnad1 id=le.3h5v.s6.6825b9954161 from=translated src=- shape=9cd2bc11 vocab=a2c7af42
+-/
 theorem henselFactorization_natDegree_right_le_tsub_of_unit_leading_mul_natDegree_le
     {R : Type*} [CommRing R] {g Q : R[X]} {m d : ℕ}
     (hgunit : IsUnit g.leadingCoeff) (hgdeg : g.natDegree = m)
@@ -202,7 +218,9 @@ theorem henselFactorization_natDegree_right_le_tsub_of_unit_leading_mul_natDegre
 
 /-- a unit-leading polynomial remains unit-leading with the
 same natural degree after mapping to a nontrivial target ring.  This supplies
-the unit-leading input used over `O/(π)`.-/
+the unit-leading input used over `O/(π)`.
+@isnad1 id=and.2h5v.s7.f4c6abc098b2 from=translated src=- shape=36927698 vocab=689bfd7e
+-/
 theorem henselFactorization_map_unit_leadingCoeff_natDegree_eq
     {R S : Type*} [CommRing R] [CommRing S] [Nontrivial S]
     (φ : R →+* S) {g : R[X]} {m : ℕ}
@@ -220,7 +238,9 @@ theorem henselFactorization_map_unit_leadingCoeff_natDegree_eq
     rw [hnat, hgdeg]⟩
 
 /-- quotient specialization of
-`henselFactorization_map_unit_leadingCoeff_natDegree_eq`.-/
+`henselFactorization_map_unit_leadingCoeff_natDegree_eq`.
+@isnad1 id=and.2h4v.s7.150f8cacb088 from=translated src=- shape=c616e997 vocab=a30b7fd3
+-/
 theorem henselFactorization_quotient_unit_leadingCoeff_natDegree_eq
     {R : Type*} [CommRing R] {I : Ideal R} [Nontrivial (R ⧸ I)]
     {g : R[X]} {m : ℕ}
@@ -232,7 +252,9 @@ theorem henselFactorization_quotient_unit_leadingCoeff_natDegree_eq
 
 /-- if `π` lies in the maximal ideal of a local ring, then
 the quotient `O/(π)` is nontrivial.  This is the displayed-factor source for the
-nontriviality needed in the degree argument modulo `(π)`.-/
+nontriviality needed in the degree argument modulo `(π)`.
+@isnad1 id=nontrivi.1h2v.s6.07504ad9dbde from=translated src=- shape=4447d75b vocab=cffebe2a
+-/
 theorem henselFactorization_span_singleton_quotient_nontrivial_of_mem_maximalIdeal
     {R : Type*} [CommRing R] [IsLocalRing R] {π : R}
     (hπ : π ∈ IsLocalRing.maximalIdeal R) :
@@ -253,7 +275,9 @@ theorem henselFactorization_span_singleton_quotient_nontrivial_of_mem_maximalIde
 
 /-- local-ring specialization: a unit-leading polynomial of
 degree `m` stays unit-leading of degree `m` after reducing modulo `(π)`, for
-`π` in the maximal ideal.-/
+`π` in the maximal ideal.
+@isnad1 id=and.3h4v.s8.0a9810acda62 from=translated src=- shape=c9b6a0cd vocab=b847be3f
+-/
 theorem henselFactorization_span_singleton_quotient_unit_leadingCoeff_natDegree_eq
     {R : Type*} [CommRing R] [IsLocalRing R] {π : R}
     {g : R[X]} {m : ℕ}
@@ -269,7 +293,9 @@ theorem henselFactorization_span_singleton_quotient_unit_leadingCoeff_natDegree_
 
 /-- mapped degree bound for the polynomial `fn - h0*p` from
 degree bounds already available before mapping.  This is the quotient-level
-replacement for the residue-field degree bound in the principal `(π)` route.-/
+replacement for the residue-field degree bound in the principal `(π)` route.
+@isnad1 id=le.4h9v.s7.b5f9f9ba667a from=translated src=- shape=1ab848fd vocab=f8932919
+-/
 theorem henselFactorization_map_sub_mul_natDegree_le_of_degree_bounds
     {R S : Type*} [CommRing R] [CommRing S] (φ : R →+* S)
     {fn h0 P : R[X]} {a b d : ℕ}
@@ -297,7 +323,9 @@ theorem henselFactorization_map_sub_mul_natDegree_le_of_degree_bounds
       (p := fn.map φ) (q := h0.map φ * P.map φ) hfnmap hmul)
 
 /-- quotient specialization of the degree bound for
-`fn - h0*p` used before truncating the Hensel correction.-/
+`fn - h0*p` used before truncating the Hensel correction.
+@isnad1 id=le.4h8v.s8.3d8eec6c5732 from=translated src=- shape=f25059ff vocab=f4973e91
+-/
 theorem henselFactorization_span_singleton_quotient_sub_mul_natDegree_le_of_degree_bounds
     {R : Type*} [CommRing R] {π : R}
     {fn h0 P : R[X]} {a b d : ℕ}
@@ -313,7 +341,9 @@ theorem henselFactorization_span_singleton_quotient_sub_mul_natDegree_le_of_degr
 /-- high-coefficient source modulo `(π)`: if `g0 * Q` is
 congruent to a polynomial of degree at most `d` modulo `(π)`, and `g0` has
 degree `m` with unit leading coefficient after reduction modulo `(π)`, then
-every coefficient of `Q` above `d - m` is divisible by `π`.-/
+every coefficient of `Q` above `d - m` is divisible by `π`.
+@isnad1 id=mem.5h8v.s9.1a06a68a91b9 from=translated src=- shape=bc990399 vocab=8926e680
+-/
 theorem henselFactorization_high_coeff_mem_span_singleton_of_product_congruence_degree
     {R : Type*} [CommRing R] {π : R}
     {g0 Q A : R[X]} {m d : ℕ}
@@ -355,7 +385,9 @@ theorem henselFactorization_high_coeff_mem_span_singleton_of_product_congruence_
       (Ideal.span ({π} : Set R)) Q n).1 (by simpa [φ] using hcoeff)
 
 /-- high-coefficient source modulo `(π)` specialized to the
-correction congruence produced by the division step.-/
+correction congruence produced by the division step.
+@isnad1 id=mem.5h10v.s9.496ac5520168 from=translated src=- shape=fa2fac90 vocab=bc2883ce
+-/
 theorem henselFactorization_high_coeff_mem_span_singleton_of_correction_degree
     {R : Type*} [CommRing R] {π : R}
     {g0 h0 fn p Q : R[X]} {m d : ℕ}
@@ -386,7 +418,9 @@ theorem henselFactorization_high_coeff_mem_span_singleton_of_correction_degree
 /-- one-step degree truncation modulo `(π)`: under the
 principal correction congruence, the quotient-degree bound for `fn - h0*p`,
 and the unit-leading degree data for `g0` modulo `(π)`, the low-degree part of
-`Q` has degree at most `d-m` and keeps the correction congruence modulo `(π)`.-/
+`Q` has degree at most `d-m` and keeps the correction congruence modulo `(π)`.
+@isnad1 id=and.4h9v.s10.06733af1239f from=translated src=- shape=6380330a vocab=851e0cac
+-/
 theorem henselFactorization_correction_after_degree_truncation_span_singleton
     {R : Type*} [CommRing R] {π : R}
     {g0 h0 fn p Q : R[X]} {m d : ℕ}
@@ -414,7 +448,9 @@ theorem henselFactorization_correction_after_degree_truncation_span_singleton
 /-- principal-ideal one-step correction after Bezout and
 division.  This is the displayed-factor route: the displayed factor
 `a*g0 + b*h0 - 1 = C π * e`, not an equality `m = (π)`, supplies the
-correction congruence modulo `(π)`.-/
+correction congruence modulo `(π)`.
+@isnad1 id=and.9h12v.s10.48a1b660570a from=translated src=- shape=77ad3bb9 vocab=45e7b331
+-/
 theorem henselFactorization_correction_after_division_degree_truncation_span_singleton
     {R : Type*} [CommRing R] [IsLocalRing R] {π : R}
     {a b g0 h0 fn q p e : R[X]} {m d : ℕ}
@@ -454,7 +490,9 @@ theorem henselFactorization_correction_after_division_degree_truncation_span_sin
 /-- principal-ideal version of replacement of the initial
 lifted factors by the current inductive approximants.  If `g` and `h` are
 still congruent to `g0` and `h0` modulo `(π)`, then a correction congruence
-for `g0,h0` modulo `(π)` is also one for `g,h`.-/
+for `g0,h0` modulo `(π)` is also one for `g,h`.
+@isnad1 id=mem.3h10v.s9.f3de216f1c69 from=translated src=- shape=feda1c9b vocab=b4648c09
+-/
 theorem henselFactorization_correction_congruence_replace_initial_factors_span_singleton
     {R : Type*} [CommRing R] {π : R}
     {g0 h0 g h fn p q : R[X]}

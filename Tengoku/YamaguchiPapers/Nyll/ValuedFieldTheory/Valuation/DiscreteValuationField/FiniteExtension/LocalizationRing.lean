@@ -55,16 +55,22 @@ private theorem exists_prime (base : DVF.{u, v} K) :
 def prime (base : DVF.{u, v} K) : PrimeSpectrum (Normalization (L := L) base) :=
   Classical.choose (exists_prime (L := L) base)
 
-/-- The chosen prime is maximal.-/
+/-- The chosen prime is maximal.
+@isnad1 id=ismaxima.0h3v.s8.a4ef84f3fa82 from=translated src=- shape=a5aba0c6 vocab=c4139d4d
+-/
 theorem prime_isMaximal (base : DVF.{u, v} K) : (prime (L := L) base).asIdeal.IsMaximal :=
   (Classical.choose_spec (exists_prime (L := L) base)).1
 
-/-- The chosen prime contracts to the base maximal ideal.-/
+/-- The chosen prime contracts to the base maximal ideal.
+@isnad1 id=liesover.0h3v.s8.eef3fa839af1 from=translated src=- shape=51688d77 vocab=566f8881
+-/
 theorem prime_liesOver (base : DVF.{u, v} K) :
     (prime (L := L) base).asIdeal.LiesOver base.maximalIdeal :=
   (Classical.choose_spec (exists_prime (L := L) base)).2
 
-/-- A prime above the nonzero maximal ideal of the base DVR is nonzero.-/
+/-- A prime above the nonzero maximal ideal of the base DVR is nonzero.
+@isnad1 id=ne.0h3v.s9.c6a32948928b from=translated src=- shape=f022149d vocab=f69316a6
+-/
 theorem prime_ne_bot (base : DVF.{u, v} K) : (prime (L := L) base).asIdeal ≠ ⊥ := by
   have : FaithfulSMul base.valuationSubring (Normalization (L := L) base) :=
     normalization_faithful base
@@ -103,7 +109,9 @@ def localizationSubalgebra (base : DVF.{u, v} K) : Subalgebra (Normalization (L 
 abbrev LocalizationRing (base : DVF.{u, v} K) : Type w :=
   localizationSubalgebra (L := L) base
 
-/-- The actual subalgebra has the localization universal property.-/
+/-- The actual subalgebra has the localization universal property.
+@isnad1 id=atprime.0h3v.s9.18f0217ff0bd from=translated src=- shape=960e60a8 vocab=59b80b70
+-/
 theorem localization_isLocalization (base : DVF.{u, v} K) :
     IsLocalization.AtPrime (LocalizationRing (L := L) base) (prime (L := L) base).asIdeal :=
   IsLocalization.isLocalization_of_algEquiv (prime (L := L) base).asIdeal.primeCompl
@@ -111,7 +119,9 @@ theorem localization_isLocalization (base : DVF.{u, v} K) :
 
 attribute [local instance] localization_isLocalization
 
-/-- The localized integral closure has a local algebra map from the base valuation ring.-/
+/-- The localized integral closure has a local algebra map from the base valuation ring.
+@isnad1 id=islocalh.0h3v.s10.e59f0ec85ee6 from=translated src=- shape=73b4e0a2 vocab=80b54b28
+-/
 theorem baseMap_isLocalHom (base : DVF.{u, v} K) :
     IsLocalHom (algebraMap base.valuationSubring (LocalizationRing (L := L) base)) := by
   have : (prime (L := L) base).asIdeal.LiesOver base.maximalIdeal := prime_liesOver base

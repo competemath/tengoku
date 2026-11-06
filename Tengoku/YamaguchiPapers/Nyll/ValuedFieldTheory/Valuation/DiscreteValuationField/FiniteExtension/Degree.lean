@@ -35,7 +35,9 @@ open ValuationTheory.DiscreteValuationField.Valuation
 /-- If an element maps into the maximal ideal of a local target ring, then the
 original element is in the maximal ideal of the local source ring.  This is the
 automatic half of the center/maximal-ideal condition used in the Henselian
-finite-extension frontier.-/
+finite-extension frontier.
+@isnad1 id=mem.1h4v.s7.100e498672b4 from=translated src=- shape=f515355e vocab=b5a6906e
+-/
 theorem mem_maximalIdeal_of_map_mem_maximalIdeal
     {R : Type u} {S : Type w} [CommRing R] [CommRing S]
     [IsLocalRing R] [IsLocalRing S] (f : R →+* S) {x : R}
@@ -50,7 +52,9 @@ theorem mem_maximalIdeal_of_map_mem_maximalIdeal
 For a valuation overring `R ≤ S`, if the inclusion is integral, then the center
 of `S` on `R` is the maximal ideal of `R`.  This is the usable form needed in
 the Henselian finite-extension frontier, where the remaining mathematical work
-is to prove integrality of the relevant extension valuation-ring inclusions.-/
+is to prove integrality of the relevant extension valuation-ring inclusions.
+@isnad1 id=eq.2h3v.s7.20a2c060d975 from=translated src=- shape=a5fcd168 vocab=54e9a2ac
+-/
 theorem idealOfLE_eq_maximalIdeal_of_isIntegral
     {M : Type u} [Field M] (R S : ValuationSubring M) (hRS : R ≤ S)
     (hIntegral : (R.inclusion S hRS).IsIntegral) :
@@ -92,7 +96,9 @@ def integralClosureValuationSubringIntegerMapOfMemOrInv
   map_mul' := fun a b => Subtype.ext (map_mul (algebraMap K L) (a : K) (b : K))
 
 omit [FiniteDimensional K L] in
-/-- The finite-extension integer map into the integral closure is the ambient algebra map.-/
+/-- The finite-extension integer map into the integral closure is the ambient algebra map.
+@isnad1 id=eq.1h4v.s10.b5b04e965c28 from=translated src=- shape=75fef3b9 vocab=e327cae1
+-/
 @[simp] theorem integralClosureValuationSubringIntegerMapOfMemOrInv_apply
     (base : CompleteDVF.{u, v} K)
     (hval :
@@ -111,7 +117,9 @@ omit [FiniteDimensional K L] in
 /-- The canonical integer map into the valuation subring built from the actual
 integral closure is injective.  This is the ring-theoretic input needed to
 turn a prime over the base maximal ideal into a nonzero prime of the constructed
-integral-closure valuation ring.-/
+integral-closure valuation ring.
+@isnad1 id=injectiv.1h3v.s10.a3d8004ed7be from=translated src=- shape=a8a50c17 vocab=39ac8378
+-/
 theorem integralClosureValuationSubringIntegerMapOfMemOrInv_injective
     (base : CompleteDVF.{u, v} K)
     (hval :
@@ -145,7 +153,9 @@ as `ValuationSubring.idealOfLE`, and its contraction along the canonical map
 from the base valuation ring is computed using the `HasExtension` valuation
 inequality.  A later Henselian local-integral-closure theorem can combine this
 with uniqueness of primes above the base maximal ideal to identify the center
-with the maximal ideal of the constructed integral closure.-/
+with the maximal ideal of the constructed integral closure.
+@isnad1 id=other.1h5v.s10.13cd9adb544c from=translated src=- shape=2198cb8b vocab=901db14c
+-/
 theorem idealOfLE_comap_integralClosureValuationSubringIntegerMap_eq_maximalIdeal
     {ΓL : Type x} [LinearOrderedCommGroupWithZero ΓL]
     (base : CompleteDVF.{u, v} K) (vL : _root_.Valuation L ΓL)
@@ -201,7 +211,9 @@ The proof uses real structure, not a certificate: the constructed valuation
 ring is the actual integral closure, hence Dedekind over the base DVR; a prime
 whose contraction is the base maximal ideal is nonzero by injectivity of the
 canonical integer map, hence maximal by the dimension-one property, and then
-equal to the unique maximal ideal because the constructed ring is local.-/
+equal to the unique maximal ideal because the constructed ring is local.
+@isnad1 id=eq.3h4v.s10.9db77c1a985e from=translated src=- shape=53c85295 vocab=96d23a64
+-/
 theorem prime_eq_maximalIdeal_of_comap_integralClosureValuationSubringIntegerMap_eq_maximalIdeal
     (base : CompleteDVF.{u, v} K)
     [Algebra.IsSeparable K L]

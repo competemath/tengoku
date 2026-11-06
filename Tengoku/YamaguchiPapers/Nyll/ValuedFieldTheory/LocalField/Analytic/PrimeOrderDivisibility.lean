@@ -74,7 +74,9 @@ private theorem binomial_prime_relation {R : Type*} [Ring R]
   rw [eq_neg_of_add_eq_zero_right hz, mul_neg, smul_neg]
 
 /-- An automorphism of odd prime order congruent to the identity modulo that
-prime has a prime-divisible augmentation image on every torsion-free group.-/
+prime has a prime-divisible augmentation image on every torsion-free group.
+@isnad1 id=ex.4h4v.s8.5424d512f7af from=translated src=- shape=f6ba2e56 vocab=8e75eb86
+-/
 theorem primeOrder_action_sub_divisible
     {M : Type*} [AddCommGroup M] [IsAddTorsionFree M]
     (T : AddMonoid.End M) (p : ℕ) (hp : p.Prime) (hp2 : p ≠ 2)

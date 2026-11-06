@@ -52,7 +52,9 @@ noncomputable def rpow
       _ ≤ v x ^ s + v y ^ s :=
         Real.rpow_add_le_add_rpow (v.nonneg x) (v.nonneg y) hs0.le hs1
 
-/-- Raising an absolute value to a real power evaluates by real exponentiation.-/
+/-- Raising an absolute value to a real power evaluates by real exponentiation.
+@isnad1 id=eq.2h4v.s6.c6dc3f6db275 from=translated src=- shape=fe5f5aae vocab=de60e0b2
+-/
 @[simp]
 theorem rpow_apply
     {F : Type*} [Field F] (v : AbsoluteValue F ℝ)
@@ -95,6 +97,9 @@ noncomputable def nonarchimedeanRpow
         _ ≤ v x ^ s + v y ^ s :=
           le_add_of_nonneg_right (Real.rpow_nonneg (v.nonneg y) s)
 
+/--
+@isnad1 id=eq.2h4v.s7.806e477f2d2c from=translated src=- shape=1a305577 vocab=14ea0620
+-/
 @[simp]
 theorem nonarchimedeanRpow_apply
     {F : Type*} [Field F] (v : AbsoluteValue F ℝ)
@@ -120,7 +125,9 @@ noncomputable def compAlgEquiv
     (w : AbsoluteValue E ℝ) : AbsoluteValue L ℝ :=
   w.comp (f := e.toRingHom) e.injective
 
-/-- Composition with an algebra equivalence evaluates the absolute value after transport.-/
+/-- Composition with an algebra equivalence evaluates the absolute value after transport.
+@isnad1 id=eq.0h6v.s7.28ab3f515d4b from=translated src=- shape=a9d0dcbe vocab=1ce0dfdd
+-/
 @[simp]
 theorem compAlgEquiv_apply
     {K L E : Type*} [Field K] [Field L] [Field E]
@@ -129,7 +136,9 @@ theorem compAlgEquiv_apply
     compAlgEquiv e w x = w (e x) :=
   rfl
 
-/-- Transporting an extending absolute value along an algebra equivalence preserves extension.-/
+/-- Transporting an extending absolute value along an algebra equivalence preserves extension.
+@isnad1 id=eq.1h7v.s8.5489dbe733cd from=translated src=- shape=5bf3ce30 vocab=47f8ac01
+-/
 @[simp]
 theorem compAlgEquiv_extends_apply
     {K L E : Type*} [Field K] [Field L] [Field E]
@@ -143,7 +152,9 @@ theorem compAlgEquiv_extends_apply
   rw [AlgEquiv.commutes, hw]
 
 /-- Completeness is preserved when an absolute value is pulled back along an
-algebra equivalence.-/
+algebra equivalence.
+@isnad1 id=complete.1h5v.s8.4a03b22ddffb from=translated src=- shape=c189e6bb vocab=71a98a96
+-/
 theorem compAlgEquiv_complete
     {K L E : Type*} [Field K] [Field L] [Field E]
     [Algebra K L] [Algebra K E] (e : L ≃ₐ[K] E)

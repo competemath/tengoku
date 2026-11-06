@@ -35,7 +35,9 @@ universe u v
 namespace CommRingCat
 
 /-- Extension of an ideal gives the canonical pushout square of quotient
-ring maps.-/
+ring maps.
+@isnad1 id=ispushou.0h4v.s9.2f2528df050b from=translated src=- shape=b3d28b6e vocab=a2e1ed78
+-/
 theorem isPushout_quotientMap {R S : Type u} [CommRing R] [CommRing S]
     (f : R →+* S) (I : Ideal R) :
     IsPushout (ofHom f) (ofHom (Ideal.Quotient.mk I))
@@ -62,7 +64,9 @@ end CommRingCat
 
 namespace AlgebraicGeometry
 
-/-- The canonical quotient square becomes a pullback square on spectra.-/
+/-- The canonical quotient square becomes a pullback square on spectra.
+@isnad1 id=ispullba.0h4v.s9.1972540037ba from=translated src=- shape=c0258b58 vocab=59c48361
+-/
 theorem isPullback_SpecMap_quotientMap {R S : Type u} [CommRing R] [CommRing S]
     (f : R →+* S) (I : Ideal R) :
     IsPullback (Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk (I.map f))))
@@ -72,7 +76,9 @@ theorem isPullback_SpecMap_quotientMap {R S : Type u} [CommRing R] [CommRing S]
       (Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk I))) :=
   isPullback_SpecMap_of_isPushout _ _ _ _ (CommRingCat.isPushout_quotientMap f I)
 
-/-- Open immersions remain open immersions under the literal quotient map.-/
+/-- Open immersions remain open immersions under the literal quotient map.
+@isnad1 id=isopenim.0h4v.s9.7518763e61da from=translated src=- shape=5c417a3a vocab=67569906
+-/
 theorem isOpenImmersion_SpecMap_quotientMap {R S : Type u} [CommRing R] [CommRing S]
     (f : R →+* S) (I : Ideal R)
     [IsOpenImmersion (Spec.map (CommRingCat.ofHom f))] :
@@ -81,7 +87,9 @@ theorem isOpenImmersion_SpecMap_quotientMap {R S : Type u} [CommRing R] [CommRin
   MorphismProperty.of_isPullback (P := @IsOpenImmersion)
     (isPullback_SpecMap_quotientMap f I) inferInstance
 
-/-- The same result with the extended ideal written using a chosen equal ideal.-/
+/-- The same result with the extended ideal written using a chosen equal ideal.
+@isnad1 id=isopenim.1h5v.s8.49e6b3458205 from=translated src=- shape=7d443f2c vocab=2c4bf3b2
+-/
 theorem isOpenImmersion_SpecMap_quotientMap_of_map_eq
     {R S : Type u} [CommRing R] [CommRing S]
     (f : R →+* S) (I : Ideal R) (J : Ideal S) (hJ : I.map f = J)
@@ -92,7 +100,9 @@ theorem isOpenImmersion_SpecMap_quotientMap_of_map_eq
   exact isOpenImmersion_SpecMap_quotientMap f I
 
 /-- Reduction by an ideal in a common scalar ring preserves an open immersion
-for the canonical quotient-base algebra map.-/
+for the canonical quotient-base algebra map.
+@isnad1 id=isopenim.0h5v.s10.db7ab427f29f from=translated src=- shape=6d18160d vocab=bfc56e21
+-/
 theorem isOpenImmersion_SpecMap_quotientBaseChange
     {R : Type v} {A B : Type u} [CommRing R] [CommRing A] [CommRing B]
     [Algebra R A] [Algebra R B] (f : A →ₐ[R] B) (I : Ideal R)

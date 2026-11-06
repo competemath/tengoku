@@ -23,7 +23,9 @@ namespace AlgebraicNumberTheory
 namespace Valuations
 
 /-- if `deg f ≤ d`, `deg g ≤ m`, and `deg h ≤ d-m`, then
-`deg(f-gh)≤d`.-/
+`deg(f-gh)≤d`.
+@isnad1 id=le.4h6v.s7.319e89078c0f from=translated src=- shape=a453add5 vocab=dba337a4
+-/
 theorem henselFactorization_error_natDegree_le
     {R : Type*} [CommRing R] {f g h : R[X]} {d m : ℕ}
     (hf : f.natDegree ≤ d) (hg : g.natDegree ≤ m)
@@ -39,7 +41,9 @@ theorem henselFactorization_error_natDegree_le
   simpa using hsub
 
 /-- if `P=C(a)Q` with `a≠0`, then a degree bound on `P`
-is a degree bound on `Q`.-/
+is a degree bound on `Q`.
+@isnad1 id=le.3h5v.s7.637999d0f637 from=translated src=- shape=7fe7261d vocab=88ae912d
+-/
 theorem henselFactorization_factor_natDegree_le_of_constant_mul_eq
     {R : Type*} [CommRing R] [NoZeroDivisors R] {a : R} (ha : a ≠ 0)
     {P Q : R[X]} {d : ℕ}
@@ -50,7 +54,9 @@ theorem henselFactorization_factor_natDegree_le_of_constant_mul_eq
   simpa [Polynomial.natDegree_C_mul (p := Q) (a0 := ha)] using hCQ
 
 /-- degree bound for the next error factor `f_n` from the
-current factorization error.-/
+current factorization error.
+@isnad1 id=le.6h9v.s8.6d846e659ada from=translated src=- shape=5f77ae4c vocab=fdd98065
+-/
 theorem henselFactorization_error_factor_natDegree_le
     {R : Type*} [CommRing R] [NoZeroDivisors R] {π : R} {n : ℕ}
     (hπn : π ^ n ≠ 0)

@@ -26,7 +26,9 @@ universe u
 
 /-- The unit-leading-coefficient branch of the factor-lifting criterion.  Normalize the
 ground-field irreducible polynomial to be monic, then normalize both residual
-factors without changing their product or coprimality.-/
+factors without changing their product or coprimality.
+@isnad1 id=other.4h3v.s11.f4bdfde5661d from=translated src=- shape=11f66bf2 vocab=d4734645
+-/
 theorem MonicResidualCoprimeFactorLifting.leadingCoeff_unit_branch
     {K : Type u} [Field K] {V : ValuationSubring K}
     (hlift : MonicResidualCoprimeFactorLifting V)
@@ -152,7 +154,9 @@ theorem MonicResidualCoprimeFactorLifting.leadingCoeff_unit_branch
 /-- the factor-lifting criterion's irreducible-factor input.  Exact monic lifting forces a
 primitive irreducible polynomial to have either full-degree or constant
 reduction, and the reduction has no coprime splitting into two nonconstant
-factors.-/
+factors.
+@isnad1 id=primitiv.1h2v.s4.6c0b320dee13 from=translated src=- shape=93e860ac vocab=4a17139f
+-/
 theorem primitiveIrreducibleReductionProperty_of_monicResidualCoprimeFactorLifting
     {K : Type u} [Field K] (V : ValuationSubring K)
     (hlift : MonicResidualCoprimeFactorLifting V) :
@@ -198,7 +202,9 @@ theorem primitiveIrreducibleReductionProperty_of_monicResidualCoprimeFactorLifti
     exact Or.inl (Nat.eq_zero_of_add_eq_zero_right hsum)
 
 /-- the factor-lifting criterion: monic coprime-factor lifting is sufficient for
-Hensel's lemma in the exact primitive factorization form of the primitive factorization definition.-/
+Hensel's lemma in the exact primitive factorization form of the primitive factorization definition.
+@isnad1 id=henselfa.1h2v.s4.9544eb219ed4 from=translated src=- shape=93e860ac vocab=3a97f9be
+-/
 theorem henselianValuationExtension
     {K : Type u} [Field K] (V : ValuationSubring K)
     (hlift : MonicResidualCoprimeFactorLifting V) :

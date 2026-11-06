@@ -35,7 +35,9 @@ namespace AlgHom
 
 /-- A finite open quotient-fiber factor extends across an affine open immersion,
 and a representative of its unit makes the original map an isomorphism after
-principal localization.-/
+principal localization.
+@isnad1 id=ex.0h7v.s16.0c593e0ccb0e from=translated src=- shape=7eaf9b9e vocab=aaa8f005
+-/
 theorem exists_quotient_factor_and_awayMap_bijective
     {R A B D : Type u} [CommRing R] [CommRing A] [CommRing B] [CommRing D]
     [Algebra R A] [Algebra R B] (f : A →ₐ[R] B) (I : Ideal R)

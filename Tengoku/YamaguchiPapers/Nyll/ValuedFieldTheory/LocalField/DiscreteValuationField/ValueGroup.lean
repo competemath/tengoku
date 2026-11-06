@@ -43,7 +43,9 @@ def subgroupValueSubgroup
 
 /--
 Characterizes `n ∈ V.subgroupValueSubgroup S` by the equivalent condition `∃ x : G, x ∈ S ∧
-V.valuationHom x = n`.-/
+V.valuationHom x = n`.
+@isnad1 id=iff.0h4v.s6.b61d69609ecb from=translated src=- shape=088ec559 vocab=b567794b
+-/
 @[simp] theorem mem_subgroupValueSubgroup_iff
     (V : MultiplicativeIntegerValuation G) (S : Subgroup G)
     (n : Multiplicative ℤ) :

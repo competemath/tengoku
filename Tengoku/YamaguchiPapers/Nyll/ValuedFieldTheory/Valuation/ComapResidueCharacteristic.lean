@@ -25,7 +25,9 @@ universe u v
 variable {K : Type u} {L : Type v} [Field K] [Field L]
 
 /-- The actual field embedding preserves and reflects nonunits of a
-pulled-back valuation subring.-/
+pulled-back valuation subring.
+@isnad1 id=iff.0h5v.s7.a3fb00a7f70d from=translated src=- shape=4c39380b vocab=dc9359c5
+-/
 theorem mem_nonunits_comap_iff (A : ValuationSubring L) (f : K →+* L) (x : K) :
     x ∈ (A.comap f).nonunits ↔ f x ∈ A.nonunits := by
   rw [mem_nonunits_iff_or, mem_nonunits_iff_or]
@@ -38,7 +40,9 @@ theorem mem_nonunits_comap_iff (A : ValuationSubring L) (f : K →+* L) (x : K) 
     · exact Or.inr (by simpa only [map_inv₀, mem_comap] using hx)
 
 /-- Residue characteristic zero descends along any field embedding by
-pulling back the specified valuation subring.-/
+pulling back the specified valuation subring.
+@isnad1 id=charzero.0h4v.s8.af7b48a9a1eb from=translated src=- shape=796a5e14 vocab=7d04a16f
+-/
 theorem charZero_residueField_comap (A : ValuationSubring L) (f : K →+* L)
     [CharZero (IsLocalRing.ResidueField A)] :
     CharZero (IsLocalRing.ResidueField (A.comap f)) := by

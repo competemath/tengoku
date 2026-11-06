@@ -24,6 +24,9 @@ section ProofImplementation
 namespace AlgebraicCurves.Foundations.Algebra.Proofs
 namespace Algebra_IsStandardSmooth_exists_isStandardSmoothOfRelativeDimension_of_field
 
+/--
+@isnad1 id=ex.0h2v.s5.6bcd03deae8e from=translated src=- shape=a5f58e2b vocab=d232a636
+-/
 theorem _root_.Algebra.IsStandardSmooth.exists_isStandardSmoothOfRelativeDimension_of_field
     {k : Type*} [Field k] {B : Type*} [CommRing B] [Algebra k B]
     [Algebra.IsStandardSmooth k B] :

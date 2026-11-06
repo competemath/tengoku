@@ -605,7 +605,9 @@ private theorem finiteNormExtension_finite_normFormulaValue_eq_spectralAbsoluteV
     (v.nonneg ((minpoly K x).coeff 0)) hd_pos hr_pos
 
 /-- the finite-degree norm construction, finite case: the finite norm formula inherits the strong
-triangle inequality from the spectral extension.-/
+triangle inequality from the spectral extension.
+@isnad1 id=le.3h5v.s7.2b0b7692f99e from=translated src=- shape=87f31ca9 vocab=e2fe30d5
+-/
 theorem finiteNormExtension_finite_normFormulaValue_strong_triangle
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -664,7 +666,9 @@ noncomputable def finiteNormExtension_finite_normFormulaAbsoluteValue
         (le_add_of_nonneg_left hx_nonneg))
 
 /-- The bundled finite norm formula is pointwise the function
-`x ↦ |N_{L/K}(x)|^(1/[L:K])`.-/
+`x ↦ |N_{L/K}(x)|^(1/[L:K])`.
+@isnad1 id=eq.3h4v.s7.99353d72c481 from=translated src=- shape=5a252c45 vocab=b4b8f9ba
+-/
 theorem finiteNormExtension_finite_normFormulaAbsoluteValue_apply
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -695,7 +699,9 @@ private theorem finiteNormExtension_finite_normFormulaAbsoluteValue_eq_spectralA
     v hcomplete hnonarch hv x
 
 /-- the finite-degree norm construction, finite case: the norm-formula absolute value restricts to
-the given base valuation.-/
+the given base valuation.
+@isnad1 id=eq.3h4v.s7.d9425915fef3 from=translated src=- shape=9cdc9ac1 vocab=b75f14a0
+-/
 theorem finiteNormExtension_finite_normFormulaAbsoluteValue_extends_base
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -711,7 +717,9 @@ theorem finiteNormExtension_finite_normFormulaAbsoluteValue_extends_base
     (K := K) (L := L) v hcomplete hnonarch hv x
 
 /-- the finite-degree norm construction, finite case: the finite extension is complete for the
-norm-formula absolute value.-/
+norm-formula absolute value.
+@isnad1 id=iscomple.3h3v.s6.e26ba17a22bd from=translated src=- shape=a8f87901 vocab=69445d01
+-/
 theorem finiteNormExtension_finite_normFormulaAbsoluteValue_complete
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -728,7 +736,9 @@ theorem finiteNormExtension_finite_normFormulaAbsoluteValue_complete
     (K := K) (L := L) v hcomplete hnonarch hv
 
 /-- the finite-degree norm construction, finite case: the norm-formula absolute value is the unique
-absolute-value extension of the complete nonarchimedean base valuation.-/
+absolute-value extension of the complete nonarchimedean base valuation.
+@isnad1 id=eq.4h4v.s8.eb2bdde4c641 from=translated src=- shape=05322899 vocab=b75f14a0
+-/
 theorem finiteNormExtension_unique_extension_finite_normFormulaAbsoluteValue
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]

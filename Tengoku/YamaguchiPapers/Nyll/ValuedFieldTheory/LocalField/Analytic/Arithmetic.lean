@@ -45,7 +45,9 @@ section PadicLogArithmetic
 variable {p n : ℕ}
 
 /-- Arithmetic estimate for the field-unit logarithm in real logarithmic
-form: `v_p(n) <= log_p(n)`.-/
+form: `v_p(n) <= log_p(n)`.
+@isnad1 id=le.0h2v.s4.6b6bc4688113 from=translated src=- shape=48121551 vocab=ff14932e
+-/
 theorem padicValNat_le_real_logb
     [Fact p.Prime] (n : ℕ) :
     (padicValNat p n : ℝ) ≤ Real.logb p n := by
@@ -55,7 +57,9 @@ theorem padicValNat_le_real_logb
 
 /-- Variant of the logarithmic domination estimate with a fixed real multiple
 of the logarithmic term.  This is the form needed after inserting the
-ramification index into the valuation of integer denominators.-/
+ramification index into the valuation of integer denominators.
+@isnad1 id=tendsto.1h3v.s6.9a24e36e1456 from=translated src=- shape=1be8655c vocab=1fc4b60d
+-/
 theorem tendsto_nat_succ_mul_const_sub_const_mul_logb_atTop
     {c C : ℝ} (hc : 0 < c) :
     Tendsto

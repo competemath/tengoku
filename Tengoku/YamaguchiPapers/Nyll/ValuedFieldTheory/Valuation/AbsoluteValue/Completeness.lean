@@ -32,7 +32,9 @@ def IsCompleteForAbsoluteValue {K : Type*} [Field K] (v : AbsoluteValue K ℝ) :
 
 /-- The uniformity attached directly to an absolute value agrees with the
 uniformity coming from the normed-field structure induced by that absolute
-value.-/
+value.
+@isnad1 id=eq.0h2v.s5.da0ee668ccca from=translated src=- shape=1315864c vocab=341b5392
+-/
 theorem absoluteValue_uniformSpace_eq_toNormedField
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) :
     v.uniformSpace = (AbsoluteValue.toNormedField v).toUniformSpace := by
@@ -47,7 +49,9 @@ theorem absoluteValue_uniformSpace_eq_toNormedField
   simp [hdist, AbsoluteValue.map_sub]
 
 /-- Completeness in the absolute-value uniformity is the same as
-completeness of the corresponding `WithAbs` normed field.-/
+completeness of the corresponding `WithAbs` normed field.
+@isnad1 id=iff.0h2v.s6.d49747f6308a from=translated src=- shape=51681652 vocab=b691add9
+-/
 theorem absoluteValueCompleteness_completeSpace_withAbs_iff_complete
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) :
     CompleteSpace (WithAbs v) ↔ IsCompleteForAbsoluteValue v := by
@@ -66,7 +70,9 @@ theorem absoluteValueCompleteness_completeSpace_withAbs_iff_complete
   rw [← absoluteValue_uniformSpace_eq_toNormedField v]
 
 /-- A complete valued field is complete as the corresponding `WithAbs`
-normed field.-/
+normed field.
+@isnad1 id=complete.1h2v.s6.b2f9d61a9fee from=translated src=- shape=38bebd84 vocab=b691add9
+-/
 theorem completeSpace_withAbs_of_isCompleteForAbsoluteValue
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hcomplete : IsCompleteForAbsoluteValue v) :
@@ -95,7 +101,9 @@ def finiteExtensionNormFormulaValue
     (v : AbsoluteValue K ℝ) (x : L) : ℝ :=
   Real.rpow (v (Algebra.norm K x)) (1 / (Module.finrank K L : ℝ))
 
-/-- The finite-degree norm formula candidate is nonnegative.-/
+/-- The finite-degree norm formula candidate is nonnegative.
+@isnad1 id=le.0h4v.s6.b5dd02e55e9d from=translated src=- shape=3d7abd1b vocab=cb43bd78
+-/
 theorem finiteExtensionNormFormulaValue_nonneg
     {K L : Type*} [Field K] [Field L] [Algebra K L] [FiniteDimensional K L]
     (v : AbsoluteValue K ℝ) (x : L) :

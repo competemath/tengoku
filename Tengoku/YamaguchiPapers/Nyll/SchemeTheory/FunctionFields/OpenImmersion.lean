@@ -34,7 +34,9 @@ private theorem denseRange_of_isOpenImmersion
   j.isOpenEmbedding.isOpenMap.denseRange_of_isPreirreducibleSpace j
 
 /-- The canonical function-field map of an open immersion of integral
-schemes is bijective.-/
+schemes is bijective.
+@isnad1 id=bijectiv.0h3v.s7.8895f395f9dd from=translated src=- shape=23cadbfb vocab=b8b4197a
+-/
 theorem functionFieldMap_bijective_of_isOpenImmersion
     [IsIntegral X] [IsIntegral U]
     (j : U ⟶ X) [IsOpenImmersion j] :
@@ -53,6 +55,9 @@ noncomputable def functionFieldRingEquivOfIsOpenImmersion
     (j.functionFieldMap (denseRange_of_isOpenImmersion j))
     (j.functionFieldMap_bijective_of_isOpenImmersion)
 
+/--
+@isnad1 id=eq.0h4v.s9.81c2aa5b3c7c from=translated src=- shape=324f5e1b vocab=2f73bb91
+-/
 @[simp]
 theorem functionFieldRingEquivOfIsOpenImmersion_apply
     [IsIntegral X] [IsIntegral U]
@@ -88,7 +93,9 @@ noncomputable def functionFieldAlgEquivOfIsOpenImmersionSpec
       commutes' := fun _ ↦ rfl }
 
 /-- The function field of a nonempty integral open subscheme of `Spec R` is
-a fraction field of the literal domain `R`.-/
+a fraction field of the literal domain `R`.
+@isnad1 id=isfracti.0h3v.s6.1e20e1e64803 from=translated src=- shape=0a9a9b60 vocab=4b96a67c
+-/
 theorem functionField_isFractionRing_of_isOpenImmersionSpec
     (R : CommRingCat.{u}) [IsDomain R]
     {U : Scheme.{u}} [IsIntegral U]

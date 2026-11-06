@@ -68,7 +68,9 @@ def HenselianValuationByFactorization {K : Type u} [Field K]
   HenselFactorizationProperty val.valuationSubring
 
 /-- An approximate root becomes an actual root after reducing coefficients
-modulo the ideal.-/
+modulo the ideal.
+@isnad1 id=eq.1h4v.s8.25f2a7b00b23 from=translated src=- shape=98d2f99f vocab=fb173604
+-/
 theorem eval_map_quotient_mk_eq_zero_of_eval_mem
     {S : Type*} [CommRing S] {J : Ideal S} {p : Polynomial S} {a₀ : S}
     (hroot : p.eval a₀ ∈ J) :
@@ -79,7 +81,9 @@ theorem eval_map_quotient_mk_eq_zero_of_eval_mem
   simpa [q, Polynomial.eval_map] using hq
 
 /-- Derivatives commute with coefficient reduction and evaluation at the
-reduced approximate root.-/
+reduced approximate root.
+@isnad1 id=eq.0h4v.s10.0c1a2f7d42fe from=translated src=- shape=b79417e2 vocab=4b2cf389
+-/
 theorem derivative_eval_map_quotient_mk
     {S : Type*} [CommRing S] (J : Ideal S) (p : Polynomial S) (a₀ : S) :
     (p.map (Ideal.Quotient.mk J)).derivative.eval (Ideal.Quotient.mk J a₀) =
@@ -87,7 +91,9 @@ theorem derivative_eval_map_quotient_mk
   simp [Polynomial.derivative_map]
 
 /-- The simple-root hypothesis is the derivative-unit condition for the
-residual polynomial.-/
+residual polynomial.
+@isnad1 id=isunit.1h4v.s10.fa67c8842b28 from=translated src=- shape=6298228e vocab=1935954e
+-/
 theorem derivative_isUnit_map_quotient_mk_of_simpleRoot_mod
     {S : Type*} [CommRing S] {J : Ideal S} {p : Polynomial S} {a₀ : S}
     (hsimple : IsUnit (Ideal.Quotient.mk J (p.derivative.eval a₀))) :
@@ -98,7 +104,9 @@ theorem derivative_isUnit_map_quotient_mk_of_simpleRoot_mod
     using hsimple
 
 /-- A derivative unit makes the linear factor coprime to the cofactor obtained
-by monic division.-/
+by monic division.
+@isnad1 id=iscoprim.1h3v.s9.d13451a96de5 from=translated src=- shape=51f18a35 vocab=307b516e
+-/
 theorem isCoprime_X_sub_C_divByMonic_of_derivative_isUnit
     {S : Type*} [CommRing S] (p : Polynomial S) (a : S)
     (hunit : IsUnit (p.derivative.eval a)) :
@@ -108,7 +116,9 @@ theorem isCoprime_X_sub_C_divByMonic_of_derivative_isUnit
   simpa only [divByMonic_X_sub_C_eval_eq_derivative_eval] using hunit
 
 /-- A residual approximate root supplies an actual linear factor after
-coefficient reduction.-/
+coefficient reduction.
+@isnad1 id=eq.1h4v.s10.c2850c5e6100 from=translated src=- shape=5703b2e8 vocab=614cc5b8
+-/
 theorem residual_X_sub_C_mul_divByMonic_eq_map_of_eval_mem
     {S : Type*} [CommRing S] {J : Ideal S} {p : Polynomial S} {a₀ : S}
     (hroot : p.eval a₀ ∈ J) :
@@ -120,7 +130,9 @@ theorem residual_X_sub_C_mul_divByMonic_eq_map_of_eval_mem
   exact eval_map_quotient_mk_eq_zero_of_eval_mem hroot
 
 /-- A residual simple root splits the residual polynomial into coprime linear
-and complementary factors.-/
+and complementary factors.
+@isnad1 id=iscoprim.1h4v.s10.ec3a0fca9d4f from=translated src=- shape=0683960c vocab=5d69162b
+-/
 theorem isCoprime_residual_X_sub_C_divByMonic_of_simpleRoot_mod
     {S : Type*} [CommRing S] {J : Ideal S} {p : Polynomial S} {a₀ : S}
     (hsimple : IsUnit (Ideal.Quotient.mk J (p.derivative.eval a₀))) :

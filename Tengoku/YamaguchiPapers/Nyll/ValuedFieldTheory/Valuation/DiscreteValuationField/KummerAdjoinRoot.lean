@@ -35,7 +35,9 @@ universe u v
 /-- A prime parameter and a primitive `r`-th root of unity produce an
 actual cyclic degree-`r` extension with the displayed integral minimal
 polynomial. The coefficient-ring algebra and its tower are outputs of
-the construction, alongside the fraction-field power basis.-/
+the construction, alongside the fraction-field power basis.
+@isnad1 id=ex.2h5v.s10.ac10cf97359f from=translated src=- shape=2f35eac8 vocab=cfcdbdde
+-/
 theorem exists_cyclic_kummer_extension_of_prime_parameter
     (R : Type u) (K : Type v)
     [CommRing R] [IsDomain R] [IsIntegrallyClosed R]

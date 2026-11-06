@@ -26,7 +26,9 @@ universe u
 
 variable {K : Type u} [Field K]
 
-/-- A principal unit killed by an integer nonzero in the residue field is one.-/
+/-- A principal unit killed by an integer nonzero in the residue field is one.
+@isnad1 id=eq.2h4v.s10.6f5a9d319122 from=translated src=- shape=b6f92389 vocab=1555fad3
+-/
 theorem principalUnit_eq_one_of_pow_eq_one_of_residue_natCast_ne_zero
     (A : ValuationSubring K) (x : A.principalUnitGroup)
     (n : ℕ) (hn : (n : IsLocalRing.ResidueField A) ≠ 0)

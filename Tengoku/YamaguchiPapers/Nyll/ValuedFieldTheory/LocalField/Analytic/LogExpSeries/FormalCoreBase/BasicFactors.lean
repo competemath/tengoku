@@ -41,7 +41,9 @@ noncomputable def formalLogOnePlusProductArgumentBasicFactorFinset :
       Finsupp.single (0 : Fin 2) 1 +
         Finsupp.single (1 : Fin 2) 1}
 
-/-- Establishes the identity `formalLogOnePlusProductArgumentBasicFactorFinset.card = 3`.-/
+/-- Establishes the identity `formalLogOnePlusProductArgumentBasicFactorFinset.card = 3`.
+@isnad1 id=eq.0h0v.s4.8144f1d6184b from=translated src=- shape=439a530a vocab=28533fc1
+-/
 @[simp] theorem formalLogOnePlusProductArgumentBasicFactorFinset_card :
     formalLogOnePlusProductArgumentBasicFactorFinset.card = 3 := by
   classical
@@ -59,7 +61,9 @@ def formalLogOnePlusProductArgumentBasicFactorLabel
 
 /--
 Establishes the identity `formalLogOnePlusProductArgumentBasicFactorLabel (Finsupp.single (0 : Fin
-2) 1) = 0`.-/
+2) 1) = 0`.
+@isnad1 id=eq.0h0v.s5.d8b31cbc051e from=translated src=- shape=8939db6f vocab=272e2389
+-/
 @[simp] theorem formalLogOnePlusProductArgumentBasicFactorLabel_left :
     formalLogOnePlusProductArgumentBasicFactorLabel
         (Finsupp.single (0 : Fin 2) 1) = 0 := by
@@ -67,7 +71,9 @@ Establishes the identity `formalLogOnePlusProductArgumentBasicFactorLabel (Finsu
 
 /--
 Establishes the identity `formalLogOnePlusProductArgumentBasicFactorLabel (Finsupp.single (1 : Fin
-2) 1) = 1`.-/
+2) 1) = 1`.
+@isnad1 id=eq.0h0v.s5.e117c19a7c78 from=translated src=- shape=8939db6f vocab=272e2389
+-/
 @[simp] theorem formalLogOnePlusProductArgumentBasicFactorLabel_right :
     formalLogOnePlusProductArgumentBasicFactorLabel
         (Finsupp.single (1 : Fin 2) 1) = 1 := by
@@ -76,7 +82,9 @@ Establishes the identity `formalLogOnePlusProductArgumentBasicFactorLabel (Finsu
 
 /--
 Establishes the identity `formalLogOnePlusProductArgumentBasicFactorLabel (Finsupp.single (0 : Fin
-2) 1 + Finsupp.single (1 : Fin 2) 1) = 2`.-/
+2) 1 + Finsupp.single (1 : Fin 2) 1) = 2`.
+@isnad1 id=eq.0h0v.s7.26de5a9efe78 from=translated src=- shape=3deb58c9 vocab=ab7636df
+-/
 @[simp] theorem formalLogOnePlusProductArgumentBasicFactorLabel_mixed :
     formalLogOnePlusProductArgumentBasicFactorLabel
         (Finsupp.single (0 : Fin 2) 1 +

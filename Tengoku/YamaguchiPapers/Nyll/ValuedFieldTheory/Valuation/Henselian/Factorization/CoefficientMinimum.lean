@@ -27,7 +27,9 @@ namespace AlgebraicNumberTheory
 namespace Valuations
 
 /-- finite divisibility minimum in a valuation ring: every
-nonempty finite set has an element that divides all elements of the set.-/
+nonempty finite set has an element that divides all elements of the set.
+@isnad1 id=ex.1h2v.s5.219a2ad02710 from=translated src=- shape=32b82b22 vocab=5ef1e54a
+-/
 theorem henselFactorization_exists_mem_finset_dvd_all
     {R : Type*} [Monoid R] [PreValuationRing R] {s : Finset R}
     (hs : s.Nonempty) :
@@ -69,7 +71,9 @@ def henselFactorization_twoPolynomialCoeffFinset
     Q.support.image (fun n => Q.coeff n)
 
 /-- A coefficient supported in the left polynomial belongs to the two-polynomial
-coefficient set.-/
+coefficient set.
+@isnad1 id=mem.1h4v.s5.5b4e0a5ad619 from=translated src=- shape=7d15b44d vocab=c0d392a0
+-/
 theorem henselFactorization_mem_twoPolynomialCoeffFinset_left
     {R : Type*} [Semiring R] {P Q : R[X]} {n : ℕ}
     (hn : n ∈ P.support) :
@@ -80,7 +84,9 @@ theorem henselFactorization_mem_twoPolynomialCoeffFinset_left
     (Or.inl (Finset.mem_image.mpr ⟨n, hn, rfl⟩))
 
 /-- A coefficient supported in the right polynomial belongs to the
-two-polynomial coefficient set.-/
+two-polynomial coefficient set.
+@isnad1 id=mem.1h4v.s5.74f1acd7cb35 from=translated src=- shape=eb703a75 vocab=c0d392a0
+-/
 theorem henselFactorization_mem_twoPolynomialCoeffFinset_right
     {R : Type*} [Semiring R] {P Q : R[X]} {n : ℕ}
     (hn : n ∈ Q.support) :
@@ -91,7 +97,9 @@ theorem henselFactorization_mem_twoPolynomialCoeffFinset_right
     (Or.inr (Finset.mem_image.mpr ⟨n, hn, rfl⟩))
 
 /-- if the two-polynomial coefficient set is nonempty, one of
-its coefficients divides every coefficient of both polynomials.-/
+its coefficients divides every coefficient of both polynomials.
+@isnad1 id=ex.1h3v.s6.cb7a5e35f6bc from=translated src=- shape=3b012c49 vocab=1e0da691
+-/
 theorem henselFactorization_exists_coeff_dvd_all_two_polynomials
     {R : Type*} [CommRing R] [PreValuationRing R] {P Q : R[X]}
     (hs : (henselFactorization_twoPolynomialCoeffFinset P Q).Nonempty) :
@@ -119,7 +127,9 @@ theorem henselFactorization_exists_coeff_dvd_all_two_polynomials
       exact dvd_zero π
 
 /-- if the two polynomials have coefficients in an ideal, the
-chosen finite-minimum coefficient lies in the same ideal.-/
+chosen finite-minimum coefficient lies in the same ideal.
+@isnad1 id=ex.3h4v.s8.ee35625fa45f from=translated src=- shape=e0d34c92 vocab=91dcc70c
+-/
 theorem henselFactorization_exists_coeff_mem_ideal_dvd_all_two_polynomials
     {R : Type*} [CommRing R] [PreValuationRing R] {I : Ideal R}
     {P Q : R[X]}

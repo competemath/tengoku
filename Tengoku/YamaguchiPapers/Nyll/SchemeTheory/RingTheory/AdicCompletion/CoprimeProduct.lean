@@ -233,6 +233,9 @@ noncomputable def adicCompletionProdEquivPi
     (adicCompletionToPi_comp_fromPi J hJ)
     (adicCompletionFromPi_comp_toPi J hJ)
 
+/--
+@isnad1 id=eq.1h5v.s10.5de84c6262c5 from=translated src=- shape=653c322c vocab=ec4752ee
+-/
 @[simp]
 theorem adicCompletionProdEquivPi_apply
     (J : ι → Ideal R) (hJ : Pairwise (IsCoprime on J))
@@ -242,7 +245,9 @@ theorem adicCompletionProdEquivPi_apply
   rfl
 
 /-- The product decomposition sends the canonical completion image of an
-element to its canonical image in every component completion.-/
+element to its canonical image in every component completion.
+@isnad1 id=eq.1h5v.s10.6bc6f90c5cfd from=translated src=- shape=db8ad073 vocab=8d43273a
+-/
 @[simp]
 theorem adicCompletionProdEquivPi_of
     (J : ι → Ideal R) (hJ : Pairwise (IsCoprime on J))
@@ -266,6 +271,9 @@ noncomputable def adicCompletionIdealCongr
   subst J
   exact RingEquiv.refl _
 
+/--
+@isnad1 id=eq.1h4v.s9.8b5b9d8ff638 from=translated src=- shape=bdfbe9fc vocab=de14ec56
+-/
 @[simp]
 theorem adicCompletionIdealCongr_of
     {I J : Ideal R} (h : I = J) (x : R) :
@@ -291,6 +299,9 @@ def integralExtensionPrimePowerFamily
     (p : Ideal A) (Q : p.primesOver B) : Ideal B :=
   Q.1 ^ Q.1.ramificationIdx A
 
+/--
+@isnad1 id=eq.0h4v.s7.d8c63999c2f8 from=translated src=- shape=d10cc00f vocab=1cbd2036
+-/
 @[simp]
 theorem integralExtensionPrimePowerFamily_apply
     {A : Type*} [CommRing A] [IsDomain A]
@@ -355,7 +366,9 @@ noncomputable def adicCompletionIntegralExtensionEquivPi
       (integralExtensionPrimePowerFamily_pairwise p))
 
 /-- The integral-extension decomposition sends the canonical completion image
-of an element to its canonical image in every prime-power factor.-/
+of an element to its canonical image in every prime-power factor.
+@isnad1 id=eq.1h5v.s12.6e44f4414769 from=translated src=- shape=70b04a70 vocab=b6ba432d
+-/
 @[simp]
 theorem adicCompletionIntegralExtensionEquivPi_of
     {A : Type*} [CommRing A] [IsDomain A]

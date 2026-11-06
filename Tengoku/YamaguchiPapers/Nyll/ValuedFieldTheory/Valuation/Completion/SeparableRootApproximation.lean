@@ -90,7 +90,9 @@ private theorem exists_monic_root_with_adjoin_containment_of_normed
 
 /-- A separable element over a complete nonarchimedean field is contained
 in the adjoin of a root of a monic polynomial over any dense subfield,
-without increasing the degree of its minimal polynomial.-/
+without increasing the degree of its minimal polynomial.
+@isnad1 id=ex.2h3v.s9.cb780b4c4f8f from=translated src=- shape=8d64e13f vocab=6e41589e
+-/
 theorem exists_monic_root_with_adjoin_containment
     {K A : Type*} [Field K] [NontriviallyNormedField A]
     [CompleteSpace A] [IsUltrametricDist A] [Algebra K A]

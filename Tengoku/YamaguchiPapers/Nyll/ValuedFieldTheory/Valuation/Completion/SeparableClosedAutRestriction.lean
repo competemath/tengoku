@@ -53,7 +53,9 @@ def separableClosedAutRestriction
     change i (restrictionHom i σ (restrictionHom i σ.symm s)) = i s
     rw [restrictionHom_apply, restrictionHom_apply, σ.apply_symm_apply]⟩
 
-/-- The restricted automorphism acts through the original embedding.-/
+/-- The restricted automorphism acts through the original embedding.
+@isnad1 id=eq.0h6v.s8.d7fa28cb3f8d from=translated src=- shape=6a897901 vocab=bd507e82
+-/
 @[simp] theorem separableClosedAutRestriction_apply
     (i : S →ₐ[K] E) (σ : E ≃ₐ[K] E) (s : S) :
     i (separableClosedAutRestriction i σ s) = σ (i s) :=

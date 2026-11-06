@@ -29,7 +29,9 @@ variable {K : Type u} [Field K]
 variable {Γ₀ : Type v} [LinearOrderedCommGroupWithZero Γ₀]
 
 /-- The value of a nonzero natural number is the value of its
-residue-characteristic prime-power factor.-/
+residue-characteristic prime-power factor.
+@isnad1 id=eq.1h5v.s8.2340fc31c639 from=translated src=- shape=1fe69c2e vocab=c858e91f
+-/
 theorem natCast_eq_pow_padicValNat (v : Valuation K Γ₀)
     (p : ℕ) [Fact p.Prime] [CharP (IsLocalRing.ResidueField v.valuationSubring) p]
     (n : ℕ) (hn : n ≠ 0) :
@@ -67,7 +69,9 @@ universe u v
 
 variable {K : Type u} [Field K]
 
-/-- The natural-number valuation formula for a chosen discrete valuation field.-/
+/-- The natural-number valuation formula for a chosen discrete valuation field.
+@isnad1 id=eq.1h4v.s7.e0e5ff7f5195 from=translated src=- shape=524e38a5 vocab=8a3871db
+-/
 theorem valuation_natCast_eq_pow_padicValNat (F : DVF.{u, v} K)
     (p : ℕ) [Fact p.Prime] [CharP F.residueField p]
     (n : ℕ) (hn : n ≠ 0) :

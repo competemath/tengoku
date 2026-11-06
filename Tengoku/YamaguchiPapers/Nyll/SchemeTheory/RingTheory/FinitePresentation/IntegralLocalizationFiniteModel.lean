@@ -30,7 +30,9 @@ namespace Algebra
 
 /-- A principal localization of an integral algebra that is of finite type comes
 from a finite subalgebra containing any prescribed finite set and the element
-being inverted. The comparison is the canonical localization map.-/
+being inverted. The comparison is the canonical localization map.
+@isnad1 id=ex.1h4v.s13.a86a7f70bc74 from=translated src=- shape=44016341 vocab=5987348a
+-/
 theorem exists_finite_subalgebra_awayMap_bijective_of_finiteType
     {R : Type u} {C : Type v} [CommRing R] [CommRing C] [Algebra R C]
     [Algebra.IsIntegral R C] (b : C) [Algebra.FiniteType R (Localization.Away b)]

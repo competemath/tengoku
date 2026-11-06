@@ -25,7 +25,9 @@ namespace ValuationTheory.Completion
 open scoped TensorProduct BigOperators
 
 /-- Every tensor element over an algebraic field extension lifts from a
-finite intermediate field, along its actual inclusion into the extension.-/
+finite intermediate field, along its actual inclusion into the extension.
+@isnad1 id=ex.0h4v.s11.68ae82149a4a from=translated src=- shape=b5931bd4 vocab=7dcfd9de
+-/
 theorem exists_finiteSubfield_tensor_lift
     {K A L : Type*} [Field K] [CommRing A] [Field L]
     [Algebra K A] [Algebra K L] [Algebra.IsAlgebraic K L]

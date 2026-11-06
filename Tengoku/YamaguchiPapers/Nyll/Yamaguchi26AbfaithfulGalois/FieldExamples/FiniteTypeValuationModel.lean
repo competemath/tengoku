@@ -22,7 +22,9 @@ namespace Yamaguchi26AbfaithfulGalois
 universe u v w
 
 /-- A finitely generated extension of a fraction field admits a finite type
-integral model inside any valuation ring containing the base ring.-/
+integral model inside any valuation ring containing the base ring.
+@isnad1 id=ex.1h4v.s8.dbac263d0430 from=translated src=- shape=1b304313 vocab=bbb7b007
+-/
 theorem finiteType_model_in_valuation
     (R : Type u) (F : Type v) (E : Type w)
     [CommRing R] [IsDomain R] [Field F] [Field E]

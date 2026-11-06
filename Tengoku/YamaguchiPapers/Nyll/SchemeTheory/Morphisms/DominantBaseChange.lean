@@ -28,7 +28,9 @@ universe u
 
 namespace AlgebraicGeometry
 
-/-- Base change along a morphism with open underlying map preserves dominance.-/
+/-- Base change along a morphism with open underlying map preserves dominance.
+@isnad1 id=isdomina.1h5v.s7.e6f34f9a3b07 from=translated src=- shape=0bf6bf4a vocab=bf35ad84
+-/
 lemma isDominant_pullback_fst_of_isOpenMap {X Y S : Scheme.{u}}
     (f : X ⟶ S) (g : Y ⟶ S) (hf : IsOpenMap f) [IsDominant g] :
     IsDominant (pullback.fst f g) := by

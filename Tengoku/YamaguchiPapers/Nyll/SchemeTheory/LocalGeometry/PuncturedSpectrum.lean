@@ -42,6 +42,9 @@ def puncturedSpectrumInclusion (R : Type u) [CommRing R] [IsLocalRing R] :
     puncturedSpectrum R ⟶ Spec (.of R) :=
   (puncturedSpectrumOpen R).ι
 
+/--
+@isnad1 id=iff.0h2v.s6.fcb5f56e4dbd from=translated src=- shape=d1ef6d0c vocab=0ab490a3
+-/
 @[simp]
 theorem mem_puncturedSpectrumOpen_iff
     (R : Type u) [CommRing R] [IsLocalRing R]
@@ -52,7 +55,9 @@ theorem mem_puncturedSpectrumOpen_iff
   exact Iff.rfl
 
 /-- A positive-dimensional local domain has a nonempty punctured spectrum:
-its generic point is different from the closed point.-/
+its generic point is different from the closed point.
+@isnad1 id=nonempty.1h1v.s5.dc55eb61fa2c from=translated src=- shape=99d0ec00 vocab=a3414fd7
+-/
 theorem puncturedSpectrum_nonempty_of_one_le_ringKrullDim
     (R : Type u) [CommRing R] [IsDomain R] [IsLocalRing R]
     (hdim : (1 : WithBot ℕ∞) ≤ ringKrullDim R) :

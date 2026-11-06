@@ -28,7 +28,9 @@ namespace ValuationSubring
 universe u
 
 /-- The residue field of any valuation subring of an algebraically closed
-field is algebraically closed.-/
+field is algebraically closed.
+@isnad1 id=isalgclo.0h2v.s6.3d10ca082825 from=translated src=- shape=92a0615b vocab=29da4fd9
+-/
 theorem isAlgClosed_residueField
     {Ω : Type u} [Field Ω] [IsAlgClosed Ω] (A : ValuationSubring Ω) :
     IsAlgClosed (IsLocalRing.ResidueField A) := by

@@ -23,7 +23,9 @@ universe u v
 variable (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
 
 /-- In residue characteristic zero, a nontrivial inertia element of prime order
-forces a primitive root of that order in the actual residue field.-/
+forces a primitive root of that order in the actual residue field.
+@isnad1 id=nonempty.3h5v.s14.4cb094b4e9d5 from=translated src=- shape=89863fa3 vocab=8d9884b8
+-/
 theorem exists_primitiveRoot_residue_of_inertia_prime_order
     (A : _root_.ValuationSubring L) [Finite (inertiaGroup K A)]
     [CharZero (IsLocalRing.ResidueField A)]

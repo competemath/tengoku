@@ -52,7 +52,9 @@ noncomputable def ofWithZeroValuation
     rw [v.map_mul, WithZero.log_mul hx hy]
     ring
 
-/-- Establishes the identity `(ofWithZeroValuation v).val x = -WithZero.log (v (x : K))`.-/
+/-- Establishes the identity `(ofWithZeroValuation v).val x = -WithZero.log (v (x : K))`.
+@isnad1 id=eq.0h3v.s7.389f1469fed9 from=translated src=- shape=e8db8eb2 vocab=1a780820
+-/
 @[simp] theorem ofWithZeroValuation_val
     (v : _root_.Valuation K (WithZero (Multiplicative ℤ))) (x : Kˣ) :
     (ofWithZeroValuation v).val x = -WithZero.log (v (x : K)) :=
@@ -60,7 +62,9 @@ noncomputable def ofWithZeroValuation
 
 /--
 `ofWithZeroValuation_val_eq_of_valuation_eq_exp` satisfies the negation formula
-`(ofWithZeroValuation v).val x = n`.-/
+`(ofWithZeroValuation v).val x = n`.
+@isnad1 id=eq.1h4v.s7.93f641f7f045 from=translated src=- shape=72b8fdd7 vocab=8343eb94
+-/
 theorem ofWithZeroValuation_val_eq_of_valuation_eq_exp_neg
     (v : _root_.Valuation K (WithZero (Multiplicative ℤ))) (x : Kˣ) {n : ℤ}
     (hx : v (x : K) = WithZero.exp (-n)) :
@@ -71,7 +75,9 @@ theorem ofWithZeroValuation_val_eq_of_valuation_eq_exp_neg
 /-- Natural-number denominator form of the attached integer valuation.
 
 This is the denominator input for the logarithm-series term
-`x^n / n` in the field-unit logarithm theorem.-/
+`x^n / n` in the field-unit logarithm theorem.
+@isnad1 id=eq.2h4v.s7.133e5d715294 from=translated src=- shape=2dd2de82 vocab=d4443e32
+-/
 theorem ofWithZeroValuation_val_natCast
     (v : _root_.Valuation K (WithZero (Multiplicative ℤ)))
     {p n : ℕ} (hnK : (n : K) ≠ 0)
@@ -82,7 +88,9 @@ theorem ofWithZeroValuation_val_natCast
     v (Units.mk0 (n : K) hnK) (by simpa using hnval)
 
 /-- Valuation of the exponential-series term `x^n / n!`, assuming the
-factorial denominator has the expected `p`-adic value.-/
+factorial denominator has the expected `p`-adic value.
+@isnad1 id=eq.2h5v.s8.353441a7fd1c from=translated src=- shape=1e8f3b63 vocab=2210a1d6
+-/
 theorem ofWithZeroValuation_val_pow_div_natCast_factorial
     (v : _root_.Valuation K (WithZero (Multiplicative ℤ)))
     {p n : ℕ} (x : Kˣ)

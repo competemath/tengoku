@@ -159,7 +159,9 @@ private theorem representation_eq_one_of_dense_commutator_of_commuting_image
 -- The discrete topology in the inductive step is used by instance search.
 /-- A continuous representation of a group with dense commutator subgroup
 into matrices over a separated adic ring is trivial if its reduction modulo
-the defining ideal is trivial. The congruence filtration is proved directly.-/
+the defining ideal is trivial. The congruence filtration is proved directly.
+@isnad1 id=eq.3h6v.s10.6a00355dafbe from=translated src=- shape=f1e0131f vocab=a50e7ffa
+-/
 theorem adic_representation_eq_one_of_dense_commutator
     {G A ι : Type*}
     [Group G] [TopologicalSpace G] [IsTopologicalGroup G]

@@ -25,7 +25,9 @@ namespace AlgebraicNumberTheory
 namespace Valuations
 
 /-- Algebraic splitting of an update by a `π^n`-multiple around the initial
-lift.-/
+lift.
+@isnad1 id=eq.0h6v.s8.d9feb692b616 from=translated src=- shape=be518378 vocab=c58fb6a8
+-/
 theorem henselFactorization_update_sub_eq_initial_error_add
     {R : Type*} [CommRing R] {π : R} {n : ℕ} {g g0 p : R[X]} :
     g + Polynomial.C (π ^ n) * p - g0 =
@@ -34,7 +36,9 @@ theorem henselFactorization_update_sub_eq_initial_error_add
 
 /-- adding a `π^n`-multiple preserves congruence modulo
 `(π)` once `n ≥ 1`.  This is the inductive congruence needed for the
-displayed-factor one-step update.-/
+displayed-factor one-step update.
+@isnad1 id=mem.2h7v.s8.5c260b07e18f from=translated src=- shape=8ebe4c2b vocab=0dddfec9
+-/
 theorem henselFactorization_update_preserves_span_singleton
     {R : Type*} [CommRing R] {π : R} {n : ℕ} (hn : 1 ≤ n)
     {g g0 p : R[X]}
@@ -51,7 +55,9 @@ theorem henselFactorization_update_preserves_span_singleton
 
 /-- displayed-factor one recursive Hensel step from the division
 data.  The congruence modulo `(π)` is produced from the displayed Bezout-error
-factor, and the update needs only `π ∈ m`, not `m ≤ (π)`.-/
+factor, and the update needs only `π ∈ m`, not `m ≤ (π)`.
+@isnad1 id=and.13h16v.s11.145f568bf5c1 from=translated src=- shape=2dec6bd9 vocab=cf67158a
+-/
 theorem henselFactorization_one_step_update_from_division_data_of_mem_span
     {R : Type*} [CommRing R] [IsLocalRing R] {π : R} {n : ℕ} (hn : 1 ≤ n)
     (hπmem : π ∈ IsLocalRing.maximalIdeal R)
@@ -126,7 +132,9 @@ theorem henselFactorization_one_step_update_from_division_data_of_mem_span
 error factor in the displayed-factor principal-element form.  The chosen `π`
 only has to lie in the maximal ideal; the needed congruence modulo `(π)` is
 carried as an invariant and is produced from the displayed finite-minimum
-Bezout-error factor.-/
+Bezout-error factor.
+@isnad1 id=ex.16h15v.s11.116e31e33372 from=translated src=- shape=68d3cdd6 vocab=df0dab9c
+-/
 theorem henselFactorization_exists_one_step_update_of_mem_span
     {R : Type*} [CommRing R] [IsLocalRing R] [NoZeroDivisors R]
     {π : R} {n : ℕ} (hn : 1 ≤ n) (hπn : π ^ n ≠ 0)
@@ -186,7 +194,9 @@ theorem henselFactorization_exists_one_step_update_of_mem_span
     hpNat, hqdeg, hgNext, hhNext, hgNextMax, hhNextMax, hfactorNext⟩
 
 /-- displayed-factor one-step existence with the degree
-invariants for the next approximants included.-/
+invariants for the next approximants included.
+@isnad1 id=ex.16h15v.s11.fd2a8b0cee90 from=translated src=- shape=f72b08fb vocab=df0dab9c
+-/
 theorem henselFactorization_exists_one_step_update_with_degree_bounds_of_mem_span
     {R : Type*} [CommRing R] [IsLocalRing R] [NoZeroDivisors R]
     {π : R} {n : ℕ} (hn : 1 ≤ n) (hπn : π ^ n ≠ 0)

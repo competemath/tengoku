@@ -25,7 +25,9 @@ universe u v w
 variable (K : Type u) (L : Type v)
 variable [Field K] [Field L] [Algebra K L]
 
-/-- Negation contributes one sign for each basis vector in the field norm.-/
+/-- Negation contributes one sign for each basis vector in the field norm.
+@isnad1 id=eq.0h3v.s8.e29cbe154476 from=translated src=- shape=93dbf839 vocab=6d9b70d1
+-/
 theorem algebraNorm_neg (x : L) :
     Algebra.norm K (-x) = (-1) ^ Module.finrank K L * Algebra.norm K x := by
   rw [show -x = algebraMap K L (-1) * x by rw [map_neg, map_one, neg_one_mul],
@@ -35,7 +37,9 @@ theorem algebraNorm_neg (x : L) :
 def normUnits : Lˣ →* Kˣ :=
   Units.map (Algebra.norm K)
 
-/-- The underlying field element of a unit norm is the algebra norm.-/
+/-- The underlying field element of a unit norm is the algebra norm.
+@isnad1 id=eq.0h3v.s8.6e67f508fa7a from=translated src=- shape=46e43cb5 vocab=d42ef629
+-/
 @[simp]
 theorem normUnits_apply_coe (x : Lˣ) :
     ((normUnits K L x : Kˣ) : K) = Algebra.norm K (x : L) :=

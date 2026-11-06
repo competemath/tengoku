@@ -24,7 +24,9 @@ namespace ValuationTheory.Completion
 open IntermediateField
 
 /-- A finite separable extension of a complete nonarchimedean field has a
-generator separable over any dense subfield, of the same degree.-/
+generator separable over any dense subfield, of the same degree.
+@isnad1 id=ex.1h3v.s9.27f4c12d30a3 from=translated src=- shape=ae70cc14 vocab=9950923c
+-/
 theorem exists_isSeparable_generator_of_denseRange
     {K A E : Type*} [Field K] [NontriviallyNormedField A] [Field E]
     [CompleteSpace A] [IsUltrametricDist A]

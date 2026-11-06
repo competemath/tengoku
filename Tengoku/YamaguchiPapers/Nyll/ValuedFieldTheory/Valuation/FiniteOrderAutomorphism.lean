@@ -22,7 +22,9 @@ namespace Valuation
 variable {K Γ : Type*} [Field K] [LinearOrderedCommGroupWithZero Γ]
 
 /-- A finite-order field automorphism preserving a valuation class preserves
-its actual values, without any discreteness hypothesis.-/
+its actual values, without any discreteness hypothesis.
+@isnad1 id=eq.3h6v.s10.c4c4e3c66936 from=translated src=- shape=c135e8fa vocab=26e57d01
+-/
 theorem map_apply_eq_of_isEquiv_comap_of_pow_eq_one
     (v : Valuation K Γ) (τ : K ≃+* K)
     (hτ : v.IsEquiv (v.comap τ.toRingHom))

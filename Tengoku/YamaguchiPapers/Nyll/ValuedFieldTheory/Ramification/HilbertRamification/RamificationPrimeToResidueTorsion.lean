@@ -31,7 +31,9 @@ universe u v
 variable (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
 
 /-- An element of the actual ramification group killed by an integer which
-is nonzero in the residue field is the identity.-/
+is nonzero in the residue field is the identity.
+@isnad1 id=eq.2h5v.s17.975d1febaab7 from=translated src=- shape=991edc3a vocab=392a42af
+-/
 theorem ramificationGroup_eq_one_of_pow_eq_one_of_residue_natCast_ne_zero
     (A : _root_.ValuationSubring L) (σ : ramificationGroup K A)
     (n : ℕ) (hn : (n : IsLocalRing.ResidueField A) ≠ 0)

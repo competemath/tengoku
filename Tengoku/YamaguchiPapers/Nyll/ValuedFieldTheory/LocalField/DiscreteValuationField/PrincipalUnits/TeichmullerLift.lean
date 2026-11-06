@@ -51,12 +51,16 @@ noncomputable def residueTeichmullerLift [Finite F.residueField] :
         higherPrincipalUnitGroup.residueRootsOfUnityGroup F) :
         F.valuationSubringˣ)
 
-/-- Establishes the identity `higherPrincipalUnitGroup.residueTeichmullerLift F 0 = 0`.-/
+/-- Establishes the identity `higherPrincipalUnitGroup.residueTeichmullerLift F 0 = 0`.
+@isnad1 id=eq.0h2v.s7.f1e33e5165cc from=translated src=- shape=b1400615 vocab=90d47ace
+-/
 @[simp] theorem residueTeichmullerLift_zero [Finite F.residueField] :
     higherPrincipalUnitGroup.residueTeichmullerLift F 0 = 0 := by
   simp [higherPrincipalUnitGroup.residueTeichmullerLift]
 
-/-- Establishes the identity `higherPrincipalUnitGroup.residueTeichmullerLift F 1 = 1`.-/
+/-- Establishes the identity `higherPrincipalUnitGroup.residueTeichmullerLift F 1 = 1`.
+@isnad1 id=eq.0h2v.s7.1ccb15360451 from=translated src=- shape=b1400615 vocab=90d47ace
+-/
 @[simp] theorem residueTeichmullerLift_one [Finite F.residueField] :
     higherPrincipalUnitGroup.residueTeichmullerLift F 1 = 1 := by
   let e :=
@@ -75,7 +79,9 @@ noncomputable def residueTeichmullerLift [Finite F.residueField] :
         (ζ : F.valuationSubringˣ)) hroot
   simp [higherPrincipalUnitGroup.residueTeichmullerLift, hone]
 
-/-- The Teichmuller lift reduces to the residue class it lifts.-/
+/-- The Teichmuller lift reduces to the residue class it lifts.
+@isnad1 id=eq.0h3v.s8.82fe8b6a42cf from=translated src=- shape=665a27c2 vocab=e5590349
+-/
 theorem residueMap_residueTeichmullerLift [Finite F.residueField]
     (y : F.residueField) :
     F.residueMap (higherPrincipalUnitGroup.residueTeichmullerLift F y) = y := by
@@ -96,7 +102,9 @@ theorem residueMap_residueTeichmullerLift [Finite F.residueField]
     simpa [higherPrincipalUnitGroup.residueTeichmullerLift, hy, e,
       higherPrincipalUnitGroup.residueUnitHom] using hval
 
-/-- The Teichmuller lift is multiplicative.-/
+/-- The Teichmuller lift is multiplicative.
+@isnad1 id=eq.0h4v.s7.d6e3ac68e278 from=translated src=- shape=76e42635 vocab=fcbca8ea
+-/
 theorem residueTeichmullerLift_mul [Finite F.residueField]
     (x y : F.residueField) :
     higherPrincipalUnitGroup.residueTeichmullerLift F (x * y) =
@@ -132,7 +140,9 @@ theorem residueTeichmullerLift_mul [Finite F.residueField]
   simp [higherPrincipalUnitGroup.residueTeichmullerLift, hx, hy, hxy]
 
 /-- Every Teichmuller representative is a root of `T^q - T`, where
-`q = #κ`.-/
+`q = #κ`.
+@isnad1 id=eq.0h3v.s6.c0f2da8f0e16 from=translated src=- shape=8c19e3b0 vocab=159d5f54
+-/
 theorem residueTeichmullerLift_pow_card [Finite F.residueField]
     (y : F.residueField) :
     higherPrincipalUnitGroup.residueTeichmullerLift F y ^
@@ -179,7 +189,9 @@ theorem residueTeichmullerLift_pow_card [Finite F.residueField]
 
 /--
 Every residue Teichmüller lift is a root of the polynomial `X^q - X`, where `q` is the
-residue-field cardinality.-/
+residue-field cardinality.
+@isnad1 id=isroot.0h3v.s9.119d87fa82db from=translated src=- shape=a34895b7 vocab=6cd74cbd
+-/
 theorem residueTeichmullerLift_isRoot_X_pow_card_sub_X
     [Finite F.residueField] (y : F.residueField) :
     (Polynomial.X ^ Nat.card F.residueField - Polynomial.X :
@@ -190,7 +202,9 @@ theorem residueTeichmullerLift_isRoot_X_pow_card_sub_X
     higherPrincipalUnitGroup.residueTeichmullerLift_pow_card]
 
 /-- In equal characteristic, `T^q - T` has unit derivative at every
-Teichmuller representative.-/
+Teichmuller representative.
+@isnad1 id=isunit.1h5v.s11.3c610ea2e571 from=translated src=- shape=f9746f1e vocab=194bebd9
+-/
 theorem residueTeichmullerRootPolynomial_derivative_eval_isUnit_of_charP
     [Finite F.residueField] (p : ℕ) [Fact p.Prime]
     [CharP F.valuationSubring p] {n : ℕ+}
@@ -217,7 +231,9 @@ theorem residueTeichmullerRootPolynomial_derivative_eval_isUnit_of_charP
   exact isUnit_neg_one
 
 /-- In equal characteristic, the Teichmuller lift from the finite residue field
-to the valuation ring is additive.-/
+to the valuation ring is additive.
+@isnad1 id=eq.1h6v.s8.6f52604f8981 from=translated src=- shape=d2befd18 vocab=91847778
+-/
 theorem residueTeichmullerLift_add_of_charP [Finite F.residueField]
     (p : ℕ) [Fact p.Prime] [CharP F.valuationSubring p] {n : ℕ+}
     (hcard : Nat.card F.residueField = p ^ (n : ℕ))
@@ -300,7 +316,9 @@ noncomputable def residueTeichmullerRingHomOfCharP
 /--
 The defining evaluation formula for `residueTeichmullerRingHomOfCharP` is
 `higherPrincipalUnitGroup.residueTeichmullerRingHomOfCharP (F := F) p hcard x =
-higherPrincipalUnitGroup.residueTeichmullerLift F x`.-/
+higherPrincipalUnitGroup.residueTeichmullerLift F x`.
+@isnad1 id=eq.1h5v.s8.2b73f5e15093 from=translated src=- shape=c687bd8b vocab=cab4e2dc
+-/
 @[simp] theorem residueTeichmullerRingHomOfCharP_apply
     [Finite F.residueField] (p : ℕ) [Fact p.Prime]
     [CharP F.valuationSubring p] {n : ℕ+}
@@ -324,7 +342,9 @@ noncomputable def residueTeichmullerFieldHomOfCharP
 /--
 The defining evaluation formula for `residueTeichmullerFieldHomOfCharP` is
 `higherPrincipalUnitGroup.residueTeichmullerFieldHomOfCharP (F := F) p hcard x =
-(higherPrincipalUnitGroup.residueTeichmullerLift F x : K)`.-/
+(higherPrincipalUnitGroup.residueTeichmullerLift F x : K)`.
+@isnad1 id=eq.1h5v.s8.f06b5b4b852b from=translated src=- shape=5265b644 vocab=a600c6f1
+-/
 @[simp] theorem residueTeichmullerFieldHomOfCharP_apply
     [Finite F.residueField] (p : ℕ) [Fact p.Prime]
     [CharP F.valuationSubring p] {n : ℕ+}

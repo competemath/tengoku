@@ -27,7 +27,9 @@ variable {K : Type*} [Field K] (V : ValuationSubring K)
   [HenselianRing V (IsLocalRing.maximalIdeal V)]
 
 /-- A simple residual root lifts for an arbitrary polynomial over a Henselian
-valuation ring. No monicity or completeness assumption is needed.-/
+valuation ring. No monicity or completeness assumption is needed.
+@isnad1 id=ex.2h4v.s12.3e0984d022e6 from=translated src=- shape=777cf59d vocab=aad74d44
+-/
 theorem exists_root_of_henselianRing_of_simpleRoot_mod
     (f : Polynomial V) (a₀ : V)
     (hroot : f.eval a₀ ∈ IsLocalRing.maximalIdeal V)

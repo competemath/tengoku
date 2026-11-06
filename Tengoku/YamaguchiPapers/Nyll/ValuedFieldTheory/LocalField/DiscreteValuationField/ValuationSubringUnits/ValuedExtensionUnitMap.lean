@@ -34,7 +34,9 @@ variable [Algebra K L]
 variable (base : CompleteDVF.{u, v} K) (target : CompleteDVF.{u, x} L)
 variable [base.valuation.HasExtension target.valuation]
 
-/-- Compatibility between the valuation-ring unit map and the field-unit map.-/
+/-- Compatibility between the valuation-ring unit map and the field-unit map.
+@isnad1 id=eq.0h5v.s11.ef12651f0040 from=translated src=- shape=01af806a vocab=166738c8
+-/
 theorem baseUnitsMap_valuationSubringUnitsToFieldUnits
     (a : base.valuationSubringˣ) :
     baseUnitsMap (K := K) (L := L)
@@ -50,7 +52,9 @@ base uniformizer.
 
 This is the source-producing bridge from
 `exists_unit_mul_target_uniformizer_pow_eq_base_uniformizer_image` to the
-`hϖmap` input used by `ValuationScaling.lean`.-/
+`hϖmap` input used by `ValuationScaling.lean`.
+@isnad1 id=eq.4h7v.s10.e2982691da76 from=translated src=- shape=d5ee0fb5 vocab=a14a1872
+-/
 theorem base_uniformizer_image_val_eq_ramificationIndex
     (vL : MultiplicativeIntegerValuation Lˣ)
     (hunit :

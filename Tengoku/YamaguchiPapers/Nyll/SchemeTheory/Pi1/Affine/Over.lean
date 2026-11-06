@@ -84,6 +84,9 @@ section
 
 variable {C : Type*} [Category C]
 
+/--
+@isnad1 id=isstable.0h1v.s4.addc9fb21a74 from=translated src=- shape=b8471119 vocab=a4c149d9
+-/
 instance MorphismProperty.top_isStableUnderBaseChange :
     (⊤ : MorphismProperty C).IsStableUnderBaseChange where
   of_isPullback _ _ := trivial
@@ -109,6 +112,9 @@ variable [∀ (i j : 𝒰.I₀) (hij : i ⟶ j),
   PreservesColimitsOfShape J (MorphismProperty.Over.pullback P ⊤ (𝒰.trans hij))]
 variable [IsZariskiLocalAtTarget P]
 
+/--
+@isnad1 id=eq.0h7v.s12.967902c7cbf4 from=translated src=- shape=a2981776 vocab=746894aa
+-/
 @[reassoc (attr := simp)]
 lemma Scheme.Cover.ColimitGluingData.pullbackGluedIso_hom (i : 𝒰.I₀) :
     (d.pullbackGluedIso i).hom.left ≫ colimit.ι d.relativeGluingData.functor i =
@@ -166,6 +172,9 @@ section
 
 variable {X Y S : Scheme.{u}} [IsAffine X] [IsAffine Y] [IsAffine S] {f : X ⟶ S} {g : Y ⟶ S}
 
+/--
+@isnad1 id=ispushou.1h8v.s10.8399b8f87d64 from=translated src=- shape=2229c7c9 vocab=301cbf5c
+-/
 lemma Γ_isPushout {P : Scheme.{u}} {fst : P ⟶ X} {snd : P ⟶ Y} (h : IsPullback fst snd f g) :
     IsPushout (f.app ⊤) (g.app ⊤) (fst.app ⊤) (snd.app ⊤) := by
   have : IsAffine (pullback f g) := inferInstance
@@ -186,22 +195,34 @@ rings.-/
 def ΓpullbackIsoPushout : Γ(pullback f g, ⊤) ≅ pushout f.appTop g.appTop :=
   IsPushout.isoPushout (Γ_isPushout (f := f) (g := g) <| IsPullback.of_hasPullback f g)
 
+/--
+@isnad1 id=eq.0h5v.s11.5b28076844c9 from=translated src=- shape=dd167969 vocab=e420c75d
+-/
 @[reassoc (attr := simp)]
 lemma inl_ΓpullbackIsoPushout_inv :
     pushout.inl f.appTop g.appTop ≫ (ΓpullbackIsoPushout f g).inv = (pullback.fst f g).appTop := by
   exact (Γ_isPushout (f := f) (g := g) <| IsPullback.of_hasPullback f g).inl_isoPushout_inv
 
+/--
+@isnad1 id=eq.0h5v.s11.18e803fbecdd from=translated src=- shape=039b35ac vocab=8791d122
+-/
 @[reassoc (attr := simp)]
 lemma inr_ΓpullbackIsoPushout_inv :
     pushout.inr f.appTop g.appTop ≫ (ΓpullbackIsoPushout f g).inv = (pullback.snd f g).appTop := by
   exact (Γ_isPushout (f := f) (g := g) <| IsPullback.of_hasPullback f g).inr_isoPushout_inv
 
+/--
+@isnad1 id=eq.0h5v.s12.3e63ad3a1aac from=translated src=- shape=adb5e396 vocab=c3659800
+-/
 @[reassoc (attr := simp)]
 lemma app_fst_ΓpullbackIsoPushout_hom :
      (pullback.fst f g).appTop ≫ (ΓpullbackIsoPushout f g).hom =
         pushout.inl f.appTop g.appTop := by
   exact (Γ_isPushout (f := f) (g := g) <| IsPullback.of_hasPullback f g).inl_isoPushout_hom
 
+/--
+@isnad1 id=eq.0h5v.s12.a13ce60499ad from=translated src=- shape=5afe2d9f vocab=e94fa368
+-/
 @[reassoc (attr := simp)]
 lemma app_snd_ΓpullbackIsoPushout_hom :
      (pullback.snd f g).appTop ≫ (ΓpullbackIsoPushout f g).hom =
@@ -247,17 +268,26 @@ local instance affineHomOverCategory (S : Scheme.{u}) :
       (⊤ : MorphismProperty Scheme.{u}) S) :=
   instCategoryAffine S
 
+/--
+@isnad1 id=haspullb.0h3v.s4.9f54db9ef1ff from=translated src=- shape=37c43956 vocab=ebb4fef2
+-/
 local instance affineHomHasPullbacksAlong {X Y : Scheme.{u}} (f : X ⟶ Y) :
     MorphismProperty.HasPullbacksAlong
       (@IsAffineHom : MorphismProperty Scheme.{u}) f :=
   ⟨fun _ _ ↦ inferInstance⟩
 
+/--
+@isnad1 id=isstable.0h3v.s4.d7a9b1580515 from=translated src=- shape=37c43956 vocab=55109836
+-/
 local instance affineHomIsStableUnderBaseChangeAlong
     {X Y : Scheme.{u}} (f : X ⟶ Y) :
     MorphismProperty.IsStableUnderBaseChangeAlong
       (@IsAffineHom : MorphismProperty Scheme.{u}) f :=
   ⟨fun h hf ↦ isAffineHom_isStableUnderBaseChange.of_isPullback h hf⟩
 
+/--
+@isnad1 id=isstable.0h0v.s2.b658bd4945f0 from=translated src=- shape=25b03439 vocab=720db984
+-/
 local instance affineHomIsStableUnderComposition :
     MorphismProperty.IsStableUnderComposition
       (@IsAffineHom : MorphismProperty Scheme.{u}) :=
@@ -266,12 +296,18 @@ local instance affineHomIsStableUnderComposition :
     let _ := hg
     infer_instance⟩
 
+/--
+@isnad1 id=hasaffin.0h0v.s4.5ac079b1598d from=translated src=- shape=bbdc4f68 vocab=0d5cc4c3
+-/
 local instance affineHomHasAffineProperty :
     HasAffineProperty
       (@IsAffineHom : MorphismProperty Scheme.{u})
       (fun X _ _ _ ↦ IsAffine X) :=
   AlgebraicGeometry.instHasAffinePropertyIsAffineHomIsAffine
 
+/--
+@isnad1 id=iszarisk.0h0v.s1.fbf14e32a4f9 from=translated src=- shape=49959d42 vocab=d61b4767
+-/
 local instance affineHomIsZariskiLocalAtTarget :
     IsZariskiLocalAtTarget
       (@IsAffineHom : MorphismProperty Scheme.{u}) :=
@@ -341,7 +377,13 @@ def fromAffine : Over (AffineScheme.mk S inferInstance) ⥤ Affine S :=
         (fun k : X.left ⟶ AffineScheme.mk S inferInstance ↦ k.hom)
         (CategoryTheory.Over.w f) }
 
+/--
+@isnad1 id=eq.0h1v.s5.d2a44fbb321b from=translated src=- shape=3fe95fa0 vocab=8467c2f4
+-/
 lemma toAffine_fromAffine : toAffine S ⋙ fromAffine S = 𝟭 _ := rfl
+/--
+@isnad1 id=eq.0h1v.s6.a6f8aecb3f47 from=translated src=- shape=5dbbbee6 vocab=8467c2f4
+-/
 lemma fromAffine_toAffine : fromAffine S ⋙ toAffine S = 𝟭 _ := rfl
 
 /-- If `S` is affine, the category of affine morphisms with target `S` is equivalent
@@ -535,6 +577,9 @@ variable {J : Type t} [Category J] [UnivLE.{t, u}]
 instance : HasLimitsOfShape J (Affine S)ᵒᵖ :=
   Adjunction.hasLimitsOfShape_of_equivalence (Γ S)
 
+/--
+@isnad1 id=hascolim.0h2v.s4.99e45055c396 from=translated src=- shape=1de06194 vocab=42e8626a
+-/
 instance hasColimitsOfShape_of_isAffine : HasColimitsOfShape J (Affine S) :=
   Limits.hasColimitsOfShape_of_hasLimitsOfShape_op
 
@@ -548,6 +593,9 @@ instance [Flat f] : PreservesFiniteLimits (Under.pushout (f.app ⊤)) := by
   apply HasRingHomProperty.appTop (P := @Flat)
   infer_instance
 
+/--
+@isnad1 id=preserve.0h4v.s10.d46bdc09fb5c from=translated src=- shape=d031c670 vocab=bb4fb973
+-/
 instance preservesColimitsOfShapePullback
     [hpush : PreservesLimitsOfShape Jᵒᵖ (Under.pushout (f.app ⊤))] :
     PreservesColimitsOfShape J (Affine.pullback f) := by

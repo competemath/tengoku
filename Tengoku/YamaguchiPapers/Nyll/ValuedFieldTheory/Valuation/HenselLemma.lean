@@ -27,7 +27,9 @@ namespace DiscreteValuationField
 
 /-- The cofactor obtained by dividing by `X - C a` evaluates to the derivative
 value at `a`.  This is the polynomial identity behind the simple-root
-decomposition over the residual algebra.-/
+decomposition over the residual algebra.
+@isnad1 id=eq.0h3v.s8.dd814b328afc from=translated src=- shape=028ad923 vocab=3b0c374e
+-/
 theorem divByMonic_X_sub_C_eval_eq_derivative_eval
     {S : Type*} [CommRing S] (p : Polynomial S) (a : S) :
     (p /ₘ (Polynomial.X - Polynomial.C a)).eval a =
@@ -47,7 +49,9 @@ variable {K : Type u} [Field K]
 
 /-- A linear factor is coprime to any polynomial whose value at the root is a
 unit.  This is the elementary Bezout step used in factorization-form Hensel
-arguments.-/
+arguments.
+@isnad1 id=iscoprim.1h3v.s7.19c860b74098 from=translated src=- shape=9136a645 vocab=a6b159a1
+-/
 theorem isCoprime_X_sub_C_of_isUnit_eval
     {R : Type u} [CommRing R] (q : Polynomial R) (a : R)
     (hq : IsUnit (q.eval a)) :
@@ -125,7 +129,9 @@ theorem eq_of_isRoot_of_isRoot_of_residue_eq_of_derivative_isUnit
     (mul_eq_zero.mp hmul).resolve_right hq_ne
   exact sub_eq_zero.mp hsub
 
-/-- Hensel's lemma gives a linear factor lifting from a simple approximate root.-/
+/-- Hensel's lemma gives a linear factor lifting from a simple approximate root.
+@isnad1 id=ex.3h4v.s12.67a4368ca077 from=translated src=- shape=4561980b vocab=329fcabd
+-/
 theorem exists_linear_factor_lift
     (f : Polynomial F.valuationSubring) (hf : f.Monic) (a0 : F.valuationSubring)
     (hroot : f.eval a0 ∈ F.maximalIdeal)
@@ -138,7 +144,9 @@ theorem exists_linear_factor_lift
   rcases (Polynomial.dvd_iff_isRoot.mpr ha_root) with ⟨q, hq⟩
   exact ⟨a, q, ha_root, ha_congruent, hq⟩
 
-/-- The lifted linear factor is monic.-/
+/-- The lifted linear factor is monic.
+@isnad1 id=ex.3h4v.s12.678895a66a56 from=translated src=- shape=3ab8b126 vocab=329fcabd
+-/
 theorem exists_monic_linear_factor_lift
     (f : Polynomial F.valuationSubring) (hf : f.Monic) (a0 : F.valuationSubring)
     (hroot : f.eval a0 ∈ F.maximalIdeal)
@@ -151,7 +159,9 @@ theorem exists_monic_linear_factor_lift
     ⟨a, q, ha_root, ha_congruent, hfactor⟩
   exact ⟨a, q, ha_root, ha_congruent, Polynomial.monic_X_sub_C a, hfactor⟩
 
-/-- Hensel's lemma gives a monic linear factor whose quotient is also monic.-/
+/-- Hensel's lemma gives a monic linear factor whose quotient is also monic.
+@isnad1 id=ex.3h4v.s12.e0eb5900e51c from=translated src=- shape=00346d1e vocab=329fcabd
+-/
 theorem exists_monic_linear_factor_lift_with_monic_quotient
     (f : Polynomial F.valuationSubring) (hf : f.Monic) (a0 : F.valuationSubring)
     (hroot : f.eval a0 ∈ F.maximalIdeal)
@@ -168,7 +178,9 @@ theorem exists_monic_linear_factor_lift_with_monic_quotient
 /-- Residue-field form of the lifted monic linear factor theorem.  Starting
 from an actual simple root of the reduced polynomial over the residue field,
 Hensel's lemma gives a root with the prescribed residue class, a monic lifted
-linear factor, and a monic quotient.-/
+linear factor, and a monic quotient.
+@isnad1 id=ex.3h4v.s12.636c02cf6fef from=translated src=- shape=623d64e0 vocab=7d759aa0
+-/
 theorem exists_monic_linear_factor_lift_of_residue_root
     (f : Polynomial F.valuationSubring) (hf : f.Monic)
     (aBar : F.residueField)
@@ -214,7 +226,9 @@ theorem exists_monic_linear_factor_lift_of_residue_root
 
 /-- Natural reduced-polynomial form of the lifted monic linear factor theorem.
 The simplicity condition is stated using the derivative of the reduced
-polynomial itself.-/
+polynomial itself.
+@isnad1 id=ex.3h4v.s11.082770e15b00 from=translated src=- shape=c018c639 vocab=7d759aa0
+-/
 theorem exists_monic_linear_factor_lift_of_reduced_simple_root
     (f : Polynomial F.valuationSubring) (hf : f.Monic)
     (aBar : F.residueField)

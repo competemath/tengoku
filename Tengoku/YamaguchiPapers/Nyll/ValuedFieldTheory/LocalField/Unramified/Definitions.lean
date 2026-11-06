@@ -100,6 +100,9 @@ def exponentialValuationRestrict
   add_le_min x y := by
     exact w.add_le_min (x : L) (y : L)
 
+/--
+@isnad1 id=eq.0h5v.s7.60da2c4127e7 from=translated src=- shape=4e52cded vocab=a643e21b
+-/
 @[simp]
 theorem exponentialValuationRestrict_apply
     (w : LubinTate.Valuations.ExponentialValuation L) (E : IntermediateField K L) (x : E) :
@@ -107,7 +110,9 @@ theorem exponentialValuationRestrict_apply
   rfl
 
 /-- Exact extension is preserved when the target valuation is restricted to
-an intermediate field.-/
+an intermediate field.
+@isnad1 id=eq.1h6v.s9.05e1096413ae from=translated src=- shape=eac05ea0 vocab=7039c387
+-/
 theorem exponentialValuationRestrict_extends
     (v : LubinTate.Valuations.ExponentialValuation K)
     (w : LubinTate.Valuations.ExponentialValuation L)
@@ -133,6 +138,9 @@ def unramifiedValuationRingValuationRingMap
     rw [hExt]
     exact ha
 
+/--
+@isnad1 id=eq.1h5v.s10.6a7a34454551 from=translated src=- shape=59205381 vocab=e90bc79c
+-/
 @[simp]
 theorem unramifiedValuationRingValuationRingMap_apply
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -145,7 +153,9 @@ theorem unramifiedValuationRingValuationRingMap_apply
   rfl
 
 /-- Exact extension makes the finite unramified-extension valuation-ring map local, hence
-it induces the actual map of residue fields used below.-/
+it induces the actual map of residue fields used below.
+@isnad1 id=islocalh.1h4v.s10.df9bc4c43322 from=translated src=- shape=ba717584 vocab=7949c169
+-/
 theorem unramifiedValuationRingValuationRingMap_isLocalHom
     (v : LubinTate.Valuations.ExponentialValuation K)
     (w : LubinTate.Valuations.ExponentialValuation L)
@@ -197,7 +207,9 @@ def FiniteUnramifiedExtension
 
 /-- Projection of residue separability in the literal finite the finite unramified-extension
 definition
-predicate.-/
+predicate.
+@isnad1 id=residuee.2h4v.s7.0e8860559477 from=translated src=- shape=ee784b47 vocab=9b9253d2
+-/
 theorem finiteUnramifiedExtension_residue_isSeparable
     [FiniteDimensional K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -209,7 +221,9 @@ theorem finiteUnramifiedExtension_residue_isSeparable
 
 /-- Projection of the degree equality in the literal finite the finite unramified-extension
 definition
-predicate.-/
+predicate.
+@isnad1 id=eq.2h4v.s7.64bfa6f274dc from=translated src=- shape=e8b73228 vocab=b3c9963b
+-/
 theorem finiteUnramifiedExtension_degree_eq_residueDegree
     [FiniteDimensional K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -234,7 +248,9 @@ def FiniteUnramifiedSubextension
 
 /-- A finite unramified intermediate extension is finite-dimensional over the
 base field; this extracts the genuine finiteness datum from the finite unramified-extension
-definition.-/
+definition.
+@isnad1 id=finitedi.2h5v.s8.8061a08155e9 from=translated src=- shape=74480c72 vocab=a32a3707
+-/
 theorem finiteDimensional_of_finiteUnramifiedSubextension
     (v : LubinTate.Valuations.ExponentialValuation K)
     (w : LubinTate.Valuations.ExponentialValuation L)
@@ -263,7 +279,9 @@ def AlgebraicUnramifiedExtension
     (hExt : ∀ a : K, w (algebraMap K L a) = v a) : Prop :=
   finiteUnramifiedSubextensionUnion v w hExt = Set.univ
 
-/-- Elementwise form of the finite-subextension union clause.-/
+/-- Elementwise form of the finite-subextension union clause.
+@isnad1 id=iff.1h4v.s7.84b1b9d42655 from=translated src=- shape=12b2f8f9 vocab=b0895be9
+-/
 theorem algebraicUnramifiedExtension_iff
     [Algebra.IsAlgebraic K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -290,7 +308,9 @@ def AlgebraicUnramifiedExtensionFiniteSupport
 /-- A finite-support presentation is, in particular, the literal union from
 the finite unramified-extension definition.  The converse belongs after the compositum theorem
   rather than
-being built into the definition.-/
+being built into the definition.
+@isnad1 id=algebrai.2h4v.s7.aa9d948cedeb from=translated src=- shape=ee784b47 vocab=3e462134
+-/
 theorem algebraicUnramifiedExtension_of_finiteSupport
     [Algebra.IsAlgebraic K L]
     (v : LubinTate.Valuations.ExponentialValuation K)

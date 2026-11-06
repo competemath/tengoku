@@ -29,7 +29,9 @@ universe u v
 
 /-- A chosen prime-local factor of an etale algebra over a Henselian local ring is etale
 over the base ring.  Unlike a raw localization-finiteness assertion, the finiteness used here
-is produced by `moduleFinite_localizationAtPrime_of_henselian_of_etale`.-/
+is produced by `moduleFinite_localizationAtPrime_of_henselian_of_etale`.
+@isnad1 id=etale.0h3v.s7.7b73d2ca20c5 from=translated src=- shape=a3539138 vocab=0d2f5541
+-/
 theorem etale_localizationAtPrime_of_henselian_of_etale
     {R : Type u} {S : Type v} [CommRing R] [CommRing S] [Algebra R S]
     [HenselianLocalRing R] [Algebra.Etale R S]

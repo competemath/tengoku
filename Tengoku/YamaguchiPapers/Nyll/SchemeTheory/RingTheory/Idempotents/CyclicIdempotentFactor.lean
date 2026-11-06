@@ -30,7 +30,9 @@ universe u v
 namespace Algebra
 
 /-- A cyclic quotient factor is a quotient of the base after imposing `e = 1`.
-The map in the conclusion is the canonical algebra map.-/
+The map in the conclusion is the canonical algebra map.
+@isnad1 id=surjecti.1h4v.s13.bddf42e1c26b from=translated src=- shape=6bf0ec11 vocab=e31187ff
+-/
 theorem surjective_algebraMap_quotient_idempotentFactor_of_cyclic
     {R : Type u} {C : Type v} [CommRing R] [CommRing C] [Algebra R C]
     (I : Ideal R) (e : C)

@@ -38,7 +38,9 @@ noncomputable def completionAbsoluteValue
   NormedField.toAbsoluteValue vK.Completion
 
 /-- The extended absolute value on the completion agrees with the original value
-on embedded elements.-/
+on embedded elements.
+@isnad1 id=eq.0h3v.s8.ce87c5525c94 from=translated src=- shape=9e0f674f vocab=bd396c33
+-/
 @[simp]
 theorem completionAbsoluteValue_coe
     {K : Type u} [Field K] (vK : AbsoluteValue K ℝ) (x : K) :
@@ -47,7 +49,9 @@ theorem completionAbsoluteValue_coe
   rw [UniformSpace.Completion.norm_coe]
   rfl
 
-/-- The field equipped with its completion absolute value is complete.-/
+/-- The field equipped with its completion absolute value is complete.
+@isnad1 id=complete.0h2v.s9.63ae401e911d from=translated src=- shape=e9bd041b vocab=0e3addfa
+-/
 theorem completionAbsoluteValue_complete
     {K : Type u} [Field K] (vK : AbsoluteValue K ℝ) :
     CompleteSpace (WithAbs (completionAbsoluteValue vK)) := by
@@ -56,7 +60,9 @@ theorem completionAbsoluteValue_complete
     AddMonoidHomClass.isometry_of_norm e.toRingHom fun _ ↦ rfl
   exact (completeSpace_congr (e := e.toEquiv) he.isUniformEmbedding).2 inferInstance
 
-/-- Nontriviality passes to the completion absolute value.-/
+/-- Nontriviality passes to the completion absolute value.
+@isnad1 id=isnontri.1h2v.s7.6482fe58e67e from=translated src=- shape=8e8e1bed vocab=5a4d674c
+-/
 theorem completionAbsoluteValue_isNontrivial
     {K : Type u} [Field K] (vK : AbsoluteValue K ℝ)
     (hvK : vK.IsNontrivial) :
@@ -76,14 +82,18 @@ noncomputable def toCompletion
   UniformSpace.Completion.coeRingHom.comp
     (WithAbs.equiv vK).symm.toRingHom
 
-/-- The canonical map into the completion sends an element to its constant Cauchy class.-/
+/-- The canonical map into the completion sends an element to its constant Cauchy class.
+@isnad1 id=eq.0h3v.s9.7e2240a2aa5c from=translated src=- shape=a0385b5a vocab=d39ec3c6
+-/
 @[simp]
 theorem toCompletion_apply
     {K : Type u} [Field K] (vK : AbsoluteValue K ℝ) (x : K) :
     toCompletion vK x = ((WithAbs.equiv vK).symm x : vK.Completion) :=
   rfl
 
-/-- The canonical completion embedding agrees with the completion algebra map.-/
+/-- The canonical completion embedding agrees with the completion algebra map.
+@isnad1 id=eq.0h3v.s10.dcf547758e55 from=translated src=- shape=985dee63 vocab=b57431d5
+-/
 @[simp]
 theorem toCompletion_eq_algebraMap
     {K : Type u} [Field K] (vK : AbsoluteValue K ℝ) (x : K) :
@@ -138,7 +148,9 @@ private theorem completionMap_withAbs_coe
     (baseToExtensionCompletion_isometry vK wL hw).continuous x
 
 /-- On the canonical copy of the base field, the map between completions is
-the original algebra map followed by the canonical completion map.-/
+the original algebra map followed by the canonical completion map.
+@isnad1 id=eq.1h5v.s10.f211b43e1f89 from=translated src=- shape=99daac97 vocab=935da176
+-/
 @[simp]
 theorem completionMap_coe
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
@@ -153,7 +165,9 @@ theorem completionMap_coe
   rw [completionMap_withAbs_coe]
   rfl
 
-/-- The map induced between completions is an isometry.-/
+/-- The map induced between completions is an isometry.
+@isnad1 id=isometry.1h4v.s9.cb531cc96275 from=translated src=- shape=7ca9c8ba vocab=bf0115cb
+-/
 theorem completionMap_isometry
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     (vK : AbsoluteValue K ℝ) (wL : AbsoluteValue L ℝ)
@@ -170,7 +184,9 @@ completion map.  It is deliberately explicit rather than a global instance.-/
     Algebra vK.Completion wL.Completion :=
   (completionMap vK wL hw).toAlgebra
 
-/-- The algebra structure on the completion uses the canonical completion embedding.-/
+/-- The algebra structure on the completion uses the canonical completion embedding.
+@isnad1 id=eq.1h5v.s10.241a7badceaf from=translated src=- shape=49e86503 vocab=7796111b
+-/
 @[simp]
 theorem completionAlgebra_algebraMap
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
@@ -199,7 +215,9 @@ noncomputable def toCompletionAlgHom
     { __ := toCompletion wL
       commutes' _ := rfl }
 
-/-- The scalar tower `K → K_v → L_w` supplied by an exact extension.-/
+/-- The scalar tower `K → K_v → L_w` supplied by an exact extension.
+@isnad1 id=isscalar.1h4v.s9.a5bbb941db75 from=translated src=- shape=0c914fe1 vocab=2c3e7a71
+-/
 theorem completion_isScalarTower
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     (vK : AbsoluteValue K ℝ) (wL : AbsoluteValue L ℝ)
@@ -264,7 +282,9 @@ private theorem completionMapToCompleteTarget_withAbs_coe
     (toCompleteTargetRingHom_isometry vK vD i hi).continuous x
 
 /-- The extension map to a complete target agrees with the original map on
-embedded source elements.-/
+embedded source elements.
+@isnad1 id=eq.1h6v.s11.12997f544292 from=translated src=- shape=fd7939ac vocab=7172edee
+-/
 @[simp]
 theorem completionMapToCompleteTarget_coe
     (vK : AbsoluteValue K ℝ) (vD : AbsoluteValue D ℝ)
@@ -287,7 +307,9 @@ variable {K : Type u} {L : Type v} {D : Type w}
 variable [Field K] [Field L] [Field D] [Algebra K L]
 
 /-- Dense-point compatibility for extending `L → D` and first embedding the
-completed base in the completion of `L`.-/
+completed base in the completion of `L`.
+@isnad1 id=eq.2h8v.s11.7d02f09b1f54 from=translated src=- shape=faaaa808 vocab=5e249a5f
+-/
 @[simp]
 theorem completionMapToCompleteTarget_comp_completionMap_coe
     (vK : AbsoluteValue K ℝ) (wL : AbsoluteValue L ℝ)

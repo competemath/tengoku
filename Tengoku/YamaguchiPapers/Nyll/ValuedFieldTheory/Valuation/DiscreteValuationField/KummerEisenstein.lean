@@ -33,7 +33,9 @@ universe u v
 
 variable {R : Type u} [CommRing R] [IsDomain R]
 
-/-- A prime parameter makes a positive-power binomial Eisenstein.-/
+/-- A prime parameter makes a positive-power binomial Eisenstein.
+@isnad1 id=iseisens.2h3v.s7.9b8a6acee0e2 from=translated src=- shape=0779f32d vocab=86b969a3
+-/
 theorem X_pow_sub_C_isEisensteinAt_of_prime_parameter
     (π : R) (hπ : Prime π) (n : ℕ) (hn : 0 < n) :
     (X ^ n - C π).IsEisensteinAt (Ideal.span ({π} : Set R)) := by
@@ -59,7 +61,9 @@ theorem X_pow_sub_C_isEisensteinAt_of_prime_parameter
         hπ.ne_zero hπ.not_isUnit).mp (by simpa only [pow_one] using hdiv)
     exact (by decide : ¬ (2 ≤ 1)) hbad
 
-/-- The Eisenstein binomial is irreducible over the fraction field.-/
+/-- The Eisenstein binomial is irreducible over the fraction field.
+@isnad1 id=irreduci.2h4v.s8.0015d48f6262 from=translated src=- shape=b0a534a3 vocab=a0f6bf9e
+-/
 theorem X_pow_sub_C_irreducible_of_prime_parameter
     [IsIntegrallyClosed R]
     (K : Type v) [Field K] [Algebra R K] [IsFractionRing R K]

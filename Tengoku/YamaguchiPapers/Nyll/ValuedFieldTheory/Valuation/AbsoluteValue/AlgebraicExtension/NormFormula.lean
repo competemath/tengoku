@@ -53,7 +53,9 @@ formula as the spectral construction in the complete case.
 
 This is purely algebraic and does not use Henselianity.  The remaining
 the finite norm-formula theorem work is to identify the unique Henselian extension with this
-candidate absolute value.-/
+candidate absolute value.
+@isnad1 id=eq.0h4v.s7.3436e465824d from=translated src=- shape=3822a71c vocab=d825e7ed
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_eq_minpoly_coeff_zero_rpow
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -101,7 +103,9 @@ the candidate `|N_{L/K}(x)|^(1/[L:K])` restricts to the original
 absolute value on the base field.
 
 This verifies the extension part of the finite root-form formula without
-using completeness or Henselianity.-/
+using completeness or Henselianity.
+@isnad1 id=eq.0h4v.s7.b6d433d6de7b from=translated src=- shape=9f2da70f vocab=dcaaa991
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_algebraMap
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -116,7 +120,9 @@ theorem normFormula_finiteExtensionNormFormulaValue_algebraMap
       (v.nonneg a) (by norm_num) hn)
 
 /-- the finite norm-formula theorem, finite absolute-value norm-formula zero source:
-the norm-formula candidate vanishes exactly at zero.-/
+the norm-formula candidate vanishes exactly at zero.
+@isnad1 id=iff.0h4v.s6.64eed2d84232 from=translated src=- shape=96098f55 vocab=9f72c419
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_eq_zero_iff
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -135,7 +141,9 @@ theorem normFormula_finiteExtensionNormFormulaValue_eq_zero_iff
   simpa [finiteExtensionNormFormulaValue] using hpow.trans hnorm
 
 /-- the finite norm-formula theorem, finite absolute-value norm-formula multiplicative source:
-the norm-formula candidate is multiplicative.-/
+the norm-formula candidate is multiplicative.
+@isnad1 id=eq.0h5v.s6.3e557d1d08af from=translated src=- shape=8298be8e vocab=70747022
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_mul
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -152,7 +160,9 @@ theorem normFormula_finiteExtensionNormFormulaValue_mul
     (v.nonneg (Algebra.norm K x)) (v.nonneg (Algebra.norm K y))
 
 /-- the finite norm-formula theorem, finite absolute-value norm-formula inverse source:
-the norm-formula candidate sends inverses to inverses.-/
+the norm-formula candidate sends inverses to inverses.
+@isnad1 id=eq.0h4v.s6.a4244de00373 from=translated src=- shape=e9bd046b vocab=1de64e4d
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_inv
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -167,7 +177,9 @@ theorem normFormula_finiteExtensionNormFormulaValue_inv
     (1 / (Module.finrank K L : ℝ))
 
 /-- the finite norm-formula theorem, finite absolute-value norm-formula division source:
-the norm-formula candidate is compatible with division.-/
+the norm-formula candidate is compatible with division.
+@isnad1 id=eq.0h5v.s6.974c9c9a2cf1 from=translated src=- shape=8298be8e vocab=a0e70870
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_div
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -180,7 +192,9 @@ theorem normFormula_finiteExtensionNormFormulaValue_div
 
 /-- the finite norm-formula theorem, finite absolute-value norm-formula closed-unit/minpoly
 source: the candidate is at most one exactly when the constant
-coefficient of the minimal polynomial has base absolute value at most one.-/
+coefficient of the minimal polynomial has base absolute value at most one.
+@isnad1 id=iff.0h4v.s7.2c135cf7fafc from=translated src=- shape=2662a14a vocab=c5d4d47c
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_le_one_iff_minpoly_coeff_zero_le_one
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -200,7 +214,9 @@ theorem normFormula_finiteExtensionNormFormulaValue_le_one_iff_minpoly_coeff_zer
 
 /-- the finite norm-formula theorem, finite norm-formula/integrality source in the reverse
 direction: integrality over the base closed-unit valuation ring forces the
-finite norm-formula candidate to be at most one.-/
+finite norm-formula candidate to be at most one.
+@isnad1 id=le.2h4v.s7.365e6e5f2889 from=translated src=- shape=9cf16982 vocab=94cac416
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_le_one_of_isIntegral
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]

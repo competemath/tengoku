@@ -24,7 +24,9 @@ universe u v
 
 variable {K : Type u} [Field K]
 
-/-- Every root of unity of positive order lies in the valuation ring.-/
+/-- Every root of unity of positive order lies in the valuation ring.
+@isnad1 id=mem.2h4v.s6.0b688886ee5a from=translated src=- shape=d5dade31 vocab=ff42716e
+-/
 theorem DVF.root_mem_valuationSubring (F : DVF.{u, v} K)
     {n : ℕ} (hn : n ≠ 0) {ζ : K} (hζ : ζ ^ n = 1) :
     ζ ∈ F.valuation.valuationSubring := by
@@ -33,7 +35,9 @@ theorem DVF.root_mem_valuationSubring (F : DVF.{u, v} K)
   apply (pow_eq_one_iff_of_nonneg (show 0 ≤ F.valuation ζ from zero_le) hn).mp
   rw [← map_pow, hζ, map_one]
 
-/-- The totient of a positive prime power bounds its exponent.-/
+/-- The totient of a positive prime power bounds its exponent.
+@isnad1 id=le.1h2v.s5.e4f91dcce219 from=translated src=- shape=bd3fe90d vocab=21fd4104
+-/
 theorem primePower_exponent_le_totient {p : ℕ} (hp : p.Prime) (n : ℕ) :
     n + 1 ≤ Nat.totient (p ^ (n + 1)) := by
   rw [Nat.totient_prime_pow_succ hp]
@@ -45,7 +49,9 @@ section ValuationRing
 variable {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [CharZero R]
 
 /-- A single exponent, determined by the ramification valuation, annihilates
-every prime-power root of unity in a mixed-characteristic DVR.-/
+every prime-power root of unity in a mixed-characteristic DVR.
+@isnad1 id=eq.1h3v.s7.586763fbbaf8 from=translated src=- shape=19241f5b vocab=49868fd3
+-/
 theorem primePower_pow_eq_one_of_exists (p : ℕ) [Fact p.Prime]
     [CharP (IsLocalRing.ResidueField R) p]
     {ζ : R} (hζ : ∃ n : ℕ, ζ ^ (p ^ n) = 1) :
@@ -68,7 +74,9 @@ theorem primePower_pow_eq_one_of_exists (p : ℕ) [Fact p.Prime]
       exact (primePower_exponent_le_totient hp k).trans hbound
   exact (hprim.pow_eq_one_iff_dvd _).mpr (Nat.pow_dvd_pow p hkbound)
 
-/-- The prime-power roots in a mixed-characteristic DVR form a finite set.-/
+/-- The prime-power roots in a mixed-characteristic DVR form a finite set.
+@isnad1 id=finite.0h2v.s6.2b9244daf46c from=translated src=- shape=9a1043b6 vocab=a5a30d1d
+-/
 theorem finite_primePowerRoots (p : ℕ) [Fact p.Prime]
     [CharP (IsLocalRing.ResidueField R) p] :
     Set.Finite {ζ : R | ∃ n : ℕ, ζ ^ (p ^ n) = 1} := by
@@ -83,7 +91,9 @@ theorem finite_primePowerRoots (p : ℕ) [Fact p.Prime]
 end ValuationRing
 
 /-- In mixed characteristic, a discrete valuation alone forces the prime-power
-roots of unity in the field to form a finite set.-/
+roots of unity in the field to form a finite set.
+@isnad1 id=finite.0h3v.s6.ff067d4c0304 from=translated src=- shape=55b16ce7 vocab=ee516aa5
+-/
 theorem DVF.finite_primePowerRoots [CharZero K] (F : DVF.{u, v} K)
     (p : ℕ) [Fact p.Prime] [CharP F.residueField p] :
     Set.Finite {ζ : K | ∃ n : ℕ, ζ ^ (p ^ n) = 1} := by

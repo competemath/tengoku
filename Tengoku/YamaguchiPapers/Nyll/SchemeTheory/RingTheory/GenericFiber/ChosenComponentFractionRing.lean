@@ -52,6 +52,9 @@ def genericFiberComponentQuotientRingHom
     le_rfl
 
 omit [IsFractionRing R K] in
+/--
+@isnad1 id=eq.0h5v.s12.9dc38a447044 from=translated src=- shape=696bf59c vocab=bb4d5b4e
+-/
 @[simp]
 theorem genericFiberComponentQuotientRingHom_mk
     (m : Ideal (K ⊗[R] U)) (x : U) :
@@ -63,7 +66,9 @@ theorem genericFiberComponentQuotientRingHom_mk
     (J := genericFiberComponentBaseIdeal m) (I := m) (x := x)
 
 omit [IsFractionRing R K] in
-/-- The canonical map from the contracted quotient is injective.-/
+/-- The canonical map from the contracted quotient is injective.
+@isnad1 id=injectiv.0h4v.s10.9dee4f202165 from=translated src=- shape=01780668 vocab=af6085e6
+-/
 theorem genericFiberComponentQuotientRingHom_injective
     (m : Ideal (K ⊗[R] U)) :
     Function.Injective (genericFiberComponentQuotientRingHom m) := by
@@ -74,7 +79,9 @@ fraction field of the quotient by its contraction to the original algebra.
 
 This is produced directly from the localization presentation
 `K ⊗[R] U`: denominators are images of non-zero elements of `R`, and no
-such denominator can lie in the contraction of a proper ideal upstairs.-/
+such denominator can lie in the contraction of a proper ideal upstairs.
+@isnad1 id=other.0h4v.s9.a947047ab2a6 from=translated src=- shape=b499c161 vocab=0d1c27e0
+-/
 theorem genericFiberComponentQuotient_isFractionRing
     (m : Ideal (K ⊗[R] U)) [m.IsMaximal] :
     let N := genericFiberComponentBaseIdeal m
@@ -143,6 +150,9 @@ noncomputable def genericFiberComponentFractionRingEquiv
     genericFiberComponentQuotient_isFractionRing m
   exact (FractionRing.algEquiv (A := U ⧸ N) Ω).symm.toRingEquiv
 
+/--
+@isnad1 id=eq.0h5v.s13.6e23e0f2115c from=translated src=- shape=040ae994 vocab=ef50c0c8
+-/
 @[simp]
 theorem genericFiberComponentFractionRingEquiv_quotient_mk
     (m : Ideal (K ⊗[R] U)) [m.IsMaximal] (x : U) :

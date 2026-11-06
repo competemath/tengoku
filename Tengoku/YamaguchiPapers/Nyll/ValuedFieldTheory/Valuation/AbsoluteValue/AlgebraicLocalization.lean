@@ -59,7 +59,9 @@ noncomputable def toAlgebraicLocalization
     (toCompletion_mem_algebraicLocalization vK wL hw)
 
 /-- The absolute value on an algebraic localization evaluates through its
-fraction representation.-/
+fraction representation.
+@isnad1 id=eq.1h5v.s13.260c4248fd1d from=translated src=- shape=6c34586f vocab=13ee1498
+-/
 @[simp]
 theorem toAlgebraicLocalization_apply
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
@@ -73,7 +75,9 @@ theorem toAlgebraicLocalization_apply
   rfl
 
 /-- The algebraic localization over the completed base is algebraic whenever
-the original field extension is algebraic.-/
+the original field extension is algebraic.
+@isnad1 id=isalgebr.1h4v.s11.f8102ee427a3 from=translated src=- shape=1dd0d294 vocab=8c738c99
+-/
 theorem algebraicLocalization_isAlgebraic
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     [Algebra.IsAlgebraic K L]
@@ -110,7 +114,9 @@ noncomputable def algebraicLocalizationAbsoluteValue
   exact (completionAbsoluteValue wL).comp
     (algebraicLocalization vK wL hw).val.injective
 
-/-- On the canonical copy of `L`, the localization absolute value is `wL`.-/
+/-- On the canonical copy of `L`, the localization absolute value is `wL`.
+@isnad1 id=eq.1h5v.s13.1d18cef385af from=translated src=- shape=793635e7 vocab=5aa30201
+-/
 @[simp]
 theorem algebraicLocalizationAbsoluteValue_toAlgebraicLocalization
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
@@ -125,7 +131,9 @@ theorem algebraicLocalizationAbsoluteValue_toAlgebraicLocalization
   rfl
 
 /-- The copy of `K` obtained through `L` agrees with its copy through the
-completed base field.-/
+completed base field.
+@isnad1 id=eq.1h5v.s14.886c87172dcd from=translated src=- shape=4e037231 vocab=19387901
+-/
 @[simp]
 theorem toAlgebraicLocalization_algebraMap
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]

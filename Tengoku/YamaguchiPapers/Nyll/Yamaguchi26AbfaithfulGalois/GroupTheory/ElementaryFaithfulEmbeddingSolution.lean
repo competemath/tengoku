@@ -30,7 +30,9 @@ open ProCGroups.FreeProC.Characterization ProCGroups.WreathProducts
 universe u
 
 /-- An elementary-kernel solver produces a suitable finite extension with
-faithful abelian singleton-Sigma kernel for every actual finite quotient.-/
+faithful abelian singleton-Sigma kernel for every actual finite quotient.
+@isnad1 id=ex.2h4v.s11.e69079f9b852 from=translated src=- shape=a1a662da vocab=a5f779f7
+-/
 theorem exists_faithful_primeKernel_embedding_solution
     {H : Type u} [Group H] [TopologicalSpace H] [IsTopologicalGroup H]
     (q : ℕ) [Fact q.Prime]

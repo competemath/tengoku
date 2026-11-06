@@ -25,7 +25,9 @@ namespace ValuationTheory.DiscreteValuationField
 variable {K L : Type*} [Field K] [Field L] [Algebra K L] [FiniteDimensional K L]
 
 /-- Every finite field extension of a mixed-characteristic DVF has only
-finitely many prime-power roots. No extension valuation is assumed.-/
+finitely many prime-power roots. No extension valuation is assumed.
+@isnad1 id=finite.0h4v.s7.f5c05ab5edbb from=translated src=- shape=cbab2712 vocab=7c31ffab
+-/
 theorem DVF.finite_primePowerRoots_of_finiteExtension [CharZero K] (base : DVF K)
     (p : ℕ) [Fact p.Prime] [CharP base.residueField p] :
     Set.Finite {ζ : L | ∃ n : ℕ, ζ ^ (p ^ n) = 1} := by

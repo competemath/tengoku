@@ -20,7 +20,9 @@ namespace LubinTate
 namespace Valuations
 
 /-- For a normalized exponential valuation, the principal-power ideal `π^n𝒪` attached to
-a normalized prime element is the `n`-th power of the positive-value maximal ideal.-/
+a normalized prime element is the `n`-th power of the positive-value maximal ideal.
+@isnad1 id=eq.2h4v.s9.8d2d2919f7ea from=translated src=- shape=66cf00b1 vocab=78fc7fe1
+-/
 theorem uniformizerPowerIdeal_primeElement_eq_exponentialMaxIdeal_pow_of_normalized
     {K : Type*} [Field K] {v : ExponentialValuation K}
     (hv : NormalizedExponentialValuation v) {π : K}
@@ -32,7 +34,9 @@ theorem uniformizerPowerIdeal_primeElement_eq_exponentialMaxIdeal_pow_of_normali
     hv hπ n).symm
 
 /-- The same identification, expressed using mathlib's maximal ideal of the
-valuation ring.-/
+valuation ring.
+@isnad1 id=eq.2h4v.s9.ed0200e4cd5f from=translated src=- shape=74ad5ba6 vocab=dfbbaeff
+-/
 theorem uniformizerPowerIdeal_primeElement_eq_maximalIdeal_pow_of_normalized
     {K : Type*} [Field K] {v : ExponentialValuation K}
     (hv : NormalizedExponentialValuation v) {π : K}
@@ -148,7 +152,9 @@ def uniformizerGradedPieceMk
           Submodule O (uniformizerPowerIdeal π n)))
   exact Submodule.mkQ _
 
-/-- The concrete graded-piece equivalence sends a quotient representative to the same coset.-/
+/-- The concrete graded-piece equivalence sends a quotient representative to the same coset.
+@isnad1 id=eq.0h4v.s12.4c29ab78c650 from=translated src=- shape=f31f2da6 vocab=215c9c28
+-/
 @[simp] theorem uniformizerGradedPieceConcreteLinearEquiv_mk
     {O : Type*} [CommRing O] (π : O) (n : ℕ)
     (a : uniformizerPowerIdeal π n) :
@@ -176,7 +182,9 @@ def uniformizerGradedPieceLinearLift
     (Submodule.comap (uniformizerPowerIdeal π n).subtype
       (uniformizerPowerIdeal π (n + 1) : Submodule O O)).liftQ f h
 
-/-- A linear lift from the graded piece evaluates on representatives by the supplied map.-/
+/-- A linear lift from the graded piece evaluates on representatives by the supplied map.
+@isnad1 id=eq.1h6v.s10.c80e57991623 from=translated src=- shape=1f477516 vocab=08fc75ee
+-/
 @[simp] theorem uniformizerGradedPieceLinearLift_mk
     {O M : Type*} [CommRing O] [AddCommGroup M] [Module O M]
     (π : O) (n : ℕ)
@@ -194,7 +202,9 @@ def uniformizerGradedPieceLinearLift
 def HigherUnit {O : Type*} [CommRing O] (π : O) (n : ℕ) (u : Oˣ) : Prop :=
   ∃ a : O, (u : O) = 1 + π ^ n * a
 
-/-- The higher-unit condition is equivalently `u - 1 ∈ π^n𝒪`.-/
+/-- The higher-unit condition is equivalently `u - 1 ∈ π^n𝒪`.
+@isnad1 id=iff.0h4v.s6.dce0e1df53d4 from=translated src=- shape=ab313d23 vocab=9afb948f
+-/
 theorem higherUnit_iff_sub_one_mem_powerIdeal {O : Type*} [CommRing O]
     (π : O) (n : ℕ) (u : Oˣ) :
     HigherUnit π n u ↔ (u : O) - 1 ∈ uniformizerPowerIdeal π n := by
@@ -242,21 +252,27 @@ def higherUnitSubgroup {O : Type*} [CommRing O] (π : O) (n : ℕ) : Subgroup O�
         rw [ha]
         ring
 
-/-- Membership in a higher-unit subgroup is characterized by proximity to one at the given level.-/
+/-- Membership in a higher-unit subgroup is characterized by proximity to one at the given level.
+@isnad1 id=iff.0h4v.s6.8eff1e65f17a from=translated src=- shape=841778c8 vocab=e60bc6b5
+-/
 @[simp]
 theorem mem_higherUnitSubgroup {O : Type*} [CommRing O]
     {π : O} {n : ℕ} {u : Oˣ} :
     u ∈ higherUnitSubgroup π n ↔ HigherUnit π n u :=
   Iff.rfl
 
-/-- Membership in the higher-unit subgroup is equivalently `u - 1 ∈ π^n𝒪`.-/
+/-- Membership in the higher-unit subgroup is equivalently `u - 1 ∈ π^n𝒪`.
+@isnad1 id=iff.0h4v.s7.fa697ab45f1a from=translated src=- shape=ba6dbc96 vocab=b9a6319e
+-/
 theorem mem_higherUnitSubgroup_iff_sub_one_mem_powerIdeal
     {O : Type*} [CommRing O] {π : O} {n : ℕ} {u : Oˣ} :
     u ∈ higherUnitSubgroup π n ↔ (u : O) - 1 ∈ uniformizerPowerIdeal π n := by
   exact Iff.trans mem_higherUnitSubgroup
     (higherUnit_iff_sub_one_mem_powerIdeal π n u)
 
-/-- The coefficient in a higher-unit representation is unique in a domain.-/
+/-- The coefficient in a higher-unit representation is unique in a domain.
+@isnad1 id=eq.3h6v.s7.592e9e4efeaa from=translated src=- shape=4fc69f71 vocab=6c99e1a1
+-/
 theorem higherUnit_coeff_unique {O : Type*} [CommRing O] [IsDomain O]
     {π : O} {n : ℕ} (hπ0 : π ≠ 0) {u : Oˣ} {a b : O}
     (ha : (u : O) = 1 + π ^ n * a)
@@ -274,20 +290,26 @@ noncomputable def chosenHigherUnitCoeff {O : Type*} [CommRing O]
     (π : O) (n : ℕ) (u : higherUnitSubgroup π n) : O :=
   Classical.choose (show HigherUnit π n (u : Oˣ) from u.property)
 
-/-- The chosen coefficient really represents the higher unit.-/
+/-- The chosen coefficient really represents the higher unit.
+@isnad1 id=eq.0h4v.s8.da177ee3cf63 from=translated src=- shape=846ee821 vocab=a10f0117
+-/
 theorem chosenHigherUnitCoeff_spec {O : Type*} [CommRing O]
     (π : O) (n : ℕ) (u : higherUnitSubgroup π n) :
     ((u : Oˣ) : O) = 1 + π ^ n * chosenHigherUnitCoeff π n u :=
   Classical.choose_spec (show HigherUnit π n (u : Oˣ) from u.property)
 
-/-- The chosen coefficient agrees with any displayed representation.-/
+/-- The chosen coefficient agrees with any displayed representation.
+@isnad1 id=eq.2h5v.s8.f435f61cf0a4 from=translated src=- shape=9dabc07f vocab=07506f6b
+-/
 theorem chosenHigherUnitCoeff_eq_of_repr {O : Type*} [CommRing O] [IsDomain O]
     {π : O} {n : ℕ} (hπ0 : π ≠ 0) {u : higherUnitSubgroup π n} {a : O}
     (ha : ((u : Oˣ) : O) = 1 + π ^ n * a) :
     chosenHigherUnitCoeff π n u = a :=
   higherUnit_coeff_unique hπ0 (chosenHigherUnitCoeff_spec π n u) ha
 
-/-- The higher-unit filtration is decreasing for arbitrary comparable indices.-/
+/-- The higher-unit filtration is decreasing for arbitrary comparable indices.
+@isnad1 id=le.1h4v.s6.7be038108b11 from=translated src=- shape=1e064c51 vocab=639bc32b
+-/
 theorem higherUnitSubgroup_le_of_le {O : Type*} [CommRing O]
     (π : O) {m n : ℕ} (hmn : m ≤ n) :
     higherUnitSubgroup π n ≤ higherUnitSubgroup π m := by
@@ -300,7 +322,9 @@ theorem higherUnitSubgroup_le_of_le {O : Type*} [CommRing O]
       rw [pow_add]
       ring
 
-/-- In a local ring, adding an element of the maximal ideal to `1` gives a unit.-/
+/-- In a local ring, adding an element of the maximal ideal to `1` gives a unit.
+@isnad1 id=isunit.1h2v.s6.85f026f4a75b from=translated src=- shape=d3d32c99 vocab=1d23ca64
+-/
 theorem isUnit_one_add_of_mem_maximalIdeal {O : Type*} [CommRing O] [IsLocalRing O]
     {x : O} (hx : x ∈ IsLocalRing.maximalIdeal O) :
     IsUnit (1 + x) := by
@@ -316,13 +340,17 @@ theorem isUnit_one_add_of_mem_maximalIdeal {O : Type*} [CommRing O] [IsLocalRing
 def unitReduction {O : Type*} [CommRing O] (I : Ideal O) : Oˣ →* (O ⧸ I)ˣ :=
   Units.map (Ideal.Quotient.mk I).toMonoidHom
 
-/-- Unit reduction is the residue of the underlying valuation-ring unit.-/
+/-- Unit reduction is the residue of the underlying valuation-ring unit.
+@isnad1 id=eq.0h3v.s9.739739f20a1c from=translated src=- shape=ece26442 vocab=f0c77dd4
+-/
 @[simp]
 theorem unitReduction_apply {O : Type*} [CommRing O] (I : Ideal O) (u : Oˣ) :
     (unitReduction I u : O ⧸ I) = Ideal.Quotient.mk I (u : O) :=
   rfl
 
-/-- The kernel of reduction modulo `π^n𝒪` is the higher unit group `1 + π^n𝒪`.-/
+/-- The kernel of reduction modulo `π^n𝒪` is the higher unit group `1 + π^n𝒪`.
+@isnad1 id=eq.0h3v.s7.00cfdbfce054 from=translated src=- shape=b256a191 vocab=06723e42
+-/
 theorem unitReduction_ker_powerIdeal {O : Type*} [CommRing O]
     (π : O) (n : ℕ) :
     (unitReduction (uniformizerPowerIdeal π n)).ker = higherUnitSubgroup π n := by
@@ -353,7 +381,9 @@ theorem unitReduction_ker_powerIdeal {O : Type*} [CommRing O]
     simpa using (uniformizerPowerIdeal π n).mul_mem_right a hπ
 
 /-- For a normalized exponential valuation, the kernel of reduction modulo
-`maximalIdeal^n` is the higher-unit subgroup attached to a normalized prime element.-/
+`maximalIdeal^n` is the higher-unit subgroup attached to a normalized prime element.
+@isnad1 id=eq.2h4v.s12.dcf08eac61e9 from=translated src=- shape=835374ee vocab=8e1d7b4e
+-/
 theorem unitReduction_ker_maximalIdeal_pow_primeElement_of_normalized
     {K : Type*} [Field K] {v : ExponentialValuation K}
     (hv : NormalizedExponentialValuation v) {π : K}
@@ -364,7 +394,9 @@ theorem unitReduction_ker_maximalIdeal_pow_primeElement_of_normalized
   rw [← uniformizerPowerIdeal_primeElement_eq_maximalIdeal_pow_of_normalized hv hπ n]
   exact unitReduction_ker_powerIdeal (primeElementInValuationSubring v hπ) n
 
-/-- A local quotient map induces a surjection on unit groups.-/
+/-- A local quotient map induces a surjection on unit groups.
+@isnad1 id=surjecti.0h2v.s9.005e06dfe5e8 from=translated src=- shape=2574f916 vocab=c3e132c5
+-/
 theorem unitReduction_surjective_of_isLocalHom {O : Type*} [CommRing O]
     (I : Ideal O) [IsLocalHom (Ideal.Quotient.mk I)] :
     Function.Surjective (unitReduction I) := by
@@ -372,7 +404,9 @@ theorem unitReduction_surjective_of_isLocalHom {O : Type*} [CommRing O]
     (Ideal.Quotient.mk I) Ideal.Quotient.mk_surjective inferInstance
 
 /-- For a exponential valuation ring, the quotient map modulo
-`maximalIdeal^n` is local for `n ≥ 1`.-/
+`maximalIdeal^n` is local for `n ≥ 1`.
+@isnad1 id=islocalh.1h3v.s13.faa19ad44323 from=translated src=- shape=abee52cf vocab=698f6ab8
+-/
 theorem unitReduction_isLocalHom_maximalIdeal_pow_of_pos
     {K : Type*} [Field K] (v : ExponentialValuation K)
     {n : ℕ} (hn : 1 ≤ n) :
@@ -449,7 +483,9 @@ noncomputable def unitsModMaximalIdealPowEquivOfNormalized
     (unitReduction_surjective_of_isLocalHom
       ((IsLocalRing.maximalIdeal (exponentialValuationSubring v)) ^ n))
 
-/-- For `n ≥ 1`, the ideal `π^n𝒪` is contained in `(π)`.-/
+/-- For `n ≥ 1`, the ideal `π^n𝒪` is contained in `(π)`.
+@isnad1 id=le.1h3v.s6.d34a60b5561e from=translated src=- shape=986a2197 vocab=ed874538
+-/
 theorem uniformizerPowerIdeal_le_span_singleton {O : Type*} [CommRing O]
     {π : O} {n : ℕ} (hn : 1 ≤ n) :
     uniformizerPowerIdeal π n ≤ Ideal.span ({π} : Set O) := by
@@ -459,7 +495,9 @@ theorem uniformizerPowerIdeal_le_span_singleton {O : Type*} [CommRing O]
       rw [uniformizerPowerIdeal, Ideal.span_singleton_le_iff_mem, Ideal.mem_span_singleton]
       exact ⟨π ^ n, by simp [pow_succ, mul_comm]⟩
 
-/-- In a DVR, `π^n𝒪` lies in the Jacobson radical for `n ≥ 1` and `π` irreducible.-/
+/-- In a DVR, `π^n𝒪` lies in the Jacobson radical for `n ≥ 1` and `π` irreducible.
+@isnad1 id=le.2h3v.s7.11ffc0cae759 from=translated src=- shape=3f548e43 vocab=4cecdece
+-/
 theorem uniformizerPowerIdeal_le_jacobson_bot {O : Type*}
     [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     {π : O} (hπ : Irreducible π) {n : ℕ} (hn : 1 ≤ n) :
@@ -471,7 +509,9 @@ theorem uniformizerPowerIdeal_le_jacobson_bot {O : Type*}
   exact (uniformizerPowerIdeal_le_span_singleton (π := π) hn).trans
     (by rw [hspan]; exact IsLocalRing.maximalIdeal_le_jacobson (⊥ : Ideal O))
 
-/-- The quotient map modulo `π^n𝒪` is local in a DVR, for `n ≥ 1`.-/
+/-- The quotient map modulo `π^n𝒪` is local in a DVR, for `n ≥ 1`.
+@isnad1 id=islocalh.2h3v.s8.b9c6bdfc9693 from=translated src=- shape=b988c860 vocab=3a3822e4
+-/
 theorem unitReduction_isLocalHom_of_dvr {O : Type*}
     [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     {π : O} (hπ : Irreducible π) {n : ℕ} (hn : 1 ≤ n) :
@@ -535,7 +575,9 @@ noncomputable def higherUnitCoeffModHom {O : Type*}
     simpa [I, hdiff]
       using hpow_mem
 
-/-- The kernel of the coefficient map is `U⁽ⁿ⁺¹⁾`.-/
+/-- The kernel of the coefficient map is `U⁽ⁿ⁺¹⁾`.
+@isnad1 id=eq.2h3v.s9.438d620bb2d7 from=translated src=- shape=3c89c4f6 vocab=4a9fa918
+-/
 theorem higherUnitCoeffModHom_ker {O : Type*}
     [CommRing O] [IsDomain O] {π : O} (hπ0 : π ≠ 0) (n : ℕ) (hn : 1 ≤ n) :
     (higherUnitCoeffModHom (O := O) hπ0 n hn).ker =
@@ -575,7 +617,9 @@ theorem higherUnitCoeffModHom_ker {O : Type*}
         rw [pow_succ']
         ring
 
-/-- The coefficient map `U⁽ⁿ⁾ → 𝒪/(π)` is surjective.-/
+/-- The coefficient map `U⁽ⁿ⁾ → 𝒪/(π)` is surjective.
+@isnad1 id=surjecti.2h3v.s10.e797204ed067 from=translated src=- shape=613b6edc vocab=92189da3
+-/
 theorem higherUnitCoeffModHom_surjective {O : Type*}
     [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     {π : O} (hπ : Irreducible π) (n : ℕ) (hn : 1 ≤ n) :
@@ -635,7 +679,9 @@ noncomputable def higherUnitGradedPieceMulEquivResidue {O : Type*}
       (higherUnitCoeffModHom_surjective hπ n hn))
 
 /-- The unit-reduction and graded-piece equivalences, surjectivity part for the reduction map on
-unit groups.-/
+unit groups.
+@isnad1 id=surjecti.2h3v.s8.3a54e93dfa6b from=translated src=- shape=74f7dccd vocab=cc4041de
+-/
 theorem units_reduction_surjective
     {O : Type*} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]
     {π : O} (hπ : Irreducible π) {n : ℕ} (hn : 1 ≤ n) :
@@ -655,7 +701,9 @@ noncomputable def units_quotient_equiv
     (units_reduction_surjective hπ hn)
 
 /-- The unit-quotient equivalence of the unit-reduction and graded-piece equivalences is induced by
-reduction modulo `πⁿO`.-/
+reduction modulo `πⁿO`.
+@isnad1 id=eq.2h4v.s11.2c250ad2ae28 from=translated src=- shape=ec7e185f vocab=429d79b4
+-/
 @[simp]
 theorem units_quotient_equiv_mk
     {O : Type*} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]

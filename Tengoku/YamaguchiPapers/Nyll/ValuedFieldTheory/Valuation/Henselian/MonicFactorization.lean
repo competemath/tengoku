@@ -33,7 +33,9 @@ universe u
 
 /-- Multiplicative nonarchimedean Vieta bound.  If every entry of `s` has
 valuation at most `B`, with `B ≥ 1`, every coefficient of the corresponding
-monic product is bounded by `B ^ |s|`.-/
+monic product is bounded by `B ^ |s|`.
+@isnad1 id=le.2h6v.s8.c9b1d236ea76 from=translated src=- shape=7a7c23da vocab=3b2b8ec7
+-/
 theorem valuation_coeff_prod_X_sub_C_le_pow_card
     {L Γ : Type*} [Field L] [LinearOrderedCommGroupWithZero Γ]
     (w : Valuation L Γ) (B : Γ) (hB : 1 ≤ B) (s : Multiset L)
@@ -104,7 +106,9 @@ theorem valuation_coeff_prod_X_sub_C_le_pow_card
               max_le (hqj.trans hpow_step) hterm
 
 /-- If all elements of a multiset have valuation `t`, the valuation of their
-product is `t` to the cardinality.-/
+product is `t` to the cardinality.
+@isnad1 id=eq.1h5v.s7.2be99c8d44d3 from=translated src=- shape=4035f6a6 vocab=c1e60f2a
+-/
 theorem valuation_multiset_prod_eq_pow_card_of_eq
     {L Γ : Type*} [Field L] [LinearOrderedCommGroupWithZero Γ]
     (w : Valuation L Γ) (t : Γ) (s : Multiset L)
@@ -122,7 +126,9 @@ theorem valuation_multiset_prod_eq_pow_card_of_eq
       ac_rfl
 
 /-- The elementary-symmetric recursion in a form convenient for valuation
-estimates.-/
+estimates.
+@isnad1 id=eq.0h4v.s6.da7725a69ff1 from=translated src=- shape=66ab654b vocab=e50a89fa
+-/
 theorem esymm_cons_succ
     {R : Type*} [CommRing R] (a : R) (s : Multiset R) (n : ℕ) :
     (a ::ₘ s).esymm (n + 1) = s.esymm (n + 1) + a * s.esymm n := by
@@ -130,7 +136,9 @@ theorem esymm_cons_succ
     Multiset.map_add, Multiset.sum_add, Multiset.map_map,
     Function.comp_apply, Multiset.prod_cons, Multiset.sum_map_mul_left]
 
-/-- A nonarchimedean bound for elementary symmetric functions.-/
+/-- A nonarchimedean bound for elementary symmetric functions.
+@isnad1 id=le.1h6v.s7.17631a05bd15 from=translated src=- shape=42897ae2 vocab=7df022d0
+-/
 theorem valuation_esymm_le_pow
     {L Γ : Type*} [Field L] [LinearOrderedCommGroupWithZero Γ]
     (w : Valuation L Γ) (t : Γ) (s : Multiset L)
@@ -160,7 +168,9 @@ theorem valuation_esymm_le_pow
                 (ih (fun b hb => hs b (by simp [hb])) n))
 
 /-- Strict elementary-symmetric bound when every entry is strictly below
-the target value.-/
+the target value.
+@isnad1 id=lt.3h6v.s7.2d1c0d139160 from=translated src=- shape=1e8c7ad8 vocab=2b7aa1e1
+-/
 theorem valuation_esymm_lt_pow
     {L Γ : Type*} [Field L] [LinearOrderedCommGroupWithZero Γ]
     (w : Valuation L Γ) (t : Γ) (ht : t ≠ 0) (s : Multiset L)
@@ -186,7 +196,9 @@ theorem valuation_esymm_lt_pow
             (zero_le : 0 ≤ w a) ((zero_lt_iff).2 (pow_ne_zero n ht)))
 
 /-- If every entry has value at most one and one entry has value below one,
-then the product has value below one.-/
+then the product has value below one.
+@isnad1 id=lt.3h5v.s7.eb1c15470282 from=translated src=- shape=0c56210a vocab=a74283e3
+-/
 theorem valuation_multiset_prod_lt_one_of_mem_lt_one
     {L Γ : Type*} [Field L] [LinearOrderedCommGroupWithZero Γ]
     (w : Valuation L Γ) (s : Multiset L) {a : L}
@@ -210,7 +222,9 @@ theorem valuation_multiset_prod_lt_one_of_mem_lt_one
 
 /-- The boundary elementary symmetric function is dominated by the unique
 term using all roots of maximal value.  This is the valuation-theoretic
-coefficient calculation in Artin's Nart transform.-/
+coefficient calculation in Artin's Nart transform.
+@isnad1 id=eq.3h6v.s7.4de703e32263 from=translated src=- shape=8b451036 vocab=90ea26d8
+-/
 theorem valuation_esymm_eq_pow_card_add_of_eq_of_lt
     {L Γ : Type*} [Field L] [LinearOrderedCommGroupWithZero Γ]
     (w : Valuation L Γ) (t : Γ) (ht : t ≠ 0)
@@ -270,7 +284,9 @@ open _root_.AlgebraicNumberTheory.Valuations in
 /-- Over a valuation ring, Gauss-primitivity is also detected by nonzero
 reduction.  The finite set of nonzero coefficients has a divisibility-minimal
 coefficient; if every coefficient reduced to zero, that nonunit would divide
-the whole polynomial, contradicting primitivity.-/
+the whole polynomial, contradicting primitivity.
+@isnad1 id=ne.1h3v.s9.09c26d126e2d from=translated src=- shape=c4ca143c vocab=6c4b9d4a
+-/
 theorem residue_ne_zero_of_isPrimitive_valuationSubring
     {K : Type u} [Field K] (V : ValuationSubring K)
     {p : Polynomial V} (hp : p.IsPrimitive) :
@@ -304,6 +320,9 @@ theorem residue_ne_zero_of_isPrimitive_valuationSubring
     (Polynomial.isPrimitive_iff_isUnit_of_C_dvd.mp hp) π hC
   exact (IsLocalRing.mem_maximalIdeal π).mp hπmax hπunit
 
+/--
+@isnad1 id=lt.2h5v.s9.6f5cd9b1d4c4 from=translated src=- shape=50c3e892 vocab=b7b7b3b9
+-/
 theorem valuation_coeff_prod_X_sub_C_lt_coeff_zero_of_one_lt
     {L Γ : Type*} [Field L] [LinearOrderedCommGroupWithZero Γ]
     (w : Valuation L Γ) (s : Multiset L)
@@ -369,6 +388,9 @@ theorem valuation_coeff_prod_X_sub_C_lt_coeff_zero_of_one_lt
                 max_lt hfirst (hneg.trans_lt hsecond)
           simpa [q, Polynomial.coeff_zero_eq_eval_zero, w.map_mul] using hcoeff
 
+/--
+@isnad1 id=ex.2h6v.s11.cf8dfaef2286 from=translated src=- shape=2f1da603 vocab=e08cc0e5
+-/
 theorem residue_root_of_integral_root
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (B : ValuationSubring L)
@@ -426,6 +448,9 @@ theorem residue_root_of_integral_root
   rw [Polynomial.eval₂_at_apply]
   rw [← Polynomial.eval₂_eq_eval_map, hrootB, map_zero]
 
+/--
+@isnad1 id=ex.5h7v.s11.530e88d1d181 from=translated src=- shape=8f32f231 vocab=99ada88d
+-/
 theorem exists_mixed_residual_minpoly_of_irreducible_roots_unequal
     {K L : Type*} [Field K] [Field L] [Algebra K L] [Normal K L]
     (V : ValuationSubring K) (B : ValuationSubring L)
@@ -689,7 +714,9 @@ theorem exists_mixed_residual_minpoly_of_irreducible_roots_unequal
 /-- If a primitive polynomial has nonunit leading and constant coefficients,
 the roots of its irreducible fraction-field image cannot all have the same
 value under an extension valuation.  This is the Vieta estimate at the start
-of Artin's proof of the factor-lifting criterion.-/
+of Artin's proof of the factor-lifting criterion.
+@isnad1 id=not.6h6v.s10.01787ec53a85 from=translated src=- shape=062739a2 vocab=143cb220
+-/
 theorem not_all_roots_same_valuation_of_primitive_irreducible_endpoints_nonunit
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (B : ValuationSubring L)
@@ -849,7 +876,9 @@ def MonicResidualCoprimeFactorLifting
                     H.map (IsLocalRing.residue V) = hbar
 
 /-- A factor of positive degree and degree strictly below the product rules
-out irreducibility over a field.-/
+out irreducibility over a field.
+@isnad1 id=not.3h4v.s7.9cd494d1a983 from=translated src=- shape=df83917e vocab=d753b85b
+-/
 theorem not_irreducible_of_factor_natDegree_lt
     {K : Type u} [Field K] {f g h : Polynomial K}
     (hfactor : f = g * h)
@@ -871,7 +900,9 @@ theorem not_irreducible_of_factor_natDegree_lt
 /-- The zero-slope contradiction in Artin's proof of the factor-lifting criterion.
 A nonconstant coprime residual splitting of a monic polynomial lifts to a
 genuine factor of intermediate degree, so its image in the fraction field is
-not irreducible.-/
+not irreducible.
+@isnad1 id=not.8h5v.s11.f90a0344fed8 from=translated src=- shape=9da4ba7a vocab=9e64a123
+-/
 theorem MonicResidualCoprimeFactorLifting.not_irreducible_map
     {K : Type u} [Field K] {V : ValuationSubring K}
     (hlift : MonicResidualCoprimeFactorLifting V)
@@ -917,7 +948,9 @@ theorem MonicResidualCoprimeFactorLifting.not_irreducible_map
     exact Nat.lt_add_of_pos_right hhpos
 
 /-- A monic polynomial irreducible over the fraction field cannot have a
-coprime residual splitting into two positive-degree monic factors.-/
+coprime residual splitting into two positive-degree monic factors.
+@isnad1 id=or.7h5v.s11.62d6f242a97e from=translated src=- shape=73d9ac36 vocab=d45cad98
+-/
 theorem MonicResidualCoprimeFactorLifting.irreducible_monic_reduction_coprime_factor_degree_zero
     {K : Type u} [Field K] {V : ValuationSubring K}
     (hlift : MonicResidualCoprimeFactorLifting V)
@@ -935,6 +968,9 @@ theorem MonicResidualCoprimeFactorLifting.irreducible_monic_reduction_coprime_fa
     (hlift.not_irreducible_map hf hgbar hhbar hfactor hcoprime
       (Nat.pos_of_ne_zero hdegree.1) (Nat.pos_of_ne_zero hdegree.2)) hirr
 
+/--
+@isnad1 id=false.6h6v.s10.7fb03d02b4c6 from=translated src=- shape=5d6bd5b3 vocab=87208872
+-/
 theorem MonicResidualCoprimeFactorLifting.false_of_residue_constant_zero_and_nonzero_root
     {K : Type u} [Field K] {V : ValuationSubring K}
     (hlift : MonicResidualCoprimeFactorLifting V)
@@ -996,7 +1032,9 @@ theorem MonicResidualCoprimeFactorLifting.false_of_residue_constant_zero_and_non
 
 /-- Artin's Nart-transform conclusion: under exact monic lifting, the roots
 of an irreducible polynomial in any finite normal splitting extension all
-have the same value.-/
+have the same value.
+@isnad1 id=eq.5h7v.s8.08e94b34088e from=translated src=- shape=e1071042 vocab=bfbc4377
+-/
 theorem MonicResidualCoprimeFactorLifting.irreducible_roots_same_valuation
     {K L : Type*} [Field K] [Field L] [Algebra K L] [Normal K L]
     {V : ValuationSubring K} (B : ValuationSubring L)

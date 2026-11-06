@@ -31,7 +31,9 @@ universe u
 namespace AlgHom
 
 /-- An algebra map inducing an open immersion on spectra is surjective if
-its target is finite over the common base. The source need not be finite.-/
+its target is finite over the common base. The source need not be finite.
+@isnad1 id=surjecti.0h4v.s7.393f90d272fb from=translated src=- shape=5dee3786 vocab=01c3a381
+-/
 theorem surjective_of_finite_of_isOpenImmersion
     {R A B : Type u} [CommRing R] [CommRing A] [CommRing B]
     [Algebra R A] [Algebra R B] [Module.Finite R B] (f : A →ₐ[R] B)

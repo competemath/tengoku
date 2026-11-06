@@ -28,7 +28,9 @@ universe u v
 variable {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
 
 /-- The selected valuation extends the canonical valuation of its actual
-pullback to an intermediate field.-/
+pullback to an intermediate field.
+@isnad1 id=hasexten.0h4v.s10.f08b93c95259 from=translated src=- shape=0c52a6d0 vocab=fb01e3c2
+-/
 theorem intermediateFieldComap_hasExtension
     (A : _root_.ValuationSubring L) (E : IntermediateField K L) :
     (A.comap E.val.toRingHom).valuation.HasExtension A.valuation := by

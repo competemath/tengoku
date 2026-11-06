@@ -55,7 +55,9 @@ def residueRootsTimesPrincipalUnitMulHom
 
 /--
 The specified map is surjective: `Function.Surjective
-(higherPrincipalUnitGroup.residueRootsTimesPrincipalUnitMulHom F)`.-/
+(higherPrincipalUnitGroup.residueRootsTimesPrincipalUnitMulHom F)`.
+@isnad1 id=surjecti.0h2v.s14.a5e4ba55b173 from=translated src=- shape=0754308d vocab=68fe6b36
+-/
 theorem residueRootsTimesPrincipalUnitMulHom_surjective
     [Finite F.residueField] :
     Function.Surjective
@@ -80,7 +82,9 @@ theorem residueRootsTimesPrincipalUnitMulHom_surjective
 
 /--
 The specified map is injective: `Function.Injective
-(higherPrincipalUnitGroup.residueRootsTimesPrincipalUnitMulHom F)`.-/
+(higherPrincipalUnitGroup.residueRootsTimesPrincipalUnitMulHom F)`.
+@isnad1 id=injectiv.0h2v.s14.fdcabdf4f629 from=translated src=- shape=0754308d vocab=2756e61c
+-/
 theorem residueRootsTimesPrincipalUnitMulHom_injective
     [Finite F.residueField] :
     Function.Injective
@@ -133,7 +137,9 @@ theorem residueRootsTimesPrincipalUnitMulHom_injective
 
 /--
 The specified map is bijective: `Function.Bijective
-(higherPrincipalUnitGroup.residueRootsTimesPrincipalUnitMulHom F)`.-/
+(higherPrincipalUnitGroup.residueRootsTimesPrincipalUnitMulHom F)`.
+@isnad1 id=bijectiv.0h2v.s14.8f6c09a1b8bf from=translated src=- shape=0754308d vocab=4c54f251
+-/
 theorem residueRootsTimesPrincipalUnitMulHom_bijective
     [Finite F.residueField] :
     Function.Bijective
@@ -155,7 +161,9 @@ noncomputable def valuationSubringUnitsEquivRootsTimesPrincipalUnits
 /--
 The defining evaluation formula for `valuationSubringUnitsEquivRootsTimesPrincipalUnits` is
 `higherPrincipalUnitGroup.valuationSubringUnitsEquivRootsTimesPrincipalUnits F z = (z.1 :
-F.valuationSubringˣ) * (z.2 : F.valuationSubringˣ)`.-/
+F.valuationSubringˣ) * (z.2 : F.valuationSubringˣ)`.
+@isnad1 id=eq.0h3v.s14.110b97143630 from=translated src=- shape=206a7b87 vocab=7aa4ee12
+-/
 @[simp] theorem valuationSubringUnitsEquivRootsTimesPrincipalUnits_apply
     [Finite F.residueField]
     (z :
@@ -175,7 +183,9 @@ def valuationSubringUnitFieldUnitHom :
 /--
 The defining evaluation formula for `coe_valuationSubringUnitFieldUnitHom` is
 `((higherPrincipalUnitGroup.valuationSubringUnitFieldUnitHom F u : Kˣ) : K) = (u :
-F.valuationSubring)`.-/
+F.valuationSubring)`.
+@isnad1 id=eq.0h3v.s9.fe4143f387ad from=translated src=- shape=2c13689f vocab=f6733a88
+-/
 @[simp] theorem coe_valuationSubringUnitFieldUnitHom_apply
     (u : F.valuationSubringˣ) :
     ((higherPrincipalUnitGroup.valuationSubringUnitFieldUnitHom F u : Kˣ) :
@@ -215,7 +225,9 @@ The defining evaluation formula for `rootsPrincipalUnitUniformizerMulHom` is
 `higherPrincipalUnitGroup.rootsPrincipalUnitUniformizerMulHom F ϖ z =
 higherPrincipalUnitGroup.valuationSubringUnitFieldUnitHom F (z.1.1 : F.valuationSubringˣ) *
 higherPrincipalUnitGroup.valuationSubringUnitFieldUnitHom F (z.1.2 : F.valuationSubringˣ) * ϖ ^
-Multiplicative.toAdd z.2`.-/
+Multiplicative.toAdd z.2`.
+@isnad1 id=eq.0h4v.s14.e6533751804a from=translated src=- shape=10cba47e vocab=2e89e5b8
+-/
 @[simp] theorem rootsPrincipalUnitUniformizerMulHom_apply
     [Finite F.residueField] (ϖ : Kˣ)
     (z : higherPrincipalUnitGroup.fieldUnitDecompositionFactors F) :

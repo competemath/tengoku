@@ -21,7 +21,9 @@ uses uniqueness of a simple polynomial root in a local ring.
 namespace LocalFieldTheory.DiscreteValuationField
 
 /-- Reduction modulo `p` distinguishes the prime-to-`p` roots of unity
-modulo any positive power of `p`.-/
+modulo any positive power of `p`.
+@isnad1 id=eq.4h5v.s12.d506a77b1a1f from=translated src=- shape=84f4add1 vocab=85c64952
+-/
 theorem primePower_units_eq_of_pow_eq_one_of_reduction_eq
     (p : ℕ) [Fact p.Prime] (s n : ℕ) (hn : n.Coprime p)
     (u v : (ZMod (p ^ (s + 1)))ˣ) (hu : u ^ n = 1) (hv : v ^ n = 1)

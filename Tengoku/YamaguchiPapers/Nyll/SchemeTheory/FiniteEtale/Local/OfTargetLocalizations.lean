@@ -31,7 +31,9 @@ namespace EtaleFundamentalGroups
 universe uR uS
 
 /-- A finite-presentation algebra that is formally etale at every target
-prime is etale.-/
+prime is etale.
+@isnad1 id=etale.1h2v.s6.df53f8e11cee from=translated src=- shape=dc1eba56 vocab=38a33a1d
+-/
 theorem etale_of_isEtaleAt_all_primeIdeals
     {R : Type uR} {S : Type uS}
     [CommRing R] [CommRing S] [Algebra R S]
@@ -46,7 +48,9 @@ theorem etale_of_isEtaleAt_all_primeIdeals
 
 /-- For a finite-presentation algebra, it is enough to be formally etale at
 every maximal ideal of the target.  Openness of the etale locus propagates
-the property from a maximal ideal to every prime below it.-/
+the property from a maximal ideal to every prime below it.
+@isnad1 id=etale.1h2v.s6.7b9a03cd0f53 from=translated src=- shape=dc1eba56 vocab=8691dc25
+-/
 theorem etale_of_isEtaleAt_all_maximalIdeals
     {R : Type uR} {S : Type uS}
     [CommRing R] [CommRing S] [Algebra R S]
@@ -68,7 +72,9 @@ theorem etale_of_isEtaleAt_all_maximalIdeals
 /-- A local-local criterion for global etaleness.  At each target prime `Q`,
 the source is localized at the contracted prime `Q.under R`, and the target
 at `Q`.  Formal etaleness of these local maps implies etaleness of the
-original finite-presentation algebra.-/
+original finite-presentation algebra.
+@isnad1 id=etale.0h3v.s7.756cf4441b09 from=translated src=- shape=931cfd43 vocab=56035246
+-/
 theorem etale_of_formallyEtale_localizationsAtPrime_all_primeIdeals
     {R : Type uR} {S : Type uS}
     [CommRing R] [CommRing S] [Algebra R S]
@@ -95,7 +101,9 @@ theorem etale_of_formallyEtale_localizationsAtPrime_all_primeIdeals
 /-- The maximal-ideal version of
 `etale_of_formallyEtale_localizationsAtPrime_all_primeIdeals`.  This is often
 the most convenient form for a finite normalization, whose local factors are
-naturally selected at maximal ideals.-/
+naturally selected at maximal ideals.
+@isnad1 id=etale.0h3v.s7.c93f803480b3 from=translated src=- shape=931cfd43 vocab=b54761b7
+-/
 theorem etale_of_formallyEtale_localizationsAtPrime_all_maximalIdeals
     {R : Type uR} {S : Type uS}
     [CommRing R] [CommRing S] [Algebra R S]
@@ -123,7 +131,9 @@ theorem etale_of_formallyEtale_localizationsAtPrime_all_maximalIdeals
 `etale_of_formallyEtale_localizationsAtPrime_all_primeIdeals`.  Supplying a
 literal map here keeps that same map in the conclusion; in particular this
 can be applied directly to `Localization.awayMap` for a primitive composite
-map.-/
+map.
+@isnad1 id=etale.1h4v.s7.0922ecd426a6 from=translated src=- shape=ab5a8bcb vocab=47645ea9
+-/
 theorem ringHom_etale_of_formallyEtale_localizationsAtPrime_all_primeIdeals
     {R : Type uR} {S : Type uS}
     [CommRing R] [CommRing S]
@@ -143,7 +153,9 @@ theorem ringHom_etale_of_formallyEtale_localizationsAtPrime_all_primeIdeals
 
 /-- Maximal-ideal ring-map form of the target-local criterion.  For a literal
 away map, the only global input left is finite presentation of that away map;
-the remaining hypotheses concern its local maps at maximal ideals.-/
+the remaining hypotheses concern its local maps at maximal ideals.
+@isnad1 id=etale.1h4v.s7.698845b844d7 from=translated src=- shape=ab5a8bcb vocab=048ab098
+-/
 theorem ringHom_etale_of_formallyEtale_localizationsAtPrime_all_maximalIdeals
     {R : Type uR} {S : Type uS}
     [CommRing R] [CommRing S]
@@ -165,7 +177,9 @@ theorem ringHom_etale_of_formallyEtale_localizationsAtPrime_all_maximalIdeals
 literal-away-map criterion.  The finite-presentation input for the map of
 away localizations is constructed internally; it remains only to prove
 formal etaleness after localizing at every target maximal ideal and its
-contraction.-/
+contraction.
+@isnad1 id=etale.0h4v.s10.a75980ad2eba from=translated src=- shape=135a77f2 vocab=3d272626
+-/
 theorem localization_awayMap_etale_of_formallyEtale_localizationsAtPrime_all_maximalIdeals
     {A : Type uR} {B : Type uS}
     [CommRing A] [CommRing B] [IsNoetherianRing A]

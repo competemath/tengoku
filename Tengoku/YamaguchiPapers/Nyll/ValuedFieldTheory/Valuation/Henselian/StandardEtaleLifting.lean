@@ -23,7 +23,9 @@ namespace ValuationTheory.Henselian
 variable {R : Type*} [CommRing R] {I : Ideal R} [HenselianRing R I]
 
 /-- A point of a standard étale algebra modulo a Henselian ideal lifts to
-a point over the original ring.-/
+a point over the original ring.
+@isnad1 id=ex.0h4v.s8.a8cf3dc61940 from=translated src=- shape=cbfb5efc vocab=69b73115
+-/
 theorem exists_standardEtale_lift
     (P : StandardEtalePair R) (σ : P.Ring →ₐ[R] R ⧸ I) :
     ∃ τ : P.Ring →ₐ[R] R, (Ideal.Quotient.mkₐ R I).comp τ = σ := by
@@ -57,7 +59,9 @@ theorem exists_standardEtale_lift
   exact hqa
 
 /-- A residue point of an algebra admitting a standard étale presentation
-lifts over a Henselian pair.-/
+lifts over a Henselian pair.
+@isnad1 id=ex.0h4v.s8.4c743e6a1000 from=translated src=- shape=d7e0f882 vocab=a19acba8
+-/
 theorem exists_isStandardEtale_lift
     {S : Type*} [CommRing S] [Algebra R S] [Algebra.IsStandardEtale R S]
     (σ : S →ₐ[R] R ⧸ I) :

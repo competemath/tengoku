@@ -20,7 +20,9 @@ then give the original prime degree after this base extension.
 namespace ValuationTheory.DiscreteValuationField
 
 /-- The lower cyclotomic field already contains a primitive generator of
-the upper cyclotomic extension, so adjoining the other field's image suffices.-/
+the upper cyclotomic extension, so adjoining the other field's image suffices.
+@isnad1 id=eq.0h5v.s8.d00006df03b7 from=translated src=- shape=18ae6578 vocab=07b55452
+-/
 theorem cyclotomic_compositum_adjoin_range_eq_top
     (F K L E : Type*) [Field F] [Field K] [Field L] [Field E]
     [Algebra F L] [Algebra K E] [Algebra L E]
@@ -67,7 +69,9 @@ private theorem finrank_eq_of_coprime_of_adjoin_eq_top
 
 /-- Adjoining the same prime-order roots of unity to a prime-degree extension
 preserves its degree. Generation and coprimality are supplied by the actual
-cyclotomic extensions.-/
+cyclotomic extensions.
+@isnad1 id=eq.1h5v.s8.03505a186d3e from=translated src=- shape=5099e082 vocab=cf660b82
+-/
 theorem cyclotomic_compositum_finrank_eq_prime
     (F K L E : Type*) [Field F] [Field K] [Field L] [Field E]
     [Algebra F K] [Algebra F L] [Algebra F E] [Algebra K E] [Algebra L E]

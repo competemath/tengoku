@@ -41,17 +41,23 @@ variable {G : Type u} [Group G] (U : AntitoneSubgroupFiltration G)
 def principalUnitSubgroup (n : ℕ) : Subgroup G :=
   U.subgroup n
 
-/-- Characterizes `x ∈ U.principalUnitSubgroup n` by the equivalent condition `x ∈ U.subgroup n`.-/
+/-- Characterizes `x ∈ U.principalUnitSubgroup n` by the equivalent condition `x ∈ U.subgroup n`.
+@isnad1 id=iff.0h4v.s5.8e5799f2a3be from=translated src=- shape=c4300b8e vocab=6877f635
+-/
 @[simp] theorem mem_principalUnitSubgroup_iff (n : ℕ) (x : G) :
     x ∈ U.principalUnitSubgroup n ↔ x ∈ U.subgroup n :=
   Iff.rfl
 
-/-- Higher filtration levels are contained in lower levels.-/
+/-- Higher filtration levels are contained in lower levels.
+@isnad1 id=le.1h4v.s5.55db408dfc13 from=translated src=- shape=3807b0d9 vocab=36f41021
+-/
 theorem principalUnitSubgroup_antitone {m n : ℕ} (h : m ≤ n) :
     U.principalUnitSubgroup n ≤ U.principalUnitSubgroup m :=
   U.antitone h
 
-/-- Establishes the membership statement `x ∈ U.principalUnitSubgroup m`.-/
+/-- Establishes the membership statement `x ∈ U.principalUnitSubgroup m`.
+@isnad1 id=mem.2h5v.s5.0ee51ac1156b from=translated src=- shape=fd6deaa9 vocab=f0ae03a5
+-/
 theorem mem_of_mem_of_le {m n : ℕ} (h : m ≤ n) {x : G}
     (hx : x ∈ U.principalUnitSubgroup n) :
     x ∈ U.principalUnitSubgroup m :=
@@ -72,7 +78,9 @@ def quotient_principalUnitSubgroup_mapOfLe {m n : ℕ} (hmn : m ≤ n)
 
 /--
 The defining evaluation formula for `quotient_principalUnitSubgroup_mapOfLe` is
-`U.quotient_principalUnitSubgroup_mapOfLe hmn (QuotientGroup.mk x) = QuotientGroup.mk x`.-/
+`U.quotient_principalUnitSubgroup_mapOfLe hmn (QuotientGroup.mk x) = QuotientGroup.mk x`.
+@isnad1 id=eq.1h5v.s8.21ea0aace4c1 from=translated src=- shape=f428d0f7 vocab=55c98067
+-/
 @[simp] theorem quotient_principalUnitSubgroup_mapOfLe_apply_mk
     {m n : ℕ} (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]
@@ -83,7 +91,9 @@ The defining evaluation formula for `quotient_principalUnitSubgroup_mapOfLe` is
 
 /--
 Establishes the identity `U.quotient_principalUnitSubgroup_mapOfLe hmn (QuotientGroup.mk'
-(U.principalUnitSubgroup n) x) = QuotientGroup.mk' (U.principalUnitSubgroup m) x`.-/
+(U.principalUnitSubgroup n) x) = QuotientGroup.mk' (U.principalUnitSubgroup m) x`.
+@isnad1 id=eq.1h5v.s9.5a4d872363c8 from=translated src=- shape=baae3d99 vocab=fe6e4e05
+-/
 @[simp] theorem quotient_principalUnitSubgroup_mapOfLe_apply_mk'
     {m n : ℕ} (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]
@@ -101,7 +111,9 @@ def principalUnitSubgroupClassInQuotient (m n : ℕ)
   Subgroup.map (QuotientGroup.mk' (U.principalUnitSubgroup n))
     (U.principalUnitSubgroup m)
 
-/-- The subgroup appearing in `(U.principalUnitSubgroupClassInQuotient m n).Normal` is normal.-/
+/-- The subgroup appearing in `(U.principalUnitSubgroupClassInQuotient m n).Normal` is normal.
+@isnad1 id=normal.0h4v.s5.2a775c2a5381 from=translated src=- shape=6409fa5f vocab=525b9957
+-/
 instance principalUnitSubgroupClassInQuotient_normal
     (m n : ℕ) [(U.principalUnitSubgroup n).Normal]
     [(U.principalUnitSubgroup m).Normal] :
@@ -111,7 +123,9 @@ instance principalUnitSubgroupClassInQuotient_normal
 
 /--
 Characterizes `q ∈ U.principalUnitSubgroupClassInQuotient m n` by the equivalent condition `∃ x :
-G, x ∈ U.principalUnitSubgroup m ∧ QuotientGroup.mk' (U.principalUnitSubgroup n) x = q`.-/
+G, x ∈ U.principalUnitSubgroup m ∧ QuotientGroup.mk' (U.principalUnitSubgroup n) x = q`.
+@isnad1 id=iff.0h5v.s8.757e333016fb from=translated src=- shape=b44a4bf5 vocab=1e4ca450
+-/
 theorem mem_principalUnitSubgroupClassInQuotient_iff
     (m n : ℕ) [(U.principalUnitSubgroup n).Normal]
     (q : G ⧸ U.principalUnitSubgroup n) :
@@ -122,7 +136,9 @@ theorem mem_principalUnitSubgroupClassInQuotient_iff
 
 /--
 Establishes the membership statement `QuotientGroup.mk' (U.principalUnitSubgroup n) x ∈
-U.principalUnitSubgroupClassInQuotient m n`.-/
+U.principalUnitSubgroupClassInQuotient m n`.
+@isnad1 id=mem.1h5v.s8.39ab4182e473 from=translated src=- shape=e9f55762 vocab=1e4ca450
+-/
 theorem principalUnitSubgroupClassInQuotient_mk_mem
     {m n : ℕ} [(U.principalUnitSubgroup n).Normal] {x : G}
     (hx : x ∈ U.principalUnitSubgroup m) :
@@ -191,7 +207,9 @@ def principalUnitSubquotientMk
 
 /--
 Establishes the identity `U.principalUnitSubquotientConcreteEquiv m n
-(U.principalUnitSubquotientMk m n x) = QuotientGroup.mk x`.-/
+(U.principalUnitSubquotientMk m n x) = QuotientGroup.mk x`.
+@isnad1 id=eq.0h5v.s11.d383adbec9de from=translated src=- shape=2a6ae579 vocab=6cc108f5
+-/
 @[simp]
 theorem principalUnitSubquotientConcreteEquiv_mk
     (m n : ℕ) [(U.principalUnitSubgroup n).Normal]
@@ -201,7 +219,9 @@ theorem principalUnitSubquotientConcreteEquiv_mk
       QuotientGroup.mk x :=
   rfl
 
-/-- The specified map is surjective: `Function.Surjective (U.principalUnitSubquotientMk m n)`.-/
+/-- The specified map is surjective: `Function.Surjective (U.principalUnitSubquotientMk m n)`.
+@isnad1 id=surjecti.0h4v.s8.780b5a41c907 from=translated src=- shape=d60a0a61 vocab=ad8ab0c9
+-/
 theorem principalUnitSubquotientMk_surjective
     (m n : ℕ) [(U.principalUnitSubgroup n).Normal] :
     Function.Surjective (U.principalUnitSubquotientMk m n) :=
@@ -209,7 +229,9 @@ theorem principalUnitSubquotientMk_surjective
     ((U.principalUnitSubgroup n).subgroupOf
       (U.principalUnitSubgroup m))
 
-/-- Eliminate a principal-unit subquotient through its canonical map.-/
+/-- Eliminate a principal-unit subquotient through its canonical map.
+@isnad1 id=var.0h7v.s8.eef7edd9db21 from=translated src=- shape=56468630 vocab=d8c191a7
+-/
 protected theorem principalUnitSubquotient.inductionOn
     (m n : ℕ) [(U.principalUnitSubgroup n).Normal]
     {motive : U.principalUnitSubquotient m n → Prop}
@@ -243,7 +265,9 @@ def principalUnitSubquotientLift
 
 /--
 Establishes the identity `U.principalUnitSubquotientLift m n f h (U.principalUnitSubquotientMk m n
-x) = f x`.-/
+x) = f x`.
+@isnad1 id=eq.1h7v.s10.7b81a3e8ca81 from=translated src=- shape=b3788566 vocab=5acc3957
+-/
 @[simp]
 theorem principalUnitSubquotientLift_mk
     {H : Type*} [Group H] (m n : ℕ)
@@ -287,7 +311,9 @@ def principalUnitGradedPieceEquivSubquotient
     U.principalUnitSubquotient n (n + 1)
   exact MulEquiv.refl _
 
-/-- Representative criterion for the identity in `U^m/U^n`.-/
+/-- Representative criterion for the identity in `U^m/U^n`.
+@isnad1 id=iff.0h5v.s9.84e28ddfc695 from=translated src=- shape=882df821 vocab=2b7cfba9
+-/
 theorem principalUnitSubquotient_mk_eq_one_iff
     {m n : ℕ} [(U.principalUnitSubgroup n).Normal]
     (x : U.principalUnitSubgroup m) :
@@ -312,7 +338,9 @@ def principalUnitSubgroupToQuotient {m n : ℕ} (_hmn : m ≤ n)
 
 /--
 The defining evaluation formula for `principalUnitSubgroupToQuotient` is
-`U.principalUnitSubgroupToQuotient hmn x = QuotientGroup.mk' (U.principalUnitSubgroup n) (x : G)`.-/
+`U.principalUnitSubgroupToQuotient hmn x = QuotientGroup.mk' (U.principalUnitSubgroup n) (x : G)`.
+@isnad1 id=eq.1h5v.s9.4fd24b4d4c99 from=translated src=- shape=1160a621 vocab=4076b489
+-/
 @[simp] theorem principalUnitSubgroupToQuotient_apply
     {m n : ℕ} (hmn : m ≤ n) [(U.principalUnitSubgroup n).Normal]
     (x : U.principalUnitSubgroup m) :
@@ -320,7 +348,9 @@ The defining evaluation formula for `principalUnitSubgroupToQuotient` is
       QuotientGroup.mk' (U.principalUnitSubgroup n) (x : G) :=
   rfl
 
-/-- The kernel of `U^m → G/U^n` is `U^n` inside `U^m`.-/
+/-- The kernel of `U^m → G/U^n` is `U^n` inside `U^m`.
+@isnad1 id=eq.1h4v.s7.7ce7d830af6d from=translated src=- shape=ae3debdd vocab=fd5be19c
+-/
 theorem principalUnitSubgroupToQuotient_ker_eq
     {m n : ℕ} (hmn : m ≤ n) [(U.principalUnitSubgroup n).Normal] :
     (U.principalUnitSubgroupToQuotient hmn).ker =
@@ -331,7 +361,9 @@ theorem principalUnitSubgroupToQuotient_ker_eq
   rw [principalUnitSubgroupToQuotient_apply, QuotientGroup.mk'_apply]
   exact QuotientGroup.eq_one_iff (N := U.principalUnitSubgroup n) (x : G)
 
-/-- The range of `U^m → G/U^n` is the class of `U^m` in `G/U^n`.-/
+/-- The range of `U^m → G/U^n` is the class of `U^m` in `G/U^n`.
+@isnad1 id=eq.1h4v.s6.5ad9cfbc82ee from=translated src=- shape=818191ec vocab=04468abf
+-/
 theorem principalUnitSubgroupToQuotient_range_eq_classInQuotient
     {m n : ℕ} (hmn : m ≤ n) [(U.principalUnitSubgroup n).Normal] :
     (U.principalUnitSubgroupToQuotient hmn).range =
@@ -359,7 +391,9 @@ noncomputable def principalUnitSubquotientEquivClassInQuotientOfLe
 /--
 Establishes the identity `((U.principalUnitSubquotientEquivClassInQuotientOfLe hmn
 (U.principalUnitSubquotientMk m n x) : U.principalUnitSubgroupClassInQuotient m n) : G ⧸
-U.principalUnitSubgroup n) = QuotientGroup.mk' (U.principalUnitSubgroup n) (x : G)`.-/
+U.principalUnitSubgroup n) = QuotientGroup.mk' (U.principalUnitSubgroup n) (x : G)`.
+@isnad1 id=eq.1h5v.s10.42aaf9d01c60 from=translated src=- shape=a31bf365 vocab=85b64d3a
+-/
 @[simp] theorem coe_principalUnitSubquotientEquivClassInQuotientOfLe_mk
     {m n : ℕ} (hmn : m ≤ n) [(U.principalUnitSubgroup n).Normal]
     (x : U.principalUnitSubgroup m) :
@@ -383,7 +417,9 @@ noncomputable def principalUnitGradedPieceEquivClassInQuotient
 /--
 Establishes the identity `((U.principalUnitGradedPieceEquivClassInQuotient n
 (U.principalUnitGradedPieceMk n x) : U.principalUnitSubgroupClassInQuotient n (n + 1)) : G ⧸
-U.principalUnitSubgroup (n + 1)) = QuotientGroup.mk' (U.principalUnitSubgroup (n + 1)) (x : G)`.-/
+U.principalUnitSubgroup (n + 1)) = QuotientGroup.mk' (U.principalUnitSubgroup (n + 1)) (x : G)`.
+@isnad1 id=eq.0h4v.s11.0931f88bbb59 from=translated src=- shape=92dbdc14 vocab=02d9d4ac
+-/
 @[simp] theorem coe_principalUnitGradedPieceEquivClassInQuotient_mk
     (n : ℕ) [(U.principalUnitSubgroup (n + 1)).Normal]
     (x : U.principalUnitSubgroup n) :
@@ -396,7 +432,9 @@ U.principalUnitSubgroup (n + 1)) = QuotientGroup.mk' (U.principalUnitSubgroup (n
     (Nat.le_succ n) x
 
 /-- The kernel of `G ⧸ U^n →* G ⧸ U^m` is the image of `U^m` in
-`G ⧸ U^n`.-/
+`G ⧸ U^n`.
+@isnad1 id=eq.1h4v.s7.3a644a18035b from=translated src=- shape=efa11eb6 vocab=111d04fe
+-/
 theorem quotient_principalUnitSubgroup_mapOfLe_ker_eq_classInQuotient
     {m n : ℕ} (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]
@@ -411,7 +449,9 @@ theorem quotient_principalUnitSubgroup_mapOfLe_ker_eq_classInQuotient
       (Subgroup.comap_id (U.principalUnitSubgroup m)))
 
 /-- Level-change maps send the class of `U^l` in `G/U^n` into the class of
-`U^l` in `G/U^m`, for `l ≤ m ≤ n`.-/
+`U^l` in `G/U^m`, for `l ≤ m ≤ n`.
+@isnad1 id=mem.3h6v.s9.904480f0abe7 from=translated src=- shape=cf24ffc1 vocab=24a0daa8
+-/
 theorem quotient_principalUnitSubgroup_mapOfLe_mem_classInQuotient
     {l m n : ℕ} (_hlm : l ≤ m) (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]
@@ -443,7 +483,9 @@ def principalUnitClassMapOfLe {l m n : ℕ} (hlm : l ≤ m) (hmn : m ≤ n)
 /--
 The defining evaluation formula for `principalUnitClassMapOfLe` is `((U.principalUnitClassMapOfLe
 hlm hmn q : U.principalUnitSubgroupClassInQuotient l m) : G ⧸ U.principalUnitSubgroup m) =
-U.quotient_principalUnitSubgroup_mapOfLe hmn (q : G ⧸ U.principalUnitSubgroup n)`.-/
+U.quotient_principalUnitSubgroup_mapOfLe hmn (q : G ⧸ U.principalUnitSubgroup n)`.
+@isnad1 id=eq.2h6v.s11.b2d656f10b1e from=translated src=- shape=494ef09a vocab=b1a4ce6e
+-/
 @[simp] theorem principalUnitClassMapOfLe_apply {l m n : ℕ}
     (hlm : l ≤ m) (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]
@@ -456,7 +498,9 @@ U.quotient_principalUnitSubgroup_mapOfLe hmn (q : G ⧸ U.principalUnitSubgroup 
         (q : G ⧸ U.principalUnitSubgroup n) :=
   rfl
 
-/-- The restricted map `U^l/U^n → U^l/U^m` has kernel `U^m/U^n`.-/
+/-- The restricted map `U^l/U^n → U^l/U^m` has kernel `U^m/U^n`.
+@isnad1 id=eq.2h5v.s9.9d902bff7c47 from=translated src=- shape=70c211c3 vocab=7a2d011e
+-/
 theorem principalUnitClassMapOfLe_ker_eq {l m n : ℕ}
     (hlm : l ≤ m) (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]
@@ -484,7 +528,9 @@ theorem principalUnitClassMapOfLe_ker_eq {l m n : ℕ}
       U.quotient_principalUnitSubgroup_mapOfLe_ker_eq_classInQuotient hmn]
     exact hq
 
-/-- The restricted map `U^l/U^n → U^l/U^m` is surjective.-/
+/-- The restricted map `U^l/U^n → U^l/U^m` is surjective.
+@isnad1 id=surjecti.2h5v.s11.249126b1968d from=translated src=- shape=ea590091 vocab=f8c0ff6f
+-/
 theorem principalUnitClassMapOfLe_surjective {l m n : ℕ}
     (hlm : l ≤ m) (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]
@@ -517,7 +563,9 @@ noncomputable def principalUnitClassQuotientKerEquivClassOfLe {l m n : ℕ}
 
 /--
 Establishes the identity `U.principalUnitClassQuotientKerEquivClassOfLe hlm hmn (QuotientGroup.mk'
-(U.principalUnitClassMapOfLe hlm hmn).ker q) = U.principalUnitClassMapOfLe hlm hmn q`.-/
+(U.principalUnitClassMapOfLe hlm hmn).ker q) = U.principalUnitClassMapOfLe hlm hmn q`.
+@isnad1 id=eq.2h6v.s15.d14c28b404de from=translated src=- shape=0d68f801 vocab=1ae11b65
+-/
 @[simp] theorem principalUnitClassQuotientKerEquivClassOfLe_mk'
     {l m n : ℕ} (hlm : l ≤ m) (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]
@@ -586,7 +634,9 @@ noncomputable def quotientModuloPrincipalUnitClassEquivQuotientOfLe
 /--
 Establishes the identity `U.quotientModuloPrincipalUnitClassEquivQuotientOfLe hmn
 (QuotientGroup.mk' (U.principalUnitSubgroupClassInQuotient m n) q) =
-U.quotient_principalUnitSubgroup_mapOfLe hmn q`.-/
+U.quotient_principalUnitSubgroup_mapOfLe hmn q`.
+@isnad1 id=eq.1h5v.s11.8d33f75ef95b from=translated src=- shape=0d33be84 vocab=fbaa46ca
+-/
 @[simp] theorem quotientModuloPrincipalUnitClassEquivQuotientOfLe_mk
     {m n : ℕ} (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]
@@ -610,7 +660,9 @@ U.quotient_principalUnitSubgroup_mapOfLe hmn q`.-/
 /--
 Establishes the identity `U.quotientModuloPrincipalUnitClassEquivQuotientOfLe hmn
 (QuotientGroup.mk' (U.principalUnitSubgroupClassInQuotient m n) (QuotientGroup.mk'
-(U.principalUnitSubgroup n) x)) = QuotientGroup.mk' (U.principalUnitSubgroup m) x`.-/
+(U.principalUnitSubgroup n) x)) = QuotientGroup.mk' (U.principalUnitSubgroup m) x`.
+@isnad1 id=eq.1h5v.s11.422528f874dc from=translated src=- shape=8fa89483 vocab=7c700751
+-/
 @[simp] theorem quotientModuloPrincipalUnitClassEquivQuotientOfLe_mk_mk
     {m n : ℕ} (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]
@@ -626,7 +678,9 @@ Establishes the identity `U.quotientModuloPrincipalUnitClassEquivQuotientOfLe hm
 /--
 Establishes the identity `(U.quotientModuloPrincipalUnitClassEquivQuotientOfLe hmn).symm
 (QuotientGroup.mk' (U.principalUnitSubgroup m) x) = QuotientGroup.mk'
-(U.principalUnitSubgroupClassInQuotient m n) (QuotientGroup.mk' (U.principalUnitSubgroup n) x)`.-/
+(U.principalUnitSubgroupClassInQuotient m n) (QuotientGroup.mk' (U.principalUnitSubgroup n) x)`.
+@isnad1 id=eq.1h5v.s11.953f069377ee from=translated src=- shape=e92043e2 vocab=e89f281f
+-/
 @[simp] theorem quotientModuloPrincipalUnitClassEquivQuotientOfLe_symm_mk
     {m n : ℕ} (hmn : m ≤ n)
     [(U.principalUnitSubgroup n).Normal]

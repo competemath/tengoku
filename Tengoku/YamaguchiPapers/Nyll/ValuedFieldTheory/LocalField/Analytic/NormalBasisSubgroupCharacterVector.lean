@@ -42,7 +42,9 @@ def normalBasisSubgroupCharacterVector (Δ : Subgroup Gal(L/K))
       IsGalois.normalBasis K L δ
 
 /-- The coefficients are exactly the inverse character on the subgroup
-and zero outside it.-/
+and zero outside it.
+@isnad1 id=eq.0h5v.s10.4dc490e0b3ea from=translated src=- shape=fa818b91 vocab=7413fd8a
+-/
 theorem normalBasisSubgroupCharacterVector_repr (Δ : Subgroup Gal(L/K))
     (χ : Gal(L/K) →* Kˣ) (δ : Gal(L/K)) :
     (IsGalois.normalBasis K L).repr (normalBasisSubgroupCharacterVector Δ χ) δ =
@@ -66,7 +68,9 @@ private theorem map_normalBasisSubgroupCharacterVector (Δ : Subgroup Gal(L/K))
     IsGalois.normalBasis_apply (σ * δ), AlgEquiv.mul_apply]
 
 /-- Left translation by a subgroup element multiplies the supported vector
-by the restricted character.-/
+by the restricted character.
+@isnad1 id=eq.0h5v.s10.845d24b5c621 from=translated src=- shape=60275858 vocab=42c1290c
+-/
 theorem normalBasisSubgroupCharacterVector_eigen (Δ : Subgroup Gal(L/K))
     (χ : Gal(L/K) →* Kˣ) (σ : Δ) :
     (σ : Gal(L/K)) (normalBasisSubgroupCharacterVector Δ χ) =
@@ -107,7 +111,9 @@ theorem normalBasisSubgroupCharacterVector_eigen (Δ : Subgroup Gal(L/K))
       Finset.smul_sum.symm
 
 /-- An automorphism outside the subgroup cannot have the prescribed
-character action on this vector: the identity coordinate becomes zero.-/
+character action on this vector: the identity coordinate becomes zero.
+@isnad1 id=ne.1h5v.s10.a17dfa75c5d8 from=translated src=- shape=a32db07e vocab=37a6e18d
+-/
 theorem normalBasisSubgroupCharacterVector_not_eigen (Δ : Subgroup Gal(L/K))
     (χ : Gal(L/K) →* Kˣ) (g : Gal(L/K)) (hg : g ∉ Δ) :
     g (normalBasisSubgroupCharacterVector Δ χ) ≠
@@ -138,7 +144,9 @@ theorem normalBasisSubgroupCharacterVector_not_eigen (Δ : Subgroup Gal(L/K))
 
 /-- The actual canonical normal basis supplies a nonzero restricted-character
 eigenvector on which any specified automorphism outside the subgroup fails
-to act by the full character.-/
+to act by the full character.
+@isnad1 id=ex.1h5v.s11.8efad5818a8b from=translated src=- shape=45794da8 vocab=41984e5b
+-/
 theorem exists_nonzero_subgroupCharacterEigenvector_not_eigen
     (Δ : Subgroup Gal(L/K)) (χ : Gal(L/K) →* Kˣ)
     (g : Gal(L/K)) (hg : g ∉ Δ) :

@@ -27,7 +27,9 @@ namespace AlgebraicNumberTheory
 namespace Valuations
 
 /-- algebraic obstruction: a field polynomial with a factor of
-positive degree strictly smaller than its own degree is not irreducible.-/
+positive degree strictly smaller than its own degree is not irreducible.
+@isnad1 id=not.3h4v.s7.9cd494d1a983 from=translated src=- shape=df83917e vocab=d753b85b
+-/
 theorem irreduciblePolynomial_not_irreducible_of_field_factor_natDegree_lt
     {K : Type*} [Field K] {f g h : K[X]}
     (hfactor : f = g * h)
@@ -50,7 +52,9 @@ theorem irreduciblePolynomial_not_irreducible_of_field_factor_natDegree_lt
     exact (Nat.ne_of_lt hglt) hdeg.symm
 
 /-- transport obstruction: a nontrivial factorization over the
-closed-unit-ball valuation ring maps to a nontrivial field factorization.-/
+closed-unit-ball valuation ring maps to a nontrivial field factorization.
+@isnad1 id=not.7h7v.s10.e685c86aa19b from=translated src=- shape=d3b30819 vocab=1d75bd26
+-/
 theorem irreduciblePolynomial_not_irreducible_of_valuation_factorization
     {K : Type*} [Field K]
     (v : AbsoluteValue K ℝ) (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -91,7 +95,9 @@ theorem irreduciblePolynomial_not_irreducible_of_valuation_factorization
 
 /-- The common nonvanishing step in the three irreducible-polynomial lifting Hensel routes:
 if a polynomial is `X ^ r` times a polynomial with nonzero constant
-coefficient, then it is nonzero.-/
+coefficient, then it is nonzero.
+@isnad1 id=ne.2h4v.s7.0743531d1cc1 from=translated src=- shape=4ff8d911 vocab=5f7135c8
+-/
 theorem irreduciblePolynomial_polynomial_ne_zero_of_eq_X_pow_mul_of_coeff_zero_ne_zero
     {k : Type*} [Field k] {P Q : k[X]} {r : ℕ}
     (hfactor : P = Polynomial.X ^ r * Q)
@@ -104,7 +110,9 @@ theorem irreduciblePolynomial_polynomial_ne_zero_of_eq_X_pow_mul_of_coeff_zero_n
   exact mul_ne_zero (pow_ne_zero r Polynomial.X_ne_zero) hQne
 
 /-- scalar normalization preserves irreducibility: multiplying
-by the inverse of a nonzero coefficient is multiplication by a unit.-/
+by the inverse of a nonzero coefficient is multiplication by a unit.
+@isnad1 id=irreduci.3h5v.s8.cf7bca78e64d from=translated src=- shape=dc0272ec vocab=7f4183ca
+-/
 theorem irreduciblePolynomial_irreducible_normalized_scale_of_irreducible
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     {f : K[X]} {m : ℝ} {n : ℕ}

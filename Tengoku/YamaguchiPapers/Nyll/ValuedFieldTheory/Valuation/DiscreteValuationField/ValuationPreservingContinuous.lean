@@ -25,7 +25,9 @@ open scoped Topology
 variable {K : Type*} [Field K]
 
 /-- A valuation-preserving field automorphism is continuous for the topology
-induced by that valuation.-/
+induced by that valuation.
+@isnad1 id=continuo.1h3v.s9.8dc455594202 from=translated src=- shape=1af2c9cf vocab=c055a8e1
+-/
 theorem continuous_ringEquiv_of_preserves
     (v : _root_.Valuation K (WithZero (Multiplicative ℤ)))
     (f : K ≃+* K) (hval : ∀ x : K, v (f x) = v x) :

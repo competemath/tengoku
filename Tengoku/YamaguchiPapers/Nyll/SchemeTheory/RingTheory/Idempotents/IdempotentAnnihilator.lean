@@ -36,7 +36,9 @@ namespace Algebra
 
 /-- An element that is idempotent modulo an extended ideal has a monic
 annihilator whose reduction is a product of equal positive powers of
-`X - 1` and `X`.-/
+`X - 1` and `X`.
+@isnad1 id=ex.1h4v.s10.54b771e3bec9 from=translated src=- shape=c25a28ba vocab=444d269e
+-/
 theorem exists_monic_annihilator_of_quotient_idempotent
     {R : Type u} {B : Type v} [CommRing R] [CommRing B] [Algebra R B]
     [Module.Finite R B] (I : Ideal R) (b : B)

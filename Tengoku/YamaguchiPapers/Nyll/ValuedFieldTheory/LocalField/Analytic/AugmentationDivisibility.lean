@@ -25,7 +25,9 @@ variable {R Λ M : Type*} [CommRing R] [Group Λ] [Fintype Λ]
 
 /-- If the action is trivial modulo `c`, the kernel of its averaging
 projection is `c`-divisible. This is the actual augmentation submodule:
-averaging is a projection, so its kernel is the image of `1 - average`.-/
+averaging is a projection, so its kernel is the image of `1 - average`.
+@isnad1 id=ex.2h6v.s9.27768cbedd49 from=translated src=- shape=d825c406 vocab=bafe3378
+-/
 theorem averageMap_ker_divisible_of_action_sub_divisible
     (ρ : Representation R Λ M) (c : R)
     (hdiv : ∀ (g : Λ) (x : M), ∃ y : M, ρ g x - x = c • y)

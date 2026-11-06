@@ -27,7 +27,9 @@ universe uR uS uR' uS'
 
 /-- A prime which is exactly the extension of the prime below it has
 ramification index one.  This elementary form does not require the algebra
-map to be essentially of finite type.-/
+map to be essentially of finite type.
+@isnad1 id=eq.1h4v.s7.23da7b83841f from=translated src=- shape=2427f19c vocab=99aed2cd
+-/
 theorem ramificationIdx_eq_one_of_map_eq
     {R : Type uR} {S : Type uS}
     [CommRing R] [CommRing S] [Algebra R S]
@@ -53,7 +55,9 @@ theorem ramificationIdx_eq_one_of_map_eq
 the selected vertical primes are their scheme-theoretic extensions.
 
 Faithful flatness supplies the two vertical `LiesOver` instances.  The only
-remaining prime comparison is the horizontal one in the upper row.-/
+remaining prime comparison is the horizontal one in the upper row.
+@isnad1 id=eq.2h8v.s8.19f746a4ba14 from=translated src=- shape=f1d0cd83 vocab=0bd2dd8f
+-/
 theorem ramificationIdx_eq_of_flat_baseChange_mapped_primes
     {R : Type uR} {S : Type uS} {R' : Type uR'} {S' : Type uS'}
     [CommRing R] [CommRing S] [CommRing R'] [CommRing S']

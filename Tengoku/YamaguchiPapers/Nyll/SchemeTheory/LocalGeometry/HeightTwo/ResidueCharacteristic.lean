@@ -27,7 +27,9 @@ namespace EtaleFundamentalGroups
 universe u
 
 /-- A branch contained in the localization prime maps into the maximal ideal
-of the prime localization.-/
+of the prime localization.
+@isnad1 id=le.1h3v.s9.014400589b9c from=translated src=- shape=2b7bca8f vocab=63d6d861
+-/
 theorem map_le_maximalIdeal_localizationAtPrime
     {A : Type u} [CommRing A]
     (q P : Ideal A) [P.IsPrime] (hqP : q ≤ P) :
@@ -48,7 +50,9 @@ noncomputable def localizationAtPrimeBranchQuotientToResidue
     (map_le_maximalIdeal_localizationAtPrime q P hqP)
 
 /-- A prime integer which is a nonunit in a prime localization is the
-characteristic of its residue field.-/
+characteristic of its residue field.
+@isnad1 id=charp.2h3v.s9.13b643ef18a9 from=translated src=- shape=75b099ea vocab=b750b584
+-/
 theorem charP_localizationAtPrime_residue_of_natCast_nonunit
     {A : Type u} [CommRing A]
     (P : Ideal A) [P.IsPrime]

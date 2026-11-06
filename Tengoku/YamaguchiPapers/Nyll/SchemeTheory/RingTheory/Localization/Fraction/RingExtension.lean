@@ -59,7 +59,9 @@ noncomputable def fractionRingChosenFractionFieldAlgEquiv :
 
 omit [IsDomain V] in
 /-- The literal fraction ring, chosen fraction field, and extension use a
-definitionally compatible scalar tower.-/
+definitionally compatible scalar tower.
+@isnad1 id=isscalar.0h3v.s7.a5e8a4db3f0e from=translated src=- shape=9cff8d4a vocab=2e1e3c1f
+-/
 theorem fractionRingToChosenFractionFieldToExtension_isScalarTower :
     letI : Algebra (FractionRing V) K := FractionRing.liftAlgebra V K
     letI : Algebra (FractionRing V) L :=
@@ -74,7 +76,9 @@ variable [Algebra V L] [IsScalarTower V K L]
 
 omit [IsDomain V] in
 /-- The original base map and the composite map from the literal fraction
-ring are compatible.-/
+ring are compatible.
+@isnad1 id=isscalar.0h3v.s7.a90b117c1111 from=translated src=- shape=32e8f1f6 vocab=916fbb01
+-/
 theorem fractionRingToExtension_isScalarTower :
     letI : Algebra (FractionRing V) L :=
       fractionRingToExtensionAlgebra (V := V) (K := K) (L := L)
@@ -99,7 +103,9 @@ variable [FiniteDimensional K L]
 
 omit [Algebra V L] [IsScalarTower V K L] in
 /-- Finite dimensionality over a chosen fraction field transports to the
-literal fraction ring.-/
+literal fraction ring.
+@isnad1 id=finitedi.0h3v.s7.ad74d57b0445 from=translated src=- shape=d74073f7 vocab=fe32928a
+-/
 theorem fractionRingToExtension_finiteDimensional :
     letI : Algebra (FractionRing V) L :=
       fractionRingToExtensionAlgebra (V := V) (K := K) (L := L)
@@ -120,7 +126,9 @@ variable [Algebra.IsSeparable K L]
 
 omit [Algebra V L] [IsScalarTower V K L] [FiniteDimensional K L] in
 /-- Separability over a chosen fraction field transports to the literal
-fraction ring.-/
+fraction ring.
+@isnad1 id=issepara.0h3v.s6.2345c070f13e from=translated src=- shape=d74073f7 vocab=ed9c11c3
+-/
 theorem fractionRingToExtension_isSeparable :
     letI : Algebra (FractionRing V) L :=
       fractionRingToExtensionAlgebra (V := V) (K := K) (L := L)

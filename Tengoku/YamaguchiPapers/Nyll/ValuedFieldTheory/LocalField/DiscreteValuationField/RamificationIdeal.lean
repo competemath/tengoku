@@ -33,7 +33,9 @@ variable [base.valuation.HasExtension target.valuation]
 
 /-- No power of the target maximal ideal is contained in the next power.
 
-This is the ideal-level form of the uniformizer-power separation lemma.-/
+This is the ideal-level form of the uniformizer-power separation lemma.
+@isnad1 id=not.1h4v.s10.f86eac7e7245 from=translated src=- shape=e91c4af4 vocab=3b8c7b5f
+-/
 theorem target_maximalIdeal_pow_not_le_pow_succ
     {π : target.valuationSubring}
     (hπ : target.valuation.IsUniformizer (π : L)) (n : ℕ) :
@@ -46,7 +48,9 @@ theorem target_maximalIdeal_pow_not_le_pow_succ
     (hle hπpow_mem)
 
 /-- The image of the base maximal ideal is the `e`-th power of the target
-maximal ideal.-/
+maximal ideal.
+@isnad1 id=eq.0h4v.s9.4395673dec17 from=translated src=- shape=5d4e1c8b vocab=70629a41
+-/
 theorem maximalIdeal_map_eq_target_maximalIdeal_pow_ramificationIndex :
     Ideal.map (integerMap base.toDVF target.toDVF) base.maximalIdeal =
       target.maximalIdeal ^ ramificationIndex base.toDVF target.toDVF := by
@@ -73,7 +77,9 @@ theorem maximalIdeal_map_eq_target_maximalIdeal_pow_ramificationIndex :
   exact hn
 
 /-- The image of a base uniformizer generates the `e`-th target maximal-ideal
-power.-/
+power.
+@isnad1 id=eq.1h5v.s9.29e82d545349 from=translated src=- shape=e112beed vocab=85437575
+-/
 theorem span_base_uniformizer_image_eq_target_maximalIdeal_pow_ramificationIndex
     {ϖ : base.valuationSubring}
     (hϖ : base.valuation.IsUniformizer (ϖ : K)) :
@@ -92,7 +98,9 @@ theorem span_base_uniformizer_image_eq_target_maximalIdeal_pow_ramificationIndex
       maximalIdeal_map_eq_target_maximalIdeal_pow_ramificationIndex base target
 
 /-- The image of a base uniformizer lies in the `e`-th target maximal-ideal
-power.-/
+power.
+@isnad1 id=mem.1h5v.s10.1989023da8c7 from=translated src=- shape=7b18aff0 vocab=1ec055c3
+-/
 theorem base_uniformizer_image_mem_target_maximalIdeal_pow_ramificationIndex
     {ϖ : base.valuationSubring}
     (hϖ : base.valuation.IsUniformizer (ϖ : K)) :
@@ -103,7 +111,9 @@ theorem base_uniformizer_image_mem_target_maximalIdeal_pow_ramificationIndex
   exact Ideal.mem_span_singleton_self (integerMap base.toDVF target.toDVF ϖ)
 
 /-- The image of a base uniformizer is a unit multiple of the `e`-th power of
-any target uniformizer.-/
+any target uniformizer.
+@isnad1 id=ex.2h6v.s9.41993def98f1 from=translated src=- shape=e74cc9c9 vocab=7895a428
+-/
 theorem exists_unit_mul_target_uniformizer_pow_eq_base_uniformizer_image
     {ϖ : base.valuationSubring} {π : target.valuationSubring}
     (hϖ : base.valuation.IsUniformizer (ϖ : K))

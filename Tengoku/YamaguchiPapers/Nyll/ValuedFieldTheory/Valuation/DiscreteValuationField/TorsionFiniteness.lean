@@ -25,7 +25,9 @@ namespace ValuationTheory.DiscreteValuationField.DVF
 universe u v
 
 /-- Finite residue torsion implies finite field torsion for any
-mixed-characteristic discrete valuation.-/
+mixed-characteristic discrete valuation.
+@isnad1 id=finite.0h3v.s9.1e3009d657cd from=translated src=- shape=424d3117 vocab=13b94aa1
+-/
 theorem finite_torsion_of_finite_residueTorsion_mixedChar
     {K : Type u} [Field K] [CharZero K] (D : DVF.{u, v} K)
     (p : ℕ) [Fact p.Prime] [CharP D.residueField p]
@@ -50,7 +52,9 @@ theorem finite_torsion_of_finite_residueTorsion_mixedChar
   exact D.torsionReduction.finite_iff_finite_ker_range.mpr ⟨inferInstance, inferInstance⟩
 
 /-- In equal positive characteristic the reduction kernel has no
-nontrivial torsion, so finite residue torsion implies finite field torsion.-/
+nontrivial torsion, so finite residue torsion implies finite field torsion.
+@isnad1 id=finite.0h3v.s9.49e6bc2d7d6f from=translated src=- shape=834d34fd vocab=c6110b39
+-/
 theorem finite_torsion_of_finite_residueTorsion_charP
     {K : Type u} [Field K] (D : DVF.{u, v} K)
     (p : ℕ) [Fact p.Prime] [CharP K p]

@@ -35,7 +35,9 @@ universe u
 namespace FiniteGroupClass
 
 /-- An elementary abelian group of prime exponent belongs to every finite
-Sigma class containing that prime.-/
+Sigma class containing that prime.
+@isnad1 id=pred.1h4v.s5.8ad87dad3b5e from=translated src=- shape=1b7878cf vocab=57f962c7
+-/
 theorem sigmaGroup_of_abelianExponent {sigma : Set ℕ} (q : ℕ) [Fact q.Prime]
     {A : Type u} [Group A] (hq : q ∈ sigma) (hA : abelianExponent q A) :
     sigmaGroup sigma A := by
@@ -57,7 +59,9 @@ open WreathProducts
 variable {A B : Type u} [CommGroup A] [Group B]
 
 /-- The kernel of the actual right projection of a regular wreath product
-is commutative.-/
+is commutative.
+@isnad1 id=commute.0h4v.s10.26dd587bdd15 from=translated src=- shape=91dc2a6f vocab=1a57c13a
+-/
 theorem regularWreathKernel_commute
     (a b : (SemidirectProduct.rightHom : PermutationalWreathProduct A B B →* B).ker) :
     Commute (a : PermutationalWreathProduct A B B)
@@ -77,7 +81,9 @@ theorem regularWreathKernel_commute
     rw [ha, hb]
 
 /-- Conjugation on the function kernel of the regular wreath product is
-left translation by the right coordinate.-/
+left translation by the right coordinate.
+@isnad1 id=eq.0h5v.s9.1cb15a73b33b from=translated src=- shape=6fe5b06e vocab=a7ca8e9c
+-/
 theorem regularWreath_conj_inl_left_apply
     (w : PermutationalWreathProduct A B B) (f : B → A) (x : B) :
     (w * SemidirectProduct.inl f * w⁻¹).left x = f (w.right⁻¹ * x) := by
@@ -96,7 +102,9 @@ theorem regularWreath_conj_inl_left_apply
     _ = f (w.right⁻¹ * x) := by simp only [mul_inv_cancel, mul_one]
 
 /-- A nontrivial coefficient group makes the actual regular wreath kernel
-conjugation action faithful.-/
+conjugation action faithful.
+@isnad1 id=injectiv.0h2v.s13.cc431e277a9c from=translated src=- shape=fbbd9d6c vocab=9a95626f
+-/
 theorem regularWreathKernel_conjugation_injective [Nontrivial A] :
     Function.Injective (abelianKernelConjugation
       (SemidirectProduct.rightHom : PermutationalWreathProduct A B B →* B)
@@ -122,7 +130,9 @@ theorem regularWreathKernel_conjugation_injective [Nontrivial A] :
   exact ha haone
 
 /-- Finite coefficients killed by `q` produce an actual finite abelian
-kernel of exponent dividing `q`.-/
+kernel of exponent dividing `q`.
+@isnad1 id=pred.1h3v.s9.2a548a753cf9 from=translated src=- shape=7210dc4a vocab=2d23d036
+-/
 theorem regularWreathKernel_mem_abelianExponent [Finite A] [Finite B]
     (q : ℕ) (hpow : ∀ a : A, a ^ q = 1) :
     FiniteGroupClass.abelianExponent q
@@ -154,7 +164,9 @@ theorem regularWreathKernel_mem_abelianExponent [Finite A] [Finite B]
 
 omit [CommGroup A] in
 /-- The concrete cyclic coefficient group obtained from `ZMod q` gives an
-elementary abelian kernel for every finite quotient group.-/
+elementary abelian kernel for every finite quotient group.
+@isnad1 id=pred.0h2v.s10.ee3422ea66c9 from=translated src=- shape=0f8c45de vocab=073058c9
+-/
 theorem regularWreathKernel_cyclicZMod_mem_abelianExponent [Finite B]
     (q : ℕ) [Fact q.Prime] :
     FiniteGroupClass.abelianExponent q

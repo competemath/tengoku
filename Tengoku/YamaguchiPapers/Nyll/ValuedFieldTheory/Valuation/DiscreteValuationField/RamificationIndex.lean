@@ -28,7 +28,9 @@ def residueRamificationIndex (v : Valuation K (WithZero (Multiplicative ℤ)))
     (p : ℕ) : ℕ :=
   (-WithZero.log (v (p : K))).toNat
 
-/-- A residue characteristic has value strictly less than one.-/
+/-- A residue characteristic has value strictly less than one.
+@isnad1 id=lt.0h3v.s8.68430ef487ce from=translated src=- shape=a7f50450 vocab=b487f5c3
+-/
 theorem natCast_residueChar_lt_one
     (v : Valuation K (WithZero (Multiplicative ℤ))) (p : ℕ)
     [CharP (IsLocalRing.ResidueField v.valuationSubring) p] :

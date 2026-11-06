@@ -38,7 +38,9 @@ private theorem eqToHom_stalk_eq_stalkCongr'
     TopCat.Presheaf.stalkSpecializes_refl]
 
 /-- Function-field pullback commutes with taking the generic germ of a
-section over any nonempty open, with nonempty inverse image.-/
+section over any nonempty open, with nonempty inverse image.
+@isnad1 id=eq.1h4v.s12.131f75ec0bc0 from=translated src=- shape=ea7b37c4 vocab=50f7c0bc
+-/
 theorem functionFieldMap_comp_germToFunctionField
     (f : Y ⟶ X) (hf : DenseRange f) (U : X.Opens)
     [Nonempty U] [Nonempty (f ⁻¹ᵁ U)] :
@@ -64,7 +66,9 @@ theorem functionFieldMap_comp_germToFunctionField
         exact ⟨y.val, Set.mem_univ y.val, y.property⟩))
 
 /-- The actual map on function fields commutes with the actual map on
-local rings at every point.-/
+local rings at every point.
+@isnad1 id=eq.1h5v.s12.976c16a17660 from=translated src=- shape=27df9da4 vocab=44f987d8
+-/
 theorem functionFieldMap_algebraMap_stalk
     (f : Y ⟶ X) (hf : DenseRange f) (y : Y) (a : X.presheaf.stalk (f y)) :
     f.functionFieldMap hf (algebraMap (X.presheaf.stalk (f y)) X.functionField a) =
@@ -83,7 +87,9 @@ theorem functionFieldMap_algebraMap_stalk
   exact hgeneric
 
 /-- An open immersion identifies, inside the identified function fields,
-the actual local-ring images at corresponding points.-/
+the actual local-ring images at corresponding points.
+@isnad1 id=iff.1h5v.s11.6169038703fc from=translated src=- shape=93834209 vocab=f78933f4
+-/
 theorem functionFieldMap_mem_stalk_range_iff_of_isOpenImmersion
     (f : Y ⟶ X) [IsOpenImmersion f] (hf : DenseRange f) (y : Y)
     (a : X.functionField) :

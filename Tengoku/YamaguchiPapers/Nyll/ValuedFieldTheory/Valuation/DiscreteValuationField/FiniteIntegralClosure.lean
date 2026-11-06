@@ -33,7 +33,9 @@ variable [Algebra K L] [FiniteDimensional K L]
 /- The algebra map from the base valuation ring into the integral
 closure is injective. -/
 omit [FiniteDimensional K L] in
-/-- The algebra map into a finite integral closure is injective.-/
+/-- The algebra map into a finite integral closure is injective.
+@isnad1 id=injectiv.0h3v.s12.3b18560cdbfd from=translated src=- shape=e87e4102 vocab=7694ad49
+-/
 theorem CanonicalIntegralClosure.algebraMap_injective
     (base : CompleteDVF.{u, v} K) :
     Function.Injective
@@ -49,7 +51,9 @@ theorem CanonicalIntegralClosure.algebraMap_injective
 /- The integral closure is faithful as a module over the base valuation
 ring. -/
 omit [FiniteDimensional K L] in
-/-- Scalar multiplication on a finite integral closure is faithful.-/
+/-- Scalar multiplication on a finite integral closure is faithful.
+@isnad1 id=faithful.0h3v.s10.a684f9911811 from=translated src=- shape=9b7f261b vocab=45d46dae
+-/
 theorem CanonicalIntegralClosure.faithfulSMul
     (base : CompleteDVF.{u, v} K) :
     FaithfulSMul base.valuationSubring

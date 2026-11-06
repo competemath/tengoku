@@ -23,7 +23,9 @@ namespace ValuationSubring
 
 variable {K : Type*} [Field K] (A : ValuationSubring K)
 
-/-- Reduction is injective on roots with order invertible in the residue field.-/
+/-- Reduction is injective on roots with order invertible in the residue field.
+@isnad1 id=injectiv.0h3v.s14.de503b93936f from=translated src=- shape=6bb0c96f vocab=8318b257
+-/
 theorem rootsOfUnityReduction_injective
     (n : ℕ) [NeZero (n : IsLocalRing.ResidueField A)] :
     Function.Injective (restrictRootsOfUnity (IsLocalRing.residue A) n) := by
@@ -48,7 +50,9 @@ theorem rootsOfUnityReduction_injective
     ((mem_rootsOfUnity_iff_isRoot n (y : Aˣ)).mp y.property) hdiff hder
   exact rootsOfUnity.coe_injective heq
 
-/-- Hensel's lemma lifts every prime-to-residue-characteristic root of unity.-/
+/-- Hensel's lemma lifts every prime-to-residue-characteristic root of unity.
+@isnad1 id=surjecti.0h3v.s14.5ffa4d761e85 from=translated src=- shape=fdc300cd vocab=bf14337f
+-/
 theorem rootsOfUnityReduction_surjective
     [HenselianRing A (IsLocalRing.maximalIdeal A)]
     (n : ℕ) [NeZero (n : IsLocalRing.ResidueField A)] :
@@ -86,7 +90,9 @@ theorem rootsOfUnityReduction_surjective
   rw [map_sub, ha₀, sub_eq_zero] at hared
   exact hared
 
-/-- All field roots of nonzero order belong to a valuation ring.-/
+/-- All field roots of nonzero order belong to a valuation ring.
+@isnad1 id=bijectiv.0h3v.s13.d0cf604123ac from=translated src=- shape=94d4c6bd vocab=de063ede
+-/
 theorem rootsOfUnity_toField_bijective (n : ℕ) [NeZero n] :
     Function.Bijective (restrictRootsOfUnity (algebraMap A K) n) := by
   constructor

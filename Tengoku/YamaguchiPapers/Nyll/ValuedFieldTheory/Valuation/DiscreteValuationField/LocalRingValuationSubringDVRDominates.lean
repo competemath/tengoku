@@ -66,6 +66,9 @@ open IsLocalRing
 
 namespace DvrDomination
 
+/--
+@isnad1 id=dimensio.1h1v.s5.640caddac493 from=translated src=- shape=50208249 vocab=4c899cc1
+-/
 theorem dimensionLEOne_of_ringKrullDim_le_one (C : Type u) [CommRing C] [IsDomain C]
     (h : ringKrullDim C ≤ 1) : Ring.DimensionLEOne C := by
   refine Ring.DimensionLEOne.mk (fun {p} hp0 hp => ?_)
@@ -99,6 +102,9 @@ variable {R : Type u} [CommRing R] [IsDomain R] [IsNoetherianRing R] [IsLocalRin
 variable {K : Type v} [Field K] [Algebra R K] [IsFractionRing R K]
 
 omit [IsDomain R] in
+/--
+@isnad1 id=ex.1h2v.s10.1746f008c0c4 from=translated src=- shape=b67a9e8e vocab=322ad151
+-/
 theorem exists_subalgebra_prime_height_le_one (hR : ¬ IsField R) :
     ∃ (S : Subalgebra R K) (P : Ideal ↥S) (_ : P.IsPrime),
       IsNoetherianRing ↥S ∧ P ≠ ⊥ ∧ P.height ≤ 1 ∧

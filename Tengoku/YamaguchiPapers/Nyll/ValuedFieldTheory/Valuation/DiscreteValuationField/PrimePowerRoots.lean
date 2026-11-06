@@ -25,7 +25,9 @@ namespace ValuationTheory.DiscreteValuationField
 variable {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
 
 /-- The ramification valuation is the cyclotomic degree times the valuation of
-the difference between a primitive prime-power root and one.-/
+the difference between a primitive prime-power root and one.
+@isnad1 id=eq.1h4v.s7.498bec36969b from=translated src=- shape=a4f5c37a vocab=d3949d1f
+-/
 theorem addVal_prime_eq_totient_nsmul (p n : ℕ) [Fact p.Prime]
     {ζ : R} (hζ : IsPrimitiveRoot ζ (p ^ (n + 1))) :
     IsDiscreteValuationRing.addVal R (p : R) =
@@ -65,7 +67,9 @@ theorem addVal_prime_eq_totient_nsmul (p n : ℕ) [Fact p.Prime]
       rw [Finset.sum_const, hζ.card_primitiveRoots]
 
 /-- In residue characteristic `p`, the existence of a primitive `p^(n+1)`-th
-root forces its cyclotomic degree to be at most the ramification valuation.-/
+root forces its cyclotomic degree to be at most the ramification valuation.
+@isnad1 id=le.1h4v.s7.201fa23e4071 from=translated src=- shape=aae00d55 vocab=12eaad7c
+-/
 theorem primePower_totient_le_addVal (p n : ℕ) [Fact p.Prime]
     [CharP (IsLocalRing.ResidueField R) p]
     {ζ : R} (hζ : IsPrimitiveRoot ζ (p ^ (n + 1))) :

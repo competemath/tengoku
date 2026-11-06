@@ -30,7 +30,9 @@ universe u v w
 namespace Algebra
 
 /-- A bijective map of principal localizations reflects membership in an ideal
-extended from the base, after multiplication by a power of the element inverted.-/
+extended from the base, after multiplication by a power of the element inverted.
+@isnad1 id=ex.2h7v.s10.f319101cface from=translated src=- shape=6a4a59fd vocab=3d40877d
+-/
 theorem exists_pow_mul_mem_map_of_awayMap_bijective
     {R : Type u} {A : Type v} {B : Type w}
     [CommRing R] [CommRing A] [CommRing B] [Algebra R A] [Algebra R B]
@@ -78,7 +80,9 @@ theorem exists_pow_mul_mem_map_of_awayMap_bijective
   exact ⟨n, hn⟩
 
 /-- Cyclicity of a quotient idempotent factor descends along an algebra map that
-becomes bijective after localizing at that idempotent representative.-/
+becomes bijective after localizing at that idempotent representative.
+@isnad1 id=ex.3h7v.s12.998a543eba0a from=translated src=- shape=9fa1bdab vocab=2c744aef
+-/
 theorem cyclic_quotient_idempotent_of_awayMap_bijective
     {R : Type u} {A : Type v} {B : Type w}
     [CommRing R] [CommRing A] [CommRing B] [Algebra R A] [Algebra R B]

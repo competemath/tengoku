@@ -29,7 +29,9 @@ variable {K L A B : Type*} [Field K] [Field L] [Algebra K L]
   [ContinuousSMul A B]
 
 /-- A dense map from a finite extension induces a surjective tensor map
-over a complete nontrivially normed field. The target needs no norm.-/
+over a complete nontrivially normed field. The target needs no norm.
+@isnad1 id=surjecti.1h5v.s9.d2e3cac2b239 from=translated src=- shape=37ae2f7b vocab=f2159764
+-/
 theorem tensorProduct_lift_surjective_of_denseRange
     (g : L →ₐ[K] B) (hg : DenseRange g) :
     Function.Surjective

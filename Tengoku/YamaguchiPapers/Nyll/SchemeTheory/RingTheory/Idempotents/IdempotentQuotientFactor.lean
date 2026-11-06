@@ -30,7 +30,9 @@ namespace AlgHom
 
 /-- A surjective algebra map whose spectrum is an open immersion identifies the target
 with one factor of a product. Both projections of the constructed algebra equivalence
-are the specified quotient maps.-/
+are the specified quotient maps.
+@isnad1 id=ex.1h4v.s11.ffacc8298e44 from=translated src=- shape=eb3d2fa9 vocab=94d6e24a
+-/
 theorem exists_prod_quotient_equiv_of_isOpenImmersion
     {A R S : Type u} [CommRing A] [CommRing R] [CommRing S]
     [Algebra A R] [Algebra A S] (f : R →ₐ[A] S)

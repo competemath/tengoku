@@ -29,7 +29,9 @@ variable [∀ j, CommRing (A j)] [∀ j, IsDomain (A j)]
 variable [∀ j, IsDiscreteValuationRing (A j)]
 
 /-- A prime strictly below the maximal prime selected by a DVR coordinate is
-exactly the kernel of coordinate evaluation.-/
+exactly the kernel of coordinate evaluation.
+@isnad1 id=eq.2h4v.s8.dc2947f3bb19 from=translated src=- shape=5cbbccd7 vocab=ef836a06
+-/
 theorem prime_eq_ker_coordinateEval_of_le_of_ne
     (i : ι) (N : Ideal (∀ j, A j)) [N.IsPrime]
     (hNP : N ≤ productCoordinatePrime A i)

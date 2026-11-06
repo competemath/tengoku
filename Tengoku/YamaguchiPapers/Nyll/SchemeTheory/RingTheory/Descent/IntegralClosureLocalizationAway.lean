@@ -30,7 +30,9 @@ universe u v w
 
 /-- Recover an integral algebra over a localization from its actual relative
 integral closure. The localization theorem and its transport are the existing
-Mathlib constructions; the only extra comparison is the literal inclusion.-/
+Mathlib constructions; the only extra comparison is the literal inclusion.
+@isnad1 id=islocali.0h4v.s8.5b6f7c7dd2a0 from=translated src=- shape=e4f6f55c vocab=4282b6ce
+-/
 theorem integralClosure_isLocalization
     {R : Type u} [CommRing R] (M : Submonoid R)
     (A : Type v) [CommRing A] [Algebra R A] [IsLocalization M A]
@@ -61,7 +63,9 @@ theorem integralClosure_isLocalization
   exact IsLocalization.isLocalization_of_algEquiv (Algebra.algebraMapSubmonoid C M) e
 
 /-- The relative integral closure in an integral `R[1/d]`-algebra has that
-original algebra as its principal localization.-/
+original algebra as its principal localization.
+@isnad1 id=away.0h4v.s9.2137d422615f from=translated src=- shape=74c98786 vocab=347d2f5a
+-/
 theorem integralClosure_isLocalization_away
     {R : Type u} [CommRing R] (d : R)
     (A : Type v) [CommRing A] [Algebra R A] [IsLocalization.Away d A]

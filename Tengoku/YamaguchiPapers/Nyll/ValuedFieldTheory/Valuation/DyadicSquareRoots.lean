@@ -25,7 +25,9 @@ from one cannot be a square when the value of two is less than one.
 namespace ValuationTheory
 
 /-- The substitution b = 1 + 2z reduces the square-root problem to a monic
-polynomial with derivative one at its residual root.-/
+polynomial with derivative one at its residual root.
+@isnad1 id=ex.1h4v.s8.6b1301912f93 from=translated src=- shape=dc4287bb vocab=4ed9ed77
+-/
 theorem exists_sq_eq_of_valuation_sub_one_lt_two_sq
     {K Γ : Type*} [Field K] [CharZero K] [LinearOrderedCommGroupWithZero Γ]
     (v : Valuation K Γ)
@@ -76,7 +78,9 @@ private theorem le_exp_neg_one_of_lt_one
     omega
 
 /-- A first-order principal unit is not a square in residue characteristic two.
-Only the inequality for the value of two is needed.-/
+Only the inequality for the value of two is needed.
+@isnad1 id=not.2h3v.s7.562748fce2e5 from=translated src=- shape=28d7153b vocab=e46a3274
+-/
 theorem not_isSquare_of_valuation_sub_one_eq_exp_neg_one
     {K : Type*} [Field K]
     (v : Valuation K (WithZero (Multiplicative ℤ))) (h2 : v (2 : K) < 1)
@@ -115,7 +119,9 @@ theorem not_isSquare_of_valuation_sub_one_eq_exp_neg_one
     change (0 : ℤ) ≤ -1 at hge'
     omega
 
-/-- A nonsquare has a square multiple closest to one among multipliers of value one.-/
+/-- A nonsquare has a square multiple closest to one among multipliers of value one.
+@isnad1 id=ex.1h3v.s9.b5b92be989db from=translated src=- shape=df712668 vocab=affe427d
+-/
 theorem exists_minimal_valuation_squareClass_difference
     {K : Type*} [Field K] [CharZero K]
     (v : Valuation K (WithZero (Multiplicative ℤ)))

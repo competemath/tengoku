@@ -29,6 +29,9 @@ noncomputable def rootsOfUnityReduction (n : ℕ) :
     rootsOfUnity n F.valuationSubring →* rootsOfUnity n F.residueField :=
   restrictRootsOfUnity F.residueMap n
 
+/--
+@isnad1 id=eq.0h4v.s12.4c838850af61 from=translated src=- shape=b8cf2830 vocab=1d2da095
+-/
 @[simp] theorem rootsOfUnityReduction_apply (n : ℕ)
     (ζ : rootsOfUnity n F.valuationSubring) :
     ((rootsOfUnityReduction F n ζ : F.residueFieldˣ) : F.residueField) =
@@ -45,7 +48,9 @@ private theorem rootPolynomial_derivative_isUnit
     Polynomial.derivative_one, sub_zero, Polynomial.eval_mul, Polynomial.eval_C,
     Polynomial.eval_pow, Polynomial.eval_X] using hn.mul (a.isUnit.pow (n - 1))
 
-/-- Reduction is injective when the root order is nonzero in the residue field.-/
+/-- Reduction is injective when the root order is nonzero in the residue field.
+@isnad1 id=injectiv.0h3v.s12.f60ec17c9446 from=translated src=- shape=fd641b5a vocab=d538a266
+-/
 theorem rootsOfUnityReduction_injective (n : ℕ) [NeZero (n : F.residueField)] :
     Function.Injective (rootsOfUnityReduction F n) := by
   intro x y hxy
@@ -59,7 +64,9 @@ theorem rootsOfUnityReduction_injective (n : ℕ) [NeZero (n : F.residueField)] 
     hres (rootPolynomial_derivative_isUnit F n (x : F.valuationSubringˣ))
   exact rootsOfUnity.coe_injective heq.symm
 
-/-- Each residual root of unity lifts to an actual root in the valuation ring.-/
+/-- Each residual root of unity lifts to an actual root in the valuation ring.
+@isnad1 id=surjecti.0h3v.s12.ef7b31ef7d4a from=translated src=- shape=fd641b5a vocab=19fed31c
+-/
 theorem rootsOfUnityReduction_surjective (n : ℕ) [NeZero (n : F.residueField)] :
     Function.Surjective (rootsOfUnityReduction F n) := by
   have : NeZero n := .of_neZero_natCast F.residueField
@@ -89,7 +96,9 @@ theorem rootsOfUnityReduction_surjective (n : ℕ) [NeZero (n : F.residueField)]
   apply rootsOfUnity.coe_injective
   exact hares
 
-/-- Reduction is a bijection on roots whose order is invertible in the residue field.-/
+/-- Reduction is a bijection on roots whose order is invertible in the residue field.
+@isnad1 id=bijectiv.0h3v.s12.b7595c48e2fb from=translated src=- shape=fd641b5a vocab=45f2fab8
+-/
 theorem rootsOfUnityReduction_bijective (n : ℕ) [NeZero (n : F.residueField)] :
     Function.Bijective (rootsOfUnityReduction F n) :=
   ⟨rootsOfUnityReduction_injective F n, rootsOfUnityReduction_surjective F n⟩
@@ -99,6 +108,9 @@ noncomputable def rootsOfUnityReductionEquiv (n : ℕ) [NeZero (n : F.residueFie
     rootsOfUnity n F.valuationSubring ≃* rootsOfUnity n F.residueField :=
   MulEquiv.ofBijective (rootsOfUnityReduction F n) (rootsOfUnityReduction_bijective F n)
 
+/--
+@isnad1 id=eq.0h4v.s13.ea2e906ea67c from=translated src=- shape=35614ca6 vocab=a29fbf04
+-/
 @[simp] theorem rootsOfUnityReductionEquiv_apply (n : ℕ) [NeZero (n : F.residueField)]
     (ζ : rootsOfUnity n F.valuationSubring) :
     rootsOfUnityReductionEquiv F n ζ = rootsOfUnityReduction F n ζ := rfl
@@ -139,7 +151,9 @@ noncomputable def fieldRootsOfUnityReductionEquiv
   let : NeZero n := .of_neZero_natCast F.residueField
   (rootsOfUnityFieldEquiv F.toDVF n).symm.trans (rootsOfUnityReductionEquiv F n)
 
-/-- The field-root equivalence is the actual residue map on integral roots.-/
+/-- The field-root equivalence is the actual residue map on integral roots.
+@isnad1 id=eq.0h4v.s13.01e8ae150ed0 from=translated src=- shape=74a9106a vocab=84b5a6cf
+-/
 @[simp] theorem fieldRootsOfUnityReductionEquiv_toField
     (n : ℕ) [NeZero (n : F.residueField)] (ζ : rootsOfUnity n F.valuationSubring) :
     fieldRootsOfUnityReductionEquiv F n

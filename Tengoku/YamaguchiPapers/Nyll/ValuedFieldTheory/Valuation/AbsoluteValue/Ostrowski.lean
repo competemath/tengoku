@@ -41,7 +41,9 @@ private theorem ostrowski_isNonarchimedean_of_charP_pos
 
 /-- An archimedean absolute value forces characteristic zero.  Otherwise
 the preceding finite-residue-class bound would make it
-nonarchimedean in the strong triangle sense.-/
+nonarchimedean in the strong triangle sense.
+@isnad1 id=charzero.1h2v.s6.1ab7d58cb4ef from=translated src=- shape=229e65a4 vocab=a49f4209
+-/
 theorem charZero_of_not_isNonarchimedean
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (harch : ¬ IsNonarchimedean (v : K → ℝ)) :
@@ -1052,7 +1054,9 @@ private theorem norm_symm_eq_one_of_norm_eq_one
     nlinarith [hprod, hle_inv, hpos_inv]
   exact le_antisymm hle hge
 
-/-- A real-algebra equivalence with ℂ determines the norm from its restriction to ℝ.-/
+/-- A real-algebra equivalence with ℂ determines the norm from its restriction to ℝ.
+@isnad1 id=eq.2h4v.s8.d0768d71c607 from=translated src=- shape=61c5951d vocab=30da4582
+-/
 theorem norm_symm_apply_eq_norm_rpow
     {F : Type*} [NormedField F] [Algebra ℝ F]
     {s : ℝ} (hs : 0 < s)
@@ -1125,7 +1129,9 @@ private theorem ostrowski_complexBranch_abs_eq_of_real_rpow
 /-- Ostrowski classification for complete archimedean absolute values.
 A field complete for an archimedean absolute value is isomorphic to ℝ or
 ℂ, and the original absolute value is the standard one transported through
-that isomorphism and raised to a fixed exponent `s ∈ (0,1]`.-/
+that isomorphism and raised to a fixed exponent `s ∈ (0,1]`.
+@isnad1 id=ex.2h2v.s9.6258aefdbaa4 from=translated src=- shape=bb7bd955 vocab=ae2a043b
+-/
 theorem ostrowski_of_complete
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hcomplete : CompleteSpace (WithAbs v))

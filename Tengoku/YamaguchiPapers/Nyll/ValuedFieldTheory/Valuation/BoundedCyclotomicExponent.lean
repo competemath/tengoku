@@ -22,7 +22,9 @@ impossible. The exponent zero and the prime two are included.
 namespace ValuationTheory
 
 /-- A bounded exponent different from one has nonzero difference from one
-and p-adic order strictly below the selected prime-power level.-/
+and p-adic order strictly below the selected prime-power level.
+@isnad1 id=and.2h3v.s6.f3ac2f172e58 from=translated src=- shape=02fdac09 vocab=d7e9c37a
+-/
 theorem one_sub_natCast_ne_zero_and_padicValInt_lt
     (p a s : ℕ) [Fact p.Prime]
     (ha : a < p ^ (s + 1)) (ha1 : a ≠ 1) :

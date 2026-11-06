@@ -38,7 +38,9 @@ noncomputable def realAbsoluteValue (D : DVF K) : AbsoluteValue K ℝ where
   add_le' x y := (D.valuation.norm_add_le x y).trans
     (max_le_add_of_nonneg (D.valuation.norm_nonneg x) (D.valuation.norm_nonneg y))
 
-/-- The associated real absolute value preserves and reflects strict valuation inequalities.-/
+/-- The associated real absolute value preserves and reflects strict valuation inequalities.
+@isnad1 id=iff.0h4v.s7.aba6c231a5f9 from=translated src=- shape=900bf99e vocab=7c337693
+-/
 theorem realAbsoluteValue_lt_iff (D : DVF K) (x y : K) :
     D.realAbsoluteValue x < D.realAbsoluteValue y ↔ D.valuation x < D.valuation y := by
   change (↑(_root_.Valuation.RankOne.hom D.valuation (D.valuation.restrict x)) : ℝ) <
@@ -46,7 +48,9 @@ theorem realAbsoluteValue_lt_iff (D : DVF K) (x y : K) :
   rw [NNReal.coe_lt_coe, (_root_.Valuation.RankOne.strictMono D.valuation).lt_iff_lt]
   exact D.valuation.restrict_lt_iff
 
-/-- The associated real absolute value is nontrivial, as witnessed by a uniformizer.-/
+/-- The associated real absolute value is nontrivial, as witnessed by a uniformizer.
+@isnad1 id=isnontri.0h2v.s4.d5c8a88db3b9 from=translated src=- shape=fc457bb1 vocab=2325bd6f
+-/
 theorem realAbsoluteValue_isNontrivial (D : DVF K) :
     D.realAbsoluteValue.IsNontrivial := by
   obtain ⟨π, hπ⟩ := D.exists_uniformizer
@@ -56,7 +60,9 @@ theorem realAbsoluteValue_isNontrivial (D : DVF K) :
   rw [map_one] at hlt
   exact hlt.ne
 
-/-- Associated real absolute values are equivalent exactly when the valuations are equivalent.-/
+/-- Associated real absolute values are equivalent exactly when the valuations are equivalent.
+@isnad1 id=iff.0h3v.s6.df975b828922 from=translated src=- shape=50c74e69 vocab=f05ccf3f
+-/
 theorem realAbsoluteValue_isEquiv_iff (D E : DVF K) :
     D.realAbsoluteValue.IsEquiv E.realAbsoluteValue ↔ D.valuation.IsEquiv E.valuation := by
   constructor
@@ -70,7 +76,9 @@ theorem realAbsoluteValue_isEquiv_iff (D E : DVF K) :
         (h.lt_iff_lt.trans (E.realAbsoluteValue_lt_iff y x).symm))
 
 /-- Simultaneous approximation with an individual nonzero radius at each
-valuation. Neither completeness nor Henselianity is required.-/
+valuation. Neither completeness nor Henselianity is required.
+@isnad1 id=ex.2h5v.s8.7457db6f669e from=translated src=- shape=f93e6353 vocab=e30d7e29
+-/
 theorem exists_forall_valuation_sub_lt {ι : Type*} [Finite ι]
     (D : ι → DVF K)
     (hD : Pairwise (fun i j => ¬ (D i).valuation.IsEquiv (D j).valuation))

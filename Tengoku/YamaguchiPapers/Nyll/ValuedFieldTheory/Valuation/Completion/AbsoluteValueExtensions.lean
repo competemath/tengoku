@@ -59,7 +59,9 @@ abbrev AbsoluteValueExtension
     (L : Type v) [Field L] [Algebra K L] :=
   {w : AbsoluteValue L ℝ // AbsoluteValue.Extends vK w}
 
-/-- An exact extension of a nontrivial absolute value is nontrivial.-/
+/-- An exact extension of a nontrivial absolute value is nontrivial.
+@isnad1 id=isnontri.1h4v.s6.c62999a4b955 from=translated src=- shape=15537ca1 vocab=d68477a4
+-/
 theorem AbsoluteValueExtension.isNontrivial
     {K : Type u} {L : Type v}
     [Field K] [Field L] [Algebra K L]
@@ -89,6 +91,9 @@ noncomputable def absoluteValueExtension_algebraicClosureAbsoluteValue
     (AbsoluteValue.completionAbsoluteValue_complete vK)
     (AbsoluteValue.completionAbsoluteValue_isNontrivial vK hvK)).extension
 
+/--
+@isnad1 id=eq.1h3v.s11.49ae277f9408 from=translated src=- shape=51397d0c vocab=86de855b
+-/
 @[simp]
 theorem absoluteValueExtension_algebraicClosureAbsoluteValue_algebraMap
     {K : Type u} [Field K] (vK : AbsoluteValue K ℝ)
@@ -139,7 +144,9 @@ noncomputable def absoluteValueExtension_pullback
     AbsoluteValue L ℝ :=
   (absoluteValueExtension_algebraicClosureAbsoluteValue vK hvK).comp tau.injective
 
-/-- Every pullback along a `K`-embedding is an exact extension of `v`.-/
+/-- Every pullback along a `K`-embedding is an exact extension of `v`.
+@isnad1 id=extends.1h4v.s8.f242b487fdc4 from=translated src=- shape=285e21ea vocab=f0daab68
+-/
 theorem absoluteValueExtension_pullback_extends
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     (vK : AbsoluteValue K ℝ) (hvK : vK.IsNontrivial)
@@ -190,7 +197,9 @@ noncomputable def AbsoluteValueExtension.extendToAlgebraicallyClosed
           hwΩ, u.2] }
 
 /-- The extension to an algebraically closed overfield restricts to
-the original exact absolute value on the intermediate field.-/
+the original exact absolute value on the intermediate field.
+@isnad1 id=eq.1h6v.s8.e072ceb4efe1 from=translated src=- shape=a70b4ab6 vocab=52088656
+-/
 @[simp]
 theorem AbsoluteValueExtension.extendToAlgebraicallyClosed_algebraMap
     {K : Type u} {L : Type v} {Ω : Type*}
@@ -236,6 +245,9 @@ noncomputable def absoluteValueExtension_embeddingOfExtension
     phi.commutes]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s15.75c042fcacf7 from=translated src=- shape=c99491e2 vocab=f9272a36
+-/
 @[simp]
 theorem absoluteValueExtension_embeddingOfExtension_apply
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
@@ -266,6 +278,9 @@ noncomputable def absoluteValueExtension_algebraicClosureToCompletionRingHom
     (WithAbs.equiv
       (absoluteValueExtension_algebraicClosureAbsoluteValue vK hvK)).symm.toRingHom
 
+/--
+@isnad1 id=eq.1h3v.s13.9126bae8a15e from=translated src=- shape=1fc3030b vocab=ff33248b
+-/
 @[simp]
 theorem absoluteValueExtension_algebraicClosureToCompletionRingHom_apply
     {K : Type u} [Field K] (vK : AbsoluteValue K ℝ)
@@ -313,6 +328,9 @@ noncomputable def absoluteValueExtension_embeddingToAlgebraicClosureCompletionRi
   (absoluteValueExtension_algebraicClosureToCompletionRingHom vK hvK).comp
     (tau.toRingHom.comp (WithAbs.equiv w.1).toRingHom)
 
+/--
+@isnad1 id=eq.2h6v.s12.f73c8dc6e3f3 from=translated src=- shape=6b209e08 vocab=2bdabce2
+-/
 theorem absoluteValueExtension_embeddingToAlgebraicClosureCompletion_norm
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     (vK : AbsoluteValue K ℝ) (hvK : vK.IsNontrivial)
@@ -332,7 +350,9 @@ theorem absoluteValueExtension_embeddingToAlgebraicClosureCompletion_norm
   exact h.symm
 
 /-- The isometry on the dense field underlying the preceding completion
-map.-/
+map.
+@isnad1 id=isometry.2h5v.s12.94326f167280 from=translated src=- shape=7c654aa9 vocab=305e993a
+-/
 theorem absoluteValueExtension_embeddingToAlgebraicClosureCompletion_isometry
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     (vK : AbsoluteValue K ℝ) (hvK : vK.IsNontrivial)
@@ -360,6 +380,9 @@ noncomputable def absoluteValueExtension_embeddingCompletionMap
     (absoluteValueExtension_embeddingToAlgebraicClosureCompletion_isometry
       vK hvK w tau htau).continuous
 
+/--
+@isnad1 id=eq.2h6v.s13.7db0f426af73 from=translated src=- shape=0b68b23f vocab=40c5c371
+-/
 @[simp]
 theorem absoluteValueExtension_embeddingCompletionMap_coe
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
@@ -378,7 +401,9 @@ theorem absoluteValueExtension_embeddingCompletionMap_coe
     (absoluteValueExtension_embeddingToAlgebraicClosureCompletion_isometry
       vK hvK w tau htau).continuous x
 
-/-- The extended completion map is still an isometry.-/
+/-- The extended completion map is still an isometry.
+@isnad1 id=isometry.2h5v.s12.a800a71b65b5 from=translated src=- shape=14798cf7 vocab=6ec95c88
+-/
 theorem absoluteValueExtension_embeddingCompletionMap_isometry
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     (vK : AbsoluteValue K ℝ) (hvK : vK.IsNontrivial)
@@ -390,7 +415,9 @@ theorem absoluteValueExtension_embeddingCompletionMap_isometry
     vK hvK w tau htau).completion_extension
 
 /-- The map `K_v → \widehat{\bar K_v}` through the dense algebraic closure
-is an isometry.-/
+is an isometry.
+@isnad1 id=isometry.1h2v.s12.227a306de78d from=translated src=- shape=23b931b5 vocab=bfe32c42
+-/
 theorem absoluteValueExtension_completionToAlgebraicClosureCompletion_isometry
     {K : Type u} [Field K] (vK : AbsoluteValue K ℝ)
     (hvK : vK.IsNontrivial) :
@@ -412,7 +439,9 @@ theorem absoluteValueExtension_completionToAlgebraicClosureCompletion_isometry
 
 /-- On `K_v`, the completion extension of `tau` agrees with the canonical
 map through `\bar K_v`.  Equality on the dense copy of `K` is extended by
-continuity.-/
+continuity.
+@isnad1 id=eq.2h6v.s13.6f27dcee6cc9 from=translated src=- shape=01240fdb vocab=2ed8f29b
+-/
 theorem absoluteValueExtension_embeddingCompletionMap_completionMap
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     (vK : AbsoluteValue K ℝ) (hvK : vK.IsNontrivial)
@@ -487,7 +516,9 @@ noncomputable def absoluteValueExtension_embeddingCompletionAlgHom
           vK hvK w tau htau x }
 
 /-- The image of the localization under the completed embedding lies in the
-dense algebraic closure inside its completion.-/
+dense algebraic closure inside its completion.
+@isnad1 id=mem.2h6v.s13.d60cecdd9359 from=translated src=- shape=6fb94cb3 vocab=e01aa1c7
+-/
 theorem absoluteValueExtension_embeddingCompletionAlgHom_mem_range
     {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
     (vK : AbsoluteValue K ℝ) (hvK : vK.IsNontrivial)

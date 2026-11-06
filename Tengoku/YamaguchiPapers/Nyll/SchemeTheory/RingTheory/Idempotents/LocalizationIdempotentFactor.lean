@@ -46,13 +46,18 @@ The construction itself does not need idempotence.-/
     rw [map_sub, map_one]
     exact Ideal.mem_span_singleton_self (1 - f e))
 
+/--
+@isnad1 id=eq.0h6v.s11.b8d049fbf35e from=translated src=- shape=139c0b34 vocab=2ef2e35e
+-/
 @[simp]
 theorem idempotentFactorMap_mk (f : C →ₐ[R] B) (e c : C) :
     f.idempotentFactorMap e (Ideal.Quotient.mk (Ideal.span {1 - e}) c) =
       Ideal.Quotient.mk (Ideal.span {1 - f e}) (f c) := rfl
 
 /-- A bijective principal-localization map identifies an idempotent factor on
-which the element being inverted is already a unit.-/
+which the element being inverted is already a unit.
+@isnad1 id=bijectiv.3h6v.s11.dfd965e42685 from=translated src=- shape=cf1bc397 vocab=3398ecae
+-/
 theorem bijective_idempotentFactorMap_of_awayMap_bijective
     (f : C →ₐ[R] B) (e : C) (he : IsIdempotentElem e) (b : C)
     (hb : IsUnit (Ideal.Quotient.mk (Ideal.span {1 - e}) b))
@@ -116,7 +121,9 @@ theorem bijective_idempotentFactorMap_of_awayMap_bijective
       _ = qB y := by rw [hz', one_mul]
 
 /-- Under the same localization comparison, integrality of the source algebra
-implies integrality of the target idempotent factor.-/
+implies integrality of the target idempotent factor.
+@isnad1 id=isintegr.3h6v.s10.bf33a71c99de from=translated src=- shape=0ce5f261 vocab=cd1cc546
+-/
 theorem isIntegral_idempotentFactor_of_awayMap_bijective
     [Algebra.IsIntegral R C] (f : C →ₐ[R] B)
     (e : C) (he : IsIdempotentElem e) (b : C)

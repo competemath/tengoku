@@ -32,7 +32,9 @@ def inverseCharacterTwist (χ : Δ →* Rˣ) (ρ : Representation R Δ A) :
     simp only [map_mul, mul_inv_rev, Units.val_mul, LinearMap.smul_apply,
       Module.End.mul_apply, map_smul, smul_smul]
 
-/-- The actual fixed vectors of the twist are the original character eigenvectors.-/
+/-- The actual fixed vectors of the twist are the original character eigenvectors.
+@isnad1 id=iff.0h6v.s9.c030c1dbed00 from=translated src=- shape=c81739aa vocab=a77cc8c7
+-/
 theorem inverseCharacterTwist_mem_invariants_iff
     (χ : Δ →* Rˣ) (ρ : Representation R Δ A) (a : A) :
     a ∈ (inverseCharacterTwist χ ρ).invariants ↔

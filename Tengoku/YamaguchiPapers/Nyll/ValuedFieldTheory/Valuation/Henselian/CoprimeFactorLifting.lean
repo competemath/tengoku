@@ -25,7 +25,9 @@ open Polynomial
 variable {R : Type*} [CommRing R] {I : Ideal R} [I.IsMaximal] [HenselianRing R I]
 
 /-- A coprime monic factorization modulo a maximal Henselian ideal lifts to
-a coprime monic factorization over the base ring with the same degrees.-/
+a coprime monic factorization over the base ring with the same degrees.
+@isnad1 id=ex.5h5v.s9.b10f3ece66f1 from=translated src=- shape=0ddf69a1 vocab=0e94cf45
+-/
 theorem exists_coprime_factor_lift
     (f : R[X]) (gbar hbar : (R ⧸ I)[X])
     (hf : f.Monic) (hgbar : gbar.Monic) (hhbar : hbar.Monic)

@@ -36,7 +36,9 @@ variable [base.valuation.HasExtension target.valuation]
 Characterizes `ValuationTheory.DiscreteValuationField.ValuedExtension.IsUnramified base.toDVF
 target.toDVF` by the equivalent condition
 `ValuationTheory.DiscreteValuationField.ValuedExtension.ramificationIndex base.toDVF target.toDVF
-= 1`.-/
+= 1`.
+@isnad1 id=iff.0h4v.s6.c1cbe59d8218 from=translated src=- shape=161dadc4 vocab=85452ea2
+-/
 @[simp] theorem isUnramified_iff_ramificationIndex_eq_one :
     ValuationTheory.DiscreteValuationField.ValuedExtension.IsUnramified
           base.toDVF target.toDVF ↔
@@ -48,7 +50,9 @@ target.toDVF` by the equivalent condition
 Characterizes `ValuationTheory.DiscreteValuationField.ValuedExtension.IsTotallyRamified base.toDVF
 target.toDVF` by the equivalent condition
 `ValuationTheory.DiscreteValuationField.ValuedExtension.residueDegree base.toDVF target.toDVF =
-1`.-/
+1`.
+@isnad1 id=iff.0h4v.s6.b87a0592584b from=translated src=- shape=161dadc4 vocab=74fc673d
+-/
 @[simp] theorem isTotallyRamified_iff_residueDegree_eq_one :
     ValuationTheory.DiscreteValuationField.ValuedExtension.IsTotallyRamified
           base.toDVF target.toDVF ↔

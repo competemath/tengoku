@@ -33,7 +33,9 @@ namespace Algebra
 
 /-- A finite open factor in a quotient fiber extends to the integral closure,
 and its unit lifts to a principal neighborhood on which the normalization
-inclusion becomes an isomorphism.-/
+inclusion becomes an isomorphism.
+@isnad1 id=other.0h5v.s17.d87bfbca5c15 from=translated src=- shape=27057a8b vocab=d715f796
+-/
 theorem exists_integralClosure_quotient_factor_and_awayMap_bijective
     {R B D : Type u} [CommRing R] [CommRing B] [CommRing D]
     [Algebra R B] [Algebra.FiniteType R B] [Algebra.QuasiFinite R B]

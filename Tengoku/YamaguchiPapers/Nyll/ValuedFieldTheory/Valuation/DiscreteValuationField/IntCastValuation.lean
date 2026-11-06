@@ -24,7 +24,9 @@ variable {K : Type u} [Field K]
 variable {Γ₀ : Type w} [LinearOrderedCommGroupWithZero Γ₀]
 
 /-- The value of a nonzero integer is the residue prime's value raised
-to the integer's p-adic order.-/
+to the integer's p-adic order.
+@isnad1 id=eq.1h5v.s8.e00d37489fd1 from=translated src=- shape=fc90f696 vocab=6e8129f5
+-/
 theorem intCast_eq_pow_padicValInt (v : Valuation K Γ₀)
     (p : ℕ) [Fact p.Prime] [CharP (IsLocalRing.ResidueField v.valuationSubring) p]
     (z : ℤ) (hz : z ≠ 0) :

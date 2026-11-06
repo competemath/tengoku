@@ -29,7 +29,9 @@ open TopologicalSpace
 namespace PrimeSpectrum
 
 /-- A quotient idempotent has a lift whose basic open lies in any prescribed open
-containing its image in the original spectrum. The lift is not asserted to be idempotent.-/
+containing its image in the original spectrum. The lift is not asserted to be idempotent.
+@isnad1 id=ex.2h4v.s9.1c990418e563 from=translated src=- shape=9a66f592 vocab=6ec32e60
+-/
 theorem exists_lift_idempotent_basicOpen_le {R : Type u} [CommRing R]
     (I : Ideal R) (e : R ⧸ I) (he : IsIdempotentElem e)
     (U : Opens (PrimeSpectrum R))

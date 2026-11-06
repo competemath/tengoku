@@ -63,7 +63,9 @@ section Comparison
 
 variable (target : CompleteDVF.{w, x} L)
 
-/-- Equality of valuation subrings implies valuation equivalence.-/
+/-- Equality of valuation subrings implies valuation equivalence.
+@isnad1 id=isequiv.1h4v.s6.9fcb5e9762f8 from=translated src=- shape=ed0452c6 vocab=9e66b8b5
+-/
 theorem valuation_isEquiv_of_valuationSubring_eq
     {Gamma' : Type y} [LinearOrderedCommGroupWithZero Gamma']
     (v' : _root_.Valuation L Gamma')
@@ -71,7 +73,9 @@ theorem valuation_isEquiv_of_valuationSubring_eq
     target.valuation.IsEquiv v' :=
   (_root_.Valuation.isEquiv_iff_valuationSubring target.valuation v').2 hsub
 
-/-- Equivalent valuations have the same valuation subring.-/
+/-- Equivalent valuations have the same valuation subring.
+@isnad1 id=eq.1h4v.s6.fcdeb7012beb from=translated src=- shape=d02c8c40 vocab=9e66b8b5
+-/
 theorem valuationSubring_eq_of_valuation_isEquiv
     {Gamma' : Type y} [LinearOrderedCommGroupWithZero Gamma']
     {v' : _root_.Valuation L Gamma'}

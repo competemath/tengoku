@@ -40,7 +40,9 @@ def HasUniqueValuationExtension (base : HenselianDVF.{u, v} K)
 
 omit [Algebra K L] in
 /-- A Henselian-DVF valuation is equivalent to another valuation as soon as
-their valuation subrings are equal.-/
+their valuation subrings are equal.
+@isnad1 id=isequiv.1h6v.s6.df417f70d785 from=translated src=- shape=29f33b19 vocab=1af618e5
+-/
 theorem valuation_isEquiv_of_valuationSubring_eq
     (_base : HenselianDVF.{u, v} K) (target : HenselianDVF.{w, x} L)
     {Gamma' : Type y} [LinearOrderedCommGroupWithZero Gamma']

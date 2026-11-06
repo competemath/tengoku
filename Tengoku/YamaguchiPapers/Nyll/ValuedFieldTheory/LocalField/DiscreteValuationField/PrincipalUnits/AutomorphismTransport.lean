@@ -50,7 +50,9 @@ def valuationSubringRingEquivOfPreserves
     F.valuation.valuationSubring hmem
 
 /-- A valuation-ring-preserving field automorphism preserves every power of the
-maximal ideal of the chosen valuation ring.-/
+maximal ideal of the chosen valuation ring.
+@isnad1 id=iff.1h5v.s11.4a2ea6be1d9d from=translated src=- shape=7b4e5bae vocab=21dc116b
+-/
 theorem valuationSubringRingEquivOfPreserves_mem_maximalIdeal_pow_iff
     (e : K ≃+* K)
     (hmem :
@@ -99,7 +101,9 @@ noncomputable def valuationSubringResidueFieldEquivOfPreserves
 
 /--
 Establishes the identity `valuationSubringResidueFieldEquivOfPreserves F e hmem (F.residueMap x) =
-F.residueMap (valuationSubringRingEquivOfPreserves F e hmem x)`.-/
+F.residueMap (valuationSubringRingEquivOfPreserves F e hmem x)`.
+@isnad1 id=eq.1h4v.s11.f6124d051fe7 from=translated src=- shape=bccd9f2c vocab=6953f230
+-/
 @[simp] theorem valuationSubringResidueFieldEquivOfPreserves_apply_residue
     (e : K ≃+* K)
     (hmem :
@@ -129,7 +133,9 @@ def valuationSubringUnitEquivOfPreserves
 /--
 The defining evaluation formula for `valuationSubringUnitEquivOfPreserves` is
 `((valuationSubringUnitEquivOfPreserves F e hmem u : F.valuationSubringˣ) : F.valuationSubring) =
-valuationSubringRingEquivOfPreserves F e hmem (u : F.valuationSubring)`.-/
+valuationSubringRingEquivOfPreserves F e hmem (u : F.valuationSubring)`.
+@isnad1 id=eq.1h4v.s11.d4bbeabbd686 from=translated src=- shape=eb946ef1 vocab=92722eff
+-/
 @[simp] theorem valuationSubringUnitEquivOfPreserves_apply
     (e : K ≃+* K)
     (hmem :
@@ -144,7 +150,9 @@ valuationSubringRingEquivOfPreserves F e hmem (u : F.valuationSubring)`.-/
   rfl
 
 /-- The induced automorphism on valuation-ring units preserves every concrete
-principal-unit level `U^n`.-/
+principal-unit level `U^n`.
+@isnad1 id=iff.1h5v.s11.609ce24c6e48 from=translated src=- shape=aa6256b2 vocab=e60fb7a0
+-/
 theorem valuationSubringUnitEquivOfPreserves_mem_principalUnit_iff
     (e : K ≃+* K)
     (hmem :
@@ -167,7 +175,9 @@ theorem valuationSubringUnitEquivOfPreserves_mem_principalUnit_iff
     n ((u : F.valuationSubring) - 1)
 
 /-- The subgroup map form of principal-unit preservation for a
-valuation-ring-preserving field automorphism.-/
+valuation-ring-preserving field automorphism.
+@isnad1 id=eq.1h4v.s10.b1ca0c6f8405 from=translated src=- shape=e03b3d1f vocab=c96063e2
+-/
 theorem higherPrincipalUnitGroup_map_valuationSubringUnitEquivOfPreserves
     (e : K ≃+* K)
     (hmem :
@@ -209,7 +219,9 @@ noncomputable def unitsModPrincipalUnitEquivOfPreserves
 /--
 Establishes the identity `unitsModPrincipalUnitEquivOfPreserves F e hmem n (QuotientGroup.mk'
 (higherPrincipalUnitGroup F n) u) = QuotientGroup.mk' (higherPrincipalUnitGroup F n)
-(valuationSubringUnitEquivOfPreserves F e hmem u)`.-/
+(valuationSubringUnitEquivOfPreserves F e hmem u)`.
+@isnad1 id=eq.1h5v.s14.5f339618aa32 from=translated src=- shape=d4df6339 vocab=d52ac91b
+-/
 @[simp] theorem unitsModPrincipalUnitEquivOfPreserves_mk
     (e : K ≃+* K)
     (hmem :

@@ -30,7 +30,9 @@ universe u
 
 /-- If `τ` acts by the `a`-th power on `μ_n`, its action on the mod-`n`
 abelianization is trivial exactly when `τ(x)/x^a` is an `n`-th power
-for every nonzero `x`.-/
+for every nonzero `x`.
+@isnad1 id=iff.2h4v.s11.2e30b979822c from=translated src=- shape=63399a23 vocab=3db32b24
+-/
 theorem kummer_trivial_action_criterion
     (K : Type u) [Field K]
     (n : ℕ+) [NeZero ((n : ℕ) : K)]

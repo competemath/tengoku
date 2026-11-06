@@ -36,7 +36,9 @@ variable (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
 -- The actions on the valuation ring and residue field are the canonical
 -- decomposition-subgroup actions. No new algebra, action, or topology is installed.
 /-- Every actual inertia automorphism fixes every finite-order field element
-when the upper Henselian DVF has residue characteristic zero.-/
+when the upper Henselian DVF has residue characteristic zero.
+@isnad1 id=eq.1h5v.s12.492235e17866 from=translated src=- shape=556f567d vocab=094409e7
+-/
 theorem inertia_fixes_of_isOfFinOrder
     (σ : inertiaGroup K F.valuation.valuationSubring)
     (ζ : L) (hζ : IsOfFinOrder ζ) :
@@ -75,7 +77,9 @@ theorem inertia_fixes_of_isOfFinOrder
     (((x : F.valuationSubringˣ) : F.valuationSubring) : L)) heq
 
 /-- All roots of unity lie in the actual inertia fixed field in residue
-characteristic zero. No finiteness or residue-field comparison is required.-/
+characteristic zero. No finiteness or residue-field comparison is required.
+@isnad1 id=mem.1h4v.s7.3d7c13d1c082 from=translated src=- shape=30eaf80c vocab=0d618c50
+-/
 theorem mem_inertiaField_of_isOfFinOrder (ζ : L) (hζ : IsOfFinOrder ζ) :
     ζ ∈ inertiaField K F.valuation.valuationSubring := by
   apply (mem_inertiaField_iff (K := K) F.valuation.valuationSubring ζ).mpr

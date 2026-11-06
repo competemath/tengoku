@@ -26,7 +26,9 @@ open UniqueFactorizationMonoid
 namespace DiscreteValuationField
 
 /-- Over a local ring, a polynomial whose residue is nonzero is primitive in
-the Gauss-lemma sense: every constant divisor is a unit.-/
+the Gauss-lemma sense: every constant divisor is a unit.
+@isnad1 id=isprimit.1h2v.s7.b02006faf3bd from=translated src=- shape=9acec3b2 vocab=a6e096a1
+-/
 theorem polynomial_isPrimitive_of_residue_ne_zero
     {R : Type*} [CommRing R] [IsLocalRing R]
     {f : Polynomial R}
@@ -43,7 +45,9 @@ theorem polynomial_isPrimitive_of_residue_ne_zero
 
 /-- A primitive polynomial over a valuation subring has a unit coefficient.
 The proof chooses a coefficient of maximal valuation; it divides every other
-coefficient, so primitivity forces it to be a unit.-/
+coefficient, so primitivity forces it to be a unit.
+@isnad1 id=ex.1h3v.s7.be1886b79a88 from=translated src=- shape=03940dfd vocab=3408e392
+-/
 theorem exists_isUnit_coeff_of_isPrimitive
     {K : Type*} [Field K] (V : ValuationSubring K)
     {f : Polynomial V} (hf : f.IsPrimitive) :
@@ -72,7 +76,9 @@ theorem exists_isUnit_coeff_of_isPrimitive
     rw [mul_comm, hz]
 
 /-- The reduction of a primitive polynomial over a valuation subring is
-nonzero.-/
+nonzero.
+@isnad1 id=ne.1h3v.s9.09c26d126e2d from=translated src=- shape=c4ca143c vocab=6c4b9d4a
+-/
 theorem polynomial_residue_ne_zero_of_isPrimitive
     {K : Type*} [Field K] (V : ValuationSubring K)
     {f : Polynomial V} (hf : f.IsPrimitive) :
@@ -86,7 +92,9 @@ theorem polynomial_residue_ne_zero_of_isPrimitive
   simp only [Polynomial.coeff_zero] at hcoeff
   exact ((IsLocalRing.residue_ne_zero_iff_isUnit (f.coeff i)).2 hi) hcoeff
 
-/-- Pointwise associated factors have associated multiset products.-/
+/-- Pointwise associated factors have associated multiset products.
+@isnad1 id=associat.1h5v.s5.14e35109fdf6 from=translated src=- shape=10cddbe3 vocab=16ddaa5b
+-/
 theorem associated_multiset_map_prod_of_forall
     {I M : Type*} [CommMonoid M]
     (s : Multiset I) (f g : I → M)
@@ -101,7 +109,9 @@ theorem associated_multiset_map_prod_of_forall
 
 /-- Gauss association descends through a valuation subring: primitive
 polynomials that become associated over the fraction field are already
-associated over the valuation ring.-/
+associated over the valuation ring.
+@isnad1 id=associat.3h4v.s9.16bec9dd14b4 from=translated src=- shape=0a09f7ce vocab=ddd42a76
+-/
 theorem associated_of_isPrimitive_of_map_associated
     {K : Type*} [Field K] (V : ValuationSubring K)
     {f g : Polynomial V} (hf : f.IsPrimitive) (hg : g.IsPrimitive)
@@ -163,7 +173,9 @@ theorem associated_of_isPrimitive_of_map_associated
       (Associated.of_eq hfg)
 
 /-- Gauss's product lemma for a valuation subring, stated without choosing a
-`NormalizedGCDMonoid` structure.-/
+`NormalizedGCDMonoid` structure.
+@isnad1 id=isprimit.2h4v.s8.6aa1d4c23b02 from=translated src=- shape=1ed374ad vocab=d002a808
+-/
 theorem isPrimitive_mul_of_valuationSubring
     {K : Type*} [Field K] (V : ValuationSubring K)
     {f g : Polynomial V} (hf : f.IsPrimitive) (hg : g.IsPrimitive) :
@@ -172,7 +184,9 @@ theorem isPrimitive_mul_of_valuationSubring
   exact Polynomial.contentIdeal_mul_eq_top_of_contentIdeal_eq_top hf hg
 
 /-- Multiset form of the preceding primitive-product lemma, convenient for
-unique-factorization multisets over `K[X]`.-/
+unique-factorization multisets over `K[X]`.
+@isnad1 id=isprimit.1h3v.s8.16f34d840cc0 from=translated src=- shape=b6c8c5ab vocab=abc60c9d
+-/
 theorem isPrimitive_multiset_prod_of_valuationSubring
     {K : Type*} [Field K] (V : ValuationSubring K)
     (s : Multiset (Polynomial V))
@@ -190,7 +204,9 @@ theorem isPrimitive_multiset_prod_of_valuationSubring
 subring is associated to the image of a primitive irreducible polynomial
 over the valuation subring.  This is the normalization step used when the
 the construction factors a primitive polynomial over `K` and then rescales each
-irreducible factor back into the valuation ring.-/
+irreducible factor back into the valuation ring.
+@isnad1 id=ex.1h3v.s8.a1333697aa45 from=translated src=- shape=9580476c vocab=15908e2a
+-/
 theorem exists_primitive_irreducible_lift_of_irreducible
     {K : Type*} [Field K] (V : ValuationSubring K)
     {p : Polynomial K} (hp : Irreducible p) :
@@ -269,7 +285,9 @@ theorem exists_primitive_irreducible_lift_of_irreducible
 
 /-- A primitive polynomial over a valuation subring is, up to a unit over
 that valuation subring, a finite product of primitive polynomials whose
-fraction-field images are irreducible.-/
+fraction-field images are irreducible.
+@isnad1 id=ex.1h3v.s9.7af8480c3943 from=translated src=- shape=421cf814 vocab=1f71c2ac
+-/
 theorem primitive_associated_prod_primitive_irreducible_map_factors
     {K : Type*} [Field K] (V : ValuationSubring K)
     (f : Polynomial V) (hf : f.IsPrimitive) :

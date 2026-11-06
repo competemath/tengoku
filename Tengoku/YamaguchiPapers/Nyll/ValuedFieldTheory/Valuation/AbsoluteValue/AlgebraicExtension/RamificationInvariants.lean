@@ -113,6 +113,9 @@ def exponentialValuationRingMap
     rw [hExt]
     exact ha
 
+/--
+@isnad1 id=eq.1h5v.s10.dcbc43f4070e from=translated src=- shape=59205381 vocab=cb2bec70
+-/
 @[simp]
 theorem exponentialValuationRingMap_apply
     {K L : Type*} [Field K] [Field L] [Algebra K L]
@@ -125,7 +128,9 @@ theorem exponentialValuationRingMap_apply
         algebraMap K L (a : K) :=
   rfl
 
-/-- Exact extension makes the induced map of valuation rings local.-/
+/-- Exact extension makes the induced map of valuation rings local.
+@isnad1 id=islocalh.1h4v.s10.591002086c32 from=translated src=- shape=ba717584 vocab=665e2109
+-/
 theorem exponentialValuationRingMap_isLocalHom
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -308,7 +313,9 @@ def exponentialValueSubgroup
     exact LubinTate.Valuations.exponentialValuation_inv_value v hx hr
 
 /-- Conversely to the valuation-ring criterion, if the valuation ring attached to an exponential
-exponential valuation is a DVR, its real value group is discrete.-/
+exponential valuation is a DVR, its real value group is discrete.
+@isnad1 id=discrete.0h2v.s6.9f0996c6192f from=translated src=- shape=67d24711 vocab=1bd33b38
+-/
 theorem discreteExponentialValuation_of_isDiscreteValuationRing
     {K : Type*} [Field K] (v : LubinTate.Valuations.ExponentialValuation K)
     [IsDiscreteValuationRing (LubinTate.Valuations.exponentialValuationSubring v)] :
@@ -538,7 +545,9 @@ private theorem exists_valueGroup_generators_scaled_by_ramificationIdx
     exponentialValueSubgroup_eq_zmultiples w hwvalues hPival,
     hscale⟩
 
-/-- Exact extension embeds the base value group in the target value group.-/
+/-- Exact extension embeds the base value group in the target value group.
+@isnad1 id=le.1h4v.s7.4c8becfc99cd from=translated src=- shape=342005de vocab=47d2dadc
+-/
 theorem exponentialValueSubgroup_le_of_extends
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -638,7 +647,9 @@ private theorem exponentialRamificationIndex_eq_of_cyclic_valueSubgroups
     _ = e := Nat.card_zmod e
 
 /-- For discrete source and target valuation rings, the quotient-cardinality
-ramification index agrees with mathlib's local Dedekind ramification index.-/
+ramification index agrees with mathlib's local Dedekind ramification index.
+@isnad1 id=other.2h4v.s9.ff4052b14200 from=translated src=- shape=82e2a4cb vocab=07713a78
+-/
 theorem exponentialRamificationIndex_eq_ideal_ramificationIdx
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -688,7 +699,9 @@ def exponentialResidueDegree
   exact Module.finrank (IsLocalRing.ResidueField V)
     (IsLocalRing.ResidueField W)
 
-/-- The residue finrank is exactly mathlib's local inertia degree.-/
+/-- The residue finrank is exactly mathlib's local inertia degree.
+@isnad1 id=other.1h4v.s9.a61161b95ba2 from=translated src=- shape=c8e8d4a6 vocab=f9e98fa8
+-/
 theorem exponentialResidueDegree_eq_ideal_inertiaDeg
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -824,7 +837,9 @@ noncomputable def exponentialAssociatedAbsoluteValue
     simpa only [hx, hy, hxy, ite_false, r, s, t] using hmain
 
 /-- Exact extension of associated exponential valuations gives exact
-extension of the associated absolute values.-/
+extension of the associated absolute values.
+@isnad1 id=eq.3h8v.s8.785f717dac5c from=translated src=- shape=ca9bc9d1 vocab=c211efe5
+-/
 theorem associatedAbsoluteValue_extends
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -876,7 +891,9 @@ private theorem exponentialValueCoset_units_surjective
   simp [hvalue]
 
 /-- Equality after cross-multiplying by nonzero base elements forces equality
-of the corresponding value-group quotient classes.-/
+of the corresponding value-group quotient classes.
+@isnad1 id=eq.6h8v.s8.654fb4e637d5 from=translated src=- shape=9cf1f186 vocab=c6d12956
+-/
 theorem exponentialValueCoset_eq_of_cross_value_eq
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -936,7 +953,9 @@ def DistinctExponentialValueCosetRepresentatives
           w (algebraMap K L b * pi j)
 
 /-- Injectivity of the actual value-coset map supplies the pairwise
-distinctness condition used by the constructive proof.-/
+distinctness condition used by the constructive proof.
+@isnad1 id=distinct.3h6v.s7.655f8f1a9acb from=translated src=- shape=70da1636 vocab=c2cfff16
+-/
 theorem distinctExponentialValueCosetRepresentatives_of_injective
     {K L I : Type*} [Field K] [Field L] [Algebra K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -957,7 +976,9 @@ theorem distinctExponentialValueCosetRepresentatives_of_injective
 representatives multiplied by linearly independent residue lifts form a
 linearly independent family over the base field.  Repeated roots or a degree
 formula are not built into the statement: this is the actual
-linear-independence argument.-/
+linear-independence argument.
+@isnad1 id=linearin.2h9v.s11.acbd818b3e19 from=translated src=- shape=a18cb85d vocab=57d3184f
+-/
 theorem ramificationInvariants_valueCosets_mul_residueLifts_linearIndependent
     {K L I J : Type*} [Field K] [Field L] [Algebra K L]
     [Finite I] [Finite J]
@@ -1040,7 +1061,9 @@ theorem ramificationInvariants_valueCosets_mul_residueLifts_linearIndependent
 /-- The linearly-independent product family does not require the two
 indexing sets to have been proved finite in advance.  Every finite part is
 contained in a product of finite parts, to which the preceding constructive
-argument applies.-/
+argument applies.
+@isnad1 id=linearin.2h9v.s11.a710409e151f from=translated src=- shape=795f0e66 vocab=decfa6b3
+-/
 theorem ramificationInvariants_valueCosets_mul_residueLifts_linearIndependent_arbitrary
     {K L I J : Type*} [Field K] [Field L] [Algebra K L]
     (v : LubinTate.Valuations.ExponentialValuation K)
@@ -1107,7 +1130,9 @@ theorem ramificationInvariants_valueCosets_mul_residueLifts_linearIndependent_ar
 /-- Fundamental inequality in constructive cardinal form.  Thus any complete
 set of `e` value-coset representatives and any residue basis of size `f`
 give `e f ≤ [L : K]`; no extension record carrying a pre-assumed degree
-formula is used.-/
+formula is used.
+@isnad1 id=le.2h9v.s11.9af9e91c7b37 from=translated src=- shape=59037293 vocab=ea879459
+-/
 theorem ramificationInvariants_valueCosets_mul_residueLifts_card_le_finrank
     {K L I J : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L] [Fintype I] [Fintype J]
@@ -1135,7 +1160,9 @@ theorem ramificationInvariants_valueCosets_mul_residueLifts_card_le_finrank
   simpa using hli.fintype_card_le_finrank
 
 /-- Fundamental inequality with the ramification index identified as the
-cardinality of the actual quotient `w(Lˣ)/v(Kˣ)`.-/
+cardinality of the actual quotient `w(Lˣ)/v(Kˣ)`.
+@isnad1 id=le.3h9v.s11.b921ecdfd876 from=translated src=- shape=a5ef3265 vocab=6219765f
+-/
 theorem ramificationInvariants_actual_valueGroup_card_mul_residueLifts_card_le_finrank
     {K L I J : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L] [Finite I] [Fintype J]
@@ -1178,7 +1205,9 @@ theorem ramificationInvariants_actual_valueGroup_card_mul_residueLifts_card_le_f
 /-- the fundamental inequality, general fundamental inequality with both invariants
 identified literally: `e` is the cardinality of `w(Lˣ)/v(Kˣ)` and `f` is
 the residue-field finrank.  The supplied `pi` and `omega` are genuine complete
-systems of value-coset representatives and residue-basis lifts.-/
+systems of value-coset representatives and residue-basis lifts.
+@isnad1 id=le.3h10v.s12.57da14d7f3b4 from=translated src=- shape=bd409caf vocab=250ba49a
+-/
 theorem ramificationInvariants_fundamental_inequality_of_representatives
     {K L I J : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L] [Finite I] [Finite J]
@@ -1234,7 +1263,9 @@ theorem ramificationInvariants_fundamental_inequality_of_representatives
 /-- The fundamental inequality in its explicit form.  The value
 coset representatives and the residue-basis lifts are chosen internally.
 Their indexing sets are proved finite from the product family's linear
-independence, rather than assumed finite at the theorem boundary.-/
+independence, rather than assumed finite at the theorem boundary.
+@isnad1 id=le.1h4v.s7.e7918beac7c6 from=translated src=- shape=96b91a66 vocab=86e72163
+-/
 theorem ramificationInvariants_fundamental_inequality
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]

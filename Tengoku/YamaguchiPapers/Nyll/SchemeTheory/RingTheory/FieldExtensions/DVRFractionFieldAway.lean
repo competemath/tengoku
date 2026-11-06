@@ -26,7 +26,9 @@ open scoped nonZeroDivisors
 universe u v
 
 /-- Inverting a nonzero nonunit of a discrete valuation ring gives its
-actual fraction field, with its existing algebra map.-/
+actual fraction field, with its existing algebra map.
+@isnad1 id=away.2h3v.s6.0252f82cb8a4 from=translated src=- shape=f6ede4ce vocab=1197fc07
+-/
 theorem isLocalizationAway_fractionField_of_isDiscreteValuationRing
     (R : Type u) [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (K : Type v) [Field K] [Algebra R K] [IsFractionRing R K]

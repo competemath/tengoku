@@ -76,6 +76,9 @@ end AlgebraicGeometry
 
 open _root_.AlgebraicGeometry in
 open GeometricallyIntegral_of_isPullback_of_geometricallyIntegral.AlgebraicGeometry in
+/--
+@isnad1 id=geometri.1h7v.s7.ee20f9085697 from=translated src=- shape=9dc75386 vocab=44de54d8
+-/
 theorem _root_.AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral
     {κ k : Type u} [Field κ] [Field k] [Algebra κ k]
     {C C' : Scheme.{u}} (c : C ⟶ Spec (CommRingCat.of κ))

@@ -32,7 +32,9 @@ namespace AlgebraicGeometry
 
 universe u
 
-/-- An etale morphism of schemes is geometrically reduced.-/
+/-- An etale morphism of schemes is geometrically reduced.
+@isnad1 id=geometri.0h3v.s4.78347cea3990 from=translated src=- shape=892cb9de vocab=98cd7d02
+-/
 theorem Etale.geometricallyReduced
     {X Y : Scheme.{u}} (f : X ⟶ Y) [Etale f] :
     GeometricallyReduced f := by
@@ -59,7 +61,9 @@ theorem Etale.geometricallyReduced
   exact IsReduced.of_openCover Z Z.affineCover
 
 /-- The source of an etale morphism over a locally Noetherian reduced scheme
-is reduced.-/
+is reduced.
+@isnad1 id=isreduce.0h3v.s4.d6d26110b12f from=translated src=- shape=a016376d vocab=101328dd
+-/
 theorem Etale.isReduced_of_isLocallyNoetherian
     {X Y : Scheme.{u}} (f : X ⟶ Y) [Etale f]
     [IsReduced Y] [IsLocallyNoetherian Y] : IsReduced X := by

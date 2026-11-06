@@ -36,7 +36,9 @@ namespace Algebra
 `(X - 1) * X ^ d` for a positive `d`.
 
 The cyclicity hypothesis says that every element of the quotient factor is a scalar
-multiple of its unit. Scalars from `R` suffice because `R → R ⧸ I` is surjective.-/
+multiple of its unit. Scalars from `R` suffice because `R → R ⧸ I` is surjective.
+@isnad1 id=ex.3h4v.s12.2f47830d56e8 from=translated src=- shape=1e55b063 vocab=2aa160f4
+-/
 theorem exists_monic_annihilator_of_cyclic_quotient_idempotent
     {R : Type u} {B : Type v} [CommRing R] [CommRing B] [Algebra R B]
     [Module.Finite R B] (I : Ideal R) (hI : I ≤ Ideal.jacobson ⊥) (b : B)

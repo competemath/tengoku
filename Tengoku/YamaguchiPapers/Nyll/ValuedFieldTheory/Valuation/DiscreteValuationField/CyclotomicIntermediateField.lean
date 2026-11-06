@@ -20,7 +20,9 @@ intermediate field. The characteristic only needs to avoid the root order.
 namespace ValuationTheory.DiscreteValuationField
 
 /-- An algebraic closure contains a cyclotomic intermediate field whenever
-the root order is nonzero in the base field.-/
+the root order is nonzero in the base field.
+@isnad1 id=ex.0h3v.s7.85ca6be1ddcd from=translated src=- shape=ceddeb39 vocab=2b446ae9
+-/
 theorem exists_cyclotomic_intermediateField
     (K Ω : Type*) [Field K] [Field Ω] [Algebra K Ω] [IsAlgClosure K Ω]
     (n : ℕ) [NeZero (n : K)] :

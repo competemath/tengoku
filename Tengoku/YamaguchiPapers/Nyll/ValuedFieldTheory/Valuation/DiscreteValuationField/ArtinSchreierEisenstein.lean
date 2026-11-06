@@ -69,7 +69,9 @@ private theorem artinSchreierInversePolynomial_coeff_top
     coeff_X_pow_self, coeff_C_mul_X_pow, ite_eq_right hn1, coeff_C,
     ite_eq_right hn0, add_zero, sub_zero]
 
-/-- The reciprocal Artin--Schreier polynomial is monic.-/
+/-- The reciprocal Artin--Schreier polynomial is monic.
+@isnad1 id=monic.1h3v.s4.7a2254580e0b from=translated src=- shape=6c9b9fa8 vocab=6f0da29f
+-/
 theorem artinSchreierInversePolynomial_monic
     (π : R) (n : ℕ) (hn : 1 < n) :
     (artinSchreierInversePolynomial π n).Monic :=
@@ -77,7 +79,9 @@ theorem artinSchreierInversePolynomial_monic
     (artinSchreierInversePolynomial_natDegree_le π n)
     (artinSchreierInversePolynomial_coeff_top π n hn)
 
-/-- Its degree is the prescribed exponent.-/
+/-- Its degree is the prescribed exponent.
+@isnad1 id=eq.1h3v.s5.89c7487597ac from=translated src=- shape=2361a846 vocab=389f38c7
+-/
 theorem artinSchreierInversePolynomial_natDegree [Nontrivial R]
     (π : R) (n : ℕ) (hn : 1 < n) :
     (artinSchreierInversePolynomial π n).natDegree = n :=
@@ -94,7 +98,9 @@ private theorem artinSchreierInversePolynomial_coeff_zero
     coeff_X_pow, ite_eq_right hn0, coeff_C_mul_X_pow, ite_eq_right hn1,
     coeff_C_zero, zero_add, zero_sub]
 
-/-- A prime parameter makes the reciprocal polynomial Eisenstein.-/
+/-- A prime parameter makes the reciprocal polynomial Eisenstein.
+@isnad1 id=iseisens.2h3v.s5.f02bb9cf5645 from=translated src=- shape=2325cb0e vocab=619191d4
+-/
 theorem artinSchreierInversePolynomial_isEisensteinAt [IsDomain R]
     (π : R) (hπ : Prime π) (n : ℕ) (hn : 1 < n) :
     (artinSchreierInversePolynomial π n).IsEisensteinAt
@@ -125,7 +131,9 @@ theorem artinSchreierInversePolynomial_isEisensteinAt [IsDomain R]
         hπ.ne_zero hπ.not_isUnit).mp (by simpa only [pow_one] using hdiv)
     exact (by decide : ¬ (2 ≤ 1)) hbad
 
-/-- Eisenstein supplies irreducibility over the coefficient domain.-/
+/-- Eisenstein supplies irreducibility over the coefficient domain.
+@isnad1 id=irreduci.2h3v.s6.bd29c1eb84c5 from=translated src=- shape=1f8d2a96 vocab=16f69db3
+-/
 theorem artinSchreierInversePolynomial_irreducible [IsDomain R]
     (π : R) (hπ : Prime π) (n : ℕ) (hn : 1 < n) :
     Irreducible (artinSchreierInversePolynomial π n) := by
@@ -135,7 +143,9 @@ theorem artinSchreierInversePolynomial_irreducible [IsDomain R]
   rw [artinSchreierInversePolynomial_natDegree π n hn]
   exact lt_trans Nat.zero_lt_one hn
 
-/-- The same polynomial is irreducible in the fraction field.-/
+/-- The same polynomial is irreducible in the fraction field.
+@isnad1 id=irreduci.2h4v.s7.f6047d2ca42a from=translated src=- shape=0f234f26 vocab=c6cdd39e
+-/
 theorem artinSchreierInversePolynomial_map_irreducible
     [IsDomain R] [IsIntegrallyClosed R]
     (K : Type v) [Field K] [Algebra R K] [IsFractionRing R K]
@@ -148,7 +158,9 @@ end Polynomial
 
 /-- Inverting an actual root gives the Artin--Schreier equation. The root
 input is supplied, for example, by `AdjoinRoot.eval₂_root` applied to the
-irreducible fraction-field polynomial above.-/
+irreducible fraction-field polynomial above.
+@isnad1 id=eq.3h5v.s8.42bdb022ebc3 from=translated src=- shape=37a6aa44 vocab=b7a53f13
+-/
 theorem artinSchreier_eq_of_inversePolynomial_root
     {K : Type v} {L : Type w} [Field K] [Field L] [Algebra K L]
     (π : K) (hπ : π ≠ 0) (n : ℕ) (hn : 1 < n)

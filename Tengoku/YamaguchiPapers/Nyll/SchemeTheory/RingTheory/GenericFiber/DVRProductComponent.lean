@@ -65,7 +65,9 @@ noncomputable def genericFiberDVRProductComponentFractionRingEquiv
     (K := Ω) (L := FractionRing (A i)) eN
 
 /-- The coordinate identification sends the image of a tuple to the usual
-image of its selected coordinate in the fraction field.-/
+image of its selected coordinate in the fraction field.
+@isnad1 id=eq.2h7v.s13.c98dd4082a00 from=translated src=- shape=b1b08165 vocab=033425b6
+-/
 @[simp]
 theorem genericFiberDVRProductComponentFractionRingEquiv_quotient_mk
     (i : ι) (m : Ideal (K ⊗[R] (∀ j, A j))) [m.IsMaximal]
@@ -143,6 +145,9 @@ noncomputable def genericFiberDVRProductComponentFractionRingAlgEquiv
         (genericFiberDVRProductComponentFractionRingEquiv_quotient_mk
           A i m hNP hNne (algebraMap R (∀ j, A j) r))
 
+/--
+@isnad1 id=eq.2h7v.s12.e3956c9cb5bb from=translated src=- shape=ade02174 vocab=1ee1aed8
+-/
 @[simp]
 theorem genericFiberDVRProductComponentFractionRingAlgEquiv_quotient_mk
     (i : ι) (m : Ideal (K ⊗[R] (∀ j, A j))) [m.IsMaximal]

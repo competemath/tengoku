@@ -34,7 +34,9 @@ def separableClosedTensorHom (i : S →ₐ[K] E) :
   Algebra.TensorProduct.lift (Algebra.ofId base.valuation.Completion E) i
     (fun a s => Commute.all (algebraMap base.valuation.Completion E a) (i s))
 
-/-- The actual tensor map preserves the specified embeddings.-/
+/-- The actual tensor map preserves the specified embeddings.
+@isnad1 id=eq.0h7v.s12.273f2b00870f from=translated src=- shape=94944926 vocab=968d910c
+-/
 @[simp] theorem separableClosedTensorHom_tmul (i : S →ₐ[K] E)
     (a : base.valuation.Completion) (s : S) :
     base.separableClosedTensorHom i (a ⊗ₜ[K] s) =
@@ -43,7 +45,9 @@ def separableClosedTensorHom (i : S →ₐ[K] E) :
     (fun b t => Commute.all (algebraMap base.valuation.Completion E b) (i t)) a s
 
 /-- A separably closed image generates the whole separable extension of
-the completion, so its actual tensor map is surjective.-/
+the completion, so its actual tensor map is surjective.
+@isnad1 id=surjecti.0h5v.s12.a4d967033d00 from=translated src=- shape=5adde6a1 vocab=674cd62c
+-/
 theorem separableClosedTensorHom_surjective [IsSepClosed S]
     [Algebra.IsSeparable base.valuation.Completion E] (i : S →ₐ[K] E) :
     Function.Surjective (base.separableClosedTensorHom i) := by

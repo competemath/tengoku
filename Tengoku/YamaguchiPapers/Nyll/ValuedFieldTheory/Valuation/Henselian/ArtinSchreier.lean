@@ -23,7 +23,9 @@ namespace ValuationTheory
 open Polynomial
 
 /-- Every element of positive valuation is an Artin–Schreier difference in
-a Henselian valued field of positive characteristic.-/
+a Henselian valued field of positive characteristic.
+@isnad1 id=ex.1h5v.s7.c1a95fa5c2f9 from=translated src=- shape=e5c1ef45 vocab=2d116066
+-/
 theorem exists_pow_sub_eq_of_valuation_lt_one
     {K Γ : Type*} [Field K] [LinearOrderedCommGroupWithZero Γ]
     (v : Valuation K Γ)
@@ -56,7 +58,9 @@ theorem exists_pow_sub_eq_of_valuation_lt_one
   exact congrArg ((↑) : R → K) (sub_eq_zero.mp hbeval)
 
 /-- The additive Artin–Schreier image is open in a Henselian valued field of
-characteristic p.-/
+characteristic p.
+@isnad1 id=isopen.0h3v.s8.4c22046fa4c2 from=translated src=- shape=a4424f1e vocab=59084941
+-/
 theorem isOpen_artinSchreier_range
     {K Γ : Type*} [Field K] [LinearOrderedCommGroupWithZero Γ] [Valued K Γ]
     [HenselianRing (Valued.v : Valuation K Γ).valuationSubring

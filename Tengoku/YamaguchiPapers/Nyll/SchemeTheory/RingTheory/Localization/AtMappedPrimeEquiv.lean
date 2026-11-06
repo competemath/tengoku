@@ -28,7 +28,9 @@ variable [CommRing A] [CommRing R] [CommRing S]
 variable [Algebra A R] [Algebra A S]
 
 /-- An algebra equivalence maps the complement of a prime onto the complement
-of the image prime.-/
+of the image prime.
+@isnad1 id=eq.0h5v.s8.6c8c8273dbb0 from=translated src=- shape=de50d380 vocab=f5a82073
+-/
 theorem localizationAtMappedPrime_map_primeCompl
     (e : R ≃ₐ[A] S) (P : Ideal R) [P.IsPrime] :
     Submonoid.map e P.primeCompl =
@@ -62,7 +64,9 @@ noncomputable def localizationAtMappedPrimeAlgEquiv
       (localizationAtMappedPrime_map_primeCompl e P)
 
 /-- On elements coming from the original ring, the localized equivalence is
-the original equivalence followed by the target localization map.-/
+the original equivalence followed by the target localization map.
+@isnad1 id=eq.0h6v.s12.772421cd1d12 from=translated src=- shape=81f6c38c vocab=966d4c81
+-/
 @[simp]
 theorem localizationAtMappedPrimeAlgEquiv_algebraMap
     (e : R ≃ₐ[A] S) (P : Ideal R) [P.IsPrime] (x : R) :

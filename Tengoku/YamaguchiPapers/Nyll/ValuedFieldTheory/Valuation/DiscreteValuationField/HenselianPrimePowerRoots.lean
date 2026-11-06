@@ -22,7 +22,9 @@ universe u v
 
 variable {K : Type u} [Field K] (F : HenselianDVF.{u, v} K)
 
-/-- A primitive root of prime order in the residue field lifts to the field.-/
+/-- A primitive root of prime order in the residue field lifts to the field.
+@isnad1 id=nonempty.2h3v.s6.b468ca1000e0 from=translated src=- shape=a9fb0ef7 vocab=b5815a1a
+-/
 theorem primitiveRoots_prime_nonempty_of_residue
     [CharZero F.residueField] {p : ℕ} (hp : p.Prime)
     (hres : (primitiveRoots p F.residueField).Nonempty) :
@@ -50,7 +52,9 @@ theorem primitiveRoots_prime_nonempty_of_residue
       ((Polynomial.mem_nthRootsFinset hp.pos 1).mpr hηpow) hηne)⟩
 
 /-- In residue characteristic zero, finiteness of the residual primary roots
-implies finiteness of the primary roots in the Henselian field.-/
+implies finiteness of the primary roots in the Henselian field.
+@isnad1 id=finite.1h3v.s9.c3649eb9d0ad from=translated src=- shape=de3c8b41 vocab=1740cae1
+-/
 theorem finite_primaryComponent_of_finite_residuePrimaryComponent
     [CharZero F.residueField] {p : ℕ} (hp : p.Prime)
     [Finite (CommGroup.primaryComponent F.residueFieldˣ p)] :
@@ -79,7 +83,9 @@ theorem finite_primaryComponent_of_finite_residuePrimaryComponent
   exact congrArg (fun z : CommGroup.torsion Kˣ => (z : Kˣ))
     (F.torsionReduction_injective hred)
 
-/-- The corresponding set of field roots is finite.-/
+/-- The corresponding set of field roots is finite.
+@isnad1 id=finite.1h3v.s9.888e18395975 from=translated src=- shape=011a09a4 vocab=fa6203dd
+-/
 theorem finite_primePowerRoots_of_finite_residuePrimaryComponent
     [CharZero F.residueField] {p : ℕ} (hp : p.Prime)
     [Finite (CommGroup.primaryComponent F.residueFieldˣ p)] :

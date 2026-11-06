@@ -31,7 +31,9 @@ universe u v w
 variable {K : Type u} {L : Type v} [Field K] [Field L] [Algebra K L]
 
 /-- If all roots of a fixed order split over the base, decomposition acts
-trivially on the roots of that order in the Henselian residue field.-/
+trivially on the roots of that order in the Henselian residue field.
+@isnad1 id=eq.2h7v.s13.90556a2d075c from=translated src=- shape=8426d6c0 vocab=fadba154
+-/
 theorem residueAction_fixes_pow_eq_one_of_primitiveRoot_of_henselianRing
     (A : _root_.ValuationSubring L)
     [HenselianRing A (IsLocalRing.maximalIdeal A)] (n : ℕ)
@@ -63,7 +65,9 @@ theorem residueAction_fixes_pow_eq_one_of_primitiveRoot_of_henselianRing
   exact Subtype.ext hfixed
 
 /-- In a finite valued extension, an inertia element of order dividing n commutes
-with the entire decomposition group if a primitive n-th root belongs to the base.-/
+with the entire decomposition group if a primitive n-th root belongs to the base.
+@isnad1 id=commute.3h7v.s13.f718af56157d from=translated src=- shape=0c179258 vocab=abbb8e9c
+-/
 theorem inertia_commutes_of_primitiveRoot_of_henselianRing [FiniteDimensional K L]
     (A : _root_.ValuationSubring L)
     [HenselianRing A (IsLocalRing.maximalIdeal A)] [CharZero (IsLocalRing.ResidueField A)]
@@ -110,7 +114,9 @@ theorem inertia_commutes_of_primitiveRoot_of_henselianRing [FiniteDimensional K 
       ((a : inertiaGroup K A) : decompositionGroup K A)) hts
   exact (mul_inv_eq_iff_eq_mul).mp hconj
 
-/-- The Henselian DVF form of rootwise residue-action triviality.-/
+/-- The Henselian DVF form of rootwise residue-action triviality.
+@isnad1 id=eq.2h7v.s14.a8d374634fa4 from=translated src=- shape=a03b10be vocab=cba3a3b5
+-/
 theorem residueAction_fixes_pow_eq_one_of_primitiveRoot
     (F : HenselianDVF.{v, w} L) (n : ℕ) [NeZero (n : F.residueField)]
     (ζ : K) (hζ : IsPrimitiveRoot ζ n)
@@ -120,7 +126,9 @@ theorem residueAction_fixes_pow_eq_one_of_primitiveRoot
   residueAction_fixes_pow_eq_one_of_primitiveRoot_of_henselianRing
     F.valuation.valuationSubring n ζ hζ σ ξ hξ
 
-/-- The Henselian DVF form of finite inertia centrality.-/
+/-- The Henselian DVF form of finite inertia centrality.
+@isnad1 id=commute.3h7v.s14.e26d8be21672 from=translated src=- shape=e3b7bf3e vocab=ffd6fc86
+-/
 theorem inertia_commutes_of_primitiveRoot [FiniteDimensional K L]
     (F : HenselianDVF.{v, w} L) [CharZero F.residueField]
     (n : ℕ) (hn : 0 < n) (ζ : K) (hζ : IsPrimitiveRoot ζ n)

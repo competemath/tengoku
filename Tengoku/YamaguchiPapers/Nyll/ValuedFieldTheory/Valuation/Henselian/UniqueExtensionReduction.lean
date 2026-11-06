@@ -33,7 +33,9 @@ universe u
 open ValuationTheory.DiscreteValuationField.Valuation
   (integralClosure_mem_valuationSubring_of_hasExtension) in
 /-- A monic polynomial over the base valuation ring that splits in the
-extension field already splits over any extension valuation ring.-/
+extension field already splits over any extension valuation ring.
+@isnad1 id=splits.2h5v.s9.6e764bb77544 from=translated src=- shape=0a1137c5 vocab=60d28eea
+-/
 theorem monic_splits_in_extension_valuationSubring
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (W : ValuationSubring L)
@@ -79,7 +81,9 @@ theorem monic_splits_in_extension_valuationSubring
   exact ⟨⟨α, hαmem⟩, rfl⟩
 
 /-- The canonical residue-field map sends the residue of a base-ring element
-to the residue of its image in the extension valuation ring.-/
+to the residue of its image in the extension valuation ring.
+@isnad1 id=eq.1h5v.s11.a7a749c5ccf5 from=translated src=- shape=90b9203a vocab=2b4185a8
+-/
 theorem residueFieldMapOfHasExtension_residue
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (W : ValuationSubring L)
@@ -93,7 +97,9 @@ theorem residueFieldMapOfHasExtension_residue
 
 /-- In a normal extension with a unique extension valuation ring, reductions
 of two roots of one irreducible ground-field polynomial are conjugate under
-the induced residue-field automorphism.-/
+the induced residue-field automorphism.
+@isnad1 id=ex.5h7v.s12.1605b56a3348 from=translated src=- shape=c4cfad50 vocab=977cd90b
+-/
 theorem residues_of_irreducible_roots_are_conjugate
     {K L : Type*} [Field K] [Field L] [Algebra K L] [Normal K L]
     (V : ValuationSubring K) (W : ValuationSubring L)
@@ -146,7 +152,9 @@ theorem residues_of_irreducible_roots_are_conjugate
 /-- A monic irreducible factor over the ground field cannot acquire two
 coprime positive-degree factors after reduction when the extension valuation
 ring on its splitting field is unique.  This is the precise primary-reduction
-input used in the proof of the unique-extension criterion.-/
+input used in the proof of the unique-extension criterion.
+@isnad1 id=or.5h7v.s11.99a18e3b6f9d from=translated src=- shape=fe7e88f6 vocab=b9589d13
+-/
 theorem irreducible_monic_reduction_coprime_factor_degree_zero
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (W : ValuationSubring L)

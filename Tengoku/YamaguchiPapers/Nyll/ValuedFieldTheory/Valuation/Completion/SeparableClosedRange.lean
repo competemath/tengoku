@@ -23,7 +23,9 @@ variable {K S E : Type*} [Field K] [Field S] [Field E]
   [Algebra K S] [Algebra K E] [IsSepClosed S]
 
 /-- An element separable over the common base lies in the image of every
-embedding from a separably closed field.-/
+embedding from a separably closed field.
+@isnad1 id=mem.1h5v.s6.26b249ed565a from=translated src=- shape=d49ce8ac vocab=c12c262b
+-/
 theorem mem_fieldRange_of_isSeparable_of_isSepClosed
     (i : S →ₐ[K] E) {x : E} (hx : IsSeparable K x) : x ∈ i.fieldRange := by
   let : Algebra S E := i.toRingHom.toAlgebra

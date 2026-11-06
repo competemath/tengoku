@@ -20,7 +20,9 @@ exponent of an integer-valued valuation.
 namespace Valuation
 universe u v
 
-/-- Above valuation one, powers minus the identity can take only power values.-/
+/-- Above valuation one, powers minus the identity can take only power values.
+@isnad1 id=ne.3h6v.s7.3717020c4725 from=translated src=- shape=5c8a19b1 vocab=b1bd81ae
+-/
 theorem pow_sub_ne_of_one_lt_of_not_pow
     {K : Type u} [Field K] {Γ : Type v} [LinearOrderedCommGroupWithZero Γ]
     (w : Valuation K Γ) (n : ℕ) (hn : 1 < n)

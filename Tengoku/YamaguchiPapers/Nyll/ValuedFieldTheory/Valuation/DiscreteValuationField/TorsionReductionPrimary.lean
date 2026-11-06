@@ -28,7 +28,9 @@ universe u v
 variable {K : Type u} [Field K]
 
 /-- The kernel of the canonical reduction map on all roots of unity is a
-p-group in residue characteristic p, for an arbitrary discrete valuation field.-/
+p-group in residue characteristic p, for an arbitrary discrete valuation field.
+@isnad1 id=ispgroup.0h3v.s12.1c63e3789bda from=translated src=- shape=9ec11a68 vocab=f774f8ea
+-/
 theorem torsionReduction_ker_isPGroup (D : DVF.{u, v} K)
     (p : ℕ) [Fact p.Prime] [CharP D.residueField p] :
     IsPGroup p D.torsionReduction.ker := by

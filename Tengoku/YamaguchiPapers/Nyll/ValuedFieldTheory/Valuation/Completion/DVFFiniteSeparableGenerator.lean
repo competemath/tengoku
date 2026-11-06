@@ -29,7 +29,9 @@ variable {K : Type u} [Field K]
 
 /-- Every finite separable extension of the actual valuation completion has
 a generator separable over the original field, with the same degree.
-The ground field need not be Henselian or complete.-/
+The ground field need not be Henselian or complete.
+@isnad1 id=ex.0h3v.s12.1a336860b316 from=translated src=- shape=eb597b27 vocab=3a06edcd
+-/
 theorem exists_completion_extension_generator (base : DVF.{u, v} K)
     (E : Type w) [Field E] [Algebra base.valuation.Completion E]
     [Algebra K E] [IsScalarTower K base.valuation.Completion E]

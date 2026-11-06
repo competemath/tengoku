@@ -33,7 +33,9 @@ universe u v
 
 variable (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
 
-/-- The actual finite ramification group is trivial in residue characteristic zero.-/
+/-- The actual finite ramification group is trivial in residue characteristic zero.
+@isnad1 id=eq.0h3v.s14.c4cebb450709 from=translated src=- shape=b3df4301 vocab=8eea1301
+-/
 theorem ramificationGroup_eq_bot_of_residueCharZero
     (A : _root_.ValuationSubring L) [CharZero (IsLocalRing.ResidueField A)]
     [Finite (ramificationGroup K A)] :

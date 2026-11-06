@@ -55,14 +55,18 @@ def mrangeRestrict (v : _root_.Valuation R Gamma) :
     rw [← Subtype.coe_le_coe]
     exact map_add_le_max v x y
 
-/-- The defining evaluation formula for `mrangeRestrict` is `(mrangeRestrict v x : Gamma) = v x`.-/
+/-- The defining evaluation formula for `mrangeRestrict` is `(mrangeRestrict v x : Gamma) = v x`.
+@isnad1 id=eq.0h4v.s9.6d563f7ac3e5 from=translated src=- shape=a3b24924 vocab=f9a3abe1
+-/
 @[simp]
 theorem mrangeRestrict_apply (v : _root_.Valuation R Gamma) (x : R) :
     (mrangeRestrict v x : Gamma) = v x :=
   rfl
 
 /-- Passing to the actual multiplicative range does not change the valuation
-subring predicate.-/
+subring predicate.
+@isnad1 id=iff.0h4v.s7.03bd4974351a from=translated src=- shape=2d25dc12 vocab=510a33f1
+-/
 theorem mem_mrangeRestrict_valuationSubring_iff
     (v : _root_.Valuation R Gamma) (x : R) :
     x ∈ (mrangeRestrict v).valuationSubring ↔ x ∈ v.valuationSubring := by
@@ -87,7 +91,9 @@ noncomputable def valuationSubringEquivMrangeRestrict
 
 /--
 Establishes the identity `((valuationSubringEquivMrangeRestrict v x : (mrangeRestrict
-v).valuationSubring) : R) = x`.-/
+v).valuationSubring) : R) = x`.
+@isnad1 id=eq.0h4v.s12.554c9666c894 from=translated src=- shape=221a31c3 vocab=2c918daf
+-/
 @[simp]
 theorem valuationSubringEquivMrangeRestrict_apply_coe
     (v : _root_.Valuation R Gamma) (x : v.valuationSubring) :
@@ -98,7 +104,9 @@ theorem valuationSubringEquivMrangeRestrict_apply_coe
 variable {K : Type u} [Field K]
 
 /-- The valuation-subring equivalence induced by range restriction preserves
-the maximal ideal.-/
+the maximal ideal.
+@isnad1 id=iff.0h4v.s13.2a27339abc4b from=translated src=- shape=44ba580e vocab=586e2004
+-/
 theorem valuationSubringEquivMrangeRestrict_mem_maximalIdeal_iff
     (v : _root_.Valuation K Gamma) (x : v.valuationSubring) :
     valuationSubringEquivMrangeRestrict v x ∈
@@ -112,7 +120,9 @@ theorem valuationSubringEquivMrangeRestrict_mem_maximalIdeal_iff
 /--
 Establishes the identity `(IsLocalRing.maximalIdeal v.valuationSubring).map
 (valuationSubringEquivMrangeRestrict v : v.valuationSubring →+* (mrangeRestrict
-v).valuationSubring) = IsLocalRing.maximalIdeal (mrangeRestrict v).valuationSubring`.-/
+v).valuationSubring) = IsLocalRing.maximalIdeal (mrangeRestrict v).valuationSubring`.
+@isnad1 id=eq.0h3v.s13.eb3c9dee4f0a from=translated src=- shape=5cbd52ed vocab=3d793da0
+-/
 @[simp]
 theorem valuationSubringEquivMrangeRestrict_map_maximalIdeal
     (v : _root_.Valuation K Gamma) :

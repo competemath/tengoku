@@ -23,7 +23,9 @@ namespace AlgebraicNumberTheory
 namespace Valuations
 
 /-- The closed unit ball of the finite norm-formula value is closed under
-addition, using only the primitive factorization form of Hensel's lemma.-/
+addition, using only the primitive factorization form of Hensel's lemma.
+@isnad1 id=le.4h5v.s7.3607085904a6 from=translated src=- shape=0aefe8bc vocab=77f8c5d1
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_add_le_one_of_le_one_of_henselFactorization
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -43,7 +45,9 @@ theorem normFormula_finiteExtensionNormFormulaValue_add_le_one_of_le_one_of_hens
         v hnonarch hv hy))
 
 /-- The finite norm-formula value satisfies the strong nonarchimedean triangle
-inequality under the primitive factorization form of Hensel's lemma.-/
+inequality under the primitive factorization form of Hensel's lemma.
+@isnad1 id=le.2h5v.s7.00d6ca982490 from=translated src=- shape=7729885a vocab=94047b2d
+-/
 theorem normFormula_finiteExtensionNormFormulaValue_strong_triangle_of_henselFactorization
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -146,7 +150,9 @@ noncomputable def normFormula_finite_normFormulaAbsoluteValue_of_henselFactoriza
         (le_add_of_nonneg_left hx_nonneg))
 
 /-- The bundled finite norm-formula absolute value is pointwise the construction's
-displayed value.-/
+displayed value.
+@isnad1 id=eq.2h4v.s9.be5af7adfa88 from=translated src=- shape=db982958 vocab=0b2552d3
+-/
 theorem normFormula_finite_normFormulaAbsoluteValue_of_henselFactorization_apply
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -159,7 +165,9 @@ theorem normFormula_finite_normFormulaAbsoluteValue_of_henselFactorization_apply
       finiteExtensionNormFormulaValue v x :=
   rfl
 
-/-- The bundled finite norm-formula absolute value is nonarchimedean.-/
+/-- The bundled finite norm-formula absolute value is nonarchimedean.
+@isnad1 id=nonarchi.2h3v.s8.bafe89673bbd from=translated src=- shape=eae98266 vocab=e8c53e1d
+-/
 theorem normFormula_finite_normFormulaAbsoluteValue_of_henselFactorization_nonarchimedean
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -178,7 +186,9 @@ theorem normFormula_finite_normFormulaAbsoluteValue_of_henselFactorization_nonar
       v hnonarch hv x y
 
 /-- The closed unit ball of the bundled norm formula consists exactly of the
-elements integral over the base valuation ring.-/
+elements integral over the base valuation ring.
+@isnad1 id=iff.2h4v.s9.817264768475 from=translated src=- shape=88e4e480 vocab=f686fcd5
+-/
 theorem normFormula_finite_mem_valuationSubring_iff_isIntegral_of_henselFactorization
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -203,7 +213,9 @@ theorem normFormula_finite_mem_valuationSubring_iff_isIntegral_of_henselFactoriz
       v hnonarch
 
 /-- The valuation ring of the bundled finite norm formula is the actual
-integral closure of the base valuation ring in `L`.-/
+integral closure of the base valuation ring in `L`.
+@isnad1 id=eq.2h3v.s9.ce04426fa29a from=translated src=- shape=760a9989 vocab=e07deb33
+-/
 theorem normFormula_finite_valuationSubring_eq_integralClosure_of_henselFactorization
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]

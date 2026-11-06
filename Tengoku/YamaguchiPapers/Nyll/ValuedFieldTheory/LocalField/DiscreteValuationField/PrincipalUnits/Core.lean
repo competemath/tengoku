@@ -69,7 +69,9 @@ noncomputable def quotientMaximalIdealPowRingEquivOfPreserves
 /--
 Establishes the identity `quotientMaximalIdealPowRingEquivOfPreserves F e hmem n
 (Ideal.Quotient.mk (F.maximalIdeal ^ n) x) = Ideal.Quotient.mk (F.maximalIdeal ^ n)
-(valuationSubringRingEquivOfPreserves F e hmem x)`.-/
+(valuationSubringRingEquivOfPreserves F e hmem x)`.
+@isnad1 id=eq.1h5v.s14.5e1ac1fdfa0a from=translated src=- shape=d0079bc9 vocab=139c3259
+-/
 @[simp] theorem quotientMaximalIdealPowRingEquivOfPreserves_mk
     (e : K ≃+* K)
     (hmem :
@@ -107,7 +109,9 @@ def quotientUnitHom (n : ℕ) :
 The defining evaluation formula for `quotientUnitHom` is
 `((higherPrincipalUnitGroup.quotientUnitHom F n u : (F.valuationSubring ⧸ F.maximalIdeal ^ n)ˣ) :
 F.valuationSubring ⧸ F.maximalIdeal ^ n) = Ideal.Quotient.mk (F.maximalIdeal ^ n) (u :
-F.valuationSubring)`.-/
+F.valuationSubring)`.
+@isnad1 id=eq.0h4v.s13.6f26cd3fb9e1 from=translated src=- shape=170ff198 vocab=fa8ed209
+-/
 @[simp] theorem quotientUnitHom_apply (n : ℕ) (u : F.valuationSubringˣ) :
     ((higherPrincipalUnitGroup.quotientUnitHom F n u :
         (F.valuationSubring ⧸ F.maximalIdeal ^ n)ˣ) :
@@ -116,7 +120,9 @@ F.valuationSubring)`.-/
   rfl
 
 /-- The kernel of unit reduction modulo `m^n` is exactly the concrete
-principal-unit subgroup `U^n`.-/
+principal-unit subgroup `U^n`.
+@isnad1 id=eq.0h3v.s11.3a68783a2538 from=translated src=- shape=172d0ed2 vocab=ab63a3af
+-/
 theorem quotientUnitHom_ker_eq (n : ℕ) :
     (higherPrincipalUnitGroup.quotientUnitHom F n).ker =
       higherPrincipalUnitGroup F n := by
@@ -160,7 +166,9 @@ noncomputable def unitsModHigherPrincipalUnitGroupEquivRange (n : ℕ) :
       (higherPrincipalUnitGroup.quotientUnitHom F n))
 
 /-- For `n ≥ 1`, every unit modulo `m^n` is the reduction of a valuation-ring
-unit.-/
+unit.
+@isnad1 id=surjecti.1h3v.s13.fdb12e93fa60 from=translated src=- shape=50eeddac vocab=93868b22
+-/
 theorem quotientUnitHom_surjective_of_pos {n : ℕ} (hn : 1 ≤ n) :
     Function.Surjective (higherPrincipalUnitGroup.quotientUnitHom F n) := by
   intro y
@@ -230,7 +238,9 @@ def toPrincipalUnitFiltration :
 
 /--
 Establishes the identity `(higherPrincipalUnitGroup.toPrincipalUnitFiltration F).subgroup n =
-higherPrincipalUnitGroup F n`.-/
+higherPrincipalUnitGroup F n`.
+@isnad1 id=eq.0h3v.s8.0da620857bc9 from=translated src=- shape=9a7ec49e vocab=c01801cd
+-/
 @[simp] theorem toPrincipalUnitFiltration_subgroup (n : ℕ) :
     (higherPrincipalUnitGroup.toPrincipalUnitFiltration F).subgroup n =
       higherPrincipalUnitGroup F n :=
@@ -284,7 +294,9 @@ def principalUnitSuccQuotMk (n : ℕ) :
 
 /--
 Establishes the identity `higherPrincipalUnitGroup.principalUnitSuccQuotConcreteEquiv F n
-(higherPrincipalUnitGroup.principalUnitSuccQuotMk F n u) = QuotientGroup.mk u`.-/
+(higherPrincipalUnitGroup.principalUnitSuccQuotMk F n u) = QuotientGroup.mk u`.
+@isnad1 id=eq.0h4v.s15.160c04f60ac1 from=translated src=- shape=e63afb45 vocab=a094bec5
+-/
 @[simp] theorem principalUnitSuccQuotConcreteEquiv_mk (n : ℕ)
     (u : higherPrincipalUnitGroup F n) :
     higherPrincipalUnitGroup.principalUnitSuccQuotConcreteEquiv F n
@@ -294,7 +306,9 @@ Establishes the identity `higherPrincipalUnitGroup.principalUnitSuccQuotConcrete
 
 /--
 The specified map is surjective: `Function.Surjective
-(higherPrincipalUnitGroup.principalUnitSuccQuotMk F n)`.-/
+(higherPrincipalUnitGroup.principalUnitSuccQuotMk F n)`.
+@isnad1 id=surjecti.0h3v.s13.78e91447936e from=translated src=- shape=d45df13f vocab=08bba0ed
+-/
 theorem principalUnitSuccQuotMk_surjective (n : ℕ) :
     Function.Surjective (higherPrincipalUnitGroup.principalUnitSuccQuotMk F n) :=
   QuotientGroup.mk'_surjective ((higherPrincipalUnitGroup F (n + 1)).subgroupOf
@@ -317,7 +331,9 @@ def principalUnitSuccQuotLift
 
 /--
 Establishes the identity `higherPrincipalUnitGroup.principalUnitSuccQuotLift F n f h
-(higherPrincipalUnitGroup.principalUnitSuccQuotMk F n u) = f u`.-/
+(higherPrincipalUnitGroup.principalUnitSuccQuotMk F n u) = f u`.
+@isnad1 id=eq.1h6v.s14.ddcc4a0e32ea from=translated src=- shape=c63348ba vocab=a94152a4
+-/
 @[simp] theorem principalUnitSuccQuotLift_mk
     {H : Type*} [Group H] (n : ℕ)
     (f : higherPrincipalUnitGroup F n →* H)
@@ -342,7 +358,9 @@ def principalUnitSuccQuotEquivGradedPiece (n : ℕ) :
 /--
 Establishes the identity `higherPrincipalUnitGroup.principalUnitSuccQuotEquivGradedPiece F n
 (higherPrincipalUnitGroup.principalUnitSuccQuotMk F n u) =
-(higherPrincipalUnitGroup.toPrincipalUnitFiltration F).principalUnitGradedPieceMk n u`.-/
+(higherPrincipalUnitGroup.toPrincipalUnitFiltration F).principalUnitGradedPieceMk n u`.
+@isnad1 id=eq.0h4v.s14.66711f49420b from=translated src=- shape=1f6501cf vocab=d97165c1
+-/
 @[simp] theorem principalUnitSuccQuotEquivGradedPiece_mk
     (n : ℕ) (u : higherPrincipalUnitGroup F n) :
     higherPrincipalUnitGroup.principalUnitSuccQuotEquivGradedPiece F n
@@ -353,7 +371,9 @@ Establishes the identity `higherPrincipalUnitGroup.principalUnitSuccQuotEquivGra
 
 /--
 Characterizes `higherPrincipalUnitGroup.principalUnitSuccQuotMk F n u = 1` by the equivalent
-condition `u ∈ (higherPrincipalUnitGroup F (n + 1)).subgroupOf (higherPrincipalUnitGroup F n)`.-/
+condition `u ∈ (higherPrincipalUnitGroup F (n + 1)).subgroupOf (higherPrincipalUnitGroup F n)`.
+@isnad1 id=iff.0h4v.s13.d3caa4b74e82 from=translated src=- shape=fb5a28a6 vocab=0a863520
+-/
 theorem principalUnitSuccQuotMk_eq_one_iff (n : ℕ)
     (u : higherPrincipalUnitGroup F n) :
     higherPrincipalUnitGroup.principalUnitSuccQuotMk F n u = 1 ↔
@@ -368,7 +388,9 @@ theorem principalUnitSuccQuotMk_eq_one_iff (n : ℕ)
 /--
 Characterizes `higherPrincipalUnitGroup.principalUnitSuccQuotMk F n u =
 higherPrincipalUnitGroup.principalUnitSuccQuotMk F n v` by the equivalent condition `u / v ∈
-(higherPrincipalUnitGroup F (n + 1)).subgroupOf (higherPrincipalUnitGroup F n)`.-/
+(higherPrincipalUnitGroup F (n + 1)).subgroupOf (higherPrincipalUnitGroup F n)`.
+@isnad1 id=iff.0h5v.s14.145881cb6b38 from=translated src=- shape=e0792f16 vocab=a7c1aac9
+-/
 theorem principalUnitSuccQuotMk_eq_iff_div_mem (n : ℕ)
     (u v : higherPrincipalUnitGroup F n) :
     higherPrincipalUnitGroup.principalUnitSuccQuotMk F n u =
@@ -387,7 +409,9 @@ theorem principalUnitSuccQuotMk_eq_iff_div_mem (n : ℕ)
 /--
 Characterizes `u ∈ (higherPrincipalUnitGroup F (n + 1)).subgroupOf (higherPrincipalUnitGroup F n)`
 by the equivalent condition `((u : F.valuationSubringˣ) : F.valuationSubring) - 1 ∈ F.maximalIdeal
-^ (n + 1)`.-/
+^ (n + 1)`.
+@isnad1 id=iff.0h4v.s12.fa099cb34bb8 from=translated src=- shape=3b5819be vocab=da50839a
+-/
 theorem mem_succ_subgroupOf_iff (n : ℕ)
     (u : higherPrincipalUnitGroup F n) :
     u ∈ (higherPrincipalUnitGroup F (n + 1)).subgroupOf
@@ -396,7 +420,9 @@ theorem mem_succ_subgroupOf_iff (n : ℕ)
         F.maximalIdeal ^ (n + 1) := by
   rw [Subgroup.mem_subgroupOf, higherPrincipalUnitGroup.mem_iff]
 
-/-- If `a ∈ m^n` with `n ≥ 1`, then `1 + a` is a unit of the valuation ring.-/
+/-- If `a ∈ m^n` with `n ≥ 1`, then `1 + a` is a unit of the valuation ring.
+@isnad1 id=isunit.2h4v.s9.57c7097cd597 from=translated src=- shape=a2f87ebb vocab=7c8c0810
+-/
 theorem isUnit_one_add_of_mem_maximalIdeal_pow {n : ℕ} (hn : 1 ≤ n)
     (a : F.valuationSubring) (ha : a ∈ F.maximalIdeal ^ n) : IsUnit (1 + a) := by
   have ha1 : a ∈ F.maximalIdeal := by
@@ -417,7 +443,9 @@ noncomputable def principalUnitOneAddOfMemPow {n : ℕ} (hn : 1 ≤ n)
 
 /--
 Establishes the identity `((higherPrincipalUnitGroup.principalUnitOneAddOfMemPow F hn a ha :
-F.valuationSubringˣ) : F.valuationSubring) = 1 + a`.-/
+F.valuationSubringˣ) : F.valuationSubring) = 1 + a`.
+@isnad1 id=eq.2h4v.s9.2daa1e6c2494 from=translated src=- shape=4957ed99 vocab=25d819e9
+-/
 @[simp] theorem principalUnitOneAddOfMemPow_val {n : ℕ} (hn : 1 ≤ n)
     (a : F.valuationSubring) (ha : a ∈ F.maximalIdeal ^ n) :
     ((higherPrincipalUnitGroup.principalUnitOneAddOfMemPow F hn a ha :
@@ -438,7 +466,9 @@ noncomputable def principalUnitOneAddOfMemPowSubgroup {n : ℕ} (hn : 1 ≤ n)
 /--
 Establishes the identity `((higherPrincipalUnitGroup.principalUnitOneAddOfMemPowSubgroup F hn a ha
 : higherPrincipalUnitGroup F n) : F.valuationSubringˣ) =
-higherPrincipalUnitGroup.principalUnitOneAddOfMemPow F hn a ha`.-/
+higherPrincipalUnitGroup.principalUnitOneAddOfMemPow F hn a ha`.
+@isnad1 id=eq.2h4v.s10.3c7d24bef152 from=translated src=- shape=6b246a7d vocab=ca457360
+-/
 @[simp] theorem principalUnitOneAddOfMemPowSubgroup_val {n : ℕ} (hn : 1 ≤ n)
     (a : F.valuationSubring) (ha : a ∈ F.maximalIdeal ^ n) :
     ((higherPrincipalUnitGroup.principalUnitOneAddOfMemPowSubgroup F hn a ha :
@@ -459,7 +489,9 @@ noncomputable def principalUnitSuccQuotOfIdealPow (n : ℕ) (hn : 1 ≤ n) :
 The defining evaluation formula for `principalUnitSuccQuotOfIdealPow` is
 `higherPrincipalUnitGroup.principalUnitSuccQuotOfIdealPow F n hn a =
 higherPrincipalUnitGroup.principalUnitSuccQuotMk F n
-(higherPrincipalUnitGroup.principalUnitOneAddOfMemPowSubgroup F hn a.1 a.2)`.-/
+(higherPrincipalUnitGroup.principalUnitOneAddOfMemPowSubgroup F hn a.1 a.2)`.
+@isnad1 id=eq.1h4v.s13.0cde332eaef5 from=translated src=- shape=67d70b02 vocab=f1db3097
+-/
 @[simp] theorem principalUnitSuccQuotOfIdealPow_apply (n : ℕ) (hn : 1 ≤ n)
     (a : ((F.maximalIdeal ^ n : Ideal F.valuationSubring) : Type u)) :
     higherPrincipalUnitGroup.principalUnitSuccQuotOfIdealPow F n hn a =
@@ -467,7 +499,9 @@ higherPrincipalUnitGroup.principalUnitSuccQuotMk F n
         (higherPrincipalUnitGroup.principalUnitOneAddOfMemPowSubgroup F hn a.1 a.2) :=
   rfl
 
-/-- Elements of `m^(n+1)` map to the trivial class in `U^n/U^(n+1)`.-/
+/-- Elements of `m^(n+1)` map to the trivial class in `U^n/U^(n+1)`.
+@isnad1 id=eq.2h4v.s11.0a243a154b04 from=translated src=- shape=5093c681 vocab=303d591f
+-/
 theorem principalUnitSuccQuotOfIdealPow_eq_one_of_mem_succ
     (n : ℕ) (hn : 1 ≤ n)
     (a : ((F.maximalIdeal ^ n : Ideal F.valuationSubring) : Type u))
@@ -478,7 +512,9 @@ theorem principalUnitSuccQuotOfIdealPow_eq_one_of_mem_succ
   simp [higherPrincipalUnitGroup.principalUnitOneAddOfMemPowSubgroup,
     higherPrincipalUnitGroup.principalUnitOneAddOfMemPow_val, ha]
 
-/-- The map `a ↦ [1 + a]` is insensitive to changing `a` modulo `m^(n+1)`.-/
+/-- The map `a ↦ [1 + a]` is insensitive to changing `a` modulo `m^(n+1)`.
+@isnad1 id=eq.2h5v.s11.c403c821937e from=translated src=- shape=9e767a37 vocab=84da6fd6
+-/
 theorem principalUnitSuccQuotOfIdealPow_eq_of_sub_mem_succ
     (n : ℕ) (hn : 1 ≤ n)
     (a b : ((F.maximalIdeal ^ n : Ideal F.valuationSubring) : Type u))
@@ -537,7 +573,9 @@ theorem principalUnitSuccQuotOfIdealPow_eq_of_sub_mem_succ
         ring]
   exact (F.maximalIdeal ^ (n + 1)).mul_mem_right _ hab
 
-/-- The class `[1+a]` is trivial exactly when `a ∈ m^(n+1)`.-/
+/-- The class `[1+a]` is trivial exactly when `a ∈ m^(n+1)`.
+@isnad1 id=iff.1h4v.s11.06abd5015955 from=translated src=- shape=9722d814 vocab=303d591f
+-/
 theorem principalUnitSuccQuotOfIdealPow_eq_one_iff
     (n : ℕ) (hn : 1 ≤ n)
     (a : ((F.maximalIdeal ^ n : Ideal F.valuationSubring) : Type u)) :
@@ -555,7 +593,9 @@ theorem principalUnitSuccQuotOfIdealPow_eq_one_iff
     exact higherPrincipalUnitGroup.principalUnitSuccQuotOfIdealPow_eq_one_of_mem_succ
       F n hn a ha
 
-/-- Products of two elements of `m^n`, for `n ≥ 1`, lie in `m^(n+1)`.-/
+/-- Products of two elements of `m^n`, for `n ≥ 1`, lie in `m^(n+1)`.
+@isnad1 id=mem.1h5v.s11.c573fff6e3e9 from=translated src=- shape=a4c675fb vocab=cd23bc64
+-/
 theorem maximalIdealPow_mul_mem_succ {n : ℕ} (hn : 1 ≤ n)
     (a b : ((F.maximalIdeal ^ n : Ideal F.valuationSubring) : Type u)) :
     ((a : F.valuationSubring) * (b : F.valuationSubring)) ∈
@@ -569,7 +609,9 @@ theorem maximalIdealPow_mul_mem_succ {n : ℕ} (hn : 1 ≤ n)
   exact hle hmul
 
 /-- The map `a ↦ [1+a]` is additive after passing to the successive
-principal-unit quotient.-/
+principal-unit quotient.
+@isnad1 id=eq.1h5v.s12.750aa902cef5 from=translated src=- shape=2abaf5ad vocab=69a91796
+-/
 theorem principalUnitSuccQuotOfIdealPow_add
     (n : ℕ) (hn : 1 ≤ n)
     (a b : ((F.maximalIdeal ^ n : Ideal F.valuationSubring) : Type u)) :
@@ -670,7 +712,9 @@ noncomputable def principalUnitSuccQuotOfMaximalIdealPowSuccQuot
 /--
 Establishes the identity `higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot
 F n hn (maximalIdealPowSuccQuotMk F.toDVF n a) =
-higherPrincipalUnitGroup.principalUnitSuccQuotOfIdealPow F n hn a`.-/
+higherPrincipalUnitGroup.principalUnitSuccQuotOfIdealPow F n hn a`.
+@isnad1 id=eq.1h4v.s12.019d48f00357 from=translated src=- shape=1d6f7138 vocab=1dcd1c23
+-/
 @[simp] theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuot_mk
     (n : ℕ) (hn : 1 ≤ n)
     (a : ((F.maximalIdeal ^ n : Ideal F.valuationSubring) : Type u)) :
@@ -681,7 +725,9 @@ higherPrincipalUnitGroup.principalUnitSuccQuotOfIdealPow F n hn a`.-/
 
 /--
 `principalUnitSuccQuotOfMaximalIdealPowSuccQuot` has the zero-value formula
-`higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn 0 = 1`.-/
+`higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn 0 = 1`.
+@isnad1 id=eq.1h3v.s7.c09366221c0f from=translated src=- shape=dc1b73f0 vocab=1757884c
+-/
 @[simp] theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuot_map_zero
     (n : ℕ) (hn : 1 ≤ n) :
     higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn 0 = 1 := by
@@ -699,7 +745,9 @@ higherPrincipalUnitGroup.principalUnitSuccQuotOfIdealPow F n hn a`.-/
 `principalUnitSuccQuotOfMaximalIdealPowSuccQuot` satisfies the addition formula
 `higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn (x + y) =
 higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn x *
-higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn y`.-/
+higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn y`.
+@isnad1 id=eq.1h5v.s7.c167f53ce957 from=translated src=- shape=95487022 vocab=1e6f7539
+-/
 theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuot_map_add
     (n : ℕ) (hn : 1 ≤ n)
     (x y : MaximalIdealPowSuccQuot F.toDVF n) :
@@ -780,7 +828,9 @@ noncomputable def principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd
 The defining evaluation formula for `principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd` is
 `higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd F n hn x =
 Additive.ofMul (higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn
-x)`.-/
+x)`.
+@isnad1 id=eq.1h4v.s8.31b069b85de4 from=translated src=- shape=d05030e8 vocab=6533b769
+-/
 @[simp] theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd_apply
     (n : ℕ) (hn : 1 ≤ n) (x : MaximalIdealPowSuccQuot F.toDVF n) :
     higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd F n hn x =
@@ -790,7 +840,9 @@ x)`.-/
 
 /--
 Characterizes `higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn x =
-1` by the equivalent condition `x = 0`.-/
+1` by the equivalent condition `x = 0`.
+@isnad1 id=iff.1h4v.s7.95abeb50e2e3 from=translated src=- shape=8d78489d vocab=1757884c
+-/
 theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuot_eq_one_iff
     (n : ℕ) (hn : 1 ≤ n) (x : MaximalIdealPowSuccQuot F.toDVF n) :
     higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn x = 1 ↔
@@ -814,7 +866,9 @@ theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuot_eq_one_iff
 
 /--
 The specified map is surjective: `Function.Surjective
-(higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn)`.-/
+(higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot F n hn)`.
+@isnad1 id=surjecti.1h3v.s5.c3f2c9aff94c from=translated src=- shape=b14ad41c vocab=3baa40a2
+-/
 theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuot_surjective
     (n : ℕ) (hn : 1 ≤ n) :
     Function.Surjective
@@ -840,7 +894,9 @@ theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuot_surjective
 
 /--
 The specified map is surjective: `Function.Surjective
-(higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd F n hn)`.-/
+(higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd F n hn)`.
+@isnad1 id=surjecti.1h3v.s8.5a3b596cd3c6 from=translated src=- shape=ee610455 vocab=7cbe9be2
+-/
 theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd_surjective
     (n : ℕ) (hn : 1 ≤ n) :
     Function.Surjective
@@ -856,7 +912,9 @@ theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd_surjective
 
 /--
 The specified map is injective: `Function.Injective
-(higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd F n hn)`.-/
+(higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd F n hn)`.
+@isnad1 id=injectiv.1h3v.s8.7b2b47b7b2db from=translated src=- shape=ee610455 vocab=16010c54
+-/
 theorem principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd_injective
     (n : ℕ) (hn : 1 ≤ n) :
     Function.Injective
@@ -898,7 +956,9 @@ noncomputable def maximalIdealPowSuccQuotAddEquivPrincipalUnitSuccQuot
 /--
 The defining evaluation formula for `maximalIdealPowSuccQuotAddEquivPrincipalUnitSuccQuot` is
 `higherPrincipalUnitGroup.maximalIdealPowSuccQuotAddEquivPrincipalUnitSuccQuot F n hn x =
-higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd F n hn x`.-/
+higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuotAdd F n hn x`.
+@isnad1 id=eq.1h4v.s9.3521878b7815 from=translated src=- shape=e5cc4e53 vocab=32925789
+-/
 @[simp] theorem maximalIdealPowSuccQuotAddEquivPrincipalUnitSuccQuot_apply
     (n : ℕ) (hn : 1 ≤ n) (x : MaximalIdealPowSuccQuot F.toDVF n) :
     higherPrincipalUnitGroup.maximalIdealPowSuccQuotAddEquivPrincipalUnitSuccQuot
@@ -917,7 +977,9 @@ noncomputable def principalUnitSuccQuotAddEquivResidueOfUniformizer
     (residueAddEquivMaximalIdealPowSuccQuotOfUniformizer F.toDVF hpi n).symm
 
 /-- Under the inverse of `U^n/U^(n+1) ≃ k`, the residue of `r` is represented
-by the principal unit `1 + r * pi^n`.-/
+by the principal unit `1 + r * pi^n`.
+@isnad1 id=eq.2h5v.s12.d80b7de40944 from=translated src=- shape=5d508a64 vocab=bb92d52d
+-/
 @[simp] theorem principalUnitSuccQuotAddEquivResidueOfUniformizer_symm_residue
     {pi : F.valuationSubring} (hpi : F.valuation.IsUniformizer (pi : K))
     (n : ℕ) (hn : 1 ≤ n) (r : F.valuationSubring) :
@@ -942,7 +1004,9 @@ by the principal unit `1 + r * pi^n`.-/
   rw [higherPrincipalUnitGroup.principalUnitSuccQuotOfMaximalIdealPowSuccQuot_mk]
 
 /-- The equivalence `U^n/U^(n+1) ≃ k` sends the coordinate class
-`[1 + r * pi^n]` to the residue of `r`.-/
+`[1 + r * pi^n]` to the residue of `r`.
+@isnad1 id=eq.2h5v.s12.dc2e137d5165 from=translated src=- shape=65559cf1 vocab=8b123a1a
+-/
 @[simp] theorem principalUnitSuccQuotAddEquivResidueOfUniformizer_coord
     {pi : F.valuationSubring} (hpi : F.valuation.IsUniformizer (pi : K))
     (n : ℕ) (hn : 1 ≤ n) (r : F.valuationSubring) :

@@ -31,7 +31,9 @@ open scoped TensorProduct
 universe u v w w'
 
 /-- Generators of a finite localized module can be chosen as images of a
-finite set in the original module, by clearing their individual denominators.-/
+finite set in the original module, by clearing their individual denominators.
+@isnad1 id=ex.0h6v.s8.cd5ef5f18c32 from=translated src=- shape=b427ee26 vocab=94dff873
+-/
 theorem exists_finset_span_eq_top_of_isLocalizedModule
     {R : Type u} [CommRing R] (S : Submonoid R)
     (R' : Type v) [CommRing R'] [Algebra R R'] [IsLocalization S R']
@@ -63,7 +65,9 @@ variable {R : Type u} [CommRing R]
 variable {B : Type v} [CommRing B] [Algebra R B]
 
 /-- A subalgebra whose images span after a flat scalar extension realizes
-that entire scalar extension.-/
+that entire scalar extension.
+@isnad1 id=bijectiv.1h4v.s11.fed072bc4c67 from=translated src=- shape=e1f144f5 vocab=424a64f9
+-/
 theorem lTensor_subalgebra_bijective_of_span
     (A : Type w) [CommRing A] [Algebra R A] [Module.Flat R A]
     (C : Subalgebra R B)
@@ -81,7 +85,9 @@ theorem lTensor_subalgebra_bijective_of_span
     exact ⟨(1 : A) ⊗ₜ[R] (⟨b, hb⟩ : C), rfl⟩
 
 /-- An integral algebra with two finite localizations admits one finite
-subalgebra realizing both localizations, through the actual inclusion maps.-/
+subalgebra realizing both localizations, through the actual inclusion maps.
+@isnad1 id=ex.0h6v.s12.889c4af28776 from=translated src=- shape=9829993b vocab=322f263b
+-/
 theorem exists_finite_subalgebra_two_localizations
     [Algebra.IsIntegral R B]
     (S T : Submonoid R)

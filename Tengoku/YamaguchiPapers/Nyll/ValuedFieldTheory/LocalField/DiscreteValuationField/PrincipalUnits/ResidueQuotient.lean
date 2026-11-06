@@ -36,7 +36,9 @@ namespace higherPrincipalUnitGroup
 variable (F : ValuationTheory.DiscreteValuationField.CompleteDVF.{u, v} K)
 
 /-- The kernel of the residue map on valuation-ring units is the first
-principal-unit subgroup.-/
+principal-unit subgroup.
+@isnad1 id=eq.0h2v.s8.2502d1979017 from=translated src=- shape=fe04dcf7 vocab=6742a3ec
+-/
 theorem residueUnitHom_ker_eq :
     (higherPrincipalUnitGroup.residueUnitHom F).ker =
       higherPrincipalUnitGroup F 1 := by
@@ -59,7 +61,9 @@ noncomputable def unitsModOneEquivResidueFieldUnits :
 /--
 Establishes the identity `higherPrincipalUnitGroup.unitsModOneEquivResidueFieldUnits F
 (QuotientGroup.mk' (higherPrincipalUnitGroup F 1) u) = higherPrincipalUnitGroup.residueUnitHom F
-u`.-/
+u`.
+@isnad1 id=eq.0h3v.s13.f815e49bb266 from=translated src=- shape=5aebab1b vocab=80c6ad6b
+-/
 @[simp] theorem unitsModOneEquivResidueFieldUnits_mk
     (u : F.valuationSubringˣ) :
     higherPrincipalUnitGroup.unitsModOneEquivResidueFieldUnits F

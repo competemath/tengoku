@@ -36,7 +36,9 @@ universe u v
 namespace Algebra
 
 /-- A quotient idempotent whose factor is cyclic over the base lifts to an
-idempotent in a finite algebra over a Henselian pair.-/
+idempotent in a finite algebra over a Henselian pair.
+@isnad1 id=ex.2h4v.s12.c6d05fd845d4 from=translated src=- shape=c080266d vocab=d747d518
+-/
 theorem exists_idempotent_lift_of_cyclic_quotient
     {R : Type u} {B : Type v} [CommRing R] [CommRing B] [Algebra R B]
     [Module.Finite R B] (I : Ideal R) [HenselianRing R I] (b : B)

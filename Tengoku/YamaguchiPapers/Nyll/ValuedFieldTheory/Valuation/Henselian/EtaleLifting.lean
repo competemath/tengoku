@@ -23,7 +23,9 @@ variable {R S : Type*} [CommRing R] [CommRing S] [Algebra R S]
   {I : Ideal R} [I.IsMaximal] [HenselianRing R I] [Algebra.Etale R S]
 
 /-- A residue point of an etale algebra over a Henselian local pair lifts
-to an actual point over the base ring.-/
+to an actual point over the base ring.
+@isnad1 id=ex.0h4v.s8.9972ea181b6c from=translated src=- shape=5b053ed1 vocab=03074775
+-/
 theorem exists_etale_lift (σ : S →ₐ[R] R ⧸ I) :
     ∃ τ : S →ₐ[R] R, (Ideal.Quotient.mkₐ R I).comp τ = σ := by
   let : Field (R ⧸ I) := Ideal.Quotient.field I

@@ -52,6 +52,9 @@ noncomputable def integralClosureToCompositumAlgHom
     integralClosure A L →ₐ[A] integralClosure B Ω :=
   integralClosureBaseChangeAlgHom.comp f.mapIntegralClosure
 
+/--
+@isnad1 id=eq.0h6v.s9.79e8a7005b2b from=translated src=- shape=f04a7c8b vocab=4b4deb54
+-/
 @[simp]
 theorem integralClosureToCompositumAlgHom_coe
     {A : Type uA} {B : Type uB} {L : Type uL} {Ω : Type uO}
@@ -64,7 +67,9 @@ theorem integralClosureToCompositumAlgHom_coe
   rfl
 
 /-- The normalization map is injective whenever the chosen generic-field
-map is injective.-/
+map is injective.
+@isnad1 id=injectiv.1h5v.s9.d2d7b5eb7276 from=translated src=- shape=d5112dd3 vocab=fef33e6c
+-/
 theorem integralClosureToCompositumAlgHom_injective
     {A : Type uA} {B : Type uB} {L : Type uL} {Ω : Type uO}
     [CommRing A] [CommRing B] [CommRing L] [CommRing Ω]
@@ -92,7 +97,9 @@ noncomputable abbrev integralClosureToCompositumAlgebra
   (integralClosureToCompositumAlgHom f).toAlgebra
 
 /-- If the base change `B / A` is integral, then the compositum
-normalization is integral over the old normalization.-/
+normalization is integral over the old normalization.
+@isnad1 id=isintegr.0h5v.s8.fa762f270b6a from=translated src=- shape=0ba7740c vocab=3e672d4b
+-/
 theorem integralClosureToCompositum_isIntegral
     {A : Type uA} {B : Type uB} {L : Type uL} {Ω : Type uO}
     [CommRing A] [CommRing B] [CommRing L] [CommRing Ω]
@@ -118,7 +125,9 @@ theorem integralClosureToCompositum_isIntegral
 
 /-- A chosen prime of the old normalization has a prime above it in the
 compositum normalization.  Both the integral extension and injectivity are
-derived from the source field embedding and the integral base change.-/
+derived from the source field embedding and the integral base change.
+@isnad1 id=ex.1h6v.s9.ca798f13ed5d from=translated src=- shape=34713206 vocab=326a66c2
+-/
 theorem exists_integralClosureCompositum_prime_liesOver
     {A : Type uA} {B : Type uB} {L : Type uL} {Ω : Type uO}
     [CommRing A] [CommRing B] [CommRing L] [CommRing Ω]

@@ -55,7 +55,9 @@ private theorem stalkMap_ringHom_formallyEtale_of_etale
     exact Set.mem_univ y
   exact Algebra.FormallyEtale.of_formallyUnramified_and_formallySmooth
 
-/-- The map on stalks of an etale morphism is formally etale.-/
+/-- The map on stalks of an etale morphism is formally etale.
+@isnad1 id=formally.0h4v.s10.241557643ac8 from=translated src=- shape=7f105a12 vocab=320dfb1e
+-/
 theorem stalkMap_formallyEtale_of_etale
     (f : Y ⟶ X) [Etale f] (y : Y) :
     letI : Algebra (X.presheaf.stalk (f y)) (Y.presheaf.stalk y) :=
@@ -84,7 +86,9 @@ private theorem stalkPrimeLocalization_ringHom_formallyEtale_of_etale
   exact hAB.comp hBC
 
 /-- Localizing the source stalk of an etale morphism at any prime remains
-formally etale over the target stalk, for the literal composite algebra map.-/
+formally etale over the target stalk, for the literal composite algebra map.
+@isnad1 id=formally.0h5v.s10.32b5b8a9c2e5 from=translated src=- shape=fd7505fa vocab=237775ac
+-/
 theorem stalkPrimeLocalization_formallyEtale_of_etale
     (f : Y ⟶ X) [Etale f] (y : Y)
     (P : Ideal (Y.presheaf.stalk y)) [P.IsPrime] :
@@ -95,7 +99,9 @@ theorem stalkPrimeLocalization_formallyEtale_of_etale
   exact f.stalkPrimeLocalization_ringHom_formallyEtale_of_etale y P
 
 /-- Localizing the source stalk of an etale morphism at any prime is
-essentially of finite type over the target stalk.-/
+essentially of finite type over the target stalk.
+@isnad1 id=essfinit.0h5v.s10.dcdead3e1485 from=translated src=- shape=fd7505fa vocab=92b93167
+-/
 theorem stalkPrimeLocalization_essFiniteType_of_etale
     (f : Y ⟶ X) [Etale f] (y : Y)
     (P : Ideal (Y.presheaf.stalk y)) [P.IsPrime] :
@@ -115,7 +121,9 @@ theorem stalkPrimeLocalization_essFiniteType_of_etale
   exact hAB.comp hBC
 
 /-- The prime-localized stalk map is etale exactly when finite presentation
-is supplied in addition to the canonical formal-etaleness result.-/
+is supplied in addition to the canonical formal-etaleness result.
+@isnad1 id=etale.1h5v.s11.e1d2797d7ba2 from=translated src=- shape=152bb46d vocab=8081ff6e
+-/
 theorem stalkPrimeLocalization_etale_of_finitePresentation
     (f : Y ⟶ X) [Etale f] (y : Y)
     (P : Ideal (Y.presheaf.stalk y)) [P.IsPrime]

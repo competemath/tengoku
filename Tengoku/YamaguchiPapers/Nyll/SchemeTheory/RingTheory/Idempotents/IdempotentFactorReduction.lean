@@ -55,6 +55,9 @@ def idempotentFactorReduction (I : Ideal R) (e : C) :
         (Ideal.quotientEquivAlgOfEq R hright)
   exact E.extendScalarsOfSurjective Ideal.Quotient.mk_surjective
 
+/--
+@isnad1 id=eq.0h5v.s15.68718d564171 from=translated src=- shape=42c02ad7 vocab=a0688b8c
+-/
 @[simp]
 theorem idempotentFactorReduction_mk_mk (I : Ideal R) (e c : C) :
     idempotentFactorReduction I e
@@ -75,6 +78,9 @@ def idempotentFactorReductionEquivOfEqOne (I : Ideal R) (e : C)
     (Ideal.quotientEquivAlgOfEq (R ⧸ I) hzero)).trans
       (AlgEquiv.quotientBot (R ⧸ I) (C ⧸ I.map (algebraMap R C)))
 
+/--
+@isnad1 id=eq.1h5v.s14.317d8e2806d9 from=translated src=- shape=4f8bbc10 vocab=e83801e6
+-/
 @[simp]
 theorem idempotentFactorReductionEquivOfEqOne_mk_mk
     (I : Ideal R) (e : C)
@@ -132,6 +138,9 @@ def idempotentFactorReductionEquivFst (I : Ideal R) (e : C)
   (idempotentFactorReduction I e).trans
     (quotientOneSubEquivFst E (Ideal.Quotient.mk (I.map (algebraMap R C)) e) hE)
 
+/--
+@isnad1 id=eq.1h8v.s14.c7d8acd5fccd from=translated src=- shape=73f5bdd9 vocab=ce814b3c
+-/
 @[simp]
 theorem idempotentFactorReductionEquivFst_mk_mk (I : Ideal R) (e : C)
     {D : Type w} {F : Type z} [CommRing D] [CommRing F]

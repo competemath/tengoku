@@ -24,7 +24,9 @@ open ProCGroups ProCGroups.ProC ProCGroups.Abelian
 universe u
 
 /-- Failure of divisibility by a prime power is detected by a continuous
-character of prime-power order.-/
+character of prime-power order.
+@isnad1 id=ex.1h4v.s9.8a3cfc1da843 from=translated src=- shape=67873378 vocab=a0e07d10
+-/
 theorem exists_primePower_character_of_not_pow
     {A : Type u} [CommGroup A] [TopologicalSpace A] [IsTopologicalGroup A]
     [CompactSpace A] [T2Space A] [TotallyDisconnectedSpace A]

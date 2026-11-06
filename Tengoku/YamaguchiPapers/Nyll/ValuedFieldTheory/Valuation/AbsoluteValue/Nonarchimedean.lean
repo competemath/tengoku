@@ -212,7 +212,9 @@ private theorem isNonarchimedean_of_bounded_nat
   simpa [M] using hle
 
 /-- A real-valued absolute value is nonarchimedean exactly when its values on
-the natural numbers are bounded.-/
+the natural numbers are bounded.
+@isnad1 id=iff.0h2v.s6.9b8410f8173c from=translated src=- shape=b4ea2cb7 vocab=16b98808
+-/
 theorem isNonarchimedean_iff_bounded_nat
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ) :
     IsNonarchimedean (v : K → ℝ) ↔

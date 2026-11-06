@@ -20,7 +20,9 @@ universe u v w x
 
 /-- An equivariant injection `B ↪ A` and equivariant surjection `B ↠ C`
 give `ker(ρA) ≤ ker(ρB) ≤ ker(ρC)`. The remaining conjuncts state the
-nontriviality, faithfulness, and triviality consequences in the observation.-/
+nontriviality, faithfulness, and triviality consequences in the observation.
+@isnad1 id=and.4h9v.s12.9c7a6029cd7c from=translated src=- shape=56442793 vocab=83769cf0
+-/
 theorem equivariant_action_kernels
     {Q : Type u} {A : Type v} {B : Type w} {C : Type x}
     [Group Q] [Group A] [Group B] [Group C]

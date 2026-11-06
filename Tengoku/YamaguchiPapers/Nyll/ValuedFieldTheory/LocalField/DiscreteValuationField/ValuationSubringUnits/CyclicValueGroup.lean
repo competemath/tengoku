@@ -58,7 +58,9 @@ noncomputable def rankOne
 Archimedean.  Mathlib supplies the valuation-theoretic equivalence
 `RankOne <-> MulArchimedean`; this lemma supplies the missing ordered-group
 input for actual valuation ranges whose unit group has already been proved
-cyclic.-/
+cyclic.
+@isnad1 id=mularchi.0h1v.s5.0faa2df14b33 from=translated src=- shape=7ddc04c7 vocab=87e5f528
+-/
 theorem isCyclic_mulArchimedean
     (G : Type*) [CommGroup G] [LinearOrder G] [IsOrderedMonoid G]
     [IsCyclic G] :
@@ -104,7 +106,9 @@ theorem isCyclic_mulArchimedean
       rw [zpow_mul, zpow_natCast]
 
 /-- If the nonzero part of a value group is cyclic, the value group is
-multiplicatively Archimedean.-/
+multiplicatively Archimedean.
+@isnad1 id=mularchi.0h1v.s6.e0e695620f57 from=translated src=- shape=cc9ba778 vocab=8e311deb
+-/
 theorem units_isCyclic_mulArchimedean
     (Gamma : Type x) [LinearOrderedCommGroupWithZero Gamma]
     [IsCyclic Gammaˣ] :

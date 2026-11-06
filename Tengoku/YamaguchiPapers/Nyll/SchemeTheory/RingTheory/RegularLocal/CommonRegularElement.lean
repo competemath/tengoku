@@ -30,6 +30,9 @@ section ProofImplementation
 namespace AlgebraicCurves.Foundations.CommutativeAlgebra.Proofs
 namespace Module_exists_mem_maximalIdeal_isSMulRegular_isSMulRegular
 
+/--
+@isnad1 id=ex.2h3v.s8.0407078cc8a4 from=translated src=- shape=b059dd68 vocab=4b1754cf
+-/
 theorem _root_.Module.exists_mem_maximalIdeal_isSMulRegular_isSMulRegular
     {R : Type*} [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (N₁ N₂ : Type*) [AddCommGroup N₁] [Module R N₁] [Module.Finite R N₁]

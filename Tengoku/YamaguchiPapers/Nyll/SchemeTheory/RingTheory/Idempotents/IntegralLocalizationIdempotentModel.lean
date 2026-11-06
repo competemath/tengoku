@@ -66,7 +66,9 @@ private theorem exists_finite_set_of_mem_map
     rw [hxS]
 
 /-- A quotient idempotent in an integral algebra descends to the quotient of
-a finite subalgebra containing its representative.-/
+a finite subalgebra containing its representative.
+@isnad1 id=ex.1h4v.s13.55530717be56 from=translated src=- shape=3b393c64 vocab=425b6ee5
+-/
 theorem exists_finite_subalgebra_quotient_idempotent
     {R : Type u} {C : Type v} [CommRing R] [CommRing C] [Algebra R C]
     [Algebra.IsIntegral R C] (I : Ideal R) (b : C)
@@ -99,7 +101,9 @@ theorem exists_finite_subalgebra_quotient_idempotent
 
 /-- A quotient idempotent in an integral algebra has a finite subalgebra model
 in which it is still idempotent modulo the extended ideal. If localizing at the
-element is of finite type, the model has the same principal localization.-/
+element is of finite type, the model has the same principal localization.
+@isnad1 id=ex.1h4v.s14.f2113a3a282a from=translated src=- shape=7655d994 vocab=97bac57f
+-/
 theorem exists_finite_subalgebra_idempotent_awayMap_bijective
     {R : Type u} {C : Type v} [CommRing R] [CommRing C] [Algebra R C]
     [Algebra.IsIntegral R C] (I : Ideal R) (b : C)

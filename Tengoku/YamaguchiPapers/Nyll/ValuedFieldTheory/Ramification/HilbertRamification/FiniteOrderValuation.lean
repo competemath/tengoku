@@ -27,7 +27,9 @@ variable (K : Type u) {L : Type v} [Field K] [Field L] [Algebra K L]
 
 /-- A finite-order element of the valuation-subring decomposition group fixes
 all values. The induced map on the canonical value group is monotone, and a
-positive iterate equal to the identity forces a monotone map to be the identity.-/
+positive iterate equal to the identity forces a monotone map to be the identity.
+@isnad1 id=eq.1h5v.s10.dcb2e0247e0e from=translated src=- shape=e3f51657 vocab=a74e8c56
+-/
 theorem valuation_decomposition_apply_eq_of_isOfFinOrder
     (A : _root_.ValuationSubring L) (σ : decompositionGroup K A)
     (hσ : IsOfFinOrder σ) (x : L) :
@@ -73,7 +75,9 @@ theorem valuation_decomposition_apply_eq_of_isOfFinOrder
       (by simpa only [Function.iterate_id, id_eq] using hperiod)
   rwa [hfv] at hfixed
 
-/-- Each finite-order inertia element lies in the actual value-trivial subgroup.-/
+/-- Each finite-order inertia element lies in the actual value-trivial subgroup.
+@isnad1 id=mem.1h4v.s14.0e8158d36536 from=translated src=- shape=de6e794c vocab=e75acc86
+-/
 theorem mem_valueTrivialInertiaGroup_of_isOfFinOrder
     (A : _root_.ValuationSubring L) (σ : inertiaGroup K A)
     (hσ : IsOfFinOrder σ) : σ ∈ valueTrivialInertiaGroup K A := by
@@ -90,7 +94,9 @@ theorem mem_valueTrivialInertiaGroup_of_isOfFinOrder
   exact div_self (A.valuation.ne_zero_iff.mpr x.ne_zero)
 
 /-- Finite inertia acts trivially on the actual value group, without any
-finiteness assumption on the full group of field automorphisms.-/
+finiteness assumption on the full group of field automorphisms.
+@isnad1 id=eq.0h3v.s13.3bb0896937e6 from=translated src=- shape=7bb814d1 vocab=0d2e0aca
+-/
 theorem valueTrivialInertiaGroup_eq_top_of_finite
     (A : _root_.ValuationSubring L) [Finite (inertiaGroup K A)] :
     valueTrivialInertiaGroup K A = ⊤ := by

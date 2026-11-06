@@ -85,7 +85,9 @@ private theorem maximalIdeal_spanFinrank_le_quotient_add_one
     _ = (maximalIdeal S).spanFinrank + 1 := by rw [hcard]
 
 /-- A Noetherian local ring is regular if its quotient by a nonzerodivisor
-in the maximal ideal is regular.-/
+in the maximal ideal is regular.
+@isnad1 id=isregula.2h2v.s7.98f58d6df122 from=translated src=- shape=e3c475b7 vocab=e77a9d8a
+-/
 theorem isRegularLocalRing_of_quotient_span_singleton
     (R : Type u) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     (x : R) (hx : x ∈ maximalIdeal R) (hregular : IsSMulRegular R x)

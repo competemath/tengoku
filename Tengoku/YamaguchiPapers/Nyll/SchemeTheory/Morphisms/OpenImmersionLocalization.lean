@@ -32,7 +32,9 @@ universe u
 
 namespace AlgebraicGeometry
 
-/-- An open immersion is an isomorphism over every open contained in its image.-/
+/-- An open immersion is an isomorphism over every open contained in its image.
+@isnad1 id=isiso.1h4v.s7.4749f1642e3f from=translated src=- shape=f18a2d41 vocab=b770dadb
+-/
 theorem Scheme.Hom.isIso_morphismRestrict_of_le_opensRange
     {X Y : Scheme.{u}} (f : X ⟶ Y) [IsOpenImmersion f]
     (U : Y.Opens) (hU : U ≤ f.opensRange) : IsIso (f ∣_ U) := by
@@ -49,7 +51,9 @@ theorem Scheme.Hom.isIso_morphismRestrict_of_le_opensRange
   exact (isIso_iff_isOpenImmersion_and_surjective (f ∣_ U)).mpr ⟨hopen, hsurj⟩
 
 /-- If `D(r)` lies in the image of an open immersion of spectra, localization
-at `r` makes the original ring map bijective.-/
+at `r` makes the original ring map bijective.
+@isnad1 id=bijectiv.1h4v.s10.86c08dd95009 from=translated src=- shape=3fbe8965 vocab=293adeb6
+-/
 theorem bijective_awayMap_of_basicOpen_le_opensRange
     {R S : CommRingCat.{u}} (f : R ⟶ S) [IsOpenImmersion (Spec.map f)]
     (r : R) (hr : PrimeSpectrum.basicOpen r ≤ (Spec.map f).opensRange) :

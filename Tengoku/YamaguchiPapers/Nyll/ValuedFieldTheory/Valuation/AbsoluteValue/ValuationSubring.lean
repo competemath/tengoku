@@ -50,7 +50,9 @@ def absoluteValueUnitBallSubring
     exact (mul_le_of_le_one_left (v.nonneg y) hx).trans hy
 
 /-- Membership in the absolute-value valuation subring is the closed-unit-ball
-condition.-/
+condition.
+@isnad1 id=iff.1h3v.s6.939ff483b45a from=translated src=- shape=e8eeaa7c vocab=1a3e7e2d
+-/
 theorem mem_absoluteValueUnitBallSubring_iff
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v) (x : K) :
@@ -58,7 +60,9 @@ theorem mem_absoluteValueUnitBallSubring_iff
   Iff.rfl
 
 /-- Every field element or its inverse lies in the closed unit ball of a
-nonarchimedean absolute value.-/
+nonarchimedean absolute value.
+@isnad1 id=or.1h3v.s6.9161beccbb4f from=translated src=- shape=17b01b3a vocab=166a9a05
+-/
 theorem absoluteValueUnitBallSubring_mem_or_inv_mem
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v) (x : K) :
@@ -83,7 +87,9 @@ def absoluteValueValuationSubring
     (absoluteValueUnitBallSubring_mem_or_inv_mem v hnonarch)
 
 /-- Membership in the bundled valuation subring is again the closed-unit-ball
-condition.-/
+condition.
+@isnad1 id=iff.1h3v.s6.907221b5a273 from=translated src=- shape=e8eeaa7c vocab=940672e1
+-/
 theorem mem_absoluteValueValuationSubring_iff
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v) (x : K) :
@@ -96,7 +102,9 @@ theorem mem_absoluteValueValuationSubring_iff
 
 /-- In any submonoid of a field whose elements are exactly the closed unit
 ball of an absolute value, the units are exactly the elements of absolute
-value `1`.-/
+value `1`.
+@isnad1 id=iff.1h5v.s7.a02190a47ddb from=translated src=- shape=d8f8ec98 vocab=4067dbba
+-/
 theorem isUnit_iff_abs_eq_one_of_mem_iff_le_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     {C : Type*} [SetLike C K] [SubmonoidClass C K]
@@ -130,7 +138,9 @@ theorem isUnit_iff_abs_eq_one_of_mem_iff_le_one
         rw [map_inv₀, hx, inv_one]
 
 /-- In the same closed-unit-ball situation, nonunits are exactly the elements
-of absolute value strictly less than `1`.-/
+of absolute value strictly less than `1`.
+@isnad1 id=iff.1h5v.s7.56aaafc33750 from=translated src=- shape=08cbe1ea vocab=6fff6f06
+-/
 theorem not_isUnit_iff_abs_lt_one_of_mem_iff_le_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     {C : Type*} [SetLike C K] [SubmonoidClass C K]
@@ -141,7 +151,9 @@ theorem not_isUnit_iff_abs_lt_one_of_mem_iff_le_one
   exact hx_le.lt_iff_ne.symm
 
 /-- The maximal ideal of the closed-unit-ball valuation subring consists
-exactly of the elements of absolute value strictly less than `1`.-/
+exactly of the elements of absolute value strictly less than `1`.
+@isnad1 id=iff.1h3v.s9.a372bab0de5f from=translated src=- shape=c675d5b7 vocab=c03801ed
+-/
 theorem absoluteValueValuationSubring_mem_maximalIdeal_iff_abs_lt_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -155,7 +167,9 @@ theorem absoluteValueValuationSubring_mem_maximalIdeal_iff_abs_lt_one
     (mem_absoluteValueValuationSubring_iff v hnonarch) x
 
 /-- A closed-unit-ball element reduces to zero in the residue field exactly
-when its absolute value is strictly less than `1`.-/
+when its absolute value is strictly less than `1`.
+@isnad1 id=iff.1h3v.s10.1437f1115a63 from=translated src=- shape=4280c183 vocab=10bace3a
+-/
 theorem absoluteValueUnitBallSubringAsValuationSubring_residue_eq_zero_iff_abs_lt_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -167,7 +181,9 @@ theorem absoluteValueUnitBallSubringAsValuationSubring_residue_eq_zero_iff_abs_l
     absoluteValueValuationSubring_mem_maximalIdeal_iff_abs_lt_one]
 
 /-- A closed-unit-ball element has nonzero residue exactly when its absolute
-value is `1`.-/
+value is `1`.
+@isnad1 id=iff.1h3v.s10.b428dd5d0e5a from=translated src=- shape=4280c183 vocab=eedf2e52
+-/
 theorem absoluteValueUnitBallSubringAsValuationSubring_residue_ne_zero_iff_abs_eq_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -190,7 +206,9 @@ theorem absoluteValueUnitBallSubringAsValuationSubring_residue_ne_zero_iff_abs_e
 /-- A field polynomial whose coefficients lie in the closed unit ball has a
 degree-preserving lift to the actual valuation-subring bundle used for
 residue fields.  The lift may be chosen coefficientwise, so the absolute
-values of the lifted coefficients are the original coefficient values.-/
+values of the lifted coefficients are the original coefficient values.
+@isnad1 id=ex.2h3v.s9.a5b72ef39d04 from=translated src=- shape=de18cc59 vocab=51749e0e
+-/
 theorem exists_polynomial_over_absoluteValueUnitBallSubringAsValuationSubring_of_coeff_abs_le_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v) (f : K[X])

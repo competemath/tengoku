@@ -29,7 +29,9 @@ universe u v
 namespace Algebra
 
 /-- A cyclic quotient idempotent in an integral algebra lifts whenever its
-principal localization is of finite type over the base.-/
+principal localization is of finite type over the base.
+@isnad1 id=ex.2h4v.s12.b867afec1a76 from=translated src=- shape=a5249011 vocab=bd149075
+-/
 theorem exists_idempotent_lift_of_integral_of_cyclic_quotient
     {R : Type u} {C : Type v} [CommRing R] [CommRing C] [Algebra R C]
     [Algebra.IsIntegral R C] (I : Ideal R) [HenselianRing R I] (b : C)

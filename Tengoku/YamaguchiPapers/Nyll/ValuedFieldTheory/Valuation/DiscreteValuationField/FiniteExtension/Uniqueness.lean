@@ -40,7 +40,9 @@ def HasUniqueValuationExtension (base : CompleteDVF.{u, v} K)
 
 omit [FiniteDimensional K L] [base.valuation.HasExtension target.valuation] in
 /-- Equality of valuation subrings for all extensions proves uniqueness up to
-mathlib's valuation equivalence.-/
+mathlib's valuation equivalence.
+@isnad1 id=hasuniqu.1h4v.s6.7a45e176b0e5 from=translated src=- shape=5018f9d2 vocab=9879536c
+-/
 theorem hasUniqueValuationExtension_of_forall_valuationSubring_eq
     (h :
       ∀ {Gamma' : Type y} [LinearOrderedCommGroupWithZero Gamma']
@@ -54,7 +56,9 @@ omit [FiniteDimensional K L] in
 /-- Finite-module criterion for uniqueness of valuation extensions.  If every
 valuation extending the base valuation has a module-finite valuation ring over
 the base valuation ring, then the extension valuation is unique up to mathlib's
-valuation equivalence.-/
+valuation equivalence.
+@isnad1 id=hasuniqu.1h4v.s9.f0be0e552cb1 from=translated src=- shape=22d8b8e5 vocab=e767be19
+-/
 theorem hasUniqueValuationExtension_of_forall_moduleFinite
     [Module.Finite base.valuationSubring target.valuationSubring]
     (hfinite :
@@ -84,7 +88,9 @@ valuation is unique up to mathlib's valuation equivalence.
 For the Henselian finite-extension theorem, this isolates the remaining
 frontier: prove the integral-closure statement for all extension valuations
 from the Henselian hypothesis, rather than adding a certificate carrying
-uniqueness.-/
+uniqueness.
+@isnad1 id=hasuniqu.1h4v.s9.ddfb68eb8083 from=translated src=- shape=09419c50 vocab=1053d4b6
+-/
 theorem hasUniqueValuationExtension_of_forall_isIntegralClosure
     [Algebra.IsSeparable K L]
     [IsIntegralClosure target.valuationSubring base.valuationSubring L]
@@ -122,7 +128,9 @@ the valuation extension is unique.
 This is the non-certificate Henselian frontier reduction: to prove uniqueness
 over a Henselian base it is now enough to prove the actual integrality of each
 extension valuation ring, because the preceding Chevalley bridge identifies
-such valuation rings with the actual integral closure.-/
+such valuation rings with the actual integral closure.
+@isnad1 id=hasuniqu.1h4v.s9.8796f15400d4 from=translated src=- shape=e6a9b05a vocab=b3665b16
+-/
 theorem hasUniqueValuationExtension_of_forall_isIntegral
     [Algebra.IsSeparable K L]
     [Algebra.IsIntegral base.valuationSubring target.valuationSubring]
@@ -172,7 +180,9 @@ extension to `L` up to mathlib valuation equivalence.
 The remaining Henselian theorem is not hidden in a certificate here: it is
 precisely the proof of the dichotomy and local-overring condition from the
 Henselian hypotheses.  This theorem performs the actual Chevalley plus
-valuation-overring collapse step.-/
+valuation-overring collapse step.
+@isnad1 id=hasuniqu.3h4v.s11.983ea6777096 from=translated src=- shape=94490822 vocab=10114345
+-/
 theorem hasUniqueValuationExtension_of_integralClosure_mem_or_inv_of_forall_local_inclusion
     (hval :
       ∀ z : L,
@@ -232,7 +242,9 @@ valuation ring is the maximal ideal, then the extension valuation is unique.
 This is the exact prime-theoretic step that remains after proving the
 Henselian valuative dichotomy: the hypotheses are the center equalities
 the Henselian finite-extension theorem must supply, not local-map or
-certificate-style substitutes.-/
+certificate-style substitutes.
+@isnad1 id=hasuniqu.3h4v.s10.923c22bfddea from=translated src=- shape=23e372d4 vocab=b5f5164e
+-/
 theorem hasUniqueValuationExtension_of_integralClosure_mem_or_inv_of_forall_center_eq_maximalIdeal
     (hval :
       ∀ z : L,
@@ -292,7 +304,9 @@ is enough to prove that every prime of that valuation subring whose contraction
 to the base valuation ring is the base maximal ideal is itself the maximal
 ideal.  The center of each extension valuation ring has exactly that
 contraction, so this theorem converts the Henselian local prime-uniqueness
-statement into uniqueness of valuation extensions.-/
+statement into uniqueness of valuation extensions.
+@isnad1 id=hasuniqu.1h5v.s10.8a39108c0b62 from=translated src=- shape=01e5ddf3 vocab=fd1a6dae
+-/
 theorem hasUniqueValuationExtension_of_integralClosure_mem_or_inv_of_unique_primes_over_base_maximal
     (hval :
       ∀ z : L,
@@ -347,7 +361,9 @@ After the Henselian part proves the valuative dichotomy for the actual
 integral closure, finite separability supplies the prime uniqueness over the
 base maximal ideal by Dedekind theory.  Thus no separate local-map, center
 equality, integral-inclusion, or module-finiteness certificates are needed to
-deduce uniqueness of the valuation extension.-/
+deduce uniqueness of the valuation extension.
+@isnad1 id=hasuniqu.1h4v.s9.02f30e6678de from=translated src=- shape=1fb9c60f vocab=9a0b854b
+-/
 theorem hasUniqueValuationExtension_of_integralClosure_mem_or_inv
     [Algebra.IsSeparable K L]
     (hval :
@@ -378,7 +394,9 @@ identified as the actual integral closure of the base valuation ring.
 The proof first turns the integral-closure identification into the valuative
 dichotomy for `integralClosure base.valuationSubring L`; the finite-separable
 Dedekind/local bridge above then supplies uniqueness of all valuation
-extensions.-/
+extensions.
+@isnad1 id=hasuniqu.0h4v.s9.926be8997440 from=translated src=- shape=9349e011 vocab=33c34839
+-/
 theorem hasUniqueValuationExtension_of_target_valuationSubring_isIntegralClosure
     [Algebra.IsSeparable K L]
     [IsScalarTower base.valuationSubring target.valuationSubring L]
@@ -394,7 +412,9 @@ module-finite over the base valuation ring.
 This is a theorem-level bridge, not a certificate package: module-finiteness
 identifies the target valuation ring with the actual integral closure, and the
 preceding theorem converts that identification into uniqueness of valuation
-extensions.-/
+extensions.
+@isnad1 id=hasuniqu.0h4v.s9.ee9b6d310f5b from=translated src=- shape=8723f060 vocab=057fbd47
+-/
 theorem hasUniqueValuationExtension_of_target_moduleFinite
     [Algebra.IsSeparable K L]
     [Module.Finite base.valuationSubring target.valuationSubring]
@@ -415,7 +435,9 @@ a valuation ring.
 This is the local/DVR-facing form of the frontier: a Henselian proof may first
 show that the finite integral closure is local, hence a valuation ring, and
 then this theorem supplies uniqueness through the proven finite-separable
-Dedekind/local bridge.-/
+Dedekind/local bridge.
+@isnad1 id=hasuniqu.0h4v.s8.8bb03389c60c from=translated src=- shape=5a94f740 vocab=c5e508aa
+-/
 theorem hasUniqueValuationExtension_of_integralClosure_valuationRing
     [Algebra.IsSeparable K L]
     [ValuationRing (integralClosureIntegers base target)] :
@@ -428,7 +450,9 @@ theorem hasUniqueValuationExtension_of_integralClosure_valuationRing
 This is the sharpened Henselian frontier: after the Henselian argument proves
 that the finite integral closure is a local ring, Dedekind theory makes it a
 valuation ring and the valuative-dichotomy bridge above supplies uniqueness of
-all valuation extensions.-/
+all valuation extensions.
+@isnad1 id=hasuniqu.0h4v.s8.22931392e34d from=translated src=- shape=5a94f740 vocab=0b20332a
+-/
 theorem hasUniqueValuationExtension_of_integralClosure_isLocalRing
     [Algebra.IsSeparable K L]
     [IsLocalRing (integralClosureIntegers base target)] :
@@ -443,7 +467,9 @@ Once the actual integral closure has been shown to be a valuation ring, it is
 enough to prove that the inclusions from that valuation ring into every
 extension valuation ring are integral.  The center equalities needed for the
 valuation-overring collapse then follow from going-up for integral maps between
-local rings, not from a separate center certificate.-/
+local rings, not from a separate center certificate.
+@isnad1 id=hasuniqu.1h6v.s9.26142ad5f58a from=translated src=- shape=bc83e57b vocab=3a854ecf
+-/
 theorem hasUniqueValuationExtension_of_integralClosure_mem_or_inv_of_forall_integral_inclusion
     (hval :
       ∀ z : L,
@@ -495,7 +521,9 @@ omit [FiniteDimensional K L] in
 /-- Finite-inclusion form of the Henselian uniqueness frontier.
 
 This is useful when the Henselian argument proves finite generation of the
-valuation-overring inclusions rather than integrality directly.-/
+valuation-overring inclusions rather than integrality directly.
+@isnad1 id=hasuniqu.1h6v.s9.6b963448979a from=translated src=- shape=bc83e57b vocab=e0c9c018
+-/
 theorem hasUniqueValuationExtension_of_integralClosure_mem_or_inv_of_forall_finite_inclusion
     (hval :
       ∀ z : L,
@@ -557,7 +585,9 @@ the target valuation ring and every comparison extension valuation ring.  This
 is the form closest to the remaining Henselian argument: one proves an
 element of the integral closure is nonunit exactly when its image in the
 extension valuation ring is nonunit, and the valuation-overring collapse is
-then automatic.-/
+then automatic.
+@isnad1 id=hasuniqu.1h6v.s11.115a9e7d480e from=translated src=- shape=780e7d15 vocab=11594c43
+-/
 theorem hasUniqueValuationExtension_of_integralClosure_mem_or_inv_of_forall_center_mem_iff
     (hval :
       ∀ z : L,
@@ -622,7 +652,9 @@ For inclusions of local rings, the implication from target nonunit to source
 nonunit is automatic.  Thus, after proving that the actual integral closure is
 a valuation ring, the remaining center work is only to show that elements in the
 maximal ideal of the integral-closure valuation ring map into the maximal ideals
-of the extension valuation rings.-/
+of the extension valuation rings.
+@isnad1 id=hasuniqu.1h6v.s11.c4a94902efe1 from=translated src=- shape=a48f0ab7 vocab=11594c43
+-/
 theorem hasUniqueValuationExtension_of_integralClosure_mem_or_inv_of_forall_center_mem
     (hval :
       ∀ z : L,
@@ -695,7 +727,9 @@ theorem hasUniqueValuationExtension_of_integralClosure_mem_or_inv_of_forall_cent
         (@hcenterMem Gamma' inferInstance v' hExt x hx)
 
 omit [FiniteDimensional K L] [base.valuation.HasExtension target.valuation] in
-/-- The valuation-subring equality consequence of unique valuation extension.-/
+/-- The valuation-subring equality consequence of unique valuation extension.
+@isnad1 id=eq.1h6v.s6.a075b8b0266b from=translated src=- shape=637bde1d vocab=9879536c
+-/
 theorem valuationSubring_eq_of_hasUniqueValuationExtension
     (huniq : HasUniqueValuationExtension.{u, v, w, x, y} (base := base) (target := target))
     {Gamma' : Type y} [LinearOrderedCommGroupWithZero Gamma']
@@ -710,7 +744,9 @@ the chosen target valuation.  This is the finite-extension frontier form of
 Chevalley plus uniqueness: it does not merely return a valuation subring, but
 keeps the extension valuation, exact base pullback, integral-closure
 containment, local map, residue injection, valuation equivalence, and
-valuation-ring equality for the same witness.-/
+valuation-ring equality for the same witness.
+@isnad1 id=ex.1h4v.s12.0f3b63b37a54 from=translated src=- shape=a9d341f9 vocab=bcec49be
+-/
 theorem exists_chevalley_extension_valuation_eq_target_of_hasUniqueValuationExtension
     (huniq : HasUniqueValuationExtension.{u, v, w, x, w}
       (base := base) (target := target)) :

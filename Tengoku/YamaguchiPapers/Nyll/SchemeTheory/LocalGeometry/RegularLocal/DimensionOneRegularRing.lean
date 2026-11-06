@@ -25,7 +25,9 @@ open IsLocalRing
 
 universe u
 
-/-- A one-dimensional regular local domain is a regular ring.-/
+/-- A one-dimensional regular local domain is a regular ring.
+@isnad1 id=isregula.1h1v.s5.c14e2eb946c3 from=translated src=- shape=c10f3d4d vocab=be98ebac
+-/
 theorem isRegularRing_of_isRegularLocalRing_dimension_one
     {R : Type u} [CommRing R] [IsDomain R] [IsRegularLocalRing R]
     (hdim : ringKrullDim R = ((1 : ℕ∞) : WithBot ℕ∞)) :

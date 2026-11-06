@@ -24,7 +24,9 @@ namespace Valuation
 universe u v
 
 /-- A prime-power root of a principal unit is itself a principal unit,
-for an arbitrary ordered value group.-/
+for an arbitrary ordered value group.
+@isnad1 id=and.1h6v.s9.ff029f4062d5 from=translated src=- shape=dc627d40 vocab=bd68a583
+-/
 theorem map_eq_one_and_sub_one_lt_one_of_prime_pow
     {K : Type u} {Γ : Type v} [Field K] [LinearOrderedCommGroupWithZero Γ]
     (v : Valuation K Γ)

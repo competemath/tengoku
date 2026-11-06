@@ -76,7 +76,9 @@ private lemma appLE_preimage_eq_app_of_eq {Y Z : Scheme.{u}}
   exact g.appLE_eq_app
 
 /-- The canonical map from the generic relative normalization to a finite
-normal integral source is an isomorphism.-/
+normal integral source is an isomorphism.
+@isnad1 id=isiso.0h3v.s6.934c54d9e3b5 from=translated src=- shape=07f47edd vocab=4fcdd169
+-/
 theorem finiteNormalGenericDesc_isIso
     (f : Y ⟶ X) [IsFinite f] :
     IsIso (finiteNormalGenericDesc f) := by
@@ -223,7 +225,9 @@ noncomputable def finiteNormalGenericIso
   letI := finiteNormalGenericDesc_isIso f
   asIso (finiteNormalGenericDesc f)
 
-/-- The generic normalization isomorphism commutes with the original finite map.-/
+/-- The generic normalization isomorphism commutes with the original finite map.
+@isnad1 id=eq.0h3v.s7.06ed48dd6571 from=translated src=- shape=548d2281 vocab=dc4eaebf
+-/
 @[reassoc (attr := simp)]
 theorem finiteNormalGenericIso_inv_fromNormalization
     (f : Y ⟶ X) [IsFinite f] :
@@ -235,7 +239,9 @@ theorem finiteNormalGenericIso_inv_fromNormalization
       (finiteNormalGenericIso f).hom ≫ f = f
   exact Iso.inv_hom_id_assoc _ _
 
-/-- The chosen finite-normal normalization isomorphism preserves the original generic map.-/
+/-- The chosen finite-normal normalization isomorphism preserves the original generic map.
+@isnad1 id=eq.0h3v.s8.cc8f44c304e2 from=translated src=- shape=44f7e41e vocab=cf01cf92
+-/
 @[reassoc (attr := simp)]
 theorem toNormalization_finiteNormalGenericIso_hom
     (f : Y ⟶ X) [IsFinite f] :

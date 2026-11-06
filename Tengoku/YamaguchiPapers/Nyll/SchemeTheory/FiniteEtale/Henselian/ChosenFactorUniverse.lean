@@ -26,7 +26,9 @@ open Polynomial
 universe uR uS
 
 /-- A finite etale local algebra over a Henselian local ring with separably
-closed residue field is the base, with independent carrier universes.-/
+closed residue field is the base, with independent carrier universes.
+@isnad1 id=bijectiv.0h2v.s7.5ffe7ab917a0 from=translated src=- shape=878e9832 vocab=0b458953
+-/
 theorem
     algebraMap_bijective_of_henselian_of_isSepClosed_residue_of_finiteEtale_local_universe
     {R : Type uR} {S : Type uS}

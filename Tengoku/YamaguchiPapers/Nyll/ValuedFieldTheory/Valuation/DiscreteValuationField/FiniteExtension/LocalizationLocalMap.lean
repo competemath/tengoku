@@ -20,7 +20,9 @@ lying-over data, without integrality or finiteness assumptions.
 namespace ValuationTheory.DiscreteValuationField
 
 /-- The map from a local base ring into a localization at a prime above its
-maximal ideal reflects units. The algebra structures form the given tower.-/
+maximal ideal reflects units. The algebra structures form the given tower.
+@isnad1 id=islocalh.0h4v.s7.48d96109417f from=translated src=- shape=fb2b5c2b vocab=a9640bd5
+-/
 theorem localizationAtPrime_algebraMap_isLocalHom
     (R : Type*) {B : Type*} (A : Type*)
     [CommRing R] [CommRing B] [CommRing A] [IsLocalRing R]

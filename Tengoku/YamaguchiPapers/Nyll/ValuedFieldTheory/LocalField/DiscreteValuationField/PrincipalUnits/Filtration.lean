@@ -86,20 +86,26 @@ variable (F : ValuationTheory.DiscreteValuationField.CompleteDVF.{u, v} K)
 
 /--
 Characterizes `u ∈ higherPrincipalUnitGroup F n` by the equivalent condition `(u :
-F.valuationSubring) - 1 ∈ F.maximalIdeal ^ n`.-/
+F.valuationSubring) - 1 ∈ F.maximalIdeal ^ n`.
+@isnad1 id=iff.0h4v.s10.db0714bc120f from=translated src=- shape=1fa35fdb vocab=6ed6cc88
+-/
 @[simp] theorem mem_iff (n : ℕ) (u : F.valuationSubringˣ) :
     u ∈ higherPrincipalUnitGroup F n ↔
       (u : F.valuationSubring) - 1 ∈ F.maximalIdeal ^ n :=
   Iff.rfl
 
-/-- Higher levels are contained in lower levels.-/
+/-- Higher levels are contained in lower levels.
+@isnad1 id=le.1h4v.s9.d981fbc12525 from=translated src=- shape=a0dd2222 vocab=2f0804a7
+-/
 theorem antitone {m n : ℕ} (h : m ≤ n) :
     higherPrincipalUnitGroup F n ≤ higherPrincipalUnitGroup F m := by
   intro u hu
   exact (Ideal.pow_le_pow_right h) hu
 
 /-- Prime-binomial containment in an ideal.  If `p ∈ I` and `a ∈ I^n` with
-`n ≥ 1`, then `(1 + a)^p - 1` is one level deeper.-/
+`n ≥ 1`, then `(1 + a)^p - 1` is one level deeper.
+@isnad1 id=mem.4h5v.s8.8cce3a2c0222 from=translated src=- shape=fcf18b22 vocab=3c75195c
+-/
 theorem one_add_pow_prime_sub_one_mem_pow_succ
     {R : Type*} [CommRing R] (I : Ideal R)
     {p n : ℕ} (hp : Nat.Prime p) (hn : 1 ≤ n)
@@ -126,7 +132,9 @@ theorem one_add_pow_prime_sub_one_mem_pow_succ
   exact Ideal.add_mem _ ha_pow_succ hp_a_r_succ
 
 /-- If the residue field has ring characteristic `p`, then `p` lies in the
-maximal ideal of the valuation ring.-/
+maximal ideal of the valuation ring.
+@isnad1 id=mem.1h3v.s8.3a5f5633ccdd from=translated src=- shape=19b08878 vocab=48ed92a2
+-/
 theorem natCast_mem_maximalIdeal_of_residue_ringChar_eq
     {p : ℕ} (hchar : ringChar F.residueField = p) :
     (p : F.valuationSubring) ∈ F.maximalIdeal := by
@@ -136,7 +144,9 @@ theorem natCast_mem_maximalIdeal_of_residue_ringChar_eq
   exact CharP.cast_eq_zero F.residueField p
 
 /-- Concrete principal-unit form of the prime-binomial containment:
-if `p ∈ m`, then the `p`th power carries `U^n` into `U^(n+1)` for `n ≥ 1`.-/
+if `p ∈ m`, then the `p`th power carries `U^n` into `U^(n+1)` for `n ≥ 1`.
+@isnad1 id=mem.4h5v.s10.12c5ade6bc98 from=translated src=- shape=bc29e1c1 vocab=63cabca6
+-/
 theorem pow_mem_succ_of_natCast_mem_maximalIdeal
     {p n : ℕ} (hp : Nat.Prime p) (hn : 1 ≤ n)
     (hp_mem : (p : F.valuationSubring) ∈ F.maximalIdeal)
@@ -157,7 +167,9 @@ theorem pow_mem_succ_of_natCast_mem_maximalIdeal
 
 /-- Residue-characteristic form of `pow_mem_succ_of_natCast_mem_maximalIdeal`:
 if the residue field has characteristic `p`, then `p`th powers move principal
-units one step deeper.-/
+units one step deeper.
+@isnad1 id=mem.4h5v.s10.936271cf56c3 from=translated src=- shape=97195eb1 vocab=b77fc01b
+-/
 theorem pow_mem_succ_of_residue_ringChar_eq
     {p n : ℕ} (hp : Nat.Prime p) (hn : 1 ≤ n)
     (hchar : ringChar F.residueField = p)
@@ -170,7 +182,9 @@ theorem pow_mem_succ_of_residue_ringChar_eq
       F hchar)
     hu
 
-/-- Establishes the identity `higherPrincipalUnitGroup F 0 = ⊤`.-/
+/-- Establishes the identity `higherPrincipalUnitGroup F 0 = ⊤`.
+@isnad1 id=eq.0h2v.s8.29ec071c301f from=translated src=- shape=83992b77 vocab=a0aa4e45
+-/
 @[simp] theorem zero_eq_top :
     higherPrincipalUnitGroup F 0 = ⊤ := by
   ext u
@@ -184,7 +198,9 @@ def residueUnitHom :
 
 /--
 The defining evaluation formula for `residueUnitHom` is `((higherPrincipalUnitGroup.residueUnitHom
-F u : F.residueFieldˣ) : F.residueField) = F.residueMap (u : F.valuationSubring)`.-/
+F u : F.residueFieldˣ) : F.residueField) = F.residueMap (u : F.valuationSubring)`.
+@isnad1 id=eq.0h3v.s10.2580b39a658d from=translated src=- shape=8d353bc3 vocab=a6991181
+-/
 @[simp] theorem residueUnitHom_apply (u : F.valuationSubringˣ) :
     ((higherPrincipalUnitGroup.residueUnitHom F u : F.residueFieldˣ) :
         F.residueField) =
@@ -192,7 +208,9 @@ F u : F.residueFieldˣ) : F.residueField) = F.residueMap (u : F.valuationSubring
   rfl
 
 /-- The first concrete principal-unit level consists exactly of units whose
-residue is `1`.-/
+residue is `1`.
+@isnad1 id=iff.0h3v.s9.fcd707501277 from=translated src=- shape=ebe89fbe vocab=575f763c
+-/
 theorem mem_one_iff_residue_eq_one (u : F.valuationSubringˣ) :
     u ∈ higherPrincipalUnitGroup F 1 ↔
       F.residueMap (u : F.valuationSubring) = 1 := by
@@ -213,7 +231,9 @@ theorem mem_one_iff_residue_eq_one (u : F.valuationSubringˣ) :
 
 /--
 Characterizes `higherPrincipalUnitGroup.residueUnitHom F u = 1` by the equivalent condition `u ∈
-higherPrincipalUnitGroup F 1`.-/
+higherPrincipalUnitGroup F 1`.
+@isnad1 id=iff.0h3v.s10.a4396048096d from=translated src=- shape=7ba9ca61 vocab=ec314607
+-/
 theorem residueUnitHom_eq_one_iff (u : F.valuationSubringˣ) :
     higherPrincipalUnitGroup.residueUnitHom F u = 1 ↔
       u ∈ higherPrincipalUnitGroup F 1 := by

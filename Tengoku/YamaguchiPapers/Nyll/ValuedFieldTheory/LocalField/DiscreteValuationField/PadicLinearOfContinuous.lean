@@ -56,7 +56,9 @@ variable [T2Space B]
 
 /-- A continuous additive homomorphism between topological `Z_p`-modules is
 `Z_p`-linear.  The proof checks natural scalars and extends over the dense
-copy of `ℕ` in `Z_p`.-/
+copy of `ℕ` in `Z_p`.
+@isnad1 id=eq.1h6v.s9.10c141565059 from=translated src=- shape=6981ebd4 vocab=bd7659d9
+-/
 theorem map_padicInt_smul_of_continuous
     (f : A →+ B) (hf : Continuous f) (a : ℤ_[p]) (x : A) :
     f (a • x) = a • f x := by

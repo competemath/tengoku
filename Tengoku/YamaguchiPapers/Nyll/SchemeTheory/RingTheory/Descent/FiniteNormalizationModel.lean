@@ -31,7 +31,9 @@ universe u
 attribute [local instance] Algebra.TensorProduct.rightAlgebra
 
 /-- Finite generation of the normalization at one prime and on `D(d)`
-produces a finite model inside the original algebra, with both comparisons.-/
+produces a finite model inside the original algebra, with both comparisons.
+@isnad1 id=ex.0h5v.s11.72a440243235 from=translated src=- shape=a1533240 vocab=18d8119b
+-/
 theorem exists_finite_normalization_model
     {R : Type u} [CommRing R] (d : R)
     (A : Type u) [CommRing A] [Algebra R A] [IsLocalization.Away d A]

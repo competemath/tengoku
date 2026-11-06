@@ -62,7 +62,9 @@ namespace HenselianDVF
 variable (F : HenselianDVF.{u, v} K)
 
 /-- In residue characteristic zero the actual reduction map is injective on
-all torsion roots simultaneously.-/
+all torsion roots simultaneously.
+@isnad1 id=injectiv.0h2v.s13.22b87ad23cd8 from=translated src=- shape=8b91598c vocab=b92cc8a1
+-/
 theorem torsionReduction_injective [CharZero F.residueField] :
     Function.Injective F.toDVF.torsionReduction := by
   apply F.toDVF.torsionReduction.ker_eq_bot_iff.mp
@@ -96,7 +98,9 @@ theorem torsionReduction_injective [CharZero F.residueField] :
     ((x : F.valuationSubring) : K)) hw
 
 /-- Finiteness of all residue-field roots of unity transfers to the base field
-for a Henselian DVF of residue characteristic zero.-/
+for a Henselian DVF of residue characteristic zero.
+@isnad1 id=finite.0h2v.s9.e6cc51658528 from=translated src=- shape=783cae48 vocab=ffe62da9
+-/
 theorem finite_torsion_of_finite_residueTorsion [CharZero F.residueField]
     [Finite (CommGroup.torsion F.residueFieldˣ)] :
     Finite (CommGroup.torsion Kˣ) :=

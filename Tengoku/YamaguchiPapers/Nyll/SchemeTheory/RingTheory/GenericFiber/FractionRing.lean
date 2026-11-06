@@ -36,6 +36,9 @@ noncomputable def genericFiberRightAlgHom
     C →ₐ[R] E :=
   (e.toAlgHom.restrictScalars R).comp Algebra.TensorProduct.includeRight
 
+/--
+@isnad1 id=eq.0h6v.s9.7551484360a2 from=translated src=- shape=90693611 vocab=6ded95f9
+-/
 @[simp]
 theorem genericFiberRightAlgHom_apply
     {R : Type uR} {C : Type uC} {K : Type uK} {E : Type uE}
@@ -51,7 +54,9 @@ field of that domain, for the canonical right-factor embedding.
 
 No finiteness assumption is needed: the existence of the field-valued
 generic-fibre equivalence already forces the required localization to be a
-field.-/
+field.
+@isnad1 id=isfracti.0h5v.s8.71786006112a from=translated src=- shape=dda8ec7b vocab=a6a4a804
+-/
 theorem isFractionRing_of_genericFiberAlgEquiv
     {R : Type uR} {C : Type uC} {K : Type uK} {E : Type uE}
     [CommRing R] [CommRing C] [IsDomain C] [Algebra R C]

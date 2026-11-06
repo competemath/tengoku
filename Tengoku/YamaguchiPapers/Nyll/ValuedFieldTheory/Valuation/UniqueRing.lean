@@ -28,7 +28,9 @@ open scoped Pointwise
 namespace Valuations
 
 /-- Translating an extension valuation ring by a `K`-automorphism preserves
-the extension property.-/
+the extension property.
+@isnad1 id=hasexten.1h5v.s9.4b38de811ee9 from=translated src=- shape=94a18c9e vocab=abcbf520
+-/
 theorem algEquiv_smul_valuationSubring_hasExtension
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (W : ValuationSubring L)
@@ -63,7 +65,9 @@ theorem algEquiv_smul_valuationSubring_hasExtension
     ValuationSubring.valuationSubring_valuation] using hpullback x
 
 /-- If the extension valuation ring is unique, every ground-field
-automorphism stabilizes it.-/
+automorphism stabilizes it.
+@isnad1 id=eq.2h5v.s8.0a9552ea72de from=translated src=- shape=a2cde1f3 vocab=abcbf520
+-/
 theorem algEquiv_smul_valuationSubring_eq_of_unique_extension
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (W : ValuationSubring L)
@@ -75,7 +79,9 @@ theorem algEquiv_smul_valuationSubring_eq_of_unique_extension
   huniq (σ • W)
     (algEquiv_smul_valuationSubring_hasExtension V W hW σ)
 
-/-- The preceding equality in elementwise form.-/
+/-- The preceding equality in elementwise form.
+@isnad1 id=iff.2h6v.s8.d2b7096eb3d3 from=translated src=- shape=3d04f9c0 vocab=c851632d
+-/
 theorem algEquiv_mem_valuationSubring_iff_of_unique_extension
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (W : ValuationSubring L)
@@ -116,7 +122,9 @@ def valuationSubringEquivOfUniqueExtension
   map_mul' x y := Subtype.ext (map_mul σ (x : L) (y : L))
   map_add' x y := Subtype.ext (map_add σ (x : L) (y : L))
 
-/-- The unique-extension equivalence acts on underlying valuation-ring elements as expected.-/
+/-- The unique-extension equivalence acts on underlying valuation-ring elements as expected.
+@isnad1 id=eq.2h6v.s10.b58f02c32dd7 from=translated src=- shape=046caff7 vocab=edb8320c
+-/
 @[simp]
 theorem coe_valuationSubringEquivOfUniqueExtension_apply
     {K L : Type*} [Field K] [Field L] [Algebra K L]
@@ -143,7 +151,9 @@ def residueFieldEquivOfUniqueExtension
     (valuationSubringEquivOfUniqueExtension V W hW huniq σ)
 
 /-- Reduction commutes with the automorphism induced on the unique
-extension's residue field.-/
+extension's residue field.
+@isnad1 id=eq.2h6v.s11.e8c76b038913 from=translated src=- shape=b7ce4c17 vocab=eeb1825e
+-/
 theorem residueFieldEquivOfUniqueExtension_residue
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (W : ValuationSubring L)
@@ -181,7 +191,9 @@ def valuationSubringMapOfHasExtension
           simpa only [ValuationSubring.valuationSubring_valuation,
             ValuationSubring.mem_toSubring] using hx))
 
-/-- The canonical map of valuation rings attached to an extension is local.-/
+/-- The canonical map of valuation rings attached to an extension is local.
+@isnad1 id=islocalh.1h4v.s9.f5e453d1e9a4 from=translated src=- shape=f645edae vocab=3b4f0a03
+-/
 theorem valuationSubringMapOfHasExtension_isLocalHom
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (W : ValuationSubring L)
@@ -212,7 +224,9 @@ def residueFieldMapOfHasExtension
     (valuationSubringMapOfHasExtension V W hW)
 
 /-- The induced residue-field automorphism fixes the embedded residue field
-of the base valuation ring.-/
+of the base valuation ring.
+@isnad1 id=eq.1h6v.s11.5298db08a839 from=translated src=- shape=34b93c9e vocab=77fce087
+-/
 theorem residueFieldEquivOfUniqueExtension_algebraMap
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (V : ValuationSubring K) (W : ValuationSubring L)

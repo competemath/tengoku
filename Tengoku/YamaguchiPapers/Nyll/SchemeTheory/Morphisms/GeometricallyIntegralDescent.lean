@@ -27,7 +27,9 @@ namespace AlgebraicGeometry
 universe u
 
 /-- The morphism from the residue field of the generic point of an integral
-scheme is flat.-/
+scheme is flat.
+@isnad1 id=flat.0h1v.s5.860a26cc4d34 from=translated src=- shape=088d2fa6 vocab=084dabcc
+-/
 lemma Scheme.flat_fromSpecResidueField_genericPoint
     (S : Scheme.{u}) [IsIntegral S] :
     Flat (S.fromSpecResidueField (genericPoint S)) := by
@@ -42,7 +44,9 @@ lemma Scheme.flat_fromSpecResidueField_genericPoint
     (e.toMulEquiv.isField (Field.toIsField S.functionField)) _
 
 /-- Geometric integrality over a field descends through a quasicompact,
-scheme-theoretically dominant morphism.-/
+scheme-theoretically dominant morphism.
+@isnad1 id=geometri.2h5v.s6.ed52b9c24979 from=translated src=- shape=11b7313a vocab=9d92e0f8
+-/
 lemma GeometricallyIntegral.of_comp_of_isSchemeTheoreticallyDominant
     {k : CommRingCat.{u}} {X Y : Scheme.{u}}
     (f : X ⟶ Y) (g : Y ⟶ Spec k) (hk : IsField k)
@@ -76,7 +80,9 @@ lemma GeometricallyIntegral.of_comp_of_isSchemeTheoreticallyDominant
   · exact IsSchemeTheoreticallyDominant.isReduced q
 
 /-- Geometric integrality over a field descends through a quasicompact
-dominant morphism with reduced target.-/
+dominant morphism with reduced target.
+@isnad1 id=geometri.2h5v.s6.ff07dc37788f from=translated src=- shape=198644de vocab=1e5c1c7a
+-/
 lemma GeometricallyIntegral.of_comp_of_isDominant
     {k : CommRingCat.{u}} {X Y : Scheme.{u}}
     (f : X ⟶ Y) (g : Y ⟶ Spec k) (hk : IsField k)
@@ -87,7 +93,9 @@ lemma GeometricallyIntegral.of_comp_of_isDominant
   exact h.of_comp_of_isSchemeTheoreticallyDominant f g hk
 
 /-- Geometric integrality of the generic fiber descends through a
-quasicompact scheme-theoretically dominant morphism.-/
+quasicompact scheme-theoretically dominant morphism.
+@isnad1 id=geometri.1h5v.s7.10b743694317 from=translated src=- shape=eb15de6b vocab=f559b75c
+-/
 lemma GeometricallyIntegral.genericFiber_of_comp_of_isSchemeTheoreticallyDominant
     {X Y S : Scheme.{u}} [IsIntegral S]
     (f : X ⟶ Y) (g : Y ⟶ S)
@@ -119,7 +127,9 @@ lemma GeometricallyIntegral.genericFiber_of_comp_of_isSchemeTheoreticallyDominan
     pullbackRightPullbackFstIso_hom_snd] using he
 
 /-- Geometric integrality of the generic fiber descends through a
-quasicompact dominant morphism with reduced target.-/
+quasicompact dominant morphism with reduced target.
+@isnad1 id=geometri.1h5v.s7.5c694913c91e from=translated src=- shape=f8c2e1e1 vocab=7c5cfd12
+-/
 lemma GeometricallyIntegral.genericFiber_of_comp_of_isDominant
     {X Y S : Scheme.{u}} [IsIntegral S]
     (f : X ⟶ Y) (g : Y ⟶ S)

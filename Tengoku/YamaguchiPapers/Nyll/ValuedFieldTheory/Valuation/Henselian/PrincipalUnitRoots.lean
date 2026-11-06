@@ -47,7 +47,9 @@ private theorem exists_binomial_quadratic_remainder
   linear_combination ht
 
 /-- The Hensel bound for nth roots near one, including the case when the
-integer n is divisible by the residue characteristic.-/
+integer n is divisible by the residue characteristic.
+@isnad1 id=ex.2h5v.s8.54b6bc0a3a7e from=translated src=- shape=2a6c2159 vocab=e946cb1e
+-/
 theorem exists_pow_eq_of_valuation_sub_one_lt_natCast_sq
     {K Γ : Type*} [Field K] [LinearOrderedCommGroupWithZero Γ]
     (v : Valuation K Γ)
@@ -95,7 +97,9 @@ theorem exists_pow_eq_of_valuation_sub_one_lt_natCast_sq
   linear_combination hzK
 
 /-- In a Henselian valued field, the nth-power subgroup of the multiplicative
-group is open whenever n is nonzero in the field.-/
+group is open whenever n is nonzero in the field.
+@isnad1 id=isopen.1h3v.s8.e7418d618c02 from=translated src=- shape=209ceb3d vocab=1b9901cd
+-/
 theorem isOpen_unit_pow_range
     {K Γ : Type*} [Field K] [LinearOrderedCommGroupWithZero Γ] [Valued K Γ]
     [HenselianRing (Valued.v : Valuation K Γ).valuationSubring

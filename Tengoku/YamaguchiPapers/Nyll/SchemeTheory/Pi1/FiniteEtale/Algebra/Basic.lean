@@ -43,6 +43,9 @@ universe u
 class Algebra.FiniteEtale (R S : Type u) [CommRing R] [CommRing S] [Algebra R S] : Prop
   extends Algebra.Etale R S, Module.Finite R S
 
+/--
+@isnad1 id=finiteet.0h4v.s6.faf7cd61c67c from=translated src=- shape=2bafc811 vocab=a76f343d
+-/
 lemma Algebra.FiniteEtale.of_equiv {R S S' : Type u} [CommRing R] [CommRing S] [Algebra R S]
     [Algebra.FiniteEtale R S] [CommRing S'] [Algebra R S'] (e : S ≃ₐ[R] S') :
     Algebra.FiniteEtale R S' := by
@@ -57,6 +60,9 @@ section
 
 variable (P : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop)
 
+/--
+@isnad1 id=var.2h4v.s8.c8a68fdfc7a0 from=translated src=- shape=67d69096 vocab=a90ef0c7
+-/
 lemma RingHom.OfLocalizationSpan.of_exists_of_isPrime
     (hP : RingHom.OfLocalizationSpan P)
     {R S : Type u}
@@ -78,6 +84,9 @@ lemma RingHom.OfLocalizationSpan.of_exists_of_isPrime
   · rintro ⟨p, ⟨p, rfl⟩⟩
     apply hu₂
 
+/--
+@isnad1 id=isunit.2h5v.s7.75bebfef817f from=translated src=- shape=2049b07c vocab=ff5d4378
+-/
 lemma IsUnit.tmul {R S T : Type*} [CommRing R] [CommRing S]
     [CommRing T] [Algebra R T] [Algebra R S] {s : S} {t : T} (hs : IsUnit s) (ht : IsUnit t) :
     IsUnit (s ⊗ₜ[R] t) := by
@@ -87,6 +96,9 @@ lemma IsUnit.tmul {R S T : Type*} [CommRing R] [CommRing S]
   use s⁻¹.val ⊗ₜ t⁻¹.val
   simp [Algebra.TensorProduct.one_def]
 
+/--
+@isnad1 id=var.3h3v.s9.bded8e5595f2 from=translated src=- shape=c5b3c925 vocab=723cc631
+-/
 lemma RingHom.OfLocalizationSpan.of_exists_of_isPrime'
     {P : ∀ {R S : Type u} [CommRing R] [CommRing S], (R →+* S) → Prop}
     (hP : RingHom.OfLocalizationSpan P)
@@ -118,6 +130,9 @@ lemma RingHom.OfLocalizationSpan.of_exists_of_isPrime'
   rw [this]
   exact hPi.left _ _ hf
 
+/--
+@isnad1 id=etale.1h2v.s9.7d6c23508191 from=translated src=- shape=546eb4ec vocab=bcb958a8
+-/
 lemma Algebra.Etale.of_exists_of_isPrime {R S : Type u} [CommRing R] [CommRing S]
     [Algebra R S] (H : ∀ (p : Ideal R) [p.IsPrime], ∃ r ∉ p,
       Algebra.Etale (Localization.Away r) (Localization.Away r ⊗[R] S)) : Algebra.Etale R S := by
@@ -128,6 +143,9 @@ lemma Algebra.Etale.of_exists_of_isPrime {R S : Type u} [CommRing R] [CommRing S
     obtain ⟨r, hr, hf⟩ := H p
     use r, hr
 
+/--
+@isnad1 id=finite.1h2v.s9.28da519c5296 from=translated src=- shape=546eb4ec vocab=97be6712
+-/
 lemma Module.Finite.of_exists_of_isPrime {R S : Type u} [CommRing R] [CommRing S]
     [Algebra R S] (H : ∀ (p : Ideal R) [p.IsPrime], ∃ r ∉ p,
       Module.Finite (Localization.Away r) (Localization.Away r ⊗[R] S)) : Module.Finite R S := by
@@ -139,6 +157,9 @@ lemma Module.Finite.of_exists_of_isPrime {R S : Type u} [CommRing R] [CommRing S
     obtain ⟨r, hr, h⟩ := H p
     use r, hr
 
+/--
+@isnad1 id=finiteet.1h2v.s9.53d24d9cb527 from=translated src=- shape=546eb4ec vocab=24bc90fb
+-/
 lemma Algebra.FiniteEtale.of_exists_of_isPrime {R S : Type u} [CommRing R] [CommRing S]
     [Algebra R S] (H : ∀ (p : Ideal R) [p.IsPrime], ∃ r ∉ p,
       Algebra.FiniteEtale (Localization.Away r) (Localization.Away r ⊗[R] S)) :

@@ -49,7 +49,9 @@ noncomputable def tensorProductToResidueField (t : ↑(pullback f g)) :
   exact (T.tensorIsoTensorProduct).inv ≫ ofPointTensor t
 
 /-- The inverse tensor-product comparison sends the explicit left inclusion
-to the categorical pushout inclusion.-/
+to the categorical pushout inclusion.
+@isnad1 id=other.0h6v.s12.d1e8146727db from=translated src=- shape=0b6b06d4 vocab=20967ce7
+-/
 theorem includeLeft_tensorIsoTensorProduct_inv
     (T : Triplet f g) :
     let : Algebra (S.residueField T.s) (X.residueField T.x) :=
@@ -68,7 +70,9 @@ theorem includeLeft_tensorIsoTensorProduct_inv
     Triplet.tensorInl_tensorIsoTensorProduct_hom]
 
 /-- The inverse tensor-product comparison sends the explicit right inclusion
-to the categorical pushout inclusion.-/
+to the categorical pushout inclusion.
+@isnad1 id=other.0h6v.s12.69dd4ffd3d76 from=translated src=- shape=14380b0e vocab=dea1df51
+-/
 theorem includeRight_tensorIsoTensorProduct_inv
     (T : Triplet f g) :
     let : Algebra (S.residueField T.s) (X.residueField T.x) :=
@@ -87,7 +91,9 @@ theorem includeRight_tensorIsoTensorProduct_inv
     Triplet.tensorInr_tensorIsoTensorProduct_hom]
 
 /-- The explicit residue-field tensor map is surjective whenever the
-categorical residue tensor selected by the pullback carrier is Artinian.-/
+categorical residue tensor selected by the pullback carrier is Artinian.
+@isnad1 id=other.0h6v.s14.292e7c5f7f6d from=translated src=- shape=82656bb7 vocab=d3a74c30
+-/
 theorem tensorProductToResidueField_surjective_of_isArtinian
     (t : ↑(pullback f g))
     [IsArtinianRing (Triplet.ofPoint t).tensor] :

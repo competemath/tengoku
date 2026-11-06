@@ -24,6 +24,9 @@ namespace Yamaguchi26AbfaithfulGalois
 open ValuationTheory.DiscreteValuationField
 universe u v w
 
+/--
+@isnad1 id=ex.1h3v.s7.7b5a3731b16b from=translated src=- shape=b4942eef vocab=bf554fe3
+-/
 theorem mixedChar_DVF_of_discreteValuationSubring
     {E : Type u} [Field E] (p : ℕ) [Fact p.Prime]
     (W : ValuationSubring E) [IsDiscreteValuationRing W] (hp : (p : E) ∈ W.nonunits) :
@@ -47,7 +50,9 @@ theorem mixedChar_DVF_of_discreteValuationSubring
   simpa only [map_natCast] using hzero
 
 /-- Restricting a mixed-characteristic discrete valuation along any field
-embedding remains nontrivial, since the prime has positive valuation.-/
+embedding remains nontrivial, since the prime has positive valuation.
+@isnad1 id=ex.0h5v.s6.d4c8d70cdece from=translated src=- shape=7d253ba5 vocab=32a7a29f
+-/
 theorem exists_mixedChar_DVF_of_embedding
     {K : Type u} {E : Type v} [Field K] [Field E] [CharZero E]
     (f : K →+* E) (base : DVF.{v, w} E) (p : ℕ) [Fact p.Prime]

@@ -23,6 +23,9 @@ section ProofImplementation
 namespace AlgebraicCurves.Foundations.CommutativeAlgebra.Proofs
 namespace isRegularLocalRing_localization_atPrime_mvPolynomial
 
+/--
+@isnad1 id=isregula.0h3v.s7.49bf1e90e0b4 from=translated src=- shape=0acd5df9 vocab=e95e7179
+-/
 theorem _root_.isRegularLocalRing_localization_atPrime_mvPolynomial (k : Type*) [Field k] (n : ℕ)
   (q : Ideal (MvPolynomial (Fin n) k)) [q.IsPrime] :
     IsRegularLocalRing (Localization.AtPrime q) :=

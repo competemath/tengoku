@@ -27,7 +27,9 @@ universe u v w x
 variable {K : Type u} {L : Type w} [Field K] [Field L] [Algebra K L]
 
 /-- A valued extension of discretely valued fields is defectless when its
-target valuation ring is finite over the base valuation ring.-/
+target valuation ring is finite over the base valuation ring.
+@isnad1 id=isdefect.0h4v.s9.4a706372d4af from=translated src=- shape=4341159e vocab=06087de1
+-/
 theorem isDefectless_of_moduleFinite
     (base : DVF.{u, v} K) (target : DVF.{w, x} L)
     [base.valuation.HasExtension target.valuation]

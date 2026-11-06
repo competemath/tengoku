@@ -25,7 +25,9 @@ namespace ValuationTheory.DiscreteValuationField
 open Polynomial
 universe u v
 
-/-- Powers minus the identity omit an element in every discretely valued field.-/
+/-- Powers minus the identity omit an element in every discretely valued field.
+@isnad1 id=ex.1h3v.s6.b37c4791eda1 from=translated src=- shape=c8125505 vocab=f616d7b0
+-/
 theorem DVF.exists_not_pow_sub
     {K : Type u} [Field K] (base : DVF.{u, v} K)
     (n : ℕ) (hn : 1 < n) :

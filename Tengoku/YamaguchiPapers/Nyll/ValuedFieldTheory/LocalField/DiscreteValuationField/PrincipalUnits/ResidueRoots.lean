@@ -46,7 +46,9 @@ abbrev residueRootsOfUnityGroup [Finite F.residueField] :
   rootsOfUnity (Nat.card F.residueField - 1) F.valuationSubring
 
 /-- Every nonzero residue class is a simple root of
-`X^(#κ - 1) - 1`.-/
+`X^(#κ - 1) - 1`.
+@isnad1 id=ne.0h3v.s11.76131a0ccd92 from=translated src=- shape=a389eb12 vocab=f0e3ecce
+-/
 theorem residueRootPolynomial_derivative_eval_ne_zero
     [Finite F.residueField] (y : F.residueFieldˣ) :
     (((Polynomial.X ^ (Nat.card F.residueField - 1) - 1 :
@@ -78,7 +80,9 @@ unit has a valuation-ring unit representative satisfying `u^(q - 1) = 1`.
 
 This is the substantive splitting input for the multiplicative unit decomposition:
 it upgrades the quotient isomorphism `O^*/U^1 ≃ κ^*` from an abstract
-first-isomorphism statement to a root-of-unity representative in `O^*`.-/
+first-isomorphism statement to a root-of-unity representative in `O^*`.
+@isnad1 id=ex.0h3v.s10.3f722a3dae1a from=translated src=- shape=39bf90ef vocab=f0ebd6b3
+-/
 theorem exists_residueRootsOfUnity_lift
     [Finite F.residueField] (y : F.residueFieldˣ) :
     ∃ u : F.valuationSubringˣ,
@@ -147,7 +151,9 @@ def residueRootsOfUnityResidueHom [Finite F.residueField] :
 
 /--
 The specified map is surjective: `Function.Surjective
-(higherPrincipalUnitGroup.residueRootsOfUnityResidueHom F)`.-/
+(higherPrincipalUnitGroup.residueRootsOfUnityResidueHom F)`.
+@isnad1 id=surjecti.0h2v.s13.c69ec4293b78 from=translated src=- shape=e29ab83c vocab=40f5b6db
+-/
 theorem residueRootsOfUnityResidueHom_surjective
     [Finite F.residueField] :
     Function.Surjective
@@ -159,7 +165,9 @@ theorem residueRootsOfUnityResidueHom_surjective
   exact ⟨⟨u, hu⟩, hres⟩
 
 /-- A unit satisfying the Teichmuller equation is a root of
-`X^(q - 1) - 1` over the valuation ring.-/
+`X^(q - 1) - 1` over the valuation ring.
+@isnad1 id=isroot.1h3v.s10.f9a007fd227e from=translated src=- shape=42abbef5 vocab=f364a24e
+-/
 theorem residueRootPolynomial_isRoot_of_mem
     [Finite F.residueField] {u : F.valuationSubringˣ}
     (hu : u ∈ higherPrincipalUnitGroup.residueRootsOfUnityGroup F) :
@@ -176,7 +184,9 @@ theorem residueRootPolynomial_isRoot_of_mem
     simp [Polynomial.eval_sub, hpow])
 
 /-- The derivative of `X^(q - 1) - 1` at a valuation-ring unit is a unit.
-This is the simple-root input for uniqueness of Teichmuller representatives.-/
+This is the simple-root input for uniqueness of Teichmuller representatives.
+@isnad1 id=isunit.0h3v.s11.b008292672b9 from=translated src=- shape=7f5fb5d0 vocab=de72b32d
+-/
 theorem residueRootPolynomial_derivative_eval_isUnit
     [Finite F.residueField] (u : F.valuationSubringˣ) :
     IsUnit
@@ -213,7 +223,9 @@ theorem residueRootPolynomial_derivative_eval_isUnit
 
 /--
 The specified map is injective: `Function.Injective
-(higherPrincipalUnitGroup.residueRootsOfUnityResidueHom F)`.-/
+(higherPrincipalUnitGroup.residueRootsOfUnityResidueHom F)`.
+@isnad1 id=injectiv.0h2v.s13.7aa757ad27f1 from=translated src=- shape=e29ab83c vocab=57c0753d
+-/
 theorem residueRootsOfUnityResidueHom_injective
     [Finite F.residueField] :
     Function.Injective
@@ -259,7 +271,9 @@ theorem residueRootsOfUnityResidueHom_injective
 
 /--
 The specified map is bijective: `Function.Bijective
-(higherPrincipalUnitGroup.residueRootsOfUnityResidueHom F)`.-/
+(higherPrincipalUnitGroup.residueRootsOfUnityResidueHom F)`.
+@isnad1 id=bijectiv.0h2v.s13.1034d7bc0fc6 from=translated src=- shape=e29ab83c vocab=7dbbe6e7
+-/
 theorem residueRootsOfUnityResidueHom_bijective
     [Finite F.residueField] :
     Function.Bijective
@@ -280,7 +294,9 @@ noncomputable def residueRootsOfUnityEquivResidueFieldUnits
 /--
 The defining evaluation formula for `residueRootsOfUnityEquivResidueFieldUnits` is
 `higherPrincipalUnitGroup.residueRootsOfUnityEquivResidueFieldUnits F u =
-higherPrincipalUnitGroup.residueUnitHom F u`.-/
+higherPrincipalUnitGroup.residueUnitHom F u`.
+@isnad1 id=eq.0h3v.s12.77088ace62cc from=translated src=- shape=28943ace vocab=ba9dcb03
+-/
 @[simp] theorem residueRootsOfUnityEquivResidueFieldUnits_apply
     [Finite F.residueField]
     (u : higherPrincipalUnitGroup.residueRootsOfUnityGroup F) :

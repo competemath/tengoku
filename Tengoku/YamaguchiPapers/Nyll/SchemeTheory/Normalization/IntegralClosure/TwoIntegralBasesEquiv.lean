@@ -75,7 +75,9 @@ noncomputable def integralClosureTwoIntegralBasesAlgEquiv :
   rw [eB.commutes]
 
 /-- The comparison of the two literal normalization types is the identity
-after coercion to their common ambient ring.-/
+after coercion to their common ambient ring.
+@isnad1 id=eq.0h5v.s10.8375c4aabf74 from=translated src=- shape=92e05b2e vocab=b11bc5da
+-/
 @[simp]
 theorem algebraMap_integralClosureTwoIntegralBasesAlgEquiv
     (x : integralClosure B L) :

@@ -47,6 +47,9 @@ def absoluteValueDecompositionGroup (w : AbsoluteValue L ℝ) :
     have h := hσ (σ⁻¹ x)
     simpa using h.symm
 
+/--
+@isnad1 id=iff.0h4v.s8.af8a24abd49d from=translated src=- shape=84a39156 vocab=e6b6d842
+-/
 @[simp] theorem mem_absoluteValueDecompositionGroup_iff
     (w : AbsoluteValue L ℝ) (σ : L ≃ₐ[K] L) :
     σ ∈ absoluteValueDecompositionGroup K w ↔
@@ -59,7 +62,9 @@ variable {M : Type v} [Field M] [Algebra K M] [Algebra M L]
   [IsScalarTower K M L]
 
 /-- The decomposition-group restriction law, decomposition-group membership form: scalar restriction
-does not change the action on the chosen valuation of `L`.-/
+does not change the action on the chosen valuation of `L`.
+@isnad1 id=iff.0h5v.s10.64369e240f43 from=translated src=- shape=4f348cb8 vocab=03c76b4d
+-/
 theorem decompositionGroupRestriction_mem_absoluteValueDecompositionGroup_restrictScalars_iff
     (w : AbsoluteValue L ℝ) (σ : L ≃ₐ[M] L) :
     RamificationTheory.HilbertRamification.ValuationSubring.restrictAutomorphismScalars (K := K) (M
@@ -70,7 +75,9 @@ theorem decompositionGroupRestriction_mem_absoluteValueDecompositionGroup_restri
 
 /-- The decomposition-group restriction law, including the archimedean case:
 inside `G(L/K)`, the decomposition group over `M` is
-`G_w(L/K) ∩ G(L/M)`.-/
+`G_w(L/K) ∩ G(L/M)`.
+@isnad1 id=eq.0h4v.s8.c9f378ec0ec3 from=translated src=- shape=840b5f56 vocab=46e92e66
+-/
 theorem decompositionGroupRestriction_absoluteValueDecompositionGroup_range_eq_inf
     (w : AbsoluteValue L ℝ) :
     Subgroup.map

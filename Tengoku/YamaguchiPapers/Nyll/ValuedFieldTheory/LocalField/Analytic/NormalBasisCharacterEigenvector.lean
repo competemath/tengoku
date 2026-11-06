@@ -29,7 +29,9 @@ variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 def normalBasisCharacterEigenvector (χ : (L ≃ₐ[K] L) →* Kˣ) : L :=
   ∑ δ : L ≃ₐ[K] L, (((χ δ)⁻¹ : Kˣ) : K) • IsGalois.normalBasis K L δ
 
-/-- Left translation of the normal basis gives the prescribed character action.-/
+/-- Left translation of the normal basis gives the prescribed character action.
+@isnad1 id=eq.0h4v.s9.28eed37689df from=translated src=- shape=0ebc2cb3 vocab=12ef07e9
+-/
 theorem normalBasisCharacterEigenvector_eigen (χ : (L ≃ₐ[K] L) →* Kˣ)
     (σ : L ≃ₐ[K] L) :
     σ (normalBasisCharacterEigenvector χ) =
@@ -61,7 +63,9 @@ theorem normalBasisCharacterEigenvector_eigen (χ : (L ≃ₐ[K] L) →* Kˣ)
         ∑ δ : L ≃ₐ[K] L, (((χ δ)⁻¹ : Kˣ) : K) • IsGalois.normalBasis K L δ :=
       Finset.smul_sum.symm
 
-/-- The identity coordinate of the weighted sum is one.-/
+/-- The identity coordinate of the weighted sum is one.
+@isnad1 id=ne.0h3v.s8.b44045f70c67 from=translated src=- shape=e0b086f9 vocab=63d91bdd
+-/
 theorem normalBasisCharacterEigenvector_ne_zero (χ : (L ≃ₐ[K] L) →* Kˣ) :
     normalBasisCharacterEigenvector χ ≠ 0 := by
   classical
@@ -74,7 +78,9 @@ theorem normalBasisCharacterEigenvector_ne_zero (χ : (L ≃ₐ[K] L) →* Kˣ) 
   rw [hzero, map_zero, Finsupp.zero_apply] at hcoord
   exact zero_ne_one hcoord
 
-/-- Every base-field-valued character of a finite Galois group occurs in the field.-/
+/-- Every base-field-valued character of a finite Galois group occurs in the field.
+@isnad1 id=ex.0h3v.s9.b43e0fe9f656 from=translated src=- shape=d13ec390 vocab=0a6c42e2
+-/
 theorem exists_nonzero_characterEigenvector (χ : (L ≃ₐ[K] L) →* Kˣ) :
     ∃ b : L, b ≠ 0 ∧ ∀ σ : L ≃ₐ[K] L, σ b = (χ σ : K) • b :=
   ⟨normalBasisCharacterEigenvector χ, normalBasisCharacterEigenvector_ne_zero χ,

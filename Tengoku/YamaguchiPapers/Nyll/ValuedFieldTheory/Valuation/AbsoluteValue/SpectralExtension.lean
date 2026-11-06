@@ -155,7 +155,9 @@ noncomputable def spectralExtension
         (le_add_of_nonneg_left hx_nonneg))
 
 /-- The absolute-value extension constructed restricts to
-the given base valuation.-/
+the given base valuation.
+@isnad1 id=extends.3h3v.s7.ebbba56d5e0d from=translated src=- shape=59f5c02e vocab=d326150a
+-/
 theorem spectralExtension_extends
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     [Algebra.IsAlgebraic K L]

@@ -40,7 +40,9 @@ variable {R : Type u} {K : Type v} {L : Type w}
   [Algebra K L] [Algebra R L] [IsScalarTower R K L]
 
 /-- An integral power-basis generator with Eisenstein minimal polynomial
-generates the integral closure of a DVR inside the extension field.-/
+generates the integral closure of a DVR inside the extension field.
+@isnad1 id=mem.2h5v.s8.c01ed87bf56c from=translated src=- shape=645aa06d vocab=635b4fb0
+-/
 theorem mem_adjoin_of_isIntegral_of_minpoly_isEisensteinAt
     (B : PowerBasis K L)
     (hE : (minpoly R B.gen).IsEisensteinAt (IsLocalRing.maximalIdeal R))

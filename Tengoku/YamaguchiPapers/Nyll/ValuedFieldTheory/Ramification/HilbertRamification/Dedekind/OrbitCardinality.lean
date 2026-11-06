@@ -28,7 +28,9 @@ variable {A B : Type*} [CommRing A] [CommRing B] [Algebra A B]
 
 /-- The separable-residue cardinality relation:
 when the residue extension is separable, the inertia group has cardinality
-equal to the ramification index of the chosen prime.-/
+equal to the ramification index of the chosen prime.
+@isnad1 id=eq.1h5v.s8.e94c67ee8195 from=translated src=- shape=3e456251 vocab=749f0fe9
+-/
 theorem inertia_card_eq_ramificationIdx
     [IsDedekindDomain A] [IsDedekindDomain B] [Module.Finite A B]
     [IsTorsionFree A B]

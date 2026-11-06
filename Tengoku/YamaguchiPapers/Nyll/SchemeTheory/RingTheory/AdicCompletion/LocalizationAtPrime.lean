@@ -36,7 +36,9 @@ local notation "S_Q" => Localization.AtPrime Q
 local notation "m_Q" => IsLocalRing.maximalIdeal S_Q
 
 /-- The finite-level localization equivalences commute with the transition maps
-between powers of the maximal ideals.-/
+between powers of the maximal ideals.
+@isnad1 id=eq.1h5v.s14.0a47f3ebe5fd from=translated src=- shape=5d6b1a1a vocab=2f551135
+-/
 theorem localizationAtPrimeQuotientPowEquiv_factorPow
     {m n : ℕ} (hmn : m ≤ n) (x : S ⧸ Q ^ n) :
     Ideal.Quotient.factorPow m_Q hmn
@@ -55,7 +57,9 @@ theorem localizationAtPrimeQuotientPowEquiv_factorPow
         Ideal.Quotient.factor_mk,
         IsLocalization.AtPrime.equivQuotMaximalIdealPow_apply_mk]
 
-/-- Naturality of the inverse finite-level localization equivalences.-/
+/-- Naturality of the inverse finite-level localization equivalences.
+@isnad1 id=eq.1h5v.s14.1fb34a1bcf18 from=translated src=- shape=80459dd9 vocab=67b26073
+-/
 theorem localizationAtPrimeQuotientPowEquiv_symm_factorPow
     {m n : ℕ} (hmn : m ≤ n) (x : S_Q ⧸ m_Q ^ n) :
     Ideal.Quotient.factorPow Q hmn
@@ -203,6 +207,9 @@ noncomputable def adicCompletionLocalizationAtPrimeRingEquiv :
     (completionToAtPrime_comp_fromAtPrime Q)
     (completionFromAtPrime_comp_toAtPrime Q)
 
+/--
+@isnad1 id=eq.0h4v.s13.f32e8f0c0959 from=translated src=- shape=69250acd vocab=8058ad4d
+-/
 @[simp]
 theorem evalₐ_adicCompletionLocalizationAtPrimeRingEquiv
     (n : ℕ) (x : AdicCompletion Q S) :
@@ -212,6 +219,9 @@ theorem evalₐ_adicCompletionLocalizationAtPrimeRingEquiv
         (AdicCompletion.evalₐ Q n x) :=
   evalₐ_completionToAtPrimeRingHom Q n x
 
+/--
+@isnad1 id=eq.0h4v.s13.a46c149a4d56 from=translated src=- shape=8bcf4cae vocab=22278f7e
+-/
 @[simp]
 theorem evalₐ_adicCompletionLocalizationAtPrimeRingEquiv_symm
     (n : ℕ) (x : AdicCompletion m_Q S_Q) :
@@ -231,6 +241,9 @@ noncomputable def adicCompletionLocalizationAtPrimeAlgEquiv :
       intro n
       simp [AdicCompletion.algebraMap_apply])
 
+/--
+@isnad1 id=eq.0h4v.s13.1c9bab796e47 from=translated src=- shape=872f6857 vocab=d34e6026
+-/
 @[simp]
 theorem evalₐ_adicCompletionLocalizationAtPrimeAlgEquiv
     (n : ℕ) (x : AdicCompletion Q S) :

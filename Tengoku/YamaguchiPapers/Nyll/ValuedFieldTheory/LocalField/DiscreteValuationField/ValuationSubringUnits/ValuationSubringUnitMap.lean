@@ -35,7 +35,9 @@ noncomputable def valuationSubringUnitsToFieldUnits
 
 /--
 The defining evaluation formula for `coe_valuationSubringUnitsToFieldUnits` is
-`(((CompleteDVF.valuationSubringUnitsToFieldUnits F) a : Kˣ) : K) = (a : F.valuationSubring)`.-/
+`(((CompleteDVF.valuationSubringUnitsToFieldUnits F) a : Kˣ) : K) = (a : F.valuationSubring)`.
+@isnad1 id=eq.0h3v.s9.b05a913aaa20 from=translated src=- shape=2c13689f vocab=43e449e4
+-/
 @[simp] theorem coe_valuationSubringUnitsToFieldUnits_apply
     (F : CompleteDVF.{u, v} K) (a : F.valuationSubringˣ) :
     (((LocalFieldTheory.DiscreteValuationField.CompleteDVF.valuationSubringUnitsToFieldUnits F)

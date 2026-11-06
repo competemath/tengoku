@@ -24,7 +24,9 @@ namespace ValuationTheory.DiscreteValuationField
 variable {K L : Type*} [Field K] [Field L] [Algebra K L]
 
 /-- The finite cyclotomic action on a primitive `p^(s+1)`-th root reduces
-to the action on any primitive `p`-th root.-/
+to the action on any primitive `p`-th root.
+@isnad1 id=eq.2h7v.s11.8567de97c011 from=translated src=- shape=74d1fa65 vocab=1e709759
+-/
 theorem autToPow_unitsMap_prime_pow (p s : ℕ) [Fact p.Prime]
     {ζ η : L} (hζ : IsPrimitiveRoot ζ (p ^ (s + 1)))
     (hη : IsPrimitiveRoot η p) (σ : L ≃ₐ[K] L) :

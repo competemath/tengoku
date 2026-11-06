@@ -26,7 +26,9 @@ variable {K : Type*} [Field K] (base : DVF K)
 
 /-- An embedded separably closed extension of the original field generates
 every separable extension of the valuation completion containing its image.
-The original field need not be Henselian.-/
+The original field need not be Henselian.
+@isnad1 id=eq.0h5v.s11.1bbf72903bb1 from=translated src=- shape=3d66291a vocab=075c7a65
+-/
 theorem adjoin_range_eq_top_of_isSepClosed
     {S E : Type*} [Field S] [Field E] [Algebra K S]
     [Algebra base.valuation.Completion E] [Algebra K E]

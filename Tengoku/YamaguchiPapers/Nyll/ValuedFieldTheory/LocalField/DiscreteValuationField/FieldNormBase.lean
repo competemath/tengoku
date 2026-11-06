@@ -36,7 +36,9 @@ noncomputable def baseUnitsMap : Kˣ →* Lˣ :=
 
 /--
 The defining evaluation formula for `baseUnitsMap` is `baseUnitsMap (K := K) (L := L) x =
-Units.map (algebraMap K L).toMonoidHom x`.-/
+Units.map (algebraMap K L).toMonoidHom x`.
+@isnad1 id=eq.0h3v.s8.8d0e0ba14631 from=translated src=- shape=9ef58d6b vocab=942ccdcb
+-/
 @[simp] theorem baseUnitsMap_apply (x : Kˣ) :
     baseUnitsMap (K := K) (L := L) x =
       Units.map (algebraMap K L).toMonoidHom x :=
@@ -44,7 +46,9 @@ Units.map (algebraMap K L).toMonoidHom x`.-/
 
 /--
 The defining evaluation formula for `coe_baseUnitsMap` is `((baseUnitsMap (K := K) (L := L) x :
-Lˣ) : L) = algebraMap K L (x : K)`.-/
+Lˣ) : L) = algebraMap K L (x : K)`.
+@isnad1 id=eq.0h3v.s8.a9568e4b4fa1 from=translated src=- shape=32984e95 vocab=911038ca
+-/
 @[simp] theorem coe_baseUnitsMap_apply (x : Kˣ) :
     ((baseUnitsMap (K := K) (L := L) x : Lˣ) : L) =
       algebraMap K L (x : K) :=
@@ -56,7 +60,9 @@ noncomputable def baseUnitsImageSubgroup : Subgroup Lˣ :=
 
 /--
 Characterizes `x ∈ baseUnitsImageSubgroup (K := K) (L := L)` by the equivalent condition `∃ y :
-Kˣ, baseUnitsMap (K := K) (L := L) y = x`.-/
+Kˣ, baseUnitsMap (K := K) (L := L) y = x`.
+@isnad1 id=iff.0h3v.s8.b7bd50479b58 from=translated src=- shape=5bff43f0 vocab=f4fecc0d
+-/
 @[simp] theorem mem_baseUnitsImageSubgroup_iff (x : Lˣ) :
     x ∈ baseUnitsImageSubgroup (K := K) (L := L) ↔
       ∃ y : Kˣ, baseUnitsMap (K := K) (L := L) y = x :=

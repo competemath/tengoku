@@ -22,7 +22,9 @@ namespace Yamaguchi26AbfaithfulGalois
 universe u v w
 
 /-- A finite separable extension of a subfield embeds in a finite extension
-of the ambient field, using a primitive generator.-/
+of the ambient field, using a primitive generator.
+@isnad1 id=ex.0h3v.s10.536e25f45e45 from=translated src=- shape=f2f1fc18 vocab=03d1f1d0
+-/
 theorem finiteExtension_embedding_over_subfield
     (K : Type u) (E : Type v) (L : Type w)
     [Field K] [Field E] [Field L] [Algebra K E] [Algebra K L]
@@ -53,7 +55,9 @@ theorem finiteExtension_embedding_over_subfield
   exact ⟨T, hfinite, ⟨f⟩⟩
 
 /-- Root finiteness in finite extensions descends to arbitrary subfields
-in characteristic zero.-/
+in characteristic zero.
+@isnad1 id=finite.1h4v.s12.0eb03b44f77a from=translated src=- shape=5a30d56d vocab=95be74b1
+-/
 theorem finite_primaryComponent_finiteExtension_of_subfield
     (K : Type u) (E : Type v) [Field K] [Field E] [Algebra K E] [CharZero K]
     (p : ℕ)

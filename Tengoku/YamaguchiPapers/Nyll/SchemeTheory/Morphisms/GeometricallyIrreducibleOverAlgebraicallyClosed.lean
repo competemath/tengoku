@@ -48,6 +48,9 @@ section FiniteType
 
 variable {K : Type u} [Field K]
 
+/--
+@isnad1 id=bijectiv.0h3v.s7.99e9b7680962 from=translated src=- shape=dd9a6330 vocab=13027893
+-/
 theorem algebraMap_quotient_bijective [IsAlgClosed K] {A : Type v} [CommRing A]
     [Algebra K A] [Algebra.FiniteType K A] (m : Ideal A) [m.IsMaximal] :
     Function.Bijective (algebraMap K (A ⧸ m)) := by
@@ -67,6 +70,9 @@ noncomputable def pointOfMaximal [IsAlgClosed K] {A : Type v} [CommRing A]
       rw [Ideal.Quotient.mk_algebraMap]
       exact e.symm_apply_apply k }
 
+/--
+@isnad1 id=iff.0h4v.s7.e5fa2bf8ed48 from=translated src=- shape=f8353326 vocab=fce3b937
+-/
 theorem pointOfMaximal_eq_zero_iff [IsAlgClosed K] {A : Type v} [CommRing A] [Algebra K A]
     [Algebra.FiniteType K A] (m : Ideal A) [m.IsMaximal] (a : A) :
     pointOfMaximal K m a = 0 ↔ a ∈ m := by

@@ -38,7 +38,9 @@ noncomputable def polynomialCoeffAbsMax
     exact Finset.mem_image.mpr ⟨0, Finset.mem_range.mpr (Nat.succ_pos _), rfl⟩)
 
 /-- reduction input: a coefficient of absolute value `< 1`
-reduces to the zero coefficient of the residue polynomial.-/
+reduces to the zero coefficient of the residue polynomial.
+@isnad1 id=eq.2h4v.s9.85308932bba8 from=translated src=- shape=0047b723 vocab=581b2eb3
+-/
 theorem irreduciblePolynomial_reduction_coeff_eq_zero_of_abs_lt_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -53,7 +55,9 @@ theorem irreduciblePolynomial_reduction_coeff_eq_zero_of_abs_lt_one
       v hnonarch (F.coeff i)).2 hi
 
 /-- reduction input: a coefficient of absolute value `1`
-reduces to a nonzero coefficient of the residue polynomial.-/
+reduces to a nonzero coefficient of the residue polynomial.
+@isnad1 id=ne.2h4v.s9.a809603929c6 from=translated src=- shape=0047b723 vocab=617d0904
+-/
 theorem irreduciblePolynomial_reduction_coeff_ne_zero_of_abs_eq_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -68,7 +72,9 @@ theorem irreduciblePolynomial_reduction_coeff_ne_zero_of_abs_eq_one
       v hnonarch (F.coeff i)).2 hi
 
 /-- reduction input: if all coefficients below `r` have
-absolute value `< 1`, then `X^r` divides the reduced polynomial.-/
+absolute value `< 1`, then `X^r` divides the reduced polynomial.
+@isnad1 id=dvd.2h4v.s11.5b0c4dad66fe from=translated src=- shape=633dbb99 vocab=02072182
+-/
 theorem irreduciblePolynomial_reduction_X_pow_dvd_of_initial_abs_lt_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -84,7 +90,9 @@ theorem irreduciblePolynomial_reduction_X_pow_dvd_of_initial_abs_lt_one
 
 /-- reduction input: if `r` is the first coefficient with
 absolute value `1`, then the reduced polynomial is divisible by exactly
-`X^r` at the origin.-/
+`X^r` at the origin.
+@isnad1 id=and.3h4v.s12.531c18a4f06d from=translated src=- shape=ca44cd65 vocab=3806f110
+-/
 theorem irreduciblePolynomial_reduction_exact_X_pow_of_first_abs_eq_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -112,7 +120,9 @@ theorem irreduciblePolynomial_reduction_exact_X_pow_of_first_abs_eq_one
 
 /-- reduction input: from any coefficient of value `1`, choose
 the first such coefficient.  Every earlier coefficient then has value `< 1`
-because all coefficients already lie in the closed unit ball.-/
+because all coefficients already lie in the closed unit ball.
+@isnad1 id=ex.2h4v.s8.895121979fe6 from=translated src=- shape=2b474b5c vocab=80fe78a9
+-/
 theorem irreduciblePolynomial_exists_first_abs_eq_one_coeff
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -135,7 +145,9 @@ theorem irreduciblePolynomial_exists_first_abs_eq_one_coeff
 
 /-- reduction input: if some coefficient has value `1`, then
 the reduced polynomial has an exact initial `X^r` divisor for the first such
-coefficient `r`.-/
+coefficient `r`.
+@isnad1 id=ex.2h4v.s12.dfe0a6510846 from=translated src=- shape=36933cc5 vocab=7463c3bb
+-/
 theorem irreduciblePolynomial_exists_exact_X_pow_reduction_of_abs_eq_one_coeff
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -156,7 +168,9 @@ theorem irreduciblePolynomial_exists_exact_X_pow_reduction_of_abs_eq_one_coeff
       v hnonarch F hinit hr⟩
 
 /-- reduction input: if the degree-zero coefficient has absolute
-value `< 1`, then the first coefficient of value `1` has positive index.-/
+value `< 1`, then the first coefficient of value `1` has positive index.
+@isnad1 id=lt.3h4v.s8.d190f162037a from=translated src=- shape=bd231ea1 vocab=80fe78a9
+-/
 theorem irreduciblePolynomial_first_abs_eq_one_index_pos_of_const_abs_lt_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -174,7 +188,9 @@ theorem irreduciblePolynomial_first_abs_eq_one_index_pos_of_const_abs_lt_one
 
 /-- A coefficient whose absolute value is `1` is nonzero.  This small
 field-level fact is used repeatedly when passing from coefficient estimates to
-degree bounds.-/
+degree bounds.
+@isnad1 id=ne.2h4v.s8.e9ee98b74b79 from=translated src=- shape=25ea7f12 vocab=8df2cd22
+-/
 theorem irreduciblePolynomial_coeff_ne_zero_of_abs_eq_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -186,7 +202,9 @@ theorem irreduciblePolynomial_coeff_ne_zero_of_abs_eq_one
 
 /-- reduction input: if the leading coefficient has absolute
 value `< 1`, then a coefficient of value `1` occurs strictly before the
-natural degree.-/
+natural degree.
+@isnad1 id=lt.3h4v.s8.c27f1e8cac94 from=translated src=- shape=b424eeb9 vocab=b57286a4
+-/
 theorem irreduciblePolynomial_abs_eq_one_index_lt_natDegree_of_leading_abs_lt_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -207,7 +225,9 @@ theorem irreduciblePolynomial_abs_eq_one_index_lt_natDegree_of_leading_abs_lt_on
   exact lt_of_le_of_ne hle hne
 
 /-- reduction input: exact `X^r` divisibility rewrites the
-reduced polynomial as `X^r` times its monic quotient.-/
+reduced polynomial as `X^r` times its monic quotient.
+@isnad1 id=eq.2h4v.s12.94a6d952cc47 from=translated src=- shape=590fbb22 vocab=c98b9588
+-/
 theorem irreduciblePolynomial_reduction_eq_X_pow_mul_divByMonic_of_X_pow_dvd
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -236,7 +256,9 @@ theorem irreduciblePolynomial_reduction_eq_X_pow_mul_divByMonic_of_X_pow_dvd
   simpa [P] using hdecomp.symm
 
 /-- reduction input: exact nondivisibility by `X^(r+1)` says
-that the monic quotient by `X^r` has nonzero degree-zero coefficient.-/
+that the monic quotient by `X^r` has nonzero degree-zero coefficient.
+@isnad1 id=ne.3h4v.s12.219667590df9 from=translated src=- shape=46d744b0 vocab=03c8a5f1
+-/
 theorem irreduciblePolynomial_reduction_divByMonic_X_pow_coeff_zero_ne_zero
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -274,7 +296,9 @@ theorem irreduciblePolynomial_reduction_divByMonic_X_pow_coeff_zero_ne_zero
 
 /-- Hensel input: if the quotient after removing the exact
 initial `X^r` factor has nonzero degree-zero coefficient, then it is coprime
-to `X^r`.-/
+to `X^r`.
+@isnad1 id=iscoprim.2h4v.s12.325e08288823 from=translated src=- shape=f38a3526 vocab=3665449e
+-/
 theorem irreduciblePolynomial_reduction_X_pow_isCoprime_divByMonic_of_coeff_zero_ne_zero
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -314,7 +338,9 @@ theorem irreduciblePolynomial_reduction_X_pow_isCoprime_divByMonic_of_coeff_zero
   simpa [P, Q] using (hcopX.pow_left (m := r))
 
 /-- Hensel input: exact `X^r` divisibility of the reduction
-supplies the coprime factor pair `X^r` and the remaining quotient.-/
+supplies the coprime factor pair `X^r` and the remaining quotient.
+@isnad1 id=iscoprim.3h4v.s13.31c5cfc5efb5 from=translated src=- shape=5f1e5c6d vocab=7eeda018
+-/
 theorem irreduciblePolynomial_reduction_X_pow_isCoprime_divByMonic_of_exact
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -338,7 +364,9 @@ theorem irreduciblePolynomial_reduction_X_pow_isCoprime_divByMonic_of_exact
 
 /-- reduction input: under the endpoint inequalities used in
 the proof, the first coefficient of value `1` gives a nontrivial exact
-initial `X^r` divisor with `0 < r < natDegree`.-/
+initial `X^r` divisor with `0 < r < natDegree`.
+@isnad1 id=ex.4h4v.s12.046635987df1 from=translated src=- shape=ae22c1d0 vocab=0406e3d1
+-/
 theorem irreduciblePolynomial_exists_nontrivial_exact_X_pow_reduction
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -367,7 +395,9 @@ theorem irreduciblePolynomial_exists_nontrivial_exact_X_pow_reduction
 
 /-- Hensel input: under the endpoint inequalities used in the
 proof, the reduction has a nontrivial monic factor `X^r`, the remaining
-quotient, and these two factors are coprime.-/
+quotient, and these two factors are coprime.
+@isnad1 id=ex.4h4v.s13.d483fd934806 from=translated src=- shape=e0ca7945 vocab=606e30a8
+-/
 theorem irreduciblePolynomial_exists_hensel_reduction_factor_input
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -409,7 +439,9 @@ theorem irreduciblePolynomial_exists_hensel_reduction_factor_input
 /-- field-polynomial input: once a field polynomial has been
 normalized so that every coefficient lies in the closed unit ball and one
 coefficient has value `1`, the endpoint inequalities produce the same Hensel
-reduction factor data after choosing a degree-preserving valuation-ring lift.-/
+reduction factor data after choosing a degree-preserving valuation-ring lift.
+@isnad1 id=ex.5h4v.s13.dd6f0a83a746 from=translated src=- shape=59e8d146 vocab=cbe4ec2f
+-/
 theorem irreduciblePolynomial_exists_hensel_reduction_factor_input_of_field_coeffs
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
@@ -464,7 +496,9 @@ theorem irreduciblePolynomial_exists_hensel_reduction_factor_input_of_field_coef
 
 /-- normalization source: a nonzero polynomial has a positive
 maximum among the absolute values of its coefficients, attained within the
-finite coefficient range up to `natDegree`.-/
+finite coefficient range up to `natDegree`.
+@isnad1 id=ex.1h3v.s7.340465f97583 from=translated src=- shape=9e446f14 vocab=ccb0400d
+-/
 theorem irreduciblePolynomial_exists_coeff_abs_max_of_ne_zero
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     {f : K[X]} (hf : f ≠ 0) :
@@ -514,7 +548,9 @@ theorem irreduciblePolynomial_exists_coeff_abs_max_of_ne_zero
 /-- normalization source: dividing a nonzero polynomial by a
 coefficient whose absolute value is the positive coefficient maximum preserves
 degree, puts every coefficient in the closed unit ball, and makes that chosen
-coefficient have value `1`.-/
+coefficient have value `1`.
+@isnad1 id=other.3h5v.s9.4dfb0790d6d1 from=translated src=- shape=8a59c6f3 vocab=fb0e9fa1
+-/
 theorem irreduciblePolynomial_scale_by_max_coeff_abs_data
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     {f : K[X]} {m : ℝ} {n : ℕ}
@@ -561,7 +597,9 @@ theorem irreduciblePolynomial_scale_by_max_coeff_abs_data
 /-- normalization source: if the original constant and
 leading coefficients are strictly smaller than the coefficient maximum, then
 after scaling by a maximum coefficient they are strictly inside the open unit
-ball.-/
+ball.
+@isnad1 id=and.5h5v.s8.19eb0eed777b from=translated src=- shape=c0573dd0 vocab=0af378b3
+-/
 theorem irreduciblePolynomial_normalized_scale_endpoint_abs_lt_one
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     {f g : K[X]} {m : ℝ}
@@ -591,7 +629,9 @@ theorem irreduciblePolynomial_normalized_scale_endpoint_abs_lt_one
 /-- normalized Hensel input: after scaling by a coefficient
 that attains the positive coefficient maximum, strict endpoint bounds below
 that maximum give the exact Hensel reduction factor input for the scaled
-polynomial.-/
+polynomial.
+@isnad1 id=other.6h5v.s13.e50620ccd1d0 from=translated src=- shape=07e76e95 vocab=784ff9c1
+-/
 theorem irreduciblePolynomial_normalized_scale_hensel_reduction_factor_input
     {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
     (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)

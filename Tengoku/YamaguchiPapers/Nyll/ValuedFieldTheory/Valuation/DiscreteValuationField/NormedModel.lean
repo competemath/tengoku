@@ -70,7 +70,9 @@ def normedWithValValuationSubringEquiv :
   map_add' x y := Subtype.ext ((WithVal.equiv base.valuation).map_add
     (x : WithVal base.valuation) (y : WithVal base.valuation))
 
-/-- The valuation-ring equivalence is the restriction of `WithVal.equiv`.-/
+/-- The valuation-ring equivalence is the restriction of `WithVal.equiv`.
+@isnad1 id=eq.0h3v.s13.cfecf87746d3 from=translated src=- shape=219e821e vocab=e578a665
+-/
 @[simp] theorem normedWithValValuationSubringEquiv_apply
     (x : (NormedField.valuation (K := WithVal base.valuation)).valuationSubring) :
     (normedWithValValuationSubringEquiv base x : K) =
