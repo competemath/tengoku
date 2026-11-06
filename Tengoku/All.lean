@@ -28,6 +28,7 @@ import Tengoku.Leanslt
 import Tengoku.EntropyConstrainedMissingMass
 import Tengoku.AddCombi
 import Tengoku.LanaFormalSchemes
+import Tengoku.FltAnthropic
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
 import Tengoku.Erdos1196

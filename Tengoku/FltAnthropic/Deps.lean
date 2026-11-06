@@ -1,0 +1,1 @@
+-- FltAnthropic: a factory bundle (data/intake/flt-anthropic). This file only marks the library for Tengoku/All.lean.

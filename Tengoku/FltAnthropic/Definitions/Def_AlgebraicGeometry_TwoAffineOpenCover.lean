@@ -1,0 +1,50 @@
+import Tengoku.FltAnthropic.Definitions.Def_AlgebraicGeometry_TwoChartCech
+import Tengoku.Seed.AlgebraicGeometry.AffineScheme
+import Tengoku.Seed.AlgebraicGeometry.Pullbacks
+import Tengoku.Seed.AlgebraicGeometry.Morphisms.Affine
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+noncomputable section
+
+universe u
+
+namespace AlgebraicGeometry
+
+open CategoryTheory CategoryTheory.Limits Opposite
+
+structure Scheme.TwoAffineOpenCover (X : Scheme.{u}) where
+
+  U0 : X.Opens
+
+  U1 : X.Opens
+  isAffineOpen_U0 : IsAffineOpen U0
+  isAffineOpen_U1 : IsAffineOpen U1
+  sup_eq_top : U0 ⊔ U1 = ⊤
+  isAffineOpen_inf : IsAffineOpen (U0 ⊓ U1)
+
+namespace Scheme.TwoAffineOpenCover
+
+abbrev specMap (R A : Type u) [CommRing R] [CommRing A] [Algebra R A] : Spec (.of A) ⟶ Spec (.of R) :=
+  Spec.map (CommRingCat.ofHom (algebraMap R A))
+
+variable {R : Type u} [CommRing R] {X : Scheme.{u}}
+
+@[reducible] def algebraOfHom (c : X ⟶ Spec (.of R)) (U : X.Opens) : Algebra R Γ(X, U) :=
+  ((Scheme.ΓSpecIso (.of R)).inv ≫ c.appLE ⊤ U le_top).hom.toAlgebra
+
+variable (𝒱 : X.TwoAffineOpenCover) (c : X ⟶ Spec (.of R))
+
+section Pullback
+
+variable (A : Type u) [CommRing A] [Algebra R A]
+
+end Pullback
+
+end Scheme.TwoAffineOpenCover
+
+end AlgebraicGeometry
+
+end
