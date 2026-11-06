@@ -1,0 +1,96 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.Seed.GroupTheory.QuotientGroup.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Faithful conjugation on an abelian kernel
+
+Conjugation descends along an epimorphism with abelian kernel. Its faithfulness
+is characterized by the kernel being its own centralizer.
+-/
+
+namespace ProCGroups.FiniteStepSolvableQuotients
+
+universe u v
+
+variable {E : Type u} [Group E] {B : Type v} [Group B]
+
+/-- An abelian kernel acts trivially on itself by conjugation.
+@isnad1 id=le.1h3v.s8.c76d3d11351f from=translated src=- shape=507e494a vocab=392e373c
+-/
+theorem abelianKernel_le_ker_conjNormal (α : E →* B)
+    (hcomm : ∀ a b : α.ker, Commute (a : E) (b : E)) :
+    α.ker ≤ (MulAut.conjNormal : E →* MulAut α.ker).ker := by
+  intro e he
+  apply MulEquiv.ext
+  intro a
+  apply Subtype.ext
+  change e * (a : E) * e⁻¹ = (a : E)
+  rw [(hcomm ⟨e, he⟩ a).eq, mul_assoc, mul_inv_cancel, mul_one]
+
+/-- The action of the quotient target on the abelian kernel of an epimorphism.-/
+noncomputable def abelianKernelConjugation (α : E →* B)
+    (hsurj : Function.Surjective α)
+    (hcomm : ∀ a b : α.ker, Commute (a : E) (b : E)) :
+    B →* MulAut α.ker :=
+  (QuotientGroup.lift α.ker MulAut.conjNormal
+    (abelianKernel_le_ker_conjNormal α hcomm)).comp
+      (QuotientGroup.quotientKerEquivOfSurjective α hsurj).symm.toMonoidHom
+
+/-- The descended action agrees with conjugation by every lift.
+@isnad1 id=eq.2h5v.s11.b09f30d4fdd8 from=translated src=- shape=c5ba6a85 vocab=4b46baa9
+-/
+theorem abelianKernelConjugation_apply (α : E →* B)
+    (hsurj : Function.Surjective α)
+    (hcomm : ∀ a b : α.ker, Commute (a : E) (b : E))
+    (e : E) (a : α.ker) :
+    abelianKernelConjugation α hsurj hcomm (α e) a = MulAut.conjNormal e a := by
+  have hclass :
+      (QuotientGroup.quotientKerEquivOfSurjective α hsurj).symm (α e) =
+        QuotientGroup.mk' α.ker e := by
+    apply (QuotientGroup.quotientKerEquivOfSurjective α hsurj).injective
+    rw [MulEquiv.apply_symm_apply]
+    rfl
+  change QuotientGroup.lift α.ker MulAut.conjNormal
+    (abelianKernel_le_ker_conjNormal α hcomm)
+    ((QuotientGroup.quotientKerEquivOfSurjective α hsurj).symm (α e)) a = _
+  rw [hclass]
+  rfl
+
+/-- Faithfulness is equivalent to the abelian kernel being self-centralizing.
+@isnad1 id=iff.2h3v.s9.c2bbd11f1eed from=translated src=- shape=61c8bc94 vocab=453fc46b
+-/
+theorem abelianKernelConjugation_injective_iff (α : E →* B)
+    (hsurj : Function.Surjective α)
+    (hcomm : ∀ a b : α.ker, Commute (a : E) (b : E)) :
+    Function.Injective (abelianKernelConjugation α hsurj hcomm) ↔
+      ∀ e : E, (∀ a : α.ker, Commute e (a : E)) → e ∈ α.ker := by
+  constructor
+  · intro hinj e he
+    change α e = 1
+    apply hinj
+    rw [map_one]
+    apply MulEquiv.ext
+    intro a
+    rw [abelianKernelConjugation_apply]
+    apply Subtype.ext
+    change e * (a : E) * e⁻¹ = (a : E)
+    rw [(he a).eq, mul_assoc, mul_inv_cancel, mul_one]
+  · intro hcentralizer
+    apply (injective_iff_map_eq_one (abelianKernelConjugation α hsurj hcomm)).mpr
+    intro b hb
+    obtain ⟨e, rfl⟩ := hsurj b
+    apply hcentralizer e
+    intro a
+    have ha := congrArg (fun σ : MulAut α.ker => (σ a : E)) hb
+    rw [abelianKernelConjugation_apply] at ha
+    change e * (a : E) * e⁻¹ = (a : E) at ha
+    exact (mul_inv_eq_iff_eq_mul).mp ha
+
+end ProCGroups.FiniteStepSolvableQuotients

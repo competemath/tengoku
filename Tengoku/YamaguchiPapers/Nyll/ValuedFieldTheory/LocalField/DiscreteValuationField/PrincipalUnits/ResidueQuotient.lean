@@ -1,0 +1,81 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.LocalField.DiscreteValuationField.PrincipalUnits.AutomorphismTransport
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# The first principal-unit quotient
+
+Identifies valuation-ring units modulo first principal units with residue-field units and
+records compatibility with valuation-preserving automorphisms.
+-/
+
+namespace LocalFieldTheory
+
+open ValuationTheory
+open ValuationTheory.DiscreteValuationField.ResidueField
+
+noncomputable section
+
+open scoped BigOperators
+
+universe u v
+
+namespace DiscreteValuationField
+namespace CompleteDVF
+
+variable {K : Type u} [Field K]
+
+namespace higherPrincipalUnitGroup
+
+variable (F : ValuationTheory.DiscreteValuationField.CompleteDVF.{u, v} K)
+
+/-- The kernel of the residue map on valuation-ring units is the first
+principal-unit subgroup.
+@isnad1 id=eq.0h2v.s8.2502d1979017 from=translated src=- shape=fe04dcf7 vocab=6742a3ec
+-/
+theorem residueUnitHom_ker_eq :
+    (higherPrincipalUnitGroup.residueUnitHom F).ker =
+      higherPrincipalUnitGroup F 1 := by
+  ext u
+  rw [MonoidHom.mem_ker, higherPrincipalUnitGroup.residueUnitHom_eq_one_iff]
+
+/-- The first-isomorphism form of the residue map on valuation-ring units:
+`O_K^* / U_K^1` is the unit group of the residue field.-/
+noncomputable def unitsModOneEquivResidueFieldUnits :
+    F.valuationSubringˣ ⧸ higherPrincipalUnitGroup F 1 ≃* F.residueFieldˣ :=
+  QuotientGroup.liftEquiv
+    (higherPrincipalUnitGroup F 1)
+    (by
+      simpa [higherPrincipalUnitGroup.residueUnitHom] using
+        (IsLocalRing.surjective_units_map_of_local_ringHom
+          F.residueMap F.residue_surjective
+          (inferInstanceAs (IsLocalHom F.residueMap))))
+    (higherPrincipalUnitGroup.residueUnitHom_ker_eq F).symm
+
+/--
+Establishes the identity `higherPrincipalUnitGroup.unitsModOneEquivResidueFieldUnits F
+(QuotientGroup.mk' (higherPrincipalUnitGroup F 1) u) = higherPrincipalUnitGroup.residueUnitHom F
+u`.
+@isnad1 id=eq.0h3v.s13.f815e49bb266 from=translated src=- shape=5aebab1b vocab=80c6ad6b
+-/
+@[simp] theorem unitsModOneEquivResidueFieldUnits_mk
+    (u : F.valuationSubringˣ) :
+    higherPrincipalUnitGroup.unitsModOneEquivResidueFieldUnits F
+        (QuotientGroup.mk' (higherPrincipalUnitGroup F 1) u) =
+      higherPrincipalUnitGroup.residueUnitHom F u := by
+  rfl
+
+end higherPrincipalUnitGroup
+
+end CompleteDVF
+end DiscreteValuationField
+
+end
+
+end LocalFieldTheory
