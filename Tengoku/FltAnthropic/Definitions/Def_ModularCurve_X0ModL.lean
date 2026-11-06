@@ -21,6 +21,9 @@ section CoeffMapSupply
 
 variable {R S : Type*} [CommRing R] [CommRing S]
 
+/--
+@isnad1 id=eq.0h4v.s9.768819a1ab66 from=translated src=- shape=3c04b3c9 vocab=18211310
+-/
 theorem coeffMap_ofPowerSeries (f : R →+* S) (p : PowerSeries R) :
     coeffMap f (HahnSeries.ofPowerSeries ℤ R p) = HahnSeries.ofPowerSeries ℤ S (p.map f) := by
   ext k
@@ -49,6 +52,9 @@ def qExpandAlgHomC : LaurentSeries K →ₐ[K] LaurentSeries K where
     show qExpand K N (algebraMap K (LaurentSeries K) c) = algebraMap K (LaurentSeries K) c
     rw [algebraMap_laurentSeries_eq_single, qExpand_single, mul_zero]
 
+/--
+@isnad1 id=eq.0h3v.s9.c31e8132e215 from=translated src=- shape=f552a4f7 vocab=8f514ec5
+-/
 @[simp]
 theorem qExpandAlgHomC_apply (f : LaurentSeries K) : qExpandAlgHomC K N f = qExpand K N f := rfl
 

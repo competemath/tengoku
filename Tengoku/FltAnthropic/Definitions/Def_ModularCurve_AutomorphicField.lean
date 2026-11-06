@@ -20,9 +20,15 @@ def holRing : Subalgebra ℂ (ℍ → ℂ) where
   zero_mem' := mdifferentiable_const
   algebraMap_mem' _ := mdifferentiable_const
 
+/--
+@isnad1 id=nontrivi.0h0v.s6.62c238d143f6 from=translated src=- shape=77cbcbdc vocab=c23889b1
+-/
 instance holRing.instNontrivial : Nontrivial ↥holRing :=
   ⟨⟨0, 1, fun h => by simpa using congrArg (fun f : ↥holRing => (f : ℍ → ℂ) UpperHalfPlane.I) h⟩⟩
 
+/--
+@isnad1 id=nozerodi.0h0v.s8.24136ec23393 from=translated src=- shape=77cbcbdc vocab=ce196510
+-/
 instance holRing.instNoZeroDivisors : NoZeroDivisors ↥holRing where
   eq_zero_or_eq_zero_of_mul_eq_zero {f g} h := by
     have h' : (f : ℍ → ℂ) * (g : ℍ → ℂ) = 0 := by simpa using congrArg (fun x : ↥holRing => (x : ℍ → ℂ)) h
@@ -30,6 +36,9 @@ instance holRing.instNoZeroDivisors : NoZeroDivisors ↥holRing where
     · exact Or.inl (Subtype.ext h0)
     · exact Or.inr (Subtype.ext h0)
 
+/--
+@isnad1 id=isdomain.0h0v.s6.dcadc0e21e95 from=translated src=- shape=77cbcbdc vocab=d2b5efa0
+-/
 instance holRing.instIsDomain : IsDomain ↥holRing := NoZeroDivisors.to_isDomain _
 
 end ModularCurve
@@ -40,16 +49,31 @@ variable {Γ : Subgroup (GL (Fin 2) ℝ)} {k : ℤ}
 
 def toHolRing (f : ModularForm Γ k) : ↥ModularCurve.holRing := ⟨f, f.holo'⟩
 
+/--
+@isnad1 id=eq.0h3v.s7.281d809ae893 from=translated src=- shape=b610c0ab vocab=51b95b9a
+-/
 @[simp] theorem coe_toHolRing (f : ModularForm Γ k) : (f.toHolRing : ℍ → ℂ) = f := rfl
 
+/--
+@isnad1 id=iff.0h3v.s8.3235195c2f72 from=translated src=- shape=9a5235de vocab=75e58264
+-/
 theorem toHolRing_eq_zero_iff (f : ModularForm Γ k) : f.toHolRing = 0 ↔ (f : ℍ → ℂ) = 0 := by
   rw [← coe_toHolRing f]
   exact (ZeroMemClass.coe_eq_zero).symm
 
+/--
+@isnad1 id=eq.0h4v.s9.92312bc46e41 from=translated src=- shape=4c4655c9 vocab=11ce77d3
+-/
 theorem toHolRing_add (f g : ModularForm Γ k) : (f + g).toHolRing = f.toHolRing + g.toHolRing := rfl
 
+/--
+@isnad1 id=eq.0h3v.s8.03dc276c1a2f from=translated src=- shape=7b1dbd94 vocab=189967be
+-/
 theorem toHolRing_neg (f : ModularForm Γ k) : (-f).toHolRing = -f.toHolRing := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.a7f8105af5bf from=translated src=- shape=66946a22 vocab=6b584493
+-/
 theorem toHolRing_mul [Γ.HasDetPlusMinusOne] {k₁ k₂ : ℤ} (f : ModularForm Γ k₁) (g : ModularForm Γ k₂) :
     (f.mul g).toHolRing = f.toHolRing * g.toHolRing :=
   Subtype.ext (coe_mul f g)
@@ -161,6 +185,9 @@ def automorphicField.constHom : ℂ →+* ↥(automorphicField Γ) :=
 instance automorphicField.instAlgebra : Algebra ℂ ↥(automorphicField Γ) :=
   (automorphicField.constHom Γ).toAlgebra
 
+/--
+@isnad1 id=eq.0h2v.s15.8a62a6e08c0d from=translated src=- shape=d1b0fba4 vocab=6ede6735
+-/
 theorem automorphicField.algebraMap_def (c : ℂ) :
     ((algebraMap ℂ ↥(automorphicField Γ) c : ↥(automorphicField Γ)) : FractionRing ↥holRing) =
       algebraMap (↥holRing) (FractionRing ↥holRing) (algebraMap ℂ ↥holRing c) := rfl

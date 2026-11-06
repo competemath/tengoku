@@ -47,6 +47,9 @@ variable {A F Fbar}
 
 variable (R : ConstantReduction A F Fbar)
 
+/--
+@isnad1 id=eq.1h4v.s7.9705c57d8291 from=translated src=- shape=49556dc3 vocab=a2ca542d
+-/
 theorem ord_algebraMap (P : Place L F) {c : L} (hc : c ≠ 0) : P.ord (algebraMap L F c) = 0 := by
   have hu : IsUnit (⟨algebraMap L F c, P.algebraMap_mem' c⟩ : P.toValuationSubring) :=
     ⟨⟨⟨algebraMap L F c, P.algebraMap_mem' c⟩, ⟨algebraMap L F c⁻¹, P.algebraMap_mem' c⁻¹⟩,
@@ -56,11 +59,17 @@ theorem ord_algebraMap (P : Place L F) {c : L} (hc : c ≠ 0) : P.ord (algebraMa
   have := P.ord_coe_unit u
   rwa [hu] at this
 
+/--
+@isnad1 id=eq.1h5v.s6.12e181a8c8c0 from=translated src=- shape=e385959b vocab=12ea738c
+-/
 theorem ord_smul (P : Place L F) {c : L} (hc : c ≠ 0) (f : F) : P.ord (c • f) = P.ord f := by
   rcases eq_or_ne f 0 with rfl | hf
   · simp
   · rw [Algebra.smul_def, P.ord_mul ((map_ne_zero _).mpr hc) hf, ord_algebraMap P hc, zero_add]
 
+/--
+@isnad1 id=mem.1h6v.s9.b266d91a585a from=translated src=- shape=d7b11a38 vocab=5aec1eb0
+-/
 theorem mapDomain_mem_principal {D : Divisor L F}
     (hD : D ∈ Divisor.principal (K := L) (F := F)) :
     Finsupp.mapDomain R.placeMap D ∈ Divisor.principal (K := ResidueField A) (F := Fbar) := by

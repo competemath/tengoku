@@ -73,6 +73,9 @@ variable (R : Type u) [CommRing R] (n : ℕ)
 
 local notation "𝒜" => MvPolynomial.homogeneousSubmodule (Fin (n + 1)) R
 
+/--
+@isnad1 id=mem.0h3v.s8.a4ee721dcc1e from=translated src=- shape=6eb5528a vocab=7d23f883
+-/
 theorem X_mem_one (j : Fin (n + 1)) :
     (MvPolynomial.X j : MvPolynomial (Fin (n + 1)) R) ∈ 𝒜 1 :=
   (mem_homogeneousSubmodule 1 _).mpr (isHomogeneous_X R j)

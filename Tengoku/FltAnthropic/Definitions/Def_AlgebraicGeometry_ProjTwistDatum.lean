@@ -58,6 +58,9 @@ def twistSections (m : ℕ) (U : X.Opens) : AddSubgroup (∀ i : Fin (N + 1), Γ
     intro g hg i j
     simp only [Pi.neg_apply, map_neg, hg i j, mul_neg]
 
+/--
+@isnad1 id=mem.1h8v.s13.e5932690245d from=translated src=- shape=c5909193 vocab=8126595a
+-/
 theorem smul_mem_twistSections {m : ℕ} {U : X.Opens} (a : Γ(X, U)) {g : ∀ i, Γ(X, U ⊓ pullbackChart φ i)}
     (hg : g ∈ twistSections φ m U) :
     (fun i => restrictFun (inf_le_left : U ⊓ pullbackChart φ i ≤ U) a * g i) ∈ twistSections φ m U := by
@@ -99,6 +102,9 @@ def twistObj.equivSections (π : X ⟶ Spec (.of A)) (φ : X ⟶ Proj (MvPolynom
 instance twistObj.addCommGroup (π : X ⟶ Spec (.of A)) (φ : X ⟶ Proj (MvPolynomial.homogeneousSubmodule (Fin (N + 1)) A)) (m : ℕ) (U : X.Opens) : AddCommGroup (twistObj π φ m U) :=
   (twistObj.equivSections π φ m U).addCommGroup
 
+/--
+@isnad1 id=injectiv.0h7v.s9.ec2dc4a65fe3 from=translated src=- shape=1174581e vocab=14191fbe
+-/
 theorem twistObj.val_injective {π : X ⟶ Spec (.of A)} {φ : X ⟶ Proj (MvPolynomial.homogeneousSubmodule (Fin (N + 1)) A)} {m : ℕ} {U : X.Opens} :
     Function.Injective (twistObj.val (π := π) (φ := φ) (m := m) (U := U)) :=
   fun _ _ h => twistObj.ext h
@@ -134,6 +140,9 @@ instance twistObj.module (π : X ⟶ Spec (.of A)) (φ : X ⟶ Proj (MvPolynomia
   letI := Scheme.TwoAffineOpenCover.algebraOfHom π U
   Module.compHom (twistObj π φ m U) (algebraMap A (Γ(X, U) : Type u))
 
+/--
+@isnad1 id=eq.0h9v.s12.1404f45c0ed4 from=translated src=- shape=6a3bf9ac vocab=7a85e8d5
+-/
 theorem twistObj.algebraMap_smul {π : X ⟶ Spec (.of A)} {φ : X ⟶ Proj (MvPolynomial.homogeneousSubmodule (Fin (N + 1)) A)} {m : ℕ} {U : X.Opens} (r : A) (g : twistObj π φ m U) :
     letI := Scheme.TwoAffineOpenCover.algebraOfHom π U
     r • g = algebraMap A (Γ(X, U) : Type u) r • g := by rfl

@@ -21,6 +21,9 @@ variable {p K}
 
 variable (p K)
 
+/--
+@isnad1 id=mem.0h3v.s8.5a68ebdc5af7 from=translated src=- shape=c8de3749 vocab=d77ba6c9
+-/
 theorem algebraMap_mem (a : ℤ_[p]) : algebraMap ℤ_[p] (PadicAlgCl p) a ∈ ringOfIntegers p K :=
   Subalgebra.algebraMap_mem _ a
 

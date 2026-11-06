@@ -20,9 +20,15 @@ variable {G : Type*} [Group G] {A : Type*} [AddCommMonoid A]
 instance : AddCommMonoid (fixedPoints G A) :=
   AddSubmonoid.toAddCommMonoid (FixedPoints.addSubmonoid G A)
 
+/--
+@isnad1 id=eq.0h2v.s7.2cc60474565f from=translated src=- shape=183afc9b vocab=d1ca6efc
+-/
 @[simp, norm_cast]
 lemma coe_zero : ((0 : fixedPoints G A) : A) = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.628cd8419a6c from=translated src=- shape=b5d1a6b2 vocab=2a57faa4
+-/
 @[simp, norm_cast]
 lemma coe_add (a b : fixedPoints G A) :
     ((a + b : fixedPoints G A) : A) = a + b := rfl
@@ -33,6 +39,9 @@ instance [SMul R A] [SMulCommClass G R A] :
     SMul R (fixedPoints G A) where
   smul r a := ⟨r • a.1, fun g ↦ by rw [smul_comm, a.2]⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.0af28b0d1e30 from=translated src=- shape=c55185ac vocab=770c8ca3
+-/
 @[simp, norm_cast]
 lemma coe_smul [SMul R A] [SMulCommClass G R A] (r : R) (a : fixedPoints G A) :
     ((r • a : fixedPoints G A) : A) = r • a := rfl
@@ -69,6 +78,9 @@ end FixedPoints
 open scoped Pointwise
 
 variable (G : Type*) [Group G] (U : Subgroup G) (X : Set G) {u : G} in
+/--
+@isnad1 id=bijon.1h4v.s6.6f7a7d323ac7 from=translated src=- shape=818c9d59 vocab=a0fb69d6
+-/
 lemma Set.bijOn_smul (hu : u ∈ U) : Set.BijOn (fun x ↦ u • x) ((U : Set G) * X) (U * X) := by
   refine ⟨?_, Set.injOn_of_injective (MulAction.injective u), ?_⟩
   · rintro x ⟨u', hu', x, hx, rfl⟩

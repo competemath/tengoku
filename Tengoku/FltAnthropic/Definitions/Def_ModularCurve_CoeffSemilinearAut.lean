@@ -19,6 +19,9 @@ section CoeffMapLemmas
 
 variable {R S : Type*} [CommRing R] [CommRing S]
 
+/--
+@isnad1 id=eq.0h5v.s9.58a3cfbe3ba5 from=translated src=- shape=0f099109 vocab=6d87040a
+-/
 theorem coeffMap_qExpand (f : R →+* S) (n : ℕ) [NeZero n] (x : LaurentSeries R) :
     coeffMap f (qExpand R n x) = qExpand S n (coeffMap f x) := by
   ext k
@@ -27,9 +30,15 @@ theorem coeffMap_qExpand (f : R →+* S) (n : ℕ) [NeZero n] (x : LaurentSeries
     rw [coeffMap_coeff, qExpand_coeff_mul, qExpand_coeff_mul, coeffMap_coeff]
   · rw [coeffMap_coeff, qExpand_coeff_of_not_dvd _ _ h, qExpand_coeff_of_not_dvd _ _ h, map_zero]
 
+/--
+@isnad1 id=eq.0h3v.s7.284dd895a18e from=translated src=- shape=b393e1dd vocab=17d38e29
+-/
 theorem coeffMap_jqModC (f : R →+* S) : coeffMap f (jqModC R) = jqModC S :=
   map_jqModC f
 
+/--
+@isnad1 id=eq.0h4v.s7.e3f4924ffc8a from=translated src=- shape=4f6a501c vocab=c0346c1d
+-/
 theorem coeffMap_jqNModC (f : R →+* S) (N : ℕ) [NeZero N] :
     coeffMap f (jqNModC R N) = jqNModC S N := by
   rw [jqNModC, jqNModC, coeffMap_qExpand, coeffMap_jqModC]
@@ -42,6 +51,9 @@ section CoeffAut
 
 variable {K : Type*} [Field K] (N : ℕ) [NeZero N]
 
+/--
+@isnad1 id=mem.1h4v.s9.b6edc39ecdd7 from=translated src=- shape=9cb52692 vocab=ffaab23c
+-/
 theorem coeffSemilinearAut.coeffMap_mem_modularFunctionFieldC (τ : K →+* K) {x : LaurentSeries K}
     (hx : x ∈ modularFunctionFieldC K N) :
     coeffMap τ x ∈ modularFunctionFieldC K N := by
@@ -85,6 +97,9 @@ def coeffRingAut (τ : K ≃+* K) : modularFunctionFieldC K N ≃+* modularFunct
   map_add' x y :=
     Subtype.ext (map_add (coeffMap (τ : K →+* K)) (x : LaurentSeries K) (y : LaurentSeries K))
 
+/--
+@isnad1 id=eq.0h4v.s14.6f0c717ce727 from=translated src=- shape=c890736f vocab=085f799a
+-/
 theorem coeffRingAut_algebraMap (τ : K ≃+* K) (a : K) :
     coeffRingAut N τ (algebraMap K (modularFunctionFieldC K N) a)
       = algebraMap K (modularFunctionFieldC K N) (τ a) :=

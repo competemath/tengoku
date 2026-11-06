@@ -17,6 +17,9 @@ open TensorProduct AlgebraicGeometry
     (q : P ⟶ Y) : P.OrderedOpenFamily :=
   ⟨K.ι, fun i => q ⁻¹ᵁ K.U i⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.f05977361dd0 from=translated src=- shape=1b19869b vocab=78180a97
+-/
 theorem AlgebraicGeometry.Scheme.OrderedAffineCover.preimageFamily_U {P Y : Scheme.{u}} (K : Y.OrderedAffineCover)
     (q : P ⟶ Y) (i : K.ι) : (K.preimageFamily q).U i = q ⁻¹ᵁ K.U i := rfl
 

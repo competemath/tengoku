@@ -20,11 +20,17 @@ variable (p : ℕ) [hp : Fact p.Prime]
 def weight {idx : Type*} (c : idx → ℕ) : idx × ℕ → ℕ := fun im => c im.1 * p ^ im.2
 
 omit hp in
+/--
+@isnad1 id=eq.0h5v.s5.ddf2a64a1399 from=translated src=- shape=ec5273ed vocab=c04da52d
+-/
 @[simp] theorem weight_apply {idx : Type*} (c : idx → ℕ) (i : idx) (m : ℕ) :
     weight p c (i, m) = c i * p ^ m := rfl
 
 omit hp in
 
+/--
+@isnad1 id=isweight.0h5v.s8.2aac9d79ddb1 from=translated src=- shape=3493bebb vocab=c40acef6
+-/
 theorem isWeightedHomogeneous_rename_wittPolynomial {idx : Type*} (c : idx → ℕ) (i : idx)
     (n : ℕ) :
     IsWeightedHomogeneous (weight p c) (rename (Prod.mk i) (wittPolynomial p ℤ n))
@@ -41,6 +47,9 @@ theorem isWeightedHomogeneous_rename_wittPolynomial {idx : Type*} (c : idx → �
   have := hX.C_mul ((p : ℤ) ^ j)
   rwa [map_pow] at this
 
+/--
+@isnad1 id=isweight.1h6v.s9.becce1b0e289 from=translated src=- shape=63789c8c vocab=09a85df8
+-/
 theorem isWeightedHomogeneous_wittStructureInt {idx : Type*} (c : idx → ℕ)
     (Φ : MvPolynomial idx ℤ) (k : ℕ)
     (hΦ : ∀ n, IsWeightedHomogeneous (weight p c)
@@ -81,6 +90,9 @@ theorem isWeightedHomogeneous_wittStructureInt {idx : Type*} (c : idx → ℕ)
     · exact absurd h (pow_ne_zero _ (Int.natCast_ne_zero.mpr hp.out.ne_zero))
     · exact hd h
 
+/--
+@isnad1 id=isweight.0h2v.s5.f2572d10baa6 from=translated src=- shape=f70aaa77 vocab=977228be
+-/
 theorem isWeightedHomogeneous_wittAdd (n : ℕ) :
     IsWeightedHomogeneous (weight p fun _ : Fin 2 => 1) (WittVector.wittAdd p n) (p ^ n) := by
   have h := isWeightedHomogeneous_wittStructureInt p (fun _ : Fin 2 => 1) (X 0 + X 1) 1
@@ -92,6 +104,9 @@ theorem isWeightedHomogeneous_wittAdd (n : ℕ) :
       exact h0.add h1) n
   rwa [one_mul] at h
 
+/--
+@isnad1 id=isweight.0h2v.s6.14b9b75e9743 from=translated src=- shape=2d296c49 vocab=8896b2f1
+-/
 theorem isWeightedHomogeneous_wittMul (n : ℕ) :
     IsWeightedHomogeneous (weight p ![0, 1]) (WittVector.wittMul p n) (p ^ n) := by
   have h := isWeightedHomogeneous_wittStructureInt p ![0, 1] (X 0 * X 1) 1
@@ -109,10 +124,16 @@ variable (R : Type u) [CommRing R]
 def addFam (n : ℕ) : MvPowerSeries (Fin 2 × ℕ) R :=
   ↑(MvPolynomial.map (Int.castRingHom R) (WittVector.wittAdd p n))
 
+/--
+@isnad1 id=eq.0h3v.s7.31d6481b3a2e from=translated src=- shape=46ce887b vocab=033f5e1f
+-/
 theorem constantCoeff_addFam (n : ℕ) : MvPowerSeries.constantCoeff (addFam p R n) = 0 := by
   rw [addFam, ← MvPowerSeries.coeff_zero_eq_constantCoeff_apply, MvPolynomial.coeff_coe,
     coeff_map, ← constantCoeff_eq, WittVector.constantCoeff_wittAdd, map_zero]
 
+/--
+@isnad1 id=eq.1h4v.s8.2e357701d28f from=translated src=- shape=482b1758 vocab=72a14929
+-/
 theorem weight_eq_of_coeff_addFam_ne_zero {n : ℕ} {d : Fin 2 × ℕ →₀ ℕ}
     (h : MvPowerSeries.coeff d (addFam p R n) ≠ 0) :
     Finsupp.weight (weight p fun _ : Fin 2 => 1) d = p ^ n := by
@@ -120,6 +141,9 @@ theorem weight_eq_of_coeff_addFam_ne_zero {n : ℕ} {d : Fin 2 × ℕ →₀ ℕ
   have h' : coeff d (WittVector.wittAdd p n) ≠ 0 := fun h0 => h (by rw [h0, map_zero])
   exact isWeightedHomogeneous_wittAdd p n h'
 
+/--
+@isnad1 id=hassubst.0h2v.s4.db1c4f08f622 from=translated src=- shape=4016c2e9 vocab=1a828138
+-/
 theorem hasSubst_addFam : MvPowerSeries.HasSubst (addFam p R) := by
   refine ⟨fun n => by rw [constantCoeff_addFam]; exact IsNilpotent.zero, fun d => ?_⟩
   · refine (Set.finite_lt_nat (Finsupp.weight (weight p fun _ : Fin 2 => 1) d)).subset ?_
@@ -129,6 +153,9 @@ theorem hasSubst_addFam : MvPowerSeries.HasSubst (addFam p R) := by
     rw [hw]
     exact Nat.lt_pow_self hp.out.one_lt
 
+/--
+@isnad1 id=tendstoc.0h1v.s4.cb2769bc6a85 from=translated src=- shape=8879a807 vocab=68322568
+-/
 instance instTendstoCofiniteProdMk (i : Fin 2) :
     Filter.TendstoCofinite (Prod.mk i : ℕ → Fin 2 × ℕ) :=
   Filter.tendstoCofinite_of_injective (Prod.mk_right_injective i)
@@ -138,19 +165,31 @@ variable {R}
 def blk (i : Fin 2) : ℕ → MvPowerSeries (Fin 2 × ℕ) R := fun m => MvPowerSeries.X (i, m)
 
 omit hp in
+/--
+@isnad1 id=eq.0h3v.s5.a1b8b268c795 from=translated src=- shape=1440dcc8 vocab=a979c020
+-/
 @[simp] theorem blk_apply (i : Fin 2) (m : ℕ) : blk (R := R) i m = MvPowerSeries.X (i, m) := rfl
 
 omit hp in
+/--
+@isnad1 id=eq.0h3v.s7.1ef4368538aa from=translated src=- shape=4570a66b vocab=972e7cde
+-/
 theorem constantCoeff_blk (i : Fin 2) (m : ℕ) :
     MvPowerSeries.constantCoeff (blk (R := R) i m) = 0 :=
   MvPowerSeries.constantCoeff_X _
 
 omit hp in
+/--
+@isnad1 id=hassubst.0h2v.s4.26da44831e23 from=translated src=- shape=469b8d2b vocab=da862ea0
+-/
 theorem hasSubst_blk (i : Fin 2) : MvPowerSeries.HasSubst (blk (R := R) i) :=
   MvPowerSeries.HasSubst.X_comp (Prod.mk i)
 
 omit hp in
 
+/--
+@isnad1 id=eq.0h3v.s8.d6c0c84f2afa from=translated src=- shape=b4f0d576 vocab=7d304d04
+-/
 theorem subst_blk_eq_rename (i : Fin 2) (f : MvPowerSeries ℕ R) :
     MvPowerSeries.subst (blk i) f = MvPowerSeries.rename (Prod.mk i) f :=
   (MvPowerSeries.rename_eq_subst (Prod.mk i) f).symm
@@ -180,9 +219,15 @@ namespace CartierModule
 
 variable {Φ : MvFormalGroup d R} {Φ' : MvFormalGroup d' R} {Φ'' : MvFormalGroup d'' R}
 
+/--
+@isnad1 id=eq.1h6v.s6.5f17bdadfbdd from=translated src=- shape=3da314bc vocab=ce6e24f8
+-/
 @[ext] theorem ext {f g : CartierModule p Φ} (h : f.toPowerSeries = g.toPowerSeries) : f = g := by
   cases f; cases g; cases h; rfl
 
+/--
+@isnad1 id=hassubst.0h5v.s5.ed10d1f569c0 from=translated src=- shape=e07a53b8 vocab=f3e25c6f
+-/
 theorem hasSubst_toPowerSeries (f : CartierModule p Φ) : HasSubst f.toPowerSeries :=
   hasSubst_of_constantCoeff_zero f.constantCoeff_eq_zero
 
@@ -190,15 +235,24 @@ def inBlk (i : Fin 2) (a : Fin d → MvPowerSeries ℕ R) : Fin d → MvPowerSer
   fun l => subst (blk i) (a l)
 
 omit hp in
+/--
+@isnad1 id=eq.0h5v.s6.9c1925571b39 from=translated src=- shape=98bdf21c vocab=7e612a66
+-/
 @[simp] theorem inBlk_apply (i : Fin 2) (a : Fin d → MvPowerSeries ℕ R) (l : Fin d) :
     inBlk i a l = subst (blk i) (a l) := rfl
 
 omit hp in
+/--
+@isnad1 id=eq.1h5v.s8.ddfc14667f23 from=translated src=- shape=492a1ff5 vocab=8e4dc1eb
+-/
 theorem constantCoeff_inBlk (i : Fin 2) {a : Fin d → MvPowerSeries ℕ R}
     (ha : ∀ l, (a l).constantCoeff = 0) (l : Fin d) : (inBlk i a l).constantCoeff = 0 :=
   constantCoeff_subst_eq_zero (hasSubst_blk i) (constantCoeff_blk i) (ha l)
 
 omit hp in
+/--
+@isnad1 id=eq.0h3v.s6.1594d7921628 from=translated src=- shape=b2e7e540 vocab=a441bd93
+-/
 theorem inBlk_zero (i : Fin 2) : inBlk i (fun _ : Fin d => (0 : MvPowerSeries ℕ R)) = fun _ => 0 := by
   funext l
   show subst (blk i) (0 : MvPowerSeries ℕ R) = 0
@@ -206,6 +260,9 @@ theorem inBlk_zero (i : Fin 2) : inBlk i (fun _ : Fin d => (0 : MvPowerSeries �
 
 omit hp in
 
+/--
+@isnad1 id=eq.2h6v.s8.8582d905c2c6 from=translated src=- shape=779db9ca vocab=de5f4f74
+-/
 theorem inBlk_subst_elim (G : MvFormalGroup d' R) (i : Fin 2) {a b : Fin d' → MvPowerSeries ℕ R}
     (ha : ∀ l, (a l).constantCoeff = 0) (hb : ∀ l, (b l).constantCoeff = 0) :
     inBlk i (fun l => subst (Sum.elim a b) (G.toPowerSeries l)) =
@@ -215,6 +272,9 @@ theorem inBlk_subst_elim (G : MvFormalGroup d' R) (i : Fin 2) {a b : Fin d' → 
 
 omit hp in
 
+/--
+@isnad1 id=eq.1h5v.s7.73be13a1b907 from=translated src=- shape=2bcbba20 vocab=3766d641
+-/
 theorem inBlk_negSeries (G : MvFormalGroup d' R) (i : Fin 2) {a : Fin d' → MvPowerSeries ℕ R}
     (ha : ∀ l, (a l).constantCoeff = 0) :
     inBlk i (negSeries G a) = negSeries G (inBlk i a) := by
@@ -225,6 +285,9 @@ theorem inBlk_negSeries (G : MvFormalGroup d' R) (i : Fin 2) {a : Fin d' → MvP
   show subst (blk i) (subst (Sum.elim a (negSeries G a)) (G.toPowerSeries l)) = 0
   rw [subst_elim_negSeries G ha l, ← coe_substAlgHom (hasSubst_blk i), map_zero]
 
+/--
+@isnad1 id=eq.0h6v.s7.e4e74b41f1a6 from=translated src=- shape=723b3f90 vocab=bc2cf039
+-/
 theorem subst_addFam (f : CartierModule p Φ) (j : Fin d) :
     subst (WittLaw.addFam p R) (f.toPowerSeries j) =
       subst (Sum.elim (inBlk 0 f.toPowerSeries) (inBlk 1 f.toPowerSeries)) (Φ.toPowerSeries j) :=
@@ -245,6 +308,9 @@ protected def zero (Φ : MvFormalGroup d R) : CartierModule p Φ where
 
 instance instZero : Zero (CartierModule p Φ) := ⟨CartierModule.zero Φ⟩
 
+/--
+@isnad1 id=eq.0h4v.s6.b5cad8f22c2d from=translated src=- shape=46a02b9a vocab=ce6e24f8
+-/
 @[simp] theorem toPowerSeries_zero : (0 : CartierModule p Φ).toPowerSeries = fun _ => 0 := rfl
 
 protected def add [Φ.IsComm] (f g : CartierModule p Φ) : CartierModule p Φ where
@@ -275,6 +341,9 @@ protected def add [Φ.IsComm] (f g : CartierModule p Φ) : CartierModule p Φ wh
 
 instance instAdd [Φ.IsComm] : Add (CartierModule p Φ) := ⟨CartierModule.add⟩
 
+/--
+@isnad1 id=eq.0h6v.s7.3b5d783a5d2a from=translated src=- shape=3a53b5ef vocab=4a9d8c73
+-/
 @[simp] theorem toPowerSeries_add [Φ.IsComm] (f g : CartierModule p Φ) :
     (f + g).toPowerSeries =
       fun j => subst (Sum.elim f.toPowerSeries g.toPowerSeries) (Φ.toPowerSeries j) := rfl
@@ -309,6 +378,9 @@ protected def neg [Φ.IsComm] (f : CartierModule p Φ) : CartierModule p Φ wher
 
 instance instNeg [Φ.IsComm] : Neg (CartierModule p Φ) := ⟨CartierModule.neg⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.01ef16ffbc94 from=translated src=- shape=8f4f4765 vocab=6108f7db
+-/
 @[simp] theorem toPowerSeries_neg [Φ.IsComm] (f : CartierModule p Φ) :
     (-f).toPowerSeries = negSeries Φ f.toPowerSeries := rfl
 
@@ -329,6 +401,9 @@ instance instAddCommGroup [Φ.IsComm] : AddCommGroup (CartierModule p Φ) where
   neg_add_cancel a := CartierModule.ext (funext fun j =>
     subst_elim_negSeries_left Φ a.constantCoeff_eq_zero j)
 
+/--
+@isnad1 id=eq.0h6v.s7.56aeb5c4b5a3 from=translated src=- shape=bdf26a24 vocab=c026c801
+-/
 @[simp] theorem toPowerSeries_sub [Φ.IsComm] (f g : CartierModule p Φ) :
     (f - g).toPowerSeries =
       fun j => subst (Sum.elim f.toPowerSeries (negSeries Φ g.toPowerSeries)) (Φ.toPowerSeries j) := by
@@ -351,16 +426,25 @@ structure IsEndo (u : ℕ → MvPowerSeries ℕ R) : Prop where
 variable {p}
 
 omit hp in
+/--
+@isnad1 id=eq.0h4v.s6.b34f1e1ff483 from=translated src=- shape=0b018b35 vocab=745c31c4
+-/
 @[simp] theorem pairFam_apply (u : ℕ → MvPowerSeries ℕ R) (i : Fin 2) (m : ℕ) :
     pairFam u (i, m) = subst (blk i) (u m) := rfl
 
 omit hp in
+/--
+@isnad1 id=eq.1h3v.s8.5d65df2847b2 from=translated src=- shape=a6f38d3b vocab=25f9ba94
+-/
 theorem constantCoeff_pairFam {u : ℕ → MvPowerSeries ℕ R} (hu : ∀ n, (u n).constantCoeff = 0)
     (im : Fin 2 × ℕ) : (pairFam u im).constantCoeff = 0 :=
   constantCoeff_subst_eq_zero (hasSubst_blk im.1) (constantCoeff_blk im.1) (hu im.2)
 
 omit hp in
 
+/--
+@isnad1 id=ex.1h4v.s9.9227e7ac45f5 from=translated src=- shape=ab6bdeb7 vocab=c2d88b4a
+-/
 theorem exists_coeff_ne_zero_of_coeff_subst_blk_ne_zero (i : Fin 2) (f : MvPowerSeries ℕ R)
     {e : Fin 2 × ℕ →₀ ℕ} (h : coeff e (subst (blk (R := R) i) f) ≠ 0) :
     ∃ x : ℕ →₀ ℕ, Finsupp.mapDomain (Prod.mk i) x = e ∧ coeff x f ≠ 0 := by
@@ -371,6 +455,9 @@ theorem exists_coeff_ne_zero_of_coeff_subst_blk_ne_zero (i : Fin 2) (f : MvPower
 
 omit hp in
 
+/--
+@isnad1 id=hassubst.2h2v.s7.18a12059577a from=translated src=- shape=c2bf5a17 vocab=e378d257
+-/
 theorem hasSubst_pairFam {u : ℕ → MvPowerSeries ℕ R} (hu : HasSubst u)
     (hu0 : ∀ n, (u n).constantCoeff = 0) : HasSubst (pairFam u) := by
   refine ⟨fun im => by rw [constantCoeff_pairFam hu0]; exact IsNilpotent.zero, fun e => ?_⟩
@@ -397,6 +484,9 @@ theorem hasSubst_pairFam {u : ℕ → MvPowerSeries ℕ R} (hu : HasSubst u)
 
 omit hp in
 
+/--
+@isnad1 id=eq.2h4v.s7.e2b51300fde4 from=translated src=- shape=f04e5104 vocab=61bbe2be
+-/
 theorem subst_pairFam_subst_blk {u : ℕ → MvPowerSeries ℕ R} (hu : HasSubst u)
     (hu0 : ∀ n, (u n).constantCoeff = 0) (i : Fin 2) (f : MvPowerSeries ℕ R) :
     subst (pairFam u) (subst (blk (R := R) i) f) = subst (blk (R := R) i) (subst u f) := by
@@ -417,18 +507,30 @@ def verFam : ℕ → MvPowerSeries ℕ R
 variable {R}
 
 omit hp in
+/--
+@isnad1 id=eq.0h1v.s5.8e15eb6036ce from=translated src=- shape=9db32426 vocab=d49925b0
+-/
 @[simp] theorem verFam_zero : verFam R 0 = 0 := rfl
 
 omit hp in
+/--
+@isnad1 id=eq.0h2v.s5.534a40d70012 from=translated src=- shape=9677bdfb vocab=c2094061
+-/
 @[simp] theorem verFam_succ (n : ℕ) : verFam R (n + 1) = X n := rfl
 
 omit hp in
+/--
+@isnad1 id=eq.0h2v.s6.02a663692fa5 from=translated src=- shape=56a78aba vocab=768767f5
+-/
 theorem constantCoeff_verFam (n : ℕ) : (verFam R n).constantCoeff = 0 := by
   cases n with
   | zero => exact map_zero _
   | succ n => exact constantCoeff_X _
 
 omit hp in
+/--
+@isnad1 id=hassubst.0h1v.s3.1f2a7266bbaa from=translated src=- shape=5f0010f5 vocab=816de513
+-/
 theorem hasSubst_verFam : HasSubst (verFam R) := by
   classical
   refine ⟨fun n => by rw [constantCoeff_verFam]; exact IsNilpotent.zero, fun e => ?_⟩
@@ -443,6 +545,9 @@ theorem hasSubst_verFam : HasSubst (verFam R) := by
       simp
     · exact absurd rfl h
 
+/--
+@isnad1 id=eq.0h2v.s9.ec862ab17576 from=translated src=- shape=c313062a vocab=79727049
+-/
 theorem aeval_verschiebung_wittAdd (n : ℕ) :
     MvPolynomial.aeval (fun im : Fin 2 × ℕ =>
         (Nat.casesOn im.2 0 fun m => MvPolynomial.X (im.1, m) : MvPolynomial (Fin 2 × ℕ) ℤ))
@@ -473,6 +578,9 @@ theorem aeval_verschiebung_wittAdd (n : ℕ) :
       fin_cases i <;> rfl
     rw [hid, MvPolynomial.aeval_X_left_apply]
 
+/--
+@isnad1 id=eq.0h5v.s9.fa6eb29cc45c from=translated src=- shape=5fd07c88 vocab=4327efe3
+-/
 theorem subst_coe_addFam {τ : Type*} (g : Fin 2 × ℕ → MvPolynomial τ ℤ) (n : ℕ) :
     subst (fun im => ((MvPolynomial.map (Int.castRingHom R) (g im) : MvPolynomial τ R) :
       MvPowerSeries τ R)) (addFam p R n) =
@@ -494,6 +602,9 @@ theorem subst_coe_addFam {τ : Type*} (g : Fin 2 × ℕ → MvPolynomial τ ℤ)
     · simp [ψ₁, ψ₂, G]
   exact RingHom.congr_fun hψ (WittVector.wittAdd p n)
 
+/--
+@isnad1 id=isendo.0h2v.s4.2b516b1ec860 from=translated src=- shape=cbbf2760 vocab=ca0ef8ff
+-/
 theorem isEndo_verFam : IsEndo p (verFam R) := by
   refine ⟨hasSubst_verFam, constantCoeff_verFam, fun n => ?_⟩
   have hpair : pairFam (verFam R) = fun im : Fin 2 × ℕ =>
@@ -530,13 +641,25 @@ def frobFam : ℕ → MvPowerSeries ℕ R := fun n => X n ^ p
 variable {p R}
 
 omit hp in
+/--
+@isnad1 id=eq.0h3v.s5.949cd1101e0b from=translated src=- shape=d936969c vocab=99c68cab
+-/
 @[simp] theorem frobFam_apply (n : ℕ) : frobFam p R n = X n ^ p := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.19a02ec14ce7 from=translated src=- shape=1ed1471a vocab=3f4d0b60
+-/
 theorem constantCoeff_frobFam (n : ℕ) : (frobFam p R n).constantCoeff = 0 := by
   rw [frobFam_apply, map_pow, constantCoeff_X, zero_pow hp.out.ne_zero]
 
+/--
+@isnad1 id=hassubst.0h2v.s4.aec8f167c179 from=translated src=- shape=b3341b83 vocab=b60c0984
+-/
 theorem hasSubst_frobFam : HasSubst (frobFam p R) := HasSubst.X_pow hp.out.ne_zero
 
+/--
+@isnad1 id=eq.0h3v.s10.fcefdf909991 from=translated src=- shape=ca397f62 vocab=9c2c2a00
+-/
 theorem expand_map_wittAdd [CharP R p] (n : ℕ) :
     MvPolynomial.expand p (MvPolynomial.map (Int.castRingHom R) (WittVector.wittAdd p n)) =
       MvPolynomial.map (Int.castRingHom R) (WittVector.wittAdd p n) ^ p := by
@@ -544,6 +667,9 @@ theorem expand_map_wittAdd [CharP R p] (n : ℕ) :
   rw [← MvPolynomial.map_frobenius_expand p, MvPolynomial.map_expand, MvPolynomial.map_map,
     show (frobenius R p).comp (Int.castRingHom R) = Int.castRingHom R from RingHom.ext_int _ _]
 
+/--
+@isnad1 id=isendo.0h2v.s4.3a3189bf99e2 from=translated src=- shape=13b0060a vocab=021c62b2
+-/
 theorem isEndo_frobFam [CharP R p] : IsEndo p (frobFam p R) := by
   refine ⟨hasSubst_frobFam, constantCoeff_frobFam, fun n => ?_⟩
   have hpair : pairFam (frobFam p R) = fun im : Fin 2 × ℕ =>
@@ -593,6 +719,9 @@ def precompFun {u : ℕ → MvPowerSeries ℕ R} (hu : WittLaw.IsEndo p u) (f : 
     · exact WittLaw.subst_pairFam_subst_blk hu.hasSubst hu.constantCoeff 0 (f.toPowerSeries l)
     · exact WittLaw.subst_pairFam_subst_blk hu.hasSubst hu.constantCoeff 1 (f.toPowerSeries l)
 
+/--
+@isnad1 id=eq.1h6v.s6.b39e31cae6a4 from=translated src=- shape=7ba80f46 vocab=9def2c35
+-/
 @[simp] theorem toPowerSeries_precompFun {u : ℕ → MvPowerSeries ℕ R} (hu : WittLaw.IsEndo p u)
     (f : CartierModule p Φ) :
     (precompFun hu f).toPowerSeries = fun j => subst u (f.toPowerSeries j) := rfl
@@ -606,10 +735,16 @@ def precomp [Φ.IsComm] {u : ℕ → MvPowerSeries ℕ R} (hu : WittLaw.IsEndo p
   map_add' f g := CartierModule.ext (funext fun j =>
     subst_subst_elim Φ f.constantCoeff_eq_zero g.constantCoeff_eq_zero hu.hasSubst j)
 
+/--
+@isnad1 id=eq.1h6v.s8.538182f69698 from=translated src=- shape=e3e4ae74 vocab=45577eb1
+-/
 @[simp] theorem toPowerSeries_precomp [Φ.IsComm] {u : ℕ → MvPowerSeries ℕ R}
     (hu : WittLaw.IsEndo p u) (f : CartierModule p Φ) :
     (precomp hu f).toPowerSeries = fun j => subst u (f.toPowerSeries j) := rfl
 
+/--
+@isnad1 id=eq.2h8v.s9.b1b64608dddd from=translated src=- shape=bb8668c9 vocab=45577eb1
+-/
 theorem precomp_precomp [Φ.IsComm] {u v : ℕ → MvPowerSeries ℕ R} (hu : WittLaw.IsEndo p u)
     (hv : WittLaw.IsEndo p v) (f : CartierModule p Φ) (j : Fin d) :
     (precomp hv (precomp hu f)).toPowerSeries j = subst (fun n => subst v (u n)) (f.toPowerSeries j) := by
@@ -619,12 +754,18 @@ theorem precomp_precomp [Φ.IsComm] {u v : ℕ → MvPowerSeries ℕ R} (hu : Wi
 def frobenius [Φ.IsComm] : CartierModule p Φ →+ CartierModule p Φ :=
   precomp WittLaw.isEndo_verFam
 
+/--
+@isnad1 id=eq.0h5v.s8.100013583c70 from=translated src=- shape=57839958 vocab=5feef824
+-/
 @[simp] theorem toPowerSeries_frobenius [Φ.IsComm] (f : CartierModule p Φ) :
     (frobenius f).toPowerSeries = fun j => subst (WittLaw.verFam R) (f.toPowerSeries j) := rfl
 
 def verschiebung [Φ.IsComm] [CharP R p] : CartierModule p Φ →+ CartierModule p Φ :=
   precomp WittLaw.isEndo_frobFam
 
+/--
+@isnad1 id=eq.0h5v.s8.c4c3a85767ff from=translated src=- shape=2a361b59 vocab=f8576d3f
+-/
 @[simp] theorem toPowerSeries_verschiebung [Φ.IsComm] [CharP R p] (f : CartierModule p Φ) :
     (verschiebung f).toPowerSeries = fun j => subst (WittLaw.frobFam p R) (f.toPowerSeries j) := rfl
 
@@ -696,6 +837,9 @@ def mapFun (φ : Φ.Hom Φ') (f : CartierModule p Φ) : CartierModule p Φ' wher
       rw [subst_comp_subst_apply f.hasSubst_toPowerSeries (hasSubst_blk 1)]
       rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.2d9a285ec353 from=translated src=- shape=3b397071 vocab=013df522
+-/
 @[simp] theorem toPowerSeries_mapFun (φ : Φ.Hom Φ') (f : CartierModule p Φ) :
     (mapFun φ f).toPowerSeries = fun i => subst f.toPowerSeries (φ.toPowerSeries i) := rfl
 
@@ -706,28 +850,46 @@ def map [Φ.IsComm] [Φ'.IsComm] (φ : Φ.Hom Φ') : CartierModule p Φ →+ Car
   map_add' f g := CartierModule.ext (funext fun i =>
     φ.subst_subst_elim f.constantCoeff_eq_zero g.constantCoeff_eq_zero i)
 
+/--
+@isnad1 id=eq.0h8v.s8.27c566ff90fd from=translated src=- shape=6db7393a vocab=a9a29b38
+-/
 @[simp] theorem toPowerSeries_map [Φ.IsComm] [Φ'.IsComm] (φ : Φ.Hom Φ') (f : CartierModule p Φ) :
     (map φ f).toPowerSeries = fun i => subst f.toPowerSeries (φ.toPowerSeries i) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.40fc46b99445 from=translated src=- shape=0f035a55 vocab=f495039c
+-/
 theorem map_id [Φ.IsComm] (f : CartierModule p Φ) : map (MvFormalGroup.Hom.id Φ) f = f :=
   CartierModule.ext (funext fun i => subst_X f.hasSubst_toPowerSeries i)
 
+/--
+@isnad1 id=eq.0h11v.s9.e9adbe34d5b9 from=translated src=- shape=b14db86b vocab=3e2d4277
+-/
 theorem map_comp [Φ.IsComm] [Φ'.IsComm] [Φ''.IsComm] (ψ : Φ'.Hom Φ'') (φ : Φ.Hom Φ')
     (f : CartierModule p Φ) : map (ψ.comp φ) f = map ψ (map φ f) :=
   CartierModule.ext (funext fun i =>
     subst_comp_subst_apply φ.hasSubst_toPowerSeries f.hasSubst_toPowerSeries (ψ.toPowerSeries i))
 
+/--
+@isnad1 id=eq.0h9v.s9.43dcdeffc2c9 from=translated src=- shape=75839ca6 vocab=77a92d0d
+-/
 theorem map_add_hom [Φ.IsComm] [Φ'.IsComm] (φ ψ : Φ.Hom Φ') (f : CartierModule p Φ) :
     map (φ + ψ) f = map φ f + map ψ f :=
   CartierModule.ext (funext fun i =>
     subst_subst_elim Φ' φ.constantCoeff_eq_zero ψ.constantCoeff_eq_zero f.hasSubst_toPowerSeries i)
 
+/--
+@isnad1 id=eq.0h7v.s8.a55a604b3fa9 from=translated src=- shape=c80903da vocab=da438a26
+-/
 theorem map_zero_hom [Φ.IsComm] [Φ'.IsComm] (f : CartierModule p Φ) :
     map (0 : Φ.Hom Φ') f = 0 :=
   CartierModule.ext (funext fun i => by
     show subst f.toPowerSeries (0 : MvPowerSeries (Fin d) R) = 0
     rw [← coe_substAlgHom f.hasSubst_toPowerSeries, map_zero])
 
+/--
+@isnad1 id=eq.1h9v.s10.390d6b271cfe from=translated src=- shape=18978649 vocab=c39dbb11
+-/
 theorem map_precomp [Φ.IsComm] [Φ'.IsComm] (φ : Φ.Hom Φ') {u : ℕ → MvPowerSeries ℕ R}
     (hu : WittLaw.IsEndo p u) (f : CartierModule p Φ) :
     map φ (precomp hu f) = precomp hu (map φ f) :=
@@ -741,6 +903,9 @@ def endAct [Φ.IsComm] : MvFormalGroup.End Φ →+* AddMonoid.End (CartierModule
   map_zero' := AddMonoidHom.ext map_zero_hom
   map_add' φ ψ := AddMonoidHom.ext (map_add_hom φ ψ)
 
+/--
+@isnad1 id=eq.0h6v.s9.5c2ac87c686b from=translated src=- shape=77c0dfdf vocab=b0cf2435
+-/
 @[simp] theorem endAct_apply [Φ.IsComm] (φ : MvFormalGroup.End Φ) (f : CartierModule p Φ) :
     endAct φ f = map φ f := rfl
 
@@ -755,6 +920,9 @@ def nsmulFam (p : ℕ) [Fact p.Prime] (R : Type u) [CommRing R] (n : ℕ) : ℕ 
 
 omit hp in
 
+/--
+@isnad1 id=hassubst.2h4v.s6.eb92450c585e from=translated src=- shape=c6c5d8af vocab=6a28a291
+-/
 theorem hasSubst_finCases {τ : Type*} {u₀ u₁ : ℕ → MvPowerSeries τ R} (h₀ : HasSubst u₀)
     (h₁ : HasSubst u₁) :
     HasSubst (fun im : Fin 2 × ℕ => (Fin.cases (u₀ im.2) (fun _ => u₁ im.2) im.1 : MvPowerSeries τ R)) := by
@@ -793,6 +961,9 @@ def tangent [Φ.IsComm] : CartierModule p Φ →+ (Fin d → R) where
       one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
     rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.9ad4ed119c00 from=translated src=- shape=26bdaa14 vocab=c8f0d4c6
+-/
 @[simp] theorem tangent_apply [Φ.IsComm] (f : CartierModule p Φ) (j : Fin d) :
     tangent f j = coeff (Finsupp.single 0 1) (f.toPowerSeries j) := rfl
 
@@ -831,6 +1002,9 @@ def addLinear (p : ℕ) [Fact p.Prime] {d : ℕ} {R : Type u} [CommRing R] (v : 
     congr 1
     simp [WittLaw.blk]
 
+/--
+@isnad1 id=eq.0h5v.s6.d3405ff7f974 from=translated src=- shape=69e1783c vocab=f38ed3fd
+-/
 @[simp] theorem toPowerSeries_addLinear (v : Fin d → R) (i : Fin d) :
     (addLinear p v).toPowerSeries i = v i • (X 0 : MvPowerSeries ℕ R) := rfl
 

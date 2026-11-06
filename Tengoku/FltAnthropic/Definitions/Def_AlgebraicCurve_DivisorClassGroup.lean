@@ -59,11 +59,17 @@ namespace Place
 
 variable {K F}
 
+/--
+@isnad1 id=injectiv.0h2v.s5.07898c92df7f from=translated src=- shape=f2e373e0 vocab=bf05c864
+-/
 theorem toValuationSubring_injective :
     Function.Injective (toValuationSubring (K := K) (F := F)) := by
   rintro ⟨a, _, _, _⟩ ⟨b, _, _, _⟩ (rfl : a = b)
   rfl
 
+/--
+@isnad1 id=eq.1h4v.s6.419730d54e1c from=translated src=- shape=9973d0b2 vocab=5e7d5137
+-/
 @[ext]
 theorem ext {v w : Place K F} (h : v.toValuationSubring = w.toValuationSubring) : v = w :=
   toValuationSubring_injective h
@@ -80,6 +86,9 @@ instance : IsDiscreteValuationRing v.toValuationSubring where
 instance : Algebra K v.toValuationSubring :=
   ((algebraMap K F).codRestrict v.toValuationSubring.toSubring v.algebraMap_mem').toAlgebra
 
+/--
+@isnad1 id=eq.0h4v.s8.13dd6f934f47 from=translated src=- shape=fce73cb7 vocab=526b84d4
+-/
 @[simp]
 theorem coe_algebraMap (a : K) :
     (algebraMap K v.toValuationSubring a : F) = algebraMap K F a := rfl
@@ -94,24 +103,39 @@ class FiniteResidue : Prop where
 def heightOneSpectrum : HeightOneSpectrum v.toValuationSubring :=
   IsDiscreteValuationRing.maximalIdeal _
 
+/--
+@isnad1 id=eq.0h3v.s7.537e5937e707 from=translated src=- shape=7d4be37f vocab=2ede9b02
+-/
 @[simp]
 theorem heightOneSpectrum_asIdeal :
     v.heightOneSpectrum.asIdeal = IsLocalRing.maximalIdeal v.toValuationSubring := rfl
 
 def adicValuation : Valuation F ℤᵐ⁰ := v.heightOneSpectrum.valuation F
 
+/--
+@isnad1 id=ne.1h4v.s6.752fc4efb52d from=translated src=- shape=8211cfcc vocab=866786f4
+-/
 theorem adicValuation_ne_zero {f : F} (hf : f ≠ 0) : v.adicValuation f ≠ 0 :=
   (Valuation.ne_zero_iff _).mpr hf
 
+/--
+@isnad1 id=eq.0h4v.s8.965bf59c59ae from=translated src=- shape=6c3c53a7 vocab=fa3792db
+-/
 theorem adicValuation_coe (a : v.toValuationSubring) :
     v.adicValuation (a : F) = v.heightOneSpectrum.intValuation a := by
   simpa [adicValuation] using v.heightOneSpectrum.valuation_of_algebraMap (K := F) a
 
+/--
+@isnad1 id=iff.0h4v.s8.f7932217f57e from=translated src=- shape=56f241be vocab=3f77fa4b
+-/
 theorem adicValuation_coe_eq_one_iff (a : v.toValuationSubring) :
     v.adicValuation (a : F) = 1 ↔ IsUnit a := by
   rw [v.adicValuation_coe, HeightOneSpectrum.intValuation_eq_one_iff, heightOneSpectrum_asIdeal,
     IsLocalRing.mem_maximalIdeal, mem_nonunits_iff, not_not]
 
+/--
+@isnad1 id=eq.1h4v.s7.a542b7ebe844 from=translated src=- shape=894c59f3 vocab=6cf1a75e
+-/
 theorem adicValuation_coe_irreducible {π : v.toValuationSubring} (hπ : Irreducible π) :
     v.adicValuation (π : F) = exp (-1 : ℤ) := by
   rw [v.adicValuation_coe]
@@ -120,35 +144,59 @@ theorem adicValuation_coe_irreducible {π : v.toValuationSubring} (hπ : Irreduc
 
 def ord (f : F) : ℤ := -(WithZero.log (v.adicValuation f))
 
+/--
+@isnad1 id=eq.0h3v.s5.ef6df31b4fa5 from=translated src=- shape=400e4f4b vocab=7282363e
+-/
 @[simp]
 theorem ord_zero : v.ord (0 : F) = 0 := by simp [ord]
 
+/--
+@isnad1 id=eq.0h3v.s5.021be22d28a6 from=translated src=- shape=400e4f4b vocab=7282363e
+-/
 @[simp]
 theorem ord_one : v.ord (1 : F) = 0 := by simp [ord]
 
+/--
+@isnad1 id=eq.2h5v.s7.f4aa71ac07f2 from=translated src=- shape=126718ba vocab=e55d01b5
+-/
 theorem ord_mul {f g : F} (hf : f ≠ 0) (hg : g ≠ 0) :
     v.ord (f * g) = v.ord f + v.ord g := by
   simp only [ord, map_mul]
   rw [WithZero.log_mul (v.adicValuation_ne_zero hf) (v.adicValuation_ne_zero hg)]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.779374eba218 from=translated src=- shape=6a4f9835 vocab=34957730
+-/
 theorem ord_inv (f : F) : v.ord f⁻¹ = -v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf
   · simp
   · simp only [ord, map_inv₀, WithZero.log_inv, neg_neg]
 
+/--
+@isnad1 id=eq.0h4v.s8.540d4338cbd3 from=translated src=- shape=7f23c4af vocab=f7314938
+-/
 theorem ord_coe_unit (u : v.toValuationSubringˣ) :
     v.ord ((u : v.toValuationSubring) : F) = 0 := by
   simp [ord, (v.adicValuation_coe_eq_one_iff _).mpr u.isUnit]
 
+/--
+@isnad1 id=eq.1h4v.s7.d7674df33924 from=translated src=- shape=a8fcd222 vocab=3c50b37d
+-/
 theorem ord_coe_irreducible {π : v.toValuationSubring} (hπ : Irreducible π) :
     v.ord (π : F) = 1 := by
   simp [ord, v.adicValuation_coe_irreducible hπ]
 
+/--
+@isnad1 id=eq.0h5v.s6.e09babe31368 from=translated src=- shape=ad8d3635 vocab=1202559b
+-/
 theorem ord_zpow (f : F) (n : ℤ) : v.ord (f ^ n) = n * v.ord f := by
   simp only [ord, map_zpow₀, WithZero.log_zpow, smul_eq_mul]
   ring
 
+/--
+@isnad1 id=eq.1h6v.s8.3710cc67fd1b from=translated src=- shape=a66df19d vocab=03b8d823
+-/
 theorem ord_unit_smul_zpow (u : v.toValuationSubringˣ) {π : v.toValuationSubring}
     (hπ : Irreducible π) (n : ℤ) :
     v.ord (((u : v.toValuationSubring) : F) * ((π : F) ^ n)) = n := by
@@ -159,6 +207,9 @@ theorem ord_unit_smul_zpow (u : v.toValuationSubringˣ) {π : v.toValuationSubri
   rw [v.ord_mul hu (zpow_ne_zero n hπF), v.ord_coe_unit u, zero_add,
     v.ord_zpow _ _, v.ord_coe_irreducible hπ, mul_one]
 
+/--
+@isnad1 id=ex.2h5v.s9.b8d527dcd97a from=translated src=- shape=49ed86a1 vocab=03b8d823
+-/
 theorem exists_unit_mul_zpow {f : F} (hf : f ≠ 0) {π : v.toValuationSubring}
     (hπ : Irreducible π) :
     ∃ u : v.toValuationSubringˣ,
@@ -184,6 +235,9 @@ variable {K F}
 def degree : Divisor K F →+ ℤ :=
   Finsupp.liftAddHom fun v => AddMonoidHom.mulRight (v.deg : ℤ)
 
+/--
+@isnad1 id=eq.0h4v.s7.11167686d026 from=translated src=- shape=09971b0e vocab=72297c39
+-/
 @[simp]
 theorem degree_single (v : Place K F) (n : ℤ) :
     degree (Finsupp.single v n) = n * v.deg := by
@@ -191,6 +245,9 @@ theorem degree_single (v : Place K F) (n : ℤ) :
 
 def degZero : AddSubgroup (Divisor K F) := degree.ker
 
+/--
+@isnad1 id=iff.0h3v.s7.f207c11f7450 from=translated src=- shape=10729ff1 vocab=39b28bdb
+-/
 theorem mem_degZero {D : Divisor K F} : D ∈ degZero (K := K) (F := F) ↔ degree D = 0 :=
   Iff.rfl
 
@@ -226,12 +283,21 @@ variable {K F}
 
 def mk (D : Divisor.degZero (K := K) (F := F)) : Pic0 K F := QuotientAddGroup.mk D
 
+/--
+@isnad1 id=surjecti.0h2v.s6.2c306a9027ac from=translated src=- shape=93e0b7ff vocab=3c31606f
+-/
 theorem mk_surjective : Function.Surjective (mk (K := K) (F := F)) :=
   QuotientAddGroup.mk_surjective
 
+/--
+@isnad1 id=eq.0h4v.s9.834eb3fafc61 from=translated src=- shape=54c791a1 vocab=d8bb3253
+-/
 @[simp]
 theorem mk_add (D E : Divisor.degZero (K := K) (F := F)) : mk (D + E) = mk D + mk E := rfl
 
+/--
+@isnad1 id=eq.0h2v.s8.ca554cd98aac from=translated src=- shape=b86384df vocab=3a4151fa
+-/
 @[simp]
 theorem mk_zero : mk (0 : Divisor.degZero (K := K) (F := F)) = 0 := rfl
 
@@ -265,6 +331,9 @@ def smulRingEquiv (A : ValuationSubring F) : A ≃+* (σ • A : ValuationSubrin
   map_mul' x y := by ext; simp
   map_add' x y := by ext; simp
 
+/--
+@isnad1 id=eq.0h5v.s12.7e2936ca9273 from=translated src=- shape=3990aa4b vocab=79be4f9a
+-/
 @[simp]
 theorem coe_smulRingEquiv_apply (A : ValuationSubring F) (x : A) :
     ((smulRingEquiv σ A x : (σ • A : ValuationSubring F)) : F) = σ x := rfl
@@ -292,6 +361,9 @@ instance : SMul (F ≃ₐ[K] F) (Place K F) where
 
 variable (v : Place K F)
 
+/--
+@isnad1 id=eq.0h4v.s8.529dd5d2f729 from=translated src=- shape=74717444 vocab=33b6edc4
+-/
 @[simp]
 theorem smul_toValuationSubring : (σ • v).toValuationSubring = σ • v.toValuationSubring := rfl
 
@@ -304,6 +376,9 @@ instance : MulAction (F ≃ₐ[K] F) (Place K F) where
     simp only [smul_toValuationSubring]
     rw [mul_smul]
 
+/--
+@isnad1 id=eq.0h5v.s7.5709e82a33a8 from=translated src=- shape=ebce5ee1 vocab=c8ff7a60
+-/
 theorem ord_smul (f : F) : (σ • v).ord (σ f) = v.ord f := by
   rcases eq_or_ne f 0 with rfl | hf
   · simp
@@ -337,6 +412,9 @@ def smulResidueAlgEquiv : v.ResidueField ≃ₐ[K] (σ • v).ResidueField :=
     rw [IsLocalRing.ResidueField.mapEquiv_apply, IsLocalRing.ResidueField.map_residue]
     exact congrArg _ h3
 
+/--
+@isnad1 id=eq.0h4v.s7.14aa8b251ced from=translated src=- shape=41476e44 vocab=2f1d3141
+-/
 @[simp]
 theorem deg_smul : (σ • v).deg = v.deg :=
   ((smulResidueAlgEquiv σ v).toLinearEquiv.finrank_eq).symm
@@ -351,24 +429,39 @@ variable {K F}
 
 instance : DistribMulAction (F ≃ₐ[K] F) (Divisor K F) := Finsupp.comapDistribMulAction
 
+/--
+@isnad1 id=eq.0h4v.s8.2801a306bdad from=translated src=- shape=b90c7c56 vocab=e1b28153
+-/
 theorem smul_def (σ : F ≃ₐ[K] F) (D : Divisor K F) :
     σ • D = Finsupp.mapDomain (σ • ·) D := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.a9b1732a26ae from=translated src=- shape=efc835d7 vocab=fc763ef7
+-/
 @[simp]
 theorem smul_single (σ : F ≃ₐ[K] F) (v : Place K F) (n : ℤ) :
     σ • Finsupp.single v n = Finsupp.single (σ • v) n := by
   rw [smul_def, Finsupp.mapDomain_single]
 
+/--
+@isnad1 id=eq.0h5v.s8.81812cd3c23c from=translated src=- shape=2fa19f6a vocab=b1491cb0
+-/
 theorem smul_apply_smul (σ : F ≃ₐ[K] F) (D : Divisor K F) (v : Place K F) :
     (σ • D) (σ • v) = D v := by
   rw [smul_def]
   exact Finsupp.mapDomain_apply (MulAction.injective σ) D v
 
+/--
+@isnad1 id=eq.0h5v.s9.109fd26b5f49 from=translated src=- shape=6487fc05 vocab=30b93360
+-/
 theorem smul_apply (σ : F ≃ₐ[K] F) (D : Divisor K F) (w : Place K F) :
     (σ • D) w = D (σ⁻¹ • w) := by
   have : (σ • D) (σ • (σ⁻¹ • w)) = D (σ⁻¹ • w) := smul_apply_smul σ D (σ⁻¹ • w)
   rwa [smul_inv_smul] at this
 
+/--
+@isnad1 id=eq.0h4v.s9.2d1958ed2d36 from=translated src=- shape=84d82c19 vocab=7fc1ca3b
+-/
 @[simp]
 theorem degree_smul (σ : F ≃ₐ[K] F) (D : Divisor K F) : degree (σ • D) = degree D := by
   induction D using Finsupp.induction with
@@ -377,10 +470,16 @@ theorem degree_smul (σ : F ≃ₐ[K] F) (D : Divisor K F) : degree (σ • D) =
       rw [smul_add, map_add, map_add, ih, smul_single, degree_single, degree_single,
         Place.deg_smul]
 
+/--
+@isnad1 id=mem.1h4v.s8.0b5b1ea4713d from=translated src=- shape=7602dc47 vocab=fb01f397
+-/
 theorem smul_mem_degZero (σ : F ≃ₐ[K] F) {D : Divisor K F}
     (hD : D ∈ degZero (K := K) (F := F)) : σ • D ∈ degZero (K := K) (F := F) := by
   rwa [mem_degZero, degree_smul]
 
+/--
+@isnad1 id=mem.1h4v.s8.fc264d7624ae from=translated src=- shape=7602dc47 vocab=abe950ad
+-/
 theorem smul_mem_principal (σ : F ≃ₐ[K] F) {D : Divisor K F}
     (hD : D ∈ principal (K := K) (F := F)) : σ • D ∈ principal (K := K) (F := F) := by
   obtain ⟨f, hf, hD⟩ := hD
@@ -404,6 +503,9 @@ def degZeroSMulHom (σ : F ≃ₐ[K] F) :
     (Divisor.degZero (K := K) (F := F))).codRestrict _
     (fun D => Divisor.smul_mem_degZero σ D.2)
 
+/--
+@isnad1 id=eq.0h4v.s11.3ed161f6c1df from=translated src=- shape=f0d930de vocab=814711fd
+-/
 @[simp]
 theorem coe_degZeroSMulHom (σ : F ≃ₐ[K] F) (D : Divisor.degZero (K := K) (F := F)) :
     (degZeroSMulHom σ D : Divisor K F) = σ • (D : Divisor K F) := rfl
@@ -414,6 +516,9 @@ instance : SMul (F ≃ₐ[K] F) (Pic0 K F) where
     simp only [AddSubgroup.mem_addSubgroupOf] at hD ⊢
     exact Divisor.smul_mem_principal σ hD)
 
+/--
+@isnad1 id=eq.0h4v.s11.b1467d9f5baf from=translated src=- shape=76323fa5 vocab=0e47d10b
+-/
 theorem smul_mk (σ : F ≃ₐ[K] F) (D : Divisor.degZero (K := K) (F := F)) :
     σ • (mk D) = mk (degZeroSMulHom σ D) := rfl
 
@@ -446,6 +551,9 @@ variable {R : Type*} [CommRing R] [IsDedekindDomain R] [Algebra R F] [IsFraction
 
 open IsDedekindDomain.HeightOneSpectrum in
 
+/--
+@isnad1 id=isprinci.0h3v.s7.1c458a92cd1a from=translated src=- shape=d70b33e2 vocab=cc1d8981
+-/
 theorem isPrincipalIdealRing_valuationSubring (w : HeightOneSpectrum R) :
     IsPrincipalIdealRing ((w.valuation F).valuationSubring) := by
   rw [show (w.valuation F).valuationSubring = valuationSubringAtPrime F w from
@@ -466,6 +574,9 @@ def ofHeightOneSpectrum [Algebra K R] [IsScalarTower K R F] (w : HeightOneSpectr
     infer_instance
   isPrincipalIdealRing' := isPrincipalIdealRing_valuationSubring w
 
+/--
+@isnad1 id=eq.0h4v.s7.8b9e3b5f7a54 from=translated src=- shape=0d310891 vocab=d5c36363
+-/
 @[simp]
 theorem ofHeightOneSpectrum_toValuationSubring [Algebra K R] [IsScalarTower K R F]
     (w : HeightOneSpectrum R) :

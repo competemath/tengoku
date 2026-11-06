@@ -34,10 +34,16 @@ noncomputable instance instDistribMulActionAlgEquiv :
   smul_zero _ := rfl
   smul_add σ P Q := (Point.map σ.toAlgHom).map_add P Q
 
+/--
+@isnad1 id=eq.0h7v.s9.6454ea1e9ef9 from=translated src=- shape=647cbc1d vocab=0de7f427
+-/
 lemma algEquiv_smul_zsmul (σ : K ≃ₐ[S] K) (m : ℤ) (P : (W'⁄K).Point) :
     σ • (m • P) = m • (σ • P) :=
   (Point.map σ.toAlgHom).map_zsmul m P
 
+/--
+@isnad1 id=mem.1h7v.s9.22007c6fe1c0 from=translated src=- shape=449d2a20 vocab=362818fc
+-/
 lemma smul_mem_torsionBy {n : ℕ} (σ : K ≃ₐ[S] K) {P : (W'⁄K).Point}
     (hP : P ∈ Submodule.torsionBy ℤ (W'⁄K).Point n) :
     σ • P ∈ Submodule.torsionBy ℤ (W'⁄K).Point n := by

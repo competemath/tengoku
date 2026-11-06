@@ -59,10 +59,16 @@ instance : Valuation.IsRankOneDiscrete vK where
 noncomputable abbrev completionIdeal : Ideal (v.adicCompletionIntegers K) :=
   IsLocalRing.maximalIdeal (adicCompletionIntegers K v)
 
+/--
+@isnad1 id=iff.0h4v.s11.a55017125143 from=translated src=- shape=8cb91829 vocab=6efabeff
+-/
 lemma mem_completionIdeal_iff (x : v.adicCompletionIntegers K) :
     x ∈ completionIdeal K v ↔ Valued.v x.val < 1 :=
   Valuation.mem_maximalIdeal_iff _ _
 
+/--
+@isnad1 id=eq.0h4v.s10.16411fae3fd2 from=translated src=- shape=ea3a20dd vocab=4921d33d
+-/
 lemma algebraMap_completionIntegers (x : A) :
     (algebraMap A (v.adicCompletionIntegers K) x) = (algebraMap A (v.adicCompletion K) x) :=
   rfl

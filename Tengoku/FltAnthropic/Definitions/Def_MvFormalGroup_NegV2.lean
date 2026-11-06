@@ -16,6 +16,9 @@ section Congr
 
 variable {τ : Type*}
 
+/--
+@isnad1 id=eq.2h7v.s9.e0a7f3207080 from=translated src=- shape=35a3ad66 vocab=2ea27bb6
+-/
 theorem coeff_pow_congr {c c' : MvPowerSeries τ R} {n : ℕ}
     (h : ∀ e : τ →₀ ℕ, e.degree ≤ n → coeff e c = coeff e c') {k : ℕ}
     {d : τ →₀ ℕ} (hd : d.degree ≤ n) :
@@ -37,6 +40,9 @@ theorem coeff_pow_congr {c c' : MvPowerSeries τ R} {n : ℕ}
       exact Nat.le_add_left _ _
     rw [IH h1, h p.2 h2]
 
+/--
+@isnad1 id=eq.2h8v.s10.401ec3e324f4 from=translated src=- shape=33cca875 vocab=9140548e
+-/
 theorem coeff_finsuppProd_pow_congr {σ' : Type*} {c c' : σ' → MvPowerSeries τ R} {n : ℕ}
     (h : ∀ j, ∀ e : τ →₀ ℕ, e.degree ≤ n → coeff e (c j) = coeff e (c' j))
     (m : σ' →₀ ℕ) {d : τ →₀ ℕ} (hd : d.degree ≤ n) :
@@ -62,6 +68,9 @@ theorem coeff_finsuppProd_pow_congr {σ' : Type*} {c c' : σ' → MvPowerSeries 
       exact Nat.le_add_left _ _
     rw [coeff_pow_congr (h j) h1, IH h2]
 
+/--
+@isnad1 id=eq.4h8v.s10.2b496942fb5d from=translated src=- shape=77dd15d3 vocab=f72bf4fd
+-/
 theorem coeff_subst_congr {σ' : Type*} [Finite σ'] {c c' : σ' → MvPowerSeries τ R}
     (hc : ∀ j, (c j).constantCoeff = 0) (hc' : ∀ j, (c' j).constantCoeff = 0) {n : ℕ}
     (h : ∀ j, ∀ e : τ →₀ ℕ, e.degree ≤ n → coeff e (c j) = coeff e (c' j))
@@ -78,6 +87,9 @@ section Vanish
 
 variable {τ : Type*}
 
+/--
+@isnad1 id=eq.2h5v.s8.bce187639f84 from=translated src=- shape=c2cc3b9e vocab=fca9db5f
+-/
 theorem coeff_pow_eq_zero_of_degree_lt {c : MvPowerSeries τ R}
     (hc : c.constantCoeff = 0) {l : ℕ} {d : τ →₀ ℕ} (hd : d.degree < l) :
     coeff d (c ^ l) = 0 := by
@@ -101,6 +113,9 @@ theorem coeff_pow_eq_zero_of_degree_lt {c : MvPowerSeries τ R}
         omega
       rw [h2, coeff_zero_eq_constantCoeff_apply, hc, mul_zero]
 
+/--
+@isnad1 id=eq.2h6v.s9.452cac29b216 from=translated src=- shape=778b7702 vocab=0d41bf80
+-/
 theorem coeff_finsuppProd_pow_eq_zero_of_degree_lt {σ' : Type*}
     {c : σ' → MvPowerSeries τ R} (hc : ∀ j, (c j).constantCoeff = 0)
     {m : σ' →₀ ℕ} {d : τ →₀ ℕ} (hd : d.degree < m.degree) :
@@ -130,6 +145,9 @@ section SubCongr
 
 variable {τ : Type*}
 
+/--
+@isnad1 id=eq.3h8v.s10.7a34a8234266 from=translated src=- shape=1669cc98 vocab=ba5e10a2
+-/
 theorem coeff_mul_congr_right {u c c' : MvPowerSeries τ R} {K r : ℕ}
     (hu : ∀ e : τ →₀ ℕ, e.degree < r → coeff e u = 0)
     (hcc : ∀ e : τ →₀ ℕ, e.degree ≤ K → coeff e c = coeff e c')
@@ -145,6 +163,9 @@ theorem coeff_mul_congr_right {u c c' : MvPowerSeries τ R} {K r : ℕ}
   · rw [hu p.1 h1, zero_mul, zero_mul]
   · rw [hcc p.2 (by omega)]
 
+/--
+@isnad1 id=eq.5h7v.s10.def06aa4fb21 from=translated src=- shape=b1fe1caf vocab=b3bf1909
+-/
 theorem coeff_pow_sub_congr {c c' : MvPowerSeries τ R} {N : ℕ} (hN : 1 ≤ N)
     (hc : c.constantCoeff = 0) (hc' : c'.constantCoeff = 0)
     (hcc : ∀ e : τ →₀ ℕ, e.degree < N → coeff e c = coeff e c') {l : ℕ}
@@ -178,6 +199,9 @@ theorem coeff_pow_sub_congr {c c' : MvPowerSeries τ R} {N : ℕ} (hN : 1 ≤ N)
           (fun e he => IH he) (by omega)
       rw [step1, step2, ← pow_succ]
 
+/--
+@isnad1 id=eq.5h8v.s10.27471015409d from=translated src=- shape=04ffeeef vocab=beef1b5d
+-/
 theorem coeff_finsuppProd_pow_sub_congr {σ' : Type*} {c c' : σ' → MvPowerSeries τ R}
     {N : ℕ} (hN : 1 ≤ N)
     (hc : ∀ j, (c j).constantCoeff = 0) (hc' : ∀ j, (c' j).constantCoeff = 0)
@@ -217,6 +241,9 @@ section UnitGeneral
 
 variable {τ : Type*} (F : MvFormalGroup g R)
 
+/--
+@isnad1 id=eq.1h6v.s7.97b1d7326c96 from=translated src=- shape=f20b2380 vocab=b7c3f9aa
+-/
 theorem subst_elim_zero_right {a : Fin g → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) (i : Fin g) :
     subst (Sum.elim a fun _ => 0) (F.toPowerSeries i) = a i := by
@@ -236,6 +263,9 @@ theorem subst_elim_zero_right {a : Fin g → MvPowerSeries τ R}
       rw [← coe_substAlgHom hsa, map_zero]
   rw [← hfam, ← subst_comp_subst_apply hX0 hsa, subst_elim_X_zero F i, subst_X hsa]
 
+/--
+@isnad1 id=eq.1h6v.s7.1f75c6c127c4 from=translated src=- shape=0f7076cd vocab=b7c3f9aa
+-/
 theorem subst_elim_zero_left {a : Fin g → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) (i : Fin g) :
     subst (Sum.elim (fun _ => 0) a) (F.toPowerSeries i) = a i := by
@@ -261,6 +291,9 @@ section Perturb
 
 variable {τ : Type*} (F : MvFormalGroup g R)
 
+/--
+@isnad1 id=eq.5h10v.s10.0cf21274367a from=translated src=- shape=1fde3ab9 vocab=5d1e94f5
+-/
 theorem coeff_subst_elim_sub_homogeneous {a y E : Fin g → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) (hy : ∀ j, (y j).constantCoeff = 0)
     {N : ℕ} (hN : 1 ≤ N) (hE : ∀ j, ∀ e : τ →₀ ℕ, coeff e (E j) ≠ 0 → e.degree = N)
@@ -418,16 +451,25 @@ def negApprox (a : Fin g → MvPowerSeries τ R) : ℕ → Fin g → MvPowerSeri
         - homogeneousComponent (n + 1)
             (subst (Sum.elim a (negApprox a n)) (F.toPowerSeries i))
 
+/--
+@isnad1 id=eq.0h5v.s6.3ac359ff65fa from=translated src=- shape=5d733c6c vocab=a62a5f78
+-/
 @[simp]
 theorem negApprox_zero (a : Fin g → MvPowerSeries τ R) :
     negApprox F a 0 = fun _ => 0 := rfl
 
+/--
+@isnad1 id=eq.0h6v.s8.6836dffaad1c from=translated src=- shape=58420eb0 vocab=30ef26ab
+-/
 theorem negApprox_succ (a : Fin g → MvPowerSeries τ R) (n : ℕ) :
     negApprox F a (n + 1) = fun i =>
       negApprox F a n i
         - homogeneousComponent (n + 1)
             (subst (Sum.elim a (negApprox F a n)) (F.toPowerSeries i)) := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.4b96ee9ea321 from=translated src=- shape=c1b7f3fb vocab=85380f75
+-/
 theorem constantCoeff_negApprox (a : Fin g → MvPowerSeries τ R) (n : ℕ) (i : Fin g) :
     (negApprox F a n i).constantCoeff = 0 := by
   induction n with
@@ -443,6 +485,9 @@ theorem constantCoeff_negApprox (a : Fin g → MvPowerSeries τ R) (n : ℕ) (i 
     rw [map_sub, IH, ← coeff_zero_eq_constantCoeff_apply, coeff_homogeneousComponent,
       ite_eq_right hne, sub_zero]
 
+/--
+@isnad1 id=eq.3h8v.s8.cb5e06d33548 from=translated src=- shape=03371570 vocab=4419e4b8
+-/
 theorem coeff_subst_elim_negApprox {a : Fin g → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) {n : ℕ} {d : τ →₀ ℕ}
     (hdn : d.degree ≤ n) (hd0 : d ≠ 0) (i : Fin g) :
@@ -477,6 +522,9 @@ theorem coeff_subst_elim_negApprox {a : Fin g → MvPowerSeries τ R}
         rw [coeff_homogeneousComponent, ite_eq_left hdeq]
       rw [h2, sub_self]
 
+/--
+@isnad1 id=eq.2h9v.s8.31ffe6016ba6 from=translated src=- shape=19eacd57 vocab=dc093bec
+-/
 theorem coeff_negApprox_stable (a : Fin g → MvPowerSeries τ R) {n m : ℕ}
     (hnm : n ≤ m) {d : τ →₀ ℕ} (hd : d.degree ≤ n) (i : Fin g) :
     coeff d (negApprox F a m i) = coeff d (negApprox F a n i) := by
@@ -505,15 +553,24 @@ theorem coeff_negApprox_stable (a : Fin g → MvPowerSeries τ R) {n m : ℕ}
 def negSeries (a : Fin g → MvPowerSeries τ R) : Fin g → MvPowerSeries τ R :=
   fun i => (fun d => coeff d (negApprox F a d.degree i) : (τ →₀ ℕ) → R)
 
+/--
+@isnad1 id=eq.0h7v.s8.713404e628ca from=translated src=- shape=31a71173 vocab=5511e72c
+-/
 theorem coeff_negSeries (a : Fin g → MvPowerSeries τ R) (d : τ →₀ ℕ) (i : Fin g) :
     coeff d (negSeries F a i) = coeff d (negApprox F a d.degree i) := rfl
 
+/--
+@isnad1 id=eq.1h8v.s8.9d42a6578af1 from=translated src=- shape=3a45e13d vocab=88a6525a
+-/
 theorem coeff_negSeries_eq_negApprox (a : Fin g → MvPowerSeries τ R) {n : ℕ}
     {d : τ →₀ ℕ} (hd : d.degree ≤ n) (i : Fin g) :
     coeff d (negSeries F a i) = coeff d (negApprox F a n i) := by
   rw [coeff_negSeries]
   exact (coeff_negApprox_stable F a hd (le_refl d.degree) i).symm
 
+/--
+@isnad1 id=eq.0h6v.s6.08ef23dfcce6 from=translated src=- shape=c704e75a vocab=3bc97915
+-/
 @[simp]
 theorem constantCoeff_negSeries (a : Fin g → MvPowerSeries τ R) (i : Fin g) :
     (negSeries F a i).constantCoeff = 0 := by
@@ -522,6 +579,9 @@ theorem constantCoeff_negSeries (a : Fin g → MvPowerSeries τ R) (i : Fin g) :
   show coeff (0 : τ →₀ ℕ) (0 : MvPowerSeries τ R) = 0
   exact map_zero _
 
+/--
+@isnad1 id=eq.1h6v.s7.f4d05dfa546e from=translated src=- shape=7d0cea0d vocab=870e2d62
+-/
 theorem subst_elim_negSeries {a : Fin g → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) (i : Fin g) :
     subst (Sum.elim a (negSeries F a)) (F.toPowerSeries i) = 0 := by
@@ -555,6 +615,9 @@ section Group
 
 variable {τ τ' : Type*} (F : MvFormalGroup g R)
 
+/--
+@isnad1 id=eq.3h9v.s8.be55f3b3f33e from=translated src=- shape=a983ef82 vocab=ddc71094
+-/
 theorem subst_subst_elim {u v : Fin g → MvPowerSeries τ R}
     (hu : ∀ j, (u j).constantCoeff = 0) (hv : ∀ j, (v j).constantCoeff = 0)
     {b : τ → MvPowerSeries τ' R} (hb : HasSubst b) (i : Fin g) :
@@ -566,6 +629,9 @@ theorem subst_subst_elim {u v : Fin g → MvPowerSeries τ R}
   funext s
   rcases s with j | j <;> rfl
 
+/--
+@isnad1 id=eq.1h6v.s7.adcd6d208ef4 from=translated src=- shape=cda77fdb vocab=870e2d62
+-/
 theorem subst_elim_negSeries_left {a : Fin g → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) (i : Fin g) :
     subst (Sum.elim (negSeries F a) a) (F.toPowerSeries i) = 0 := by
@@ -596,6 +662,9 @@ theorem subst_elim_negSeries_left {a : Fin g → MvPowerSeries τ R}
   nth_rewrite 2 [haz]
   exact tup1 i
 
+/--
+@isnad1 id=eq.3h6v.s8.e86f6ea6fdfe from=translated src=- shape=826a848c vocab=870e2d62
+-/
 theorem negSeries_unique {a y : Fin g → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) (hy : ∀ j, (y j).constantCoeff = 0)
     (h : ∀ i, subst (Sum.elim a y) (F.toPowerSeries i) = 0) :
@@ -628,10 +697,16 @@ variable (F : MvFormalGroup g R)
 def invSeries : Fin g → MvPowerSeries (Fin g) R :=
   negSeries F fun j => X j
 
+/--
+@isnad1 id=eq.0h4v.s6.3dddcc4c8b07 from=translated src=- shape=e41e5b91 vocab=8048ea4d
+-/
 @[simp]
 theorem constantCoeff_invSeries (i : Fin g) : (invSeries F i).constantCoeff = 0 :=
   constantCoeff_negSeries F _ i
 
+/--
+@isnad1 id=eq.0h4v.s6.1bec0934a091 from=translated src=- shape=b32b2203 vocab=374edf58
+-/
 theorem subst_elim_invSeries_X (i : Fin g) :
     subst (Sum.elim (invSeries F) fun j => (X j : MvPowerSeries (Fin g) R))
       (F.toPowerSeries i) = 0 :=
@@ -643,6 +718,9 @@ section NegSeriesMore
 
 variable {τ τ' : Type*} (F : MvFormalGroup g R)
 
+/--
+@isnad1 id=eq.2h7v.s8.c9ae6395fa0c from=translated src=- shape=a4e1b579 vocab=f735b2f7
+-/
 theorem subst_negSeries [Finite τ] {a : Fin g → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) {b : τ → MvPowerSeries τ' R}
     (hb0 : ∀ s, (b s).constantCoeff = 0) :
@@ -654,6 +732,9 @@ theorem subst_negSeries [Finite τ] {a : Fin g → MvPowerSeries τ R}
   rw [← subst_subst_elim F ha hneg hb i, subst_elim_negSeries F ha i,
     ← coe_substAlgHom hb, map_zero]
 
+/--
+@isnad1 id=eq.2h6v.s8.80ca2726814a from=translated src=- shape=9f6a80b0 vocab=b3e54865
+-/
 theorem negSeries_elim_add [IsComm F] {a b : Fin g → MvPowerSeries τ R}
     (ha : ∀ j, (a j).constantCoeff = 0) (hb : ∀ j, (b j).constantCoeff = 0) :
     negSeries F (fun i => subst (Sum.elim a b) (F.toPowerSeries i))
@@ -736,6 +817,9 @@ def neg [IsComm G] (φ : Hom F G) : Hom F G where
               (negSeries G φ.toPowerSeries j') ) (G.toPowerSeries i) := by
           rw [← subst_negSeries G hφ hXl0, ← subst_negSeries G hφ hXr0]
 
+/--
+@isnad1 id=eq.0h6v.s6.419c781ecaa2 from=translated src=- shape=a3fecdbb vocab=abba4e4e
+-/
 @[simp]
 theorem toPowerSeries_neg [IsComm G] (φ : Hom F G) :
     (Hom.neg φ).toPowerSeries = negSeries G φ.toPowerSeries := rfl
@@ -753,10 +837,16 @@ instance instAddCommGroup [IsComm G] : AddCommGroup (Hom F G) :=
           (G.toPowerSeries i) = 0
       exact subst_elim_negSeries_left G φ.constantCoeff_eq_zero i }
 
+/--
+@isnad1 id=eq.0h6v.s6.40e4b5630e86 from=translated src=- shape=02337410 vocab=7cb34f97
+-/
 @[simp]
 theorem toPowerSeries_neg' [IsComm G] (φ : Hom F G) :
     (-φ).toPowerSeries = negSeries G φ.toPowerSeries := rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.35093f07e73c from=translated src=- shape=ff8a5576 vocab=fa14f8ec
+-/
 @[simp]
 theorem toPowerSeries_sub [IsComm G] (φ ψ : Hom F G) :
     (φ - ψ).toPowerSeries = fun i =>
@@ -775,16 +865,25 @@ instance instAddCommGroup [IsComm F] : AddCommGroup (End F) :=
 instance instRing [IsComm F] : Ring (End F) :=
   { End.instSemiring F, End.instAddCommGroup F with }
 
+/--
+@isnad1 id=eq.0h4v.s6.1f9291ed5194 from=translated src=- shape=faac4096 vocab=3d4d5284
+-/
 @[simp]
 theorem toPowerSeries_neg [IsComm F] (φ : End F) :
     Hom.toPowerSeries (-φ) = negSeries F (Hom.toPowerSeries φ) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.d46068d457a8 from=translated src=- shape=b2fade19 vocab=6c78ae5b
+-/
 @[simp]
 theorem toPowerSeries_sub [IsComm F] (φ ψ : End F) :
     Hom.toPowerSeries (φ - ψ) = fun i =>
       subst (Sum.elim (Hom.toPowerSeries φ) (negSeries F (Hom.toPowerSeries ψ)))
         (F.toPowerSeries i) := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.a4c84189ee75 from=translated src=- shape=0ff1ebc8 vocab=ea4dc1ef
+-/
 theorem toPowerSeries_neg_one [IsComm F] :
     Hom.toPowerSeries (-1 : End F) = invSeries F := by
   rw [toPowerSeries_neg]
@@ -800,6 +899,9 @@ variable (F : MvFormalGroup g R)
 
 def invHom [IsComm F] : End F := -(1 : End F)
 
+/--
+@isnad1 id=eq.0h3v.s5.73c52a81ecfd from=translated src=- shape=46421c8f vocab=6046ac81
+-/
 @[simp]
 theorem toPowerSeries_invHom [IsComm F] :
     Hom.toPowerSeries (invHom F) = invSeries F :=
@@ -811,11 +913,17 @@ section LinearPartNeg
 
 variable (F : MvFormalGroup g R)
 
+/--
+@isnad1 id=eq.0h4v.s8.54d5dbbdfb5c from=translated src=- shape=41518015 vocab=df5eec91
+-/
 @[simp]
 theorem linearPartHom_neg [IsComm F] (φ : End F) :
     linearPartHom F (-φ) = - linearPartHom F φ :=
   map_neg (linearPartHom F) φ
 
+/--
+@isnad1 id=eq.0h4v.s7.3339a841471b from=translated src=- shape=bc5b9c26 vocab=e383258c
+-/
 @[simp]
 theorem linearPartHom_intCast [IsComm F] (n : ℤ) :
     linearPartHom F ((n : ℤ) : End F) = n • (1 : Matrix (Fin g) (Fin g) R) := by

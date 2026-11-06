@@ -60,9 +60,15 @@ class IsComm (F : MvFormalGroup g R) : Prop where
       (F.toPowerSeries i)
       = F.toPowerSeries i
 
+/--
+@isnad1 id=hassubst.0h3v.s4.642bfa35aee1 from=translated src=- shape=18ead4f3 vocab=4e6837c5
+-/
 theorem hasSubst_toPowerSeries (F : MvFormalGroup g R) : HasSubst F.toPowerSeries :=
   hasSubst_of_constantCoeff_zero F.constantCoeff_eq_zero
 
+/--
+@isnad1 id=eq.1h6v.s7.25deda6ebc6c from=translated src=- shape=c06c7838 vocab=84e2a346
+-/
 theorem subst_X_add_X {σ τ : Type*} [Finite σ] {a : σ → MvPowerSeries τ R}
     (ha : ∀ s, (a s).constantCoeff = 0) (s t : σ) :
     subst a (X s + X t : MvPowerSeries σ R) = a s + a t := by
@@ -89,6 +95,9 @@ structure Hom (F : MvFormalGroup g R) (G : MvFormalGroup h R) where
 
 namespace Hom
 
+/--
+@isnad1 id=hassubst.0h6v.s5.6ddfcc24e5a7 from=translated src=- shape=7e0c6bf1 vocab=2b734b78
+-/
 theorem hasSubst_toPowerSeries {F : MvFormalGroup g R} {G : MvFormalGroup h R}
     (φ : Hom F G) : HasSubst φ.toPowerSeries :=
   hasSubst_of_constantCoeff_zero φ.constantCoeff_eq_zero
@@ -352,9 +361,15 @@ def nthSeries (F : MvFormalGroup g R) : ℕ → Fin g → MvPowerSeries (Fin g) 
   | n + 1 => fun i =>
       subst (Sum.elim (nthSeries F n) fun j => X j) (F.toPowerSeries i)
 
+/--
+@isnad1 id=eq.0h3v.s5.0b24a4183d64 from=translated src=- shape=5fc9a0cc vocab=57798b67
+-/
 @[simp]
 theorem nthSeries_zero (F : MvFormalGroup g R) : F.nthSeries 0 = fun _ => 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.ad089ef29a07 from=translated src=- shape=ec11dc52 vocab=219c5f54
+-/
 theorem nthSeries_succ (F : MvFormalGroup g R) (n : ℕ) : F.nthSeries (n + 1) = fun i =>
     subst (Sum.elim (F.nthSeries n) fun j => X j) (F.toPowerSeries i) := rfl
 

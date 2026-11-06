@@ -28,6 +28,9 @@ def Ideal.mapNonZero (g : R ≃+* R') (P : (Ideal R)⁰) : (Ideal R')⁰ :=
     rw [Ideal.zero_eq_bot] at hbot ⊢
     exact (Ideal.map_eq_bot_iff_of_injective hinj).mp hbot⟩
 
+/--
+@isnad1 id=eq.0h4v.s9.e0cea9447ff5 from=translated src=- shape=c3e88c1b vocab=91fcda79
+-/
 @[simp] lemma Ideal.coe_mapNonZero (g : R ≃+* R') (P : (Ideal R)⁰) :
     (Ideal.mapNonZero g P : Ideal R') = (P : Ideal R).map (g : R →+* R') := rfl
 
@@ -43,6 +46,9 @@ def algAutToRingAut (A B : Type*) [CommSemiring A] [Semiring B] [Algebra A B] :
   map_one' := RingEquiv.ext fun _ => rfl
   map_mul' _ _ := RingEquiv.ext fun _ => rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.67abd95724a7 from=translated src=- shape=cd4dea90 vocab=62190755
+-/
 @[simp] lemma algAutToRingAut_apply {A B : Type*} [CommSemiring A] [Semiring B] [Algebra A B]
     (e : B ≃ₐ[A] B) (x : B) : algAutToRingAut A B e x = e x := rfl
 
@@ -54,6 +60,9 @@ variable (A K L B : Type*) [CommRing A] [CommRing B] [Algebra A B]
 noncomputable def galRestrictionDatum : (L ≃ₐ[K] L) →* (B ≃+* B) :=
   (algAutToRingAut A B).comp (galRestrict A K L B).toMonoidHom
 
+/--
+@isnad1 id=eq.0h6v.s11.cf147f3ab914 from=translated src=- shape=507043cd vocab=be17cd27
+-/
 @[simp] lemma galRestrictionDatum_apply (g : L ≃ₐ[K] L) (x : B) :
     galRestrictionDatum A K L B g x = galRestrict A K L B g x := rfl
 

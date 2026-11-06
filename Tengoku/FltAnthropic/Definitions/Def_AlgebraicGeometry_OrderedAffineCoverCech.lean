@@ -43,6 +43,9 @@ def inter {i : ℕ} (s : K.Idx i) : V.Opens := ⨅ j, K.U (s.1 j)
 def face {i : ℕ} (s : K.Idx (i + 1)) (j : Fin (i + 2)) : K.Idx i :=
   ⟨s.1 ∘ Fin.succAbove j, s.2.comp (Fin.strictMono_succAbove j)⟩
 
+/--
+@isnad1 id=le.0h5v.s6.d884f3ac8a49 from=translated src=- shape=02d0da2c vocab=fb226c65
+-/
 theorem inter_le_inter_face {i : ℕ} (s : K.Idx (i + 1)) (j : Fin (i + 2)) :
     K.inter s ≤ K.inter (K.face s j) :=
   le_iInf fun k => iInf_le _ (j.succAbove k)
@@ -106,6 +109,9 @@ namespace OModulePresheaf
 variable {R : Type u} [CommRing R] {V : Scheme.{u}} {π : V ⟶ Spec (.of R)}
 variable (F : OModulePresheaf π) (K : V.OrderedAffineCover)
 
+/--
+@isnad1 id=eq.2h8v.s9.bbad3f174253 from=translated src=- shape=39025d81 vocab=05973207
+-/
 theorem res_res {U U' U'' : V.Opens} (h : U ≤ U') (h' : U' ≤ U'') (x : F.obj U'') :
     F.res h (F.res h' x) = F.res (h.trans h') x := by
   rw [F.res_comp h h']; rfl

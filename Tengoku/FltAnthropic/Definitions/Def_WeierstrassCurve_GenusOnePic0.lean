@@ -31,6 +31,9 @@ abbrev pointEquivPlace : W.Point ≃ AlgebraicCurve.Place F W.FunctionField :=
 def placeOfPoint : W.Point → AlgebraicCurve.Place F W.FunctionField :=
   pointEquivPlace (W := W)
 
+/--
+@isnad1 id=eq.0h3v.s8.d4dbb0bfc054 from=translated src=- shape=0c3493f6 vocab=ee6c70a5
+-/
 theorem deg_eq_one (v : AlgebraicCurve.Place F W.FunctionField) : v.deg = 1 :=
   GenusOnePlaceGate.deg_eq_one v
 

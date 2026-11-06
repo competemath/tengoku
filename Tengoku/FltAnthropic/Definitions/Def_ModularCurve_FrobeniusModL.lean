@@ -18,6 +18,9 @@ section ExpandSeam
 
 variable {R : Type*} [CommRing R] (p : ℕ) [NeZero p]
 
+/--
+@isnad1 id=eq.0h3v.s9.59c44386f30d from=translated src=- shape=d05b2b85 vocab=9f6a54b0
+-/
 theorem qExpand_ofPowerSeries_eq_expand (u : PowerSeries R) :
     qExpand R p (HahnSeries.ofPowerSeries ℤ R u)
       = HahnSeries.ofPowerSeries ℤ R (PowerSeries.expand p (NeZero.ne p) u) := by
@@ -47,12 +50,18 @@ section KeyLemma
 
 variable {R : Type*} [CommRing R] (p : ℕ) [Fact p.Prime] [CharP R p]
 
+/--
+@isnad1 id=eq.0h3v.s9.2ecd97ff40dd from=translated src=- shape=0abe97e2 vocab=676d6eb5
+-/
 theorem pow_char_single_one_eq (n : ℤ) :
     (HahnSeries.single n (1 : R)) ^ p
       = coeffMap (frobenius R p) (qExpand R p (HahnSeries.single n (1 : R))) := by
   rw [HahnSeries.single_pow, one_pow, show (p • n : ℤ) = (p : ℤ) * n from nsmul_eq_mul p n,
     qExpand_single, coeffMap_single, show frobenius R p 1 = 1 from map_one _]
 
+/--
+@isnad1 id=eq.0h3v.s9.37e3befac855 from=translated src=- shape=580d5fd2 vocab=2cbaef75
+-/
 theorem pow_char_ofPowerSeries_eq (u : PowerSeries R) :
     (HahnSeries.ofPowerSeries ℤ R u) ^ p
       = coeffMap (frobenius R p) (qExpand R p (HahnSeries.ofPowerSeries ℤ R u)) := by
@@ -61,6 +70,9 @@ theorem pow_char_ofPowerSeries_eq (u : PowerSeries R) :
   congr 1
   exact (MvPowerSeries.map_frobenius_expand p (NeZero.ne p) (f := u)).symm
 
+/--
+@isnad1 id=eq.0h3v.s8.19d6fa6fddb4 from=translated src=- shape=b71fdaa4 vocab=bb241b57
+-/
 theorem pow_char_eq_coeffMap_frobenius_qExpand (s : LaurentSeries R) :
     s ^ p = coeffMap (frobenius R p) (qExpand R p s) := by
   conv_lhs => rw [← LaurentSeries.single_order_mul_powerSeriesPart s]
@@ -75,12 +87,18 @@ section FrobeniusIdentity
 
 variable (K : Type*) [Field K] (ℓ : ℕ) [Fact ℓ.Prime] [CharP K ℓ]
 
+/--
+@isnad1 id=eq.0h3v.s6.c0b99b0aad80 from=translated src=- shape=ee45e01a vocab=cde08f9d
+-/
 theorem intCast_pow_char_eq (n : ℤ) : ((n : K) : K) ^ ℓ = (n : K) := by
   have h : (frobenius K ℓ).comp (Int.castRingHom K) = Int.castRingHom K := RingHom.ext_int _ _
   exact (RingHom.congr_fun h n :)
 
 omit [Fact ℓ.Prime] in
 
+/--
+@isnad1 id=charp.0h2v.s6.03b82d8b3896 from=translated src=- shape=b26e66a6 vocab=78c8c643
+-/
 theorem charP_laurentSeriesC : CharP (LaurentSeries K) ℓ :=
   charP_of_injective_algebraMap (algebraMap K (LaurentSeries K)).injective ℓ
 

@@ -25,6 +25,9 @@ structure RelEffDivisor (C : Scheme.{u}) (c : C ⟶ Spec (CommRingCat.of k)) (r 
   flat : Flat (I.subschemeι ≫ pullback.snd c t)
   finrank_eq : ∀ s : T, (I.subschemeι ≫ pullback.snd c t).finrank s = r
 
+/--
+@isnad1 id=eq.1h8v.s6.b90a11593f96 from=translated src=- shape=8d010d4a vocab=8803c103
+-/
 @[ext] lemma RelEffDivisor.ext {C : Scheme.{u}} {c : C ⟶ Spec (CommRingCat.of k)} {r : ℕ}
     {T : Scheme.{u}} {t : T ⟶ Spec (CommRingCat.of k)} {D₁ D₂ : RelEffDivisor C c r T t}
     (h : D₁.I = D₂.I) : D₁ = D₂ := by

@@ -42,9 +42,15 @@ noncomputable abbrev diagonalFinsupp (n : ℕ) := ofMulActionFinsupp k G (Fin n 
 
 variable {k G H}
 
+/--
+@isnad1 id=eq.0h4v.s8.d88ce31841fc from=translated src=- shape=a72c6414 vocab=c13e2205
+-/
 theorem ofMulActionFinsupp_def (g : G) : ofMulActionFinsupp k G H g = Finsupp.lmapDomain k k (g • ·) :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s9.d0f3737f4786 from=translated src=- shape=6e8e2a83 vocab=7cce0a10
+-/
 @[simp]
 theorem ofMulActionFinsupp_single (g : G) (x : H) (r : k) :
     ofMulActionFinsupp k G H g (Finsupp.single x r) = Finsupp.single (g • x) r :=
@@ -58,6 +64,9 @@ section Group
 
 variable {k G V : Type*} [Semiring k] [Group G] [AddCommMonoid V] [Module k V]
   (ρ : Representation k G V)
+/--
+@isnad1 id=eq.0h6v.s9.83cea9e902b2 from=translated src=- shape=a7424d91 vocab=061b19ec
+-/
 @[simp]
 theorem ofMulActionFinsupp_apply {H : Type*} [MulAction G H] (g : G) (f : H →₀ k) (h : H) :
     ofMulActionFinsupp k G H g f h = f (g⁻¹ • h) := by
@@ -139,31 +148,55 @@ instance : Group (AddAut A) where
 /- The following thirteen lemmas are Mathlib v4.30.0 `Mathlib/Algebra/Group/End.lean:758-801`
 verbatim except that each name carries a trailing prime. -/
 
+/--
+@isnad1 id=eq.0h3v.s7.f1c11b86767f from=translated src=- shape=367ffa20 vocab=1650b8a0
+-/
 @[simp]
 theorem coe_mul' (e₁ e₂ : AddAut A) : ⇑(e₁ * e₂) = e₁ ∘ e₂ :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.4687b9748b4a from=translated src=- shape=57311762 vocab=40f2cea7
+-/
 @[simp]
 theorem coe_one' : ⇑(1 : AddAut A) = id :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.13f71a934bff from=translated src=- shape=5db0f2f7 vocab=c3d4e78f
+-/
 @[simp]
 theorem coe_inv' (e : AddAut A) : ⇑e⁻¹ = e.symm := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.bb2bc6583497 from=translated src=- shape=5da52639 vocab=5e4f58a1
+-/
 @[simp]
 theorem mul_apply' (e₁ e₂ : AddAut A) (a : A) : (e₁ * e₂) a = e₁ (e₂ a) :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.45a535da96ff from=translated src=- shape=98c5b598 vocab=f1d2f852
+-/
 @[simp]
 theorem one_apply' (a : A) : (1 : AddAut A) a = a :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.12bc37302c4b from=translated src=- shape=9c43e376 vocab=0496cf24
+-/
 @[simp]
 theorem inv_symm' (e : AddAut A) : e⁻¹.symm = e := rfl
 
+/--
+@isnad1 id=eq.0h2v.s5.574695ba67eb from=translated src=- shape=574e0a21 vocab=0496cf24
+-/
 @[simp]
 theorem symm_inv' (e : AddAut A) : e.symm⁻¹ = e := rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.a61ab88f1baa from=translated src=- shape=6ec83d30 vocab=c3d4e78f
+-/
 @[simp]
 theorem inv_apply' (e : AddAut A) (a : A) : e⁻¹ a = e.symm a := rfl
 
@@ -194,6 +227,9 @@ instance applyDistribMulAction' {A : Type*} [AddMonoid A] : DistribMulAction (Ad
   smul_zero := AddEquiv.map_zero
   smul_add := AddEquiv.map_add
 
+/--
+@isnad1 id=eq.0h3v.s7.70e7df250cf8 from=translated src=- shape=1427c5b9 vocab=0b2ace45
+-/
 @[simp] protected theorem smul_def' {A : Type*} [AddMonoid A] (f : AddAut A) (a : A) : f • a = f a := rfl
 
 end AddAut
@@ -221,24 +257,42 @@ def IsDivSequence' : Prop :=
 def IsEllDivSequence' : Prop :=
   IsEllSequence' W ∧ IsDivSequence' W
 
+/--
+@isnad1 id=isellseq.0h0v.s2.543dcb6ffcad from=translated src=- shape=3905abf2 vocab=39a6faa9
+-/
 lemma isEllSequence'_id : IsEllSequence' id :=
   fun _ _ _ => by simp_rw [id_eq]; ring1
 
+/--
+@isnad1 id=isdivseq.0h0v.s2.9544bb3fb3fc from=translated src=- shape=3905abf2 vocab=74669c0a
+-/
 lemma isDivSequence'_id : IsDivSequence' id :=
   fun _ _ => Int.ofNat_dvd.mpr
 
+/--
+@isnad1 id=iselldiv.0h0v.s2.ced726673e97 from=translated src=- shape=3905abf2 vocab=bce800a7
+-/
 theorem isEllDivSequence'_id : IsEllDivSequence' id :=
   ⟨isEllSequence'_id, isDivSequence'_id⟩
 
 variable {W}
 
+/--
+@isnad1 id=isellseq.1h3v.s5.48ba9f2768f6 from=translated src=- shape=ce84ebb2 vocab=717f58bc
+-/
 lemma IsEllSequence'.smul (h : IsEllSequence' W) (x : R) : IsEllSequence' (x • W) :=
   fun m n r => by
     linear_combination (norm := (simp_rw [Pi.smul_apply, smul_eq_mul]; ring1)) x ^ 4 * h m n r
 
+/--
+@isnad1 id=isdivseq.1h3v.s5.1175a7da96db from=translated src=- shape=ce84ebb2 vocab=734aba62
+-/
 lemma IsDivSequence'.smul (h : IsDivSequence' W) (x : R) : IsDivSequence' (x • W) :=
   fun m n r => mul_dvd_mul_left x <| h m n r
 
+/--
+@isnad1 id=iselldiv.1h3v.s5.03483f803fbf from=translated src=- shape=ce84ebb2 vocab=0299144d
+-/
 lemma IsEllDivSequence'.smul (h : IsEllDivSequence' W) (x : R) : IsEllDivSequence' (x • W) :=
   ⟨h.left.smul x, h.right.smul x⟩
 

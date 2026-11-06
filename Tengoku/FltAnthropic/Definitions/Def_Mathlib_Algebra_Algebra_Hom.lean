@@ -34,9 +34,15 @@ instance instFunLike : FunLike (A →ₛₐ[φ] B) A B where
     exact DFunLike.coe_injective h
 
 variable {φ} {A} {B} in
+/--
+@isnad1 id=eq.0h8v.s7.8b8fe8bd92b5 from=translated src=- shape=ac313bcb vocab=ae7257cd
+-/
 lemma SemialgHom.map_smul (ψ : A →ₛₐ[φ] B) (m : R) (x : A) : ψ (m • x) = φ m • ψ x :=
   LinearMap.map_smul' ψ.toLinearMap m x
 
+/--
+@isnad1 id=eq.3h6v.s9.ec0c2ed66919 from=translated src=- shape=afd5bf60 vocab=b6ace79f
+-/
 @[simp]
 theorem coe_mk (f : A →ₛₗ[φ] B) (h₁ h₂ h₃) : ((⟨f, h₁, h₂, h₃⟩ : A →ₛₐ[φ] B) : A → B) = f :=
   rfl
@@ -57,6 +63,9 @@ variable (F : Type*) {R S : Type*}
   [Semiring A] [Semiring B] [Algebra R A] [Algebra S B]
   [FunLike F A B] [SemialgHomClass F φ A B]
 
+/--
+@isnad1 id=semialgh.0h5v.s6.3dc69a27526f from=translated src=- shape=1f65c29e vocab=fe214dc6
+-/
 instance SemialgHomClass.instSemialgHom : SemialgHomClass (A →ₛₐ[φ] B) φ A B where
   map_add ψ := ψ.map_add
   map_smulₛₗ ψ := ψ.map_smulₛₗ
@@ -72,6 +81,9 @@ def SemialgHomClass.toSemialgHom (f : F) : A →ₛₐ[φ] B :=
 instance : CoeTC F (A →ₛₐ[φ] B) :=
   ⟨SemialgHomClass.toSemialgHom⟩
 
+/--
+@isnad1 id=eq.0h7v.s7.e3737b1aaf81 from=translated src=- shape=d813dcf9 vocab=3c8a6e4b
+-/
 @[simp]
 theorem SemialgHom.coe_coe (f : F) : ⇑(f : A →ₛₐ[φ] B) = f :=
   rfl
@@ -83,18 +95,30 @@ section semialghom
 variable {R S : Type*} [CommSemiring R] [CommSemiring S] {φ : R →+* S}
     {A B : Type*} [Semiring A] [Semiring B] [Algebra R A] [Algebra S B]
 
+/--
+@isnad1 id=eq.0h7v.s7.155710d518cb from=translated src=- shape=16f7390c vocab=0aaa55c0
+-/
 lemma SemialgHom.commutes (ψ : A →ₛₐ[φ] B) (r : R) :
     ψ (algebraMap R A r) = algebraMap S B (φ r) := by
   have := ψ.map_smul r 1
   rw [Algebra.smul_def, mul_one, map_one] at this
   rw [this, Algebra.smul_def, mul_one]
 
+/--
+@isnad1 id=eq.0h6v.s7.6524fce20e1e from=translated src=- shape=fd3ac4d3 vocab=fd46dbc9
+-/
 theorem SemialgHom.toLinearMap_eq_coe (f : A →ₛₐ[φ] B) : f.toLinearMap = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.5b4367f2a3ef from=translated src=- shape=487ce2ea vocab=6f052bda
+-/
 theorem SemialgHom.toRingHom_eq_coe (f : A →ₛₐ[φ] B) : f.toRingHom = f :=
   rfl
 
+/--
+@isnad1 id=eq.0h7v.s7.28940b708bdc from=translated src=- shape=59229c98 vocab=05379840
+-/
 theorem SemialgHom.algebraMap_apply {A B : Type*} [CommSemiring A] [CommSemiring B]
     [Algebra R A] [Algebra S B] (f : A →ₛₐ[φ] B) (a : A) :
     letI := f.toAlgebra

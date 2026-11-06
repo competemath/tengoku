@@ -12,15 +12,24 @@ variable {R : Type*} [CommSemiring R] (S : Submonoid R)
   (A : Type*) [CommSemiring A] [Algebra R A] [IsLocalization S A]
   (M₁ : Type*) [AddCommMonoid M₁] [Module R M₁] [Module A M₁] [IsScalarTower R A M₁]
 
+/--
+@isnad1 id=eq.0h5v.s9.1605bbdf3477 from=translated src=- shape=1e3d3145 vocab=9e2938af
+-/
 @[simp]
 lemma moduleLid_symm_apply (m : M₁) : (moduleLid S A M₁).symm m = 1 ⊗ₜ[R] m := rfl
 
 variable (M₂ : Type*) [AddCommMonoid M₂] [Module R M₂] [Module A M₂] [IsScalarTower R A M₂]
 
+/--
+@isnad1 id=eq.0h7v.s9.1edc8610c4ae from=translated src=- shape=d8c4bddc vocab=4b829a9e
+-/
 @[simp]
 lemma map_moduleTensorEquiv_tmul (m₁ : M₁) (m₂ : M₂) :
     moduleTensorEquiv S A M₁ M₂ (m₁ ⊗ₜ[A] m₂) = m₁ ⊗ₜ[R] m₂ := rfl
 
+/--
+@isnad1 id=eq.0h7v.s9.46b7e3a41e82 from=translated src=- shape=d4ac0527 vocab=305e4b92
+-/
 @[simp]
 lemma map_moduleTensorEquiv_symm_tmul (m₁ : M₁) (m₂ : M₂) :
     (moduleTensorEquiv S A M₁ M₂).symm (m₁ ⊗ₜ[R] m₂) = m₁ ⊗ₜ[A] m₂ := rfl

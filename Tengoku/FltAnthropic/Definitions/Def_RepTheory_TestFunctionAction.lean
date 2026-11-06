@@ -24,6 +24,9 @@ abbrev HasOpenStabilizer (G : Type*) {M : Type*} [Group G] [TopologicalSpace G] 
 
 variable [MulAction G M]
 
+/--
+@isnad1 id=hasopens.1h5v.s6.6e17c4b9bff4 from=translated src=- shape=d519dcee vocab=34dcd173
+-/
 theorem HasOpenStabilizer.const_smul [ContinuousMul G] {R : Type*} [SMul R M] [SMulCommClass G R M]
     {v : M} (hv : HasOpenStabilizer G v) (r : R) : HasOpenStabilizer G (r • v) := by
   refine Subgroup.isOpen_mono (H₁ := MulAction.stabilizer G v) (fun g hg => ?_) hv

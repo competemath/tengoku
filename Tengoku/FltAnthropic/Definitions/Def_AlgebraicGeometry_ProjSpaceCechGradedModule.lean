@@ -66,6 +66,9 @@ variable (R : Type u) [CommRing R] (n : ℕ)
 def GradedModule.freeGrade (d : ℤ) : Submodule R (MvPolynomial (Fin (n + 1)) R) :=
   if 0 ≤ d then MvPolynomial.homogeneousSubmodule (Fin (n + 1)) R d.toNat else ⊥
 
+/--
+@isnad1 id=eq.1h3v.s6.009234ab764e from=translated src=- shape=574128c2 vocab=d7990744
+-/
 theorem GradedModule.freeGrade_of_nonneg {d : ℤ} (hd : 0 ≤ d) :
     GradedModule.freeGrade R n d
       = MvPolynomial.homogeneousSubmodule (Fin (n + 1)) R d.toNat := by

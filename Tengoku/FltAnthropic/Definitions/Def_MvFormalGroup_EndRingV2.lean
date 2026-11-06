@@ -16,6 +16,9 @@ section Subst
 
 variable {σ τ : Type*}
 
+/--
+@isnad1 id=eq.1h4v.s7.995497f7983f from=translated src=- shape=caf688d8 vocab=361452ec
+-/
 theorem subst_zero_of_constantCoeff_eq_zero {f : MvPowerSeries σ R}
     (hf : f.constantCoeff = 0) :
     subst (fun _ : σ => (0 : MvPowerSeries τ R)) f = 0 := by
@@ -33,6 +36,9 @@ theorem subst_zero_of_constantCoeff_eq_zero {f : MvPowerSeries σ R}
       Finset.prod_eq_zero (Finsupp.mem_support_iff.mpr hi) (by simp [zero_pow hi])
     rw [hz, map_zero, smul_zero]
 
+/--
+@isnad1 id=le.1h5v.s8.22e78f9fbccb from=translated src=- shape=7ba73fdb vocab=b4707bc4
+-/
 theorem le_order_finsuppProd_pow {c : σ → MvPowerSeries τ R}
     (hc0 : ∀ j, (c j).constantCoeff = 0) (e : σ →₀ ℕ) :
     (e.degree : ℕ∞) ≤ (e.prod fun j n => (c j) ^ n).order := by
@@ -41,6 +47,9 @@ theorem le_order_finsuppProd_pow {c : σ → MvPowerSeries τ R}
   rw [Finsupp.degree_apply, Nat.cast_sum]
   exact Finset.sum_le_sum fun j _ => le_order_pow_of_constantCoeff_eq_zero (e j) (hc0 j)
 
+/--
+@isnad1 id=eq.2h4v.s9.15da7b438771 from=translated src=- shape=91fd27b4 vocab=1bf74357
+-/
 theorem homogeneousComponent_finsuppProd_pow [DecidableEq σ] {c : σ → MvPowerSeries σ R}
     (hc0 : ∀ j, (c j).constantCoeff = 0)
     (hc1 : ∀ j j', coeff (Finsupp.single j' 1) (c j) = if j = j' then 1 else 0)
@@ -120,6 +129,9 @@ theorem homogeneousComponent_finsuppProd_pow [DecidableEq σ] {c : σ → MvPowe
       rw [hP, hcomp, hXj, IH (n - 1) (by omega) e' hdeg', monomial_mul_monomial, one_mul,
         hsplit]
 
+/--
+@isnad1 id=eq.3h5v.s9.33e04587b925 from=translated src=- shape=08d882fe vocab=b522babd
+-/
 theorem coeff_finsuppProd_pow_of_degree_eq [DecidableEq σ] {c : σ → MvPowerSeries σ R}
     (hc0 : ∀ j, (c j).constantCoeff = 0)
     (hc1 : ∀ j j', coeff (Finsupp.single j' 1) (c j) = if j = j' then 1 else 0)
@@ -161,6 +173,9 @@ theorem eq_zero_of_subst_eq_zero [Finite σ] [DecidableEq σ] {c : σ → MvPowe
   rw [map_zero]
   exact key d.degree d rfl
 
+/--
+@isnad1 id=eq.1h6v.s9.499879dbbb18 from=translated src=- shape=49d6dfef vocab=5f65228a
+-/
 theorem coeff_single_subst {σ' : Type*} [Fintype σ'] {c : σ' → MvPowerSeries τ R}
     (hc0 : ∀ s, (c s).constantCoeff = 0) (q : MvPowerSeries σ' R) (t : τ) :
     coeff (Finsupp.single t 1) (subst c q)
@@ -202,6 +217,9 @@ end Subst
 
 section LinearPart
 
+/--
+@isnad1 id=eq.0h3v.s6.e47a2bb79b0a from=translated src=- shape=2d6e71af vocab=26cf198e
+-/
 @[simp]
 theorem linearPart_zero :
     linearPart (fun _ : Fin h => (0 : MvPowerSeries (Fin g) R)) = 0 := by
@@ -209,6 +227,9 @@ theorem linearPart_zero :
   simp only [linearPart, Matrix.of_apply, Matrix.zero_apply]
   exact map_zero _
 
+/--
+@isnad1 id=eq.0h2v.s6.9dc84748c272 from=translated src=- shape=02cf9b2a vocab=42e882a5
+-/
 @[simp]
 theorem linearPart_X :
     linearPart (fun i : Fin g => (X i : MvPowerSeries (Fin g) R)) = 1 := by
@@ -221,6 +242,9 @@ theorem linearPart_X :
   · rw [ite_eq_right (fun hcon => hij (Finsupp.single_left_injective one_ne_zero hcon).symm),
       ite_eq_right hij]
 
+/--
+@isnad1 id=eq.1h6v.s7.7b2f4bc48c7e from=translated src=- shape=1d785418 vocab=9d77660e
+-/
 theorem linearPart_subst {m n : ℕ} {b : Fin m → MvPowerSeries (Fin n) R}
     (hb : ∀ s, (b s).constantCoeff = 0) (a : Fin h → MvPowerSeries (Fin m) R) :
     linearPart (fun i => subst b (a i)) = linearPart a * linearPart b := by
@@ -228,6 +252,9 @@ theorem linearPart_subst {m n : ℕ} {b : Fin m → MvPowerSeries (Fin n) R}
   simp only [linearPart, Matrix.of_apply, Matrix.mul_apply]
   exact coeff_single_subst hb (a i) j
 
+/--
+@isnad1 id=eq.2h6v.s8.bf05bdbb0b5c from=translated src=- shape=851c8e28 vocab=9bce4c09
+-/
 theorem linearPart_subst_elim {m : ℕ} (F : MvFormalGroup g R)
     {a b : Fin g → MvPowerSeries (Fin m) R}
     (ha : ∀ i, (a i).constantCoeff = 0) (hb : ∀ i, (b i).constantCoeff = 0) :
@@ -251,17 +278,26 @@ section Transport
 
 variable {τ : Type*} (F : MvFormalGroup g R)
 
+/--
+@isnad1 id=hassubst.2h5v.s7.382987467cd9 from=translated src=- shape=0e5e2cf5 vocab=e9a3c116
+-/
 theorem hasSubst_elim {n : ℕ} {τ' : Type*} {a b : Fin n → MvPowerSeries τ' R}
     (ha : ∀ i, (a i).constantCoeff = 0) (hb : ∀ i, (b i).constantCoeff = 0) :
     HasSubst (Sum.elim a b) :=
   hasSubst_of_constantCoeff_zero (by rintro (s | s); exacts [ha s, hb s])
 
+/--
+@isnad1 id=eq.2h7v.s8.07359cae62e0 from=translated src=- shape=96c2ef09 vocab=b7c3f9aa
+-/
 theorem constantCoeff_subst_elim {a b : Fin g → MvPowerSeries τ R}
     (ha : ∀ i, (a i).constantCoeff = 0) (hb : ∀ i, (b i).constantCoeff = 0) (i : Fin g) :
     (subst (Sum.elim a b) (F.toPowerSeries i)).constantCoeff = 0 :=
   constantCoeff_subst_eq_zero (hasSubst_elim ha hb)
     (by rintro (s | s); exacts [ha s, hb s]) (F.constantCoeff_eq_zero i)
 
+/--
+@isnad1 id=eq.3h8v.s8.1b6e3c77bb5a from=translated src=- shape=a7b67b16 vocab=b7c3f9aa
+-/
 theorem subst_elim_assoc {a b c : Fin g → MvPowerSeries τ R}
     (ha : ∀ i, (a i).constantCoeff = 0) (hb : ∀ i, (b i).constantCoeff = 0)
     (hc : ∀ i, (c i).constantCoeff = 0) (i : Fin g) :
@@ -345,6 +381,9 @@ theorem subst_elim_assoc {a b c : Fin g → MvPowerSeries τ R}
   rw [hAfam, hA'fam] at key
   exact key
 
+/--
+@isnad1 id=eq.2h7v.s8.8dd09124ef7c from=translated src=- shape=548c19df vocab=af98f916
+-/
 theorem subst_elim_comm [IsComm F] {a b : Fin g → MvPowerSeries τ R}
     (ha : ∀ i, (a i).constantCoeff = 0) (hb : ∀ i, (b i).constantCoeff = 0) (i : Fin g) :
     subst (Sum.elim a b) (F.toPowerSeries i)
@@ -364,6 +403,9 @@ theorem subst_elim_comm [IsComm F] {a b : Fin g → MvPowerSeries τ R}
   rw [hfam] at key
   exact key
 
+/--
+@isnad1 id=eq.4h9v.s9.83ec44cb309f from=translated src=- shape=7c4cfa25 vocab=af98f916
+-/
 theorem subst_elim_exchange [IsComm F] {a b c d : Fin g → MvPowerSeries τ R}
     (ha : ∀ i, (a i).constantCoeff = 0) (hb : ∀ i, (b i).constantCoeff = 0)
     (hc : ∀ i, (c i).constantCoeff = 0) (hd : ∀ i, (d i).constantCoeff = 0) (i : Fin g) :
@@ -412,6 +454,9 @@ theorem eq_X_of_subst_self {σ : Type*} [Finite σ] [DecidableEq σ]
       sub_self]
   exact sub_eq_zero.mp (eq_zero_of_subst_eq_zero hu0 hu1 hv)
 
+/--
+@isnad1 id=eq.0h4v.s6.de32856bb856 from=translated src=- shape=070cbd16 vocab=4f626843
+-/
 theorem subst_elim_X_zero (i : Fin g) :
     subst (Sum.elim (fun j => (X j : MvPowerSeries (Fin g) R)) fun _ => 0)
       (F.toPowerSeries i) = X i := by
@@ -485,6 +530,9 @@ theorem subst_elim_X_zero (i : Fin g) :
     exact hassoc' j
   exact eq_X_of_subst_self hu0 hu1 hidem i
 
+/--
+@isnad1 id=eq.0h4v.s6.b8e76798d290 from=translated src=- shape=11d6d5c9 vocab=4f626843
+-/
 theorem subst_elim_zero_X (i : Fin g) :
     subst (Sum.elim (fun _ => 0) fun j => (X j : MvPowerSeries (Fin g) R))
       (F.toPowerSeries i) = X i := by
@@ -605,6 +653,9 @@ def zero (F : MvFormalGroup g R) (G : MvFormalGroup h R) : Hom F G where
     rw [hL, hfam,
       subst_zero_of_constantCoeff_eq_zero (G.constantCoeff_eq_zero i)]
 
+/--
+@isnad1 id=eq.0h5v.s6.f2475338d430 from=translated src=- shape=c3b6559c vocab=a8fc2367
+-/
 @[simp]
 theorem toPowerSeries_zero (F : MvFormalGroup g R) (G : MvFormalGroup h R) :
     (Hom.zero F G).toPowerSeries = fun _ => 0 := rfl
@@ -721,6 +772,9 @@ def add [IsComm G] (φ ψ : Hom F G) : Hom F G where
         rw [subst_comp_subst_apply hφψ hXr, hfinR]
     rw [hfinal]
 
+/--
+@isnad1 id=eq.0h7v.s6.96d4fe06c034 from=translated src=- shape=c63b6db9 vocab=8ef6298a
+-/
 @[simp]
 theorem toPowerSeries_add [IsComm G] (φ ψ : Hom F G) :
     (Hom.add φ ψ).toPowerSeries
@@ -729,6 +783,9 @@ theorem toPowerSeries_add [IsComm G] (φ ψ : Hom F G) :
 
 instance instZero : Zero (Hom F G) := ⟨Hom.zero F G⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.f4ecc5e3e833 from=translated src=- shape=6dc6dbae vocab=768f8aa3
+-/
 @[simp]
 theorem toPowerSeries_zero' : (0 : Hom F G).toPowerSeries = fun _ => 0 := rfl
 
@@ -833,10 +890,16 @@ instance instMonoid : Monoid (End F) where
       = Hom.toPowerSeries φ i
     exact congrFun subst_self (Hom.toPowerSeries φ i)
 
+/--
+@isnad1 id=eq.0h3v.s6.4e9cb6df4c2d from=translated src=- shape=b9a325f3 vocab=46b71c07
+-/
 @[simp]
 theorem toPowerSeries_one :
     Hom.toPowerSeries (1 : End F) = fun i => (X i : MvPowerSeries (Fin g) R) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.b71518c4568f from=translated src=- shape=21ce7c8e vocab=26cd4adf
+-/
 @[simp]
 theorem toPowerSeries_mul (φ ψ : End F) :
     Hom.toPowerSeries (φ * ψ)
@@ -945,6 +1008,9 @@ instance instSemiring [IsComm F] : Semiring (End F) :=
           (Hom.toPowerSeries a i) = 0
       exact subst_zero_of_constantCoeff_eq_zero (Hom.constantCoeff_eq_zero a i) }
 
+/--
+@isnad1 id=eq.0h4v.s6.bde4d93fbe46 from=translated src=- shape=d6ade85b vocab=a751df36
+-/
 @[simp]
 theorem toPowerSeries_natCast [IsComm F] (n : ℕ) :
     Hom.toPowerSeries ((n : End F)) = F.nthSeries n := by
@@ -961,10 +1027,16 @@ theorem toPowerSeries_natCast [IsComm F] (n : ℕ) :
     rw [ih, nthSeries_succ]
     rfl
 
+/--
+@isnad1 id=eq.0h3v.s6.afdbee8d8b73 from=translated src=- shape=195c6964 vocab=9642eccc
+-/
 @[simp]
 theorem toPowerSeries_zero [IsComm F] :
     Hom.toPowerSeries (0 : End F) = fun _ => (0 : MvPowerSeries (Fin g) R) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.f8355a23ac02 from=translated src=- shape=203ee119 vocab=6f08db6f
+-/
 @[simp]
 theorem toPowerSeries_add [IsComm F] (φ ψ : End F) :
     Hom.toPowerSeries (φ + ψ)
@@ -973,6 +1045,9 @@ theorem toPowerSeries_add [IsComm F] (φ ψ : End F) :
 
 end End
 
+/--
+@isnad1 id=eq.0h5v.s6.13fd2178a64e from=translated src=- shape=7501a9f4 vocab=a5a79fe7
+-/
 theorem constantCoeff_nthSeries (F : MvFormalGroup g R) (n : ℕ) :
     ∀ i, (F.nthSeries n i).constantCoeff = 0 := by
   induction n with
@@ -985,6 +1060,9 @@ theorem constantCoeff_nthSeries (F : MvFormalGroup g R) (n : ℕ) :
     rw [nthSeries_succ]
     exact constantCoeff_subst_elim F ih (fun j => constantCoeff_X j) i
 
+/--
+@isnad1 id=eq.0h4v.s6.6060ebeb77d4 from=translated src=- shape=a414f7bb vocab=f1741c9f
+-/
 theorem linearPart_nthSeries (F : MvFormalGroup g R) (n : ℕ) :
     linearPart (F.nthSeries n) = n • (1 : Matrix (Fin g) (Fin g) R) := by
   induction n with
@@ -1014,10 +1092,16 @@ def linearPartHom (F : MvFormalGroup g R) [IsComm F] :
     exact linearPart_subst_elim F (Hom.constantCoeff_eq_zero φ)
       (Hom.constantCoeff_eq_zero ψ)
 
+/--
+@isnad1 id=eq.0h4v.s7.35fb90c49e66 from=translated src=- shape=b24ce747 vocab=9a62f54a
+-/
 @[simp]
 theorem linearPartHom_apply (F : MvFormalGroup g R) [IsComm F] (φ : End F) :
     linearPartHom F φ = linearPart (Hom.toPowerSeries φ) := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.e377e8724f01 from=translated src=- shape=ca689e52 vocab=47505861
+-/
 @[simp]
 theorem linearPartHom_natCast (F : MvFormalGroup g R) [IsComm F] (n : ℕ) :
     linearPartHom F ((n : End F)) = n • (1 : Matrix (Fin g) (Fin g) R) := by

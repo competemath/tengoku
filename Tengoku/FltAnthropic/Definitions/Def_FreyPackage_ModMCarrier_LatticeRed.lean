@@ -16,6 +16,9 @@ abbrev latticeRed : Type _ := k ⊗[ℤ] ↥L
 
 def latticeRed.mk : ↥L →ₗ[ℤ] latticeRed k L := (TensorProduct.mk ℤ k (↥L)) 1
 
+/--
+@isnad1 id=eq.0h4v.s10.d1d389c970d0 from=translated src=- shape=2d13926b vocab=511e7db8
+-/
 @[simp] lemma latticeRed.mk_eq_tmul (x : ↥L) : latticeRed.mk k L x = (1 : k) ⊗ₜ[ℤ] x := rfl
 
 def latticeRestrictMap (g : W →ₗ[ℂ] W') (hg : ∀ x ∈ L, g x ∈ L') : ↥L →ₗ[ℤ] ↥L' where

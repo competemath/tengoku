@@ -13,6 +13,9 @@ universe u
 
 open MvPolynomial in
 
+/--
+@isnad1 id=eq.0h5v.s7.67ccf9970d93 from=translated src=- shape=c90ccb52 vocab=5e176fb7
+-/
 theorem WittVector.teichmuller_mul_coeff (p : ℕ) [hp : Fact p.Prime] {A : Type u} [CommRing A]
     (a : A) (y : WittVector p A) (n : ℕ) :
     (WittVector.teichmuller p a * y).coeff n = a ^ p ^ n * y.coeff n := by
@@ -104,11 +107,17 @@ def mulFam (w : WittVector p R) : ℕ → MvPowerSeries ℕ R := fun n => (mulPo
 
 variable {p}
 
+/--
+@isnad1 id=eq.0h4v.s5.d76e10f468a8 from=translated src=- shape=d597abde vocab=9ae9bb7a
+-/
 @[simp] theorem mulFam_apply (w : WittVector p R) (n : ℕ) :
     mulFam p w n = (mulPoly p w n : MvPowerSeries ℕ R) := rfl
 
 omit hp in
 
+/--
+@isnad1 id=eq.0h5v.s8.26b48c49d7a3 from=translated src=- shape=ec80894f vocab=72e2c11c
+-/
 theorem coe_aeval {σ τ : Type*} (y : σ → MvPolynomial τ R) (P : MvPolynomial σ R) :
     ((MvPolynomial.aeval y P : MvPolynomial τ R) : MvPowerSeries τ R) =
       subst (fun i => (y i : MvPowerSeries τ R)) (P : MvPowerSeries σ R) := by
@@ -122,6 +131,9 @@ theorem coe_aeval {σ τ : Type*} (y : σ → MvPolynomial τ R) (P : MvPolynomi
 
 omit hp in
 
+/--
+@isnad1 id=eq.0h5v.s8.2eb47e9e18a5 from=translated src=- shape=1d39319b vocab=2518950c
+-/
 theorem coe_peval {k : ℕ} {τ : Type*} (Q : MvPolynomial (Fin k × ℕ) ℤ) (x : Fin k → ℕ → MvPolynomial τ R) :
     subst (fun im : Fin k × ℕ => (x im.1 im.2 : MvPowerSeries τ R))
       ((MvPolynomial.map (Int.castRingHom R) Q : MvPolynomial (Fin k × ℕ) R) :
@@ -142,26 +154,47 @@ theorem coe_peval {k : ℕ} {τ : Type*} (Q : MvPolynomial (Fin k × ℕ) ℤ) (
       simp [ψ₁, ψ₂, Function.uncurry]
   exact RingHom.congr_fun hψ Q
 
+/--
+@isnad1 id=eq.0h5v.s7.be8e3f74aea0 from=translated src=- shape=4f3b0f1e vocab=3207682a
+-/
 @[simp] theorem cVec_coeff {τ : Type} (w : WittVector p R) (m : ℕ) :
     (cVec p (τ := τ) w).coeff m = MvPolynomial.C (w.coeff m) :=
   WittVector.map_coeff _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s6.346081a2010c from=translated src=- shape=fa2339bf vocab=5a1c516a
+-/
 @[simp] theorem cVec_add {τ : Type} (w₁ w₂ : WittVector p R) :
     cVec p (τ := τ) (w₁ + w₂) = cVec p w₁ + cVec p w₂ := map_add _ _ _
 
+/--
+@isnad1 id=eq.0h5v.s6.9c65ea786906 from=translated src=- shape=fa2339bf vocab=5344ad52
+-/
 @[simp] theorem cVec_mul {τ : Type} (w₁ w₂ : WittVector p R) :
     cVec p (τ := τ) (w₁ * w₂) = cVec p w₁ * cVec p w₂ := map_mul _ _ _
 
+/--
+@isnad1 id=eq.0h3v.s6.bed778188cf2 from=translated src=- shape=32f22d7e vocab=3be3489b
+-/
 @[simp] theorem cVec_one {τ : Type} : cVec p (τ := τ) (1 : WittVector p R) = 1 := map_one _
 
+/--
+@isnad1 id=eq.0h3v.s6.61501174f3e4 from=translated src=- shape=32f22d7e vocab=3be3489b
+-/
 @[simp] theorem cVec_zero {τ : Type} : cVec p (τ := τ) (0 : WittVector p R) = 0 := map_zero _
 
+/--
+@isnad1 id=eq.0h4v.s7.44c268c08e53 from=translated src=- shape=00280220 vocab=54cdae51
+-/
 theorem mulPoly_eq_peval (w : WittVector p R) (n : ℕ) :
     mulPoly p w n = WittVector.peval (WittVector.wittMul p n)
       ![fun m => MvPolynomial.C (w.coeff m), MvPolynomial.X] := by
   rw [mulPoly, WittVector.mul_coeff]
   congr 1
 
+/--
+@isnad1 id=eq.0h6v.s8.acf4c8c6f596 from=translated src=- shape=e1daa623 vocab=d5603aa8
+-/
 theorem aeval_mulPoly {τ : Type} (w : WittVector p R) (y : ℕ → MvPolynomial τ R) (n : ℕ) :
     MvPolynomial.aeval y (mulPoly p w n) = (cVec p w * WittVector.mk p y).coeff n := by
   rw [mulPoly, WittVector.mul_coeff, WittVector.mul_coeff,
@@ -175,11 +208,17 @@ theorem aeval_mulPoly {τ : Type} (w : WittVector p R) (y : ℕ → MvPolynomial
   · show MvPolynomial.aeval y ((WittVector.mk p MvPolynomial.X).coeff m) = (WittVector.mk p y).coeff m
     rw [WittVector.coeff_mk, WittVector.coeff_mk, MvPolynomial.aeval_X]
 
+/--
+@isnad1 id=eq.0h5v.s7.986842c542a7 from=translated src=- shape=12d51f81 vocab=c7d90a95
+-/
 theorem mulPoly_add (w₁ w₂ : WittVector p R) (n : ℕ) :
     mulPoly p (w₁ + w₂) n = WittVector.peval (WittVector.wittAdd p n) ![mulPoly p w₁, mulPoly p w₂] := by
   rw [mulPoly, cVec_add, add_mul, WittVector.add_coeff]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.d4ac5cc5c72a from=translated src=- shape=432ae584 vocab=cfc9bc90
+-/
 theorem mulPoly_mul (w₁ w₂ : WittVector p R) (n : ℕ) :
     mulPoly p (w₁ * w₂) n = MvPolynomial.aeval (mulPoly p w₂) (mulPoly p w₁ n) := by
   rw [aeval_mulPoly, mulPoly, cVec_mul, mul_assoc]
@@ -187,9 +226,15 @@ theorem mulPoly_mul (w₁ w₂ : WittVector p R) (n : ℕ) :
     (cVec p w₂ * WittVector.mk p (MvPolynomial.X : ℕ → MvPolynomial ℕ R)).coeff m)).coeff n
   rw [WittVector.mk_coeff_eq]
 
+/--
+@isnad1 id=eq.0h3v.s5.e275de83ac42 from=translated src=- shape=82a4727a vocab=7377a53e
+-/
 theorem mulPoly_one (n : ℕ) : mulPoly p (1 : WittVector p R) n = MvPolynomial.X n := by
   rw [mulPoly, cVec_one, one_mul, WittVector.coeff_mk]
 
+/--
+@isnad1 id=eq.0h3v.s6.338d800cb1cb from=translated src=- shape=5b0e1d21 vocab=f68c7ffa
+-/
 theorem mulPoly_zero (n : ℕ) : mulPoly p (0 : WittVector p R) n = 0 := by
   rw [mulPoly, cVec_zero, zero_mul, WittVector.zero_coeff]
 
@@ -198,13 +243,22 @@ def verPoly (R : Type u) [CommRing R] : ℕ → MvPolynomial ℕ R
   | n + 1 => MvPolynomial.X n
 
 omit hp in
+/--
+@isnad1 id=eq.0h1v.s6.793ebdd46ef6 from=translated src=- shape=9db32426 vocab=ed7fca8c
+-/
 @[simp] theorem verPoly_zero : verPoly R 0 = 0 := rfl
 
 omit hp in
+/--
+@isnad1 id=eq.0h2v.s5.7544e2cbc238 from=translated src=- shape=504d3035 vocab=00b99cca
+-/
 @[simp] theorem verPoly_succ (n : ℕ) : verPoly R (n + 1) = MvPolynomial.X n := rfl
 
 omit hp in
 
+/--
+@isnad1 id=isweight.1h5v.s8.369a2d9a840e from=translated src=- shape=745719cc vocab=93005531
+-/
 theorem isWeightedHomogeneous_peval_C_X {N : ℕ} {Q : MvPolynomial (Fin 2 × ℕ) ℤ}
     (hQ : MvPolynomial.IsWeightedHomogeneous (weight p ![0, 1]) Q N) (c : ℕ → R) :
     MvPolynomial.IsWeightedHomogeneous (fun m => p ^ m)
@@ -235,16 +289,25 @@ theorem isWeightedHomogeneous_peval_C_X {N : ℕ} {Q : MvPolynomial (Fin 2 × �
     ((MvPolynomial.coeff e Q : ℤ) : R)).mul hprod
   rwa [zero_add] at this
 
+/--
+@isnad1 id=isweight.0h4v.s5.57c1315d8b56 from=translated src=- shape=e87d204d vocab=9e9e2094
+-/
 theorem isWeightedHomogeneous_mulPoly (w : WittVector p R) (n : ℕ) :
     MvPolynomial.IsWeightedHomogeneous (fun m => p ^ m) (mulPoly p w n) (p ^ n) := by
   rw [mulPoly_eq_peval]
   exact isWeightedHomogeneous_peval_C_X (isWeightedHomogeneous_wittMul p n) _
 
+/--
+@isnad1 id=eq.1h5v.s8.9c4417bdd2f8 from=translated src=- shape=afb4f1f6 vocab=0ac7d9f6
+-/
 theorem weight_eq_of_coeff_mulFam_ne_zero (w : WittVector p R) {n : ℕ} {e : ℕ →₀ ℕ}
     (h : coeff e (mulFam p w n) ≠ 0) : Finsupp.weight (fun m => p ^ m) e = p ^ n := by
   rw [mulFam_apply, MvPolynomial.coeff_coe] at h
   exact isWeightedHomogeneous_mulPoly w n h
 
+/--
+@isnad1 id=eq.0h4v.s6.caed40ace6e5 from=translated src=- shape=f60f0c29 vocab=dfda2062
+-/
 theorem constantCoeff_mulFam (w : WittVector p R) (n : ℕ) : (mulFam p w n).constantCoeff = 0 := by
   by_contra h
   have h' : coeff (0 : ℕ →₀ ℕ) (mulFam p w n) ≠ 0 := by
@@ -253,6 +316,9 @@ theorem constantCoeff_mulFam (w : WittVector p R) (n : ℕ) : (mulFam p w n).con
   rw [map_zero] at hw
   exact absurd hw.symm (pow_ne_zero n hp.out.ne_zero)
 
+/--
+@isnad1 id=hassubst.0h3v.s4.5cfa0fe8393d from=translated src=- shape=59c8a7ba vocab=9363cb98
+-/
 theorem hasSubst_mulFam (w : WittVector p R) : HasSubst (mulFam p w) := by
   refine ⟨fun n => by rw [constantCoeff_mulFam]; exact IsNilpotent.zero, fun e => ?_⟩
   refine (Set.finite_lt_nat (Finsupp.weight (fun m => p ^ m) e)).subset fun n hn => ?_
@@ -267,13 +333,22 @@ def xVec (R : Type u) [CommRing R] (i : Fin 2) : WittVector p (MvPolynomial (Fin
 def addPolyR (R : Type u) [CommRing R] (m : ℕ) : MvPolynomial (Fin 2 × ℕ) R :=
   MvPolynomial.map (Int.castRingHom R) (WittVector.wittAdd p m)
 
+/--
+@isnad1 id=eq.0h3v.s5.258d9ecbcaed from=translated src=- shape=cc3f1347 vocab=d6ac7939
+-/
 theorem coe_addPolyR (m : ℕ) :
     (addPolyR (p := p) R m : MvPowerSeries (Fin 2 × ℕ) R) = addFam p R m := rfl
 
 omit hp in
+/--
+@isnad1 id=eq.0h4v.s6.7c956365ff60 from=translated src=- shape=1ceff6a6 vocab=442b95bf
+-/
 @[simp] theorem xVec_coeff (i : Fin 2) (m : ℕ) :
     (xVec (p := p) R i).coeff m = MvPolynomial.X (i, m) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.28ad03eb063e from=translated src=- shape=bca923ac vocab=8ed64240
+-/
 theorem xVec_add : xVec (p := p) R 0 + xVec R 1 = WittVector.mk p (addPolyR (p := p) R) := by
   refine WittVector.ext fun m => ?_
   rw [WittVector.add_coeff]
@@ -284,6 +359,9 @@ theorem xVec_add : xVec (p := p) R 0 + xVec R 1 = WittVector.mk p (addPolyR (p :
   funext i k
   fin_cases i <;> rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.c4bafef70d33 from=translated src=- shape=cc695f18 vocab=dfdd24d9
+-/
 theorem pairFam_mulFam (w : WittVector p R) :
     pairFam (mulFam p w) = fun im : Fin 2 × ℕ =>
       (((cVec p w * xVec R im.1).coeff im.2 : MvPolynomial (Fin 2 × ℕ) R) :
@@ -294,6 +372,9 @@ theorem pairFam_mulFam (w : WittVector p R) :
   funext k
   exact (MvPolynomial.coe_X _).symm
 
+/--
+@isnad1 id=eq.0h4v.s8.9831c2f7e19d from=translated src=- shape=bfbb5177 vocab=c4c3912c
+-/
 theorem subst_addFam_mulFam (w : WittVector p R) (n : ℕ) :
     subst (addFam p R) (mulFam p w n) =
       (((cVec p w * (xVec R 0 + xVec R 1)).coeff n : MvPolynomial (Fin 2 × ℕ) R) :
@@ -301,6 +382,9 @@ theorem subst_addFam_mulFam (w : WittVector p R) (n : ℕ) :
   have h : addFam p R = fun i => (addPolyR (p := p) R i : MvPowerSeries (Fin 2 × ℕ) R) := rfl
   rw [h, mulFam_apply, ← coe_aeval, aeval_mulPoly, xVec_add]
 
+/--
+@isnad1 id=isendo.0h3v.s4.5d3a4e0639ae from=translated src=- shape=4d0a3e0e vocab=a9995ffa
+-/
 theorem isEndo_mulFam (w : WittVector p R) : IsEndo p (mulFam p w) := by
   refine ⟨hasSubst_mulFam w, constantCoeff_mulFam w, fun n => ?_⟩
 
@@ -316,11 +400,17 @@ theorem isEndo_mulFam (w : WittVector p R) : IsEndo p (mulFam p w) := by
     fin_cases i <;> rfl
   rw [subst_addFam_mulFam, hR, mul_add]
 
+/--
+@isnad1 id=eq.0h5v.s6.09ab224e2e2c from=translated src=- shape=5b450d1e vocab=280bef30
+-/
 theorem subst_mulFam_mulFam (w₁ w₂ : WittVector p R) (n : ℕ) :
     subst (mulFam p w₂) (mulFam p w₁ n) = mulFam p (w₁ * w₂) n := by
   rw [mulFam_apply, mulFam_apply, mulPoly_mul, coe_aeval]
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.e37d60705c01 from=translated src=- shape=55589b93 vocab=d5f5269b
+-/
 theorem mulFam_add (w₁ w₂ : WittVector p R) (n : ℕ) :
     mulFam p (w₁ + w₂) n = subst (fun im : Fin 2 × ℕ =>
       (Fin.cases (mulFam p w₁ im.2) (fun _ => mulFam p w₂ im.2) im.1 : MvPowerSeries ℕ R))
@@ -333,10 +423,16 @@ theorem mulFam_add (w₁ w₂ : WittVector p R) (n : ℕ) :
     fin_cases i <;> rfl
   rw [hfun, addFam, coe_peval, mulFam_apply, mulPoly_add]
 
+/--
+@isnad1 id=eq.0h2v.s5.87186a694129 from=translated src=- shape=382d0f59 vocab=142fe151
+-/
 theorem mulFam_one : mulFam p (1 : WittVector p R) = fun n => X n := by
   funext n
   rw [mulFam_apply, mulPoly_one, MvPolynomial.coe_X]
 
+/--
+@isnad1 id=eq.0h2v.s5.1eebb0d4f2a1 from=translated src=- shape=7d278a45 vocab=a8bad7b9
+-/
 theorem mulFam_zero : mulFam p (0 : WittVector p R) = fun _ => 0 := by
   funext n
   rw [mulFam_apply, mulPoly_zero, MvPolynomial.coe_zero]
@@ -351,15 +447,24 @@ variable {Φ : MvFormalGroup d R} {Φ' : MvFormalGroup d' R}
 def wittSMul [Φ.IsComm] (w : WittVector p R) : CartierModule p Φ →+ CartierModule p Φ :=
   precomp (WittLaw.isEndo_mulFam w)
 
+/--
+@isnad1 id=eq.0h6v.s8.93378371bdc1 from=translated src=- shape=ec8ad3c5 vocab=3fa1e33f
+-/
 @[simp] theorem toPowerSeries_wittSMul [Φ.IsComm] (w : WittVector p R) (f : CartierModule p Φ) :
     (wittSMul w f).toPowerSeries = fun j => subst (WittLaw.mulFam p w) (f.toPowerSeries j) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s8.4e09a019ff6a from=translated src=- shape=524a9ab1 vocab=2e9fc5f1
+-/
 theorem wittSMul_one [Φ.IsComm] (f : CartierModule p Φ) : wittSMul (1 : WittVector p R) f = f := by
   apply CartierModule.ext
   funext j
   rw [toPowerSeries_wittSMul, WittLaw.mulFam_one]
   exact congrFun subst_self _
 
+/--
+@isnad1 id=eq.0h5v.s8.de4a8328113f from=translated src=- shape=5626f280 vocab=2e9fc5f1
+-/
 theorem wittSMul_zero_left [Φ.IsComm] (f : CartierModule p Φ) :
     wittSMul (0 : WittVector p R) f = 0 := by
   apply CartierModule.ext
@@ -367,6 +472,9 @@ theorem wittSMul_zero_left [Φ.IsComm] (f : CartierModule p Φ) :
   rw [toPowerSeries_wittSMul, WittLaw.mulFam_zero]
   exact subst_zero_of_constantCoeff_eq_zero (f.constantCoeff_eq_zero j)
 
+/--
+@isnad1 id=eq.0h7v.s9.df8950465158 from=translated src=- shape=66bc748d vocab=3d1cd760
+-/
 theorem wittSMul_mul [Φ.IsComm] (w₁ w₂ : WittVector p R) (f : CartierModule p Φ) :
     wittSMul (w₁ * w₂) f = wittSMul w₁ (wittSMul w₂ f) := by
   apply CartierModule.ext
@@ -378,6 +486,9 @@ theorem wittSMul_mul [Φ.IsComm] (w₁ w₂ : WittVector p R) (f : CartierModule
   funext n
   rw [WittLaw.subst_mulFam_mulFam, mul_comm]
 
+/--
+@isnad1 id=eq.0h7v.s9.46365ef8387b from=translated src=- shape=f3a3617d vocab=60c93e54
+-/
 theorem wittSMul_add_left [Φ.IsComm] (w₁ w₂ : WittVector p R) (f : CartierModule p Φ) :
     wittSMul (w₁ + w₂) f = wittSMul w₁ f + wittSMul w₂ f := by
   apply CartierModule.ext
@@ -417,9 +528,15 @@ instance instModuleWittVector [Φ.IsComm] : Module (WittVector p R) (CartierModu
   add_smul := wittSMul_add_left
   zero_smul := wittSMul_zero_left
 
+/--
+@isnad1 id=eq.0h6v.s8.c19291496c2c from=translated src=- shape=e7771d5f vocab=97f30732
+-/
 @[simp] theorem toPowerSeries_smul_witt [Φ.IsComm] (w : WittVector p R) (f : CartierModule p Φ) :
     (w • f).toPowerSeries = fun j => subst (WittLaw.mulFam p w) (f.toPowerSeries j) := rfl
 
+/--
+@isnad1 id=eq.0h9v.s10.3aa20b2b9e2a from=translated src=- shape=15fe1340 vocab=5fd9e7a3
+-/
 theorem map_smul_witt [Φ.IsComm] [Φ'.IsComm] (φ : Φ.Hom Φ') (w : WittVector p R)
     (f : CartierModule p Φ) : map φ (w • f) = w • map φ f :=
   map_precomp φ _ f
@@ -428,6 +545,9 @@ def mapLinear [Φ.IsComm] [Φ'.IsComm] (φ : Φ.Hom Φ') :
     CartierModule p Φ →ₗ[WittVector p R] CartierModule p Φ' :=
   { map φ with map_smul' := fun w f => map_smul_witt φ w f }
 
+/--
+@isnad1 id=eq.0h8v.s9.7c0bb57b1333 from=translated src=- shape=1b766e14 vocab=fa842a88
+-/
 @[simp] theorem mapLinear_apply [Φ.IsComm] [Φ'.IsComm] (φ : Φ.Hom Φ') (f : CartierModule p Φ) :
     mapLinear φ f = map φ f := rfl
 

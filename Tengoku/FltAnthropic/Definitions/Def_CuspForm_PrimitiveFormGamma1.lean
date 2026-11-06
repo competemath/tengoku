@@ -27,6 +27,9 @@ def IsEigenformWith (ε : DirichletCharacter ℂ M) (g : CuspForm (Gamma1 M) k) 
   (∀ ℓ : ℕ, ℓ.Prime → ℓ ∣ M → ∀ n : ℕ, qCoeff g (ℓ * n) = qCoeff g ℓ * qCoeff g n) ∧
   HasNebentypus ε g
 
+/--
+@isnad1 id=eq.1h4v.s8.8eb4c289438e from=translated src=- shape=00d5025c vocab=209ffc9a
+-/
 theorem IsEigenformWith.qCoeff_one {ε : DirichletCharacter ℂ M} {g : CuspForm (Gamma1 M) k}
     (h : IsEigenformWith ε g) : qCoeff g 1 = 1 := h.1
 

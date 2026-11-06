@@ -23,6 +23,9 @@ def lSpaceOn (S : Set (Place K F)) (D : Divisor K F) : Submodule K F where
     rw [Algebra.smul_def, map_mul]
     exact (mul_le_of_le_one_left' (v.adicValuation_algebraMap_le_one c)).trans (hf v hv)
 
+/--
+@isnad1 id=le.1h5v.s7.b89ffd755f65 from=translated src=- shape=c5b56a27 vocab=ba50fe2b
+-/
 theorem lSpaceOn_anti {S₀ S₁ : Set (Place K F)} (h : S₀ ⊆ S₁) (D : Divisor K F) :
     lSpaceOn S₁ D ≤ lSpaceOn S₀ D := fun _ hf v hv => hf v (h hv)
 

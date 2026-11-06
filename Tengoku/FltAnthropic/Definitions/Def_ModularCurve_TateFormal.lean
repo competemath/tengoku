@@ -22,55 +22,103 @@ def tateA6 : PowerSeries ℤ :=
 def eisenstein6 : PowerSeries ℤ :=
   PowerSeries.mk fun n => if n = 0 then 1 else -504 * ∑ d ∈ n.divisors, (d : ℤ) ^ 5
 
+/--
+@isnad1 id=eq.0h1v.s7.df80f333eafd from=translated src=- shape=cc8181d1 vocab=8b760981
+-/
 theorem coeff_tateA4 (n : ℕ) :
     PowerSeries.coeff n tateA4 = -∑ d ∈ n.divisors, (5 * (d : ℤ) ^ 3) :=
   PowerSeries.coeff_mk n _
 
+/--
+@isnad1 id=eq.0h1v.s6.abc93eddea5a from=translated src=- shape=9fc61bb6 vocab=2c9a2a90
+-/
 theorem coeff_tateA6 (n : ℕ) :
     PowerSeries.coeff n tateA6 = -∑ d ∈ n.divisors, tateB d :=
   PowerSeries.coeff_mk n _
 
+/--
+@isnad1 id=eq.0h0v.s6.92e2f73d14bd from=translated src=- shape=c0fd5483 vocab=80cddc15
+-/
 theorem coeff_zero_tateA4 : PowerSeries.coeff 0 tateA4 = 0 := by
   rw [coeff_tateA4, Nat.divisors_zero, Finset.sum_empty, neg_zero]
 
+/--
+@isnad1 id=eq.0h0v.s6.d55a990ba0f1 from=translated src=- shape=c0fd5483 vocab=966d0f5b
+-/
 theorem coeff_zero_tateA6 : PowerSeries.coeff 0 tateA6 = 0 := by
   rw [coeff_tateA6, Nat.divisors_zero, Finset.sum_empty, neg_zero]
 
+/--
+@isnad1 id=eq.0h0v.s5.8e658d38c8fd from=translated src=- shape=8b3e5d3e vocab=28cb7e96
+-/
 theorem constantCoeff_tateA4 : PowerSeries.constantCoeff tateA4 = 0 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply]
   exact coeff_zero_tateA4
 
+/--
+@isnad1 id=eq.0h0v.s5.be7f9f8242cb from=translated src=- shape=8b3e5d3e vocab=4271da35
+-/
 theorem constantCoeff_tateA6 : PowerSeries.constantCoeff tateA6 = 0 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff_apply]
   exact coeff_zero_tateA6
 
+/--
+@isnad1 id=eq.0h0v.s6.b87f0a1ec1d2 from=translated src=- shape=972ef9b2 vocab=40d30ebe
+-/
 theorem coeff_one_tateA6 : PowerSeries.coeff 1 tateA6 = -1 := by
   have h : tateB 1 = 1 := by norm_num [tateB]
   rw [coeff_tateA6, Nat.divisors_one, Finset.sum_singleton, h]
 
 def tatePowerSeries : WeierstrassCurve (PowerSeries ℤ) := ⟨1, 0, 0, tateA4, tateA6⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.ddbf0a0ea6ae from=translated src=- shape=aa786730 vocab=6c3a94ff
+-/
 @[simp] theorem tatePowerSeries_a₁ : tatePowerSeries.a₁ = 1 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.e47b0c506b51 from=translated src=- shape=aa786730 vocab=a9e34cd9
+-/
 @[simp] theorem tatePowerSeries_a₂ : tatePowerSeries.a₂ = 0 := rfl
+/--
+@isnad1 id=eq.0h0v.s4.842c9c610403 from=translated src=- shape=aa786730 vocab=34d93b92
+-/
 @[simp] theorem tatePowerSeries_a₃ : tatePowerSeries.a₃ = 0 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.dc9a6b6f6d72 from=translated src=- shape=844a12b5 vocab=9a214fe6
+-/
 @[simp] theorem tatePowerSeries_a₄ : tatePowerSeries.a₄ = tateA4 := rfl
+/--
+@isnad1 id=eq.0h0v.s3.6bc1f20c8096 from=translated src=- shape=844a12b5 vocab=22a2798e
+-/
 @[simp] theorem tatePowerSeries_a₆ : tatePowerSeries.a₆ = tateA6 := rfl
 
 def laurentOfInt (K : Type*) [CommRing K] : PowerSeries ℤ →+* LaurentSeries K :=
   (HahnSeries.ofPowerSeries ℤ K).comp (PowerSeries.map (Int.castRingHom K))
 
+/--
+@isnad1 id=eq.0h2v.s8.bea49a1d8f00 from=translated src=- shape=296504ef vocab=2a25942c
+-/
 theorem laurentOfInt_apply (K : Type*) [CommRing K] (f : PowerSeries ℤ) :
     laurentOfInt K f = HahnSeries.ofPowerSeries ℤ K (f.map (Int.castRingHom K)) := rfl
 
 def tateLaurent (K : Type*) [CommRing K] : WeierstrassCurve (LaurentSeries K) :=
   tatePowerSeries.map (laurentOfInt K)
 
+/--
+@isnad1 id=eq.0h1v.s7.0d65e07a42c5 from=translated src=- shape=86ae884b vocab=7659c716
+-/
 @[simp] theorem tateLaurent_a₄ (K : Type*) [CommRing K] :
     (tateLaurent K).a₄ = laurentOfInt K tateA4 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s7.395de42c0d01 from=translated src=- shape=86ae884b vocab=65902a8d
+-/
 @[simp] theorem tateLaurent_a₆ (K : Type*) [CommRing K] :
     (tateLaurent K).a₆ = laurentOfInt K tateA6 := rfl
 
+/--
+@isnad1 id=isellipt.0h1v.s4.3d0892aed081 from=translated src=- shape=aa7e0af4 vocab=aa36bfb4
+-/
 instance instIsElliptic_tateLaurent (K : Type*) [CommRing K] : (tateLaurent K).IsElliptic := by
   constructor
   have hΔeq : tatePowerSeries.Δ =

@@ -137,6 +137,9 @@ private theorem exists_ord_algebraMap_pos [Algebra.IsIntegral F F'] :
 def ramificationIndex (F : Type*) [Field F] [Algebra F F'] : ℕ :=
   sInf {n : ℕ | 0 < n ∧ ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F' f) = n}
 
+/--
+@isnad1 id=le.2h5v.s7.65e312b6dc75 from=translated src=- shape=37f41a70 vocab=6a7350e8
+-/
 theorem ramificationIndex_le_ord {f : F} (hf : f ≠ 0)
     (hpos : 0 < w.ord (algebraMap F F' f)) :
     (ramificationIndex (F := F) w : ℤ) ≤ w.ord (algebraMap F F' f) := by
@@ -153,13 +156,22 @@ private theorem ramificationIndex_set_nonempty :
   obtain ⟨f, hf0, hf⟩ := w.exists_ord_algebraMap_pos (F := F)
   exact ⟨(w.ord (algebraMap F F' f)).toNat, by omega, f, hf0, by omega⟩
 
+/--
+@isnad1 id=lt.0h4v.s6.b60f7d4baef7 from=translated src=- shape=cd878f6e vocab=f514eb10
+-/
 theorem ramificationIndex_pos : 0 < ramificationIndex (F := F) w :=
   (Nat.sInf_mem (w.ramificationIndex_set_nonempty (F := F))).1
 
+/--
+@isnad1 id=ex.0h4v.s7.645458360916 from=translated src=- shape=614db3e2 vocab=64edad66
+-/
 theorem exists_ord_eq_ramificationIndex :
     ∃ f : F, f ≠ 0 ∧ w.ord (algebraMap F F' f) = ramificationIndex (F := F) w :=
   (Nat.sInf_mem (w.ramificationIndex_set_nonempty (F := F))).2
 
+/--
+@isnad1 id=dvd.1h5v.s7.82616dce7137 from=translated src=- shape=09818f6d vocab=e2314439
+-/
 theorem ramificationIndex_dvd_ord {f : F} (hf : f ≠ 0) :
     (ramificationIndex (F := F) w : ℤ) ∣ w.ord (algebraMap F F' f) := by
   obtain ⟨g, hg0, hge⟩ := w.exists_ord_eq_ramificationIndex (F := F)
@@ -190,6 +202,9 @@ theorem ramificationIndex_dvd_ord {f : F} (hf : f ≠ 0) :
     rw [hr, ← he] at hle
     omega
 
+/--
+@isnad1 id=irreduci.3h5v.s8.aeab0990f110 from=translated src=- shape=b36ff11b vocab=082ac1b3
+-/
 theorem irreducible_mk_comap {g : F} (hg0 : g ≠ 0)
     (hmem : g ∈ w.toValuationSubring.comap (algebraMap F F'))
     (hge : w.ord (algebraMap F F' g) = ramificationIndex (F := F) w) :
@@ -284,10 +299,16 @@ def restrict : Place K F where
   ne_top' := w.comap_algebraMap_ne_top
   isPrincipalIdealRing' := w.isPrincipalIdealRing_comap
 
+/--
+@isnad1 id=eq.0h4v.s7.5b0b15309621 from=translated src=- shape=19978973 vocab=e0de402e
+-/
 @[simp]
 theorem restrict_toValuationSubring :
     (w.restrict F).toValuationSubring = w.toValuationSubring.comap (algebraMap F F') := rfl
 
+/--
+@isnad1 id=eq.0h5v.s7.2bc3155f074a from=translated src=- shape=80f57e77 vocab=d64ac9d3
+-/
 theorem ord_restrict (f : F) :
     w.ord (algebraMap F F' f) = ramificationIndex (F := F) w * (w.restrict F).ord f := by
   rcases eq_or_ne f 0 with rfl | hf
@@ -322,6 +343,9 @@ theorem ord_restrict (f : F) :
     _ = ramificationIndex (F := F) w * n := by
         rw [huord, w.ord_zpow, hge, zero_add, mul_comm]
 
+/--
+@isnad1 id=ne.2h6v.s8.095a4dcb74a5 from=translated src=- shape=0fd7b388 vocab=20ecd0cd
+-/
 theorem ord_algebraMap_ne_zero_of_restrict_eq {v : Place K F} {f : F}
     (hford : v.ord f ≠ 0) (hw : w.restrict F = v) :
     w.ord (algebraMap F F' f) ≠ 0 := by
@@ -329,6 +353,9 @@ theorem ord_algebraMap_ne_zero_of_restrict_eq {v : Place K F} {f : F}
   have hepos : 0 < ramificationIndex (F := F) w := w.ramificationIndex_pos (F := F)
   exact mul_ne_zero (by omega) hford
 
+/--
+@isnad1 id=finite.0h4v.s7.d67ac0c76782 from=translated src=- shape=3bb23bb8 vocab=e4c2707a
+-/
 theorem restrict_fiber_finite [HasPrincipalDivisors K F'] (v : Place K F) :
     {w : Place K F' | w.restrict F = v}.Finite := by
   obtain ⟨f, hf0, hford⟩ := v.exists_ord_pos
@@ -372,10 +399,16 @@ def restrictInclusion : (w.restrict F).toValuationSubring →+* w.toValuationSub
   map_zero' := Subtype.ext (map_zero (algebraMap F F'))
   map_add' a b := Subtype.ext (map_add (algebraMap F F') (a : F) (b : F))
 
+/--
+@isnad1 id=eq.0h5v.s9.a1f85566eb66 from=translated src=- shape=7b70eb4f vocab=f2755de2
+-/
 @[simp]
 theorem coe_restrictInclusion (a : (w.restrict F).toValuationSubring) :
     ((restrictInclusion F w a : w.toValuationSubring) : F') = algebraMap F F' (a : F) := rfl
 
+/--
+@isnad1 id=islocalh.0h4v.s9.a29d4d1a70e2 from=translated src=- shape=e00f9e88 vocab=98391c15
+-/
 instance instIsLocalHomRestrictInclusion : IsLocalHom (restrictInclusion F w) where
   map_nonunit a ha := by
 
@@ -396,6 +429,9 @@ variable (F) in
 def restrictResidueMap : (w.restrict F).ResidueField →+* w.ResidueField :=
   IsLocalRing.ResidueField.map (restrictInclusion F w)
 
+/--
+@isnad1 id=eq.0h5v.s11.87fb3d4b922c from=translated src=- shape=c9835759 vocab=b073820c
+-/
 @[simp]
 theorem restrictResidueMap_residue (a : (w.restrict F).toValuationSubring) :
     restrictResidueMap F w (IsLocalRing.residue _ a) =
@@ -406,6 +442,9 @@ instance instAlgebraResidueFieldRestrictPushforward :
     Algebra (w.restrict F).ResidueField w.ResidueField :=
   (restrictResidueMap F w).toAlgebra
 
+/--
+@isnad1 id=isscalar.0h4v.s9.6f8bce920d93 from=translated src=- shape=720e9794 vocab=4ce4948f
+-/
 instance instIsScalarTowerResidueFieldRestrictPushforward :
     IsScalarTower K (w.restrict F).ResidueField w.ResidueField := by
   refine IsScalarTower.of_algebraMap_eq fun a => ?_
@@ -421,6 +460,9 @@ variable (F) in
 
 def inertiaDeg : ℕ := Module.finrank (w.restrict F).ResidueField w.ResidueField
 
+/--
+@isnad1 id=eq.0h4v.s7.5dc25afbd256 from=translated src=- shape=54229017 vocab=65e61ecf
+-/
 theorem deg_restrict_mul_inertiaDeg : (w.restrict F).deg * w.inertiaDeg F = w.deg :=
   Module.finrank_mul_finrank K (w.restrict F).ResidueField w.ResidueField
 
@@ -433,6 +475,9 @@ variable (F) in
 def mapRestrict : Divisor K F' →+ Divisor K F :=
   Finsupp.liftAddHom fun w => Finsupp.singleAddHom (w.restrict F)
 
+/--
+@isnad1 id=eq.0h5v.s8.175380309129 from=translated src=- shape=3badce22 vocab=ebc8b13d
+-/
 @[simp]
 theorem mapRestrict_single (w : Place K F') (n : ℤ) :
     mapRestrict F (Finsupp.single w n) = Finsupp.single (w.restrict F) n := by
@@ -444,12 +489,18 @@ def pushforward : Divisor K F' →+ Divisor K F :=
   Finsupp.liftAddHom fun w =>
     (Finsupp.singleAddHom (w.restrict F)).comp (AddMonoidHom.mulRight (w.inertiaDeg F : ℤ))
 
+/--
+@isnad1 id=eq.0h5v.s8.724432ff4ed3 from=translated src=- shape=b34dcc4e vocab=faa756e3
+-/
 @[simp]
 theorem pushforward_single (w : Place K F') (n : ℤ) :
     pushforward F (Finsupp.single w n) =
       Finsupp.single (w.restrict F) (n * w.inertiaDeg F) := by
   simp [pushforward]
 
+/--
+@isnad1 id=eq.0h4v.s8.6ab2ce2a53ae from=translated src=- shape=7431a05e vocab=22839fef
+-/
 @[simp]
 theorem degree_pushforward (D : Divisor K F') :
     degree (pushforward F D) = degree D := by
@@ -461,6 +512,9 @@ theorem degree_pushforward (D : Divisor K F') :
     push_cast [← h]
     ring
 
+/--
+@isnad1 id=mem.1h4v.s8.00ede8678c1d from=translated src=- shape=adfb6dc5 vocab=1e98916d
+-/
 theorem pushforward_mem_degZero {D : Divisor K F'} (hD : D ∈ degZero (K := K) (F := F')) :
     pushforward F D ∈ degZero (K := K) (F := F) := by
   rwa [mem_degZero, degree_pushforward]
@@ -471,6 +525,9 @@ def PushforwardNormFormula [Module.Finite F F'] : Prop :=
   ∀ (f : F'), f ≠ 0 → ∀ D : Divisor K F', (∀ w, D w = w.ord f) →
     ∀ v : Place K F, pushforward F D v = v.ord (Algebra.norm F f)
 
+/--
+@isnad1 id=isprinci.2h4v.s8.1bc6649aee9d from=translated src=- shape=72b507be vocab=c1ce322e
+-/
 theorem isPrincipal_pushforward_of_normFormula [Module.Finite F F']
     (H : PushforwardNormFormula K F F') {D : Divisor K F'} (hD : IsPrincipal D) :
     IsPrincipal (pushforward F D) := by
@@ -498,6 +555,9 @@ variable (F') in
 def fiber (v : Place K F) : Finset (Place K F') :=
   (restrict_fiber_finite v).toFinset
 
+/--
+@isnad1 id=iff.0h5v.s7.e0642367928f from=translated src=- shape=48364fb9 vocab=a4a77255
+-/
 @[simp]
 theorem mem_fiber {v : Place K F} {w : Place K F'} :
     w ∈ v.fiber F' ↔ w.restrict F = v := by
@@ -521,11 +581,17 @@ variable (F') in
 def pullback : Divisor K F →+ Divisor K F' :=
   Finsupp.liftAddHom (pullbackSingleHom F')
 
+/--
+@isnad1 id=eq.0h5v.s8.c0ab8117e249 from=translated src=- shape=16ce0268 vocab=2ffdf72c
+-/
 theorem pullback_single (v : Place K F) (n : ℤ) :
     pullback F' (Finsupp.single v n)
       = ∑ w ∈ v.fiber F', Finsupp.single w (n * w.ramificationIndex F) :=
   Finsupp.liftAddHom_apply_single _ _ _
 
+/--
+@isnad1 id=eq.1h6v.s8.5c3d6dc76595 from=translated src=- shape=c3e8d96a vocab=a86e3bd6
+-/
 theorem pullback_single_apply_of_restrict_eq {v : Place K F} {w : Place K F'}
     (hw : w.restrict F = v) (n : ℤ) :
     pullback F' (Finsupp.single v n) w = n * w.ramificationIndex F := by
@@ -536,6 +602,9 @@ theorem pullback_single_apply_of_restrict_eq {v : Place K F} {w : Place K F'}
     exact Finsupp.single_eq_of_ne' hb
   · exact Finsupp.single_eq_same
 
+/--
+@isnad1 id=eq.1h6v.s8.6fd42785b427 from=translated src=- shape=e774ccac vocab=19c82e91
+-/
 theorem pullback_single_apply_of_restrict_ne {v : Place K F} {w : Place K F'}
     (hw : w.restrict F ≠ v) (n : ℤ) :
     pullback F' (Finsupp.single v n) w = 0 := by
@@ -543,6 +612,9 @@ theorem pullback_single_apply_of_restrict_ne {v : Place K F} {w : Place K F'}
   exact Finset.sum_eq_zero fun b hb =>
     Finsupp.single_eq_of_ne fun h => hw (h ▸ Place.mem_fiber.mp hb)
 
+/--
+@isnad1 id=eq.0h5v.s8.41a3d96ed040 from=translated src=- shape=b0a64e64 vocab=fe70bc1f
+-/
 theorem pullback_apply (D : Divisor K F) (w : Place K F') :
     pullback F' D w = w.ramificationIndex F * D (w.restrict F) := by
   induction D using Finsupp.induction with
@@ -556,16 +628,25 @@ theorem pullback_apply (D : Divisor K F) (w : Place K F') :
     · rw [pullback_single_apply_of_restrict_ne hw,
         Finsupp.single_eq_of_ne hw, mul_zero]
 
+/--
+@isnad1 id=eq.1h6v.s8.e83f11a89c86 from=translated src=- shape=cadf72f5 vocab=792b1fdc
+-/
 theorem pullback_apply_eq_ord {f : F} {D : Divisor K F}
     (hD : ∀ v : Place K F, D v = v.ord f) (w : Place K F') :
     pullback F' D w = w.ord (algebraMap F F' f) := by
   rw [pullback_apply, hD, ← Place.ord_restrict]
 
+/--
+@isnad1 id=isprinci.1h4v.s8.3f9f96429a77 from=translated src=- shape=77850372 vocab=bcdeff69
+-/
 theorem isPrincipal_pullback {D : Divisor K F} (hD : D.IsPrincipal) :
     (pullback F' D).IsPrincipal := by
   obtain ⟨f, hf, hDf⟩ := hD
   exact ⟨algebraMap F F' f, by simpa using hf, fun w => pullback_apply_eq_ord hDf w⟩
 
+/--
+@isnad1 id=mem.1h4v.s8.2e115aff402a from=translated src=- shape=2aafe964 vocab=8e58608c
+-/
 theorem pullback_mem_principal {D : Divisor K F} (hD : D ∈ principal (K := K) (F := F)) :
     pullback F' D ∈ principal (K := K) (F := F') :=
   isPrincipal_pullback hD
@@ -581,6 +662,9 @@ class FundamentalIdentity : Prop where
 
 namespace Divisor
 
+/--
+@isnad1 id=eq.0h5v.s9.4e98bacc8668 from=translated src=- shape=7c36766a vocab=c7b13d25
+-/
 theorem degree_pullback_single [FundamentalIdentity K F F'] (v : Place K F) (n : ℤ) :
     degree (pullback F' (Finsupp.single v n))
       = (Module.finrank F F' : ℤ) * degree (Finsupp.single v n) := by
@@ -590,6 +674,9 @@ theorem degree_pullback_single [FundamentalIdentity K F F'] (v : Place K F) (n :
     FundamentalIdentity.sum_ramificationIndex_mul_deg (K := K) (F := F) (F' := F') v]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s8.6e66731b84a9 from=translated src=- shape=1458b3f5 vocab=8399d2ae
+-/
 theorem degree_pullback [FundamentalIdentity K F F'] (D : Divisor K F) :
     degree (pullback F' D) = (Module.finrank F F' : ℤ) * degree D := by
   induction D using Finsupp.induction with
@@ -597,6 +684,9 @@ theorem degree_pullback [FundamentalIdentity K F F'] (D : Divisor K F) :
   | single_add v n D _ _ ih =>
     rw [map_add, map_add, map_add, mul_add, ih, degree_pullback_single]
 
+/--
+@isnad1 id=mem.1h4v.s8.db7bc2fa07d0 from=translated src=- shape=37067a33 vocab=6f8aad54
+-/
 theorem pullback_mem_degZero [FundamentalIdentity K F F'] {D : Divisor K F}
     (hD : D ∈ degZero (K := K) (F := F)) :
     pullback F' D ∈ degZero (K := K) (F := F') := by
@@ -633,6 +723,9 @@ def pullbackDegZeroHom [FundamentalIdentity K F F'] :
   ((Divisor.pullback F').domRestrict (Divisor.degZero (K := K) (F := F))).codRestrict _
     fun D => Divisor.pullback_mem_degZero D.2
 
+/--
+@isnad1 id=eq.0h4v.s11.8eb2d41e7615 from=translated src=- shape=da8b7b8c vocab=6c1d21bd
+-/
 @[simp]
 theorem coe_pullbackDegZeroHom [FundamentalIdentity K F F']
     (D : Divisor.degZero (K := K) (F := F)) :
@@ -654,6 +747,9 @@ def pushforwardDegZeroHom :
     fun D => Divisor.pushforward_mem_degZero D.2
 
 omit [HasPrincipalDivisors K F'] in
+/--
+@isnad1 id=eq.0h4v.s11.e87da3ec2441 from=translated src=- shape=be02d525 vocab=3d863c0b
+-/
 @[simp]
 theorem coe_pushforwardDegZeroHom (D : Divisor.degZero (K := K) (F := F')) :
     (pushforwardDegZeroHom F D : Divisor K F) = Divisor.pushforward F (D : Divisor K F') := rfl

@@ -12,6 +12,9 @@ namespace CuspForm.Gamma1Hecke
 open Matrix.SpecialLinearGroup UpperHalfPlane ModularForm
 open scoped MatrixGroups ModularForm OnePoint Manifold
 
+/--
+@isnad1 id=eq.0h3v.s9.5be642610faa from=translated src=- shape=531976e2 vocab=c63d16f2
+-/
 theorem mapGL_apply (g : SL(2, ℤ)) (i j : Fin 2) :
     (mapGL ℝ g : GL (Fin 2) ℝ) i j = ((g i j : ℤ) : ℝ) := by
   simp

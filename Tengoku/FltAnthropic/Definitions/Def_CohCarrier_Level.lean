@@ -24,6 +24,9 @@ section Level
 
 variable (M : ℕ)
 
+/--
+@isnad1 id=eq.0h2v.s9.9346628d0be2 from=translated src=- shape=51d4439d vocab=57b7694e
+-/
 theorem Gamma0_d_mul_a (γ : Gamma0 M) :
     ((γ.1 1 1 : ℤ) : ZMod M) * ((γ.1 0 0 : ℤ) : ZMod M) = 1 := by
   have hdet := Matrix.SpecialLinearGroup.det_coe γ.1

@@ -95,7 +95,13 @@ variable {R : Type u} [CommRing R] (𝒰 : Cover.{u, v} R)
   r0_smul a m := by simp
   r1_smul a m := by simp [mul_left_comm]
 
+/--
+@isnad1 id=eq.0h4v.s8.377738fb5e89 from=translated src=- shape=ed5077ac vocab=8e9368f0
+-/
 @[simp] theorem lineBundle_r0_apply (t : 𝒰.A01ˣ) (p : 𝒰.A0) : (𝒰.lineBundle t).r0 p = 𝒰.ρ0 p := rfl
+/--
+@isnad1 id=eq.0h4v.s8.9014bb159390 from=translated src=- shape=319c7fcf vocab=187770b4
+-/
 @[simp] theorem lineBundle_r1_apply (t : 𝒰.A01ˣ) (p : 𝒰.A1) :
     (𝒰.lineBundle t).r1 p = (t : 𝒰.A01) * 𝒰.ρ1 p := rfl
 

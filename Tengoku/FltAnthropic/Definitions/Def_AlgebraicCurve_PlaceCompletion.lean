@@ -43,6 +43,9 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra 
 variable (F)
 variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
 
+/--
+@isnad1 id=eq.0h5v.s8.674beaa85f70 from=translated src=- shape=4d0c1601 vocab=da8040f9
+-/
 theorem kw_ffgc_adicValuation_algebraMap (x : F) :
     W.adicValuation (algebraMap F F' x)
       = (W.restrict F).adicValuation x ^ W.ramificationIndex F := by
@@ -59,6 +62,9 @@ theorem kw_ffgc_adicValuation_algebraMap (x : F) :
       rw [← zpow_natCast, log_zpow, zsmul_eq_mul, Int.cast_natCast]; linarith
     rw [← exp_log hW0, hlog, exp_log (pow_ne_zero _ hV0)]
 
+/--
+@isnad1 id=eq.0h5v.s12.fd17484b7e8a from=translated src=- shape=51d8b9ba vocab=c4befdd6
+-/
 theorem kw_ffgc_valued_withValMapAlgebraMap
     (x : WithVal ((W.restrict F).heightOneSpectrum.valuation F)) :
     Valued.v (WithVal.map ((W.restrict F).heightOneSpectrum.valuation F)
@@ -69,6 +75,9 @@ theorem kw_ffgc_valued_withValMapAlgebraMap
 
 set_option backward.isDefEq.respectTransparency false in
 
+/--
+@isnad1 id=uniformc.0h4v.s11.305757288217 from=translated src=- shape=31672a6c vocab=1167cddd
+-/
 theorem kw_ffgc_uniformContinuous_withValMapAlgebraMap :
     UniformContinuous (WithVal.map ((W.restrict F).heightOneSpectrum.valuation F)
       (W.heightOneSpectrum.valuation F') (algebraMap F F')) := by
@@ -121,6 +130,9 @@ def kw_ffgc_adicCompletionComap : (W.restrict F).adicCompletion →+* W.adicComp
       (kw_ffgc_uniformContinuous_withValMapAlgebraMap F W).continuous)).comp
     (IsDedekindDomain.HeightOneSpectrum.adicCompletion.equiv F (W.restrict F).heightOneSpectrum).toRingHom
 
+/--
+@isnad1 id=continuo.0h4v.s10.f0252139b0fd from=translated src=- shape=4964d86e vocab=3e02d99a
+-/
 theorem kw_ffgc_continuous_adicCompletionComap :
     Continuous (kw_ffgc_adicCompletionComap F W) := by
   have h : ⇑(kw_ffgc_adicCompletionComap F W) =
@@ -133,6 +145,9 @@ theorem kw_ffgc_continuous_adicCompletionComap :
     (UniformSpace.Completion.continuous_map.comp
       (IsDedekindDomain.HeightOneSpectrum.adicCompletion.continuous_toCompletion F _))
 
+/--
+@isnad1 id=eq.0h5v.s12.e26457f92e2f from=translated src=- shape=5c9e72f2 vocab=e3817918
+-/
 theorem kw_ffgc_adicCompletionComap_coe
     (x : WithVal ((W.restrict F).heightOneSpectrum.valuation F)) :
     kw_ffgc_adicCompletionComap F W (x : (W.restrict F).adicCompletion)
@@ -145,6 +160,9 @@ theorem kw_ffgc_adicCompletionComap_coe
 
 open WithZeroTopology in
 
+/--
+@isnad1 id=eq.0h5v.s11.82e6b05f7eb7 from=translated src=- shape=6d240700 vocab=e324ee6b
+-/
 theorem kw_ffgc_valued_adicCompletionComap (x : (W.restrict F).adicCompletion) :
     Valued.v (kw_ffgc_adicCompletionComap F W x)
       = Valued.v x ^ W.ramificationIndex F := by
@@ -187,6 +205,9 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra 
 variable (F)
 variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
 
+/--
+@isnad1 id=mem.1h5v.s10.aa2b22c59afa from=translated src=- shape=dc67df4b vocab=60cd8a60
+-/
 theorem kw_ffgc_adicCompletionComap_mem_integers
     {x : (W.restrict F).adicCompletion} (hx : x ∈ (W.restrict F).adicCompletionIntegers) :
     kw_ffgc_adicCompletionComap F W x ∈ W.adicCompletionIntegers := by
@@ -199,6 +220,9 @@ def kw_ffgc_adicCompletionComapIntegers :
   (kw_ffgc_adicCompletionComap F W).restrict _ _
     fun _ hx => kw_ffgc_adicCompletionComap_mem_integers F W hx
 
+/--
+@isnad1 id=eq.0h5v.s13.93146a322524 from=translated src=- shape=dcd329a2 vocab=87968f9a
+-/
 @[simp]
 theorem kw_ffgc_adicCompletionComapIntegers_coe
     (x : (W.restrict F).adicCompletionIntegers) :
@@ -229,6 +253,9 @@ scoped instance kw_ffgc_algebraAdicCompletionComap :
     Algebra (W.restrict F).adicCompletion W.adicCompletion :=
   (kw_ffgc_adicCompletionComap F W).toAlgebra
 
+/--
+@isnad1 id=eq.0h4v.s9.1e5cdb9485bd from=translated src=- shape=7eb2dc6f vocab=74337e13
+-/
 theorem kw_ffgc_algebraMap_adicCompletionComap_eq :
     algebraMap (W.restrict F).adicCompletion W.adicCompletion
       = kw_ffgc_adicCompletionComap F W := rfl
@@ -318,6 +345,9 @@ variable {K F F' : Type*} [Field K] [Field F] [Field F'] [Algebra K F] [Algebra 
 variable (F)
 variable [Algebra F F'] [IsScalarTower K F F'] [Algebra.IsIntegral F F'] (W : Place K F')
 
+/--
+@isnad1 id=eq.0h5v.s11.531eb9ce20f8 from=translated src=- shape=6cb77eb8 vocab=93b23c0c
+-/
 theorem kw_ffgc_adicCompletionComap_algebraMap_algebraMap (c : F) :
     algebraMap F' W.adicCompletion (algebraMap F F' c)
       = algebraMap (W.restrict F).adicCompletion W.adicCompletion
@@ -376,6 +406,9 @@ section LocalResidueCompletion
 
 variable {K E : Type*} [Field K] [Field E] [Algebra K E]
 
+/--
+@isnad1 id=eq.0h4v.s10.deafb7a86e60 from=translated src=- shape=a2191aed vocab=9ef9ba96
+-/
 theorem kwHgfV352_valued_algebraMap_adicCompletion (v : Place K E) (x : E) :
     Valued.v (algebraMap E v.adicCompletion x) = v.heightOneSpectrum.valuation E x := by
   have h := IsDedekindDomain.HeightOneSpectrum.valuedAdicCompletion_eq_valuation'
@@ -413,6 +446,9 @@ private theorem ord_nonneg_of_mem_placeCompletionAux {K F : Type*} [Field K] [Fi
 
 end Place
 
+/--
+@isnad1 id=iff.0h4v.s10.b5899b70b69a from=translated src=- shape=c093918f vocab=38ac45b3
+-/
 theorem kwHgfV352_algebraMap_mem_adicCompletionIntegers_iff (v : Place K E) (x : E) :
     algebraMap E v.adicCompletion x ∈ v.adicCompletionIntegers ↔ x ∈ v.toValuationSubring := by
   rcases eq_or_ne x 0 with rfl | hx0
@@ -451,6 +487,9 @@ section PoleWindowShift
 
 variable {K L : Type*} [Field K] [Field L] [Algebra K L] (u : Place K L)
 
+/--
+@isnad1 id=mem.0h4v.s10.d0adc783c018 from=translated src=- shape=a83df048 vocab=38ac45b3
+-/
 theorem algebraMap_K_mem_adicCompletionIntegers (c : K) :
     algebraMap K u.adicCompletion c ∈ u.adicCompletionIntegers := by
   rw [IsScalarTower.algebraMap_apply K L u.adicCompletion]

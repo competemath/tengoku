@@ -16,6 +16,9 @@ variable (R S A B M : Type*) [CommSemiring R] [CommSemiring S] [AddCommMonoid M]
 scoped instance : SMul S (M ⊗[R] S) where
   smul s e := TensorProduct.comm _ _ _ (s • (TensorProduct.comm _ _ _ e))
 
+/--
+@isnad1 id=eq.0h5v.s10.60d8bd3cece3 from=translated src=- shape=63005747 vocab=f77389df
+-/
 @[simp]
 lemma smul_def (r : S) (m : M ⊗[R] S) :
     r • m = (TensorProduct.comm _ _ _).symm (r • (TensorProduct.comm _ _ _ m)) := rfl
@@ -54,6 +57,9 @@ scoped instance : Algebra S (B ⊗[R] S) where
         simp_all only [smul_def, AlgHom.toRingHom_eq_coe, RingHom.coe_coe,
           Algebra.TensorProduct.includeRight_apply, smul_add, mul_add]
 
+/--
+@isnad1 id=eq.0h4v.s8.277e67c9e7b9 from=translated src=- shape=447f4e80 vocab=a1dd6dd5
+-/
 @[simp] lemma algebraMap_eval (s : S) : algebraMap S (B ⊗[R] S) s = 1 ⊗ₜ s := rfl
 
 def Algebra.TensorProduct.comm : A ⊗[R] B ≃ₐ[A] B ⊗[R] A where
@@ -61,10 +67,16 @@ def Algebra.TensorProduct.comm : A ⊗[R] B ≃ₐ[A] B ⊗[R] A where
   commutes' _ := rfl
 
 variable {A B} in
+/--
+@isnad1 id=eq.0h5v.s8.0195f4d1903b from=translated src=- shape=729da1f7 vocab=ede27be2
+-/
 @[simp] lemma Algebra.TensorProduct.comm_apply_tmul (a : A) (b : B) :
     Algebra.TensorProduct.comm R A B (a ⊗ₜ b) = b ⊗ₜ a := by
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.c2d06b904074 from=translated src=- shape=201597a3 vocab=2bf911be
+-/
 @[simp] lemma Algebra.TensorProduct.comm_symm_apply_tmul (b : B) (a : A) :
     (Algebra.TensorProduct.comm R A B).symm (b ⊗ₜ a) = a ⊗ₜ b := rfl
 
@@ -82,9 +94,15 @@ def Module.TensorProduct.comm : A ⊗[R] M ≃ₗ[A] M ⊗[R] A where
         RingHom.id_apply, smul_def, smul_add, map_add]
 
 variable {A N} in
+/--
+@isnad1 id=eq.0h5v.s9.a1e41fc4e1d5 from=translated src=- shape=15394430 vocab=312e3859
+-/
 @[simp] lemma Module.TensorProduct.comm_apply_tmul (a : A) (m : M) :
     Module.TensorProduct.comm R A M (a ⊗ₜ m) = m ⊗ₜ a := rfl
 
+/--
+@isnad1 id=eq.0h5v.s9.136e712444ae from=translated src=- shape=9615d891 vocab=a6e85c31
+-/
 @[simp] lemma Module.TensorProduct.comm_symm_apply_tmul (m : M) (a : A) :
     (Module.TensorProduct.comm R A M).symm (m ⊗ₜ a) = a ⊗ₜ m := rfl
 
@@ -114,6 +132,9 @@ noncomputable abbrev LinearMap.baseChange (R : Type*) [CommRing R]
     (_root_.LinearMap.baseChange A φ) ∘ₗ
     (Module.TensorProduct.comm R A V).symm
 
+/--
+@isnad1 id=eq.0h3v.s8.d4242910c106 from=translated src=- shape=7b9c0b9c vocab=03ed7641
+-/
 @[simp]
 lemma LinearMap.baseChange_id (R : Type*) [CommRing R]
     (V : Type*) [AddCommGroup V] [Module R V]
@@ -122,6 +143,9 @@ lemma LinearMap.baseChange_id (R : Type*) [CommRing R]
   ext
   simp
 
+/--
+@isnad1 id=eq.0h7v.s9.94bc67ac6c7f from=translated src=- shape=0de2c8a9 vocab=fb08d2c1
+-/
 theorem LinearMap.baseChange_comp (R : Type*) [CommRing R]
     (U V W : Type*) [AddCommGroup U] [Module R U] [AddCommGroup V] [Module R V]
     [AddCommGroup W] [Module R W] (A : Type*) [CommRing A] [Algebra R A]

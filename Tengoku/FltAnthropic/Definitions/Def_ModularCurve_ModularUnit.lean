@@ -15,6 +15,9 @@ def IsMonicOfOrder (f : LaurentSeries ℚ) (m : ℤ) : Prop :=
 
 namespace IsMonicOfOrder
 
+/--
+@isnad1 id=ismonico.1h1v.s7.1b44c9d8e33f from=translated src=- shape=486b3e33 vocab=a1664b3d
+-/
 theorem ofPowerSeries {U : PowerSeries ℚ} (hU : PowerSeries.constantCoeff U = 1) :
     IsMonicOfOrder (HahnSeries.ofPowerSeries ℤ ℚ U) 0 := by
   have hcoeff0 : (HahnSeries.ofPowerSeries ℤ ℚ U).coeff (0 : ℤ) = 1 := by

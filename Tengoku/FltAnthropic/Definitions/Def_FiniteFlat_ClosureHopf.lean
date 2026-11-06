@@ -25,6 +25,9 @@ noncomputable def tensorInclusion (B : Subalgebra F (F ⊗[R] G)) :
     (flatClosure B) ⊗[R] (flatClosure B) →ₗ[R] G ⊗[R] G :=
   TensorProduct.map (flatClosure B).val.toLinearMap (flatClosure B).val.toLinearMap
 
+/--
+@isnad1 id=eq.0h6v.s11.7c11a61fa703 from=translated src=- shape=37354a6d vocab=9f5dd08b
+-/
 @[simp]
 lemma tensorInclusion_tmul {B : Subalgebra F (F ⊗[R] G)} (x y : flatClosure B) :
     tensorInclusion B (x ⊗ₜ[R] y) = (x : G) ⊗ₜ[R] (y : G) := rfl
@@ -32,6 +35,9 @@ lemma tensorInclusion_tmul {B : Subalgebra F (F ⊗[R] G)} (x y : flatClosure B)
 def closureTensorSpan (B : Subalgebra F (F ⊗[R] G)) : Submodule R (G ⊗[R] G) :=
   Submodule.span R (Set.image2 (· ⊗ₜ[R] ·) (flatClosure B : Set G) (flatClosure B : Set G))
 
+/--
+@isnad1 id=eq.0h4v.s10.efdae6f0d455 from=translated src=- shape=8a8eaeaa vocab=cd8aeb9d
+-/
 lemma range_tensorInclusion (B : Subalgebra F (F ⊗[R] G)) :
     LinearMap.range (tensorInclusion B) = closureTensorSpan B := by
   apply le_antisymm
@@ -47,6 +53,9 @@ lemma range_tensorInclusion (B : Subalgebra F (F ⊗[R] G)) :
     rintro _ ⟨a, ha, b, hb, rfl⟩
     exact ⟨(⟨a, ha⟩ : flatClosure B) ⊗ₜ[R] (⟨b, hb⟩ : flatClosure B), rfl⟩
 
+/--
+@isnad1 id=injectiv.0h4v.s11.7512b3a6801c from=translated src=- shape=a9ef2eed vocab=fcdc44cc
+-/
 theorem tensorInclusion_injective [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
     [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     (B : Subalgebra F (F ⊗[R] G)) : Function.Injective (tensorInclusion B) := by
@@ -62,6 +71,9 @@ theorem tensorInclusion_injective [IsDomain R] [IsPrincipalIdealRing R] [IsNoeth
   exact (Module.Flat.rTensor_preserves_injective_linearMap _ hι).comp
     (Module.Flat.lTensor_preserves_injective_linearMap _ hι)
 
+/--
+@isnad1 id=mem.2h6v.s10.62a7553a0edc from=translated src=- shape=3f5e031f vocab=dd04748e
+-/
 theorem mem_closureTensorSpan_of_smul_mem [IsDomain R] [IsPrincipalIdealRing R]
     [IsNoetherianRing R] [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     (B : Subalgebra F (F ⊗[R] G)) {x : G ⊗[R] G} {r : R} (hr : r ≠ 0)
@@ -119,22 +131,34 @@ noncomputable def tensorToGenericFibre (x : G ⊗[R] G) : (F ⊗[R] G) ⊗[F] (F
     ((LinearMap.rTensor G
       (Algebra.TensorProduct.includeRight (R := R) (A := F) (B := G)).toLinearMap) x)
 
+/--
+@isnad1 id=eq.0h5v.s9.5b923667627e from=translated src=- shape=de2f54bc vocab=6691f88a
+-/
 @[simp]
 lemma tensorToGenericFibre_tmul (g₁ g₂ : G) :
     tensorToGenericFibre R F (g₁ ⊗ₜ[R] g₂)
       = ((1 : F) ⊗ₜ[R] g₁) ⊗ₜ[F] ((1 : F) ⊗ₜ[R] g₂) := by
   simp [tensorToGenericFibre]
 
+/--
+@isnad1 id=eq.0h3v.s10.3d8b0bc46e2f from=translated src=- shape=bc8af42c vocab=594034bd
+-/
 lemma tensorToGenericFibre_zero : tensorToGenericFibre R F (0 : G ⊗[R] G) = 0 := by
   unfold tensorToGenericFibre
   rw [map_zero, map_zero]
 
+/--
+@isnad1 id=eq.0h5v.s11.2e7c7c33e438 from=translated src=- shape=eeb8bdf2 vocab=ba078410
+-/
 lemma tensorToGenericFibre_add (x y : G ⊗[R] G) :
     tensorToGenericFibre R F (x + y)
       = tensorToGenericFibre R F x + tensorToGenericFibre R F y := by
   unfold tensorToGenericFibre
   rw [map_add, map_add]
 
+/--
+@isnad1 id=eq.0h5v.s10.3e6d59085b0e from=translated src=- shape=a103df30 vocab=48d71ed9
+-/
 lemma tensorToGenericFibre_smul (r : R) (x : G ⊗[R] G) :
     tensorToGenericFibre R F (r • x) = (algebraMap R F r) • tensorToGenericFibre R F x := by
   induction x with
@@ -144,6 +168,9 @@ lemma tensorToGenericFibre_smul (r : R) (x : G ⊗[R] G) :
   | add x y hx hy =>
       rw [smul_add, tensorToGenericFibre_add, tensorToGenericFibre_add, hx, hy, smul_add]
 
+/--
+@isnad1 id=injectiv.0h3v.s9.5daf352c02dc from=translated src=- shape=f2f4968a vocab=6bf4df9a
+-/
 theorem tensorToGenericFibre_injective [IsDomain R] [IsPrincipalIdealRing R]
     [IsNoetherianRing R] [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G] :
     Function.Injective (tensorToGenericFibre R F (G := G)) := by
@@ -177,6 +204,9 @@ private lemma mul_smul_tmul (c₁ c₂ : F) (m n : F ⊗[R] G) :
     (c₁ * c₂) • (m ⊗ₜ[F] n) = (c₁ • m) ⊗ₜ[F] (c₂ • n) := by
   rw [mul_smul, TensorProduct.smul_tmul', TensorProduct.smul_tmul, TensorProduct.smul_tmul']
 
+/--
+@isnad1 id=ex.1h5v.s13.eeadf28e4599 from=translated src=- shape=355c967a vocab=ceb42dfd
+-/
 theorem exists_smul_eq_tensorToGenericFibre_of_mem_span [IsDomain R] [IsFractionRing R F]
     {B : Subalgebra F (F ⊗[R] G)} {y : (F ⊗[R] G) ⊗[F] (F ⊗[R] G)}
     (hy : y ∈ Submodule.span F
@@ -210,6 +240,9 @@ theorem exists_smul_eq_tensorToGenericFibre_of_mem_span [IsDomain R] [IsFraction
       rw [tensorToGenericFibre_smul, ← e, ← hs, map_mul]
       module
 
+/--
+@isnad1 id=mem.1h5v.s12.20ec402f0aa4 from=translated src=- shape=512fac70 vocab=2783368e
+-/
 theorem mem_closureTensorSpan_of_tensorToGenericFibre_mem_span [IsDomain R]
     [IsPrincipalIdealRing R] [IsNoetherianRing R] [IsFractionRing R F]
     [Module.Finite R G] [Module.IsTorsionFree R G]
@@ -235,12 +268,18 @@ def IsComulStable (B : Subalgebra F (F ⊗[R] G)) : Prop :=
   ∀ g ∈ flatClosure B, tensorToGenericFibre R F (Coalgebra.comul (R := R) g) ∈
     Submodule.span F (Set.image2 (· ⊗ₜ[F] ·) (B : Set (F ⊗[R] G)) (B : Set (F ⊗[R] G)))
 
+/--
+@isnad1 id=mem.2h5v.s10.9799751f6973 from=translated src=- shape=31dbf7b1 vocab=3da32718
+-/
 theorem comul_mem_closureTensorSpan [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
     [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B) {g : G} (hg : g ∈ flatClosure B) :
     Coalgebra.comul (R := R) g ∈ closureTensorSpan B :=
   mem_closureTensorSpan_of_tensorToGenericFibre_mem_span (hB g hg)
 
+/--
+@isnad1 id=mem.2h5v.s11.11ab1a2978ca from=translated src=- shape=6d4d6cdf vocab=164e279c
+-/
 theorem comul_mem_range_tensorInclusion [IsDomain R] [IsPrincipalIdealRing R]
     [IsNoetherianRing R] [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
     {B : Subalgebra F (F ⊗[R] G)} (hB : IsComulStable R F B) {g : G} (hg : g ∈ flatClosure B) :
@@ -258,6 +297,9 @@ noncomputable def closureComul [IsDomain R] [IsPrincipalIdealRing R] [IsNoetheri
       ((Coalgebra.comul (R := R)).comp (flatClosure B).val.toLinearMap)
       (fun h => comul_mem_range_tensorInclusion hB h.2)
 
+/--
+@isnad1 id=eq.1h5v.s13.f6812b41ff05 from=translated src=- shape=a7871098 vocab=10bc43a5
+-/
 @[simp]
 theorem tensorInclusion_closureComul [IsDomain R] [IsPrincipalIdealRing R] [IsNoetherianRing R]
     [IsFractionRing R F] [Module.Finite R G] [Module.IsTorsionFree R G]
@@ -271,6 +313,9 @@ theorem tensorInclusion_closureComul [IsDomain R] [IsPrincipalIdealRing R] [IsNo
 noncomputable def closureCounit (B : Subalgebra F (F ⊗[R] G)) : flatClosure B →ₗ[R] R :=
   (Coalgebra.counit (R := R) (A := G)).comp (flatClosure B).val.toLinearMap
 
+/--
+@isnad1 id=eq.0h5v.s10.527932eb8eb2 from=translated src=- shape=30e5582e vocab=fd899a27
+-/
 @[simp]
 theorem closureCounit_apply (B : Subalgebra F (F ⊗[R] G)) (h : flatClosure B) :
     closureCounit B h = Coalgebra.counit (R := R) (h : G) := rfl
@@ -296,6 +341,9 @@ def closureAntipode {B : Subalgebra F (F ⊗[R] G)} (hB : IsAntipodeStable R F B
     ext
     simp [map_smul]
 
+/--
+@isnad1 id=eq.1h5v.s11.7bc76dc7e431 from=translated src=- shape=104c3121 vocab=3447b73a
+-/
 @[simp]
 theorem coe_closureAntipode_apply {B : Subalgebra F (F ⊗[R] G)} (hB : IsAntipodeStable R F B)
     (h : flatClosure B) :
@@ -312,11 +360,17 @@ noncomputable def genericFibreAlgHom (B : Subalgebra F (F ⊗[R] G)) :
   AlgHom.liftEquiv R F (flatClosure B) (F ⊗[R] G)
     ((Algebra.TensorProduct.includeRight (R := R) (A := F) (B := G)).comp (flatClosure B).val)
 
+/--
+@isnad1 id=eq.0h6v.s11.31d0f0a69e72 from=translated src=- shape=e8067d6b vocab=d8935720
+-/
 @[simp]
 lemma genericFibreAlgHom_tmul (B : Subalgebra F (F ⊗[R] G)) (f : F) (h : flatClosure B) :
     genericFibreAlgHom B (f ⊗ₜ[R] h) = f ⊗ₜ[R] (h : G) := by
   simp [genericFibreAlgHom, TensorProduct.smul_tmul', smul_eq_mul]
 
+/--
+@isnad1 id=injectiv.0h4v.s10.39330755fa81 from=translated src=- shape=933eb99f vocab=b31b2da1
+-/
 theorem genericFibreAlgHom_injective [IsDomain R] [IsFractionRing R F]
     (B : Subalgebra F (F ⊗[R] G)) : Function.Injective (genericFibreAlgHom B) := by
   haveI : Module.Flat R F := IsLocalization.flat F (nonZeroDivisors R)
@@ -330,6 +384,9 @@ theorem genericFibreAlgHom_injective [IsDomain R] [IsFractionRing R F]
   rw [hcoe]
   exact Module.Flat.lTensor_preserves_injective_linearMap _ Subtype.val_injective
 
+/--
+@isnad1 id=eq.0h4v.s9.bb45ee869d1c from=translated src=- shape=f25a444e vocab=91301d88
+-/
 theorem range_genericFibreAlgHom [IsDomain R] [IsFractionRing R F]
     (B : Subalgebra F (F ⊗[R] G)) : (genericFibreAlgHom B).range = B := by
   have hmem : ∀ x : F ⊗[R] (flatClosure B), genericFibreAlgHom B x ∈ B := by

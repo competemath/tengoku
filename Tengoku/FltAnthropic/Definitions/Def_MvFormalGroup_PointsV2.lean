@@ -47,6 +47,9 @@ private theorem hasEval_of_mem_radical [Finite σ] (J : Ideal S) {x : σ → S}
   rw [Filter.cofinite_eq_bot]
   exact Filter.tendsto_bot
 
+/--
+@isnad1 id=eq.0h6v.s5.bcbb68f1a948 from=translated src=- shape=201ecd2a vocab=6bf9215b
+-/
 theorem adicEval_X (J : Ideal S) (x : σ → S) (s : σ) :
     adicEval J x (X s : MvPowerSeries σ R) = x s := by
   letI : UniformSpace R := ⊥
@@ -64,6 +67,9 @@ def adicEvalAlgHom [Finite σ] (J : Ideal S) [IsAdicComplete J S] {x : σ → S}
   haveI : ContinuousSMul R S := DiscreteTopology.instContinuousSMul R S
   MvPowerSeries.aeval (hasEval_of_mem_radical J hx)
 
+/--
+@isnad1 id=eq.1h5v.s7.5a0f7dfb63d8 from=translated src=- shape=b6ed37fa vocab=78ae5fce
+-/
 theorem coe_adicEvalAlgHom [Finite σ] (J : Ideal S) [IsAdicComplete J S] {x : σ → S}
     (hx : ∀ s, x s ∈ J.radical) : ⇑(adicEvalAlgHom (R := R) J hx) = adicEval J x := by
   letI : UniformSpace R := ⊥
@@ -78,6 +84,9 @@ theorem coe_adicEvalAlgHom [Finite σ] (J : Ideal S) [IsAdicComplete J S] {x : �
 
 open MvPowerSeries.WithPiTopology in
 
+/--
+@isnad1 id=mem.2h6v.s7.bb8d9097e108 from=translated src=- shape=f9275a40 vocab=0e90fc9e
+-/
 theorem adicEval_mem_radical [Finite σ] (J : Ideal S) [IsAdicComplete J S] {x : σ → S}
     (hx : ∀ s, x s ∈ J.radical) {f : MvPowerSeries σ R} (hf : f.constantCoeff = 0) :
     adicEval J x f ∈ J.radical := by
@@ -100,6 +109,9 @@ theorem adicEval_mem_radical [Finite σ] (J : Ideal S) [IsAdicComplete J S] {x :
   rw [MvPowerSeries.coe_eval₂Hom, pow_one] at hn
   exact ⟨n, hn⟩
 
+/--
+@isnad1 id=eq.2h8v.s7.d7f94baac0f4 from=translated src=- shape=720859fb vocab=263ce081
+-/
 theorem adicEval_subst [Finite σ] {τ : Type*} (J : Ideal S) [IsAdicComplete J S] {x : σ → S}
     (hx : ∀ s, x s ∈ J.radical) {a : τ → MvPowerSeries σ R} (ha : HasSubst a)
     (f : MvPowerSeries τ R) :
@@ -112,6 +124,9 @@ theorem adicEval_subst [Finite σ] {τ : Type*} (J : Ideal S) [IsAdicComplete J 
     ((IsAdic.isAdicComplete_iff (show IsAdic J from rfl)).mp ‹IsAdicComplete J S›).2
   exact MvPowerSeries.eval₂_subst ha (hasEval_of_mem_radical J hx) f
 
+/--
+@isnad1 id=eq.3h10v.s8.729c23d3b778 from=translated src=- shape=c40f9d02 vocab=2abfffcf
+-/
 theorem adicEval_subst_elim (F : MvFormalGroup g R) {τ : Type*} [Finite τ] (J : Ideal S)
     [IsAdicComplete J S] {w : τ → S} (hw : ∀ t, w t ∈ J.radical)
     {u v : Fin g → MvPowerSeries τ R} (hu : ∀ j, (u j).constantCoeff = 0)
@@ -166,6 +181,9 @@ protected def neg (x : Points F S J) : Points F S J where
 
 instance instNeg : Neg (Points F S J) := ⟨Points.neg⟩
 
+/--
+@isnad1 id=eq.0h8v.s8.a2517963d2b6 from=translated src=- shape=683fca7e vocab=de549971
+-/
 protected theorem add_assoc (x y z : Points F S J) : x + y + z = x + (y + z) := by
   ext i
   show adicEval J (Sum.elim (fun j => adicEval J (Sum.elim x.val y.val) (F.toPowerSeries j))
@@ -209,6 +227,9 @@ protected theorem add_assoc (x y z : Points F S J) : x + y + z = x + (y + z) := 
     hin1, hzc, hxa, hin2] at key
   exact key
 
+/--
+@isnad1 id=eq.0h6v.s7.ee76dd3632fe from=translated src=- shape=ab330f74 vocab=de549971
+-/
 protected theorem zero_add (x : Points F S J) : 0 + x = x := by
   ext i
   show adicEval J (Sum.elim (fun _ => 0) x.val) (F.toPowerSeries i) = x.val i
@@ -222,6 +243,9 @@ protected theorem zero_add (x : Points F S J) : 0 + x = x := by
   rw [adicEval_subst_elim F J x.mem_radical h0 hX, hz, adicEval_X_eq, adicEval_X] at key
   exact key
 
+/--
+@isnad1 id=eq.0h6v.s7.a1074c19edfa from=translated src=- shape=3fc00911 vocab=de549971
+-/
 protected theorem add_zero (x : Points F S J) : x + 0 = x := by
   ext i
   show adicEval J (Sum.elim x.val fun _ => 0) (F.toPowerSeries i) = x.val i
@@ -235,6 +259,9 @@ protected theorem add_zero (x : Points F S J) : x + 0 = x := by
   rw [adicEval_subst_elim F J x.mem_radical hX h0, hz, adicEval_X_eq, adicEval_X] at key
   exact key
 
+/--
+@isnad1 id=eq.0h6v.s7.7e1a57cf9754 from=translated src=- shape=0757344e vocab=f2cb3953
+-/
 protected theorem neg_add_cancel (x : Points F S J) : -x + x = 0 := by
   ext i
   show adicEval J (Sum.elim (fun j => adicEval J x.val (invSeries F j)) x.val)
@@ -259,6 +286,9 @@ instance instAddGroup : AddGroup (Points F S J) where
   nsmul := nsmulRec
   zsmul := zsmulRec
 
+/--
+@isnad1 id=eq.0h7v.s7.9a9c92b19571 from=translated src=- shape=c591d23d vocab=e6c108f5
+-/
 protected theorem add_comm [IsComm F] (x y : Points F S J) : x + y = y + x := by
   ext i
   show adicEval J (Sum.elim x.val y.val) (F.toPowerSeries i)

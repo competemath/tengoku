@@ -21,6 +21,9 @@ variable {A} in
 
 def Extension (v : HeightOneSpectrum A) := {w : HeightOneSpectrum B // w.under A = v}
 
+/--
+@isnad1 id=ne.1h3v.s7.99e4ed4cb02e from=translated src=- shape=a032f4ea vocab=d31eaa59
+-/
 lemma ramificationIdx_ne_zero (hAB : Function.Injective (algebraMap A B))
     (w : HeightOneSpectrum B) :
     Ideal.ramificationIdx' (under A w).asIdeal w.asIdeal ≠ 0 :=
@@ -30,6 +33,9 @@ lemma ramificationIdx_ne_zero (hAB : Function.Injective (algebraMap A B))
 include K L in
 omit [IsDedekindDomain A] [IsIntegralClosure B A L]
     [Algebra.IsIntegral A B] [IsDedekindDomain B] [IsFractionRing B L] in
+/--
+@isnad1 id=istorsio.0h4v.s7.11644383d605 from=translated src=- shape=a959b456 vocab=894c0bef
+-/
 lemma isTorsionFree [IsDomain B] : Module.IsTorsionFree A B := by
   have : FaithfulSMul A B := FaithfulSMul.of_field_isFractionRing A B K L
   have : Nontrivial A := (IsFractionRing.nontrivial_iff_nontrivial A K).mpr inferInstance
@@ -38,6 +44,9 @@ lemma isTorsionFree [IsDomain B] : Module.IsTorsionFree A B := by
 include K L in
 omit [IsIntegralClosure B A L] [IsFractionRing B L] in
 
+/--
+@isnad1 id=finite.0h5v.s7.1232c22530a0 from=translated src=- shape=8377cc0a vocab=c17391e5
+-/
 theorem Extension.finite (v : HeightOneSpectrum A) : Finite (v.Extension B) := by
   have := isTorsionFree A K L B
   rw [Extension, ← Set.coe_ofPred]
@@ -61,6 +70,9 @@ noncomputable def Extension.fintype : Fintype (Extension B v) :=
 
 include K L in
 omit [IsIntegralClosure B A L] [IsFractionRing B L] in
+/--
+@isnad1 id=finite.1h5v.s7.60a81e12f233 from=translated src=- shape=69015f07 vocab=209855ef
+-/
 theorem preimage_comap_finite (S : Set (HeightOneSpectrum A)) (hS : S.Finite) :
     ((under A : HeightOneSpectrum B → HeightOneSpectrum A) ⁻¹' S).Finite := by
   rw [← Set.biUnion_preimage_singleton (under A) S]

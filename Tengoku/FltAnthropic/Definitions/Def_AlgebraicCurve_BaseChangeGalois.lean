@@ -54,6 +54,9 @@ open scoped Pointwise
 variable {K F}
 variable (g : SemilinearAut K F)
 
+/--
+@isnad1 id=eq.0h3v.s11.19ab746c1536 from=translated src=- shape=d730b26f vocab=a74b3867
+-/
 theorem pointwise_smul_top : g • (⊤ : ValuationSubring F) = ⊤ := by
   ext x
   simp only [ValuationSubring.mem_pointwise_smul_iff_inv_smul_mem]

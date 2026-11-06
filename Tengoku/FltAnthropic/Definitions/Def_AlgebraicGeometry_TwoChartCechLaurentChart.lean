@@ -13,10 +13,16 @@ namespace LaurentSeries
 
 variable (R : Type*) [CommRing R]
 
+/--
+@isnad1 id=eq.0h3v.s8.eee83f838ae5 from=translated src=- shape=3d5da688 vocab=c7461f9f
+-/
 theorem derivative_coeff (x : LaurentSeries R) (n : ℤ) :
     (derivative R x).coeff n = (n + 1) • x.coeff (n + 1) := by
   simp only [derivative_apply, hasseDeriv_coeff, Nat.cast_one, Ring.choose_one_right]
 
+/--
+@isnad1 id=eq.0h3v.s10.e7534ea9dd0b from=translated src=- shape=b673eb58 vocab=a59ee8cf
+-/
 theorem derivative_single_one_mul (n : ℤ) (x : LaurentSeries R) :
     derivative R (HahnSeries.single n (1 : R) * x) =
       HahnSeries.single (n - 1) (n : R) * x + HahnSeries.single n (1 : R) * derivative R x := by
@@ -26,6 +32,9 @@ theorem derivative_single_one_mul (n : ℤ) (x : LaurentSeries R) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h3v.s7.9b4d307ff527 from=translated src=- shape=8a4291ab vocab=6ca2f719
+-/
 theorem coeff_ofPowerSeries_of_neg (p : PowerSeries R) {m : ℤ} (hm : m < 0) :
     (HahnSeries.ofPowerSeries ℤ R p).coeff m = 0 := by
   rw [HahnSeries.ofPowerSeries_apply]
@@ -34,6 +43,9 @@ theorem coeff_ofPowerSeries_of_neg (p : PowerSeries R) {m : ℤ} (hm : m < 0) :
   change (k : ℤ) = m at hk
   omega
 
+/--
+@isnad1 id=eq.0h2v.s9.a6455d904222 from=translated src=- shape=ac96172a vocab=70dade73
+-/
 theorem derivative_ofPowerSeries (p : PowerSeries R) :
     derivative R (HahnSeries.ofPowerSeries ℤ R p) =
       HahnSeries.ofPowerSeries ℤ R (PowerSeries.derivative R p) := by
@@ -49,6 +61,9 @@ theorem derivative_ofPowerSeries (p : PowerSeries R) :
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h3v.s10.76a6003a1ef1 from=translated src=- shape=9d40ffce vocab=c9fb9739
+-/
 theorem derivative_mul_def (x y : LaurentSeries R) :
     derivative R (x * y) = x * derivative R y + derivative R x * y := by
 
@@ -77,6 +92,9 @@ theorem derivative_mul_def (x y : LaurentSeries R) :
 
 def residue : LaurentSeries R →ₗ[R] R := HahnSeries.coeff.linearMap (-1)
 
+/--
+@isnad1 id=eq.0h2v.s8.176f8f8b75bf from=translated src=- shape=9b3e63db vocab=b6bceba1
+-/
 @[simp] theorem residue_apply (x : LaurentSeries R) : residue R x = x.coeff (-1) := rfl
 
 end LaurentSeries
@@ -97,9 +115,15 @@ variable {𝒰 : Cover.{u, v} R} (Λ : 𝒰.LaurentChart)
 
 abbrev expandModule : Module 𝒰.A01 (LaurentSeries R) := Module.compHom (LaurentSeries R) Λ.expand
 
+/--
+@isnad1 id=eq.0h5v.s8.f063bd427962 from=translated src=- shape=aadb09d4 vocab=97ec7ba2
+-/
 theorem expand_smul (r : R) (a : 𝒰.A01) : Λ.expand (r • a) = r • Λ.expand a := by
   rw [Algebra.smul_def, map_mul, expand_algebraMap, HahnSeries.C_mul_eq_smul]
 
+/--
+@isnad1 id=isscalar.0h3v.s8.79815bf2bc39 from=translated src=- shape=d62d06f3 vocab=3a08b4bf
+-/
 theorem isScalarTower_expandModule :
     letI := Λ.expandModule
     IsScalarTower R 𝒰.A01 (LaurentSeries R) :=
@@ -113,6 +137,9 @@ def expandLinear : 𝒰.A01 →ₗ[R] LaurentSeries R where
   map_add' := map_add _
   map_smul' := Λ.expand_smul
 
+/--
+@isnad1 id=eq.0h4v.s8.8d0d3e0c62ab from=translated src=- shape=3dfa7774 vocab=5e6f4785
+-/
 @[simp] theorem expandLinear_apply (a : 𝒰.A01) : Λ.expandLinear a = Λ.expand a := rfl
 
 def expandDerivation :
@@ -190,6 +217,9 @@ structure IsCompletionAlong (Λ : 𝒰.LaurentChart) {B : Type*} [CommRing B] [A
 
 end TwoChartCech.Cover.LaurentChart
 
+/--
+@isnad1 id=iff.0h3v.s8.73d41ef1a2b3 from=translated src=- shape=7c9759c3 vocab=1ab8eb55
+-/
 theorem PowerSeries.forall_coeff_eq_zero_iff_mem_ker_constantCoeff_pow (R : Type*) [CommRing R] (n : ℕ)
     (a : PowerSeries R) :
     (∀ k : ℕ, k < n → PowerSeries.coeff k a = 0) ↔ a ∈ RingHom.ker (PowerSeries.constantCoeff (R := R)) ^ n := by

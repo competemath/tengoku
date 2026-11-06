@@ -43,6 +43,9 @@ namespace Hom
 
 variable {F G H : OModulePresheaf π}
 
+/--
+@isnad1 id=eq.1h9v.s9.d22efc9385c4 from=translated src=- shape=97d65d7b vocab=367f9bc6
+-/
 theorem naturality_apply (φ : Hom F G) {U U' : V.Opens} (h : U ≤ U') (x : F.obj U') :
     φ.app U (F.res h x) = G.res h (φ.app U' x) :=
   congrFun (congrArg DFunLike.coe (φ.naturality h)) x
@@ -53,6 +56,9 @@ namespace AffHom
 
 variable {F G H : OModulePresheaf π}
 
+/--
+@isnad1 id=eq.1h9v.s11.fdc6a890448e from=translated src=- shape=33fa5a20 vocab=021f540f
+-/
 theorem naturality_apply (φ : AffHom F G) {U U' : V.affineOpens} (h : U.1 ≤ U'.1) (x : F.obj U'.1) :
     φ.app U (F.res h x) = G.res h (φ.app U' x) :=
   congrFun (congrArg DFunLike.coe (φ.naturality h)) x

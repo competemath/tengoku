@@ -39,10 +39,16 @@ def inter {p : ℕ} (s : 𝔄.Idx p) : Z.Opens := ⨅ j, 𝔄.U (s.1 j)
 def face {p : ℕ} (s : 𝔄.Idx (p + 1)) (j : Fin (p + 2)) : 𝔄.Idx p :=
   ⟨s.1 ∘ Fin.succAbove j, s.2.comp (Fin.strictMono_succAbove j)⟩
 
+/--
+@isnad1 id=le.0h5v.s6.5ad6c820adbf from=translated src=- shape=02d0da2c vocab=200d4ff8
+-/
 theorem inter_le_inter_face {p : ℕ} (s : 𝔄.Idx (p + 1)) (j : Fin (p + 2)) :
     𝔄.inter s ≤ 𝔄.inter (𝔄.face s j) :=
   le_iInf fun k => iInf_le _ (j.succAbove k)
 
+/--
+@isnad1 id=isempty.1h3v.s4.b613f86d9357 from=translated src=- shape=f2428486 vocab=e75dac8e
+-/
 theorem isEmpty_idx_of_card_le {p : ℕ} (h : Fintype.card 𝔄.ι ≤ p) : IsEmpty (𝔄.Idx p) := by
   refine ⟨fun s => ?_⟩
   have := Fintype.card_le_of_injective s.1 s.2.injective
@@ -83,10 +89,16 @@ variable (𝔄 𝔅 : Z.OrderedOpenFamily)
 
 namespace BiCech
 
+/--
+@isnad1 id=le.0h8v.s7.f0766e1f38e9 from=translated src=- shape=acef5187 vocab=3807e0d1
+-/
 theorem inter_inf_le_left {p q : ℕ} (s : 𝔄.Idx (p + 1)) (t : 𝔅.Idx q) (j : Fin (p + 2)) :
     𝔄.inter s ⊓ 𝔅.inter t ≤ 𝔄.inter (𝔄.face s j) ⊓ 𝔅.inter t :=
   inf_le_inf_right _ (𝔄.inter_le_inter_face s j)
 
+/--
+@isnad1 id=le.0h8v.s7.ad9cebd0f1b8 from=translated src=- shape=ebceefe2 vocab=3807e0d1
+-/
 theorem inter_inf_le_right {p q : ℕ} (s : 𝔄.Idx p) (t : 𝔅.Idx (q + 1)) (j : Fin (q + 2)) :
     𝔄.inter s ⊓ 𝔅.inter t ≤ 𝔄.inter s ⊓ 𝔅.inter (𝔅.face t j) :=
   inf_le_inf_left _ (𝔅.inter_le_inter_face t j)
@@ -101,18 +113,27 @@ def dV (p q : ℕ) : C F 𝔄 𝔅 p q →ₗ[R] C F 𝔄 𝔅 p (q + 1) :=
   LinearMap.pi fun st => ∑ j : Fin (q + 2), ((-1 : ℤ) ^ (j : ℕ)) •
     ((F.res (inter_inf_le_right 𝔄 𝔅 st.1 st.2 j)).comp (LinearMap.proj (st.1, 𝔅.face st.2 j)))
 
+/--
+@isnad1 id=eq.0h10v.s12.317deed825f2 from=translated src=- shape=1a06cd7b vocab=c4b016e5
+-/
 theorem dH_apply (p q : ℕ) (c : C F 𝔄 𝔅 p q) (st : 𝔄.Idx (p + 1) × 𝔅.Idx q) :
     dH F 𝔄 𝔅 p q c st = ∑ j : Fin (p + 2), ((-1 : ℤ) ^ (j : ℕ)) •
       F.res (inter_inf_le_left 𝔄 𝔅 st.1 st.2 j) (c (𝔄.face st.1 j, st.2)) := by
   simp only [dH, LinearMap.pi_apply, LinearMap.sum_apply, LinearMap.smul_apply, LinearMap.comp_apply,
     LinearMap.proj_apply]
 
+/--
+@isnad1 id=eq.0h10v.s12.61c28a3374f2 from=translated src=- shape=c7839c60 vocab=542fce2d
+-/
 theorem dV_apply (p q : ℕ) (c : C F 𝔄 𝔅 p q) (st : 𝔄.Idx p × 𝔅.Idx (q + 1)) :
     dV F 𝔄 𝔅 p q c st = ∑ j : Fin (q + 2), ((-1 : ℤ) ^ (j : ℕ)) •
       F.res (inter_inf_le_right 𝔄 𝔅 st.1 st.2 j) (c (st.1, 𝔅.face st.2 j)) := by
   simp only [dV, LinearMap.pi_apply, LinearMap.sum_apply, LinearMap.smul_apply, LinearMap.comp_apply,
     LinearMap.proj_apply]
 
+/--
+@isnad1 id=eq.1h3v.s8.aee254cd7294 from=translated src=- shape=f7282555 vocab=daa9990f
+-/
 theorem succAbove_comp_succAbove {n : ℕ} {i j : Fin (n + 2)} (H : i ≤ j) :
     Fin.succAbove j.succ ∘ Fin.succAbove i = Fin.succAbove i.castSucc ∘ Fin.succAbove j := by
   ext k
@@ -122,16 +143,25 @@ theorem succAbove_comp_succAbove {n : ℕ} {i j : Fin (n + 2)} (H : i ≤ j) :
   simp only [Fin.lt_def, Fin.castSucc_mk, Fin.succ_mk, Fin.val_castSucc]
   split_ifs <;> simp_all only [Fin.val_succ, Fin.val_castSucc] <;> omega
 
+/--
+@isnad1 id=eq.3h13v.s10.1e01fcf579b0 from=translated src=- shape=73b76ec3 vocab=e9ab550a
+-/
 theorem res_left_eq {p q : ℕ} {s s' : 𝔄.Idx p} (heq : s = s') (t : 𝔅.Idx q) (f : C F 𝔄 𝔅 p q)
     {O : Z.Opens} (h : O ≤ 𝔄.inter s ⊓ 𝔅.inter t) (h' : O ≤ 𝔄.inter s' ⊓ 𝔅.inter t) :
     F.res h (f (s, t)) = F.res h' (f (s', t)) := by
   subst heq; rfl
 
+/--
+@isnad1 id=eq.3h13v.s10.2e69c2401620 from=translated src=- shape=1dcd88b2 vocab=e9ab550a
+-/
 theorem res_right_eq {p q : ℕ} (s : 𝔄.Idx p) {t t' : 𝔅.Idx q} (heq : t = t') (f : C F 𝔄 𝔅 p q)
     {O : Z.Opens} (h : O ≤ 𝔄.inter s ⊓ 𝔅.inter t) (h' : O ≤ 𝔄.inter s ⊓ 𝔅.inter t') :
     F.res h (f (s, t)) = F.res h' (f (s, t')) := by
   subst heq; rfl
 
+/--
+@isnad1 id=eq.0h8v.s13.dab2a7b1ca3d from=translated src=- shape=a9223509 vocab=83880979
+-/
 theorem dH_sq (p q : ℕ) : dH F 𝔄 𝔅 (p + 1) q ∘ₗ dH F 𝔄 𝔅 p q = 0 := by
   refine LinearMap.ext fun f => funext fun st => ?_
   obtain ⟨s, t⟩ := st
@@ -190,6 +220,9 @@ theorem dH_sq (p q : ℕ) : dH F 𝔄 𝔅 (p + 1) q ∘ₗ dH F 𝔄 𝔅 p q =
     refine congrArg Neg.neg (congrArg₂ (· • ·) (by congr 1) ?_)
     exact res_left_eq F 𝔄 𝔅 hface t f _ _
 
+/--
+@isnad1 id=eq.0h8v.s13.dbd01ecef9b8 from=translated src=- shape=466b8911 vocab=0c26084c
+-/
 theorem dV_sq (p q : ℕ) : dV F 𝔄 𝔅 p (q + 1) ∘ₗ dV F 𝔄 𝔅 p q = 0 := by
   refine LinearMap.ext fun f => funext fun st => ?_
   obtain ⟨s, t⟩ := st
@@ -248,6 +281,9 @@ theorem dV_sq (p q : ℕ) : dV F 𝔄 𝔅 p (q + 1) ∘ₗ dV F 𝔄 𝔅 p q =
     refine congrArg Neg.neg (congrArg₂ (· • ·) (by congr 1) ?_)
     exact res_right_eq F 𝔄 𝔅 s hface f _ _
 
+/--
+@isnad1 id=eq.0h8v.s12.b1783d78db6d from=translated src=- shape=f18106a2 vocab=4a2eb22a
+-/
 theorem dHV_comm (p q : ℕ) :
     dV F 𝔄 𝔅 (p + 1) q ∘ₗ dH F 𝔄 𝔅 p q = dH F 𝔄 𝔅 p (q + 1) ∘ₗ dV F 𝔄 𝔅 p q := by
   refine LinearMap.ext fun f => funext fun st => ?_

@@ -32,36 +32,57 @@ def qExpand (N : ℕ) [NeZero N] : LaurentSeries R →+* LaurentSeries R :=
 
 variable (N : ℕ) [NeZero N]
 
+/--
+@isnad1 id=eq.0h4v.s7.d8b603f2f6a4 from=translated src=- shape=3c23952c vocab=6c389242
+-/
 @[simp]
 theorem qExpand_coeff_mul (f : LaurentSeries R) (k : ℤ) :
     (qExpand R N f).coeff ((N : ℤ) * k) = f.coeff k :=
   HahnSeries.embDomain_coeff
 
+/--
+@isnad1 id=eq.1h4v.s7.e574767315c0 from=translated src=- shape=9e051303 vocab=969850da
+-/
 theorem qExpand_coeff_of_not_dvd (f : LaurentSeries R) {k : ℤ} (hk : ¬ (N : ℤ) ∣ k) :
     (qExpand R N f).coeff k = 0 := by
   refine HahnSeries.embDomain_of_notMem_range ?_
   rintro ⟨m, rfl⟩
   exact hk ⟨m, rfl⟩
 
+/--
+@isnad1 id=eq.0h4v.s8.3a070c065f3d from=translated src=- shape=496aa24e vocab=857a6921
+-/
 @[simp]
 theorem qExpand_single (k : ℤ) (r : R) :
     qExpand R N (HahnSeries.single k r) = HahnSeries.single ((N : ℤ) * k) r :=
   HahnSeries.embDomain_single
 
+/--
+@isnad1 id=eq.0h3v.s8.e339d74f5ff5 from=translated src=- shape=336e1619 vocab=c4a7d1f1
+-/
 @[simp]
 theorem qExpand_C (r : R) : qExpand R N (HahnSeries.C r) = HahnSeries.C r :=
   HahnSeries.embDomainRingHom_C
 
+/--
+@isnad1 id=eq.0h2v.s7.05908fecbf7e from=translated src=- shape=35633c64 vocab=9b5b6acd
+-/
 theorem qExpand_one_apply (f : LaurentSeries R) : qExpand R 1 f = f := by
   ext k
   have h : ((1 : ℕ) : ℤ) * k = k := by simp
   conv_lhs => rw [← h]
   rw [qExpand_coeff_mul]
 
+/--
+@isnad1 id=eq.1h4v.s8.eb1ce326fe76 from=translated src=- shape=14d558dd vocab=5880e07c
+-/
 theorem qExpand_congr {M K : ℕ} [NeZero M] [NeZero K] (h : M = K) (f : LaurentSeries R) :
     qExpand R M f = qExpand R K f := by
   subst h; rfl
 
+/--
+@isnad1 id=eq.0h4v.s9.2d7dda80ad24 from=translated src=- shape=a6ee43d0 vocab=a1549bbe
+-/
 theorem qExpand_qExpand (M : ℕ) [NeZero M] (f : LaurentSeries R) :
     qExpand R M (qExpand R N f) = qExpand R (M * N) f := by
   ext k
@@ -87,6 +108,9 @@ section RatAlgebra
 
 variable (N : ℕ) [NeZero N]
 
+/--
+@isnad1 id=eq.0h1v.s7.5e589b2da703 from=translated src=- shape=ffbc3ff7 vocab=bd2dfec2
+-/
 theorem algebraMap_apply_eq_single (c : ℚ) :
     algebraMap ℚ (LaurentSeries ℚ) c = HahnSeries.single 0 c := by
   have h1 : algebraMap ℚ (PowerSeries ℚ) c = PowerSeries.C c := by
@@ -100,6 +124,9 @@ def qExpandₐ : LaurentSeries ℚ →ₐ[ℚ] LaurentSeries ℚ where
     show qExpand ℚ N (algebraMap ℚ (LaurentSeries ℚ) r) = algebraMap ℚ (LaurentSeries ℚ) r
     rw [algebraMap_apply_eq_single, qExpand_single, mul_zero]
 
+/--
+@isnad1 id=eq.0h2v.s8.05eb973788a3 from=translated src=- shape=daff505c vocab=9b64808f
+-/
 @[simp]
 theorem qExpandₐ_apply (f : LaurentSeries ℚ) : qExpandₐ N f = qExpand ℚ N f := rfl
 
@@ -110,6 +137,9 @@ section JFunction
 def eisenstein4 : PowerSeries ℤ :=
   PowerSeries.mk fun n => if n = 0 then 1 else 240 * ∑ d ∈ n.divisors, (d : ℤ) ^ 3
 
+/--
+@isnad1 id=eq.0h0v.s5.fbbb80772ab5 from=translated src=- shape=8b3e5d3e vocab=965ecb19
+-/
 @[simp]
 theorem constantCoeff_eisenstein4 : PowerSeries.constantCoeff eisenstein4 = 1 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff]
@@ -118,6 +148,9 @@ theorem constantCoeff_eisenstein4 : PowerSeries.constantCoeff eisenstein4 = 1 :=
 def etaProd : PowerSeries ℤ :=
   ∏' n : ℕ, (1 - PowerSeries.X ^ (n + 1))
 
+/--
+@isnad1 id=eq.0h0v.s5.4c97d98c3dd2 from=translated src=- shape=8b3e5d3e vocab=08dcf134
+-/
 theorem constantCoeff_etaProd : PowerSeries.constantCoeff etaProd = 1 := by
   rw [etaProd]
   simp [(PowerSeries.WithPiTopology.multipliable_one_sub_X_pow ℤ).map_tprod _
@@ -125,14 +158,23 @@ theorem constantCoeff_etaProd : PowerSeries.constantCoeff etaProd = 1 := by
 
 def dedekindEtaUnit : PowerSeries ℤ := etaProd ^ 24
 
+/--
+@isnad1 id=eq.0h0v.s5.8396a6755eea from=translated src=- shape=8b3e5d3e vocab=7cbf2721
+-/
 theorem constantCoeff_dedekindEtaUnit : PowerSeries.constantCoeff dedekindEtaUnit = 1 := by
   rw [dedekindEtaUnit, map_pow, constantCoeff_etaProd, one_pow]
 
 def dedekindEtaUnitInv : PowerSeries ℤ := dedekindEtaUnit.invOfUnit 1
 
+/--
+@isnad1 id=eq.0h0v.s4.ae606df674e7 from=translated src=- shape=41c5198e vocab=11989012
+-/
 theorem dedekindEtaUnit_mul_inv : dedekindEtaUnit * dedekindEtaUnitInv = 1 :=
   PowerSeries.mul_invOfUnit _ _ (by rw [constantCoeff_dedekindEtaUnit]; rfl)
 
+/--
+@isnad1 id=eq.0h0v.s5.d6ab4759282b from=translated src=- shape=8b3e5d3e vocab=11732c1e
+-/
 theorem constantCoeff_dedekindEtaUnitInv :
     PowerSeries.constantCoeff dedekindEtaUnitInv = 1 := by
   have h := congrArg (PowerSeries.constantCoeff (R := ℤ)) dedekindEtaUnit_mul_inv
@@ -140,6 +182,9 @@ theorem constantCoeff_dedekindEtaUnitInv :
 
 def jNum : PowerSeries ℤ := eisenstein4 ^ 3 * dedekindEtaUnitInv
 
+/--
+@isnad1 id=eq.0h0v.s5.72307e899753 from=translated src=- shape=8b3e5d3e vocab=2eac2372
+-/
 @[simp]
 theorem constantCoeff_jNum : PowerSeries.constantCoeff jNum = 1 := by
   rw [jNum, map_mul, map_pow, constantCoeff_eisenstein4, constantCoeff_dedekindEtaUnitInv,
@@ -147,6 +192,9 @@ theorem constantCoeff_jNum : PowerSeries.constantCoeff jNum = 1 := by
 
 def jNumQ : PowerSeries ℚ := jNum.map (Int.castRingHom ℚ)
 
+/--
+@isnad1 id=eq.0h0v.s5.9e4df0490280 from=translated src=- shape=8b3e5d3e vocab=b0a7ea04
+-/
 @[simp]
 theorem constantCoeff_jNumQ : PowerSeries.constantCoeff jNumQ = 1 := by
   rw [← PowerSeries.coeff_zero_eq_constantCoeff, jNumQ, PowerSeries.coeff_map,
@@ -156,6 +204,9 @@ theorem constantCoeff_jNumQ : PowerSeries.constantCoeff jNumQ = 1 := by
 def jq : LaurentSeries ℚ :=
   HahnSeries.single (-1 : ℤ) 1 * HahnSeries.ofPowerSeries ℤ ℚ jNumQ
 
+/--
+@isnad1 id=eq.1h3v.s7.5df7d95d663d from=translated src=- shape=8a4291ab vocab=03c9d4fc
+-/
 theorem ofPowerSeries_coeff_of_neg {R : Type*} [Semiring R] (f : PowerSeries R) {k : ℤ}
     (hk : k < 0) : (HahnSeries.ofPowerSeries ℤ R f).coeff k = 0 := by
   rw [HahnSeries.ofPowerSeries_apply]
@@ -163,35 +214,56 @@ theorem ofPowerSeries_coeff_of_neg {R : Type*} [Semiring R] (f : PowerSeries R) 
   rintro ⟨m, rfl⟩
   exact absurd hk (not_lt.mpr (Int.natCast_nonneg m))
 
+/--
+@isnad1 id=eq.0h1v.s8.256fdc267011 from=translated src=- shape=471abbfb vocab=fdb44e75
+-/
 theorem jq_pow (n : ℕ) :
     jq ^ n = HahnSeries.single (-(n : ℤ)) 1 * HahnSeries.ofPowerSeries ℤ ℚ (jNumQ ^ n) := by
   have h : n • (-1 : ℤ) = -(n : ℤ) := by simp
   rw [jq, mul_pow, HahnSeries.single_pow, one_pow, h, ← map_pow]
 
+/--
+@isnad1 id=eq.0h1v.s6.2247841bc192 from=translated src=- shape=624a538a vocab=5012e712
+-/
 theorem coeff_jq_pow_self (n : ℕ) : (jq ^ n).coeff (-(n : ℤ)) = 1 := by
   rw [jq_pow, HahnSeries.coeff_single_mul, one_mul, sub_neg_eq_add, neg_add_cancel,
     show (0 : ℤ) = ((0 : ℕ) : ℤ) from rfl, HahnSeries.ofPowerSeries_apply_coeff,
     PowerSeries.coeff_zero_eq_constantCoeff, map_pow, constantCoeff_jNumQ, one_pow]
 
+/--
+@isnad1 id=eq.1h2v.s6.07c9a58e1c05 from=translated src=- shape=ab30b306 vocab=5f4b8252
+-/
 theorem coeff_jq_pow_of_lt {n : ℕ} {m : ℤ} (hm : m < -(n : ℤ)) : (jq ^ n).coeff m = 0 := by
   rw [jq_pow, HahnSeries.coeff_single_mul, one_mul]
   exact ofPowerSeries_coeff_of_neg _ (by omega)
 
+/--
+@isnad1 id=eq.0h0v.s4.d12aee528da9 from=translated src=- shape=99743aa8 vocab=15b78886
+-/
 @[simp]
 theorem coeff_jq_neg_one : jq.coeff (-1 : ℤ) = 1 := by
   have h := coeff_jq_pow_self 1
   simpa using h
 
+/--
+@isnad1 id=eq.1h1v.s5.2bcee4008485 from=translated src=- shape=998a7d86 vocab=77182cf1
+-/
 theorem coeff_jq_of_lt {k : ℤ} (hk : k < -1) : jq.coeff k = 0 := by
   have h := coeff_jq_pow_of_lt (n := 1) (m := k) (by simpa using hk)
   simpa using h
 
+/--
+@isnad1 id=ne.0h0v.s5.785d5fdb3f45 from=translated src=- shape=2d527563 vocab=083f72a2
+-/
 theorem jq_ne_zero : jq ≠ 0 := fun h => by simpa [h] using coeff_jq_neg_one
 
 end JFunction
 
 def jqN (N : ℕ) [NeZero N] : LaurentSeries ℚ := qExpand ℚ N jq
 
+/--
+@isnad1 id=eq.0h0v.s4.5e1998a03f52 from=translated src=- shape=52b49c84 vocab=c36e5a2e
+-/
 @[simp]
 theorem jqN_one : jqN 1 = jq := qExpand_one_apply jq
 
@@ -199,6 +271,9 @@ section NamedInputs
 
 def dedekindPsi (N : ℕ) : ℕ := ∑ d ∈ N.divisors with Squarefree d, N / d
 
+/--
+@isnad1 id=eq.0h0v.s3.cb78d888b2e7 from=translated src=- shape=3c26ae4f vocab=93177ece
+-/
 @[simp]
 theorem dedekindPsi_one : dedekindPsi 1 = 1 := by
   rw [dedekindPsi, Nat.divisors_one, Finset.filter_singleton, ite_eq_left squarefree_one]
@@ -207,6 +282,9 @@ theorem dedekindPsi_one : dedekindPsi 1 = 1 := by
 def evalAtJ : Polynomial ℤ →+* LaurentSeries ℚ :=
   (Polynomial.aeval (R := ℤ) jq).toRingHom
 
+/--
+@isnad1 id=eq.0h0v.s6.189aef15db79 from=translated src=- shape=919c8aac vocab=b7980714
+-/
 @[simp]
 theorem evalAtJ_X : evalAtJ Polynomial.X = jq := by
   simp [evalAtJ]
@@ -265,6 +343,9 @@ def divisorExpansions : Set (LaurentSeries ℚ) :=
   {x | ∃ (d : ℕ) (_ : NeZero d), d ∣ N ∧ x = qExpand ℚ d jq}
 
 omit [NeZero N] in
+/--
+@isnad1 id=mem.1h2v.s7.4add1c07cee1 from=translated src=- shape=567b686e vocab=f0ae2dc1
+-/
 theorem mem_divisorExpansions {d : ℕ} [NeZero d] (hd : d ∣ N) :
     qExpand ℚ d jq ∈ divisorExpansions N :=
   ⟨d, ‹_›, hd, rfl⟩
@@ -273,10 +354,16 @@ def modularFunctionFieldFull : IntermediateField ℚ (LaurentSeries ℚ) :=
   IntermediateField.adjoin ℚ (divisorExpansions N)
 
 omit [NeZero N] in
+/--
+@isnad1 id=mem.1h2v.s8.19136069432b from=translated src=- shape=ddc82088 vocab=37b13afb
+-/
 theorem jqd_mem_full {d : ℕ} [NeZero d] (hd : d ∣ N) :
     qExpand ℚ d jq ∈ modularFunctionFieldFull N :=
   subset_adjoin ℚ _ (mem_divisorExpansions N hd)
 
+/--
+@isnad1 id=le.0h1v.s7.9e02a1b4dcee from=translated src=- shape=f80a9942 vocab=fa68f7c8
+-/
 theorem modularFunctionField_le_full :
     modularFunctionField N ≤ modularFunctionFieldFull N := by
   rw [modularFunctionField, adjoin_le_iff]
@@ -285,6 +372,9 @@ theorem modularFunctionField_le_full :
     rwa [qExpand_one_apply] at h
   · exact jqd_mem_full N dvd_rfl
 
+/--
+@isnad1 id=le.1h2v.s7.93ac192ff18c from=translated src=- shape=bddfa3df vocab=64659c69
+-/
 theorem full_degeneracy_le {N M : ℕ} [NeZero N] [NeZero M] (h : N ∣ M) :
     modularFunctionFieldFull N ≤ modularFunctionFieldFull M := by
   rw [modularFunctionFieldFull, adjoin_le_iff]
@@ -294,6 +384,9 @@ theorem full_degeneracy_le {N M : ℕ} [NeZero N] [NeZero M] (h : N ∣ M) :
 
 omit [NeZero N] in
 
+/--
+@isnad1 id=le.0h2v.s8.2fe9091aab3e from=translated src=- shape=b7b9cd2d vocab=e1eacfe8
+-/
 theorem full_degeneracy_map_le (ℓ : ℕ) [NeZero ℓ] :
     (modularFunctionFieldFull N).map (qExpandₐ ℓ) ≤ modularFunctionFieldFull (N * ℓ) := by
   rw [modularFunctionFieldFull, adjoin_map, adjoin_le_iff]
