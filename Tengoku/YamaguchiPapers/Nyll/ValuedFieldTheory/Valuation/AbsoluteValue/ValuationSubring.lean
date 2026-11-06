@@ -1,0 +1,225 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.YamaguchiPapers.Nyll.ValuedFieldTheory.Valuation.AbsoluteValue.Theory.Core
+import Tengoku.Seed.Algebra.Polynomial.Lifts
+import Tengoku.Seed.RingTheory.LocalRing.ResidueField.Basic
+import Tengoku.Seed.RingTheory.Valuation.LocalSubring
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Closed unit balls of nonarchimedean absolute values
+
+This file records the valuation ring attached directly to a multiplicative
+absolute value in the nonarchimedean case.  It is the section-3 object used by
+the finite-degree norm construction before any discrete-valuation-field packaging.
+-/
+
+noncomputable section
+
+open scoped Polynomial
+
+namespace AlgebraicNumberTheory
+namespace Valuations
+
+/-- The closed unit ball `{x | |x| ≤ 1}` of a nonarchimedean absolute value,
+bundled as a subring.-/
+def absoluteValueUnitBallSubring
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v) : Subring K where
+  carrier := {x | v x ≤ 1}
+  zero_mem' := by change v 0 ≤ 1; rw [v.map_zero]; exact zero_le_one
+  one_mem' := by change v 1 ≤ 1; rw [v.map_one]
+  add_mem' := by
+    intro x y hx hy
+    exact (LubinTate.Valuations.strong_triangle_of_nonarchimedean
+      v hnonarch x y).trans (max_le hx hy)
+  neg_mem' := by
+    intro x hx
+    change v (-x) ≤ 1
+    rw [AbsoluteValue.map_neg]
+    exact hx
+  mul_mem' := by
+    intro x y hx hy
+    change v (x * y) ≤ 1
+    rw [v.map_mul]
+    exact (mul_le_of_le_one_left (v.nonneg y) hx).trans hy
+
+/-- Membership in the absolute-value valuation subring is the closed-unit-ball
+condition.-/
+theorem mem_absoluteValueUnitBallSubring_iff
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v) (x : K) :
+    x ∈ absoluteValueUnitBallSubring v hnonarch ↔ v x ≤ 1 :=
+  Iff.rfl
+
+/-- Every field element or its inverse lies in the closed unit ball of a
+nonarchimedean absolute value.-/
+theorem absoluteValueUnitBallSubring_mem_or_inv_mem
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v) (x : K) :
+    x ∈ absoluteValueUnitBallSubring v hnonarch ∨
+      x⁻¹ ∈ absoluteValueUnitBallSubring v hnonarch := by
+  by_cases hx : v x ≤ 1
+  · exact Or.inl ((mem_absoluteValueUnitBallSubring_iff
+      v hnonarch x).2 hx)
+  · right
+    have hx_gt : 1 < v x := lt_of_not_ge hx
+    rw [mem_absoluteValueUnitBallSubring_iff, map_inv₀]
+    exact inv_le_one_of_one_le₀ hx_gt.le
+
+/-- The closed unit ball of a nonarchimedean absolute value, bundled as
+mathlib's `ValuationSubring`.-/
+def absoluteValueValuationSubring
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v) :
+    ValuationSubring K :=
+  ValuationSubring.ofSubring
+    (absoluteValueUnitBallSubring v hnonarch)
+    (absoluteValueUnitBallSubring_mem_or_inv_mem v hnonarch)
+
+/-- Membership in the bundled valuation subring is again the closed-unit-ball
+condition.-/
+theorem mem_absoluteValueValuationSubring_iff
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v) (x : K) :
+    x ∈ absoluteValueValuationSubring v hnonarch ↔
+      v x ≤ 1 := by
+  exact (ValuationSubring.mem_ofSubring
+    (absoluteValueUnitBallSubring v hnonarch)
+    (absoluteValueUnitBallSubring_mem_or_inv_mem v hnonarch) x).trans
+    (mem_absoluteValueUnitBallSubring_iff v hnonarch x)
+
+/-- In any submonoid of a field whose elements are exactly the closed unit
+ball of an absolute value, the units are exactly the elements of absolute
+value `1`.-/
+theorem isUnit_iff_abs_eq_one_of_mem_iff_le_one
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    {C : Type*} [SetLike C K] [SubmonoidClass C K]
+    (S : C) (hS : ∀ x : K, x ∈ S ↔ v x ≤ 1) (x : S) :
+    IsUnit x ↔ v (x : K) = 1 := by
+  constructor
+  · intro hx
+    have hx_inv :=
+      (Submonoid.isUnit_iff_and (S := S) (a := x)).mp hx
+    have hx_le : v (x : K) ≤ 1 := (hS (x : K)).1 x.property
+    have hinv_le : v ((x : K)⁻¹) ≤ 1 :=
+      (hS ((x : K)⁻¹)).1 hx_inv.2
+    have hmul : v (x : K) * v ((x : K)⁻¹) = 1 := by
+      rw [← v.map_mul, mul_inv_cancel₀ hx_inv.1, v.map_one]
+    have hge : 1 ≤ v (x : K) := by
+      calc
+        1 = v (x : K) * v ((x : K)⁻¹) := hmul.symm
+        _ ≤ v (x : K) * 1 :=
+          mul_le_mul_of_nonneg_left hinv_le (v.nonneg (x : K))
+        _ = v (x : K) := mul_one _
+    exact le_antisymm hx_le hge
+  · intro hx
+    rw [Submonoid.isUnit_iff_and (S := S) (a := x)]
+    constructor
+    · intro hx_zero
+      have hzero_one : (0 : ℝ) = 1 := by
+        rw [hx_zero, v.map_zero] at hx
+        exact hx
+      exact zero_ne_one hzero_one
+    · exact (hS ((x : K)⁻¹)).2 <| by
+        rw [map_inv₀, hx, inv_one]
+
+/-- In the same closed-unit-ball situation, nonunits are exactly the elements
+of absolute value strictly less than `1`.-/
+theorem not_isUnit_iff_abs_lt_one_of_mem_iff_le_one
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    {C : Type*} [SetLike C K] [SubmonoidClass C K]
+    (S : C) (hS : ∀ x : K, x ∈ S ↔ v x ≤ 1) (x : S) :
+    ¬ IsUnit x ↔ v (x : K) < 1 := by
+  have hx_le : v (x : K) ≤ 1 := (hS (x : K)).1 x.property
+  rw [isUnit_iff_abs_eq_one_of_mem_iff_le_one v S hS]
+  exact hx_le.lt_iff_ne.symm
+
+/-- The maximal ideal of the closed-unit-ball valuation subring consists
+exactly of the elements of absolute value strictly less than `1`.-/
+theorem absoluteValueValuationSubring_mem_maximalIdeal_iff_abs_lt_one
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
+    (x : absoluteValueValuationSubring v hnonarch) :
+    x ∈ IsLocalRing.maximalIdeal
+        (absoluteValueValuationSubring v hnonarch) ↔
+      v (x : K) < 1 := by
+  rw [IsLocalRing.mem_maximalIdeal, mem_nonunits_iff]
+  exact not_isUnit_iff_abs_lt_one_of_mem_iff_le_one
+    v (absoluteValueValuationSubring v hnonarch)
+    (mem_absoluteValueValuationSubring_iff v hnonarch) x
+
+/-- A closed-unit-ball element reduces to zero in the residue field exactly
+when its absolute value is strictly less than `1`.-/
+theorem absoluteValueUnitBallSubringAsValuationSubring_residue_eq_zero_iff_abs_lt_one
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
+    (x : absoluteValueValuationSubring v hnonarch) :
+    IsLocalRing.residue
+        (absoluteValueValuationSubring v hnonarch) x = 0 ↔
+      v (x : K) < 1 := by
+  rw [IsLocalRing.residue_eq_zero_iff,
+    absoluteValueValuationSubring_mem_maximalIdeal_iff_abs_lt_one]
+
+/-- A closed-unit-ball element has nonzero residue exactly when its absolute
+value is `1`.-/
+theorem absoluteValueUnitBallSubringAsValuationSubring_residue_ne_zero_iff_abs_eq_one
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v)
+    (x : absoluteValueValuationSubring v hnonarch) :
+    IsLocalRing.residue
+        (absoluteValueValuationSubring v hnonarch) x ≠ 0 ↔
+      v (x : K) = 1 := by
+  have hx_le : v (x : K) ≤ 1 :=
+    (mem_absoluteValueValuationSubring_iff
+      v hnonarch (x : K)).1 x.property
+  rw [ne_eq,
+    absoluteValueUnitBallSubringAsValuationSubring_residue_eq_zero_iff_abs_lt_one]
+  constructor
+  · intro hx
+    exact le_antisymm hx_le (not_lt.mp hx)
+  · intro hx
+    rw [hx]
+    exact not_lt_of_ge le_rfl
+
+/-- A field polynomial whose coefficients lie in the closed unit ball has a
+degree-preserving lift to the actual valuation-subring bundle used for
+residue fields.  The lift may be chosen coefficientwise, so the absolute
+values of the lifted coefficients are the original coefficient values.-/
+theorem exists_polynomial_over_absoluteValueUnitBallSubringAsValuationSubring_of_coeff_abs_le_one
+    {K : Type*} [Field K] (v : AbsoluteValue K ℝ)
+    (hnonarch : LubinTate.Valuations.NonarchimedeanAbsoluteValue v) (f : K[X])
+    (hfcoeff : ∀ n : ℕ, v (f.coeff n) ≤ 1) :
+    ∃ F : (absoluteValueValuationSubring v hnonarch)[X],
+      F.map (algebraMap
+          (absoluteValueValuationSubring v hnonarch) K) = f ∧
+        F.natDegree = f.natDegree ∧
+          ∀ n : ℕ, v (F.coeff n : K) = v (f.coeff n) := by
+  let V := absoluteValueValuationSubring v hnonarch
+  have hlifts : f ∈ Polynomial.lifts (algebraMap V K) := by
+    rw [Polynomial.lifts_iff_coeff_lifts]
+    intro n
+    exact
+      ⟨⟨f.coeff n,
+          (mem_absoluteValueValuationSubring_iff
+            v hnonarch (f.coeff n)).2 (hfcoeff n)⟩,
+        by simp [V]⟩
+  rcases Polynomial.exists_degree_eq_of_mem_lifts hlifts with
+    ⟨F, hmap, hdegree⟩
+  refine ⟨F, hmap, Polynomial.natDegree_eq_of_degree_eq hdegree, ?_⟩
+  intro n
+  have hcoeff :
+      (F.coeff n : K) = f.coeff n := by
+    have h := congrArg (fun P : K[X] => P.coeff n) hmap
+    simpa [Polynomial.coeff_map, V] using h
+  rw [hcoeff]
+
+end Valuations
+end AlgebraicNumberTheory
+
+end
