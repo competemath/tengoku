@@ -48,7 +48,16 @@ class RootPrefixedNames(unittest.TestCase):
     """`theorem _root_.A.B.c` declares exactly `A.B.c`. The tagger compared the written text with the name as it stands, found `_root_.` in front, called the theorem "generated" and skipped it:
     the module stayed untagged and autotag_push refused the PR (Tengoku yamaguchi-papers part 3, ten modules, 6 Nov 2026)."""
 
-    NAMES = ["A.c", "A.B.c", "AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral", "Foo.«b.c»", "Foo.α_β", "x", "A.B.C.D.e'", "Mathlib.Foo.bar_apply"]
+    NAMES = [
+        "A.c",
+        "A.B.c",
+        "AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral",
+        "Foo.«b.c»",
+        "Foo.α_β",
+        "x",
+        "A.B.C.D.e'",
+        "Mathlib.Foo.bar_apply",
+    ]
     NAMESPACES = ["", "X.", "X.Y.", "AlgebraicCurves.Geometry.Curves.Proofs.GeometricallyIntegral_of_isPullback_of_geometricallyIntegral."]
 
     def test_grid(self):
@@ -81,7 +90,12 @@ class RootPrefixedNames(unittest.TestCase):
         )
         line = text.split("\n").index(next(l for l in text.split("\n") if l.startswith("theorem "))) + 1
         written = "_root_.AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral"
-        it = tag.Item("AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral", (line, 0, line, 200), (line, len("theorem "), line, len("theorem ") + len(written)), TAG)
+        it = tag.Item(
+            "AlgebraicGeometry.GeometricallyIntegral.of_isPullback_of_geometricallyIntegral",
+            (line, 0, line, 200),
+            (line, len("theorem "), line, len("theorem ") + len(written)),
+            TAG,
+        )
         placed, skipped = tag.locate(text, [it])
         self.assertEqual(skipped, [])
         self.assertEqual(len(placed), 1)
