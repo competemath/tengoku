@@ -1,0 +1,1 @@
+-- Foundation: a factory bundle (data/intake/foundation). This file only marks the library for Tengoku/All.lean.

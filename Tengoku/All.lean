@@ -31,6 +31,7 @@ import Tengoku.LanaFormalSchemes
 import Tengoku.FltAnthropic
 import Tengoku.DescriptiveComplexity
 import Tengoku.Leanmodularforms
+import Tengoku.Foundation
 import Tengoku.Erdos1196
 import Tengoku.OpenaiMath
 import Tengoku.ImmermanVardi
