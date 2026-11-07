@@ -51,7 +51,9 @@ abbrev regionSumset (Λ 𝓝 : Finset ℤ) : Finset ℤ :=
 /-- A site belongs to \(\Lambda + \mathcal N\) exactly when it is the sum of a site in
 \(\Lambda\) and a displacement in \(\mathcal N\).
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=iff.0h3v.s6.997365b366d9 from=translated src=- shape=5b8f1cf7 vocab=e1fa2f99
+-/
 lemma mem_regionSumset (i : ℤ) (Λ 𝓝 : Finset ℤ) :
     i ∈ regionSumset Λ 𝓝 ↔ ∃ j ∈ Λ, ∃ a ∈ 𝓝, j + a = i :=
   Finset.mem_add
@@ -60,7 +62,9 @@ lemma mem_regionSumset (i : ℤ) (Λ 𝓝 : Finset ℤ) :
 \(\Gamma+\mathcal N\) is disjoint from \(\Lambda\).
 
 This is elementary finite-region arithmetic for reflected neighborhoods.
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=iff.0h3v.s5.1b8c937e1aa9 from=translated src=- shape=5f244fc5 vocab=1092dbef
+-/
 lemma disjoint_regionSumset_neg_iff {Γ Λ 𝓝 : Finset ℤ} :
     Disjoint Γ (regionSumset Λ (-𝓝)) ↔ Disjoint (regionSumset Γ 𝓝) Λ := by
   constructor
@@ -84,7 +88,9 @@ lemma disjoint_regionSumset_neg_iff {Γ Λ 𝓝 : Finset ℤ} :
 
 /-- Adding the singleton displacement region \(\{a\}\) agrees with translation by \(a\).
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h2v.s4.194c434e0856 from=translated src=- shape=4dc48757 vocab=1175fcd0
+-/
 @[simp]
 lemma regionSumset_singleton_right (Λ : Finset ℤ) (a : ℤ) :
     regionSumset Λ {a} = translateRegion a Λ := by
@@ -102,28 +108,36 @@ lemma regionSumset_singleton_right (Λ : Finset ℤ) (a : ℤ) :
 
 /-- The finite-region sumset is monotone in both arguments.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=le.2h4v.s5.0eeb617dfc67 from=translated src=- shape=1e98b407 vocab=e515fbea
+-/
 lemma regionSumset_mono {Λ Γ 𝓝 𝓜 : Finset ℤ} (hΛ : Λ ⊆ Γ) (h𝓝 : 𝓝 ⊆ 𝓜) :
     regionSumset Λ 𝓝 ⊆ regionSumset Γ 𝓜 :=
   Finset.add_subset_add hΛ h𝓝
 
 /-- Enlarging the first region enlarges its sumset with a fixed displacement region.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=le.1h3v.s5.069496779dd5 from=translated src=- shape=d9e4c9e8 vocab=e515fbea
+-/
 lemma regionSumset_mono_left {Λ Γ : Finset ℤ} (𝓝 : Finset ℤ) (h : Λ ⊆ Γ) :
     regionSumset Λ 𝓝 ⊆ regionSumset Γ 𝓝 :=
   Finset.add_subset_add_right h
 
 /-- Enlarging the displacement region enlarges the sumset with a fixed first region.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=le.1h3v.s5.e5bed0df25ed from=translated src=- shape=8daef932 vocab=e515fbea
+-/
 lemma regionSumset_mono_right (Λ : Finset ℤ) {𝓝 𝓜 : Finset ℤ} (h : 𝓝 ⊆ 𝓜) :
     regionSumset Λ 𝓝 ⊆ regionSumset Λ 𝓜 :=
   Finset.add_subset_add_left h
 
 /-- The singleton zero region is a left identity for finite-region sumsets.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h1v.s4.7fc034dd5530 from=translated src=- shape=6b56f2c7 vocab=22dd2753
+-/
 @[simp]
 lemma regionSumset_zero_left (𝓝 : Finset ℤ) : regionSumset {0} 𝓝 = 𝓝 := by
   change (0 : Finset ℤ) + 𝓝 = 𝓝
@@ -131,7 +145,9 @@ lemma regionSumset_zero_left (𝓝 : Finset ℤ) : regionSumset {0} 𝓝 = 𝓝 
 
 /-- The singleton zero region is a right identity for finite-region sumsets.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h1v.s4.c83aea9a8664 from=translated src=- shape=c1efff2e vocab=22dd2753
+-/
 @[simp]
 lemma regionSumset_zero_right (Λ : Finset ℤ) : regionSumset Λ {0} = Λ := by
   change Λ + (0 : Finset ℤ) = Λ
@@ -140,7 +156,9 @@ lemma regionSumset_zero_right (Λ : Finset ℤ) : regionSumset Λ {0} = Λ := by
 /-- Finite-region sumsets are associative.
 
 This law supports composition of finite-propagation bounds.
-Source: arXiv:1703.09188, Appendix, line 2298.-/
+Source: arXiv:1703.09188, Appendix, line 2298.
+@isnad1 id=eq.0h3v.s4.9043b86ae3b1 from=translated src=- shape=0ea5f583 vocab=2744c1d9
+-/
 lemma regionSumset_assoc (Λ 𝓝 𝓜 : Finset ℤ) :
     regionSumset (regionSumset Λ 𝓝) 𝓜 = regionSumset Λ (regionSumset 𝓝 𝓜) :=
   add_assoc Λ 𝓝 𝓜

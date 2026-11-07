@@ -50,13 +50,17 @@ namespace ProjectiveRepresentation
 
 variable {ω : ScalarCocycle G} (ρ : ProjectiveRepresentation (D := D) ω)
 
-/-- The projective multiplication law, restated as a lemma.-/
+/-- The projective multiplication law, restated as a lemma.
+@isnad1 id=eq.0h6v.s7.ae6b5881cadb from=translated src=- shape=67dce3b4 vocab=bc1b2436
+-/
 lemma map_mul (g h : G) :
     ((ρ.X g : Matrix (Fin D) (Fin D) ℂ) * (ρ.X h : Matrix (Fin D) (Fin D) ℂ)) =
       (ω g h : ℂ) • (ρ.X (g * h) : Matrix (Fin D) (Fin D) ℂ) :=
   ρ.map_mul' g h
 
-/-- Left-associated triple product in terms of the cocycle.-/
+/-- Left-associated triple product in terms of the cocycle.
+@isnad1 id=eq.0h7v.s8.0aa5e0e92746 from=translated src=- shape=ab2cc8e1 vocab=bc1b2436
+-/
 lemma mul_assoc_left_scalar (g h k : G) :
     (((ρ.X g : Matrix (Fin D) (Fin D) ℂ) * (ρ.X h : Matrix (Fin D) (Fin D) ℂ)) *
         (ρ.X k : Matrix (Fin D) (Fin D) ℂ)) =
@@ -76,7 +80,9 @@ lemma mul_assoc_left_scalar (g h k : G) :
     _ = ((ω g h : ℂ) * (ω (g * h) k : ℂ)) •
           (ρ.X ((g * h) * k) : Matrix (Fin D) (Fin D) ℂ) := by simp [mul_smul]
 
-/-- Right-associated triple product in terms of the cocycle.-/
+/-- Right-associated triple product in terms of the cocycle.
+@isnad1 id=eq.0h7v.s8.c3d16c15aaea from=translated src=- shape=1ba57604 vocab=bc1b2436
+-/
 lemma mul_assoc_right_scalar (g h k : G) :
     ((ρ.X g : Matrix (Fin D) (Fin D) ℂ) *
         ((ρ.X h : Matrix (Fin D) (Fin D) ℂ) * (ρ.X k : Matrix (Fin D) (Fin D) ℂ))) =
@@ -97,13 +103,17 @@ lemma mul_assoc_right_scalar (g h k : G) :
           (ρ.X (g * (h * k)) : Matrix (Fin D) (Fin D) ℂ) := by
           simp [smul_smul, mul_comm]
 
-/-- Scalar cancellation on an invertible matrix (requires a nonempty index set).-/
+/-- Scalar cancellation on an invertible matrix (requires a nonempty index set).
+@isnad1 id=eq.3h4v.s7.239e5f966586 from=translated src=- shape=4c0edc8c vocab=c4b5848b
+-/
 lemma smul_eq_smul_cancel {a b : ℂ} {M : Matrix (Fin D) (Fin D) ℂ}
     (hD : 0 < D) (hM : IsUnit M) (h : a • M = b • M) : a = b := by
   have : Nonempty (Fin D) := ⟨⟨0, hD⟩⟩
   exact smul_left_injective ℂ hM.ne_zero h
 
-/-- Associativity forces the cocycle condition (for `D > 0`).-/
+/-- Associativity forces the cocycle condition (for `D > 0`).
+@isnad1 id=eq.1h7v.s6.b82430fa580c from=translated src=- shape=14e7d918 vocab=09029e63
+-/
 theorem cocycle_of_assoc (ρ : ProjectiveRepresentation (D := D) ω) (hD : 0 < D) (g h k : G) :
     (ω g h : ℂ) * (ω (g * h) k : ℂ) = (ω g (h * k) : ℂ) * (ω h k : ℂ) := by
   have hAssoc :

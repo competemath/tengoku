@@ -64,7 +64,9 @@ instance (R : Finset V) (e : Edge G) : Decidable (IsRegionIncidentEdge (G := G) 
   unfold IsRegionIncidentEdge; infer_instance
 
 omit [Fintype V] [DecidableRel G.Adj] in
-/-- An edge incident to each of two disjoint regions crosses the boundary of the second.-/
+/-- An edge incident to each of two disjoint regions crosses the boundary of the second.
+@isnad1 id=isregion.3h5v.s5.a4ee0aeabc96 from=translated src=- shape=ff8e64de vocab=30b1cf1e
+-/
 theorem isRegionBoundaryEdge_of_disjoint_incident (S T : Finset V)
     (hST : Disjoint S T) {e : Edge G}
     (hS : IsRegionIncidentEdge (G := G) S e)
@@ -77,7 +79,9 @@ theorem isRegionBoundaryEdge_of_disjoint_incident (S T : Finset V)
   · exact (hdis hS2 hT2).elim
 
 omit [Fintype V] [DecidableRel G.Adj] in
-/-- A boundary edge of `R` has at least one endpoint in `R`.-/
+/-- A boundary edge of `R` has at least one endpoint in `R`.
+@isnad1 id=isregion.1h4v.s4.7099070a17cb from=translated src=- shape=498a6a5b vocab=ede248b5
+-/
 theorem isRegionBoundaryEdge_touches (R : Finset V) {f : Edge G}
     (hf : IsRegionBoundaryEdge (G := G) R f) : IsRegionIncidentEdge (G := G) R f := by
   rcases hf with ⟨h1, _⟩ | ⟨_, h2⟩
@@ -107,7 +111,9 @@ abbrev RegionPhysicalConfig (R : Finset V) : Type _ :=
 
 omit [Fintype V] in
 /-- The vertex product over `R` reads a virtual configuration only through edges incident to
-`R`: two configurations agreeing on every `R`-incident edge give the same product.-/
+`R`: two configurations agreeing on every `R`-incident edge give the same product.
+@isnad1 id=eq.1h8v.s9.35f1b0497e92 from=translated src=- shape=175a4151 vocab=6054959d
+-/
 theorem regionProd_subtype_congr (R : Finset V)
     (σ : RegionPhysicalConfig (V := V) (d := d) R) {ζ ζ' : VirtualConfig A}
     (h : ∀ e : Edge G, IsRegionIncidentEdge (G := G) R e → ζ e = ζ' e) :
@@ -128,6 +134,9 @@ def regionBoundaryLabel (A : Tensor G d) (R : Finset V) (ζ : VirtualConfig A) :
   fun f => ζ f.1
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s6.416f5932a197 from=translated src=- shape=e7381c82 vocab=224a53d3
+-/
 @[simp] theorem regionBoundaryLabel_apply (A : Tensor G d) (R : Finset V)
     (ζ : VirtualConfig A) (f : {f : Edge G // IsRegionBoundaryEdge (G := G) R f}) :
     regionBoundaryLabel (G := G) A R ζ f = ζ f.1 := rfl
@@ -166,7 +175,9 @@ coincide. The transport equivalences carry a configuration across the equality, 
 weight transports with them. -/
 
 omit [Fintype V] [DecidableRel G.Adj] in
-/-- Equal regions have the same boundary-edge predicate.-/
+/-- Equal regions have the same boundary-edge predicate.
+@isnad1 id=iff.1h5v.s5.c39c11b20616 from=translated src=- shape=c2da45ea vocab=6ff4e4b1
+-/
 theorem isRegionBoundaryEdge_congr {S R : Finset V} (h : S = R) (e : Edge G) :
     IsRegionBoundaryEdge (G := G) S e ↔ IsRegionBoundaryEdge (G := G) R e := by
   rw [h]
@@ -179,7 +190,9 @@ def regionBoundaryConfigCongr {S R : Finset V} (h : S = R) :
     (Equiv.subtypeEquivRight (isRegionBoundaryEdge_congr (G := G) h))
 
 omit [Fintype V] in
-/-- The transported configuration reads the same value as the original on a boundary edge.-/
+/-- The transported configuration reads the same value as the original on a boundary edge.
+@isnad1 id=eq.1h8v.s7.092dd6382fdd from=translated src=- shape=779cc73e vocab=651d866a
+-/
 theorem regionBoundaryConfigCongr_apply {S R : Finset V} (h : S = R)
     (bcfg : RegionBoundaryConfig (G := G) A S)
     (f : {f : Edge G // IsRegionBoundaryEdge (G := G) R f}) :
@@ -194,14 +207,18 @@ def regionPhysicalConfigCongr {S R : Finset V} (h : S = R) :
   Equiv.piCongrLeft' _ (Equiv.subtypeEquivRight (fun _ => by rw [h]))
 
 omit [Fintype V] [LinearOrder V] [DecidableRel G.Adj] in
-/-- The transported physical configuration reads the same value as the original on a vertex.-/
+/-- The transported physical configuration reads the same value as the original on a vertex.
+@isnad1 id=eq.1h6v.s7.5702c15ea542 from=translated src=- shape=ff1e5397 vocab=413d96dc
+-/
 theorem regionPhysicalConfigCongr_apply {S R : Finset V} (h : S = R)
     (τ : RegionPhysicalConfig (V := V) (d := d) S) (w : {w : V // w ∈ R}) :
     regionPhysicalConfigCongr (d := d) h τ w = τ ⟨w.1, by rw [h]; exact w.2⟩ := rfl
 
 /-- The blocked-region weight transports along a region-set equality: for equal regions the
 weight of a configuration agrees with the weight of its transported boundary and physical
-configurations.-/
+configurations.
+@isnad1 id=eq.1h8v.s7.338702dd84f4 from=translated src=- shape=2b572966 vocab=7c657549
+-/
 theorem regionBlockedWeight_congr {S R : Finset V} (h : S = R)
     (bdry : RegionBoundaryConfig (G := G) A S)
     (τ : RegionPhysicalConfig (V := V) (d := d) S) :

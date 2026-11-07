@@ -81,7 +81,9 @@ noncomputable def commutingMulMap [Nontrivial C] (A B : StarSubalgebra ℂ C)
         exact (hAB (star a) (star b)).eq
     | add x y hx hy => simp only [star_add, map_add, hx, hy]
 
-/-- The commuting multiplication map sends a pure tensor to the ambient product.-/
+/-- The commuting multiplication map sends a pure tensor to the ambient product.
+@isnad1 id=eq.1h5v.s12.a23cc0a34cfe from=translated src=- shape=d7367213 vocab=621994dc
+-/
 @[simp]
 theorem commutingMulMap_tmul (A B : StarSubalgebra ℂ C)
     [Nontrivial C]
@@ -90,7 +92,9 @@ theorem commutingMulMap_tmul (A B : StarSubalgebra ℂ C)
   rfl
 
 /-- The underlying linear map of commuting multiplication is the standard product map on the
-underlying submodules.-/
+underlying submodules.
+@isnad1 id=eq.1h3v.s12.10359c139560 from=translated src=- shape=033f360d vocab=2855ab90
+-/
 theorem commutingMulMap_toLinearMap (A B : StarSubalgebra ℂ C)
     [Nontrivial C]
     (hAB : ∀ a : A, ∀ b : B, Commute (a : C) (b : C)) :
@@ -101,7 +105,9 @@ theorem commutingMulMap_toLinearMap (A B : StarSubalgebra ℂ C)
   rfl
 
 /-- The range of multiplication from two commuting unital star-subalgebras is their algebraic
-join.-/
+join.
+@isnad1 id=eq.1h3v.s11.fc3bd15717df from=translated src=- shape=68cd61e4 vocab=4052dc9f
+-/
 theorem commutingMulMap_range (A B : StarSubalgebra ℂ C)
     [Nontrivial C]
     (hAB : ∀ a : A, ∀ b : B, Commute (a : C) (b : C)) :
@@ -122,7 +128,9 @@ theorem commutingMulMap_range (A B : StarSubalgebra ℂ C)
       exact ⟨(1 : A) ⊗ₜ[ℂ] (⟨x, hx⟩ : B), by simp⟩
 
 /-- The underlying complex vector space of the join of two commuting unital star-subalgebras is
-the span of products of elements from the two factors.-/
+the span of products of elements from the two factors.
+@isnad1 id=eq.1h3v.s10.3285aa8c373f from=translated src=- shape=594cc211 vocab=37a4332b
+-/
 theorem sup_toSubmodule_eq_mul (A B : StarSubalgebra ℂ C)
     [Nontrivial C]
     (hAB : ∀ a : A, ∀ b : B, Commute (a : C) (b : C)) :

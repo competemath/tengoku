@@ -78,7 +78,9 @@ This is the uniqueness used in the final composition sentence of Lemma 5.  It as
 independence of the genuine left end family.
 
 Source: arXiv:1804.04964, Lemma 5, lines 2213--2252 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.3h6v.s6.55035b4160b0 from=translated src=- shape=51227b12 vocab=03bb844c
+-/
 theorem IsO1VirtualOperation.virtualOperation_eq
     {A₁ : K → W} (hA₁ : LinearIndependent ℂ A₁)
     {O₁ : Module.End ℂ W} {X Y : Matrix K K ℂ}
@@ -95,7 +97,9 @@ This is the right-end uniqueness used in the final composition sentence of Lemma
 only linear independence of the genuine right end family.
 
 Source: arXiv:1804.04964, Lemma 5, lines 2213--2252 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.3h6v.s6.e5be02c83d3a from=translated src=- shape=51227b12 vocab=f25d576b
+-/
 theorem IsO3TransposeVirtualOperation.virtualOperation_eq
     {A₃ : K → W} (hA₃ : LinearIndependent ℂ A₃)
     {O₃ : Module.End ℂ W} {X Y : Matrix K K ℂ}
@@ -113,7 +117,9 @@ This is the left half of the phrase "by composition" in the last sentence of the
 Lemma 5.
 
 Source: arXiv:1804.04964, Lemma 5, line 2252 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=iso1virt.2h7v.s7.51b2186b2b6e from=translated src=- shape=bd71527e vocab=fc299f8e
+-/
 theorem IsO1VirtualOperation.mul
     {A₁ : K → W} {O₁ P₁ : Module.End ℂ W} {X Y : Matrix K K ℂ}
     (hX : IsO1VirtualOperation A₁ O₁ X) (hY : IsO1VirtualOperation A₁ P₁ Y) :
@@ -139,7 +145,9 @@ If `O₃` realizes `X` and `P₃` realizes `Y`, then the underlying right-end op
 `O₃ᵀ * P₃ᵀ = (P₃ * O₃)ᵀ`, and is the right half of the phrase "by composition" in Lemma 5.
 
 Source: arXiv:1804.04964, Lemma 5, line 2252 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=iso3tran.2h7v.s7.eb610051405f from=translated src=- shape=5134a356 vocab=3c0fdcad
+-/
 theorem IsO3TransposeVirtualOperation.mul
     {A₃ : K → W} {O₃ P₃ : Module.End ℂ W} {X Y : Matrix K K ℂ}
     (hX : IsO3TransposeVirtualOperation A₃ O₃ X)
@@ -192,7 +200,9 @@ the `O₃ᵀ` orientation.  This is `existsUnique_virtualOperation_of_endPair` w
 families written as the actions of the physical operations themselves.
 
 Source: arXiv:1804.04964, Lemma 5, lines 2213--2252 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=existsun.3h7v.s8.e07dbca2ebd4 from=translated src=- shape=c7cba573 vocab=14ae31d1
+-/
 theorem existsUnique_virtualOperation_of_O1_O3Transpose
     {V₁ V₃ : Type*} (A₁ : K → V₁ → ℂ) (A₃ : K → V₃ → ℂ)
     (O₁ : Module.End ℂ (V₁ → ℂ)) (O₃ : Module.End ℂ (V₃ → ℂ))

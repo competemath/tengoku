@@ -61,7 +61,9 @@ def IsTorusTranslationInvariant (A : Tensor (torusGraph width height) d) : Prop 
 
 /-- The edge action of the translation `(a, b)` coincides with the edge action of
 the translation automorphism `translate a b`: both push the endpoints through the
-translation and reorder them into the `Edge` convention.-/
+translation and reorder them into the `Edge` convention.
+@isnad1 id=eq.0h5v.s7.6971d9abba30 from=translated src=- shape=c9fdfc1c vocab=d10735c3
+-/
 theorem translateEdge_eq_map (a : ZMod width) (b : ZMod height)
     (e : Edge (torusGraph width height)) :
     translateEdge a b e = Edge.map (translate a b) e :=
@@ -74,7 +76,9 @@ invariance, obtained from `stateCoeff_transport` and the defining fixed-point
 equation.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1407--1572 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.1h7v.s7.c3c0394bb7ac from=translated src=- shape=301a9c2e vocab=aa01c07f
+-/
 theorem stateCoeff_translationInvariant {A : Tensor (torusGraph width height) d}
     (hA : IsTorusTranslationInvariant A) (a : ZMod width) (b : ZMod height)
     (σ : TorusVertex width height → Fin d) :
@@ -98,7 +102,9 @@ edge equals the bond dimension at the original edge.  Transport invariance gives
 action.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, line 1498 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.1h7v.s7.bdfd864d0cf4 from=translated src=- shape=b0ec50ef vocab=d83bc5aa
+-/
 theorem bondDim_translateEdge_of_translationInvariant
     {A : Tensor (torusGraph width height) d}
     (hA : IsTorusTranslationInvariant A) (a : ZMod width) (b : ZMod height)
@@ -138,7 +144,9 @@ def torusUpEdge (p : TorusVertex width height) : Edge (torusGraph width height) 
 unordered endpoints are `p` and `p + (1, 0)`.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1500 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=ex.1h3v.s6.e95fbdff814f from=translated src=- shape=7eb7f725 vocab=4c1a9d43
+-/
 theorem isHorizontalTorusEdge_eq_rightEdge {e : Edge (torusGraph width height)}
     (he : IsHorizontalTorusEdge e) :
     ∃ p : TorusVertex width height, e = torusRightEdge p := by
@@ -159,7 +167,9 @@ theorem isHorizontalTorusEdge_eq_rightEdge {e : Edge (torusGraph width height)}
 endpoints are `p` and `p + (0, 1)`.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1500 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=ex.1h3v.s6.be2024a782bb from=translated src=- shape=7eb7f725 vocab=49854ed1
+-/
 theorem isVerticalTorusEdge_eq_upEdge {e : Edge (torusGraph width height)}
     (he : IsVerticalTorusEdge e) :
     ∃ p : TorusVertex width height, e = torusUpEdge p := by
@@ -183,7 +193,9 @@ point, and likewise for up edges.  Hence any two horizontal edges (any two
 vertical edges) are related by a translation, so a translation-invariant tensor has
 the same bond dimension throughout each orientation class. -/
 
-/-- Translation carries the right edge of `p` to the right edge of `p + (a, b)`.-/
+/-- Translation carries the right edge of `p` to the right edge of `p + (a, b)`.
+@isnad1 id=eq.0h5v.s7.abe94eef3ddc from=translated src=- shape=174406b1 vocab=f83cf873
+-/
 theorem translateEdge_torusRightEdge (a : ZMod width) (b : ZMod height)
     (p : TorusVertex width height) :
     translateEdge a b (torusRightEdge p) = torusRightEdge (p.1 + a, p.2 + b) := by
@@ -195,7 +207,9 @@ theorem translateEdge_torusRightEdge (a : ZMod width) (b : ZMod height)
   · exact Or.inr ⟨by rw [o1]; apply Prod.ext <;> simp [translate_apply]; ring,
       by rw [o2]; apply Prod.ext <;> simp [translate_apply]⟩
 
-/-- Translation carries the up edge of `p` to the up edge of `p + (a, b)`.-/
+/-- Translation carries the up edge of `p` to the up edge of `p + (a, b)`.
+@isnad1 id=eq.0h5v.s7.03cd86bdd2b2 from=translated src=- shape=174406b1 vocab=dfe8bd10
+-/
 theorem translateEdge_torusUpEdge (a : ZMod width) (b : ZMod height)
     (p : TorusVertex width height) :
     translateEdge a b (torusUpEdge p) = torusUpEdge (p.1 + a, p.2 + b) := by
@@ -214,7 +228,9 @@ This is the geometric transitivity argument shared by tensor-level and
 state-level translation invariance.
 
 Source: arXiv:1804.04964, the horizontal bond-dimension conclusion at lines
-1891--1894 of `Papers/1804.04964/paper_normal.tex`.-/
+1891--1894 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.1h5v.s7.ca82a55e65ba from=translated src=- shape=9f095107 vocab=6fc4d000
+-/
 theorem bondDim_torusRightEdge_const_of_translate
     (bondDim : Edge (torusGraph width height) → ℕ)
     (htranslate : ∀ (a : ZMod width) (b : ZMod height) e,
@@ -237,7 +253,9 @@ This is the geometric transitivity argument shared by tensor-level and
 state-level translation invariance.
 
 Source: arXiv:1804.04964, the vertical bond-dimension conclusion at lines
-1891--1894 of `Papers/1804.04964/paper_normal.tex`.-/
+1891--1894 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.1h5v.s7.65e2c0b3bf49 from=translated src=- shape=9f095107 vocab=afbb0cbf
+-/
 theorem bondDim_torusUpEdge_const_of_translate
     (bondDim : Edge (torusGraph width height) → ℕ)
     (htranslate : ∀ (a : ZMod width) (b : ZMod height) e,
@@ -258,7 +276,9 @@ horizontal edge: the bond dimension of any right edge is independent of its
 left endpoint.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, line 1498 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.1h6v.s7.aff34e20236b from=translated src=- shape=032fdad5 vocab=a62045c1
+-/
 theorem bondDim_torusRightEdge_const {A : Tensor (torusGraph width height) d}
     (hA : IsTorusTranslationInvariant A) (p p' : TorusVertex width height) :
     A.bondDim (torusRightEdge p') = A.bondDim (torusRightEdge p) :=
@@ -269,7 +289,9 @@ theorem bondDim_torusRightEdge_const {A : Tensor (torusGraph width height) d}
 edge: the bond dimension of any up edge is independent of its lower endpoint.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, line 1498 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.1h6v.s7.2a38cad824f7 from=translated src=- shape=032fdad5 vocab=81d124fa
+-/
 theorem bondDim_torusUpEdge_const {A : Tensor (torusGraph width height) d}
     (hA : IsTorusTranslationInvariant A) (p p' : TorusVertex width height) :
     A.bondDim (torusUpEdge p') = A.bondDim (torusUpEdge p) :=
@@ -298,7 +320,9 @@ def TorusUniformBondDim (bondDim : Edge (torusGraph width height) → ℕ) (Dh D
 on each orientation class.
 
 Source: arXiv:1804.04964, the orientation-wise bond-dimension conclusion at
-lines 1891--1894 of `Papers/1804.04964/paper_normal.tex`.-/
+lines 1891--1894 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=torusuni.1h3v.s7.98484edad125 from=translated src=- shape=8ad86ecf vocab=5aae71f2
+-/
 theorem torusUniformBondDim_of_translate
     (bondDim : Edge (torusGraph width height) → ℕ)
     (htranslate : ∀ (a : ZMod width) (b : ZMod height) e,
@@ -321,7 +345,9 @@ class constancy carries the reference dimension across.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, line 1498 of
 `Papers/1804.04964/paper_normal.tex`, where translation invariance makes the gauge
-"the same matrix on all horizontal (vertical) edges".-/
+"the same matrix on all horizontal (vertical) edges".
+@isnad1 id=torusuni.1h4v.s8.b6b5f1f72724 from=translated src=- shape=72850780 vocab=4b26365a
+-/
 theorem torusUniformBondDim_of_translationInvariant {A : Tensor (torusGraph width height) d}
     (hA : IsTorusTranslationInvariant A) :
     TorusUniformBondDim A.bondDim

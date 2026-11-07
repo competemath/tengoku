@@ -86,6 +86,9 @@ noncomputable def localVirtualConfigSplitAt (A : Tensor G d) {v : V}
 
 omit [Fintype V] in
 -- restored: fired by the bare `simp` in `localIncidentMatrixOp_single` below
+/--
+@isnad1 id=eq.0h7v.s9.1a359322c7a0 from=translated src=- shape=7147a25a vocab=874d077a
+-/
 @[simp] theorem localVirtualConfigSplitAt_apply_fst (A : Tensor G d) {v : V}
     (ie : IncidentEdge G v) (η : LocalVirtualConfig A v) :
     (localVirtualConfigSplitAt (G := G) A ie η).1 = η ie := by
@@ -93,6 +96,9 @@ omit [Fintype V] in
   simp [localVirtualConfigSplitAt]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h8v.s10.43ab4a5610aa from=translated src=- shape=f2aa9119 vocab=f996ec51
+-/
 @[simp] theorem localVirtualConfigSplitAt_apply_snd (A : Tensor G d) {v : V}
     (ie : IncidentEdge G v) (η : LocalVirtualConfig A v)
     (je : OtherIncidentEdge (G := G) v ie) :
@@ -101,6 +107,9 @@ omit [Fintype V] in
   simp [localVirtualConfigSplitAt]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s10.bc2a1fdba8fd from=translated src=- shape=f8c99cfa vocab=69b5ae5b
+-/
 @[simp] theorem localVirtualConfigSplitAt_symm_apply_fst (A : Tensor G d) {v : V}
     (ie : IncidentEdge G v)
     (x : Fin (A.bondDim ie.1) × ResidualLocalConfig (G := G) A ie) :
@@ -109,6 +118,9 @@ omit [Fintype V] in
   simp [localVirtualConfigSplitAt]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h8v.s10.8e6a5304d7aa from=translated src=- shape=47964d75 vocab=2cd82b17
+-/
 @[simp] theorem localVirtualConfigSplitAt_symm_apply_snd (A : Tensor G d) {v : V}
     (ie : IncidentEdge G v)
     (x : Fin (A.bondDim ie.1) × ResidualLocalConfig (G := G) A ie)
@@ -123,6 +135,9 @@ abbrev localTensorMap (A : Tensor G d) (v : V) :
     (LocalVirtualConfig A v → ℂ) →ₗ[ℂ] (Fin d → ℂ) :=
   Fintype.linearCombination ℂ (A.component v)
 
+/--
+@isnad1 id=eq.0h6v.s9.db7bd7a6d685 from=translated src=- shape=31ff9f4f vocab=b9799fd6
+-/
 @[simp] theorem localTensorMap_apply_single (A : Tensor G d) (v : V)
     (η : LocalVirtualConfig A v) :
     localTensorMap A v (Pi.single η (1 : ℂ)) = A.component v η := by
@@ -130,19 +145,25 @@ abbrev localTensorMap (A : Tensor G d) (v : V) :
 
 /-- Linear independence of the vertex tensor family makes the local tensor map
 at that vertex injective. This is the per-vertex form: it depends only on the
-single vertex `v`, not on the global `IsVertexInjective` hypothesis.-/
+single vertex `v`, not on the global `IsVertexInjective` hypothesis.
+@isnad1 id=injectiv.1h5v.s8.bf4a9a2c60ff from=translated src=- shape=b94690cd vocab=2d27f27d
+-/
 theorem localTensorMap_injective_of_linearIndependent {A : Tensor G d} {v : V}
     (hv : LinearIndependent ℂ (A.component v)) :
     Function.Injective (localTensorMap A v) :=
   hv.fintypeLinearCombination_injective
 
-/-- Kernel form of `localTensorMap_injective_of_linearIndependent`.-/
+/-- Kernel form of `localTensorMap_injective_of_linearIndependent`.
+@isnad1 id=eq.1h5v.s8.f3d84177eb52 from=translated src=- shape=7db5238e vocab=2b531b25
+-/
 theorem localTensorMap_ker_eq_bot_of_linearIndependent {A : Tensor G d} {v : V}
     (hv : LinearIndependent ℂ (A.component v)) :
     LinearMap.ker (localTensorMap A v) = ⊥ :=
   LinearMap.ker_eq_bot.mpr <| localTensorMap_injective_of_linearIndependent hv
 
-/-- Vertex injectivity makes the local tensor map injective.-/
+/-- Vertex injectivity makes the local tensor map injective.
+@isnad1 id=injectiv.1h5v.s8.bd0b0c12282d from=translated src=- shape=6e0806d2 vocab=e588e948
+-/
 theorem IsVertexInjective.localTensorMap_injective {A : Tensor G d}
     (hA : IsVertexInjective A) (v : V) :
     Function.Injective (localTensorMap A v) :=
@@ -160,7 +181,9 @@ existence of the one-sided inverse at lines 205--250). In the edge-middle
 descent, after all other indices have been fixed, this is the single-vertex
 step which annihilates the coefficient of each local virtual configuration at
 that vertex. The comparison with the source argument is recorded in
-`docs/paper-gaps/peps_injective_ft_section3_route.tex`.-/
+`docs/paper-gaps/peps_injective_ft_section3_route.tex`.
+@isnad1 id=eq.2h6v.s7.c94df2db0f13 from=translated src=- shape=ef607764 vocab=7c906fb7
+-/
 theorem IsVertexInjective.localCoeff_eq_zero_of_contract_zero {A : Tensor G d}
     (hA : IsVertexInjective A) (v : V) (R : LocalVirtualConfig A v → ℂ)
     (hR : ∀ τ : Fin d, ∑ η : LocalVirtualConfig A v, R η • A.component v η τ = 0) :
@@ -181,12 +204,18 @@ noncomputable def localLeftInverseAt (A : Tensor G d) {v : V}
   ((localTensorMap A v).exists_leftInverse_of_injective
     (localTensorMap_ker_eq_bot_of_linearIndependent hv)).choose
 
+/--
+@isnad1 id=eq.1h5v.s9.4181c396530d from=translated src=- shape=40d62291 vocab=52386496
+-/
 @[simp] theorem localLeftInverseAt_comp_localTensorMap (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) :
     (localLeftInverseAt A hv).comp (localTensorMap A v) = LinearMap.id :=
   ((localTensorMap A v).exists_leftInverse_of_injective
     (localTensorMap_ker_eq_bot_of_linearIndependent hv)).choose_spec
 
+/--
+@isnad1 id=eq.1h6v.s9.baf13911c505 from=translated src=- shape=5680d5eb vocab=b38f8153
+-/
 @[simp] theorem localLeftInverseAt_apply_localTensorMap (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) (c : LocalVirtualConfig A v → ℂ) :
     localLeftInverseAt A hv (localTensorMap A v c) = c := by
@@ -200,6 +229,9 @@ noncomputable def localLeftInverse (A : Tensor G d) (hA : IsVertexInjective A)
   localLeftInverseAt A (hA v)
 
 -- restored: fired by the bare `simp` in `TNLean.PEPS.LocalGauge`
+/--
+@isnad1 id=eq.1h6v.s8.7a44f40eeb45 from=translated src=- shape=6b894e1d vocab=e0da0019
+-/
 @[simp] theorem localLeftInverse_apply_localTensorMap (A : Tensor G d)
     (hA : IsVertexInjective A) (v : V) (c : LocalVirtualConfig A v → ℂ) :
     localLeftInverse A hA v (localTensorMap A v c) = c :=
@@ -259,6 +291,9 @@ noncomputable def localIncidentMatrixOp (A : Tensor G d) {v : V}
         rw [mul_assoc]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h9v.s11.ece7f1c4f831 from=translated src=- shape=e0907cf6 vocab=6a5b1510
+-/
 @[simp] theorem localIncidentMatrixOp_apply (A : Tensor G d) {v : V}
     (ie : IncidentEdge G v)
     (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ)
@@ -271,7 +306,9 @@ omit [Fintype V] in
   rfl
 
 /-- Acting on one distinguished-edge basis configuration only changes the
-distinguished index and keeps the residual local boundary fixed.-/
+distinguished index and keeps the residual local boundary fixed.
+@isnad1 id=eq.0h9v.s11.05b7b0101c72 from=translated src=- shape=31d12d25 vocab=71b941f2
+-/
 theorem localIncidentMatrixOp_single (A : Tensor G d) {v : V}
     (ie : IncidentEdge G v)
     (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ)
@@ -338,7 +375,9 @@ theorem localIncidentMatrixOp_single (A : Tensor G d) {v : V}
       rw [Pi.single_eq_of_ne hcfg, mul_zero]
 
 omit [Fintype V] in
-/-- The incident-edge matrix operation is additive in the inserted matrix.-/
+/-- The incident-edge matrix operation is additive in the inserted matrix.
+@isnad1 id=eq.0h8v.s10.6dcfee955ee6 from=translated src=- shape=250c7697 vocab=b06d0b0e
+-/
 theorem localIncidentMatrixOp_add (A : Tensor G d) {v : V}
     (ie : IncidentEdge G v)
     (M N : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ) :
@@ -353,7 +392,9 @@ theorem localIncidentMatrixOp_add (A : Tensor G d) {v : V}
   rw [Matrix.add_apply, add_mul]
 
 omit [Fintype V] in
-/-- The incident-edge matrix operation is homogeneous in the inserted matrix.-/
+/-- The incident-edge matrix operation is homogeneous in the inserted matrix.
+@isnad1 id=eq.0h8v.s10.68fd91c3eb9d from=translated src=- shape=40fb2905 vocab=aa6aa742
+-/
 theorem localIncidentMatrixOp_smul (A : Tensor G d) {v : V}
     (ie : IncidentEdge G v) (z : ℂ)
     (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ) :
@@ -371,7 +412,9 @@ omit [Fintype V] in
 /-- Composing the virtual operations of two matrices on one incident edge gives
 the virtual operation of the reversed product: the action on the distinguished
 coordinate is matrix multiplication, so the induced operation is an
-anti-homomorphism in the matrix.-/
+anti-homomorphism in the matrix.
+@isnad1 id=eq.0h8v.s11.b56232d5844e from=translated src=- shape=c99666c7 vocab=c01f6531
+-/
 theorem localIncidentMatrixOp_comp (A : Tensor G d) {v : V}
     (ie : IncidentEdge G v)
     (M N : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ) :
@@ -421,7 +464,9 @@ noncomputable def incidentMatrixOfLocalOp (A : Tensor G d) {v : V}
     T (Pi.single ((localVirtualConfigSplitAt (G := G) A ie).symm (x, r)) (1 : ℂ))
       ((localVirtualConfigSplitAt (G := G) A ie).symm (y, r))
 
-/-- Reading off the matrix of an incident-matrix operation recovers the matrix.-/
+/-- Reading off the matrix of an incident-matrix operation recovers the matrix.
+@isnad1 id=eq.0h8v.s9.da6a0968e5d1 from=translated src=- shape=6c62740e vocab=ae51edba
+-/
 @[simp] theorem incidentMatrixOfLocalOp_localIncidentMatrixOp (A : Tensor G d)
     {v : V} (ie : IncidentEdge G v) (r : ResidualLocalConfig (G := G) A ie)
     (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ) :
@@ -441,7 +486,9 @@ noncomputable def incidentMatrixOfLocalOp (A : Tensor G d) {v : V}
     rw [Pi.single_eq_of_ne hne.symm]
 
 /-- The local tensor map after a one-edge matrix action on a basis virtual
-configuration.-/
+configuration.
+@isnad1 id=eq.0h9v.s11.6f7ca73d7b23 from=translated src=- shape=f1ef10f9 vocab=ab3d5d3b
+-/
 theorem localTensorMap_localIncidentMatrixOp_single (A : Tensor G d) {v : V}
     (ie : IncidentEdge G v)
     (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ)
@@ -464,7 +511,9 @@ noncomputable def physRealizeLocalOpAt (A : Tensor G d) {v : V}
   (localTensorMap A v).comp <| T.comp (localLeftInverseAt A hv)
 
 /-- The physical realization agrees with the virtual operator on the image of
-`localTensorMap`.-/
+`localTensorMap`.
+@isnad1 id=eq.1h7v.s9.2774c769672f from=translated src=- shape=1c9ef144 vocab=95d980f2
+-/
 theorem physRealizeLocalOpAt_spec (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) (T : LocalVirtualOp A v)
     (c : LocalVirtualConfig A v → ℂ) :
@@ -482,7 +531,9 @@ noncomputable def physRealizeLocalOp (A : Tensor G d) (hA : IsVertexInjective A)
   physRealizeLocalOpAt A (hA v) T
 
 /-- The physical realization agrees with the virtual operator on the image of
-`localTensorMap`.-/
+`localTensorMap`.
+@isnad1 id=eq.1h7v.s9.185df6a79223 from=translated src=- shape=346b7e6f vocab=79c1fd9c
+-/
 theorem physRealizeLocalOp_spec (A : Tensor G d) (hA : IsVertexInjective A)
     (v : V) (T : LocalVirtualOp A v) (c : LocalVirtualConfig A v → ℂ) :
     physRealizeLocalOp A hA v T (localTensorMap A v c) =
@@ -491,7 +542,9 @@ theorem physRealizeLocalOp_spec (A : Tensor G d) (hA : IsVertexInjective A)
 
 /-- A matrix acting on one incident virtual edge is realized by a physical
 operator on the vertex tensor, under per-vertex linear independence of the
-tensor family at `v`.-/
+tensor family at `v`.
+@isnad1 id=ex.1h7v.s10.914b5f231e7f from=translated src=- shape=11e53077 vocab=de7f089e
+-/
 theorem localIncidentMatrixOp_physicalRealizationAt (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) (ie : IncidentEdge G v)
     (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ) :
@@ -503,7 +556,9 @@ theorem localIncidentMatrixOp_physicalRealizationAt (A : Tensor G d) {v : V}
     fun c => physRealizeLocalOpAt_spec A hv (localIncidentMatrixOp A ie M) c⟩
 
 /-- A matrix acting on one incident virtual edge is realized by a physical
-operator on the vertex tensor, under vertex injectivity.-/
+operator on the vertex tensor, under vertex injectivity.
+@isnad1 id=ex.1h7v.s10.8933e3905e23 from=translated src=- shape=f77e7573 vocab=50cd54bc
+-/
 theorem localIncidentMatrixOp_physicalRealization (A : Tensor G d)
     (hA : IsVertexInjective A) {v : V} (ie : IncidentEdge G v)
     (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ) :
@@ -513,7 +568,9 @@ theorem localIncidentMatrixOp_physicalRealization (A : Tensor G d)
           localTensorMap A v (localIncidentMatrixOp A ie M c) :=
   localIncidentMatrixOp_physicalRealizationAt A (hA v) ie M
 
-/-- Realization is compatible with composition of virtual operators.-/
+/-- Realization is compatible with composition of virtual operators.
+@isnad1 id=eq.1h7v.s9.5167dcd144ca from=translated src=- shape=676169df vocab=e29a3a6a
+-/
 theorem physRealizeLocalOpAt_comp (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) (S T : LocalVirtualOp A v) :
     physRealizeLocalOpAt A hv (S.comp T) =
@@ -521,7 +578,9 @@ theorem physRealizeLocalOpAt_comp (A : Tensor G d) {v : V}
   ext x
   simp [physRealizeLocalOpAt, LinearMap.comp_assoc]
 
-/-- Realization is additive in the virtual operator.-/
+/-- Realization is additive in the virtual operator.
+@isnad1 id=eq.1h7v.s9.36c9a5bd2a11 from=translated src=- shape=51bec6ca vocab=931d00e5
+-/
 theorem physRealizeLocalOpAt_add (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) (S T : LocalVirtualOp A v) :
     physRealizeLocalOpAt A hv (S + T) =
@@ -529,14 +588,18 @@ theorem physRealizeLocalOpAt_add (A : Tensor G d) {v : V}
   ext x
   simp [physRealizeLocalOpAt]
 
-/-- Realization is homogeneous in the virtual operator.-/
+/-- Realization is homogeneous in the virtual operator.
+@isnad1 id=eq.1h7v.s9.ec98b02b6c4c from=translated src=- shape=89c6f92a vocab=93c767b4
+-/
 theorem physRealizeLocalOpAt_smul (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) (z : ℂ) (T : LocalVirtualOp A v) :
     physRealizeLocalOpAt A hv (z • T) = z • physRealizeLocalOpAt A hv T := by
   ext x
   simp [physRealizeLocalOpAt]
 
-/-- Virtual operators are determined by their physical realizations.-/
+/-- Virtual operators are determined by their physical realizations.
+@isnad1 id=injectiv.1h5v.s8.bc85ea8e381b from=translated src=- shape=3f06b2c7 vocab=f7cb15f4
+-/
 theorem physRealizeLocalOpAt_injective (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) :
     Function.Injective (physRealizeLocalOpAt A hv) := by
@@ -552,7 +615,9 @@ theorem physRealizeLocalOpAt_injective (A : Tensor G d) {v : V}
   exact congrArg (fun f : LocalVirtualConfig A v → ℂ => f η)
     (localTensorMap_injective_of_linearIndependent hv hVirtual)
 
-/-- Virtual operators are determined by their physical realizations.-/
+/-- Virtual operators are determined by their physical realizations.
+@isnad1 id=injectiv.1h5v.s6.e70001fcf68c from=translated src=- shape=03aa8702 vocab=9f757575
+-/
 theorem physRealizeLocalOp_injective (A : Tensor G d) (hA : IsVertexInjective A)
     (v : V) :
     Function.Injective (physRealizeLocalOp A hA v) :=
@@ -596,6 +661,9 @@ noncomputable def localVirtualOpOfPhysicalOp (A : Tensor G d)
     LocalVirtualOp A v :=
   localVirtualOpOfPhysicalOpAt A (hA v) O
 
+/--
+@isnad1 id=eq.1h6v.s9.64151d009bff from=translated src=- shape=cfbef95b vocab=079a89df
+-/
 @[simp] theorem localProjectorAt_apply_localTensorMap (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) (c : LocalVirtualConfig A v → ℂ) :
     localProjectorAt A hv (localTensorMap A v c) = localTensorMap A v c := by
@@ -603,13 +671,18 @@ noncomputable def localVirtualOpOfPhysicalOp (A : Tensor G d)
     (physRealizeLocalOpAt_spec A hv LinearMap.id c)
 
 -- restored: fired by the bare `simp` in `TNLean.PEPS.LocalGauge`
+/--
+@isnad1 id=eq.1h6v.s9.3053440f29df from=translated src=- shape=67a495cc vocab=8e5d0a70
+-/
 @[simp] theorem localProjector_apply_localTensorMap (A : Tensor G d)
     (hA : IsVertexInjective A) (v : V) (c : LocalVirtualConfig A v → ℂ) :
     localProjector A hA v (localTensorMap A v c) = localTensorMap A v c :=
   localProjectorAt_apply_localTensorMap A (hA v) c
 
 /-- The projection onto the image of the single-site tensor family is
-idempotent.-/
+idempotent.
+@isnad1 id=eq.1h5v.s8.dcec3577999d from=translated src=- shape=797dc061 vocab=aa62f18a
+-/
 theorem localProjectorAt_idempotent (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) :
     (localProjectorAt A hv).comp (localProjectorAt A hv) =
@@ -618,7 +691,9 @@ theorem localProjectorAt_idempotent (A : Tensor G d) {v : V}
     (physRealizeLocalOpAt_comp A hv LinearMap.id LinearMap.id).symm
 
 /-- The virtual pullback realizes the projected physical action on the image of
-the local tensor map.-/
+the local tensor map.
+@isnad1 id=eq.1h7v.s10.6e5e4496418f from=translated src=- shape=edf32d57 vocab=36d294aa
+-/
 theorem localVirtualOpOfPhysicalOpAt_spec (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v))
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) (c : LocalVirtualConfig A v → ℂ) :
@@ -627,7 +702,9 @@ theorem localVirtualOpOfPhysicalOpAt_spec (A : Tensor G d) {v : V}
   simp [localVirtualOpOfPhysicalOpAt, localProjectorAt, physRealizeLocalOpAt]
 
 /-- The virtual pullback realizes the projected physical action on the image of
-the local tensor map.-/
+the local tensor map.
+@isnad1 id=eq.1h7v.s9.a41029e6b5d3 from=translated src=- shape=f0f91131 vocab=d9cc2346
+-/
 theorem localVirtualOpOfPhysicalOp_spec (A : Tensor G d) (hA : IsVertexInjective A)
     (v : V) (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ))
     (c : LocalVirtualConfig A v → ℂ) :
@@ -636,7 +713,9 @@ theorem localVirtualOpOfPhysicalOp_spec (A : Tensor G d) (hA : IsVertexInjective
   localVirtualOpOfPhysicalOpAt_spec A (hA v) O c
 
 /-- If a local physical operator preserves the image of the local tensor map,
-then its virtual pullback gives exactly the same action on that image.-/
+then its virtual pullback gives exactly the same action on that image.
+@isnad1 id=eq.2h7v.s10.61f9baa2cfe3 from=translated src=- shape=f414a752 vocab=36d294aa
+-/
 theorem localVirtualOpOfPhysicalOpAt_realizes_of_projector (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v))
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ))
@@ -648,7 +727,9 @@ theorem localVirtualOpOfPhysicalOpAt_realizes_of_projector (A : Tensor G d) {v :
   rw [localVirtualOpOfPhysicalOpAt_spec, hO]
 
 /-- If a local physical operator preserves the image of the local tensor map,
-then its virtual pullback gives exactly the same action on that image.-/
+then its virtual pullback gives exactly the same action on that image.
+@isnad1 id=eq.2h7v.s10.df061e918c5a from=translated src=- shape=3cbd6ae7 vocab=d9cc2346
+-/
 theorem localVirtualOpOfPhysicalOp_realizes_of_projector (A : Tensor G d)
     (hA : IsVertexInjective A) (v : V)
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ))
@@ -660,7 +741,9 @@ theorem localVirtualOpOfPhysicalOp_realizes_of_projector (A : Tensor G d)
   localVirtualOpOfPhysicalOpAt_realizes_of_projector A (hA v) O hO c
 
 /-- A virtual operator is recovered by pulling back any physical operator that
-realizes it on the image of the local tensor map.-/
+realizes it on the image of the local tensor map.
+@isnad1 id=eq.2h7v.s10.bc001d64a7d6 from=translated src=- shape=44af516d vocab=269e9bda
+-/
 theorem localVirtualOpOfPhysicalOpAt_eq_of_realizes (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v))
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) (T : LocalVirtualOp A v)
@@ -679,7 +762,9 @@ theorem localVirtualOpOfPhysicalOpAt_eq_of_realizes (A : Tensor G d) {v : V}
       simp
 
 /-- A virtual operator is recovered by pulling back any physical operator that
-realizes it on the image of the local tensor map.-/
+realizes it on the image of the local tensor map.
+@isnad1 id=eq.2h7v.s9.91a978ca8f30 from=translated src=- shape=82788a98 vocab=133ebbfb
+-/
 theorem localVirtualOpOfPhysicalOp_eq_of_realizes (A : Tensor G d)
     (hA : IsVertexInjective A) (v : V)
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) (T : LocalVirtualOp A v)
@@ -689,7 +774,9 @@ theorem localVirtualOpOfPhysicalOp_eq_of_realizes (A : Tensor G d)
   localVirtualOpOfPhysicalOpAt_eq_of_realizes A (hA v) O T hO
 
 /-- Two physical endpoint operations have the same virtual pullback if their
-projected actions agree on the image of the local tensor map.-/
+projected actions agree on the image of the local tensor map.
+@isnad1 id=eq.2h7v.s10.5ac69578901f from=translated src=- shape=d0c04713 vocab=36d294aa
+-/
 theorem localVirtualOpOfPhysicalOpAt_eq_of_projected_action_eq (A : Tensor G d)
     {v : V} (hv : LinearIndependent ℂ (A.component v))
     (O O' : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ))
@@ -704,7 +791,9 @@ theorem localVirtualOpOfPhysicalOpAt_eq_of_projected_action_eq (A : Tensor G d)
   rw [localVirtualOpOfPhysicalOpAt_spec, localVirtualOpOfPhysicalOpAt_spec, hOO']
 
 /-- Equality of virtual pullbacks is equivalent to equality of the projected
-physical actions on the image of the local tensor map.-/
+physical actions on the image of the local tensor map.
+@isnad1 id=iff.1h7v.s10.324e224b27a0 from=translated src=- shape=9f1379a2 vocab=36d294aa
+-/
 theorem localVirtualOpOfPhysicalOpAt_eq_iff_projected_action_eq (A : Tensor G d)
     {v : V} (hv : LinearIndependent ℂ (A.component v))
     (O O' : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) :
@@ -720,7 +809,9 @@ theorem localVirtualOpOfPhysicalOpAt_eq_iff_projected_action_eq (A : Tensor G d)
   · exact localVirtualOpOfPhysicalOpAt_eq_of_projected_action_eq A hv O O'
 
 /-- Equality of virtual pullbacks is equivalent to equality of the projected
-physical actions on the image of the local tensor map.-/
+physical actions on the image of the local tensor map.
+@isnad1 id=iff.1h7v.s10.b4b9b90b4a59 from=translated src=- shape=068aed93 vocab=d9cc2346
+-/
 theorem localVirtualOpOfPhysicalOp_eq_iff_projected_action_eq (A : Tensor G d)
     (hA : IsVertexInjective A) (v : V)
     (O O' : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) :
@@ -732,7 +823,9 @@ theorem localVirtualOpOfPhysicalOp_eq_iff_projected_action_eq (A : Tensor G d)
   localVirtualOpOfPhysicalOpAt_eq_iff_projected_action_eq A (hA v) O O'
 
 /-- Pulling back the canonical physical realization of a virtual operation
-recovers the original virtual operation.-/
+recovers the original virtual operation.
+@isnad1 id=eq.1h6v.s7.5323f91bd204 from=translated src=- shape=e65a20cc vocab=f8e3b73c
+-/
 theorem localVirtualOpOfPhysicalOpAt_physRealizeLocalOpAt (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v)) (T : LocalVirtualOp A v) :
     localVirtualOpOfPhysicalOpAt A hv (physRealizeLocalOpAt A hv T) = T :=
@@ -741,7 +834,9 @@ theorem localVirtualOpOfPhysicalOpAt_physRealizeLocalOpAt (A : Tensor G d) {v : 
     (physRealizeLocalOpAt_spec A hv T)
 
 /-- Pulling back the canonical physical realization of a virtual operation
-recovers the original virtual operation.-/
+recovers the original virtual operation.
+@isnad1 id=eq.1h6v.s6.03588f6345fc from=translated src=- shape=c29e59a8 vocab=23b18933
+-/
 theorem localVirtualOpOfPhysicalOp_physRealizeLocalOp (A : Tensor G d)
     (hA : IsVertexInjective A) (v : V) (T : LocalVirtualOp A v) :
     localVirtualOpOfPhysicalOp A hA v (physRealizeLocalOp A hA v T) = T :=
@@ -749,7 +844,9 @@ theorem localVirtualOpOfPhysicalOp_physRealizeLocalOp (A : Tensor G d)
 
 /-- The physical realization of the virtual pullback of \(O\) is
 \(P \circ O \circ P\), where \(P\) is the local projector onto the image of the
-local tensor map.-/
+local tensor map.
+@isnad1 id=eq.1h6v.s9.3dc6f63aff95 from=translated src=- shape=5351ed7d vocab=672f6a9a
+-/
 theorem physRealizeLocalOpAt_localVirtualOpOfPhysicalOpAt (A : Tensor G d) {v : V}
     (hv : LinearIndependent ℂ (A.component v))
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) :
@@ -761,7 +858,9 @@ theorem physRealizeLocalOpAt_localVirtualOpOfPhysicalOpAt (A : Tensor G d) {v : 
 
 /-- The physical realization of the virtual pullback of \(O\) is
 \(P \circ O \circ P\), where \(P\) is the local projector onto the image of the
-local tensor map.-/
+local tensor map.
+@isnad1 id=eq.1h6v.s8.3976b6ac35eb from=translated src=- shape=5e677740 vocab=780156cb
+-/
 theorem physRealizeLocalOp_localVirtualOpOfPhysicalOp (A : Tensor G d)
     (hA : IsVertexInjective A) (v : V)
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) :
@@ -771,7 +870,9 @@ theorem physRealizeLocalOp_localVirtualOpOfPhysicalOp (A : Tensor G d)
 
 /-- If the projected physical action of \(O\) is the canonical physical
 realization of a virtual operation \(T\), then pulling back \(O\) recovers
-\(T\).-/
+\(T\).
+@isnad1 id=eq.2h7v.s9.a40f85b1b1b1 from=translated src=- shape=9e4803da vocab=8cd5a8dd
+-/
 theorem localVirtualOpOfPhysicalOpAt_eq_of_projected_realization_eq
     (A : Tensor G d) {v : V} (hv : LinearIndependent ℂ (A.component v))
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) (T : LocalVirtualOp A v)
@@ -783,7 +884,9 @@ theorem localVirtualOpOfPhysicalOpAt_eq_of_projected_realization_eq
 
 /-- If the projected physical action of \(O\) is the canonical physical
 realization of a virtual operation \(T\), then pulling back \(O\) recovers
-\(T\).-/
+\(T\).
+@isnad1 id=eq.2h7v.s8.af879e198a35 from=translated src=- shape=e8648f77 vocab=e1ded114
+-/
 theorem localVirtualOpOfPhysicalOp_eq_of_projected_realization_eq
     (A : Tensor G d) (hA : IsVertexInjective A) (v : V)
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) (T : LocalVirtualOp A v)
@@ -793,7 +896,9 @@ theorem localVirtualOpOfPhysicalOp_eq_of_projected_realization_eq
   localVirtualOpOfPhysicalOpAt_eq_of_projected_realization_eq A (hA v) O T hO
 
 /-- The compressed physical action of \(O\) is the canonical physical
-realization of \(T\) exactly when the virtual pullback of \(O\) is \(T\).-/
+realization of \(T\) exactly when the virtual pullback of \(O\) is \(T\).
+@isnad1 id=iff.1h7v.s9.979921f90168 from=translated src=- shape=bac4e877 vocab=8cd5a8dd
+-/
 theorem localVirtualOpOfPhysicalOpAt_eq_iff_projected_realization_eq
     (A : Tensor G d) {v : V} (hv : LinearIndependent ℂ (A.component v))
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) (T : LocalVirtualOp A v) :
@@ -806,7 +911,9 @@ theorem localVirtualOpOfPhysicalOpAt_eq_iff_projected_realization_eq
   · exact localVirtualOpOfPhysicalOpAt_eq_of_projected_realization_eq A hv O T
 
 /-- The compressed physical action of \(O\) is the canonical physical
-realization of \(T\) exactly when the virtual pullback of \(O\) is \(T\).-/
+realization of \(T\) exactly when the virtual pullback of \(O\) is \(T\).
+@isnad1 id=iff.1h7v.s8.845107e1c7e5 from=translated src=- shape=8be03d70 vocab=e1ded114
+-/
 theorem localVirtualOpOfPhysicalOp_eq_iff_projected_realization_eq
     (A : Tensor G d) (hA : IsVertexInjective A) (v : V)
     (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) (T : LocalVirtualOp A v) :

@@ -46,6 +46,9 @@ noncomputable def castLocalVirtualConfig (A B : Tensor G d)
   Equiv.piCongrRight (fun ie : IncidentEdge G v => finCongr (congr_fun hDim ie.1))
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h8v.s9.60d39611d483 from=translated src=- shape=99a8293e vocab=30b8c9e4
+-/
 @[simp] theorem castLocalVirtualConfig_apply (A B : Tensor G d)
     (hDim : A.bondDim = B.bondDim) (v : V)
     (η : LocalVirtualConfig A v) (ie : IncidentEdge G v) :
@@ -67,6 +70,9 @@ noncomputable def castLocalCoeffMap (A B : Tensor G d)
     simp
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h8v.s8.53aef18adae6 from=translated src=- shape=ce648a71 vocab=cd50a637
+-/
 @[simp] theorem castLocalCoeffMap_apply (A B : Tensor G d)
     (hDim : A.bondDim = B.bondDim) (v : V)
     (c : LocalVirtualConfig A v → ℂ) (η : LocalVirtualConfig B v) :
@@ -74,6 +80,9 @@ omit [Fintype V] in
       c ((castLocalVirtualConfig A B hDim v).symm η) :=
   rfl
 
+/--
+@isnad1 id=eq.1h7v.s10.58edab86c3ad from=translated src=- shape=2180699a vocab=a5273c38
+-/
 @[simp] theorem castLocalCoeffMap_single (A B : Tensor G d)
     (hDim : A.bondDim = B.bondDim) (v : V)
     (η : LocalVirtualConfig A v) :
@@ -100,7 +109,9 @@ noncomputable def localGaugeMap (A B : Tensor G d)
     (localTensorMap B v).comp (castLocalCoeffMap A B hDim v)
 
 /-- Reindexing a basis vector of the local coefficient space transports the
-corresponding `B`-component across `hDim`.-/
+corresponding `B`-component across `hDim`.
+@isnad1 id=eq.1h7v.s9.917a3439ce45 from=translated src=- shape=25112feb vocab=20c5041b
+-/
 theorem localTensorMap_castLocalCoeffMap_single (A B : Tensor G d)
     (hDim : A.bondDim = B.bondDim) (v : V)
     (η : LocalVirtualConfig A v) :
@@ -109,7 +120,9 @@ theorem localTensorMap_castLocalCoeffMap_single (A B : Tensor G d)
   rw [castLocalCoeffMap_single, localTensorMap_apply_single]
 
 /-- The canonical local gauge map reconstructs the projection of `B`'s
-local tensor into the image of `localTensorMap A v`.-/
+local tensor into the image of `localTensorMap A v`.
+@isnad1 id=eq.2h7v.s10.392484905395 from=translated src=- shape=c74066d4 vocab=bc8a7bf8
+-/
 theorem localGaugeMap_apply_single (A B : Tensor G d)
     (hA : IsVertexInjective A) (hDim : A.bondDim = B.bondDim) (v : V)
     (η : LocalVirtualConfig A v) :
@@ -147,7 +160,9 @@ structure HasFactorizedLocalGauge (A B : Tensor G d) (hA : IsVertexInjective A)
 This is the final algebraic conversion after the blocked-middle / three-site-MPS
 reduction: once that reduction produces invertible incident-edge gauges
 realizing the local tensors of `B`, the canonical map pulled back through
-`localLeftInverse` is forced to be the same factorized operator.-/
+`localLeftInverse` is forced to be the same factorized operator.
+@isnad1 id=hasfacto.3h6v.s10.dac65d7c854a from=translated src=- shape=3979a6ad vocab=17e7b07d
+-/
 theorem hasFactorizedLocalGauge_of_localGaugeFormula (A B : Tensor G d)
     (hA : IsVertexInjective A) (hDim : A.bondDim = B.bondDim) (v : V)
     (hLocal :
@@ -219,7 +234,9 @@ abbrev BlockedMiddleGaugeFormula (A B : Tensor G d) (_hA : IsVertexInjective A)
             A.component v η' σ
 
 /-- The blocked-middle / three-site-MPS output immediately yields
-`HasFactorizedLocalGauge`.-/
+`HasFactorizedLocalGauge`.
+@isnad1 id=hasfacto.3h6v.s6.06df86bba5fb from=translated src=- shape=62a9a360 vocab=02f7b282
+-/
 theorem hasFactorizedLocalGauge_of_blockedMiddleGaugeFormula (A B : Tensor G d)
     (hA : IsVertexInjective A) (hDim : A.bondDim = B.bondDim) (v : V)
     (hBlocked : BlockedMiddleGaugeFormula A B hA hDim v) :
@@ -232,7 +249,9 @@ vertex `v`.
 This theorem gives the local factorized gauge relation under `HasFactorizedLocalGauge`.
 Deriving that hypothesis from `SameState` remains the blocked-middle /
 three-site-MPS reduction, followed by
-`hasFactorizedLocalGauge_of_blockedMiddleGaugeFormula`.-/
+`hasFactorizedLocalGauge_of_blockedMiddleGaugeFormula`.
+@isnad1 id=ex.3h6v.s10.026d62639c58 from=translated src=- shape=79528ebc vocab=d65a52c5
+-/
 theorem localGauge_exists_of_factorizedLocalGauge (A B : Tensor G d)
     (hA : IsVertexInjective A) (hDim : A.bondDim = B.bondDim) (v : V)
     (hFactorized : HasFactorizedLocalGauge A B hA hDim v) :
@@ -281,7 +300,9 @@ formula.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps` and the discussion after
 `eq:TN_5_particle_eq`, lines 981--1044 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=ex.3h6v.s10.6186747cdd51 from=translated src=- shape=79528ebc vocab=eb2f908a
+-/
 theorem localGauge_exists_of_blockedMiddleGaugeFormula (A B : Tensor G d)
     (hA : IsVertexInjective A) (hDim : A.bondDim = B.bondDim) (v : V)
     (hBlocked : BlockedMiddleGaugeFormula A B hA hDim v) :

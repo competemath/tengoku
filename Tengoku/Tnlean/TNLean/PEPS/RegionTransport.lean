@@ -52,6 +52,9 @@ def Region.map (φ : G ≃g G') (R : Finset V) : Finset W :=
 
 omit [Fintype V] [LinearOrder V] [Fintype W] [LinearOrder W]
   [DecidableRel G.Adj] [DecidableRel G'.Adj] in
+/--
+@isnad1 id=iff.0h7v.s6.38a2f8c9d085 from=translated src=- shape=831dc7dc vocab=e43765b6
+-/
 @[simp] theorem mem_Region_map (φ : G ≃g G') (R : Finset V) (w : W) :
     w ∈ Region.map φ R ↔ φ.symm w ∈ R := by
   simp only [Region.map, Finset.mem_map, Equiv.coe_toEmbedding]
@@ -65,7 +68,9 @@ omit [Fintype V] [LinearOrder V] [Fintype W] [LinearOrder W]
 
 omit [Fintype V] [LinearOrder V] [Fintype W] [LinearOrder W]
   [DecidableRel G.Adj] [DecidableRel G'.Adj] in
-/-- A vertex `v` lies in `R` iff `φ v` lies in the image region.-/
+/-- A vertex `v` lies in `R` iff `φ v` lies in the image region.
+@isnad1 id=iff.0h7v.s6.737f24b208e2 from=translated src=- shape=9698d99a vocab=905d906f
+-/
 theorem mem_Region_map_apply (φ : G ≃g G') (R : Finset V) (v : V) :
     φ v ∈ Region.map φ R ↔ v ∈ R := by
   rw [mem_Region_map]
@@ -74,7 +79,9 @@ theorem mem_Region_map_apply (φ : G ≃g G') (R : Finset V) (v : V) :
 omit [DecidableRel G.Adj] [DecidableRel G'.Adj] in
 /-- The image of the set complement is the set complement of the image: the edge action carries
 `univ \ R` to `univ \ (Region.map φ R)`.  This is the bookkeeping that lets the complement-side
-contraction of the region-inserted coefficient transport.-/
+contraction of the region-inserted coefficient transport.
+@isnad1 id=eq.0h6v.s6.af35acd40048 from=translated src=- shape=723227e8 vocab=6f58067a
+-/
 theorem Region_map_compl (φ : G ≃g G') (R : Finset V) :
     Region.map φ (Finset.univ \ R) = Finset.univ \ Region.map φ R := by
   ext w
@@ -85,7 +92,9 @@ theorem Region_map_compl (φ : G ≃g G') (R : Finset V) :
 omit [Fintype V] [Fintype W] [DecidableRel G.Adj] [DecidableRel G'.Adj] in
 /-- An edge `f` of `G` crosses the boundary of `R` iff its image `Edge.map φ f`
 crosses the boundary of the image region.  The endpoints carry across by `φ`, which
-preserves membership in `R`.-/
+preserves membership in `R`.
+@isnad1 id=iff.0h7v.s5.9e37575a6cfc from=translated src=- shape=eef48b69 vocab=1aab0c6c
+-/
 theorem isRegionBoundaryEdge_map (φ : G ≃g G') (R : Finset V) (f : Edge G) :
     IsRegionBoundaryEdge (G := G') (Region.map φ R) (Edge.map φ f) ↔
       IsRegionBoundaryEdge (G := G) R f := by
@@ -137,7 +146,9 @@ def regionBoundaryConfigMap (A : Tensor G d) (φ : G ≃g G') (R : Finset V)
   fun f => bdry (regionBoundaryEdgeMapEquiv φ R f)
 
 omit [Fintype V] [Fintype W] in
-/-- The boundary-configuration map is the forward direction of its equivalence.-/
+/-- The boundary-configuration map is the forward direction of its equivalence.
+@isnad1 id=eq.0h9v.s8.9ec1c93847cf from=translated src=- shape=58cd9473 vocab=6f84f8ad
+-/
 theorem regionBoundaryConfigMapEquiv_apply (A : Tensor G d) (φ : G ≃g G') (R : Finset V)
     (bdry : RegionBoundaryConfig (G := G) A R) :
     regionBoundaryConfigMapEquiv A φ R bdry = regionBoundaryConfigMap A φ R bdry :=
@@ -150,7 +161,9 @@ noncomputable def regionPhysicalConfigMap (φ : G ≃g G') (R : Finset V)
   fun w => τ ((Finset.equivMap φ.toEquiv.toEmbedding R).symm w)
 
 omit [Fintype V] [Fintype W] in
-/-- The boundary-configuration map is injective.-/
+/-- The boundary-configuration map is injective.
+@isnad1 id=injectiv.0h8v.s6.d5bd711353e4 from=translated src=- shape=2907c6c9 vocab=15293d29
+-/
 theorem regionBoundaryConfigMap_injective (A : Tensor G d) (φ : G ≃g G') (R : Finset V) :
     Function.Injective (regionBoundaryConfigMap A φ R) := by
   have h : regionBoundaryConfigMap A φ R = regionBoundaryConfigMapEquiv A φ R := by
@@ -159,7 +172,9 @@ theorem regionBoundaryConfigMap_injective (A : Tensor G d) (φ : G ≃g G') (R :
 
 omit [Fintype V] [Fintype W] in
 /-- The boundary label that `(vcEquiv A φ).symm η` reads on the image region is the
-forward boundary-configuration map of the boundary label that `η` reads on `R`.-/
+forward boundary-configuration map of the boundary label that `η` reads on `R`.
+@isnad1 id=eq.0h9v.s8.6251ccb4e181 from=translated src=- shape=1d5cf4fb vocab=febc2dd0
+-/
 theorem regionBoundaryLabel_transport (A : Tensor G d) (φ : G ≃g G') (R : Finset V)
     (η : VirtualConfig A) :
     regionBoundaryLabel (G := G') (A.transport φ) (Region.map φ R) ((vcEquiv A φ).symm η) =
@@ -171,7 +186,9 @@ theorem regionBoundaryLabel_transport (A : Tensor G d) (φ : G ≃g G') (R : Fin
 omit [Fintype V] [Fintype W] in
 /-- The transported virtual configuration carries the boundary label `bdry'` iff the
 original configuration carries the preimage boundary label.  Used to reindex the
-filtered sum in the blocked-region weight.-/
+filtered sum in the blocked-region weight.
+@isnad1 id=iff.0h10v.s8.efd8e086b6ff from=translated src=- shape=46335b35 vocab=febc2dd0
+-/
 theorem regionBoundaryLabel_transport_iff (A : Tensor G d) (φ : G ≃g G') (R : Finset V)
     (η : VirtualConfig A) (bdry : RegionBoundaryConfig (G := G) A R) :
     regionBoundaryLabel (G := G') (A.transport φ) (Region.map φ R) ((vcEquiv A φ).symm η) =
@@ -186,7 +203,9 @@ omit [Fintype V] [Fintype W] in
 /-- The vertex product of `A.transport φ` over the image region, at the transported
 configurations, equals the vertex product of `A` over `R`: each factor at `w` matches the
 factor of `A` at `φ.symm w` by `transport_component_vcEquiv`, and the vertices reindex by
-`Finset.equivMap`.-/
+`Finset.equivMap`.
+@isnad1 id=eq.0h10v.s9.36852b2da726 from=translated src=- shape=6ae0e94e vocab=b055d844
+-/
 theorem regionVertexProd_transport (A : Tensor G d) (φ : G ≃g G') (R : Finset V)
     (η : VirtualConfig A) (τ : RegionPhysicalConfig (V := V) (d := d) R) :
     ∏ w : {w : W // w ∈ Region.map φ R},
@@ -215,7 +234,9 @@ The open boundary legs reindex by the edge action, the contracted virtual config
 `vcEquiv`, and the vertex product by `φ`.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1407--1572 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.0h10v.s7.cbe196730b6f from=translated src=- shape=35f81fa6 vocab=93a080ac
+-/
 theorem regionBlockedWeight_transport (A : Tensor G d) (φ : G ≃g G') (R : Finset V)
     (bdry : RegionBoundaryConfig (G := G) A R)
     (τ : RegionPhysicalConfig (V := V) (d := d) R) :
@@ -250,7 +271,9 @@ noncomputable def regionPhysicalConfigMapEquiv (φ : G ≃g G') (R : Finset V) :
 /-- The transported blocked-region tensor family is the original family reindexed: the
 boundary index by `regionBoundaryConfigMapEquiv`, the physical-leg domain by
 `regionPhysicalConfigMapEquiv`.  This rewrites the weight transport as a composition with the
-domain-reindexing linear equivalence `LinearEquiv.funCongrLeft`.-/
+domain-reindexing linear equivalence `LinearEquiv.funCongrLeft`.
+@isnad1 id=eq.0h8v.s9.d640d614e456 from=translated src=- shape=d4fbb970 vocab=de516c24
+-/
 theorem regionBlockedTensorFamily_transport_comp (A : Tensor G d) (φ : G ≃g G') (R : Finset V) :
     regionBlockedTensorFamily (G := G') (A.transport φ) (Region.map φ R) ∘
         regionBoundaryConfigMapEquiv A φ R =
@@ -276,7 +299,9 @@ configurations and the physical legs, and linear independence is invariant under
 relabelling.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1407--1572 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=iff.0h8v.s6.06f85d7a9c8d from=translated src=- shape=9dbde304 vocab=31c670d3
+-/
 theorem regionBlockedTensorInjective_transport (A : Tensor G d) (φ : G ≃g G') (R : Finset V) :
     RegionBlockedTensorInjective (G := G') (A.transport φ) (Region.map φ R) ↔
       RegionBlockedTensorInjective (G := G) A R := by

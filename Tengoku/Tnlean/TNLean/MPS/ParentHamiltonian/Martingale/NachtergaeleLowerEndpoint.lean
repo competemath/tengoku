@@ -436,7 +436,9 @@ it. The index \(n=0\) is
 excluded only from C2 and C3, and the printed proof estimates its martingale
 difference all the same. The refutation is asserted separately in each
 dimension; from \(k=1\) onwards the C2--C3 range \(n_0\leq n<N\) is nonempty,
-so both conditions carry content at the witness.-/
+so both conditions carry content at the witness.
+@isnad1 id=not.0h1v.s7.5beaef3045fc from=translated src=- shape=beabb98b vocab=fe5311ff
+-/
 theorem not_unrestrictedNachtergaeleEstimate (k : ℕ) :
     ¬ UnrestrictedNachtergaeleEstimate (EuclideanSpace ℂ (Fin (k + 2))) := by
   intro hsource

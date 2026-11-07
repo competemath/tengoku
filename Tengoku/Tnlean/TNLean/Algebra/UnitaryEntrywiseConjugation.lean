@@ -37,7 +37,9 @@ variable {n : Type*} [Fintype n] [DecidableEq n] [Nonempty n]
 
 /-- If the product of a unitary matrix and the entrywise conjugate of another unitary
 matrix is scalar, then the scalar has unit modulus. This is the scalar phase step in
-FBC25, equation `eq:intro_sigma` (arXiv:2502.20257, lines 1559--1562).-/
+FBC25, equation `eq:intro_sigma` (arXiv:2502.20257, lines 1559--1562).
+@isnad1 id=eq.1h4v.s9.662d3967ea23 from=translated src=- shape=f39f0133 vocab=eff51a52
+-/
 theorem scalar_mul_star_eq_one_of_mul_map_star_eq_smul_one
     (T S : Matrix.unitaryGroup n ℂ) (σ : ℂ)
     (hσ : (T : Matrix n n ℂ) * (S : Matrix n n ℂ).map (starRingEnd ℂ) = σ • 1) :
@@ -54,7 +56,9 @@ theorem scalar_mul_star_eq_one_of_mul_map_star_eq_smul_one
 /-- For two unitary matrices, scalars in the two relations obtained by exchanging the
 matrices and entrywise conjugating the second factor are reciprocal. This is the identity
 `σ_g σ_{g⁻¹} = 1` following FBC25, equation `eq:intro_sigma`
-(arXiv:2502.20257, lines 1559--1563).-/
+(arXiv:2502.20257, lines 1559--1563).
+@isnad1 id=eq.2h5v.s9.68d89285a85e from=translated src=- shape=7436aa1b vocab=eff51a52
+-/
 theorem paired_scalars_mul_eq_one_of_mul_map_star_eq_smul_one
     (T S : Matrix.unitaryGroup n ℂ) (σ τ : ℂ)
     (hσ : (T : Matrix n n ℂ) * (S : Matrix n n ℂ).map (starRingEnd ℂ) = σ • 1)
@@ -89,7 +93,9 @@ theorem paired_scalars_mul_eq_one_of_mul_map_star_eq_smul_one
 /-- In the self relation, the scalar multiplying the identity is `1` or `-1`. This is the
 step `𝟙 = xx† = e^{2iφ}𝟙`, hence `e^{iφ} = ±1`, in the conjugation-symmetry proposition of
 arXiv:1703.09188, `paper_v2.tex` lines 1036--1038; it is used again as the involution
-conclusion after FBC25, equation `eq:intro_sigma` (arXiv:2502.20257, lines 1563--1567).-/
+conclusion after FBC25, equation `eq:intro_sigma` (arXiv:2502.20257, lines 1563--1567).
+@isnad1 id=or.1h3v.s8.4bb5f785d327 from=translated src=- shape=49bafe88 vocab=c0d2a169
+-/
 theorem scalar_eq_one_or_neg_one_of_mul_map_star_self_eq_smul_one
     (T : Matrix.unitaryGroup n ℂ) (σ : ℂ)
     (hσ : (T : Matrix n n ℂ) * (T : Matrix n n ℂ).map (starRingEnd ℂ) = σ • 1) :

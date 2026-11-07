@@ -38,12 +38,16 @@ normalized and `β(g,g⁻¹) = 1` for every `g`. This is arXiv:2502.20257, lines
 def IsInverseNormalized (β : ScalarCocycle G) : Prop :=
   β.IsNormalized ∧ ∀ g, β g g⁻¹ = 1
 
-/-- The identity fusion scalar is inverse-normalized.-/
+/-- The identity fusion scalar is inverse-normalized.
+@isnad1 id=isinvers.0h1v.s5.16f7cc09c436 from=translated src=- shape=a72970d9 vocab=e0fa7995
+-/
 @[simp]
 theorem isInverseNormalized_one : IsInverseNormalized (1 : ScalarCocycle G) := by
   exact ⟨⟨fun _ => rfl, fun _ => rfl⟩, fun _ => rfl⟩
 
-/-- Pointwise multiplication preserves the restricted fusion convention.-/
+/-- Pointwise multiplication preserves the restricted fusion convention.
+@isnad1 id=isinvers.2h3v.s6.2d971a13f3a9 from=translated src=- shape=1333e5f0 vocab=dd57afd4
+-/
 theorem IsInverseNormalized.mul {β₁ β₂ : ScalarCocycle G}
     (hβ₁ : β₁.IsInverseNormalized) (hβ₂ : β₂.IsInverseNormalized) :
     (β₁ * β₂).IsInverseNormalized := by
@@ -51,7 +55,9 @@ theorem IsInverseNormalized.mul {β₁ β₂ : ScalarCocycle G}
     fun g => by simp [hβ₁.1.2 g, hβ₂.1.2 g]⟩, fun g => ?_⟩
   simp [hβ₁.2 g, hβ₂.2 g]
 
-/-- Pointwise inversion preserves the restricted fusion convention.-/
+/-- Pointwise inversion preserves the restricted fusion convention.
+@isnad1 id=isinvers.1h2v.s5.a8ed8cfa673b from=translated src=- shape=a3b738d9 vocab=12dc59bc
+-/
 theorem IsInverseNormalized.inv {β : ScalarCocycle G}
     (hβ : β.IsInverseNormalized) : β⁻¹.IsInverseNormalized := by
   refine ⟨⟨fun g => by simp [hβ.1.1 g], fun g => by simp [hβ.1.2 g]⟩, fun g => ?_⟩
@@ -107,26 +113,34 @@ instance : Group (RestrictedFusionGauge G) where
     funext g h
     exact inv_mul_cancel (β.beta g h)
 
-/-- The identity restricted fusion gauge acts trivially on scalar 3-cochains.-/
+/-- The identity restricted fusion gauge acts trivially on scalar 3-cochains.
+@isnad1 id=eq.0h2v.s4.2690b7438cc5 from=translated src=- shape=633a6ef5 vocab=efce3d2f
+-/
 @[simp]
 theorem fusionGauge_one (ω : ScalarThreeCochain G) :
     ScalarThreeCochain.fusionGauge (1 : RestrictedFusionGauge G).beta ω = ω :=
   ScalarThreeCochain.fusionGauge_one ω
 
-/-- A restricted fusion gauge preserves normalization of scalar 3-cochains.-/
+/-- A restricted fusion gauge preserves normalization of scalar 3-cochains.
+@isnad1 id=isnormal.1h3v.s4.516d881c779e from=translated src=- shape=3916cc00 vocab=1efbe90d
+-/
 theorem isNormalized_fusionGauge (β : RestrictedFusionGauge G)
     {ω : ScalarThreeCochain G} (hω : ω.IsNormalized) :
     (ScalarThreeCochain.fusionGauge β.beta ω).IsNormalized :=
   hω.fusionGauge β.isInverseNormalized.1
 
-/-- A restricted fusion gauge preserves the scalar 3-cocycle equation.-/
+/-- A restricted fusion gauge preserves the scalar 3-cocycle equation.
+@isnad1 id=iscocycl.1h3v.s4.393d0cebffe1 from=translated src=- shape=3916cc00 vocab=fef1e4b9
+-/
 theorem isCocycle_fusionGauge (β : RestrictedFusionGauge G)
     {ω : ScalarThreeCochain G} (hω : ω.IsCocycle) :
     (ScalarThreeCochain.fusionGauge β.beta ω).IsCocycle :=
   hω.fusionGauge β.beta
 
 /-- Successive restricted fusion gauges compose according to
-`ScalarThreeCochain.fusionGauge_comp`.-/
+`ScalarThreeCochain.fusionGauge_comp`.
+@isnad1 id=eq.0h4v.s5.4684628c7271 from=translated src=- shape=167ce49a vocab=29ce90ca
+-/
 theorem fusionGauge_mul (β₁ β₂ : RestrictedFusionGauge G)
     (ω : ScalarThreeCochain G) :
     ScalarThreeCochain.fusionGauge β₂.beta
@@ -135,7 +149,9 @@ theorem fusionGauge_mul (β₁ β₂ : RestrictedFusionGauge G)
   ScalarThreeCochain.fusionGauge_comp β₁.beta β₂.beta ω
 
 /-- Applying a restricted fusion gauge and then its pointwise inverse is the
-identity action.-/
+identity action.
+@isnad1 id=eq.0h3v.s5.ab302faefb56 from=translated src=- shape=694982a1 vocab=af63f9e8
+-/
 @[simp]
 theorem fusionGauge_inv (β : RestrictedFusionGauge G) (ω : ScalarThreeCochain G) :
     ScalarThreeCochain.fusionGauge (β⁻¹).beta
@@ -150,19 +166,25 @@ end RestrictedFusionGauge
 namespace ActionTensorGauge
 
 omit [MulAction G X] in
-/-- The identity action scalar is normalized.-/
+/-- The identity action scalar is normalized.
+@isnad1 id=isnormal.0h2v.s5.3637c964d197 from=translated src=- shape=d02f49b9 vocab=f3b61cd5
+-/
 @[simp]
 theorem isNormalized_one : IsNormalized (1 : ActionTensorGauge G X) :=
   fun _ => rfl
 
 omit [MulAction G X] in
-/-- Pointwise multiplication preserves normalized action scalars.-/
+/-- Pointwise multiplication preserves normalized action scalars.
+@isnad1 id=isnormal.2h4v.s6.c3ca7c0b6aca from=translated src=- shape=77972aa7 vocab=7c2ec148
+-/
 theorem IsNormalized.mul {γ₁ γ₂ : ActionTensorGauge G X}
     (hγ₁ : γ₁.IsNormalized) (hγ₂ : γ₂.IsNormalized) : (γ₁ * γ₂).IsNormalized :=
   fun x => by simp [hγ₁ x, hγ₂ x]
 
 omit [MulAction G X] in
-/-- Pointwise inversion preserves normalized action scalars.-/
+/-- Pointwise inversion preserves normalized action scalars.
+@isnad1 id=isnormal.1h3v.s5.d282cf48ee40 from=translated src=- shape=c20a556f vocab=d33f5ef8
+-/
 theorem IsNormalized.inv {γ : ActionTensorGauge G X}
     (hγ : γ.IsNormalized) : γ⁻¹.IsNormalized :=
   fun x => by simp [hγ x]
@@ -226,21 +248,27 @@ instance : Group (RestrictedScalarGauge G X) where
     · funext g x
       exact inv_mul_cancel (κ.gamma g x)
 
-/-- The identity restricted scalar gauge acts trivially on L-symbols.-/
+/-- The identity restricted scalar gauge acts trivially on L-symbols.
+@isnad1 id=eq.0h3v.s6.49f2c2c31be1 from=translated src=- shape=1a193544 vocab=0a4ebdf8
+-/
 @[simp]
 theorem gauge_one (L : LSymbol G X) :
     LSymbol.gauge (1 : RestrictedScalarGauge G X).fusion.beta
       (1 : RestrictedScalarGauge G X).gamma L = L :=
   LSymbol.gauge_one L
 
-/-- Restricted scalar gauges preserve normalized L-symbols.-/
+/-- Restricted scalar gauges preserve normalized L-symbols.
+@isnad1 id=isnormal.1h4v.s5.f0d353c978cc from=translated src=- shape=b748391f vocab=fa58cc46
+-/
 theorem isNormalized_gauge (κ : RestrictedScalarGauge G X) {L : LSymbol G X}
     (hL : L.IsNormalized) :
     (LSymbol.gauge κ.fusion.beta κ.gamma L).IsNormalized :=
   hL.gauge κ.fusion.isInverseNormalized.1 κ.gamma_isNormalized
 
 /-- Restricted scalar gauges preserve compatibility while acting on the
-corresponding scalar 3-cochain by the fusion gauge.-/
+corresponding scalar 3-cochain by the fusion gauge.
+@isnad1 id=iscompat.1h5v.s6.54ff7bcdfd61 from=translated src=- shape=00904305 vocab=9c080a69
+-/
 theorem isCompatible_gauge (κ : RestrictedScalarGauge G X) {L : LSymbol G X}
     {ω : ScalarThreeCochain G} (hL : L.IsCompatible ω) :
     (LSymbol.gauge κ.fusion.beta κ.gamma L).IsCompatible
@@ -248,7 +276,9 @@ theorem isCompatible_gauge (κ : RestrictedScalarGauge G X) {L : LSymbol G X}
   hL.gauge κ.fusion.beta κ.gamma
 
 /-- Successive restricted scalar gauges compose according to
-`LSymbol.gauge_comp`.-/
+`LSymbol.gauge_comp`.
+@isnad1 id=eq.0h5v.s7.e39b61809d21 from=translated src=- shape=3145f6f4 vocab=2467d19f
+-/
 theorem gauge_mul (κ₁ κ₂ : RestrictedScalarGauge G X) (L : LSymbol G X) :
     LSymbol.gauge κ₂.fusion.beta κ₂.gamma
         (LSymbol.gauge κ₁.fusion.beta κ₁.gamma L) =
@@ -256,7 +286,9 @@ theorem gauge_mul (κ₁ κ₂ : RestrictedScalarGauge G X) (L : LSymbol G X) :
   LSymbol.gauge_comp κ₁.fusion.beta κ₂.fusion.beta κ₁.gamma κ₂.gamma L
 
 /-- Applying a restricted scalar gauge and then its pointwise inverse is the
-identity action on L-symbols.-/
+identity action on L-symbols.
+@isnad1 id=eq.0h4v.s6.1a67338beb7c from=translated src=- shape=1d758a67 vocab=c3fc1383
+-/
 @[simp]
 theorem gauge_inv (κ : RestrictedScalarGauge G X) (L : LSymbol G X) :
     LSymbol.gauge (κ⁻¹).fusion.beta (κ⁻¹).gamma

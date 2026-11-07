@@ -33,7 +33,9 @@ namespace LSymbol
 `σ(g) = Lˣ_{g⁻¹,g} / L^{g • x}_{g,g⁻¹}`.
 
 This is the scalar calculation after `eq:sigmadiag` in arXiv:2502.20257,
-Appendix `app:Z2`, lines 5327--5329.-/
+Appendix `app:Z2`, lines 5327--5329.
+@isnad1 id=eq.2h6v.s7.83ba03d9fca8 from=translated src=- shape=5ea2c19e vocab=b22c1b00
+-/
 theorem sigma_eq_div {L : LSymbol G X} {ω : ScalarThreeCochain G}
     (hL : IsCompatible L ω) (hLn : IsNormalized L) (x : X) (g : G) :
     ScalarThreeCochain.sigma ω g = L x g⁻¹ g / L (g • x) g g⁻¹ := by
@@ -66,7 +68,9 @@ Normalization of its coboundary instead forces both identity-axis restrictions
 to equal one common constant, by `isNormalized_coboundary_iff`; at the triple
 of nonidentity elements this constant and the remaining self-pair factor
 cancel. This formalizes the normalized-cochain classification used in
-arXiv:2502.20257, Appendix `app:Z2`, lines 5340--5341.-/
+arXiv:2502.20257, Appendix `app:Z2`, lines 5340--5341.
+@isnad1 id=iff.1h1v.s8.c9f98d5e3896 from=translated src=- shape=6877909c vocab=025626d6
+-/
 theorem isTrivialGaugeClass_iff_sigma_generator_eq_one
     {ω : ScalarThreeCochain (Multiplicative (ZMod 2))} (hωn : IsNormalized ω) :
     IsTrivialGaugeClass ω ↔ sigma ω s₂ = 1 := by
@@ -98,7 +102,9 @@ theorem isTrivialGaugeClass_iff_sigma_generator_eq_one
 /-- The inversion scalar of a normalized scalar three-cocycle on Z₂ is either
 one or minus one. This is the scalar counterpart of the two signs stated in
 arXiv:2502.20257, Appendix `app:Z2`, lines 5335 and 5340. It does not use the
-tensor identity preceding that statement.-/
+tensor identity preceding that statement.
+@isnad1 id=or.2h1v.s9.0226d8bfa851 from=translated src=- shape=11fc4e54 vocab=ca00d478
+-/
 theorem sigma_generator_eq_one_or_eq_neg_one
     {ω : ScalarThreeCochain (Multiplicative (ZMod 2))} (hω : IsCocycle ω)
     (hωn : IsNormalized ω) :
@@ -112,7 +118,9 @@ when its inversion scalar at the nonidentity generator is minus one.
 
 This is the scalar cohomology step in the proof at arXiv:2502.20257,
 Appendix `app:Z2`, lines 5340--5341. It does not include the tensor-level
-identification with the involutive dagger-gauge sign stated at lines 5331--5337.-/
+identification with the involutive dagger-gauge sign stated at lines 5331--5337.
+@isnad1 id=iff.2h1v.s8.683d04e95d0a from=translated src=- shape=32d65334 vocab=9d6f7fae
+-/
 theorem not_isTrivialGaugeClass_iff_sigma_generator_eq_neg_one
     {ω : ScalarThreeCochain (Multiplicative (ZMod 2))} (hω : IsCocycle ω)
     (hωn : IsNormalized ω) :

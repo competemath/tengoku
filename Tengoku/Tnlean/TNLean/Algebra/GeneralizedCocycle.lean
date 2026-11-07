@@ -102,7 +102,9 @@ namespace ActionTensorGauge
 /-- The generalized coboundary of a block-dependent scalar one-cochain is a
 generalized scalar two-cocycle.
 
-This is the one-index instance of `d(df) = 1` in arXiv:2502.20257, line 5922.-/
+This is the one-index instance of `d(df) = 1` in arXiv:2502.20257, line 5922.
+@isnad1 id=isgenera.0h3v.s4.7198ee2caed7 from=translated src=- shape=41b3493d vocab=4ddbeea4
+-/
 theorem isGeneralizedCocycle_coboundary (χ : ActionTensorGauge G X) :
     LSymbol.IsGeneralizedCocycle (coboundary χ) := by
   intro x g h k
@@ -131,7 +133,9 @@ def coboundary (ω : GeneralizedThreeCochain G X) : GeneralizedFourCochain G X :
 `d(df) = 1`.
 
 This is arXiv:2502.20257, line 5922, using the corrected two-index coboundary
-recorded in `docs/paper-gaps/fbc25_two_cochain_coboundary_index_typo.tex`.-/
+recorded in `docs/paper-gaps/fbc25_two_cochain_coboundary_index_typo.tex`.
+@isnad1 id=eq.0h3v.s6.8e111cdd9ef1 from=translated src=- shape=93b66eed vocab=d85bd254
+-/
 theorem coboundary_coboundary (f : LSymbol G X) :
     coboundary (LSymbol.coboundary f) = 1 := by
   funext x g h k l
@@ -154,14 +158,18 @@ noncomputable def regularMatrix (Ω : LSymbol G X) (g : G) (x : X) : Matrix G G 
   classical
   exact fun i k => if i = g * k then (Ω (k⁻¹ • x) g k : ℂ) else 0
 
-/-- The nonzero entry of a generalized-cocycle regular-action matrix.-/
+/-- The nonzero entry of a generalized-cocycle regular-action matrix.
+@isnad1 id=eq.1h7v.s6.d7b87509a08f from=translated src=- shape=fe80a73a vocab=6cea74e0
+-/
 theorem regularMatrix_apply_of_eq (Ω : LSymbol G X) (g i k : G) (x : X)
     (hi : i = g * k) :
     regularMatrix Ω g x i k = (Ω (k⁻¹ • x) g k : ℂ) := by
   classical
   simp [regularMatrix, hi]
 
-/-- Every other entry of a generalized-cocycle regular-action matrix vanishes.-/
+/-- Every other entry of a generalized-cocycle regular-action matrix vanishes.
+@isnad1 id=eq.1h7v.s6.1bb95c262272 from=translated src=- shape=5d9fad11 vocab=a1b1a301
+-/
 theorem regularMatrix_apply_of_ne (Ω : LSymbol G X) (g i k : G) (x : X)
     (hi : i ≠ g * k) : regularMatrix Ω g x i k = 0 := by
   classical
@@ -179,7 +187,9 @@ noncomputable def regularDiagonal (Ω : LSymbol G X) (g : G) (x : X) : Matrix G 
   exact Matrix.diagonal (fun k => (Ω (k⁻¹ • x) g k : ℂ))
 
 /-- The regular-action matrix is a permutation matrix times its diagonal
-coefficient matrix.-/
+coefficient matrix.
+@isnad1 id=eq.0h5v.s6.e462a10b2fb9 from=translated src=- shape=1ddf0fc5 vocab=7e125ba0
+-/
 theorem regularMatrix_eq_permutation_mul_diagonal [Fintype G]
     (Ω : LSymbol G X) (g : G) (x : X) :
     regularMatrix Ω g x = regularPermutationMatrix g * regularDiagonal Ω g x := by
@@ -201,7 +211,9 @@ for the regular-action matrices:
 
 `X^{h • x}_g Xˣ_h = Ωˣ_{g,h} Xˣ_{gh}`.
 
-This is arXiv:2502.20257, `lemma:G_cocycle`, lines 5941--5943.-/
+This is arXiv:2502.20257, `lemma:G_cocycle`, lines 5941--5943.
+@isnad1 id=eq.1h6v.s7.857dd693d083 from=translated src=- shape=56456f5d vocab=93c74b87
+-/
 theorem regularMatrix_mul [Fintype G] {Ω : LSymbol G X}
     (hΩ : IsGeneralizedCocycle Ω) (x : X) (g h : G) :
     regularMatrix Ω g (h • x) * regularMatrix Ω h x =
@@ -232,7 +244,9 @@ noncomputable def regularDeterminant [Fintype G] (Ω : LSymbol G X) (g : G) (x :
   exact (regularMatrix Ω g x).det
 
 /-- Every regular-action matrix has nonzero determinant. The proof uses the
-permutation-times-diagonal factorization from the source construction.-/
+permutation-times-diagonal factorization from the source construction.
+@isnad1 id=ne.0h5v.s5.c192bb7d7edd from=translated src=- shape=24bb038a vocab=15cb58df
+-/
 theorem regularDeterminant_ne_zero [Fintype G] (Ω : LSymbol G X) (g : G) (x : X) :
     regularDeterminant Ω g x ≠ 0 := by
   classical
@@ -255,7 +269,9 @@ noncomputable def determinantCochain [Fintype G] (Ω : LSymbol G X) :
 `(Ωˣ_{g,h})^|G| = (dχ)ˣ_{g,h}` for `χˣ_g = det Xˣ_g`.
 
 This is arXiv:2502.20257, `lemma:G_cocycle`. The determinant numerator is the
-locally corrected `det X^{h • x}_g det Xˣ_h`.-/
+locally corrected `det X^{h • x}_g det Xˣ_h`.
+@isnad1 id=eq.1h6v.s6.1d2122db8516 from=translated src=- shape=1f3604df vocab=671c4923
+-/
 theorem pow_card_eq_coboundary_apply [Fintype G] {Ω : LSymbol G X}
     (hΩ : IsGeneralizedCocycle Ω) (x : X) (g h : G) :
     Ω x g h ^ Fintype.card G =
@@ -275,7 +291,9 @@ theorem pow_card_eq_coboundary_apply [Fintype G] {Ω : LSymbol G X}
 /-- For a finite group, the `|G|`-th power of every generalized scalar
 2-cocycle is the generalized coboundary of its determinant cochain.
 
-This is arXiv:2502.20257, `lemma:G_cocycle`.-/
+This is arXiv:2502.20257, `lemma:G_cocycle`.
+@isnad1 id=eq.1h3v.s6.695b9e8fb2e2 from=translated src=- shape=3ffe504d vocab=671c4923
+-/
 theorem pow_card_eq_coboundary [Fintype G] {Ω : LSymbol G X}
     (hΩ : IsGeneralizedCocycle Ω) :
     Ω ^ Fintype.card G = ActionTensorGauge.coboundary (determinantCochain Ω) := by

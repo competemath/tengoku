@@ -295,7 +295,9 @@ open-edge gauge.
 This is the open-edge analog of `applyGauge_stateCoeff`, used in the
 post-absorption edge-insertion identity (arXiv:1804.04964, Section 3,
 `eq:inj_equal_edge`). The transpose placement is forced by the orientation
-convention of `edgeGaugeAt`.-/
+convention of `edgeGaugeAt`.
+@isnad1 id=eq.0h8v.s9.a78050561236 from=translated src=- shape=07cd887e vocab=767c0ba7
+-/
 theorem edgeInsertedCoeff_applyGauge (B : Tensor G d)
     (Z : (e : Edge G) → GL (Fin (B.bondDim e)) ℂ) (e : Edge G) (σ : V → Fin d)
     (N : Matrix (Fin (B.bondDim e)) (Fin (B.bondDim e)) ℂ) :
@@ -346,7 +348,9 @@ theorem edgeInsertedCoeff_applyGauge (B : Tensor G d)
   congr 1
   exact open_gauge_sum_over_outer B Z e N ω
 
-/-- Gauge equivalence implies the same PEPS state.-/
+/-- Gauge equivalence implies the same PEPS state.
+@isnad1 id=samestat.1h5v.s5.f89eb13f2521 from=translated src=- shape=0fc6589b vocab=bff8ec13
+-/
 theorem GaugeEquiv.sameState {A B : Tensor G d} (h : GaugeEquiv A B) :
     SameState A B := by
   classical

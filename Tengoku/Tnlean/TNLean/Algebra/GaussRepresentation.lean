@@ -40,17 +40,25 @@ def gaussLegAction (g : G) : G × G ≃ G × G where
   left_inv p := by simp
   right_inv p := by simp
 
+/--
+@isnad1 id=eq.0h4v.s6.b499ae3b7ca8 from=translated src=- shape=e26ea55c vocab=18b2121f
+-/
 @[simp]
 theorem gaussLegAction_apply (g : G) (a b : G) :
     gaussLegAction g (a, b) = (a * g⁻¹, g * b) :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.06190144598c from=translated src=- shape=0b003f2a vocab=75f4dc30
+-/
 @[simp]
 theorem gaussLegAction_one : gaussLegAction (1 : G) = 1 := by
   ext p <;> simp [gaussLegAction]
 
 /-- The paper's label permutations compose in representation order:
-`T_g ∘ T_h = T_{g * h}`.-/
+`T_g ∘ T_h = T_{g * h}`.
+@isnad1 id=eq.0h3v.s6.7cdb9bf2c8a4 from=translated src=- shape=f0489e14 vocab=b49ff42b
+-/
 theorem gaussLegAction_mul (g h : G) :
     gaussLegAction g * gaussLegAction h = gaussLegAction (g * h) := by
   ext p <;> simp [gaussLegAction, mul_assoc]
@@ -75,7 +83,9 @@ def gaussOperator (R : G → G → Matrix.unitaryGroup n ℂ) (g : G) :
     else 0
 
 /-- The nonzero block of the Gauss operator is the factorization comparison
-specified in FBC25, Equation `eq:mcG`.-/
+specified in FBC25, Equation `eq:mcG`.
+@isnad1 id=eq.0h8v.s8.479700bf1b76 from=translated src=- shape=2a175c23 vocab=f78d0e19
+-/
 @[simp]
 theorem gaussOperator_apply_target
     (R : G → G → Matrix.unitaryGroup n ℂ) (g a b : G) (i j : n) :
@@ -85,7 +95,9 @@ theorem gaussOperator_apply_target
   classical
   simp [gaussOperator]
 
-/-- Every other gauge block in a fixed column of the Gauss operator vanishes.-/
+/-- Every other gauge block in a fixed column of the Gauss operator vanishes.
+@isnad1 id=eq.1h6v.s7.9cd2752f6fc4 from=translated src=- shape=869fee87 vocab=f6889820
+-/
 @[simp]
 theorem gaussOperator_apply_of_ne
     (R : G → G → Matrix.unitaryGroup n ℂ) (g : G)
@@ -98,7 +110,9 @@ variable [Fintype G]
 
 /-- Local Gauss operators multiply according to the group law. This is the
 first conclusion of FBC25, Proposition `prop:gausslaws`
-(arXiv:2502.20257, lines 3380--3387).-/
+(arXiv:2502.20257, lines 3380--3387).
+@isnad1 id=eq.0h5v.s7.23b3971cdebf from=translated src=- shape=6d0d0e82 vocab=9f3cf74e
+-/
 theorem gaussOperator_mul
     (R : G → G → Matrix.unitaryGroup n ℂ) (g h : G) :
     gaussOperator R g * gaussOperator R h = gaussOperator R (g * h) := by
@@ -127,7 +141,9 @@ theorem gaussOperator_mul
 variable [DecidableEq G]
 
 omit [Fintype G] in
-/-- The Gauss operator of the identity group element is the identity matrix.-/
+/-- The Gauss operator of the identity group element is the identity matrix.
+@isnad1 id=eq.0h3v.s7.764357dcde5f from=translated src=- shape=b5c7e99b vocab=3e6bee35
+-/
 @[simp]
 theorem gaussOperator_one (R : G → G → Matrix.unitaryGroup n ℂ) :
     gaussOperator R 1 = 1 := by
@@ -145,7 +161,9 @@ theorem gaussOperator_one (R : G → G → Matrix.unitaryGroup n ℂ) :
 
 omit [Fintype G] [DecidableEq G] in
 /-- The adjoint of a local Gauss operator is the operator for the inverse group
-element.-/
+element.
+@isnad1 id=eq.0h4v.s7.f7fcd6d4fdc9 from=translated src=- shape=7a5b4060 vocab=d14d7466
+-/
 theorem star_gaussOperator
     (R : G → G → Matrix.unitaryGroup n ℂ) (g : G) :
     star (gaussOperator R g) = gaussOperator R g⁻¹ := by
@@ -171,7 +189,9 @@ theorem star_gaussOperator
     rw [gaussOperator, ite_eq_right hxy, gaussOperator, ite_eq_right hyx]
     exact star_zero ℂ
 
-/-- Every local Gauss operator is unitary.-/
+/-- Every local Gauss operator is unitary.
+@isnad1 id=mem.0h4v.s8.4f68ccaa7b74 from=translated src=- shape=97a2cad9 vocab=3e6bee35
+-/
 theorem gaussOperator_mem_unitaryGroup
     (R : G → G → Matrix.unitaryGroup n ℂ) (g : G) :
     gaussOperator R g ∈ Matrix.unitaryGroup (n × (G × G)) ℂ := by
@@ -188,6 +208,9 @@ def gaussRepresentation (R : G → G → Matrix.unitaryGroup n ℂ) :
   map_one' := Subtype.ext (gaussOperator_one R)
   map_mul' g h := Subtype.ext (gaussOperator_mul R g h).symm
 
+/--
+@isnad1 id=eq.0h4v.s11.bf9ab17c8fc1 from=translated src=- shape=549f6af0 vocab=e207a93b
+-/
 @[simp]
 theorem gaussRepresentation_coe
     (R : G → G → Matrix.unitaryGroup n ℂ) (g : G) :

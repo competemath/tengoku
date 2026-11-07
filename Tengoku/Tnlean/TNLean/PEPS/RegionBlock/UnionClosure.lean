@@ -49,6 +49,9 @@ Source: arXiv:1804.04964, Section 3, lines 1322--1404 of
 def regionInjectivityDataOf (A : Tensor G d) : RegionInjectivityData V where
   IsInjective R := RegionBlockedTensorInjective (G := G) A R
 
+/--
+@isnad1 id=eq.0h5v.s5.5e176531eed3 from=translated src=- shape=9cd66615 vocab=3ebf36fc
+-/
 @[simp] theorem regionInjectivityDataOf_isInjective (A : Tensor G d) (R : Finset V) :
     (regionInjectivityDataOf (G := G) A).IsInjective R =
       RegionBlockedTensorInjective (G := G) A R := rfl
@@ -62,7 +65,9 @@ the two argument regions is not needed.
 
 Source: arXiv:1804.04964, Section 3, Lemma lem:injective_union, lines
 1322--1404 of `Papers/1804.04964/paper_normal.tex`, with the positive-bond
-hypothesis recorded in `docs/paper-gaps/peps_injective_ft_section3_route.tex`.-/
+hypothesis recorded in `docs/paper-gaps/peps_injective_ft_section3_route.tex`.
+@isnad1 id=regionin.2h4v.s6.65abdd8b2670 from=translated src=- shape=d2e1f820 vocab=02cb625a
+-/
 theorem regionInjectivityUnionClosure_of_isVertexInjective (A : Tensor G d)
     (hA : IsVertexInjective A) (hpos : ∀ e : Edge G, 0 < A.bondDim e) :
     RegionInjectivityUnionClosure (regionInjectivityDataOf (G := G) A) where
@@ -78,7 +83,9 @@ on `{v}` is exactly the kernel-descent result at the region `{v}`, so the
 hypothesis on the singleton tensor is not needed.
 
 Source: arXiv:1804.04964, Section 3, lines 981--1009 and 1322--1404 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=singleto.2h4v.s6.93eb102c4c4a from=translated src=- shape=3db970d4 vocab=ace5d62f
+-/
 theorem singletonRegionInjectivityComparison_of_isVertexInjective (A : Tensor G d)
     (hA : IsVertexInjective A) (hpos : ∀ e : Edge G, 0 < A.bondDim e) :
     SingletonRegionInjectivityComparison (G := G) (d := d)

@@ -35,7 +35,9 @@ of Nachtergaele, arXiv:cond-mat/9410110, lines 1220–1255. Write
 \(m=n-l+k\) with \(0\le k\le l\), reverse the sums over \(n\) and \(k\),
 and for fixed \(k\) inject the shifted indices into \([0,N)\). No relation
 between \(l\) and \(N\) is required, so the empty outer sum when \(l\ge N\)
-is included.-/
+is included.
+@isnad1 id=le.1h3v.s6.1c8b511b0132 from=translated src=- shape=917e7a67 vocab=5118d244
+-/
 theorem movingWindow_sum_le (a : ℕ → ℝ) (l N : ℕ) (ha : ∀ m, 0 ≤ a m) :
     ∑ n ∈ Finset.Ico l N, ∑ m ∈ Finset.Icc (n - l) n, a m ≤
       (l + 1) * ∑ m ∈ Finset.range N, a m := by
@@ -81,7 +83,9 @@ theorem movingWindow_sum_le (a : ℕ → ℝ) (l N : ℕ) (ha : ∀ m, 0 ≤ a m
 
 /-- For nonnegative coefficients, the same moving-window estimate holds when
 all indices in \([0,N)\) are active. The truncated windows at indices below
-\(l\) still count each coefficient at most \(l+1\) times.-/
+\(l\) still count each coefficient at most \(l+1\) times.
+@isnad1 id=le.1h3v.s6.cee4f3b113e1 from=translated src=- shape=c52d84ca vocab=2e6d5575
+-/
 theorem movingWindow_sum_range_le (a : ℕ → ℝ) (l N : ℕ) (ha : ∀ m, 0 ≤ a m) :
     ∑ n ∈ Finset.range N, ∑ m ∈ Finset.Icc (n - l) n, a m ≤
       (l + 1) * ∑ m ∈ Finset.range N, a m := by
@@ -152,7 +156,9 @@ most \(l+1\) times, and only the coefficients indexed by \(m\ge n_0-l\) occur.
 The source's conditions C2 and C3 in Nachtergaele, arXiv:cond-mat/9410110,
 lines 1043--1094, hold only above a threshold, so the summation after
 equation \(\mathrm{Enpsi2}\), lines 1220--1255, runs over
-\(n\in[n_0,N)\). This estimate is the corresponding double count.-/
+\(n\in[n_0,N)\). This estimate is the corresponding double count.
+@isnad1 id=le.1h4v.s6.8e62b3a08945 from=translated src=- shape=8a5bfa71 vocab=aa7b8a9a
+-/
 theorem movingWindow_sum_Ico_le (a : ℕ → ℝ) (l n₀ N : ℕ) (ha : ∀ m, 0 ≤ a m) :
     ∑ n ∈ Finset.Ico n₀ N, ∑ m ∈ Finset.Icc (n - l) n, a m ≤
       (l + 1) * ∑ m ∈ Finset.Ico (n₀ - l) N, a m := by

@@ -24,7 +24,9 @@ end Finset
 
 namespace Fintype
 
-/-- Reverse three independent finite-sum binders.-/
+/-- Reverse three independent finite-sum binders.
+@isnad1 id=eq.0h5v.s6.32b976ec51e5 from=translated src=- shape=c3fdd690 vocab=8311caaa
+-/
 theorem sum_reverse_three {A B C R : Type*}
     [Fintype A] [Fintype B] [Fintype C] [AddCommMonoid R]
     (f : A → B → C → R) :
@@ -40,7 +42,9 @@ theorem sum_reverse_three {A B C R : Type*}
     (fun _ ↦ rfl)
   simpa only [Fintype.sum_prod_type] using h
 
-/-- Move the last two of four independent finite-sum binders to the front.-/
+/-- Move the last two of four independent finite-sum binders to the front.
+@isnad1 id=eq.0h6v.s6.dffc577cecae from=translated src=- shape=4a484b94 vocab=8311caaa
+-/
 theorem sum_last_two_first_four {A B C P R : Type*}
     [Fintype A] [Fintype B] [Fintype C] [Fintype P] [AddCommMonoid R]
     (f : A → B → C → P → R) :
@@ -56,7 +60,9 @@ theorem sum_last_two_first_four {A B C P R : Type*}
     (fun _ ↦ rfl)
   simpa only [Fintype.sum_prod_type] using h
 
-/-- Permute four independent finite-sum binders from `A,B,C,P` to `P,C,A,B`.-/
+/-- Permute four independent finite-sum binders from `A,B,C,P` to `P,C,A,B`.
+@isnad1 id=eq.0h6v.s6.312e0f6bd7d0 from=translated src=- shape=09e127e4 vocab=8311caaa
+-/
 theorem sum_last_first_four {A B C P R : Type*}
     [Fintype A] [Fintype B] [Fintype C] [Fintype P] [AddCommMonoid R]
     (f : A → B → C → P → R) :
@@ -72,7 +78,9 @@ theorem sum_last_first_four {A B C P R : Type*}
     (fun _ ↦ rfl)
   simpa only [Fintype.sum_prod_type] using h
 
-/-- Move the last two of five independent finite-sum binders to the front.-/
+/-- Move the last two of five independent finite-sum binders to the front.
+@isnad1 id=eq.0h7v.s7.6598eb36644c from=translated src=- shape=8e3fa688 vocab=8311caaa
+-/
 theorem sum_last_two_first_five {A B C P Q R : Type*}
     [Fintype A] [Fintype B] [Fintype C] [Fintype P] [Fintype Q]
     [AddCommMonoid R] (f : A → B → C → P → Q → R) :
@@ -89,7 +97,9 @@ theorem sum_last_two_first_five {A B C P Q R : Type*}
     (fun _ ↦ rfl)
   simpa only [Fintype.sum_prod_type] using h
 
-/-- Permute five independent finite-sum binders from `A,B,C,P,Q` to `P,B,A,C,Q`.-/
+/-- Permute five independent finite-sum binders from `A,B,C,P,Q` to `P,B,A,C,Q`.
+@isnad1 id=eq.0h7v.s7.263e2064956f from=translated src=- shape=1503adcf vocab=8311caaa
+-/
 theorem sum_permute_five {A B C P Q R : Type*}
     [Fintype A] [Fintype B] [Fintype C] [Fintype P] [Fintype Q] [AddCommMonoid R]
     (f : A → B → C → P → Q → R) :

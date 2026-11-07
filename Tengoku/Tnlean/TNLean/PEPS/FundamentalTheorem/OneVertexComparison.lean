@@ -43,6 +43,9 @@ def vertexTwoBlock (A : Tensor G d) (v : V) :
   fun _ η σ => A.component v η σ
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h8v.s7.774f8236edff from=translated src=- shape=1a6bd085 vocab=36a3ca1e
+-/
 @[simp] theorem vertexTwoBlock_apply (A : Tensor G d) (v : V)
     (u : PUnit) (η : (ie : IncidentEdge G v) → Fin (A.bondDim ie.1)) (σ : Fin d) :
     vertexTwoBlock (G := G) A v u η σ = A.component v η σ := rfl
@@ -57,7 +60,9 @@ the local virtual configuration turns this into the abstract two-block
 injectivity of the single-vertex tensor.
 
 Source: arXiv:1804.04964, Section 3, lines 1205--1210 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=istwoblo.1h5v.s7.12cc20c80508 from=translated src=- shape=48ef9e3a vocab=786b98c6
+-/
 theorem isTwoBlockInjective_vertexTwoBlock (A : Tensor G d)
     (hA : IsVertexInjective A) (v : V) :
     IsTwoBlockInjective (Bond := IncidentEdge G v)
@@ -92,6 +97,9 @@ noncomputable def complementTwoBlock (A : Tensor G d) (v : V) :
       (VertexComplementPhysicalConfig (V := V) (d := d) v) :=
   fun _ starCfg τ => vertexComplementWeight (G := G) A v starCfg τ
 
+/--
+@isnad1 id=eq.0h8v.s7.bf85162333df from=translated src=- shape=01a1f2b2 vocab=20681c9c
+-/
 @[simp] theorem complementTwoBlock_apply (A : Tensor G d) (v : V)
     (u : PUnit) (starCfg : (ie : IncidentEdge G v) → Fin (A.bondDim ie.1))
     (τ : VertexComplementPhysicalConfig (V := V) (d := d) v) :
@@ -113,7 +121,9 @@ have nonzero virtual bond spaces, recorded in
 `docs/paper-gaps/peps_injective_ft_section3_route.tex`.
 
 Source: arXiv:1804.04964, Section 3, lines 1205--1210 and 205--250 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=istwoblo.2h5v.s7.2774337f24c0 from=translated src=- shape=f696fa4f vocab=2600dd1f
+-/
 theorem isTwoBlockInjective_complementTwoBlock (A : Tensor G d)
     (hA : IsVertexInjective A) (hpos : ∀ e : Edge G, 0 < A.bondDim e) (v : V) :
     IsTwoBlockInjective (Bond := IncidentEdge G v)
@@ -148,12 +158,18 @@ def assembleσ (v : V) (σ₁ : Fin d)
   fun w => if h : w = v then σ₁ else τ ⟨w, h⟩
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h5v.s4.d8072f7bee38 from=translated src=- shape=7ad4831e vocab=67cec0fd
+-/
 @[simp] theorem assembleσ_self (v : V) (σ₁ : Fin d)
     (τ : VertexComplementPhysicalConfig (V := V) (d := d) v) :
     assembleσ (V := V) (d := d) v σ₁ τ v = σ₁ := by
   simp [assembleσ]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h6v.s5.d7cc737a3057 from=translated src=- shape=87ca1e52 vocab=5d5448f2
+-/
 theorem assembleσ_of_ne (v : V) (σ₁ : Fin d)
     (τ : VertexComplementPhysicalConfig (V := V) (d := d) v) {w : V} (h : w ≠ v) :
     assembleσ (V := V) (d := d) v σ₁ τ w = τ ⟨w, h⟩ := by
@@ -166,7 +182,9 @@ configuration `Fintype` instance.
 
 `twoBlockInsertedCoeff` sums over `SharedBondConfig` using `Pi.instFintype`;
 this lemma transports both sums to `LocalVirtualConfig A v` so the downstream
-fiberwise collapse over the global virtual configuration is instance-aligned.-/
+fiberwise collapse over the global virtual configuration is instance-aligned.
+@isnad1 id=eq.0h9v.s9.2240f26f79a6 from=translated src=- shape=a798a26c vocab=3dd58d56
+-/
 theorem twoBlockInsertedCoeff_vertex_complement (A : Tensor G d) (v : V)
     (ie : IncidentEdge G v) (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ)
     (σ₁ : Fin d) (τ : VertexComplementPhysicalConfig (V := V) (d := d) v) :
@@ -193,7 +211,9 @@ the global configuration `ζ` and the v-star configuration `μ` of the first
 block.
 
 Source: arXiv:1804.04964, Section 3, lines 1205--1210 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.0h9v.s10.a957236c998c from=translated src=- shape=3a14a9d3 vocab=ba128f07
+-/
 theorem twoBlock_lhs_global (A : Tensor G d) (v : V) (ie : IncidentEdge G v)
     (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ)
     (σ₁ : Fin d) (τ : VertexComplementPhysicalConfig (V := V) (d := d) v) :
@@ -232,7 +252,9 @@ theorem twoBlock_lhs_global (A : Tensor G d) (v : V) (ie : IncidentEdge G v)
 
 omit [Fintype V] in
 /-- `SameAwayFromBond ie μ ρ` is equivalent to `μ` being `ρ` with the value on `ie`
-overwritten by `μ ie`.-/
+overwritten by `μ ie`.
+@isnad1 id=iff.0h8v.s9.1516a973bf32 from=translated src=- shape=bbaf39f0 vocab=306478b8
+-/
 theorem sameAwayFromBond_iff_update (A : Tensor G d) (v : V) (ie : IncidentEdge G v)
     (μ ρ : LocalVirtualConfig A v) :
     SameAwayFromBond ie μ ρ ↔ μ = Function.update ρ ie (μ ie) := by
@@ -249,7 +271,9 @@ theorem sameAwayFromBond_iff_update (A : Tensor G d) (v : V) (ie : IncidentEdge 
 open scoped Classical in
 /-- Collapse a sum over local virtual configurations constrained to agree with a
 fixed configuration off the distinguished bond `ie` into a sum over the value on
-`ie`.-/
+`ie`.
+@isnad1 id=eq.0h8v.s10.d3f5364977ce from=translated src=- shape=98accde8 vocab=62c8f681
+-/
 theorem constrained_mu_sum_collapse (A : Tensor G d) (v : V) (ie : IncidentEdge G v)
     (ρ : LocalVirtualConfig A v) (F : LocalVirtualConfig A v → ℂ) :
     (∑ μ : LocalVirtualConfig A v, (if SameAwayFromBond ie μ ρ then F μ else 0)) =
@@ -282,12 +306,18 @@ noncomputable def virtualConfigSplitAt (A : Tensor G d) (e : Edge G) :
   Equiv.piSplitAt e (fun f : Edge G => Fin (A.bondDim f))
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h6v.s8.65c1f3eac06f from=translated src=- shape=5fa1fb27 vocab=9e61d7e3
+-/
 @[simp] theorem virtualConfigSplitAt_symm_edge (A : Tensor G d) (e : Edge G)
     (x : Fin (A.bondDim e) × EdgeComplementConfig (G := G) A e) :
     (virtualConfigSplitAt (G := G) A e).symm x e = x.1 := by
   simp [virtualConfigSplitAt, Equiv.piSplitAt_symm_apply]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s8.f478039bb409 from=translated src=- shape=5066b40b vocab=a2b85bc1
+-/
 @[simp] theorem virtualConfigSplitAt_symm_ne (A : Tensor G d) (e : Edge G)
     (x : Fin (A.bondDim e) × EdgeComplementConfig (G := G) A e)
     (f : {f : Edge G // f ≠ e}) :
@@ -307,7 +337,9 @@ Source: arXiv:1804.04964, Section 3, lines 1205--1210 of
 open scoped Classical in
 /-- The edge-inserted coefficient as a sum over the two open edge indices and a
 complement configuration, with the per-vertex tensors contracted along the
-edge-doubled configuration.-/
+edge-doubled configuration.
+@isnad1 id=eq.0h7v.s8.b1c229d5cea0 from=translated src=- shape=61001981 vocab=bd4021bd
+-/
 theorem edgeInsertedCoeff_eq_doubled (A : Tensor G d) (e : Edge G)
     (σ : V → Fin d) (N : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ) :
     edgeInsertedCoeff (G := G) A e σ N =
@@ -341,7 +373,9 @@ theorem edgeInsertedCoeff_eq_doubled (A : Tensor G d) (e : Edge G)
 
 omit [Fintype V] in
 /-- At a non-`v` vertex (`v = e.1.1` the left endpoint), the edge-doubled local
-configuration reads the global configuration `ζ = (k, ζc)` directly.-/
+configuration reads the global configuration `ζ = (k, ζc)` directly.
+@isnad1 id=eq.1h10v.s9.a86d1070acd1 from=translated src=- shape=08ba7c84 vocab=53e3be74
+-/
 theorem localOfDoubled_eq_global_off_left (A : Tensor G d) (e : Edge G)
     (i k : Fin (A.bondDim e)) (ζc : EdgeComplementConfig (G := G) A e)
     {w : V} (hw : w ≠ e.1.1) (je : IncidentEdge G w) :
@@ -368,7 +402,9 @@ theorem localOfDoubled_eq_global_off_left (A : Tensor G d) (e : Edge G)
 omit [Fintype V] in
 /-- At the left endpoint `v = e.1.1`, the edge-doubled local configuration is the
 v-star configuration of `ζ = (k, ζc)` with the value on the distinguished edge
-overwritten by the left open index `i`.-/
+overwritten by the left open index `i`.
+@isnad1 id=eq.0h8v.s10.3c0d5ddbca5a from=translated src=- shape=92fd19f0 vocab=c19bbd23
+-/
 theorem localOfDoubled_eq_update_at_left (A : Tensor G d) (e : Edge G)
     (i k : Fin (A.bondDim e)) (ζc : EdgeComplementConfig (G := G) A e) :
     localOfDoubled (G := G) A e i k ζc e.1.1 =
@@ -394,7 +430,9 @@ theorem localOfDoubled_eq_update_at_left (A : Tensor G d) (e : Edge G)
 
 open scoped Classical in
 /-- The vertex/complement two-block inserted coefficient as a sum over global
-virtual configurations and the open value `j` on the distinguished bond.-/
+virtual configurations and the open value `j` on the distinguished bond.
+@isnad1 id=eq.0h9v.s10.87b252629afa from=translated src=- shape=73783d77 vocab=7acf5945
+-/
 theorem twoBlock_lhs_collapsed (A : Tensor G d) (v : V) (ie : IncidentEdge G v)
     (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ)
     (σ₁ : Fin d) (τ : VertexComplementPhysicalConfig (V := V) (d := d) v) :
@@ -426,7 +464,9 @@ theorem twoBlock_lhs_collapsed (A : Tensor G d) (v : V) (ie : IncidentEdge G v)
   refine Finset.sum_congr rfl fun j _ => ?_
   rw [Function.update_self]
 
-/-- Product over all vertices, split off the chosen vertex.-/
+/-- Product over all vertices, split off the chosen vertex.
+@isnad1 id=eq.0h4v.s6.81340fc6ee68 from=translated src=- shape=861c0d13 vocab=e2d57877
+-/
 theorem prod_split_off_vertex {M : Type*} [CommMonoid M] (v₀ : V) (f : V → M) :
     ∏ v : V, f v = f v₀ * ∏ w : {w : V // w ≠ v₀}, f w.1 := by
   classical
@@ -439,7 +479,9 @@ open scoped Classical in
 vertex/complement two-block inserted coefficient at the left endpoint.
 
 Here `v = e.1.1` is the left endpoint, the distinguished v-star bond is
-`edgeLeftIncident e`, and no transpose appears.-/
+`edgeLeftIncident e`, and no transpose appears.
+@isnad1 id=eq.0h8v.s9.36d056fa96c3 from=translated src=- shape=85609f4c vocab=df16281b
+-/
 theorem edgeInsertedCoeff_eq_twoBlock_left (A : Tensor G d) (e : Edge G)
     (M : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ)
     (σ₁ : Fin d) (τ : VertexComplementPhysicalConfig (V := V) (d := d) e.1.1) :
@@ -502,7 +544,9 @@ theorem edgeInsertedCoeff_eq_twoBlock_left (A : Tensor G d) (e : Edge G)
 
 omit [Fintype V] in
 /-- At a non-`v` vertex (`v = e.1.2` the right endpoint), the edge-doubled local
-configuration reads the global configuration `ζ = (i, ζc)` directly.-/
+configuration reads the global configuration `ζ = (i, ζc)` directly.
+@isnad1 id=eq.1h10v.s9.8f31e5be91dd from=translated src=- shape=1fc4e32c vocab=53e3be74
+-/
 theorem localOfDoubled_eq_global_off_right (A : Tensor G d) (e : Edge G)
     (i k : Fin (A.bondDim e)) (ζc : EdgeComplementConfig (G := G) A e)
     {w : V} (hw : w ≠ e.1.2) (je : IncidentEdge G w) :
@@ -526,7 +570,9 @@ theorem localOfDoubled_eq_global_off_right (A : Tensor G d) (e : Edge G)
 omit [Fintype V] in
 /-- At the right endpoint `v = e.1.2`, the edge-doubled local configuration is the
 v-star configuration of `ζ = (i, ζc)` with the value on the distinguished edge
-overwritten by the right open index `k`.-/
+overwritten by the right open index `k`.
+@isnad1 id=eq.0h8v.s10.7f350bb13612 from=translated src=- shape=4f3f277a vocab=6d75da8b
+-/
 theorem localOfDoubled_eq_update_at_right (A : Tensor G d) (e : Edge G)
     (i k : Fin (A.bondDim e)) (ζc : EdgeComplementConfig (G := G) A e) :
     localOfDoubled (G := G) A e i k ζc e.1.2 =
@@ -555,7 +601,9 @@ open scoped Classical in
 vertex/complement two-block inserted coefficient at the right endpoint.
 
 Here `v = e.1.2` is the right endpoint, the distinguished v-star bond is
-`edgeRightIncident e`, and the inserted matrix appears transposed.-/
+`edgeRightIncident e`, and the inserted matrix appears transposed.
+@isnad1 id=eq.0h8v.s9.d91d51dc935d from=translated src=- shape=2e18c08d vocab=f71c8f7c
+-/
 theorem edgeInsertedCoeff_eq_twoBlock_right (A : Tensor G d) (e : Edge G)
     (M : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ)
     (σ₁ : Fin d) (τ : VertexComplementPhysicalConfig (V := V) (d := d) e.1.2) :
@@ -628,7 +676,9 @@ coefficient at any incident edge equals the edge-inserted coefficient of the ful
 PEPS, transposed at the right endpoint.
 
 Source: arXiv:1804.04964, Section 3, lines 1205--1210 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.0h9v.s9.66043327f80c from=translated src=- shape=b0f2f678 vocab=eaab643b
+-/
 theorem twoBlockInsertedCoeff_eq_edgeInsertedCoeff (A : Tensor G d) (v : V)
     (ie : IncidentEdge G v) (M : Matrix (Fin (A.bondDim ie.1)) (Fin (A.bondDim ie.1)) ℂ)
     (σ₁ : Fin d) (τ : VertexComplementPhysicalConfig (V := V) (d := d) v) :
@@ -663,10 +713,16 @@ noncomputable def reindexTensor (B : Tensor G d) {bd : Edge G → ℕ}
   component v η σ := B.component v (fun ie => Fin.cast (congr_fun h ie.1) (η ie)) σ
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h5v.s6.03c568c5be20 from=translated src=- shape=f59045d3 vocab=c265c476
+-/
 @[simp] theorem reindexTensor_bondDim (B : Tensor G d) {bd : Edge G → ℕ}
     (h : bd = B.bondDim) : (reindexTensor (G := G) B h).bondDim = bd := rfl
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h8v.s8.46b7198ac270 from=translated src=- shape=e8eb9442 vocab=c522cf34
+-/
 @[simp] theorem reindexTensor_component (B : Tensor G d) {bd : Edge G → ℕ}
     (h : bd = B.bondDim) (v : V)
     (η : (ie : IncidentEdge G v) → Fin (bd ie.1)) (σ : Fin d) :
@@ -676,7 +732,9 @@ omit [Fintype V] in
 omit [Fintype V] in
 /-- The edge-doubled configuration of a reindexed tensor, cast to the original
 bond dimensions, is the edge-doubled configuration of the original tensor with the
-indices cast.-/
+indices cast.
+@isnad1 id=eq.1h11v.s9.6f58b8d7d483 from=translated src=- shape=701c83df vocab=ae551ab5
+-/
 theorem localOfDoubled_reindexTensor (B : Tensor G d) {bd : Edge G → ℕ}
     (h : bd = B.bondDim) (e : Edge G)
     (i k : Fin (bd e)) (ζc : EdgeComplementConfig (G := G) (reindexTensor (G := G) B h) e)
@@ -695,7 +753,9 @@ theorem localOfDoubled_reindexTensor (B : Tensor G d) {bd : Edge G → ℕ}
 
 open scoped Classical in
 /-- `edgeInsertedCoeff` transports along a bond-dimension reindex by conjugating
-the inserted matrix with the corresponding reindexing algebra equivalence.-/
+the inserted matrix with the corresponding reindexing algebra equivalence.
+@isnad1 id=eq.1h8v.s8.18112c86a6ff from=translated src=- shape=5df78bc8 vocab=22a2ae71
+-/
 theorem edgeInsertedCoeff_reindexTensor (B : Tensor G d) {bd : Edge G → ℕ}
     (h : bd = B.bondDim) (e : Edge G) (σ : V → Fin d)
     (N : Matrix (Fin (bd e)) (Fin (bd e)) ℂ) :
@@ -742,7 +802,9 @@ insertions of the two tensors coincide.
 This is the abstract reduction from equality of all edge-inserted PEPS
 coefficients to equality of all one-bond insertions for the two-block
 decomposition of one vertex against its complement, after transporting the
-second tensor to the first tensor's bond family.-/
+second tensor to the first tensor's bond family.
+@isnad1 id=sametwob.2h6v.s12.4e6f9b90ca07 from=translated src=- shape=b9bb4cf8 vocab=f14e57eb
+-/
 theorem sameTwoBlockInsertions_of_edgeInsertedCoeff_eq (A B : Tensor G d) (v : V)
     (hbd : A.bondDim = B.bondDim)
     (hedge : ∀ (ie : IncidentEdge G v)

@@ -59,15 +59,24 @@ def append {a b c : V} : DirectedWalk r a b → DirectedWalk r b c → DirectedW
   | .nil _, q => q
   | .cons hab p, q => .cons hab (p.append q)
 
+/--
+@isnad1 id=eq.0h5v.s5.4a40d3ac8f0e from=translated src=- shape=f875b520 vocab=87ab825c
+-/
 @[simp]
 theorem nil_append {a b : V} (w : DirectedWalk r a b) : append r (nil a) w = w := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.c158b4e03c40 from=translated src=- shape=ef417adb vocab=87ab825c
+-/
 @[simp]
 theorem append_nil {a b : V} (w : DirectedWalk r a b) : append r w (nil b) = w := by
   induction w with
   | nil => rfl
   | cons hab w ih => simp [append, ih]
 
+/--
+@isnad1 id=eq.0h9v.s6.598178026a7a from=translated src=- shape=c83c4d11 vocab=3494aced
+-/
 @[simp]
 theorem append_assoc {a b c d : V} (u : DirectedWalk r a b) (v : DirectedWalk r b c)
     (w : DirectedWalk r c d) :
@@ -82,15 +91,24 @@ def weight (r : V → V → Prop) [Monoid G] (κ : V → V → G)
   | .nil _ => 1
   | @DirectedWalk.cons _ _ a b _ hab w => κ a b * weight r κ w
 
+/--
+@isnad1 id=eq.0h5v.s5.2035ba5f1255 from=translated src=- shape=0fc28b4b vocab=d6c4092a
+-/
 @[simp]
 theorem weight_nil [Monoid G] (κ : V → V → G) (a : V) :
     weight r κ (nil a) = 1 := rfl
 
+/--
+@isnad1 id=eq.0h9v.s6.130dd77f956b from=translated src=- shape=f566b6df vocab=a43255a5
+-/
 @[simp]
 theorem weight_cons [Monoid G] (κ : V → V → G) {a b c : V} (hab : r a b)
     (w : DirectedWalk r b c) :
     weight r κ (cons hab w) = κ a b * weight r κ w := rfl
 
+/--
+@isnad1 id=eq.0h9v.s6.ad63cb674896 from=translated src=- shape=40576bbb vocab=1c3a4784
+-/
 @[simp]
 theorem weight_append [Monoid G] (κ : V → V → G) {a b c : V}
     (u : DirectedWalk r a b) (v : DirectedWalk r b c) :
@@ -111,14 +129,23 @@ def vertexAt {a b : V} (w : DirectedWalk r a b) :
   | .nil a => fun _ => a
   | .cons (a := a) _ w => Fin.cases a (fun i => vertexAt w i)
 
+/--
+@isnad1 id=eq.0h8v.s6.59d267cfa934 from=translated src=- shape=cb49c006 vocab=6c4cc452
+-/
 @[simp] theorem vertexAt_cons_succ {a b c : V} (hab : r a b)
     (w : DirectedWalk r b c) (i : Fin (edgeCount r w + 1)) :
     vertexAt r (.cons hab w) i.succ = vertexAt r w i := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.8386498f09c8 from=translated src=- shape=6d9be7ce vocab=786a4360
+-/
 @[simp] theorem vertexAt_zero {a b : V} (w : DirectedWalk r a b) :
     vertexAt r w 0 = a := by
   cases w <;> rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.f060f2f6ea22 from=translated src=- shape=344df093 vocab=cce1776f
+-/
 @[simp] theorem vertexAt_last {a b : V} (w : DirectedWalk r a b) :
     vertexAt r w (Fin.last (edgeCount r w)) = b := by
   induction w with
@@ -131,7 +158,9 @@ def vertexAt {a b : V} (w : DirectedWalk r a b) :
         simp]
       exact ih
 
-/-- Consecutive positions in a directed walk are related by an edge.-/
+/-- Consecutive positions in a directed walk are related by an edge.
+@isnad1 id=var.0h6v.s5.714988fe3454 from=translated src=- shape=8d3e950a vocab=eb5829c4
+-/
 theorem vertexAt_edge {a b : V} (w : DirectedWalk r a b)
     (i : Fin (edgeCount r w)) :
     r (vertexAt r w i.castSucc) (vertexAt r w i.succ) := by
@@ -158,6 +187,9 @@ def closedConsVertices {a b : V} (hab : r a b) (w : DirectedWalk r b a) :
     Fin (edgeCount r w + 1) → V :=
   fun i => vertexAt r (.cons hab w) i.castSucc
 
+/--
+@isnad1 id=eq.0h6v.s6.293fd7f555b1 from=translated src=- shape=5a994c5e vocab=602fd2a2
+-/
 @[simp] theorem closedConsVertices_zero {a b : V} (hab : r a b)
     (w : DirectedWalk r b a) :
     closedConsVertices r hab w 0 = a := rfl
@@ -197,7 +229,9 @@ private theorem castSucc_add_one_eq_zero_of_eq_last {N : ℕ}
     _ = ↑(0 : Fin (N + 2)) := rfl
 
 /-- The vertex following the initial vertex is the target of the distinguished
-first edge.-/
+first edge.
+@isnad1 id=eq.0h6v.s7.3c181e16202c from=translated src=- shape=53bfbcb8 vocab=602fd2a2
+-/
 @[simp] theorem closedConsVertices_zero_add_one {a b : V} (hab : r a b)
     (w : DirectedWalk r b a) :
     closedConsVertices r hab w (0 + 1) = b := by
@@ -213,7 +247,9 @@ first edge.-/
         have := congrArg Fin.val h
         simp at this
 
-/-- Consecutive cyclic vertices of a nonempty closed walk are related by an edge.-/
+/-- Consecutive cyclic vertices of a nonempty closed walk are related by an edge.
+@isnad1 id=var.0h7v.s7.499647786c86 from=translated src=- shape=439a2457 vocab=602fd2a2
+-/
 theorem closedConsVertices_edge {a b : V} (hab : r a b)
     (w : DirectedWalk r b a) (i : Fin (edgeCount r w + 1)) :
     r (closedConsVertices r hab w i)
@@ -235,7 +271,9 @@ theorem closedConsVertices_edge {a b : V} (hab : r a b)
     rw [castSucc_add_one_eq_succ_of_ne_last i hi]
     exact hedge
 
-/-- The weight of a walk is the product of the weights of its linearly ordered edges.-/
+/-- The weight of a walk is the product of the weights of its linearly ordered edges.
+@isnad1 id=eq.0h7v.s6.bb281bb7c10a from=translated src=- shape=f7e62a77 vocab=96e46167
+-/
 theorem weight_eq_fin_prod_vertexAt [CommMonoid G] (κ : V → V → G)
     {a b : V} (w : DirectedWalk r a b) :
     weight r κ w = ∏ i : Fin (edgeCount r w),
@@ -254,7 +292,9 @@ theorem weight_eq_fin_prod_vertexAt [CommMonoid G] (κ : V → V → G)
       rw [vertexAt_zero]
 
 /-- The weight of a nonempty closed walk is the cyclic product of the weights
-of its consecutive edges.-/
+of its consecutive edges.
+@isnad1 id=eq.0h8v.s8.1265372c5d27 from=translated src=- shape=602bf409 vocab=238bd802
+-/
 theorem weight_closedCons_eq_fin_prod [CommMonoid G] (κ : V → V → G)
     {a b : V} (hab : r a b) (w : DirectedWalk r b a) :
     weight r κ (.cons hab w) = ∏ i : Fin (edgeCount r w + 1),
@@ -283,17 +323,28 @@ private theorem weight_transport_start [Monoid G] (κ : V → V → G)
 /-- Reachability by a finite directed walk.-/
 def Reaches (a b : V) : Prop := Nonempty (DirectedWalk r a b)
 
+/--
+@isnad1 id=reaches.0h3v.s3.b63e8aeccce1 from=translated src=- shape=dbdb3b9b vocab=35ea0c19
+-/
 theorem reaches_refl (a : V) : Reaches r a a := ⟨nil a⟩
 
+/--
+@isnad1 id=reaches.0h5v.s4.98ab920e1935 from=translated src=- shape=4eb07579 vocab=35ea0c19
+-/
 theorem reaches_of_edge {a b : V} (hab : r a b) : Reaches r a b :=
   ⟨cons hab (nil b)⟩
 
+/--
+@isnad1 id=reaches.2h5v.s4.c9aec040b2c4 from=translated src=- shape=ec9c17b6 vocab=35ea0c19
+-/
 theorem Reaches.trans {a b c : V} : Reaches r a b → Reaches r b c → Reaches r a c := by
   rintro ⟨u⟩ ⟨v⟩
   exact ⟨append r u v⟩
 
 /-- Reachability by a directed walk is equivalent to membership in the
-reflexive transitive closure of the edge relation.-/
+reflexive transitive closure of the edge relation.
+@isnad1 id=iff.0h4v.s4.e3b0aa913af7 from=translated src=- shape=cc0e296e vocab=e62dd4f6
+-/
 theorem reaches_iff_reflTransGen {a b : V} :
     Reaches r a b ↔ Relation.ReflTransGen r a b := by
   constructor
@@ -308,7 +359,9 @@ theorem reaches_iff_reflTransGen {a b : V} :
       obtain ⟨w⟩ := ih
       exact ⟨append r w (cons hbc (nil _))⟩
 
-/-- If every edge admits a return walk, every walk admits a return walk.-/
+/-- If every edge admits a return walk, every walk admits a return walk.
+@isnad1 id=reaches.1h5v.s5.ade9faaea853 from=translated src=- shape=626a572e vocab=0479fe74
+-/
 theorem reaches_reverse_of_edge_returns
     (hreturn : ∀ {a b : V}, r a b → Reaches r b a) {a b : V}
     (w : DirectedWalk r a b) : Reaches r b a := by
@@ -341,7 +394,9 @@ private theorem weight_eq_of_same_endpoints [Group G] (κ : V → V → G)
 /-- **Closed-walk criterion for a multiplicative coboundary.** Suppose every
 directed edge admits a directed return walk. If the product of the edge weights
 around every closed directed walk is one, then there are vertex weights whose
-ratio across each directed edge is the prescribed edge weight.-/
+ratio across each directed edge is the prescribed edge weight.
+@isnad1 id=ex.2h4v.s7.c074a1971d28 from=translated src=- shape=04927412 vocab=302d206e
+-/
 theorem exists_vertex_of_closedWalk_weight_eq_one [Group G]
     (κ : V → V → G)
     (hreturn : ∀ {a b : V}, r a b → Reaches r b a)

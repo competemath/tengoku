@@ -70,7 +70,9 @@ omit [Fintype V] in
 /-- Repeating a finite word a positive number of times is injective as a
 function of the original word.
 
-Source: Beigi, J. Phys. A 45 (2012) 025306, equations (7)--(10).-/
+Source: Beigi, J. Phys. A 45 (2012) 025306, equations (7)--(10).
+@isnad1 id=injectiv.1h3v.s5.afc149e4c198 from=translated src=- shape=4e63a480 vocab=6e6a6395
+-/
 theorem repeat_injective {N m : ℕ} (hm : 0 < m) :
     Function.Injective (Fin.repeat m : (Fin N → V) → Fin (m * N) → V) := by
   intro x y hxy
@@ -101,7 +103,9 @@ omit [Fintype V] in
 This is the product identity underlying Beigi's comparisons at lengths `N`,
 `N+1`, and `N(N+1)`.
 
-Source: Beigi, J. Phys. A 45 (2012) 025306, equations (7)--(10).-/
+Source: Beigi, J. Phys. A 45 (2012) 025306, equations (7)--(10).
+@isnad1 id=eq.2h5v.s6.924fc00214d7 from=translated src=- shape=0e8300c8 vocab=57e2625b
+-/
 theorem cycleWeight_repeat (w : V → V → ℕ) {N m : ℕ}
     (hN : 0 < N) (hm : 0 < m) (x : Fin N → V) :
     cycleWeight w (Nat.mul_pos hm hN) (Fin.repeat m x) = cycleWeight w hN x ^ m := by
@@ -115,7 +119,9 @@ theorem cycleWeight_repeat (w : V → V → ℕ) {N m : ℕ}
 /-- The total weight of repeated cycles is bounded by the total weight of all
 cycles at the repeated length.
 
-Source: Beigi, J. Phys. A 45 (2012) 025306, equations (7)--(10).-/
+Source: Beigi, J. Phys. A 45 (2012) 025306, equations (7)--(10).
+@isnad1 id=le.2h4v.s6.e073f3e0e553 from=translated src=- shape=6934a215 vocab=6d37009a
+-/
 theorem sum_cycleWeight_pow_le (w : V → V → ℕ) {N m : ℕ}
     (hN : 0 < N) (hm : 0 < m) :
     (∑ x : Fin N → V, cycleWeight w hN x ^ m) ≤
@@ -156,7 +162,9 @@ weight sum is eventually constant.
 
 In particular, every edge that occurs in a directed cycle has weight one.
 
-Source: Beigi, J. Phys. A 45 (2012) 025306, equations (7)--(11).-/
+Source: Beigi, J. Phys. A 45 (2012) 025306, equations (7)--(11).
+@isnad1 id=eq.3h4v.s5.6cd9edec3d1a from=translated src=- shape=60d2ffa3 vocab=d43a2b8b
+-/
 theorem cycleWeight_eq_one {w : V → V → ℕ}
     (hconst : HasEventuallyConstantCycleWeightSum w) {K : ℕ}
     (hK : 0 < K) (x : Fin K → V) (hx : cycleWeight w hK x ≠ 0) :
@@ -191,7 +199,9 @@ theorem cycleWeight_eq_one {w : V → V → ℕ}
 
 /-- Every edge belonging to a positive-weight directed cycle has weight one.
 
-Source: Beigi, J. Phys. A 45 (2012) 025306, equation (11).-/
+Source: Beigi, J. Phys. A 45 (2012) 025306, equation (11).
+@isnad1 id=eq.3h5v.s6.aa77ccb196e1 from=translated src=- shape=d56cae6c vocab=63f86f54
+-/
 theorem cyclicEdgeWeight_eq_one {w : V → V → ℕ}
     (hconst : HasEventuallyConstantCycleWeightSum w) {N : ℕ}
     (hN : 0 < N) (x : Fin N → V) (hx : cycleWeight w hN x ≠ 0)
@@ -313,7 +323,9 @@ cycle to a sufficiently large length `N`, compares the exhaustive repetition
 maps from lengths `N` and `N+1` into their common multiple, and uses the two
 consecutive periods.
 
-Source: Beigi, J. Phys. A 45 (2012) 025306, equations (12)--(13).-/
+Source: Beigi, J. Phys. A 45 (2012) 025306, equations (12)--(13).
+@isnad1 id=eq.3h5v.s6.418b10940cf7 from=translated src=- shape=e4280a45 vocab=58092248
+-/
 theorem cycle_eq_constant {w : V → V → ℕ}
     (hconst : HasEventuallyConstantCycleWeightSum w) {K : ℕ}
     (hK : 0 < K) (x : Fin K → V) (hx : cycleWeight w hK x ≠ 0) :
@@ -391,7 +403,9 @@ private noncomputable def positiveCycleEquivLoop {w : V → V → ℕ}
 /-- At every positive length, the ordered-cycle weight sum is the number of
 positive-weight loops.
 
-Source: Beigi, J. Phys. A 45 (2012) 025306, equation (13).-/
+Source: Beigi, J. Phys. A 45 (2012) 025306, equation (13).
+@isnad1 id=eq.2h3v.s5.cb9315e8efb4 from=translated src=- shape=0c343eec vocab=51e1587a
+-/
 theorem cycleWeightSum_eq_card_loop {w : V → V → ℕ}
     (hconst : HasEventuallyConstantCycleWeightSum w) {N : ℕ} (hN : 0 < N) :
     cycleWeightSum w hN = Fintype.card (Loop w) := by

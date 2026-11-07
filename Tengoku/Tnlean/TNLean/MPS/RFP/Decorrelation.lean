@@ -58,7 +58,9 @@ namespace LinearMap
 
 For commuting parent Hamiltonians, this shows that the "Hamiltonian"
 `Q_AX + Q_XB − Q_AX ∘ Q_XB` (with `Q = 1 − P`) equals `1 − P_K`.
-See arXiv:1606.00608, Appendix D, Section D.2.-/
+See arXiv:1606.00608, Appendix D, Section D.2.
+@isnad1 id=eq.0h3v.s9.ff3d5a18c9c4 from=translated src=- shape=e8b13040 vocab=8c75df68
+-/
 theorem frustration_free_ham_eq {P Q : E →ₗ[ℂ] E} :
     (id - P) + (id - Q) - (id - P) ∘ₗ (id - Q) = id - P ∘ₗ Q := by
   simp only [comp_sub, sub_comp, comp_id, id_comp]
@@ -81,7 +83,9 @@ variable {E : Type*} [AddCommGroup E] [Module ℂ E]
 
 namespace Decorrelation
 
-/-- `P_K` is idempotent.-/
+/-- `P_K` is idempotent.
+@isnad1 id=eq.0h3v.s6.385499507978 from=translated src=- shape=809d6dd2 vocab=a499c6a5
+-/
 theorem HasCommutingParentHam.pK_idem {P_K : E →ₗ[ℂ] E}
     (h : HasCommutingParentHam P_K) :
     P_K ∘ₗ P_K = P_K := by
@@ -89,7 +93,9 @@ theorem HasCommutingParentHam.pK_idem {P_K : E →ₗ[ℂ] E}
   simpa [h.hK, Module.End.mul_eq_comp] using
     (IsIdempotentElem.mul_of_commute h.hcomm h.hAX_idem h.hXB_idem)
 
-/-- `P_AX ∘ P_K = P_K`: the AX-projector absorbs `P_K` from the left.-/
+/-- `P_AX ∘ P_K = P_K`: the AX-projector absorbs `P_K` from the left.
+@isnad1 id=eq.0h3v.s6.c1e566dea5de from=translated src=- shape=213e0f84 vocab=ac1690c6
+-/
 theorem HasCommutingParentHam.pAX_comp_pK {P_K : E →ₗ[ℂ] E}
     (h : HasCommutingParentHam P_K) :
     h.P_AX ∘ₗ P_K = P_K := by
@@ -100,7 +106,9 @@ theorem HasCommutingParentHam.pAX_comp_pK {P_K : E →ₗ[ℂ] E}
   change P_AX ∘ₗ P_K = P_K
   rw [← hK, ← LinearMap.comp_assoc, hAX, hK]
 
-/-- `P_K ∘ P_XB = P_K`: `P_K` absorbs the XB-projector on the right.-/
+/-- `P_K ∘ P_XB = P_K`: `P_K` absorbs the XB-projector on the right.
+@isnad1 id=eq.0h3v.s6.50170dc88f48 from=translated src=- shape=9539b580 vocab=e65558df
+-/
 theorem HasCommutingParentHam.pK_comp_pXB {P_K : E →ₗ[ℂ] E}
     (h : HasCommutingParentHam P_K) :
     P_K ∘ₗ h.P_XB = P_K := by
@@ -111,7 +119,9 @@ theorem HasCommutingParentHam.pK_comp_pXB {P_K : E →ₗ[ℂ] E}
   change P_K ∘ₗ P_XB = P_K
   rw [← hK, LinearMap.comp_assoc, hXB, hK]
 
-/-- `P_XB ∘ P_K = P_K`: the XB-projector absorbs `P_K` from the left.-/
+/-- `P_XB ∘ P_K = P_K`: the XB-projector absorbs `P_K` from the left.
+@isnad1 id=eq.0h3v.s6.46dc37180028 from=translated src=- shape=213e0f84 vocab=e65558df
+-/
 theorem HasCommutingParentHam.pXB_comp_pK {P_K : E →ₗ[ℂ] E}
     (h : HasCommutingParentHam P_K) :
     h.P_XB ∘ₗ P_K = P_K := by
@@ -123,7 +133,9 @@ theorem HasCommutingParentHam.pXB_comp_pK {P_K : E →ₗ[ℂ] E}
   change P_XB ∘ₗ P_K = P_K
   rw [← hK, ← LinearMap.comp_assoc, ← hcomm, LinearMap.comp_assoc, hXB, hK]
 
-/-- `P_K ∘ P_AX = P_K`: `P_K` absorbs the AX-projector on the right.-/
+/-- `P_K ∘ P_AX = P_K`: `P_K` absorbs the AX-projector on the right.
+@isnad1 id=eq.0h3v.s6.a6a10fb5d3c5 from=translated src=- shape=9539b580 vocab=ac1690c6
+-/
 theorem HasCommutingParentHam.pK_comp_pAX {P_K : E →ₗ[ℂ] E}
     (h : HasCommutingParentHam P_K) :
     P_K ∘ₗ h.P_AX = P_K := by
@@ -136,13 +148,17 @@ theorem HasCommutingParentHam.pK_comp_pAX {P_K : E →ₗ[ℂ] E}
   rw [← hK, LinearMap.comp_assoc, ← hcomm, ← LinearMap.comp_assoc, hAX, hK]
 
 /-- The reverse product equals `P_K`: `P_XB ∘ P_AX = P_K`.
-Follows from `hK : P_AX ∘ P_XB = P_K` and commutativity.-/
+Follows from `hK : P_AX ∘ P_XB = P_K` and commutativity.
+@isnad1 id=eq.0h3v.s6.3dbabe92e40a from=translated src=- shape=dcdfc140 vocab=00130cd4
+-/
 theorem HasCommutingParentHam.reverse_product {P_K : E →ₗ[ℂ] E}
     (h : HasCommutingParentHam P_K) :
     h.P_XB ∘ₗ h.P_AX = P_K := by
   simpa [h.hK] using h.hcomm.symm
 
-/-- The complements `Q_AX = id − P_AX` and `Q_XB = id − P_XB` commute.-/
+/-- The complements `Q_AX = id − P_AX` and `Q_XB = id − P_XB` commute.
+@isnad1 id=eq.0h3v.s9.604e40c11c7b from=translated src=- shape=fdbfc77a vocab=be50203d
+-/
 theorem HasCommutingParentHam.complement_comm {P_K : E →ₗ[ℂ] E}
     (h : HasCommutingParentHam P_K) :
     (LinearMap.id - h.P_AX) ∘ₗ (LinearMap.id - h.P_XB) =
@@ -158,7 +174,9 @@ theorem HasCommutingParentHam.complement_comm {P_K : E →ₗ[ℂ] E}
     simpa [Module.End.mul_eq_comp] using hcomp.eq
 
 /-- The frustration-free Hamiltonian identity for a commuting parent
-Hamiltonian: `Q_AX + Q_XB − Q_AX ∘ Q_XB = id − P_K`.-/
+Hamiltonian: `Q_AX + Q_XB − Q_AX ∘ Q_XB = id − P_K`.
+@isnad1 id=eq.0h3v.s9.2faff55804b5 from=translated src=- shape=1f9958d9 vocab=1f3b98a6
+-/
 theorem HasCommutingParentHam.hamiltonian_eq {P_K : E →ₗ[ℂ] E}
     (h : HasCommutingParentHam P_K) :
     (LinearMap.id - h.P_AX) + (LinearMap.id - h.P_XB) -
@@ -175,7 +193,9 @@ theorem HasCommutingParentHam.hamiltonian_eq {P_K : E →ₗ[ℂ] E}
 /-- Ground-space membership: `P_K v = v` iff both `P_AX v = v` and
 `P_XB v = v`. This is the algebraic form of
 `K_{AXB} = (K_{AX} ⊗ H_B) ∩ (H_A ⊗ K_{XB})`
-from arXiv:1606.00608, equation (D.2).-/
+from arXiv:1606.00608, equation (D.2).
+@isnad1 id=iff.0h4v.s7.bde5d6e34081 from=translated src=- shape=47475738 vocab=0fcbc9ba
+-/
 theorem HasCommutingParentHam.mem_ground_iff {P_K : E →ₗ[ℂ] E}
     (h : HasCommutingParentHam P_K) (v : E) :
     P_K v = v ↔ h.P_AX v = v ∧ h.P_XB v = v := by

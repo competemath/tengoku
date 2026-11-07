@@ -18,7 +18,9 @@ open scoped Matrix
 
 namespace Equiv.Perm
 
-/-- A complex permutation matrix is unitary.-/
+/-- A complex permutation matrix is unitary.
+@isnad1 id=mem.0h2v.s6.b649f4ec5d28 from=translated src=- shape=5ea862ca vocab=3445821a
+-/
 theorem permMatrix_mem_unitaryGroup {n : Type*} [DecidableEq n] [Fintype n]
     (σ : Equiv.Perm n) :
     permMatrix ℂ σ ∈ Matrix.unitaryGroup n ℂ := by

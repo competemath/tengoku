@@ -91,7 +91,9 @@ empty, $\beta$ a one-point set and $\gamma$ a two-point set, the matrix
 $Z=\operatorname{diag}(1,2)$ satisfies both while being no multiple of the
 identity.  The nonempty hypotheses encode the source's nonzero-dimensional
 virtual bond spaces and do not follow from injectivity.  Documented in
-`docs/paper-gaps/peps_injective_ft_section3_route.tex`.-/
+`docs/paper-gaps/peps_injective_ft_section3_route.tex`.
+@isnad1 id=ex.2h6v.s8.36328db970c2 from=translated src=- shape=30a3dbf6 vocab=76637f62
+-/
 theorem threeLeg_residual_forms_scalar [Nonempty α] [Nonempty β] [Nonempty γ]
     (Z : Matrix (β × γ) (β × γ) ℂ)
     (U : Matrix (α × β) (α × β) ℂ)
@@ -211,7 +213,9 @@ variable {ι : Type*} [Fintype ι] {n : ι → Type*}
 variable [∀ i, Fintype (n i)] [∀ i, DecidableEq (n i)]
 
 omit [DecidableEq α] [DecidableEq β] [DecidableEq γ] in
-/-- Each row of an invertible matrix has a nonzero entry.-/
+/-- Each row of an invertible matrix has a nonzero entry.
+@isnad1 id=ex.1h3v.s5.241ad1047d95 from=translated src=- shape=3f38c486 vocab=5dbf5d9c
+-/
 theorem exists_ne_zero_row_of_isUnit {m : Type*} [Fintype m] [DecidableEq m]
     {N : Matrix m m ℂ} (hN : IsUnit N) (r : m) :
     ∃ c : m, N r c ≠ 0 := by
@@ -226,7 +230,9 @@ theorem exists_ne_zero_row_of_isUnit {m : Type*} [Fintype m] [DecidableEq m]
 
 omit [DecidableEq α] [DecidableEq β] [DecidableEq γ] [Fintype ι] in
 /-- A reference configuration: per leg, a base row paired with a column on which
-the invertible per-leg matrix is nonzero.-/
+the invertible per-leg matrix is nonzero.
+@isnad1 id=ex.1h4v.s6.e2da30ecb452 from=translated src=- shape=780d3ad9 vocab=5dbf5d9c
+-/
 theorem exists_ref_config (N : (i : ι) → Matrix (n i) (n i) ℂ)
     (hN : ∀ i, IsUnit (N i)) (r : (i : ι) → n i) :
     ∃ q : (i : ι) → n i, ∀ i, N i (r i) (q i) ≠ 0 := by
@@ -242,7 +248,9 @@ multiplying to one.
 
 This generalizes `threeLeg_residual_forms_scalar` to an arbitrary finite number
 of legs. Source: arXiv:1804.04964, Section 3; the balanced edge-scalar
-uniqueness route is recorded in `docs/paper-gaps/peps_gauge_edge_scalars.tex`.-/
+uniqueness route is recorded in `docs/paper-gaps/peps_gauge_edge_scalars.tex`.
+@isnad1 id=ex.2h4v.s7.adf9adcbcbd0 from=translated src=- shape=e12a61fd vocab=71b27760
+-/
 theorem piProduct_forms_scalar (M N : (i : ι) → Matrix (n i) (n i) ℂ)
     (hN : ∀ i, IsUnit (N i)) [hne : ∀ i, Nonempty (n i)]
     (h : ∀ (p q : (i : ι) → n i),

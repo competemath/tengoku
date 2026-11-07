@@ -16,7 +16,9 @@ and `List.ofFn`.
 
 namespace List
 
-/-- Appending one value to a finite tuple appends the same value to its list.-/
+/-- Appending one value to a finite tuple appends the same value to its list.
+@isnad1 id=eq.0h4v.s6.69ee3338e5d8 from=translated src=- shape=ad36d3a1 vocab=ae1d50ab
+-/
 theorem ofFn_snoc {α : Type*} {n : ℕ} (f : Fin n → α) (x : α) :
     List.ofFn (Fin.snoc f x) = List.ofFn f ++ [x] := by
   conv_lhs => rw [List.ofFn_succ' (Fin.snoc f x)]

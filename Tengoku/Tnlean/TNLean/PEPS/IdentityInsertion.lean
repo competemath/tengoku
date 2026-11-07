@@ -41,7 +41,9 @@ ordinary edge-blocked coefficient.
 
 The proof first splits the inserted-boundary sum into diagonal and off-diagonal
 parts. The off-diagonal part vanishes by the identity matrix, and the diagonal
-part reindexes through the equivalence with ordinary edge-boundary data.-/
+part reindexes through the equivalence with ordinary edge-boundary data.
+@isnad1 id=eq.0h6v.s6.c0f0918f3c36 from=translated src=- shape=c04a17fa vocab=0094b39f
+-/
 theorem edgeInsertedCoeff_identity (A : Tensor G d) (e : Edge G) (σ : V → Fin d) :
     edgeInsertedCoeff (G := G) A e σ
         (1 : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ) =
@@ -97,7 +99,9 @@ theorem edgeInsertedCoeff_identity (A : Tensor G d) (e : Edge G) (σ : V → Fin
           rfl
 
 /-- Identity insertion on the distinguished edge recovers the original PEPS
-coefficient.-/
+coefficient.
+@isnad1 id=eq.0h6v.s6.e152c6ec32b8 from=translated src=- shape=b9e87e9a vocab=d8f3bbbe
+-/
 theorem edgeInsertedCoeff_identity_eq_stateCoeff (A : Tensor G d) (e : Edge G)
     (σ : V → Fin d) :
     edgeInsertedCoeff (G := G) A e σ
@@ -106,7 +110,9 @@ theorem edgeInsertedCoeff_identity_eq_stateCoeff (A : Tensor G d) (e : Edge G)
   rw [edgeInsertedCoeff_identity, edgeBlockedCoeff_eq_stateCoeff]
 
 /-- Equality of PEPS states gives equality of the identity-inserted
-edge-centered coefficients at every edge.-/
+edge-centered coefficients at every edge.
+@isnad1 id=eq.1h7v.s7.fed47ab8dc81 from=translated src=- shape=84c11307 vocab=8ba3ea8c
+-/
 theorem SameState.edgeInsertedCoeff_identity_eq {A B : Tensor G d} (hAB : SameState A B)
     (e : Edge G) (σ : V → Fin d) :
     edgeInsertedCoeff (G := G) A e σ

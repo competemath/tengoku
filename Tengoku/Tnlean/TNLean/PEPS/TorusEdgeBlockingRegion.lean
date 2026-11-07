@@ -68,6 +68,9 @@ Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1499 of
 def torusHorizontalEdgeComplement (xStart yStart : ℕ) : Finset (TorusVertex width height) :=
   Finset.univ \ (torusHorizontalEdgeRed xStart yStart ∪ torusHorizontalEdgeBlue xStart yStart)
 
+/--
+@isnad1 id=iff.0h5v.s7.7adb5d0f566b from=translated src=- shape=bef7c85d vocab=479bbadc
+-/
 @[simp] theorem mem_torusHorizontalEdgeRed (xStart yStart : ℕ) (v : TorusVertex width height) :
     v ∈ torusHorizontalEdgeRed xStart yStart ↔
       xStart ≤ v.1.val ∧ v.1.val < xStart + 2 ∧
@@ -75,6 +78,9 @@ def torusHorizontalEdgeComplement (xStart yStart : ℕ) : Finset (TorusVertex wi
   simp only [torusHorizontalEdgeRed, mem_torusContiguousRectangle, show yStart + 2 + 3 = yStart + 5
     from by omega]
 
+/--
+@isnad1 id=iff.0h5v.s7.5cf7b7c57fe4 from=translated src=- shape=6b874d28 vocab=06371e0e
+-/
 @[simp] theorem mem_torusHorizontalEdgeBlue (xStart yStart : ℕ) (v : TorusVertex width height) :
     v ∈ torusHorizontalEdgeBlue xStart yStart ↔
       xStart + 2 ≤ v.1.val ∧ v.1.val < xStart + 5 ∧
@@ -82,6 +88,9 @@ def torusHorizontalEdgeComplement (xStart yStart : ℕ) : Finset (TorusVertex wi
   simp only [torusHorizontalEdgeBlue, mem_torusContiguousRectangle,
     show xStart + 2 + 3 = xStart + 5 from by omega, show yStart + 1 + 2 = yStart + 3 from by omega]
 
+/--
+@isnad1 id=iff.0h5v.s6.515a9371d97b from=translated src=- shape=abe18ac9 vocab=27ff9544
+-/
 @[simp] theorem mem_torusHorizontalEdgeComplement (xStart yStart : ℕ)
     (v : TorusVertex width height) :
     v ∈ torusHorizontalEdgeComplement xStart yStart ↔
@@ -95,7 +104,9 @@ def torusHorizontalEdgeComplement (xStart yStart : ℕ) : Finset (TorusVertex wi
 blocks meet only along the distinguished edge, so no vertex lies in both.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1430--1443 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=disjoint.0h4v.s5.15614ffc03d2 from=translated src=- shape=82dc4dca vocab=e259fa1f
+-/
 theorem torusHorizontalEdgeRed_disjoint_blue (xStart yStart : ℕ) :
     Disjoint (torusHorizontalEdgeRed (width := width) (height := height) xStart yStart)
       (torusHorizontalEdgeBlue xStart yStart) := by
@@ -105,7 +116,9 @@ theorem torusHorizontalEdgeRed_disjoint_blue (xStart yStart : ℕ) :
   rw [mem_torusHorizontalEdgeBlue] at hBlue
   omega
 
-/-- The horizontal red block is disjoint from the complement.-/
+/-- The horizontal red block is disjoint from the complement.
+@isnad1 id=disjoint.0h4v.s5.b9be1ab09339 from=translated src=- shape=82dc4dca vocab=bd75345f
+-/
 theorem torusHorizontalEdgeRed_disjoint_complement (xStart yStart : ℕ) :
     Disjoint (torusHorizontalEdgeRed (width := width) (height := height) xStart yStart)
       (torusHorizontalEdgeComplement xStart yStart) := by
@@ -114,7 +127,9 @@ theorem torusHorizontalEdgeRed_disjoint_complement (xStart yStart : ℕ) :
   rw [mem_torusHorizontalEdgeComplement] at hCompl
   exact hCompl.1 hRed
 
-/-- The horizontal blue block is disjoint from the complement.-/
+/-- The horizontal blue block is disjoint from the complement.
+@isnad1 id=disjoint.0h4v.s5.693fa91cb05c from=translated src=- shape=82dc4dca vocab=6b21ad2d
+-/
 theorem torusHorizontalEdgeBlue_disjoint_complement (xStart yStart : ℕ) :
     Disjoint (torusHorizontalEdgeBlue (width := width) (height := height) xStart yStart)
       (torusHorizontalEdgeComplement xStart yStart) := by
@@ -126,7 +141,9 @@ theorem torusHorizontalEdgeBlue_disjoint_complement (xStart yStart : ℕ) :
 /-- The three horizontal regions cover the torus.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1499 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.0h4v.s6.39e7af0ea084 from=translated src=- shape=feacd6f7 vocab=852becfa
+-/
 theorem torusHorizontalEdge_cover_univ (xStart yStart : ℕ) :
     torusHorizontalEdgeRed (width := width) (height := height) xStart yStart ∪
         torusHorizontalEdgeBlue xStart yStart ∪ torusHorizontalEdgeComplement xStart yStart =
@@ -160,7 +177,9 @@ an offset with one row of margin below and the removed blocks inside the coordin
 pieces on the seam side may be empty.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1430--1500 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.3h4v.s6.f1b38962c5db from=translated src=- shape=1aaedcaf vocab=9074b76d
+-/
 theorem torusHorizontalEdgeComplement_eq_biUnion_pieces {xStart yStart : ℕ}
     (hy0 : 1 ≤ yStart) (hxw : xStart + 5 ≤ width) (hyh : yStart + 5 ≤ height) :
     torusHorizontalEdgeComplement (width := width) (height := height) xStart yStart =
@@ -199,7 +218,9 @@ variable {κ : RegionInjectivityData (TorusVertex width height)}
 rectangular injectivity hypotheses.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1405--1444 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.3h5v.s6.d792d2c48880 from=translated src=- shape=6fdfe6bb vocab=60f3fc15
+-/
 theorem horizontalEdgeRed_injective
     (h : NormalTorusRectangleInjectivityHypotheses κ)
     {xStart yStart : ℕ} (hx : xStart + 2 ≤ width) (hy : yStart + 5 ≤ height) :
@@ -210,7 +231,9 @@ theorem horizontalEdgeRed_injective
 rectangular injectivity hypotheses.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1405--1444 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.3h5v.s6.e4f5b94c9782 from=translated src=- shape=6fdfe6bb vocab=ed74f42c
+-/
 theorem horizontalEdgeBlue_injective
     (h : NormalTorusRectangleInjectivityHypotheses κ)
     {xStart yStart : ℕ} (hx : xStart + 5 ≤ width) (hy : yStart + 3 ≤ height) :
@@ -229,7 +252,9 @@ choice `xStart + 5 = width`, `yStart + 5 = height` realizes the blocking on ever
 source's sizes `n, m ≥ 7`.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1430--1500 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.6h5v.s7.d64573b3699b from=translated src=- shape=ebb23062 vocab=2bead08a
+-/
 theorem horizontalEdgeComplement_injective
     (h : NormalTorusRectangleInjectivityHypotheses κ)
     (hUnion : RegionInjectivityUnionClosure κ)
@@ -295,6 +320,9 @@ Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1499 of
 def torusVerticalEdgeComplement (xStart yStart : ℕ) : Finset (TorusVertex width height) :=
   Finset.univ \ (torusVerticalEdgeRed xStart yStart ∪ torusVerticalEdgeBlue xStart yStart)
 
+/--
+@isnad1 id=iff.0h5v.s7.64e3542a83e9 from=translated src=- shape=092d73ea vocab=14b9dbea
+-/
 @[simp] theorem mem_torusVerticalEdgeRed (xStart yStart : ℕ) (v : TorusVertex width height) :
     v ∈ torusVerticalEdgeRed xStart yStart ↔
       xStart + 2 ≤ v.1.val ∧ v.1.val < xStart + 5 ∧
@@ -302,6 +330,9 @@ def torusVerticalEdgeComplement (xStart yStart : ℕ) : Finset (TorusVertex widt
   simp only [torusVerticalEdgeRed, mem_torusContiguousRectangle,
     show xStart + 2 + 3 = xStart + 5 from by omega]
 
+/--
+@isnad1 id=iff.0h5v.s7.a9d01daae61f from=translated src=- shape=6b874d28 vocab=d1c7fb58
+-/
 @[simp] theorem mem_torusVerticalEdgeBlue (xStart yStart : ℕ) (v : TorusVertex width height) :
     v ∈ torusVerticalEdgeBlue xStart yStart ↔
       xStart + 1 ≤ v.1.val ∧ v.1.val < xStart + 3 ∧
@@ -309,6 +340,9 @@ def torusVerticalEdgeComplement (xStart yStart : ℕ) : Finset (TorusVertex widt
   simp only [torusVerticalEdgeBlue, mem_torusContiguousRectangle,
     show xStart + 1 + 2 = xStart + 3 from by omega, show yStart + 2 + 3 = yStart + 5 from by omega]
 
+/--
+@isnad1 id=iff.0h5v.s6.0b0cad85ad59 from=translated src=- shape=abe18ac9 vocab=5e122300
+-/
 @[simp] theorem mem_torusVerticalEdgeComplement (xStart yStart : ℕ)
     (v : TorusVertex width height) :
     v ∈ torusVerticalEdgeComplement xStart yStart ↔
@@ -321,7 +355,9 @@ def torusVerticalEdgeComplement (xStart yStart : ℕ) : Finset (TorusVertex widt
 /-- The vertical red and blue blocks are disjoint.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1430--1443 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=disjoint.0h4v.s5.30c31b88832f from=translated src=- shape=82dc4dca vocab=33d984ad
+-/
 theorem torusVerticalEdgeRed_disjoint_blue (xStart yStart : ℕ) :
     Disjoint (torusVerticalEdgeRed (width := width) (height := height) xStart yStart)
       (torusVerticalEdgeBlue xStart yStart) := by
@@ -331,7 +367,9 @@ theorem torusVerticalEdgeRed_disjoint_blue (xStart yStart : ℕ) :
   rw [mem_torusVerticalEdgeBlue] at hBlue
   omega
 
-/-- The vertical red block is disjoint from the complement.-/
+/-- The vertical red block is disjoint from the complement.
+@isnad1 id=disjoint.0h4v.s5.8b6c3667c5b6 from=translated src=- shape=82dc4dca vocab=08e62b2e
+-/
 theorem torusVerticalEdgeRed_disjoint_complement (xStart yStart : ℕ) :
     Disjoint (torusVerticalEdgeRed (width := width) (height := height) xStart yStart)
       (torusVerticalEdgeComplement xStart yStart) := by
@@ -340,7 +378,9 @@ theorem torusVerticalEdgeRed_disjoint_complement (xStart yStart : ℕ) :
   rw [mem_torusVerticalEdgeComplement] at hCompl
   exact hCompl.1 hRed
 
-/-- The vertical blue block is disjoint from the complement.-/
+/-- The vertical blue block is disjoint from the complement.
+@isnad1 id=disjoint.0h4v.s5.0625fe1e1192 from=translated src=- shape=82dc4dca vocab=b2edc311
+-/
 theorem torusVerticalEdgeBlue_disjoint_complement (xStart yStart : ℕ) :
     Disjoint (torusVerticalEdgeBlue (width := width) (height := height) xStart yStart)
       (torusVerticalEdgeComplement xStart yStart) := by
@@ -352,7 +392,9 @@ theorem torusVerticalEdgeBlue_disjoint_complement (xStart yStart : ℕ) :
 /-- The three vertical regions cover the torus.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1499 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.0h4v.s6.d0fbcc468d40 from=translated src=- shape=feacd6f7 vocab=ea8fce27
+-/
 theorem torusVerticalEdge_cover_univ (xStart yStart : ℕ) :
     torusVerticalEdgeRed (width := width) (height := height) xStart yStart ∪
         torusVerticalEdgeBlue xStart yStart ∪ torusVerticalEdgeComplement xStart yStart =
@@ -384,7 +426,9 @@ def torusVerticalEdgeComplementPiece (xStart yStart : ℕ) :
 /-- The vertical edge-complement block on the torus is the union of its six covering pieces.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1430--1500 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.3h4v.s6.9f61a25aba40 from=translated src=- shape=1aaedcaf vocab=e02ac3e1
+-/
 theorem torusVerticalEdgeComplement_eq_biUnion_pieces {xStart yStart : ℕ}
     (hy0 : 1 ≤ yStart) (hxw : xStart + 5 ≤ width) (hyh : yStart + 5 ≤ height) :
     torusVerticalEdgeComplement (width := width) (height := height) xStart yStart =
@@ -423,7 +467,9 @@ variable {κ : RegionInjectivityData (TorusVertex width height)}
 injectivity hypotheses.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1405--1444 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.3h5v.s6.0ecfc6d3dfa9 from=translated src=- shape=6fdfe6bb vocab=aef5608f
+-/
 theorem verticalEdgeRed_injective
     (h : NormalTorusRectangleInjectivityHypotheses κ)
     {xStart yStart : ℕ} (hx : xStart + 5 ≤ width) (hy : yStart + 2 ≤ height) :
@@ -434,7 +480,9 @@ theorem verticalEdgeRed_injective
 injectivity hypotheses.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1405--1444 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.3h5v.s6.15d1562f3d96 from=translated src=- shape=6fdfe6bb vocab=830105bc
+-/
 theorem verticalEdgeBlue_injective
     (h : NormalTorusRectangleInjectivityHypotheses κ)
     {xStart yStart : ℕ} (hx : xStart + 3 ≤ width) (hy : yStart + 5 ≤ height) :
@@ -451,7 +499,9 @@ above and to the right the margin is either zero — the blocking touches the se
 empty — or at least two.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1430--1500 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.6h5v.s7.6f7fc51b0451 from=translated src=- shape=ebb23062 vocab=8c253aeb
+-/
 theorem verticalEdgeComplement_injective
     (h : NormalTorusRectangleInjectivityHypotheses κ)
     (hUnion : RegionInjectivityUnionClosure κ)

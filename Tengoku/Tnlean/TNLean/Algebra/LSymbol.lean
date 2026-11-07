@@ -76,14 +76,18 @@ def gauge (β : ScalarCocycle G) (γ : ActionTensorGauge G X) (L : LSymbol G X) 
   fun x g h =>
     ((γ (g * h) x * β g h) / (γ g (h • x) * γ h x)) * L x g h
 
-/-- The identity fusion and action gauges leave an L-symbol unchanged.-/
+/-- The identity fusion and action gauges leave an L-symbol unchanged.
+@isnad1 id=eq.0h3v.s6.0f8324abd580 from=translated src=- shape=406bf1a9 vocab=393e89ef
+-/
 @[simp]
 theorem gauge_one (L : LSymbol G X) :
     gauge (fun _ _ ↦ 1) (fun _ _ ↦ 1) L = L := by
   funext x g h
   simp [gauge]
 
-/-- Successive joint scalar gauges multiply both cochains pointwise.-/
+/-- Successive joint scalar gauges multiply both cochains pointwise.
+@isnad1 id=eq.0h7v.s7.4cf58cfd8cc1 from=translated src=- shape=84562e6a vocab=0ef3b4d4
+-/
 theorem gauge_comp (β₁ β₂ : ScalarCocycle G)
     (γ₁ γ₂ : ActionTensorGauge G X) (L : LSymbol G X) :
     gauge β₂ γ₂ (gauge β₁ γ₁ L) = gauge (β₁ * β₂) (γ₁ * γ₂) L := by
@@ -92,7 +96,9 @@ theorem gauge_comp (β₁ β₂ : ScalarCocycle G)
   (apply Units.ext; push_cast; field_simp)
 
 /-- Joint scalar gauges preserve compatibility, with the 3-cochain changed by
-the corresponding fusion gauge.-/
+the corresponding fusion gauge.
+@isnad1 id=iscompat.1h6v.s5.2bfe5af0aaba from=translated src=- shape=9f7c0560 vocab=79126708
+-/
 theorem IsCompatible.gauge {L : LSymbol G X} {ω : ScalarThreeCochain G}
     (hL : IsCompatible L ω) (β : ScalarCocycle G) (γ : ActionTensorGauge G X) :
     IsCompatible (gauge β γ L) (ScalarThreeCochain.fusionGauge β ω) := by
@@ -119,19 +125,25 @@ standing convention in arXiv:2502.20257, `eq:triv_Ls`.-/
 def IsNormalized (L : LSymbol G X) : Prop :=
   (∀ x g, L x g 1 = 1) ∧ (∀ x g, L x 1 g = 1)
 
-/-- The exact right identity-axis formula for a joint scalar gauge.-/
+/-- The exact right identity-axis formula for a joint scalar gauge.
+@isnad1 id=eq.0h7v.s7.7e3dab645875 from=translated src=- shape=3c7cc18a vocab=439ca585
+-/
 theorem gauge_apply_right_one (β : ScalarCocycle G) (γ : ActionTensorGauge G X)
     (L : LSymbol G X) (x : X) (g : G) :
     gauge β γ L x g 1 = (β g 1 / γ 1 x) * L x g 1 := by
   simp [gauge, mul_comm]
 
-/-- The exact left identity-axis formula for a joint scalar gauge.-/
+/-- The exact left identity-axis formula for a joint scalar gauge.
+@isnad1 id=eq.0h7v.s7.dce8b3a5d0d2 from=translated src=- shape=e565d264 vocab=dd9048ab
+-/
 theorem gauge_apply_left_one (β : ScalarCocycle G) (γ : ActionTensorGauge G X)
     (L : LSymbol G X) (x : X) (g : G) :
     gauge β γ L x 1 g = (β 1 g / γ 1 (g • x)) * L x 1 g := by
   simp [gauge, mul_comm]
 
-/-- Exact characterization of when a joint scalar gauge is normalized.-/
+/-- Exact characterization of when a joint scalar gauge is normalized.
+@isnad1 id=iff.0h5v.s7.c26d3fbe9f45 from=translated src=- shape=3cd81400 vocab=3d45725f
+-/
 theorem isNormalized_gauge_iff (β : ScalarCocycle G) (γ : ActionTensorGauge G X)
     (L : LSymbol G X) :
     IsNormalized (gauge β γ L) ↔
@@ -148,7 +160,9 @@ theorem isNormalized_gauge_iff (β : ScalarCocycle G) (γ : ActionTensorGauge G 
     · simpa only [div_mul_eq_mul_div, div_eq_one] using hright x g
     · simpa only [div_mul_eq_mul_div, div_eq_one] using hleft x g
 
-/-- Normalized fusion and action gauges preserve normalized L-symbols.-/
+/-- Normalized fusion and action gauges preserve normalized L-symbols.
+@isnad1 id=isnormal.3h5v.s5.37491500896a from=translated src=- shape=a81bdedd vocab=d51dfc91
+-/
 theorem IsNormalized.gauge {L : LSymbol G X} (hL : IsNormalized L)
     {β : ScalarCocycle G} (hβ : β.IsNormalized) {γ : ActionTensorGauge G X}
     (hγ : γ.IsNormalized) : IsNormalized (gauge β γ L) := by

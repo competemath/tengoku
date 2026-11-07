@@ -40,7 +40,9 @@ end IsUnitaryBetween
 variable {m n : Type*} [DecidableEq m] [DecidableEq n] [Nonempty m] [Nonempty n]
 
 /-- If a Kronecker product of two complex square matrices is the identity, then
-its factors are reciprocal nonzero scalar matrices.-/
+its factors are reciprocal nonzero scalar matrices.
+@isnad1 id=ex.1h4v.s7.8a9b711a13c7 from=translated src=- shape=6fd8c6a5 vocab=050730f4
+-/
 theorem exists_eq_smul_one_of_kronecker_eq_one
     {A : Matrix m m ℂ} {B : Matrix n n ℂ} (h : A ⊗ₖ B = 1) :
     ∃ c : ℂ, c ≠ 0 ∧ A = c • 1 ∧ B = c⁻¹ • 1 := by
@@ -83,7 +85,9 @@ variable [Fintype m] [Fintype n]
 
 /-- If a Kronecker product is unitary, reciprocal positive rescalings of its
 factors are unitary.  This is the tensor-factor step in FBC25, Lemma
-`lem:deco` (arXiv:2502.20257, lines 1052--1066).-/
+`lem:deco` (arXiv:2502.20257, lines 1052--1066).
+@isnad1 id=ex.1h4v.s9.1e6e778ac772 from=translated src=- shape=e3b8a268 vocab=a78a655b
+-/
 theorem exists_pos_real_rescaling_mem_unitaryGroup_of_kronecker_mem_unitaryGroup
     {K₁ : Matrix m m ℂ} {K₂ : Matrix n n ℂ}
     (hK : K₁ ⊗ₖ K₂ ∈ Matrix.unitaryGroup (m × n) ℂ) :
@@ -138,7 +142,9 @@ theorem exists_pos_real_rescaling_mem_unitaryGroup_of_kronecker_mem_unitaryGroup
 real scalar and its reciprocal times unitary matrices.  This packages the
 rescaled matrices from
 `Matrix.exists_pos_real_rescaling_mem_unitaryGroup_of_kronecker_mem_unitaryGroup`
-as elements of the matrix unitary groups.-/
+as elements of the matrix unitary groups.
+@isnad1 id=ex.1h4v.s9.519f8162275c from=translated src=- shape=ebdcb826 vocab=3deabf7d
+-/
 theorem exists_pos_real_smul_unitary_factors_of_kronecker_mem_unitaryGroup
     {K₁ : Matrix m m ℂ} {K₂ : Matrix n n ℂ}
     (hK : K₁ ⊗ₖ K₂ ∈ Matrix.unitaryGroup (m × n) ℂ) :

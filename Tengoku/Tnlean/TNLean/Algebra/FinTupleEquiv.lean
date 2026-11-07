@@ -62,7 +62,9 @@ def finTupleProdEquiv (N d e : ℕ) :
     (Equiv.arrowProdEquivProdArrow (Fin N) (fun _ ↦ Fin d) (fun _ ↦ Fin e))
 
 /-- The product-tuple equivalence takes the quotient and remainder component
-at every coordinate.-/
+at every coordinate.
+@isnad1 id=eq.0h4v.s7.eda498efc5d9 from=translated src=- shape=fe3cc03d vocab=4d37b9ca
+-/
 @[simp] theorem finTupleProdEquiv_apply (N d e : ℕ)
     (σ : Fin N → Fin (d * e)) :
     finTupleProdEquiv N d e σ =
@@ -80,7 +82,9 @@ def finDoubledProdEquiv (d e : ℕ) :
       (Equiv.prodProdProdComm (Fin d) (Fin e) (Fin d) (Fin e)).trans <|
         (Equiv.prodCongr finProdFinEquiv finProdFinEquiv).trans finProdFinEquiv
 
-/-- Forward coordinate formula for `finDoubledProdEquiv`.-/
+/-- Forward coordinate formula for `finDoubledProdEquiv`.
+@isnad1 id=eq.0h6v.s10.5c63dd0c42c4 from=translated src=- shape=4b774220 vocab=1e6cd014
+-/
 @[simp] theorem finDoubledProdEquiv_apply {d e : ℕ}
     (i j : Fin d) (k l : Fin e) :
     finDoubledProdEquiv d e
@@ -88,7 +92,9 @@ def finDoubledProdEquiv (d e : ℕ) :
       finProdFinEquiv (finProdFinEquiv (i, j), finProdFinEquiv (k, l)) := by
   simp [finDoubledProdEquiv]
 
-/-- Inverse coordinate formula for `finDoubledProdEquiv`.-/
+/-- Inverse coordinate formula for `finDoubledProdEquiv`.
+@isnad1 id=eq.0h6v.s10.15028a562fb3 from=translated src=- shape=0504b0dc vocab=9cc702bd
+-/
 @[simp] theorem finDoubledProdEquiv_symm_apply {d e : ℕ}
     (i j : Fin d) (k l : Fin e) :
     (finDoubledProdEquiv d e).symm
@@ -109,14 +115,18 @@ def finFourArrowEquiv (α : Type*) : (Fin 4 → α) ≃ α × (α × (α × α))
     (Equiv.prodCongr (Equiv.refl α) (finThreeArrowEquiv α))
 
 /-- The forward right-associated identification extracts the three coordinates
-in order.-/
+in order.
+@isnad1 id=eq.0h2v.s7.16af36a8cb6d from=translated src=- shape=70b16eb6 vocab=a06befe2
+-/
 @[simp] theorem finThreeArrowEquiv_apply
     {α : Type*} (x : Fin 3 → α) :
     finThreeArrowEquiv α x = (x 0, x 1, x 2) := by
   rfl
 
 /-- The inverse right-associated identification sends a triple to its three
-coordinates in order.-/
+coordinates in order.
+@isnad1 id=eq.0h2v.s7.9297db2337ec from=translated src=- shape=7c36dab3 vocab=f04011e7
+-/
 @[simp] theorem finThreeArrowEquiv_symm_apply
     {α : Type*} (x : α × (α × α)) :
     (finThreeArrowEquiv α).symm x = ![x.1, x.2.1, x.2.2] := by
@@ -124,14 +134,18 @@ coordinates in order.-/
   fin_cases i <;> rfl
 
 /-- The forward right-associated identification extracts the four coordinates
-in order.-/
+in order.
+@isnad1 id=eq.0h2v.s7.c4f401416f45 from=translated src=- shape=51bb65ac vocab=d4d3a91b
+-/
 @[simp] theorem finFourArrowEquiv_apply
     {α : Type*} (x : Fin 4 → α) :
     finFourArrowEquiv α x = (x 0, x 1, x 2, x 3) := by
   rfl
 
 /-- The inverse right-associated identification sends a quadruple to its four
-coordinates in order.-/
+coordinates in order.
+@isnad1 id=eq.0h2v.s7.299d6a44bf22 from=translated src=- shape=a3e2e381 vocab=f91df5f8
+-/
 @[simp] theorem finFourArrowEquiv_symm_apply
     {α : Type*} (x : α × (α × (α × α))) :
     (finFourArrowEquiv α).symm x = ![x.1, x.2.1, x.2.2.1, x.2.2.2] := by
@@ -145,13 +159,17 @@ def finSuccArrowEquiv (α : Type*) (N : ℕ) :
     (Fin (N + 1) → α) ≃ α × (Fin N → α) :=
   (Fin.consEquiv fun _ : Fin (N + 1) ↦ α).symm
 
-/-- The forward identification extracts the first coordinate and the remaining tuple.-/
+/-- The forward identification extracts the first coordinate and the remaining tuple.
+@isnad1 id=eq.0h3v.s7.67a3f984742b from=translated src=- shape=ccf52a28 vocab=f2b4308c
+-/
 @[simp] theorem finSuccArrowEquiv_apply {α : Type*} (N : ℕ)
     (σ : Fin (N + 1) → α) :
     finSuccArrowEquiv α N σ = (σ 0, Fin.tail σ) :=
   rfl
 
-/-- The inverse identification reconstructs a tuple from its first coordinate and tail.-/
+/-- The inverse identification reconstructs a tuple from its first coordinate and tail.
+@isnad1 id=eq.0h3v.s7.8b92aab83dab from=translated src=- shape=9d85a478 vocab=0dbd8fdb
+-/
 @[simp] theorem finSuccArrowEquiv_symm_apply {α : Type*} (N : ℕ)
     (p : α × (Fin N → α)) :
     (finSuccArrowEquiv α N).symm p = Fin.cons p.1 p.2 :=
@@ -164,13 +182,17 @@ def finAddTwoArrowEquiv (α : Type*) (N : ℕ) :
     ((Equiv.prodCongr (Equiv.refl α) (finSuccArrowEquiv α N)).trans
       (Equiv.prodAssoc α α (Fin N → α)).symm)
 
-/-- The forward identification extracts the first two coordinates and the remaining tuple.-/
+/-- The forward identification extracts the first two coordinates and the remaining tuple.
+@isnad1 id=eq.0h3v.s8.f07777aaf4e8 from=translated src=- shape=3dbf54c7 vocab=0ae7ad7b
+-/
 @[simp] theorem finAddTwoArrowEquiv_apply {α : Type*} (N : ℕ)
     (σ : Fin (N + 2) → α) :
     finAddTwoArrowEquiv α N σ = ((σ 0, σ 1), Fin.tail (Fin.tail σ)) :=
   rfl
 
-/-- The inverse identification reconstructs a tuple from its first two coordinates and tail.-/
+/-- The inverse identification reconstructs a tuple from its first two coordinates and tail.
+@isnad1 id=eq.0h3v.s8.ed0a4d6ac2b9 from=translated src=- shape=b6477376 vocab=307588d6
+-/
 @[simp] theorem finAddTwoArrowEquiv_symm_apply {α : Type*} (N : ℕ)
     (p : (α × α) × (Fin N → α)) :
     (finAddTwoArrowEquiv α N).symm p = Fin.cons p.1.1 (Fin.cons p.1.2 p.2) :=

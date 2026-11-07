@@ -39,7 +39,9 @@ all coefficients `c k l` vanish.
 
 This is the elementary bilinear separation used to read off the gauge
 constraints from the one-leg-open contraction identities of arXiv:1804.04964,
-Section 3, Lemma inj_equal_tensors_2.-/
+Section 3, Lemma inj_equal_tensors_2.
+@isnad1 id=eq.3h9v.s7.f69ffef4d64e from=translated src=- shape=e695bf4b vocab=6655f24e
+-/
 theorem bilinear_coeff_zero {K L V1 V2 : Type*} [Fintype K] [Fintype L]
     {u : K → V1 → ℂ} {w : L → V2 → ℂ}
     (hu : LinearIndependent ℂ u) (hw : LinearIndependent ℂ w)
@@ -76,7 +78,9 @@ bijects the configurations valued `p` at bond `b` onto those valued `q`.
 
 This is the change of summation variable that turns the `A`-side of a one-leg-open
 contraction into a sum over the configurations on the `A₂`-leg, used in
-arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2.-/
+arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2.
+@isnad1 id=eq.0h7v.s7.7811c30d5241 from=translated src=- shape=6b8b4315 vocab=aa389d07
+-/
 theorem reindex_update {M : Type*} [AddCommMonoid M]
     (b : Bond) (p q : bondDim b) (f : SharedBondConfig bondDim → M) :
     (∑ μ : SharedBondConfig bondDim, if μ b = p then f (Function.update μ b q) else 0)
@@ -115,7 +119,9 @@ identity (`openBondContraction_of_sameInsertions`) and separating the two inject
 for all configurations `ν, ρ`.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2, lines
-1157--1204 of `Papers/1804.04964/paper_normal.tex`.-/
+1157--1204 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.5h16v.s8.5f08179d73a7 from=translated src=- shape=a0ce8568 vocab=2ce97c3c
+-/
 theorem bondGauge_master_constraint
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     (A₁ B₁ : TwoBlockTensor bondDim External₁ Physical₁)
@@ -233,7 +239,9 @@ constant nonzero.
 Source: arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2, lines
 1157--1204 of `Papers/1804.04964/paper_normal.tex`. The paper packages this as
 the statement that the residual gauges `Z`, `U`, `W` on three leg pairs are each
-scalar.-/
+scalar.
+@isnad1 id=ex.2h4v.s8.bd06eacd27ef from=translated src=- shape=d8b7c24d vocab=8ac97ff7
+-/
 theorem bondGauge_scalar_of_master
     [Nonempty (SharedBondConfig bondDim)]
     (g g' : Matrix (SharedBondConfig bondDim) (SharedBondConfig bondDim) ℂ)
@@ -327,7 +335,9 @@ constraint `bondGauge_master_constraint`. Iterating that constraint over all
 shared bonds forces `g` to be a nonzero scalar multiple of the identity
 (`bondGauge_scalar_of_master`), which is exactly the source statement that the
 residual gauges on the freed leg groups are scalar. Reinserting `g = lam · 1`
-into the gauge equations gives `A₁ = lam · B₁` and `A₂ = lam⁻¹ · B₂`.-/
+into the gauge equations gives `A₁ = lam · B₁` and `A₂ = lam⁻¹ · B₂`.
+@isnad1 id=twoblock.6h10v.s6.aa29bfb94d1b from=translated src=- shape=bc3ef15a vocab=3ca469e2
+-/
 theorem two_injective_tensor_insertion_comparison_core
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     [Nonempty Bond] [Nonempty External₁] [Nonempty External₂]
@@ -395,7 +405,9 @@ $A_2=\lambda^{-1}B_2$ (arXiv:1804.04964, Section 3, lines 1157--1204). The
 single-shared-bond specialization is `two_injective_tensor_insertion_comparison_singletonBond`.
 When some shared bond carries an empty index space the configuration family is
 empty and the conclusion holds vacuously
-(`twoBlockReciprocalScalarProportional_of_isEmpty_config`).-/
+(`twoBlockReciprocalScalarProportional_of_isEmpty_config`).
+@isnad1 id=twoblock.5h10v.s6.8e38d1a83cfa from=translated src=- shape=a7ccaf26 vocab=3ca469e2
+-/
 theorem two_injective_tensor_insertion_comparison
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     [Nonempty Bond] [Nonempty External₁] [Nonempty External₂]
@@ -434,7 +446,9 @@ tensor with its modified counterpart.
 This theorem records precisely that final local use of the generalized
 two-injective comparison in an abstract form with nonempty spectator external
 boundary spaces: the selected vertex is the first block and its complement is
-the second block.-/
+the second block.
+@isnad1 id=ex.5h10v.s6.2e7a1675e27a from=translated src=- shape=fb006b81 vocab=7fa7d2a5
+-/
 theorem one_vertex_complement_comparison
     {ExternalVertex ExternalComplement PhysicalVertex PhysicalComplement : Type*}
     [Nonempty Bond] [Nonempty ExternalVertex] [Nonempty ExternalComplement]

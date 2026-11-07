@@ -68,7 +68,9 @@ values at paired points multiply to `-1`.
 
 The proof orients each two-element orbit using a classical well-order. This
 formalizes the sign choice in arXiv:2502.20257, `eq:defects_Z2b`, lines
-2979--2981.-/
+2979--2981.
+@isnad1 id=hasanoma.2h2v.s4.27d9e82f1d2a from=translated src=- shape=8901b058 vocab=5cac1910
+-/
 theorem hasAnomalousInvolutionSign_of_fixedPointFree (hf : Function.Involutive f)
     (hfixed : ∀ x, f x ≠ x) : HasAnomalousInvolutionSign f := by
   refine ⟨orientedSign f, orientedSign_isSign, ?_⟩
@@ -79,7 +81,9 @@ theorem hasAnomalousInvolutionSign_of_fixedPointFree (hf : Function.Involutive f
 arbitrary complex units can have square `-1`.
 
 This is the converse to the sign choice used in arXiv:2502.20257,
-`eq:defects_Z2b`, lines 2979--2981.-/
+`eq:defects_Z2b`, lines 2979--2981.
+@isnad1 id=not.1h3v.s4.ec73e2898313 from=translated src=- shape=bcad6361 vocab=a661b6a7
+-/
 theorem not_hasAnomalousInvolutionSign_of_fixedPoint {x : X} (hx : f x = x) :
     ¬ HasAnomalousInvolutionSign f := by
   rintro ⟨ξ, hsign, hmul⟩
@@ -89,7 +93,9 @@ theorem not_hasAnomalousInvolutionSign_of_fixedPoint {x : X} (hx : f x = x) :
 
 /-- For an involution, anomalous `{±1}` signs exist exactly when there are no
 fixed points. This is the precise sign-valued form of the choice in
-arXiv:2502.20257, `eq:defects_Z2b`, lines 2979--2981.-/
+arXiv:2502.20257, `eq:defects_Z2b`, lines 2979--2981.
+@isnad1 id=iff.1h2v.s4.095d2c11bc74 from=translated src=- shape=7e613e3a vocab=5cac1910
+-/
 theorem hasAnomalousInvolutionSign_iff_fixedPointFree (hf : Function.Involutive f) :
     HasAnomalousInvolutionSign f ↔ ∀ x, f x ≠ x := by
   constructor
@@ -103,7 +109,9 @@ section GroupAction
 
 variable {G X : Type*} [Group G] [MulAction G X]
 
-/-- Acting by an element whose square is the identity defines an involution.-/
+/-- Acting by an element whose square is the identity defines an involution.
+@isnad1 id=involuti.1h3v.s6.68ff5fe3c998 from=translated src=- shape=14bfe5cc vocab=8d034f84
+-/
 theorem involutive_smul_of_mul_self_eq_one {g : G} (hg : g * g = 1) :
     Function.Involutive (fun x : X ↦ g • x) := by
   intro x
@@ -115,7 +123,9 @@ block set exists exactly when that element fixes no block.
 
 This is the group-action specialization of the function `ξ_g` required in
 arXiv:2502.20257, Proposition `prop:def_tens_anomalous`, equation
-`eq:defects_Z2b`, lines 2979--2981.-/
+`eq:defects_Z2b`, lines 2979--2981.
+@isnad1 id=iff.1h3v.s6.263bcbee1545 from=translated src=- shape=ed4d0f75 vocab=1b886095
+-/
 theorem hasAnomalousInvolutionSign_smul_iff {g : G} (hg : g * g = 1) :
     HasAnomalousInvolutionSign (fun x : X ↦ g • x) ↔ ∀ x : X, g • x ≠ x :=
   hasAnomalousInvolutionSign_iff_fixedPointFree

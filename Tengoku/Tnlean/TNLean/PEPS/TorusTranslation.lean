@@ -60,6 +60,9 @@ def translateEquiv (a : ZMod width) (b : ZMod height) :
   right_inv v := by simp
 
 omit [NeZero width] [NeZero height] [Fact (1 < width)] [Fact (1 < height)] in
+/--
+@isnad1 id=eq.0h5v.s7.278e6c451ce8 from=translated src=- shape=dee7f524 vocab=03f3169f
+-/
 @[simp] theorem translateEquiv_apply (a : ZMod width) (b : ZMod height)
     (v : TorusVertex width height) :
     translateEquiv a b v = (v.1 + a, v.2 + b) :=
@@ -67,7 +70,9 @@ omit [NeZero width] [NeZero height] [Fact (1 < width)] [Fact (1 < height)] in
 
 omit [NeZero width] [NeZero height] [Fact (1 < width)] [Fact (1 < height)] in
 /-- The translation bijection preserves the horizontal cyclic-neighbour relation:
-adding the same offset to both endpoints preserves a horizontal step.-/
+adding the same offset to both endpoints preserves a horizontal step.
+@isnad1 id=iff.0h6v.s6.68166811e4bd from=translated src=- shape=9ec8e062 vocab=737342c7
+-/
 theorem torusHorizontalNeighbor_translate (a : ZMod width) (b : ZMod height)
     {v w : TorusVertex width height} :
     torusHorizontalNeighbor (translateEquiv a b v) (translateEquiv a b w) ↔
@@ -82,7 +87,9 @@ theorem torusHorizontalNeighbor_translate (a : ZMod width) (b : ZMod height)
     · exact ⟨by rw [hy], Or.inr (by rw [add_right_comm, hx])⟩
 
 omit [NeZero width] [NeZero height] [Fact (1 < width)] [Fact (1 < height)] in
-/-- The translation bijection preserves the vertical cyclic-neighbour relation.-/
+/-- The translation bijection preserves the vertical cyclic-neighbour relation.
+@isnad1 id=iff.0h6v.s6.41911521f5de from=translated src=- shape=9ec8e062 vocab=29c766e6
+-/
 theorem torusVerticalNeighbor_translate (a : ZMod width) (b : ZMod height)
     {v w : TorusVertex width height} :
     torusVerticalNeighbor (translateEquiv a b v) (translateEquiv a b w) ↔
@@ -115,12 +122,17 @@ def translate (a : ZMod width) (b : ZMod height) :
         torusHorizontalNeighbor v w ∨ torusVerticalNeighbor v w
       rw [torusHorizontalNeighbor_translate, torusVerticalNeighbor_translate] }
 
+/--
+@isnad1 id=eq.0h5v.s7.2bb755bbb23d from=translated src=- shape=ce09f7f9 vocab=7d89e505
+-/
 @[simp] theorem translate_apply (a : ZMod width) (b : ZMod height)
     (v : TorusVertex width height) :
     translate a b v = (v.1 + a, v.2 + b) :=
   rfl
 
-/-- Translation preserves adjacency in the forward direction.-/
+/-- Translation preserves adjacency in the forward direction.
+@isnad1 id=adj.1h6v.s7.3158cc2a4300 from=translated src=- shape=fe224f01 vocab=59fb7cfb
+-/
 theorem torusGraph_adj_translate (a : ZMod width) (b : ZMod height)
     {v w : TorusVertex width height} (h : (torusGraph width height).Adj v w) :
     (torusGraph width height).Adj (translate a b v) (translate a b w) :=
@@ -147,7 +159,9 @@ def translateEdge (a : ZMod width) (b : ZMod height)
   Edge.ofAdj (torusGraph_adj_translate a b e.2.2)
 
 /-- The unordered endpoints of `translateEdge a b e` are the translates of the
-endpoints of `e`.-/
+endpoints of `e`.
+@isnad1 id=or.0h5v.s10.7cacea4e41df from=translated src=- shape=15e267a3 vocab=2cd902b4
+-/
 theorem translateEdge_endpoints (a : ZMod width) (b : ZMod height)
     (e : Edge (torusGraph width height)) :
     ((translateEdge a b e).1.1 = translate a b e.1.1 ∧
@@ -157,7 +171,9 @@ theorem translateEdge_endpoints (a : ZMod width) (b : ZMod height)
   Edge.ofAdj_endpoints (torusGraph_adj_translate a b e.2.2)
 
 /-- The translation edge action preserves horizontal orientation: the translate of
-a horizontal edge is horizontal.-/
+a horizontal edge is horizontal.
+@isnad1 id=ishorizo.1h5v.s6.4e8fed66cfab from=translated src=- shape=597504d3 vocab=38db5faf
+-/
 theorem translateEdge_isHorizontal (a : ZMod width) (b : ZMod height)
     {e : Edge (torusGraph width height)} (he : IsHorizontalTorusEdge e) :
     IsHorizontalTorusEdge (translateEdge a b e) := by
@@ -168,7 +184,9 @@ theorem translateEdge_isHorizontal (a : ZMod width) (b : ZMod height)
   · change torusHorizontalNeighbor _ _; rw [h1, h2]; exact torusHorizontalNeighbor_symm hadj
 
 /-- The translation edge action preserves vertical orientation: the translate of a
-vertical edge is vertical.-/
+vertical edge is vertical.
+@isnad1 id=isvertic.1h5v.s6.d57b0b1caf77 from=translated src=- shape=597504d3 vocab=76dba396
+-/
 theorem translateEdge_isVertical (a : ZMod width) (b : ZMod height)
     {e : Edge (torusGraph width height)} (he : IsVerticalTorusEdge e) :
     IsVerticalTorusEdge (translateEdge a b e) := by

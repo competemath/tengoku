@@ -78,7 +78,9 @@ noncomputable def rbExtraIndicator (S : Finset V) (j : V)
       f.1.1 ∉ S.erase j → f.1.2 ∉ S.erase j → ζ f = ζ₀ f) then 1 else 0
 
 /-- Removing `j` from `S` factors the exposed indicator into the `S`-indicator
-and the extra-agreement indicator on the `j`-incident edges.-/
+and the extra-agreement indicator on the `j`-incident edges.
+@isnad1 id=eq.0h9v.s6.f17c2a79c6d4 from=translated src=- shape=74582aea vocab=0f6d382b
+-/
 theorem rbExposedIndicator_erase (S : Finset V) (j : V) (ζ ζ₀ : VirtualConfig A) :
     rbExposedIndicator (G := G) A R (S.erase j) ζ ζ₀ =
       rbExposedIndicator (G := G) A R S ζ ζ₀ *
@@ -125,7 +127,9 @@ noncomputable def rbExtraIndicatorη (S : Finset V) {j : V}
 
 /-- After splitting a virtual boundary configuration into the labels incident to
 `j` and the complementary labels, the extra compatibility factor for erasing `j`
-is determined only by the incident labels.-/
+is determined only by the incident labels.
+@isnad1 id=eq.0h10v.s9.8c1836120462 from=translated src=- shape=a2eb59d7 vocab=649d85ff
+-/
 theorem rbExtraIndicator_split (S : Finset V) {j : V}
     (η : LocalVirtualConfig A j)
     (r : (f : {f : Edge G // ¬ IsIncidentEdge (G := G) j f}) → Fin (A.bondDim f.1))
@@ -153,7 +157,9 @@ theorem rbExtraIndicator_split (S : Finset V) {j : V}
 
 omit [Fintype V] in
 /-- On a split configuration, the guarded local factor at `j ∈ R` is the tensor
-at `j` evaluated on the local virtual configuration `η`.-/
+at `j` evaluated on the local virtual configuration `η`.
+@isnad1 id=eq.1h9v.s9.431efc8ec7a8 from=translated src=- shape=4f4cb072 vocab=8f36adc0
+-/
 theorem rbFactor_split_mid {j : V} (hjR : j ∈ R)
     (η : LocalVirtualConfig A j)
     (r : (f : {f : Edge G // ¬ IsIncidentEdge (G := G) j f}) → Fin (A.bondDim f.1))
@@ -179,7 +185,9 @@ noncomputable def rbMarginal
           ((vertexConfigSplitAt (G := G) A j).symm (η, r)) τ
 
 /-- The marginal coefficient family vanishes, by injectivity at `j` and the
-kernel condition at `S`.-/
+kernel condition at `S`.
+@isnad1 id=eq.4h10v.s7.685fabd3edab from=translated src=- shape=f3d16a54 vocab=c7af8fc7
+-/
 theorem rbMarginal_eq_zero (hA : IsVertexInjective A)
     (c : RegionBoundaryConfig (G := G) A R →₀ ℂ) (S : Finset V) (j : V)
     (hjR : j ∈ R) (hjS : j ∈ S)
@@ -234,7 +242,9 @@ theorem rbMarginal_eq_zero (hA : IsVertexInjective A)
   rw [Finset.prod_erase_mul S _ hjS]
 
 /-- The kernel condition descends when a region vertex `j ∈ R` in `S` is
-removed.-/
+removed.
+@isnad1 id=regionke.4h8v.s6.e396ab50adf5 from=translated src=- shape=ef5a9b9f vocab=b19f8c45
+-/
 theorem regionKernelCondition_erase (hA : IsVertexInjective A)
     (c : RegionBoundaryConfig (G := G) A R →₀ ℂ) (S : Finset V) {j : V}
     (hjR : j ∈ R) (hjS : j ∈ S)
@@ -281,7 +291,9 @@ noncomputable def regionBoundaryWitness (hpos : ∀ f : Edge G, 0 < A.bondDim f)
       ⟨0, hpos f⟩
 
 omit [Fintype V] in
-/-- The boundary label of the witness configuration is the given label.-/
+/-- The boundary label of the witness configuration is the given label.
+@isnad1 id=eq.1h6v.s6.5ffd064f5733 from=translated src=- shape=32e43a41 vocab=9800809e
+-/
 theorem regionBoundaryLabel_regionBoundaryWitness (hpos : ∀ f : Edge G, 0 < A.bondDim f)
     (ρ : RegionBoundaryConfig (G := G) A R) :
     regionBoundaryLabel (G := G) A R (regionBoundaryWitness (G := G) A R hpos ρ) = ρ := by
@@ -315,6 +327,9 @@ noncomputable def regionTouchSplit (A : Tensor G d) (R : Finset V) :
     (fun f => Fin (A.bondDim f))
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h8v.s8.561db58b5a6d from=translated src=- shape=75485aec vocab=34fde080
+-/
 @[simp] theorem regionTouchSplit_symm_apply_touch (A : Tensor G d) (R : Finset V)
     (t : TouchConfig (G := G) A R) (x : ExteriorConfig (G := G) A R)
     (f : {f : Edge G // IsTouchingEdge (G := G) R f}) :
@@ -323,7 +338,9 @@ omit [Fintype V] in
 
 omit [Fintype V] in
 /-- The boundary label of a split configuration depends only on the touching
-part: every crossing edge touches `R`.-/
+part: every crossing edge touches `R`.
+@isnad1 id=eq.0h8v.s8.a3a0a3c9056d from=translated src=- shape=d477e4c8 vocab=6924afe0
+-/
 theorem regionBoundaryLabel_regionTouchSplit_symm (A : Tensor G d) (R : Finset V)
     (t : TouchConfig (G := G) A R) (x x' : ExteriorConfig (G := G) A R) :
     regionBoundaryLabel (G := G) A R ((regionTouchSplit (G := G) A R).symm (t, x)) =
@@ -342,7 +359,9 @@ At the empty region the agreement indicator constrains exactly the edges
 touching `R`. The boundary witness pins those edges, so the sum collapses to a
 positive multiple (the number of exterior configurations) of the coefficient at
 the given boundary label, and the multiplicity is nonzero because every bond
-dimension is positive.-/
+dimension is positive.
+@isnad1 id=eq.3h6v.s7.4fe6515333de from=translated src=- shape=6327fb83 vocab=6cc25f92
+-/
 theorem regionKernelCondition_empty_eq_zero (hA : IsVertexInjective A)
     (hpos : ∀ f : Edge G, 0 < A.bondDim f)
     (c : RegionBoundaryConfig (G := G) A R →₀ ℂ)
@@ -460,7 +479,9 @@ def regionPhysicalConfigOf (R : Finset V) (τ : V → Fin d) :
   fun w => τ w.1
 
 /-- At the full region `R`, the exposed indicator is identically `1`: no edge
-touches `R` while having both endpoints outside `R`.-/
+touches `R` while having both endpoints outside `R`.
+@isnad1 id=eq.0h7v.s6.2b59a879f37e from=translated src=- shape=288cfe84 vocab=b54199d2
+-/
 theorem rbExposedIndicator_full (ζ ζ₀ : VirtualConfig A) :
     rbExposedIndicator (G := G) A R R ζ ζ₀ = 1 := by
   classical
@@ -473,7 +494,9 @@ theorem rbExposedIndicator_full (ζ ζ₀ : VirtualConfig A) :
 
 omit [Fintype V] in
 /-- The kernel-condition product over the full region equals the blocked-region
-family product.-/
+family product.
+@isnad1 id=eq.0h7v.s8.bc69454e1213 from=translated src=- shape=a4ff7317 vocab=00db0ec2
+-/
 theorem rbProd_eq_family_prod (ζ : VirtualConfig A) (τ : V → Fin d) :
     (∏ w ∈ R, rbFactor (G := G) A R w ζ τ) =
       ∏ w : {w : V // w ∈ R}, A.component w.1 (fun ie => ζ ie.1) (τ w.1) := by
@@ -486,7 +509,9 @@ theorem rbProd_eq_family_prod (ζ : VirtualConfig A) (τ : V → Fin d) :
   rw [ite_eq_left w.2]
 
 /-- The blocked-region family as a fibered sum over global configurations with a
-given boundary label.-/
+given boundary label.
+@isnad1 id=eq.0h7v.s9.c8804f9b4797 from=translated src=- shape=dd1f289d vocab=aa7d3603
+-/
 theorem regionBlockedTensorFamily_eq_fiber_sum
     (ρ : RegionBoundaryConfig (G := G) A R) (τ : V → Fin d) :
     regionBlockedTensorFamily (G := G) A R ρ
@@ -497,7 +522,9 @@ theorem regionBlockedTensorFamily_eq_fiber_sum
   rfl
 
 /-- A vanishing linear combination of the blocked-region family gives the kernel
-condition at the full region.-/
+condition at the full region.
+@isnad1 id=regionke.1h6v.s8.e3daa7ede820 from=translated src=- shape=97fe20cc vocab=b8e4b0e6
+-/
 theorem region_initial_kernelCondition (c : RegionBoundaryConfig (G := G) A R →₀ ℂ)
     (hc : Finsupp.linearCombination ℂ (regionBlockedTensorFamily (G := G) A R) c = 0) :
     regionKernelCondition (G := G) A R c R := by
@@ -572,7 +599,9 @@ source assumption; the gap is recorded in
 Source: arXiv:1804.04964, Section 3, a contraction of injective tensors is
 injective (`Papers/1804.04964/paper_normal.tex`, lines 205--250), applied to the
 blocked region of the one-region-versus-complement comparison (lines
-1205--1210).-/
+1205--1210).
+@isnad1 id=regionbl.2h5v.s6.a52c1ea53eda from=translated src=- shape=7bca091d vocab=225268f5
+-/
 theorem regionBlockedTensorInjective_of_isVertexInjective
     (hA : IsVertexInjective A) (hpos : ∀ e : Edge G, 0 < A.bondDim e) :
     RegionBlockedTensorInjective (G := G) A R := by

@@ -34,7 +34,9 @@ projection \(Q_n\) and martingale-difference orthogonality imply
 \(E_mQ_nE_n=0\).
 
 This is the cancellation in Nachtergaele, arXiv:cond-mat/9410110, lines
-1210--1215.-/
+1210--1215.
+@isnad1 id=eq.2h6v.s9.cf1e0f3f5c33 from=translated src=- shape=2b9a0e32 vocab=05417d96
+-/
 theorem martingaleDifference_comp_localProjection_comp_eq_zero
     (G : NestedGroundProjections (E := E)) (Q : E →ₗ[ℂ] E) {m n l : ℕ}
     (hout : m < n - l ∨ n < m)
@@ -62,7 +64,9 @@ indices \(m\in[n-l,n]\).
 The hypothesis is exactly the source commutation condition outside that
 interval. The bound \(n<N\) ensures that every active index occurs in the
 original sum \(0\leq m<N\). This is the finite-sum reduction used in
-Nachtergaele's equation \(Enpsi2\), arXiv:cond-mat/9410110, lines 1206--1220.-/
+Nachtergaele's equation \(Enpsi2\), arXiv:cond-mat/9410110, lines 1206--1220.
+@isnad1 id=eq.2h7v.s10.5be9558d3df7 from=translated src=- shape=3d1ed1d6 vocab=dfb86ba4
+-/
 theorem sum_martingaleDifference_localProjection_eq_sum_Icc
     (G : NestedGroundProjections (E := E)) (Q : E →ₗ[ℂ] E)
     (N n l : ℕ) (hn : n < N)
@@ -96,7 +100,9 @@ theorem sum_martingaleDifference_localProjection_eq_sum_Icc
 
 This uses only the outside-window commutation hypothesis and symmetry of the
 martingale differences, exactly as in Nachtergaele,
-arXiv:cond-mat/9410110, lines 1206--1220.-/
+arXiv:cond-mat/9410110, lines 1206--1220.
+@isnad1 id=eq.2h7v.s10.a3226bd20e32 from=translated src=- shape=34fd7e3b vocab=31d79adf
+-/
 theorem inner_sum_martingaleDifference_localProjection_eq_inner_sum_Icc
     (G : NestedGroundProjections (E := E)) (Q : E →ₗ[ℂ] E)
     (N n l : ℕ) (hn : n < N)

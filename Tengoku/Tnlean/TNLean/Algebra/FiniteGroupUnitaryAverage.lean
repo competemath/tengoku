@@ -42,7 +42,9 @@ noncomputable def finiteGroupUnitaryAverage
 
 /-- The normalized average of a finite-group unitary matrix representation is
 a star projection. This is the type-generic matrix form of the local gauge
-projection in arXiv:2502.20257, lines 457--461.-/
+projection in arXiv:2502.20257, lines 457--461.
+@isnad1 id=isstarpr.0h3v.s8.fffe5b9b3ce9 from=translated src=- shape=05d1f699 vocab=a52bf226
+-/
 theorem isStarProjection_finiteGroupUnitaryAverage
     (ρ : G →* Matrix.unitaryGroup ι ℂ) :
     IsStarProjection (finiteGroupUnitaryAverage ρ) := by

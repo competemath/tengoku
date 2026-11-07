@@ -82,7 +82,9 @@ noncomputable def edgeMiddleWeightOn (A : Tensor G d) (e : Edge G)
       A.component v.1 (fun ie => η.1 ie.1) (τ v)
 
 /-- The full-configuration form of the open middle tensor is the
-middle-indexed tensor evaluated on the restricted physical configuration.-/
+middle-indexed tensor evaluated on the restricted physical configuration.
+@isnad1 id=eq.0h8v.s7.6d35603c8062 from=translated src=- shape=244fdeab vocab=5f1448ee
+-/
 theorem edgeOpenMiddleWeight_eq_on (A : Tensor G d) (e : Edge G) (σ : V → Fin d)
     (leftResidual : ResidualLocalConfig (G := G) A (edgeLeftIncident (G := G) e))
     (rightResidual : ResidualLocalConfig (G := G) A (edgeRightIncident (G := G) e)) :
@@ -93,7 +95,9 @@ theorem edgeOpenMiddleWeight_eq_on (A : Tensor G d) (e : Edge G) (σ : V → Fin
   rfl
 
 /-- The full-configuration form of the ordinary middle tensor is the
-middle-indexed tensor evaluated on the restricted physical configuration.-/
+middle-indexed tensor evaluated on the restricted physical configuration.
+@isnad1 id=eq.0h7v.s6.80096b602c57 from=translated src=- shape=3952d3a8 vocab=b4fedd27
+-/
 theorem edgeMiddleWeight_eq_on (A : Tensor G d) (e : Edge G) (σ : V → Fin d)
     (β : EdgeBoundaryConfig (G := G) A e) :
     edgeMiddleWeight (G := G) A e σ β =
@@ -112,7 +116,9 @@ the fixed distinguished-edge index and reindexing the finite sum.
 
 This is the coefficient-level reindexing behind the identity specialization of
 an edge insertion, with the physical index already restricted to the middle
-block.-/
+block.
+@isnad1 id=eq.0h7v.s6.59a25d373a90 from=translated src=- shape=6517cbbb vocab=d6966234
+-/
 theorem edgeMiddleWeightOn_eq_edgeOpenMiddleWeightOn (A : Tensor G d) (e : Edge G)
     (τ : EdgeMiddlePhysicalConfig (G := G) (d := d) e)
     (β : EdgeBoundaryConfig (G := G) A e) :
@@ -233,7 +239,9 @@ namespace EdgeMiddleKernelDescentData
 tensor family.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps`,
-`Papers/1804.04964/paper_normal.tex`, lines 981--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 981--1009.
+@isnad1 id=edgemidd.0h6v.s5.776959ba51c5 from=translated src=- shape=8168bee7 vocab=b3162c83
+-/
 theorem edgeMiddleTensorInjective {A : Tensor G d} {e : Edge G}
     (hDescent : EdgeMiddleKernelDescentData (G := G) A e) :
     EdgeMiddleTensorInjective (G := G) A e := by
@@ -279,7 +287,9 @@ structure EdgeMiddleRegionInjectivityComparison
 edge-blocked three-site chain.
 
 The unformalized content is middle-block injectivity: linear independence of the
-middle tensor family over the residual boundary configurations.-/
+middle tensor family over the residual boundary configurations.
+@isnad1 id=and.1h5v.s10.9b2d841ef16c from=translated src=- shape=bd0c9f8d vocab=339f45ad
+-/
 theorem IsVertexInjective.edgeBlockedEndpointTensorMaps_injective {A : Tensor G d}
     (hA : IsVertexInjective A) (e : Edge G) :
     Function.Injective (localTensorMap A e.1.1) ∧
@@ -290,7 +300,9 @@ theorem IsVertexInjective.edgeBlockedEndpointTensorMaps_injective {A : Tensor G 
 the edge-blocked three-site chain at every edge.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps`,
-`Papers/1804.04964/paper_normal.tex`, lines 981--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 981--1009.
+@isnad1 id=and.1h5v.s10.9b2d841ef16c from=translated src=- shape=bd0c9f8d vocab=339f45ad
+-/
 theorem IsVertexInjective.edgeBlockedEndpointTensorMaps_injective_all {A : Tensor G d}
     (hA : IsVertexInjective A) :
     ∀ e : Edge G,
@@ -303,7 +315,9 @@ edge-blocked three-site injectivity statement.
 
 This isolates the remaining proof obligation in the source argument: injectivity
 is preserved when the vertices away from the chosen edge are blocked into the
-middle tensor.-/
+middle tensor.
+@isnad1 id=edgebloc.2h5v.s5.fe4d66cef88c from=translated src=- shape=1b6bff3b vocab=90415e08
+-/
 theorem IsVertexInjective.edgeBlockedThreeSiteInjective_of_middle {A : Tensor G d}
     (hA : IsVertexInjective A) (e : Edge G)
     (hMiddle : EdgeMiddleTensorInjective (G := G) A e) :
@@ -318,7 +332,9 @@ The separate comparison theorem below supplies the middle-tensor hypotheses
 from finite-region injectivity.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps`,
-`Papers/1804.04964/paper_normal.tex`, lines 981--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 981--1009.
+@isnad1 id=edgebloc.2h5v.s6.01f611f662b2 from=translated src=- shape=44cda12b vocab=90415e08
+-/
 theorem IsVertexInjective.edgeBlockedThreeSiteInjective_all_of_middle {A : Tensor G d}
     (hA : IsVertexInjective A)
     (hMiddle : ∀ e : Edge G, EdgeMiddleTensorInjective (G := G) A e) :
@@ -329,7 +345,9 @@ theorem IsVertexInjective.edgeBlockedThreeSiteInjective_all_of_middle {A : Tenso
 three-site injectivity statement.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps`,
-`Papers/1804.04964/paper_normal.tex`, lines 981--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 981--1009.
+@isnad1 id=edgebloc.1h6v.s5.e233ca6b61fd from=translated src=- shape=1b6bff3b vocab=fc7a19e7
+-/
 theorem IsVertexInjective.edgeBlockedThreeSiteInjective_of_kernelDescent {A : Tensor G d}
     (hA : IsVertexInjective A) (e : Edge G)
     (hDescent : EdgeMiddleKernelDescentData (G := G) A e) :
@@ -345,7 +363,9 @@ unconditional paper statement still requires a proof of the finite-region
 contraction theorem.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps`,
-`Papers/1804.04964/paper_normal.tex`, lines 981--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 981--1009.
+@isnad1 id=edgebloc.3h6v.s6.0e1b56ebbf92 from=translated src=- shape=a7349957 vocab=f8e8ff85
+-/
 theorem EdgeMiddleRegionInjectivityComparison.edgeBlockedThreeSiteInjective
     {κ : RegionInjectivityData V} {A : Tensor G d}
     (hComparison : EdgeMiddleRegionInjectivityComparison (G := G) (d := d) κ A)
@@ -362,7 +382,9 @@ This is the all-edge form of the finite-region comparison isolated from the
 assertion following `eq:block_to_mps`.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps`,
-`Papers/1804.04964/paper_normal.tex`, lines 981--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 981--1009.
+@isnad1 id=edgemidd.2h6v.s6.265b48dc1782 from=translated src=- shape=9ad6ff0a vocab=29bffce6
+-/
 theorem EdgeMiddleRegionInjectivityComparison.edgeMiddleTensorInjective_all
     {κ : RegionInjectivityData V} {A : Tensor G d}
     (hComparison : EdgeMiddleRegionInjectivityComparison (G := G) (d := d) κ A)
@@ -380,7 +402,9 @@ step is the contraction theorem showing that vertex injectivity gives
 injectivity of each finite middle region $V\setminus\{u,v\}$.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps`,
-`Papers/1804.04964/paper_normal.tex`, lines 981--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 981--1009.
+@isnad1 id=edgebloc.3h6v.s6.765125f19a24 from=translated src=- shape=cb6e9ac3 vocab=f8e8ff85
+-/
 theorem EdgeMiddleRegionInjectivityComparison.edgeBlockedThreeSiteInjective_all
     {κ : RegionInjectivityData V} {A : Tensor G d}
     (hComparison : EdgeMiddleRegionInjectivityComparison (G := G) (d := d) κ A)
@@ -403,7 +427,9 @@ tensor is still assumed.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps` and Lemma
 `lem:injective_union`; `Papers/1804.04964/paper_normal.tex`, lines 981--1009
-and 1322--1404.-/
+and 1322--1404.
+@isnad1 id=edgemidd.5h6v.s6.2844ec66daf4 from=translated src=- shape=e840f295 vocab=8f47b311
+-/
 theorem EdgeMiddleRegionInjectivityComparison.edgeMiddleTensorInjective_of_singletons
     {κ : RegionInjectivityData V} {A : Tensor G d}
     (hComparison : EdgeMiddleRegionInjectivityComparison (G := G) (d := d) κ A)
@@ -423,7 +449,9 @@ nonempty-region singleton theorem applies at every edge.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps` and Lemma
 `lem:injective_union`; `Papers/1804.04964/paper_normal.tex`, lines 981--1009
-and 1322--1404.-/
+and 1322--1404.
+@isnad1 id=edgemidd.5h6v.s6.e402b7750b9f from=translated src=- shape=75dc9511 vocab=35586f4c
+-/
 theorem EdgeMiddleRegionInjectivityComparison.edgeMiddleTensorInjective_all_two_lt_card
     {κ : RegionInjectivityData V} {A : Tensor G d}
     (hComparison : EdgeMiddleRegionInjectivityComparison (G := G) (d := d) κ A)
@@ -444,7 +472,9 @@ three-site injectivity statement for an edge whose middle region is nonempty.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps` and Lemma
 `lem:injective_union`; `Papers/1804.04964/paper_normal.tex`, lines 981--1009
-and 1322--1404.-/
+and 1322--1404.
+@isnad1 id=edgebloc.5h6v.s6.a5c9da4e5f81 from=translated src=- shape=e840f295 vocab=dad9dcbf
+-/
 theorem EdgeMiddleRegionInjectivityComparison.edgeBlockedThreeSiteInjective_of_singletons
     {κ : RegionInjectivityData V} {A : Tensor G d}
     (hComparison : EdgeMiddleRegionInjectivityComparison (G := G) (d := d) κ A)
@@ -466,7 +496,9 @@ This is the all-edge form of the preceding restricted consequence.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps` and Lemma
 `lem:injective_union`; `Papers/1804.04964/paper_normal.tex`, lines 981--1009
-and 1322--1404.-/
+and 1322--1404.
+@isnad1 id=edgebloc.5h6v.s6.50c23f1aee28 from=translated src=- shape=41edfe66 vocab=dad9dcbf
+-/
 theorem EdgeMiddleRegionInjectivityComparison.edgeBlockedThreeSiteInjective_all_of_singletons
     {κ : RegionInjectivityData V} {A : Tensor G d}
     (hComparison : EdgeMiddleRegionInjectivityComparison (G := G) (d := d) κ A)
@@ -488,7 +520,9 @@ nonempty-middle theorem applies uniformly.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps` and Lemma
 `lem:injective_union`; `Papers/1804.04964/paper_normal.tex`, lines 981--1009
-and 1322--1404.-/
+and 1322--1404.
+@isnad1 id=edgebloc.5h6v.s6.16a7f2c29303 from=translated src=- shape=75dc9511 vocab=105ea068
+-/
 theorem EdgeMiddleRegionInjectivityComparison.edgeBlockedThreeSiteInjective_all_two_lt_card
     {κ : RegionInjectivityData V} {A : Tensor G d}
     (hComparison : EdgeMiddleRegionInjectivityComparison (G := G) (d := d) κ A)
@@ -513,7 +547,9 @@ incident to that bond. The positive-bond hypothesis in the theorem below
 excludes this obstruction. -/
 
 /-- If the complement configuration space is empty, each vector in the
-edge-middle tensor family is the zero function.-/
+edge-middle tensor family is the zero function.
+@isnad1 id=eq.0h6v.s6.713867400095 from=translated src=- shape=79d9e640 vocab=4c8a1476
+-/
 theorem edgeMiddleTensorFamily_eq_zero_of_isEmpty (A : Tensor G d) (e : Edge G)
     [IsEmpty (EdgeComplementConfig (G := G) A e)]
     (ρ : EdgeMiddleBoundaryLabel (G := G) A e) :
@@ -525,7 +561,9 @@ theorem edgeMiddleTensorFamily_eq_zero_of_isEmpty (A : Tensor G d) (e : Edge G)
   exact (IsEmpty.false ζ.1).elim
 
 /-- If the complement configuration space is empty and the boundary-label type
-is nonempty, then the edge-middle tensor family is not linearly independent.-/
+is nonempty, then the edge-middle tensor family is not linearly independent.
+@isnad1 id=not.0h5v.s5.b513574bca2b from=translated src=- shape=c617c6ec vocab=d8592b6f
+-/
 theorem not_edgeMiddleTensorInjective_of_isEmpty (A : Tensor G d) (e : Edge G)
     [IsEmpty (EdgeComplementConfig (G := G) A e)]
     [Nonempty (EdgeMiddleBoundaryLabel (G := G) A e)] :

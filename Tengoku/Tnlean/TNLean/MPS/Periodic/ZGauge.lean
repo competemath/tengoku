@@ -31,14 +31,18 @@ namespace MPSTensor
 orientation, `ν` is the old multiplicity entry and `μ` is the matched target entry.-/
 noncomputable def zGaugeEntry (μ ν : ℂ) : ℂ := μ / ν
 
-/-- If `μ^m = ν^m` and `ν ≠ 0`, then `(μ/ν)^m = 1`.-/
+/-- If `μ^m = ν^m` and `ν ≠ 0`, then `(μ/ν)^m = 1`.
+@isnad1 id=eq.2h3v.s6.e11c41fcf349 from=translated src=- shape=d9b14310 vocab=f19dd2b5
+-/
 theorem zGaugeEntry_pow_eq_one_of_pow_eq
     {m : ℕ} {μ ν : ℂ} (hpow : μ ^ m = ν ^ m) (hν : ν ≠ 0) :
     (zGaugeEntry μ ν) ^ m = 1 := by
   simp only [zGaugeEntry, div_pow, hpow, div_self (pow_ne_zero m hν)]
 
 /-- The ratio defining the Z-gauge rescales the denominator entry `ν` to the
-matched target entry `μ`.-/
+matched target entry `μ`.
+@isnad1 id=eq.1h2v.s4.0033dee3ea12 from=translated src=- shape=71907fa7 vocab=06b52411
+-/
 theorem zGaugeEntry_mul_right {μ ν : ℂ} (hν : ν ≠ 0) :
     zGaugeEntry μ ν * ν = μ := by
   unfold zGaugeEntry
@@ -53,7 +57,9 @@ noncomputable def zGaugeDiagonal (μ ν : n → ℂ) : Matrix n n ℂ :=
   Matrix.diagonal (fun i => zGaugeEntry (μ i) (ν i))
 
 /-- If matched multiplicity entries have equal `m`-th powers and the denominator entries
-are nonzero, then the associated Z-gauge diagonal satisfies `Z^m = 1`.-/
+are nonzero, then the associated Z-gauge diagonal satisfies `Z^m = 1`.
+@isnad1 id=eq.2h4v.s7.38b45a3f7204 from=translated src=- shape=8928079b vocab=380bf411
+-/
 theorem zGaugeDiagonal_pow_eq_one
     (m : ℕ) (μ ν : n → ℂ)
     (hpow : ∀ i, μ i ^ m = ν i ^ m)
@@ -66,7 +72,9 @@ theorem zGaugeDiagonal_pow_eq_one
 /-- Pointwise form of `Z * diag(ν) = diag(μ)` for the periodic Z-gauge.
 
 For the paper's equal-case orientation, instantiate `ν` with the source-side
-`R_j` entries and `μ` with the matched target-side `S_j` entries.-/
+`R_j` entries and `μ` with the matched target-side `S_j` entries.
+@isnad1 id=eq.1h3v.s6.81f2440c9698 from=translated src=- shape=2b698db8 vocab=82b010cb
+-/
 theorem zGaugeDiagonal_mul_diagonal
     (μ ν : n → ℂ)
     (hν : ∀ i, ν i ≠ 0) :

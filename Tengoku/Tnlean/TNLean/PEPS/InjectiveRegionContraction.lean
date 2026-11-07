@@ -88,7 +88,9 @@ $\mathcal C_{\{0,1,2\}}$.
 Source: arXiv:1804.04964, Section 3, Lemma lem:injective_union, lines
 1324--1404. The proof is exactly the displayed implication chain
 $\mathcal C_{\{0,1,2\}}(X)=0 \Rightarrow \mathcal C_{\{2\}}(X)=0
-\Rightarrow \mathcal C_{\{1,2\}}(X)=0 \Rightarrow X=0$.-/
+\Rightarrow \mathcal C_{\{1,2\}}(X)=0 \Rightarrow X=0$.
+@isnad1 id=eq.0h5v.s7.e2785dafb3f4 from=translated src=- shape=b5a8b391 vocab=ce2b9879
+-/
 theorem union_contraction_ker_eq_bot
     (c : InjectiveUnionContractionChain K E012 E2 E12) :
     LinearMap.ker c.contraction012 = ⊥ := by
@@ -97,7 +99,9 @@ theorem union_contraction_ker_eq_bot
   exact c.left_inverse_B_zero X
     (c.insert_overlap_zero X (c.left_inverse_A_zero X hX))
 
-/-- Equivalently, the contraction $\mathcal C_{\{0,1,2\}}$ is injective.-/
+/-- Equivalently, the contraction $\mathcal C_{\{0,1,2\}}$ is injective.
+@isnad1 id=injectiv.0h5v.s7.5e8bb246fd8c from=translated src=- shape=509ca702 vocab=d2e0163f
+-/
 theorem union_contraction_injective
     (c : InjectiveUnionContractionChain K E012 E2 E12) :
     Function.Injective c.contraction012 :=

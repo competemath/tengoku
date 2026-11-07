@@ -30,16 +30,23 @@ open scoped Matrix
 
 namespace MPSTensor
 
-/-- Every element of `Multiplicative (ZMod 2)` is either `1` or `ofAdd 1`.-/
+/-- Every element of `Multiplicative (ZMod 2)` is either `1` or `ofAdd 1`.
+@isnad1 id=or.0h1v.s7.7d19ac92cb2e from=translated src=- shape=503cf106 vocab=646d2c74
+-/
 lemma zmod2_cases (g : Multiplicative (ZMod 2)) :
     g = 1 ∨ g = Multiplicative.ofAdd 1 := by
   revert g
   decide
 
+/--
+@isnad1 id=eq.0h0v.s7.e069b865ea2a from=translated src=- shape=21086a1f vocab=014cf724
+-/
 lemma zmod2_one_add_one : (1 : ZMod 2) + 1 = 0 := by decide
 
 /-- Every element of `Multiplicative (ZMod 2 × ZMod 2)` is one of the four group
-elements `1`, `ofAdd (1, 0)`, `ofAdd (0, 1)`, `ofAdd (1, 1)`.-/
+elements `1`, `ofAdd (1, 0)`, `ofAdd (0, 1)`, `ofAdd (1, 1)`.
+@isnad1 id=or.0h1v.s10.d700fc9f73fb from=translated src=- shape=af8a545a vocab=3c9ff6c9
+-/
 lemma zmod2sq_cases (g : Multiplicative (ZMod 2 × ZMod 2)) :
     g = 1 ∨ g = Multiplicative.ofAdd (1, 0) ∨ g = Multiplicative.ofAdd (0, 1) ∨
       g = Multiplicative.ofAdd (1, 1) := by
@@ -86,7 +93,9 @@ def ofCommutingInvolutions (P₁ P₂ : Matrix n n ℂ) (h₁ : P₁ * P₁ = 1)
     · rw [mul_assoc, ← mul_assoc P₂ P₁ P₂, ← hc, mul_assoc P₁ P₂ P₂, h₂, mul_one, h₁]
 
 /-- `ofCommutingInvolutions` evaluated on a group element is the corresponding
-product of factors.-/
+product of factors.
+@isnad1 id=eq.3h4v.s10.95fd6465f2ff from=translated src=- shape=a417f63e vocab=98186d46
+-/
 @[simp]
 lemma ofCommutingInvolutions_apply (P₁ P₂ : Matrix n n ℂ) (h₁ : P₁ * P₁ = 1)
     (h₂ : P₂ * P₂ = 1) (hc : P₁ * P₂ = P₂ * P₁) (g : Multiplicative (ZMod 2 × ZMod 2)) :
@@ -94,6 +103,9 @@ lemma ofCommutingInvolutions_apply (P₁ P₂ : Matrix n n ℂ) (h₁ : P₁ * P
       (if (Multiplicative.toAdd g).1 = 0 then 1 else P₁) *
         (if (Multiplicative.toAdd g).2 = 0 then 1 else P₂) := rfl
 
+/--
+@isnad1 id=eq.3h3v.s9.09eddc9b570b from=translated src=- shape=1b68431f vocab=e457ba50
+-/
 @[simp]
 lemma ofCommutingInvolutions_ofAdd_10 (P₁ P₂ : Matrix n n ℂ) (h₁ : P₁ * P₁ = 1)
     (h₂ : P₂ * P₂ = 1) (hc : P₁ * P₂ = P₂ * P₁) :
@@ -102,6 +114,9 @@ lemma ofCommutingInvolutions_ofAdd_10 (P₁ P₂ : Matrix n n ℂ) (h₁ : P₁ 
   simp only [ofCommutingInvolutions_apply, toAdd_ofAdd, show (1 : ZMod 2) ≠ 0 from by decide,
     ↓reduceIte, mul_one]
 
+/--
+@isnad1 id=eq.3h3v.s9.4348a8a0f2ae from=translated src=- shape=9b401ca2 vocab=e457ba50
+-/
 @[simp]
 lemma ofCommutingInvolutions_ofAdd_01 (P₁ P₂ : Matrix n n ℂ) (h₁ : P₁ * P₁ = 1)
     (h₂ : P₂ * P₂ = 1) (hc : P₁ * P₂ = P₂ * P₁) :
@@ -110,6 +125,9 @@ lemma ofCommutingInvolutions_ofAdd_01 (P₁ P₂ : Matrix n n ℂ) (h₁ : P₁ 
   simp only [ofCommutingInvolutions_apply, toAdd_ofAdd, show (1 : ZMod 2) ≠ 0 from by decide,
     ↓reduceIte, one_mul]
 
+/--
+@isnad1 id=eq.3h3v.s9.c6b38bb86cba from=translated src=- shape=a2c5f1c6 vocab=e457ba50
+-/
 @[simp]
 lemma ofCommutingInvolutions_ofAdd_11 (P₁ P₂ : Matrix n n ℂ) (h₁ : P₁ * P₁ = 1)
     (h₂ : P₂ * P₂ = 1) (hc : P₁ * P₂ = P₂ * P₁) :
@@ -119,7 +137,9 @@ lemma ofCommutingInvolutions_ofAdd_11 (P₁ P₂ : Matrix n n ℂ) (h₁ : P₁ 
     ↓reduceIte]
 
 /-- A representation built from two commuting involutions is unitary when both
-generators are unitary.-/
+generators are unitary.
+@isnad1 id=eq.5h4v.s10.03dfc61ac6e4 from=translated src=- shape=c66c3c41 vocab=071c02e4
+-/
 lemma ofCommutingInvolutions_mul_conjTranspose (P₁ P₂ : Matrix n n ℂ)
     (h₁ : P₁ * P₁ = 1) (h₂ : P₂ * P₂ = 1) (hc : P₁ * P₂ = P₂ * P₁)
     (h₁U : P₁ * (P₁)ᴴ = 1) (h₂U : P₂ * (P₂)ᴴ = 1)
@@ -135,7 +155,9 @@ lemma ofCommutingInvolutions_mul_conjTranspose (P₁ P₂ : Matrix n n ℂ)
       h₂U, one_mul, h₁U]
 
 /-- Two anticommuting involutions obey the standard `Z₂ × Z₂` projective
-multiplication law with factor `(-1)^(g₂ h₁)`.-/
+multiplication law with factor `(-1)^(g₂ h₁)`.
+@isnad1 id=eq.3h5v.s12.408daa02532b from=translated src=- shape=33b271e7 vocab=2ec8d364
+-/
 lemma mul_of_anticommuting_involutions (P₁ P₂ : Matrix n n ℂ)
     (h₁ : P₁ * P₁ = 1) (h₂ : P₂ * P₂ = 1) (hc : P₂ * P₁ = -(P₁ * P₂))
     (g h : Multiplicative (ZMod 2 × ZMod 2)) :
@@ -175,7 +197,9 @@ lemma mul_of_anticommuting_involutions (P₁ P₂ : Matrix n n ℂ)
 
 /-- An anticommuting negative involution and involution obey the
 `Z₂ × Z₂` projective multiplication law with factor
-`(-1)^((g₁ + g₂) h₁)`.-/
+`(-1)^((g₁ + g₂) h₁)`.
+@isnad1 id=eq.3h5v.s12.2dee4b8945c0 from=translated src=- shape=ece884c1 vocab=d7a2057e
+-/
 lemma mul_of_anticommuting_neg_involution (P₁ P₂ : Matrix n n ℂ)
     (h₁ : P₁ * P₁ = -1) (h₂ : P₂ * P₂ = 1) (hc : P₂ * P₁ = -(P₁ * P₂))
     (g h : Multiplicative (ZMod 2 × ZMod 2)) :

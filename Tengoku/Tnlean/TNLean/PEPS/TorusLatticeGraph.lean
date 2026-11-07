@@ -81,7 +81,9 @@ instance instDecidableEqTorusVertex (width height : ℕ) :
 
 /-- The torus coordinate value injection `v ↦ (v.1.val, v.2.val)` into the
 lexicographic product of `ℕ` is injective, the witness for the lexicographic
-linear order on `TorusVertex`.-/
+linear order on `TorusVertex`.
+@isnad1 id=injectiv.0h2v.s6.12d5588b4efc from=translated src=- shape=c68285a7 vocab=ec658463
+-/
 theorem torusVertexValLex_injective (width height : ℕ) [NeZero width] [NeZero height] :
     Function.Injective
       (fun v : TorusVertex width height => toLex (v.1.val, v.2.val)) := by
@@ -146,12 +148,16 @@ def torusVerticalNeighbor {width height : ℕ}
     (v w : TorusVertex width height) : Prop :=
   v.1 = w.1 ∧ (v.2 + 1 = w.2 ∨ w.2 + 1 = v.2)
 
-/-- The horizontal cyclic-neighbour relation is symmetric.-/
+/-- The horizontal cyclic-neighbour relation is symmetric.
+@isnad1 id=torushor.1h4v.s4.33b866cd8f94 from=translated src=- shape=6621116b vocab=48bdc1c1
+-/
 theorem torusHorizontalNeighbor_symm {width height : ℕ} {v w : TorusVertex width height}
     (h : torusHorizontalNeighbor v w) : torusHorizontalNeighbor w v :=
   ⟨h.1.symm, h.2.imp (·) (·) |>.elim Or.inr Or.inl⟩
 
-/-- The vertical cyclic-neighbour relation is symmetric.-/
+/-- The vertical cyclic-neighbour relation is symmetric.
+@isnad1 id=torusver.1h4v.s4.34731e544f44 from=translated src=- shape=6621116b vocab=99453116
+-/
 theorem torusVerticalNeighbor_symm {width height : ℕ} {v w : TorusVertex width height}
     (h : torusVerticalNeighbor v w) : torusVerticalNeighbor w v :=
   ⟨h.1.symm, h.2.imp (·) (·) |>.elim Or.inr Or.inl⟩
@@ -202,6 +208,9 @@ instance instDecidableRelTorusGraphAdj (width height : ℕ) [NeZero width] [NeZe
   unfold torusGraph
   infer_instance
 
+/--
+@isnad1 id=iff.0h4v.s6.c926bc6526c8 from=translated src=- shape=c6f4f099 vocab=8834da2d
+-/
 @[simp] theorem torusGraph_adj {width height : ℕ} [NeZero width] [NeZero height]
     [Fact (1 < width)] [Fact (1 < height)] (v w : TorusVertex width height) :
     (torusGraph width height).Adj v w ↔
@@ -210,7 +219,9 @@ instance instDecidableRelTorusGraphAdj (width height : ℕ) [NeZero width] [NeZe
 
 /-- A vertex and its cyclic right neighbour `(x + 1, y)` are adjacent.
 
-Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1500.-/
+Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1500.
+@isnad1 id=adj.0h4v.s6.d2a57f933da5 from=translated src=- shape=03152cf5 vocab=fa1f3d3d
+-/
 theorem torusGraph_adj_right {width height : ℕ} [NeZero width] [NeZero height]
     [Fact (1 < width)] [Fact (1 < height)] (x : ZMod width) (y : ZMod height) :
     (torusGraph width height).Adj (x, y) (x + 1, y) :=
@@ -218,7 +229,9 @@ theorem torusGraph_adj_right {width height : ℕ} [NeZero width] [NeZero height]
 
 /-- A vertex and its cyclic upper neighbour `(x, y + 1)` are adjacent.
 
-Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1500.-/
+Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1500.
+@isnad1 id=adj.0h4v.s6.929464245408 from=translated src=- shape=ca230308 vocab=fa1f3d3d
+-/
 theorem torusGraph_adj_up {width height : ℕ} [NeZero width] [NeZero height]
     [Fact (1 < width)] [Fact (1 < height)] (x : ZMod width) (y : ZMod height) :
     (torusGraph width height).Adj (x, y) (x, y + 1) :=
@@ -259,7 +272,9 @@ instance instDecidableIsVerticalTorusEdge {width height : ℕ} [NeZero width] [N
 
 /-- Every edge of the torus graph is horizontal or vertical.
 
-Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1500.-/
+Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1500.
+@isnad1 id=or.0h3v.s6.931760026aa0 from=translated src=- shape=69a4dd72 vocab=22cd43e2
+-/
 theorem torusEdge_horizontal_or_vertical {width height : ℕ} [NeZero width] [NeZero height]
     [Fact (1 < width)] [Fact (1 < height)] (e : Edge (torusGraph width height)) :
     IsHorizontalTorusEdge e ∨ IsVerticalTorusEdge e :=
@@ -271,7 +286,9 @@ vertical edge does the reverse.  If an edge were both, the horizontal coordinate
 would be both fixed and shifted by one, forcing `1 = 0`, impossible by
 nontriviality.
 
-Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1500.-/
+Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1475--1500.
+@isnad1 id=not.0h3v.s6.7fe3509589de from=translated src=- shape=6cc4c9d4 vocab=22cd43e2
+-/
 theorem torusEdge_not_horizontal_and_vertical {width height : ℕ} [NeZero width] [NeZero height]
     [Fact (1 < width)] [Fact (1 < height)] (e : Edge (torusGraph width height)) :
     ¬ (IsHorizontalTorusEdge e ∧ IsVerticalTorusEdge e) := by

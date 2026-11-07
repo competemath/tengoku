@@ -62,7 +62,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
 /-- An energy lower bound on a subspace implies the corresponding norm
 lower bound there. This is the direct Cauchy--Schwarz conversion and requires
-neither finite dimensionality nor positivity of the operator.-/
+neither finite dimensionality nor positivity of the operator.
+@isnad1 id=le.2h4v.s9.738f412ff39e from=translated src=- shape=7f142018 vocab=e1fe76fb
+-/
 theorem norm_lower_bound_of_energy_lower_bound
     {γ : ℝ} {H : E →ₗ[ℂ] E}
     (hEnergy : ∀ v ∈ (LinearMap.ker H)ᗮ,
@@ -347,7 +349,9 @@ concludes the same coefficient on \(\lVert\psi\rVert^2\). The two conclusions
 agree exactly when the martingale differences below the threshold vanish, and
 the printed proof supplies no argument for the omitted indices. The
 discrepancy is recorded in
-`docs/paper-gaps/cpgsv21_martingale_overlap.tex`.-/
+`docs/paper-gaps/cpgsv21_martingale_overlap.tex`.
+@isnad1 id=le.12h12v.s13.7340e5e2d8e1 from=translated src=- shape=38530af2 vocab=8f70d64d
+-/
 theorem energy_lower_bound_of_nachtergaele_c1_c3_threshold
     [FiniteDimensional ℂ E]
     (G : NestedGroundProjections (E := E)) (Q : ℕ → E →ₗ[ℂ] E)
@@ -541,7 +545,9 @@ source defect and this repair are recorded in
 
 Membership of \(\psi\) in the range of \(G_{\Lambda_{n_0}}\) supplies the
 hypothesis, by
-`martingaleDifference_apply_eq_zero_of_lt`.-/
+`martingaleDifference_apply_eq_zero_of_lt`.
+@isnad1 id=le.15h12v.s12.bdf6fafaad65 from=translated src=- shape=9323d192 vocab=8f70d64d
+-/
 theorem energy_lower_bound_of_nachtergaele_c1_c3_of_martingaleDifference_below_eq_zero
     [FiniteDimensional ℂ E]
     (G : NestedGroundProjections (E := E)) (Q : ℕ → E →ₗ[ℂ] E)
@@ -630,7 +636,9 @@ lower-threshold hypotheses. This is the threshold estimate
 window correction below the threshold is empty and the martingale mass above
 it is \(\lVert\psi\rVert^2\).
 The proof uses the upper inequality in C1; its nonnegativity clause is retained
-because it is part of the source's condition C1.-/
+because it is part of the source's condition C1.
+@isnad1 id=le.11h11v.s12.ddcdc0e3076c from=translated src=- shape=f7c835d3 vocab=9abd0bd0
+-/
 theorem energy_lower_bound_of_nachtergaele_c1_c3_full_range
     [FiniteDimensional ℂ E]
     (G : NestedGroundProjections (E := E)) (Q : ℕ → E →ₗ[ℂ] E)
@@ -678,7 +686,9 @@ theorem energy_lower_bound_of_nachtergaele_c1_c3_full_range
 identity identifies the last filtration range with the kernel of the positive
 Hamiltonian. The energy estimate and Cauchy--Schwarz supply the global
 quadratic-form hypothesis used by
-`spectralGap_of_martingale_of_finiteDimensional`.-/
+`spectralGap_of_martingale_of_finiteDimensional`.
+@isnad1 id=le.13h11v.s12.f6bc3ce9d75b from=translated src=- shape=2667a754 vocab=15bd3658
+-/
 theorem norm_lower_bound_of_nachtergaele_c1_c3_full_range
     [FiniteDimensional ℂ E]
     (G : NestedGroundProjections (E := E)) (Q : ℕ → E →ₗ[ℂ] E)

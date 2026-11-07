@@ -28,7 +28,9 @@ namespace Matrix
 variable {ι R : Type*} [Fintype ι] [CommSemiring R]
 
 /-- Summing over the tuples of length `L + 1` is summing over the first entry
-and then over the remaining tuple.-/
+and then over the remaining tuple.
+@isnad1 id=eq.0h4v.s7.1d7a93c0241d from=translated src=- shape=5dfad4c2 vocab=ea5e76be
+-/
 lemma sum_fin_cons {L : ℕ} (F : (Fin (L + 1) → ι) → R) :
     ∑ t, F t = ∑ c, ∑ t : Fin L → ι, F (Fin.cons c t) := by
   rw [← Fintype.sum_equiv (Fin.consEquiv fun _ => ι) (fun x => F (Fin.cons x.1 x.2)) F
@@ -41,7 +43,9 @@ variable [DecidableEq ι]
 /-- **Open path expansion.**  Applying the ordered product of the matrices
 `M 0, …, M (L - 1)` to a vector `v` and reading the entry at `a` sums, over all
 paths `t` of length `L` starting at `a`, the product of the matrix entries along
-the path times `v` at the endpoint.-/
+the path times `v` at the endpoint.
+@isnad1 id=eq.0h6v.s7.e5169e311980 from=translated src=- shape=5d1fc950 vocab=a9ed7f14
+-/
 theorem ofFn_prod_mulVec_apply :
     ∀ (L : ℕ) (M : Fin L → Matrix ι ι R) (v : ι → R) (a : ι),
       (List.ofFn M).prod.mulVec v a =
@@ -65,7 +69,9 @@ theorem ofFn_prod_mulVec_apply :
 /-- **Cyclic path expansion.**  The trace of the ordered product of a nonempty
 family of matrices is the sum, over all assignments of an index to each site of
 the cycle, of the product of the entries connecting each site to its cyclic
-successor.-/
+successor.
+@isnad1 id=eq.0h4v.s8.e24a715d1712 from=translated src=- shape=8a07ec59 vocab=598f8a06
+-/
 theorem trace_ofFn_prod_eq_sum_cyclic (L : ℕ) (M : Fin (L + 1) → Matrix ι ι R) :
     (List.ofFn M).prod.trace =
       ∑ t : Fin (L + 1) → ι, ∏ n, M n (t n) (t (finRotate (L + 1) n)) := by

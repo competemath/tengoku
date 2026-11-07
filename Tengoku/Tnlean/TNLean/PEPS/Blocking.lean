@@ -55,16 +55,25 @@ def edgeRightIncident (e : Edge G) : IncidentEdge G e.1.2 :=
   ⟨e, Or.inr rfl⟩
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.0h3v.s7.1688d319a92e from=translated src=- shape=bb33be08 vocab=5706b2f5
+-/
 @[simp] theorem edgeLeftIncident_edge (e : Edge G) :
     (edgeLeftIncident (G := G) e).1 = e :=
   rfl
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.0h3v.s7.bdc5dc0b9f57 from=translated src=- shape=d219811b vocab=58928f01
+-/
 @[simp] theorem edgeRightIncident_edge (e : Edge G) :
     (edgeRightIncident (G := G) e).1 = e :=
   rfl
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=ne.0h3v.s6.fc9dc412ba6f from=translated src=- shape=1d6bf338 vocab=d3222588
+-/
 theorem edgeLeft_ne_edgeRight (e : Edge G) : e.1.1 ≠ e.1.2 :=
   ne_of_lt e.2.1
 
@@ -81,17 +90,26 @@ def edgeMiddleVertices (e : Edge G) : Finset V :=
   (Finset.univ.erase e.1.1).erase e.1.2
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=iff.0h4v.s6.432686a70a83 from=translated src=- shape=996918dd vocab=d57fd07d
+-/
 @[simp] theorem mem_edgeLeftVertices (e : Edge G) (v : V) :
     v ∈ edgeLeftVertices e ↔ v = e.1.1 := by
   simp [edgeLeftVertices]
 
 omit [DecidableRel G.Adj] in
+/--
+@isnad1 id=iff.0h4v.s7.6384df766509 from=translated src=- shape=64c5eb5b vocab=faf4a2fb
+-/
 @[simp] theorem mem_edgeMiddleVertices_iff (e : Edge G) (v : V) :
     v ∈ edgeMiddleVertices e ↔ v ≠ e.1.1 ∧ v ≠ e.1.2 := by
   simpa [and_comm] using (show v ∈ edgeMiddleVertices e ↔ v ≠ e.1.2 ∧ v ≠ e.1.1 by
     simp [edgeMiddleVertices])
 
 omit [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.0h3v.s6.0e655d9a98f7 from=translated src=- shape=abab881b vocab=856cca84
+-/
 theorem edgeVertices_union (e : Edge G) :
     edgeLeftVertices e ∪ edgeMiddleVertices e ∪ edgeRightVertices e = Finset.univ := by
   ext v
@@ -121,6 +139,9 @@ private theorem prod_univ_erase_erase {M : Type*} [CommMonoid M]
   simp [mul_left_comm, mul_comm]
 
 omit [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.0h3v.s5.893059cbca3e from=translated src=- shape=f654925e vocab=e124fae7
+-/
 theorem edgeMiddleVertices_card (e : Edge G) :
     (edgeMiddleVertices e).card = Fintype.card V - 2 := by
   simpa [edgeMiddleVertices] using
@@ -132,7 +153,9 @@ middle region.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps`,
 `Papers/1804.04964/paper_normal.tex`, lines 981--1009: the edge-blocking
-picture has a nonempty complementary middle block.-/
+picture has a nonempty complementary middle block.
+@isnad1 id=nonempty.1h3v.s5.03d07416c94d from=translated src=- shape=e9bf6b79 vocab=9556d925
+-/
 theorem edgeMiddleVertices_nonempty_of_two_lt_card (e : Edge G)
     (hcard : 2 < Fintype.card V) :
     (edgeMiddleVertices e).Nonempty :=
@@ -143,7 +166,9 @@ theorem edgeMiddleVertices_nonempty_of_two_lt_card (e : Edge G)
 omit [DecidableRel G.Adj] in
 /-- Products over the vertex set factor through the three-region partition at
 any edge: the distinguished endpoints appear separately from the middle-region
-product.-/
+product.
+@isnad1 id=eq.0h5v.s7.cadfc08bd484 from=translated src=- shape=cedc817d vocab=d9766092
+-/
 theorem prod_univ_splitAtEdge {M : Type*} [CommMonoid M] (e : Edge G) (f : V → M) :
     ∏ v : V, f v = f e.1.1 * (∏ v ∈ edgeMiddleVertices e, f v) * f e.1.2 := by
   simpa [edgeMiddleVertices] using
@@ -152,7 +177,9 @@ theorem prod_univ_splitAtEdge {M : Type*} [CommMonoid M] (e : Edge G) (f : V →
 /-- `stateCoeff` evaluates the two endpoint tensors against an independent
 product over the middle region. This isolates the two endpoints of an edge in
 the PEPS amplitude, matching the edge-centered blocking of
-arXiv:1804.04964 Section 3.-/
+arXiv:1804.04964 Section 3.
+@isnad1 id=eq.0h6v.s9.4aa6c5e34bd1 from=translated src=- shape=bf4b800f vocab=a8a0ea43
+-/
 theorem stateCoeff_splitAtEdge (A : Tensor G d) (e : Edge G) (σ : V → Fin d) :
     stateCoeff A σ =
       ∑ η : VirtualConfig A,
@@ -217,6 +244,9 @@ noncomputable def edgeRightLocalConfig (A : Tensor G d) (e : Edge G)
     (β.edgeIndex, β.rightResidual)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h6v.s8.8616d4f24fa6 from=translated src=- shape=bef16dc3 vocab=bb2aa220
+-/
 @[simp] theorem edgeLeftLocalConfig_edgeIndex (A : Tensor G d) (e : Edge G)
     (β : EdgeBoundaryConfig (G := G) A e) :
     edgeLeftLocalConfig (G := G) A e β (edgeLeftIncident (G := G) e) =
@@ -226,6 +256,9 @@ omit [Fintype V] in
       (β.edgeIndex, β.leftResidual)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h6v.s8.80d40f087789 from=translated src=- shape=bfc2d7fb vocab=cb8a89fd
+-/
 @[simp] theorem edgeRightLocalConfig_edgeIndex (A : Tensor G d) (e : Edge G)
     (β : EdgeBoundaryConfig (G := G) A e) :
     edgeRightLocalConfig (G := G) A e β (edgeRightIncident (G := G) e) =
@@ -235,6 +268,9 @@ omit [Fintype V] in
       (β.edgeIndex, β.rightResidual)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s9.eef57b191cbb from=translated src=- shape=7df71c1f vocab=1d82b490
+-/
 @[simp] theorem edgeLeftLocalConfig_residual (A : Tensor G d) (e : Edge G)
     (β : EdgeBoundaryConfig (G := G) A e)
     (ie : OtherIncidentEdge (G := G) e.1.1 (edgeLeftIncident (G := G) e)) :
@@ -244,6 +280,9 @@ omit [Fintype V] in
       (β.edgeIndex, β.leftResidual) ie
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s9.a4d9049e00a2 from=translated src=- shape=c249af00 vocab=133b98a9
+-/
 @[simp] theorem edgeRightLocalConfig_residual (A : Tensor G d) (e : Edge G)
     (β : EdgeBoundaryConfig (G := G) A e)
     (ie : OtherIncidentEdge (G := G) e.1.2 (edgeRightIncident (G := G) e)) :
@@ -281,6 +320,9 @@ def edgeBoundaryOfVirtualConfig (A : Tensor G d) (e : Edge G)
   rightResidual ie := η ie.1.1
 
 omit [Fintype V] in
+/--
+@isnad1 id=edgeboun.0h6v.s5.6be21a0c09ba from=translated src=- shape=227e2c51 vocab=d6708e04
+-/
 @[simp] theorem edgeBoundaryOfVirtualConfig_matches (A : Tensor G d) (e : Edge G)
     (η : VirtualConfig A) :
     edgeBoundaryMatches (G := G) A e (edgeBoundaryOfVirtualConfig (G := G) A e η) η := by
@@ -315,7 +357,9 @@ noncomputable def virtualConfigEquivEdgeBoundary (A : Tensor G d) (e : Edge G) :
 
 omit [Fintype V] in
 /-- The left endpoint local configuration obtained from a matching global virtual
-configuration is the one reconstructed from its boundary data.-/
+configuration is the one reconstructed from its boundary data.
+@isnad1 id=eq.1h7v.s9.4ba7f8d3a868 from=translated src=- shape=84c91fa4 vocab=1b59ab18
+-/
 theorem edgeLeftLocalConfig_eq_of_boundaryMatches (A : Tensor G d) (e : Edge G)
     (β : EdgeBoundaryConfig (G := G) A e) (η : VirtualConfig A)
     (hη : edgeBoundaryMatches (G := G) A e β η) :
@@ -332,7 +376,9 @@ theorem edgeLeftLocalConfig_eq_of_boundaryMatches (A : Tensor G d) (e : Edge G)
 
 omit [Fintype V] in
 /-- The right endpoint local configuration obtained from a matching global
-virtual configuration is the one reconstructed from its boundary data.-/
+virtual configuration is the one reconstructed from its boundary data.
+@isnad1 id=eq.1h7v.s9.2500629cbffb from=translated src=- shape=cc56d136 vocab=8eadb026
+-/
 theorem edgeRightLocalConfig_eq_of_boundaryMatches (A : Tensor G d) (e : Edge G)
     (β : EdgeBoundaryConfig (G := G) A e) (η : VirtualConfig A)
     (hη : edgeBoundaryMatches (G := G) A e β η) :
@@ -501,6 +547,9 @@ noncomputable def edgeInsertedRightLocalConfig (A : Tensor G d) (e : Edge G)
     (β.rightEdgeIndex, β.rightResidual)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h6v.s8.335a208717a6 from=translated src=- shape=bef16dc3 vocab=34d3347c
+-/
 @[simp] theorem edgeInsertedLeftLocalConfig_edgeIndex (A : Tensor G d) (e : Edge G)
     (β : EdgeInsertedBoundaryConfig (G := G) A e) :
     edgeInsertedLeftLocalConfig (G := G) A e β (edgeLeftIncident (G := G) e) =
@@ -510,6 +559,9 @@ omit [Fintype V] in
       (β.leftEdgeIndex, β.leftResidual)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h6v.s8.3b18629d9ee2 from=translated src=- shape=bfc2d7fb vocab=c8b4bcb2
+-/
 @[simp] theorem edgeInsertedRightLocalConfig_edgeIndex (A : Tensor G d) (e : Edge G)
     (β : EdgeInsertedBoundaryConfig (G := G) A e) :
     edgeInsertedRightLocalConfig (G := G) A e β (edgeRightIncident (G := G) e) =
@@ -519,6 +571,9 @@ omit [Fintype V] in
       (β.rightEdgeIndex, β.rightResidual)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s9.1a3bc898ca06 from=translated src=- shape=7df71c1f vocab=ed205a49
+-/
 @[simp] theorem edgeInsertedLeftLocalConfig_residual (A : Tensor G d) (e : Edge G)
     (β : EdgeInsertedBoundaryConfig (G := G) A e)
     (ie : OtherIncidentEdge (G := G) e.1.1 (edgeLeftIncident (G := G) e)) :
@@ -528,6 +583,9 @@ omit [Fintype V] in
       (β.leftEdgeIndex, β.leftResidual) ie
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s9.0b5217c9a315 from=translated src=- shape=c249af00 vocab=2cc86d60
+-/
 @[simp] theorem edgeInsertedRightLocalConfig_residual (A : Tensor G d) (e : Edge G)
     (β : EdgeInsertedBoundaryConfig (G := G) A e)
     (ie : OtherIncidentEdge (G := G) e.1.2 (edgeRightIncident (G := G) e)) :
@@ -539,6 +597,9 @@ omit [Fintype V] in
 omit [Fintype V] in
 -- restored: fired by the bare `simp` in
 -- `edgeInsertedCoeff_identity_diagonal_summand` below
+/--
+@isnad1 id=eq.0h6v.s6.f840f4a6a52c from=translated src=- shape=bcc060f4 vocab=e723bd60
+-/
 @[simp] theorem edgeInsertedLeftLocalConfig_edgeBoundaryToInsertedBoundaryConfig
     (A : Tensor G d) (e : Edge G) (β : EdgeBoundaryConfig (G := G) A e) :
     edgeInsertedLeftLocalConfig (G := G) A e
@@ -549,6 +610,9 @@ omit [Fintype V] in
 omit [Fintype V] in
 -- restored: fired by the bare `simp` in
 -- `TNLean.PEPS.InsertionCoefficientRealization`
+/--
+@isnad1 id=eq.0h7v.s7.649b50895f31 from=translated src=- shape=8e371396 vocab=99e6b3bc
+-/
 @[simp] theorem edgeInsertedLeftLocalConfig_edgeBoundary_rightIndex
     (A : Tensor G d) (e : Edge G) (β : EdgeBoundaryConfig (G := G) A e)
     (y : Fin (A.bondDim e)) :
@@ -563,6 +627,9 @@ omit [Fintype V] in
 omit [Fintype V] in
 -- restored: fired by the bare `simp` in
 -- `TNLean.PEPS.InsertionCoefficientRealization`
+/--
+@isnad1 id=eq.0h7v.s7.af5c7dbf0936 from=translated src=- shape=3b56dc51 vocab=233a6741
+-/
 @[simp] theorem edgeInsertedRightLocalConfig_edgeBoundary_leftIndex
     (A : Tensor G d) (e : Edge G) (β : EdgeBoundaryConfig (G := G) A e)
     (y : Fin (A.bondDim e)) :
@@ -577,6 +644,9 @@ omit [Fintype V] in
 omit [Fintype V] in
 -- restored: fired by the bare `simp` in
 -- `edgeInsertedCoeff_identity_diagonal_summand` below
+/--
+@isnad1 id=eq.0h6v.s6.c58b0aafe11b from=translated src=- shape=8110e499 vocab=f5385573
+-/
 @[simp] theorem edgeInsertedRightLocalConfig_edgeBoundaryToInsertedBoundaryConfig
     (A : Tensor G d) (e : Edge G) (β : EdgeBoundaryConfig (G := G) A e) :
     edgeInsertedRightLocalConfig (G := G) A e
@@ -593,7 +663,9 @@ instance instFintypeEdgeComplementConfig (A : Tensor G d) (e : Edge G) :
   inferInstance
 
 omit [DecidableRel G.Adj] in
-/-- An edge incident to a middle vertex of `e` is not `e` itself.-/
+/-- An edge incident to a middle vertex of `e` is not `e` itself.
+@isnad1 id=ne.1h5v.s7.c5130dfb6f3e from=translated src=- shape=6d68fbbe vocab=82a52eb2
+-/
 theorem edge_ne_of_middle_incident (e : Edge G) {v : V}
     (hv : v ∈ edgeMiddleVertices e) (ie : IncidentEdge G v) : ie.1 ≠ e := by
   intro hie
@@ -604,7 +676,9 @@ theorem edge_ne_of_middle_incident (e : Edge G) {v : V}
 
 omit [Fintype V] [DecidableRel G.Adj] in
 /-- An incident edge other than the distinguished left incidence is not the
-distinguished edge.-/
+distinguished edge.
+@isnad1 id=ne.0h4v.s8.9b58cb0c9a11 from=translated src=- shape=434252f6 vocab=49df7a49
+-/
 theorem otherLeft_edge_ne (e : Edge G)
     (ie : OtherIncidentEdge (G := G) e.1.1 (edgeLeftIncident (G := G) e)) :
     ie.1.1 ≠ e := by
@@ -613,7 +687,9 @@ theorem otherLeft_edge_ne (e : Edge G)
 
 omit [Fintype V] [DecidableRel G.Adj] in
 /-- An incident edge other than the distinguished right incidence is not the
-distinguished edge.-/
+distinguished edge.
+@isnad1 id=ne.0h4v.s8.e74903b34f01 from=translated src=- shape=6a8c5f17 vocab=d36a41c5
+-/
 theorem otherRight_edge_ne (e : Edge G)
     (ie : OtherIncidentEdge (G := G) e.1.2 (edgeRightIncident (G := G) e)) :
     ie.1.1 ≠ e := by
@@ -679,6 +755,9 @@ noncomputable def edgeOpenMiddleConfigToMiddleConfig (A : Tensor G d) (e : Edge 
           simpa [hne] using ζ.2.2 ie⟩
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h8v.s7.4594377f734c from=translated src=- shape=ef1d4f38 vocab=d0f689c8
+-/
 @[simp] theorem edgeOpenMiddleConfigToMiddleConfig_apply_ne (A : Tensor G d) (e : Edge G)
     (β : EdgeBoundaryConfig (G := G) A e)
     (ζ : EdgeOpenMiddleConfig (G := G) A e β.leftResidual β.rightResidual)
@@ -755,7 +834,9 @@ noncomputable def edgeMiddleWeight (A : Tensor G d) (e : Edge G) (σ : V → Fin
 the fixed distinguished-edge index and reindexing the finite sum.
 
 This is the coefficient-level reindexing behind the identity specialization of
-an edge insertion.-/
+an edge insertion.
+@isnad1 id=eq.0h7v.s6.2702e8c194ce from=translated src=- shape=432ff9ff vocab=35f6a6d3
+-/
 theorem edgeMiddleWeight_eq_edgeOpenMiddleWeight (A : Tensor G d) (e : Edge G)
     (σ : V → Fin d) (β : EdgeBoundaryConfig (G := G) A e) :
     edgeMiddleWeight (G := G) A e σ β =
@@ -800,7 +881,9 @@ ordinary edge-blocked summand.
 This is the local diagonal part of the specialization of the virtual insertion
 to the identity matrix. The remaining summation step is to show that all
 off-diagonal inserted boundary data vanish and that the diagonal data reindex
-the ordinary edge-boundary sum.-/
+the ordinary edge-boundary sum.
+@isnad1 id=eq.0h7v.s9.2ee8af3507fc from=translated src=- shape=bce0c2c4 vocab=7af5b8b8
+-/
 theorem edgeInsertedCoeff_identity_diagonal_summand (A : Tensor G d) (e : Edge G)
     (σ : V → Fin d) (β : EdgeBoundaryConfig (G := G) A e) :
     A.component e.1.1 (edgeInsertedLeftLocalConfig (G := G) A e
@@ -815,7 +898,9 @@ theorem edgeInsertedCoeff_identity_diagonal_summand (A : Tensor G d) (e : Edge G
   rw [edgeMiddleWeight_eq_edgeOpenMiddleWeight]
   simp [mul_assoc]
 
-/-- Off the diagonal, the identity insertion contributes no summand.-/
+/-- Off the diagonal, the identity insertion contributes no summand.
+@isnad1 id=eq.1h7v.s8.5828665b810d from=translated src=- shape=2ad7d259 vocab=047c57bd
+-/
 theorem edgeInsertedCoeff_identity_offDiagonal_summand (A : Tensor G d) (e : Edge G)
     (σ : V → Fin d) (β : EdgeInsertedBoundaryConfig (G := G) A e)
     (hβ : β.leftEdgeIndex ≠ β.rightEdgeIndex) :
@@ -837,7 +922,9 @@ noncomputable def edgeBlockedCoeff (A : Tensor G d) (e : Edge G) (σ : V → Fin
 
 /-- The edge-blocked coefficient is exactly the original PEPS coefficient. This is
 the algebraic form of the edge-centered blocking step before applying the
-three-site MPS fundamental theorem.-/
+three-site MPS fundamental theorem.
+@isnad1 id=eq.0h6v.s5.7d95bd010853 from=translated src=- shape=5df88119 vocab=3c21f28c
+-/
 theorem edgeBlockedCoeff_eq_stateCoeff (A : Tensor G d) (e : Edge G) (σ : V → Fin d) :
     edgeBlockedCoeff (G := G) A e σ = stateCoeff A σ := by
   classical
@@ -894,7 +981,9 @@ theorem edgeBlockedCoeff_eq_stateCoeff (A : Tensor G d) (e : Edge G) (σ : V →
               simp [F, φ, virtualConfigEquivEdgeBoundary, hleft.symm, hright.symm]
 
 /-- Equality of PEPS states gives equality of the corresponding edge-blocked
-three-block coefficients at every edge.-/
+three-block coefficients at every edge.
+@isnad1 id=eq.1h7v.s6.c891095d3a02 from=translated src=- shape=7db52a31 vocab=8f885b22
+-/
 theorem SameState.edgeBlockedCoeff_eq {A B : Tensor G d} (hAB : SameState A B)
     (e : Edge G) (σ : V → Fin d) :
     edgeBlockedCoeff (G := G) A e σ = edgeBlockedCoeff (G := G) B e σ := by

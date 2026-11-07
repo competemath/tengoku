@@ -68,7 +68,9 @@ $K(S)\Rightarrow K(S\setminus\{j\})$, the kernel condition descends from the
 whole blocked region to the empty contraction.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps`,
-`Papers/1804.04964/paper_normal.tex`, lines 979--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 979--1009.
+@isnad1 id=kernelco.1h3v.s4.71731f60574f from=translated src=- shape=52189d08 vocab=ac9ab517
+-/
 lemma descend_to_empty [DecidableEq V] (c : FiniteRegionKernelDescent V) {S : Finset V} :
     c.kernelCondition S → c.kernelCondition ∅ := by
   induction S using Finset.induction with
@@ -89,7 +91,9 @@ In the PEPS blocking proof, the terminal consequence is that every boundary
 coefficient is zero after the empty contraction has been reached.
 
 Source: arXiv:1804.04964, Section 3, `eq:block_to_mps`,
-`Papers/1804.04964/paper_normal.tex`, lines 979--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 979--1009.
+@isnad1 id=var.1h5v.s5.e0c43eec10b3 from=translated src=- shape=bb62699c vocab=ac9ab517
+-/
 lemma descend [DecidableEq V] (c : FiniteRegionKernelDescent V) {S : Finset V} {Q : Prop}
     (hEmpty : c.kernelCondition ∅ → Q) :
     c.kernelCondition S → Q :=

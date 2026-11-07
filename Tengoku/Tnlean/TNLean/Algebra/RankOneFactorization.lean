@@ -34,7 +34,9 @@ multiplication of a nonzero range vector. The preimage `x` normalizes the chosen
 `φ x = 1` and `f x = y`.
 
 This is basis-free: the only choice is a linear equivalence between the scalar field and the
-one-dimensional range.-/
+one-dimensional range.
+@isnad1 id=ex.1h4v.s9.2944f4d57835 from=translated src=- shape=4296183d vocab=bd958e02
+-/
 theorem exists_smulRight_of_finrank_range_eq_one (f : M₁ →ₗ[K] M₂)
     (hrank : finrank K (LinearMap.range f) = 1) :
     ∃ (φ : M₁ →ₗ[K] K) (y : M₂) (x : M₁),
@@ -75,7 +77,9 @@ namespace Matrix
 
 variable {K m n : Type*} [Field K]
 
-/-- A matrix of rank one is an outer product of two nonzero vectors.-/
+/-- A matrix of rank one is an outer product of two nonzero vectors.
+@isnad1 id=ex.1h4v.s7.717699794e45 from=translated src=- shape=65a4e716 vocab=c4e3ef0f
+-/
 theorem exists_eq_vecMulVec_of_rank_eq_one [Finite m] [Fintype n]
     (M : Matrix m n K) (hrank : M.rank = 1) :
     ∃ (w : m → K) (v : n → K), w ≠ 0 ∧ v ≠ 0 ∧ M = Matrix.vecMulVec w v := by
@@ -110,7 +114,9 @@ theorem exists_eq_vecMulVec_of_rank_eq_one [Finite m] [Fintype n]
 
 /-- A rank-one matrix on the product index `D_B × D_A` reshapes into rectangular factors
 `W : D_B × D_A` and `V : D_A × D_B`. The index order is explicit in both the outer-product
-identity and its entrywise form.-/
+identity and its entrywise form.
+@isnad1 id=ex.1h4v.s7.d9c5ec70e921 from=translated src=- shape=f0ea5004 vocab=3eb716e9
+-/
 theorem exists_rectangular_factors_of_rank_eq_one
     {D_A D_B : Type*} [Fintype D_A] [Fintype D_B]
     (M : Matrix (D_B × D_A) (D_B × D_A) K) (hrank : M.rank = 1) :

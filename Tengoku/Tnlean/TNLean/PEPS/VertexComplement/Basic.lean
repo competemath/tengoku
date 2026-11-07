@@ -47,6 +47,9 @@ def vertexComplementVertices (v : V) : Finset V :=
   Finset.univ.erase v
 
 omit [DecidableRel G.Adj] in
+/--
+@isnad1 id=iff.0h3v.s5.b0ac0552f68a from=translated src=- shape=13e9a659 vocab=56491841
+-/
 @[simp] theorem mem_vertexComplementVertices_iff (v w : V) :
     w ∈ vertexComplementVertices (V := V) v ↔ w ≠ v := by
   simp [vertexComplementVertices]
@@ -65,6 +68,9 @@ def vertexStarLabel (A : Tensor G d) (v : V) (ζ : VirtualConfig A) :
   fun ie => ζ ie.1
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s8.505f556b85c4 from=translated src=- shape=b2698960 vocab=37aae634
+-/
 @[simp] theorem vertexStarLabel_apply (A : Tensor G d) (v : V) (ζ : VirtualConfig A)
     (ie : IncidentEdge G v) : vertexStarLabel (G := G) A v ζ ie = ζ ie.1 := rfl
 

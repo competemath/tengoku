@@ -87,6 +87,9 @@ out.-/
 def completionClass : Set (G → G → Matrix.unitaryGroup n ℂ) :=
   {R | D.IsCompletion R}
 
+/--
+@isnad1 id=iff.0h4v.s8.53a0c8aac55e from=translated src=- shape=055446f5 vocab=24ac0fa8
+-/
 @[simp]
 theorem mem_completionClass_iff {R : G → G → Matrix.unitaryGroup n ℂ} :
     R ∈ D.completionClass ↔ D.IsCompletion R :=
@@ -149,7 +152,9 @@ private theorem exists_unitary_eq_mulVec_on_submodule
   rfl
 
 /-- Every family of prescribed defect isometries admits a full unitary
-completion.-/
+completion.
+@isnad1 id=nonempty.0h3v.s7.8f695d8fb6be from=translated src=- shape=aab08636 vocab=452e596e
+-/
 theorem completionClass_nonempty : D.completionClass.Nonempty := by
   classical
   choose R hR using fun a b ↦
@@ -159,7 +164,9 @@ theorem completionClass_nonempty : D.completionClass.Nonempty := by
 
 /-- There exists a family of unitary matter operators extending all prescribed
 defect maps. This is the existence assertion in the modified-fusion
-construction of FBC25 (arXiv:2502.20257, lines 4215--4326).-/
+construction of FBC25 (arXiv:2502.20257, lines 4215--4326).
+@isnad1 id=ex.0h3v.s7.296492b7e8e2 from=translated src=- shape=e1790c2f vocab=c8d23650
+-/
 theorem exists_completion :
     ∃ R : G → G → Matrix.unitaryGroup n ℂ, D.IsCompletion R := by
   rcases D.completionClass_nonempty with ⟨R, hR⟩
@@ -170,7 +177,9 @@ variable {D}
 
 /-- A completion agrees with the prescribed defect map on its defect subspace.
 This is the first step of the transport derivation of FBC25
-(arXiv:2502.20257, lines 4325--4335).-/
+(arXiv:2502.20257, lines 4325--4335).
+@isnad1 id=eq.2h7v.s8.a7434dac1355 from=translated src=- shape=4f06d8be vocab=72962f86
+-/
 theorem IsCompletion.mulVec_eq_prescribed
     {R : G → G → Matrix.unitaryGroup n ℂ} (hR : D.IsCompletion R) {a b : G}
     {ξ : n → ℂ} (hξ : ξ ∈ D.domain a b) :
@@ -180,7 +189,9 @@ theorem IsCompletion.mulVec_eq_prescribed
 /-- Covariance of the prescribed defect maps on their defect subspaces implies
 the same covariance for every completion, as an equality of images in the whole
 matter space. This is the second step of the transport derivation of FBC25
-(arXiv:2502.20257, lines 4325--4335).-/
+(arXiv:2502.20257, lines 4325--4335).
+@isnad1 id=eq.4h10v.s9.5842b30a6854 from=translated src=- shape=9a72c328 vocab=72962f86
+-/
 theorem IsCompletion.mulVec_eq_mulVec
     {R : G → G → Matrix.unitaryGroup n ℂ} (hR : D.IsCompletion R)
     {a b c d : G} {ξ η : n → ℂ} (hξ : ξ ∈ D.domain a b)
@@ -193,7 +204,9 @@ theorem IsCompletion.mulVec_eq_mulVec
 vector to the covariant one. This is the third step of the transport derivation
 of FBC25 (arXiv:2502.20257, lines 4325--4335); the adjoint of the target
 completion is applied only after the equality of images in the whole matter
-space is available.-/
+space is available.
+@isnad1 id=eq.4h10v.s8.38f7c8bc36a2 from=translated src=- shape=41ea987d vocab=03f8197c
+-/
 theorem IsCompletion.unitaryFactorizationComparison_mulVec
     {R : G → G → Matrix.unitaryGroup n ℂ} (hR : D.IsCompletion R)
     {a b c d : G} {ξ η : n → ℂ} (hξ : ξ ∈ D.domain a b)
@@ -208,7 +221,9 @@ variable [Group G]
 
 /-- The transport identity for the two gauge labels moved by the Gauss leg
 action. This is the exact defect-covariance identity used for the modified
-Gauss law of FBC25 (arXiv:2502.20257, lines 4325--4335).-/
+Gauss law of FBC25 (arXiv:2502.20257, lines 4325--4335).
+@isnad1 id=eq.4h9v.s9.7d6a5e99eb58 from=translated src=- shape=c2500845 vocab=50d6a6b6
+-/
 theorem IsCompletion.unitaryFactorizationComparison_gaussLegAction_mulVec
     {R : G → G → Matrix.unitaryGroup n ℂ} (hR : D.IsCompletion R) (g : G)
     {a b : G} {ξ η : n → ℂ} (hξ : ξ ∈ D.domain a b)

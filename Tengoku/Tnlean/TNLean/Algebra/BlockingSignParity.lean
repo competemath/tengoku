@@ -41,7 +41,9 @@ variable {σ₁ σ₂ : ℂ}
 
 /-- The ratio of the first two blocking signs squares to one. This is the
 elementary property of `ζ = σ⁽¹⁾σ⁽²⁾` from arXiv:1703.09188, `paper_v2.tex`
-line 1687.-/
+line 1687.
+@isnad1 id=eq.2h2v.s6.db29d482aa06 from=translated src=- shape=9c00ed9a vocab=da11b282
+-/
 theorem sq_mul_eq_one_of_sign (h₁ : σ₁ = 1 ∨ σ₁ = -1) (h₂ : σ₂ = 1 ∨ σ₂ = -1) :
     (σ₁ * σ₂) ^ 2 = 1 := by
   rcases h₁ with h₁ | h₁ <;> rcases h₂ with h₂ | h₂ <;> subst h₁ <;> subst h₂ <;> norm_num
@@ -50,7 +52,9 @@ theorem sq_mul_eq_one_of_sign (h₁ : σ₁ = 1 ∨ σ₁ = -1) (h₂ : σ₂ = 
 and positive odd `k`, the blocked sign `σ₁(σ₁σ₂)^{k-1}` equals `σ₁`.
 
 This is the odd case of `σ⁽ᵏ⁾ = σ⁽¹⁾ζ^{k-1}` from arXiv:1703.09188,
-`paper_v2.tex` line 1732, with `ζ = σ⁽¹⁾σ⁽²⁾` from line 1687.-/
+`paper_v2.tex` line 1732, with `ζ = σ⁽¹⁾σ⁽²⁾` from line 1687.
+@isnad1 id=eq.4h3v.s6.20fc71db7388 from=translated src=- shape=c95e1742 vocab=ff3940a0
+-/
 theorem blockedSign_eq_first_of_odd (h₁ : σ₁ = 1 ∨ σ₁ = -1) (h₂ : σ₂ = 1 ∨ σ₂ = -1)
     {k : ℕ} (hk : 0 < k) (hko : Odd k) : σ₁ * (σ₁ * σ₂) ^ (k - 1) = σ₁ := by
   obtain ⟨m, hm⟩ := hko
@@ -61,7 +65,9 @@ theorem blockedSign_eq_first_of_odd (h₁ : σ₁ = 1 ∨ σ₁ = -1) (h₂ : σ
 and even positive `k`, the blocked sign `σ₁(σ₁σ₂)^{k-1}` equals `σ₂`.
 
 This is the even case of `σ⁽ᵏ⁾ = σ⁽¹⁾ζ^{k-1}` from arXiv:1703.09188,
-`paper_v2.tex` line 1732, with `ζ = σ⁽¹⁾σ⁽²⁾` from line 1687.-/
+`paper_v2.tex` line 1732, with `ζ = σ⁽¹⁾σ⁽²⁾` from line 1687.
+@isnad1 id=eq.4h3v.s6.8c29994699d8 from=translated src=- shape=00a49288 vocab=6d9cdd71
+-/
 theorem blockedSign_eq_second_of_even (h₁ : σ₁ = 1 ∨ σ₁ = -1) (h₂ : σ₂ = 1 ∨ σ₂ = -1)
     {k : ℕ} (hk : 0 < k) (hke : Even k) : σ₁ * (σ₁ * σ₂) ^ (k - 1) = σ₂ := by
   obtain ⟨m, hm⟩ := hke

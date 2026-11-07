@@ -25,7 +25,9 @@ variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
 
 /-- If a positive operator has norm gap \(\gamma\) on the orthogonal complement
 of its kernel, then it satisfies \(H^2 \geq \gamma H\) as a quadratic form on
-the whole space.-/
+the whole space.
+@isnad1 id=le.3h4v.s10.bb6036f96354 from=translated src=- shape=6b39b259 vocab=68e68643
+-/
 theorem quadraticForm_sq_ge_of_norm_gap {H : E →ₗ[ℂ] E} (hH : H.IsPositive)
     {γ : ℝ} (hγ : 0 ≤ γ)
     (hGap : ∀ u ∈ (LinearMap.ker H)ᗮ, γ * ‖u‖ ≤ ‖H u‖) :

@@ -35,7 +35,9 @@ variable (d : ℕ)
 noncomputable def swapPhase (x : ℝ) : ℂ :=
   Complex.exp ((Real.pi * x : ℝ) * Complex.I)
 
-/-- The swap phase times its complex conjugate is one.-/
+/-- The swap phase times its complex conjugate is one.
+@isnad1 id=eq.0h1v.s5.eec869728269 from=translated src=- shape=ef137c3b vocab=4a38d46e
+-/
 theorem swapPhase_mul_star (x : ℝ) :
     swapPhase x * star (swapPhase x) = 1 := by
   change Complex.exp ((Real.pi * x : ℝ) * Complex.I) *

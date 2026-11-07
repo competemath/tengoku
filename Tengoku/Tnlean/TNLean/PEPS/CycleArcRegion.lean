@@ -49,7 +49,9 @@ if-then-else form of the value of a difference in `Fin n`.  This is the
 `ℕ`-valued counterpart of `Fin.intCast_val_sub_eq_sub_add_ite`. -/
 
 /-- The value of a difference in `Fin n`: the plain difference when the
-subtrahend value is not larger, and the wrapped difference otherwise.-/
+subtrahend value is not larger, and the wrapped difference otherwise.
+@isnad1 id=eq.0h3v.s6.e08896dd69e6 from=translated src=- shape=df9d02bc vocab=ccfbe637
+-/
 theorem val_sub_eq_ite (u v : Fin n) :
     (u - v).val = if v.val ≤ u.val then u.val - v.val else u.val + n - v.val := by
   have h := Fin.intCast_val_sub_eq_sub_add_ite u v
@@ -68,6 +70,9 @@ labelled `normal`, lines 1585--1622 of `Papers/1804.04964/paper_normal.tex`.-/
 def cycleArcFrom (s : Fin n) (len : ℕ) : Finset (Fin n) :=
   Finset.univ.filter fun w => (w - s).val < len
 
+/--
+@isnad1 id=iff.0h4v.s5.3492f5e91177 from=translated src=- shape=0489c61c vocab=0cf736a1
+-/
 @[simp] theorem mem_cycleArcFrom {s w : Fin n} {len : ℕ} :
     w ∈ cycleArcFrom s len ↔ (w - s).val < len := by
   simp [cycleArcFrom]
@@ -80,22 +85,31 @@ labelled `normal`, lines 1585--1622 of `Papers/1804.04964/paper_normal.tex`.-/
 def cycleArcTo (t : Fin n) (len : ℕ) : Finset (Fin n) :=
   Finset.univ.filter fun w => (t - w).val < len
 
+/--
+@isnad1 id=iff.0h4v.s5.cd3bb2b3bc5f from=translated src=- shape=7267c55f vocab=f03ebf84
+-/
 @[simp] theorem mem_cycleArcTo {t w : Fin n} {len : ℕ} :
     w ∈ cycleArcTo t len ↔ (t - w).val < len := by
   simp [cycleArcTo]
 
-/-- A nonempty arc contains its first vertex.-/
+/-- A nonempty arc contains its first vertex.
+@isnad1 id=mem.1h3v.s5.937559ac3097 from=translated src=- shape=fc069b8e vocab=3107a325
+-/
 theorem start_mem_cycleArcFrom {s : Fin n} {len : ℕ} (hlen : 0 < len) :
     s ∈ cycleArcFrom s len := by
   simp [val_sub_eq_ite, hlen]
 
-/-- A nonempty arc contains its last vertex.-/
+/-- A nonempty arc contains its last vertex.
+@isnad1 id=mem.1h3v.s5.a12ae4cecd9f from=translated src=- shape=fc069b8e vocab=e88afb17
+-/
 theorem last_mem_cycleArcTo {t : Fin n} {len : ℕ} (hlen : 0 < len) :
     t ∈ cycleArcTo t len := by
   simp [val_sub_eq_ite, hlen]
 
 /-- An arc described from its last vertex is the arc starting `len - 1`
-vertices earlier.-/
+vertices earlier.
+@isnad1 id=eq.2h3v.s5.4f25899521dc from=translated src=- shape=e387973a vocab=818a6bae
+-/
 theorem cycleArcTo_eq_cycleArcFrom {t : Fin n} {len : ℕ} (hlen : 0 < len) (hn : len ≤ n) :
     cycleArcTo t len = cycleArcFrom (t - ⟨len - 1, by omega⟩) len := by
   ext w
@@ -105,7 +119,9 @@ theorem cycleArcTo_eq_cycleArcFrom {t : Fin n} {len : ℕ} (hlen : 0 < len) (hn 
   split_ifs <;> omega
 
 /-- The complement of an arc shorter than the whole cycle is the arc of the
-remaining vertices, starting where the first arc ends.-/
+remaining vertices, starting where the first arc ends.
+@isnad1 id=eq.1h3v.s5.297e3addf4b6 from=translated src=- shape=057929c6 vocab=49753d0a
+-/
 theorem compl_cycleArcFrom {s : Fin n} {len : ℕ} (hlen : len < n) :
     Finset.univ \ cycleArcFrom s len = cycleArcFrom (s + ⟨len, hlen⟩) (n - len) := by
   ext w
@@ -121,7 +137,9 @@ length-`L` blocks, the shape to which the source's union lemma applies.
 
 Source: arXiv:1804.04964, Section 3, Lemma labelled `injective_union` and the
 examples following it, lines 1322--1430 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.3h4v.s6.9df6c23953ef from=translated src=- shape=aa2825f4 vocab=9fe48438
+-/
 theorem cycleArcFrom_eq_biUnion {s : Fin n} {L len : ℕ} (hL : 0 < L) (hlen : L ≤ len)
     (hn : len ≤ n) :
     cycleArcFrom s len =
@@ -157,7 +175,9 @@ arc is injective and injectivity is closed under unions.
 
 Source: arXiv:1804.04964, Section 3, Lemma labelled `injective_union`, lines
 1322--1404 of `Papers/1804.04964/paper_normal.tex`, applied to blocks of
-consecutive sites.-/
+consecutive sites.
+@isnad1 id=isinject.5h5v.s5.9112efa76315 from=translated src=- shape=426b3bf1 vocab=84a72a58
+-/
 theorem isInjective_cycleArcFrom_of_le {κ : RegionInjectivityData (Fin n)}
     (hUnion : RegionInjectivityUnionClosure κ) {L : ℕ}
     (harc : ∀ s : Fin n, κ.IsInjective (cycleArcFrom s L)) (hL : 0 < L)
@@ -172,7 +192,9 @@ theorem isInjective_cycleArcFrom_of_le {κ : RegionInjectivityData (Fin n)}
 every length-`L` arc is injective.
 
 Source: arXiv:1804.04964, Section 3, first corollary after the theorem
-labelled `normal`, lines 1585--1622 of `Papers/1804.04964/paper_normal.tex`.-/
+labelled `normal`, lines 1585--1622 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.3h4v.s5.2cac80a639ef from=translated src=- shape=0923d451 vocab=fbff3370
+-/
 theorem isInjective_cycleArcTo {κ : RegionInjectivityData (Fin n)} {L : ℕ}
     (harc : ∀ s : Fin n, κ.IsInjective (cycleArcFrom s L)) (hL : 0 < L)
     (hn : L ≤ n) (t : Fin n) :
@@ -190,11 +212,16 @@ The cycle-graph adjacency of Mathlib is phrased through differences of
 values; the blocking construction reads it as "one endpoint is the cyclic
 successor of the other". -/
 
+/--
+@isnad1 id=eq.1h1v.s5.c4ec29c9dded from=translated src=- shape=fde03f47 vocab=b23b19a1
+-/
 theorem val_one_of_two_le (hn : 2 ≤ n) : ((1 : Fin n) : ℕ) = 1 := by
   rw [Fin.val_one']; exact Nat.mod_eq_of_lt (by omega)
 
 /-- Two vertices of the cycle graph are adjacent exactly when one is the
-cyclic successor of the other.-/
+cyclic successor of the other.
+@isnad1 id=iff.1h3v.s6.4bba36734c45 from=translated src=- shape=740532bc vocab=30182a3e
+-/
 theorem cycleGraph_adj_iff_add_one (hn : 3 ≤ n) {u w : Fin n} :
     (SimpleGraph.cycleGraph n).Adj u w ↔ u + 1 = w ∨ w + 1 = u := by
   have h1 := val_one_of_two_le (n := n) (by omega)
@@ -211,7 +238,9 @@ blocks the chain into the `L` sites ending at `a`, the `L` sites starting at
 `a + 1`, and the remaining `n - 2L` sites. -/
 
 /-- The `L` sites ending at `a` and the `L` sites starting at `a + 1` are
-disjoint on a cycle of at least `2L` sites.-/
+disjoint on a cycle of at least `2L` sites.
+@isnad1 id=disjoint.2h3v.s6.4ce81aadda97 from=translated src=- shape=e9224cf9 vocab=bab08c70
+-/
 theorem disjoint_cycleArcTo_cycleArcFrom_add_one {a : Fin n} {L : ℕ} (hL : 0 < L)
     (hn : 2 * L ≤ n) :
     Disjoint (cycleArcTo a L) (cycleArcFrom (a + 1) L) := by
@@ -225,7 +254,9 @@ theorem disjoint_cycleArcTo_cycleArcFrom_add_one {a : Fin n} {L : ℕ} (hL : 0 <
   split_ifs at hw hw' <;> omega
 
 /-- The vertices outside the two adjacent length-`L` arcs around the edge from
-`a` to `a + 1` form the arc of the remaining `n - 2L` consecutive sites.-/
+`a` to `a + 1` form the arc of the remaining `n - 2L` consecutive sites.
+@isnad1 id=eq.2h3v.s7.a006455fdbd6 from=translated src=- shape=fc6b1827 vocab=cb3fcbfa
+-/
 theorem compl_cycleArcTo_union_cycleArcFrom_add_one {a : Fin n} {L : ℕ} (hL : 0 < L)
     (hn : 3 * L ≤ n) :
     Finset.univ \ (cycleArcTo a L ∪ cycleArcFrom (a + 1) L) =
@@ -269,7 +300,9 @@ cycle these are the `L + 1` sites starting at `v` and the `L` sites starting
 at `v + 1`. -/
 
 /-- A vertex does not lie on the `L` sites starting at its cyclic successor
-when `L < n`.-/
+when `L < n`.
+@isnad1 id=not.2h3v.s6.d0f9a303aa80 from=translated src=- shape=035892e4 vocab=9098e377
+-/
 theorem self_notMem_cycleArcFrom_add_one {v : Fin n} {L : ℕ} (hL : 0 < L) (hn : L < n) :
     v ∉ cycleArcFrom (v + 1) L := by
   have h1 := val_one_of_two_le (n := n) (by omega)
@@ -278,7 +311,9 @@ theorem self_notMem_cycleArcFrom_add_one {v : Fin n} {L : ℕ} (hL : 0 < L) (hn 
   split_ifs <;> omega
 
 /-- Away from `v`, the `L + 1` sites starting at `v` are the `L` sites
-starting at `v + 1`.-/
+starting at `v + 1`.
+@isnad1 id=iff.2h4v.s6.ccd2b0f5ef61 from=translated src=- shape=3b57d3b1 vocab=1b010d64
+-/
 theorem mem_cycleArcFrom_succ_iff_of_ne {v w : Fin n} {L : ℕ} (hn : 2 ≤ n) (hvw : w ≠ v) :
     (w ∈ cycleArcFrom v (L + 1)) ↔ w ∈ cycleArcFrom (v + 1) L := by
   have h1 := val_one_of_two_le (n := n) hn

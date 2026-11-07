@@ -46,7 +46,9 @@ def inducedLSymbol (K : StabilizerRepresentatives G X x₀)
 
 /-- A stabilizer cocycle induces an L-symbol compatible with the trivial scalar
 three-cochain. This is the `ω = 1` scalar specialization of arXiv:2203.12563,
-Equation (20).-/
+Equation (20).
+@isnad1 id=iscompat.1h5v.s6.60e5c11b62f4 from=translated src=- shape=5f19c82a vocab=e2bdf50e
+-/
 theorem inducedLSymbol_isCompatible (K : StabilizerRepresentatives G X x₀)
     {ψ : ScalarCocycle (MulAction.stabilizer G x₀)} (hψ : ψ.IsCocycle) :
     LSymbol.IsCompatible (K.inducedLSymbol ψ) (fun _ _ _ ↦ 1) := by
@@ -58,7 +60,9 @@ theorem inducedLSymbol_isCompatible (K : StabilizerRepresentatives G X x₀)
       (K.transitionElement h (k • x)) (K.transitionElement k x)).symm
 
 /-- Restricting the induced L-symbol to the basepoint and stabilizer arguments
-recovers the original cocycle representative.-/
+recovers the original cocycle representative.
+@isnad1 id=eq.0h7v.s7.092c23fc812d from=translated src=- shape=8e9c5a70 vocab=16745586
+-/
 theorem inducedLSymbol_base (K : StabilizerRepresentatives G X x₀)
     (ψ : ScalarCocycle (MulAction.stabilizer G x₀))
     (h₁ h₂ : MulAction.stabilizer G x₀) :
@@ -74,7 +78,9 @@ def inducedActionGauge (K : StabilizerRepresentatives G X x₀)
   fun g x ↦ (φ (K.transitionElement g x))⁻¹
 
 /-- The coboundary relation between stabilizer cocycles becomes exactly the
-existing action-tensor gauge relation between their induced L-symbols.-/
+existing action-tensor gauge relation between their induced L-symbols.
+@isnad1 id=eq.1h7v.s8.3de46211af13 from=translated src=- shape=cc916615 vocab=df75775d
+-/
 theorem inducedLSymbol_eq_gauge (K : StabilizerRepresentatives G X x₀)
     {ψ₁ ψ₂ : ScalarCocycle (MulAction.stabilizer G x₀)}
     (φ : MulAction.stabilizer G x₀ → Units ℂ)
@@ -89,7 +95,9 @@ theorem inducedLSymbol_eq_gauge (K : StabilizerRepresentatives G X x₀)
   ac_rfl
 
 /-- Two stabilizer cocycles are cohomologous exactly when their induced
-L-symbols differ by an action-tensor gauge with no change of fusion gauge.-/
+L-symbols differ by an action-tensor gauge with no change of fusion gauge.
+@isnad1 id=iff.0h6v.s7.d4174a2099ac from=translated src=- shape=7f5179ba vocab=68fe087d
+-/
 theorem cohomologousTo_iff_exists_actionGauge_inducedLSymbol_eq
     (K : StabilizerRepresentatives G X x₀)
     (ψ₁ ψ₂ : ScalarCocycle (MulAction.stabilizer G x₀)) :

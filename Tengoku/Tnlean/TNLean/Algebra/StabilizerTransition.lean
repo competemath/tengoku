@@ -77,14 +77,18 @@ def transitionElement (K : StabilizerRepresentatives G X x₀) (g : G) (x : X) :
       _ = x₀ := by rw [← mul_smul, Group.inv_mul_cancel, one_smul]⟩
 
 /-- The underlying group element of `t_k(g,x)` is
-`k_(g • x)⁻¹ g k_x`.-/
+`k_(g • x)⁻¹ g k_x`.
+@isnad1 id=eq.0h6v.s7.b5654c93569d from=translated src=- shape=dfcc388a vocab=4cbad44c
+-/
 @[simp]
 theorem coe_transitionElement (K : StabilizerRepresentatives G X x₀)
     (g : G) (x : X) :
     (transitionElement K g x : G) = (K.k (g • x))⁻¹ * g * K.k x := rfl
 
 /-- On a stabilizer element, the transition at the basepoint is that element
-itself.-/
+itself.
+@isnad1 id=eq.0h5v.s6.1df8cab6af81 from=translated src=- shape=1cb6cf87 vocab=0fd08551
+-/
 @[simp]
 theorem transitionElement_stabilizer (K : StabilizerRepresentatives G X x₀)
     (h : MulAction.stabilizer G x₀) :
@@ -94,7 +98,9 @@ theorem transitionElement_stabilizer (K : StabilizerRepresentatives G X x₀)
   simp
 
 /-- The transition elements obey the subgroup identity
-`t_k(g₁g₂,x) = t_k(g₁,g₂ • x)t_k(g₂,x)`.-/
+`t_k(g₁g₂,x) = t_k(g₁,g₂ • x)t_k(g₂,x)`.
+@isnad1 id=eq.0h7v.s7.302e645d1f64 from=translated src=- shape=00355342 vocab=71049b88
+-/
 theorem transitionElement_mul (K : StabilizerRepresentatives G X x₀)
     (g₁ g₂ : G) (x : X) :
     transitionElement K (g₁ * g₂) x =

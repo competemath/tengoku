@@ -128,7 +128,9 @@ def disjointUnionEquiv {d : ℕ} {Λ Γ : Finset ℤ} (hΛΓ : Disjoint Λ Γ) :
 
 /-- The first component of the disjoint-union equivalence is restriction to the left region.
 
-Source context: GNVW, arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266.-/
+Source context: GNVW, arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266.
+@isnad1 id=eq.1h4v.s7.907c1b8b8e4d from=translated src=- shape=8c341f14 vocab=560d2c1c
+-/
 @[simp]
 lemma disjointUnionEquiv_apply_fst {d : ℕ} {Λ Γ : Finset ℤ} (hΛΓ : Disjoint Λ Γ)
     (x : Config d (Λ ∪ Γ)) :
@@ -137,7 +139,9 @@ lemma disjointUnionEquiv_apply_fst {d : ℕ} {Λ Γ : Finset ℤ} (hΛΓ : Disjo
 
 /-- The second component of the disjoint-union equivalence is restriction to the right region.
 
-Source context: GNVW, arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266.-/
+Source context: GNVW, arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266.
+@isnad1 id=eq.1h4v.s7.b79d5d726995 from=translated src=- shape=74655ffd vocab=47a360a3
+-/
 @[simp]
 lemma disjointUnionEquiv_apply_snd {d : ℕ} {Λ Γ : Finset ℤ} (hΛΓ : Disjoint Λ Γ)
     (x : Config d (Λ ∪ Γ)) :
@@ -146,7 +150,9 @@ lemma disjointUnionEquiv_apply_snd {d : ℕ} {Λ Γ : Finset ℤ} (hΛΓ : Disjo
 
 /-- Restricting a reconstructed pair to the left region recovers its first component.
 
-Source context: GNVW, arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266.-/
+Source context: GNVW, arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266.
+@isnad1 id=eq.1h4v.s7.6691d6024362 from=translated src=- shape=24cd4fdb vocab=f6839b98
+-/
 @[simp]
 lemma restrict_disjointUnionEquiv_symm_left {d : ℕ} {Λ Γ : Finset ℤ}
     (hΛΓ : Disjoint Λ Γ) (x : Config d Λ × Config d Γ) :
@@ -156,7 +162,9 @@ lemma restrict_disjointUnionEquiv_symm_left {d : ℕ} {Λ Γ : Finset ℤ}
 
 /-- Restricting a reconstructed pair to the right region recovers its second component.
 
-Source context: GNVW, arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266.-/
+Source context: GNVW, arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266.
+@isnad1 id=eq.1h4v.s7.3bd4641f9019 from=translated src=- shape=dc439fc7 vocab=9f002f73
+-/
 @[simp]
 lemma restrict_disjointUnionEquiv_symm_right {d : ℕ} {Λ Γ : Finset ℤ}
     (hΛΓ : Disjoint Λ Γ) (x : Config d Λ × Config d Γ) :
@@ -168,7 +176,9 @@ lemma restrict_disjointUnionEquiv_symm_right {d : ℕ} {Λ Γ : Finset ℤ}
 the right region.
 
 Source context: this coordinate identity underlies the left tensor factor in GNVW,
-arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266; it is not stated separately there.-/
+arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266; it is not stated separately there.
+@isnad1 id=iff.1h5v.s8.ab12c99742e4 from=translated src=- shape=fc4ec711 vocab=0a01112f
+-/
 lemma splitEquiv_snd_eq_iff_restrict_right {d : ℕ} {Λ Γ : Finset ℤ}
     (hΛΓ : Disjoint Λ Γ) (x y : Config d (Λ ∪ Γ)) :
     (splitEquiv Finset.subset_union_left x).2 =
@@ -187,7 +197,9 @@ lemma splitEquiv_snd_eq_iff_restrict_right {d : ℕ} {Λ Γ : Finset ℤ}
 to the left region.
 
 Source context: this coordinate identity underlies the right tensor factor in GNVW,
-arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266; it is not stated separately there.-/
+arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266; it is not stated separately there.
+@isnad1 id=iff.1h5v.s8.5f85e10eb2ce from=translated src=- shape=053d8e6f vocab=0a01112f
+-/
 lemma splitEquiv_snd_eq_iff_restrict_left {d : ℕ} {Λ Γ : Finset ℤ}
     (hΛΓ : Disjoint Λ Γ) (x y : Config d (Λ ∪ Γ)) :
     (splitEquiv Finset.subset_union_right x).2 =
@@ -219,7 +231,9 @@ noncomputable def bipartiteLocalAlgebraEquiv (hΛΓ : Disjoint Λ Γ) :
 /-- Evaluation of the bipartite equivalence is simultaneous reindexing by the reconstructed left
 and right configurations.
 
-Source context: GNVW, arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266.-/
+Source context: GNVW, arXiv:0910.3675v2, equation `RR2x`, lines 1249--1266.
+@isnad1 id=eq.1h6v.s9.31cdcdc7d1c3 from=translated src=- shape=de3ea42a vocab=a3c6e992
+-/
 @[simp]
 lemma bipartiteLocalAlgebraEquiv_apply (hΛΓ : Disjoint Λ Γ)
     (A : LocalAlgebra d (Λ ∪ Γ)) (x y : Config d Λ × Config d Γ) :

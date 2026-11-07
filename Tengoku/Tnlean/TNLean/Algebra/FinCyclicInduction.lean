@@ -20,7 +20,9 @@ namespace Fin
 /-- A predicate that holds at `0` and is closed under `· + 1` holds at every
 index, because `+1` generates the cyclic group from `0`. Proved by induction on
 `i.val`: the predecessor of a nonzero `i` is `⟨i.val - 1, _⟩`, whose successor
-is `i`.-/
+is `i`.
+@isnad1 id=var.0h5v.s5.5885a5b1e868 from=translated src=- shape=e3dd0849 vocab=1d5f0783
+-/
 theorem cyclic_induction {m : ℕ} [NeZero m] {P : Fin m → Prop}
     (h0 : P 0) (hstep : ∀ i : Fin m, P i → P (i + 1)) (i : Fin m) : P i := by
   induction hi : i.val generalizing i with
@@ -39,7 +41,9 @@ theorem cyclic_induction {m : ℕ} [NeZero m] {P : Fin m → Prop}
     exact hstep _ (ih ⟨k, hk⟩ rfl)
 
 /-- One-step rotation on `Fin (N + 1)` sends the nonterminal embedding of
-`i : Fin N` to its ordinary successor.-/
+`i : Fin N` to its ordinary successor.
+@isnad1 id=eq.0h2v.s7.3ca611c799e9 from=translated src=- shape=74ab30d1 vocab=0669344e
+-/
 lemma finRotate_succ_castSucc {N : ℕ} (i : Fin N) :
     finRotate (N + 1) i.castSucc = i.succ := by
   have h := finRotate_of_lt (n := N) i.isLt

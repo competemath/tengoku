@@ -42,14 +42,18 @@ def unitaryFactorizationComparison
   (R c d)⁻¹ * R a b
 
 /-- The matrix underlying a unitary factorization comparison is the adjoint of
-the reference operator multiplied by the source operator.-/
+the reference operator multiplied by the source operator.
+@isnad1 id=eq.0h8v.s9.ea12ac0f8e83 from=translated src=- shape=d7509032 vocab=fdb0703e
+-/
 theorem unitaryFactorizationComparison_coe
     (R : ι → ι → Matrix.unitaryGroup n 𝕜) (a b c d : ι) :
     (unitaryFactorizationComparison R a b c d : Matrix n n 𝕜) =
       star (R c d : Matrix n n 𝕜) * (R a b : Matrix n n 𝕜) :=
   rfl
 
-/-- Comparing a unitary factorization with itself gives the identity.-/
+/-- Comparing a unitary factorization with itself gives the identity.
+@isnad1 id=eq.0h6v.s8.6f4deadfa3b4 from=translated src=- shape=689cdc39 vocab=dc0cc803
+-/
 @[simp]
 theorem unitaryFactorizationComparison_self
     (R : ι → ι → Matrix.unitaryGroup n 𝕜) (a b : ι) :
@@ -57,7 +61,9 @@ theorem unitaryFactorizationComparison_self
   simp only [unitaryFactorizationComparison, inv_mul_cancel]
 
 /-- The inverse of a unitary factorization comparison is the comparison in the
-opposite direction.-/
+opposite direction.
+@isnad1 id=eq.0h8v.s9.386875af2af4 from=translated src=- shape=d3dae072 vocab=bfff427c
+-/
 @[simp]
 theorem unitaryFactorizationComparison_inv
     (R : ι → ι → Matrix.unitaryGroup n 𝕜) (a b c d : ι) :
@@ -68,7 +74,9 @@ theorem unitaryFactorizationComparison_inv
 /-- Unitary factorization comparisons compose through an intermediate pair in
 the source orientation.  This is the composition law in the corollary
 following FBC25, Proposition `prop:3`
-(arXiv:2502.20257, lines 2782--2821).-/
+(arXiv:2502.20257, lines 2782--2821).
+@isnad1 id=eq.0h10v.s9.f871cb4dde0a from=translated src=- shape=82921b7b vocab=1a667667
+-/
 theorem unitaryFactorizationComparison_trans
     (R : ι → ι → Matrix.unitaryGroup n 𝕜) (a b c d f g : ι) :
     unitaryFactorizationComparison R a b f g =
@@ -77,7 +85,9 @@ theorem unitaryFactorizationComparison_trans
   simp only [unitaryFactorizationComparison, mul_assoc, mul_inv_cancel_left]
 
 /-- If the reference operator is the identity, comparison against it recovers
-the source operator.-/
+the source operator.
+@isnad1 id=eq.1h8v.s9.e6ec74669429 from=translated src=- shape=2f940404 vocab=dc0cc803
+-/
 theorem unitaryFactorizationComparison_of_reference_eq_one
     (R : ι → ι → Matrix.unitaryGroup n 𝕜) (a b c d : ι)
     (href : R c d = 1) :
@@ -88,7 +98,9 @@ theorem unitaryFactorizationComparison_of_reference_eq_one
 indexed by `(g, h)` equals its comparison with `(1, g * h)`.
 
 This is $\lambda^R_{g,h} = \lambda_{g,h}^{e,gh}$ in the corollary following
-FBC25, Proposition `prop:3` (arXiv:2502.20257, lines 2782--2821).-/
+FBC25, Proposition `prop:3` (arXiv:2502.20257, lines 2782--2821).
+@isnad1 id=eq.1h6v.s9.a1ad529061f3 from=translated src=- shape=9bf9ddbd vocab=2b8073a3
+-/
 theorem unitaryFactorizationComparison_right_reference
     {G : Type*} [Group G] (R : G → G → Matrix.unitaryGroup n 𝕜)
     (hR : ∀ x, R 1 x = 1) (g h : G) :

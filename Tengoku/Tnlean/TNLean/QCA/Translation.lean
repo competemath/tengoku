@@ -51,7 +51,9 @@ abbrev translateRegion (a : ℤ) (Λ : Finset ℤ) : Finset ℤ :=
 
 /-- Membership in \(\Lambda+a\) is membership in \(\Lambda\) after subtracting \(a\).
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=iff.0h3v.s5.afe944233a29 from=translated src=- shape=ce3f0ec7 vocab=9e1d3b35
+-/
 @[simp]
 lemma mem_translateRegion (a : ℤ) (Λ : Finset ℤ) (i : ℤ) :
     i ∈ translateRegion a Λ ↔ i - a ∈ Λ := by
@@ -64,7 +66,9 @@ lemma mem_translateRegion (a : ℤ) (Λ : Finset ℤ) (i : ℤ) :
 
 /-- A site \(i+a\) lies in \(\Lambda+a\) exactly when \(i\) lies in \(\Lambda\).
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=iff.0h3v.s5.effef2c6c9ec from=translated src=- shape=1656c4f1 vocab=72827849
+-/
 @[simp]
 lemma mem_translateRegion_add (a : ℤ) (Λ : Finset ℤ) (i : ℤ) :
     i + a ∈ translateRegion a Λ ↔ i ∈ Λ := by
@@ -72,7 +76,9 @@ lemma mem_translateRegion_add (a : ℤ) (Λ : Finset ℤ) (i : ℤ) :
 
 /-- Translation by zero fixes every finite lattice region.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h1v.s3.689131a3d96a from=translated src=- shape=14b1f50a vocab=70efdf9f
+-/
 @[simp]
 lemma translateRegion_zero (Λ : Finset ℤ) : translateRegion 0 Λ = Λ := by
   change Λ.map (Equiv.addRight 0).toEmbedding = Λ
@@ -83,7 +89,9 @@ lemma translateRegion_zero (Λ : Finset ℤ) : translateRegion 0 Λ = Λ := by
 
 /-- Successive finite-region translations add their lattice displacements.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h3v.s4.75d34fa060e8 from=translated src=- shape=59b6b5c3 vocab=7d3ee66e
+-/
 lemma translateRegion_add (a b : ℤ) (Λ : Finset ℤ) :
     translateRegion b (translateRegion a Λ) = translateRegion (a + b) Λ := by
   ext i
@@ -92,7 +100,9 @@ lemma translateRegion_add (a b : ℤ) (Λ : Finset ℤ) :
 
 /-- Translation preserves inclusion of finite lattice regions.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=le.1h3v.s5.e301010b7863 from=translated src=- shape=0b1fbad5 vocab=95542bfa
+-/
 lemma translateRegion_mono (a : ℤ) {Λ Γ : Finset ℤ} (h : Λ ⊆ Γ) :
     translateRegion a Λ ⊆ translateRegion a Γ := by
   intro i hi
@@ -100,7 +110,9 @@ lemma translateRegion_mono (a : ℤ) {Λ Γ : Finset ℤ} (h : Λ ⊆ Γ) :
 
 /-- The site equivalence sends \(i\) to \(i+a\).
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h3v.s8.95cb7814c7c8 from=translated src=- shape=baa99c41 vocab=66888846
+-/
 @[simp]
 lemma siteTranslation_apply_val (a : ℤ) (Λ : Finset ℤ) (i : Λ) :
     (Finset.equivMap (Equiv.addRight a).toEmbedding Λ i : ℤ) = i + a := by
@@ -108,7 +120,9 @@ lemma siteTranslation_apply_val (a : ℤ) (Λ : Finset ℤ) (i : Λ) :
 
 /-- The inverse site equivalence sends \(i\) to \(i-a\).
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h3v.s8.41ac00108742 from=translated src=- shape=1a4ebc76 vocab=e7df1665
+-/
 @[simp]
 lemma siteTranslation_symm_apply_val (a : ℤ) (Λ : Finset ℤ)
     (i : translateRegion a Λ) :
@@ -121,7 +135,9 @@ lemma siteTranslation_symm_apply_val (a : ℤ) (Λ : Finset ℤ)
 /-- Translation by zero fixes the underlying value of every site.
 
 This value-level formulation avoids transporting between propositionally equal subtype indices.
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h2v.s8.60e8ea1488d6 from=translated src=- shape=9405e530 vocab=1eb4fc5f
+-/
 @[simp]
 lemma siteTranslation_zero (Λ : Finset ℤ) (i : Λ) :
     (Finset.equivMap (Equiv.addRight 0).toEmbedding Λ i : ℤ) = i := by
@@ -130,7 +146,9 @@ lemma siteTranslation_zero (Λ : Finset ℤ) (i : Λ) :
 /-- Successive site translations agree with translation by the sum after coercion to \(\mathbb Z\).
 
 This value-level formulation avoids transporting between propositionally equal subtype indices.
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h4v.s9.6f9706e63814 from=translated src=- shape=d2bebbba vocab=2bebe205
+-/
 lemma siteTranslation_add (a b : ℤ) (Λ : Finset ℤ) (i : Λ) :
     (Finset.equivMap (Equiv.addRight b).toEmbedding (translateRegion a Λ)
         (Finset.equivMap (Equiv.addRight a).toEmbedding Λ i) : ℤ) =
@@ -149,7 +167,9 @@ noncomputable def translation (d : ℕ) (a : ℤ) (Λ : Finset ℤ) :
 
 /-- Evaluation of a translated configuration at a site of \(\Lambda+a\).
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h5v.s8.841640613360 from=translated src=- shape=d679d0bb vocab=1780cdb0
+-/
 @[simp]
 lemma translation_apply (d : ℕ) (a : ℤ) (Λ : Finset ℤ)
     (x : Config d Λ) (i : translateRegion a Λ) :
@@ -158,7 +178,9 @@ lemma translation_apply (d : ℕ) (a : ℤ) (Λ : Finset ℤ)
 
 /-- Evaluation of the inverse-translated configuration at a site of \(\Lambda\).
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h5v.s8.8e5eb1cf99ca from=translated src=- shape=13cdb815 vocab=1780cdb0
+-/
 @[simp]
 lemma translation_symm_apply (d : ℕ) (a : ℤ) (Λ : Finset ℤ)
     (x : Config d (translateRegion a Λ)) (i : Λ) :
@@ -168,7 +190,9 @@ lemma translation_symm_apply (d : ℕ) (a : ℤ) (Λ : Finset ℤ)
 /-- A translated configuration evaluated at the corresponding translated site has its original
 value.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h5v.s8.85c47a0f5159 from=translated src=- shape=7ce912e6 vocab=e62bd40e
+-/
 @[simp]
 lemma translation_apply_siteTranslation (d : ℕ) (a : ℤ) (Λ : Finset ℤ)
     (x : Config d Λ) (i : Λ) :
@@ -177,7 +201,9 @@ lemma translation_apply_siteTranslation (d : ℕ) (a : ℤ) (Λ : Finset ℤ)
 
 /-- Translation by zero fixes every configuration when evaluated at corresponding sites.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h4v.s8.4242333ce377 from=translated src=- shape=087eeef6 vocab=e62bd40e
+-/
 @[simp]
 lemma translation_zero (d : ℕ) (Λ : Finset ℤ) (x : Config d Λ) (i : Λ) :
     translation d 0 Λ x (Finset.equivMap (Equiv.addRight 0).toEmbedding Λ i) = x i := by
@@ -187,7 +213,9 @@ lemma translation_zero (d : ℕ) (Λ : Finset ℤ) (x : Config d Λ) (i : Λ) :
 
 The two sides are evaluated at the sites obtained by their respective site translations, avoiding
 transport between propositionally equal configuration types.
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h6v.s10.4b327db64de7 from=translated src=- shape=c89ac0d8 vocab=786d9cc4
+-/
 lemma translation_add (d : ℕ) (a b : ℤ) (Λ : Finset ℤ) (x : Config d Λ) (i : Λ) :
     translation d b (translateRegion a Λ) (translation d a Λ x)
         (Finset.equivMap (Equiv.addRight b).toEmbedding (translateRegion a Λ)
@@ -208,7 +236,9 @@ noncomputable def localTranslation (d : ℕ) (a : ℤ) (Λ : Finset ℤ) :
 
 /-- Entrywise evaluation of the finite-region translation of a local observable.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h6v.s8.34da3f9e1b4b from=translated src=- shape=17a35717 vocab=ebcadcf6
+-/
 @[simp]
 lemma localTranslation_apply (d : ℕ) (a : ℤ) (Λ : Finset ℤ)
     (A : LocalAlgebra d Λ) (x y : Config d (translateRegion a Λ)) :
@@ -219,7 +249,9 @@ open scoped ComplexOrder in
 /-- Finite-region translation preserves the C⋆ operator norm.
 
 Context: arXiv:1703.09188, Appendix, lines 2292--2298, which introduce the quasi-local algebra
-and its lattice translation.-/
+and its lattice translation.
+@isnad1 id=eq.0h4v.s8.15f06fc97835 from=translated src=- shape=2a269290 vocab=e6384936
+-/
 lemma localTranslation_norm (d : ℕ) (a : ℤ) (Λ : Finset ℤ) (A : LocalAlgebra d Λ) :
     ‖localTranslation d a Λ A‖ = ‖A‖ := by
   exact StarAlgEquiv.norm_map (localTranslation d a Λ) A
@@ -228,7 +260,9 @@ open scoped ComplexOrder in
 /-- Finite-region translation is an operator-norm isometry.
 
 Context: arXiv:1703.09188, Appendix, lines 2292--2298, which introduce the quasi-local algebra
-and its lattice translation.-/
+and its lattice translation.
+@isnad1 id=isometry.0h3v.s8.7adf535ff057 from=translated src=- shape=8526beed vocab=43772f0d
+-/
 lemma localTranslation_isometry (d : ℕ) (a : ℤ) (Λ : Finset ℤ) :
     Isometry (localTranslation d a Λ) := by
   exact StarAlgEquiv.isometry (localTranslation d a Λ)
@@ -236,7 +270,9 @@ lemma localTranslation_isometry (d : ℕ) (a : ℤ) (Λ : Finset ℤ) :
 /-- A translated local observable evaluated on translated configurations has its original matrix
 entry.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h6v.s8.d379ea9f1010 from=translated src=- shape=01312abd vocab=1818fe64
+-/
 @[simp]
 lemma localTranslation_apply_translation (d : ℕ) (a : ℤ) (Λ : Finset ℤ)
     (A : LocalAlgebra d Λ) (x y : Config d Λ) :
@@ -246,7 +282,9 @@ lemma localTranslation_apply_translation (d : ℕ) (a : ℤ) (Λ : Finset ℤ)
 
 /-- Translation by zero fixes every local observable entry on corresponding configurations.
 
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h5v.s9.5c8504cc5cfc from=translated src=- shape=f59ccdea vocab=1818fe64
+-/
 @[simp]
 lemma localTranslation_zero (d : ℕ) (Λ : Finset ℤ)
     (A : LocalAlgebra d Λ) (x y : Config d Λ) :
@@ -258,7 +296,9 @@ lemma localTranslation_zero (d : ℕ) (Λ : Finset ℤ)
 
 The two sides are evaluated on configurations obtained by their respective configuration
 translations, avoiding transport between propositionally equal matrix types.
-Source: arXiv:1703.09188, Appendix, lines 2292--2298.-/
+Source: arXiv:1703.09188, Appendix, lines 2292--2298.
+@isnad1 id=eq.0h7v.s10.c595ca2b6ba1 from=translated src=- shape=93c84f9c vocab=5a5a5579
+-/
 lemma localTranslation_add (d : ℕ) (a b : ℤ) (Λ : Finset ℤ)
     (A : LocalAlgebra d Λ) (x y : Config d Λ) :
     localTranslation d b (translateRegion a Λ) (localTranslation d a Λ A)

@@ -50,7 +50,9 @@ independence of the tensor families at the two endpoints of the chosen edge.
 The endpoint fields `left_injective`/`right_injective` are injectivity of the
 local tensor maps `localTensorMap A e.1.1`/`localTensorMap A e.1.2`, which equal
 the `Fintype.linearCombination` of the endpoint component families. Injectivity
-of that linear combination is exactly linear independence of the family.-/
+of that linear combination is exactly linear independence of the family.
+@isnad1 id=and.1h5v.s9.36206afd881b from=translated src=- shape=5560d481 vocab=f07de61e
+-/
 theorem EdgeBlockedThreeSiteInjective.endpoint_linearIndependent {A : Tensor G d}
     {e : Edge G} (hA : EdgeBlockedThreeSiteInjective (G := G) A e) :
     LinearIndependent ℂ (A.component e.1.1) ∧
@@ -84,13 +86,17 @@ noncomputable abbrev edgeMiddleTensorMap (A : Tensor G d) (e : Edge G) :
   Fintype.linearCombination ℂ (edgeMiddleTensorFamily (G := G) A e)
 
 /-- Middle-block injectivity makes the middle tensor map injective. This is the
-middle-block analogue of `localTensorMap_injective_of_linearIndependent`.-/
+middle-block analogue of `localTensorMap_injective_of_linearIndependent`.
+@isnad1 id=injectiv.1h5v.s8.994b220eaaff from=translated src=- shape=80e12c14 vocab=5fd7bbbb
+-/
 theorem edgeMiddleTensorMap_injective_of_injective {A : Tensor G d} {e : Edge G}
     (hMid : EdgeMiddleTensorInjective (G := G) A e) :
     Function.Injective (edgeMiddleTensorMap (G := G) A e) :=
   hMid.fintypeLinearCombination_injective
 
-/-- Kernel form of `edgeMiddleTensorMap_injective_of_injective`.-/
+/-- Kernel form of `edgeMiddleTensorMap_injective_of_injective`.
+@isnad1 id=eq.1h5v.s8.08bcf15878af from=translated src=- shape=ed3306d3 vocab=6f78df35
+-/
 theorem edgeMiddleTensorMap_ker_eq_bot_of_injective {A : Tensor G d} {e : Edge G}
     (hMid : EdgeMiddleTensorInjective (G := G) A e) :
     LinearMap.ker (edgeMiddleTensorMap (G := G) A e) = ⊥ :=
@@ -121,7 +127,9 @@ edge of the corresponding endpoint tensor.
 
 **Companion coefficient statement:** This theorem proves the local endpoint
 realization. The corresponding equality with the edge-inserted three-site
-coefficient is recorded in `edgeInsertedCoeff_endpointPhysicalRealization`.-/
+coefficient is recorded in `edgeInsertedCoeff_endpointPhysicalRealization`.
+@isnad1 id=and.1h6v.s12.a391a8530a55 from=translated src=- shape=6737943a vocab=c6ef5746
+-/
 theorem edgeVirtualInsertionPhysicalRealization (A : Tensor G d)
     (hA : IsVertexInjective A) (e : Edge G)
     (M : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ) :
@@ -146,7 +154,9 @@ theorem edgeVirtualInsertionPhysicalRealization (A : Tensor G d)
 For the left endpoint, the matrix inserted on the edge is represented by
 \(M^{\mathsf T}\) on the distinguished incident edge. This is the endpoint
 specialization of the local \(O_1,O_2 \mapsto W\) recovery step in
-Lemma \(\mathrm{inj\_isomorph}\) of arXiv:1804.04964, Section 3.-/
+Lemma \(\mathrm{inj\_isomorph}\) of arXiv:1804.04964, Section 3.
+@isnad1 id=iff.1h7v.s9.2643b98c7abd from=translated src=- shape=b637ce72 vocab=5180c3cd
+-/
 theorem edgeLeftLocalVirtualOpOfPhysicalOp_eq_iff_projected_realization_eq
     (A : Tensor G d) (hA : IsVertexInjective A) (e : Edge G)
     (O₁ : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ))
@@ -164,7 +174,9 @@ theorem edgeLeftLocalVirtualOpOfPhysicalOp_eq_iff_projected_realization_eq
 For the right endpoint, the inserted matrix acts directly on the distinguished
 incident edge. This is the endpoint specialization of the local
 \(O_1,O_2 \mapsto W\) recovery step in Lemma \(\mathrm{inj\_isomorph}\) of
-arXiv:1804.04964, Section 3.-/
+arXiv:1804.04964, Section 3.
+@isnad1 id=iff.1h7v.s9.7e9c39a8e6d3 from=translated src=- shape=9ee8753f vocab=a35aaafd
+-/
 theorem edgeRightLocalVirtualOpOfPhysicalOp_eq_iff_projected_realization_eq
     (A : Tensor G d) (hA : IsVertexInjective A) (e : Edge G)
     (O₂ : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ))
@@ -184,7 +196,9 @@ This is the per-endpoint form of
 `edgeLeftLocalVirtualOpOfPhysicalOp_eq_iff_projected_realization_eq`: it requires
 only `LinearIndependent ℂ (A.component e.1.1)`, the fact that
 `EdgeBlockedThreeSiteInjective` already supplies via
-`EdgeBlockedThreeSiteInjective.endpoint_linearIndependent`.-/
+`EdgeBlockedThreeSiteInjective.endpoint_linearIndependent`.
+@isnad1 id=iff.1h7v.s10.3c16f4ceca33 from=translated src=- shape=805511a6 vocab=50c78691
+-/
 theorem edgeLeftLocalVirtualOpOfPhysicalOp_eq_iff_projected_realization_eqAt
     (A : Tensor G d) (e : Edge G)
     (hu : LinearIndependent ℂ (A.component e.1.1))
@@ -205,7 +219,9 @@ This is the per-endpoint form of
 `edgeRightLocalVirtualOpOfPhysicalOp_eq_iff_projected_realization_eq`: it
 requires only `LinearIndependent ℂ (A.component e.1.2)`, the fact that
 `EdgeBlockedThreeSiteInjective` already supplies via
-`EdgeBlockedThreeSiteInjective.endpoint_linearIndependent`.-/
+`EdgeBlockedThreeSiteInjective.endpoint_linearIndependent`.
+@isnad1 id=iff.1h7v.s10.4dcfbce304a6 from=translated src=- shape=2ca14ca8 vocab=3cdd926b
+-/
 theorem edgeRightLocalVirtualOpOfPhysicalOp_eq_iff_projected_realization_eqAt
     (A : Tensor G d) (e : Edge G)
     (hv : LinearIndependent ℂ (A.component e.1.2))
@@ -230,7 +246,9 @@ has to prove that such a common matrix is forced by equality of the two
 physical actions on the blocked state.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, lines 363--486
-of the local paper source.-/
+of the local paper source.
+@isnad1 id=and.3h8v.s10.c9b3f6ac4c1e from=translated src=- shape=4595df51 vocab=ff8c0ea2
+-/
 theorem edgeEndpointLocalVirtualOpOfPhysicalOp_eq_of_projected_realization_eq
     (A : Tensor G d) (hA : IsVertexInjective A) (e : Edge G)
     (O₁ O₂ : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ))
@@ -263,7 +281,9 @@ matrix, the projected realizations, and image preservation from equality of the
 two endpoint physical actions on the edge-blocked state.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, lines 363--486
-of the local paper source.-/
+of the local paper source.
+@isnad1 id=and.5h8v.s13.6ae4a255996c from=translated src=- shape=52966572 vocab=502b52df
+-/
 theorem edgePhysicalToVirtualInsertion_of_projected_realization_eq
     (A : Tensor G d) (hA : IsVertexInjective A) (e : Edge G)
     (O₁ O₂ : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ))
@@ -324,12 +344,18 @@ noncomputable def edgeMergeConfig (e : Edge G)
     else if h : w ∈ edgeMiddleVertices e then τm ⟨w, h⟩ else τl
 
 omit [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.0h7v.s6.d0e19ed4cde8 from=translated src=- shape=6bcc07dd vocab=af3f9fc0
+-/
 @[simp] theorem edgeMergeConfig_left (e : Edge G) (τl τr : Fin d)
     (τm : EdgeMiddlePhysicalConfig (G := G) (d := d) e) :
     edgeMergeConfig (G := G) (d := d) e τl τr τm e.1.1 = τl := by
   simp [edgeMergeConfig]
 
 omit [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.0h7v.s6.e92e6b10fd89 from=translated src=- shape=550719e6 vocab=af3f9fc0
+-/
 @[simp] theorem edgeMergeConfig_right (e : Edge G) (τl τr : Fin d)
     (τm : EdgeMiddlePhysicalConfig (G := G) (d := d) e) :
     edgeMergeConfig (G := G) (d := d) e τl τr τm e.1.2 = τr := by
@@ -337,6 +363,9 @@ omit [DecidableRel G.Adj] in
   simp [edgeMergeConfig, h]
 
 omit [DecidableRel G.Adj] in
+/--
+@isnad1 id=eq.0h7v.s5.fca65668760e from=translated src=- shape=b9ec050a vocab=a6e44f22
+-/
 @[simp] theorem edgeMergeConfig_middle (e : Edge G) (τl τr : Fin d)
     (τm : EdgeMiddlePhysicalConfig (G := G) (d := d) e) :
     edgeMiddlePhysicalConfigOf (G := G) (d := d) e
@@ -348,7 +377,9 @@ omit [DecidableRel G.Adj] in
   simp [edgeMiddlePhysicalConfigOf, edgeMergeConfig, h1, h2, hw]
 
 /-- At a merged physical configuration the open middle weight is the middle
-tensor family evaluated on the chosen middle physical leg.-/
+tensor family evaluated on the chosen middle physical leg.
+@isnad1 id=eq.0h10v.s8.b3e8041f1094 from=translated src=- shape=0f6bf757 vocab=401c5b19
+-/
 theorem edgeOpenMiddleWeight_merge (A : Tensor G d) (e : Edge G) (τl τr : Fin d)
     (τm : EdgeMiddlePhysicalConfig (G := G) (d := d) e)
     (ρl : ResidualLocalConfig (G := G) A (edgeLeftIncident (G := G) e))
@@ -361,7 +392,9 @@ theorem edgeOpenMiddleWeight_merge (A : Tensor G d) (e : Edge G) (τl τr : Fin 
 /-- A sum over edge boundary configurations of a summand `f β` times the middle
 tensor family is the middle tensor map applied to the per-residual-label
 bond-index sum of `f`. This is the algebraic shape that the middle left inverse
-peels.-/
+peels.
+@isnad1 id=eq.0h7v.s9.4361e7b11d94 from=translated src=- shape=60d8987c vocab=21fbb5ed
+-/
 theorem sum_edgeBoundary_eq_edgeMiddleTensorMap (A : Tensor G d) (e : Edge G)
     (τm : EdgeMiddlePhysicalConfig (G := G) (d := d) e)
     (f : EdgeBoundaryConfig (G := G) A e → ℂ) :
@@ -396,7 +429,9 @@ $D_{23}^{-1}$ middle contraction-inverse strips the middle block off
 inverse applied here.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, `eq:resonate`--
-`eq:inj_O->X_argument`, lines 355--457 of the local paper source.-/
+`eq:inj_O->X_argument`, lines 355--457 of the local paper source.
+@isnad1 id=eq.2h11v.s10.ae99ee4da208 from=translated src=- shape=304d319b vocab=37b291e1
+-/
 theorem resonate_middle_inverted (A : Tensor G d) (e : Edge G)
     (hMid : EdgeMiddleTensorInjective (G := G) A e)
     (O₁ O₂ : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ))
@@ -474,7 +509,9 @@ depend on the left residual. This is the "invert $B_2$" half of
 `eq:inj_O->X_argument`.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, `eq:inj_O->X_argument`,
-lines 377--457 of the local paper source.-/
+lines 377--457 of the local paper source.
+@isnad1 id=eq.3h10v.s13.6e3de0130c1c from=translated src=- shape=cdb2b484 vocab=5001b85e
+-/
 theorem resonate_invert_right_endpoint (A : Tensor G d) (e : Edge G)
     (hMid : EdgeMiddleTensorInjective (G := G) A e)
     (hv : LinearIndependent ℂ (A.component e.1.2))
@@ -569,7 +606,9 @@ as a bond-indexed combination of right tensor vectors with the same residual.
 This is the "invert $B_1$" half of `eq:inj_O->X_argument`.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, `eq:inj_O->X_argument`,
-lines 377--457 of the local paper source.-/
+lines 377--457 of the local paper source.
+@isnad1 id=eq.3h10v.s13.88bb5693b1cd from=translated src=- shape=14f9bfcd vocab=5001b85e
+-/
 theorem resonate_invert_left_endpoint (A : Tensor G d) (e : Edge G)
     (hMid : EdgeMiddleTensorInjective (G := G) A e)
     (hu : LinearIndependent ℂ (A.component e.1.1))
@@ -669,7 +708,9 @@ formal version of the source step $V=W$: full three-site injectivity forces the
 two one-edge matrices read off from the two inversions to coincide.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, `eq:inj_O->X_argument`,
-lines 377--457 of the local paper source.-/
+lines 377--457 of the local paper source.
+@isnad1 id=eq.4h11v.s13.8b9a387169af from=translated src=- shape=2fa26711 vocab=6cf223a2
+-/
 theorem resonate_endpoint_coeff_reconcile (A : Tensor G d) (e : Edge G)
     (hMid : EdgeMiddleTensorInjective (G := G) A e)
     (hu : LinearIndependent ℂ (A.component e.1.1))
@@ -772,7 +813,9 @@ the left physical action; inverting the left endpoint
 (`resonate_invert_left_endpoint`) reads the right physical action off as a bond
 matrix, and `resonate_endpoint_coeff_reconcile` forces the two to agree, which
 is the source step $V=W$. The positivity hypothesis supplies the reference
-residual configurations used to fix `M`.-/
+residual configurations used to fix `M`.
+@isnad1 id=ex.3h7v.s12.b687fa4896b5 from=translated src=- shape=0fa00883 vocab=1d0fcd46
+-/
 theorem physical_to_virtual_insertion
     (A : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)

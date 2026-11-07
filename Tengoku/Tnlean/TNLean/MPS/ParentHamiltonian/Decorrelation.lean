@@ -63,7 +63,9 @@ namespace LinearMap
 
 /-- For commuting idempotents, \(Q ∘ (1 - P ∘ Q) ∘ P = 0\). This is the
 key cancellation used in the "only if" direction of Prop D.3:
-\(P_{XB} \circ P_K^\perp \circ P_{AX} = 0\).-/
+\(P_{XB} \circ P_K^\perp \circ P_{AX} = 0\).
+@isnad1 id=eq.3h3v.s9.b1b2810a7ef6 from=translated src=- shape=4303bba4 vocab=dcefad11
+-/
 theorem comp_complement_comm_zero
     {P Q : E →ₗ[ℂ] E}
     (hP : P ∘ₗ P = P)
@@ -211,7 +213,9 @@ present, `HasCommutingParentHam` is
 trivially satisfiable by \(P_{AX} = P_{XB} = P_K\), so an abstract iff would be
 vacuous. The forward direction is deferred to the tensor-product setting.
 
-See arXiv:1606.00608, Appendix D, Section D.2, Proposition D.3.-/
+See arXiv:1606.00608, Appendix D, Section D.2, Proposition D.3.
+@isnad1 id=isdecorr.6h6v.s9.29b6282262b7 from=translated src=- shape=5a15c6a2 vocab=9102eda1
+-/
 theorem commutingHam_isDecorrelated
     (P_K P_AX P_XB : E →ₗ[ℂ] E)
     (hAX_idem : P_AX ∘ₗ P_AX = P_AX)
@@ -257,7 +261,9 @@ theorem commutingHam_isDecorrelated
 
 The witnessing projectors \(P_{AX}\), \(P_{XB}\) are extracted from the structure
 fields. See `commutingHam_isDecorrelated` for the version with explicit
-witnesses.-/
+witnesses.
+@isnad1 id=isdecorr.2h5v.s8.f6153926dace from=translated src=- shape=ca0101b3 vocab=4cfb0b71
+-/
 theorem HasCommutingParentHam.isDecorrelated
     {P_K : E →ₗ[ℂ] E}
     (hCPH : HasCommutingParentHam P_K)

@@ -42,6 +42,9 @@ def gaussMonomialPerm (σ : G → G → Equiv.Perm n) (g : G) : Equiv.Perm (n ×
         (σ (gaussLegAction g l).1 (gaussLegAction g l).2).symm)).trans
       (Equiv.prodComm (G × G) n))
 
+/--
+@isnad1 id=eq.0h5v.s8.12e8c78984ab from=translated src=- shape=29ae25be vocab=92be57db
+-/
 @[simp]
 theorem gaussMonomialPerm_apply (σ : G → G → Equiv.Perm n) (g : G) (x : n × (G × G)) :
     gaussMonomialPerm σ g x =
@@ -62,7 +65,9 @@ variable [DecidableEq G] [Fintype n] [DecidableEq n]
 
 /-- The local Gauss operator of a tuple of monomial matter unitaries is monomial.
 This is FBC25, Equation `eq:mcG` (arXiv:2502.20257, lines 3380--3387) evaluated on
-monomial blocks.-/
+monomial blocks.
+@isnad1 id=eq.1h6v.s8.9e7933fc1474 from=translated src=- shape=56d1c386 vocab=bf1031cb
+-/
 theorem gaussOperator_eq_monomial (R : G → G → Matrix.unitaryGroup n ℂ)
     (σ : G → G → Equiv.Perm n) (φ : G → G → n → ℂ)
     (hR : ∀ a b, (R a b : Matrix n n ℂ) = monomial (σ a b) (φ a b)) (g : G) :

@@ -18,7 +18,9 @@ real square root.
 namespace Complex
 
 /-- The complex coercion of the real square root of a nonnegative number squares
-to that number.-/
+to that number.
+@isnad1 id=eq.1h1v.s5.a0e7f59c1105 from=translated src=- shape=ce55a712 vocab=caa884a4
+-/
 theorem ofReal_sqrt_sq (x : ℝ) (hx : 0 ≤ x) :
     (↑(Real.sqrt x) : ℂ) ^ 2 = x := by
   rw [← Complex.ofReal_pow, Real.sq_sqrt hx]

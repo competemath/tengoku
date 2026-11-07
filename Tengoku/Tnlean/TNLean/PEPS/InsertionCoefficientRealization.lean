@@ -34,7 +34,9 @@ Lemma \(\mathrm{inj\_isomorph}\) of arXiv:1804.04964, Section 3, in the
 left-endpoint orientation. Since the ordinary edge boundary supplies the right
 distinguished-edge index, the left endpoint realizes \(M^{\mathsf T}\), so that
 the resulting inserted-edge coefficient has matrix coefficient
-\(M_{\mathrm{left},\mathrm{right}}\).-/
+\(M_{\mathrm{left},\mathrm{right}}\).
+@isnad1 id=eq.1h8v.s11.44428a8d89fb from=translated src=- shape=eeeac901 vocab=67074521
+-/
 theorem edgeInsertedCoeff_eq_sum_left_physicalRealization (A : Tensor G d)
     (e : Edge G) (σ : V → Fin d)
     (M : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ)
@@ -143,7 +145,9 @@ This is the coefficient-level part of the local \(X \mapsto O_1,O_2\) step in
 Lemma \(\mathrm{inj\_isomorph}\) of arXiv:1804.04964, Section 3, in the
 right-endpoint orientation. The ordinary edge boundary provides the left
 distinguished-edge index, while the right physical action supplies the
-independent right distinguished-edge index of the inserted-edge coefficient.-/
+independent right distinguished-edge index of the inserted-edge coefficient.
+@isnad1 id=eq.1h8v.s11.fdb766c50809 from=translated src=- shape=b553613e vocab=a8a7049a
+-/
 theorem edgeInsertedCoeff_eq_sum_right_physicalRealization (A : Tensor G d)
     (e : Edge G) (σ : V → Fin d)
     (M : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ)
@@ -250,7 +254,9 @@ the two endpoint tensors.
 
 For an inserted matrix \(M\), the left endpoint realizes \(M^{\mathsf T}\) and
 the right endpoint realizes \(M\). Both physical realizations give the same
-inserted-edge coefficient after the edge-centered three-site decomposition.-/
+inserted-edge coefficient after the edge-centered three-site decomposition.
+@isnad1 id=and.1h7v.s12.31f266f06388 from=translated src=- shape=d572e833 vocab=5bbbe09e
+-/
 theorem edgeInsertedCoeff_endpointPhysicalRealization (A : Tensor G d)
     (hA : IsVertexInjective A) (e : Edge G) (σ : V → Fin d)
     (M : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ) :

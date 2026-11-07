@@ -19,7 +19,9 @@ open scoped BigOperators
 namespace Finset
 
 /-- A finite sum equals its restriction to the subtype where a weight is nonzero when
-all remaining summands vanish.-/
+all remaining summands vanish.
+@isnad1 id=eq.1h5v.s7.02fa70113ce5 from=translated src=- shape=0ab1c371 vocab=2c7523e4
+-/
 theorem sum_eq_sum_subtype_ne_zero {ι R S : Type*} [Fintype ι] [AddCommMonoid R]
     [Zero S] (p : ι → S) [DecidablePred fun i ↦ p i ≠ 0] (f : ι → R)
     (hzero : ∀ i, p i = 0 → f i = 0) :

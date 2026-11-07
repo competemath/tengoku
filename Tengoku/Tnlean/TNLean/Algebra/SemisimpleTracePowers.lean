@@ -47,7 +47,9 @@ omit [FiniteDimensional ℂ V] in
 
 The commuting binomial expansion has one term without the nilpotent summand.
 Every other term is nilpotent and therefore has zero trace. This is the trace
-reduction used in arXiv:1706.07329v2, Proposition 20, line 3865.-/
+reduction used in arXiv:1706.07329v2, Proposition 20, line 3865.
+@isnad1 id=eq.2h4v.s9.e3664366022e from=translated src=- shape=1c2799be vocab=a1adb454
+-/
 theorem IsNilpotent.trace_add_pow_eq_trace_pow_of_commute
     {N : Module.End ℂ V} (hN : IsNilpotent N) (S : Module.End ℂ V)
     (hcomm : Commute N S) (k : ℕ) :
@@ -71,7 +73,9 @@ range annihilates it in both orders.
 
 The nilpotent map restricts to the range because of commutation. Every
 endomorphism of that one-dimensional range is scalar, and a nilpotent scalar
-over `ℂ` is zero.-/
+over `ℂ` is zero.
+@isnad1 id=and.3h3v.s8.686c608850e2 from=translated src=- shape=87ddb3c8 vocab=a2984099
+-/
 theorem IsNilpotent.mul_eq_zero_and_mul_eq_zero_of_commute_of_finrank_range_eq_one
     {N : Module.End ℂ V} (hN : IsNilpotent N) (S : Module.End ℂ V)
     (hcomm : Commute N S) (hrank : Module.finrank ℂ S.range = 1) :
@@ -109,7 +113,9 @@ private lemma add_pow_eq_pow_add_pow_of_mul_eq_zero {R : Type*} [Semiring R]
 
 omit [FiniteDimensional ℂ V] in
 /-- If two endomorphisms annihilate one another and the first is nilpotent,
-then sufficiently high powers of their sum are powers of the second alone.-/
+then sufficiently high powers of their sum are powers of the second alone.
+@isnad1 id=ex.3h3v.s8.7b1cdc22d1d4 from=translated src=- shape=6a7f3843 vocab=6c8ce18e
+-/
 theorem IsNilpotent.exists_add_pow_eq_right_of_mul_eq_zero
     {N : Module.End ℂ V} (hN : IsNilpotent N) (S : Module.End ℂ V)
     (hNS : N * S = 0) (hSN : S * N = 0) :

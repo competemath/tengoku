@@ -19,7 +19,9 @@ namespace Real
 /-- For `d ≠ 0`, `d * Real.negMulLog d⁻¹ = Real.log d`.
 
 Upstreamable to Mathlib's `Mathlib/Analysis/SpecialFunctions/Log/NegMulLog.lean`,
-which has no lemma of this shape.-/
+which has no lemma of this shape.
+@isnad1 id=eq.1h1v.s4.21f361878a2f from=translated src=- shape=6935551d vocab=ec614cda
+-/
 theorem mul_negMulLog_inv (d : ℝ) (hd : d ≠ 0) :
     d * Real.negMulLog d⁻¹ = Real.log d := by
   rw [Real.negMulLog]

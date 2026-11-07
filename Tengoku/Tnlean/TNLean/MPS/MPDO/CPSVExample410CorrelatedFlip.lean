@@ -83,7 +83,9 @@ noncomputable def flipProb (s : Bool × Bool × Bool × Bool) : ℝ :=
 
 /-- Every flip configuration has nonnegative probability.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=le.0h1v.s4.4d207316cbc0 from=translated src=- shape=1fed90b1 vocab=4726897c
+-/
 theorem flipProb_nonneg (s : Bool × Bool × Bool × Bool) : 0 ≤ flipProb s := by
   rcases s with ⟨_ | _, _ | _, _ | _, _ | _⟩ <;> norm_num [flipProb, flipWeight]
 
@@ -129,13 +131,17 @@ noncomputable def bondWeightValue : Bool × Bool × Bool × Bool → ℝ
 
 /-- The flip configuration distribution is normalized.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h0v.s5.2d71dbdc785a from=translated src=- shape=47ce5814 vocab=028883ee
+-/
 theorem sum_flipProb : ∑ s : Bool × Bool × Bool × Bool, flipProb s = 1 := by
   norm_num [flipProb, flipWeight, Fintype.sum_prod_type, Fintype.sum_bool]
 
 /-- The bond pattern distribution takes exactly the closed-form values.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h0v.s3.3251484376e8 from=translated src=- shape=dfd0dff1 vocab=8e87dd16
+-/
 theorem bondWeight_eq_bondWeightValue : bondWeight = bondWeightValue := by
   funext t
   rcases t with ⟨_ | _, _ | _, _ | _, _ | _⟩ <;>
@@ -144,14 +150,18 @@ theorem bondWeight_eq_bondWeightValue : bondWeight = bondWeightValue := by
 
 /-- Every bond pattern has nonnegative probability.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=le.0h1v.s4.0bfcdc11883d from=translated src=- shape=1fed90b1 vocab=020a9a78
+-/
 theorem bondWeight_nonneg (t : Bool × Bool × Bool × Bool) : 0 ≤ bondWeight t := by
   rw [bondWeight_eq_bondWeightValue]
   rcases t with ⟨_ | _, _ | _, _ | _, _ | _⟩ <;> norm_num [bondWeightValue]
 
 /-- The bond pattern distribution is normalized.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h0v.s5.9a894fb84e42 from=translated src=- shape=47ce5814 vocab=7daf9d17
+-/
 theorem sum_bondWeight : ∑ t : Bool × Bool × Bool × Bool, bondWeight t = 1 := by
   rw [bondWeight_eq_bondWeightValue]
   norm_num [bondWeightValue, Fintype.sum_prod_type, Fintype.sum_bool]
@@ -173,27 +183,35 @@ noncomputable def twoBondWeight (u v : Bool) : ℝ :=
 
 /-- A single bond keeps its Bell state with probability $5/8$.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h0v.s4.92872029ab5d from=translated src=- shape=c29dca45 vocab=2bfcaf55
+-/
 theorem oneBondWeight_false : oneBondWeight false = 5 / 8 := by
   norm_num [oneBondWeight, flipProb, flipWeight, Fintype.sum_prod_type, Fintype.sum_bool]
 
 /-- A single bond is flipped with probability $3/8$.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h0v.s4.c645353dbab2 from=translated src=- shape=c29dca45 vocab=7c0c69b7
+-/
 theorem oneBondWeight_true : oneBondWeight true = 3 / 8 := by
   norm_num [oneBondWeight, flipProb, flipWeight, Fintype.sum_prod_type, Fintype.sum_bool]
 
 /-- Two consecutive bonds both keep their Bell states with probability
 $7/16$.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h0v.s4.4b95b6b0d4bb from=translated src=- shape=146637b2 vocab=31e2f40c
+-/
 theorem twoBondWeight_false_false : twoBondWeight false false = 7 / 16 := by
   norm_num [twoBondWeight, flipProb, flipWeight, Fintype.sum_prod_type, Fintype.sum_bool]
 
 /-- Each of the three remaining label pairs of two consecutive bonds has
 probability $3/16$.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.1h2v.s5.e6c1ef004d89 from=translated src=- shape=ca208d75 vocab=e1ce6794
+-/
 theorem twoBondWeight_of_pair_ne_false_false (u v : Bool) (h : (u, v) ≠ (false, false)) :
     twoBondWeight u v = 3 / 16 := by
   rcases u <;> rcases v <;>
@@ -204,7 +222,9 @@ theorem twoBondWeight_of_pair_ne_false_false (u v : Bool) (h : (u, v) ≠ (false
 /-- The one-bond distribution is the marginal of the bond pattern
 distribution.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h1v.s5.9052d0079e2b from=translated src=- shape=64acbabc vocab=14afe465
+-/
 theorem oneBondWeight_eq_marginal (u : Bool) :
     oneBondWeight u = ∑ v : Bool, ∑ w : Bool, ∑ x : Bool, bondWeight (u, v, w, x) := by
   rw [bondWeight_eq_bondWeightValue]
@@ -214,7 +234,9 @@ theorem oneBondWeight_eq_marginal (u : Bool) :
 /-- The two-bond distribution is the marginal of the bond pattern
 distribution.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h2v.s5.3fe8de190927 from=translated src=- shape=f0974e21 vocab=91c9269d
+-/
 theorem twoBondWeight_eq_marginal (u v : Bool) :
     twoBondWeight u v = ∑ w : Bool, ∑ x : Bool, bondWeight (u, v, w, x) := by
   rw [bondWeight_eq_bondWeightValue]
@@ -253,20 +275,26 @@ noncomputable def windowWeightThree (x : Bool × Bool × Bool × Bool) : ℝ :=
 
 /-- Every one-spin window weight is nonnegative.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=le.0h1v.s3.436844bcc681 from=translated src=- shape=31d5eeaa vocab=18d9e1ce
+-/
 theorem windowWeightOne_nonneg (x : Bool × Bool) : 0 ≤ windowWeightOne x := by
   norm_num [windowWeightOne]
 
 /-- Every two-spin window weight is nonnegative.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=le.0h1v.s4.32277ff251a4 from=translated src=- shape=c38c70f5 vocab=f78258e7
+-/
 theorem windowWeightTwo_nonneg (x : Bool × Bool × Bool) : 0 ≤ windowWeightTwo x := by
   rcases x with ⟨_, _ | _, _⟩ <;>
     norm_num [windowWeightTwo, oneBondWeight_false, oneBondWeight_true]
 
 /-- Every three-spin window weight is nonnegative.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=le.0h1v.s4.620af9d37ea5 from=translated src=- shape=1fed90b1 vocab=cf36203f
+-/
 theorem windowWeightThree_nonneg (x : Bool × Bool × Bool × Bool) :
     0 ≤ windowWeightThree x := by
   rcases x with ⟨_, _ | _, _ | _, _⟩ <;>
@@ -275,20 +303,26 @@ theorem windowWeightThree_nonneg (x : Bool × Bool × Bool × Bool) :
 
 /-- The one-spin window weights are normalized.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h0v.s4.75929f2fac96 from=translated src=- shape=5d035c4c vocab=61f15653
+-/
 theorem sum_windowWeightOne : ∑ x : Bool × Bool, windowWeightOne x = 1 := by
   norm_num [windowWeightOne, Fintype.sum_prod_type, Fintype.sum_bool]
 
 /-- The two-spin window weights are normalized.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h0v.s5.9b6c695521a6 from=translated src=- shape=221ccace vocab=3229e696
+-/
 theorem sum_windowWeightTwo : ∑ x : Bool × Bool × Bool, windowWeightTwo x = 1 := by
   norm_num [windowWeightTwo, oneBondWeight_false, oneBondWeight_true,
     Fintype.sum_prod_type, Fintype.sum_bool]
 
 /-- The three-spin window weights are normalized.
 
-Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.-/
+Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905.
+@isnad1 id=eq.0h0v.s5.7c79695fb691 from=translated src=- shape=47ce5814 vocab=c539ac2c
+-/
 theorem sum_windowWeightThree :
     ∑ x : Bool × Bool × Bool × Bool, windowWeightThree x = 1 := by
   norm_num [windowWeightThree, twoBondWeight_false_false, twoBondWeight_of_pair_ne_false_false,
@@ -377,7 +411,9 @@ private lemma negMulLog_nine_128ths :
 
 /-- The one-spin entropy is $2\ln 2$, that is, two bits.
 
-Displayed value: CPSV16, arXiv:1606.00608, Example 4.10, line 904.-/
+Displayed value: CPSV16, arXiv:1606.00608, Example 4.10, line 904.
+@isnad1 id=eq.0h0v.s4.ff842d6af53c from=translated src=- shape=b7301bb3 vocab=ba0d09e7
+-/
 theorem entropyOne_eq : entropyOne = 2 * log 2 := by
   rw [entropyOne]
   norm_num [windowWeightOne, Fintype.sum_prod_type, Fintype.sum_bool, negMulLog_quarter]
@@ -386,7 +422,9 @@ theorem entropyOne_eq : entropyOne = 2 * log 2 := by
 /-- The exact two-spin entropy in natural logarithms; divided by $\ln 2$ it is
 the displayed decimal $2.9544$.
 
-Displayed value: CPSV16, arXiv:1606.00608, Example 4.10, line 904.-/
+Displayed value: CPSV16, arXiv:1606.00608, Example 4.10, line 904.
+@isnad1 id=eq.0h0v.s6.d2ca03469257 from=translated src=- shape=96315086 vocab=02c8283c
+-/
 theorem entropyTwo_eq :
     entropyTwo = 5 * log 2 - 5 / 8 * log 5 - 3 / 8 * log 3 := by
   rw [entropyTwo]
@@ -398,7 +436,9 @@ theorem entropyTwo_eq :
 /-- The exact three-spin entropy in natural logarithms; divided by $\ln 2$ it
 is the displayed decimal $3.8802$.
 
-Displayed value: CPSV16, arXiv:1606.00608, Example 4.10, line 904.-/
+Displayed value: CPSV16, arXiv:1606.00608, Example 4.10, line 904.
+@isnad1 id=eq.0h0v.s6.1377bbfc851a from=translated src=- shape=96315086 vocab=cf7b2036
+-/
 theorem entropyThree_eq :
     entropyThree = 6 * log 2 - 7 / 16 * log 7 - 9 / 16 * log 3 := by
   rw [entropyThree]
@@ -410,7 +450,9 @@ theorem entropyThree_eq :
 /-- The exact four-spin entropy in natural logarithms; divided by $\ln 2$ it is
 the displayed decimal $2.7839$.
 
-Displayed value: CPSV16, arXiv:1606.00608, Example 4.10, line 904.-/
+Displayed value: CPSV16, arXiv:1606.00608, Example 4.10, line 904.
+@isnad1 id=eq.0h0v.s7.5c4d4e9a1bcf from=translated src=- shape=e5c38703 vocab=199d313b
+-/
 theorem entropyFour_eq :
     entropyFour =
       7 * log 2 - 41 / 128 * log 41 - 57 / 64 * log 3 - 15 / 32 * log 5 := by
@@ -435,7 +477,9 @@ noncomputable def mutualInfoTwo : ℝ := 2 * entropyTwo - entropyFour
 sixteenth of the logarithm of the certified integer ratio.
 
 Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905; the exact
-form is recorded in `docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`.-/
+form is recorded in `docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`.
+@isnad1 id=eq.0h0v.s7.4b839c48f8fb from=translated src=- shape=7818538c vocab=a41b4887
+-/
 theorem mutualInfoTwo_sub_mutualInfoOne_eq :
     mutualInfoTwo - mutualInfoOne =
       1 / 16 * Real.log (((2 : ℝ) ^ 32 * 7 ^ 7) / (3 ^ 3 * 5 ^ 20)) := by
@@ -449,7 +493,9 @@ theorem mutualInfoTwo_sub_mutualInfoOne_eq :
 mutual information exceeds the one-spin mutual information.
 
 Derived from CPSV16, arXiv:1606.00608, Example 4.10, lines 897--905, through
-the certified integer comparison.-/
+the certified integer comparison.
+@isnad1 id=lt.0h0v.s4.a4a845d76dee from=translated src=- shape=ba858747 vocab=3882a13a
+-/
 theorem mutualInfoTwo_sub_mutualInfoOne_pos : 0 < mutualInfoTwo - mutualInfoOne := by
   rw [mutualInfoTwo_sub_mutualInfoOne_eq]
   exact mul_pos (by norm_num) CPSVExamples410411Arithmetic.example410_log_ratio_pos

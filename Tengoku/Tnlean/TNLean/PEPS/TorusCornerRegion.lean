@@ -54,7 +54,9 @@ def cornerRegion : Finset (TorusVertex width height) :=
 def cornerVertex : TorusVertex width height :=
   (((2 : ℕ) : ZMod width), ((2 : ℕ) : ZMod height))
 
-/-- Membership in the corner region, in coordinate values.-/
+/-- Membership in the corner region, in coordinate values.
+@isnad1 id=iff.0h3v.s7.e2ab9b48428a from=translated src=- shape=2929b3a8 vocab=711c98fb
+-/
 theorem mem_cornerRegion (v : TorusVertex width height) :
     v ∈ cornerRegion ↔
       (3 ≤ v.1.val ∧ v.1.val < 5 ∧ 2 ≤ v.2.val ∧ v.2.val < 5) ∨
@@ -75,7 +77,9 @@ theorem eq_cornerVertex_iff (hw : 7 ≤ width) (hh : 7 ≤ height)
     · rw [h2]
       exact (ZMod.val_cast_of_lt (by omega : (2 : ℕ) < height)).symm
 
-/-- The corner vertex lies outside the corner region.-/
+/-- The corner vertex lies outside the corner region.
+@isnad1 id=not.2h2v.s6.476ecd4983bd from=translated src=- shape=48a1e6ee vocab=a461da1c
+-/
 theorem cornerVertex_notMem_cornerRegion (hw : 7 ≤ width) (hh : 7 ≤ height) :
     (cornerVertex : TorusVertex width height) ∉ cornerRegion := by
   rw [mem_cornerRegion]
@@ -85,7 +89,9 @@ theorem cornerVertex_notMem_cornerRegion (hw : 7 ≤ width) (hh : 7 ≤ height) 
     ZMod.val_cast_of_lt (by omega)
   omega
 
-/-- Inserting the corner vertex into the corner region completes the corner square.-/
+/-- Inserting the corner vertex into the corner region completes the corner square.
+@isnad1 id=eq.2h2v.s6.e98bfd4b0df4 from=translated src=- shape=11e7847c vocab=88591823
+-/
 theorem insert_cornerVertex_cornerRegion (hw : 7 ≤ width) (hh : 7 ≤ height) :
     insert (cornerVertex : TorusVertex width height) cornerRegion = cornerSquare := by
   ext v
@@ -95,7 +101,9 @@ theorem insert_cornerVertex_cornerRegion (hw : 7 ≤ width) (hh : 7 ≤ height) 
 
 /-! ### The band decompositions of the complements -/
 
-/-- The complement of the corner square is the union of four coordinate bands.-/
+/-- The complement of the corner square is the union of four coordinate bands.
+@isnad1 id=eq.2h2v.s7.0d244f353284 from=translated src=- shape=5a3e675d vocab=9a66ffb4
+-/
 theorem compl_cornerSquare_eq_bands (hw : 7 ≤ width) (hh : 7 ≤ height) :
     Finset.univ \ (cornerSquare : Finset (TorusVertex width height)) =
       torusContiguousRectangle 0 0 2 height ∪
@@ -109,7 +117,9 @@ theorem compl_cornerSquare_eq_bands (hw : 7 ≤ width) (hh : 7 ≤ height) :
   omega
 
 /-- The complement of the corner region is the union of the four bands and the corner
-rectangle covering the corner vertex.-/
+rectangle covering the corner vertex.
+@isnad1 id=eq.2h2v.s7.3c675c009016 from=translated src=- shape=bc34739e vocab=4c41ffb7
+-/
 theorem compl_cornerRegion_eq_bands (hw : 7 ≤ width) (hh : 7 ≤ height) :
     Finset.univ \ (cornerRegion : Finset (TorusVertex width height)) =
       torusContiguousRectangle 0 1 3 2 ∪
@@ -134,7 +144,9 @@ variable {κ : RegionInjectivityData (TorusVertex width height)}
 rectangle.
 
 Source: arXiv:1804.04964, Section 3, Lemma `injective_union` and proof of Theorem 3, lines
-1322--1452 of `Papers/1804.04964/paper_normal.tex`.-/
+1322--1452 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.4h3v.s6.bdb15e15c690 from=translated src=- shape=f6b59109 vocab=009a04a2
+-/
 theorem cornerRegion_injective (h : NormalTorusRectangleInjectivityHypotheses κ)
     (hUnion : RegionInjectivityUnionClosure κ) (hw : 7 ≤ width) (hh : 7 ≤ height) :
     κ.IsInjective (cornerRegion : Finset (TorusVertex width height)) :=
@@ -144,7 +156,9 @@ theorem cornerRegion_injective (h : NormalTorusRectangleInjectivityHypotheses κ
 /-- The corner square is injective: it is a `3 × 3` rectangle.
 
 Source: arXiv:1804.04964, Section 3, Lemma `injective_union` and proof of Theorem 3, lines
-1322--1452 of `Papers/1804.04964/paper_normal.tex`.-/
+1322--1452 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.4h3v.s6.d5891d627cb0 from=translated src=- shape=f6b59109 vocab=190a5bcf
+-/
 theorem cornerSquare_injective (h : NormalTorusRectangleInjectivityHypotheses κ)
     (hUnion : RegionInjectivityUnionClosure κ) (hw : 7 ≤ width) (hh : 7 ≤ height) :
     κ.IsInjective (cornerSquare : Finset (TorusVertex width height)) :=
@@ -154,7 +168,9 @@ theorem cornerSquare_injective (h : NormalTorusRectangleInjectivityHypotheses κ
 bands, each of source shape.
 
 Source: arXiv:1804.04964, Section 3, Lemma `injective_union` and proof of Theorem 3, lines
-1322--1452 of `Papers/1804.04964/paper_normal.tex`.-/
+1322--1452 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.4h3v.s6.ee47eaa313bc from=translated src=- shape=21754450 vocab=7dea94e2
+-/
 theorem compl_cornerSquare_injective (h : NormalTorusRectangleInjectivityHypotheses κ)
     (hUnion : RegionInjectivityUnionClosure κ) (hw : 7 ≤ width) (hh : 7 ≤ height) :
     κ.IsInjective (Finset.univ \ (cornerSquare : Finset (TorusVertex width height))) := by
@@ -171,7 +187,9 @@ theorem compl_cornerSquare_injective (h : NormalTorusRectangleInjectivityHypothe
 `3 × 2` corner rectangle.
 
 Source: arXiv:1804.04964, Section 3, Lemma `injective_union` and proof of Theorem 3, lines
-1322--1452 of `Papers/1804.04964/paper_normal.tex`.-/
+1322--1452 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.4h3v.s6.4a6f1d8d4924 from=translated src=- shape=21754450 vocab=57293d05
+-/
 theorem compl_cornerRegion_injective (h : NormalTorusRectangleInjectivityHypotheses κ)
     (hUnion : RegionInjectivityUnionClosure κ) (hw : 7 ≤ width) (hh : 7 ≤ height) :
     κ.IsInjective (Finset.univ \ (cornerRegion : Finset (TorusVertex width height))) := by
@@ -195,7 +213,9 @@ section BoundaryEdges
 variable [Fact (1 < width)] [Fact (1 < height)]
 
 /-- The up edge of the corner vertex is a boundary edge of the corner region: the corner
-vertex lies outside, its upper neighbour `(2, 3)` inside.-/
+vertex lies outside, its upper neighbour `(2, 3)` inside.
+@isnad1 id=isregion.2h2v.s6.5966c8668097 from=translated src=- shape=0b95e14b vocab=d7e51059
+-/
 theorem isRegionBoundaryEdge_cornerRegion (hw : 7 ≤ width) (hh : 7 ≤ height) :
     IsRegionBoundaryEdge (G := torusGraph width height) cornerRegion
       (torusUpEdge (cornerVertex : TorusVertex width height)) := by
@@ -239,7 +259,9 @@ def belowCornerVertex : TorusVertex width height :=
   (((2 : ℕ) : ZMod width), ((1 : ℕ) : ZMod height))
 
 /-- The up edge of `(2, 1)` is a boundary edge of the corner square: `(2, 1)` lies outside,
-its upper neighbour `(2, 2)` inside.-/
+its upper neighbour `(2, 2)` inside.
+@isnad1 id=isregion.2h2v.s6.944d91ec042e from=translated src=- shape=0b95e14b vocab=cd544266
+-/
 theorem isRegionBoundaryEdge_cornerSquare (hw : 7 ≤ width) (hh : 7 ≤ height) :
     IsRegionBoundaryEdge (G := torusGraph width height) cornerSquare
       (torusUpEdge (belowCornerVertex : TorusVertex width height)) := by

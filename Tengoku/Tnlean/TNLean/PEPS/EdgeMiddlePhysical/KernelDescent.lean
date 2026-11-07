@@ -97,6 +97,9 @@ private theorem edgeComplementConfigSplitAt_symm_apply_incident
   rw [dite_eq_left hinc]
   exact incidentComplementPiEquiv_symm_apply_of (G := G) A e hj η f hinc
 
+/--
+@isnad1 id=eq.1h9v.s10.55b0fd357593 from=translated src=- shape=1e977494 vocab=ba2668dc
+-/
 @[simp] theorem edgeComplementValue_edgeComplementConfigSplitAt_symm
     (A : Tensor G d) (e : Edge G) {j : V} (hj : j ∈ edgeMiddleVertices e)
     (η : LocalVirtualConfig A j)
@@ -152,7 +155,9 @@ noncomputable def extraIndicator (S : Finset V) (j : V)
       f.1.1.1 ∉ S.erase j → f.1.1.2 ∉ S.erase j → ζ f = ζ₀ f) then 1 else 0
 
 /-- Removing `j` from `S` factors the exposed indicator into the `S`-indicator and
-the extra-agreement indicator on the `j`-incident edges.-/
+the extra-agreement indicator on the `j`-incident edges.
+@isnad1 id=eq.0h9v.s6.049483f82056 from=translated src=- shape=499e7a69 vocab=a6c8be31
+-/
 theorem exposedIndicator_erase (S : Finset V) (j : V)
     (ζ ζ₀ : EdgeComplementConfig (G := G) A e) :
     exposedIndicator (G := G) A e (S.erase j) ζ ζ₀ =
@@ -201,6 +206,9 @@ noncomputable def extraIndicatorη (S : Finset V) {j : V}
       f.1.1.1 ∉ S.erase j → f.1.1.2 ∉ S.erase j →
         η ⟨f.1, h⟩ = ζ₀ f) then 1 else 0
 
+/--
+@isnad1 id=eq.1h10v.s10.ecea13ae614d from=translated src=- shape=33e24d53 vocab=81b66f0f
+-/
 theorem extraIndicator_split (S : Finset V) {j : V}
     (hj : j ∈ edgeMiddleVertices e) (η : LocalVirtualConfig A j)
     (r : (f : {f : {f : Edge G // f ≠ e} // ¬ IsIncidentTo (G := G) e j f}) →
@@ -233,7 +241,9 @@ noncomputable def kFactor (v : V)
   else 1
 
 /-- On a split configuration, the guarded local factor at `j` is the tensor at
-`j` evaluated on the local virtual configuration `η`.-/
+`j` evaluated on the local virtual configuration `η`.
+@isnad1 id=eq.1h9v.s10.69516e84055c from=translated src=- shape=4f8f6d16 vocab=9cd508d7
+-/
 theorem kFactor_split_mid {j : V} (hj : j ∈ edgeMiddleVertices e)
     (η : LocalVirtualConfig A j)
     (r : (f : {f : {f : Edge G // f ≠ e} // ¬ IsIncidentTo (G := G) e j f}) →
@@ -264,7 +274,9 @@ noncomputable def kMarginal
           ((edgeComplementConfigSplitAt (G := G) A e hj).symm (η, r)) τ
 
 /-- The marginal coefficient family vanishes, by injectivity at `j` and the
-kernel condition at `S`.-/
+kernel condition at `S`.
+@isnad1 id=eq.4h10v.s7.6cc6dbb960b5 from=translated src=- shape=6c434cd4 vocab=4978d8b5
+-/
 theorem kMarginal_eq_zero (hA : IsVertexInjective A)
     (c : EdgeMiddleBoundaryLabel (G := G) A e →₀ ℂ) (S : Finset V) {j : V}
     (hj : j ∈ edgeMiddleVertices e) (hjS : j ∈ S)
@@ -323,7 +335,9 @@ theorem kMarginal_eq_zero (hA : IsVertexInjective A)
   rw [Finset.prod_erase_mul S _ hjS]
   rfl
 
-/-- The kernel condition descends when a middle vertex `j ∈ S` is removed.-/
+/-- The kernel condition descends when a middle vertex `j ∈ S` is removed.
+@isnad1 id=edgemidd.4h8v.s6.98cd29b59159 from=translated src=- shape=178146f4 vocab=597dc044
+-/
 theorem edgeMiddleKernelCondition_erase (hA : IsVertexInjective A)
     (c : EdgeMiddleBoundaryLabel (G := G) A e →₀ ℂ) (S : Finset V) {j : V}
     (hj : j ∈ edgeMiddleVertices e) (hjS : j ∈ S)
@@ -365,7 +379,9 @@ theorem edgeMiddleKernelCondition_erase (hA : IsVertexInjective A)
 /-! ### Surjectivity of the boundary label and the terminal relation -/
 
 omit [Fintype V] [DecidableRel G.Adj] in
-/-- An edge incident to both endpoints of `e` is `e` itself.-/
+/-- An edge incident to both endpoints of `e` is `e` itself.
+@isnad1 id=eq.2h4v.s8.af0a7777cb0d from=translated src=- shape=7b7cda77 vocab=d3222588
+-/
 theorem incidentBoth_eq_edge (f : Edge G)
     (h1 : f.1.1 = e.1.1 ∨ f.1.2 = e.1.1) (h2 : f.1.1 = e.1.2 ∨ f.1.2 = e.1.2) : f = e := by
   have hflt := f.2.1; have helt := e.2.1
@@ -389,7 +405,9 @@ noncomputable def boundaryWitness (hpos : ∀ f : Edge G, 0 < A.bondDim f)
       ⟨0, hpos f.1⟩
 
 omit [Fintype V] in
-/-- The boundary label of the witness configuration is the given label.-/
+/-- The boundary label of the witness configuration is the given label.
+@isnad1 id=eq.1h6v.s6.b9893968caa8 from=translated src=- shape=edc47a13 vocab=d1893225
+-/
 theorem boundaryLabelOfComplement_boundaryWitness (hpos : ∀ f : Edge G, 0 < A.bondDim f)
     (ρ : EdgeMiddleBoundaryLabel (G := G) A e) :
     boundaryLabelOfComplement (G := G) A e
@@ -410,7 +428,9 @@ theorem boundaryLabelOfComplement_boundaryWitness (hpos : ∀ f : Edge G, 0 < A.
     rw [boundaryWitness, dite_eq_right hnotL, dite_eq_left hR]
 
 /-- The kernel condition at the empty region forces the coefficient family to
-vanish.-/
+vanish.
+@isnad1 id=eq.3h6v.s7.1384ac33885b from=translated src=- shape=a823be00 vocab=beffd01e
+-/
 theorem edgeMiddleKernelCondition_empty_eq_zero (hA : IsVertexInjective A)
     (hpos : ∀ f : Edge G, 0 < A.bondDim f)
     (c : EdgeMiddleBoundaryLabel (G := G) A e →₀ ℂ)
@@ -467,7 +487,9 @@ theorem edgeMiddleKernelCondition_empty_eq_zero (hA : IsVertexInjective A)
 
 omit [Fintype V] in
 /-- A complement configuration matches the residual data of `ρ` exactly when its
-boundary label is `ρ`.-/
+boundary label is `ρ`.
+@isnad1 id=iff.0h7v.s8.7b5cc488d58f from=translated src=- shape=1aef5248 vocab=69a0a477
+-/
 theorem edgeOpenBoundaryMatches_iff_boundaryLabel
     (ρ : EdgeMiddleBoundaryLabel (G := G) A e) (ζ : EdgeComplementConfig (G := G) A e) :
     edgeOpenBoundaryMatches (G := G) A e ρ.1 ρ.2 ζ ↔
@@ -484,7 +506,9 @@ theorem edgeOpenBoundaryMatches_iff_boundaryLabel
     · exact congrFun (congrArg Prod.snd h) ie
 
 /-- The middle tensor family expanded as a fibered sum over complement
-configurations with a given boundary label.-/
+configurations with a given boundary label.
+@isnad1 id=eq.0h7v.s11.c9037dcd077c from=translated src=- shape=a0828e6d vocab=8e5fd9d4
+-/
 theorem edgeMiddleTensorFamily_eq_fiber_sum
     (ρ : EdgeMiddleBoundaryLabel (G := G) A e) (τ : V → Fin d) :
     edgeMiddleTensorFamily (G := G) A e ρ
@@ -513,7 +537,9 @@ theorem edgeMiddleTensorFamily_eq_fiber_sum
   rfl
 
 /-- At the full middle region, the exposed indicator is identically `1`: no
-complement edge has both endpoints outside the middle region.-/
+complement edge has both endpoints outside the middle region.
+@isnad1 id=eq.0h7v.s6.bfe1d4c4123c from=translated src=- shape=4480dba6 vocab=70f62a54
+-/
 theorem exposedIndicator_edgeMiddleVertices
     (ζ ζ₀ : EdgeComplementConfig (G := G) A e) :
     exposedIndicator (G := G) A e (edgeMiddleVertices e) ζ ζ₀ = 1 := by
@@ -539,7 +565,9 @@ theorem exposedIndicator_edgeMiddleVertices
     · exact Or.inr h
 
 /-- The kernel-condition product at a middle vertex set equals the subtype
-product used in the middle tensor family.-/
+product used in the middle tensor family.
+@isnad1 id=eq.0h7v.s8.4d6dd52d696e from=translated src=- shape=71954f67 vocab=7d81e301
+-/
 theorem kProd_eq_family_prod (ζ : EdgeComplementConfig (G := G) A e) (τ : V → Fin d) :
     (∏ v ∈ edgeMiddleVertices e, (if h : v ∈ edgeMiddleVertices e then
         A.component v (fun ie => edgeComplementValue (G := G) A e ζ h ie) (τ v)
@@ -557,7 +585,9 @@ theorem kProd_eq_family_prod (ζ : EdgeComplementConfig (G := G) A e) (τ : V �
   rw [dite_eq_left v.2]
 
 /-- A vanishing linear combination of the middle tensor family gives the kernel
-condition at the full middle region.-/
+condition at the full middle region.
+@isnad1 id=edgemidd.1h6v.s10.731c134b71c5 from=translated src=- shape=528895db vocab=7a1112c6
+-/
 theorem initial_kernelCondition
     (c : EdgeMiddleBoundaryLabel (G := G) A e →₀ ℂ)
     (hc : Finsupp.linearCombination ℂ (edgeMiddleTensorFamily (G := G) A e) c = 0) :
@@ -695,7 +725,9 @@ a middle vertex \(j\),
 \]
 followed by the one-sided inverse at \(j\). In the terminal implication,
 positive bond dimensions fill the interior virtual indices of a complement
-configuration with prescribed boundary label.-/
+configuration with prescribed boundary label.
+@isnad1 id=edgebloc.2h5v.s6.c721fa024d4a from=translated src=- shape=6669a189 vocab=b4200d7f
+-/
 theorem IsVertexInjective.edgeBlockedThreeSiteInjective {A : Tensor G d}
     (hA : IsVertexInjective A) (hpos : ∀ f : Edge G, 0 < A.bondDim f) (e : Edge G) :
     EdgeBlockedThreeSiteInjective (G := G) A e :=

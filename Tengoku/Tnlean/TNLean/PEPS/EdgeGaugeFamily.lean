@@ -44,14 +44,18 @@ noncomputable def glReindex {m n : ℕ} (h : m = n) :
     GL (Fin m) ℂ ≃* GL (Fin n) ℂ :=
   Units.mapEquiv (Matrix.reindexAlgEquiv ℂ ℂ (finCongr h)).toRingEquiv.toMulEquiv
 
-/-- The matrix of a transported invertible matrix is the reindexed matrix.-/
+/-- The matrix of a transported invertible matrix is the reindexed matrix.
+@isnad1 id=eq.1h3v.s8.8a46a828d899 from=translated src=- shape=12c4dc0e vocab=e5209bf7
+-/
 theorem glReindex_coe {m n : ℕ} (h : m = n) (Z : GL (Fin m) ℂ) :
     (↑(glReindex h Z) : Matrix (Fin n) (Fin n) ℂ) =
       Matrix.reindexAlgEquiv ℂ ℂ (finCongr h) (↑Z : Matrix (Fin m) (Fin m) ℂ) :=
   rfl
 
 /-- Transporting an invertible matrix across two successive index-size equalities is transporting
-across their composite.-/
+across their composite.
+@isnad1 id=eq.2h4v.s9.dbfa021e8cad from=translated src=- shape=d299736f vocab=e0a0d5bd
+-/
 theorem glReindex_glReindex {m n k : ℕ} (h₁ : m = n) (h₂ : n = k) (Z : GL (Fin m) ℂ) :
     glReindex h₂ (glReindex h₁ Z) = glReindex (h₁.trans h₂) Z := by
   subst h₁
@@ -71,13 +75,17 @@ def glTranspose {m : ℕ} (X : GL (Fin m) ℂ) : GL (Fin m) ℂ where
     rw [← Matrix.transpose_mul, ← Units.val_mul, mul_inv_cancel, Units.val_one,
       Matrix.transpose_one]
 
-/-- The matrix of `glTranspose X` is the transpose of the matrix of `X`.-/
+/-- The matrix of `glTranspose X` is the transpose of the matrix of `X`.
+@isnad1 id=eq.0h2v.s6.0cd8c759d64f from=translated src=- shape=83a201e3 vocab=c5aec39e
+-/
 theorem glTranspose_coe {m : ℕ} (X : GL (Fin m) ℂ) :
     (↑(glTranspose X) : Matrix (Fin m) (Fin m) ℂ) =
       (↑X : Matrix (Fin m) (Fin m) ℂ)ᵀ :=
   rfl
 
-/-- The matrix of `(glTranspose X)⁻¹` is the transpose of the inverse of `X`.-/
+/-- The matrix of `(glTranspose X)⁻¹` is the transpose of the inverse of `X`.
+@isnad1 id=eq.0h2v.s7.99cf557861ef from=translated src=- shape=a0a401bd vocab=4d24111b
+-/
 theorem glTranspose_inv_coe {m : ℕ} (X : GL (Fin m) ℂ) :
     (↑(glTranspose X)⁻¹ : Matrix (Fin m) (Fin m) ℂ) =
       (↑X⁻¹ : Matrix (Fin m) (Fin m) ℂ)ᵀ := by

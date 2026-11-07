@@ -29,6 +29,9 @@ noncomputable def normalizedMatrixEntryDual {r c : Type*} (M : Matrix r c ℂ)
     (a : r) (b : c) : Module.Dual ℂ (Matrix r c ℂ) :=
   (M a b)⁻¹ • Matrix.entryLinearMap ℂ ℂ a b
 
+/--
+@isnad1 id=eq.1h5v.s6.dc0cfffc737f from=translated src=- shape=5121301a vocab=53c7847d
+-/
 @[simp]
 lemma normalizedMatrixEntryDual_apply_self {r c : Type*} {M : Matrix r c ℂ}
     {a : r} {b : c} (hM : M a b ≠ 0) :
@@ -48,7 +51,9 @@ reduction from that identity to the uniform form used here is recorded in
 
 The reference entries are the formal analogue of choosing one nonzero matrix
 entry in each right-invertible sector block after the \(F_u,\Omega_u\)
-contraction has produced the displayed product-tensor identity.-/
+contraction has produced the displayed product-tensor identity.
+@isnad1 id=ex.3h10v.s10.aa8b63d1ef98 from=translated src=- shape=18b2a95f vocab=096d3095
+-/
 theorem exists_kappa_of_piTensorProduct_eq_smul
     {d m : ℕ}
     {row col : Fin m → Type*}
@@ -145,7 +150,9 @@ proportionality to sector scalars satisfying \(\prod_v \kappa_v=1\) and
 theorem starts from the uniform product-tensor identity, as in
 `exists_kappa_of_piTensorProduct_eq_smul`; the contraction producing that
 identity from the \(F_u,\Omega_u\) maps is recorded separately in
-`docs/paper-gaps/dccsp17_periodic_overlap_route_alignment.tex`.-/
+`docs/paper-gaps/dccsp17_periodic_overlap_route_alignment.tex`.
+@isnad1 id=ex.4h11v.s10.163f9bc9e08b from=translated src=- shape=a2ce4542 vocab=66c17e2e
+-/
 theorem exists_kappa_product_one_of_piTensorProduct_eq_root_smul
     {d m : ℕ} [NeZero m]
     {row col : Fin m → Type*}

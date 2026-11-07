@@ -43,11 +43,17 @@ noncomputable def virtualConfigSplit (A : Tensor G d) (select : Edge G → Prop)
   Equiv.piEquivPiSubtypeProd select fun e => Fin (A.bondDim e)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s9.0c0aa272672f from=translated src=- shape=ff5e10cf vocab=0ecb731f
+-/
 theorem virtualConfigSplit_fst_apply (A : Tensor G d) (select : Edge G → Prop)
     [DecidablePred select] (ζ : VirtualConfig A) (e : {e : Edge G // select e}) :
     (virtualConfigSplit A select ζ).1 e = ζ e.1 := rfl
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s9.03bae4c9d23d from=translated src=- shape=fd7d66b6 vocab=1d8445ab
+-/
 theorem virtualConfigSplit_snd_apply (A : Tensor G d) (select : Edge G → Prop)
     [DecidablePred select] (ζ : VirtualConfig A) (e : {e : Edge G // ¬ select e}) :
     (virtualConfigSplit A select ζ).2 e = ζ e.1 := rfl
@@ -63,7 +69,9 @@ instance (j : V) (f : Edge G) : Decidable (IsIncidentEdge (G := G) j f) := by
   infer_instance
 
 omit [Fintype V] [DecidableRel G.Adj] in
-/-- An edge underlying an incidence at `j` satisfies the vertex-incidence predicate.-/
+/-- An edge underlying an incidence at `j` satisfies the vertex-incidence predicate.
+@isnad1 id=isincide.0h4v.s7.63231eef2432 from=translated src=- shape=c44c00c0 vocab=04754893
+-/
 theorem isIncidentEdge_of_incident (j : V) (ie : IncidentEdge G j) :
     IsIncidentEdge (G := G) j ie.1 := ie.2
 
@@ -76,11 +84,17 @@ noncomputable def vertexConfigSplitAt (A : Tensor G d) (j : V) :
   virtualConfigSplit A fun f => IsIncidentEdge (G := G) j f
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s9.3e53e89820aa from=translated src=- shape=e3103787 vocab=b6db00ac
+-/
 @[simp] theorem vertexConfigSplitAt_fst (A : Tensor G d) (j : V) (ζ : VirtualConfig A)
     (ie : IncidentEdge G j) :
     (vertexConfigSplitAt (G := G) A j ζ).1 ie = ζ ie.1 := rfl
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h8v.s9.ae1e72ad1fde from=translated src=- shape=230d5849 vocab=62dcebc9
+-/
 @[simp] theorem vertexConfigSplitAt_symm_apply_incident (A : Tensor G d) (j : V)
     (η : LocalVirtualConfig A j)
     (r : (f : {f : Edge G // ¬ IsIncidentEdge (G := G) j f}) → Fin (A.bondDim f.1))
@@ -97,6 +111,9 @@ noncomputable def virtualConfigCongr (A B : Tensor G d) (h : A.bondDim = B.bondD
   Equiv.piCongrRight fun e => finCongr (congrFun h e)
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h7v.s7.60cf561ecde3 from=translated src=- shape=7242ae84 vocab=8d46c0bc
+-/
 theorem virtualConfigCongr_apply (A B : Tensor G d) (h : A.bondDim = B.bondDim)
     (ζ : VirtualConfig A) (e : Edge G) :
     virtualConfigCongr A B h ζ e = Fin.cast (congrFun h e) (ζ e) := rfl
@@ -110,6 +127,9 @@ noncomputable def mergeVirtualConfig (A : Tensor G d) (select : Edge G → Prop)
   fun e => if select e then left e else right e
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h9v.s6.936c483935d5 from=translated src=- shape=d17be55e vocab=ff9f6f79
+-/
 @[simp]
 theorem mergeVirtualConfig_of_pos (A : Tensor G d) (select : Edge G → Prop)
     [DecidablePred select] (left right : VirtualConfig A) {e : Edge G} (he : select e) :
@@ -117,6 +137,9 @@ theorem mergeVirtualConfig_of_pos (A : Tensor G d) (select : Edge G → Prop)
   simp [mergeVirtualConfig, he]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h8v.s6.fda9e0f33d05 from=translated src=- shape=b00ccb75 vocab=ff9f6f79
+-/
 @[simp]
 theorem mergeVirtualConfig_of_neg (A : Tensor G d) (select : Edge G → Prop)
     [DecidablePred select] (left right : VirtualConfig A) {e : Edge G} (he : ¬ select e) :
@@ -124,12 +147,18 @@ theorem mergeVirtualConfig_of_neg (A : Tensor G d) (select : Edge G → Prop)
   simp [mergeVirtualConfig, he]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h6v.s6.832c8dbd9826 from=translated src=- shape=b374bad2 vocab=91304a6f
+-/
 theorem mergeVirtualConfig_self (A : Tensor G d) (select : Edge G → Prop)
     [DecidablePred select] (ζ : VirtualConfig A) : mergeVirtualConfig A select ζ ζ = ζ := by
   ext e
   by_cases he : select e <;> simp [mergeVirtualConfig, he]
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.0h7v.s9.d05d32e18454 from=translated src=- shape=e8af92a7 vocab=17ee1933
+-/
 theorem virtualConfigSplit_mergeVirtualConfig (A : Tensor G d) (select : Edge G → Prop)
     [DecidablePred select] (left right : VirtualConfig A) :
     virtualConfigSplit A select (mergeVirtualConfig A select left right) =
@@ -142,7 +171,9 @@ theorem virtualConfigSplit_mergeVirtualConfig (A : Tensor G d) (select : Edge G 
     exact mergeVirtualConfig_of_neg A select left right e.2
 
 omit [Fintype V] in
-/-- Reindexing virtual bonds commutes with a piecewise merge.-/
+/-- Reindexing virtual bonds commutes with a piecewise merge.
+@isnad1 id=eq.1h8v.s8.2b08cf451b96 from=translated src=- shape=4497ae04 vocab=7602db0d
+-/
 theorem virtualConfigCongr_mergeVirtualConfig (A B : Tensor G d)
     (h : A.bondDim = B.bondDim) (select : Edge G → Prop) [DecidablePred select]
     (left right : VirtualConfig A) :
@@ -165,6 +196,9 @@ noncomputable def regionMerge (A : Tensor G d) (R : Finset V)
   mergeVirtualConfig A (IsRegionIncidentEdge (G := G) R) p.1 p.2
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h7v.s6.fff3fd2a9697 from=translated src=- shape=cdf4dea8 vocab=2831e78d
+-/
 @[simp]
 theorem regionMerge_of_incident (A : Tensor G d) (R : Finset V)
     (p : VirtualConfig A × VirtualConfig A) {e : Edge G}
@@ -172,6 +206,9 @@ theorem regionMerge_of_incident (A : Tensor G d) (R : Finset V)
   exact mergeVirtualConfig_of_pos A _ _ _ he
 
 omit [Fintype V] in
+/--
+@isnad1 id=eq.1h7v.s6.1739be2f428f from=translated src=- shape=d1a7f4ef vocab=a146588a
+-/
 @[simp]
 theorem regionMerge_of_not_incident (A : Tensor G d) (R : Finset V)
     (p : VirtualConfig A × VirtualConfig A) {e : Edge G}
@@ -179,7 +216,9 @@ theorem regionMerge_of_not_incident (A : Tensor G d) (R : Finset V)
   exact mergeVirtualConfig_of_neg A _ _ _ he
 
 omit [Fintype V] in
-/-- The region vertex product reads the first input of `regionMerge`.-/
+/-- The region vertex product reads the first input of `regionMerge`.
+@isnad1 id=eq.0h7v.s9.a9f148e4ebc0 from=translated src=- shape=8ad460a7 vocab=c7eedcee
+-/
 theorem regionProd_eq_merge (A : Tensor G d) (R : Finset V)
     (σ : RegionPhysicalConfig (V := V) (d := d) R)
     (p : VirtualConfig A × VirtualConfig A) :
@@ -198,7 +237,9 @@ theorem regionProd_eq_merge (A : Tensor G d) (R : Finset V)
 
 omit [Fintype V] in
 /-- A vertex product reads the second configuration through a region merge if the two
-configurations agree on every edge incident to both the merge region and the product region.-/
+configurations agree on every edge incident to both the merge region and the product region.
+@isnad1 id=eq.1h8v.s9.0595744e840a from=translated src=- shape=40c25454 vocab=585cda2e
+-/
 theorem regionProd_p2_eq_merge_of_incident_agree (A : Tensor G d) (T B : Finset V)
     (σ : RegionPhysicalConfig (V := V) (d := d) B)
     (p : VirtualConfig A × VirtualConfig A)
@@ -220,7 +261,9 @@ theorem regionProd_p2_eq_merge_of_incident_agree (A : Tensor G d) (T B : Finset 
   · rw [regionMerge_of_not_incident A T p hT]
 
 /-- The complement vertex product reads the second input of `regionMerge`, provided the two
-inputs agree on the boundary of the region.-/
+inputs agree on the boundary of the region.
+@isnad1 id=eq.1h7v.s9.94f02e307640 from=translated src=- shape=4c72d650 vocab=3b45302d
+-/
 theorem complementProd_eq_merge (A : Tensor G d) (R : Finset V)
     (τ : RegionPhysicalConfig (V := V) (d := d) (Finset.univ \ R))
     (p : VirtualConfig A × VirtualConfig A)
@@ -254,7 +297,9 @@ merge reads `p.1`.
 
 Source: arXiv:1804.04964, Section 3, Lemma `inj_isomorph`, lines 355--486 of
 `Papers/1804.04964/paper_normal.tex` (the host-side boundary-edge reading);
-`docs/paper-gaps/peps_normal_ft_2d_overlap.tex`, Step 3.-/
+`docs/paper-gaps/peps_normal_ft_2d_overlap.tex`, Step 3.
+@isnad1 id=eq.1h7v.s6.1d4e6b4e796a from=translated src=- shape=572282cd vocab=10f5ef18
+-/
 theorem regionBoundaryLabel_regionMerge_of_subset_left {T H : Finset V} (hHT : H ⊆ T)
     (p : VirtualConfig A × VirtualConfig A) :
     regionBoundaryLabel (G := G) A H (regionMerge (G := G) A T p) =
@@ -275,7 +320,9 @@ otherwise the merge reads `p.2` directly.
 
 Source: arXiv:1804.04964, Section 3, Lemma `inj_isomorph`, lines 355--486 of
 `Papers/1804.04964/paper_normal.tex` (the complement-side boundary-edge reading);
-`docs/paper-gaps/peps_normal_ft_2d_overlap.tex`, Step 3.-/
+`docs/paper-gaps/peps_normal_ft_2d_overlap.tex`, Step 3.
+@isnad1 id=eq.2h7v.s7.eb156b9e97dc from=translated src=- shape=18658cc9 vocab=d2623d16
+-/
 theorem regionBoundaryLabel_regionMerge_compl_of_subset {T K : Finset V}
     (hKT : K ⊆ Finset.univ \ T) (p : VirtualConfig A × VirtualConfig A)
     (hp : regionBoundaryLabel (G := G) A T p.1 = regionBoundaryLabel (G := G) A T p.2) :
@@ -312,7 +359,9 @@ omit [Fintype V] in
 incident to `B ⊆ T` are `T`-incident, where the merge reads `p.1`.
 
 Source: arXiv:1804.04964, Section 3, lines 1205--1210 of `Papers/1804.04964/paper_normal.tex`;
-`docs/paper-gaps/peps_normal_ft_2d_overlap.tex`, Step 3.-/
+`docs/paper-gaps/peps_normal_ft_2d_overlap.tex`, Step 3.
+@isnad1 id=eq.1h8v.s9.f4cfc8019f5a from=translated src=- shape=57c02fc0 vocab=7d1796ed
+-/
 theorem regionProd_p1_eq_merge_of_subset {T B : Finset V} (hBT : B ⊆ T)
     (σ : RegionPhysicalConfig (V := V) (d := d) B) (p : VirtualConfig A × VirtualConfig A) :
     (∏ w : {w : V // w ∈ B}, A.component w.1 (fun ie => p.1 ie.1) (σ w)) =
@@ -330,7 +379,9 @@ reads `p.2`) or, being `T`-incident with an endpoint in `B ⊆ univ \ T`, is a `
 where the agreement pins it.
 
 Source: arXiv:1804.04964, Section 3, lines 1205--1210 of `Papers/1804.04964/paper_normal.tex`;
-`docs/paper-gaps/peps_normal_ft_2d_overlap.tex`, Step 3.-/
+`docs/paper-gaps/peps_normal_ft_2d_overlap.tex`, Step 3.
+@isnad1 id=eq.2h8v.s9.4cc827edeefb from=translated src=- shape=83ec9302 vocab=a39ed42b
+-/
 theorem regionProd_p2_eq_merge_of_compl {T B : Finset V} (hBT : B ⊆ Finset.univ \ T)
     (σ : RegionPhysicalConfig (V := V) (d := d) B) (p : VirtualConfig A × VirtualConfig A)
     (hp : regionBoundaryLabel (G := G) A T p.1 = regionBoundaryLabel (G := G) A T p.2) :
@@ -356,7 +407,9 @@ theorem regionProd_p2_eq_merge_of_compl {T B : Finset V} (hBT : B ⊆ Finset.uni
 open scoped Classical in
 /-- The blocked-region weight grouped over the configurations realizing a boundary label: a
 boundary-indicator config sum collapses the blocked-region weight to a sum over the global
-configurations, grouping by the boundary label.-/
+configurations, grouping by the boundary label.
+@isnad1 id=eq.0h7v.s8.07fbabf86ac9 from=translated src=- shape=ea2e17d4 vocab=97c04986
+-/
 theorem blockedWeight_as_configSum (R : Finset V)
     (σ : RegionPhysicalConfig (V := V) (d := d) R)
     (f : RegionBoundaryConfig (G := G) A R → ℂ) :
@@ -379,7 +432,9 @@ theorem blockedWeight_as_configSum (R : Finset V)
 /-! ### Constant-cardinality fiber sums -/
 
 /-- Collapse a sum whose summand factors through a map to virtual configurations, when all
-fibers of that map on the indexing finset have the same cardinality.-/
+fibers of that map on the indexing finset have the same cardinality.
+@isnad1 id=eq.1h10v.s7.236eba74ff6f from=translated src=- shape=6b0017b6 vocab=07be25e8
+-/
 theorem sum_comp_of_config_fiber_card {A : Tensor G d} {ι M : Type*} [AddCommMonoid M]
     (s : Finset ι) (merge : ι → VirtualConfig A) (n : ℕ)
     (hcard : ∀ η : VirtualConfig A, (s.filter fun x => merge x = η).card = n)

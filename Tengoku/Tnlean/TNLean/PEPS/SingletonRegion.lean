@@ -62,7 +62,9 @@ omit [Fintype V] in
 /-- Vertex injectivity is exactly injectivity of every singleton blocked tensor.
 
 Source: arXiv:1804.04964, Section 3;
-`Papers/1804.04964/paper_normal.tex`, lines 981--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 981--1009.
+@isnad1 id=singleto.1h5v.s5.8e520d2fda93 from=translated src=- shape=eef10761 vocab=b379fd52
+-/
 theorem IsVertexInjective.singletonRegionTensorInjective {A : Tensor G d}
     (hA : IsVertexInjective A) (v : V) :
     SingletonRegionTensorInjective (G := G) A v := by
@@ -109,7 +111,9 @@ omit [Fintype V] in
 of the source contraction step.
 
 Source: arXiv:1804.04964, Section 3;
-`Papers/1804.04964/paper_normal.tex`, lines 981--1009.-/
+`Papers/1804.04964/paper_normal.tex`, lines 981--1009.
+@isnad1 id=singleto.1h5v.s5.07470bff31ea from=translated src=- shape=62c1ac86 vocab=aa310560
+-/
 theorem ofSingletonComparison
     {κ : RegionInjectivityData V} {A : Tensor G d}
     (hComparison :
@@ -132,7 +136,9 @@ injectivity gives $\kappa(\{v\})$ for every $v$, and finite iteration of the
 injective-union lemma gives $\kappa(R)$.
 
 Source: arXiv:1804.04964, Section 3;
-`Papers/1804.04964/paper_normal.tex`, lines 981--1009 and 1322--1404.-/
+`Papers/1804.04964/paper_normal.tex`, lines 981--1009 and 1322--1404.
+@isnad1 id=isinject.4h6v.s6.d22588a85bdf from=translated src=- shape=2ba3de4c vocab=a35f553e
+-/
 theorem finset_injective_of_singletons
     {κ : RegionInjectivityData V} {A : Tensor G d}
     (hUnion : RegionInjectivityUnionClosure κ)

@@ -60,12 +60,21 @@ instance : DecidableRel g3.Adj := by
 def e3 : Edge g3 := ⟨(0, 1), by constructor <;> decide⟩
 def f3 : Edge g3 := ⟨(0, 2), by constructor <;> decide⟩
 
+/--
+@isnad1 id=ne.0h0v.s3.30c039eeb0cc from=translated src=- shape=9094f7d5 vocab=50f7d715
+-/
 theorem f3_ne_e3 : f3 ≠ e3 := by decide
 
 /-- bond dimension: 1 on e (distinguished), 0 on f (the extra zero bond at u).-/
 def bd : Edge g3 → ℕ := fun g => if g = e3 then 1 else 0
 
+/--
+@isnad1 id=eq.0h0v.s3.bceeb78646a0 from=translated src=- shape=b0ae1d2b vocab=e646be4b
+-/
 theorem bd_e3 : bd e3 = 1 := by simp [bd]
+/--
+@isnad1 id=eq.0h0v.s3.450c8c225231 from=translated src=- shape=b0ae1d2b vocab=b78ed432
+-/
 theorem bd_f3 : bd f3 = 0 := by simp [bd, f3_ne_e3]
 
 /-- The tensor: d = 2. Right endpoint (vertex 1) outputs e_0 = ![1,0] on its
@@ -78,10 +87,22 @@ def a3 : Tensor g3 2 where
     | 1 => fun _ => ![1, 0]
     | 2 => fun _ _ => 0
 
+/--
+@isnad1 id=eq.0h0v.s4.51191da0e576 from=translated src=- shape=abc65a57 vocab=c01df8af
+-/
 theorem a3_bond_dim_e3 : a3.bondDim e3 = 1 := bd_e3
+/--
+@isnad1 id=eq.0h0v.s4.25a4c9a54d6d from=translated src=- shape=abc65a57 vocab=796cc15f
+-/
 theorem a3_bond_dim_f3 : a3.bondDim f3 = 0 := bd_f3
 
+/--
+@isnad1 id=eq.0h0v.s6.b1d773b9326c from=translated src=- shape=adb3796a vocab=53df69e6
+-/
 theorem e3_left : e3.1.1 = (0 : V3) := rfl
+/--
+@isnad1 id=eq.0h0v.s6.3b974d5198c1 from=translated src=- shape=cf20fa0d vocab=53df69e6
+-/
 theorem e3_right : e3.1.2 = (1 : V3) := rfl
 
 /-- f3 as an incident edge of vertex 0.-/
@@ -109,16 +130,22 @@ instance : IsEmpty (ResidualLocalConfig a3 (edgeLeftIncident (G := g3) e3)) := b
 instance : IsEmpty (EdgeMiddleBoundaryLabel (G := g3) a3 e3) :=
   Prod.isEmpty_left
 
-/-- The only incident edge of vertex 1 is the distinguished edge e3.-/
+/-- The only incident edge of vertex 1 is the distinguished edge e3.
+@isnad1 id=eq.0h1v.s7.3215ca7efa9d from=translated src=- shape=f8e4b3f5 vocab=08171cf4
+-/
 theorem incident_one_eq (ie : IncidentEdge g3 (1 : V3)) : ie.1 = e3 := by
   revert ie; decide
 
-/-- Every incident-edge bond at vertex 1 has dimension 1.-/
+/-- Every incident-edge bond at vertex 1 has dimension 1.
+@isnad1 id=eq.0h1v.s7.f9a02c29985e from=translated src=- shape=295f0b70 vocab=e9719d7f
+-/
 theorem bond_dim_incident_one (ie : IncidentEdge g3 (1 : V3)) :
     a3.bondDim ie.1 = 1 := by
   rw [incident_one_eq ie]; exact a3_bond_dim_e3
 
-/-- The right endpoint local config type has exactly one element.-/
+/-- The right endpoint local config type has exactly one element.
+@isnad1 id=eq.0h2v.s6.ead2f528a880 from=translated src=- shape=d831f4c5 vocab=996794c5
+-/
 theorem right_config_unique :
     ∀ a b : LocalVirtualConfig a3 (1 : V3), a = b := by
   intro a b
@@ -127,12 +154,16 @@ theorem right_config_unique :
   have : Subsingleton (Fin (a3.bondDim ie.1)) := by rw [h1]; infer_instance
   apply Subsingleton.elim
 
-/-- `a3.component 1 η = ![1,0]` for every (the unique) config `η`.-/
+/-- `a3.component 1 η = ![1,0]` for every (the unique) config `η`.
+@isnad1 id=eq.0h1v.s6.980381dfc60b from=translated src=- shape=c01f1b1a vocab=e63c2660
+-/
 theorem a3_component_one (η : LocalVirtualConfig a3 (1 : V3)) :
     a3.component (1 : V3) η = ![1, 0] := rfl
 
 /-- The right endpoint local tensor map applied to `c` evaluated at index 0
-recovers `c` at the unique config.-/
+recovers `c` at the unique config.
+@isnad1 id=eq.0h2v.s9.7fcc5c6f5c3a from=translated src=- shape=bff2cf8e vocab=1ee46f5f
+-/
 theorem local_tensor_map_one_apply_zero (c : LocalVirtualConfig a3 (1 : V3) → ℂ)
     (η₀ : LocalVirtualConfig a3 (1 : V3)) :
     localTensorMap a3 (1 : V3) c 0 = c η₀ := by
@@ -146,7 +177,9 @@ theorem local_tensor_map_one_apply_zero (c : LocalVirtualConfig a3 (1 : V3) → 
     exact absurd rfl hb
   · intro h; exact absurd (Finset.mem_univ η₀) h
 
-/-- Right endpoint local tensor map is injective.-/
+/-- Right endpoint local tensor map is injective.
+@isnad1 id=injectiv.0h0v.s9.85081260a005 from=translated src=- shape=25c4d787 vocab=6e05989c
+-/
 theorem right_injective : Function.Injective (localTensorMap a3 (1 : V3)) := by
   intro c c' h
   funext η
@@ -154,13 +187,17 @@ theorem right_injective : Function.Injective (localTensorMap a3 (1 : V3)) := by
   rw [local_tensor_map_one_apply_zero c η, local_tensor_map_one_apply_zero c' η] at h0
   exact h0
 
-/-- Left endpoint local tensor map is injective (its domain is empty).-/
+/-- Left endpoint local tensor map is injective (its domain is empty).
+@isnad1 id=injectiv.0h0v.s9.aceb9dbd5c8a from=translated src=- shape=25c4d787 vocab=6e05989c
+-/
 theorem left_injective : Function.Injective (localTensorMap a3 (0 : V3)) := by
   intro c c' _
   funext η
   exact (IsEmpty.false η).elim
 
-/-- The blocked three-site object is injective.-/
+/-- The blocked three-site object is injective.
+@isnad1 id=edgebloc.0h0v.s4.0a67222c1c70 from=translated src=- shape=e008ef65 vocab=5e6cb19b
+-/
 theorem a3_edge_blocked_three_site_injective :
     EdgeBlockedThreeSiteInjective (G := g3) a3 e3 :=
   { left_injective := by
@@ -184,11 +221,16 @@ def o2bad : (Fin 2 → ℂ) →ₗ[ℂ] (Fin 2 → ℂ) where
   map_add' x y := by funext i; fin_cases i <;> simp
   map_smul' c x := by funext i; fin_cases i <;> simp
 
+/--
+@isnad1 id=eq.0h0v.s8.59a825db5ff8 from=translated src=- shape=d587cc6f vocab=9a5b4660
+-/
 theorem o2bad_apply_e0 : o2bad (![1, 0] : Fin 2 → ℂ) = ![0, 1] := by
   funext i; fin_cases i <;> simp [o2bad]
 
 /-- Everything in the image of the right endpoint local tensor map has a zero in
-coordinate 1 (the image lies in the span of `![1,0]`).-/
+coordinate 1 (the image lies in the span of `![1,0]`).
+@isnad1 id=eq.0h1v.s9.db1d8dfda76d from=translated src=- shape=75404ea4 vocab=1ee46f5f
+-/
 theorem local_tensor_map_one_apply_one (w : LocalVirtualConfig a3 (1 : V3) → ℂ) :
     localTensorMap a3 (1 : V3) w 1 = 0 := by
   classical
@@ -206,7 +248,9 @@ instance : Inhabited (LocalVirtualConfig a3 (1 : V3)) :=
 /-- The unique right-endpoint config.-/
 def η₀ : LocalVirtualConfig a3 (1 : V3) := default
 
-/-- The right endpoint local tensor map sends the single basis vector to `![1,0]`.-/
+/-- The right endpoint local tensor map sends the single basis vector to `![1,0]`.
+@isnad1 id=eq.0h0v.s10.a8aba9c437b8 from=translated src=- shape=15ba4b90 vocab=b9b9d685
+-/
 theorem local_tensor_map_one_single :
     localTensorMap a3 (1 : V3) (Pi.single η₀ (1 : ℂ)) = ![1, 0] := by
   rw [localTensorMap_apply_single]
@@ -245,7 +289,9 @@ def physicalToVirtualInsertionStatement : Prop :=
 /-- The original `physical_to_virtual_insertion` statement is FALSE as written:
 no proof of its signature can exist, because our explicit witness
 `(g3, a3, e3, id, o2bad)` satisfies all of its hypotheses yet refutes its
-conclusion.-/
+conclusion.
+@isnad1 id=not.0h0v.s1.3478195a61a9 from=translated src=- shape=49959d42 vocab=1473ee6d
+-/
 theorem physical_to_virtual_insertion_statement_false :
     ¬ physicalToVirtualInsertionStatement := by
   intro hThm

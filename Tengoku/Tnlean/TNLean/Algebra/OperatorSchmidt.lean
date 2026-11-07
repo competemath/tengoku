@@ -49,7 +49,9 @@ span to the whole space.
 This is the dual-functional step used in
 arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2 ("applying the inverse of
 the injective tensor"): isolating one family member reads off a single gauge
-column.-/
+column.
+@isnad1 id=ex.1h4v.s7.46078fdf723e from=translated src=- shape=7c2387b0 vocab=7e4d8f4d
+-/
 theorem exists_dual_isolating
     {K W : Type*} [DecidableEq K]
     [AddCommGroup W] [Module ℂ W]
@@ -77,7 +79,9 @@ left vectors `b_ν`, with the coefficient matrix `g μ ν` given by the dual
 functional of `a'_μ` evaluated on `b'_ν`.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2, lines
-1157--1204 of `Papers/1804.04964/paper_normal.tex`.-/
+1157--1204 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=ex.2h7v.s7.02045b4dd433 from=translated src=- shape=85f27bc7 vocab=6655f24e
+-/
 theorem gauge_eq1
     {K V1 V2 : Type*} [Fintype K]
     {a b : K → V1 → ℂ} {a' b' : K → V2 → ℂ}
@@ -111,7 +115,9 @@ and using linear independence of the left family `b` forces the right vector
 `b'_ν` to equal `∑_μ g μ ν • a'_μ` with the *same* gauge matrix `g`.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2, lines
-1157--1204 of `Papers/1804.04964/paper_normal.tex`.-/
+1157--1204 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.3h10v.s7.ca538782c323 from=translated src=- shape=4f42a955 vocab=6655f24e
+-/
 theorem gauge_eq2
     {K V1 V2 : Type*} [Fintype K]
     {a b : K → V1 → ℂ} {a' b' : K → V2 → ℂ} {g : K → K → ℂ}
@@ -156,7 +162,9 @@ linearly independent, then the forward gauge followed by the reverse gauge is
 the identity: `∑_ν g μ ν * g' ν κ = δ_{μκ}`.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2, lines
-1157--1204 of `Papers/1804.04964/paper_normal.tex`.-/
+1157--1204 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.3h8v.s7.87c615b9bb73 from=translated src=- shape=7c0c9e4b vocab=a6d0ebd7
+-/
 theorem gauge_inv
     {K V1 : Type*} [Fintype K] [DecidableEq K]
     {a b : K → V1 → ℂ} {g g' : K → K → ℂ}

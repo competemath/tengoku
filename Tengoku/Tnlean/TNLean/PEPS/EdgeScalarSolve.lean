@@ -82,7 +82,9 @@ noncomputable def sigmaSwap :
 
 omit [DecidableRel G.Adj] in
 /-- The product of the two oriented endpoint contributions of a single edge is
-`1`: the lower endpoint carries `s e` and the upper endpoint carries `(s e)⁻¹`.-/
+`1`: the lower endpoint carries `s e` and the upper endpoint carries `(s e)⁻¹`.
+@isnad1 id=eq.0h4v.s8.e61b2d14d41b from=translated src=- shape=0068edb5 vocab=aefc553b
+-/
 theorem prod_incVertex_endpoint (s : Edge G → ℂˣ) (e : Edge G) :
     (∏ x : incVertex (G := G) e, (if e.1.1 = x.1 then s e else (s e)⁻¹)) = 1 := by
   have hne : (e.1.1 : V) ≠ e.1.2 := ne_of_lt e.2.1
@@ -100,7 +102,9 @@ theorem prod_incVertex_endpoint (s : Edge G → ℂˣ) (e : Edge G) :
     Finset.prod_singleton, ite_eq_left rfl, ite_eq_right hne, mul_inv_cancel]
 
 /-- **Necessity of the product-one condition.** For any edge-scalar family, the
-product of the oriented incidences over all vertices is `1`.-/
+product of the oriented incidences over all vertices is `1`.
+@isnad1 id=eq.0h3v.s6.34bac442ac60 from=translated src=- shape=cfb0ba9c vocab=63f1cb5f
+-/
 theorem prod_orientedIncidence_eq_one (s : Edge G → ℂˣ) :
     (∏ v : V, orientedIncidence (G := G) s v) = 1 := by
   have hsigma : (∏ v : V, orientedIncidence (G := G) s v)
@@ -134,13 +138,17 @@ noncomputable def liftEdge (v₀ : V) (e : Edge (G.induce ({v₀}ᶜ : Set V))) 
     have := e.2.2; rwa [induce_adj] at this⟩
 
 omit [Fintype V] [DecidableRel G.Adj] in
-/-- A lifted edge does not have `v₀` as its lower endpoint.-/
+/-- A lifted edge does not have `v₀` as its lower endpoint.
+@isnad1 id=ne.0h4v.s6.6fad651bc513 from=translated src=- shape=0890304e vocab=ef21d6db
+-/
 theorem liftEdge_ne_fst (v₀ : V) (e : Edge (G.induce ({v₀}ᶜ : Set V))) :
     (liftEdge (G := G) v₀ e).1.1 ≠ v₀ := by
   have h := e.1.1.2; rw [Set.mem_compl_iff, Set.mem_singleton_iff] at h; exact h
 
 omit [Fintype V] [DecidableRel G.Adj] in
-/-- A lifted edge does not have `v₀` as its upper endpoint.-/
+/-- A lifted edge does not have `v₀` as its upper endpoint.
+@isnad1 id=ne.0h4v.s6.1882a45a57bb from=translated src=- shape=0813e043 vocab=ef21d6db
+-/
 theorem liftEdge_ne_snd (v₀ : V) (e : Edge (G.induce ({v₀}ᶜ : Set V))) :
     (liftEdge (G := G) v₀ e).1.2 ≠ v₀ := by
   have h := e.1.2.2; rw [Set.mem_compl_iff, Set.mem_singleton_iff] at h; exact h
@@ -182,7 +190,9 @@ noncomputable def incEquiv (v₀ : V) (w : (↑({v₀}ᶜ : Set V))) :
 
 omit [Fintype V] [DecidableRel G.Adj] in
 /-- The oriented endpoint contribution is preserved by `incEquiv` when the edge
-scalars agree under lifting.-/
+scalars agree under lifting.
+@isnad1 id=eq.1h7v.s10.dff5fb2976d2 from=translated src=- shape=59d9b272 vocab=203ca0bd
+-/
 theorem edgeScalarUnit_incEquiv (v₀ : V) (w : (↑({v₀}ᶜ : Set V)))
     (s : Edge G → ℂˣ) (s' : Edge (G.induce ({v₀}ᶜ : Set V)) → ℂˣ)
     (hs : ∀ e, s (liftEdge (G := G) v₀ e) = s' e)
@@ -200,7 +210,9 @@ theorem edgeScalarUnit_incEquiv (v₀ : V) (w : (↑({v₀}ᶜ : Set V)))
 
 /-- The product of oriented endpoint contributions over the `v₀`-avoiding
 incident edges of `w` equals the oriented incidence of `s'` in the
-vertex-deleted subgraph.-/
+vertex-deleted subgraph.
+@isnad1 id=eq.1h6v.s10.7c71b6584b86 from=translated src=- shape=a160640b vocab=c4f528d0
+-/
 theorem prod_free_eq (v₀ : V) (w : (↑({v₀}ᶜ : Set V)))
     (s : Edge G → ℂˣ) (s' : Edge (G.induce ({v₀}ᶜ : Set V)) → ℂˣ)
     (hs : ∀ e, s (liftEdge (G := G) v₀ e) = s' e) :
@@ -218,7 +230,9 @@ subsingleton (the unique edge `{v₀, w}`, if any). The lemmas below compute the
 
 omit [Fintype V] [DecidableRel G.Adj] in
 /-- The endpoint pair of an edge incident to both `w` and `v₀` (with `w ≠ v₀`) is
-forced to be `(min v₀ w, max v₀ w)`.-/
+forced to be `(min v₀ w, max v₀ w)`.
+@isnad1 id=eq.3h5v.s7.56e0453a3113 from=translated src=- shape=2cb637a1 vocab=5d0a33fe
+-/
 theorem v0Inc_pair (v₀ w : V) (hw : w ≠ v₀) (e : Edge G)
     (hinc : e.1.1 = w ∨ e.1.2 = w) (hv0 : v0Inc (G := G) v₀ e) :
     e.1 = (min v₀ w, max v₀ w) := by
@@ -233,7 +247,9 @@ theorem v0Inc_pair (v₀ w : V) (hw : w ≠ v₀) (e : Edge G)
 
 omit [Fintype V] [DecidableRel G.Adj] in
 /-- The edges of `G` incident to both `w` and `v₀` (with `w ≠ v₀`) form a
-subsingleton.-/
+subsingleton.
+@isnad1 id=subsingl.1h4v.s7.42bbb5d179f1 from=translated src=- shape=3c8541b7 vocab=b356bd06
+-/
 theorem v0Inc_subsingleton (v₀ w : V) (hw : w ≠ v₀) :
     Subsingleton {ie : IncidentEdge G w // v0Inc (G := G) v₀ ie.1} := by
   refine ⟨fun a b => ?_⟩
@@ -254,6 +270,9 @@ noncomputable def edge0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) : Edge G :=
       · rw [min_eq_right h.le, max_eq_left h.le]; exact hadj.symm⟩
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=or.1h4v.s7.5f17c58cda86 from=translated src=- shape=0625e824 vocab=53574eb3
+-/
 theorem edge0_inc_v0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) :
     (edge0 (G := G) v₀ w₀ hadj).1.1 = v₀ ∨ (edge0 (G := G) v₀ w₀ hadj).1.2 = v₀ := by
   rcases lt_or_gt_of_ne (G.ne_of_adj hadj) with h | h
@@ -265,6 +284,9 @@ theorem edge0_inc_v0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) :
     exact max_eq_left h.le
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=or.1h4v.s7.0ce2057a408e from=translated src=- shape=b87e3e1d vocab=53574eb3
+-/
 theorem edge0_inc_w0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) :
     (edge0 (G := G) v₀ w₀ hadj).1.1 = w₀ ∨ (edge0 (G := G) v₀ w₀ hadj).1.2 = w₀ := by
   rcases lt_or_gt_of_ne (G.ne_of_adj hadj) with h | h
@@ -276,6 +298,9 @@ theorem edge0_inc_w0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) :
     exact min_eq_right h.le
 
 omit [Fintype V] [DecidableRel G.Adj] in
+/--
+@isnad1 id=v0inc.1h4v.s4.35f00a2c0c22 from=translated src=- shape=cad3df20 vocab=bd85320d
+-/
 theorem edge0_v0Inc (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) :
     v0Inc (G := G) v₀ (edge0 (G := G) v₀ w₀ hadj) := by
   rcases lt_or_gt_of_ne (G.ne_of_adj hadj) with h | h
@@ -288,7 +313,9 @@ theorem edge0_v0Inc (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) :
 
 /-- If the edge scalar is `1` on every `v₀`-incident edge other than `{v₀, w₀}`,
 then the `v₀`-incident part of the oriented incidence product at a vertex
-`v ≠ v₀, w₀` is `1`.-/
+`v ≠ v₀, w₀` is `1`.
+@isnad1 id=eq.3h6v.s9.1e84850db185 from=translated src=- shape=eab0350f vocab=f62797f1
+-/
 theorem v0Inc_prod_ne (v₀ w₀ v : V) (hv : v ≠ v₀) (hvw₀ : v ≠ w₀) (s : Edge G → ℂˣ)
     (hs1 : ∀ e : Edge G, v0Inc (G := G) v₀ e → e.1 ≠ (min v₀ w₀, max v₀ w₀) → s e = 1) :
     (∏ ie : {ie : IncidentEdge G v // v0Inc (G := G) v₀ ie.1},
@@ -306,7 +333,9 @@ theorem v0Inc_prod_ne (v₀ w₀ v : V) (hv : v ≠ v₀) (hvw₀ : v ≠ w₀) 
   simp
 
 /-- The `v₀`-incident part of the oriented incidence product at `w₀` collapses to
-the single contribution of the edge `{v₀, w₀}`.-/
+the single contribution of the edge `{v₀, w₀}`.
+@isnad1 id=eq.2h5v.s9.35c6944696bd from=translated src=- shape=870f401d vocab=f03033f9
+-/
 theorem v0Inc_prod_w0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) (hw₀ne : w₀ ≠ v₀)
     (s : Edge G → ℂˣ) :
     (∏ ie : {ie : IncidentEdge G w₀ // v0Inc (G := G) v₀ ie.1},
@@ -323,7 +352,9 @@ theorem v0Inc_prod_w0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) (hw₀ne : w₀ �
   · intro hb; exact absurd (Finset.mem_univ a0) hb
 
 /-- Splitting the oriented incidence product at `w` into its `v₀`-incident and
-`v₀`-avoiding parts.-/
+`v₀`-avoiding parts.
+@isnad1 id=eq.0h5v.s10.742729d26678 from=translated src=- shape=bfb240bd vocab=db7d4d8c
+-/
 theorem orientedIncidence_split (v₀ : V) (s : Edge G → ℂˣ) (w : V) :
     orientedIncidence (G := G) s w
       = (∏ ie : {ie : IncidentEdge G w // v0Inc (G := G) v₀ ie.1},
@@ -341,7 +372,9 @@ theorem orientedIncidence_split (v₀ : V) (s : Edge G → ℂˣ) (w : V) :
 
 /-- The oriented incidence product at `v₀` collapses to the single contribution
 of the edge `{v₀, w₀}`, when the edge scalar is `1` on every other `v₀`-incident
-edge.-/
+edge.
+@isnad1 id=eq.2h5v.s8.e874045c8155 from=translated src=- shape=f9342e4c vocab=04e3b192
+-/
 theorem orientedIncidence_v0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) (s : Edge G → ℂˣ)
     (hs1 : ∀ e : Edge G, v0Inc (G := G) v₀ e → e.1 ≠ (min v₀ w₀, max v₀ w₀) → s e = 1) :
     orientedIncidence (G := G) s v₀
@@ -362,7 +395,9 @@ theorem orientedIncidence_v0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) (s : Edge 
 
 omit [Fintype V] [DecidableRel G.Adj] in
 /-- When `s` carries the chosen scalar `t v₀^{±}` on the edge `{v₀, w₀}`, the
-oriented contribution of that edge at `v₀` is `t v₀`.-/
+oriented contribution of that edge at `v₀` is `t v₀`.
+@isnad1 id=eq.3h6v.s8.e19f5f861e02 from=translated src=- shape=de71ee4d vocab=3bf0288a
+-/
 theorem unit_at_v0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) (t : V → ℂˣ) (s : Edge G → ℂˣ)
     (hs0 : s (edge0 (G := G) v₀ w₀ hadj) = (if v₀ < w₀ then t v₀ else (t v₀)⁻¹))
     (hinc : (edge0 (G := G) v₀ w₀ hadj).1.1 = v₀ ∨ (edge0 (G := G) v₀ w₀ hadj).1.2 = v₀) :
@@ -380,7 +415,9 @@ theorem unit_at_v0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) (t : V → ℂˣ) (s
 
 omit [Fintype V] [DecidableRel G.Adj] in
 /-- When `s` carries the chosen scalar `t v₀^{±}` on the edge `{v₀, w₀}`, the
-oriented contribution of that edge at `w₀` is `(t v₀)⁻¹`.-/
+oriented contribution of that edge at `w₀` is `(t v₀)⁻¹`.
+@isnad1 id=eq.3h6v.s8.55d2b3543c55 from=translated src=- shape=8942233f vocab=3bf0288a
+-/
 theorem unit_at_w0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) (t : V → ℂˣ) (s : Edge G → ℂˣ)
     (hs0 : s (edge0 (G := G) v₀ w₀ hadj) = (if v₀ < w₀ then t v₀ else (t v₀)⁻¹))
     (hinc : (edge0 (G := G) v₀ w₀ hadj).1.1 = w₀ ∨ (edge0 (G := G) v₀ w₀ hadj).1.2 = w₀) :
@@ -400,7 +437,9 @@ theorem unit_at_w0 (v₀ w₀ : V) (hadj : G.Adj v₀ w₀) (t : V → ℂˣ) (s
 
 /-- **Existence of edge scalars**, by induction on the number of vertices. On a
 connected graph, any vertex-scalar family with product `1` is the oriented
-incidence product of an edge-scalar family.-/
+incidence product of an edge-scalar family.
+@isnad1 id=ex.3h4v.s7.ad1d92fa0b10 from=translated src=- shape=63b94998 vocab=094ded85
+-/
 theorem exists_edgeScalars_aux : ∀ (n : ℕ),
     ∀ {V : Type*} [Fintype V] [LinearOrder V] (G : SimpleGraph V) [DecidableRel G.Adj],
     Fintype.card V = n → G.Connected → ∀ (t : V → ℂˣ), (∏ v, t v) = 1 →
@@ -515,7 +554,9 @@ This is the spanning-tree coboundary step of the absorption argument in the
 Fundamental Theorem for injective PEPS (arXiv:1804.04964, Section 3), recorded in
 `docs/paper-gaps/peps_gaugeConsistency_connectivity_gap.tex`. Together with
 `prod_orientedIncidence_eq_one` it shows that, on a connected graph, the
-product-one condition is exactly the solvability criterion.-/
+product-one condition is exactly the solvability criterion.
+@isnad1 id=ex.2h3v.s6.11a4c087ce1c from=translated src=- shape=a507ec50 vocab=d5313a87
+-/
 theorem exists_edgeScalars_of_connected (hconn : G.Connected)
     (t : V → ℂˣ) (ht : (∏ v, t v) = 1) :
     ∃ s : Edge G → ℂˣ, ∀ v : V, orientedIncidence (G := G) s v = t v :=

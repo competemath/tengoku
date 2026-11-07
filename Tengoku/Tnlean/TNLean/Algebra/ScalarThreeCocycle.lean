@@ -91,21 +91,27 @@ def fusionGauge (β : ScalarCocycle G) (ω : ScalarThreeCochain G) :
     ScalarThreeCochain G :=
   fun g h k => coboundary β g h k * ω g h k
 
-/-- The trivial scalar 2-cochain acts identically.-/
+/-- The trivial scalar 2-cochain acts identically.
+@isnad1 id=eq.0h2v.s5.632da6bc3a3a from=translated src=- shape=f53d27ba vocab=23bea6cb
+-/
 @[simp]
 theorem fusionGauge_one (ω : ScalarThreeCochain G) :
     fusionGauge (fun _ _ => 1) ω = ω := by
   funext g h k
   simp [fusionGauge, coboundary]
 
-/-- Successive fusion gauges multiply their scalar 2-cochains pointwise.-/
+/-- Successive fusion gauges multiply their scalar 2-cochains pointwise.
+@isnad1 id=eq.0h4v.s6.693238baca21 from=translated src=- shape=ff6f031a vocab=33b6e038
+-/
 theorem fusionGauge_comp (β γ : ScalarCocycle G) (ω : ScalarThreeCochain G) :
     fusionGauge γ (fusionGauge β ω) = fusionGauge (β * γ) ω := by
   funext g h k
   simp only [fusionGauge, coboundary, Pi.mul_apply, div_eq_mul_inv, mul_inv_rev]
   simp only [mul_assoc, mul_comm, mul_left_comm]
 
-/-- The coboundary of every scalar 2-cochain is a scalar 3-cocycle.-/
+/-- The coboundary of every scalar 2-cochain is a scalar 3-cocycle.
+@isnad1 id=iscocycl.0h2v.s3.6dfee6a77998 from=translated src=- shape=ed10201d vocab=9d862320
+-/
 theorem isCocycle_coboundary (β : ScalarCocycle G) : IsCocycle (coboundary β) := by
   intro g h k l
   simp only [coboundary, mul_assoc]
@@ -113,7 +119,9 @@ theorem isCocycle_coboundary (β : ScalarCocycle G) : IsCocycle (coboundary β) 
   push_cast
   field_simp
 
-/-- The pointwise product of scalar 3-cocycles is a scalar 3-cocycle.-/
+/-- The pointwise product of scalar 3-cocycles is a scalar 3-cocycle.
+@isnad1 id=iscocycl.2h3v.s6.2d62c4d8636f from=translated src=- shape=1333e5f0 vocab=7b200025
+-/
 theorem IsCocycle.mul {ω η : ScalarThreeCochain G}
     (hω : IsCocycle ω) (hη : IsCocycle η) : IsCocycle (ω * η) := by
   intro g h k l
@@ -125,14 +133,18 @@ theorem IsCocycle.mul {ω η : ScalarThreeCochain G}
         (η g h k * η g (h * k) l * η h k l) := by rw [hω, hη]
     _ = _ := by ac_rfl
 
-/-- Fusion-tensor scalar gauge transformations preserve the 3-cocycle equation.-/
+/-- Fusion-tensor scalar gauge transformations preserve the 3-cocycle equation.
+@isnad1 id=iscocycl.1h3v.s4.64bd9af31da2 from=translated src=- shape=c9bdb183 vocab=dc8e2db1
+-/
 theorem IsCocycle.fusionGauge {ω : ScalarThreeCochain G} (hω : IsCocycle ω)
     (β : ScalarCocycle G) : IsCocycle (fusionGauge β ω) :=
   (isCocycle_coboundary β).mul hω
 
 /-- A scalar 2-cochain has normalized 3-coboundary exactly when its values on
 both identity axes agree with one constant. Normalizing that constant to one is
-sufficient but not necessary.-/
+sufficient but not necessary.
+@isnad1 id=iff.0h2v.s6.033dd2ab02d2 from=translated src=- shape=62a8e818 vocab=db7ab35f
+-/
 theorem isNormalized_coboundary_iff (β : ScalarCocycle G) :
     IsNormalized (coboundary β) ↔
       ∃ c : Units ℂ, (∀ g, β 1 g = c) ∧ (∀ g, β g 1 = c) := by
@@ -149,13 +161,17 @@ theorem isNormalized_coboundary_iff (β : ScalarCocycle G) :
       simp
     · simp [coboundary, hright]
 
-/-- A normalized scalar 2-cochain has normalized 3-coboundary.-/
+/-- A normalized scalar 2-cochain has normalized 3-coboundary.
+@isnad1 id=isnormal.1h2v.s4.d0a25349882e from=translated src=- shape=b161458b vocab=bb14d5e5
+-/
 theorem isNormalized_coboundary {β : ScalarCocycle G}
     (hβ : β.IsNormalized) : IsNormalized (coboundary β) := by
   apply (isNormalized_coboundary_iff β).2
   exact ⟨1, hβ.1, hβ.2⟩
 
-/-- Pointwise multiplication preserves normalized scalar 3-cochains.-/
+/-- Pointwise multiplication preserves normalized scalar 3-cochains.
+@isnad1 id=isnormal.2h3v.s6.c5d0afc6d8f9 from=translated src=- shape=1333e5f0 vocab=b0f4fbc5
+-/
 theorem IsNormalized.mul {ω η : ScalarThreeCochain G}
     (hω : IsNormalized ω) (hη : IsNormalized η) : IsNormalized (ω * η) := by
   rcases hω with ⟨hω₁, hω₂, hω₃⟩
@@ -165,7 +181,9 @@ theorem IsNormalized.mul {ω η : ScalarThreeCochain G}
   · simp [hω₂, hη₂]
   · simp [hω₃, hη₃]
 
-/-- A fusion gauge preserves normalization when its scalar 2-cochain is normalized.-/
+/-- A fusion gauge preserves normalization when its scalar 2-cochain is normalized.
+@isnad1 id=isnormal.2h3v.s4.c158224ad394 from=translated src=- shape=c2c20cae vocab=0c8339ea
+-/
 theorem IsNormalized.fusionGauge {ω : ScalarThreeCochain G}
     (hω : IsNormalized ω) {β : ScalarCocycle G} (hβ : β.IsNormalized) :
     IsNormalized (fusionGauge β ω) :=
@@ -178,11 +196,15 @@ def CohomologousTo (ω η : ScalarThreeCochain G) : Prop :=
 
 namespace CohomologousTo
 
-/-- Cohomologous-to is reflexive.-/
+/-- Cohomologous-to is reflexive.
+@isnad1 id=cohomolo.0h2v.s3.1bf3ec7bbf00 from=translated src=- shape=82448d51 vocab=b446895d
+-/
 theorem refl (ω : ScalarThreeCochain G) : CohomologousTo ω ω :=
   ⟨fun _ _ => 1, fusionGauge_one ω⟩
 
-/-- Cohomologous-to is symmetric.-/
+/-- Cohomologous-to is symmetric.
+@isnad1 id=cohomolo.1h3v.s4.dcc38e3ef80a from=translated src=- shape=1a0a78f4 vocab=b446895d
+-/
 theorem symm {ω η : ScalarThreeCochain G} (h : CohomologousTo ω η) :
     CohomologousTo η ω := by
   obtain ⟨β, hβ⟩ := h
@@ -190,7 +212,9 @@ theorem symm {ω η : ScalarThreeCochain G} (h : CohomologousTo ω η) :
   rw [← hβ, fusionGauge_comp, mul_inv_cancel]
   exact fusionGauge_one η
 
-/-- Cohomologous-to is transitive.-/
+/-- Cohomologous-to is transitive.
+@isnad1 id=cohomolo.2h4v.s4.04b3809023e4 from=translated src=- shape=5499c893 vocab=b446895d
+-/
 theorem trans {ω η θ : ScalarThreeCochain G}
     (hωη : CohomologousTo ω η) (hηθ : CohomologousTo η θ) :
     CohomologousTo ω θ := by
@@ -203,7 +227,9 @@ theorem trans {ω η θ : ScalarThreeCochain G}
     _ = fusionGauge β η := congrArg (fusionGauge β) hγ
     _ = ω := hβ
 
-/-- Cohomologous-to is an equivalence relation.-/
+/-- Cohomologous-to is an equivalence relation.
+@isnad1 id=equivale.0h1v.s3.e87cdc1338ba from=translated src=- shape=aa7e0af4 vocab=344a2afc
+-/
 theorem equivalence : Equivalence (CohomologousTo (G := G)) :=
   ⟨refl, symm, trans⟩
 

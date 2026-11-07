@@ -90,11 +90,17 @@ realization of arXiv:1606.00608, Appendix C.2, lines 1490--1493.-/
 noncomputable def pairingIdempotent : Matrix (Fin 2) (Fin 2) ℝ :=
   !![1, 0; 0, 0]
 
+/--
+@isnad1 id=eq.0h0v.s6.855f04a315a2 from=translated src=- shape=ec4ec374 vocab=8a28c799
+-/
 lemma pairingR_mul_pairingL : pairingR * pairingL = T := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [pairingR, pairingL, T, Matrix.mul_apply, Fin.sum_univ_two] <;> ring
 
+/--
+@isnad1 id=eq.0h0v.s6.cadd40702e6f from=translated src=- shape=ec4ec374 vocab=0090bde2
+-/
 lemma pairingL_mul_pairingR : pairingL * pairingR = pairingIdempotent := by
   ext i j
   fin_cases i <;> fin_cases j <;>
@@ -102,7 +108,9 @@ lemma pairingL_mul_pairingR : pairingL * pairingR = pairingIdempotent := by
       Fin.sum_univ_three] <;> ring
 
 /-- The product in the opposite order is idempotent, exactly as in the
-operator identity of arXiv:1606.00608, Appendix C.2, lines 1490--1493.-/
+operator identity of arXiv:1606.00608, Appendix C.2, lines 1490--1493.
+@isnad1 id=isidempo.0h0v.s6.634cb611e4cd from=translated src=- shape=0a271b47 vocab=03d1bf27
+-/
 theorem pairingL_mul_pairingR_isIdempotent :
     IsIdempotentElem (pairingL * pairingR) := by
   rw [pairingL_mul_pairingR]
@@ -110,31 +118,48 @@ theorem pairingL_mul_pairingR_isIdempotent :
   fin_cases i <;> fin_cases j <;>
     simp [pairingIdempotent, Matrix.mul_apply, Fin.sum_univ_two]
 
+/--
+@isnad1 id=eq.0h0v.s6.1e474940ec80 from=translated src=- shape=1b84d866 vocab=8841b515
+-/
 lemma T_sq : T * T = P := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [T, P, Matrix.mul_apply, Fin.sum_univ_three] <;> ring
 
+/--
+@isnad1 id=eq.0h0v.s6.8bd6a93eea65 from=translated src=- shape=1b84d866 vocab=8841b515
+-/
 lemma P_mul_T : P * T = P := by
   ext i j
   fin_cases i <;> fin_cases j <;>
     simp [T, P, Matrix.mul_apply, Fin.sum_univ_three] <;> ring
 
+/--
+@isnad1 id=le.0h2v.s4.fa9baf12b0b4 from=translated src=- shape=0da53712 vocab=1ccd7df1
+-/
 lemma T_nonneg (i j : Fin 3) : 0 ≤ T i j := by
   fin_cases i <;> fin_cases j <;>
     first
     | (simp [T]; norm_num)
     | simp [T]
 
+/--
+@isnad1 id=lt.0h2v.s7.e4a9488767ae from=translated src=- shape=623552f2 vocab=6edf54fb
+-/
 lemma T_pow2_pos (i j : Fin 3) : 0 < (T ^ 2) i j := by
   have h : T ^ 2 = P := by rw [sq]; exact T_sq
   rw [h]
   fin_cases i <;> fin_cases j <;> simp [P]
 
-/-- `T` is primitive in Mathlib's sense.-/
+/-- `T` is primitive in Mathlib's sense.
+@isnad1 id=isprimit.0h0v.s4.da2ca5514c80 from=translated src=- shape=bfe16b09 vocab=b0c3ccfd
+-/
 theorem T_isPrimitive : Matrix.IsPrimitive T :=
   ⟨T_nonneg, 2, by norm_num, T_pow2_pos⟩
 
+/--
+@isnad1 id=eq.1h1v.s7.bc6d2dcd43f6 from=translated src=- shape=d726a698 vocab=518824a7
+-/
 lemma T_pow_eq_P : ∀ k : ℕ, 2 ≤ k → T ^ k = P := by
   intro k hk
   induction k with
@@ -146,13 +171,21 @@ lemma T_pow_eq_P : ∀ k : ℕ, 2 ≤ k → T ^ k = P := by
       rw [pow_succ, ih h2]
       exact P_mul_T
 
+/--
+@isnad1 id=eq.0h0v.s4.94992e847790 from=translated src=- shape=5ca0a7a0 vocab=35bcbb53
+-/
 lemma trace_T : Matrix.trace T = 1 := by
   simp [Matrix.trace, T, Fin.sum_univ_three]; ring
 
+/--
+@isnad1 id=eq.0h0v.s4.1f786e6c7d26 from=translated src=- shape=5ca0a7a0 vocab=19b27de2
+-/
 lemma trace_P : Matrix.trace P = 1 := by
   simp [Matrix.trace, P, Fin.sum_univ_three]; ring
 
-/-- Every positive power of `T` has the same trace as `T`.-/
+/-- Every positive power of `T` has the same trace as `T`.
+@isnad1 id=eq.1h1v.s7.b72a76894dd9 from=translated src=- shape=b95d45b6 vocab=b4c27aaa
+-/
 theorem T_tracePowersConstant :
     ∀ k : ℕ, 0 < k → Matrix.trace (T ^ k) = Matrix.trace T := by
   intro k hk
@@ -160,7 +193,9 @@ theorem T_tracePowersConstant :
   · interval_cases k; simp
   · rw [T_pow_eq_P k h, trace_T, trace_P]
 
-/-- `T` has no rank-one factorization.-/
+/-- `T` has no rank-one factorization.
+@isnad1 id=not.0h0v.s6.3a8dff76ecf4 from=translated src=- shape=1b9781ad vocab=da6c6830
+-/
 theorem T_not_rankOne : ¬ ∃ a b : Fin 3 → ℝ, T = Matrix.vecMulVec a b := by
   rintro ⟨a, b, hT⟩
   have h00 : a 0 * b 0 = (1 : ℝ) / 2 := by
@@ -182,7 +217,9 @@ theorem T_not_rankOne : ¬ ∃ a b : Fin 3 → ℝ, T = Matrix.vecMulVec a b := 
 
 /-- The explicit counterexample to the standalone implication above: `T` is
 primitive, satisfies the constant-trace-powers hypothesis, yet has no rank-one
-factorization.-/
+factorization.
+@isnad1 id=and.0h0v.s7.8f198919a68e from=translated src=- shape=4636096b vocab=50e1a035
+-/
 theorem counterexample :
     Matrix.IsPrimitive T ∧
       (∀ k : ℕ, 0 < k → Matrix.trace (T ^ k) = Matrix.trace T) ∧
@@ -194,7 +231,9 @@ rectangular pairing identity used in arXiv:1606.00608, Appendix C.2, lines
 1490--1497: `T = pairingR * pairingL`, while the product in the opposite order
 is idempotent. Nevertheless `T` is not an outer product. Thus the rectangular
 identity proves the trace-power display at lines 1494--1497, but does not prove
-the rank-one assertion at lines 1498--1499.-/
+the rank-one assertion at lines 1498--1499.
+@isnad1 id=and.0h0v.s8.32c2f7655cf2 from=translated src=- shape=e364e9e1 vocab=38385649
+-/
 theorem counterexample_with_rectangular_pairing :
     Matrix.IsPrimitive T ∧
       Matrix.trace T = 1 ∧

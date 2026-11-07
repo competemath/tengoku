@@ -37,7 +37,9 @@ variable {G : SimpleGraph V} [DecidableRel G.Adj] {d : ℕ}
 
 omit [DecidableRel G.Adj] in
 /-- The boundary edges of $V\setminus\{v\}$ are precisely the edges incident to
-$v$.-/
+$v$.
+@isnad1 id=iff.0h4v.s5.a5772de127b5 from=translated src=- shape=ed22e85f vocab=b9a4cfdb
+-/
 theorem isRegionBoundaryEdge_vertexComplementVertices_iff (v : V) (f : Edge G) :
     IsRegionBoundaryEdge (G := G) (vertexComplementVertices (V := V) v) f ↔
       IsIncidentEdge (G := G) v f := by
@@ -84,6 +86,9 @@ noncomputable def vertexComplementPhysicalConfigEquiv (v : V) :
       VertexComplementPhysicalConfig (V := V) (d := d) v :=
   Equiv.piCongrLeft (fun _ : {w : V // w ≠ v} => Fin d) (vertexComplementVertexEquiv v)
 
+/--
+@isnad1 id=eq.0h6v.s7.197ae9af1872 from=translated src=- shape=b653927a vocab=db8671dc
+-/
 @[simp]
 theorem vertexComplementBoundaryConfigEquiv_regionBoundaryLabel
     (A : Tensor G d) (v : V) (ζ : VirtualConfig A) :
@@ -94,7 +99,9 @@ theorem vertexComplementBoundaryConfigEquiv_regionBoundaryLabel
   rfl
 
 /-- Blocking the complement of one vertex gives the vertex-complement tensor
-after identifying its open virtual and physical indices.-/
+after identifying its open virtual and physical indices.
+@isnad1 id=eq.0h7v.s8.3adf41ce2257 from=translated src=- shape=10d80ff4 vocab=43494eb1
+-/
 theorem regionBlockedWeight_vertexComplement (A : Tensor G d) (v : V)
     (bdry : RegionBoundaryConfig (G := G) A (vertexComplementVertices (V := V) v))
     (τ : RegionPhysicalConfig (V := V) (d := d)
@@ -132,7 +139,9 @@ restores the source assumption; the gap is recorded in
 Source: arXiv:1804.04964, Section 3. Lines 979--981 state that contracting
 injective tensors gives an injective tensor; lines 1207--1210 select one tensor
 and block all remaining tensors into the second injective tensor
-(`Papers/1804.04964/paper_normal.tex`).-/
+(`Papers/1804.04964/paper_normal.tex`).
+@isnad1 id=vertexco.2h5v.s6.435e6f8673c4 from=translated src=- shape=512d78df vocab=0a4dcacc
+-/
 theorem vertexComplementTensorInjective_of_isVertexInjective
     (A : Tensor G d) (v : V) (hA : IsVertexInjective A)
     (hpos : ∀ f : Edge G, 0 < A.bondDim f) :

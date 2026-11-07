@@ -47,7 +47,9 @@ variable {m n : Type*} [Fintype m] [DecidableEq m] [Nonempty m]
 omit [Nonempty m] in
 /-- For a unitary matrix, the transpose is a left inverse of the entrywise
 conjugate. It permits multiplying `conj(x)x = e^{iφ}𝟙` on the left by `xᵀ` in
-arXiv:1703.09188, `paper_v2.tex` lines 1035--1036.-/
+arXiv:1703.09188, `paper_v2.tex` lines 1035--1036.
+@isnad1 id=eq.1h2v.s7.3adc16b2d18d from=translated src=- shape=40928611 vocab=9df5209a
+-/
 theorem transpose_mul_map_star_of_mem_unitaryGroup {x : Matrix m m ℂ}
     (hx : x ∈ unitaryGroup m ℂ) : xᵀ * x.map (starRingEnd ℂ) = 1 := by
   have hstar : xᴴ * x = 1 := by
@@ -79,7 +81,9 @@ identity `conj(x) x ⊗ conj(y) y = 𝟙`, then one sign `σ = ±1` satisfies `x
 This is the algebraic tail of the conjugation-symmetry proposition in
 arXiv:1703.09188, `paper_v2.tex` lines 1033--1038: the Kronecker identity splits
 into reciprocal scalars `e^{iφ}` and `e^{-iφ}`, and `𝟙 = xx† = e^{2iφ}𝟙` forces
-`e^{iφ} = ±1`, so the two reciprocal scalars coincide.-/
+`e^{iφ} = ±1`, so the two reciprocal scalars coincide.
+@isnad1 id=ex.3h4v.s9.1870e73482e2 from=translated src=- shape=3001ad81 vocab=71764308
+-/
 theorem exists_common_transpose_sign_of_kronecker_map_star_mul_eq_one
     {x : Matrix m m ℂ} {y : Matrix n n ℂ} (hx : x ∈ unitaryGroup m ℂ)
     (hy : y ∈ unitaryGroup n ℂ)
@@ -102,7 +106,9 @@ theorem exists_common_transpose_sign_of_kronecker_map_star_mul_eq_one
 `conj(x) x ⊗ conj(y) y = 𝟙` between two unitary matrices leaves exactly two possibilities:
 both matrices are symmetric, or both are skew-symmetric. This is the form of
 arXiv:1703.09188, `paper_v2.tex` lines 1033--1038 used in the structural
-discussion of symmetric and skew-symmetric unitaries that follows it.-/
+discussion of symmetric and skew-symmetric unitaries that follows it.
+@isnad1 id=or.3h4v.s8.c003b45ec3dd from=translated src=- shape=24a623f0 vocab=0f1aac63
+-/
 theorem transpose_eq_self_or_transpose_eq_neg_of_kronecker_map_star_mul_eq_one
     {x : Matrix m m ℂ} {y : Matrix n n ℂ} (hx : x ∈ unitaryGroup m ℂ)
     (hy : y ∈ unitaryGroup n ℂ)

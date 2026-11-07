@@ -37,7 +37,9 @@ This is the group-valued version of the phase choice in arXiv:1708.00029,
 Appendix A, lines 1093--1102.  The witness is
 φ(k) = (κ₀ ··· κ_{k-1})⁻¹; hence κ_k = φ(k) · φ(k+1)⁻¹ for each
 interior edge, and the hypothesis ∏ κ = 1 supplies the closing equation
-κ(n) = φ(n) · φ(0)⁻¹ at the last vertex.-/
+κ(n) = φ(n) · φ(0)⁻¹ at the last vertex.
+@isnad1 id=ex.1h3v.s8.cb217438757c from=translated src=- shape=f5312ff2 vocab=343e5b80
+-/
 lemma exists_fin_succ_coboundary_of_prod_eq_one {n : ℕ}
     (κ : Fin (n + 1) → G) (hprod : ∏ v : Fin (n + 1), κ v = 1) :
     ∃ φ : Fin (n + 1) → G,
@@ -71,7 +73,9 @@ lemma exists_fin_succ_coboundary_of_prod_eq_one {n : ℕ}
 This is the same phase choice as `exists_fin_succ_coboundary_of_prod_eq_one`,
 rewritten in the cyclic notation used in arXiv:1708.00029, Appendix A, lines
 1093--1102: after choosing vertex phases `φ`, every edge phase satisfies
-`κ v = φ v * (φ (v + 1))⁻¹`.-/
+`κ v = φ v * (φ (v + 1))⁻¹`.
+@isnad1 id=ex.1h3v.s7.61d058ec43cd from=translated src=- shape=8cb7f1b6 vocab=17699891
+-/
 lemma exists_fin_cyclic_coboundary_of_prod_eq_one {m : ℕ} [NeZero m]
     (κ : Fin m → G) (hprod : ∏ v : Fin m, κ v = 1) :
     ∃ φ : Fin m → G, ∀ v : Fin m, κ v = φ v * (φ (v + 1))⁻¹ := by
@@ -93,7 +97,9 @@ cyclic coboundary by complex phases.
 This is the complex-scalar form of the phase choice in arXiv:1708.00029,
 Appendix A, lines 1093--1102.  If `κ_v` has unit modulus and `∏_v κ_v = 1`,
 then one may choose unit-modulus vertex phases `φ_v` such that
-`κ_v = φ_v · φ_{v+1}^{-1}` around the cycle.-/
+`κ_v = φ_v · φ_{v+1}^{-1}` around the cycle.
+@isnad1 id=ex.2h2v.s7.ce8110b54011 from=translated src=- shape=90bf129d vocab=2821104c
+-/
 lemma exists_fin_complex_unit_cyclic_coboundary_of_prod_eq_one {m : ℕ} [NeZero m]
     (κ : Fin m → ℂ) (hκ : ∀ v : Fin m, ‖κ v‖ = 1)
     (hprod : ∏ v : Fin m, κ v = 1) :
@@ -121,7 +127,9 @@ lemma exists_fin_complex_unit_cyclic_coboundary_of_prod_eq_one {m : ℕ} [NeZero
 This is the form used in the periodic-overlap phase assembly of
 arXiv:1708.00029, Appendix A, lines 1093--1102.  If the sector comparison is
 indexed by an offset `q`, the same vertex phases satisfy the coboundary equation
-at the matched sector `u + q`.-/
+at the matched sector `u + q`.
+@isnad1 id=ex.2h3v.s7.f625f390a4b3 from=translated src=- shape=f82fbf1f vocab=2821104c
+-/
 lemma exists_fin_complex_unit_cyclic_coboundary_shift_of_prod_eq_one
     {m : ℕ} [NeZero m]
     (κ : Fin m → ℂ) (hκ : ∀ v : Fin m, ‖κ v‖ = 1)

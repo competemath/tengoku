@@ -116,7 +116,9 @@ def IsBlockIndependent (L : LSymbol G X) : Prop :=
     IsBlockIndependentEll (gauge β γ L)
 
 omit [MulAction G X] in
-/-- Block-constant L-symbols have block-independent `ell`.-/
+/-- Block-constant L-symbols have block-independent `ell`.
+@isnad1 id=isblocki.1h3v.s4.dc0f7d4eb333 from=translated src=- shape=429ea207 vocab=64902b7c
+-/
 theorem IsBlockConstant.isBlockIndependentEll {L : LSymbol G X}
     (hL : IsBlockConstant L) : IsBlockIndependentEll L := by
   intro x y a b g
@@ -124,21 +126,27 @@ theorem IsBlockConstant.isBlockIndependentEll {L : LSymbol G X}
   rw [hL x y, hL x y]
 
 omit [MulAction G X] in
-/-- Trivial `ell` is block-independent.-/
+/-- Trivial `ell` is block-independent.
+@isnad1 id=isblocki.1h3v.s4.1b5b3c687811 from=translated src=- shape=429ea207 vocab=622ee7ac
+-/
 theorem IsTrivialEll.isBlockIndependentEll {L : LSymbol G X}
     (hL : IsTrivialEll L) : IsBlockIndependentEll L := by
   intro x y a b g
   rw [hL x, hL y]
 
 omit [Group G] [MulAction G X] in
-/-- Trivial L-symbols are block-constant.-/
+/-- Trivial L-symbols are block-constant.
+@isnad1 id=isblockc.1h3v.s4.f7a4cf8b7997 from=translated src=- shape=dd44cd6a vocab=6556f93e
+-/
 theorem IsTrivial.isBlockConstant {L : LSymbol G X}
     (hL : IsTrivial L) : IsBlockConstant L := by
   intro x y g h
   rw [hL x, hL y]
 
 omit [MulAction G X] in
-/-- Trivial L-symbols have trivial `ell`.-/
+/-- Trivial L-symbols have trivial `ell`.
+@isnad1 id=istrivia.1h3v.s4.43b0d3159cd5 from=translated src=- shape=429ea207 vocab=4fd25bfc
+-/
 theorem IsTrivial.isTrivialEll {L : LSymbol G X}
     (hL : IsTrivial L) : IsTrivialEll L := by
   intro x a b g
@@ -147,7 +155,9 @@ theorem IsTrivial.isTrivialEll {L : LSymbol G X}
 
 /-- Compatibility at `(g,1,1)` gives
 `Lˣ_{g,1} = Lˣ_{1,1} / ω(g,1,1)`.
-This is arXiv:2502.20257, `eq:aux1`.-/
+This is arXiv:2502.20257, `eq:aux1`.
+@isnad1 id=eq.1h6v.s7.5399ddc7ae50 from=translated src=- shape=99d811b6 vocab=e827ffde
+-/
 theorem IsCompatible.apply_right_one {L : LSymbol G X}
     {ω : ScalarThreeCochain G} (hL : IsCompatible L ω) (x : X) (g : G) :
     L x g 1 = L x 1 1 / ω g 1 1 := by
@@ -162,7 +172,9 @@ theorem IsCompatible.apply_right_one {L : LSymbol G X}
 
 /-- Compatibility at `(1,1,g)` gives
 `Lˣ_{1,g} = ω(1,1,g) L^{g • x}_{1,1}`.
-This is arXiv:2502.20257, `eq:aux2`.-/
+This is arXiv:2502.20257, `eq:aux2`.
+@isnad1 id=eq.1h6v.s7.727af6a447c0 from=translated src=- shape=1b890f60 vocab=0241a19e
+-/
 theorem IsCompatible.apply_left_one {L : LSymbol G X}
     {ω : ScalarThreeCochain G} (hL : IsCompatible L ω) (x : X) (g : G) :
     L x 1 g = ω 1 1 g * L (g • x) 1 1 := by
@@ -181,7 +193,9 @@ def blockFactor (L : LSymbol G X) (ω : ScalarThreeCochain G) (x₀ : X)
 `A(g,h) = (ω(gh,1,1) ell^{x₀}_{g,h;h})⁻¹`.
 
 This is arXiv:2502.20257, `eq:Lfact`, with the division by `ell` required by
-its definition.-/
+its definition.
+@isnad1 id=eq.2h8v.s6.8eef016d1771 from=translated src=- shape=8e9b4b1b vocab=b326ab2f
+-/
 theorem factorization_of_isBlockIndependentEll {L : LSymbol G X}
     {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω)
     (hBI : IsBlockIndependentEll L) (x₀ x : X) (g h : G) :
@@ -208,7 +222,9 @@ def relativeCharacter (L : LSymbol G X) (ω : ScalarThreeCochain G) (x₀ : X)
 `L^{g • x}_{1,1} = ρ(g) Lˣ_{1,1}`.
 
 This is arXiv:2502.20257, `eq:defrho`, with the reciprocal `ell` forced by the
-corrected `eq:Lfact`.-/
+corrected `eq:Lfact`.
+@isnad1 id=eq.2h7v.s7.3f8f9cd0f90d from=translated src=- shape=330e7017 vocab=a5d10ee3
+-/
 theorem relativeCharacter_mul_base {L : LSymbol G X}
     {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω)
     (hBI : IsBlockIndependentEll L) (x₀ x : X) (g : G) :
@@ -226,7 +242,9 @@ theorem relativeCharacter_mul_base {L : LSymbol G X}
       (apply Units.ext; push_cast; field_simp)
 
 /-- The relative scalar is multiplicative, hence a one-dimensional character.
-No transitivity or finiteness of the action is needed.-/
+No transitivity or finiteness of the action is needed.
+@isnad1 id=eq.2h7v.s6.1e240c64a8c1 from=translated src=- shape=08f59f22 vocab=c2fcc3f9
+-/
 theorem relativeCharacter_mul {L : LSymbol G X}
     {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω)
     (hBI : IsBlockIndependentEll L) (x₀ : X) (g h : G) :
@@ -258,7 +276,9 @@ def factorActionGauge (L : LSymbol G X) : ActionTensorGauge G X :=
 /-- The corrected factorization is exactly a forward joint gauge multiplier:
 applying the factor gauges to the trivial L-symbol produces `L`.
 
-The inverse gauges, not these forward gauges, therefore trivialize `L`.-/
+The inverse gauges, not these forward gauges, therefore trivialize `L`.
+@isnad1 id=eq.2h5v.s6.9576abd4dfe5 from=translated src=- shape=39fb91fa vocab=e9059c9c
+-/
 theorem gauge_one_eq_of_isBlockIndependentEll {L : LSymbol G X}
     {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω)
     (hBI : IsBlockIndependentEll L) (x₀ : X) :
@@ -272,7 +292,9 @@ theorem gauge_one_eq_of_isBlockIndependentEll {L : LSymbol G X}
   (apply Units.ext; push_cast; field_simp)
 
 /-- Direct trivializing gauges for a block-independent compatible L-symbol.
-They are the pointwise inverses of the forward factor gauges.-/
+They are the pointwise inverses of the forward factor gauges.
+@isnad1 id=eq.2h5v.s7.2194384bb4d8 from=translated src=- shape=d3f4862f vocab=b8299517
+-/
 theorem gauge_inv_eq_one_of_isBlockIndependentEll {L : LSymbol G X}
     {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω)
     (hBI : IsBlockIndependentEll L) (x₀ : X) :
@@ -292,7 +314,9 @@ theorem gauge_inv_eq_one_of_isBlockIndependentEll {L : LSymbol G X}
       simp [gauge]
 
 /-- A compatible block-independent L-symbol admits a trivializing gauge.
-The only set-theoretic assumption is that a base block exists.-/
+The only set-theoretic assumption is that a base block exists.
+@isnad1 id=hastrivi.2h4v.s5.dcf65071c3e2 from=translated src=- shape=c2ddb9c2 vocab=3fffd092
+-/
 theorem hasTrivialGauge_of_isBlockIndependentEll [Nonempty X]
     {L : LSymbol G X} {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω)
     (hBI : IsBlockIndependentEll L) : HasTrivialGauge L := by
@@ -302,27 +326,35 @@ theorem hasTrivialGauge_of_isBlockIndependentEll [Nonempty X]
   exact congrFun (congrFun (congrFun
     (gauge_inv_eq_one_of_isBlockIndependentEll hCompat hBI x₀) x) g) h
 
-/-- At the scalar L-symbol level, triviality implies block constancy.-/
+/-- At the scalar L-symbol level, triviality implies block constancy.
+@isnad1 id=hasblock.1h3v.s5.398179b75b6f from=translated src=- shape=7230557d vocab=299bdfe1
+-/
 theorem HasTrivialGauge.hasBlockConstantGauge {L : LSymbol G X}
     (hL : HasTrivialGauge L) : HasBlockConstantGauge L := by
   obtain ⟨β, γ, h⟩ := hL
   exact ⟨β, γ, h.isBlockConstant⟩
 
-/-- At the scalar L-symbol level, triviality implies trivial `ell`.-/
+/-- At the scalar L-symbol level, triviality implies trivial `ell`.
+@isnad1 id=hastrivi.1h3v.s5.f6d61c1edf24 from=translated src=- shape=7230557d vocab=e0f895b0
+-/
 theorem HasTrivialGauge.hasTrivialEllGauge {L : LSymbol G X}
     (hL : HasTrivialGauge L) : HasTrivialEllGauge L := by
   obtain ⟨β, γ, h⟩ := hL
   exact ⟨β, γ, h.isTrivialEll⟩
 
 /-- At the scalar L-symbol level, block constancy implies block
-independence.-/
+independence.
+@isnad1 id=isblocki.1h3v.s5.22f2be435c0c from=translated src=- shape=7230557d vocab=37a8106f
+-/
 theorem HasBlockConstantGauge.isBlockIndependent {L : LSymbol G X}
     (hL : HasBlockConstantGauge L) : IsBlockIndependent L := by
   obtain ⟨β, γ, h⟩ := hL
   exact ⟨β, γ, h.isBlockIndependentEll⟩
 
 /-- At the scalar L-symbol level, trivial `ell` implies block
-independence.-/
+independence.
+@isnad1 id=isblocki.1h3v.s5.b36838a42277 from=translated src=- shape=7230557d vocab=2626b8fc
+-/
 theorem HasTrivialEllGauge.isBlockIndependent {L : LSymbol G X}
     (hL : HasTrivialEllGauge L) : IsBlockIndependent L := by
   obtain ⟨β, γ, h⟩ := hL
@@ -330,7 +362,9 @@ theorem HasTrivialEllGauge.isBlockIndependent {L : LSymbol G X}
 
 /-- For a supplied compatible L-symbol, scalar block independence implies
 scalar gauge triviality. Compatibility is transported through the witnessing
-gauge and the two gauges are then composed.-/
+gauge and the two gauges are then composed.
+@isnad1 id=hastrivi.2h4v.s5.09f6cb2cc3e4 from=translated src=- shape=c2ddb9c2 vocab=5e568261
+-/
 theorem IsBlockIndependent.hasTrivialGauge [Nonempty X]
     {L : LSymbol G X} {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω)
     (hL : IsBlockIndependent L) : HasTrivialGauge L := by
@@ -342,7 +376,9 @@ theorem IsBlockIndependent.hasTrivialGauge [Nonempty X]
   exact hTriv
 
 /-- Scalar-core equivalence underlying items 1 and 2 of
-arXiv:2502.20257, `prop:technical01`.-/
+arXiv:2502.20257, `prop:technical01`.
+@isnad1 id=iff.1h4v.s5.7f27cd2c6619 from=translated src=- shape=bba30f20 vocab=d4f3e079
+-/
 theorem hasTrivialGauge_iff_hasBlockConstantGauge [Nonempty X]
     {L : LSymbol G X} {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω) :
     HasTrivialGauge L ↔ HasBlockConstantGauge L := by
@@ -351,7 +387,9 @@ theorem hasTrivialGauge_iff_hasBlockConstantGauge [Nonempty X]
   · exact fun h ↦ (h.isBlockIndependent).hasTrivialGauge hCompat
 
 /-- Scalar-core equivalence underlying items 1 and 3 of
-arXiv:2502.20257, `prop:technical01`.-/
+arXiv:2502.20257, `prop:technical01`.
+@isnad1 id=iff.1h4v.s5.61693c2027b9 from=translated src=- shape=bba30f20 vocab=f0c6dbb5
+-/
 theorem hasTrivialGauge_iff_hasTrivialEllGauge [Nonempty X]
     {L : LSymbol G X} {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω) :
     HasTrivialGauge L ↔ HasTrivialEllGauge L := by
@@ -361,7 +399,9 @@ theorem hasTrivialGauge_iff_hasTrivialEllGauge [Nonempty X]
 
 /-- Scalar-core equivalence between gauge triviality and block-independent
 `ell` for a supplied compatible L-symbol. The tensor-facing item 4 of
-arXiv:2502.20257, `prop:technical01` requires an additional bridge.-/
+arXiv:2502.20257, `prop:technical01` requires an additional bridge.
+@isnad1 id=iff.1h4v.s5.3714960d8fd9 from=translated src=- shape=bba30f20 vocab=5e568261
+-/
 theorem hasTrivialGauge_iff_isBlockIndependent [Nonempty X]
     {L : LSymbol G X} {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω) :
     HasTrivialGauge L ↔ IsBlockIndependent L := by
@@ -375,7 +415,9 @@ arXiv:2502.20257, `prop:technical01` (lines 6975–6989): a gauge with all
 `Lˣ_{g,h} = 1`; a gauge with `Lˣ_{g,h}` independent of `x`; a gauge with all
 `ellˣ_{a,b;g} = 1`; and block independence. The source's fourth condition is
 stated for an MPS–MPU pair; here it is the scalar condition on the supplied
-L-symbol.-/
+L-symbol.
+@isnad1 id=tfae.1h4v.s6.14bde8bf03de from=translated src=- shape=27916e2e vocab=46a562d4
+-/
 theorem hasTrivialGauge_tfae [Nonempty X]
     {L : LSymbol G X} {ω : ScalarThreeCochain G} (hCompat : IsCompatible L ω) :
     [HasTrivialGauge L, HasBlockConstantGauge L, HasTrivialEllGauge L,

@@ -34,13 +34,17 @@ def gaussProjector (R : G → G → Matrix.unitaryGroup n ℂ) :
   finiteGroupUnitaryAverage (gaussRepresentation R)
 
 /-- The local Gauss projector is the normalized sum of the local Gauss
-operators from FBC25, Equation `eq:gauge_projs`.-/
+operators from FBC25, Equation `eq:gauge_projs`.
+@isnad1 id=eq.0h3v.s7.9b21b1cb95da from=translated src=- shape=cfd8bfc6 vocab=bf8df4e2
+-/
 theorem gaussProjector_eq_average (R : G → G → Matrix.unitaryGroup n ℂ) :
     gaussProjector R =
       (Fintype.card G : ℂ)⁻¹ • ∑ g : G, gaussOperator R g := by
   simp [gaussProjector, finiteGroupUnitaryAverage]
 
-/-- The unplaced local Gauss projector kernel is a star projection.-/
+/-- The unplaced local Gauss projector kernel is a star projection.
+@isnad1 id=isstarpr.0h3v.s7.36ef237c4cce from=translated src=- shape=1339abe5 vocab=6f2836c4
+-/
 theorem isStarProjection_gaussProjector
     (R : G → G → Matrix.unitaryGroup n ℂ) :
     IsStarProjection (gaussProjector R) :=

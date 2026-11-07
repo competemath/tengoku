@@ -72,7 +72,9 @@ def extensionActionGauge (K : StabilizerRepresentatives G X x₀)
     (Ψ 1 1 * Ψ (K.k x) (K.k x)⁻¹)
 
 /-- The explicit extension-to-gauge scalar identity in arXiv:2502.20257,
-`prop:BI_psi`, lines 7047–7056, with the corrected transition elements.-/
+`prop:BI_psi`, lines 7047–7056, with the corrected transition elements.
+@isnad1 id=eq.2h9v.s8.7592a20c1398 from=translated src=- shape=054fab99 vocab=9d2a4b28
+-/
 theorem inducedLSymbol_eq_extensionActionGauge
     (K : StabilizerRepresentatives G X x₀)
     {ψ : ScalarCocycle (MulAction.stabilizer G x₀)} {Ψ : ScalarCocycle G}
@@ -87,7 +89,9 @@ theorem inducedLSymbol_eq_extensionActionGauge
 
 /-- Inverting the printed forward gauges trivializes the induced scalar
 L-symbol, the forward implication of arXiv:2502.20257, `prop:BI_psi`
-at the representative level.-/
+at the representative level.
+@isnad1 id=hastrivi.2h6v.s7.a96623ada8cf from=translated src=- shape=cd0393cb vocab=dccdcf76
+-/
 theorem inducedLSymbol_hasTrivialGauge_of_extension
     (K : StabilizerRepresentatives G X x₀)
     {ψ : ScalarCocycle (MulAction.stabilizer G x₀)} {Ψ : ScalarCocycle G}

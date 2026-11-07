@@ -48,7 +48,9 @@ The local left inverse and the canonical local gauge map are defined in
 `PEPS/LocalGauge`. It remains to derive `BlockedMiddleGaugeFormula` from
 `SameState` by comparing the edge-blocked coefficient from `PEPS/Blocking` with
 the three-site MPS reduction, then convert it to `HasFactorizedLocalGauge` by
-`hasFactorizedLocalGauge_of_blockedMiddleGaugeFormula`.-/
+`hasFactorizedLocalGauge_of_blockedMiddleGaugeFormula`.
+@isnad1 id=ex.3h6v.s10.026d62639c58 from=translated src=- shape=79528ebc vocab=d65a52c5
+-/
 theorem localGauge_exists (A B : Tensor G d)
     (hA : IsVertexInjective A)
     (hDim : A.bondDim = B.bondDim) (v : V)
@@ -71,7 +73,9 @@ If `f` is linearly independent and `K` is an invertible square matrix indexed by
 the same finite type, then the recombined family `i ↦ ∑ j, K i j • f j` is again
 linearly independent: a vanishing combination `∑ i c i • (∑ j K i j • f j) = 0`
 rearranges to `∑ j (c ᵥ* K) j • f j = 0`, whose coefficient vector `c ᵥ* K` is
-zero by independence of `f`, and right-multiplying by `K⁻¹` forces `c = 0`.-/
+zero by independence of `f`, and right-multiplying by `K⁻¹` forces `c = 0`.
+@isnad1 id=linearin.2h4v.s7.308a49d8d71f from=translated src=- shape=aeda451e vocab=eeea3b65
+-/
 theorem linearIndependent_recombine {ι : Type*} [Fintype ι] [DecidableEq ι] {M : Type*}
     [AddCommGroup M] [Module ℂ M]
     (f : ι → M) (hf : LinearIndependent ℂ f)
@@ -109,7 +113,9 @@ theorem linearIndependent_recombine {ι : Type*} [Fintype ι] [DecidableEq ι] {
 intermediate configuration, factorizes leg by leg into the per-leg products.
 
 This is the matrix-multiplication form of the contraction `∑_{η'} ∏_i M_i(η, η')
-· N_i(η', ξ) = ∏_i (M_i · N_i)(η, ξ)` used to invert the per-edge gauge kernel.-/
+· N_i(η', ξ) = ∏_i (M_i · N_i)(η, ξ)` used to invert the per-edge gauge kernel.
+@isnad1 id=eq.1h4v.s9.2cdd0f28dae3 from=translated src=- shape=9ff445c4 vocab=c720f33a
+-/
 theorem piProductKernel_mul {ι : Type*} [Fintype ι] [DecidableEq ι] {n : ι → Type*}
     [∀ i, Fintype (n i)] [∀ i, DecidableEq (n i)]
     (M Minv : (i : ι) → Matrix (n i) (n i) ℂ)
@@ -147,7 +153,9 @@ theorem piProductKernel_mul {ι : Type*} [Fintype ι] [DecidableEq ι] {n : ι �
   · rw [ite_eq_right h, ite_eq_right (fun hall => h (funext hall))]
 
 /-- The per-leg product kernel built from per-leg invertible matrices is
-invertible, with inverse the product kernel of the per-leg inverses.-/
+invertible, with inverse the product kernel of the per-leg inverses.
+@isnad1 id=isunit.2h4v.s8.8496f64b18d5 from=translated src=- shape=2db7c76c vocab=93c041ae
+-/
 theorem piProductKernel_isUnit {ι : Type*} [Fintype ι] [DecidableEq ι] {n : ι → Type*}
     [∀ i, Fintype (n i)] [∀ i, DecidableEq (n i)]
     (M Minv : (i : ι) → Matrix (n i) (n i) ℂ)
@@ -167,7 +175,9 @@ noncomputable def edgeGaugeAtInv (B : Tensor G d)
   if ie.1.1.1 = v then (↑((Z ie.1)⁻¹)) else (↑(Z ie.1))ᵀ
 
 omit [Fintype V] in
-/-- `edgeGaugeAtInv` is a right inverse of `edgeGaugeAt`.-/
+/-- `edgeGaugeAtInv` is a right inverse of `edgeGaugeAt`.
+@isnad1 id=eq.0h7v.s11.121c48ad6fce from=translated src=- shape=acbe5d79 vocab=a7cc5f43
+-/
 theorem edgeGaugeAt_mul_inv (B : Tensor G d) (Z : (e : Edge G) → GL (Fin (B.bondDim e)) ℂ)
     (v : V) (ie : IncidentEdge G v) :
     edgeGaugeAt B Z v ie * edgeGaugeAtInv (G := G) B Z v ie = 1 := by
@@ -180,7 +190,9 @@ theorem edgeGaugeAt_mul_inv (B : Tensor G d) (Z : (e : Edge G) → GL (Fin (B.bo
       Matrix.transpose_one]
 
 omit [Fintype V] in
-/-- `edgeGaugeAtInv` is a left inverse of `edgeGaugeAt`.-/
+/-- `edgeGaugeAtInv` is a left inverse of `edgeGaugeAt`.
+@isnad1 id=eq.0h7v.s11.ce7b885b3d27 from=translated src=- shape=acbe5d79 vocab=a7cc5f43
+-/
 theorem edgeGaugeAtInv_mul (B : Tensor G d) (Z : (e : Edge G) → GL (Fin (B.bondDim e)) ℂ)
     (v : V) (ie : IncidentEdge G v) :
     edgeGaugeAtInv (G := G) B Z v ie * edgeGaugeAt B Z v ie = 1 := by
@@ -201,7 +213,9 @@ independence is therefore preserved (`linearIndependent_recombine`), and the bon
 are unchanged (`absorbEdgeGauges_bondDim`).
 
 Source: arXiv:1804.04964, Section 3, lines 1037--1038: the absorbed family
-`Btilde` is again a normal (injective) PEPS.-/
+`Btilde` is again a normal (injective) PEPS.
+@isnad1 id=isvertex.1h5v.s6.a9327d618d11 from=translated src=- shape=f9cc7726 vocab=4a9c89f0
+-/
 theorem isVertexInjective_absorbEdgeGauges (B : Tensor G d)
     (Z : (e : Edge G) → GL (Fin (B.bondDim e)) ℂ) (hB : IsVertexInjective B) :
     IsVertexInjective (absorbEdgeGauges B Z) := by
@@ -233,7 +247,9 @@ omit [Fintype V] in
 /-- Reindexing a PEPS tensor along a bond-dimension equality preserves vertex
 injectivity: the local coefficient family of the reindexed tensor is the
 original family precomposed with the bondwise index recast, an injective
-reindexing of the configuration type.-/
+reindexing of the configuration type.
+@isnad1 id=isvertex.2h5v.s6.4b9844e2fec9 from=translated src=- shape=51f4c36a vocab=5cc541b5
+-/
 theorem isVertexInjective_reindexTensor (B : Tensor G d) {bd : Edge G → ℕ}
     (h : bd = B.bondDim) (hB : IsVertexInjective B) :
     IsVertexInjective (reindexTensor (G := G) B h) := by
@@ -258,7 +274,9 @@ vertex with a nonempty incident-edge set, a nonzero scalar `c` with
 
 This is the per-vertex scalar of arXiv:1804.04964, Section 3 (the passage after
 `eq:inj_equal_edge`), recorded in
-`docs/paper-gaps/peps_gaugeConsistency_connectivity_gap.tex`.-/
+`docs/paper-gaps/peps_gaugeConsistency_connectivity_gap.tex`.
+@isnad1 id=ex.4h7v.s9.18cbd38389e1 from=translated src=- shape=c791a391 vocab=b9505811
+-/
 theorem perVertexScalar (A B : Tensor G d)
     (hA : IsVertexInjective A) (hB : IsVertexInjective B)
     (hpos : ∀ e : Edge G, 0 < A.bondDim e)

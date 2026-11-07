@@ -156,7 +156,9 @@ separated product directly
 many-shared-bond case the source does not separate the product; it follows the
 $Z,U,W$ gauge-consistency route via `threeLeg_residual_forms_scalar`. Documented
 in `docs/paper-gaps/peps_injective_ft_section3_route.tex` (arXiv:1804.04964,
-Section 3, lines 1157--1204 of `Papers/1804.04964/paper_normal.tex`).-/
+Section 3, lines 1157--1204 of `Papers/1804.04964/paper_normal.tex`).
+@isnad1 id=twoblock.3h10v.s6.94de0f9c6165 from=translated src=- shape=6b234f0a vocab=003e4621
+-/
 theorem twoBlockReciprocalScalarProportional_of_pointwise_mul_eq
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     [Nonempty (SharedBondConfig bondDim)] [Nonempty External₁] [Nonempty External₂]
@@ -238,7 +240,9 @@ This is the open-leg form of the matrix insertion used in
 arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2: a one-bond matrix
 insertion frees the chosen bond and traces the others. It generalizes
 `twoBlockInsertedCoeff_singletonBond_single` to an arbitrary finite shared-bond
-family.-/
+family.
+@isnad1 id=eq.0h15v.s7.40f5fe7a096c from=translated src=- shape=4f0a6ccf vocab=5f0249ed
+-/
 theorem twoBlockInsertedCoeff_matrixUnit
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     (A₁ : TwoBlockTensor bondDim External₁ Physical₁)
@@ -295,7 +299,9 @@ open scoped Classical in
 matrix entry extracts the corresponding pointwise product.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2. This is the
-one-shared-bond specialization, where no residual two-leg operators appear.-/
+one-shared-bond specialization, where no residual two-leg operators appear.
+@isnad1 id=eq.0h15v.s7.8834df064336 from=translated src=- shape=62a77e5b vocab=91c7c149
+-/
 theorem twoBlockInsertedCoeff_singletonBond_single
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     [Subsingleton Bond] (b : Bond)
@@ -347,7 +353,9 @@ virtual bond.
 Source: arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2. This proves
 the coefficient-separation subcase where the shared-boundary family has one
 bond, so equality of all matrix insertions gives pointwise product equality
-directly. The many-bond case still requires the residual-operator argument.-/
+directly. The many-bond case still requires the residual-operator argument.
+@isnad1 id=twoblock.3h10v.s6.dfd1477a33de from=translated src=- shape=b353168a vocab=6535be02
+-/
 theorem two_injective_tensor_insertion_comparison_singletonBond
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     [Nonempty Bond] [Subsingleton Bond] [Nonempty External₁] [Nonempty External₂]
@@ -381,7 +389,9 @@ vacuously.
 Source: arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2. The source works
 with nonzero-dimensional virtual bonds; the empty-bond situation does not occur
 there, but the abstract statement carries no positivity hypothesis, so this
-boundary case is discharged directly.-/
+boundary case is discharged directly.
+@isnad1 id=twoblock.1h10v.s5.770d70242292 from=translated src=- shape=7c950ae4 vocab=f5e73efe
+-/
 theorem twoBlockReciprocalScalarProportional_of_isEmpty_config
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     (A₁ B₁ : TwoBlockTensor bondDim External₁ Physical₁)
@@ -405,7 +415,9 @@ the same value for the `A`-pair and the `B`-pair.
 This is the first reduction in arXiv:1804.04964, Section 3, Lemma
 inj_equal_tensors_2: "if the insertion equality holds for all `X`, then" the
 displayed open-leg equalities hold. It is obtained from `SameTwoBlockInsertions`
-by inserting matrix units and applying `twoBlockInsertedCoeff_matrixUnit`.-/
+by inserting matrix units and applying `twoBlockInsertedCoeff_matrixUnit`.
+@isnad1 id=eq.1h17v.s7.ab1746d8ec6a from=translated src=- shape=8b7786f4 vocab=88ea28ee
+-/
 theorem openBondContraction_of_sameInsertions
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     (A₁ B₁ : TwoBlockTensor bondDim External₁ Physical₁)
@@ -429,7 +441,9 @@ the sum over the single diagonal configuration `μ = ν`.
 
 This is the identity-insertion specialization of `twoBlockInsertedCoeff` used as
 the starting reduction in arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2:
-before opening any bond, the all-identity contraction equates the two states.-/
+before opening any bond, the all-identity contraction equates the two states.
+@isnad1 id=eq.0h13v.s7.33e94708dd3f from=translated src=- shape=2e98a97a vocab=76d11022
+-/
 theorem twoBlockInsertedCoeff_one
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     (A₁ : TwoBlockTensor bondDim External₁ Physical₁)
@@ -465,7 +479,9 @@ the same value for the `A`-pair and the `B`-pair.
 
 This is obtained from `SameTwoBlockInsertions` by inserting the identity matrix on
 any shared bond and using `twoBlockInsertedCoeff_one`. It is the all-identity
-contraction equality in arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2.-/
+contraction equality in arXiv:1804.04964, Section 3, Lemma inj_equal_tensors_2.
+@isnad1 id=eq.1h14v.s7.98a660823506 from=translated src=- shape=75c8fdfe vocab=0f079dc5
+-/
 theorem fullContraction_eq
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     [Nonempty Bond]
@@ -495,7 +511,9 @@ provided the external boundary is nonempty.
 This is the bridge to the config-indexed independence used in the
 operator-Schmidt uniqueness argument of arXiv:1804.04964, Section 3, Lemma
 inj_equal_tensors_2 (lines 1157--1204 of `Papers/1804.04964/paper_normal.tex`),
-where the two contracted tensors are compared as bipartite operators.-/
+where the two contracted tensors are compared as bipartite operators.
+@isnad1 id=linearin.1h5v.s6.a6db487e1147 from=translated src=- shape=1af50aa1 vocab=e10907f1
+-/
 theorem IsTwoBlockInjective.config_linearIndependent
     [Finite Bond] [∀ b, Finite (bondDim b)]
     {External Physical : Type*} [Nonempty External]
@@ -547,7 +565,9 @@ the two ends produces `X` and `Y`, and equality of the common state forces
 `X = Y`.
 
 Source: arXiv:1804.04964, Lemma 5 and its proof, lines 2044--2250 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=existsun.3h7v.s7.7c3a09b98a42 from=translated src=- shape=633ef65a vocab=32bae98c
+-/
 theorem existsUnique_virtualOperation_of_endPair
     {K V₁ V₂ : Type*} [Fintype K]
     (A₁ C₁ : K → V₁ → ℂ) (A₂ C₂ : K → V₂ → ℂ)
@@ -606,7 +626,9 @@ Section 3, Lemma inj_equal_tensors_2, lines 1157--1204 of
 `Papers/1804.04964/paper_normal.tex`: writing the contracted state as a bipartite
 operator with two injective (hence linearly independent) Schmidt families on each
 side forces the two decompositions to differ by an invertible change of the
-shared-bond basis.-/
+shared-bond basis.
+@isnad1 id=ex.5h10v.s8.9ac528cc59ee from=translated src=- shape=7642b3a1 vocab=a7d135b4
+-/
 theorem exists_bondGauge_of_fullContraction
     {External₁ External₂ Physical₁ Physical₂ : Type*}
     [Nonempty External₁] [Nonempty External₂]

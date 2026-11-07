@@ -63,7 +63,9 @@ one quarter.
 Source: the independent derivation recorded in
 `docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`. The source paper,
 arXiv:1606.00608, Example 4.10, lines 897--905, prints only the repeated-label
-channel, decimal entropies, and its qualitative claim.-/
+channel, decimal entropies, and its qualitative claim.
+@isnad1 id=lt.0h0v.s6.46bbd2998bf5 from=translated src=- shape=ac05b5df vocab=e974024d
+-/
 theorem example410_integer_inequality :
     (2 : ℕ) ^ 32 * 7 ^ 7 > 3 ^ 3 * 5 ^ 20 := by
   norm_num
@@ -74,7 +76,9 @@ the arbitrary-length family and literal weights printed in CPSV16 Example 4.11.
 Source: the independent derivation recorded in
 `docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`. The source paper,
 arXiv:1606.00608, Example 4.11, lines 907--924, prints only the arbitrary-length
-family, its weights, and its SAL claim.-/
+family, its weights, and its SAL claim.
+@isnad1 id=lt.0h0v.s7.2dae7f1c53c5 from=translated src=- shape=6ce3b0cf vocab=e974024d
+-/
 theorem example411_integer_inequality :
     (41 : ℕ) ^ 82 * 5 ^ 50 > 2 ^ 48 * 13 ^ 52 * 7 ^ 112 := by
   norm_num
@@ -89,7 +93,9 @@ an entropy difference.
 Source: the independent derivation recorded in
 `docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`. The source paper,
 arXiv:1606.00608, Example 4.10, lines 897--905, prints only the repeated-label
-channel, decimal entropies, and its qualitative claim.-/
+channel, decimal entropies, and its qualitative claim.
+@isnad1 id=lt.0h0v.s7.6d73c0ac52dc from=translated src=- shape=3e3a20d0 vocab=1385d4aa
+-/
 theorem example410_log_ratio_pos :
     0 < Real.log (((2 : ℝ) ^ 32 * 7 ^ 7) / (3 ^ 3 * 5 ^ 20)) := by
   apply Real.log_pos
@@ -104,7 +110,9 @@ an entropy difference.
 Source: the independent derivation recorded in
 `docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`. The source paper,
 arXiv:1606.00608, Example 4.11, lines 907--924, prints only the arbitrary-length
-family, its weights, and its SAL claim.-/
+family, its weights, and its SAL claim.
+@isnad1 id=lt.0h0v.s7.1ea35cc3898e from=translated src=- shape=8970b023 vocab=1385d4aa
+-/
 theorem example411_log_ratio_pos :
     0 < Real.log
       (((41 : ℝ) ^ 82 * 5 ^ 50) / (2 ^ 48 * 13 ^ 52 * 7 ^ 112)) := by

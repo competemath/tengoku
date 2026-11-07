@@ -28,7 +28,9 @@ namespace Matrix
 variable {R n : Type*} [CommSemiring R] [Fintype n] [DecidableEq n]
 
 /-- Transpose commutes with evaluating a polynomial at a square matrix over a commutative
-semiring.-/
+semiring.
+@isnad1 id=eq.0h4v.s8.e37969b4ba85 from=translated src=- shape=0fd9b62b vocab=ec53c5cf
+-/
 theorem transpose_aeval (p : R[X]) (A : Matrix n n R) :
     ((Polynomial.aeval A) p).transpose = (Polynomial.aeval A.transpose) p := by
   simp only [Polynomial.aeval_def, Polynomial.eval₂_eq_sum_range, Matrix.transpose_sum,
@@ -51,7 +53,9 @@ variable {n : ℕ}
 /-- A complex symmetric unitary matrix has a symmetric unitary square root.
 
 This is the symmetric branch of CPSV17, Lemma `lemma:conjclass-normalform-continuous`
-(arXiv:1703.09188, lines 1054--1064).-/
+(arXiv:1703.09188, lines 1054--1064).
+@isnad1 id=ex.2h2v.s8.7c99412f9450 from=translated src=- shape=7ff0f909 vocab=ba3e3899
+-/
 theorem exists_symmetric_unitary_squareRoot
     (x : Matrix (Fin n) (Fin n) ℂ)
     (hx : x ∈ Matrix.unitaryGroup (Fin n) ℂ)
@@ -142,7 +146,9 @@ variable {ι κ m : Type*} [Fintype ι] [DecidableEq ι] [Fintype κ] [Decidable
   [Fintype m]
 
 /-- Multiplication of sums weighted by a family of orthogonal idempotents reduces
-pointwise to multiplication of their weights.-/
+pointwise to multiplication of their weights.
+@isnad1 id=eq.1h5v.s8.d86b1d500948 from=translated src=- shape=3f365d90 vocab=e4d08378
+-/
 theorem weighted_sum_mul_weighted_sum
     (Q : ι → Matrix m m ℂ)
     (hQmul : ∀ a b, Q a * Q b = if a = b then Q a else 0)
@@ -158,7 +164,9 @@ theorem weighted_sum_mul_weighted_sum
 variable [DecidableEq m]
 
 /-- A sum of mutually orthogonal Hermitian idempotents with unit-modulus weights is unitary
-when the idempotents sum to the identity.-/
+when the idempotents sum to the identity.
+@isnad1 id=mem.4h4v.s8.1b88859cf481 from=translated src=- shape=55626449 vocab=774fc39e
+-/
 theorem weighted_sum_mem_unitaryGroup
     (Q : ι → Matrix m m ℂ)
     (hQstar : ∀ a, (Q a)ᴴ = Q a)
@@ -188,7 +196,9 @@ spectral projectors in CPSV17, Lemma `lemma:conjclass-normalform-continuous`
 The two summands of `Sum κ κ` index `P_E` and `P_Eᵀ`. The hypotheses say that these form a
 complete orthogonal family of Hermitian projectors. The witnesses are exactly
 `S = exp (-iπ/4) ∑_E exp (-iE/2) (P_E + P_Eᵀ)` and
-`Λ = i ∑_E (P_E - P_Eᵀ)` from the paper.-/
+`Λ = i ∑_E (P_E - P_Eᵀ)` from the paper.
+@isnad1 id=other.3h4v.s9.d97d0dc030ad from=translated src=- shape=0bf72b37 vocab=99d5f019
+-/
 theorem exists_skew_unitary_congruence_of_paired_projectors
     (P : κ → Matrix m m ℂ)
     (E : κ → ℝ)

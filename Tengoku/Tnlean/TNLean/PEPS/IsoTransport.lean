@@ -54,7 +54,9 @@ def Edge.map (φ : G ≃g G') (e : Edge G) : Edge G' :=
 
 omit [Fintype V] [Fintype W] in
 /-- The unordered endpoints of `Edge.map φ e` are the `φ`-images of the endpoints
-of `e`.-/
+of `e`.
+@isnad1 id=or.0h6v.s9.697f66383ac7 from=translated src=- shape=95e83203 vocab=c4e5632e
+-/
 theorem Edge.map_endpoints (φ : G ≃g G') (e : Edge G) :
     ((Edge.map φ e).1.1 = φ e.1.1 ∧ (Edge.map φ e).1.2 = φ e.1.2) ∨
       ((Edge.map φ e).1.1 = φ e.1.2 ∧ (Edge.map φ e).1.2 = φ e.1.1) :=
@@ -63,7 +65,9 @@ theorem Edge.map_endpoints (φ : G ≃g G') (e : Edge G) :
 omit [Fintype V] [Fintype W] in
 /-- Pushing an edge through `φ` and then through `φ.symm` recovers the original
 edge.  The two passes return to the original unordered endpoint pair, and
-`Edge.ofAdj` re-imposes the same `<`-order, so the round trip is the identity.-/
+`Edge.ofAdj` re-imposes the same `<`-order, so the round trip is the identity.
+@isnad1 id=eq.0h6v.s5.29fe3df6325f from=translated src=- shape=752bbe8d vocab=396db19c
+-/
 @[simp] theorem Edge.map_symm_map (φ : G ≃g G') (e : Edge G) :
     Edge.map φ.symm (Edge.map φ e) = e := by
   apply Edge.ofAdj_eq_of_endpoints
@@ -72,7 +76,9 @@ edge.  The two passes return to the original unordered endpoint pair, and
   · exact Or.inr ⟨by rw [h1]; simp, by rw [h2]; simp⟩
 
 omit [Fintype V] [Fintype W] in
-/-- Pushing an edge through `φ.symm` and then through `φ` recovers it.-/
+/-- Pushing an edge through `φ.symm` and then through `φ` recovers it.
+@isnad1 id=eq.0h6v.s5.5c1edcbe1418 from=translated src=- shape=8f156393 vocab=396db19c
+-/
 @[simp] theorem Edge.map_map_symm (φ : G ≃g G') (e : Edge G') :
     Edge.map φ (Edge.map φ.symm e) = e :=
   Edge.map_symm_map φ.symm e
@@ -86,6 +92,9 @@ def Edge.equiv (φ : G ≃g G') : Edge G ≃ Edge G' where
 
 omit [Fintype V] [Fintype W] in
 -- restored: fired by the bare `simpa` in `IncidentEdge.equiv` below
+/--
+@isnad1 id=eq.0h6v.s6.8a22985e66f0 from=translated src=- shape=ec062733 vocab=a6190710
+-/
 @[simp] theorem Edge.equiv_apply (φ : G ≃g G') (e : Edge G) :
     Edge.equiv φ e = Edge.map φ e :=
   rfl
@@ -93,7 +102,9 @@ omit [Fintype V] [Fintype W] in
 /-! ### The incident-edge correspondence -/
 
 omit [Fintype V] [Fintype W] in
-/-- An edge incident to `v` maps, under `φ`, to an edge incident to `φ v`.-/
+/-- An edge incident to `v` maps, under `φ`, to an edge incident to `φ v`.
+@isnad1 id=or.1h7v.s8.3d9c8298e5b7 from=translated src=- shape=9052ac7b vocab=c4e5632e
+-/
 theorem Edge.map_incident (φ : G ≃g G') {v : V} {e : Edge G}
     (h : e.1.1 = v ∨ e.1.2 = v) :
     (Edge.map φ e).1.1 = φ v ∨ (Edge.map φ e).1.2 = φ v := by
@@ -136,19 +147,27 @@ def IncidentEdge.fromSymm (φ : G ≃g G') (w : W) (ie' : IncidentEdge G' w) :
   ⟨Edge.map φ.symm ie'.1, Edge.map_incident φ.symm ie'.2⟩
 
 omit [Fintype V] [Fintype W] in
+/--
+@isnad1 id=eq.0h7v.s8.71f37f120fd4 from=translated src=- shape=60e6b7ce vocab=5608df5d
+-/
 @[simp] theorem IncidentEdge.toSymm_coe (φ : G ≃g G') (w : W)
     (ie : IncidentEdge G (φ.symm w)) :
     (IncidentEdge.toSymm φ w ie).1 = Edge.map φ ie.1 :=
   rfl
 
 omit [Fintype V] [Fintype W] in
+/--
+@isnad1 id=eq.0h7v.s8.4e3b40a738f7 from=translated src=- shape=ec98fff6 vocab=09d82b37
+-/
 @[simp] theorem IncidentEdge.fromSymm_coe (φ : G ≃g G') (w : W)
     (ie' : IncidentEdge G' w) :
     (IncidentEdge.fromSymm φ w ie').1 = Edge.map φ.symm ie'.1 :=
   rfl
 
 omit [Fintype V] [Fintype W] in
-/-- Every edge incident to `w` comes from an edge incident to `φ.symm w`.-/
+/-- Every edge incident to `w` comes from an edge incident to `φ.symm w`.
+@isnad1 id=surjecti.0h6v.s6.327424a15eb3 from=translated src=- shape=276ce24d vocab=2a1e3182
+-/
 theorem IncidentEdge.toSymm_surjective (φ : G ≃g G') (w : W) :
     Function.Surjective (IncidentEdge.toSymm φ w) := by
   intro ie'
@@ -181,6 +200,9 @@ noncomputable def Tensor.transport (A : Tensor G d) (φ : G ≃g G') : Tensor G'
           (η' (IncidentEdge.toSymm φ w ie))) p
 
 omit [Fintype V] [Fintype W] in
+/--
+@isnad1 id=eq.0h8v.s6.16f170c51217 from=translated src=- shape=257f63e0 vocab=51d80aab
+-/
 @[simp] theorem Tensor.transport_bondDim (A : Tensor G d) (φ : G ≃g G') (e' : Edge G') :
     (A.transport φ).bondDim e' = A.bondDim (Edge.map φ.symm e') :=
   rfl
@@ -199,7 +221,9 @@ noncomputable def localVirtualConfigPullback (A : Tensor G d) (φ : G ≃g G') (
 
 omit [Fintype V] [Fintype W] in
 /-- Pullback of local virtual configurations through a graph isomorphism is
-injective: every target incident edge has a unique source incident edge.-/
+injective: every target incident edge has a unique source incident edge.
+@isnad1 id=injectiv.0h8v.s8.384f52f4b847 from=translated src=- shape=315f2849 vocab=49125b86
+-/
 theorem localVirtualConfigPullback_injective (A : Tensor G d) (φ : G ≃g G') (w : W) :
     Function.Injective (localVirtualConfigPullback A φ w) := by
   intro η' ξ' h
@@ -212,7 +236,9 @@ theorem localVirtualConfigPullback_injective (A : Tensor G d) (φ : G ≃g G') (
 
 omit [Fintype V] [Fintype W] in
 /-- Transporting a tensor reindexes, but does not change, each local family of
-physical vectors.-/
+physical vectors.
+@isnad1 id=eq.0h9v.s8.9cab0c777146 from=translated src=- shape=c64ee70a vocab=d5fd9b23
+-/
 theorem Tensor.transport_component_localVirtualConfigPullback
     (A : Tensor G d) (φ : G ≃g G') (w : W)
     (η' : (ie' : IncidentEdge G' w) → Fin ((A.transport φ).bondDim ie'.1)) :
@@ -227,7 +253,9 @@ incident edges.
 
 Source: arXiv:1804.04964, Applications section, lines 1807--1842 of
 `Papers/1804.04964/paper_normal.tex`, where the injective MPS is compared with
-its one-site cyclic translate through the injective Fundamental Theorem.-/
+its one-site cyclic translate through the injective Fundamental Theorem.
+@isnad1 id=isvertex.1h7v.s6.81ac7892a89f from=translated src=- shape=9be2df8e vocab=e4cfd38f
+-/
 theorem IsVertexInjective.transport {A : Tensor G d} (hA : IsVertexInjective A)
     (φ : G ≃g G') : IsVertexInjective (A.transport φ) := by
   intro w
@@ -249,6 +277,9 @@ noncomputable def vcEquiv (A : Tensor G d) (φ : G ≃g G') :
   Equiv.piCongrLeft (fun e : Edge G => Fin (A.bondDim e)) (Edge.equiv φ.symm)
 
 omit [Fintype V] [Fintype W] in
+/--
+@isnad1 id=eq.0h9v.s8.105eaf6ec92c from=translated src=- shape=bf7c1c21 vocab=67a6676a
+-/
 @[simp] theorem vcEquiv_symm_apply (A : Tensor G d) (φ : G ≃g G')
     (η : VirtualConfig A) (e' : Edge G') :
     (vcEquiv A φ).symm η e' = η (Edge.map φ.symm e') :=
@@ -259,7 +290,9 @@ omit [Fintype V] [Fintype W] in
 supplies on the edge `e'` over `e0 := Edge.map φ.symm e'` is, up to the bond-dimension
 reindexing, the original index `η e0`.  This is the bond-level content of the edge
 action: pushing a configuration forward and reading it back recovers the original
-indices.  It is the per-edge identity behind `stateCoeff_transport`.-/
+indices.  It is the per-edge identity behind `stateCoeff_transport`.
+@isnad1 id=eq.2h10v.s9.be2a43277431 from=translated src=- shape=f6c8c096 vocab=14cf7ce7
+-/
 theorem finCongr_vcEquiv_symm (A : Tensor G d) (φ : G ≃g G') (η : VirtualConfig A)
     (e' : Edge G') (e0 : Edge G) (he : Edge.map φ.symm e' = e0)
     (h : A.bondDim (Edge.map φ.symm e') = A.bondDim e0) :
@@ -274,7 +307,9 @@ omit [Fintype V] [Fintype W] in
 /-- The component of `A.transport φ` at a vertex `w`, evaluated on the virtual
 indices coming from `(vcEquiv A φ).symm η`, equals the component of `A` at the
 preimage vertex `φ.symm w` evaluated on `η`.  This is the per-vertex matching used
-in `stateCoeff_transport`.-/
+in `stateCoeff_transport`.
+@isnad1 id=eq.0h10v.s9.ea535f6fd89e from=translated src=- shape=8f0234b2 vocab=ba98e8b2
+-/
 theorem transport_component_vcEquiv (A : Tensor G d) (φ : G ≃g G') (η : VirtualConfig A)
     (σ : W → Fin d) (w : W) :
     (A.transport φ).component w (fun ie' : IncidentEdge G' w => ((vcEquiv A φ).symm η) ie'.1)
@@ -298,7 +333,9 @@ the virtual configurations by the edge action and the vertices by `φ`, leaving 
 contracted coefficient unchanged up to this relabelling.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1407--1572 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.0h8v.s6.93ed2bb48b6c from=translated src=- shape=350061cb vocab=1a387822
+-/
 theorem stateCoeff_transport (A : Tensor G d) (φ : G ≃g G') (σ : W → Fin d) :
     stateCoeff (A.transport φ) σ = stateCoeff A (fun v => σ (φ v)) := by
   unfold stateCoeff
@@ -320,7 +357,9 @@ is the corresponding coefficient of `A` (respectively `B`) at the precomposed
 configuration, which agree by hypothesis.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1407--1572 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=samestat.1h8v.s6.91b6a56213f8 from=translated src=- shape=a1fa6ed3 vocab=e8b03a80
+-/
 theorem SameState.transport {A B : Tensor G d} (φ : G ≃g G') (h : SameState A B) :
     SameState (A.transport φ) (B.transport φ) := by
   intro σ

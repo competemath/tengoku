@@ -35,7 +35,9 @@ of `Xt`, and `R` is a right inverse of `Y`.  Then `Lt * X` is the comparison
 matrix between the two factorizations.
 
 This is the one-sided-inverse step in FBC25, Lemma `lem:deco`
-(arXiv:2502.20257, lines 1052--1066).-/
+(arXiv:2502.20257, lines 1052--1066).
+@isnad1 id=and.3h11v.s8.cf838ea09722 from=translated src=- shape=ae68bcb8 vocab=e1a8a5b4
+-/
 theorem factorization_comparison_of_one_sided_inverses
     {α β βt γ 𝕜 : Type*} [Fintype α] [Fintype β] [Fintype βt] [Fintype γ]
     [DecidableEq β] [DecidableEq βt] [Semiring 𝕜]
@@ -75,7 +77,9 @@ scalar is `δ`, the source-oriented scalars are `δ⁻¹` for the first factor a
 The unitary matrices in the conclusion are the inverses, equivalently the
 adjoints, of the unitary factors of the comparison matrices.  This is the
 reciprocal-unitary-gauge step in FBC25, Lemma `lem:deco`
-(arXiv:2502.20257, lines 1052--1066).-/
+(arXiv:2502.20257, lines 1052--1066).
+@isnad1 id=ex.5h16v.s10.1f40e645a5f9 from=translated src=- shape=d4ceda9e vocab=7ba45f2e
+-/
 theorem exists_reciprocal_unitary_gauges_of_comparison
     {α₁ β₁ α₂ β₂ : Type*}
     {X₁ Xt₁ : Matrix α₁ m ℂ} {Y₁ Yt₁ : Matrix m β₁ ℂ}

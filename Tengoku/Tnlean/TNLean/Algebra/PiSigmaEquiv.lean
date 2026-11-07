@@ -43,14 +43,18 @@ def piSigmaEquiv
     obtain ⟨a, b⟩ := x
     rfl
 
-/-- The forward map separates the first and second coordinates pointwise.-/
+/-- The forward map separates the first and second coordinates pointwise.
+@isnad1 id=eq.0h4v.s8.ef10a81f57da from=translated src=- shape=48991ac7 vocab=90e9ebe2
+-/
 @[simp] theorem piSigmaEquiv_apply
     {ι : Type*} {α : ι → Type*} {β : (i : ι) → α i → Type*}
     (x : (i : ι) → Σ a, β i a) :
     piSigmaEquiv x = ⟨fun i ↦ (x i).1, fun i ↦ (x i).2⟩ :=
   rfl
 
-/-- The inverse map recombines the two functions at each index.-/
+/-- The inverse map recombines the two functions at each index.
+@isnad1 id=eq.0h5v.s8.d983a43a1c1e from=translated src=- shape=9fda38f7 vocab=c9f2552f
+-/
 @[simp] theorem piSigmaEquiv_symm_apply
     {ι : Type*} {α : ι → Type*} {β : (i : ι) → α i → Type*}
     (x : Σ a : (i : ι) → α i, (i : ι) → β i (a i)) (i : ι) :

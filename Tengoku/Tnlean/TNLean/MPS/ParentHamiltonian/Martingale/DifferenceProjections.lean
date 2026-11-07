@@ -80,14 +80,18 @@ private theorem projection_comp_eq_of_ge {m n : ℕ} (hmn : m ≤ n) :
       (G.isSymmetricProjection n).isSymmetric y x
 
 /-- A difference of two consecutive nested ground-space projections is itself
-an orthogonal projection.-/
+an orthogonal projection.
+@isnad1 id=issymmet.0h3v.s5.8da8c79b04b8 from=translated src=- shape=81f16bad vocab=50aa7e6f
+-/
 theorem martingaleDifference_isSymmetricProjection (n : ℕ) :
     (G.martingaleDifference n).IsSymmetricProjection :=
   (G.isSymmetricProjection (n + 1)).sub_of_range_le_range
     (G.isSymmetricProjection n) (G.antitone_range (Nat.le_succ n))
 
 /-- Distinct martingale differences have zero product. This is the
-\(E_nE_m=0\) part of equation (En).-/
+\(E_nE_m=0\) part of equation (En).
+@isnad1 id=eq.1h4v.s8.9d4d61ed56e9 from=translated src=- shape=cb51ebdf vocab=9e4b3707
+-/
 theorem martingaleDifference_comp_eq_zero {m n : ℕ} (hmn : m ≠ n) :
     (G.martingaleDifference m).comp (G.martingaleDifference n) = 0 := by
   rcases lt_or_gt_of_ne hmn with hmn | hnm
@@ -105,7 +109,9 @@ theorem martingaleDifference_comp_eq_zero {m n : ℕ} (hmn : m ≠ n) :
     simp
 
 /-- The complete product rule
-\(E_nE_m=\delta_{n,m}E_n\) for martingale differences.-/
+\(E_nE_m=\delta_{n,m}E_n\) for martingale differences.
+@isnad1 id=eq.0h4v.s8.e4a5f386563c from=translated src=- shape=a41152ad vocab=34c3b991
+-/
 theorem martingaleDifference_comp (m n : ℕ) :
     (G.martingaleDifference m).comp (G.martingaleDifference n) =
       if m = n then G.martingaleDifference m else 0 := by
@@ -115,7 +121,9 @@ theorem martingaleDifference_comp (m n : ℕ) :
       (G.martingaleDifference_isSymmetricProjection m).isIdempotentElem.eq
   · exact G.martingaleDifference_comp_eq_zero hmn
 
-/-- Images under distinct martingale differences are orthogonal.-/
+/-- Images under distinct martingale differences are orthogonal.
+@isnad1 id=eq.1h6v.s8.ff82677bdf4d from=translated src=- shape=eab141c4 vocab=1f30b52e
+-/
 theorem inner_martingaleDifference_eq_zero {m n : ℕ} (hmn : m ≠ n) (x y : E) :
     ⟪G.martingaleDifference m x, G.martingaleDifference n y⟫_ℂ = 0 := by
   rw [(G.martingaleDifference_isSymmetricProjection m).isSymmetric]
@@ -127,7 +135,9 @@ theorem inner_martingaleDifference_eq_zero {m n : ℕ} (hmn : m ≠ n) (x y : E)
 annihilated by every earlier martingale difference. This is the vanishing that
 the proof of Nachtergaele's Theorem 2.1(i) (arXiv:cond-mat/9410110, lines
 1195--1259) needs at the indices below the lower endpoints of its conditions
-C2 and C3.-/
+C2 and C3.
+@isnad1 id=eq.2h5v.s8.564f3a745383 from=translated src=- shape=758ab455 vocab=b11e7408
+-/
 theorem martingaleDifference_apply_eq_zero_of_lt {n₀ n : ℕ} (hn : n < n₀)
     (v : E) (hv : G.projection n₀ v = v) : G.martingaleDifference n v = 0 := by
   have hfix : ∀ m, m ≤ n₀ → G.projection m v = v := by
@@ -141,14 +151,18 @@ theorem martingaleDifference_apply_eq_zero_of_lt {n₀ n : ℕ} (hn : n < n₀)
     hfix (n + 1) hn, sub_self]
 
 /-- The finite martingale-difference sum telescopes with both endpoints shown
-explicitly.-/
+explicitly.
+@isnad1 id=eq.0h3v.s8.d7eca05af740 from=translated src=- shape=b520a915 vocab=abea0bff
+-/
 theorem sum_martingaleDifference (N : ℕ) :
     ∑ n ∈ Finset.range N, G.martingaleDifference n =
       G.projection 0 - G.projection N := by
   simpa [martingaleDifference] using Finset.sum_range_sub' G.projection N
 
 /-- Under the source conventions \(G_0=\mathrm{id}\) and \(G_{N+1}=0\),
-the martingale differences \(E_0,\ldots,E_N\) sum to the identity.-/
+the martingale differences \(E_0,\ldots,E_N\) sum to the identity.
+@isnad1 id=eq.2h3v.s9.5a8a233861c8 from=translated src=- shape=7a844d97 vocab=d8482512
+-/
 theorem sum_martingaleDifference_eq_id (N : ℕ)
     (hzero : G.projection 0 = LinearMap.id)
     (hfinal : G.projection (N + 1) = 0) :
@@ -156,7 +170,9 @@ theorem sum_martingaleDifference_eq_id (N : ℕ)
   rw [G.sum_martingaleDifference, hzero, hfinal, sub_zero]
 
 /-- The squared norm of a martingale-difference sum over any finite index set
-is the sum of the squared norms of its terms.-/
+is the sum of the squared norms of its terms.
+@isnad1 id=eq.0h4v.s8.a0eeff5498a5 from=translated src=- shape=d1aadac9 vocab=b222e9b4
+-/
 theorem norm_sq_sum_martingaleDifference_finset (s : Finset ℕ) (v : E) :
     ‖∑ n ∈ s, G.martingaleDifference n v‖ ^ 2 =
       ∑ n ∈ s, ‖G.martingaleDifference n v‖ ^ 2 := by
@@ -175,7 +191,9 @@ theorem norm_sq_sum_martingaleDifference_finset (s : Finset ℕ) (v : E) :
     (fun n ↦ ⟨G.martingaleDifference n v, ⟨v, rfl⟩⟩) s
 
 /-- The squared norm of an initial martingale-difference sum is the sum of the
-squared norms of its terms.-/
+squared norms of its terms.
+@isnad1 id=eq.0h4v.s8.501674b743a3 from=translated src=- shape=553d8dc7 vocab=a51a4eee
+-/
 theorem norm_sq_sum_martingaleDifference (N : ℕ) (v : E) :
     ‖∑ n ∈ Finset.range N, G.martingaleDifference n v‖ ^ 2 =
       ∑ n ∈ Finset.range N, ‖G.martingaleDifference n v‖ ^ 2 :=
@@ -183,7 +201,9 @@ theorem norm_sq_sum_martingaleDifference (N : ℕ) (v : E) :
 
 /-- A vector orthogonal to the final ground space is reconstructed by the
 truncated martingale-difference sum. This is `resolutionpsi` in the proof of
-Nachtergaele's Theorem 2.1(i).-/
+Nachtergaele's Theorem 2.1(i).
+@isnad1 id=eq.2h4v.s8.a08243007359 from=translated src=- shape=2d56f397 vocab=3de73dee
+-/
 theorem sum_martingaleDifference_apply_of_mem_orthogonal (N : ℕ) (v : E)
     (hzero : G.projection 0 = LinearMap.id)
     (hv : v ∈ (LinearMap.range (G.projection N))ᗮ) :
@@ -197,7 +217,9 @@ theorem sum_martingaleDifference_apply_of_mem_orthogonal (N : ℕ) (v : E)
     _ = v := by simp [hzero, hvzero]
 
 /-- The Pythagorean norm-square decomposition `resolutionnormpsi` in the proof
-of Nachtergaele's Theorem 2.1(i).-/
+of Nachtergaele's Theorem 2.1(i).
+@isnad1 id=eq.2h4v.s8.ce9d49281cd2 from=translated src=- shape=6f29b73c vocab=eb85c153
+-/
 theorem norm_sq_eq_sum_martingaleDifference_of_mem_orthogonal (N : ℕ) (v : E)
     (hzero : G.projection 0 = LinearMap.id)
     (hv : v ∈ (LinearMap.range (G.projection N))ᗮ) :

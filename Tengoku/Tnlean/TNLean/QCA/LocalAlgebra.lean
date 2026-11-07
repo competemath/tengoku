@@ -73,10 +73,16 @@ namespace Config
 def restrict {d : ℕ} {Λ Γ : Finset ℤ} (h : Λ ⊆ Γ) (x : Config d Γ) : Config d Λ :=
   fun i ↦ x ⟨i, h i.2⟩
 
+/--
+@isnad1 id=eq.0h3v.s4.336229d0f6b2 from=translated src=- shape=46ab194e vocab=e2f90b9c
+-/
 @[simp]
 lemma restrict_refl {d : ℕ} {Λ : Finset ℤ} (x : Config d Λ) : restrict (by rfl) x = x := by
   rfl
 
+/--
+@isnad1 id=eq.2h5v.s6.dfb0514269d0 from=translated src=- shape=ab4841d3 vocab=bedebd92
+-/
 lemma restrict_trans {d : ℕ} {Λ Γ Δ : Finset ℤ} (hΛΓ : Λ ⊆ Γ) (hΓΔ : Γ ⊆ Δ)
     (x : Config d Δ) : restrict hΛΓ (restrict hΓΔ x) = restrict (hΛΓ.trans hΓΔ) x := by
   rfl
@@ -108,7 +114,9 @@ def splitEquiv {d : ℕ} {Λ Γ : Finset ℤ} (h : Λ ⊆ Γ) :
 the first component.
 
 This is the coordinate identity underlying the canonical inclusions in arXiv:1703.09188,
-Appendix, lines 2292--2298. It is not stated separately there.-/
+Appendix, lines 2292--2298. It is not stated separately there.
+@isnad1 id=eq.1h4v.s7.50cc76029de6 from=translated src=- shape=4f6055bc vocab=b526e6c6
+-/
 @[simp]
 lemma restrict_splitEquiv_symm {d : ℕ} {Λ Γ : Finset ℤ} (h : Λ ⊆ Γ)
     (p : Config d Λ × Config d (Γ \ Λ)) :
@@ -119,7 +127,9 @@ lemma restrict_splitEquiv_symm {d : ℕ} {Λ Γ : Finset ℤ} (h : Λ ⊆ Γ)
 recovers the second component.
 
 This is the coordinate identity underlying the canonical inclusions in arXiv:1703.09188,
-Appendix, lines 2292--2298. It is not stated separately there.-/
+Appendix, lines 2292--2298. It is not stated separately there.
+@isnad1 id=eq.1h4v.s7.0cff51e5b9e6 from=translated src=- shape=a793685c vocab=f6590ee9
+-/
 @[simp]
 lemma restrict_sdiff_splitEquiv_symm {d : ℕ} {Λ Γ : Finset ℤ} (h : Λ ⊆ Γ)
     (p : Config d Λ × Config d (Γ \ Λ)) :
@@ -130,7 +140,9 @@ lemma restrict_sdiff_splitEquiv_symm {d : ℕ} {Λ Γ : Finset ℤ} (h : Λ ⊆ 
 their restrictions to the complementary region agree.
 
 This is the coordinate identity underlying the canonical inclusions in arXiv:1703.09188,
-Appendix, lines 2292--2298. It is not stated separately there.-/
+Appendix, lines 2292--2298. It is not stated separately there.
+@isnad1 id=iff.1h5v.s8.fdc4e342b97a from=translated src=- shape=d6622ef4 vocab=f97600cb
+-/
 lemma splitEquiv_snd_eq_iff_restrict_sdiff {d : ℕ} {Λ Γ : Finset ℤ} (h : Λ ⊆ Γ)
     (x y : Config d Γ) :
     (splitEquiv h x).2 = (splitEquiv h y).2 ↔
@@ -142,7 +154,9 @@ lemma splitEquiv_snd_eq_iff_restrict_sdiff {d : ℕ} {Λ Γ : Finset ℤ} (h : �
 restriction to `Λ`.
 
 This is the coordinate identity underlying the canonical inclusions in arXiv:1703.09188,
-Appendix, lines 2292--2298. It is not stated separately there.-/
+Appendix, lines 2292--2298. It is not stated separately there.
+@isnad1 id=iff.1h5v.s8.b9b7c9a95f4b from=translated src=- shape=f7769a97 vocab=f97600cb
+-/
 lemma splitEquiv_sdiff_snd_eq_iff_restrict {d : ℕ} {Λ Γ : Finset ℤ} (h : Λ ⊆ Γ)
     (x y : Config d Γ) :
     (splitEquiv (Finset.sdiff_subset : Γ \ Λ ⊆ Γ) x).2 =

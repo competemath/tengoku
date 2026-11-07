@@ -90,7 +90,9 @@ inserted site `v` is isolated from the residual region product, which is exactly
 the vertex product of `R`.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1407--1544 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.1h8v.s9.a51f24a69717 from=translated src=- shape=59fe4e36 vocab=ec23e9c3
+-/
 theorem prod_region_insert_split (A : Tensor G d) (R : Finset V) {v : V} (hv : v ∉ R)
     (ζ : VirtualConfig A)
     (σ : RegionPhysicalConfig (V := V) (d := d) (insert v R)) :
@@ -129,7 +131,9 @@ blocked-region weight of `R`; that bookkeeping is recorded as the remaining
 obstruction in `docs/paper-gaps/peps_normal_ft_section3_route.tex`.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1407--1544 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.1h8v.s9.0f13783ade60 from=translated src=- shape=0ee6d5b6 vocab=a2d665a0
+-/
 theorem regionBlockedWeight_insert_eq_sum_split (A : Tensor G d) (R : Finset V)
     {v : V} (hv : v ∉ R)
     (μ : RegionBoundaryConfig (G := G) A (insert v R))
@@ -157,7 +161,9 @@ local virtual configuration at `v` on the edges incident to `v`. -/
 
 omit [Fintype V] [DecidableRel G.Adj] in
 /-- An `R`-boundary edge not incident to the inserted site `v` is an
-`insert v R`-boundary edge.-/
+`insert v R`-boundary edge.
+@isnad1 id=isregion.3h5v.s7.f229a46557b4 from=translated src=- shape=0009c76a vocab=0e66c1a5
+-/
 theorem isRegionBoundaryEdge_insert_of_not_incident (R : Finset V) {v : V} (hv : v ∉ R)
     {g : Edge G} (hg : IsRegionBoundaryEdge (G := G) R g)
     (hgv : g.1.1 ≠ v ∧ g.1.2 ≠ v) :
@@ -207,7 +213,9 @@ quotient: it folds the `insert v R` boundary label and the local configuration a
 `v` into the boundary label of `R`.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1407--1544 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.3h9v.s8.23eb71793779 from=translated src=- shape=15628764 vocab=91ac7aba
+-/
 theorem regionBoundaryLabel_eq_boundaryLabelOfInsert (A : Tensor G d) (R : Finset V)
     {v : V} (hv : v ∉ R) (ζ : VirtualConfig A)
     (μ : RegionBoundaryConfig (G := G) A (insert v R))

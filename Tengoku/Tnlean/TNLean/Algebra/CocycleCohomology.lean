@@ -77,7 +77,9 @@ def ScalarCocycle.CohomologousTo (ω₁ ω₂ : ScalarCocycle G) : Prop :=
 def ScalarCocycle.IsCocycle (ω : ScalarCocycle G) : Prop :=
   ∀ g h k : G, ω g h * ω (g * h) k = ω g (h * k) * ω h k
 
-/-- A scalar cochain cohomologous to a genuine cocycle satisfies the cocycle equation.-/
+/-- A scalar cochain cohomologous to a genuine cocycle satisfies the cocycle equation.
+@isnad1 id=iscocycl.2h3v.s4.701516d042dc from=translated src=- shape=ffda418f vocab=0a5364e0
+-/
 theorem ScalarCocycle.IsCocycle.of_cohomologousTo {ω₁ ω₂ : ScalarCocycle G}
     (hω₂ : ω₂.IsCocycle) (h : ω₁.CohomologousTo ω₂) : ω₁.IsCocycle := by
   obtain ⟨φ, hφ⟩ := h
@@ -93,7 +95,9 @@ theorem ScalarCocycle.IsCocycle.of_cohomologousTo {ω₁ ω₂ : ScalarCocycle G
 /-- Every projective representation of positive bond dimension has a genuine 2-cocycle
 as factor system.  This is the `Units ℂ`-level lift of
 `ProjectiveRepresentation.cocycle_of_assoc`: associativity of matrix multiplication
-forces the multiplicative 2-cocycle identity on `ω`.-/
+forces the multiplicative 2-cocycle identity on `ω`.
+@isnad1 id=iscocycl.1h4v.s4.8f68aac8b4fd from=translated src=- shape=c530da9c vocab=c177515f
+-/
 theorem ScalarCocycle.isCocycle_of_projRep
     {ω : ScalarCocycle G} (ρ : ProjectiveRepresentation (D := D) ω) (hD : 0 < D) :
     ScalarCocycle.IsCocycle ω := by
@@ -109,11 +113,15 @@ theorem ScalarCocycle.isCocycle_of_projRep
 
 namespace ScalarCocycle.CohomologousTo
 
-/-- Cohomologous-to is reflexive: every cocycle is cohomologous to itself.-/
+/-- Cohomologous-to is reflexive: every cocycle is cohomologous to itself.
+@isnad1 id=cohomolo.0h2v.s3.bc0ce22a371a from=translated src=- shape=82448d51 vocab=2d441248
+-/
 theorem refl (ω : ScalarCocycle G) : CohomologousTo ω ω :=
   ⟨fun _ => 1, fun _ _ => by simp⟩
 
-/-- Cohomologous-to is symmetric.-/
+/-- Cohomologous-to is symmetric.
+@isnad1 id=cohomolo.1h3v.s4.87f576af47b9 from=translated src=- shape=1a0a78f4 vocab=2d441248
+-/
 theorem symm {ω₁ ω₂ : ScalarCocycle G} (h : CohomologousTo ω₁ ω₂) :
     CohomologousTo ω₂ ω₁ := by
   obtain ⟨φ, hφ⟩ := h
@@ -125,7 +133,9 @@ theorem symm {ω₁ ω₂ : ScalarCocycle G} (h : CohomologousTo ω₁ ω₂) :
     simp only [mul_assoc, mul_comm, mul_left_comm]]
   simp
 
-/-- Cohomologous-to is transitive.-/
+/-- Cohomologous-to is transitive.
+@isnad1 id=cohomolo.2h4v.s4.4ed7c1191382 from=translated src=- shape=5499c893 vocab=2d441248
+-/
 theorem trans {ω₁ ω₂ ω₃ : ScalarCocycle G}
     (h₁₂ : CohomologousTo ω₁ ω₂) (h₂₃ : CohomologousTo ω₂ ω₃) :
     CohomologousTo ω₁ ω₃ := by
@@ -137,7 +147,9 @@ theorem trans {ω₁ ω₂ ω₃ : ScalarCocycle G}
   rw [mul_inv_rev]
   simp only [mul_assoc, mul_comm, mul_left_comm]
 
-/-- Cohomologous-to is an equivalence relation.-/
+/-- Cohomologous-to is an equivalence relation.
+@isnad1 id=equivale.0h1v.s3.b3cd4b5b79cc from=translated src=- shape=aa7e0af4 vocab=31ae67cf
+-/
 theorem equivalence : Equivalence (CohomologousTo (G := G)) :=
   ⟨refl, symm, trans⟩
 
@@ -169,7 +181,9 @@ def ProjectivelyEquivalent
   ScalarCocycle.CohomologousTo (ρ₁.cocycle) (ρ₂.cocycle)
 
 /-- Two projective representations are projectively equivalent iff their cocycles are
-cohomologous.-/
+cohomologous.
+@isnad1 id=iff.0h7v.s5.d5ad71808f9a from=translated src=- shape=807d41a6 vocab=4041d9cf
+-/
 theorem projRep_equiv_iff_cohomologous
     {D₁ D₂ : ℕ} {ω₁ ω₂ : ScalarCocycle G}
     (ρ₁ : ProjectiveRepresentation (D := D₁) ω₁)
@@ -177,7 +191,9 @@ theorem projRep_equiv_iff_cohomologous
     ProjectivelyEquivalent ρ₁ ρ₂ ↔ ScalarCocycle.CohomologousTo ω₁ ω₂ := by
   rfl
 
-/-- A cocycle is a coboundary iff it is cohomologous to the trivial cocycle `fun _ _ => 1`.-/
+/-- A cocycle is a coboundary iff it is cohomologous to the trivial cocycle `fun _ _ => 1`.
+@isnad1 id=iff.0h2v.s5.3042f35a9554 from=translated src=- shape=ddbd15aa vocab=b2e60517
+-/
 lemma ScalarCocycle.isCoboundary_iff_cohomologousTo_one (ω : ScalarCocycle G) :
     ω.IsCoboundary ↔ CohomologousTo ω (fun _ _ => 1) := by
   constructor
@@ -221,7 +237,9 @@ abbrev scalarH2Representation (G : Type*) [Group G] : Rep ℤ G :=
 multiplicative 2-cocycle equation for the trivial action on `ℂˣ`.
 
 This fixes the equation orientation in the comparison used for
-arXiv:2502.20257, lines 1927--1931.-/
+arXiv:2502.20257, lines 1927--1931.
+@isnad1 id=iff.0h2v.s6.e06f8e1c7ae5 from=translated src=- shape=2a45d95b vocab=af26cc58
+-/
 theorem ScalarCocycle.isCocycle_iff_isMulCocycle₂ (ω : ScalarCocycle G) :
     letI := ScalarCocycle.trivialMulDistribMulAction (G := G)
     ω.IsCocycle ↔ groupCohomology.IsMulCocycle₂ (Function.uncurry ω) := by
@@ -235,7 +253,9 @@ theorem ScalarCocycle.isCocycle_iff_isMulCocycle₂ (ω : ScalarCocycle G) :
     simpa only [mul_comm] using h'
 
 /-- TNLean's scalar coboundary equation is Mathlib's multiplicative
-2-coboundary equation for the trivial action on `ℂˣ`.-/
+2-coboundary equation for the trivial action on `ℂˣ`.
+@isnad1 id=iff.0h2v.s6.a8b718a123b3 from=translated src=- shape=2a45d95b vocab=91fc883d
+-/
 theorem ScalarCocycle.isCoboundary_iff_isMulCoboundary₂ (ω : ScalarCocycle G) :
     letI := ScalarCocycle.trivialMulDistribMulAction (G := G)
     ω.IsCoboundary ↔ groupCohomology.IsMulCoboundary₂ (Function.uncurry ω) := by
@@ -255,7 +275,9 @@ theorem ScalarCocycle.isCoboundary_iff_isMulCoboundary₂ (ω : ScalarCocycle G)
     simp only [div_eq_mul_inv, mul_assoc, mul_comm]
 
 /-- Two scalar cocycles are cohomologous precisely when their pointwise ratio
-is a coboundary.-/
+is a coboundary.
+@isnad1 id=iff.0h3v.s5.c3374021cf7a from=translated src=- shape=179919f6 vocab=a3ab9a14
+-/
 theorem ScalarCocycle.cohomologousTo_iff_isCoboundary_div
     (ω₁ ω₂ : ScalarCocycle G) :
     ω₁.CohomologousTo ω₂ ↔ (ω₁ / ω₂).IsCoboundary := by
@@ -313,7 +335,9 @@ def ScalarCocycle.representativesEquivMathlib (G : Type) [Group G] :
     rfl
 
 /-- A scalar cochain is a TNLean coboundary precisely when the corresponding
-additive cochain belongs to Mathlib's submodule of 2-coboundaries.-/
+additive cochain belongs to Mathlib's submodule of 2-coboundaries.
+@isnad1 id=iff.0h2v.s9.5b3e44c43e83 from=translated src=- shape=795de369 vocab=169d008f
+-/
 theorem ScalarCocycle.isCoboundary_iff_mem_mathlibCoboundaries
     {G : Type} [Group G] (ω : ScalarCocycle G) :
     ω.IsCoboundary ↔
@@ -332,7 +356,9 @@ theorem ScalarCocycle.isCoboundary_iff_mem_mathlibCoboundaries
     exact h'
 
 /-- Two TNLean cocycle representatives determine the same Mathlib cohomology
-class precisely when they are cohomologous.-/
+class precisely when they are cohomologous.
+@isnad1 id=iff.0h3v.s13.22b515d298ef from=translated src=- shape=16e8bf79 vocab=a5487b6b
+-/
 theorem ScalarCocycle.cohomologousTo_iff_H2π_eq {G : Type} [Group G]
     (ω₁ ω₂ : {ω : ScalarCocycle G // ω.IsCocycle}) :
     ω₁.1.CohomologousTo ω₂.1 ↔
@@ -354,7 +380,9 @@ noncomputable def h2ToGroupCohomology (G : Type) [Group G] :
       (ScalarCocycle.toMathlibCocycle ω))
     fun ω₁ ω₂ h ↦ (ScalarCocycle.cohomologousTo_iff_H2π_eq ω₁ ω₂).mp h
 
-/-- The canonical comparison map is injective.-/
+/-- The canonical comparison map is injective.
+@isnad1 id=injectiv.0h1v.s4.e2d802cf63e9 from=translated src=- shape=33633ce3 vocab=1c8c6a82
+-/
 theorem h2ToGroupCohomology_injective (G : Type) [Group G] :
     Function.Injective (h2ToGroupCohomology G) := by
   intro x y h
@@ -365,7 +393,9 @@ theorem h2ToGroupCohomology_injective (G : Type) [Group G] :
       apply Quotient.sound
       exact (ScalarCocycle.cohomologousTo_iff_H2π_eq ω₁ ω₂).mpr h
 
-/-- The canonical comparison map is surjective.-/
+/-- The canonical comparison map is surjective.
+@isnad1 id=surjecti.0h1v.s4.f14bf8deb7ec from=translated src=- shape=33633ce3 vocab=d10d2ee5
+-/
 theorem h2ToGroupCohomology_surjective (G : Type) [Group G] :
     Function.Surjective (h2ToGroupCohomology G) := by
   intro x
@@ -402,13 +432,17 @@ def ScalarCocycle.commPhase (ω : ScalarCocycle G) (g h : G) : Units ℂ :=
   ω g h * (ω h g)⁻¹
 
 omit [Group G] in
-/-- The trivial cocycle has commutator phase `1`.-/
+/-- The trivial cocycle has commutator phase `1`.
+@isnad1 id=eq.0h3v.s5.5c6c284bcc44 from=translated src=- shape=6f310898 vocab=1446cb01
+-/
 lemma ScalarCocycle.commPhase_one (g h : G) :
     ScalarCocycle.commPhase (G := G) (fun _ _ => (1 : Units ℂ)) g h = 1 := by
   simp [ScalarCocycle.commPhase]
 
 /-- The commutator phase at a commuting pair is invariant under coboundary
-equivalence: cohomologous cocycles share the same commutator phase.-/
+equivalence: cohomologous cocycles share the same commutator phase.
+@isnad1 id=eq.2h5v.s6.af6432c6b977 from=translated src=- shape=68451f21 vocab=e2a275be
+-/
 lemma ScalarCocycle.commPhase_eq_of_cohomologousTo {ω₁ ω₂ : ScalarCocycle G}
     (H : ScalarCocycle.CohomologousTo ω₁ ω₂) {g k : G} (hgk : g * k = k * g) :
     ScalarCocycle.commPhase ω₁ g k = ScalarCocycle.commPhase ω₂ g k := by
@@ -427,7 +461,9 @@ def ScalarCocycle.IsNontrivialClass (ω : ScalarCocycle G) : Prop :=
   ¬ ScalarCocycle.CohomologousTo ω (fun _ _ => 1)
 
 /-- A non-trivial commutator phase at a commuting pair forces a non-trivial
-cohomology class.-/
+cohomology class.
+@isnad1 id=isnontri.2h4v.s6.319a1b97db1e from=translated src=- shape=4c92b42b vocab=00fe2802
+-/
 theorem ScalarCocycle.isNontrivialClass_of_commPhase_ne_one {ω : ScalarCocycle G}
     {g h : G} (hgh : g * h = h * g) (hne : ScalarCocycle.commPhase ω g h ≠ 1) :
     ScalarCocycle.IsNontrivialClass ω := by

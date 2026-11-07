@@ -66,7 +66,9 @@ exactly membership in the embedded subgroup `ℝ_{>0} ⊆ ℂˣ`.-/
 def IsPositive (z : Units ℂ) : Prop :=
   z ∈ Set.range embedding
 
-/-- Taking the norm is a left inverse to the positive-unit embedding.-/
+/-- Taking the norm is a left inverse to the positive-unit embedding.
+@isnad1 id=eq.0h1v.s7.e4a5a2bcf82b from=translated src=- shape=a3a49f03 vocab=1ff87a57
+-/
 @[simp]
 theorem norm_embedding (r : Units NNReal) : norm (embedding r) = r := by
   apply Units.ext
@@ -74,19 +76,25 @@ theorem norm_embedding (r : Units NNReal) : norm (embedding r) = r := by
   change ‖((r : NNReal) : ℂ)‖ = (r : NNReal)
   exact Complex.norm_of_nonneg r.val.property
 
-/-- A canonical positive real power is positive-valued.-/
+/-- A canonical positive real power is positive-valued.
+@isnad1 id=ispositi.0h2v.s6.d4fc7de3119f from=translated src=- shape=1c39cc8b vocab=8379267f
+-/
 theorem isPositive_positiveRpow (r : ℝ) (z : Units ℂ) : IsPositive (positiveRpow r z) := by
   exact ⟨rpow r (norm z), rfl⟩
 
 /-- Positive real powers recover the usual `NNReal.rpow` on embedded positive
-units.-/
+units.
+@isnad1 id=eq.0h2v.s8.7ab428d8c24b from=translated src=- shape=c239abc1 vocab=22730dbb
+-/
 @[simp]
 theorem positiveRpow_embedding (s : ℝ) (r : Units NNReal) :
     positiveRpow s (embedding r) = embedding (rpow s r) := by
   simp [positiveRpow]
 
 /-- The positive `n`-th root raised to the `n`-th power recovers a positive
-complex unit.-/
+complex unit.
+@isnad1 id=eq.2h2v.s7.e6ee3c098fbc from=translated src=- shape=2c78e4c7 vocab=03c09015
+-/
 theorem positiveRpow_inv_natCast_pow {z : Units ℂ} (hz : IsPositive z)
     {n : ℕ} (hn : n ≠ 0) : positiveRpow (n : ℝ)⁻¹ z ^ n = z := by
   obtain ⟨r, rfl⟩ := hz
@@ -111,19 +119,25 @@ noncomputable def positiveRpow (r : ℝ) (χ : ActionTensorGauge G X) :
   fun g x => PositiveUnits.positiveRpow r (χ g x)
 
 omit [Group G] [MulAction G X] in
-/-- Pointwise positive real powers are positive-valued.-/
+/-- Pointwise positive real powers are positive-valued.
+@isnad1 id=ispositi.0h4v.s4.d14e273a2c86 from=translated src=- shape=a77d9339 vocab=93dbcde9
+-/
 theorem isPositiveValued_positiveRpow (r : ℝ) (χ : ActionTensorGauge G X) :
     IsPositiveValued (positiveRpow r χ) :=
   fun g x => PositiveUnits.isPositive_positiveRpow r (χ g x)
 
-/-- Generalized coboundaries preserve pointwise division.-/
+/-- Generalized coboundaries preserve pointwise division.
+@isnad1 id=eq.0h4v.s7.ff4c48c8c0c7 from=translated src=- shape=fa6c41e1 vocab=b52399c3
+-/
 theorem coboundary_div (χ ψ : ActionTensorGauge G X) :
     coboundary (χ / ψ) = coboundary χ / coboundary ψ := by
   funext x g h
   simp only [coboundary, Pi.div_apply, div_eq_mul_inv, mul_inv_rev, inv_inv]
   simp [mul_comm, mul_left_comm, mul_assoc]
 
-/-- Pointwise positive real powers commute with the generalized coboundary.-/
+/-- Pointwise positive real powers commute with the generalized coboundary.
+@isnad1 id=eq.0h4v.s7.010176206119 from=translated src=- shape=a3ac25f0 vocab=dfb192d7
+-/
 theorem coboundary_positiveRpow (r : ℝ) (χ : ActionTensorGauge G X) :
     coboundary (positiveRpow r χ) =
       fun x g h => PositiveUnits.positiveRpow r (coboundary χ x g h) := by
@@ -145,7 +159,9 @@ noncomputable def positivePrimitive [Fintype G] (Ω : LSymbol G X) :
     ActionTensorGauge G X :=
   ActionTensorGauge.positiveRpow (Fintype.card G : ℝ)⁻¹ (determinantCochain Ω)
 
-/-- The determinant/root primitive is positive-valued.-/
+/-- The determinant/root primitive is positive-valued.
+@isnad1 id=ispositi.0h3v.s5.f991d51d657f from=translated src=- shape=52d6f228 vocab=01122a02
+-/
 theorem isPositiveValued_positivePrimitive [Fintype G] (Ω : LSymbol G X) :
     ActionTensorGauge.IsPositiveValued (positivePrimitive Ω) :=
   ActionTensorGauge.isPositiveValued_positiveRpow _ _
@@ -156,7 +172,9 @@ block-dependent coboundary with a positive primitive.
 The proof follows arXiv:2502.20257, `cor:positive_trivial`, lines 5950--5956.
 Unlike the abbreviated notation in the source, the witness retains its block
 label. The determinant supplied by finite-group power trivialization is first
-replaced pointwise by its norm because permutation signs need not be positive.-/
+replaced pointwise by its norm because permutation signs need not be positive.
+@isnad1 id=ex.2h3v.s5.46aab7739f22 from=translated src=- shape=52c96682 vocab=421c4a59
+-/
 theorem exists_positive_coboundary [Finite G] {Ω : LSymbol G X}
     (hΩ : IsGeneralizedCocycle Ω) (hpos : IsPositiveValued Ω) :
     ∃ χ : ActionTensorGauge G X,
@@ -187,7 +205,9 @@ theorem exists_positive_coboundary [Finite G] {Ω : LSymbol G X}
 
 Starting from a positive primitive `χ₀`, this is exactly the source choice
 `χ = sqrt (χ₀ / hat χ₀)` from arXiv:2502.20257,
-`cor:positive_trivial`, lines 5955--5959.-/
+`cor:positive_trivial`, lines 5955--5959.
+@isnad1 id=ex.3h3v.s8.59fa9bf27564 from=translated src=- shape=080a8568 vocab=7413125d
+-/
 theorem exists_positive_coboundary_hat_mul_eq_one [Finite G]
     {Ω : LSymbol G X} (hΩ : IsGeneralizedCocycle Ω)
     (hpos : IsPositiveValued Ω) (hhat : Ω * hat Ω = 1) :

@@ -24,6 +24,9 @@ variable {R V : Type*} [Semiring R] [AddCommMonoid V] [Module R V]
 def commonFixedSubmodule {ι : Sort*} (f : ι → V →ₗ[R] V) : Submodule R V :=
   ⨅ i, (f i).fixedSubmodule
 
+/--
+@isnad1 id=iff.0h5v.s6.b84c3f23f47f from=translated src=- shape=d81e56c8 vocab=29881f2f
+-/
 @[simp]
 theorem mem_commonFixedSubmodule_iff {ι : Sort*} {f : ι → V →ₗ[R] V} {v : V} :
     v ∈ commonFixedSubmodule f ↔ ∀ i, f i v = v := by
@@ -33,7 +36,9 @@ variable {K W : Type*} [DivisionRing K] [AddCommGroup W] [Module K W]
   [Module.Finite K W]
 
 /-- A common nonzero fixed vector ensures that the common fixed submodule has
-finrank at least one.-/
+finrank at least one.
+@isnad1 id=le.2h5v.s8.059fc15746d8 from=translated src=- shape=3800d3a3 vocab=b9fe71c2
+-/
 theorem one_le_finrank_commonFixedSubmodule {ι : Sort*} (f : ι → W →ₗ[K] W) {v : W}
     (hv : v ∈ commonFixedSubmodule f) (hv0 : v ≠ 0) :
     1 ≤ Module.finrank K (commonFixedSubmodule f) := by

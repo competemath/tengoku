@@ -28,7 +28,9 @@ variable {E F : Type*} [NormedAddCommGroup E] [InnerProductSpace ℂ E]
   [NormedAddCommGroup F] [NormedSpace ℂ F]
 
 /-- The real-part form of the weighted inner-product estimate used twice in
-Nachtergaele's display `Enpsi2` (cond-mat/9410110, lines 1223--1239).-/
+Nachtergaele's display `Enpsi2` (cond-mat/9410110, lines 1223--1239).
+@isnad1 id=le.1h4v.s7.2c02cf928a24 from=translated src=- shape=13e964e2 vocab=7e0e1d44
+-/
 theorem re_inner_le_weighted_norm_sq (x y : E) {c : ℝ} (hc : 0 < c) :
     (⟪x, y⟫_ℂ).re ≤ (1 / (2 * c)) * ‖x‖ ^ 2 + (c / 2) * ‖y‖ ^ 2 := by
   calc
@@ -44,7 +46,9 @@ theorem re_inner_le_weighted_norm_sq (x y : E) {c : ℝ} (hc : 0 < c) :
 has operator norm at most \(\varepsilon\), then its value on the range of \(P\) has the C3
 norm-square bound used in cond-mat/9410110, lines 1240--1249, from condition C3
 at lines 1083--1094. No strict positivity of \(\varepsilon\) is required; the operator-norm
-hypothesis already implies its nonnegativity.-/
+hypothesis already implies its nonnegativity.
+@isnad1 id=le.2h6v.s9.a87fd40e91d0 from=translated src=- shape=5d668d10 vocab=24a16c19
+-/
 theorem norm_sq_apply_projection_le_of_norm_comp_le
     (Q : E →L[ℂ] F) (P : E →L[ℂ] E)
     (hP : P.toLinearMap.IsSymmetricProjection) {ε : ℝ}

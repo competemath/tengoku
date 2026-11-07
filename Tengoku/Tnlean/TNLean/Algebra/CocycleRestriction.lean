@@ -30,18 +30,24 @@ variable {G K : Type*} [Group G] [Group K]
 def ScalarCocycle.pullback (f : K →* G) (ω : ScalarCocycle G) : ScalarCocycle K :=
   fun a b ↦ ω (f a) (f b)
 
-/-- Evaluate a pulled-back cochain by applying the homomorphism to both arguments.-/
+/-- Evaluate a pulled-back cochain by applying the homomorphism to both arguments.
+@isnad1 id=eq.0h6v.s7.611e8cf76e42 from=translated src=- shape=b8ddf515 vocab=d4e59f1b
+-/
 @[simp]
 theorem ScalarCocycle.pullback_apply (f : K →* G) (ω : ScalarCocycle G) (a b : K) :
     ω.pullback f a b = ω (f a) (f b) := rfl
 
-/-- Pullback preserves the cocycle equation.-/
+/-- Pullback preserves the cocycle equation.
+@isnad1 id=iscocycl.1h4v.s5.5e63ac836933 from=translated src=- shape=c3b9f1c7 vocab=4ccebdff
+-/
 theorem ScalarCocycle.IsCocycle.pullback {ω : ScalarCocycle G}
     (hω : ω.IsCocycle) (f : K →* G) : (ω.pullback f).IsCocycle := by
   intro a b c
   simpa only [ScalarCocycle.pullback_apply, map_mul] using hω (f a) (f b) (f c)
 
-/-- Precomposing the witnessing cochain makes pullback respect cohomology.-/
+/-- Precomposing the witnessing cochain makes pullback respect cohomology.
+@isnad1 id=cohomolo.1h5v.s5.a515f915c3c3 from=translated src=- shape=d7b92825 vocab=dfcbf3ef
+-/
 theorem ScalarCocycle.CohomologousTo.pullback {ω₁ ω₂ : ScalarCocycle G}
     (h : ω₁.CohomologousTo ω₂) (f : K →* G) :
     (ω₁.pullback f).CohomologousTo (ω₂.pullback f) := by
@@ -49,7 +55,9 @@ theorem ScalarCocycle.CohomologousTo.pullback {ω₁ ω₂ : ScalarCocycle G}
   refine ⟨φ ∘ f, fun a b ↦ ?_⟩
   simpa only [ScalarCocycle.pullback_apply, Function.comp_apply, map_mul] using hφ (f a) (f b)
 
-/-- Multiplying a genuine cocycle by a cochain coboundary preserves its equation.-/
+/-- Multiplying a genuine cocycle by a cochain coboundary preserves its equation.
+@isnad1 id=iscocycl.1h3v.s7.4559c0541a0c from=translated src=- shape=7709a6e8 vocab=61a13e84
+-/
 theorem ScalarCocycle.IsCocycle.coboundary_mul {ω : ScalarCocycle G}
     (hω : ω.IsCocycle) (φ : G → ℂˣ) :
     ScalarCocycle.IsCocycle (fun a b ↦ φ a * φ b * (φ (a * b))⁻¹ * ω a b) := by
@@ -60,7 +68,9 @@ def H2.pullback (f : K →* G) : H2 G → H2 K :=
   Quotient.map (fun ω ↦ ⟨ω.1.pullback f, ω.2.pullback f⟩)
     (fun _ _ h ↦ ScalarCocycle.CohomologousTo.pullback h f)
 
-/-- Pullback of a class is represented by pullback of its cocycle.-/
+/-- Pullback of a class is represented by pullback of its cocycle.
+@isnad1 id=eq.1h4v.s6.948467ffe8b0 from=translated src=- shape=324c2f34 vocab=6af80ffb
+-/
 @[simp]
 theorem H2.pullback_mk (f : K →* G) (ω : ScalarCocycle G) (hω : ω.IsCocycle) :
     H2.pullback f (Quotient.mk _ ⟨ω, hω⟩) =
@@ -70,7 +80,9 @@ theorem H2.pullback_mk (f : K →* G) (ω : ScalarCocycle G) (hω : ω.IsCocycle
 
 This is the supporting cochain adjustment implicit in arXiv:2502.20257,
 Proposition `prop:BI_psi` (`main.tex:7042--7064`), for `ℂˣ` coefficients.
-The subgroup is arbitrary, and the cocycles need not be normalized.-/
+The subgroup is arbitrary, and the cocycles need not be normalized.
+@isnad1 id=iff.1h3v.s9.978115b7daec from=translated src=- shape=ab7bea8c vocab=8893db65
+-/
 theorem H2.mem_range_pullback_subtype_iff (H : Subgroup G)
     (ψ : ScalarCocycle H) (hψ : ψ.IsCocycle) :
     Quotient.mk _ ⟨ψ, hψ⟩ ∈ Set.range (H2.pullback H.subtype) ↔

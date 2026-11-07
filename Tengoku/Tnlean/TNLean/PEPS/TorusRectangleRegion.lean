@@ -57,6 +57,9 @@ def torusContiguousRectangle (xStart yStart xLen yLen : ℕ) :
     xStart ≤ v.1.val ∧ v.1.val < xStart + xLen ∧
       yStart ≤ v.2.val ∧ v.2.val < yStart + yLen
 
+/--
+@isnad1 id=iff.0h7v.s7.534c45169c00 from=translated src=- shape=821ee697 vocab=036f5e80
+-/
 @[simp] theorem mem_torusContiguousRectangle (xStart yStart xLen yLen : ℕ)
     (v : TorusVertex width height) :
     v ∈ torusContiguousRectangle xStart yStart xLen yLen ↔
@@ -92,7 +95,9 @@ def IsThreeByTwoContiguousTorusRectangle
 shape.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1407--1452 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=istwobyt.2h4v.s6.b7aca0616a8f from=translated src=- shape=9c8bcfaa vocab=fbfef19a
+-/
 theorem isTwoByThreeContiguousTorusRectangle_of_bounds
     {xStart yStart : ℕ} (hx : xStart + 2 ≤ width) (hy : yStart + 3 ≤ height) :
     IsTwoByThreeContiguousTorusRectangle
@@ -103,7 +108,9 @@ theorem isTwoByThreeContiguousTorusRectangle_of_bounds
 shape.
 
 Source: arXiv:1804.04964, Section 3, proof of Theorem 3, lines 1407--1452 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isthreeb.2h4v.s6.1b0cee61f795 from=translated src=- shape=9c8bcfaa vocab=d65e3202
+-/
 theorem isThreeByTwoContiguousTorusRectangle_of_bounds
     {xStart yStart : ℕ} (hx : xStart + 3 ≤ width) (hy : yStart + 2 ≤ height) :
     IsThreeByTwoContiguousTorusRectangle
@@ -138,7 +145,9 @@ variable {κ : RegionInjectivityData (TorusVertex width height)}
 injectivity hypotheses.
 
 Source: arXiv:1804.04964, Section 3, Theorem 3 and proof, lines 1407--1452 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.3h5v.s6.da1cd68d21e1 from=translated src=- shape=dda7f84d vocab=1ca51243
+-/
 theorem rect23_injective
     (h : NormalTorusRectangleInjectivityHypotheses κ)
     {xStart yStart : ℕ} (hx : xStart + 2 ≤ width) (hy : yStart + 3 ≤ height) :
@@ -150,7 +159,9 @@ theorem rect23_injective
 injectivity hypotheses.
 
 Source: arXiv:1804.04964, Section 3, Theorem 3 and proof, lines 1407--1452 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.3h5v.s6.766939befac6 from=translated src=- shape=dda7f84d vocab=1ca51243
+-/
 theorem rect32_injective
     (h : NormalTorusRectangleInjectivityHypotheses κ)
     {xStart yStart : ℕ} (hx : xStart + 3 ≤ width) (hy : yStart + 2 ≤ height) :
@@ -164,7 +175,9 @@ theorem rect32_injective
 rectangles sliding over it.
 
 Source: arXiv:1804.04964, Section 3, Lemma `injective_union`, lines 1322--1430 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.2h6v.s7.53c3340bad2c from=translated src=- shape=8d1ece08 vocab=175043a0
+-/
 theorem contiguousRectangle_eq_biUnion_two_by_three
     (xStart yStart xLen yLen : ℕ) (hx : 2 ≤ xLen) (hy : 3 ≤ yLen) :
     (torusContiguousRectangle xStart yStart xLen yLen : Finset (TorusVertex width height)) =
@@ -185,7 +198,9 @@ theorem contiguousRectangle_eq_biUnion_two_by_three
 /-- A wide-or-tall contiguous torus rectangle is injective.
 
 Source: arXiv:1804.04964, Section 3, Lemma `injective_union` and proof of Theorem 3, lines
-1322--1452 of `Papers/1804.04964/paper_normal.tex`.-/
+1322--1452 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.6h7v.s6.0c412939446b from=translated src=- shape=5df47047 vocab=6d9f5cd3
+-/
 theorem wideRectangle_injective
     (h : NormalTorusRectangleInjectivityHypotheses κ)
     (hUnion : RegionInjectivityUnionClosure κ)
@@ -205,7 +220,9 @@ theorem wideRectangle_injective
 rectangles sliding over it.
 
 Source: arXiv:1804.04964, Section 3, Lemma `injective_union`, lines 1322--1430 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.2h6v.s7.99711cff2704 from=translated src=- shape=8d1ece08 vocab=175043a0
+-/
 theorem contiguousRectangle_eq_biUnion_three_by_two
     (xStart yStart xLen yLen : ℕ) (hx : 3 ≤ xLen) (hy : 2 ≤ yLen) :
     (torusContiguousRectangle xStart yStart xLen yLen : Finset (TorusVertex width height)) =
@@ -226,7 +243,9 @@ theorem contiguousRectangle_eq_biUnion_three_by_two
 /-- A wide-and-short contiguous torus rectangle is injective.
 
 Source: arXiv:1804.04964, Section 3, Lemma `injective_union` and proof of Theorem 3, lines
-1322--1452 of `Papers/1804.04964/paper_normal.tex`.-/
+1322--1452 of `Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=isinject.6h7v.s6.c02148a17c0c from=translated src=- shape=5df47047 vocab=6d9f5cd3
+-/
 theorem shortRectangle_injective
     (h : NormalTorusRectangleInjectivityHypotheses κ)
     (hUnion : RegionInjectivityUnionClosure κ)

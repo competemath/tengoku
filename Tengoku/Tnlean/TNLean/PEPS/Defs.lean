@@ -52,13 +52,17 @@ def Edge.ofAdj {G : SimpleGraph V} {u v : V} (h : G.Adj u v) : Edge G :=
     ⟨(v, u), lt_of_le_of_ne (not_lt.mp huv) (G.ne_of_adj h).symm, h.symm⟩
 
 omit [Fintype V] in
-/-- On a pair already in order (`u < v`), `Edge.ofAdj` keeps the endpoints as given.-/
+/-- On a pair already in order (`u < v`), `Edge.ofAdj` keeps the endpoints as given.
+@isnad1 id=eq.2h4v.s7.e6c98f414c47 from=translated src=- shape=f0fbcb7c vocab=ff66f061
+-/
 theorem Edge.ofAdj_of_lt {G : SimpleGraph V} {u v : V} (h : G.Adj u v) (huv : u < v) :
     Edge.ofAdj h = ⟨(u, v), huv, h⟩ := by
   rw [Edge.ofAdj, dite_eq_left huv]
 
 omit [Fintype V] in
-/-- On a pair in reverse order (`v < u`), `Edge.ofAdj` swaps the endpoints.-/
+/-- On a pair in reverse order (`v < u`), `Edge.ofAdj` swaps the endpoints.
+@isnad1 id=eq.2h4v.s7.6597f47b2d99 from=translated src=- shape=0ea3a9ea vocab=9070c6bc
+-/
 theorem Edge.ofAdj_of_gt {G : SimpleGraph V} {u v : V} (h : G.Adj u v) (hvu : v < u) :
     Edge.ofAdj h =
       ⟨(v, u), hvu, h.symm⟩ := by
@@ -66,7 +70,9 @@ theorem Edge.ofAdj_of_gt {G : SimpleGraph V} {u v : V} (h : G.Adj u v) (hvu : v 
 
 omit [Fintype V] in
 /-- The unordered endpoint set of `Edge.ofAdj h` is `{u, v}`: its two endpoints are
-`u` and `v` in some order.-/
+`u` and `v` in some order.
+@isnad1 id=or.1h4v.s7.78acc30c7bd9 from=translated src=- shape=b6d7cf79 vocab=b4df2626
+-/
 theorem Edge.ofAdj_endpoints {G : SimpleGraph V} {u v : V} (h : G.Adj u v) :
     ((Edge.ofAdj h).1.1 = u ∧ (Edge.ofAdj h).1.2 = v) ∨
       ((Edge.ofAdj h).1.1 = v ∧ (Edge.ofAdj h).1.2 = u) := by
@@ -77,7 +83,9 @@ theorem Edge.ofAdj_endpoints {G : SimpleGraph V} {u v : V} (h : G.Adj u v) :
 omit [Fintype V] in
 /-- The image edge `Edge.ofAdj h` is independent of the incidence direction of the
 adjacency `h`: orienting the pair `(u, v)` and the pair `(v, u)` gives the same
-edge, since `Edge.ofAdj` places the smaller endpoint first either way.-/
+edge, since `Edge.ofAdj` places the smaller endpoint first either way.
+@isnad1 id=eq.1h4v.s5.1dc968f21c43 from=translated src=- shape=7f1fdabb vocab=c430baba
+-/
 @[deprecated "Use `Edge.ofAdj_of_lt` and `Edge.ofAdj_of_gt` for the required orientation."
   (since := "2026-07-30")]
 theorem Edge.ofAdj_symm {G : SimpleGraph V} {u v : V} (h : G.Adj u v) :
@@ -90,7 +98,9 @@ omit [Fintype V] in
 /-- An edge is determined by its unordered endpoint pair: if `(u, v)` is, in some
 order, the ordered endpoint pair of `e`, then orienting `(u, v)` with `Edge.ofAdj`
 recovers `e`. This is the bookkeeping that makes edge constructions independent
-of the order in which an unordered adjacent pair is presented.-/
+of the order in which an unordered adjacent pair is presented.
+@isnad1 id=eq.2h5v.s7.fde49c99465d from=translated src=- shape=edd9b4d8 vocab=deaeb60a
+-/
 theorem Edge.ofAdj_eq_of_endpoints {G : SimpleGraph V} {u v : V} (h : G.Adj u v)
     (e : Edge G)
     (H : (u = e.1.1 ∧ v = e.1.2) ∨ (u = e.1.2 ∧ v = e.1.1)) :
@@ -112,7 +122,9 @@ theorem Edge.ofAdj_eq_of_endpoints {G : SimpleGraph V} {u v : V} (h : G.Adj u v)
 omit [Fintype V] in
 /-- Two `Edge.ofAdj` constructions agree when their adjacent pairs have the same
 unordered endpoints: orienting `(u, v)` and `(u', v')` gives the same edge
-whenever `{u, v} = {u', v'}`.-/
+whenever `{u, v} = {u', v'}`.
+@isnad1 id=eq.3h6v.s6.53f4a8ef7b31 from=translated src=- shape=e9333e9e vocab=b7006e2b
+-/
 theorem Edge.ofAdj_eq_ofAdj {G : SimpleGraph V} {u v u' v' : V} (h1 : G.Adj u v)
     (h2 : G.Adj u' v')
     (H : (u = u' ∧ v = v') ∨ (u = v' ∧ v = u')) :
@@ -153,7 +165,9 @@ noncomputable def stateCoeff (A : Tensor G d) (σ : V → Fin d) : ℂ :=
 def SameState (A B : Tensor G d) : Prop :=
   ∀ σ : V → Fin d, stateCoeff A σ = stateCoeff B σ
 
-/-- `SameState` is symmetric: it is equality of all state coefficients.-/
+/-- `SameState` is symmetric: it is equality of all state coefficients.
+@isnad1 id=samestat.1h5v.s5.eaf552021dcf from=translated src=- shape=9f0c8ed7 vocab=a69505cb
+-/
 theorem SameState.symm {A B : Tensor G d} (hAB : SameState A B) : SameState B A :=
   fun σ => (hAB σ).symm
 

@@ -41,7 +41,9 @@ def hat (β : ScalarCocycle G) : ScalarCocycle G :=
   fun g h => β h⁻¹ g⁻¹
 
 /-- Applying the hat operation twice returns the original scalar two-cochain,
-as stated after arXiv:2502.20257, line 5912.-/
+as stated after arXiv:2502.20257, line 5912.
+@isnad1 id=eq.0h2v.s4.a1b8d5db0c4f from=translated src=- shape=2896fe98 vocab=43dbe2e7
+-/
 @[simp]
 theorem hat_hat (β : ScalarCocycle G) : hat (hat β) = β := by
   funext g h
@@ -57,7 +59,9 @@ def hat (ω : ScalarThreeCochain G) : ScalarThreeCochain G :=
   fun g h k => ω k⁻¹ h⁻¹ g⁻¹
 
 /-- Applying the hat operation twice returns the original scalar three-cochain,
-as stated after arXiv:2502.20257, line 5912.-/
+as stated after arXiv:2502.20257, line 5912.
+@isnad1 id=eq.0h2v.s4.be3fae6fd9b6 from=translated src=- shape=2896fe98 vocab=591e3233
+-/
 @[simp]
 theorem hat_hat (ω : ScalarThreeCochain G) : hat (hat ω) = ω := by
   funext g h k
@@ -78,7 +82,9 @@ def sigma (ω : ScalarThreeCochain G) : ScalarOneCochain G :=
 `eq:introXi`:
 `Xi(g,h) = ω(h⁻¹,g⁻¹,gh) / ω(g⁻¹,g,h)`.
 
-This is the cocycle equation at `(h⁻¹,g⁻¹,g,h)`, not a definitional equality.-/
+This is the cocycle equation at `(h⁻¹,g⁻¹,g,h)`, not a definitional equality.
+@isnad1 id=eq.2h4v.s6.ff89118e808d from=translated src=- shape=3031a03b vocab=67f69cba
+-/
 theorem Xi_eq_second_formula (ω : ScalarThreeCochain G) (hω : IsCocycle ω)
     (hωn : IsNormalized ω) (g h : G) :
     Xi ω g h = ω h⁻¹ g⁻¹ (g * h) / ω g⁻¹ g h := by
@@ -97,7 +103,9 @@ theorem Xi_eq_second_formula (ω : ScalarThreeCochain G) (hω : IsCocycle ω)
 /-- The inversion scalar satisfies `σ(g⁻¹) = σ(g)⁻¹`.
 
 The proof is the normalized cocycle equation at `(g,g⁻¹,g,g⁻¹)`, the fourth
-substitution listed for arXiv:2502.20257, `lemma:omegaXi`.-/
+substitution listed for arXiv:2502.20257, `lemma:omegaXi`.
+@isnad1 id=eq.2h3v.s5.c06c1e871677 from=translated src=- shape=741eb4f8 vocab=0c089701
+-/
 theorem sigma_inv (ω : ScalarThreeCochain G) (hω : IsCocycle ω)
     (hωn : IsNormalized ω) (g : G) :
     sigma ω g⁻¹ = (sigma ω g)⁻¹ := by
@@ -113,7 +121,9 @@ theorem sigma_inv (ω : ScalarThreeCochain G) (hω : IsCocycle ω)
 
 The proof combines exactly the source substitutions
 `(k⁻¹,h⁻¹,g⁻¹,g)`, `(k⁻¹,h⁻¹g⁻¹,g,h)`, and
-`(k⁻¹h⁻¹g⁻¹,g,h,k)`.-/
+`(k⁻¹h⁻¹g⁻¹,g,h,k)`.
+@isnad1 id=eq.2h2v.s6.04792330cc27 from=translated src=- shape=59d6cd3b vocab=6536520c
+-/
 theorem hat_eq_mul_coboundary_Xi (ω : ScalarThreeCochain G)
     (hω : IsCocycle ω) (hωn : IsNormalized ω) :
     hat ω = ω * coboundary (Xi ω) := by
@@ -162,7 +172,9 @@ theorem hat_eq_mul_coboundary_Xi (ω : ScalarThreeCochain G)
 After rewriting the hatted `Xi` by `Xi_eq_second_formula`, the proof uses the source
 substitutions `(h⁻¹g⁻¹,g,h,h⁻¹g⁻¹)`, `(h⁻¹,h,h⁻¹,g⁻¹)`, and
 `(h⁻¹,g⁻¹,g,g⁻¹)`. The fourth substitution `(u,u⁻¹,u,u⁻¹)` is used through
-`sigma_inv` at `u = g`, `h`, and `gh`.-/
+`sigma_inv` at `u = g`, `h`, and `gh`.
+@isnad1 id=eq.2h2v.s6.d8b07670f9bd from=translated src=- shape=74a9d312 vocab=648bf093
+-/
 theorem Xi_eq_hat_mul_coboundary_sigma (ω : ScalarThreeCochain G)
     (hω : IsCocycle ω) (hωn : IsNormalized ω) :
     Xi ω = ScalarCocycle.hat (Xi ω) * ScalarOneCochain.coboundary (sigma ω) := by

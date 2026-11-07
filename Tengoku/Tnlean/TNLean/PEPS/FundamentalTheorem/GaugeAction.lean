@@ -91,7 +91,9 @@ noncomputable def absorbEdgeGauges (B : Tensor G d)
 
 /-- Absorbing edge gauges does not change the bond spaces.
 
-Source: arXiv:1804.04964, Section 3, lines 1037--1038.-/
+Source: arXiv:1804.04964, Section 3, lines 1037--1038.
+@isnad1 id=eq.0h5v.s6.756fcba01b10 from=translated src=- shape=b95bdd44 vocab=f23d1c85
+-/
 @[simp] theorem absorbEdgeGauges_bondDim (B : Tensor G d)
     (X : (e : Edge G) → GL (Fin (B.bondDim e)) ℂ) :
     (absorbEdgeGauges B X).bondDim = B.bondDim := rfl
@@ -99,7 +101,9 @@ Source: arXiv:1804.04964, Section 3, lines 1037--1038.-/
 /-- The local component formula for absorbing oriented edge gauges.
 
 Source: arXiv:1804.04964, Section 3, lines 1037--1038, and lines 1500--1519
-for the normal translationally invariant absorption picture.-/
+for the normal translationally invariant absorption picture.
+@isnad1 id=eq.0h8v.s7.790d8d43570b from=translated src=- shape=85edbd0e vocab=2f49fe14
+-/
 theorem absorbEdgeGauges_component (B : Tensor G d)
     (X : (e : Edge G) → GL (Fin (B.bondDim e)) ℂ)
     (v : V) (η : (ie : IncidentEdge G v) → Fin (B.bondDim ie.1)) (σ : Fin d) :
@@ -112,7 +116,9 @@ Source: arXiv:1804.04964, Section 3, lines 1037--1038: after applying
 the injective-chain isomorphism lemma around every edge, the resulting edge
 gauges are absorbed into the tensors $B_i$ to form $\widetilde B_i$. This
 result constructs $\widetilde B$; it does not assert the later
-equality labelled eq:inj_equal_edge in the paper.-/
+equality labelled eq:inj_equal_edge in the paper.
+@isnad1 id=and.0h5v.s8.c3f4cc1f9003 from=translated src=- shape=15a7705a vocab=2f49fe14
+-/
 theorem edge_gauge_absorption (B : Tensor G d)
     (X : (e : Edge G) → GL (Fin (B.bondDim e)) ℂ) :
     (absorbEdgeGauges B X).bondDim = B.bondDim ∧
@@ -180,7 +186,9 @@ abbrev OpenLocalConfig (A : Tensor G d) : Type _ :=
   (v : V) → (ie : IncidentEdge G v) → Fin (A.bondDim ie.1)
 
 /-- Contracting a matrix with its inverse over the shared virtual index gives the
-Kronecker delta on the remaining indices.-/
+Kronecker delta on the remaining indices.
+@isnad1 id=eq.0h4v.s6.c386044da9bd from=translated src=- shape=edf9efde vocab=fe4af02d
+-/
 lemma gauge_sum_left_right_matrix_inv {n : Type*} [Fintype n] [DecidableEq n]
     (X : GL n ℂ) (a b : n) :
     (∑ j, (X : Matrix n n ℂ) j a * ((X : Matrix n n ℂ)⁻¹) b j) =
@@ -201,7 +209,9 @@ lemma gauge_sum_left_right_matrix_inv {n : Type*} [Fintype n] [DecidableEq n]
           simp [Matrix.one_apply, eq_comm]
 
 /-- A product over all incident half-edges factors as the product, over graph
-edges, of the two endpoint contributions.-/
+edges, of the two endpoint contributions.
+@isnad1 id=eq.0h3v.s7.4fa4ac43879d from=translated src=- shape=4ffed1c5 vocab=38c6e541
+-/
 lemma prod_incident_eq_prod_edge (f : (v : V) → IncidentEdge G v → ℂ) :
     (∏ v : V, ∏ ie : IncidentEdge G v, f v ie) =
       ∏ e : Edge G,
@@ -256,7 +266,9 @@ def finEqDelta {n : ℕ} (a b : Fin n) : ℂ :=
   @ite ℂ (a = b) (instDecidableEqFin n a b) 1 0
 
 /-- The Kronecker delta on `Fin n` unfolds to the conditional expression, for any
-decidability instance on the equality of the two indices.-/
+decidability instance on the equality of the two indices.
+@isnad1 id=eq.0h3v.s5.dc2c8bbea1c0 from=translated src=- shape=090e4f21 vocab=9f0924cd
+-/
 theorem finEqDelta_eq {n : ℕ} (a b : Fin n) :
     finEqDelta a b = if a = b then 1 else 0 := by
   by_cases h : a = b <;> simp [finEqDelta, h]
@@ -451,7 +463,9 @@ private lemma prod_gaugeVertex_eq_sum_local (A : Tensor G d)
 
 The proof relies on the fact that for each edge, the gauge matrix and its
 inverse-transpose cancel upon contraction of the shared virtual index:
-`∑_j X(i,j) · (X⁻¹)ᵀ(j,k) = δ(i,k)`.-/
+`∑_j X(i,j) · (X⁻¹)ᵀ(j,k) = δ(i,k)`.
+@isnad1 id=eq.0h6v.s6.e2e85af703c9 from=translated src=- shape=b262fdd0 vocab=c6ce6b11
+-/
 theorem applyGauge_stateCoeff (A : Tensor G d)
     (X : (e : Edge G) → GL (Fin (A.bondDim e)) ℂ)
     (σ : V → Fin d) :
@@ -532,7 +546,9 @@ noncomputable def insertedOpenConfigEquiv (A : Tensor G d) (e : Edge G) :
 /-- Global open form of the inserted-edge coefficient: a sum over the two open
 edge indices, the inserted-matrix weight, and a free complement configuration on
 all other edges, with the two endpoint tensors and the open middle tensor
-contracted against the complement data.-/
+contracted against the complement data.
+@isnad1 id=eq.0h7v.s11.3c331671ab67 from=translated src=- shape=4c66ed2b vocab=848debb2
+-/
 theorem edgeInsertedCoeff_eq_sum_complement (A : Tensor G d) (e : Edge G)
     (σ : V → Fin d) (N : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ) :
     edgeInsertedCoeff (G := G) A e σ N =
@@ -626,7 +642,9 @@ noncomputable def localOfDoubled (A : Tensor G d) (e : Edge G)
 
 omit [Fintype V] in
 /-- The rebuilt configuration reads the left open index at the left incidence of
-`e`.-/
+`e`.
+@isnad1 id=eq.0h8v.s8.35430b65d4ab from=translated src=- shape=7734103a vocab=d34a3370
+-/
 theorem localOfDoubled_left_e (A : Tensor G d) (e : Edge G)
     (i k : Fin (A.bondDim e)) (ζ : EdgeComplementConfig (G := G) A e) :
     localOfDoubled (G := G) A e i k ζ e.1.1 (edgeLeftIncident (G := G) e) = i := by
@@ -634,7 +652,9 @@ theorem localOfDoubled_left_e (A : Tensor G d) (e : Edge G)
 
 omit [Fintype V] in
 /-- The rebuilt configuration reads the right open index at the right incidence of
-`e`.-/
+`e`.
+@isnad1 id=eq.0h8v.s8.50fe595ef880 from=translated src=- shape=ba1f1b03 vocab=fd0244bd
+-/
 theorem localOfDoubled_right_e (A : Tensor G d) (e : Edge G)
     (i k : Fin (A.bondDim e)) (ζ : EdgeComplementConfig (G := G) A e) :
     localOfDoubled (G := G) A e i k ζ e.1.2 (edgeRightIncident (G := G) e) = k := by
@@ -644,7 +664,9 @@ theorem localOfDoubled_right_e (A : Tensor G d) (e : Edge G)
 
 omit [Fintype V] in
 /-- On any edge other than `e`, the rebuilt configuration reads the complement
-index at the left incidence.-/
+index at the left incidence.
+@isnad1 id=eq.0h9v.s8.b2c76b8cb046 from=translated src=- shape=cec8d0a5 vocab=1ee00652
+-/
 theorem localOfDoubled_left_ne (A : Tensor G d) (e : Edge G)
     (i k : Fin (A.bondDim e)) (ζ : EdgeComplementConfig (G := G) A e)
     (g : {g : Edge G // g ≠ e}) :
@@ -657,7 +679,9 @@ theorem localOfDoubled_left_ne (A : Tensor G d) (e : Edge G)
 
 omit [Fintype V] in
 /-- On any edge other than `e`, the rebuilt configuration reads the complement
-index at the right incidence.-/
+index at the right incidence.
+@isnad1 id=eq.0h9v.s8.b728efc18ab2 from=translated src=- shape=cb2fb1d8 vocab=915068dd
+-/
 theorem localOfDoubled_right_ne (A : Tensor G d) (e : Edge G)
     (i k : Fin (A.bondDim e)) (ζ : EdgeComplementConfig (G := G) A e)
     (g : {g : Edge G // g ≠ e}) :
@@ -715,7 +739,9 @@ noncomputable def consistentOffEquivDoubled (A : Tensor G d) (e : Edge G) :
       exact localOfDoubled_left_ne (G := G) A e i k ζ f
 
 /-- The per-edge consistency deltas off `e` collapse to the consistency-off-`e`
-predicate.-/
+predicate.
+@isnad1 id=eq.0h6v.s8.b570a1e774c2 from=translated src=- shape=435681c1 vocab=8c69b19e
+-/
 theorem prod_off_delta_eq (A : Tensor G d) (e : Edge G)
     (ξ : OpenLocalConfig (G := G) A) [Decidable (IsConsistentOff (G := G) A e ξ)] :
     (∏ f : {f : Edge G // f ≠ e},
@@ -751,7 +777,9 @@ theorem prod_off_delta_eq (A : Tensor G d) (e : Edge G)
 
 /-- Summing a three-factor summand whose first factor is the product of the
 per-edge consistency deltas off `e` restricts the sum to the configurations
-consistent off `e`. This is the sum-level form of `prod_off_delta_eq`.-/
+consistent off `e`. This is the sum-level form of `prod_off_delta_eq`.
+@isnad1 id=eq.0h7v.s10.45d2fe4cb0f1 from=translated src=- shape=eb5d578c vocab=1f48c4cb
+-/
 theorem sum_off_delta_eq_sum_consistentOff (A : Tensor G d) (e : Edge G)
     (N : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ)
     (H : OpenLocalConfig (G := G) A → ℂ)
@@ -851,7 +879,9 @@ per-vertex tensors contracted along the configuration.
 
 This is the open-edge analog of `sum_local_with_edge_deltas`; the delta on every
 edge other than `e` filters to configurations consistent off `e`, which are the
-two open indices plus a free complement configuration.-/
+two open indices plus a free complement configuration.
+@isnad1 id=eq.0h7v.s9.0d8f601bed66 from=translated src=- shape=952ee00f vocab=b3fae846
+-/
 theorem edgeInsertedCoeff_eq_sum_local (A : Tensor G d) (e : Edge G)
     (σ : V → Fin d) (N : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ) :
     edgeInsertedCoeff (G := G) A e σ N =
@@ -921,7 +951,9 @@ local configuration, expands into a sum over inner local configurations with one
 gauge-matrix factor on each incident edge.
 
 This is `prod_gaugeVertex_eq_sum_local` with the outer configuration allowed to
-differ at the two endpoints of an edge, as needed when one edge is left open.-/
+differ at the two endpoints of an edge, as needed when one edge is left open.
+@isnad1 id=eq.0h7v.s8.649209d70fe3 from=translated src=- shape=9520522a vocab=afba6156
+-/
 lemma prod_gaugeVertex_eq_sum_local_open (A : Tensor G d)
     (X : (e : Edge G) → GL (Fin (A.bondDim e)) ℂ)
     (ω : OpenLocalConfig (G := G) A) (σ : V → Fin d) :

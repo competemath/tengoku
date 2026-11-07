@@ -45,7 +45,9 @@ Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, lines 254--582 of
 `Papers/1804.04964/paper_normal.tex`. -/
 
 /-- The open middle weight is unchanged when the physical configuration is updated at
-the left endpoint, since the endpoint lies outside the middle region.-/
+the left endpoint, since the endpoint lies outside the middle region.
+@isnad1 id=eq.0h9v.s7.06d081f684ee from=translated src=- shape=957850dd vocab=96c9f785
+-/
 theorem edgeOpenMiddleWeight_update_left (A : Tensor G d) (e : Edge G) (σ : V → Fin d)
     (τ : Fin d)
     (leftResidual : ResidualLocalConfig (G := G) A (edgeLeftIncident (G := G) e))
@@ -62,7 +64,9 @@ theorem edgeOpenMiddleWeight_update_left (A : Tensor G d) (e : Edge G) (σ : V �
   rw [Function.update_of_ne hv]
 
 /-- The open middle weight is unchanged when the physical configuration is updated at
-the right endpoint, since the endpoint lies outside the middle region.-/
+the right endpoint, since the endpoint lies outside the middle region.
+@isnad1 id=eq.0h9v.s7.012d0c474acf from=translated src=- shape=0f762bf6 vocab=96c9f785
+-/
 theorem edgeOpenMiddleWeight_update_right (A : Tensor G d) (e : Edge G) (σ : V → Fin d)
     (τ : Fin d)
     (leftResidual : ResidualLocalConfig (G := G) A (edgeLeftIncident (G := G) e))
@@ -84,7 +88,9 @@ endpoint moves the inserted physical action onto the physical configuration, lea
 the contraction of the three-block coefficient.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, lines 254--582 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.0h7v.s9.7b076035dd66 from=translated src=- shape=88249cf2 vocab=d023891f
+-/
 theorem edgeRealizationSum_left_eq_sum_edgeBlockedCoeff (A : Tensor G d) (e : Edge G)
     (σ : V → Fin d) (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) :
     (∑ β : EdgeBoundaryConfig (G := G) A e,
@@ -149,7 +155,9 @@ coefficient, the right-endpoint mirror of
 `edgeRealizationSum_left_eq_sum_edgeBlockedCoeff`.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, lines 254--582 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.0h7v.s9.e4b2af4953b3 from=translated src=- shape=ce982e2a vocab=d023891f
+-/
 theorem edgeRealizationSum_right_eq_sum_edgeBlockedCoeff (A : Tensor G d) (e : Edge G)
     (σ : V → Fin d) (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) :
     (∑ β : EdgeBoundaryConfig (G := G) A e,
@@ -215,7 +223,9 @@ families. Both sides are weighted sums of the edge-blocked coefficient, and
 
 Source: arXiv:1804.04964, Section 3, lines 1010--1036 of
 `Papers/1804.04964/paper_normal.tex` (the two PEPS represent the same state before
-blocking).-/
+blocking).
+@isnad1 id=eq.1h8v.s9.2643022afb33 from=translated src=- shape=fd7d1af3 vocab=7948092c
+-/
 theorem edgeRealizationSum_left_sameState {A B : Tensor G d} (hAB : SameState A B)
     (e : Edge G) (σ : V → Fin d) (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) :
     (∑ β : EdgeBoundaryConfig (G := G) A e,
@@ -236,7 +246,9 @@ theorem edgeRealizationSum_left_sameState {A B : Tensor G d} (hAB : SameState A 
 families, the right-endpoint mirror of `edgeRealizationSum_left_sameState`.
 
 Source: arXiv:1804.04964, Section 3, lines 1010--1036 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.1h8v.s9.43c3794c24a8 from=translated src=- shape=5e1e445a vocab=7948092c
+-/
 theorem edgeRealizationSum_right_sameState {A B : Tensor G d} (hAB : SameState A B)
     (e : Edge G) (σ : V → Fin d) (O : (Fin d → ℂ) →ₗ[ℂ] (Fin d → ℂ)) :
     (∑ β : EdgeBoundaryConfig (G := G) A e,
@@ -290,7 +302,9 @@ noncomputable def edgeRightInsertionOp (A : Tensor G d) (e : Edge G)
   physRealizeLocalOpAt A hvA (localIncidentMatrixOp A (edgeRightIncident (G := G) e) X)
 
 /-- The right-endpoint insertion operator realizes the inserted matrix on the
-image of the local tensor map.-/
+image of the local tensor map.
+@isnad1 id=eq.1h7v.s11.fce019a37e24 from=translated src=- shape=cc458875 vocab=08cb2f04
+-/
 theorem edgeRightInsertionOp_realizes (A : Tensor G d) (e : Edge G)
     (hvA : LinearIndependent ℂ (A.component e.1.2))
     (X : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ)
@@ -302,7 +316,9 @@ theorem edgeRightInsertionOp_realizes (A : Tensor G d) (e : Edge G)
     (localIncidentMatrixOp A (edgeRightIncident (G := G) e) X) c
 
 /-- The right-endpoint insertion operator is an algebra anti-homomorphism in the
-inserted matrix: inserting a product realizes the composite in reverse order.-/
+inserted matrix: inserting a product realizes the composite in reverse order.
+@isnad1 id=eq.1h7v.s9.d4dc940dd269 from=translated src=- shape=1e96172e vocab=e8164712
+-/
 theorem edgeRightInsertionOp_mul (A : Tensor G d) (e : Edge G)
     (hvA : LinearIndependent ℂ (A.component e.1.2))
     (X X' : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ) :
@@ -315,7 +331,9 @@ theorem edgeRightInsertionOp_mul (A : Tensor G d) (e : Edge G)
   rw [edgeRightInsertionOp, edgeRightInsertionOp, edgeRightInsertionOp, hop,
     physRealizeLocalOpAt_comp]
 
-/-- The right-endpoint insertion operator is additive in the inserted matrix.-/
+/-- The right-endpoint insertion operator is additive in the inserted matrix.
+@isnad1 id=eq.1h7v.s9.5537aa75cbbe from=translated src=- shape=e1befb2e vocab=1ca5db19
+-/
 theorem edgeRightInsertionOp_add (A : Tensor G d) (e : Edge G)
     (hvA : LinearIndependent ℂ (A.component e.1.2))
     (X X' : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ) :
@@ -328,7 +346,9 @@ theorem edgeRightInsertionOp_add (A : Tensor G d) (e : Edge G)
   rw [edgeRightInsertionOp, edgeRightInsertionOp, edgeRightInsertionOp, hop,
     physRealizeLocalOpAt_add]
 
-/-- The right-endpoint insertion operator is homogeneous in the inserted matrix.-/
+/-- The right-endpoint insertion operator is homogeneous in the inserted matrix.
+@isnad1 id=eq.1h7v.s9.9e378adf3e4b from=translated src=- shape=e82392bc vocab=9d08f9b2
+-/
 theorem edgeRightInsertionOp_smul (A : Tensor G d) (e : Edge G)
     (hvA : LinearIndependent ℂ (A.component e.1.2)) (z : ℂ)
     (X : Matrix (Fin (A.bondDim e)) (Fin (A.bondDim e)) ℂ) :
@@ -347,7 +367,9 @@ noncomputable def edgeIncidentReferenceResidual (A : Tensor G d) {v : V}
 
 /-- A matrix insertion on an incident edge is determined by the physical operator
 it realizes on the image of the local tensor map. This applies at either
-endpoint of the chosen edge.-/
+endpoint of the chosen edge.
+@isnad1 id=eq.4h9v.s11.6791202a76e4 from=translated src=- shape=fedc7cbc vocab=de7f089e
+-/
 theorem edge_matrix_unique_of_realizes (B : Tensor G d) {v : V}
     (ie : IncidentEdge G v)
     (hvB : LinearIndependent ℂ (B.component v))
@@ -394,7 +416,9 @@ second family across `SameState`, is realized by the matrix insertion
 
 This is the load-bearing characterization of the transfer matrix: it says the
 explicit composition behind `edgeTransferMatrix` agrees with the matrix
-recovered by `physical_to_virtual_insertion`.-/
+recovered by `physical_to_virtual_insertion`.
+@isnad1 id=eq.4h8v.s11.b31115678f16 from=translated src=- shape=91040da7 vocab=05f63a78
+-/
 theorem edgeRightInsertionOp_realizes_edgeTransferMatrix
     (A B : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)
@@ -471,7 +495,9 @@ theorem edgeRightInsertionOp_realizes_edgeTransferMatrix
 
 /-- The transfer map sends a product of inserted matrices to the product of the
 transferred matrices: the explicit composition behind `edgeTransferMatrix` is
-multiplicative.-/
+multiplicative.
+@isnad1 id=eq.4h8v.s8.d2e1ba6c5bab from=translated src=- shape=9490977e vocab=e92e0fc8
+-/
 theorem edgeTransferMatrix_mul (A B : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)
     (hB : EdgeBlockedThreeSiteInjective (G := G) B e)
@@ -504,7 +530,9 @@ theorem edgeTransferMatrix_mul (A B : Tensor G d) (e : Edge G)
   exact congrFun (congrArg DFunLike.coe
     (localIncidentMatrixOp_comp B (edgeRightIncident (G := G) e) YX' YX)) _
 
-/-- The transfer map is additive.-/
+/-- The transfer map is additive.
+@isnad1 id=eq.4h8v.s8.96d398cd0f49 from=translated src=- shape=9490977e vocab=2597fa9a
+-/
 theorem edgeTransferMatrix_add (A B : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)
     (hB : EdgeBlockedThreeSiteInjective (G := G) B e)
@@ -534,7 +562,9 @@ theorem edgeTransferMatrix_add (A B : Tensor G d) (e : Edge G)
   exact (congrFun (congrArg DFunLike.coe
     (localIncidentMatrixOp_add B (edgeRightIncident (G := G) e) YX YX')) c).symm
 
-/-- The transfer map is homogeneous.-/
+/-- The transfer map is homogeneous.
+@isnad1 id=eq.4h8v.s8.7a33f257d0ae from=translated src=- shape=01a57daa vocab=4976b0b1
+-/
 theorem edgeTransferMatrix_smul (A B : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)
     (hB : EdgeBlockedThreeSiteInjective (G := G) B e)
@@ -565,7 +595,9 @@ in the first family equals inserting `edgeTransferMatrix … X` in the second
 family at every physical configuration.
 
 This is the coefficient identity of `exists_edgeInsertedCoeff_eq`, made functional
-with the explicit transfer matrix.-/
+with the explicit transfer matrix.
+@isnad1 id=eq.4h8v.s7.513a8603a48d from=translated src=- shape=aea32ae1 vocab=18e37d52
+-/
 theorem edgeTransferMatrix_edgeInsertedCoeff (A B : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)
     (hB : EdgeBlockedThreeSiteInjective (G := G) B e)
@@ -604,7 +636,9 @@ transfer matrix, and the coefficient identity is
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, lines 254--582 of
 `Papers/1804.04964/paper_normal.tex`; the displayed correspondence
-$X \mapsto Y$ is at lines 564--582.-/
+$X \mapsto Y$ is at lines 564--582.
+@isnad1 id=ex.4h7v.s7.85485a9d7b1a from=translated src=- shape=d4af09b7 vocab=c75aa138
+-/
 theorem exists_edgeInsertedCoeff_eq
     (A B : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)
@@ -648,7 +682,9 @@ the endpoint reference residuals available.
 
 Source: arXiv:1804.04964, Section 3, Lemma inj_isomorph, the inverse direction of
 the physical-to-virtual recovery theorem `eq:inj_O->X_argument`, lines 377--457 of
-`Papers/1804.04964/paper_normal.tex`.-/
+`Papers/1804.04964/paper_normal.tex`.
+@isnad1 id=eq.3h7v.s7.ce97726c2ba8 from=translated src=- shape=8aba6219 vocab=7c836eb4
+-/
 theorem edgeInsertedCoeff_injective (B : Tensor G d) (e : Edge G)
     (hB : EdgeBlockedThreeSiteInjective (G := G) B e)
     (hposB : ∀ f : Edge G, 0 < B.bondDim f)
@@ -716,7 +752,9 @@ By the coefficient identity, inserting `edgeTransferMatrix … 1` in the second
 family has the same coefficient as inserting `1` in the first family, which is
 the original state coefficient; equality of states matches it to inserting `1`
 in the second family, and injectivity of the inserted coefficient identifies the
-two matrices.-/
+two matrices.
+@isnad1 id=eq.4h6v.s7.12117549de9a from=translated src=- shape=bedde6cc vocab=3821412f
+-/
 theorem edgeTransferMatrix_one (A B : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)
     (hB : EdgeBlockedThreeSiteInjective (G := G) B e)
@@ -741,6 +779,9 @@ noncomputable def edgeTransferAlgHom (A B : Tensor G d) (e : Edge G)
     (edgeTransferMatrix_one A B e hA hB hAB hposB)
     (fun X X' => edgeTransferMatrix_mul A B e hA hB hAB hposB X X')
 
+/--
+@isnad1 id=eq.4h7v.s9.0d603103560b from=translated src=- shape=8360624f vocab=1e7c7345
+-/
 theorem edgeTransferAlgHom_apply (A B : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)
     (hB : EdgeBlockedThreeSiteInjective (G := G) B e)
@@ -755,7 +796,9 @@ theorem edgeTransferAlgHom_apply (A B : Tensor G d) (e : Edge G)
 /-- The forward and backward transfer maps are mutually inverse: composing the
 transfer from the second family back to the first with the transfer from the
 first to the second leaves every inserted matrix unchanged, by the coefficient
-identity in both directions and injectivity of the inserted coefficient.-/
+identity in both directions and injectivity of the inserted coefficient.
+@isnad1 id=eq.5h6v.s9.3d8ca284e0d0 from=translated src=- shape=b8e88f88 vocab=96f5baf1
+-/
 theorem edgeTransferAlgHom_comp_self (A B : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)
     (hB : EdgeBlockedThreeSiteInjective (G := G) B e)
@@ -859,7 +902,9 @@ Injectivity of the edge-inserted coefficient in the inserted matrix
 (`edgeInsertedCoeff_injective`) supplies identity-preservation
 (`edgeTransferMatrix_one`); the symmetric construction with the two families
 exchanged supplies the two-sided inverse (`edgeTransferAlgHom_comp_self`),
-giving the algebra equivalence `edgeTransferAlgEquiv`.-/
+giving the algebra equivalence `edgeTransferAlgEquiv`.
+@isnad1 id=isedgebl.5h6v.s6.93050fe3fef7 from=translated src=- shape=7ae6bee0 vocab=d9204b12
+-/
 theorem isEdgeBlockedInsertionAlgebraIsomorphism
     (A B : Tensor G d) (e : Edge G)
     (hA : EdgeBlockedThreeSiteInjective (G := G) A e)
