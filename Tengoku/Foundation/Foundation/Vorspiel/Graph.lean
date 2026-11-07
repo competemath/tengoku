@@ -29,10 +29,19 @@ def Graph₄ (f : α → β → γ → δ → σ) : σ → α → β → γ → 
 
 def Graph₅ (f : α → β → γ → δ → ε → σ) : σ → α → β → γ → δ → ε → Prop := fun y x₁ x₂ x₃ x₄ x₅ ↦ y = f x₁ x₂ x₃ x₄ x₅
 
+/--
+@isnad1 id=eq.1h5v.s4.c4d6bfc46257 from=translated src=- shape=f5949549 vocab=f0b65007
+-/
 lemma Graph.eq {f : α → σ} {y x} (h : Graph f y x) : f x = y := h.symm
 
+/--
+@isnad1 id=iff.0h5v.s4.45ca83a7b517 from=translated src=- shape=96b60d79 vocab=f0b65007
+-/
 lemma Graph.iff_left (f : α → σ) {y x} : f x = y ↔ Graph f y x := by simp [Graph, eq_comm]
 
+/--
+@isnad1 id=iff.0h5v.s4.735452d83802 from=translated src=- shape=9c7cce4b vocab=f0b65007
+-/
 lemma Graph.iff_right (f : α → σ) {y x} : y = f x ↔ Graph f y x := by simp [Graph]
 
 end Function

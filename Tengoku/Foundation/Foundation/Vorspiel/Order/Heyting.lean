@@ -16,6 +16,9 @@ section frame
 
 variable {α : Type*} [Order.Frame α]
 
+/--
+@isnad1 id=eq.0h3v.s5.3616813c88f8 from=translated src=- shape=758b342a vocab=ead8825d
+-/
 theorem compl_iSup' {a : ι → α} : (⨆ i, a i)ᶜ = ⨅ i, (a i)ᶜ := by
   simpa using iSup_himp_eq (f := a) (a := ⊥)
 
@@ -25,6 +28,9 @@ section HeytingAlgebra
 
 variable {α : Type*} [HeytingAlgebra α]
 
+/--
+@isnad1 id=le.0h4v.s6.c5d78eef1af8 from=translated src=- shape=1792c53d vocab=49ef2aab
+-/
 @[simp, grind .]
 lemma himp_himp_inf_himp_inf_le (a b c : α) : (a ⇨ b ⇨ c) ⊓ (a ⇨ b) ⊓ a ≤ c := calc
   (a ⇨ b ⇨ c) ⊓ (a ⇨ b) ⊓ a = (a ⇨ b ⇨ c) ⊓ b ⊓ a := by simp only [inf_assoc, himp_inf_self]
@@ -35,6 +41,9 @@ lemma himp_himp_inf_himp_inf_le (a b c : α) : (a ⇨ b ⇨ c) ⊓ (a ⇨ b) ⊓
                                                         · exact inf_le_right
   _                         ≤ c                   := by simp
 
+/--
+@isnad1 id=le.0h4v.s6.807eff0c611c from=translated src=- shape=63752a0d vocab=58f85b1e
+-/
 @[simp, grind .]
 lemma himp_inf_himp_inf_sup_le (a b c : α) : (a ⇨ c) ⊓ (b ⇨ c) ⊓ (a ⊔ b) ≤ c := by
   have ha : a ≤ (a ⇨ c) ⊓ (b ⇨ c) ⇨ c := by

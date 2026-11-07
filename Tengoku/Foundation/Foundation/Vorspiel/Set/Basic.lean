@@ -20,6 +20,9 @@ open _root_.Set
 
 variable {α : Type*} {s t : Set α} {a b : α}
 
+/--
+@isnad1 id=iff.0h4v.s5.1b7253612f19 from=translated src=- shape=9ff12f51 vocab=331d50fe
+-/
 lemma doubleton_subset : ({a, b} : Set α) ⊆ s ↔ a ∈ s ∧ b ∈ s := by
   constructor;
   . intro h;
@@ -31,6 +34,9 @@ lemma doubleton_subset : ({a, b} : Set α) ⊆ s ↔ a ∈ s ∧ b ∈ s := by
     . assumption;
     . simpa;
 
+/--
+@isnad1 id=iff.0h4v.s5.8748c76a7059 from=translated src=- shape=34855413 vocab=0f12c626
+-/
 lemma iff_subset_insert_subset_diff : s ⊆ insert a t ↔ s \ {a} ⊆ t := by
   constructor;
   . intro ha b hb;
@@ -45,6 +51,9 @@ lemma iff_subset_insert_subset_diff : s ⊆ insert a t ↔ s \ {a} ⊆ t := by
     . assumption;
     . simpa;
 
+/--
+@isnad1 id=lt.2h3v.s5.9959d4aa762a from=translated src=- shape=065a5058 vocab=4f3b14bd
+-/
 lemma ssubset_of_subset_ne (h : s ⊆ t) (hne : s ≠ t) : s ⊂ t := by
   constructor;
   . assumption;
@@ -57,6 +66,9 @@ lemma ssubset_of_subset_ne (h : s ⊆ t) (hne : s ≠ t) : s ⊂ t := by
   Thanks to @plp127
 
   https://leanprover.zulipchat.com/#narrow/channel/217875-Is-there-code-for-X.3F/topic/ascending.2Fdecending.20lemmata.20related.20.60Set.60.20and.20.60Finset.60/near/539292838
+-/
+/--
+@isnad1 id=ex.3h3v.s7.1039e62447ff from=translated src=- shape=c9d7c860 vocab=c92b3a25
 -/
 lemma infinitely_finset_approximate (count : s.Countable) (inf : s.Infinite) (ha : a ∈ s) :
   ∃ f : ℕ → Finset α, ((f 0) = {a}) ∧ (∀ i, f i ⊂ f (i + 1)) ∧ (∀ i, ↑(f i) ⊆ s) ∧ (∀ b ∈ s, ∃ i, b ∈ f i) := by
@@ -84,6 +96,9 @@ lemma infinitely_finset_approximate (count : s.Countable) (inf : s.Infinite) (ha
       suffices ∃ a_1 < eq.symm ⟨b, _⟩ + 1, ↑(eq _) = b by simpa;
       exact ⟨eq.symm ⟨b, hb, hba⟩, by simp⟩
 
+/--
+@isnad1 id=ex.4h3v.s6.9c3982adbacf from=translated src=- shape=17e57dd3 vocab=f0cec1b7
+-/
 lemma subset_mem_chain_of_finite (c : Set (Set α)) (hc : Set.Nonempty c) (hchain : IsChain (· ⊆ ·) c)
     {s} (hfin : Set.Finite s) : s ⊆ ⋃₀ c → ∃ t ∈ c, s ⊆ t :=
   Set.Finite.induction_on s hfin
