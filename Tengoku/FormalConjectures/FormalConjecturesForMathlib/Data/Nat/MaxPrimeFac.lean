@@ -1,0 +1,210 @@
+/-
+Copyright 2025 The Formal Conjectures Authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-/
+module
+
+public import Tengoku
+
+@[expose] public section
+
+namespace Nat
+
+/-- The greatest prime divisor of a natural number `n > 1`.
+
+Takes the junk value `0` for `n = 0` and `1` for `n = 1`.-/
+def maxPrimeFac (n : ℕ) : ℕ := if n = 1 then 1 else n.primeFactorsList.getLastI
+
+/--
+@isnad1 id=eq.0h0v.s3.4a27c9966066 from=translated src=- shape=3c26ae4f vocab=a5e0e51a
+-/
+@[simp]
+lemma maxPrimeFac_zero :
+    maxPrimeFac 0 = 0 := by
+  simp [maxPrimeFac, List.getLastI]
+
+/--
+@isnad1 id=eq.0h0v.s3.dcaeb3d9aded from=translated src=- shape=3c26ae4f vocab=a5e0e51a
+-/
+@[simp]
+lemma maxPrimeFac_one :
+    maxPrimeFac 1 = 1 := rfl
+
+/--
+@isnad1 id=prime.1h1v.s3.3e79d9ff344e from=translated src=- shape=c1538fc1 vocab=a964ab70
+-/
+lemma prime_maxPrimeFac_of_one_lt (n : ℕ) (h : 1 < n) :
+    Prime (maxPrimeFac n) := by
+  have hn : n.primeFactorsList ≠ [] := (primeFactorsList_ne_nil n).2 h
+  have hmem : n.primeFactorsList.getLast hn ∈ n.primeFactorsList := List.getLast_mem hn
+  have hprime : Prime (n.primeFactorsList.getLast hn) := prime_of_mem_primeFactorsList hmem
+  simpa [maxPrimeFac, h.ne', List.getLastI_eq_getLast?_getD,
+    List.getLast?_eq_getLast_of_ne_nil hn] using hprime
+
+/-- The greatest prime factor of a natural number divides it.
+@isnad1 id=dvd.0h1v.s3.0552b379c080 from=translated src=- shape=a365602c vocab=8a0e7010
+-/
+lemma maxPrimeFac_dvd : ∀ {n : ℕ}, maxPrimeFac n ∣ n
+  | 0 => by simp
+  | 1 => by simp
+  | n + 2 => by
+    have hn : 1 < n + 2 := by omega
+    have hlist : (n + 2).primeFactorsList ≠ [] :=
+      (primeFactorsList_ne_nil (n + 2)).2 hn
+    have hmem : (n + 2).primeFactorsList.getLast hlist ∈ (n + 2).primeFactorsList :=
+      List.getLast_mem hlist
+    have hdvd : (n + 2).primeFactorsList.getLast hlist ∣ n + 2 :=
+      dvd_of_mem_primeFactorsList hmem
+    simpa [maxPrimeFac, hn.ne', List.getLastI_eq_getLast?_getD,
+      List.getLast?_eq_getLast_of_ne_nil hlist] using hdvd
+
+/-- Every prime factor of a nonzero natural number is at most its greatest prime factor.
+@isnad1 id=le.3h2v.s4.595520777cce from=translated src=- shape=13bb85a4 vocab=868a9df0
+-/
+lemma le_maxPrimeFac
+    {n p : ℕ} (hn : n ≠ 0) (hp : p.Prime) (h_dvd : p ∣ n) :
+    p ≤ maxPrimeFac n := by
+  have hmem : p ∈ n.primeFactorsList := (mem_primeFactorsList hn).2 ⟨hp, h_dvd⟩
+  have hlist : n.primeFactorsList ≠ [] := List.ne_nil_of_mem hmem
+  have hn_one : n ≠ 1 := ((primeFactorsList_ne_nil n).1 hlist).ne'
+  have hp_last : p ≤ n.primeFactorsList.getLast hlist :=
+    (primeFactorsList_sorted n).pairwise.rel_getLast hmem
+  simpa [maxPrimeFac, hn_one, List.getLastI_eq_getLast?_getD,
+    List.getLast?_eq_getLast_of_ne_nil hlist] using hp_last
+
+/--
+@isnad1 id=eq.4h2v.s5.e3dd0b697594 from=translated src=- shape=98514030 vocab=3c5c39e5
+-/
+lemma maxPrimeFac_eq_of_dvd_of_le
+    (n p : ℕ) (hn : 0 < n) (hp : p.Prime) (h_dvd : p ∣ n) (h_le : maxPrimeFac n ≤ p) :
+    maxPrimeFac n = p := by
+  exact le_antisymm h_le (le_maxPrimeFac hn.ne' hp h_dvd)
+
+/-- The greatest prime factor of a prime is the prime itself.
+@isnad1 id=eq.1h1v.s3.0b51bd651e64 from=translated src=- shape=5b131564 vocab=cd3da0c8
+-/
+@[simp]
+lemma Prime.maxPrimeFac_eq_self {p : ℕ} (hp : p.Prime) :
+    maxPrimeFac p = p := by
+  apply maxPrimeFac_eq_of_dvd_of_le p p hp.pos hp (dvd_refl p)
+  exact Nat.le_of_dvd hp.pos maxPrimeFac_dvd
+
+/-- The fixed points of `maxPrimeFac` are zero, one, and the primes.
+@isnad1 id=iff.0h1v.s4.7ea653d70ac1 from=translated src=- shape=ee35bbaf vocab=c82a613d
+-/
+@[simp]
+lemma maxPrimeFac_eq_self_iff {n : ℕ} :
+    maxPrimeFac n = n ↔ n ≤ 1 ∨ n.Prime := by
+  constructor
+  · intro h
+    by_cases hn : n ≤ 1
+    · exact Or.inl hn
+    · exact Or.inr <| h ▸ prime_maxPrimeFac_of_one_lt n (lt_of_not_ge hn)
+  · rintro (hn | hn)
+    · obtain rfl | rfl := Nat.le_one_iff_eq_zero_or_eq_one.mp hn <;> simp
+    · exact hn.maxPrimeFac_eq_self
+
+/-- The greatest prime factor of a product of nonzero natural numbers is the maximum of their
+greatest prime factors.
+@isnad1 id=eq.2h2v.s5.a04779c3b90c from=translated src=- shape=b2317dc6 vocab=75aa8f37
+-/
+lemma maxPrimeFac_mul {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) :
+    maxPrimeFac (m * n) = max (maxPrimeFac m) (maxPrimeFac n) := by
+  obtain rfl | hm_lt : m = 1 ∨ 1 < m := by omega
+  · have hle : 1 ≤ maxPrimeFac n := by
+      obtain rfl | hn_lt : n = 1 ∨ 1 < n := by omega
+      · simp
+      · exact (prime_maxPrimeFac_of_one_lt n hn_lt).one_lt.le
+    simp [hle]
+  obtain rfl | hn_lt : n = 1 ∨ 1 < n := by omega
+  · have hle : 1 ≤ maxPrimeFac m := (prime_maxPrimeFac_of_one_lt m hm_lt).one_lt.le
+    simp [hle]
+  have hmn_lt : 1 < m * n := Nat.one_lt_mul_iff.mpr
+    ⟨zero_lt_of_lt hm_lt, zero_lt_of_lt hn_lt, Or.inl hm_lt⟩
+  apply le_antisymm
+  · have hp : Prime (maxPrimeFac (m * n)) := prime_maxPrimeFac_of_one_lt (m * n) hmn_lt
+    rcases hp.dvd_mul.mp maxPrimeFac_dvd with hpm | hpn
+    · exact (le_maxPrimeFac hm hp hpm).trans (le_max_left _ _)
+    · exact (le_maxPrimeFac hn hp hpn).trans (le_max_right _ _)
+  · apply max_le
+    · have hp : Prime (maxPrimeFac m) := prime_maxPrimeFac_of_one_lt m hm_lt
+      apply le_maxPrimeFac (mul_ne_zero hm hn) hp
+      exact dvd_mul_of_dvd_left maxPrimeFac_dvd n
+    · have hp : Prime (maxPrimeFac n) := prime_maxPrimeFac_of_one_lt n hn_lt
+      apply le_maxPrimeFac (mul_ne_zero hm hn) hp
+      exact dvd_mul_of_dvd_right maxPrimeFac_dvd m
+
+/-- The greatest prime factor of a nonzero power is the greatest prime factor of its base.
+@isnad1 id=eq.1h2v.s5.0ab96b2dbcab from=translated src=- shape=5eb027f2 vocab=d71c385c
+-/
+@[simp]
+lemma maxPrimeFac_pow {k : ℕ} (hk : k ≠ 0) (n : ℕ) :
+    maxPrimeFac (n ^ k) = maxPrimeFac n :=
+  match k, hk with
+  | k + 1, _ => by
+    by_cases hn : n = 0
+    · subst n
+      simp
+    induction k with
+    | zero => simp
+    | succ k ih =>
+        rw [pow_succ, maxPrimeFac_mul (pow_ne_zero _ hn) hn, ih (by omega)]
+        simp
+
+/-- The greatest prime factor of a natural number is at most that number.
+@isnad1 id=le.0h1v.s3.db883b8b14a8 from=translated src=- shape=a365602c vocab=dd8b87af
+-/
+lemma maxPrimeFac_le : ∀ {n : ℕ}, maxPrimeFac n ≤ n
+  | 0 => by simp
+  | 1 => by simp
+  | n + 2 => Nat.le_of_dvd (by omega) maxPrimeFac_dvd
+
+/-- The greatest prime factor of a natural number greater than one is the least upper bound of
+its prime factors.
+@isnad1 id=isleast.1h1v.s5.4a1d724cea01 from=translated src=- shape=5b36544e vocab=195b3e74
+-/
+lemma isLeast_maxPrimeFac {n : ℕ} (hn : 1 < n) :
+    IsLeast (upperBounds {p : ℕ | p.Prime ∧ p ∣ n}) (maxPrimeFac n) := by
+  constructor
+  · rintro p ⟨hp, h_dvd⟩
+    exact le_maxPrimeFac (zero_lt_of_lt hn).ne' hp h_dvd
+  · intro b hb
+    exact hb ⟨prime_maxPrimeFac_of_one_lt n hn, maxPrimeFac_dvd⟩
+
+/-- Away from `n = 1`, the computable greatest prime factor agrees with its supremum
+characterization.
+@isnad1 id=eq.1h1v.s4.b1c249df3a25 from=translated src=- shape=47ad1e0e vocab=96e49000
+-/
+lemma maxPrimeFac_eq_sSup {n : ℕ} (hn_one : n ≠ 1) :
+    maxPrimeFac n = sSup {p : ℕ | p.Prime ∧ p ∣ n} := by
+  obtain rfl | hn : n = 0 ∨ 1 < n := by lia
+  · simpa using (Set.Infinite.Nat.sSup_eq_zero infinite_setOfPred_prime).symm
+  · have h_lub : IsLUB {p : ℕ | p.Prime ∧ p ∣ n} (maxPrimeFac n) :=
+      isLeast_maxPrimeFac hn
+    exact (h_lub.csSup_eq
+      ⟨maxPrimeFac n, prime_maxPrimeFac_of_one_lt n hn, maxPrimeFac_dvd⟩).symm
+
+/--
+@isnad1 id=iff.0h1v.s4.8a603be45b02 from=translated src=- shape=57f73327 vocab=a7750468
+-/
+@[simp]
+lemma one_lt_maxPrimeFac_iff (n : ℕ) :
+    1 < maxPrimeFac n ↔ 1 < n := by
+  rcases lt_trichotomy n 1 with hn | rfl | hn
+  · simp only [lt_one_iff] at hn
+    simp [hn]
+  · simp
+  · simpa [hn] using (prime_maxPrimeFac_of_one_lt n hn).one_lt
+
+end Nat
