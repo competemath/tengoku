@@ -237,13 +237,22 @@ namespace PairOfDefinition
 
 variable {A : Type*} [CommRing A] [TopologicalSpace A] [IsTopologicalRing A]
 
+/--
+@isnad1 id=isopen.0h3v.s10.1c057e4b3b26 from=translated src=- shape=19c75387 vocab=84a44b31
+-/
 theorem pow_isOpen (P : PairOfDefinition A) (n : ℕ) : IsOpen ((P.I ^ n : Ideal P.A₀) : Set P.A₀) :=
   (isAdic_iff.mp P.isAdic).1 n
 
+/--
+@isnad1 id=isopen.0h3v.s10.b7c19a28cca0 from=translated src=- shape=163e7904 vocab=c904e48e
+-/
 theorem pow_image_isOpen (P : PairOfDefinition A) (n : ℕ) :
     IsOpen (Subtype.val '' ((P.I ^ n : Ideal P.A₀) : Set P.A₀) : Set A) :=
   P.isOpen.isOpenMap_subtype_val _ (P.pow_isOpen n)
 
+/--
+@isnad1 id=hasbasis.0h2v.s10.930ef173f956 from=translated src=- shape=0611dffd vocab=c0d24e25
+-/
 theorem hasBasis_nhds_zero (P : PairOfDefinition A) : (𝓝 (0 : A)).HasBasis (fun _ : ℕ ↦ True)
     (fun n ↦ Subtype.val '' ((P.I ^ n : Ideal P.A₀) : Set P.A₀)) :=
   Filter.HasBasis.mk fun U ↦ by
@@ -277,6 +286,9 @@ noncomputable def locSubring (P : PairOfDefinition A) (T : Finset A) (s : A) :
   Subring.closure ((algebraMap A (Localization.Away s)) '' (P.A₀ : Set A) ∪
     Set.range (fun t : T ↦ divByS (t : A) s))
 
+/--
+@isnad1 id=le.0h4v.s8.ea40a658475d from=translated src=- shape=96be4947 vocab=30750370
+-/
 theorem algebraMap_A₀_subset_locSubring (P : PairOfDefinition A) (T : Finset A) (s : A) :
     (algebraMap A (Localization.Away s)) '' (P.A₀ : Set A) ⊆
       (locSubring P T s : Set (Localization.Away s)) :=
@@ -303,10 +315,16 @@ noncomputable def locNhd (P : PairOfDefinition A) (T : Finset A) (s : A) (n : �
     AddSubgroup (Localization.Away s) :=
   ((locIdeal P T s) ^ n).toAddSubgroup.map (locSubring P T s).subtype.toAddMonoidHom
 
+/--
+@isnad1 id=antitone.0h4v.s7.acf56cfcda32 from=translated src=- shape=698e0d24 vocab=6218591e
+-/
 theorem locNhd_antitone (P : PairOfDefinition A) (T : Finset A) (s : A) :
     Antitone (locNhd P T s) :=
   fun _ _ h ↦ AddSubgroup.map_mono (Submodule.toAddSubgroup_mono (Ideal.pow_le_pow_right h))
 
+/--
+@isnad1 id=ex.0h5v.s9.24b247b4dc19 from=translated src=- shape=2081fd60 vocab=7759b07c
+-/
 theorem locNhd_mul (P : PairOfDefinition A) (T : Finset A) (s : A) (i : ℕ) :
     ∃ j, (locNhd P T s j : Set (Localization.Away s)) *
       (locNhd P T s j : Set (Localization.Away s)) ⊆
@@ -316,6 +334,9 @@ theorem locNhd_mul (P : PairOfDefinition A) (T : Finset A) (s : A) (i : ℕ) :
   exact ⟨d₁ * d₂, Ideal.pow_le_pow_right (Nat.le_add_left i i)
     (pow_add (locIdeal P T s) i i ▸ Ideal.mul_mem_mul hd₁ hd₂), MulMemClass.coe_mul ..⟩
 
+/--
+@isnad1 id=mem.2h6v.s12.05cd94bad4a6 from=translated src=- shape=96b7c4ba vocab=0d9e731b
+-/
 theorem locNhd_invS_mem (P : PairOfDefinition A) (T : Finset A) (s : A)
     (N : ℕ) (hN : ∀ b : P.A₀, b ∈ P.I ^ N → divByS (↑b : A) s ∈ locSubring P T s)
     {d : locSubring P T s} (hd : d ∈ locIdeal P T s ^ N) :
@@ -339,6 +360,9 @@ theorem locNhd_invS_mem (P : PairOfDefinition A) (T : Finset A) (s : A)
         mul_left_comm]
     exact (locSubring P T s).mul_mem r.property h1
 
+/--
+@isnad1 id=mem.2h7v.s10.b2c010cd05dd from=translated src=- shape=f863b468 vocab=2e73041e
+-/
 theorem locNhd_invS_step (P : PairOfDefinition A) (T : Finset A) (s : A)
     (N : ℕ) (hN : ∀ b : P.A₀, b ∈ P.I ^ N → divByS (↑b : A) s ∈ locSubring P T s)
     (n : ℕ) (y : Localization.Away s)
@@ -358,6 +382,9 @@ theorem locNhd_invS_step (P : PairOfDefinition A) (T : Finset A) (s : A)
 
 variable [IsTopologicalRing A]
 
+/--
+@isnad1 id=ex.0h6v.s9.c7674abb073b from=translated src=- shape=c5bc0e8b vocab=df4fece4
+-/
 theorem locNhd_algMap_step (P : PairOfDefinition A) (T : Finset A) (s : A) (i : ℕ) (a : A) :
     ∃ j, ∀ y ∈ locNhd P T s j,
       algebraMap A (Localization.Away s) a * y ∈ locNhd P T s i := by
@@ -387,6 +414,9 @@ theorem locNhd_algMap_step (P : PairOfDefinition A) (T : Finset A) (s : A) (i : 
     exact ⟨r * e, Ideal.mul_mem_left _ r he,
       congrArg ((↑r : Localization.Away s) * ·) he_eq⟩
 
+/--
+@isnad1 id=ex.1h6v.s8.b5ef0a1d984e from=translated src=- shape=f45f5c51 vocab=c7a4cb1b
+-/
 theorem locNhd_leftMul (P : PairOfDefinition A) (T : Finset A) (s : A) (hopen : LocOpen P T s)
     (x : Localization.Away s) (i : ℕ) : ∃ j, (locNhd P T s j : Set (Localization.Away s)) ⊆
       (x * ·) ⁻¹' (locNhd P T s i : Set (Localization.Away s)) := by
@@ -486,6 +516,9 @@ noncomputable instance presheafValue.instTopologicalSpace (D : RationalLocData A
   @UniformSpace.toTopologicalSpace _ (@UniformSpace.Completion.uniformSpace
     (Localization.Away D.s) D.uniformSpace)
 
+/--
+@isnad1 id=istopolo.0h2v.s6.0c1c714ceb8c from=translated src=- shape=f46fedce vocab=6650090d
+-/
 noncomputable instance presheafValue.instIsTopologicalRing (D : RationalLocData A) :
     IsTopologicalRing (presheafValue D) :=
   @UniformSpace.Completion.topologicalRing _ _ D.uniformSpace
@@ -598,6 +631,9 @@ noncomputable def limitRestrict {V W : Opens ↥(SpaTop A)} (h : W ≤ V) :
   map_zero' := rfl
   map_add' _ _ := rfl
 
+/--
+@isnad1 id=continuo.1h4v.s13.55a40b4049fe from=translated src=- shape=f1d543fe vocab=2df6526d
+-/
 theorem limitRestrict_continuous {V W : Opens ↥(SpaTop A)} (h : W ≤ V) :
     Continuous (limitRestrict R h) :=
   Continuous.subtype_mk
@@ -649,29 +685,47 @@ variable {R : Type u} [NormedCommRing R] [IsUltrametricDist R] {G : Type} [AddCo
 noncomputable def gauss (x : AddMonoidAlgebra R G) : ℝ≥0 :=
   x.coeff.support.sup fun m => ‖x.coeff m‖₊
 
+/--
+@isnad1 id=le.0h4v.s6.291d90f720bf from=translated src=- shape=2b8dc990 vocab=86ea3f69
+-/
 theorem nnnorm_coeff_le_gauss (x : AddMonoidAlgebra R G) (m : G) : ‖x.coeff m‖₊ ≤ gauss x := by
   by_cases h : m ∈ x.coeff.support
   · exact Finset.le_sup (f := fun m => ‖x.coeff m‖₊) h
   · rw [Finsupp.notMem_support_iff.mp h, nnnorm_zero]; exact zero_le
 
+/--
+@isnad1 id=iff.0h4v.s6.eccc3ee3c109 from=translated src=- shape=14b5e887 vocab=86ea3f69
+-/
 theorem gauss_le_iff {x : AddMonoidAlgebra R G} {C : ℝ≥0} :
     gauss x ≤ C ↔ ∀ m, ‖x.coeff m‖₊ ≤ C :=
   ⟨fun h m => (nnnorm_coeff_le_gauss x m).trans h, fun h => Finset.sup_le fun m _ => h m⟩
 
+/--
+@isnad1 id=iff.0h3v.s6.2d9ffbfc80dc from=translated src=- shape=22de423d vocab=b8b90674
+-/
 theorem gauss_eq_zero_iff {x : AddMonoidAlgebra R G} : gauss x = 0 ↔ x = 0 := by
   refine ⟨fun h => AddMonoidAlgebra.coeff_injective (Finsupp.ext fun m => ?_), ?_⟩
   · simpa using gauss_le_iff.mp h.le m
   · rintro rfl; simp [gauss]
 
+/--
+@isnad1 id=le.0h4v.s7.15dc734a64d8 from=translated src=- shape=953a07d7 vocab=d7e25aed
+-/
 theorem gauss_add_le (x y : AddMonoidAlgebra R G) : gauss (x + y) ≤ max (gauss x) (gauss y) :=
   gauss_le_iff.mpr fun m => by
     rw [AddMonoidAlgebra.coeff_add, Finsupp.add_apply]
     exact (IsUltrametricDist.nnnorm_add_le_max _ _).trans
       (max_le_max (nnnorm_coeff_le_gauss x m) (nnnorm_coeff_le_gauss y m))
 
+/--
+@isnad1 id=eq.0h3v.s6.cb55a88daa23 from=translated src=- shape=31021c20 vocab=a8a51fcd
+-/
 theorem gauss_neg (x : AddMonoidAlgebra R G) : gauss (-x) = gauss x := by
   simp [gauss, AddMonoidAlgebra.coeff_neg]
 
+/--
+@isnad1 id=le.0h4v.s7.a768c5b9282f from=translated src=- shape=0bcb68e3 vocab=ab79c2d0
+-/
 theorem gauss_mul_le (x y : AddMonoidAlgebra R G) : gauss (x * y) ≤ gauss x * gauss y := by
   classical
   refine gauss_le_iff.mpr fun m => ?_
@@ -699,6 +753,9 @@ noncomputable def gaussGroupNorm : AddGroupNorm (AddMonoidAlgebra R G) where
 noncomputable instance gaussNormedAddCommGroup : NormedAddCommGroup (AddMonoidAlgebra R G) :=
   gaussGroupNorm.toNormedAddCommGroup
 
+/--
+@isnad1 id=eq.0h3v.s6.d38405a2ffe1 from=translated src=- shape=953b2142 vocab=dbc88ef7
+-/
 theorem nnnorm_eq_gauss (x : AddMonoidAlgebra R G) : ‖x‖₊ = gauss x := rfl
 
 /-- `R[G]` with the Gauss norm is a normed ring.-/
@@ -707,16 +764,24 @@ noncomputable instance gaussNormedCommRing : NormedCommRing (AddMonoidAlgebra R 
     (inferInstance : CommRing (AddMonoidAlgebra R G)) with
     norm_mul_le := fun x y => by exact_mod_cast gauss_mul_le x y }
 
+/--
+@isnad1 id=isultram.0h2v.s6.e35f7f64b824 from=translated src=- shape=fabfe2e8 vocab=91931770
+-/
 instance gaussIsUltrametricDist : IsUltrametricDist (AddMonoidAlgebra R G) :=
   IsUltrametricDist.isUltrametricDist_of_forall_norm_add_le_max_norm fun x y => by exact_mod_cast gauss_add_le x y
 
 -- Pinned at high priority so the statements elaborate identically in every environment (see
 -- the module docstring); it is the same instance. All instances here are named explicitly,
 -- since auto-generated instance names can depend on the module name.
+/--
+@isnad1 id=istopolo.0h2v.s6.0b86a7be38f7 from=translated src=- shape=b942a63b vocab=1f18af36
+-/
 instance (priority := 1100) gaussIsTopologicalRing : IsTopologicalRing (AddMonoidAlgebra R G) :=
   inferInstance
 
-/-- Scaling by a field constant scales the Gauss norm exactly.-/
+/-- Scaling by a field constant scales the Gauss norm exactly.
+@isnad1 id=eq.0h4v.s7.c9a7b7b1eee8 from=translated src=- shape=4aa80080 vocab=17edb172
+-/
 theorem gauss_smul {K : Type u} [NormedField K] [IsUltrametricDist K] (c : K)
     (x : AddMonoidAlgebra K G) : gauss (c • x) = ‖c‖₊ * gauss x := by
   have key : ∀ (c : K) (x : AddMonoidAlgebra K G), gauss (c • x) ≤ ‖c‖₊ * gauss x :=
@@ -737,6 +802,9 @@ abbrev TateAlgebra (R : Type u) [NormedCommRing R] [IsUltrametricDist R] (G : Ty
     [AddCommMonoid G] : Type u :=
   UniformSpace.Completion (AddMonoidAlgebra R G)
 
+/--
+@isnad1 id=isultram.0h2v.s6.e3a47cfcbc04 from=translated src=- shape=fabfe2e8 vocab=2e9ab005
+-/
 instance tateAlgebraIsUltrametricDist : IsUltrametricDist (TateAlgebra R G) := by
   refine IsUltrametricDist.isUltrametricDist_of_forall_norm_add_le_max_norm fun x y => ?_
   induction x, y using UniformSpace.Completion.induction_on₂ with
@@ -746,7 +814,9 @@ instance tateAlgebraIsUltrametricDist : IsUltrametricDist (TateAlgebra R G) := b
       UniformSpace.Completion.norm_coe, UniformSpace.Completion.norm_coe]
     exact IsUltrametricDist.norm_add_le_max a b
 
-/-- Multiplication by a field constant scales the norm on `K⟨G⟩` exactly.-/
+/-- Multiplication by a field constant scales the norm on `K⟨G⟩` exactly.
+@isnad1 id=eq.0h4v.s9.38bfb66e153d from=translated src=- shape=b6186608 vocab=f285b21f
+-/
 theorem norm_algebraMap_mul {K : Type u} [NormedField K] [IsUltrametricDist K] (c : K)
     (x : TateAlgebra K G) :
     ‖(algebraMap K (AddMonoidAlgebra K G) c : TateAlgebra K G) * x‖ = ‖c‖ * ‖x‖ := by
@@ -774,6 +844,9 @@ noncomputable def unitBall : Subring E where
   neg_mem' ha := by simpa only [Set.mem_ofPred_eq, norm_neg] using ha
   mul_mem' ha hb := (norm_mul_le _ _).trans (mul_le_one₀ ha (norm_nonneg _) hb)
 
+/--
+@isnad1 id=isopen.0h1v.s6.9c493786ba8d from=translated src=- shape=ba060852 vocab=71aaf435
+-/
 theorem isOpen_unitBall : IsOpen (unitBall E : Set E) := by
   show IsOpen {x : E | ‖x‖ ≤ 1}
   simpa only [Metric.closedBall, dist_zero_right] using
@@ -782,12 +855,18 @@ theorem isOpen_unitBall : IsOpen (unitBall E : Set E) := by
 variable {E}
 
 omit [IsUltrametricDist E] [NormOneClass E] in
+/--
+@isnad1 id=eq.1h4v.s7.fb626c781c4b from=translated src=- shape=6ee0746e vocab=ddbb01ed
+-/
 theorem norm_pow_mul_of_scale {t : E} (hscale : ∀ x : E, ‖t * x‖ = ‖t‖ * ‖x‖) (n : ℕ) (x : E) :
     ‖t ^ n * x‖ = ‖t‖ ^ n * ‖x‖ := by
   induction n with
   | zero => simp
   | succ m ih => rw [pow_succ, pow_succ, mul_comm (t ^ m) t, mul_assoc, hscale, ih]; ring
 
+/--
+@isnad1 id=iff.4h4v.s10.975d8a069cf9 from=translated src=- shape=6f84eee8 vocab=e4433185
+-/
 theorem mem_span_unitBall_pow_iff {t : E} (htu : IsUnit t) (ht1 : ‖t‖ ≤ 1) (ht0 : 0 < ‖t‖)
     (hscale : ∀ x : E, ‖t * x‖ = ‖t‖ * ‖x‖) (x : unitBall E) (n : ℕ) :
     x ∈ (Ideal.span {(⟨t, ht1⟩ : unitBall E)}) ^ n ↔ ‖(x : E)‖ ≤ ‖t‖ ^ n := by
@@ -839,7 +918,9 @@ noncomputable def unitBallPod (t : E) (htu : IsUnit t) (ht1 : ‖t‖ < 1) (ht0 
       rw [SetLike.mem_coe, mem_span_unitBall_pow_iff htu ht1.le ht0 hscale] at hx
       exact hball (by rw [Metric.mem_ball, dist_zero_right]; exact lt_of_le_of_lt hx hn)
 
-/-- A nonarchimedean normed ring with a norm-scaling unit of norm `< 1` is a Tate ring.-/
+/-- A nonarchimedean normed ring with a norm-scaling unit of norm `< 1` is a Tate ring.
+@isnad1 id=istateri.4h2v.s7.eeb29d69440e from=translated src=- shape=4f75578f vocab=8d1238e4
+-/
 theorem isTateRing_of_scale (t : E) (htu : IsUnit t) (ht1 : ‖t‖ < 1) (ht0 : 0 < ‖t‖)
     (hscale : ∀ x : E, ‖t * x‖ = ‖t‖ * ‖x‖) : IsTateRing E := by
   have _ : IsHuberRing E := ⟨⟨unitBallPod t htu ht1 ht0 hscale⟩⟩
@@ -901,6 +982,9 @@ noncomputable def C : K →+* JetA K :=
       rintro ⟨⟩; exact ha.ne rfl, rfl⟩
 
 omit [CompleteSpace K] in
+/--
+@isnad1 id=eq.0h3v.s11.e7914b4e1856 from=translated src=- shape=3141f0fd vocab=6deafcca
+-/
 theorem norm_C_mul (c : K) (x : JetA K) : ‖C K c * x‖ = ‖c‖ * ‖x‖ :=
   norm_algebraMap_mul c (x : TateAlgebra K (ℤ × ℕ))
 
