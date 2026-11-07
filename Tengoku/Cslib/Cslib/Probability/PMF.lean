@@ -1,0 +1,115 @@
+/-
+Copyright (c) 2026 Samuel Schlesinger. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Samuel Schlesinger
+-/
+
+module
+
+public import Tengoku.Cslib.Cslib.Init
+public import Tengoku.Seed.Probability.ProbabilityMassFunction.Monad
+public import Tengoku.Seed.Probability.Distributions.Uniform
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# PMF Utilities
+
+## NB: This module is temporary
+
+Everything here is a general PMF bind/pure lemma with no dependence on
+any domain-specific structure. It should be upstreamed to Mathlib
+(likely `Mathlib.Probability.ProbabilityMassFunction.Monad` or a new
+`Mathlib.Probability.ProbabilityMassFunction.Prod`). Once accepted
+upstream, this file should be deleted and its consumers should import
+the Mathlib module instead.
+
+## Main results
+
+- `Cslib.Probability.PMF.bind_pair_apply`: the "pairing" bind at `(a, b)` equals `p a * f a b`
+- `Cslib.Probability.PMF.bind_pair_tsum_fst`: marginalizing over the first component
+- `Cslib.Probability.PMF.uniformOfFintype_map_equiv`:
+  a uniform distribution is invariant under equivalence
+- `Cslib.Probability.PMF.posteriorDist`: the posterior as a `PMF`
+- `Cslib.Probability.PMF.posteriorDist_eq_prior_of_outputIndist`:
+  if the output distribution does not depend on the input, conditioning does
+  not change the prior
+-/
+
+@[expose] public section
+
+namespace Cslib.Probability.PMF
+
+open ENNReal
+
+universe u v
+variable {α : Type u} {β : Type v}
+
+/-- Evaluating the "pairing" bind `(do let a ← p; return (a, ← f a))` at `(a, b)`
+gives the product `p a * f a b`.
+@isnad1 id=eq.0h6v.s6.337d7f0917d8 from=translated src=- shape=96fa6205 vocab=327c9936
+-/
+theorem bind_pair_apply (p : PMF α) (f : α → PMF β) (a : α) (b : β) :
+    (p.bind fun a' => (f a').bind fun b' => PMF.pure (a', b')) (a, b) = p a * f a b := by
+  rw [PMF.bind_apply, tsum_eq_single a]
+  · rw [PMF.bind_apply]; congr 1; rw [tsum_eq_single b]
+    · simp [PMF.pure_apply]
+    · intro b' hb'; simp [PMF.pure_apply, hb'.symm]
+  · intro a' ha'; rw [PMF.bind_apply]; simp [PMF.pure_apply, ha'.symm]
+
+/-- Summing the pairing bind over the first component gives the marginal.
+@isnad1 id=eq.0h5v.s6.6c55116d7070 from=translated src=- shape=a1163ceb vocab=ef32ab57
+-/
+theorem bind_pair_tsum_fst (p : PMF α) (f : α → PMF β) (b : β) :
+    ∑' a, (p.bind fun a' => (f a').bind fun b' => PMF.pure (a', b')) (a, b) =
+      (p.bind f) b := by
+  simp_rw [bind_pair_apply, PMF.bind_apply]
+
+/-- A uniform distribution on a finite type is invariant under any equivalence.
+@isnad1 id=eq.0h3v.s5.c7f6c1f2e4a7 from=translated src=- shape=cd06dba8 vocab=03cc0a9d
+-/
+theorem uniformOfFintype_map_equiv {γ : Type v} [Fintype α] [Fintype γ] [Nonempty α] [Nonempty γ]
+    (e : α ≃ γ) :
+    (PMF.uniformOfFintype α).map e = PMF.uniformOfFintype γ := by
+  ext c
+  rw [PMF.map_apply, tsum_eq_single (e.symm c)]
+  · simp [Fintype.card_congr e]
+  · exact fun a ha => ite_eq_right fun h => ha (by simp [h])
+
+/-- The posterior distribution `Pr[A = a | B = b]` as a `PMF`,
+given `a ← p`, `b ← f a`, and that `b` has positive marginal probability:
+the joint distribution's slice at `b`, normalized.-/
+noncomputable def posteriorDist (p : PMF α) (f : α → PMF β) (b : β)
+    (hb : b ∈ (p.bind f).support) : PMF α :=
+  PMF.normalize
+    (fun a => (p.bind fun a' => (f a').bind fun b' => PMF.pure (a', b')) (a, b))
+    (by rw [bind_pair_tsum_fst]; exact (PMF.mem_support_iff _ _).mp hb)
+    (by rw [bind_pair_tsum_fst]; exact PMF.apply_ne_top _ _)
+
+/--
+@isnad1 id=eq.1h6v.s6.e67ccc5f0a3a from=translated src=- shape=9b5080a7 vocab=0b6c26ad
+-/
+@[simp]
+theorem posteriorDist_apply (p : PMF α) (f : α → PMF β) (b : β)
+    (hb : b ∈ (p.bind f).support) (a : α) :
+    posteriorDist p f b hb a =
+      (p.bind fun a' => (f a').bind fun b' => PMF.pure (a', b')) (a, b) /
+        (p.bind f) b := by
+  rw [posteriorDist, PMF.normalize_apply, bind_pair_tsum_fst, div_eq_mul_inv]
+
+/-- If the output distribution of a channel does not depend on the input, then
+conditioning on any output with positive probability leaves the prior unchanged.
+@isnad1 id=eq.2h5v.s5.e092d8864a78 from=translated src=- shape=57baaf64 vocab=2c064d4f
+-/
+theorem posteriorDist_eq_prior_of_outputIndist (p : PMF α) (f : α → PMF β)
+    (h : ∀ a₀ a₁ : α, f a₀ = f a₁)
+    (b : β) (hb : b ∈ (p.bind f).support) :
+    posteriorDist p f b hb = p := by
+  ext a
+  have hbind : p.bind f = f a :=
+    (congrArg p.bind (funext fun a' => h a' a)).trans (PMF.bind_const p (f a))
+  rw [posteriorDist_apply, bind_pair_apply, hbind]
+  exact ENNReal.mul_div_cancel_right ((PMF.mem_support_iff _ _).mp (hbind ▸ hb))
+    (PMF.apply_ne_top _ _)
+
+end Cslib.Probability.PMF

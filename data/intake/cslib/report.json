@@ -1,0 +1,18 @@
+{
+ "bundle_sha256": "29620e9e3968d98a9626e8c696e8afbe7e98b0d5afbfd06a254e2a7d59429cc0",
+ "factory_changes": {
+  "grind calls rewritten": 14,
+  "grind sets": 1,
+  "inert lines removed": 75,
+  "lemmas listed": 465,
+  "modules changed": 58,
+  "set registrations removed": 1,
+  "set tags removed": 65
+ },
+ "gate2_unjudged": [],
+ "library": "cslib",
+ "lint_mode": "proposed",
+ "modules": 111,
+ "part": 1,
+ "theorems": 1068
+}

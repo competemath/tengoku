@@ -104,6 +104,7 @@ import Tengoku.DeletionCodesLean
 import Tengoku.QuadraticNumberFields
 import Tengoku.EquationalTheories
 import Tengoku.ForbiddenMatrix
+import Tengoku.Cslib
 import Tengoku.FormalMath
 import Tengoku.Formalslt
 import Tengoku.Physlib
