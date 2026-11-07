@@ -60,7 +60,9 @@ def rootMultiplicity (f : F[X][Y]) (x y : F) : Option ℕ :=
   rootMultiplicity₀ (shift f x y)
 
 /-- `rootMultiplicity₀ g` is at least `r` (vacuously so when `g = 0`, where it is `none`)
-iff every coefficient of total degree `< r` vanishes.-/
+iff every coefficient of total degree `< r` vanishes.
+@isnad1 id=iff.0h3v.s6.8d3b22bea2eb from=translated src=- shape=da5c74ba vocab=ceb67a66
+-/
 theorem rootMultiplicity₀_ge_iff (g : F[X][Y]) (r : ℕ) :
     (∀ i j, i + j < r → coeff g i j = 0) ↔ ∀ m ∈ rootMultiplicity₀ g, r ≤ m := by
   obtain ⟨deg, hdeg⟩ : ∃ d, weightedDegree g 1 1 = some d :=

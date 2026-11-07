@@ -27,7 +27,9 @@ variable {R : Type*} [Field R]
 
 open scoped BigOperators
 
-/-- Rewrite powers of the inverse root as powers of the forward root.-/
+/-- Rewrite powers of the inverse root as powers of the forward root.
+@isnad1 id=eq.1h4v.s6.3b4368746ccb from=translated src=- shape=13278306 vocab=abd00c7d
+-/
 theorem omegaInv_pow_mul_eq (D : Domain R) {i : Nat} (hi : i < D.n) (k : Nat) :
     D.omegaInv ^ (i * k) = D.omega ^ ((D.n - i) * k) := by
   rw [show D.omegaInv ^ (i * k) = (D.omegaInv ^ i) ^ k by rw [pow_mul]]
@@ -41,7 +43,9 @@ theorem omegaInv_pow_mul_eq (D : Domain R) {i : Nat} (hi : i < D.n) (k : Nat) :
   rw [Nat.sub_add_cancel hle]
   simpa [Domain.n] using D.primitive.pow_eq_one
 
-/-- Combine a forward-kernel term with an inverse-kernel term.-/
+/-- Combine a forward-kernel term with an inverse-kernel term.
+@isnad1 id=eq.1h5v.s7.c9478208bf83 from=translated src=- shape=feda73c4 vocab=674bd284
+-/
 theorem kernel_term_eq (D : Domain R) {i : Nat} (hi : i < D.n) (j k : Nat) :
     D.omega ^ (k * j) * D.omegaInv ^ (i * k) =
       D.omega ^ ((j + (D.n - i)) * k) := by
@@ -50,7 +54,9 @@ theorem kernel_term_eq (D : Domain R) {i : Nat} (hi : i < D.n) (j k : Nat) :
   congr 1
   ring
 
-/-- Sum of powers over the NTT domain, expressed by divisibility of the exponent.-/
+/-- Sum of powers over the NTT domain, expressed by divisibility of the exponent.
+@isnad1 id=eq.0h3v.s7.08b0a7fa506d from=translated src=- shape=898a24ea vocab=fd1bc743
+-/
 theorem omega_sum_pow_mul_eq_if_dvd (D : Domain R) (m : Nat) :
     (∑ k : D.Idx, D.omega ^ (m * (k : Nat))) = if D.n ∣ m then (D.n : R) else 0 := by
   by_cases hdiv : D.n ∣ m
@@ -85,7 +91,9 @@ theorem omega_sum_pow_mul_eq_if_dvd (D : Domain R) (m : Nat) :
             rw [hpow]
             simp
 
-/-- The kernel divisibility condition is equivalent to equality of domain indices.-/
+/-- The kernel divisibility condition is equivalent to equality of domain indices.
+@isnad1 id=iff.0h4v.s6.181a1e254de1 from=translated src=- shape=61ff953b vocab=7e4f55fa
+-/
 theorem dvd_add_sub_iff_fin_eq (D : Domain R) (i j : D.Idx) :
     D.n ∣ (j.1 + (D.n - i.1)) ↔ j = i := by
   constructor
@@ -109,7 +117,9 @@ theorem dvd_add_sub_iff_fin_eq (D : Domain R) (i j : D.Idx) :
     use 1
     omega
 
-/-- Orthogonality of the forward/inverse NTT kernels over the domain.-/
+/-- Orthogonality of the forward/inverse NTT kernels over the domain.
+@isnad1 id=eq.0h4v.s7.9b98d0be78d5 from=translated src=- shape=813d982d vocab=f4f08ce5
+-/
 theorem kernel_sum_eq_if (D : Domain R) (i j : D.Idx) :
     (∑ k : D.Idx, D.omega ^ ((k : Nat) * (j : Nat)) *
         D.omegaInv ^ ((i : Nat) * (k : Nat))) =
@@ -128,7 +138,9 @@ theorem kernel_sum_eq_if (D : Domain R) (i j : D.Idx) :
           · rw [ite_eq_left h, ite_eq_left ((dvd_add_sub_iff_fin_eq D i j).mpr h)]
           · rw [ite_eq_right h, ite_eq_right (mt (dvd_add_sub_iff_fin_eq D i j).mp h)]
 
-/-- Orthogonality of the inverse/forward NTT kernels over the domain.-/
+/-- Orthogonality of the inverse/forward NTT kernels over the domain.
+@isnad1 id=eq.0h4v.s7.fccaaf0bcb5a from=translated src=- shape=813d982d vocab=f4f08ce5
+-/
 theorem kernel_sum_forward_inverse_eq_if (D : Domain R) (i j : D.Idx) :
     (∑ k : D.Idx, D.omegaInv ^ ((k : Nat) * (j : Nat)) *
         D.omega ^ ((i : Nat) * (k : Nat))) =

@@ -75,7 +75,9 @@ def Bezout [Semiring R] [BEq R] [LawfulBEq R] (p q : CPolynomial R) :
     CPolynomial R × CPolynomial R × CPolynomial R → Prop
   | (r, s, t) => r = s * p + t * q
 
-/-- `xgcdAux` preserves the Bezout identity.-/
+/-- `xgcdAux` preserves the Bezout identity.
+@isnad1 id=bezout.2h11v.s8.e4e04d1cf60e from=translated src=- shape=a837c30d vocab=fbf13d8c
+-/
 theorem xgcdAux_bezout [Field R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial R) (threshold n : ℕ)
     {r r' : CPolynomial R} {s t s' t'}
@@ -88,7 +90,9 @@ theorem xgcdAux_bezout [Field R] [BEq R] [LawfulBEq R]
     apply ih ?_ h; simp only [Bezout] at *
     rw [h, h']; ring
 
-/-- The output of `xgcd` is a Bezout triple for `(p, q)`.-/
+/-- The output of `xgcd` is a Bezout triple for `(p, q)`.
+@isnad1 id=bezout.0h4v.s5.03683caacc02 from=translated src=- shape=a6f8eac1 vocab=3841405d
+-/
 theorem xgcd_bezout [Field R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial R) (threshold : ℕ) :
     Bezout p q (xgcd p q threshold) := by
@@ -107,7 +111,9 @@ private lemma toPoly_sub_div_mul [Field R] [BEq R] [LawfulBEq R]
   rw [show r' / r = r'.div r from rfl, toPoly_sub, toPoly_mul, div_toPoly_eq_div]
 
 /-- The gcd component of CompPoly's `xgcdAux` at threshold `0` coincides with
-Mathlib's `EuclideanDomain.gcd`.-/
+Mathlib's `EuclideanDomain.gcd`.
+@isnad1 id=eq.1h8v.s8.2d8e01c5c0cc from=translated src=- shape=8ed267dc vocab=683ff538
+-/
 lemma xgcdAux_toPoly_eq_gcd
     [Field R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (n : ℕ) (r r' s t s' t' : CPolynomial R)
@@ -129,7 +135,9 @@ lemma xgcdAux_toPoly_eq_gcd
       exact lt_of_lt_of_le (Polynomial.degree_mod_lt _ hrtp) (Order.le_of_lt_succ hn)
 
 /-- The gcd component of CompPoly's `xgcd` at threshold `0`
-coincides with Mathlib's `EuclideanDomain.gcd`.-/
+coincides with Mathlib's `EuclideanDomain.gcd`.
+@isnad1 id=eq.0h3v.s7.9898c72d11f3 from=translated src=- shape=6b77c697 vocab=32a176ae
+-/
 theorem xgcd_toPoly_eq_gcd [Field R] [BEq R] [LawfulBEq R] [DecidableEq R] (p q : CPolynomial R) :
     (xgcd p q).1.toPoly = EuclideanDomain.gcd p.toPoly q.toPoly := by
   unfold xgcd; apply xgcdAux_toPoly_eq_gcd
@@ -137,7 +145,9 @@ theorem xgcd_toPoly_eq_gcd [Field R] [BEq R] [LawfulBEq R] [DecidableEq R] (p q 
   exact mem_degreeLT.mp (mem_degreeLT_iff_size_le.mpr le_rfl)
 
 /-- CompPoly's `xgcdAux` at threshold `0` coincides with
-Mathlib's `EuclideanDomain.xgcdAux`.-/
+Mathlib's `EuclideanDomain.xgcdAux`.
+@isnad1 id=eq.1h8v.s8.ac9870241da3 from=translated src=- shape=1b6fc052 vocab=604e0d89
+-/
 lemma xgcdAux_toPoly_eq_xgcdAux
     [Field R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (n : ℕ) (r s t r' s' t' : CPolynomial R)
@@ -163,7 +173,9 @@ lemma xgcdAux_toPoly_eq_xgcdAux
       rw [toPoly_sub_div_mul, toPoly_sub_div_mul]
 
 /-- The Bezout component of CompPoly's `xgcd` coincides with
-Mathlib's `EuclideanDomain.xgcd`.-/
+Mathlib's `EuclideanDomain.xgcd`.
+@isnad1 id=eq.0h3v.s8.0b66b4c5152f from=translated src=- shape=99ea359b vocab=b8984191
+-/
 theorem xgcd_toPoly_eq_xgcd
     [Field R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (p q : CPolynomial R) :
@@ -188,7 +200,9 @@ def normXgcd [Field R] [BEq R] [LawfulBEq R]
   let c := res.1.leadingCoeff⁻¹
   (c • res.1, c • res.2.1, c • res.2.2)
 
-/-- The normalized extended-gcd output satisfies the Bezout identity.-/
+/-- The normalized extended-gcd output satisfies the Bezout identity.
+@isnad1 id=bezout.0h4v.s5.69c3b2be4f70 from=translated src=- shape=a6f8eac1 vocab=e28aa268
+-/
 theorem normXgcd_bezout [Field R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial R) (threshold : ℕ) :
     Bezout p q (normXgcd p q threshold) := by
@@ -202,7 +216,9 @@ theorem normXgcd_bezout [Field R] [BEq R] [LawfulBEq R]
   ring
 
 /-- The gcd component of CompPoly's `normXgcd` is the normalization
-of Mathlib's `EuclideanDomain.gcd`-/
+of Mathlib's `EuclideanDomain.gcd`
+@isnad1 id=eq.0h3v.s7.6a71132574c9 from=translated src=- shape=500a73b0 vocab=21d4c9b0
+-/
 theorem normXgcd_fst_toPoly
     [Field R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (p q : CPolynomial R) :
@@ -221,7 +237,9 @@ private theorem Raw.toPoly_smul [Semiring R] [BEq R] [LawfulBEq R]
   rw [CPolynomial.Raw.coeff_toPoly, CPolynomial.Raw.coeff_toPoly]
   exact CPolynomial.Raw.smul_coeff c p i
 
-/-- Monic normalization of computable polynomials agrees with Mathlib normalization.-/
+/-- Monic normalization of computable polynomials agrees with Mathlib normalization.
+@isnad1 id=eq.0h2v.s6.7d0421bbc520 from=translated src=- shape=2a19f0c4 vocab=e35cf5b8
+-/
 theorem monicNormalize_toPoly_eq_normalize
     [Field R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (p : CPolynomial R) :
@@ -313,7 +331,9 @@ private theorem gcdMonicWithFuel_toPoly_eq_normalize_gcd
               (Order.le_of_lt_succ hfuel))
 
 /-- The specialized monic gcd has the normalized Mathlib gcd as its `toPoly`
-image.-/
+image.
+@isnad1 id=eq.0h3v.s7.5a04e80b8520 from=translated src=- shape=d3aebaa8 vocab=20220da0
+-/
 theorem gcdMonic_toPoly_eq_normalize_gcd
     [Field R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (p q : CPolynomial R) :
@@ -334,7 +354,9 @@ theorem gcdMonic_toPoly_eq_normalize_gcd
         exact lt_of_lt_of_le hqdeg hle)
 
 /-- The specialized monic gcd agrees with the gcd component of normalized
-extended gcd.-/
+extended gcd.
+@isnad1 id=eq.0h3v.s6.4b813eaa9802 from=translated src=- shape=9ffb7b9b vocab=523b08ae
+-/
 theorem gcdMonic_eq_normXgcd_fst
     [Field R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (p q : CPolynomial R) :
@@ -345,7 +367,9 @@ theorem gcdMonic_eq_normXgcd_fst
 
 /-- The Bezout component of `normXgcd` under `toPoly` is Mathlib's
 `EuclideanDomain.xgcd` scaled by the inverse leading coefficient
-of the gcd-/
+of the gcd
+@isnad1 id=eq.0h3v.s9.c8eee4f9258e from=translated src=- shape=2fadba91 vocab=2a6e5a07
+-/
 theorem normXgcd_snd_toPoly
     [Field R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (p q : CPolynomial R) :
@@ -356,7 +380,9 @@ theorem normXgcd_snd_toPoly
   refine Prod.ext ?_ ?_ <;>
     simp only [normXgcd, Prod.map_fst, Prod.map_snd, Prod.smul_fst, Prod.smul_snd, toPoly_smul]
 
-/-- `normXgcd` is commutative for the gcd component-/
+/-- `normXgcd` is commutative for the gcd component
+@isnad1 id=eq.0h3v.s7.c4f4164a269b from=translated src=- shape=ce43b197 vocab=a7044ae9
+-/
 theorem normXgcd_fst_comm
     [Field R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (p q : CPolynomial R) :
@@ -408,7 +434,9 @@ abbrev BezoutDegreeInvariantOf [Ring F] (g₀ g₁ : CPolynomial F) (threshold :
   BezoutDegreeInvariant
     g₀.toPoly g₁.toPoly threshold r.toPoly s.toPoly t.toPoly r'.toPoly s'.toPoly t'.toPoly
 
-/-- `BezoutDegreeInvariant` implies `deg t + deg r' = deg g₀`.-/
+/-- `BezoutDegreeInvariant` implies `deg t + deg r' = deg g₀`.
+@isnad1 id=eq.1h10v.s7.3580541f2cff from=translated src=- shape=b1fcbe9c vocab=b72220d4
+-/
 lemma BezoutDegreeInvariant.degree_complement [CommRing F] [NoZeroDivisors F] [Nontrivial F]
     {g₀ g₁ : F[X]} {threshold : ℕ} {r s t r' s' t' : F[X]}
     (h : BezoutDegreeInvariant g₀ g₁ threshold r s t r' s' t') :
@@ -428,7 +456,9 @@ private lemma cofactor_degree_grows [Field F]
       (pos_of_lt_add_right (degree_add_div hr hrr.le ▸ hrr))
   rwa [degree_sub_eq_right_of_degree_lt (htt.trans hgt)]
 
-/-- A non-stop Euclidean step preserves the invariant.-/
+/-- A non-stop Euclidean step preserves the invariant.
+@isnad1 id=bezoutde.3h10v.s9.738a93900e61 from=translated src=- shape=86623427 vocab=824a8923
+-/
 lemma BezoutDegreeInvariant.step [Field F]
     {g₀ g₁ : F[X]} {threshold : ℕ} {r s t r' s' t' : F[X]}
     (h : BezoutDegreeInvariant g₀ g₁ threshold r s t r' s' t') (hr : r ≠ 0)
@@ -456,7 +486,9 @@ abbrev BezoutStopSpecOf [Semiring F] (g₀ g₁ : CPolynomial F) (threshold : �
   BezoutStopSpec
     g₀.toPoly g₁.toPoly threshold result.1.toPoly result.2.1.toPoly result.2.2.toPoly
 
-/-- `BezoutDegreeInvariant` implies `xgcdAux`'s output satisfies the stop spec.-/
+/-- `BezoutDegreeInvariant` implies `xgcdAux`'s output satisfies the stop spec.
+@isnad1 id=bezoutst.4h11v.s7.97c822d995d0 from=translated src=- shape=881ce26f vocab=158a2c14
+-/
 lemma xgcdAux_stopSpec_of_invariant
     [Field F] [BEq F] [LawfulBEq F] (g₀ g₁ : CPolynomial F) (threshold : ℕ) (hthr : 1 ≤ threshold)
     (hg₀ : g₀.toPoly ≠ 0) :
@@ -482,7 +514,9 @@ lemma xgcdAux_stopSpec_of_invariant
         ← EuclideanDomain.mod_eq_sub_mul_div]
       exact r'.toPoly.natDegree_mod_lt (by omega)
 
-/-- `xgcd`'s output satisfies the stop spec.-/
+/-- `xgcd`'s output satisfies the stop spec.
+@isnad1 id=bezoutst.3h4v.s7.beaa48dc4645 from=translated src=- shape=a6168e73 vocab=9a76e7d3
+-/
 lemma xgcd_stopSpec
     [Field F] [BEq F] [LawfulBEq F] (g₀ g₁ : CPolynomial F) (threshold : ℕ)
     (hdeg : g₁.degree < g₀.degree)

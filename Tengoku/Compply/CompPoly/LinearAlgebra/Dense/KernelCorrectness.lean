@@ -98,6 +98,9 @@ private theorem pivots_size_ge_cols_of_no_free_columns {pivots : Array Nat} {col
   have hpivlen : pivots.toList.length = pivots.size := by simp
   omega
 
+/--
+@isnad1 id=iff.0h2v.s5.5c3b1e46ff2b from=translated src=- shape=ddbf6f16 vocab=56d061e6
+-/
 theorem homogeneousWitness_eq_none_iff [Field F] [BEq F] (M : DenseMatrix F) :
     homogeneousWitness M = none ↔ (homogeneousKernelBasis M).size = 0 := by
   unfold homogeneousWitness
@@ -105,7 +108,9 @@ theorem homogeneousWitness_eq_none_iff [Field F] [BEq F] (M : DenseMatrix F) :
   · simp [h]
   · simp [h]
 
-/-- A matrix with more columns than rows has an executable homogeneous witness.-/
+/-- A matrix with more columns than rows has an executable homogeneous witness.
+@isnad1 id=ex.1h2v.s6.854ae86e6072 from=translated src=- shape=505ea1f1 vocab=4e1235dd
+-/
 theorem homogeneousWitness_exists_of_rows_lt_cols [Field F] [BEq F] [LawfulBEq F]
     (M : DenseMatrix F) (h : M.rows < M.cols) :
     ∃ v, homogeneousWitness M = some v := by
@@ -558,7 +563,9 @@ private theorem homogeneousKernelBasis_getD_zero_nonzero [Field F] [BEq F]
       · simp [basisVectorForFreeColumn, hltR]
       · simp [basisVectorForFreeColumn, hltR]
 
-/-- Any homogeneous witness returned by the executable kernel search has matrix-column width.-/
+/-- Any homogeneous witness returned by the executable kernel search has matrix-column width.
+@isnad1 id=vectorwi.1h3v.s5.924f037e1749 from=translated src=- shape=f18ebf86 vocab=10ecc873
+-/
 theorem homogeneousWitness_width [Field F] [BEq F]
     {M : DenseMatrix F} {v : Array F} (h : homogeneousWitness M = some v) :
     VectorWidth M v := by
@@ -568,7 +575,9 @@ theorem homogeneousWitness_width [Field F] [BEq F]
   rw [← h.2]
   exact homogeneousKernelBasis_getD_zero_size M h.1
 
-/-- Any homogeneous witness returned by the executable kernel search is nonzero.-/
+/-- Any homogeneous witness returned by the executable kernel search is nonzero.
+@isnad1 id=nonzerov.1h3v.s5.6a1c17d4242f from=translated src=- shape=56775826 vocab=b65d08d0
+-/
 theorem homogeneousWitness_nonzero [Field F] [BEq F]
     {M : DenseMatrix F} {v : Array F} (h : homogeneousWitness M = some v) :
     NonzeroVector v := by
@@ -577,7 +586,9 @@ theorem homogeneousWitness_nonzero [Field F] [BEq F]
   rw [← h.2]
   exact homogeneousKernelBasis_getD_zero_nonzero M h.1
 
-/-- Soundness of the homogeneous witness returned by Gaussian elimination.-/
+/-- Soundness of the homogeneous witness returned by Gaussian elimination.
+@isnad1 id=and.2h3v.s6.715918612c52 from=translated src=- shape=7e9fbc69 vocab=f2a575a5
+-/
 theorem homogeneousWitness_sound [Field F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} (hM : WellFormed M) {v : Array F}
     (h : homogeneousWitness M = some v) :
@@ -614,7 +625,9 @@ theorem homogeneousWitness_sound [Field F] [BEq F] [LawfulBEq F]
     rw [hfree_eq]
     exact basisVectorForFreeColumn_isHomogeneousSolution_rref hM hfree_lt (by simpa [R] using hnot)
 
-/-- If no homogeneous witness is returned, the homogeneous kernel is trivial.-/
+/-- If no homogeneous witness is returned, the homogeneous kernel is trivial.
+@isnad1 id=not.4h3v.s6.6e2abac53c3e from=translated src=- shape=f98e8b4c vocab=10a31576
+-/
 theorem homogeneousWitness_none_complete [Field F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} (hM : WellFormed M) (h : homogeneousWitness M = none) :
     forall v, VectorWidth M v -> IsHomogeneousSolution M v -> Not (NonzeroVector v) := by

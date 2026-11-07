@@ -24,6 +24,9 @@ namespace CompPoly
 
 namespace DenseMatrix
 
+/--
+@isnad1 id=lt.3h4v.s5.1e9f042b6c28 from=translated src=- shape=07c65657 vocab=733beb57
+-/
 theorem index_lt_of_lt [Zero F] {M : DenseMatrix F} (hM : WellFormed M)
     {row col : Nat} (hrow : row < M.rows) (hcol : col < M.cols) :
     M.index row col < M.data.size := by
@@ -35,6 +38,9 @@ theorem index_lt_of_lt [Zero F] {M : DenseMatrix F} (hM : WellFormed M)
     _ = (row + 1) * M.cols := by rw [Nat.succ_mul]
     _ ≤ M.rows * M.cols := Nat.mul_le_mul_right M.cols hrow
 
+/--
+@isnad1 id=eq.1h6v.s5.d3c6941f821f from=translated src=- shape=f38ae44b vocab=3a12bcbf
+-/
 theorem get_setD_index_same [Zero F] {M : DenseMatrix F} {data : Array F}
     {row col : Nat} (hidx : M.index row col < data.size) (value : F) :
     (setD data (M.index row col) value).getD (M.index row col) 0 = value := by
@@ -42,6 +48,9 @@ theorem get_setD_index_same [Zero F] {M : DenseMatrix F} {data : Array F}
   rw [Array.getD_eq_getD_getElem?, Array.getElem?_setIfInBounds_self_of_lt hidx]
   rfl
 
+/--
+@isnad1 id=eq.3h8v.s6.fae0b07b92b5 from=translated src=- shape=f3b82861 vocab=9767c67c
+-/
 theorem get_setD_index_ne [Zero F] (M : DenseMatrix F) (data : Array F)
     {row col row' col' : Nat} (hcol : col < M.cols) (hcol' : col' < M.cols)
     (hne : row ≠ row' ∨ col ≠ col') (value : F) :
@@ -79,6 +88,9 @@ theorem get_setD_index_ne [Zero F] (M : DenseMatrix F) (data : Array F)
   · rw [Array.getD_eq_getD_getElem?, Array.getD_eq_getD_getElem?,
       Array.getElem?_setIfInBounds_ne hidx]
 
+/--
+@isnad1 id=eq.3h7v.s6.322164183093 from=translated src=- shape=0762055d vocab=9767c67c
+-/
 theorem get_setD_index_ne_same_row [Zero F] (M : DenseMatrix F) (data : Array F)
     {row col col' : Nat} (hcol : col < M.cols) (hcol' : col' < M.cols)
     (hne : col ≠ col') (value : F) :
@@ -86,6 +98,9 @@ theorem get_setD_index_ne_same_row [Zero F] (M : DenseMatrix F) (data : Array F)
       data.getD (M.index row col') 0 :=
   get_setD_index_ne M data hcol hcol' (Or.inr hne) value
 
+/--
+@isnad1 id=eq.2h7v.s6.1b3ef14ac9fb from=translated src=- shape=2466bda8 vocab=9767c67c
+-/
 theorem get_setD_index_ne_same_col [Zero F] (M : DenseMatrix F) (data : Array F)
     {row row' col : Nat} (hcol : col < M.cols)
     (hne : row ≠ row') (value : F) :
@@ -93,6 +108,9 @@ theorem get_setD_index_ne_same_col [Zero F] (M : DenseMatrix F) (data : Array F)
       data.getD (M.index row' col) 0 :=
   get_setD_index_ne M data hcol hcol (Or.inl hne) value
 
+/--
+@isnad1 id=eq.1h5v.s5.31db3a64dae0 from=translated src=- shape=c301e195 vocab=8971c786
+-/
 theorem list_foldl_array_size_of_eq {α β : Type*}
     (f : Array α → β → Array α)
     (h : ∀ data x, (f data x).size = data.size) :
@@ -107,18 +125,27 @@ theorem list_foldl_array_size_of_eq {α β : Type*}
       simp only [List.foldl_cons]
       rw [ih, h]
 
+/--
+@isnad1 id=eq.0h4v.s4.22c493afa63a from=translated src=- shape=1f2231de vocab=2ce46fd6
+-/
 theorem swapRows_cols [Zero F]
     (M : DenseMatrix F) (rowA rowB : Nat) :
     (swapRows M rowA rowB).cols = M.cols := by
   unfold swapRows
   split <;> rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.798f20cc2ec9 from=translated src=- shape=1f2231de vocab=0974a11b
+-/
 theorem swapRows_rows [Zero F]
     (M : DenseMatrix F) (rowA rowB : Nat) :
     (swapRows M rowA rowB).rows = M.rows := by
   unfold swapRows
   split <;> rfl
 
+/--
+@isnad1 id=wellform.1h4v.s4.6420e3bf3d8f from=translated src=- shape=f5981091 vocab=b75e7cf3
+-/
 theorem swapRows_wf [Zero F] {M : DenseMatrix F} (hM : WellFormed M)
     (rowA rowB : Nat) : WellFormed (swapRows M rowA rowB) := by
   unfold swapRows
@@ -127,6 +154,9 @@ theorem swapRows_wf [Zero F] {M : DenseMatrix F} (hM : WellFormed M)
   · simpa [WellFormed, setD, Std.Legacy.Range.forIn_eq_forIn_range',
       list_foldl_array_size_of_eq] using hM
 
+/--
+@isnad1 id=eq.3h6v.s5.c7a2b9c87878 from=translated src=- shape=c0e08b94 vocab=214b7251
+-/
 theorem swapRows_get_of_row_ne [Zero F] {M : DenseMatrix F}
     {rowA rowB row col : Nat} (hcol : col < M.cols)
     (hA : rowA ≠ row) (hB : rowB ≠ row) :
@@ -166,6 +196,9 @@ theorem swapRows_get_of_row_ne [Zero F] {M : DenseMatrix F}
           simpa using (List.mem_range'_1.mp hc).2)
         rfl
 
+/--
+@isnad1 id=eq.3h5v.s5.eb747b2316d9 from=translated src=- shape=c66b9b7f vocab=835bb768
+-/
 theorem swapRows_get_left [Zero F] {M : DenseMatrix F}
     (hM : WellFormed M) {rowA rowB col : Nat}
     (hrowA : rowA < M.rows) (hcol : col < M.cols) :
@@ -264,6 +297,9 @@ theorem swapRows_get_left [Zero F] {M : DenseMatrix F}
         (List.nodup_range' (s := 0) (n := M.cols))
         (by simp [hcol])
 
+/--
+@isnad1 id=eq.3h5v.s5.1d778e6b3b60 from=translated src=- shape=0533544c vocab=835bb768
+-/
 theorem swapRows_get_right [Zero F] {M : DenseMatrix F}
     (hM : WellFormed M) {rowA rowB col : Nat}
     (hrowB : rowB < M.rows) (hcol : col < M.cols) :
@@ -359,6 +395,9 @@ theorem swapRows_get_right [Zero F] {M : DenseMatrix F}
         (List.nodup_range' (s := 0) (n := M.cols))
         (by simp [hcol])
 
+/--
+@isnad1 id=eq.0h5v.s8.b16fd5239bce from=translated src=- shape=88bce955 vocab=cd59fe29
+-/
 theorem list_forIn_addScaledRow_rows [Field F]
     (rows : List Nat) (pivotRow pivotCol : Nat) (out : DenseMatrix F) :
     (Id.run (forIn rows out fun row r ↦
@@ -376,6 +415,9 @@ theorem list_forIn_addScaledRow_rows [Field F]
       · have hih := ih (addScaledRow out row pivotRow (-(out.get row pivotCol)))
         simpa [List.forIn_cons, hrow, addScaledRow] using hih
 
+/--
+@isnad1 id=eq.0h5v.s8.2553a88cb341 from=translated src=- shape=88bce955 vocab=6bfefd44
+-/
 theorem list_forIn_addScaledRow_cols [Field F]
     (rows : List Nat) (pivotRow pivotCol : Nat) (out : DenseMatrix F) :
     (Id.run (forIn rows out fun row r ↦
@@ -393,6 +435,9 @@ theorem list_forIn_addScaledRow_cols [Field F]
       · have hih := ih (addScaledRow out row pivotRow (-(out.get row pivotCol)))
         simpa [List.forIn_cons, hrow, addScaledRow] using hih
 
+/--
+@isnad1 id=eq.0h4v.s5.30b25a1046ed from=translated src=- shape=f6e15c8e vocab=7b26586b
+-/
 theorem normalizeAndEliminate_cols [Field F] [BEq F]
     (M : DenseMatrix F) (pivotRow pivotCol : Nat) :
     (normalizeAndEliminate M pivotRow pivotCol).cols = M.cols := by
@@ -408,6 +453,9 @@ theorem normalizeAndEliminate_cols [Field F] [BEq F]
             [:(scaleRow M pivotRow (M.get pivotRow pivotCol)⁻¹).rows]) 1)
         pivotRow pivotCol (scaleRow M pivotRow (M.get pivotRow pivotCol)⁻¹))
 
+/--
+@isnad1 id=eq.0h4v.s5.bdf822d40d71 from=translated src=- shape=f6e15c8e vocab=ffb4a156
+-/
 theorem normalizeAndEliminate_rows [Field F] [BEq F]
     (M : DenseMatrix F) (pivotRow pivotCol : Nat) :
     (normalizeAndEliminate M pivotRow pivotCol).rows = M.rows := by
@@ -423,6 +471,9 @@ theorem normalizeAndEliminate_rows [Field F] [BEq F]
             [:(scaleRow M pivotRow (M.get pivotRow pivotCol)⁻¹).rows]) 1)
         pivotRow pivotCol (scaleRow M pivotRow (M.get pivotRow pivotCol)⁻¹))
 
+/--
+@isnad1 id=eq.2h6v.s6.5a6a840c104a from=translated src=- shape=0f836c7a vocab=9e0d75d2
+-/
 theorem scaleRow_get_of_row_ne [Field F] {M : DenseMatrix F}
     {r row col : Nat} (factor : F) (hcol : col < M.cols) (hneq : r ≠ row) :
     (scaleRow M r factor).get row col = M.get row col := by
@@ -453,11 +504,17 @@ theorem scaleRow_get_of_row_ne [Field F] {M : DenseMatrix F}
         simpa using (List.mem_range'_1.mp hc).2)
       rfl
 
+/--
+@isnad1 id=wellform.1h4v.s5.15c5f02454bb from=translated src=- shape=c399251e vocab=7e147cde
+-/
 theorem scaleRow_wf [Field F] {M : DenseMatrix F} (hM : WellFormed M)
     (row : Nat) (factor : F) : WellFormed (scaleRow M row factor) := by
   simpa [scaleRow, WellFormed, setD, Std.Legacy.Range.forIn_eq_forIn_range',
     list_foldl_array_size_of_eq] using hM
 
+/--
+@isnad1 id=eq.3h5v.s7.75061d5af7b2 from=translated src=- shape=6adffbbf vocab=c6bcac07
+-/
 theorem scaleRow_get_same [Field F] {M : DenseMatrix F}
     (hM : WellFormed M) {r col : Nat} (hr : r < M.rows) (hcol : col < M.cols)
     (factor : F) :
@@ -540,6 +597,9 @@ theorem scaleRow_get_same [Field F] {M : DenseMatrix F}
       (List.nodup_range' (s := 0) (n := M.cols))
       (by simp [hcol])
 
+/--
+@isnad1 id=eq.2h7v.s6.b76eb2682fe3 from=translated src=- shape=8880d77a vocab=cebd6936
+-/
 theorem addScaledRow_get_of_row_ne [Field F] {M : DenseMatrix F}
     {target source row col : Nat} (factor : F) (hcol : col < M.cols)
     (hneq : target ≠ row) :
@@ -573,11 +633,17 @@ theorem addScaledRow_get_of_row_ne [Field F] {M : DenseMatrix F}
         simpa using (List.mem_range'_1.mp hc).2)
       rfl
 
+/--
+@isnad1 id=wellform.1h5v.s5.061121ad071c from=translated src=- shape=5d98e970 vocab=37ec0675
+-/
 theorem addScaledRow_wf [Field F] {M : DenseMatrix F} (hM : WellFormed M)
     (target source : Nat) (factor : F) : WellFormed (addScaledRow M target source factor) := by
   simpa [addScaledRow, WellFormed, setD, Std.Legacy.Range.forIn_eq_forIn_range',
     list_foldl_array_size_of_eq] using hM
 
+/--
+@isnad1 id=eq.3h6v.s7.4c5ab031d9e1 from=translated src=- shape=5e223e3f vocab=2a4f6e80
+-/
 theorem addScaledRow_get_same [Field F] {M : DenseMatrix F}
     (hM : WellFormed M) {target source col : Nat}
     (htarget : target < M.rows) (hcol : col < M.cols) (factor : F) :
@@ -669,6 +735,9 @@ theorem addScaledRow_get_same [Field F] {M : DenseMatrix F}
       (List.nodup_range' (s := 0) (n := M.cols))
       (by simp [hcol])
 
+/--
+@isnad1 id=eq.2h6v.s6.5555822da6d2 from=translated src=- shape=f9db47ed vocab=c2e4c405
+-/
 theorem dotRow_ext_rows [Semiring F] {M N : DenseMatrix F}
     {rowN rowM : Nat} {v : Array F} (hcols : N.cols = M.cols)
     (hget : ∀ col, col < M.cols → N.get rowN col = M.get rowM col) :
@@ -695,6 +764,9 @@ theorem dotRow_ext_rows [Semiring F] {M N : DenseMatrix F}
     intro c hc
     exact List.mem_range.mp hc)
 
+/--
+@isnad1 id=eq.2h5v.s6.8a567d25ed2d from=translated src=- shape=ce636583 vocab=d72d94e1
+-/
 theorem dotRow_scaleRow_same [Field F] {M : DenseMatrix F}
     (hM : WellFormed M) {row : Nat} (hrow : row < M.rows)
     (factor : F) (v : Array F) :
@@ -734,6 +806,9 @@ theorem dotRow_scaleRow_same [Field F] {M : DenseMatrix F}
       exact List.mem_range.mp hc)
     (by simp)
 
+/--
+@isnad1 id=eq.2h6v.s7.84c961ff6dd2 from=translated src=- shape=a6a45d91 vocab=130415ec
+-/
 theorem dotRow_addScaledRow_same [Field F] {M : DenseMatrix F}
     (hM : WellFormed M) {target source : Nat} (htarget : target < M.rows)
     (factor : F) (v : Array F) :
@@ -779,6 +854,9 @@ theorem dotRow_addScaledRow_same [Field F] {M : DenseMatrix F}
       exact List.mem_range.mp hc)
     (by simp)
 
+/--
+@isnad1 id=eq.2h5v.s6.e15722992e8d from=translated src=- shape=adc4179c vocab=4c5b18ce
+-/
 theorem dotRow_swapRows_left [Semiring F] {M : DenseMatrix F}
     (hM : WellFormed M) {rowA rowB : Nat} (hrowA : rowA < M.rows) (v : Array F) :
     (swapRows M rowA rowB).dotRow rowA v = M.dotRow rowB v := by
@@ -787,6 +865,9 @@ theorem dotRow_swapRows_left [Semiring F] {M : DenseMatrix F}
     (by exact swapRows_cols M rowA rowB)
     (fun col hcol ↦ swapRows_get_left hM hrowA hcol)
 
+/--
+@isnad1 id=eq.2h5v.s6.0a4fd552208e from=translated src=- shape=fd41fd0d vocab=4c5b18ce
+-/
 theorem dotRow_swapRows_right [Semiring F] {M : DenseMatrix F}
     (hM : WellFormed M) {rowA rowB : Nat} (hrowB : rowB < M.rows) (v : Array F) :
     (swapRows M rowA rowB).dotRow rowB v = M.dotRow rowA v := by
@@ -795,6 +876,9 @@ theorem dotRow_swapRows_right [Semiring F] {M : DenseMatrix F}
     (by exact swapRows_cols M rowA rowB)
     (fun col hcol ↦ swapRows_get_right hM hrowB hcol)
 
+/--
+@isnad1 id=eq.2h6v.s5.81a0ac229204 from=translated src=- shape=c6b292f2 vocab=63b30dc9
+-/
 theorem dotRow_swapRows_of_ne [Semiring F] {M : DenseMatrix F}
     {rowA rowB row : Nat} (hrowA : rowA ≠ row) (hrowB : rowB ≠ row)
     (v : Array F) :
@@ -804,6 +888,9 @@ theorem dotRow_swapRows_of_ne [Semiring F] {M : DenseMatrix F}
     (by exact swapRows_cols M rowA rowB)
     (fun col hcol ↦ swapRows_get_of_row_ne hcol hrowA hrowB)
 
+/--
+@isnad1 id=eq.1h6v.s6.338cdd150274 from=translated src=- shape=55eb501e vocab=ad9be782
+-/
 theorem dotRow_scaleRow_of_ne [Field F] {M : DenseMatrix F}
     {scale row : Nat} (factor : F) (hneq : scale ≠ row) (v : Array F) :
     (scaleRow M scale factor).dotRow row v = M.dotRow row v := by
@@ -812,6 +899,9 @@ theorem dotRow_scaleRow_of_ne [Field F] {M : DenseMatrix F}
     (by simp [scaleRow])
     (fun col hcol ↦ scaleRow_get_of_row_ne factor hcol hneq)
 
+/--
+@isnad1 id=eq.1h7v.s6.b536c6eb1286 from=translated src=- shape=47cf0594 vocab=997e2bd6
+-/
 theorem dotRow_addScaledRow_of_ne [Field F] {M : DenseMatrix F}
     {target source row : Nat} (factor : F) (hneq : target ≠ row) (v : Array F) :
     (addScaledRow M target source factor).dotRow row v = M.dotRow row v := by
@@ -820,6 +910,9 @@ theorem dotRow_addScaledRow_of_ne [Field F] {M : DenseMatrix F}
     (by simp [addScaledRow])
     (fun col hcol ↦ addScaledRow_get_of_row_ne factor hcol hneq)
 
+/--
+@isnad1 id=ishomoge.4h5v.s6.e426d6913267 from=translated src=- shape=e6ea5e54 vocab=aade2866
+-/
 theorem isHomogeneousSolution_swapRows_of_solution [Field F]
     {M : DenseMatrix F} {v : Array F} {rowA rowB : Nat}
     (hM : WellFormed M) (hrowA : rowA < M.rows) (hrowB : rowB < M.rows)
@@ -841,6 +934,9 @@ theorem isHomogeneousSolution_swapRows_of_solution [Field F]
         (row := row) (by intro h; exact hA h.symm) (by intro h; exact hB h.symm) v]
       exact hsol row hrowM
 
+/--
+@isnad1 id=ishomoge.3h5v.s6.d25d6e67907d from=translated src=- shape=134d5ef1 vocab=bd669898
+-/
 theorem isHomogeneousSolution_scaleRow_of_solution [Field F]
     {M : DenseMatrix F} {v : Array F} {target : Nat} (hM : WellFormed M)
     (htarget : target < M.rows) (factor : F)
@@ -857,6 +953,9 @@ theorem isHomogeneousSolution_scaleRow_of_solution [Field F]
       factor htargetRow v]
     exact hsol row hrowM
 
+/--
+@isnad1 id=ishomoge.4h6v.s6.fc05971cf393 from=translated src=- shape=affc62df vocab=4eaa7a2b
+-/
 theorem isHomogeneousSolution_addScaledRow_of_solution [Field F]
     {M : DenseMatrix F} {v : Array F} {target source : Nat}
     (hM : WellFormed M) (htarget : target < M.rows) (hsource : source < M.rows)
@@ -873,6 +972,9 @@ theorem isHomogeneousSolution_addScaledRow_of_solution [Field F]
       (row := row) factor htargetRow v]
     exact hsol row hrowM
 
+/--
+@isnad1 id=ishomoge.4h5v.s6.2e7b80d57d59 from=translated src=- shape=251ef382 vocab=aade2866
+-/
 theorem isHomogeneousSolution_of_swapRows_solution [Field F]
     {M : DenseMatrix F} {v : Array F} {rowA rowB : Nat}
     (hM : WellFormed M) (hrowA : rowA < M.rows) (hrowB : rowB < M.rows)
@@ -902,6 +1004,9 @@ theorem isHomogeneousSolution_of_swapRows_solution [Field F]
         (row := row) (by intro h; exact hA h.symm) (by intro h; exact hB h.symm) v] at hdot
       exact hdot
 
+/--
+@isnad1 id=ishomoge.4h5v.s6.74e3de061e2a from=translated src=- shape=d6902e9d vocab=bd669898
+-/
 theorem isHomogeneousSolution_of_scaleRow_solution [Field F]
     {M : DenseMatrix F} {v : Array F} {target : Nat} (hM : WellFormed M)
     (htarget : target < M.rows) {factor : F} (hfactor : factor ≠ 0)
@@ -922,6 +1027,9 @@ theorem isHomogeneousSolution_of_scaleRow_solution [Field F]
       factor htargetRow v] at hdot
     exact hdot
 
+/--
+@isnad1 id=ishomoge.5h6v.s6.658f811790d9 from=translated src=- shape=c71700f5 vocab=4eaa7a2b
+-/
 theorem isHomogeneousSolution_of_addScaledRow_solution [Field F]
     {M : DenseMatrix F} {v : Array F} {target source : Nat}
     (hM : WellFormed M) (htarget : target < M.rows) (hsource : source < M.rows)

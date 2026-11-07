@@ -34,6 +34,9 @@ identically `0`). Such polynomials are the building blocks for the Lagrange inte
 def basisDivisor (xᵢ xⱼ : R) : CPolynomial R :=
   C (xᵢ - xⱼ)⁻¹ * (X - C xⱼ)
 
+/--
+@isnad1 id=eq.0h3v.s5.7c9ce19739de from=translated src=- shape=0f64d40c vocab=0ccadb7d
+-/
 lemma cbasisDivisor_eq_basisDivisor {xᵢ xⱼ : R} :
     (basisDivisor xᵢ xⱼ).toPoly = Lagrange.basisDivisor xᵢ xⱼ := by
   unfold basisDivisor Lagrange.basisDivisor
@@ -71,6 +74,9 @@ private lemma toPoly_basisListRaw {ι : Type*} (x : ι → R) (i : ι) (l : List
           = Lagrange.basisDivisor (x i) (x head) := cbasisDivisor_eq_basisDivisor
       rw [hmul, hbd, ih, List.map_cons, List.prod_cons]
 
+/--
+@isnad1 id=eq.1h6v.s6.464bb43ab1cd from=translated src=- shape=605343bf vocab=068ed98f
+-/
 lemma basisListRaw_trim_perm {ι : Type*} (x : ι → R) (i : ι)
     {l₁ l₂ : List ι} (h : l₁.Perm l₂) :
     (basisListRaw x i l₁).trim = (basisListRaw x i l₂).trim := by
@@ -94,6 +100,9 @@ def basis {ι : Type*} [DecidableEq ι] (s : Finset ι) (x : ι → R) (i : ι) 
     (fun l => ⟨(basisListRaw x i l).trim, Raw.Trim.isCanonical_trim _⟩)
     (fun _ _ h => Subtype.ext (basisListRaw_trim_perm x i h))
 
+/--
+@isnad1 id=eq.0h5v.s5.24f91cf1d2b4 from=translated src=- shape=758a9225 vocab=31468e73
+-/
 lemma cbasis_eq_basis {ι : Type*} [DecidableEq ι] (s : Finset ι) (x : ι → R) (i : ι) :
     (basis s x i).toPoly = Lagrange.basis s x i := by
   obtain ⟨l, hl⟩ := Quotient.exists_rep (s.erase i).val
@@ -142,6 +151,9 @@ private lemma toPoly_interpolateListRaw {ι : Type*} [DecidableEq ι]
         exact cbasis_eq_basis s x head
       rw [hmul, ih, List.map_cons, List.sum_cons]
 
+/--
+@isnad1 id=eq.1h7v.s6.427d539ecc47 from=translated src=- shape=f008db23 vocab=23493fae
+-/
 lemma interpolateListRaw_trim_perm {ι : Type*} [DecidableEq ι]
     (s : Finset ι) (x : ι → R) (y : ι → R) {l₁ l₂ : List ι} (h : l₁.Perm l₂) :
     (interpolateListRaw s x y l₁).trim = (interpolateListRaw s x y l₂).trim := by
@@ -223,6 +235,9 @@ def interpolate {ι : Type*} [DecidableEq ι] (s : Finset ι) (x : ι → R) :
       simp only [RingHom.id_apply]
       rw [eq_iff_coeff]; intro i; rw [coeff_C_mul, coeff_smul]
 
+/--
+@isnad1 id=eq.0h5v.s9.5ee475b10cd7 from=translated src=- shape=68463f5a vocab=9ba37fab
+-/
 lemma cinterpolate_eq_interpolate
     {ι : Type*} [DecidableEq ι] {s : Finset ι} {x : ι → R} {y : ι → R} :
       (interpolate s x y).toPoly = Lagrange.interpolate s x y := by
@@ -250,7 +265,9 @@ theorem eq_of_pow_eq_pow_of_lt_orderOf {G : Type*} [Group G] {ω : G} {n : ℕ}
     )
 
 /--
-  Key correctness theorem for `interpolatePow`.-/
+  Key correctness theorem for `interpolatePow`.
+@isnad1 id=eq.1h5v.s7.21ddbd525938 from=translated src=- shape=fc6c0d3a vocab=46b35b04
+-/
 lemma eval_interpolatePow_at_node {n : ℕ} {ω : Rˣ} {r : Vector R n} : n ≤ orderOf ω →
     ∀ i : Fin n, (interpolatePow ω.1 r).eval (ω.1 ^ i.1) = r.get i := by
   intros order_ω_le_n i

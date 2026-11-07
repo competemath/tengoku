@@ -33,7 +33,9 @@ variable [CommSemiring F]
 
 /-- Evaluation of a bivariate polynomial is commutative,
   i.e. evaluating in `X` and then in `Y` is the same as
-  evaluating in `Y` first and then in `X`.-/
+  evaluating in `Y` first and then in `X`.
+@isnad1 id=eq.0h4v.s7.cdc49aab4982 from=translated src=- shape=d36a38a6 vocab=46991b10
+-/
 theorem eval_comm {f : Polynomial (Polynomial F)} {a x : F} :
     (f.eval (Polynomial.C a)).eval x =
     (Polynomial.map (evalRingHom x) f).eval a := by

@@ -33,6 +33,9 @@ def shiftedMatrixMeasure (M : PolynomialMatrix F) (shift : Array Nat) : Nat :=
     (fun acc i ↦ acc + shiftedRowMeasure (M.getD i #[]) shift)
     0
 
+/--
+@isnad1 id=lt.5h6v.s7.902a153c2bc2 from=translated src=- shape=89f562de vocab=c580ed06
+-/
 theorem cancelShiftedLeadingTerm_shiftedRowMeasure_lt
     {target reducer : PolynomialRow F} {shift : Array Nat}
     {t r : ShiftedLeadingTerm F}
@@ -112,6 +115,9 @@ theorem cancelShiftedLeadingTerm_shiftedRowMeasure_lt
             simp [hcancelSize, hdegreeEq]
             omega
 
+/--
+@isnad1 id=eq.1h3v.s6.0d1d6e5a7bb9 from=translated src=- shape=923c63ad vocab=d4f4f7f4
+-/
 theorem foldRange_add_eq_of_pointwise
     (n : Nat) {f g : Nat → Nat}
     (heq : ∀ k, k < n → f k = g k) :
@@ -125,6 +131,9 @@ theorem foldRange_add_eq_of_pointwise
       simp only [List.foldl_cons, List.foldl_nil]
       rw [ih (by intro k hk; exact heq k (by omega)), heq n (by omega)]
 
+/--
+@isnad1 id=lt.3h4v.s6.b16ac80d7ed4 from=translated src=- shape=7dd107b3 vocab=d4f4f7f4
+-/
 theorem foldRange_add_lt_of_pointwise_lt
     (n : Nat) {f g : Nat → Nat} {idx : Nat}
     (hidx : idx < n)
@@ -160,6 +169,9 @@ theorem foldRange_add_lt_of_pointwise_lt
         omega
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=lt.2h5v.s7.d35493ebbf5f from=translated src=- shape=30d890f3 vocab=bf47ea46
+-/
 theorem shiftedMatrixMeasure_replaceRow_lt
     {M : PolynomialMatrix F} {shift : Array Nat} {idx : Nat} {newRow : PolynomialRow F}
     (hidx : idx < M.size)
@@ -183,6 +195,9 @@ theorem shiftedMatrixMeasure_replaceRow_lt
       simp [replaceRow, Array.getD_eq_getD_getElem?, hne']
     simp [hgetOld]
 
+/--
+@isnad1 id=lt.2h5v.s6.1db4273c9474 from=translated src=- shape=a93e7828 vocab=bcd8e6e9
+-/
 theorem muldersStorjohannStep_shiftedMatrixMeasure_lt
     {M : PolynomialMatrix F} {shift : Array Nat} {i j : Nat}
     (hM : WellFormed M)
@@ -249,6 +264,9 @@ def matrixShiftedDegreeSpec? (M : PolynomialMatrix F) (shift : Array Nat) :
     none
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=eq.0h3v.s6.52e8299c6faa from=translated src=- shape=1db4ae40 vocab=d8167bf9
+-/
 theorem matrixShiftedDegreeStep?_eq
     (M : PolynomialMatrix F) (shift : Array Nat) :
     matrixShiftedDegreeStep? M shift =
@@ -259,6 +277,9 @@ theorem matrixShiftedDegreeStep?_eq
   rfl
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=eq.0h3v.s5.8a9eef01d7ea from=translated src=- shape=39436edc vocab=46c4817d
+-/
 theorem matrixShiftedDegree?_eq_spec
     (M : PolynomialMatrix F) (shift : Array Nat) :
     matrixShiftedDegree? M shift = matrixShiftedDegreeSpec? M shift := by
@@ -267,6 +288,9 @@ theorem matrixShiftedDegree?_eq_spec
   rfl
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=le.2h7v.s6.0b004592cf7a from=translated src=- shape=30a54c53 vocab=0d72d7a8
+-/
 theorem matrixShiftedDegreeSpecFold_acc_le
     {M : PolynomialMatrix F} {shift : Array Nat}
     (xs : List Nat) {acc : Option Nat} {a D : Nat}
@@ -302,6 +326,9 @@ theorem matrixShiftedDegreeSpecFold_acc_le
               omega
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=le.3h8v.s7.7d80342fb9ae from=translated src=- shape=f0f40548 vocab=bfa8386e
+-/
 theorem matrixShiftedDegreeSpecFold_row_le
     {M : PolynomialMatrix F} {shift : Array Nat}
     (xs : List Nat) {acc : Option Nat} {D i rowDeg : Nat}
@@ -340,6 +367,9 @@ theorem matrixShiftedDegreeSpecFold_row_le
       · exact ih hfold hi
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=le.3h6v.s7.fac7f6c4f500 from=translated src=- shape=38579fdb vocab=0d5db104
+-/
 theorem matrixShiftedDegreeSpec?_row_le
     {M : PolynomialMatrix F} {shift : Array Nat} {D i rowDeg : Nat}
     (hmat : matrixShiftedDegreeSpec? M shift = some D)
@@ -351,6 +381,9 @@ theorem matrixShiftedDegreeSpec?_row_le
     (List.mem_range.mpr hi) hdeg
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=le.3h6v.s7.82e16772f4f9 from=translated src=- shape=38579fdb vocab=4f461083
+-/
 theorem matrixShiftedDegree?_row_le
     {M : PolynomialMatrix F} {shift : Array Nat} {D i rowDeg : Nat}
     (hmat : matrixShiftedDegree? M shift = some D)
@@ -361,6 +394,9 @@ theorem matrixShiftedDegree?_row_le
   exact matrixShiftedDegreeSpec?_row_le hmat hi hdeg
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=ex.1h6v.s5.4c12d9834874 from=translated src=- shape=f37e4e51 vocab=3576cc85
+-/
 theorem matrixShiftedDegreeSpecFold_some_of_acc_some
     {M : PolynomialMatrix F} {shift : Array Nat}
     (xs : List Nat) {acc : Option Nat} {a : Nat}
@@ -391,6 +427,9 @@ theorem matrixShiftedDegreeSpecFold_some_of_acc_some
               exact ih hnext
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=ex.2h6v.s7.c5a5718546b1 from=translated src=- shape=7d278123 vocab=7a00e2f2
+-/
 theorem matrixShiftedDegreeSpecFold_exists_some_of_row
     {M : PolynomialMatrix F} {shift : Array Nat}
     (xs : List Nat) {i rowDeg : Nat}
@@ -422,6 +461,9 @@ theorem matrixShiftedDegreeSpecFold_exists_some_of_row
             exact matrixShiftedDegreeSpecFold_some_of_acc_some xs hnext
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=le.2h5v.s7.f33a87f94c12 from=translated src=- shape=8baeaab2 vocab=3aa07c70
+-/
 theorem matrixShiftedDegree?_row_le_getD
     {M : PolynomialMatrix F} {shift : Array Nat} {i rowDeg : Nat}
     (hi : i < M.size)
@@ -440,6 +482,9 @@ theorem matrixShiftedDegree?_row_le_getD
       contradiction
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=le.1h4v.s6.9953881f5cc8 from=translated src=- shape=583900f7 vocab=5a283684
+-/
 theorem shiftedRowMeasure_le_of_degree_bound
     {row : PolynomialRow F} {shift : Array Nat} {d : Nat}
     (hbound : ∀ rowDeg, rowShiftedDegree? row shift = some rowDeg → rowDeg ≤ d) :
@@ -459,6 +504,9 @@ theorem shiftedRowMeasure_le_of_degree_bound
           nlinarith
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=le.3h5v.s8.eda504b3d2d0 from=translated src=- shape=402e654b vocab=e466ac6f
+-/
 theorem shiftedMatrixMeasure_range_le_of_degree_bound
     {M : PolynomialMatrix F} {shift : Array Nat} {d : Nat}
     (hM : WellFormed M)
@@ -491,6 +539,9 @@ theorem shiftedMatrixMeasure_range_le_of_degree_bound
       nlinarith
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=le.2h4v.s7.62379044f111 from=translated src=- shape=93024321 vocab=66053228
+-/
 theorem shiftedMatrixMeasure_le_of_degree_bound
     {M : PolynomialMatrix F} {shift : Array Nat} {d : Nat}
     (hM : WellFormed M)
@@ -502,6 +553,9 @@ theorem shiftedMatrixMeasure_le_of_degree_bound
   exact shiftedMatrixMeasure_range_le_of_degree_bound hM hbound M.size (Nat.le_refl M.size)
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=lt.1h3v.s5.92dac282328a from=translated src=- shape=09985b09 vocab=fd91a56e
+-/
 theorem shiftedMatrixMeasure_lt_muldersStorjohannFuel
     {M : PolynomialMatrix F} {shift : Array Nat}
     (hM : WellFormed M) :

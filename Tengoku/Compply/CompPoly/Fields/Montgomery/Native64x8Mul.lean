@@ -38,7 +38,9 @@ namespace Native64x8
 
 /-! ### Arithmetic helpers -/
 
-/-- Scalar multiplication distributes over a limb recomposition.-/
+/-- Scalar multiplication distributes over a limb recomposition.
+@isnad1 id=eq.0h9v.s9.ff5996429d92 from=translated src=- shape=ad429b05 vocab=30ba1354
+-/
 theorem sum8_mul (a0 a1 a2 a3 a4 a5 a6 a7 b : ℕ) :
     (a0 + 2 ^ 32 * a1 + 2 ^ 64 * a2 + 2 ^ 96 * a3 + 2 ^ 128 * a4 + 2 ^ 160 * a5 +
         2 ^ 192 * a6 + 2 ^ 224 * a7) * b =
@@ -46,7 +48,9 @@ theorem sum8_mul (a0 a1 a2 a3 a4 a5 a6 a7 b : ℕ) :
         2 ^ 128 * (a4 * b) + 2 ^ 160 * (a5 * b) + 2 ^ 192 * (a6 * b) + 2 ^ 224 * (a7 * b) := by
   ring
 
-/-- Scalar multiplication distributes over a limb recomposition, from the left.-/
+/-- Scalar multiplication distributes over a limb recomposition, from the left.
+@isnad1 id=eq.0h9v.s9.6141bb32a7a4 from=translated src=- shape=4ebf9034 vocab=30ba1354
+-/
 theorem mul_sum8 (b a0 a1 a2 a3 a4 a5 a6 a7 : ℕ) :
     b * (a0 + 2 ^ 32 * a1 + 2 ^ 64 * a2 + 2 ^ 96 * a3 + 2 ^ 128 * a4 + 2 ^ 160 * a5 +
         2 ^ 192 * a6 + 2 ^ 224 * a7) =
@@ -54,7 +58,9 @@ theorem mul_sum8 (b a0 a1 a2 a3 a4 a5 a6 a7 : ℕ) :
         2 ^ 128 * (b * a4) + 2 ^ 160 * (b * a5) + 2 ^ 192 * (b * a6) + 2 ^ 224 * (b * a7) := by
   ring
 
-/-- The low limb of a bounded value is its residue modulo `2 ^ 32`.-/
+/-- The low limb of a bounded value is its residue modulo `2 ^ 32`.
+@isnad1 id=eq.1h1v.s6.4f18815ce11c from=translated src=- shape=a87214e1 vocab=7d6dba74
+-/
 theorem Limbs8.toNat_mod (x : Limbs8) (h : x.l0.toNat < 2 ^ 32) :
     x.toNat % 2 ^ 32 = x.l0.toNat := by
   simp only [Limbs8.toNat]
@@ -94,14 +100,22 @@ private theorem reduce_assemble {V W Slow mQ S u7 v8 u8 s8 : ℕ}
 
 /-! ### The accumulator -/
 
+/--
+@isnad1 id=bounded.0h0v.s1.d15de90c4636 from=translated src=- shape=49959d42 vocab=678c3036
+-/
 theorem State9.zero_bounded : State9.zero.Bounded := by
   simp only [State9.Bounded, State9.toLimbs8, State9.zero, Limbs8.Bounded, UInt64.toNat_zero]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s3.1e383d5ccf4a from=translated src=- shape=b0ae1d2b vocab=832d8480
+-/
 theorem State9.zero_toNat : State9.zero.toNat = 0 := by
   simp only [State9.toNat, State9.toLimbs8, State9.zero, Limbs8.toNat, UInt64.toNat_zero]
 
-/-- The value of an accumulator in terms of its limbs.-/
+/-- The value of an accumulator in terms of its limbs.
+@isnad1 id=eq.0h1v.s8.009a78dcd2dc from=translated src=- shape=3cc3acca vocab=bf35ab8d
+-/
 theorem State9.toNat_eq (t : State9) :
     t.toNat = t.t0.toNat + 2 ^ 32 * t.t1.toNat + 2 ^ 64 * t.t2.toNat + 2 ^ 96 * t.t3.toNat +
       2 ^ 128 * t.t4.toNat + 2 ^ 160 * t.t5.toNat + 2 ^ 192 * t.t6.toNat +
@@ -111,7 +125,9 @@ theorem State9.toNat_eq (t : State9) :
 /-! ### The accumulation step -/
 
 /-- `mulAccum` adds `a * bi` to the accumulator exactly: the carry out of the top limb is
-retained in the head limb.-/
+retained in the head limb.
+@isnad1 id=and.3h3v.s6.ab68dcfe1bbb from=translated src=- shape=774dd7a2 vocab=d9977030
+-/
 theorem mulAccum_spec (a : Limbs8) (bi : UInt64) (t : State9) (ha : a.Bounded)
     (ht : t.Bounded) (hbi : bi.toNat < 2 ^ 32) :
     (mulAccum a bi t).toLimbs8.Bounded ∧ (mulAccum a bi t).t8.toNat < 2 ^ 33 ∧
@@ -160,7 +176,9 @@ theorem mulAccum_spec (a : Limbs8) (bi : UInt64) (t : State9) (ha : a.Bounded)
 /-! ### The reduction step -/
 
 /-- `mulReduce` adds the multiple of the modulus that cancels the low limb, and the division
-by `2 ^ 32` performed by dropping that limb is exact.-/
+by `2 ^ 32` performed by dropping that limb is exact.
+@isnad1 id=and.5h3v.s7.695cac939a92 from=translated src=- shape=d6b9d0a9 vocab=c8db798b
+-/
 theorem mulReduce_spec (q : Limbs8) (negInv : UInt64) (s : State9) (hq : q.Bounded)
     (hs : s.toLimbs8.Bounded) (hs8 : s.t8.toNat < 2 ^ 33) (hn : negInv.toNat < 2 ^ 32)
     (hnq : negInv.toNat * q.toNat % 2 ^ 32 = 2 ^ 32 - 1) :
@@ -216,7 +234,9 @@ theorem mulReduce_spec (q : Limbs8) (negInv : UInt64) (s : State9) (hq : q.Bound
 /-! ### The round invariant -/
 
 /-- The CIOS round invariant: one round accumulates `a * bi` and cancels the low limb against
-a multiple `m` of the modulus; the accumulator stays limbwise bounded and below `2 * q`.-/
+a multiple `m` of the modulus; the accumulator stays limbwise bounded and below `2 * q`.
+@isnad1 id=and.8h5v.s8.a4a4d45023a1 from=translated src=- shape=7091b917 vocab=bf3e8af0
+-/
 theorem mulRound_spec (q a : Limbs8) (negInv bi : UInt64) (t : State9)
     (hq : q.Bounded) (ha : a.Bounded) (ht : t.Bounded) (hbi : bi.toNat < 2 ^ 32)
     (hn : negInv.toNat < 2 ^ 32) (hnq : negInv.toNat * q.toNat % 2 ^ 32 = 2 ^ 32 - 1)
@@ -275,7 +295,9 @@ private theorem mul_finish (q : Limbs8) (t : State9) {A M : ℕ} (hq : q.Bounded
   · refine (Nat.ModEq.mul_left _ ?_).trans hmod
     exact (Nat.modEq_iff_dvd' (by omega)).2 ⟨1, by omega⟩
 
-/-- Montgomery multiplication is canonical and computes `a * b * (2 ^ 256)⁻¹ mod q`.-/
+/-- Montgomery multiplication is canonical and computes `a * b * (2 ^ 256)⁻¹ mod q`.
+@isnad1 id=and.7h4v.s7.0c034b3d14b8 from=translated src=- shape=d82023b0 vocab=937a5caf
+-/
 theorem mul_spec (q : Limbs8) (negInv : UInt64) (a b : Limbs8)
     (hq : q.Bounded) (ha : a.Bounded) (hb : b.Bounded) (hn : negInv.toNat < 2 ^ 32)
     (hnq : negInv.toNat * q.toNat % 2 ^ 32 = 2 ^ 32 - 1)

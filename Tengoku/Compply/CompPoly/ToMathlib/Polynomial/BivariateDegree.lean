@@ -51,13 +51,17 @@ def leadingCoeffY (f : F[X][Y]) : F[X] :=
   f.coeff (natDegree f)
 
 /-- The polynomial coefficient of the highest power of `Y` is `0` if and only if the bivariate
-polynomial is the zero polynomial.-/
+polynomial is the zero polynomial.
+@isnad1 id=iff.0h2v.s6.20ea0f542094 from=translated src=- shape=5396c8a7 vocab=1b87f018
+-/
 @[simp, grind =]
 theorem leadingCoeffY_eq_zero (f : F[X][Y]) : leadingCoeffY f = 0 ↔ f = 0 := by
   simp [leadingCoeffY]
 
 /-- The polynomial coefficient of the highest power of `Y` is not `0` if and only if the
-bivariate polynomial is non-zero.-/
+bivariate polynomial is non-zero.
+@isnad1 id=iff.0h2v.s6.23fc69163ec9 from=translated src=- shape=5396c8a7 vocab=1b87f018
+-/
 @[simp, grind =]
 lemma leadingCoeffY_ne_zero (f : F[X][Y]) : leadingCoeffY f ≠ 0 ↔ f ≠ 0 := by
   exact not_congr (leadingCoeffY_eq_zero (f := f))
@@ -87,12 +91,17 @@ def natWeightedDegree (f : F[X][Y]) (u v : ℕ) : ℕ :=
 
 variable {f : F[X][Y]}
 
-/-- The weighted degree is always defined (never `none`).-/
+/-- The weighted degree is always defined (never `none`).
+@isnad1 id=ne.0h4v.s4.4acf8775a403 from=translated src=- shape=5c743e74 vocab=a9a64eb7
+-/
 lemma weightedDegree_ne_none (f : F[X][Y]) (u v : ℕ) :
     weightedDegree f u v ≠ none := by
   unfold weightedDegree
   aesop
 
+/--
+@isnad1 id=mem.0h4v.s6.9a92378e3a44 from=translated src=- shape=0eb1426b vocab=37361548
+-/
 theorem natWeightedDegree_mem_weight_list {u v : ℕ} :
     natWeightedDegree f u v ∈
       List.map (fun n => u * (f.coeff n).natDegree + v * n)
@@ -117,6 +126,9 @@ theorem natWeightedDegree_mem_weight_list {u v : ℕ} :
     unfold natWeightedDegree
     simpa [hsup] using hw_mem
 
+/--
+@isnad1 id=le.1h5v.s6.57541e860e5e from=translated src=- shape=8101a2d8 vocab=bd8cafd2
+-/
 theorem weight_le_natWeightedDegree_of_lt_natDegree_succ {u v n : ℕ}
     (hn : n < f.natDegree.succ) :
     u * (f.coeff n).natDegree + v * n ≤ natWeightedDegree f u v := by
@@ -144,6 +156,9 @@ theorem weight_le_natWeightedDegree_of_lt_natDegree_succ {u v n : ℕ}
         le_trans hmul hvdeg'
       simpa [hcoeff] using this
 
+/--
+@isnad1 id=eq.0h4v.s5.b3d0f4dea53c from=translated src=- shape=515e174d vocab=fc14dd9b
+-/
 @[grind _=_]
 lemma weightedDegree_eq_natWeightedDegree {u v : ℕ} :
     weightedDegree f u v = natWeightedDegree f u v := by
@@ -167,19 +182,25 @@ lemma weightedDegree_eq_natWeightedDegree {u v : ℕ} :
       exact hle b hb
     simpa [weightedDegree, xs, w] using hmax
 
-/-- The total degree of a bivariate polynomial is equal to the `(1, 1)`-weighted degree.-/
+/-- The total degree of a bivariate polynomial is equal to the `(1, 1)`-weighted degree.
+@isnad1 id=eq.0h2v.s5.c663b482d358 from=translated src=- shape=2f2ce7fb vocab=48461106
+-/
 @[grind _=_]
 lemma total_deg_as_weighted_deg :
     totalDegree f = natWeightedDegree f 1 1 := by
   simp [natWeightedDegree, totalDegree]
 
-/-- The `X`-degree of a bivariate polynomial is equal to the `(1, 0)`-weighted degree.-/
+/-- The `X`-degree of a bivariate polynomial is equal to the `(1, 0)`-weighted degree.
+@isnad1 id=eq.0h2v.s5.11697d4ae128 from=translated src=- shape=2f2ce7fb vocab=d801bd27
+-/
 @[grind _=_]
 lemma degreeX_as_weighted_deg :
     degreeX f = natWeightedDegree f 1 0 := by
   simp [degreeX, natWeightedDegree]
 
-/-- The `Y`-degree of a bivariate polynomial is equal to the `(0, 1)`-weighted degree.-/
+/-- The `Y`-degree of a bivariate polynomial is equal to the `(0, 1)`-weighted degree.
+@isnad1 id=eq.0h2v.s5.d90318c51611 from=translated src=- shape=2f2ce7fb vocab=8d8b7ae7
+-/
 @[grind _=_]
 lemma degreeY_as_weighted_deg :
     natDegreeY f = natWeightedDegree f 0 1 := by
@@ -191,19 +212,26 @@ lemma degreeY_as_weighted_deg :
     ]
     simp [Finset.sup'_eq_sup]
 
-/-- Over an integral domain, the product of two non-zero bivariate polynomials is non-zero.-/
+/-- Over an integral domain, the product of two non-zero bivariate polynomials is non-zero.
+@isnad1 id=ne.2h3v.s7.8741dcc95c26 from=translated src=- shape=f8d64b73 vocab=e5325a56
+-/
 @[grind ←]
 lemma mul_ne_zero [IsDomain F] (f g : F[X][Y]) (hf : f ≠ 0) (hg : g ≠ 0) :
     f * g ≠ 0 :=
   _root_.mul_ne_zero hf hg
 
 /-- Over an integral domain, the `Y`-degree of the product of two non-zero bivariate polynomials is
-equal to the sum of their degrees.-/
+equal to the sum of their degrees.
+@isnad1 id=eq.2h3v.s7.26034f2a01a6 from=translated src=- shape=e727c261 vocab=f832e13f
+-/
 @[simp, grind _=_]
 lemma degreeY_mul [IsDomain F] (f g : F[X][Y]) (hf : f ≠ 0) (hg : g ≠ 0) :
     natDegreeY (f * g) = natDegreeY f + natDegreeY g := by
   simpa [natDegreeY] using (Polynomial.natDegree_mul hf hg)
 
+/--
+@isnad1 id=le.0h3v.s5.c0b0f26003fc from=translated src=- shape=ae24829d vocab=d2d064f9
+-/
 theorem coeff_natDegree_le_degreeX (f : F[X][Y]) (n : ℕ) : (f.coeff n).natDegree ≤ degreeX f := by
   classical
   unfold degreeX
@@ -213,6 +241,9 @@ theorem coeff_natDegree_le_degreeX (f : F[X][Y]) (n : ℕ) : (f.coeff n).natDegr
       exact Polynomial.notMem_support_iff.mp hn
     simp [hcoeff]
 
+/--
+@isnad1 id=le.0h3v.s6.e9d585b01176 from=translated src=- shape=2f6570b0 vocab=5f251ce4
+-/
 theorem degreeX_mul_le (f g : F[X][Y]) : degreeX (f * g) ≤ degreeX f + degreeX g := by
   classical
   unfold degreeX
@@ -229,6 +260,9 @@ theorem degreeX_mul_le (f g : F[X][Y]) : degreeX (f * g) ≤ degreeX f + degreeX
   exact le_trans (Polynomial.natDegree_mul_le (p := f.coeff x.1) (q := g.coeff x.2))
     (Nat.add_le_add hf hg)
 
+/--
+@isnad1 id=ex.1h2v.s7.5c24112ad3b9 from=translated src=- shape=49ae918f vocab=18dd894b
+-/
 theorem exists_max_index_degreeX (f : F[X][Y]) (hf : f ≠ 0) :
     ∃ mm ∈ f.support,
       (f.coeff mm).natDegree = degreeX f ∧
@@ -279,6 +313,9 @@ theorem exists_max_index_degreeX (f : F[X][Y]) (hf : f ≠ 0) :
         exact (not_le_of_gt hmn) hn_le_mm
       exact Or.inl (lt_of_le_of_ne hn_le hn_ne)
 
+/--
+@isnad1 id=eq.3h6v.s6.b0a53c1327c3 from=translated src=- shape=858a8713 vocab=826466c1
+-/
 theorem natDegree_sum_eq_of_unique {α : Type*} {s : Finset α} {f : α → F[X]} {deg : ℕ}
     (mx : α) (hmx : mx ∈ s) :
     (f mx).natDegree = deg →
@@ -331,6 +368,9 @@ theorem natDegree_sum_eq_of_unique {α : Type*} {s : Finset α} {f : α → F[X]
       simpa [hcoeff_eq] using hmx_coeff_ne0
     exact Polynomial.natDegree_eq_of_le_of_coeff_ne_zero hSle hcoeff_ne0
 
+/--
+@isnad1 id=le.2h3v.s7.67d67235fa35 from=translated src=- shape=20da0ef6 vocab=d0b074c2
+-/
 theorem degreeX_mul_ge [IsDomain F] (f g : F[X][Y]) (hf : f ≠ 0) (hg : g ≠ 0) :
     degreeX f + degreeX g ≤ degreeX (f * g) := by
   classical
@@ -434,6 +474,9 @@ theorem degreeX_mul_ge [IsDomain F] (f g : F[X][Y]) (hf : f ≠ 0) (hg : g ≠ 0
     simpa [hcoeff_nat] using hle'
   simpa [deg] using hle
 
+/--
+@isnad1 id=eq.2h3v.s7.81eac6598ae0 from=translated src=- shape=e727c261 vocab=a322476a
+-/
 theorem degreeX_mul [IsDomain F] (f g : F[X][Y]) (hf : f ≠ 0) (hg : g ≠ 0) :
     degreeX (f * g) = degreeX f + degreeX g := by
   exact le_antisymm (degreeX_mul_le f g) (degreeX_mul_ge f g hf hg)
@@ -453,6 +496,9 @@ section CommSemiring
 
 variable [CommSemiring F]
 
+/--
+@isnad1 id=eq.0h3v.s5.7186f59e41af from=translated src=- shape=8c1cf129 vocab=0d5c2ca3
+-/
 lemma evalX_eq_map (x : F) (f : F[X][Y]) :
     Polynomial.Bivariate.evalX x f = f.map (Polynomial.evalRingHom x) := by
   classical
@@ -465,6 +511,9 @@ section CommRing
 
 variable [CommRing F]
 
+/--
+@isnad1 id=eq.0h2v.s8.ce068eeff1cd from=translated src=- shape=2f33add0 vocab=e0ddaa45
+-/
 lemma degreeX_swap (f : F[X][Y]) :
     Polynomial.Bivariate.degreeX (Polynomial.Bivariate.swap f) =
       Polynomial.Bivariate.natDegreeY f := by
@@ -548,6 +597,9 @@ lemma degreeX_swap (f : F[X][Y]) :
         Finset.le_sup (f := fun k => ((Polynomial.Bivariate.swap f).coeff k).natDegree) hn_support
       exact le_trans hNle_natDeg hn_le_degX
 
+/--
+@isnad1 id=eq.0h3v.s8.619d15562263 from=translated src=- shape=a97d0972 vocab=65843972
+-/
 lemma evalY_eq_evalX_swap (y : F) (f : F[X][Y]) :
     Polynomial.Bivariate.evalY y f =
       Polynomial.Bivariate.evalX y (Polynomial.Bivariate.swap f) := by
@@ -572,6 +624,9 @@ lemma evalY_eq_evalX_swap (y : F) (f : F[X][Y]) :
     _ = Polynomial.Bivariate.evalX y (Polynomial.Bivariate.swap f) := by
       exact (evalX_eq_map y (Polynomial.Bivariate.swap f)).symm
 
+/--
+@isnad1 id=eq.0h2v.s8.53dbf8883ddc from=translated src=- shape=2f33add0 vocab=e0ddaa45
+-/
 lemma natDegreeY_swap (f : F[X][Y]) :
     Polynomial.Bivariate.natDegreeY (Polynomial.Bivariate.swap f) =
       Polynomial.Bivariate.degreeX f := by
@@ -595,6 +650,9 @@ section Field
 
 variable [Field F] [DecidableEq F]
 
+/--
+@isnad1 id=le.1h3v.s7.77d2cc207b8a from=translated src=- shape=fa15ede7 vocab=78c740d3
+-/
 lemma card_evalX_eq_zero_le_degreeX (A : F[X][Y]) (hA : A ≠ 0) (P : Finset F) :
     (P.filter (fun x => evalX x A = 0)).card ≤ degreeX A := by
   classical
@@ -617,6 +675,9 @@ lemma card_evalX_eq_zero_le_degreeX (A : F[X][Y]) (hA : A ≠ 0) (P : Finset F) 
   simpa [S, hj0deg] using hcard
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.4h8v.s9.3ad77083afe0 from=translated src=- shape=9f2c3253 vocab=e61833f4
+-/
 lemma descend_evalX {A B G A1 B1 : F[X][Y]} (hA : A = G * A1) (hB : B = G * B1)
     (x : F) (hx : evalX x G ≠ 0) (q : F[X]) (h : evalX x B = q * evalX x A) :
     evalX x B1 = q * evalX x A1 := by
@@ -636,6 +697,9 @@ lemma descend_evalX {A B G A1 B1 : F[X][Y]} (hA : A = G * A1) (hB : B = G * B1)
     simpa [mul_assoc, mul_left_comm, mul_comm] using hmap''
   simpa [evalX_eq_map] using hcancel
 
+/--
+@isnad1 id=ex.2h3v.s7.4cf705427839 from=translated src=- shape=68d19e56 vocab=b809ff71
+-/
 lemma exists_x_preserve_natDegreeY (B : F[X][Y]) (hB : B ≠ 0) (P : Finset F)
     (hcard : degreeX B < P.card) :
     ∃ x ∈ P, (evalX x B).natDegree = natDegreeY B := by
@@ -677,7 +741,9 @@ end Polynomial.Bivariate
 namespace CompPoly
 namespace CBivariate
 
-/-- The computable X-degree agrees with the Mathlib-facing `degreeX` after `toPoly`.-/
+/-- The computable X-degree agrees with the Mathlib-facing `degreeX` after `toPoly`.
+@isnad1 id=eq.0h2v.s5.e40337280e92 from=translated src=- shape=f4a700ec vocab=35237d28
+-/
 theorem degreeX_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Ring R]
     (f : CBivariate R) :
     Polynomial.Bivariate.degreeX (toPoly f) =
@@ -685,7 +751,9 @@ theorem degreeX_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Ring R]
   simpa [Polynomial.Bivariate.degreeX] using
     (natDegreeX_toPoly (R := R) (f := f))
 
-/-- The computable total degree agrees with the Mathlib-facing total degree after `toPoly`.-/
+/-- The computable total degree agrees with the Mathlib-facing total degree after `toPoly`.
+@isnad1 id=eq.0h2v.s5.b2c548bd3878 from=translated src=- shape=f4a700ec vocab=c66b2086
+-/
 theorem totalDegree_toPoly_spec {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Ring R]
     (f : CBivariate R) :
     Polynomial.Bivariate.totalDegree (toPoly f) =
@@ -693,6 +761,9 @@ theorem totalDegree_toPoly_spec {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R]
   simpa [Polynomial.Bivariate.totalDegree] using
     (CompPoly.CBivariate.totalDegree_toPoly (R := R) (f := f)).symm
 
+/--
+@isnad1 id=eq.0h4v.s5.9bd75b14f526 from=translated src=- shape=ec22db01 vocab=7414983b
+-/
 theorem natWeightedDegree_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Ring R]
     (f : CBivariate R) (u v : ℕ) :
     Polynomial.Bivariate.natWeightedDegree (toPoly f) u v =

@@ -37,7 +37,9 @@ variable [Semiring F]
 def monomial (i j : ℕ) : F[X][Y] :=
   Polynomial.monomial j (Polynomial.monomial i 1)
 
-/-- The weighted degree of a sum is at most the maximum of the weighted degrees.-/
+/-- The weighted degree of a sum is at most the maximum of the weighted degrees.
+@isnad1 id=le.0h5v.s6.8539e5f1ecc5 from=translated src=- shape=c456bf6d vocab=64e8b94a
+-/
 lemma natWeightedDegree_add_le (p q : F[X][Y]) (u v : ℕ) :
     natWeightedDegree (p + q) u v ≤ max (natWeightedDegree p u v) (natWeightedDegree q u v) := by
   refine Finset.sup_le fun m hm ↦ ?_
@@ -63,7 +65,9 @@ lemma natWeightedDegree_add_le (p q : F[X][Y]) (u v : ℕ) :
       Finset.le_sup (f := fun m ↦ u * natDegree (q.coeff m) + v * m) <| by aesop
   · simp at hm
 
-/-- The weighted degree of a sum is bounded by the supremum of the weighted degrees.-/
+/-- The weighted degree of a sum is bounded by the supremum of the weighted degrees.
+@isnad1 id=le.0h6v.s6.9344a103aeb9 from=translated src=- shape=5d66090c vocab=b9114b43
+-/
 lemma natWeightedDegree_sum_le {ι : Type*} (s : Finset ι) (f : ι → F[X][Y]) (u v : ℕ) :
     natWeightedDegree (∑ i ∈ s, f i) u v ≤ s.sup (fun i ↦ natWeightedDegree (f i) u v) := by
   classical
@@ -74,7 +78,9 @@ lemma natWeightedDegree_sum_le {ι : Type*} (s : Finset ι) (f : ι → F[X][Y])
       rw [Finset.sum_insert ha, Finset.sup_insert]
       exact le_trans (natWeightedDegree_add_le _ _ _ _) (max_le_max le_rfl ih)
 
-/-- The weighted degree of a scalar multiple is at most the weighted degree of the polynomial.-/
+/-- The weighted degree of a scalar multiple is at most the weighted degree of the polynomial.
+@isnad1 id=le.0h5v.s6.0e78103cf209 from=translated src=- shape=f613beeb vocab=8d9a1491
+-/
 lemma natWeightedDegree_smul_le (a : F) (p : F[X][Y]) (u v : ℕ) :
     natWeightedDegree (a • p) u v ≤ natWeightedDegree p u v := by
   simp only [natWeightedDegree, coeff_smul, Finset.sup_le_iff, Polynomial.mem_support_iff, ne_eq]
@@ -87,7 +93,9 @@ lemma natWeightedDegree_smul_le (a : F) (p : F[X][Y]) (u v : ℕ) :
       (show b ∈ p.support from by aesop))
 
 /-- The degree of `Q(X, P(X))` is bounded by the weighted degree of `Q`,
-provided `deg(P) ≤ k - 1`.-/
+provided `deg(P) ≤ k - 1`.
+@isnad1 id=le.1h4v.s6.545b14d0e85d from=translated src=- shape=0ba067a2 vocab=1334c4b5
+-/
 lemma degree_eval_le_weightedDegree (Q : F[X][Y]) (P : F[X]) (k : ℕ) (hP : P.natDegree ≤ k - 1) :
     (Q.eval P).natDegree ≤ natWeightedDegree Q 1 (k - 1) := by
   rw [Polynomial.eval_eq_sum_range]
@@ -110,7 +118,9 @@ section NontrivialSemiring
 
 variable [Semiring F] [Nontrivial F]
 
-/-- The weighted degree of `X^i Y^j` is `u * i + v * j`.-/
+/-- The weighted degree of `X^i Y^j` is `u * i + v * j`.
+@isnad1 id=eq.0h5v.s5.68a420495f55 from=translated src=- shape=a22a502e vocab=4b4114f2
+-/
 lemma natWeightedDegree_monomial (i j u v : ℕ) :
     natWeightedDegree (monomial (F := F) i j) u v = u * i + v * j := by
   classical

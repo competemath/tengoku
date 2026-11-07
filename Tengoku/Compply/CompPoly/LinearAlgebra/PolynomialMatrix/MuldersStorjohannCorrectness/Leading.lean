@@ -25,6 +25,9 @@ namespace PolynomialMatrix
 variable {F : Type*} [Field F] [BEq F] [LawfulBEq F] [DecidableEq F]
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=lt.1h4v.s6.169ba142283b from=translated src=- shape=9928b041 vocab=36d7445b
+-/
 theorem rowShiftedLeadingPosition?_lt
     {row : PolynomialRow F} {shift : Array Nat} {pos : Nat}
     (hpos : rowShiftedLeadingPosition? row shift = some pos) :
@@ -43,6 +46,9 @@ theorem rowShiftedLeadingPosition?_lt
       exact List.mem_range.mp hmem
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=ne.4h6v.s6.fa0103ff6b74 from=translated src=- shape=fb3ac758 vocab=b7206fcb
+-/
 theorem rowShiftedLeadingPosition?_no_larger_tie
     {row : PolynomialRow F} {shift : Array Nat} {degree pos k : Nat}
     (hdeg : rowShiftedDegree? row shift = some degree)
@@ -94,6 +100,9 @@ theorem rowShiftedLeadingPosition?_no_larger_tie
   simp [pred, hgetK, hentry] at hnot
 
 omit [Field F] [BEq F] [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=ex.1h3v.s5.64160b80ae06 from=translated src=- shape=c7846994 vocab=da9da11d
+-/
 theorem list_find?_some_of_exists
     {α : Type*} (xs : List α) (pred : α → Bool)
     (hexists : ∃ x ∈ xs, pred x = true) :
@@ -115,6 +124,9 @@ theorem list_find?_some_of_exists
         exact ⟨y, by simp [List.find?, hx, hyfind]⟩
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=ex.1h4v.s6.4640ba52b2ab from=translated src=- shape=3fdb5c0a vocab=d908dde4
+-/
 theorem rowShiftedLeadingPosition?_some_of_degree
     {row : PolynomialRow F} {shift : Array Nat} {degree : Nat}
     (hdeg : rowShiftedDegree? row shift = some degree) :
@@ -136,6 +148,9 @@ theorem rowShiftedLeadingPosition?_some_of_degree
   exact list_find?_some_of_exists (List.range row.size).reverse pred hexists
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=le.4h6v.s6.c7278ae6e220 from=translated src=- shape=afbf41c6 vocab=df97a102
+-/
 theorem rowShiftedLeadingPosition?_le_of_entry_eq_degree
     {row : PolynomialRow F} {shift : Array Nat} {degree pos k : Nat}
     (hdeg : rowShiftedDegree? row shift = some degree)
@@ -148,6 +163,9 @@ theorem rowShiftedLeadingPosition?_le_of_entry_eq_degree
   exact rowShiftedLeadingPosition?_no_larger_tie hdeg hpos hk hposk hentry
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.1h4v.s7.6a7beb5bd7ec from=translated src=- shape=a89bed27 vocab=b27ca7a2
+-/
 theorem shiftedEntryDegree?_eq_some_of_rowGet_ne_zero
     {row : PolynomialRow F} {shift : Array Nat} {j : Nat}
     (hne : rowGet row j ≠ 0) :
@@ -160,6 +178,9 @@ theorem shiftedEntryDegree?_eq_some_of_rowGet_ne_zero
   simp [shiftedEntryDegree?, hbeq, Array.getD_eq_getD_getElem?]
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=iff.0h5v.s7.9e2543f8d981 from=translated src=- shape=2273753b vocab=b27ca7a2
+-/
 theorem shiftedEntryDegree?_eq_some_iff_data
     {row : PolynomialRow F} {shift : Array Nat} {j d : Nat} :
     shiftedEntryDegree? row shift j = some d ↔
@@ -182,6 +203,9 @@ theorem shiftedEntryDegree?_eq_some_iff_data
     exact shiftedEntryDegree?_eq_some_of_rowGet_ne_zero hne
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=le.3h5v.s7.d1f77e4e23a1 from=translated src=- shape=7143a35a vocab=1342e462
+-/
 theorem rowShiftedDegree?_entry_bound
     {row : PolynomialRow F} {shift : Array Nat} {degree j : Nat}
     (hdeg : rowShiftedDegree? row shift = some degree)
@@ -191,6 +215,9 @@ theorem rowShiftedDegree?_entry_bound
     (shiftedEntryDegree?_eq_some_of_rowGet_ne_zero hne)
 
 omit [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=eq.2h5v.s6.833d2bf34610 from=translated src=- shape=4e5c6336 vocab=7486786b
+-/
 theorem rowShiftedLeadingPosition?_entry_eq
     {row : PolynomialRow F} {shift : Array Nat} {degree pos : Nat}
     (hdeg : rowShiftedDegree? row shift = some degree)
@@ -207,6 +234,9 @@ theorem rowShiftedLeadingPosition?_entry_eq
       simp [hpred]
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=ex.1h4v.s6.0f9b1e4a5d53 from=translated src=- shape=27fe658a vocab=f5e2f901
+-/
 theorem rowShiftedLeadingTerm?_some_of_position
     {row : PolynomialRow F} {shift : Array Nat} {pos : Nat}
     (hpos : rowShiftedLeadingPosition? row shift = some pos) :
@@ -234,6 +264,9 @@ theorem rowShiftedLeadingTerm?_some_of_position
       simp [rowShiftedLeadingTerm?, hdeg, hposOrig, hbeq]
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=and.1h4v.s8.19731d7a3442 from=translated src=- shape=071ab06e vocab=a1dba4ff
+-/
 theorem rowShiftedLeadingTerm?_some_data
     {row : PolynomialRow F} {shift : Array Nat} {term : ShiftedLeadingTerm F}
     (hterm : rowShiftedLeadingTerm? row shift = some term) :
@@ -263,6 +296,9 @@ theorem rowShiftedLeadingTerm?_some_data
             simpa [hdeg, hpos, hzero, Array.getD_eq_getD_getElem?] using hshifted.symm
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=ne.1h4v.s6.530ef065e190 from=translated src=- shape=2dcbf43f vocab=e66c010c
+-/
 theorem rowShiftedLeadingTerm?_coeff_ne_zero
     {row : PolynomialRow F} {shift : Array Nat} {term : ShiftedLeadingTerm F}
     (hterm : rowShiftedLeadingTerm? row shift = some term) :
@@ -276,6 +312,9 @@ theorem rowShiftedLeadingTerm?_coeff_ne_zero
   exact hzero
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=le.0h3v.s7.c20771537ea3 from=translated src=- shape=57a747fb vocab=bb9c6ea3
+-/
 theorem cpoly_natDegree_mul_le (P Q : CPolynomial F) :
     (P * Q).natDegree ≤ P.natDegree + Q.natDegree := by
   rw [CPolynomial.natDegree_toPoly, CPolynomial.toPoly_mul,
@@ -283,6 +322,9 @@ theorem cpoly_natDegree_mul_le (P Q : CPolynomial F) :
   exact Polynomial.natDegree_mul_le
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.2h3v.s8.45195673c72c from=translated src=- shape=580412f0 vocab=95ece3da
+-/
 theorem cpoly_natDegree_mul
     {P Q : CPolynomial F} (hP : P ≠ 0) (hQ : Q ≠ 0) :
     (P * Q).natDegree = P.natDegree + Q.natDegree := by
@@ -293,6 +335,9 @@ theorem cpoly_natDegree_mul
     ((CPolynomial.toPoly_eq_zero_iff Q).not.mpr hQ)
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=ne.2h3v.s8.d3b91b742de6 from=translated src=- shape=b53c44b6 vocab=245f2f18
+-/
 theorem cpoly_coeff_mul_natDegree_add_ne_zero
     {P Q : CPolynomial F} (hP : P ≠ 0) (hQ : Q ≠ 0) :
     (P * Q).coeff (P.natDegree + Q.natDegree) ≠ 0 := by
@@ -310,6 +355,9 @@ theorem cpoly_coeff_mul_natDegree_add_ne_zero
   exact hlead
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=le.0h3v.s7.45c123fce0c8 from=translated src=- shape=23121faf vocab=fdace30d
+-/
 theorem cpoly_natDegree_sub_le (P Q : CPolynomial F) :
     (P - Q).natDegree ≤ max P.natDegree Q.natDegree := by
   rw [CPolynomial.natDegree_toPoly, CPolynomial.toPoly_sub,
@@ -317,11 +365,17 @@ theorem cpoly_natDegree_sub_le (P Q : CPolynomial F) :
   exact Polynomial.natDegree_sub_le P.toPoly Q.toPoly
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.0h2v.s6.3aaf22b1f458 from=translated src=- shape=109e8c87 vocab=b2c48f1f
+-/
 theorem cpoly_natDegree_neg (P : CPolynomial F) :
     (-P).natDegree = P.natDegree := by
   rw [CPolynomial.natDegree_toPoly, CPolynomial.toPoly_neg,
     CPolynomial.natDegree_toPoly, Polynomial.natDegree_neg]
 
+/--
+@isnad1 id=le.0h3v.s5.aa4c253385c3 from=translated src=- shape=f7328185 vocab=b2357c46
+-/
 theorem cpoly_natDegree_monomial_le (d : Nat) (c : F) :
     (CPolynomial.monomial d c).natDegree ≤ d := by
   by_cases hc : c = 0
@@ -329,6 +383,9 @@ theorem cpoly_natDegree_monomial_le (d : Nat) (c : F) :
     simp [CPolynomial.monomial, CPolynomial.Raw.monomial, CPolynomial.natDegree]
   · rw [CPolynomial.natDegree_monomial hc]
 
+/--
+@isnad1 id=le.0h4v.s7.5f6abbe025df from=translated src=- shape=43cf9d6c vocab=b70ba44e
+-/
 theorem cpoly_natDegree_monomial_mul_le
     (d : Nat) (c : F) (P : CPolynomial F) :
     (CPolynomial.monomial d c * P).natDegree ≤ d + P.natDegree := by
@@ -336,6 +393,9 @@ theorem cpoly_natDegree_monomial_mul_le
   have hmono := cpoly_natDegree_monomial_le d c
   omega
 
+/--
+@isnad1 id=eq.0h5v.s7.4233fee26e12 from=translated src=- shape=d181e906 vocab=32db04c0
+-/
 theorem cpoly_coeff_monomial_mul
     (n d : Nat) (c : F) (P : CPolynomial F) :
     (CPolynomial.monomial n c * P).coeff (d + n) =
@@ -349,6 +409,9 @@ theorem cpoly_coeff_monomial_mul
   rw [← CPolynomial.coeff_toPoly]
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=le.3h5v.s8.bce4429094c8 from=translated src=- shape=6f637757 vocab=1292d90a
+-/
 theorem cpoly_natDegree_sub_shift_le
     {P Q : CPolynomial F} {shiftDegree bound : Nat}
     (hP : P ≠ 0 → P.natDegree + shiftDegree ≤ bound)
@@ -371,6 +434,9 @@ theorem cpoly_natDegree_sub_shift_le
       omega
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=lt.3h5v.s8.8756fd1449a2 from=translated src=- shape=6f637757 vocab=b684c12f
+-/
 theorem cpoly_natDegree_sub_shift_lt
     {P Q : CPolynomial F} {shiftDegree bound : Nat}
     (hP : P ≠ 0 → P.natDegree + shiftDegree < bound)
@@ -393,6 +459,9 @@ theorem cpoly_natDegree_sub_shift_lt
       omega
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=le.2h5v.s7.d79e74e53480 from=translated src=- shape=88802ccd vocab=1342e462
+-/
 theorem rowShiftedDegree?_le_of_entry_bound
     {row : PolynomialRow F} {shift : Array Nat} {degree bound : Nat}
     (hbound : ∀ k, k < row.size → rowGet row k ≠ 0 →
@@ -406,6 +475,9 @@ theorem rowShiftedDegree?_le_of_entry_bound
   omega
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=le.3h5v.s7.e2cf31e628c4 from=translated src=- shape=091b8f7d vocab=c7f7a9ae
+-/
 theorem rowShiftedLeadingTerm?_entry_bound
     {row : PolynomialRow F} {shift : Array Nat} {term : ShiftedLeadingTerm F}
     (hterm : rowShiftedLeadingTerm? row shift = some term)
@@ -416,6 +488,9 @@ theorem rowShiftedLeadingTerm?_entry_bound
   exact rowShiftedDegree?_entry_bound hdeg hk hne
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=lt.4h5v.s7.dcdbbb04aeaf from=translated src=- shape=0f6e7026 vocab=abeba0c8
+-/
 theorem rowShiftedLeadingTerm?_entry_strict_of_pos_lt
     {row : PolynomialRow F} {shift : Array Nat} {term : ShiftedLeadingTerm F}
     (hterm : rowShiftedLeadingTerm? row shift = some term)
@@ -437,6 +512,9 @@ theorem rowShiftedLeadingTerm?_entry_strict_of_pos_lt
     exact hnot (by simpa [heq'] using hentry)
   omega
 
+/--
+@isnad1 id=le.6h7v.s8.d4f2f032c89f from=translated src=- shape=f0f32391 vocab=ec55681a
+-/
 theorem rowScaleMonomial_entry_bound_of_leading_terms
     {target reducer : PolynomialRow F} {shift : Array Nat}
     {t r : ShiftedLeadingTerm F}
@@ -477,6 +555,9 @@ theorem rowScaleMonomial_entry_bound_of_leading_terms
   rw [rowGet_rowScaleMonomial] at hne ⊢
   omega
 
+/--
+@isnad1 id=lt.7h7v.s8.23818f96faea from=translated src=- shape=b3afa445 vocab=ec55681a
+-/
 theorem rowScaleMonomial_entry_strict_of_pos_lt
     {target reducer : PolynomialRow F} {shift : Array Nat}
     {t r : ShiftedLeadingTerm F}
@@ -514,6 +595,9 @@ theorem rowScaleMonomial_entry_strict_of_pos_lt
   rw [rowGet_rowScaleMonomial] at hne ⊢
   omega
 
+/--
+@isnad1 id=eq.5h6v.s7.2e6218bf357a from=translated src=- shape=560162c6 vocab=bc3ed84b
+-/
 theorem cancelShiftedLeadingTerm_coeff_cancel
     {target reducer : PolynomialRow F} {shift : Array Nat}
     {t r : ShiftedLeadingTerm F}
@@ -565,6 +649,9 @@ theorem cancelShiftedLeadingTerm_coeff_cancel
   rw [hscaled]
   simp [htCoeff]
 
+/--
+@isnad1 id=ne.4h6v.s7.5033e79158db from=translated src=- shape=e93dd5f2 vocab=56477efd
+-/
 theorem cancelShiftedLeadingTerm_no_target_shifted_entry
     {target reducer : PolynomialRow F} {shift : Array Nat}
     {t r : ShiftedLeadingTerm F}
@@ -595,6 +682,9 @@ theorem cancelShiftedLeadingTerm_no_target_shifted_entry
     simpa [CPolynomial.leadingCoeff_eq_coeff_natDegree] using hlead
   exact hcoeffNonzero hcancelCoeff
 
+/--
+@isnad1 id=le.7h7v.s8.818de8a486b7 from=translated src=- shape=1ebc872a vocab=de9c6021
+-/
 theorem cancelShiftedLeadingTerm_entry_bound
     {target reducer : PolynomialRow F} {shift : Array Nat}
     {t r : ShiftedLeadingTerm F}
@@ -633,6 +723,9 @@ theorem cancelShiftedLeadingTerm_entry_bound
     simpa [rowGet_rowScaleMonomial, Array.getD_eq_getD_getElem?] using hbound
   · exact hne
 
+/--
+@isnad1 id=lt.8h7v.s8.99718929ead2 from=translated src=- shape=48b08e1d vocab=de9c6021
+-/
 theorem cancelShiftedLeadingTerm_entry_strict_of_pos_lt
     {target reducer : PolynomialRow F} {shift : Array Nat}
     {t r : ShiftedLeadingTerm F}

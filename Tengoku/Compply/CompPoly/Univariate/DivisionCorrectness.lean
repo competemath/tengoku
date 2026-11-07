@@ -461,13 +461,17 @@ private theorem raw_divModByMonicAux_toPoly_eq (p q : CPolynomial R)
   have hunique := Polynomial.div_modByMonic_unique _ _ hq_monic gospec
   exact ⟨hunique.1.symm, hunique.2.symm⟩
 
-/-- CompPoly's `divByMonic` is correct w.r.t. Mathlib's `divByMonic`-/
+/-- CompPoly's `divByMonic` is correct w.r.t. Mathlib's `divByMonic`
+@isnad1 id=eq.1h3v.s6.208e8253827b from=translated src=- shape=5de6c1ca vocab=9e59f2a5
+-/
 theorem divByMonic_toPoly_eq_divByMonic (p q : CPolynomial R)
     (hmonic : q.monic) :
     (p.divByMonic q).toPoly = p.toPoly /ₘ q.toPoly :=
   (raw_divModByMonicAux_toPoly_eq p q ((monic_toPoly_iff q).mp hmonic)).1
 
-/-- CompPoly's `modByMonic` is correct w.r.t. Mathlib's `modByMonic`-/
+/-- CompPoly's `modByMonic` is correct w.r.t. Mathlib's `modByMonic`
+@isnad1 id=eq.1h3v.s6.37b999abec84 from=translated src=- shape=5de6c1ca vocab=0f7a981f
+-/
 theorem modByMonic_toPoly_eq_modByMonic (p q : CPolynomial R)
     (hmonic : q.monic) :
     (p.modByMonic q).toPoly = p.toPoly %ₘ q.toPoly :=
@@ -479,7 +483,9 @@ theorem modByMonic_toPoly_eq_modByMonic (p q : CPolynomial R)
 This holds over an arbitrary commutative ring, so it
 instantiates at nested coefficient rings, e.g. `CBivariate R =
 CPolynomial (CPolynomial R)`, giving Euclidean division by any monic divisor in
-the outer variable.-/
+the outer variable.
+@isnad1 id=eq.1h3v.s7.526aaefb1925 from=translated src=- shape=b3797080 vocab=90dd3b9b
+-/
 theorem modByMonic_add_mul_divByMonic (p q : CPolynomial R) (hmonic : q.monic) :
     p.modByMonic q + q * p.divByMonic q = p := by
   have hpoly : (p.modByMonic q + q * p.divByMonic q).toPoly = p.toPoly := by
@@ -497,13 +503,17 @@ section Division
 variable [Field R] [BEq R] [LawfulBEq R]
 
 /-- Any nonzero polynomial scaled by the inverse of its leading
-coefficient is monic.-/
+coefficient is monic.
+@isnad1 id=eq.1h2v.s7.bd291e7c99ed from=translated src=- shape=d1b0f387 vocab=637822fb
+-/
 theorem leadingCoeff_inv_smul_monic (p : CPolynomial R) (hp : p ≠ 0) :
     (p.leadingCoeff⁻¹ • p).monic := by
   rw [monic_toPoly_iff, toPoly_smul, Polynomial.smul_eq_C_mul, _root_.mul_comm, leadingCoeff_toPoly]
   exact Polynomial.monic_mul_leadingCoeff_inv ((toPoly_eq_zero_iff p).not.mpr hp)
 
-/-- Equality between CompPoly's `div` and Mathlib's `divByMonic`-/
+/-- Equality between CompPoly's `div` and Mathlib's `divByMonic`
+@isnad1 id=eq.1h3v.s8.eb3fdbf91b44 from=translated src=- shape=99e732a2 vocab=80bb066b
+-/
 theorem div_toPoly_eq_divByMonic (p q : CPolynomial R) (hq : q ≠ 0) :
     (p.div q).toPoly =
       q.leadingCoeff⁻¹ • p.toPoly /ₘ (q.leadingCoeff⁻¹ • q.toPoly) := by
@@ -511,7 +521,9 @@ theorem div_toPoly_eq_divByMonic (p q : CPolynomial R) (hq : q ≠ 0) :
   rw [divByMonic_toPoly_eq_divByMonic _ _ (leadingCoeff_inv_smul_monic _ hq)]
   rw [toPoly_smul, toPoly_smul]
 
-/-- Equality between CompPoly's `mod` and Mathlib's `modByMonic`-/
+/-- Equality between CompPoly's `mod` and Mathlib's `modByMonic`
+@isnad1 id=eq.1h3v.s8.10f354571345 from=translated src=- shape=99e732a2 vocab=dbf81c56
+-/
 theorem mod_toPoly_eq_modByMonic (p q : CPolynomial R) (hq : q ≠ 0) :
     (p.mod q).toPoly =
       q.leadingCoeff⁻¹ • p.toPoly %ₘ (q.leadingCoeff⁻¹ • q.toPoly) := by
@@ -519,7 +531,9 @@ theorem mod_toPoly_eq_modByMonic (p q : CPolynomial R) (hq : q ≠ 0) :
   rw [modByMonic_toPoly_eq_modByMonic _ _ (leadingCoeff_inv_smul_monic _ hq)]
   rw [toPoly_smul, toPoly_smul]
 
-/-- CompPoly's `div` is correct w.r.t. Mathlib's `div`.-/
+/-- CompPoly's `div` is correct w.r.t. Mathlib's `div`.
+@isnad1 id=eq.0h3v.s6.b59de9d8158f from=translated src=- shape=a75a909c vocab=94b92965
+-/
 theorem div_toPoly_eq_div (p q : CPolynomial R) :
     (p.div q).toPoly = p.toPoly / q.toPoly := by
   by_cases hq : q = 0; simp [hq, toPoly_zero]
@@ -527,7 +541,9 @@ theorem div_toPoly_eq_div (p q : CPolynomial R) :
   rw [←Polynomial.smul_eq_C_mul, ←Polynomial.smul_divByMonic]
   rw [←Polynomial.smul_eq_C_mul, div_toPoly_eq_divByMonic p q hq]
 
-/-- CompPoly's `mod` is Mathlib's `%` scaled by `q.leadingCoeff⁻¹`.-/
+/-- CompPoly's `mod` is Mathlib's `%` scaled by `q.leadingCoeff⁻¹`.
+@isnad1 id=eq.0h3v.s7.cde856703f8b from=translated src=- shape=f463a5f1 vocab=3fed40c0
+-/
 theorem mod_toPoly_eq_smul_mod (p q : CPolynomial R) :
     (p.mod q).toPoly = q.leadingCoeff⁻¹ • (p.toPoly % q.toPoly) := by
   by_cases hq : q = 0
@@ -537,7 +553,9 @@ theorem mod_toPoly_eq_smul_mod (p q : CPolynomial R) :
     mod_toPoly_eq_modByMonic p q hq]
 
 /-- Exact-division bridge: `G.toPoly` factors as `f.toPoly * V.toPoly` iff the computable
-`mod` vanishes and the computable division recovers `f`.-/
+`mod` vanishes and the computable division recovers `f`.
+@isnad1 id=iff.1h4v.s8.270e9567ecbb from=translated src=- shape=7631d065 vocab=3dc8a0cd
+-/
 theorem exactDiv_toPoly_iff (G V f : CPolynomial R) (hV : V.toPoly ≠ 0) :
     G.toPoly = f.toPoly * V.toPoly ↔ G.mod V = 0 ∧ (G / V).toPoly = f.toPoly := by
   have hdivP : (G / V).toPoly = G.toPoly / V.toPoly := div_toPoly_eq_div _ _
@@ -710,7 +728,9 @@ private theorem reversal_remainder_toPoly_eq_modByMonic
   dsimp only [rem, productLow, quotient, quotientRev, invRevQ, revQ, revP, n, k]
   exact hunique.2.symm
 
-/-- The reversal monic remainder agrees with the canonical monic remainder.-/
+/-- The reversal monic remainder agrees with the canonical monic remainder.
+@isnad1 id=eq.0h4v.s6.d0e3bfbd8a89 from=translated src=- shape=b564d957 vocab=77827129
+-/
 theorem modByMonicByReversal_eq_modByMonic
     (M : Raw.MulLowContext R) (p q : CPolynomial R) :
     modByMonicByReversal M p q = modByMonic p q := by

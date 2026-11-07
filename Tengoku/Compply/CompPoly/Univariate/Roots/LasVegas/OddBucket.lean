@@ -53,7 +53,9 @@ def oddCZBucket {F : Type*} [MonoidWithZero F] [BEq F] [LawfulBEq F]
   else
     OddCZBucket.nonsquare
 
-/-- The zero bucket contains exactly the zero value.-/
+/-- The zero bucket contains exactly the zero value.
+@isnad1 id=iff.0h3v.s5.fe29cd72abcf from=translated src=- shape=0e922041 vocab=599c4c35
+-/
 theorem oddCZBucket_eq_zero_iff {F : Type*} [MonoidWithZero F] [BEq F] [LawfulBEq F]
     (q : Nat) (x : F) :
     oddCZBucket q x = OddCZBucket.zero ↔ x = 0 := by
@@ -61,7 +63,9 @@ theorem oddCZBucket_eq_zero_iff {F : Type*} [MonoidWithZero F] [BEq F] [LawfulBE
   · simp [oddCZBucket, hx]
   · by_cases hpow : x ^ ((q - 1) / 2) = 1 <;> simp [oddCZBucket, hx, hpow]
 
-/-- The square bucket contains exactly the nonzero values with Euler power one.-/
+/-- The square bucket contains exactly the nonzero values with Euler power one.
+@isnad1 id=iff.0h3v.s6.72257bf318c7 from=translated src=- shape=538c8cee vocab=409443bc
+-/
 theorem oddCZBucket_eq_square_iff {F : Type*} [MonoidWithZero F] [BEq F] [LawfulBEq F]
     (q : Nat) (x : F) :
     oddCZBucket q x = OddCZBucket.square ↔ x ≠ 0 ∧ x ^ ((q - 1) / 2) = 1 := by
@@ -69,7 +73,9 @@ theorem oddCZBucket_eq_square_iff {F : Type*} [MonoidWithZero F] [BEq F] [Lawful
   · simp [oddCZBucket, hx]
   · by_cases hpow : x ^ ((q - 1) / 2) = 1 <;> simp [oddCZBucket, hx, hpow]
 
-/-- The nonsquare bucket is the residual branch of the classifier.-/
+/-- The nonsquare bucket is the residual branch of the classifier.
+@isnad1 id=iff.0h3v.s6.57616e8f8127 from=translated src=- shape=847accad vocab=4a5e5399
+-/
 theorem oddCZBucket_eq_nonsquare_iff {F : Type*} [MonoidWithZero F] [BEq F] [LawfulBEq F]
     (q : Nat) (x : F) :
     oddCZBucket q x = OddCZBucket.nonsquare ↔ x ≠ 0 ∧ x ^ ((q - 1) / 2) ≠ 1 := by

@@ -23,6 +23,9 @@ namespace PolynomialMatrix
 
 variable {F : Type*} [Field F] [BEq F] [LawfulBEq F] [DecidableEq F]
 
+/--
+@isnad1 id=ex.4h4v.s8.591b9cc24dc1 from=translated src=- shape=2500ecfc vocab=e7ae5657
+-/
 theorem muldersStorjohannReduce_least_row_minimal
     (M : PolynomialMatrix F) (shift : Array Nat) (row : PolynomialRow F)
     (hM : WellFormed M) (hshift : shift.size = MatrixWidth M)

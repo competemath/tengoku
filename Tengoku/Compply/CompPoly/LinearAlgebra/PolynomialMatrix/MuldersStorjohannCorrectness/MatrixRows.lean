@@ -24,11 +24,17 @@ namespace PolynomialMatrix
 variable {F : Type*} [Field F] [BEq F] [LawfulBEq F] [DecidableEq F]
 
 omit [BEq F] [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=eq.0h4v.s6.bec8621b40a9 from=translated src=- shape=c023b832 vocab=1dfedc1c
+-/
 theorem replaceRow_size (M : PolynomialMatrix F) (idx : Nat) (row : PolynomialRow F) :
     (replaceRow M idx row).size = M.size := by
   simp [replaceRow, Array.size_setIfInBounds]
 
 omit [BEq F] [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=eq.1h4v.s6.186f6b365423 from=translated src=- shape=48ecad64 vocab=8e9189c0
+-/
 theorem replaceRow_matrixWidth
     {M : PolynomialMatrix F} {idx : Nat} {row : PolynomialRow F}
     (hrow : row.size = MatrixWidth M) :
@@ -44,6 +50,9 @@ theorem replaceRow_matrixWidth
     simp [hsize]
 
 omit [BEq F] [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=eq.1h4v.s6.e06aa6424afc from=translated src=- shape=0010aecc vocab=e9225200
+-/
 theorem replaceRow_shape
     {M : PolynomialMatrix F} {idx : Nat} {row : PolynomialRow F}
     (hrow : row.size = MatrixWidth M) :
@@ -51,6 +60,9 @@ theorem replaceRow_shape
   simp [MatrixShape, replaceRow_size, replaceRow_matrixWidth hrow]
 
 omit [BEq F] [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=wellform.2h4v.s6.710033636f68 from=translated src=- shape=1d52afa6 vocab=1b8ed49f
+-/
 theorem replaceRow_wellFormed
     {M : PolynomialMatrix F} {idx : Nat} {row : PolynomialRow F}
     (hM : WellFormed M) (hrow : row.size = MatrixWidth M) :
@@ -76,6 +88,9 @@ theorem replaceRow_wellFormed
     have hidx' : idx ≠ k := fun h ↦ hidx h.symm
     simpa [replaceRow, Array.getElem_setIfInBounds, hidx', hkM] using hstoredM
 
+/--
+@isnad1 id=mem.3h5v.s8.bd42c854b202 from=translated src=- shape=e02b1480 vocab=6c31ac60
+-/
 theorem replaceRow_rows_mem_rowSpan
     {M : PolynomialMatrix F} (hM : WellFormed M) {idx : Nat} {newRow row : PolynomialRow F}
     (hnew : newRow ∈ RowSpan M)
@@ -99,6 +114,9 @@ theorem replaceRow_rows_mem_rowSpan
       (by simp [MatrixRows, Array.getElem_mem_toList hkM])
 
 omit [BEq F] [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=mem.1h4v.s6.cdee39dc01f0 from=translated src=- shape=66f4d41c vocab=73868a05
+-/
 theorem replaceRow_newRow_mem
     {M : PolynomialMatrix F} {idx : Nat} {newRow : PolynomialRow F}
     (hidx : idx < M.size) :
@@ -112,6 +130,9 @@ theorem replaceRow_newRow_mem
   simpa [hget] using hmem
 
 omit [BEq F] [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=mem.2h5v.s7.060c9321a028 from=translated src=- shape=b8a3ad4e vocab=227f7287
+-/
 theorem replaceRow_oldRow_mem
     {M : PolynomialMatrix F} {idx k : Nat} {newRow : PolynomialRow F}
     (hk : k < M.size) (hne : idx ≠ k) :
@@ -124,6 +145,9 @@ theorem replaceRow_oldRow_mem
   simp [MatrixRows, Array.getElem_mem_toList hkReplace]
 
 omit [BEq F] [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=eq.2h3v.s7.c2676901de9a from=translated src=- shape=9823989f vocab=fb054fc4
+-/
 theorem matrix_getD_size_of_wellFormed
     {M : PolynomialMatrix F} (hM : WellFormed M) {i : Nat} (hi : i < M.size) :
     (M.getD i #[]).size = MatrixWidth M := by
@@ -133,11 +157,17 @@ theorem matrix_getD_size_of_wellFormed
   exact hM M[i] (by simp [MatrixRows, Array.getElem_mem_toList hi])
 
 omit [BEq F] [LawfulBEq F] [DecidableEq F] in
+/--
+@isnad1 id=eq.2h3v.s7.cd33a4804218 from=translated src=- shape=000bd32c vocab=1779d599
+-/
 theorem matrix_getElem?_getD_size_of_wellFormed
     {M : PolynomialMatrix F} (hM : WellFormed M) {i : Nat} (hi : i < M.size) :
     (M[i]?.getD #[]).size = MatrixWidth M := by
   simpa [Array.getElem?_eq_getElem hi] using matrix_getD_size_of_wellFormed hM hi
 
+/--
+@isnad1 id=mem.2h3v.s7.497d8c3dda92 from=translated src=- shape=69f03482 vocab=71f8939e
+-/
 theorem matrix_getD_mem_rowSpan
     {M : PolynomialMatrix F} (hM : WellFormed M) {i : Nat} (hi : i < M.size) :
     M.getD i #[] ∈ RowSpan M := by
@@ -148,6 +178,9 @@ theorem matrix_getD_mem_rowSpan
     (by simp [MatrixRows, Array.getElem_mem_toList hi])
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=mem.1h2v.s6.8bc0d3968635 from=translated src=- shape=47a8a61a vocab=eb51d38b
+-/
 theorem zeroRow_mem_rowSpan
     {M : PolynomialMatrix F} (hM : WellFormed M) :
     zeroRow (F := F) (MatrixWidth M) ∈ RowSpan M := by
@@ -180,6 +213,9 @@ theorem zeroRow_mem_rowSpan
   exact (hfold M.size (Nat.le_refl M.size)).symm
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=mem.3h4v.s8.e82d0de79fec from=translated src=- shape=09b724d3 vocab=eed85c51
+-/
 theorem rowLinearCombination_mem_rowSpan_of_rows_mem
     {A B : PolynomialMatrix F} (hB : WellFormed B)
     (hwidth : MatrixWidth A = MatrixWidth B)
@@ -215,6 +251,9 @@ theorem rowLinearCombination_mem_rowSpan_of_rows_mem
   exact hfold A.size (Nat.le_refl A.size)
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=le.3h3v.s8.d57877c66edf from=translated src=- shape=563563ce vocab=dcd7bb1d
+-/
 theorem rowSpan_subset_of_rows_mem
     {A B : PolynomialMatrix F} (hB : WellFormed B)
     (hwidth : MatrixWidth A = MatrixWidth B)
@@ -224,6 +263,9 @@ theorem rowSpan_subset_of_rows_mem
   rcases hrow with ⟨coeffs, _hsize, rfl⟩
   exact rowLinearCombination_mem_rowSpan_of_rows_mem hB hwidth hrows coeffs
 
+/--
+@isnad1 id=eq.3h5v.s7.5e15161129b5 from=translated src=- shape=e377d7c1 vocab=1dad6962
+-/
 theorem cancelShiftedLeadingTerm_size_of_wellFormed
     {M : PolynomialMatrix F} (hM : WellFormed M) {i j : Nat}
     (hi : i < M.size) (hj : j < M.size) (shift : Array Nat) :

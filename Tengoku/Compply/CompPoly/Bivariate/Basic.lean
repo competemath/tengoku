@@ -42,7 +42,9 @@ section ZeroOnly
 
 variable {R : Type*} [Zero R]
 
-/-- Extensionality: two bivariate polynomials are equal if their underlying values are.-/
+/-- Extensionality: two bivariate polynomials are equal if their underlying values are.
+@isnad1 id=eq.1h3v.s5.2de98dcd4cf1 from=translated src=- shape=4f894ed1 vocab=f4ceb0ec
+-/
 @[ext] theorem ext {p q : CBivariate R} (h : p.val = q.val) : p = q :=
   CPolynomial.ext h
 
@@ -242,13 +244,17 @@ section CoeffLemmas
 
 variable {R : Type*}
 
-/-- `CBivariate.coeff` as two composed `CPolynomial.coeff`.-/
+/-- `CBivariate.coeff` as two composed `CPolynomial.coeff`.
+@isnad1 id=eq.0h4v.s5.301e1cdae38d from=translated src=- shape=134ccc95 vocab=618674f4
+-/
 @[simp]
 theorem coeff_eq_coeff_coeff [Zero R] (f : CBivariate R) (i j : ℕ) :
     coeff f i j = CPolynomial.coeff (CPolynomial.coeff f j) i := by
   rfl
 
-/-- Bivariate coefficients are additive.-/
+/-- Bivariate coefficients are additive.
+@isnad1 id=eq.0h5v.s7.a6830ca808be from=translated src=- shape=3f909d4e vocab=6204660b
+-/
 theorem coeff_add [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p q : CBivariate R) (i j : ℕ) :
     coeff (p + q) i j = coeff p i j + coeff q i j := by
@@ -256,7 +262,9 @@ theorem coeff_add [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
   rw [show CPolynomial.coeff (p + q) j = CPolynomial.coeff p j + CPolynomial.coeff q j from
     CPolynomial.coeff_add p q j, CPolynomial.coeff_add]
 
-/-- Bivariate coefficients distribute over finite sums.-/
+/-- Bivariate coefficients distribute over finite sums.
+@isnad1 id=eq.0h6v.s6.be1f5efb7ded from=translated src=- shape=d4828715 vocab=a78602b5
+-/
 theorem coeff_finset_sum [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (f : ι → CBivariate R) (i j : ℕ) :
     coeff (s.sum f) i j = s.sum (fun t => coeff (f t) i j) := by
@@ -269,7 +277,9 @@ theorem coeff_finset_sum [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     simp only [Finset.sum_insert ha]
     rw [coeff_add, ih]
 
-/-- Coefficient of a bivariate monomial `c * X^a * Y^b`.-/
+/-- Coefficient of a bivariate monomial `c * X^a * Y^b`.
+@isnad1 id=eq.0h6v.s6.9b1caf1b0126 from=translated src=- shape=a69abc45 vocab=cb83bffc
+-/
 theorem coeff_monomialXY [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (a b : ℕ) (c : R) (i j : ℕ) :
     coeff (monomialXY a b c) i j = if i = a ∧ j = b then c else 0 := by
@@ -283,7 +293,9 @@ theorem coeff_monomialXY [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [Deci
     · rw [ite_eq_right hi, ite_eq_right (fun h => hi h.1)]
   · rw [ite_eq_right hj, CPolynomial.coeff_zero, ite_eq_right (fun h => hj h.2)]
 
-/-- Coefficient of `Y^m * c(X)` as a bivariate polynomial.-/
+/-- Coefficient of `Y^m * c(X)` as a bivariate polynomial.
+@isnad1 id=eq.0h5v.s6.21474647b035 from=translated src=- shape=350bcb7d vocab=b791bfda
+-/
 theorem coeff_monomialY [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (m : ℕ) (c : CPolynomial R) (i j : ℕ) :
     coeff (CPolynomial.monomial m c) i j = if j = m then CPolynomial.coeff c i else 0 := by
@@ -310,26 +322,34 @@ section WeightedDegreeLemmas
 variable {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
 
 omit [LawfulBEq R] [Nontrivial R] in
-/-- The total degree is the `(1, 1)`-weighted degree.-/
+/-- The total degree is the `(1, 1)`-weighted degree.
+@isnad1 id=eq.0h2v.s5.11efc740ad9f from=translated src=- shape=c98343cb vocab=a085b032
+-/
 theorem totalDegree_eq_natWeightedDegree (f : CBivariate R) :
     CBivariate.totalDegree (R := R) f = CBivariate.natWeightedDegree (R := R) f 1 1 := by
   simp [CBivariate.totalDegree, CBivariate.natWeightedDegree]
 
 omit [LawfulBEq R] [Nontrivial R] in
-/-- The X-degree is the `(1, 0)`-weighted degree.-/
+/-- The X-degree is the `(1, 0)`-weighted degree.
+@isnad1 id=eq.0h2v.s5.ce3c61164eac from=translated src=- shape=c98343cb vocab=bcfa6057
+-/
 theorem natDegreeX_eq_natWeightedDegree (f : CBivariate R) :
     CBivariate.natDegreeX (R := R) f = CBivariate.natWeightedDegree (R := R) f 1 0 := by
   simp [CBivariate.natDegreeX, CBivariate.natWeightedDegree]
 
 omit [Nontrivial R] in
-/-- The Y-degree is the `(0, 1)`-weighted degree.-/
+/-- The Y-degree is the `(0, 1)`-weighted degree.
+@isnad1 id=eq.0h2v.s5.f37983d3ce21 from=translated src=- shape=6bc3cf1b vocab=08c7260c
+-/
 theorem natDegreeY_eq_natWeightedDegree (f : CBivariate R) :
     CBivariate.natDegreeY (R := R) f = CBivariate.natWeightedDegree (R := R) f 0 1 := by
   simp [CBivariate.natDegreeY, CBivariate.natWeightedDegree]
   exact CPolynomial.natDegree_eq_support_sup f
 
 /-- The weighted degree of a nonzero monomial `c * X^n * Y^m`
-    is `u * n + v * m` where `u` is the weight of `X` and `v` the weight of `Y`.-/
+    is `u * n + v * m` where `u` is the weight of `X` and `v` the weight of `Y`.
+@isnad1 id=eq.1h6v.s6.c22323b4fc94 from=translated src=- shape=57d07390 vocab=a7047094
+-/
 theorem natWeightedDegree_monomialXY [DecidableEq R]
     {n m : ℕ} {c : R} (hc : c ≠ 0) (u v : ℕ) :
     CBivariate.natWeightedDegree
@@ -346,7 +366,9 @@ theorem natWeightedDegree_monomialXY [DecidableEq R]
     CPolynomial.coeff_monomial, ite_eq_left,
     CPolynomial.natDegree_monomial hc]
 
-/-- The weighted degree of the zero polynomial is zero.-/
+/-- The weighted degree of the zero polynomial is zero.
+@isnad1 id=eq.0h3v.s6.7222451c1ac3 from=translated src=- shape=42263c0a vocab=2a35f685
+-/
 theorem natWeightedDegree_zero (u v : ℕ) :
     CBivariate.natWeightedDegree (0 : CBivariate R) u v = 0 := by
   simp only [CBivariate.natWeightedDegree,
@@ -356,7 +378,9 @@ theorem natWeightedDegree_zero (u v : ℕ) :
 
 omit [Nontrivial R] [LawfulBEq R] in
 /-- The weighted degree is at most `d` iff every Y-support index
-    satisfies the weighted bound.-/
+    satisfies the weighted bound.
+@isnad1 id=iff.0h5v.s7.088765044eae from=translated src=- shape=9ac9a993 vocab=d26e4c17
+-/
 theorem natWeightedDegree_le_iff (f : CBivariate R) (u v d : ℕ) :
     natWeightedDegree f u v ≤ d ↔
     ∀ j ∈ f.supportY , u * (f.val.coeff j).natDegree + v * j ≤ d := by
@@ -364,7 +388,9 @@ theorem natWeightedDegree_le_iff (f : CBivariate R) (u v d : ℕ) :
 
 omit [Nontrivial R] in
 /-- The weighted degree is at most `d` iff every monomial index
-    satisfies the weighted bound.-/
+    satisfies the weighted bound.
+@isnad1 id=iff.0h5v.s6.b43dca490f7a from=translated src=- shape=334d3f70 vocab=41718276
+-/
 theorem natWeightedDegree_le_iff_coeff (f : CBivariate R) (u v d : ℕ) :
     f.natWeightedDegree u v ≤ d ↔
     ∀ i j, CBivariate.coeff f i j ≠ 0 → u * i + v * j ≤ d := by
@@ -389,7 +415,9 @@ theorem natWeightedDegree_le_iff_coeff (f : CBivariate R) (u v d : ℕ) :
     exact h _ j hlc
 
 omit [Nontrivial R] in
-/-- The natWeightedDegree of a constant bivariate polynomial `CBivariate.CC` is zero.-/
+/-- The natWeightedDegree of a constant bivariate polynomial `CBivariate.CC` is zero.
+@isnad1 id=eq.0h4v.s5.7b6b3b76b0ac from=translated src=- shape=c3e02004 vocab=de31e9ed
+-/
 theorem natWeightedDegree_CC {r : R} (u v : ℕ) :
     CBivariate.natWeightedDegree (CBivariate.CC r) u v = 0 := by
   simp only [CBivariate.natWeightedDegree, CBivariate.CC]
@@ -402,7 +430,9 @@ theorem natWeightedDegree_CC {r : R} (u v : ℕ) :
     rw [CPolynomial.coeff_C, ite_eq_left rfl, CPolynomial.natDegree_C]
     ring
 
-/-- The weighted degree of a sum is at most the max of the weighted degrees.-/
+/-- The weighted degree of a sum is at most the max of the weighted degrees.
+@isnad1 id=le.0h5v.s7.ddbd4496762f from=translated src=- shape=d5175730 vocab=b71912b2
+-/
 theorem natWeightedDegree_add_le [DecidableEq R] (p q : CBivariate R) (u v : ℕ) :
     CBivariate.natWeightedDegree (p + q) u v ≤
       max (CBivariate.natWeightedDegree p u v) (CBivariate.natWeightedDegree q u v) := by

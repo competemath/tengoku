@@ -28,6 +28,9 @@ def findPivotRowStep [Zero F] [BEq F] (M : DenseMatrix F) (col : Nat)
     (out : Option Nat) (row : Nat) : Option Nat :=
   if out.isNone && !(M.get row col == 0) then some row else out
 
+/--
+@isnad1 id=eq.0h5v.s6.b167935d8219 from=translated src=- shape=718da722 vocab=87a333e9
+-/
 theorem list_forIn_yield_eq_foldl {α β : Type*}
     (xs : List α) (init : β) (f : β → α → β) :
     (Id.run (forIn xs init fun x acc ↦ pure (ForInStep.yield (f acc x))) : β) =
@@ -38,6 +41,9 @@ theorem list_forIn_yield_eq_foldl {α β : Type*}
   | cons x xs ih =>
       simp
 
+/--
+@isnad1 id=eq.0h5v.s5.603512fbd136 from=translated src=- shape=8b30963d vocab=cad7aad2
+-/
 theorem findPivotRowStep_fold_some [Zero F] [BEq F]
     (M : DenseMatrix F) (col : Nat) (xs : List Nat) (pivot : Nat) :
     xs.foldl (findPivotRowStep M col) (some pivot) = some pivot := by
@@ -46,6 +52,9 @@ theorem findPivotRowStep_fold_some [Zero F] [BEq F]
   | cons row xs ih =>
       simp [List.foldl, findPivotRowStep, ih]
 
+/--
+@isnad1 id=eq.0h5v.s7.d8e2a11173b1 from=translated src=- shape=de3ae66c vocab=2d0a1cad
+-/
 theorem list_forIn_findPivotRowStep_eq_foldl [Zero F] [BEq F]
     (M : DenseMatrix F) (col : Nat) (xs : List Nat) (out : Option Nat) :
     (Id.run (forIn xs out fun row out ↦
@@ -75,6 +84,9 @@ theorem list_forIn_findPivotRowStep_eq_foldl [Zero F] [BEq F]
               simp [findPivotRowStep]
         simpa [List.forIn_cons, List.foldl_cons, h, hstep] using ih out
 
+/--
+@isnad1 id=mem.1h5v.s5.e451718f70bc from=translated src=- shape=4902fa8b vocab=b64c6707
+-/
 theorem findPivotRow_fold_mem [Zero F] [BEq F]
     (M : DenseMatrix F) (col : Nat) {xs : List Nat} {pivot : Nat}
     (h : xs.foldl (findPivotRowStep M col) none = some pivot) :
@@ -97,6 +109,9 @@ theorem findPivotRow_fold_mem [Zero F] [BEq F]
         rw [hstep] at h
         exact List.mem_cons.mpr (Or.inr (ih h))
 
+/--
+@isnad1 id=eq.1h5v.s5.436c802a7a2d from=translated src=- shape=07d10593 vocab=fb5fd7e4
+-/
 theorem findPivotRow_fold_get_ne_zero [Zero F] [BEq F]
     (M : DenseMatrix F) (col : Nat) {xs : List Nat} {pivot : Nat}
     (h : xs.foldl (findPivotRowStep M col) none = some pivot) :
@@ -119,6 +134,9 @@ theorem findPivotRow_fold_get_ne_zero [Zero F] [BEq F]
         rw [hstep] at h
         exact ih h
 
+/--
+@isnad1 id=eq.2h5v.s6.88c6f0f07064 from=translated src=- shape=37a7c6a0 vocab=1570e08d
+-/
 theorem findPivotRow_fold_none_get_eq_zero [Zero F] [BEq F] [LawfulBEq F]
     (M : DenseMatrix F) (col : Nat) {xs : List Nat}
     (h : xs.foldl (findPivotRowStep M col) none = none) {row : Nat}
@@ -148,6 +166,9 @@ theorem findPivotRow_fold_none_get_eq_zero [Zero F] [BEq F] [LawfulBEq F]
         | inr htail =>
             exact ih h htail
 
+/--
+@isnad1 id=eq.0h4v.s5.eaae70ac6ea5 from=translated src=- shape=fc6b613f vocab=29752528
+-/
 theorem findPivotRow_eq_fold [Zero F] [BEq F]
     (M : DenseMatrix F) (start col : Nat) :
     findPivotRow M start col =
@@ -155,6 +176,9 @@ theorem findPivotRow_eq_fold [Zero F] [BEq F]
   simp [findPivotRow, Std.Legacy.Range.forIn_eq_forIn_range',
     list_forIn_findPivotRowStep_eq_foldl]
 
+/--
+@isnad1 id=lt.1h5v.s5.7b9e33afbd76 from=translated src=- shape=8c5279c2 vocab=fa2df442
+-/
 theorem findPivotRow_some_lt [Zero F] [BEq F]
     {M : DenseMatrix F} {start col pivot : Nat}
     (h : findPivotRow M start col = some pivot) :
@@ -164,6 +188,9 @@ theorem findPivotRow_some_lt [Zero F] [BEq F]
   have hrange := List.mem_range'_1.mp hmem
   omega
 
+/--
+@isnad1 id=le.1h5v.s5.3923d70639c1 from=translated src=- shape=c8a16d8c vocab=6b5eafa9
+-/
 theorem findPivotRow_some_ge [Zero F] [BEq F]
     {M : DenseMatrix F} {start col pivot : Nat}
     (h : findPivotRow M start col = some pivot) :
@@ -173,6 +200,9 @@ theorem findPivotRow_some_ge [Zero F] [BEq F]
   have hrange := List.mem_range'_1.mp hmem
   omega
 
+/--
+@isnad1 id=ne.1h5v.s5.7d290b9e18b1 from=translated src=- shape=204b277c vocab=2c4c02fd
+-/
 theorem findPivotRow_some_ne_zero [Zero F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} {start col pivot : Nat}
     (h : findPivotRow M start col = some pivot) :
@@ -182,6 +212,9 @@ theorem findPivotRow_some_ne_zero [Zero F] [BEq F] [LawfulBEq F]
   intro hz
   simp [hz] at hb
 
+/--
+@isnad1 id=eq.3h5v.s6.9d4779648752 from=translated src=- shape=18a2edcb vocab=2c88bdda
+-/
 theorem findPivotRow_none_get_eq_zero [Zero F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} {start col row : Nat}
     (h : findPivotRow M start col = none) (hstart : start ≤ row) (hrow : row < M.rows) :
@@ -190,6 +223,9 @@ theorem findPivotRow_none_get_eq_zero [Zero F] [BEq F] [LawfulBEq F]
   apply findPivotRow_fold_none_get_eq_zero M col h
   exact List.mem_range'_1.mpr (by omega)
 
+/--
+@isnad1 id=wellform.1h5v.s7.c9f60f0566f7 from=translated src=- shape=8fd24c2a vocab=fe4cbcf2
+-/
 theorem list_forIn_addScaledRow_wf [Field F]
     (rows : List Nat) {out : DenseMatrix F} (pivotRow pivotCol : Nat)
     (hout : WellFormed out) :
@@ -213,6 +249,9 @@ theorem list_forIn_addScaledRow_wf [Field F]
           ih (out := addScaledRow out row pivotRow (-(out.get row pivotCol)))
             hstep
 
+/--
+@isnad1 id=wellform.1h4v.s5.b0f2b4619733 from=translated src=- shape=6f5f17b8 vocab=38b280dd
+-/
 theorem normalizeAndEliminate_wf [Field F] [BEq F]
     {M : DenseMatrix F} (hM : WellFormed M) (pivotRow pivotCol : Nat) :
     WellFormed (normalizeAndEliminate M pivotRow pivotCol) := by
@@ -230,6 +269,9 @@ theorem normalizeAndEliminate_wf [Field F] [BEq F]
             [:(scaleRow M pivotRow (M.get pivotRow pivotCol)⁻¹).rows]) 1)
         pivotRow pivotCol hscaled
 
+/--
+@isnad1 id=ishomoge.3h6v.s8.ea58f5dc7983 from=translated src=- shape=785ac91b vocab=3f1fcce5
+-/
 theorem list_forIn_addScaledRow_solution_of_solution [Field F]
     (rows : List Nat) {out : DenseMatrix F} {v : Array F}
     (pivotRow pivotCol : Nat) (hpivot : pivotRow < out.rows)
@@ -275,6 +317,9 @@ theorem list_forIn_addScaledRow_solution_of_solution [Field F]
           ih (out := addScaledRow out row pivotRow (-(out.get row pivotCol)))
             hpivotStep hstepWf hstepSol
 
+/--
+@isnad1 id=ishomoge.3h6v.s8.74d88e2b452c from=translated src=- shape=d44e9bae vocab=3f1fcce5
+-/
 theorem list_forIn_addScaledRow_solution_reflect [Field F]
     (rows : List Nat) {out : DenseMatrix F} {v : Array F}
     (pivotRow pivotCol : Nat) (hpivot : pivotRow < out.rows)
@@ -322,6 +367,9 @@ theorem list_forIn_addScaledRow_solution_reflect [Field F]
             (source := pivotRow) (row := r) (-(out.get row pivotCol)) hrow_ne_r v] at hdot
           exact hdot
 
+/--
+@isnad1 id=ishomoge.3h5v.s6.d5ab9850766e from=translated src=- shape=8f5a8ea3 vocab=944bfbef
+-/
 theorem isHomogeneousSolution_normalizeAndEliminate_of_solution
     [Field F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} {v : Array F} (hM : WellFormed M)
@@ -348,6 +396,9 @@ theorem isHomogeneousSolution_normalizeAndEliminate_of_solution
             [:(scaleRow M pivotRow (M.get pivotRow pivotCol)⁻¹).rows]) 1)
         pivotRow pivotCol hpivotScaled hscaledWf hscaledSol
 
+/--
+@isnad1 id=ishomoge.4h5v.s7.29af063f418e from=translated src=- shape=3f5ddbb6 vocab=31c35a37
+-/
 theorem isHomogeneousSolution_of_normalizeAndEliminate_solution
     [Field F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} {v : Array F} (hM : WellFormed M)
@@ -377,6 +428,9 @@ theorem isHomogeneousSolution_of_normalizeAndEliminate_solution
     exact isHomogeneousSolution_of_scaleRow_solution hM hpivotRow
       (inv_ne_zero hpivot) hscaledSol
 
+/--
+@isnad1 id=eq.0h6v.s6.a9794d174646 from=translated src=- shape=57776e2a vocab=8125f9a9
+-/
 theorem rrefLoop_cols [Field F] [BEq F] :
     ∀ fuel col row (M : DenseMatrix F) pivots,
       ((rrefLoop fuel col row M pivots).matrix).cols = M.cols := by
@@ -401,6 +455,9 @@ theorem rrefLoop_cols [Field F] [BEq F] :
             _ = M.cols := swapRows_cols _ _ _
       · rfl
 
+/--
+@isnad1 id=eq.0h6v.s6.b712b884086e from=translated src=- shape=57776e2a vocab=25b7a52a
+-/
 theorem rrefLoop_rows [Field F] [BEq F] :
     ∀ fuel col row (M : DenseMatrix F) pivots,
       ((rrefLoop fuel col row M pivots).matrix).rows = M.rows := by
@@ -425,16 +482,25 @@ theorem rrefLoop_rows [Field F] [BEq F] :
             _ = M.rows := swapRows_rows _ _ _
       · rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.2aa6b2ed0c1b from=translated src=- shape=71118f8e vocab=346963e7
+-/
 theorem rref_cols [Field F] [BEq F]
     (M : DenseMatrix F) : (rref M).matrix.cols = M.cols := by
   unfold rref
   exact rrefLoop_cols _ _ _ _ _
 
+/--
+@isnad1 id=eq.0h2v.s6.a5286749b945 from=translated src=- shape=71118f8e vocab=b5c7a7c6
+-/
 theorem rref_rows [Field F] [BEq F]
     (M : DenseMatrix F) : (rref M).matrix.rows = M.rows := by
   unfold rref
   exact rrefLoop_rows _ _ _ _ _
 
+/--
+@isnad1 id=wellform.1h6v.s6.545a12383045 from=translated src=- shape=dd265309 vocab=43fddfc4
+-/
 theorem rrefLoop_wf [Field F] [BEq F] :
     ∀ fuel col row (M : DenseMatrix F) pivots,
       WellFormed M → WellFormed (rrefLoop fuel col row M pivots).matrix := by
@@ -462,11 +528,17 @@ theorem rrefLoop_wf [Field F] [BEq F] :
               (pivots.push col) hreduced
       · simp [hguard, hM]
 
+/--
+@isnad1 id=wellform.1h2v.s6.2cbef7d11ccf from=translated src=- shape=80486445 vocab=0a8d35ef
+-/
 theorem rref_wf [Field F] [BEq F] {M : DenseMatrix F}
     (hM : WellFormed M) : WellFormed (rref M).matrix := by
   unfold rref
   exact rrefLoop_wf _ _ _ _ _ hM
 
+/--
+@isnad1 id=ishomoge.2h7v.s6.a7dc6d56ddde from=translated src=- shape=47ef3d77 vocab=c2986f9f
+-/
 theorem isHomogeneousSolution_rrefLoop_of_solution
     [Field F] [BEq F] [LawfulBEq F] :
     ∀ fuel col row (M : DenseMatrix F) pivots {v : Array F},
@@ -509,6 +581,9 @@ theorem isHomogeneousSolution_rrefLoop_of_solution
               (pivots.push col) hreducedWf hreducedSol
       · simp [hguard, hsol]
 
+/--
+@isnad1 id=ishomoge.2h3v.s6.a0fedab8bbc6 from=translated src=- shape=3779a3b2 vocab=1b9389d9
+-/
 theorem isHomogeneousSolution_rref [Field F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} (hM : WellFormed M) {v : Array F}
     (hsol : IsHomogeneousSolution M v) :
@@ -516,6 +591,9 @@ theorem isHomogeneousSolution_rref [Field F] [BEq F] [LawfulBEq F]
   unfold rref
   exact isHomogeneousSolution_rrefLoop_of_solution _ _ _ _ _ hM hsol
 
+/--
+@isnad1 id=ishomoge.2h7v.s6.6ba6dbfbadb2 from=translated src=- shape=fd64987d vocab=c2986f9f
+-/
 theorem isHomogeneousSolution_of_rrefLoop_solution
     [Field F] [BEq F] [LawfulBEq F] :
     ∀ fuel col row (M : DenseMatrix F) pivots {v : Array F},
@@ -561,6 +639,9 @@ theorem isHomogeneousSolution_of_rrefLoop_solution
             exact isHomogeneousSolution_of_swapRows_solution hM hpivot hrow hswappedSol
       · simpa [hguard] using hsol
 
+/--
+@isnad1 id=ishomoge.2h3v.s6.36f8849e8636 from=translated src=- shape=c3f0a5a5 vocab=1b9389d9
+-/
 theorem isHomogeneousSolution_of_rref [Field F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} (hM : WellFormed M) {v : Array F}
     (hsol : IsHomogeneousSolution (rref M).matrix v) :

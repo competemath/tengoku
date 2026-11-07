@@ -30,6 +30,9 @@ variable {R : Type*} [Semiring R] [BEq R]
 
 section RingEquiv
 
+/--
+@isnad1 id=eq.0h2v.s5.144a3219610a from=translated src=- shape=a08334ea vocab=7f0c0316
+-/
 @[grind =]
 lemma Raw.toPoly_neg {R : Type*} [Ring R] [BEq R] [LawfulBEq R] (p : CPolynomial.Raw R) :
     (-p).toPoly = -p.toPoly := by
@@ -38,16 +41,25 @@ lemma Raw.toPoly_neg {R : Type*} [Ring R] [BEq R] [LawfulBEq R] (p : CPolynomial
   change p.neg.coeff i = -p.coeff i
   exact Raw.neg_coeff p i
 
+/--
+@isnad1 id=eq.0h2v.s6.f69189710302 from=translated src=- shape=a08334ea vocab=67df5eea
+-/
 @[grind =]
 lemma toPoly_neg {R : Type*} [Ring R] [BEq R] [LawfulBEq R] (p : CPolynomial R) :
     (-p).toPoly = -p.toPoly := by
   exact Raw.toPoly_neg p.val
 
+/--
+@isnad1 id=eq.0h3v.s6.626551d75f2d from=translated src=- shape=194c6998 vocab=89adc277
+-/
 @[grind =]
 lemma toPoly_add [LawfulBEq R] (p q : CPolynomial R) :
     (p + q).toPoly = p.toPoly + q.toPoly := by
   apply Raw.toPoly_add
 
+/--
+@isnad1 id=eq.0h3v.s6.e56591352036 from=translated src=- shape=194c6998 vocab=68930d41
+-/
 @[grind =]
 lemma Raw.toPoly_sub {R : Type*} [Ring R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial.Raw R) :
@@ -55,12 +67,18 @@ lemma Raw.toPoly_sub {R : Type*} [Ring R] [BEq R] [LawfulBEq R]
   change (p + -q).toPoly = p.toPoly + -q.toPoly
   rw [Raw.toPoly_add, Raw.toPoly_neg]
 
+/--
+@isnad1 id=eq.0h3v.s6.5b234a0d8489 from=translated src=- shape=194c6998 vocab=f0c388c4
+-/
 @[grind =]
 lemma toPoly_sub {R : Type*} [Ring R] [BEq R] [LawfulBEq R] (p q : CPolynomial R) :
     (p - q).toPoly = p.toPoly - q.toPoly := by
   change (p + -q).toPoly = p.toPoly + -q.toPoly
   rw [toPoly_add, toPoly_neg]
 
+/--
+@isnad1 id=eq.0h4v.s6.d2a12954aaf8 from=translated src=- shape=6a66acec vocab=4325dcf0
+-/
 @[grind =]
 lemma Raw.toPoly_mul_coeff [LawfulBEq R] (p q : CPolynomial.Raw R) (i : ℕ) :
     (p * q).toPoly.coeff i = (p.toPoly * q.toPoly).coeff i := by
@@ -80,22 +98,34 @@ lemma Raw.toPoly_mul_coeff [LawfulBEq R] (p q : CPolynomial.Raw R) (i : ℕ) :
   rcases h_coeff (i - x) with ⟨_, hq⟩
   simp [hp, hq]
 
+/--
+@isnad1 id=eq.0h3v.s6.0dc8c305168e from=translated src=- shape=194c6998 vocab=c625e4ed
+-/
 @[grind =]
 lemma Raw.toPoly_mul [LawfulBEq R] (p q : CPolynomial.Raw R) :
     (p * q).toPoly = p.toPoly * q.toPoly := by
   ext i
   exact Raw.toPoly_mul_coeff p q i
 
+/--
+@isnad1 id=eq.0h4v.s7.07ac9204bdb0 from=translated src=- shape=34d5dca8 vocab=9cfdf1f8
+-/
 @[grind =]
 lemma toPoly_mul_coeffC [LawfulBEq R] (p q : CPolynomial R) (i : ℕ) :
     (p.val * q.val).toPoly.coeff i = (p.val.toPoly * q.val.toPoly).coeff i := by
   simpa using Raw.toPoly_mul_coeff p.val q.val i
 
+/--
+@isnad1 id=eq.0h3v.s6.82766607fd33 from=translated src=- shape=194c6998 vocab=0b33d2bf
+-/
 @[grind =]
 lemma toPoly_mul [LawfulBEq R] (p q : CPolynomial R) :
     (p * q).toPoly = p.toPoly * q.toPoly := by
   exact Raw.toPoly_mul p.val q.val
 
+/--
+@isnad1 id=eq.0h5v.s5.24233017dda9 from=translated src=- shape=b14e6088 vocab=99ed5b92
+-/
 @[simp, grind =]
 lemma eval₂_C {R : Type*} [Semiring R] {S : Type*} [Semiring S]
     (f : R →+* S) (x : S) (r : R) :
@@ -104,12 +134,18 @@ lemma eval₂_C {R : Type*} [Semiring R] {S : Type*} [Semiring S]
   ring_nf
   simp [Array.zipIdx]
 
+/--
+@isnad1 id=eq.0h2v.s5.f4c8fd441237 from=translated src=- shape=5c30c2b0 vocab=de2454a5
+-/
 @[simp, grind =]
 lemma Raw.toPoly_C {R : Type*} [Semiring R] (r : R) :
     (Raw.C r).toPoly = Polynomial.C r := by
   unfold Raw.toPoly
   exact eval₂_C Polynomial.C Polynomial.X r
 
+/--
+@isnad1 id=eq.0h1v.s5.f16935c2feda from=translated src=- shape=7b5bff60 vocab=0b4e90dd
+-/
 @[simp, grind =]
 lemma Raw.toPoly_one {R : Type*} [Semiring R] :
     (1 : CPolynomial.Raw R).toPoly = 1 := by
@@ -117,10 +153,16 @@ lemma Raw.toPoly_one {R : Type*} [Semiring R] :
   apply this.trans; clear this
   apply toPoly_C
 
+/--
+@isnad1 id=eq.0h1v.s5.ad42f2056cdd from=translated src=- shape=3785f3e6 vocab=fbf2112a
+-/
 lemma toPoly_one [LawfulBEq R] [Nontrivial R] :
     (1 : CPolynomial R).toPoly = 1 := by
   apply Raw.toPoly_one
 
+/--
+@isnad1 id=eq.0h3v.s6.10fbcc44c61e from=translated src=- shape=5e9cfbf9 vocab=080f0a29
+-/
 @[grind =]
 lemma Raw.toPoly_pow [LawfulBEq R] (p : CPolynomial.Raw R) :
     ∀ n : ℕ, (p ^ n).toPoly = p.toPoly ^ n
@@ -130,20 +172,32 @@ lemma Raw.toPoly_pow [LawfulBEq R] (p : CPolynomial.Raw R) :
       rw [Raw.pow_succ, Raw.toPoly_mul, Raw.toPoly_pow p n]
       simp [pow_succ']
 
+/--
+@isnad1 id=eq.0h1v.s5.0b06cec1fff2 from=translated src=- shape=7b5bff60 vocab=0b4e90dd
+-/
 @[simp, grind =]
 lemma Raw.toPoly_zero {R : Type*} [Semiring R] : (0 : CPolynomial.Raw R).toPoly = 0 := by
   simp [Raw.toPoly, Raw.eval₂]
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s5.704ac026fe39 from=translated src=- shape=7b5bff60 vocab=15298d14
+-/
 lemma toPoly_zero {R : Type*} [Semiring R] : (0 : CPolynomial R).toPoly = 0 := by
   apply Raw.toPoly_zero
 
+/--
+@isnad1 id=eq.0h1v.s4.2fdf98851948 from=translated src=- shape=9dd68f90 vocab=8603bc13
+-/
 @[simp, grind =]
 lemma Raw.toPoly_X {R : Type*} [Semiring R] :
     (Raw.X : CPolynomial.Raw R).toPoly = Polynomial.X := by
   unfold CPolynomial.Raw.X
   simp [Raw.toPoly, Raw.eval₂]
 
+/--
+@isnad1 id=eq.0h3v.s6.27f6139c51f2 from=translated src=- shape=f0ad4298 vocab=ee882faf
+-/
 @[grind =]
 lemma toPoly_pow [Nontrivial R] [LawfulBEq R] (p : CPolynomial R) (n : ℕ) :
     (p ^ n).toPoly = p.toPoly ^ n := by
@@ -151,6 +205,9 @@ lemma toPoly_pow [Nontrivial R] [LawfulBEq R] (p : CPolynomial R) (n : ℕ) :
   rw [val_pow]
   exact Raw.toPoly_pow p.val n
 
+/--
+@isnad1 id=eq.0h4v.s6.5e4bad503515 from=translated src=- shape=e0164654 vocab=d1c18568
+-/
 lemma toPoly_sum.{u} {R : Type*} [Semiring R] [BEq R] [LawfulBEq R] {ι : Type u}
     [DecidableEq ι]
     {s : Finset ι} {f : ι → CPolynomial R} :
@@ -161,6 +218,9 @@ lemma toPoly_sum.{u} {R : Type*} [Semiring R] [BEq R] [LawfulBEq R] {ι : Type u
   | insert a s ha ih =>
       simp [Finset.sum_insert, ha, toPoly_add, ih]
 
+/--
+@isnad1 id=eq.0h4v.s6.ee2eddef6ea2 from=translated src=- shape=eb54b9ce vocab=05f917b1
+-/
 lemma toPoly_prod.{u} {R : Type*} [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     {ι : Type u} [DecidableEq ι]
     {s : Finset ι} {f : ι → CPolynomial R} :
@@ -184,7 +244,9 @@ noncomputable def ringEquiv [LawfulBEq R] [Nontrivial R] :
   map_mul' := by intros p q; rw [toPoly_mul p q]
   map_add' := by intros p q; apply toPoly_add
 
-/-- The forward map of `ringEquiv` is `toPoly`.-/
+/-- The forward map of `ringEquiv` is `toPoly`.
+@isnad1 id=eq.0h2v.s7.a53c1a906b08 from=translated src=- shape=359848d3 vocab=4d92a356
+-/
 @[simp]
 theorem ringEquiv_apply [LawfulBEq R] [Nontrivial R] (p : CPolynomial R) :
     ringEquiv p = p.toPoly := by

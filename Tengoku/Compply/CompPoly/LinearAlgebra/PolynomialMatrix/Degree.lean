@@ -33,7 +33,9 @@ def RowIsZero [Zero F] [BEq F] (row : PolynomialRow F) : Prop :=
 def rowIsZero [Zero F] [BEq F] (row : PolynomialRow F) : Bool :=
   row.all fun p ↦ p == 0
 
-/-- Boolean and propositional zero-row predicates agree.-/
+/-- Boolean and propositional zero-row predicates agree.
+@isnad1 id=iff.0h2v.s4.d44e051a4074 from=translated src=- shape=2e18d66e vocab=35cd5c5b
+-/
 theorem rowIsZero_iff [Zero F] [BEq F] [LawfulBEq F]
     {row : PolynomialRow F} :
     rowIsZero row = true ↔ RowIsZero row := by
@@ -50,7 +52,9 @@ theorem rowIsZero_iff [Zero F] [BEq F] [LawfulBEq F]
     have hmem : row[i] ∈ row.toList := Array.getElem_mem_toList hi
     exact h row[i] (by simpa only [Array.mem_def] using hmem)
 
-/-- Nonzero rows have an indexed nonzero entry.-/
+/-- Nonzero rows have an indexed nonzero entry.
+@isnad1 id=ex.1h2v.s6.c1dcbb61b69b from=translated src=- shape=96e6aa2d vocab=ec130522
+-/
 theorem exists_nonzero_entry_of_rowIsZero_false [Zero F] [BEq F] [LawfulBEq F]
     {row : PolynomialRow F} (hrow : rowIsZero row = false) :
     ∃ j, j < row.size ∧ row.getD j 0 ≠ 0 := by

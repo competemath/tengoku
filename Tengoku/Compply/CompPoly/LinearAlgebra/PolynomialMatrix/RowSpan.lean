@@ -225,7 +225,9 @@ private theorem rowLinearCombination_unit_range
           rw [ite_eq_right (by omega)]
           exact rowAdd_zeroRow_right (zeroRow (F := F) (MatrixWidth M)) hzeroWidth
 
-/-- Every stored row belongs to its matrix row span.-/
+/-- Every stored row belongs to its matrix row span.
+@isnad1 id=mem.2h3v.s6.1669e2fbbcc7 from=translated src=- shape=5d7ab20a vocab=08929cbc
+-/
 theorem matrix_row_mem_rowSpan [Semiring F] [BEq F] [LawfulBEq F]
     [DecidableEq F]
     {M : PolynomialMatrix F} {row : PolynomialRow F}

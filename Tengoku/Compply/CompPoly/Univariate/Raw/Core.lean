@@ -109,7 +109,9 @@ def canonical [Zero R] [BEq R] (p : CPolynomial.Raw R) : Prop := p.trim = p
   Central results: `trim_twice`, `canonical_iff`, `eq_of_equiv`, `canonical_ext`. -/
 namespace Trim
 
-/-- If all coefficients are zero, `lastNonzero` is `none`.-/
+/-- If all coefficients are zero, `lastNonzero` is `none`.
+@isnad1 id=eq.1h2v.s6.94485e83fc19 from=translated src=- shape=4291bcba vocab=e4cd10c4
+-/
 theorem lastNonzero_none [Zero R] [BEq R] [LawfulBEq R] {p : CPolynomial.Raw R} :
     (∀ i, (hi : i < p.size) → p[i] = 0) → p.lastNonzero = none := by
   intro h
@@ -118,13 +120,17 @@ theorem lastNonzero_none [Zero R] [BEq R] [LawfulBEq R] {p : CPolynomial.Raw R} 
   rw [bne_iff_ne, ne_eq, not_not]
   apply_assumption
 
-/-- If there is a non-zero coefficient, `lastNonzero` is `some`.-/
+/-- If there is a non-zero coefficient, `lastNonzero` is `some`.
+@isnad1 id=ex.2h3v.s6.5b42e34895cb from=translated src=- shape=e3f3a2b8 vocab=e2b6d222
+-/
 theorem lastNonzero_some [Zero R] [BEq R] [LawfulBEq R]
     {p : CPolynomial.Raw R} {i} (hi : i < p.size)
     (h : p[i] ≠ 0) : ∃ k, p.lastNonzero = some k :=
   Array.findIdxRev?_eq_some ⟨i, hi, bne_iff_ne.mpr h⟩
 
-/-- `lastNonzero` returns the largest index with a non-zero coefficient.-/
+/-- `lastNonzero` returns the largest index with a non-zero coefficient.
+@isnad1 id=and.1h3v.s7.84264180fe89 from=translated src=- shape=0472ce0b vocab=37ddfaee
+-/
 theorem lastNonzero_spec [Zero R] [BEq R] [LawfulBEq R] {p : CPolynomial.Raw R} {k} :
     p.lastNonzero = some k
   → p[k] ≠ 0 ∧ (∀ j, (hj : j < p.size) → j > k → p[j] = 0) := by
@@ -141,7 +147,9 @@ theorem lastNonzero_spec [Zero R] [BEq R] [LawfulBEq R] {p : CPolynomial.Raw R} 
 def lastNonzeroProp [Zero R] {p : CPolynomial.Raw R} (k : Fin p.size) : Prop :=
   p[k] ≠ 0 ∧ (∀ j, (hj : j < p.size) → j > k → p[j] = 0)
 
-/-- The last non-zero index is unique.-/
+/-- The last non-zero index is unique.
+@isnad1 id=eq.2h4v.s5.15f008d634e6 from=translated src=- shape=5c29a012 vocab=d4bddee7
+-/
 lemma lastNonzero_unique [Zero Q] {p : CPolynomial.Raw Q} {k k' : Fin p.size} :
     lastNonzeroProp k → lastNonzeroProp k' → k = k' := by
   suffices weaker : ∀ k k', lastNonzeroProp k → lastNonzeroProp k' → k ≤ k' by
@@ -152,7 +160,9 @@ lemma lastNonzero_unique [Zero Q] {p : CPolynomial.Raw Q} {k k' : Fin p.size} :
   have : p[k] = 0 := h' k k.is_lt (Nat.lt_of_not_ge k_not_le)
   contradiction
 
-/-- Characterization of `lastNonzero` via `lastNonzeroProp`.-/
+/-- Characterization of `lastNonzero` via `lastNonzeroProp`.
+@isnad1 id=iff.0h3v.s7.7e3cbcd27761 from=translated src=- shape=3b0416cb vocab=37ddfaee
+-/
 theorem lastNonzero_some_iff [Zero R] [BEq R] [LawfulBEq R] {p : CPolynomial.Raw R} {k} :
     p.lastNonzero = some k ↔ (p[k] ≠ 0 ∧ (∀ j, (hj : j < p.size) → j > k → p[j] = 0)) := by
   constructor
@@ -167,7 +177,9 @@ theorem lastNonzero_some_iff [Zero R] [BEq R] [LawfulBEq R] {p : CPolynomial.Raw
   induction p using lastNonzero_induct with
   | case1 p h_none h_all_zero => ...
   | case2 p k h_some h_nonzero h_max => ...
-  ```-/
+  ```
+@isnad1 id=var.0h5v.s7.867cd99570c6 from=translated src=- shape=7ed701d9 vocab=764910ca
+-/
 theorem lastNonzero_induct [Zero R] [BEq R] [LawfulBEq R] {motive : CPolynomial.Raw R → Prop}
     (case1 : ∀ p, p.lastNonzero = none → (∀ i, (hi : i < p.size) → p[i] = 0) → motive p)
   (case2 : ∀ p : CPolynomial.Raw R, ∀ k : Fin p.size, p.lastNonzero = some k → p[k] ≠ 0 →
@@ -185,7 +197,9 @@ theorem lastNonzero_induct [Zero R] [BEq R] [LawfulBEq R] {motive : CPolynomial.
   induction p using induct with
   | case1 p h_empty h_all_zero => ...
   | case2 p k h_extract h_nonzero h_max => ...
-  ```-/
+  ```
+@isnad1 id=var.0h5v.s7.f706bc4df3d9 from=translated src=- shape=f6a230a6 vocab=42b066ad
+-/
 theorem induct [Zero R] [BEq R] [LawfulBEq R] {motive : CPolynomial.Raw R → Prop}
     (case1 : ∀ p, p.trim = #[] → (∀ i, (hi : i < p.size) → p[i] = 0) → motive p)
   (case2 : ∀ p : CPolynomial.Raw R, ∀ k : Fin p.size, p.trim = p.extract 0 (k + 1)
@@ -201,7 +215,9 @@ theorem induct [Zero R] [BEq R] [LawfulBEq R] {motive : CPolynomial.Raw R → Pr
 /-- eliminator for `p.trim`; e.g. use for case distinction as follows:
   ```
   rcases (Trim.elim p) with ⟨ h_empty, h_all_zero ⟩ | ⟨ k, h_extract, h_nonzero, h_max ⟩
-  ```-/
+  ```
+@isnad1 id=or.0h2v.s7.ba26c527861b from=translated src=- shape=ee58e648 vocab=42b066ad
+-/
 theorem elim [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial.Raw R) :
     (p.trim = #[] ∧  (∀ i, (hi : i < p.size) → p[i] = 0))
     ∨ (∃ k : Fin p.size,
@@ -211,6 +227,9 @@ theorem elim [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial.Raw R) :
   | case1 p h_empty h_all_zero => left; exact ⟨h_empty, h_all_zero⟩
   | case2 p k h_extract h_nonzero h_max => right; exact ⟨k, h_extract, h_nonzero, h_max⟩
 
+/--
+@isnad1 id=eq.1h2v.s6.fb32f7032fdb from=translated src=- shape=093c9fe3 vocab=4f594f64
+-/
 theorem size_eq_degree_plus_one [Zero R] [BEq R]
     (p : CPolynomial.Raw R) (h_trim : p.trim ≠ (mk #[])) :
     p.trim.size = p.degree + 1 := by
@@ -219,6 +238,9 @@ theorem size_eq_degree_plus_one [Zero R] [BEq R]
   | none => exfalso; unfold trim at h_trim; rw [h] at h_trim; contradiction
   | some i => simp [Fin.is_lt]
 
+/--
+@isnad1 id=eq.1h2v.s5.8a8647e2e7c9 from=translated src=- shape=8a8e6bce vocab=1c6c33a1
+-/
 theorem size_eq_natDegree_plus_one [Zero R] [BEq R]
     (p : CPolynomial.Raw R) (h_trim : p.trim ≠ (mk #[])) :
     p.trim.size = p.natDegree + 1 := by
@@ -227,6 +249,9 @@ theorem size_eq_natDegree_plus_one [Zero R] [BEq R]
   | none => exfalso; unfold trim at h_trim; rw [h] at h_trim; contradiction
   | some i => simp [Fin.is_lt]
 
+/--
+@isnad1 id=eq.1h2v.s5.92d7515389ba from=translated src=- shape=eb8983f8 vocab=3236eec4
+-/
 theorem size_eq_natDegree_of_zero [Zero R] [BEq R]
     (p : CPolynomial.Raw R) (h_trim : p.trim = (mk #[])) :
     p.trim.size = p.natDegree := by
@@ -238,6 +263,9 @@ theorem size_eq_natDegree_of_zero [Zero R] [BEq R]
               rw [h] at h_trim; have h_size := congrArg Array.size h_trim
               simp [Array.size_extract, Nat.succ_le_of_lt i.is_lt] at h_size
 
+/--
+@isnad1 id=le.0h2v.s4.e25e10523093 from=translated src=- shape=48bae449 vocab=011ae94e
+-/
 theorem size_le_size [Zero R] [BEq R] (p : CPolynomial.Raw R) : p.trim.size ≤ p.size := by
   unfold trim
   match h : p.lastNonzero with
@@ -246,6 +274,9 @@ theorem size_le_size [Zero R] [BEq R] (p : CPolynomial.Raw R) : p.trim.size ≤ 
 
 attribute [simp] Array.getElem?_eq_none
 
+/--
+@isnad1 id=eq.1h3v.s5.627067c3aae9 from=translated src=- shape=cbf97deb vocab=2aee1023
+-/
 theorem coeff_eq_getElem_of_lt [Zero R] [BEq R] [LawfulBEq R]
     {p : CPolynomial.Raw R} {i} (hi : i < p.size) :
     p.trim.coeff i = p[i] := by
@@ -265,6 +296,9 @@ theorem coeff_eq_getElem_of_lt [Zero R] [BEq R] [LawfulBEq R]
       rw [Array.getElem?_eq_getElem hik', Option.getD_some, Array.getElem_extract]
       simp only [zero_add]
 
+/--
+@isnad1 id=eq.0h3v.s5.5916e7ae945a from=translated src=- shape=f228b128 vocab=b7aebc2a
+-/
 theorem coeff_eq_coeff [Zero R] [BEq R] [LawfulBEq R]
     (p : CPolynomial.Raw R) (i : ℕ) :
     p.trim.coeff i = p.coeff i := by
@@ -274,6 +308,9 @@ theorem coeff_eq_coeff [Zero R] [BEq R] [LawfulBEq R]
   · have hi' : i ≥ p.trim.size := by linarith [size_le_size p]
     simp [hi, hi']
 
+/--
+@isnad1 id=eq.1h3v.s5.a12b4ff8b0f8 from=translated src=- shape=329ba281 vocab=ff102f30
+-/
 lemma coeff_eq_getElem [Zero Q] {p : CPolynomial.Raw Q} {i} (hp : i < p.size) :
     p.coeff i = p[i] := by
   simp [hp]
@@ -282,6 +319,9 @@ lemma coeff_eq_getElem [Zero Q] {p : CPolynomial.Raw Q} {i} (hp : i < p.size) :
 def equiv [Zero R] (p q : CPolynomial.Raw R) : Prop :=
   ∀ i, p.coeff i = q.coeff i
 
+/--
+@isnad1 id=iff.0h2v.s6.b0638f4cf986 from=translated src=- shape=84b08829 vocab=ff102f30
+-/
 lemma coeff_eq_zero [Zero Q] {p : CPolynomial.Raw Q} :
     (∀ i, (hi : i < p.size) → p[i] = 0) ↔ ∀ i, p.coeff i = 0 := by
   constructor <;> intro h i
@@ -342,15 +382,24 @@ theorem eq_of_equiv [Zero R] [BEq R] [LawfulBEq R] {p q : CPolynomial.Raw R} :
   · rw [← coeff_eq_getElem, ← coeff_eq_getElem]
     rw [coeff_eq_coeff, coeff_eq_coeff, h _]
 
+/--
+@isnad1 id=equiv.0h2v.s4.583f0a5f7c63 from=translated src=- shape=58eadac0 vocab=a7f95735
+-/
 theorem trim_equiv [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial.Raw R) :
     equiv p.trim p := by
   apply coeff_eq_coeff
 
+/--
+@isnad1 id=eq.0h2v.s5.fc7d119260aa from=translated src=- shape=a2280e0e vocab=221b55c8
+-/
 theorem trim_twice [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial.Raw R) :
     p.trim.trim = p.trim := by
   apply eq_of_equiv
   apply trim_equiv
 
+/--
+@isnad1 id=eq.0h1v.s4.767ef2098823 from=translated src=- shape=32388a3e vocab=263d7334
+-/
 theorem canonical_empty [Zero R] [BEq R] : (mk (R := R) #[]).trim = #[] := by
   have : (mk (R:=R) #[]).lastNonzero = none := by
     simp [lastNonzero]
@@ -358,12 +407,18 @@ theorem canonical_empty [Zero R] [BEq R] : (mk (R := R) #[]).trim = #[] := by
     rfl
   rw [trim, this]
 
+/--
+@isnad1 id=eq.1h2v.s4.6426de8fc3aa from=translated src=- shape=9a016a85 vocab=dafc8846
+-/
 theorem canonical_of_size_zero [Zero R] [BEq R] {p : CPolynomial.Raw R} :
     p.size = 0 → p.trim = p := by
   intro h
   suffices h_empty : p = #[] by rw [h_empty]; exact canonical_empty
   exact Array.eq_empty_of_size_eq_zero h
 
+/--
+@isnad1 id=iff.1h2v.s6.2cdeb34a8b96 from=translated src=- shape=2a80a80d vocab=993b1fff
+-/
 theorem canonical_nonempty_iff [Zero R] [BEq R] [LawfulBEq R]
     {p : CPolynomial.Raw R} (hp : p.size > 0) :
     p.trim = p ↔ p.lastNonzero = some ⟨ p.size - 1, Nat.pred_lt_self hp ⟩ := by
@@ -390,6 +445,9 @@ theorem canonical_nonempty_iff [Zero R] [BEq R] [LawfulBEq R]
       right
       exact le_refl _
 
+/--
+@isnad1 id=iff.1h2v.s6.c6a92229b2c3 from=translated src=- shape=9018a7be vocab=119937fe
+-/
 theorem lastNonzero_last_iff [Zero R] [BEq R] [LawfulBEq R]
     {p : CPolynomial.Raw R} (hp : p.size > 0) :
     p.lastNonzero = some ⟨ p.size - 1, Nat.pred_lt_self hp ⟩ ↔ p.getLast hp ≠ 0 := by
@@ -411,6 +469,9 @@ theorem lastNonzero_last_iff [Zero R] [BEq R] [LawfulBEq R]
         have : k ≥ p.size := Nat.le_of_pred_lt h_gt
         linarith
 
+/--
+@isnad1 id=iff.0h2v.s4.de7695eb6230 from=translated src=- shape=2d710454 vocab=3ff77659
+-/
 theorem canonical_iff [Zero R] [BEq R] [LawfulBEq R] {p : CPolynomial.Raw R} :
     p.trim = p ↔ IsCanonical p := by
   constructor
@@ -422,22 +483,32 @@ theorem canonical_iff [Zero R] [BEq R] [LawfulBEq R] {p : CPolynomial.Raw R} :
     · rw [canonical_nonempty_iff hp, lastNonzero_last_iff hp]
       exact h hp
 
+/--
+@isnad1 id=iscanoni.0h1v.s3.70ba720f1f02 from=translated src=- shape=465a4966 vocab=d1e57744
+-/
 theorem isCanonical_empty [Zero R] : IsCanonical (mk (R := R) #[]) := by
   intro hp
   simp at hp
 
+/--
+@isnad1 id=iscanoni.1h2v.s4.20d2202ad5fc from=translated src=- shape=280f4ce5 vocab=42f197ee
+-/
 theorem isCanonical_of_size_zero [Zero R] {p : CPolynomial.Raw R} (hp : p.size = 0) :
     IsCanonical p := by
   intro hPos
   simp [hp] at hPos
 
-/-- Canonicality bridge (semantic view to computational view).-/
+/-- Canonicality bridge (semantic view to computational view).
+@isnad1 id=iff.0h2v.s4.a00d16a111fe from=translated src=- shape=bc9a700d vocab=3ff77659
+-/
 theorem isCanonical_iff_trim_eq [Zero R] [BEq R] [LawfulBEq R]
     {p : CPolynomial.Raw R} :
     IsCanonical p ↔ p.trim = p :=
   canonical_iff.symm
 
-/-- Non-dependent canonicality criterion using `getLastD`.-/
+/-- Non-dependent canonicality criterion using `getLastD`.
+@isnad1 id=iff.0h2v.s5.4a1931e7d27b from=translated src=- shape=f7b94b16 vocab=db68d34f
+-/
 theorem isCanonical_iff_size_eq_zero_or_getLastD_ne_zero [Zero R]
     {p : CPolynomial.Raw R} :
     IsCanonical p ↔ p.size = 0 ∨ p.getLastD 0 ≠ 0 := by
@@ -451,26 +522,40 @@ theorem isCanonical_iff_size_eq_zero_or_getLastD_ne_zero [Zero R]
     · exact (Nat.ne_of_gt hp h0).elim
     · simpa [Array.getLastD, Array.getLast, hp] using hlast
 
-/-- Computational canonicality criterion in non-dependent form.-/
+/-- Computational canonicality criterion in non-dependent form.
+@isnad1 id=iff.0h2v.s5.84d7e8e8bc61 from=translated src=- shape=7ad163c7 vocab=dcb1fda8
+-/
 theorem trim_eq_iff_size_eq_zero_or_getLastD_ne_zero [Zero R] [BEq R] [LawfulBEq R]
     {p : CPolynomial.Raw R} :
     p.trim = p ↔ p.size = 0 ∨ p.getLastD 0 ≠ 0 := by
   rw [canonical_iff, isCanonical_iff_size_eq_zero_or_getLastD_ne_zero]
 
+/--
+@isnad1 id=eq.1h2v.s4.2e5ca0877eb7 from=translated src=- shape=4882fbf6 vocab=3ff77659
+-/
 theorem trim_eq_of_isCanonical [Zero R] [BEq R] [LawfulBEq R]
     {p : CPolynomial.Raw R} (hp : IsCanonical p) :
     p.trim = p :=
   canonical_iff.mpr hp
 
+/--
+@isnad1 id=iscanoni.1h2v.s4.cf000d105958 from=translated src=- shape=96ce1c6f vocab=3ff77659
+-/
 theorem isCanonical_of_trim_eq [Zero R] [BEq R] [LawfulBEq R]
     {p : CPolynomial.Raw R} (hp : p.trim = p) :
     IsCanonical p :=
   canonical_iff.mp hp
 
+/--
+@isnad1 id=iscanoni.0h2v.s4.8ee25c384b48 from=translated src=- shape=2a2f7329 vocab=3ff77659
+-/
 theorem isCanonical_trim [Zero R] [BEq R] [LawfulBEq R]
     (p : CPolynomial.Raw R) : IsCanonical p.trim :=
   isCanonical_of_trim_eq (trim_twice p)
 
+/--
+@isnad1 id=eq.1h3v.s5.19343ea910a0 from=translated src=- shape=a7922231 vocab=511ab9f8
+-/
 @[grind =]
 lemma push_trim [Zero R] [BEq R] [LawfulBEq R] (arr : Array R) (c : R) :
     ¬c = 0 → trim (arr.push c) = arr.push c := by
@@ -479,6 +564,9 @@ lemma push_trim [Zero R] [BEq R] [LawfulBEq R] (arr : Array R) (c : R) :
   simp [Array.getLast]
   exact h_c
 
+/--
+@isnad1 id=other.1h3v.s6.4bdea8a27f92 from=translated src=- shape=d02c7ff4 vocab=64e42172
+-/
 theorem non_zero_map [Zero R] [BEq R] [LawfulBEq R]
     (f : R → R) (hf : ∀ r, f r = 0 → r = 0) (p : CPolynomial.Raw R) :
     let fp := mk (p.map f);
@@ -498,7 +586,9 @@ theorem non_zero_map [Zero R] [BEq R] [LawfulBEq R]
   apply canonical_of_size_zero this
 
 /-- Canonical polynomials enjoy a stronger extensionality theorem:
-  they just need to agree at all coefficients (without assuming equal sizes)-/
+  they just need to agree at all coefficients (without assuming equal sizes)
+@isnad1 id=eq.3h3v.s5.869a2e572ed9 from=translated src=- shape=29e1d55e vocab=a7f95735
+-/
 theorem canonical_ext [Zero R] [BEq R] [LawfulBEq R]
     {p q : CPolynomial.Raw R} (hp : p.trim = p) (hq : q.trim = q) :
     equiv p q → p = q := by
@@ -506,6 +596,9 @@ theorem canonical_ext [Zero R] [BEq R] [LawfulBEq R]
   rw [← hp, ← hq]
   exact eq_of_equiv h_equiv
 
+/--
+@isnad1 id=eq.3h3v.s5.b057fe3f571f from=translated src=- shape=d91a165c vocab=b69c86b2
+-/
 theorem isCanonical_ext [Zero R] [BEq R] [LawfulBEq R] {p q : CPolynomial.Raw R}
     (hp : IsCanonical p) (hq : IsCanonical q) :
     equiv p q → p = q := by

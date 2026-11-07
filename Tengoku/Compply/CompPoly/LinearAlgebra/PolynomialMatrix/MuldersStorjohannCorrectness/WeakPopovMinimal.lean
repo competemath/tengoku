@@ -36,7 +36,9 @@ variable {F : Type*} [Field F] [BEq F] [LawfulBEq F] [DecidableEq F]
 /-- Predictable-degree property of shifted weak-Popov matrices: every row-span
 member with a defined shifted degree is bounded below by the shifted degree of
 some matrix row. Requires neither `shift.size = MatrixWidth B` nor any other
-shift alignment hypothesis.-/
+shift alignment hypothesis.
+@isnad1 id=ex.4h4v.s8.d238afe9b470 from=translated src=- shape=f1127713 vocab=7068dbc3
+-/
 theorem shiftedWeakPopov_least_row_minimal
     (B : PolynomialMatrix F) (shift : Array Nat) (row : PolynomialRow F)
     (hB : WellFormed B)
@@ -272,7 +274,9 @@ theorem shiftedWeakPopov_least_row_minimal
           · exact le_trans houtDeg_le_D hD_le_rowDeg
 
 /-- Least-row minimality of the Mulders-Storjohann reducer, re-derived from the
-generalized shifted weak-Popov predictable-degree property.-/
+generalized shifted weak-Popov predictable-degree property.
+@isnad1 id=ex.4h4v.s8.591b9cc24dc1 from=translated src=- shape=2500ecfc vocab=e7ae5657
+-/
 theorem muldersStorjohannReduce_least_row_minimal_of_weakPopov
     (M : PolynomialMatrix F) (shift : Array Nat) (row : PolynomialRow F)
     (hM : WellFormed M) (hshift : shift.size = MatrixWidth M)

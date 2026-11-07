@@ -74,7 +74,9 @@ def BarycentricDomain.mk' (nodes : Fin n → R) (hinj : Function.Injective nodes
 
 /-! ### Weight correctness -/
 
-/-- The stored weights are exactly `Lagrange.nodalWeight Finset.univ nodes`.-/
+/-- The stored weights are exactly `Lagrange.nodalWeight Finset.univ nodes`.
+@isnad1 id=eq.0h4v.s5.86d2929937fc from=translated src=- shape=e039d7b1 vocab=9e82237e
+-/
 theorem BarycentricDomain.weights_eq_nodalWeight (dom : BarycentricDomain R n) (i : Fin n) :
     dom.weights i = Lagrange.nodalWeight Finset.univ dom.nodes i := by
   rw [dom.weights_spec]; rfl
@@ -97,7 +99,9 @@ def BarycentricDomain.eval (dom : BarycentricDomain R n) (y : Fin n → R) (z : 
 
 /-! ### Evaluation at a node -/
 
-/-- At a node, the barycentric evaluator returns the corresponding value.-/
+/-- At a node, the barycentric evaluator returns the corresponding value.
+@isnad1 id=eq.0h5v.s5.f7a72ef49f07 from=translated src=- shape=7b23cb2d vocab=adff45f0
+-/
 theorem BarycentricDomain.eval_at_node (dom : BarycentricDomain R n) (y : Fin n → R)
     (i : Fin n) : dom.eval y (dom.nodes i) = y i := by
   unfold BarycentricDomain.eval
@@ -126,6 +130,9 @@ private theorem BarycentricDomain.eval_off_node_eq (dom : BarycentricDomain R n)
 **Main correctness theorem.**
 The barycentric evaluator equals `(Lagrange.interpolate univ dom.nodes y).eval z`.
 -/
+/--
+@isnad1 id=eq.0h5v.s8.d3ab626638bf from=translated src=- shape=d5a0c21e vocab=07b3480a
+-/
 theorem BarycentricDomain.eval_eq_interpolate_eval (dom : BarycentricDomain R n)
     (y : Fin n → R) (z : R) :
     dom.eval y z = (Lagrange.interpolate Finset.univ dom.nodes y).eval z := by
@@ -142,7 +149,9 @@ theorem BarycentricDomain.eval_eq_interpolate_eval (dom : BarycentricDomain R n)
     simp [Lagrange.interpolate]
 
 /-- The barycentric evaluator equals
-`(CLagrange.interpolate Finset.univ dom.nodes y).eval z`.-/
+`(CLagrange.interpolate Finset.univ dom.nodes y).eval z`.
+@isnad1 id=eq.0h5v.s8.a6a6312ae2c8 from=translated src=- shape=1eaf5f63 vocab=304af69e
+-/
 theorem BarycentricDomain.eval_eq_cinterpolate_eval [BEq R] [LawfulBEq R]
     (dom : BarycentricDomain R n) (y : Fin n → R) (z : R) :
     dom.eval y z = (CLagrange.interpolate Finset.univ dom.nodes y).eval z := by
@@ -161,7 +170,9 @@ def BarycentricDomain.ofPow (ω : Rˣ) (hord : n ≤ orderOf ω) :
       (by rw [← Units.val_inj]; simpa using h)
 
 /-- The barycentric evaluator on power-of-ω nodes agrees with
-`(CLagrange.interpolatePow ω r).eval z`.-/
+`(CLagrange.interpolatePow ω r).eval z`.
+@isnad1 id=eq.1h5v.s6.d72f7c63fe67 from=translated src=- shape=31118642 vocab=82369016
+-/
 theorem BarycentricDomain.ofPow_eval_eq_interpolatePow_eval [BEq R] [LawfulBEq R]
     (ω : Rˣ) (hord : n ≤ orderOf ω) (r : Vector R n) (z : R) :
     (BarycentricDomain.ofPow ω hord).eval r.get z =

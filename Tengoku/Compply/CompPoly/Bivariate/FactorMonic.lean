@@ -45,7 +45,9 @@ def linearYDivisor [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R]
   -- `CPolynomial.X` at this nested type is `Y`; it is defeq to `CBivariate.X`.
   (CPolynomial.X : CPolynomial (CPolynomial R)) - CPolynomial.C f
 
-/-- `toPoly` sends the linear divisor `Y - f` to `X - C f` in `(CPolynomial R)[Y]`.-/
+/-- `toPoly` sends the linear divisor `Y - f` to `X - C f` in `(CPolynomial R)[Y]`.
+@isnad1 id=eq.0h2v.s8.bb1d42d8c822 from=translated src=- shape=8f94e59c vocab=a0b3da17
+-/
 theorem linearYDivisor_toPoly [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (f : CPolynomial R) :
     CPolynomial.toPoly (linearYDivisor f) = Polynomial.X - Polynomial.C f := by
@@ -53,7 +55,9 @@ theorem linearYDivisor_toPoly [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R] 
     (CPolynomial.toPoly_sub (p := (CPolynomial.X : CPolynomial (CPolynomial R)))
       (q := CPolynomial.C f))
 
-/-- The linear divisor `Y - f` is monic.-/
+/-- The linear divisor `Y - f` is monic.
+@isnad1 id=eq.0h2v.s6.fc8858f2cbc8 from=translated src=- shape=e53a259b vocab=f9bc9f45
+-/
 theorem linearYDivisor_monic [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (f : CPolynomial R) :
     CPolynomial.monic (linearYDivisor f) = true := by
@@ -65,7 +69,9 @@ theorem linearYDivisor_monic [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R] [
 
 /-- Euclidean identity for `divByLinearY` in the outer ring `(CPolynomial R)[Y]`:
 `C rem + (Y - f) * quot = Q` after `toPoly`. Transports `divByLinearY_spec`
-across the coefficient ring-equiv.-/
+across the coefficient ring-equiv.
+@isnad1 id=eq.0h3v.s8.46473e4c7127 from=translated src=- shape=040ef6a7 vocab=efdf26e9
+-/
 theorem divByLinearY_euclid_toPoly
     [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (Q : CBivariate R) (f : CPolynomial R) :
@@ -83,7 +89,9 @@ theorem divByLinearY_euclid_toPoly
 
 /-- The bespoke synthetic division `divByLinearY` agrees with general monic
 division by `Y - f`: the quotient matches `divByMonic`, and the constant-in-`Y`
-remainder `C (divByLinearY Q f).2` matches `modByMonic`.-/
+remainder `C (divByLinearY Q f).2` matches `modByMonic`.
+@isnad1 id=and.0h3v.s8.705a8251592c from=translated src=- shape=5474bf2c vocab=d0fa15e6
+-/
 theorem divByLinearY_eq_divByMonic [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (Q : CBivariate R) (f : CPolynomial R) :
     CPolynomial.divByMonic Q (linearYDivisor f) = (divByLinearY Q f).1

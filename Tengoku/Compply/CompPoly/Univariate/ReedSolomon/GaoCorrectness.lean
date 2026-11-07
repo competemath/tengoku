@@ -59,7 +59,9 @@ private lemma degree_mul_lt_of_bounds [Semiring F] [NoZeroDivisors F]
 
 /-- Two degree-bounded Bézout solutions `(U,V,G)`, `(U',V',G')` of `U g₀ + V g₁ = ·`
 (with `deg G, deg G' < d₀` and `deg V + d₀, deg V' + d₀ ≤ deg g₀`) cross-multiply:
-`V * G' = V' * G`.-/
+`V * G' = V' * G`.
+@isnad1 id=eq.7h10v.s9.39cf65aa57d5 from=translated src=- shape=bccb7ed6 vocab=2f60e97d
+-/
 theorem bezout_solutions_cross_mul [CommRing F] [NoZeroDivisors F]
     (g₀ g₁ G U V G' U' V' : F[X]) (d₀ : ℕ) (hg₀ : g₀ ≠ 0)
     (hBez : U * g₀ + V * g₁ = G) (hBez' : U' * g₀ + V' * g₁ = G')
@@ -78,7 +80,9 @@ A nonzero error locator vanishes on every disagreement node, so its degree bound
 Hamming distance between the received word and a candidate codeword. -/
 
 /-- If `V * (f₁ - g₁) = U * g₀` and `g₀` vanishes on aᵢ, then `V` vanishes at every
-aᵢ where `f₁` and `g₁` disagree.-/
+aᵢ where `f₁` and `g₁` disagree.
+@isnad1 id=le.2h9v.s8.51bb9ce7687d from=translated src=- shape=3654c745 vocab=d2b4b248
+-/
 lemma disagreement_subset_error_locator_zeros [CommRing F] [NoZeroDivisors F]
     {ι : Type*} [DecidableEq F] (s : Finset ι) (a : ι → F) (g₀ g₁ U V f₁ : F[X])
     (hroot : ∀ i ∈ s, g₀.eval (a i) = 0) (hlocator : V * (f₁ - g₁) = U * g₀) :
@@ -90,7 +94,9 @@ lemma disagreement_subset_error_locator_zeros [CommRing F] [NoZeroDivisors F]
     exact hev.resolve_right hne
 
 /-- From the Bézout identity `G = U g₀ + V g₁` and `G = f₁ V` (with `V ≠ 0`,
-`g₀` rooted on the aᵢ), `f₁` disagrees with `g₁` at at most `V.natDegree` nodes.-/
+`g₀` rooted on the aᵢ), `f₁` disagrees with `g₁` at at most `V.natDegree` nodes.
+@isnad1 id=le.5h10v.s8.3cc1d38d4d0d from=translated src=- shape=b2d6d53f vocab=8256fa96
+-/
 lemma disagreement_card_le_error_locator_natDegree [CommRing F] [IsDomain F]
     {ι : Type*} [DecidableEq F] (s : Finset ι) (a : ι → F) (hinj : Set.InjOn a s)
     (g₀ g₁ G U V f₁ : F[X]) (hroot : ∀ i ∈ s, g₀.eval (a i) = 0)
@@ -102,7 +108,9 @@ lemma disagreement_card_le_error_locator_natDegree [CommRing F] [IsDomain F]
 
 /-- From the Bézout identity `G = U g₀ + V g₁` and `G = f₁ V`
 (with `V ≠ 0`, `g₀` rooted on the aᵢ), a word `b` with `g₁(aᵢ) = b i` satisfies
-`hammingDist b (f₁ ∘ a) ≤ V.natDegree`.-/
+`hammingDist b (f₁ ∘ a) ≤ V.natDegree`.
+@isnad1 id=le.6h10v.s8.d257813ea00c from=translated src=- shape=d8b40e64 vocab=38ce349a
+-/
 lemma hammingDist_le_error_locator_natDegree [CommRing F] [IsDomain F]
     {ι : Type*} [Fintype ι] [DecidableEq F] (a : ι → F)
     (hinj : Function.Injective a)
@@ -124,19 +132,25 @@ the received interpolant interpolates `r`, `nodalPoly = ∏ (X - aᵢ)` is monic
 section Decoder
 variable [BEq F] [LawfulBEq F]
 
-/-- The received interpolant evaluates to `r i` at each domain node.-/
+/-- The received interpolant evaluates to `r i` at each domain node.
+@isnad1 id=eq.0h4v.s6.39861dddb4b0 from=translated src=- shape=b7cf0971 vocab=c19533a7
+-/
 lemma receivedInterpolant_eval_node [Field F] (D : Domain F) (r : Vector F D.n) (i : Fin D.n) :
     (receivedInterpolant D r).toPoly.eval (D.val[i]) = r.get i := by
   rw [receivedInterpolant, CLagrange.cinterpolate_eq_interpolate]
   exact Lagrange.eval_interpolate_at_node _ D.node_injective.injOn (Finset.mem_univ i)
 
-/-- The received interpolant has degree `< D.n`.-/
+/-- The received interpolant has degree `< D.n`.
+@isnad1 id=lt.0h3v.s6.f96f1ca1240c from=translated src=- shape=abffbc3f vocab=2812d6d5
+-/
 lemma receivedInterpolant_degree_lt [Field F] (D : Domain F) (r : Vector F D.n) :
     (receivedInterpolant D r).toPoly.degree < D.n := by
   rw [receivedInterpolant, CLagrange.cinterpolate_eq_interpolate]
   simpa using Lagrange.degree_interpolate_lt (s := .univ) r.get D.node_injective.injOn
 
-/-- `(nodalPoly D).toPoly = ∏ i, (X - C D.val[i])`.-/
+/-- `(nodalPoly D).toPoly = ∏ i, (X - C D.val[i])`.
+@isnad1 id=eq.0h2v.s8.fbfb27e38309 from=translated src=- shape=59e6e5d6 vocab=6510b673
+-/
 lemma toPoly_nodalPoly [CommRing F] [Nontrivial F] (D : Domain F) :
     (nodalPoly D).toPoly = ∏ i : Fin D.n, (X - C (D.val[i])) := by
   rw [nodalPoly, ← Array.foldl_toList,
@@ -145,24 +159,32 @@ lemma toPoly_nodalPoly [CommRing F] [Nontrivial F] (D : Domain F) :
     List.prod_ofFn, toPoly_prod]
   simp only [Function.comp_apply, toPoly_sub, X_toPoly, C_toPoly]; rfl
 
-/-- `(nodalPoly D).toPoly.natDegree = D.n`.-/
+/-- `(nodalPoly D).toPoly.natDegree = D.n`.
+@isnad1 id=eq.0h2v.s6.4dc3f10179fb from=translated src=- shape=b2cdbb3f vocab=3df47220
+-/
 lemma natDegree_nodalPoly [CommRing F] [NoZeroDivisors F] [Nontrivial F] (D : Domain F) :
     (nodalPoly D).toPoly.natDegree = D.n := by
   rw [toPoly_nodalPoly, Polynomial.natDegree_prod _ _ (fun i _ => X_sub_C_ne_zero _)]
   simp only [Fin.getElem_fin, natDegree_sub_C, natDegree_X, Finset.sum_const, Finset.card_univ,
     Fintype.card_fin, smul_eq_mul, mul_one]
 
-/-- `(nodalPoly D).toPoly ≠ 0` (it is monic, a product of distinct linear factors).-/
+/-- `(nodalPoly D).toPoly ≠ 0` (it is monic, a product of distinct linear factors).
+@isnad1 id=ne.0h2v.s6.201fcd1fe81b from=translated src=- shape=49896208 vocab=2b694c34
+-/
 lemma toPoly_nodalPoly_ne_zero [CommRing F] [Nontrivial F] (D : Domain F) :
     (nodalPoly D).toPoly ≠ 0 := by
   rw [toPoly_nodalPoly]; exact (monic_prod_of_monic _ _ (fun i _ => monic_X_sub_C _)).ne_zero
 
-/-- `(nodalPoly D).toPoly.degree = D.n`.-/
+/-- `(nodalPoly D).toPoly.degree = D.n`.
+@isnad1 id=eq.0h2v.s6.14e2306e12ee from=translated src=- shape=17b60173 vocab=45d4ee3d
+-/
 lemma degree_nodalPoly [CommRing F] [NoZeroDivisors F] [Nontrivial F] (D : Domain F) :
     (nodalPoly D).toPoly.degree = D.n := by
   rw [Polynomial.degree_eq_natDegree (toPoly_nodalPoly_ne_zero D), natDegree_nodalPoly]
 
-/-- `nodalPoly D` vanishes at every domain node.-/
+/-- `nodalPoly D` vanishes at every domain node.
+@isnad1 id=eq.0h3v.s6.c131a600036d from=translated src=- shape=d6352fb1 vocab=30b73eb8
+-/
 lemma nodalPoly_eval_node_eq_zero [CommRing F] [Nontrivial F] (D : Domain F) (i : Fin D.n) :
     (nodalPoly D).toPoly.eval (D.val[i]) = 0 := by
   rw [toPoly_nodalPoly, Polynomial.eval_prod]
@@ -170,7 +192,9 @@ lemma nodalPoly_eval_node_eq_zero [CommRing F] [Nontrivial F] (D : Domain F) (i 
     (by simp only [Fin.getElem_fin, Polynomial.eval_sub, eval_X, Polynomial.eval_C, sub_self])
 
 /-- `partialGcd`'s output satisfies the stop spec for `(nodalPoly D, receivedInterpolant D r)` at
-threshold `(D.n + k + 1) / 2`.-/
+threshold `(D.n + k + 1) / 2`.
+@isnad1 id=bezoutst.1h4v.s6.7ddd6efee594 from=translated src=- shape=a3ef138f vocab=b1baf9b0
+-/
 lemma partialGcd_stopSpec [Field F] (k : ℕ) (D : Domain F) (r : Vector F D.n) (hkn : k < D.n) :
     BezoutStopSpecOf (nodalPoly D) (receivedInterpolant D r) ((D.n + k + 1) / 2)
       (partialGcd k D r) :=
@@ -215,7 +239,9 @@ private lemma decode_sound_aux [Field F]
     (nodalPoly_eval_node_eq_zero D) (receivedInterpolant_eval_node D r) hbezP hGV hVtp).trans hVnd
 
 /-- Soundness: any success of `Gao.decode` returns `messagePoly msg` for
-some `msg` whose codeword is within the decoding radius `⌊(D.n-k)/2⌋ = (d-1)/2` of `r`.-/
+some `msg` whose codeword is within the decoding radius `⌊(D.n-k)/2⌋ = (d-1)/2` of `r`.
+@isnad1 id=ex.2h5v.s7.ffcc79720e94 from=translated src=- shape=813c9a6a vocab=c3116227
+-/
 theorem decode_sound [Field F]
     (k : ℕ) (D : Domain F) (r : Vector F D.n) (hkn : k < D.n)
     (f₁ : CPolynomial F) (h : Gao.decode k D r = some f₁) :
@@ -239,7 +265,9 @@ theorem decode_sound [Field F]
   rwa [hcw]
 
 /-- Failure: if `r` is beyond the decoding radius `⌊(D.n-k)/2⌋` of every message,
-`Gao.decode` returns `none` (contrapositive of soundness).-/
+`Gao.decode` returns `none` (contrapositive of soundness).
+@isnad1 id=eq.2h4v.s7.efc461d0f73a from=translated src=- shape=bc84b1cc vocab=942751e4
+-/
 theorem decode_eq_none [Field F]
     (k : ℕ) (D : Domain F) (r : Vector F D.n) (hkn : k < D.n)
     (h : ∀ msg : Vector F k,
@@ -254,7 +282,9 @@ Within the guaranteed-decoding radius `⌊(D.n-k)/2⌋` the decoder returns exac
 `messagePoly msg`, and that decoded word is unique (`decode_unique`). -/
 
 /-- Completeness: if `r` is within the guaranteed-decoding radius `⌊(D.n-k)/2⌋`
-(`2 * (error count) ≤ D.n - k`) of `encode D msg`, then `Gao.decode` returns `messagePoly msg`.-/
+(`2 * (error count) ≤ D.n - k`) of `encode D msg`, then `Gao.decode` returns `messagePoly msg`.
+@isnad1 id=eq.2h5v.s7.8655b98cafb8 from=translated src=- shape=2474d407 vocab=2ba1d6e9
+-/
 theorem decode_eq_some [Field F]
     (k : ℕ) (D : Domain F) (r : Vector F D.n) (hkn : k < D.n)
     (msg : Vector F k)
@@ -307,7 +337,9 @@ theorem decode_eq_some [Field F]
 /-- **Decoder refusal is a farness certificate**: if the decoder returns `none`, the
 received word is beyond the guaranteed radius `⌊(n-k)/2⌋` of *every* codeword — positive,
 polynomial-time-checkable evidence of farness from the code (the contrapositive of
-`decode_eq_some`).-/
+`decode_eq_some`).
+@isnad1 id=lt.2h5v.s7.ea312fa85b17 from=translated src=- shape=83c2252d vocab=62b4ed19
+-/
 theorem decode_none_farness [Field F]
     (k : ℕ) (D : Domain F) (r : Vector F D.n) (hkn : k < D.n)
     (hnone : Gao.decode k D r = none) :
@@ -319,7 +351,9 @@ theorem decode_none_farness [Field F]
 
 /-- Outcome characterization: `Gao.decode` returns `none` iff the received word is beyond
 the guaranteed radius `⌊(n-k)/2⌋` of every codeword (combines `decode_eq_none` and
-`decode_none_farness`).-/
+`decode_none_farness`).
+@isnad1 id=iff.1h4v.s7.076f84de76d0 from=translated src=- shape=055fbe14 vocab=62b4ed19
+-/
 theorem decode_eq_none_iff [Field F]
     (k : ℕ) (D : Domain F) (r : Vector F D.n) (hkn : k < D.n) :
     Gao.decode k D r = none ↔
@@ -328,7 +362,9 @@ theorem decode_eq_none_iff [Field F]
     fun h => decode_eq_none k D r hkn fun msg => by have := h msg; omega⟩
 
 /-- Uniqueness: within the guaranteed-decoding radius `⌊(D.n-k)/2⌋`, two messages
-whose codewords lie within that radius of `r` decode to the same polynomial.-/
+whose codewords lie within that radius of `r` decode to the same polynomial.
+@isnad1 id=eq.3h6v.s7.c4207942e3d6 from=translated src=- shape=68f5b76e vocab=26083218
+-/
 theorem decode_unique [Field F] (k : ℕ) (D : Domain F) (r : Vector F D.n)
     (hkn : k < D.n) (msg₁ msg₂ : Vector F k)
     (h₁ : 2 * hammingDist r.get (encode D msg₁).get ≤ D.n - k)

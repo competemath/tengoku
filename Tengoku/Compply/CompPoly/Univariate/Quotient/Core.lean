@@ -34,22 +34,30 @@ open Raw Trim
 variable {R : Type*}
 variable {Q : Type*}
 
-/-- Reflexivity of the equivalence relation.-/
+/-- Reflexivity of the equivalence relation.
+@isnad1 id=equiv.0h2v.s3.cfa96dbaad1a from=translated src=- shape=82448d51 vocab=4e2e62d9
+-/
 @[simp] theorem equiv_refl [Zero Q] (p : CPolynomial.Raw Q) : equiv p p :=
   by simp [equiv]
 
-/-- Symmetry of the equivalence relation.-/
+/-- Symmetry of the equivalence relation.
+@isnad1 id=equiv.1h3v.s4.cdda82a53c8d from=translated src=- shape=1a0a78f4 vocab=4e2e62d9
+-/
 theorem equiv_symm [Zero Q] {p q : CPolynomial.Raw Q} : equiv p q → equiv q p := by
   simp [equiv]
   intro h i
   exact Eq.symm (h i)
 
-/-- Transitivity of the equivalence relation.-/
+/-- Transitivity of the equivalence relation.
+@isnad1 id=equiv.2h4v.s4.daf1d326a3e2 from=translated src=- shape=5499c893 vocab=4e2e62d9
+-/
 theorem equiv_trans [Zero Q] {p q r : CPolynomial.Raw Q} :
     Trim.equiv p q → equiv q r → equiv p r := by
   simp_all [Trim.equiv]
 
-/-- The `CPolynomial.Raw.equiv` is indeed an equivalence relation.-/
+/-- The `CPolynomial.Raw.equiv` is indeed an equivalence relation.
+@isnad1 id=equivale.0h1v.s3.77c344083127 from=translated src=- shape=aa7e0af4 vocab=67ae8e6b
+-/
 theorem instEquivalenceEquiv [Zero R] : Equivalence (equiv (R := R)) where
   refl := equiv_refl
   symm := equiv_symm
@@ -77,7 +85,9 @@ lemma eq_to_equiv [Zero R] (p q : CPolynomial.Raw R) : p = q → p ≈ q := by
   intro h
   rw [h]
 
-/-- Scalar multiplication by 0 is equivalent to the zero polynomial.-/
+/-- Scalar multiplication by 0 is equivalent to the zero polynomial.
+@isnad1 id=equiv.0h2v.s5.0a3637c41c85 from=translated src=- shape=8eb42792 vocab=4d031157
+-/
 lemma smul_zero_equiv {R : Type*} [Semiring R] (p : CPolynomial.Raw R) :
     (smul 0 p) ≈ 0 := by
   have h_smul_zero : ∀ (p : CPolynomial.Raw R), (smul 0 p).coeff = 0 := by
@@ -85,7 +95,9 @@ lemma smul_zero_equiv {R : Type*} [Semiring R] (p : CPolynomial.Raw R) :
     cases p[i]? <;> simp
   exact fun i => by simpa using congr_fun (h_smul_zero p) i
 
-/-- Addition respects the equivalence relation.-/
+/-- Addition respects the equivalence relation.
+@isnad1 id=equiv.2h5v.s6.8d3d1359ea33 from=translated src=- shape=643041ea vocab=d76a45dd
+-/
 lemma add_equiv {R : Type*} [Semiring R] [BEq R] [LawfulBEq R]
     (p1 p2 q1 q2 : CPolynomial.Raw R)
   (hp : equiv p1 p2) (hq : equiv q1 q2) :
@@ -97,7 +109,9 @@ lemma add_equiv {R : Type*} [Semiring R] [BEq R] [LawfulBEq R]
     exact fun i => ⟨ add_coeff? p1 q1 i, add_coeff? p2 q2 i ⟩
   simp_all [ equiv ]
 
-/-- Multiplication by `X^i` respects the equivalence relation.-/
+/-- Multiplication by `X^i` respects the equivalence relation.
+@isnad1 id=equiv.1h4v.s5.7af5643b60b0 from=translated src=- shape=9c321359 vocab=54cfeae1
+-/
 lemma mulPowX_equiv {R : Type*} [Zero R]
     (i : ℕ) (p q : CPolynomial.Raw R) (h : equiv p q) :
   equiv (mulPowX i p) (mulPowX i q) := by
@@ -109,7 +123,9 @@ lemma mulPowX_equiv {R : Type*} [Zero R]
     · rw [ ite_eq_right ( not_lt_of_ge hj ) ]
     · rw [ ite_eq_right ( not_lt_of_ge hj ) ]
 
-/-- Adding a polynomial equivalent to zero acts as the identity.-/
+/-- Adding a polynomial equivalent to zero acts as the identity.
+@isnad1 id=equiv.1h3v.s5.2af0c118d03e from=translated src=- shape=46b1f650 vocab=d76a45dd
+-/
 lemma add_zero_equiv {R : Type*} [Semiring R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial.Raw R) (hq : equiv q 0) :
   equiv (add p q) p := by
@@ -120,7 +136,9 @@ lemma add_zero_equiv {R : Type*} [Semiring R] [BEq R] [LawfulBEq R]
   rw [ coeff_eq_coeff ]
   aesop
 
-/-- Multiplying the zero polynomial by `X^i` results in a polynomial equivalent to zero.-/
+/-- Multiplying the zero polynomial by `X^i` results in a polynomial equivalent to zero.
+@isnad1 id=equiv.0h2v.s5.c567279687e2 from=translated src=- shape=5501dc09 vocab=54cfeae1
+-/
 lemma mulPowX_zero_equiv {R : Type*} [Zero R]
     (i : ℕ) : equiv (mulPowX i (0 : CPolynomial.Raw R)) 0 := by
   unfold equiv
@@ -133,14 +151,18 @@ def mulStep {R : Type*} [Semiring R] [BEq R] [LawfulBEq R]
     (q : CPolynomial.Raw R) (acc : CPolynomial.Raw R) (x : R × ℕ) : CPolynomial.Raw R :=
   acc.add ((smul x.1 q).mulPowX x.2)
 
-/-- The multiplication step respects equivalence of the accumulator.-/
+/-- The multiplication step respects equivalence of the accumulator.
+@isnad1 id=equiv.1h5v.s5.ecc7cacddc82 from=translated src=- shape=bae081f7 vocab=4ab0c51c
+-/
 lemma mulStep_equiv {R : Type*} [Semiring R] [BEq R] [LawfulBEq R]
     (q : CPolynomial.Raw R) (acc1 acc2 : CPolynomial.Raw R) (x : R × ℕ)
   (h : equiv acc1 acc2) :
   equiv (mulStep q acc1 x) (mulStep q acc2 x) := by
   apply_rules [ add_equiv, mulPowX_equiv, smul_equiv ]
 
-/-- The multiplication step with a zero coefficient acts as the identity modulo equivalence.-/
+/-- The multiplication step with a zero coefficient acts as the identity modulo equivalence.
+@isnad1 id=equiv.0h4v.s5.2485691151c7 from=translated src=- shape=1bb131ab vocab=fa2c3939
+-/
 lemma mulStep_zero {R : Type*} [Semiring R] [BEq R] [LawfulBEq R]
     (q : CPolynomial.Raw R) (acc : CPolynomial.Raw R) (i : ℕ) :
   equiv (mulStep q acc (0, i)) acc := by
@@ -149,7 +171,9 @@ lemma mulStep_zero {R : Type*} [Semiring R] [BEq R] [LawfulBEq R]
   rw [ h_mulStep, h_mulPowX ]
   exact add_zero_equiv _ _ ( smul_zero_equiv _ )
 
-/-- Folding `mulStep` over a list of zero coefficients preserves equivalence.-/
+/-- Folding `mulStep` over a list of zero coefficients preserves equivalence.
+@isnad1 id=equiv.1h4v.s6.076555ab982e from=translated src=- shape=6e5515ac vocab=ae990c30
+-/
 lemma foldl_mulStep_zeros {R : Type*} [Semiring R] [BEq R] [LawfulBEq R]
     (q : CPolynomial.Raw R) (acc : CPolynomial.Raw R) (l : List (R × ℕ))
   (hl : ∀ x ∈ l, x.1 = 0) :
@@ -165,7 +189,9 @@ lemma foldl_mulStep_zeros {R : Type*} [Semiring R] [BEq R] [LawfulBEq R]
       aesop
     exact equiv_trans h_mulStep (ih acc)
 
-/-- The `zipIdx` of a polynomial is the `zipIdx` of its trim followed by zero coefficients.-/
+/-- The `zipIdx` of a polynomial is the `zipIdx` of its trim followed by zero coefficients.
+@isnad1 id=ex.0h2v.s6.2b55eb695823 from=translated src=- shape=84911e10 vocab=439c488d
+-/
 lemma zipIdx_trim_append {R : Type*} [Zero R] [BEq R] [LawfulBEq R]
     (p : CPolynomial.Raw R) :
     ∃ l, p.zipIdx.toList = p.trim.zipIdx.toList ++ l ∧ ∀ x ∈ l, x.1 = 0 := by
@@ -196,7 +222,9 @@ lemma zipIdx_trim_append {R : Type*} [Zero R] [BEq R] [LawfulBEq R]
       intro x hx; have := List.mem_iff_get.mp hx; aesop
     aesop
 
-/-- Multiplication by a trimmed polynomial is equivalent to multiplication by the original.-/
+/-- Multiplication by a trimmed polynomial is equivalent to multiplication by the original.
+@isnad1 id=equiv.0h3v.s5.d2fc49e8c617 from=translated src=- shape=e5fa75e7 vocab=cb3fbfa2
+-/
 lemma mul_trim_equiv [Semiring R] [BEq R] [LawfulBEq R] (a b : CPolynomial.Raw R) :
     a.mul b ≈ a.trim.mul b := by
   have h_zipIdx_split : ∃ l, a.zipIdx.toList = a.trim.zipIdx.toList ++ l ∧ ∀ x ∈ l, x.1 = 0 := by
@@ -212,7 +240,9 @@ lemma mul_trim_equiv [Semiring R] [BEq R] [LawfulBEq R] (a b : CPolynomial.Raw R
   obtain ⟨ acc, h₁, h₂ ⟩ := h_foldl_split
   exact h₁.symm ▸ h₂.symm ▸ foldl_mulStep_zeros b acc l hl.2
 
-/-- Multiplication is well-defined on the left with respect to equivalence.-/
+/-- Multiplication is well-defined on the left with respect to equivalence.
+@isnad1 id=equiv.0h5v.s5.7548a8b541d1 from=translated src=- shape=836febdf vocab=40052cd6
+-/
 lemma mul_equiv [Semiring R] [BEq R] [LawfulBEq R] (a₁ a₂ b : CPolynomial.Raw R) :
     a₁ ≈ a₂ → a₁.mul b ≈ a₂.mul b := by
   intro h
@@ -221,7 +251,9 @@ lemma mul_equiv [Semiring R] [BEq R] [LawfulBEq R] (a₁ a₂ b : CPolynomial.Ra
     _ ≈ a₂.trim.mul b := by rw [eq_of_equiv h]
     _ ≈ a₂.mul b := equiv_symm (mul_trim_equiv a₂ b)
 
-/-- Multiplication is well-defined on the right with respect to equivalence.-/
+/-- Multiplication is well-defined on the right with respect to equivalence.
+@isnad1 id=equiv.0h5v.s5.86fca3ced251 from=translated src=- shape=ad98e94c vocab=40052cd6
+-/
 lemma mul_equiv₂ [Semiring R] [BEq R] [LawfulBEq R] (a b₁ b₂ : CPolynomial.Raw R) :
     b₁ ≈ b₂ → a.mul b₁ ≈ a.mul b₂ := by
   -- By definition of multiplication, we can express `a.mul b₁` and `a.mul b₂` in terms of
@@ -251,6 +283,9 @@ def addDescending [Semiring R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial.Raw R) : QuotientCPolynomial R :=
   Quotient.mk _ (add p q)
 
+/--
+@isnad1 id=eq.2h5v.s6.1260f57ca2ad from=translated src=- shape=eae4a3fd vocab=bcf58bc8
+-/
 lemma add_descends [Semiring R] [BEq R] [LawfulBEq R] (a₁ b₁ a₂ b₂ : CPolynomial.Raw R) :
     equiv a₁ a₂ → equiv b₁ b₂ → addDescending a₁ b₁ = addDescending a₂ b₂ := by
   intros heq_a heq_b
@@ -273,6 +308,9 @@ def add {R : Type*} [Semiring R] [BEq R] [LawfulBEq R] (p q : QuotientCPolynomia
 def smulDescending [Semiring R] (r : R) (p : CPolynomial.Raw R) : QuotientCPolynomial R :=
   Quotient.mk _ (smul r p)
 
+/--
+@isnad1 id=eq.1h4v.s5.187de2e44238 from=translated src=- shape=6f24e5f8 vocab=22e38c20
+-/
 lemma smul_descends [Semiring R] (r : R) (p₁ p₂ : CPolynomial.Raw R) :
     equiv p₁ p₂ → smulDescending r p₁ = smulDescending r p₂ := by
   unfold equiv smulDescending
@@ -291,6 +329,9 @@ def smul {R : Type*} [Semiring R] (r : R) (p : QuotientCPolynomial R) :
 def nsmulDescending [Semiring R] [BEq R] (n : ℕ) (p : CPolynomial.Raw R) : QuotientCPolynomial R :=
   Quotient.mk _ (nsmul n p)
 
+/--
+@isnad1 id=eq.1h4v.s5.fd6887deaded from=translated src=- shape=3d6dd085 vocab=d413dc21
+-/
 lemma nsmul_descends [Semiring R] [BEq R] [LawfulBEq R] (n : ℕ)
     (p₁ p₂ : CPolynomial.Raw R) :
     equiv p₁ p₂ → nsmulDescending n p₁ = nsmulDescending n p₂ := by
@@ -315,6 +356,9 @@ def nsmul {R : Type*} [Semiring R] [BEq R] [LawfulBEq R] (n : ℕ)
 def negDescending [Zero R] [Neg R] (p : CPolynomial.Raw R) : QuotientCPolynomial R :=
   Quotient.mk _ (neg p)
 
+/--
+@isnad1 id=eq.1h3v.s5.dc40fb20520a from=translated src=- shape=1e1b82c0 vocab=c6654c82
+-/
 lemma neg_descends [NegZeroClass R] (a b : CPolynomial.Raw R) :
     equiv a b → negDescending a = negDescending b := by
   unfold equiv negDescending
@@ -334,6 +378,9 @@ def subDescending [Ring R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial.Raw R) : QuotientCPolynomial R :=
   Quotient.mk _ (sub p q)
 
+/--
+@isnad1 id=eq.2h5v.s6.4fcab6cb7867 from=translated src=- shape=eae4a3fd vocab=5f4fea5c
+-/
 lemma sub_descends [Ring R] [BEq R] [LawfulBEq R] (a₁ b₁ a₂ b₂ : CPolynomial.Raw R) :
     equiv a₁ a₂ → equiv b₁ b₂ → subDescending a₁ b₁ = subDescending a₂ b₂ := by
   unfold equiv subDescending
@@ -358,6 +405,9 @@ def sub {R : Type*} [Ring R] [BEq R] [LawfulBEq R] (p q : QuotientCPolynomial R)
 def mulPowXDescending [Zero R] (i : ℕ) (p : CPolynomial.Raw R) : QuotientCPolynomial R :=
   Quotient.mk _ (mulPowX i p)
 
+/--
+@isnad1 id=eq.1h4v.s5.76d28332c4a3 from=translated src=- shape=27fd976b vocab=1219661f
+-/
 lemma mulPowX_descends [Zero R] (i : ℕ) (p₁ p₂ : CPolynomial.Raw R) :
     equiv p₁ p₂ → mulPowXDescending i p₁ = mulPowXDescending i p₂ := by
   unfold mulPowXDescending
@@ -380,6 +430,9 @@ def mulDescending [Semiring R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial.Raw R) : QuotientCPolynomial R :=
   Quotient.mk _ (mul p q)
 
+/--
+@isnad1 id=eq.2h5v.s6.2e28e9f0bb1b from=translated src=- shape=eae4a3fd vocab=7115d1f3
+-/
 lemma mul_descends [Semiring R] [BEq R] [LawfulBEq R] (a₁ b₁ a₂ b₂ : CPolynomial.Raw R) :
     equiv a₁ a₂ → equiv b₁ b₂ → mulDescending a₁ b₁ = mulDescending a₂ b₂ := by
   unfold mulDescending
@@ -400,6 +453,9 @@ def powDescending [Semiring R] [BEq R] (p : CPolynomial.Raw R) (n : ℕ) :
     QuotientCPolynomial R :=
   Quotient.mk _ (pow p n)
 
+/--
+@isnad1 id=eq.1h4v.s5.726aa0831fd5 from=translated src=- shape=4e31c332 vocab=c0262c55
+-/
 lemma pow_descends [Semiring R] [BEq R] [LawfulBEq R] (n : ℕ) (p₁ p₂ : CPolynomial.Raw R) :
     equiv p₁ p₂ → powDescending p₁ n = powDescending p₂ n := by
   intro heq
@@ -448,6 +504,9 @@ section AddCommMonoid
 
 variable [Semiring R] [BEq R] [LawfulBEq R]
 
+/--
+@isnad1 id=eq.0h4v.s7.636718692bb1 from=translated src=- shape=4782c9cf vocab=d7ebd7f6
+-/
 @[grind =_]
 lemma add_assoc : ∀ (a b c : QuotientCPolynomial R), a + b + c = a + (b + c) := by
   intro a b c
@@ -457,6 +516,9 @@ lemma add_assoc : ∀ (a b c : QuotientCPolynomial R), a + b + c = a + (b + c) :
   apply eq_to_equiv
   apply CPolynomial.Raw.add_assoc
 
+/--
+@isnad1 id=equiv.0h2v.s5.9df0549163bc from=translated src=- shape=d9c3a194 vocab=1ae5cb5a
+-/
 @[simp]
 lemma zero_add_equiv (p : CPolynomial.Raw R) : 0 + p ≈ p := by
   intro i
@@ -466,6 +528,9 @@ lemma zero_add_equiv (p : CPolynomial.Raw R) : 0 + p ≈ p := by
   rw [add_coeff?]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s6.7059b9aacbee from=translated src=- shape=d9c3a194 vocab=d7ebd7f6
+-/
 @[simp]
 lemma zero_add : ∀ (a : QuotientCPolynomial R), 0 + a = a := by
   intros a
@@ -474,6 +539,9 @@ lemma zero_add : ∀ (a : QuotientCPolynomial R), 0 + a = a := by
   apply Quotient.sound
   apply zero_add_equiv
 
+/--
+@isnad1 id=eq.0h2v.s6.0ab5692f60f8 from=translated src=- shape=77e4d4ac vocab=d7ebd7f6
+-/
 @[simp]
 lemma add_zero : ∀ (a : QuotientCPolynomial R), a + 0 = a := by
   intros a
@@ -486,6 +554,9 @@ lemma add_zero : ∀ (a : QuotientCPolynomial R), a + 0 = a := by
   rw [add_coeff?]
   simp
 
+/--
+@isnad1 id=eq.0h3v.s6.576be187dc54 from=translated src=- shape=b6b8393d vocab=d7ebd7f6
+-/
 @[grind =>]
 lemma add_comm : ∀ (a b : QuotientCPolynomial R), a + b = b + a := by
   intro a b
@@ -495,6 +566,9 @@ lemma add_comm : ∀ (a b : QuotientCPolynomial R), a + b = b + a := by
   apply eq_to_equiv
   apply CPolynomial.Raw.add_comm
 
+/--
+@isnad1 id=eq.0h2v.s5.8f755c9ff3ab from=translated src=- shape=aa469dd4 vocab=79c69889
+-/
 @[simp]
 lemma nsmul_zero : ∀ (x : QuotientCPolynomial R),
     QuotientCPolynomial.nsmul 0 x = 0 := by
@@ -505,6 +579,9 @@ lemma nsmul_zero : ∀ (x : QuotientCPolynomial R),
   apply eq_to_equiv
   apply CPolynomial.Raw.nsmul_zero
 
+/--
+@isnad1 id=eq.0h3v.s6.e7d215ec8914 from=translated src=- shape=0840779b vocab=01463a18
+-/
 @[grind =>]
 lemma nsmul_succ : ∀ (n : ℕ) (x : QuotientCPolynomial R),
     QuotientCPolynomial.nsmul (n + 1) x = QuotientCPolynomial.nsmul n x + x := by
@@ -530,6 +607,9 @@ section AddCommGroup
 
 variable [Ring R] [BEq R] [LawfulBEq R]
 
+/--
+@isnad1 id=eq.0h2v.s7.b495d0c98493 from=translated src=- shape=f020d512 vocab=2c3b0610
+-/
 @[simp]
 lemma neg_add_cancel : ∀ (a : QuotientCPolynomial R), -a + a = 0 := by
   intros a
@@ -539,6 +619,9 @@ lemma neg_add_cancel : ∀ (a : QuotientCPolynomial R), -a + a = 0 := by
   apply eq_to_equiv
   apply CPolynomial.Raw.neg_add_cancel
 
+/--
+@isnad1 id=eq.0h3v.s7.2ed9d239fcf5 from=translated src=- shape=571f23c8 vocab=95c8c5a9
+-/
 @[grind =]
 lemma sub_eq_add_neg : ∀ (a b : QuotientCPolynomial R), a - b = a + -b := by
   intro a b
@@ -567,6 +650,9 @@ section Semiring
 
 variable [Semiring R] [BEq R] [LawfulBEq R]
 
+/--
+@isnad1 id=eq.0h4v.s7.2780934c5663 from=translated src=- shape=4782c9cf vocab=ad344353
+-/
 lemma mul_assoc (a b c : QuotientCPolynomial R) :
     a * b * c = a * (b * c) := by
   refine Quotient.inductionOn₃ a b c ?_
@@ -574,6 +660,9 @@ lemma mul_assoc (a b c : QuotientCPolynomial R) :
   apply Quotient.sound
   exact mul_assoc_equiv p q r
 
+/--
+@isnad1 id=eq.0h2v.s6.830a742e20cb from=translated src=- shape=d9c3a194 vocab=ad344353
+-/
 lemma one_mul : ∀ (a : QuotientCPolynomial R), 1 * a = a := by
   intros a
   refine Quotient.inductionOn a ?_
@@ -583,6 +672,9 @@ lemma one_mul : ∀ (a : QuotientCPolynomial R), 1 * a = a := by
   rw [one_mul_trim]
   apply trim_equiv
 
+/--
+@isnad1 id=eq.0h2v.s6.02be8460fa28 from=translated src=- shape=77e4d4ac vocab=ad344353
+-/
 lemma mul_one : ∀ (a : QuotientCPolynomial R), a * 1 = a := by
   intros a
   refine Quotient.inductionOn a ?_
@@ -592,6 +684,9 @@ lemma mul_one : ∀ (a : QuotientCPolynomial R), a * 1 = a := by
   rw [mul_one_trim]
   apply trim_equiv
 
+/--
+@isnad1 id=eq.0h2v.s6.ec05ef87a639 from=translated src=- shape=71daffa3 vocab=ad344353
+-/
 lemma zero_mul : ∀ (a : QuotientCPolynomial R), 0 * a = 0 := by
   intros a
   refine Quotient.inductionOn a ?_
@@ -600,6 +695,9 @@ lemma zero_mul : ∀ (a : QuotientCPolynomial R), 0 * a = 0 := by
   change 0 * p ≈ 0
   rw [CPolynomial.Raw.zero_mul]
 
+/--
+@isnad1 id=eq.0h2v.s6.4373450395a6 from=translated src=- shape=e090e86c vocab=ad344353
+-/
 lemma mul_zero : ∀ (a : QuotientCPolynomial R), a * 0 = 0 := by
   intros a
   refine Quotient.inductionOn a ?_
@@ -608,6 +706,9 @@ lemma mul_zero : ∀ (a : QuotientCPolynomial R), a * 0 = 0 := by
   change p * 0 ≈ 0
   rw [CPolynomial.Raw.mul_zero]
 
+/--
+@isnad1 id=eq.0h4v.s7.28511e11764e from=translated src=- shape=aa99f952 vocab=4b739e0b
+-/
 lemma mul_add : ∀ (a b c : QuotientCPolynomial R),
     a * (b + c) = a * b + a * c := by
   intro a b c
@@ -617,6 +718,9 @@ lemma mul_add : ∀ (a b c : QuotientCPolynomial R),
   change p * (q + r) ≈ (p * q) + (p * r)
   rw [CPolynomial.Raw.mul_add p q r]
 
+/--
+@isnad1 id=eq.0h4v.s7.01aeb8a15e32 from=translated src=- shape=9b77a670 vocab=4b739e0b
+-/
 lemma add_mul : ∀ (a b c : QuotientCPolynomial R), (a + b) * c = a * c + b * c := by
   intro a b c
   refine Quotient.inductionOn₃ a b c ?_
@@ -625,6 +729,9 @@ lemma add_mul : ∀ (a b c : QuotientCPolynomial R), (a + b) * c = a * c + b * c
   change (p + q) * r ≈ (p * r) + (q * r)
   rw [CPolynomial.Raw.add_mul]
 
+/--
+@isnad1 id=eq.0h2v.s6.95ea0ec9d205 from=translated src=- shape=e4c99603 vocab=bea55337
+-/
 lemma npow_zero : ∀ (x : QuotientCPolynomial R), x.pow 0 = 1 := by
   intros x
   refine Quotient.inductionOn x ?_
@@ -633,6 +740,9 @@ lemma npow_zero : ∀ (x : QuotientCPolynomial R), x.pow 0 = 1 := by
   unfold CPolynomial.Raw.pow
   simp
 
+/--
+@isnad1 id=equiv.0h3v.s5.d852f31eed99 from=translated src=- shape=60843f64 vocab=16a0b789
+-/
 lemma const_sum (r s : R) : (C r).add (C s) ≈ C (r + s) := by
   calc
     ((C r).addRaw (C s)).trim ≈ ((C r).addRaw (C s)) := by apply trim_equiv
@@ -641,6 +751,9 @@ lemma const_sum (r s : R) : (C r).add (C s) ≈ C (r + s) := by
 
 /-
 x^(n+1) = x * x^n for QuotientCPolynomial
+-/
+/--
+@isnad1 id=eq.0h3v.s6.eb063af0d856 from=translated src=- shape=d0762752 vocab=4e4ae753
 -/
 lemma pow_succ_left (n : ℕ) (x : QuotientCPolynomial R) :
     x.pow (n + 1) = x * x.pow n := by
@@ -656,6 +769,9 @@ lemma pow_succ_left (n : ℕ) (x : QuotientCPolynomial R) :
 /-
 x commutes with x^n
 -/
+/--
+@isnad1 id=eq.0h3v.s6.b51c71f7c6b3 from=translated src=- shape=8a0a88a7 vocab=00329f04
+-/
 lemma commute_pow_self (n : ℕ) (x : QuotientCPolynomial R) :
     x * x.pow n = x.pow n * x := by
   induction' n with n ih generalizing x
@@ -665,6 +781,9 @@ lemma commute_pow_self (n : ℕ) (x : QuotientCPolynomial R) :
     · exact npow_zero x
   · rw [ pow_succ_left, mul_assoc, ih, ← mul_assoc ]
 
+/--
+@isnad1 id=eq.0h3v.s6.ed480d6c14e7 from=translated src=- shape=62357eae vocab=4e4ae753
+-/
 lemma npow_succ : ∀ (n : ℕ) (x : QuotientCPolynomial R), x.pow (n + 1) = x.pow n * x := by
   intro n x
   refine Quotient.inductionOn x ?_
@@ -705,6 +824,9 @@ section CommSemiring
 
 variable [CommSemiring R] [BEq R] [LawfulBEq R]
 
+/--
+@isnad1 id=eq.0h3v.s7.028c03825152 from=translated src=- shape=b6b8393d vocab=6f797e7e
+-/
 lemma mul_comm : ∀ (a b : QuotientCPolynomial R), a * b = b * a := by
   intro a b
   refine Quotient.inductionOn₂ a b ?_

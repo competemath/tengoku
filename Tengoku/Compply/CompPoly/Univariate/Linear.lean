@@ -34,7 +34,9 @@ def lcoeff (n : ℕ) : (CPolynomial R) →ₗ[R] R where
   map_add' p q := coeff_add p q n
   map_smul' r p := coeff_smul r p n
 
-/-- Applying `lcoeff n` returns the coefficient of degree `n`.-/
+/-- Applying `lcoeff n` returns the coefficient of degree `n`.
+@isnad1 id=eq.0h3v.s6.a311c4442b36 from=translated src=- shape=f022ffef vocab=4b496bce
+-/
 @[simp]
 theorem lcoeff_apply (n : ℕ) (p : CPolynomial R) : lcoeff n p = coeff p n := by
   rfl
@@ -53,17 +55,23 @@ def degreeLE (n : WithBot ℕ) : Set (CPolynomial R) :=
 def degreeLT (n : ℕ) : Set (CPolynomial R) :=
   { p | p.val.degreeBound < n }
 
-/-- Membership in `degreeLE` is the corresponding degree bound.-/
+/-- Membership in `degreeLE` is the corresponding degree bound.
+@isnad1 id=iff.0h3v.s5.45c9e0c120d1 from=translated src=- shape=a0097ffd vocab=6a6afcd5
+-/
 theorem mem_degreeLE {n : WithBot ℕ} {p : CPolynomial R} :
     p ∈ degreeLE (R := R) n ↔ p.degree ≤ n := by
   rfl
 
-/-- Membership in `degreeLT` is the corresponding strict degree bound.-/
+/-- Membership in `degreeLT` is the corresponding strict degree bound.
+@isnad1 id=iff.0h3v.s5.dbbae2dd7c4d from=translated src=- shape=e279878a vocab=c59435d0
+-/
 theorem mem_degreeLT {n : ℕ} {p : CPolynomial R} :
     p ∈ degreeLT (R := R) n ↔ p.degree < n := by
   rfl
 
-/-- `degreeLT n` is exactly the bounded-size carrier storing at most `n` coefficients.-/
+/-- `degreeLT n` is exactly the bounded-size carrier storing at most `n` coefficients.
+@isnad1 id=iff.0h3v.s5.9d931977f7b9 from=translated src=- shape=de94a4b5 vocab=7ccde569
+-/
 theorem mem_degreeLT_iff_size_le {n : ℕ} {p : CPolynomial R} :
     p ∈ degreeLT (R := R) n ↔ p.val.size ≤ n := by
   cases hs : p.val.size with
@@ -72,7 +80,9 @@ theorem mem_degreeLT_iff_size_le {n : ℕ} {p : CPolynomial R} :
   | succ m =>
       simp [degreeLT, Raw.degreeBound, hs]
 
-/-- The zero polynomial has bounded degree for every cutoff.-/
+/-- The zero polynomial has bounded degree for every cutoff.
+@isnad1 id=mem.0h2v.s5.a81037ed0e46 from=translated src=- shape=5acc5b23 vocab=d50e0074
+-/
 theorem zero_mem_degreeLT (n : ℕ) : (0 : CPolynomial R) ∈ degreeLT (R := R) n := by
   rw [mem_degreeLT_iff_size_le]
   exact Nat.zero_le n
@@ -83,7 +93,9 @@ section DegreeLTSubtype
 
 variable [Semiring R] [BEq R] [LawfulBEq R]
 
-/-- `degreeLT n` is closed under addition.-/
+/-- `degreeLT n` is closed under addition.
+@isnad1 id=mem.2h4v.s7.6e9ba688459a from=translated src=- shape=054928fe vocab=9181364c
+-/
 theorem add_mem_degreeLT {n : ℕ} {p q : CPolynomial R}
     (hp : p ∈ degreeLT (R := R) n) (hq : q ∈ degreeLT (R := R) n) :
     p + q ∈ degreeLT (R := R) n := by
@@ -94,7 +106,9 @@ theorem add_mem_degreeLT {n : ℕ} {p q : CPolynomial R}
     _ = max p.val.size q.val.size := Raw.add_size
     _ ≤ n := max_le hp hq
 
-/-- `degreeLT n` is closed under additive scalar multiplication.-/
+/-- `degreeLT n` is closed under additive scalar multiplication.
+@isnad1 id=mem.1h4v.s7.a0abd7a3adc5 from=translated src=- shape=2b9eaaab vocab=d5a4974c
+-/
 theorem nsmul_mem_degreeLT {n m : ℕ} {p : CPolynomial R}
     (hp : p ∈ degreeLT (R := R) n) :
     m • p ∈ degreeLT (R := R) n := by
@@ -105,7 +119,9 @@ theorem nsmul_mem_degreeLT {n m : ℕ} {p : CPolynomial R}
     _ = p.val.size := by simp [Raw.nsmulRaw]
     _ ≤ n := hp
 
-/-- `degreeLT n` is closed under semiring scalar multiplication.-/
+/-- `degreeLT n` is closed under semiring scalar multiplication.
+@isnad1 id=mem.1h4v.s6.297040425308 from=translated src=- shape=331d2a63 vocab=d5a4974c
+-/
 theorem smul_mem_degreeLT {n : ℕ} (r : R) {p : CPolynomial R}
     (hp : p ∈ degreeLT (R := R) n) :
     r • p ∈ degreeLT (R := R) n := by
@@ -199,7 +215,9 @@ def degreeLTCoeffs (n : ℕ) : ↥(degreeLT (R := R) n) →ₗ[R] (Fin n → R) 
     funext i
     exact coeff_smul r p.1 i
 
-/-- Applying `degreeLTCoeffs` returns the corresponding bounded coefficient.-/
+/-- Applying `degreeLTCoeffs` returns the corresponding bounded coefficient.
+@isnad1 id=eq.0h4v.s8.31a0255860cb from=translated src=- shape=0d400924 vocab=2ae36277
+-/
 @[simp]
 theorem degreeLTCoeffs_apply (n : ℕ) (p : ↥(degreeLT (R := R) n)) (i : Fin n) :
     degreeLTCoeffs n p i = coeff p.1 i := by

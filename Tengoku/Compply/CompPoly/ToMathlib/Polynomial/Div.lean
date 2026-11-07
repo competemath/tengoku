@@ -24,6 +24,9 @@ https://github.com/leanprover-community/mathlib4/pull/39868
 
 namespace Polynomial
 
+/--
+@isnad1 id=eq.0h4v.s7.b9ccf8d72b2f from=translated src=- shape=4c498766 vocab=f3962047
+-/
 theorem smul_divByMonic {R : Type*} [CommRing R]
     (c : R) (p q : R[X]) : c • p /ₘ q = c • (p /ₘ q) := by
   by_cases hq : q.Monic

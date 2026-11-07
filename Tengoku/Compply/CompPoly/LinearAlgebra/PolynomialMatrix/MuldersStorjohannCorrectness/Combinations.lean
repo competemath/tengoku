@@ -24,6 +24,9 @@ namespace PolynomialMatrix
 variable {F : Type*} [Field F] [BEq F] [LawfulBEq F] [DecidableEq F]
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.2h4v.s8.934fa6be1ada from=translated src=- shape=e86d0221 vocab=6f44577d
+-/
 theorem rowLinearCombination_range_size
     {M : PolynomialMatrix F} (hM : WellFormed M) (coeffs : Array (CPolynomial F)) :
     ∀ n, n ≤ M.size →
@@ -46,6 +49,9 @@ theorem rowLinearCombination_range_size
         matrix_getD_size_of_wellFormed hM hnM, max_self]
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.1h3v.s6.861a08bbe637 from=translated src=- shape=554f3c0a vocab=8cd4b119
+-/
 theorem rowLinearCombination_size
     {M : PolynomialMatrix F} (hM : WellFormed M) (coeffs : Array (CPolynomial F)) :
     (rowLinearCombination coeffs M).size = MatrixWidth M := by
@@ -71,6 +77,9 @@ def rowCombinationTermPosition
   (rowShiftedLeadingPosition? (M.getD i #[]) shift).getD 0
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.0h6v.s8.512f8d513320 from=translated src=- shape=4e5b238d vocab=e8726053
+-/
 theorem rowGet_rowLinearCombination_range_coeff
     {M : PolynomialMatrix F} (coeffs : Array (CPolynomial F))
     (j k : Nat) :
@@ -96,6 +105,9 @@ theorem rowGet_rowLinearCombination_range_coeff
         rowGet_rowScalePolynomial, ih, Finset.sum_range_succ]
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.0h5v.s8.8dfbab4c55a8 from=translated src=- shape=63c9f589 vocab=ee35e685
+-/
 theorem rowGet_rowLinearCombination_coeff
     {M : PolynomialMatrix F} (coeffs : Array (CPolynomial F))
     (j k : Nat) :
@@ -106,6 +118,9 @@ theorem rowGet_rowLinearCombination_coeff
     rowGet_rowLinearCombination_range_coeff (M := M) coeffs j k M.size
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.3h4v.s8.d2c1f06b5599 from=translated src=- shape=bae0e2b4 vocab=e3f520cd
+-/
 theorem rowLinearCombination_range_eq_zeroRow_of_forall_zero_or_row_zero
     {M : PolynomialMatrix F} (hM : WellFormed M)
     (coeffs : Array (CPolynomial F))
@@ -139,6 +154,9 @@ theorem rowLinearCombination_range_eq_zeroRow_of_forall_zero_or_row_zero
       rw [ih (by omega), hterm, rowAdd_zeroRow_zeroRow]
 
 omit [DecidableEq F] in
+/--
+@isnad1 id=eq.2h3v.s8.e92fb9e17cc8 from=translated src=- shape=727d8015 vocab=833b4477
+-/
 theorem rowLinearCombination_eq_zeroRow_of_forall_zero_or_row_zero
     {M : PolynomialMatrix F} (hM : WellFormed M)
     (coeffs : Array (CPolynomial F))
@@ -149,6 +167,9 @@ theorem rowLinearCombination_eq_zeroRow_of_forall_zero_or_row_zero
     rowLinearCombination_range_eq_zeroRow_of_forall_zero_or_row_zero
       hM coeffs hzero M.size (Nat.le_refl M.size)
 
+/--
+@isnad1 id=nonempty.2h5v.s6.5b58316c89b8 from=translated src=- shape=60755688 vocab=443d08bb
+-/
 theorem rowCombinationTermSupport_nonempty_of_combination_degree_some
     {M : PolynomialMatrix F} {shift : Array Nat}
     (hM : WellFormed M) {coeffs : Array (CPolynomial F)} {rowDeg : Nat}

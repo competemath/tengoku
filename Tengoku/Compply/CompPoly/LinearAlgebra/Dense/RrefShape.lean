@@ -28,11 +28,17 @@ def PivotColumnsShaped [Zero F] [One F] (M : DenseMatrix F)
     i < M.rows ∧ pivots.getD i 0 < M.cols ∧
       ∀ row, row < M.rows → M.get row (pivots.getD i 0) = if row = i then 1 else 0
 
+/--
+@isnad1 id=pivotcol.0h2v.s4.c26ac5279873 from=translated src=- shape=cb0b8a94 vocab=bba39834
+-/
 theorem pivotColumnsShaped_empty [Zero F] [One F] (M : DenseMatrix F) :
     PivotColumnsShaped M #[] := by
   intro i hi
   simp at hi
 
+/--
+@isnad1 id=eq.8h7v.s7.36c131803631 from=translated src=- shape=5660d069 vocab=816211a1
+-/
 theorem swapRows_preserves_column_shape_of_ne [Zero F] [One F]
     {M : DenseMatrix F} (hM : WellFormed M) {rowA rowB pivot oldCol : Nat}
     (hrowA : rowA < M.rows) (hrowB : rowB < M.rows) (hcol : oldCol < M.cols)
@@ -59,6 +65,9 @@ theorem swapRows_preserves_column_shape_of_ne [Zero F] [One F]
       · intro h
         exact hrowB' h.symm
 
+/--
+@isnad1 id=eq.2h7v.s8.27ccbb242532 from=translated src=- shape=c3741941 vocab=568dd905
+-/
 theorem list_forIn_addScaledRow_get_of_not_mem [Field F]
     (rows : List Nat) {out : DenseMatrix F} {row col pivotRow pivotCol : Nat}
     (hcol : col < out.cols) (hnot : row ∉ rows) :
@@ -113,6 +122,9 @@ theorem list_forIn_addScaledRow_get_of_not_mem [Field F]
                   hstepCol hnotTail
           _ = out.get row col := hstepGet
 
+/--
+@isnad1 id=eq.2h5v.s8.62e70bb5d9a6 from=translated src=- shape=8de54dd9 vocab=d29ca0c5
+-/
 theorem list_forIn_addScaledRow_get_pivotRow [Field F]
     (rows : List Nat) {out : DenseMatrix F} {pivotRow pivotCol : Nat}
     (hcol : pivotCol < out.cols) (hpivot : out.get pivotRow pivotCol = 1) :
@@ -142,6 +154,9 @@ theorem list_forIn_addScaledRow_get_pivotRow [Field F]
           ih (out := addScaledRow out row pivotRow (-(out.get row pivotCol)))
             hstepCol hstepPivot
 
+/--
+@isnad1 id=eq.8h6v.s8.96b00a5a4750 from=translated src=- shape=954dbd84 vocab=953affab
+-/
 theorem list_forIn_addScaledRow_get_row_mem [Field F]
     (rows : List Nat) {out : DenseMatrix F} {row pivotRow pivotCol : Nat}
     (hout : WellFormed out) (hpivotRow : pivotRow < out.rows)
@@ -241,6 +256,9 @@ theorem list_forIn_addScaledRow_get_row_mem [Field F]
             ih (out := addScaledRow out r pivotRow (-(out.get r pivotCol)))
               hstepWf hpivotStep hstepCol hpivStep hrowsStep hnodupTail hmemTail
 
+/--
+@isnad1 id=eq.4h7v.s8.57e19dec3eaa from=translated src=- shape=aec70bc1 vocab=50ff76ad
+-/
 theorem list_forIn_addScaledRow_get_of_source_zero [Field F]
     (rows : List Nat) {out : DenseMatrix F} {row pivotRow oldCol pivotCol : Nat}
     (hout : WellFormed out) (hcol : oldCol < out.cols)
@@ -312,6 +330,9 @@ theorem list_forIn_addScaledRow_get_of_source_zero [Field F]
                   hsourceStep
           _ = out.get row oldCol := hrowStep
 
+/--
+@isnad1 id=eq.4h4v.s7.fc1871177c3f from=translated src=- shape=c4169d20 vocab=b92ca597
+-/
 theorem normalizeAndEliminate_get_pivot [Field F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} (hM : WellFormed M) {pivotRow pivotCol : Nat}
     (hpivotRow : pivotRow < M.rows) (hpivotCol : pivotCol < M.cols)
@@ -336,6 +357,9 @@ theorem normalizeAndEliminate_get_pivot [Field F] [BEq F] [LawfulBEq F]
             [:(scaleRow M pivotRow (M.get pivotRow pivotCol)⁻¹).rows]) 1)
         hscaledCol hscaledPivot
 
+/--
+@isnad1 id=eq.6h5v.s7.3242d9e3c266 from=translated src=- shape=a1d1dbf4 vocab=b92ca597
+-/
 theorem normalizeAndEliminate_get_row_pivot [Field F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} (hM : WellFormed M) {pivotRow pivotCol row : Nat}
     (hpivotRow : pivotRow < M.rows) (hpivotCol : pivotCol < M.cols)
@@ -384,6 +408,9 @@ theorem normalizeAndEliminate_get_row_pivot [Field F] [BEq F] [LawfulBEq F]
             [:(scaleRow M pivotRow (M.get pivotRow pivotCol)⁻¹).rows]))
         hmem hne
 
+/--
+@isnad1 id=eq.4h6v.s7.86c75fa0a9b6 from=translated src=- shape=e84f9d9a vocab=b92ca597
+-/
 theorem normalizeAndEliminate_get_of_pivotRow_zero [Field F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} (hM : WellFormed M) {pivotRow pivotCol oldCol row : Nat}
     (hpivotRow : pivotRow < M.rows) (holdCol : oldCol < M.cols)
@@ -442,6 +469,9 @@ theorem normalizeAndEliminate_get_of_pivotRow_zero [Field F] [BEq F] [LawfulBEq 
         rw [scaleRow_get_of_row_ne (M := M) (r := pivotRow) (row := row)
           (col := oldCol) (M.get pivotRow pivotCol)⁻¹ holdCol (by intro h; exact hrow h.symm)]
 
+/--
+@isnad1 id=le.1h6v.s6.69f2b703a8ed from=translated src=- shape=d3248130 vocab=65bdc4d0
+-/
 theorem rrefLoop_pivots_size_le_rows [Field F] [BEq F] :
     ∀ fuel col row (M : DenseMatrix F) pivots,
       row ≤ M.rows →
@@ -482,6 +512,9 @@ theorem rrefLoop_pivots_size_le_rows [Field F] [BEq F] :
             exact le_trans hrec harith
       · simp [hguard]
 
+/--
+@isnad1 id=le.0h2v.s5.2ec331f413b3 from=translated src=- shape=a45983d5 vocab=27b97aa9
+-/
 theorem rref_pivots_size_le_rows [Field F] [BEq F]
     (M : DenseMatrix F) : (rref M).pivots.size ≤ M.rows := by
   unfold rref
@@ -497,21 +530,33 @@ def PivotColumnsStrict (pivots : Array Nat) : Prop :=
   ∀ i j, i < pivots.size → j < pivots.size → i < j →
     pivots.getD i 0 < pivots.getD j 0
 
+/--
+@isnad1 id=pivotcol.0h1v.s3.e8b36fabe930 from=translated src=- shape=dadf125a vocab=9be51962
+-/
 theorem pivotColumnsBefore_empty (col : Nat) :
     PivotColumnsBefore #[] col := by
   intro i hi
   simp at hi
 
+/--
+@isnad1 id=pivotcol.0h0v.s2.afcd2d58da9d from=translated src=- shape=e94e6cb8 vocab=573057fa
+-/
 theorem pivotColumnsStrict_empty : PivotColumnsStrict #[] := by
   intro i _ hi _ _
   simp at hi
 
+/--
+@isnad1 id=pivotcol.2h3v.s4.bfcac2ccc180 from=translated src=- shape=50c952a9 vocab=54ac8416
+-/
 theorem pivotColumnsBefore_mono {pivots : Array Nat} {col next : Nat}
     (h : PivotColumnsBefore pivots col) (hcol : col < next) :
     PivotColumnsBefore pivots next := by
   intro i hi
   exact Nat.lt_trans (h i hi) hcol
 
+/--
+@isnad1 id=pivotcol.2h3v.s4.66122fe39320 from=translated src=- shape=d9fd1074 vocab=a1466dbd
+-/
 theorem pivotColumnsBefore_push {pivots : Array Nat} {col next : Nat}
     (h : PivotColumnsBefore pivots col) (hcol : col < next) :
     PivotColumnsBefore (pivots.push col) next := by
@@ -528,6 +573,9 @@ theorem pivotColumnsBefore_push {pivots : Array Nat} {col next : Nat}
     rw [Array.getD_eq_getD_getElem?, Array.getElem?_eq_getElem hiOld] at hold
     exact Nat.lt_trans hold hcol
 
+/--
+@isnad1 id=pivotcol.2h2v.s4.4529f50f51db from=translated src=- shape=8a3c662e vocab=9eef148a
+-/
 theorem pivotColumnsStrict_push {pivots : Array Nat} {col : Nat}
     (hstrict : PivotColumnsStrict pivots) (hbefore : PivotColumnsBefore pivots col) :
     PivotColumnsStrict (pivots.push col) := by
@@ -554,6 +602,9 @@ theorem pivotColumnsStrict_push {pivots : Array Nat} {col : Nat}
     rw [Array.getD_eq_getD_getElem?, Array.getElem?_eq_getElem hjOld] at hlt
     exact hlt
 
+/--
+@isnad1 id=ne.4h3v.s5.fbaa882f361b from=translated src=- shape=34831f54 vocab=2050d4d5
+-/
 theorem pivotColumnsStrict_getD_ne {pivots : Array Nat}
     (hstrict : PivotColumnsStrict pivots) {i j : Nat}
     (hi : i < pivots.size) (hj : j < pivots.size) (hne : i ≠ j) :
@@ -568,6 +619,9 @@ theorem pivotColumnsStrict_getD_ne {pivots : Array Nat}
     rw [heq] at hlt
     exact Nat.lt_irrefl _ hlt
 
+/--
+@isnad1 id=lt.2h7v.s7.ae89bb59012c from=translated src=- shape=69f7893b vocab=0f102548
+-/
 theorem rrefLoop_pivots_getD_lt_cols [Field F] [BEq F] :
     ∀ fuel col row (M : DenseMatrix F) pivots,
       (∀ i, i < pivots.size → pivots.getD i 0 < M.cols) →
@@ -619,6 +673,9 @@ theorem rrefLoop_pivots_getD_lt_cols [Field F] [BEq F] :
       · simp [hguard] at hi ⊢
         simpa [Array.getD_eq_getD_getElem?] using hpiv i hi
 
+/--
+@isnad1 id=lt.1h3v.s6.7e2888602465 from=translated src=- shape=240b09f4 vocab=bafb7eb0
+-/
 theorem rref_pivots_getD_lt_cols [Field F] [BEq F] (M : DenseMatrix F) :
     ∀ i, i < (rref M).pivots.size → (rref M).pivots.getD i 0 < M.cols := by
   unfold rref
@@ -626,6 +683,9 @@ theorem rref_pivots_getD_lt_cols [Field F] [BEq F] (M : DenseMatrix F) :
     intro i hi
     simp at hi)
 
+/--
+@isnad1 id=pivotcol.2h6v.s5.68a25e3d6e8c from=translated src=- shape=ea53476b vocab=bc5fa124
+-/
 theorem rrefLoop_pivotColumnsStrict [Field F] [BEq F] :
     ∀ fuel col row (M : DenseMatrix F) pivots,
       PivotColumnsBefore pivots col → PivotColumnsStrict pivots →
@@ -653,12 +713,18 @@ theorem rrefLoop_pivotColumnsStrict [Field F] [BEq F] :
       · simp [hguard]
         exact hstrict
 
+/--
+@isnad1 id=pivotcol.0h2v.s5.28ad36546e2c from=translated src=- shape=fc3aa9e9 vocab=b22eaf33
+-/
 theorem rref_pivotColumnsStrict [Field F] [BEq F] (M : DenseMatrix F) :
     PivotColumnsStrict (rref M).pivots := by
   unfold rref
   exact rrefLoop_pivotColumnsStrict _ _ _ _ _
     (pivotColumnsBefore_empty 0) pivotColumnsStrict_empty
 
+/--
+@isnad1 id=pivotcol.4h6v.s7.86633ffc52d3 from=translated src=- shape=b252a9b6 vocab=416e5af5
+-/
 theorem rrefLoop_pivotColumnsShaped [Field F] [BEq F] [LawfulBEq F] :
     ∀ fuel col row (M : DenseMatrix F) pivots,
       WellFormed M →
@@ -795,6 +861,9 @@ theorem rrefLoop_pivotColumnsShaped [Field F] [BEq F] [LawfulBEq F] :
       · simp [hguard]
         exact hshape
 
+/--
+@isnad1 id=pivotcol.1h2v.s6.25550223a310 from=translated src=- shape=cacd7d0c vocab=d6a427f4
+-/
 theorem rref_pivotColumnsShaped [Field F] [BEq F] [LawfulBEq F]
     (M : DenseMatrix F) (hM : WellFormed M) :
     PivotColumnsShaped (rref M).matrix (rref M).pivots := by
@@ -807,6 +876,9 @@ def ProcessedColumnsZeroBelow [Zero F] (M : DenseMatrix F)
     (activeRow col : Nat) : Prop :=
   ∀ row c, activeRow ≤ row → row < M.rows → c < col → M.get row c = 0
 
+/--
+@isnad1 id=processe.7h5v.s7.fe81a6f5c623 from=translated src=- shape=fbb5ab1a vocab=a652d4c9
+-/
 theorem processedColumnsZeroBelow_pivot_step
     [Field F] [BEq F] [LawfulBEq F]
     {M : DenseMatrix F} (hM : WellFormed M) {row col pivotRow : Nat}
@@ -864,6 +936,9 @@ theorem processedColumnsZeroBelow_pivot_step
         · intro h
           exact hrr h.symm
 
+/--
+@isnad1 id=processe.5h6v.s7.07a8ff060f6e from=translated src=- shape=5dec8ac9 vocab=c74f0ea9
+-/
 theorem rrefLoop_processedColumnsZeroBelow
     [Field F] [BEq F] [LawfulBEq F] :
     ∀ fuel col row (M : DenseMatrix F) pivots,
@@ -946,6 +1021,9 @@ theorem rrefLoop_processedColumnsZeroBelow
             exact hguard hguardTrue
           omega
 
+/--
+@isnad1 id=processe.1h2v.s6.ada28d5fe4e6 from=translated src=- shape=18a2bf3b vocab=d8985fc8
+-/
 theorem rref_processedColumnsZeroBelow
     [Field F] [BEq F] [LawfulBEq F]
     (M : DenseMatrix F) (hM : WellFormed M) :

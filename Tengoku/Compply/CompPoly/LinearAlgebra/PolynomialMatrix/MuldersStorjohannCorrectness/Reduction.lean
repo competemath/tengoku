@@ -23,6 +23,9 @@ namespace PolynomialMatrix
 
 variable {F : Type*} [Field F] [BEq F] [LawfulBEq F] [DecidableEq F]
 
+/--
+@isnad1 id=eq.1h5v.s6.775250590d26 from=translated src=- shape=a1f3560d vocab=f12de1fc
+-/
 theorem muldersStorjohannStep_shape_preserved
     {M : PolynomialMatrix F} (shift : Array Nat) {i j : Nat} (hM : WellFormed M) :
     MatrixShape (muldersStorjohannStep M shift i j) = MatrixShape M := by
@@ -46,6 +49,9 @@ theorem muldersStorjohannStep_shape_preserved
             simpa [Array.getD_eq_getD_getElem?] using
               cancelShiftedLeadingTerm_size_of_wellFormed hM hi hj shift
 
+/--
+@isnad1 id=le.1h5v.s6.a9f242933d65 from=translated src=- shape=0b59dff5 vocab=b7e4e878
+-/
 theorem muldersStorjohannStep_rowSpan_subset
     {M : PolynomialMatrix F} (shift : Array Nat) {i j : Nat} (hM : WellFormed M) :
     RowSpan (muldersStorjohannStep M shift i j) ⊆ RowSpan M := by
@@ -83,6 +89,9 @@ theorem muldersStorjohannStep_rowSpan_subset
             · exact replaceRow_rows_mem_rowSpan hM
                 (cancelShiftedLeadingTerm_mem_rowSpan hrowI hrowJ) hrow
 
+/--
+@isnad1 id=le.4h5v.s7.a9fc757f5ca0 from=translated src=- shape=c9c623a5 vocab=a1ccced2
+-/
 theorem muldersStorjohannStep_rowSpan_superset
     {M : PolynomialMatrix F} (shift : Array Nat) {i j : Nat}
     (hM : WellFormed M) (hi : i < M.size) (hj : j < M.size) (hne : i ≠ j) :
@@ -203,6 +212,9 @@ theorem muldersStorjohannStep_rowSpan_superset
               · have hne' : i ≠ k := fun h ↦ hki h.symm
                 exact matrix_row_mem_rowSpan hreplaceI_wf (replaceRow_oldRow_mem hkM hne')
 
+/--
+@isnad1 id=wellform.1h5v.s6.53e0d9548c1f from=translated src=- shape=362f4afb vocab=a089398f
+-/
 theorem muldersStorjohannStep_wellFormed
     {M : PolynomialMatrix F} (shift : Array Nat) {i j : Nat} (hM : WellFormed M) :
     WellFormed (muldersStorjohannStep M shift i j) := by
@@ -226,6 +238,9 @@ theorem muldersStorjohannStep_wellFormed
             simpa [Array.getD_eq_getD_getElem?] using
               cancelShiftedLeadingTerm_size_of_wellFormed hM hi hj shift
 
+/--
+@isnad1 id=eq.1h4v.s6.e3fdff7986ac from=translated src=- shape=83e1704d vocab=63cf7148
+-/
 theorem muldersStorjohannReduceWithFuel_shape_preserved
     (fuel : Nat) (M : PolynomialMatrix F) (shift : Array Nat) (hM : WellFormed M) :
     MatrixShape (muldersStorjohannReduceWithFuel fuel M shift) = MatrixShape M := by
@@ -241,6 +256,9 @@ theorem muldersStorjohannReduceWithFuel_shape_preserved
           (muldersStorjohannStep_wellFormed shift hM)).trans
           (muldersStorjohannStep_shape_preserved shift hM)
 
+/--
+@isnad1 id=wellform.1h4v.s6.c354e5b5c726 from=translated src=- shape=d9b46cf3 vocab=ee15c29b
+-/
 theorem muldersStorjohannReduceWithFuel_wellFormed
     (fuel : Nat) (M : PolynomialMatrix F) (shift : Array Nat) (hM : WellFormed M) :
     WellFormed (muldersStorjohannReduceWithFuel fuel M shift) := by
@@ -255,12 +273,18 @@ theorem muldersStorjohannReduceWithFuel_wellFormed
         exact ih (muldersStorjohannStep M shift i j)
           (muldersStorjohannStep_wellFormed shift hM)
 
+/--
+@isnad1 id=wellform.1h3v.s6.ea4192b11284 from=translated src=- shape=88c93f56 vocab=0b25ead4
+-/
 theorem muldersStorjohannReduce_wellFormed
     (M : PolynomialMatrix F) (shift : Array Nat) (hM : WellFormed M) :
     WellFormed (muldersStorjohannReduce M shift) := by
   exact muldersStorjohannReduceWithFuel_wellFormed
     (muldersStorjohannFuel M shift) M shift hM
 
+/--
+@isnad1 id=eq.2h4v.s6.3fdcd3dc7de8 from=translated src=- shape=8515c3a9 vocab=fdf14ec8
+-/
 theorem muldersStorjohannReduceWithFuel_no_conflict_of_measure_lt
     (fuel : Nat) (M : PolynomialMatrix F) (shift : Array Nat)
     (hM : WellFormed M)
@@ -284,6 +308,9 @@ theorem muldersStorjohannReduceWithFuel_no_conflict_of_measure_lt
           exact ih (muldersStorjohannStep M shift i j)
             (muldersStorjohannStep_wellFormed shift hM) hstepFuel
 
+/--
+@isnad1 id=eq.1h3v.s6.c349f6caea3b from=translated src=- shape=e1c77a7c vocab=a5b31523
+-/
 theorem muldersStorjohannReduce_no_conflict
     (M : PolynomialMatrix F) (shift : Array Nat) (hM : WellFormed M) :
     shiftedLeadingConflict? (muldersStorjohannReduce M shift) shift = none := by
@@ -293,7 +320,9 @@ theorem muldersStorjohannReduce_no_conflict
 
 /-- The fueled reducer is deterministic: two runs that both end without a
 shifted leading conflict stopped at the same (first conflict-free) matrix of
-the common step orbit, regardless of their fuel.-/
+the common step orbit, regardless of their fuel.
+@isnad1 id=eq.2h5v.s6.43f469beac36 from=translated src=- shape=cd509531 vocab=029b43c5
+-/
 theorem muldersStorjohannReduceWithFuel_eq_of_no_conflict :
     ∀ (f g : Nat) (M : PolynomialMatrix F) (shift : Array Nat),
       shiftedLeadingConflict? (muldersStorjohannReduceWithFuel f M shift) shift =
@@ -328,6 +357,9 @@ theorem muldersStorjohannReduceWithFuel_eq_of_no_conflict :
               simp only [muldersStorjohannReduceWithFuel, hconf] at hg ⊢
               exact ih g (muldersStorjohannStep M shift i j) shift hf hg
 
+/--
+@isnad1 id=le.1h4v.s6.f93126c03397 from=translated src=- shape=00845ed6 vocab=2ffea085
+-/
 theorem muldersStorjohannReduceWithFuel_rowSpan_subset
     (fuel : Nat) (M : PolynomialMatrix F) (shift : Array Nat) (hM : WellFormed M) :
     RowSpan (muldersStorjohannReduceWithFuel fuel M shift) ⊆ RowSpan M := by
@@ -346,12 +378,18 @@ theorem muldersStorjohannReduceWithFuel_rowSpan_subset
             (muldersStorjohannStep_wellFormed shift hM))
           (muldersStorjohannStep_rowSpan_subset shift hM)
 
+/--
+@isnad1 id=le.1h3v.s6.7c42b0fab5f2 from=translated src=- shape=a04522da vocab=6def1f3e
+-/
 theorem muldersStorjohannReduce_rowSpan_subset
     (M : PolynomialMatrix F) (shift : Array Nat) (hM : WellFormed M) :
     RowSpan (muldersStorjohannReduce M shift) ⊆ RowSpan M := by
   exact muldersStorjohannReduceWithFuel_rowSpan_subset
     (muldersStorjohannFuel M shift) M shift hM
 
+/--
+@isnad1 id=le.1h4v.s6.10c8d213293f from=translated src=- shape=cb58210e vocab=2ffea085
+-/
 theorem muldersStorjohannReduceWithFuel_rowSpan_superset
     (fuel : Nat) (M : PolynomialMatrix F) (shift : Array Nat) (hM : WellFormed M) :
     RowSpan M ⊆ RowSpan (muldersStorjohannReduceWithFuel fuel M shift) := by
@@ -372,18 +410,27 @@ theorem muldersStorjohannReduceWithFuel_rowSpan_superset
           (ih (muldersStorjohannStep M shift i j)
             (muldersStorjohannStep_wellFormed shift hM))
 
+/--
+@isnad1 id=le.1h3v.s6.b00ad0273597 from=translated src=- shape=fc7a4cf0 vocab=6def1f3e
+-/
 theorem muldersStorjohannReduce_rowSpan_superset
     (M : PolynomialMatrix F) (shift : Array Nat) (hM : WellFormed M) :
     RowSpan M ⊆ RowSpan (muldersStorjohannReduce M shift) := by
   exact muldersStorjohannReduceWithFuel_rowSpan_superset
     (muldersStorjohannFuel M shift) M shift hM
 
+/--
+@isnad1 id=eq.1h3v.s6.ae2d00be1017 from=translated src=- shape=adb94c50 vocab=d05f9b61
+-/
 theorem muldersStorjohannReduce_shape_preserved
     (M : PolynomialMatrix F) (shift : Array Nat) (hM : WellFormed M) :
     MatrixShape (muldersStorjohannReduce M shift) = MatrixShape M := by
   exact muldersStorjohannReduceWithFuel_shape_preserved
     (muldersStorjohannFuel M shift) M shift hM
 
+/--
+@isnad1 id=eq.1h3v.s6.47929b81de02 from=translated src=- shape=a04522da vocab=df295f40
+-/
 theorem muldersStorjohannReduce_rowSpan_eq
     (M : PolynomialMatrix F) (shift : Array Nat) (hM : WellFormed M) :
     RowSpan (muldersStorjohannReduce M shift) = RowSpan M := by
@@ -391,6 +438,9 @@ theorem muldersStorjohannReduce_rowSpan_eq
   · exact muldersStorjohannReduce_rowSpan_subset M shift hM
   · exact muldersStorjohannReduce_rowSpan_superset M shift hM
 
+/--
+@isnad1 id=shiftedw.2h3v.s6.956f9fa3b331 from=translated src=- shape=01df60ea vocab=22d0ac9f
+-/
 theorem muldersStorjohannReduce_weakPopov
     (M : PolynomialMatrix F) (shift : Array Nat)
     (hM : WellFormed M) (_hshift : shift.size = MatrixWidth M) :

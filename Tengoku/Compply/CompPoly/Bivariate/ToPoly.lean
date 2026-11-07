@@ -59,7 +59,9 @@ def ofPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     let cj := p.coeff j
     CPolynomial.monomial j ⟨cj.toImpl, CPolynomial.Raw.isCanonical_toImpl cj⟩)
 
-/-- `toPoly` preserves addition.-/
+/-- `toPoly` preserves addition.
+@isnad1 id=eq.0h3v.s7.38837a25e7fc from=translated src=- shape=1fe2a051 vocab=a23a4126
+-/
 lemma toPoly_add {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (p q : CBivariate R) : toPoly (p + q) = toPoly p + toPoly q := by
       have h_linear : ∀ (p q : CPolynomial R), (p + q).toPoly = p.toPoly + q.toPoly := by
@@ -102,7 +104,9 @@ lemma toPoly_add {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
         simp_all +decide [ CPolynomial.support ]
         grind
 
-/-- `toPoly` sends a Y-monomial to the corresponding monomial in `R[X][Y]`.-/
+/-- `toPoly` sends a Y-monomial to the corresponding monomial in `R[X][Y]`.
+@isnad1 id=eq.0h3v.s8.82529c1a1a84 from=translated src=- shape=754b4707 vocab=09fcb130
+-/
 lemma toPoly_monomial {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R]
     (n : ℕ) (c : CPolynomial R) :
@@ -117,7 +121,9 @@ lemma toPoly_monomial {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring
       · split_ifs <;> simp_all +decide [ Array.push ]
         exact toFinsupp_eq_zero.mp rfl
 
-/-- `ofPoly` sends a Y-monomial in `R[X][Y]` to a bivariate monomial.-/
+/-- `ofPoly` sends a Y-monomial in `R[X][Y]` to a bivariate monomial.
+@isnad1 id=eq.0h3v.s8.372438e97074 from=translated src=- shape=5cd706ea vocab=06db8252
+-/
 lemma ofPoly_monomial {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R]
     (n : ℕ) (c : R[X]) :
@@ -129,7 +135,9 @@ lemma ofPoly_monomial {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring
       aesop
 
 /--
-`Polynomial.toImpl` preserves addition, accounting for trimming in the raw representation.-/
+`Polynomial.toImpl` preserves addition, accounting for trimming in the raw representation.
+@isnad1 id=eq.0h3v.s6.e1bebd415158 from=translated src=- shape=d42f61b3 vocab=181406c4
+-/
 lemma toImpl_add {R : Type*} [BEq R] [LawfulBEq R] [Semiring R] (p q : R[X]) :
     p.toImpl + q.toImpl = (p + q).toImpl := by
       have h_add : (p.toImpl + q.toImpl).toPoly = (p + q).toImpl.toPoly := by
@@ -156,7 +164,9 @@ lemma toImpl_add {R : Type*} [BEq R] [LawfulBEq R] [Semiring R] (p q : R[X]) :
         grind
       · exact Eq.symm (CPolynomial.Raw.trim_toImpl (p + q))
 
-/-- `ofPoly` preserves addition in `R[X][Y]`.-/
+/-- `ofPoly` preserves addition in `R[X][Y]`.
+@isnad1 id=eq.0h3v.s7.5437230da8a6 from=translated src=- shape=6ad7e802 vocab=c73675f7
+-/
 lemma ofPoly_add {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R]
     (p q : R[X][Y]) : ofPoly (p + q) = ofPoly p + ofPoly q := by
@@ -185,7 +195,9 @@ lemma ofPoly_add {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
           aesop
       exact h_ofPoly_add_p p q
 
-/-- The outer coefficient of `ofPoly p` converts back to the corresponding `R[X]` coefficient.-/
+/-- The outer coefficient of `ofPoly p` converts back to the corresponding `R[X]` coefficient.
+@isnad1 id=eq.0h3v.s6.c1404ce08b66 from=translated src=- shape=83b539d6 vocab=af520d63
+-/
 theorem ofPoly_coeff {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R]
     (p : R[X][Y]) (n : ℕ) : (CPolynomial.coeff (ofPoly p) n).toPoly = p.coeff n := by
@@ -210,7 +222,9 @@ theorem ofPoly_coeff {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring 
         grind
       · aesop
 
-/-- The outer coefficient of `toPoly p` is `CPolynomial.coeff p n` converted to `R[X]`.-/
+/-- The outer coefficient of `toPoly p` is `CPolynomial.coeff p n` converted to `R[X]`.
+@isnad1 id=eq.0h3v.s5.dd53d518beda from=translated src=- shape=94b0a9e5 vocab=17642238
+-/
 theorem toPoly_coeff {R : Type*} [BEq R] [LawfulBEq R] [Semiring R]
     (p : CBivariate R) (n : ℕ) : (toPoly p).coeff n = (CPolynomial.coeff p n).toPoly := by
       rw [ CBivariate.toPoly, Polynomial.finsetSum_coeff ]
@@ -219,7 +233,9 @@ theorem toPoly_coeff {R : Type*} [BEq R] [LawfulBEq R] [Semiring R]
       aesop
 
 /--
-`toPoly` is the map of the outer polynomial via `CPolynomial.ringEquiv`.-/
+`toPoly` is the map of the outer polynomial via `CPolynomial.ringEquiv`.
+@isnad1 id=eq.0h2v.s7.b2c3d62856ae from=translated src=- shape=a57deb4b vocab=3f8f8016
+-/
 theorem toPoly_eq_map {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (p : CBivariate R) :
     toPoly p = (CPolynomial.toPoly p).map (CPolynomial.ringEquiv (R := R)) := by
@@ -234,7 +250,9 @@ theorem toPoly_eq_map {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring
         simp +decide [ CPolynomial.support, * ] at *
         by_cases h : n < Array.size p.val <;> aesop
 
-/-- `toPoly` preserves multiplication.-/
+/-- `toPoly` preserves multiplication.
+@isnad1 id=eq.0h3v.s7.d9b48c96800c from=translated src=- shape=1fe2a051 vocab=ca037523
+-/
 theorem toPoly_mul {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (p q : CBivariate R) :
     toPoly (p * q) = toPoly p * toPoly q := by
@@ -249,7 +267,9 @@ end ToPolyCore
 /-! Ring equivalence between bivariate representations. -/
 section RingEquiv
 
-/-- Round-trip from Mathlib: converting a polynomial to `CBivariate` and back is the identity.-/
+/-- Round-trip from Mathlib: converting a polynomial to `CBivariate` and back is the identity.
+@isnad1 id=eq.0h2v.s5.d8c2f562e8d1 from=translated src=- shape=0a7488f4 vocab=9840cba4
+-/
 theorem ofPoly_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R]
     (p : R[X][Y]) : toPoly (ofPoly p) = p := by
@@ -260,7 +280,9 @@ theorem ofPoly_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring
         simp +decide [ ofPoly_monomial, toPoly_monomial ]
         exact congr_arg _ ( CPolynomial.Raw.toPoly_toImpl )
 
-/-- Round-trip from `CBivariate`: converting to Mathlib and back is the identity.-/
+/-- Round-trip from `CBivariate`: converting to Mathlib and back is the identity.
+@isnad1 id=eq.0h2v.s5.3f6befa2ed77 from=translated src=- shape=9d05274e vocab=cb6b830a
+-/
 theorem toPoly_ofPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R]
     (p : CBivariate R) : ofPoly (toPoly p) = p := by
@@ -287,13 +309,17 @@ noncomputable def ringEquiv
   map_mul' := by apply toPoly_mul
   map_add' := by exact fun x y ↦ toPoly_add x y
 
-/-- `toPoly` preserves `1`.-/
+/-- `toPoly` preserves `1`.
+@isnad1 id=eq.0h1v.s6.ce52bec47eb3 from=translated src=- shape=2acf370f vocab=105c830c
+-/
 theorem toPoly_one
     {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] [DecidableEq R] :
     toPoly (1 : CBivariate R) = 1 := by
   simpa [ringEquiv] using (ringEquiv (R := R)).map_one
 
-/-- `ofPoly` preserves `1`.-/
+/-- `ofPoly` preserves `1`.
+@isnad1 id=eq.0h1v.s6.011f07424c21 from=translated src=- shape=8499e191 vocab=20e8347b
+-/
 theorem ofPoly_one
     {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] [DecidableEq R] :
     ofPoly (1 : R[X][Y]) = 1 := by
@@ -301,7 +327,9 @@ theorem ofPoly_one
   change toPoly (ofPoly (1 : R[X][Y])) = toPoly (1 : CBivariate R)
   rw [ofPoly_toPoly, toPoly_one]
 
-/-- `toPoly` maps the zero bivariate polynomial to `0`.-/
+/-- `toPoly` maps the zero bivariate polynomial to `0`.
+@isnad1 id=eq.0h1v.s6.a7bd1ebfc080 from=translated src=- shape=c4b1e06a vocab=8d74c334
+-/
 lemma toPoly_zero {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] :
     toPoly (0 : CBivariate R) = 0 := by
       -- The sum over the empty set is zero.
@@ -309,7 +337,9 @@ lemma toPoly_zero {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] 
       rw [ Finset.sum_eq_zero ]
       aesop
 
-/-- `ofPoly` maps `0` in `R[X][Y]` to the zero bivariate polynomial.-/
+/-- `ofPoly` maps `0` in `R[X][Y]` to the zero bivariate polynomial.
+@isnad1 id=eq.0h1v.s6.ed6c6e7f46d3 from=translated src=- shape=8499e191 vocab=20e8347b
+-/
 lemma ofPoly_zero {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] [DecidableEq R] :
     ofPoly (0 : R[X][Y]) = 0 := by
       unfold CBivariate.ofPoly
@@ -327,7 +357,9 @@ noncomputable def ofPolyRingHom
     R[X][Y] →+* CBivariate R :=
   (ringEquiv (R := R)).symm.toRingHom
 
-/-- `ofPoly` preserves multiplication.-/
+/-- `ofPoly` preserves multiplication.
+@isnad1 id=eq.0h3v.s7.7f64accb6988 from=translated src=- shape=6ad7e802 vocab=fbd4f269
+-/
 theorem ofPoly_mul
     {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] [DecidableEq R]
     (p q : R[X][Y]) :
@@ -367,7 +399,9 @@ private theorem toPoly_foldr_evalY_eq_sum {R : Type*} [BEq R] [LawfulBEq R]
 section ImplementationCorrectness
 
 /--
-`evalY a` corresponds to outer evaluation at `Polynomial.C a`.-/
+`evalY a` corresponds to outer evaluation at `Polynomial.C a`.
+@isnad1 id=eq.0h3v.s6.aee70ac04ab6 from=translated src=- shape=bedc792f vocab=89dec64b
+-/
 theorem evalY_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (a : R) (f : CBivariate R) :
     (evalY (R := R) a f).toPoly = (toPoly f).eval (Polynomial.C a) := by
@@ -390,7 +424,9 @@ theorem evalY_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring 
 
 Both `evalYHorner` and the new `evalY` reduce to the same `Polynomial` under
 `toPoly`, and `toPoly` is injective on canonical polynomials, so the two
-canonical results coincide.-/
+canonical results coincide.
+@isnad1 id=eq.0h3v.s5.ce746f6a44ef from=translated src=- shape=c01448a5 vocab=8fd1e94a
+-/
 theorem eval_y_horner_eq_eval_y {R : Type*}
     [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] (a : R) (p : CBivariate R) :
     evalYHorner a p = evalY a p := by
@@ -414,7 +450,9 @@ theorem eval_y_horner_eq_eval_y {R : Type*}
   rw [← hC, Polynomial.eval₂_at_apply]
   rfl
 
-/-- `Y`-then-`X` Horner full evaluation agrees with the existing evaluator.-/
+/-- `Y`-then-`X` Horner full evaluation agrees with the existing evaluator.
+@isnad1 id=eq.0h4v.s5.a07679988dd7 from=translated src=- shape=d1cef007 vocab=6d4f42ee
+-/
 theorem eval_eval_horner_y_then_x_eq_eval_eval {R : Type*}
     [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (x y : R) (p : CBivariate R) :
@@ -422,14 +460,18 @@ theorem eval_eval_horner_y_then_x_eq_eval_eval {R : Type*}
   simp only [evalEvalHornerYThenX, evalEval]
   rw [CPolynomial.eval_horner_eq_eval, eval_y_horner_eq_eval_y]
 
-/-- `toPoly` preserves full evaluation: `evalEval x y f = (toPoly f).evalEval x y`.-/
+/-- `toPoly` preserves full evaluation: `evalEval x y f = (toPoly f).evalEval x y`.
+@isnad1 id=eq.0h4v.s5.d96d220b2ee8 from=translated src=- shape=29b5b148 vocab=d35d9616
+-/
 theorem evalEval_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (x y : R) (f : CBivariate R) :
     @CBivariate.evalEval R _ _ _ _ x y f = (toPoly f).evalEval x y := by
   show CPolynomial.eval x (evalY (R := R) y f) = (toPoly f).evalEval x y
   rw [CPolynomial.eval_toPoly, evalY_toPoly]
 
-/-- `toPoly` preserves coefficients: coefficient of `X^i Y^j` matches.-/
+/-- `toPoly` preserves coefficients: coefficient of `X^i Y^j` matches.
+@isnad1 id=eq.0h4v.s5.9dafe21f51a3 from=translated src=- shape=b66aeaf5 vocab=0fa879aa
+-/
 theorem coeff_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (f : CBivariate R) (i j : ℕ) :
     ((toPoly f).coeff j).coeff i = CBivariate.coeff (R := R) f i j := by
@@ -437,7 +479,9 @@ theorem coeff_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring 
   simpa [CBivariate.coeff] using
     (CPolynomial.coeff_toPoly (p := CPolynomial.coeff f j) (i := i)).symm
 
-/-- The outer support of `toPoly f` equals the Y-support of `f`.-/
+/-- The outer support of `toPoly f` equals the Y-support of `f`.
+@isnad1 id=eq.0h2v.s5.5caebbb5fd3c from=translated src=- shape=5d4a85d5 vocab=87b53302
+-/
 theorem support_toPoly_outer {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (f : CBivariate R) : (toPoly f).support = f.supportY := by
       ext x
@@ -447,7 +491,9 @@ theorem support_toPoly_outer {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [S
       rw [ CPolynomial.mem_support_iff, CPolynomial.toPoly_eq_zero_iff ]
       aesop
 
-/-- `toPoly` preserves Y-degree.-/
+/-- `toPoly` preserves Y-degree.
+@isnad1 id=eq.0h2v.s5.6e47becb8f82 from=translated src=- shape=74f8607b vocab=9e6b46ff
+-/
 theorem natDegreeY_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (f : CBivariate R) : (toPoly f).natDegree = f.natDegreeY := by
       -- The degree of the polynomial is the supremum of the exponents in its support.
@@ -462,7 +508,9 @@ theorem natDegreeY_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semi
            CPolynomial.natDegree_eq_support_sup ]
       rfl
 
-/-- The outer `Y`-coefficient formula used for X-degree transport.-/
+/-- The outer `Y`-coefficient formula used for X-degree transport.
+@isnad1 id=eq.0h3v.s6.7565a3003ed2 from=translated src=- shape=2117bea4 vocab=740cb628
+-/
 theorem coeff_toPoly_Y {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (f : CBivariate R) (j : ℕ) :
     (toPoly f).coeff j = CPolynomial.toPoly (f.val.coeff j) := by
@@ -474,7 +522,9 @@ theorem coeff_toPoly_Y {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semirin
       · exact (CPolynomial.toPoly_eq_zero_iff 0).mpr rfl
       · exact (CPolynomial.toPoly_eq_zero_iff 0).mpr rfl
 
-/-- `toPoly` preserves X-degree (max over Y-coefficients of their degree in X).-/
+/-- `toPoly` preserves X-degree (max over Y-coefficients of their degree in X).
+@isnad1 id=eq.0h2v.s6.31e735e83737 from=translated src=- shape=58927118 vocab=dfdd1097
+-/
 theorem natDegreeX_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (f : CBivariate R) :
     (toPoly f).support.sup (fun j ↦ ((toPoly f).coeff j).natDegree) = f.natDegreeX := by
@@ -485,7 +535,9 @@ theorem natDegreeX_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semi
   exact Eq.symm (CPolynomial.natDegree_toPoly (f.val.coeff j))
 
 /--
-`CC` corresponds to the nested constant polynomial in `R[X][Y]`.-/
+`CC` corresponds to the nested constant polynomial in `R[X][Y]`.
+@isnad1 id=eq.0h2v.s7.4fd0aa6c1e5c from=translated src=- shape=fe10e7d7 vocab=1c9a96bd
+-/
 theorem CC_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] (r : R) :
     toPoly (CC (R := R) r) = Polynomial.C (Polynomial.C r) := by
   rw [ toPoly_eq_map ]
@@ -493,7 +545,9 @@ theorem CC_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] 
   simp [ CPolynomial.C_toPoly ]
 
 /--
-`X` (inner variable) corresponds to `Polynomial.C Polynomial.X` in `R[X][Y]`.-/
+`X` (inner variable) corresponds to `Polynomial.C Polynomial.X` in `R[X][Y]`.
+@isnad1 id=eq.0h1v.s6.71343f0c898a from=translated src=- shape=af283350 vocab=3a830fa4
+-/
 theorem X_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] :
     toPoly (X (R := R)) = Polynomial.C Polynomial.X := by
   rw [ toPoly_eq_map ]
@@ -501,14 +555,18 @@ theorem X_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] :
   exact CPolynomial.X_toPoly
 
 /--
-`Y` (outer variable) corresponds to `Polynomial.X` in `R[X][Y]`.-/
+`Y` (outer variable) corresponds to `Polynomial.X` in `R[X][Y]`.
+@isnad1 id=eq.0h1v.s5.7f303320aff1 from=translated src=- shape=d86fd104 vocab=521c10e8
+-/
 theorem Y_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] [DecidableEq R] :
     toPoly (CBivariate.Y (R := R)) = (Polynomial.X : Polynomial (Polynomial R)) := by
   rw [CBivariate.Y, toPoly_monomial]
   simp [CPolynomial.C_toPoly, Polynomial.monomial_one_one_eq_X]
 
 /--
-`monomialXY n m c` corresponds to `Y^m` with inner coefficient `X^n * c`.-/
+`monomialXY n m c` corresponds to `Y^m` with inner coefficient `X^n * c`.
+@isnad1 id=eq.0h4v.s8.edeb00115adc from=translated src=- shape=1b75bd61 vocab=8b4c15f5
+-/
 theorem monomialXY_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R] (n m : ℕ) (c : R) :
     toPoly (monomialXY (R := R) n m c) = Polynomial.monomial m (Polynomial.monomial n c) := by
@@ -518,7 +576,9 @@ theorem monomialXY_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semi
     (CPolynomial.monomial_toPoly (R := R) n c)
 
 /--
-`supportX` corresponds to the union of inner supports of outer coefficients.-/
+`supportX` corresponds to the union of inner supports of outer coefficients.
+@isnad1 id=eq.0h2v.s6.a32437b3c60f from=translated src=- shape=b0168498 vocab=46dd606a
+-/
 theorem supportX_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (f : CBivariate R) :
     CBivariate.supportX (R := R) f =
@@ -530,7 +590,9 @@ theorem supportX_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiri
   simpa [ toPoly_coeff ] using (CPolynomial.support_toPoly (f.val.coeff j))
 
 /--
-`totalDegree` corresponds to the supremum over `j` of `natDegree ((toPoly f).coeff j) + j`.-/
+`totalDegree` corresponds to the supremum over `j` of `natDegree ((toPoly f).coeff j) + j`.
+@isnad1 id=eq.0h2v.s6.c752858d72ce from=translated src=- shape=78248df6 vocab=cbf60a39
+-/
 theorem totalDegree_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (f : CBivariate R) :
     CBivariate.totalDegree (R := R) f =
@@ -543,7 +605,9 @@ theorem totalDegree_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Sem
   simpa using congrArg (fun n ↦ n + j) (CPolynomial.natDegree_toPoly (f.val.coeff j))
 
 /--
-`evalX a` evaluates each inner coefficient at `a`.-/
+`evalX a` evaluates each inner coefficient at `a`.
+@isnad1 id=eq.0h4v.s6.a70c6a984774 from=translated src=- shape=520efc77 vocab=aa3837db
+-/
 theorem evalX_toPoly_coeff {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R] (a : R) (f : CBivariate R) (j : ℕ) :
     ((evalX (R := R) a f).toPoly).coeff j = ((toPoly f).coeff j).eval a := by
@@ -577,7 +641,9 @@ theorem evalX_toPoly_coeff {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Sem
           simp [Polynomial.coeff_monomial]
 
 /--
-`evalX` is compatible with full bivariate evaluation when `a` and `y` commute.-/
+`evalX` is compatible with full bivariate evaluation when `a` and `y` commute.
+@isnad1 id=eq.1h4v.s6.a8596d422d1d from=translated src=- shape=08f349cd vocab=03766b78
+-/
 theorem evalX_toPoly_eval_commute {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R] (a y : R) (hc : Commute a y) (f : CBivariate R) :
     (evalX (R := R) a f).eval y = (toPoly f).evalEval a y := by
@@ -616,7 +682,9 @@ theorem evalX_toPoly_eval_commute {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial 
     · exact fun j hj => hc.pow_right j
 
 /--
-`evalX_toPoly_eval_commute` specialized to commutative rings.-/
+`evalX_toPoly_eval_commute` specialized to commutative rings.
+@isnad1 id=eq.0h4v.s6.ae9db6511678 from=translated src=- shape=fd6a93a2 vocab=f87b959b
+-/
 theorem evalX_toPoly_eval {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [CommSemiring R]
     [DecidableEq R] (a y : R) (f : CBivariate R) :
     (evalX (R := R) a f).eval y = (toPoly f).evalEval a y := by
@@ -624,7 +692,9 @@ theorem evalX_toPoly_eval {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Comm
     (evalX_toPoly_eval_commute (R := R) (a := a) (y := y) (hc := Commute.all a y) (f := f))
 
 /-- `X`-then-`Y` Horner full evaluation agrees with the existing evaluator over
-commutative coefficient semirings.-/
+commutative coefficient semirings.
+@isnad1 id=eq.0h4v.s5.06e5035eff7b from=translated src=- shape=624ab079 vocab=5871ce37
+-/
 theorem eval_eval_horner_x_then_y_eq_eval_eval {R : Type*}
     [BEq R] [LawfulBEq R] [Nontrivial R] [CommSemiring R] [DecidableEq R]
     (x y : R) (p : CBivariate R) :
@@ -662,7 +732,9 @@ theorem eval_eval_horner_x_then_y_eq_eval_eval {R : Type*}
 
 /--
 The `Commute` hypothesis in `evalX_toPoly_eval_commute` is necessary:
-if the identity holds for every bivariate polynomial then `a` and `y` commute.-/
+if the identity holds for every bivariate polynomial then `a` and `y` commute.
+@isnad1 id=commute.1h3v.s6.b8fd1a149650 from=translated src=- shape=c32737f1 vocab=03766b78
+-/
 theorem evalX_toPoly_eval_commute_converse
     {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R] [DecidableEq R]
     (a y : R)
@@ -691,14 +763,18 @@ theorem evalX_toPoly_eval_commute_converse
 Computable analogue of `Polynomial.Bivariate.eval_comm`:
 evaluating `Y` at `a` and then `X` at `x` agrees with first applying the
 `X = x` evaluation through the inner coefficients and then evaluating `Y`
-at `a`.-/
+at `a`.
+@isnad1 id=eq.0h4v.s6.090c790a013e from=translated src=- shape=a15cce8c vocab=8c2a313f
+-/
 theorem eval_comm {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [CommSemiring R]
     [DecidableEq R] (a x : R) (f : CBivariate R) :
     (evalY (R := R) a f).eval x = (evalX (R := R) x f).eval a := by
   rw [evalX_toPoly_eval, CPolynomial.eval_toPoly, evalY_toPoly]
 
 /--
-`leadingCoeffY` corresponds to the leading coefficient in the outer variable.-/
+`leadingCoeffY` corresponds to the leading coefficient in the outer variable.
+@isnad1 id=eq.0h2v.s5.776d9af3c2da from=translated src=- shape=0ab29d8b vocab=e272d55e
+-/
 theorem leadingCoeffY_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     (f : CBivariate R) :
     (leadingCoeffY (R := R) f).toPoly = (toPoly f).leadingCoeff := by
@@ -713,7 +789,9 @@ theorem leadingCoeffY_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [S
   simpa [CBivariate.leadingCoeffY] using h_leadingCoeffY
 
 /--
-`swap` exchanges X- and Y-exponents.-/
+`swap` exchanges X- and Y-exponents.
+@isnad1 id=eq.0h4v.s6.9f0deff44d7c from=translated src=- shape=0c67a8c1 vocab=bfeb54c6
+-/
 theorem swap_toPoly_coeff {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R] (f : CBivariate R) (i j : ℕ) :
     ((toPoly (swap (R := R) f)).coeff j).coeff i = ((toPoly f).coeff i).coeff j := by
@@ -819,7 +897,9 @@ theorem swap_toPoly_coeff {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semi
         (CPolynomial.coeff_monomial (R := R) b i ((f.val.coeff b).coeff j))
 
 /--
-`leadingCoeffX` is the Y-leading coefficient of the swapped polynomial.-/
+`leadingCoeffX` is the Y-leading coefficient of the swapped polynomial.
+@isnad1 id=eq.0h2v.s5.6063bc7e0390 from=translated src=- shape=b06074c2 vocab=9dcaf2c9
+-/
 theorem leadingCoeffX_toPoly {R : Type*} [BEq R] [LawfulBEq R] [Nontrivial R] [Semiring R]
     [DecidableEq R] (f : CBivariate R) :
     (leadingCoeffX (R := R) f).toPoly = (toPoly (swap (R := R) f)).leadingCoeff := by

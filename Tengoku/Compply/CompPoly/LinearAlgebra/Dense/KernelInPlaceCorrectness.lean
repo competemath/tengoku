@@ -59,7 +59,9 @@ private theorem foldl_scale_self_eq_const [Field F]
       rw [getD_setD_ne _ (by omega)]
       exact hagree c' (List.mem_cons_of_mem _ hc')
 
-/-- The in-place scale of a row produces the same backing array as the copying scale.-/
+/-- The in-place scale of a row produces the same backing array as the copying scale.
+@isnad1 id=eq.0h4v.s6.22fe7414768b from=translated src=- shape=8eae55b7 vocab=c9103b6b
+-/
 theorem scaleRowData_eq [Field F] (M : DenseMatrix F) (r : Nat) (factor : F) :
     scaleRowData M.cols r factor M.data = (scaleRow M r factor).data := by
   have h := foldl_scale_self_eq_const M.cols r factor M.data (List.range' 0 M.cols)
@@ -108,7 +110,9 @@ private theorem foldl_addScaled_self_eq_const [Field F]
         exact hS c' (List.mem_cons_of_mem _ hc')
 
 /-- The in-place add-scaled row produces the same backing array as the copying version,
-when the target and source rows are distinct.-/
+when the target and source rows are distinct.
+@isnad1 id=eq.1h5v.s6.1acde704dfeb from=translated src=- shape=4884ec25 vocab=ee53ad97
+-/
 theorem addScaledRowData_eq [Field F] (M : DenseMatrix F) (target source : Nat)
     (factor : F) (hts : target ≠ source) :
     addScaledRowData M.cols target source factor M.data =
@@ -152,7 +156,9 @@ private theorem foldl_swap_self_eq_const [Zero F]
         rw [getD_setD_ne _ (by omega), getD_setD_ne _ (row_col_index_ne hAB hcc hcc')]
         exact hB c' (List.mem_cons_of_mem _ hc')
 
-/-- The in-place row swap produces the same backing array as the copying swap.-/
+/-- The in-place row swap produces the same backing array as the copying swap.
+@isnad1 id=eq.0h4v.s5.56765f0228b9 from=translated src=- shape=0c89e184 vocab=6ae73a40
+-/
 theorem swapRowsData_eq [Zero F] (M : DenseMatrix F) (rowA rowB : Nat) :
     swapRowsData M.cols rowA rowB M.data = (swapRows M rowA rowB).data := by
   by_cases hAB : rowA = rowB
@@ -164,7 +170,9 @@ theorem swapRowsData_eq [Zero F] (M : DenseMatrix F) (rowA rowB : Nat) :
     simpa [swapRowsData, swapRows, hAB, get, index,
       Std.Legacy.Range.forIn_eq_forIn_range'] using h
 
-/-- The in-place pivot search agrees with the copying one.-/
+/-- The in-place pivot search agrees with the copying one.
+@isnad1 id=eq.0h4v.s5.b3a06ff2aea5 from=translated src=- shape=92e588ae vocab=58e1dcee
+-/
 theorem findPivotRowData_eq [Zero F] [BEq F] (M : DenseMatrix F) (startRow col : Nat) :
     findPivotRowData M.rows M.cols startRow col M.data = findPivotRow M startRow col := by
   simp only [findPivotRowData, findPivotRow, get, index]
@@ -198,7 +206,9 @@ private theorem forIn_eliminate_eq [Field F] (cols pivotRow pivotCol : Nat) :
         rw [← hbridge] at hih
         simpa [List.forIn_cons, hr, ← Array.getD_eq_getD_getElem?, hget] using hih
 
-/-- The in-place normalize-and-eliminate step produces the same backing array.-/
+/-- The in-place normalize-and-eliminate step produces the same backing array.
+@isnad1 id=eq.0h4v.s6.0f2b1df3dde5 from=translated src=- shape=2323f344 vocab=1b1a5362
+-/
 theorem normalizeAndEliminateData_eq [Field F] [BEq F] (M : DenseMatrix F)
     (pivotRow pivotCol : Nat) :
     normalizeAndEliminateData M.rows M.cols pivotRow pivotCol M.data
@@ -224,7 +234,9 @@ theorem normalizeAndEliminateData_eq [Field F] [BEq F] (M : DenseMatrix F)
     simpa [Std.Legacy.Range.forIn_eq_forIn_range', hrows] using heli
 
 /-- The in-place reduction loop tracks the copying reduction loop, returning the
-same reduced backing array and the same pivot columns.-/
+same reduced backing array and the same pivot columns.
+@isnad1 id=eq.0h6v.s7.4f1f0d0030cd from=translated src=- shape=e1bef0a7 vocab=dc94e69b
+-/
 theorem rrefLoopData_eq [Field F] [BEq F] :
     ∀ (fuel col row : Nat) (M : DenseMatrix F) (pivots : Array Nat),
       rrefLoopData fuel M.rows M.cols col row M.data pivots
@@ -256,7 +268,9 @@ theorem rrefLoopData_eq [Field F] [BEq F] :
               (normalizeAndEliminate (swapRows M pivotRow row) row col) (pivots.push col)
       · simp only [hguard, ite_false, Bool.false_eq_true]
 
-/-- The in-place RREF equals the copying RREF.-/
+/-- The in-place RREF equals the copying RREF.
+@isnad1 id=eq.0h2v.s5.44fb7148d64a from=translated src=- shape=a8464171 vocab=d78c7f30
+-/
 theorem rrefInPlace_eq [Field F] [BEq F] (M : DenseMatrix F) : rrefInPlace M = rref M := by
   obtain ⟨rows, cols, data⟩ := M
   have key := rrefLoopData_eq (cols + 1) 0 0 (⟨rows, cols, data⟩ : DenseMatrix F) #[]
@@ -268,7 +282,9 @@ theorem rrefInPlace_eq [Field F] [BEq F] (M : DenseMatrix F) : rrefInPlace M = r
   have hc : N.matrix.cols = cols := rrefLoop_cols _ _ _ _ _
   rw [← hr, ← hc]
 
-/-- The in-place homogeneous-kernel witness equals the copying witness.-/
+/-- The in-place homogeneous-kernel witness equals the copying witness.
+@isnad1 id=eq.0h2v.s5.1fe49ccb9c37 from=translated src=- shape=6e2533f2 vocab=26c0f38b
+-/
 theorem homogeneousWitnessInPlace_eq [Field F] [BEq F] (M : DenseMatrix F) :
     homogeneousWitnessInPlace M = homogeneousWitness M := by
   simp only [homogeneousWitnessInPlace, homogeneousWitness,

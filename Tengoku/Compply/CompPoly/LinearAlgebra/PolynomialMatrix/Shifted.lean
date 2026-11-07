@@ -84,7 +84,9 @@ private theorem shiftedEntryDegree?_eq_none_iff [Zero F] [BEq F] [LawfulBEq F]
   simp only [shiftedEntryDegree?]
   split <;> simp_all
 
-/-- A row entry has shifted degree `d` exactly when it is nonzero and `d` is its shifted degree.-/
+/-- A row entry has shifted degree `d` exactly when it is nonzero and `d` is its shifted degree.
+@isnad1 id=iff.0h5v.s6.f68fa39f1142 from=translated src=- shape=2273753b vocab=92c6377b
+-/
 theorem shiftedEntryDegree?_eq_some_iff [Zero F] [BEq F] [LawfulBEq F]
     (row : PolynomialRow F) (shift : Array Nat) (j d : Nat) :
     shiftedEntryDegree? row shift j = some d ↔
@@ -236,7 +238,9 @@ private theorem rowIsZero_iff_forall_rowGet [Zero F] [BEq F] [LawfulBEq F]
       Array.getElem?_eq_getElem (by simpa using hj), Array.getElem_toList] using
       h j (by simpa using hj)
 
-/-- Nonzero rows are exactly the rows with a shifted degree.-/
+/-- Nonzero rows are exactly the rows with a shifted degree.
+@isnad1 id=iff.0h3v.s5.7a7f6df7d9cc from=translated src=- shape=b3818af2 vocab=43ba5f1e
+-/
 theorem rowShiftedDegree?_eq_none_iff [Zero F] [BEq F] [LawfulBEq F]
     {row : PolynomialRow F} {shift : Array Nat} :
     rowShiftedDegree? row shift = none ↔ RowIsZero row := by
@@ -250,7 +254,9 @@ theorem rowShiftedDegree?_eq_none_iff [Zero F] [BEq F] [LawfulBEq F]
   · intro h j hj
     exact (shiftedEntryDegree?_eq_none_iff row shift j).2 (h j (List.mem_range.mp hj))
 
-/-- A returned shifted row degree bounds every nonzero shifted entry degree.-/
+/-- A returned shifted row degree bounds every nonzero shifted entry degree.
+@isnad1 id=le.3h6v.s5.007507558485 from=translated src=- shape=2a8ed5a5 vocab=617a1870
+-/
 theorem shiftedEntryDegree?_le_of_rowShiftedDegree?_eq_some
     [Zero F] [BEq F]
     {row : PolynomialRow F} {shift : Array Nat} {d j e : Nat}
@@ -261,7 +267,9 @@ theorem shiftedEntryDegree?_le_of_rowShiftedDegree?_eq_some
   exact rowShiftedDegreeFold_entry_le_of_some row shift (List.range row.size) none d j e
     (by simpa [rowShiftedDegree?] using hdeg) (List.mem_range.mpr hj) hentry
 
-/-- A returned shifted row degree is attained by some row entry.-/
+/-- A returned shifted row degree is attained by some row entry.
+@isnad1 id=ex.1h4v.s5.573bd761016c from=translated src=- shape=5c212380 vocab=21102014
+-/
 theorem exists_shiftedEntryDegree?_eq_of_rowShiftedDegree?_eq_some
     [Zero F] [BEq F]
     {row : PolynomialRow F} {shift : Array Nat} {d : Nat}

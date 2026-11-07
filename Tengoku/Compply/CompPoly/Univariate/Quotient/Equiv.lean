@@ -40,7 +40,9 @@ open Raw Trim
 
 variable {R : Type*} [Semiring R]
 
-/-- Well-definedness: equivalent raw polynomials map to the same `Polynomial`.-/
+/-- Well-definedness: equivalent raw polynomials map to the same `Polynomial`.
+@isnad1 id=eq.0h4v.s5.fd051df6caf0 from=translated src=- shape=c597b56f vocab=249aac3d
+-/
 theorem toPoly_resp (p q : CPolynomial.Raw R) (h : p ≈ q) :
     p.toPoly = q.toPoly := by
   ext n
@@ -61,12 +63,16 @@ noncomputable def toPoly (p : QuotientCPolynomial R) : Polynomial R :=
 def ofPoly (p : Polynomial R) : QuotientCPolynomial R :=
   Quotient.mk _ (Polynomial.toImpl p)
 
-/-- Round-trip identity: `toPoly ∘ ofPoly = id`.-/
+/-- Round-trip identity: `toPoly ∘ ofPoly = id`.
+@isnad1 id=eq.0h2v.s4.c6fad2a74ec2 from=translated src=- shape=2896fe98 vocab=bd737af6
+-/
 @[simp]
 theorem toPoly_ofPoly (p : Polynomial R) : toPoly (ofPoly p) = p := by
   simp [toPoly, ofPoly, Raw.toPoly_toImpl]
 
-/-- Round-trip identity: `ofPoly ∘ toPoly = id`.-/
+/-- Round-trip identity: `ofPoly ∘ toPoly = id`.
+@isnad1 id=eq.0h2v.s5.130dcccb2efe from=translated src=- shape=884baf0a vocab=cd9fc924
+-/
 @[simp]
 theorem ofPoly_toPoly [BEq R] [LawfulBEq R] (q : QuotientCPolynomial R) :
     ofPoly (toPoly q) = q := by

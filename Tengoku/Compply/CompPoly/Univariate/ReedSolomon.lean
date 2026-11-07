@@ -44,7 +44,9 @@ namespace Domain
 /-- Block length.-/
 abbrev n (D : Domain F) : ℕ := D.val.size
 
-/-- Indexing into the (nodup) domain array is injective on `Fin D.n`.-/
+/-- Indexing into the (nodup) domain array is injective on `Fin D.n`.
+@isnad1 id=injectiv.0h2v.s6.bcc1dcc770fe from=translated src=- shape=aaa8b246 vocab=6c1d324d
+-/
 lemma node_injective (D : Domain F) :
     Function.Injective (fun i : Fin D.n => D.val[i]) :=
   fun _ _ hxy => Fin.ext ((List.Nodup.getElem_inj D.property).mp hxy)
@@ -58,14 +60,18 @@ def messagePoly [Zero F] [BEq F] [LawfulBEq F]
   ⟨(CPolynomial.Raw.mk msg.toArray).trim,
    CPolynomial.Raw.Trim.isCanonical_trim _⟩
 
-/-- `(messagePoly msg).degree < k`.-/
+/-- `(messagePoly msg).degree < k`.
+@isnad1 id=lt.0h3v.s5.55e187dc85da from=translated src=- shape=c9513245 vocab=43cb864b
+-/
 lemma messagePoly_degree_lt [Zero F] [BEq F] [LawfulBEq F] {k : ℕ} (msg : Vector F k) :
     (messagePoly msg).degree < k :=
   CPolynomial.mem_degreeLT.mp <|
     CPolynomial.mem_degreeLT_iff_size_le.mpr
       ((CPolynomial.Raw.Trim.size_le_size msg.toArray).trans_eq msg.size_toArray)
 
-/-- `messagePoly` recovers a `CPolynomial` of degree `< k` from its bounded coefficient vector.-/
+/-- `messagePoly` recovers a `CPolynomial` of degree `< k` from its bounded coefficient vector.
+@isnad1 id=eq.1h3v.s6.a7085ddb34ef from=translated src=- shape=dc33977a vocab=47b4ccef
+-/
 lemma messagePoly_ofFn_coeff [Semiring F] [BEq F] [LawfulBEq F] (k : ℕ) (f : CPolynomial F)
     (hf : f.degree < k) : messagePoly (Vector.ofFn fun i : Fin k => f.coeff i) = f := by
   rw [CPolynomial.eq_iff_coeff]; intro j
@@ -81,7 +87,9 @@ def encode [Semiring F] [BEq F] [LawfulBEq F]
     (D : Domain F) {k : ℕ} (msg : Vector F k) : Vector F D.n :=
   ⟨D.val.map (messagePoly msg).eval, by simp only [Array.size_map, Domain.n]⟩
 
-/-- The codeword entry at node `i` is `messagePoly msg` evaluated at `D.val[i]`.-/
+/-- The codeword entry at node `i` is `messagePoly msg` evaluated at `D.val[i]`.
+@isnad1 id=eq.0h5v.s6.568caeb013b4 from=translated src=- shape=641e7b9e vocab=de9d5369
+-/
 lemma encode_get [Semiring F] [BEq F] [LawfulBEq F] (D : Domain F) {k : ℕ}
     (msg : Vector F k) (i : Fin D.n) :
     (encode D msg).get i = (messagePoly msg).eval (D.val[i]) := Array.getElem_map ..

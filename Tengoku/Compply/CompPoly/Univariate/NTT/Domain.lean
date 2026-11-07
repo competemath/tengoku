@@ -57,13 +57,21 @@ def inverse (D : Domain R) : Domain R where
 /-- Multiplicative inverse of the domain size in `R`.-/
 @[inline] def nInv (D : Domain R) : R := ((D.n : Nat) : R)⁻¹
 
+/--
+@isnad1 id=lt.0h2v.s4.7593d38f7be0 from=translated src=- shape=38fc717e vocab=38c11908
+-/
 @[simp] lemma n_pos (D : Domain R) : 0 < D.n := by
   simp [n]
 
+/--
+@isnad1 id=ne.0h2v.s4.8d0e4bf073ff from=translated src=- shape=428f6990 vocab=9515ba4b
+-/
 @[simp] lemma n_ne_zero (D : Domain R) : D.n ≠ 0 := by
   exact Nat.ne_of_gt D.n_pos
 
-/-- The size of an NTT domain is nonzero in its coefficient field.-/
+/-- The size of an NTT domain is nonzero in its coefficient field.
+@isnad1 id=ne.0h2v.s5.be5b42338571 from=translated src=- shape=7101dedf vocab=0c368b63
+-/
 theorem natCast_ne_zero (D : Domain R) : ((D.n : Nat) : R) ≠ 0 := by
   let : NeZero D.n := ⟨D.n_ne_zero⟩
   exact D.primitive.neZero'.out
@@ -79,16 +87,25 @@ def requiredLength (p q : CPolynomial.Raw R) : Nat :=
   else
     p.trim.size + q.trim.size - 1
 
+/--
+@isnad1 id=eq.1h3v.s5.3da23ecee9c6 from=translated src=- shape=185f4e05 vocab=12605f0e
+-/
 theorem requiredLength_eq_zero_of_left_trim_size_zero
     (p q : CPolynomial.Raw R) (hp : p.trim.size = 0) :
     requiredLength p q = 0 := by
   simp [requiredLength, hp]
 
+/--
+@isnad1 id=eq.1h3v.s5.6c0e954f238a from=translated src=- shape=897d6073 vocab=12605f0e
+-/
 theorem requiredLength_eq_zero_of_right_trim_size_zero
     (p q : CPolynomial.Raw R) (hq : q.trim.size = 0) :
     requiredLength p q = 0 := by
   simp [requiredLength, hq]
 
+/--
+@isnad1 id=eq.2h3v.s6.ccbe6203fb8e from=translated src=- shape=7112ebc3 vocab=b76bee68
+-/
 theorem requiredLength_eq_of_trim_size_pos
     (p q : CPolynomial.Raw R) (hp : 0 < p.trim.size) (hq : 0 < q.trim.size) :
     requiredLength p q = p.trim.size + q.trim.size - 1 := by
@@ -115,10 +132,16 @@ def bestLogN (requiredLen : Nat) : Nat :=
 @[inline] def loadNaturalArray (D : Domain R) (a : Array R) : Array R :=
   Array.ofFn (fun i : D.Idx => a.getD i.1 0)
 
+/--
+@isnad1 id=eq.0h3v.s4.724f4f6e138c from=translated src=- shape=f6ab8635 vocab=f056a52a
+-/
 @[simp] theorem size_loadNaturalArray (D : Domain R) (a : Array R) :
     (loadNaturalArray D a).size = D.n := by
   simp [loadNaturalArray]
 
+/--
+@isnad1 id=eq.1h4v.s6.605807dffeb6 from=translated src=- shape=92bdc37f vocab=b7e69578
+-/
 @[simp] theorem getElem_loadNaturalArray (D : Domain R) (a : Array R) (i : Nat)
     (hi : i < (loadNaturalArray D a).size) :
     (loadNaturalArray D a)[i] = a.getD i 0 := by

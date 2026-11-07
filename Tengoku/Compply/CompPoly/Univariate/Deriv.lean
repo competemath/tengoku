@@ -34,7 +34,9 @@ def derivative [Semiring R] [BEq R] [LawfulBEq R]
       fun i c => c * (Nat.cast (i + 1) : R)
   ⟨(Raw.mk arr).trim, Raw.Trim.isCanonical_trim _⟩
 
-/-- Coefficient formula for the derivative.-/
+/-- Coefficient formula for the derivative.
+@isnad1 id=eq.0h3v.s6.b2782b604250 from=translated src=- shape=6c6b96c2 vocab=a97c2c5a
+-/
 theorem coeff_derivative [Semiring R] [BEq R] [LawfulBEq R]
     (p : CPolynomial R) (n : ℕ) :
     coeff (derivative p) n = coeff p (n + 1) * (↑(n + 1) : R) := by
@@ -53,7 +55,9 @@ theorem coeff_derivative [Semiring R] [BEq R] [LawfulBEq R]
     · omega
     · simp
 
-/-- The derivative of the zero polynomial is zero.-/
+/-- The derivative of the zero polynomial is zero.
+@isnad1 id=eq.0h1v.s6.9b5e21620519 from=translated src=- shape=ccb2376b vocab=5d39c93b
+-/
 theorem derivative_zero [Semiring R] [BEq R] [LawfulBEq R] :
     derivative (0 : CPolynomial R) = 0 := by
   rw [eq_zero_iff_coeff_zero]
@@ -61,7 +65,9 @@ theorem derivative_zero [Semiring R] [BEq R] [LawfulBEq R] :
   rw [coeff_derivative, CPolynomial.coeff_zero]
   simp
 
-/-- The derivative of a constant is zero.-/
+/-- The derivative of a constant is zero.
+@isnad1 id=eq.0h2v.s5.872c45120eb1 from=translated src=- shape=fb630f1a vocab=b05a45e2
+-/
 theorem derivative_C [Semiring R] [BEq R] [LawfulBEq R] (r : R) :
     derivative (C r) = 0 := by
   rw [eq_zero_iff_coeff_zero]
@@ -69,7 +75,9 @@ theorem derivative_C [Semiring R] [BEq R] [LawfulBEq R] (r : R) :
   rw [coeff_derivative, CPolynomial.coeff_C]
   simp
 
-/-- The derivative of a monomial.-/
+/-- The derivative of a monomial.
+@isnad1 id=eq.0h3v.s6.9ed8e53bb03d from=translated src=- shape=a4c0c1ad vocab=e24ed8fa
+-/
 theorem derivative_monomial [Semiring R] [BEq R] [LawfulBEq R]
     [DecidableEq R] (n : ℕ) (r : R) :
     derivative (monomial n r) =
@@ -82,7 +90,9 @@ theorem derivative_monomial [Semiring R] [BEq R] [LawfulBEq R]
   · have : n = 0 := by omega
     simp [this]
 
-/-- The derivative distributes over addition.-/
+/-- The derivative distributes over addition.
+@isnad1 id=eq.0h3v.s7.bf8d68174640 from=translated src=- shape=d6f30d67 vocab=9b22d2c1
+-/
 theorem derivative_add [Semiring R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (p q : CPolynomial R) :
     derivative (p + q) = derivative p + derivative q := by
@@ -91,7 +101,9 @@ theorem derivative_add [Semiring R] [BEq R] [LawfulBEq R] [DecidableEq R]
   simp only [coeff_derivative, coeff_add]
   exact right_distrib _ _ _
 
-/-- The computable derivative matches Mathlib's `Polynomial.derivative` under `toPoly`.-/
+/-- The computable derivative matches Mathlib's `Polynomial.derivative` under `toPoly`.
+@isnad1 id=eq.0h2v.s7.3386ffb8dad8 from=translated src=- shape=d66bb44b vocab=5c633802
+-/
 theorem derivative_toPoly [Semiring R] [BEq R] [LawfulBEq R] (p : CPolynomial R) :
     (derivative p).toPoly = Polynomial.derivative (R := R) p.toPoly := by
   apply Polynomial.ext
@@ -100,7 +112,9 @@ theorem derivative_toPoly [Semiring R] [BEq R] [LawfulBEq R] (p : CPolynomial R)
     Raw.coeff_toPoly, CPolynomial.coeff_derivative]
   push_cast; ring_nf
 
-/-- The derivative satisfies the Leibniz product rule.-/
+/-- The derivative satisfies the Leibniz product rule.
+@isnad1 id=eq.0h3v.s7.81083d2f715b from=translated src=- shape=72bbf9b2 vocab=f2ae81eb
+-/
 theorem derivative_mul [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] (p q : CPolynomial R) :
     derivative (p * q) = derivative p * q + p * derivative q := by
   apply ringEquiv.injective
@@ -113,7 +127,9 @@ def taylor [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (a : R) (p : CPolynomial R) : CPolynomial R :=
   (support p).sum fun m => C (p.coeff m) * (X + C a) ^ m
 
-/-- The computable Taylor shift matches `Polynomial.taylor` under `toPoly`.-/
+/-- The computable Taylor shift matches `Polynomial.taylor` under `toPoly`.
+@isnad1 id=eq.0h3v.s7.62d70a8f74c1 from=translated src=- shape=b67ed651 vocab=db4cf57d
+-/
 theorem taylor_toPoly [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (a : R) (p : CPolynomial R) :
     (taylor a p).toPoly = Polynomial.taylor a p.toPoly := by
@@ -124,13 +140,17 @@ theorem taylor_toPoly [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [Decidab
   intro m _
   rw [toPoly_mul, toPoly_pow, toPoly_add, C_toPoly, X_toPoly, C_toPoly, coeff_toPoly]
 
-/-- The Taylor shift of zero is zero.-/
+/-- The Taylor shift of zero is zero.
+@isnad1 id=eq.0h2v.s6.6a7951dec62b from=translated src=- shape=d5691dee vocab=f28741cb
+-/
 theorem taylor_zero [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (a : R) : taylor a (0 : CPolynomial R) = 0 := by
   unfold taylor
   rw [(support_empty_iff 0).mpr rfl, Finset.sum_empty]
 
-/-- The constant coefficient of the Taylor shift is evaluation at the shift point.-/
+/-- The constant coefficient of the Taylor shift is evaluation at the shift point.
+@isnad1 id=eq.0h3v.s5.37451cbb4bf2 from=translated src=- shape=1f031930 vocab=1be13ad9
+-/
 theorem taylor_coeff_zero [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (a : R) (p : CPolynomial R) : coeff (taylor a p) 0 = eval a p := by
   rw [coeff_toPoly, taylor_toPoly, Polynomial.taylor_coeff_zero, eval_toPoly]

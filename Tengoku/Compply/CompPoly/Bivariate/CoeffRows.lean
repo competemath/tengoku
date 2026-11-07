@@ -35,7 +35,9 @@ def toCoeffRow [Zero F] (width : Nat) (Q : CBivariate F) :
     PolynomialRow F :=
   (List.range width).map (fun j ↦ CPolynomial.coeff Q j) |>.toArray
 
-/-- Truncated coefficient rows have the requested width.-/
+/-- Truncated coefficient rows have the requested width.
+@isnad1 id=eq.0h3v.s4.3515fa74fc88 from=translated src=- shape=8e536f04 vocab=946544a0
+-/
 theorem toCoeffRow_size [Zero F] (width : Nat) (Q : CBivariate F) :
     (toCoeffRow width Q).size = width := by
   simp [toCoeffRow]
@@ -44,7 +46,9 @@ theorem toCoeffRow_size [Zero F] (width : Nat) (Q : CBivariate F) :
 def weightedDegreeShift (w width : Nat) : Array Nat :=
   (List.range width).map (fun j ↦ j * w) |>.toArray
 
-/-- Coefficient-row conversion preserves finite `Y` coefficients below row width.-/
+/-- Coefficient-row conversion preserves finite `Y` coefficients below row width.
+@isnad1 id=eq.1h4v.s6.3a140363f0c7 from=translated src=- shape=12082179 vocab=ec44d3fa
+-/
 theorem coeff_ofCoeffRow_of_lt [Zero F] [BEq F] [LawfulBEq F]
     (row : PolynomialRow F) {i j : Nat} (hj : j < row.size) :
     CBivariate.coeff (ofCoeffRow row) i j = CPolynomial.coeff (row.getD j 0) i := by
@@ -53,7 +57,9 @@ theorem coeff_ofCoeffRow_of_lt [Zero F] [BEq F] [LawfulBEq F]
   unfold CPolynomial.ofArray CPolynomial.coeff
   rw [CPolynomial.Raw.Trim.coeff_eq_coeff]
 
-/-- Coefficients past the row width vanish after row-to-bivariate conversion.-/
+/-- Coefficients past the row width vanish after row-to-bivariate conversion.
+@isnad1 id=eq.1h4v.s5.329b90ebd040 from=translated src=- shape=60f2b031 vocab=f3480b52
+-/
 theorem coeff_ofCoeffRow_of_size_le [Zero F] [BEq F] [LawfulBEq F]
     (row : PolynomialRow F) {i j : Nat} (hj : row.size ≤ j) :
     CBivariate.coeff (ofCoeffRow row) i j = 0 := by
@@ -63,7 +69,9 @@ theorem coeff_ofCoeffRow_of_size_le [Zero F] [BEq F] [LawfulBEq F]
   change CPolynomial.coeff (CPolynomial.Raw.coeff row j) i = 0
   simpa [CPolynomial.Raw.coeff, hj] using CPolynomial.coeff_zero (R := F) i
 
-/-- Row shifted degree for the Lee shift matches weighted degree of the bivariate view.-/
+/-- Row shifted degree for the Lee shift matches weighted degree of the bivariate view.
+@isnad1 id=eq.1h4v.s6.a6fb11f0c34b from=translated src=- shape=d87d5023 vocab=cb588460
+-/
 theorem rowShiftedDegree?_eq_natWeightedDegree_ofCoeffRow
     [Field F] [BEq F] [LawfulBEq F]
     (row : PolynomialRow F) (w d : Nat)
@@ -141,7 +149,9 @@ theorem rowShiftedDegree?_eq_natWeightedDegree_ofCoeffRow
       _ = CBivariate.natWeightedDegree (ofCoeffRow row) 1 w := by
         rfl
 
-/-- Weighted-degree bounded rows convert to weighted-degree bounded bivariate polynomials.-/
+/-- Weighted-degree bounded rows convert to weighted-degree bounded bivariate polynomials.
+@isnad1 id=le.2h5v.s6.671fee6584e9 from=translated src=- shape=f0d5b4bc vocab=77f1c1ed
+-/
 theorem natWeightedDegree_ofCoeffRow_le_of_rowShiftedDegree?_le
     [Field F] [BEq F] [LawfulBEq F]
     (row : PolynomialRow F) (w bound d : Nat)

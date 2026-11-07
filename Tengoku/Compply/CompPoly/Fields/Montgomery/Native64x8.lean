@@ -52,7 +52,9 @@ private theorem toNat_zero : (0 : UInt64).toNat = 0 := rfl
 
 /-- Add-with-carry, existential form: the low limb and the carry-out are named as fresh
 naturals together with their defining equations, so that a chain of them is a linear system
-over plain variables.-/
+over plain variables.
+@isnad1 id=ex.3h3v.s7.b14f9ce0f219 from=translated src=- shape=f06596c4 vocab=c41c6977
+-/
 theorem adc_spec (x y c : UInt64) (hx : x.toNat < 2 ^ 32) (hy : y.toNat < 2 ^ 32)
     (hc : c.toNat ≤ 1) :
     ∃ s co : ℕ, (adcLo x y c).toNat = s ∧ (adcCo x y c).toNat = co ∧
@@ -62,7 +64,9 @@ theorem adc_spec (x y c : UInt64) (hx : x.toNat < 2 ^ 32) (hy : y.toNat < 2 ^ 32
     UInt64.toNat_shiftRight, UInt64.toNat_ofNat, Nat.reduceMod, Nat.reducePow, land_mask32]
   omega
 
-/-- Add-with-carry when the first summand is one bit wider than a limb.-/
+/-- Add-with-carry when the first summand is one bit wider than a limb.
+@isnad1 id=ex.3h3v.s7.24a97de0ca2f from=translated src=- shape=f06596c4 vocab=c41c6977
+-/
 theorem adc_spec_wide (x y c : UInt64) (hx : x.toNat < 2 ^ 33) (hy : y.toNat < 2 ^ 32)
     (hc : c.toNat ≤ 1) :
     ∃ s co : ℕ, (adcLo x y c).toNat = s ∧ (adcCo x y c).toNat = co ∧
@@ -72,7 +76,9 @@ theorem adc_spec_wide (x y c : UInt64) (hx : x.toNat < 2 ^ 33) (hy : y.toNat < 2
     UInt64.toNat_shiftRight, UInt64.toNat_ofNat, Nat.reduceMod, Nat.reducePow, land_mask32]
   omega
 
-/-- Subtract-with-borrow, existential form.-/
+/-- Subtract-with-borrow, existential form.
+@isnad1 id=ex.3h3v.s7.ac5a9aa53a22 from=translated src=- shape=71d88f49 vocab=4527b507
+-/
 theorem sbb_spec (x y b : UInt64) (hx : x.toNat < 2 ^ 32) (hy : y.toNat < 2 ^ 32)
     (hb : b.toNat ≤ 1) :
     ∃ m bo : ℕ, (sbbLo x y b).toNat = m ∧ (sbbBo x y b).toNat = bo ∧
@@ -83,7 +89,9 @@ theorem sbb_spec (x y b : UInt64) (hx : x.toNat < 2 ^ 32) (hy : y.toNat < 2 ^ 32
   omega
 
 /-- Multiply-accumulate, existential form.  The accumulator, both factors and the carry-in
-all fit in 32 bits, so `t + x * y + c` cannot overflow a 64-bit word.-/
+all fit in 32 bits, so `t + x * y + c` cannot overflow a 64-bit word.
+@isnad1 id=ex.4h4v.s8.dbbbf3f06f9f from=translated src=- shape=88aa5de5 vocab=0edb13ef
+-/
 theorem mac_spec (t x y c : UInt64) (ht : t.toNat < 2 ^ 32) (hx : x.toNat < 2 ^ 32)
     (hy : y.toNat < 2 ^ 32) (hc : c.toNat < 2 ^ 32) :
     ∃ lo hi : ℕ, (macLo t x y c).toNat = lo ∧ (macHi t x y c).toNat = hi ∧
@@ -97,7 +105,9 @@ theorem mac_spec (t x y c : UInt64) (ht : t.toNat < 2 ^ 32) (hx : x.toNat < 2 ^ 
   generalize x.toNat * y.toNat = p at hp ⊢
   omega
 
-/-- The Montgomery multiplier agrees with its natural-number specification.-/
+/-- The Montgomery multiplier agrees with its natural-number specification.
+@isnad1 id=eq.2h2v.s6.219950a14576 from=translated src=- shape=87d9c7a9 vocab=580dfb91
+-/
 theorem montM_toNat (s negInv : UInt64) (hs : s.toNat < 2 ^ 32) (hn : negInv.toNat < 2 ^ 32) :
     (montM s negInv).toNat = s.toNat * negInv.toNat % 2 ^ 32 := by
   have hp : s.toNat * negInv.toNat ≤ (2 ^ 32 - 1) * (2 ^ 32 - 1) :=
@@ -108,21 +118,33 @@ theorem montM_toNat (s negInv : UInt64) (hs : s.toNat < 2 ^ 32) (hn : negInv.toN
   generalize s.toNat * negInv.toNat = p at hp ⊢
   omega
 
+/--
+@isnad1 id=lt.0h3v.s5.4cc6f9474b9e from=translated src=- shape=ada8ed23 vocab=f554d19b
+-/
 theorem adcLo_lt (x y c : UInt64) : (adcLo x y c).toNat < 2 ^ 32 := by
   simp only [adcLo, mask, UInt64.toNat_and, UInt64.toNat_ofNat, Nat.reducePow,
     Nat.reduceMod, land_mask32]
   omega
 
+/--
+@isnad1 id=lt.0h3v.s5.6c5f7149fefd from=translated src=- shape=ada8ed23 vocab=82712d81
+-/
 theorem sbbLo_lt (x y b : UInt64) : (sbbLo x y b).toNat < 2 ^ 32 := by
   simp only [sbbLo, mask, UInt64.toNat_and, UInt64.toNat_ofNat, Nat.reducePow,
     Nat.reduceMod, land_mask32]
   omega
 
+/--
+@isnad1 id=lt.0h4v.s5.cade33a97eb6 from=translated src=- shape=924b2438 vocab=c31e8450
+-/
 theorem macLo_lt (t x y c : UInt64) : (macLo t x y c).toNat < 2 ^ 32 := by
   simp only [macLo, mask, UInt64.toNat_and, UInt64.toNat_ofNat, Nat.reducePow,
     Nat.reduceMod, land_mask32]
   omega
 
+/--
+@isnad1 id=lt.0h2v.s5.7bc6069495c9 from=translated src=- shape=bd6474fb vocab=04529a2b
+-/
 theorem montM_lt (s negInv : UInt64) : (montM s negInv).toNat < 2 ^ 32 := by
   simp only [montM, mask, UInt64.toNat_and, UInt64.toNat_ofNat, Nat.reducePow,
     Nat.reduceMod, land_mask32]
@@ -132,28 +154,48 @@ theorem montM_lt (s negInv : UInt64) : (montM s negInv).toNat < 2 ^ 32 := by
 
 namespace Limbs8
 
+/--
+@isnad1 id=bounded.0h0v.s1.17e94922de53 from=translated src=- shape=49959d42 vocab=3dcc321b
+-/
 theorem zero_bounded : zero.Bounded := by
   simp only [Bounded, zero, toNat_zero]
   norm_num
 
+/--
+@isnad1 id=eq.0h0v.s3.8d24f45656ad from=translated src=- shape=b0ae1d2b vocab=68d54eb6
+-/
 theorem zero_toNat : zero.toNat = 0 := by
   simp only [toNat, zero, toNat_zero]
 
+/--
+@isnad1 id=bounded.0h0v.s1.acdcba1e48d4 from=translated src=- shape=49959d42 vocab=fd6592ae
+-/
 theorem one_bounded : one.Bounded := by decide
 
+/--
+@isnad1 id=eq.0h0v.s3.4dad203d9688 from=translated src=- shape=b0ae1d2b vocab=34a23ec4
+-/
 theorem one_toNat : one.toNat = 1 := by decide
 
+/--
+@isnad1 id=bounded.0h1v.s2.a841b835da11 from=translated src=- shape=76a08d12 vocab=9b059d03
+-/
 theorem ofNat_bounded (n : ℕ) : (ofNat n).Bounded := by
   simp only [Bounded, ofNat, UInt64.toNat_ofNat', land_mask32]
   omega
 
+/--
+@isnad1 id=eq.0h1v.s5.2641afabae7d from=translated src=- shape=2d842e3a vocab=e51c28b6
+-/
 theorem ofNat_toNat (n : ℕ) : (ofNat n).toNat = n % 2 ^ 256 := by
   simp only [toNat, ofNat, UInt64.toNat_ofNat', land_mask32]
   omega
 
 end Limbs8
 
-/-- A recomposed value with 32-bit limbs stays below `2 ^ 256`.-/
+/-- A recomposed value with 32-bit limbs stays below `2 ^ 256`.
+@isnad1 id=lt.8h8v.s9.2db4e568c4ab from=translated src=- shape=0028dcc7 vocab=b9e5bafd
+-/
 theorem sum8_lt {a0 a1 a2 a3 a4 a5 a6 a7 : ℕ} (h0 : a0 < 2 ^ 32) (h1 : a1 < 2 ^ 32)
     (h2 : a2 < 2 ^ 32) (h3 : a3 < 2 ^ 32) (h4 : a4 < 2 ^ 32) (h5 : a5 < 2 ^ 32)
     (h6 : a6 < 2 ^ 32) (h7 : a7 < 2 ^ 32) :
@@ -161,7 +203,9 @@ theorem sum8_lt {a0 a1 a2 a3 a4 a5 a6 a7 : ℕ} (h0 : a0 < 2 ^ 32) (h1 : a1 < 2 
       2 ^ 224 * a7 < 2 ^ 256 := by
   omega
 
-/-- Bounded limb vectors are determined by their value.-/
+/-- Bounded limb vectors are determined by their value.
+@isnad1 id=eq.3h2v.s4.6bb567213086 from=translated src=- shape=421c4a91 vocab=26d9900d
+-/
 theorem Limbs8.ext_of_toNat {x y : Limbs8} (hx : x.Bounded) (hy : y.Bounded)
     (h : x.toNat = y.toNat) : x = y := by
   obtain ⟨hx0, hx1, hx2, hx3, hx4, hx5, hx6, hx7⟩ := hx
@@ -182,7 +226,9 @@ theorem Limbs8.ext_of_toNat {x y : Limbs8} (hx : x.Bounded) (hy : y.Bounded)
     UInt64.toNat_inj.mp e3, UInt64.toNat_inj.mp e4, UInt64.toNat_inj.mp e5,
     UInt64.toNat_inj.mp e6, UInt64.toNat_inj.mp e7⟩
 
-/-- A bounded eight-limb value is below `2 ^ 256`.-/
+/-- A bounded eight-limb value is below `2 ^ 256`.
+@isnad1 id=lt.1h1v.s5.f89e4bbee21f from=translated src=- shape=fdf25a47 vocab=d0030201
+-/
 theorem Limbs8.toNat_lt {x : Limbs8} (hx : x.Bounded) : x.toNat < 2 ^ 256 := by
   obtain ⟨h0, h1, h2, h3, h4, h5, h6, h7⟩ := hx
   exact sum8_lt h0 h1 h2 h3 h4 h5 h6 h7
@@ -194,7 +240,9 @@ naturals and the `y` slots are arbitrary, so `carry_chain_sum` serves both the
 add-with-carry chains and the multiply-accumulate chains of CIOS, where `yᵢ` is a limb
 product. -/
 
-/-- Weighted telescoping of an eight-step carry chain.-/
+/-- Weighted telescoping of an eight-step carry chain.
+@isnad1 id=eq.8h33v.s10.29f4a20377e9 from=translated src=- shape=202a8a4b vocab=30ba1354
+-/
 theorem carry_chain_sum {x0 x1 x2 x3 x4 x5 x6 x7 y0 y1 y2 y3 y4 y5 y6 y7 : ℕ}
     {s0 s1 s2 s3 s4 s5 s6 s7 cin c0 c1 c2 c3 c4 c5 c6 c7 : ℕ}
     (e0 : s0 + 2 ^ 32 * c0 = x0 + y0 + cin)
@@ -213,7 +261,9 @@ theorem carry_chain_sum {x0 x1 x2 x3 x4 x5 x6 x7 y0 y1 y2 y3 y4 y5 y6 y7 : ℕ}
       2 ^ 192 * y6 + 2 ^ 224 * y7) + cin := by
   omega
 
-/-- Weighted telescoping of an eight-step borrow chain.-/
+/-- Weighted telescoping of an eight-step borrow chain.
+@isnad1 id=eq.8h33v.s10.c4984264f7d7 from=translated src=- shape=05ce02af vocab=30ba1354
+-/
 theorem borrow_chain_sum {x0 x1 x2 x3 x4 x5 x6 x7 y0 y1 y2 y3 y4 y5 y6 y7 : ℕ}
     {m0 m1 m2 m3 m4 m5 m6 m7 bin b0 b1 b2 b3 b4 b5 b6 b7 : ℕ}
     (e0 : m0 + y0 + bin = x0 + 2 ^ 32 * b0)
@@ -271,12 +321,17 @@ private theorem sub_of_borrow_one {A B Q D E c : ℕ} (hD : D + B = A + 2 ^ 256 
 
 /-! ## Limbwise addition and subtraction -/
 
+/--
+@isnad1 id=bounded.0h2v.s3.7b5a84b0eb35 from=translated src=- shape=b794339c vocab=47661a1e
+-/
 theorem addLimbs_bounded (a b : Limbs8) : (addLimbs a b).Bounded := by
   simp only [addLimbs, Limbs8.Bounded]
   exact ⟨adcLo_lt _ _ _, adcLo_lt _ _ _, adcLo_lt _ _ _, adcLo_lt _ _ _,
     adcLo_lt _ _ _, adcLo_lt _ _ _, adcLo_lt _ _ _, adcLo_lt _ _ _⟩
 
-/-- The limbwise sum and the discarded top carry recompose the sum of the inputs.-/
+/-- The limbwise sum and the discarded top carry recompose the sum of the inputs.
+@isnad1 id=ex.2h2v.s6.929e11113815 from=translated src=- shape=fdbfa220 vocab=6026ac12
+-/
 theorem addLimbs_toNat (a b : Limbs8) (ha : a.Bounded) (hb : b.Bounded) :
     ∃ c : ℕ, c ≤ 1 ∧ (addLimbs a b).toNat + 2 ^ 256 * c = a.toNat + b.toNat := by
   obtain ⟨ha0, ha1, ha2, ha3, ha4, ha5, ha6, ha7⟩ := ha
@@ -304,12 +359,17 @@ theorem addLimbs_toNat (a b : Limbs8) (ha : a.Bounded) (hb : b.Bounded) :
   simp only [Nat.add_zero] at h
   exact h
 
+/--
+@isnad1 id=bounded.0h2v.s3.d3192af27bf1 from=translated src=- shape=b794339c vocab=efc8b204
+-/
 theorem subLimbs_bounded (a b : Limbs8) : (subLimbs a b).Bounded := by
   simp only [subLimbs, Limbs8.Bounded]
   exact ⟨sbbLo_lt _ _ _, sbbLo_lt _ _ _, sbbLo_lt _ _ _, sbbLo_lt _ _ _,
     sbbLo_lt _ _ _, sbbLo_lt _ _ _, sbbLo_lt _ _ _, sbbLo_lt _ _ _⟩
 
-/-- The limbwise difference and the final borrow recompose the difference of the inputs.-/
+/-- The limbwise difference and the final borrow recompose the difference of the inputs.
+@isnad1 id=and.2h2v.s6.f2e324351735 from=translated src=- shape=bc79dc44 vocab=2af0bc29
+-/
 theorem subLimbs_spec (a b : Limbs8) (ha : a.Bounded) (hb : b.Bounded) :
     (subBorrow a b).toNat ≤ 1 ∧
       (subLimbs a b).toNat + b.toNat = a.toNat + 2 ^ 256 * (subBorrow a b).toNat := by
@@ -343,13 +403,18 @@ theorem subLimbs_spec (a b : Limbs8) (ha : a.Bounded) (hb : b.Bounded) :
 
 /-! ## Conditional subtraction -/
 
+/--
+@isnad1 id=bounded.1h2v.s3.b5c8191d8620 from=translated src=- shape=ae030c3b vocab=f60de1da
+-/
 theorem condSub_bounded (q t : Limbs8) (ht : t.Bounded) : (condSub q t).Bounded := by
   simp only [condSub]
   split
   · exact subLimbs_bounded t q
   · exact ht
 
-/-- `condSub` subtracts the modulus exactly when the input is at least the modulus.-/
+/-- `condSub` subtracts the modulus exactly when the input is at least the modulus.
+@isnad1 id=eq.2h2v.s5.fbc7cccf39f8 from=translated src=- shape=9dc5aa9c vocab=76df2721
+-/
 theorem condSub_toNat (q t : Limbs8) (hq : q.Bounded) (ht : t.Bounded) :
     (condSub q t).toNat = if t.toNat < q.toNat then t.toNat else t.toNat - q.toNat := by
   obtain ⟨hbo, hchain⟩ := subLimbs_spec t q ht hq
@@ -363,7 +428,9 @@ theorem condSub_toNat (q t : Limbs8) (hq : q.Bounded) (ht : t.Bounded) :
     rw [show (subBorrow t q).toNat = 1 by omega, Nat.mul_one] at hchain
     exact cond_of_borrow_one hchain hD
 
-/-- `condSub` returns a canonical representative for inputs below `2 * q`.-/
+/-- `condSub` returns a canonical representative for inputs below `2 * q`.
+@isnad1 id=lt.3h2v.s5.62c9b3c68fbf from=translated src=- shape=46a7910c vocab=ae97d10d
+-/
 theorem condSub_lt (q t : Limbs8) (hq : q.Bounded) (ht : t.Bounded)
     (h : t.toNat < 2 * q.toNat) : (condSub q t).toNat < q.toNat := by
   rw [condSub_toNat q t hq ht]
@@ -371,18 +438,29 @@ theorem condSub_lt (q t : Limbs8) (hq : q.Bounded) (ht : t.Bounded)
 
 /-! ## Field operations -/
 
+/--
+@isnad1 id=bounded.0h3v.s3.e7108212f2b9 from=translated src=- shape=eba0c72b vocab=67a9c515
+-/
 theorem add_bounded (q a b : Limbs8) : (add q a b).Bounded :=
   condSub_bounded _ _ (addLimbs_bounded a b)
 
+/--
+@isnad1 id=bounded.0h3v.s3.b499435696a7 from=translated src=- shape=eba0c72b vocab=2bdb2c15
+-/
 theorem sub_bounded (q a b : Limbs8) : (sub q a b).Bounded := by
   simp only [sub]
   split
   · exact subLimbs_bounded a b
   · exact addLimbs_bounded _ _
 
+/--
+@isnad1 id=bounded.0h2v.s3.b68409dddd6c from=translated src=- shape=b794339c vocab=367e70d1
+-/
 theorem neg_bounded (q a : Limbs8) : (neg q a).Bounded := sub_bounded _ _ _
 
-/-- Modular addition is correct for canonical inputs of a modulus below `2 ^ 255`.-/
+/-- Modular addition is correct for canonical inputs of a modulus below `2 ^ 255`.
+@isnad1 id=eq.6h3v.s6.9d7ec19991b9 from=translated src=- shape=04ed2bd2 vocab=4ca54186
+-/
 theorem add_toNat (q a b : Limbs8) (hq : q.Bounded) (ha : a.Bounded) (hb : b.Bounded)
     (hq2 : 2 * q.toNat < 2 ^ 256) (haq : a.toNat < q.toNat) (hbq : b.toNat < q.toNat) :
     (add q a b).toNat = (a.toNat + b.toNat) % q.toNat := by
@@ -394,13 +472,18 @@ theorem add_toNat (q a b : Limbs8) (hq : q.Bounded) (ha : a.Bounded) (hb : b.Bou
   rw [hsum] at hlt
   exact cond_eq_mod hlt
 
+/--
+@isnad1 id=lt.6h3v.s6.a3205d559b20 from=translated src=- shape=32fb3fb8 vocab=52bd7c88
+-/
 theorem add_lt (q a b : Limbs8) (hq : q.Bounded) (ha : a.Bounded) (hb : b.Bounded)
     (hq2 : 2 * q.toNat < 2 ^ 256) (haq : a.toNat < q.toNat) (hbq : b.toNat < q.toNat) :
     (add q a b).toNat < q.toNat := by
   rw [add_toNat q a b hq ha hb hq2 haq hbq]
   exact Nat.mod_lt _ (by omega)
 
-/-- Modular subtraction is correct for canonical inputs of a modulus below `2 ^ 255`.-/
+/-- Modular subtraction is correct for canonical inputs of a modulus below `2 ^ 255`.
+@isnad1 id=eq.6h3v.s6.2f9771af490a from=translated src=- shape=548fd46e vocab=703078c1
+-/
 theorem sub_toNat (q a b : Limbs8) (hq : q.Bounded) (ha : a.Bounded) (hb : b.Bounded)
     (hq2 : 2 * q.toNat < 2 ^ 256) (haq : a.toNat < q.toNat) (hbq : b.toNat < q.toNat) :
     (sub q a b).toNat = (a.toNat + (q.toNat - b.toNat)) % q.toNat := by
@@ -417,13 +500,18 @@ theorem sub_toNat (q a b : Limbs8) (hq : q.Bounded) (ha : a.Bounded) (hb : b.Bou
     exact sub_of_borrow_one hchain hchainE hD
       (Limbs8.toNat_lt (addLimbs_bounded _ _)) hbq haq hq2
 
+/--
+@isnad1 id=lt.6h3v.s6.16da5ee20749 from=translated src=- shape=32fb3fb8 vocab=f64931e2
+-/
 theorem sub_lt (q a b : Limbs8) (hq : q.Bounded) (ha : a.Bounded) (hb : b.Bounded)
     (hq2 : 2 * q.toNat < 2 ^ 256) (haq : a.toNat < q.toNat) (hbq : b.toNat < q.toNat) :
     (sub q a b).toNat < q.toNat := by
   rw [sub_toNat q a b hq ha hb hq2 haq hbq]
   exact Nat.mod_lt _ (by omega)
 
-/-- Modular negation is correct for canonical inputs of a modulus below `2 ^ 255`.-/
+/-- Modular negation is correct for canonical inputs of a modulus below `2 ^ 255`.
+@isnad1 id=eq.4h2v.s6.f5b268a2edab from=translated src=- shape=091c38ce vocab=96376227
+-/
 theorem neg_toNat (q a : Limbs8) (hq : q.Bounded) (ha : a.Bounded)
     (hq2 : 2 * q.toNat < 2 ^ 256) (haq : a.toNat < q.toNat) :
     (neg q a).toNat = (q.toNat - a.toNat) % q.toNat := by
@@ -431,6 +519,9 @@ theorem neg_toNat (q a : Limbs8) (hq : q.Bounded) (ha : a.Bounded)
   rw [sub_toNat q Limbs8.zero a hq Limbs8.zero_bounded ha hq2
     (by rw [Limbs8.zero_toNat]; omega) haq, Limbs8.zero_toNat, Nat.zero_add]
 
+/--
+@isnad1 id=lt.4h2v.s6.0cfed5235a55 from=translated src=- shape=fcb31585 vocab=b48cd9e3
+-/
 theorem neg_lt (q a : Limbs8) (hq : q.Bounded) (ha : a.Bounded)
     (hq2 : 2 * q.toNat < 2 ^ 256) (haq : a.toNat < q.toNat) : (neg q a).toNat < q.toNat :=
   sub_lt q Limbs8.zero a hq Limbs8.zero_bounded ha hq2

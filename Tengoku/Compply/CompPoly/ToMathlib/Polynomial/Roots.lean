@@ -25,7 +25,9 @@ namespace Polynomial
 
 variable {R : Type*}
 
-/-- `∏ i ∈ s, (X - aᵢ)` divides `p` when the distinct `aᵢ` are all roots of `p`.-/
+/-- `∏ i ∈ s, (X - aᵢ)` divides `p` when the distinct `aᵢ` are all roots of `p`.
+@isnad1 id=dvd.2h5v.s8.0911c0e750a8 from=translated src=- shape=67404f8e vocab=ba8b0e2c
+-/
 lemma prod_X_sub_C_dvd [Field R]
     {ι : Type*} (s : Finset ι) (a : ι → R) (hinj : Set.InjOn a s)
     (p : R[X]) (hr : ∀ i ∈ s, p.eval (a i) = 0) :
@@ -35,7 +37,9 @@ lemma prod_X_sub_C_dvd [Field R]
       isCoprime_X_sub_C_of_isUnit_sub (sub_ne_zero.mpr (hij <| hinj hi hj ·)).isUnit)
     (fun i hi => dvd_iff_isRoot.mpr (hr i hi))
 
-/-- A nonzero `v` vanishes at at most `v.natDegree` of the distinct points.-/
+/-- A nonzero `v` vanishes at at most `v.natDegree` of the distinct points.
+@isnad1 id=le.2h5v.s7.6ed5833903f6 from=translated src=- shape=5461d0c5 vocab=698807eb
+-/
 lemma card_eval_zero_le_natDegree [CommRing R] [IsDomain R]
     {ι : Type*} [DecidableEq R] (s : Finset ι) (a : ι → R)
     (hinj : Set.InjOn a s) (v : R[X]) (hv : v ≠ 0) :
@@ -46,7 +50,9 @@ lemma card_eval_zero_le_natDegree [CommRing R] [IsDomain R]
   exact (mem_roots hv).mpr (Finset.mem_filter.mp hi).2
 
 /-- When `f, b` agree off `E ⊆ s`, the product `∏_{i∈s}(X−aᵢ)` divides
-`(∏_{i∈E}(X−aᵢ))·(f − b)`.-/
+`(∏_{i∈E}(X−aᵢ))·(f − b)`.
+@isnad1 id=dvd.3h7v.s9.37ca1c9a8e5e from=translated src=- shape=c2a81d15 vocab=c8a934d7
+-/
 lemma prod_X_sub_C_dvd_prod_mul_sub [Field R] {ι : Type*} [DecidableEq ι]
     (s E : Finset ι) (hE : E ⊆ s) (a : ι → R) (hinj : Set.InjOn a s)
     (f b : R[X]) (hagree : ∀ i ∈ s \ E, f.eval (a i) = b.eval (a i)) :

@@ -49,7 +49,9 @@ def isLinearYFactor [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [Decidable
     (Q : CBivariate R) (f : CPolynomial R) : Bool :=
   evalYPoly f Q == 0
 
-/-- `evalYPoly` sends the zero polynomial to `0`.-/
+/-- `evalYPoly` sends the zero polynomial to `0`.
+@isnad1 id=eq.0h2v.s6.f4f515a4c417 from=translated src=- shape=fc9247ad vocab=317b0aca
+-/
 theorem evalYPoly_zero [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (f : CPolynomial R) :
     evalYPoly f (0 : CBivariate R) = 0 := by
@@ -58,7 +60,9 @@ theorem evalYPoly_zero [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
   rw [h, ← CPolynomial.Raw.eval_toPoly_eq_eval f (0 : CPolynomial.Raw (CPolynomial R)),
     CPolynomial.Raw.toPoly_zero, Polynomial.eval_zero]
 
-/-- `evalYPoly` is additive in the polynomial being evaluated.-/
+/-- `evalYPoly` is additive in the polynomial being evaluated.
+@isnad1 id=eq.0h4v.s7.2ec2462281dc from=translated src=- shape=45f5b5bc vocab=fe3b2b1d
+-/
 theorem evalYPoly_add [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (f : CPolynomial R) (P Q : CBivariate R) :
     evalYPoly f (P + Q) = evalYPoly f P + evalYPoly f Q := by
@@ -69,14 +73,18 @@ theorem evalYPoly_add [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     ← CPolynomial.Raw.eval_toPoly_eq_eval f Q.val,
     CPolynomial.Raw.toPoly_add, Polynomial.eval_add]
 
-/-- The `isLinearYFactor` boolean test agrees with the proposition `Q(X, f(X)) = 0`.-/
+/-- The `isLinearYFactor` boolean test agrees with the proposition `Q(X, f(X)) = 0`.
+@isnad1 id=iff.0h3v.s6.19a7b51277ee from=translated src=- shape=6abb3799 vocab=a96d5923
+-/
 theorem isLinearYFactor_iff [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (Q : CBivariate R) (f : CPolynomial R) :
     isLinearYFactor Q f = true ↔ evalYPoly f Q = 0 := by
   simp [isLinearYFactor, beq_iff_eq]
 
 /-- Bridge to Mathlib: evaluating `Q` at `f` and mapping to `Polynomial R` agrees
-with evaluating the mapped `toPoly Q : R[X][Y]` at `f.toPoly`.-/
+with evaluating the mapped `toPoly Q : R[X][Y]` at `f.toPoly`.
+@isnad1 id=eq.0h3v.s6.ad6ca5e260d8 from=translated src=- shape=63f4d55e vocab=9d588894
+-/
 theorem evalYPoly_toPoly [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (f : CPolynomial R) (Q : CBivariate R) :
     (evalYPoly f Q).toPoly = (toPoly Q).eval (f.toPoly) := by
@@ -114,6 +122,9 @@ def divByLinearY [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     let quotArr : CPolynomial.Raw (CPolynomial R) := coeffs.reverse
     (⟨quotArr.trim, CPolynomial.Raw.Trim.isCanonical_trim quotArr⟩, rem)
 
+/--
+@isnad1 id=eq.0h3v.s7.6c619a1df212 from=translated src=- shape=0a44792a vocab=2488570e
+-/
 theorem divByLinearY_const [CommRing R] [BEq R] [LawfulBEq R]
     [Nontrivial R] [DecidableEq R] (a f : CPolynomial R) :
   divByLinearY (CPolynomial.C a : CBivariate R) f = (0, a) := by
@@ -226,6 +237,9 @@ private theorem divByLinearY_rem_formula [CommRing R] [BEq R] [LawfulBEq R]
       rw [htrim0, hres]
     simpa [n, a, step, res] using hmain
 
+/--
+@isnad1 id=eq.0h2v.s7.62969b8004cf from=translated src=- shape=98d7da6a vocab=4eb3dd0c
+-/
 theorem divByLinearY_zero [CommRing R] [BEq R] [LawfulBEq R]
     [Nontrivial R] [DecidableEq R] (f : CPolynomial R) :
   divByLinearY (0 : CBivariate R) f = (0, 0) := by
@@ -516,7 +530,9 @@ private theorem divByLinearY_quot_recurrence [CommRing R] [BEq R] [LawfulBEq R]
 
 /-- Correctness of `divByLinearY`: in `R[X][Y]` the computed quotient and
 remainder satisfy the Euclidean division identity
-`Q = quotient · (Y - f) + remainder`, over any commutative ring.-/
+`Q = quotient · (Y - f) + remainder`, over any commutative ring.
+@isnad1 id=other.0h3v.s9.5d6f40602bc0 from=translated src=- shape=dc570a98 vocab=1b689352
+-/
 theorem divByLinearY_spec [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (Q : CBivariate R) (f : CPolynomial R) :
     let quot := (divByLinearY Q f).1
@@ -561,7 +577,9 @@ theorem divByLinearY_spec [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R] [Dec
       simpa using hcoeffS
 
 /-- The remainder of dividing `Q` by `Y - f` is the substitution `Q(X, f(X))`
-(`evalYPoly f Q`), by the factor/remainder theorem.-/
+(`evalYPoly f Q`), by the factor/remainder theorem.
+@isnad1 id=eq.0h3v.s6.1bc170a086f7 from=translated src=- shape=61f280f3 vocab=61244604
+-/
 theorem divByLinearY_rem_eq_eval [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (Q : CBivariate R) (f : CPolynomial R) :
     (divByLinearY Q f).2 = evalYPoly f Q := by
@@ -577,7 +595,9 @@ theorem divByLinearY_rem_eq_eval [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial 
   rw [CPolynomial.coeff_toPoly, CPolynomial.coeff_toPoly, evalYPoly_toPoly, hev]
 
 /-- If `Y - f` divides `Q` (`isLinearYFactor Q f`), the division is exact:
-the remainder is `0`.-/
+the remainder is `0`.
+@isnad1 id=eq.1h3v.s7.8f09af40daab from=translated src=- shape=9b83e330 vocab=d7ccbeea
+-/
 theorem divByLinearY_exact [CommRing R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
     (Q : CBivariate R) (f : CPolynomial R) (h : isLinearYFactor Q f = true) :
     (divByLinearY Q f).2 = 0 := by

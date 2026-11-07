@@ -62,7 +62,9 @@ namespace CPolynomial
 
 section ZeroOnly
 
-/-- Extensionality for canonical polynomials.-/
+/-- Extensionality for canonical polynomials.
+@isnad1 id=eq.1h3v.s5.fbdf6257479d from=translated src=- shape=f4dddd41 vocab=72fd6886
+-/
 @[ext] theorem ext [Zero R] {p q : CPolynomial R} (h : p.val = q.val) : p = q := by
   exact Subtype.ext h
 
@@ -101,7 +103,9 @@ end ZeroOnly
 
 section Operations
 
-/-- Canonical computable polynomials are trim-stable.-/
+/-- Canonical computable polynomials are trim-stable.
+@isnad1 id=eq.0h2v.s5.fbcbfd86c06a from=translated src=- shape=87586afe vocab=b89fc916
+-/
 @[simp] theorem trim_eq [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial R) : p.val.trim = p.val :=
   Trim.trim_eq_of_isCanonical p.property
 
@@ -110,23 +114,35 @@ instance [Semiring R] [BEq R] [LawfulBEq R] : Add (CPolynomial R) where
   add p q := ⟨p.val + q.val,
     Trim.isCanonical_of_trim_eq (Raw.add_is_trimmed p.val q.val)⟩
 
+/--
+@isnad1 id=eq.0h3v.s6.c40954faee5d from=translated src=- shape=b6b8393d vocab=01607ce0
+-/
 protected theorem add_comm [Semiring R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial R) : p + q = q + p := by
   apply CPolynomial.ext
   change p.val + q.val = q.val + p.val
   exact Raw.add_comm p.val q.val
 
+/--
+@isnad1 id=eq.0h4v.s7.9339665292d2 from=translated src=- shape=4782c9cf vocab=01607ce0
+-/
 protected theorem add_assoc [Semiring R] [BEq R] [LawfulBEq R]
     (p q r : CPolynomial R) : p + q + r = p + (q + r) := by
   apply CPolynomial.ext
   change p.val + q.val + r.val = p.val + (q.val + r.val)
   exact Raw.add_assoc p.val q.val r.val
 
+/--
+@isnad1 id=eq.0h2v.s6.f305d90c0250 from=translated src=- shape=d9c3a194 vocab=01607ce0
+-/
 protected theorem zero_add [Semiring R] [BEq R] [LawfulBEq R] (p : CPolynomial R) : 0 + p = p := by
   apply CPolynomial.ext
   change (#[] : CPolynomial.Raw R) + p.val = p.val
   exact Raw.zero_add p.val (trim_eq p)
 
+/--
+@isnad1 id=eq.0h2v.s6.18c174106fdf from=translated src=- shape=77e4d4ac vocab=01607ce0
+-/
 protected theorem add_zero [Semiring R] [BEq R] [LawfulBEq R] (p : CPolynomial R) : p + 0 = p := by
   apply CPolynomial.ext
   change p.val + (#[] : CPolynomial.Raw R) = p.val
@@ -138,12 +154,18 @@ def nsmul [Semiring R] [BEq R] [LawfulBEq R] (n : ℕ) (p : CPolynomial R) : CPo
     Trim.isCanonical_of_trim_eq (by
       simpa [Raw.nsmul] using Trim.trim_twice (Raw.nsmulRaw n p.val))⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.48fb1c090830 from=translated src=- shape=aa469dd4 vocab=ceb45c18
+-/
 protected theorem nsmul_zero [Semiring R] [BEq R] [LawfulBEq R]
     (p : CPolynomial R) : nsmul 0 p = 0 := by
   apply CPolynomial.ext
   change Raw.nsmul 0 p.val = (#[] : CPolynomial.Raw R)
   exact Raw.nsmul_zero p.val
 
+/--
+@isnad1 id=eq.0h3v.s6.070a00731a52 from=translated src=- shape=0840779b vocab=d0d4c1ad
+-/
 theorem nsmul_succ [Semiring R] [BEq R] [LawfulBEq R]
     (n : ℕ) (p : CPolynomial R) : nsmul (n + 1) p = nsmul n p + p := by
   apply CPolynomial.ext
@@ -162,6 +184,9 @@ instance [Semiring R] [BEq R] [LawfulBEq R] : Mul (CPolynomial R) where
   mul p q :=
     ⟨p.val * q.val, Trim.isCanonical_of_trim_eq (mul_is_trimmed p.val q.val)⟩
 
+/--
+@isnad1 id=eq.0h1v.s5.7bf61c2c1726 from=translated src=- shape=de89a664 vocab=1e3ce2b8
+-/
 lemma one_is_trimmed [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] :
     (1 : CPolynomial.Raw R).trim = 1 :=
   Trim.push_trim #[] 1 one_ne_zero
@@ -191,7 +216,9 @@ def ofArray [Zero R] [BEq R] [LawfulBEq R]
   let raw : CPolynomial.Raw R := coeffs
   ⟨raw.trim, Trim.isCanonical_trim raw⟩
 
-/-- Coefficients of `ofArray` are exactly the source array entries, with zero default.-/
+/-- Coefficients of `ofArray` are exactly the source array entries, with zero default.
+@isnad1 id=eq.0h3v.s5.28a23a681202 from=translated src=- shape=8e8ecb2e vocab=23cfbbae
+-/
 theorem coeff_ofArray [Zero R] [BEq R] [LawfulBEq R]
     (coeffs : Array R) (i : Nat) :
     (CPolynomial.ofArray coeffs).coeff i = coeffs.getD i 0 := by
@@ -260,13 +287,17 @@ def eval₂Horner {S : Type*} [Semiring R] [Semiring S]
 def evalHorner [Semiring R] (x : R) (p : CPolynomial R) : R :=
   p.eval₂Horner (RingHom.id R) x
 
-/-- Horner evaluation agrees with the sum-of-powers evaluation.-/
+/-- Horner evaluation agrees with the sum-of-powers evaluation.
+@isnad1 id=eq.0h5v.s5.07e0e7b2f728 from=translated src=- shape=71f88581 vocab=7db0755f
+-/
 theorem eval₂_horner_eq_eval₂ {S : Type*} [Semiring R] [Semiring S]
     (f : R →+* S) (x : S) (p : CPolynomial R) :
     eval₂Horner f x p = eval₂ f x p :=
   CPolynomial.Raw.eval₂Horner_eq_eval₂ f x p.val
 
-/-- Horner evaluation agrees with the sum-of-powers evaluation.-/
+/-- Horner evaluation agrees with the sum-of-powers evaluation.
+@isnad1 id=eq.0h3v.s4.8facf28614b3 from=translated src=- shape=943469a4 vocab=3cc2a7ac
+-/
 theorem eval_horner_eq_eval [Semiring R] (x : R) (p : CPolynomial R) :
     evalHorner x p = eval x p := by
   simpa [eval, evalHorner, eval₂, eval₂Horner] using
@@ -310,7 +341,9 @@ def divX [Zero R] (p : CPolynomial R) : CPolynomial R :=
     rw [h_last_eq]
     exact p.property hp_pos⟩
 
-/-- Coefficient of the constant polynomial `C r`.-/
+/-- Coefficient of the constant polynomial `C r`.
+@isnad1 id=eq.0h3v.s5.04e7435a51a0 from=translated src=- shape=28e10791 vocab=19e46c93
+-/
 lemma coeff_C [Zero R] [BEq R] [LawfulBEq R] (r : R) (i : ℕ) :
     coeff (C r) i = if i = 0 then r else 0 := by
   unfold coeff C
@@ -318,36 +351,48 @@ lemma coeff_C [Zero R] [BEq R] [LawfulBEq R] (r : R) (i : ℕ) :
   unfold Raw.C Raw.coeff
   split_ifs with h <;> simp [h]
 
-/-- Coefficient of the variable `X`.-/
+/-- Coefficient of the variable `X`.
+@isnad1 id=eq.0h2v.s5.9ce4d078fbf9 from=translated src=- shape=cb0a72a6 vocab=0e5fa071
+-/
 lemma coeff_X [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] (i : ℕ) :
     coeff X i = if i = 1 then 1 else 0 := by
   unfold coeff X Raw.X Raw.coeff
   rcases i with (_ | _ | i) <;> rfl
 
-/-- Coefficient of the zero polynomial.-/
+/-- Coefficient of the zero polynomial.
+@isnad1 id=eq.0h2v.s4.cd5b27fc2a62 from=translated src=- shape=242dd53f vocab=5ec34c61
+-/
 @[simp]
 lemma coeff_zero [Zero R] (i : ℕ) : coeff (0 : CPolynomial R) i = 0 := by
   change (#[].getD i 0) = 0
   simp
 
-/-- Coefficient of the constant polynomial `1`.-/
+/-- Coefficient of the constant polynomial `1`.
+@isnad1 id=eq.0h2v.s6.7db59c399d65 from=translated src=- shape=941c0250 vocab=f148527b
+-/
 lemma coeff_one [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] (i : ℕ) :
     coeff (1 : CPolynomial R) i = if i = 0 then 1 else 0 := by
   change Raw.coeff (1 : CPolynomial.Raw R) i = if i = 0 then 1 else 0
   exact Raw.coeff_one (R := R) i
 
-/-- Coefficient of a sum.-/
+/-- Coefficient of a sum.
+@isnad1 id=eq.0h4v.s6.0a04d50d4b1d from=translated src=- shape=ea8f5e6c vocab=c8abda29
+-/
 lemma coeff_add [Semiring R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial R) (i : ℕ) : coeff (p + q) i = coeff p i + coeff q i := by
   unfold coeff; exact Raw.add_coeff_trimmed p.val q.val i
 
-/-- Coefficient of a monomial.-/
+/-- Coefficient of a monomial.
+@isnad1 id=eq.0h4v.s5.2b13622a9de8 from=translated src=- shape=161989bb vocab=06444ee8
+-/
 lemma coeff_monomial [Semiring R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (n i : ℕ) (c : R) :
     coeff (monomial n c) i = if i = n then c else 0 := by
   unfold coeff monomial; rw [Raw.coeff_monomial]; simp only [eq_comm]
 
-/-- Coefficient of a product (convolution sum).-/
+/-- Coefficient of a product (convolution sum).
+@isnad1 id=eq.0h4v.s7.3ca0412db36a from=translated src=- shape=ffeadacf vocab=efbcdb12
+-/
 lemma coeff_mul [Semiring R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial R) (k : ℕ) :
     coeff (p * q) k = (Finset.range (k + 1)).sum (fun i => coeff p i * coeff q (k - i)) := by
@@ -360,7 +405,9 @@ theorem eq_iff_coeff [Zero R] [BEq R] [LawfulBEq R] {p q : CPolynomial R} :
   · intro h i; rw [h]
   · intro h; apply ext; exact Trim.isCanonical_ext p.property q.property (fun i => h i)
 
-/-- Monomials are additive in their coefficient.-/
+/-- Monomials are additive in their coefficient.
+@isnad1 id=eq.0h4v.s6.b6e6a6e36caa from=translated src=- shape=6c8d1cbb vocab=6514a5b0
+-/
 theorem monomial_add [Semiring R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (n : ℕ) (a b : R) :
     monomial n (a + b) = monomial n a + monomial n b := by
@@ -374,13 +421,17 @@ theorem eq_zero_iff_coeff_zero [Zero R] [BEq R] [LawfulBEq R] {p : CPolynomial R
     p = 0 ↔ ∀ i, coeff p i = 0 := by
   rw [eq_iff_coeff]; simp only [coeff_zero]
 
-/-- Coefficients past the stored canonical array are zero.-/
+/-- Coefficients past the stored canonical array are zero.
+@isnad1 id=eq.1h3v.s5.262586b1feb5 from=translated src=- shape=a1bfcbc4 vocab=415baf34
+-/
 theorem coeff_eq_zero_of_size_le [Zero R] (p : CPolynomial R) {i : ℕ}
     (hi : p.val.size ≤ i) : coeff p i = 0 := by
   rw [coeff, Raw.coeff, Array.getD_eq_getD_getElem?, Array.getElem?_eq_none hi,
     Option.getD_none]
 
-/-- Coefficient of a monomial multiple: shift by `n` and scale by `c`.-/
+/-- Coefficient of a monomial multiple: shift by `n` and scale by `c`.
+@isnad1 id=eq.0h5v.s7.b72a511cf9d0 from=translated src=- shape=2b586079 vocab=c7959c67
+-/
 lemma coeff_monomial_mul [Semiring R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (n : ℕ) (c : R) (p : CPolynomial R) (i : ℕ) :
     coeff (monomial n c * p) i = if n ≤ i then c * coeff p (i - n) else 0 := by
@@ -395,7 +446,9 @@ lemma coeff_monomial_mul [Semiring R] [BEq R] [LawfulBEq R] [DecidableEq R]
     Finset.sum_ite_eq' (Finset.range (i + 1)) n (fun j ↦ c * coeff p (i - j))]
   simp
 
-/-- An index is in the support iff the coefficient there is nonzero.-/
+/-- An index is in the support iff the coefficient there is nonzero.
+@isnad1 id=iff.0h3v.s5.a7e04edab083 from=translated src=- shape=34345435 vocab=7256aa64
+-/
 lemma mem_support_iff [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial R) (i : ℕ) :
     i ∈ p.support ↔ coeff p i ≠ 0 := by
   unfold support coeff
@@ -410,7 +463,9 @@ lemma mem_support_iff [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial R) (i : �
       exact h rfl
     · exact bne_iff_ne.mpr h
 
-/-- The support is empty iff the polynomial is zero.-/
+/-- The support is empty iff the polynomial is zero.
+@isnad1 id=iff.0h2v.s5.768e5b7556f6 from=translated src=- shape=5247d737 vocab=05e39ada
+-/
 theorem support_empty_iff [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial R) :
     p.support = ∅ ↔ p = 0 := by
   rw [eq_zero_iff_coeff_zero, Finset.eq_empty_iff_forall_notMem]
@@ -418,12 +473,16 @@ theorem support_empty_iff [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial R) :
   · intro h i; by_contra hne; exact h i ((mem_support_iff p i).mpr hne)
   · intro h i; rw [mem_support_iff, h]; simp
 
-/-- The constant polynomial `C 0` is zero.-/
+/-- The constant polynomial `C 0` is zero.
+@isnad1 id=eq.0h1v.s5.9d6e9afc6e4f from=translated src=- shape=e251427b vocab=5b0d23fb
+-/
 @[simp] lemma C_zero [Zero R] [BEq R] [LawfulBEq R] :
     (C (0 : R) : CPolynomial R) = 0 := by
   rw [eq_zero_iff_coeff_zero]; intro i; rw [coeff_C]; simp
 
-/-- The natDegree of a constant polynomial `C r` is zero.-/
+/-- The natDegree of a constant polynomial `C r` is zero.
+@isnad1 id=eq.0h2v.s4.1f34f80d369d from=translated src=- shape=5c3424ba vocab=8b50f812
+-/
 theorem natDegree_C [Zero R] [BEq R] [LawfulBEq R] (r : R) :
     (C r).natDegree = 0 := by
     by_cases hr : r = 0
@@ -433,14 +492,18 @@ theorem natDegree_C [Zero R] [BEq R] [LawfulBEq R] (r : R) :
       rw [Trim.push_trim #[] r hr]
       simp
 
-/-- The support of a constant polynomial `C r` is `{0}`.-/
+/-- The support of a constant polynomial `C r` is `{0}`.
+@isnad1 id=eq.1h2v.s5.207a9807df74 from=translated src=- shape=830d8d88 vocab=532fcfb2
+-/
 theorem support_C [Zero R] [BEq R] [LawfulBEq R] {r : R} (hr : r ≠ 0) :
     (C r).support = {0} := by
     ext i
     rw [mem_support_iff, coeff_C, Finset.mem_singleton]
     simp [hr]
 
-/-- The support of a nonzero monomial `c * X^n` is `{n}`.-/
+/-- The support of a nonzero monomial `c * X^n` is `{n}`.
+@isnad1 id=eq.1h3v.s5.54b66b6f2d86 from=translated src=- shape=a3638cc3 vocab=5d7441d8
+-/
 theorem support_monomial [Semiring R] [DecidableEq R]
     [BEq R] [LawfulBEq R] {n : ℕ} {c : R} (hc : c ≠ 0) :
     (monomial n c).support = {n} := by
@@ -448,13 +511,17 @@ theorem support_monomial [Semiring R] [DecidableEq R]
   rw [mem_support_iff, coeff_monomial, Finset.mem_singleton]
   simp [hc]
 
-/-- The natDegree of a nonzero monomial `c * X^n` is `n`.-/
+/-- The natDegree of a nonzero monomial `c * X^n` is `n`.
+@isnad1 id=eq.1h3v.s5.a1101636b889 from=translated src=- shape=c59331d7 vocab=cab4eb64
+-/
 theorem natDegree_monomial [Semiring R] [DecidableEq R]
     [BEq R] [LawfulBEq R] {n : ℕ} {c : R} (hc : c ≠ 0) :
     (monomial n c).natDegree = n := by
   simp [monomial, Raw.monomial, hc, natDegree]
 
-/-- The support of the sum of two polynomials is a subset of the union of their supports.-/
+/-- The support of the sum of two polynomials is a subset of the union of their supports.
+@isnad1 id=le.0h3v.s6.c0fa3624a32e from=translated src=- shape=f71a5831 vocab=2fd4c475
+-/
 theorem support_add_subset [Semiring R] [DecidableEq R]
     [BEq R] [LawfulBEq R] (p q : CPolynomial R) : (p + q).support ⊆ p.support ∪ q.support := by
     intro i hi
@@ -462,7 +529,9 @@ theorem support_add_subset [Semiring R] [DecidableEq R]
     rw [Finset.mem_union, mem_support_iff, mem_support_iff]
     exact not_and_or.mp fun ⟨h1, h2⟩ => hi (by rw [h1, h2]; simp)
 
-/-- Evaluation equals the sum over support of coefficients times powers.-/
+/-- Evaluation equals the sum over support of coefficients times powers.
+@isnad1 id=eq.0h3v.s6.249bf885e841 from=translated src=- shape=3c4d0338 vocab=b4e0f429
+-/
 theorem eval_eq_sum_support [Semiring R] [BEq R] [LawfulBEq R] (p : CPolynomial R) (x : R) :
     p.eval x = p.support.sum (fun i => p.coeff i * x ^ i) := by
   have h_eval_def : p.eval x =
@@ -485,7 +554,9 @@ theorem eval_eq_sum_support [Semiring R] [BEq R] [LawfulBEq R] (p : CPolynomial 
     aesop
 
 /--
-Evaluation via a ring hom equals the sum over support of mapped coefficients times powers.-/
+Evaluation via a ring hom equals the sum over support of mapped coefficients times powers.
+@isnad1 id=eq.0h5v.s6.2f4bec32d661 from=translated src=- shape=6bc92126 vocab=86b32095
+-/
 theorem eval₂_eq_sum_support {S : Type*} [Semiring R] [BEq R] [LawfulBEq R] [Semiring S]
     (f : R →+* S) (p : CPolynomial R) (x : S) :
     p.eval₂ f x = p.support.sum (fun i => f (p.coeff i) * x ^ i) := by
@@ -508,6 +579,9 @@ theorem eval₂_eq_sum_support {S : Type*} [Semiring R] [BEq R] [LawfulBEq R] [S
   · unfold CPolynomial.support
     aesop
 
+/--
+@isnad1 id=eq.0h4v.s6.a1d8d865c91d from=translated src=- shape=b1065a75 vocab=24817bf2
+-/
 lemma coeff_C_mul [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial R) (c : R) :
     ∀ i, coeff ((C c) * p) i = c * (coeff p i) := by
@@ -518,7 +592,9 @@ lemma coeff_C_mul [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     simp only [coeff_C, ↓reduceIte, h, NonUnitalNonAssocSemiring.zero_mul]
   · simp
 
-/-- Lemmas on coefficients and multiplication by `X`.-/
+/-- Lemmas on coefficients and multiplication by `X`.
+@isnad1 id=eq.0h3v.s6.4691847d3486 from=translated src=- shape=0cc02642 vocab=232dfcc7
+-/
 lemma coeff_X_mul_succ [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial R) (n : ℕ) :
     coeff (X * p) (n + 1) = coeff p n := by
@@ -539,6 +615,9 @@ lemma coeff_X_mul_succ [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
   rw [hn, Raw.coeff_X (R := R) 1]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s6.e2d4b9e5f4bd from=translated src=- shape=08f45f9d vocab=7aeb9a96
+-/
 lemma coeff_X_mul_zero [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial R) : coeff (X * p) 0 = 0 := by
   unfold coeff
@@ -547,6 +626,9 @@ lemma coeff_X_mul_zero [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
   -- (Finset.range 1).sum ... reduces to the single term at 0
   simp [Raw.X]
 
+/--
+@isnad1 id=eq.0h3v.s6.908b5c979410 from=translated src=- shape=614c5f15 vocab=232dfcc7
+-/
 theorem coeff_mul_X_succ [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial R) (n : ℕ) :
     coeff (p * X) (n + 1) = coeff p n := by
@@ -574,11 +656,17 @@ theorem coeff_mul_X_succ [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
   rw [hn, Raw.coeff_X (R := R) 1]
   simp
 
+/--
+@isnad1 id=eq.0h2v.s6.a531c5ae1d34 from=translated src=- shape=3593b30e vocab=7aeb9a96
+-/
 theorem coeff_mul_X_zero [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial R) : coeff (p * X) 0 = 0 := by
   rw [coeff_mul]
   simp [X, Raw.X]
 
+/--
+@isnad1 id=eq.0h3v.s5.66d185a2e7ba from=translated src=- shape=e97ac108 vocab=c1328065
+-/
 lemma coeff_extract_succ [Zero R] (a : CPolynomial.Raw R) (i : ℕ) :
     Raw.coeff (a.extract 1 a.size) i = Raw.coeff a (i + 1) := by
   simp [Raw.coeff, Array.getElem?_extract]
@@ -588,10 +676,16 @@ lemma coeff_extract_succ [Zero R] (a : CPolynomial.Raw R) (i : ℕ) :
   · have hge : a.size ≤ i + 1 := by omega
     simp [h, Array.getElem?_eq_none (xs := a) (i := i + 1) hge]
 
+/--
+@isnad1 id=eq.0h3v.s5.746237a85d2a from=translated src=- shape=d77b7880 vocab=52b547ee
+-/
 lemma coeff_divX [Zero R] (p : CPolynomial R) (i : ℕ) :
     coeff (divX p) i = coeff p (i + 1) :=
   coeff_extract_succ (a := (↑p : CPolynomial.Raw R)) (i := i)
 
+/--
+@isnad1 id=eq.0h2v.s7.5efcf2ca8c2c from=translated src=- shape=7f7a661a vocab=5b58ed7e
+-/
 lemma X_mul_divX_add [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial R) : p = X * divX p + C (coeff p 0) := by
   apply CPolynomial.ext
@@ -623,6 +717,9 @@ lemma X_mul_divX_add [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
         rw [hCsucc, hXsucc, hdivX]
         rw [_root_.zero_add]
 
+/--
+@isnad1 id=eq.0h2v.s7.0fa5082efcd5 from=translated src=- shape=a40063b1 vocab=5b58ed7e
+-/
 theorem divX_mul_X_add [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial R) : divX p * X + C (p.coeff 0) = p := by
   classical
@@ -645,6 +742,9 @@ theorem divX_mul_X_add [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
       rw [_root_.add_zero]
       simpa using (coeff_divX (p := p) (i := n))
 
+/--
+@isnad1 id=lt.1h2v.s5.bbbdd0605c85 from=translated src=- shape=3eb76ac6 vocab=a9d9dc5c
+-/
 lemma divX_size_lt [Zero R] (p : CPolynomial R) (hp : p.val.size > 0) :
     (divX p).val.size < p.val.size := by
   show (p.val.extract 1 p.val.size).size < p.val.size
@@ -652,7 +752,9 @@ lemma divX_size_lt [Zero R] (p : CPolynomial R) (hp : p.val.size > 0) :
     simp only [Array.size_extract, min_self]]
   exact Nat.pred_lt_self hp
 
-/-- Induction principle for polynomials (mirrors mathlib's `Polynomial.induction_on`).-/
+/-- Induction principle for polynomials (mirrors mathlib's `Polynomial.induction_on`).
+@isnad1 id=var.0h7v.s7.832d6129bdf5 from=translated src=- shape=6bd24974 vocab=92f150df
+-/
 theorem induction_on [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     {P : CPolynomial R → Prop} (p : CPolynomial R)
     (h0 : P 0) (hC : ∀ a, P (C a)) (hadd : ∀ p q, P p → P q → P (p + q))
@@ -687,7 +789,9 @@ theorem induction_on [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
       exact hsum
 
 /- Auxiliary lemmas for `degree_eq_support_max`: relating `degree`, `support`, and `lastNonzero`. -/
-/-- Lemma for `degree_eq_support_max`: degree in terms of `lastNonzero`.-/
+/-- Lemma for `degree_eq_support_max`: degree in terms of `lastNonzero`.
+@isnad1 id=eq.1h3v.s6.cfe1d6edbff9 from=translated src=- shape=44f3a8b5 vocab=a8dd557c
+-/
 lemma degree_eq_support_max_aux_degree [Zero R] [BEq R] [LawfulBEq R]
     (p : CPolynomial R) {k : Fin p.val.size}
     (hk : p.val.lastNonzero = some k) : p.degree = k.val := by
@@ -704,6 +808,9 @@ lemma degree_eq_support_max_aux_degree [Zero R] [BEq R] [LawfulBEq R]
   have hs : p.val.size = k.val + 1 := by omega
   simp [CPolynomial.degree, hs]
 
+/--
+@isnad1 id=ex.1h2v.s6.2c5f620b6c42 from=translated src=- shape=a5d552c5 vocab=e7892d70
+-/
 lemma degree_eq_support_max_aux_lastNonzero [Zero R] [BEq R] [LawfulBEq R]
     (p : CPolynomial R) (hp : p ≠ 0) :
     ∃ k : Fin p.val.size, p.val.lastNonzero = some k := by
@@ -723,6 +830,9 @@ lemma degree_eq_support_max_aux_lastNonzero [Zero R] [BEq R] [LawfulBEq R]
         exact hval
       exact (hp hp0).elim
 
+/--
+@isnad1 id=mem.1h3v.s6.f6986ca067dd from=translated src=- shape=35ef9cb4 vocab=43b5de73
+-/
 lemma degree_eq_support_max_aux_mem_support [Zero R] [BEq R] [LawfulBEq R]
     (p : CPolynomial R) {k : Fin p.val.size}
     (hk : p.val.lastNonzero = some k) : k.val ∈ p.support := by
@@ -742,7 +852,9 @@ lemma degree_eq_support_max_aux_mem_support [Zero R] [BEq R] [LawfulBEq R]
     exact bne_iff_ne.mpr hcoeff_ne
 
 /-- Degree equals the maximum of the support when the polynomial is non-zero.
-  Here `p.degree = some n` where `n` is the maximum index in `p.support`.-/
+  Here `p.degree = some n` where `n` is the maximum index in `p.support`.
+@isnad1 id=ex.1h2v.s6.3fde21a6165a from=translated src=- shape=4e1458f6 vocab=8f921e50
+-/
 theorem degree_eq_support_max [Zero R] [BEq R] [LawfulBEq R]
     (p : CPolynomial R) (hp : p ≠ 0) :
     ∃ n, n ∈ p.support ∧ p.degree = n := by
@@ -752,7 +864,9 @@ theorem degree_eq_support_max [Zero R] [BEq R] [LawfulBEq R]
   · exact degree_eq_support_max_aux_mem_support (p := p) hk
   · exact degree_eq_support_max_aux_degree (p := p) hk
 
-/-- When `p ≠ 0`, `degree p` equals `natDegree p` (as `WithBot ℕ`).-/
+/-- When `p ≠ 0`, `degree p` equals `natDegree p` (as `WithBot ℕ`).
+@isnad1 id=eq.1h2v.s5.edc0da614fe0 from=translated src=- shape=6b977dfb vocab=5eec80bd
+-/
 theorem degree_eq_natDegree [Zero R] (p : CPolynomial R) (hp : p ≠ 0) :
     p.degree = p.natDegree := by
   cases hs : p.val.size with
@@ -767,11 +881,15 @@ theorem degree_eq_natDegree [Zero R] (p : CPolynomial R) (hp : p ≠ 0) :
       have hnat : p.natDegree = n := by simp [CPolynomial.natDegree, hs]
       rw [hdeg, hnat]
 
-/-- Lemma for computing the degree of 0 in proofs.-/
+/-- Lemma for computing the degree of 0 in proofs.
+@isnad1 id=eq.0h1v.s4.5c025bd4678b from=translated src=- shape=e023bc36 vocab=a7219303
+-/
 lemma degree_zero [Zero R] : degree (0 : CPolynomial R) = ⊥ := by
   rfl
 
-/-- The natural degree is the maximum element of the support.-/
+/-- The natural degree is the maximum element of the support.
+@isnad1 id=eq.0h2v.s5.ce3616f4982c from=translated src=- shape=8525bec1 vocab=2bd7ddbc
+-/
 theorem natDegree_eq_support_sup [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial R) :
     p.natDegree = p.support.sup (fun n => n) := by
   cases hs : p.val.size with
@@ -807,14 +925,18 @@ theorem natDegree_eq_support_sup [Zero R] [BEq R] [LawfulBEq R] (p : CPolynomial
       · simpa using (Finset.le_sup (f := fun m => m) hn_mem)
       · exact Finset.sup_le fun m hm => hle m hm
 
-/-- If `coeff p i ≠ 0` then `i ≤ p.natDegree`.-/
+/-- If `coeff p i ≠ 0` then `i ≤ p.natDegree`.
+@isnad1 id=le.1h3v.s5.9e370ee9f532 from=translated src=- shape=25345261 vocab=fe2b4f86
+-/
 theorem le_natDegree_of_ne_zero [Zero R] [BEq R] [LawfulBEq R]
     {p : CPolynomial R} {i : ℕ} (h : coeff p i ≠ 0) :
     i ≤ p.natDegree := by
   rw [natDegree_eq_support_sup]
   exact Finset.le_sup (f := fun n => n) ((mem_support_iff p i).mpr h)
 
-/-- The natDegree of a sum is at most the max of the natDegrees.-/
+/-- The natDegree of a sum is at most the max of the natDegrees.
+@isnad1 id=le.0h3v.s6.6455418efbe6 from=translated src=- shape=dde9fa96 vocab=5ed4db6f
+-/
 theorem natDegree_add_le [Semiring R] [DecidableEq R]
     [BEq R] [LawfulBEq R] (p q : CPolynomial R) :
     (p + q).natDegree ≤ max p.natDegree q.natDegree := by
@@ -822,7 +944,9 @@ theorem natDegree_add_le [Semiring R] [DecidableEq R]
     natDegree_eq_support_sup q, ← Finset.sup_union]
   exact Finset.sup_mono (support_add_subset p q)
 
-/-- The leading coefficient of a nonzero polynomial is nonzero.-/
+/-- The leading coefficient of a nonzero polynomial is nonzero.
+@isnad1 id=ne.1h2v.s5.0b4ed4c0621f from=translated src=- shape=5c7e32fe vocab=c75c3c92
+-/
 lemma leadingCoeff_ne_zero [Zero R] [BEq R] [LawfulBEq R] {p : CPolynomial R} (h : p ≠ 0) :
     p.leadingCoeff ≠ 0 := by
   unfold leadingCoeff
@@ -860,7 +984,9 @@ def modByMonicByReversal [Field R] [BEq R] [LawfulBEq R]
    Trim.isCanonical_of_trim_eq
      (Raw.modByMonicByReversal_canonical M (Trim.trim_eq_of_isCanonical p.property) q.val)⟩
 
-/-- The remainder-only monic remainder agrees with the canonical monic remainder.-/
+/-- The remainder-only monic remainder agrees with the canonical monic remainder.
+@isnad1 id=eq.0h3v.s6.5414d6fdea1d from=translated src=- shape=c835982e vocab=81225c42
+-/
 theorem modByMonicRemainderOnly_eq_modByMonic [Field R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial R) : modByMonicRemainderOnly p q = modByMonic p q := by
   apply CPolynomial.ext
@@ -871,7 +997,9 @@ def div [Field R] [BEq R] [LawfulBEq R] (p q : CPolynomial R) : CPolynomial R :=
   ⟨Raw.div p.val q.val, Trim.isCanonical_of_trim_eq (Raw.div_canonical p.val q.val)⟩
 
 /-- Any `CPolynomial` divided by the zero polynomial gives the zero
-polynomial.-/
+polynomial.
+@isnad1 id=eq.0h2v.s7.b43f14c6e32b from=translated src=- shape=9b3fe169 vocab=67ca8c76
+-/
 @[simp]
 protected theorem div_zero [Field R] [BEq R] [LawfulBEq R] (p : CPolynomial R) : p.div 0 = 0 := by
   apply Subtype.ext; show Raw.div p.val 0 = 0; unfold Raw.div
@@ -883,7 +1011,9 @@ def mod [Field R] [BEq R] [LawfulBEq R] (p q : CPolynomial R) : CPolynomial R :=
   ⟨Raw.mod p.val q.val, Trim.isCanonical_of_trim_eq (Raw.mod_canonical p.val q.val)⟩
 
 /-- Any `CPolynomial` modulo the zero polynomial gives the zero
-polynomial.-/
+polynomial.
+@isnad1 id=eq.0h2v.s7.3e5b18ee61fc from=translated src=- shape=9b3fe169 vocab=a6d288cd
+-/
 @[simp]
 theorem mod_zero [Field R] [BEq R] [LawfulBEq R] (p : CPolynomial R) : p.mod 0 = 0 := by
   apply Subtype.ext; show Raw.mod p.val 0 = 0; unfold Raw.mod
@@ -914,6 +1044,9 @@ end Operations
 
 section Semiring
 
+/--
+@isnad1 id=eq.0h2v.s6.3b7e19ac0a69 from=translated src=- shape=1e68df88 vocab=16c156b3
+-/
 protected lemma one_mul [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial R) : 1 * p = p := by
   apply Subtype.ext
@@ -921,6 +1054,9 @@ protected lemma one_mul [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
   rw[this, one_mul_trim]
   exact trim_eq p
 
+/--
+@isnad1 id=eq.0h2v.s6.32a2096f91c2 from=translated src=- shape=53c2a9c0 vocab=16c156b3
+-/
 protected lemma mul_one [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial R) : p * 1 = p := by
   apply Subtype.ext
@@ -928,29 +1064,47 @@ protected lemma mul_one [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
   rw[this, mul_one_trim]
   exact trim_eq p
 
+/--
+@isnad1 id=eq.0h4v.s7.e4d9ff5cb089 from=translated src=- shape=4782c9cf vocab=93bb42d3
+-/
 protected lemma mul_assoc [Semiring R] [BEq R] [LawfulBEq R]
     (p q r : CPolynomial R) : (p * q) * r = p * (q * r) := by
   apply Subtype.ext
   exact Raw.mul_assoc p.val q.val r.val
 
+/--
+@isnad1 id=eq.0h2v.s6.903b69c34262 from=translated src=- shape=71daffa3 vocab=93bb42d3
+-/
 lemma zero_mul [Semiring R] [BEq R] [LawfulBEq R] (p : CPolynomial R) : 0 * p = 0 := by
   apply Subtype.ext
   exact Raw.zero_mul p.val
 
+/--
+@isnad1 id=eq.0h2v.s6.70f76fbb212a from=translated src=- shape=e090e86c vocab=93bb42d3
+-/
 lemma mul_zero [Semiring R] [BEq R] [LawfulBEq R] (p : CPolynomial R) : p * 0 = 0 := by
   apply Subtype.ext
   exact Raw.mul_zero p.val
 
+/--
+@isnad1 id=eq.0h4v.s7.c03a0f47abad from=translated src=- shape=aa99f952 vocab=54c4039f
+-/
 protected lemma mul_add [Semiring R] [BEq R] [LawfulBEq R]
     (p q r : CPolynomial R) : p * (q + r) = p * q + p * r := by
   apply Subtype.ext
   exact Raw.mul_add p.val q.val r.val
 
+/--
+@isnad1 id=eq.0h4v.s7.ba9463d01e7b from=translated src=- shape=9b77a670 vocab=54c4039f
+-/
 protected lemma add_mul [Semiring R] [BEq R] [LawfulBEq R]
     (p q r : CPolynomial R) : (p + q) * r = p * r + q * r := by
   apply Subtype.ext
   exact Raw.add_mul p.val q.val r.val
 
+/--
+@isnad1 id=eq.0h3v.s5.b15344637f20 from=translated src=- shape=a93c22ed vocab=cadc41b7
+-/
 lemma pow_is_trimmed [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial.Raw R) (n : ℕ) : (p ^ n).trim = p ^ n := by
   induction' n with n ih generalizing p
@@ -961,6 +1115,9 @@ lemma pow_is_trimmed [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     rw [h_exp]
     exact mul_is_trimmed p (p ^ n)
 
+/--
+@isnad1 id=eq.0h3v.s6.f64d9fff9d5c from=translated src=- shape=e41a24d8 vocab=7fd19ad4
+-/
 lemma pow_succ_right [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial.Raw R) (n : ℕ) : p ^ (n + 1) = p ^ n * p := by
       convert pow_succ p n using 1;
@@ -1024,6 +1181,9 @@ instance [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] : Semiring (CPolynomi
   natCast_zero := by rfl
   natCast_succ := by intro n; rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.7c5e4afaf971 from=translated src=- shape=d729a6e1 vocab=0116d185
+-/
 @[simp]
 lemma natCast_eq_C [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (n : ℕ) : (↑n : CPolynomial R) = C (↑n : R) := by
@@ -1045,12 +1205,16 @@ lemma natCast_eq_C [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
 /-- The underlying `Raw` value of `p ^ n` equals `p.val ^ n`
 (using the Raw `Pow` instance). This bridges the optimized
 `powBySq` used in the `Semiring` instance with the spec
-`pow`.-/
+`pow`.
+@isnad1 id=eq.0h3v.s7.7c9e7ffb8801 from=translated src=- shape=53a4a95f vocab=4b58942b
+-/
 lemma val_pow [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
     (p : CPolynomial R) (n : ℕ) : (p ^ n).val = p.val ^ n :=
   Raw.powBySq_eq_pow p.val n
 
-/-- `C r * X^n = monomial n r` as canonical polynomials.-/
+/-- `C r * X^n = monomial n r` as canonical polynomials.
+@isnad1 id=eq.0h3v.s7.7814e33148b3 from=translated src=- shape=6bd044d1 vocab=5b9a0f7c
+-/
 lemma C_mul_X_pow_eq_monomial [Semiring R] [BEq R] [LawfulBEq R] [DecidableEq R] [Nontrivial R]
     (r : R) (n : ℕ) :
     (C r : CPolynomial R) * X ^ n = monomial n r := by
@@ -1071,7 +1235,9 @@ lemma C_mul_X_pow_eq_monomial [Semiring R] [BEq R] [LawfulBEq R] [DecidableEq R]
         Raw.C_mul_eq_smul_trim, Raw.X_pow_eq_monomial_one]
     exact Raw.smul_monomial_one_trim n r
 
-/-- Distribute `CPolynomial.coeff` over a `Finset.sum`.-/
+/-- Distribute `CPolynomial.coeff` over a `Finset.sum`.
+@isnad1 id=eq.0h5v.s6.56316ef7dcc3 from=translated src=- shape=7d6e68e0 vocab=989b7540
+-/
 lemma coeff_finset_sum [Semiring R] [BEq R] [LawfulBEq R]
     {ι : Type*} [DecidableEq ι] (s : Finset ι) (f : ι → CPolynomial R) (n : ℕ) :
     coeff (s.sum f) n = s.sum (fun i => coeff (f i) n) := by
@@ -1083,6 +1249,9 @@ end Semiring
 
 section CommSemiring
 
+/--
+@isnad1 id=eq.0h3v.s7.339f826cf8ec from=translated src=- shape=b6b8393d vocab=fe5db884
+-/
 protected lemma mul_comm [CommSemiring R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial R) : p * q = q * p := by
   apply Subtype.ext
@@ -1116,7 +1285,9 @@ def erase [Zero R] [BEq R] [LawfulBEq R] (n : ℕ) (p : CPolynomial R) : CPolyno
   let arr : CPolynomial.Raw R := p.val.setIfInBounds n 0
   ⟨arr.trim, Trim.isCanonical_trim arr⟩
 
-/-- Coefficient of `erase n p`: zero at `n`, otherwise `coeff p i`.-/
+/-- Coefficient of `erase n p`: zero at `n`, otherwise `coeff p i`.
+@isnad1 id=eq.0h4v.s5.40a9e7723888 from=translated src=- shape=3cb39767 vocab=916da76b
+-/
 lemma coeff_erase [Zero R] [BEq R] [LawfulBEq R]
     (n i : ℕ) (p : CPolynomial R) :
     coeff (erase n p) i = if i = n then 0 else coeff p i := by
@@ -1129,7 +1300,9 @@ lemma coeff_erase [Zero R] [BEq R] [LawfulBEq R]
     split <;> rfl
   · rw [ite_eq_right hni, ite_eq_right (fun h => hni h.symm)]
 
-/-- Leading coefficient equals the coefficient at `natDegree`.-/
+/-- Leading coefficient equals the coefficient at `natDegree`.
+@isnad1 id=eq.0h2v.s4.154b21a4669c from=translated src=- shape=380259d2 vocab=7159f59e
+-/
 lemma leadingCoeff_eq_coeff_natDegree [Zero R] (p : CPolynomial R) :
     p.leadingCoeff = p.coeff p.natDegree := by
   cases hs : p.val.size with
@@ -1146,7 +1319,9 @@ lemma leadingCoeff_eq_coeff_natDegree [Zero R] (p : CPolynomial R) :
       rw [hnat]
       simp [CPolynomial.leadingCoeff, CPolynomial.coeff, Raw.coeff, Array.getLastD, hs]
 
-/-- A polynomial equals its leading monomial plus the rest (`erase` at `natDegree`).-/
+/-- A polynomial equals its leading monomial plus the rest (`erase` at `natDegree`).
+@isnad1 id=eq.0h2v.s7.ff5f76070721 from=translated src=- shape=820de44b vocab=8adf90f0
+-/
 lemma monomial_add_erase [Ring R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (p : CPolynomial R) :
     p = monomial p.natDegree p.leadingCoeff + erase p.natDegree p := by
@@ -1160,10 +1335,16 @@ lemma monomial_add_erase [Ring R] [BEq R] [LawfulBEq R] [DecidableEq R]
   · rw [ite_eq_right hi, ite_eq_right hi]
     simp
 
+/--
+@isnad1 id=eq.0h3v.s6.5537f4de7f7d from=translated src=- shape=207826e3 vocab=046769a9
+-/
 lemma coeff_neg [Ring R] [BEq R] [LawfulBEq R]
     (p : CPolynomial R) (i : ℕ) : coeff (-p) i = -coeff p i := by
   unfold coeff; exact Raw.neg_coeff p.val i
 
+/--
+@isnad1 id=eq.0h4v.s7.a1226ae36053 from=translated src=- shape=ea8f5e6c vocab=5e16e27b
+-/
 lemma coeff_sub [Ring R] [BEq R] [LawfulBEq R]
     (p q : CPolynomial R) (i : ℕ) : coeff (p - q) i = coeff p i - coeff q i := by
   unfold coeff; exact Raw.sub_coeff p.val q.val i
@@ -1183,7 +1364,9 @@ def subMulMonomial [Ring R] [BEq R] [LawfulBEq R]
       Array.ofFn (n := max a.val.size (d + b.val.size)) fun j ↦
         a.coeff j.val - if d ≤ j.val then c * b.coeff (j.val - d) else 0
 
-/-- `subMulMonomial` agrees with the generic `a - monomial d c * b`.-/
+/-- `subMulMonomial` agrees with the generic `a - monomial d c * b`.
+@isnad1 id=eq.0h5v.s7.695c064270fc from=translated src=- shape=c45f7e52 vocab=8e19fc1e
+-/
 theorem subMulMonomial_eq [Ring R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (a : CPolynomial R) (c : R) (d : Nat) (b : CPolynomial R) :
     subMulMonomial a c d b = a - monomial d c * b := by
@@ -1221,7 +1404,9 @@ theorem subMulMonomial_eq [Ring R] [BEq R] [LawfulBEq R] [DecidableEq R]
       simp
 
 /-- The in-place `erase` agrees with the subtraction-based characterization:
-  `erase n p` equals `p - monomial n (p.coeff n)`.-/
+  `erase n p` equals `p - monomial n (p.coeff n)`.
+@isnad1 id=eq.0h3v.s6.4d95899ac3b1 from=translated src=- shape=d5b47568 vocab=01fd8508
+-/
 lemma erase_correct [Ring R] [BEq R] [LawfulBEq R] [DecidableEq R]
     (n : ℕ) (p : CPolynomial R) :
     erase n p = p - monomial n (p.coeff n) := by
@@ -1232,6 +1417,9 @@ lemma erase_correct [Ring R] [BEq R] [LawfulBEq R] [DecidableEq R]
   · subst hi; simp
   · rw [ite_eq_right hi, ite_eq_right hi]; simp
 
+/--
+@isnad1 id=eq.0h2v.s6.e41463022e9f from=translated src=- shape=f020d512 vocab=a9c27766
+-/
 protected theorem neg_add_cancel [Ring R] [BEq R] [LawfulBEq R]
     (p : CPolynomial R) : -p + p = 0 := by
   apply Subtype.ext
@@ -1290,27 +1478,35 @@ then trim to restore canonicity.-/
 instance smul [Semiring R] [BEq R] [LawfulBEq R] : SMul R (CPolynomial R) where
   smul r p := ⟨(Raw.smul r p.val).trim, Trim.isCanonical_trim (Raw.smul r p.val)⟩
 
-/-- Coefficient of a scalar multiple.-/
+/-- Coefficient of a scalar multiple.
+@isnad1 id=eq.0h4v.s6.f44771d3f38c from=translated src=- shape=f92e30c4 vocab=e4fd9e3b
+-/
 lemma coeff_smul [Semiring R] [BEq R] [LawfulBEq R]
     (r : R) (p : CPolynomial R) (i : ℕ) :
     coeff (r • p) i = r * coeff p i := by
   show (Raw.smul r p.val).trim.coeff i = r * p.val.coeff i
   rw [Trim.coeff_eq_coeff, Raw.smul_equiv]
 
-/-- Scalar multiplication on 0 gives 0.-/
+/-- Scalar multiplication on 0 gives 0.
+@isnad1 id=eq.0h2v.s6.47b8a407803d from=translated src=- shape=20d46759 vocab=77cdca1a
+-/
 protected lemma smul_zero [Semiring R] [BEq R] [LawfulBEq R]
     (r : R) : r • (0 : CPolynomial R) = 0 := by
   rw [eq_iff_coeff]; intro i
   rw [coeff_smul, coeff_zero]; simp
 
 /-- Helper lemma: Two CPolynomials are equal if
-    the underlying Raw CPolynomials are trim equivalent.-/
+    the underlying Raw CPolynomials are trim equivalent.
+@isnad1 id=eq.1h3v.s5.9fb6c21ed518 from=translated src=- shape=fccb91ee vocab=3b9be9a1
+-/
 lemma smul_eq_of_coeff_eq [Zero R] [BEq R] [LawfulBEq R] {p q : CPolynomial R}
     (h : Trim.equiv p.val q.val) : p = q := by
   apply CPolynomial.ext
   exact Trim.isCanonical_ext p.property q.property h
 
-/-- Scalar multiplication distributes.-/
+/-- Scalar multiplication distributes.
+@isnad1 id=eq.0h4v.s7.fa72e1423e45 from=translated src=- shape=61d7f553 vocab=7371c5a9
+-/
 protected lemma smul_add [Semiring R] [BEq R] [LawfulBEq R]
     (r : R) (p q : CPolynomial R) :
     r • (p + q) = r • p + r • q := by
@@ -1322,14 +1518,18 @@ protected lemma smul_add [Semiring R] [BEq R] [LawfulBEq R]
       smul_equiv, smul_equiv]
   exact Distrib.left_distrib r (p.val.coeff i) (q.val.coeff i)
 
-/-- Scalar multiplication distributes across scalar addition.-/
+/-- Scalar multiplication distributes across scalar addition.
+@isnad1 id=eq.0h4v.s7.9cae18ff687c from=translated src=- shape=370a744c vocab=7371c5a9
+-/
 protected lemma add_smul [Semiring R] [BEq R] [LawfulBEq R]
     (r s : R) (p : CPolynomial R) :
     (r + s) • p = r • p + s • p := by
   rw [eq_iff_coeff]; intro i
   rw [coeff_smul, coeff_add, coeff_smul, coeff_smul]; grind
 
-/-- Scalar multiplication by 0 gives 0.-/
+/-- Scalar multiplication by 0 gives 0.
+@isnad1 id=eq.0h2v.s6.c3ad923477a4 from=translated src=- shape=1c939402 vocab=77cdca1a
+-/
 protected lemma zero_smul [Semiring R] [BEq R] [LawfulBEq R]
     (p : CPolynomial R) : (0 : R) • p = 0 := by
   apply smul_eq_of_coeff_eq; intro i
@@ -1337,13 +1537,17 @@ protected lemma zero_smul [Semiring R] [BEq R] [LawfulBEq R]
   rw [Trim.coeff_eq_coeff, smul_equiv]
   exact MulZeroClass.zero_mul (p.val.coeff i)
 
-/-- Scalar multiplication on p by 1 gives p.-/
+/-- Scalar multiplication on p by 1 gives p.
+@isnad1 id=eq.0h2v.s6.8f7648ec01af from=translated src=- shape=7d988b61 vocab=77cdca1a
+-/
 protected lemma one_smul [Semiring R] [BEq R] [LawfulBEq R]
     (p : CPolynomial R) : (1 : R) • p = p := by
   rw [eq_iff_coeff]; intro i
   rw [coeff_smul, _root_.one_mul]
 
-/-- Scalar multiplication is associative.-/
+/-- Scalar multiplication is associative.
+@isnad1 id=eq.0h4v.s7.6753cd12c770 from=translated src=- shape=71403889 vocab=f6932668
+-/
 lemma mul_smul [Semiring R] [BEq R] [LawfulBEq R]
     (r s : R) (p : CPolynomial R) :
     (r * s) • p = r • (s • p) := by
@@ -1360,7 +1564,9 @@ instance [Semiring R] [BEq R] [LawfulBEq R] : Module R (CPolynomial R) where
   add_smul := CPolynomial.add_smul
   zero_smul := CPolynomial.zero_smul
 
-/-- Equality between `div` and `divByMonic` for `CPolynomial R`-/
+/-- Equality between `div` and `divByMonic` for `CPolynomial R`
+@isnad1 id=eq.0h3v.s7.8ea6f368f8ca from=translated src=- shape=26de4953 vocab=e865fa7f
+-/
 theorem div_eq_divByMonic [Field R] [BEq R] [LawfulBEq R] (p q : CPolynomial R) :
     p.div q =
       (q.leadingCoeff⁻¹ • p).divByMonic (q.leadingCoeff⁻¹ • q) := by
@@ -1370,7 +1576,9 @@ theorem div_eq_divByMonic [Field R] [BEq R] [LawfulBEq R] (p q : CPolynomial R) 
   rw [Raw.div, hq_lc, smul_eq_mul, Raw.C_mul_eq_smul_trim, Raw.C_mul_eq_smul_trim]
   rfl
 
-/-- Equality between `mod` and `modByMonic` for `CPolynomial R`-/
+/-- Equality between `mod` and `modByMonic` for `CPolynomial R`
+@isnad1 id=eq.0h3v.s7.e48a59357f4c from=translated src=- shape=26de4953 vocab=8ebd1d12
+-/
 theorem mod_eq_modByMonic [Field R] [BEq R] [LawfulBEq R] (p q : CPolynomial R) :
     p.mod q =
       (q.leadingCoeff⁻¹ • p).modByMonic (q.leadingCoeff⁻¹ • q) := by

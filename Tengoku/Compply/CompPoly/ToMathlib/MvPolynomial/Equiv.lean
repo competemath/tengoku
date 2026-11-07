@@ -35,6 +35,9 @@ variable {n : ℕ} {σ : Type*} (R : Type*) [CommSemiring R] (p : Fin (n + 1))
 def finSuccEquivNth : MvPolynomial (Fin (n + 1)) R ≃ₐ[R] Polynomial (MvPolynomial (Fin n) R) :=
   (renameEquiv R (_root_.finSuccEquiv' p)).trans (optionEquivLeft R (Fin n))
 
+/--
+@isnad1 id=eq.0h3v.s10.2d57f19578a2 from=translated src=- shape=f522958c vocab=1f13654f
+-/
 theorem finSuccEquivNth_eq :
     (finSuccEquivNth R p : MvPolynomial (Fin (n + 1)) R →+* Polynomial (MvPolynomial (Fin n) R)) =
       eval₂Hom (Polynomial.C.comp (C : R →+* MvPolynomial (Fin n) R))
@@ -45,12 +48,18 @@ theorem finSuccEquivNth_eq :
     rfl
   · refine Fin.succAboveCases p ?_ ?_ j <;> simp [finSuccEquivNth, optionEquivLeft]
 
+/--
+@isnad1 id=eq.0h4v.s10.b0884bed3a77 from=translated src=- shape=3621d26d vocab=86ede6e0
+-/
 theorem finSuccEquivNth_apply (f : MvPolynomial (Fin (n + 1)) R) :
     finSuccEquivNth R p f =
       eval₂Hom (Polynomial.C.comp (C : R →+* MvPolynomial (Fin n) R))
         (Fin.insertNth p Polynomial.X (Polynomial.C ∘ X)) f := by
   rw [← finSuccEquivNth_eq, RingHom.coe_coe]
 
+/--
+@isnad1 id=eq.0h3v.s9.37028624211f from=translated src=- shape=81e79b77 vocab=98bd1cb1
+-/
 theorem finSuccEquivNth_comp_C_eq_C :
     (↑(finSuccEquivNth R p).symm : Polynomial (MvPolynomial (Fin n) R) →+* _).comp
         (Polynomial.C.comp C) = (C : R →+* MvPolynomial (Fin n.succ) R) := by
@@ -63,15 +72,24 @@ theorem finSuccEquivNth_comp_C_eq_C :
 
 variable {R} {p}
 
+/--
+@isnad1 id=eq.0h3v.s9.0ab06c8863c7 from=translated src=- shape=61c48c01 vocab=3a79a311
+-/
 @[simp]
 theorem finSuccEquivNth_X_same : finSuccEquivNth R p (X p) = Polynomial.X := by
   simp [finSuccEquivNth_apply]
 
+/--
+@isnad1 id=eq.1h4v.s9.80c21d2ec58f from=translated src=- shape=c9964fcc vocab=93979a1c
+-/
 @[simp]
 theorem finSuccEquivNth_X_above {i : Fin n} (h : p < i.succ) :
     finSuccEquivNth R p (X i.succ) = Polynomial.C (X i) := by
   simp [finSuccEquivNth_apply, Fin.insertNth_apply_above h _ _]
 
+/--
+@isnad1 id=eq.1h4v.s9.f625c7613f79 from=translated src=- shape=74bfe3ce vocab=d19d371b
+-/
 @[simp]
 theorem finSuccEquivNth_X_below {i : Fin n} (h : i.castSucc < p) :
     finSuccEquivNth R p (X i.castSucc) = Polynomial.C (X i) := by
@@ -79,7 +97,9 @@ theorem finSuccEquivNth_X_below {i : Fin n} (h : i.castSucc < p) :
   exact eq_rec_constant _ _
 
 /-- The coefficient of `m` in the `i`-th coefficient of `finSuccEquivNth R p f` equals the
-    coefficient of `m.insertNth p i` in `f`.-/
+    coefficient of `m.insertNth p i` in `f`.
+@isnad1 id=eq.0h6v.s9.9abf7bbc1d19 from=translated src=- shape=e14b71ad vocab=6251bca2
+-/
 theorem finSuccEquivNth_coeff_coeff (m : Fin n →₀ ℕ) (f : MvPolynomial (Fin (n + 1)) R) (i : ℕ) :
     coeff m (Polynomial.coeff (finSuccEquivNth R p f) i) = coeff (m.insertNth p i) f := by
   induction f using MvPolynomial.induction_on' generalizing i m with
@@ -106,7 +126,9 @@ theorem finSuccEquivNth_coeff_coeff (m : Fin n →₀ ℕ) (f : MvPolynomial (Fi
   | add p q hp hq => simp only [map_add, Polynomial.coeff_add, coeff_add, hp, hq]
 
 /-- The evaluation of `f` at `Fin.insertNth p y s` equals the evaluation at `y` of the polynomial
-obtained by partially evaluating `finSuccEquivNth R p f` at `s`.-/
+obtained by partially evaluating `finSuccEquivNth R p f` at `s`.
+@isnad1 id=eq.0h6v.s9.cc3f1deff627 from=translated src=- shape=4870b17a vocab=e5639994
+-/
 theorem eval_eq_eval_mv_eval_finSuccEquivNth (s : Fin n → R) (y : R)
     (f : MvPolynomial (Fin (n + 1)) R) :
       eval (Fin.insertNth p y s : Fin (n + 1) → R) f =
@@ -124,7 +146,9 @@ theorem eval_eq_eval_mv_eval_finSuccEquivNth (s : Fin n → R) (y : R)
     Polynomial.eval_C, implies_true, and_self]
 
 /-- A monomial index `m` is in the support of the `i`-th coefficient of `finSuccEquivNth R p f` if
-and only if `m.insertNth p i` is in the support of `f`.-/
+and only if `m.insertNth p i` is in the support of `f`.
+@isnad1 id=iff.0h6v.s9.41a6b168d0d9 from=translated src=- shape=8571c417 vocab=fe0f8a40
+-/
 theorem support_coeff_finSuccEquivNth {f : MvPolynomial (Fin (n + 1)) R} {i : ℕ} {m : Fin n →₀ ℕ} :
     m ∈ (Polynomial.coeff ((finSuccEquivNth R p) f) i).support ↔ m.insertNth p i ∈ f.support := by
   constructor <;> intro h
@@ -133,7 +157,9 @@ theorem support_coeff_finSuccEquivNth {f : MvPolynomial (Fin (n + 1)) R} {i : �
 
 /--
 The `totalDegree` of a multivariable polynomial `f` is at least `i` more than the `totalDegree` of
-the `i`th coefficient of `finSuccEquivNth R p` applied to `f`, if this is nonzero.-/
+the `i`th coefficient of `finSuccEquivNth R p` applied to `f`, if this is nonzero.
+@isnad1 id=le.1h5v.s10.1f55b3a252fb from=translated src=- shape=c6ae1557 vocab=7980449d
+-/
 theorem totalDegree_coeff_finSuccEquivNth_add_le (f : MvPolynomial (Fin (n + 1)) R) (i : ℕ)
     (hi : (finSuccEquivNth R p f).coeff i ≠ 0) :
       totalDegree ((finSuccEquivNth R p f).coeff i) + i ≤ totalDegree f := by
@@ -150,7 +176,9 @@ theorem totalDegree_coeff_finSuccEquivNth_add_le (f : MvPolynomial (Fin (n + 1))
 
 set_option backward.isDefEq.respectTransparency false in
 /-- The support of `finSuccEquivNth R p f` equals the support of `f` projected onto the `p`-th
-variable.-/
+variable.
+@isnad1 id=eq.0h4v.s9.d6ba646174dc from=translated src=- shape=09c7c750 vocab=388e1607
+-/
 theorem support_finSuccEquivNth (f : MvPolynomial (Fin (n + 1)) R) :
     (finSuccEquivNth R p f).support = Finset.image (fun m : Fin (n + 1) →₀ ℕ => m p) f.support := by
   ext i
@@ -162,10 +190,16 @@ theorem support_finSuccEquivNth (f : MvPolynomial (Fin (n + 1)) R) :
   · rintro ⟨m, h, rfl⟩
     exact ⟨m.removeNth p, by simpa using h⟩
 
+/--
+@isnad1 id=iff.0h5v.s9.da20a0836168 from=translated src=- shape=0bf1a3e1 vocab=1803cbd6
+-/
 theorem mem_support_finSuccEquivNth {f : MvPolynomial (Fin (n + 1)) R} {x} :
     x ∈ (finSuccEquivNth R p f).support ↔ x ∈ (fun m : Fin (n + 1) →₀ _ ↦ m p) '' f.support := by
   simpa using congr(x ∈ $(support_finSuccEquivNth f))
 
+/--
+@isnad1 id=eq.0h5v.s9.e24381d7032a from=translated src=- shape=1bc508fe vocab=c7a984e3
+-/
 theorem image_support_finSuccEquivNth {f : MvPolynomial (Fin (n + 1)) R} {i : ℕ} :
     Finset.image (Finsupp.insertNth p i) (Polynomial.coeff ((finSuccEquivNth R p) f) i).support =
       f.support.filter fun m => m p = i := by
@@ -184,22 +218,33 @@ theorem image_support_finSuccEquivNth {f : MvPolynomial (Fin (n + 1)) R} {i : �
     rw [← h.2, insertNth_removeNth]
     simp [h.1]
 
+/--
+@isnad1 id=iff.0h6v.s9.5041fab60dfc from=translated src=- shape=27665971 vocab=f5fa83d1
+-/
 lemma mem_image_support_coeff_finSuccEquivNth {f : MvPolynomial (Fin (n + 1)) R} {i : ℕ} {x} :
     x ∈ Finsupp.insertNth p i '' ((finSuccEquivNth R p f).coeff i).support ↔
       x ∈ f.support ∧ x p = i := by
   simpa using congr(x ∈ $image_support_finSuccEquivNth)
 
+/--
+@isnad1 id=iff.0h6v.s9.41a6b168d0d9 from=translated src=- shape=8571c417 vocab=fe0f8a40
+-/
 lemma mem_support_coeff_finSuccEquivNth {f : MvPolynomial (Fin (n + 1)) R} {i : ℕ} {x} :
     x ∈ ((finSuccEquivNth R p f).coeff i).support ↔ x.insertNth p i ∈ f.support := by
   rw [← (Finsupp.insertNth_right_injective p).mem_finset_image (a := x),
     image_support_finSuccEquivNth]
   simp only [Finset.mem_filter, mem_support_iff, ne_eq, insertNth_apply_same, and_true]
 
+/--
+@isnad1 id=nonempty.1h4v.s9.7d86be2e91d2 from=translated src=- shape=9673145d vocab=1f768935
+-/
 theorem support_finSuccEquivNth_nonempty {f : MvPolynomial (Fin (n + 1)) R} (h : f ≠ 0) :
     (finSuccEquivNth R p f).support.Nonempty := by
   rwa [Polynomial.support_nonempty, EmbeddingLike.map_ne_zero_iff]
 
-/-- The degree of `finSuccEquivNth R p f` equals the `p`-th degree of `f`.-/
+/-- The degree of `finSuccEquivNth R p f` equals the `p`-th degree of `f`.
+@isnad1 id=eq.1h4v.s9.5aaa44385508 from=translated src=- shape=957ebece vocab=bc7bce88
+-/
 theorem degree_finSuccEquivNth {f : MvPolynomial (Fin (n + 1)) R} (h : f ≠ 0) :
     (finSuccEquivNth R p f).degree = degreeOf p f := by
   have hCast : WithBot.some = Nat.cast := rfl
@@ -209,7 +254,9 @@ theorem degree_finSuccEquivNth {f : MvPolynomial (Fin (n + 1)) R} (h : f ≠ 0) 
     (Polynomial.support_nonempty.mpr (EmbeddingLike.map_ne_zero_iff.mpr h)),
     Finset.max_eq_sup_coe, Function.comp_id]
 
-/-- The `natDegree` of `finSuccEquivNth R p f` equals the `p`-th `natDegree` of `f`.-/
+/-- The `natDegree` of `finSuccEquivNth R p f` equals the `p`-th `natDegree` of `f`.
+@isnad1 id=eq.0h4v.s9.e2e6e5f308ac from=translated src=- shape=a741e998 vocab=e50aca02
+-/
 theorem natDegree_finSuccEquivNth (f : MvPolynomial (Fin (n + 1)) R) :
     (finSuccEquivNth R p f).natDegree = degreeOf p f := by
   by_cases c : f = 0
@@ -218,7 +265,9 @@ theorem natDegree_finSuccEquivNth (f : MvPolynomial (Fin (n + 1)) R) :
     erw [WithBot.unbotD_coe, Nat.cast_id]
 
 /-- The degree of `j` in the `i`th coefficient of `finSuccEquivNth R p f` is at most the degree of
-`j.succ` in `f`.-/
+`j.succ` in `f`.
+@isnad1 id=le.0h6v.s9.8d94b7ab84ae from=translated src=- shape=95084668 vocab=d364a3ee
+-/
 theorem degreeOf_coeff_finSuccEquivNth (f : MvPolynomial (Fin (n + 1)) R) (j : Fin n) (i : ℕ) :
     degreeOf j (Polynomial.coeff (finSuccEquivNth R p f) i) ≤ degreeOf (p.succAbove j) f := by
   rw [degreeOf_eq_sup, degreeOf_eq_sup, Finset.sup_le_iff]
@@ -236,7 +285,9 @@ Then one may view `φ` as a polynomial over `MvPolynomial (Fin n) R`, by
 2. first viewing it as polynomial over `MvPolynomial σ R` via `MvPolynomial.optionEquivLeft`,
     and then renaming the variables.
 
-This theorem shows that both constructions are the same.-/
+This theorem shows that both constructions are the same.
+@isnad1 id=eq.0h6v.s10.3cbcf3c0b6c1 from=translated src=- shape=0f09774a vocab=3ff31f7d
+-/
 theorem finSuccEquivNth_rename_finSuccEquivNth (e : σ ≃ Fin n) (φ : MvPolynomial (Option σ) R) :
     ((finSuccEquivNth R p) ((rename ((Equiv.optionCongr e).trans (_root_.finSuccEquiv' p).symm)) φ))
       = Polynomial.map (rename e).toRingHom (optionEquivLeft R σ φ) := by
