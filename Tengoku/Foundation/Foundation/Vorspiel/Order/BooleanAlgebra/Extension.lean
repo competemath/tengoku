@@ -22,11 +22,17 @@ variable {γ : Type*} [BooleanAlgebra γ]
 lemma eq_insertRep_self (x a : γ) : x = (x ⊓ a) ⊔ (x ⊓ aᶜ) := by
   rw [← inf_sup_left, sup_compl_eq_top, inf_top_eq]
 
+/--
+@isnad1 id=eq.0h6v.s7.9bdbe7f17e57 from=translated src=- shape=d101f037 vocab=5c43eccc
+-/
 lemma sup_insertRep (y₁ z₁ y₂ z₂ a : γ) :
     ((y₁ ⊓ a) ⊔ (z₁ ⊓ aᶜ)) ⊔ ((y₂ ⊓ a) ⊔ (z₂ ⊓ aᶜ)) = ((y₁ ⊔ y₂) ⊓ a) ⊔ ((z₁ ⊔ z₂) ⊓ aᶜ) := by
   simp [inf_sup_right]
   ac_rfl
 
+/--
+@isnad1 id=eq.0h6v.s7.fcea249bf37c from=translated src=- shape=a0845cca vocab=5c43eccc
+-/
 lemma inf_insertRep (y₁ z₁ y₂ z₂ a : γ) :
     ((y₁ ⊓ a) ⊔ (z₁ ⊓ aᶜ)) ⊓ ((y₂ ⊓ a) ⊔ (z₂ ⊓ aᶜ)) = ((y₁ ⊓ y₂) ⊓ a) ⊔ ((z₁ ⊓ z₂) ⊓ aᶜ) := by
   have h₁ : y₁ ⊓ a ⊓ (z₂ ⊓ aᶜ) = ⊥ := by
@@ -61,6 +67,9 @@ def insertRep : BooleanSubalgebra α where
     exact ⟨_, compl_mem hy, _, compl_mem hz, BooleanAlgebra.compl_insertRep ..⟩
   bot_mem' := ⟨⊥, bot_mem, ⊥, bot_mem, by simp⟩
 
+/--
+@isnad1 id=iff.0h4v.s7.1089a571ff72 from=translated src=- shape=bdffaf65 vocab=98516e50
+-/
 theorem mem_closure_insert :
     x ∈ closure (insert a (A : Set α)) ↔
       ∃ y ∈ A, ∃ z ∈ A, x = (y ⊓ a) ⊔ (z ⊓ aᶜ) := by
@@ -74,6 +83,9 @@ theorem mem_closure_insert :
     have hz' : z ∈ closure (insert a (A : Set α)) := subset_closure (Set.mem_insert_of_mem _ hz)
     exact sup_mem (inf_mem hy' ha) (inf_mem hz' (compl_mem ha))
 
+/--
+@isnad1 id=finite.1h3v.s5.db6e65218217 from=translated src=- shape=e35bfc82 vocab=9ad21b22
+-/
 lemma closure_insert_finite (hA : (A : Set α).Finite) (a : α) :
     ((closure (insert a (A : Set α)) : BooleanSubalgebra α) : Set α).Finite :=
   Set.Finite.subset (hA.biUnion fun y _ => hA.biUnion fun z _ =>
@@ -82,12 +94,21 @@ lemma closure_insert_finite (hA : (A : Set α).Finite) (a : α) :
     obtain ⟨y, hy, z, hz, rfl⟩ := mem_closure_insert.mp hx
     exact Set.mem_biUnion hy (Set.mem_biUnion hz rfl)
 
+/--
+@isnad1 id=le.0h3v.s5.a5022625b5eb from=translated src=- shape=da994d1b vocab=80b3db10
+-/
 lemma le_closure_insert : A ≤ closure (insert a (A : Set α)) :=
   (Set.subset_insert a _).trans subset_closure
 
+/--
+@isnad1 id=mem.0h3v.s5.8891af5d163f from=translated src=- shape=55981d3f vocab=3e657365
+-/
 lemma self_mem_closure_insert : a ∈ closure (insert a (A : Set α)) :=
   subset_closure (Set.mem_insert ..)
 
+/--
+@isnad1 id=ex.0h4v.s8.c215421b6b2e from=translated src=- shape=7fa7637c vocab=f86ad3ef
+-/
 lemma exists_insertRepPair (u : (closure (insert a (A : Set α)) : BooleanSubalgebra α)) :
     ∃ p : A × A, (u : α) = ((p.1 : α) ⊓ a) ⊔ ((p.2 : α) ⊓ aᶜ) := by
   obtain ⟨y, hy, z, hz, hu⟩ := mem_closure_insert.mp u.2
@@ -98,6 +119,9 @@ noncomputable def insertRepPair (u : (closure (insert a (A : Set α)) : BooleanS
     A × A :=
   (exists_insertRepPair u).choose
 
+/--
+@isnad1 id=eq.0h4v.s8.a07e328b883a from=translated src=- shape=d1cdfe57 vocab=2376cd4e
+-/
 lemma insertRepPair_spec (u : (closure (insert a (A : Set α)) : BooleanSubalgebra α)) :
     (u : α) = (((insertRepPair u).1 : α) ⊓ a) ⊔ (((insertRepPair u).2 : α) ⊓ aᶜ) :=
   (exists_insertRepPair u).choose_spec
@@ -111,17 +135,29 @@ variable {α β : Type*} [BooleanAlgebra α] [BooleanAlgebra β]
 
 namespace BooleanSubalgebra
 
+/--
+@isnad1 id=iff.0h3v.s6.3b151a9e8614 from=translated src=- shape=88cc9d8d vocab=aa7bca36
+-/
 @[simp] lemma val_eq_bot {L : BooleanSubalgebra α} {x : L} : (x : α) = ⊥ ↔ x = ⊥ := by
   rw [← val_bot (L := L), Subtype.coe_inj]
 
+/--
+@isnad1 id=iff.0h6v.s8.768540134d3d from=translated src=- shape=7c2c4c05 vocab=71234183
+-/
 lemma val_map_eq_bot (e : A ≃o B) (p : A) : (e p : β) = ⊥ ↔ (p : α) = ⊥ := by
   rw [val_eq_bot, val_eq_bot, ← e.map_bot, EquivLike.apply_eq_iff_eq]
 
+/--
+@isnad1 id=eq.1h7v.s9.b48350b9c32b from=translated src=- shape=3ac8f243 vocab=7c27a58c
+-/
 lemma val_map_inf_eq_bot (e : A ≃o B) {p q : A} (h : p ⊓ q = ⊥) :
     (e p : β) ⊓ (e q : β) = ⊥ := by
   have : (e p ⊓ e q : B) = ⊥ := by rw [← e.map_inf, h, e.map_bot]
   simpa using congrArg Subtype.val this
 
+/--
+@isnad1 id=eq.0h6v.s10.263a41b0dd58 from=translated src=- shape=1fbbe988 vocab=aba8da56
+-/
 lemma val_map_finsetSup (e : A ≃o B) (s : Finset A) :
     ((e (s.sup id) : B) : β) = s.sup fun p => (e p : β) := by
   classical
@@ -138,12 +174,18 @@ def IsCompanion (e : A ≃o B) (a : α) (b : β) : Prop :=
 
 variable {e : A ≃o B} {a : α} {b : β}
 
+/--
+@isnad1 id=iscompan.1h7v.s8.66fbd0b7fbba from=translated src=- shape=7b6fdc96 vocab=f4040a5f
+-/
 lemma IsCompanion.symm (h : IsCompanion e a b) : IsCompanion e.symm b a := by
   intro v
   have := h (e.symm v)
   rw [OrderIso.apply_symm_apply] at this
   exact ⟨this.1.symm, this.2.symm⟩
 
+/--
+@isnad1 id=ex.0h7v.s9.7ee248a019e4 from=translated src=- shape=9b964f42 vocab=a03f58f7
+-/
 lemma exists_companionPiece [DenselyOrdered β] (e : A ≃o B) (a : α) (p : A) :
     ∃ c : β, c ≤ (e p : β) ∧ (c = ⊥ ↔ (p : α) ⊓ a = ⊥) ∧ (c = (e p : β) ↔ (p : α) ≤ a) := by
   by_cases h₁ : (p : α) ⊓ a = ⊥
@@ -157,6 +199,9 @@ lemma exists_companionPiece [DenselyOrdered β] (e : A ≃o B) (a : α) (p : A) 
         exists_between (bot_lt_iff_ne_bot.2 fun h => h₁ (by rw [(val_map_eq_bot e p).1 h]; simp))
       exact ⟨c, hc₂.le, iff_of_false hc₁.ne' h₁, iff_of_false hc₂.ne h₂⟩
 
+/--
+@isnad1 id=ex.1h6v.s7.48c7d751a6ab from=translated src=- shape=f4cc4d69 vocab=c0920c74
+-/
 theorem exists_isCompanion [Nontrivial β] [DenselyOrdered β]
     (hA : (A : Set α).Finite) (e : A ≃o B) (a : α) :
     ∃ b : β, IsCompanion e a b := by
@@ -212,6 +257,9 @@ theorem exists_isCompanion [Nontrivial β] [DenselyOrdered β]
 
 noncomputable section
 
+/--
+@isnad1 id=le.2h11v.s10.712453f336d8 from=translated src=- shape=6566e7e9 vocab=794a1da2
+-/
 lemma IsCompanion.map_le_map (h : IsCompanion e a b) {y₁ z₁ y₂ z₂ : A}
     (hle : ((y₁ : α) ⊓ a) ⊔ ((z₁ : α) ⊓ aᶜ) ≤ ((y₂ : α) ⊓ a) ⊔ ((z₂ : α) ⊓ aᶜ)) :
     ((e y₁ : β) ⊓ b) ⊔ ((e z₁ : β) ⊓ bᶜ) ≤ ((e y₂ : β) ⊓ b) ⊔ ((e z₂ : β) ⊓ bᶜ) := by
@@ -236,9 +284,15 @@ def IsCompanion.mapRep (_h : IsCompanion e a b)
   ⟨((e (insertRepPair u).1 : β) ⊓ b) ⊔ ((e (insertRepPair u).2 : β) ⊓ bᶜ),
     mem_closure_insert.mpr ⟨_, (e (insertRepPair u).1).2, _, (e (insertRepPair u).2).2, rfl⟩⟩
 
+/--
+@isnad1 id=eq.1h8v.s9.21b239314316 from=translated src=- shape=5bb35dbd vocab=4dd01168
+-/
 @[simp] lemma IsCompanion.val_mapRep (h : IsCompanion e a b) : (h.mapRep u : β) =
     ((e (insertRepPair u).1 : β) ⊓ b) ⊔ ((e (insertRepPair u).2 : β) ⊓ bᶜ) := rfl
 
+/--
+@isnad1 id=eq.2h10v.s10.2fbc2fdf0271 from=translated src=- shape=c42ea202 vocab=8c592b5d
+-/
 lemma IsCompanion.mapRep_eq (h : IsCompanion e a b) {y z : A}
     (hu : (u : α) = ((y : α) ⊓ a) ⊔ ((z : α) ⊓ aᶜ)) :
     (h.mapRep u : β) = ((e y : β) ⊓ b) ⊔ ((e z : β) ⊓ bᶜ) := by
@@ -246,12 +300,18 @@ lemma IsCompanion.mapRep_eq (h : IsCompanion e a b) {y z : A}
   exact le_antisymm (h.map_le_map (by rw [← insertRepPair_spec u, hu]))
     (h.map_le_map (by rw [← hu, insertRepPair_spec u]))
 
+/--
+@isnad1 id=le.2h9v.s8.3a3be353bf31 from=translated src=- shape=ebf5ac68 vocab=0a48bc88
+-/
 lemma IsCompanion.mapRep_mono (h : IsCompanion e a b) (hu : u₁ ≤ u₂) :
     h.mapRep u₁ ≤ h.mapRep u₂ := by
   show (h.mapRep u₁ : β) ≤ (h.mapRep u₂ : β)
   rw [h.val_mapRep, h.val_mapRep]
   exact h.map_le_map (by rw [← insertRepPair_spec u₁, ← insertRepPair_spec u₂]; exact hu)
 
+/--
+@isnad1 id=eq.1h8v.s8.3738d423cbf9 from=translated src=- shape=6cbe66f7 vocab=ae45cc75
+-/
 lemma IsCompanion.mapRep_mapRep (h : IsCompanion e a b) : h.symm.mapRep (h.mapRep u) = u := by
   refine Subtype.ext ?_
   rw [h.symm.mapRep_eq (y := e (insertRepPair u).1) (z := e (insertRepPair u).2) h.val_mapRep,
@@ -275,18 +335,27 @@ def IsCompanion.extend (h : IsCompanion e a b) :
 
 end
 
+/--
+@isnad1 id=ex.1h8v.s10.b0ed92dd7adc from=translated src=- shape=d3a19303 vocab=e9b053c9
+-/
 lemma IsCompanion.extend_spec (h : IsCompanion e a b)
     (x : (closure (insert a (A : Set α)) : BooleanSubalgebra α)) :
     ∃ y z : A, (x : α) = ((y : α) ⊓ a) ⊔ ((z : α) ⊓ aᶜ) ∧
       (h.extend x : β) = ((e y : β) ⊓ b) ⊔ ((e z : β) ⊓ bᶜ) :=
   ⟨(insertRepPair x).1, (insertRepPair x).2, insertRepPair_spec x, h.val_mapRep⟩
 
+/--
+@isnad1 id=eq.1h8v.s10.df2bfea7ea5a from=translated src=- shape=2773715f vocab=1845e237
+-/
 lemma IsCompanion.extend_coe (h : IsCompanion e a b) (x : A) :
     (h.extend ⟨x, le_closure_insert x.2⟩ : β) = e x := by
   show (h.mapRep ⟨x, le_closure_insert x.2⟩ : β) = e x
   rw [h.mapRep_eq (y := x) (z := x) (BooleanAlgebra.eq_insertRep_self ..)]
   exact (BooleanAlgebra.eq_insertRep_self ..).symm
 
+/--
+@isnad1 id=eq.1h7v.s9.9b26257111e6 from=translated src=- shape=5627f89b vocab=56e1d7ea
+-/
 lemma IsCompanion.extend_self (h : IsCompanion e a b) :
     (h.extend ⟨a, self_mem_closure_insert⟩ : β) = b := by
   show (h.mapRep ⟨a, self_mem_closure_insert⟩ : β) = b

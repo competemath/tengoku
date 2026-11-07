@@ -22,12 +22,17 @@ variable {γ : Type*} [BooleanAlgebra γ]
 section
 variable {y₁ z₁ y₂ z₂ a : γ}
 
+/--
+@isnad1 id=iff.0h4v.s6.67d33b6c2bf2 from=translated src=- shape=cad54e28 vocab=6ef218a4
+-/
 lemma inf_le_iff_sdiff_disjoint : y₁ ⊓ a ≤ y₂ ⊓ a ↔ (y₁ \ y₂) ⊓ a = ⊥ := by
   rw [← sdiff_eq_bot_iff,
     show (y₁ ⊓ a) \ (y₂ ⊓ a) = y₁ \ y₂ ⊓ a by
       rw [sdiff_eq, sdiff_eq, compl_inf, inf_sup_left]; simp [inf_left_comm, inf_comm]]
 
-/-- `(y ⊓ a) ⊔ (z ⊓ aᶜ)` is the normal form of an element of `closure (insert a A)`.-/
+/-- `(y ⊓ a) ⊔ (z ⊓ aᶜ)` is the normal form of an element of `closure (insert a A)`.
+@isnad1 id=iff.0h6v.s7.92c75be07888 from=translated src=- shape=9894c224 vocab=dbec1c85
+-/
 lemma insertRep_le_insertRep_iff :
     (y₁ ⊓ a) ⊔ (z₁ ⊓ aᶜ) ≤ (y₂ ⊓ a) ⊔ (z₂ ⊓ aᶜ) ↔
       (y₁ \ y₂) ⊓ a = ⊥ ∧ (z₁ \ z₂) ⊓ aᶜ = ⊥ := by
@@ -41,6 +46,9 @@ lemma insertRep_le_insertRep_iff :
 
 end
 
+/--
+@isnad1 id=eq.0h4v.s7.b61654f62164 from=translated src=- shape=e8804af3 vocab=5c43eccc
+-/
 lemma compl_insertRep (y z a : γ) : ((y ⊓ a) ⊔ (z ⊓ aᶜ))ᶜ = (yᶜ ⊓ a) ⊔ (zᶜ ⊓ aᶜ) := by
   have e1 : (y ⊓ a) ⊔ (yᶜ ⊓ a) = a := by rw [← inf_sup_right, sup_compl_eq_top, top_inf_eq]
   have e2 : (z ⊓ aᶜ) ⊔ (zᶜ ⊓ aᶜ) = aᶜ := by rw [← inf_sup_right, sup_compl_eq_top, top_inf_eq]
@@ -66,6 +74,9 @@ lemma compl_insertRep (y z a : γ) : ((y ⊓ a) ⊔ (z ⊓ aᶜ))ᶜ = (yᶜ ⊓
       _ = ⊥ := by rw [h1, h2, h3, h4]; simp
   exact (IsCompl.mk (disjoint_iff.mpr hinf) (codisjoint_iff.mpr hsup)).compl_eq
 
+/--
+@isnad1 id=or.1h3v.s6.1d4c4fb223ed from=translated src=- shape=6241ebe3 vocab=3480e9ec
+-/
 lemma IsAtom.le_or_disjoint {p : γ} (hp : IsAtom p) (w : γ) : p ≤ w ∨ p ⊓ w = ⊥ :=
   (em (p ≤ w)).imp_right fun h => disjoint_iff.mp (hp.not_le_iff_disjoint.mp h)
 
@@ -73,6 +84,9 @@ open Classical in
 noncomputable def atomsBelow [Fintype γ] (w : γ) : Finset γ :=
   {p | IsAtom p ∧ p ≤ w}
 
+/--
+@isnad1 id=eq.0h2v.s5.8248d1e5fc49 from=translated src=- shape=c9e84386 vocab=50d16dfe
+-/
 lemma sup_atomsBelow_eq [Fintype γ] (w : γ) :
     (atomsBelow w).sup id = w := by
   have hmem : ∀ p, p ∈ atomsBelow w ↔ IsAtom p ∧ p ≤ w := fun p => by simp [atomsBelow]
@@ -93,6 +107,9 @@ namespace BooleanSubalgebra
 
 variable {α : Type*} [BooleanAlgebra α] {A : BooleanSubalgebra α}
 
+/--
+@isnad1 id=eq.0h3v.s8.aa511b849438 from=translated src=- shape=f257acd1 vocab=95cd4b7a
+-/
 lemma val_finsetSup (s : Finset A) : ((s.sup id : A) : α) = s.sup (fun p => (p : α)) := by
   change A.subtype (s.sup id) = s.sup (fun p => A.subtype p)
   rw [map_finset_sup]

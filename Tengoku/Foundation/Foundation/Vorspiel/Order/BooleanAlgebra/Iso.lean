@@ -18,6 +18,9 @@ open BooleanSubalgebra
 
 variable {α β : Type*} [BooleanAlgebra α] [BooleanAlgebra β]
 
+/--
+@isnad1 id=finite.0h1v.s4.5541a1531090 from=translated src=- shape=542aa3f9 vocab=428a4edc
+-/
 lemma BooleanSubalgebra.coe_bot_finite : ((⊥ : BooleanSubalgebra α) : Set α).Finite := by
   rw [coe_bot]; exact (Set.finite_singleton _).insert _
 
@@ -49,6 +52,9 @@ section
 
 variable {f g : PartialIso α β}
 
+/--
+@isnad1 id=le.1h4v.s6.e1c2d651fc22 from=translated src=- shape=fe59cf8d vocab=54733f2c
+-/
 lemma cod_le_of_le (hfg : f ≤ g) : f.codSubalg ≤ g.codSubalg := by
   obtain ⟨hA, hval⟩ := hfg
   intro v hv
@@ -56,6 +62,9 @@ lemma cod_le_of_le (hfg : f ≤ g) : f.codSubalg ≤ g.codSubalg := by
     rw [hval, OrderIso.apply_symm_apply]
   exact h ▸ (g.iso _).2
 
+/--
+@isnad1 id=eq.1h5v.s10.29bf16c04fb7 from=translated src=- shape=25a20272 vocab=f5ab5d2b
+-/
 lemma symm_agree_of_le (hfg : f ≤ g) (v : f.codSubalg) :
     (g.iso.symm ⟨v, cod_le_of_le hfg v.2⟩ : α) = f.iso.symm v := by
   obtain ⟨hA, hval⟩ := id hfg
@@ -63,17 +72,26 @@ lemma symm_agree_of_le (hfg : f ≤ g) (v : f.codSubalg) :
     Subtype.ext (by rw [hval, OrderIso.apply_symm_apply])
   rw [← h, OrderIso.symm_apply_apply]
 
+/--
+@isnad1 id=le.1h4v.s6.e7a170ef8a31 from=translated src=- shape=ad7f1e16 vocab=42e09e6f
+-/
 lemma comm_le_comm (hfg : f ≤ g) : f.comm ≤ g.comm :=
   ⟨cod_le_of_le hfg, symm_agree_of_le hfg⟩
 
 variable {I : Order.Ideal (PartialIso α β)}
 
+/--
+@isnad1 id=eq.4h6v.s9.0f6d9897995d from=translated src=- shape=bb538b8e vocab=e64d62a4
+-/
 lemma eval_eq_of_mem_of_mem (hf : f ∈ I) (hg : g ∈ I) {a : α}
     (haf : a ∈ f.domSubalg) (hag : a ∈ g.domSubalg) :
     (f.iso ⟨a, haf⟩ : β) = g.iso ⟨a, hag⟩ := by
   obtain ⟨m, _, ⟨_, hfm⟩, ⟨_, hgm⟩⟩ := I.directed f hf g hg
   rw [← hfm ⟨a, haf⟩, ← hgm ⟨a, hag⟩]
 
+/--
+@isnad1 id=eq.4h6v.s10.9b8112b5e12e from=translated src=- shape=d50b00b1 vocab=96ce7a21
+-/
 lemma symm_eval_eq_of_mem_of_mem (hf : f ∈ I) (hg : g ∈ I) {b : β}
     (hbf : b ∈ f.codSubalg) (hbg : b ∈ g.codSubalg) :
     (f.iso.symm ⟨b, hbf⟩ : α) = g.iso.symm ⟨b, hbg⟩ := by
@@ -82,6 +100,9 @@ lemma symm_eval_eq_of_mem_of_mem (hf : f ∈ I) (hg : g ∈ I) {b : β}
 
 end
 
+/--
+@isnad1 id=ex.0h4v.s6.4848a2661ed4 from=translated src=- shape=2e5527b3 vocab=1ebb38c4
+-/
 theorem exists_le_mem_dom [Nontrivial β] [DenselyOrdered β]
     (f : PartialIso α β) (a : α) : ∃ g : PartialIso α β, f ≤ g ∧ a ∈ g.domSubalg := by
   obtain ⟨b, h⟩ := exists_isCompanion f.finite_dom f.iso a
@@ -106,6 +127,9 @@ end PartialIso
 
 open PartialIso
 
+/--
+@isnad1 id=nonempty.0h2v.s6.82e75f9fc487 from=translated src=- shape=94f55436 vocab=d7b293e8
+-/
 theorem iso_of_countable_atomless
     [Countable α] [Nontrivial α] [DenselyOrdered α]
     [Countable β] [Nontrivial β] [DenselyOrdered β] :
