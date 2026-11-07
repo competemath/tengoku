@@ -5,3 +5,5 @@ import Tengoku.Foundation.Foundation.Vorspiel.Order.BooleanAlgebra.Extension
 import Tengoku.Foundation.Foundation.Vorspiel.Order.BooleanAlgebra.Iso
 import Tengoku.Foundation.Foundation.Vorspiel.Order.Dense
 import Tengoku.Foundation.Foundation.Vorspiel.Small
+import Tengoku.Foundation.Foundation.Vorspiel.ENat
+import Tengoku.Foundation.Foundation.Vorspiel.Finset.Card
