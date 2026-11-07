@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "98748965ed67877bab1650762d10822eac5ec7d03413436c86cf0d72c6813236",
+ "gate2_unjudged": [],
+ "library": "foundation",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 2,
+ "theorems": 4
+}
