@@ -35,7 +35,9 @@ noncomputable def variableCountPolynomial (k x y z : ℝ) : ℝ :=
   x * y * z - (x + k * z) * y * (y - 1) / 2 +
     k * y * (y - 1) * (2 * y - 1) / 6
 
-/-- Summing real row budgets gives the variable-count polynomial, independently of rounding.-/
+/-- Summing real row budgets gives the variable-count polynomial, independently of rounding.
+@isnad1 id=eq.0h4v.s6.0f15c13c2e36 from=translated src=- shape=7226cf7c vocab=25f602e2
+-/
 theorem sum_untruncated_monomial_rows (k x z : ℝ) (d : ℕ) :
     (∑ j ∈ range d, (x - k * j) * (z - j)) = variableCountPolynomial k x d z := by
   induction d with
@@ -45,7 +47,9 @@ theorem sum_untruncated_monomial_rows (k x z : ℝ) (d : ℕ) :
     simp only [variableCountPolynomial, Nat.cast_add, Nat.cast_one]
     ring
 
-/-- Exact cardinality as a real polynomial, under explicit nontruncation assumptions.-/
+/-- Exact cardinality as a real polynomial, under explicit nontruncation assumptions.
+@isnad1 id=eq.2h4v.s6.4f3631751c9d from=translated src=- shape=9800d6ce vocab=a5eb3142
+-/
 theorem card_monomialSupport_eq_polynomial (k dx d dz : ℕ)
     (hx : ∀ j < d, k * j ≤ dx) (hz : d ≤ dz) :
     ((monomialSupport k dx d dz).card : ℝ) = variableCountPolynomial k dx d dz := by
@@ -60,7 +64,9 @@ theorem card_monomialSupport_eq_polynomial (k dx d dz : ℕ)
     _ = _ := sum_untruncated_monomial_rows k dx dz d
 
 /-- Rounding X upward and Y upward by at most one does not decrease the paper's lower bound.
-The Z budget covers the rounded Y budget, so every added row remains nonnegative.-/
+The Z budget covers the rounded Y budget, so every added row remains nonnegative.
+@isnad1 id=le.6h5v.s7.eef0d4d06d82 from=translated src=- shape=7a42b1a1 vocab=539b24f2
+-/
 theorem variableCountPolynomial_lower_bound (k x y d z : ℝ)
     (hk : 0 ≤ k) (hy : 0 ≤ y) (hyd : y ≤ d) (hdy : d ≤ y + 1)
     (hdz : d ≤ z) (hx : k * y ≤ x) :
@@ -85,7 +91,9 @@ theorem variableCountPolynomial_lower_bound (k x y d z : ℝ)
     ring
   linarith
 
-/-- The actual rounded monomial support dominates the real count used in the surplus criterion.-/
+/-- The actual rounded monomial support dominates the real count used in the surplus criterion.
+@isnad1 id=le.2h3v.s7.769b3f85dca2 from=translated src=- shape=01463e3a vocab=f220bf8a
+-/
 theorem card_monomialSupport_ceil_lower_bound (k : ℕ) (y z : ℝ)
     (hy : 0 ≤ y) (hyz : y ≤ z) :
     k * (y * (y + 1) * (⌈z⌉₊ : ℝ) / 2 - (y ^ 3 - y) / 6) ≤
@@ -102,7 +110,9 @@ theorem card_monomialSupport_ceil_lower_bound (k : ℕ) (y z : ℝ)
     (by exact_mod_cast Nat.ceil_mono hyz) (Nat.le_ceil _)
 
 /-- The rounded supports have strictly more unknowns than point constraints at the prescribed
-budgets. The identity `k = n*r²` exposes the rate without choosing a square-root representation.-/
+budgets. The identity `k = n*r²` exposes the rate without choosing a square-root representation.
+@isnad1 id=lt.5h4v.s8.cdb55ede5758 from=translated src=- shape=2f66cfc6 vocab=29a9bfca
+-/
 theorem card_constraints_lt_monomials (n k m : ℕ) (r : ℝ)
     (hn : 0 < n) (hm : 3 ≤ m) (hr : 0 < r) (hr1 : r ≤ 1)
     (hkr : (k : ℝ) = n * r ^ 2) :

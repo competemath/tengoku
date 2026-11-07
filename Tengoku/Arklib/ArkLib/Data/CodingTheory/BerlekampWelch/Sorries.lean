@@ -63,7 +63,9 @@ If `linsolve` returns `some x`, then `x` is indeed a solution to the linear syst
 - `A : Matrix (Fin n) (Fin m) F` - Coefficient matrix
 - `b : Fin n → F` - Right-hand side vector
 - `x : Fin m → F` - Candidate solution vector
-- `h : linsolve A b = some x` - Proof that the solver returned this solution-/
+- `h : linsolve A b = some x` - Proof that the solver returned this solution
+@isnad1 id=eq.1h6v.s6.96e011883b19 from=translated src=- shape=73b3549a vocab=d32add57
+-/
 theorem linsolve_some {A : Matrix (Fin n) (Fin m) F} {b : Fin n → F} {x : Fin m → F}
     (h : linsolve A b = some x) : A.mulVec x = b := by
   unfold linsolve at h
@@ -84,7 +86,9 @@ If `linsolve` returns `none`, the linear system has no solution.
 ### Parameters:
 - `A : Matrix (Fin n) (Fin m) F` - Coefficient matrix
 - `b : Fin n → F` - Right-hand side vector
-- `h : linsolve A b = none` - Proof that the solver failed to find a solution-/
+- `h : linsolve A b = none` - Proof that the solver failed to find a solution
+@isnad1 id=not.1h5v.s6.6bb25548affa from=translated src=- shape=8915910a vocab=e527c7c3
+-/
 theorem linsolve_none {A : Matrix (Fin n) (Fin m) F} {b : Fin n → F}
     (h : linsolve A b = none) : ¬∃ x, A.mulVec x = b := by
   unfold linsolve at h

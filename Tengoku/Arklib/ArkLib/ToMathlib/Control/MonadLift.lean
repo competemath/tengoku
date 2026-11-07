@@ -26,7 +26,9 @@ universe u v w
 
 /-- Lifting a computation and post-composing `h` in the continuation is the same as lifting the
 `h`-mapped computation. Use it to move a projection inside a `monadLift` so that lemmas about the
-projected computation apply.-/
+projected computation apply.
+@isnad1 id=eq.0h8v.s6.ae6a855aa84d from=translated src=- shape=bf06bb37 vocab=be041b30
+-/
 theorem monadLift_bind_map {m : Type u → Type v} {n : Type u → Type w}
     [Monad m] [LawfulMonad m] [Monad n] [LawfulMonad n]
     [MonadLiftT m n] [LawfulMonadLiftT m n] {α α' γ : Type u}
@@ -35,7 +37,9 @@ theorem monadLift_bind_map {m : Type u → Type v} {n : Type u → Type w}
   rw [monadLift_map, bind_map_left]
 
 /-- The `Prod.fst` case of `monadLift_bind_map`: discard the second component of a lifted
-pair-valued computation.-/
+pair-valued computation.
+@isnad1 id=eq.0h7v.s6.69ca5287d660 from=translated src=- shape=3440f850 vocab=000a6a99
+-/
 theorem monadLift_bind_fst {m : Type u → Type v} {n : Type u → Type w}
     [Monad m] [LawfulMonad m] [Monad n] [LawfulMonad n]
     [MonadLiftT m n] [LawfulMonadLiftT m n] {α β γ : Type u}

@@ -55,18 +55,24 @@ namespace FftDomainClass
 variable {D : Type} [FunLike D ι F] [FftDomainClass D ι F]
 variable {ω : D} {i j : ι}
 
-/-- The value of an FFT domain at `0` is `1`.-/
+/-- The value of an FFT domain at `0` is `1`.
+@isnad1 id=eq.0h4v.s6.e9e43edacc94 from=translated src=- shape=806c145f vocab=de29464f
+-/
 @[simp]
 lemma apply_zero_eq_one :
     ω 0 = 1 := generator_eq_one _
 
 /-- Evaluation of an FFT domain turns addition in the index type
-  into multiplication in the field.-/
+  into multiplication in the field.
+@isnad1 id=eq.0h6v.s6.2bb12a8e7cc5 from=translated src=- shape=dea52e57 vocab=b4eeb3f6
+-/
 lemma apply_add_eq_mul :
     ω (i + j) = ω i * ω j := by
   simp [CosetFftDomainClass.map_add]
 
-/-- The product of two elements of an FFT domain is again in the domain.-/
+/-- The product of two elements of an FFT domain is again in the domain.
+@isnad1 id=mem.2h6v.s6.052567a6d4c2 from=translated src=- shape=d4e91fa9 vocab=faa7394f
+-/
 lemma mul_mem_of_mem
     {x₁ x₂ : F} (hx₁ : x₁ ∈ ω) (hx₂ : x₂ ∈ ω) :
   x₁ * x₂ ∈ ω := by
@@ -75,7 +81,9 @@ lemma mul_mem_of_mem
   exists (i₁ + i₂)
   aesop (add simp [apply_add_eq_mul])
 
-/-- Evaluation at the negated index gives the inverse field element.-/
+/-- Evaluation at the negated index gives the inverse field element.
+@isnad1 id=eq.0h5v.s6.64043565f613 from=translated src=- shape=605eef68 vocab=5496a426
+-/
 @[simp]
 lemma apply_neg_eq_inv :
     ω (-i) = (ω i)⁻¹ := by
@@ -84,7 +92,9 @@ lemma apply_neg_eq_inv :
     aesop
   exact eq_inv_of_mul_eq_one_left h_def
 
-/-- Evaluation at a difference of indices gives the quotient of the corresponding evaluations.-/
+/-- Evaluation at a difference of indices gives the quotient of the corresponding evaluations.
+@isnad1 id=eq.0h6v.s6.4530499c35bb from=translated src=- shape=dea52e57 vocab=530828c2
+-/
 lemma domain_sub_eq_div_domain :
     ω (i - j) = ω i / ω j := by
   rw
@@ -93,7 +103,9 @@ lemma domain_sub_eq_div_domain :
       apply_add_eq_mul,
       apply_neg_eq_inv]
 
-/-- Evaluation at a natural multiple of an index gives the corresponding power of the evaluation.-/
+/-- Evaluation at a natural multiple of an index gives the corresponding power of the evaluation.
+@isnad1 id=eq.0h6v.s6.3fc9022ac0d4 from=translated src=- shape=17085f95 vocab=d19dc9bb
+-/
 lemma apply_nsmul {k : ℕ} :
     ω (k • i) = (ω i) ^ k := by
   induction k with
@@ -106,7 +118,9 @@ variable {n : ℕ}
 variable {D : Type} [FunLike D (Fin (2 ^ n)) F] [FftDomainClass D (Fin (2 ^ n)) F]
 variable {ω : D}
 
-/-- In a smooth FFT domain of nonzero logarithmic size, `-1` belongs to the domain.-/
+/-- In a smooth FFT domain of nonzero logarithmic size, `-1` belongs to the domain.
+@isnad1 id=mem.0h4v.s7.ec9fcba78487 from=translated src=- shape=62ae8cdf vocab=b14b300f
+-/
 @[simp]
 lemma neg_one_mem_domain [nz : NeZero n] :
     -1 ∈ ω := by
@@ -149,7 +163,9 @@ private lemma val_eq_nsmul_one {n : ℕ} (i : Fin (2 ^ n)) :
     induction i.val <;> simp_all +decide [nsmulRec]
     simp_all +decide [Fin.val_add]
 
-/-- In a smooth FFT domain, every value is a power of the value at `1`.-/
+/-- In a smooth FFT domain, every value is a power of the value at `1`.
+@isnad1 id=eq.0h5v.s8.77fbdd923763 from=translated src=- shape=a5553493 vocab=70206e97
+-/
 lemma apply_eq_pow_of_generator (i : Fin (2 ^ n)) :
     ω i = (ω 1) ^ i.val := by
   conv_lhs => rw [val_eq_nsmul_one i]
@@ -162,7 +178,9 @@ theorem eq_iff_generators_eq {ω₁ ω₂ : D} :
   ext i
   aesop (add safe [(by rw [apply_eq_pow_of_generator i])])
 
-/-- The existence of a nontrivial smooth FFT domain rules out characteristic `2`.-/
+/-- The existence of a nontrivial smooth FFT domain rules out characteristic `2`.
+@isnad1 id=not.0h4v.s6.e02ed9b18678 from=translated src=- shape=ddfc1ab0 vocab=113f4886
+-/
 lemma domain_implies_char_ne_2 [NeZero n] (ω : D) :
     ¬CharP F 2 := fun hchar ↦ by
   have hn : n ≠ 0 := NeZero.ne _
@@ -188,21 +206,33 @@ lemma domain_implies_char_ne_2 [NeZero n] (ω : D) :
   · exact h_ne_one h
   · exact h_ne_one (by rwa [h_neg_eq_pos] at h)
 
+/--
+@isnad1 id=ne.0h4v.s6.1fbe9c418f78 from=translated src=- shape=90c4c4a4 vocab=adfd91de
+-/
 lemma domain_implies_2_ne_0 [NeZero n] (ω : D) :
     (2 : F) ≠ 0 := fun contra ↦ domain_implies_char_ne_2 ω <|
     ringChar.of_eq (CharP.ringChar_of_prime_eq_zero Nat.prime_two contra)
 
+/--
+@isnad1 id=ne.1h5v.s7.70a898903a35 from=translated src=- shape=2c7c4926 vocab=7bb726f7
+-/
 lemma domain_implies_x_ne_neg_x [NeZero n] (ω : D) {x : F} (hx : x ≠ 0) :
     x ≠ -x := fun contra ↦ by
   have := domain_implies_2_ne_0 ω
   grind
 
+/--
+@isnad1 id=ne.0h5v.s8.6e821a5788ca from=translated src=- shape=7cd44d0b vocab=ed5198a0
+-/
 @[simp]
 lemma domain_implies_x_ne_neg_x_dep [DecidableEq F] [NeZero n] (ω : D) {x : ω} :
     x.val ≠ -x.val := by
   rcases x with ⟨x, hx⟩
   exact domain_implies_x_ne_neg_x ω (by aesop)
 
+/--
+@isnad1 id=ne.0h5v.s8.48e82840dec2 from=translated src=- shape=fd107f5d vocab=ed5198a0
+-/
 @[simp]
 lemma domain_implies_neg_x_ne_x_dep [DecidableEq F] [NeZero n] (ω : D) {x : ω} :
     -x.val ≠ x.val := by

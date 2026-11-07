@@ -46,7 +46,9 @@ variable {R : Type*} [CommRing R] [IsDomain R]
 variable [DecidableEq R] [NormalizationMonoid R[X][Y]] [UniqueFactorizationMonoid R[X][Y]]
 
 omit [IsDomain R] in
-/-- The product of the distinct normalized factors divides the original nonzero polynomial.-/
+/-- The product of the distinct normalized factors divides the original nonzero polynomial.
+@isnad1 id=dvd.1h2v.s9.555fedc929f0 from=translated src=- shape=10106ae9 vocab=1c820d90
+-/
 theorem normalizedFactors_toFinset_prod_dvd (p : R[X][Y]) (hp : p ≠ 0) :
     (UniqueFactorizationMonoid.normalizedFactors p).toFinset.prod id ∣ p := by
   classical

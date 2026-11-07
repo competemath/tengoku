@@ -59,7 +59,9 @@ noncomputable def foldedWronskian (σ : ℕ) (ω : F) (P : Fin σ → F[X]) : F[
   (Matrix.of fun i j : Fin σ => (P j).comp (C (ω ^ (i : ℕ)) * X)).det
 
 /-- If every `P j` has degree at most `k`, the folded Wronskian has degree at most `σ * k`:
-each summand of the Leibniz expansion is a product of `σ` entries.-/
+each summand of the Leibniz expansion is a product of `σ` entries.
+@isnad1 id=le.1h5v.s6.5c9242a251c1 from=translated src=- shape=022a9273 vocab=974f37b8
+-/
 lemma natDegree_foldedWronskian_le (σ : ℕ) (ω : F) (P : Fin σ → F[X]) (k : ℕ)
     (hP : ∀ j, (P j).natDegree ≤ k) :
     (foldedWronskian σ ω P).natDegree ≤ σ * k := by
@@ -210,7 +212,9 @@ independent polynomials of degree `< k` have a nonzero folded Wronskian.
 The proof works in the field `K = F[X]/(E)` for the irreducible `E = X ^ (q-1) - C ω`
 (`X_pow_card_sub_one_sub_C_irreducible`), where `X ^ q ≡ ω * X` and hence
 `P (ω ^ i * X) ≡ P X ^ (q ^ i)`. Evaluation at the root is injective on `degreeLT F k` since
-`k ≤ deg E`, so `foldedWronskian_matrix_det_ne_zero` applies.-/
+`k ≤ deg E`, so `foldedWronskian_matrix_det_ne_zero` applies.
+@isnad1 id=ne.4h5v.s8.536cd1d7c3da from=translated src=- shape=aa3b4886 vocab=9441683f
+-/
 theorem foldedWronskian_ne_zero_of_linearIndependent [Fintype F]
     {σ k : ℕ} {ω : F} (hω : orderOf ω = Fintype.card F - 1)
     (hk : k ≤ Fintype.card F - 1)
@@ -246,7 +250,9 @@ theorem foldedWronskian_ne_zero_of_linearIndependent [Fintype F]
 with `a ≠ 0`, then `∑ j, a j • P j (ω ^ i * X) = 0` for every `i`, so the constant vector
 `fun j ↦ C (a j)` is a nonzero kernel element of the folded Wronskian matrix over `F[X]`.
 
-This direction needs no finiteness of `F`, no condition on `ω`, and no degree bound.-/
+This direction needs no finiteness of `F`, no condition on `ω`, and no degree bound.
+@isnad1 id=eq.1h4v.s7.70a99359351f from=translated src=- shape=197e379f vocab=ab6b37c3
+-/
 theorem foldedWronskian_eq_zero_of_not_linearIndependent (σ : ℕ) (ω : F) (P : Fin σ → F[X])
     (hind : ¬ LinearIndependent F P) :
     foldedWronskian σ ω P = 0 := by
@@ -264,7 +270,9 @@ theorem foldedWronskian_eq_zero_of_not_linearIndependent (σ : ℕ) (ω : F) (P 
     simpa [Matrix.mulVec, dotProduct, ha] using this
 
 /-- Over a finite field `F` with `ω` a generator of `Fˣ` and `k ≤ |F| - 1`, polynomials of
-degree `< k` are linearly independent iff their `ω`-folded Wronskian is nonzero.-/
+degree `< k` are linearly independent iff their `ω`-folded Wronskian is nonzero.
+@isnad1 id=iff.3h5v.s8.d6cf19ed4849 from=translated src=- shape=2d013c70 vocab=9441683f
+-/
 theorem foldedWronskian_ne_zero_iff_linearIndependent [Fintype F]
     {σ k : ℕ} {ω : F} (hω : orderOf ω = Fintype.card F - 1)
     (hk : k ≤ Fintype.card F - 1)

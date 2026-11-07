@@ -54,21 +54,36 @@ TODO: is `Coe` the right thing to use here? What about other variants of coercio
 instance : Coe (∀ a : α, β a) F where
   coe := DFunEquiv.equiv.invFun
 
+/--
+@isnad1 id=eq.0h4v.s5.acd11ea7340c from=translated src=- shape=0582c550 vocab=33c29ceb
+-/
 @[simp]
 lemma toFun_invFun (f : ∀ a, β a) : inst.equiv.toFun (equiv.invFun f : F) = f :=
   inst.equiv.right_inv _
 
+/--
+@isnad1 id=eq.0h4v.s5.bccdc7ab4b2e from=translated src=- shape=cb51f210 vocab=33c29ceb
+-/
 @[simp]
 lemma invFun_toFun (f : F) : inst.equiv.invFun (inst.equiv.toFun f) = f :=
   inst.equiv.left_inv _
 
+/--
+@isnad1 id=eq.0h5v.s5.fe4b279b8961 from=translated src=- shape=f801e195 vocab=4963d5c8
+-/
 @[simp]
 lemma coe_toFun_of_coe_apply (f : ∀ a, β a) (a : α) : (f : F) a = f a := by
   exact congrFun (inst.equiv.right_inv f) a
 
+/--
+@isnad1 id=eq.0h4v.s5.e548b448a4f8 from=translated src=- shape=ce9c2eb4 vocab=f767d8e7
+-/
 @[simp]
 lemma coe_fn_of_coe (f : ∀ a, β a) : (f : F) = inst.equiv.invFun f := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.cf9ebd5f0031 from=translated src=- shape=227f4982 vocab=c75caa41
+-/
 @[simp]
 lemma coe_of_coe_fn (f : F) : (f : ∀ a, β a) = inst.equiv.toFun f := rfl
 

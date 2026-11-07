@@ -78,7 +78,9 @@ namespace CosetFftDomainClass
 
 variable {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F]
 
-/-- Every point of a coset FFT domain is nonzero.-/
+/-- Every point of a coset FFT domain is nonzero.
+@isnad1 id=ne.0h5v.s5.f2346a4932b5 from=translated src=- shape=03224d6c vocab=6ea13287
+-/
 @[simp]
 lemma ne_zero (ω : D) (i : ι) : ω i ≠ 0 := fun h ↦ by
   have h0 : IsUnit (ω 0) := map_zero_unit ω
@@ -103,16 +105,25 @@ private lemma eq_iff_gen_and_domains_eq {ω₁ ω₂ : CosetFftDomain ι F} :
 def subgroupUnit (ω : CosetFftDomain ι F) (i : ι) : Fˣ :=
   ω.subgroupDomain (Multiplicative.ofAdd i)
 
+/--
+@isnad1 id=eq.0h3v.s6.16cd99015912 from=translated src=- shape=c8e84555 vocab=53f47272
+-/
 @[simp]
 lemma subgroupUnit_zero (ω : CosetFftDomain ι F) : subgroupUnit ω 0 = 1 := by
   rw [subgroupUnit, ofAdd_zero, map_one]
 
+/--
+@isnad1 id=eq.0h5v.s6.738f60e7b3ef from=translated src=- shape=463b0eed vocab=9fb6cef0
+-/
 @[simp]
 lemma subgroupUnit_add (ω : CosetFftDomain ι F) (i j : ι) :
     subgroupUnit ω (i + j) = subgroupUnit ω i * subgroupUnit ω j := by
   rw [subgroupUnit, ofAdd_add, map_mul]
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.24129c1ee26b from=translated src=- shape=96b2f3fd vocab=74bc8fd3
+-/
 @[simp]
 lemma subgroupUnit_neg (ω : CosetFftDomain ι F) (i : ι) :
     subgroupUnit ω (-i) = (subgroupUnit ω i)⁻¹ := by
@@ -142,7 +153,9 @@ instance : FunLike (CosetFftDomain ι F) ι F where
 namespace CosetFftDomain
 
 /-- Evaluation of a concrete coset FFT domain is multiplication of
-  the coset generator by the subgroup element indexed by `i`.-/
+  the coset generator by the subgroup element indexed by `i`.
+@isnad1 id=eq.0h4v.s6.804c3967848b from=translated src=- shape=49c2854c vocab=a0af2f67
+-/
 lemma eval_coset_fft_domain_eq_eval_generator_mul_domain
     {cosetDomain : CosetFftDomain ι F} {i : ι} :
   cosetDomain i = cosetDomain.cosetGenerator * cosetDomain.subgroupUnit i := rfl
@@ -234,17 +247,26 @@ def toCosetFftDomain {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F]
     mul_inv_cancel₀ (CosetFftDomainClass.ne_zero ω (0 : ι)),
     inv_mul_cancel₀ (CosetFftDomainClass.ne_zero ω (0 : ι))⟩
 
+/--
+@isnad1 id=eq.0h5v.s7.74029c086c94 from=translated src=- shape=7979a3ad vocab=4b312175
+-/
 @[simp]
 lemma toCosetFftDomain_subgroupDomain_apply
     {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F]
     (ω : D) (i : Multiplicative ι) :
     (toCosetFftDomain ω).subgroupDomain i = mkSubgroupUnit ω i.toAdd := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.2f775b032ef0 from=translated src=- shape=cdb76ef7 vocab=2521700a
+-/
 @[simp]
 lemma toCosetFftDomain_cosetGenerator_val
     {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F] (ω : D) :
     ((toCosetFftDomain ω).cosetGenerator : F) = ω 0 := rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.62a341e957f9 from=translated src=- shape=189c93b7 vocab=4b9145d4
+-/
 @[simp]
 lemma toCosetFftDomain_subgroupUnit
     {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F]
@@ -253,7 +275,9 @@ lemma toCosetFftDomain_subgroupUnit
   rw [CosetFftDomain.subgroupUnit, toCosetFftDomain_subgroupDomain_apply, toAdd_ofAdd]
 
 /-- Converting a class-level coset FFT domain to its concrete representation preserves
-evaluation.-/
+evaluation.
+@isnad1 id=eq.0h5v.s6.3ece64127690 from=translated src=- shape=8379b8c0 vocab=af40a398
+-/
 @[simp]
 lemma toCosetFftDomain_apply
     {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F]
@@ -265,7 +289,9 @@ lemma toCosetFftDomain_apply
   field_simp
 
 /-- Reconstructing a concrete coset FFT domain from its class instance
-  gives back the original domain.-/
+  gives back the original domain.
+@isnad1 id=eq.0h3v.s5.f7bbf384c7e1 from=translated src=- shape=9345ead5 vocab=30b76165
+-/
 lemma toCosetFftDomain_of_CosetFftDomain {ω : CosetFftDomain ι F} :
     toCosetFftDomain ω = ω := by
   apply CosetFftDomain.eq_iff_gen_and_domains_eq.mpr
@@ -284,7 +310,9 @@ lemma toCosetFftDomain_of_CosetFftDomain {ω : CosetFftDomain ι F} :
     simp only [hzero, Units.val_one, mul_one]
     field_simp
 
-/-- Reconstructing a concrete coset FFT domain preserves evaluation.-/
+/-- Reconstructing a concrete coset FFT domain preserves evaluation.
+@isnad1 id=eq.0h4v.s6.0d0801462d79 from=translated src=- shape=f4970e3d vocab=80eb655e
+-/
 lemma toCosetFftDomain_apply_self {ω : CosetFftDomain ι F} {i : ι} :
     toCosetFftDomain ω i = ω i := by
   exact toCosetFftDomain_apply ω i
@@ -300,13 +328,17 @@ namespace CosetFftDomainClass
 
 variable {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F]
 
-/-- Evaluating the embedding induced by a coset FFT domain is the same as evaluating the domain.-/
+/-- Evaluating the embedding induced by a coset FFT domain is the same as evaluating the domain.
+@isnad1 id=eq.0h5v.s6.5e6b3358175f from=translated src=- shape=6cba64de vocab=fd88475f
+-/
 @[simp]
 lemma coe_embedding_apply (ω : D) (i : ι) : ((ω : ι ↪ F) i) = ω i := rfl
 
 omit [AddCommGroup ι] [Field F] [CosetFftDomainClass D ι F] in
 /-- Extensionality for class-level coset FFT domains.
-  Domains are equal if their evaluations are equal.-/
+  Domains are equal if their evaluations are equal.
+@isnad1 id=eq.1h5v.s5.394bc5a9b815 from=translated src=- shape=355774ef vocab=746127ec
+-/
 @[ext]
 theorem ext {ω₁ ω₂ : D} (h : ∀ i, ω₁ i = ω₂ i) : ω₁ = ω₂ := DFunLike.ext _ _ h
 
@@ -314,18 +346,24 @@ end CosetFftDomainClass
 
 namespace CosetFftDomain
 
-/-- The value at zero is the coset generator.-/
+/-- The value at zero is the coset generator.
+@isnad1 id=eq.0h3v.s6.e3a678527679 from=translated src=- shape=73f9acff vocab=2d980a82
+-/
 lemma map_0_eq_coset_generator {ω : CosetFftDomain ι F} :
     ω 0 = ω.cosetGenerator := by
   simp only [eval_coset_fft_domain_eq_eval_generator_mul_domain, subgroupUnit_zero,
     Units.val_one, mul_one]
 
-/-- A concrete coset FFT domain is injective as a function.-/
+/-- A concrete coset FFT domain is injective as a function.
+@isnad1 id=injectiv.0h3v.s5.0abb8ebc898e from=translated src=- shape=aafba6b1 vocab=642b7f25
+-/
 @[simp]
 lemma injective {ω : CosetFftDomain ι F} :
     Injective ω := CosetFftDomainClass.injective _
 
-/-- A concrete coset FFT domain is injective on every set.-/
+/-- A concrete coset FFT domain is injective on every set.
+@isnad1 id=injon.0h4v.s5.2eb8927b9d8f from=translated src=- shape=1b88c73e vocab=7c6358d6
+-/
 @[simp]
 lemma injOn {ω : CosetFftDomain ι F} {s : Set ι} :
     Set.InjOn ω s := fun _ _ _ _ h ↦ injective h
@@ -344,7 +382,9 @@ def toFinset {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F]
     (ω : D) : Finset F := Finset.image ω Finset.univ
 
 /-- The cardinality of the finset of elements of a domain is
-  the cardinality of the indexing type.-/
+  the cardinality of the indexing type.
+@isnad1 id=eq.0h4v.s5.5b065b9e960e from=translated src=- shape=7ca0d2b9 vocab=0549abbf
+-/
 @[simp]
 lemma card_toFinset {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F]
     {ω : D} :

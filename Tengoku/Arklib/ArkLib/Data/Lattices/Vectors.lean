@@ -62,12 +62,17 @@ def flattenBlocks {blocks width : Nat} (xs : PolyVec (PolyVec P width) blocks) :
     PolyVec P (blocks * width) :=
   fun j => xs (finProdFinEquiv.symm j).1 (finProdFinEquiv.symm j).2
 
+/--
+@isnad1 id=eq.0h6v.s6.2bdc2ce5d479 from=translated src=- shape=de7d7483 vocab=8bf42b55
+-/
 @[simp] theorem flattenBlocks_apply {blocks width : Nat}
     (xs : PolyVec (PolyVec P width) blocks) (i : Fin blocks) (j : Fin width) :
     flattenBlocks xs (finProdFinEquiv (i, j)) = xs i j := by
   simp [flattenBlocks]
 
-/-- Equal flattenings agree blockwise.-/
+/-- Equal flattenings agree blockwise.
+@isnad1 id=eq.1h6v.s5.04f96f5e6969 from=translated src=- shape=e1f4502e vocab=45f0cbde
+-/
 theorem block_eq_of_flattenBlocks_eq {blocks width : Nat}
     {xs ys : PolyVec (PolyVec P width) blocks}
     (h : flattenBlocks xs = flattenBlocks ys) (i : Fin blocks) :
@@ -107,10 +112,16 @@ def scalarVecMul {cols : Nat} (c : P) (v : PolyVec P cols) : PolyVec P cols :=
 @[inherit_doc dot] scoped infixl:72 " ⬝ᵥ " => dot
 @[inherit_doc scalarVecMul] scoped infixr:73 " •ᵥ " => scalarVecMul
 
+/--
+@isnad1 id=eq.0h6v.s5.7922f9560bd3 from=translated src=- shape=ebd29bb0 vocab=4682646c
+-/
 @[simp] theorem matVecMul_apply {rows cols : Nat} (A : PolyMatrix P rows cols)
     (v : PolyVec P cols) (i : Fin rows) : (A *ᵥ v) i = (A i) ⬝ᵥ v := rfl
 
 omit [Add P] [Zero P] in
+/--
+@isnad1 id=eq.0h5v.s5.13df950829cd from=translated src=- shape=3770c696 vocab=53294498
+-/
 @[simp] theorem scalarVecMul_apply {cols : Nat} (c : P) (v : PolyVec P cols) (i : Fin cols) :
     (c •ᵥ v) i = c * v i := rfl
 
@@ -120,73 +131,99 @@ section Algebra
 
 variable {P : Type u} [CommSemiring P]
 
-/-- `dot` as a `Finset.sum` of coordinatewise products.-/
+/-- `dot` as a `Finset.sum` of coordinatewise products.
+@isnad1 id=eq.0h4v.s6.85ebc334bb76 from=translated src=- shape=a48465b1 vocab=74737929
+-/
 theorem dot_eq_sum {k : ℕ} (u v : PolyVec P k) : u ⬝ᵥ v = ∑ i : Fin k, u i * v i := by
   rw [dot, List.sum_ofFn]
 
-/-- `dot` is symmetric.-/
+/-- `dot` is symmetric.
+@isnad1 id=eq.0h4v.s6.d54c41164ae4 from=translated src=- shape=83194a21 vocab=b1bf4f9e
+-/
 theorem dot_comm {k : ℕ} (u v : PolyVec P k) : u ⬝ᵥ v = v ⬝ᵥ u := by
   simp only [dot_eq_sum]; exact Finset.sum_congr rfl (fun i _ => mul_comm _ _)
 
-/-- `dot` distributes over addition in the first argument.-/
+/-- `dot` distributes over addition in the first argument.
+@isnad1 id=eq.0h5v.s7.33e86e88bab2 from=translated src=- shape=0db97fb4 vocab=ccac1fe3
+-/
 theorem dot_add_left {k : ℕ} (u v w : PolyVec P k) : (u + v) ⬝ᵥ w = u ⬝ᵥ w + v ⬝ᵥ w := by
   simp only [dot_eq_sum, ← Finset.sum_add_distrib, Pi.add_apply, add_mul]
 
-/-- `dot` distributes over addition in the second argument.-/
+/-- `dot` distributes over addition in the second argument.
+@isnad1 id=eq.0h5v.s7.5832eca967ce from=translated src=- shape=cdb00d39 vocab=ccac1fe3
+-/
 theorem dot_add_right {k : ℕ} (u v w : PolyVec P k) : u ⬝ᵥ (v + w) = u ⬝ᵥ v + u ⬝ᵥ w := by
   simp only [dot_eq_sum, ← Finset.sum_add_distrib, Pi.add_apply, mul_add]
 
-/-- `dot` pulls out a left scalar from the second argument.-/
+/-- `dot` pulls out a left scalar from the second argument.
+@isnad1 id=eq.0h5v.s6.8392a0a5d396 from=translated src=- shape=e749d6f2 vocab=788bb653
+-/
 theorem dot_scalarVecMul {k : ℕ} (c : P) (u v : PolyVec P k) :
     u ⬝ᵥ (c •ᵥ v) = c * (u ⬝ᵥ v) := by
   simp only [dot_eq_sum, Finset.mul_sum, scalarVecMul_apply]
   exact Finset.sum_congr rfl (fun i _ => mul_left_comm _ _ _)
 
 /-- `dot` commutes with a finite sum in the second argument (the `Finset` form of
-`dot_add_right`, used to fold a challenge-weighted family of witness blocks into one vector).-/
+`dot_add_right`, used to fold a challenge-weighted family of witness blocks into one vector).
+@isnad1 id=eq.0h6v.s6.dd5878f143f3 from=translated src=- shape=c509db47 vocab=a8df1e31
+-/
 theorem dot_sum_right {k : ℕ} {ι : Type*} (s : Finset ι) (u : PolyVec P k) (v : ι → PolyVec P k) :
     u ⬝ᵥ (∑ i ∈ s, v i) = ∑ i ∈ s, u ⬝ᵥ v i := by
   simp only [dot_eq_sum, Finset.sum_apply, Finset.mul_sum]
   exact Finset.sum_comm
 
-/-- Matrix–vector multiplication distributes over addition of vectors.-/
+/-- Matrix–vector multiplication distributes over addition of vectors.
+@isnad1 id=eq.0h6v.s7.71b173fb3daf from=translated src=- shape=92d5d6bd vocab=98ada527
+-/
 theorem matVecMul_add {rows cols : ℕ} (A : PolyMatrix P rows cols) (v w : PolyVec P cols) :
     A *ᵥ (v + w) = A *ᵥ v + A *ᵥ w := by
   funext i; simp only [matVecMul_apply, Pi.add_apply, dot_add_right]
 
-/-- Matrix–vector multiplication distributes over addition of matrices.-/
+/-- Matrix–vector multiplication distributes over addition of matrices.
+@isnad1 id=eq.0h6v.s7.182049100644 from=translated src=- shape=2ee06fe7 vocab=98ada527
+-/
 theorem matVecMul_matrix_add {rows cols : ℕ} (A B : PolyMatrix P rows cols) (v : PolyVec P cols) :
     (A + B) *ᵥ v = A *ᵥ v + B *ᵥ v := by
   funext i
   simp only [matVecMul_apply, Pi.add_apply, dot_eq_sum, Matrix.add_apply, add_mul,
     Finset.sum_add_distrib]
 
-/-- Matrix–vector multiplication pulls out a scalar from the matrix.-/
+/-- Matrix–vector multiplication pulls out a scalar from the matrix.
+@isnad1 id=eq.0h6v.s6.162297f01c3f from=translated src=- shape=0dd09093 vocab=2a542c7a
+-/
 theorem matVecMul_matrix_smul {rows cols : ℕ} (c : P) (A : PolyMatrix P rows cols)
     (v : PolyVec P cols) : (c • A) *ᵥ v = scalarVecMul c (A *ᵥ v) := by
   funext i
   simp only [matVecMul_apply, scalarVecMul_apply, dot_eq_sum, Matrix.smul_apply, smul_eq_mul,
     Finset.mul_sum, mul_assoc]
 
-/-- Matrix–vector multiplication commutes with left scalar multiplication.-/
+/-- Matrix–vector multiplication commutes with left scalar multiplication.
+@isnad1 id=eq.0h6v.s6.65a1f9401f45 from=translated src=- shape=b24c29cc vocab=3523fa68
+-/
 theorem matVecMul_scalarVecMul {rows cols : ℕ} (A : PolyMatrix P rows cols) (c : P)
     (v : PolyVec P cols) : A *ᵥ (c •ᵥ v) = c •ᵥ (A *ᵥ v) := by
   funext i; simp only [matVecMul_apply, scalarVecMul_apply, dot_scalarVecMul]
 
-/-- Matrix–vector multiplication commutes with a finite sum of vectors.-/
+/-- Matrix–vector multiplication commutes with a finite sum of vectors.
+@isnad1 id=eq.0h7v.s7.d0310fc7f881 from=translated src=- shape=ae09d81e vocab=b47d1bcd
+-/
 theorem matVecMul_sum {rows cols : ℕ} {ι : Type*} (s : Finset ι) (A : PolyMatrix P rows cols)
     (v : ι → PolyVec P cols) : A *ᵥ (∑ i ∈ s, v i) = ∑ i ∈ s, A *ᵥ v i := by
   funext j
   simp only [matVecMul_apply, Finset.sum_apply, dot_sum_right]
 
-/-- `matMul` entrywise: `(matMul M N) i k = ∑ⱼ Mᵢⱼ Nⱼₖ`.-/
+/-- `matMul` entrywise: `(matMul M N) i k = ∑ⱼ Mᵢⱼ Nⱼₖ`.
+@isnad1 id=eq.0h8v.s6.f51fe9aa9f54 from=translated src=- shape=b3801bcd vocab=906e1d3f
+-/
 theorem matMul_apply {a b c : ℕ} (M : PolyMatrix P a b) (N : PolyMatrix P b c)
     (i : Fin a) (k : Fin c) : matMul M N i k = ∑ j : Fin b, M i j * N j k := by
   simp only [matMul, dot_eq_sum]
 
 /-- Associativity of matrix–vector multiplication with the matrix product: applying `matMul M N`
 to `v` is applying `M` to `N *ᵥ v`. This is the algebraic core of folding a gadget matrix into the
-witness (Hachi [NOZ26] eq. 15).-/
+witness (Hachi [NOZ26] eq. 15).
+@isnad1 id=eq.0h7v.s7.01141bac5989 from=translated src=- shape=b5247e63 vocab=bcca589d
+-/
 theorem matVecMul_matMul {a b c : ℕ} (M : PolyMatrix P a b) (N : PolyMatrix P b c)
     (v : PolyVec P c) : matMul M N *ᵥ v = M *ᵥ (N *ᵥ v) := by
   funext i
@@ -203,47 +240,63 @@ decomposed witness (Hachi [NOZ26] eq. 12 → eq. 15).-/
 def splitForm {a b : ℕ} (M : PolyMatrix P a b) (u : PolyVec P a) (v : PolyVec P b) : P :=
   u ⬝ᵥ (M *ᵥ v)
 
-/-- `splitForm` is additive in the inner (right) basis vector.-/
+/-- `splitForm` is additive in the inner (right) basis vector.
+@isnad1 id=eq.0h7v.s6.db4aafb29b43 from=translated src=- shape=4b49ec3e vocab=cd0fb88c
+-/
 theorem splitForm_add_right {a b : ℕ} (M : PolyMatrix P a b) (u : PolyVec P a)
     (v w : PolyVec P b) : splitForm M u (v + w) = splitForm M u v + splitForm M u w := by
   simp only [splitForm, matVecMul_add, dot_add_right]
 
-/-- `splitForm` pulls a scalar out of the inner (right) basis vector.-/
+/-- `splitForm` pulls a scalar out of the inner (right) basis vector.
+@isnad1 id=eq.0h7v.s6.7cf841b607f3 from=translated src=- shape=6f2942bd vocab=e1b33b04
+-/
 theorem splitForm_smul_right {a b : ℕ} (M : PolyMatrix P a b) (u : PolyVec P a) (c : P)
     (v : PolyVec P b) : splitForm M u (scalarVecMul c v) = c * splitForm M u v := by
   simp only [splitForm, matVecMul_scalarVecMul, dot_scalarVecMul]
 
 /-- `splitForm` commutes with a finite sum in the inner (right) basis vector: the bilinear form
-of a challenge-weighted family is the weighted sum of the forms.-/
+of a challenge-weighted family is the weighted sum of the forms.
+@isnad1 id=eq.0h8v.s6.0c60365a620d from=translated src=- shape=0cc1aa1b vocab=cdd57b95
+-/
 theorem splitForm_sum_right {a b : ℕ} {ι : Type*} (s : Finset ι) (M : PolyMatrix P a b)
     (u : PolyVec P a) (v : ι → PolyVec P b) :
     splitForm M u (∑ i ∈ s, v i) = ∑ i ∈ s, splitForm M u (v i) := by
   simp only [splitForm, matVecMul_sum, dot_sum_right]
 
-/-- `splitForm` is additive in the outer (left) basis vector.-/
+/-- `splitForm` is additive in the outer (left) basis vector.
+@isnad1 id=eq.0h7v.s6.4737d29b1e39 from=translated src=- shape=6fcf21a6 vocab=cd0fb88c
+-/
 theorem splitForm_add_left {a b : ℕ} (M : PolyMatrix P a b) (u u' : PolyVec P a)
     (v : PolyVec P b) : splitForm M (u + u') v = splitForm M u v + splitForm M u' v := by
   simp only [splitForm, dot_add_left]
 
-/-- `splitForm` pulls a scalar out of the outer (left) basis vector.-/
+/-- `splitForm` pulls a scalar out of the outer (left) basis vector.
+@isnad1 id=eq.0h7v.s6.4bbe331beda1 from=translated src=- shape=a3d3b9ad vocab=e1b33b04
+-/
 theorem splitForm_smul_left {a b : ℕ} (M : PolyMatrix P a b) (c : P) (u : PolyVec P a)
     (v : PolyVec P b) : splitForm M (scalarVecMul c u) v = c * splitForm M u v := by
   simp only [splitForm]
   rw [dot_comm (scalarVecMul c u), dot_scalarVecMul, dot_comm]
 
-/-- `splitForm` is additive in the matrix.-/
+/-- `splitForm` is additive in the matrix.
+@isnad1 id=eq.0h7v.s6.e128bbf2291d from=translated src=- shape=883bf1f3 vocab=cd0fb88c
+-/
 theorem splitForm_matrix_add {a b : ℕ} (M N : PolyMatrix P a b) (u : PolyVec P a)
     (v : PolyVec P b) : splitForm (M + N) u v = splitForm M u v + splitForm N u v := by
   simp only [splitForm, matVecMul_matrix_add, dot_add_right]
 
-/-- `splitForm` pulls a scalar out of the matrix.-/
+/-- `splitForm` pulls a scalar out of the matrix.
+@isnad1 id=eq.0h7v.s6.1a79e1d60441 from=translated src=- shape=5338be88 vocab=a46c57ca
+-/
 theorem splitForm_matrix_smul {a b : ℕ} (c : P) (M : PolyMatrix P a b) (u : PolyVec P a)
     (v : PolyVec P b) : splitForm (c • M) u v = c * splitForm M u v := by
   simp only [splitForm, matVecMul_matrix_smul, dot_scalarVecMul]
 
 /-- **Transpose adjunction.** Moving the matrix across the form swaps the two basis vectors and
 transposes `M`: `uᵀ M v = vᵀ Mᵀ u`. This is what pushes a gadget factor from the witness side onto
-the (public) basis side.-/
+the (public) basis side.
+@isnad1 id=eq.0h6v.s5.59db0ff2be9f from=translated src=- shape=2f355d47 vocab=d1acb7aa
+-/
 theorem splitForm_transpose {a b : ℕ} (M : PolyMatrix P a b) (u : PolyVec P a) (v : PolyVec P b) :
     splitForm M u v = splitForm M.transpose v u := by
   simp only [splitForm, dot_eq_sum, matVecMul_apply, Matrix.transpose_apply, Finset.mul_sum]
@@ -252,7 +305,9 @@ theorem splitForm_transpose {a b : ℕ} (M : PolyMatrix P a b) (u : PolyVec P a)
 
 /-- **Gadget composition.** A matrix factor on the inner basis side is absorbed into the form's
 matrix: `splitForm (matMul M N) u v = splitForm M u (N *ᵥ v)`. With `splitForm_transpose` this is
-exactly the move that folds the gadget matrix `G` of Hachi eq. (15) between witness and basis.-/
+exactly the move that folds the gadget matrix `G` of Hachi eq. (15) between witness and basis.
+@isnad1 id=eq.0h8v.s6.5576a3dc1256 from=translated src=- shape=49ee5969 vocab=b0bf09d3
+-/
 theorem splitForm_comp {a b c : ℕ} (M : PolyMatrix P a b) (N : PolyMatrix P b c)
     (u : PolyVec P a) (v : PolyVec P c) : splitForm (matMul M N) u v = splitForm M u (N *ᵥ v) := by
   simp only [splitForm, matVecMul_matMul]
@@ -263,16 +318,22 @@ section AlgebraRing
 
 variable {P : Type u} [CommRing P]
 
-/-- `dot` distributes over subtraction in the second argument.-/
+/-- `dot` distributes over subtraction in the second argument.
+@isnad1 id=eq.0h5v.s7.6a9a542c89d4 from=translated src=- shape=cdb00d39 vocab=3af3602f
+-/
 theorem dot_sub {k : ℕ} (u v w : PolyVec P k) : u ⬝ᵥ (v - w) = u ⬝ᵥ v - u ⬝ᵥ w := by
   simp only [dot_eq_sum, ← Finset.sum_sub_distrib, Pi.sub_apply, mul_sub]
 
-/-- Matrix–vector multiplication preserves subtraction.-/
+/-- Matrix–vector multiplication preserves subtraction.
+@isnad1 id=eq.0h6v.s7.03f69daa2014 from=translated src=- shape=92d5d6bd vocab=e9d243c1
+-/
 theorem matVecMul_sub {rows cols : ℕ} (A : PolyMatrix P rows cols) (v w : PolyVec P cols) :
     A *ᵥ (v - w) = A *ᵥ v - A *ᵥ w := by
   funext i; simp only [matVecMul_apply, Pi.sub_apply, dot_sub]
 
-/-- Left scalar multiplication by a unit is injective.-/
+/-- Left scalar multiplication by a unit is injective.
+@isnad1 id=injectiv.1h3v.s5.3ae5af530815 from=translated src=- shape=75247a0f vocab=591600c3
+-/
 theorem scalarVecMul_injective_of_isUnit {cols : ℕ} {c : P} (hc : IsUnit c) :
     Function.Injective (scalarVecMul (cols := cols) c) := by
   intro v w h
@@ -281,7 +342,9 @@ theorem scalarVecMul_injective_of_isUnit {cols : ℕ} {c : P} (hc : IsUnit c) :
   simp only [scalarVecMul_apply] at this
   exact hc.mul_right_injective this
 
-/-- Scaling by a product of two units preserves vector inequality.-/
+/-- Scaling by a product of two units preserves vector inequality.
+@isnad1 id=ne.3h6v.s6.a74f77cac03d from=translated src=- shape=1c6a2663 vocab=8d70d014
+-/
 theorem scalarVecMul_mul_ne_of_ne {cols : ℕ} {c d : P} {v w : PolyVec P cols}
     (hc : IsUnit c) (hd : IsUnit d) (hvw : v ≠ w) :
     (c * d) •ᵥ v ≠ (d * c) •ᵥ w := by
@@ -289,7 +352,9 @@ theorem scalarVecMul_mul_ne_of_ne {cols : ℕ} {c d : P} {v w : PolyVec P cols}
   rw [mul_comm d c] at h
   exact scalarVecMul_injective_of_isUnit (hc.mul hd) h
 
-/-- Equality of matrix products is preserved by scaling with a product of two scalars.-/
+/-- Equality of matrix products is preserved by scaling with a product of two scalars.
+@isnad1 id=eq.1h8v.s7.2f49cf389156 from=translated src=- shape=e8f4eec0 vocab=d2f8575c
+-/
 theorem matVecMul_scalarVecMul_mul_eq_of_eq {rows cols : ℕ} (A : PolyMatrix P rows cols)
     (c d : P) {v w : PolyVec P cols} (h : A *ᵥ v = A *ᵥ w) :
     A *ᵥ ((c * d) •ᵥ v) = A *ᵥ ((d * c) •ᵥ w) := by
@@ -304,7 +369,9 @@ index. Used to split a block matrix along its rows and columns. -/
 
 section Append
 
-/-- Two functions on `Fin (m + n)` agree iff their `castAdd`/`natAdd` restrictions agree.-/
+/-- Two functions on `Fin (m + n)` agree iff their `castAdd`/`natAdd` restrictions agree.
+@isnad1 id=iff.0h5v.s6.00863c5efc1b from=translated src=- shape=6df10642 vocab=9267b13d
+-/
 theorem funext_fin_add_iff {α : Type*} {m n : ℕ} {f g : Fin (m + n) → α} :
     f = g ↔
       (fun i : Fin m => f (Fin.castAdd n i)) = (fun i => g (Fin.castAdd n i)) ∧
@@ -314,7 +381,9 @@ theorem funext_fin_add_iff {α : Type*} {m n : ℕ} {f g : Fin (m + n) → α} :
 
 variable {P : Type u} [CommRing P]
 
-/-- `dot` splits along an append in its first argument.-/
+/-- `dot` splits along an append in its first argument.
+@isnad1 id=eq.0h6v.s7.1bdabdfc47de from=translated src=- shape=8193f19f vocab=db0b5891
+-/
 theorem dot_append {m n : ℕ} (u : PolyVec P m) (v : PolyVec P n) (w : PolyVec P (m + n)) :
     dot (Fin.append u v) w
       = dot u (fun k => w (Fin.castAdd n k)) + dot v (fun k => w (Fin.natAdd m k)) := by
@@ -324,16 +393,22 @@ theorem dot_append {m n : ℕ} (u : PolyVec P m) (v : PolyVec P n) (w : PolyVec 
   · rw [Fin.append_left]
   · rw [Fin.append_right]
 
-/-- `dot` with a zero first argument is zero.-/
+/-- `dot` with a zero first argument is zero.
+@isnad1 id=eq.0h3v.s6.46b14f516fc5 from=translated src=- shape=d527331a vocab=ab45cd0e
+-/
 theorem dot_zero_left {k : ℕ} (w : PolyVec P k) : dot (0 : PolyVec P k) w = 0 := by
   simp only [dot_eq_sum, Pi.zero_apply, zero_mul, Finset.sum_const_zero]
 
-/-- `dot` negates in its first argument.-/
+/-- `dot` negates in its first argument.
+@isnad1 id=eq.0h4v.s6.d5bd45d9e6b8 from=translated src=- shape=3fdbe93e vocab=c8196fc0
+-/
 theorem dot_neg_left {k : ℕ} (u w : PolyVec P k) : dot (-u) w = -(dot u w) := by
   simp only [dot_eq_sum, Pi.neg_apply, neg_mul, Finset.sum_neg_distrib]
 
 /-- **Transpose adjunction for `dot`**: `⟨u, A v⟩ = ⟨Aᵀ u, v⟩`, which moves a public matrix off
-the vector side onto the coefficient side.-/
+the vector side onto the coefficient side.
+@isnad1 id=eq.0h6v.s7.3aa7a68800e8 from=translated src=- shape=a2d0ef69 vocab=084f1df6
+-/
 theorem dot_matVecMul_transpose {a b : ℕ} (A : PolyMatrix P a b) (u : PolyVec P a)
     (v : PolyVec P b) : dot u (A *ᵥ v) = dot (A.transpose *ᵥ u) v := by
   have h := splitForm_transpose A u v
@@ -344,7 +419,9 @@ theorem dot_matVecMul_transpose {a b : ℕ} (A : PolyMatrix P a b) (u : PolyVec 
 -- `Fin.append_left`/`_right` rewrites below no longer unify through the semireducible
 -- `PolyMatrix`/`PolyVec`.
 set_option backward.isDefEq.respectTransparency false in
-/-- `matVecMul` splits along a row-append: block rows act independently.-/
+/-- `matVecMul` splits along a row-append: block rows act independently.
+@isnad1 id=eq.0h7v.s7.b9e84e2d30a2 from=translated src=- shape=0c1100de vocab=e6f6db31
+-/
 theorem matVecMul_append_rows {a b c : ℕ} (M₁ : PolyMatrix P a c) (M₂ : PolyMatrix P b c)
     (ζ : PolyVec P c) :
     (Fin.append M₁ M₂ : PolyMatrix P (a + b) c) *ᵥ ζ = Fin.append (M₁ *ᵥ ζ) (M₂ *ᵥ ζ) := by

@@ -67,35 +67,50 @@ namespace CosetFftDomainClass
 variable {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F] {ω : D}
 variable {x : F}
 
-/-- Unfold membership in a class-level coset FFT domain.-/
+/-- Unfold membership in a class-level coset FFT domain.
+@isnad1 id=iff.0h5v.s5.fbc3916232a2 from=translated src=- shape=597dd893 vocab=a34dbb12
+-/
 lemma mem_def : x ∈ ω ↔ ∃ i, ω i = x := by rfl
 
-/-- Every value of a coset FFT domain belongs to that domain.-/
+/-- Every value of a coset FFT domain belongs to that domain.
+@isnad1 id=mem.0h5v.s5.b9c1733e968d from=translated src=- shape=a3c5576f vocab=a34dbb12
+-/
 @[simp high]
 lemma mem_self {i : ι} :
     ω i ∈ ω := by simp [mem_def]
 
 /-- Membership is preserved by converting a class-level coset FFT domain
-  to the concrete `CosetFftDomain` structure.-/
+  to the concrete `CosetFftDomain` structure.
+@isnad1 id=iff.0h5v.s6.a58b2691c9da from=translated src=- shape=9fc2ebbe vocab=48c5291b
+-/
 @[simp]
 lemma mem_toCosetFftDomain_iff_mem :
     x ∈ toCosetFftDomain ω ↔ x ∈ ω := by
   simp only [mem_def, toCosetFftDomain_apply]
 
-/-- Membership in the finset of elements is the same as membership in the coset FFT domain.-/
+/-- Membership in the finset of elements is the same as membership in the coset FFT domain.
+@isnad1 id=iff.0h5v.s6.083745bd2d43 from=translated src=- shape=afa8f469 vocab=4f098772
+-/
 @[simp]
 lemma mem_toFinset_iff_mem [Fintype ι] [DecidableEq F] :
     x ∈ toFinset ω ↔ x ∈ ω := by aesop (add simp [toFinset, mem_def])
 
-/-- Every value of a coset FFT domain belongs to the set of its elements.-/
+/-- Every value of a coset FFT domain belongs to the set of its elements.
+@isnad1 id=mem.0h5v.s6.ddd9ee19b3f2 from=translated src=- shape=243905fc vocab=aa2fdb3a
+-/
 @[simp high]
 lemma mem_toFinset_self [Fintype ι] [DecidableEq F] {i : ι} :
     ω i ∈ toFinset ω := by simp
 
+/--
+@isnad1 id=le.0h4v.s5.51283b4b50ea from=translated src=- shape=7e13b3fd vocab=a3ed7af1
+-/
 lemma card_toFinset_le_fintype_card [Fintype F] [Fintype ι] [DecidableEq F] :
     Finset.card (toFinset ω) ≤ Fintype.card F := Finset.card_le_card (by simp)
 
-/-- Zero is not a member of a coset FFT domain.-/
+/-- Zero is not a member of a coset FFT domain.
+@isnad1 id=not.0h4v.s5.cb45b8cbddb8 from=translated src=- shape=67d3fc89 vocab=b4bfe912
+-/
 @[simp]
 lemma not_zero_mem :
     0 ∉ ω := fun contra ↦ by
@@ -103,6 +118,9 @@ lemma not_zero_mem :
   obtain ⟨i, contra⟩ := contra
   exact CosetFftDomainClass.ne_zero ω i (by simp_all)
 
+/--
+@isnad1 id=ne.0h5v.s6.7a6e463d17bc from=translated src=- shape=86569381 vocab=39939474
+-/
 @[simp]
 lemma ne_zero_dep [Fintype ι] [DecidableEq F] (x : ω) :
     x.val ≠ 0 := fun contra ↦ by
@@ -131,24 +149,32 @@ namespace CosetFftDomain
 variable {ω : CosetFftDomain ι F} {x : F}
 
 /-- Membership in a concrete coset FFT domain means
-  being a coset generator times some subgroup element.-/
+  being a coset generator times some subgroup element.
+@isnad1 id=iff.0h4v.s7.208f5d3fda19 from=translated src=- shape=051127aa vocab=4d7a3694
+-/
 lemma mem_iff_exists_mul :
     x ∈ ω ↔ ∃ i, x = ω.cosetGenerator * ω.subgroupDomain i := by
   aesop (add simp [Membership.mem])
 
 /-- Membership in the finset of elements of a concrete coset FFT domain means
-  being a coset generator times some subgroup element.-/
+  being a coset generator times some subgroup element.
+@isnad1 id=iff.0h4v.s7.ca67ecb6a991 from=translated src=- shape=da31208f vocab=384387a6
+-/
 lemma mem_toFinset_iff_exists_mul [Fintype ι] [DecidableEq F] :
     x ∈ ω.toFinset ↔ ∃ i, x = ω.cosetGenerator * ω.subgroupDomain i := by
   simp [mem_iff_exists_mul]
 
 /-- Membership in the finset of elements is
-  the same as membership in the concrete coset FFT domain.-/
+  the same as membership in the concrete coset FFT domain.
+@isnad1 id=iff.0h4v.s6.b7b932531eb4 from=translated src=- shape=1f28d0fe vocab=e4188554
+-/
 @[simp]
 lemma mem_toFinset_iff_mem [Fintype ι] [DecidableEq F] :
     x ∈ ω.toFinset ↔ x ∈ ω := CosetFftDomainClass.mem_toFinset_iff_mem
 
-/-- Every value of a concrete coset FFT domain belongs to its finset of elements.-/
+/-- Every value of a concrete coset FFT domain belongs to its finset of elements.
+@isnad1 id=mem.0h4v.s5.0ed8afb8e0b1 from=translated src=- shape=dfdcc71e vocab=cd2947b3
+-/
 @[simp high]
 lemma mem_toFinset_self [Fintype ι] [DecidableEq F] {i : ι} :
     ω i ∈ ω.toFinset := CosetFftDomainClass.mem_toFinset_self

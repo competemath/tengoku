@@ -29,7 +29,9 @@ variable {R : Type*} [Semiring R]
 /-- `Polynomial.degreeLT R 0 = ⊥`: the only polynomial with degree strictly less than `0`
 (in `WithBot ℕ`) is the zero polynomial.
 
-Not `@[simp]` to avoid disrupting existing simp-based proofs that unfold `degreeLT` directly.-/
+Not `@[simp]` to avoid disrupting existing simp-based proofs that unfold `degreeLT` directly.
+@isnad1 id=eq.0h1v.s6.bbcd19444e7d from=translated src=- shape=834532bf vocab=92132993
+-/
 theorem degreeLT_zero : degreeLT R 0 = ⊥ := by
   rw [eq_bot_iff]
   intro p hp

@@ -63,7 +63,9 @@ noncomputable def classicalWronskian {F : Type*} [CommRing F]
     (sigma : ℕ) (P : Fin sigma → F[X]) : F[X] :=
   (Matrix.of fun i j : Fin sigma => derivative^[i.val] (P j)).det
 
-/-- A coarse degree bound for the classical Wronskian.-/
+/-- A coarse degree bound for the classical Wronskian.
+@isnad1 id=le.1h4v.s5.6a515d583f72 from=translated src=- shape=b8ddd6c4 vocab=fd2f3452
+-/
 lemma natDegree_classicalWronskian_le {F : Type*} [CommRing F]
     (sigma : ℕ) (P : Fin sigma → F[X]) (k : ℕ)
     (hP : ∀ j, (P j).natDegree ≤ k) :
@@ -126,7 +128,9 @@ private lemma leadingCoeff_iterate_derivative {F : Type*} [Field F]
 
 /-- The classical Wronskian of nonzero polynomials with pairwise distinct degrees is nonzero
 in characteristic zero, and remains so in positive characteristic when their common strict
-degree bound is no greater than the characteristic.-/
+degree bound is no greater than the characteristic.
+@isnad1 id=ne.4h4v.s7.5e0085b88971 from=translated src=- shape=d07d4d0d vocab=a0feb74e
+-/
 theorem classicalWronskian_ne_zero_of_natDegree_injective
     {F : Type*} [Field F] {sigma k : ℕ}
     (P : Fin sigma → F[X]) (hP0 : ∀ j, P j ≠ 0)
@@ -317,7 +321,9 @@ private theorem exists_basis_natDegree_injective_aux
         exact hsnoc.comp (finCongr hrank).symm.injective
 
 /-- Replacing the polynomials by constant linear combinations right-multiplies the
-Wronskian matrix by the coefficient matrix.-/
+Wronskian matrix by the coefficient matrix.
+@isnad1 id=eq.1h5v.s8.dd9dc5a7e0ab from=translated src=- shape=c7894fc1 vocab=f24ff7fa
+-/
 lemma classicalWronskian_of_linearComb {F : Type*} [Field F] {sigma : ℕ}
     (P c : Fin sigma → F[X]) (U : Matrix (Fin sigma) (Fin sigma) F)
     (hc : ∀ j, c j = ∑ i, U i j • P i) :
@@ -342,7 +348,9 @@ least `k`.
 
 The proof changes to a basis in degree-echelon form, where the top-degree coefficient of the
 Wronskian is a nonzero Vandermonde determinant; changing back multiplies the Wronskian by a
-nonzero constant.-/
+nonzero constant.
+@isnad1 id=ne.2h5v.s11.4ef121e33f10 from=translated src=- shape=4d5071e2 vocab=dec2731c
+-/
 theorem classicalWronskian_ne_zero_of_basis {F : Type*} [Field F] {sigma k : ℕ}
     {B : Submodule F F[X]} (bas : Basis (Fin sigma) F B)
     (hdeg : ∀ j, ((bas j : B) : F[X]).natDegree < k)

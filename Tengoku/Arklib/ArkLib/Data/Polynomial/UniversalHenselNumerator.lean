@@ -42,15 +42,23 @@ variable {A B : Type*} [CommRing A] [CommRing B]
 noncomputable def positivePrefix (prior : ℕ → A) (n : ℕ) : Polynomial A :=
   ∑ i ∈ Finset.Ico 1 n, monomial i (prior i)
 
-/-- The prefix has precisely the positive coefficients before the current index.-/
+/-- The prefix has precisely the positive coefficients before the current index.
+@isnad1 id=eq.0h4v.s6.793f395c2c0e from=translated src=- shape=7ad0ebd9 vocab=aec72434
+-/
 theorem positivePrefix_coeff (prior : ℕ → A) (n i : ℕ) :
     (positivePrefix prior n).coeff i = if 0 < i ∧ i < n then prior i else 0 := by
   classical
   simp [positivePrefix, coeff_monomial, Nat.succ_le_iff]
 
+/--
+@isnad1 id=eq.0h2v.s5.f75e6c816c1c from=translated src=- shape=9b178220 vocab=cbf5ec7f
+-/
 @[simp] theorem positivePrefix_zero (prior : ℕ → A) : positivePrefix prior 0 = 0 := by
   simp [positivePrefix]
 
+/--
+@isnad1 id=eq.0h3v.s5.2e3d7f2bd1c0 from=translated src=- shape=a3a10949 vocab=6bc2bde6
+-/
 @[simp] theorem positivePrefix_coeff_self (prior : ℕ → A) (n : ℕ) :
     (positivePrefix prior n).coeff n = 0 := by
   simp [positivePrefix_coeff]
@@ -75,22 +83,32 @@ noncomputable def numerators (Rshift : Polynomial (Polynomial A)) (s : A) (d : �
 termination_by n => n
 decreasing_by omega
 
+/--
+@isnad1 id=eq.0h4v.s5.1912d4b67a43 from=translated src=- shape=8e1345cb vocab=3f655de9
+-/
 @[simp] theorem numerators_zero (Rshift : Polynomial (Polynomial A)) (s : A) (d : ℕ) :
     numerators Rshift s d 0 = 0 := by
   rw [numerators]
 
+/--
+@isnad1 id=eq.0h5v.s6.e54c7674d5f3 from=translated src=- shape=e988b8bd vocab=a6ab3300
+-/
 theorem numerators_succ (Rshift : Polynomial (Polynomial A)) (s : A) (d t : ℕ) :
     numerators Rshift s d (t + 1) = numeratorStep Rshift s d (t + 1)
       (fun i ↦ if i ≤ t then numerators Rshift s d i else 0) := by
   rw [numerators]
 
-/-- Prefix formation commutes with coefficient specialization.-/
+/-- Prefix formation commutes with coefficient specialization.
+@isnad1 id=eq.0h5v.s6.562895bf3392 from=translated src=- shape=ac42978b vocab=8dead8a6
+-/
 theorem positivePrefix_map (f : A →+* B) (prior : ℕ → A) (n : ℕ) :
     (positivePrefix prior n).map f = positivePrefix (fun i ↦ f (prior i)) n := by
   classical
   simp [positivePrefix, Polynomial.map_sum]
 
-/-- Residual summands commute with arbitrary coefficient ring maps.-/
+/-- Residual summands commute with arbitrary coefficient ring maps.
+@isnad1 id=eq.0h9v.s7.f1da1cb0377e from=translated src=- shape=6f25c1e8 vocab=0430c12d
+-/
 theorem residualTerm_map (f : A →+* B) (Rshift : Polynomial (Polynomial A)) (s : A)
     (n a b : ℕ) (prior : ℕ → A) :
     f (residualTerm Rshift s n a b prior) =
@@ -102,7 +120,9 @@ theorem residualTerm_map (f : A →+* B) (Rshift : Polynomial (Polynomial A)) (s
       ((Rshift.map (mapRingHom f)).coeff b).coeff a := by simp
   simp only [residualTerm, map_mul, map_pow, hPcoeff, hRcoeff]
 
-/-- One recurrence step commutes with arbitrary coefficient ring maps.-/
+/-- One recurrence step commutes with arbitrary coefficient ring maps.
+@isnad1 id=eq.0h8v.s7.44090fa1a244 from=translated src=- shape=c6ebabeb vocab=4d7a6049
+-/
 theorem numeratorStep_map (f : A →+* B) (Rshift : Polynomial (Polynomial A)) (s : A)
     (d n : ℕ) (prior : ℕ → A) :
     f (numeratorStep Rshift s d n prior) =
@@ -110,7 +130,9 @@ theorem numeratorStep_map (f : A →+* B) (Rshift : Polynomial (Polynomial A)) (
   classical
   simp only [numeratorStep, map_neg, map_sum, residualTerm_map]
 
-/-- The same universal numerator specializes to the recurrence in every coefficient ring.-/
+/-- The same universal numerator specializes to the recurrence in every coefficient ring.
+@isnad1 id=eq.0h7v.s7.ac725cfce619 from=translated src=- shape=f56c9c12 vocab=78103570
+-/
 theorem numerators_map (f : A →+* B) (Rshift : Polynomial (Polynomial A)) (s : A) (d : ℕ)
     (n : ℕ) :
     f (numerators Rshift s d n) = numerators (Rshift.map (mapRingHom f)) (f s) d n := by

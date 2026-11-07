@@ -22,7 +22,9 @@ Intended as a candidate for upstreaming to `Mathlib.InformationTheory.Hamming`, 
 
 @[expose] public section
 
-/-- Reindexing the coordinates by an equivalence preserves Hamming distance.-/
+/-- Reindexing the coordinates by an equivalence preserves Hamming distance.
+@isnad1 id=eq.0h6v.s6.e71c375e950e from=translated src=- shape=dc66c231 vocab=f7b016dd
+-/
 theorem hammingDist_comp_equiv {ι ι' α : Type*} [Fintype ι] [Fintype ι'] [DecidableEq α]
     (e : ι' ≃ ι) (x y : ι → α) :
     hammingDist (x ∘ e) (y ∘ e) = hammingDist x y := by

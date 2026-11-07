@@ -36,7 +36,9 @@ from Mathlib's 2-adic lifting-the-exponent `Int.two_pow_sub_pow'`:
 
 namespace ArkLib.Lattices.CyclotomicModulus
 
-/-- **2-adic LTE for `g = 4·2^κ + 1`**: `v₂(gⁿ − 1) = (κ+2) + v₂(n)`.-/
+/-- **2-adic LTE for `g = 4·2^κ + 1`**: `v₂(gⁿ − 1) = (κ+2) + v₂(n)`.
+@isnad1 id=eq.0h2v.s6.20bd1917dfc8 from=translated src=- shape=68c998f6 vocab=468970b5
+-/
 theorem emultiplicity_four_pow_sub_one (κ n : ℕ) :
     emultiplicity 2 ((4 * 2 ^ κ + 1 : ℤ) ^ n - 1)
       = (κ + 2 : ℕ) + emultiplicity 2 (n : ℤ) := by
@@ -49,7 +51,9 @@ theorem emultiplicity_four_pow_sub_one (κ n : ℕ) :
   exact h
 
 /-- **Divisibility characterization**: `2^{α+1} ∣ gⁿ − 1 ↔ 2^{α-κ-1} ∣ n` for `g = 4·2^κ+1`,
-when `κ + 1 ≤ α` (so `α - κ - 1` is the genuine order `d/(2k)`).-/
+when `κ + 1 ≤ α` (so `α - κ - 1` is the genuine order `d/(2k)`).
+@isnad1 id=iff.1h3v.s7.2e3452e7085f from=translated src=- shape=77246e76 vocab=a9ac3fea
+-/
 theorem two_pow_dvd_four_pow_sub_one_iff (κ α n : ℕ) (hκ : κ + 1 ≤ α) :
     (2 : ℤ) ^ (α + 1) ∣ (4 * 2 ^ κ + 1 : ℤ) ^ n - 1 ↔ 2 ^ (α - κ - 1) ∣ n := by
   rw [pow_dvd_iff_le_emultiplicity, emultiplicity_four_pow_sub_one,
@@ -59,7 +63,9 @@ theorem two_pow_dvd_four_pow_sub_one_iff (κ α n : ℕ) (hκ : κ + 1 ≤ α) :
       rw [← Nat.cast_add]; congr 1; omega]
   exact WithTop.add_le_add_iff_left (ENat.natCast_ne_top (κ + 2))
 
-/-- The `ℕ`-level divisibility characterization: `2^{α+1} ∣ gⁿ − 1 ↔ 2^{α-κ-1} ∣ n`.-/
+/-- The `ℕ`-level divisibility characterization: `2^{α+1} ∣ gⁿ − 1 ↔ 2^{α-κ-1} ∣ n`.
+@isnad1 id=iff.1h3v.s7.c5598cacbadb from=translated src=- shape=147d428e vocab=089069ba
+-/
 theorem four_pow_dvd_iff_nat (κ α n : ℕ) (hκ : κ + 1 ≤ α) :
     2 ^ (α + 1) ∣ (4 * 2 ^ κ + 1) ^ n - 1 ↔ 2 ^ (α - κ - 1) ∣ n := by
   have hge : (1 : ℕ) ≤ (4 * 2 ^ κ + 1) ^ n := Nat.one_le_pow _ _ (by positivity)
@@ -86,7 +92,9 @@ private theorem four_pow_aux (κ α a b : ℕ) (hκ : κ + 1 ≤ α) (hb : b < 2
   have := Nat.le_of_dvd (by omega) ho
   omega
 
-/-- `a ↦ gᵃ mod 2^{α+1}` is injective on `range (2^{α-κ-1})` (the order of `g`).-/
+/-- `a ↦ gᵃ mod 2^{α+1}` is injective on `range (2^{α-κ-1})` (the order of `g`).
+@isnad1 id=injon.1h2v.s7.289b08e39f65 from=translated src=- shape=9b2e3491 vocab=d326bfcd
+-/
 theorem four_pow_injOn (κ α : ℕ) (hκ : κ + 1 ≤ α) :
     Set.InjOn (fun a => (4 * 2 ^ κ + 1) ^ a % 2 ^ (α + 1))
       (Finset.range (2 ^ (α - κ - 1))) := by
@@ -97,13 +105,17 @@ theorem four_pow_injOn (κ α : ℕ) (hκ : κ + 1 ≤ α) :
   · exact h
   · exact (four_pow_aux κ α b a hκ ha h hab.symm).elim
 
-/-- `g` raised to its order `2^{α-κ-1}` is `≡ 1` mod `2^{α+1}`.-/
+/-- `g` raised to its order `2^{α-κ-1}` is `≡ 1` mod `2^{α+1}`.
+@isnad1 id=modeq.1h2v.s7.ad2b83701ed2 from=translated src=- shape=eb50f823 vocab=0f5e1937
+-/
 theorem four_pow_order_modEq_one (κ α : ℕ) (hκ : κ + 1 ≤ α) :
     (1 : ℕ) ≡ (4 * 2 ^ κ + 1) ^ (2 ^ (α - κ - 1)) [MOD 2 ^ (α + 1)] := by
   rw [Nat.modEq_iff_dvd' (Nat.one_le_pow _ _ (by positivity))]
   exact (four_pow_dvd_iff_nat κ α _ hκ).mpr (dvd_refl _)
 
-/-- The power `gⁿ mod 2^{α+1}` depends only on `n mod 2^{α-κ-1}` (period = order of `g`).-/
+/-- The power `gⁿ mod 2^{α+1}` depends only on `n mod 2^{α-κ-1}` (period = order of `g`).
+@isnad1 id=modeq.1h3v.s7.f6b86c3977cd from=translated src=- shape=75160f29 vocab=b1d1d0d7
+-/
 theorem four_pow_mod_period (κ α n : ℕ) (hκ : κ + 1 ≤ α) :
     (4 * 2 ^ κ + 1) ^ n ≡ (4 * 2 ^ κ + 1) ^ (n % 2 ^ (α - κ - 1)) [MOD 2 ^ (α + 1)] := by
   conv_lhs => rw [← Nat.div_add_mod n (2 ^ (α - κ - 1)), pow_add, pow_mul]
@@ -115,7 +127,9 @@ theorem four_pow_mod_period (κ α n : ℕ) (hκ : κ + 1 ≤ α) :
     _ = (4 * 2 ^ κ + 1) ^ (n % 2 ^ (α - κ - 1)) := by rw [one_pow, one_mul]
 
 /-- If the conductor `2k = 2^{κ+1}` divides `d = 2^α` (i.e. `2·2^κ ∣ 2^α`), then `κ + 1 ≤ α`.
-The recurring side condition `κ + 1 ≤ α` of the Hachi `R_q^H` lemmas, extracted once.-/
+The recurring side condition `κ + 1 ≤ α` of the Hachi `R_q^H` lemmas, extracted once.
+@isnad1 id=le.1h2v.s6.c164653b93c7 from=translated src=- shape=9852484d vocab=bcb3a90b
+-/
 theorem succ_le_of_two_mul_two_pow_dvd {α κ : ℕ} (hk : 2 * 2 ^ κ ∣ 2 ^ α) : κ + 1 ≤ α := by
   have hd : 2 ^ (κ + 1) ∣ 2 ^ α := by rw [pow_succ, mul_comm]; exact hk
   exact (Nat.pow_dvd_pow_iff_le_right (by norm_num : (1 : ℕ) < 2)).mp hd

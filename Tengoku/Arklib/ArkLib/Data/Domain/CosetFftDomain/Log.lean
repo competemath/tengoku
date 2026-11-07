@@ -62,7 +62,9 @@ def logAux (ω : D)
 /-- Finds a preimage of `x` under the mapping `ω`.-/
 def log (ω : D) (x : ω) : Fin (2 ^ n) := logAux ω x (2 ^ n)
 
-/-- Evaluating `ω` at the index found by `log` recovers `x`.-/
+/-- Evaluating `ω` at the index found by `log` recovers `x`.
+@isnad1 id=eq.0h5v.s8.d063bfb68b7c from=translated src=- shape=413202c9 vocab=9905d49e
+-/
 @[simp]
 lemma log_right_inverse' {ω : D} {x : ω} :
     ω (log ω x) = x := by
@@ -95,11 +97,15 @@ lemma log_right_inverse' {ω : D} {x : ω} :
         · exact hx
   exact h_log_aux _ _ (Fin.is_lt i) hi
 
-/-- The logarithm is a right inverse to the subtype-valued parametrization of the domain.-/
+/-- The logarithm is a right inverse to the subtype-valued parametrization of the domain.
+@isnad1 id=rightinv.0h4v.s8.505b4a9d883b from=translated src=- shape=29a125da vocab=9a9e51dc
+-/
 lemma log_right_inverse {ω : D} :
     Function.RightInverse (log ω) (fun x ↦ ⟨ω x, by simp⟩) := fun x ↦ by simp
 
-/-- The logarithm is a left inverse to the subtype-valued parametrization of the domain.-/
+/-- The logarithm is a left inverse to the subtype-valued parametrization of the domain.
+@isnad1 id=leftinve.0h4v.s8.e4ed72848063 from=translated src=- shape=29a125da vocab=c07bbd52
+-/
 lemma log_left_inverse {ω : D} :
     Function.LeftInverse (log ω) (fun x ↦ ⟨ω x, by simp⟩) :=
     fun x ↦ CosetFftDomainClass.injective (ω := ω) (by simp)

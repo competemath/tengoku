@@ -41,7 +41,9 @@ private lemma expand_card_pow (i : ℕ) (f : F[X]) :
   | succ i ih =>
     rw [pow_succ, expand_mul, FiniteField.expand_card, map_pow, ih, ← pow_mul]
 
-/-- Frobenius transport for evaluation of a polynomial over a finite field.-/
+/-- Frobenius transport for evaluation of a polynomial over a finite field.
+@isnad1 id=eq.0h5v.s8.9afffbeb3b9b from=translated src=- shape=307f85cb vocab=54addfe7
+-/
 lemma aeval_pow_card_pow {K : Type*} [CommSemiring K] [Algebra F K]
     (y : K) (f : F[X]) (i : ℕ) :
     aeval (y ^ (Fintype.card F ^ i)) f = (aeval y f) ^ (Fintype.card F ^ i) := by
@@ -53,7 +55,9 @@ namespace FiniteField
 
 variable {F : Type*} [Field F] [Fintype F]
 
-/-- If `x ^ (q - 1) = ω` in an `F`-algebra, where `q = |F|`, then `x ^ q ^ i = ω ^ i * x`.-/
+/-- If `x ^ (q - 1) = ω` in an `F`-algebra, where `q = |F|`, then `x ^ q ^ i = ω ^ i * x`.
+@isnad1 id=eq.1h5v.s8.97c5baa99304 from=translated src=- shape=ff4c509e vocab=1c47ffb0
+-/
 lemma pow_card_pow_eq_mul {K : Type*} [CommRing K] [Algebra F K] {ω : F} {x : K}
     (hx : x ^ (Fintype.card F - 1) = algebraMap F K ω) (i : ℕ) :
     x ^ (Fintype.card F ^ i) = algebraMap F K (ω ^ i) * x := by
@@ -79,7 +83,9 @@ namespace Polynomial
 variable {F : Type*} [Field F] [Fintype F]
 
 /-- For a generator `ω` of the multiplicative group of a finite field `F` of order `q`, the
-polynomial `X ^ (q - 1) - C ω` is irreducible.-/
+polynomial `X ^ (q - 1) - C ω` is irreducible.
+@isnad1 id=irreduci.1h2v.s8.496ffbfffe14 from=translated src=- shape=d4580e0f vocab=3a4737b0
+-/
 theorem X_pow_card_sub_one_sub_C_irreducible {ω : F}
     (hω : orderOf ω = Fintype.card F - 1) :
     Irreducible ((X : F[X]) ^ (Fintype.card F - 1) - C ω) := by

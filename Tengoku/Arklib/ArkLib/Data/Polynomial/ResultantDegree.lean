@@ -39,7 +39,9 @@ namespace Polynomial
 variable {R : Type*} [CommRing R]
 
 /-- A padded resultant's coefficient-variable degree is bounded by the Sylvester column count
-times each input's coefficient-degree budget. No degree or nonzero assumptions are necessary.-/
+times each input's coefficient-degree budget. No degree or nonzero assumptions are necessary.
+@isnad1 id=le.2h7v.s7.28685e9b32ee from=translated src=- shape=af4e0fc0 vocab=b95f403e
+-/
 theorem natDegree_resultant_le_of_coeff_natDegree_le
     (P Q : Polynomial (Polynomial R)) (m n A B : ℕ)
     (hP : ∀ j, (P.coeff j).natDegree ≤ A) (hQ : ∀ j, (Q.coeff j).natDegree ≤ B) :
@@ -80,7 +82,9 @@ theorem natDegree_resultant_le_of_coeff_natDegree_le
   refine (Finset.sum_le_sum (fun i _ ↦ hentry σ i)).trans ?_
   simp [cb, Fin.sum_univ_add, Nat.add_comm]
 
-/-- Differentiating in the outer variable does not increase any coefficient-variable degree.-/
+/-- Differentiating in the outer variable does not increase any coefficient-variable degree.
+@isnad1 id=le.0h3v.s9.95fbe5b9a146 from=translated src=- shape=e654ba60 vocab=6f080fab
+-/
 theorem coeff_derivative_natDegree_le (P : Polynomial (Polynomial R)) (j : ℕ) :
     (P.derivative.coeff j).natDegree ≤ (P.coeff (j + 1)).natDegree := by
   rw [coeff_derivative]

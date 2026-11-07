@@ -52,7 +52,9 @@ private theorem coeff_sum_range_monomial (d : ℕ) (f : ℕ → R) (n : ℕ) :
 /-- **Degree-`< 2d` division by `X ^ d + 1` in closed form**: the quotient is the upper half of the
 dividend's coefficients, shifted down by `d`.
 
-The hypothesis is on `natDegree`, so `p = 0` is allowed (`natDegree 0 = 0 < 2 d`).-/
+The hypothesis is on `natDegree`, so `p = 0` is allowed (`natDegree 0 = 0 < 2 d`).
+@isnad1 id=eq.2h3v.s8.c294f07cc95b from=translated src=- shape=a0e76b31 vocab=18a8b1bc
+-/
 theorem divByMonic_X_pow_add_one [Nontrivial R] {d : ℕ} (hd : 0 < d) {p : R[X]}
     (hp : p.natDegree < 2 * d) :
     p /ₘ (X ^ d + 1) = ∑ k ∈ Finset.range d, (monomial k) (p.coeff (d + k)) := by
@@ -85,7 +87,9 @@ theorem divByMonic_X_pow_add_one [Nontrivial R] {d : ℕ} (hd : 0 < d) {p : R[X]
       ite_eq_right (by exact_mod_cast (not_lt.mpr (by exact_mod_cast hn))), sub_zero]
 
 /-- **Coefficientwise form**: the `k`-th quotient coefficient is the dividend's `(d + k)`-th. Every
-coefficient bound on `p` therefore transfers to `p /ₘ (X ^ d + 1)` with no growth at all.-/
+coefficient bound on `p` therefore transfers to `p /ₘ (X ^ d + 1)` with no growth at all.
+@isnad1 id=eq.2h4v.s7.fe38d21b9938 from=translated src=- shape=4a6914f3 vocab=3b46c4b9
+-/
 theorem coeff_divByMonic_X_pow_add_one [Nontrivial R] {d : ℕ} (hd : 0 < d) {p : R[X]}
     (hp : p.natDegree < 2 * d) (k : ℕ) :
     (p /ₘ (X ^ d + 1)).coeff k = p.coeff (d + k) := by

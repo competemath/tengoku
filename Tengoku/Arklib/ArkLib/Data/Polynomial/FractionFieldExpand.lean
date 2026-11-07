@@ -32,7 +32,9 @@ variable {R K : Type*} [CommRing R] [Field K]
 
 /-- Separating a fraction-field irreducible by Frobenius contraction does not introduce
 denominators into its coefficients. The expansion identity and degree equality hold over `R`.
-The irreducibility premise deliberately applies after mapping, excluding pure content factors.-/
+The irreducibility premise deliberately applies after mapping, excluding pure content factors.
+@isnad1 id=ex.2h4v.s8.ad05a7cb6778 from=translated src=- shape=b6629cd4 vocab=5f8659ae
+-/
 theorem exists_fractionField_separable_expand (p : ℕ) [CharP K p] (hp : p ≠ 0)
     {f : R[X]} (hf : Irreducible (f.map (algebraMap R K))) :
     ∃ (n : ℕ) (g : R[X]), Irreducible (g.map (algebraMap R K)) ∧

@@ -25,7 +25,9 @@ Generic facts intended as candidates for upstreaming to Mathlib.
 namespace Matrix
 
 /-- If every entry of each column indexed by `t` is divisible by `d`, then
-`d ^ t.card` divides the determinant.-/
+`d ^ t.card` divides the determinant.
+@isnad1 id=dvd.1h5v.s6.8551afb26a5d from=translated src=- shape=95431121 vocab=e0d2b824
+-/
 lemma pow_dvd_det_of_forall_mem_col_dvd {R : Type*} [CommRing R] {n : Type*}
     [DecidableEq n] [Fintype n] (M : Matrix n n R) (d : R) (t : Finset n)
     (h : ∀ j ∈ t, ∀ i, d ∣ M i j) :

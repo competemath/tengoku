@@ -33,7 +33,9 @@ variable {R K : Type*} [CommRing R] [IsDomain R] [UniqueFactorizationMonoid R]
 
 /-- Every nonzero polynomial is nonzero content times a list of Frobenius expansions of
 positive-degree factors that are irreducible and separable over the fraction field.
-Repeated list entries encode multiplicity independently of their Frobenius exponents.-/
+Repeated list entries encode multiplicity independently of their Frobenius exponents.
+@isnad1 id=ex.2h4v.s9.db72361c2dab from=translated src=- shape=eee28576 vocab=e466dd1d
+-/
 theorem exists_content_mul_fractionField_separable_factors (p : ℕ) [CharP K p]
     (hp : p ≠ 0) (f : R[X]) (hf : f ≠ 0) :
     ∃ (c : R) (s : List (R[X] × ℕ)), c ≠ 0 ∧

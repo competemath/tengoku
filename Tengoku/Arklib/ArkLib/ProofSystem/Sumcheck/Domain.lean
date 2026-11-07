@@ -80,17 +80,28 @@ def uniform (D₀ : Fin m ↪ R) (k : ℕ) : SumcheckDomain R k where
   size := fun _ => m
   embed := fun _ => D₀
 
+/--
+@isnad1 id=eq.0h5v.s4.a9b20c1550e3 from=translated src=- shape=f5e2b8c4 vocab=48df9eca
+-/
 @[simp] lemma size_uniform (D₀ : Fin m ↪ R) (k : ℕ) (i : Fin k) :
     (uniform D₀ k).size i = m := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.4b6a9f9050ee from=translated src=- shape=a7725cae vocab=b2748fab
+-/
 @[simp] lemma embed_uniform (D₀ : Fin m ↪ R) (k : ℕ) (i : Fin k) :
     (uniform D₀ k).embed i = D₀ := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.dde676c6e408 from=translated src=- shape=f5430ee8 vocab=e8408374
+-/
 @[simp] lemma points_uniform (D₀ : Fin m ↪ R) (k : ℕ) (i : Fin k) :
     (uniform D₀ k).points i = Finset.univ.map D₀ := rfl
 
 /-- The uniform cube is definitionally the homogeneous product `Fintype.piFinset (fun _ => univ.map
-D₀)` (= the `(univ.map D₀) ^ᶠ k` notation used by `Sumcheck.Spec`).-/
+D₀)` (= the `(univ.map D₀) ^ᶠ k` notation used by `Sumcheck.Spec`).
+@isnad1 id=eq.0h4v.s5.923ec02bef85 from=translated src=- shape=8109df01 vocab=4a009d98
+-/
 lemma cube_uniform (D₀ : Fin m ↪ R) (k : ℕ) :
     (uniform D₀ k).cube = Fintype.piFinset (fun _ : Fin k => Finset.univ.map D₀) := rfl
 
@@ -101,9 +112,15 @@ def prepend (D₀ : Fin m ↪ R) (rest : SumcheckDomain R k) : SumcheckDomain R 
   size := Fin.cons m rest.size
   embed := Fin.cons D₀ rest.embed
 
+/--
+@isnad1 id=eq.0h5v.s6.7b41c016e708 from=translated src=- shape=c7deae0c vocab=df552179
+-/
 @[simp] lemma size_prepend_zero (D₀ : Fin m ↪ R) (rest : SumcheckDomain R k) :
     (prepend D₀ rest).size 0 = m := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.e7a445fd4799 from=translated src=- shape=7f51240f vocab=1fa72b76
+-/
 @[simp] lemma size_prepend_succ (D₀ : Fin m ↪ R) (rest : SumcheckDomain R k) (i : Fin k) :
     (prepend D₀ rest).size i.succ = rest.size i := rfl
 
@@ -112,6 +129,9 @@ def tail (D : SumcheckDomain R (k + 1)) : SumcheckDomain R k where
   size := fun i => D.size i.succ
   embed := fun i => D.embed i.succ
 
+/--
+@isnad1 id=eq.0h4v.s5.5809a69c5665 from=translated src=- shape=a830d961 vocab=0d1dd5d5
+-/
 @[simp] lemma points_tail (D : SumcheckDomain R (k + 1)) (i : Fin k) :
     D.tail.points i = D.points i.succ := rfl
 
@@ -122,36 +142,51 @@ def drop (D : SumcheckDomain R k) (j : ℕ) : SumcheckDomain R (k - j) where
   size := fun i => D.size ⟨j + i, by omega⟩
   embed := fun i => D.embed ⟨j + i, by omega⟩
 
+/--
+@isnad1 id=eq.0h5v.s6.b34b32cd9a83 from=translated src=- shape=d299fb2f vocab=eb908dd0
+-/
 @[simp] lemma points_drop (D : SumcheckDomain R k) (j : ℕ) (i : Fin (k - j)) :
     (D.drop j).points i = D.points ⟨j + i, by omega⟩ := rfl
 
 /-- Dropping coordinates from a uniform domain is again uniform. So the per-round suffix cube
 `((uniform D₀ N).drop j).cube` reduces *definitionally* to today's `(univ.map D₀) ^ᶠ (N - j)` — the
-`rfl` hook that lets `Sumcheck.Spec`'s round-`i` sum migrate onto `drop` with no semantic change.-/
+`rfl` hook that lets `Sumcheck.Spec`'s round-`i` sum migrate onto `drop` with no semantic change.
+@isnad1 id=eq.0h5v.s5.799529b12908 from=translated src=- shape=62b589ec vocab=a5e16e0c
+-/
 @[simp] lemma drop_uniform (D₀ : Fin m ↪ R) (N j : ℕ) :
     (uniform D₀ N).drop j = uniform D₀ (N - j) := rfl
 
-/-- Membership in the cube: a point lies in the cube iff each coordinate lies in its domain.-/
+/-- Membership in the cube: a point lies in the cube iff each coordinate lies in its domain.
+@isnad1 id=iff.0h4v.s6.4ebeb941b6ca from=translated src=- shape=a1ec08b5 vocab=0ac371f9
+-/
 @[simp] lemma mem_cube {D : SumcheckDomain R k} {x : Fin k → R} :
     x ∈ D.cube ↔ ∀ i, x i ∈ D.points i := Fintype.mem_piFinset
 
-/-- A point lies in coordinate `i`'s domain iff it is the image of some index under `embed i`.-/
+/-- A point lies in coordinate `i`'s domain iff it is the image of some index under `embed i`.
+@isnad1 id=iff.0h5v.s6.1a042d0b1d86 from=translated src=- shape=017686ca vocab=1c3fc3ee
+-/
 @[simp] lemma mem_points {D : SumcheckDomain R k} {i : Fin k} {x : R} :
     x ∈ D.points i ↔ ∃ j, D.embed i j = x := by simp [points]
 
-/-- Coordinate `i` has exactly `size i` evaluation points.-/
+/-- Coordinate `i` has exactly `size i` evaluation points.
+@isnad1 id=eq.0h4v.s4.1d6b74712f8e from=translated src=- shape=cdca0775 vocab=93693ca2
+-/
 @[simp] lemma card_points (D : SumcheckDomain R k) (i : Fin k) :
     (D.points i).card = D.size i := by
   simp [points]
 
 /-- The cube has `∏ᵢ (size i)` points — the size of the heterogeneous evaluation product. Used for
-the Schwartz–Zippel soundness bound `d / ∏ᵢ (size i)`.-/
+the Schwartz–Zippel soundness bound `d / ∏ᵢ (size i)`.
+@isnad1 id=eq.0h3v.s5.090a500f3f78 from=translated src=- shape=f47362c1 vocab=54ea842f
+-/
 @[simp] lemma card_cube (D : SumcheckDomain R k) : D.cube.card = ∏ i, D.size i := by
   simp only [cube, Fintype.card_piFinset, card_points]
 
 /-- Telescoping identity (the core sum-check completeness step): summing over the `(k+1)`-coordinate
 cube equals summing coordinate `0` over its domain, then the rest over the tail cube. This is the
-`piFinset` "cons decomposition" `𝔻^{k+1} ↔ 𝔻₀ × 𝔻^k`.-/
+`piFinset` "cons decomposition" `𝔻^{k+1} ↔ 𝔻₀ × 𝔻^k`.
+@isnad1 id=eq.0h5v.s7.23e953f7ce5d from=translated src=- shape=8fe55df8 vocab=ef33cbbd
+-/
 theorem sum_cube_succ {M : Type*} [AddCommMonoid M] (D : SumcheckDomain R (k + 1))
     (f : (Fin (k + 1) → R) → M) :
     ∑ x ∈ D.cube, f x = ∑ b ∈ D.points 0, ∑ y ∈ D.tail.cube, f (Fin.cons b y) := by
@@ -177,9 +212,15 @@ def boolEmbedding (R : Type u) [CommSemiring R] [Nontrivial R] : Fin 2 ↪ R whe
     fin_cases a <;> fin_cases b <;>
       first | rfl | exact (h01 hab).elim | exact (h01 hab.symm).elim
 
+/--
+@isnad1 id=eq.0h1v.s6.0d1a70dbe6f5 from=translated src=- shape=dabe8cfc vocab=9ecb35a4
+-/
 @[simp] lemma boolEmbedding_zero (R : Type u) [CommSemiring R] [Nontrivial R] :
     boolEmbedding R 0 = (0 : R) := rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.d8784630f6ba from=translated src=- shape=dabe8cfc vocab=9ecb35a4
+-/
 @[simp] lemma boolEmbedding_one (R : Type u) [CommSemiring R] [Nontrivial R] :
     boolEmbedding R 1 = (1 : R) := rfl
 
@@ -188,6 +229,9 @@ every coordinate. This is the plain multilinear sum-check domain (Binius, Hachi,
 def boolDomain (R : Type u) [CommSemiring R] [Nontrivial R] (k : ℕ) : SumcheckDomain R k :=
   SumcheckDomain.uniform (boolEmbedding R) k
 
+/--
+@isnad1 id=eq.0h3v.s5.b8d2a0baa2bb from=translated src=- shape=e4d37c98 vocab=69b620b7
+-/
 @[simp] lemma points_boolDomain (R : Type u) [CommSemiring R] [Nontrivial R] {k : ℕ}
     (i : Fin k) : (boolDomain R k).points i = Finset.univ.map (boolEmbedding R) := rfl
 

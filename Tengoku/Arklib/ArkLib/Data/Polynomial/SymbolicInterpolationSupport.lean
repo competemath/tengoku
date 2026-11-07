@@ -41,14 +41,18 @@ open Finset
 def monomialSupport (k dx dy dz : ℕ) : Finset (Σ _ : ℕ, ℕ × ℕ) :=
   (range dy).sigma fun j => (range (dx - k * j)) ×ˢ (range (dz - j))
 
-/-- The support inequalities expose the semantic X, Y, and Z axes.-/
+/-- The support inequalities expose the semantic X, Y, and Z axes.
+@isnad1 id=iff.0h7v.s6.154444bca235 from=translated src=- shape=a19495b9 vocab=f93d3a9b
+-/
 @[simp] theorem mem_monomialSupport (k dx dy dz i j h : ℕ) :
     ⟨j, (i, h)⟩ ∈ monomialSupport k dx dy dz ↔
       j < dy ∧ i + k * j < dx ∧ j + h < dz := by
   simp only [monomialSupport, mem_sigma, mem_range, mem_product]
   omega
 
-/-- Exact unknown count, including truncated rows when a budget is small.-/
+/-- Exact unknown count, including truncated rows when a budget is small.
+@isnad1 id=eq.0h4v.s6.446d9bbd0d0f from=translated src=- shape=0a2a9a08 vocab=73d6fa5b
+-/
 theorem card_monomialSupport (k dx dy dz : ℕ) :
     (monomialSupport k dx dy dz).card =
       ∑ j ∈ range dy, (dx - k * j) * (dz - j) := by
@@ -59,18 +63,24 @@ order `r`, and Z-coefficient `d`. The degree budget drops by `s`.-/
 def constraintSupport (m dz : ℕ) : Finset (Σ _ : ℕ, ℕ × ℕ) :=
   (range m).sigma fun s => (range (m - s)) ×ˢ (range (dz - s))
 
-/-- The Hasse order is strictly below the requested multiplicity.-/
+/-- The Hasse order is strictly below the requested multiplicity.
+@isnad1 id=iff.0h5v.s6.baebe1997773 from=translated src=- shape=35dfa1c9 vocab=13a33756
+-/
 @[simp] theorem mem_constraintSupport (m dz r s d : ℕ) :
     ⟨s, (r, d)⟩ ∈ constraintSupport m dz ↔ r + s < m ∧ d + s < dz := by
   simp only [constraintSupport, mem_sigma, mem_range, mem_product]
   omega
 
-/-- Exact per-point scalar equation count.-/
+/-- Exact per-point scalar equation count.
+@isnad1 id=eq.0h2v.s5.a5ebfd601461 from=translated src=- shape=26d0fd78 vocab=6161bf2f
+-/
 theorem card_constraintSupport (m dz : ℕ) :
     (constraintSupport m dz).card = ∑ s ∈ range m, (dz - s) * (m - s) := by
   simp [constraintSupport, card_sigma, Nat.mul_comm]
 
-/-- Multiplying by the number of points gives the full scalar equation count.-/
+/-- Multiplying by the number of points gives the full scalar equation count.
+@isnad1 id=eq.0h3v.s6.c8b9fa1e7309 from=translated src=- shape=2fc501c9 vocab=6af25c03
+-/
 theorem card_pointConstraints (n m dz : ℕ) :
     ((range n) ×ˢ constraintSupport m dz).card =
       n * ∑ s ∈ range m, (dz - s) * (m - s) := by
@@ -88,7 +98,9 @@ private theorem six_mul_sum (a b : ℤ) (m : ℕ) :
 
 /-- The paper's exact equation count without division or truncated subtraction:
 `6 E + m³ = 3 dz m (m+1) + m`. The hypothesis ensures every Hasse row has
-the untruncated coefficient budget used by the closed formula.-/
+the untruncated coefficient budget used by the closed formula.
+@isnad1 id=eq.1h2v.s6.58b9a7fc79ba from=translated src=- shape=1e82ff5e vocab=8dec1b7b
+-/
 theorem six_mul_card_constraintSupport (m dz : ℕ) (hm : m ≤ dz) :
     6 * (constraintSupport m dz).card + m ^ 3 = 3 * dz * m * (m + 1) + m := by
   have hsum := six_mul_sum (dz : ℤ) (m : ℤ) m

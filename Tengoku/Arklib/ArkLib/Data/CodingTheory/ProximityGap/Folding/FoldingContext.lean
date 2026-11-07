@@ -126,14 +126,18 @@ attribute [grind →] FoldingContextLeft.k_ge_1 FoldingContextLeft.k_le_d
 attribute [grind cases] FoldingContext
 
 /-- Monotonicity of truncated subtraction on the context bounds: `k - 1 ≤ n - 1`.
-  Appears when comparing block indices after a single halving step.-/
+  Appears when comparing block indices after a single halving step.
+@isnad1 id=le.0h2v.s5.110ee101690f from=translated src=- shape=52fbf1c4 vocab=322ded9a
+-/
 @[grind! →]
 lemma k_sub_one_le_n_sub_one {k n : ℕ} [FoldingContextMiddle k n] :
     k - 1 ≤ n - 1 := by
   grind
 
 /-- `2 ^ k ≤ 2 ^ n` in any ordered monoid where `1 ≤ 2`: the block size never exceeds
-  the domain size.-/
+  the domain size.
+@isnad1 id=le.1h4v.s7.9d1af63a5a7f from=translated src=- shape=05f9dcea vocab=2436a362
+-/
 @[grind! →]
 lemma two_pow_k_le_two_pow_n
     {A : Type*} [Monoid A] [LinearOrder A] [MulLeftMono A] [OfNat A 2]
@@ -141,21 +145,27 @@ lemma two_pow_k_le_two_pow_n
   (2 : A) ^ k ≤ (2 : A) ^ n := pow_le_pow_right' h_two (by grind)
 
 /-- `2 ^ k ≤ 2 ^ d` in any ordered monoid where `1 ≤ 2`: the block size never exceeds
-  the degree bound.-/
+  the degree bound.
+@isnad1 id=le.1h4v.s7.4f4095489473 from=translated src=- shape=88f8f1f6 vocab=2436a362
+-/
 @[grind! →]
 lemma two_pow_k_le_two_pow_d
     {A : Type*} [Monoid A] [LinearOrder A] [MulLeftMono A] [OfNat A 2]
   {k d n : ℕ} [FoldingContext k d n] (h_two : (1 : A) ≤ 2) :
   (2 : A) ^ k ≤ (2 : A) ^ d := pow_le_pow_right' h_two (by grind)
 
-/-- `2 ^ d ≤ 2 ^ n` in any ordered monoid where `1 ≤ 2`: the code has rate at most one.-/
+/-- `2 ^ d ≤ 2 ^ n` in any ordered monoid where `1 ≤ 2`: the code has rate at most one.
+@isnad1 id=le.1h3v.s7.243c66b3f361 from=translated src=- shape=ca602d61 vocab=ac9231f3
+-/
 @[grind! →]
 lemma two_pow_d_le_two_pow_n
     {A : Type*} [Monoid A] [LinearOrder A] [MulLeftMono A] [OfNat A 2]
   {d n : ℕ} [FoldingContextRight d n] (h_two : (1 : A) ≤ 2) :
   (2 : A) ^ d ≤ (2 : A) ^ n := pow_le_pow_right' h_two (by grind)
 
-/-- The folded code still has rate at most one: `2 ^ (d - k) ≤ 2 ^ (n - k)`.-/
+/-- The folded code still has rate at most one: `2 ^ (d - k) ≤ 2 ^ (n - k)`.
+@isnad1 id=le.1h4v.s7.cb52a88f284b from=translated src=- shape=0bae8d3b vocab=7031a492
+-/
 @[grind! →]
 lemma two_pow_d_sub_k_le_two_pow_n_sub_k
     {A : Type*} [Monoid A] [LinearOrder A] [MulLeftMono A] [OfNat A 2]
@@ -163,13 +173,17 @@ lemma two_pow_d_sub_k_le_two_pow_n_sub_k
   (2 : A) ^ (d - k) ≤ (2 : A) ^ (n - k) :=
   pow_le_pow_right' h_two (by grind)
 
-/-- Truncated subtraction cancels on the left of `k`, since `1 ≤ k`.-/
+/-- Truncated subtraction cancels on the left of `k`, since `1 ≤ k`.
+@isnad1 id=eq.0h2v.s5.faba3ae97145 from=translated src=- shape=005bea1f vocab=d0dc008d
+-/
 @[grind =]
 lemma one_add_sub_one {k d : ℕ} [FoldingContextLeft k d] :
     1 + (k - 1) = k := by
   rw [Nat.add_sub_cancel' (by grind)]
 
-/-- Truncated subtraction cancels on the left of `k`, since `1 ≤ k`.-/
+/-- Truncated subtraction cancels on the left of `k`, since `1 ≤ k`.
+@isnad1 id=eq.0h2v.s5.94e19f8f636e from=translated src=- shape=005bea1f vocab=a7fd7ed3
+-/
 @[grind =]
 lemma one_add_sub_one' {k n : ℕ} [FoldingContextMiddle k n] :
     1 + (k - 1) = k := by
@@ -177,7 +191,9 @@ lemma one_add_sub_one' {k n : ℕ} [FoldingContextMiddle k n] :
   rw [Nat.add_sub_cancel' (by omega)]
 
 /-- Shifting both sides of `n - k` down by one is harmless: `n - 1 - (k - 1) = n - k`.
-  This is the index-arithmetic counterpart of folding one step at a time.-/
+  This is the index-arithmetic counterpart of folding one step at a time.
+@isnad1 id=eq.0h2v.s5.ce8b59fb68a7 from=translated src=- shape=ed7b0462 vocab=293332f0
+-/
 @[grind =]
 lemma n_sub_1_sub_k_sub_1_eq_n_sub_k {k n : ℕ} [FoldingContextMiddle k n] :
     n - 1 - (k - 1) = n - k := by
@@ -185,7 +201,9 @@ lemma n_sub_1_sub_k_sub_1_eq_n_sub_k {k n : ℕ} [FoldingContextMiddle k n] :
   have := FoldingContextMiddle.k_le_n
   omega
 
-/-- Given a `[FoldingContextMiddle k n]` we have `k - 1 + (n - k) = n - 1`.-/
+/-- Given a `[FoldingContextMiddle k n]` we have `k - 1 + (n - k) = n - 1`.
+@isnad1 id=eq.0h2v.s5.be99067af2a1 from=translated src=- shape=c7f40fba vocab=a7fd7ed3
+-/
 @[grind _=_]
 lemma k_sub_1_add_n_sub_k_eq_n_sub_1 {k n : ℕ} [FoldingContextMiddle k n] :
     k - 1 + (n - k) = n - 1 := by
@@ -194,7 +212,9 @@ lemma k_sub_1_add_n_sub_k_eq_n_sub_1 {k n : ℕ} [FoldingContextMiddle k n] :
   omega
 
 /-- In a group, `2 ^ n / 2 ^ k = 2 ^ (n - k)`: the folded domain size is the quotient of
-  the original size by the block size.-/
+  the original size by the block size.
+@isnad1 id=eq.0h3v.s6.f606cda3e771 from=translated src=- shape=05714688 vocab=b7eed3f3
+-/
 @[grind =]
 lemma pow_2_n_sub_k_eq_n_sub_k
     {A : Type*} [Group A] [OfNat A 2]
@@ -208,7 +228,9 @@ lemma pow_2_n_sub_k_eq_n_sub_k
     _ = (2 : A) ^ (n - k) := by simp
 
 /-- The shifted-by-one variant of `pow_2_n_sub_k_eq_n_sub_k`:
-  `2 ^ (n - 1) / 2 ^ (k - 1) = 2 ^ (n - k)`.-/
+  `2 ^ (n - 1) / 2 ^ (k - 1) = 2 ^ (n - k)`.
+@isnad1 id=eq.0h4v.s7.b1a2856c423c from=translated src=- shape=3e6adc32 vocab=8ad3d109
+-/
 @[grind =]
 lemma pow_2_n_sub_1_div_pow_2_k_sub_1_eq_n_sub_k
     {A : Type*} [Group A] [OfNat A 2]
@@ -221,39 +243,51 @@ lemma pow_2_n_sub_1_div_pow_2_k_sub_1_eq_n_sub_k
       exact (pow_sub 2 (by grind)).symm
     _ = (2 : A) ^ (n - k) := by grind
 
-/-- `n - k + k` cancels, since `k ≤ n`.-/
+/-- `n - k + k` cancels, since `k ≤ n`.
+@isnad1 id=eq.0h2v.s4.a2b92a078eb0 from=translated src=- shape=aa27d0eb vocab=a7fd7ed3
+-/
 @[grind =]
 lemma n_sub_k_add_k {k n : ℕ} [FoldingContextMiddle k n] :
     n - k + k = n := by
   grind
 
-/-- `d - k + k` cancels, since `k ≤ d`.-/
+/-- `d - k + k` cancels, since `k ≤ d`.
+@isnad1 id=eq.0h2v.s4.367347db0b77 from=translated src=- shape=aa27d0eb vocab=d0dc008d
+-/
 @[grind =]
 lemma d_sub_k_add_k {k d : ℕ} [FoldingContextLeft k d] :
     d - k + k = d := by
   grind
 
-/-- Reassociation of subtraction for `grind`: `(d - k) + n = (n + d) - k`.-/
+/-- Reassociation of subtraction for `grind`: `(d - k) + n = (n + d) - k`.
+@isnad1 id=eq.0h3v.s5.2a644959930d from=translated src=- shape=6ecc51ed vocab=2a2f531a
+-/
 @[grind _=_]
 lemma d_sub_k_add_n {k d n : ℕ} [FoldingContext k d n] :
     d - k + n = n + d - k := by
   grind
 
-/-- Reassociation of subtraction for `grind`: `(n - k) + d = (n + d) - k`.-/
+/-- Reassociation of subtraction for `grind`: `(n - k) + d = (n + d) - k`.
+@isnad1 id=eq.0h3v.s5.c1bc118a9fae from=translated src=- shape=3ef101f8 vocab=2a2f531a
+-/
 @[grind _=_]
 lemma n_sub_k_add_d {k d n : ℕ} [FoldingContext k d n] :
     n - k + d = n + d - k := by
   grind
 
 /-- The folded degree bound times the block size recovers the original degree bound:
-  `2 ^ (d - k) * 2 ^ k = 2 ^ d`.-/
+  `2 ^ (d - k) * 2 ^ k = 2 ^ d`.
+@isnad1 id=eq.0h3v.s6.ca1e2209a95c from=translated src=- shape=b651f684 vocab=ab392c2a
+-/
 @[grind _=_]
 lemma pow_2_d_sub_k_mul_pow_2_k {A : Type*} [Monoid A] [OfNat A 2]
     {k d : ℕ} [FoldingContextLeft k d] :
   (2 : A) ^ (d - k) * (2 : A) ^ k = (2 : A) ^ d := by
   aesop (add safe [(by rw [←pow_add]), (by grind)])
 
-/-- Commuted form of `pow_2_d_sub_k_mul_pow_2_k`: `2 ^ k * 2 ^ (d - k) = 2 ^ d`.-/
+/-- Commuted form of `pow_2_d_sub_k_mul_pow_2_k`: `2 ^ k * 2 ^ (d - k) = 2 ^ d`.
+@isnad1 id=eq.0h3v.s6.9d856748e394 from=translated src=- shape=d2a59037 vocab=ab392c2a
+-/
 @[grind _=_]
 lemma pow_2_k_mul_pow_2_d_sub_k {A : Type*} [Monoid A] [OfNat A 2]
     {k d : ℕ} [FoldingContextLeft k d] :
@@ -261,13 +295,17 @@ lemma pow_2_k_mul_pow_2_d_sub_k {A : Type*} [Monoid A] [OfNat A 2]
   aesop (add safe [(by rw [←pow_add]), (by grind)])
 
 /-- Since `d ≤ n`, the minimum of the message-space and domain sizes is `2 ^ d`. This is
-  the shape in which the rate of a Reed–Solomon code is computed.-/
+  the shape in which the rate of a Reed–Solomon code is computed.
+@isnad1 id=eq.0h2v.s6.0452ece46bd6 from=translated src=- shape=db8d4a1c vocab=23d43a6d
+-/
 @[grind =]
 lemma min_pow_2_d_pow_2_n {d n : ℕ} [FoldingContextRight d n] :
     min ((2 : ℕ) ^ d) ((2 : ℕ) ^ n) = 2 ^ d := by grind
 
 /-- Forward direction of `pow_2_k_mul_le_pow_2_d_iff`, stated with the minimal typeclass
-  assumptions: bounding `x` by the folded degree bound bounds `2 ^ k * x` by `2 ^ d`.-/
+  assumptions: bounding `x` by the folded degree bound bounds `2 ^ k * x` by `2 ^ d`.
+@isnad1 id=le.1h4v.s7.b8cf75f66df4 from=translated src=- shape=da3f41d9 vocab=9451a8cf
+-/
 @[grind! →]
 lemma pow_2_k_mul_le_pow_2_d_of {A : Type*} [Monoid A] [LinearOrder A] [MulLeftMono A] [OfNat A 2]
     {k d : ℕ} [FoldingContextLeft k d] {x : A}
@@ -275,7 +313,9 @@ lemma pow_2_k_mul_le_pow_2_d_of {A : Type*} [Monoid A] [LinearOrder A] [MulLeftM
     (2 : A) ^ k * x ≤ (2 : A) ^ d := by grind [mul_le_mul_right]
 
 /-- `2 ^ k * x ≤ 2 ^ d` exactly when `x ≤ 2 ^ (d - k)`. Used to transfer degree bounds
-  between a polynomial and its `2 ^ k`-fold.-/
+  between a polynomial and its `2 ^ k`-fold.
+@isnad1 id=iff.0h4v.s7.316b48956d22 from=translated src=- shape=91b1baf4 vocab=de8c383d
+-/
 @[grind .]
 lemma pow_2_k_mul_le_pow_2_d_iff {A : Type*} [Monoid A] [LinearOrder A] [MulLeftMono A]
     [MulLeftStrictMono A]

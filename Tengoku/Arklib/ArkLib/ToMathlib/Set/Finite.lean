@@ -24,7 +24,9 @@ finiteness is the conclusion rather than a hypothesis.
 
 The bound lives in an arbitrary `FloorSemiring`, so this applies both to a natural bound and to the
 real bounds that counting arguments produce. No nonnegativity hypothesis is needed: at a negative
-bound the hypothesis at `T = ∅` is already unsatisfiable.-/
+bound the hypothesis at `T = ∅` is already unsatisfiable.
+@isnad1 id=finite.1h4v.s6.8400d5febcf1 from=translated src=- shape=05580865 vocab=dcde739d
+-/
 theorem Set.finite_of_forall_finset_card_le {α : Type*} {S : Set α} {R : Type*}
     [Semiring R] [LinearOrder R] [FloorSemiring R] {ℓ : R}
     (h : ∀ T : Finset α, (T : Set α) ⊆ S → (T.card : R) ≤ ℓ) : S.Finite := by

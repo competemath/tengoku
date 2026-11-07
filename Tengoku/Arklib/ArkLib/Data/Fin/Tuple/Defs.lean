@@ -79,12 +79,16 @@ def extract {n : ℕ} {α : Fin n → Sort*} (start stop : ℕ) (h1 : start ≤ 
     (v : (i : Fin n) → α i) : (i : Fin (stop - start)) → α ⟨i + start, by omega⟩ :=
   fun i ↦ v ⟨i + start, by omega⟩
 
-/-- Extracting with `start = 0` is the same as taking the first `stop` elements.-/
+/-- Extracting with `start = 0` is the same as taking the first `stop` elements.
+@isnad1 id=eq.1h4v.s6.2a286a939e3d from=translated src=- shape=6a916edd vocab=68f0ae43
+-/
 lemma extract_start_zero_eq_take {n : ℕ} {α : Fin n → Sort*} (stop : ℕ) (h : stop ≤ n)
     (v : (i : Fin n) → α i) : extract 0 stop (Nat.zero_le _) h v = take stop h v :=
   rfl
 
-/-- Extracting with `stop = n` is the same as dropping the first `start` elements.-/
+/-- Extracting with `stop = n` is the same as dropping the first `start` elements.
+@isnad1 id=eq.1h4v.s6.cfc995692741 from=translated src=- shape=48af5303 vocab=764619fb
+-/
 lemma extract_stop_last_eq_drop {n : ℕ} {α : Fin n → Sort*} (start : ℕ) (h : start ≤ n)
     (v : (i : Fin n) → α i) : extract start n h (Nat.le_refl _) v = drop start h v :=
   rfl

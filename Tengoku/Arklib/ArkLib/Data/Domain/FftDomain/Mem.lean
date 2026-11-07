@@ -47,7 +47,9 @@ namespace FftDomainClass
 variable {D : Type} [FunLike D ι F] [FftDomainClass D ι F]
 variable {ω : D}
 
-/-- The element `1` belongs to every FFT domain.-/
+/-- The element `1` belongs to every FFT domain.
+@isnad1 id=mem.0h4v.s5.ef64995a6317 from=translated src=- shape=c38208eb vocab=bc2efb46
+-/
 @[simp]
 lemma one_mem : 1 ∈ ω := ⟨0, FftDomainClass.generator_eq_one ω⟩
 
@@ -65,19 +67,25 @@ open CosetFftDomain
 variable {ω : FftDomain ι F} {x : F}
 
 /-- Membership in a concrete FFT domain means
-  being one of the values of its subgroup parametrization.-/
+  being one of the values of its subgroup parametrization.
+@isnad1 id=iff.0h4v.s7.e5b9da75cf73 from=translated src=- shape=f7d7ac2f vocab=6540d4eb
+-/
 lemma mem_iff_exists :
     x ∈ ω ↔ ∃ i, x = ω.subgroupDomain i := by
   aesop (add simp [Membership.mem])
 
 /-- Membership in an FFT domain is the same as
-  membership in the same domain viewed as a coset FFT domain.-/
+  membership in the same domain viewed as a coset FFT domain.
+@isnad1 id=iff.0h4v.s6.31559364cc80 from=translated src=- shape=bc0b93e0 vocab=688ec6d2
+-/
 lemma mem_iff_mem_toCosetFftDomain :
     x ∈ ω ↔ x ∈ ω.toCosetFftDomain := by
   simp [mem_iff_exists, mem_iff_exists_mul, ω.cosetGenerator_one]
 
 /-- Membership in the image finset of an FFT domain means
-  being one of the values of its subgroup parametrization.-/
+  being one of the values of its subgroup parametrization.
+@isnad1 id=iff.0h4v.s7.55efe4abb3a2 from=translated src=- shape=cb7dcd79 vocab=1fd5cdc4
+-/
 lemma mem_toFinset_iff_exists [Fintype ι] [DecidableEq F] :
     x ∈ ω.toFinset ↔ ∃ i, x = ω.subgroupDomain i := by
   aesop
@@ -85,7 +93,9 @@ lemma mem_toFinset_iff_exists [Fintype ι] [DecidableEq F] :
       [CosetFftDomainClass.mem_toFinset_iff_mem,
        CosetFftDomainClass.mem_def])
 
-/-- Membership in the finset of elements is the same as membership in the FFT domain.-/
+/-- Membership in the finset of elements is the same as membership in the FFT domain.
+@isnad1 id=iff.0h4v.s6.1ba037518159 from=translated src=- shape=1f28d0fe vocab=2657844f
+-/
 @[simp]
 lemma mem_toFinset_iff_mem [Fintype ι] [DecidableEq F] :
     x ∈ ω.toFinset ↔ x ∈ ω := by

@@ -84,20 +84,32 @@ def eq (i : Fin numWires) (c : 𝓡) : Gate 𝓡 numWires :=
 
 variable {a b c j : Fin numWires} {x : Fin numWires → 𝓡}
 
+/--
+@isnad1 id=iff.0h6v.s5.e932c696d184 from=translated src=- shape=8a7049c6 vocab=2cbe7ebf
+-/
 @[simp]
 theorem add_accepts_iff : (add a b c).accepts x ↔ x c = x a + x b := by
   simp [add, Gate.accepts, Gate.eval, add_neg_eq_zero, eq_comm]
 
+/--
+@isnad1 id=iff.0h6v.s5.e159b96d2aa0 from=translated src=- shape=8a7049c6 vocab=09b05078
+-/
 @[simp]
 theorem mul_accepts_iff : (mul a b c).accepts x ↔ x c = x a * x b := by
   simp [mul, Gate.accepts, Gate.eval, neg_add_eq_zero]
 
+/--
+@isnad1 id=iff.0h4v.s6.2b5511b43d02 from=translated src=- shape=3bf10a8d vocab=f6d4ce5f
+-/
 @[simp]
 theorem bool_accepts_iff : (bool j).accepts x ↔ x j * (x j - 1) = 0 := by
   simp [bool, Gate.accepts, Gate.eval]
   ring_nf
 
 -- Stronger statement that holds when `𝓡` is a domain; `simp` will hopefully apply this first
+/--
+@isnad1 id=iff.0h4v.s6.d2ae74801ec8 from=translated src=- shape=5a698899 vocab=0d90cd08
+-/
 @[simp]
 theorem bool_accepts_iff_of_domain [IsDomain 𝓡] :
     (bool j).accepts x ↔ x j = 0 ∨ x j = 1 :=

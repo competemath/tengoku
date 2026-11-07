@@ -30,6 +30,9 @@ noncomputable def toListWithProof.{u} {α : Type u} [DecidableEq α] (s : Finset
   List.reduceOption <|
     list.map (fun x ↦ if h : x ∈ s then some ⟨x, h⟩ else none)
 
+/--
+@isnad1 id=eq.0h1v.s5.f15bb5b3a72a from=translated src=- shape=5a3e888a vocab=20db793f
+-/
 @[simp]
 lemma toListWithProof_empty.{u} {α : Type u} [DecidableEq α] :
     toListWithProof (∅ : Finset α) = [] := by
@@ -50,6 +53,9 @@ private lemma list_reduceOption_helper
     congr 1
     exact ih (fun x hx ↦ h x (List.mem_cons_of_mem a hx))
 
+/--
+@isnad1 id=eq.0h2v.s6.15fe92762c24 from=translated src=- shape=d3ecc36e vocab=7c86eb37
+-/
 @[simp]
 lemma toListWithProof_eq_toList.{u} {α : Type u} [DecidableEq α]
     {s : Finset α} :

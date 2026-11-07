@@ -27,7 +27,9 @@ namespace Polynomial
 
 variable {F : Type*} [Semiring F]
 
-/-- Composing with the scaling `X ↦ a * X` does not increase the natural degree.-/
+/-- Composing with the scaling `X ↦ a * X` does not increase the natural degree.
+@isnad1 id=le.0h3v.s6.0ca23cbddb22 from=translated src=- shape=0421f4d6 vocab=9b4e28b1
+-/
 lemma natDegree_comp_C_mul_X_le (p : F[X]) (a : F) :
     (p.comp (C a * X)).natDegree ≤ p.natDegree :=
   natDegree_le_iff_coeff_eq_zero.mpr fun _ hm => by

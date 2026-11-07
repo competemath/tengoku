@@ -91,7 +91,9 @@ private lemma splitNthNoncomputable_of_neZero {f : 𝔽[X]} {n : ℕ} [inst : Ne
   aesop (add simp splitNthNoncomputable)
 
 /-- Coefficient formula for `splitNth`: the `e`-th coefficient of the `i`-th component
-  is the coefficient of `f` at position `e * n + i`.-/
+  is the coefficient of `f` at position `e * n + i`.
+@isnad1 id=eq.0h5v.s5.96fe61b995a6 from=translated src=- shape=a64d5c7c vocab=660d228c
+-/
 @[simp]
 lemma splitNth_coeff {n : ℕ} {f : 𝔽[X]} (i : Fin n) (m : ℕ) :
     (splitNth f n i).coeff m = f.coeff (m * n + i.1) := by
@@ -158,7 +160,9 @@ lemma eq_sum_splitNth (n : ℕ) [inst : NeZero n] (f : 𝔽[X]) :
   rw [Finset.sum_congr rfl (fun i _ => hstep i),
       Finset.sum_eq_single (⟨k % n, Nat.mod_lt k hn⟩ : Fin n)] <;> aesop
 
-/-- Lemma bounding degree of each `n`-split polynomial.-/
+/-- Lemma bounding degree of each `n`-split polynomial.
+@isnad1 id=le.0h4v.s5.0c74f8b4dae9 from=translated src=- shape=cc6c3c7f vocab=51424f47
+-/
 lemma splitNth_degree_le {n : ℕ} {f : 𝔽[X]} [inst : NeZero n] {i : Fin n} :
     (splitNth f n i).natDegree ≤ f.natDegree / n := by
   have hn := inst.out
@@ -172,7 +176,9 @@ lemma splitNth_degree_le {n : ℕ} {f : 𝔽[X]} [inst : NeZero n] {i : Fin n} :
   exact hj _ (by omega)
 
 /-- `splitNth` is the left inverse of the `n`-way recombination: splitting the polynomial
-  `∑ j, X^j * (u j)(X^n)` recovers `u i` for each component `i`.-/
+  `∑ j, X^j * (u j)(X^n)` recovers `u i` for each component `i`.
+@isnad1 id=eq.0h4v.s7.a4c09289fc63 from=translated src=- shape=dbc7981c vocab=8fc7ca79
+-/
 @[simp]
 lemma splitNth_of_sum_comp {n : ℕ} [inst : NeZero n] (u : Fin n → 𝔽[X]) (i : Fin n) :
     splitNth (∑ j : Fin n, X ^ (j : ℕ) * (u j).comp (X ^ n)) n i = u i := by
@@ -194,7 +200,9 @@ lemma splitNth_of_sum_comp {n : ℕ} [inst : NeZero n] (u : Fin n → 𝔽[X]) (
 
 /--
 Lemma bridges the coefficient-level identity `eq_sum_splitNth` and
-evaluation-level reasoning about `splitNth` and `polyFold`.-/
+evaluation-level reasoning about `splitNth` and `polyFold`.
+@isnad1 id=eq.0h5v.s7.53410ff56a72 from=translated src=- shape=62c16f01 vocab=f7771ce0
+-/
 lemma splitNth_eval_comp_pow {n : ℕ} [NeZero n] (f : 𝔽[X]) (x : 𝔽) (i : Fin n) :
     (eval₂ C (X ^ n) (splitNth f n i)).eval x = (splitNth f n i).eval (x ^ n) := by
   rw [eval₂_eq_sum]

@@ -39,6 +39,9 @@ variable {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F]
 noncomputable def toList (ω : D) : List (toFinset ω) :=
   Finset.toListWithProof <| toFinset ω
 
+/--
+@isnad1 id=eq.0h4v.s7.03ada555e652 from=translated src=- shape=4d8a47c8 vocab=dc686c53
+-/
 lemma toList_eq_finset_toList {ω : D} :
     (toList ω).map (fun x ↦ x.1) = (toFinset ω).toList := by
   exact Finset.toListWithProof_eq_toList

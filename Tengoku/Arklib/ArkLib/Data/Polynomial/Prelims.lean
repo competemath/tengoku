@@ -50,6 +50,9 @@ section
 noncomputable def discriminant {F : Type} [Field F] [Inhabited F] (f : F[X]) : F :=
   1/f.leadingCoeff * Polynomial.resultant f (Polynomial.derivative f)
 
+/--
+@isnad1 id=ex.1h2v.s8.cb86b0d6ff5d from=translated src=- shape=6ac9710d vocab=16ef952b
+-/
 theorem resultant_is_divisible_by_leadingCoeff {F : Type} [CommRing F] [Inhabited F]
     (f : F[X]) (hf : 0 < f.degree) :
     ∃ r',
@@ -64,7 +67,9 @@ theorem resultant_is_divisible_by_leadingCoeff {F : Type} [CommRing F] [Inhabite
   -- `simp` with commutativity/associativity should finish.
   simp [mul_left_comm, mul_comm]
 
-/-- A polynomial is separable if and only if its discriminant is non-zero.-/
+/-- A polynomial is separable if and only if its discriminant is non-zero.
+@isnad1 id=iff.0h2v.s5.bdd1cd0a8473 from=translated src=- shape=7d993161 vocab=0618fee6
+-/
 lemma separable_iff_discr_eq_zero {F : Type} [Field F] [Inhabited F] (f : F[X]) :
     f.Separable ↔ discriminant f ≠ 0 := by
   unfold discriminant
@@ -90,6 +95,9 @@ def principalIdeal {F : Type} [Semiring F] (f : F) : Ideal F := Ideal.span {f}
 /-
 A principal ideal in a polynomial ring is maximal if and only if its generator is
 an irreducble polynomial.
+-/
+/--
+@isnad1 id=iff.0h2v.s6.f91c00e882cb from=translated src=- shape=abba10e3 vocab=e667633c
 -/
 lemma principal_is_maximal_iff_irred {F : Type} [Field F] (f : F[X]) :
     (principalIdeal f).IsMaximal ↔ Irreducible f := by

@@ -65,15 +65,24 @@ private lemma eq_iff_domains_eq {ω₁ ω₂ : FftDomain ι F} :
 def subgroupUnit (ω : FftDomain ι F) (i : ι) : Fˣ :=
   ω.toCosetFftDomain.subgroupUnit i
 
+/--
+@isnad1 id=eq.0h3v.s6.49948f677aca from=translated src=- shape=c8e84555 vocab=c694ab56
+-/
 @[simp]
 lemma subgroupUnit_zero (ω : FftDomain ι F) : subgroupUnit ω 0 = 1 :=
   CosetFftDomain.subgroupUnit_zero ω.toCosetFftDomain
 
+/--
+@isnad1 id=eq.0h5v.s6.e47137704856 from=translated src=- shape=463b0eed vocab=9a7d9348
+-/
 @[simp]
 lemma subgroupUnit_add (ω : FftDomain ι F) (i j : ι) :
     subgroupUnit ω (i + j) = subgroupUnit ω i * subgroupUnit ω j :=
   CosetFftDomain.subgroupUnit_add ω.toCosetFftDomain i j
 
+/--
+@isnad1 id=eq.0h4v.s6.45a2b6a651b6 from=translated src=- shape=96b2f3fd vocab=c43f3886
+-/
 @[simp]
 lemma subgroupUnit_neg (ω : FftDomain ι F) (i : ι) :
     subgroupUnit ω (-i) = (subgroupUnit ω i)⁻¹ :=
@@ -94,7 +103,9 @@ instance : FunLike (FftDomain ι F) ι F where
 
 namespace FftDomain
 
-/-- Evaluation of an FFT domain is evaluation of its underlying subgroup parametrization.-/
+/-- Evaluation of an FFT domain is evaluation of its underlying subgroup parametrization.
+@isnad1 id=eq.0h4v.s5.1bb90e41e55a from=translated src=- shape=02830045 vocab=2f319439
+-/
 lemma eval_fft_domain_eq_eval_domain
     {fftDomain : FftDomain ι F} {i : ι} :
   fftDomain i = fftDomain.subgroupUnit i := rfl
@@ -136,7 +147,9 @@ instance : FftDomainClass (FftDomain ι F) ι F where
 
 namespace FftDomain
 
-/-- Viewing an FFT domain as a coset FFT domain does not change its values.-/
+/-- Viewing an FFT domain as a coset FFT domain does not change its values.
+@isnad1 id=eq.0h4v.s5.c24c0bcf0ea5 from=translated src=- shape=bdc7faa8 vocab=fa93db0c
+-/
 lemma eval_fft_domain_eq_eval_coset_fft_domain
     {ω : FftDomain ι F} {i : ι} :
   ω i = ω.toCosetFftDomain i := by
@@ -150,11 +163,15 @@ end FftDomain
 
 namespace FftDomain
 
-/-- An FFT domain is injective as a function.-/
+/-- An FFT domain is injective as a function.
+@isnad1 id=injectiv.0h3v.s5.5b6173076263 from=translated src=- shape=aafba6b1 vocab=546fc3a8
+-/
 lemma injective {ω : FftDomain ι F} :
     Function.Injective ω := CosetFftDomainClass.injective _
 
-/-- An FFT domain is injective on every set.-/
+/-- An FFT domain is injective on every set.
+@isnad1 id=injon.0h4v.s5.399557a0b162 from=translated src=- shape=1b88c73e vocab=89f958b8
+-/
 lemma injOn {ω : FftDomain ι F} {s : Set ι} :
     Set.InjOn ω s := fun _ _ _ _ h ↦ ω.injective h
 

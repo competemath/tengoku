@@ -61,7 +61,9 @@ def toFftDomain (ω : D) : FftDomain ι F where
   cosetGenerator := 1
   cosetGenerator_one := by rfl
 
-/-- Evaluation in the normalized FFT domain is `(ω 0)⁻¹ * ω i`.-/
+/-- Evaluation in the normalized FFT domain is `(ω 0)⁻¹ * ω i`.
+@isnad1 id=eq.0h5v.s6.1c210e22e2b6 from=translated src=- shape=6b8d401d vocab=49237ac5
+-/
 lemma eval_toFftDomain {ω : D} {i : ι} :
     toFftDomain ω i = (ω 0)⁻¹ * ω i := by
   aesop (add
@@ -71,14 +73,18 @@ lemma eval_toFftDomain {ω : D} {i : ι} :
       CosetFftDomain.eval_coset_fft_domain_eq_eval_generator_mul_domain,
       toCosetFftDomain, mkSubgroupUnit])
 
-/-- Normalization evaluates to the normalized subgroup unit of the original coset domain.-/
+/-- Normalization evaluates to the normalized subgroup unit of the original coset domain.
+@isnad1 id=eq.0h5v.s6.f84852c06cc5 from=translated src=- shape=5e53718c vocab=704c076c
+-/
 lemma eval_toFftDomain_eq_mkSubgroupUnit {ω : D} {i : ι} :
     toFftDomain ω i = (mkSubgroupUnit ω i : F) := by
   rw [eval_toFftDomain]
   rfl
 
 /-- An element lies in the normalized FFT domain iff multiplying it by
-  the original coset representative gives an element of the original coset domain.-/
+  the original coset representative gives an element of the original coset domain.
+@isnad1 id=iff.0h5v.s6.b3880af5fd6d from=translated src=- shape=ffd4aa23 vocab=d8ee199e
+-/
 lemma mem_toFftDomain_iff_mul_mem {ω : D} {x : F} :
     x ∈ toFftDomain ω ↔ ω 0 * x ∈ ω := by
   unfold toFftDomain
@@ -93,7 +99,9 @@ lemma mem_toFftDomain_iff_mul_mem {ω : D} {x : F} :
     (add safe (by field_simp))
 
 /-- Multiplying an element of the normalized FFT domain by
-  an element of the original coset domain gives another element of the original coset domain.-/
+  an element of the original coset domain gives another element of the original coset domain.
+@isnad1 id=mem.2h6v.s6.3b233dba80dd from=translated src=- shape=7ee313d1 vocab=ca626619
+-/
 lemma mul_mem_of_mem_toFftDomain_of_mem {ω : D} {x y : F}
     (hx : x ∈ toFftDomain ω)
   (hy : y ∈ ω) :
@@ -111,7 +119,9 @@ lemma mul_mem_of_mem_toFftDomain_of_mem {ω : D} {x y : F}
   rfl
 
 /-- Multiplying an element of the original coset domain by
-  an element of the normalized FFT domain gives another element of the original coset domain.-/
+  an element of the normalized FFT domain gives another element of the original coset domain.
+@isnad1 id=mem.2h6v.s6.8f0f1edcd82d from=translated src=- shape=88890673 vocab=ca626619
+-/
 lemma mul_mem_of_mem_of_mem_toFftDomain {ω : D} {x y : F}
     (hx : x ∈ ω)
   (hy : y ∈ toFftDomain ω) :
@@ -120,7 +130,9 @@ lemma mul_mem_of_mem_of_mem_toFftDomain {ω : D} {x y : F}
   exact mul_mem_of_mem_toFftDomain_of_mem hy hx
 
 /-- Scaling the normalized FFT-domain image by `ω 0` recovers
-  the original coset FFT-domain image.-/
+  the original coset FFT-domain image.
+@isnad1 id=eq.0h4v.s6.5cea89d504ea from=translated src=- shape=40df1df8 vocab=c33a3a95
+-/
 @[simp]
 lemma toFinset_image_toFftDomain_eq_toFinset [Fintype ι] [DecidableEq F] {ω : D} :
     Finset.image (fun (w : F) ↦ ω 0 * w) (toFftDomain ω).toFinset =
@@ -140,7 +152,9 @@ lemma toFinset_image_toFftDomain_eq_toFinset [Fintype ι] [DecidableEq F] {ω : 
     field_simp
 
 /-- The original coset FFT domain and its normalized FFT domain have
-  the same number of elements.-/
+  the same number of elements.
+@isnad1 id=eq.0h4v.s6.88093b31c327 from=translated src=- shape=82f91374 vocab=ee9e0a78
+-/
 lemma card_toFinset_eq_card_toFftDomain_toFinset [Fintype ι] [DecidableEq F] {ω : D} :
     Finset.card (toFinset ω) = Finset.card (toFftDomain ω).toFinset := by
   aesop (add simp [toFinset_image_toFftDomain_eq_toFinset])
@@ -158,6 +172,9 @@ end CosetFftDomain
 
 namespace FftDomain
 
+/--
+@isnad1 id=eq.0h3v.s5.b8de14584472 from=translated src=- shape=a9688b82 vocab=db26019c
+-/
 lemma toFftDomain_eq_self {ω : FftDomain ι F} :
     ω.toFftDomain = ω := by
   ext i

@@ -40,12 +40,16 @@ noncomputable def pickSubset (s : Finset α) (n : ℕ) : Finset α :=
     then {Classical.choose (Finset.Nonempty.exists_mem h)} ∪ subset_n
     else subset_n
 
-/-- Picking zero elements yields an empty set.-/
+/-- Picking zero elements yields an empty set.
+@isnad1 id=eq.0h2v.s4.75f84e2f87f7 from=translated src=- shape=f438ebbe vocab=b24dec4c
+-/
 @[simp]
 lemma pick_subset_zero {s : Finset α} :
     pickSubset s 0 = ∅ := rfl
 
-/-- Picking from an empty set always yields an empty set.-/
+/-- Picking from an empty set always yields an empty set.
+@isnad1 id=eq.0h2v.s4.9675ffc9f1c9 from=translated src=- shape=8421a993 vocab=b24dec4c
+-/
 @[simp]
 lemma pick_subset_empty {n : ℕ} :
     pickSubset (∅ : Finset α) n = ∅ := by
@@ -53,7 +57,9 @@ lemma pick_subset_empty {n : ℕ} :
   | zero => rfl
   | succ n ih => simp [pickSubset, ih]
 
-/-- `pickSubset s n` is indeed a subset of `s`.-/
+/-- `pickSubset s n` is indeed a subset of `s`.
+@isnad1 id=le.0h3v.s4.25c09615c86b from=translated src=- shape=2f734e37 vocab=d964b322
+-/
 lemma pick_subset_subset {s : Finset α} {n : ℕ} :
     pickSubset s n ⊆ s := by
   induction n with
@@ -66,7 +72,9 @@ lemma pick_subset_subset {s : Finset α} {n : ℕ} :
     have h_choose := Classical.choose_spec (Finset.Nonempty.exists_mem h)
     aesop
 
-/-- The cardinality of picked subset is `min s.card n`.-/
+/-- The cardinality of picked subset is `min s.card n`.
+@isnad1 id=eq.0h3v.s4.080a1ad40661 from=translated src=- shape=9561afe0 vocab=145ab878
+-/
 @[simp]
 lemma card_pick_subset {s : Finset α} {n : ℕ} :
     (pickSubset s n).card = min s.card n := by
@@ -86,11 +94,16 @@ lemma card_pick_subset {s : Finset α} {n : ℕ} :
       have := Finset.card_le_card h
       aesop (add safe (by omega))
 
+/--
+@isnad1 id=le.0h3v.s4.68525b913a67 from=translated src=- shape=c9ebe497 vocab=d663cec9
+-/
 @[simp]
 lemma card_pick_subset_le {s : Finset α} {n : ℕ} :
     (pickSubset s n).card ≤ n := by simp
 
-/-- Picking non-zero elements from a non-empty set is not empty.-/
+/-- Picking non-zero elements from a non-empty set is not empty.
+@isnad1 id=nonempty.2h3v.s4.ca5131d53a12 from=translated src=- shape=f241c6d2 vocab=6fc7c552
+-/
 @[simp]
 lemma nonempty_pick_subset_of_nonempty_of_ne {s : Finset α} {n : ℕ}
     (h : s.Nonempty)
@@ -102,7 +115,9 @@ lemma nonempty_pick_subset_of_nonempty_of_ne {s : Finset α} {n : ℕ}
   grind
 
 /-- If the target cardinality `n` exceeds or is equal to the cardinality
-  of the set `s` then `pickSubset` returns the whole set `s`.-/
+  of the set `s` then `pickSubset` returns the whole set `s`.
+@isnad1 id=eq.1h3v.s4.3bce80744832 from=translated src=- shape=563cbcc9 vocab=d663cec9
+-/
 lemma pick_subset_eq_s_of_card_le_n {s : Finset α} {n : ℕ}
     (h : s.card ≤ n) :
   pickSubset s n = s := by
@@ -110,14 +125,18 @@ lemma pick_subset_eq_s_of_card_le_n {s : Finset α} {n : ℕ}
   simp [h]
 
 /-- If the picked subset does not meet the target cardinality requirement
-  then we must have obtained the original set `s`.-/
+  then we must have obtained the original set `s`.
+@isnad1 id=eq.1h3v.s4.3a44749fd802 from=translated src=- shape=9befcaef vocab=1ae1643c
+-/
 lemma pick_subset_eq_of_card_pick_subset_lt {s : Finset α} {n : ℕ}
     (h : (s.pickSubset n).card < n) :
   pickSubset s n = s := by
   rw [←Finset.eq_iff_card_le_of_subset pick_subset_subset]
   aesop (add safe (by omega))
 
-/-- `pickSubset` is of cardinality `n` if it is a proper subset of `s`.-/
+/-- `pickSubset` is of cardinality `n` if it is a proper subset of `s`.
+@isnad1 id=eq.1h3v.s4.c524fc8bdb8e from=translated src=- shape=16593953 vocab=d72c106e
+-/
 lemma pick_subset_card_eq_of_ne {s : Finset α} {n : ℕ}
     (h : pickSubset s n ≠ s) :
   (pickSubset s n).card = n := by

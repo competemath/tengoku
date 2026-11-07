@@ -81,7 +81,9 @@ def toSubgroup (ω : D) : Subgroup Fˣ where
   }
 
 /-- A unit belongs to the subgroup associated to an FFT domain iff
-  its value belongs to the finset of elements of the domain.-/
+  its value belongs to the finset of elements of the domain.
+@isnad1 id=iff.0h5v.s7.858838f7c8d2 from=translated src=- shape=f1200718 vocab=f2e91ea8
+-/
 lemma mem_subgroup_iff_mem_finset {x : Fˣ} :
     x ∈ toSubgroup ω ↔ x.val ∈ CosetFftDomainClass.toFinset ω := by
   aesop
@@ -89,7 +91,9 @@ lemma mem_subgroup_iff_mem_finset {x : Fˣ} :
                 CosetFftDomainClass.mkSubgroupUnit, generator_eq_one])
 
 /-- A unit belongs to the subgroup associated to an FFT domain iff
-  its value belongs to the FFT domain.-/
+  its value belongs to the FFT domain.
+@isnad1 id=iff.0h5v.s7.4a848c609a10 from=translated src=- shape=a13d8b1d vocab=e190c7ee
+-/
 @[simp]
 lemma mem_subgroup_iff_mem_domain {ω : D} {x : Fˣ} :
     x ∈ toSubgroup ω ↔ x.val ∈ ω := by simp [mem_subgroup_iff_mem_finset]

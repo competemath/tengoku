@@ -37,7 +37,9 @@ variable {F : Type} [Semiring F]
 /-- The set of coefficients of a bivariate polynomial.-/
 def coeffs [DecidableEq F] (f : F[X][Y]) : Finset F[X] := f.support.image f.coeff
 
-/-- A bivariate polynomial is non-zero if and only if its coefficient function is non-zero.-/
+/-- A bivariate polynomial is non-zero if and only if its coefficient function is non-zero.
+@isnad1 id=iff.0h2v.s6.46f43e29d81f from=translated src=- shape=626148f1 vocab=0261ec8b
+-/
 @[grind =_]
 lemma ne_zero_iff_coeffs_ne_zero (f : F[X][Y]) : f ≠ 0 ↔ f.coeff ≠ 0 :=
   ⟨
@@ -46,7 +48,9 @@ lemma ne_zero_iff_coeffs_ne_zero (f : F[X][Y]) : f ≠ 0 ↔ f.coeff ≠ 0 :=
     fun f_coeffs ↦ by intro h; exact f_coeffs (by subst h; ext; simp)
   ⟩
 
-/-- The set of `Y`-degrees is non-empty.-/
+/-- The set of `Y`-degrees is non-empty.
+@isnad1 id=nonempty.1h2v.s6.37cf3332f2fc from=translated src=- shape=19bdbe2c vocab=aa031ae0
+-/
 lemma degreesY_nonempty {f : F[X][Y]} (hf : f ≠ 0) : (f.toFinsupp.coeff.support).Nonempty := by
   rw [Polynomial.support_toFinsupp]
   exact Polynomial.support_nonempty.mpr hf
@@ -60,6 +64,9 @@ attribute [local grind _=_] Finsupp.mem_support_iff toFinsupp_apply smul_monomia
 attribute [local grind =] natDegree_mul natDegree_add_eq_right_of_degree_lt
                           natDegree_zero
 
+/--
+@isnad1 id=lt.2h5v.s6.0a353c6b0f61 from=translated src=- shape=5d1a6607 vocab=826466c1
+-/
 theorem natDegree_sum_lt_of_forall_lt {F : Type} [Semiring F]
     {α : Type} {s : Finset α} {g : α → F[X]} {deg : ℕ} :
   0 < deg → (∀ x ∈ s, (g x).natDegree < deg) → (∑ x ∈ s, g x).natDegree < deg := by
@@ -70,6 +77,9 @@ theorem natDegree_sum_lt_of_forall_lt {F : Type} [Semiring F]
     exact Nat.le_pred_of_lt (h x hx)
   exact lt_of_le_of_lt hle (Nat.pred_lt_self deg_pos)
 
+/--
+@isnad1 id=eq.3h6v.s6.39d22e7addd4 from=translated src=- shape=54400286 vocab=826466c1
+-/
 theorem natDeg_sum_eq_of_unique {α : Type} {s : Finset α} {f : α → F[X]} {deg : ℕ}
     (mx : α) (h : mx ∈ s) :
     (f mx).natDegree = deg →
@@ -117,7 +127,9 @@ theorem natDeg_sum_eq_of_unique {α : Type} {s : Finset α} {f : α → F[X]} {d
       _ = deg := hmxdeg
 
 /-- If some element `x ∈ s` maps to `y` under `f`, and every element of `s` maps to a value
-less than or equal to `y`, then the supremum of `f` over `s` is exactly `y`.-/
+less than or equal to `y`, then the supremum of `f` over `s` is exactly `y`.
+@isnad1 id=eq.3h6v.s6.9c5b5d6e5d44 from=translated src=- shape=c9b8af5e vocab=48994976
+-/
 lemma sup_eq_of_le_of_reach {α β : Type} [SemilatticeSup β] [OrderBot β] {s : Finset α} {f : α → β}
     (x : α) {y : β} (h : x ∈ s) :
     f x = y →
@@ -128,12 +140,16 @@ lemma sup_eq_of_le_of_reach {α β : Type} [SemilatticeSup β] [OrderBot β] {s 
 /-- The bivariate quotient polynomial.-/
 def quotient (f g : F[X][Y]) : Prop := ∃ q : F[X][Y], g = q * f
 
-/-- The quotient of two non-zero bivariate polynomials is non-zero.-/
+/-- The quotient of two non-zero bivariate polynomials is non-zero.
+@isnad1 id=ne.1h3v.s6.ac0426c91a4e from=translated src=- shape=fe41abda vocab=249b85ab
+-/
 @[grind .]
 lemma quotient_nezero {f q : F[X][Y]} (hg : q * f ≠ 0) : q ≠ 0 := by by_contra h; apply hg; simp [h]
 
 /-- If a non-zero bivariate polynomial `f` divides a non-zero bivariate polynomial `g`, then
-all the coefficients of the quoetient are non-zero.-/
+all the coefficients of the quoetient are non-zero.
+@isnad1 id=ne.1h3v.s7.ecfc77f36d63 from=translated src=- shape=8c025923 vocab=50a729c4
+-/
 @[grind .]
 lemma coeff_ne_zero {f q : F[X][Y]} (hg : q * f ≠ 0) : q.coeff ≠ 0 :=
   (ne_zero_iff_coeffs_ne_zero q).1 (quotient_nezero hg)
@@ -161,47 +177,61 @@ def monomialXY (n m : ℕ) : F →ₗ[F] F[X][Y] where
   map_add' x y := by simp
   map_smul' x y := by simp only [RingHom.id_apply, Polynomial.smul_monomial]
 
-/-- The bivariate monomial is well-defined.-/
+/-- The bivariate monomial is well-defined.
+@isnad1 id=eq.0h4v.s8.b8c9d4526141 from=translated src=- shape=1add9425 vocab=3d95a208
+-/
 @[grind _=_]
 theorem monomialXY_def {n m : ℕ} {a : F} :
     monomialXY n m a = Polynomial.monomial m (Polynomial.monomial n a) := by
   rfl
 
 /-- Adding bivariate monomials works as expected.
-In particular, `(a + b) * X^n * Y^m = a * X^n * Y^m + b * X^n * Y^m`.-/
+In particular, `(a + b) * X^n * Y^m = a * X^n * Y^m + b * X^n * Y^m`.
+@isnad1 id=eq.0h5v.s8.99559823679e from=translated src=- shape=bd987ffb vocab=03be13aa
+-/
 @[simp, grind =]
 theorem monomialXY_add {n m : ℕ} {a b : F} :
     monomialXY n m (a + b) = monomialXY n m a + monomialXY n m b :=
   (monomialXY n m).map_add _ _
 
 /-- Multiplying bivariate monomials works as expected.
-In particular, `(a * X^n * Y^m) * (b * X^p * Y^q) = (a * b) * X^(n+p) * Y^(m+q)`.-/
+In particular, `(a * X^n * Y^m) * (b * X^p * Y^q) = (a * b) * X^(n+p) * Y^(m+q)`.
+@isnad1 id=eq.0h7v.s8.5f5e5f9b318e from=translated src=- shape=47b5305c vocab=3bbc711f
+-/
 @[grind _=_]
 theorem monomialXY_mul_monomialXY {n m p q : ℕ} {a b : F} :
     monomialXY n m a * monomialXY p q b = monomialXY (n + p) (m + q) (a * b) :=
   by simp only [monomialXY_def, Polynomial.monomial_mul_monomial]
 
 /-- Taking a bivariate monomial to a power works as expected.
-In particular, ` (a * X^n * Y^m)^k = (a^k) * X^(n * k) * Y^(m * k)`.-/
+In particular, ` (a * X^n * Y^m)^k = (a^k) * X^(n * k) * Y^(m * k)`.
+@isnad1 id=eq.0h5v.s8.a3810d2a9821 from=translated src=- shape=a2a9c4ea vocab=e271b4e2
+-/
 @[simp, grind _=_]
 theorem monomialXY_pow {n m k : ℕ} {a : F} :
     monomialXY n m a ^ k = monomialXY (n * k) (m * k) (a ^ k) := by
   simp [monomialXY]
 
 /-- Multiplying a bivariate monomial by a scalar works as expected.
-In particular, ` b * a * X^n * Y^m = b * (a * X^n * Y^m)`.-/
+In particular, ` b * a * X^n * Y^m = b * (a * X^n * Y^m)`.
+@isnad1 id=eq.0h6v.s8.f564e4587b15 from=translated src=- shape=479ca513 vocab=bd7ee802
+-/
 @[simp, grind _=_]
 theorem smul_monomialXY {n m : ℕ} {a : F} {S} [SMulZeroClass S F] {b : S} :
     monomialXY n m (b • a) = b • monomialXY n m a := by
   grind [monomialXY]
 
-/-- A bivariate monimial `a * X^n * Y^m` is equal to zero if and only if `a = 0`.-/
+/-- A bivariate monimial `a * X^n * Y^m` is equal to zero if and only if `a = 0`.
+@isnad1 id=iff.0h4v.s7.03d5343ff054 from=translated src=- shape=efd66fa1 vocab=a32ca537
+-/
 @[simp, grind =]
 theorem monomialXY_eq_zero_iff {n m : ℕ} {a : F} : monomialXY n m a = 0 ↔ a = 0 := by
   simp [monomialXY]
 
 /-- Two bivariate monomials `a * X^n * Y^m` and `b * X^p * Y^q` are equal if and only if `a = b`
-`n = p` and `m = q` or if both are zero, i.e., `a = b = 0`.-/
+`n = p` and `m = q` or if both are zero, i.e., `a = b = 0`.
+@isnad1 id=iff.0h7v.s8.a92ada6413d1 from=translated src=- shape=60ac8e16 vocab=a32ca537
+-/
 @[grind =]
 theorem monomialXY_eq_monomialXY_iff {n m p q : ℕ} {a b : F} :
     monomialXY n m a = monomialXY p q b ↔ n = p ∧ m = q ∧ a = b ∨ a = 0 ∧ b = 0 := by

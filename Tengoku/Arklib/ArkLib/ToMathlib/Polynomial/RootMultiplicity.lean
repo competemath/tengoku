@@ -25,7 +25,9 @@ Generic facts intended as candidates for upstreaming to Mathlib.
 namespace Polynomial
 
 /-- The sum of the root multiplicities of a polynomial over a finite set of points is at most
-its natural degree.-/
+its natural degree.
+@isnad1 id=le.0h3v.s5.a45d9f8f07a8 from=translated src=- shape=76eee86e vocab=b603869a
+-/
 lemma sum_rootMultiplicity_le_natDegree {F : Type*} [Field F]
     {W : Polynomial F} (S : Finset F) :
     ∑ a ∈ S, W.rootMultiplicity a ≤ W.natDegree := by

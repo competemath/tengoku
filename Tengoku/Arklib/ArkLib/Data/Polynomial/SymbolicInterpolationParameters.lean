@@ -31,7 +31,9 @@ or construct an interpolant.
 namespace Polynomial.SymbolicInterpolation
 
 /-- The real comparison guaranteeing strict surplus, once the variable-count lower bound
-has been established. The coefficient budget `z` may exceed its prescribed minimum.-/
+has been established. The coefficient budget `z` may exceed its prescribed minimum.
+@isnad1 id=lt.3h3v.s8.8461c974d975 from=translated src=- shape=507ef118 vocab=1606c18d
+-/
 theorem strict_surplus_of_coefficient_budget (m r z : ℝ) (hm : 1 ≤ m) (hr : 0 < r)
     (hz : (m + 1 / 2) ^ 2 / (3 * r ^ 2) ≤ z) :
     (r ^ 2 * ((m + 1 / 2) / r) * ((m + 1 / 2) / r + 1) - m * (m + 1)) * z >
@@ -55,7 +57,9 @@ theorem strict_surplus_of_coefficient_budget (m r z : ℝ) (hm : 1 ≤ m) (hr : 
   have hmono := mul_le_mul_of_nonneg_left hz hc.le
   linarith
 
-/-- The prescribed coefficient budget dominates the Y-degree budget in the paper's regime.-/
+/-- The prescribed coefficient budget dominates the Y-degree budget in the paper's regime.
+@isnad1 id=le.3h2v.s7.7a4d0f10d3fd from=translated src=- shape=532b130d vocab=5c9d27ef
+-/
 theorem y_budget_le_coefficient_budget (m r : ℝ) (hm : 3 ≤ m)
     (hr : 0 < r) (hr1 : r ≤ 1) :
     (m + 1 / 2) / r ≤ (m + 1 / 2) ^ 2 / (3 * r ^ 2) := by
@@ -66,7 +70,9 @@ theorem y_budget_le_coefficient_budget (m r : ℝ) (hm : 3 ≤ m)
 
 /-- The multiplicity threshold makes the X-degree budget small enough for the root argument.
 Here `eta = 1 - r - gamma`; multiplying this inequality by the block length gives the
-paper's `D_X ≤ (1 - gamma) * m * n`.-/
+paper's `D_X ≤ (1 - gamma) * m * n`.
+@isnad1 id=le.2h3v.s6.be19d1a84a2a from=translated src=- shape=29c0e99b vocab=70d00927
+-/
 theorem x_budget_le_multiplicity_budget (m r eta : ℝ) (heta : 0 < eta)
     (hm : r / (2 * eta) ≤ m) :
     (m + 1 / 2) * r ≤ (r + eta) * m := by

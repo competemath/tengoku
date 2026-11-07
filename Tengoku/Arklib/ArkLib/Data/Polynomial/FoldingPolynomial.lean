@@ -94,12 +94,18 @@ noncomputable def foldingPolynomialAux (q f : F[X]) (fuel : ℕ) : F[X][Y] :=
 noncomputable def foldingPolynomial (q f : F[X]) : F[X][Y] :=
   foldingPolynomialAux q f f.natDegree
 
+/--
+@isnad1 id=eq.1h3v.s6.ef006ed4df29 from=translated src=- shape=c0e2f5f2 vocab=0193ae30
+-/
 lemma folding_polynomial_eq_map_of_f_degree_lt_q_degree {q f : F[X]}
     (h : f.degree < q.degree) :
     foldingPolynomial q f = Polynomial.map C f := by
   unfold foldingPolynomial foldingPolynomialAux
   simp [h]
 
+/--
+@isnad1 id=eq.0h3v.s7.28ad759156aa from=translated src=- shape=5a65d335 vocab=8d425a7b
+-/
 @[simp]
 lemma folding_polynomial_C_q {q : F} {f : F[X]} :
     foldingPolynomial (C q) f = Polynomial.map C f := by
@@ -110,12 +116,18 @@ lemma folding_polynomial_C_q {q : F} {f : F[X]} :
     lt_of_lt_of_le h (Polynomial.degree_C_le (a := q))
   simp at contra
 
+/--
+@isnad1 id=eq.0h3v.s8.51aa9f1dee17 from=translated src=- shape=2cd2d1c3 vocab=646559bb
+-/
 @[simp]
 lemma foldingPolynomial_C_f {f : F} {q : F[X]} :
     foldingPolynomial q (C f) = C (C f) := by
   unfold foldingPolynomial foldingPolynomialAux
   simp
 
+/--
+@isnad1 id=eq.0h2v.s7.19661567ce0a from=translated src=- shape=d3a066c6 vocab=52bfbf1c
+-/
 @[simp]
 lemma foldingPolynomial_zero {q : F[X]} :
     foldingPolynomial q 0 = 0 := by
@@ -305,10 +317,16 @@ lemma eq_zero_of_folding_polynomial_eq_zero {q f : F[X]}
         rw [EuclideanDomain.mod_eq_sub_mul_div] at h_rem_zero
         aesop
 
+/--
+@isnad1 id=ne.1h3v.s7.14556296fd19 from=translated src=- shape=71dd7fac vocab=52bfbf1c
+-/
 lemma folding_polynomial_ne_zero_of_ne_zero {q f : F[X]}
     (h : f ≠ 0) : foldingPolynomial q f ≠ 0 := fun contra ↦ by
   simp_all [eq_zero_of_folding_polynomial_eq_zero contra]
 
+/--
+@isnad1 id=eq.0h3v.s6.d2b4c8963798 from=translated src=- shape=54dfc08d vocab=4901ebe1
+-/
 lemma substitution_property_of_folding_polynomial {q f : F[X]} :
     ((foldingPolynomial q f).map (Polynomial.compRingHom q)).eval X = f := by
   revert q f
@@ -387,7 +405,9 @@ lemma substitution_property_of_folding_polynomial {q f : F[X]} :
       ring
 
 /-- A means to evaluate the original polynomial in terms of
-  the folding polynomial.-/
+  the folding polynomial.
+@isnad1 id=eq.0h4v.s6.eda2f65f6cde from=translated src=- shape=bb4cff05 vocab=e2522d1f
+-/
 lemma eval_property_of_folding_polynomial {q f : F[X]} {x : F} :
     ((foldingPolynomial q f).map (Polynomial.evalRingHom (q.eval x))).eval x = f.eval x := by
   have h_subst : ((Polynomial.FoldingPolynomial.foldingPolynomial q f).map
@@ -402,7 +422,9 @@ lemma eval_property_of_folding_polynomial {q f : F[X]} {x : F} :
    simp +decide [Polynomial.eval_finsetSum])
 
 /-- A means to evaluate the original polynomial in terms of
-  the folding polynomial when `q = X ^ k`.-/
+  the folding polynomial when `q = X ^ k`.
+@isnad1 id=eq.0h4v.s7.f27d9a2b5b76 from=translated src=- shape=3bab9670 vocab=bb70b1a5
+-/
 lemma eval_property_of_folding_polynomial_x_k {f : F[X]} {k : ℕ} {x : F} :
     ((foldingPolynomial (X ^ k) f).map (Polynomial.evalRingHom (x ^ k))).eval x =
     f.eval x := by
@@ -467,7 +489,9 @@ private lemma satisfies_composition_property_implies_is_the_reminder
 
 /-- An alternative description of the folding polynomial
     as the reminder in bivariate polynomial division
-    of the form `f = Q' * (X - q(Y)) + Q`.-/
+    of the form `f = Q' * (X - q(Y)) + Q`.
+@isnad1 id=ex.0h3v.s9.5d8a7079b600 from=translated src=- shape=84000187 vocab=98abe211
+-/
 lemma folding_polynomial_is_the_reminder {q f : F[X]} :
     ∃ Q': F[X][Y],
     Polynomial.map C f = Q' * (C X - Polynomial.map C q) + (foldingPolynomial q f) :=
@@ -481,6 +505,9 @@ lemma folding_polynomial_is_the_reminder {q f : F[X]} :
 noncomputable def polyFold (f : F[X]) (k : ℕ) (r : F) : F[X] :=
   (foldingPolynomial (X ^ k) f).eval (C r)
 
+/--
+@isnad1 id=eq.0h3v.s6.926be5f143ce from=translated src=- shape=fa32b3f4 vocab=deee3f08
+-/
 @[simp high]
 lemma polyFold_zero_eq_zero {k : ℕ} {r : F} :
     polyFold 0 k r = 0 := by simp [polyFold]
@@ -498,7 +525,9 @@ private lemma eval_C_map_C (f : F[X]) (r : F) :
   rw [map_mul, map_pow]
 
 /-- Base case of `polyFold`: when `k = 0` or `f` has degree below `k`,
-    `polyFold f k r = C (f.eval r)`.-/
+    `polyFold f k r = C (f.eval r)`.
+@isnad1 id=eq.1h4v.s7.f17cdb5c5fef from=translated src=- shape=73cdf919 vocab=2f3d3a84
+-/
 lemma polyFold_base {f : F[X]} {k : ℕ} {r : F} (h : k = 0 ∨ f.natDegree < k) :
     polyFold f k r = Polynomial.C (f.eval r) := by
   unfold polyFold
@@ -515,7 +544,9 @@ lemma polyFold_base {f : F[X]} {k : ℕ} {r : F} (h : k = 0 ∨ f.natDegree < k)
   exact eval_C_map_C f r
 
 /-- Recursive case of `polyFold`: when `0 < k ≤ f.natDegree`,
-    `polyFold f k r = C ((f %ₘ X^k).eval r) + X * polyFold (f /ₘ X^k) k r`.-/
+    `polyFold f k r = C ((f %ₘ X^k).eval r) + X * polyFold (f /ₘ X^k) k r`.
+@isnad1 id=eq.2h4v.s8.4671616c63fd from=translated src=- shape=193f04dd vocab=9b662c19
+-/
 lemma polyFold_step {f : F[X]} {k : ℕ} {r : F} (hk : 0 < k) (hf : k ≤ f.natDegree) :
     polyFold f k r =
       Polynomial.C ((f %ₘ X^k).eval r) + X * polyFold (f /ₘ X^k) k r := by

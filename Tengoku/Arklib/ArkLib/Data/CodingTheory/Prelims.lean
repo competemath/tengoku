@@ -91,7 +91,9 @@ def subLeftFull (U : Matrix (Fin m) (Fin n) F) (c_reindex : Fin m → Fin n) :
 variable [CommRing F] [Nontrivial F]
          {U : Matrix (Fin m) (Fin n) F}
 
-/-- An m×n matrix has full rank if the submatrix consisting of rows 1 through n has rank n.-/
+/-- An m×n matrix has full rank if the submatrix consisting of rows 1 through n has rank n.
+@isnad1 id=eq.2h4v.s6.b01bcbfd7260 from=translated src=- shape=b22515bd vocab=30d3d027
+-/
 lemma rank_eq_if_subUpFull_eq (h : n ≤ m) :
     (subUpFull U (Fin.castLE h)).rank = n → U.rank = n  := by
    intro h_sub_mat_rank
@@ -100,7 +102,9 @@ lemma rank_eq_if_subUpFull_eq (h : n ≤ m) :
    ·  calc n = (subUpFull U (Fin.castLE h)).rank := by rw[h_sub_mat_rank]
            _ ≤ U.rank := by exact Matrix.rank_submatrix_le U (Fin.castLE h) (Equiv.refl (Fin n))
 
-/-- cRank and Rank agree for a finite matirx-/
+/-- cRank and Rank agree for a finite matirx
+@isnad1 id=eq.0h4v.s5.9af303911278 from=translated src=- shape=afda0c8b vocab=87335492
+-/
 lemma cRank_rank_conversion :
     ↑(U.rank) = U.cRank := by
   rw[
@@ -112,7 +116,9 @@ lemma cRank_rank_conversion :
          _ = ↑n := by rw[Fintype.card_fin]
   exact Cardinal.natCast_lt_aleph0
 
-/-- An m×n matrix has full rank if the submatrix consisting of columns 1 through m has rank m.-/
+/-- An m×n matrix has full rank if the submatrix consisting of columns 1 through m has rank m.
+@isnad1 id=eq.2h4v.s6.afeceb81cb81 from=translated src=- shape=8dfe624b vocab=c713e14f
+-/
 lemma full_row_rank_via_rank_subLeftFull (h : m ≤ n) :
     (subLeftFull U (Fin.castLE h)).rank = m → U.rank = m := by
    intro h_sub_mat_rank
@@ -130,7 +136,9 @@ lemma full_row_rank_via_rank_subLeftFull (h : m ≤ n) :
    simp [h_cRank]
 
 omit [Nontrivial F] in
-/-- A square matrix over an integral domain has full rank if its determinant is nonzero.-/
+/-- A square matrix over an integral domain has full rank if its determinant is nonzero.
+@isnad1 id=eq.1h3v.s6.32d7e8ae5a1f from=translated src=- shape=7cee8329 vocab=bb51f525
+-/
 lemma rank_eq_if_det_ne_zero {U : Matrix (Fin n) (Fin n) F} [IsDomain F] :
     Matrix.det U ≠ 0 → U.rank = n  := by
     intro h_det
@@ -148,7 +156,9 @@ section
 variable [Field F]
          {U : Matrix (Fin m) (Fin n) F}
 
-/-- A square matrix has full rank iff the determinant is nonzero.-/
+/-- A square matrix has full rank iff the determinant is nonzero.
+@isnad1 id=iff.0h3v.s5.c3536292e628 from=translated src=- shape=ef1cb034 vocab=299cfb8c
+-/
 lemma rank_eq_iff_det_ne_zero {U : Matrix (Fin n) (Fin n) F} :
     U.rank = n ↔ U.det ≠ 0 := by
   rw[
@@ -161,20 +171,28 @@ lemma rank_eq_iff_det_ne_zero {U : Matrix (Fin n) (Fin n) F} :
     ]
   simp[eq_comm]
 
-/-- The rank of a matrix equals the column rank.-/
+/-- The rank of a matrix equals the column rank.
+@isnad1 id=eq.0h4v.s5.51bf82a742f1 from=translated src=- shape=4c520e55 vocab=907c7aa2
+-/
 lemma rank_eq_colRank : U.rank = colRank U :=
   Matrix.rank_eq_finrank_span_cols U
 
-/-- The row rank of a matrix equals the column rank.-/
+/-- The row rank of a matrix equals the column rank.
+@isnad1 id=eq.0h4v.s5.8afbe3dd74d0 from=translated src=- shape=e1c6025a vocab=0f14ebc2
+-/
 lemma rowRank_eq_colRank : rowRank U = colRank U := by
   rw [← rank_eq_colRank, ← rank_transpose, rank_eq_colRank]
   rfl
 
-/-- The rank of a matrix equals the row rank.-/
+/-- The rank of a matrix equals the row rank.
+@isnad1 id=eq.0h4v.s5.2c797cf36e80 from=translated src=- shape=4c520e55 vocab=90ad2a70
+-/
 lemma rank_eq_rowRank : U.rank = rowRank U := by
   rw [rank_eq_colRank, rowRank_eq_colRank]
 
-/-- The rank of a matrix equals the minimum of its row rank and column rank.-/
+/-- The rank of a matrix equals the minimum of its row rank and column rank.
+@isnad1 id=eq.0h4v.s5.b6b603c8f1da from=translated src=- shape=f71416cb vocab=ddf980db
+-/
 lemma rank_eq_min_row_col_rank : U.rank = min (rowRank U) (colRank U) := by
   rw [rowRank_eq_colRank, rank_eq_colRank]
   simp_all only [min_self]
@@ -185,7 +203,9 @@ end Matrix
 
 namespace LinearCombination
 
-/-- A nonzero linear combination of linearly independent vectors is nonzero.-/
+/-- A nonzero linear combination of linearly independent vectors is nonzero.
+@isnad1 id=ne.2h5v.s7.12cd0991be78 from=translated src=- shape=047c9574 vocab=b2861d12
+-/
 theorem linearCombination_ne_zero
     {F : Type*} [Field F] {ℓ : Type*} [Fintype ℓ]
     {M : Type*} [AddCommMonoid M] [Module F M]
@@ -219,6 +239,9 @@ def affineLineAtOrigin [Ring F] [AddCommGroup A] [Module F A] (origin direction 
     AffineSubspace.mk' (p := origin) (direction := Submodule.span F {direction})
 
 omit [Fintype ι] in
+/--
+@isnad1 id=iff.0h6v.s8.a522750858c3 from=translated src=- shape=69648c3e vocab=01870e99
+-/
 lemma mem_affineLineAtOrigin_iff [Ring F] [AddCommGroup A] [Module F A] (origin direction : ι → A)
     (x : ι → A) : x ∈ affineLineAtOrigin (F := F) (origin := origin) (direction := direction)
     ↔ ∃ α : F, x = origin + α • direction := by
@@ -236,6 +259,9 @@ def affineSubspaceAtOrigin [AddCommGroup A] [DecidableEq A] [Module F A]
   AffineSubspace.mk' (p := origin) (direction := Submodule.span F (Finset.univ.image directions))
 
 omit [DecidableEq F] [Ring F] [Fintype F] in
+/--
+@isnad1 id=iff.0h7v.s8.b7d8dad7e07f from=translated src=- shape=509119bd vocab=199b4cef
+-/
 lemma mem_affineSubspaceFrom_iff [Ring F] [AddCommGroup A] [DecidableEq A] [Module F A]
     (origin : ι → A) (directions : Fin k → ι → A) (x : ι → A) :
     x ∈ affineSubspaceAtOrigin (F := F) (A := A) origin directions ↔
@@ -262,7 +288,9 @@ abbrev AffSpanSet [NeZero k] (U : Fin k → ι → F) : Set (ι → F) :=
   (affineSpan F (Finset.univ.image U : Set (ι → F))).carrier
 
 omit [Fintype F] in
-/-- The affine span of a finite set of vectors is finite over a finite field.-/
+/-- The affine span of a finite set of vectors is finite over a finite field.
+@isnad1 id=finite.0h4v.s5.d9a4c24f61f9 from=translated src=- shape=f1514ee6 vocab=12e35b7f
+-/
 lemma AffSpanSet.instFinite [Finite F] [NeZero k] (u : Fin k → ι → F) :
     (AffSpanSet u).Finite := by
   let : Fintype F := Fintype.ofFinite F
@@ -282,7 +310,9 @@ noncomputable def AffSpanFinsetCollection {t : ℕ} [NeZero k] [NeZero t]
 noncomputable instance instFintypeAffineSubspace {V : Type*} [AddCommGroup V]
     [Module F V] [Fintype V] (S : AffineSubspace F V) : Fintype S := Fintype.ofFinite S
 
-/-- Affine subspaces constructed with mk' are always nonempty-/
+/-- Affine subspaces constructed with mk' are always nonempty
+@isnad1 id=nonempty.0h4v.s6.d1b58b27ce05 from=translated src=- shape=aab0ffb2 vocab=4aaf9086
+-/
 instance instNonemptyAffineSubspace_mk' {V : Type*} [AddCommGroup V] [Module F V]
     (p : V) (direction : Submodule F V) : Nonempty (AffineSubspace.mk' p direction) :=
   nonempty_subtype.mpr ⟨p, AffineSubspace.self_mem_mk' p direction⟩
@@ -299,7 +329,9 @@ abbrev linComb [AddCommMonoid A] [Module F A] {s : ℕ}
   fun k => ∑ i, l i • U i.succ k
 
 omit [Fintype ι] [DecidableEq F] [Fintype F] in
-/-- The affine combination along the line `x ↦ v + t • lam` in seed space.-/
+/-- The affine combination along the line `x ↦ v + t • lam` in seed space.
+@isnad1 id=eq.0h8v.s7.5089e73c8328 from=translated src=- shape=81947dba vocab=81c72b4f
+-/
 lemma affineComb_line [AddCommMonoid A] [Module F A] {s : ℕ}
     (U : Fin (s + 1) → (ι → A)) (v lam : Fin s → F) (t : F) :
     affineComb U (v + t • lam) = affineComb U v + t • (linComb U lam) := by
@@ -356,7 +388,9 @@ end Curve
 
 namespace sInf
 
-/-- If every element of a set is bounded above by `i`, then the infimum is also bounded by `i`.-/
+/-- If every element of a set is bounded above by `i`, then the infimum is also bounded by `i`.
+@isnad1 id=le.1h2v.s4.3e683f2edf50 from=translated src=- shape=4ae9eb56 vocab=e239c4ba
+-/
 lemma sInf_UB_of_le_UB {S : Set ℕ} {i : ℕ} : (∀ s ∈ S, s ≤ i) → sInf S ≤ i := fun h ↦ by
   by_cases S_empty : S.Nonempty
   · classical
@@ -366,14 +400,18 @@ lemma sInf_UB_of_le_UB {S : Set ℕ} {i : ℕ} : (∀ s ∈ S, s ≤ i) → sInf
     exact (Nat.find_le_iff hne i).2 ⟨s, h s hs, hs⟩
   · aesop (add simp (show S = ∅ by aesop (add simp Set.Nonempty)))
 
-/-- If `i` is a lower bound for all elements in a nonempty set, then `i` is at most the infimum.-/
+/-- If `i` is a lower bound for all elements in a nonempty set, then `i` is at most the infimum.
+@isnad1 id=le.2h2v.s5.46184656486c from=translated src=- shape=7b08e984 vocab=f3192f31
+-/
 lemma le_sInf_of_LB {S : Set ℕ} (hne : S.Nonempty) {i : ℕ}
     (hLB : ∀ s ∈ S, i ≤ s) : i ≤ sInf S := by
   exact hLB (sInf S) (Nat.sInf_mem hne)
 
 end sInf
 
-/-- A nonempty fintype has positive cardinality.-/
+/-- A nonempty fintype has positive cardinality.
+@isnad1 id=lt.0h1v.s4.28fd22593a72 from=translated src=- shape=31b077a1 vocab=8272a05e
+-/
 @[simp]
 lemma Fintype.zero_lt_card {ι : Type*} [Fintype ι] [Nonempty ι] : 0 < Fintype.card ι := by
   have := Fintype.card_ne_zero (α := ι); omega
@@ -384,7 +422,9 @@ section
 
 variable {α : Type*} [DecidableEq α] {s : Finset α}
 
-/-- The diagonal of `s × s` has the same cardinality as `s`.-/
+/-- The diagonal of `s × s` has the same cardinality as `s`.
+@isnad1 id=eq.0h2v.s5.d03f009f0ab1 from=translated src=- shape=b817dbfe vocab=ebd7dc07
+-/
 @[simp]
 theorem card_filter_prod_self_eq :
     #({x ∈ s ×ˢ s | x.1 = x.2}) = #s := by
@@ -411,7 +451,9 @@ theorem card_filter_prod_self_eq :
 
 variable [Fintype α]
 
-/-- The number of elements different from a fixed element `e` is one less than the total.-/
+/-- The number of elements different from a fixed element `e` is one less than the total.
+@isnad1 id=eq.0h2v.s5.7bd97c4f2b3d from=translated src=- shape=037a7f85 vocab=7a6cbe12
+-/
 @[simp]
 theorem card_univ_filter_eq {e : α} :
     #{x : α | x ≠ e} = #(Finset.univ (α := α)) - 1 := by
@@ -421,7 +463,9 @@ theorem card_univ_filter_eq {e : α} :
   ]
   simp
 
-/-- The diagonal of `s × s` (intersection form) has the same cardinality as `s`.-/
+/-- The diagonal of `s × s` (intersection form) has the same cardinality as `s`.
+@isnad1 id=eq.0h2v.s6.5e685767cb82 from=translated src=- shape=ec8990cd vocab=624532ec
+-/
 @[simp]
 theorem card_prod_self_eq :
     #(((s ×ˢ s : Finset _) ∩ ({x : α × α | x.1 = x.2} : Finset _)) : Finset _) = #s := by

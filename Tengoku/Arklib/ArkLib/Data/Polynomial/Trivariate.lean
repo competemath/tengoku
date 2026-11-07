@@ -74,7 +74,9 @@ noncomputable abbrev eval_on_Z (p : R[Z][X][Y]) (z : R) : R[X][Y] :=
 noncomputable def degreeInZ (p : R[Z][X][Y]) : ℕ :=
   p.support.sup fun j => (p.coeff j).support.sup fun i => ((p.coeff j).coeff i).natDegree
 
-/-- `evalAtZ` is the coefficient-wise evaluation map on the innermost variable.-/
+/-- `evalAtZ` is the coefficient-wise evaluation map on the innermost variable.
+@isnad1 id=eq.0h3v.s6.f1666b91e605 from=translated src=- shape=7433a5b7 vocab=34359a76
+-/
 theorem evalAtZ_eq_map_map_evalRingHom (z : R) (p : R[Z][X][Y]) :
     evalAtZ z p = p.map (Polynomial.mapRingHom (Polynomial.evalRingHom z)) :=
   rfl

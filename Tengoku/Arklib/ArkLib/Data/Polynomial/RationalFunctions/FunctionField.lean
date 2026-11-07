@@ -51,7 +51,9 @@ noncomputable def monicizeRatFunc (H : F[X][Y]) : Polynomial (RatFunc F) :=
   W ^ (d - 1) * H'
 
 /-- The defining formula for `monicizeRatFunc`, stated as a rewrite lemma so clients need not
-unfold its implementation-local `let` bindings.-/
+unfold its implementation-local `let` bindings.
+@isnad1 id=eq.0h2v.s10.e29dd4ef8e7b from=translated src=- shape=c38b6c02 vocab=10a3158c
+-/
 lemma monicizeRatFunc_eq (H : F[X][Y]) :
     monicizeRatFunc H =
       Polynomial.C (univPolyHom (F := F) H.leadingCoeff) ^ (H.natDegree - 1) *
@@ -63,7 +65,9 @@ section FieldIrreducibility
 
 variable {F : Type} [Field F]
 
-/-- The embedding `F[Z] → F(Z)` of a domain into its fraction field is injective.-/
+/-- The embedding `F[Z] → F(Z)` of a domain into its fraction field is injective.
+@isnad1 id=injectiv.0h1v.s7.089e1b8c67d5 from=translated src=- shape=1251ce30 vocab=996c6c9a
+-/
 lemma univPolyHom_injective :
     Function.Injective (univPolyHom (F := F)) := by
   simpa [ToRatFunc.univPolyHom] using (RatFunc.algebraMap_injective (K := F))
@@ -88,7 +92,9 @@ private lemma irreducible_map_univPolyHom_of_irreducible
       (K := RatFunc F) hprim).mp hH
 
 /-- Corrected irreducibility statement for `monicizeRatFunc`: the paper assumes positive `Y`-degree.
-Without this hypothesis, a constant irreducible in `F[Z][Y]` can become a unit in `F(Z)[T]`.-/
+Without this hypothesis, a constant irreducible in `F[Z][Y]` can become a unit in `F(Z)[T]`.
+@isnad1 id=irreduci.2h2v.s7.9bfcf62e30d6 from=translated src=- shape=b99a370c vocab=7efd7f7c
+-/
 lemma irreducible_monicizeRatFunc_of_natDegree_pos
     {H : Polynomial (Polynomial F)} (hdeg : 0 < H.natDegree)
     (hH : Irreducible H) :
@@ -143,7 +149,9 @@ lemma irreducible_monicizeRatFunc_of_natDegree_pos
 
 end FieldIrreducibility
 
-/-- Monicization preserves irreducibility, for `H` of positive `Y`-degree.-/
+/-- Monicization preserves irreducibility, for `H` of positive `Y`-degree.
+@isnad1 id=irreduci.2h2v.s7.9bfcf62e30d6 from=translated src=- shape=b99a370c vocab=7efd7f7c
+-/
 lemma irreducible_monicizeRatFunc {F : Type} [Field F] {H : Polynomial (Polynomial F)}
     (hHdeg : 0 < H.natDegree) :
     Irreducible H → Irreducible (monicizeRatFunc H) :=
@@ -154,14 +162,18 @@ root is `Y = T/W`; see `H_eval2_T_div_W_eq_zero`.-/
 abbrev 𝕃 (H : F[X][Y]) : Type :=
   (Polynomial (RatFunc F)) ⧸ (Ideal.span {monicizeRatFunc H})
 
-/-- The function field `𝕃` is a field when `H` is irreducible and has positive `Y`-degree.-/
+/-- The function field `𝕃` is a field when `H` is irreducible and has positive `Y`-degree.
+@isnad1 id=isfield.2h2v.s8.32e61f28a18c from=translated src=- shape=4b324204 vocab=6e0062e2
+-/
 lemma isField_of_irreducible_of_natDegree_pos {F : Type} [Field F] {H : F[X][Y]}
     (hHdeg : 0 < H.natDegree) (hH : Irreducible H) : IsField (𝕃 H) := by
   unfold 𝕃
   erw [← Ideal.Quotient.maximal_ideal_iff_isField_quotient, principal_is_maximal_iff_irred]
   exact irreducible_monicizeRatFunc_of_natDegree_pos hHdeg hH
 
-/-- `𝕃 H` is a field when `H` is irreducible of positive `Y`-degree.-/
+/-- `𝕃 H` is a field when `H` is irreducible of positive `Y`-degree.
+@isnad1 id=isfield.2h2v.s8.32e61f28a18c from=translated src=- shape=4b324204 vocab=6e0062e2
+-/
 lemma isField_of_irreducible {F : Type} [Field F] {H : F[X][Y]} (hHdeg : 0 < H.natDegree) :
     Irreducible H → IsField (𝕃 H) := by
   intro h
@@ -188,7 +200,9 @@ noncomputable def monicize (H : F[X][Y]) : F[X][Y] :=
         Polynomial.C (hᵢ i * W ^ (d - 1 - i)) * Polynomial.X ^ i
 
 omit [IsDomain F] in
-/-- If `H` has positive degree in `Y`, then `monicize H` is monic.-/
+/-- If `H` has positive degree in `Y`, then `monicize H` is monic.
+@isnad1 id=monic.1h2v.s6.1bbd990b3a7e from=translated src=- shape=20752a57 vocab=4471a6d0
+-/
 lemma monicize_monic (H : F[X][Y]) (hH : 0 < H.natDegree) :
     (monicize H).Monic := by
   classical
@@ -262,7 +276,9 @@ private lemma monicize_leading_term {K : Type} [Field K] (a : K) (d : ℕ)
     _ = Polynomial.X ^ d := by simp
 
 /-- The polynomial `monicize` agrees with the monicization `monicizeRatFunc` after embedding into
-`Polynomial (RatFunc F)`.-/
+`Polynomial (RatFunc F)`.
+@isnad1 id=eq.0h2v.s6.6f784fde75b5 from=translated src=- shape=38c8e905 vocab=ff7cb923
+-/
 lemma map_monicize_eq_monicizeRatFunc (H : F[X][Y]) : (monicize H).map univPolyHom = monicizeRatFunc
     H := by
   classical
@@ -354,7 +370,9 @@ section IntegralIrreducibility
 variable {F : Type} [Field F]
 
 /-- The integral monicized polynomial `monicize` is irreducible whenever `H` is irreducible and has
-positive degree in `Y`.-/
+positive degree in `Y`.
+@isnad1 id=irreduci.2h2v.s7.f37de242fbda from=translated src=- shape=92bf9eab vocab=b6a9a2e8
+-/
 lemma irreducible_monicize {H : F[X][Y]} (hHdeg : 0 < H.natDegree)
     (hH : Irreducible H) :
     Irreducible (monicize H) := by
@@ -395,7 +413,9 @@ variable {F : Type} [Field F]
 
 /-- Divisibility by the monicization descends from `F(Z)[T]` to `F[Z][T]`: if `monicizeRatFunc H`
 divides the image of `p`, then `monicize H` already divides `p`.  This is what makes
-`embeddingOf𝒪Into𝕃` injective.-/
+`embeddingOf𝒪Into𝕃` injective.
+@isnad1 id=dvd.2h3v.s9.9636a9b142e8 from=translated src=- shape=19743dce vocab=bd93176e
+-/
 lemma monicize_dvd_of_map_dvd_monicizeRatFunc {H p : F[X][Y]} (hHdeg : 0 < H.natDegree)
     (hp : monicizeRatFunc H ∣ p.map (univPolyHom (F := F))) :
     monicize H ∣ p := by
@@ -436,7 +456,9 @@ private lemma mem_span_monicize_of_bivPolyHom_mem_span_monicizeRatFunc {H p : F[
     simpa [show bivPolyHom p = p.map (univPolyHom (F := F)) from rfl] using hp)
 
 /-- The regular quotient embeds injectively into the function-field quotient when `H` has positive
-degree in `Y`.-/
+degree in `Y`.
+@isnad1 id=injectiv.1h2v.s9.c6d38685019a from=translated src=- shape=ad94a110 vocab=5b13bb74
+-/
 lemma embeddingOf𝒪Into𝕃_injective {H : F[X][Y]} (hHdeg : 0 < H.natDegree) :
     Function.Injective (embeddingOf𝒪Into𝕃 H) := by
   unfold embeddingOf𝒪Into𝕃
@@ -451,17 +473,23 @@ that in fact lie in `𝒪 H`.-/
 def regularElementsSet (H : F[X][Y]) : Set (𝕃 H) :=
   {a : 𝕃 H | ∃ b : 𝒪 H, a = embeddingOf𝒪Into𝕃 _ b}
 
-/-- Zero is regular.-/
+/-- Zero is regular.
+@isnad1 id=mem.0h2v.s8.1d97e95f25ef from=translated src=- shape=8ed938cf vocab=9c4cd8ab
+-/
 @[simp]
 lemma regularElementsSet_zero (H : F[X][Y]) : (0 : 𝕃 H) ∈ regularElementsSet H :=
   ⟨0, by simp⟩
 
-/-- One is regular.-/
+/-- One is regular.
+@isnad1 id=mem.0h2v.s7.700296268177 from=translated src=- shape=8ed938cf vocab=9c4cd8ab
+-/
 @[simp]
 lemma regularElementsSet_one (H : F[X][Y]) : (1 : 𝕃 H) ∈ regularElementsSet H :=
   ⟨1, by simp⟩
 
-/-- The regular elements are closed under addition.-/
+/-- The regular elements are closed under addition.
+@isnad1 id=mem.2h4v.s8.d335ec733c22 from=translated src=- shape=197f4320 vocab=09b1f791
+-/
 lemma regularElementsSet_add {H : F[X][Y]} {a b : 𝕃 H}
     (ha : a ∈ regularElementsSet H) (hb : b ∈ regularElementsSet H) :
     a + b ∈ regularElementsSet H := by
@@ -469,19 +497,25 @@ lemma regularElementsSet_add {H : F[X][Y]} {a b : 𝕃 H}
   rcases hb with ⟨b', rfl⟩
   exact ⟨a' + b', by simp⟩
 
-/-- The regular elements are closed under negation.-/
+/-- The regular elements are closed under negation.
+@isnad1 id=mem.1h3v.s8.c6e3e742deed from=translated src=- shape=633750a9 vocab=11b7ea8c
+-/
 lemma regularElementsSet_neg {H : F[X][Y]} {a : 𝕃 H}
     (ha : a ∈ regularElementsSet H) : -a ∈ regularElementsSet H := by
   rcases ha with ⟨a', rfl⟩
   exact ⟨-a', by simp⟩
 
-/-- The regular elements are closed under subtraction.-/
+/-- The regular elements are closed under subtraction.
+@isnad1 id=mem.2h4v.s8.a80e888e77b9 from=translated src=- shape=197f4320 vocab=e65ddce5
+-/
 lemma regularElementsSet_sub {H : F[X][Y]} {a b : 𝕃 H}
     (ha : a ∈ regularElementsSet H) (hb : b ∈ regularElementsSet H) :
     a - b ∈ regularElementsSet H := by
   simpa [sub_eq_add_neg] using regularElementsSet_add ha (regularElementsSet_neg hb)
 
-/-- The regular elements are closed under multiplication.-/
+/-- The regular elements are closed under multiplication.
+@isnad1 id=mem.2h4v.s8.2adb2aa835d9 from=translated src=- shape=197f4320 vocab=d7f881f6
+-/
 lemma regularElementsSet_mul {H : F[X][Y]} {a b : 𝕃 H}
     (ha : a ∈ regularElementsSet H) (hb : b ∈ regularElementsSet H) :
     a * b ∈ regularElementsSet H := by
@@ -489,7 +523,9 @@ lemma regularElementsSet_mul {H : F[X][Y]} {a b : 𝕃 H}
   rcases hb with ⟨b', rfl⟩
   exact ⟨a' * b', by simp⟩
 
-/-- The regular elements are closed under natural powers.-/
+/-- The regular elements are closed under natural powers.
+@isnad1 id=mem.1h4v.s8.e1a0b8dfe049 from=translated src=- shape=cdb84c10 vocab=1d339ed0
+-/
 lemma regularElementsSet_pow {H : F[X][Y]} {a : 𝕃 H}
     (ha : a ∈ regularElementsSet H) (n : ℕ) : a ^ n ∈ regularElementsSet H := by
   induction n with
@@ -497,7 +533,9 @@ lemma regularElementsSet_pow {H : F[X][Y]} {a : 𝕃 H}
   | succ n ih =>
       simpa [pow_succ] using regularElementsSet_mul ih ha
 
-/-- The regular elements are closed under finite sums.-/
+/-- The regular elements are closed under finite sums.
+@isnad1 id=mem.1h5v.s8.211bcc8cfce1 from=translated src=- shape=05a7bf98 vocab=b7f3797c
+-/
 lemma regularElementsSet_sum {ι : Type} {H : F[X][Y]} (s : Finset ι) {f : ι → 𝕃 H}
     (hf : ∀ i ∈ s, f i ∈ regularElementsSet H) :
     (∑ i ∈ s, f i) ∈ regularElementsSet H := by
@@ -512,7 +550,9 @@ lemma regularElementsSet_sum {ι : Type} {H : F[X][Y]} (s : Finset ι) {f : ι �
       (hf a (by simp [ha]))
       (ih fun i hi => hf i (by simp [hi]))
 
-/-- Finite products of regular elements are regular.-/
+/-- Finite products of regular elements are regular.
+@isnad1 id=mem.1h5v.s8.05019e2437d6 from=translated src=- shape=05a7bf98 vocab=f58ea997
+-/
 lemma regularElementsSet_prod {ι : Type} {H : F[X][Y]} (s : Finset ι) {f : ι → 𝕃 H}
     (hf : ∀ i ∈ s, f i ∈ regularElementsSet H) :
     (∏ i ∈ s, f i) ∈ regularElementsSet H := by
@@ -557,14 +597,18 @@ noncomputable def canonicalRepOf𝒪 {H : F[X][Y]} (hH : 0 < H.natDegree) (β : 
   let _hHt := monicize_monic H hH
   Polynomial.modByMonic β.out (monicize H)
 
-/-- The canonical representative has degree strictly smaller than the defining relation.-/
+/-- The canonical representative has degree strictly smaller than the defining relation.
+@isnad1 id=lt.1h3v.s6.04e2079f493b from=translated src=- shape=7e7fb6bc vocab=10a712bf
+-/
 lemma canonicalRepOf𝒪_degree_lt {H : F[X][Y]} (hH : 0 < H.natDegree) (β : 𝒪 H) :
     (canonicalRepOf𝒪 hH β).degree < (monicize H).degree := by
   rw [canonicalRepOf𝒪]
   exact Polynomial.degree_modByMonic_lt _ (monicize_monic H hH)
 
 omit [IsDomain F] in
-/-- The canonical representative maps back to the original quotient element of `𝒪`.-/
+/-- The canonical representative maps back to the original quotient element of `𝒪`.
+@isnad1 id=eq.1h3v.s11.833c4446f6e6 from=translated src=- shape=1d5a91f1 vocab=a11069fd
+-/
 @[simp]
 lemma mk_canonicalRepOf𝒪 {H : F[X][Y]} (hH : 0 < H.natDegree) (β : 𝒪 H) :
     Ideal.Quotient.mk (Ideal.span {monicize H}) (canonicalRepOf𝒪 hH β) = β := by
@@ -588,7 +632,9 @@ lemma mk_canonicalRepOf𝒪 {H : F[X][Y]} (hH : 0 < H.natDegree) (β : 𝒪 H) :
             simp [I, p]
 
 omit [IsDomain F] in
-/-- Canonical representatives of quotient constructors are computed by `modByMonic`.-/
+/-- Canonical representatives of quotient constructors are computed by `modByMonic`.
+@isnad1 id=eq.1h3v.s10.7e842c0f4579 from=translated src=- shape=9246ecec vocab=884c3833
+-/
 lemma canonicalRepOf𝒪_mk {H : F[X][Y]} (hH : 0 < H.natDegree) (p : F[X][Y]) :
     canonicalRepOf𝒪 hH (Ideal.Quotient.mk (Ideal.span {monicize H}) p : 𝒪 H) =
       p %ₘ monicize H := by
@@ -602,7 +648,9 @@ lemma canonicalRepOf𝒪_mk {H : F[X][Y]} (hH : 0 < H.natDegree) (p : F[X][Y]) :
     _ = Ideal.Quotient.mk (Ideal.span {monicize H}) p := rfl
 
 omit [IsDomain F] in
-/-- The canonical representative of zero is zero.-/
+/-- The canonical representative of zero is zero.
+@isnad1 id=eq.1h2v.s8.b95769e1942a from=translated src=- shape=38523371 vocab=96581545
+-/
 @[simp]
 lemma canonicalRepOf𝒪_zero {H : F[X][Y]} (hH : 0 < H.natDegree) :
     canonicalRepOf𝒪 hH (0 : 𝒪 H) = 0 := by

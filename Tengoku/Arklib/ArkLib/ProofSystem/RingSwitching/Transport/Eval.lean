@@ -53,7 +53,9 @@ noncomputable def evalAt {F : Type*} [CommSemiring F] (φF : R →+* F) (a : F) 
     Polynomial R →+* F :=
   Polynomial.eval₂RingHom φF a
 
-/-- `evalAt` computes as evaluation of the coefficient-mapped polynomial.-/
+/-- `evalAt` computes as evaluation of the coefficient-mapped polynomial.
+@isnad1 id=eq.0h5v.s6.852daffcd1de from=translated src=- shape=646155bd vocab=ebfdd8fd
+-/
 theorem evalAt_apply {F : Type*} [CommSemiring F] (φF : R →+* F) (a : F) (p : Polynomial R) :
     evalAt φF a p = (p.map φF).eval a := by
   simp [evalAt, Polynomial.eval₂_eq_eval_map]

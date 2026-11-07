@@ -33,7 +33,9 @@ variable {R K : Type*} [CommRing R] [IsDomain R] [Field K]
 
 omit [IsDomain R] in
 /-- For a factor irreducible over the fraction field, separability is exactly nonvanishing of
-the original derivative. No perfectness or characteristic restriction is needed.-/
+the original derivative. No perfectness or characteristic restriction is needed.
+@isnad1 id=iff.1h3v.s8.c6d34d0496cb from=translated src=- shape=ab95d506 vocab=171931cd
+-/
 theorem separable_map_fractionField_iff {p : R[X]}
     (hp : Irreducible (p.map (algebraMap R K))) :
     (p.map (algebraMap R K)).Separable ↔ p.derivative ≠ 0 := by
@@ -41,7 +43,9 @@ theorem separable_map_fractionField_iff {p : R[X]}
   exact not_congr (Polynomial.map_eq_zero_iff (IsFractionRing.injective R K))
 
 /-- A primitive irreducible factor is separable over the fraction field precisely when its
-derivative is nonzero. Primitivity explicitly excludes nonunit constant content factors.-/
+derivative is nonzero. Primitivity explicitly excludes nonunit constant content factors.
+@isnad1 id=iff.2h3v.s8.939381a4f304 from=translated src=- shape=0e4f3491 vocab=b17ff287
+-/
 theorem IsPrimitive.separable_map_fractionField_iff [IsGCDMonoid R] {p : R[X]}
     (hprim : p.IsPrimitive) (hp : Irreducible p) :
     (p.map (algebraMap R K)).Separable ↔ p.derivative ≠ 0 := by

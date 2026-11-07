@@ -108,7 +108,9 @@ If `q > h^{h/2}`, then for any `1 ≤ k̂ ≤ h/2`, the family of all `k̂`-subs
 
 The proof embeds the `2^k̂ · C(h/2, k̂)` signed subset-sums of a generator's powers into `Λ_𝒮`;
 injectivity follows from a resultant/root-of-unity argument bounding the coefficients of the
-associated `±1`-valued polynomials against the cyclotomic polynomial `Φ_h`.-/
+associated `±1`-valued polynomials against the cyclotomic polynomial `Φ_h`.
+@isnad1 id=le.5h4v.s9.1704a6bdce74 from=translated src=- shape=0160c361 vocab=b2e803ae
+-/
 theorem two_pow_mul_choose_le_card_sumSet {q : ℕ} [Fact q.Prime] {h khat : ℕ}
     (H : Subgroup (ZMod q)ˣ) (hHcard : Nat.card H = h)
     (hpow2 : ∃ m : ℕ, h = 2 ^ m) (hq : h ^ (h / 2) < q)
