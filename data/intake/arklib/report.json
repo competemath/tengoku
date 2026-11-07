@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "d833f03763de454443f8e556359aa0c35ed1f5737b8e75fb6cd2180ae41bc1f7",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "arklib",
+ "lint_mode": "proposed",
+ "modules": 65,
+ "part": 1,
+ "theorems": 389
+}

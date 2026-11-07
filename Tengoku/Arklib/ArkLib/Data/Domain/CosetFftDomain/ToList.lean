@@ -1,0 +1,72 @@
+/-
+Copyright (c) 2024-2026 ArkLib Contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Julian Sutherland, Ilia Vlasov, Aristotle (Harmonic)
+-/
+module
+
+public import Tengoku.Seed.GroupTheory.SpecificGroups.Cyclic
+public import Tengoku.Seed.Algebra.Group.Fin.Basic
+public import Tengoku.Seed.Algebra.Group.TypeTags.Basic
+public import Tengoku.Seed.Algebra.Group.Defs
+public import Tengoku.Seed.Tactic.Cases
+public import Tengoku.Seed.Tactic.Linarith
+public import Tengoku.Seed.Tactic.LinearCombination
+public import Tengoku.Seed.Tactic.Field
+
+public import Tengoku.Arklib.ArkLib.Data.Domain.CosetFftDomain.Mem
+public import Tengoku.Arklib.ArkLib.Data.Domain.FftDomain.Mem
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# ArkLib.Data.Domain.CosetFftDomain.ToList
+
+Definitions and results for this component of ArkLib.
+-/
+
+@[expose] public section
+
+namespace Domain
+
+variable {ι : Type} [Fintype ι] [AddCommGroup ι]
+variable {F : Type} [Field F] [DecidableEq F]
+
+namespace CosetFftDomainClass
+
+variable {D : Type} [FunLike D ι F] [CosetFftDomainClass D ι F]
+
+noncomputable def toList (ω : D) : List (toFinset ω) :=
+  Finset.toListWithProof <| toFinset ω
+
+/--
+@isnad1 id=eq.0h4v.s7.03ada555e652 from=translated src=- shape=4d8a47c8 vocab=dc686c53
+-/
+lemma toList_eq_finset_toList {ω : D} :
+    (toList ω).map (fun x ↦ x.1) = (toFinset ω).toList := by
+  exact Finset.toListWithProof_eq_toList
+
+end CosetFftDomainClass
+
+namespace CosetFftDomain
+
+/-- Convert a coset FFT domain into a list of all its members
+  with proofs the members belong to the FFT domain.
+
+  Computable for FFT domains indexed by `Fin m`, by enumerating via `List.finRange m`.-/
+def toList {m : ℕ} [NeZero m] (ω : CosetFftDomain (Fin m) F) : List (ω.toFinset) :=
+  (List.finRange m).map fun i ↦ ⟨ω i, by simp⟩
+
+end CosetFftDomain
+
+namespace FftDomain
+
+/-- Convert a FFT domain into a list of all its members
+  with proofs the members belong to the FFT domain.
+
+  Computable for FFT domains indexed by `Fin m`, by enumerating via `List.finRange m`.-/
+def toList {m : ℕ} [NeZero m] (ω : FftDomain (Fin m) F) : List (ω.toFinset) :=
+  (List.finRange m).map fun i ↦ ⟨ω i, by simp⟩
+end FftDomain
+
+end Domain
