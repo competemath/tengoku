@@ -81,7 +81,9 @@ private theorem encodeBytes_long (data : List Byte) (h : 55 < data.length) :
     rfl
 
 /-- **Canonicality, mutual form.** A successful decode identifies its input as the
-    encoding of what it produced, followed by the returned remainder.-/
+    encoding of what it produced, followed by the returned remainder.
+@isnad1 id=and.0h1v.s6.c912fd63071c from=translated src=- shape=22141f0f vocab=e71a72ff
+-/
 theorem encode_decode_mutual : ∀ n : Nat,
     (∀ (bs : List Byte) (item : RLPItem) (rest : List Byte),
         decodeAux n bs = some (item, rest) → encode item ++ rest = bs)
@@ -334,12 +336,16 @@ theorem encode_decode_mutual : ∀ n : Nat,
               _ = encode itm ++ rst := by rw [hB]
               _ = b :: bs' := hA
 
-/-- **Canonicality for `decodeAux`.** The fuel-parametric single-item form.-/
+/-- **Canonicality for `decodeAux`.** The fuel-parametric single-item form.
+@isnad1 id=eq.1h4v.s5.244ef050fa54 from=translated src=- shape=2979a1fd vocab=445fcd81
+-/
 theorem encode_decodeAux {n : Nat} {bs : List Byte} {item : RLPItem} {rest : List Byte}
     (h : decodeAux n bs = some (item, rest)) : encode item ++ rest = bs :=
   (encode_decode_mutual n).1 bs item rest h
 
-/-- **Canonicality for `decodeItems`.**-/
+/-- **Canonicality for `decodeItems`.**
+@isnad1 id=eq.1h4v.s5.af8b855b2198 from=translated src=- shape=c2da4f4e vocab=226e120d
+-/
 theorem encode_decodeItems {n : Nat} {bs : List Byte} {items : List RLPItem}
     {rest : List Byte} (h : decodeItems n bs = some (items, rest)) :
     encode.encodeItems items ++ rest = bs :=
@@ -352,14 +358,18 @@ theorem encode_decodeItems {n : Nat} {bs : List Byte} {items : List RLPItem}
     Note there is **no length side condition**, unlike `decode_encode`'s
     `(encode item).length < 256 ^ 8`. That bound exists because encoding must fit the
     decoder's 8-byte length field; here the input is *given* to decode successfully, so
-    the bound is already implied by the run rather than assumed.-/
+    the bound is already implied by the run rather than assumed.
+@isnad1 id=eq.1h2v.s5.565a42ce8f93 from=translated src=- shape=3ed60888 vocab=33e51e52
+-/
 theorem encode_decode {bs : List Byte} {item : RLPItem}
     (h : decode bs = some (item, [])) : encode item = bs := by
   rw [decode_eq_decodeAux_length] at h
   have := encode_decodeAux h
   simpa using this
 
-/-- The `decodeFully` form, which is the shape most callers hold.-/
+/-- The `decodeFully` form, which is the shape most callers hold.
+@isnad1 id=eq.1h2v.s4.1f6488bd7782 from=translated src=- shape=096069ad vocab=9ab2aa3d
+-/
 theorem encode_decodeFully {bs : List Byte} {item : RLPItem}
     (h : decodeFully bs = some item) : encode item = bs :=
   encode_decode ((decodeFully_eq_some_iff bs item).1 h)
@@ -367,7 +377,9 @@ theorem encode_decodeFully {bs : List Byte} {item : RLPItem}
 /-- ⭐ **`decode` is injective.** Two byte strings that decode to the same item are
     equal — the dual of `encode_injective`, and the property a differential transfer
     actually needs: it says the decoder cannot map two distinct inputs to one item, so
-    agreeing with the reference on decoded *items* pins agreement on *bytes*.-/
+    agreeing with the reference on decoded *items* pins agreement on *bytes*.
+@isnad1 id=eq.2h3v.s5.910ef345d83e from=translated src=- shape=bd478a8e vocab=59024e0c
+-/
 theorem decode_injective {bs₁ bs₂ : List Byte} {item : RLPItem}
     (h₁ : decode bs₁ = some (item, [])) (h₂ : decode bs₂ = some (item, [])) :
     bs₁ = bs₂ := by
@@ -375,7 +387,9 @@ theorem decode_injective {bs₁ bs₂ : List Byte} {item : RLPItem}
 
 /-- The round trip in the other order, completing the pair with `decode_encode`:
     `encode ∘ decode = id` on completely-decodable input, `decode ∘ encode = id` on
-    encodings within the length bound.-/
+    encodings within the length bound.
+@isnad1 id=eq.1h2v.s5.17a893c221f0 from=translated src=- shape=9d5386dd vocab=33e51e52
+-/
 theorem encode_decode_encode {bs : List Byte} {item : RLPItem}
     (h : decode bs = some (item, [])) : decode (encode item) = some (item, []) := by
   rw [encode_decode h]; exact h

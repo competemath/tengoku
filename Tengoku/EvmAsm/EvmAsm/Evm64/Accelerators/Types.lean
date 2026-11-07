@@ -24,18 +24,30 @@ namespace ByteArray
 def toList {n : Nat} (bytes : ByteArray n) : List Byte :=
   List.ofFn bytes.data
 
+/--
+@isnad1 id=eq.0h2v.s3.f94a07c75faa from=translated src=- shape=37d26c04 vocab=66cde9e4
+-/
 theorem toList_length {n : Nat} (bytes : ByteArray n) :
     bytes.toList.length = n := by
   simp [toList]
 
+/--
+@isnad1 id=eq.1h3v.s5.54b0529310b5 from=translated src=- shape=ed4c9647 vocab=eaff7a75
+-/
 theorem toList_get? {n : Nat} (bytes : ByteArray n) (i : Nat) (h_i : i < n) :
     bytes.toList[i]? = some (bytes.data ⟨i, h_i⟩) := by
   simp [toList, h_i]
 
+/--
+@isnad1 id=eq.0h1v.s4.e38233b4acbd from=translated src=- shape=d29fac32 vocab=b282ee41
+-/
 @[simp] theorem toList_zero (bytes : ByteArray 0) :
     bytes.toList = [] := by
   simp [toList]
 
+/--
+@isnad1 id=injectiv.0h1v.s3.de13efc37eb2 from=translated src=- shape=995c1cb5 vocab=bdc27742
+-/
 theorem toList_injective {n : Nat} :
     Function.Injective (@toList n) := by
   intro a b h_list
@@ -49,6 +61,9 @@ theorem toList_injective {n : Nat} :
       simpa [toList_get? { data := aData } i.val i.isLt,
         toList_get? { data := bData } i.val i.isLt] using h_get
 
+/--
+@isnad1 id=iff.0h3v.s4.614d396013e4 from=translated src=- shape=0d36396b vocab=3ff01ad3
+-/
 theorem toList_eq_iff {n : Nat} (a b : ByteArray n) :
     a.toList = b.toList ↔ a = b :=
   ⟨fun h_list => toList_injective h_list, fun h_eq => by rw [h_eq]⟩
@@ -177,14 +192,23 @@ abbrev ZkvmKzgFieldElement := ZkvmBytes32
 
 /-! ## Length sanity checks for common output payloads -/
 
+/--
+@isnad1 id=eq.0h1v.s4.c1985a5e4d59 from=translated src=- shape=b1d23056 vocab=37828160
+-/
 theorem zkvmSha256Hash_length (hash : ZkvmSha256Hash) :
     hash.toList.length = 32 :=
   ByteArray.toList_length hash
 
+/--
+@isnad1 id=eq.0h1v.s4.976d5dc95582 from=translated src=- shape=b1d23056 vocab=e21beaab
+-/
 theorem zkvmRipemd160Hash_length (hash : ZkvmRipemd160Hash) :
     hash.toList.length = 32 :=
   ByteArray.toList_length hash
 
+/--
+@isnad1 id=eq.0h1v.s4.c9a2da0892c4 from=translated src=- shape=b1d23056 vocab=4a4a21ce
+-/
 theorem zkvmBlake2fState_length (state : ZkvmBlake2fState) :
     state.toList.length = 64 :=
   ByteArray.toList_length state

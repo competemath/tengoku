@@ -40,7 +40,9 @@ def savedRaRetOff : Nat := 280
     modulo callable starts here.-/
 def wrapperEndOff : Nat := 284
 
-/-- Bundled byte offsets for the concrete SMOD wrapper layout.-/
+/-- Bundled byte offsets for the concrete SMOD wrapper layout.
+@isnad1 id=and.0h0v.s6.a95f6aa2be2d from=translated src=- shape=0b7a5372 vocab=0c158ba9
+-/
 theorem smod_wrapper_block_byte_offsets :
     saveRaOff = 0 ∧
     dividendSignOff = 4 ∧
@@ -56,7 +58,9 @@ theorem smod_wrapper_block_byte_offsets :
     divisorAbsOff modCallOff resultSignFixOff savedRaRetOff wrapperEndOff
   decide
 
-/-- Successive fall-through byte offsets for the concrete SMOD wrapper.-/
+/-- Successive fall-through byte offsets for the concrete SMOD wrapper.
+@isnad1 id=and.0h0v.s7.c059ee72d23f from=translated src=- shape=c356ef2e vocab=42ab6207
+-/
 theorem smod_wrapper_fallthrough_offsets :
     saveRaOff + 4 = dividendSignOff ∧
     dividendSignOff + 8 = preserveDividendSignOff ∧

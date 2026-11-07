@@ -15,6 +15,9 @@ namespace EvmAsm.EL.RLP
 
 /-! ## Long-form byte strings -/
 
+/--
+@isnad1 id=eq.3h3v.s6.f94907c6d18f from=translated src=- shape=9110992d vocab=50458016
+-/
 theorem decodeAux_long_bytes_readLength_none (fuel : Nat) (pfx : Byte)
     (rest : List Byte)
     (hLong : 0xB7 < pfx.toNat) (hBytes : pfx.toNat ≤ 0xBF)
@@ -24,6 +27,9 @@ theorem decodeAux_long_bytes_readLength_none (fuel : Nat) (pfx : Byte)
   have hNotShort : ¬ pfx.toNat ≤ 0xB7 := by omega
   simp [decodeAux, hNotSingle, hNotShort, hBytes, hRead]
 
+/--
+@isnad1 id=eq.4h5v.s6.6a76cf246028 from=translated src=- shape=84192323 vocab=83001a46
+-/
 theorem decodeAux_long_bytes_short_length_rejected (fuel : Nat) (pfx : Byte)
     (rest rest' : List Byte) (lenVal : Nat)
     (hLong : 0xB7 < pfx.toNat) (hBytes : pfx.toNat ≤ 0xBF)
@@ -34,6 +40,9 @@ theorem decodeAux_long_bytes_short_length_rejected (fuel : Nat) (pfx : Byte)
   have hNotShort : ¬ pfx.toNat ≤ 0xB7 := by omega
   simp [decodeAux, hNotSingle, hNotShort, hBytes, hRead, hShort]
 
+/--
+@isnad1 id=eq.5h5v.s7.4a0db4fab59c from=translated src=- shape=3def52af vocab=bc9972b2
+-/
 theorem decodeAux_long_bytes_payload_none (fuel : Nat) (pfx : Byte)
     (rest rest' : List Byte) (lenVal : Nat)
     (hLong : 0xB7 < pfx.toNat) (hBytes : pfx.toNat ≤ 0xBF)
@@ -45,6 +54,9 @@ theorem decodeAux_long_bytes_payload_none (fuel : Nat) (pfx : Byte)
   have hNotShort : ¬ pfx.toNat ≤ 0xB7 := by omega
   simp [decodeAux, hNotSingle, hNotShort, hBytes, hRead, hLen, hTake]
 
+/--
+@isnad1 id=eq.5h7v.s7.c4132cf9742e from=translated src=- shape=91c3478e vocab=faa0ad64
+-/
 theorem decodeAux_long_bytes_success (fuel : Nat) (pfx : Byte)
     (rest rest' rest'' data : List Byte) (lenVal : Nat)
     (hLong : 0xB7 < pfx.toNat) (hBytes : pfx.toNat ≤ 0xBF)
@@ -58,6 +70,9 @@ theorem decodeAux_long_bytes_success (fuel : Nat) (pfx : Byte)
 
 /-! ## Long-form lists -/
 
+/--
+@isnad1 id=eq.2h3v.s6.c7586c08cb8f from=translated src=- shape=0de22eff vocab=f78b50a9
+-/
 theorem decodeAux_long_list_readLength_none (fuel : Nat) (pfx : Byte)
     (rest : List Byte)
     (hLong : 0xF7 < pfx.toNat)
@@ -70,6 +85,9 @@ theorem decodeAux_long_list_readLength_none (fuel : Nat) (pfx : Byte)
   simp [decodeAux, hNotSingle, hNotShortBytes, hNotLongBytes, hNotShortList,
     hRead]
 
+/--
+@isnad1 id=eq.3h5v.s6.ec356de00bc1 from=translated src=- shape=5d915e4c vocab=83001a46
+-/
 theorem decodeAux_long_list_short_length_rejected (fuel : Nat) (pfx : Byte)
     (rest rest' : List Byte) (lenVal : Nat)
     (hLong : 0xF7 < pfx.toNat)
@@ -83,6 +101,9 @@ theorem decodeAux_long_list_short_length_rejected (fuel : Nat) (pfx : Byte)
   simp [decodeAux, hNotSingle, hNotShortBytes, hNotLongBytes, hNotShortList,
     hRead, hShort]
 
+/--
+@isnad1 id=eq.4h5v.s6.5493ed89f1b4 from=translated src=- shape=a3da6b29 vocab=bc9972b2
+-/
 theorem decodeAux_long_list_payload_none (fuel : Nat) (pfx : Byte)
     (rest rest' : List Byte) (lenVal : Nat)
     (hLong : 0xF7 < pfx.toNat)
@@ -97,6 +118,9 @@ theorem decodeAux_long_list_payload_none (fuel : Nat) (pfx : Byte)
   simp [decodeAux, hNotSingle, hNotShortBytes, hNotLongBytes, hNotShortList,
     hRead, hLen, hTake]
 
+/--
+@isnad1 id=eq.5h7v.s7.cb711735e563 from=translated src=- shape=fb28ecfd vocab=550ce68d
+-/
 theorem decodeAux_long_list_decode_none (fuel : Nat) (pfx : Byte)
     (rest rest' rest'' payload : List Byte) (lenVal : Nat)
     (hLong : 0xF7 < pfx.toNat)
@@ -112,6 +136,9 @@ theorem decodeAux_long_list_decode_none (fuel : Nat) (pfx : Byte)
   simp [decodeAux, hNotSingle, hNotShortBytes, hNotLongBytes, hNotShortList,
     hRead, hLen, hTake, hDecode]
 
+/--
+@isnad1 id=eq.6h9v.s7.9600072d75bc from=translated src=- shape=d8db5372 vocab=6da933e1
+-/
 theorem decodeAux_long_list_leftover_rejected (fuel : Nat) (pfx : Byte)
     (rest rest' rest'' payload leftover : List Byte) (items : List RLPItem)
     (lenVal : Nat)
@@ -132,6 +159,9 @@ theorem decodeAux_long_list_leftover_rejected (fuel : Nat) (pfx : Byte)
       simp [decodeAux, hNotSingle, hNotShortBytes, hNotLongBytes,
         hNotShortList, hRead, hLen, hTake, hDecode]
 
+/--
+@isnad1 id=eq.5h8v.s7.53bf43de3415 from=translated src=- shape=4f91abf7 vocab=4c0d41dd
+-/
 theorem decodeAux_long_list_success (fuel : Nat) (pfx : Byte)
     (rest rest' rest'' payload : List Byte) (items : List RLPItem) (lenVal : Nat)
     (hLong : 0xF7 < pfx.toNat)

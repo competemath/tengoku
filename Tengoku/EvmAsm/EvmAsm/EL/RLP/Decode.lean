@@ -128,13 +128,17 @@ end
 def decode (bs : List Byte) : Option (RLPItem × List Byte) :=
   decodeAux (2 * bs.length) bs
 
-/-- Expose the exact nDepth budget used by the top-level decode wrapper.-/
+/-- Expose the exact nDepth budget used by the top-level decode wrapper.
+@isnad1 id=eq.0h1v.s4.15f4af63e006 from=translated src=- shape=6e1aef42 vocab=bd9ad337
+-/
 theorem decode_eq_decodeAux_length (bs : List Byte) :
     decode bs = decodeAux (2 * bs.length) bs := by
   rfl
 
 /-- Top-level decode on a nonempty stream uses two nDepth units for the head byte
-    plus twice the tail length.-/
+    plus twice the tail length.
+@isnad1 id=eq.0h2v.s5.dfc07b4cbdb2 from=translated src=- shape=4f22a269 vocab=b2206c7b
+-/
 theorem decode_cons_eq_decodeAux_fuel (pfx : Byte) (rest : List Byte) :
     decode (pfx :: rest) = decodeAux (2 * rest.length + 2) (pfx :: rest) := by
   unfold decode

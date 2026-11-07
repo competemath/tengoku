@@ -73,7 +73,9 @@ namespace EvmAsm.EL.RLP
     the two branches that genuinely recurse. -/
 
 /-- For a prefix byte below `0xC0` (single byte, short string, or long string),
-    `decodeAux` gives the same answer at any two nonzero budgets.-/
+    `decodeAux` gives the same answer at any two nonzero budgets.
+@isnad1 id=eq.1h4v.s6.86829995dc89 from=translated src=- shape=8f5ef520 vocab=b0ae27f7
+-/
 theorem decodeAux_succ_eq_of_lt_c0 (n n' : Nat) (pfx : Byte) (rest : List Byte)
     (h : pfx.toNat < 0xC0) :
     decodeAux (n + 1) (pfx :: rest) = decodeAux (n' + 1) (pfx :: rest) := by
@@ -94,7 +96,9 @@ theorem decodeAux_succ_eq_of_lt_c0 (n n' : Nat) (pfx : Byte) (rest : List Byte)
 
 /-- **Fuel monotonicity, mutual form.** Extra budget never changes a successful
     `decodeAux`/`decodeItems`. One induction on `n` covers both, because both
-    functions step the budget down by exactly one.-/
+    functions step the budget down by exactly one.
+@isnad1 id=and.0h1v.s6.7db630dba238 from=translated src=- shape=71db00ab vocab=dd57d357
+-/
 theorem decodeAux_decodeItems_mono : ∀ n : Nat,
     (∀ (m : Nat) (bs : List Byte) (r : RLPItem × List Byte),
         n ≤ m → decodeAux n bs = some r → decodeAux m bs = some r)
@@ -218,12 +222,16 @@ theorem decodeAux_decodeItems_mono : ∀ n : Nat,
             simpa only [Option.bind_eq_bind, Option.bind_some] using hsome
 
 /-- **Fuel monotonicity for `decodeAux`.** A successful decode stays successful,
-    with the same result, at any larger budget.-/
+    with the same result, at any larger budget.
+@isnad1 id=eq.2h4v.s5.86c687e6ab9b from=translated src=- shape=5e42b028 vocab=9d9eb032
+-/
 theorem decodeAux_mono_fuel {n m : Nat} {bs : List Byte} {r : RLPItem × List Byte}
     (hle : n ≤ m) (h : decodeAux n bs = some r) : decodeAux m bs = some r :=
   (decodeAux_decodeItems_mono n).1 m bs r hle h
 
-/-- **Fuel monotonicity for `decodeItems`.**-/
+/-- **Fuel monotonicity for `decodeItems`.**
+@isnad1 id=eq.2h4v.s5.958ac3bbd251 from=translated src=- shape=83a13f92 vocab=a47bffef
+-/
 theorem decodeItems_mono_fuel {n m : Nat} {bs : List Byte}
     {r : List RLPItem × List Byte}
     (hle : n ≤ m) (h : decodeItems n bs = some r) : decodeItems m bs = some r :=
@@ -238,7 +246,9 @@ theorem decodeItems_mono_fuel {n m : Nat} {bs : List Byte}
     own budget. This is the general statement of which
     `decodeAux_bytes_all_fuel_of_decode` is the byte-string special case — and
     unlike that lemma it holds for **lists** too, at the cost of the honest
-    `n ≤ m + 1` side condition rather than an unrestricted `∀ m`.-/
+    `n ≤ m + 1` side condition rather than an unrestricted `∀ m`.
+@isnad1 id=eq.2h4v.s6.c2452386a39e from=translated src=- shape=8d2d6653 vocab=ecd45bf9
+-/
 theorem decodeAux_all_fuel_of_decode_ge {n : Nat} {bs : List Byte}
     {r : RLPItem × List Byte} (h : decodeAux n bs = some r) :
     ∀ m, n ≤ m + 1 → decodeAux (m + 1) bs = some r :=
@@ -247,7 +257,9 @@ theorem decodeAux_all_fuel_of_decode_ge {n : Nat} {bs : List Byte}
 /-- The top-level `decode` budget dominates any budget that already succeeded on
     the same input, so a decode witnessed at a small budget agrees with `decode`.
     This is what lets a bridge exhibit a link cheaply and still speak about the
-    wrapper the guest is compared against.-/
+    wrapper the guest is compared against.
+@isnad1 id=eq.2h3v.s5.4f4647b5cc04 from=translated src=- shape=6c0b6a6e vocab=afe94270
+-/
 theorem decode_of_decodeAux {n : Nat} {bs : List Byte} {r : RLPItem × List Byte}
     (hle : n ≤ 2 * bs.length) (h : decodeAux n bs = some r) : decode bs = some r := by
   rw [decode_eq_decodeAux_length]

@@ -23,6 +23,9 @@ def decodeListPayload (nDepth : Nat) (payload : List Byte) : Option (List RLPIte
   let (items, leftover) ← decodeItems nDepth payload
   if List.isEmpty leftover then some items else none
 
+/--
+@isnad1 id=eq.1h3v.s5.c67e63b7c88e from=translated src=- shape=ebfa72ca vocab=4e243309
+-/
 theorem decodeListPayload_eq_some_of_decodeItems_empty
     {nDepth : Nat} {payload : List Byte} {items : List RLPItem}
     (h_decode : decodeItems nDepth payload = some (items, [])) :
@@ -33,7 +36,9 @@ theorem decodeListPayload_eq_some_of_decodeItems_empty
 List-payload decode succeeds exactly when recursive item decoding consumes the
 whole payload.
 
-Distinctive token: ListDecodeBridge.decodeListPayload_eq_some_iff #120.-/
+Distinctive token: ListDecodeBridge.decodeListPayload_eq_some_iff #120.
+@isnad1 id=iff.0h3v.s5.7b4acf4c78a4 from=translated src=- shape=78b15fbd vocab=4e243309
+-/
 theorem decodeListPayload_eq_some_iff
     (nDepth : Nat) (payload : List Byte) (items : List RLPItem) :
     decodeListPayload nDepth payload = some items ↔
@@ -51,7 +56,9 @@ List-payload decode is non-failing exactly when recursive item decoding
 consumes the whole payload for some item list.
 
 Distinctive token:
-ListDecodeBridge.decodeListPayload_ne_none_iff_exists_decodeItems_empty #120.-/
+ListDecodeBridge.decodeListPayload_ne_none_iff_exists_decodeItems_empty #120.
+@isnad1 id=iff.0h2v.s5.0084b07b9596 from=translated src=- shape=890e4e95 vocab=1f374654
+-/
 theorem decodeListPayload_ne_none_iff_exists_decodeItems_empty
     (nDepth : Nat) (payload : List Byte) :
     decodeListPayload nDepth payload ≠ none ↔
@@ -70,12 +77,18 @@ theorem decodeListPayload_ne_none_iff_exists_decodeItems_empty
     rw [h_some] at h_none
     contradiction
 
+/--
+@isnad1 id=eq.1h2v.s5.f09985fa204a from=translated src=- shape=46acfbca vocab=0fb5c452
+-/
 theorem decodeListPayload_eq_none_of_decodeItems_none
     {nDepth : Nat} {payload : List Byte}
     (h_decode : decodeItems nDepth payload = none) :
     decodeListPayload nDepth payload = none := by
   simp [decodeListPayload, h_decode]
 
+/--
+@isnad1 id=eq.2h4v.s5.c48dc75f8ceb from=translated src=- shape=a908b3b4 vocab=1f374654
+-/
 theorem decodeListPayload_eq_none_of_leftover
     {nDepth : Nat} {payload : List Byte} {items : List RLPItem} {leftover : List Byte}
     (h_decode : decodeItems nDepth payload = some (items, leftover))
@@ -91,7 +104,9 @@ theorem decodeListPayload_eq_none_of_leftover
 List-payload decode failure is exactly either recursive decoder failure or
 successful payload-prefix decode with trailing bytes left over.
 
-Distinctive token: ListDecodeBridge.decodeListPayload_eq_none_iff #120.-/
+Distinctive token: ListDecodeBridge.decodeListPayload_eq_none_iff #120.
+@isnad1 id=iff.0h2v.s6.69b612bb96db from=translated src=- shape=a13ef498 vocab=1f374654
+-/
 theorem decodeListPayload_eq_none_iff (nDepth : Nat) (payload : List Byte) :
     decodeListPayload nDepth payload = none ↔
       decodeItems nDepth payload = none ∨
@@ -112,6 +127,9 @@ theorem decodeListPayload_eq_none_iff (nDepth : Nat) (payload : List Byte) :
               · intro _
                 rfl
 
+/--
+@isnad1 id=eq.1h3v.s6.7115bb265207 from=translated src=- shape=19db52c2 vocab=7be07be6
+-/
 theorem decodeAux_cons_shortList_eq_decodeListPayload
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .shortList) :
@@ -138,7 +156,9 @@ Classified short-list decode succeeds exactly when the payload slice is
 available and list-payload decoding consumes it exactly.
 
 Distinctive token:
-ListDecodeBridge.decodeAux_cons_shortList_eq_some_iff #120.-/
+ListDecodeBridge.decodeAux_cons_shortList_eq_some_iff #120.
+@isnad1 id=iff.1h5v.s6.da94ea3fe53d from=translated src=- shape=d7a6a11a vocab=2d5dd63d
+-/
 theorem decodeAux_cons_shortList_eq_some_iff
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .shortList)
@@ -174,6 +194,9 @@ theorem decodeAux_cons_shortList_eq_some_iff
               Option.some.inj (h_payload.symm.trans h_decode_payload)
             simp [h_payload, h_items, h_rest_eq]
 
+/--
+@isnad1 id=eq.1h3v.s7.1757efb5330f from=translated src=- shape=7a843a65 vocab=4311f65c
+-/
 theorem decodeAux_cons_longList_eq_decodeListPayload
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .longList) :
@@ -211,7 +234,9 @@ canonical, the payload slice is available, and list-payload decoding consumes
 that payload exactly.
 
 Distinctive token:
-ListDecodeBridge.decodeAux_cons_longList_eq_some_iff #120.-/
+ListDecodeBridge.decodeAux_cons_longList_eq_some_iff #120.
+@isnad1 id=iff.1h5v.s7.ed0dbed25073 from=translated src=- shape=b0f6bac1 vocab=cc69d0c4
+-/
 theorem decodeAux_cons_longList_eq_some_iff
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .longList)

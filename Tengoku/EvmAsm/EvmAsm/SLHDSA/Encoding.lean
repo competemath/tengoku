@@ -58,6 +58,9 @@ as zero.-/
 def base2b (x : List Byte) (b outLen : ℕ) : List ℕ :=
   base2bGo b outLen x 0 0
 
+/--
+@isnad1 id=eq.0h3v.s4.d2e65dc7bb2e from=translated src=- shape=ef27d40c vocab=6b2a99aa
+-/
 @[simp] theorem base2b_length (x : List Byte) (b outLen : ℕ) :
     (base2b x b outLen).length = outLen := by
   unfold base2b
@@ -69,7 +72,9 @@ def base2b (x : List Byte) (b outLen : ℕ) : List ℕ :=
   | zero => intro inp total bits; rfl
   | succ out ih => intro inp total bits; simp [base2bGo, ih]
 
-/-- Every digit produced by `base2b` is bounded by `2^b` (it is reduced mod `2^b`).-/
+/-- Every digit produced by `base2b` is bounded by `2^b` (it is reduced mod `2^b`).
+@isnad1 id=lt.1h4v.s5.d6f63becb6c2 from=translated src=- shape=d6ca9318 vocab=0ea04bb9
+-/
 theorem base2b_lt (x : List Byte) (b outLen : ℕ) :
     ∀ d ∈ base2b x b outLen, d < 2 ^ b := by
   unfold base2b

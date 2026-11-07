@@ -65,7 +65,9 @@ def decodeWithdrawal (bs : List Byte) : Option Withdrawal :=
     three scalar elements are canonical minimal big-endian `uint64`s (no leading zero, `≤ 8`
     bytes) and whose address element is exactly 20 bytes; in that case the fields are the
     big-endian scalars / raw address of the elements. The defining unfolding, stated for the
-    verified drop-in's coincidence proof.-/
+    verified drop-in's coincidence proof.
+@isnad1 id=iff.0h2v.s7.74ed135d12ec from=translated src=- shape=139be5ac vocab=278a43bc
+-/
 theorem decodeWithdrawal_eq_some_iff (bs : List Byte) (w : Withdrawal) :
     decodeWithdrawal bs = some w ↔
       ∃ d0 d1 d2 d3 : List Byte,

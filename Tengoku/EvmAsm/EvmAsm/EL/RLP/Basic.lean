@@ -73,7 +73,9 @@ def encodeBytes (data : List Byte) : List Byte :=
       let lenBytes := Nat.toBytesBE len
       [BitVec.ofNat 8 (0xB7 + lenBytes.length)] ++ lenBytes ++ data
 
-/-- Generic short byte-string encoding, excluding the singleton special case.-/
+/-- Generic short byte-string encoding, excluding the singleton special case.
+@isnad1 id=eq.2h1v.s6.45db6b69fcb9 from=translated src=- shape=d4bae055 vocab=49a03b97
+-/
 theorem encodeBytes_short_of_length_ne_one (data : List Byte)
     (hLen : data.length ≤ 55) (hNeOne : data.length ≠ 1) :
     encodeBytes data = [BitVec.ofNat 8 (0x80 + data.length)] ++ data := by

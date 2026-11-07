@@ -123,55 +123,99 @@ slices (and tests) can `rfl`/`decide` against the named layout without
 re-deriving each offset.  Bumping the layout in a future slice forces
 exactly one consistent rewrite in this file. -/
 
-/-- `addressOff` is 32-byte aligned.-/
+/-- `addressOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.a7d1616dbcf2 from=translated src=- shape=4d24081d vocab=29f257bd
+-/
 theorem addressOff_align : addressOff % 32 = 0 := by decide
-/-- `selfBalanceOff` is 32-byte aligned.-/
+/-- `selfBalanceOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.a5db829d977c from=translated src=- shape=4d24081d vocab=dd3364c2
+-/
 theorem selfBalanceOff_align : selfBalanceOff % 32 = 0 := by decide
-/-- `callerOff` is 32-byte aligned.-/
+/-- `callerOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.010d21fb1f2f from=translated src=- shape=4d24081d vocab=6470d406
+-/
 theorem callerOff_align : callerOff % 32 = 0 := by decide
-/-- `callValueOff` is 32-byte aligned.-/
+/-- `callValueOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.f5281e819e22 from=translated src=- shape=4d24081d vocab=2ed6e6e6
+-/
 theorem callValueOff_align : callValueOff % 32 = 0 := by decide
-/-- `txOriginOff` is 32-byte aligned.-/
+/-- `txOriginOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.759ae1701ca6 from=translated src=- shape=4d24081d vocab=4f1c9c0b
+-/
 theorem txOriginOff_align : txOriginOff % 32 = 0 := by decide
-/-- `gasPriceOff` is 32-byte aligned.-/
+/-- `gasPriceOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.0de9ea0c6875 from=translated src=- shape=4d24081d vocab=f9638a9e
+-/
 theorem gasPriceOff_align : gasPriceOff % 32 = 0 := by decide
-/-- `blockCoinbaseOff` is 32-byte aligned.-/
+/-- `blockCoinbaseOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.047eca623bea from=translated src=- shape=4d24081d vocab=cb7e3bee
+-/
 theorem blockCoinbaseOff_align : blockCoinbaseOff % 32 = 0 := by decide
-/-- `blockTimestampOff` is 32-byte aligned.-/
+/-- `blockTimestampOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.c019d71831a4 from=translated src=- shape=4d24081d vocab=b64c34b1
+-/
 theorem blockTimestampOff_align : blockTimestampOff % 32 = 0 := by decide
-/-- `blockNumberOff` is 32-byte aligned.-/
+/-- `blockNumberOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.519b12a27242 from=translated src=- shape=4d24081d vocab=3de36e58
+-/
 theorem blockNumberOff_align : blockNumberOff % 32 = 0 := by decide
-/-- `blockPrevrandaoOff` is 32-byte aligned.-/
+/-- `blockPrevrandaoOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.a30ab1577bad from=translated src=- shape=4d24081d vocab=66d23213
+-/
 theorem blockPrevrandaoOff_align : blockPrevrandaoOff % 32 = 0 := by decide
-/-- `blockGasLimitOff` is 32-byte aligned.-/
+/-- `blockGasLimitOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.8c350d85bb1f from=translated src=- shape=4d24081d vocab=8a47d3a7
+-/
 theorem blockGasLimitOff_align : blockGasLimitOff % 32 = 0 := by decide
-/-- `blockBaseFeeOff` is 32-byte aligned.-/
+/-- `blockBaseFeeOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.5f92c24fe718 from=translated src=- shape=4d24081d vocab=1d5dd48e
+-/
 theorem blockBaseFeeOff_align : blockBaseFeeOff % 32 = 0 := by decide
-/-- `chainIdOff` is 32-byte aligned.-/
+/-- `chainIdOff` is 32-byte aligned.
+@isnad1 id=eq.0h0v.s4.28bb2973d076 from=translated src=- shape=4d24081d vocab=71896b6e
+-/
 theorem chainIdOff_align : chainIdOff % 32 = 0 := by decide
 
-/-- `callDataPtrOff` is 8-byte aligned.-/
+/-- `callDataPtrOff` is 8-byte aligned.
+@isnad1 id=eq.0h0v.s4.be76e7d65df4 from=translated src=- shape=4d24081d vocab=c34af2e0
+-/
 theorem callDataPtrOff_align : callDataPtrOff % 8 = 0 := by decide
-/-- `callDataLenOff` is 8-byte aligned.-/
+/-- `callDataLenOff` is 8-byte aligned.
+@isnad1 id=eq.0h0v.s4.c055e09503e6 from=translated src=- shape=4d24081d vocab=7066dd47
+-/
 theorem callDataLenOff_align : callDataLenOff % 8 = 0 := by decide
-/-- `returnDataPtrOff` is 8-byte aligned.-/
+/-- `returnDataPtrOff` is 8-byte aligned.
+@isnad1 id=eq.0h0v.s4.33988c4f0eb0 from=translated src=- shape=4d24081d vocab=02b4c95f
+-/
 theorem returnDataPtrOff_align : returnDataPtrOff % 8 = 0 := by decide
-/-- `returnDataSizeOff` is 8-byte aligned.-/
+/-- `returnDataSizeOff` is 8-byte aligned.
+@isnad1 id=eq.0h0v.s4.5c4c7d86ad64 from=translated src=- shape=4d24081d vocab=5cf1d56c
+-/
 theorem returnDataSizeOff_align : returnDataSizeOff % 8 = 0 := by decide
-/-- `persistentLogLengthOff` is 8-byte aligned.-/
+/-- `persistentLogLengthOff` is 8-byte aligned.
+@isnad1 id=eq.0h0v.s4.433d50e1ddd8 from=translated src=- shape=4d24081d vocab=ab258209
+-/
 theorem persistentLogLengthOff_align : persistentLogLengthOff % 8 = 0 := by decide
-/-- `persistentLogCheckpointOff` is 8-byte aligned.-/
+/-- `persistentLogCheckpointOff` is 8-byte aligned.
+@isnad1 id=eq.0h0v.s4.3ae95a37dacf from=translated src=- shape=4d24081d vocab=9485a049
+-/
 theorem persistentLogCheckpointOff_align : persistentLogCheckpointOff % 8 = 0 := by decide
-/-- `transientLogLengthOff` is 8-byte aligned.-/
+/-- `transientLogLengthOff` is 8-byte aligned.
+@isnad1 id=eq.0h0v.s4.69b30b7d82f4 from=translated src=- shape=4d24081d vocab=209115e2
+-/
 theorem transientLogLengthOff_align : transientLogLengthOff % 8 = 0 := by decide
 
-/-- `envSize` matches `13 * 32 + 7 * 8` (M24 added 2 more 8-byte cells).-/
+/-- `envSize` matches `13 * 32 + 7 * 8` (M24 added 2 more 8-byte cells).
+@isnad1 id=eq.0h0v.s5.ec740d36e738 from=translated src=- shape=1e3ee23a vocab=887cb9f8
+-/
 theorem envSize_eq : envSize = 13 * 32 + 7 * 8 := by decide
 
 /-- Every 32-byte field's slot ends at the next 32-byte field's start;
     all 8-byte fields then tail without gap up to `envSize`.  This is
     proved as a single concrete decidable fact: the disjoint union of
-    every named slot exactly fills `[0, envSize)`.-/
+    every named slot exactly fills `[0, envSize)`.
+@isnad1 id=and.0h0v.s8.5dbe23f4de26 from=translated src=- shape=d7a135d7 vocab=e3c75a83
+-/
 theorem envSize_covers :
     addressOff + 32 = selfBalanceOff ∧
     selfBalanceOff + 32 = callerOff ∧

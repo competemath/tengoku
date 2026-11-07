@@ -38,7 +38,9 @@ def decodeScalar (bs : List Byte) : Option (Nat × List Byte) := do
 
 /-- Scalar round-trip: decoding a scalar's encoding recovers the value, for any
     scalar whose minimal encoding fits the decoder's 8-byte length field
-    (`(Nat.toBytesBE n).length < 256 ^ 8` — astronomically permissive).-/
+    (`(Nat.toBytesBE n).length < 256 ^ 8` — astronomically permissive).
+@isnad1 id=eq.1h1v.s5.08b03f431f02 from=translated src=- shape=689ae94d vocab=13797567
+-/
 theorem decodeScalar_encodeScalar (n : Nat) (h : (Nat.toBytesBE n).length < 256 ^ 8) :
     decodeScalar (encodeScalar n) = some (n, []) := by
   have hd : decode (encodeScalar n) = some (.bytes (Nat.toBytesBE n), []) :=
@@ -53,7 +55,9 @@ theorem decodeScalar_encodeScalar (n : Nat) (h : (Nat.toBytesBE n).length < 256 
   simp only [Option.bind_eq_bind, Option.bind_some, ite_eq_right hhead, Nat.fromBytesBE_toBytesBE]
 
 /-- `encodeScalar` is injective (within the length bound): distinct scalars have
-    distinct encodings. A corollary of the round-trip.-/
+    distinct encodings. A corollary of the round-trip.
+@isnad1 id=eq.3h2v.s6.7195377dae43 from=translated src=- shape=8c440c22 vocab=8c27051a
+-/
 theorem encodeScalar_injective {n₁ n₂ : Nat}
     (h₁ : (Nat.toBytesBE n₁).length < 256 ^ 8)
     (h₂ : (Nat.toBytesBE n₂).length < 256 ^ 8)
@@ -65,7 +69,9 @@ theorem encodeScalar_injective {n₁ n₂ : Nat}
   exact r₁.1.symm
 
 /-- Right inverse for scalars: a successful scalar decode consumed exactly a
-    byte-string encoding whose payload is the scalar's big-endian digits.-/
+    byte-string encoding whose payload is the scalar's big-endian digits.
+@isnad1 id=ex.1h3v.s5.e7aba83a875a from=translated src=- shape=188e8b0d vocab=41975ed7
+-/
 theorem decodeScalar_eq_some_imp {bs rest : List Byte} {n : Nat}
     (h : decodeScalar bs = some (n, rest)) :
     ∃ data, bs = encodeBytes data ++ rest ∧ Nat.fromBytesBE data = n := by

@@ -103,18 +103,33 @@ def getKeyPairAddress (a : Adrs) : ℕ := a.word1
 /-- `ADRS.getTreeIndex()` (word 3).-/
 def getTreeIndex (a : Adrs) : ℕ := a.word3
 
+/--
+@isnad1 id=eq.0h2v.s3.a46cfff297ad from=translated src=- shape=6021be03 vocab=cd0ec269
+-/
 @[simp] theorem getKeyPairAddress_setKeyPairAddress (a : Adrs) (i : ℕ) :
     (a.setKeyPairAddress i).getKeyPairAddress = i := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.7466e8e203a2 from=translated src=- shape=6021be03 vocab=d3b6d9b1
+-/
 @[simp] theorem getTreeIndex_setTreeIndex (a : Adrs) (i : ℕ) :
     (a.setTreeIndex i).getTreeIndex = i := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.7fa67552b048 from=translated src=- shape=393de0b8 vocab=c088afd9
+-/
 @[simp] theorem getTreeIndex_setTreeHeight (a : Adrs) (z : ℕ) :
     (a.setTreeHeight z).getTreeIndex = a.getTreeIndex := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.6f27195453c7 from=translated src=- shape=393de0b8 vocab=59ab46c0
+-/
 @[simp] theorem getKeyPairAddress_setTreeHeight (a : Adrs) (z : ℕ) :
     (a.setTreeHeight z).getKeyPairAddress = a.getKeyPairAddress := rfl
 
+/--
+@isnad1 id=eq.0h2v.s3.b1249b168521 from=translated src=- shape=393de0b8 vocab=8d3178b2
+-/
 @[simp] theorem getKeyPairAddress_setTreeIndex (a : Adrs) (i : ℕ) :
     (a.setTreeIndex i).getKeyPairAddress = a.getKeyPairAddress := rfl
 

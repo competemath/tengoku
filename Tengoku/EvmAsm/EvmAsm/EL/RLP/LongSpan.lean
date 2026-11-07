@@ -65,7 +65,9 @@ namespace EvmAsm.EL.RLP
     `takeBytes` fact. Both directions are needed here, so these are the inversions. -/
 
 /-- **`readLength` consumes exactly `n` bytes.** The length side, which is all the span
-    computation needs.-/
+    computation needs.
+@isnad1 id=eq.1h4v.s5.fd6be8715c2c from=translated src=- shape=4dcb0b6e vocab=323f7f7c
+-/
 theorem readLength_length {bs rest : List Byte} {n lenVal : Nat}
     (h : readLength bs n = some (lenVal, rest)) : bs.length = n + rest.length := by
   unfold readLength at h
@@ -91,7 +93,9 @@ theorem readLength_length {bs rest : List Byte} {n lenVal : Nat}
     omega
 
 /-- **`readLength`'s value is the big-endian number of the bytes it consumed.** This is
-    the fact the guest's accumulator loop (`x28 := (x28 <<< 8) ||| byte`) has to match.-/
+    the fact the guest's accumulator loop (`x28 := (x28 <<< 8) ||| byte`) has to match.
+@isnad1 id=ex.1h4v.s6.6b1b68bbf590 from=translated src=- shape=72dda005 vocab=ebd0d53f
+-/
 theorem readLength_takeBytes {bs rest : List Byte} {n lenVal : Nat}
     (h : readLength bs n = some (lenVal, rest)) :
     ∃ lenBytes, takeBytes bs n = some (lenBytes, rest) ∧ lenBytes.length = n
@@ -132,7 +136,9 @@ private theorem fuel_succ (n : Nat) : 2 * n + 2 = (2 * n + 1) + 1 := rfl
     payload.
 
     Mirrors `decode_span_shortBytes`, and the `1 +` is the header byte the short forms
-    fold into their arithmetic.-/
+    fold into their arithmetic.
+@isnad1 id=eq.4h6v.s6.4d9ec501204b from=translated src=- shape=1958d885 vocab=50164859
+-/
 theorem decode_span_longBytes {pfx : Byte} {rest0 : List Byte} {item : RLPItem}
     {rest : List Byte} {lenVal : Nat} {lenRest : List Byte}
     (h : decode (pfx :: rest0) = some (item, rest))
@@ -164,7 +170,9 @@ theorem decode_span_longBytes {pfx : Byte} {rest0 : List Byte} {item : RLPItem}
       rw [List.length_append, hpld] at hlspd
       omega
 
-/-- ⭐ **Long-list form** (`0xF8..0xFF`): the same shape with `0xF7` as the base.-/
+/-- ⭐ **Long-list form** (`0xF8..0xFF`): the same shape with `0xF7` as the base.
+@isnad1 id=eq.3h6v.s6.08614998054f from=translated src=- shape=e70fcd4d vocab=41c77879
+-/
 theorem decode_span_longList {pfx : Byte} {rest0 : List Byte} {item : RLPItem}
     {rest : List Byte} {lenVal : Nat} {lenRest : List Byte}
     (h : decode (pfx :: rest0) = some (item, rest))

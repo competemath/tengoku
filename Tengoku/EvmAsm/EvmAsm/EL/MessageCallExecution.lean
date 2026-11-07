@@ -31,9 +31,21 @@ def empty : CallSideEffects :=
     accountsToDelete := []
     touchedAccounts := [] }
 
+/--
+@isnad1 id=eq.0h0v.s3.a69a67bba8fe from=translated src=- shape=b0ae1d2b vocab=b00f97e8
+-/
 @[simp] theorem refundCounter_empty : empty.refundCounter = 0 := rfl
+/--
+@isnad1 id=eq.0h0v.s2.0685cc0b5421 from=translated src=- shape=4b736592 vocab=085551cc
+-/
 @[simp] theorem logs_empty : empty.logs = LogState.empty := rfl
+/--
+@isnad1 id=eq.0h0v.s2.e1420500c042 from=translated src=- shape=0a817633 vocab=e5c80b81
+-/
 @[simp] theorem accountsToDelete_empty : empty.accountsToDelete = [] := rfl
+/--
+@isnad1 id=eq.0h0v.s2.0abe5d3db691 from=translated src=- shape=0a817633 vocab=a59558e9
+-/
 @[simp] theorem touchedAccounts_empty : empty.touchedAccounts = [] := rfl
 
 /-- Executable-spec-shaped message-call output surface. Mirrors the Python

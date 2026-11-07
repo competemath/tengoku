@@ -20,7 +20,9 @@ namespace EvmAsm.EL.RLP
 /-- A run of single-byte items (`bs`, every byte `< 0x80`) decodes to one
     one-byte `RLPItem` per byte, consuming the whole run. The depth budget
     `2 * bs.length ≤ nDepth` matches the `decodeItems`/`decodeAux` per-item cost
-    (one level each).-/
+    (one level each).
+@isnad1 id=eq.2h2v.s6.4618f0c541dc from=translated src=- shape=e418048e vocab=41ee8754
+-/
 theorem decodeItems_singleByte_run :
     ∀ (bs : List Byte) (nDepth : Nat),
       (∀ b ∈ bs, b.toNat < 0x80) → 2 * bs.length ≤ nDepth →
@@ -46,7 +48,9 @@ theorem decodeItems_singleByte_run :
     simp [decodeItems, haux, hrec]
 
 /-- A **short list** whose payload is a run of single-byte items decodes to the
-    structured `RLPItem.list` of one-byte items, consuming exactly the list.-/
+    structured `RLPItem.list` of one-byte items, consuming exactly the list.
+@isnad1 id=eq.4h3v.s6.ee3129130294 from=translated src=- shape=c78b6932 vocab=3a9024b3
+-/
 theorem decodeAux_shortList_of_singleByte_items
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .shortList)

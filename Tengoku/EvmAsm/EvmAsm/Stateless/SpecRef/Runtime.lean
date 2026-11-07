@@ -71,7 +71,9 @@ def jdAdvance (code : List Byte) (pc : Nat) : Nat :=
 
 /-- Every arm of the boundary step advances the pointer by at least one byte.
     This is the per-arm "≥1 advance" fact the jumpdest-scan loop variant
-    (`end - pc`) relies on.-/
+    (`end - pc`) relies on.
+@isnad1 id=le.0h2v.s4.1a047b338496 from=translated src=- shape=81e36898 vocab=6f4c6f5b
+-/
 theorem jdAdvance_pos (code : List Byte) (pc : Nat) : 1 ≤ jdAdvance code pc := by
   simp only [jdAdvance]
   repeat' split
@@ -106,6 +108,9 @@ Every position the walk records is in-bounds and holds the `JUMPDEST` opcode.
 This is the load-bearing fact for the JUMP/JUMPI validity tail (`.55`): a
 destination that passes the O(1) bitmap test is necessarily a `0x5b` byte at an
 instruction boundary — the pushdata/immediate skips are what make it sound. -/
+/--
+@isnad1 id=and.1h4v.s5.82a805403c24 from=translated src=- shape=5898954e vocab=105c06c0
+-/
 theorem validJDaux_mem (code : List Byte) (fuel pc : Nat) {idx : Nat}
     (h : idx ∈ validJDaux code fuel pc) :
     idx < code.length ∧ (code.getD idx 0).toNat = 0x5b := by
@@ -124,7 +129,9 @@ theorem validJDaux_mem (code : List Byte) (fuel pc : Nat) {idx : Nat}
       · exact ih _ h
     · simp at h
 
-/-- A valid jump destination is an in-bounds `JUMPDEST` (`0x5b`) byte.-/
+/-- A valid jump destination is an in-bounds `JUMPDEST` (`0x5b`) byte.
+@isnad1 id=and.1h2v.s5.26ea3dbd767e from=translated src=- shape=f9b420e1 vocab=ff124506
+-/
 theorem mem_validJumpDestinations (code : List Byte) {idx : Nat}
     (h : idx ∈ validJumpDestinations code) :
     idx < code.length ∧ (code.getD idx 0).toNat = 0x5b :=
@@ -154,6 +161,9 @@ def walkFrom (code : List Byte) (pc : Nat) : List Nat :=
 termination_by code.length - pc
 decreasing_by have := jdAdvance_pos code pc; omega
 
+/--
+@isnad1 id=eq.0h2v.s6.673405582ac2 from=translated src=- shape=906b8061 vocab=78462d01
+-/
 theorem walkFrom_unfold (code : List Byte) (pc : Nat) :
     walkFrom code pc =
       if pc < code.length then
@@ -161,7 +171,9 @@ theorem walkFrom_unfold (code : List Byte) (pc : Nat) :
          else walkFrom code (pc + jdAdvance code pc))
       else [] := by rw [walkFrom]; split <;> simp
 
-/-- Every position the walk from `s` records is `≥ s`.-/
+/-- Every position the walk from `s` records is `≥ s`.
+@isnad1 id=le.1h3v.s4.059a070a846e from=translated src=- shape=685b1e69 vocab=cbe4a41c
+-/
 theorem mem_walkFrom_ge (code : List Byte) (s x : Nat) (h : x ∈ walkFrom code s) : s ≤ x := by
   rw [walkFrom_unfold] at h
   split at h
@@ -182,13 +194,18 @@ inductive Reaches (code : List Byte) : Nat → Nat → Prop where
   | step (s t : Nat) (h : s < code.length) (hr : Reaches code (s + jdAdvance code s) t) :
       Reaches code s t
 
+/--
+@isnad1 id=le.1h3v.s4.4f9c0b268bba from=translated src=- shape=e9a2bbe3 vocab=3f4cd204
+-/
 theorem Reaches.le {code : List Byte} {s t : Nat} (h : Reaches code s t) : s ≤ t := by
   induction h with
   | refl => exact Nat.le_refl _
   | step s t hlt hr ih => have := jdAdvance_pos code s; omega
 
 /-- The boundary step advances by at most 33 (a `PUSH32` opcode plus its 32
-    immediates).-/
+    immediates).
+@isnad1 id=le.0h2v.s4.18834aa0d37c from=translated src=- shape=2a4ef811 vocab=6f4c6f5b
+-/
 theorem jdAdvance_le (code : List Byte) (pc : Nat) : jdAdvance code pc ≤ 33 := by
   simp only [jdAdvance]
   repeat' split
@@ -196,7 +213,9 @@ theorem jdAdvance_le (code : List Byte) (pc : Nat) : jdAdvance code pc ≤ 33 :=
 
 /-- A boundary reached from `0` lies within `code.length + 32` (the last step
     starts below `code.length` and advances by `≤ 33`).  Bounds the scan
-    pointer's overshoot past the code end.-/
+    pointer's overshoot past the code end.
+@isnad1 id=le.1h2v.s5.eff3c53aecd9 from=translated src=- shape=7d2800a2 vocab=4f53a88b
+-/
 theorem Reaches_zero_le {code : List Byte} {t : Nat} (h : Reaches code 0 t) :
     t ≤ code.length + 32 := by
   have aux : ∀ {s t : Nat}, Reaches code s t → t ≤ s ∨ t ≤ code.length + 32 := by
@@ -211,7 +230,9 @@ theorem Reaches_zero_le {code : List Byte} {t : Nat} (h : Reaches code 0 t) :
   rcases aux h with h1 | h1 <;> omega
 
 /-- Reachability extends by one boundary step at the far end — the invariant's
-    "advance `x5`" transition.-/
+    "advance `x5`" transition.
+@isnad1 id=reaches.2h3v.s5.560d36a9cdf8 from=translated src=- shape=8b363af7 vocab=3ba136b4
+-/
 theorem Reaches.extend {code : List Byte} {s p : Nat} (hr : Reaches code s p)
     (hp : p < code.length) : Reaches code s (p + jdAdvance code p) := by
   induction hr with
@@ -219,7 +240,9 @@ theorem Reaches.extend {code : List Byte} {s p : Nat} (hr : Reaches code s p)
   | step s t hlt hr ih => exact .step s _ hlt (ih hp)
 
 /-- Positions of `walkFrom code s` that are `≥ p` are exactly `walkFrom code p`,
-    when `p` is reachable from `s`.  The core inductive split (L1).-/
+    when `p` is reachable from `s`.  The core inductive split (L1).
+@isnad1 id=mem.3h4v.s5.84b71337c4ff from=translated src=- shape=f7505e5d vocab=58a75b4e
+-/
 theorem splitWalk {code : List Byte} {s p : Nat} (hr : Reaches code s p) :
     ∀ x ∈ walkFrom code s, p ≤ x → x ∈ walkFrom code p := by
   induction hr with
@@ -237,7 +260,9 @@ theorem splitWalk {code : List Byte} {s p : Nat} (hr : Reaches code s p) :
       · exact hx
     exact ih x hxin hpx
 
-/-- `walkFrom code p` is a suffix of `walkFrom code s` when `p` is reachable.-/
+/-- `walkFrom code p` is a suffix of `walkFrom code s` when `p` is reachable.
+@isnad1 id=mem.2h4v.s5.d2418430450d from=translated src=- shape=188bccb7 vocab=a9100f21
+-/
 theorem walkFrom_subset {code : List Byte} {s p : Nat} (hr : Reaches code s p) :
     ∀ x ∈ walkFrom code p, x ∈ walkFrom code s := by
   induction hr with
@@ -249,7 +274,9 @@ theorem walkFrom_subset {code : List Byte} {s p : Nat} (hr : Reaches code s p) :
     · exact List.mem_cons_of_mem _ (ih x hx)
     · exact ih x hx
 
-/-- Enough fuel makes the fuelled walk agree with the well-founded one.-/
+/-- Enough fuel makes the fuelled walk agree with the well-founded one.
+@isnad1 id=eq.1h3v.s5.ef4c0fbc667e from=translated src=- shape=3eb8b7dc vocab=0c4b033b
+-/
 theorem validJDaux_eq_walkFrom (code : List Byte) (fuel pc : Nat)
     (hfuel : code.length - pc ≤ fuel) :
     validJDaux code fuel pc = walkFrom code pc := by
@@ -261,7 +288,9 @@ theorem validJDaux_eq_walkFrom (code : List Byte) (fuel pc : Nat)
     · next hlt => rw [ih (pc + jdAdvance code pc) (by have := jdAdvance_pos code pc; omega)]
     · rfl
 
-/-- `validJumpDestinations` is the walk from `0`.-/
+/-- `validJumpDestinations` is the walk from `0`.
+@isnad1 id=eq.0h1v.s3.725e769df70c from=translated src=- shape=e73548dc vocab=8f292333
+-/
 theorem walkFrom_zero_eq (code : List Byte) :
     walkFrom code 0 = validJumpDestinations code := by
   rw [validJumpDestinations, validJDaux_eq_walkFrom code code.length 0 (by omega)]
@@ -269,7 +298,9 @@ theorem walkFrom_zero_eq (code : List Byte) :
 /-- **L1 — the one-step prefix decomposition** (the scan-arm crux).  For a
     boundary `pc` (`Reaches code 0 pc`, `pc < length`), the valid destinations
     below `pc + jdAdvance code pc` are those below `pc`, plus `pc` itself exactly
-    when `code[pc] = 0x5b`.  Every scan arm extends its bitmap clause by this.-/
+    when `code[pc] = 0x5b`.  Every scan arm extends its bitmap clause by this.
+@isnad1 id=iff.2h3v.s6.e8bf8372e930 from=translated src=- shape=eeceb04e vocab=4242ee16
+-/
 theorem vjd_lt_step {code : List Byte} {pc : Nat}
     (hr : Reaches code 0 pc) (hlt : pc < code.length) (idx : Nat) :
     (idx ∈ validJumpDestinations code ∧ idx < pc + jdAdvance code pc)

@@ -67,20 +67,26 @@ def hugeNonce : Nat := 2 ^ 256 * 2
 
 /-- ⚠️ **`Account.nonce` is an unbounded `Nat`.**  This account is well-typed
     with a nonce above `2 ^ 256`, which is what refutes the rows' claim that the
-    type carries a `< 2 ^ 256` invariant.  Nothing rejects it.-/
+    type carries a `< 2 ^ 256` invariant.  Nothing rejects it.
+@isnad1 id=and.0h0v.s5.4bb0575e0609 from=translated src=- shape=382a2f7b vocab=cf72dc7b
+-/
 theorem account_nonce_is_an_unbounded_nat :
     (acct hugeNonce).nonce = hugeNonce ∧ ¬ (acct hugeNonce).nonce < 2 ^ 256 := by
   refine ⟨rfl, ?_⟩
   simp only [acct, hugeNonce]
   omega
 
-/-- The gate admits an ordinary account.-/
+/-- The gate admits an ordinary account.
+@isnad1 id=lt.0h0v.s4.d9ce1e1a909b from=translated src=- shape=e2786e6f vocab=cd9e2b26
+-/
 theorem nonce_gate_admits_ordinary :
     (acct 42).nonce < 2 ^ 64 := by
   simp only [acct]; omega
 
 /-- Its top edge: `2 ^ 64 - 1` is in, `2 ^ 64` is out.  A width gate is likeliest
-    to be wrong by one exactly here.-/
+    to be wrong by one exactly here.
+@isnad1 id=and.0h0v.s6.da2f2811d67c from=translated src=- shape=d1ed0ba8 vocab=3481d672
+-/
 theorem nonce_gate_boundary :
     (acct (2 ^ 64 - 1)).nonce < 2 ^ 64 ∧ ¬ (acct (2 ^ 64)).nonce < 2 ^ 64 := by
   refine ⟨?_, ?_⟩ <;> simp only [acct] <;> omega
@@ -91,7 +97,9 @@ theorem nonce_gate_boundary :
 
     This is the negative control that matters: without it the gate would be
     consistent with coinciding with the surrounding hypotheses, in which case it
-    would not be a separate restriction at all.-/
+    would not be a separate restriction at all.
+@isnad1 id=and.0h0v.s6.6c6eef06d1f7 from=translated src=- shape=4d79355c vocab=cd9e2b26
+-/
 theorem nonce_gate_middle_band_is_inhabited :
     ¬ (acct (2 ^ 64)).nonce < 2 ^ 64 ∧ (acct (2 ^ 64)).nonce < 2 ^ 256 := by
   refine ⟨by simp only [acct]; omega, ?_⟩
@@ -99,7 +107,9 @@ theorem nonce_gate_middle_band_is_inhabited :
   omega
 
 /-- The three regimes are exhaustive and ordered: every account falls in exactly
-    one, and the gate is the strictest of the three cuts.-/
+    one, and the gate is the strictest of the three cuts.
+@isnad1 id=or.0h1v.s6.53eac69d6392 from=translated src=- shape=1a7f31a7 vocab=6316f41a
+-/
 theorem nonce_regimes_exhaustive (a : Account) :
     a.nonce < 2 ^ 64 ∨ (2 ^ 64 ≤ a.nonce ∧ a.nonce < 2 ^ 256) ∨ 2 ^ 256 ≤ a.nonce := by
   omega

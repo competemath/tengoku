@@ -24,14 +24,22 @@ def decodePrefixInfo (input : List Byte) : Option (PrefixClass × Nat) :=
   | [] => none
   | pfx :: _ => some (classifyPrefix pfx, rlpPrefixHeaderBytes pfx)
 
+/--
+@isnad1 id=eq.0h0v.s3.650e390b3fcf from=translated src=- shape=f28a9683 vocab=dc25f97e
+-/
 theorem decodePrefixInfo_nil :
     decodePrefixInfo ([] : List Byte) = none := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.b3c365299c17 from=translated src=- shape=17909f7f vocab=090e392a
+-/
 theorem decodePrefixInfo_cons (pfx : Byte) (rest : List Byte) :
     decodePrefixInfo (pfx :: rest) =
       some (classifyPrefix pfx, rlpPrefixHeaderBytes pfx) := rfl
 
-/-- A classified single-byte prefix selects the single-byte `decodeAux` branch.-/
+/-- A classified single-byte prefix selects the single-byte `decodeAux` branch.
+@isnad1 id=eq.1h3v.s5.c1b5938eee3e from=translated src=- shape=974f19e2 vocab=db91ab30
+-/
 theorem decodeAux_cons_singleByte_of_classifyPrefix
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h : classifyPrefix pfx = .singleByte) :
@@ -39,7 +47,9 @@ theorem decodeAux_cons_singleByte_of_classifyPrefix
   have h_lt := (classifyPrefix_singleByte_iff pfx).mp h
   simp [decodeAux, h_lt]
 
-/-- A classified short-byte-string prefix selects the short-string branch.-/
+/-- A classified short-byte-string prefix selects the short-string branch.
+@isnad1 id=eq.1h3v.s7.83a0b996689c from=translated src=- shape=a6a186ec vocab=2a5c8cd6
+-/
 theorem decodeAux_cons_shortBytes_of_classifyPrefix
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h : classifyPrefix pfx = .shortBytes) :
@@ -55,7 +65,9 @@ theorem decodeAux_cons_shortBytes_of_classifyPrefix
   simp [h_not_lt, h_range.2]
   rfl
 
-/-- A classified long-byte-string prefix selects the long-string branch.-/
+/-- A classified long-byte-string prefix selects the long-string branch.
+@isnad1 id=eq.1h3v.s7.e2c28f0ecfe2 from=translated src=- shape=189086d5 vocab=39e8f6f7
+-/
 theorem decodeAux_cons_longBytes_of_classifyPrefix
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h : classifyPrefix pfx = .longBytes) :
@@ -72,7 +84,9 @@ theorem decodeAux_cons_longBytes_of_classifyPrefix
   unfold decodeAux rlpPrefixLongBytesLenOfLen
   simp [h_not_lt, h_not_short, h_range.2]
 
-/-- A classified short-list prefix selects the short-list branch.-/
+/-- A classified short-list prefix selects the short-list branch.
+@isnad1 id=eq.1h3v.s7.6021ea60ff19 from=translated src=- shape=a948cd18 vocab=59412070
+-/
 theorem decodeAux_cons_shortList_of_classifyPrefix
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h : classifyPrefix pfx = .shortList) :
@@ -88,7 +102,9 @@ theorem decodeAux_cons_shortList_of_classifyPrefix
   unfold decodeAux rlpPrefixShortListPayloadLen
   simp [h_not_lt, h_not_shortBytes, h_not_longBytes, h_range.2]
 
-/-- A classified long-list prefix selects the long-list branch.-/
+/-- A classified long-list prefix selects the long-list branch.
+@isnad1 id=eq.1h3v.s7.7c32fdf01768 from=translated src=- shape=dc8996a7 vocab=6ec0a35b
+-/
 theorem decodeAux_cons_longList_of_classifyPrefix
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h : classifyPrefix pfx = .longList) :
@@ -111,7 +127,9 @@ theorem decodeAux_cons_longList_of_classifyPrefix
 /--
   Classifier-dispatch form of the `decodeAux` prefix branch equations. This
   packages the five class-specific bridge lemmas into one semantic target for
-  executable prefix classifiers.-/
+  executable prefix classifiers.
+@isnad1 id=eq.0h3v.s9.cff108d1e12d from=translated src=- shape=560d24c2 vocab=4afc53a3
+-/
 theorem decodeAux_cons_eq_classifyPrefix_match
     (nDepth : Nat) (pfx : Byte) (rest : List Byte) :
     decodeAux (nDepth + 1) (pfx :: rest) =
@@ -153,7 +171,9 @@ theorem decodeAux_cons_eq_classifyPrefix_match
 /--
   Top-level `decode` wrapper version of `decodeAux_cons_eq_classifyPrefix_match`.
   This exposes the pure prefix classifier as the first dispatch point for every
-  nonempty RLP input stream.-/
+  nonempty RLP input stream.
+@isnad1 id=eq.0h2v.s9.132a225a0b9d from=translated src=- shape=251f163b vocab=3351234e
+-/
 theorem decode_cons_eq_classifyPrefix_match (pfx : Byte) (rest : List Byte) :
     decode (pfx :: rest) =
       match classifyPrefix pfx with

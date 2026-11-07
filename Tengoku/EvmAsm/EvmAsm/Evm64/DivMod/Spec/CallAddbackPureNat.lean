@@ -43,7 +43,9 @@ namespace EvmAsm.Evm64
     From this identity + bound `post1_low4 < 2^256` + `c3 < 2^256` + the
     range of `a%b * 2^s < 2^256`, omega can derive c3 = u4 + 1 in single-
     addback. (Note: the lemma exposes the algebra; the surrounding proof
-    must establish u4_lt_c3 from hborrow to pin c3 ≥ u4 + 1.)-/
+    must establish u4_lt_c3 from hborrow to pin c3 ≥ u4 + 1.)
+@isnad1 id=eq.3h7v.s8.2343f32df269 from=translated src=- shape=9054516b vocab=f0592055
+-/
 theorem val256_post1_low4_eq_mod_times_pow_s_plus_c3_minus_one_minus_u4
     (post1_val ms_val a_val b_val s u4 c3 : Nat)
     (h_mulsub : c3 * 2^256 + (a_val * 2^s - u4 * 2^256) = ms_val + (a_val / b_val + 1) * (b_val * 2^s))
@@ -74,7 +76,9 @@ theorem val256_post1_low4_eq_mod_times_pow_s_plus_c3_minus_one_minus_u4
     Direct corollary: from `post1_val + (u4 + 1)*2^256 = a%b*2^s + c3*2^256`
     plus `post1_val < 2^256` (val256 bound) and `a%b*2^s < 2^256` (a%b < b
     and b * 2^s ≤ 2^256), it follows that `c3 ≤ u4 + 1` — otherwise
-    post1_val would exceed 2^256.-/
+    post1_val would exceed 2^256.
+@isnad1 id=le.3h6v.s7.5ac92140906c from=translated src=- shape=61cdbc37 vocab=33eeb603
+-/
 theorem c3_le_u4_plus_one_from_identity
     (post1_val a_val b_val s u4 c3 : Nat)
     (h_id : post1_val + (u4 + 1) * 2^256 = a_val % b_val * 2^s + c3 * 2^256)
@@ -99,7 +103,9 @@ theorem c3_le_u4_plus_one_from_identity
     and the u4 < c3 hypothesis.
 
     Once the Word-level wrapper at `c3_n_eq_u4_plus_one_of_single_addback`
-    is plumbed up, it just calls this.-/
+    is plumbed up, it just calls this.
+@isnad1 id=eq.6h7v.s8.9712ab98cb8a from=translated src=- shape=f6d4534b vocab=8979fa8a
+-/
 theorem c3_eq_u4_plus_one_from_mulsub_addback_bounds
     (post1_val ms_val a_val b_val s u4 c3 : Nat)
     (h_mulsub : c3 * 2^256 + (a_val * 2^s - u4 * 2^256) = ms_val + (a_val / b_val + 1) * (b_val * 2^s))
@@ -134,7 +140,9 @@ theorem c3_eq_u4_plus_one_from_mulsub_addback_bounds
 
     This pure-Nat lemma does NOT depend on Knuth-B (#1337). The Knuth bound
     is needed only to discharge the `(a/b + 2)` factor in `h_mulsub` (i.e.,
-    Phase B.1 `qHat_eq_div_plus_two_of_double_addback`).-/
+    Phase B.1 `qHat_eq_div_plus_two_of_double_addback`).
+@isnad1 id=eq.3h7v.s8.690c9835f133 from=translated src=- shape=5d2eaf49 vocab=f0592055
+-/
 theorem val256_abPrime_low4_eq_mod_times_pow_s_plus_c3_minus_one_minus_u4
     (abPrime_val ms_val a_val b_val s u4 c3 : Nat)
     (h_mulsub : c3 * 2^256 + (a_val * 2^s - u4 * 2^256) =
@@ -167,7 +175,9 @@ theorem val256_abPrime_low4_eq_mod_times_pow_s_plus_c3_minus_one_minus_u4
     `c3_le_u4_plus_one_from_identity` (already closed, generic) and
     `u4 < c3`, omega gives c3 = u4 + 1.
 
-    Pure Nat. Independent of Knuth-B (#1337).-/
+    Pure Nat. Independent of Knuth-B (#1337).
+@isnad1 id=eq.6h7v.s8.093cd770d88a from=translated src=- shape=50fed140 vocab=8979fa8a
+-/
 theorem c3_eq_u4_plus_one_from_double_mulsub_addback_bounds
     (abPrime_val ms_val a_val b_val s u4 c3 : Nat)
     (h_mulsub : c3 * 2^256 + (a_val * 2^s - u4 * 2^256) =
@@ -193,7 +203,9 @@ theorem c3_eq_u4_plus_one_from_double_mulsub_addback_bounds
     - The val256-identity instantiated with c3 = u4 + 1.
 
     Independent of Knuth-B (#1337). The Knuth bound is needed only to
-    DERIVE `h_mulsub` (with the `(a/b + 2)` factor), not for the algebra.-/
+    DERIVE `h_mulsub` (with the `(a/b + 2)` factor), not for the algebra.
+@isnad1 id=eq.6h7v.s8.e666a2fb6db6 from=translated src=- shape=98052a16 vocab=8979fa8a
+-/
 theorem abPrime_val_eq_amod_pow_s_pure_nat
     (abPrime_val ms_val a_val b_val s u4 c3 : Nat)
     (h_mulsub : c3 * 2^256 + (a_val * 2^s - u4 * 2^256) =
@@ -227,7 +239,9 @@ host file does not have to carry them. -/
     - `val256_post1_low4_eq_mod_times_pow_s_plus_c3_minus_one_minus_u4` (closed).
     - `c3 = u4 + 1` (substituted in).
 
-    Result: post1_val + 0*2^256 = a%b * 2^s + 0, i.e., post1_val = a%b * 2^s.-/
+    Result: post1_val + 0*2^256 = a%b * 2^s + 0, i.e., post1_val = a%b * 2^s.
+@isnad1 id=eq.4h7v.s8.95957c2c239e from=translated src=- shape=eb9c8ddf vocab=f0592055
+-/
 theorem post1_eq_mod_times_pow_s_of_c3_eq_u4_plus_one
     (post1_val ms_val a_val b_val s u4 c3 : Nat)
     (h_mulsub : c3 * 2^256 + (a_val * 2^s - u4 * 2^256) = ms_val + (a_val / b_val + 1) * (b_val * 2^s))
@@ -255,7 +269,9 @@ theorem post1_eq_mod_times_pow_s_of_c3_eq_u4_plus_one
 
     The hypotheses are exactly the 6 preconditions for the c3-pinning lemma:
     `h_mulsub` already encodes `qHat = a/b + 1` via the `(a_val / b_val + 1)`
-    factor on its RHS.-/
+    factor on its RHS.
+@isnad1 id=eq.6h7v.s8.299a1cfead7a from=translated src=- shape=54a1e6c3 vocab=8979fa8a
+-/
 theorem post1_val_eq_amod_pow_s_pure_nat
     (post1_val ms_val a_val b_val s u4 c3 : Nat)
     (h_mulsub : c3 * 2^256 + (a_val * 2^s - u4 * 2^256) = ms_val + (a_val / b_val + 1) * (b_val * 2^s))

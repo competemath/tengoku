@@ -33,7 +33,9 @@ structure MulModScratchpadLayout.Valid (_L : MulModScratchpadLayout) : Prop wher
     name and fill it with the default offsets used by the assembled program.-/
 def canonicalMulModScratchpadLayout : MulModScratchpadLayout := {}
 
-/-- The canonical MULMOD scratchpad layout is valid.-/
+/-- The canonical MULMOD scratchpad layout is valid.
+@isnad1 id=valid.0h0v.s1.6528d463a7da from=translated src=- shape=49959d42 vocab=cb8a24c0
+-/
 theorem canonicalMulModScratchpadLayout_valid :
     canonicalMulModScratchpadLayout.Valid := {}
 

@@ -26,7 +26,13 @@ def usesSalt : CreateKind → Bool
   | create => false
   | create2 => true
 
+/--
+@isnad1 id=eq.0h0v.s2.01435ae3142c from=translated src=- shape=4b736592 vocab=398e6416
+-/
 theorem usesSalt_create : usesSalt create = false := rfl
+/--
+@isnad1 id=eq.0h0v.s2.56cfe111a628 from=translated src=- shape=4b736592 vocab=1d0acb65
+-/
 theorem usesSalt_create2 : usesSalt create2 = true := rfl
 
 end CreateKind
@@ -69,15 +75,24 @@ def isCreate2 (request : CreateRequest) : Prop :=
 def hasSalt (request : CreateRequest) : Prop :=
   request.salt?.isSome
 
+/--
+@isnad1 id=eq.0h4v.s4.5f23bc841979 from=translated src=- shape=37ee9bbd vocab=ed1a38ed
+-/
 theorem kind_forCreate
     (creator : Address) (value : Word256) (initcode : List Byte) (gas : Nat) :
     (forCreate creator value initcode gas).kind = .create := rfl
 
+/--
+@isnad1 id=eq.0h5v.s4.29758fe45087 from=translated src=- shape=73a268a9 vocab=e8f7e188
+-/
 theorem kind_forCreate2
     (creator : Address) (value : Word256) (initcode : List Byte) (gas : Nat)
     (salt : Word256) :
     (forCreate2 creator value initcode gas salt).kind = .create2 := rfl
 
+/--
+@isnad1 id=hassalt.0h5v.s4.e1dc2cc5a2db from=translated src=- shape=520aed0f vocab=c41084a4
+-/
 theorem hasSalt_forCreate2
     (creator : Address) (value : Word256) (initcode : List Byte) (gas : Nat)
     (salt : Word256) :
@@ -85,16 +100,25 @@ theorem hasSalt_forCreate2
   unfold hasSalt
   rfl
 
+/--
+@isnad1 id=not.0h4v.s4.666d2da1e91d from=translated src=- shape=50ce1eea vocab=4887929d
+-/
 theorem not_hasSalt_forCreate
     (creator : Address) (value : Word256) (initcode : List Byte) (gas : Nat) :
     ¬ (forCreate creator value initcode gas).hasSalt := by
   simp [hasSalt, forCreate]
 
+/--
+@isnad1 id=iscreate.0h5v.s4.4ccb874889b9 from=translated src=- shape=520aed0f vocab=3639cab9
+-/
 theorem isCreate2_forCreate2
     (creator : Address) (value : Word256) (initcode : List Byte) (gas : Nat)
     (salt : Word256) :
     (forCreate2 creator value initcode gas salt).isCreate2 := rfl
 
+/--
+@isnad1 id=not.0h4v.s4.faa372116fed from=translated src=- shape=50ce1eea vocab=bc332baf
+-/
 theorem not_isCreate2_forCreate
     (creator : Address) (value : Word256) (initcode : List Byte) (gas : Nat) :
     ¬ (forCreate creator value initcode gas).isCreate2 := by

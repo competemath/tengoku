@@ -76,12 +76,16 @@ structure ExpScratchpadLayout.Valid (_L : ExpScratchpadLayout) : Prop where
 /-- Every current EXP scratchpad layout is valid.
 
     This is a convenience wrapper for downstream specs that already take an
-    `ExpScratchpadLayout` parameter while the layout is still empty.-/
+    `ExpScratchpadLayout` parameter while the layout is still empty.
+@isnad1 id=valid.0h1v.s2.cbec16b3b1aa from=translated src=- shape=5c11bb93 vocab=a86beb78
+-/
 theorem ExpScratchpadLayout.valid_any_empty
     (L : ExpScratchpadLayout) :
     L.Valid := {}
 
-/-- The current empty EXP scratchpad layout validity predicate is trivial.-/
+/-- The current empty EXP scratchpad layout validity predicate is trivial.
+@isnad1 id=iff.0h1v.s2.753e617148a0 from=translated src=- shape=7955a1cf vocab=a86beb78
+-/
 theorem ExpScratchpadLayout.valid_iff_true
     (L : ExpScratchpadLayout) :
     L.Valid ↔ True := by
@@ -106,11 +110,15 @@ theorem ExpScratchpadLayout.eq_canonical
   rfl
 
 /-- The canonical EXP scratchpad layout is `Valid`. Trivially discharged
-    because the layout struct is empty.-/
+    because the layout struct is empty.
+@isnad1 id=valid.0h0v.s1.687d8441a498 from=translated src=- shape=49959d42 vocab=20c2ee3c
+-/
 theorem canonicalExpScratchpadLayout_valid :
     canonicalExpScratchpadLayout.Valid := {}
 
-/-- A layout equal to the current canonical EXP scratchpad layout is valid.-/
+/-- A layout equal to the current canonical EXP scratchpad layout is valid.
+@isnad1 id=valid.1h1v.s3.24187557a1f0 from=translated src=- shape=6b8ed7b3 vocab=827ff6f6
+-/
 theorem ExpScratchpadLayout.valid_of_eq_canonical
     {L : ExpScratchpadLayout}
     (h_eq : L = canonicalExpScratchpadLayout) :
@@ -119,7 +127,9 @@ theorem ExpScratchpadLayout.valid_of_eq_canonical
   exact canonicalExpScratchpadLayout_valid
 
 /-- For the current empty EXP scratchpad layout, validity is equivalent to
-    being the canonical layout.-/
+    being the canonical layout.
+@isnad1 id=iff.0h1v.s3.72728cc0404f from=translated src=- shape=7ab1b0de vocab=827ff6f6
+-/
 theorem ExpScratchpadLayout.valid_iff_eq_canonical
     (L : ExpScratchpadLayout) :
     L.Valid ↔ L = canonicalExpScratchpadLayout := by
@@ -128,7 +138,9 @@ theorem ExpScratchpadLayout.valid_iff_eq_canonical
     exact L.eq_canonical
   · exact L.valid_of_eq_canonical
 
-/-- The canonical EXP scratchpad layout validity predicate is trivial.-/
+/-- The canonical EXP scratchpad layout validity predicate is trivial.
+@isnad1 id=iff.0h0v.s2.122a047cc0e3 from=translated src=- shape=545db28e vocab=20c2ee3c
+-/
 theorem canonicalExpScratchpadLayout_valid_iff_true :
     canonicalExpScratchpadLayout.Valid ↔ True :=
   ExpScratchpadLayout.valid_iff_true canonicalExpScratchpadLayout

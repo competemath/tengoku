@@ -60,15 +60,27 @@ module dies with `maximum recursion depth`. An ordinary `rfl` theorem sidesteps
 realization entirely.
 -/
 
+/--
+@isnad1 id=eq.0h1v.s4.2d5a372e14d7 from=translated src=- shape=6b646b13 vocab=f65ab344
+-/
 theorem rlpPrefixShortBytesPayloadLen_def (pfx : Byte) :
     rlpPrefixShortBytesPayloadLen pfx = pfx.toNat - 0x80 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.f6422f9065ab from=translated src=- shape=6b646b13 vocab=2bba88a8
+-/
 theorem rlpPrefixLongBytesLenOfLen_def (pfx : Byte) :
     rlpPrefixLongBytesLenOfLen pfx = pfx.toNat - 0xB7 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.20f233d42930 from=translated src=- shape=6b646b13 vocab=ede5d065
+-/
 theorem rlpPrefixShortListPayloadLen_def (pfx : Byte) :
     rlpPrefixShortListPayloadLen pfx = pfx.toNat - 0xC0 := rfl
 
+/--
+@isnad1 id=eq.0h1v.s4.a02007af520e from=translated src=- shape=6b646b13 vocab=f635e3e0
+-/
 theorem rlpPrefixLongListLenOfLen_def (pfx : Byte) :
     rlpPrefixLongListLenOfLen pfx = pfx.toNat - 0xF7 := rfl
 
@@ -101,6 +113,9 @@ def rlpPrefixHeaderBytes (pfx : Byte) : Nat :=
   | .shortList => 1
   | .longList => rlpPrefixLongListHeaderBytes pfx
 
+/--
+@isnad1 id=iff.0h1v.s4.5ce15468af4c from=translated src=- shape=c29482da vocab=5d74bfbe
+-/
 theorem classifyPrefix_singleByte_iff (pfx : Byte) :
     classifyPrefix pfx = .singleByte ↔ pfx.toNat < 0x80 := by
   unfold classifyPrefix
@@ -115,6 +130,9 @@ theorem classifyPrefix_singleByte_iff (pfx : Byte) :
         · simp [h0, h1, h2, h3] <;> omega
         · simp [h0, h1, h2, h3] <;> omega
 
+/--
+@isnad1 id=iff.0h1v.s5.255adadcc285 from=translated src=- shape=10b72027 vocab=e5026bce
+-/
 theorem classifyPrefix_shortBytes_iff (pfx : Byte) :
     classifyPrefix pfx = .shortBytes ↔ 0x80 ≤ pfx.toNat ∧ pfx.toNat ≤ 0xB7 := by
   unfold classifyPrefix
@@ -129,6 +147,9 @@ theorem classifyPrefix_shortBytes_iff (pfx : Byte) :
         · simp [h0, h1, h2, h3] <;> omega
         · simp [h0, h1, h2, h3] <;> omega
 
+/--
+@isnad1 id=iff.0h1v.s5.7a5c03fc7930 from=translated src=- shape=10b72027 vocab=0fb8a9ce
+-/
 theorem classifyPrefix_longBytes_iff (pfx : Byte) :
     classifyPrefix pfx = .longBytes ↔ 0xB8 ≤ pfx.toNat ∧ pfx.toNat ≤ 0xBF := by
   unfold classifyPrefix
@@ -143,6 +164,9 @@ theorem classifyPrefix_longBytes_iff (pfx : Byte) :
         · simp [h0, h1, h2, h3] <;> omega
         · simp [h0, h1, h2, h3] <;> omega
 
+/--
+@isnad1 id=iff.0h1v.s5.09191f1d2055 from=translated src=- shape=10b72027 vocab=317ca415
+-/
 theorem classifyPrefix_shortList_iff (pfx : Byte) :
     classifyPrefix pfx = .shortList ↔ 0xC0 ≤ pfx.toNat ∧ pfx.toNat ≤ 0xF7 := by
   unfold classifyPrefix
@@ -157,6 +181,9 @@ theorem classifyPrefix_shortList_iff (pfx : Byte) :
         · simp [h0, h1, h2, h3] <;> omega
         · simp [h0, h1, h2, h3] <;> omega
 
+/--
+@isnad1 id=iff.0h1v.s4.009352e365ce from=translated src=- shape=b6b840e4 vocab=9e7a82db
+-/
 theorem classifyPrefix_longList_iff (pfx : Byte) :
     classifyPrefix pfx = .longList ↔ 0xF8 ≤ pfx.toNat := by
   unfold classifyPrefix
@@ -171,6 +198,9 @@ theorem classifyPrefix_longList_iff (pfx : Byte) :
         · simp [h0, h1, h2, h3] <;> omega
         · simp [h0, h1, h2, h3] <;> omega
 
+/--
+@isnad1 id=le.1h1v.s4.8d9407c473c7 from=translated src=- shape=b814d1b5 vocab=19d27668
+-/
 theorem rlpPrefixShortBytesPayloadLen_le_55_of_class {pfx : Byte}
     (h : classifyPrefix pfx = .shortBytes) :
     rlpPrefixShortBytesPayloadLen pfx ≤ 55 := by
@@ -178,6 +208,9 @@ theorem rlpPrefixShortBytesPayloadLen_le_55_of_class {pfx : Byte}
   unfold rlpPrefixShortBytesPayloadLen
   omega
 
+/--
+@isnad1 id=le.1h1v.s4.e096801c279c from=translated src=- shape=b814d1b5 vocab=38234ad9
+-/
 theorem rlpPrefixShortListPayloadLen_le_55_of_class {pfx : Byte}
     (h : classifyPrefix pfx = .shortList) :
     rlpPrefixShortListPayloadLen pfx ≤ 55 := by
@@ -185,6 +218,9 @@ theorem rlpPrefixShortListPayloadLen_le_55_of_class {pfx : Byte}
   unfold rlpPrefixShortListPayloadLen
   omega
 
+/--
+@isnad1 id=lt.1h1v.s4.c35f32fc64f9 from=translated src=- shape=779b4580 vocab=beefcab7
+-/
 theorem rlpPrefixLongBytesLenOfLen_pos_of_class {pfx : Byte}
     (h : classifyPrefix pfx = .longBytes) :
     0 < rlpPrefixLongBytesLenOfLen pfx := by
@@ -192,6 +228,9 @@ theorem rlpPrefixLongBytesLenOfLen_pos_of_class {pfx : Byte}
   unfold rlpPrefixLongBytesLenOfLen
   omega
 
+/--
+@isnad1 id=le.1h1v.s4.42f6ed01bceb from=translated src=- shape=b814d1b5 vocab=60a5f24d
+-/
 theorem rlpPrefixLongBytesLenOfLen_le_8_of_class {pfx : Byte}
     (h : classifyPrefix pfx = .longBytes) :
     rlpPrefixLongBytesLenOfLen pfx ≤ 8 := by
@@ -199,6 +238,9 @@ theorem rlpPrefixLongBytesLenOfLen_le_8_of_class {pfx : Byte}
   unfold rlpPrefixLongBytesLenOfLen
   omega
 
+/--
+@isnad1 id=lt.1h1v.s4.298c08c2ff4e from=translated src=- shape=779b4580 vocab=49fe5bca
+-/
 theorem rlpPrefixLongListLenOfLen_pos_of_class {pfx : Byte}
     (h : classifyPrefix pfx = .longList) :
     0 < rlpPrefixLongListLenOfLen pfx := by
@@ -206,6 +248,9 @@ theorem rlpPrefixLongListLenOfLen_pos_of_class {pfx : Byte}
   unfold rlpPrefixLongListLenOfLen
   omega
 
+/--
+@isnad1 id=le.1h1v.s4.4a1807c5d383 from=translated src=- shape=b814d1b5 vocab=a4756aa7
+-/
 theorem rlpPrefixLongListLenOfLen_le_8_of_class {pfx : Byte}
     (h : classifyPrefix pfx = .longList) :
     rlpPrefixLongListLenOfLen pfx ≤ 8 := by
@@ -214,36 +259,54 @@ theorem rlpPrefixLongListLenOfLen_le_8_of_class {pfx : Byte}
   have h_bound : pfx.toNat < 256 := pfx.isLt
   omega
 
+/--
+@isnad1 id=eq.1h1v.s4.8fed74da34c5 from=translated src=- shape=e6b9d3ca vocab=d233240b
+-/
 theorem rlpPrefixLenOfLen_eq_zero_of_singleByte {pfx : Byte}
     (h : classifyPrefix pfx = .singleByte) :
     rlpPrefixLenOfLen pfx = 0 := by
   unfold rlpPrefixLenOfLen
   rw [h]
 
+/--
+@isnad1 id=eq.1h1v.s4.e474defc325c from=translated src=- shape=e6b9d3ca vocab=461ed4cc
+-/
 theorem rlpPrefixLenOfLen_eq_zero_of_shortBytes {pfx : Byte}
     (h : classifyPrefix pfx = .shortBytes) :
     rlpPrefixLenOfLen pfx = 0 := by
   unfold rlpPrefixLenOfLen
   rw [h]
 
+/--
+@isnad1 id=eq.1h1v.s3.1ed98adecc5a from=translated src=- shape=a45c35a6 vocab=5b05ac02
+-/
 theorem rlpPrefixLenOfLen_eq_longBytesLenOfLen {pfx : Byte}
     (h : classifyPrefix pfx = .longBytes) :
     rlpPrefixLenOfLen pfx = rlpPrefixLongBytesLenOfLen pfx := by
   unfold rlpPrefixLenOfLen
   rw [h]
 
+/--
+@isnad1 id=eq.1h1v.s4.fcf1b0d5708e from=translated src=- shape=e6b9d3ca vocab=d239438c
+-/
 theorem rlpPrefixLenOfLen_eq_zero_of_shortList {pfx : Byte}
     (h : classifyPrefix pfx = .shortList) :
     rlpPrefixLenOfLen pfx = 0 := by
   unfold rlpPrefixLenOfLen
   rw [h]
 
+/--
+@isnad1 id=eq.1h1v.s3.a329c557eda6 from=translated src=- shape=a45c35a6 vocab=8d3077a6
+-/
 theorem rlpPrefixLenOfLen_eq_longListLenOfLen {pfx : Byte}
     (h : classifyPrefix pfx = .longList) :
     rlpPrefixLenOfLen pfx = rlpPrefixLongListLenOfLen pfx := by
   unfold rlpPrefixLenOfLen
   rw [h]
 
+/--
+@isnad1 id=le.0h1v.s3.62537e5586a4 from=translated src=- shape=a311c14d vocab=f1e2bf33
+-/
 theorem rlpPrefixLenOfLen_le_8 (pfx : Byte) :
     rlpPrefixLenOfLen pfx ≤ 8 := by
   unfold rlpPrefixLenOfLen
@@ -251,6 +314,9 @@ theorem rlpPrefixLenOfLen_le_8 (pfx : Byte) :
   · exact rlpPrefixLongBytesLenOfLen_le_8_of_class h
   · exact rlpPrefixLongListLenOfLen_le_8_of_class h
 
+/--
+@isnad1 id=iff.0h1v.s4.b881e4afeecb from=translated src=- shape=3d9b48c0 vocab=d8c6aad0
+-/
 theorem rlpPrefixLenOfLen_pos_iff_longClass (pfx : Byte) :
     0 < rlpPrefixLenOfLen pfx ↔
       classifyPrefix pfx = .longBytes ∨ classifyPrefix pfx = .longList := by
@@ -272,17 +338,26 @@ theorem rlpPrefixLenOfLen_pos_iff_longClass (pfx : Byte) :
     · rw [rlpPrefixLenOfLen_eq_longListLenOfLen h_longList]
       exact rlpPrefixLongListLenOfLen_pos_of_class h_longList
 
+/--
+@isnad1 id=iff.0h1v.s5.8e26d770eeee from=translated src=- shape=914ecec5 vocab=f5bc3d33
+-/
 theorem rlpPrefixLenOfLen_pos_iff_long_ranges (pfx : Byte) :
     0 < rlpPrefixLenOfLen pfx ↔
       (0xB8 ≤ pfx.toNat ∧ pfx.toNat ≤ 0xBF) ∨ 0xF8 ≤ pfx.toNat := by
   rw [rlpPrefixLenOfLen_pos_iff_longClass,
     classifyPrefix_longBytes_iff, classifyPrefix_longList_iff]
 
+/--
+@isnad1 id=lt.0h1v.s3.0f7463688167 from=translated src=- shape=b9369acb vocab=a7689b3d
+-/
 theorem rlpPrefixLongBytesHeaderBytes_pos (pfx : Byte) :
     0 < rlpPrefixLongBytesHeaderBytes pfx := by
   unfold rlpPrefixLongBytesHeaderBytes
   omega
 
+/--
+@isnad1 id=le.1h1v.s4.e64039fc9537 from=translated src=- shape=b814d1b5 vocab=0b89bace
+-/
 theorem rlpPrefixLongBytesHeaderBytes_le_9_of_class {pfx : Byte}
     (h : classifyPrefix pfx = .longBytes) :
     rlpPrefixLongBytesHeaderBytes pfx ≤ 9 := by
@@ -290,17 +365,26 @@ theorem rlpPrefixLongBytesHeaderBytes_le_9_of_class {pfx : Byte}
   have h_len := rlpPrefixLongBytesLenOfLen_le_8_of_class h
   omega
 
+/--
+@isnad1 id=eq.0h1v.s4.883f85dfde73 from=translated src=- shape=cd2b45a8 vocab=1aace835
+-/
 theorem rlpPrefixLongBytesHeaderBytes_eq_lenOfLen_add_one (pfx : Byte) :
     rlpPrefixLongBytesHeaderBytes pfx =
       rlpPrefixLongBytesLenOfLen pfx + 1 := by
   unfold rlpPrefixLongBytesHeaderBytes
   omega
 
+/--
+@isnad1 id=lt.0h1v.s3.86847ee4d340 from=translated src=- shape=b9369acb vocab=7dbc5c1b
+-/
 theorem rlpPrefixLongListHeaderBytes_pos (pfx : Byte) :
     0 < rlpPrefixLongListHeaderBytes pfx := by
   unfold rlpPrefixLongListHeaderBytes
   omega
 
+/--
+@isnad1 id=le.1h1v.s4.95751487d432 from=translated src=- shape=b814d1b5 vocab=7c5f380f
+-/
 theorem rlpPrefixLongListHeaderBytes_le_9_of_class {pfx : Byte}
     (h : classifyPrefix pfx = .longList) :
     rlpPrefixLongListHeaderBytes pfx ≤ 9 := by
@@ -308,42 +392,63 @@ theorem rlpPrefixLongListHeaderBytes_le_9_of_class {pfx : Byte}
   have h_len := rlpPrefixLongListLenOfLen_le_8_of_class h
   omega
 
+/--
+@isnad1 id=eq.0h1v.s4.be64135392fe from=translated src=- shape=cd2b45a8 vocab=cc6e93f1
+-/
 theorem rlpPrefixLongListHeaderBytes_eq_lenOfLen_add_one (pfx : Byte) :
     rlpPrefixLongListHeaderBytes pfx =
       rlpPrefixLongListLenOfLen pfx + 1 := by
   unfold rlpPrefixLongListHeaderBytes
   omega
 
+/--
+@isnad1 id=eq.1h1v.s4.84128e64d8a1 from=translated src=- shape=e6b9d3ca vocab=0c0b714c
+-/
 theorem rlpPrefixHeaderBytes_eq_zero_of_singleByte {pfx : Byte}
     (h : classifyPrefix pfx = .singleByte) :
     rlpPrefixHeaderBytes pfx = 0 := by
   unfold rlpPrefixHeaderBytes
   rw [h]
 
+/--
+@isnad1 id=eq.1h1v.s4.c7251b3d184e from=translated src=- shape=e6b9d3ca vocab=66453dca
+-/
 theorem rlpPrefixHeaderBytes_eq_one_of_shortBytes {pfx : Byte}
     (h : classifyPrefix pfx = .shortBytes) :
     rlpPrefixHeaderBytes pfx = 1 := by
   unfold rlpPrefixHeaderBytes
   rw [h]
 
+/--
+@isnad1 id=eq.1h1v.s3.3dca36d3c339 from=translated src=- shape=a45c35a6 vocab=ad1fd3fa
+-/
 theorem rlpPrefixHeaderBytes_eq_longBytesHeader_of_longBytes {pfx : Byte}
     (h : classifyPrefix pfx = .longBytes) :
     rlpPrefixHeaderBytes pfx = rlpPrefixLongBytesHeaderBytes pfx := by
   unfold rlpPrefixHeaderBytes
   rw [h]
 
+/--
+@isnad1 id=eq.1h1v.s4.ef9b635c713c from=translated src=- shape=e6b9d3ca vocab=285c2406
+-/
 theorem rlpPrefixHeaderBytes_eq_one_of_shortList {pfx : Byte}
     (h : classifyPrefix pfx = .shortList) :
     rlpPrefixHeaderBytes pfx = 1 := by
   unfold rlpPrefixHeaderBytes
   rw [h]
 
+/--
+@isnad1 id=eq.1h1v.s3.7d71fa85175c from=translated src=- shape=a45c35a6 vocab=ec7d5913
+-/
 theorem rlpPrefixHeaderBytes_eq_longListHeader_of_longList {pfx : Byte}
     (h : classifyPrefix pfx = .longList) :
     rlpPrefixHeaderBytes pfx = rlpPrefixLongListHeaderBytes pfx := by
   unfold rlpPrefixHeaderBytes
   rw [h]
 
+/--
+@isnad1 id=le.0h1v.s3.4b841afc9f5b from=translated src=- shape=a311c14d vocab=ac01a3ec
+-/
 theorem rlpPrefixHeaderBytes_le_9 (pfx : Byte) :
     rlpPrefixHeaderBytes pfx ≤ 9 := by
   unfold rlpPrefixHeaderBytes
@@ -351,30 +456,45 @@ theorem rlpPrefixHeaderBytes_le_9 (pfx : Byte) :
   · exact rlpPrefixLongBytesHeaderBytes_le_9_of_class h
   · exact rlpPrefixLongListHeaderBytes_le_9_of_class h
 
+/--
+@isnad1 id=lt.1h1v.s4.f086aa409e8b from=translated src=- shape=779b4580 vocab=e66093b3
+-/
 theorem rlpPrefixHeaderBytes_pos_of_shortBytes {pfx : Byte}
     (h : classifyPrefix pfx = .shortBytes) :
     0 < rlpPrefixHeaderBytes pfx := by
   rw [rlpPrefixHeaderBytes_eq_one_of_shortBytes h]
   omega
 
+/--
+@isnad1 id=lt.1h1v.s4.f567cdc69aa0 from=translated src=- shape=779b4580 vocab=2b1b3cc9
+-/
 theorem rlpPrefixHeaderBytes_pos_of_longBytes {pfx : Byte}
     (h : classifyPrefix pfx = .longBytes) :
     0 < rlpPrefixHeaderBytes pfx := by
   rw [rlpPrefixHeaderBytes_eq_longBytesHeader_of_longBytes h]
   exact rlpPrefixLongBytesHeaderBytes_pos pfx
 
+/--
+@isnad1 id=lt.1h1v.s4.841c08951904 from=translated src=- shape=779b4580 vocab=8dc5b346
+-/
 theorem rlpPrefixHeaderBytes_pos_of_shortList {pfx : Byte}
     (h : classifyPrefix pfx = .shortList) :
     0 < rlpPrefixHeaderBytes pfx := by
   rw [rlpPrefixHeaderBytes_eq_one_of_shortList h]
   omega
 
+/--
+@isnad1 id=lt.1h1v.s4.6f59b5ea4492 from=translated src=- shape=779b4580 vocab=778b6199
+-/
 theorem rlpPrefixHeaderBytes_pos_of_longList {pfx : Byte}
     (h : classifyPrefix pfx = .longList) :
     0 < rlpPrefixHeaderBytes pfx := by
   rw [rlpPrefixHeaderBytes_eq_longListHeader_of_longList h]
   exact rlpPrefixLongListHeaderBytes_pos pfx
 
+/--
+@isnad1 id=lt.1h1v.s4.defc42faee43 from=translated src=- shape=779b4580 vocab=edad91f5
+-/
 theorem rlpPrefixHeaderBytes_pos_of_not_singleByte {pfx : Byte}
     (h : classifyPrefix pfx ≠ .singleByte) :
     0 < rlpPrefixHeaderBytes pfx := by
@@ -385,6 +505,9 @@ theorem rlpPrefixHeaderBytes_pos_of_not_singleByte {pfx : Byte}
   · exact rlpPrefixHeaderBytes_pos_of_shortList h_class
   · exact rlpPrefixHeaderBytes_pos_of_longList h_class
 
+/--
+@isnad1 id=iff.0h1v.s4.807fbb1ab2d8 from=translated src=- shape=49c34f90 vocab=0c0b714c
+-/
 theorem rlpPrefixHeaderBytes_eq_zero_iff_singleByte (pfx : Byte) :
     rlpPrefixHeaderBytes pfx = 0 ↔ classifyPrefix pfx = .singleByte := by
   constructor
@@ -402,11 +525,17 @@ theorem rlpPrefixHeaderBytes_eq_zero_iff_singleByte (pfx : Byte) :
   · intro h
     exact rlpPrefixHeaderBytes_eq_zero_of_singleByte h
 
+/--
+@isnad1 id=iff.0h1v.s4.d1fde22bf920 from=translated src=- shape=8bf9dda8 vocab=2f710257
+-/
 theorem rlpPrefixHeaderBytes_eq_zero_iff_lt_0x80 (pfx : Byte) :
     rlpPrefixHeaderBytes pfx = 0 ↔ pfx.toNat < 0x80 := by
   rw [rlpPrefixHeaderBytes_eq_zero_iff_singleByte,
     classifyPrefix_singleByte_iff]
 
+/--
+@isnad1 id=iff.0h1v.s4.6ea279a34e67 from=translated src=- shape=34f07733 vocab=edad91f5
+-/
 theorem rlpPrefixHeaderBytes_pos_iff_not_singleByte (pfx : Byte) :
     0 < rlpPrefixHeaderBytes pfx ↔ classifyPrefix pfx ≠ .singleByte := by
   constructor
@@ -416,6 +545,9 @@ theorem rlpPrefixHeaderBytes_pos_iff_not_singleByte (pfx : Byte) :
   · intro h
     exact rlpPrefixHeaderBytes_pos_of_not_singleByte h
 
+/--
+@isnad1 id=iff.0h1v.s4.5e174d906035 from=translated src=- shape=5a1b1106 vocab=8cbcc05c
+-/
 theorem rlpPrefixHeaderBytes_pos_iff_ge_0x80 (pfx : Byte) :
     0 < rlpPrefixHeaderBytes pfx ↔ 0x80 ≤ pfx.toNat := by
   rw [rlpPrefixHeaderBytes_pos_iff_not_singleByte]
@@ -429,6 +561,9 @@ theorem rlpPrefixHeaderBytes_pos_iff_ge_0x80 (pfx : Byte) :
     have h_lt := (classifyPrefix_singleByte_iff pfx).mp h_single
     omega
 
+/--
+@isnad1 id=iff.0h1v.s4.200db2c0241b from=translated src=- shape=7502505b vocab=4a295089
+-/
 theorem rlpPrefixHeaderBytes_eq_one_iff_shortClass (pfx : Byte) :
     rlpPrefixHeaderBytes pfx = 1 ↔
       classifyPrefix pfx = .shortBytes ∨ classifyPrefix pfx = .shortList := by
@@ -452,6 +587,9 @@ theorem rlpPrefixHeaderBytes_eq_one_iff_shortClass (pfx : Byte) :
     · exact rlpPrefixHeaderBytes_eq_one_of_shortBytes h_shortBytes
     · exact rlpPrefixHeaderBytes_eq_one_of_shortList h_shortList
 
+/--
+@isnad1 id=iff.0h1v.s6.79a78c48614a from=translated src=- shape=62c9bfea vocab=007d2111
+-/
 theorem rlpPrefixHeaderBytes_eq_one_iff_short_ranges (pfx : Byte) :
     rlpPrefixHeaderBytes pfx = 1 ↔
       (0x80 ≤ pfx.toNat ∧ pfx.toNat ≤ 0xB7) ∨
@@ -459,6 +597,9 @@ theorem rlpPrefixHeaderBytes_eq_one_iff_short_ranges (pfx : Byte) :
   rw [rlpPrefixHeaderBytes_eq_one_iff_shortClass,
     classifyPrefix_shortBytes_iff, classifyPrefix_shortList_iff]
 
+/--
+@isnad1 id=iff.0h1v.s6.3caf72eb7d72 from=translated src=- shape=af90d5ac vocab=8cbcc05c
+-/
 theorem rlpPrefixHeaderBytes_pos_and_le_one_iff_short_ranges (pfx : Byte) :
     0 < rlpPrefixHeaderBytes pfx ∧ rlpPrefixHeaderBytes pfx ≤ 1 ↔
       (0x80 ≤ pfx.toNat ∧ pfx.toNat ≤ 0xB7) ∨
@@ -470,6 +611,9 @@ theorem rlpPrefixHeaderBytes_pos_and_le_one_iff_short_ranges (pfx : Byte) :
     have h_one := (rlpPrefixHeaderBytes_eq_one_iff_short_ranges pfx).mpr h_short
     omega
 
+/--
+@isnad1 id=iff.0h1v.s4.e5149d922f28 from=translated src=- shape=3d9b48c0 vocab=307c1cd9
+-/
 theorem rlpPrefixHeaderBytes_ge_two_iff_longClass (pfx : Byte) :
     2 ≤ rlpPrefixHeaderBytes pfx ↔
       classifyPrefix pfx = .longBytes ∨ classifyPrefix pfx = .longList := by
@@ -495,6 +639,9 @@ theorem rlpPrefixHeaderBytes_ge_two_iff_longClass (pfx : Byte) :
       unfold rlpPrefixLongListHeaderBytes
       omega
 
+/--
+@isnad1 id=iff.0h1v.s5.33feac8b607c from=translated src=- shape=757a0bd5 vocab=007d2111
+-/
 theorem rlpPrefixHeaderBytes_ge_two_iff_long_ranges (pfx : Byte) :
     2 ≤ rlpPrefixHeaderBytes pfx ↔
       (0xB8 ≤ pfx.toNat ∧ pfx.toNat ≤ 0xBF) ∨
@@ -502,6 +649,9 @@ theorem rlpPrefixHeaderBytes_ge_two_iff_long_ranges (pfx : Byte) :
   rw [rlpPrefixHeaderBytes_ge_two_iff_longClass,
     classifyPrefix_longBytes_iff, classifyPrefix_longList_iff]
 
+/--
+@isnad1 id=iff.0h1v.s5.c7a151d4226f from=translated src=- shape=9c004c96 vocab=8cbcc05c
+-/
 theorem rlpPrefixHeaderBytes_lt_two_iff_non_long_ranges (pfx : Byte) :
     rlpPrefixHeaderBytes pfx < 2 ↔
       pfx.toNat < 0xB8 ∨
@@ -536,6 +686,9 @@ theorem rlpPrefixHeaderBytes_lt_two_iff_non_long_ranges (pfx : Byte) :
     · rcases h_long_ranges with h_long_bytes | h_long_list <;> omega
     · rcases h_long_ranges with h_long_bytes | h_long_list <;> omega
 
+/--
+@isnad1 id=iff.0h1v.s5.c72f959a0b2b from=translated src=- shape=b30dd8d6 vocab=8cbcc05c
+-/
 theorem rlpPrefixHeaderBytes_le_one_iff_non_long_ranges (pfx : Byte) :
     rlpPrefixHeaderBytes pfx ≤ 1 ↔
       pfx.toNat < 0xB8 ∨
@@ -548,6 +701,9 @@ theorem rlpPrefixHeaderBytes_le_one_iff_non_long_ranges (pfx : Byte) :
       (rlpPrefixHeaderBytes_lt_two_iff_non_long_ranges pfx).mpr h_non_long
     omega
 
+/--
+@isnad1 id=iff.0h1v.s6.30590e03a00a from=translated src=- shape=a720a275 vocab=8cbcc05c
+-/
 theorem rlpPrefixHeaderBytes_eq_zero_or_one_iff_non_long_ranges (pfx : Byte) :
     rlpPrefixHeaderBytes pfx = 0 ∨ rlpPrefixHeaderBytes pfx = 1 ↔
       pfx.toNat < 0xB8 ∨
@@ -559,6 +715,9 @@ theorem rlpPrefixHeaderBytes_eq_zero_or_one_iff_non_long_ranges (pfx : Byte) :
   · intro h_le
     omega
 
+/--
+@isnad1 id=or.0h1v.s5.cc40834bf1ee from=translated src=- shape=d4a4c7f7 vocab=ac01a3ec
+-/
 theorem rlpPrefixHeaderBytes_eq_zero_or_one_or_ge_two (pfx : Byte) :
     rlpPrefixHeaderBytes pfx = 0 ∨
       rlpPrefixHeaderBytes pfx = 1 ∨

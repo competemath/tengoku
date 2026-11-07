@@ -40,7 +40,9 @@ def savedRaRetOff : Nat := 280
     divider callable starts here.-/
 def wrapperEndOff : Nat := 284
 
-/-- Bundled byte offsets for the concrete SDIV wrapper layout.-/
+/-- Bundled byte offsets for the concrete SDIV wrapper layout.
+@isnad1 id=and.0h0v.s6.d7ab1e9db030 from=translated src=- shape=0b7a5372 vocab=c38b2f86
+-/
 theorem sdiv_wrapper_block_byte_offsets :
     saveRaOff = 0 ∧
     dividendSignOff = 4 ∧
@@ -56,7 +58,9 @@ theorem sdiv_wrapper_block_byte_offsets :
     signXorOff divCallOff resultSignFixOff savedRaRetOff wrapperEndOff
   decide
 
-/-- Successive fall-through byte offsets for the concrete SDIV wrapper.-/
+/-- Successive fall-through byte offsets for the concrete SDIV wrapper.
+@isnad1 id=and.0h0v.s7.e48fb5f90ace from=translated src=- shape=c356ef2e vocab=bcc1bb6d
+-/
 theorem sdiv_wrapper_fallthrough_offsets :
     saveRaOff + 4 = dividendSignOff ∧
     dividendSignOff + 8 = divisorSignOff ∧

@@ -36,6 +36,9 @@ def decodeLengthField? (bs : List Byte) (n : Nat) :
   let (lenVal, rest) ← readLength bs n
   some { length := lenVal, rest := rest }
 
+/--
+@isnad1 id=iff.0h4v.s5.2d3ac6fafc41 from=translated src=- shape=27a15e7e vocab=84597c50
+-/
 theorem decodeLengthField?_eq_some_iff
     {bs : List Byte} {n lenVal : Nat} {rest : List Byte} :
     decodeLengthField? bs n = some { length := lenVal, rest := rest } ↔

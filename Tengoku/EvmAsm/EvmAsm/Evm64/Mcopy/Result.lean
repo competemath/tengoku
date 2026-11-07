@@ -54,7 +54,9 @@ def mcopyBwdContent (mem copied : List α) (destOff len k : Nat) : List α :=
   mem.take (destOff + len - k) ++ copied.drop (len - k) ++ mem.drop (destOff + len)
 
 /-- Element `i` of the source slice `(mem.drop srcOff).take len` is the original
-    byte `mem[srcOff+i]`.-/
+    byte `mem[srcOff+i]`.
+@isnad1 id=eq.2h5v.s6.8b36ac3b745f from=translated src=- shape=0269f81e vocab=6b5e11af
+-/
 theorem sourceSlice_getElem (mem : List α) (srcOff len i : Nat)
     (h_i : i < len) (h_fits : srcOff + len ≤ mem.length) :
     ((mem.drop srcOff).take len)[i]'(by rw [List.length_take, List.length_drop]; omega)
@@ -63,6 +65,9 @@ theorem sourceSlice_getElem (mem : List α) (srcOff len i : Nat)
 
 /-! ## Forward content -/
 
+/--
+@isnad1 id=eq.2h5v.s5.c7d7d0210e2d from=translated src=- shape=f269647e vocab=24f28581
+-/
 theorem mcopyFwdContent_length (mem copied : List α) (destOff i : Nat)
     (h_i : i ≤ copied.length) (h_win : destOff + copied.length ≤ mem.length) :
     (mcopyFwdContent mem copied destOff i).length = mem.length := by
@@ -72,7 +77,9 @@ theorem mcopyFwdContent_length (mem copied : List α) (destOff i : Nat)
 
 /-- Element characterization of the forward content: index `j` reads the copied
     slice inside the written window `[destOff, destOff+i)` (at `copied[j-destOff]`)
-    and the original `mem` elsewhere.-/
+    and the original `mem` elsewhere.
+@isnad1 id=eq.3h6v.s7.3e768bd43649 from=translated src=- shape=0abb7aab vocab=8bca48fa
+-/
 theorem mcopyFwdContent_getElem (mem copied : List α) (destOff i j : Nat)
     (h_i : i ≤ copied.length) (h_win : destOff + copied.length ≤ mem.length)
     (hj : j < mem.length) :
@@ -101,7 +108,9 @@ theorem mcopyFwdContent_getElem (mem copied : List α) (destOff i j : Nat)
       congr 1
       omega
 
-/-- At `i = 0` the forward content is untouched.-/
+/-- At `i = 0` the forward content is untouched.
+@isnad1 id=eq.1h4v.s5.d37e32d53022 from=translated src=- shape=f08b921c vocab=24f28581
+-/
 theorem mcopyFwdContent_zero (mem copied : List α) (destOff : Nat)
     (h_win : destOff + copied.length ≤ mem.length) :
     mcopyFwdContent mem copied destOff 0 = mem := by
@@ -112,14 +121,18 @@ theorem mcopyFwdContent_zero (mem copied : List α) (destOff : Nat)
       rw [mcopyFwdContent_length mem copied destOff 0 (by omega) h_win] at hj; exact hj
     rw [mcopyFwdContent_getElem mem copied destOff 0 j (by omega) h_win hjm, dite_eq_right (by omega)]
 
-/-- At `i = copied.length` the forward window holds all of `copied`.-/
+/-- At `i = copied.length` the forward window holds all of `copied`.
+@isnad1 id=eq.0h4v.s6.b594081c3276 from=translated src=- shape=4e319d52 vocab=3a267bce
+-/
 theorem mcopyFwdContent_full (mem copied : List α) (destOff : Nat) :
     mcopyFwdContent mem copied destOff copied.length
       = mem.take destOff ++ copied ++ mem.drop (destOff + copied.length) := by
   simp only [mcopyFwdContent, List.take_length]
 
 /-- Writing `copied[i]` at index `destOff+i` advances the forward window from the
-    `i`-prefix to the `(i+1)`-prefix.-/
+    `i`-prefix to the `(i+1)`-prefix.
+@isnad1 id=eq.3h6v.s6.efe4f7647afa from=translated src=- shape=d5bff8fd vocab=773bb3e5
+-/
 theorem mcopyFwdContent_set (mem copied : List α) (destOff i : Nat) (v : α)
     (h_i : i < copied.length) (h_win : destOff + copied.length ≤ mem.length)
     (h_v : v = copied[i]) :
@@ -151,7 +164,9 @@ theorem mcopyFwdContent_set (mem copied : List α) (destOff i : Nat) (v : α)
 /-- **Forward read-sees-original.** When the runtime chose the forward loop —
     `destOff ≤ srcOff` (dest at/before src) or `srcOff + len ≤ destOff`
     (disjoint) — the byte at source index `srcOff+i` in the `i`-step forward
-    content is still the original `mem[srcOff+i]`.-/
+    content is still the original `mem[srcOff+i]`.
+@isnad1 id=eq.5h7v.s7.35abf164aee2 from=translated src=- shape=1644b760 vocab=9787fb37
+-/
 theorem mcopyFwdContent_getElem_src (mem copied : List α) (destOff srcOff len i : Nat)
     (h_i : i < len) (h_clen : copied.length = len)
     (h_win : destOff + len ≤ mem.length) (h_sfits : srcOff + len ≤ mem.length)
@@ -166,6 +181,9 @@ theorem mcopyFwdContent_getElem_src (mem copied : List α) (destOff srcOff len i
 
 /-! ## Backward content -/
 
+/--
+@isnad1 id=eq.3h6v.s5.da29b6984095 from=translated src=- shape=d5b4fdbc vocab=9ddeea61
+-/
 theorem mcopyBwdContent_length (mem copied : List α) (destOff len k : Nat)
     (h_k : k ≤ len) (h_clen : copied.length = len)
     (h_win : destOff + len ≤ mem.length) :
@@ -176,7 +194,9 @@ theorem mcopyBwdContent_length (mem copied : List α) (destOff len k : Nat)
 
 /-- Element characterization of the backward content: index `j` reads the copied
     slice inside the written suffix window `[destOff+len-k, destOff+len)` (at
-    `copied[j-destOff]`) and the original `mem` elsewhere.-/
+    `copied[j-destOff]`) and the original `mem` elsewhere.
+@isnad1 id=eq.4h7v.s8.f2a7fef4e54f from=translated src=- shape=9f1a30f8 vocab=2f043344
+-/
 theorem mcopyBwdContent_getElem (mem copied : List α) (destOff len k j : Nat)
     (h_k : k ≤ len) (h_clen : copied.length = len)
     (h_win : destOff + len ≤ mem.length) (hj : j < mem.length) :
@@ -206,7 +226,9 @@ theorem mcopyBwdContent_getElem (mem copied : List α) (destOff len k j : Nat)
       congr 1
       omega
 
-/-- At `k = 0` the backward content is untouched.-/
+/-- At `k = 0` the backward content is untouched.
+@isnad1 id=eq.2h5v.s5.b5f65974722b from=translated src=- shape=adbeb012 vocab=9ddeea61
+-/
 theorem mcopyBwdContent_zero (mem copied : List α) (destOff len : Nat)
     (h_clen : copied.length = len) (h_win : destOff + len ≤ mem.length) :
     mcopyBwdContent mem copied destOff len 0 = mem := by
@@ -219,14 +241,18 @@ theorem mcopyBwdContent_zero (mem copied : List α) (destOff len : Nat)
     rw [mcopyBwdContent_getElem mem copied destOff len 0 j (by omega) h_clen h_win hjm,
         dite_eq_right (by omega)]
 
-/-- At `k = len` the backward window holds all of `copied`.-/
+/-- At `k = len` the backward window holds all of `copied`.
+@isnad1 id=eq.0h5v.s5.cb8270712650 from=translated src=- shape=c6321ee5 vocab=fe4d4049
+-/
 theorem mcopyBwdContent_full (mem copied : List α) (destOff len : Nat) :
     mcopyBwdContent mem copied destOff len len
       = mem.take destOff ++ copied ++ mem.drop (destOff + len) := by
   simp only [mcopyBwdContent, Nat.sub_self, List.drop_zero, Nat.add_sub_cancel]
 
 /-- Writing `copied[len-1-k]` at index `destOff+len-1-k` advances the backward
-    window from the `k`-suffix to the `(k+1)`-suffix.-/
+    window from the `k`-suffix to the `(k+1)`-suffix.
+@isnad1 id=eq.4h7v.s7.5b7003c291ce from=translated src=- shape=c140a5a6 vocab=9953fcfe
+-/
 theorem mcopyBwdContent_set (mem copied : List α) (destOff len k : Nat) (v : α)
     (h_k : k < len) (h_clen : copied.length = len)
     (h_win : destOff + len ≤ mem.length) (h_v : v = copied[len - 1 - k]'(by omega)) :
@@ -260,7 +286,9 @@ theorem mcopyBwdContent_set (mem copied : List α) (destOff len k : Nat) (v : α
     `srcOff < destOff` (dest strictly after src, the genuine forward-overlap
     case; here `srcOff ≤ destOff` suffices) — the byte at source index
     `srcOff+len-1-k` in the `k`-step backward content is still the original
-    `mem[srcOff+len-1-k]`.-/
+    `mem[srcOff+len-1-k]`.
+@isnad1 id=eq.5h7v.s7.2ad3722a3a0b from=translated src=- shape=8e76f601 vocab=88176877
+-/
 theorem mcopyBwdContent_getElem_src (mem copied : List α) (destOff srcOff len k : Nat)
     (h_k : k < len) (h_clen : copied.length = len)
     (h_win : destOff + len ≤ mem.length) (h_sfits : srcOff + len ≤ mem.length)
@@ -274,12 +302,17 @@ theorem mcopyBwdContent_getElem_src (mem copied : List α) (destOff srcOff len k
 
 /-! ## Reference result -/
 
+/--
+@isnad1 id=eq.0h5v.s6.72cb80a2826c from=translated src=- shape=6c3b45e7 vocab=d72319b6
+-/
 theorem mcopyResult_eq (mem : List α) (destOff srcOff len : Nat) :
     mcopyResult mem destOff srcOff len
       = mem.take destOff ++ (mem.drop srcOff).take len ++ mem.drop (destOff + len) :=
   rfl
 
-/-- The memmove result preserves the buffer length.-/
+/-- The memmove result preserves the buffer length.
+@isnad1 id=eq.2h5v.s5.84a4ebdf64f3 from=translated src=- shape=c70eac89 vocab=ed18da35
+-/
 theorem mcopyResult_length (mem : List α) (destOff srcOff len : Nat)
     (h_win : destOff + len ≤ mem.length) (h_sfits : srcOff + len ≤ mem.length) :
     (mcopyResult mem destOff srcOff len).length = mem.length := by
@@ -287,14 +320,18 @@ theorem mcopyResult_length (mem : List α) (destOff srcOff len : Nat)
   omega
 
 /-- Both directions land on `mcopyResult` once `copied` is the source slice:
-    the shared full-window shape equals `mcopyResult`.-/
+    the shared full-window shape equals `mcopyResult`.
+@isnad1 id=eq.1h6v.s6.f31853bb0f6e from=translated src=- shape=de7802f5 vocab=d72319b6
+-/
 theorem full_eq_mcopyResult (mem copied : List α) (destOff srcOff len : Nat)
     (h_copied : copied = (mem.drop srcOff).take len) :
     mem.take destOff ++ copied ++ mem.drop (destOff + len)
       = mcopyResult mem destOff srcOff len := by
   rw [h_copied, mcopyResult]
 
-/-- Forward loop endpoint (`i = len`) is `mcopyResult`.-/
+/-- Forward loop endpoint (`i = len`) is `mcopyResult`.
+@isnad1 id=eq.2h6v.s5.569f47bebd88 from=translated src=- shape=05386836 vocab=94b37656
+-/
 theorem mcopyFwdContent_result (mem copied : List α) (destOff srcOff len : Nat)
     (hclen : copied.length = len) (h_copied : copied = (mem.drop srcOff).take len) :
     mcopyFwdContent mem copied destOff len = mcopyResult mem destOff srcOff len := by
@@ -302,7 +339,9 @@ theorem mcopyFwdContent_result (mem copied : List α) (destOff srcOff len : Nat)
   rw [mcopyFwdContent, htk]
   exact full_eq_mcopyResult mem copied destOff srcOff len h_copied
 
-/-- Backward loop endpoint (`k = len`) is `mcopyResult`.-/
+/-- Backward loop endpoint (`k = len`) is `mcopyResult`.
+@isnad1 id=eq.1h6v.s5.cd9b22ddb538 from=translated src=- shape=d578cdc9 vocab=c201d290
+-/
 theorem mcopyBwdContent_result (mem copied : List α) (destOff srcOff len : Nat)
     (h_copied : copied = (mem.drop srcOff).take len) :
     mcopyBwdContent mem copied destOff len len = mcopyResult mem destOff srcOff len := by

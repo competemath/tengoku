@@ -36,14 +36,23 @@ def pointBytesList (point : PointBytes) : List Byte :=
 def outputBytesList (output : AcceleratorOutput) : List Byte :=
   pointBytesList output.result
 
+/--
+@isnad1 id=eq.0h1v.s3.f344b17ae7c7 from=translated src=- shape=8e1bdd70 vocab=06cc5b5c
+-/
 theorem pointBytesList_length (point : PointBytes) :
     (pointBytesList point).length = 64 := by
   simp [pointBytesList]
 
+/--
+@isnad1 id=eq.0h1v.s3.cbe821b62f12 from=translated src=- shape=8e1bdd70 vocab=9da8827a
+-/
 theorem outputBytesList_length (output : AcceleratorOutput) :
     (outputBytesList output).length = 64 := by
   simp [outputBytesList, pointBytesList_length]
 
+/--
+@isnad1 id=eq.0h1v.s3.66b40133df1b from=translated src=- shape=38bf8af6 vocab=3f11ec4f
+-/
 theorem outputBytesList_eq (output : AcceleratorOutput) :
     outputBytesList output = pointBytesList output.result := rfl
 

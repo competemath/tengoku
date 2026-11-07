@@ -62,7 +62,9 @@ def ofContent? (content : List Byte) : Option RlpUint :=
   else
     none
 
-/-- A canonical scalar's content is recovered by re-encoding its value.-/
+/-- A canonical scalar's content is recovered by re-encoding its value.
+@isnad1 id=eq.0h1v.s3.889206bd020b from=translated src=- shape=d403cf25 vocab=1257dc4b
+-/
 theorem content_eq_toBytesBE (u : RlpUint) :
     Nat.toBytesBE u.value = u.content := by
   exact Nat.toBytesBE_fromBytesBE_of_canonical u.content u.canonical
@@ -77,18 +79,28 @@ def ofNat (n : Nat) : RlpUint :=
       rw [hbytes]
       simpa [isCanonicalUintContent] using hb⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.0db2dd782a80 from=translated src=- shape=d403cf25 vocab=7aed6db2
+-/
 @[simp] theorem ofNat_content (n : Nat) : (ofNat n).content = Nat.toBytesBE n :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.5f62bb814f09 from=translated src=- shape=47dcad53 vocab=04ab6421
+-/
 @[simp] theorem ofNat_value (n : Nat) : (ofNat n).value = n := by
   simp [ofNat, value, Nat.fromBytesBE_toBytesBE]
 
-/-- A `k`-byte content value is strictly below `256^k`.-/
+/-- A `k`-byte content value is strictly below `256^k`.
+@isnad1 id=lt.0h1v.s4.17f3544eb943 from=translated src=- shape=9fc36aa0 vocab=5ecc9b34
+-/
 theorem value_lt_pow_width (u : RlpUint) :
     u.value < 256 ^ u.width := by
   exact Nat.fromBytesBE_lt u.content
 
-/-- A scalar with at most 32 content bytes is strictly below `2^256`.-/
+/-- A scalar with at most 32 content bytes is strictly below `2^256`.
+@isnad1 id=lt.1h1v.s5.efb3e3b54fd9 from=translated src=- shape=fdf25a47 vocab=98c77507
+-/
 theorem value_lt_u256_modulus (u : RlpUint) (h : u.fitsU256) :
     u.value < 2 ^ 256 := by
   change Nat.fromBytesBE u.content < 2 ^ 256
@@ -111,6 +123,9 @@ def toU256 (u : RlpUint) (h : u.fitsU256) : BitVec 256 :=
   else
     False.elim (h' (by simpa [fitsU256] using h))
 
+/--
+@isnad1 id=eq.1h1v.s4.93765e6d5d1a from=translated src=- shape=2faba509 vocab=bbd43b6b
+-/
 @[simp] theorem toU256_toNat (u : RlpUint) (h : u.fitsU256) :
     (u.toU256 h).toNat = u.value := by
   have hlen : u.width ≤ 32 := by simpa [fitsU256] using h

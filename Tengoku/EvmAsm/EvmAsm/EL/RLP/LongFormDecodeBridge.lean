@@ -23,7 +23,9 @@ abbrev LengthFieldResult := ReadLengthBridge.LengthFieldResult
 /--
 Long byte-string branch expressed through the packaged length-field result.
 
-Distinctive token: RLP.LongFormDecodeBridge.decodeAux_long_bytes_lengthField #120.-/
+Distinctive token: RLP.LongFormDecodeBridge.decodeAux_long_bytes_lengthField #120.
+@isnad1 id=eq.2h4v.s6.e213ce54b805 from=translated src=- shape=93292445 vocab=49681a41
+-/
 theorem decodeAux_long_bytes_lengthField
     (fuel : Nat) (pfx : Byte) (rest : List Byte)
     (lengthField : LengthFieldResult)
@@ -45,6 +47,9 @@ theorem decodeAux_long_bytes_lengthField
       · simp [h_read, h_short]
         cases takeBytes rest' lenVal <;> rfl
 
+/--
+@isnad1 id=eq.2h3v.s5.5ef42f6ef6ff from=translated src=- shape=c9d029db vocab=67c37b39
+-/
 theorem decodeAux_long_bytes_lengthField_none
     (fuel : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .longBytes)
@@ -57,6 +62,9 @@ theorem decodeAux_long_bytes_lengthField_none
   | none => rfl
   | some decoded => simp [h_read] at h_len
 
+/--
+@isnad1 id=eq.3h4v.s6.1584cf528c34 from=translated src=- shape=6db9dcaf vocab=2c9ed259
+-/
 theorem decodeAux_long_bytes_lengthField_short_rejected
     (fuel : Nat) (pfx : Byte) (rest : List Byte)
     (lengthField : LengthFieldResult)
@@ -68,6 +76,9 @@ theorem decodeAux_long_bytes_lengthField_short_rejected
   rw [decodeAux_long_bytes_lengthField fuel pfx rest lengthField h_class h_len]
   simp [h_short]
 
+/--
+@isnad1 id=eq.4h6v.s6.593a6696b32f from=translated src=- shape=d9480c39 vocab=8fa7ae84
+-/
 theorem decodeAux_long_bytes_lengthField_payload
     (fuel : Nat) (pfx : Byte) (rest data rest'' : List Byte)
     (lengthField : LengthFieldResult)
@@ -81,7 +92,9 @@ theorem decodeAux_long_bytes_lengthField_payload
   rw [decodeAux_long_bytes_lengthField fuel pfx rest lengthField h_class h_len]
   simp [h_long, h_take]
 
-/-- Long list branch expressed through the packaged length-field result.-/
+/-- Long list branch expressed through the packaged length-field result.
+@isnad1 id=eq.2h4v.s7.e8965a5d1970 from=translated src=- shape=48593232 vocab=4913d062
+-/
 theorem decodeAux_long_list_lengthField
     (fuel : Nat) (pfx : Byte) (rest : List Byte)
     (lengthField : LengthFieldResult)
@@ -122,7 +135,9 @@ Long list branch expressed through both the packaged length-field result and
 the list-payload decoder bridge.
 
 Distinctive token:
-LongFormDecodeBridge.decodeAux_long_list_lengthField_decodeListPayload #120.-/
+LongFormDecodeBridge.decodeAux_long_list_lengthField_decodeListPayload #120.
+@isnad1 id=eq.2h4v.s7.b24ff25b5f60 from=translated src=- shape=af44a109 vocab=d5968292
+-/
 theorem decodeAux_long_list_lengthField_decodeListPayload
     (fuel : Nat) (pfx : Byte) (rest : List Byte)
     (lengthField : LengthFieldResult)
@@ -153,6 +168,9 @@ theorem decodeAux_long_list_lengthField_decodeListPayload
                 | mk items leftover =>
                     cases leftover <;> simp [ListDecodeBridge.decodeListPayload, h_decode]
 
+/--
+@isnad1 id=eq.2h3v.s5.2b8d4ae3aa85 from=translated src=- shape=c9d029db vocab=1b141389
+-/
 theorem decodeAux_long_list_lengthField_none
     (fuel : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .longList)
@@ -165,6 +183,9 @@ theorem decodeAux_long_list_lengthField_none
   | none => rfl
   | some decoded => simp [h_read] at h_len
 
+/--
+@isnad1 id=eq.3h4v.s6.69b426c4f453 from=translated src=- shape=6db9dcaf vocab=e8031e68
+-/
 theorem decodeAux_long_list_lengthField_short_rejected
     (fuel : Nat) (pfx : Byte) (rest : List Byte)
     (lengthField : LengthFieldResult)
@@ -176,6 +197,9 @@ theorem decodeAux_long_list_lengthField_short_rejected
   rw [decodeAux_long_list_lengthField fuel pfx rest lengthField h_class h_len]
   simp [h_short]
 
+/--
+@isnad1 id=eq.5h7v.s7.05e74bf6a92c from=translated src=- shape=a47a32ec vocab=b25b93b3
+-/
 theorem decodeAux_long_list_lengthField_success
     (fuel : Nat) (pfx : Byte) (rest payload rest'' : List Byte)
     (items : List RLPItem) (lengthField : LengthFieldResult)

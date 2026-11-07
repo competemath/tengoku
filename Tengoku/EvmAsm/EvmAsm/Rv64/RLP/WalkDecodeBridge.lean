@@ -24,7 +24,9 @@ namespace EvmAsm.Rv64.RLP
 
 open EvmAsm.EL.RLP
 
-/-- A byte present at offset `off` peels off the front of `drop off`.-/
+/-- A byte present at offset `off` peels off the front of `drop off`.
+@isnad1 id=eq.1h3v.s5.f6bb5f6d1991 from=translated src=- shape=06c1f72f vocab=fcdd5cdd
+-/
 theorem drop_eq_cons_of_getElem? {bytes : List Byte} {off : Nat} {b : Byte}
     (hget : bytes[off]? = some b) :
     bytes.drop off = b :: bytes.drop (off + 1) := by
@@ -36,7 +38,9 @@ theorem drop_eq_cons_of_getElem? {bytes : List Byte} {off : Nat} {b : Byte}
     exact Option.some.inj hget
   rw [List.drop_eq_getElem_cons hlt, hb]
 
-/-- Single-byte bridge from offset facts to the pure decoder.-/
+/-- Single-byte bridge from offset facts to the pure decoder.
+@isnad1 id=eq.2h4v.s6.e09f8dc94f67 from=translated src=- shape=6a0d6988 vocab=8a8e9cf1
+-/
 theorem decodeAux_singleByte_bridge (bytes : List Byte) (off : Nat) (b : Byte)
     (hget : bytes[off]? = some b) (hsingle : b.toNat < 0x80) (n : Nat) :
     decodeAux (n + 1) (bytes.drop off) = some (.bytes [b], bytes.drop (off + 1)) := by
@@ -44,7 +48,9 @@ theorem decodeAux_singleByte_bridge (bytes : List Byte) (off : Nat) (b : Byte)
   exact decodeAux_cons_singleByte_of_classifyPrefix n b (bytes.drop (off + 1))
     ((classifyPrefix_singleByte_iff b).mpr hsingle)
 
-/-- Short-byte-string bridge from offset facts to the pure decoder.-/
+/-- Short-byte-string bridge from offset facts to the pure decoder.
+@isnad1 id=eq.5h4v.s8.2a88b9c372fd from=translated src=- shape=abe22051 vocab=f3deef24
+-/
 theorem decodeAux_shortBytes_bridge (bytes : List Byte) (off : Nat) (b : Byte)
     (hget : bytes[off]? = some b) (hlo : 0x80 ≤ b.toNat) (hhi : b.toNat ≤ 0xB7)
     (hlen : off + 1 + (b.toNat - 0x80) ≤ bytes.length)
@@ -91,7 +97,9 @@ theorem decodeAux_shortBytes_bridge (bytes : List Byte) (off : Nat) (b : Byte)
 
 /-! ## `decodeItems` composition -/
 
-/-- Prepend one decoded item to a recursive `decodeItems` run.-/
+/-- Prepend one decoded item to a recursive `decodeItems` run.
+@isnad1 id=eq.3h7v.s7.f248e411ea3f from=translated src=- shape=fd333adb vocab=0e6e89ff
+-/
 theorem decodeItems_cons_of_decodeAux (bytes : List Byte) (off nextOff : Nat) (item : RLPItem)
     (items : List RLPItem) (rest' : List Byte) (n : Nat)
     (hne : bytes.drop off ≠ [])
@@ -101,7 +109,9 @@ theorem decodeItems_cons_of_decodeAux (bytes : List Byte) (off nextOff : Nat) (i
   rw [decodeItems_succ_of_ne_nil (n + 1) (bytes.drop off) hne, hitem]
   simp only [Option.bind_eq_bind, Option.bind_some, hrest]
 
-/-- A successful nonempty `decodeItems` run decomposes into one `decodeAux` step and the tail.-/
+/-- A successful nonempty `decodeItems` run decomposes into one `decodeAux` step and the tail.
+@isnad1 id=ex.2h5v.s6.7ceee36d3562 from=translated src=- shape=95715cec vocab=bd1a1c43
+-/
 theorem decodeItems_cons_inv (bs : List Byte) (item : RLPItem) (items : List RLPItem)
     (rest' : List Byte) (n : Nat) (hne : bs ≠ [])
     (h : decodeItems (n + 1) bs = some (item :: items, rest')) :
@@ -120,7 +130,9 @@ theorem decodeItems_cons_inv (bs : List Byte) (item : RLPItem) (items : List RLP
       subst hr'
       exact ⟨r, rfl, hr⟩
 
-/-- Four byte-string item decodes compose to a four-item list payload.-/
+/-- Four byte-string item decodes compose to a four-item list payload.
+@isnad1 id=eq.5h11v.s7.9713e1058a6a from=translated src=- shape=c801ae7e vocab=0e6e89ff
+-/
 theorem decodeItems_four_of_decodeAux (bytes : List Byte)
     (off0 off1 off2 off3 off4 : Nat) (item0 item1 item2 item3 : RLPItem) (k : Nat)
     (h0 : ∀ m, decodeAux (m + 1) (bytes.drop off0) = some (item0, bytes.drop off1))
@@ -147,7 +159,9 @@ theorem decodeItems_four_of_decodeAux (bytes : List Byte)
 
 /-- Prepend one decoded item to a recursive `decodeItems` run, phrased as a
     direct remainder chain instead of byte-offset drops.  This is the shape
-    produced by validating WP field posts.-/
+    produced by validating WP field posts.
+@isnad1 id=eq.3h6v.s7.8e16abfc70c9 from=translated src=- shape=b94510c0 vocab=bd1a1c43
+-/
 theorem decodeItems_cons_of_decodeAux_chain (bs bsNext : List Byte)
     (item : RLPItem) (items : List RLPItem) (rest' : List Byte) (n : Nat)
     (hne : bs ≠ [])
@@ -159,7 +173,9 @@ theorem decodeItems_cons_of_decodeAux_chain (bs bsNext : List Byte)
 
 /-- Four byte-string item decodes compose to a four-item list payload, using
     only the successor remainders.  This avoids exposing synthetic offsets in
-    generated WP proofs.-/
+    generated WP proofs.
+@isnad1 id=eq.5h10v.s7.5d6e2697a5d1 from=translated src=- shape=e555814e vocab=bd1a1c43
+-/
 theorem decodeItems_four_of_decodeAux_chain
     (bs0 bs1 bs2 bs3 bs4 : List Byte)
     (item0 item1 item2 item3 : RLPItem) (k : Nat)
@@ -185,7 +201,9 @@ theorem decodeItems_four_of_decodeAux_chain
   exact decodeItems_cons_of_decodeAux_chain bs0 bs1 item0 _ [] (k + 3)
     (hne (h0 0)) (h0 (k + 3)) s1
 
-/-- One `decodeItems` step over a single-byte item at offset `off`.-/
+/-- One `decodeItems` step over a single-byte item at offset `off`.
+@isnad1 id=eq.3h6v.s7.4602689db9bf from=translated src=- shape=d0ba4179 vocab=55977065
+-/
 theorem decodeItems_cons_singleByte (bytes : List Byte) (off : Nat) (b : Byte)
     (items : List RLPItem) (rest' : List Byte) (n : Nat)
     (hget : bytes[off]? = some b) (hsingle : b.toNat < 0x80)
@@ -198,7 +216,9 @@ theorem decodeItems_cons_singleByte (bytes : List Byte) (off : Nat) (b : Byte)
     decodeAux_singleByte_bridge bytes off b hget hsingle n]
   simp only [Option.bind_eq_bind, Option.bind_some, hrest]
 
-/-- One `decodeItems` step over a short-byte-string item at offset `off`.-/
+/-- One `decodeItems` step over a short-byte-string item at offset `off`.
+@isnad1 id=eq.6h6v.s8.89181c378892 from=translated src=- shape=30cbd851 vocab=38ae37f9
+-/
 theorem decodeItems_cons_shortBytes (bytes : List Byte) (off : Nat) (b : Byte)
     (items : List RLPItem) (rest' : List Byte) (n : Nat)
     (hget : bytes[off]? = some b) (hlo : 0x80 ≤ b.toNat) (hhi : b.toNat ≤ 0xB7)
@@ -230,7 +250,9 @@ theorem decodeItems_cons_shortBytes (bytes : List Byte) (off : Nat) (b : Byte)
 /-- A successful single-byte `decode` result can be reused at any positive
     `decodeAux` fuel.  Validating WP field posts often expose `decode`, while
     the list-level bridge composes `decodeAux`; this theorem is the lossless
-    adapter between those views.-/
+    adapter between those views.
+@isnad1 id=eq.2h5v.s6.8ea63dda6358 from=translated src=- shape=91a03f60 vocab=47b5598d
+-/
 theorem decodeAux_singleByte_all_fuel_of_decode
     (pfx : Byte) (rest data rest' : List Byte)
     (h_class : classifyPrefix pfx = .singleByte)
@@ -253,7 +275,9 @@ theorem decodeAux_singleByte_all_fuel_of_decode
 /-- A successful short-byte-string `decode` result can be reused at any
     positive `decodeAux` fuel.  This lets generated WP proofs turn the pure
     field-post fact from a validating branch into the shape consumed by
-    `decodeItems_four_of_decodeAux` and `decodeFully_shortList_four`.-/
+    `decodeItems_four_of_decodeAux` and `decodeFully_shortList_four`.
+@isnad1 id=eq.2h5v.s6.6729f6f9ec1a from=translated src=- shape=91a03f60 vocab=a23d0288
+-/
 theorem decodeAux_shortBytes_all_fuel_of_decode
     (pfx : Byte) (rest data rest' : List Byte)
     (h_class : classifyPrefix pfx = .shortBytes)
@@ -276,7 +300,9 @@ theorem decodeAux_shortBytes_all_fuel_of_decode
 /-- Any successful byte-string `decode` result is stable for every positive
     `decodeAux` fuel. This is the field-post adapter used by WP-generated
     validating walks; callers do not need to expose the precise byte prefix
-    class at semantic joins.-/
+    class at semantic joins.
+@isnad1 id=eq.1h5v.s6.36b26ed6c9e5 from=translated src=- shape=cbc7b4b8 vocab=6832e255
+-/
 theorem decodeAux_bytes_all_fuel_of_decode
     (pfx : Byte) (rest data rest' : List Byte)
     (hdecode : decode (pfx :: rest) = some (.bytes data, rest')) :
@@ -330,7 +356,9 @@ theorem decodeAux_bytes_all_fuel_of_decode
 
 /-- List-shaped facade for `decodeAux_bytes_all_fuel_of_decode`.  Generated
     chain witnesses usually expose the current remainder as one list, not as a
-    syntactic `pfx :: rest`; this theorem hides the nonempty decomposition.-/
+    syntactic `pfx :: rest`; this theorem hides the nonempty decomposition.
+@isnad1 id=eq.1h4v.s6.b387329ad34d from=translated src=- shape=06dd157e vocab=5d831b2f
+-/
 theorem decodeAux_bytes_all_fuel_of_decode_list
     (bs data rest' : List Byte)
     (hdecode : decode bs = some (.bytes data, rest')) :
@@ -343,7 +371,9 @@ theorem decodeAux_bytes_all_fuel_of_decode_list
 
 /-! ## Capstone: outer short list of four byte-string items -/
 
-/-- A short-list payload made of four decoded items is a full four-item RLP list.-/
+/-- A short-list payload made of four decoded items is a full four-item RLP list.
+@isnad1 id=eq.8h10v.s7.19a871366a66 from=translated src=- shape=7fbcd340 vocab=5e293b4d
+-/
 theorem decodeFully_shortList_four (pfx : Byte) (payload : List Byte)
     (off1 off2 off3 off4 : Nat) (item0 item1 item2 item3 : RLPItem)
     (h_class : classifyPrefix pfx = .shortList)
@@ -376,7 +406,9 @@ theorem decodeFully_shortList_four (pfx : Byte) (payload : List Byte)
   simp [decodeFully, hdec]
 
 /-- A short-list payload made of four decoded items is a full four-item RLP
-    list, phrased over a remainder chain rather than offset drops.-/
+    list, phrased over a remainder chain rather than offset drops.
+@isnad1 id=eq.8h10v.s7.e66bb6f2306a from=translated src=- shape=a073a33a vocab=25f66516
+-/
 theorem decodeFully_shortList_four_chain (pfx : Byte) (payload r1 r2 r3 r4 : List Byte)
     (item0 item1 item2 item3 : RLPItem)
     (h_class : classifyPrefix pfx = .shortList)
@@ -428,7 +460,9 @@ def DecodeChain (bytes : List Byte) : Nat → List RLPItem → Nat → Prop
 
 /-- ⭐ **Arity-N `decodeItems` composition.** A decode chain ending at the end of input
     composes to a full `decodeItems` run over exactly those items. Generalises
-    `decodeItems_four_of_decodeAux` to any length.-/
+    `decodeItems_four_of_decodeAux` to any length.
+@isnad1 id=eq.2h5v.s6.7aa69a506fcd from=translated src=- shape=28754660 vocab=1f66f4c2
+-/
 theorem decodeItems_of_chain (bytes : List Byte) :
     ∀ (items : List RLPItem) (off offEnd : Nat),
       DecodeChain bytes off items offEnd → bytes.drop offEnd = [] →
@@ -493,7 +527,9 @@ def DecodeChainFrom (bytes : List Byte) (floor : Nat) : Nat → List RLPItem →
 
 /-- `DecodeChain`'s links are `DecodeChainFrom`'s at `floor = 1`: instantiate the
     universally quantified budget at `m := 0`. Gives the faithfulness direction —
-    everything the old predicate accepts, the new one accepts.-/
+    everything the old predicate accepts, the new one accepts.
+@isnad1 id=decodech.1h4v.s4.ff95ace8d8fb from=translated src=- shape=adfa0c53 vocab=b1316b9f
+-/
 theorem decodeChainFrom_of_decodeChain (bytes : List Byte) :
     ∀ (items : List RLPItem) (off offEnd : Nat),
       DecodeChain bytes off items offEnd → DecodeChainFrom bytes 1 off items offEnd := by
@@ -512,7 +548,9 @@ theorem decodeChainFrom_of_decodeChain (bytes : List Byte) :
     it is a *single* inequality rather than per-link bookkeeping: the composition
     consumes link `i` at budget `k + (items.length - i)`, whose minimum over the
     chain is `k + 1` at the last item, so one bound covers every link. Monotonicity
-    supplies each link at the budget the composition actually wants.-/
+    supplies each link at the budget the composition actually wants.
+@isnad1 id=eq.3h6v.s6.6bd01d133506 from=translated src=- shape=7ce5fb5f vocab=e21717e4
+-/
 theorem decodeItems_of_chainFrom (bytes : List Byte) (floor : Nat) :
     ∀ (items : List RLPItem) (off offEnd : Nat),
       DecodeChainFrom bytes floor off items offEnd → bytes.drop offEnd = [] →

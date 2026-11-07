@@ -20,7 +20,9 @@ namespace ByteStringDecodeBridge
 Classified single-byte decode succeeds exactly as the one-byte RLP item.
 
 Distinctive token:
-ByteStringDecodeBridge.decodeAux_cons_singleByte_eq_some_iff #120.-/
+ByteStringDecodeBridge.decodeAux_cons_singleByte_eq_some_iff #120.
+@isnad1 id=iff.1h5v.s6.db9f1d3e8d5c from=translated src=- shape=16e7e0d2 vocab=db91ab30
+-/
 theorem decodeAux_cons_singleByte_eq_some_iff
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .singleByte)
@@ -35,7 +37,9 @@ Classified short-byte-string decode succeeds exactly when the payload slice is
 available and, in the singleton case, is not redundantly encoded.
 
 Distinctive token:
-ByteStringDecodeBridge.decodeAux_cons_shortBytes_eq_some_iff #120.-/
+ByteStringDecodeBridge.decodeAux_cons_shortBytes_eq_some_iff #120.
+@isnad1 id=iff.1h5v.s6.9b3faee120e4 from=translated src=- shape=153c161f vocab=72ed3d5f
+-/
 theorem decodeAux_cons_shortBytes_eq_some_iff
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .shortBytes)
@@ -99,7 +103,9 @@ Classified long-byte-string decode succeeds exactly when the encoded length is
 canonical long-form, the payload slice is available, and that slice is returned.
 
 Distinctive token:
-ByteStringDecodeBridge.decodeAux_cons_longBytes_eq_some_iff #120.-/
+ByteStringDecodeBridge.decodeAux_cons_longBytes_eq_some_iff #120.
+@isnad1 id=iff.1h5v.s6.d1b1c297321d from=translated src=- shape=73a24211 vocab=b94931ef
+-/
 theorem decodeAux_cons_longBytes_eq_some_iff
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .longBytes)
@@ -163,7 +169,9 @@ theorem decodeAux_cons_longBytes_eq_some_iff
 Classified short-byte-string decode fails when the payload slice is unavailable.
 
 Distinctive token:
-ByteStringDecodeBridge.decodeAux_cons_shortBytes_eq_none_of_takeBytes_none #120.-/
+ByteStringDecodeBridge.decodeAux_cons_shortBytes_eq_none_of_takeBytes_none #120.
+@isnad1 id=eq.2h3v.s5.018398de3779 from=translated src=- shape=3082b6d9 vocab=bf1d540a
+-/
 theorem decodeAux_cons_shortBytes_eq_none_of_takeBytes_none
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .shortBytes)
@@ -177,7 +185,9 @@ Classified short-byte-string decode fails when a singleton payload uses the
 short-string encoding even though it is canonical only as a single byte.
 
 Distinctive token:
-ByteStringDecodeBridge.decodeAux_cons_shortBytes_eq_none_of_singleton_short #120.-/
+ByteStringDecodeBridge.decodeAux_cons_shortBytes_eq_none_of_singleton_short #120.
+@isnad1 id=eq.3h5v.s6.9b9c3f711727 from=translated src=- shape=31f53f32 vocab=2eb8f058
+-/
 theorem decodeAux_cons_shortBytes_eq_none_of_singleton_short
     (nDepth : Nat) (pfx b : Byte) (rest rest' : List Byte)
     (h_class : classifyPrefix pfx = .shortBytes)
@@ -191,7 +201,9 @@ theorem decodeAux_cons_shortBytes_eq_none_of_singleton_short
 Classified long-byte-string decode fails when the long-form length field fails.
 
 Distinctive token:
-ByteStringDecodeBridge.decodeAux_cons_longBytes_eq_none_of_readLength_none #120.-/
+ByteStringDecodeBridge.decodeAux_cons_longBytes_eq_none_of_readLength_none #120.
+@isnad1 id=eq.2h3v.s5.7e4d2d161ed2 from=translated src=- shape=90d9368b vocab=d6097d1c
+-/
 theorem decodeAux_cons_longBytes_eq_none_of_readLength_none
     (nDepth : Nat) (pfx : Byte) (rest : List Byte)
     (h_class : classifyPrefix pfx = .longBytes)
@@ -205,7 +217,9 @@ Classified long-byte-string decode fails when the decoded length is short-form
 canonical and therefore invalid as long-form RLP.
 
 Distinctive token:
-ByteStringDecodeBridge.decodeAux_cons_longBytes_eq_none_of_len_le_55 #120.-/
+ByteStringDecodeBridge.decodeAux_cons_longBytes_eq_none_of_len_le_55 #120.
+@isnad1 id=eq.3h5v.s6.534b8c1c0179 from=translated src=- shape=cb408130 vocab=1bf754e9
+-/
 theorem decodeAux_cons_longBytes_eq_none_of_len_le_55
     (nDepth : Nat) (pfx : Byte) (rest rest' : List Byte) (lenVal : Nat)
     (h_class : classifyPrefix pfx = .longBytes)
@@ -220,7 +234,9 @@ Classified long-byte-string decode fails when the long payload slice is
 unavailable after a canonical long length.
 
 Distinctive token:
-ByteStringDecodeBridge.decodeAux_cons_longBytes_eq_none_of_takeBytes_none #120.-/
+ByteStringDecodeBridge.decodeAux_cons_longBytes_eq_none_of_takeBytes_none #120.
+@isnad1 id=eq.4h5v.s6.2ce8f8fc0808 from=translated src=- shape=54385be8 vocab=5ef85442
+-/
 theorem decodeAux_cons_longBytes_eq_none_of_takeBytes_none
     (nDepth : Nat) (pfx : Byte) (rest rest' : List Byte) (lenVal : Nat)
     (h_class : classifyPrefix pfx = .longBytes)
