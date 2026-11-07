@@ -7,3 +7,10 @@ import Tengoku.Foundation.Foundation.Vorspiel.Order.Dense
 import Tengoku.Foundation.Foundation.Vorspiel.Small
 import Tengoku.Foundation.Foundation.Vorspiel.ENat
 import Tengoku.Foundation.Foundation.Vorspiel.Finset.Card
+import Tengoku.Foundation.Foundation.Vorspiel.ExistsUnique
+import Tengoku.Foundation.Foundation.Vorspiel.Finset.Basic
+import Tengoku.Foundation.Foundation.Vorspiel.Graph
+import Tengoku.Foundation.Foundation.Vorspiel.IsEmpty
+import Tengoku.Foundation.Foundation.Vorspiel.Order.Heyting
+import Tengoku.Foundation.Foundation.Vorspiel.Part
+import Tengoku.Foundation.Foundation.Vorspiel.Set.Basic
