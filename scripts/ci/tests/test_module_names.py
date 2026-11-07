@@ -146,6 +146,18 @@ class EveryPathToModule(unittest.TestCase):
         root = tc_tree({path: tc.PLAIN for path in ODD})
         self.assertEqual(sorted(isnad_sweep.todo(root, "libs")), sorted(ODD.values()))
 
+    def test_the_sweep_orders_guillemet_modules_by_their_imports(self):
+        # «2d» imports «1102.4662», which imports «A-B»: dependents first is 2d, 1102.4662, A-B (by name alone it would be 1102.4662, A-B, 2d)
+        fx, tao, geo = (ODD[p] for p in ("Tengoku/FormalConjectures/Fx/A-B.lean", "Tengoku/FormalConjectures/Tao/1102.4662.lean", FC2D))
+        root = tc_tree(
+            {
+                "Tengoku/FormalConjectures/Fx/A-B.lean": tc.PLAIN,
+                "Tengoku/FormalConjectures/Tao/1102.4662.lean": f"import {fx}\n" + tc.PLAIN,
+                FC2D: f"public import {tao}\n" + tc.PLAIN,
+            }
+        )
+        self.assertEqual(isnad_sweep.todo(root, "libs"), [geo, tao, fx])
+
 
 def tc_tree(files: dict[str, str]) -> Path:
     """a tree whose formal-conjectures library arrived as an intake bundle"""

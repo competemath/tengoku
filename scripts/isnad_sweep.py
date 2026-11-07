@@ -27,7 +27,8 @@ import isnad_tag as tg  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 MAX_PART = 400
 SCOPES = ("seed", "native", "libs", "all")
-IMPORT = re.compile(r"^[ \t]*(?:public[ \t]+)?(?:meta[ \t]+)?import[ \t]+(Tengoku[\w.«»']*)", re.M)
+# a part in guillemets is read whole (`«A-B»`, `«1102.4662»`): the name must be the one module_name gives its file, or the import is not counted
+IMPORT = re.compile(r"^[ \t]*(?:public[ \t]+)?(?:meta[ \t]+)?import[ \t]+(Tengoku(?:\.(?:«[^»\n]*»|[\w']+))*)", re.M)
 DECL_MODIFIERS = {"private", "protected", "noncomputable", "nonrec", "public", "meta", "unsafe", "partial"}
 
 
