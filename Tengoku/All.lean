@@ -106,6 +106,7 @@ import Tengoku.LanaOka
 import Tengoku.DeletionCodesLean
 import Tengoku.QuadraticNumberFields
 import Tengoku.EquationalTheories
+import Tengoku.FormalConjectures
 import Tengoku.ForbiddenMatrix
 import Tengoku.Cslib
 import Tengoku.FormalMath
