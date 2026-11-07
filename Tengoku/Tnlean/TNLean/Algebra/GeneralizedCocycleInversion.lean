@@ -1,0 +1,139 @@
+/-
+Copyright (c) 2026 TNLean contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: TNLean contributors
+-/
+import Tengoku.Tnlean.TNLean.Algebra.GeneralizedCocycle
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Inversion of block-dependent generalized cocycles
+
+This file formalizes the hat operation from arXiv:2502.20257, line 5912, for
+block-dependent scalar one- and two-cochains. For a group `G` acting on block
+labels `X`, the operations are
+
+`(hat χ)ˣ_g = χ^{g • x}_{g⁻¹}`
+
+and
+
+`(hat Ω)ˣ_{g,h} = Ω^{gh • x}_{h⁻¹,g⁻¹}`.
+
+Both operations are involutions, preserve pointwise multiplication, and
+commute with the generalized coboundary.
+-/
+
+namespace TNLean.Algebra
+
+variable {G X : Type*} [Group G] [MulAction G X]
+
+namespace ActionTensorGauge
+
+/-- The block-dependent hat operation on scalar one-cochains:
+`(hat χ)ˣ_g = χ^{g • x}_{g⁻¹}`.
+
+This is arXiv:2502.20257, line 5912, specialized to one group index.-/
+def hat (χ : ActionTensorGauge G X) : ActionTensorGauge G X :=
+  fun g x => χ g⁻¹ (g • x)
+
+/-- The hat operation on block-dependent scalar one-cochains is an involution.
+@isnad1 id=eq.0h3v.s5.eb46a8460461 from=translated src=- shape=dd4d5b43 vocab=11870cbb
+-/
+@[simp]
+theorem hat_hat (χ : ActionTensorGauge G X) : hat (hat χ) = χ := by
+  funext g x
+  simp [hat]
+
+/-- The hat operation preserves the constant one cochain.
+@isnad1 id=eq.0h2v.s6.13912f50d5bd from=translated src=- shape=3cf07a7e vocab=b09163cd
+-/
+@[simp]
+theorem hat_one : hat (1 : ActionTensorGauge G X) = 1 := by
+  rfl
+
+/-- The hat operation preserves pointwise multiplication.
+@isnad1 id=eq.0h4v.s7.11e829d22147 from=translated src=- shape=6c0fe6d5 vocab=04b0a2af
+-/
+@[simp]
+theorem hat_mul (χ ψ : ActionTensorGauge G X) : hat (χ * ψ) = hat χ * hat ψ := by
+  rfl
+
+/-- The hat operation preserves pointwise inversion.
+@isnad1 id=eq.0h3v.s6.90e13c067c68 from=translated src=- shape=84943b68 vocab=b58ac30f
+-/
+@[simp]
+theorem hat_inv (χ : ActionTensorGauge G X) : hat χ⁻¹ = (hat χ)⁻¹ := by
+  rfl
+
+/-- The hat operation preserves pointwise division.
+@isnad1 id=eq.0h4v.s7.c995aecfe8cf from=translated src=- shape=6c0fe6d5 vocab=6a841f17
+-/
+@[simp]
+theorem hat_div (χ ψ : ActionTensorGauge G X) : hat (χ / ψ) = hat χ / hat ψ := by
+  rfl
+
+end ActionTensorGauge
+
+namespace LSymbol
+
+/-- The block-dependent hat operation on scalar two-cochains:
+`(hat Ω)ˣ_{g,h} = Ω^{gh • x}_{h⁻¹,g⁻¹}`.
+
+This is arXiv:2502.20257, line 5912, specialized to two group indices.-/
+def hat (Ω : LSymbol G X) : LSymbol G X :=
+  fun x g h => Ω ((g * h) • x) h⁻¹ g⁻¹
+
+/-- The hat operation on block-dependent scalar two-cochains is an involution.
+@isnad1 id=eq.0h3v.s5.550f997e8de5 from=translated src=- shape=dd4d5b43 vocab=f7d47c4e
+-/
+@[simp]
+theorem hat_hat (Ω : LSymbol G X) : hat (hat Ω) = Ω := by
+  funext x g h
+  simp [hat, mul_smul]
+
+/-- The hat operation preserves the constant one two-cochain.
+@isnad1 id=eq.0h2v.s7.5d6ac7a5b116 from=translated src=- shape=3cf07a7e vocab=5213c1b8
+-/
+@[simp]
+theorem hat_one : hat (1 : LSymbol G X) = 1 := by
+  rfl
+
+/-- The hat operation preserves pointwise multiplication.
+@isnad1 id=eq.0h4v.s7.fca2ec9f7e48 from=translated src=- shape=6c0fe6d5 vocab=993008d3
+-/
+@[simp]
+theorem hat_mul (Ω Λ : LSymbol G X) : hat (Ω * Λ) = hat Ω * hat Λ := by
+  rfl
+
+/-- The hat operation preserves pointwise inversion.
+@isnad1 id=eq.0h3v.s7.771894955dfb from=translated src=- shape=84943b68 vocab=5bcd0b16
+-/
+@[simp]
+theorem hat_inv (Ω : LSymbol G X) : hat Ω⁻¹ = (hat Ω)⁻¹ := by
+  rfl
+
+/-- The hat operation preserves pointwise division.
+@isnad1 id=eq.0h4v.s7.4861d6a4880c from=translated src=- shape=6c0fe6d5 vocab=ef4cd0dd
+-/
+@[simp]
+theorem hat_div (Ω Λ : LSymbol G X) : hat (Ω / Λ) = hat Ω / hat Λ := by
+  rfl
+
+/-- The block-dependent hat operation commutes with the generalized
+coboundary: `hat (dχ) = d(hat χ)`.
+
+This is the one-to-two-cochain instance of the notation introduced in
+arXiv:2502.20257, lines 5910--5922.
+@isnad1 id=eq.0h3v.s5.24cd65f950ea from=translated src=- shape=1812b6f8 vocab=64b21129
+-/
+theorem hat_coboundary (χ : ActionTensorGauge G X) :
+    hat (ActionTensorGauge.coboundary χ) =
+      ActionTensorGauge.coboundary (ActionTensorGauge.hat χ) := by
+  funext x g h
+  simp only [hat, ActionTensorGauge.coboundary, ActionTensorGauge.hat]
+  simp [mul_smul, mul_comm]
+
+end LSymbol
+
+end TNLean.Algebra

@@ -1,0 +1,122 @@
+/-
+Copyright (c) 2026 TNLean contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: TNLean contributors
+-/
+import Tengoku.Seed.Analysis.SpecialFunctions.Log.Basic
+import Tengoku.Seed.Tactic.NormNum
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Exact arithmetic for CPSV16 Examples 4.10 and 4.11
+
+Independent exact four-site derivations associated with CPSV16 Examples 4.10
+and 4.11 lead to the strict integer comparisons
+\[
+  2^{32}7^7>3^3 5^{20}
+\]
+and
+\[
+  41^{82}5^{50}>2^{48}13^{52}7^{112}.
+\]
+This module certifies these comparisons and the positivity of the logarithms of
+their ratios.
+
+Normalization directly certifies all four closed arithmetic goals. For each
+logarithmic statement, `Real.log_pos` first reduces positivity of the logarithm
+to the assertion that its ratio is greater than one; normalization then closes
+that rational inequality.
+
+These scalar results do not identify reduced-state spectra and do not assert
+saturation or failure of an area law. Such conclusions require separate formal
+links from the printed tensors to the corresponding entropy expressions.
+
+**Scope restriction (scalar, not entropy):** See docs/paper-gaps/cpsv16_exact_arithmetic_scope.tex.
+
+**Local fix (channel):** Left-right flip. See docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex.
+
+## Main results
+
+* `example410_integer_inequality`: the exact integer comparison derived from the
+  corrected four-site calculation for Example 4.10 at flip probability one quarter.
+* `example411_integer_inequality`: the exact integer comparison associated with
+  the derived four-site specialization of Example 4.11.
+* `example410_log_ratio_pos`: positivity of the first logarithmic ratio.
+* `example411_log_ratio_pos`: positivity of the second logarithmic ratio.
+
+## References
+
+* Cirac--Perez-Garcia--Schuch--Verstraete, arXiv:1606.00608, Example 4.10,
+  lines 897--905, for the repeated-label channel, decimal entropies, and printed
+  claim; and Example 4.11, lines 907--924, for its arbitrary-length family.
+* `docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`, for both independent
+  exact four-site derivations.
+-/
+
+namespace CPSVExamples410411Arithmetic
+
+/-- The strict integer comparison arising from the exact four-site calculation
+for the corrected left-right channel in CPSV16 Example 4.10 at flip probability
+one quarter.
+
+Source: the independent derivation recorded in
+`docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`. The source paper,
+arXiv:1606.00608, Example 4.10, lines 897--905, prints only the repeated-label
+channel, decimal entropies, and its qualitative claim.
+@isnad1 id=lt.0h0v.s6.46bbd2998bf5 from=translated src=- shape=ac05b5df vocab=e974024d
+-/
+theorem example410_integer_inequality :
+    (2 : ℕ) ^ 32 * 7 ^ 7 > 3 ^ 3 * 5 ^ 20 := by
+  norm_num
+
+/-- The strict integer comparison arising from the four-site specialization of
+the arbitrary-length family and literal weights printed in CPSV16 Example 4.11.
+
+Source: the independent derivation recorded in
+`docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`. The source paper,
+arXiv:1606.00608, Example 4.11, lines 907--924, prints only the arbitrary-length
+family, its weights, and its SAL claim.
+@isnad1 id=lt.0h0v.s7.2dae7f1c53c5 from=translated src=- shape=6ce3b0cf vocab=e974024d
+-/
+theorem example411_integer_inequality :
+    (41 : ℕ) ^ 82 * 5 ^ 50 > 2 ^ 48 * 13 ^ 52 * 7 ^ 112 := by
+  norm_num
+
+/-- The logarithm of the exact ratio derived from the corrected left-right
+channel in CPSV16 Example 4.10 at flip probability one quarter is strictly
+positive.
+
+This is only a scalar arithmetic statement; it does not identify the ratio with
+an entropy difference.
+
+Source: the independent derivation recorded in
+`docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`. The source paper,
+arXiv:1606.00608, Example 4.10, lines 897--905, prints only the repeated-label
+channel, decimal entropies, and its qualitative claim.
+@isnad1 id=lt.0h0v.s7.6d73c0ac52dc from=translated src=- shape=3e3a20d0 vocab=1385d4aa
+-/
+theorem example410_log_ratio_pos :
+    0 < Real.log (((2 : ℝ) ^ 32 * 7 ^ 7) / (3 ^ 3 * 5 ^ 20)) := by
+  apply Real.log_pos
+  norm_num
+
+/-- The logarithm of the exact ratio associated with the four-site specialization
+of the literal weights in CPSV16 Example 4.11 is strictly positive.
+
+This is only a scalar arithmetic statement; it does not identify the ratio with
+an entropy difference.
+
+Source: the independent derivation recorded in
+`docs/paper-gaps/cpsv16_examples_4_10_4_11_entropy.tex`. The source paper,
+arXiv:1606.00608, Example 4.11, lines 907--924, prints only the arbitrary-length
+family, its weights, and its SAL claim.
+@isnad1 id=lt.0h0v.s7.1ea35cc3898e from=translated src=- shape=8970b023 vocab=1385d4aa
+-/
+theorem example411_log_ratio_pos :
+    0 < Real.log
+      (((41 : ℝ) ^ 82 * 5 ^ 50) / (2 ^ 48 * 13 ^ 52 * 7 ^ 112)) := by
+  apply Real.log_pos
+  norm_num
+
+end CPSVExamples410411Arithmetic

@@ -1,0 +1,175 @@
+/-
+Copyright (c) 2026 TNLean contributors. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: TNLean contributors
+-/
+import Tengoku.Tnlean.TNLean.Algebra.ScalarThreeCocycle
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Scalar L-symbols
+
+This file isolates the scalar L-symbol relations in arXiv:2502.20257,
+equations `eq:Lsymbgauge`, `eq:omega_and_Ls`, and `eq:triv_Ls`. It does not
+assert the existence of action tensors, impose transitivity or finiteness, or
+attach these scalars to a matrix product unitary.
+
+## Main definitions
+
+* `LSymbol`: scalar L-symbols for a group action.
+* `ActionTensorGauge`: scalar gauge choices for action tensors.
+* `LSymbol.IsCompatible`: compatibility with a scalar 3-cochain.
+* `LSymbol.gauge`: the joint fusion-tensor and action-tensor gauge action.
+* `LSymbol.IsNormalized`: triviality when either group argument is the identity.
+-/
+
+namespace TNLean.Algebra
+
+variable {G X : Type*} [Group G] [MulAction G X]
+
+/-- Scalar L-symbols `Lˣ_{g,h}` for a group `G` acting on a type `X`.
+
+These are the scalars produced by the compatibility of matrix product unitary
+fusion with the action on a matrix product state, arXiv:2502.20257, `eq:defL`,
+lines 1875--1913. Only the scalars are formalized here; no fusion or action
+tensor is constructed.-/
+abbrev LSymbol (G X : Type*) := X → G → G → Units ℂ
+
+/-- Scalar action-tensor gauges `γ_{g,x}`, written `γˣ_g` in the source.
+
+This is the scalar gauge freedom of the action tensors, arXiv:2502.20257,
+`eq:scalar_act_ten`, lines 1871--1873.-/
+abbrev ActionTensorGauge (G X : Type*) := G → X → Units ℂ
+
+namespace ActionTensorGauge
+
+/-- An action-tensor gauge is normalized when `γ_{1,x} = 1` for every `x`.
+
+This is not a labelled equation of arXiv:2502.20257: it is the scalar shadow
+of the standing convention at lines 1936--1937 that any fusion or action
+tensor involving the identity element is trivial.-/
+def IsNormalized (γ : ActionTensorGauge G X) : Prop :=
+  ∀ x, γ 1 x = 1
+
+end ActionTensorGauge
+
+namespace LSymbol
+
+/-- Compatibility of L-symbols with a scalar 3-cochain:
+
+`Lˣ_{g,hk} Lˣ_{h,k} = ω(g,h,k) L^{k • x}_{g,h} Lˣ_{gh,k}`.
+
+This is arXiv:2502.20257, `eq:omega_and_Ls`.-/
+def IsCompatible (L : LSymbol G X) (ω : ScalarThreeCochain G) : Prop :=
+  ∀ x g h k,
+    L x g (h * k) * L x h k =
+      ω g h k * L (k • x) g h * L x (g * h) k
+
+/-- The joint fusion-tensor and action-tensor scalar gauge action:
+
+`Lˣ_{g,h} ↦ γˣ_{gh} β_{g,h} / (γ^{h • x}_g γˣ_h) Lˣ_{g,h}`.
+
+This is arXiv:2502.20257, `eq:Lsymbgauge`.-/
+def gauge (β : ScalarCocycle G) (γ : ActionTensorGauge G X) (L : LSymbol G X) :
+    LSymbol G X :=
+  fun x g h =>
+    ((γ (g * h) x * β g h) / (γ g (h • x) * γ h x)) * L x g h
+
+/-- The identity fusion and action gauges leave an L-symbol unchanged.
+@isnad1 id=eq.0h3v.s6.0f8324abd580 from=translated src=- shape=406bf1a9 vocab=393e89ef
+-/
+@[simp]
+theorem gauge_one (L : LSymbol G X) :
+    gauge (fun _ _ ↦ 1) (fun _ _ ↦ 1) L = L := by
+  funext x g h
+  simp [gauge]
+
+/-- Successive joint scalar gauges multiply both cochains pointwise.
+@isnad1 id=eq.0h7v.s7.4cf58cfd8cc1 from=translated src=- shape=84562e6a vocab=0ef3b4d4
+-/
+theorem gauge_comp (β₁ β₂ : ScalarCocycle G)
+    (γ₁ γ₂ : ActionTensorGauge G X) (L : LSymbol G X) :
+    gauge β₂ γ₂ (gauge β₁ γ₁ L) = gauge (β₁ * β₂) (γ₁ * γ₂) L := by
+  funext x g h
+  simp only [gauge, Pi.mul_apply]
+  (apply Units.ext; push_cast; field_simp)
+
+/-- Joint scalar gauges preserve compatibility, with the 3-cochain changed by
+the corresponding fusion gauge.
+@isnad1 id=iscompat.1h6v.s5.2bfe5af0aaba from=translated src=- shape=9f7c0560 vocab=79126708
+-/
+theorem IsCompatible.gauge {L : LSymbol G X} {ω : ScalarThreeCochain G}
+    (hL : IsCompatible L ω) (β : ScalarCocycle G) (γ : ActionTensorGauge G X) :
+    IsCompatible (gauge β γ L) (ScalarThreeCochain.fusionGauge β ω) := by
+  intro x g h k
+  simp only [LSymbol.gauge, ScalarThreeCochain.fusionGauge,
+    ScalarThreeCochain.coboundary]
+  apply Units.ext
+  push_cast
+  simp only [smul_smul]
+  have hL' := congrArg Units.val (hL x g h k)
+  push_cast at hL'
+  field_simp
+  simp only [mul_assoc]
+  calc
+    _ = (γ (g * (h * k)) x : ℂ) *
+        ((L x g (h * k) : ℂ) * (L x h k : ℂ)) := by ring
+    _ = (γ (g * (h * k)) x : ℂ) *
+        ((ω g h k : ℂ) * (L (k • x) g h : ℂ) * (L x (g * h) k : ℂ)) := by
+      rw [hL']
+    _ = _ := by ring
+
+/-- L-symbols are normalized when `Lˣ_{g,1} = Lˣ_{1,g} = 1`. This is the
+standing convention in arXiv:2502.20257, `eq:triv_Ls`.-/
+def IsNormalized (L : LSymbol G X) : Prop :=
+  (∀ x g, L x g 1 = 1) ∧ (∀ x g, L x 1 g = 1)
+
+/-- The exact right identity-axis formula for a joint scalar gauge.
+@isnad1 id=eq.0h7v.s7.7e3dab645875 from=translated src=- shape=3c7cc18a vocab=439ca585
+-/
+theorem gauge_apply_right_one (β : ScalarCocycle G) (γ : ActionTensorGauge G X)
+    (L : LSymbol G X) (x : X) (g : G) :
+    gauge β γ L x g 1 = (β g 1 / γ 1 x) * L x g 1 := by
+  simp [gauge, mul_comm]
+
+/-- The exact left identity-axis formula for a joint scalar gauge.
+@isnad1 id=eq.0h7v.s7.dce8b3a5d0d2 from=translated src=- shape=e565d264 vocab=dd9048ab
+-/
+theorem gauge_apply_left_one (β : ScalarCocycle G) (γ : ActionTensorGauge G X)
+    (L : LSymbol G X) (x : X) (g : G) :
+    gauge β γ L x 1 g = (β 1 g / γ 1 (g • x)) * L x 1 g := by
+  simp [gauge, mul_comm]
+
+/-- Exact characterization of when a joint scalar gauge is normalized.
+@isnad1 id=iff.0h5v.s7.c26d3fbe9f45 from=translated src=- shape=3cd81400 vocab=3d45725f
+-/
+theorem isNormalized_gauge_iff (β : ScalarCocycle G) (γ : ActionTensorGauge G X)
+    (L : LSymbol G X) :
+    IsNormalized (gauge β γ L) ↔
+      (∀ x g, β g 1 * L x g 1 = γ 1 x) ∧
+        (∀ x g, β 1 g * L x 1 g = γ 1 (g • x)) := by
+  simp only [IsNormalized, gauge_apply_right_one, gauge_apply_left_one]
+  constructor
+  · rintro ⟨hright, hleft⟩
+    refine ⟨fun x g => ?_, fun x g => ?_⟩
+    · simpa only [div_mul_eq_mul_div, div_eq_one] using hright x g
+    · simpa only [div_mul_eq_mul_div, div_eq_one] using hleft x g
+  · rintro ⟨hright, hleft⟩
+    refine ⟨fun x g => ?_, fun x g => ?_⟩
+    · simpa only [div_mul_eq_mul_div, div_eq_one] using hright x g
+    · simpa only [div_mul_eq_mul_div, div_eq_one] using hleft x g
+
+/-- Normalized fusion and action gauges preserve normalized L-symbols.
+@isnad1 id=isnormal.3h5v.s5.37491500896a from=translated src=- shape=a81bdedd vocab=d51dfc91
+-/
+theorem IsNormalized.gauge {L : LSymbol G X} (hL : IsNormalized L)
+    {β : ScalarCocycle G} (hβ : β.IsNormalized) {γ : ActionTensorGauge G X}
+    (hγ : γ.IsNormalized) : IsNormalized (gauge β γ L) := by
+  apply (isNormalized_gauge_iff β γ L).2
+  exact ⟨fun x g => by simp [hβ.2, hL.1, hγ x],
+    fun x g => by simp [hβ.1, hL.2, hγ (g • x)]⟩
+
+end LSymbol
+
+end TNLean.Algebra
