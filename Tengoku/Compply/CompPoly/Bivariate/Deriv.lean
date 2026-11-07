@@ -1,0 +1,473 @@
+/-
+Copyright (c) 2025 CompPoly. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Dimitris Mitsios
+-/
+module
+
+import all Tengoku.Compply.CompPoly.Bivariate.Basic
+public import Tengoku.Compply.CompPoly.Bivariate.Basic
+public import Tengoku.Compply.CompPoly.Bivariate.ToPoly
+public import Tengoku.Compply.CompPoly.Univariate.Deriv
+public import Tengoku.Compply.CompPoly.ToMathlib.Polynomial.BivariateMultiplicity
+public import Tengoku.Seed.Algebra.Polynomial.Derivative
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Partial Derivatives and Multiplicity of Computable Bivariate Polynomials
+
+This file defines partial derivatives (`partialDerivX`, `partialDerivY`, iterated
+and mixed partials) and the multiplicity condition `hasMultiplicity` used in the
+Guruswami–Sudan interpolation step.
+
+Multiplicity of a root at `(a, b)` is defined through the Taylor shift
+`shiftC a b Q = Q(X + a, Y + b)`. `Q` has multiplicity at least `r` at `(a, b)`
+when every coefficient of the shifted polynomial of total degree less than `r`
+is zero. This is the Hasse-derivative criterion for root multiplicity over a field
+of any characteristic: the coefficient of `Xⁱ Yʲ` in `shiftC a b Q` is the
+order-`(i, j)` Hasse derivative of `Q` evaluated at `(a, b)`. The zero polynomial
+has infinite multiplicity. As an aside, ordinary partial derivatives fail to capture
+this in positive characteristic. The integer factor introduced by differentiation can
+vanish, so its product with a nonzero coefficient may become zero.
+
+`shiftC_toPoly` identifies the computable shift with Mathlib's
+`Polynomial.Bivariate.shift`, and `hasMultiplicity_iff_rootMultiplicity` proves
+that `hasMultiplicity` agrees with the reference `Polynomial.Bivariate.rootMultiplicity`.
+-/
+
+@[expose] public section
+
+open scoped Polynomial.Bivariate
+
+namespace CompPoly
+
+namespace CBivariate
+
+/-- Partial derivative with respect to X: differentiate each Y-coefficient in X.-/
+def partialDerivX [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (f : CBivariate R) : CBivariate R :=
+  (CPolynomial.support f).sum fun j ↦
+    CPolynomial.monomial j (CPolynomial.derivative (f.val.coeff j))
+
+/-- Partial derivative with respect to Y: differentiate in the outer variable.-/
+def partialDerivY [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    (f : CBivariate R) : CBivariate R :=
+  CPolynomial.derivative f
+
+/-- Outer coefficient of a `support`-sum of monomials whose `Y`-coefficients are mapped by a
+zero-preserving `g`: the `j`-th coefficient is `g` applied to the `j`-th `Y`-coefficient.
+@isnad1 id=eq.1h4v.s8.a517bf6b3981 from=translated src=- shape=84fbb021 vocab=cae0d60d
+-/
+theorem outerCoeff_support_monomial [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    [DecidableEq R] (f : CBivariate R) (g : CPolynomial R → CPolynomial R) (hg : g 0 = 0) (j : ℕ) :
+    CPolynomial.coeff ((CPolynomial.support f).sum fun k =>
+      CPolynomial.monomial k (g (f.val.coeff k))) j = g (CPolynomial.coeff f j) := by
+  erw [CPolynomial.coeff_finset_sum]
+  simp only [CPolynomial.coeff_monomial]
+  rw [Finset.sum_eq_single j]
+  · simp only [ite_true]
+  · intro b _ hbj; simp [Ne.symm hbj]
+  · intro hj
+    simp only [ite_true]
+    rw [CPolynomial.mem_support_iff, not_not] at hj
+    change g (CPolynomial.coeff f j) = 0
+    rw [hj]; exact hg
+
+/-- Outer coefficient of the X-partial derivative: differentiate the j-th Y-coefficient.
+@isnad1 id=eq.0h3v.s6.d05395b5a56d from=translated src=- shape=a9363bd6 vocab=df5d265b
+-/
+theorem outerCoeff_partialDerivX [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (f : CBivariate R) (j : ℕ) :
+    CPolynomial.coeff (partialDerivX f) j =
+      CPolynomial.derivative (CPolynomial.coeff f j) :=
+  outerCoeff_support_monomial f CPolynomial.derivative CPolynomial.derivative_zero j
+
+/-- Coefficient formula for the X-partial derivative.
+@isnad1 id=eq.0h4v.s6.365519d00d5b from=translated src=- shape=1963c025 vocab=f30a1fe2
+-/
+theorem coeff_partialDerivX [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (f : CBivariate R) (i j : ℕ) :
+    CBivariate.coeff (partialDerivX f) i j =
+      CBivariate.coeff f (i + 1) j * (↑(i + 1) : R) := by
+  simp only [coeff_eq_coeff_coeff, outerCoeff_partialDerivX, CPolynomial.coeff_derivative]
+
+/-- Coefficient formula for the Y-partial derivative.
+@isnad1 id=eq.0h4v.s6.d682b2944b7a from=translated src=- shape=5dbce726 vocab=552273f6
+-/
+theorem coeff_partialDerivY [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    (f : CBivariate R) (i j : ℕ) :
+    CBivariate.coeff (partialDerivY f) i j =
+      CBivariate.coeff f i (j + 1) * (↑(j + 1) : R) := by
+  unfold partialDerivY coeff
+  simp only [CPolynomial.coeff_derivative]
+  rw [(Nat.cast_commute (j + 1) (CPolynomial.coeff f (j + 1))).symm.eq,
+    CPolynomial.natCast_eq_C, CPolynomial.coeff_C_mul]
+  exact (Nat.cast_commute (j + 1) _).eq
+
+/-- The X-partial derivative of zero is zero.
+@isnad1 id=eq.0h1v.s6.96e5f1605d53 from=translated src=- shape=d62882e1 vocab=81b0d55e
+-/
+theorem partialDerivX_zero [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R] :
+    partialDerivX (0 : CBivariate R) = 0 := by
+  have hsupport : CPolynomial.support (0 : CBivariate R) = ∅ := by
+    ext j
+    constructor
+    · intro hj
+      exact False.elim (((CPolynomial.mem_support_iff (0 : CBivariate R) j).1 hj)
+        (CPolynomial.coeff_zero (R := CPolynomial R) j))
+    · intro hj
+      cases hj
+  simp [partialDerivX, hsupport]
+
+/-- The Y-partial derivative of zero is zero.
+@isnad1 id=eq.0h1v.s6.205dded8e741 from=translated src=- shape=de89a664 vocab=ff51adb7
+-/
+theorem partialDerivY_zero [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] :
+    partialDerivY (0 : CBivariate R) = 0 := by
+  unfold partialDerivY
+  exact CPolynomial.derivative_zero
+
+/-- The X-partial derivative distributes over addition.
+@isnad1 id=eq.0h3v.s7.c85e6f90059b from=translated src=- shape=591e24c8 vocab=a2aeff2c
+-/
+theorem partialDerivX_add [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (f g : CBivariate R) :
+    partialDerivX (f + g) = partialDerivX f + partialDerivX g := by
+  unfold CBivariate
+  rw [CPolynomial.eq_iff_coeff]
+  intro j
+  rw [CPolynomial.eq_iff_coeff]
+  intro i
+  simp only [← coeff_eq_coeff_coeff, coeff_partialDerivX]
+  erw [coeff_add, coeff_add]
+  simp only [coeff_partialDerivX]
+  exact add_mul _ _ _
+
+/-- The Y-partial derivative distributes over addition.
+@isnad1 id=eq.0h3v.s7.f77b8e3a5e1e from=translated src=- shape=591e24c8 vocab=099c5f1f
+-/
+theorem partialDerivY_add [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (f g : CBivariate R) :
+    partialDerivY (f + g) = partialDerivY f + partialDerivY g := by
+  unfold partialDerivY
+  exact CPolynomial.derivative_add f g
+
+/-- The X-partial derivative differentiates each Y-coefficient under `toPoly`.
+@isnad1 id=eq.0h3v.s7.0a730d6419c9 from=translated src=- shape=1bbb17ba vocab=066bed7f
+-/
+theorem partialDerivX_toPoly [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (f : CBivariate R) (j : ℕ) :
+    (toPoly (partialDerivX f)).coeff j =
+      Polynomial.derivative ((toPoly f).coeff j) := by
+  rw [toPoly_coeff, toPoly_coeff, outerCoeff_partialDerivX]
+  exact CPolynomial.derivative_toPoly _
+
+/-- The Y-partial derivative corresponds to `Polynomial.derivative` under `toPoly`.
+@isnad1 id=eq.0h2v.s8.1567183585d1 from=translated src=- shape=cda3564b vocab=16a1c28a
+-/
+theorem partialDerivY_toPoly [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (f : CBivariate R) :
+    toPoly (partialDerivY f) = Polynomial.derivative (toPoly f) := by
+  rw [toPoly_eq_map, toPoly_eq_map]
+  unfold partialDerivY
+  rw [CPolynomial.derivative_toPoly]
+  rw [Polynomial.derivative_map]
+
+/-- The Y-partial derivative satisfies the Leibniz product rule.
+@isnad1 id=eq.0h3v.s8.de718527cc0f from=translated src=- shape=307366af vocab=06cd5e63
+-/
+theorem partialDerivY_mul [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (f g : CBivariate R) :
+    partialDerivY (f * g) = partialDerivY f * g + f * partialDerivY g := by
+  unfold partialDerivY
+  exact CPolynomial.derivative_mul f g
+
+/-- The X-partial derivative satisfies the Leibniz product rule.
+@isnad1 id=eq.0h3v.s8.687f523331a3 from=translated src=- shape=307366af vocab=f896fe26
+-/
+theorem partialDerivX_mul [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (f g : CBivariate R) :
+    partialDerivX (f * g) = partialDerivX f * g + f * partialDerivX g := by
+  apply CBivariate.ringEquiv.injective
+  show toPoly (partialDerivX (f * g)) = toPoly (partialDerivX f * g + f * partialDerivX g)
+  apply Polynomial.ext; intro j
+  rw [partialDerivX_toPoly, toPoly_mul, Polynomial.coeff_mul,
+    toPoly_add, Polynomial.coeff_add, toPoly_mul, toPoly_mul,
+    Polynomial.coeff_mul, Polynomial.coeff_mul]
+  simp_rw [partialDerivX_toPoly]
+  rw [map_sum, ← Finset.sum_add_distrib]
+  exact Finset.sum_congr rfl fun x _ => Polynomial.derivative_mul
+
+/-- Iterated partial derivative with respect to X.-/
+def iterPartialDerivX [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (n : ℕ) (f : CBivariate R) : CBivariate R :=
+  n.iterate partialDerivX f
+
+/-- Iterated partial derivative with respect to Y.-/
+def iterPartialDerivY [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    (n : ℕ) (f : CBivariate R) : CBivariate R :=
+  n.iterate partialDerivY f
+
+/-- Iterated X-partial derivative differentiates each Y-coefficient under `toPoly`.
+@isnad1 id=eq.0h4v.s7.e17466bd5546 from=translated src=- shape=b0dd0048 vocab=c24d1749
+-/
+theorem iterPartialDerivX_toPoly [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (n : ℕ) (f : CBivariate R) (j : ℕ) :
+    (toPoly (iterPartialDerivX n f)).coeff j =
+      Polynomial.derivative^[n] ((toPoly f).coeff j) := by
+  induction n generalizing f with
+  | zero => rfl
+  | succ n ih =>
+    show (toPoly (iterPartialDerivX n (partialDerivX f))).coeff j = _
+    rw [ih, partialDerivX_toPoly, Function.iterate_succ, Function.comp]
+
+/-- Iterated Y-partial derivative corresponds to `Polynomial.derivative^[n]` under `toPoly`.
+@isnad1 id=eq.0h3v.s8.7463676e3dfc from=translated src=- shape=7237b27a vocab=d5b72f1a
+-/
+theorem iterPartialDerivY_toPoly [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (n : ℕ) (f : CBivariate R) :
+    toPoly (iterPartialDerivY n f) = Polynomial.derivative^[n] (toPoly f) := by
+  induction n generalizing f with
+  | zero => rfl
+  | succ n ih =>
+    show toPoly (iterPartialDerivY n (partialDerivY f)) = _
+    rw [ih, partialDerivY_toPoly, Function.iterate_succ, Function.comp]
+
+/-- Mixed partial derivative: i-fold in X, then j-fold in Y.-/
+def mixedPartialDeriv [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (i j : ℕ) (f : CBivariate R) : CBivariate R :=
+  iterPartialDerivX i (iterPartialDerivY j f)
+
+/-- X and Y partial derivatives commute.
+@isnad1 id=eq.0h2v.s5.79211f3cc76a from=translated src=- shape=ecdf4e4b vocab=5a3a68d9
+-/
+theorem partialDerivX_partialDerivY_comm [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    [DecidableEq R] (f : CBivariate R) :
+    partialDerivX (partialDerivY f) = partialDerivY (partialDerivX f) := by
+    apply CPolynomial.eq_iff_coeff.mpr
+    intro j
+    apply CPolynomial.eq_iff_coeff.mpr
+    intro i
+    simp only [← coeff_eq_coeff_coeff, coeff_partialDerivX, coeff_partialDerivY]
+    rw [mul_assoc, mul_assoc]
+    congr 1
+    exact (Nat.cast_commute (j + 1) _).eq
+
+/-- Mixed partial derivatives commute.
+@isnad1 id=eq.0h4v.s6.a57f3636e8a2 from=translated src=- shape=b4df22ca vocab=59adb5bc
+-/
+theorem mixedPartials_comm [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (i j : ℕ) (f : CBivariate R) :
+    iterPartialDerivX i (iterPartialDerivY j f) =
+      iterPartialDerivY j (iterPartialDerivX i f) := by
+  exact Function.Commute.iterate_iterate
+      (fun f => partialDerivX_partialDerivY_comm f) i j f
+
+/-- Shift the outer `Y` variable: `Q(X, Y + b)`.-/
+def shiftY [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (b : R) (Q : CBivariate R) : CBivariate R :=
+  CPolynomial.taylor (CPolynomial.C b) Q
+
+/-- Shift the inner `X` variable: `Q(X + a, Y)`, Taylor-shifting each `Y`-coefficient.-/
+def shiftX [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (a : R) (Q : CBivariate R) : CBivariate R :=
+  (CPolynomial.support Q).sum fun j =>
+    CPolynomial.monomial j (CPolynomial.taylor a (Q.val.coeff j))
+
+/-- The full shift `Q(X + a, Y + b)`.-/
+def shiftC [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (a b : R) (Q : CBivariate R) : CBivariate R :=
+  shiftX a (shiftY b Q)
+
+/-- `Q` has multiplicity at least `r` at `(a, b)`: every coefficient of the shifted
+    polynomial `Q(X + a, Y + b)` of total degree `< r` vanishes.-/
+def hasMultiplicity [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (Q : CBivariate R) (r : ℕ) (a b : R) : Prop :=
+  ∀ i j, i + j < r → CBivariate.coeff (shiftC a b Q) i j = 0
+
+/-- Decidable check for multiplicity.-/
+def checkMultiplicity [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (Q : CBivariate R) (r : ℕ) (a b : R) : Bool :=
+  List.all (List.range r) fun k ↦
+    List.all (List.range (k + 1)) fun i ↦
+      CBivariate.coeff (shiftC a b Q) i (k - i) == 0
+
+/-- The outer (Y) shift corresponds to `Y ↦ Y + b` under `toPoly`.
+@isnad1 id=eq.0h3v.s8.5febd302d650 from=translated src=- shape=f6f6c42e vocab=97b21c74
+-/
+theorem shiftY_toPoly [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (b : R) (Q : CBivariate R) :
+    (shiftY b Q).toPoly = (Q.toPoly).comp (Polynomial.X + Polynomial.C (Polynomial.C b)) := by
+  unfold shiftY
+  rw [toPoly_eq_map, CPolynomial.taylor_toPoly, Polynomial.taylor_apply, Polynomial.map_comp,
+    ← toPoly_eq_map]
+  congr 1
+  rw [Polynomial.map_add, Polynomial.map_X, Polynomial.map_C]
+  congr 2
+  have ringEquiv_toPoly (p : CPolynomial R) :
+      (CPolynomial.ringEquiv (R := R)).toRingHom p = p.toPoly := by
+    rw [RingEquiv.toRingHom_eq_coe]
+    exact CPolynomial.ringEquiv_apply p
+  change (CPolynomial.ringEquiv (R := R)).toRingHom (CPolynomial.C b) = _
+  rw [ringEquiv_toPoly, CPolynomial.C_toPoly]
+
+/-- Outer coefficient of the X-shift: Taylor-shift the j-th Y-coefficient.
+@isnad1 id=eq.0h4v.s6.2d3161d88400 from=translated src=- shape=6eeef993 vocab=ef673dda
+-/
+theorem outerCoeff_shiftX [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (a : R) (P : CBivariate R) (j : ℕ) :
+    CPolynomial.coeff (shiftX a P) j = CPolynomial.taylor a (CPolynomial.coeff P j) :=
+  outerCoeff_support_monomial P (CPolynomial.taylor a) (CPolynomial.taylor_zero a) j
+
+/-- The inner (X) shift corresponds to `X ↦ X + a` under `toPoly`.
+@isnad1 id=eq.0h3v.s7.7a631eb41449 from=translated src=- shape=9264bc1e vocab=659363f2
+-/
+theorem shiftX_toPoly [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (a : R) (P : CBivariate R) :
+    (shiftX a P).toPoly
+      = (P.toPoly).map (Polynomial.compRingHom (Polynomial.X + Polynomial.C a)) := by
+  apply Polynomial.ext
+  intro j
+  rw [toPoly_coeff, outerCoeff_shiftX, CPolynomial.taylor_toPoly, Polynomial.coeff_map,
+    Polynomial.coe_compRingHom_apply, ← Polynomial.taylor_apply, toPoly_coeff]
+
+/-- The computable shift agrees with `Polynomial.Bivariate.shift` under `toPoly`.
+@isnad1 id=eq.0h4v.s6.33d026fcd2c7 from=translated src=- shape=ae996d29 vocab=359491a9
+-/
+theorem shiftC_toPoly [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (a b : R) (Q : CBivariate R) :
+    (shiftC a b Q).toPoly = Polynomial.Bivariate.shift Q.toPoly a b := by
+  unfold shiftC
+  rw [shiftX_toPoly, shiftY_toPoly]
+  rfl
+
+/-- Evaluating the outer variable at the constant `C b` agrees with the Horner evaluator `evalY`.
+@isnad1 id=eq.0h3v.s6.56f851854024 from=translated src=- shape=3716d1c8 vocab=1dd9bf3d
+-/
+theorem eval_C_eq_evalY [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    (b : R) (Q : CBivariate R) :
+    CPolynomial.eval (CPolynomial.C b) Q = evalY b Q := by
+  apply CPolynomial.ringEquiv.injective
+  have ringEquiv_toPoly (p : CPolynomial R) :
+      (CPolynomial.ringEquiv (R := R)).toRingHom p = p.toPoly := by
+    rw [RingEquiv.toRingHom_eq_coe]
+    exact CPolynomial.ringEquiv_apply p
+  change
+    (CPolynomial.ringEquiv (R := R)).toRingHom
+        (CPolynomial.eval (CPolynomial.C b) Q) =
+      (CPolynomial.ringEquiv (R := R)).toRingHom (evalY b Q)
+  rw [ringEquiv_toPoly, ringEquiv_toPoly]
+  rw [evalY_toPoly, CPolynomial.eval_toPoly, toPoly_eq_map, ← CPolynomial.C_toPoly b]
+  have h := (Polynomial.eval_map_apply (p := CPolynomial.toPoly Q)
+    (CPolynomial.ringEquiv (R := R)).toRingHom (CPolynomial.C b)).symm
+  rw [ringEquiv_toPoly, ringEquiv_toPoly] at h
+  exact h
+
+/-- The (0,0) coefficient of the shift is evaluation at the point.
+@isnad1 id=eq.0h4v.s6.e1f520fbd7be from=translated src=- shape=89ec1b8d vocab=c1259070
+-/
+theorem coeff_shiftC_zero_zero [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (a b : R) (Q : CBivariate R) :
+    CBivariate.coeff (shiftC a b Q) 0 0 = evalEval a b Q := by
+  rw [coeff_eq_coeff_coeff]
+  unfold shiftC
+  rw [outerCoeff_shiftX, CPolynomial.taylor_coeff_zero]
+  unfold shiftY
+  rw [CPolynomial.taylor_coeff_zero]
+  unfold evalEval
+  rw [eval_C_eq_evalY]
+
+/-- Multiplicity at least 1 is equivalent to vanishing at the point.
+@isnad1 id=iff.0h4v.s6.02b52d297233 from=translated src=- shape=811eb588 vocab=555a4a7d
+-/
+theorem hasMultiplicity_one_iff [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    [DecidableEq R] (Q : CBivariate R) (a b : R) :
+    hasMultiplicity Q 1 a b ↔ evalEval a b Q = 0 := by
+  unfold hasMultiplicity
+  constructor
+  · intro h; have := h 0 0 (by omega); rwa [coeff_shiftC_zero_zero] at this
+  · intro h i j hij
+    obtain ⟨rfl, rfl⟩ : i = 0 ∧ j = 0 := ⟨by omega, by omega⟩
+    rwa [coeff_shiftC_zero_zero]
+
+/-- `hasMultiplicity` agrees with the reference `Polynomial.Bivariate.rootMultiplicity`,
+where `none` denotes infinite multiplicity (the zero polynomial).
+@isnad1 id=iff.0h5v.s6.c69cd08950f7 from=translated src=- shape=3b5bd808 vocab=69277c9a
+-/
+theorem hasMultiplicity_iff_rootMultiplicity [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    [DecidableEq R] (Q : CBivariate R) (r : ℕ) (a b : R) :
+    hasMultiplicity Q r a b ↔
+      ∀ m ∈ Polynomial.Bivariate.rootMultiplicity Q.toPoly a b, r ≤ m := by
+  have key : ∀ i j, CBivariate.coeff (shiftC a b Q) i j
+      = Polynomial.Bivariate.coeff (Polynomial.Bivariate.shift Q.toPoly a b) i j := by
+    intro i j; rw [← coeff_toPoly, shiftC_toPoly]; rfl
+  unfold hasMultiplicity
+  simp only [key]
+  exact Polynomial.Bivariate.rootMultiplicity₀_ge_iff (Polynomial.Bivariate.shift Q.toPoly a b) r
+
+/-- Every polynomial has multiplicity at least 0 at any point.
+@isnad1 id=hasmulti.0h4v.s5.d849f87a9ca9 from=translated src=- shape=66be9606 vocab=5a3eba3c
+-/
+theorem hasMultiplicity_zero [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    [DecidableEq R] (Q : CBivariate R) (a b : R) :
+    hasMultiplicity Q 0 a b := by
+  intro i j h; omega
+
+/-- Multiplicity is monotone: higher multiplicity implies lower.
+@isnad1 id=hasmulti.1h5v.s6.1f4bed6f2f64 from=translated src=- shape=39553eef vocab=2936f2a6
+-/
+theorem hasMultiplicity_succ [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    [DecidableEq R] (Q : CBivariate R) (r : ℕ) (a b : R) :
+    hasMultiplicity Q (r + 1) a b → hasMultiplicity Q r a b := by
+  intro h i j hij
+  exact h i j (by omega)
+
+/-- `toPoly` is injective on canonical bivariate polynomials.
+@isnad1 id=eq.1h3v.s6.85664c6dca8d from=translated src=- shape=acea072c vocab=105c830c
+-/
+theorem toPoly_injective [Semiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    [DecidableEq R] {P Q : CBivariate R} (h : toPoly P = toPoly Q) : P = Q := by
+  rw [← toPoly_ofPoly P, ← toPoly_ofPoly Q, h]
+
+/-- The generic Taylor shift is additive.
+@isnad1 id=eq.0h5v.s7.2393551c1326 from=translated src=- shape=ffdf9731 vocab=3926e6a5
+-/
+theorem shiftC_add [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R] [DecidableEq R]
+    (a b : R) (P Q : CBivariate R) :
+    shiftC a b (P + Q) = shiftC a b P + shiftC a b Q := by
+  apply toPoly_injective
+  rw [toPoly_add, shiftC_toPoly, shiftC_toPoly, shiftC_toPoly, toPoly_add]
+  unfold Polynomial.Bivariate.shift
+  rw [Polynomial.add_comp, Polynomial.map_add]
+
+/-- The generic Taylor shift is multiplicative.
+@isnad1 id=eq.0h5v.s7.ea9fe45ce3e0 from=translated src=- shape=ffdf9731 vocab=a2d65ae3
+-/
+theorem shiftC_mul [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    [DecidableEq R] (a b : R) (P Q : CBivariate R) :
+    shiftC a b (P * Q) = shiftC a b P * shiftC a b Q := by
+  apply toPoly_injective
+  rw [toPoly_mul, shiftC_toPoly, shiftC_toPoly, shiftC_toPoly, toPoly_mul]
+  unfold Polynomial.Bivariate.shift
+  rw [Polynomial.mul_comp, Polynomial.map_mul]
+
+/-- The decidable check agrees with the propositional multiplicity.
+@isnad1 id=iff.0h5v.s5.4983115fed02 from=translated src=- shape=8cfb5da5 vocab=f82d5509
+-/
+theorem hasMultiplicity_iff_check [CommSemiring R] [BEq R] [LawfulBEq R] [Nontrivial R]
+    [DecidableEq R] (Q : CBivariate R) (r : ℕ) (a b : R) :
+    hasMultiplicity Q r a b ↔ checkMultiplicity Q r a b = true := by
+  unfold hasMultiplicity checkMultiplicity
+  simp only [List.all_eq_true, List.mem_range, beq_iff_eq]
+  constructor
+  · intro h k hk i hi
+    exact h i (k - i) (by omega)
+  · intro h i j hij
+    have := h (i + j) (by omega) i (by omega)
+    simp only [Nat.add_sub_cancel_left] at this
+    exact this
+
+end CBivariate
+
+end CompPoly
