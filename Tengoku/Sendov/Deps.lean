@@ -1,0 +1,1 @@
+-- Sendov: a factory bundle (data/intake/sendov). This file only marks the library for Tengoku/All.lean.
