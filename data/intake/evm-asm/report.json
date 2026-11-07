@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "890143a8778d7926894396b1cb2e1de1c89b3485a57b63ada9ca5023e2dfe4c3",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "evm-asm",
+ "lint_mode": "proposed",
+ "modules": 49,
+ "part": 1,
+ "theorems": 559
+}
