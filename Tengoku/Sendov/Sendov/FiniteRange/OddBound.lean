@@ -37,13 +37,17 @@ open MeasureTheory
 
 variable {n : ℕ} {α q w : ℝ}
 
-/-- The tangent line to `√·` at `q = w²`: `√q ≤ q/(2w) + w/2`.-/
+/-- The tangent line to `√·` at `q = w²`: `√q ≤ q/(2w) + w/2`.
+@isnad1 id=le.2h2v.s6.2ae6ef8ff49a from=translated src=- shape=28553bda vocab=71e7111e
+-/
 lemma sqrt_le_tangent (hq : 0 ≤ q) (hw : 0 < w) : Real.sqrt q ≤ q / (2 * w) + w / 2 := by
   have hrw : q / (2 * w) + w / 2 = (q + w ^ 2) / (2 * w) := by field_simp
   rw [hrw, le_div_iff₀ (by positivity)]
   nlinarith [sq_nonneg (Real.sqrt q - w), Real.sq_sqrt hq]
 
-/-- The half-integer power bound `q ^ (k + 1/2) ≤ q ^ k * (q/(2w) + w/2)`.-/
+/-- The half-integer power bound `q ^ (k + 1/2) ≤ q ^ k * (q/(2w) + w/2)`.
+@isnad1 id=le.2h3v.s7.3108cf2ea373 from=translated src=- shape=59be92bb vocab=341180a7
+-/
 lemma rpow_add_half_le (hq : 0 ≤ q) (k : ℕ) (hw : 0 < w) :
     q ^ ((k : ℝ) + 1 / 2) ≤ q ^ k * (q / (2 * w) + w / 2) := by
   rcases hq.lt_or_eq with h | h
@@ -57,7 +61,9 @@ lemma rpow_add_half_le (hq : 0 ≤ q) (k : ℕ) (hw : 0 < w) :
     linarith
 
 /-- **The odd-degree bound.**  The square root is eliminated in favour of polynomial
-moments, at the cost of a free parameter `w > 0`.-/
+moments, at the cost of a free parameter `w > 0`.
+@isnad1 id=le.3h4v.s8.0d7e68afef4b from=translated src=- shape=d254ef3a vocab=edc6d84a
+-/
 lemma integral_rpow_le (hfeas : c n α ^ 2 ≤ A n α) (k : ℕ)
     (hk : ((n : ℝ) - 4) / 2 = (k : ℝ) + 1 / 2) (hw : 0 < w) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q n α t ^ (((n : ℝ) - 4) / 2))

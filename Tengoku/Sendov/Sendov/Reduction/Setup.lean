@@ -44,25 +44,38 @@ noncomputable def Ppolar (a x t : ℝ) : ℝ :=
 variable {n : ℕ} {a x t α : ℝ}
 
 /-- `P` is a sum of squares once `|x| ≤ 1`; this is the same computation that makes
-`Sendov.QQ_nonneg` work.-/
+`Sendov.QQ_nonneg` work.
+@isnad1 id=eq.0h3v.s7.a127db97f572 from=translated src=- shape=4a735200 vocab=1c8134cb
+-/
 lemma Ppolar_eq (a x t : ℝ) :
     Ppolar a x t = (a + t * (1 - a ^ 2) * x) ^ 2 + t ^ 2 * (1 - a ^ 2) ^ 2 * (1 - x ^ 2) := by
   simp only [Ppolar]; ring
 
+/--
+@isnad1 id=le.1h3v.s5.9e309995023f from=translated src=- shape=06ce91c2 vocab=a7bf861c
+-/
 lemma Ppolar_nonneg (hx : x ^ 2 ≤ 1) (a t : ℝ) : 0 ≤ Ppolar a x t := by
   rw [Ppolar_eq]
   exact add_nonneg (sq_nonneg _) (mul_nonneg (by positivity) (by linarith))
 
+/--
+@isnad1 id=continuo.0h2v.s4.ea5076e75bb6 from=translated src=- shape=2e067db6 vocab=b2bbddf2
+-/
 lemma continuous_Ppolar (a x : ℝ) : Continuous fun t : ℝ => Ppolar a x t := by
   simp only [Ppolar]; fun_prop
 
-/-- With `α = (n-1)(1-a²)/2`, the `A` of `Sendov.Defs` is exactly `a²`.-/
+/-- With `α = (n-1)(1-a²)/2`, the `A` of `Sendov.Defs` is exactly `a²`.
+@isnad1 id=eq.2h3v.s6.0a1dbe3d1648 from=translated src=- shape=b1131f5f vocab=685f106d
+-/
 lemma A_eq_sq (hn : 2 ≤ n) (hα : α = M n * (1 - a ^ 2) / 2) : A n α = a ^ 2 := by
   have hM : M n ≠ 0 := (M_pos hn).ne'
   simp only [A, hα]
   field_simp
   ring
 
+/--
+@isnad1 id=lt.4h3v.s6.45cf9887d68c from=translated src=- shape=a4852b49 vocab=be7b6b7f
+-/
 lemma alpha_pos (hn : 2 ≤ n) (ha1 : a < 1) (_ha0 : 0 ≤ a)
     (hα : α = M n * (1 - a ^ 2) / 2) : 0 < α := by
   have hM : 0 < M n := M_pos hn
@@ -70,6 +83,9 @@ lemma alpha_pos (hn : 2 ≤ n) (ha1 : a < 1) (_ha0 : 0 ≤ a)
   have : 0 < 1 - a ^ 2 := by nlinarith
   positivity
 
+/--
+@isnad1 id=le.2h3v.s6.65f84c12a35d from=translated src=- shape=67743e4f vocab=78ad82eb
+-/
 lemma alpha_le_half (hn : 2 ≤ n) (hα : α = M n * (1 - a ^ 2) / 2) :
     α ≤ M n / 2 := by
   have hM : 0 < M n := M_pos hn

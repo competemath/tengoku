@@ -29,14 +29,29 @@ namespace Sendov
 
 namespace B30_31
 
+/--
+@isnad1 id=eq.0h0v.s4.1795ff8c8247 from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_lo : M 30 = 29 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h0v.s4.6a81be8745c6 from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_hi : M 31 = 30 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h1v.s5.da2881d9db9f from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_lo (α : ℝ) : A 30 α = 1 - 2 * α / 29 := by rw [A, M]; push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s5.e11f39a5eae3 from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_hi (α : ℝ) : A 31 α = 1 - 2 * α / 30 := by rw [A, M]; push_cast; ring
 
+/--
+@isnad1 id=eq.1h1v.s7.b462594424ad from=translated src=- shape=4a2b345f vocab=a488b366
+-/
 lemma c_lo {α : ℝ} (hα : 0 ≤ α) : c 30 α = (174 + 23 * α - 2 * α ^ 2) / (58 * (3 + α)) := by
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   rw [c, M]
@@ -45,7 +60,9 @@ lemma c_lo {α : ℝ} (hα : 0 ≤ α) : c 30 α = (174 + 23 * α - 2 * α ^ 2) 
   ring
 
 /-- `c` is nonnegative at `n₀` on the batch's `α`-range.  This replaces feasibility at `n₀`,
-which for `n₀ < 36` does not follow from `α ≤ 17`.-/
+which for `n₀ < 36` does not follow from `α ≤ 17`.
+@isnad1 id=le.2h1v.s5.77cace267e9a from=translated src=- shape=53a1e06f vocab=dbb9adf6
+-/
 lemma c_lo_nonneg {α : ℝ} (hα : 0 ≤ α) (hU : α ≤ 15) : 0 ≤ c 30 α := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   rw [c_lo hα]
@@ -62,6 +79,9 @@ def tauc : ℤ := 31385024211716552665005700504965938034060230060726473470675176
 def Nmomc : List ℤ :=
   [2847322232222377079130299295548866560, 15008988226404392281484543183203565568, 37112008475173470993393263682783510528, 57188567882381822904060946628509335552, 61554387606037947478868681903502606336, 49175417644995034753823426546066964480, 30266999921668094875538981840926900224, 14722581654107051388196649173533425664, 5773724410165756723566084202262839296, 1861804093815965861828856484560027648, 507213355867117246883967915154784256, 123214822854564441785750257598152704, 31464019263956737516909155495370752, 20191362054204790435940152444264448, 1517931070679596171060122428145664, 92893271780986750639134682054656, 4504919947918335797971976716288, 171916708762615946808838455296, 5157244460346339035650719744, 121426254799723639395581952, 2232336341894261335130112, 31693716069507391291392, 340723585068751126528, 2682523919058993152, 14594536705622016, 49052855042048, 76772540416]
 
+/--
+@isnad1 id=eq.0h1v.s5.2e5c5edfb216 from=translated src=- shape=f7a963d3 vocab=0cb86976
+-/
 theorem pev_Nmomc (α : ℝ) :
     pev Nmomc α = pev (wsum Lc 0 (qrow (gg0 30) (gg1 30) (gg2 30) 13)) α := by
   refine pev_wsum_eq_of_packed (gg0 30) (gg1 30) (gg2 30) 13 40 Lc betac
@@ -78,6 +98,9 @@ theorem pev_Nmomc (α : ℝ) :
       (qrow_entry_length_le (gg0 30) (gg1 30) (gg2 30) 3 (by simp) (by simp) (by simp) 13)
   · rfl
 
+/--
+@isnad1 id=eq.1h1v.s7.8658016a5624 from=translated src=- shape=17b3eb33 vocab=cce8368b
+-/
 theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 30 α t ^ 13)
       = pev Nmomc α / ((Lc : ℝ) * (2 * M 30 * (3 + α)) ^ 13) :=
@@ -86,7 +109,9 @@ theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
 
 set_option maxHeartbeats 2000000 in
 -- the degree-28 Bernstein identity exceeds the default budget
-/-- The certificate: `17 ^ 28 * P α` is a positive combination of `αʲ (17-α)^(28-j)`.-/
+/-- The certificate: `17 ^ 28 * P α` is a positive combination of `αʲ (17-α)^(28-j)`.
+@isnad1 id=lt.2h1v.s10.8d8b7e1738bc from=translated src=- shape=8cc5f79c vocab=d8e6b3e9
+-/
 lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 15) :
     0 < 586577450963685326737168897370707500 + 2753132994648490979146101875384719500 * α + 5996201651556610186353013706234776680 * α ^ 2 + 8030975436338556704707041798612128472 * α ^ 3 + 7388055615126493367424454764006350082 * α ^ 4 + 4936598337528514606768767094265091378 * α ^ 5 + 2469192037754886771172170203022293214 * α ^ 6 + 938102920031818441360780570553215590 * α ^ 7 + 271392183919032658980825616039479546 * α ^ 8 + 59155996945930238392567631443933866 * α ^ 9 + 9399459563896087929210688264754844 * α ^ 10 + 974977535533292148502665510758532 * α ^ 11 + 10861549420545366403779627757839 * α ^ 12 - 92622867478166716461279291384369 * α ^ 13 + 6300099969105231240951104525763 * α ^ 14 + 117642575887863777951373952647 * α ^ 15 + 6754895556059983986318667916 * α ^ 16 + 94553344499679709104836184 * α ^ 17 - 13437772607038842242965408 * α ^ 18 - 1178131104153353973775376 * α ^ 19 - 53368378574787271805184 * α ^ 20 - 1629770789867125896192 * α ^ 21 - 35941441812526263552 * α ^ 22 - 584181453145681152 * α ^ 23 - 6973783723783168 * α ^ 24 - 59692780623872 * α ^ 25 - 347727077376 * α ^ 26 - 1237127168 * α ^ 27 - 2031616 * α ^ 28 := by
   have hu : (0 : ℝ) ≤ 15 - α := by linarith
@@ -160,7 +185,9 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 15) :
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
-/-- **The batch `30 ≤ n ≤ 31`.**-/
+/-- **The batch `30 ≤ n ≤ 31`.**
+@isnad1 id=lt.5h2v.s6.c823122eca1b from=translated src=- shape=be7a7659 vocab=6ae490cc
+-/
 theorem finite_range {n : ℕ} (h0 : 30 ≤ n) (h1 : n ≤ 31) {α : ℝ}
     (hα : 0 ≤ α) (_hα' : α ≤ 17) (hfeas : c n α ^ 2 ≤ A n α) : R n α < 1 := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα

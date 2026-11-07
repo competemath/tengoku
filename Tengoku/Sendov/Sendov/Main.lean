@@ -38,7 +38,9 @@ variable {α : ℝ}
 
 /-- **The numerical claim.**  The right-hand side of equation `stat` of the blog post is
 strictly less than `1` for every degree `n ≥ 5` and every `0 ≤ α ≤ 17` satisfying the
-feasibility constraint `c ^ 2 ≤ A`.-/
+feasibility constraint `c ^ 2 ≤ A`.
+@isnad1 id=lt.4h2v.s6.e53266c78b92 from=translated src=- shape=2ff866a4 vocab=6ae490cc
+-/
 theorem stat_lt_one {n : ℕ} (hn : 5 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17)
     (hfeas : c n α ^ 2 ≤ A n α) : R n α < 1 := by
   rcases Nat.lt_or_ge n 101 with h | h
@@ -47,7 +49,9 @@ theorem stat_lt_one {n : ℕ} (hn : 5 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17)
 
 /-- **Equation `stat` is unsatisfiable.**  This is the form in which the blog post uses the
 claim: the polynomial argument there produces `1 ≤ R n α` under exactly these hypotheses, so
-the assumed counterexample to Sendov's conjecture cannot exist.-/
+the assumed counterexample to Sendov's conjecture cannot exist.
+@isnad1 id=false.5h2v.s6.2e21da6f60f7 from=translated src=- shape=10178024 vocab=9c938cb6
+-/
 theorem stat_contradiction {n : ℕ} (hn : 5 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17)
     (hfeas : c n α ^ 2 ≤ A n α) (hstat : 1 ≤ R n α) : False :=
   absurd hstat (not_le.2 (stat_lt_one hn hα hα' hfeas))

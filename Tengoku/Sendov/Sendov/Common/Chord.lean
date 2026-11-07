@@ -40,7 +40,9 @@ open MeasureTheory
 
 /-! ### The Beta integrals -/
 
-/-- The Beta integral `B(2, s+1)`.-/
+/-- The Beta integral `B(2, s+1)`.
+@isnad1 id=eq.1h1v.s7.a9c83f6880f4 from=translated src=- shape=1aa6379d vocab=b6e6e331
+-/
 lemma integral_lin_mul_rpow {s : ℝ} (hs : 0 < s) :
     (∫ x in (0 : ℝ)..1, x * (1 - x) ^ s) = 1 / ((s + 1) * (s + 2)) := by
   have hrefl : (∫ x in (0 : ℝ)..1, x * (1 - x) ^ s)
@@ -70,7 +72,9 @@ lemma integral_lin_mul_rpow {s : ℝ} (hs : 0 < s) :
   field_simp
   ring
 
-/-- The Beta integral `B(4, s+1)`.-/
+/-- The Beta integral `B(4, s+1)`.
+@isnad1 id=eq.1h1v.s7.9071111fb006 from=translated src=- shape=0bdd1a4a vocab=b6e6e331
+-/
 lemma integral_cube_mul_rpow {s : ℝ} (hs : 0 < s) :
     (∫ x in (0 : ℝ)..1, x ^ 3 * (1 - x) ^ s)
       = 6 / ((s + 1) * (s + 2) * (s + 3) * (s + 4)) := by
@@ -115,13 +119,17 @@ lemma integral_cube_mul_rpow {s : ℝ} (hs : 0 < s) :
   ring
 
 /-- The Beta value is at most `6/s⁴`; this is the form the informal argument uses, obtained
-there from the Gamma integral.-/
+there from the Gamma integral.
+@isnad1 id=le.1h1v.s7.8bafe713587d from=translated src=- shape=21c35816 vocab=5c9d27ef
+-/
 lemma beta_le_six_div_pow {s : ℝ} (hs : 0 < s) :
     6 / ((s + 1) * (s + 2) * (s + 3) * (s + 4)) ≤ 6 / s ^ 4 := by
   apply div_le_div_of_nonneg_left (by norm_num) (by positivity)
   nlinarith [hs.le, sq_nonneg s, sq_nonneg (s + 1)]
 
-/-- The chord integral with weight `t`, over `[0, 1/c]`.-/
+/-- The chord integral with weight `t`, over `[0, 1/c]`.
+@isnad1 id=eq.2h2v.s7.5c8cee4a54ea from=translated src=- shape=38504f4c vocab=b6e6e331
+-/
 lemma integral_chord_lin {s c : ℝ} (hs : 0 < s) (hc : 0 < c) :
     (∫ t in (0 : ℝ)..1 / c, t * (1 - c * t) ^ s) = 1 / (c ^ 2 * ((s + 1) * (s + 2))) := by
   have hc' : c ≠ 0 := hc.ne'
@@ -142,7 +150,9 @@ lemma integral_chord_lin {s c : ℝ} (hs : 0 < s) (hc : 0 < c) :
   simp only [smul_eq_mul]
   field_simp
 
-/-- The chord integral with weight `t³`, over `[0, 1/c]`.-/
+/-- The chord integral with weight `t³`, over `[0, 1/c]`.
+@isnad1 id=eq.2h2v.s7.1d7a4a128b21 from=translated src=- shape=ab5a7ea4 vocab=b6e6e331
+-/
 lemma integral_chord_pow {s c : ℝ} (hs : 0 < s) (hc : 0 < c) :
     (∫ t in (0 : ℝ)..1 / c, t ^ 3 * (1 - c * t) ^ s)
       = 6 / (c ^ 4 * ((s + 1) * (s + 2) * (s + 3) * (s + 4))) := by
@@ -174,7 +184,9 @@ Two points shape the proof.  The chord bound needs `1 - ct ≥ 0`, which comes f
 `ct ≤ c²/A ≤ 1` — feasibility again.  And the vertex may lie outside `[0,1]`: the split is
 made at `s = min (c/A) 1`, after which the first piece is enlarged to `[0, 1/c]` (legitimate
 because `s ≤ 1/c`, using `c ≤ 1` when the vertex is to the right) and the second piece is
-empty when the vertex is beyond `1`.-/
+empty when the vertex is beyond `1`.
+@isnad1 id=le.4h4v.s8.b1c1758e36f6 from=translated src=- shape=4fedafb9 vocab=b4024d32
+-/
 theorem integral_le_tail_gen {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1 : c ≤ 1)
     {r : ℝ} (hr : 0 < r) (k : ℕ) :
     (∫ t in (0 : ℝ)..1, t ^ k * QQ c A t ^ r)
@@ -257,7 +269,9 @@ theorem integral_le_tail_gen {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1
 /-- The integral is antitone in `c`: raising `c` lowers `QQ` pointwise on `[0,1]`.  Note that
 nonnegativity is only needed for the *larger* `c`; for the smaller one it comes free from the
 pointwise comparison.  (`Sendov.integral_anti` in `FiniteRange.Batch` is the same trick applied
-to the degree instead.)-/
+to the degree instead.)
+@isnad1 id=le.3h5v.s7.4466244b2db4 from=translated src=- shape=d6b7ba0d vocab=b287ed8b
+-/
 lemma integral_QQ_anti {c₁ c₂ A : ℝ} (hle : c₁ ≤ c₂) (hfeas : c₂ ^ 2 ≤ A) {r : ℝ} (hr : 0 ≤ r)
     (k : ℕ) :
     (∫ t in (0 : ℝ)..1, t ^ k * QQ c₂ A t ^ r)
@@ -271,7 +285,9 @@ lemma integral_QQ_anti {c₁ c₂ A : ℝ} (hle : c₁ ≤ c₂) (hfeas : c₂ ^
   simp only [QQ]
   nlinarith [hu.1, hle]
 
-/-- The instance with weight `t`, used for `α ≤ 17`.-/
+/-- The instance with weight `t`, used for `α ≤ 17`.
+@isnad1 id=le.4h3v.s7.d96e0f957c8a from=translated src=- shape=4fc4ef13 vocab=bfb2817a
+-/
 theorem integral_le_tail_lin {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1 : c ≤ 1)
     {r : ℝ} (hr : 0 < r) :
     (∫ t in (0 : ℝ)..1, t * QQ c A t ^ r)
@@ -281,7 +297,9 @@ theorem integral_le_tail_lin {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1
   rw [integral_chord_lin hr hc, show ((1 : ℕ) : ℝ) + 1 = 2 by norm_num] at h
   exact h
 
-/-- The instance with weight `t³`, used by the large-degree argument.-/
+/-- The instance with weight `t³`, used by the large-degree argument.
+@isnad1 id=le.4h3v.s8.c4f720106051 from=translated src=- shape=11917359 vocab=bfb2817a
+-/
 theorem integral_le_tail_cube {c A : ℝ} (hfeas : c ^ 2 ≤ A) (hc : 0 < c) (hc1 : c ≤ 1)
     {r : ℝ} (hr : 0 < r) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * QQ c A t ^ r)

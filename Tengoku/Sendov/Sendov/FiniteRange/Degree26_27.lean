@@ -29,14 +29,29 @@ namespace Sendov
 
 namespace B26_27
 
+/--
+@isnad1 id=eq.0h0v.s4.166e1ed7f05c from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_lo : M 26 = 25 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h0v.s4.008ac988d33f from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_hi : M 27 = 26 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h1v.s5.dd631574b2a7 from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_lo (α : ℝ) : A 26 α = 1 - 2 * α / 25 := by rw [A, M]; push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s5.b0d3a65dc622 from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_hi (α : ℝ) : A 27 α = 1 - 2 * α / 26 := by rw [A, M]; push_cast; ring
 
+/--
+@isnad1 id=eq.1h1v.s7.42bdee96b059 from=translated src=- shape=4a2b345f vocab=a488b366
+-/
 lemma c_lo {α : ℝ} (hα : 0 ≤ α) : c 26 α = (150 + 19 * α - 2 * α ^ 2) / (50 * (3 + α)) := by
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   rw [c, M]
@@ -45,7 +60,9 @@ lemma c_lo {α : ℝ} (hα : 0 ≤ α) : c 26 α = (150 + 19 * α - 2 * α ^ 2) 
   ring
 
 /-- `c` is nonnegative at `n₀` on the batch's `α`-range.  This replaces feasibility at `n₀`,
-which for `n₀ < 36` does not follow from `α ≤ 17`.-/
+which for `n₀ < 36` does not follow from `α ≤ 17`.
+@isnad1 id=le.2h1v.s5.a035ff8b4a61 from=translated src=- shape=53a1e06f vocab=dbb9adf6
+-/
 lemma c_lo_nonneg {α : ℝ} (hα : 0 ≤ α) (hU : α ≤ 13) : 0 ≤ c 26 α := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   rw [c_lo hα]
@@ -62,6 +79,9 @@ def tauc : ℤ := 23426572919250358783308645088514096201907298946352897748420557
 def Nmomc : List ℤ :=
   [387230540361328125000000000000, 1801421059826953125000000000000, 3904034368858593750000000000000, 5235740547776268750000000000000, 4871336229481255875000000000000, 3345092202866735673000000000000, 1764975677650708972680000000000, 739008187884024802920000000000, 254413431645839068505760000000, 76379200780785652242028800000, 23390602747025993261119180800, 15823934861267894578878025728, 1286548783877635655383412736, 80855955782052201389506560, 3865275530870070676930560, 140238044038251091722240, 3855363400170394877952, 79769530465684291584, 1222691757773291520, 13471923877969920, 100958947246080, 461050478592, 968884224]
 
+/--
+@isnad1 id=eq.0h1v.s5.d31975ac2514 from=translated src=- shape=f7a963d3 vocab=0b10ba36
+-/
 theorem pev_Nmomc (α : ℝ) :
     pev Nmomc α = pev (wsum Lc 0 (qrow (gg0 26) (gg1 26) (gg2 26) 11)) α := by
   refine pev_wsum_eq_of_packed (gg0 26) (gg1 26) (gg2 26) 11 34 Lc betac
@@ -78,6 +98,9 @@ theorem pev_Nmomc (α : ℝ) :
       (qrow_entry_length_le (gg0 26) (gg1 26) (gg2 26) 3 (by simp) (by simp) (by simp) 11)
   · rfl
 
+/--
+@isnad1 id=eq.1h1v.s7.3920ff31cfa8 from=translated src=- shape=17b3eb33 vocab=4a327a11
+-/
 theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 26 α t ^ 11)
       = pev Nmomc α / ((Lc : ℝ) * (2 * M 26 * (3 + α)) ^ 11) :=
@@ -86,7 +109,9 @@ theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
 
 set_option maxHeartbeats 2000000 in
 -- the degree-24 Bernstein identity exceeds the default budget
-/-- The certificate: `17 ^ 24 * P α` is a positive combination of `αʲ (17-α)^(24-j)`.-/
+/-- The certificate: `17 ^ 24 * P α` is a positive combination of `αʲ (17-α)^(24-j)`.
+@isnad1 id=lt.2h1v.s9.c4c0dc8f9e38 from=translated src=- shape=c6d25e18 vocab=d8e6b3e9
+-/
 lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 13) :
     0 < 750669183453805732727050781250 + 3020533706655215263366699218750 * α + 5564839729610338783264160156250 * α ^ 2 + 6204652935907732786560058593750 * α ^ 3 + 4659850847351595430480957031250 * α ^ 4 + 2480313988118708551463378906250 * α ^ 5 + 956953438533800725637460937500 * α ^ 6 + 267988469385291406396875000000 * α ^ 7 + 53061280626889862612388984375 * α ^ 8 + 6649776660279075672227540625 * α ^ 9 + 67029306131497703210255025 * α ^ 10 - 797547671168471728584421521 * α ^ 11 + 69793209950586805764791132 * α ^ 12 + 1582701213221515173844854 * α ^ 13 + 64909025019891545058702 * α ^ 14 - 1621590589357829572680 * α ^ 15 - 347824272218530328424 * α ^ 16 - 21365270620680629952 * α ^ 17 - 794207858493279744 * α ^ 18 - 20077534583212032 * α ^ 19 - 355351304655360 * α ^ 20 - 4364532094464 * α ^ 21 - 35609836032 * α ^ 22 - 174127104 * α ^ 23 - 387072 * α ^ 24 := by
   have hu : (0 : ℝ) ≤ 13 - α := by linarith
@@ -152,7 +177,9 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 13) :
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
-/-- **The batch `26 ≤ n ≤ 27`.**-/
+/-- **The batch `26 ≤ n ≤ 27`.**
+@isnad1 id=lt.5h2v.s6.e7f2d6288f0f from=translated src=- shape=be7a7659 vocab=6ae490cc
+-/
 theorem finite_range {n : ℕ} (h0 : 26 ≤ n) (h1 : n ≤ 27) {α : ℝ}
     (hα : 0 ≤ α) (_hα' : α ≤ 17) (hfeas : c n α ^ 2 ≤ A n α) : R n α < 1 := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα

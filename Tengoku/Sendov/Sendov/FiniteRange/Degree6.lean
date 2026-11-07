@@ -34,19 +34,33 @@ open MeasureTheory
 
 variable {α : ℝ}
 
+/--
+@isnad1 id=eq.0h0v.s4.341a49abe3d4 from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_six : M 6 = 5 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h1v.s5.cf98737ca374 from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_six (α : ℝ) : A 6 α = 1 - 2 * α / 5 := by norm_num [A, M]
 
+/--
+@isnad1 id=eq.0h1v.s6.ee0016765d8e from=translated src=- shape=56895de3 vocab=fc8b4408
+-/
 lemma c_six (α : ℝ) : c 6 α = 1 - α / 5 - α / (2 * (3 + α)) := by norm_num [c, M]
 
+/--
+@isnad1 id=eq.1h1v.s6.d1305635ea6b from=translated src=- shape=4c19701a vocab=a488b366
+-/
 lemma c_six' (hα : 0 ≤ α) : c 6 α = (30 - α - 2 * α ^ 2) / (10 * (3 + α)) := by
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   rw [c_six]
   field_simp
   ring
 
-/-- In degree six the exponent `(n - 4) / 2` is `1`, so the integral is elementary.-/
+/-- In degree six the exponent `(n - 4) / 2` is `1`, so the integral is elementary.
+@isnad1 id=eq.0h1v.s7.4f0b7824af6b from=translated src=- shape=b7140556 vocab=df4ecdcd
+-/
 lemma integral_six (α : ℝ) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 6 α t ^ ((((6 : ℕ) : ℝ) - 4) / 2))
       = 1 / 4 - 2 * c 6 α / 5 + A 6 α / 6 := by
@@ -60,7 +74,9 @@ lemma integral_six (α : ℝ) :
   ring
 
 /-- The cleared form of `1 - R 6 α`: the numerator is the quartic `P` and the denominator is
-manifestly positive.-/
+manifestly positive.
+@isnad1 id=eq.1h1v.s7.b4ce8b18f7dc from=translated src=- shape=895e248c vocab=4148d03e
+-/
 lemma one_sub_R_six (hα : 0 ≤ α) :
     1 - R 6 α
       = (-24 * α ^ 4 - 342 * α ^ 3 + 2345 * α ^ 2 - 900 * α + 1575) / (375 * (3 + α) ^ 2) := by
@@ -71,7 +87,9 @@ lemma one_sub_R_six (hα : 0 ≤ α) :
   ring
 
 /-- **The finite-range claim in degree six.**  Note that no upper bound on `α` is assumed:
-the feasibility constraint supplies one.-/
+the feasibility constraint supplies one.
+@isnad1 id=lt.2h1v.s6.568029193074 from=translated src=- shape=76f861f6 vocab=6ae490cc
+-/
 theorem finite_range_six (hα : 0 ≤ α) (hfeas : c 6 α ^ 2 ≤ A 6 α) : R 6 α < 1 := by
   have hle : α ≤ 3 := by
     have h := alpha_le_half_M (n := 6) (by norm_num) hfeas

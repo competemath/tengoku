@@ -42,6 +42,9 @@ open Complex (I)
 
 /-! ### Scalar lemmas -/
 
+/--
+@isnad1 id=le.1h1v.s5.22c97c59b1bb from=translated src=- shape=71cd3a32 vocab=56703fe2
+-/
 lemma sum_norm_le_card : ∀ (q : Multiset ℂ), (∀ v ∈ q, ‖v‖ ≤ 1) →
     (q.map (fun v => ‖v‖)).sum ≤ (q.card : ℝ) := by
   intro q
@@ -56,7 +59,9 @@ lemma sum_norm_le_card : ∀ (q : Multiset ℂ), (∀ v ∈ q, ‖v‖ ≤ 1) �
     linarith [ih ht]
 
 /-- `|s + it| ≤ s + t²/(2s)` for `s > 0`, in cleared form.  Squaring both sides leaves
-`t⁴ ≥ 0`.-/
+`t⁴ ≥ 0`.
+@isnad1 id=le.1h1v.s6.82ef3ee1578d from=translated src=- shape=797cccad vocab=5f4e41f3
+-/
 lemma norm_mul_two_re_le {w : ℂ} (_hs : 0 < w.re) :
     ‖w‖ * (2 * w.re) ≤ 2 * w.re ^ 2 + w.im ^ 2 := by
   have h1 : ‖w‖ ^ 2 = w.re ^ 2 + w.im ^ 2 := by
@@ -70,6 +75,9 @@ lemma norm_mul_two_re_le {w : ℂ} (_hs : 0 < w.re) :
 noncomputable def Worigin (n : ℕ) (a x y : ℝ) : ℂ :=
   (a : ℂ) ^ 2 * ((n : ℂ) - 1) + 1 - (a : ℂ) * ((x : ℂ) + (y : ℂ) * I)
 
+/--
+@isnad1 id=eq.0h4v.s6.2b9f3fbf5d34 from=translated src=- shape=2ab3540d vocab=bee117c5
+-/
 lemma Worigin_eq (n : ℕ) (a x y : ℝ) :
     Worigin n a x y = ((a ^ 2 * ((n : ℝ) - 1) + 1 - a * x : ℝ) : ℂ)
       + ((-(a * y) : ℝ) : ℂ) * I := by
@@ -77,12 +85,18 @@ lemma Worigin_eq (n : ℕ) (a x y : ℝ) :
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h4v.s6.1bc33f290949 from=translated src=- shape=49837ad2 vocab=034f6167
+-/
 lemma Worigin_re (n : ℕ) (a x y : ℝ) :
     (Worigin n a x y).re = a ^ 2 * ((n : ℝ) - 1) + 1 - a * x := by
   rw [Worigin_eq, Complex.add_re, Complex.ofReal_re, Complex.mul_re, Complex.ofReal_re,
     Complex.ofReal_im, Complex.I_re, Complex.I_im]
   ring
 
+/--
+@isnad1 id=eq.0h4v.s4.e9ada8c28284 from=translated src=- shape=615f883a vocab=b5862c97
+-/
 lemma Worigin_im (n : ℕ) (a x y : ℝ) : (Worigin n a x y).im = -(a * y) := by
   rw [Worigin_eq, Complex.add_im, Complex.ofReal_im, Complex.mul_im, Complex.ofReal_re,
     Complex.ofReal_im, Complex.I_re, Complex.I_im]
@@ -90,7 +104,9 @@ lemma Worigin_im (n : ℕ) (a x y : ℝ) : (Worigin n a x y).im = -(a * y) := by
 
 /-- **(grow).**  `‖W‖ ≥ 2an/(n-1)`.  Bounding `‖W‖` below by its real part reduces this to
 `(n-1)²a² - (3n-1)a + (n-1) > 0`; completing the square turns that into
-`4(n-1)³ - (3n-1)² > 0`, which is exactly where `n ≥ 5` is needed.-/
+`4(n-1)³ - (3n-1)² > 0`, which is exactly where `n ≥ 5` is needed.
+@isnad1 id=le.3h4v.s6.af9bda8c0e91 from=translated src=- shape=fe2b0929 vocab=c52d828f
+-/
 theorem grow {n : ℕ} (hn : 5 ≤ n) {a x y : ℝ} (ha0 : 0 < a) (hx : x ≤ 1) :
     2 * a * (n : ℝ) / ((n : ℝ) - 1) ≤ ‖Worigin n a x y‖ := by
   have hnR : (5 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
@@ -107,7 +123,9 @@ theorem grow {n : ℕ} (hn : 5 ≤ n) {a x y : ℝ} (ha0 : 0 < a) (hx : x ≤ 1)
   exact hre.trans (Complex.re_le_norm _)
 
 /-- Replacing `|J|` by `1`: `P K + c(1 - P²) ≤ K` on `0 ≤ P ≤ 1` once `K ≥ 2c ≥ 0`, since
-`K - P K - c(1-P²) = (1-P)(K - c(1+P))`.-/
+`K - P K - c(1-P²) = (1-P)(K - c(1+P))`.
+@isnad1 id=le.3h3v.s6.97415703cf39 from=translated src=- shape=03dbdcda vocab=c0564ed8
+-/
 lemma collapse_J {K c P : ℝ} (hP1 : P ≤ 1) (hc0 : 0 ≤ c) (hcK : 2 * c ≤ K) :
     P * K + c * (1 - P ^ 2) ≤ K := by
   have hfac : 0 ≤ (1 - P) * (K - c * (1 + P)) := by
@@ -115,7 +133,9 @@ lemma collapse_J {K c P : ℝ} (hP1 : P ≤ 1) (hc0 : 0 ≤ c) (hcK : 2 * c ≤ 
     nlinarith [hc0, hP1, hcK]
   nlinarith [hfac]
 
-/-- Eliminating `y`: `‖W‖ ≤ Re W + (Im W)²/(2 Re W)`, then `Re W ≥ a²(n-1)` and `y² ≤ 1 - x²`.-/
+/-- Eliminating `y`: `‖W‖ ≤ Re W + (Im W)²/(2 Re W)`, then `Re W ≥ a²(n-1)` and `y² ≤ 1 - x²`.
+@isnad1 id=le.5h4v.s8.f32a525ab554 from=translated src=- shape=97bbc701 vocab=7ee23c98
+-/
 lemma norm_Worigin_le {n : ℕ} {a x y : ℝ} (ha0 : 0 < a) (ha1 : a < 1)
     (hn1 : (0 : ℝ) < (n : ℝ) - 1) (hxle : x ≤ 1) (hy2 : y ^ 2 ≤ 1 - x ^ 2) :
     ‖Worigin n a x y‖
@@ -140,7 +160,9 @@ lemma norm_Worigin_le {n : ℕ} {a x y : ℝ} (ha0 : 0 < a) (ha1 : a < 1)
   linarith [hmain, htail]
 
 /-- `x` and `y` are determined by `q.sum`, and inherit two bounds from `‖qⱼ‖ ≤ 1`: the real
-part is what the polar and origin estimates need, and `x² + y² ≤ 1` is what eliminates `y`.-/
+part is what the polar and origin estimates need, and `x² + y² ≤ 1` is what eliminates `y`.
+@isnad1 id=and.4h4v.s7.92978d3e83e9 from=translated src=- shape=5ed6f370 vocab=e9023053
+-/
 lemma xy_bounds {n : ℕ} (hn : 2 ≤ n) {x y : ℝ} {q : Multiset ℂ}
     (hqcard : q.card = n - 1) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1)
     (hxy : q.sum = ((n : ℂ) - 1) * ((x : ℂ) + (y : ℂ) * I)) :
@@ -177,7 +199,9 @@ lemma xy_bounds {n : ℕ} (hn : 2 ≤ n) {x y : ℝ} {q : Multiset ℂ}
 
 /-! ### The origin inequality -/
 
-/-- **`(origin-exact)`.**  The origin channel, in the form the reduction consumes.-/
+/-- **`(origin-exact)`.**  The origin channel, in the form the reduction consumes.
+@isnad1 id=le.12h7v.s9.ef22357c5eda from=translated src=- shape=0dd4feb5 vocab=e1da3ab3
+-/
 theorem origin_exact {n : ℕ} (hn : 5 ≤ n) {a x y α : ℝ} {z q : Multiset ℂ}
     (ha0 : 0 < a) (ha1 : a < 1)
     (hqcard : q.card = n - 1) (hq0 : q ≠ 0)

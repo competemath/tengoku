@@ -46,8 +46,14 @@ def npev : List ℕ → ℕ → ℕ
   | [], _ => 0
   | a :: p, b => a + b * npev p b
 
+/--
+@isnad1 id=eq.0h1v.s3.4415d6610cc4 from=translated src=- shape=6186aefb vocab=16dd07ca
+-/
 @[simp] lemma npev_nil (b : ℕ) : npev [] b = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.a42e1125fae1 from=translated src=- shape=7270688e vocab=136818e6
+-/
 @[simp] lemma npev_cons (a : ℕ) (p : List ℕ) (b : ℕ) :
     npev (a :: p) b = a + b * npev p b := rfl
 
@@ -56,8 +62,14 @@ def unpackN (b : ℕ) : ℕ → ℕ → List ℕ
   | 0, _ => []
   | m + 1, x => (x % b) :: unpackN b m (x / b)
 
+/--
+@isnad1 id=eq.0h2v.s4.18c7e1f2d0fa from=translated src=- shape=23b069da vocab=c2a5af33
+-/
 @[simp] lemma unpackN_zero (b x : ℕ) : unpackN b 0 x = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.7004119f544c from=translated src=- shape=b65b7a23 vocab=7cbc5312
+-/
 @[simp] lemma unpackN_succ (b m x : ℕ) :
     unpackN b (m + 1) x = (x % b) :: unpackN b m (x / b) := rfl
 
@@ -65,7 +77,9 @@ def unpackN (b : ℕ) : ℕ → ℕ → List ℕ
 the base loses nothing: the coefficients can be read back off by division with remainder.
 
 This is the standard Kronecker-substitution correctness statement, and the hypothesis
-`∀ a ∈ p, a < b` is exactly the overflow condition the caller must discharge.-/
+`∀ a ∈ p, a < b` is exactly the overflow condition the caller must discharge.
+@isnad1 id=eq.2h2v.s5.46aa20f66fb1 from=translated src=- shape=02a6966a vocab=cd66babe
+-/
 theorem unpackN_npev (b : ℕ) (hb : 0 < b) :
     ∀ p : List ℕ, (∀ a ∈ p, a < b) → unpackN b p.length (npev p b) = p := by
   intro p
@@ -82,7 +96,9 @@ theorem unpackN_npev (b : ℕ) (hb : 0 < b) :
     simp only [List.length_cons, npev_cons, unpackN_succ, hmod, hdiv, ih hp]
 
 /-- Evaluation of a concatenation: the second block is shifted by `b ^ (length of the
-first)`.  This is what makes the two-dimensional packing work.-/
+first)`.  This is what makes the two-dimensional packing work.
+@isnad1 id=eq.0h3v.s5.6468c826b41e from=translated src=- shape=7d9061d6 vocab=5cbd0bae
+-/
 lemma npev_append (p q : List ℕ) (b : ℕ) :
     npev (p ++ q) b = npev p b + b ^ p.length * npev q b := by
   induction p with
@@ -109,6 +125,9 @@ def ppowN (p : List ℕ) : ℕ → List ℕ
   | 0 => [1]
   | k + 1 => pmulN p (ppowN p k)
 
+/--
+@isnad1 id=eq.0h3v.s4.38c7c34986e0 from=translated src=- shape=da1622b4 vocab=e988ff39
+-/
 lemma npev_paddN (p q : List ℕ) (b : ℕ) :
     npev (paddN p q) b = npev p b + npev q b := by
   induction p generalizing q with
@@ -120,6 +139,9 @@ lemma npev_paddN (p q : List ℕ) (b : ℕ) :
       simp only [paddN, npev_cons, ih]
       ring
 
+/--
+@isnad1 id=eq.0h3v.s5.d5f36034687f from=translated src=- shape=a8e4225a vocab=9436d5d5
+-/
 lemma npev_map_mul (a : ℕ) (q : List ℕ) (b : ℕ) :
     npev (q.map (fun c => a * c)) b = a * npev q b := by
   induction q with
@@ -128,6 +150,9 @@ lemma npev_map_mul (a : ℕ) (q : List ℕ) (b : ℕ) :
     simp only [List.map_cons, npev_cons, ih]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s4.2196a5289c98 from=translated src=- shape=da1622b4 vocab=6e31732e
+-/
 lemma npev_pmulN (p q : List ℕ) (b : ℕ) :
     npev (pmulN p q) b = npev p b * npev q b := by
   induction p with
@@ -136,6 +161,9 @@ lemma npev_pmulN (p q : List ℕ) (b : ℕ) :
     simp only [pmulN, npev_paddN, npev_map_mul, npev_cons, ih]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s4.b25cd9b2ae3a from=translated src=- shape=343f08e9 vocab=0f020a87
+-/
 lemma npev_ppowN (p : List ℕ) (b k : ℕ) : npev (ppowN p k) b = npev p b ^ k := by
   induction k with
   | zero => simp [ppowN]
@@ -143,7 +171,9 @@ lemma npev_ppowN (p : List ℕ) (b k : ℕ) : npev (ppowN p k) b = npev p b ^ k 
 
 /-! ### The overflow bound -/
 
-/-- Every coefficient is at most the sum of the coefficients, which is the value at `1`.-/
+/-- Every coefficient is at most the sum of the coefficients, which is the value at `1`.
+@isnad1 id=le.1h2v.s4.06705632c07d from=translated src=- shape=338e8814 vocab=6e80c26d
+-/
 lemma mem_le_npev_one : ∀ (q : List ℕ) (a : ℕ), a ∈ q → a ≤ npev q 1 := by
   intro q
   induction q with
@@ -161,7 +191,9 @@ natural number `(npev p b) ^ k`, provided the base `b` exceeds every coefficient
 — for which `(npev p 1) ^ k < b` suffices, `npev p 1` being the sum of the coefficients.
 
 This is the statement that lets the kernel replace `Θ(k³)` interpreted list steps by one
-GMP-backed exponentiation.-/
+GMP-backed exponentiation.
+@isnad1 id=eq.2h3v.s6.cea894017cf6 from=translated src=- shape=b121ce79 vocab=7aa9d288
+-/
 theorem unpackN_pow (b : ℕ) (hb : 0 < b) (p : List ℕ) (k : ℕ)
     (hbound : npev p 1 ^ k < b) :
     unpackN b (ppowN p k).length (npev p b ^ k) = ppowN p k := by
@@ -184,8 +216,14 @@ def pevZ : List ℤ → ℤ → ℤ
   | [], _ => 0
   | a :: p, b => a + b * pevZ p b
 
+/--
+@isnad1 id=eq.0h1v.s3.1bcad4de8b90 from=translated src=- shape=6186aefb vocab=98903ab5
+-/
 @[simp] lemma pevZ_nil (b : ℤ) : pevZ [] b = 0 := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9e6f9f09b8e6 from=translated src=- shape=7270688e vocab=8df33406
+-/
 @[simp] lemma pevZ_cons (a : ℤ) (p : List ℤ) (b : ℤ) :
     pevZ (a :: p) b = a + b * pevZ p b := rfl
 
@@ -198,12 +236,20 @@ def unpackZ (b : ℤ) : ℕ → ℤ → List ℤ
   | 0, _ => []
   | m + 1, x => bdig b x :: unpackZ b m ((x - bdig b x) / b)
 
+/--
+@isnad1 id=eq.0h2v.s4.4ef5b5dae7e6 from=translated src=- shape=08652d3c vocab=7bd6afad
+-/
 @[simp] lemma unpackZ_zero (b x : ℤ) : unpackZ b 0 x = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9ca19496de90 from=translated src=- shape=238de3e0 vocab=cefa3cae
+-/
 @[simp] lemma unpackZ_succ (b : ℤ) (m : ℕ) (x : ℤ) :
     unpackZ b (m + 1) x = bdig b x :: unpackZ b m ((x - bdig b x) / b) := rfl
 
-/-- The balanced digit of `c + b * N` is `c`, provided `2 * |c| < b`.-/
+/-- The balanced digit of `c + b * N` is `c`, provided `2 * |c| < b`.
+@isnad1 id=eq.2h3v.s5.c11477207c7e from=translated src=- shape=abe28429 vocab=44415591
+-/
 lemma bdig_add_mul (b c N : ℤ) (hb : 0 < b) (hc : 2 * |c| < b) :
     bdig b (c + b * N) = c := by
   have hmod : (c + b * N) % b = c % b := Int.add_mul_emod_self_left c b N
@@ -225,7 +271,9 @@ lemma bdig_add_mul (b c N : ℤ) (hb : 0 < b) (hc : 2 * |c| < b) :
     split_ifs <;> omega
 
 /-- **Signed packing is faithful.**  If `2 * |c| < b` for every coefficient `c`, the
-coefficients are recovered from the single integer `pevZ p b` by balanced-digit extraction.-/
+coefficients are recovered from the single integer `pevZ p b` by balanced-digit extraction.
+@isnad1 id=eq.2h2v.s5.590e83e48fb7 from=translated src=- shape=72227590 vocab=7857472e
+-/
 theorem unpackZ_pevZ (b : ℤ) (hb : 0 < b) :
     ∀ p : List ℤ, (∀ a ∈ p, 2 * |a| < b) → unpackZ b p.length (pevZ p b) = p := by
   intro p

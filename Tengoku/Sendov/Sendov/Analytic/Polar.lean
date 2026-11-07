@@ -48,7 +48,9 @@ open Polynomial MeasureTheory
 
 /-- `|a - z| ≤ |1 - a z|` for real `a` with `|a| ≤ 1` and `z` in the closed unit disk.  The
 difference of squares is `(1-a²)(1-|z|²)`, which is why `a` must be real: for complex `a` the
-cross terms contribute `(conj a - a)(z - conj z)`, which need not vanish.-/
+cross terms contribute `(conj a - a)(z - conj z)`, which need not vanish.
+@isnad1 id=le.2h2v.s6.4cba5f072fb0 from=translated src=- shape=246a7dbf vocab=2b5b9466
+-/
 lemma norm_sub_le_norm_one_sub_mul {a : ℝ} (ha : |a| ≤ 1) {z : ℂ} (hz : ‖z‖ ≤ 1) :
     ‖(a : ℂ) - z‖ ≤ ‖1 - (a : ℂ) * z‖ := by
   have hkey : Complex.normSq (1 - (a : ℂ) * z) - Complex.normSq ((a : ℂ) - z)
@@ -74,11 +76,17 @@ lemma norm_sub_le_norm_one_sub_mul {a : ℝ} (ha : |a| ≤ 1) {z : ℂ} (hz : �
 
 /-! ### Products of norms over a multiset -/
 
+/--
+@isnad1 id=eq.0h1v.s4.ef43deec4677 from=translated src=- shape=40577f78 vocab=452ec4e4
+-/
 lemma norm_multiset_prod (s : Multiset ℂ) : ‖s.prod‖ = (s.map (fun w => ‖w‖)).prod := by
   induction s using Multiset.induction_on with
   | empty => simp
   | cons w t ih => simp [ih]
 
+/--
+@isnad1 id=le.1h3v.s6.3ffae70e7f4a from=translated src=- shape=5fd55df1 vocab=6d5b3ae9
+-/
 lemma prod_map_le_of_le {s : Multiset ℂ} {f g : ℂ → ℂ} (h : ∀ w ∈ s, ‖f w‖ ≤ ‖g w‖) :
     (s.map (fun w => ‖f w‖)).prod ≤ (s.map (fun w => ‖g w‖)).prod := by
   induction s using Multiset.induction_on with
@@ -96,12 +104,17 @@ lemma prod_map_le_of_le {s : Multiset ℂ} {f g : ℂ → ℂ} (h : ∀ w ∈ s,
 
 /-! ### The branch point -/
 
-/-- Norms distribute over a mapped multiset product.-/
+/-- Norms distribute over a mapped multiset product.
+@isnad1 id=eq.0h2v.s5.9170131d886f from=translated src=- shape=966903b0 vocab=452ec4e4
+-/
 lemma norm_prod_map (s : Multiset ℂ) (f : ℂ → ℂ) :
     ‖(s.map f).prod‖ = (s.map (fun w => ‖f w‖)).prod := by
   rw [norm_multiset_prod, Multiset.map_map]
   rfl
 
+/--
+@isnad1 id=le.0h2v.s4.60cd63979a93 from=translated src=- shape=4dbe6386 vocab=0c2552fc
+-/
 lemma prod_map_norm_nonneg (s : Multiset ℂ) (f : ℂ → ℂ) :
     0 ≤ (s.map (fun w => ‖f w‖)).prod := by
   refine Multiset.prod_nonneg ?_
@@ -113,7 +126,9 @@ lemma prod_map_norm_nonneg (s : Multiset ℂ) (f : ℂ → ℂ) :
 
 The high-degree argument relaxes this by AM–GM to the raw polar inequality; the low-degree
 argument bounds each factor by `a + (1-a²)t`.  It is stated separately so that neither route
-has to reproduce the other's work.-/
+has to reproduce the other's work.
+@isnad1 id=le.5h4v.s8.a4cba67f24ac from=translated src=- shape=80c2d911 vocab=c3579716
+-/
 theorem one_le_integral_prod_norm {n : ℕ} (hn : 2 ≤ n) {a : ℝ} (ha : |a| ≤ 1)
     {z q : Multiset ℂ} (hz : ∀ w ∈ z, ‖w‖ ≤ 1)
     (hpolar : q.prod * (z.map (fun w => 1 - (a : ℂ) * w)).prod
@@ -156,7 +171,9 @@ theorem one_le_integral_prod_norm {n : ℕ} (hn : 2 ≤ n) {a : ℝ} (ha : |a| �
 
 /-! ### The AM–GM relaxation to `(1Q)` -/
 
-/-- `‖a + s v‖² = a² + 2 a s Re v + s² ‖v‖²` for real `a`, `s`.-/
+/-- `‖a + s v‖² = a² + 2 a s Re v + s² ‖v‖²` for real `a`, `s`.
+@isnad1 id=eq.0h3v.s7.dc5cf303bf02 from=translated src=- shape=10cb3a3c vocab=0a44e00a
+-/
 lemma norm_sq_add_real_mul (a s : ℝ) (v : ℂ) :
     ‖(a : ℂ) + (s : ℂ) * v‖ ^ 2 = a ^ 2 + 2 * a * s * v.re + s ^ 2 * ‖v‖ ^ 2 := by
   rw [← Complex.normSq_eq_norm_sq, ← Complex.normSq_eq_norm_sq]
@@ -164,6 +181,9 @@ lemma norm_sq_add_real_mul (a s : ℝ) (v : ℂ) :
     Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s5.6a43765414b6 from=translated src=- shape=27720804 vocab=a8d38741
+-/
 lemma prod_map_sq (s : Multiset ℂ) (f : ℂ → ℝ) :
     (s.map (fun v => f v ^ 2)).prod = ((s.map f).prod) ^ 2 := by
   induction s using Multiset.induction_on with
@@ -172,7 +192,9 @@ lemma prod_map_sq (s : Multiset ℂ) (f : ℂ → ℝ) :
     simp only [Multiset.map_cons, Multiset.prod_cons, ih]
     ring
 
-/-- Splitting `∑ⱼ ‖a + s qⱼ‖²` into its three pieces.-/
+/-- Splitting `∑ⱼ ‖a + s qⱼ‖²` into its three pieces.
+@isnad1 id=eq.0h3v.s7.4b66d7c8a14c from=translated src=- shape=12f4af95 vocab=cdada048
+-/
 lemma sum_norm_sq_split (a s : ℝ) (q : Multiset ℂ) :
     (q.map (fun v => ‖(a : ℂ) + (s : ℂ) * v‖ ^ 2)).sum
       = (q.card : ℝ) * a ^ 2 + 2 * a * s * ((q.map (fun v => v.re)).sum)
@@ -185,6 +207,9 @@ lemma sum_norm_sq_split (a s : ℝ) (q : Multiset ℂ) :
     push_cast
     ring
 
+/--
+@isnad1 id=le.1h1v.s6.9995c6a79fa6 from=translated src=- shape=f34c1ba6 vocab=bce1cf0d
+-/
 lemma sum_norm_sq_le_card (q : Multiset ℂ) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1) :
     (q.map (fun v => ‖v‖ ^ 2)).sum ≤ (q.card : ℝ) := by
   induction q using Multiset.induction_on with
@@ -196,6 +221,9 @@ lemma sum_norm_sq_le_card (q : Multiset ℂ) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1) 
     push_cast
     nlinarith [ih ht, norm_nonneg v]
 
+/--
+@isnad1 id=continuo.0h2v.s6.79defcf47f42 from=translated src=- shape=a4842dd5 vocab=456f5776
+-/
 lemma continuous_prod_norm (a : ℝ) (q : Multiset ℂ) :
     Continuous fun t : ℝ =>
       (q.map (fun v => ‖(a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v‖)).prod := by
@@ -207,7 +235,9 @@ lemma continuous_prod_norm (a : ℝ) (q : Multiset ℂ) :
       ‖(a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v‖).mul ih
 
 /-- **The pointwise quadratic-mean bound.**  `∏ⱼ |a + t(1-a²)qⱼ| ≤ P(t)^{(n-1)/2)}`, by AM–GM
-on the squares followed by `∑ ‖qⱼ‖² ≤ n-1`.-/
+on the squares followed by `∑ ‖qⱼ‖² ≤ n-1`.
+@isnad1 id=le.4h5v.s7.bfc799a0c94c from=translated src=- shape=5aeba26a vocab=47329b3c
+-/
 lemma prod_norm_le_Ppolar {n : ℕ} (hn : 2 ≤ n) {a x t : ℝ}
     {q : Multiset ℂ} (hqcard : q.card = n - 1) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1)
     (hx : (q.map (fun v => v.re)).sum = ((n : ℝ) - 1) * x) :
@@ -272,7 +302,9 @@ lemma prod_norm_le_Ppolar {n : ℕ} (hn : 2 ≤ n) {a x t : ℝ}
   rw [← hsq] at hchain
   nlinarith [hchain, hP0, Real.rpow_nonneg (le_trans hM0' hMle) (((n : ℝ) - 1) / 2)]
 
-/-- **The raw polar inequality `(1Q)`.**-/
+/-- **The raw polar inequality `(1Q)`.**
+@isnad1 id=le.5h4v.s8.02864c0671e6 from=translated src=- shape=58616c6f vocab=5b5a7436
+-/
 theorem one_le_integral_Ppolar {n : ℕ} (hn : 2 ≤ n) {a x : ℝ}
     {q : Multiset ℂ} (hqcard : q.card = n - 1) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1)
     (hx : (q.map (fun v => v.re)).sum = ((n : ℝ) - 1) * x)

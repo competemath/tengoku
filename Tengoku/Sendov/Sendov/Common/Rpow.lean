@@ -30,24 +30,32 @@ namespace Sendov
 
 open MeasureTheory
 
-/-- `∫₀¹ xˢ dx = 1/(s+1)` for `s > -1`.-/
+/-- `∫₀¹ xˢ dx = 1/(s+1)` for `s > -1`.
+@isnad1 id=eq.1h1v.s6.76a86b7012f9 from=translated src=- shape=4a111a50 vocab=86c6d32c
+-/
 lemma integral_rpow_zero_one {s : ℝ} (hs : -1 < s) :
     (∫ x in (0 : ℝ)..1, x ^ s) = 1 / (s + 1) := by
   rw [integral_rpow (Or.inl hs), Real.one_rpow, Real.zero_rpow (by linarith)]
   ring
 
-/-- `x ^ (s + m) = x ^ s * x ^ m` for positive `x` and a natural `m`.-/
+/-- `x ^ (s + m) = x ^ s * x ^ m` for positive `x` and a natural `m`.
+@isnad1 id=eq.1h3v.s6.bc16b2299ca3 from=translated src=- shape=61e24dce vocab=426873df
+-/
 lemma rpow_add_nat_pos {x : ℝ} (hx : 0 < x) (s : ℝ) (m : ℕ) :
     x ^ (s + (m : ℝ)) = x ^ s * x ^ m := by
   rw [Real.rpow_add hx, Real.rpow_natCast]
 
 /-- `fun x ↦ x ^ e` is continuous on all of `ℝ` for a nonnegative real exponent `e`.  The
-exponent must be nonnegative: at `e < 0` the function blows up at the origin.-/
+exponent must be nonnegative: at `e < 0` the function blows up at the origin.
+@isnad1 id=continuo.1h1v.s5.cab0924965bb from=translated src=- shape=e123c4d3 vocab=df631290
+-/
 lemma continuous_rpow_const {e : ℝ} (he : 0 ≤ e) : Continuous fun x : ℝ => x ^ e :=
   continuous_iff_continuousAt.2 fun x => Real.continuousAt_rpow_const x e (Or.inr he)
 
 /-- The integrand of `Sendov.R` is continuous, hence interval integrable.  Needed wherever an
-integral involving `Q ^ e` is split or compared.-/
+integral involving `Q ^ e` is split or compared.
+@isnad1 id=continuo.1h3v.s6.8da629bb0029 from=translated src=- shape=7dac1689 vocab=0733db5b
+-/
 lemma continuous_integrand (n : ℕ) (α : ℝ) {e : ℝ} (he : 0 ≤ e) :
     Continuous fun t : ℝ => t ^ 3 * Q n α t ^ e := by
   have hQ : Continuous fun t : ℝ => Q n α t := by
@@ -56,7 +64,9 @@ lemma continuous_integrand (n : ℕ) (α : ℝ) {e : ℝ} (he : 0 ≤ e) :
   exact h3.mul ((continuous_rpow_const he).comp hQ)
 
 /-- On `[0,1]` a real power is decreasing in the exponent: `x ^ s ≤ x ^ t` for `t ≤ s`.
-Used to drop the `√B` from `B ^ (k + 1/2)`.-/
+Used to drop the `√B` from `B ^ (k + 1/2)`.
+@isnad1 id=le.3h3v.s5.9c24818f46dc from=translated src=- shape=d11eed48 vocab=78efbd98
+-/
 lemma rpow_le_rpow_of_le_one {x s t : ℝ} (hx0 : 0 < x) (hx1 : x ≤ 1) (hts : t ≤ s) :
     x ^ s ≤ x ^ t :=
   Real.rpow_le_rpow_of_exponent_ge hx0 hx1 hts

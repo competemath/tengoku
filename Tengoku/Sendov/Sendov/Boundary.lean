@@ -55,11 +55,17 @@ open Polynomial
 The versions in `Sendov.Counterexample.Identities` are specialized to the origin; the boundary
 argument needs them at `1`. -/
 
+/--
+@isnad1 id=eq.0h2v.s6.55d3460829fa from=translated src=- shape=51130f77 vocab=3f8418be
+-/
 lemma eval_prod_at (u : ℂ) (s : Multiset ℂ) :
     ((s.map (fun w => X - C w)).prod).eval u = (s.map (fun w => u - w)).prod := by
   rw [eval_multiset_prod, Multiset.map_map]
   exact congrArg Multiset.prod (Multiset.map_congr rfl fun w _ => by simp)
 
+/--
+@isnad1 id=eq.0h2v.s7.7d5211e7eb2a from=translated src=- shape=196e8fd6 vocab=efbefc0c
+-/
 lemma eval_deriv_prod_at (u : ℂ) : ∀ (s : Multiset ℂ),
     (derivative (s.map (fun w => X - C w)).prod).eval u
       = sumEraseProd (s.map (fun w => u - w)) := by
@@ -75,7 +81,9 @@ lemma eval_deriv_prod_at (u : ℂ) : ∀ (s : Multiset ℂ),
 /-! ### Scalar facts -/
 
 /-- **The disk inequality.**  `Re 1/(1-z) ≥ 1/2` for `‖z‖ ≤ 1`, `z ≠ 1`; after clearing the
-positive denominator this is exactly `1 - ‖z‖² ≥ 0`.-/
+positive denominator this is exactly `1 - ‖z‖² ≥ 0`.
+@isnad1 id=le.2h1v.s6.50de8fd6cc93 from=translated src=- shape=ef041360 vocab=572b1a1b
+-/
 lemma half_le_re_inv_one_sub {z : ℂ} (hz : ‖z‖ ≤ 1) (hz1 : z ≠ 1) :
     (1 : ℝ) / 2 ≤ (((1 : ℂ) - z)⁻¹).re := by
   have hne : (1 : ℂ) - z ≠ 0 := sub_ne_zero.2 (Ne.symm hz1)
@@ -110,6 +118,9 @@ lemma eq_zero_of_sum_eq_zero {s : Multiset ℝ} (hs : ∀ x ∈ s, 0 ≤ x) (h :
   have := hs x hx
   linarith
 
+/--
+@isnad1 id=le.1h2v.s5.b0d92874bc35 from=translated src=- shape=48f444bf vocab=d29b7c55
+-/
 lemma sum_le_card_mul (c : ℝ) : ∀ (s : Multiset ℝ), (∀ x ∈ s, x ≤ c) →
     s.sum ≤ (s.card : ℝ) * c := by
   intro s
@@ -123,6 +134,9 @@ lemma sum_le_card_mul (c : ℝ) : ∀ (s : Multiset ℝ), (∀ x ∈ s, x ≤ c)
     push_cast
     linarith [ih ht]
 
+/--
+@isnad1 id=le.1h2v.s5.28f614eb04c1 from=translated src=- shape=cd9ceca3 vocab=d29b7c55
+-/
 lemma card_mul_le_sum (c : ℝ) : ∀ (s : Multiset ℝ), (∀ x ∈ s, c ≤ x) →
     (s.card : ℝ) * c ≤ s.sum := by
   intro s
@@ -136,6 +150,9 @@ lemma card_mul_le_sum (c : ℝ) : ∀ (s : Multiset ℝ), (∀ x ∈ s, c ≤ x)
     push_cast
     linarith [ih ht]
 
+/--
+@isnad1 id=eq.0h1v.s5.6bbd7c346f5f from=translated src=- shape=1376d660 vocab=03862d4b
+-/
 lemma sum_map_one_sub_re (s : Multiset ℂ) :
     (s.map (fun v => 1 - v.re)).sum = (s.card : ℝ) - (s.map (fun v => v.re)).sum := by
   induction s using Multiset.induction_on with
@@ -149,7 +166,9 @@ lemma sum_map_one_sub_re (s : Multiset ℂ) :
 
 /-- **`(BR)`, in division-free form.**  From `∏ Zs = n ∏ Qi` and `2 ∑ₑ Zs = n ∑ₑ Qi` — the two
 readings of `p'(1)` and `p''(1)` — one gets `∑ⱼ 1/Qiⱼ = 2 ∑ⱼ 1/Zsⱼ`.  Applied with
-`Zsⱼ = 1 - zⱼ` and `Qiⱼ = 1/qⱼ` this is `∑ⱼ qⱼ = 2 ∑ⱼ 1/(1-zⱼ)`.-/
+`Zsⱼ = 1 - zⱼ` and `Qiⱼ = 1/qⱼ` this is `∑ⱼ qⱼ = 2 ∑ⱼ 1/(1-zⱼ)`.
+@isnad1 id=eq.5h3v.s7.52201522bf02 from=translated src=- shape=16d33e3a vocab=b3e269e4
+-/
 theorem boundary_reciprocal {n : ℕ} {Zs Qi : Multiset ℂ} (hn0 : (n : ℂ) ≠ 0)
     (hZ : ∀ u ∈ Zs, u ≠ 0) (hQ : ∀ u ∈ Qi, u ≠ 0)
     (hI : Zs.prod = (n : ℂ) * Qi.prod)
@@ -166,7 +185,9 @@ theorem boundary_reciprocal {n : ℕ} {Zs Qi : Multiset ℂ} (hn0 : (n : ℂ) �
 /-! ### The sandwich -/
 
 /-- Both sides of `(BR)` are pinned: the left has real part at most `N`, the right at least `N`,
-so every `qⱼ` has real part `1` and hence, lying in the closed unit disk, equals `1`.-/
+so every `qⱼ` has real part `1` and hence, lying in the closed unit disk, equals `1`.
+@isnad1 id=eq.7h4v.s7.aca16e49e632 from=translated src=- shape=8256dcb4 vocab=be8d3362
+-/
 theorem all_q_eq_one {N : ℕ} {qs zs : Multiset ℂ}
     (hqcard : qs.card = N) (hzcard : zs.card = N)
     (hq1 : ∀ v ∈ qs, ‖v‖ ≤ 1) (hz1 : ∀ w ∈ zs, ‖w‖ ≤ 1) (hzne : ∀ w ∈ zs, w ≠ 1)
@@ -208,7 +229,9 @@ theorem all_q_eq_one {N : ℕ} {qs zs : Multiset ℂ}
 
 /-! ### Rubinstein's theorem at `a = 1` -/
 
-/-- **Rubinstein's boundary theorem at `a = 1`**, with its equality case.-/
+/-- **Rubinstein's boundary theorem at `a = 1`**, with its equality case.
+@isnad1 id=or.4h2v.s8.df85e642cb2e from=translated src=- shape=97d318a9 vocab=e21319fe
+-/
 theorem rubinstein_one {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)
     (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) (hp1 : p.eval 1 = 0) :
     (∃ ζ : ℂ, (derivative p).eval ζ = 0 ∧ ‖ζ - 1‖ < 1)
@@ -325,7 +348,9 @@ theorem rubinstein_one {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree
   linear_combination -hd + hCd
 
 /-- The closed-disk form.  In the extremal case `p = c(Xⁿ - 1)` the only critical point is `0`,
-at distance exactly `1` from the zero `1`.-/
+at distance exactly `1` from the zero `1`.
+@isnad1 id=ex.4h2v.s7.7bd58bd994ed from=translated src=- shape=7c6129ca vocab=465c0975
+-/
 theorem sendov_boundary_one {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)
     (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) (hp1 : p.eval 1 = 0) :
     ∃ ζ : ℂ, (derivative p).eval ζ = 0 ∧ ‖ζ - 1‖ ≤ 1 := by

@@ -40,7 +40,9 @@ open MeasureTheory Real
 
 variable {α B c : ℝ}
 
-/-- `∫ₐᵇ exp(ct) dt = (exp(cb) - exp(ca))/c`.-/
+/-- `∫ₐᵇ exp(ct) dt = (exp(cb) - exp(ca))/c`.
+@isnad1 id=eq.1h3v.s6.ed7a06b2b337 from=translated src=- shape=cd2c749f vocab=d843df6c
+-/
 lemma integral_exp_mul (hc : c ≠ 0) (a b : ℝ) :
     (∫ t in a..b, exp (c * t)) = (exp (c * b) - exp (c * a)) / c := by
   have h := intervalIntegral.integral_comp_mul_left (a := a) (b := b) (fun y : ℝ => exp y) hc
@@ -48,7 +50,9 @@ lemma integral_exp_mul (hc : c ≠ 0) (a b : ℝ) :
   simp only [smul_eq_mul]
   field_simp
 
-/-- The closed form of the integral in `(lt)`.-/
+/-- The closed form of the integral in `(lt)`.
+@isnad1 id=eq.2h2v.s7.bc71c07df5d7 from=translated src=- shape=5390e178 vocab=a066b6f6
+-/
 lemma integral_exp_eq (hα : 0 < α) (hB : B < 2) :
     (∫ t in (0 : ℝ)..1, exp (α * (-1 + (2 - B) * t)))
       = exp (-(α * B / 2)) * (sinh (α * (2 - B) / 2) / (α * (2 - B) / 2)) := by
@@ -69,7 +73,9 @@ lemma integral_exp_eq (hα : 0 < α) (hB : B < 2) :
   rw [Real.sinh_eq, hEF, hsq, hneg]
   field_simp
 
-/-- The same integral, in the form the logarithmic half of `(beta-bound)` uses.-/
+/-- The same integral, in the form the logarithmic half of `(beta-bound)` uses.
+@isnad1 id=eq.2h2v.s7.ac9cffd464de from=translated src=- shape=a1cca03f vocab=3bd52b7c
+-/
 lemma integral_exp_eq' (hα : 0 < α) (hB : B < 2) :
     (∫ t in (0 : ℝ)..1, exp (α * (-1 + (2 - B) * t)))
       = (exp (α * (1 - B)) - exp (-α)) / (α * (2 - B)) := by
@@ -86,7 +92,9 @@ lemma integral_exp_eq' (hα : 0 < α) (hB : B < 2) :
   rw [← hsum]
   field_simp
 
-/-- `(lt)` forces `B < 2`: otherwise the integrand never exceeds `e^{-α} < 1`.-/
+/-- `(lt)` forces `B < 2`: otherwise the integrand never exceeds `e^{-α} < 1`.
+@isnad1 id=lt.2h2v.s6.3af08203f3c6 from=translated src=- shape=55acf1de vocab=99a1af9e
+-/
 lemma beta_lt_two (hα : 0 < α)
     (hlt : 1 ≤ ∫ t in (0 : ℝ)..1, exp (α * (-1 + (2 - B) * t))) : B < 2 := by
   by_contra hcon
@@ -106,7 +114,9 @@ lemma beta_lt_two (hα : 0 < α)
   rw [hval] at hmono
   linarith
 
-/-- **`(lt) ⟹ (beta-bound)`.**  The `α/(3+α)` of the blog post.-/
+/-- **`(lt) ⟹ (beta-bound)`.**  The `α/(3+α)` of the blog post.
+@isnad1 id=le.3h2v.s7.eb4ba2333f0c from=translated src=- shape=f3b19a9d vocab=3dee0294
+-/
 theorem beta_le (hα : 0 < α) (hB0 : 0 ≤ B)
     (hlt : 1 ≤ ∫ t in (0 : ℝ)..1, exp (α * (-1 + (2 - B) * t))) : B ≤ α / (3 + α) := by
   have hB2 : B < 2 := beta_lt_two hα hlt
@@ -138,7 +148,9 @@ theorem beta_le (hα : 0 < α) (hB0 : 0 ≤ B)
   nlinarith [h5, hα]
 
 /-- **The logarithmic half of `(beta-bound)`:** `log α ≤ α(1 - β(1))`.  From `(lt)`,
-`e^{α(1-B)} ≥ α(2-B) + e^{-α} > α`, since `B ≤ 1` makes `2 - B ≥ 1`.-/
+`e^{α(1-B)} ≥ α(2-B) + e^{-α} > α`, since `B ≤ 1` makes `2 - B ≥ 1`.
+@isnad1 id=le.3h2v.s7.599352d3d4b1 from=translated src=- shape=b25191cf vocab=2eb7f705
+-/
 theorem log_le_alpha_mul (hα : 0 < α) (hB1 : B ≤ 1)
     (hlt : 1 ≤ ∫ t in (0 : ℝ)..1, exp (α * (-1 + (2 - B) * t))) :
     Real.log α ≤ α * (1 - B) := by

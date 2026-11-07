@@ -38,7 +38,9 @@ def Nmom20 : List ℤ :=
   [342652681018715139072, 1290458050152354091008, 2243577184611827226624, 2399637756691021787136, 1783512729454695095808, 996976999580720707584, 454864090944105851904, 197832256724748957696, 157260237317474747904, 14092143950522867712, 885156618381127680, 38940288112115712, 1195127971889152, 25104659120128, 344544313344, 2787377152, 10092544]
 
 /-- The generator's numerator is the moment numerator.  The computational content is one
-integer exponentiation and seventeen digit extractions.-/
+integer exponentiation and seventeen digit extractions.
+@isnad1 id=eq.0h0v.s5.647d3cb66ebb from=translated src=- shape=16b6ab61 vocab=a771790e
+-/
 theorem Nmom20_eq :
     Nmom20 = wsum L20 0 (qrow (gg0 20) (gg1 20) (gg2 20) 8) := by
   refine wsum_eq_of_packed (gg0 20) (gg1 20) (gg2 20) 8 L20 beta20 tau20 Nmom20
@@ -49,7 +51,9 @@ theorem Nmom20_eq :
   · rfl
   · rfl
 
-/-- The degree-twenty moment, via the packed route.-/
+/-- The degree-twenty moment, via the packed route.
+@isnad1 id=eq.1h1v.s7.37c0f2cc1a47 from=translated src=- shape=17b3eb33 vocab=3325eea0
+-/
 theorem integral_twenty_packed (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 20 α t ^ 8)
       = pev Nmom20 α / ((L20 : ℝ) * (2 * M 20 * (3 + α)) ^ 8) :=
@@ -57,7 +61,9 @@ theorem integral_twenty_packed (α : ℝ) (hα : 0 ≤ α) :
     (by decide) (by rw [Nmom20_eq])
 
 /-- **The cross-check.**  The multinomial formula and the packed recurrence agree.  Neither
-side is expanded: both compute the same integral, so they are equal by transitivity.-/
+side is expanded: both compute the same integral, so they are equal by transitivity.
+@isnad1 id=eq.1h1v.s6.1abaab90cf35 from=translated src=- shape=b313f696 vocab=7a022cfb
+-/
 theorem packed_agrees_twenty (α : ℝ) (hα : 0 ≤ α) :
     pev Nmom20 α / ((L20 : ℝ) * (2 * M 20 * (3 + α)) ^ 8) = mom 20 α 8 := by
   rw [← integral_twenty_packed α hα, integral_moment]

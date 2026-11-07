@@ -44,7 +44,9 @@ namespace Sendov
 
 open Polynomial
 
-/-- The factorization of `p` over its roots, with the distinguished root `a` split off.-/
+/-- The factorization of `p` over its roots, with the distinguished root `a` split off.
+@isnad1 id=ex.4h3v.s8.a84a45aef4b2 from=translated src=- shape=662c44a4 vocab=31835ff6
+-/
 theorem exists_root_multiset {n : ℕ} (hn : 1 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)
     (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) {a : ℂ} (hpa : p.eval a = 0) :
     ∃ z : Multiset ℂ, z.card = n - 1 ∧ (∀ w ∈ z, ‖w‖ ≤ 1) ∧
@@ -72,7 +74,9 @@ theorem exists_root_multiset {n : ℕ} (hn : 1 ≤ n) {p : ℂ[X]} (hdeg : p.nat
   · rwa [Multiset.map_cons, Multiset.prod_cons] at hfac
 
 /-- The factorization of `p'`.  Each critical point `w` lies at distance at least `1` from `a`,
-so `(a - w)⁻¹` lies in the closed unit disk and `w = a - ((a-w)⁻¹)⁻¹`.-/
+so `(a - w)⁻¹` lies in the closed unit disk and `w = a - ((a-w)⁻¹)⁻¹`.
+@isnad1 id=ex.3h3v.s9.10b654befca9 from=translated src=- shape=119eaa2c vocab=bb03a7a6
+-/
 theorem exists_crit_multiset {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n) {a : ℂ}
     (hcrit : ∀ w : ℂ, (derivative p).eval w = 0 → 1 ≤ ‖w - a‖) :
     ∃ q : Multiset ℂ, q.card = n - 1 ∧ (∀ v ∈ q, ‖v‖ ≤ 1) ∧ (∀ v ∈ q, v ≠ 0) ∧

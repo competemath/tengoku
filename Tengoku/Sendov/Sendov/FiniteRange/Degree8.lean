@@ -31,25 +31,39 @@ open MeasureTheory
 
 variable {α : ℝ}
 
+/--
+@isnad1 id=eq.0h0v.s4.06d6cb032799 from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_eight : M 8 = 7 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h1v.s5.0bcd6e80dd41 from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_eight (α : ℝ) : A 8 α = 1 - 2 * α / 7 := by
   rw [A, M]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.4b069aabc7f0 from=translated src=- shape=56895de3 vocab=fc8b4408
+-/
 lemma c_eight (α : ℝ) : c 8 α = 1 - α / 7 - α / (2 * (3 + α)) := by
   rw [c, M]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.50ea24fa4ead from=translated src=- shape=2a8ab6b9 vocab=a488b366
+-/
 lemma c_eight' (hα : 0 ≤ α) : c 8 α = (42 + α - 2 * α ^ 2) / (14 * (3 + α)) := by
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   rw [c_eight]
   field_simp
   ring
 
-/-- The upper bound for `R 8 α`, obtained from the general moment formula.-/
+/-- The upper bound for `R 8 α`, obtained from the general moment formula.
+@isnad1 id=le.1h1v.s8.44d1b13a544c from=translated src=- shape=707f376a vocab=bc71373d
+-/
 lemma R_eight_le (hα : 0 ≤ α) :
     R 8 α ≤ 1 / 6 + 1 / (4 * (3 + α)) + 1 / 14 + 1 / (28 * (3 + α))
       + 84 * A 8 α ^ 2 / (3 + α) * mom 8 α 2 := by
@@ -62,7 +76,9 @@ lemma R_eight_le (hα : 0 ≤ α) :
   field_simp
   ring
 
-/-- **The finite-range claim in degree eight.**-/
+/-- **The finite-range claim in degree eight.**
+@isnad1 id=lt.2h1v.s6.5a8c012affb0 from=translated src=- shape=76f861f6 vocab=6ae490cc
+-/
 theorem finite_range_eight (hα : 0 ≤ α) (hfeas : c 8 α ^ 2 ≤ A 8 α) : R 8 α < 1 := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   have hle : α ≤ 7 / 2 := by

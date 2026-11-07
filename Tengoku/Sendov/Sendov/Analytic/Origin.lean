@@ -63,6 +63,9 @@ noncomputable def sumEraseProdMap {α : Type*} (s : Multiset α) (f : α → ℝ
   (s.map (fun j => ((s.erase j).map f).prod)).sum
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h4v.s5.e62b784004bb from=translated src=- shape=ba8b05fa vocab=27698802
+-/
 lemma sumEraseProdMap_cons {α : Type*} (v : α) (t : Multiset α) (f : α → ℝ) :
     sumEraseProdMap (v ::ₘ t) f = (t.map f).prod + f v * sumEraseProdMap t f := by
   simp only [sumEraseProdMap, Multiset.map_cons, Multiset.sum_cons, Multiset.erase_cons_head]
@@ -72,7 +75,9 @@ lemma sumEraseProdMap_cons {α : Type*} (v : α) (t : Multiset α) (f : α → �
   intro j hj
   rw [Multiset.erase_cons_tail_of_mem hj, Multiset.map_cons, Multiset.prod_cons]
 
-/-- The erasure form and `Multiset.esymm` agree, matched through their common recurrence.-/
+/-- The erasure form and `Multiset.esymm` agree, matched through their common recurrence.
+@isnad1 id=eq.1h3v.s5.526bbc566860 from=translated src=- shape=fdac6bc1 vocab=7cd303cd
+-/
 theorem sumEraseProdMap_eq_esymm {α : Type*} : ∀ (s : Multiset α) (f : α → ℝ), s ≠ 0 →
     sumEraseProdMap s f = (s.map f).esymm ((s.map f).card - 1) := by
   intro s
@@ -88,7 +93,9 @@ theorem sumEraseProdMap_eq_esymm {α : Type*} : ∀ (s : Multiset α) (f : α �
 
 /-! ### The quadratic mean -/
 
-/-- `‖1 + s v‖² = 1 + 2 s Re v + s² ‖v‖²` for real `s`.-/
+/-- `‖1 + s v‖² = 1 + 2 s Re v + s² ‖v‖²` for real `s`.
+@isnad1 id=eq.0h2v.s7.16b12a86112d from=translated src=- shape=e155edce vocab=0a44e00a
+-/
 lemma norm_sq_one_add_real_mul (s : ℝ) (v : ℂ) :
     ‖1 + (s : ℂ) * v‖ ^ 2 = 1 + 2 * s * v.re + s ^ 2 * ‖v‖ ^ 2 := by
   rw [← Complex.normSq_eq_norm_sq, ← Complex.normSq_eq_norm_sq]
@@ -96,6 +103,9 @@ lemma norm_sq_one_add_real_mul (s : ℝ) (v : ℂ) :
     Complex.mul_im, Complex.ofReal_re, Complex.ofReal_im, Complex.one_re, Complex.one_im]
   ring
 
+/--
+@isnad1 id=eq.0h2v.s7.d35d33c65ab4 from=translated src=- shape=b08c7f6e vocab=cdada048
+-/
 lemma sum_norm_sq_one_sub_split (s : ℝ) (q : Multiset ℂ) :
     (q.map (fun v => ‖1 + (s : ℂ) * v‖ ^ 2)).sum
       = (q.card : ℝ) + 2 * s * ((q.map (fun v => v.re)).sum)
@@ -108,7 +118,9 @@ lemma sum_norm_sq_one_sub_split (s : ℝ) (q : Multiset ℂ) :
     push_cast
     ring
 
-/-- `∑ⱼ ‖1 - a t qⱼ‖² ≤ (n-1) β(t)`, where `β(t) = 1 - 2 a x t + a² t²`.-/
+/-- `∑ⱼ ‖1 - a t qⱼ‖² ≤ (n-1) β(t)`, where `β(t) = 1 - 2 a x t + a² t²`.
+@isnad1 id=le.4h5v.s7.0910c8832a5c from=translated src=- shape=132fbf65 vocab=d4b9d2d5
+-/
 theorem sum_norm_sq_one_sub_le {n : ℕ} {a x t : ℝ} {q : Multiset ℂ}
     (hqcard : q.card = n - 1) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1) (hn : 1 ≤ n)
     (hx : (q.map (fun v => v.re)).sum = ((n : ℝ) - 1) * x) :
@@ -131,6 +143,9 @@ theorem sum_norm_sq_one_sub_le {n : ℕ} {a x t : ℝ} {q : Multiset ℂ}
 
 /-! ### Cauchy–Schwarz and the error bound -/
 
+/--
+@isnad1 id=le.1h1v.s6.2a1fe6f4f170 from=translated src=- shape=74e2387b vocab=61840241
+-/
 lemma sq_sum_le_card_mul_sum_sq (s : Multiset ℝ) (hs : ∀ b ∈ s, 0 ≤ b) :
     (s.sum) ^ 2 ≤ (s.card : ℝ) * (s.map (fun b => b ^ 2)).sum := by
   induction s using Multiset.induction_on with
@@ -156,7 +171,9 @@ lemma sq_sum_le_card_mul_sum_sq (s : Multiset ℝ) (hs : ∀ b ∈ s, 0 ≤ b) :
 
 /-- **The error bound.**  `∑ⱼ ∏_{k≠j} ‖1 - a t q_k‖ ≤ (n-1) β(t)^{(n-2)/2}`: Maclaurin's
 inequality, then Cauchy–Schwarz, then the quadratic mean.  Nonnegativity of `β(t)` is not
-assumed — it follows from the quadratic-mean bound, `β(t)` dominating an average of squares.-/
+assumed — it follows from the quadratic-mean bound, `β(t)` dominating an average of squares.
+@isnad1 id=le.5h5v.s8.40820781420d from=translated src=- shape=c22a4078 vocab=a60baf28
+-/
 theorem sumEraseProdMap_norm_le {n : ℕ} (hn : 2 ≤ n) {a x t : ℝ} {q : Multiset ℂ}
     (hqcard : q.card = n - 1) (hq0 : q ≠ 0) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1)
     (hx : (q.map (fun v => v.re)).sum = ((n : ℝ) - 1) * x) :
@@ -244,10 +261,16 @@ noncomputable def sumEraseProdC (s : Multiset ℂ) (g f : ℂ → ℂ) : ℂ :=
   (s.map (fun j => g j * ((s.erase j).map f).prod)).sum
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h2v.s4.90c5ea09b61a from=translated src=- shape=65c8992e vocab=ae8cafeb
+-/
 @[simp] lemma sumEraseProdC_zero (g f : ℂ → ℂ) : sumEraseProdC 0 g f = 0 := by
   simp [sumEraseProdC]
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h4v.s5.8d72902cdfda from=translated src=- shape=afd56a47 vocab=feccd73d
+-/
 lemma sumEraseProdC_cons (v : ℂ) (t : Multiset ℂ) (g f : ℂ → ℂ) :
     sumEraseProdC (v ::ₘ t) g f = g v * (t.map f).prod + f v * sumEraseProdC t g f := by
   simp only [sumEraseProdC, Multiset.map_cons, Multiset.sum_cons, Multiset.erase_cons_head]
@@ -258,7 +281,9 @@ lemma sumEraseProdC_cons (v : ℂ) (t : Multiset ℂ) (g f : ℂ → ℂ) :
   rw [Multiset.erase_cons_tail_of_mem hj, Multiset.map_cons, Multiset.prod_cons]
   ring
 
-/-- A weighted erasure sum with unit-size weights is dominated by the unweighted one.-/
+/-- A weighted erasure sum with unit-size weights is dominated by the unweighted one.
+@isnad1 id=le.1h3v.s5.4deecf451bd3 from=translated src=- shape=11c4aefb vocab=de019c87
+-/
 lemma norm_sumEraseProdC_le (g f : ℂ → ℂ) : ∀ (s : Multiset ℂ), (∀ v ∈ s, ‖g v‖ ≤ 1) →
     ‖sumEraseProdC s g f‖ ≤ sumEraseProdMap s (fun v => ‖f v‖) := by
   intro s
@@ -278,12 +303,17 @@ lemma norm_sumEraseProdC_le (g f : ℂ → ℂ) : ∀ (s : Multiset ℂ), (∀ v
 noncomputable def Fprod (a : ℝ) (q : Multiset ℂ) (t : ℝ) : ℂ :=
   (q.map (fun v => 1 - (a : ℂ) * (t : ℂ) * v)).prod
 
+/--
+@isnad1 id=eq.0h2v.s4.be3de6fbd416 from=translated src=- shape=d3723a28 vocab=f95b309d
+-/
 @[simp] lemma Fprod_zero (a : ℝ) (q : Multiset ℂ) : Fprod a q 0 = 1 := by
   simp [Fprod]
 
 /-- Splitting the derivative sum into its main term and its residual:
 `∑ⱼ qⱼ ∏_{k≠j}(1-atq_k) = (∑ⱼ qⱼ) F(t) + a t ∑ⱼ qⱼ² ∏_{k≠j}(1-atq_k)`, since
-`1 - (1 - a t qⱼ) = a t qⱼ`.-/
+`1 - (1 - a t qⱼ) = a t qⱼ`.
+@isnad1 id=eq.0h3v.s7.8253347294be from=translated src=- shape=1cf15a5a vocab=72e745cf
+-/
 lemma sumEraseProdC_id_eq (a t : ℝ) : ∀ (q : Multiset ℂ),
     sumEraseProdC q id (fun v => 1 - (a : ℂ) * (t : ℂ) * v)
       = q.sum * Fprod a q t
@@ -297,7 +327,9 @@ lemma sumEraseProdC_id_eq (a t : ℝ) : ∀ (q : Multiset ℂ),
     simp only [Fprod, Multiset.map_cons, Multiset.prod_cons, id]
     ring
 
-/-- `F'(t) = -a ∑ⱼ qⱼ ∏_{k≠j}(1 - a t q_k)`.-/
+/-- `F'(t) = -a ∑ⱼ qⱼ ∏_{k≠j}(1 - a t q_k)`.
+@isnad1 id=hasderiv.0h3v.s6.56f3e70626ca from=translated src=- shape=16fcc6c4 vocab=3c014785
+-/
 lemma hasDerivAt_Fprod (a t : ℝ) : ∀ (q : Multiset ℂ),
     HasDerivAt (Fprod a q)
       (-(a : ℂ) * sumEraseProdC q id (fun v => 1 - (a : ℂ) * (t : ℂ) * v)) t := by
@@ -327,7 +359,9 @@ lemma hasDerivAt_Fprod (a t : ℝ) : ∀ (q : Multiset ℂ),
     rw [hfun, sumEraseProdC_cons, id_eq, hderiv]
     exact h2
 
-/-- **The pointwise estimate.**  `‖F'(t) + (n-1) a (x+iy) F(t)‖ ≤ a² t (n-1) β(t)^{(n-2)/2}`.-/
+/-- **The pointwise estimate.**  `‖F'(t) + (n-1) a (x+iy) F(t)‖ ≤ a² t (n-1) β(t)^{(n-2)/2}`.
+@isnad1 id=le.8h6v.s8.f477ebb49f92 from=translated src=- shape=5028b8e7 vocab=7d4cca3c
+-/
 theorem norm_deriv_add_le {n : ℕ} (hn : 2 ≤ n) {a x y t : ℝ} {q : Multiset ℂ}
     (hqcard : q.card = n - 1) (hq0 : q ≠ 0) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1)
     (ha0 : 0 ≤ a) (ht0 : 0 ≤ t)
@@ -361,6 +395,9 @@ theorem norm_deriv_add_le {n : ℕ} (hn : 2 ≤ n) {a x y t : ℝ} {q : Multiset
 
 /-! ### Integrating the pointwise estimate: the triangle inequality `(tri)` -/
 
+/--
+@isnad1 id=continuo.0h2v.s6.45140c976ab0 from=translated src=- shape=40046942 vocab=05e9742c
+-/
 lemma continuous_prodC (a : ℝ) : ∀ (q : Multiset ℂ),
     Continuous fun t : ℝ => (q.map (fun v => 1 - (a : ℂ) * (t : ℂ) * v)).prod := by
   intro q
@@ -370,9 +407,15 @@ lemma continuous_prodC (a : ℝ) : ∀ (q : Multiset ℂ),
     simp only [Multiset.map_cons, Multiset.prod_cons]
     exact (by fun_prop : Continuous fun t : ℝ => 1 - (a : ℂ) * (t : ℂ) * v).mul ih
 
+/--
+@isnad1 id=continuo.0h2v.s4.0827a58942ba from=translated src=- shape=20d0ec03 vocab=ca0140fd
+-/
 lemma continuous_Fprod (a : ℝ) (q : Multiset ℂ) : Continuous (Fprod a q) :=
   continuous_prodC a q
 
+/--
+@isnad1 id=continuo.0h3v.s6.0f5e4167682e from=translated src=- shape=244371dc vocab=e4a1083d
+-/
 lemma continuous_sumEraseProdC (a : ℝ) (g : ℂ → ℂ) : ∀ (q : Multiset ℂ),
     Continuous fun t : ℝ => sumEraseProdC q g (fun v => 1 - (a : ℂ) * (t : ℂ) * v) := by
   intro q
@@ -386,7 +429,9 @@ lemma continuous_sumEraseProdC (a : ℝ) (g : ℂ → ℂ) : ∀ (q : Multiset �
       ((by fun_prop : Continuous fun t : ℝ => 1 - (a : ℂ) * (t : ℂ) * v).mul ih)
 
 /-- **The triangle inequality `(tri)`.**  Integrating `norm_deriv_add_le` against the
-fundamental theorem of calculus, using `F(0) = 1`.-/
+fundamental theorem of calculus, using `F(0) = 1`.
+@isnad1 id=le.7h5v.s8.18b17bc5e55d from=translated src=- shape=29192c1c vocab=58f54d6b
+-/
 theorem one_le_tri {n : ℕ} (hn : 2 ≤ n) {a x y : ℝ} {q : Multiset ℂ}
     (hqcard : q.card = n - 1) (hq0 : q ≠ 0) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1) (ha0 : 0 ≤ a)
     (hx : (q.map (fun v => v.re)).sum = ((n : ℝ) - 1) * x)

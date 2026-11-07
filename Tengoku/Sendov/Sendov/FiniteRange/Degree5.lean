@@ -47,25 +47,39 @@ open MeasureTheory
 
 variable {α : ℝ}
 
+/--
+@isnad1 id=eq.0h0v.s4.6478596b29bc from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_five : M 5 = 4 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h1v.s5.1e4f31f44cb6 from=translated src=- shape=39e477b8 vocab=3d8ab5e4
+-/
 lemma A_five (α : ℝ) : A 5 α = 1 - α / 2 := by
   rw [A, M]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.2d02e4761cd6 from=translated src=- shape=56895de3 vocab=fc8b4408
+-/
 lemma c_five (α : ℝ) : c 5 α = 1 - α / 4 - α / (2 * (3 + α)) := by
   rw [c, M]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.51dde475f01e from=translated src=- shape=f1c6a4b9 vocab=a488b366
+-/
 lemma c_five' (hα : 0 ≤ α) : c 5 α = (12 - α - α ^ 2) / (4 * (3 + α)) := by
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   rw [c_five]
   field_simp
   ring
 
-/-- The odd-degree bound in degree five, with the tangent line taken at `q = 1/9`.-/
+/-- The odd-degree bound in degree five, with the tangent line taken at `q = 1/9`.
+@isnad1 id=le.1h1v.s8.00bfa11b9ea3 from=translated src=- shape=d90f3907 vocab=ca586e5e
+-/
 lemma integral_five (hfeas : c 5 α ^ 2 ≤ A 5 α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 5 α t ^ ((((5 : ℕ) : ℝ) - 4) / 2))
       ≤ 3 / 2 * (1 / 4 - 2 * c 5 α / 5 + A 5 α / 6) + 1 / 24 := by
@@ -81,7 +95,9 @@ lemma integral_five (hfeas : c 5 α ^ 2 ≤ A 5 α) :
   rw [hfun, integral_poly7]
   ring
 
-/-- The upper bound for `R 5 α` obtained from `Sendov.integral_five`.-/
+/-- The upper bound for `R 5 α` obtained from `Sendov.integral_five`.
+@isnad1 id=le.2h1v.s8.25ab900e143d from=translated src=- shape=84bb2e5a vocab=7d6363f9
+-/
 lemma R_five_le (hα : 0 ≤ α) (hfeas : c 5 α ^ 2 ≤ A 5 α) :
     R 5 α ≤ 1 / 6 + 1 / (4 * (3 + α)) + 1 / 8 + 1 / (16 * (3 + α))
       + 60 * A 5 α ^ 2 / (4 * (3 + α))
@@ -91,7 +107,9 @@ lemma R_five_le (hα : 0 ≤ α) (hfeas : c 5 α ^ 2 ≤ A 5 α) :
   push_cast at h
   exact h.trans (le_of_eq (by ring))
 
-/-- **The finite-range claim in degree five.**-/
+/-- **The finite-range claim in degree five.**
+@isnad1 id=lt.2h1v.s6.2aad25c75959 from=translated src=- shape=76f861f6 vocab=6ae490cc
+-/
 theorem finite_range_five (hα : 0 ≤ α) (hfeas : c 5 α ^ 2 ≤ A 5 α) : R 5 α < 1 := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   have hle : α ≤ 2 := by

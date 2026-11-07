@@ -212,7 +212,9 @@ private lemma Sf_eq (h : ℝ) :
   field_simp
   ring
 
-/-- **The key inequality.**  Equivalent to `coth h - 1/h ≤ h/√(h²+9)`.-/
+/-- **The key inequality.**  Equivalent to `coth h - 1/h ≤ h/√(h²+9)`.
+@isnad1 id=le.1h1v.s7.fcdaba90a45d from=translated src=- shape=1c551598 vocab=0e17f8ad
+-/
 theorem sinh_sq_le {h : ℝ} (hh : 0 ≤ h) :
     (h ^ 2 + 9) * (h * cosh h - sinh h) ^ 2 ≤ h ^ 4 * sinh h ^ 2 := by
   have h0 := step0 (2 * h) (by linarith)
@@ -231,7 +233,9 @@ private lemma sinh_le_mul_cosh {h : ℝ} (hh : 0 ≤ h) : sinh h ≤ h * cosh h 
   linarith
 
 /-- `√(h²+9) (h cosh h - sinh h) ≤ h² sinh h`: the square root of `Sendov.sinh_sq_le`, which is
-the derivative inequality `coth h - 1/h ≤ h/√(h²+9)` cleared of denominators.-/
+the derivative inequality `coth h - 1/h ≤ h/√(h²+9)` cleared of denominators.
+@isnad1 id=le.1h1v.s6.671952c881ed from=translated src=- shape=c698c23a vocab=685ac2d6
+-/
 theorem sqrt_mul_sub_le {h : ℝ} (hh : 0 ≤ h) :
     sqrt (h ^ 2 + 9) * (h * cosh h - sinh h) ≤ h ^ 2 * sinh h := by
   have : (0 : ℝ) ≤ h ^ 2 * sinh h := mul_nonneg (sq_nonneg h) (sinh_nonneg_iff.2 hh)
@@ -243,7 +247,9 @@ theorem sqrt_mul_sub_le {h : ℝ} (hh : 0 ≤ h) :
     ·  ring
   nlinarith
 
-/-- **The sharp bound.**  This is `(lsh)` of the blog post.-/
+/-- **The sharp bound.**  This is `(lsh)` of the blog post.
+@isnad1 id=le.1h1v.s6.0f99996364fb from=translated src=- shape=acfbf23b vocab=679d027a
+-/
 theorem log_sinh_div_le {h : ℝ} (hh : 0 < h) :
     log (sinh h / h) ≤ sqrt (h ^ 2 + 9) - 3 := by
   set ψ : ℝ → ℝ := fun z => sqrt (z ^ 2 + 9) - 3 - (log (sinh z) - log z) with hψdef
@@ -300,7 +306,9 @@ theorem log_sinh_div_le {h : ℝ} (hh : 0 < h) :
   rw [log_div (ne_of_gt (sinh_pos_iff.2 hh)) (ne_of_gt hh)]
   linarith
 
-/-- The form in which the estimate is used: `sinh h ≤ h exp (√(h²+9) - 3)`.-/
+/-- The form in which the estimate is used: `sinh h ≤ h exp (√(h²+9) - 3)`.
+@isnad1 id=le.1h1v.s6.695b76bf9e0f from=translated src=- shape=42023caf vocab=ca9f1358
+-/
 theorem sinh_le_mul_exp {h : ℝ} (hh : 0 ≤ h) :
     sinh h ≤ h * exp (sqrt (h ^ 2 + 9) - 3) := by
   rcases eq_or_lt_of_le hh with rfl | hpos

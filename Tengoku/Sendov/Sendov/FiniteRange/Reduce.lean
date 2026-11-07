@@ -36,7 +36,9 @@ open MeasureTheory Finset
 
 variable {n : ℕ} {α w : ℝ}
 
-/-- **Even degrees.**  The integral in `Sendov.R` is exactly a moment.-/
+/-- **Even degrees.**  The integral in `Sendov.R` is exactly a moment.
+@isnad1 id=eq.1h3v.s7.27493b19e607 from=translated src=- shape=051a1719 vocab=db8aa3b5
+-/
 lemma integral_eq_mom (k : ℕ) (hk : ((n : ℝ) - 4) / 2 = (k : ℕ)) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q n α t ^ (((n : ℝ) - 4) / 2)) = mom n α k := by
   rw [hk]
@@ -44,7 +46,9 @@ lemma integral_eq_mom (k : ℕ) (hk : ((n : ℝ) - 4) / 2 = (k : ℕ)) :
   exact integral_moment n α k
 
 /-- **Odd degrees.**  After `Sendov.integral_rpow_le` has removed the square root, the
-integral in `Sendov.R` is bounded by a combination of two moments.-/
+integral in `Sendov.R` is bounded by a combination of two moments.
+@isnad1 id=le.3h4v.s8.dc088f4bc8ae from=translated src=- shape=7c6fcadd vocab=6d041a60
+-/
 lemma integral_le_mom (hfeas : c n α ^ 2 ≤ A n α) (k : ℕ)
     (hk : ((n : ℝ) - 4) / 2 = (k : ℝ) + 1 / 2) (hw : 0 < w) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q n α t ^ (((n : ℝ) - 4) / 2))
@@ -67,7 +71,9 @@ lemma integral_le_mom (hfeas : c n α ^ 2 ≤ A n α) (k : ℕ)
   ring
 
 /-- **The reduction.**  Any upper bound `J` for the integral turns `R n α < 1` into an
-inequality between explicit rational functions of `α`.-/
+inequality between explicit rational functions of `α`.
+@isnad1 id=lt.4h3v.s8.3bbb9865d682 from=translated src=- shape=7ee50bdb vocab=78e19ce5
+-/
 theorem finite_range_of_bound (hn : 2 ≤ n) (hα : 0 ≤ α) {J : ℝ}
     (hJ : (∫ t in (0 : ℝ)..1, t ^ 3 * Q n α t ^ (((n : ℝ) - 4) / 2)) ≤ J)
     (h : 1 / 6 + 1 / (4 * (3 + α)) + 1 / (2 * M n) + 1 / (4 * M n * (3 + α))
@@ -75,12 +81,16 @@ theorem finite_range_of_bound (hn : 2 ≤ n) (hα : 0 ≤ α) {J : ℝ}
     R n α < 1 :=
   lt_of_le_of_lt (R_le_of_integral_le hn hα hJ) h
 
-/-- `∫ t in 0..1, t ^ 3 * Q`-/
+/-- `∫ t in 0..1, t ^ 3 * Q`
+@isnad1 id=eq.0h2v.s6.bb2ebcff8c28 from=translated src=- shape=caadf37f vocab=14b7d03c
+-/
 lemma mom_one (n : ℕ) (α : ℝ) : mom n α 1 = 1 / 4 - 2 * c n α / 5 + A n α / 6 := by
   simp [mom, Finset.sum_range_succ]
   ring
 
-/-- `∫ t in 0..1, t ^ 3 * Q ^ 2`-/
+/-- `∫ t in 0..1, t ^ 3 * Q ^ 2`
+@isnad1 id=eq.0h2v.s8.433b0cb62d24 from=translated src=- shape=3a3cd52f vocab=e41b34b7
+-/
 lemma mom_two (n : ℕ) (α : ℝ) :
     mom n α 2 = 1 / 4 - 4 * c n α / 5 + (2 * c n α ^ 2 / 3 + A n α / 3)
       - 4 * c n α * A n α / 7 + A n α ^ 2 / 8 := by

@@ -45,19 +45,25 @@ open MeasureTheory Real
 
 /-! ### Elementary estimates -/
 
-/-- Four terms of the exponential series.-/
+/-- Four terms of the exponential series.
+@isnad1 id=le.1h1v.s6.cbb7435738e5 from=translated src=- shape=0ac3ff44 vocab=9115dc4c
+-/
 lemma quartic_le_exp {z : ℝ} (hz : 0 ≤ z) : 1 + z + z ^ 2 / 2 + z ^ 3 / 6 ≤ exp z := by
   have h := Real.sum_le_exp_of_nonneg hz 4
   simp [Finset.sum_range_succ, Nat.factorial] at h
   linarith
 
-/-- `log t ≤ t / e`, the tangent bound at `t = e`.-/
+/-- `log t ≤ t / e`, the tangent bound at `t = e`.
+@isnad1 id=le.1h1v.s5.f7f8a641fd01 from=translated src=- shape=1e6ed76f vocab=79b929ab
+-/
 lemma log_le_div_exp_one {t : ℝ} (ht : 0 < t) : Real.log t ≤ t / exp 1 := by
   have h := Real.log_le_sub_one_of_pos (x := t / exp 1) (by positivity)
   rw [Real.log_div ht.ne' (Real.exp_pos 1).ne', Real.log_exp] at h
   linarith
 
-/-- `exp z ≤ 1/(1-z)` for `z < 1`, from `1 - z ≤ e^{-z}`.-/
+/-- `exp z ≤ 1/(1-z)` for `z < 1`, from `1 - z ≤ e^{-z}`.
+@isnad1 id=le.1h1v.s5.29401d8f6436 from=translated src=- shape=055aa61e vocab=a208717b
+-/
 lemma exp_le_one_div_one_sub {z : ℝ} (hz : z < 1) : exp z ≤ 1 / (1 - z) := by
   have hpos := Real.exp_pos z
   have h1 : (0 : ℝ) < 1 - z := by linarith
@@ -70,7 +76,9 @@ lemma exp_le_one_div_one_sub {z : ℝ} (hz : z < 1) : exp z ≤ 1 / (1 - z) := b
   rw [le_div_iff₀ h1]
   linarith
 
-/-- `2.83 ≤ log 17`, via `log 16 + log(17/16) ≥ 4 log 2 + 1/17`.-/
+/-- `2.83 ≤ log 17`, via `log 16 + log(17/16) ≥ 4 log 2 + 1/17`.
+@isnad1 id=le.0h0v.s4.7a9c254907e0 from=translated src=- shape=8905eb1d vocab=abe5a5f0
+-/
 lemma log_seventeen_ge : (2.83 : ℝ) ≤ Real.log 17 := by
   have h2 : (0.6931471803 : ℝ) < Real.log 2 := Real.log_two_gt_d9
   have h16 : Real.log 16 = 4 * Real.log 2 := by
@@ -87,7 +95,9 @@ lemma log_seventeen_ge : (2.83 : ℝ) ≤ Real.log 17 := by
   linarith
 
 /-- The polynomial bound behind the geometric term: `v(2v + 2 + 1/17) e^{-2.83 v} ≤ 0.4118`
-for `v ≥ 0`.  Four terms of the exponential series suffice; the true maximum is `0.3722`.-/
+for `v ≥ 0`.  Four terms of the exponential series suffice; the true maximum is `0.3722`.
+@isnad1 id=le.1h1v.s6.6505a8fc750a from=translated src=- shape=1e416c5e vocab=d5e6f188
+-/
 lemma tail_poly_bound {v : ℝ} (hv : 0 ≤ v) :
     v * (2 * (v + 1) + 1 / 17) * exp (-(2.83 * v)) ≤ 0.4118 := by
   have hz : (0 : ℝ) ≤ 2.83 * v := by linarith
@@ -104,7 +114,9 @@ set_option maxHeartbeats 1000000 in
 -- one long proof rather than several: the `v`-substitution ties the integral bound, the two
 -- exponential factors and the final arithmetic together, and splitting it would mean carrying
 -- a dozen hypotheses across the boundary
-/-- **`(beta-bound) + (origin-exact) ⟹ α ≤ 17`.**-/
+/-- **`(beta-bound) + (origin-exact) ⟹ α ≤ 17`.**
+@isnad1 id=le.8h4v.s9.14c3aa265eb2 from=translated src=- shape=8f745e78 vocab=4c4ac278
+-/
 theorem alpha_le_seventeen {n : ℕ} {a x α : ℝ} (hn : 5 ≤ n)
     (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
     (hα : α = M n * (1 - a ^ 2) / 2)

@@ -56,7 +56,9 @@ namespace Sendov
 
 variable {α : ℝ}
 
-/-- **The finite range.**  Every degree from `5` to `100` inclusive.-/
+/-- **The finite range.**  Every degree from `5` to `100` inclusive.
+@isnad1 id=lt.5h2v.s6.d9a60edd2337 from=translated src=- shape=4dbf9f61 vocab=6ae490cc
+-/
 theorem finite_range_le_100 {n : ℕ} (h0 : 5 ≤ n) (h1 : n ≤ 100)
     (hα : 0 ≤ α) (hα' : α ≤ 17) (hfeas : c n α ^ 2 ≤ A n α) : R n α < 1 := by
   -- degrees 5..5
@@ -166,14 +168,18 @@ strictly less than `1` on the range of degrees and of `α` left open there, that
 
 This is the original challenge statement.  It is a special case of `finite_range_le_100`,
 which covers three more degrees: the finite certification was pushed from `97` to `100` so
-that it meets the large-degree argument of `Sendov.LargeDegree` with room to spare.-/
+that it meets the large-degree argument of `Sendov.LargeDegree` with room to spare.
+@isnad1 id=lt.5h2v.s6.54f0d4e2d600 from=translated src=- shape=e0bb58e2 vocab=6ae490cc
+-/
 theorem finite_range (n : ℕ) (α : ℝ) (hn : 5 ≤ n) (hn' : n ≤ 97)
     (hα : 0 ≤ α) (hα' : α ≤ 17) (hfeas : c n α ^ 2 ≤ A n α) :
     R n α < 1 :=
   finite_range_le_100 hn (by omega) hα hα' hfeas
 
 /-- Equation `stat` of the blog post is infeasible on the range
-`5 ≤ n ≤ 97`, `0 ≤ α ≤ 17`, `c ^ 2 ≤ A`.  This is the form in which the claim is used.-/
+`5 ≤ n ≤ 97`, `0 ≤ α ≤ 17`, `c ^ 2 ≤ A`.  This is the form in which the claim is used.
+@isnad1 id=false.6h2v.s6.56d725439ee6 from=translated src=- shape=61c1b66a vocab=9c938cb6
+-/
 theorem finite_range_contradiction (n : ℕ) (α : ℝ) (hn : 5 ≤ n) (hn' : n ≤ 97)
     (hα : 0 ≤ α) (hα' : α ≤ 17) (hfeas : c n α ^ 2 ≤ A n α) (hstat : 1 ≤ R n α) :
     False :=

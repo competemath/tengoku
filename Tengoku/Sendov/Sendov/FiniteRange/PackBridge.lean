@@ -39,16 +39,27 @@ namespace Sendov
 /-- The row with each coefficient polynomial packed at the base `β`.-/
 def rowZ (r : List (List ℤ)) (β : ℤ) : List ℤ := r.map (fun p => pevZ p β)
 
+/--
+@isnad1 id=eq.0h1v.s3.d5488b2bb4e9 from=translated src=- shape=e7f4035f vocab=1791fe03
+-/
 @[simp] lemma rowZ_nil (β : ℤ) : rowZ [] β = [] := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.b30865d4ce88 from=translated src=- shape=a021c44b vocab=a6879f44
+-/
 @[simp] lemma rowZ_cons (p : List ℤ) (r : List (List ℤ)) (β : ℤ) :
     rowZ (p :: r) β = pevZ p β :: rowZ r β := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.312aaf929aee from=translated src=- shape=9a7bc079 vocab=bd4796a0
+-/
 @[simp] lemma rowZ_length (r : List (List ℤ)) (β : ℤ) : (rowZ r β).length = r.length := by
   simp [rowZ]
 
 /-- Evaluating a coefficient polynomial over `ℝ` at an integer point is the packed
-evaluation over `ℤ`.-/
+evaluation over `ℤ`.
+@isnad1 id=eq.0h2v.s4.b7d9c0d3d0fa from=translated src=- shape=4370aad2 vocab=2fa3ab50
+-/
 lemma pev_intCast (p : List ℤ) (b : ℤ) : pev p (b : ℝ) = (pevZ p b : ℝ) := by
   induction p with
   | nil => simp [pev]
@@ -57,7 +68,9 @@ lemma pev_intCast (p : List ℤ) (b : ℤ) : pev p (b : ℝ) = (pevZ p b : ℝ) 
     push_cast
     ring
 
-/-- Evaluating a row over `ℝ` at integer points is the packed evaluation over `ℤ`.-/
+/-- Evaluating a row over `ℝ` at integer points is the packed evaluation over `ℤ`.
+@isnad1 id=eq.0h3v.s4.c80f79a074d7 from=translated src=- shape=f9cb63e5 vocab=1f62061d
+-/
 lemma rev_intCast (r : List (List ℤ)) (β τ : ℤ) :
     rev r (β : ℝ) (τ : ℝ) = (pevZ (rowZ r β) τ : ℝ) := by
   induction r with
@@ -69,7 +82,9 @@ lemma rev_intCast (r : List (List ℤ)) (β τ : ℤ) :
 
 /-- **The recurrence as one exponentiation.**  The two-dimensionally packed row is the `k`-th
 power of a single integer.  In the kernel this replaces `Θ(k³)` interpreted list steps by one
-GMP-backed exponentiation; measured at `k = 46`, hours become about half a second.-/
+GMP-backed exponentiation; measured at `k = 46`, hours become about half a second.
+@isnad1 id=eq.0h6v.s6.dd552d1533eb from=translated src=- shape=c6c998a5 vocab=bc5f86cd
+-/
 theorem pevZ_rowZ_qrow (g₀ g₁ g₂ : List ℤ) (k : ℕ) (β τ : ℤ) :
     pevZ (rowZ (qrow g₀ g₁ g₂ k) β) τ
       = (pevZ g₀ β + pevZ g₁ β * τ + pevZ g₂ β * τ ^ 2) ^ k := by
@@ -78,7 +93,9 @@ theorem pevZ_rowZ_qrow (g₀ g₁ g₂ : List ℤ) (k : ℕ) (β τ : ℤ) :
   exact_mod_cast h
 
 /-- Reading the packed row back, given the overflow bound on the packed coefficients.  The
-bound is a hypothesis: it is discharged per degree from explicit numerical parameters.-/
+bound is a hypothesis: it is discharged per degree from explicit numerical parameters.
+@isnad1 id=eq.2h6v.s7.a0314904c6db from=translated src=- shape=cfd3b3f0 vocab=f8847317
+-/
 theorem rowZ_qrow_eq (g₀ g₁ g₂ : List ℤ) (k : ℕ) (β τ : ℤ) (hτ : 0 < τ)
     (hbound : ∀ a ∈ rowZ (qrow g₀ g₁ g₂ k) β, 2 * |a| < τ) :
     unpackZ τ (qrow g₀ g₁ g₂ k).length
@@ -97,14 +114,22 @@ def wsum (L : ℤ) : ℕ → List (List ℤ) → List ℤ
   | _, [] => []
   | i, p :: r => padd (p.map (fun c => (L / ((i : ℤ) + 4)) * c)) (wsum L (i + 1) r)
 
+/--
+@isnad1 id=eq.0h2v.s3.01525e657733 from=translated src=- shape=134a3217 vocab=be230d5a
+-/
 @[simp] lemma wsum_nil (L : ℤ) (i : ℕ) : wsum L i [] = [] := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.221281fa4e9a from=translated src=- shape=52e36052 vocab=46750866
+-/
 @[simp] lemma wsum_cons (L : ℤ) (i : ℕ) (p : List ℤ) (r : List (List ℤ)) :
     wsum L i (p :: r)
       = padd (p.map (fun c => (L / ((i : ℤ) + 4)) * c)) (wsum L (i + 1) r) := rfl
 
 /-- **The scaled moment is an integer polynomial.**  Given that `L` clears every denominator
-`i+j+4` occurring, `wsum` computes `L` times `Sendov.irow`.-/
+`i+j+4` occurring, `wsum` computes `L` times `Sendov.irow`.
+@isnad1 id=eq.1h4v.s6.892fa0261434 from=translated src=- shape=ff3099e1 vocab=2b9deade
+-/
 theorem pev_wsum (L : ℤ) : ∀ (r : List (List ℤ)) (i : ℕ) (α : ℝ),
     (∀ j, j < r.length → ((i : ℤ) + j + 4) ∣ L) →
     pev (wsum L i r) α = (L : ℝ) * irow r i α := by
@@ -145,15 +170,27 @@ def l1 : List ℤ → ℤ
   | [] => 0
   | a :: p => |a| + l1 p
 
+/--
+@isnad1 id=eq.0h0v.s3.b6edee942405 from=translated src=- shape=c15d4c7a vocab=8e0d1927
+-/
 @[simp] lemma l1_nil : l1 [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.528a9a2e89ed from=translated src=- shape=67d798a0 vocab=e20fa5c2
+-/
 @[simp] lemma l1_cons (a : ℤ) (p : List ℤ) : l1 (a :: p) = |a| + l1 p := rfl
 
+/--
+@isnad1 id=le.0h1v.s3.8744b445ef30 from=translated src=- shape=b29cab32 vocab=50f9958b
+-/
 lemma l1_nonneg (p : List ℤ) : 0 ≤ l1 p := by
   induction p with
   | nil => simp
   | cons a p ih => have := abs_nonneg a; simp only [l1_cons]; omega
 
+/--
+@isnad1 id=le.1h2v.s4.ae91e7c16c2e from=translated src=- shape=3b21aae4 vocab=cfbcc058
+-/
 lemma abs_le_l1 : ∀ (p : List ℤ) (a : ℤ), a ∈ p → |a| ≤ l1 p := by
   intro p
   induction p with
@@ -164,6 +201,9 @@ lemma abs_le_l1 : ∀ (p : List ℤ) (a : ℤ), a ∈ p → |a| ≤ l1 p := by
     · subst h; have := l1_nonneg p; simp only [l1_cons]; omega
     · have := ih a h; have := abs_nonneg c; simp only [l1_cons]; omega
 
+/--
+@isnad1 id=le.0h2v.s4.99dcdadfb06b from=translated src=- shape=0e6b7deb vocab=5851b398
+-/
 lemma l1_padd (p q : List ℤ) : l1 (padd p q) ≤ l1 p + l1 q := by
   induction p generalizing q with
   | nil => simp [padd]
@@ -176,6 +216,9 @@ lemma l1_padd (p q : List ℤ) : l1 (padd p q) ≤ l1 p + l1 q := by
       simp only [padd, l1_cons]
       omega
 
+/--
+@isnad1 id=eq.0h2v.s5.f3cb430f36f1 from=translated src=- shape=b7830f2b vocab=a13f3c73
+-/
 lemma l1_map_mul (c : ℤ) (q : List ℤ) : l1 (q.map (fun x => c * x)) = |c| * l1 q := by
   induction q with
   | nil => simp
@@ -183,6 +226,9 @@ lemma l1_map_mul (c : ℤ) (q : List ℤ) : l1 (q.map (fun x => c * x)) = |c| * 
     simp only [List.map_cons, l1_cons, ih, abs_mul]
     ring
 
+/--
+@isnad1 id=le.0h2v.s4.83aff6bb3bba from=translated src=- shape=0e6b7deb vocab=52da7738
+-/
 lemma l1_pmul (p q : List ℤ) : l1 (pmul p q) ≤ l1 p * l1 q := by
   induction p with
   | nil => simp [pmul]
@@ -201,16 +247,28 @@ def l1row : List (List ℤ) → ℤ
   | [] => 0
   | p :: r => l1 p + l1row r
 
+/--
+@isnad1 id=eq.0h0v.s3.9fa68c9beeeb from=translated src=- shape=70216182 vocab=7c6e6bb3
+-/
 @[simp] lemma l1row_nil : l1row [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.e76a7e06d5f9 from=translated src=- shape=5e8da117 vocab=600554c2
+-/
 @[simp] lemma l1row_cons (p : List ℤ) (r : List (List ℤ)) :
     l1row (p :: r) = l1 p + l1row r := rfl
 
+/--
+@isnad1 id=le.0h1v.s3.6aa2832a422e from=translated src=- shape=d73ebfc1 vocab=6d2f8360
+-/
 lemma l1row_nonneg (r : List (List ℤ)) : 0 ≤ l1row r := by
   induction r with
   | nil => simp
   | cons p r ih => have := l1_nonneg p; simp only [l1row_cons]; omega
 
+/--
+@isnad1 id=le.0h2v.s4.f9c2ec0d432d from=translated src=- shape=a1d6dc7e vocab=8066478b
+-/
 lemma l1row_radd (r s : List (List ℤ)) : l1row (radd r s) ≤ l1row r + l1row s := by
   induction r generalizing s with
   | nil => simp [radd]
@@ -223,6 +281,9 @@ lemma l1row_radd (r s : List (List ℤ)) : l1row (radd r s) ≤ l1row r + l1row 
       simp only [radd, l1row_cons]
       omega
 
+/--
+@isnad1 id=le.0h2v.s4.a9c814b9e120 from=translated src=- shape=9727fcb0 vocab=a062c733
+-/
 lemma l1row_rscale (g : List ℤ) (r : List (List ℤ)) :
     l1row (rscale g r) ≤ l1 g * l1row r := by
   induction r with
@@ -232,6 +293,9 @@ lemma l1row_rscale (g : List ℤ) (r : List (List ℤ)) :
     simp only [rscale, List.map_cons, l1row_cons] at *
     nlinarith [ih, l1_nonneg g, l1row_nonneg r]
 
+/--
+@isnad1 id=le.0h4v.s5.425e614b2acc from=translated src=- shape=e338c98d vocab=ddee6df7
+-/
 lemma l1row_qstep (g₀ g₁ g₂ : List ℤ) (r : List (List ℤ)) :
     l1row (qstep g₀ g₁ g₂ r) ≤ (l1 g₀ + l1 g₁ + l1 g₂) * l1row r := by
   have h0 := l1row_rscale g₀ r
@@ -243,7 +307,9 @@ lemma l1row_qstep (g₀ g₁ g₂ : List ℤ) (r : List (List ℤ)) :
   nlinarith [e1, e2, h0, h1, h2]
 
 /-- The coefficients of the `k`-th power are bounded by the `k`-th power of the `L¹` norm.
-This is the bound that the packing base must exceed.-/
+This is the bound that the packing base must exceed.
+@isnad1 id=le.0h4v.s5.7faf084839b2 from=translated src=- shape=f934ff82 vocab=3dab0ff2
+-/
 theorem l1row_qrow (g₀ g₁ g₂ : List ℤ) (k : ℕ) :
     l1row (qrow g₀ g₁ g₂ k) ≤ (l1 g₀ + l1 g₁ + l1 g₂) ^ k := by
   induction k with
@@ -259,6 +325,9 @@ theorem l1row_qrow (g₀ g₁ g₂ : List ℤ) (k : ℕ) :
 
 /-! ### Lengths, and the magnitude of a packed value -/
 
+/--
+@isnad1 id=eq.0h2v.s4.98f0e499f99a from=translated src=- shape=1f11034a vocab=1a8f2dab
+-/
 lemma padd_length (p q : List ℤ) : (padd p q).length = max p.length q.length := by
   induction p generalizing q with
   | nil => simp [padd]
@@ -267,6 +336,9 @@ lemma padd_length (p q : List ℤ) : (padd p q).length = max p.length q.length :
     | nil => simp [padd]
     | cons c q => simp [padd, ih]
 
+/--
+@isnad1 id=eq.0h2v.s4.7442eb352e26 from=translated src=- shape=cc1a4206 vocab=a7abaff2
+-/
 lemma radd_length (r s : List (List ℤ)) :
     (radd r s).length = max r.length s.length := by
   induction r generalizing s with
@@ -276,11 +348,16 @@ lemma radd_length (r s : List (List ℤ)) :
     | nil => simp [radd]
     | cons q s => simp [radd, ih]
 
+/--
+@isnad1 id=eq.0h2v.s4.03f82bbf481e from=translated src=- shape=a67134bf vocab=62452f1a
+-/
 @[simp] lemma rscale_length (g : List ℤ) (r : List (List ℤ)) :
     (rscale g r).length = r.length := by
   simp [rscale]
 
-/-- The row of the `k`-th power has `2k+1` entries, whatever the multiplier.-/
+/-- The row of the `k`-th power has `2k+1` entries, whatever the multiplier.
+@isnad1 id=eq.0h4v.s5.f848a244d614 from=translated src=- shape=4a9376de vocab=07be3c11
+-/
 @[simp] lemma qrow_length (g₀ g₁ g₂ : List ℤ) (k : ℕ) :
     (qrow g₀ g₁ g₂ k).length = 2 * k + 1 := by
   induction k with
@@ -289,7 +366,9 @@ lemma radd_length (r s : List (List ℤ)) :
     simp only [qrow, qstep, radd_length, rscale_length, List.length_cons, ih]
     omega
 
-/-- A packed value is bounded by the `L¹` norm times a power of the base.-/
+/-- A packed value is bounded by the `L¹` norm times a power of the base.
+@isnad1 id=le.1h2v.s5.f038968b1709 from=translated src=- shape=4cb64676 vocab=9376f819
+-/
 lemma abs_pevZ_le (b : ℤ) (hb : 1 ≤ b) :
     ∀ p : List ℤ, |pevZ p b| ≤ l1 p * b ^ p.length := by
   intro p
@@ -317,7 +396,9 @@ The generator supplies the moment numerator; Lean checks it with one integer com
 Lengths need not match exactly: a shorter list is compared against its zero-padding, which
 has the same value as a polynomial. -/
 
-/-- Evaluation ignores trailing zeros.-/
+/-- Evaluation ignores trailing zeros.
+@isnad1 id=eq.0h3v.s5.259a72767eae from=translated src=- shape=784b4f0f vocab=8ff9fbd7
+-/
 lemma pev_append_zeros (p : List ℤ) (j : ℕ) (α : ℝ) :
     pev (p ++ List.replicate j 0) α = pev p α := by
   induction p with
@@ -328,7 +409,9 @@ lemma pev_append_zeros (p : List ℤ) (j : ℕ) (α : ℝ) :
   | cons a p ih => simp only [List.cons_append, pev, ih]
 
 /-- The round trip, tolerating extra room: unpacking to length `m ≥ p.length` returns `p`
-zero-padded.-/
+zero-padded.
+@isnad1 id=eq.3h3v.s6.561155df26ee from=translated src=- shape=c0ffc079 vocab=e953c260
+-/
 theorem unpackZ_pevZ_le (β : ℤ) (hβ : 0 < β) :
     ∀ (m : ℕ) (p : List ℤ), p.length ≤ m → (∀ a ∈ p, 2 * |a| < β) →
       unpackZ β m (pevZ p β) = p ++ List.replicate (m - p.length) 0 := by
@@ -364,11 +447,20 @@ def wsumZ (L : ℤ) : ℕ → List ℤ → ℤ
   | _, [] => 0
   | i, a :: s => (L / ((i : ℤ) + 4)) * a + wsumZ L (i + 1) s
 
+/--
+@isnad1 id=eq.0h2v.s4.b2f0243aa5a3 from=translated src=- shape=6569bd62 vocab=dd1dda78
+-/
 @[simp] lemma wsumZ_nil (L : ℤ) (i : ℕ) : wsumZ L i [] = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s6.893696ec6440 from=translated src=- shape=e6bebace vocab=a67f4183
+-/
 @[simp] lemma wsumZ_cons (L : ℤ) (i : ℕ) (a : ℤ) (s : List ℤ) :
     wsumZ L i (a :: s) = (L / ((i : ℤ) + 4)) * a + wsumZ L (i + 1) s := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.f20be3d253c8 from=translated src=- shape=da1622b4 vocab=f0f86b83
+-/
 lemma pevZ_padd (p q : List ℤ) (b : ℤ) : pevZ (padd p q) b = pevZ p b + pevZ q b := by
   induction p generalizing q with
   | nil => simp [padd]
@@ -377,6 +469,9 @@ lemma pevZ_padd (p q : List ℤ) (b : ℤ) : pevZ (padd p q) b = pevZ p b + pevZ
     | nil => simp [padd]
     | cons c q => simp only [padd, pevZ_cons, ih]; ring
 
+/--
+@isnad1 id=eq.0h3v.s5.22b9fb801a7d from=translated src=- shape=a8e4225a vocab=fd6cef24
+-/
 lemma pevZ_map_mul (c : ℤ) (q : List ℤ) (b : ℤ) :
     pevZ (q.map (fun x => c * x)) b = c * pevZ q b := by
   induction q with
@@ -384,7 +479,9 @@ lemma pevZ_map_mul (c : ℤ) (q : List ℤ) (b : ℤ) :
   | cons x q ih => simp only [List.map_cons, pevZ_cons, ih]; ring
 
 /-- The packed weighted sum agrees with packing the weighted sum: this is what makes the
-check a single integer comparison.-/
+check a single integer comparison.
+@isnad1 id=eq.0h4v.s4.0480a1134f8a from=translated src=- shape=1555a9f3 vocab=e29e5942
+-/
 lemma pevZ_wsum (L : ℤ) : ∀ (r : List (List ℤ)) (i : ℕ) (β : ℤ),
     pevZ (wsum L i r) β = wsumZ L i (rowZ r β) := by
   intro r
@@ -394,7 +491,9 @@ lemma pevZ_wsum (L : ℤ) : ∀ (r : List (List ℤ)) (i : ℕ) (β : ℤ),
     intro i β
     simp only [wsum_cons, pevZ_padd, pevZ_map_mul, rowZ_cons, wsumZ_cons, ih]
 
-/-- Packing is injective on lists of the same length with coefficients below `β/2`.-/
+/-- Packing is injective on lists of the same length with coefficients below `β/2`.
+@isnad1 id=eq.5h3v.s6.ba10828eef9d from=translated src=- shape=d4cebaea vocab=b7668cba
+-/
 lemma pevZ_inj (β : ℤ) (hβ : 0 < β) (p q : List ℤ)
     (hp : ∀ a ∈ p, 2 * |a| < β) (hq : ∀ a ∈ q, 2 * |a| < β)
     (hlen : p.length = q.length) (h : pevZ p β = pevZ q β) : p = q := by
@@ -404,7 +503,9 @@ lemma pevZ_inj (β : ℤ) (hβ : 0 < β) (p q : List ℤ)
 
 /-- **Verification of a supplied moment numerator.**  Given the overflow bounds, checking a
 generator-supplied `Nmom` is one integer comparison against the packed computation — which is
-a single exponentiation and `2k+1` digit extractions.-/
+a single exponentiation and `2k+1` digit extractions.
+@isnad1 id=eq.7h8v.s8.84a4f9afeb96 from=translated src=- shape=067c6f51 vocab=6f0fcbf3
+-/
 theorem wsum_eq_of_packed (g₀ g₁ g₂ : List ℤ) (k : ℕ) (L β τ : ℤ) (Nmom : List ℤ)
     (hβ : 0 < β) (hτ : 0 < τ)
     (hbτ : ∀ a ∈ rowZ (qrow g₀ g₁ g₂ k) β, 2 * |a| < τ)
@@ -425,6 +526,9 @@ entry's *length*.  Multiplying by a `g` of length at most `G` lengthens an entry
 hypotheses of `wsum_eq_of_packed` be discharged by arithmetic instead of by computing
 `qrow`. -/
 
+/--
+@isnad1 id=le.0h2v.s4.324fdfa6ad3e from=translated src=- shape=ba5ec024 vocab=e25bea9b
+-/
 lemma pmul_length_le (p q : List ℤ) : (pmul p q).length ≤ p.length + q.length := by
   induction p with
   | nil => simp [pmul]
@@ -432,6 +536,9 @@ lemma pmul_length_le (p q : List ℤ) : (pmul p q).length ≤ p.length + q.lengt
     simp only [pmul, padd_length, List.length_map, List.length_cons]
     omega
 
+/--
+@isnad1 id=le.3h4v.s6.ce419914d12c from=translated src=- shape=78c0f22e vocab=90f21433
+-/
 lemma mem_radd_length_le {m : ℕ} : ∀ (r s : List (List ℤ)),
     (∀ p ∈ r, p.length ≤ m) → (∀ q ∈ s, q.length ≤ m) →
     ∀ x ∈ radd r s, x.length ≤ m := by
@@ -452,6 +559,9 @@ lemma mem_radd_length_le {m : ℕ} : ∀ (r s : List (List ℤ)),
       · exact ih s (fun y hy => hr y (List.mem_cons_of_mem _ hy))
           (fun y hy => hs y (List.mem_cons_of_mem _ hy)) x h
 
+/--
+@isnad1 id=le.2h4v.s6.12f413d0bd87 from=translated src=- shape=093bee7a vocab=d98beec1
+-/
 lemma mem_rscale_length_le {m : ℕ} (g : List ℤ) (r : List (List ℤ))
     (hr : ∀ p ∈ r, p.length ≤ m) : ∀ x ∈ rscale g r, x.length ≤ g.length + m := by
   intro x hx
@@ -462,7 +572,9 @@ lemma mem_rscale_length_le {m : ℕ} (g : List ℤ) (r : List (List ℤ))
   omega
 
 /-- Each entry of the `k`-th row has length at most `1 + G*k`, where `G` bounds the lengths
-of the multipliers.-/
+of the multipliers.
+@isnad1 id=le.4h6v.s6.09e8be9d53ce from=translated src=- shape=c11b911c vocab=f877fd10
+-/
 theorem qrow_entry_length_le (g₀ g₁ g₂ : List ℤ) (G : ℕ)
     (h0 : g₀.length ≤ G) (h1 : g₁.length ≤ G) (h2 : g₂.length ≤ G) :
     ∀ (k : ℕ), ∀ p ∈ qrow g₀ g₁ g₂ k, p.length ≤ 1 + G * k := by
@@ -495,7 +607,9 @@ theorem qrow_entry_length_le (g₀ g₁ g₂ : List ℤ) (G : ℕ)
       · have := mem_rscale_length_le g₂ _ hb x h'; omega
     exact mem_radd_length_le _ _ e0 (mem_radd_length_le _ _ e1 e2) p hp
 
-/-- `l1` of an entry is at most `l1row` of the row.-/
+/-- `l1` of an entry is at most `l1row` of the row.
+@isnad1 id=le.1h2v.s4.a53a81a3e56e from=translated src=- shape=8888114f vocab=c589ee53
+-/
 lemma l1_le_l1row : ∀ (r : List (List ℤ)) (p : List ℤ), p ∈ r → l1 p ≤ l1row r := by
   intro r
   induction r with
@@ -506,7 +620,9 @@ lemma l1_le_l1row : ∀ (r : List (List ℤ)) (p : List ℤ), p ∈ r → l1 p �
     · subst h; have := l1row_nonneg r; simp only [l1row_cons]; omega
     · have := ih p h; have := l1_nonneg q; simp only [l1row_cons]; omega
 
-/-- The weighted sum is no longer than the entries it combines.-/
+/-- The weighted sum is no longer than the entries it combines.
+@isnad1 id=le.1h4v.s5.2ea2f54c0e23 from=translated src=- shape=e2e7d435 vocab=78bbe715
+-/
 lemma wsum_length_le {m : ℕ} (L : ℤ) : ∀ (r : List (List ℤ)) (i : ℕ),
     (∀ p ∈ r, p.length ≤ m) → (wsum L i r).length ≤ m := by
   intro r
@@ -519,7 +635,9 @@ lemma wsum_length_le {m : ℕ} (L : ℤ) : ∀ (r : List (List ℤ)) (i : ℕ),
     simp only [wsum_cons, padd_length, List.length_map]
     omega
 
-/-- The weighted sum's `L¹` norm is at most `L` times the row's.-/
+/-- The weighted sum's `L¹` norm is at most `L` times the row's.
+@isnad1 id=le.1h3v.s5.3bd278b90cfe from=translated src=- shape=0853b9ee vocab=1f7e73d5
+-/
 lemma l1_wsum_le (L : ℤ) (hL : 0 ≤ L) : ∀ (r : List (List ℤ)) (i : ℕ),
     l1 (wsum L i r) ≤ L * l1row r := by
   intro r
@@ -544,7 +662,9 @@ Each hypothesis of `Sendov.wsum_eq_of_packed` reduces to an inequality between e
 numbers, so a degree file never computes `qrow`. -/
 
 /-- The `τ` bound: the α-packed row entries are bounded by the `L¹` norm times a power of
-`β`, the exponent coming from `Sendov.qrow_entry_length_le`.-/
+`β`, the exponent coming from `Sendov.qrow_entry_length_le`.
+@isnad1 id=lt.6h8v.s7.403e0398f52d from=translated src=- shape=a0c95908 vocab=7310a529
+-/
 theorem rowZ_bound (g₀ g₁ g₂ : List ℤ) (k G : ℕ) (β τ : ℤ) (hβ : 1 ≤ β)
     (h0 : g₀.length ≤ G) (h1 : g₁.length ≤ G) (h2 : g₂.length ≤ G)
     (hτ : 2 * ((l1 g₀ + l1 g₁ + l1 g₂) ^ k * β ^ (1 + G * k)) < τ) :
@@ -566,7 +686,9 @@ theorem rowZ_bound (g₀ g₁ g₂ : List ℤ) (k G : ℕ) (β τ : ℤ) (hβ : 
           exact le_trans hl1nn hl1p
   omega
 
-/-- The `β` bound for the moment numerator.-/
+/-- The `β` bound for the moment numerator.
+@isnad1 id=lt.3h7v.s6.0c08897e4edf from=translated src=- shape=e09141c6 vocab=eec157ee
+-/
 theorem wsum_bound (g₀ g₁ g₂ : List ℤ) (k : ℕ) (L β : ℤ) (hL : 0 ≤ L)
     (hβ : 2 * (L * (l1 g₀ + l1 g₁ + l1 g₂) ^ k) < β) :
     ∀ a ∈ wsum L 0 (qrow g₀ g₁ g₂ k), 2 * |a| < β := by
@@ -578,7 +700,9 @@ theorem wsum_bound (g₀ g₁ g₂ : List ℤ) (k : ℕ) (L β : ℤ) (hL : 0 �
   omega
 
 /-- **Pad-tolerant verification.**  Concludes equality of the polynomial *functions*, which
-is all the moment needs, and so requires only length *bounds* rather than an exact match.-/
+is all the moment needs, and so requires only length *bounds* rather than an exact match.
+@isnad1 id=eq.8h10v.s8.a0d013e6cc87 from=translated src=- shape=f23f737f vocab=09250dc9
+-/
 theorem pev_wsum_eq_of_packed (g₀ g₁ g₂ : List ℤ) (k m : ℕ) (L β τ : ℤ) (Nmom : List ℤ)
     (hβ : 0 < β) (hτ : 0 < τ)
     (hbτ : ∀ a ∈ rowZ (qrow g₀ g₁ g₂ k) β, 2 * |a| < τ)
@@ -600,7 +724,9 @@ theorem pev_wsum_eq_of_packed (g₀ g₁ g₂ : List ℤ) (k m : ℕ) (L β τ :
 /-- **The moment from a verified numerator.**  Combining `Sendov.integral_moment_of` with
 `Sendov.pev_wsum`, the integral is an explicit integer polynomial over an explicit
 denominator.  Everything on the right is either supplied by the generator or a kernel
-computation on integers.-/
+computation on integers.
+@isnad1 id=eq.5h5v.s8.b806cb6e4499 from=translated src=- shape=59b4abb2 vocab=ac8cf45f
+-/
 theorem integral_moment_packed (n k : ℕ) (hn : 2 ≤ n) (α : ℝ) (hα : 0 ≤ α)
     (L : ℤ) (hL : 0 < L) (Nmom : List ℤ)
     (hdvd : ∀ j, j < 2 * k + 1 → ((0 : ℕ) + j + 4 : ℤ) ∣ L)
@@ -620,7 +746,9 @@ theorem integral_moment_packed (n k : ℕ) (hn : 2 ≤ n) (α : ℝ) (hα : 0 �
   rw [integral_moment_of n k hn α hα, hNmom, hw]
   field_simp
 
-/-- Every coefficient of every entry of a row is bounded by the row's `L¹` norm.-/
+/-- Every coefficient of every entry of a row is bounded by the row's `L¹` norm.
+@isnad1 id=le.2h3v.s5.a320f5d46d06 from=translated src=- shape=1f69256f vocab=45a32b72
+-/
 lemma abs_le_l1row : ∀ (r : List (List ℤ)) (p : List ℤ), p ∈ r → ∀ a ∈ p, |a| ≤ l1row r := by
   intro r
   induction r with

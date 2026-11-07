@@ -36,18 +36,30 @@ open MeasureTheory
 
 variable {α : ℝ}
 
+/--
+@isnad1 id=eq.0h0v.s4.2e0018f1f983 from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_seven : M 7 = 6 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h1v.s5.28ec2841f378 from=translated src=- shape=39e477b8 vocab=3d8ab5e4
+-/
 lemma A_seven (α : ℝ) : A 7 α = 1 - α / 3 := by
   rw [A, M]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.a2904528730f from=translated src=- shape=56895de3 vocab=fc8b4408
+-/
 lemma c_seven (α : ℝ) : c 7 α = 1 - α / 6 - α / (2 * (3 + α)) := by
   rw [c, M]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h1v.s6.c5be3bd69075 from=translated src=- shape=ed8ec99a vocab=a488b366
+-/
 lemma c_seven' (hα : 0 ≤ α) : c 7 α = (18 - α ^ 2) / (6 * (3 + α)) := by
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   rw [c_seven]
@@ -55,7 +67,9 @@ lemma c_seven' (hα : 0 ≤ α) : c 7 α = (18 - α ^ 2) / (6 * (3 + α)) := by
   ring
 
 /-- The odd-degree bound in degree seven: the exponent is `1 + 1/2`, so the integral is
-bounded by the average of the first two moments, which is computed exactly.-/
+bounded by the average of the first two moments, which is computed exactly.
+@isnad1 id=le.1h1v.s8.32cc0c8ff48b from=translated src=- shape=525fce82 vocab=ca586e5e
+-/
 lemma integral_seven (hfeas : c 7 α ^ 2 ≤ A 7 α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 7 α t ^ ((((7 : ℕ) : ℝ) - 4) / 2))
       ≤ 1 / 4 - 3 * c 7 α / 5 + (4 * c 7 α ^ 2 + 3 * A 7 α) / 12
@@ -72,7 +86,9 @@ lemma integral_seven (hfeas : c 7 α ^ 2 ≤ A 7 α) :
   rw [hfun, integral_poly7]
   ring
 
-/-- The upper bound for `R 7 α` obtained from `Sendov.integral_seven`.-/
+/-- The upper bound for `R 7 α` obtained from `Sendov.integral_seven`.
+@isnad1 id=le.2h1v.s9.c80f23d865d2 from=translated src=- shape=56ed712d vocab=7d6363f9
+-/
 lemma R_seven_le (hα : 0 ≤ α) (hfeas : c 7 α ^ 2 ≤ A 7 α) :
     R 7 α ≤ 1 / 6 + 1 / (4 * (3 + α)) + 1 / 12 + 1 / (24 * (3 + α))
       + 210 * A 7 α ^ 2 / (4 * (3 + α))
@@ -83,7 +99,9 @@ lemma R_seven_le (hα : 0 ≤ α) (hfeas : c 7 α ^ 2 ≤ A 7 α) :
   push_cast at h
   exact h.trans (le_of_eq (by ring))
 
-/-- **The finite-range claim in degree seven.**-/
+/-- **The finite-range claim in degree seven.**
+@isnad1 id=lt.2h1v.s6.eba1ad4122c4 from=translated src=- shape=76f861f6 vocab=6ae490cc
+-/
 theorem finite_range_seven (hα : 0 ≤ α) (hfeas : c 7 α ^ 2 ≤ A 7 α) : R 7 α < 1 := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   have hle : α ≤ 3 := by

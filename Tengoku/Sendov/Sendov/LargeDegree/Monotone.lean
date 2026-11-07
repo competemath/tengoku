@@ -73,7 +73,9 @@ noncomputable def T2 (n : ℕ) (α : ℝ) : ℝ :=
 
 A Bernstein certificate in `α` on `[0,17]`, whose coefficients are polynomials in `j`.  The
 top one, `439956 j³ + 27356448 j² - 366591060 j + 4711014000`, has a negative linear
-coefficient; it is nonnegative because its quadratic part has negative discriminant.-/
+coefficient; it is nonnegative because its quadratic part has negative discriminant.
+@isnad1 id=le.3h2v.s7.b29de73fbdea from=translated src=- shape=f5662664 vocab=c0564ed8
+-/
 lemma tail1_poly {j α : ℝ} (hj : 0 ≤ j) (hα : 0 ≤ α) (hα' : α ≤ 17) :
     108150000 * (100 + j - 2 * α) ^ 2
       ≤ 101 * (100 - 2 * α) ^ 2 * ((100 + j) * (103 + j) * (105 + j)) := by
@@ -103,7 +105,9 @@ lemma tail1_poly {j α : ℝ} (hj : 0 ≤ j) (hα : 0 ≤ α) (hα' : α ≤ 17)
 
 after clearing the denominators `n²` and `(n-1)²` of `A_{n+1}` and `A_n`.  Together with
 `√B ≤ 12/13` this makes the step ratio less than one.  A Bernstein certificate in `α` on
-`[0,17]` with all coefficients positive combinations of powers of `k`.-/
+`[0,17]` with all coefficients positive combinations of powers of `k`.
+@isnad1 id=le.3h2v.s8.4f5d9dd4880c from=translated src=- shape=50be5082 vocab=c0564ed8
+-/
 lemma tail2_poly {k α : ℝ} (hk : 0 ≤ k) (hα : 0 ≤ α) (hα' : α ≤ 17) :
     12 * (101 + k - 2 * α) ^ 2 * (102 + k) * (100 + k) ^ 2
       ≤ 13 * (100 + k - 2 * α) ^ 2 * (99 + k) * (101 + k) ^ 2 := by
@@ -133,7 +137,9 @@ lemma tail2_poly {k α : ℝ} (hk : 0 ≤ k) (hα : 0 ≤ α) (hα' : α ≤ 17)
 
 /-! ### The closed form of `U` -/
 
-/-- `c` increases with `n`: raising the degree moves `c` towards `1 - B/2`.-/
+/-- `c` increases with `n`: raising the degree moves `c` towards `1 - B/2`.
+@isnad1 id=le.3h3v.s5.95054001a557 from=translated src=- shape=39fc834d vocab=dbb9adf6
+-/
 lemma c_mono {m n : ℕ} (hm : 2 ≤ m) (h : m ≤ n) (hα : 0 ≤ α) : c m α ≤ c n α := by
   have hMm : 0 < M m := M_pos hm
   have hMle : M m ≤ M n := by
@@ -144,7 +150,9 @@ lemma c_mono {m n : ℕ} (hm : 2 ≤ m) (h : m ≤ n) (hα : 0 ≤ α) : c m α 
   simp only [c]
   linarith
 
-/-- The real power of `B` in `Sendov.U` is a natural power of `√B`.-/
+/-- The real power of `B` in `Sendov.U` is a natural power of `√B`.
+@isnad1 id=eq.2h2v.s7.cbfe74fdfcda from=translated src=- shape=52e95cd9 vocab=be1092eb
+-/
 lemma rpow_B_eq (hn : 4 ≤ n) (hα : 0 ≤ α) :
     (α / (3 + α)) ^ (((n : ℝ) - 4) / 2) = Real.sqrt (α / (3 + α)) ^ (n - 4) := by
   have hB : (0 : ℝ) ≤ α / (3 + α) := div_nonneg hα (by linarith)
@@ -157,7 +165,9 @@ lemma rpow_B_eq (hn : 4 ≤ n) (hα : 0 ≤ α) :
   ring
 
 /-- The sharp Beta constant, factored.  This is the cancellation that makes `T1` rational:
-`(r+1)(r+2)(r+3)(r+4) = (n-2) n (n+2)(n+4)/16` at `r = (n-4)/2`.-/
+`(r+1)(r+2)(r+3)(r+4) = (n-2) n (n+2)(n+4)/16` at `r = (n-4)/2`.
+@isnad1 id=eq.0h1v.s8.2378d02f9f7e from=translated src=- shape=87bc674b vocab=e17985ab
+-/
 lemma beta_prod (n : ℕ) :
     (((n : ℝ) - 4) / 2 + 1) * (((n : ℝ) - 4) / 2 + 2) * (((n : ℝ) - 4) / 2 + 3)
         * (((n : ℝ) - 4) / 2 + 4)
@@ -165,7 +175,9 @@ lemma beta_prod (n : ℕ) :
   ring
 
 /-- **`U` in closed form.**  The `n (n-2)` of the prefactor cancels against the same factor
-in the sharp Beta constant, leaving a rational function plus a natural power of `√B`.-/
+in the sharp Beta constant, leaving a rational function plus a natural power of `√B`.
+@isnad1 id=eq.3h2v.s7.6572bf924830 from=translated src=- shape=4e2ec142 vocab=d67036d2
+-/
 lemma U_eq (hn : 5 ≤ n) (hα : 0 ≤ α) (hc : c n α ≠ 0) :
     U n α = 1 / 6 + 1 / (4 * (3 + α)) + 1 / (2 * M n) + 1 / (4 * M n * (3 + α))
       + T1 n α + T2 n α := by
@@ -182,7 +194,9 @@ lemma U_eq (hn : 5 ≤ n) (hα : 0 ≤ α) (hc : c n α ≠ 0) :
 
 /-! ### The first tail term -/
 
-/-- `T1` is bounded by its value at `n = 101`, up to `1%`.-/
+/-- `T1` is bounded by its value at `n = 101`, up to `1%`.
+@isnad1 id=le.3h2v.s6.658d77b020d3 from=translated src=- shape=bda9d27a vocab=cdd85179
+-/
 lemma T1_le (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17) :
     T1 n α ≤ 101 / 100 * T1 101 α := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
@@ -235,7 +249,9 @@ lemma T1_le (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17) :
 /-! ### The second tail term -/
 
 /-- `√B ≤ 12/13` on `0 ≤ α ≤ 17`, since `B ≤ 17/20 ≤ (12/13)²`.  A rational bound is enough
-here, and avoids carrying a square root into the step ratio.-/
+here, and avoids carrying a square root into the step ratio.
+@isnad1 id=le.2h1v.s6.f10ea350a1c9 from=translated src=- shape=fe47465a vocab=aae65541
+-/
 lemma sqrtB_le (hα : 0 ≤ α) (hα' : α ≤ 17) : Real.sqrt (α / (3 + α)) ≤ 12 / 13 := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   have hB : α / (3 + α) ≤ 144 / 169 := by
@@ -246,7 +262,9 @@ lemma sqrtB_le (hα : 0 ≤ α) (hα' : α ≤ 17) : Real.sqrt (α / (3 + α)) �
         rw [show (144 : ℝ) / 169 = (12 / 13) ^ 2 by norm_num,
           Real.sqrt_sq (by norm_num : (0 : ℝ) ≤ 12 / 13)]
 
-/-- One step of the geometric decay: `T2` decreases with `n` on `n ≥ 101`.-/
+/-- One step of the geometric decay: `T2` decreases with `n` on `n ≥ 101`.
+@isnad1 id=le.3h2v.s5.d94a190ac65d from=translated src=- shape=87ea906b vocab=e553400f
+-/
 lemma T2_step (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17) : T2 (n + 1) α ≤ T2 n α := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   have hnR : (101 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
@@ -301,7 +319,9 @@ lemma T2_step (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17) : T2 (n + 1) 
         mul_le_mul_of_nonneg_right hstep (pow_nonneg hb0 _)
     _ = T2 n α := by rw [T2]
 
-/-- `T2` is bounded by its value at `n = 101`.-/
+/-- `T2` is bounded by its value at `n = 101`.
+@isnad1 id=le.3h2v.s5.9754ea150bf8 from=translated src=- shape=9ab753d8 vocab=ef7230f4
+-/
 lemma T2_le (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17) : T2 n α ≤ T2 101 α := by
   induction n, hn using Nat.le_induction with
   | base => exact le_rfl
@@ -315,7 +335,9 @@ noncomputable def Ut (α : ℝ) : ℝ :=
     + (100 - 2 * α) ^ 2 / 100 * 101 * 99 / (16 * (3 + α)) * (α / (3 + α)) ^ 48
 
 /-- **`U` is bounded by an expression in `α` alone**, for every `n ≥ 101`.  This is where the
-degree leaves the argument.-/
+degree leaves the argument.
+@isnad1 id=le.3h2v.s5.2739b66c67a4 from=translated src=- shape=73597abf vocab=1d365936
+-/
 theorem U_le_Ut (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17) : U n α ≤ Ut α := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   have hnR : (101 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn

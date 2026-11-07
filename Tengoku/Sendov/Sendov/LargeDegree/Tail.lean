@@ -34,7 +34,9 @@ open MeasureTheory
 
 variable {n : ℕ} {α t : ℝ}
 
-/-- `c ≤ 1`, so the chord's zero `1/c` is at least `1`.-/
+/-- `c ≤ 1`, so the chord's zero `1/c` is at least `1`.
+@isnad1 id=le.2h2v.s5.29fa50159381 from=translated src=- shape=d5d33451 vocab=dbb9adf6
+-/
 lemma c_le_one (hn : 2 ≤ n) (hα : 0 ≤ α) : c n α ≤ 1 := by
   have hM : 0 < M n := M_pos hn
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
@@ -43,7 +45,9 @@ lemma c_le_one (hn : 2 ≤ n) (hα : 0 ≤ α) : c n α ≤ 1 := by
   have h2 : 0 ≤ α / (2 * (3 + α)) := by positivity
   linarith
 
-/-- **The tail bound**, read off from `Sendov.integral_le_tail_cube`.-/
+/-- **The tail bound**, read off from `Sendov.integral_le_tail_cube`.
+@isnad1 id=le.5h3v.s8.137639e2bf61 from=translated src=- shape=16d97544 vocab=74ebe35d
+-/
 theorem integral_le_tail (hn : 2 ≤ n) (hα : 0 ≤ α) (hfeas : c n α ^ 2 ≤ A n α)
     (hc : 0 < c n α) {r : ℝ} (hr : 0 < r) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q n α t ^ r)
@@ -69,7 +73,9 @@ noncomputable def U (n : ℕ) (α : ℝ) : ℝ :=
         + (α / (3 + α)) ^ (((n : ℝ) - 4) / 2) / 4)
 
 /-- On the large-degree range `c` is bounded below, hence positive.  For `n ≥ 101` and
-`α ≤ 17` this gives `c ≥ 81/200`, which is `(3)` of the write-up.-/
+`α ≤ 17` this gives `c ≥ 81/200`, which is `(3)` of the write-up.
+@isnad1 id=le.3h2v.s6.f43ba206a7e0 from=translated src=- shape=43c1e70e vocab=68e6405a
+-/
 lemma c_ge_of_large (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17) : 81 / 200 ≤ c n α := by
   have hM : (100 : ℝ) ≤ M n := by
     have : (101 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
@@ -86,7 +92,9 @@ lemma c_ge_of_large (hn : 101 ≤ n) (hα : 0 ≤ α) (hα' : α ≤ 17) : 81 / 
   linarith
 
 /-- **`R` is bounded by the elementary expression `U`.**  This is the bridge out of
-integration: from here the large-degree argument is elementary.-/
+integration: from here the large-degree argument is elementary.
+@isnad1 id=le.4h2v.s6.ec6e8844d65f from=translated src=- shape=4037b3b1 vocab=e4e9c853
+-/
 theorem R_le_U (hn : 5 ≤ n) (hα : 0 ≤ α) (hfeas : c n α ^ 2 ≤ A n α) (hc : 0 < c n α) :
     R n α ≤ U n α := by
   have hnR : (5 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn

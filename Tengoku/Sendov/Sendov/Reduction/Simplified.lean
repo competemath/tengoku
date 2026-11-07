@@ -45,7 +45,9 @@ open MeasureTheory
 variable {n : ℕ} {a x t α : ℝ}
 
 /-- `(P+Q)^p ≤ P^p + p Q (P+Q)^(p-1)` for `p ≥ 1`.  This is the blog post's mean-value step,
-obtained from Bernoulli's inequality after dividing by `(P+Q)^p`.-/
+obtained from Bernoulli's inequality after dividing by `(P+Q)^p`.
+@isnad1 id=le.3h3v.s7.720822ab23b7 from=translated src=- shape=32e0be6b vocab=705b58ac
+-/
 lemma rpow_add_le_of_one_le {P Q p : ℝ} (hP : 0 ≤ P) (hPQ : 0 < P + Q) (hp : 1 ≤ p) :
     (P + Q) ^ p ≤ P ^ p + p * Q * (P + Q) ^ (p - 1) := by
   have hθ : (0 : ℝ) ≤ P / (P + Q) := div_nonneg hP hPQ.le
@@ -68,7 +70,9 @@ lemma rpow_add_le_of_one_le {P Q p : ℝ} (hP : 0 ≤ P) (hPQ : 0 < P + Q) (hp :
   rw [hsub]
   linarith
 
-/-- `ax t < 1` on `[0,1]`, so the chord `1 - axt` is positive.-/
+/-- `ax t < 1` on `[0,1]`, so the chord `1 - axt` is positive.
+@isnad1 id=lt.5h3v.s6.4e45ffb77549 from=translated src=- shape=6e028582 vocab=5f25b07a
+-/
 lemma one_sub_mul_pos (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
     (ht0 : 0 ≤ t) (ht1 : t ≤ 1) : 0 < 1 - a * x * t := by
   rcases le_or_gt x 0 with h | h
@@ -78,7 +82,9 @@ lemma one_sub_mul_pos (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
       mul_le_mul_of_nonneg_left ht1 (mul_pos ha h).le
     nlinarith [h1]
 
-/-- The pointwise step: `β^((n-2)/2)` split into a chord power and a `β^((n-4)/2)` remainder.-/
+/-- The pointwise step: `β^((n-2)/2)` split into a chord power and a `β^((n-4)/2)` remainder.
+@isnad1 id=le.6h4v.s8.beb82b45ee07 from=translated src=- shape=22ed149e vocab=c68c9538
+-/
 lemma beta_split (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
     (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     QQ (a * x) (a ^ 2) t ^ (((n : ℝ) - 2) / 2)
@@ -110,7 +116,9 @@ lemma beta_split (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
   rw [hchord, hexp] at hb
   exact hb
 
-/-- The integral form of the split, with the chord piece evaluated by the Beta integral.-/
+/-- The integral form of the split, with the chord piece evaluated by the Beta integral.
+@isnad1 id=le.5h3v.s9.472752d525a6 from=translated src=- shape=ea8b521a vocab=b4024d32
+-/
 lemma integral_beta_split (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
     (hax : 0 < a * x) :
     (∫ t in (0 : ℝ)..1, t * QQ (a * x) (a ^ 2) t ^ (((n : ℝ) - 2) / 2))
@@ -172,7 +180,9 @@ lemma integral_beta_split (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 
   congr 1
   ring
 
-/-- **`(origin-exact) + (beta-bound) ⟹ (1le)`.**  `(beta-bound)` enters only as `β(1) < 1`.-/
+/-- **`(origin-exact) + (beta-bound) ⟹ (1le)`.**  `(beta-bound)` enters only as `β(1) < 1`.
+@isnad1 id=le.8h4v.s10.220f6d4bff51 from=translated src=- shape=02f21442 vocab=765f9ca3
+-/
 theorem one_le_of_origin (hn : 5 ≤ n) (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
     (hα : α = M n * (1 - a ^ 2) / 2) (hα0 : 0 < α)
     (hB1lt : QQ (a * x) (a ^ 2) 1 < 1)

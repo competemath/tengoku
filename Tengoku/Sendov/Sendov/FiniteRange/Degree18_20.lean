@@ -29,14 +29,29 @@ namespace Sendov
 
 namespace B18_20
 
+/--
+@isnad1 id=eq.0h0v.s4.e49b6b10de36 from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_lo : M 18 = 17 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h0v.s4.7e1550fc0166 from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_hi : M 20 = 19 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h1v.s5.47aa88481a65 from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_lo (α : ℝ) : A 18 α = 1 - 2 * α / 17 := by rw [A, M]; push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s5.4bf424070953 from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_hi (α : ℝ) : A 20 α = 1 - 2 * α / 19 := by rw [A, M]; push_cast; ring
 
+/--
+@isnad1 id=eq.1h1v.s7.c9d3d9e18db2 from=translated src=- shape=4a2b345f vocab=a488b366
+-/
 lemma c_lo {α : ℝ} (hα : 0 ≤ α) : c 18 α = (102 + 11 * α - 2 * α ^ 2) / (34 * (3 + α)) := by
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   rw [c, M]
@@ -45,7 +60,9 @@ lemma c_lo {α : ℝ} (hα : 0 ≤ α) : c 18 α = (102 + 11 * α - 2 * α ^ 2) 
   ring
 
 /-- `c` is nonnegative at `n₀` on the batch's `α`-range.  This replaces feasibility at `n₀`,
-which for `n₀ < 36` does not follow from `α ≤ 17`.-/
+which for `n₀ < 36` does not follow from `α ≤ 17`.
+@isnad1 id=le.2h1v.s5.1f64df15d981 from=translated src=- shape=8e0acfd9 vocab=68e6405a
+-/
 lemma c_lo_nonneg {α : ℝ} (hα : 0 ≤ α) (hU : α ≤ 19 / 2) : 0 ≤ c 18 α := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   rw [c_lo hα]
@@ -62,6 +79,9 @@ def tauc : ℤ := 35848383202365424163831516208919430318423057232052665060727433
 def Nmomc : List ℤ :=
   [114983435331692928, 401488164091808640, 646936588267361280, 643985937083510784, 451960609895464320, 248282531980689024, 125596226938129920, 108748744491770880, 9970165621984512, 614458050662400, 25497772633088, 704123822080, 12428021760, 127074304, 573440]
 
+/--
+@isnad1 id=eq.0h1v.s5.67e79cb75bab from=translated src=- shape=f7a963d3 vocab=41f32cc7
+-/
 theorem pev_Nmomc (α : ℝ) :
     pev Nmomc α = pev (wsum Lc 0 (qrow (gg0 18) (gg1 18) (gg2 18) 7)) α := by
   refine pev_wsum_eq_of_packed (gg0 18) (gg1 18) (gg2 18) 7 22 Lc betac
@@ -78,6 +98,9 @@ theorem pev_Nmomc (α : ℝ) :
       (qrow_entry_length_le (gg0 18) (gg1 18) (gg2 18) 3 (by simp) (by simp) (by simp) 7)
   · rfl
 
+/--
+@isnad1 id=eq.1h1v.s7.97aeb6efef72 from=translated src=- shape=17b3eb33 vocab=2869e68d
+-/
 theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 18 α t ^ 7)
       = pev Nmomc α / ((Lc : ℝ) * (2 * M 18 * (3 + α)) ^ 7) :=
@@ -86,7 +109,9 @@ theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
 
 set_option maxHeartbeats 2000000 in
 -- the degree-16 Bernstein identity exceeds the default budget
-/-- The certificate: `17 ^ 16 * P α` is a positive combination of `αʲ (17-α)^(16-j)`.-/
+/-- The certificate: `17 ^ 16 * P α` is a positive combination of `αʲ (17-α)^(16-j)`.
+@isnad1 id=lt.2h1v.s9.d87bd16bd5ef from=translated src=- shape=4a423642 vocab=762a6581
+-/
 lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 19 / 2) :
     0 < 1996938880799635773 + 5327542416376042533 * α + 6168567333266685756 * α ^ 2 + 4015726419901684032 * α ^ 3 + 1568562341575363317 * α ^ 4 + 336439630979056719 * α ^ 5 - 5059047712773960 * α ^ 6 - 94154641040290584 * α ^ 7 + 14305270642714822 * α ^ 8 + 337895936432856 * α ^ 9 - 7990669279488 * α ^ 10 - 2592154628256 * α ^ 11 - 177335477376 * α ^ 12 - 6421337472 * α ^ 13 - 134803968 * α ^ 14 - 1555968 * α ^ 15 - 7680 * α ^ 16 := by
   have hu : (0 : ℝ) ≤ 19 - 2 * α := by linarith
@@ -136,7 +161,9 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 19 / 2) :
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
-/-- **The batch `18 ≤ n ≤ 20`.**-/
+/-- **The batch `18 ≤ n ≤ 20`.**
+@isnad1 id=lt.5h2v.s6.7d9a0b34f9ad from=translated src=- shape=be7a7659 vocab=6ae490cc
+-/
 theorem finite_range {n : ℕ} (h0 : 18 ≤ n) (h1 : n ≤ 20) {α : ℝ}
     (hα : 0 ≤ α) (_hα' : α ≤ 17) (hfeas : c n α ^ 2 ≤ A n α) : R n α < 1 := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα

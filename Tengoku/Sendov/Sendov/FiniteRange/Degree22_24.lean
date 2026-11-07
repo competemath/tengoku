@@ -29,14 +29,29 @@ namespace Sendov
 
 namespace B22_24
 
+/--
+@isnad1 id=eq.0h0v.s4.7deec74e64dc from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_lo : M 22 = 21 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h0v.s4.f850c3308854 from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_hi : M 24 = 23 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h1v.s5.9ea4d0d6bc7b from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_lo (α : ℝ) : A 22 α = 1 - 2 * α / 21 := by rw [A, M]; push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s5.67b6268b857a from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_hi (α : ℝ) : A 24 α = 1 - 2 * α / 23 := by rw [A, M]; push_cast; ring
 
+/--
+@isnad1 id=eq.1h1v.s7.c5d1c2ac8ac8 from=translated src=- shape=4a2b345f vocab=a488b366
+-/
 lemma c_lo {α : ℝ} (hα : 0 ≤ α) : c 22 α = (126 + 15 * α - 2 * α ^ 2) / (42 * (3 + α)) := by
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   rw [c, M]
@@ -45,7 +60,9 @@ lemma c_lo {α : ℝ} (hα : 0 ≤ α) : c 22 α = (126 + 15 * α - 2 * α ^ 2) 
   ring
 
 /-- `c` is nonnegative at `n₀` on the batch's `α`-range.  This replaces feasibility at `n₀`,
-which for `n₀ < 36` does not follow from `α ≤ 17`.-/
+which for `n₀ < 36` does not follow from `α ≤ 17`.
+@isnad1 id=le.2h1v.s5.a8d0d345ac1f from=translated src=- shape=8e0acfd9 vocab=68e6405a
+-/
 lemma c_lo_nonneg {α : ℝ} (hα : 0 ≤ α) (hU : α ≤ 23 / 2) : 0 ≤ c 22 α := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   rw [c_lo hα]
@@ -62,6 +79,9 @@ def tauc : ℤ := 52113403406617399568675768890198434300892440730552860468456457
 def Nmomc : List ℤ :=
   [63683904221147656083456, 258124956324931816114176, 484131886524725672024064, 558778379485145387968512, 446247743318805044026368, 264110065181693649515520, 122458189294350124959744, 47704848438469830322176, 18201381357540629025792, 13524983241127074966528, 1177792095898695426048, 74548634146090795008, 3411779294798364672, 112771637948841984, 2668046408810496, 44104655831040, 484339875840, 3177971712, 9437184]
 
+/--
+@isnad1 id=eq.0h1v.s5.984763e1bf8e from=translated src=- shape=f7a963d3 vocab=5591eb3d
+-/
 theorem pev_Nmomc (α : ℝ) :
     pev Nmomc α = pev (wsum Lc 0 (qrow (gg0 22) (gg1 22) (gg2 22) 9)) α := by
   refine pev_wsum_eq_of_packed (gg0 22) (gg1 22) (gg2 22) 9 28 Lc betac
@@ -78,6 +98,9 @@ theorem pev_Nmomc (α : ℝ) :
       (qrow_entry_length_le (gg0 22) (gg1 22) (gg2 22) 3 (by simp) (by simp) (by simp) 9)
   · rfl
 
+/--
+@isnad1 id=eq.1h1v.s7.2a57bba31875 from=translated src=- shape=17b3eb33 vocab=ee3cd61c
+-/
 theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 22 α t ^ 9)
       = pev Nmomc α / ((Lc : ℝ) * (2 * M 22 * (3 + α)) ^ 9) :=
@@ -86,7 +109,9 @@ theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
 
 set_option maxHeartbeats 2000000 in
 -- the degree-20 Bernstein identity exceeds the default budget
-/-- The certificate: `17 ^ 20 * P α` is a positive combination of `αʲ (17-α)^(20-j)`.-/
+/-- The certificate: `17 ^ 20 * P α` is a positive combination of `αʲ (17-α)^(20-j)`.
+@isnad1 id=lt.2h1v.s9.2ccd9ba8a05d from=translated src=- shape=05658e5d vocab=762a6581
+-/
 lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 23 / 2) :
     0 < 72676691260477709153931 + 243335498910644300539743 * α + 365647629606098581621152 * α ^ 2 + 324203560761134112575706 * α ^ 3 + 187220150267586036026391 * α ^ 4 + 72995868351568741088853 * α ^ 5 + 18997181712653091143742 * α ^ 6 + 2912276075526675669294 * α ^ 7 - 47524187765551795452 * α ^ 8 - 572344038827543054862 * α ^ 9 + 60958599043408078986 * α ^ 10 + 1608150216459380292 * α ^ 11 + 37160884428953616 * α ^ 12 - 4770728942909184 * α ^ 13 - 508194774105984 * α ^ 14 - 24843494479104 * α ^ 15 - 745526594304 * α ^ 16 - 14490071808 * α ^ 17 - 179034112 * α ^ 18 - 1285120 * α ^ 19 - 4096 * α ^ 20 := by
   have hu : (0 : ℝ) ≤ 23 - 2 * α := by linarith
@@ -144,7 +169,9 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 23 / 2) :
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
-/-- **The batch `22 ≤ n ≤ 24`.**-/
+/-- **The batch `22 ≤ n ≤ 24`.**
+@isnad1 id=lt.5h2v.s6.9c1b876fdd37 from=translated src=- shape=be7a7659 vocab=6ae490cc
+-/
 theorem finite_range {n : ℕ} (h0 : 22 ≤ n) (h1 : n ≤ 24) {α : ℝ}
     (hα : 0 ≤ α) (_hα' : α ≤ 17) (hfeas : c n α ^ 2 ≤ A n α) : R n α < 1 := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα

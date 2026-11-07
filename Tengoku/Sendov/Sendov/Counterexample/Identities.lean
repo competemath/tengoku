@@ -49,7 +49,9 @@ variable {n : ℕ} {a c : ℂ} {z q : Multiset ℂ} {p : ℂ[X]}
 
 /-! ### Two rewritings of the factorizations -/
 
-/-- The factorization of `p`, with `a` put back into the multiset.-/
+/-- The factorization of `p`, with `a` put back into the multiset.
+@isnad1 id=eq.0h2v.s7.8f0924833c61 from=translated src=- shape=2a1268ce vocab=f5673622
+-/
 lemma prod_cons_eq (a : ℂ) (z : Multiset ℂ) :
     (X - C a) * (z.map (fun w => X - C w)).prod
       = ((a ::ₘ z).map (fun w => X - C w)).prod := by
@@ -58,7 +60,9 @@ lemma prod_cons_eq (a : ℂ) (z : Multiset ℂ) :
 /-! ### The centroid identity -/
 
 /-- **The centroid identity.**  `(n-1)(a + ∑ zⱼ) = n ∑ⱼ (a - 1/qⱼ)`: the centroid of the
-zeroes equals the centroid of the critical points.-/
+zeroes equals the centroid of the critical points.
+@isnad1 id=eq.6h6v.s9.a25e943398f0 from=translated src=- shape=96b4492a vocab=bef65846
+-/
 theorem centroid_identity (hn : 2 ≤ n) {p : ℂ[X]} (hc0 : c ≠ 0)
     (hzcard : z.card = n - 1) (hqcard : q.card = n - 1)
     (hpz : p = C c * ((X - C a) * (z.map (fun w => X - C w)).prod))
@@ -101,10 +105,15 @@ theorem centroid_identity (hn : 2 ≤ n) {p : ℂ[X]} (hc0 : c ≠ 0)
 
 /-! ### The second origin identity -/
 
+/--
+@isnad1 id=eq.0h0v.s4.87f04ef0b30b from=translated src=- shape=95b07a6e vocab=0e318651
+-/
 @[simp] lemma sumEraseProd_zero : sumEraseProd 0 = 0 := by simp [sumEraseProd]
 
 open scoped Classical in
-/-- Splitting off one element, exactly as `Multiset.esymm` does at the top index.-/
+/-- Splitting off one element, exactly as `Multiset.esymm` does at the top index.
+@isnad1 id=eq.0h2v.s5.175925817c78 from=translated src=- shape=197301f0 vocab=c5074b5f
+-/
 lemma sumEraseProd_cons (v : ℂ) (t : Multiset ℂ) :
     sumEraseProd (v ::ₘ t) = t.prod + v * sumEraseProd t := by
   simp only [sumEraseProd, Multiset.map_cons, Multiset.sum_cons, Multiset.erase_cons_head]
@@ -114,7 +123,9 @@ lemma sumEraseProd_cons (v : ℂ) (t : Multiset ℂ) :
   intro j hj
   rw [Multiset.erase_cons_tail_of_mem hj, Multiset.prod_cons]
 
-/-- Negating a multiset before taking the product.-/
+/-- Negating a multiset before taking the product.
+@isnad1 id=eq.0h1v.s5.075c43b0dc79 from=translated src=- shape=ce898b14 vocab=0f65a609
+-/
 lemma prod_map_neg (s : Multiset ℂ) :
     (s.map (fun w => -w)).prod = (-1) ^ (Multiset.card s) * s.prod := by
   induction s using Multiset.induction_on with
@@ -123,7 +134,9 @@ lemma prod_map_neg (s : Multiset ℂ) :
     simp only [Multiset.map_cons, Multiset.prod_cons, Multiset.card_cons, ih]
     ring
 
-/-- `∏ⱼ (X - zⱼ)` at the origin.-/
+/-- `∏ⱼ (X - zⱼ)` at the origin.
+@isnad1 id=eq.0h1v.s7.6792373c2012 from=translated src=- shape=af264658 vocab=d14e9632
+-/
 lemma eval_prod_zero (z : Multiset ℂ) :
     ((z.map (fun w => X - C w)).prod).eval 0 = (-1) ^ (Multiset.card z) * z.prod := by
   rw [eval_multiset_prod, Multiset.map_map]
@@ -133,7 +146,9 @@ lemma eval_prod_zero (z : Multiset ℂ) :
   exact prod_map_neg z
 
 /-- The derivative of `∏ⱼ (X - zⱼ)` at the origin.  Proved by induction rather than through
-`Polynomial.derivative_prod`, which would need the evaluation of a multiset sum.-/
+`Polynomial.derivative_prod`, which would need the evaluation of a multiset sum.
+@isnad1 id=eq.0h1v.s7.e5095afdb6bd from=translated src=- shape=facf8847 vocab=2c3abcc8
+-/
 lemma eval_deriv_prod_zero : ∀ (z : Multiset ℂ),
     (derivative (z.map (fun w => X - C w)).prod).eval 0
       = -((-1) ^ (Multiset.card z) * sumEraseProd z) := by
@@ -147,7 +162,9 @@ lemma eval_deriv_prod_zero : ∀ (z : Multiset ℂ),
     rw [ih, eval_prod_zero, sumEraseProd_cons]
     ring
 
-/-- `∏ⱼ (1/vⱼ - a) · ∏ⱼ vⱼ = ∏ⱼ (1 - a vⱼ)`: clearing the denominators of the `q`-side.-/
+/-- `∏ⱼ (1/vⱼ - a) · ∏ⱼ vⱼ = ∏ⱼ (1 - a vⱼ)`: clearing the denominators of the `q`-side.
+@isnad1 id=eq.1h2v.s6.6b70eb2e4a05 from=translated src=- shape=bf4d828a vocab=a913baf2
+-/
 lemma prod_inv_sub_mul : ∀ (q : Multiset ℂ), (∀ v ∈ q, v ≠ 0) →
     (q.map (fun v => v⁻¹ - a)).prod * q.prod = (q.map (fun v => 1 - a * v)).prod := by
   intro q
@@ -163,7 +180,9 @@ lemma prod_inv_sub_mul : ∀ (q : Multiset ℂ), (∀ v ∈ q, v ≠ 0) →
 
 open scoped Classical in
 /-- **The second origin identity**, division-free.  The blog post's form
-`(-1)^{n-1}(∏ zⱼ)(1 + a ∑ 1/zⱼ) = (n/∏ qⱼ) F(1)` after clearing both denominators.-/
+`(-1)^{n-1}(∏ zⱼ)(1 + a ∑ 1/zⱼ) = (n/∏ qⱼ) F(1)` after clearing both denominators.
+@isnad1 id=eq.5h6v.s9.73bf5a4c217c from=translated src=- shape=63a4f203 vocab=d721281a
+-/
 theorem second_origin_identity {p : ℂ[X]} (hc0 : c ≠ 0)
     (hzcard : z.card = n - 1) (hq0 : ∀ v ∈ q, v ≠ 0)
     (hpz : p = C c * ((X - C a) * (z.map (fun w => X - C w)).prod))
@@ -201,7 +220,9 @@ theorem second_origin_identity {p : ℂ[X]} (hc0 : c ≠ 0)
 /-! ### The integral representation -/
 
 open MeasureTheory in
-/-- The integrand of the representation below is continuous.-/
+/-- The integrand of the representation below is continuous.
+@isnad1 id=continuo.0h3v.s7.a39b4c28d0b4 from=translated src=- shape=47b886ee vocab=c48d7ecf
+-/
 lemma continuous_deriv_seg (p : ℂ[X]) (a w : ℂ) :
     Continuous fun t : ℝ => (derivative p).eval (a + (t : ℂ) * (w - a)) := by
   fun_prop
@@ -210,7 +231,9 @@ open MeasureTheory in
 /-- **The integral representation.**  `p(w) = (w-a) ∫₀¹ p'(a + t(w-a)) dt` when `a` is a root
 of `p`.  This is the fundamental theorem of calculus along the segment from `a` to `w`,
 parametrized by a real variable; it replaces the blog post's `p(z) = (z-a)∫₀¹ n ∏ⱼ (t(z-a) +
-1/qⱼ) dt`, which is the same statement with `p'` already factored.-/
+1/qⱼ) dt`, which is the same statement with `p'` already factored.
+@isnad1 id=eq.1h3v.s7.756c3e5849b6 from=translated src=- shape=5da917e5 vocab=303de685
+-/
 lemma eval_eq_integral {p : ℂ[X]} {a : ℂ} (hpa : p.eval a = 0) (w : ℂ) :
     p.eval w = (w - a) * ∫ t in (0 : ℝ)..1, (derivative p).eval (a + (t : ℂ) * (w - a)) := by
   have hderiv : ∀ t : ℝ, HasDerivAt (fun s : ℝ => p.eval (a + (s : ℂ) * (w - a)))
@@ -239,7 +262,9 @@ lemma eval_eq_integral {p : ℂ[X]} {a : ℂ} (hpa : p.eval a = 0) (w : ℂ) :
 open MeasureTheory in
 /-- **The first origin identity**, division-free.  The blog post's
 `(-1)^{n-1} ∏ zⱼ = (n / ∏ qⱼ) ∫₀¹ F(t) dt` with the denominator cleared, where
-`F(t) = ∏ⱼ (1 - a t qⱼ)`.-/
+`F(t) = ∏ⱼ (1 - a t qⱼ)`.
+@isnad1 id=eq.7h6v.s9.f29c9fc5aea3 from=translated src=- shape=e2276cd4 vocab=0ef4e33d
+-/
 theorem first_origin_identity {p : ℂ[X]} (hc0 : c ≠ 0) (ha0 : a ≠ 0)
     (hzcard : z.card = n - 1) (hq0 : ∀ v ∈ q, v ≠ 0) (hpa : p.eval a = 0)
     (hpz : p = C c * ((X - C a) * (z.map (fun w => X - C w)).prod))
@@ -295,7 +320,9 @@ theorem first_origin_identity {p : ℂ[X]} (hc0 : c ≠ 0) (ha0 : a ≠ 0)
 
 /-! ### The polar identity -/
 
-/-- Pulling a constant out of a product over a multiset.-/
+/-- Pulling a constant out of a product over a multiset.
+@isnad1 id=eq.0h3v.s6.f71a1fd5e46f from=translated src=- shape=0d739df1 vocab=d7e229e0
+-/
 lemma prod_map_mul_const (b : ℂ) (s : Multiset ℂ) (f : ℂ → ℂ) :
     (s.map (fun v => b * f v)).prod = b ^ (Multiset.card s) * (s.map f).prod := by
   induction s using Multiset.induction_on with
@@ -304,7 +331,9 @@ lemma prod_map_mul_const (b : ℂ) (s : Multiset ℂ) (f : ℂ → ℂ) :
     simp only [Multiset.map_cons, Multiset.prod_cons, Multiset.card_cons, ih]
     ring
 
-/-- `∏ⱼ (1/vⱼ) · ∏ⱼ vⱼ = 1`.-/
+/-- `∏ⱼ (1/vⱼ) · ∏ⱼ vⱼ = 1`.
+@isnad1 id=eq.1h1v.s5.b6cd0a20d881 from=translated src=- shape=48274673 vocab=14faf46a
+-/
 lemma prod_inv_mul : ∀ (q : Multiset ℂ), (∀ v ∈ q, v ≠ 0) →
     (q.map (fun v => v⁻¹)).prod * q.prod = 1 := by
   intro q
@@ -320,7 +349,9 @@ lemma prod_inv_mul : ∀ (q : Multiset ℂ), (∀ v ∈ q, v ≠ 0) →
 
 /-- **`p'(a)` two ways.**  `(∏ⱼ qⱼ) ∏ⱼ (a - zⱼ) = n`.  This is what makes the polar identity
 usable without dividing: it is the denominator of the blog post's
-`∏ⱼ (1-azⱼ)/(a-zⱼ)`, expressed as a product.-/
+`∏ⱼ (1-azⱼ)/(a-zⱼ)`, expressed as a product.
+@isnad1 id=eq.4h6v.s9.1c040b36d2d0 from=translated src=- shape=baf0c17e vocab=d6889fad
+-/
 theorem prod_sub_mul_prod (hc0 : c ≠ 0) (hq0 : ∀ v ∈ q, v ≠ 0)
     (hpz : p = C c * ((X - C a) * (z.map (fun w => X - C w)).prod))
     (hpq : derivative p
@@ -353,7 +384,9 @@ theorem prod_sub_mul_prod (hc0 : c ≠ 0) (hq0 : ∀ v ∈ q, v ≠ 0)
 open MeasureTheory in
 /-- **The polar identity**, division-free.  The blog post's
 `∏ⱼ (1-azⱼ)/(a-zⱼ) = ∫₀¹ ∏ⱼ (t(1-a²)qⱼ + a) dt` with the denominator cleared using
-`Sendov.prod_sub_mul_prod`.-/
+`Sendov.prod_sub_mul_prod`.
+@isnad1 id=eq.9h6v.s9.8b5c60c1f35a from=translated src=- shape=9769b7a5 vocab=2ce9fac1
+-/
 theorem polar_identity (hc0 : c ≠ 0) (ha0 : a ≠ 0) (ha2 : a ^ 2 ≠ 1)
     (hzcard : z.card = n - 1) (hqcard : q.card = n - 1) (hq0 : ∀ v ∈ q, v ≠ 0)
     (hpa : p.eval a = 0)

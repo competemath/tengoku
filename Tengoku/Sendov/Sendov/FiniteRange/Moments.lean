@@ -36,12 +36,16 @@ namespace Sendov
 
 open MeasureTheory Finset
 
-/-- Every monomial is interval integrable on `[0,1]`.-/
+/-- Every monomial is interval integrable on `[0,1]`.
+@isnad1 id=interval.0h2v.s5.9b2e375dd580 from=translated src=- shape=6d3dfefc vocab=b790d594
+-/
 lemma intervalIntegrable_const_mul_pow (a : ℝ) (m : ℕ) :
     IntervalIntegrable (fun t : ℝ => a * t ^ m) volume 0 1 :=
   (by fun_prop : Continuous fun t : ℝ => a * t ^ m).intervalIntegrable _ _
 
-/-- The binomial expansion of a power of a quadratic.-/
+/-- The binomial expansion of a power of a quadratic.
+@isnad1 id=eq.0h4v.s7.0d6bc1227a6f from=translated src=- shape=923c4062 vocab=45d3aa6f
+-/
 lemma quad_pow (b d t : ℝ) (k : ℕ) :
     (1 + b * t + d * t ^ 2) ^ k
       = ∑ i ∈ range (k + 1), ∑ l ∈ range (i + 1),
@@ -59,7 +63,9 @@ lemma quad_pow (b d t : ℝ) (k : ℕ) :
     _ = ((k.choose i : ℝ) * (i.choose l) * b ^ l * d ^ (i - l)) * t ^ (2 * i - l) := by
         rw [← pow_add, hexp]
 
-/-- The expansion of the integrand of `Sendov.R` as an explicit polynomial.-/
+/-- The expansion of the integrand of `Sendov.R` as an explicit polynomial.
+@isnad1 id=eq.0h4v.s7.69147b451fe0 from=translated src=- shape=04009b8d vocab=de933a4b
+-/
 lemma t3_mul_Q_pow (n : ℕ) (α t : ℝ) (k : ℕ) :
     t ^ 3 * Q n α t ^ k
       = ∑ i ∈ range (k + 1), ∑ l ∈ range (i + 1),
@@ -86,7 +92,9 @@ noncomputable def mom (n : ℕ) (α : ℝ) (k : ℕ) : ℝ :=
       / ((2 * i - l + 4 : ℕ) : ℝ)
 
 /-- **The moment formula.**  The integrals appearing in `Sendov.R` are exactly the finite
-double sum `Sendov.mom`, for every natural `k`, with no hypotheses at all.-/
+double sum `Sendov.mom`, for every natural `k`, with no hypotheses at all.
+@isnad1 id=eq.0h3v.s6.530bebe4bf61 from=translated src=- shape=c8627e4d vocab=744df793
+-/
 theorem integral_moment (n : ℕ) (α : ℝ) (k : ℕ) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q n α t ^ k) = mom n α k := by
   rw [mom]
@@ -110,7 +118,9 @@ theorem integral_moment (n : ℕ) (α : ℝ) (k : ℕ) :
     exact continuous_finsetSum _ fun l _ => by fun_prop
 
 /-- The moments of a polynomial supported in degrees three to seven, kept as a convenience
-for the low degrees.-/
+for the low degrees.
+@isnad1 id=eq.0h5v.s8.e4576221a0c8 from=translated src=- shape=26c779e4 vocab=ecc12925
+-/
 lemma integral_poly7 (a₀ a₁ a₂ a₃ a₄ : ℝ) :
     (∫ t in (0 : ℝ)..1, (a₀ * t ^ 3 + a₁ * t ^ 4 + a₂ * t ^ 5 + a₃ * t ^ 6 + a₄ * t ^ 7))
       = a₀ / 4 + a₁ / 5 + a₂ / 6 + a₃ / 7 + a₄ / 8 := by

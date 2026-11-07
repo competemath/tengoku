@@ -48,12 +48,18 @@ open Multiset
 
 /-! ### Products of norms -/
 
+/--
+@isnad1 id=le.0h1v.s4.83f6a560796a from=translated src=- shape=2e657584 vocab=0c2552fc
+-/
 lemma prod_norm_nonneg (s : Multiset ℂ) : 0 ≤ (s.map (fun z => ‖z‖)).prod := by
   refine Multiset.prod_nonneg ?_
   intro y hy
   obtain ⟨z, _, rfl⟩ := Multiset.mem_map.1 hy
   exact norm_nonneg z
 
+/--
+@isnad1 id=le.1h1v.s5.5b93b1228d39 from=translated src=- shape=29324df0 vocab=6d5b3ae9
+-/
 lemma prod_norm_le_one : ∀ (s : Multiset ℂ), (∀ z ∈ s, ‖z‖ ≤ 1) →
     (s.map (fun z => ‖z‖)).prod ≤ 1 := by
   intro s
@@ -71,7 +77,9 @@ lemma prod_norm_le_one : ∀ (s : Multiset ℂ), (∀ z ∈ s, ‖z‖ ≤ 1) �
 /-! ### The pointwise fact -/
 
 /-- `‖w‖ · ‖w⁻¹ - conj w‖ ≤ 1 - ‖w‖²` for `‖w‖ ≤ 1`, with equality unless `w = 0`.  The
-factor `‖w‖` on the left is what makes the origin harmless.-/
+factor `‖w‖` on the left is what makes the origin harmless.
+@isnad1 id=le.1h1v.s6.8031ba5bb624 from=translated src=- shape=56ef84f4 vocab=a02f487f
+-/
 lemma norm_mul_norm_inv_sub_conj_le {w : ℂ} (hw : ‖w‖ ≤ 1) :
     ‖w‖ * ‖w⁻¹ - (starRingEnd ℂ) w‖ ≤ 1 - ‖w‖ ^ 2 := by
   rcases eq_or_ne w 0 with rfl | hne
@@ -91,7 +99,9 @@ lemma norm_mul_norm_inv_sub_conj_le {w : ℂ} (hw : ‖w‖ ≤ 1) :
 
 /-! ### The lemma -/
 
-/-- **The defect lemma.**-/
+/-- **The defect lemma.**
+@isnad1 id=le.1h1v.s7.f3c5e9910708 from=translated src=- shape=f18c174c vocab=b2f55e06
+-/
 theorem defect : ∀ (s : Multiset ℂ), (∀ z ∈ s, ‖z‖ ≤ 1) →
     (s.map (fun z => ‖z‖)).prod * (s.map (fun z => ‖z⁻¹ - (starRingEnd ℂ) z‖)).sum
       ≤ 1 - ((s.map (fun z => ‖z‖)).prod) ^ 2 := by

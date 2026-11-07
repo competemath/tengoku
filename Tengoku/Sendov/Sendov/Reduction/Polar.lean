@@ -43,7 +43,9 @@ open MeasureTheory
 
 variable {n : ℕ} {a x t α : ℝ}
 
-/-- The pointwise bound `(at)`.  An identity apart from `t² ≤ t`.-/
+/-- The pointwise bound `(at)`.  An identity apart from `t² ≤ t`.
+@isnad1 id=le.2h3v.s7.163a2cd30f54 from=translated src=- shape=a487394d vocab=82d9dbe0
+-/
 lemma Ppolar_le_lin (a x : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     Ppolar a x t ≤ 1 + (1 - a ^ 2) * (-1 + (2 - QQ (a * x) (a ^ 2) 1) * t) := by
   have hid : 1 + (1 - a ^ 2) * (-1 + (2 - QQ (a * x) (a ^ 2) 1) * t) - Ppolar a x t
@@ -51,7 +53,9 @@ lemma Ppolar_le_lin (a x : ℝ) (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     simp only [Ppolar, QQ]; ring
   nlinarith [mul_nonneg (sq_nonneg (1 - a ^ 2)) (mul_nonneg ht0 (sub_nonneg.2 ht1))]
 
-/-- The pointwise bound after raising to the power `(n-1)/2`.-/
+/-- The pointwise bound after raising to the power `(n-1)/2`.
+@isnad1 id=le.5h5v.s8.d08d08d5d0c4 from=translated src=- shape=d5d3e328 vocab=5d190885
+-/
 lemma Ppolar_rpow_le (hn : 2 ≤ n) (hx : x ^ 2 ≤ 1) (hα : α = M n * (1 - a ^ 2) / 2)
     (ht0 : 0 ≤ t) (ht1 : t ≤ 1) :
     Ppolar a x t ^ (((n : ℝ) - 1) / 2)
@@ -72,7 +76,9 @@ lemma Ppolar_rpow_le (hn : 2 ≤ n) (hx : x ^ 2 ≤ 1) (hα : α = M n * (1 - a 
   rw [hy, hα]
   ring
 
-/-- **`(1Q) ⟹ (lt)`.**-/
+/-- **`(1Q) ⟹ (lt)`.**
+@isnad1 id=le.4h4v.s8.2d924ab0f78f from=translated src=- shape=c8f2c563 vocab=456557ca
+-/
 theorem polar_exp (hn : 2 ≤ n) (hx : x ^ 2 ≤ 1) (hα : α = M n * (1 - a ^ 2) / 2)
     (hpolar : 1 ≤ ∫ t in (0 : ℝ)..1, Ppolar a x t ^ (((n : ℝ) - 1) / 2)) :
     1 ≤ ∫ t in (0 : ℝ)..1, Real.exp (α * (-1 + (2 - QQ (a * x) (a ^ 2) 1) * t)) := by

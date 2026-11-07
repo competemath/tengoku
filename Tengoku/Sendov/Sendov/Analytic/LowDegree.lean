@@ -47,17 +47,26 @@ noncomputable def lowX (a t : ℝ) : ℝ := a + (1 - a ^ 2) * t
 /-- `J_m(a) = ∫₀¹ X(t)^m dt`.-/
 noncomputable def lowJ (m : ℕ) (a : ℝ) : ℝ := ∫ t in (0 : ℝ)..1, lowX a t ^ m
 
+/--
+@isnad1 id=le.3h2v.s5.9409d05bfae0 from=translated src=- shape=17570f74 vocab=e6a9d421
+-/
 lemma lowX_nonneg {a t : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (ht0 : 0 ≤ t) : 0 ≤ lowX a t := by
   have hb : (0 : ℝ) ≤ 1 - a ^ 2 := by nlinarith
   simp only [lowX]
   positivity
 
+/--
+@isnad1 id=continuo.0h2v.s5.d3e155fc057e from=translated src=- shape=bdca8f8b vocab=90466b91
+-/
 lemma continuous_lowX_pow (a : ℝ) (m : ℕ) : Continuous fun t : ℝ => lowX a t ^ m := by
   simp only [lowX]
   fun_prop
 
 /-! ### The branch point, bounded factor by factor -/
 
+/--
+@isnad1 id=le.4h3v.s6.ee1a80ea5e9d from=translated src=- shape=b3a7751f vocab=aaac3e92
+-/
 lemma norm_le_lowX {a t : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (ht0 : 0 ≤ t) {v : ℂ}
     (hv : ‖v‖ ≤ 1) : ‖(a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v‖ ≤ lowX a t := by
   have hb : (0 : ℝ) ≤ 1 - a ^ 2 := by nlinarith
@@ -70,6 +79,9 @@ lemma norm_le_lowX {a t : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (ht0 : 0 ≤ t) {
   simp only [lowX]
   nlinarith [hv, norm_nonneg v, mul_nonneg ht0 hb]
 
+/--
+@isnad1 id=le.4h3v.s7.d505ed1938af from=translated src=- shape=63d46a33 vocab=e15ed3ac
+-/
 lemma prod_norm_le_lowX_pow {a t : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (ht0 : 0 ≤ t) :
     ∀ (q : Multiset ℂ), (∀ v ∈ q, ‖v‖ ≤ 1) →
       (q.map (fun v => ‖(a : ℂ) + (t : ℂ) * (1 - (a : ℂ) ^ 2) * v‖)).prod
@@ -91,7 +103,9 @@ lemma prod_norm_le_lowX_pow {a t : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1) (ht0 : 0
           mul_le_mul (norm_le_lowX ha0 ha1 ht0 hv) (ih hs) h3 hX0
       _ = lowX a t ^ s.card * lowX a t := by ring
 
-/-- The branch point `(⋆)`, with every factor replaced by the scalar `X(t)`.-/
+/-- The branch point `(⋆)`, with every factor replaced by the scalar `X(t)`.
+@isnad1 id=le.5h3v.s7.a5b250c9e3d2 from=translated src=- shape=102a6cdc vocab=1434432e
+-/
 theorem one_le_lowJ {n : ℕ} {a : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1)
     {q : Multiset ℂ} (hqcard : q.card = n - 1) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1)
     (hstar : 1 ≤ ∫ t in (0 : ℝ)..1,
@@ -109,7 +123,9 @@ theorem one_le_lowJ {n : ℕ} {a : ℝ} (ha0 : 0 ≤ a) (ha1 : a ≤ 1)
 /-! ### The fourth moment -/
 
 /-- `J₄(a)`, by the fundamental theorem of calculus against an explicit antiderivative.  The
-antiderivative is written without dividing by `1 - a²`, so no side condition on `a` appears.-/
+antiderivative is written without dividing by `1 - a²`, so no side condition on `a` appears.
+@isnad1 id=eq.0h1v.s8.7f4b169b8519 from=translated src=- shape=a7ed454f vocab=2530ff0c
+-/
 lemma lowJ_four (a : ℝ) :
     lowJ 4 a = a ^ 4 + 2 * a ^ 3 * (1 - a ^ 2) + 2 * a ^ 2 * (1 - a ^ 2) ^ 2
       + a * (1 - a ^ 2) ^ 3 + (1 - a ^ 2) ^ 4 / 5 := by
@@ -142,11 +158,17 @@ lemma lowJ_four (a : ℝ) :
     ((continuous_lowX_pow a 4).intervalIntegrable _ _)]
   norm_num
 
+/--
+@isnad1 id=eq.0h1v.s7.45b92f60c1ea from=translated src=- shape=f892ebd3 vocab=2530ff0c
+-/
 lemma lowJ_four_identity (a : ℝ) :
     1 - lowJ 4 a = ((1 - a) ^ 3 * (1 + a) / 5) * (a ^ 4 - 3 * a ^ 3 + 3 * a + 4) := by
   rw [lowJ_four]
   ring
 
+/--
+@isnad1 id=lt.2h1v.s7.98a8b3f3e09c from=translated src=- shape=bcf1d279 vocab=5233fd79
+-/
 lemma quartic_aux_pos {a : ℝ} (ha0 : 0 < a) (ha1 : a < 1) :
     0 < a ^ 4 - 3 * a ^ 3 + 3 * a + 4 := by
   have hfactor : a ^ 4 - 3 * a ^ 3 + 3 * a + 4
@@ -156,6 +178,9 @@ lemma quartic_aux_pos {a : ℝ} (ha0 : 0 < a) (ha1 : a < 1) :
   rw [hfactor]
   positivity
 
+/--
+@isnad1 id=lt.2h1v.s5.d10d41a69bb7 from=translated src=- shape=1f4921ee vocab=a8deb210
+-/
 lemma lowJ_four_lt_one {a : ℝ} (ha0 : 0 < a) (ha1 : a < 1) : lowJ 4 a < 1 := by
   have haux := quartic_aux_pos ha0 ha1
   have h1 : (0 : ℝ) < 1 - a := by linarith
@@ -166,7 +191,9 @@ lemma lowJ_four_lt_one {a : ℝ} (ha0 : 0 < a) (ha1 : a < 1) : lowJ 4 a < 1 := b
 /-! ### Dominating exponents one through four by the fourth -/
 
 /-- `X^m ≤ 1 - m/4 + (m/4)X⁴` for `0 ≤ X` and `1 ≤ m ≤ 4`: weighted AM–GM, but at these four
-exponents each instance factors as a square times a positive quadratic.-/
+exponents each instance factors as a square times a positive quadratic.
+@isnad1 id=le.3h2v.s7.852585a8dca4 from=translated src=- shape=14b4c5ff vocab=a8e1e6c9
+-/
 lemma pow_le_quartic_average {x : ℝ} (hx : 0 ≤ x) {m : ℕ} (hm0 : 1 ≤ m) (hm4 : m ≤ 4) :
     x ^ m ≤ 1 - (m : ℝ) / 4 + (m : ℝ) / 4 * x ^ 4 := by
   interval_cases m
@@ -184,6 +211,9 @@ lemma pow_le_quartic_average {x : ℝ} (hx : 0 ≤ x) {m : ℕ} (hm0 : 1 ≤ m) 
   · -- `m = 4`: equality
     norm_num
 
+/--
+@isnad1 id=lt.4h2v.s5.9083abc59aaa from=translated src=- shape=c12de0bf vocab=0650a6a3
+-/
 theorem lowJ_lt_one {a : ℝ} (ha0 : 0 < a) (ha1 : a < 1) {m : ℕ} (hm0 : 1 ≤ m) (hm4 : m ≤ 4) :
     lowJ m a < 1 := by
   have hcont4 := continuous_lowX_pow a 4
@@ -208,7 +238,9 @@ theorem lowJ_lt_one {a : ℝ} (ha0 : 0 < a) (ha1 : a < 1) {m : ℕ} (hm0 : 1 ≤
 /-! ### The contradiction -/
 
 /-- **The low-degree branch.**  The branch point `(⋆)` is already contradictory for
-`2 ≤ n ≤ 5`, with no recourse to the origin channel.-/
+`2 ≤ n ≤ 5`, with no recourse to the origin channel.
+@isnad1 id=false.7h3v.s7.b1339eb2c529 from=translated src=- shape=73d5574d vocab=43596c8a
+-/
 theorem low_degree_contradiction {n : ℕ} (hn : 2 ≤ n) (hn5 : n ≤ 5) {a : ℝ}
     (ha0 : 0 < a) (ha1 : a < 1) {q : Multiset ℂ}
     (hqcard : q.card = n - 1) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1)

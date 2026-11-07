@@ -33,25 +33,39 @@ open MeasureTheory
 
 variable {α : ℝ}
 
+/--
+@isnad1 id=eq.0h0v.s4.7e1550fc0166 from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_twenty : M 20 = 19 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h1v.s5.4bf424070953 from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_twenty (α : ℝ) : A 20 α = 1 - 2 * α / 19 := by
   rw [A, M]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.0h1v.s6.981ed07ff590 from=translated src=- shape=56895de3 vocab=fc8b4408
+-/
 lemma c_twenty (α : ℝ) : c 20 α = 1 - α / 19 - α / (2 * (3 + α)) := by
   rw [c, M]
   push_cast
   ring
 
+/--
+@isnad1 id=eq.1h1v.s7.109fdcc94ada from=translated src=- shape=4a2b345f vocab=a488b366
+-/
 lemma c_twenty' (hα : 0 ≤ α) : c 20 α = (114 + 13 * α - 2 * α ^ 2) / (38 * (3 + α)) := by
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   rw [c_twenty]
   field_simp
   ring
 
-/-- The Bernstein certificate for the degree-twenty numerator on `[0, 19/2]`.-/
+/-- The Bernstein certificate for the degree-twenty numerator on `[0, 19/2]`.
+@isnad1 id=lt.2h1v.s9.92214b85fd7d from=translated src=- shape=c855cfa9 vocab=762a6581
+-/
 lemma P_twenty_pos (hα : 0 ≤ α) (hle : α ≤ 19 / 2) :
     0 <     2428684725423666483774 + 7331467129251995458872 * α + 9806391760574638480284 * α ^ 2 +
       7611575747798170524888 * α ^ 3 + 3758723770378675135797 * α ^ 4 + 1206125979814312523496 * α
@@ -112,7 +126,9 @@ lemma P_twenty_pos (hα : 0 ≤ α) (hle : α ≤ 19 / 2) :
       mul_pos (by norm_num) (pow_pos (by linarith) 18)
     linarith
 
-/-- The upper bound for `R 20 α`, from the general moment formula with `k = 8`.-/
+/-- The upper bound for `R 20 α`, from the general moment formula with `k = 8`.
+@isnad1 id=le.1h1v.s8.c0edccac269d from=translated src=- shape=707f376a vocab=bc71373d
+-/
 lemma R_twenty_le (hα : 0 ≤ α) :
     R 20 α ≤ 1 / 6 + 1 / (4 * (3 + α)) + 1 / 38 + 1 / (76 * (3 + α))
       + 1710 * A 20 α ^ 2 / (3 + α) * mom 20 α 8 := by
@@ -125,7 +141,9 @@ lemma R_twenty_le (hα : 0 ≤ α) :
   field_simp
   ring
 
-/-- **The finite-range claim in degree twenty.**-/
+/-- **The finite-range claim in degree twenty.**
+@isnad1 id=lt.2h1v.s6.e07cd92f1772 from=translated src=- shape=76f861f6 vocab=6ae490cc
+-/
 theorem finite_range_twenty (hα : 0 ≤ α) (hfeas : c 20 α ^ 2 ≤ A 20 α) : R 20 α < 1 := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   have hle : α ≤ 19 / 2 := by

@@ -44,29 +44,46 @@ open Polynomial
 /-- `p(ωz)`.-/
 noncomputable def rotate (ω : ℂ) (p : ℂ[X]) : ℂ[X] := p.comp (C ω * X)
 
+/--
+@isnad1 id=eq.0h3v.s4.6e5285d2f1e1 from=translated src=- shape=ca659ca5 vocab=500a97f8
+-/
 @[simp] lemma eval_rotate (ω : ℂ) (p : ℂ[X]) (x : ℂ) :
     (rotate ω p).eval x = p.eval (ω * x) := by
   simp [rotate, eval_comp]
 
+/--
+@isnad1 id=eq.1h2v.s4.9092152f3065 from=translated src=- shape=0c399796 vocab=b88e1bb8
+-/
 lemma natDegree_rotate {ω : ℂ} (hω : ω ≠ 0) (p : ℂ[X]) :
     (rotate ω p).natDegree = p.natDegree := by
   rw [rotate, natDegree_comp, natDegree_C_mul hω, natDegree_X, mul_one]
 
+/--
+@isnad1 id=eq.0h2v.s8.8da82fe00331 from=translated src=- shape=fc5042e1 vocab=aaf06a53
+-/
 lemma derivative_rotate (ω : ℂ) (p : ℂ[X]) :
     derivative (rotate ω p) = C ω * rotate ω (derivative p) := by
   simp only [rotate, derivative_comp, derivative_mul, derivative_C, derivative_X, zero_mul,
     mul_one, zero_add]
 
+/--
+@isnad1 id=eq.0h3v.s7.a588653ac815 from=translated src=- shape=e790f22e vocab=7ee21760
+-/
 lemma eval_derivative_rotate (ω : ℂ) (p : ℂ[X]) (x : ℂ) :
     (derivative (rotate ω p)).eval x = ω * (derivative p).eval (ω * x) := by
   rw [derivative_rotate, eval_mul, eval_C, eval_rotate]
 
-/-- Rotating is undone by rotating back.-/
+/-- Rotating is undone by rotating back.
+@isnad1 id=eq.1h2v.s4.476c70b2fa93 from=translated src=- shape=adfb6169 vocab=dc84a332
+-/
 lemma rotate_rotate_inv {ω : ℂ} (hω : ω ≠ 0) (p : ℂ[X]) : rotate ω⁻¹ (rotate ω p) = p := by
   have h : (C ω * X : ℂ[X]).comp (C ω⁻¹ * X) = X := by
     rw [mul_comp, C_comp, X_comp, ← mul_assoc, ← C_mul, mul_inv_cancel₀ hω, C_1, one_mul]
   rw [rotate, rotate, comp_assoc, h, comp_X]
 
+/--
+@isnad1 id=le.4h3v.s6.d1913bfa70be from=translated src=- shape=d5ecfed5 vocab=e1d88f86
+-/
 lemma roots_rotate {ω : ℂ} (hω : ‖ω‖ = 1) {p : ℂ[X]} (hp : p ≠ 0)
     (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) : ∀ w ∈ (rotate ω p).roots, ‖w‖ ≤ 1 := by
   intro w hw
@@ -81,7 +98,9 @@ lemma roots_rotate {ω : ℂ} (hω : ‖ω‖ = 1) {p : ℂ[X]} (hp : p ≠ 0)
 
 /-- **The Phelps–Rodriguez conjecture.**  Every zero `a` of a degree `n ≥ 2` polynomial with all
 zeroes in the closed unit disk has a critical point strictly within distance `1`, unless `a` is
-on the unit circle and `p` is a scalar multiple of `zⁿ - aⁿ`.-/
+on the unit circle and `p` is a scalar multiple of `zⁿ - aⁿ`.
+@isnad1 id=or.4h3v.s8.cee22f188988 from=translated src=- shape=2857f17a vocab=7d127696
+-/
 theorem phelps_rodriguez {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)
     (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) {a : ℂ} (hpa : p.eval a = 0) :
     (∃ ζ : ℂ, (derivative p).eval ζ = 0 ∧ ‖ζ - a‖ < 1)
@@ -156,7 +175,9 @@ theorem phelps_rodriguez {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegr
 /-! ### Sendov's conjecture -/
 
 /-- **Sendov's conjecture.**  Every zero of a degree `n ≥ 2` polynomial with all zeroes in the
-closed unit disk has a critical point within distance `1`.-/
+closed unit disk has a critical point within distance `1`.
+@isnad1 id=ex.4h3v.s7.1c77e92fb9e1 from=translated src=- shape=320448e9 vocab=465c0975
+-/
 theorem sendov {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)
     (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) {a : ℂ} (hpa : p.eval a = 0) :
     ∃ ζ : ℂ, (derivative p).eval ζ = 0 ∧ ‖ζ - a‖ ≤ 1 := by

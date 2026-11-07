@@ -42,12 +42,17 @@ namespace Sendov
 
 variable {α t : ℝ}
 
+/--
+@isnad1 id=le.1h2v.s4.c460e110ceee from=translated src=- shape=d7721dd6 vocab=176790ea
+-/
 lemma M_mono {m n : ℕ} (h : m ≤ n) : M m ≤ M n := by
   simp only [M]
   have : (m : ℝ) ≤ (n : ℝ) := by exact_mod_cast h
   linarith
 
-/-- `A` increases with `n`: raising the degree moves `a²` towards `1`.-/
+/-- `A` increases with `n`: raising the degree moves `a²` towards `1`.
+@isnad1 id=le.3h3v.s5.5ab322e0f98b from=translated src=- shape=39fc834d vocab=b84777fc
+-/
 lemma A_mono {m n : ℕ} (hm : 2 ≤ m) (h : m ≤ n) (hα : 0 ≤ α) : A m α ≤ A n α := by
   have hMm : 0 < M m := M_pos hm
   have hMn : 0 < M n := lt_of_lt_of_le hMm (M_mono h)
@@ -56,7 +61,9 @@ lemma A_mono {m n : ℕ} (hm : 2 ≤ m) (h : m ≤ n) (hα : 0 ≤ α) : A m α 
     div_le_div_of_nonneg_left (by linarith) hMm (M_mono h)
   linarith
 
-/-- **The degree step.**  Raising `n` by one lowers `Q` by a multiple of `t(1-t)`.-/
+/-- **The degree step.**  Raising `n` by one lowers `Q` by a multiple of `t(1-t)`.
+@isnad1 id=eq.2h3v.s7.e94cefe4be36 from=translated src=- shape=6d515603 vocab=3047a5dd
+-/
 lemma Q_succ_sub (n : ℕ) (hn : 2 ≤ n) (hα : 0 ≤ α) (t : ℝ) :
     Q (n + 1) α t = Q n α t - (2 * α / ((n : ℝ) * ((n : ℝ) - 1))) * t * (1 - t) := by
   have h1 : ((n : ℝ) - 1) ≠ 0 := by
@@ -70,7 +77,9 @@ lemma Q_succ_sub (n : ℕ) (hn : 2 ≤ n) (hα : 0 ≤ α) (t : ℝ) :
   field_simp
   ring
 
-/-- `Q` decreases with `n` on `[0,1]`.-/
+/-- `Q` decreases with `n` on `[0,1]`.
+@isnad1 id=le.5h4v.s6.7d414e4d38a2 from=translated src=- shape=ca1f226f vocab=d0cc046d
+-/
 lemma Q_anti {m n : ℕ} (hm : 2 ≤ m) (h : m ≤ n) (hα : 0 ≤ α)
     (ht0 : 0 ≤ t) (ht1 : t ≤ 1) : Q n α t ≤ Q m α t := by
   induction n with
@@ -96,14 +105,18 @@ lemma Q_anti {m n : ℕ} (hm : 2 ≤ m) (h : m ≤ n) (hα : 0 ≤ α)
 
 open MeasureTheory
 
-/-- `x ^ y ≤ x ^ z` for `0 ≤ x ≤ 1` and `0 < z ≤ y`, allowing `x = 0`.-/
+/-- `x ^ y ≤ x ^ z` for `0 ≤ x ≤ 1` and `0 < z ≤ y`, allowing `x = 0`.
+@isnad1 id=le.4h3v.s6.bbf18a7145cb from=translated src=- shape=427b6f84 vocab=78efbd98
+-/
 lemma rpow_le_rpow_exponent_ge' {x y z : ℝ} (hx0 : 0 ≤ x) (hx1 : x ≤ 1) (hz : 0 < z)
     (hzy : z ≤ y) : x ^ y ≤ x ^ z := by
   rcases eq_or_lt_of_le hx0 with h | h
   · rw [← h, Real.zero_rpow (by linarith), Real.zero_rpow (by linarith)]
   · exact Real.rpow_le_rpow_of_exponent_ge h hx1 hzy
 
-/-- The moment decreases with the degree: `Q` falls and the exponent rises.-/
+/-- The moment decreases with the degree: `Q` falls and the exponent rises.
+@isnad1 id=le.5h3v.s8.af22888fb03c from=translated src=- shape=6ca091ba vocab=2158c35e
+-/
 theorem integral_anti {m n : ℕ} (hm : 5 ≤ m) (h : m ≤ n) (hα : 0 ≤ α)
     (hcm : 0 ≤ c m α) (hfn : c n α ^ 2 ≤ A n α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q n α t ^ (((n : ℝ) - 4) / 2))
@@ -137,7 +150,9 @@ part and the moment at `n₀`, the prefactor at `n₁`.
 Only `0 ≤ c n₀ α` is required at `n₀`, not feasibility.  That matters: feasibility propagates
 *upward* in `n`, so it could not be inherited from the hypothesis at `n`, and for `n₀ < 36` it
 does not follow from `α ≤ 17` either.  Nonnegativity of `Q` at `n₀` instead comes free from
-`Q_anti`, since `Q n₀ ≥ Q n ≥ 0`.-/
+`Q_anti`, since `Q n₀ ≥ Q n ≥ 0`.
+@isnad1 id=le.6h4v.s8.45470c3721aa from=translated src=- shape=dbf2d841 vocab=efeb4cc7
+-/
 theorem R_le_batch {n₀ n n₁ : ℕ} (h0 : 5 ≤ n₀) (h1 : n₀ ≤ n) (h2 : n ≤ n₁) (hα : 0 ≤ α)
     (hc0 : 0 ≤ c n₀ α) (hfn : c n α ^ 2 ≤ A n α) :
     R n α ≤ 1 / 6 + 1 / (4 * (3 + α)) + 1 / (2 * M n₀) + 1 / (4 * M n₀ * (3 + α))

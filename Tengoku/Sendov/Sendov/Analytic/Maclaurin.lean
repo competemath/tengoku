@@ -52,7 +52,9 @@ variable {a : ℝ} {t : Multiset ℝ}
 /-! ### The two Bernoulli steps -/
 
 /-- The AM–GM induction step: `a uᴺ ≤ μ^{N+1}` where `μ` is the mean of `a` together with `N`
-copies of `u`.  Dividing by `u^{N+1}` this is Bernoulli.-/
+copies of `u`.  Dividing by `u^{N+1}` this is Bernoulli.
+@isnad1 id=le.2h3v.s6.57de6c138d0f from=translated src=- shape=45602414 vocab=341180a7
+-/
 lemma amgm_step (N : ℕ) {u : ℝ} (hu : 0 < u) (ha : 0 ≤ a) :
     a * u ^ N ≤ ((a + N * u) / (N + 1)) ^ (N + 1) := by
   have hN1 : (0 : ℝ) < (N : ℝ) + 1 := by positivity
@@ -73,7 +75,9 @@ lemma amgm_step (N : ℕ) {u : ℝ} (hu : 0 < u) (ha : 0 ≤ a) :
         exact mul_le_mul_of_nonneg_right this (by positivity)
     _ = w ^ (N + 1) * u ^ (N + 1) := by ring
 
-/-- The Maclaurin induction step.-/
+/-- The Maclaurin induction step.
+@isnad1 id=le.3h3v.s7.3e378290e0b9 from=translated src=- shape=66a90ef7 vocab=630537c9
+-/
 lemma maclaurin_step (N : ℕ) (hN : 1 ≤ N) {u : ℝ} (hu : 0 < u) (ha : 0 ≤ a) :
     u ^ N + N * a * u ^ (N - 1) ≤ ((N : ℝ) + 1) * ((a + N * u) / (N + 1)) ^ N := by
   have hN1 : (0 : ℝ) < (N : ℝ) + 1 := by positivity
@@ -105,7 +109,9 @@ lemma maclaurin_step (N : ℕ) (hN : 1 ≤ N) {u : ℝ} (hu : 0 < u) (ha : 0 ≤
 
 /-! ### AM–GM -/
 
-/-- **AM–GM for multisets.**  `∏ s ≤ (mean s) ^ card s`.-/
+/-- **AM–GM for multisets.**  `∏ s ≤ (mean s) ^ card s`.
+@isnad1 id=le.1h1v.s6.084212e438ed from=translated src=- shape=c8bcf891 vocab=0724023e
+-/
 theorem Multiset.prod_le_mean_pow : ∀ (s : Multiset ℝ), (∀ x ∈ s, 0 ≤ x) →
     s.prod ≤ (s.sum / s.card) ^ s.card := by
   intro s
@@ -146,7 +152,9 @@ theorem Multiset.prod_le_mean_pow : ∀ (s : Multiset ℝ), (∀ x ∈ s, 0 ≤ 
 
 /-! ### Maclaurin -/
 
-/-- Splitting off one element: `E (a ::ₘ t) = ∏ t + a · E t`.-/
+/-- Splitting off one element: `E (a ::ₘ t) = ∏ t + a · E t`.
+@isnad1 id=eq.1h2v.s6.36b0a3a9d5c0 from=translated src=- shape=8c5de944 vocab=890292f6
+-/
 lemma esymm_card_cons (a : ℝ) (t : Multiset ℝ) (ht : t ≠ 0) :
     (a ::ₘ t).esymm t.card = t.prod + a * t.esymm (t.card - 1) := by
   obtain ⟨m, hm⟩ : ∃ m, t.card = m + 1 := ⟨t.card - 1, by
@@ -164,7 +172,9 @@ lemma esymm_card_cons (a : ℝ) (t : Multiset ℝ) (ht : t ≠ 0) :
     intro u _
     simp
 
-/-- **Maclaurin's inequality, top case.**  `e_{N-1}(s) ≤ N (mean s)^{N-1}`.-/
+/-- **Maclaurin's inequality, top case.**  `e_{N-1}(s) ≤ N (mean s)^{N-1}`.
+@isnad1 id=le.2h1v.s6.07b037114046 from=translated src=- shape=bc70f3f2 vocab=22400469
+-/
 theorem Multiset.esymm_card_pred_le : ∀ (s : Multiset ℝ), (∀ x ∈ s, 0 ≤ x) → s ≠ 0 →
     s.esymm (s.card - 1) ≤ s.card * (s.sum / s.card) ^ (s.card - 1) := by
   intro s

@@ -51,7 +51,9 @@ open Complex (I)
 
 /-- **Sendov's conjecture for a real interior zero.**  If every zero of `p` lies in the
 closed unit disk and `p(a) = 0` for a real `a` with `0 < a < 1`, then some zero of `p'` lies
-within distance `1` of `a`.-/
+within distance `1` of `a`.
+@isnad1 id=ex.6h3v.s7.283ad6c112e8 from=translated src=- shape=53a52e8b vocab=d3599b74
+-/
 theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)
     (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) {a : ℝ} (ha0 : 0 < a) (ha1 : a < 1)
     (hpa : p.eval (a : ℂ) = 0) :
@@ -123,7 +125,9 @@ theorem sendov_interior {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegre
 
 /-- **The conjecture at `a = 0`.**  `p'(a)` two ways gives `(∏ⱼ qⱼ)(∏ⱼ (a - zⱼ)) = n`.  At
 `a = 0` the second factor is `∏ⱼ zⱼ` up to sign, so both factors have norm at most one and
-`n ≤ 1` — impossible for `n ≥ 2`.  No polar or origin estimate is involved.-/
+`n ≤ 1` — impossible for `n ≥ 2`.  No polar or origin estimate is involved.
+@isnad1 id=ex.4h2v.s7.9f3018aa80db from=translated src=- shape=edfa59be vocab=5429b97b
+-/
 theorem sendov_center {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)
     (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) (hp0 : p.eval 0 = 0) :
     ∃ ζ : ℂ, (derivative p).eval ζ = 0 ∧ ‖ζ‖ < 1 := by
@@ -160,7 +164,9 @@ theorem sendov_center {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree 
   have h4 : (2 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
   nlinarith [hnorm, h1, h2, norm_nonneg q.prod, norm_nonneg (z.map (fun w => (0 : ℂ) - w)).prod]
 
-/-- **The conjecture for a real zero in `[0,1)`**, every degree `n ≥ 2`.-/
+/-- **The conjecture for a real zero in `[0,1)`**, every degree `n ≥ 2`.
+@isnad1 id=ex.6h3v.s7.a5b969df3a37 from=translated src=- shape=0e0c3cc2 vocab=d3599b74
+-/
 theorem sendov_interior_real {n : ℕ} (hn : 2 ≤ n) {p : ℂ[X]} (hdeg : p.natDegree = n)
     (hroots : ∀ w ∈ p.roots, ‖w‖ ≤ 1) {a : ℝ} (ha0 : 0 ≤ a) (ha1 : a < 1)
     (hpa : p.eval (a : ℂ) = 0) :

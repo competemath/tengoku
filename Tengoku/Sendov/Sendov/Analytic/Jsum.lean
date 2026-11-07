@@ -39,6 +39,9 @@ namespace Sendov
 
 /-! ### Multiset odds and ends -/
 
+/--
+@isnad1 id=eq.0h3v.s5.0caa8c0973e8 from=translated src=- shape=f4c96665 vocab=1af4eb82
+-/
 lemma sum_map_sub (s : Multiset ℂ) (f g : ℂ → ℂ) :
     (s.map (fun v => f v - g v)).sum = (s.map f).sum - (s.map g).sum := by
   induction s using Multiset.induction_on with
@@ -47,6 +50,9 @@ lemma sum_map_sub (s : Multiset ℂ) (f g : ℂ → ℂ) :
     simp only [Multiset.map_cons, Multiset.sum_cons, ih]
     ring
 
+/--
+@isnad1 id=eq.0h3v.s5.a6a6f09807ff from=translated src=- shape=400d7b3c vocab=276f6bbe
+-/
 lemma sum_map_const_sub (s : Multiset ℂ) (c : ℂ) (g : ℂ → ℂ) :
     (s.map (fun v => c - g v)).sum = (s.card : ℂ) * c - (s.map g).sum := by
   induction s using Multiset.induction_on with
@@ -56,11 +62,17 @@ lemma sum_map_const_sub (s : Multiset ℂ) (c : ℂ) (g : ℂ → ℂ) :
     push_cast
     ring
 
+/--
+@isnad1 id=eq.0h1v.s4.ed5acf5e65cb from=translated src=- shape=2ce060ed vocab=0081ef5b
+-/
 lemma sum_map_re (s : Multiset ℂ) : (s.map (fun v => v.re)).sum = s.sum.re := by
   induction s using Multiset.induction_on with
   | empty => simp
   | cons v t ih => simp only [Multiset.map_cons, Multiset.sum_cons, Complex.add_re, ih]
 
+/--
+@isnad1 id=le.0h2v.s5.6e2589d01aff from=translated src=- shape=966903b0 vocab=68ae91a8
+-/
 lemma norm_sum_map_le (s : Multiset ℂ) (f : ℂ → ℂ) :
     ‖(s.map f).sum‖ ≤ (s.map (fun w => ‖f w‖)).sum := by
   induction s using Multiset.induction_on with
@@ -69,6 +81,9 @@ lemma norm_sum_map_le (s : Multiset ℂ) (f : ℂ → ℂ) :
     simp only [Multiset.map_cons, Multiset.sum_cons]
     linarith [norm_add_le (f v) ((t.map f).sum), ih]
 
+/--
+@isnad1 id=le.1h1v.s5.2f55fee59bb1 from=translated src=- shape=49d4550a vocab=861ca3b0
+-/
 lemma norm_prod_le_one : ∀ (s : Multiset ℂ), (∀ w ∈ s, ‖w‖ ≤ 1) → ‖s.prod‖ ≤ 1 := by
   intro s
   induction s using Multiset.induction_on with
@@ -81,7 +96,9 @@ lemma norm_prod_le_one : ∀ (s : Multiset ℂ), (∀ w ∈ s, ‖w‖ ≤ 1) �
     nlinarith [ih ht, norm_nonneg v, norm_nonneg t.prod]
 
 /-- `(∏ s) ∑ⱼ 1/sⱼ = ∑ⱼ ∏_{k≠j} sₖ`, the clearing of denominators that is valid exactly when
-no `sⱼ` vanishes.-/
+no `sⱼ` vanishes.
+@isnad1 id=eq.1h1v.s5.fabe007e4939 from=translated src=- shape=a3d67158 vocab=2cf92223
+-/
 lemma prod_mul_sum_inv : ∀ (s : Multiset ℂ), (∀ w ∈ s, w ≠ 0) →
     s.prod * (s.map (fun w => w⁻¹)).sum = sumEraseProd s := by
   intro s
@@ -95,7 +112,9 @@ lemma prod_mul_sum_inv : ∀ (s : Multiset ℂ), (∀ w ∈ s, w ≠ 0) →
     field_simp
 
 /-- The degenerate case.  If `∏ sⱼ = 0` then some `sⱼ` vanishes, so at most one term of
-`∑ⱼ ∏_{k≠j} sₖ` is nonzero — and that term is a product of points of the closed unit disk.-/
+`∑ⱼ ∏_{k≠j} sₖ` is nonzero — and that term is a product of points of the closed unit disk.
+@isnad1 id=le.2h1v.s5.a631a0c10a8b from=translated src=- shape=aba60134 vocab=8feaed70
+-/
 lemma sumEraseProd_norm_le_one : ∀ (s : Multiset ℂ), (∀ w ∈ s, ‖w‖ ≤ 1) → s.prod = 0 →
     ‖sumEraseProd s‖ ≤ 1 := by
   intro s
@@ -120,7 +139,9 @@ lemma sumEraseProd_norm_le_one : ∀ (s : Multiset ℂ), (∀ w ∈ s, ‖w‖ �
 /-! ### The estimate -/
 
 /-- **The estimate for `J ∑ⱼ 1/zⱼ`.**  Conjugating the centroid identity replaces `1/zⱼ` by
-`conj zⱼ` and `qⱼ` by `1/conj qⱼ`; the defect lemma pays for both substitutions at once.-/
+`conj zⱼ` and `qⱼ` by `1/conj qⱼ`; the defect lemma pays for both substitutions at once.
+@isnad1 id=le.6h6v.s8.9ff42f1731d6 from=translated src=- shape=99058759 vocab=dddd2149
+-/
 theorem Jsum_estimate {n : ℕ} (hn : 2 ≤ n) {a x y : ℝ} {z q : Multiset ℂ}
     (hqcard : q.card = n - 1)
     (hz1 : ∀ w ∈ z, ‖w‖ ≤ 1) (hq1 : ∀ v ∈ q, ‖v‖ ≤ 1)

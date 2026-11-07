@@ -29,14 +29,29 @@ namespace Sendov
 
 namespace B20_22
 
+/--
+@isnad1 id=eq.0h0v.s4.7e1550fc0166 from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_lo : M 20 = 19 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h0v.s4.7deec74e64dc from=translated src=- shape=1ac31801 vocab=01968c3c
+-/
 lemma M_hi : M 22 = 21 := by norm_num [M]
 
+/--
+@isnad1 id=eq.0h1v.s5.4bf424070953 from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_lo (α : ℝ) : A 20 α = 1 - 2 * α / 19 := by rw [A, M]; push_cast; ring
 
+/--
+@isnad1 id=eq.0h1v.s5.9ea4d0d6bc7b from=translated src=- shape=f051650d vocab=57fb25bd
+-/
 lemma A_hi (α : ℝ) : A 22 α = 1 - 2 * α / 21 := by rw [A, M]; push_cast; ring
 
+/--
+@isnad1 id=eq.1h1v.s7.109fdcc94ada from=translated src=- shape=4a2b345f vocab=a488b366
+-/
 lemma c_lo {α : ℝ} (hα : 0 ≤ α) : c 20 α = (114 + 13 * α - 2 * α ^ 2) / (38 * (3 + α)) := by
   have h3 : (3 : ℝ) + α ≠ 0 := (three_add_pos hα).ne'
   rw [c, M]
@@ -45,7 +60,9 @@ lemma c_lo {α : ℝ} (hα : 0 ≤ α) : c 20 α = (114 + 13 * α - 2 * α ^ 2) 
   ring
 
 /-- `c` is nonnegative at `n₀` on the batch's `α`-range.  This replaces feasibility at `n₀`,
-which for `n₀ < 36` does not follow from `α ≤ 17`.-/
+which for `n₀ < 36` does not follow from `α ≤ 17`.
+@isnad1 id=le.2h1v.s5.714f59fe21c0 from=translated src=- shape=8e0acfd9 vocab=68e6405a
+-/
 lemma c_lo_nonneg {α : ℝ} (hα : 0 ≤ α) (hU : α ≤ 21 / 2) : 0 ≤ c 20 α := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα
   rw [c_lo hα]
@@ -62,6 +79,9 @@ def tauc : ℤ := 44775284788996865642893254679922271778917421122771510633920083
 def Nmomc : List ℤ :=
   [342652681018715139072, 1290458050152354091008, 2243577184611827226624, 2399637756691021787136, 1783512729454695095808, 996976999580720707584, 454864090944105851904, 197832256724748957696, 157260237317474747904, 14092143950522867712, 885156618381127680, 38940288112115712, 1195127971889152, 25104659120128, 344544313344, 2787377152, 10092544]
 
+/--
+@isnad1 id=eq.0h1v.s5.e110adc9daa0 from=translated src=- shape=f7a963d3 vocab=3ef8339f
+-/
 theorem pev_Nmomc (α : ℝ) :
     pev Nmomc α = pev (wsum Lc 0 (qrow (gg0 20) (gg1 20) (gg2 20) 8)) α := by
   refine pev_wsum_eq_of_packed (gg0 20) (gg1 20) (gg2 20) 8 25 Lc betac
@@ -78,6 +98,9 @@ theorem pev_Nmomc (α : ℝ) :
       (qrow_entry_length_le (gg0 20) (gg1 20) (gg2 20) 3 (by simp) (by simp) (by simp) 8)
   · rfl
 
+/--
+@isnad1 id=eq.1h1v.s7.8e87bb5f1c6f from=translated src=- shape=17b3eb33 vocab=d0cd3f46
+-/
 theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
     (∫ t in (0 : ℝ)..1, t ^ 3 * Q 20 α t ^ 8)
       = pev Nmomc α / ((Lc : ℝ) * (2 * M 20 * (3 + α)) ^ 8) :=
@@ -86,7 +109,9 @@ theorem integral_lo (α : ℝ) (hα : 0 ≤ α) :
 
 set_option maxHeartbeats 2000000 in
 -- the degree-18 Bernstein identity exceeds the default budget
-/-- The certificate: `17 ^ 18 * P α` is a positive combination of `αʲ (17-α)^(18-j)`.-/
+/-- The certificate: `17 ^ 18 * P α` is a positive combination of `αʲ (17-α)^(18-j)`.
+@isnad1 id=lt.2h1v.s9.77cb98024260 from=translated src=- shape=2f684b08 vocab=762a6581
+-/
 lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 21 / 2) :
     0 < 721140310389707127738 + 2170180610909239016088 * α + 2889750967198268814324 * α ^ 2 + 2227128338977232972904 * α ^ 3 + 1085997068794302710391 * α ^ 4 + 339049376116278228288 * α ^ 5 + 60509700204282383346 * α ^ 6 - 1038039442012938636 * α ^ 7 - 14060791839010189905 * α ^ 8 + 1774506642858471852 * α ^ 9 + 45855210342618468 * α ^ 10 + 226538249017920 * α ^ 11 - 222291771124416 * α ^ 12 - 18538380993792 * α ^ 13 - 787852835840 * α ^ 14 - 20286313472 * α ^ 15 - 320448768 * α ^ 16 - 2874368 * α ^ 17 - 11264 * α ^ 18 := by
   have hu : (0 : ℝ) ≤ 21 - 2 * α := by linarith
@@ -140,7 +165,9 @@ lemma P_pos {α : ℝ} (hα : 0 ≤ α) (hα' : α ≤ 21 / 2) :
 
 set_option maxHeartbeats 2000000 in
 -- clearing denominators across the batch identity exceeds the default budget
-/-- **The batch `20 ≤ n ≤ 22`.**-/
+/-- **The batch `20 ≤ n ≤ 22`.**
+@isnad1 id=lt.5h2v.s6.11164270bd3e from=translated src=- shape=be7a7659 vocab=6ae490cc
+-/
 theorem finite_range {n : ℕ} (h0 : 20 ≤ n) (h1 : n ≤ 22) {α : ℝ}
     (hα : 0 ≤ α) (_hα' : α ≤ 17) (hfeas : c n α ^ 2 ≤ A n α) : R n α < 1 := by
   have h3 : (0 : ℝ) < 3 + α := three_add_pos hα

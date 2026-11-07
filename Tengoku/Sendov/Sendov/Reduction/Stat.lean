@@ -38,7 +38,9 @@ open MeasureTheory
 
 variable {n : ℕ} {a x α : ℝ}
 
-/-- `ax = 1 - β(1)/2 - α/(n-1)`: the blog post's rearrangement of `β(1) = 1 - 2ax + a²`.-/
+/-- `ax = 1 - β(1)/2 - α/(n-1)`: the blog post's rearrangement of `β(1) = 1 - 2ax + a²`.
+@isnad1 id=eq.2h4v.s7.fa7dfc7afdf4 from=translated src=- shape=e5a9931f vocab=ddc7c740
+-/
 lemma mul_eq_c (hn : 2 ≤ n) (hα : α = M n * (1 - a ^ 2) / 2) :
     a * x = 1 - QQ (a * x) (a ^ 2) 1 / 2 - α / M n := by
   have hM : M n ≠ 0 := (M_pos hn).ne'
@@ -46,7 +48,9 @@ lemma mul_eq_c (hn : 2 ≤ n) (hα : α = M n * (1 - a ^ 2) / 2) :
   field_simp
   ring
 
-/-- Under `(beta-bound)`, `Sendov.c n α ≤ ax`: the substitution only ever lowers `ax`.-/
+/-- Under `(beta-bound)`, `Sendov.c n α ≤ ax`: the substitution only ever lowers `ax`.
+@isnad1 id=le.4h4v.s7.f2abce695f01 from=translated src=- shape=70b212b7 vocab=7a9e705d
+-/
 lemma c_le_mul (hn : 2 ≤ n) (hα : α = M n * (1 - a ^ 2) / 2) (hα0 : 0 < α)
     (hbeta : QQ (a * x) (a ^ 2) 1 ≤ α / (3 + α)) : c n α ≤ a * x := by
   rw [mul_eq_c hn hα]
@@ -58,7 +62,9 @@ lemma c_le_mul (hn : 2 ≤ n) (hα : α = M n * (1 - a ^ 2) / 2) (hα0 : 0 < α)
 
 /-- `(beta-bound)` supplies the feasibility constraint `c² ≤ A` that `Sendov.stat_lt_one`
 requires.  It is `c ≤ ax` squared, together with `x² ≤ 1`: the substitution can only lower
-`ax`, and `ax` is already at most `a`.-/
+`ax`, and `ax` is already at most `a`.
+@isnad1 id=le.5h4v.s7.6bb4227b5775 from=translated src=- shape=f581c55c vocab=cfa17a39
+-/
 lemma feasible_of_beta (hn : 2 ≤ n) (hx : x ^ 2 ≤ 1)
     (hα : α = M n * (1 - a ^ 2) / 2) (hα0 : 0 < α)
     (hbeta : QQ (a * x) (a ^ 2) 1 ≤ α / (3 + α)) : c n α ^ 2 ≤ A n α := by
@@ -67,7 +73,9 @@ lemma feasible_of_beta (hn : 2 ≤ n) (hx : x ^ 2 ≤ 1)
   rw [A_eq_sq hn hα]
   nlinarith [hcpos, hcle, sq_nonneg a, sq_nonneg x]
 
-/-- **`(1le) + (beta-bound) ⟹ stat`.**-/
+/-- **`(1le) + (beta-bound) ⟹ stat`.**
+@isnad1 id=le.6h4v.s9.8cc03fc35af0 from=translated src=- shape=e9ef3930 vocab=7bd9cad2
+-/
 theorem stat_of_one_le (hn : 5 ≤ n) (hx : x ^ 2 ≤ 1)
     (hα : α = M n * (1 - a ^ 2) / 2) (hα0 : 0 < α)
     (hbeta : QQ (a * x) (a ^ 2) 1 ≤ α / (3 + α))

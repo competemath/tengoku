@@ -58,7 +58,9 @@ open MeasureTheory
 
 /-- **The polar and origin inequalities are incompatible.**  For `n ≥ 5` there is no
 `0 < a < 1` and `|x| ≤ 1` satisfying both the raw polar inequality `(1Q)` and the raw origin
-inequality `(origin-exact)`.-/
+inequality `(origin-exact)`.
+@isnad1 id=false.7h4v.s8.e535ab5f7ac1 from=translated src=- shape=9791f83c vocab=09e85709
+-/
 theorem polar_origin_incompatible {n : ℕ} (hn : 5 ≤ n) {a x α : ℝ}
     (ha : 0 < a) (ha1 : a < 1) (hx : x ^ 2 ≤ 1)
     (hα : α = M n * (1 - a ^ 2) / 2)
