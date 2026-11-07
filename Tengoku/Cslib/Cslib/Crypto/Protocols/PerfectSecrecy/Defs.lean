@@ -64,6 +64,9 @@ noncomputable def posteriorMsgDist (scheme : EncScheme M K C)
     (hc : c ∈ (scheme.marginalCiphertextDist msgDist).support) : PMF M :=
   posteriorDist msgDist scheme.ciphertextDist c hc
 
+/--
+@isnad1 id=eq.1h7v.s6.0f349164c1c7 from=translated src=- shape=33bb94e9 vocab=83491502
+-/
 @[simp]
 theorem posteriorMsgDist_apply (scheme : EncScheme M K C)
     (msgDist : PMF M) (c : C)

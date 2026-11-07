@@ -265,7 +265,9 @@ def bound (k d s : ℕ) : ℕ :=
 
 /-- Every Boolean function on `k + d` inputs can be built from the input projections within
 `bound k d s` gates: build all minterms, then the disjunction over block-pattern pairs of
-`left ∧ right`, which equals `f` by `table_eq`.-/
+`left ∧ right`, which equals `f` by `table_eq`.
+@isnad1 id=synthesi.1h4v.s6.f477e3003405 from=translated src=- shape=eda2a6f6 vocab=41d36972
+-/
 theorem synthesis (f : BooleanFunction (k + d)) (hs : 0 < s) :
     Synthesis interpretation (inputs (k + d)) {f} (bound k d s) := by
   have hpair (pair : Fin (2 ^ k / s + 1) × Assignment s) :=

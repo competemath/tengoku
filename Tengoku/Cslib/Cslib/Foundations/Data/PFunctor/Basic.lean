@@ -33,7 +33,9 @@ universe uA uB uA₁ uA₂ uB₁ uB₂
 namespace PFunctor
 
 /-- Two polynomial functors are equal if their head types are equal and their child types
-agree over that equality.-/
+agree over that equality.
+@isnad1 id=eq.2h2v.s5.01d075d66d47 from=translated src=- shape=e1041972 vocab=cf6aac7c
+-/
 @[ext (iff := false)]
 theorem ext {P Q : PFunctor.{uA, uB}} (h : P.A = Q.A) (h' : ∀ a, P.B a = Q.B (h ▸ a)) :
     P = Q := by
@@ -43,6 +45,9 @@ theorem ext {P Q : PFunctor.{uA, uB}} (h : P.A = Q.A) (h' : ∀ a, P.B a = Q.B (
 /-- The constant child map for `a`.-/
 def const {P : PFunctor} (a : P.A) (x : α) : P.B a → α := fun _ => x
 
+/--
+@isnad1 id=eq.0h5v.s4.ebfe82b1f8d7 from=translated src=- shape=399dfa21 vocab=42ecc290
+-/
 @[simp, scoped grind =]
 theorem const_apply {P : PFunctor} (a : P.A) (x : α) (i : P.B a) : PFunctor.const a x i = x := rfl
 
@@ -53,8 +58,14 @@ abbrev monomial (A : Type uA) (B : Type uB) : PFunctor := ⟨A, fun _ => B⟩
 
 @[inherit_doc] scoped[PFunctor] infixr:82 " y^ " => monomial
 
+/--
+@isnad1 id=eq.0h2v.s3.8e0ccda694fc from=translated src=- shape=1043f9b7 vocab=2070a3ee
+-/
 lemma monomial_A (A : Type uA) (B : Type uB) : (monomial A B).A = A := rfl
 
+/--
+@isnad1 id=eq.0h3v.s4.2b3b9dd027fe from=translated src=- shape=276eeb17 vocab=15a8ca62
+-/
 lemma monomial_B (A : Type uA) (B : Type uB) (a : (monomial A B).A) :
     (monomial A B).B a = B := rfl
 
@@ -104,14 +115,29 @@ of the abbreviations above: being reducible, they unfold to `PEmpty`/`PUnit` dur
 search. Only `0` and `1` need the explicit instances above, since the `Zero`/`One` instance
 projections are not reducible. -/
 
+/--
+@isnad1 id=eq.0h0v.s3.4e127da115ec from=translated src=- shape=b0ae1d2b vocab=9f70a322
+-/
 @[simp] lemma C_pempty : C PEmpty = 0 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s3.eb9b031d8d1c from=translated src=- shape=b0ae1d2b vocab=12fe5310
+-/
 @[simp] lemma C_punit : C PUnit = 1 := rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.5552e83e35bc from=translated src=- shape=4b736592 vocab=ef03c7e6
+-/
 @[simp] lemma linear_punit : linear PUnit = y := rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.a394ef707873 from=translated src=- shape=4b736592 vocab=c8588e19
+-/
 @[simp] lemma selfMonomial_punit : selfMonomial PUnit = y := rfl
 
+/--
+@isnad1 id=eq.0h0v.s2.8c7f12ad3f60 from=translated src=- shape=4b736592 vocab=2515e290
+-/
 @[simp] lemma purePower_punit : purePower PUnit = y := rfl
 
 section add
@@ -131,6 +157,9 @@ The child universes must agree. The named spelling `P.add Q` can elaborate in co
 
 /- Both named operations and arithmetic notation are available; `simp` normalizes to the
 notation, for both addition and multiplication. -/
+/--
+@isnad1 id=eq.0h2v.s4.6448ce59df44 from=translated src=- shape=895a5e7f vocab=51876ea3
+-/
 @[simp] lemma add_eq_add (P : PFunctor.{uA₁, uB}) (Q : PFunctor.{uA₂, uB}) :
     P.add Q = P + Q := rfl
 
@@ -147,6 +176,9 @@ defined as the product of the head types and the sum of the child types.-/
     HMul PFunctor.{uA₁, uB₁} PFunctor.{uA₂, uB₂} PFunctor.{max uA₁ uA₂, max uB₁ uB₂} where
   hMul := prod
 
+/--
+@isnad1 id=eq.0h2v.s4.41fd64b1ad49 from=translated src=- shape=895a5e7f vocab=74349b09
+-/
 @[simp] lemma prod_eq_mul (P : PFunctor.{uA₁, uB₁}) (Q : PFunctor.{uA₂, uB₂}) :
     P.prod Q = P * Q := rfl
 
@@ -160,6 +192,9 @@ class Unary (P : PFunctor) where
 
 attribute [instance_reducible, instance] PFunctor.Unary.unary
 
+/--
+@isnad1 id=eq.0h4v.s5.7e67e3df79ab from=translated src=- shape=f3cfe79b vocab=f794c796
+-/
 theorem Unary.fun_eq_const [Unary P]
     (a : P.A) (f : P.B a → α) : f = fun _ => f default := by
   funext i

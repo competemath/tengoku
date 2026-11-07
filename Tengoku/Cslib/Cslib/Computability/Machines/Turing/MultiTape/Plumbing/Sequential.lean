@@ -70,6 +70,9 @@ def rightCfg (cfg : Cfg k Symbol State₁ input) :
     Cfg k Symbol (State₀ ⊕ State₁) input :=
   cfg.mapState (Option.map .inr)
 
+/--
+@isnad1 id=eq.1h8v.s6.c76b24f9aaf9 from=translated src=- shape=93733422 vocab=85e4f3e2
+-/
 lemma step_leftCfg (cfg : Cfg k Symbol State₀ input) (h : cfg.state ≠ none) :
     (tm₀.seq tm₁).step (leftCfg tm₁ cfg) = leftCfg tm₁ (tm₀.step cfg) := by
   obtain ⟨q, hq⟩ := Option.ne_none_iff_exists'.mp h
@@ -78,6 +81,9 @@ lemma step_leftCfg (cfg : Cfg k Symbol State₀ input) (h : cfg.state ≠ none) 
   simp only [step, h1, hq]
   rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.b0c4d43e0f18 from=translated src=- shape=6268763e vocab=afa5aef0
+-/
 lemma step_rightCfg (cfg : Cfg k Symbol State₁ input) :
     (tm₀.seq tm₁).step (rightCfg cfg) = rightCfg (tm₁.step cfg) := by
   cases hq : cfg.state with
@@ -90,12 +96,16 @@ lemma step_rightCfg (cfg : Cfg k Symbol State₁ input) :
     simp only [step, h1, hq]
     rfl
 
-/-- The second phase of `seq` mirrors the run of `tm₁`.-/
+/-- The second phase of `seq` mirrors the run of `tm₁`.
+@isnad1 id=eq.0h9v.s6.45c2892ecd8e from=translated src=- shape=ac94b795 vocab=aeb6d89e
+-/
 lemma runFrom_rightCfg (cfg : Cfg k Symbol State₁ input) (n : ℕ) :
     (tm₀.seq tm₁).runFrom (rightCfg cfg) n = rightCfg (tm₁.runFrom cfg n) :=
   (Function.Semiconj.iterate_right (fun c => (step_rightCfg c).symm) n cfg).symm
 
-/-- While `tm₀` is running, `seq` mirrors it.-/
+/-- While `tm₀` is running, `seq` mirrors it.
+@isnad1 id=eq.1h9v.s6.813f3bdd8725 from=translated src=- shape=ec975492 vocab=1d6232d3
+-/
 lemma runFrom_leftCfg (cfg : Cfg k Symbol State₀ input) (n : ℕ)
     (h : ∀ m < n, (tm₀.runFrom cfg m).state ≠ none) :
     (tm₀.seq tm₁).runFrom (leftCfg tm₁ cfg) n = leftCfg tm₁ (tm₀.runFrom cfg n) := by
@@ -107,15 +117,23 @@ lemma runFrom_leftCfg (cfg : Cfg k Symbol State₀ input) (n : ℕ)
       ih fun m hm => h m (by omega),
       step_leftCfg _ (h n (by omega))]
 
+/--
+@isnad1 id=eq.0h7v.s5.0511f1a9940b from=translated src=- shape=1e669069 vocab=7a51fa80
+-/
 @[simp]
 lemma workTapePos_leftCfg (cfg : Cfg k Symbol State₀ input) :
     (leftCfg tm₁ cfg).workTapePos = cfg.workTapePos := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.39ca70d13fbb from=translated src=- shape=624fc1b3 vocab=e80aa49e
+-/
 @[simp]
 lemma workTapePos_rightCfg (cfg : Cfg k Symbol State₁ input) :
     (rightCfg (State₀ := State₀) cfg).workTapePos = cfg.workTapePos := rfl
 
-/-- A halted configuration of the first phase is the start of the second phase.-/
+/-- A halted configuration of the first phase is the start of the second phase.
+@isnad1 id=eq.1h7v.s6.1e13984ac94d from=translated src=- shape=605a1592 vocab=78fc9cd3
+-/
 lemma leftCfg_of_halt {cfg : Cfg k Symbol State₀ input} (h : cfg.state = none) :
     leftCfg tm₁ cfg = rightCfg (cfg.withState (some tm₁.q₀)) := by
   simp [leftCfg, rightCfg, Cfg.withState, Cfg.mapState, h]
@@ -124,7 +142,9 @@ end Sequential
 
 open Sequential in
 /-- If `tm₀` halts at step `u`, then from step `u` on `seq` mirrors `tm₁`, started where `tm₀`
-halted.-/
+halted.
+@isnad1 id=eq.1h10v.s6.912bab0cb751 from=translated src=- shape=a744121b vocab=ff355b84
+-/
 lemma HaltsAt.runFrom_seq {cfg : Cfg k Symbol State₀ input} {u : ℕ} (h : tm₀.HaltsAt cfg u)
     (n : ℕ) :
     (tm₀.seq tm₁).runFrom (leftCfg tm₁ cfg) (u + n) =
@@ -140,7 +160,9 @@ open Sequential in
 /-- **Sequential composition of runs.** If `tm₀` has halted in `mid` by step `t₀`, and `tm₁`,
 started where `tm₀` halted, has halted in `fin` by step `t₁`, then the composed machine has halted
 in `fin` by step `t₀ + t₁`. Each machine may halt earlier than its bound; in particular `tm₀` need
-not be running at every step before `t₀`.-/
+not be running at every step before `t₀`.
+@isnad1 id=eq.4h12v.s7.ff6cb2d1ea52 from=translated src=- shape=f963ce03 vocab=8de7bb38
+-/
 theorem runFrom_seq {cfg mid : Cfg k Symbol State₀ input} {fin : Cfg k Symbol State₁ input}
     {t₀ t₁ : ℕ} (h₀ : tm₀.runFrom cfg t₀ = mid) (hmid : mid.Halted)
     (h₁ : tm₁.runFrom (mid.withState (some tm₁.q₀)) t₁ = fin) (hfin : fin.Halted) :
@@ -156,7 +178,9 @@ theorem runFrom_seq {cfg mid : Cfg k Symbol State₀ input} {fin : Cfg k Symbol 
 open Sequential in
 /-- **Sequential composition of transformations.** If the postcondition of the first
 transformation implies the precondition of the second, the composed machine performs the two
-transformations one after the other, with the time and space bounds adding.-/
+transformations one after the other, with the time and space bounds adding.
+@isnad1 id=transfor.2h15v.s7.94b265488f79 from=translated src=- shape=d1b30a01 vocab=4d6f7970
+-/
 theorem transformsTapes_seq
     {P₀ P₁ : (input : List Symbol) → (Fin k → List Symbol) → Prop}
     {Q₀ Q₁ : (input : List Symbol) → (Fin k → List Symbol) → (Fin k → List Symbol) → Prop}

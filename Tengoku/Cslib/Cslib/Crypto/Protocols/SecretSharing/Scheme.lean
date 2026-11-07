@@ -79,13 +79,18 @@ def view (scheme : Scheme Secret Randomness Party Share) (s : Finset Party)
     (r : Randomness) (secret : Secret) : s → Share :=
   fun i => scheme.share r secret i
 
+/--
+@isnad1 id=eq.0h9v.s6.69cbd5e1f409 from=translated src=- shape=d9ec456c vocab=43fcb562
+-/
 @[simp]
 theorem view_apply (scheme : Scheme Secret Randomness Party Share) (s : Finset Party)
     (r : Randomness) (secret : Secret) (i : s) :
     scheme.view s r secret i = scheme.share r secret i :=
   rfl
 
-/-- Authorized coalitions reconstruct the secret from the restricted view.-/
+/-- Authorized coalitions reconstruct the secret from the restricted view.
+@isnad1 id=eq.1h8v.s5.2c2def373342 from=translated src=- shape=786cc6ef vocab=3681ac77
+-/
 theorem reconstruct_view_eq_secret
     (scheme : Scheme Secret Randomness Party Share)
     (r : Randomness) (secret : Secret) {s : Finset Party}
@@ -93,7 +98,9 @@ theorem reconstruct_view_eq_secret
     scheme.reconstruct s (scheme.view s r secret) = secret :=
   scheme.correct r secret s hs
 
-/-- Any sub-coalition of an unauthorized coalition is unauthorized as well.-/
+/-- Any sub-coalition of an unauthorized coalition is unauthorized as well.
+@isnad1 id=not.2h7v.s5.0b916a9a1dc4 from=translated src=- shape=46551e7d vocab=5554f519
+-/
 theorem not_authorized_of_subset
     (scheme : Scheme Secret Randomness Party Share)
     {s t : Finset Party} (hst : s ⊆ t)

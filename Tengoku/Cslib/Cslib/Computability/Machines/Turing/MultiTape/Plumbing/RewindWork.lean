@@ -127,7 +127,9 @@ open RewindWork in
 /-- **The run of the one-tape machine that rewinds its head.** Started with the tape holding a word
 `w` and the head at a position `p ≤ w.length` — inside the word or at the frontier just past it —
 after `p + 2` steps the machine has halted with the head back at position `0`, `write` applied to
-the cells `0, …, p - 1` and nothing else changed.-/
+the cells `0, …, p - 1` and nothing else changed.
+@isnad1 id=eq.2h8v.s7.03a21a88f687 from=translated src=- shape=52e07535 vocab=160f2bc5
+-/
 public theorem runFrom_rewindWork (write : Option (Option Symbol)) (ip : Fin (input.length + 2))
     (t : ℤ → Option Symbol) (out : List Symbol) {w : List Symbol} (hw : t = tapeOfList w) {p : ℕ}
     (hp : p ≤ w.length) :
@@ -139,7 +141,9 @@ public theorem runFrom_rewindWork (write : Option (Option Symbol)) (ip : Fin (in
     show (p : ℤ) - 1 - p = -1 by omega, step_scan_none (by simp [hw]; rfl)]
   simp
 
-/-- **Rewinding without writing** changes nothing but the position of the head.-/
+/-- **Rewinding without writing** changes nothing but the position of the head.
+@isnad1 id=eq.2h7v.s7.1fab5598e4e3 from=translated src=- shape=390afac0 vocab=a62a6ed2
+-/
 public theorem runFrom_rewindWork_none (ip : Fin (input.length + 2)) (t : ℤ → Option Symbol)
     (out : List Symbol) {w : List Symbol} (hw : t = tapeOfList w) {p : ℕ} (hp : p ≤ w.length) :
     (rewindWork Symbol).runFrom
@@ -147,7 +151,9 @@ public theorem runFrom_rewindWork_none (ip : Fin (input.length + 2)) (t : ℤ �
       ⟨none, ip, fun _ => t, fun _ => 0, out⟩ := by
   simpa using runFrom_rewindWork none ip t out hw hp
 
-/-- **Rewinding while erasing** from the frontier of the word leaves the tape blank.-/
+/-- **Rewinding while erasing** from the frontier of the word leaves the tape blank.
+@isnad1 id=eq.1h6v.s7.d4041d4155a8 from=translated src=- shape=30bad183 vocab=ae46a95e
+-/
 public theorem runFrom_rewindWork_erase (ip : Fin (input.length + 2)) (t : ℤ → Option Symbol)
     (out : List Symbol) {w : List Symbol} (hw : t = tapeOfList w) :
     (rewindWork Symbol (some none)).runFrom

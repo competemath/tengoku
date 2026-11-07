@@ -50,43 +50,57 @@ structure IsChainFromTo {α : Type*} (r : α → α → Prop) (chain : List α) 
 
 attribute [scoped grind →] IsChainFromTo.head_eq IsChainFromTo.getLast_eq
 
-/-- A chain has at least one element.-/
+/-- A chain has at least one element.
+@isnad1 id=lt.1h5v.s5.dd99d3e26dd6 from=translated src=- shape=ddd5ca50 vocab=3e8fdbe2
+-/
 @[scoped grind →]
 lemma IsChainFromTo.length_pos (hc : chain.IsChainFromTo r a b) : 0 < chain.length :=
   List.length_pos_iff.mpr hc.ne_nil
 
-/-- The first element of an `r`-chain from `a` to `b` is `a`.-/
+/-- The first element of an `r`-chain from `a` to `b` is `a`.
+@isnad1 id=eq.1h5v.s5.a79f4d56a18a from=translated src=- shape=59ccbd77 vocab=58aac379
+-/
 @[scoped grind →]
 lemma IsChainFromTo.getElem_zero (hc : chain.IsChainFromTo r a b) :
     chain[0]'hc.length_pos = a := by
   rw [List.getElem_zero]
   exact hc.head_eq
 
-/-- The last element of an `r`-chain from `a` to `b` is `b`.-/
+/-- The last element of an `r`-chain from `a` to `b` is `b`.
+@isnad1 id=eq.1h5v.s5.c4c3ea7f0637 from=translated src=- shape=06825697 vocab=0a4609e8
+-/
 @[scoped grind →]
 lemma IsChainFromTo.getElem_length_sub_one (hc : chain.IsChainFromTo r a b) :
     chain[chain.length - 1]'(by have := hc.length_pos; lia) = b := by
   rw [List.getElem_length_sub_one_eq_getLast]
   exact hc.getLast_eq
 
-/-- The start and the end of an `r`-chain are reflexively-transitively related by `r`.-/
+/-- The start and the end of an `r`-chain are reflexively-transitively related by `r`.
+@isnad1 id=refltran.1h5v.s4.893bdef19a37 from=translated src=- shape=7ccf6ec4 vocab=d1f3e1c6
+-/
 theorem IsChainFromTo.reflTransGen (hc : chain.IsChainFromTo r a b) :
     Relation.ReflTransGen r a b := by
   simpa [hc.head_eq, hc.getLast_eq] using
     List.relationReflTransGen_of_exists_isChain chain hc.isChain hc.ne_nil
 
-/-- Create a `List.IsChainFromTo` from a non-empty `List.IsChain`.-/
+/-- Create a `List.IsChainFromTo` from a non-empty `List.IsChain`.
+@isnad1 id=ischainf.2h3v.s5.3f9e1fe6562b from=translated src=- shape=c4d4caa1 vocab=15864a42
+-/
 theorem IsChain.isChainFromTo_of_ne_nil
     {chain : List α} (hc : chain.IsChain r) (h_ne_nil : chain ≠ []) :
     List.IsChainFromTo r chain (chain.head h_ne_nil) (chain.getLast h_ne_nil) :=
   ⟨hc, h_ne_nil, rfl, rfl⟩
 
-/-- A one-element list is an `r`-chain from that element to itself.-/
+/-- A one-element list is an `r`-chain from that element to itself.
+@isnad1 id=ischainf.0h3v.s4.e89d21a28d04 from=translated src=- shape=638c755d vocab=e3ea1a7d
+-/
 @[simp, scoped grind ←]
 lemma isChainFromTo_singleton : List.IsChainFromTo r [a] a a :=
   ⟨List.IsChain.singleton a, by simp, rfl, rfl⟩
 
-/-- Prepend an `r`-related element to the start of the chain.-/
+/-- Prepend an `r`-related element to the start of the chain.
+@isnad1 id=ischainf.1h7v.s5.13e350c82674 from=translated src=- shape=412f5ee0 vocab=80b5b358
+-/
 lemma IsChainFromTo.cons (h : r a b) (hc : chain.IsChainFromTo r b c) :
     (a :: chain).IsChainFromTo r a c where
   isChain := hc.isChain.cons_of_ne_nil hc.ne_nil (hc.head_eq.symm ▸ h)
@@ -94,6 +108,9 @@ lemma IsChainFromTo.cons (h : r a b) (hc : chain.IsChainFromTo r b c) :
   head_eq := head_cons
   getLast_eq := hc.getLast_eq ▸ chain.getLast_cons hc.ne_nil
 
+/--
+@isnad1 id=iff.0h6v.s5.30913f569f23 from=translated src=- shape=bc535946 vocab=e3ea1a7d
+-/
 @[simp, scoped grind =]
 lemma isChainFromTo_pair_iff {a a' b b' : α} :
     List.IsChainFromTo r [a, b] a' b' ↔ r a b ∧ a = a' ∧ b = b' := by
@@ -103,13 +120,17 @@ lemma isChainFromTo_pair_iff {a a' b b' : α} :
   · rintro ⟨h, rfl, rfl⟩
     constructor <;> simp_all
 
-/-- Removing the head yields a valid chain.-/
+/-- Removing the head yields a valid chain.
+@isnad1 id=ischainf.1h7v.s5.cf8df0091672 from=translated src=- shape=e29e8158 vocab=80b5b358
+-/
 lemma IsChainFromTo.of_cons_cons {x y : α} (hc : (x :: y :: chain).IsChainFromTo r a b) :
     (y :: chain).IsChainFromTo r y b :=
   ⟨hc.isChain.of_cons, cons_ne_nil _ _, head_cons, by grind⟩
 
 /-- Appending a chain and the tail of a second one whose start point equals the end point of the
-first yields a valid chain.-/
+first yields a valid chain.
+@isnad1 id=ischainf.2h7v.s5.a005de53dd42 from=translated src=- shape=11c1fd61 vocab=be6557b4
+-/
 lemma IsChainFromTo.append_tail (hc : chain.IsChainFromTo r a b) {chain' : List α}
     (hc' : chain'.IsChainFromTo r b c) : (chain ++ chain'.tail).IsChainFromTo r a c where
   isChain := by
@@ -122,13 +143,17 @@ lemma IsChainFromTo.append_tail (hc : chain.IsChainFromTo r a b) {chain' : List 
   head_eq := head_append_left hc.ne_nil |>.trans hc.head_eq
   getLast_eq := by grind
 
-/-- Add an `r`-related element to the end of the chain.-/
+/-- Add an `r`-related element to the end of the chain.
+@isnad1 id=ischainf.1h7v.s5.c3e38dabec5a from=translated src=- shape=986eabb9 vocab=da026b80
+-/
 lemma IsChainFromTo.snoc (hc : chain.IsChainFromTo r a b) (h : r b c) :
     (chain ++ [c]).IsChainFromTo r a c :=
   append_tail hc (chain' := [b, c]) (by simpa)
 
 /-- Appending a chain, dropping its last element and another chain whose start point equals
-the end point of the first chain yields a valid chain.-/
+the end point of the first chain yields a valid chain.
+@isnad1 id=ischainf.2h7v.s5.8c12e6bf2ab3 from=translated src=- shape=c34f76d3 vocab=d50bd366
+-/
 lemma IsChainFromTo.append_dropLast (hc : chain.IsChainFromTo r a b) {chain' : List α}
     (hc' : chain'.IsChainFromTo r b c) : (chain.dropLast ++ chain').IsChainFromTo r a c := by
   convert hc.append_tail hc' using 1
@@ -136,19 +161,26 @@ lemma IsChainFromTo.append_dropLast (hc : chain.IsChainFromTo r a b) {chain' : L
     dropLast_concat_getLast hc.ne_nil]
 
 /-- Taking the first `i + 1` elements of a chain yields a chain from the same start point to
-`chain[i]`.-/
+`chain[i]`.
+@isnad1 id=ischainf.2h6v.s6.86e5afde6421 from=translated src=- shape=e91da23c vocab=5ec4278d
+-/
 lemma IsChainFromTo.take (hc : chain.IsChainFromTo r a b) {i : ℕ} (hi : i < chain.length) :
     (chain.take (i + 1)).IsChainFromTo r a chain[i] := by
   have : chain.take (i + 1) ≠ [] := by grind only [length_nil, min_def, length_take]
   exact ⟨hc.isChain.take _, this, by grind, by grind [chain.getLast_take this]⟩
 
 /-- Dropping the first `i` elements of a chain yields a chain from `chain[i]` to the same end
-point.-/
+point.
+@isnad1 id=ischainf.2h6v.s5.5199c5da91ff from=translated src=- shape=0528ecde vocab=0012626f
+-/
 lemma IsChainFromTo.drop (hc : chain.IsChainFromTo r a b) {i : ℕ} (hi : i < chain.length) :
     (chain.drop i).IsChainFromTo r chain[i] b := by
   have : chain.drop i ≠ [] := ne_nil_iff_length_pos.mpr <| chain.lt_length_drop hi
   refine ⟨hc.isChain.drop _, this, chain.head_drop this, hc.getLast_eq ▸ chain.getLast_drop this⟩
 
+/--
+@isnad1 id=var.1h8v.s6.621492173860 from=translated src=- shape=e22164e8 vocab=8d845673
+-/
 @[elab_as_elim]
 lemma IsChainFromTo.head_induction_on
     {motive : ∀ {chain : List α} {a b : α}, chain.IsChainFromTo r a b → Prop}
@@ -164,13 +196,17 @@ lemma IsChainFromTo.head_induction_on
     have : (a' :: tail).IsChainFromTo r a' b := hc.of_cons_cons
     exact h_head hrel this (ih this rfl)
 
-/-- Any element of an `r`-chain from `a` to `b` is reflexively-transitively related from `a`.-/
+/-- Any element of an `r`-chain from `a` to `b` is reflexively-transitively related from `a`.
+@isnad1 id=refltran.2h6v.s5.7c584dbfef59 from=translated src=- shape=81696ed0 vocab=9e2d6314
+-/
 lemma IsChainFromTo.reflTransGen_of_mem (hc : chain.IsChainFromTo r a b) {x : α} (mem : x ∈ chain) :
     Relation.ReflTransGen r a x := by
   obtain ⟨i, hi, rfl⟩ := List.getElem_of_mem mem
   exact (hc.take hi).reflTransGen
 
-/-- Any element of an `r`-chain from `a` to `b` is reflexively-transitively related to `b`.-/
+/-- Any element of an `r`-chain from `a` to `b` is reflexively-transitively related to `b`.
+@isnad1 id=refltran.2h6v.s5.a5566bfbdf58 from=translated src=- shape=faca6911 vocab=9e2d6314
+-/
 lemma IsChainFromTo.reflTransGen_of_mem' (hc : chain.IsChainFromTo r a b) {x : α}
     (mem : x ∈ chain) :
     Relation.ReflTransGen r x b := by
@@ -178,7 +214,9 @@ lemma IsChainFromTo.reflTransGen_of_mem' (hc : chain.IsChainFromTo r a b) {x : �
   exact (hc.drop hi).reflTransGen
 
 /-- If there is an `r`-chain from `a` to `b` with duplicates, then there is a shorter `r`-chain
-from `a` to `b` (the one that skips the part between the duplicates).-/
+from `a` to `b` (the one that skips the part between the duplicates).
+@isnad1 id=ex.2h5v.s5.82c09428fc53 from=translated src=- shape=0c008558 vocab=2e86a8d1
+-/
 lemma IsChainFromTo.exists_length_lt_of_not_nodup
     (hc : chain.IsChainFromTo r a b)
     (h_dup : ¬ chain.Nodup) :
@@ -195,7 +233,9 @@ lemma IsChainFromTo.exists_length_lt_of_not_nodup
     · grind
   · grind
 
-/-- For any `r`-chain from `a` to `b` there is one without duplicates.-/
+/-- For any `r`-chain from `a` to `b` there is one without duplicates.
+@isnad1 id=ex.1h5v.s5.1bec78a5ae5d from=translated src=- shape=988c152b vocab=87a032cd
+-/
 lemma IsChainFromTo.exists_nodup (hc : chain.IsChainFromTo r a b) :
     ∃ chain' : List α, chain'.IsChainFromTo r a b ∧ chain'.Nodup := by
   induction hn : chain.length using Nat.strong_induction_on generalizing chain with

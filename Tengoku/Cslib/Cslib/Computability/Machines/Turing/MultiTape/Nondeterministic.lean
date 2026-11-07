@@ -80,7 +80,9 @@ def Step (ntm : MultiTapeNTM k Symbol State) (c₁ c₂ : Cfg k Symbol State inp
   | some q =>
     ∃ action, ntm.Tr q c₁.inputSymbol c₁.workTapeSymbols action ∧ c₂ = action.apply c₁
 
-/-- A halted configuration steps only to itself.-/
+/-- A halted configuration steps only to itself.
+@isnad1 id=iff.1h7v.s5.5ee6f70ee438 from=translated src=- shape=679ed76d vocab=4cb507b4
+-/
 lemma step_of_halt {c c' : Cfg k Symbol State input} (h : c.Halted) :
     ntm.Step c c' ↔ c' = c := by
   simp [Step, h]

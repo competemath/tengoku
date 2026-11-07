@@ -53,6 +53,9 @@ instance : FunLike (Generator Seed Output) Seed Output where
   coe G := G.toFun
   coe_injective _ _ h := Generator.ext h
 
+/--
+@isnad1 id=eq.0h3v.s4.e539ebf2542a from=translated src=- shape=e4ea83f5 vocab=4184aad1
+-/
 @[simp]
 theorem coe_mk (f : Seed → Output) : ⇑(Generator.mk f) = f := rfl
 

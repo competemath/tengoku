@@ -36,7 +36,9 @@ variable {input : List Symbol}
 variable {tm : MultiTapeTM k Symbol State}
 variable {cfg : Cfg k Symbol State input}
 
-/-- If the work tape head is not at position `z`, then the tape does not change there.-/
+/-- If the work tape head is not at position `z`, then the tape does not change there.
+@isnad1 id=eq.1h8v.s5.f2d47c9e1968 from=translated src=- shape=3f551175 vocab=9821d578
+-/
 lemma step_workTapes_eq_of_ne
     (cfg : Cfg k Symbol State input)
     (j : Fin k)
@@ -49,15 +51,23 @@ lemma step_workTapes_eq_of_ne
     rw [step_apply_of_state hst, Action.apply_workTapes]
     rcases hw : ((tm.tr q cfg.inputSymbol cfg.workTapeSymbols).workTapes j).1 <;> simp_all
 
+/--
+@isnad1 id=iff.0h9v.s6.38e87cdae821 from=translated src=- shape=6410b984 vocab=57d1d645
+-/
 lemma mem_visitedByTapeHead {t : ℕ} {i : Fin k} {z : ℤ} :
     z ∈ tm.visitedByTapeHead cfg t i ↔ ∃ t' < t + 1, (tm.runFrom cfg t').workTapePos i = z := by
   simp [visitedByTapeHead, Fin.exists_iff]
 
+/--
+@isnad1 id=mem.0h8v.s5.8d1388c26945 from=translated src=- shape=4b7113ba vocab=589d918e
+-/
 lemma mem_visitedByTapeHead_self (cfg : Cfg k Symbol State input) (t : ℕ) (i : Fin k) :
     (tm.runFrom cfg t).workTapePos i ∈ tm.visitedByTapeHead cfg t i :=
   tm.mem_visitedByTapeHead.mpr ⟨t, by omega, rfl⟩
 
-/-- The set of positions visited by a tape head is monotone in the number of steps.-/
+/-- The set of positions visited by a tape head is monotone in the number of steps.
+@isnad1 id=le.1h9v.s5.e00a41867ec2 from=translated src=- shape=99f625d7 vocab=f08cd98e
+-/
 lemma visitedByTapeHead_mono (cfg : Cfg k Symbol State input) (i : Fin k) {t t' : ℕ} (h : t ≤ t') :
     tm.visitedByTapeHead cfg t i ⊆ tm.visitedByTapeHead cfg t' i := by
   intro z hz
@@ -65,7 +75,9 @@ lemma visitedByTapeHead_mono (cfg : Cfg k Symbol State input) (i : Fin k) {t t' 
   exact tm.mem_visitedByTapeHead.mpr ⟨n, by omega, hz⟩
 
 /-- Starting from configuration `cfg`, every position between the initial head position of tape
-`i` and the one after `t` steps is part of the "visited set" at step `t`.-/
+`i` and the one after `t` steps is part of the "visited set" at step `t`.
+@isnad1 id=le.0h8v.s6.6e4394acfb95 from=translated src=- shape=afbd877c vocab=299fbf07
+-/
 lemma uIcc_workTapePos_subset_visitedByTapeHead
     (cfg : Cfg k Symbol State input) (i : Fin k) (t : ℕ) :
     Finset.uIcc (cfg.workTapePos i) ((tm.runFrom cfg t).workTapePos i)
@@ -82,7 +94,9 @@ lemma uIcc_workTapePos_subset_visitedByTapeHead
     have hself := tm.mem_visitedByTapeHead_self cfg (t + 1) i
     grind [Finset.mem_uIcc]
 
-/-- If a work tape cell is changed after `t` steps, it must have been visited by the tape head.-/
+/-- If a work tape cell is changed after `t` steps, it must have been visited by the tape head.
+@isnad1 id=mem.1h9v.s6.c918ee1626f8 from=translated src=- shape=9f1856c7 vocab=a3d25777
+-/
 lemma mem_visitedByTapeHead_of_workTapes_ne
     (j : Fin k)
     (t : ℕ)
@@ -100,7 +114,9 @@ lemma mem_visitedByTapeHead_of_workTapes_ne
       exact tm.visitedByTapeHead_mono cfg j (Nat.le_succ t) (ih h)
 
 /-- Every position visited by the head of tape `i` lies within `spaceUsedByTape … i` of the
-head's starting position.-/
+head's starting position.
+@isnad1 id=le.1h9v.s6.f8d14c45169a from=translated src=- shape=733cabda vocab=46e78bb3
+-/
 lemma natAbs_le_spaceUsedByTape_of_mem_visited
     {i : Fin k}
     {z : ℤ}
@@ -115,7 +131,9 @@ lemma natAbs_le_spaceUsedByTape_of_mem_visited
   unfold spaceUsedByTape
   omega
 
-/-- Every non-blank cell on work tape `i` lies within `spaceUsedByTape … i t` of the origin.-/
+/-- Every non-blank cell on work tape `i` lies within `spaceUsedByTape … i t` of the origin.
+@isnad1 id=le.1h8v.s6.3a9b10ab2b8b from=translated src=- shape=05265aaa vocab=03504b4a
+-/
 lemma content_natAbs_le_spaceUsedByTape
     {i : Fin k}
     (t : ℕ)
@@ -127,12 +145,16 @@ lemma content_natAbs_le_spaceUsedByTape
   simpa using tm.natAbs_le_spaceUsedByTape_of_mem_visited
     (tm.mem_visitedByTapeHead_of_workTapes_ne i t z h)
 
-/-- The number of cells touched by a single work tape grows by at most one each step.-/
+/-- The number of cells touched by a single work tape grows by at most one each step.
+@isnad1 id=le.0h8v.s5.06ab170e43ab from=translated src=- shape=7d1c8885 vocab=24501026
+-/
 lemma spaceUsedByTape_le (cfg : Cfg k Symbol State input) (t : ℕ) (i : Fin k) :
     tm.spaceUsedByTape cfg t i ≤ t + 1 :=
   Finset.card_image_le.trans_eq (by simp)
 
-/-- The space used by a computation is bounded linearly by the number of steps.-/
+/-- The space used by a computation is bounded linearly by the number of steps.
+@isnad1 id=le.0h7v.s5.a658effa20b9 from=translated src=- shape=6b74eb5a vocab=ffe2b0a5
+-/
 lemma spaceUsed_linear (cfg : Cfg k Symbol State input) (t : ℕ) :
     tm.spaceUsed cfg t ≤ k * t + k := by
   calc tm.spaceUsed cfg t
@@ -140,7 +162,9 @@ lemma spaceUsed_linear (cfg : Cfg k Symbol State input) (t : ℕ) :
     _ ≤ ∑ i, (t + 1) := Finset.sum_le_sum (fun i _ => tm.spaceUsedByTape_le cfg t i)
     _ = k * t + k := by simp [Nat.mul_succ]
 
-/-- The space used by a single tape is monotone in the number of steps.-/
+/-- The space used by a single tape is monotone in the number of steps.
+@isnad1 id=monotone.0h7v.s5.909ba708ee2a from=translated src=- shape=36f8824c vocab=ac38560b
+-/
 lemma spaceUsedByTape_mono
     (tm : MultiTapeTM k Symbol State)
     (cfg : Cfg k Symbol State input)
@@ -149,7 +173,9 @@ lemma spaceUsedByTape_mono
   intro t t' h
   exact Finset.card_le_card (tm.visitedByTapeHead_mono cfg i h)
 
-/-- The total space used is monotone in the number of steps.-/
+/-- The total space used is monotone in the number of steps.
+@isnad1 id=monotone.0h6v.s5.30ccdab852e5 from=translated src=- shape=8b94271a vocab=d41e25e5
+-/
 lemma spaceUsed_mono (tm : MultiTapeTM k Symbol State) (cfg : Cfg k Symbol State input) :
     Monotone (tm.spaceUsed cfg ·) := by
   intro t t' h
@@ -157,7 +183,9 @@ lemma spaceUsed_mono (tm : MultiTapeTM k Symbol State) (cfg : Cfg k Symbol State
 
 /-- A computation whose total space usage stays below a bound reaches a step `T` at which the space
 usage of *every* tape is maximal. This turns a bound that holds at every point in time into a
-bound for the whole run.-/
+bound for the whole run.
+@isnad1 id=ex.1h7v.s6.d7b6e51f3b7d from=translated src=- shape=87499529 vocab=9aac4bef
+-/
 lemma exists_spaceUsedByTape_max (cfg : Cfg k Symbol State input) {s : ℕ}
     (hs : ∀ t, tm.spaceUsed cfg t ≤ s) :
     ∃ T, ∀ t i, tm.spaceUsedByTape cfg t i ≤ tm.spaceUsedByTape cfg T i := by
@@ -175,26 +203,34 @@ lemma exists_spaceUsedByTape_max (cfg : Cfg k Symbol State input) {s : ℕ}
 
 /-- Every position the head takes up to step `t` lies in `S`, so the whole visited set does. This
 is `Finset.image_subset_iff` for the visited set, and the workhorse behind the space bounds
-below.-/
+below.
+@isnad1 id=le.1h9v.s6.5ddb65bbf4af from=translated src=- shape=84b5ac2b vocab=f2c7a49e
+-/
 lemma visitedByTapeHead_subset (cfg : Cfg k Symbol State input) {t : ℕ} {i : Fin k} {S : Finset ℤ}
     (h : ∀ m ≤ t, (tm.runFrom cfg m).workTapePos i ∈ S) :
     tm.visitedByTapeHead cfg t i ⊆ S :=
   Finset.image_subset_iff.mpr fun m _ => h m (Nat.lt_succ_iff.mp m.isLt)
 
-/-- A set containing every position of a head bounds the space used by its tape.-/
+/-- A set containing every position of a head bounds the space used by its tape.
+@isnad1 id=le.1h9v.s6.780866e3c77b from=translated src=- shape=b5efa7e4 vocab=f302a6ca
+-/
 lemma spaceUsedByTape_le_card (cfg : Cfg k Symbol State input) {t : ℕ} {i : Fin k} {S : Finset ℤ}
     (h : ∀ m ≤ t, (tm.runFrom cfg m).workTapePos i ∈ S) :
     tm.spaceUsedByTape cfg t i ≤ S.card :=
   Finset.card_le_card (tm.visitedByTapeHead_subset cfg h)
 
-/-- A head that never moves uses a single cell.-/
+/-- A head that never moves uses a single cell.
+@isnad1 id=le.1h8v.s6.f208873bc51f from=translated src=- shape=63a7e3ec vocab=0ffcebc0
+-/
 lemma spaceUsedByTape_le_one (cfg : Cfg k Symbol State input) {t : ℕ} {i : Fin k}
     (h : ∀ m ≤ t, (tm.runFrom cfg m).workTapePos i = cfg.workTapePos i) :
     tm.spaceUsedByTape cfg t i ≤ 1 := by
   simpa using tm.spaceUsedByTape_le_card cfg (S := {cfg.workTapePos i})
     fun m hm => by simp [h m hm]
 
-/-- The cells a run visits are the ones visited by its two halves.-/
+/-- The cells a run visits are the ones visited by its two halves.
+@isnad1 id=eq.0h9v.s6.cda9b9ee05e6 from=translated src=- shape=4713bbc0 vocab=9fd1038a
+-/
 lemma visitedByTapeHead_add (cfg : Cfg k Symbol State input) (a b : ℕ) (i : Fin k) :
     tm.visitedByTapeHead cfg (a + b) i =
       tm.visitedByTapeHead cfg a i ∪ tm.visitedByTapeHead (tm.runFrom cfg a) b i := by
@@ -213,7 +249,9 @@ lemma visitedByTapeHead_add (cfg : Cfg k Symbol State input) (a b : ℕ) (i : Fi
         by simp only [runFrom, ← Function.iterate_add_apply, Nat.add_comm]⟩
 
 /-- Splitting a run into two phases can only overcount the cells it visits, since the two phases
-may revisit each other's cells.-/
+may revisit each other's cells.
+@isnad1 id=le.0h8v.s6.8f794c4b8cd5 from=translated src=- shape=b9fff5e4 vocab=6b2ee53c
+-/
 lemma spaceUsed_add_le (cfg : Cfg k Symbol State input) (a b : ℕ) :
     tm.spaceUsed cfg (a + b) ≤ tm.spaceUsed cfg a + tm.spaceUsed (tm.runFrom cfg a) b := by
   rw [spaceUsed, spaceUsed, spaceUsed, ← Finset.sum_add_distrib]
@@ -223,7 +261,9 @@ lemma spaceUsed_add_le (cfg : Cfg k Symbol State input) (a b : ℕ) :
 
 /-- Space usage only depends on where the work-tape heads are at each step, so two runs whose head
 positions agree use the same space. This is what lets a machine be replaced by a simulation of
-it.-/
+it.
+@isnad1 id=eq.1h11v.s6.e6bdbb3168e6 from=translated src=- shape=85bd77dc vocab=bd6982b3
+-/
 lemma spaceUsed_eq_of_workTapePos {State' : Type*} {input' : List Symbol}
     {tm' : MultiTapeTM k Symbol State'} (cfg : Cfg k Symbol State input)
     (cfg' : Cfg k Symbol State' input') (t : ℕ)
@@ -234,7 +274,9 @@ lemma spaceUsed_eq_of_workTapePos {State' : Type*} {input' : List Symbol}
 
 /-- **Space of a simulation.** If the heads of `tm'` on the tapes `e j` follow the heads of `tm` on
 the tapes `j`, and each remaining tape of `tm'` visits at most `b` cells, then `tm'` uses the space
-of `tm` plus at most `b` cells per remaining tape.-/
+of `tm` plus at most `b` cells per remaining tape.
+@isnad1 id=le.2h14v.s7.2f8cf47e4906 from=translated src=- shape=324295ba vocab=f4be6127
+-/
 lemma spaceUsed_le_of_workTapePos_embedding {k' : ℕ} {State' : Type*} {input' : List Symbol}
     {tm' : MultiTapeTM k' Symbol State'} (e : Fin k ↪ Fin k') (cfg : Cfg k Symbol State input)
     (cfg' : Cfg k' Symbol State' input') {t : ℕ} (b : ℕ)
@@ -248,7 +290,9 @@ lemma spaceUsed_le_of_workTapePos_embedding {k' : ℕ} {State' : Type*} {input' 
   refine (Finset.sum_le_card_nsmul _ _ b fun l hl => hrest l (by simpa using hl)).trans ?_
   simp [Finset.card_compl]
 
-/-- After the machine has halted the heads no longer move, so the visited set stops growing.-/
+/-- After the machine has halted the heads no longer move, so the visited set stops growing.
+@isnad1 id=eq.2h9v.s6.060c75e0c46f from=translated src=- shape=59ed03db vocab=b4b790a1
+-/
 lemma visitedByTapeHead_eq_of_halt (cfg : Cfg k Symbol State input) {τ t : ℕ} (hle : τ ≤ t)
     (hhalt : (tm.runFrom cfg τ).state = none) (i : Fin k) :
     tm.visitedByTapeHead cfg t i = tm.visitedByTapeHead cfg τ i := by
@@ -259,14 +303,18 @@ lemma visitedByTapeHead_eq_of_halt (cfg : Cfg k Symbol State input) {τ t : ℕ}
   · rw [runFrom_eq_of_halt tm cfg h hhalt]
     exact tm.mem_visitedByTapeHead_self cfg τ i
 
-/-- After the machine has halted the heads no longer move, so the space usage stops growing.-/
+/-- After the machine has halted the heads no longer move, so the space usage stops growing.
+@isnad1 id=eq.2h8v.s6.b98447ed0fd9 from=translated src=- shape=8344d8e7 vocab=5f7e56d9
+-/
 lemma spaceUsed_eq_of_halt (cfg : Cfg k Symbol State input) {τ t : ℕ} (hle : τ ≤ t)
     (hhalt : (tm.runFrom cfg τ).state = none) :
     tm.spaceUsed cfg t = tm.spaceUsed cfg τ :=
   Finset.sum_congr rfl fun i _ =>
     congrArg Finset.card (tm.visitedByTapeHead_eq_of_halt cfg hle hhalt i)
 
-/-- A run that never moves a work-tape head visits one cell per tape.-/
+/-- A run that never moves a work-tape head visits one cell per tape.
+@isnad1 id=le.1h7v.s6.1499c985bade from=translated src=- shape=9fd63d0d vocab=bd6982b3
+-/
 lemma spaceUsed_le_of_workTapePos_const (cfg : Cfg k Symbol State input) (u : ℕ)
     (h : ∀ m ≤ u, (tm.runFrom cfg m).workTapePos = cfg.workTapePos) :
     tm.spaceUsed cfg u ≤ k := by

@@ -33,6 +33,9 @@ variable {α : Type*}
 noncomputable def slice (L : Language α) (n : ℕ) : (Fin n → α) → Bool :=
   open scoped Classical in fun x => decide (List.ofFn x ∈ L)
 
+/--
+@isnad1 id=iff.0h4v.s5.2eb4d64441c3 from=translated src=- shape=64b32c36 vocab=8f1c0960
+-/
 @[simp] theorem slice_eq_true_iff {L : Language α} {n : ℕ} {x : Fin n → α} :
     L.slice n x = true ↔ List.ofFn x ∈ L :=
   @decide_eq_true_iff _ (Classical.propDecidable _)
@@ -41,14 +44,23 @@ noncomputable def slice (L : Language α) (n : ℕ) : (Fin n → α) → Bool :=
 def ofSlices (f : ∀ n, (Fin n → α) → Bool) : Language α :=
   {w | f w.length (fun i => w[i]) = true}
 
+/--
+@isnad1 id=iff.0h3v.s6.0408d524182d from=translated src=- shape=5605c157 vocab=3deca0e2
+-/
 theorem mem_ofSlices {f : ∀ n, (Fin n → α) → Bool} {w : List α} :
     w ∈ ofSlices f ↔ f w.length (w[·]) := Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s5.4de258f7dc02 from=translated src=- shape=6e3c8de1 vocab=d3e5052d
+-/
 @[simp] theorem ofFn_mem_ofSlices {f : ∀ n, (Fin n → α) → Bool} {n : ℕ} {x : Fin n → α} :
     .ofFn x ∈ ofSlices f ↔ f n x := by
   congrm f $List.length_ofFn $((Fin.heq_fun_iff List.length_ofFn).mpr ?_)
   simp
 
+/--
+@isnad1 id=eq.0h3v.s4.353c4e028ed0 from=translated src=- shape=bb8de607 vocab=439ee801
+-/
 @[simp] theorem slice_ofSlices (f : ∀ n, (Fin n → α) → Bool) (n : ℕ) :
     (ofSlices f).slice n = f n := by
   ext x

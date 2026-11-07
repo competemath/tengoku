@@ -42,20 +42,26 @@ open Cslib.Probability.PMF
 universe u
 variable {M K C : Type u}
 
-/-- The joint distribution at `(m, c)` equals `msgDist m * ciphertextDist m c`.-/
+/-- The joint distribution at `(m, c)` equals `msgDist m * ciphertextDist m c`.
+@isnad1 id=eq.0h7v.s6.b46700301be8 from=translated src=- shape=5225a03c vocab=f7e05f5e
+-/
 theorem jointDist_eq (scheme : EncScheme M K C) (msgDist : PMF M)
     (m : M) (c : C) :
     scheme.jointDist msgDist (m, c) = msgDist m * scheme.ciphertextDist m c :=
   bind_pair_apply msgDist scheme.ciphertextDist m c
 
 /-- Summing the joint distribution over messages gives the marginal ciphertext
-distribution.-/
+distribution.
+@isnad1 id=eq.0h6v.s6.07cfd6fbabb6 from=translated src=- shape=5f677bbe vocab=1906c199
+-/
 theorem jointDist_tsum_fst (scheme : EncScheme M K C) (msgDist : PMF M) (c : C) :
     ∑' m, scheme.jointDist msgDist (m, c) = scheme.marginalCiphertextDist msgDist c :=
   bind_pair_tsum_fst msgDist scheme.ciphertextDist c
 
 /-- Perfect secrecy is equivalent to message-ciphertext independence.
-The two formulations are related by multiplying/dividing by `marginal(c)`.-/
+The two formulations are related by multiplying/dividing by `marginal(c)`.
+@isnad1 id=iff.0h4v.s6.28404b62dca9 from=translated src=- shape=26f8fccb vocab=8f5ba96c
+-/
 theorem perfectlySecret_iff_indep (scheme : EncScheme M K C) :
     scheme.PerfectlySecret ↔
     ∀ (msgDist : PMF M) (m : M) (c : C),
@@ -76,7 +82,9 @@ theorem perfectlySecret_iff_indep (scheme : EncScheme M K C) :
       ((PMF.mem_support_iff _ _).mp hc) (PMF.apply_ne_top _ c)]
 
 /-- A scheme is perfectly secret iff the ciphertext distribution is
-independent of the plaintext ([KatzLindell2020], Lemma 2.5).-/
+independent of the plaintext ([KatzLindell2020], Lemma 2.5).
+@isnad1 id=iff.0h4v.s4.1a8c1301defd from=translated src=- shape=4ccd3ba0 vocab=cd9f9f5b
+-/
 theorem perfectlySecret_iff_ciphertextIndist (scheme : EncScheme M K C) :
     scheme.PerfectlySecret ↔ scheme.CiphertextIndist := by
   classical
@@ -94,7 +102,9 @@ theorem perfectlySecret_iff_ciphertextIndist (scheme : EncScheme M K C) :
   have hne_top := PMF.apply_ne_top μ m
   exact (ENNReal.mul_right_inj hne hne_top).mp (by rw [← jointDist_eq]; exact h μ m c)
 
-/-- Ciphertext indistinguishability implies message-ciphertext independence.-/
+/-- Ciphertext indistinguishability implies message-ciphertext independence.
+@isnad1 id=eq.1h7v.s6.9c31209baf8c from=translated src=- shape=88648851 vocab=ab2fb32b
+-/
 theorem indep_of_ciphertextIndist (scheme : EncScheme M K C)
     (h : scheme.CiphertextIndist) (msgDist : PMF M) (m : M) (c : C) :
     scheme.jointDist msgDist (m, c) =
@@ -114,7 +124,9 @@ private lemma encrypt_key_injective (scheme : EncScheme M K C)
       (heq ▸ scheme.correct _ (hf_mem m₂) m₂ c₀ (hf_enc m₂))
 
 /-- Perfect secrecy requires `|K| ≥ |M|` — Shannon's theorem
-([KatzLindell2020], Theorem 2.12).-/
+([KatzLindell2020], Theorem 2.12).
+@isnad1 id=le.1h4v.s4.68bac460bda9 from=translated src=- shape=48111941 vocab=ec32cd07
+-/
 theorem perfectlySecret_keySpace_ge [Finite K]
     (scheme : EncScheme M K C) (h : scheme.PerfectlySecret) :
     Nat.card M ≤ Nat.card K := by

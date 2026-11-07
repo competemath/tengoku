@@ -94,7 +94,9 @@ def authorized (params : Params F Party) (s : Finset Party) : Prop :=
   params.threshold + 1 ≤ s.card
 
 /-- Because `params.threshold < |Party|`, the full party set can always
-reconstruct the secret.-/
+reconstruct the secret.
+@isnad1 id=authoriz.0h3v.s5.038ff52de31f from=translated src=- shape=936aaad5 vocab=f36fc00a
+-/
 theorem authorized_univ {F Party : Type*} [Field F] [Fintype Party]
     (params : Params F Party) :
     authorized params (Finset.univ : Finset Party) := by
@@ -207,7 +209,9 @@ private theorem view_eq_view_add_privacyCorrection
   ring
 
 /-- Translation-invariant Shamir tail samplers induce secret-independent views
-for unauthorized coalitions.-/
+for unauthorized coalitions.
+@isnad1 id=eq.1h7v.s6.9632b470be37 from=translated src=- shape=b3237484 vocab=f4144cdd
+-/
 theorem view_indist_of_tailSampler (params : Params F Party)
     (sampler : TailSampler params) :
     ∀ (s : Finset Party), ¬ authorized params s → ∀ secret₀ secret₁ : F,
@@ -286,18 +290,27 @@ noncomputable def scheme (params : Params F Party)
     SecretSharing.Scheme F (Randomness params) Party F :=
   schemeWith params (uniformTailSampler params)
 
+/--
+@isnad1 id=iff.0h5v.s6.f9e9adfe866c from=translated src=- shape=0796a339 vocab=0a88e725
+-/
 @[simp]
 theorem schemeWith_authorized_iff (params : Params F Party)
     (sampler : TailSampler params) (s : Finset Party) :
     (schemeWith params sampler).authorized s ↔ params.threshold + 1 ≤ s.card :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h4v.s6.faf2714f4270 from=translated src=- shape=648a48cd vocab=ed9f7ef4
+-/
 @[simp]
 theorem scheme_authorized_iff (params : Params F Party)
     [Fintype F] [Nonempty F] (s : Finset Party) :
     (scheme params).authorized s ↔ params.threshold + 1 ≤ s.card :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.380f0f2e94b5 from=translated src=- shape=7e2e7afd vocab=073926a7
+-/
 @[simp]
 theorem schemeWith_share_eq (params : Params F Party)
     (sampler : TailSampler params) (coeffs : Randomness params)

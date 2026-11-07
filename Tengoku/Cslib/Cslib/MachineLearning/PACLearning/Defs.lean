@@ -193,7 +193,9 @@ def IsRPACLearnerFor (m : ℕ) (ε δ : Set.Ioo (0 : ℝ≥0) 1)
           optimalError D C + ↑ε.val < error D ((A ω) S)} ∂Q ≤ ↑δ.val
 
 /-- Every deterministic PAC learner is in particular a randomized PAC learner
-(with the trivial one-point randomness space `PUnit`).-/
+(with the trivial one-point randomness space `PUnit`).
+@isnad1 id=isrpacle.1h7v.s6.7d303d6c5024 from=translated src=- shape=09e9f43c vocab=16a92c0d
+-/
 theorem IsPACLearnerFor.toIsRPACLearnerFor {m : ℕ} {ε δ : Set.Ioo (0 : ℝ≥0) 1}
     {C : ConceptClass α β} {𝒟 : Set (Measure (α × β))}
     (h : IsPACLearnerFor m ε δ C 𝒟) :
@@ -206,7 +208,9 @@ theorem IsPACLearnerFor.toIsRPACLearnerFor {m : ℕ} {ε δ : Set.Ioo (0 : ℝ�
   exact hA D hD
 
 /-- The deterministic PAC learner predicate is antitone in the distribution family: a
-learner for a larger family `𝒟'` is also a learner for any subfamily `𝒟 ⊆ 𝒟'`.-/
+learner for a larger family `𝒟'` is also a learner for any subfamily `𝒟 ⊆ 𝒟'`.
+@isnad1 id=ispaclea.2h8v.s6.a11fd58d281a from=translated src=- shape=46d109b5 vocab=6610efdb
+-/
 theorem IsPACLearnerFor.antitone_family {m : ℕ} {ε δ : Set.Ioo (0 : ℝ≥0) 1}
     {C : ConceptClass α β} {𝒟 𝒟' : Set (Measure (α × β))}
     (h𝒟 : 𝒟 ⊆ 𝒟') (h : IsPACLearnerFor m ε δ C 𝒟') :
@@ -215,7 +219,9 @@ theorem IsPACLearnerFor.antitone_family {m : ℕ} {ε δ : Set.Ioo (0 : ℝ≥0)
   exact ⟨A, fun D inst hD => @hA D inst (h𝒟 hD)⟩
 
 /-- A PAC learner with confidence `δ₁` is also a PAC learner with any weaker confidence
-`δ₂ ≥ δ₁`: the failure-probability bound only gets looser.-/
+`δ₂ ≥ δ₁`: the failure-probability bound only gets looser.
+@isnad1 id=ispaclea.2h8v.s7.a5b323cf2335 from=translated src=- shape=45725cac vocab=09747614
+-/
 theorem IsPACLearnerFor.mono_δ {m : ℕ} {ε : Set.Ioo (0 : ℝ≥0) 1}
     {δ₁ δ₂ : Set.Ioo (0 : ℝ≥0) 1} (hδ : δ₁.val ≤ δ₂.val)
     {C : ConceptClass α β} {𝒟 : Set (Measure (α × β))}
@@ -226,7 +232,9 @@ theorem IsPACLearnerFor.mono_δ {m : ℕ} {ε : Set.Ioo (0 : ℝ≥0) 1}
   exact_mod_cast hδ
 
 /-- A PAC learner with accuracy `ε₁` is also a PAC learner with any weaker accuracy
-`ε₂ ≥ ε₁`: the bad event `{error > opt + ε}` only shrinks.-/
+`ε₂ ≥ ε₁`: the bad event `{error > opt + ε}` only shrinks.
+@isnad1 id=ispaclea.2h8v.s7.5f137f5d0c3b from=translated src=- shape=6b79e9cf vocab=09747614
+-/
 theorem IsPACLearnerFor.mono_ε {m : ℕ} {δ : Set.Ioo (0 : ℝ≥0) 1}
     {ε₁ ε₂ : Set.Ioo (0 : ℝ≥0) 1} (hε : ε₁.val ≤ ε₂.val)
     {C : ConceptClass α β} {𝒟 : Set (Measure (α × β))}
@@ -242,7 +250,9 @@ theorem IsPACLearnerFor.mono_ε {m : ℕ} {δ : Set.Ioo (0 : ℝ≥0) 1}
 
 /-- The deterministic PAC learner predicate is antitone in the concept class: a learner
 for a larger class `C'` is also a learner for any subclass `C ⊆ C'`, since the agnostic
-benchmark `optimalError _ C ≥ optimalError _ C'` makes the error requirement easier.-/
+benchmark `optimalError _ C ≥ optimalError _ C'` makes the error requirement easier.
+@isnad1 id=ispaclea.2h8v.s6.2fab95b1861d from=translated src=- shape=1caa93f1 vocab=6610efdb
+-/
 theorem IsPACLearnerFor.antitone_C {m : ℕ} {ε δ : Set.Ioo (0 : ℝ≥0) 1}
     {C C' : ConceptClass α β} (hC : C ⊆ C')
     {𝒟 : Set (Measure (α × β))} (h : IsPACLearnerFor m ε δ C' 𝒟) :
@@ -256,7 +266,9 @@ theorem IsPACLearnerFor.antitone_C {m : ℕ} {ε δ : Set.Ioo (0 : ℝ≥0) 1}
     _ < error D (A S) := hS
 
 /-- The randomized PAC learner predicate is antitone in the distribution family. The
-universe of the randomness space `Ω` is pinned so the hypothesis and conclusion share it.-/
+universe of the randomness space `Ω` is pinned so the hypothesis and conclusion share it.
+@isnad1 id=isrpacle.2h8v.s6.75810bab84e3 from=translated src=- shape=46d109b5 vocab=a5187971
+-/
 theorem IsRPACLearnerFor.antitone_family.{u} {m : ℕ} {ε δ : Set.Ioo (0 : ℝ≥0) 1}
     {C : ConceptClass α β} {𝒟 𝒟' : Set (Measure (α × β))}
     (h𝒟 : 𝒟 ⊆ 𝒟') (h : IsRPACLearnerFor.{_, _, u} m ε δ C 𝒟') :
@@ -266,7 +278,9 @@ theorem IsRPACLearnerFor.antitone_family.{u} {m : ℕ} {ε δ : Set.Ioo (0 : ℝ
 
 /-- A randomized PAC learner with confidence `δ₁` is also a randomized PAC learner with
 any weaker confidence `δ₂ ≥ δ₁`. Unlike `mono_ε` or `antitone_C`, this does not touch the
-integrand, so it carries the `AEMeasurable` part through unchanged.-/
+integrand, so it carries the `AEMeasurable` part through unchanged.
+@isnad1 id=isrpacle.2h8v.s7.665db76bc82e from=translated src=- shape=45725cac vocab=80a1eec8
+-/
 theorem IsRPACLearnerFor.mono_δ.{u} {m : ℕ} {ε : Set.Ioo (0 : ℝ≥0) 1}
     {δ₁ δ₂ : Set.Ioo (0 : ℝ≥0) 1} (hδ : δ₁.val ≤ δ₂.val)
     {C : ConceptClass α β} {𝒟 : Set (Measure (α × β))}
@@ -296,7 +310,9 @@ def IsRPACLearnable (C : ConceptClass α β) (𝒟 : Set (Measure (α × β))) :
   ∀ (ε δ : Set.Ioo (0 : ℝ≥0) 1),
     ∃ m, IsRPACLearnerFor.{_, _, 0} m ε δ C 𝒟
 
-/-- Deterministic PAC learnability implies randomized PAC learnability.-/
+/-- Deterministic PAC learnability implies randomized PAC learnability.
+@isnad1 id=isrpacle.1h4v.s5.f684971690ce from=translated src=- shape=e678bead vocab=b20c8c72
+-/
 theorem IsPACLearnable.toIsRPACLearnable {C : ConceptClass α β}
     {𝒟 : Set (Measure (α × β))} (h : IsPACLearnable C 𝒟) :
     IsRPACLearnable C 𝒟 := by
@@ -305,18 +321,24 @@ theorem IsPACLearnable.toIsRPACLearnable {C : ConceptClass α β}
   exact ⟨m, hm.toIsRPACLearnerFor⟩
 
 /-- PAC learnability is antitone in the distribution family: a subfamily of a learnable
-family is learnable.-/
+family is learnable.
+@isnad1 id=ispaclea.2h5v.s6.c0318649892d from=translated src=- shape=96fc6c47 vocab=b96939ae
+-/
 theorem IsPACLearnable.antitone_family {C : ConceptClass α β} {𝒟 𝒟' : Set (Measure (α × β))}
     (h𝒟 : 𝒟 ⊆ 𝒟') (h : IsPACLearnable C 𝒟') : IsPACLearnable C 𝒟 :=
   fun ε δ => (h ε δ).imp fun _ hm => hm.antitone_family h𝒟
 
 /-- PAC learnability is antitone in the concept class: a subclass of a learnable class is
-learnable.-/
+learnable.
+@isnad1 id=ispaclea.2h5v.s5.e6e831287218 from=translated src=- shape=02c26d25 vocab=b96939ae
+-/
 theorem IsPACLearnable.antitone_C {C C' : ConceptClass α β} (hC : C ⊆ C')
     {𝒟 : Set (Measure (α × β))} (h : IsPACLearnable C' 𝒟) : IsPACLearnable C 𝒟 :=
   fun ε δ => (h ε δ).imp fun _ hm => hm.antitone_C hC
 
-/-- Randomized PAC learnability is antitone in the distribution family.-/
+/-- Randomized PAC learnability is antitone in the distribution family.
+@isnad1 id=isrpacle.2h5v.s6.68a8f25537f8 from=translated src=- shape=96fc6c47 vocab=73fc1c25
+-/
 theorem IsRPACLearnable.antitone_family {C : ConceptClass α β}
     {𝒟 𝒟' : Set (Measure (α × β))} (h𝒟 : 𝒟 ⊆ 𝒟')
     (h : IsRPACLearnable C 𝒟') : IsRPACLearnable C 𝒟 :=
@@ -362,7 +384,9 @@ at the end of this section discharge that witness from a learnability hypothesis
 
 /-- General pointwise monotonicity of `sampleComplexity`: if every witness sample size for
 `(L₁, ε₁, δ₁, C₁, 𝒟₁)` is also a witness for `(L₂, ε₂, δ₂, C₂, 𝒟₂)`, then the latter's
-sample complexity is at most the former's (provided the former is attained).-/
+sample complexity is at most the former's (provided the former is attained).
+@isnad1 id=le.1h13v.s7.c28d8ece4053 from=translated src=- shape=dae57877 vocab=70437d70
+-/
 theorem sampleComplexity_le_of_forall {L₁ L₂ : LearnerModel α β}
     {ε₁ δ₁ ε₂ δ₂ : Set.Ioo (0 : ℝ≥0) 1} {C₁ C₂ : ConceptClass α β}
     {𝒟₁ 𝒟₂ : Set (Measure (α × β))}
@@ -372,7 +396,9 @@ theorem sampleComplexity_le_of_forall {L₁ L₂ : LearnerModel α β}
   Nat.sInf_le (hL (Nat.sInf_mem h))
 
 /-- Deterministic sample complexity is antitone in the confidence parameter `δ`: weaker
-confidence requires no more samples.-/
+confidence requires no more samples.
+@isnad1 id=le.2h7v.s7.ab7c826b945b from=translated src=- shape=64503d24 vocab=402efc6c
+-/
 theorem sampleComplexity_antitone_δ {ε δ₁ δ₂ : Set.Ioo (0 : ℝ≥0) 1} (hδ : δ₁.val ≤ δ₂.val)
     {C : ConceptClass α β} {𝒟 : Set (Measure (α × β))}
     (h : ∃ m, IsPACLearnerFor m ε δ₁ C 𝒟) :
@@ -380,7 +406,9 @@ theorem sampleComplexity_antitone_δ {ε δ₁ δ₂ : Set.Ioo (0 : ℝ≥0) 1} 
   sampleComplexity_le_of_forall (fun h' => h'.mono_δ hδ) h
 
 /-- Deterministic sample complexity is antitone in the accuracy parameter `ε`: weaker
-accuracy requires no more samples.-/
+accuracy requires no more samples.
+@isnad1 id=le.2h7v.s7.37dbb9371936 from=translated src=- shape=f7082d65 vocab=402efc6c
+-/
 theorem sampleComplexity_antitone_ε {ε₁ ε₂ δ : Set.Ioo (0 : ℝ≥0) 1} (hε : ε₁.val ≤ ε₂.val)
     {C : ConceptClass α β} {𝒟 : Set (Measure (α × β))}
     (h : ∃ m, IsPACLearnerFor m ε₁ δ C 𝒟) :
@@ -388,7 +416,9 @@ theorem sampleComplexity_antitone_ε {ε₁ ε₂ δ : Set.Ioo (0 : ℝ≥0) 1} 
   sampleComplexity_le_of_forall (fun h' => h'.mono_ε hε) h
 
 /-- Deterministic sample complexity is monotone in the distribution family under `⊆`: a
-smaller family (fewer distributions to cover) requires no more samples.-/
+smaller family (fewer distributions to cover) requires no more samples.
+@isnad1 id=le.2h7v.s7.56f5d3397bcf from=translated src=- shape=40bc8d9c vocab=efbf8f06
+-/
 theorem sampleComplexity_mono_family {ε δ : Set.Ioo (0 : ℝ≥0) 1}
     {C : ConceptClass α β} {𝒟 𝒟' : Set (Measure (α × β))} (h𝒟 : 𝒟 ⊆ 𝒟')
     (h : ∃ m, IsPACLearnerFor m ε δ C 𝒟') :
@@ -396,21 +426,27 @@ theorem sampleComplexity_mono_family {ε δ : Set.Ioo (0 : ℝ≥0) 1}
   sampleComplexity_le_of_forall (fun h' => h'.antitone_family h𝒟) h
 
 /-- Deterministic sample complexity is monotone in the concept class under `⊆`: a smaller
-class (weaker agnostic benchmark) requires no more samples.-/
+class (weaker agnostic benchmark) requires no more samples.
+@isnad1 id=le.2h7v.s6.a1921563f88d from=translated src=- shape=d3521f00 vocab=efbf8f06
+-/
 theorem sampleComplexity_mono_C {ε δ : Set.Ioo (0 : ℝ≥0) 1}
     {C C' : ConceptClass α β} (hC : C ⊆ C') {𝒟 : Set (Measure (α × β))}
     (h : ∃ m, IsPACLearnerFor m ε δ C' 𝒟) :
     sampleComplexity IsPACLearnerFor C ε δ 𝒟 ≤ sampleComplexity IsPACLearnerFor C' ε δ 𝒟 :=
   sampleComplexity_le_of_forall (fun h' => h'.antitone_C hC) h
 
-/-- Randomized sample complexity is antitone in the confidence parameter `δ`.-/
+/-- Randomized sample complexity is antitone in the confidence parameter `δ`.
+@isnad1 id=le.2h7v.s7.4be36a243748 from=translated src=- shape=5f9bcb89 vocab=5465ed1a
+-/
 theorem rsampleComplexity_antitone_δ {ε δ₁ δ₂ : Set.Ioo (0 : ℝ≥0) 1}
     (hδ : δ₁.val ≤ δ₂.val) {C : ConceptClass α β} {𝒟 : Set (Measure (α × β))}
     (h : ∃ m, IsRPACLearnerFor.{_, _, 0} m ε δ₁ C 𝒟) :
     rsampleComplexity C ε δ₂ 𝒟 ≤ rsampleComplexity C ε δ₁ 𝒟 :=
   sampleComplexity_le_of_forall (fun h' => h'.mono_δ hδ) h
 
-/-- Randomized sample complexity is monotone in the distribution family under `⊆`.-/
+/-- Randomized sample complexity is monotone in the distribution family under `⊆`.
+@isnad1 id=le.2h7v.s7.79abb2767ae4 from=translated src=- shape=848ee83d vocab=68fb4d0c
+-/
 theorem rsampleComplexity_mono_family {ε δ : Set.Ioo (0 : ℝ≥0) 1}
     {C : ConceptClass α β} {𝒟 𝒟' : Set (Measure (α × β))} (h𝒟 : 𝒟 ⊆ 𝒟')
     (h : ∃ m, IsRPACLearnerFor.{_, _, 0} m ε δ C 𝒟') :
@@ -424,14 +460,18 @@ Bodies go through `sampleComplexity_le_of_forall` directly rather than the top-l
 these theorems' `IsPACLearnable.*` / `IsRPACLearnable.*` namespaces. -/
 
 /-- `sampleComplexity_antitone_δ` for a learnable class: the nonemptiness hypothesis comes
-for free from `IsPACLearnable`.-/
+for free from `IsPACLearnable`.
+@isnad1 id=le.2h7v.s7.8babddd2ac00 from=translated src=- shape=f022951f vocab=2e37af01
+-/
 theorem IsPACLearnable.sampleComplexity_antitone_δ
     {C : ConceptClass α β} {𝒟 : Set (Measure (α × β))} (hL : IsPACLearnable C 𝒟)
     {ε δ₁ δ₂ : Set.Ioo (0 : ℝ≥0) 1} (hδ : δ₁.val ≤ δ₂.val) :
     sampleComplexity IsPACLearnerFor C ε δ₂ 𝒟 ≤ sampleComplexity IsPACLearnerFor C ε δ₁ 𝒟 :=
   sampleComplexity_le_of_forall (fun h' => h'.mono_δ hδ) (hL ε δ₁)
 
-/-- `sampleComplexity_antitone_ε` for a learnable class.-/
+/-- `sampleComplexity_antitone_ε` for a learnable class.
+@isnad1 id=le.2h7v.s7.4e7420dd4e65 from=translated src=- shape=68464d9c vocab=2e37af01
+-/
 theorem IsPACLearnable.sampleComplexity_antitone_ε
     {C : ConceptClass α β} {𝒟 : Set (Measure (α × β))} (hL : IsPACLearnable C 𝒟)
     {ε₁ ε₂ δ : Set.Ioo (0 : ℝ≥0) 1} (hε : ε₁.val ≤ ε₂.val) :
@@ -439,7 +479,9 @@ theorem IsPACLearnable.sampleComplexity_antitone_ε
   sampleComplexity_le_of_forall (fun h' => h'.mono_ε hε) (hL ε₁ δ)
 
 /-- `sampleComplexity_mono_family` for a learnable class (learnability at the *larger*
-family `𝒟'` is the hypothesis).-/
+family `𝒟'` is the hypothesis).
+@isnad1 id=le.2h7v.s7.93881a6ef567 from=translated src=- shape=72cdfd5a vocab=a57a8b5d
+-/
 theorem IsPACLearnable.sampleComplexity_mono_family
     {C : ConceptClass α β} {𝒟 𝒟' : Set (Measure (α × β))}
     (hL : IsPACLearnable C 𝒟') (h𝒟 : 𝒟 ⊆ 𝒟') {ε δ : Set.Ioo (0 : ℝ≥0) 1} :
@@ -447,21 +489,27 @@ theorem IsPACLearnable.sampleComplexity_mono_family
   sampleComplexity_le_of_forall (fun h' => h'.antitone_family h𝒟) (hL ε δ)
 
 /-- `sampleComplexity_mono_C` for a learnable class (learnability at the *larger* class
-`C'` is the hypothesis).-/
+`C'` is the hypothesis).
+@isnad1 id=le.2h7v.s6.a0c0dd78f4c9 from=translated src=- shape=c4293707 vocab=a57a8b5d
+-/
 theorem IsPACLearnable.sampleComplexity_mono_C
     {C C' : ConceptClass α β} {𝒟 : Set (Measure (α × β))}
     (hL : IsPACLearnable C' 𝒟) (hC : C ⊆ C') {ε δ : Set.Ioo (0 : ℝ≥0) 1} :
     sampleComplexity IsPACLearnerFor C ε δ 𝒟 ≤ sampleComplexity IsPACLearnerFor C' ε δ 𝒟 :=
   sampleComplexity_le_of_forall (fun h' => h'.antitone_C hC) (hL ε δ)
 
-/-- `rsampleComplexity_antitone_δ` for a randomized-learnable class.-/
+/-- `rsampleComplexity_antitone_δ` for a randomized-learnable class.
+@isnad1 id=le.2h7v.s7.fff331099e2b from=translated src=- shape=94b1ceba vocab=e223e9d9
+-/
 theorem IsRPACLearnable.rsampleComplexity_antitone_δ
     {C : ConceptClass α β} {𝒟 : Set (Measure (α × β))} (hL : IsRPACLearnable C 𝒟)
     {ε δ₁ δ₂ : Set.Ioo (0 : ℝ≥0) 1} (hδ : δ₁.val ≤ δ₂.val) :
     rsampleComplexity C ε δ₂ 𝒟 ≤ rsampleComplexity C ε δ₁ 𝒟 :=
   sampleComplexity_le_of_forall (fun h' => h'.mono_δ hδ) (hL ε δ₁)
 
-/-- `rsampleComplexity_mono_family` for a randomized-learnable class.-/
+/-- `rsampleComplexity_mono_family` for a randomized-learnable class.
+@isnad1 id=le.2h7v.s7.5889fd6ff8dd from=translated src=- shape=3cc73e2b vocab=0d1ef67e
+-/
 theorem IsRPACLearnable.rsampleComplexity_mono_family
     {C : ConceptClass α β} {𝒟 𝒟' : Set (Measure (α × β))}
     (hL : IsRPACLearnable C 𝒟') (h𝒟 : 𝒟 ⊆ 𝒟') {ε δ : Set.Ioo (0 : ℝ≥0) 1} :
@@ -497,7 +545,9 @@ noncomputable def falseNegativeError (P : Measure α) (h c : Set α) : ℝ≥0�
   P (c \ h)
 
 /-- The total hypothesis error decomposes as the sum of false positive and false negative
-errors, since `h ∆ c = (h \ c) ∪ (c \ h)` is a disjoint union.-/
+errors, since `h ∆ c = (h \ c) ∪ (c \ h)` is a disjoint union.
+@isnad1 id=eq.2h4v.s5.d7ab54dcee50 from=translated src=- shape=5144212d vocab=a1ba0a7a
+-/
 theorem hypothesisError_eq_add {P : Measure α} {h c : Set α}
     (hh : MeasurableSet h) (hc : MeasurableSet c) :
     hypothesisError P h c = falsePositiveError P h c + falseNegativeError P h c := by
@@ -507,7 +557,9 @@ theorem hypothesisError_eq_add {P : Measure α} {h c : Set α}
 open Classical in
 /-- Under a realizable distribution `P.map (x ↦ (x, c(x)))`, the general 0-1 `error`
 coincides with the binary `hypothesisError P h c`, where `h` and `c` are viewed as subsets
-of `α` via the characteristic function `decide (· ∈ ·)`.-/
+of `α` via the characteristic function `decide (· ∈ ·)`.
+@isnad1 id=eq.2h4v.s6.3e70c23d6432 from=translated src=- shape=d082cbde vocab=e286e875
+-/
 theorem error_map_eq_hypothesisError (P : Measure α) (h c : Set α)
     (hh : MeasurableSet h) (hc : MeasurableSet c) :
     error (P.map (fun x => (x, decide (x ∈ c)))) (fun x => decide (x ∈ h)) =

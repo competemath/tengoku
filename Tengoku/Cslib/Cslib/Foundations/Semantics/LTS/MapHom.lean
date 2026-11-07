@@ -35,12 +35,17 @@ def mapHom (lts : LTS State Label₁) (f : Hom Label₂ Label₁) : LTS State La
 
 variable {s s' : State} {f : Hom Label₂ Label₁}
 
+/--
+@isnad1 id=iff.0h8v.s5.57fc16e35d2d from=translated src=- shape=f10f2756 vocab=e83f1bdd
+-/
 @[simp]
 theorem mapHom_tr {lts : LTS State Label₁} {μ : Label₂} :
     (lts.mapHom f).Tr s μ s' ↔ lts.MTr s (f [μ]) s' := by rfl
 
 /-- This theorem says basically that `lts.mapHom f` is well-defined because `f` is
-a language homomorphism.-/
+a language homomorphism.
+@isnad1 id=iff.0h8v.s5.13cdfc86eefc from=translated src=- shape=3fa1b657 vocab=532fd0bb
+-/
 @[simp, scoped grind =]
 theorem mapHom_mTr {lts : LTS State Label₁} {μs : List Label₂} :
     (lts.mapHom f).MTr s μs s' ↔ lts.MTr s (f μs) s' := by
@@ -59,6 +64,9 @@ single labels to single labels.-/
 def mapLabel (lts : LTS State Label₁) (f : Label₂ → Label₁) : LTS State Label₂ :=
   lts.mapHom (Hom.lift ([f ·]))
 
+/--
+@isnad1 id=iff.0h8v.s5.c320ee600156 from=translated src=- shape=0fda6e57 vocab=4bb2f2d8
+-/
 @[simp]
 theorem mapLabel_tr {lts : LTS State Label₁} :
     (lts.mapLabel f).Tr s μ s' ↔ lts.Tr s (f μ) s' := by
@@ -66,6 +74,9 @@ theorem mapLabel_tr {lts : LTS State Label₁} :
 
 scoped grind_pattern mapLabel_tr => (lts.mapLabel f).Tr s μ s'
 
+/--
+@isnad1 id=iff.0h8v.s5.594f1da36ff3 from=translated src=- shape=433bbf95 vocab=a632c954
+-/
 @[simp, scoped grind =]
 theorem mapLabel_mTr {lts : LTS State Label₁} {f : Label₂ → Label₁} :
     (lts.mapLabel f).MTr s μs s' ↔ lts.MTr s (μs.map f) s' := by

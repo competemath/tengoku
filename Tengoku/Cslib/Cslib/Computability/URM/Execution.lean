@@ -85,17 +85,23 @@ namespace Step
 
 variable {p : Program}
 
-/-- The step relation is deterministic: each state has at most one successor.-/
+/-- The step relation is deterministic: each state has at most one successor.
+@isnad1 id=rightuni.0h1v.s2.34af95cd67d2 from=translated src=- shape=8735051e vocab=1f0df425
+-/
 theorem deterministic : Relator.RightUnique (Step p) := by grind only [Relator.RightUnique]
 
-/-- A halted state has no successor in the step relation.-/
+/-- A halted state has no successor in the step relation.
+@isnad1 id=not.1h3v.s3.35998631ed38 from=translated src=- shape=f870a09a vocab=bfc13c4e
+-/
 theorem no_step_of_halted {s s' : State} (hhalted : s.isHalted p) : ¬Step p s s' := by
   grind [State.isHalted]
 
 /-- A single step preserves registers not written to by the current instruction.
 
 This is a fundamental property of URM execution: each instruction modifies at most
-one register (Z, S, T write to one register; J writes to none).-/
+one register (Z, S, T write to one register; J writes to none).
+@isnad1 id=eq.2h4v.s5.a732f004532b from=translated src=- shape=faa342a7 vocab=b66878f2
+-/
 theorem preserves_register {s s' : State} {r : ℕ}
     (hstep : Step p s s')
     (hr : ∀ instr, p[s.pc]? = some instr → instr.writesTo ≠ some r) :
@@ -111,7 +117,9 @@ end Step
 
 /-! ### Step Properties -/
 
-/-- A state is halted iff it is normal (has no successor) in the reduction system.-/
+/-- A state is halted iff it is normal (has no successor) in the reduction system.
+@isnad1 id=iff.0h2v.s3.960fe0647830 from=translated src=- shape=d8c2c5a0 vocab=e1526b74
+-/
 theorem isHalted_iff_normal {p : Program} {s : State} :
     s.isHalted p ↔ Relation.Normal (Step p) s := by
   constructor
@@ -133,7 +141,9 @@ theorem isHalted_iff_normal {p : Program} {s : State} :
       · exact hnormal ⟨_, Step.jump_eq (hp ▸ hinstr) heq⟩
       · exact hnormal ⟨_, Step.jump_ne (hp ▸ hinstr) heq⟩
 
-/-- The step relation is confluent.-/
+/-- The step relation is confluent.
+@isnad1 id=confluen.0h1v.s2.55094460d599 from=translated src=- shape=1a6c1393 vocab=2005a1cd
+-/
 theorem step_confluent (p : Program) : Relation.Confluent (Step p) := by
   apply Relation.RightUnique.to_confluent
   exact Step.deterministic
@@ -142,7 +152,9 @@ namespace Steps
 
 variable {p : Program}
 
-/-- Multi-step execution preserves registers not written by any executed instruction.-/
+/-- Multi-step execution preserves registers not written by any executed instruction.
+@isnad1 id=eq.2h4v.s5.abffa9d531ea from=translated src=- shape=c569079d vocab=b1fca554
+-/
 theorem preserves_register {s s' : State} {r : ℕ}
     (hsteps : Steps p s s')
     (hr : ∀ instr, instr ∈ p → instr.writesTo ≠ some r) :
@@ -174,7 +186,9 @@ see `halts_iff_normalizable`.-/
 def Halts (inputs : List ℕ) : Prop :=
   ∃ s, Steps p (State.init inputs) s ∧ s.isHalted p
 
-/-- Halting is equivalent to normalizability in the reduction system.-/
+/-- Halting is equivalent to normalizability in the reduction system.
+@isnad1 id=iff.0h2v.s3.9c1099e16ae7 from=translated src=- shape=2117ca97 vocab=07cfdd31
+-/
 theorem halts_iff_normalizable {p : Program} {inputs : List ℕ} :
     Halts p inputs ↔ Relation.Normalizable (Step p) (State.init inputs) := by
   grind [Halts, isHalted_iff_normal]
@@ -198,7 +212,9 @@ namespace HaltsWithResult
 
 variable {p : Program}
 
-/-- If a program halts with a result, it halts.-/
+/-- If a program halts with a result, it halts.
+@isnad1 id=halts.1h3v.s3.96e3f1a671f7 from=translated src=- shape=f318758f vocab=04749578
+-/
 theorem toHalts {inputs : List ℕ} {result : ℕ}
     (h : p ↓ inputs ≫ result) : p ↓ inputs :=
   let ⟨s, hsteps, hhalted, _⟩ := h
@@ -210,7 +226,9 @@ end HaltsWithResult
 noncomputable def evalState (inputs : List ℕ) : Part State :=
   ⟨Halts p inputs, fun h => Classical.choose h⟩
 
-/-- Specification: the state from evalState satisfies Steps and isHalted.-/
+/-- Specification: the state from evalState satisfies Steps and isHalted.
+@isnad1 id=other.1h2v.s4.7aae3991ceb0 from=translated src=- shape=15537980 vocab=5e5e15f1
+-/
 theorem evalState_spec {inputs : List ℕ} (h : (evalState p inputs).Dom) :
     let s := (evalState p inputs).get h
     Steps p (State.init inputs) s ∧ s.isHalted p :=
@@ -220,7 +238,9 @@ namespace Halts
 
 variable {p : Program}
 
-/-- If a program halts, it halts with the output of the final state.-/
+/-- If a program halts, it halts with the output of the final state.
+@isnad1 id=haltswit.1h2v.s4.74a17283803a from=translated src=- shape=a426b005 vocab=66d39a9b
+-/
 theorem toHaltsWithResult {inputs : List ℕ} (h : p ↓ inputs) :
     p ↓ inputs ≫ ((evalState p inputs).get h).regs.output :=
   let s := (evalState p inputs).get h
@@ -234,7 +254,9 @@ Defined when the program halts, returning the value in register 0.-/
 noncomputable def eval (inputs : List ℕ) : Part ℕ :=
   (evalState p inputs).map (·.regs.output)
 
-/-- A program halts with result `a` iff evaluation returns `Part.some a`.-/
+/-- A program halts with result `a` iff evaluation returns `Part.some a`.
+@isnad1 id=iff.0h3v.s4.215436aae61d from=translated src=- shape=44f6048e vocab=0b2acc6f
+-/
 theorem haltsWithResult_iff_eval {inputs : List ℕ} {result : ℕ} :
     p ↓ inputs ≫ result ↔ eval p inputs = Part.some result := by
   rw [Part.eq_some_iff, eval, Part.mem_map_iff]
@@ -254,7 +276,9 @@ theorem haltsWithResult_iff_eval {inputs : List ℕ} {result : ℕ} :
 def ProgramEquiv (p q : Program) : Prop :=
   ∀ inputs : List ℕ, eval p inputs = eval q inputs
 
-/-- Program equivalence is an equivalence relation.-/
+/-- Program equivalence is an equivalence relation.
+@isnad1 id=equivale.0h0v.s1.b19bd0ee277b from=translated src=- shape=25b03439 vocab=7cfb9b22
+-/
 theorem ProgramEquiv.equivalence : Equivalence ProgramEquiv where
   refl := fun _ _ => rfl
   symm := fun h inputs => (h inputs).symm

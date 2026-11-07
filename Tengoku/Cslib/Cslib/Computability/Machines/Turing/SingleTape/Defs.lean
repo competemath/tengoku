@@ -39,6 +39,9 @@ def TrLabel.applyToTape [DecidableEq Symbol]
   | skip, some tape => some tape
   | _, _ => none
 
+/--
+@isnad1 id=eq.1h3v.s4.7aac765bf084 from=translated src=- shape=428ff2b7 vocab=7bba5fbc
+-/
 @[scoped grind →]
 theorem TrLabel.applyToTape_isSome [DecidableEq Symbol] {μ : TrLabel Symbol}
     {ot : Option (Turing.BiTape Symbol)} (h : (μ.applyToTape ot).isSome) : ot.isSome := by
@@ -46,6 +49,9 @@ theorem TrLabel.applyToTape_isSome [DecidableEq Symbol] {μ : TrLabel Symbol}
   simp only [applyToTape] at ht'
   grind [applyToTape]
 
+/--
+@isnad1 id=eq.1h3v.s5.df2a587fb2a7 from=translated src=- shape=746e66f1 vocab=ba541f8e
+-/
 @[scoped grind →]
 theorem TrLabel.applyToTape_foldl_isSome [DecidableEq Symbol] {μs : List (TrLabel Symbol)}
     {ot : Option (Turing.BiTape Symbol)} (h : (μs.foldl applyToTape ot).isSome) : ot.isSome := by

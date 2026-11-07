@@ -49,7 +49,9 @@ variable {α : Type*} {β : Type*}
 
 /-- *The version-space meet law.* The version space of an appended sample is the
 intersection of the version spaces of the two parts: constraints accumulate by
-intersection.-/
+intersection.
+@isnad1 id=eq.0h7v.s6.d173d359a953 from=translated src=- shape=cc2a744e vocab=fd950adc
+-/
 theorem versionSpace_append {m n : ℕ} (C : ConceptClass α β)
     (S : LabeledSample α β m) (T : LabeledSample α β n) :
     VersionSpace C (Fin.append S T) = VersionSpace C S ∩ VersionSpace C T := by
@@ -74,17 +76,23 @@ size.-/
 def VersionSpaces (C : ConceptClass α β) : Set (ConceptClass α β) :=
   {V | ∃ (m : ℕ) (S : LabeledSample α β m), V = VersionSpace C S}
 
-/-- Membership in the version-space family unfolds to a witnessing sample.-/
+/-- Membership in the version-space family unfolds to a witnessing sample.
+@isnad1 id=iff.0h4v.s5.457438c3952e from=translated src=- shape=ed2fb3a7 vocab=147bc995
+-/
 theorem mem_versionSpaces_iff {C V : ConceptClass α β} :
     V ∈ VersionSpaces C ↔ ∃ (m : ℕ) (S : LabeledSample α β m), V = VersionSpace C S :=
   Iff.rfl
 
-/-- The whole class is a version space (of the empty sample) which means the family has top `C`.-/
+/-- The whole class is a version space (of the empty sample) which means the family has top `C`.
+@isnad1 id=mem.0h3v.s4.85b3215958fb from=translated src=- shape=d706ffae vocab=394d7269
+-/
 theorem self_mem_versionSpaces (C : ConceptClass α β) : C ∈ VersionSpaces C :=
   ⟨0, Fin.elim0, (versionSpace_empty_sample C Fin.elim0).symm⟩
 
 /-- The version-space family is closed under intersection (append the witnessing
-samples).-/
+samples).
+@isnad1 id=mem.2h5v.s6.91d612a6a6d9 from=translated src=- shape=048c354f vocab=fbfab384
+-/
 theorem inter_mem_versionSpaces {C U V : ConceptClass α β}
     (hU : U ∈ VersionSpaces C) (hV : V ∈ VersionSpaces C) :
     U ∩ V ∈ VersionSpaces C := by
@@ -93,19 +101,25 @@ theorem inter_mem_versionSpaces {C U V : ConceptClass α β}
   exact ⟨m + n, Fin.append S T, (versionSpace_append C S T).symm⟩
 
 /-- Every version space is a subset of the class: the family lives in the powerset
-of `C`.-/
+of `C`.
+@isnad1 id=le.0h3v.s4.5142be716ed5 from=translated src=- shape=fff64808 vocab=e16b99ca
+-/
 theorem versionSpaces_subset_powerset (C : ConceptClass α β) :
     VersionSpaces C ⊆ 𝒫 C := by
   rintro V ⟨m, S, rfl⟩
   exact versionSpace_subset C S
 
-/-- A finite concept class has finitely many version spaces.-/
+/-- A finite concept class has finitely many version spaces.
+@isnad1 id=finite.1h3v.s4.455320e7035a from=translated src=- shape=7d821472 vocab=afd0f2b4
+-/
 theorem versionSpaces_finite {C : ConceptClass α β} (hC : C.Finite) :
     (VersionSpaces C).Finite :=
   hC.finite_subsets.subset (versionSpaces_subset_powerset C)
 
 /-- A finite concept class has at most `2 ^ C.ncard` version spaces: the lattice embeds
-in the powerset.-/
+in the powerset.
+@isnad1 id=le.1h3v.s5.7263d19e234f from=translated src=- shape=b2348bb7 vocab=554cf3c2
+-/
 theorem versionSpaces_ncard_le {C : ConceptClass α β} (hC : C.Finite) :
     (VersionSpaces C).ncard ≤ 2 ^ C.ncard :=
   (ncard_le_ncard (versionSpaces_subset_powerset C) hC.finite_subsets).trans_eq

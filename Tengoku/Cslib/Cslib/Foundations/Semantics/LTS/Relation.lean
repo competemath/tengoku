@@ -39,7 +39,9 @@ section UnlabelledPaths
 variable (lts : LTS State Label)
 
 /-- A multistep transition induces a reflexive-transitive path in the underlying unlabelled
-transition relation.-/
+transition relation.
+@isnad1 id=refltran.1h6v.s4.825f62488a31 from=translated src=- shape=13008971 vocab=f8036922
+-/
 theorem MTr.toReflTransGen (h : lts.MTr s1 μs s2) :
     Relation.ReflTransGen lts.UnlabelledTr s1 s2 := by
   induction h with
@@ -47,7 +49,9 @@ theorem MTr.toReflTransGen (h : lts.MTr s1 μs s2) :
   | stepL htr _ ih => exact ih.head ⟨_, htr⟩
 
 /-- A nonempty multistep transition induces a nonempty path in the underlying unlabelled
-transition relation.-/
+transition relation.
+@isnad1 id=transgen.2h6v.s5.53421ae96151 from=translated src=- shape=e8fd77c6 vocab=0967eda5
+-/
 theorem MTr.toTransGen (h : lts.MTr s1 μs s2) (hne : μs ≠ []) :
     Relation.TransGen lts.UnlabelledTr s1 s2 := by
   cases h with
@@ -55,7 +59,9 @@ theorem MTr.toTransGen (h : lts.MTr s1 μs s2) (hne : μs ≠ []) :
   | stepL htr hmtr => exact Relation.TransGen.head' ⟨_, htr⟩ (hmtr.toReflTransGen lts)
 
 /-- The reflexive-transitive closure of the underlying unlabelled transition relation is exactly
-reachability in the LTS.-/
+reachability in the LTS.
+@isnad1 id=iff.0h5v.s4.111f03acb904 from=translated src=- shape=8f60a14c vocab=a7615fbf
+-/
 theorem reflTransGen_unlabelledTr_iff :
     Relation.ReflTransGen lts.UnlabelledTr s1 s2 ↔ lts.CanReach s1 s2 := by
   constructor
@@ -70,7 +76,9 @@ theorem reflTransGen_unlabelledTr_iff :
     exact hmtr.toReflTransGen lts
 
 /-- The transitive closure of the underlying unlabelled transition relation is exactly the
-nonempty multistep transitions of the LTS.-/
+nonempty multistep transitions of the LTS.
+@isnad1 id=iff.0h5v.s5.25bd58a844ec from=translated src=- shape=b5aaeb8a vocab=0967eda5
+-/
 theorem transGen_unlabelledTr_iff :
     Relation.TransGen lts.UnlabelledTr s1 s2 ↔
       ∃ μs, μs ≠ [] ∧ lts.MTr s1 μs s2 := by

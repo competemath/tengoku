@@ -27,13 +27,17 @@ def toLTS (flts : FLTS State Label) : LTS State Label where
 instance : Coe (FLTS State Label) (LTS State Label) where
   coe := toLTS
 
-/-- `FLTS.toLTS` correctly characterises transitions.-/
+/-- `FLTS.toLTS` correctly characterises transitions.
+@isnad1 id=iff.0h6v.s5.8ad24cc7fd57 from=translated src=- shape=2e1f3445 vocab=ccc7ca8d
+-/
 @[scoped grind =]
 theorem toLTS_tr {flts : FLTS State Label} {s1 : State} {μ : Label} {s2 : State} :
   flts.toLTS.Tr s1 μ s2 ↔ flts.tr s1 μ = s2 := by rfl
 
 open LTS LTS.MTr in
-/-- Characterisation of multistep transitions.-/
+/-- Characterisation of multistep transitions.
+@isnad1 id=iff.0h6v.s5.77f018a95414 from=translated src=- shape=2d178f78 vocab=a3043853
+-/
 @[scoped grind =]
 theorem toLTS_mtr {flts : FLTS State Label} {s1 : State} {μs : List Label} {s2 : State} :
     flts.toLTS.MTr s1 μs s2 ↔ flts.mtr s1 μs = s2 := by

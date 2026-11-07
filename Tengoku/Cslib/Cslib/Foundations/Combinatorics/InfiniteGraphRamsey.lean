@@ -27,7 +27,9 @@ namespace Cslib
 
 open Function Set
 
-/-- An infinite pigeonhole principle.-/
+/-- An infinite pigeonhole principle.
+@isnad1 id=ex.1h4v.s5.38ca26cf68b2 from=translated src=- shape=36c59b16 vocab=51732db1
+-/
 theorem infinite_pigeonhole_principle {X Y : Type*} [Finite Y] (f : X → Y) {s : Set X}
     (h_inf : s.Infinite) : ∃ y, ∃ t, t.Infinite ∧ t ⊆ s ∧ ∀ x ∈ t, f x = y := by
   have := h_inf.to_subtype
@@ -121,7 +123,9 @@ private lemma good_selections_exist :
 
 /-- If the edges of an infinite complete graph is assigned a finite number of colors,
 then there must exist a color `c` and an infinite set `s` of vertices such that the edge
-between any two vertices of `s` is assigned the same color `c`.-/
+between any two vertices of `s` is assigned the same color `c`.
+@isnad1 id=ex.0h3v.s5.4f77f9c88c0f from=translated src=- shape=6c35e5d4 vocab=7550e896
+-/
 theorem infinite_graph_ramsey :
     ∃ c : Color, ∃ s : Set Vertex, s.Infinite ∧
       ∀ e : Finset Vertex, e.card = 2 → ↑e ⊆ s → color e = c := by

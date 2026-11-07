@@ -45,13 +45,17 @@ open scoped NNReal
 
 variable {Message Commitment Opening : Type*}
 
-/-- Perfect hiding is exactly statistical hiding with zero error.-/
+/-- Perfect hiding is exactly statistical hiding with zero error.
+@isnad1 id=iff.0h4v.s5.ff08013fffb0 from=translated src=- shape=70454b99 vocab=52634f95
+-/
 theorem perfectlyHiding_iff_statisticallyHiding_zero
     [Fintype Commitment] (scheme : Scheme Message Commitment Opening) :
     scheme.PerfectlyHiding ↔ scheme.StatisticallyHiding 0 := by
   simp [PerfectlyHiding, StatisticallyHiding]
 
-/-- Enlarging the permitted error preserves statistical hiding.-/
+/-- Enlarging the permitted error preserves statistical hiding.
+@isnad1 id=monotone.0h4v.s4.8bc4bb40cc38 from=translated src=- shape=91881563 vocab=bb0f19f8
+-/
 theorem StatisticallyHiding.mono [Fintype Commitment]
     {scheme : Scheme Message Commitment Opening} :
     Monotone scheme.StatisticallyHiding :=
@@ -59,7 +63,9 @@ theorem StatisticallyHiding.mono [Fintype Commitment]
     StatisticallyClose.mono hεδ (h message₀ message₁)
 
 /-- Distinct messages of a perfectly binding scheme have disjoint sets of
-possible commitments.-/
+possible commitments.
+@isnad1 id=disjoint.2h6v.s6.56ae590fc36e from=translated src=- shape=0041fc1d vocab=9b8fb2fe
+-/
 theorem PerfectlyBinding.disjoint_support_commitmentDist
     {scheme : Scheme Message Commitment Opening} (hbind : scheme.PerfectlyBinding)
     {message₀ message₁ : Message} (hne : message₀ ≠ message₁) :
@@ -74,7 +80,9 @@ theorem PerfectlyBinding.disjoint_support_commitmentDist
 
 /-- In a perfectly binding scheme, the commitment distributions of distinct
 messages are at the maximum statistical distance: an unbounded observer can
-read the message off the commitment.-/
+read the message off the commitment.
+@isnad1 id=eq.2h6v.s5.3e55cd391da2 from=translated src=- shape=f7dbde7f vocab=2293979e
+-/
 theorem PerfectlyBinding.dist_commitmentDist_eq_one
     [Fintype Commitment] {scheme : Scheme Message Commitment Opening}
     (hbind : scheme.PerfectlyBinding) {message₀ message₁ : Message}
@@ -86,7 +94,9 @@ theorem PerfectlyBinding.dist_commitmentDist_eq_one
 /-- **The hiding–binding trade-off.** A scheme cannot be both statistically
 hiding with error below one and perfectly binding unless any two messages are
 equal. The error bound is sharp: statistical hiding with error one holds
-vacuously for every scheme.-/
+vacuously for every scheme.
+@isnad1 id=subsingl.3h5v.s5.f43542ac648d from=translated src=- shape=e8510f7c vocab=4e7e31cf
+-/
 theorem subsingleton_of_statisticallyHiding_of_perfectlyBinding
     [Fintype Commitment] (scheme : Scheme Message Commitment Opening) {ε : ℝ≥0}
     (hε : ε < 1) (hhide : scheme.StatisticallyHiding ε)
@@ -100,7 +110,9 @@ theorem subsingleton_of_statisticallyHiding_of_perfectlyBinding
 
 /-- A scheme cannot be both perfectly hiding and perfectly binding unless any
 two messages are equal. Unlike the statistical version, this needs no
-finiteness assumption on the commitment type.-/
+finiteness assumption on the commitment type.
+@isnad1 id=subsingl.2h4v.s4.d195515d72e7 from=translated src=- shape=38cc0f1d vocab=89e6ef92
+-/
 theorem subsingleton_of_perfectlyHiding_of_perfectlyBinding
     (scheme : Scheme Message Commitment Opening)
     (hhide : scheme.PerfectlyHiding) (hbind : scheme.PerfectlyBinding) :

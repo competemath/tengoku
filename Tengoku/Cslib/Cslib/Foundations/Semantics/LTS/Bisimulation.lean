@@ -90,28 +90,38 @@ def IsBisimulation (lts₁ : LTS State₁ Label) (lts₂ : LTS State₂ Label)
 
 /-! ## Relation to simulation -/
 
-/-- Any bisimulation is also a simulation.-/
+/-- Any bisimulation is also a simulation.
+@isnad1 id=issimula.1h6v.s5.10fcc73ae7a7 from=translated src=- shape=3095429b vocab=6cc45a09
+-/
 theorem IsBisimulation.isSimulation : IsBisimulation lts₁ lts₂ r → IsSimulation lts₁ lts₂ r := by
   grind [IsBisimulation, IsSimulation]
 
-/-- The inverse of a bisimulation is a simulation.-/
+/-- The inverse of a bisimulation is a simulation.
+@isnad1 id=issimula.1h6v.s5.d46babc7ccaf from=translated src=- shape=02cd4fde vocab=7cd7d26c
+-/
 theorem IsBisimulation.flip_isSimulation :
     IsBisimulation lts₁ lts₂ r → IsSimulation lts₂ lts₁ (flip r) := by
   grind [IsBisimulation, IsSimulation, flip]
 
-/-- A relation is a bisimulation iff both it and its inverse are simulations.-/
+/-- A relation is a bisimulation iff both it and its inverse are simulations.
+@isnad1 id=iff.0h6v.s5.0f181f6df0f9 from=translated src=- shape=5c56b355 vocab=7cd7d26c
+-/
 theorem IsBisimulation.isSimulation_iff :
     IsBisimulation lts₁ lts₂ r ↔ (IsSimulation lts₁ lts₂ r ∧ IsSimulation lts₂ lts₁ (flip r)) := by
   have _ (s₁ s₂) : r s₁ s₂ → flip r s₂ s₁ := id
   grind [IsBisimulation, IsSimulation, flip]
 
-/-- Helper for following a transition by the first state in a pair of a `Bisimulation`.-/
+/-- Helper for following a transition by the first state in a pair of a `Bisimulation`.
+@isnad1 id=ex.2h11v.s6.4f5641eb44f9 from=translated src=- shape=f14f54e2 vocab=a5ac4af8
+-/
 theorem IsBisimulation.follow_fst
     (hb : IsBisimulation lts₁ lts₂ r) (hr : r s₁ s₂) (htr : lts₁.Tr s₁ μ s₁') :
     ∃ s₂', lts₂.Tr s₂ μ s₂' ∧ r s₁' s₂' :=
   IsSimulation.follow hb.isSimulation hr htr
 
-/-- Helper for following a transition by the second state in a pair of a `Bisimulation`.-/
+/-- Helper for following a transition by the second state in a pair of a `Bisimulation`.
+@isnad1 id=ex.2h11v.s6.1ea787356410 from=translated src=- shape=1bf95941 vocab=a5ac4af8
+-/
 theorem IsBisimulation.follow_snd
     (hb : IsBisimulation lts₁ lts₂ r) (hr : r s₁ s₂) (htr : lts₂.Tr s₂ μ s₂') :
     ∃ s₁', lts₁.Tr s₁ μ s₁' ∧ r s₁' s₂' :=
@@ -139,14 +149,18 @@ theorem IsBisimulation.match_deterministic₂
   apply IsSimulation.match_deterministic hb.isSimulation hr hdet htr₁ htr₂
 
 /-- If a state is deterministic for `μ`, then any transition made by a related state in a
-bisimulation is matched by a unique transition (left variant).-/
+bisimulation is matched by a unique transition (left variant).
+@isnad1 id=existsun.3h11v.s6.2ddc915b8570 from=translated src=- shape=b1422a4f vocab=b5c84c84
+-/
 theorem IsBisimulation.follow_fst_deterministic (hb : IsBisimulation lts₁ lts₂ r) (hr : r s₁ s₂)
     (hdet : lts₂.DeterministicStateLabel s₂ μ) (htr : lts₁.Tr s₁ μ s₁') :
     ∃! s₂', lts₂.Tr s₂ μ s₂' ∧ r s₁' s₂' :=
   IsSimulation.follow_deterministic hb.isSimulation hr hdet htr
 
 /-- If a state is deterministic for `μ`, then any transition made by a related state in a
-bisimulation is matched by a unique transition (right variant).-/
+bisimulation is matched by a unique transition (right variant).
+@isnad1 id=existsun.3h11v.s6.5fbbc4ef5700 from=translated src=- shape=34a5b8d7 vocab=b5c84c84
+-/
 theorem IsBisimulation.follow_snd_deterministic
     (hb : IsBisimulation lts₁ lts₂ r)
     (hr : r s₁ s₂)
@@ -175,21 +189,29 @@ abbrev HomBisimilarity (lts : LTS State Label) := Bisimilarity lts lts
 /-- Notation for homogeneous bisimilarity.-/
 scoped notation s:max " ~[" lts "] " s':max => HomBisimilarity lts s s'
 
-/-- Helper for following a transition by the first state in a pair of a `Bisimilarity`.-/
+/-- Helper for following a transition by the first state in a pair of a `Bisimilarity`.
+@isnad1 id=ex.2h9v.s5.433a5ab882e7 from=translated src=- shape=bf092d86 vocab=11aad91f
+-/
 theorem Bisimilarity.follow_fst (hr : s₁ ~[lts₁,lts₂] s₂) (htr : lts₁.Tr s₁ μ s₁') :
     ∃ s₂', lts₂.Tr s₂ μ s₂' ∧ s₁' ~[lts₁,lts₂ ] s₂' := by grind [IsBisimulation]
 
-/-- Helper for following a transition by the first state in a pair of a `Bisimilarity`.-/
+/-- Helper for following a transition by the first state in a pair of a `Bisimilarity`.
+@isnad1 id=ex.2h9v.s5.5dcae5120df4 from=translated src=- shape=978a737f vocab=11aad91f
+-/
 theorem Bisimilarity.follow_snd (hr : s₁ ~[lts₁,lts₂] s₂) (htr : lts₂.Tr s₂ μ s₂') :
     ∃ s₁', lts₁.Tr s₁ μ s₁' ∧ s₁' ~[lts₁,lts₂] s₂' := by grind [IsBisimulation]
 
-/-- Homogeneous bisimilarity is reflexive.-/
+/-- Homogeneous bisimilarity is reflexive.
+@isnad1 id=hombisim.0h4v.s4.6244de1d9e54 from=translated src=- shape=91bf1f87 vocab=97d80450
+-/
 @[scoped grind ., refl]
 theorem HomBisimilarity.refl (s : State) : s ~[lts] s := by
   exists Eq
   grind [IsBisimulation]
 
-/-- States with the same image function are bisimilar.-/
+/-- States with the same image function are bisimilar.
+@isnad1 id=hombisim.1h5v.s5.d755da936381 from=translated src=- shape=7522d43a vocab=2f0ed72f
+-/
 theorem HomBisimilarity.of_image_eq {lts : LTS State Label} {s₁ s₂ : State}
     (h : lts.image s₁ = lts.image s₂) : s₁ ~[lts] s₂ := by
   refine ⟨fun s t => lts.image s = lts.image t, h, ?_⟩
@@ -199,26 +221,34 @@ theorem HomBisimilarity.of_image_eq {lts : LTS State Label} {s₁ s₂ : State}
   exact ⟨fun s' hs' => ⟨s', (htr s').mp hs', rfl⟩,
     fun t' ht' => ⟨t', (htr t').mpr ht', rfl⟩⟩
 
-/-- The inverse of a bisimulation is a bisimulation.-/
+/-- The inverse of a bisimulation is a bisimulation.
+@isnad1 id=isbisimu.1h6v.s5.15d311a44ca1 from=translated src=- shape=ff7a67d8 vocab=4420533a
+-/
 @[scoped grind →]
 theorem IsBisimulation.inv (h : IsBisimulation lts₁ lts₂ r) :
   IsBisimulation lts₂ lts₁ (flip r) := by grind [IsBisimulation, flip]
 
 open scoped IsBisimulation in
-/-- Bisimilarity is symmetric.-/
+/-- Bisimilarity is symmetric.
+@isnad1 id=bisimila.1h7v.s5.eb55aa9dc2fd from=translated src=- shape=f4be1450 vocab=544b5425
+-/
 @[scoped grind →, symm]
 theorem Bisimilarity.symm {State₁ State₂ : Type*}
     {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label} {s₁ : State₁} {s₂ : State₂}
     (h : s₁ ~[lts₁,lts₂] s₂) : s₂ ~[lts₂,lts₁] s₁ := by
   grind [flip]
 
-/-- The composition of two bisimulations is a bisimulation.-/
+/-- The composition of two bisimulations is a bisimulation.
+@isnad1 id=isbisimu.2h9v.s5.1f9bf127daa6 from=translated src=- shape=4f82f3d8 vocab=56f7b9fe
+-/
 @[scoped grind .]
 theorem IsBisimulation.comp
     (h1 : IsBisimulation lts₁ lts₂ r1) (h2 : IsBisimulation lts₂ lts₃ r2) :
   IsBisimulation lts₁ lts₃ (Relation.Comp r1 r2) := by grind [IsBisimulation, Relation.Comp]
 
-/-- Bisimilarity is transitive.-/
+/-- Bisimilarity is transitive.
+@isnad1 id=bisimila.2h10v.s5.c5794546eecf from=translated src=- shape=aa632320 vocab=544b5425
+-/
 @[scoped grind →]
 theorem Bisimilarity.trans
     (h1 : s₁ ~[lts₁,lts₂] s₂) (h2 : s₂ ~[lts₂,lts₃] s₃) :
@@ -228,7 +258,9 @@ theorem Bisimilarity.trans
   exists Relation.Comp r1 r2
   grind [IsBisimulation, Relation.Comp]
 
-/-- Homogeneous bisimilarity is an equivalence relation.-/
+/-- Homogeneous bisimilarity is an equivalence relation.
+@isnad1 id=equivale.0h3v.s3.6dce35a3dd59 from=translated src=- shape=e2817ce2 vocab=6dbff1ec
+-/
 theorem HomBisimilarity.eqv :
   Equivalence (HomBisimilarity lts) := {
     refl := HomBisimilarity.refl
@@ -236,11 +268,15 @@ theorem HomBisimilarity.eqv :
     trans := Bisimilarity.trans
   }
 
-/-- Bisimulation implies simulation equivalence.-/
+/-- Bisimulation implies simulation equivalence.
+@isnad1 id=simulati.1h9v.s5.e84148dc9be5 from=translated src=- shape=20c30422 vocab=afcf7511
+-/
 theorem IsBisimulation.simulationEquiv (h : IsBisimulation lts₁ lts₂ r) (hrel : r s₁ s₂) :
     s₁ ≤≥[lts₁,lts₂] s₂ := ⟨⟨r, hrel, h.isSimulation⟩, flip r, hrel, h.inv.isSimulation⟩
 
-/-- The union of two bisimulations is a bisimulation.-/
+/-- The union of two bisimulations is a bisimulation.
+@isnad1 id=isbisimu.2h7v.s6.202df763dde3 from=translated src=- shape=0cf03f72 vocab=ac123b0f
+-/
 @[scoped grind .]
 theorem IsBisimulation.sup (hrb : IsBisimulation lts₁ lts₂ r) (hsb : IsBisimulation lts₁ lts₂ s) :
     IsBisimulation lts₁ lts₂ (r ⊔ s) := by
@@ -248,19 +284,25 @@ theorem IsBisimulation.sup (hrb : IsBisimulation lts₁ lts₂ r) (hsb : IsBisim
   rw [show flip (r ⊔ s) = flip r ⊔ flip s by ext; rfl]
   exact ⟨hrb.1.sup hsb.1, hrb.2.sup hsb.2⟩
 
-/-- Bisimilarity is a bisimulation.-/
+/-- Bisimilarity is a bisimulation.
+@isnad1 id=isbisimu.0h5v.s4.2671d479bdcd from=translated src=- shape=66e02242 vocab=5d6d9023
+-/
 @[scoped grind .]
 theorem Bisimilarity.isBisimulation (lts₁ : LTS State₁ Label) (lts₂ : LTS State₂ Label) :
   IsBisimulation lts₁ lts₂ (Bisimilarity lts₁ lts₂) := by grind [IsBisimulation]
 
-/-- Bisimilarity is the largest bisimulation.-/
+/-- Bisimilarity is the largest bisimulation.
+@isnad1 id=le.1h6v.s5.84bcf34d44b9 from=translated src=- shape=2ed00859 vocab=7238f987
+-/
 @[scoped grind →]
 theorem IsBisimulation.le_bisimilarity (h : IsBisimulation lts₁ lts₂ r) :
     r ≤ (Bisimilarity lts₁ lts₂) := by
   intro s₁ s₂ hr
   exists r
 
-/-- The union of bisimilarity with any bisimulation is bisimilarity.-/
+/-- The union of bisimilarity with any bisimulation is bisimilarity.
+@isnad1 id=eq.1h6v.s6.3094d4768a61 from=translated src=- shape=e3c18152 vocab=d1bcdef4
+-/
 @[scoped grind =, simp]
 theorem Bisimilarity.gfp (r : State₁ → State₂ → Prop) (h : IsBisimulation lts₁ lts₂ r) :
     (Bisimilarity lts₁ lts₂) ⊔ r = Bisimilarity lts₁ lts₂ := sup_eq_left.mpr h.le_bisimilarity
@@ -276,6 +318,9 @@ section Order
 instance : Max {r // IsBisimulation lts₁ lts₂ r} where
   max r s := ⟨r.1 ⊔ s.1, IsBisimulation.sup r.2 s.2⟩
 
+/--
+@isnad1 id=eq.0h7v.s7.c1cb0a2b996f from=translated src=- shape=cabea3fc vocab=5a2a2e36
+-/
 @[simp] lemma coe_sup (r s : {r // IsBisimulation lts₁ lts₂ r}) :
     (↑(r ⊔ s) : State₁ → State₂ → Prop) = (r : State₁ → State₂ → Prop) ⊔ s := rfl
 
@@ -286,7 +331,9 @@ instance : SemilatticeSup {r // IsBisimulation lts₁ lts₂ r} where
   le_sup_right r s := by simp [←Subtype.coe_le_coe]
   sup_le r s t := by simp [←Subtype.coe_le_coe]; tauto
 
-/-- The empty (heterogeneous) relation is a bisimulation.-/
+/-- The empty (heterogeneous) relation is a bisimulation.
+@isnad1 id=isbisimu.0h5v.s4.d0ccdf050947 from=translated src=- shape=a9ee9373 vocab=0c6a8e08
+-/
 @[scoped grind .]
 theorem IsBisimulation.bot : IsBisimulation lts₁ lts₂ Relation.emptyHRelation := by
   intro s₁ s₂ hr
@@ -332,7 +379,9 @@ def IsBisimulationUpTo (lts₁ : LTS State₁ Label) (lts₂ : LTS State₂ Labe
   )
 
 /-- If `r` is a bisimulation up to bisimilarity, its closure
-`UpToHomBisimilarity lts₁ lts₂ r` is a bisimulation.-/
+`UpToHomBisimilarity lts₁ lts₂ r` is a bisimulation.
+@isnad1 id=isbisimu.1h6v.s5.7b3c458b5452 from=translated src=- shape=72a96bc3 vocab=93920ed4
+-/
 @[scoped grind →]
 theorem IsBisimulationUpTo.isBisimulation (h : IsBisimulationUpTo lts₁ lts₂ r) :
     IsBisimulation lts₁ lts₂ (UpToHomBisimilarity lts₁ lts₂ r) := by
@@ -358,7 +407,9 @@ theorem IsBisimulationUpTo.isBisimulation (h : IsBisimulationUpTo lts₁ lts₂ 
     use smid1, hs₁br.trans hsmidb, smid2, hsmidr
     exact hsmidrb.trans hs₂b'r
 
-/-- A bisimulation up to bisimilarity relates only bisimilar states.-/
+/-- A bisimulation up to bisimilarity relates only bisimilar states.
+@isnad1 id=le.1h6v.s5.2edccfdae87d from=translated src=- shape=2ed00859 vocab=525fe2ab
+-/
 theorem IsBisimulationUpTo.le_bisimilarity (h : IsBisimulationUpTo lts₁ lts₂ r) :
     r ≤ Bisimilarity lts₁ lts₂ := by
   intro s₁ s₂ hr
@@ -366,19 +417,25 @@ theorem IsBisimulationUpTo.le_bisimilarity (h : IsBisimulationUpTo lts₁ lts₂
     ⟨s₁, HomBisimilarity.refl s₁, s₂, hr, HomBisimilarity.refl s₂⟩
 
 /-- If two states are related by a bisimulation, they can mimic each other's multi-step
-transitions.-/
+transitions.
+@isnad1 id=ex.2h11v.s6.744f5d648058 from=translated src=- shape=e60bd947 vocab=138c56ae
+-/
 theorem IsBisimulation.bisim_trace (hb : IsBisimulation lts₁ lts₂ r) (hr : r s₁ s₂) :
     ∀ μs s₁', lts₁.MTr s₁ μs s₁' → ∃ s₂', lts₂.MTr s₂ μs s₂' ∧ r s₁' s₂' :=
   hb.isSimulation.sim_trace hr
 
 /-! ## Relation to trace equivalence -/
 
-/-- Any bisimulation implies trace equivalence.-/
+/-- Any bisimulation implies trace equivalence.
+@isnad1 id=traceeq.1h9v.s5.f5422ce29639 from=translated src=- shape=20c30422 vocab=1272dc92
+-/
 @[scoped grind =>]
 theorem IsBisimulation.traceEq (hb : IsBisimulation lts₁ lts₂ r) (hr : r s₁ s₂) :
     s₁ ~tr[lts₁,lts₂] s₂ := (hb.simulationEquiv hr).traceEq
 
-/-- Bisimilarity is included in trace equivalence.-/
+/-- Bisimilarity is included in trace equivalence.
+@isnad1 id=le.0h5v.s5.c1da5715abc5 from=translated src=- shape=76166ba1 vocab=ab585fa6
+-/
 @[scoped grind .]
 theorem Bisimilarity.le_traceEq : Bisimilarity lts₁ lts₂ ≤ TraceEq lts₁ lts₂ := by
   intro s₁ s₂ h
@@ -399,7 +456,9 @@ private inductive BisimMotTr : ℕ → Char → ℕ → Prop where
 | eight2nine : BisimMotTr 8 'c' 9
 
 /-- In general, trace equivalence is not a bisimulation (extra conditions are needed, see for
-example `Bisimulation.deterministic_trace_eq_is_bisim`).-/
+example `Bisimulation.deterministic_trace_eq_is_bisim`).
+@isnad1 id=ex.0h0v.s4.f2a77419cafd from=translated src=- shape=d39a8b5f vocab=b173f926
+-/
 theorem IsBisimulation.traceEq_not_bisim :
     ∃ (State : Type) (Label : Type) (lts : LTS State Label),
       ¬(IsHomBisimulation lts (HomTraceEq lts)) := by
@@ -449,14 +508,18 @@ theorem IsBisimulation.traceEq_not_bisim :
     rintro ⟨_, (_ | h)⟩
     cases h
 
-/-- In general, bisimilarity and trace equivalence are distinct.-/
+/-- In general, bisimilarity and trace equivalence are distinct.
+@isnad1 id=ex.0h0v.s4.070804dcb759 from=translated src=- shape=27b328de vocab=49a1e2d3
+-/
 theorem Bisimilarity.bisimilarity_neq_traceEq :
     ∃ (State : Type) (Label : Type) (lts : LTS State Label),
       HomBisimilarity lts ≠ HomTraceEq lts := by
   obtain ⟨State, Label, lts, h⟩ := IsBisimulation.traceEq_not_bisim
   grind [Bisimilarity.isBisimulation lts lts]
 
-/-- In any deterministic LTS, trace equivalence is a bisimulation.-/
+/-- In any deterministic LTS, trace equivalence is a bisimulation.
+@isnad1 id=isbisimu.0h5v.s5.70435b1ef9f3 from=translated src=- shape=15682d8c vocab=93532a40
+-/
 theorem IsBisimulation.deterministic_traceEq_isBisimulation
     {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label}
     [lts₁.Deterministic] [lts₂.Deterministic] :
@@ -464,14 +527,18 @@ theorem IsBisimulation.deterministic_traceEq_isBisimulation
   rw [IsBisimulation.isSimulation_iff, TraceEq.flip_eq]
   exact ⟨Deterministic.isSimulation_traceEq, Deterministic.isSimulation_traceEq⟩
 
-/-- In deterministic LTSs, trace equivalence implies bisimilarity.-/
+/-- In deterministic LTSs, trace equivalence implies bisimilarity.
+@isnad1 id=bisimila.1h7v.s5.49e54ebde231 from=translated src=- shape=cdfb9e4d vocab=2d48b76d
+-/
 theorem Bisimilarity.deterministic_traceEq_bisim {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label}
     [lts₁.Deterministic] [lts₂.Deterministic] (h : s₁ ~tr[lts₁,lts₂] s₂) :
     (s₁ ~[lts₁,lts₂] s₂) := by
   use TraceEq lts₁ lts₂, h, IsBisimulation.deterministic_traceEq_isBisimulation
 
 /-- In a deterministic lts, bisimilarity, trace equivalence, and simulation equivalence are
-equivalent to one-another.-/
+equivalent to one-another.
+@isnad1 id=tfae.0h7v.s5.c9c9a51d625d from=translated src=- shape=5c17b82a vocab=61317eba
+-/
 theorem Deterministic.bisim_tfae {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label}
     [lts₁.Deterministic] [lts₂.Deterministic] (s₁ : State₁) (s₂ : State₂) :
     [s₁ ~[lts₁,lts₂] s₂, s₁ ~tr[lts₁,lts₂] s₂, s₁ ≤≥[lts₁,lts₂] s₂].TFAE := by
@@ -480,14 +547,18 @@ theorem Deterministic.bisim_tfae {lts₁ : LTS State₁ Label} {lts₂ : LTS Sta
   tfae_have 2 → 1 := Bisimilarity.deterministic_traceEq_bisim
   tfae_finish
 
-/-- In deterministic LTSs, bisimilarity and trace equivalence coincide.-/
+/-- In deterministic LTSs, bisimilarity and trace equivalence coincide.
+@isnad1 id=eq.0h5v.s5.59f980617de7 from=translated src=- shape=8a55dde8 vocab=2d48b76d
+-/
 theorem Bisimilarity.deterministic_bisim_eq_traceEq
     {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label}
     [lts₁.Deterministic] [lts₂.Deterministic] : Bisimilarity lts₁ lts₂ = TraceEq lts₁ lts₂ := by
   ext s₁ s₂
   exact (Deterministic.bisim_tfae s₁ s₂).out 1 2
 
-/-- Homogeneous bisimilarity can also be characterized through symmetric simulations.-/
+/-- Homogeneous bisimilarity can also be characterized through symmetric simulations.
+@isnad1 id=eq.0h3v.s5.7378d3fa549d from=translated src=- shape=16a51c53 vocab=9cb44128
+-/
 theorem HomBisimilarity.symm_simulation :
   HomBisimilarity lts =
     fun s₁ s₂ => ∃ r, r s₁ s₂ ∧ Std.Symm r ∧ IsHomSimulation lts r := by
@@ -542,16 +613,25 @@ def IsSWBisimulation [HasTau Label] (lts₁ : LTS State₁ Label) (lts₂ : LTS 
     (∀ s₂', lts₂.Tr s₂ μ s₂' → ∃ s₁', lts₁.STr s₁ μ s₁' ∧ r s₁' s₂')
   )
 
+/--
+@isnad1 id=issimula.1h6v.s5.265d1a7b49c8 from=translated src=- shape=07680415 vocab=cc5c0ca3
+-/
 lemma IsSWBisimulation.isSimulation [HasTau Label] (h : IsSWBisimulation lts₁ lts₂ r) :
     IsSimulation lts₁ lts₂.saturate r := by
   intro s₁ s₂ hr μ
   exact (h hr μ).1
 
+/--
+@isnad1 id=issimula.1h6v.s5.38d9b83abfff from=translated src=- shape=601ac969 vocab=47ec9eb4
+-/
 lemma IsSWBisimulation.isSimulation_flip [HasTau Label] (h : IsSWBisimulation lts₁ lts₂ r) :
     IsSimulation lts₂ lts₁.saturate (flip r) := by
   intro s₂ s₁ hr μ
   exact (h hr μ).2
 
+/--
+@isnad1 id=iff.0h6v.s5.94586131c1b4 from=translated src=- shape=6b20cc9e vocab=47ec9eb4
+-/
 theorem IsSWBisimulation.iff_isSimulation [HasTau Label] :
     IsSWBisimulation lts₁ lts₂ r ↔
       IsSimulation lts₁ lts₂.saturate r ∧ IsSimulation lts₂ lts₁.saturate (flip r) := by
@@ -560,7 +640,9 @@ theorem IsSWBisimulation.iff_isSimulation [HasTau Label] :
   exact ⟨h hr μ, hflip hr μ⟩
 
 /-- We can now prove that any relation is a `WeakBisimulation` iff it is an `SWBisimulation`.
-This formalises lemma 4.2.10 in [Sangiorgi2011].-/
+This formalises lemma 4.2.10 in [Sangiorgi2011].
+@isnad1 id=iff.0h6v.s5.b19a119b5b09 from=translated src=- shape=17e63b1a vocab=6e7206ef
+-/
 theorem isWeakBisimulation_iff_isSWBisimulation
     [HasTau Label] {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label} :
     IsWeakBisimulation lts₁ lts₂ r ↔ IsSWBisimulation lts₁ lts₂ r := by
@@ -576,17 +658,25 @@ theorem isWeakBisimulation_iff_isSWBisimulation
     exact ⟨h.isSimulation.isSimulation_saturate_left,
       h.isSimulation_flip.isSimulation_saturate_left⟩
 
+/--
+@isnad1 id=isswbisi.1h6v.s5.6b7293b9c65c from=translated src=- shape=de9eeee8 vocab=6e7206ef
+-/
 theorem IsWeakBisimulation.isSwBisimulation
     [HasTau Label] {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label} {r : State₁ → State₂ → Prop}
     (h : IsWeakBisimulation lts₁ lts₂ r) :
   IsSWBisimulation lts₁ lts₂ r := isWeakBisimulation_iff_isSWBisimulation.1 h
 
+/--
+@isnad1 id=isweakbi.1h6v.s5.891901a18ce6 from=translated src=- shape=de9eeee8 vocab=6e7206ef
+-/
 theorem IsSWBisimulation.isWeakBisimulation
     [HasTau Label] {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label} {r : State₁ → State₂ → Prop}
     (h : IsSWBisimulation lts₁ lts₂ r) :
   IsWeakBisimulation lts₁ lts₂ r := isWeakBisimulation_iff_isSWBisimulation.2 h
 
-/-- Weak bisimilarity can also be characterized through sw-bisimulations.-/
+/-- Weak bisimilarity can also be characterized through sw-bisimulations.
+@isnad1 id=eq.0h5v.s5.3418cc9ead10 from=translated src=- shape=27d1072f vocab=498db1b6
+-/
 @[scoped grind =]
 theorem WeakBisimilarity.weakBisim_eq_swBisim [HasTau Label]
     (lts₁ : LTS State₁ Label) (lts₂ : LTS State₂ Label) :
@@ -597,27 +687,37 @@ theorem WeakBisimilarity.weakBisim_eq_swBisim [HasTau Label]
 
 /- The weak laws below reuse the strong laws on the saturated LTSs. -/
 
-/-- Homogeneous weak bisimilarity is reflexive.-/
+/-- Homogeneous weak bisimilarity is reflexive.
+@isnad1 id=homweakb.0h4v.s4.54e90d1de04d from=translated src=- shape=8bafcb42 vocab=94f14b48
+-/
 theorem HomWeakBisimilarity.refl [HasTau Label] {lts : LTS State Label} (s : State) :
     s ≈[lts] s := HomBisimilarity.refl s
 
-/-- The inverse of a weak bisimulation is a weak bisimulation.-/
+/-- The inverse of a weak bisimulation is a weak bisimulation.
+@isnad1 id=isweakbi.1h6v.s5.7faea3e68014 from=translated src=- shape=f8124baa vocab=45916f4f
+-/
 theorem IsWeakBisimulation.inv [HasTau Label]
     {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label}
     (r : State₁ → State₂ → Prop) (h : IsWeakBisimulation lts₁ lts₂ r) :
     IsWeakBisimulation lts₂ lts₁ (flip r) := IsBisimulation.inv h
 
-/-- Weak bisimilarity is symmetric.-/
+/-- Weak bisimilarity is symmetric.
+@isnad1 id=weakbisi.1h7v.s5.31235209ab27 from=translated src=- shape=8d298767 vocab=fe078d8c
+-/
 theorem WeakBisimilarity.symm [HasTau Label] {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label}
     (h : s₁ ≈[lts₁,lts₂] s₂) : s₂ ≈[lts₂,lts₁] s₁ := Bisimilarity.symm h
 
-/-- The composition of two weak bisimulations is a weak bisimulation.-/
+/-- The composition of two weak bisimulations is a weak bisimulation.
+@isnad1 id=isweakbi.2h9v.s6.dcaafa8f215d from=translated src=- shape=056aa6e5 vocab=24a773cc
+-/
 theorem IsWeakBisimulation.comp
     [HasTau Label] {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label} {lts₃ : LTS State₃ Label}
     (h1 : IsWeakBisimulation lts₁ lts₂ r1) (h2 : IsWeakBisimulation lts₂ lts₃ r2) :
     IsWeakBisimulation lts₁ lts₃ (Relation.Comp r1 r2) := IsBisimulation.comp h1 h2
 
-/-- The composition of two sw-bisimulations is an sw-bisimulation.-/
+/-- The composition of two sw-bisimulations is an sw-bisimulation.
+@isnad1 id=isswbisi.2h9v.s6.18bf8178feab from=translated src=- shape=056aa6e5 vocab=5f8c560c
+-/
 theorem IsSWBisimulation.comp
     [HasTau Label] {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label} {lts₃ : LTS State₃ Label}
     (h1 : IsSWBisimulation lts₁ lts₂ r1) (h2 : IsSWBisimulation lts₂ lts₃ r2) :
@@ -625,13 +725,17 @@ theorem IsSWBisimulation.comp
   simp_all only [isWeakBisimulation_iff_isSWBisimulation.symm]
   apply IsWeakBisimulation.comp h1 h2
 
-/-- Weak bisimilarity is transitive.-/
+/-- Weak bisimilarity is transitive.
+@isnad1 id=weakbisi.2h10v.s5.7419cf821984 from=translated src=- shape=58cf7302 vocab=fe078d8c
+-/
 theorem WeakBisimilarity.trans [HasTau Label]
     {lts₁ : LTS State₁ Label} {lts₂ : LTS State₂ Label} {lts₃ : LTS State₃ Label}
     (h1 : s₁ ≈[lts₁,lts₂] s₂) (h2 : s₂ ≈[lts₂,lts₃] s₃) : s₁ ≈[lts₁,lts₃] s₃ :=
   Bisimilarity.trans h1 h2
 
-/-- Homogeneous weak bisimilarity is an equivalence relation.-/
+/-- Homogeneous weak bisimilarity is an equivalence relation.
+@isnad1 id=equivale.0h3v.s4.b32c38f323a9 from=translated src=- shape=1173c98b vocab=62c0a1ea
+-/
 theorem HomWeakBisimilarity.eqv [HasTau Label] {lts : LTS State Label} :
     Equivalence (HomWeakBisimilarity lts) where
   refl := HomWeakBisimilarity.refl

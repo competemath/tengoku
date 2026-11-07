@@ -32,7 +32,9 @@ def Program.Irredundant (p : Program σ n g) (i : Interpretation σ U) : Prop :=
 def Circuit.Irredundant (c : Circuit σ n m) (i : Interpretation σ U) : Prop :=
   c.program.Irredundant i
 
-/-- A program can be rebuilt with distinct gate functions, preserving every wire's value.-/
+/-- A program can be rebuilt with distinct gate functions, preserving every wire's value.
+@isnad1 id=ex.0h6v.s6.06aa88a43d19 from=translated src=- shape=c49122c8 vocab=b8b64345
+-/
 theorem Program.exists_irredundant (p : Program σ n g) (i : Interpretation σ U) :
     ∃ k ≤ g, ∃ q : Program σ n k, ∃ ρ : Wire.Renaming n g k,
       (∀ x w, q.trace i x (ρ w) = p.trace i x w) ∧
@@ -63,7 +65,9 @@ theorem Program.exists_irredundant (p : Program σ n g) (i : Interpretation σ U
           ext gate x
           refine Fin.lastCases ?_ (fun gate => ?_) gate <;> simp
 
-/-- Every circuit has an equivalent circuit with distinct gate functions and no more gates.-/
+/-- Every circuit has an equivalent circuit with distinct gate functions and no more gates.
+@isnad1 id=ex.0h6v.s6.feb0140cdfbb from=translated src=- shape=9aaf4960 vocab=b9821e7a
+-/
 theorem Circuit.exists_irredundant (c : Circuit σ n m) (i : Interpretation σ U) :
     ∃ d : Circuit σ n m, d.eval i = c.eval i ∧ d.Irredundant i ∧ d.size ≤ c.size := by
   obtain ⟨k, hk, q, ρ, hρ, hq⟩ := c.program.exists_irredundant i

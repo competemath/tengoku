@@ -44,9 +44,15 @@ def elim (inputs : Fin inputCount → α) (gates : Fin gateCount → α) :
   | input i => inputs i
   | gate j => gates j
 
+/--
+@isnad1 id=eq.0h6v.s5.d8518933b920 from=translated src=- shape=a5a35a5b vocab=7ed09a2e
+-/
 @[simp] theorem elim_input (inputs : Fin inputCount → α) (gates : Fin gateCount → α)
     (i : Fin inputCount) : elim inputs gates (input i) = inputs i := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.74d72ff005d2 from=translated src=- shape=fabbc32d vocab=12e84b75
+-/
 @[simp] theorem elim_gate (inputs : Fin inputCount → α) (gates : Fin gateCount → α)
     (j : Fin gateCount) : elim inputs gates (gate j) = gates j := rfl
 
@@ -61,6 +67,9 @@ def equiv (inputCount gateCount : Nat) :
 instance : Fintype (Wire inputCount gateCount) :=
   Fintype.ofEquiv _ (equiv inputCount gateCount).symm
 
+/--
+@isnad1 id=eq.0h2v.s4.f6ccce70bd95 from=translated src=- shape=fee67a59 vocab=5dcf7256
+-/
 @[simp] theorem card : Fintype.card (Wire inputCount gateCount) = inputCount + gateCount := by
   simp [Fintype.card_congr (equiv inputCount gateCount)]
 
@@ -69,9 +78,15 @@ def castSucc : Wire inputCount gateCount → Wire inputCount (gateCount + 1)
   | input i => input i
   | gate j => gate j.castSucc
 
+/--
+@isnad1 id=eq.0h3v.s5.ea8f1cc7f401 from=translated src=- shape=a12eb4a9 vocab=4929b5cc
+-/
 @[simp] theorem castSucc_input (i : Fin inputCount) :
     (input i : Wire inputCount gateCount).castSucc = input i := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.9cfe81093133 from=translated src=- shape=600dd446 vocab=73b538be
+-/
 @[simp] theorem castSucc_gate (j : Fin gateCount) :
     (gate j : Wire inputCount gateCount).castSucc = gate j.castSucc := rfl
 
@@ -80,9 +95,15 @@ def castAdd (extra : Nat) : Wire inputCount gateCount → Wire inputCount (gateC
   | input i => input i
   | gate j => gate (j.castAdd extra)
 
+/--
+@isnad1 id=eq.0h4v.s5.9e7c56a8cf70 from=translated src=- shape=bacb5077 vocab=7c368422
+-/
 @[simp] theorem castAdd_input (extra : Nat) (i : Fin inputCount) :
     (input i : Wire inputCount gateCount).castAdd extra = input i := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.df74809b0976 from=translated src=- shape=daa32645 vocab=38008634
+-/
 @[simp] theorem castAdd_gate (extra : Nat) (j : Fin gateCount) :
     (gate j : Wire inputCount gateCount).castAdd extra = gate (j.castAdd extra) := rfl
 
@@ -119,10 +140,16 @@ instance : CoeFun (Wire.Renaming inputCount sourceGateCount targetGateCount)
     fun _ => Wire inputCount sourceGateCount → Wire inputCount targetGateCount :=
   ⟨apply⟩
 
+/--
+@isnad1 id=eq.0h5v.s4.7bf75ce8692e from=translated src=- shape=66220f2e vocab=85746da7
+-/
 @[simp] theorem apply_input
     (ρ : Wire.Renaming inputCount sourceGateCount targetGateCount) (input : Fin inputCount) :
     ρ (Wire.input input) = Wire.input input := rfl
 
+/--
+@isnad1 id=eq.0h5v.s5.6358f02cac5a from=translated src=- shape=14ee1b67 vocab=e847f967
+-/
 @[simp] theorem apply_gate
     (ρ : Wire.Renaming inputCount sourceGateCount targetGateCount) (gate : Fin sourceGateCount) :
     ρ (Wire.gate gate) = ρ.gates gate := rfl
@@ -131,6 +158,9 @@ instance : CoeFun (Wire.Renaming inputCount sourceGateCount targetGateCount)
 def id : Wire.Renaming inputCount gateCount gateCount where
   gates := Wire.gate
 
+/--
+@isnad1 id=eq.0h3v.s4.16f7f5ecae6b from=translated src=- shape=eb28c226 vocab=ea8cc975
+-/
 @[simp] theorem id_apply (wire : Wire inputCount gateCount) :
     (id : Wire.Renaming inputCount gateCount gateCount) wire = wire := by
   cases wire <;> rfl
@@ -142,6 +172,9 @@ def comp
     Wire.Renaming inputCount sourceGateCount targetGateCount where
   gates := outer ∘ inner.gates
 
+/--
+@isnad1 id=eq.0h7v.s5.176d492f7feb from=translated src=- shape=274b7c38 vocab=930749a9
+-/
 @[simp] theorem comp_apply
     (outer : Wire.Renaming inputCount middleGateCount targetGateCount)
     (inner : Wire.Renaming inputCount sourceGateCount middleGateCount)
@@ -153,6 +186,9 @@ def comp
 def castSucc : Wire.Renaming inputCount gateCount (gateCount + 1) where
   gates := fun gate => Wire.gate gate.castSucc
 
+/--
+@isnad1 id=eq.0h3v.s5.1a1c8a4ceadf from=translated src=- shape=68e62f17 vocab=852cb82f
+-/
 @[simp] theorem castSucc_apply (wire : Wire inputCount gateCount) :
     (castSucc : Wire.Renaming inputCount gateCount (gateCount + 1)) wire = wire.castSucc := by
   cases wire <;> rfl
@@ -164,12 +200,18 @@ def skipLast
     Wire.Renaming inputCount (sourceGateCount + 1) targetGateCount where
   gates := Fin.lastCases replacement prior.gates
 
+/--
+@isnad1 id=eq.0h5v.s5.0e683206d24f from=translated src=- shape=d0d466a0 vocab=4d7bed20
+-/
 @[simp] theorem skipLast_gates_last
     (prior : Wire.Renaming inputCount sourceGateCount targetGateCount)
     (replacement : Wire inputCount targetGateCount) :
     (prior.skipLast replacement).gates (Fin.last sourceGateCount) = replacement := by
   simp [skipLast]
 
+/--
+@isnad1 id=eq.0h6v.s5.b33e4c0cb176 from=translated src=- shape=c19035db vocab=12a0d179
+-/
 @[simp] theorem skipLast_castSucc
     (prior : Wire.Renaming inputCount sourceGateCount targetGateCount)
     (replacement : Wire inputCount targetGateCount)
@@ -184,11 +226,17 @@ def appendLast
   gates := Fin.lastCases (Wire.gate (Fin.last targetGateCount)) fun gate =>
     (prior.gates gate).castSucc
 
+/--
+@isnad1 id=eq.0h4v.s6.05f69db0162e from=translated src=- shape=1b026b95 vocab=87cdefb4
+-/
 @[simp] theorem appendLast_gates_last
     (prior : Wire.Renaming inputCount sourceGateCount targetGateCount) :
     prior.appendLast.gates (Fin.last sourceGateCount) = Wire.gate (Fin.last targetGateCount) := by
   simp [appendLast]
 
+/--
+@isnad1 id=eq.0h5v.s6.525c0ce9bf54 from=translated src=- shape=4e68b7e9 vocab=6ce1849a
+-/
 @[simp] theorem appendLast_castSucc
     (prior : Wire.Renaming inputCount sourceGateCount targetGateCount)
     (wire : Wire inputCount sourceGateCount) :
@@ -200,13 +248,18 @@ def ofPermutation (permutation : Equiv.Perm (Fin gateCount)) :
     Wire.Renaming inputCount gateCount gateCount where
   gates := fun gate => Wire.gate (permutation gate)
 
+/--
+@isnad1 id=eq.0h4v.s5.2f5a334cca64 from=translated src=- shape=a76ddda2 vocab=ee8588d3
+-/
 theorem ofPermutation_gate
     (permutation : Equiv.Perm (Fin gateCount)) (gate : Fin gateCount) :
     (ofPermutation permutation : Wire.Renaming inputCount gateCount gateCount) (Wire.gate gate) =
       Wire.gate (permutation gate) := rfl
 
 /-- A source and target gate valuation agree along a renaming when they agree
-on the image of every source gate. Original inputs agree automatically.-/
+on the image of every source gate. Original inputs agree automatically.
+@isnad1 id=eq.1h9v.s6.ff4a2e0c4fcb from=translated src=- shape=60eadc7a vocab=0784ed6b
+-/
 theorem value_apply
     (ρ : Wire.Renaming inputCount sourceGateCount targetGateCount)
     (inputs : Fin inputCount → U)

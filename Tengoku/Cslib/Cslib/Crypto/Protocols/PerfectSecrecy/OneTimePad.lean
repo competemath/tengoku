@@ -48,7 +48,9 @@ noncomputable def otp (l : ℕ) :
 
 /-- The ciphertext distribution of the OTP is uniform, regardless of the
 message: masking with a uniform key is the permutation `Equiv.xor` of the
-uniform distribution.-/
+uniform distribution.
+@isnad1 id=eq.0h2v.s4.78bf8af301cd from=translated src=- shape=69d13a90 vocab=72e98bd4
+-/
 theorem otp_ciphertextDist_eq_uniform (l : ℕ) (m : BitVec l) :
     (otp l).ciphertextDist m = PMF.uniformOfFintype (BitVec l) := by
   have h : (fun k : BitVec l => PMF.pure (k ^^^ m)) = (PMF.pure ∘ ⇑(Equiv.xor m)) :=
@@ -56,7 +58,9 @@ theorem otp_ciphertextDist_eq_uniform (l : ℕ) (m : BitVec l) :
   change (PMF.uniformOfFintype (BitVec l)).bind (fun k => PMF.pure (k ^^^ m)) = _
   rw [h, PMF.bind_pure_comp, uniformOfFintype_map_equiv]
 
-/-- The one-time pad is perfectly secret ([KatzLindell2020], Theorem 2.10).-/
+/-- The one-time pad is perfectly secret ([KatzLindell2020], Theorem 2.10).
+@isnad1 id=perfectl.0h1v.s3.0b99600e4ce5 from=translated src=- shape=b7ea40b9 vocab=6318e7c1
+-/
 theorem otp_perfectlySecret (l : ℕ) : (otp l).PerfectlySecret :=
   (EncScheme.perfectlySecret_iff_ciphertextIndist _).mpr fun m₀ m₁ =>
     (otp_ciphertextDist_eq_uniform l m₀).trans (otp_ciphertextDist_eq_uniform l m₁).symm

@@ -138,7 +138,9 @@ def step (cfg : Cfg k Symbol State input) : Cfg k Symbol State input :=
   | none => cfg
   | some q => (tm.tr q cfg.inputSymbol cfg.workTapeSymbols).apply cfg
 
-/-- One step at a live state is the transition's action applied to the configuration.-/
+/-- One step at a live state is the transition's action applied to the configuration.
+@isnad1 id=eq.1h7v.s6.3c72afa7faf8 from=translated src=- shape=78660b4b vocab=31240ac4
+-/
 public lemma step_apply_of_state {cfg : Cfg k Symbol State input} {q : State}
     (h : cfg.state = some q) :
     tm.step cfg = (tm.tr q cfg.inputSymbol cfg.workTapeSymbols).apply cfg := by
@@ -150,14 +152,18 @@ def outputSymbol (cfg : Cfg k Symbol State input) : Option Symbol :=
   | none => none
   | some q => (tm.tr q cfg.inputSymbol cfg.workTapeSymbols).output
 
-/-- The input head after a live step.-/
+/-- The input head after a live step.
+@isnad1 id=eq.1h7v.s6.17d8996e5fe6 from=translated src=- shape=28fe1929 vocab=7d726cfd
+-/
 public lemma step_inputPos_of_state {cfg : Cfg k Symbol State input} {q : State}
     (h : cfg.state = some q) :
     (tm.step cfg).inputPos =
       moveInputPos cfg.inputPos (tm.tr q cfg.inputSymbol cfg.workTapeSymbols).inputTape := by
   rw [step_apply_of_state h, Action.apply_inputPos]
 
-/-- A work tape after a live step.-/
+/-- A work tape after a live step.
+@isnad1 id=eq.1h8v.s7.63674c4a5e3c from=translated src=- shape=05d787c3 vocab=bd05a3c6
+-/
 public lemma step_workTapes_of_state {cfg : Cfg k Symbol State input} {q : State}
     (h : cfg.state = some q) (i : Fin k) :
     (tm.step cfg).workTapes i =
@@ -167,7 +173,9 @@ public lemma step_workTapes_of_state {cfg : Cfg k Symbol State input} {q : State
   rw [step_apply_of_state h]
   rfl
 
-/-- A work tape head after a live step.-/
+/-- A work tape head after a live step.
+@isnad1 id=eq.1h8v.s6.628439613121 from=translated src=- shape=0076d335 vocab=b7435a88
+-/
 public lemma step_workTapePos_of_state {cfg : Cfg k Symbol State input} {q : State}
     (h : cfg.state = some q) (i : Fin k) :
     (tm.step cfg).workTapePos i =
@@ -179,6 +187,9 @@ public lemma step_workTapePos_of_state {cfg : Cfg k Symbol State input} {q : Sta
 @[simp]
 def initCfg (input : List Symbol) : Cfg k Symbol State input := Cfg.init tm.q₀ input
 
+/--
+@isnad1 id=eq.1h6v.s5.61e11d3c758f from=translated src=- shape=2ac197fb vocab=d3a40da4
+-/
 @[simp]
 lemma step_of_halt {cfg : Cfg k Symbol State input} (h : cfg.state = none) :
     tm.step cfg = cfg := by
@@ -189,7 +200,9 @@ lemma step_of_halt {cfg : Cfg k Symbol State input} (h : cfg.state = none) :
 If the Turing machine halts, it will stay at the halting configuration.-/
 def runFrom (cfg : Cfg k Symbol State input) (t : ℕ) : Cfg k Symbol State input := tm.step^[t] cfg
 
-/-- Nothing changes after the machine has halted.-/
+/-- Nothing changes after the machine has halted.
+@isnad1 id=eq.2h8v.s6.bc8da02bb233 from=translated src=- shape=6a82ab26 vocab=8703aa09
+-/
 lemma runFrom_eq_of_halt
     (tm : MultiTapeTM k Symbol State)
     (cfg : Cfg k Symbol State input) {τ t : ℕ} (hle : τ ≤ t)
@@ -208,25 +221,39 @@ namespace HaltsAt
 
 variable {input : List Symbol} {cfg : Cfg k Symbol State input} {s t : ℕ}
 
+/--
+@isnad1 id=halted.1h7v.s5.251e700e9017 from=translated src=- shape=65304c74 vocab=d0a43ee4
+-/
 lemma halted (h : tm.HaltsAt cfg t) : (tm.runFrom cfg t).Halted := h.1
 
+/--
+@isnad1 id=not.2h8v.s5.262010eb8292 from=translated src=- shape=30098625 vocab=a0cd737b
+-/
 lemma not_halted (h : tm.HaltsAt cfg t) (hs : s < t) : ¬(tm.runFrom cfg s).Halted := h.2 s hs
 
-/-- The halting step is the first step at which the machine is halted.-/
+/-- The halting step is the first step at which the machine is halted.
+@isnad1 id=le.2h8v.s5.84d927f7a67f from=translated src=- shape=bd782134 vocab=7e5619ef
+-/
 lemma le_of_halted (h : tm.HaltsAt cfg t) (hs : (tm.runFrom cfg s).Halted) : t ≤ s :=
   Nat.le_of_not_lt fun hlt => h.not_halted hlt hs
 
-/-- The halting step is unique.-/
+/-- The halting step is unique.
+@isnad1 id=eq.2h8v.s5.ff1c0dea5d4d from=translated src=- shape=7e6e61d4 vocab=951783b0
+-/
 lemma unique (h₁ : tm.HaltsAt cfg s) (h₂ : tm.HaltsAt cfg t) : s = t :=
   Nat.le_antisymm (h₁.le_of_halted h₂.halted) (h₂.le_of_halted h₁.halted)
 
-/-- From the halting step on, the configuration does not change.-/
+/-- From the halting step on, the configuration does not change.
+@isnad1 id=eq.2h8v.s5.3528c8cc9e2f from=translated src=- shape=71c5d7c8 vocab=0115a1bd
+-/
 lemma runFrom_eq (h : tm.HaltsAt cfg t) (hts : t ≤ s) : tm.runFrom cfg s = tm.runFrom cfg t :=
   runFrom_eq_of_halt tm cfg hts h.halted
 
 end HaltsAt
 
-/-- A run that is halted after `t` steps halts at some step `u ≤ t`.-/
+/-- A run that is halted after `t` steps halts at some step `u ≤ t`.
+@isnad1 id=ex.1h7v.s5.97b1775f0935 from=translated src=- shape=21d1fc3a vocab=7e5619ef
+-/
 lemma exists_haltsAt {input : List Symbol} {cfg : Cfg k Symbol State input} {t : ℕ}
     (hhalt : (tm.runFrom cfg t).Halted) : ∃ u ≤ t, tm.HaltsAt cfg u := by
   classical
@@ -234,18 +261,25 @@ lemma exists_haltsAt {input : List Symbol} {cfg : Cfg k Symbol State input} {t :
   exact ⟨Nat.find hex, Nat.find_min' hex hhalt, Nat.find_spec hex,
     fun s hs => Nat.find_min hex hs⟩
 
-/-- A run that is halted after some number of steps halts at exactly one step.-/
+/-- A run that is halted after some number of steps halts at exactly one step.
+@isnad1 id=existsun.1h7v.s5.061db4629b46 from=translated src=- shape=be4baecf vocab=8ed26228
+-/
 lemma existsUnique_haltsAt {input : List Symbol} {cfg : Cfg k Symbol State input} {t : ℕ}
     (hhalt : (tm.runFrom cfg t).Halted) : ∃! u, tm.HaltsAt cfg u :=
   let ⟨u, _, hu⟩ := exists_haltsAt hhalt
   ⟨u, hu, fun _ h => h.unique hu⟩
 
+/--
+@isnad1 id=eq.1h6v.s5.1f2a635d5544 from=translated src=- shape=62f224b2 vocab=97f11ee5
+-/
 @[simp]
 lemma outputSymbol_of_halt {cfg : Cfg k Symbol State input} (h_halt : cfg.state = none) :
     tm.outputSymbol cfg = none := by
   simp [outputSymbol, h_halt]
 
-/-- The work-tape head moves by at most one cell in a single step.-/
+/-- The work-tape head moves by at most one cell in a single step.
+@isnad1 id=le.0h7v.s5.a1a3b52f1dd4 from=translated src=- shape=b7512c9d vocab=0c9afa20
+-/
 lemma workTapePos_step_le (c : Cfg k Symbol State input) (i : Fin k) :
     |(tm.step c).workTapePos i - c.workTapePos i| ≤ 1 := by
   unfold step
@@ -274,7 +308,9 @@ The number of work tape cells touched by a computation starting from configurati
 `cfg` up to step `t`.-/
 def spaceUsed (cfg : Cfg k Symbol State input) (t : ℕ) : ℕ := ∑ i, tm.spaceUsedByTape cfg t i
 
-/-- A zero-tape Turing machine uses zero space.-/
+/-- A zero-tape Turing machine uses zero space.
+@isnad1 id=eq.1h7v.s5.c2c09fe9eac9 from=translated src=- shape=891cb2a7 vocab=f08cfbfa
+-/
 @[simp]
 lemma spaceUsed_zero_tapes_eq_zero (cfg : Cfg k Symbol State input) (t : ℕ) (h_zero : k = 0) :
     tm.spaceUsed cfg t = 0 := by
@@ -282,7 +318,9 @@ lemma spaceUsed_zero_tapes_eq_zero (cfg : Cfg k Symbol State input) (t : ℕ) (h
   subst h_zero
   simp
 
-/-- Each tape's space usage is bounded by the total space used.-/
+/-- Each tape's space usage is bounded by the total space used.
+@isnad1 id=le.0h8v.s5.b247924affbc from=translated src=- shape=a33326f6 vocab=9aac4bef
+-/
 lemma spaceUsedByTape_le_spaceUsed (cfg : Cfg k Symbol State input) (t : ℕ) (i : Fin k) :
     tm.spaceUsedByTape cfg t i ≤ tm.spaceUsed cfg t :=
   Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ i)
@@ -298,14 +336,18 @@ which maps a configuration to its next configuration.-/
 @[scoped grind =]
 def TransitionRelation (c₁ c₂ : Cfg k Symbol State input) : Prop := tm.step c₁ = c₂
 
-/-- One step appends the symbol (optionally) emitted by that step to the output tape.-/
+/-- One step appends the symbol (optionally) emitted by that step to the output tape.
+@isnad1 id=eq.0h6v.s5.c3cee36514f3 from=translated src=- shape=5e1bc9ff vocab=b1d5b63e
+-/
 @[simp]
 lemma step_output (cfg : Cfg k Symbol State input) :
     (tm.step cfg).output = cfg.output ++ (tm.outputSymbol cfg).toList := by
   unfold step outputSymbol Action.apply
   cases cfg.state <;> simp
 
-/-- In `t` steps the input head moves at most `t` positions to the right.-/
+/-- In `t` steps the input head moves at most `t` positions to the right.
+@isnad1 id=le.0h7v.s6.a5c2fe3c9d8d from=translated src=- shape=e526df3c vocab=6a6cdf43
+-/
 lemma inputPos_runFrom_le (tm : MultiTapeTM k Symbol State)
     (cfg : Cfg k Symbol State input) (t : ℕ) :
     ((tm.runFrom cfg t).inputPos : ℕ) ≤ (cfg.inputPos : ℕ) + t := by
@@ -323,7 +365,9 @@ lemma inputPos_runFrom_le (tm : MultiTapeTM k Symbol State)
         exact val_moveInputPos_le _ _
       omega
 
-/-- The output does not change after the machine has halted.-/
+/-- The output does not change after the machine has halted.
+@isnad1 id=eq.2h8v.s6.79a92e0e71b9 from=translated src=- shape=080f9da9 vocab=3328d0c4
+-/
 lemma runFrom_output_eq_of_halt
     (tm : MultiTapeTM k Symbol State)
     (cfg : Cfg k Symbol State input) {τ t : ℕ} (hle : τ ≤ t)
@@ -331,12 +375,16 @@ lemma runFrom_output_eq_of_halt
     (tm.runFrom cfg t).output = (tm.runFrom cfg τ).output :=
   congrArg Cfg.output (tm.runFrom_eq_of_halt cfg hle hhalt)
 
-/-- The output only grows during a run.-/
+/-- The output only grows during a run.
+@isnad1 id=monotone.0h6v.s5.55ec43cc3e5f from=translated src=- shape=6b8de77d vocab=60f9e45c
+-/
 public lemma length_output_mono (tm : MultiTapeTM k Symbol State) (cfg : Cfg k Symbol State input) :
     Monotone fun t => (tm.runFrom cfg t).output.length :=
   monotone_nat_of_le_succ fun t => by simp [runFrom, Function.iterate_succ_apply']
 
-/-- A machine emits at most one symbol per step.-/
+/-- A machine emits at most one symbol per step.
+@isnad1 id=le.0h7v.s5.dd62f118e127 from=translated src=- shape=0d031e9f vocab=b79fb45e
+-/
 theorem length_output_runFrom_le (tm : MultiTapeTM k Symbol State)
     (cfg : Cfg k Symbol State input) (t : ℕ) :
     (tm.runFrom cfg t).output.length ≤ cfg.output.length + t := by
@@ -384,7 +432,9 @@ abbrev ComputableInTimeAndSpaceOfLength {α β : Type*}
   ComputableInTimeAndSpace f encIn encOut
     (fun a => t (encIn a).length) (fun a => s (encIn a).length)
 
-/-- Resource bounds can be weakened independently on every input.-/
+/-- Resource bounds can be weakened independently on every input.
+@isnad1 id=computes.3h13v.s6.3aa584072c48 from=translated src=- shape=23358e0e vocab=63ef63d0
+-/
 theorem ComputesFunInTimeAndSpace.mono {α β : Type*}
     {tm : MultiTapeTM k Symbol State} {encIn : α ↪ List Symbol} {encOut : β ↪ List Symbol}
     {f : α → β} {t s t' s' : α → ℕ}
@@ -394,7 +444,9 @@ theorem ComputesFunInTimeAndSpace.mono {α β : Type*}
   obtain ⟨u, hu, v, hv, hc⟩ := h a
   exact ⟨u, hu.trans (ht a), v, hv.trans (hs a), hc⟩
 
-/-- Computability is monotone in the resource bounds.-/
+/-- Computability is monotone in the resource bounds.
+@isnad1 id=computab.3h9v.s6.9cc9e5c305a3 from=translated src=- shape=ca57697c vocab=6cc896f8
+-/
 theorem ComputableInTimeAndSpace.mono {α β : Type*}
     {f : α → β} {encIn : α ↪ List Bool} {encOut : β ↪ List Bool} {t s t' s' : α → ℕ}
     (h : ComputableInTimeAndSpace f encIn encOut t s)
@@ -405,7 +457,9 @@ theorem ComputableInTimeAndSpace.mono {α β : Type*}
 
 /-- A machine emits at most one symbol per step, so the encoded result of a computation is no
 longer than its time bound. This is the only bound available on the length of an intermediate
-result: a machine can produce an output much longer than the space it uses.-/
+result: a machine can produce an output much longer than the space it uses.
+@isnad1 id=le.1h8v.s5.fe73b69f46ad from=translated src=- shape=44ea6ecd vocab=d3a0c985
+-/
 theorem ComputableInTimeAndSpace.length_encOut_le {α β : Type*}
     {encIn : α ↪ List Bool} {encOut : β ↪ List Bool} {f : α → β} {t s : α → ℕ}
     (h : ComputableInTimeAndSpace f encIn encOut t s) (a : α) :
@@ -428,7 +482,9 @@ def DecidableInTimeAndSpace {α : Type*} (L : Set α) (enc : α ↪ List Bool)
   ComputableInTimeAndSpace (indicator L) enc ⟨fun b => [b], by intro a b h; simpa using h⟩ t s
 
 /-- This lemma translates between the relational notion and the iterated step notion. The latter
-can be more convenient especially for deterministic machines as we have here.-/
+can be more convenient especially for deterministic machines as we have here.
+@isnad1 id=iff.0h8v.s5.520c54242877 from=translated src=- shape=d30c706d vocab=9da8749e
+-/
 @[scoped grind =]
 lemma relatesInSteps_iff_runFrom_eq
     (tm : MultiTapeTM k Symbol State)
@@ -449,7 +505,9 @@ lemma relatesInSteps_iff_runFrom_eq
 /-- If a deterministic machine repeats a non-halting configuration, it never halts,
 because the sequence between the two configurations will loop forever.
 Note that this can be applied to two arbitrary and different time steps `t` and `t + Δ`
-using `Function.iterate_add_apply`.-/
+using `Function.iterate_add_apply`.
+@isnad1 id=ne.2h8v.s6.7f6670b1f338 from=translated src=- shape=517ec586 vocab=46afefec
+-/
 lemma not_halts_of_repeat_nonhalt
     (cfg : Cfg k Symbol State input)
     (h_not_halt : cfg.state ≠ none)

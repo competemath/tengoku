@@ -68,7 +68,9 @@ noncomputable def commitmentDist (scheme : Scheme Message Commitment Opening)
   (scheme.commit message).map Prod.fst
 
 /-- A commitment lies in the public distribution's support exactly when some
-opening makes the corresponding pair an honest possible output.-/
+opening makes the corresponding pair an honest possible output.
+@isnad1 id=iff.0h6v.s5.c35480567680 from=translated src=- shape=3e16ecd4 vocab=199770b3
+-/
 theorem mem_support_commitmentDist_iff
     (scheme : Scheme Message Commitment Opening) {message : Message}
     {commitment : Commitment} :
@@ -81,7 +83,9 @@ def Accepts (scheme : Scheme Message Commitment Opening) (message : Message)
     (commitment : Commitment) (opening : Opening) : Prop :=
   scheme.verify message commitment opening = true
 
-/-- Every pair in the support of an honest commitment is accepted.-/
+/-- Every pair in the support of an honest commitment is accepted.
+@isnad1 id=accepts.1h7v.s5.867f03e442f9 from=translated src=- shape=e1d35192 vocab=486ddfc1
+-/
 theorem accepts_of_mem_support (scheme : Scheme Message Commitment Opening)
     {message : Message} {commitment : Commitment} {opening : Opening}
     (h : (commitment, opening) ∈ (scheme.commit message).support) :

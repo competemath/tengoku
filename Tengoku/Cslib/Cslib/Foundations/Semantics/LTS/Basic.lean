@@ -98,16 +98,23 @@ inductive MTr (lts : LTS State Label) : State → List Label → State → Prop 
     lts.Tr s1 μ s2 → lts.MTr s2 μs s3 →
     lts.MTr s1 (μ :: μs) s3
 
-/-- In any zero-steps multistep transition, the origin and the derivative are the same.-/
+/-- In any zero-steps multistep transition, the origin and the derivative are the same.
+@isnad1 id=eq.1h5v.s4.9cf41db72089 from=translated src=- shape=6fd68030 vocab=05a1c4d8
+-/
 @[scoped grind .]
 theorem MTr.nil_eq (h : lts.MTr s1 [] s2) : s1 = s2 := by
   cases h
   rfl
 
+/--
+@isnad1 id=iff.0h5v.s4.504c1e7ad822 from=translated src=- shape=242a09a0 vocab=05a1c4d8
+-/
 @[simp] theorem MTr.nil_iff (s1 s2 : State) : lts.MTr s1 [] s2 ↔ s1 = s2 :=
   ⟨nil_eq lts, fun h => h ▸ MTr.refl⟩
 
-/-- Any transition is also a multistep transition.-/
+/-- Any transition is also a multistep transition.
+@isnad1 id=mtr.1h6v.s5.7e6cd01b8c7e from=translated src=- shape=3420acf4 vocab=4471bd1a
+-/
 @[scoped grind →]
 theorem MTr.single {s1 : State} {μ : Label} {s2 : State} :
   lts.Tr s1 μ s2 → lts.MTr s1 [μ] s2 := by
@@ -117,7 +124,9 @@ theorem MTr.single {s1 : State} {μ : Label} {s2 : State} :
   · apply MTr.refl
 
 /-- A multistep transition along `μ :: μs` is a transition labelled by `μ` plus a multistep
-transition labelled by `μs`.-/
+transition labelled by `μs`.
+@isnad1 id=iff.0h7v.s5.19d2789222ca from=translated src=- shape=651e934d vocab=78690497
+-/
 theorem MTr.cons_iff {lts : LTS State Label} :
     lts.MTr s1 (μ :: μs) s2 ↔ ∃ s, lts.Tr s1 μ s ∧ lts.MTr s μs s2 := by
   constructor
@@ -126,7 +135,9 @@ theorem MTr.cons_iff {lts : LTS State Label} :
   · intro ⟨s, htr, hmtr⟩
     exact .stepL htr hmtr
 
-/-- Any multistep transition can be extended by adding a transition.-/
+/-- Any multistep transition can be extended by adding a transition.
+@isnad1 id=mtr.2h8v.s5.9ccfcf0689f3 from=translated src=- shape=3941caf1 vocab=7bd2602d
+-/
 theorem MTr.stepR {s1 : State} {μs : List Label} {s2 : State} {μ : Label} {s3 : State} :
   lts.MTr s1 μs s2 → lts.Tr s2 μ s3 → lts.MTr s1 (μs ++ [μ]) s3 := by
   intro h1 h2
@@ -137,7 +148,9 @@ theorem MTr.stepR {s1 : State} {μs : List Label} {s2 : State} {μ : Label} {s3 
     · exact h1'
     · apply ih h2
 
-/-- Multistep transitions can be composed.-/
+/-- Multistep transitions can be composed.
+@isnad1 id=mtr.2h8v.s5.87d183ec620a from=translated src=- shape=ba448538 vocab=66cb436d
+-/
 @[scoped grind <=]
 theorem MTr.comp {s1 : State} {μs1 : List Label} {s2 : State} {μs2 : List Label} {s3 : State} :
   lts.MTr s1 μs1 s2 → lts.MTr s2 μs2 s3 →
@@ -150,7 +163,9 @@ theorem MTr.comp {s1 : State} {μs1 : List Label} {s2 : State} {μs2 : List Labe
     · exact h1'
     · apply ih h2
 
-/-- Any 1-sized multistep transition implies a transition with the same states and label.-/
+/-- Any 1-sized multistep transition implies a transition with the same states and label.
+@isnad1 id=tr.1h6v.s5.6a26de030f86 from=translated src=- shape=a109af9c vocab=4471bd1a
+-/
 @[scoped grind .]
 theorem MTr.single_invert (s1 : State) (μ : Label) (s2 : State) :
   lts.MTr s1 [μ] s2 → lts.Tr s1 μ s2 := by
@@ -160,11 +175,15 @@ theorem MTr.single_invert (s1 : State) (μ : Label) (s2 : State) :
     cases hmtr
     exact htr
 
-/-- A 1-sized multistep transition is exactly a single transition with the given label.-/
+/-- A 1-sized multistep transition is exactly a single transition with the given label.
+@isnad1 id=iff.0h6v.s5.74f845dcf1ab from=translated src=- shape=24aad5cd vocab=4471bd1a
+-/
 @[simp] theorem MTr.singleton_iff (s1 : State) (μ : Label) (s2 : State) :
   lts.MTr s1 [μ] s2 ↔ lts.Tr s1 μ s2 := ⟨MTr.single_invert lts s1 μ s2, MTr.single lts⟩
 
-/-- A multistep transition over a concatenation can be split into two multistep transitions.-/
+/-- A multistep transition over a concatenation can be split into two multistep transitions.
+@isnad1 id=ex.1h7v.s5.75c69f27c2e8 from=translated src=- shape=fb870131 vocab=66cb436d
+-/
 theorem MTr.split {lts : LTS State Label} (h : lts.MTr s1 (μs ++ μs') s2) :
     ∃ s, lts.MTr s1 μs s ∧ lts.MTr s μs' s2 := by
   induction μs generalizing s1 s2 with
@@ -177,7 +196,9 @@ theorem MTr.split {lts : LTS State Label} (h : lts.MTr s1 (μs ++ μs') s2) :
       use s', .stepL htr hmtr', hmtr''
 
 /-- Multistep-transitions over `μs ++ μs'` are exactly multistep transitions over `μs` and `μs'`
-with a common end & start state (respectively).-/
+with a common end & start state (respectively).
+@isnad1 id=iff.0h7v.s5.aa2e97280804 from=translated src=- shape=59fd5584 vocab=66cb436d
+-/
 theorem MTr.append_iff : lts.MTr s1 (μs ++ μs') s2 ↔ ∃ s, lts.MTr s1 μs s ∧ lts.MTr s μs' s2 := by
   refine ⟨MTr.split, ?_⟩
   intro ⟨_, h, h'⟩
@@ -193,7 +214,9 @@ def TrInv (p : State → Prop) : Prop :=
 def MTrInv (p : State → Prop) : Prop :=
   ∀ s1 μs s2, lts.MTr s1 μs s2 → p s1 → p s2
 
-/-- Any single-step invariant is also a multistep invariant.-/
+/-- Any single-step invariant is also a multistep invariant.
+@isnad1 id=mtrinv.1h4v.s4.9684d6699cba from=translated src=- shape=2132d386 vocab=ab05b9bf
+-/
 theorem mtrInv_of_trInv {lts : LTS State Label} {p : State → Prop}
     (htr : lts.TrInv p) : lts.MTrInv p := by
   intro s1 μs s2 h
@@ -205,7 +228,9 @@ theorem mtrInv_of_trInv {lts : LTS State Label} {p : State → Prop}
 def CanReach (s1 s2 : State) : Prop :=
   ∃ μs, lts.MTr s1 μs s2
 
-/-- Any state can reach itself.-/
+/-- Any state can reach itself.
+@isnad1 id=canreach.0h4v.s4.ab41b68f4b50 from=translated src=- shape=1afcdb06 vocab=9acab626
+-/
 @[scoped grind .]
 theorem CanReach.refl (s : State) : lts.CanReach s s := by
   exists []
@@ -230,23 +255,31 @@ def traces (s : State) := { μs : List Label | ∃ s', lts.MTr s μs s' }
 multi-step transition labelled by `μs` from `s` to a state with no outgoing transitions.-/
 def completeTraces (s : State) := { μs : List Label | ∃ s', lts.IsTerminal s' ∧ lts.MTr s μs s' }
 
-/-- Definition of `LTS.traces` for general label sequences, ...-/
+/-- Definition of `LTS.traces` for general label sequences, ...
+@isnad1 id=iff.0h5v.s5.83cd068abd30 from=translated src=- shape=d7004054 vocab=23b9f9a0
+-/
 theorem mem_traces_iff {lts : LTS State Label} (μs : List Label) :
   μs ∈ lts.traces s ↔ ∃ s', lts.MTr s μs s' := Iff.rfl
 
-/-- ... singleton sequences, ...-/
+/-- ... singleton sequences, ...
+@isnad1 id=iff.0h5v.s5.690a8d5d0030 from=translated src=- shape=a9f04551 vocab=93e9ef1b
+-/
 theorem mem_traces_singleton_iff {lts : LTS State Label} (μ : Label) :
     [μ] ∈ lts.traces s ↔ ∃ s', lts.Tr s μ s' := by
   simp_rw [mem_traces_iff, MTr.singleton_iff lts s μ]
 
-/-- ... and sequences extended with a single transition.-/
+/-- ... and sequences extended with a single transition.
+@isnad1 id=iff.0h6v.s5.867244bf14e2 from=translated src=- shape=9ee3cea6 vocab=fa86eab7
+-/
 theorem mem_traces_cons_iff {lts : LTS State Label} (μ : Label) (μs : List Label) :
     (μ :: μs) ∈ lts.traces s ↔ ∃ s', lts.Tr s μ s' ∧ μs ∈ lts.traces s' := by
   simp_rw [mem_traces_iff, MTr.cons_iff]
   grind
 
 /-- If there is a multi-step transition from `s` labelled by `μs`, then `μs` is in the traces of
-`s`.-/
+`s`.
+@isnad1 id=mem.1h6v.s5.2ff791eaab0d from=translated src=- shape=33a0796b vocab=23b9f9a0
+-/
 theorem traces_in {lts : LTS State Label} (h : lts.MTr s μs s') : μs ∈ lts.traces s := by exists s'
 
 end Traces
@@ -310,43 +343,62 @@ def setImage (S : Set State) (μ : Label) : Set State :=
 def setImageMultistep (S : Set State) (μs : List Label) : Set State :=
   ⋃ s ∈ S, lts.imageMultistep s μs
 
-/-- Characterisation of `setImage` wrt `Tr`.-/
+/-- Characterisation of `setImage` wrt `Tr`.
+@isnad1 id=iff.0h6v.s5.4fac613b1a5a from=translated src=- shape=fe69070b vocab=4473b1dd
+-/
 @[scoped grind =]
 theorem mem_setImage {lts : LTS State Label} :
   s' ∈ lts.setImage S μ ↔ ∃ s ∈ S, lts.Tr s μ s' := by
   simp only [setImage, Set.mem_iUnion, exists_prop]
   grind
 
+/--
+@isnad1 id=mem.2h7v.s5.38db41d24ac1 from=translated src=- shape=8cec327c vocab=4473b1dd
+-/
 theorem tr_setImage {lts : LTS State Label} (hs : s ∈ S) (htr : lts.Tr s μ s') :
   s' ∈ lts.setImage S μ := by grind
 
-/-- Characterisation of `setImageMultistep` with `MTr`.-/
+/-- Characterisation of `setImageMultistep` with `MTr`.
+@isnad1 id=iff.0h6v.s5.9185e11b25e8 from=translated src=- shape=52ec0b06 vocab=5c816d06
+-/
 @[scoped grind =]
 theorem mem_setImageMultistep {lts : LTS State Label} :
   s' ∈ lts.setImageMultistep S μs ↔ ∃ s ∈ S, lts.MTr s μs s' := by
   simp only [setImageMultistep, Set.mem_iUnion, exists_prop]
   grind
 
+/--
+@isnad1 id=mem.2h7v.s5.ad10d1f122a1 from=translated src=- shape=279de872 vocab=5c816d06
+-/
 @[scoped grind <=]
 theorem mTr_setImage {lts : LTS State Label} (hs : s ∈ S) (htr : lts.MTr s μs s') :
   s' ∈ lts.setImageMultistep S μs := by grind
 
-/-- The image of the empty set is always the empty set.-/
+/-- The image of the empty set is always the empty set.
+@isnad1 id=eq.0h4v.s4.e4904ac15563 from=translated src=- shape=6e336e74 vocab=081daa27
+-/
 @[scoped grind =]
 theorem setImage_empty (lts : LTS State Label) : lts.setImage ∅ μ = ∅ := by grind
 
+/--
+@isnad1 id=eq.0h6v.s5.67d1dbcf1fcb from=translated src=- shape=c4464f01 vocab=9cf965af
+-/
 @[scoped grind =]
 lemma setImageMultistep_setImage_head (lts : LTS State Label) :
   lts.setImageMultistep S (μ :: μs) = lts.setImageMultistep (lts.setImage S μ ) μs := by grind
 
-/-- Characterisation of `setImageMultistep` as `List.foldl` on `setImage`.-/
+/-- Characterisation of `setImageMultistep` as `List.foldl` on `setImage`.
+@isnad1 id=eq.0h3v.s4.d1977e6e2e9c from=translated src=- shape=2d140642 vocab=8a420984
+-/
 @[scoped grind _=_]
 theorem setImageMultistep_foldl_setImage (lts : LTS State Label) :
   lts.setImageMultistep = List.foldl lts.setImage := by
   ext S μs s'
   induction μs generalizing S <;> grind
 
-/-- Characterisation of membership in `List.foldl lts.setImage` with `MTr`.-/
+/-- Characterisation of membership in `List.foldl lts.setImage` with `MTr`.
+@isnad1 id=iff.0h6v.s5.bccc8368a0da from=translated src=- shape=42fc100b vocab=97828aef
+-/
 @[scoped grind =]
 theorem mem_foldl_setImage (lts : LTS State Label) :
   s' ∈ List.foldl lts.setImage S μs ↔ ∃ s ∈ S, lts.MTr s μs s' := by
@@ -357,12 +409,17 @@ theorem mem_foldl_setImage (lts : LTS State Label) :
 abbrev ImageFinite := ∀ s μ, Finite (lts.image s μ)
 
 /-- In a deterministic LTS, if a state has a `μ`-derivative, then it can have no other
-`μ`-derivative.-/
+`μ`-derivative.
+@isnad1 id=not.3h7v.s5.7b04e6373e21 from=translated src=- shape=eb127b96 vocab=a712c90c
+-/
 @[scoped grind ⇒]
 theorem DeterministicStateLabel.not_tr_of_ne (hdet : lts.DeterministicStateLabel s μ)
     (hne : s₁ ≠ s₂) (htr₁ : lts.Tr s μ s₁) : ¬lts.Tr s μ s₂ := by
   grind
 
+/--
+@isnad1 id=iff.1h6v.s5.60ffb6dd3898 from=translated src=- shape=828eb588 vocab=27fec56d
+-/
 @[scoped grind ⇒]
 theorem DeterministicStateLabel.image_singleton_iff_tr (h : lts.DeterministicStateLabel s μ) :
     lts.image s μ = {s'} ↔ lts.Tr s μ s' := by
@@ -370,13 +427,17 @@ theorem DeterministicStateLabel.image_singleton_iff_tr (h : lts.DeterministicSta
   grind
 
 /-- If `s` is deterministic for `μ`, then the `μ`-image of `s` is either a singleton or the empty
-set.-/
+set.
+@isnad1 id=or.1h5v.s5.7bdface5e83d from=translated src=- shape=ecad435f vocab=a6478375
+-/
 @[scoped grind →]
 theorem DeterministicStateLabel.image_char (h : lts.DeterministicStateLabel s μ) :
     (∃ s', lts.image s μ = { s' }) ∨ (lts.image s μ = ∅) := by
   grind [=_ image_singleton_iff_tr]
 
-/-- If `s` is deterministic at `μ`, then the `μ`-image of `s` is finite.-/
+/-- If `s` is deterministic at `μ`, then the `μ`-image of `s` is finite.
+@isnad1 id=finite.1h5v.s4.b4e70c9e9583 from=translated src=- shape=b03ba191 vocab=1044e148
+-/
 @[scoped grind →]
 theorem DeterministicStateLabel.finite_image (h : lts.DeterministicStateLabel s μ) :
     Finite (lts.image s μ) := by
@@ -425,7 +486,9 @@ class Acyclic (lts : LTS State Label) where
 
 attribute [instance] Acyclic.acyclic
 
-/-- In a deterministic lts, a state's traces are determined by any of its predecessors.-/
+/-- In a deterministic lts, a state's traces are determined by any of its predecessors.
+@isnad1 id=eq.1h6v.s5.ec01bbf3cce6 from=translated src=- shape=e408d7c7 vocab=49456a65
+-/
 theorem Deterministic.traces_of_tr {lts : LTS State Label} [lts.Deterministic]
     (h : lts.Tr s μ s') : lts.traces s' = {μs | μ :: μs ∈ lts.traces s} := by
   ext μs
@@ -437,7 +500,9 @@ theorem Deterministic.traces_of_tr {lts : LTS State Label} [lts.Deterministic]
     rw [←deterministic _ _ _ _ h htr] at hmtr
     exact ⟨s'', hmtr⟩
 
-/-- In a deterministic lts, a state's traces are determined by any of its multi-step predecessors.-/
+/-- In a deterministic lts, a state's traces are determined by any of its multi-step predecessors.
+@isnad1 id=eq.1h6v.s6.1e9339704db5 from=translated src=- shape=ed216fbb vocab=7a251746
+-/
 theorem Deterministic.traces_of_mTr {lts : LTS State Label} [lts.Deterministic]
     (h : lts.MTr s μs s') : lts.traces s' = {μs' | μs ++ μs' ∈ lts.traces s} := by
   ext μs'

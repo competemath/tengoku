@@ -54,7 +54,9 @@ class HasFiniteSupport {α : Type*} [MeasurableSpace α] (μ : Measure α) : Pro
 
 /-- On a space with measurable singletons, a measure with finite support is a finite sum
 of Dirac measures weighted by its singleton masses. This is `Measure.ae_mem_finset_iff`
-applied to a finite support.-/
+applied to a finite support.
+@isnad1 id=ex.0h2v.s6.d1c6c96c9763 from=translated src=- shape=24e39f71 vocab=3c5ad10e
+-/
 theorem HasFiniteSupport.exists_eq_sum_smul_dirac {α : Type*} [MeasurableSpace α]
     [MeasurableSingletonClass α] (μ : Measure α) [HasFiniteSupport μ] :
     ∃ s : Finset α, μ = ∑ a ∈ s, μ {a} • Measure.dirac a := by
@@ -64,7 +66,9 @@ theorem HasFiniteSupport.exists_eq_sum_smul_dirac {α : Type*} [MeasurableSpace 
   simpa using hμ
 
 /-- On a space with measurable singletons, every set is null-measurable for a measure
-with finite support.-/
+with finite support.
+@isnad1 id=nullmeas.0h3v.s4.a7941f6bd722 from=translated src=- shape=8338a329 vocab=b39ceecb
+-/
 theorem NullMeasurableSet.of_hasFiniteSupport {α : Type*} [MeasurableSpace α]
     [MeasurableSingletonClass α] {μ : Measure α} [HasFiniteSupport μ]
     (t : Set α) : NullMeasurableSet t μ := by

@@ -63,12 +63,21 @@ def Circuit.wiring (σ : Signature) (select : Fin outputCount → Fin inputCount
 abbrev Circuit.id (σ : Signature) (inputCount : Nat) : Circuit σ inputCount inputCount :=
   Circuit.wiring σ _root_.id
 
+/--
+@isnad1 id=eq.0h4v.s4.83e2a4c86676 from=translated src=- shape=5bc5ff85 vocab=a261065e
+-/
 @[simp] theorem Circuit.size_wiring (select : Fin outputCount → Fin inputCount) :
     (Circuit.wiring σ select).size = 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.f2d9e473a5f7 from=translated src=- shape=e5fd3be7 vocab=311100eb
+-/
 @[simp] theorem Circuit.program_wiring (select : Fin outputCount → Fin inputCount) :
     (Circuit.wiring σ select).program = .empty := rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.15b45dbe74de from=translated src=- shape=402a1360 vocab=93552170
+-/
 @[simp] theorem Circuit.outputs_wiring (select : Fin outputCount → Fin inputCount) :
     (Circuit.wiring σ select).outputs = fun output => Wire.input (select output) := rfl
 
@@ -82,6 +91,9 @@ instance Circuit.instDecidableFanInAtMost
     (r : Nat) : Decidable (c.FanInAtMost r) :=
   Program.instDecidableFanInAtMost c.program r
 
+/--
+@isnad1 id=faninatm.0h5v.s4.22f3e62de3a3 from=translated src=- shape=868e71e1 vocab=902346d9
+-/
 @[simp] theorem Circuit.fanInAtMost_wiring (select : Fin outputCount → Fin inputCount)
     (r : Nat) : (Circuit.wiring σ select).FanInAtMost r := trivial
 
@@ -93,9 +105,15 @@ def Circuit.outputDepths (c : Circuit σ inputCount outputCount) : Fin outputCou
 def Circuit.depth (c : Circuit σ inputCount outputCount) : Nat :=
   Fin.foldl outputCount (fun depth k => max depth (c.outputDepths k)) 0
 
+/--
+@isnad1 id=eq.0h4v.s5.b43231b666d1 from=translated src=- shape=40864802 vocab=f2e9b532
+-/
 @[simp] theorem Circuit.outputDepths_wiring (select : Fin outputCount → Fin inputCount) :
     (Circuit.wiring σ select).outputDepths = fun _ => 0 := rfl
 
+/--
+@isnad1 id=eq.0h4v.s4.7ca7e2e2ba7e from=translated src=- shape=5bc5ff85 vocab=ab3e9ff5
+-/
 @[simp] theorem Circuit.depth_wiring (select : Fin outputCount → Fin inputCount) :
     (Circuit.wiring σ select).depth = 0 := by
   unfold Circuit.depth
@@ -112,7 +130,9 @@ def Circuit.eval
     (x : Fin inputCount → U) : Fin outputCount → U :=
   c.program.trace i x ∘ c.outputs
 
-/-- Output `j` of a wiring circuit is input `select j`.-/
+/-- Output `j` of a wiring circuit is input `select j`.
+@isnad1 id=eq.0h7v.s5.f3981b3b51d9 from=translated src=- shape=80830804 vocab=37715101
+-/
 @[simp] theorem Circuit.eval_wiring (select : Fin outputCount → Fin inputCount)
     (interpretation : Interpretation σ U) (input : Fin inputCount → U) :
     (Circuit.wiring σ select).eval interpretation input = input ∘ select := rfl
@@ -128,6 +148,9 @@ output computes.-/
 def single (f : (Fin inputCount → U) → U) : (Fin inputCount → U) → Fin 1 → U :=
   fun x _ => f x
 
+/--
+@isnad1 id=eq.0h5v.s5.f0c41c8d3313 from=translated src=- shape=0d54d061 vocab=9fc4fe3d
+-/
 @[simp] theorem single_apply (f : (Fin inputCount → U) → U) (x : Fin inputCount → U)
     (i : Fin 1) : single f x i = f x :=
   rfl
@@ -139,28 +162,36 @@ def Circuit.ComputesOn (c : Circuit σ inputCount outputCount)
     (f : (Fin inputCount → U) → Fin outputCount → U) : Prop :=
   Set.EqOn (c.eval interpretation) f S
 
-/-- Computing on every input is computing.-/
+/-- Computing on every input is computing.
+@isnad1 id=iff.0h7v.s5.58d7a4e14808 from=translated src=- shape=c95a5490 vocab=254eef38
+-/
 @[simp] theorem Circuit.computesOn_univ_iff (c : Circuit σ inputCount outputCount)
     (interpretation : Interpretation σ U) (f : (Fin inputCount → U) → Fin outputCount → U) :
     c.ComputesOn interpretation Set.univ f ↔ c.Computes interpretation f := by
   rw [Circuit.ComputesOn, Set.eqOn_univ, funext_iff]
   rfl
 
-/-- A circuit that computes `f` computes it on every support.-/
+/-- A circuit that computes `f` computes it on every support.
+@isnad1 id=computes.1h8v.s5.44c20c925382 from=translated src=- shape=50ba477a vocab=e65d46c3
+-/
 theorem Circuit.Computes.computesOn {c : Circuit σ inputCount outputCount}
     {interpretation : Interpretation σ U} {f : (Fin inputCount → U) → Fin outputCount → U}
     (h : c.Computes interpretation f) (S : Set (Fin inputCount → U)) :
     c.ComputesOn interpretation S f :=
   fun x _ => h x
 
-/-- A wiring circuit computes the selection of its inputs.-/
+/-- A wiring circuit computes the selection of its inputs.
+@isnad1 id=computes.0h6v.s5.1e6476b78d34 from=translated src=- shape=0c2c3359 vocab=e83455d5
+-/
 theorem Circuit.wiring_computes (select : Fin outputCount → Fin inputCount)
     (interpretation : Interpretation σ U) :
     (Circuit.wiring σ select).Computes interpretation fun x => x ∘ select := by
   intro x
   simp
 
-/-- Evaluating a circuit commutes with a homomorphism.-/
+/-- Evaluating a circuit commutes with a homomorphism.
+@isnad1 id=eq.0h10v.s6.2341d0170776 from=translated src=- shape=bd6ac7e8 vocab=84596b84
+-/
 theorem Circuit.map_eval
     {i₁ : Interpretation σ U₁}
     {i₂ : Interpretation σ U₂}

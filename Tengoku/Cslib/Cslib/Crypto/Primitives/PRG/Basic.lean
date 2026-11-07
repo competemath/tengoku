@@ -30,11 +30,15 @@ variable {Seed Output : Type*}
 
 variable [Fintype Seed] [Nonempty Seed] [Fintype Output] [Nonempty Output]
 
-/-- Advantage is nonnegative.-/
+/-- Advantage is nonnegative.
+@isnad1 id=le.0h4v.s5.19bb31639a83 from=translated src=- shape=1a603776 vocab=f1190d3a
+-/
 theorem advantage_nonneg (G : Generator Seed Output) (adversary : Adversary Output) :
     0 ≤ G.advantage adversary := abs_nonneg _
 
-/-- Advantage is at most one, with the normalization of Attack Game 3.1.-/
+/-- Advantage is at most one, with the normalization of Attack Game 3.1.
+@isnad1 id=le.0h4v.s5.dfcabd4405ca from=translated src=- shape=fb398352 vocab=f1190d3a
+-/
 theorem advantage_le_one (G : Generator Seed Output) (adversary : Adversary Output) :
     G.advantage adversary ≤ 1 := by
   have hreal := ENNReal.toReal_mono ENNReal.one_ne_top
@@ -47,24 +51,32 @@ theorem advantage_le_one (G : Generator Seed Output) (adversary : Adversary Outp
   · linarith [@ENNReal.toReal_nonneg (idealExperiment adversary true)]
   · linarith [@ENNReal.toReal_nonneg (G.realExperiment adversary true)]
 
-/-- Error one imposes no restriction on a generator.-/
+/-- Error one imposes no restriction on a generator.
+@isnad1 id=secure.0h4v.s5.355c4027ef8c from=translated src=- shape=fabfc869 vocab=8349a5ac
+-/
 theorem secure_one (G : Generator Seed Output) (Admissible : Adversary Output → Prop) :
     G.Secure Admissible 1 := fun adversary _ => G.advantage_le_one adversary
 
-/-- A test whose output distribution is independent of its input has zero advantage.-/
+/-- A test whose output distribution is independent of its input has zero advantage.
+@isnad1 id=eq.0h4v.s5.74191ab0e548 from=translated src=- shape=e03df2c7 vocab=f97d4bc3
+-/
 @[simp]
 theorem advantage_const (G : Generator Seed Output) (p : PMF Bool) :
     G.advantage (fun _ => p) = 0 := by
   simp [advantage, realExperiment, idealExperiment, PMF.bind_const]
 
-/-- A generator with exactly uniform output is secure with zero error against any tests.-/
+/-- A generator with exactly uniform output is secure with zero error against any tests.
+@isnad1 id=secure.1h4v.s5.51365d0b526a from=translated src=- shape=3811c9cf vocab=fc87ae9a
+-/
 theorem secure_zero_of_outputDist_eq (G : Generator Seed Output)
     (hG : G.outputDist = PMF.uniformOfFintype Output)
     (Admissible : Adversary Output → Prop) : G.Secure Admissible 0 := by
   intro adversary _
   simp [advantage, realExperiment, idealExperiment, hG]
 
-/-- Zero-error security against arbitrary tests is equivalent to exactly uniform output.-/
+/-- Zero-error security against arbitrary tests is equivalent to exactly uniform output.
+@isnad1 id=iff.0h3v.s5.2d0589afd999 from=translated src=- shape=1aa72e16 vocab=fc87ae9a
+-/
 theorem secure_zero_iff_outputDist_eq_uniform (G : Generator Seed Output) :
     G.Secure (fun _ => True) 0 ↔ G.outputDist = PMF.uniformOfFintype Output := by
   classical
@@ -74,12 +86,16 @@ theorem secure_zero_iff_outputDist_eq_uniform (G : Generator Seed Output) :
   simpa [advantage, realExperiment, idealExperiment, PMF.bind_apply, PMF.pure_apply,
     sub_eq_zero] using h (fun x => PMF.pure (decide (x = output))) trivial
 
-/-- Enlarging the allowed advantage preserves security.-/
+/-- Enlarging the allowed advantage preserves security.
+@isnad1 id=monotone.0h4v.s5.f1348531651e from=translated src=- shape=89757781 vocab=93c90412
+-/
 theorem Secure.mono {G : Generator Seed Output} {Admissible : Adversary Output → Prop} :
     Monotone (G.Secure Admissible) :=
   fun _ _ hεδ h adversary ha => (h adversary ha).trans (by exact_mod_cast hεδ)
 
-/-- Security against a larger class of adversaries implies security against a smaller class.-/
+/-- Security against a larger class of adversaries implies security against a smaller class.
+@isnad1 id=secure.1h7v.s6.0af2a13281bd from=translated src=- shape=5d25eee9 vocab=8349a5ac
+-/
 theorem Secure.of_admissible {G : Generator Seed Output}
     {Admissible Restricted : Adversary Output → Prop} {ε : ℝ≥0}
     (h : G.Secure Admissible ε) (hsub : ∀ adversary, Restricted adversary → Admissible adversary) :
@@ -100,7 +116,9 @@ noncomputable def rangeAdversary (G : Generator Seed Output) : Adversary Output 
   fun output => PMF.pure (G.rangeTest output)
 
 omit [Fintype Output] [Nonempty Output] in
-/-- The range test always accepts a generated output.-/
+/-- The range test always accepts a generated output.
+@isnad1 id=eq.0h3v.s5.a980cd1c88d9 from=translated src=- shape=2a21cb20 vocab=67750eac
+-/
 @[simp]
 theorem realExperiment_rangeAdversary (G : Generator Seed Output) :
     G.realExperiment G.rangeAdversary = PMF.pure true := by
@@ -109,7 +127,9 @@ theorem realExperiment_rangeAdversary (G : Generator Seed Output) :
 
 omit [Nonempty Seed] in
 /-- The range test's acceptance probability under uniform sampling is the fraction
-of outputs in the range.-/
+of outputs in the range.
+@isnad1 id=eq.0h3v.s6.3decb476e4b0 from=translated src=- shape=bf621b66 vocab=fcceae96
+-/
 theorem idealExperiment_rangeAdversary (G : Generator Seed Output) :
     (idealExperiment G.rangeAdversary true).toReal =
       Nat.card (Set.range G) / (Fintype.card Output : ℝ) := by
@@ -119,7 +139,9 @@ theorem idealExperiment_rangeAdversary (G : Generator Seed Output) :
   rw [← Finset.sum_filter]
   simp [Nat.card_eq_fintype_card, Fintype.card_subtype, div_eq_mul_inv]
 
-/-- The exact advantage of the range-membership adversary.-/
+/-- The exact advantage of the range-membership adversary.
+@isnad1 id=eq.0h3v.s6.7aabd4b2e636 from=translated src=- shape=3e8121e7 vocab=738d2bfa
+-/
 theorem advantage_rangeAdversary (G : Generator Seed Output) :
     G.advantage G.rangeAdversary =
       1 - Nat.card (Set.range G) / (Fintype.card Output : ℝ) := by
@@ -131,7 +153,9 @@ theorem advantage_rangeAdversary (G : Generator Seed Output) :
   rw [abs_of_nonneg (sub_nonneg.mpr hprob), idealExperiment_rangeAdversary]
 
 /-- Every generator has an unbounded distinguisher with advantage at least
-`1 - |Seed| / |Output|`. Collisions can only improve this attack.-/
+`1 - |Seed| / |Output|`. Collisions can only improve this attack.
+@isnad1 id=le.0h3v.s6.247139ee009f from=translated src=- shape=f935c583 vocab=d8d193a4
+-/
 theorem one_sub_card_div_le_advantage_rangeAdversary (G : Generator Seed Output) :
     1 - Fintype.card Seed / (Fintype.card Output : ℝ) ≤
       G.advantage G.rangeAdversary := by
@@ -140,7 +164,9 @@ theorem one_sub_card_div_le_advantage_rangeAdversary (G : Generator Seed Output)
     simpa using Finite.card_range_le G
   gcongr
 
-/-- Security is impossible below the range-test bound whenever that test is admissible.-/
+/-- Security is impossible below the range-test bound whenever that test is admissible.
+@isnad1 id=not.1h6v.s6.47a90e7ceb1c from=translated src=- shape=7a9f0c5b vocab=b4bd3365
+-/
 theorem not_secure_of_rangeAdversary (G : Generator Seed Output)
     {Admissible : Adversary Output → Prop} {ε : ℝ≥0}
     (ha : Admissible G.rangeAdversary)
@@ -151,7 +177,9 @@ theorem not_secure_of_rangeAdversary (G : Generator Seed Output)
 
 end RangeTests
 
-/-- An expanding generator cannot be perfectly secure against arbitrary adversaries.-/
+/-- An expanding generator cannot be perfectly secure against arbitrary adversaries.
+@isnad1 id=not.1h3v.s5.6e0746e8e695 from=translated src=- shape=0c0ac1c3 vocab=91001e52
+-/
 theorem not_secure_zero_of_isExpanding (G : Generator Seed Output) (hG : G.IsExpanding) :
     ¬ G.Secure (fun _ => True) 0 := by
   classical
@@ -160,7 +188,9 @@ theorem not_secure_zero_of_isExpanding (G : Generator Seed Output) (hG : G.IsExp
   have hlt : (Fintype.card Seed : ℝ) < Fintype.card Output := by exact_mod_cast hG
   simpa using sub_pos.mpr ((div_lt_one hpos).mpr hlt)
 
-/-- There is no expanding, perfectly secure generator against arbitrary adversaries.-/
+/-- There is no expanding, perfectly secure generator against arbitrary adversaries.
+@isnad1 id=not.0h2v.s5.2bba43599a0d from=translated src=- shape=771c369a vocab=91001e52
+-/
 theorem not_exists_isExpanding_secure_zero :
     ¬ ∃ G : Generator Seed Output, G.IsExpanding ∧ G.Secure (fun _ => True) 0 := by
   rintro ⟨G, hG, hsecure⟩

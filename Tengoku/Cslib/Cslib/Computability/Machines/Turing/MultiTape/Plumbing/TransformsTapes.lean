@@ -68,7 +68,9 @@ def TransformsTapes (tm : MultiTapeTM k Symbol State)
       tm.spaceUsed (wordsCfg input (some tm.q₀) ws out) t ≤ s
 
 /-- A `TransformsTapes` statement can be read with a stronger precondition, a weaker postcondition
-and larger bounds.-/
+and larger bounds.
+@isnad1 id=transfor.3h14v.s7.122ea835675d from=translated src=- shape=f65e3da0 vocab=75ca5027
+-/
 theorem TransformsTapes.imp {tm : MultiTapeTM k Symbol State}
     {P P' : (input : List Symbol) → (Fin k → List Symbol) → Prop}
     {Q Q' : (input : List Symbol) → (Fin k → List Symbol) → (Fin k → List Symbol) → Prop}
@@ -96,14 +98,18 @@ def nop (k : ℕ) (Symbol : Type*) : MultiTapeTM k Symbol Unit where
   q₀ := ()
   tr _ _ _ := { inputTape := 0, workTapes := fun _ => (none, 0), output := none, state := none }
 
-/-- A single step of `nop` halts and leaves the words alone.-/
+/-- A single step of `nop` halts and leaves the words alone.
+@isnad1 id=eq.0h5v.s5.b859bc904926 from=translated src=- shape=3dff12ea vocab=95c53a8d
+-/
 @[simp]
 lemma step_nop (ws : Fin k → List Symbol) (out : List Symbol) :
     (nop k Symbol).step (wordsCfg input (some ()) ws out) = wordsCfg input none ws out := by
   refine Cfg.ext rfl ?_ ?_ ?_ ?_ <;>
     simp [step, nop, Action.apply, wordsCfg, SignType.cast]
 
-/-- `nop` reaches its halting configuration after exactly one step.-/
+/-- `nop` reaches its halting configuration after exactly one step.
+@isnad1 id=eq.0h5v.s5.4fb9eea33d20 from=translated src=- shape=9d25757c vocab=3222870f
+-/
 @[simp]
 lemma runFrom_nop_one (ws : Fin k → List Symbol) (out : List Symbol) :
     (nop k Symbol).runFrom (wordsCfg input (some ()) ws out) 1 = wordsCfg input none ws out := by
@@ -111,7 +117,9 @@ lemma runFrom_nop_one (ws : Fin k → List Symbol) (out : List Symbol) :
 
 /-- **The machine that does nothing** halts in one step, leaving every word as it was. Its heads
 never move, so it visits one cell per tape. This is the first machine of the interface: it checks
-that the specification format is inhabited exactly as intended.-/
+that the specification format is inhabited exactly as intended.
+@isnad1 id=transfor.0h2v.s5.49ec3308b93e from=translated src=- shape=dbf2fde6 vocab=cccb5963
+-/
 theorem transformsTapes_nop (k : ℕ) (Symbol : Type*) :
     TransformsTapes (nop k Symbol) (fun _ _ => True) (fun _ ws ws' => ws' = ws) 1 k := by
   intro input ws out _

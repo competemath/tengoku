@@ -64,11 +64,17 @@ def Line.mapWires
   op := line.op
   wires := wireMap ∘ line.wires
 
+/--
+@isnad1 id=eq.0h7v.s5.08e63d41caab from=translated src=- shape=251049f2 vocab=6ee8ff4a
+-/
 @[simp] theorem Line.mapWires_op
     (line : Line σ sourceInputCount sourceGateCount)
     (wireMap : Wire sourceInputCount sourceGateCount → Wire targetInputCount targetGateCount) :
     (line.mapWires wireMap).op = line.op := rfl
 
+/--
+@isnad1 id=eq.0h8v.s5.338b6854d150 from=translated src=- shape=38af6fd0 vocab=b4b60828
+-/
 @[simp] theorem Line.mapWires_wires
     (line : Line σ sourceInputCount sourceGateCount)
     (wireMap : Wire sourceInputCount sourceGateCount → Wire targetInputCount targetGateCount)
@@ -125,7 +131,9 @@ def Line.eval
 
 /-- Mapping a line's wires preserves evaluation when the new valuation agrees
 with the old valuation along the map. The source and target input namespaces
-may differ.-/
+may differ.
+@isnad1 id=eq.1h13v.s6.f9b3a66ddbd8 from=translated src=- shape=8174e4de vocab=bbfdf046
+-/
 theorem Line.eval_mapWires
     (line : Line σ sourceInputCount sourceGateCount)
     (wireMap : Wire sourceInputCount sourceGateCount → Wire targetInputCount targetGateCount)
@@ -144,7 +152,9 @@ theorem Line.eval_mapWires
   simp only [Function.comp_apply]
   exact preserves (line.wires argument)
 
-/-- Specialization of `Line.eval_mapWires` to an input-fixing wire renaming.-/
+/-- Specialization of `Line.eval_mapWires` to an input-fixing wire renaming.
+@isnad1 id=eq.1h11v.s6.673e4cf1522d from=translated src=- shape=576fdd62 vocab=7da5bf54
+-/
 theorem Line.eval_mapRenaming
     (line : Line σ inputCount sourceGateCount)
     (ρ : Wire.Renaming inputCount sourceGateCount targetGateCount)
@@ -165,7 +175,9 @@ def Line.depth
   Nat.succ <| Fin.foldl (σ.Arity line.op)
     (fun depth k => max depth (wireDepths (line.wires k))) 0
 
-/-- Evaluating a line commutes with a homomorphism.-/
+/-- Evaluating a line commutes with a homomorphism.
+@isnad1 id=eq.0h11v.s6.75f648bea5db from=translated src=- shape=221c74fb vocab=428f1854
+-/
 theorem Line.map_eval
     {i₁ : Interpretation σ U₁}
     {i₂ : Interpretation σ U₂}
@@ -192,6 +204,9 @@ def Program.eval {gateCount : Nat}
       let prior := p.eval i x
       Fin.lastCases (line.eval i x prior) prior
 
+/--
+@isnad1 id=eq.0h8v.s6.d9317927b942 from=translated src=- shape=53706b08 vocab=31a0aaee
+-/
 @[simp] theorem Program.eval_gate_last
     (program : Program σ inputCount gateCount)
     (line : Line σ inputCount gateCount)
@@ -201,6 +216,9 @@ def Program.eval {gateCount : Nat}
       line.eval interpretation input (program.eval interpretation input) := by
   simp [Program.eval]
 
+/--
+@isnad1 id=eq.0h9v.s6.cf8918086153 from=translated src=- shape=2a65c9a0 vocab=0c2e503b
+-/
 @[simp] theorem Program.eval_gate_castSucc
     (program : Program σ inputCount gateCount)
     (line : Line σ inputCount gateCount)
@@ -228,7 +246,9 @@ def Program.wireDepths (p : Program σ inputCount gateCount) : Wire inputCount g
 def Program.depth (p : Program σ inputCount gateCount) : Nat :=
   Fin.foldl gateCount (fun depth k => max depth (p.depths k)) 0
 
-/-- Evaluating a program commutes with a homomorphism.-/
+/-- Evaluating a program commutes with a homomorphism.
+@isnad1 id=eq.0h10v.s6.901048cb0d07 from=translated src=- shape=aee7511e vocab=32fa8a5c
+-/
 theorem Program.map_eval
     {i₁ : Interpretation σ U₁}
     {i₂ : Interpretation σ U₂}
@@ -256,6 +276,9 @@ def Program.trace
     (x : Fin inputCount → U) : Wire inputCount gateCount → U :=
   Wire.elim x (p.eval i x)
 
+/--
+@isnad1 id=eq.0h8v.s5.8656ba5f66ed from=translated src=- shape=2864b5eb vocab=5dc827d3
+-/
 @[simp] theorem Program.trace_input
     (program : Program σ inputCount gateCount)
     (interpretation : Interpretation σ U)
@@ -264,6 +287,9 @@ def Program.trace
     program.trace interpretation input (Wire.input sourceInput) =
       input sourceInput := rfl
 
+/--
+@isnad1 id=eq.0h9v.s6.e225b88d0638 from=translated src=- shape=176746f3 vocab=37d9931e
+-/
 @[simp] theorem Program.trace_gate_castSucc
     (program : Program σ inputCount gateCount)
     (line : Line σ inputCount gateCount)
@@ -274,7 +300,9 @@ def Program.trace
       program.trace interpretation input wire := by
   cases wire <;> simp [Program.trace]
 
-/-- Evaluating every input and gate wire commutes with a homomorphism.-/
+/-- Evaluating every input and gate wire commutes with a homomorphism.
+@isnad1 id=eq.0h10v.s6.9375b47dbab0 from=translated src=- shape=ad7fa973 vocab=27758a48
+-/
 theorem Program.map_trace
     {i₁ : Interpretation σ U₁}
     {i₂ : Interpretation σ U₂}
@@ -303,6 +331,9 @@ def Program.wireFunction
     (input : Fin inputCount → U) : U :=
   program.trace interpretation input wire
 
+/--
+@isnad1 id=eq.0h8v.s5.d6944a3a4bdf from=translated src=- shape=d5706c8a vocab=cbab4ce7
+-/
 @[simp] theorem Program.gateFunction_apply
     (program : Program σ inputCount gateCount)
     (interpretation : Interpretation σ U)
@@ -311,6 +342,9 @@ def Program.wireFunction
     program.gateFunction interpretation gate input =
       program.eval interpretation input gate := rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.4b067db4a56c from=translated src=- shape=c455f113 vocab=c42947b2
+-/
 @[simp] theorem Program.wireFunction_input
     (program : Program σ inputCount gateCount)
     (interpretation : Interpretation σ U)
@@ -318,6 +352,9 @@ def Program.wireFunction
     program.wireFunction interpretation (Wire.input inputWire) =
       fun input => input inputWire := rfl
 
+/--
+@isnad1 id=eq.0h7v.s5.0451e3b3fecd from=translated src=- shape=65e859b2 vocab=07ed3a1b
+-/
 @[simp] theorem Program.wireFunction_gate
     (program : Program σ inputCount gateCount)
     (interpretation : Interpretation σ U)
@@ -325,6 +362,9 @@ def Program.wireFunction
     program.wireFunction interpretation (Wire.gate gate) =
       program.gateFunction interpretation gate := rfl
 
+/--
+@isnad1 id=eq.0h7v.s6.ce5db548a1e7 from=translated src=- shape=47575bf2 vocab=ac1ca5ff
+-/
 @[simp] theorem Program.gateFunction_gate_last
     (program : Program σ inputCount gateCount)
     (line : Line σ inputCount gateCount)
@@ -335,6 +375,9 @@ def Program.wireFunction
   funext input
   exact Program.eval_gate_last program line interpretation input
 
+/--
+@isnad1 id=eq.0h8v.s6.52e8743bf37a from=translated src=- shape=0f935280 vocab=b0ad8eb7
+-/
 @[simp] theorem Program.gateFunction_gate_castSucc
     (program : Program σ inputCount gateCount)
     (line : Line σ inputCount gateCount)
@@ -345,6 +388,9 @@ def Program.wireFunction
   funext input
   exact Program.eval_gate_castSucc program line interpretation input gate
 
+/--
+@isnad1 id=eq.0h8v.s5.b2b0b863df85 from=translated src=- shape=80e03e8f vocab=e5f6bf7f
+-/
 @[simp] theorem Program.trace_gateWire
     (program : Program σ inputCount gateCount)
     (interpretation : Interpretation σ U)
@@ -362,6 +408,9 @@ def Program.lines {gateCount : Nat} :
         (line.mapWires Wire.Renaming.castSucc)
         (fun gate => (program.lines gate).mapWires Wire.Renaming.castSucc)
 
+/--
+@isnad1 id=eq.0h5v.s6.23f58d509a0f from=translated src=- shape=6a26ad8a vocab=3f44794f
+-/
 @[simp] theorem Program.lines_gate_last
     (program : Program σ inputCount gateCount)
     (line : Line σ inputCount gateCount) :
@@ -369,6 +418,9 @@ def Program.lines {gateCount : Nat} :
       line.mapWires Wire.Renaming.castSucc := by
   simp [Program.lines]
 
+/--
+@isnad1 id=eq.0h6v.s6.f8ee33ebd48e from=translated src=- shape=04c72d91 vocab=1aa84fee
+-/
 @[simp] theorem Program.lines_gate_castSucc
     (program : Program σ inputCount gateCount)
     (line : Line σ inputCount gateCount)
@@ -377,7 +429,9 @@ def Program.lines {gateCount : Nat} :
       (program.lines gate).mapWires Wire.Renaming.castSucc := by
   simp [Program.lines]
 
-/-- A widened line evaluates to the value of its corresponding program gate.-/
+/-- A widened line evaluates to the value of its corresponding program gate.
+@isnad1 id=eq.0h8v.s5.fa5b98e09d10 from=translated src=- shape=019e9b2e vocab=90b0e45f
+-/
 theorem Program.lines_eval
     (program : Program σ inputCount gateCount)
     (interpretation : Interpretation σ U)

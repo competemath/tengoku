@@ -81,7 +81,9 @@ structure Cfg (k : ℕ) (Symbol State : Type*) (input : List Symbol) where
 deriving Inhabited
 
 /-- Two configurations with no work tapes are equal when their state, input head and output
-agree.-/
+agree.
+@isnad1 id=eq.3h5v.s6.178b80d02d07 from=translated src=- shape=7c3e9854 vocab=586b2747
+-/
 lemma Cfg.ext_zero_tapes {Symbol State : Type*} {input : List Symbol}
     {cfg₁ cfg₂ : Cfg 0 Symbol State input} (state : cfg₁.state = cfg₂.state)
     (inputPos : cfg₁.inputPos = cfg₂.inputPos) (output : cfg₁.output = cfg₂.output) :
@@ -99,25 +101,36 @@ def moveInputPos {n : ℕ} (pos : Fin (n + 2)) (m : SignType) : Fin (n + 2) :=
   let p := ((pos.val : ℤ) + (m.cast : ℤ)).toNat
   if h : p < n + 2 then ⟨p, h⟩ else ⟨n + 1, by omega⟩
 
+/--
+@isnad1 id=eq.0h2v.s5.2afac0810834 from=translated src=- shape=4fb0a912 vocab=55857c26
+-/
 @[simp]
 lemma moveInputPos_zero {n : ℕ} (pos : Fin (n + 2)) :
     moveInputPos pos 0 = pos := by
   apply Fin.ext
   simp [moveInputPos, pos.isLt]
 
+/--
+@isnad1 id=eq.0h1v.s6.cb75c7ecc7aa from=translated src=- shape=5713a6cd vocab=c0f07fec
+-/
 @[simp]
 lemma moveInputPos_leftBoundary {n : ℕ} :
     moveInputPos (0 : Fin (n + 2)) (-1) = 0 := by
   apply Fin.ext
   simp [moveInputPos]
 
+/--
+@isnad1 id=eq.0h1v.s6.1ef544e3b0b9 from=translated src=- shape=8ab6deb4 vocab=354d5bab
+-/
 @[simp]
 lemma moveInputPos_rightBoundary {n : ℕ} :
     moveInputPos (⟨n + 1, by omega⟩ : Fin (n + 2)) 1 = ⟨n + 1, by omega⟩ := by
   unfold moveInputPos
   rw [dite_eq_right (by simp; omega)]
 
-/-- A left move away from the left input boundary decrements the native input position.-/
+/-- A left move away from the left input boundary decrements the native input position.
+@isnad1 id=eq.1h2v.s6.19f2621fe2bf from=translated src=- shape=49cb4629 vocab=b6770d49
+-/
 lemma moveInputPos_neg_of_ne_left {n : ℕ} (p : Fin (n + 2)) (h : p ≠ 0) :
     moveInputPos p .neg = ⟨p.val - 1, by have := p.isLt; omega⟩ := by
   have hp : 0 < p.val := Nat.pos_of_ne_zero (fun hz => h (Fin.ext hz))
@@ -125,7 +138,9 @@ lemma moveInputPos_neg_of_ne_left {n : ℕ} (p : Fin (n + 2)) (h : p ≠ 0) :
   apply Fin.ext
   rw [dite_eq_left] <;> simp <;> omega
 
-/-- A right move away from the right input boundary increments the native input position.-/
+/-- A right move away from the right input boundary increments the native input position.
+@isnad1 id=eq.1h2v.s6.c1774f4e9e99 from=translated src=- shape=fca5799e vocab=afb180e7
+-/
 lemma moveInputPos_pos_of_ne_right {n : ℕ} (p : Fin (n + 2)) (h : p.val ≠ n + 1) :
     moveInputPos p .pos = ⟨p.val + 1, by have := p.isLt; omega⟩ := by
   unfold moveInputPos
@@ -135,12 +150,16 @@ lemma moveInputPos_pos_of_ne_right {n : ℕ} (p : Fin (n + 2)) (h : p.val ≠ n 
   · simp
     omega
 
-/-- The value of the input head after a move, as a clamped integer. `omega`-friendly.-/
+/-- The value of the input head after a move, as a clamped integer. `omega`-friendly.
+@isnad1 id=eq.0h3v.s6.fc9a2ec9eaf0 from=translated src=- shape=9fb3bdd2 vocab=28f27bf5
+-/
 lemma val_moveInputPos_eq {n : ℕ} (pos : Fin (n + 2)) (m : SignType) :
     ((moveInputPos pos m).val : ℤ) = min ((n : ℤ) + 1) (max 0 ((pos.val : ℤ) + (m.cast : ℤ))) := by
   grind
 
-/-- The input head moves by at most one position.-/
+/-- The input head moves by at most one position.
+@isnad1 id=le.0h3v.s6.4a3bc168de87 from=translated src=- shape=9767e77b vocab=769a4033
+-/
 lemma val_moveInputPos_le {n : ℕ} (pos : Fin (n + 2)) (m : SignType) :
     (moveInputPos pos m).val ≤ pos.val + 1 := by
   have h := val_moveInputPos_eq pos m
@@ -154,12 +173,17 @@ def Cfg.inputSymbol (cfg : Cfg k Symbol State input) : Option Symbol :=
   else if h₂ : cfg.inputPos = input.length + 1 then none
   else input[cfg.inputPos.val - 1]'(by grind)
 
-/-- At either boundary of the input, the head reads a blank.-/
+/-- At either boundary of the input, the head reads a blank.
+@isnad1 id=eq.1h5v.s6.56f216a3c5ae from=translated src=- shape=313874a5 vocab=b54f9f21
+-/
 lemma inputSymbol_eq_none_of_boundary {cfg : Cfg k Symbol State input}
     (h : cfg.inputPos.val = 0 ∨ cfg.inputPos.val = input.length + 1) :
     cfg.inputSymbol = none := by
   grind [Cfg.inputSymbol]
 
+/--
+@isnad1 id=eq.2h6v.s6.0f333a0286fb from=translated src=- shape=d147f344 vocab=519c1950
+-/
 @[simp]
 lemma inputSymbolInner {cfg : Cfg k Symbol State input} (p : ℕ)
     (h₁ : cfg.inputPos.val = 1 + p)
@@ -211,7 +235,9 @@ def Action.apply (action : Action k Symbol State) (cfg : Cfg k Symbol State inpu
   workTapePos i := cfg.workTapePos i + (action.workTapes i).2
   output := cfg.output ++ action.output.toList
 
-/-- A work tape head moves by at most one cell when an action is applied.-/
+/-- A work tape head moves by at most one cell when an action is applied.
+@isnad1 id=le.0h7v.s5.cfb25a29cbae from=translated src=- shape=8c64d7d2 vocab=fb75b9a9
+-/
 lemma workTapePos_apply_le (action : Action k Symbol State)
     (cfg : Cfg k Symbol State input) (i : Fin k) :
     |(action.apply cfg).workTapePos i - cfg.workTapePos i| ≤ 1 := by

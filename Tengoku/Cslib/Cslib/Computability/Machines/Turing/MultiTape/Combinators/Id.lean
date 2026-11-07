@@ -88,7 +88,9 @@ end Copy
 
 variable {α : Type*}
 
-/-- The identity function is computable in one step per input symbol and zero space.-/
+/-- The identity function is computable in one step per input symbol and zero space.
+@isnad1 id=computab.0h2v.s5.39f4126744ef from=translated src=- shape=1c27cc67 vocab=7accb14f
+-/
 public theorem computableInTimeAndSpace_id {enc : α ↪ List Bool} :
     ComputableInTimeAndSpace (id : α → α) enc enc
       (fun a => (enc a).length + 1) (fun _ => 0) :=

@@ -44,12 +44,17 @@ namespace MultiTapeTM
 
 variable {tm : MultiTapeTM k Symbol State} {t : ℕ}
 
+/--
+@isnad1 id=eq.0h5v.s5.08fa85ad3fbb from=translated src=- shape=c606bb7e vocab=d709b559
+-/
 @[simp]
 lemma toNTM_initCfg (tm : MultiTapeTM k Symbol State) (input : List Symbol) :
     tm.toNTM.initCfg input = tm.initCfg input := rfl
 
 /-- Each step of `tm` is a step of its nondeterministic reading. This holds at a halted
-configuration too, where both models idle.-/
+configuration too, where both models idle.
+@isnad1 id=step.0h6v.s5.26121eb7c255 from=translated src=- shape=c27ef02e vocab=5109b187
+-/
 theorem toNTM_step (c : Cfg k Symbol State input) : tm.toNTM.Step c (tm.step c) := by
   cases hq : c.state <;> simp [MultiTapeNTM.Step, step, toNTM, hq]
 
@@ -67,7 +72,9 @@ def toNTMComputationPath (tm : MultiTapeTM k Symbol State) (input : List Symbol)
   head_eq := rfl
 
 /-- Every deterministic computation is a nondeterministic one, witnessed by the machine's own
-run.-/
+run.
+@isnad1 id=computes.1h8v.s5.aeb0b4cbf867 from=translated src=- shape=a0a46c9e vocab=9eb96398
+-/
 theorem toNTM_computes {output : List Symbol} {t s : ℕ}
     (h : tm.ComputesInTimeAndSpace input output t s) :
     tm.toNTM.ComputesInExactTimeAndSpace input output t s :=

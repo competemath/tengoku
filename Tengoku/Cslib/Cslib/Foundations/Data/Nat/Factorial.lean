@@ -20,7 +20,9 @@ public section
 
 namespace Nat
 
-/-- The logarithm of the factorial is at least `n log n - n`.-/
+/-- The logarithm of the factorial is at least `n log n - n`.
+@isnad1 id=le.0h1v.s5.129724901644 from=translated src=- shape=f8055452 vocab=25518754
+-/
 theorem mul_log_sub_le_log_factorial (n : ℕ) :
     (n : ℝ) * Real.log n - n ≤ Real.log n.factorial := by
   obtain rfl | hn := n.eq_zero_or_pos

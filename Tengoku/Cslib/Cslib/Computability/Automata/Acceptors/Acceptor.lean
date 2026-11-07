@@ -31,7 +31,9 @@ variable {Symbol : Type v}
 def language [Acceptor A Symbol] (a : A) : Language Symbol :=
   { xs | Accepts a xs }
 
-/-- A string is in the language of an acceptor iff the acceptor accepts it.-/
+/-- A string is in the language of an acceptor iff the acceptor accepts it.
+@isnad1 id=iff.0h4v.s5.2cbe9a7df04b from=translated src=- shape=a866b076 vocab=2bbfcce5
+-/
 @[simp, scoped grind =]
 theorem mem_language [Acceptor A Symbol] (a : A) (xs : List Symbol) :
   xs ∈ language a ↔ Accepts a xs := Iff.rfl

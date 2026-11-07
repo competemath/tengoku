@@ -25,7 +25,9 @@ def prod (flts1 : FLTS State1 Label) (flts2 : FLTS State2 Label) :
   tr := fun (s1, s2) μ ↦ (flts1.tr s1 μ, flts2.tr s2 μ)
 
 /-- A state is reachable by the product FLTS iff its components are reachable by
-the respective FLTS components.-/
+the respective FLTS components.
+@isnad1 id=eq.0h7v.s5.8d720860e396 from=translated src=- shape=650acf29 vocab=6a5cc593
+-/
 @[simp, scoped grind =]
 theorem prod_mtr_eq (flts1 : FLTS State1 Label) (flts2 : FLTS State2 Label)
     (s : State1 × State2) (μs : List Label) :

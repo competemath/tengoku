@@ -54,6 +54,9 @@ noncomputable def computableFunctions (I : Interpretation σ U) (n s : ℕ) :
   (Finset.range (s + 1)).biUnion fun g =>
     Finset.univ.image fun p : Program σ n g × Wire n g => p.1.wireFunction I p.2
 
+/--
+@isnad1 id=iff.0h6v.s6.8cba8a2d4ce9 from=translated src=- shape=230517ce vocab=52030e60
+-/
 @[simp] theorem mem_computableFunctions {f : (Fin n → U) → U} :
     f ∈ computableFunctions I n s ↔
       ∃ c : Circuit σ n 1, c.Computes I (single f) ∧ c.size ≤ s := by
@@ -66,7 +69,9 @@ noncomputable def computableFunctions (I : Interpretation σ U) (n s : ℕ) :
   · rintro ⟨c, hc, hs⟩
     exact ⟨c.size, hs, c.program, c.outputs 0, funext fun x => congrFun (hc x) 0⟩
 
-/-- The functions computable with at most `s` gates are those of complexity at most `s`.-/
+/-- The functions computable with at most `s` gates are those of complexity at most `s`.
+@isnad1 id=iff.0h6v.s6.6cc749f23b43 from=translated src=- shape=ee21a417 vocab=5357c965
+-/
 theorem mem_computableFunctions_iff_ecomplexity_le {f : (Fin n → U) → U} :
     f ∈ computableFunctions I n s ↔ ecomplexity I (single f) ≤ s := by
   rw [mem_computableFunctions, ecomplexity_le_iff]
@@ -86,6 +91,9 @@ private theorem mem_irredundantFunctions_iff {f : (Fin n → U) → U} :
   classical
   simp [irredundantFunctions, Program.wireFunction, funext_iff, and_comm]
 
+/--
+@isnad1 id=iff.0h6v.s6.11ec01fa6b1f from=translated src=- shape=f1259ea8 vocab=589a5762
+-/
 @[simp] theorem mem_irredundantFunctions {f : (Fin n → U) → U} :
     f ∈ irredundantFunctions I n g ↔
       ∃ c : Circuit σ n 1, c.Computes I (single f) ∧ c.Irredundant I ∧ c.size = g := by
@@ -170,7 +178,9 @@ private theorem relabel_injective : Function.Injective
     exact congrFun (hvalues x) a
   exact Prod.ext rfl (by simpa using congrArg Equiv.symm hpermutation)
 
-/-- Distinct functions and permutations of their irredundant gates give distinct presentations.-/
+/-- Distinct functions and permutations of their irredundant gates give distinct presentations.
+@isnad1 id=le.0h5v.s6.ce0d52e0a5bf from=translated src=- shape=d78d5067 vocab=24075d7e
+-/
 theorem card_irredundantFunctions_mul_factorial_le (I : Interpretation σ U) (n g : ℕ) :
     (irredundantFunctions I n g).card * g.factorial ≤
       Fintype.card (Line σ n g) ^ g * (n + g) := by
@@ -180,7 +190,9 @@ theorem card_irredundantFunctions_mul_factorial_le (I : Interpretation σ U) (n 
     Fintype.card_fun, Wire.card] using h
 
 /-- Normalizing a circuit with at most `s` gates leaves an irredundant program with at most `s`
-gates computing the same function.-/
+gates computing the same function.
+@isnad1 id=le.0h5v.s6.39f1917b5e8c from=translated src=- shape=4fbdb4de vocab=fa9f6c81
+-/
 theorem card_computableFunctions_le_sum (I : Interpretation σ U) (n s : ℕ) :
     (computableFunctions I n s).card ≤
       ∑ g ∈ Finset.range (s + 1), (irredundantFunctions I n g).card := by
@@ -196,7 +208,9 @@ theorem card_computableFunctions_le_sum (I : Interpretation σ U) (n s : ℕ) :
   exact (congrFun hd x).trans (hc x)
 
 /-- Bound the number of computable functions using a uniform line count `B`. The condition
-`s ≤ B` absorbs the extra factorial factors from circuits with fewer than `s` gates.-/
+`s ≤ B` absorbs the extra factorial factors from circuits with fewer than `s` gates.
+@isnad1 id=le.2h6v.s6.b32a1400a63c from=translated src=- shape=5fb3ffdf vocab=88511a84
+-/
 theorem card_computableFunctions_mul_factorial_le (I : Interpretation σ U) (n s B : ℕ)
     (hB : s ≤ B) (hlines : ∀ g ≤ s, Fintype.card (Line σ n g) ≤ B) :
     (computableFunctions I n s).card * s.factorial ≤
@@ -223,7 +237,9 @@ theorem card_computableFunctions_mul_factorial_le (I : Interpretation σ U) (n s
     _ = (s + 1) * B ^ s * (n + s) := by simp [mul_assoc]
 
 /-- A cardinality bound for any finite signature with bounded arities. The maximum also
-covers empty signatures and signatures containing only nullary operations.-/
+covers empty signatures and signatures containing only nullary operations.
+@isnad1 id=le.1h6v.s7.dff20a5e6fc7 from=translated src=- shape=b959da4d vocab=88c7c83d
+-/
 theorem card_computableFunctions_mul_factorial_le_of_arity_le
     (I : Interpretation σ U) (n s r : ℕ) (arity_le : ∀ op, σ.Arity op ≤ r) :
     (computableFunctions I n s).card * s.factorial ≤

@@ -39,7 +39,9 @@ inductive Op where
   | or
   deriving DecidableEq, Fintype
 
-/-- The De Morgan basis has five operation symbols, counting its two constants.-/
+/-- The De Morgan basis has five operation symbols, counting its two constants.
+@isnad1 id=eq.0h0v.s3.865bcce7acde from=translated src=- shape=b0ae1d2b vocab=91b59f21
+-/
 @[simp] theorem Op.card : Fintype.card Op = 5 := rfl
 
 /-- The De Morgan signature.-/
@@ -59,14 +61,18 @@ def interpretation : Interpretation signature Bool
 
 end Boolean
 
-/-- Every De Morgan program has fan-in at most two.-/
+/-- Every De Morgan program has fan-in at most two.
+@isnad1 id=faninatm.0h3v.s4.7bf9bb41a0b4 from=translated src=- shape=8efc1f26 vocab=ea59a5b3
+-/
 theorem Program.fanInAtMost_two {n g : ℕ} (p : Program Boolean.signature n g) :
     p.FanInAtMost 2 := by
   induction p with
   | empty => trivial
   | gate p line ih => exact And.intro ih (by cases line.op <;> simp)
 
-/-- Every De Morgan circuit has fan-in at most two.-/
+/-- Every De Morgan circuit has fan-in at most two.
+@isnad1 id=faninatm.0h3v.s4.8ce53b4fa9fd from=translated src=- shape=8efc1f26 vocab=ba51b1c6
+-/
 theorem Circuit.fanInAtMost_two {n o : ℕ} (c : Circuit Boolean.signature n o) :
     c.FanInAtMost 2 :=
   c.program.fanInAtMost_two

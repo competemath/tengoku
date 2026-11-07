@@ -126,7 +126,9 @@ private theorem eventually_card_lt [Fintype σ.Op] [Fintype U] [Nontrivial U]
   exact_mod_cast hcount
 
 /-- For all sufficiently large `n`, some function on `n` inputs over `U` requires more than
-`|U|ⁿ/n` gates over the fixed finite signature, whose operations have arity at most two.-/
+`|U|ⁿ/n` gates over the fixed finite signature, whose operations have arity at most two.
+@isnad1 id=ex.1h3v.s7.062bccacdf0d from=translated src=- shape=c9814760 vocab=1320b964
+-/
 theorem exists_hard_function [Finite σ.Op] [Finite U] [Nontrivial U]
     (I : Interpretation σ U) (arity_le : ∀ op, σ.Arity op ≤ 2) :
     ∃ N : ℕ, ∀ n ≥ N, ∃ f : (Fin n → U) → U,

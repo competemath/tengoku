@@ -51,34 +51,53 @@ theorem eq_zero_or_one_ofIsEmpty [IsEmpty α] (l : Language α) : l = 0 ∨ l = 
     obtain ⟨rfl⟩ := eq_nil_ofIsEmpty yl
     simpa
 
+/--
+@isnad1 id=iff.0h5v.s6.afc3bb6949de from=translated src=- shape=eb62ba9d vocab=b30a0d62
+-/
 @[simp]
 theorem mem_biInf {I : Type*} (s : Set I) (l : I → Language α) (x : List α) :
     (x ∈ ⨅ i ∈ s, l i) ↔ ∀ i ∈ s, x ∈ l i :=
   mem_iInter₂
 
-/-- A grind regression found moving to nightly-2026-03-31 (changes from lean#13166)-/
+/-- A grind regression found moving to nightly-2026-03-31 (changes from lean#13166)
+@isnad1 id=iff.0h5v.s6.a724ac840b57 from=translated src=- shape=270579ff vocab=03e1dd5f
+-/
 @[simp]
 theorem mem_biSup {I : Type*} (s : Set I) (l : I → Language α) (x : List α) :
     (x ∈ ⨆ i ∈ s, l i) ↔ ∃ i ∈ s, x ∈ l i where
   mp h := bex_def.mp (mem_iUnion₂.mp h)
   mpr h :=  mem_iUnion₂.mpr (bex_def.mpr h)
 
+/--
+@isnad1 id=iff.0h2v.s6.a5d70326f947 from=translated src=- shape=93e500ab vocab=5ba63447
+-/
 theorem le_one_iff_eq : l ≤ 1 ↔ l = 0 ∨ l = 1 :=
   subset_singleton_iff_eq
 
+/--
+@isnad1 id=iff.0h3v.s4.b513423525ae from=translated src=- shape=8c79c6a1 vocab=24da1354
+-/
 @[simp, scoped grind =]
 theorem mem_singleton (x y : List α) : x ∈ ({y} : Language α) ↔ x = y :=
   Iff.rfl
 
+/--
+@isnad1 id=iff.0h3v.s5.5d8dc01c7741 from=translated src=- shape=166981fb vocab=3c18f278
+-/
 @[simp, scoped grind =]
 theorem mem_sub_one (x : List α) : x ∈ (l - 1) ↔ x ∈ l ∧ x ≠ [] :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.4eea188688d6 from=translated src=- shape=f6d7eb49 vocab=e7ac9900
+-/
 @[simp, scoped grind =]
 theorem reverse_sub (l m : Language α) : (l - m).reverse = l.reverse - m.reverse := by
   ext x; simp [mem_sub]
 
-/-- A grind regression found moving to nightly-2026-03-31 (changes from lean#13166)-/
+/-- A grind regression found moving to nightly-2026-03-31 (changes from lean#13166)
+@isnad1 id=eq.0h2v.s6.34ed417ec6c1 from=translated src=- shape=b661a95b vocab=e32b30db
+-/
 @[scoped grind =]
 theorem sub_one_mul : (l - 1) * l = l * l - 1 := by
   ext x; constructor
@@ -95,6 +114,9 @@ theorem sub_one_mul : (l - 1) * l = l * l - 1 := by
       grind [mem_sub, mem_one]
     · use u, (mem_sub_one u).mpr ⟨h_u, h_u'⟩, v
 
+/--
+@isnad1 id=eq.0h2v.s6.6d79f3d37848 from=translated src=- shape=ed8545c1 vocab=e32b30db
+-/
 @[scoped grind =]
 theorem mul_sub_one : l * (l - 1) = l * l - 1 := by
   calc
@@ -103,7 +125,9 @@ theorem mul_sub_one : l * (l - 1) = l * l - 1 := by
     _ = (l.reverse * l.reverse - 1).reverse := by rw [sub_one_mul]
     _ = _ := by rw [reverse_sub, reverse_one, reverse_mul, reverse_reverse]
 
-/-- A grind regression found moving to nightly-2026-03-31 (changes from lean#13166)-/
+/-- A grind regression found moving to nightly-2026-03-31 (changes from lean#13166)
+@isnad1 id=eq.0h2v.s6.51adb8b568cf from=translated src=- shape=39925df5 vocab=7cae2f1b
+-/
 @[scoped grind =]
 theorem kstar_sub_one : l∗ - 1 = (l - 1) * l∗ := by
   ext x; constructor
@@ -119,11 +143,17 @@ theorem kstar_sub_one : l∗ - 1 = (l - 1) * l∗ := by
       exact ⟨y, h_y, z, h_z, rfl⟩
     · grind [one_def, append_eq_nil_iff]
 
+/--
+@isnad1 id=eq.0h2v.s5.18ce0884b12d from=translated src=- shape=9167ee39 vocab=4fb81d4b
+-/
 @[scoped grind =]
 theorem sub_one_kstar : (l - 1)∗ = l∗ := by
   ext x
   grind [mem_kstar, mem_kstar_iff_exists_nonempty]
 
+/--
+@isnad1 id=iff.0h3v.s6.e9f1d8fbf46b from=translated src=- shape=065d5afa vocab=e4a707b1
+-/
 @[scoped grind .]
 theorem kstar_iff_mul_add : m = l∗ ↔ m = (l - 1) * m + 1 := by
   rw [self_eq_mul_add_iff, mul_one, sub_one_kstar]

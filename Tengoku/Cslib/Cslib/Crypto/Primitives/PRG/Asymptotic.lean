@@ -54,7 +54,9 @@ def Secure (G : Family Seed Output)
     Asymptotics.SuperpolynomialDecay atTop (fun n : ℕ => (n : ℝ))
       (fun n => (G n).advantage (adversary_family n))
 
-/-- Restricting the admissible adversary families preserves asymptotic security.-/
+/-- Restricting the admissible adversary families preserves asymptotic security.
+@isnad1 id=secure.1h6v.s6.338d8100e2d8 from=translated src=- shape=c9b0a56f vocab=3969ce1a
+-/
 theorem Secure.of_admissible {G : Family Seed Output}
     {Admissible Restricted : (∀ n, Adversary (Output n)) → Prop}
     (h : G.Secure Admissible)
@@ -68,7 +70,9 @@ def SecureWithError (G : Family Seed Output)
   ∀ adversary_family, Admissible adversary_family →
     ∀ n, (G n).advantage (adversary_family n) ≤ ε n
 
-/-- A negligible error bound implies asymptotic security.-/
+/-- A negligible error bound implies asymptotic security.
+@isnad1 id=secure.2h5v.s6.3ecf1bae4bbb from=translated src=- shape=d2badf6d vocab=99af4662
+-/
 theorem SecureWithError.secure {G : Family Seed Output}
     {Admissible : (∀ n, Adversary (Output n)) → Prop} {ε : ℕ → ℝ≥0}
     (h : G.SecureWithError Admissible ε)
@@ -85,7 +89,9 @@ section RangeTests
 variable [∀ n, DecidableEq (Output n)]
 
 /-- A non-negligible lower bound on the fraction of outputs outside the image rules out
-security whenever exhaustive range testing is admissible.-/
+security whenever exhaustive range testing is admissible.
+@isnad1 id=not.2h6v.s7.b06a57f1f085 from=translated src=- shape=2185569c vocab=daa15ff7
+-/
 theorem not_secure_of_rangeAdversary (G : Family Seed Output)
     {Admissible : (∀ n, Adversary (Output n)) → Prop}
     (ha : Admissible (fun n => (G n).rangeAdversary)) {δ : ℕ → ℝ≥0}
@@ -104,7 +110,9 @@ theorem not_secure_of_rangeAdversary (G : Family Seed Output)
   exact hn
 
 /-- If outputs eventually outnumber seeds by a factor of two, admissibility of exhaustive
-seed enumeration and output comparison suffices to rule out security.-/
+seed enumeration and output comparison suffices to rule out security.
+@isnad1 id=not.1h5v.s6.a1c9b237c267 from=translated src=- shape=63cfd9af vocab=8dc547d7
+-/
 theorem not_secure_of_two_mul_card_le (G : Family Seed Output)
     {Admissible : (∀ n, Adversary (Output n)) → Prop}
     (ha : Admissible (fun n => (G n).rangeAdversary))
@@ -128,7 +136,9 @@ theorem not_secure_of_two_mul_card_le (G : Family Seed Output)
 end RangeTests
 
 /-- A bitstring generator that eventually stretches by at least one bit is insecure
-against any class admitting its range-test family.-/
+against any class admitting its range-test family.
+@isnad1 id=not.1h5v.s7.2427d75e4ac4 from=translated src=- shape=94663b03 vocab=742e0836
+-/
 theorem not_secure_of_bitstring_stretch {seedLength outputLength : ℕ → ℕ}
     (G : Family (fun n => Fin (seedLength n) → Bool) (fun n => Fin (outputLength n) → Bool))
     {Admissible : (∀ n, Adversary (Fin (outputLength n) → Bool)) → Prop}
@@ -143,7 +153,9 @@ theorem not_secure_of_bitstring_stretch {seedLength outputLength : ℕ → ℕ}
     _ ≤ 2 ^ outputLength n := Nat.pow_le_pow_right (by decide) hn
 
 /-- No bitstring generator family that eventually stretches by at least one bit is secure
-against all adversary families.-/
+against all adversary families.
+@isnad1 id=not.1h2v.s7.819d2b5fc31e from=translated src=- shape=103bbe3c vocab=0ba204a8
+-/
 theorem not_exists_secure_bitstring_stretch {seedLength outputLength : ℕ → ℕ}
     (hstretch : ∀ᶠ n in atTop, seedLength n < outputLength n) :
     ¬ ∃ G : Family (fun n => Fin (seedLength n) → Bool)
@@ -152,7 +164,9 @@ theorem not_exists_secure_bitstring_stretch {seedLength outputLength : ℕ → �
   exact G.not_secure_of_bitstring_stretch trivial hstretch hG
 
 /-- A `BitVec` generator that eventually stretches by at least one bit is insecure
-against any class admitting its range-test family.-/
+against any class admitting its range-test family.
+@isnad1 id=not.1h5v.s7.a8af4659c171 from=translated src=- shape=61b7df6d vocab=8d8cca68
+-/
 theorem not_secure_of_bitVec_stretch {seedLength outputLength : ℕ → ℕ}
     (G : Family (fun n => BitVec (seedLength n)) (fun n => BitVec (outputLength n)))
     {Admissible : (∀ n, Adversary (BitVec (outputLength n))) → Prop}
@@ -167,7 +181,9 @@ theorem not_secure_of_bitVec_stretch {seedLength outputLength : ℕ → ℕ}
     _ ≤ 2 ^ outputLength n := Nat.pow_le_pow_right (by decide) hn
 
 /-- No `BitVec` generator family that eventually stretches by at least one bit is secure
-against all adversary families.-/
+against all adversary families.
+@isnad1 id=not.1h2v.s6.65b527965708 from=translated src=- shape=b2276c2c vocab=e1b979a3
+-/
 theorem not_exists_secure_bitVec_stretch {seedLength outputLength : ℕ → ℕ}
     (hstretch : ∀ᶠ n in atTop, seedLength n < outputLength n) :
     ¬ ∃ G : Family (fun n => BitVec (seedLength n)) (fun n => BitVec (outputLength n)),

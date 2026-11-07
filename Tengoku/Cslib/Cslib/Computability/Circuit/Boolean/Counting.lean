@@ -29,12 +29,17 @@ variable {n s : ℕ}
 noncomputable abbrev computableFunctions (n s : ℕ) : Finset (BooleanFunction n) :=
   Circuits.computableFunctions interpretation n s
 
+/--
+@isnad1 id=iff.0h3v.s6.589d953a20f6 from=translated src=- shape=e62157ba vocab=48050706
+-/
 theorem mem_computableFunctions {f : BooleanFunction n} :
     f ∈ computableFunctions n s ↔
       ∃ c : Circuit signature n 1, c.Computes interpretation (single f) ∧ c.size ≤ s :=
   Circuits.mem_computableFunctions
 
-/-- The De Morgan counting bound, accounting for gate relabelings.-/
+/-- The De Morgan counting bound, accounting for gate relabelings.
+@isnad1 id=le.0h2v.s6.37440d829a7d from=translated src=- shape=3c6da521 vocab=826ce063
+-/
 theorem card_computableFunctions_mul_factorial_le (n s : ℕ) :
     (computableFunctions n s).card * s.factorial ≤
       (s + 1) * (5 * (n + s + 1) ^ 2) ^ s * (n + s) := by

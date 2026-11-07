@@ -29,7 +29,9 @@ open Filter
 namespace Nat
 
 /-- Every fixed multiple of a power is eventually at most an exponential of base greater
-than one.-/
+than one.
+@isnad1 id=eventual.1h3v.s5.faa7ec9d9a32 from=translated src=- shape=ddd8c298 vocab=20ccdc82
+-/
 theorem eventually_mul_pow_le_pow (c k : ℕ) {b : ℕ} (hb : 1 < b) :
     ∀ᶠ n : ℕ in atTop, c * n ^ k ≤ b ^ n := by
   have hbR : (1 : ℝ) < b := by exact_mod_cast hb
@@ -39,7 +41,9 @@ theorem eventually_mul_pow_le_pow (c k : ℕ) {b : ℕ} (hb : 1 < b) :
   exact_mod_cast (by simpa using hn : (c : ℝ) * n ^ k ≤ (b : ℝ) ^ n)
 
 /-- The quotient of an exponential of base greater than one by the input is eventually
-at least the input plus one.-/
+at least the input plus one.
+@isnad1 id=eventual.1h1v.s5.6c00e3ab99e9 from=translated src=- shape=86f32f56 vocab=e4817263
+-/
 theorem eventually_add_one_le_pow_div {b : ℕ} (hb : 1 < b) :
     ∀ᶠ n : ℕ in atTop, n + 1 ≤ b ^ n / n := by
   filter_upwards [eventually_mul_pow_le_pow 2 2 hb, eventually_ge_atTop 1] with n hn hn0
@@ -47,7 +51,9 @@ theorem eventually_add_one_le_pow_div {b : ℕ} (hb : 1 < b) :
   nlinarith
 
 /-- Every fixed multiple of the logarithm in a base greater than one is eventually at most
-the input.-/
+the input.
+@isnad1 id=eventual.1h2v.s5.700bfaf928f6 from=translated src=- shape=b5ec7b6a vocab=ab8a0aff
+-/
 theorem eventually_mul_log_le (c : ℕ) {b : ℕ} (hb : 1 < b) :
     ∀ᶠ n : ℕ in atTop, c * log b n ≤ n := by
   obtain ⟨N, hN⟩ := eventually_atTop.mp (eventually_mul_pow_le_pow c 1 hb)
@@ -57,7 +63,9 @@ theorem eventually_mul_log_le (c : ℕ) {b : ℕ} (hb : 1 < b) :
     simpa using hN (log b n) (le_log_of_pow_le hb hn)
   exact hh.trans (pow_log_le_self b hn0)
 
-/-- Every fixed multiple of the binary logarithm is eventually at most the input.-/
+/-- Every fixed multiple of the binary logarithm is eventually at most the input.
+@isnad1 id=eventual.0h1v.s4.e580609a12e0 from=translated src=- shape=d8009619 vocab=c7f31d3d
+-/
 theorem eventually_mul_log2_le (c : ℕ) :
     ∀ᶠ n : ℕ in atTop, c * log2 n ≤ n := by
   simpa only [log2_eq_log_two] using eventually_mul_log_le c one_lt_two

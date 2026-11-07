@@ -56,7 +56,9 @@ def SetShatters (C : ConceptClass α Bool) (W : Set α) : Prop :=
   ∀ W' ⊆ W, ∃ c ∈ C, c ⁻¹' {true} ∩ W = W'
 
 /-- Shattering is anti-monotone in the shattered set: if `C` shatters `W` and
-`V ⊆ W`, then `C` shatters `V`.-/
+`V ⊆ W`, then `C` shatters `V`.
+@isnad1 id=setshatt.2h4v.s4.6677ab8a3755 from=translated src=- shape=f2bbc65d vocab=4feaf979
+-/
 theorem SetShatters.subset {C : ConceptClass α Bool} {W V : Set α}
     (hW : SetShatters C W) (hVW : V ⊆ W) : SetShatters C V := by
   intro V' hV'V
@@ -73,7 +75,9 @@ theorem SetShatters.subset {C : ConceptClass α Bool} {W V : Set α}
   · exact absurd h3 h2
 
 /-- Shattering is monotone in the concept class: if `C` shatters `W` and `C ⊆ C'`,
-then `C'` shatters `W`.-/
+then `C'` shatters `W`.
+@isnad1 id=setshatt.2h4v.s5.b0e5a09943cc from=translated src=- shape=2395139e vocab=4feaf979
+-/
 theorem SetShatters.superset {C C' : ConceptClass α Bool} {W : Set α}
     (hW : SetShatters C W) (hCC' : C ⊆ C') : SetShatters C' W := by
   intro W' hW'
@@ -84,7 +88,9 @@ open Classical in
 /-- If a finite set family `𝒜` shatters a finite set `s` in the sense of Mathlib's
 `Finset.Shatters`, then the concept class of characteristic functions of sets in `𝒜`
 shatters `↑s` in the sense of `SetShatters`. This bridges Mathlib's finset-based
-shattering to the predicate used by the PAC learning lower bounds.-/
+shattering to the predicate used by the PAC learning lower bounds.
+@isnad1 id=setshatt.1h3v.s6.cea617de6f97 from=translated src=- shape=7a3cd373 vocab=9041f553
+-/
 theorem _root_.Finset.Shatters.toSetShatters {𝒜 : Finset (Finset α)} {s : Finset α}
     (h : 𝒜.Shatters s) :
     SetShatters
@@ -121,7 +127,9 @@ def HasFiniteVCDim (C : ConceptClass α Bool) : Prop :=
   BddAbove {n : ℕ | ∃ W : Finset α, W.card = n ∧ SetShatters C (↑W)}
 
 /-- A class has finite VC dimension iff there is a uniform bound on the
-cardinality of every shattered finite set.-/
+cardinality of every shattered finite set.
+@isnad1 id=iff.0h2v.s5.c6044fbb4007 from=translated src=- shape=65f6dae8 vocab=9f8e7aa7
+-/
 theorem hasFiniteVCDim_iff {C : ConceptClass α Bool} :
     HasFiniteVCDim C ↔ ∃ N : ℕ, ∀ W : Finset α, SetShatters C ↑W → W.card ≤ N :=
   ⟨fun ⟨N, hN⟩ => ⟨N, fun W hW => hN ⟨W, rfl, hW⟩⟩,

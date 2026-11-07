@@ -45,14 +45,23 @@ from the left (instead of the right), in order to match the way lists are constr
 @[scoped grind =]
 def mtr (flts : FLTS State Label) (s : State) (μs : List Label) := μs.foldl flts.tr s
 
+/--
+@isnad1 id=eq.0h4v.s4.f52c8d87d351 from=translated src=- shape=6f29b0b0 vocab=542ba056
+-/
 @[simp, scoped grind =]
 theorem mtr_nil_eq {flts : FLTS State Label} {s : State} : flts.mtr s [] = s := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.1d8a23a8031f from=translated src=- shape=5554a034 vocab=fd08d5c6
+-/
 @[simp, scoped grind =]
 theorem mtr_concat_eq {flts : FLTS State Label} {s : State} {μs : List Label} {μ : Label} :
     flts.mtr s (μs ++ [μ]) = flts.tr (flts.mtr s μs) μ := by
   grind
 
+/--
+@isnad1 id=eq.0h6v.s5.2a8591f0698f from=translated src=- shape=e848f8d8 vocab=864d9c74
+-/
 theorem mtr_append_eq {flts : FLTS State Label} {s : State} {μs1 μs2 : List Label} :
     flts.mtr s (μs1 ++ μs2) = flts.mtr (flts.mtr s μs1) μs2 := by
   simp [mtr]

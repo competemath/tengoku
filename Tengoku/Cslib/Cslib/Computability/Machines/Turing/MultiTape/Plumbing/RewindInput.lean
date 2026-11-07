@@ -96,7 +96,9 @@ lemma runFrom_walk (p : Fin (input.length + 2)) (hp : p.val ≤ input.length) :
 end Rewind
 
 /-- From its initial state at input position `p` the machine halts after `p - 1 + 2` steps, with
-the input head at position `1` and everything else unchanged.-/
+the input head at position `1` and everything else unchanged.
+@isnad1 id=eq.0h6v.s7.04a7951f3673 from=translated src=- shape=0861124a vocab=2f137ca8
+-/
 public theorem runFrom_rewindInput (p : Fin (input.length + 2))
     (tapes : Fin 0 → ℤ → Option Symbol) (heads : Fin 0 → ℤ) (out : List Symbol) :
     (rewindInput Symbol).runFrom ⟨some (rewindInput Symbol).q₀, p, tapes, heads, out⟩

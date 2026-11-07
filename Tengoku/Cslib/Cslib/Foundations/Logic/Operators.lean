@@ -47,9 +47,15 @@ def finiteAnd [HasAnd α] [Top α] (as : List α) : α := as.foldr (· ∧ ·) �
 
 @[inherit_doc] scoped prefix:max "⋀" => finiteAnd
 
+/--
+@isnad1 id=eq.0h1v.s4.0c673f888e6f from=translated src=- shape=691bf2e9 vocab=4314a33d
+-/
 @[simp, scoped grind =]
 theorem finiteAnd_nil [HasAnd α] [Top α] : ⋀([] : List α) = ⊤ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.7eca792e0ba4 from=translated src=- shape=96afa169 vocab=0aa325e3
+-/
 @[simp, scoped grind =]
 theorem finiteAnd_cons [HasAnd α] [Top α] (a : α) (as : List α) :
     ⋀(a :: as) = (a ∧ ⋀as) := rfl
@@ -59,9 +65,15 @@ def finiteOr [HasOr α] [Bot α] (as : List α) : α := as.foldr (· ∨ ·) ⊥
 
 @[inherit_doc] scoped prefix:max "⋁" => finiteOr
 
+/--
+@isnad1 id=eq.0h1v.s4.af0fe70d9481 from=translated src=- shape=691bf2e9 vocab=6f9b50e6
+-/
 @[simp, scoped grind =]
 theorem finiteOr_nil [HasOr α] [Bot α] : ⋁([] : List α) = ⊥ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s5.4431b31712d4 from=translated src=- shape=96afa169 vocab=ff9f5f5e
+-/
 @[simp, scoped grind =]
 theorem finiteOr_cons [HasOr α] [Bot α] (a : α) (as : List α) :
     ⋁(a :: as) = (a ∨ ⋁as) := rfl
@@ -136,6 +148,9 @@ to the constant argument family.-/
 instance [HasTriangle α τ] : HasDynamicDiamond α τ.A where
   dynDiamond op φ := Δ[op](PFunctor.const op φ)
 
+/--
+@isnad1 id=eq.0h4v.s5.e49f4e0cd887 from=translated src=- shape=aa0ad0c7 vocab=65c7bcd1
+-/
 @[simp, scoped grind =]
 theorem dynDiamond_eq_triangle [HasTriangle α τ] (op : τ.A) (φ : α) :
     (d⟨op⟩φ) = (Δ[op](PFunctor.const op φ)) := rfl
@@ -145,6 +160,9 @@ constant argument family.-/
 instance [HasNabla α τ] : HasDynamicBox α τ.A where
   dynBox op φ := ∇[op](PFunctor.const op φ)
 
+/--
+@isnad1 id=eq.0h4v.s5.05f2c0655627 from=translated src=- shape=aa0ad0c7 vocab=a4a55c7c
+-/
 @[simp, scoped grind =]
 theorem dynBox_eq_nabla [HasNabla α τ] (op : τ.A) (φ : α) :
     (d[op]φ) = (∇[op](PFunctor.const op φ)) := rfl
@@ -173,6 +191,9 @@ class HasDiamond (α : Type*) where
 instance [Unique β] [HasDynamicDiamond α β] : HasDiamond α where
   diamond φ := d⟨default⟩φ
 
+/--
+@isnad1 id=eq.0h3v.s5.5d4df33a57ed from=translated src=- shape=beb119be vocab=befdadc7
+-/
 @[simp, scoped grind =]
 theorem diamond_eq_dynDiamond [Unique β] [HasDynamicDiamond α β] {φ : α} :
     (◇φ) = (d⟨default⟩φ) := rfl
@@ -181,6 +202,9 @@ theorem diamond_eq_dynDiamond [Unique β] [HasDynamicDiamond α β] {φ : α} :
 instance [Unique β] [HasDynamicBox α β] : HasBox α where
   box φ := d[default]φ
 
+/--
+@isnad1 id=eq.0h3v.s5.59ab2620bf77 from=translated src=- shape=beb119be vocab=53dffb17
+-/
 @[simp, scoped grind =]
 theorem box_eq_dynBox [Unique β] [HasDynamicBox α β] {φ : α} :
     (□φ) = (d[default]φ) := rfl

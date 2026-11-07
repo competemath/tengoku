@@ -29,14 +29,18 @@ def Saturates (f : ι → Set α) (s : Set α) : Prop :=
 
 variable {f : ι → Set α} {s : Set α}
 
-/-- If `f` saturates `s`, then `f` saturates its complement `sᶜ` as well.-/
+/-- If `f` saturates `s`, then `f` saturates its complement `sᶜ` as well.
+@isnad1 id=saturate.1h4v.s4.ba82ececd3e3 from=translated src=- shape=d0258e08 vocab=2edc906f
+-/
 @[simp, scoped grind .]
 theorem saturates_compl (hs : Saturates f s) : Saturates f sᶜ := by
   rintro i ⟨_, _⟩ y _ _
   have : (f i ∩ s).Nonempty := ⟨y, by grind⟩
   grind [Saturates]
 
-/-- If `f` is a cover and saturates `s`, then `s` is the union of all `f i` that intersects `s`.-/
+/-- If `f` is a cover and saturates `s`, then `s` is the union of all `f i` that intersects `s`.
+@isnad1 id=eq.2h4v.s6.7102177414ef from=translated src=- shape=385c7ff2 vocab=aae83b6d
+-/
 theorem saturates_eq_biUnion (hs : Saturates f s) (hc : ⋃ i, f i = univ) :
     s = ⋃ i ∈ {i | (f i ∩ s).Nonempty}, f i := by
   ext x

@@ -106,10 +106,16 @@ structure Storage (Symbol State : Type*) (k : ℕ) where
 @[scoped grind =]
 noncomputable def window (s : ℕ) : Finset ℤ := Finset.Icc (-(s : ℤ)) s
 
+/--
+@isnad1 id=iff.0h2v.s4.2a14ce5c47e9 from=translated src=- shape=3b82e6d2 vocab=f72996c5
+-/
 @[scoped grind =]
 lemma mem_window {s : ℕ} {z : ℤ} : z ∈ window s ↔ z.natAbs ≤ s := by
   grind
 
+/--
+@isnad1 id=eq.0h1v.s5.833c3cef330b from=translated src=- shape=3487779f vocab=2e9a1795
+-/
 @[simp]
 lemma card_window (s : ℕ) : (window s).card = 2 * s + 1 := by
   grind [Int.card_Icc]
@@ -127,7 +133,9 @@ structure Storage.FitsIn (x : Storage Symbol State k) (w : Fin k → ℕ) : Prop
   /-- every non-blank cell on every tape lies within its window-/
   cell_le : ∀ j z, x.workTapes j z ≠ none → z.natAbs ≤ w j
 
-/-- If a `Storage` fits in a smaller window, it also fits in the larger window.-/
+/-- If a `Storage` fits in a smaller window, it also fits in the larger window.
+@isnad1 id=monotone.0h4v.s5.3611f4578875 from=translated src=- shape=cbee6eae vocab=71cae71d
+-/
 lemma Storage.FitsIn_mono {x : Storage Symbol State k} : Monotone x.FitsIn := by
   intro w₁ w₂ h_le h_fits
   refine ⟨?_, ?_⟩
@@ -144,7 +152,9 @@ noncomputable def Storage.toBounded (x : Storage Symbol State k) (w : Fin k → 
     fun j => if h : x.workTapePos j ∈ window (w j) then ⟨x.workTapePos j, h⟩
       else ⟨0, mem_window.mpr (Nat.zero_le _)⟩)
 
-/-- The restriction is injective on storages that fit in the windows.-/
+/-- The restriction is injective on storages that fit in the windows.
+@isnad1 id=injon.0h4v.s5.a899f46843e5 from=translated src=- shape=739746ca vocab=92b1872c
+-/
 lemma Storage.toBounded_injOn (w : Fin k → ℕ) :
     Set.InjOn (Storage.toBounded (Symbol := Symbol) (State := State) · w) {x | x.FitsIn w} := by
   rintro x ⟨_, _⟩ y ⟨_, _⟩ hxy
@@ -172,7 +182,9 @@ def storageBound (Symbol State : Type*) [Fintype Symbol] [Fintype State] (k s : 
 /-- The number of bounded storages is at most `storageBound`. Counting the tapes separately gives
 the per-tape product `∏ᵢ (2 wᵢ + 1) · (|Symbol| + 1) ^ (2 wᵢ + 1)`; each tape uses at most the
 total space `s`, and the tapes together use at most `s`, which collapses the alphabet exponent
-to `2s + k`.-/
+to `2s + k`.
+@isnad1 id=le.1h5v.s8.1dc9dc5bee03 from=translated src=- shape=588d7707 vocab=8bade8f9
+-/
 lemma card_boundedStorage_le [Fintype Symbol] [Fintype State]
     {w : Fin k → ℕ} {s : ℕ} (hsum : ∑ i, w i ≤ s) :
     Fintype.card (BoundedStorage Symbol State w) ≤ storageBound Symbol State k s := by
@@ -191,7 +203,9 @@ lemma card_boundedStorage_le [Fintype Symbol] [Fintype State]
 
 /-- The counting result at the heart of this file: a `Storage` whose non-blank cells and head
 positions stay within per-tape windows of total size at most `s` can take at most
-`storageBound Symbol State k s` different values.-/
+`storageBound Symbol State k s` different values.
+@isnad1 id=le.1h5v.s6.e777e6ae601a from=translated src=- shape=16475d01 vocab=b1fc4935
+-/
 theorem encard_fitsIn_le [Fintype Symbol] [Fintype State]
     {w : Fin k → ℕ} {s : ℕ} (hsum : ∑ i, w i ≤ s) :
     {x : Storage Symbol State k | x.FitsIn w}.encard
@@ -220,7 +234,9 @@ def storageBoundExp (Symbol : Type*) [Fintype Symbol] (k : ℕ) : ℕ :=
   2 * (Fintype.card Symbol + 1) + k
 
 /-- `storageBound` grows at most exponentially in the space `s`, with a constant factor and a
-factor in the exponent that only depend on the machine's alphabet, state set and tape count.-/
+factor in the exponent that only depend on the machine's alphabet, state set and tape count.
+@isnad1 id=le.0h4v.s6.f9aa4983c4a4 from=translated src=- shape=c4b3e3c6 vocab=a6871e1f
+-/
 lemma storageBound_le_base_mul_pow [Fintype Symbol] [Fintype State] (s : ℕ) :
     storageBound Symbol State k s
       ≤ storageBoundBase Symbol State k * 2 ^ (storageBoundExp Symbol k * s) := by
@@ -241,7 +257,9 @@ lemma storageBound_le_base_mul_pow [Fintype Symbol] [Fintype State] (s : ℕ) :
 
 /-- `storageBound` grows at most exponentially in the space `s`: there exist constants `a` and `c`
 (depending on the machine's alphabet, state set and tape count) with
-`storageBound Symbol State k s ≤ a * 2 ^ (c * s)` for all `s`.-/
+`storageBound Symbol State k s ≤ a * 2 ^ (c * s)` for all `s`.
+@isnad1 id=ex.0h3v.s6.1344825bb519 from=translated src=- shape=9dfc796a vocab=43f5b128
+-/
 lemma storageBound_le_pow [Fintype Symbol] [Fintype State] :
     ∃ a c : ℕ, ∀ s : ℕ, storageBound Symbol State k s ≤ a * 2 ^ (c * s) :=
   ⟨_, _, storageBound_le_base_mul_pow⟩
@@ -263,7 +281,9 @@ def Cfg.core (c : Cfg k Symbol State input) :
   (c.inputPos, c.storage)
 
 /-- `step` never reads the output tape, so the core of the next configuration is determined by the
-core of the current one.-/
+core of the current one.
+@isnad1 id=eq.1h7v.s6.6b40a1f4c76e from=translated src=- shape=2c00275d vocab=a4d47809
+-/
 lemma core_step_eq_of_core_eq {c₁ c₂ : Cfg k Symbol State input} (h : c₁.core = c₂.core) :
     (tm.step c₁).core = (tm.step c₂).core := by
   simp only [Cfg.core, Cfg.storage, Prod.mk.injEq, Storage.mk.injEq] at h
@@ -284,7 +304,9 @@ reachable in bounded space.
 namespace MultiTapeTM
 
 /-- The storage reached after `t` steps fits in the windows given by the per-tape space usage up
-to step `t`.-/
+to step `t`.
+@isnad1 id=fitsin.0h6v.s5.edb31bd80475 from=translated src=- shape=fe32942b vocab=3f446d78
+-/
 lemma storage_fitsIn (t : ℕ) :
     (tm.runFrom (tm.initCfg input) t).storage.FitsIn (tm.spaceUsedByTape (tm.initCfg input) t) := by
   constructor
@@ -296,7 +318,9 @@ lemma storage_fitsIn (t : ℕ) :
 
 /-- A machine that uses at most `s` cells of work-tape space at every point in time passes through
 at most `storageBound Symbol State k s` different storages during its whole run — independently of
-the length of the input and of how long it runs.-/
+the length of the input and of how long it runs.
+@isnad1 id=le.1h6v.s6.c3e6412246aa from=translated src=- shape=15e88c1c vocab=e2ae506f
+-/
 theorem encard_storages_le [Fintype Symbol] [Fintype State] {s : ℕ}
     (hs : ∀ t, tm.spaceUsed (tm.initCfg input) t ≤ s) :
     (Set.range fun t => (tm.runFrom (tm.initCfg input) t).storage).encard
@@ -307,7 +331,9 @@ theorem encard_storages_le [Fintype Symbol] [Fintype State] {s : ℕ}
   exact Storage.FitsIn_mono (fun i => hT t i) (tm.storage_fitsIn t)
 
 /-- The number of configuration cores that a machine bounded by space `s` can reach is at most
-`(n + 2) * storageBound Symbol State k s`, where `n` is the length of the input.-/
+`(n + 2) * storageBound Symbol State k s`, where `n` is the length of the input.
+@isnad1 id=le.1h6v.s7.37f32fbe068f from=translated src=- shape=8440a4c6 vocab=8125d71d
+-/
 theorem encard_cores_le [Fintype Symbol] [Fintype State] {s : ℕ}
     (hs : ∀ t, tm.spaceUsed (tm.initCfg input) t ≤ s) :
     (Set.range fun t => (tm.runFrom (tm.initCfg input) t).core).encard
@@ -325,7 +351,9 @@ theorem encard_cores_le [Fintype Symbol] [Fintype State] {s : ℕ}
         simp [Set.encard_univ, ENat.card_eq_coe_fintype_card]
 
 /-- The storage bound in exponential form: the number of storages a space-`s`-bounded machine
-passes through is at most `2 ^ (O(s))`, with constants depending only on the machine.-/
+passes through is at most `2 ^ (O(s))`, with constants depending only on the machine.
+@isnad1 id=ex.0h4v.s7.9a7ac9fa203d from=translated src=- shape=f9af61ce vocab=3376f1f4
+-/
 theorem encard_storages_le_pow [Finite Symbol] [Finite State] :
     ∃ a c : ℕ, ∀ (input : List Symbol) (s : ℕ),
       (∀ t, tm.spaceUsed (tm.initCfg input) t ≤ s) →
@@ -338,7 +366,9 @@ theorem encard_storages_le_pow [Finite Symbol] [Finite State] :
 
 /-- The core bound in exponential form: the number of cores a space-`s`-bounded machine can reach
 is at most `(n + 2) * 2 ^ (O(s))`, with constants depending only on the machine and not on the
-input.-/
+input.
+@isnad1 id=ex.0h4v.s7.37cb305b22c5 from=translated src=- shape=a3f74443 vocab=3966c881
+-/
 theorem encard_cores_le_pow [Finite Symbol] [Finite State] :
     ∃ a c : ℕ, ∀ (input : List Symbol) (s : ℕ),
       (∀ t, tm.spaceUsed (tm.initCfg input) t ≤ s) →

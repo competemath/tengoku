@@ -57,7 +57,9 @@ noncomputable def viewDist (scheme : Scheme Secret Randomness Party Share)
     (s : Finset Party) (secret : Secret) : PMF (s → Share) :=
   viewDistOf scheme.gen scheme.share s secret
 
-/-- Unauthorized coalitions receive secret-independent view distributions.-/
+/-- Unauthorized coalitions receive secret-independent view distributions.
+@isnad1 id=eq.1h8v.s6.50ecc070850b from=translated src=- shape=467c31fd vocab=1f0956eb
+-/
 theorem viewDist_eq_of_not_authorized
     (scheme : Scheme Secret Randomness Party Share)
     {s : Finset Party} (hs : ¬ scheme.authorized s)
@@ -73,6 +75,9 @@ noncomputable def posteriorSecretDist
     (hv : v ∈ (secretDist.bind (scheme.viewDist s)).support) : PMF Secret :=
   posteriorDist (p := secretDist) (f := scheme.viewDist s) v hv
 
+/--
+@isnad1 id=eq.1h9v.s9.745e1f849856 from=translated src=- shape=aa6c5bd7 vocab=713b4bd2
+-/
 @[simp]
 theorem posteriorSecretDist_apply
     (scheme : Scheme Secret Randomness Party Share)
@@ -92,7 +97,9 @@ def PerfectlyPrivate (scheme : Scheme Secret Randomness Party Share) : Prop :=
     (hv : v ∈ (secretDist.bind (scheme.viewDist s)).support),
       scheme.posteriorSecretDist s secretDist v hv = secretDist
 
-/-- Every scheme has posterior privacy by definition of `Scheme`.-/
+/-- Every scheme has posterior privacy by definition of `Scheme`.
+@isnad1 id=perfectl.0h5v.s4.668db696e8b7 from=translated src=- shape=abd8e30a vocab=188ccae4
+-/
 theorem perfectlyPrivate
     (scheme : Scheme Secret Randomness Party Share) :
     scheme.PerfectlyPrivate :=

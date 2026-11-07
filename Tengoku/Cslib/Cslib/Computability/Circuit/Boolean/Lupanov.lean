@@ -204,7 +204,9 @@ private theorem exists_circuit_of_split {n k d s : ℕ} (h : k + d = n) (hs : 0 
 with at most `(1 + ε) 2ⁿ/n` gates, uniformly for sufficiently large `n`.
 
 Pick a natural number `P > 1 / ε`, so that `(P + 1) / P < 1 + ε`; then the threshold `N`
-comes from `eventually_bound_le P`.-/
+comes from `eventually_bound_le P`.
+@isnad1 id=ex.1h1v.s7.bc8ac9946f02 from=translated src=- shape=68deaa25 vocab=ca26d05d
+-/
 theorem exists_circuit (ε : ℝ) (hε : 0 < ε) :
     ∃ N : ℕ, ∀ n ≥ N, ∀ f : BooleanFunction n,
       ∃ c : Circuit signature n 1,

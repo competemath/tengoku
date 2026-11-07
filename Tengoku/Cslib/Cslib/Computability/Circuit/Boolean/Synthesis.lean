@@ -32,26 +32,36 @@ namespace Synthesis
 
 variable {s : Set (BooleanFunction n)} {a b : ℕ} {f g : BooleanFunction n}
 
-/-- Constants cost one gate.-/
+/-- Constants cost one gate.
+@isnad1 id=synthesi.0h3v.s5.7e4b6e3a21fc from=translated src=- shape=54adeaa3 vocab=4ff123fc
+-/
 theorem const (value : Bool) : Synthesis interpretation s {fun _ => value} 1 :=
   nullary (I := interpretation) (.const value) rfl
 
-/-- Apply negation to a synthesized function.-/
+/-- Apply negation to a synthesized function.
+@isnad1 id=synthesi.1h4v.s6.dd6b10e2b418 from=translated src=- shape=5662955e vocab=f3bf07ea
+-/
 theorem not (h : Synthesis interpretation s {f} a) :
     Synthesis interpretation s {fun x => !f x} (a + 1) :=
   h.unary .not
 
-/-- Binary conjunction costs one gate beyond its arguments.-/
+/-- Binary conjunction costs one gate beyond its arguments.
+@isnad1 id=synthesi.2h6v.s6.d0690737f81b from=translated src=- shape=3db149e1 vocab=c60deaf8
+-/
 theorem and (hf : Synthesis interpretation s {f} a) (hg : Synthesis interpretation s {g} b) :
     Synthesis interpretation s {fun x => f x && g x} (a + b + 1) := by
   simpa [interpretation] using hf.binary hg .and
 
-/-- Binary disjunction costs one gate beyond its arguments.-/
+/-- Binary disjunction costs one gate beyond its arguments.
+@isnad1 id=synthesi.2h6v.s6.c25fa2c36f8b from=translated src=- shape=3db149e1 vocab=69452e6a
+-/
 theorem or (hf : Synthesis interpretation s {f} a) (hg : Synthesis interpretation s {g} b) :
     Synthesis interpretation s {fun x => f x || g x} (a + b + 1) := by
   simpa [interpretation] using hf.binary hg .or
 
-/-- Disjoin a finite family of functions. The extra gate supplies the empty disjunction.-/
+/-- Disjoin a finite family of functions. The extra gate supplies the empty disjunction.
+@isnad1 id=synthesi.1h6v.s7.40eceb56964e from=translated src=- shape=cb8d9439 vocab=332e325d
+-/
 theorem exists_mem (indices : Finset ι) (f : ι → BooleanFunction n) (cost : ι → ℕ)
     (h : ∀ i ∈ indices, Synthesis interpretation s {f i} (cost i)) :
     Synthesis interpretation s {fun x => decide (∃ i ∈ indices, f i x = true)}
@@ -66,7 +76,9 @@ theorem exists_mem (indices : Finset ι) (f : ι → BooleanFunction n) (cost : 
   simpa only [heq] using finset_fold Bool.or 1
     (fun _ _ => (of_mem (by simp)).or (of_mem (by simp))) indices (const false) h
 
-/-- Conjoin a finite family of functions. The extra gate supplies the empty conjunction.-/
+/-- Conjoin a finite family of functions. The extra gate supplies the empty conjunction.
+@isnad1 id=synthesi.1h6v.s7.45c70998f9a3 from=translated src=- shape=7e4fe0e2 vocab=332e325d
+-/
 theorem forall_mem (indices : Finset ι) (f : ι → BooleanFunction n) (cost : ι → ℕ)
     (h : ∀ i ∈ indices, Synthesis interpretation s {f i} (cost i)) :
     Synthesis interpretation s {fun x => decide (∀ i ∈ indices, f i x = true)}
@@ -85,7 +97,9 @@ end Synthesis
 
 namespace Boolean
 
-/-- A conjunction testing a specified tuple of input bits.-/
+/-- A conjunction testing a specified tuple of input bits.
+@isnad1 id=synthesi.0h4v.s6.3c6cf9f57f21 from=translated src=- shape=31c1b2b1 vocab=2a91d0fa
+-/
 theorem synthesis_minterm {k : ℕ} (wires : Fin k → Fin n) (value : Fin k → Bool) :
     Synthesis interpretation (inputs n) {fun x => decide ((fun i => x (wires i)) = value)}
       (2 * k + 1) := by

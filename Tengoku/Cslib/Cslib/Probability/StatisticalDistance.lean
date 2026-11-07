@@ -99,12 +99,16 @@ noncomputable scoped instance instMetricSpace [Fintype α] :
       ((Fintype.sum_eq_zero_iff_of_nonneg fun _ => abs_nonneg _).mp hsum) a
 
 /-- The distance between two PMFs on a finite type is their statistical
-distance ([BonehShoup2023], Definition 3.5).-/
+distance ([BonehShoup2023], Definition 3.5).
+@isnad1 id=eq.0h3v.s6.428ac5153b3a from=translated src=- shape=a7916c37 vocab=21a59d31
+-/
 theorem dist_eq [Fintype α] (p q : PMF α) :
     dist p q = (∑ a, |(p a).toReal - (q a).toReal|) / 2 :=
   rfl
 
-/-- Statistical distance is at most one.-/
+/-- Statistical distance is at most one.
+@isnad1 id=le.0h3v.s5.1cd730c5442c from=translated src=- shape=5ac32f4f vocab=b8447256
+-/
 theorem dist_le_one [Fintype α] (p q : PMF α) : dist p q ≤ 1 := by
   rw [dist_eq]
   have h := Finset.sum_le_sum fun a (_ : a ∈ Finset.univ) =>
@@ -113,7 +117,9 @@ theorem dist_le_one [Fintype α] (p q : PMF α) : dist p q ≤ 1 := by
     Finset.sum_add_distrib, sum_toReal] at h
   linarith
 
-/-- PMFs with disjoint supports are at the maximum statistical distance.-/
+/-- PMFs with disjoint supports are at the maximum statistical distance.
+@isnad1 id=eq.1h3v.s6.fe71d5e96d73 from=translated src=- shape=11a9b789 vocab=9eebcb37
+-/
 theorem dist_eq_one_of_disjoint_support [Fintype α] {p q : PMF α}
     (h : Disjoint p.support q.support) : dist p q = 1 := by
   have key : ∀ a, |(p a).toReal - (q a).toReal| = (p a).toReal + (q a).toReal := by
@@ -128,7 +134,9 @@ theorem dist_eq_one_of_disjoint_support [Fintype α] {p q : PMF α}
   simp [dist_eq, key, Finset.sum_add_distrib, sum_toReal]
 
 /-- Applying the same randomized kernel to two PMFs cannot increase their
-statistical distance.-/
+statistical distance.
+@isnad1 id=le.0h5v.s5.53d4e6645727 from=translated src=- shape=65901deb vocab=c08dbc76
+-/
 theorem dist_bind_le [Fintype α] [Fintype β]
     (p q : PMF α) (kernel : α → PMF β) :
     dist (p.bind kernel) (q.bind kernel) ≤ dist p q := by
@@ -150,7 +158,9 @@ theorem dist_bind_le [Fintype α] [Fintype β]
       simp [← Finset.sum_mul, sum_toReal]
 
 /-- Deterministic postprocessing cannot increase statistical distance
-([BonehShoup2023], Theorem 3.13).-/
+([BonehShoup2023], Theorem 3.13).
+@isnad1 id=le.0h5v.s5.6b75ea95ae0d from=translated src=- shape=2aa9d8cd vocab=fe2a5d61
+-/
 theorem dist_map_le [Fintype α] [Fintype β]
     (p q : PMF α) (f : α → β) :
     dist (p.map f) (q.map f) ≤ dist p q := by
@@ -163,34 +173,46 @@ def StatisticallyClose [Fintype α] (p q : PMF α) (ε : ℝ≥0) : Prop :=
 
 namespace StatisticallyClose
 
-/-- Every PMF is statistically close to itself with zero error.-/
+/-- Every PMF is statistically close to itself with zero error.
+@isnad1 id=statisti.0h2v.s4.b26e3d2269fa from=translated src=- shape=102910b8 vocab=b3d83e5c
+-/
 theorem refl [Fintype α] (p : PMF α) : StatisticallyClose p p 0 := by
   simp [StatisticallyClose]
 
-/-- Statistical closeness is symmetric.-/
+/-- Statistical closeness is symmetric.
+@isnad1 id=statisti.1h4v.s4.c5045b9d8587 from=translated src=- shape=a0806add vocab=b3d83e5c
+-/
 theorem symm [Fintype α] {p q : PMF α} {ε : ℝ≥0}
     (h : StatisticallyClose p q ε) : StatisticallyClose q p ε := by
   simpa [StatisticallyClose, dist_comm] using h
 
-/-- A statistical-closeness bound remains valid when its error is enlarged.-/
+/-- A statistical-closeness bound remains valid when its error is enlarged.
+@isnad1 id=monotone.0h3v.s4.7ea4ae1d36bb from=translated src=- shape=b7674577 vocab=79939c87
+-/
 theorem mono [Fintype α] {p q : PMF α} : Monotone (StatisticallyClose p q) :=
   fun _ _ hεδ h => le_trans h (by exact_mod_cast hεδ)
 
 /-- Closeness bounds chain through an intermediate distribution, adding the
-errors.-/
+errors.
+@isnad1 id=statisti.2h6v.s5.bcf416a7a202 from=translated src=- shape=b8d3a285 vocab=2a999408
+-/
 theorem trans [Fintype α] {p q r : PMF α} {ε δ : ℝ≥0}
     (hpq : StatisticallyClose p q ε) (hqr : StatisticallyClose q r δ) :
     StatisticallyClose p r (ε + δ) :=
   (dist_triangle p q r).trans (by simpa using add_le_add hpq hqr)
 
 /-- A shared randomized postprocessing kernel preserves statistical
-closeness.-/
+closeness.
+@isnad1 id=statisti.1h6v.s5.dba0f0da4834 from=translated src=- shape=3989bdf9 vocab=07c7e2e5
+-/
 theorem bind [Fintype α] [Fintype β] {p q : PMF α} {ε : ℝ≥0}
     (h : StatisticallyClose p q ε) (kernel : α → PMF β) :
     StatisticallyClose (p.bind kernel) (q.bind kernel) ε :=
   (dist_bind_le p q kernel).trans h
 
-/-- Deterministic postprocessing preserves statistical closeness.-/
+/-- Deterministic postprocessing preserves statistical closeness.
+@isnad1 id=statisti.1h6v.s5.6d4dddb6cef3 from=translated src=- shape=2e5298d3 vocab=032f6247
+-/
 theorem map [Fintype α] [Fintype β] {p q : PMF α} {ε : ℝ≥0}
     (h : StatisticallyClose p q ε) (f : α → β) :
     StatisticallyClose (p.map f) (q.map f) ε :=
@@ -198,7 +220,9 @@ theorem map [Fintype α] [Fintype β] {p q : PMF α} {ε : ℝ≥0}
 
 end StatisticallyClose
 
-/-- Statistical closeness with zero error is equality.-/
+/-- Statistical closeness with zero error is equality.
+@isnad1 id=iff.0h3v.s4.621a24b05dbe from=translated src=- shape=fbdadef6 vocab=b3d83e5c
+-/
 @[simp]
 theorem statisticallyClose_zero_iff [Fintype α] (p q : PMF α) :
     StatisticallyClose p q 0 ↔ p = q := by

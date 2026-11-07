@@ -70,9 +70,15 @@ instance : Inhabited (StackTape Symbol) where
 instance : EmptyCollection (StackTape Symbol) :=
   ⟨nil⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.30a8fdb4d5b3 from=translated src=- shape=c8075896 vocab=fd1a8a1a
+-/
 @[simp]
 lemma empty_eq_nil : (∅ : StackTape Symbol) = nil := rfl
 
+/--
+@isnad1 id=eq.0h1v.s3.1dc31c550f39 from=translated src=- shape=54ac7aa7 vocab=a8539f12
+-/
 @[simp, scoped grind =]
 lemma nil_toList : (nil : StackTape Symbol).toList = [] := rfl
 
@@ -83,10 +89,16 @@ def cons (x : Option Symbol) (xs : StackTape Symbol) : StackTape Symbol :=
   | none, ⟨hd :: tl, hl⟩ => ⟨none :: hd :: tl, by grind⟩
   | some a, ⟨l, hl⟩ => ⟨some a :: l, by grind⟩
 
+/--
+@isnad1 id=eq.0h1v.s4.9e3b0d01e8ba from=translated src=- shape=20b4bb66 vocab=644dcb55
+-/
 @[simp, scoped grind =]
 lemma cons_none_nil_toList : (cons none (nil : StackTape Symbol)).toList = [] := by
   grind only [nil, cons]
 
+/--
+@isnad1 id=eq.0h3v.s4.56e955aea879 from=translated src=- shape=6fba5268 vocab=a519a19d
+-/
 @[simp]
 lemma cons_some_toList (a : Symbol) (l : StackTape Symbol) :
     (cons (some a) l).toList = some a :: l.toList := by simp only [cons]
@@ -114,6 +126,9 @@ lemma eq_iff (l1 l2 : StackTape Symbol) :
     cases l2 with | mk as2 h2 =>
     cases as1 <;> cases as2 <;> grind [nil]
 
+/--
+@isnad1 id=eq.0h3v.s4.6b2f53623e55 from=translated src=- shape=3b794055 vocab=0752cc3f
+-/
 @[simp]
 lemma head_cons (o : Option Symbol) (l : StackTape Symbol) : (cons o l).head = o := by
   cases o with
@@ -122,6 +137,9 @@ lemma head_cons (o : Option Symbol) (l : StackTape Symbol) : (cons o l).head = o
     cases toList <;> grind [cons]
   | some a => grind [cons_some_toList]
 
+/--
+@isnad1 id=eq.0h3v.s4.5da727a0c715 from=translated src=- shape=5cd8546d vocab=15df943e
+-/
 @[simp]
 lemma tail_cons (o : Option Symbol) (l : StackTape Symbol) : (cons o l).tail = l := by
   cases o with
@@ -131,6 +149,9 @@ lemma tail_cons (o : Option Symbol) (l : StackTape Symbol) : (cons o l).tail = l
   | some a =>
     simp only [cons, tail]
 
+/--
+@isnad1 id=eq.0h2v.s4.85b41cb7c86e from=translated src=- shape=0913e22b vocab=d31ccd95
+-/
 @[simp]
 lemma cons_head_tail (l : StackTape Symbol) :
     cons (l.head) (l.tail) = l := by
@@ -147,28 +168,46 @@ section Length
 @[scoped grind]
 def length (l : StackTape Symbol) : ℕ := l.toList.length
 
+/--
+@isnad1 id=le.0h2v.s4.11ae6b7a5822 from=translated src=- shape=db04d2fc vocab=c549f57b
+-/
 lemma length_tail_le (l : StackTape Symbol) : l.tail.length ≤ l.length := by
   grind
 
 grind_pattern length_tail_le => l.tail.length
 
+/--
+@isnad1 id=eq.0h2v.s5.4853764070ca from=translated src=- shape=e04c8b76 vocab=9314efe9
+-/
 @[scoped grind =]
 lemma length_cons_none (l : StackTape Symbol) :
     (cons none l).length = l.length + if l.length = 0 then 0 else 1 := by
   cases l with | mk toList h =>
   cases toList <;> grind [cons]
 
+/--
+@isnad1 id=eq.0h3v.s5.b4a9c2e20167 from=translated src=- shape=b6452818 vocab=74d966a2
+-/
 lemma length_cons_some (a : Symbol) (l : StackTape Symbol) :
     (cons (some a) l).length = l.length + 1 := by
   grind [cons_some_toList]
 
+/--
+@isnad1 id=le.0h3v.s5.ca50e29b3943 from=translated src=- shape=0efdf91d vocab=d91fee73
+-/
 lemma length_cons_le (o : Option Symbol) (l : StackTape Symbol) :
     (cons o l).length ≤ l.length + 1 := by
   cases o <;> grind [cons_some_toList]
 
+/--
+@isnad1 id=eq.0h2v.s3.f8755337422b from=translated src=- shape=17dbdaef vocab=2157780f
+-/
 @[simp, scoped grind =]
 lemma length_mapSome (l : List Symbol) : (mapSome l).length = l.length := by grind
 
+/--
+@isnad1 id=eq.0h1v.s3.243687eae496 from=translated src=- shape=44598111 vocab=8006a0df
+-/
 @[simp, scoped grind =]
 lemma length_nil : (nil : StackTape Symbol).length = 0 := by grind
 

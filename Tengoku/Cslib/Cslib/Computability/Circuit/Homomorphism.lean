@@ -41,6 +41,9 @@ structure Homomorphism (i₁ : Interpretation σ U₁) (i₂ : Interpretation σ
 
 namespace Homomorphism
 
+/--
+@isnad1 id=eq.1h7v.s5.1b16c442c9b1 from=translated src=- shape=c632f5da vocab=602a9269
+-/
 @[ext] theorem ext
     {source : Interpretation σ U₁}
     {target : Interpretation σ U₂}
@@ -72,10 +75,16 @@ def comp
     rw [Function.comp_apply, inner.homomorphic, outer.homomorphic]
     congr 1
 
+/--
+@isnad1 id=eq.0h3v.s4.bf72365901b5 from=translated src=- shape=672c3e69 vocab=85b4846f
+-/
 @[simp] theorem id_map
     (interpretation : Interpretation σ U) :
     (Homomorphism.id interpretation).map = _root_.id := rfl
 
+/--
+@isnad1 id=eq.0h9v.s6.89cd0df9b73e from=translated src=- shape=4bbb83ef vocab=50dc240e
+-/
 @[simp] theorem comp_map
     {i₁ : Interpretation σ U₁}
     {i₂ : Interpretation σ U₂}
@@ -84,6 +93,9 @@ def comp
     (inner : Homomorphism i₁ i₂) :
     (outer.comp inner).map = outer.map ∘ inner.map := rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.3a3330290e90 from=translated src=- shape=10887a7f vocab=9d63ee1c
+-/
 @[simp] theorem id_comp
     {source : Interpretation σ U₁}
     {target : Interpretation σ U₂}
@@ -92,6 +104,9 @@ def comp
   apply Homomorphism.ext
   rfl
 
+/--
+@isnad1 id=eq.0h6v.s5.57734b52e9b6 from=translated src=- shape=b2709e73 vocab=9d63ee1c
+-/
 @[simp] theorem comp_id
     {source : Interpretation σ U₁}
     {target : Interpretation σ U₂}
@@ -100,6 +115,9 @@ def comp
   apply Homomorphism.ext
   rfl
 
+/--
+@isnad1 id=eq.0h12v.s6.bfd95522c2e9 from=translated src=- shape=06d2bc25 vocab=2ac2374b
+-/
 theorem comp_assoc
     {i₁ : Interpretation σ U₁}
     {i₂ : Interpretation σ U₂}

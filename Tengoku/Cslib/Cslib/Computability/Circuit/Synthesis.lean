@@ -46,12 +46,16 @@ gates.-/
 def available (I : Interpretation σ U) {g : ℕ} (p : Program σ n g) : Set ((Fin n → U) → U) :=
   Set.range (p.wireFunction I)
 
-/-- A function is available exactly when some wire computes it pointwise.-/
+/-- A function is available exactly when some wire computes it pointwise.
+@isnad1 id=iff.0h7v.s6.27b56b5ae1d7 from=translated src=- shape=c5833d9c vocab=32c5da18
+-/
 theorem mem_available {g : ℕ} {p : Program σ n g} {f : (Fin n → U) → U} :
     f ∈ available I p ↔ ∃ w, ∀ x, p.trace I x w = f x := by
   simp [available, Program.wireFunction, funext_iff]
 
-/-- The input projections are available in every program.-/
+/-- The input projections are available in every program.
+@isnad1 id=le.0h6v.s5.c39553013aa3 from=translated src=- shape=880834fb vocab=27342f4f
+-/
 theorem inputs_subset_available {g : ℕ} (p : Program σ n g) :
     inputs n ⊆ available I p := by
   rintro _ ⟨i, rfl⟩
@@ -79,15 +83,21 @@ namespace Synthesis
 
 variable {s t t₁ : Set ((Fin n → U) → U)} {a b : ℕ} {f g : (Fin n → U) → U}
 
-/-- Available functions require no additional gates.-/
+/-- Available functions require no additional gates.
+@isnad1 id=synthesi.1h6v.s5.af2b091075d7 from=translated src=- shape=6c22f8eb vocab=644ff910
+-/
 theorem of_subset (h : t ⊆ s) : Synthesis I s t 0 :=
   fun g p hp => ⟨g, p, by omega, Set.Subset.rfl, h.trans hp⟩
 
-/-- An available function requires no additional gates.-/
+/-- An available function requires no additional gates.
+@isnad1 id=synthesi.1h6v.s6.bd97c404325d from=translated src=- shape=2fc58a90 vocab=8f29a022
+-/
 theorem of_mem (hf : f ∈ s) : Synthesis I s {f} 0 :=
   of_subset (Set.singleton_subset_iff.mpr hf)
 
-/-- Enlarge the source family, narrow the target family, or increase the budget.-/
+/-- Enlarge the source family, narrow the target family, or increase the budget.
+@isnad1 id=synthesi.4h10v.s6.55ce6c3efbdf from=translated src=- shape=6023166e vocab=644ff910
+-/
 theorem mono (h : Synthesis I s t a) {s' t' : Set ((Fin n → U) → U)}
     (hs : s ⊆ s') (ht : t' ⊆ t) (hab : a ≤ b) : Synthesis I s' t' b := by
   intro g₁ p hp
@@ -95,7 +105,9 @@ theorem mono (h : Synthesis I s t a) {s' t' : Set ((Fin n → U) → U)}
   exact ⟨g₂, q, by omega, hkeep, ht.trans hout⟩
 
 /-- Successive constructions add their gate budgets. The second construction may use the
-targets of the first, and both target families remain available.-/
+targets of the first, and both target families remain available.
+@isnad1 id=synthesi.2h9v.s6.9874975e96e8 from=translated src=- shape=14a85464 vocab=3dedca53
+-/
 theorem comp (h : Synthesis I s t a) (h' : Synthesis I (s ∪ t) t₁ b) :
     Synthesis I s (t ∪ t₁) (a + b) := by
   intro g₁ p hp
@@ -103,17 +115,23 @@ theorem comp (h : Synthesis I s t a) (h' : Synthesis I (s ∪ t) t₁ b) :
   obtain ⟨g₃, r, hr, hqr, hu⟩ := h' g₂ q (Set.union_subset (hp.trans hpq) ht)
   exact ⟨g₃, r, by omega, hpq.trans hqr, Set.union_subset (ht.trans hqr) hu⟩
 
-/-- Successive constructions, keeping only the final targets.-/
+/-- Successive constructions, keeping only the final targets.
+@isnad1 id=synthesi.2h9v.s6.3817ebef889e from=translated src=- shape=ea282261 vocab=3dedca53
+-/
 theorem trans (h : Synthesis I s t a) (h' : Synthesis I (s ∪ t) t₁ b) :
     Synthesis I s t₁ (a + b) :=
   (h.comp h').mono Set.Subset.rfl Set.subset_union_right le_rfl
 
-/-- Combine two target families, preserving the first while constructing the second.-/
+/-- Combine two target families, preserving the first while constructing the second.
+@isnad1 id=synthesi.2h9v.s6.058d16f950ea from=translated src=- shape=2cbb37c2 vocab=3dedca53
+-/
 theorem union (h : Synthesis I s t a) (h' : Synthesis I s t₁ b) :
     Synthesis I s (t ∪ t₁) (a + b) :=
   h.comp (h'.mono Set.subset_union_left Set.Subset.rfl le_rfl)
 
-/-- Synthesize an operation whose arguments are already available.-/
+/-- Synthesize an operation whose arguments are already available.
+@isnad1 id=synthesi.1h7v.s6.d43c437f5911 from=translated src=- shape=30e0ca10 vocab=52605532
+-/
 theorem gate (op : σ.Op) (args : Fin (σ.Arity op) → (Fin n → U) → U)
     (hargs : ∀ i, args i ∈ s) :
     Synthesis I s {fun x => I op (fun i => args i x)} 1 := by
@@ -131,7 +149,9 @@ theorem gate (op : σ.Op) (args : Fin (σ.Arity op) → (Fin n → U) → U)
     change I op (fun i => p.trace I x (wires i)) = _
     simp only [hw]
 
-/-- Combine a finite family of target sets, retaining all earlier results.-/
+/-- Combine a finite family of target sets, retaining all earlier results.
+@isnad1 id=synthesi.1h9v.s6.f96861c14027 from=translated src=- shape=eb414446 vocab=2843798a
+-/
 theorem biUnion (indices : Finset ι) (targets : ι → Set ((Fin n → U) → U))
     (cost : ι → ℕ) (h : ∀ i ∈ indices, Synthesis I s (targets i) (cost i)) :
     Synthesis I s (⋃ i ∈ indices, targets i) (∑ i ∈ indices, cost i) := by
@@ -142,37 +162,49 @@ theorem biUnion (indices : Finset ι) (targets : ι → Set ((Fin n → U) → U
     simpa [Finset.sum_insert hi] using
       (h i (by simp)).union (ih (fun j hj => h j (by simp [hj])))
 
-/-- Combine target sets indexed by a finite type.-/
+/-- Combine target sets indexed by a finite type.
+@isnad1 id=synthesi.1h8v.s6.df7ecbc142da from=translated src=- shape=afb611e1 vocab=e9cbf6e9
+-/
 theorem iUnion [Fintype ι] (targets : ι → Set ((Fin n → U) → U)) (cost : ι → ℕ)
     (h : ∀ i, Synthesis I s (targets i) (cost i)) :
     Synthesis I s (⋃ i, targets i) (∑ i, cost i) := by
   simpa using biUnion Finset.univ targets cost (fun i _ => h i)
 
-/-- Simultaneously synthesize an indexed finite family of functions.-/
+/-- Simultaneously synthesize an indexed finite family of functions.
+@isnad1 id=synthesi.1h8v.s6.54d01f3c53de from=translated src=- shape=00d55f3f vocab=d4a736ec
+-/
 theorem family [Fintype ι] (f : ι → (Fin n → U) → U) (cost : ι → ℕ)
     (h : ∀ i, Synthesis I s {f i} (cost i)) :
     Synthesis I s (Set.range f) (∑ i, cost i) := by
   simpa using iUnion (fun i => {f i}) cost h
 
-/-- Synthesize every argument, then apply an operation with one further gate.-/
+/-- Synthesize every argument, then apply an operation with one further gate.
+@isnad1 id=synthesi.1h8v.s7.bd0687a0baa5 from=translated src=- shape=35a61003 vocab=44af38f0
+-/
 theorem gate_of_syntheses (op : σ.Op) (args : Fin (σ.Arity op) → (Fin n → U) → U)
     (cost : Fin (σ.Arity op) → ℕ) (h : ∀ i, Synthesis I s {args i} (cost i)) :
     Synthesis I s {fun x => I op (fun i => args i x)} ((∑ i, cost i) + 1) :=
   (family args cost h).trans (gate op args (fun i => Set.mem_union_right _ ⟨i, rfl⟩))
 
-/-- A nullary operation supplies its interpreted constant with one gate.-/
+/-- A nullary operation supplies its interpreted constant with one gate.
+@isnad1 id=synthesi.1h6v.s6.6e04f1712aa2 from=translated src=- shape=137cf008 vocab=48d06586
+-/
 theorem nullary (op : σ.Op) (arity : σ.Arity op = 0) :
     Synthesis I s {fun _ => I op (fun i => Fin.elim0 (Fin.cast arity i))} 1 :=
   gate op (fun i _ => Fin.elim0 (Fin.cast arity i)) (fun i => Fin.elim0 (Fin.cast arity i))
 
 /-- Feed a synthesized function to every argument of an operation, using one further gate.
-In particular, this applies a unary operation.-/
+In particular, this applies a unary operation.
+@isnad1 id=synthesi.1h8v.s6.e43db23096b7 from=translated src=- shape=c553a898 vocab=94b45a8a
+-/
 theorem unary (h : Synthesis I s {f} a) (op : σ.Op) :
     Synthesis I s {fun x => I op (fun _ => f x)} (a + 1) :=
   h.trans (gate op (fun _ => f) (by simp))
 
 /-- Feed `f` to argument zero and `g` to the remaining arguments, using one further gate.
-For a binary operation, these are its two arguments.-/
+For a binary operation, these are its two arguments.
+@isnad1 id=synthesi.2h10v.s7.92f408b12698 from=translated src=- shape=7fed0e45 vocab=20899b37
+-/
 theorem binary (hf : Synthesis I s {f} a) (hg : Synthesis I s {g} b) (op : σ.Op) :
     Synthesis I s {fun x => I op (fun i => if i.val = 0 then f x else g x)}
       (a + b + 1) := by
@@ -180,7 +212,9 @@ theorem binary (hf : Synthesis I s {f} a) (hg : Synthesis I s {g} b) (op : σ.Op
     (gate op (fun i => if i.val = 0 then f else g) (fun i => by split <;> simp))
 
 /-- Apply a synthesis bound to two previously synthesized arguments. The combining
-construction can use several gates and can reuse either argument.-/
+construction can use several gates and can reuse either argument.
+@isnad1 id=synthesi.3h11v.s7.1f923f1e333b from=translated src=- shape=48dad128 vocab=19bd8b72
+-/
 theorem combine {result : (Fin n → U) → U} {c : ℕ}
     (hf : Synthesis I s {f} a) (hg : Synthesis I s {g} b)
     (h : Synthesis I {f, g} {result} c) : Synthesis I s {result} (a + b + c) := by
@@ -190,7 +224,9 @@ theorem combine {result : (Fin n → U) → U} {c : ℕ}
   exact Set.mem_union_right _ (by simpa [or_comm] using hk)
 
 /-- Fold an ordered list of synthesized functions. No algebraic laws are needed for the
-combining operation. The seed and the combining construction have their own gate budgets.-/
+combining operation. The seed and the combining construction have their own gate budgets.
+@isnad1 id=synthesi.3h13v.s8.4a944a003de5 from=translated src=- shape=bfc2af1b vocab=e872be07
+-/
 theorem foldr (op : U → U → U) (combineCost : ℕ)
     (hop : ∀ f g : (Fin n → U) → U,
       Synthesis I {f, g} {fun x => op (f x) (g x)} combineCost)
@@ -208,7 +244,9 @@ theorem foldr (op : U → U → U) (combineCost : ℕ)
 
 /-- Fold a finite set of synthesized functions with a commutative associative operation.
 The seed need not be an identity or a constant, and the combining construction may use
-several gates.-/
+several gates.
+@isnad1 id=synthesi.3h13v.s8.3689da53dee6 from=translated src=- shape=6ac44396 vocab=768ccdbf
+-/
 theorem finset_fold (op : U → U → U) [Std.Commutative op] [Std.Associative op]
     (combineCost : ℕ) (hop : ∀ f g : (Fin n → U) → U,
       Synthesis I {f, g} {fun x => op (f x) (g x)} combineCost)
@@ -227,7 +265,9 @@ theorem finset_fold (op : U → U → U) [Std.Commutative op] [Std.Associative o
       Nat.add_assoc, Nat.add_comm, Nat.add_left_comm] using step
 
 /-- Select a tuple of outputs from a synthesis bound. Selecting outputs, including repeated
-outputs or none at all, requires no additional gates.-/
+outputs or none at all, requires no additional gates.
+@isnad1 id=ex.1h7v.s6.60a252169f5a from=translated src=- shape=e4069a4f vocab=eadc8191
+-/
 theorem exists_circuit_outputs {m cost : ℕ} {f : Fin m → (Fin n → U) → U}
     (h : Synthesis I (inputs n) (Set.range f) cost) :
     ∃ c : Circuit σ n m, c.Computes I (fun x j => f j x) ∧ c.size ≤ cost := by
@@ -236,7 +276,9 @@ theorem exists_circuit_outputs {m cost : ℕ} {f : Fin m → (Fin n → U) → U
   choose wires hw using fun j => mem_available.mp (hout ⟨j, rfl⟩)
   exact ⟨⟨p, wires⟩, fun x => funext fun j => hw j x, by simpa using hg⟩
 
-/-- Extract a single-output circuit from a synthesis bound on the input projections.-/
+/-- Extract a single-output circuit from a synthesis bound on the input projections.
+@isnad1 id=ex.1h6v.s6.f869cf6b868b from=translated src=- shape=0be84911 vocab=3cdea26d
+-/
 theorem exists_circuit {cost : ℕ} (h : Synthesis I (inputs n) {f} cost) :
     ∃ c : Circuit σ n 1, c.Computes I (single f) ∧ c.size ≤ cost := by
   have h' : Synthesis I (inputs n) (Set.range fun _ : Fin 1 => f) cost := by

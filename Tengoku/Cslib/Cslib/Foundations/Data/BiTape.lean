@@ -66,6 +66,9 @@ instance : Inhabited (BiTape Symbol) where
 instance : EmptyCollection (BiTape Symbol) :=
   ⟨nil⟩
 
+/--
+@isnad1 id=eq.0h1v.s3.810587190dbb from=translated src=- shape=c8075896 vocab=a0258967
+-/
 @[simp]
 lemma empty_eq_nil : (∅ : BiTape Symbol) = nil := rfl
 
@@ -104,10 +107,16 @@ def optionMove : BiTape Symbol → Option Turing.Dir → BiTape Symbol
   | t, none => t
   | t, some d => t.move d
 
+/--
+@isnad1 id=eq.0h2v.s3.5935a7090770 from=translated src=- shape=efbf31f7 vocab=70e2e3a9
+-/
 @[simp]
 lemma moveLeft_moveRight (t : BiTape Symbol) : t.moveLeft.moveRight = t := by
   simp [moveRight, moveLeft]
 
+/--
+@isnad1 id=eq.0h2v.s3.34751f5dd567 from=translated src=- shape=efbf31f7 vocab=70e2e3a9
+-/
 @[simp]
 lemma moveRight_moveLeft (t : BiTape Symbol) : t.moveRight.moveLeft = t := by
   simp [moveLeft, moveRight]
@@ -123,16 +132,25 @@ The space used by a `BiTape` is the number of symbols
 between and including the head, and leftmost and rightmost non-blank symbols on the `BiTape`.-/
 def spaceUsed (t : BiTape Symbol) : ℕ := 1 + t.left.length + t.right.length
 
+/--
+@isnad1 id=eq.0h3v.s4.2c003e4a3fab from=translated src=- shape=b0687ec8 vocab=5b50b774
+-/
 @[simp]
 lemma spaceUsed_write (t : BiTape Symbol) (a : Option Symbol) :
     (t.write a).spaceUsed = t.spaceUsed := by rfl
 
+/--
+@isnad1 id=eq.0h2v.s4.103db27ec78b from=translated src=- shape=3f8e2c20 vocab=badec4a5
+-/
 lemma spaceUsed_mk₁ (l : List Symbol) :
     (mk₁ l).spaceUsed = max 1 l.length := by
   cases l with
   | nil => simp [mk₁, spaceUsed, nil, StackTape.length_nil]
   | cons h t => simp [mk₁, spaceUsed, StackTape.length_nil, StackTape.length_mapSome]; omega
 
+/--
+@isnad1 id=le.0h3v.s4.14a2018156ad from=translated src=- shape=ceab165f vocab=ac90ac49
+-/
 lemma spaceUsed_move (t : BiTape Symbol) (d : Turing.Dir) :
     (t.move d).spaceUsed ≤ t.spaceUsed + 1 := by
   cases d <;> grind [moveLeft, moveRight, move,

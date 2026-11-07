@@ -46,7 +46,9 @@ universe u v
 variable {α : Type u} {β : Type v}
 
 /-- Evaluating the "pairing" bind `(do let a ← p; return (a, ← f a))` at `(a, b)`
-gives the product `p a * f a b`.-/
+gives the product `p a * f a b`.
+@isnad1 id=eq.0h6v.s6.337d7f0917d8 from=translated src=- shape=96fa6205 vocab=327c9936
+-/
 theorem bind_pair_apply (p : PMF α) (f : α → PMF β) (a : α) (b : β) :
     (p.bind fun a' => (f a').bind fun b' => PMF.pure (a', b')) (a, b) = p a * f a b := by
   rw [PMF.bind_apply, tsum_eq_single a]
@@ -55,13 +57,17 @@ theorem bind_pair_apply (p : PMF α) (f : α → PMF β) (a : α) (b : β) :
     · intro b' hb'; simp [PMF.pure_apply, hb'.symm]
   · intro a' ha'; rw [PMF.bind_apply]; simp [PMF.pure_apply, ha'.symm]
 
-/-- Summing the pairing bind over the first component gives the marginal.-/
+/-- Summing the pairing bind over the first component gives the marginal.
+@isnad1 id=eq.0h5v.s6.6c55116d7070 from=translated src=- shape=a1163ceb vocab=ef32ab57
+-/
 theorem bind_pair_tsum_fst (p : PMF α) (f : α → PMF β) (b : β) :
     ∑' a, (p.bind fun a' => (f a').bind fun b' => PMF.pure (a', b')) (a, b) =
       (p.bind f) b := by
   simp_rw [bind_pair_apply, PMF.bind_apply]
 
-/-- A uniform distribution on a finite type is invariant under any equivalence.-/
+/-- A uniform distribution on a finite type is invariant under any equivalence.
+@isnad1 id=eq.0h3v.s5.c7f6c1f2e4a7 from=translated src=- shape=cd06dba8 vocab=03cc0a9d
+-/
 theorem uniformOfFintype_map_equiv {γ : Type v} [Fintype α] [Fintype γ] [Nonempty α] [Nonempty γ]
     (e : α ≃ γ) :
     (PMF.uniformOfFintype α).map e = PMF.uniformOfFintype γ := by
@@ -80,6 +86,9 @@ noncomputable def posteriorDist (p : PMF α) (f : α → PMF β) (b : β)
     (by rw [bind_pair_tsum_fst]; exact (PMF.mem_support_iff _ _).mp hb)
     (by rw [bind_pair_tsum_fst]; exact PMF.apply_ne_top _ _)
 
+/--
+@isnad1 id=eq.1h6v.s6.e67ccc5f0a3a from=translated src=- shape=9b5080a7 vocab=0b6c26ad
+-/
 @[simp]
 theorem posteriorDist_apply (p : PMF α) (f : α → PMF β) (b : β)
     (hb : b ∈ (p.bind f).support) (a : α) :
@@ -89,7 +98,9 @@ theorem posteriorDist_apply (p : PMF α) (f : α → PMF β) (b : β)
   rw [posteriorDist, PMF.normalize_apply, bind_pair_tsum_fst, div_eq_mul_inv]
 
 /-- If the output distribution of a channel does not depend on the input, then
-conditioning on any output with positive probability leaves the prior unchanged.-/
+conditioning on any output with positive probability leaves the prior unchanged.
+@isnad1 id=eq.2h5v.s5.e092d8864a78 from=translated src=- shape=57baaf64 vocab=2c064d4f
+-/
 theorem posteriorDist_eq_prior_of_outputIndist (p : PMF α) (f : α → PMF β)
     (h : ∀ a₀ a₁ : α, f a₀ = f a₁)
     (b : β) (hb : b ∈ (p.bind f).support) :

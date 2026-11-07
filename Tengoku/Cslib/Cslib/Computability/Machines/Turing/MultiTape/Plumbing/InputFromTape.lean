@@ -77,44 +77,66 @@ section Projections
 
 variable {mark : Symbol} {input : List Symbol} {outerInput : List Symbol}
 
+/--
+@isnad1 id=eq.0h7v.s6.253f24bd605b from=translated src=- shape=ee46cbba vocab=27c3d98b
+-/
 @[simp]
 public lemma inCfg_inputPos (c : Cfg k Symbol State input) :
     (inCfg mark c outerInput).inputPos = 1 := rfl
 
+/--
+@isnad1 id=eq.0h8v.s6.611008d003c0 from=translated src=- shape=44ce2087 vocab=84505558
+-/
 @[simp]
 public lemma inCfg_workTapes_castAdd (c : Cfg k Symbol State input) (j : Fin k) :
     (inCfg mark c outerInput).workTapes (j.castAdd 2) = c.workTapes j := by
   simp [inCfg]
 
+/--
+@isnad1 id=eq.0h7v.s6.212752caaac4 from=translated src=- shape=5d34fd66 vocab=f5837748
+-/
 @[simp]
 public lemma inCfg_workTapes_vip (c : Cfg k Symbol State input) :
     (inCfg mark c outerInput).workTapes (Fin.natAdd k 0) = tapeOfList input := by
   simp [inCfg]
 
+/--
+@isnad1 id=eq.0h7v.s6.6bf450773e09 from=translated src=- shape=1b5862af vocab=5e1ce1dd
+-/
 @[simp]
 public lemma inCfg_workTapes_flag (c : Cfg k Symbol State input) :
     (inCfg mark c outerInput).workTapes (Fin.natAdd k 1) =
       Function.update (fun _ => none) (-1) (some mark) := by
   simp [inCfg]
 
+/--
+@isnad1 id=eq.0h8v.s6.dbb7c48cf4f8 from=translated src=- shape=a4660380 vocab=eb98a73d
+-/
 @[simp]
 public lemma inCfg_workTapePos_castAdd (c : Cfg k Symbol State input) (j : Fin k) :
     (inCfg mark c outerInput).workTapePos (j.castAdd 2) = c.workTapePos j := by
   simp [inCfg]
 
-/-- The virtual input head and the flag head both stand at cell `inputPos - 1`.-/
+/-- The virtual input head and the flag head both stand at cell `inputPos - 1`.
+@isnad1 id=eq.0h8v.s6.2b7797bedb44 from=translated src=- shape=41b51ebd vocab=6c297874
+-/
 @[simp]
 public lemma inCfg_workTapePos_natAdd (c : Cfg k Symbol State input) (i : Fin 2) :
     (inCfg mark c outerInput).workTapePos (Fin.natAdd k i) = (c.inputPos.val : ℤ) - 1 := by
   simp [inCfg]
 
+/--
+@isnad1 id=eq.0h8v.s6.96d27cfc70d3 from=translated src=- shape=79900707 vocab=0935da2f
+-/
 @[simp]
 public lemma inCfg_workTapeSymbols_castAdd (c : Cfg k Symbol State input) (j : Fin k) :
     (inCfg mark c outerInput).workTapeSymbols (j.castAdd 2) = c.workTapeSymbols j := by
   simp [Cfg.workTapeSymbols]
 
 /-- The virtual input head reads exactly what the simulated input head reads: the word cells are
-the input positions, the two boundary cells are blank.-/
+the input positions, the two boundary cells are blank.
+@isnad1 id=eq.0h7v.s6.d9df7bb6f833 from=translated src=- shape=ea118c05 vocab=62622fdd
+-/
 @[simp]
 public lemma inCfg_workTapeSymbols_vip (c : Cfg k Symbol State input) :
     (inCfg mark c outerInput).workTapeSymbols (Fin.natAdd k 0) = c.inputSymbol := by
@@ -129,14 +151,18 @@ public lemma inCfg_workTapeSymbols_vip (c : Cfg k Symbol State input) :
       show (c.inputPos.val : ℤ) - 1 = (c.inputPos.val - 1 : ℕ) by omega, tapeOfList_ofNat,
       List.getElem?_eq_getElem (by omega)]
 
-/-- The flag head reads the mark exactly at the left boundary.-/
+/-- The flag head reads the mark exactly at the left boundary.
+@isnad1 id=eq.0h7v.s7.e9c263b5749d from=translated src=- shape=8ed58bd1 vocab=a79eeddd
+-/
 @[simp]
 public lemma inCfg_workTapeSymbols_flag (c : Cfg k Symbol State input) :
     (inCfg mark c outerInput).workTapeSymbols (Fin.natAdd k 1) =
       if c.inputPos.val = 0 then some mark else none := by
   simp [Cfg.workTapeSymbols, Function.update_apply]
 
-/-- The clamped move of the virtual input head tracks the simulated input head exactly.-/
+/-- The clamped move of the virtual input head tracks the simulated input head exactly.
+@isnad1 id=eq.0h7v.s7.345aeb0e6019 from=translated src=- shape=11e78e40 vocab=44a95285
+-/
 public lemma val_moveInputPos_sub_one_eq_clampMove (mark : Symbol) (c : Cfg k Symbol State input)
     (m : SignType) :
     ((moveInputPos c.inputPos m).val : ℤ) - 1 =
@@ -157,7 +183,9 @@ public lemma val_moveInputPos_sub_one_eq_clampMove (mark : Symbol) (c : Cfg k Sy
     rcases m with _ | _ | _ <;> simp only [clampMove, SignType.cast] <;> omega
 
 /-- **The redirection is a step-semiconjugation.** One step of the machine reading its input from
-the virtual tape mirrors one step of the original, under the embedding `inCfg`.-/
+the virtual tape mirrors one step of the original, under the embedding `inCfg`.
+@isnad1 id=eq.0h8v.s6.e9aee718b7e9 from=translated src=- shape=b7ae626a vocab=74087000
+-/
 public lemma step_inCfg (tm : MultiTapeTM k Symbol State) (mark : Symbol)
     (c : Cfg k Symbol State input) (outerInput : List Symbol) :
     tm.inputFromTape.step (inCfg mark c outerInput) =
@@ -171,7 +199,9 @@ public lemma step_inCfg (tm : MultiTapeTM k Symbol State) (mark : Symbol)
     refine Cfg.ext rfl (by simp [inCfg]) ?_ ?_ rfl <;> funext l <;>
       induction l using Fin.addCases <;> simp [inCfg, val_moveInputPos_sub_one_eq_clampMove mark]
 
-/-- The redirected run mirrors the original.-/
+/-- The redirected run mirrors the original.
+@isnad1 id=eq.0h9v.s6.ab22501dbe23 from=translated src=- shape=e0bc77dd vocab=29978900
+-/
 public lemma runFrom_inCfg (tm : MultiTapeTM k Symbol State) (mark : Symbol)
     (c : Cfg k Symbol State input) (outerInput : List Symbol) (n : ℕ) :
     tm.inputFromTape.runFrom (inCfg mark c outerInput) n =
@@ -181,7 +211,9 @@ public lemma runFrom_inCfg (tm : MultiTapeTM k Symbol State) (mark : Symbol)
 
 /-- **Space of the input-redirected machine.** The `k` inner tapes visit exactly what the original
 does; the two extra tapes (virtual input, flag) each move only with the simulated input head,
-which stays within `[-1, input.length]` — so they add at most `2 * (input.length + 2)`.-/
+which stays within `[-1, input.length]` — so they add at most `2 * (input.length + 2)`.
+@isnad1 id=le.0h9v.s6.89aa0104ce0c from=translated src=- shape=003214bb vocab=69538d94
+-/
 public lemma spaceUsed_inputFromTape (tm : MultiTapeTM k Symbol State) (mark : Symbol)
     (c : Cfg k Symbol State input) (outerInput : List Symbol) (n : ℕ) :
     tm.inputFromTape.spaceUsed (inCfg mark c outerInput) n ≤

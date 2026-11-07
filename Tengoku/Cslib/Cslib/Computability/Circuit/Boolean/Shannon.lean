@@ -22,7 +22,9 @@ public section
 namespace Cslib.Circuits.Boolean.Shannon
 
 /-- For all sufficiently large `n`, some Boolean function on `n` inputs requires
-more than `2ⁿ/n` De Morgan gates, counting constants and negations.-/
+more than `2ⁿ/n` De Morgan gates, counting constants and negations.
+@isnad1 id=ex.0h0v.s6.6958dfc05b2e from=translated src=- shape=a4e06da9 vocab=3f100bf5
+-/
 theorem exists_hard_function :
     ∃ N : ℕ, ∀ n ≥ N, ∃ f : BooleanFunction n,
       ∀ c : Circuit signature n 1,

@@ -38,14 +38,23 @@ def mergeM (xs ys : List α) (le : α → α → m Bool) : m (List α) := do
     else
       return y :: (← mergeM (x :: xs) ys le)
 
+/--
+@isnad1 id=eq.0h4v.s5.2552cb465705 from=translated src=- shape=ad4ae799 vocab=86efd548
+-/
 @[simp, grind =]
 theorem nil_mergeM (ys : List α) (le : α → α → m Bool) : mergeM [] ys le = pure ys := by
   simp [mergeM]
+/--
+@isnad1 id=eq.0h4v.s5.ceab522e069b from=translated src=- shape=f69c6a5b vocab=86efd548
+-/
 @[simp, grind =]
 theorem mergeM_right (xs : List α) (le : α → α → m Bool) : mergeM xs [] le = pure xs := by
   induction xs with
   | nil => simp
   | cons x xs ih => simp [mergeM]
+/--
+@isnad1 id=eq.0h7v.s7.58a8d7167a1c from=translated src=- shape=e6d108cf vocab=0d0bda00
+-/
 @[simp] theorem cons_mergeM_cons (x y : α) (xs ys : List α) (le : α → α → m Bool) :
     mergeM (x :: xs) (y :: ys) le = do
       if ← le x y then
@@ -54,16 +63,25 @@ theorem mergeM_right (xs : List α) (le : α → α → m Bool) : mergeM xs [] l
         return y :: (← mergeM (x :: xs) ys le) := by
   simp [mergeM]
 
+/--
+@isnad1 id=eq.0h5v.s6.bcf380c1fca7 from=translated src=- shape=951fb61e vocab=fb4e041e
+-/
 @[simp↓]
 theorem mergeM_pure [LawfulMonad m] (xs ys : List α) (le : α → α → Bool) :
     mergeM xs ys (fun x y => (pure (le x y) : m Bool)) = pure (merge xs ys le) := by
   fun_induction mergeM with grind [merge]
 
+/--
+@isnad1 id=eq.0h4v.s5.6445a98de5dc from=translated src=- shape=7ded23df vocab=98261591
+-/
 @[simp]
 theorem idRun_mergeM (xs ys : List α) (le : α → α → Id Bool) :
     Id.run (mergeM xs ys le) = merge xs ys (fun x y => Id.run <| le x y) :=
   mergeM_pure _ _ _
 
+/--
+@isnad1 id=eq.1h7v.s6.6f4da9ecdc20 from=translated src=- shape=0a707a1b vocab=dcbc75b3
+-/
 @[grind .]
 theorem _root_.Cslib.IsMonadHom.map_listMergeM {f : {β : Type} → m β → n β}
     (hf : IsMonadHom m n f) (xs ys : List α) (le : α → α → m Bool) :
@@ -82,12 +100,21 @@ def mergeSortM (xs : List α) (le : α → α → m Bool) : m (List α) :=
     mergeM (← mergeSortM lr.1 le) (← mergeSortM lr.2 le) le
 termination_by xs.length
 
+/--
+@isnad1 id=eq.0h3v.s5.7d394570ece2 from=translated src=- shape=d24bfe74 vocab=4ea8f839
+-/
 @[simp] theorem mergeSortM_nil (le : α → α → m Bool) : mergeSortM [] le = pure [] := by
   simp [mergeSortM]
+/--
+@isnad1 id=eq.0h4v.s5.32184c1ec36d from=translated src=- shape=262656c3 vocab=c4f0c85a
+-/
 @[simp] theorem mergeSortM_singleton (a : α) (le : α → α → m Bool) :
     mergeSortM [a] le = pure [a] := by
   simp [mergeSortM]
 
+/--
+@isnad1 id=eq.0h4v.s5.70f6f97f895c from=translated src=- shape=d742f2bb vocab=c080664c
+-/
 @[simp↓]
 theorem mergeSortM_pure [LawfulMonad m] (xs : List α) (le : α → α → Bool) :
     mergeSortM xs (fun x y => (pure (le x y) : m Bool)) = pure (mergeSort xs le) := by
@@ -98,11 +125,17 @@ theorem mergeSortM_pure [LawfulMonad m] (xs : List α) (le : α → α → Bool)
     rw [ih1, ih2]
     simp
 
+/--
+@isnad1 id=eq.0h3v.s5.e2d315931614 from=translated src=- shape=ee18e82a vocab=204ddaa4
+-/
 @[simp]
 theorem idRun_mergeSortM (xs : List α) (le : α → α → Id Bool) :
     Id.run (mergeSortM xs le) = mergeSort xs (fun x y => Id.run <| le x y) :=
   mergeSortM_pure _ _
 
+/--
+@isnad1 id=eq.1h6v.s6.78f21b0c4d19 from=translated src=- shape=6f1e1168 vocab=74e39a82
+-/
 @[grind .]
 theorem _root_.Cslib.IsMonadHom.map_listMergeSortM {f : {β : Type} → m β → n β}
     (hf : IsMonadHom m n f) (xs : List α) (le : α → α → m Bool) :

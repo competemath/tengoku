@@ -343,7 +343,9 @@ section Results
 variable {α β : Type*} {encIn : α ↪ List Bool} {encOut : β ↪ List Bool}
 
 /-- Every function whose encoded output is constant outside of a finite set is computable in time
-`almostConstTime` and zero space.-/
+`almostConstTime` and zero space.
+@isnad1 id=computab.1h7v.s6.7649b646d731 from=translated src=- shape=12403003 vocab=3ae99408
+-/
 public theorem computableInTimeAndSpace_almostConstTime
     (f : α → β) (S : Finset α) (out : List Bool) (h : ∀ a ∉ S, encOut (f a) = out) :
     ComputableInTimeAndSpace f encIn encOut
@@ -351,7 +353,9 @@ public theorem computableInTimeAndSpace_almostConstTime
   ⟨0, AlmostConstState encIn encOut f S out, inferInstance, almostConstTM encIn encOut f S out,
     computesFunInTimeAndSpace_almostConstTM h⟩
 
-/-- Every almost constant function is computable in constant time and zero space.-/
+/-- Every almost constant function is computable in constant time and zero space.
+@isnad1 id=ex.1h5v.s5.35c7a3813cb7 from=translated src=- shape=20c02913 vocab=32800570
+-/
 public theorem computableInTimeAndSpace_of_exists_finite_ne
     {f : α → β} (h : ∃ b : β, {a : α | f a ≠ b}.Finite) :
     ∃ c, ComputableInTimeAndSpace f encIn encOut (fun _ => c) (fun _ => 0) := by
@@ -361,7 +365,9 @@ public theorem computableInTimeAndSpace_of_exists_finite_ne
   simp only [Set.Finite.mem_toFinset, Set.mem_ofPred_eq, not_not] at ha
   rw [ha]
 
-/-- Every constant function is computable in constant time and zero space.-/
+/-- Every constant function is computable in constant time and zero space.
+@isnad1 id=ex.0h5v.s5.2032d87ab91c from=translated src=- shape=18e52294 vocab=0693e036
+-/
 public theorem computableInTimeAndSpace_of_const {α β : Type*}
     {encIn : α ↪ List Bool} {encOut : β ↪ List Bool} (b : β) :
     ∃ c, ComputableInTimeAndSpace (Function.const α b) encIn encOut
@@ -375,7 +381,9 @@ public noncomputable def finiteFunTime {α β : Type*} [Finite α] (encIn : α �
   haveI := Fintype.ofFinite α
   almostConstTime encIn encOut f Finset.univ []
 
-/-- Every function on a finite type is computable in time `finiteFunTime` and zero space.-/
+/-- Every function on a finite type is computable in time `finiteFunTime` and zero space.
+@isnad1 id=computab.0h5v.s5.3ec4673063a3 from=translated src=- shape=cf05f681 vocab=b1115edf
+-/
 public theorem computableInTimeAndSpace_finiteFunTime {α β : Type*} [Finite α]
     {encIn : α ↪ List Bool} {encOut : β ↪ List Bool} (f : α → β) :
     ComputableInTimeAndSpace f encIn encOut
@@ -383,7 +391,9 @@ public theorem computableInTimeAndSpace_finiteFunTime {α β : Type*} [Finite α
   computableInTimeAndSpace_almostConstTime f (@Finset.univ α (Fintype.ofFinite α)) []
     fun a ha => absurd (@Finset.mem_univ α (Fintype.ofFinite α) a) ha
 
-/-- Every function on a finite type is computable in constant time and zero space.-/
+/-- Every function on a finite type is computable in constant time and zero space.
+@isnad1 id=ex.0h5v.s5.48f083465e49 from=translated src=- shape=86383015 vocab=3f11be27
+-/
 public theorem computableInTimeAndSpace_of_finite {α β : Type*} [Finite α]
     {encIn : α ↪ List Bool} {encOut : β ↪ List Bool}
     (f : α → β) :

@@ -54,10 +54,16 @@ to constant tuples of worlds.-/
 def diagonal (f : Frame World τ) (op : τ.A) : World → World → Prop :=
   fun w w' => f.r op w (fun _ => w')
 
+/--
+@isnad1 id=r.1h6v.s5.29cd86e4d7c5 from=translated src=- shape=05d91ba3 vocab=df42106d
+-/
 @[scoped grind →]
 theorem r_const_of_diagonal {f : Frame World τ} (h : f.diagonal op w w') :
     f.r op w (fun _ => w') := by grind [Frame.diagonal]
 
+/--
+@isnad1 id=diagonal.1h6v.s5.8560cb699dd3 from=translated src=- shape=1da52c50 vocab=f251b24b
+-/
 @[scoped grind →]
 theorem diagonal_of_r [PFunctor.Unary τ] {f : Frame World τ} (h : f.r op w ws) :
     f.diagonal op w (ws default) := by grind [Frame.diagonal, PFunctor.Unary.fun_eq_const op ws]
@@ -88,10 +94,16 @@ def ofRelations {τ : PFunctor} [τ.Unary] (r : τ.A → World → World → Pro
     Frame World τ where
   r i w ws := r i w (ws default)
 
+/--
+@isnad1 id=iff.0h6v.s5.0b8b397b8ad2 from=translated src=- shape=c907b45b vocab=17efbf01
+-/
 @[scoped grind =]
 lemma ofRelations_iff {τ : PFunctor} [τ.Unary] (r : τ.A → World → World → Prop) (i : τ.A)
     (w : World) (ws : τ.B i → World) : (ofRelations r).r i w ws ↔ r i w (ws default) := by rfl
 
+/--
+@isnad1 id=iff.0h6v.s5.17d5b00e3b8d from=translated src=- shape=10196d16 vocab=39d3e55b
+-/
 @[simp, scoped grind =]
 lemma ofRelations_diagonal_iff {τ : PFunctor} [τ.Unary]
     (r : τ.A → World → World → Prop) (i : τ.A) (w w' : World) :
