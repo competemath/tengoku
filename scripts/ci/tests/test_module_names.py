@@ -168,7 +168,19 @@ class IsnadModuleFile(unittest.TestCase):
         self.assertEqual(isnad.module_file("Tengoku.Seed.Logic.Basic", root), root / "Tengoku/Seed/Logic/Basic.lean")
 
     def test_a_name_that_could_leave_the_root_is_still_refused(self):
-        for bad in (".etc.passwd", "Tengoku..A", "Tengoku.", "Tengoku.«..».etc", "Tengoku.«.»", "Tengoku.«»", "Tengoku.«a/b»", "a/b", "a\\b", "a\0b", "Tengoku.«2d"):
+        for bad in (
+            ".etc.passwd",
+            "Tengoku..A",
+            "Tengoku.",
+            "Tengoku.«..».etc",
+            "Tengoku.«.»",
+            "Tengoku.«»",
+            "Tengoku.«a/b»",
+            "a/b",
+            "a\\b",
+            "a\0b",
+            "Tengoku.«2d",
+        ):
             with self.assertRaises(ValueError, msg=bad):
                 isnad.module_file(bad, Path("/r"))
 
@@ -199,7 +211,10 @@ class Queue(unittest.TestCase):
         r = Repo()
         for path in ODD:
             r.write(path, tc.PLAIN)
-        r.write("data/intake/formal-conjectures/manifest.jsonl", json.dumps({"name": "x", "module": ODD[FC2D], "library": "formal-conjectures"}) + "\n")
+        r.write(
+            "data/intake/formal-conjectures/manifest.jsonl",
+            json.dumps({"name": "x", "module": ODD[FC2D], "library": "formal-conjectures"}) + "\n",
+        )
         r.commit("formal-conjectures is in the tree")
         r.git("checkout", "-q", "main")
         r.git("merge", "-q", "--ff-only", "pr")
@@ -217,8 +232,11 @@ class Queue(unittest.TestCase):
 
     def test_an_extend_part_with_guillemet_modules_is_built_by_their_lean_names(self):
         r = ex.Extend().repo()
-        new = {"Tengoku/FxLib/Fx/Geometry/2d.lean": "Tengoku.FxLib.Fx.Geometry.«2d»", "Tengoku/FxLib/Fx/1102.4662.lean": "Tengoku.FxLib.Fx.«1102.4662»",
-               "Tengoku/FxLib/Fx/A-B.lean": "Tengoku.FxLib.Fx.«A-B»"}
+        new = {
+            "Tengoku/FxLib/Fx/Geometry/2d.lean": "Tengoku.FxLib.Fx.Geometry.«2d»",
+            "Tengoku/FxLib/Fx/1102.4662.lean": "Tengoku.FxLib.Fx.«1102.4662»",
+            "Tengoku/FxLib/Fx/A-B.lean": "Tengoku.FxLib.Fx.«A-B»",
+        }
         for i, path in enumerate(new):
             r.write(path, ex.module(f"n{i}", f"import {ex.Extend.A}\n"))
         r.write("Tengoku/FxLib.lean", f"import {ex.Extend.A}\n" + "".join(f"import {m}\n" for m in new.values()))
