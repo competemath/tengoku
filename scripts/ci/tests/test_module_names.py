@@ -17,6 +17,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(HERE.parent))
 sys.path.insert(0, str(TREE / "scripts"))
 sys.path.insert(0, str(TREE / "scripts" / "tests"))
+_tempdir = tempfile.tempdir
 import _git  # noqa: E402
 import autotag  # noqa: E402
 import isnad  # noqa: E402
@@ -27,6 +28,10 @@ import test_extend as ex  # noqa: E402  (the module, not its test class: importi
 import test_tag_class as tc  # noqa: E402  (the module, as above)
 from test_gates import Repo  # noqa: E402
 from test_isnad_tag import fake_record, range_line, ranges_of  # noqa: E402
+
+# lake_cache points tempfile at $RUNNER_TEMP when it is imported (its staging needs the runner's work disk); in this process that would move every other
+# suite's temporary files there, and queue_comment.py refuses a facts file outside the temporary directory it was started with (CI, tooling-tests)
+tempfile.tempdir = _tempdir
 
 # The real case (formal-conjectures, tengoku#752, 7 Nov 2026): the autotag's `lake build` of the PR's modules died with
 # `error: unknown target Tengoku.FormalConjectures.FormalConjecturesForMathlib.Geometry.2d`. With it, a part with a dot (an arXiv number) and one with a dash.
