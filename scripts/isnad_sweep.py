@@ -20,6 +20,8 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent / "ci"))
+import _git  # noqa: E402
 import isnad_tag as tg  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -51,7 +53,8 @@ def scope_of(rel: str, intake: set[str]) -> str | None:
 
 
 def module_name(rel: str) -> str:
-    return rel[: -len(".lean")].replace("/", ".")
+    """the module a file is, as Lean spells it (`_git.module_name`: `…/2d.lean` is `….«2d»`), which is what its importers write and `tengoku-isnad` reads"""
+    return _git.module_name(rel[: -len(".lean")])
 
 
 def code_of(text: str) -> str:

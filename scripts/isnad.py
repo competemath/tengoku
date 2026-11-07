@@ -33,6 +33,9 @@ import tempfile
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent / "ci"))
+from _git import module_stem  # noqa: E402  (the one rule for module names and files, scripts/ci/_git.py)
+
 ROOT = Path(__file__).resolve().parent.parent
 VERSION = "1"
 EXE = ".lake/build/bin/tengoku-isnad"
@@ -374,11 +377,17 @@ def origin_of(module: str) -> str:
     return "translated"
 
 
+MODULE = re.compile(r"(?:«[^»]+»|[^.«»]+)(?:\.(?:«[^»]+»|[^.«»]+))*")  # components, none empty, a guillemet only around a whole one
+
+
 def module_file(module: str, root: Path = ROOT) -> Path:
-    """The file of a module under root. A module name arrives on the command line, so one that could leave root is refused: an empty component (`.etc.passwd`
-    would become the absolute path /etc/passwd.lean), a slash or a backslash, a NUL."""
-    parts = module.split(".")
-    if not all(parts) or any(c in module for c in "/\\\0"):
+    """The file of a module under root, the module as Lean spells it (`_git.module_stem`): `Tengoku.Lib.«2d»` is Tengoku/Lib/2d.lean, `Tengoku.Tao.«1102.4662»`
+    Tengoku/Tao/1102.4662.lean (a dot inside guillemets is part of the component). A module name arrives on the command line, so one that could leave root is
+    refused: an empty component (`.etc.passwd` would become the absolute path /etc/passwd.lean; `«»`), `«.»` or `«..»`, a slash or a backslash, a NUL."""
+    if not MODULE.fullmatch(module) or any(c in module for c in "/\\\0"):
+        raise ValueError(f"not a module name: {module!r}")
+    parts = module_stem(module).split("/")
+    if any(p in (".", "..") for p in parts):
         raise ValueError(f"not a module name: {module!r}")
     return root.joinpath(*parts[:-1], parts[-1] + ".lean")
 
