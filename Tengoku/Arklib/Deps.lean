@@ -1,0 +1,1 @@
+-- Arklib: a factory bundle (data/intake/arklib). This file only marks the library for Tengoku/All.lean.
