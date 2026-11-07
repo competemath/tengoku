@@ -19,10 +19,16 @@ public import Tengoku
 
 @[expose] public section
 
+/--
+@isnad1 id=eq.1h1v.s5.a0c84826ecef from=translated src=- shape=bf9c92a2 vocab=3361080a
+-/
 theorem Nat.image_mul_two_Iio_even {n : ℕ} (h : Even n) :
     (2 * ·) '' Set.Iio (n / 2) = { n | Even n } ∩ Set.Iio n := by
   aesop (add simp [even_iff_two_dvd, dvd_iff_exists_eq_mul_right])
 
+/--
+@isnad1 id=eq.0h1v.s6.352700d5107e from=translated src=- shape=a7036e97 vocab=1a7de114
+-/
 theorem Nat.image_mul_two_Iio (n : ℕ) :
     (2 * ·) '' Set.Iio ((n + 1) / 2) = { n | Even n } ∩ Set.Iio n := by
   aesop (add simp [even_iff_two_dvd, dvd_iff_exists_eq_mul_right, mul_comm, lt_div_iff_mul_lt])

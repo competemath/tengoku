@@ -36,6 +36,9 @@ def johnson (n k : ℕ) : SimpleGraph {s : Finset (Fin n) // #s = k} where
 
 scoped notation "J(" n ", " k ")" => johnson n k
 
+/--
+@isnad1 id=iff.0h4v.s7.c8b9ffeb4f1a from=translated src=- shape=749e0e04 vocab=7d713c42
+-/
 lemma johnson_adj_iff_ge {s t : {s : Finset (Fin n) // #s = k}} :
     J(n, k).Adj s t ↔ s ≠ t ∧ k ≤ #(s.val ∩ t.val) + 1 := by
   obtain ⟨s, hs⟩ := s
@@ -52,6 +55,9 @@ lemma johnson_adj_iff_ge {s t : {s : Finset (Fin n) // #s = k}} :
     contrapose! hst
     exact eq_of_subset_of_card_le hst (by simp [*])
 
+/--
+@isnad1 id=iff.0h4v.s7.a4f6504600b3 from=translated src=- shape=96074cfd vocab=ca190b4c
+-/
 lemma not_johnson_adj_iff_lt {s t : {s : Finset (Fin n) // #s = k}} :
     ¬ J(n, k).Adj s t ↔ s = t ∨ #(s.val ∩ t.val) + 1 < k := by simp [johnson_adj_iff_ge]; tauto
 

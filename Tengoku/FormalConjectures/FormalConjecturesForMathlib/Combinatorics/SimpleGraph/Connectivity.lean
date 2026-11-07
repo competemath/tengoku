@@ -44,7 +44,9 @@ Mathlib has `SimpleGraph.IsEdgeConnected`, but it has no vertex connectivity.-/
 def IsKConnected {V : Type*} [Fintype V] (G : SimpleGraph V) (k : ℕ) : Prop :=
   k < Fintype.card V ∧ ∀ S : Finset V, S.card < k → (G.induce ((S : Set V)ᶜ)).Connected
 
-/-- A graph on at most `k` vertices is not `k`-connected.-/
+/-- A graph on at most `k` vertices is not `k`-connected.
+@isnad1 id=not.1h3v.s4.c2eee1af03ae from=translated src=- shape=362befd6 vocab=7982fd80
+-/
 theorem not_isKConnected_of_card_le {V : Type*} [Fintype V] {G : SimpleGraph V} {k : ℕ}
     (h : Fintype.card V ≤ k) : ¬ IsKConnected G k :=
   fun hG => absurd hG.1 (not_lt.mpr h)
@@ -72,29 +74,50 @@ variable (G s) in
 their neighbours.-/
 def bfsStep : Finset V := {w | w ∈ s ∨ ∃ v ∈ s, G.Adj v w}
 
+/--
+@isnad1 id=iff.0h4v.s6.3d7f1528b042 from=translated src=- shape=22119ccc vocab=f357db6a
+-/
 @[simp, grind =]
 lemma mem_bfsStep : w ∈ G.bfsStep s ↔ w ∈ s ∨ ∃ v ∈ s, G.Adj v w := by simp [bfsStep]
 
+/--
+@isnad1 id=le.0h3v.s5.732447e3582a from=translated src=- shape=4960c392 vocab=13c90c76
+-/
 lemma subset_bfsStep : s ⊆ G.bfsStep s := fun _ hw ↦ G.mem_bfsStep.2 <| .inl hw
 
+/--
+@isnad1 id=le.1h4v.s5.0f5c68735bde from=translated src=- shape=ea2a8aac vocab=13c90c76
+-/
 @[gcongr] lemma bfsStep_mono (hst : s ⊆ t) : G.bfsStep s ⊆ G.bfsStep t := by grind
 
+/--
+@isnad1 id=le.1h5v.s6.5145419e8556 from=translated src=- shape=38c16712 vocab=b684955f
+-/
 @[gcongr]
 lemma iterate_bfsStep_mono (hst : s ⊆ t) : G.bfsStep^[n] s ⊆ G.bfsStep^[n] t := by
   induction n generalizing s t with
   | zero => exact hst
   | succ n ih => simpa only [Function.iterate_succ_apply] using ih (G.bfsStep_mono hst)
 
+/--
+@isnad1 id=le.0h4v.s5.656de75a275e from=translated src=- shape=f0e563e8 vocab=b684955f
+-/
 lemma subset_iterate_bfsStep : s ⊆ G.bfsStep^[n] s := by
   induction n with
   | zero => exact subset_rfl
   | succ n ih => grw [Function.iterate_succ_apply', ← ih, ← G.subset_bfsStep]
 
+/--
+@isnad1 id=le.1h5v.s6.f6437c50d3df from=translated src=- shape=304e8cb0 vocab=b684955f
+-/
 lemma iterate_bfsStep_subset_of_le (hmn : m ≤ n) : G.bfsStep^[m] s ⊆ G.bfsStep^[n] s := by
   obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le hmn
   rw [Function.iterate_add_apply]
   exact G.iterate_bfsStep_mono G.subset_iterate_bfsStep
 
+/--
+@isnad1 id=mem.0h5v.s5.9c11440289d9 from=translated src=- shape=a75a919a vocab=11cff421
+-/
 lemma mem_iterate_bfsStep_of_walk (p : G.Walk u v) : v ∈ G.bfsStep^[p.length] {u} := by
   induction p with
   | nil => simp
@@ -102,6 +125,9 @@ lemma mem_iterate_bfsStep_of_walk (p : G.Walk u v) : v ∈ G.bfsStep^[p.length] 
     rw [Walk.length_cons, Function.iterate_succ_apply]
     exact G.iterate_bfsStep_mono (by simp [h]) ih
 
+/--
+@isnad1 id=reachabl.1h5v.s5.882a8327ef9d from=translated src=- shape=ba9904aa vocab=c1c31154
+-/
 lemma reachable_of_mem_iterate_bfsStep (hv : v ∈ G.bfsStep^[n] {u}) : G.Reachable u v := by
   induction n generalizing v with
   | zero =>
@@ -118,6 +144,9 @@ def bfsIterate : ℕ → Finset V → Finset V
   | 0, s => s
   | n + 1, s => if (G.bfsStep s).card ≤ s.card then s else bfsIterate n (G.bfsStep s)
 
+/--
+@isnad1 id=eq.0h4v.s5.2a6a1caa5ad4 from=translated src=- shape=8c428197 vocab=50605ae5
+-/
 lemma bfsIterate_eq_iterate_bfsStep (n : ℕ) (s : Finset V) :
     G.bfsIterate n s = G.bfsStep^[n] s := by
   induction n generalizing s with
@@ -132,6 +161,9 @@ lemma bfsIterate_eq_iterate_bfsStep (n : ℕ) (s : Finset V) :
 /-- The finset of vertices reachable from `u`, computed by breadth-first search.-/
 def reachableFinset (u : V) : Finset V := G.bfsIterate (Fintype.card V) {u}
 
+/--
+@isnad1 id=iff.0h4v.s5.5f9668333bf1 from=translated src=- shape=2fa64eeb vocab=ed44da5c
+-/
 @[simp]
 lemma mem_reachableFinset : v ∈ G.reachableFinset u ↔ G.Reachable u v := by
   rw [reachableFinset, bfsIterate_eq_iterate_bfsStep]
@@ -142,6 +174,9 @@ lemma mem_reachableFinset : v ∈ G.reachableFinset u ↔ G.Reachable u v := by
 instance decidableReachable : DecidableRel G.Reachable :=
   fun _ _ ↦ decidable_of_iff _ G.mem_reachableFinset
 
+/--
+@isnad1 id=iff.0h3v.s5.b93ebc16f9ed from=translated src=- shape=d4bf4cde vocab=31a8b33d
+-/
 lemma preconnected_iff_forall_mem_reachableFinset (u : V) :
     G.Preconnected ↔ ∀ v, v ∈ G.reachableFinset u := by
   simp only [mem_reachableFinset]
@@ -157,6 +192,9 @@ instance decidablePreconnected : Decidable G.Preconnected :=
       (fun u ↦ decidable_of_iff _ (G.preconnected_iff_forall_mem_reachableFinset u).symm)
       fun _ _ ↦ Subsingleton.elim _ _
 
+/--
+@isnad1 id=iff.0h3v.s5.7cac18223cd5 from=translated src=- shape=d4bf4cde vocab=5d9422de
+-/
 lemma connected_iff_forall_mem_reachableFinset (u : V) :
     G.Connected ↔ ∀ v, v ∈ G.reachableFinset u := by
   rw [connected_iff, G.preconnected_iff_forall_mem_reachableFinset u, and_iff_left ⟨u⟩]

@@ -58,7 +58,9 @@ noncomputable def aeval {σ τ : Type*} {S₁ : Type*} [CommSemiring S₁] [Alge
     (F : RegularFunction k σ τ) : (σ → S₁) → τ → S₁ :=
   fun a t ↦ MvPolynomial.aeval a (F t)
 
-/--`aeval` is compatible with composition of regular functions.-/
+/--`aeval` is compatible with composition of regular functions.
+@isnad1 id=eq.0h7v.s6.583f779d5999 from=translated src=- shape=c4b9edce vocab=956538bf
+-/
 lemma comp_aeval
     {σ τ ι : Type*}
     (F : RegularFunction k σ τ) (G : RegularFunction k τ ι)

@@ -21,6 +21,9 @@ public import Tengoku
 
 open Filter
 
+/--
+@isnad1 id=tendsto.0h1v.s4.ee2d2010e6c4 from=translated src=- shape=ad87dff0 vocab=5b7acd3d
+-/
 theorem Finset.tendsto_card_atTop {α : Type*} [Infinite α] :
     atTop.Tendsto (Finset.card (α := α)) atTop := by
   classical

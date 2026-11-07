@@ -22,6 +22,9 @@ public import Tengoku
 namespace Finset
 variable {α : Type*} {s t : Finset α}
 
+/--
+@isnad1 id=iff.1h3v.s5.e2c3688d6c8b from=translated src=- shape=d5a1b41f vocab=99b0c4a2
+-/
 lemma card_lt_card_iff_of_subset (hst : s ⊆ t) : #s < #t ↔ s ≠ t := by
   rw [← not_le, eq_iff_card_le_of_subset hst]
 

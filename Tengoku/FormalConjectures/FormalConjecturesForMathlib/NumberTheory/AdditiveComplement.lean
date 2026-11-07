@@ -33,6 +33,9 @@ open scoped Pointwise
 def IsAdditiveComplement (A B : Set ℕ) : Prop :=
   ∀ᶠ n : ℕ in atTop, n ∈ A + B
 
+/--
+@isnad1 id=isadditi.1h2v.s3.275ab74e0ed1 from=translated src=- shape=55c7d06a vocab=a4958a2c
+-/
 theorem IsAdditiveComplement.symm {A B : Set ℕ} (h : IsAdditiveComplement A B) :
     IsAdditiveComplement B A := by
   filter_upwards [h] with n hn using by rwa [Set.addCommMonoid.add_comm]

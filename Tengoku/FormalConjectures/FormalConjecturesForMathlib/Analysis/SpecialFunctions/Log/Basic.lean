@@ -27,14 +27,23 @@ Reference: https://en.wikipedia.org/wiki/Iterated_logarithm-/
 noncomputable def Real.iteratedLog (x : ℝ) : ℕ :=
   sInf { (n : ℕ) | Real.log^[n] x ≤ 1 }
 
+/--
+@isnad1 id=eq.1h1v.s4.e6e19eead505 from=translated src=- shape=eed96abc vocab=d9c2ebac
+-/
 theorem Real.iteratedLog_eq_zero_of_le {x : ℝ} (hx : x ≤ 1) :
     Real.iteratedLog x = 0 := by
   simpa [iteratedLog] using Or.inl hx
 
+/--
+@isnad1 id=eq.1h1v.s4.c5dc51754e52 from=translated src=- shape=eed96abc vocab=49c6d6f2
+-/
 theorem Real.iteratedLog_eq_zero_of_neg {x : ℝ} (hx : x < 0) :
     Real.iteratedLog x = 0 :=
   Real.iteratedLog_eq_zero_of_le (by linarith)
 
+/--
+@isnad1 id=eq.0h0v.s4.a4913b7e582d from=translated src=- shape=1ac31801 vocab=ddbef369
+-/
 theorem iteratedLog_two : Real.iteratedLog 2 = 1 := by
   simp [Real.iteratedLog]
   have : Real.log 2 ≤ 1 := by
@@ -43,6 +52,9 @@ theorem iteratedLog_two : Real.iteratedLog 2 = 1 := by
   rw [Nat.sInf_def ⟨1, this⟩]
   exact (Nat.find_eq_iff _).2 ⟨this, fun n hn => by simp [Nat.lt_one_iff.1 hn]⟩
 
+/--
+@isnad1 id=eq.0h0v.s4.37c9074065a6 from=translated src=- shape=1ac31801 vocab=ddbef369
+-/
 theorem iteratedLog_four : Real.iteratedLog 4 = 2 := by
   simp [Real.iteratedLog]
   have : Real.log^[2] 4 ≤ 1 := by

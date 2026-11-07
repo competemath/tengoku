@@ -39,11 +39,17 @@ every nonempty vertex set contains a vertex with at most `r` neighbours inside i
 def IsDegenerate {V : Type*} (H : SimpleGraph V) (r : ℕ) : Prop :=
   ∀ s : Finset V, s.Nonempty → ∃ v ∈ s, (neighborsWithin H s v).card ≤ r
 
+/--
+@isnad1 id=eq.0h3v.s4.f5b313e8968d from=translated src=- shape=5ef33fbc vocab=b736707d
+-/
 @[simp]
 lemma neighborsWithin_empty {V : Type*} (H : SimpleGraph V) (v : V) :
     H.neighborsWithin ∅ v = ∅ := by
   simp [neighborsWithin]
 
+/--
+@isnad1 id=isdegene.0h2v.s4.bad12a030f35 from=translated src=- shape=38d26534 vocab=ccf0ecd4
+-/
 @[simp]
 lemma isDegenerate_bot {V : Type*} (r : ℕ) : (⊥ : SimpleGraph V).IsDegenerate r := by
   intro s hs

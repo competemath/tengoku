@@ -37,6 +37,9 @@ def hypercube (n : ℕ) : SimpleGraph (Fin n → Bool) where
   symm.symm _ _ := by simp [eq_comm]
   loopless.irrefl _ := by simp
 
+/--
+@isnad1 id=iff.0h3v.s6.72b198c5839e from=translated src=- shape=a6f7c6e4 vocab=64e882c3
+-/
 @[simp]
 theorem hypercube_adj {n : ℕ} {u v : Fin n → Bool} :
     (hypercube n).Adj u v ↔ #{i | u i ≠ v i} = 1 := Iff.rfl

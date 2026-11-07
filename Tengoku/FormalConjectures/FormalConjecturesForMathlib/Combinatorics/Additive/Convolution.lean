@@ -54,6 +54,9 @@ function with itself: $1_A\ast 1_A(n)$.-/
 noncomputable def sumRep (A : Set ℕ) : ℕ → ℕ := (𝟙_A ∗ 𝟙_A)
 
 open scoped Classical in
+/--
+@isnad1 id=eq.0h2v.s6.ffe8d5637f3b from=translated src=- shape=7bc0c3c4 vocab=741e7011
+-/
 @[simp]
 lemma sumRep_def (A : Set ℕ) (n : ℕ) :
     sumRep A n = ((antidiagonal n).filter (fun (p : ℕ × ℕ) ↦ p.1 ∈ A ∧ p.2 ∈ A)).card := by
@@ -63,6 +66,9 @@ lemma sumRep_def (A : Set ℕ) (n : ℕ) :
 
 open PowerSeries
 
+/--
+@isnad1 id=eq.0h2v.s6.fa4e35110d33 from=translated src=- shape=0da5551e vocab=4b7f93c3
+-/
 theorem sumRep_eq_powerSeries_coeff (A : Set ℕ) (n : ℕ) : (sumRep A n : ℕ) =
     ((PowerSeries.mk (𝟙_A)) * (PowerSeries.mk (𝟙_A)) : PowerSeries ℕ).coeff n := by
   simp [sumRep, sumConv, indicatorOne, indicator, PowerSeries.coeff_mul, PowerSeries.coeff_mk]

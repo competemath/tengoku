@@ -19,17 +19,26 @@ public import Tengoku
 
 @[expose] public section
 
+/--
+@isnad1 id=ex.0h1v.s5.54f688ab2b9b from=translated src=- shape=37e06f46 vocab=c5a07f28
+-/
 theorem Finset.Iio_eventually_nonempty (β : Type*) [PartialOrder β] [LocallyFiniteOrder β]
     [OrderBot β] [Nontrivial β] : ∃ (b : β), ∀ n ≥ b, (Finset.Iio n).Nonempty :=
   let ⟨b, hb⟩ := exists_ne (⊥ : β)
   ⟨b, fun n hn => by simp [ne_bot_of_le_ne_bot hb hn]⟩
 
+/--
+@isnad1 id=ex.0h1v.s5.1c9be0954ac9 from=translated src=- shape=5fc3b04f vocab=cd47a820
+-/
 theorem Finset.Iio_eventually_card_ne_zero (β : Type*) [PartialOrder β]
     [LocallyFiniteOrder β] [OrderBot β] [Nontrivial β] :
     ∃ (b : β), ∀ n ≥ b, (Finset.Iio n).card ≠ 0 :=
   let ⟨b, hb⟩ := Iio_eventually_nonempty β
   ⟨b, fun n hn => by simp [nonempty_iff_ne_empty.1 <| hb n hn]⟩
 
+/--
+@isnad1 id=ex.0h1v.s5.ddb9f0b9c448 from=translated src=- shape=5fc3b04f vocab=147999d2
+-/
 theorem Set.Iio_eventually_ncard_ne_zero (β : Type*) [PartialOrder β]
     [LocallyFiniteOrder β] [OrderBot β] [Nontrivial β] :
     ∃ (b : β), ∀ n ≥ b, (Set.Iio n).ncard ≠ 0 :=

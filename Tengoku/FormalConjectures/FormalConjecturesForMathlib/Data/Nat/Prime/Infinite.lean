@@ -19,6 +19,9 @@ public import Tengoku
 
 public section
 
+/--
+@isnad1 id=ex.1h1v.s4.452afcbbb44a from=translated src=- shape=d52c9abf vocab=806915f4
+-/
 lemma Nat.exists_prime_not_dvd {n : ℕ} (hn : n ≠ 0) : ∃ p, p.Prime ∧ ¬p ∣ n := by
   let ⟨p, hnp, hp⟩ := (n + 1).exists_infinite_primes
   exact ⟨p, hp, not_dvd_of_pos_of_lt (by lia) (by lia)⟩

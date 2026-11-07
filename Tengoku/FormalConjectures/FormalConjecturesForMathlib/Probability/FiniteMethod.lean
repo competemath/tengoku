@@ -57,7 +57,9 @@ open Finset
 If `∑ x ∈ s, f x < s.card`, then there exists `a ∈ s` with `f a = 0`.
 
 **Proof idea.** Contrapositive: if every value is at least `1`, the sum is at least
-`s.card · 1 = s.card`, contradicting the hypothesis.-/
+`s.card · 1 = s.card`, contradicting the hypothesis.
+@isnad1 id=ex.1h3v.s5.e2ce841c29f9 from=translated src=- shape=569f69e8 vocab=eb5d875d
+-/
 theorem Finset.exists_eq_zero_of_sum_lt_card
     {α : Type*} {s : Finset α} {f : α → ℕ} (h : ∑ x ∈ s, f x < s.card) :
     ∃ a ∈ s, f a = 0 := by
@@ -76,7 +78,9 @@ If `(∑ x ∈ s, (f x : ℝ)) < s.card`, then there exists `a ∈ s` with `f a 
 
 This is the same statement as `Finset.exists_eq_zero_of_sum_lt_card` after casting the
 counting inequality to `ℝ`; it is the convenient entry point when `f` arises as an expectation
-whose bound was computed in the reals (e.g. via `Real.rpow` / `Real.log`).-/
+whose bound was computed in the reals (e.g. via `Real.rpow` / `Real.log`).
+@isnad1 id=ex.1h3v.s5.c4d8acebcf80 from=translated src=- shape=29afd187 vocab=3a132b83
+-/
 theorem Finset.exists_eq_zero_of_real_sum_lt_card
     {α : Type*} {s : Finset α} {f : α → ℕ}
     (h : (∑ x ∈ s, (f x : ℝ)) < s.card) : ∃ a ∈ s, f a = 0 := by

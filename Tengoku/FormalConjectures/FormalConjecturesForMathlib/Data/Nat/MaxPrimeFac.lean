@@ -26,15 +26,24 @@ namespace Nat
 Takes the junk value `0` for `n = 0` and `1` for `n = 1`.-/
 def maxPrimeFac (n : ℕ) : ℕ := if n = 1 then 1 else n.primeFactorsList.getLastI
 
+/--
+@isnad1 id=eq.0h0v.s3.4a27c9966066 from=translated src=- shape=3c26ae4f vocab=a5e0e51a
+-/
 @[simp]
 lemma maxPrimeFac_zero :
     maxPrimeFac 0 = 0 := by
   simp [maxPrimeFac, List.getLastI]
 
+/--
+@isnad1 id=eq.0h0v.s3.dcaeb3d9aded from=translated src=- shape=3c26ae4f vocab=a5e0e51a
+-/
 @[simp]
 lemma maxPrimeFac_one :
     maxPrimeFac 1 = 1 := rfl
 
+/--
+@isnad1 id=prime.1h1v.s3.3e79d9ff344e from=translated src=- shape=c1538fc1 vocab=a964ab70
+-/
 lemma prime_maxPrimeFac_of_one_lt (n : ℕ) (h : 1 < n) :
     Prime (maxPrimeFac n) := by
   have hn : n.primeFactorsList ≠ [] := (primeFactorsList_ne_nil n).2 h
@@ -43,7 +52,9 @@ lemma prime_maxPrimeFac_of_one_lt (n : ℕ) (h : 1 < n) :
   simpa [maxPrimeFac, h.ne', List.getLastI_eq_getLast?_getD,
     List.getLast?_eq_getLast_of_ne_nil hn] using hprime
 
-/-- The greatest prime factor of a natural number divides it.-/
+/-- The greatest prime factor of a natural number divides it.
+@isnad1 id=dvd.0h1v.s3.0552b379c080 from=translated src=- shape=a365602c vocab=8a0e7010
+-/
 lemma maxPrimeFac_dvd : ∀ {n : ℕ}, maxPrimeFac n ∣ n
   | 0 => by simp
   | 1 => by simp
@@ -58,7 +69,9 @@ lemma maxPrimeFac_dvd : ∀ {n : ℕ}, maxPrimeFac n ∣ n
     simpa [maxPrimeFac, hn.ne', List.getLastI_eq_getLast?_getD,
       List.getLast?_eq_getLast_of_ne_nil hlist] using hdvd
 
-/-- Every prime factor of a nonzero natural number is at most its greatest prime factor.-/
+/-- Every prime factor of a nonzero natural number is at most its greatest prime factor.
+@isnad1 id=le.3h2v.s4.595520777cce from=translated src=- shape=13bb85a4 vocab=868a9df0
+-/
 lemma le_maxPrimeFac
     {n p : ℕ} (hn : n ≠ 0) (hp : p.Prime) (h_dvd : p ∣ n) :
     p ≤ maxPrimeFac n := by
@@ -70,19 +83,26 @@ lemma le_maxPrimeFac
   simpa [maxPrimeFac, hn_one, List.getLastI_eq_getLast?_getD,
     List.getLast?_eq_getLast_of_ne_nil hlist] using hp_last
 
+/--
+@isnad1 id=eq.4h2v.s5.e3dd0b697594 from=translated src=- shape=98514030 vocab=3c5c39e5
+-/
 lemma maxPrimeFac_eq_of_dvd_of_le
     (n p : ℕ) (hn : 0 < n) (hp : p.Prime) (h_dvd : p ∣ n) (h_le : maxPrimeFac n ≤ p) :
     maxPrimeFac n = p := by
   exact le_antisymm h_le (le_maxPrimeFac hn.ne' hp h_dvd)
 
-/-- The greatest prime factor of a prime is the prime itself.-/
+/-- The greatest prime factor of a prime is the prime itself.
+@isnad1 id=eq.1h1v.s3.0b51bd651e64 from=translated src=- shape=5b131564 vocab=cd3da0c8
+-/
 @[simp]
 lemma Prime.maxPrimeFac_eq_self {p : ℕ} (hp : p.Prime) :
     maxPrimeFac p = p := by
   apply maxPrimeFac_eq_of_dvd_of_le p p hp.pos hp (dvd_refl p)
   exact Nat.le_of_dvd hp.pos maxPrimeFac_dvd
 
-/-- The fixed points of `maxPrimeFac` are zero, one, and the primes.-/
+/-- The fixed points of `maxPrimeFac` are zero, one, and the primes.
+@isnad1 id=iff.0h1v.s4.7ea653d70ac1 from=translated src=- shape=ee35bbaf vocab=c82a613d
+-/
 @[simp]
 lemma maxPrimeFac_eq_self_iff {n : ℕ} :
     maxPrimeFac n = n ↔ n ≤ 1 ∨ n.Prime := by
@@ -96,7 +116,9 @@ lemma maxPrimeFac_eq_self_iff {n : ℕ} :
     · exact hn.maxPrimeFac_eq_self
 
 /-- The greatest prime factor of a product of nonzero natural numbers is the maximum of their
-greatest prime factors.-/
+greatest prime factors.
+@isnad1 id=eq.2h2v.s5.a04779c3b90c from=translated src=- shape=b2317dc6 vocab=75aa8f37
+-/
 lemma maxPrimeFac_mul {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) :
     maxPrimeFac (m * n) = max (maxPrimeFac m) (maxPrimeFac n) := by
   obtain rfl | hm_lt : m = 1 ∨ 1 < m := by omega
@@ -123,7 +145,9 @@ lemma maxPrimeFac_mul {m n : ℕ} (hm : m ≠ 0) (hn : n ≠ 0) :
       apply le_maxPrimeFac (mul_ne_zero hm hn) hp
       exact dvd_mul_of_dvd_right maxPrimeFac_dvd m
 
-/-- The greatest prime factor of a nonzero power is the greatest prime factor of its base.-/
+/-- The greatest prime factor of a nonzero power is the greatest prime factor of its base.
+@isnad1 id=eq.1h2v.s5.0ab96b2dbcab from=translated src=- shape=5eb027f2 vocab=d71c385c
+-/
 @[simp]
 lemma maxPrimeFac_pow {k : ℕ} (hk : k ≠ 0) (n : ℕ) :
     maxPrimeFac (n ^ k) = maxPrimeFac n :=
@@ -138,14 +162,18 @@ lemma maxPrimeFac_pow {k : ℕ} (hk : k ≠ 0) (n : ℕ) :
         rw [pow_succ, maxPrimeFac_mul (pow_ne_zero _ hn) hn, ih (by omega)]
         simp
 
-/-- The greatest prime factor of a natural number is at most that number.-/
+/-- The greatest prime factor of a natural number is at most that number.
+@isnad1 id=le.0h1v.s3.db883b8b14a8 from=translated src=- shape=a365602c vocab=dd8b87af
+-/
 lemma maxPrimeFac_le : ∀ {n : ℕ}, maxPrimeFac n ≤ n
   | 0 => by simp
   | 1 => by simp
   | n + 2 => Nat.le_of_dvd (by omega) maxPrimeFac_dvd
 
 /-- The greatest prime factor of a natural number greater than one is the least upper bound of
-its prime factors.-/
+its prime factors.
+@isnad1 id=isleast.1h1v.s5.4a1d724cea01 from=translated src=- shape=5b36544e vocab=195b3e74
+-/
 lemma isLeast_maxPrimeFac {n : ℕ} (hn : 1 < n) :
     IsLeast (upperBounds {p : ℕ | p.Prime ∧ p ∣ n}) (maxPrimeFac n) := by
   constructor
@@ -155,7 +183,9 @@ lemma isLeast_maxPrimeFac {n : ℕ} (hn : 1 < n) :
     exact hb ⟨prime_maxPrimeFac_of_one_lt n hn, maxPrimeFac_dvd⟩
 
 /-- Away from `n = 1`, the computable greatest prime factor agrees with its supremum
-characterization.-/
+characterization.
+@isnad1 id=eq.1h1v.s4.b1c249df3a25 from=translated src=- shape=47ad1e0e vocab=96e49000
+-/
 lemma maxPrimeFac_eq_sSup {n : ℕ} (hn_one : n ≠ 1) :
     maxPrimeFac n = sSup {p : ℕ | p.Prime ∧ p ∣ n} := by
   obtain rfl | hn : n = 0 ∨ 1 < n := by lia
@@ -165,6 +195,9 @@ lemma maxPrimeFac_eq_sSup {n : ℕ} (hn_one : n ≠ 1) :
     exact (h_lub.csSup_eq
       ⟨maxPrimeFac n, prime_maxPrimeFac_of_one_lt n hn, maxPrimeFac_dvd⟩).symm
 
+/--
+@isnad1 id=iff.0h1v.s4.8a603be45b02 from=translated src=- shape=57f73327 vocab=a7750468
+-/
 @[simp]
 lemma one_lt_maxPrimeFac_iff (n : ℕ) :
     1 < maxPrimeFac n ↔ 1 < n := by

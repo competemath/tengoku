@@ -26,13 +26,22 @@ namespace SimpleGraph
 
 @[inherit_doc] scoped notation "χ(" G ")" => chromaticNumber G
 
+/--
+@isnad1 id=iff.0h3v.s4.f8a08d03838f from=translated src=- shape=4792521e vocab=599667c1
+-/
 lemma lt_chromaticNumber_iff_not_colorable : n < G.chromaticNumber ↔ ¬ G.Colorable n := by
   rw [← chromaticNumber_le_iff_colorable, not_le]
 
+/--
+@isnad1 id=iff.1h3v.s5.ccc5a47c84ad from=translated src=- shape=ee97de39 vocab=33578c63
+-/
 lemma le_chromaticNumber_iff_not_colorable (hn : n ≠ 0) :
     n ≤ G.chromaticNumber ↔ ¬ G.Colorable (n - 1) := by
   let n + 1 := n; simp [ENat.add_one_le_iff, lt_chromaticNumber_iff_not_colorable]
 
+/--
+@isnad1 id=le.0h2v.s6.cefc73771336 from=translated src=- shape=fd774e32 vocab=4eb7fb9f
+-/
 lemma card_div_indepNum_le_chromaticNumber : ⌈(Nat.card V / α(G) : ℚ≥0)⌉₊ ≤ G.chromaticNumber := by
   cases finite_or_infinite V
   swap; · simp
@@ -72,6 +81,9 @@ A graph `G` is `k`-critical (or vertex-critical) if its chromatic number is `k`,
 and deleting any single vertex reduces the chromatic number.-/
 def IsCritical (k : ℕ) : Prop := G.chromaticNumber = k ∧ ∀ v, (⊤ : G.Subgraph).IsCriticalVertex v
 
+/--
+@isnad1 id=not.1h3v.s4.a11d6a147606 from=translated src=- shape=0b3a95b9 vocab=e9be79be
+-/
 theorem not_isCritical_of_fintype_lt [Fintype V] (k : ℕ) (hk : Fintype.card V < k) :
    ¬G.IsCritical k := by
   simp [IsCritical]
@@ -83,6 +95,9 @@ theorem not_isCritical_of_fintype_lt [Fintype V] (k : ℕ) (hk : Fintype.card V 
 open SimpleGraph
 
 set_option backward.isDefEq.respectTransparency false in
+/--
+@isnad1 id=iff.0h3v.s7.ad1fd0e7f9f3 from=translated src=- shape=aaa525ae vocab=7251ffe8
+-/
 theorem colorable_iff_induce_eq_bot (G : SimpleGraph V) (n : ℕ) :
     G.Colorable n ↔ ∃ coloring : V → Fin n, ∀ i, G.induce {v | coloring v = i} = ⊥ := by
   refine ⟨fun ⟨a, h⟩ ↦ ⟨a, fun i ↦ ?_⟩, fun ⟨w, h⟩ ↦ ⟨w, @fun a b h_adj ↦ ?_⟩⟩

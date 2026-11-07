@@ -120,19 +120,31 @@ def eval (M : Machine Γ Λ) (l : List Γ) : Part (ListBlank Γ) :=
 def multiStep (M : Machine Γ Λ) (config : Cfg Γ Λ) (n : ℕ) : Option (Cfg Γ Λ) :=
     (Option.bind · (step M))^[n] config
 
+/--
+@isnad1 id=eq.0h4v.s5.91c0f6596e75 from=translated src=- shape=8a72677b vocab=42db8a65
+-/
 @[simp]
 lemma multiStep_zero (M : Machine Γ Λ) (config : Cfg Γ Λ) : M.multiStep config 0 = some config :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s5.f9ff7f48b0e5 from=translated src=- shape=f0740c5c vocab=f9e32686
+-/
 @[simp]
 lemma multiStep_one (M : Machine Γ Λ) (config : Cfg Γ Λ) : M.multiStep config 1 = M.step config :=
   rfl
 
+/--
+@isnad1 id=eq.0h5v.s6.8603093e0098 from=translated src=- shape=0264f143 vocab=0782e969
+-/
 @[simp]
 lemma multiStep_succ (M : Machine Γ Λ) (config : Cfg Γ Λ) (n : ℕ) :
     M.multiStep config (n + 1) = Option.bind (M.multiStep config n) M.step := by
   rw [multiStep, Function.iterate_succ', Function.comp_apply, multiStep]
 
+/--
+@isnad1 id=eq.2h6v.s6.be541119f23f from=translated src=- shape=e1b97408 vocab=9329097a
+-/
 @[simp]
 lemma multiStep_eq_none_mono {M : Machine Γ Λ} {config : Cfg Γ Λ} {m n : ℕ}
     (H : M.multiStep config n = none) (hnm : n ≤ m) :
@@ -166,13 +178,22 @@ reaches a configuration from which there are no defined transitions.-/
 def HaltsAfter (s : Cfg Γ Λ) (n : ℕ) : Prop :=
   M.multiStep s (n+1) = none
 
+/--
+@isnad1 id=iff.0h4v.s5.6423c4b1ab25 from=translated src=- shape=1dc28626 vocab=ed22a67b
+-/
 lemma haltsAfter_zero_iff (s : Cfg Γ Λ) :
     HaltsAfter M s 0 ↔ step M s = none := by
   rw [HaltsAfter, multiStep, Function.iterate_one, Option.bind_some]
 
+/--
+@isnad1 id=iff.0h3v.s5.bd4f2bba3c26 from=translated src=- shape=d2a5c33e vocab=ae7fd8b8
+-/
 lemma isHalting_iff_exists_haltsAt : IsHalting M ↔ ∃ n, M.HaltsAfter (init []) n :=
   ⟨fun _ ↦ eval_dom_iff.mpr IsHalting.halts, fun H ↦ ⟨eval_dom_iff.mp H⟩⟩
 
+/--
+@isnad1 id=ex.1h5v.s6.65dd56968c2b from=translated src=- shape=67fdfdd9 vocab=4eeba259
+-/
 lemma exists_of_not_haltsAfter (s : Cfg Γ Λ) (n : ℕ) (H : ¬M.HaltsAfter s n) :
     ∃ (a : Λ) (b : Tape Γ), M.multiStep s n = some ⟨a, b⟩ := by
   contrapose! H
@@ -185,12 +206,18 @@ lemma exists_of_not_haltsAfter (s : Cfg Γ Λ) (n : ℕ) (H : ¬M.HaltsAfter s n
     subst hc
     simp [hu] at H ⊢
 
+/--
+@isnad1 id=iff.0h3v.s5.f235c43dc922 from=translated src=- shape=13b84aa3 vocab=aba97519
+-/
 lemma not_isHalting_iff_forall_isSome_multiStep :
     ¬ IsHalting M ↔ ∀ n, M.multiStep (init []) (n + 1) |>.isSome := by
   simp_rw [isHalting_iff_exists_haltsAt, HaltsAfter, Option.isSome_iff_ne_none]
   push Not
   rfl
 
+/--
+@isnad1 id=not.1h3v.s5.d13efdb2fe29 from=translated src=- shape=a30f27ed vocab=c49df792
+-/
 lemma not_isHalting_of_forall_isSome (H : ∀ l s, ∃ a b, M l s = some (some a, b)) :
     ¬IsHalting M := by
   rw [not_isHalting_iff_forall_isSome_multiStep]
@@ -210,6 +237,9 @@ noncomputable def haltingNumber : ENat :=
   -- If no such `n` exists then this is equal to `⊤`.
   sInf {(n : ENat) |  (n : ℕ) (_ : HaltsAfter M (init []) n) }
 
+/--
+@isnad1 id=eq.2h4v.s6.60a2c45fb83b from=translated src=- shape=cc954761 vocab=d2171c77
+-/
 theorem haltingNumber_def (n : ℕ) (hn : ∃ a, M.multiStep (init []) n = some a)
     (ha' : M.multiStep (init []) (n + 1) = none) :
     M.haltingNumber = n := by

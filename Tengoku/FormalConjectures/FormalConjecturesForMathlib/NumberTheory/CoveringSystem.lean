@@ -50,6 +50,9 @@ variable {R : Type*} [CommSemiring R]
 def coset (c : CoveringSystem R) (i : c.ι) : Set R :=
   {c.residue i} + c.moduli i
 
+/--
+@isnad1 id=eq.0h2v.s4.e32a8635439b from=translated src=- shape=d56b3867 vocab=98c8fb35
+-/
 @[simp]
 theorem iUnion_cosets (c : CoveringSystem R) : ⋃ i, c.coset i = Set.univ :=
   c.unionCovers

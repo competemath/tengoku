@@ -55,7 +55,9 @@ noncomputable def distinctDistancesFrom (points : Finset X) (pt : X) : ℕ :=
 
 open Classical in
 /-- The number of unit-distance pairs of a finite set of `n` points is at most $\binom{n}{2}$,
-the total number of unordered pairs of distinct points.-/
+the total number of unordered pairs of distinct points.
+@isnad1 id=le.0h2v.s4.60ecb8eff71f from=translated src=- shape=cdf69985 vocab=62db1e0b
+-/
 theorem unitDistNum_le_choose_two (s : Finset X) : unitDistNum s ≤ (#s).choose 2 := by
   rw [unitDistNum, ← Sym2.card_image_offDiag]
   refine Finset.card_le_card fun p hp => ?_

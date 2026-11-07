@@ -26,9 +26,15 @@ open Finset List
 
 @[inherit_doc] scoped notation "α(" G ")" => indepNum G
 
+/--
+@isnad1 id=eq.0h2v.s4.2c841c993d8b from=translated src=- shape=942da76d vocab=03305d00
+-/
 @[simp] lemma indepNum_of_isEmpty [IsEmpty V] : α(G) = 0 := by
   simp [indepNum, isNIndepSet_iff, Subsingleton.elim _ ∅]
 
+/--
+@isnad1 id=lt.0h2v.s4.17fc07bb8086 from=translated src=- shape=90a1c52c vocab=14e5640f
+-/
 @[simp] lemma indepNum_pos [Finite V] [Nonempty V] : 0 < α(G) := by
   cases nonempty_fintype V
   obtain ⟨v⟩ := ‹Nonempty V›

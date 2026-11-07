@@ -51,7 +51,9 @@ def IsPisot (θ : ℝ) : Prop :=
 open Real in
 /-- The golden ratio `φ = (1 + √5) / 2` is a Pisot number: it is an algebraic
 integer greater than `1`, its minimal polynomial over `ℚ` is `X ^ 2 - X - 1`, and
-its only other conjugate `ψ = (1 - √5) / 2` has modulus `(√5 - 1) / 2 < 1`.-/
+its only other conjugate `ψ = (1 - √5) / 2` has modulus `(√5 - 1) / 2 < 1`.
+@isnad1 id=ispisot.0h0v.s1.71fa2a051b41 from=translated src=- shape=49959d42 vocab=b80bd29e
+-/
 theorem isPisot_goldenRatio : IsPisot goldenRatio := by
   refine ⟨one_lt_goldenRatio, ?_, ?_⟩
   · -- `φ` is an algebraic integer: a root of the monic `X ^ 2 - X - 1 ∈ ℤ[X]`.

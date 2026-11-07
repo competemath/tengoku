@@ -25,6 +25,9 @@ open scoped Topology
 variable {ι α β : Type*} [CommGroup α] [TopologicalSpace α] [IsTopologicalGroup α]
   {f : β → α} {l : Filter ι} {s : ι → Set β}
 
+/--
+@isnad1 id=tendsto.2h6v.s6.4576c70c1890 from=translated src=- shape=c62de4f4 vocab=c7755f15
+-/
 @[to_additive]
 lemma Multipliable.tendsto_tprod_one (hf : Multipliable f) (hs : ∀ b, ∀ᶠ i in l, b ∉ s i) :
     Tendsto (fun i ↦ ∏' b : s i, f b) l (𝓝 1) := by

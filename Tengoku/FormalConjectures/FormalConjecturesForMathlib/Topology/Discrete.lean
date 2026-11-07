@@ -26,7 +26,9 @@ def Homeomorph.OfDiscrete {X  Y : Type*} [TopologicalSpace X] [DiscreteTopology 
   continuous_toFun := continuous_of_discreteTopology
   continuous_invFun := continuous_of_discreteTopology
 
-/-- A bijection between discrete topological spaces is a homeomorphism.-/
+/-- A bijection between discrete topological spaces is a homeomorphism.
+@isnad1 id=ishomeom.0h3v.s5.486cfa5717fa from=translated src=- shape=21e4185b vocab=51a0fe70
+-/
 theorem IsHomeomorph.equiv_of_discreteTopology {X  Y : Type*} [TopologicalSpace X]
     [DiscreteTopology X] [TopologicalSpace Y] [DiscreteTopology Y] (f : X ≃ Y) : IsHomeomorph f :=
   (Homeomorph.OfDiscrete f).isHomeomorph

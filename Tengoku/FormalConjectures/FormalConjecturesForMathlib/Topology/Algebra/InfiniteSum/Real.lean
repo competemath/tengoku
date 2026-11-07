@@ -30,7 +30,9 @@ to a subset `A ⊆ ℕ`, in terms of the partial sums over `A`.
 open Filter
 
 /-- For a nonnegative `f`, the sum over a subset `A` fails to be summable exactly when the
-partial sums of `f` restricted to `A` diverge.-/
+partial sums of `f` restricted to `A` diverge.
+@isnad1 id=iff.1h2v.s6.2a63a107c2f0 from=translated src=- shape=61bda978 vocab=c3343208
+-/
 theorem not_summable_subtype_iff_tendsto_sum_indicator {A : Set ℕ} {f : ℕ → ℝ}
     (hf : ∀ n, 0 ≤ f n) :
     ¬ Summable (fun n : A ↦ f n) ↔

@@ -38,7 +38,9 @@ instance : CoeFun Graphon (fun _ => UnitInterval × UnitInterval → UnitInterva
 
 namespace Graphon
 
-/-- Extensionality principle for `Graphon`.-/
+/-- Extensionality principle for `Graphon`.
+@isnad1 id=eq.1h2v.s4.a2ed7e5f59d6 from=translated src=- shape=d8b82d49 vocab=af6fd52d
+-/
 @[ext]
 theorem ext {W₁ W₂ : Graphon} (h : ∀ p, W₁ p = W₂ p) : W₁ = W₂ := by
   cases W₁; cases W₂; congr; funext p; exact h p

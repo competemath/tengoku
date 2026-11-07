@@ -23,6 +23,9 @@ variable {ι α : Type*} [PartialOrder α] [CommGroup α] [IsOrderedMonoid α] [
   [IsUniformGroup α] [CompleteSpace α] [OrderClosedTopology α]
   {f : ι → α} {s : Finset ι} {t : Set ι}
 
+/--
+@isnad1 id=le.3h5v.s7.821436e53e75 from=translated src=- shape=34dc645c vocab=7ce0d87d
+-/
 @[to_additive]
 protected lemma Multipliable.prod_le_tprod_set (hst : ↑s ⊆ t) (hfst : ∀ i ∉ s, i ∈ t → 1 ≤ f i)
     (hf : Multipliable f) : ∏ i ∈ s, f i ≤ ∏' i : t, f i := by

@@ -19,6 +19,9 @@ public import Tengoku
 
 @[expose] public section
 
+/--
+@isnad1 id=eq.0h1v.s3.78e2cd596460 from=translated src=- shape=0be00840 vocab=7bf306f0
+-/
 @[simp]
 theorem Nat.ncard_Iio (b : ℕ) : (Set.Iio b).ncard = b := by
   rw [← Finset.coe_Iio, Set.ncard_coe_finset]

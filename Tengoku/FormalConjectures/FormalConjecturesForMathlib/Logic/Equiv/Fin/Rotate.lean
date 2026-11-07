@@ -21,6 +21,9 @@ public import Tengoku
 
 variable {n : ℕ}
 
+/--
+@isnad1 id=lt.1h2v.s7.235bad31c5fa from=translated src=- shape=74e87d57 vocab=93a48adc
+-/
 theorem lt_finRotate_of_ne_last {i : Fin (n + 1)} (hi : i ≠ Fin.last n) :
     i < finRotate _ i := by
   rw [Fin.lt_def, coe_finRotate_of_ne_last hi, Nat.lt_add_one_iff]

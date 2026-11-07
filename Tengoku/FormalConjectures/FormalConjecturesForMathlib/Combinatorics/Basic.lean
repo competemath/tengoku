@@ -33,6 +33,9 @@ A set $A$ is said to be sum-free if the sumset $A + A$ is disjoint from $A$, i.e
 if the equation $a + b = c$ has no solution with $a, b, c \in A$.-/]
 def IsProductFree {M : Type*} [Mul M] (S : Set M) : Prop := Disjoint (S * S) S
 
+/--
+@isnad1 id=iff.0h2v.s5.8eb12f66c8fd from=translated src=- shape=24927b81 vocab=4b3bbb45
+-/
 @[to_additive isSumFree_iff]
 theorem isProductFree_iff {M : Type*} [Mul M] {S : Set M} :
     IsProductFree S ↔ ∀ x ∈ S, ∀ y ∈ S, x * y ∉ S := by
@@ -64,6 +67,9 @@ def IsSidon (A : Set α) : Prop := ∀ᵉ (i₁ ∈ A) (j₁ ∈ A) (i₂ ∈ A)
 
 namespace Set
 
+/--
+@isnad1 id=le.2h2v.s5.ddd801bbed6a from=translated src=- shape=688a6822 vocab=347a2cfa
+-/
 lemma IsSidon.avoids_isAPOfLength_three {A : Set ℕ} (hA : IsSidon A)
     {Y : Set ℕ} (hY : Y.IsAPOfLength 3) :
     (A ∩ Y).ncard ≤ 2 := by
@@ -82,9 +88,15 @@ lemma IsSidon.avoids_isAPOfLength_three {A : Set ℕ} (hA : IsSidon A)
   simp [hY, this.1, ofPred_and] at hY_card
   linarith [ncard_singleton _ ▸ ncard_inter_le_ncard_right {a | ∃ x, x < 3} {a}]
 
+/--
+@isnad1 id=issidon.2h3v.s4.923339430d9d from=translated src=- shape=9ba8899d vocab=0b3f9686
+-/
 theorem IsSidon.subset {A B : Set α} (hB : IsSidon B) (hAB : A ⊆ B) : IsSidon A :=
   fun _ _ _ _ _ _ _ _ _ ↦ hB _ (hAB ‹_›) _ (hAB ‹_›) _ (hAB ‹_›) _ (hAB ‹_›) ‹_›
 
+/--
+@isnad1 id=iff.1h3v.s7.6cf90809262e from=translated src=- shape=6d28e795 vocab=5446fb2d
+-/
 theorem IsSidon.insert {A : Set α} {m : α} [IsRightCancelAdd α] [IsLeftCancelAdd α]
     (hA : IsSidon A) :
     IsSidon (A ∪ {m}) ↔ (m ∈ A ∨ ∀ᵉ (a ∈ A) (b ∈ A), m + m ≠ a + b ∧ ∀ c ∈ A, m + a ≠ b + c) := by
@@ -130,10 +142,14 @@ def IsMaximalSidonSetIn (A : Set ℕ) (N : ℕ) : Prop :=
 
 namespace IsMaximalSidonSetIn
 
-/-- If `A` is a maximal Sidon set in `{1, …, N}`, then `A` is Sidon.-/
+/-- If `A` is a maximal Sidon set in `{1, …, N}`, then `A` is Sidon.
+@isnad1 id=issidon.1h2v.s3.482f6d450529 from=translated src=- shape=7b4778cb vocab=f9b8950b
+-/
 theorem isSidon {A : Set ℕ} {N : ℕ} (hA : IsMaximalSidonSetIn A N) : IsSidon A := hA.2.1
 
-/-- Maximality condition unpacked.-/
+/-- Maximality condition unpacked.
+@isnad1 id=not.3h3v.s5.41ee317f1ca1 from=translated src=- shape=eef1deea vocab=856b3f1f
+-/
 theorem maximal {A : Set ℕ} {N : ℕ} (hA : IsMaximalSidonSetIn A N) {x : ℕ}
     (hx : x ∈ Set.Icc 1 N) (hxA : x ∉ A) : ¬ IsSidon (A ∪ {x}) := hA.2.2 hx hxA
 
@@ -152,7 +168,9 @@ instance (A : Finset α) [DecidableEq α] : Decidable (IsSidon (A : Set α)) := 
 def maxSidonSubsetCard (A : Finset α) [DecidableEq α] : ℕ :=
   (A.powerset.filter fun B : Finset α ↦ IsSidon (B : Set α)).sup Finset.card
 
-/-- If `A` is finite Sidon, then `A ∪ {s}` is also Sidon provided `s ≥ A.max + 1`.-/
+/-- If `A` is finite Sidon, then `A ∪ {s}` is also Sidon provided `s ≥ A.max + 1`.
+@isnad1 id=issidon.3h2v.s6.2dd7afcb47f0 from=translated src=- shape=a9821e89 vocab=55411365
+-/
 theorem IsSidon.insert_ge_max' {A : Finset ℕ} (h : A.Nonempty) (hA : IsSidon (A : Set ℕ)) {s : ℕ}
     (hs : 2 * A.max' h + 1 ≤ s) :
     IsSidon (A ∪ {s}) := by
@@ -164,12 +182,18 @@ theorem IsSidon.insert_ge_max' {A : Finset ℕ} (h : A.Nonempty) (hA : IsSidon (
   exact (IsSidon.insert hA).2 <| by simpa [this] using fun a ha b hb ↦
     ⟨by linarith [A.le_max' _ ha, A.le_max' _ hb], fun c hc ↦ by linarith [h₁ hc hb ha]⟩
 
+/--
+@isnad1 id=ex.2h1v.s5.f558f4b0004c from=translated src=- shape=788d47d1 vocab=06bc4f39
+-/
 theorem IsSidon.exists_insert {A : Finset ℕ} (h : A.Nonempty) (hA : IsSidon (A : Set ℕ)) :
     ∃ m ∉ A, IsSidon (A ∪ {m}) := by
   refine ⟨2 * A.max' h + 1, ?_, insert_ge_max' h hA le_rfl⟩
   exact mt (A.le_max' _) <| not_le.2 <| Finset.max'_lt_iff _ ‹_› |>.2 fun a ha ↦ by
     linarith [A.le_max' _ ha]
 
+/--
+@isnad1 id=ex.2h2v.s6.e8f477fc5e0e from=translated src=- shape=906b8697 vocab=fcad107a
+-/
 theorem IsSidon.exists_insert_ge {A : Finset ℕ} (h : A.Nonempty) (hA : IsSidon (A : Set ℕ)) (s : ℕ) :
     ∃ m ≥ s, m ∉ A ∧ IsSidon (A ∪ {m}) := by
   refine ⟨if s ≥ 2 * A.max' h + 1 then s else 2 * A.max' h + 1, ?_, ?_, ?_⟩

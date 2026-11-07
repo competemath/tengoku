@@ -39,12 +39,21 @@ class IsMaximal : Prop where
   /-- A maximal right ideal is a coatom in the lattice of right ideals.-/
   out : IsCoatom I
 
+/--
+@isnad1 id=iff.0h2v.s5.ea5a90a7b76d from=translated src=- shape=5db52f3d vocab=546d9729
+-/
 theorem isMaximal_def : I.IsMaximal ↔ IsCoatom I :=
   ⟨fun h => h.1, fun h => ⟨h⟩⟩
 
+/--
+@isnad1 id=ne.1h2v.s5.2bfd47faf915 from=translated src=- shape=cb4766e2 vocab=bfca6b78
+-/
 theorem IsMaximal.ne_top (h : I.IsMaximal) : I ≠ ⊤ :=
   (isMaximal_def I).1 h |>.1
 
+/--
+@isnad1 id=lt.1h2v.s5.f3e57bc43eb7 from=translated src=- shape=cb4766e2 vocab=0336a410
+-/
 theorem IsMaximal.lt_top (h : I.IsMaximal) : I < ⊤ :=
   h.ne_top.lt_top
 
@@ -63,11 +72,17 @@ section CommSemiring
 
 variable {R : Type u} [CommSemiring R]
 
+/--
+@isnad1 id=iff.0h2v.s4.699f67e17988 from=translated src=- shape=5f48389b vocab=169b2f36
+-/
 @[simp]
 theorem isMaximal_toIdeal_iff (I : RightIdeal R) : I.toIdeal.IsMaximal ↔ I.IsMaximal := by
   rw [Ideal.isMaximal_def, isMaximal_def]
   exact (orderIsoIdeal R).isCoatom_iff I
 
+/--
+@isnad1 id=iff.0h2v.s4.c85d6d8ae5be from=translated src=- shape=5f48389b vocab=b25ab921
+-/
 @[simp]
 theorem _root_.Ideal.isMaximal_toRightIdeal_iff (I : Ideal R) :
     I.toRightIdeal.IsMaximal ↔ I.IsMaximal := by

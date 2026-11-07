@@ -40,6 +40,9 @@ def HasFabryGaps (n : ℕ → ℕ) : Prop := StrictMono n ∧ Tendsto (fun k => 
 This is the terminology adopted in [Wa01] and some other sources.-/
 def HasFejerGaps (n : ℕ → ℕ) : Prop := StrictMono n ∧ Summable (fun k => (n k : ℝ)⁻¹)
 
+/--
+@isnad1 id=hasfabry.1h1v.s3.639ae8906ada from=translated src=- shape=c3984ded vocab=19a1b097
+-/
 theorem HasFejerGaps.hasFabryGaps {f : ℕ → ℕ} (hf : HasFejerGaps f) : HasFabryGaps f := by
   refine ⟨hf.1, tendsto_atTop_mono'
     (f₁ := (· / 2) ∘ (·⁻¹) ∘ (∑' n : Set.Ici ·, (f n : ℝ)⁻¹) ∘ (· / 2)) _ ?_ <|
