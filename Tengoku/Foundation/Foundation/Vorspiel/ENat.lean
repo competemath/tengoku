@@ -15,6 +15,9 @@ noncomputable def find (P : ℕ → Prop) : ℕ∞ := if h : ∃ x : ℕ, P x th
 
 variable (P : ℕ → Prop)
 
+/--
+@isnad1 id=iff.0h1v.s4.f1b7f6b52c4f from=translated src=- shape=6ab95e14 vocab=c69da6d7
+-/
 lemma find_eq_top_iff : find P = ⊤ ↔ ∀ (n : ℕ), ¬P n := by simp [find]
 
 end ENat

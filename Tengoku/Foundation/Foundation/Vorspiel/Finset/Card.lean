@@ -12,6 +12,9 @@ namespace Finset
 
 variable {α} {s t : Finset α}
 
+/--
+@isnad1 id=lt.2h3v.s5.9ed34e35f552 from=translated src=- shape=715e4d9b vocab=99b0c4a2
+-/
 lemma ssubset_of_subset_lt_card
   (h_subset : s ⊆ t)
   (h_card_le : s.card < t.card) : s ⊂ t := by
@@ -24,6 +27,9 @@ lemma ssubset_of_subset_lt_card
 
 lemma eq_card_of_eq (h : s = t) : s.card = t.card := by tauto;
 
+/--
+@isnad1 id=le.1h4v.s5.0744d70991d8 from=translated src=- shape=301c0e97 vocab=8b8c6ed5
+-/
 lemma sum_le_card
   {n} {f : α → ℕ}
   (hf : ∀ a ∈ s, f a ≤ n)
