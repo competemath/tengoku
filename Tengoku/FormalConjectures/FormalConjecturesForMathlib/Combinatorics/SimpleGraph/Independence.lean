@@ -58,7 +58,9 @@ def computable_indep_num (G : SimpleGraph α) [DecidableRel G.Adj] : ℕ :=
   (Finset.univ.powerset.filter (fun s : Finset α =>
     ∀ u ∈ s, ∀ v ∈ s, u ≠ v → ¬G.Adj u v)).sup Finset.card
 
-/-- Equivalence between computable and noncomputable independence number.-/
+/-- Equivalence between computable and noncomputable independence number.
+@isnad1 id=eq.0h2v.s4.55a1572fa6cc from=translated src=- shape=a78d6c57 vocab=d3ef1489
+-/
 theorem indep_num_eq_computable (G : SimpleGraph α) [DecidableRel G.Adj] :
     G.indepNum = computable_indep_num G := by
   unfold SimpleGraph.indepNum SimpleGraph.computable_indep_num

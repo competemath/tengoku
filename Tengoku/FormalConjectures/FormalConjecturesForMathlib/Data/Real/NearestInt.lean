@@ -23,6 +23,8 @@ public import Tengoku
 /-- The distance from a real number to the nearest integer.-/
 noncomputable def distToNearestInt (x : ℝ) : ℝ := |x - round x|
 
-/-- The distance to the nearest integer is nonnegative.-/
+/-- The distance to the nearest integer is nonnegative.
+@isnad1 id=le.0h1v.s3.1975b5ecb613 from=translated src=- shape=8a62b088 vocab=6bc70d28
+-/
 @[simp]
 theorem distToNearestInt_nonneg (x : ℝ) : 0 ≤ distToNearestInt x := abs_nonneg _

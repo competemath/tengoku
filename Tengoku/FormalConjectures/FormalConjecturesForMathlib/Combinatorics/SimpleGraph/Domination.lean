@@ -139,6 +139,9 @@ noncomputable def edgeDominationNumber (G : SimpleGraph α) : ℕ :=
 
 /-! ### Domination equivalence -/
 
+/--
+@isnad1 id=eq.0h2v.s4.974d4c767700 from=translated src=- shape=a78d6c57 vocab=3d86ba65
+-/
 theorem dom_num_eq_computable (G : SimpleGraph α) [DecidableRel G.Adj] :
     dominationNumber G = computable_dom_num G := by
   unfold SimpleGraph.dominationNumber SimpleGraph.computable_dom_num
@@ -161,7 +164,9 @@ theorem dom_num_eq_computable (G : SimpleGraph α) [DecidableRel G.Adj] :
 
 omit [DecidableEq α] in
 /-- The set `Finset.univ` is a dominating set of any graph, so the set of sizes of dominating
-sets is nonempty and `dominationNumber` is attained by some dominating set.-/
+sets is nonempty and `dominationNumber` is attained by some dominating set.
+@isnad1 id=ex.0h2v.s4.622564f94ce7 from=translated src=- shape=b1667e86 vocab=6f84d244
+-/
 lemma exists_isNDominatingSet_dominationNumber
     (G : SimpleGraph α) :
     ∃ D : Finset α, G.IsNDominatingSet G.dominationNumber D := by
@@ -170,7 +175,9 @@ lemma exists_isNDominatingSet_dominationNumber
   exact Nat.sInf_mem hne
 
 omit [Fintype α] [DecidableEq α] in
-/-- If `D` is a dominating set of `G` with `n` elements then `γ(G) ≤ n`.-/
+/-- If `D` is a dominating set of `G` with `n` elements then `γ(G) ≤ n`.
+@isnad1 id=le.1h3v.s4.91eb2789238a from=translated src=- shape=5cfc96b2 vocab=b102c616
+-/
 lemma dominationNumber_le_of_isDominating
     (G : SimpleGraph α) (D : Finset α) (hD : G.IsDominating D) :
     G.dominationNumber ≤ D.card :=
@@ -181,7 +188,9 @@ lemma dominationNumber_le_of_isDominating
 
 Projecting a dominating set of `G □ H` onto the first coordinate yields a dominating set of
 `G` of no larger size: a vertex `(v, b)` is dominated by some `(w, c)` with either `v = w`
-(so `v` lies in the projection) or `G.Adj v w` (so `v` is dominated by `w` in the projection).-/
+(so `v` lies in the projection) or `G.Adj v w` (so `v` is dominated by `w` in the projection).
+@isnad1 id=le.0h4v.s5.eaa643e48460 from=translated src=- shape=474b5a1e vocab=76aadf2e
+-/
 theorem dominationNumber_le_dominationNumber_boxProd
     {β : Type*} [Fintype β] [DecidableEq β] [Nonempty β]
     (G : SimpleGraph α) (H : SimpleGraph β) :

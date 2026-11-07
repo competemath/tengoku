@@ -28,12 +28,16 @@ Basic facts about `Nat.nth (· ∈ n.divisors)`, the increasing enumeration of t
 namespace Nat
 
 /-- The smallest divisor of a positive number is `1`, i.e. the `0`th entry of the increasing
-enumeration of its divisors.-/
+enumeration of its divisors.
+@isnad1 id=eq.1h1v.s5.deed5aeec813 from=translated src=- shape=d1e65d5a vocab=54e909c1
+-/
 lemma nth_divisors_zero {n : ℕ} (hn : n ≠ 0) : Nat.nth (· ∈ n.divisors) 0 = 1 := by
   rw [Nat.nth_zero]
   exact IsLeast.csInf_eq ⟨Nat.one_mem_divisors.mpr hn, fun y hy => Nat.pos_of_mem_divisors hy⟩
 
-/-- Every divisor enumerated after index `0` is at least `2`.-/
+/-- Every divisor enumerated after index `0` is at least `2`.
+@isnad1 id=le.3h2v.s6.6056e987e2f9 from=translated src=- shape=b184b71b vocab=29419919
+-/
 lemma two_le_nth_divisors {n : ℕ} (hn : n ≠ 0) {i : ℕ} (hi : i ≠ 0)
     (h : Nat.nth (· ∈ n.divisors) i ≠ 0) : 2 ≤ Nat.nth (· ∈ n.divisors) i := by
   have hfin : (Set.ofPred (· ∈ n.divisors)).Finite := n.divisors.finite_toSet

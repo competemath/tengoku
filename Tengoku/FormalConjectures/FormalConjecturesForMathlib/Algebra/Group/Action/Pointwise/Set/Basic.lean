@@ -24,6 +24,9 @@ open scoped Pointwise
 namespace Set
 variable {M : Type*} [Monoid M] {a b : M} {s : Set M}
 
+/--
+@isnad1 id=iff.0h4v.s6.1fff725801d9 from=translated src=- shape=db11b737 vocab=c104f0bc
+-/
 @[to_additive (attr := simp)]
 lemma mul_mem_smul_set [IsLeftCancelMul M] : a * b ∈ a • s ↔ b ∈ s :=
   (mul_right_injective _).mem_set_image

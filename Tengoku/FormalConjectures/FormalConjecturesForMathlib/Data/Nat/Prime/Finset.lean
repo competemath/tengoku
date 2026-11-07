@@ -22,6 +22,9 @@ public import Tengoku
 /-- A Finset of numbers is coprime, or relatively prime, if its `gcd` is 1.-/
 @[reducible] def Finset.Coprime (S : Finset ℕ) : Prop := S.gcd id = 1
 
+/--
+@isnad1 id=iff.1h3v.s5.207b0084a17f from=translated src=- shape=1d50f0b2 vocab=245c45f5
+-/
 theorem Finset.Coprime_pair_iff (S : Finset ℕ) (a b : ℕ) (h : S = {a, b}) :
     S.Coprime ↔ Nat.Coprime a b := by
   simp only [h, Finset.Coprime, Nat.Coprime, gcd_insert, gcd_singleton, normalize_eq]

@@ -51,7 +51,9 @@ def havelHakimiStep (s : List ℕ) : List ℕ :=
 `havelHakimiStep` drops the list length by exactly one on a nonempty list:
 `(havelHakimiStep (d :: rest)).length = rest.length`. `splitAt` partitions `rest`,
 and `map`, `++`, and `mergeSort` all preserve the total length while the head `d`
-is dropped. This is the termination measure for the well-founded `residueAux` below.-/
+is dropped. This is the termination measure for the well-founded `residueAux` below.
+@isnad1 id=eq.0h2v.s4.e5a69596afcc from=translated src=- shape=f801cfe1 vocab=ee4e4feb
+-/
 theorem havelHakimiStep_length_cons (d : ℕ) (rest : List ℕ) :
     (havelHakimiStep (d :: rest)).length = rest.length := by
   grind [havelHakimiStep, List.length_mergeSort]

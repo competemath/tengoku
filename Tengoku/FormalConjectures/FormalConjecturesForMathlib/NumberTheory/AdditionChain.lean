@@ -58,18 +58,29 @@ noncomputable def additionChainLength (n : ℕ) : ℕ :=
 def additionChainSteps (n : ℕ) : Set ℕ :=
   { r | ∃ c : List ℕ, IsAdditionChain c ∧ c.getLast? = some n ∧ c.length = r + 1 }
 
+/--
+@isnad1 id=eq.0h1v.s3.7b1f15b3a427 from=translated src=- shape=76945425 vocab=d2ffa2c2
+-/
 theorem additionChainLength_eq_sInf (n : ℕ) :
     additionChainLength n = sInf (additionChainSteps n) := rfl
 
-/-- Exhibiting a chain bounds `ℓ` above.-/
+/-- Exhibiting a chain bounds `ℓ` above.
+@isnad1 id=le.3h3v.s5.e355332f03f4 from=translated src=- shape=f13c2aca vocab=2b269b0f
+-/
 theorem additionChainLength_le {n r : ℕ} (c : List ℕ) (hc : IsAdditionChain c)
     (hlast : c.getLast? = some n) (hlen : c.length = r + 1) : additionChainLength n ≤ r :=
   Nat.sInf_le ⟨c, hc, hlast, hlen⟩
 
+/--
+@isnad1 id=nonempty.3h3v.s5.d84dbec43a5d from=translated src=- shape=0b6f2712 vocab=6f2da87b
+-/
 theorem additionChainSteps_nonempty {n r : ℕ} (c : List ℕ) (hc : IsAdditionChain c)
     (hlast : c.getLast? = some n) (hlen : c.length = r + 1) : (additionChainSteps n).Nonempty :=
   ⟨r, c, hc, hlast, hlen⟩
 
+/--
+@isnad1 id=le.2h2v.s4.6f74197c70d9 from=translated src=- shape=fb3060d2 vocab=0b1a39f0
+-/
 theorem IsAdditionChain.one_le_of_mem {c : List ℕ} (h : IsAdditionChain c) {x : ℕ}
     (hx : x ∈ c) : 1 ≤ x := by
   obtain ⟨hhead, hsorted, -⟩ := h
@@ -83,7 +94,9 @@ theorem IsAdditionChain.one_le_of_mem {c : List ℕ} (h : IsAdditionChain c) {x 
     · exact le_of_lt ((List.pairwise_cons.mp hsorted).1 _ hx)
 
 /-- Dropping the last entry of a chain leaves a chain. The entries are positive, so a summand
-of the last entry is never the last entry itself and so survives the drop.-/
+of the last entry is never the last entry itself and so survives the drop.
+@isnad1 id=isadditi.2h2v.s5.db784b6d51a3 from=translated src=- shape=fd782319 vocab=4a05176f
+-/
 theorem IsAdditionChain.dropLast {ys : List ℕ} {y : ℕ} (h : IsAdditionChain (ys ++ [y]))
     (hys : ys ≠ []) : IsAdditionChain ys := by
   obtain ⟨hhead, hsorted, hsum⟩ := h
@@ -106,7 +119,9 @@ theorem IsAdditionChain.dropLast {ys : List ℕ} {y : ℕ} (h : IsAdditionChain 
       · exact h
       · exact absurd (List.mem_singleton.mp h) hby
 
-/-- Every step at most doubles, so a chain of `r` steps cannot reach past `2 ^ r`.-/
+/-- Every step at most doubles, so a chain of `r` steps cannot reach past `2 ^ r`.
+@isnad1 id=le.2h1v.s5.c445a27933c0 from=translated src=- shape=60643f2f vocab=f2872fd5
+-/
 theorem IsAdditionChain.getLast_le_two_pow {c : List ℕ} (h : IsAdditionChain c) (hne : c ≠ []) :
     c.getLast hne ≤ 2 ^ (c.length - 1) := by
   induction c using List.reverseRecOn with
@@ -149,7 +164,9 @@ theorem IsAdditionChain.getLast_le_two_pow {c : List ℕ} (h : IsAdditionChain c
       rw [hyl, pow_succ]
       omega
 
-/-- The doubling bound, transported to `ℓ`: reaching `n` takes at least `log₂ n` steps.-/
+/-- The doubling bound, transported to `ℓ`: reaching `n` takes at least `log₂ n` steps.
+@isnad1 id=le.1h1v.s4.6a5f5e54d6c0 from=translated src=- shape=c107f4ce vocab=82fd6f77
+-/
 theorem le_two_pow_additionChainLength {n : ℕ} (hne : (additionChainSteps n).Nonempty) :
     n ≤ 2 ^ additionChainLength n := by
   obtain ⟨c, hc, hlast, hlen⟩ := Nat.sInf_mem hne
@@ -161,7 +178,9 @@ theorem le_two_pow_additionChainLength {n : ℕ} (hne : (additionChainSteps n).N
   rw [‹c.getLast hcne = n›, hlen] at this
   simpa [additionChainLength_eq_sInf] using this
 
-/-- The lower-bound tool: `r` steps cannot reach past `2 ^ r`.-/
+/-- The lower-bound tool: `r` steps cannot reach past `2 ^ r`.
+@isnad1 id=lt.2h2v.s5.4953a6922676 from=translated src=- shape=36ce2744 vocab=fc060fc8
+-/
 theorem lt_additionChainLength_of_two_pow_lt {n r : ℕ} (hne : (additionChainSteps n).Nonempty)
     (h : 2 ^ r < n) : r < additionChainLength n := by
   by_contra! hcon

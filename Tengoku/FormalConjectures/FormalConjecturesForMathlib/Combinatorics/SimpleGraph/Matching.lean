@@ -31,7 +31,9 @@ noncomputable def matchingNumber (G : SimpleGraph α) [DecidableRel G.Adj] : ℝ
   sSup (Set.image (fun M => (M.edgeSet.toFinset.card : ℝ)) matchings)
 
 /-- In a finite graph, twice the number of edges of any matching is at most the number of
-vertices: each edge contributes two distinct vertices, and a matching's edges are vertex-disjoint.-/
+vertices: each edge contributes two distinct vertices, and a matching's edges are vertex-disjoint.
+@isnad1 id=le.1h3v.s5.d4901b93bdcf from=translated src=- shape=fdcde3f9 vocab=6188f877
+-/
 theorem matching_card_bound (G : SimpleGraph α) (M : Subgraph G) [Fintype ↥M.edgeSet]
     (h : M.IsMatching) : 2 * M.edgeSet.toFinset.card ≤ Fintype.card α := by
   have hdisj : ∀ e ∈ M.edgeSet.toFinset, ∀ f ∈ M.edgeSet.toFinset, e ≠ f →

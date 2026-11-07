@@ -19,17 +19,26 @@ public import Tengoku
 
 @[expose] public section
 
+/--
+@isnad1 id=eq.2h3v.s4.bdaefb80129f from=translated src=- shape=38418819 vocab=b5a7fabd
+-/
 theorem Part.get_eq_get {σ : Type*} {a b : Part σ} (ha : a.Dom) (hb : a.get ha ∈ b) : a = b := by
   have hb' : b.Dom := Part.dom_iff_mem.mpr ⟨a.get ha, hb⟩
   rwa [← Part.eq_get_iff_mem hb', Part.eq_iff_of_dom ha hb'] at hb
 
 namespace StateTransition
 
+/--
+@isnad1 id=mem.1h3v.s4.906205798f44 from=translated src=- shape=c2eabff1 vocab=5d375997
+-/
 lemma dom_of_apply_eq_none {σ : Type*} {f : σ → Option σ} {s : σ} (hf : f s = none) :
     s ∈ eval f s := by
   apply PFun.fix_stop
   simp [hf]
 
+/--
+@isnad1 id=eq.1h3v.s4.81697b0a2126 from=translated src=- shape=fef46dce vocab=e0046e5b
+-/
 theorem apply_get_eval {σ : Type*} {f : σ → Option σ} {s : σ} (H : (eval f s).Dom) :
     f ((eval f s).get H) = none := by
   have := Part.get_mem H
@@ -37,6 +46,9 @@ theorem apply_get_eval {σ : Type*} {f : σ → Option σ} {s : σ} (H : (eval f
   exact this.right
 
 -- TODO(Paul-Lez): also prove this for `PFun.fix`/golf using the `PFun.fix` API
+/--
+@isnad1 id=eq.1h3v.s5.794718e46c6e from=translated src=- shape=a9f864e0 vocab=b23a3584
+-/
 theorem eval_get_eval {σ : Type*} {f : σ → Option σ} {s : σ} (H : (eval f s).Dom) :
     eval f ((eval f s).get H) = eval f s := by
   symm
@@ -44,6 +56,9 @@ theorem eval_get_eval {σ : Type*} {f : σ → Option σ} {s : σ} (H : (eval f 
   simp [apply_get_eval]
 
 -- TODO(Paul-Lez): also prove this for `PFun.fix`/golf using the `PFun.fix` API
+/--
+@isnad1 id=eq.1h4v.s5.df2e5a56c7ca from=translated src=- shape=adca586d vocab=72ea0d54
+-/
 theorem eval_eq_eval {σ : Type*} {f : σ → Option σ} {a a' : σ} (H : f a = some a'):
     eval f a = eval f a' := by
   apply reaches_eval
@@ -52,6 +67,9 @@ theorem eval_eq_eval {σ : Type*} {f : σ → Option σ} {a a' : σ} (H : f a = 
   rfl
 
 -- TODO(lezeau): this should be generalized to `PFun.fix`
+/--
+@isnad1 id=iff.0h3v.s5.734fb8cfaf10 from=translated src=- shape=1c174b07 vocab=6ac1a13e
+-/
 theorem eval_dom_iff {σ : Type*} {f : σ → Option σ} {s : σ} :
     (∃ n, ((Option.bind · f)^[n+1] s) = none) ↔ (eval f s).Dom := by
   refine ⟨fun ⟨n, hn⟩ ↦ ?_, fun H ↦ ?_⟩

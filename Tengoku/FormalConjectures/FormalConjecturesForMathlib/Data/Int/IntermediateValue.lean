@@ -29,7 +29,9 @@ intermediate value theorem for a unit-step walk on `ℤ`.
 
 /-- **Discrete intermediate value theorem.** If an integer-valued sequence `f : ℕ → ℤ` has
 consecutive terms differing by at most `1`, then it attains every value between `f a` and
-`f b`: for `a ≤ b` and `f a ≤ t ≤ f b` there is some index `c ∈ [a, b]` with `f c = t`.-/
+`f b`: for `a ≤ b` and `f a ≤ t ≤ f b` there is some index `c ∈ [a, b]` with `f c = t`.
+@isnad1 id=ex.4h4v.s6.578dcaf060da from=translated src=- shape=86f2a534 vocab=a6cfba4f
+-/
 theorem Int.exists_eq_of_natAbs_sub_le_one (f : ℕ → ℤ)
     (hf : ∀ n, (f (n + 1) - f n).natAbs ≤ 1) {a b : ℕ} (hab : a ≤ b) {t : ℤ}
     (hta : f a ≤ t) (htb : t ≤ f b) : ∃ c, a ≤ c ∧ c ≤ b ∧ f c = t := by

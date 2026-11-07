@@ -21,6 +21,9 @@ public import Tengoku
 
 namespace Nat
 
+/--
+@isnad1 id=eq.3h3v.s6.0a78f10bb803 from=translated src=- shape=791b547b vocab=2850b761
+-/
 theorem prod_primeFactors_factorization_apply (n : ℕ) {p : ℕ} (hp : p.Prime) {f : ℕ → ℕ → ℕ}
     (hf : ∀ q n, ¬ q ∣ n → f q n = 0) (hf₀ : ∀ q, f q 0 = 0):
     (∏ q ∈ n.primeFactors, q ^ f q n).factorization p = f p n := by

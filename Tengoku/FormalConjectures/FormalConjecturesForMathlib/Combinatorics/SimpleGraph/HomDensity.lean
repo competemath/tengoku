@@ -49,7 +49,9 @@ noncomputable def homDensity [Fintype V] [Fintype W] [DecidableEq V] [DecidableE
 /-- The homomorphism density `t(H, G)` is at most `1`.
 
 Proof outline: the underlying function of a `H →g G`-homomorphism is an element of
-`V → W`, which has `|W|^|V|` elements, so `homCount H G ≤ |W|^|V|`. Divide.-/
+`V → W`, which has `|W|^|V|` elements, so `homCount H G ≤ |W|^|V|`. Divide.
+@isnad1 id=le.0h4v.s5.e96c1c317c6a from=translated src=- shape=39588ea8 vocab=8f7c9aea
+-/
 lemma homDensity_le_one {V W : Type*} [Fintype V] [Fintype W] [Nonempty W]
     [DecidableEq V] [DecidableEq W]
     (H : SimpleGraph V) (G : SimpleGraph W)

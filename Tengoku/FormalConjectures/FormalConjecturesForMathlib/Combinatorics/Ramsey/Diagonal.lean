@@ -63,13 +63,17 @@ def HasRamseyProperty (N s t : ℕ) : Prop :=
     (∃ S ⊆ V, S.card = s ∧ ∀ e ⊆ S, e.card = 2 → c e = false) ∨
     (∃ S ⊆ V, S.card = t ∧ ∀ e ⊆ S, e.card = 2 → c e = true)
 
-/-- **Monotonicity.** If `N ≤ N'` then `HasRamseyProperty N s t → HasRamseyProperty N' s t`.-/
+/-- **Monotonicity.** If `N ≤ N'` then `HasRamseyProperty N s t → HasRamseyProperty N' s t`.
+@isnad1 id=hasramse.2h4v.s4.f830c21f9d21 from=translated src=- shape=a28b0d7f vocab=8249f37d
+-/
 lemma HasRamseyProperty.mono {N N' s t : ℕ} (hNN' : N ≤ N') (h : HasRamseyProperty N s t) :
     HasRamseyProperty N' s t := by
   intro m c V hV
   exact h c V (hNN'.trans hV)
 
-/-- **Base case `s = 0`.** Any `V` contains an empty `false`-monochromatic set.-/
+/-- **Base case `s = 0`.** Any `V` contains an empty `false`-monochromatic set.
+@isnad1 id=hasramse.0h2v.s3.f31749bf910e from=translated src=- shape=4d77a6cf vocab=1ce3939b
+-/
 lemma hasRamseyProperty_zero_left (N t : ℕ) : HasRamseyProperty N 0 t := by
   intro m c V _hV
   refine Or.inl ⟨∅, Finset.empty_subset _, by simp, ?_⟩
@@ -78,7 +82,9 @@ lemma hasRamseyProperty_zero_left (N t : ℕ) : HasRamseyProperty N 0 t := by
   have he_empty : e = ∅ := Finset.subset_empty.mp he
   simp [he_empty] at *
 
-/-- **Base case `t = 0`.** Any `V` contains an empty `true`-monochromatic set.-/
+/-- **Base case `t = 0`.** Any `V` contains an empty `true`-monochromatic set.
+@isnad1 id=hasramse.0h2v.s3.5b3c0b0e27a3 from=translated src=- shape=63b7ab1c vocab=1ce3939b
+-/
 lemma hasRamseyProperty_zero_right (N s : ℕ) : HasRamseyProperty N s 0 := by
   intro m c V _hV
   refine Or.inr ⟨∅, Finset.empty_subset _, by simp, ?_⟩
@@ -86,7 +92,9 @@ lemma hasRamseyProperty_zero_right (N s : ℕ) : HasRamseyProperty N s 0 := by
   have he_empty : e = ∅ := Finset.subset_empty.mp he
   simp [he_empty] at *
 
-/-- A singleton has no 2-element subsets, hence is monochromatic of any colour.-/
+/-- A singleton has no 2-element subsets, hence is monochromatic of any colour.
+@isnad1 id=eq.2h5v.s5.afb8916487cb from=translated src=- shape=59adc682 vocab=4a93c526
+-/
 lemma forall_two_subset_singleton {m : ℕ} (v : Fin m) (b : Bool)
     (c : Finset (Fin m) → Bool) :
     ∀ e ⊆ ({v} : Finset (Fin m)), e.card = 2 → c e = b := by
@@ -97,14 +105,18 @@ lemma forall_two_subset_singleton {m : ℕ} (v : Fin m) (b : Bool)
     simpa using this
   omega
 
-/-- **Base case `s = 1`.** Any nonempty `V` contains a singleton `false`-monochromatic set.-/
+/-- **Base case `s = 1`.** Any nonempty `V` contains a singleton `false`-monochromatic set.
+@isnad1 id=hasramse.0h1v.s3.7f8b9e7db475 from=translated src=- shape=796f6ff7 vocab=1ce3939b
+-/
 lemma hasRamseyProperty_one_left (t : ℕ) : HasRamseyProperty 1 1 t := by
   intro m c V hV
   obtain ⟨v, hv⟩ : V.Nonempty := Finset.card_pos.mp (by omega)
   refine Or.inl ⟨{v}, by simpa using hv, by simp, ?_⟩
   exact forall_two_subset_singleton v false c
 
-/-- **Base case `t = 1`.** Any nonempty `V` contains a singleton `true`-monochromatic set.-/
+/-- **Base case `t = 1`.** Any nonempty `V` contains a singleton `true`-monochromatic set.
+@isnad1 id=hasramse.0h1v.s3.3b2e321156c0 from=translated src=- shape=2828b0c5 vocab=1ce3939b
+-/
 lemma hasRamseyProperty_one_right (s : ℕ) : HasRamseyProperty 1 s 1 := by
   intro m c V hV
   obtain ⟨v, hv⟩ : V.Nonempty := Finset.card_pos.mp (by omega)
@@ -113,7 +125,9 @@ lemma hasRamseyProperty_one_right (s : ℕ) : HasRamseyProperty 1 s 1 := by
 
 /-- **Pigeonhole step: splitting `V \ {v}` by colour.** For any vertex `v ∈ V`, the set
 `V.erase v` partitions into `false`-neighbours of `v` and `true`-neighbours of `v`, and the
-cardinalities sum to `V.card - 1`.-/
+cardinalities sum to `V.card - 1`.
+@isnad1 id=eq.1h4v.s7.cdcfbf1b54e5 from=translated src=- shape=0f9dbf2b vocab=64938a99
+-/
 lemma card_false_true_split {m : ℕ} (c : Finset (Fin m) → Bool) (V : Finset (Fin m))
     {v : Fin m} (hv : v ∈ V) :
     ((V.erase v).filter (fun u => c {v, u} = false)).card
@@ -176,7 +190,9 @@ This is the core Erdős–Szekeres 1935 pigeonhole step: pick any vertex `v ∈ 
 `|R_v| ≥ Ns` or `|B_v| ≥ Nt`. In the first case, invoke `HasRamseyProperty Ns s (t+1)`
 on `R_v`: either we get a `false`-mono `K_s` on `R_v` (extend by `v` to a `false`-mono
 `K_{s+1}` on `V`), or a `true`-mono `K_{t+1}` on `R_v ⊆ V` (done). The second case is
-symmetric.-/
+symmetric.
+@isnad1 id=hasramse.3h4v.s6.25a14c9a93da from=translated src=- shape=ae24c05e vocab=f2b12dda
+-/
 lemma HasRamseyProperty.step {Ns Nt s t : ℕ}
     (hs : HasRamseyProperty Ns s (t + 1))
     (ht : HasRamseyProperty Nt (s + 1) t) (hNs : 1 ≤ Ns) :
@@ -233,7 +249,9 @@ lemma HasRamseyProperty.step {Ns Nt s t : ℕ}
         exact (Finset.mem_filter.mp hu').2
 
 /-- **Binomial bound via Erdős–Szekeres induction.**
-`HasRamseyProperty (Nat.choose (s + t) s) s t` for all `s, t`.-/
+`HasRamseyProperty (Nat.choose (s + t) s) s t` for all `s, t`.
+@isnad1 id=hasramse.0h2v.s4.843c50213571 from=translated src=- shape=cab3e2f2 vocab=94645aba
+-/
 lemma hasRamseyProperty_choose : ∀ (s t : ℕ),
     HasRamseyProperty (Nat.choose (s + t) s) s t := by
   -- Induction on `s + t` via `Nat.strong_induction_on`.

@@ -23,6 +23,9 @@ open Set
 
 namespace Filter
 
+/--
+@isnad1 id=hasbasis.0h1v.s5.64cee734d485 from=translated src=- shape=624c7904 vocab=740448c2
+-/
 lemma cofinite_hasBasis_Ioi {α : Type*} [LinearOrder α] [LocallyFiniteOrder α] [OrderBot α] :
     cofinite.HasBasis (fun (_ : α) ↦ True) (Set.Ioi ·) := by
   constructor
@@ -42,7 +45,9 @@ lemma cofinite_hasBasis_Ioi {α : Type*} [LinearOrder α] [LocallyFiniteOrder α
 /--
 Note(csonne): According to a TODO in `Mathlib.Order.Interval.Finset.Defs`, Assuming `SuccOrder α`
 should not be necessary as an instance should follow from `[LocallyFiniteOrder α] [OrderBot α]`.
-This has not been implemented in mathlib however.-/
+This has not been implemented in mathlib however.
+@isnad1 id=hasbasis.0h1v.s6.1e439d95d7cd from=translated src=- shape=dfc4e78b vocab=c4ade76b
+-/
 lemma cofinite_hasBasis_Ici {α : Type*} [LinearOrder α] [LocallyFiniteOrder α] [OrderBot α]
     [SuccOrder α] [NoMaxOrder α] : cofinite.HasBasis (fun (_ : α) ↦ True) (Set.Ici ·) := by
   constructor
@@ -59,6 +64,9 @@ lemma cofinite_hasBasis_Ici {α : Type*} [LinearOrder α] [LocallyFiniteOrder α
     apply Set.Finite.subset _ ha
     exact finite_Iio a
 
+/--
+@isnad1 id=eq.0h1v.s6.ca09c2168acd from=translated src=- shape=e54dd848 vocab=072dc46f
+-/
 theorem cofinite_eq_atTop {α : Type*} [LinearOrder α] [LocallyFiniteOrder α] [OrderBot α]
   [SuccOrder α] [NoMaxOrder α] :
     @cofinite α = atTop := by

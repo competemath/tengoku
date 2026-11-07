@@ -77,6 +77,9 @@ def ofFinset {V : Type} (H : Finset (Finset V)) (hH : Finset.IsThreeUniform H) :
   edges := (H : Set (Finset V))
   uniform := hH
 
+/--
+@isnad1 id=iff.1h3v.s5.01a331a705c3 from=translated src=- shape=31054b9a vocab=b9107099
+-/
 @[simp]
 theorem mem_edges_ofFinset {V : Type} {H : Finset (Finset V)} {hH : Finset.IsThreeUniform H}
     {e : Finset V} : e ∈ (ofFinset H hH).edges ↔ e ∈ H := Finset.mem_coe

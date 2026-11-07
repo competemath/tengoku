@@ -60,11 +60,16 @@ def bitEncode [BitstringEncoding α] (a : α) : List Bool := toEncoding.encode a
 /-- The decoding function of the canonical `BitstringEncoding` of `α`.-/
 def bitDecode [BitstringEncoding α] (l : List Bool) : Option α := toEncoding.decode l
 
-/-- Decoding is a left inverse of encoding.-/
+/-- Decoding is a left inverse of encoding.
+@isnad1 id=eq.0h2v.s4.c33e3e2a6589 from=translated src=- shape=8d0b357a vocab=2939ee49
+-/
 @[simp]
 theorem bitDecode_bitEncode [BitstringEncoding α] (a : α) : bitDecode (bitEncode a) = some a :=
   toEncoding.decode_encode a
 
+/--
+@isnad1 id=injectiv.0h1v.s3.32ed3c2ae0a6 from=translated src=- shape=58603f0c vocab=a572382e
+-/
 theorem bitEncode_injective [BitstringEncoding α] :
     Function.Injective (bitEncode : α → List Bool) :=
   (toEncoding (α := α)).encode_injective
@@ -114,6 +119,9 @@ def undelimit : List Bool → Option (List Bool × List Bool)
   | true :: b :: input => (undelimit input).map fun p => (b :: p.1, p.2)
   | _ => none
 
+/--
+@isnad1 id=eq.0h2v.s5.df1c45af975a from=translated src=- shape=cac74b1b vocab=e877d96c
+-/
 @[simp]
 theorem undelimit_delimit (l rest : List Bool) :
     undelimit (delimit l ++ rest) = some (l, rest) := by
@@ -121,6 +129,9 @@ theorem undelimit_delimit (l rest : List Bool) :
   | nil => rfl
   | cons b l ih => simp [delimit, undelimit, ih]
 
+/--
+@isnad1 id=eq.0h1v.s5.6866730a7048 from=translated src=- shape=3e54b442 vocab=86355c41
+-/
 @[simp]
 theorem length_delimit (l : List Bool) : (delimit l).length = 2 * l.length + 1 := by
   induction l with
@@ -146,6 +157,9 @@ suffices as fuel for `undelimitBlocksAux`.-/
 def undelimitBlocks (input : List Bool) : Option (List (List Bool)) :=
   undelimitBlocksAux input.length input
 
+/--
+@isnad1 id=le.0h1v.s4.1154304d6479 from=translated src=- shape=4bd26e2a vocab=3cb61382
+-/
 theorem length_le_length_flatten_delimit (l : List (List Bool)) :
     l.length ≤ ((l.map delimit).flatten).length := by
   induction l with
@@ -163,10 +177,16 @@ private theorem undelimitBlocksAux_flatten_delimit (l : List (List Bool)) (fuel 
     rw [List.length_cons] at hfuel
     cases fuel <;> cases b <;> grind [delimit, undelimitBlocksAux, undelimit_delimit]
 
+/--
+@isnad1 id=eq.0h1v.s4.25dd1dc78065 from=translated src=- shape=6ece7f74 vocab=db9370cc
+-/
 theorem undelimitBlocks_flatten_delimit (l : List (List Bool)) :
     undelimitBlocks ((l.map delimit).flatten) = some l :=
   undelimitBlocksAux_flatten_delimit l _ (length_le_length_flatten_delimit l)
 
+/--
+@isnad1 id=eq.0h2v.s5.7ba0d95f52d6 from=translated src=- shape=d98da88a vocab=15f0c214
+-/
 @[simp]
 theorem mapM_bitDecode_map_bitEncode [BitstringEncoding α] (l : List α) :
     (l.map bitEncode).mapM bitDecode = some l := by

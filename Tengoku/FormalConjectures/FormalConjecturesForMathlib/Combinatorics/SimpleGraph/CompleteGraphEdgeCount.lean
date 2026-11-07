@@ -27,12 +27,16 @@ The number of edges of the complete graph on a finite vertex type `V` is `#V cho
 This is a thin `completeGraph`-flavoured restatement of Mathlib's
 `SimpleGraph.card_edgeFinset_top_eq_card_choose_two`, useful when a downstream definition
 is stated using the `completeGraph V` abbreviation rather than the `⊤` form. (Because
-`completeGraph V` reduces to `⊤`, the two are definitionally equal.)-/
+`completeGraph V` reduces to `⊤`, the two are definitionally equal.)
+@isnad1 id=eq.0h1v.s5.bb9edd481678 from=translated src=- shape=92d182e7 vocab=b5a41389
+-/
 lemma card_edgeFinset_completeGraph (V : Type*) [Fintype V] [DecidableEq V] :
     ((completeGraph V).edgeFinset).card = (Fintype.card V).choose 2 :=
   card_edgeFinset_top_eq_card_choose_two
 
-/-- Specialisation of `card_edgeFinset_completeGraph` to `Fin n`.-/
+/-- Specialisation of `card_edgeFinset_completeGraph` to `Fin n`.
+@isnad1 id=eq.0h1v.s5.e2ba434b0a3e from=translated src=- shape=b401d5e1 vocab=f788968d
+-/
 lemma card_edgeFinset_completeGraph_fin (n : ℕ) :
     ((completeGraph (Fin n)).edgeFinset).card = n.choose 2 := by
   simpa using card_edgeFinset_completeGraph (Fin n)

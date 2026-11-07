@@ -42,7 +42,9 @@ def Cycle.length {G : SimpleGraph V} (c : Cycle G) : ℕ := c.walk.length
 /-- `G` is bridgeless if none of its edges is a bridge.-/
 def IsBridgeless (G : SimpleGraph V) : Prop := ∀ e ∈ G.edgeSet, ¬ G.IsBridge e
 
-/-- In a forest every edge is a bridge, so an acyclic bridgeless graph has no edges at all.-/
+/-- In a forest every edge is a bridge, so an acyclic bridgeless graph has no edges at all.
+@isnad1 id=eq.2h2v.s5.ac5700a76583 from=translated src=- shape=a38b79ab vocab=29b595cd
+-/
 theorem edgeFinset_eq_empty_of_isBridgeless_of_isAcyclic [Fintype V] (G : SimpleGraph V)
     [DecidableRel G.Adj] (hacyc : G.IsAcyclic) (hbr : G.IsBridgeless) : G.edgeFinset = ∅ := by
   rw [SimpleGraph.edgeFinset_eq_empty]

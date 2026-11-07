@@ -25,7 +25,9 @@ noncomputable def maxCosetDim (K V : Type*) [DivisionRing K] [AddCommGroup V] [M
 open scoped Pointwise
 
 /--
-The maximum coset dimension in the entire vector space $V$ is exactly the dimension of $V$.-/
+The maximum coset dimension in the entire vector space $V$ is exactly the dimension of $V$.
+@isnad1 id=eq.0h2v.s5.dbd1f33c67e8 from=translated src=- shape=2817329d vocab=7c814670
+-/
 theorem maxCosetDim_univ (K V : Type*) [DivisionRing K] [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] : maxCosetDim K V (Set.univ : Set V) = Module.finrank K V := by
   dsimp [maxCosetDim]
@@ -44,7 +46,9 @@ theorem maxCosetDim_univ (K V : Type*) [DivisionRing K] [AddCommGroup V] [Module
       refine ⟨Set.subset_univ _, ?_⟩
       rw [AffineSubspace.direction_top, finrank_top]
 
-/-- The maximum coset dimension in the empty set $\emptyset$ is $0$.-/
+/-- The maximum coset dimension in the empty set $\emptyset$ is $0$.
+@isnad1 id=eq.0h2v.s5.e0826b68e5ee from=translated src=- shape=201f94b1 vocab=49941360
+-/
 theorem maxCosetDim_empty (K V : Type*) [DivisionRing K] [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] : maxCosetDim K V (∅ : Set V) = 0 := by
   dsimp [maxCosetDim]
@@ -62,7 +66,9 @@ theorem maxCosetDim_empty (K V : Type*) [DivisionRing K] [AddCommGroup V] [Modul
 
 /--
 If $A \subseteq B$, then the maximum coset dimension achievable in $A$
-cannot exceed the maximum coset dimension achievable in $B$.-/
+cannot exceed the maximum coset dimension achievable in $B$.
+@isnad1 id=le.1h4v.s5.63ff0fe92ce0 from=translated src=- shape=d01396bf vocab=a54f38eb
+-/
 theorem maxCosetDim_mono (K V : Type*) [DivisionRing K] [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] {A B : Set V} (h : A ⊆ B) :
     maxCosetDim K V A ≤ maxCosetDim K V B := by
@@ -84,7 +90,9 @@ theorem maxCosetDim_mono (K V : Type*) [DivisionRing K] [AddCommGroup V] [Module
 
 /--
 If the target set $A$ is already an affine subspace, the function
-returns exactly the rank of its direction.-/
+returns exactly the rank of its direction.
+@isnad1 id=eq.0h3v.s7.b7f3943bcecc from=translated src=- shape=b98f48bd vocab=f53a1cc4
+-/
 theorem maxCosetDim_affineSubspace (K V : Type*) [DivisionRing K] [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] (S : AffineSubspace K V) :
     maxCosetDim K V (S : Set V) = Module.finrank K S.direction := by
@@ -104,7 +112,9 @@ theorem maxCosetDim_affineSubspace (K V : Type*) [DivisionRing K] [AddCommGroup 
 
 /--
 Similar to the empty set, a set containing exactly one vector should yield
-a maximum dimension of 0.-/
+a maximum dimension of 0.
+@isnad1 id=eq.0h3v.s5.8ccad592f69d from=translated src=- shape=c0056c13 vocab=6ec88abe
+-/
 theorem maxCosetDim_singleton (K V : Type*) [DivisionRing K] [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] (v : V) : maxCosetDim K V ({v} : Set V) = 0 := by
   dsimp [maxCosetDim]
@@ -135,6 +145,9 @@ theorem maxCosetDim_singleton (K V : Type*) [DivisionRing K] [AddCommGroup V] [M
       simp
   rw [h, csSup_singleton]
 
+/--
+@isnad1 id=le.0h4v.s6.b655e2c7b2b6 from=translated src=- shape=ed7f1c22 vocab=e627fa25
+-/
 lemma maxCosetDim_vadd_le (K V : Type*) [DivisionRing K] [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] (v : V) (A : Set V) :
     maxCosetDim K V (v +ᵥ A) ≤ maxCosetDim K V A := by
@@ -164,7 +177,9 @@ lemma maxCosetDim_vadd_le (K V : Type*) [DivisionRing K] [AddCommGroup V] [Modul
         rw [hd]
 
 /--
-Translating a set by a vector does not change its maximum coset dimension.-/
+Translating a set by a vector does not change its maximum coset dimension.
+@isnad1 id=eq.0h4v.s6.d4229eea60aa from=translated src=- shape=ed7f1c22 vocab=d20a37a6
+-/
 theorem maxCosetDim_vadd (K V : Type*) [DivisionRing K] [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] (v : V) (A : Set V) :
     maxCosetDim K V (v +ᵥ A) = maxCosetDim K V A := by

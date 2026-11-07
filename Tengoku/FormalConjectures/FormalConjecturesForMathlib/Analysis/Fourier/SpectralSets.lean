@@ -39,13 +39,17 @@ def translateSet {d : ℕ} (Ω: Set (Fin d → ℝ)) (t : Fin d → ℝ) :
 noncomputable def exponentialCharacter {d : ℕ} (ξ x : Fin d → ℝ) : ℂ :=
   Complex.exp (2 * π * Complex.I * (∑ i, ξ i * x i))
 
-/-- The exponential character is continuous.-/
+/-- The exponential character is continuous.
+@isnad1 id=continuo.0h2v.s5.be800525fe20 from=translated src=- shape=56d399c3 vocab=c835f3aa
+-/
 theorem continuous_exponentialCharacter {d : ℕ} (ξ : Fin d → ℝ) :
     Continuous (exponentialCharacter ξ) := by
   unfold exponentialCharacter
   continuity
 
-/-- The exponential character has norm one.-/
+/-- The exponential character has norm one.
+@isnad1 id=eq.0h3v.s4.74a529442d52 from=translated src=- shape=777866fc vocab=bd5e9be8
+-/
 theorem norm_exponentialCharacter {d : ℕ} (ξ x : Fin d → ℝ) :
     ‖exponentialCharacter ξ x‖ = 1 := by
   unfold exponentialCharacter
@@ -56,7 +60,9 @@ theorem norm_exponentialCharacter {d : ℕ} (ξ x : Fin d → ℝ) :
     ring
   rw [h_simp, Complex.norm_exp_I_mul_ofReal]
 
-/-- On a finite-measure set, every exponential character belongs to `L^2`.-/
+/-- On a finite-measure set, every exponential character belongs to `L^2`.
+@isnad1 id=memlp.1h3v.s7.e7d92f7cf294 from=translated src=- shape=34a48fb7 vocab=f1273573
+-/
 theorem exponentialCharacter_memLp {d : ℕ} {Ω : Set (Fin d → ℝ)}
     (hΩ_finite : volume Ω ≠ ⊤) (ξ : Fin d → ℝ) :
     MemLp (exponentialCharacter ξ) 2 (volume.restrict Ω) := by

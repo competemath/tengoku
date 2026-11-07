@@ -33,7 +33,9 @@ noncomputable def largestInducedBipartiteSubgraphSize (G : SimpleGraph α) : ℕ
   sSup { n | ∃ s : Finset α, (G.induce s).IsBipartite ∧ s.card = n }
 
 omit [Fintype α] in
-/-- An induced subgraph is bipartite exactly when its vertices admit a two-coloring.-/
+/-- An induced subgraph is bipartite exactly when its vertices admit a two-coloring.
+@isnad1 id=iff.0h3v.s6.29a3db765eb8 from=translated src=- shape=ff41cf88 vocab=e1553b21
+-/
 theorem induce_isBipartite_iff_exists_coloring (G : SimpleGraph α) (s : Finset α) :
     (G.induce s).IsBipartite ↔
       ∃ c : α → Fin 2, ∀ u ∈ s, ∀ v ∈ s, G.Adj u v → c u ≠ c v := by
@@ -51,7 +53,9 @@ def computableLargestInducedBipartiteSubgraphSize (G : SimpleGraph α) [Decidabl
   (Finset.univ.powerset.filter fun s : Finset α =>
     ∃ c : α → Fin 2, ∀ u ∈ s, ∀ v ∈ s, G.Adj u v → c u ≠ c v).sup Finset.card
 
-/-- The computable largest induced bipartite subgraph size agrees with the `sSup` definition.-/
+/-- The computable largest induced bipartite subgraph size agrees with the `sSup` definition.
+@isnad1 id=eq.0h2v.s4.64a6fb3a0fe2 from=translated src=- shape=a78d6c57 vocab=1e3fd42c
+-/
 theorem largestInducedBipartiteSubgraphSize_eq_computable
     (G : SimpleGraph α) [DecidableRel G.Adj] :
     G.largestInducedBipartiteSubgraphSize = G.computableLargestInducedBipartiteSubgraphSize := by

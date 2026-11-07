@@ -36,7 +36,9 @@ instance : CoeFun Tournamenton (fun _ => UnitInterval × UnitInterval → UnitIn
 
 namespace Tournamenton
 
-/-- Extensionality principle for `Tournamenton`.-/
+/-- Extensionality principle for `Tournamenton`.
+@isnad1 id=eq.1h2v.s4.33a354cd90a2 from=translated src=- shape=d8b82d49 vocab=4765f2eb
+-/
 @[ext]
 theorem ext {W₁ W₂ : Tournamenton} (h : ∀ p, W₁ p = W₂ p) : W₁ = W₂ := by
   cases W₁; cases W₂; congr; funext p; exact h p

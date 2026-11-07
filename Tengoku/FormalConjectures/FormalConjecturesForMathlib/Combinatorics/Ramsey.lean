@@ -36,7 +36,9 @@ noncomputable def hypergraphRamsey (r n : ℕ) : ℕ :=
     ∃ (S : Finset (Fin m)), S.card = n ∧
       ∃ (color : Bool), ∀ (e : Finset (Fin m)), e ⊆ S → e.card = r → c e = color }
 
-/-- `n ≤ hypergraphRamsey r n` when the set is nonempty.-/
+/-- `n ≤ hypergraphRamsey r n` when the set is nonempty.
+@isnad1 id=le.1h2v.s6.587378eba95c from=translated src=- shape=47885139 vocab=6e2562ad
+-/
 theorem le_hypergraphRamsey (r n : ℕ) (hne : { m | ∀ (c : Finset (Fin m) → Bool),
     ∃ (S : Finset (Fin m)), S.card = n ∧
       ∃ (color : Bool), ∀ (e : Finset (Fin m)), e ⊆ S → e.card = r → c e = color }.Nonempty) :
@@ -49,7 +51,9 @@ theorem le_hypergraphRamsey (r n : ℕ) (hne : { m | ∀ (c : Finset (Fin m) →
     _ ≤ Fintype.card (Fin m) := Finset.card_le_univ S
     _ = m := Fintype.card_fin m
 
-/-- `hypergraphRamsey r r = r` for any `r`.-/
+/-- `hypergraphRamsey r r = r` for any `r`.
+@isnad1 id=eq.0h1v.s3.1c6f8e0baf95 from=translated src=- shape=ca6c1f5d vocab=2594674b
+-/
 theorem hypergraphRamsey_self (r : ℕ) : hypergraphRamsey r r = r := by
   have h_mem : r ∈ { m | ∀ (c : Finset (Fin m) → Bool),
       ∃ (S : Finset (Fin m)), S.card = m ∧

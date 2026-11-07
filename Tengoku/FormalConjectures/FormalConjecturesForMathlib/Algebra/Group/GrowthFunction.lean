@@ -31,10 +31,16 @@ set `S`.-/
 def CayleyBall (S : Set G) (n : ℕ) : Set G :=
   {g : G | ∃ (l : List G), l.length ≤ n ∧ (∀ s ∈ l, s ∈ S ∨ s⁻¹ ∈ S) ∧ l.prod = g}
 
+/--
+@isnad1 id=eq.0h2v.s5.847247db21de from=translated src=- shape=c8862f55 vocab=7f167572
+-/
 theorem cayleyBall_zero (S : Set G) :
     CayleyBall S 0 = {1} := by
   simp [CayleyBall]
 
+/--
+@isnad1 id=finite.1h3v.s4.11a1f56441b0 from=translated src=- shape=fc8d1601 vocab=cc6e11fb
+-/
 lemma cayleyBall_finite {S : Set G} (hS : S.Finite) (n : ℕ) : (CayleyBall S n).Finite := by
   have hu : (S ∪ (·)⁻¹ '' S).Finite := hS.union (by simpa using hS.preimage inv_injective.injOn)
   have hf (m : ℕ) : {f : Fin m → G | ∀ i, f i ∈ S ∨ (f i)⁻¹ ∈ S}.Finite := by
@@ -49,25 +55,34 @@ elements that can be reached by words of length at most `n` in `S`.-/
 noncomputable def GrowthFunction (S : Set G) (n : ℕ) : ℕ :=
   (CayleyBall S n).ncard
 
+/--
+@isnad1 id=eq.0h2v.s4.c998078db5e6 from=translated src=- shape=4f51cd3b vocab=6a8e5826
+-/
 theorem growthFunction_zero (S : Set G) :
     GrowthFunction S 0 = 1 := by
   simp [GrowthFunction, CayleyBall]
 
-/-- The identity is always in the Cayley ball.-/
+/-- The identity is always in the Cayley ball.
+@isnad1 id=mem.0h3v.s5.af4086f5e3cc from=translated src=- shape=ff473627 vocab=0994bd6e
+-/
 lemma one_mem_cayleyBall (S : Set G) (n : ℕ) :
     1 ∈ CayleyBall S n := by
   simp only [CayleyBall, Set.mem_ofPred_eq]
   use ∅
   simp
 
-/-- The Cayley ball is monotonic in its radius.-/
+/-- The Cayley ball is monotonic in its radius.
+@isnad1 id=le.1h4v.s5.ac66a56aed60 from=translated src=- shape=947265ab vocab=d0999cce
+-/
 lemma cayleyBall_monotone (S : Set G) {m n : ℕ} (h : m ≤ n) :
     CayleyBall S m ⊆ CayleyBall S n := by
   simp only [CayleyBall, Set.ofPred_subset_ofPred, forall_exists_index, and_imp]
   exact fun g l lLength LSubS lProdG ↦ ⟨l, by linarith, LSubS, lProdG⟩
 
 /-- Closure property: if `g ∈ CayleyBall S m` and `h ∈ CayleyBall S n`, then
-`g * h ∈ CayleyBall S (m + n)`.-/
+`g * h ∈ CayleyBall S (m + n)`.
+@isnad1 id=mem.2h6v.s6.c41eb4465c55 from=translated src=- shape=61fb17b8 vocab=fede563e
+-/
 lemma cayleyBall_mul (S : Set G) {g h : G} {m n : ℕ}
     (hg : g ∈ CayleyBall S m) (hh : h ∈ CayleyBall S n) :
     g * h ∈ CayleyBall S (m + n) := by
@@ -83,7 +98,9 @@ lemma cayleyBall_mul (S : Set G) {g h : G} {m n : ℕ}
     | inl h => simp [lgSubS s h]
     | inr h => simp [lhSubS s h]
 
-/-- If `g ∈ CayleyBall S n`, then `g⁻¹ ∈ CayleyBall S n`.-/
+/-- If `g ∈ CayleyBall S n`, then `g⁻¹ ∈ CayleyBall S n`.
+@isnad1 id=mem.1h4v.s5.e34b53b3b23e from=translated src=- shape=faf740d1 vocab=5fec22b2
+-/
 lemma cayleyBall_inv (S : Set G) {g : G} {n : ℕ}
     (hg : g ∈ CayleyBall S n) :
     g⁻¹ ∈ CayleyBall S n := by
@@ -98,9 +115,15 @@ lemma cayleyBall_inv (S : Set G) {g : G} {n : ℕ}
   simp only [inv_inv] at this
   exact this.symm
 
+/--
+@isnad1 id=mem.1h3v.s5.082db49b7b97 from=translated src=- shape=9849d8ef vocab=0994bd6e
+-/
 lemma mem_cayleyBall_one_of_mem {S : Set G} {g : G} (hg : g ∈ S) : g ∈ CayleyBall S 1 :=
   ⟨[g], by simp_all⟩
 
+/--
+@isnad1 id=ex.1h3v.s5.80d12fa8e777 from=translated src=- shape=8c34bee8 vocab=849c16c2
+-/
 lemma exists_cayleyBall_mem_of_closure_eq_top {S : Set G} (h : Subgroup.closure S = ⊤) (g : G) :
     ∃ n, g ∈ CayleyBall S n := by
   induction h ▸ Subgroup.mem_top g using Subgroup.closure_induction with
@@ -115,7 +138,9 @@ lemma exists_cayleyBall_mem_of_closure_eq_top {S : Set G} (h : Subgroup.closure 
     exact ⟨n, cayleyBall_inv S hn⟩
 
 /-- In an infinite group, the growth function with respect to a finite generating set is
-unbounded.-/
+unbounded.
+@isnad1 id=tendsto.2h2v.s5.3919aec0fde1 from=translated src=- shape=e09ac5bc vocab=40ef4856
+-/
 theorem tendsto_atTop_growthFunction_of_infinite [Infinite G] {S : Set G} (hS : S.Finite)
     (h : Subgroup.closure S = ⊤) : atTop.Tendsto (GrowthFunction S) atTop := by
   delta GrowthFunction

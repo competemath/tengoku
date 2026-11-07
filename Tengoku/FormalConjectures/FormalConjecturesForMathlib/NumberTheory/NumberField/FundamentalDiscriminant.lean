@@ -40,7 +40,9 @@ def IsFundamentalDiscr (D : ℤ) : Prop :=
 
 /-- Unfolding of `IsFundamentalDiscr` in terms of `%`: a fundamental discriminant is either
 `4` times a squarefree integer congruent to `2` or `3` mod `4`, or a squarefree integer
-congruent to `1` mod `4` other than `1` itself.-/
+congruent to `1` mod `4` other than `1` itself.
+@isnad1 id=iff.0h1v.s6.bfb053bc662a from=translated src=- shape=23d712a3 vocab=b85f8476
+-/
 theorem isFundamentalDiscr_iff {D : ℤ} :
     IsFundamentalDiscr D ↔
       (∃ m, D = 4 * m ∧ (m % 4 = 2 ∨ m % 4 = 3) ∧ Squarefree m) ∨

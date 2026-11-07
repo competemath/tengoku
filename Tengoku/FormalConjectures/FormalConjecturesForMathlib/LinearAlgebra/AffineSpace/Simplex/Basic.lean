@@ -23,6 +23,9 @@ namespace Affine.Simplex
 variable {k V P : Type*} [Ring k] [AddCommGroup V] [Module k V] [AddTorsor V P] [PartialOrder k]
   [ZeroLEOneClass k] {n : ℕ}
 
+/--
+@isnad1 id=nonempty.0h5v.s6.e3252f63bbe2 from=translated src=- shape=476df0e8 vocab=be2d1623
+-/
 @[simp] lemma closedInterior_nonempty (s : Simplex k P n) : s.closedInterior.Nonempty :=
   ⟨_, s.point_mem_closedInterior 0⟩
 

@@ -22,6 +22,9 @@ public section
 namespace Nat
 variable {p : ℕ → Prop} [DecidablePred p] {n : ℕ}
 
+/--
+@isnad1 id=eq.1h2v.s5.1e5df4d0fe05 from=translated src=- shape=a7a1c7de vocab=664e83ec
+-/
 lemma find_of_isLeast (hn : IsLeast {n | p n} n) : Nat.find (p := p) ⟨n, hn.1⟩ = n := by
   rw [find_eq_iff]; exact ⟨hn.1, fun m hmn hm ↦ hmn.not_ge <| hn.2 hm⟩
 

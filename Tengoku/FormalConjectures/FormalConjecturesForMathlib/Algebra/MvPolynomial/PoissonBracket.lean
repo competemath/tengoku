@@ -49,15 +49,24 @@ noncomputable def poissonBracket (f g : MvPolynomial (σ ⊕ σ) R) : MvPolynomi
   ∑ i : σ, (pderiv (Sum.inl i) f * pderiv (Sum.inr i) g -
     pderiv (Sum.inr i) f * pderiv (Sum.inl i) g)
 
+/--
+@isnad1 id=eq.0h3v.s6.df1eff7f53f4 from=translated src=- shape=b8355589 vocab=a2cbcac5
+-/
 @[simp]
 theorem poissonBracket_self (f : MvPolynomial (σ ⊕ σ) R) : poissonBracket f f = 0 :=
   Finset.sum_eq_zero fun i _ => by rw [mul_comm, sub_self]
 
+/--
+@isnad1 id=eq.0h4v.s6.6a6b31de4f5b from=translated src=- shape=5be0fb1e vocab=2e067647
+-/
 theorem poissonBracket_swap (f g : MvPolynomial (σ ⊕ σ) R) :
     poissonBracket f g = -poissonBracket g f := by
   rw [poissonBracket, poissonBracket, ← Finset.sum_neg_distrib]
   exact Finset.sum_congr rfl fun i _ => by ring
 
+/--
+@isnad1 id=eq.0h4v.s6.98e869f665b6 from=translated src=- shape=f729d0e4 vocab=f0af3a25
+-/
 @[simp]
 theorem poissonBracket_X_inl_inl (i j : σ) :
     poissonBracket (X (Sum.inl i) : MvPolynomial (σ ⊕ σ) R) (X (Sum.inl j)) = 0 :=
@@ -66,6 +75,9 @@ theorem poissonBracket_X_inl_inl (i j : σ) :
       pderiv_X_of_ne (show (Sum.inl i : σ ⊕ σ) ≠ Sum.inr k from by simp), mul_zero, zero_mul,
       sub_self]
 
+/--
+@isnad1 id=eq.0h4v.s6.620ce941d183 from=translated src=- shape=f729d0e4 vocab=2700d611
+-/
 @[simp]
 theorem poissonBracket_X_inr_inr (i j : σ) :
     poissonBracket (X (Sum.inr i) : MvPolynomial (σ ⊕ σ) R) (X (Sum.inr j)) = 0 :=
@@ -74,6 +86,9 @@ theorem poissonBracket_X_inr_inr (i j : σ) :
       pderiv_X_of_ne (show (Sum.inr j : σ ⊕ σ) ≠ Sum.inl k from by simp), zero_mul, mul_zero,
       sub_self]
 
+/--
+@isnad1 id=eq.0h4v.s7.9aaab5d2bdaa from=translated src=- shape=905ff23e vocab=9fb9473c
+-/
 @[simp]
 theorem poissonBracket_X_inl_inr [DecidableEq σ] (i j : σ) :
     poissonBracket (X (Sum.inl i) : MvPolynomial (σ ⊕ σ) R) (X (Sum.inr j)) =
@@ -91,6 +106,9 @@ theorem poissonBracket_X_inl_inr [DecidableEq σ] (i j : σ) :
     simp
   · simp
 
+/--
+@isnad1 id=eq.0h4v.s7.a02b90573495 from=translated src=- shape=02d38d8f vocab=cd6ab1a7
+-/
 @[simp]
 theorem poissonBracket_X_inr_inl [DecidableEq σ] (i j : σ) :
     poissonBracket (X (Sum.inr i) : MvPolynomial (σ ⊕ σ) R) (X (Sum.inl j)) =
