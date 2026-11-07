@@ -1,0 +1,9 @@
+{
+ "bundle_sha256": "6b0f68552c1981c890ee2881152d7d4f2b4314040ce4975de7353b28db3560ff",
+ "gate2_unjudged": [],
+ "library": "sendov",
+ "lint_mode": "proposed",
+ "modules": 77,
+ "part": 1,
+ "theorems": 662
+}
