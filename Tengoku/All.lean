@@ -52,6 +52,7 @@ import Tengoku.LanaGenl
 import Tengoku.MiscYd
 import Tengoku.Vcvio
 import Tengoku.LanaPi1
+import Tengoku.Tnlean
 import Tengoku.LanaHeights
 import Tengoku.AtPalomar
 import Tengoku.EpsilonSml
