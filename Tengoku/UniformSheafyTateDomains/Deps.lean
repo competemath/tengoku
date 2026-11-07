@@ -1,0 +1,1 @@
+-- UniformSheafyTateDomains: a factory bundle (data/intake/uniform-sheafy-tate-domains). This file only marks the library for Tengoku/All.lean.

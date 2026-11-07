@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "0097401612341a938afac57943e93f2bd5dd403f5a3eaa23786af1057502b54f",
+ "factory_changes": {
+  "inert lines removed": 5,
+  "modules changed": 3
+ },
+ "gate2_unjudged": [],
+ "library": "uniform-sheafy-tate-domains",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 25
+}
