@@ -101,13 +101,18 @@ instance : IsLinearTopology (integerRing L) (integerRing L) := by
 omit [CompleteSpace L] in
 omit [CompleteSpace L] in
 /-- The algebra map `ℤ_[p] → integerRing L` is an isometry (it is the
-restriction of the scalar embedding `ℚ_[p] → L`).-/
+restriction of the scalar embedding `ℚ_[p] → L`).
+@isnad1 id=eq.0h3v.s9.eb2f25369a96 from=translated src=- shape=f8e5f926 vocab=f6600c27
+-/
 lemma norm_algebraMap_eq (x : ℤ_[p]) :
     ‖algebraMap ℤ_[p] (integerRing L) x‖ = ‖x‖ := by
   change ‖algebraMap ℚ_[p] L (x : ℚ_[p])‖ = ‖x‖
   rw [norm_algebraMap', PadicInt.norm_def]
 
 omit [CompleteSpace L] in
+/--
+@isnad1 id=isometry.0h2v.s9.0e7bb77b4f1c from=translated src=- shape=53497423 vocab=9f4a0084
+-/
 lemma isometry_algebraMap : Isometry (algebraMap ℤ_[p] (integerRing L)) :=
   AddMonoidHomClass.isometry_of_norm _ (norm_algebraMap_eq p L)
 
@@ -122,13 +127,17 @@ end integerRing
 variable {p L}
 
 /-- A normed `ℚ_[p]`-algebra field has characteristic zero (not an instance:
-`p` is not determined by the goal — cite per use site).-/
+`p` is not determined by the goal — cite per use site).
+@isnad1 id=charzero.0h2v.s5.4b1e0d9a8e6b from=translated src=- shape=ec520572 vocab=3ba5f974
+-/
 lemma charZero_of_qpAlgebra (q : ℕ) [Fact q.Prime] {M : Type*} [NormedField M]
     [NormedAlgebra ℚ_[q] M] : CharZero M :=
   charZero_of_injective_algebraMap (algebraMap ℚ_[q] M).injective
 
 omit [NormedAlgebra ℚ_[p] L] [CompleteSpace L] in
-/-- Elements of norm `< 1` are not units of the integer ring.-/
+/-- Elements of norm `< 1` are not units of the integer ring.
+@isnad1 id=not.1h2v.s8.b0422ebe2d71 from=translated src=- shape=e50ef343 vocab=e143f610
+-/
 theorem integerRing.not_isUnit_of_norm_lt_one {x : integerRing L}
     (hx : ‖(x : L)‖ < 1) : ¬ IsUnit x := fun h => by
   obtain ⟨y, hy⟩ := h.exists_right_inv
@@ -141,7 +150,9 @@ theorem integerRing.not_isUnit_of_norm_lt_one {x : integerRing L}
 
 omit [NormedAlgebra ℚ_[p] L] [CompleteSpace L] in
 /-- An element of the integer ring of norm one is a unit: its field inverse
-again has norm one, hence lies in the integer ring.-/
+again has norm one, hence lies in the integer ring.
+@isnad1 id=isunit.1h2v.s8.fe1b254f3e6a from=translated src=- shape=68633449 vocab=c16eb641
+-/
 theorem integerRing.isUnit_of_norm_eq_one {x : integerRing L}
     (hx : ‖(x : L)‖ = 1) : IsUnit x := by
   have hx0 : (x : L) ≠ 0 := norm_ne_zero_iff.1 (by rw [hx]; exact one_ne_zero)
@@ -151,7 +162,9 @@ theorem integerRing.isUnit_of_norm_eq_one {x : integerRing L}
 
 omit [IsUltrametricDist L] [CompleteSpace L] in
 /-- In a normed `ℚ_[p]`-algebra, `‖p‖ = p⁻¹ < 1` (the algebra map is an
-isometry on scalars).-/
+isometry on scalars).
+@isnad1 id=lt.0h2v.s5.db04e537402d from=translated src=- shape=153ab063 vocab=291ef669
+-/
 theorem norm_natCast_self_lt_one : ‖((p : ℕ) : L)‖ < 1 := by
   have h : ((p : ℕ) : L) = algebraMap ℚ_[p] L ((p : ℕ) : ℚ_[p]) := by
     simp [map_natCast]
@@ -163,7 +176,9 @@ omit [CompleteSpace L] in
 the element `ζ^c − 1` has norm one (hence is a unit of the integer ring).
 
 Source (TeX 1798): "and `ε_D^c − 1 ∈ 𝒪_L^×` (since it has norm dividing
-`D`)".-/
+`D`)".
+@isnad1 id=eq.3h5v.s7.3672d49d0825 from=translated src=- shape=f271cb86 vocab=5bf03297
+-/
 theorem _root_.IsPrimitiveRoot.norm_pow_sub_one_eq_one {ζ : L} {D : ℕ}
     (hζ : IsPrimitiveRoot ζ D) (hD : ¬ (p : ℕ) ∣ D) {c : ℕ} (hc : ¬ D ∣ c) :
     ‖ζ ^ c - 1‖ = 1 := by

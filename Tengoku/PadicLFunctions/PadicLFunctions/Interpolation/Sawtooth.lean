@@ -35,7 +35,9 @@ namespace PadicLFunctions
 
 /-! ### Dirichlet-test partial-sum bounds -/
 
-/-- Summation by parts bound for a weighted series with bounded partial sums.-/
+/-- Summation by parts bound for a weighted series with bounded partial sums.
+@isnad1 id=le.3h5v.s7.951190ea4319 from=translated src=- shape=ec13d017 vocab=3f700d6b
+-/
 lemma norm_sum_range_smul_le_of_antitone_of_nonneg_of_bounded
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {a : ℕ → ℝ} {z : ℕ → E} {B : ℝ}
@@ -112,7 +114,9 @@ lemma norm_sum_range_smul_le_of_antitone_of_nonneg_of_bounded
       _ ≤ B * a (n - 1) + B * (a 0 - a (n - 1)) := add_le_add hfirst hsum_le
       _ = B * a 0 := by ring
 
-/-- Partial sums over a shifted sequence are controlled by the same bound up to a factor `2`.-/
+/-- Partial sums over a shifted sequence are controlled by the same bound up to a factor `2`.
+@isnad1 id=le.1h5v.s6.ef0631a77da2 from=translated src=- shape=e443c8f8 vocab=7364fc4c
+-/
 lemma norm_sum_range_shift_le_of_bounded
     {E : Type*} [NormedAddCommGroup E]
     {z : ℕ → E} {B : ℝ}
@@ -132,7 +136,9 @@ lemma norm_sum_range_shift_le_of_bounded
     _ ≤ B + B := add_le_add (hbound _) (hbound _)
     _ = 2 * B := by ring
 
-/-- Tail sums of a weighted series inherit the same summation-by-parts bound.-/
+/-- Tail sums of a weighted series inherit the same summation-by-parts bound.
+@isnad1 id=le.3h6v.s7.0ae8d4dd2dd2 from=translated src=- shape=d5d2c295 vocab=01c41ed1
+-/
 lemma norm_sum_range_shift_smul_le_of_antitone_of_nonneg_of_bounded
     {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
     {a : ℕ → ℝ} {z : ℕ → E} {B : ℝ}
@@ -149,7 +155,9 @@ lemma norm_sum_range_shift_smul_le_of_antitone_of_nonneg_of_bounded
 
 /-! ### Polar bounds for `1 − e^{it}` and the Abel sums -/
 
-/-- Rewriting `1 - e^{it}` in polar form on the upper unit semicircle.-/
+/-- Rewriting `1 - e^{it}` in polar form on the upper unit semicircle.
+@isnad1 id=eq.0h1v.s7.52cdf1d9edd3 from=translated src=- shape=1431b9ed vocab=c4211958
+-/
 lemma one_sub_exp_ofReal_mul_I (t : ℝ) :
     (1 : ℂ) - Complex.exp (t * Complex.I) =
       (2 * Real.sin (t / 2) : ℝ) *
@@ -171,7 +179,9 @@ lemma one_sub_exp_ofReal_mul_I (t : ℝ) :
             simp [Real.cos_sub_pi_div_two, Real.sin_sub_pi_div_two, sq]
             ring
 
-/-- The principal argument of `1 - e^{it}` for `0 < t < 2π`.-/
+/-- The principal argument of `1 - e^{it}` for `0 < t < 2π`.
+@isnad1 id=eq.2h1v.s6.b2a1e9219025 from=translated src=- shape=8e77583c vocab=ebfa0637
+-/
 lemma arg_one_sub_exp_ofReal_mul_I {t : ℝ} (ht₀ : 0 < t) (ht₂π : t < 2 * Real.pi) :
     Complex.arg ((1 : ℂ) - Complex.exp (t * Complex.I)) = t / 2 - Real.pi / 2 := by
   have hs : 0 < 2 * Real.sin (t / 2) := by
@@ -186,7 +196,9 @@ lemma arg_one_sub_exp_ofReal_mul_I {t : ℝ} (ht₀ : 0 < t) (ht₂π : t < 2 * 
   rw [one_sub_exp_ofReal_mul_I]
   simpa using (Complex.arg_mul_cos_add_sin_mul_I hs hθ)
 
-/-- The logarithm in the Abel sum formula has the expected boundary imaginary part.-/
+/-- The logarithm in the Abel sum formula has the expected boundary imaginary part.
+@isnad1 id=eq.2h1v.s6.612a3c8ede5a from=translated src=- shape=437f1da6 vocab=e3bccc72
+-/
 lemma neg_log_one_sub_exp_ofReal_mul_I_im {t : ℝ} (ht₀ : 0 < t) (ht₂π : t < 2 * Real.pi) :
     (-Complex.log ((1 : ℂ) - Complex.exp (t * Complex.I))).im = Real.pi / 2 - t / 2 := by
   rw [show (-Complex.log ((1 : ℂ) - Complex.exp (t * Complex.I))).im =
@@ -194,7 +206,9 @@ lemma neg_log_one_sub_exp_ofReal_mul_I_im {t : ℝ} (ht₀ : 0 < t) (ht₂π : t
   rw [Complex.log_im, arg_one_sub_exp_ofReal_mul_I ht₀ ht₂π]
   ring
 
-/-- Abel summation identity for the damped sine series attached to `sinZeta` at `s = 1`.-/
+/-- Abel summation identity for the damped sine series attached to `sinZeta` at `s = 1`.
+@isnad1 id=hassum.2h2v.s7.831868f40ba8 from=translated src=- shape=1ff533c3 vocab=9b71a1dd
+-/
 lemma hasSum_mul_rpow_sin (x r : ℝ) (hr₀ : 0 ≤ r) (hr₁ : r < 1) :
     HasSum (fun n : ℕ => (r ^ n / n) * Real.sin (2 * Real.pi * x * n))
       (-Complex.log ((1 : ℂ) - (r : ℂ) * Complex.exp ((2 * Real.pi * x) * Complex.I))).im := by
@@ -226,7 +240,9 @@ lemma hasSum_mul_rpow_sin (x r : ℝ) (hr₀ : 0 ≤ r) (hr₁ : r < 1) :
 
 /-! ### The sine boundary chain -/
 
-/-- Partial sums of the sine kernel stay uniformly bounded away from the endpoints.-/
+/-- Partial sums of the sine kernel stay uniformly bounded away from the endpoints.
+@isnad1 id=le.2h2v.s7.28794ee8dd1d from=translated src=- shape=d8ce7311 vocab=3ccd814a
+-/
 lemma norm_sum_range_sin_le {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) (n : ℕ) :
     ‖∑ i ∈ Finset.range n, Real.sin (2 * Real.pi * x * i)‖ ≤
       2 / ‖(1 : ℂ) - Complex.exp ((2 * Real.pi * x) * Complex.I)‖ := by
@@ -280,7 +296,9 @@ lemma norm_sum_range_sin_le {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) (n : ℕ) 
     _ = 2 / ‖(1 : ℂ) - Complex.exp ((2 * Real.pi * x) * Complex.I)‖ := by
       simp [z, norm_sub_rev]
 
-/-- Continuity in the exponent of a single shifted sine term.-/
+/-- Continuity in the exponent of a single shifted sine term.
+@isnad1 id=continuo.0h2v.s6.634a93399129 from=translated src=- shape=bee2642c vocab=9ce54df1
+-/
 lemma continuous_shiftedSinTerm (x : ℝ) (i : ℕ) :
     Continuous fun s : ℝ =>
       Real.sin (2 * Real.pi * x * (i + 1)) / ((i + 1 : ℂ) ^ (s : ℂ)) := by
@@ -289,7 +307,9 @@ lemma continuous_shiftedSinTerm (x : ℝ) (i : ℕ) :
   · intro s h
     exact (Nat.cast_add_one_ne_zero i) ((Complex.cpow_eq_zero_iff _ _).mp h).1
 
-/-- Repackage `hasSum_nat_sinZeta` with the harmless zero term removed.-/
+/-- Repackage `hasSum_nat_sinZeta` with the harmless zero term removed.
+@isnad1 id=hassum.1h2v.s7.4cf7a33ba305 from=translated src=- shape=02558ae6 vocab=e4d924da
+-/
 lemma hasSum_shifted_sinZeta (x s : ℝ) (hs : 1 < s) :
     HasSum (fun n : ℕ => Real.sin (2 * Real.pi * x * (n + 1)) / ((n + 1 : ℂ) ^ (s : ℂ)))
       (HurwitzZeta.sinZeta x s) := by
@@ -304,7 +324,9 @@ lemma hasSum_shifted_sinZeta (x s : ℝ) (hs : 1 < s) :
     simpa [f, hs.ne'] using this
   exact hvalue ▸ hshift.congr_fun (fun n => by simp [f])
 
-/-- Uniform tail bound for the shifted sine Dirichlet series on the half-line `s ≥ 1`.-/
+/-- Uniform tail bound for the shifted sine Dirichlet series on the half-line `s ≥ 1`.
+@isnad1 id=le.3h4v.s8.6c838fa90cde from=translated src=- shape=37e12dd3 vocab=1ad0928f
+-/
 lemma norm_sum_range_shifted_sin_term_le {x s : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) (hs : 1 ≤ s)
     (m n : ℕ) :
     ‖∑ i ∈ Finset.range n,
@@ -361,7 +383,9 @@ lemma norm_sum_range_shifted_sin_term_le {x s : ℝ} (hx₀ : 0 < x) (hx₁ : x 
             ring
           rw [hcoef]
 
-/-- The endpoint sine series converges on `(0, 1)` by Dirichlet's test.-/
+/-- The endpoint sine series converges on `(0, 1)` by Dirichlet's test.
+@isnad1 id=ex.2h1v.s6.e1016f7bd02b from=translated src=- shape=0e2e4642 vocab=8602a8e6
+-/
 lemma exists_tendsto_sum_range_sin_div_nat {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     ∃ l : ℝ,
       Tendsto
@@ -418,7 +442,9 @@ lemma exists_tendsto_sum_range_sin_div_nat {x : ℝ} (hx₀ : 0 < x) (hx₁ : x 
   exact hseries ▸ hl
 
 /-- The endpoint sine series converges to the classical boundary value
-`π * (1 / 2 - x)` on `(0, 1)`.-/
+`π * (1 / 2 - x)` on `(0, 1)`.
+@isnad1 id=tendsto.2h1v.s7.d1f0488fefd0 from=translated src=- shape=5dca4e9b vocab=36b77c7f
+-/
 lemma tendsto_sum_range_sin_div_nat {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     Tendsto
       (fun n ↦ ∑ i ∈ Finset.range n, if i = 0 then 0 else Real.sin (2 * Real.pi * x * i) / i)
@@ -532,7 +558,9 @@ lemma tendsto_sum_range_sin_div_nat {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
   have hl_eq : l = Real.pi * (1 / 2 - x) := tendsto_nhds_unique habel' hcont
   simpa [hl_eq] using hl
 
-/-- The shifted endpoint sine series converges to the same boundary value.-/
+/-- The shifted endpoint sine series converges to the same boundary value.
+@isnad1 id=tendsto.2h1v.s7.d02566cc2600 from=translated src=- shape=b8155de3 vocab=bf1b6903
+-/
 lemma tendsto_sum_range_shifted_sin_one {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     Tendsto
       (fun n : ℕ => ∑ i ∈ Finset.range n,
@@ -551,7 +579,9 @@ lemma tendsto_sum_range_shifted_sin_one {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1
       (fun i : ℕ => (((if i = 0 then 0 else Real.sin (2 * Real.pi * x * i) / i : ℝ)) : ℂ)) 1 n
   simpa [F, add_comm, add_left_comm, add_assoc] using hsum
 
-/-- The shifted sine Dirichlet partial sums are uniformly Cauchy on the half-line `s ≥ 1`.-/
+/-- The shifted sine Dirichlet partial sums are uniformly Cauchy on the half-line `s ≥ 1`.
+@isnad1 id=uniformc.2h1v.s7.865fc14d6796 from=translated src=- shape=9408ba90 vocab=8ec0f549
+-/
 lemma uniformCauchySeqOn_shiftedSinPartialSums {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     UniformCauchySeqOn
       (fun n (s : ℝ) => ∑ i ∈ Finset.range n,
@@ -644,7 +674,9 @@ lemma uniformCauchySeqOn_shiftedSinPartialSums {x : ℝ} (hx₀ : 0 < x) (hx₁ 
   · simpa [dist_comm] using htail_bound hn hnm s hs
 
 /-- The sine zeta function takes the classical boundary value at `s = 1` for `x ∈ (0, 1)`:
-`sinZeta x 1 = π(1/2 − x)`.-/
+`sinZeta x 1 = π(1/2 − x)`.
+@isnad1 id=eq.2h1v.s6.c1ef6df0f535 from=translated src=- shape=48a86b93 vocab=687ea7ab
+-/
 theorem sinZeta_one_eq_boundary {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     HurwitzZeta.sinZeta x 1 = (Real.pi * (1 / 2 - x) : ℂ) := by
   let boundary : ℂ := (Real.pi * (1 / 2 - x) : ℂ)
@@ -694,7 +726,9 @@ theorem sinZeta_one_eq_boundary {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
 
 /-! ### `hurwitzZeta` at `s = 0` on the open interval -/
 
-/-- A real number in `(0,1)` is nonzero on the unit circle `ℝ/ℤ`.-/
+/-- A real number in `(0,1)` is nonzero on the unit circle `ℝ/ℤ`.
+@isnad1 id=ne.2h1v.s7.e3ad77ad2963 from=translated src=- shape=dec9a71c vocab=db86bf7e
+-/
 lemma unitAddCircle_coe_ne_zero {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     (↑x : UnitAddCircle) ≠ 0 := by
   intro h
@@ -708,7 +742,9 @@ lemma unitAddCircle_coe_ne_zero {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
 
 /-- The odd Hurwitz zeta function at `s = 0`: `ζ_O(x, 0) = 1/2 − x` for
 `x ∈ (0,1)`, via the functional equation `hurwitzZetaOdd_one_sub` at `s = 1`
-and the sawtooth boundary value.-/
+and the sawtooth boundary value.
+@isnad1 id=eq.2h1v.s6.2539771cbaeb from=translated src=- shape=b0eac389 vocab=085028bb
+-/
 theorem hurwitzZetaOdd_apply_zero_of_mem_Ioo {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     HurwitzZeta.hurwitzZetaOdd x 0 = ((1 / 2 - x : ℝ) : ℂ) := by
   have h1 : ∀ n : ℕ, (1 : ℂ) ≠ -(n : ℂ) := by
@@ -731,7 +767,9 @@ theorem hurwitzZetaOdd_apply_zero_of_mem_Ioo {x : ℝ} (hx₀ : 0 < x) (hx₁ : 
 
 /-- mathlib's `hurwitzZeta_neg_nat`, extended to `k = 0` for `x` in the open
 interval (the `k = 0` case is the TODO recorded at `hurwitzZeta_neg_nat`;
-boundary `x` genuinely fails it: `hurwitzZeta 0 0 = ζ(0) = −1/2 ≠ −B₁(0)`).-/
+boundary `x` genuinely fails it: `hurwitzZeta 0 0 = ζ(0) = −1/2 ≠ −B₁(0)`).
+@isnad1 id=eq.2h2v.s7.60b6f87a23f2 from=translated src=- shape=ddceaf2b vocab=92d16246
+-/
 theorem hurwitzZeta_neg_nat_of_mem_Ioo (k : ℕ) {x : ℝ} (hx₀ : 0 < x) (hx₁ : x < 1) :
     HurwitzZeta.hurwitzZeta x (-(k : ℂ)) =
       -1 / (k + 1) *

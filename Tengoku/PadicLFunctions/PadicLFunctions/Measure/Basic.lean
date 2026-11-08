@@ -68,6 +68,9 @@ def dirac (x : X) : PadicMeasure p X where
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s8.fbe3a991bd98 from=translated src=- shape=71f16456 vocab=79966173
+-/
 @[simp]
 lemma dirac_apply (x : X) (f : C(X, ℤ_[p])) : dirac p x f = f x := rfl
 
@@ -78,6 +81,9 @@ def compRight (m : C(X, Y)) : C(Y, ℤ_[p]) →ₗ[ℤ_[p]] C(X, ℤ_[p]) where
   map_add' _ _ := by ext; simp
   map_smul' _ _ := by ext; simp
 
+/--
+@isnad1 id=eq.0h5v.s9.45abac3dca2e from=translated src=- shape=164b122d vocab=95b99e8a
+-/
 @[simp]
 lemma compRight_apply (m : C(X, Y)) (f : C(Y, ℤ_[p])) : compRight p m f = f.comp m := rfl
 
@@ -89,10 +95,16 @@ def pushforward (m : C(X, Y)) : PadicMeasure p X →ₗ[ℤ_[p]] PadicMeasure p 
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h6v.s11.364a296d24df from=translated src=- shape=253b5aa3 vocab=32f073e0
+-/
 @[simp]
 lemma pushforward_apply (m : C(X, Y)) (μ : PadicMeasure p X) (f : C(Y, ℤ_[p])) :
     pushforward p m μ f = μ (f.comp m) := rfl
 
+/--
+@isnad1 id=eq.0h5v.s11.5671287fa098 from=translated src=- shape=7be94f94 vocab=5fec0eb3
+-/
 @[simp]
 lemma pushforward_dirac (m : C(X, Y)) (x : X) :
     pushforward p m (dirac p x) = dirac p (m x) := rfl
@@ -104,7 +116,9 @@ section compact
 variable [CompactSpace X]
 
 /-- Residue discs mod `p^k` are open in `ℤ_p`: the reduction `toZModPow k` is locally
-constant. Workhorse for density and for the `ψ`-operator's digit shift.-/
+constant. Workhorse for density and for the `ψ`-operator's digit shift.
+@isnad1 id=isopen.0h3v.s8.ac3f215f0a80 from=translated src=- shape=83d15901 vocab=1fa96f47
+-/
 lemma isOpen_toZModPow_fiber (k : ℕ) (a : ZMod (p ^ k)) :
     IsOpen {z : ℤ_[p] | PadicInt.toZModPow k z = a} := by
   rw [Metric.isOpen_iff]
@@ -118,7 +132,9 @@ lemma isOpen_toZModPow_fiber (k : ℕ) (a : ZMod (p ^ k)) :
   simpa only [Set.mem_ofPred_eq, hmem] using hz
 
 /-- The canonical-digit lift `x ↦ [x mod p^k] : ℤ_p → ℤ_p` is locally constant
-(hence continuous).-/
+(hence continuous).
+@isnad1 id=islocall.0h2v.s8.af49fa6c1c53 from=translated src=- shape=1c312cbe vocab=c6d4b8aa
+-/
 lemma isLocallyConstant_toZModPow_val (k : ℕ) :
     IsLocallyConstant fun x : ℤ_[p] => (((PadicInt.toZModPow k x).val : ℕ) : ℤ_[p]) :=
   (IsLocallyConstant.comp (fun s => by
@@ -133,7 +149,9 @@ disjointify, and pick values.
 
 Source: RJW Rem. 3.8 (`rem:locally constant`, TeX lines 782–791): "any continuous
 function `φ ∈ 𝒞(G, 𝒪_L)` can be p-adically approximated by its locally constant
-truncations". Not in mathlib (verified absent); PR candidate.-/
+truncations". Not in mathlib (verified absent); PR candidate.
+@isnad1 id=ex.1h4v.s8.6e497f4fd9a4 from=translated src=- shape=3115dfba vocab=ccc07a23
+-/
 theorem exists_locallyConstant_norm_sub_le (f : C(X, ℤ_[p])) {ε : ℝ} (hε : 0 < ε) :
     ∃ g : LocallyConstant X ℤ_[p], ‖f - (g : C(X, ℤ_[p]))‖ ≤ ε := by
   obtain ⟨k, hk⟩ := PadicInt.exists_pow_neg_lt p hε
