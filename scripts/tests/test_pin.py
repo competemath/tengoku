@@ -121,24 +121,51 @@ class Pin(unittest.TestCase):
         self.assertNotIn("lake build Tengoku.All ->", log.replace("lake build Tengoku.All --no-build ->", ""))
 
     def check(self):
-        env = {**os.environ, "PATH": f"{self.shim}:{os.environ['PATH']}", "SHIM_DIR": str(self.shim), "SHIM_LOG": str(self.shim / "log"), "TENGOKU_TOPUPS": "1", "TENGOKU_PIN_FRESH": "1"}
+        env = {
+            **os.environ,
+            "PATH": f"{self.shim}:{os.environ['PATH']}",
+            "SHIM_DIR": str(self.shim),
+            "SHIM_LOG": str(self.shim / "log"),
+            "TENGOKU_TOPUPS": "1",
+            "TENGOKU_PIN_FRESH": "1",
+        }
         r = subprocess.run(["bash", "scripts/pin.sh", "--check"], cwd=self.clone, env=env, capture_output=True, text=True)
         return r.returncode, r.stdout.strip()
 
-    def test_a_failed_download_keeps_the_commit_of_the_build_on_disk(self):
-        # 8 Nov 2026: a 504 failed `cache.sh get` after the checkout had moved, and the services reported a commit they had never loaded, "current" until the next cache
+    def old_build(self):
         (self.clone / ".lake/build/lib/lean/Tengoku").mkdir(parents=True)
         (self.clone / ".lake/build/lib/lean/Tengoku/All.olean").write_text("the old build\n")
         (self.shim / "get-fails").write_text("")
-        rc, out, log, head = self.pin([], start=self.base)
+
+    def test_a_failed_download_keeps_the_commit_of_the_build_on_disk(self):
+        # 8 Nov 2026: a 504 failed `cache.sh get` after the checkout had moved, and the services reported a commit they had never loaded, "current" until the next cache
+        self.old_build()
+        rc, out, log, head = self.pin(["ok"], start=self.base)
         self.assertEqual((rc, head), (4, self.base), out)
         self.assertIn("could not be fetched", out)
-        self.assertEqual(log.count("lake build"), 0, log)  # nothing is replayed or built on the failed path
+        self.assertEqual(log.count("lake build Tengoku.All --no-build"), 1, log)  # "kept" is only said of a build that replays
+        self.assertIn("cache.sh topup-rollback", log)
         self.assertEqual(self.check(), (3, f"newer {self.tip}"))  # not current: the next refresh tries again
         (self.shim / "get-fails").unlink()
         rc, out, log, head = self.pin(["ok"])  # the download works again: the same checkout moves on
         self.assertEqual((rc, head), (0, self.tip), out)
         self.assertEqual(self.check(), (0, f"current {self.tip}"))
+
+    def test_a_failed_download_puts_the_top_up_it_came_from_back(self):
+        (self.shim / "applied").write_text("prevtopup\n")
+        self.old_build()
+        rc, out, log, head = self.pin(["ok"], start=self.base)
+        self.assertEqual((rc, head), (4, self.base), out)
+        self.assertIn("cache.sh topup-reapply prevtopup", log)
+
+    def test_a_failed_download_that_broke_the_build_is_never_called_kept(self):
+        # `get` can fail after touching the disk: a rolled-back top-up, an unpack cut short (gitar, #763)
+        self.old_build()
+        rc, out, _, head = self.pin(["fail"], start=self.base)
+        self.assertEqual((rc, head), (1, self.base), out)
+        self.assertNotIn("kept", out)
+        self.assertIn("no longer replays", out)
+        self.assertEqual(self.check(), (3, f"newer {self.tip}"))
 
     def test_a_failed_first_download_fails_and_is_never_read_as_current(self):
         (self.shim / "get-fails").write_text("")

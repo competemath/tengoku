@@ -56,12 +56,19 @@ echo "pinning the tree to $tag (commit $latest, was ${head:0:12})"
 git checkout -q -f "$latest"
 newest_scripts
 if ! scripts/cache.sh get; then
-  # The download failed, so the build on disk is still the old commit's. Going on (or stopping here) would leave the checkout on the new commit over the old build, and --check
-  # and the next run would read that as current until the next cache: on 8 Nov 2026 a 504 left all three services reporting a commit they had never loaded.
+  # The fetch failed. Stopping here would leave the checkout on the new commit over the old build, and --check and the next run would read that as current until the next cache:
+  # on 8 Nov 2026 a 504 left all three services reporting a commit they had never loaded. Go back to the commit of the build on disk, and say "kept" only if that build replays:
+  # `get` can also fail after touching the disk (a top-up rolled back, an unpack cut short).
   [ -n "$built" ] || exit 1
   git checkout -q -f "$head"
-  newest_scripts scripts/pin.sh
-  echo "kept ${head:0:12}: the cache for $latest could not be fetched"; exit 4
+  newest_scripts
+  if { [ "$TENGOKU_TOPUPS" != 1 ] || { if [ -n "$was" ]; then scripts/cache.sh topup-reapply "$was"; else scripts/cache.sh topup-rollback; fi; }; } >/dev/null 2>&1 \
+     && lake build Tengoku.All --no-build >/dev/null 2>&1; then
+    newest_scripts scripts/pin.sh
+    echo "kept ${head:0:12}: the cache for $latest could not be fetched"; exit 4
+  fi
+  echo "the cache for $latest could not be fetched, and the build on disk no longer replays" >&2
+  exit 1
 fi
 # Verify the replay WITHOUT letting Lake compile anything: if the cache did not
 # cover the tree exactly, this fails loudly instead of building.
