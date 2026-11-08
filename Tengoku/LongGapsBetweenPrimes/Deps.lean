@@ -1,0 +1,1 @@
+-- LongGapsBetweenPrimes: a factory bundle (data/intake/long-gaps-between-primes). This file only marks the library for Tengoku/All.lean.
