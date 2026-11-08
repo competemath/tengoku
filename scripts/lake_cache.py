@@ -41,6 +41,9 @@ import time
 import urllib.request
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent / "ci"))
+from _git import module_name  # noqa: E402  (the one rule for module names, scripts/ci/_git.py)
+
 # Stage on the runner's work disk when there is one: /tmp is a 7.9 GB tmpfs with a quota on ubuntu-26.04 runners (see scripts/cache.sh).
 if os.environ.get("RUNNER_TEMP"):
     tempfile.tempdir = os.environ["RUNNER_TEMP"]
@@ -98,10 +101,11 @@ def compiled(log: str) -> set[str]:
 
 
 def module_of(path: str) -> str | None:
-    """The Lean module a tracked file is (None for anything that is not a module of the tree)."""
+    """The Lean module a tracked file is, as Lean spells it in an import and Lake in a `Built` line (`…/2d.lean` is `….«2d»`); None for anything that is not a
+    module of the tree."""
     if not path.endswith(".lean") or not (path == TREE_ROOT_FILE or path.startswith("Tengoku/")):
         return None
-    return path[: -len(".lean")].replace("/", ".")
+    return module_name(path[: -len(".lean")])
 
 
 def imports_of(text: str) -> list[str]:

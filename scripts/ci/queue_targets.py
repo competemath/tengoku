@@ -26,6 +26,7 @@ from _git import (
     library_of_module,
     load_schema,
     match,
+    module_name,
     pascal,
     plain,
     run,
@@ -170,7 +171,7 @@ targets += [f"Tengoku.{ns}" for ns in sorted(intake_ns - extend_ns)]
 for st, p in changed_files(base, head):
     m = re.fullmatch(r"Tengoku/([^/]+)/(.+)\.lean", p)
     if st == "A" and m and m.group(1) in extend_ns:
-        targets.append(f"Tengoku.{m.group(1)}.{m.group(2).replace('/', '.')}")
+        targets.append(module_name(p[: -len(".lean")]))
 # A scope-fix PR (scripts/ci/scope_fix_check.py) modifies existing modules of an intake library: the queue builds that library again, with its axiom
 # check and leak report, as it did when the library arrived.
 for st, p in changed_files(base, head):
