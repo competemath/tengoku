@@ -19,7 +19,7 @@ echo "cache.sh $* TOPUPS=${TENGOKU_TOPUPS:-} FORCE=${TENGOKU_FORCE:-0}" >> "$SHI
 case "$1" in
   latest) if [ "${TENGOKU_TOPUPS:-0}" = 1 ]; then cat "$SHIM_DIR/latest-topup"; else cat "$SHIM_DIR/latest-base"; fi ;;
   latest-tag) echo cache-test ;;
-  get) mkdir -p .lake/build/lib/lean/Tengoku && touch .lake/build/lib/lean/Tengoku/All.olean ;;
+  get) if [ -f "$SHIM_DIR/get-fails" ]; then echo "curl: (22) The requested URL returned error: 504" >&2; exit 22; fi; mkdir -p .lake/build/lib/lean/Tengoku && touch .lake/build/lib/lean/Tengoku/All.olean ;;
   topup-reapply) [ -f "$SHIM_DIR/reapply-fails" ] && exit 1; exit 0 ;;
   *) exit 0 ;;
 esac
@@ -119,6 +119,32 @@ class Pin(unittest.TestCase):
         rc, out, log, head = self.pin(["fail", "fail", "fail", "fail"])
         self.assertNotEqual(rc, 0, out)
         self.assertNotIn("lake build Tengoku.All ->", log.replace("lake build Tengoku.All --no-build ->", ""))
+
+    def check(self):
+        env = {**os.environ, "PATH": f"{self.shim}:{os.environ['PATH']}", "SHIM_DIR": str(self.shim), "SHIM_LOG": str(self.shim / "log"), "TENGOKU_TOPUPS": "1", "TENGOKU_PIN_FRESH": "1"}
+        r = subprocess.run(["bash", "scripts/pin.sh", "--check"], cwd=self.clone, env=env, capture_output=True, text=True)
+        return r.returncode, r.stdout.strip()
+
+    def test_a_failed_download_keeps_the_commit_of_the_build_on_disk(self):
+        # 8 Nov 2026: a 504 failed `cache.sh get` after the checkout had moved, and the services reported a commit they had never loaded, "current" until the next cache
+        (self.clone / ".lake/build/lib/lean/Tengoku").mkdir(parents=True)
+        (self.clone / ".lake/build/lib/lean/Tengoku/All.olean").write_text("the old build\n")
+        (self.shim / "get-fails").write_text("")
+        rc, out, log, head = self.pin([], start=self.base)
+        self.assertEqual((rc, head), (4, self.base), out)
+        self.assertIn("could not be fetched", out)
+        self.assertEqual(log.count("lake build"), 0, log)  # nothing is replayed or built on the failed path
+        self.assertEqual(self.check(), (3, f"newer {self.tip}"))  # not current: the next refresh tries again
+        (self.shim / "get-fails").unlink()
+        rc, out, log, head = self.pin(["ok"])  # the download works again: the same checkout moves on
+        self.assertEqual((rc, head), (0, self.tip), out)
+        self.assertEqual(self.check(), (0, f"current {self.tip}"))
+
+    def test_a_failed_first_download_fails_and_is_never_read_as_current(self):
+        (self.shim / "get-fails").write_text("")
+        rc, out, _, _ = self.pin([])
+        self.assertNotIn(rc, (0, 4), out)  # nothing to keep: the caller must see the failure
+        self.assertEqual(self.check()[0], 3)
 
     def test_it_runs_the_newest_pin_sh_even_when_its_own_copy_is_old(self):
         git(self.clone, "checkout", "-q", "-f", self.base)
