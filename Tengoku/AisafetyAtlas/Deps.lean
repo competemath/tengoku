@@ -1,0 +1,1 @@
+-- AisafetyAtlas: a factory bundle (data/intake/aisafety-atlas). This file only marks the library for Tengoku/All.lean.

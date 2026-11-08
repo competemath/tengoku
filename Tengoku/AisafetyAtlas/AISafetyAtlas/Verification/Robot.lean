@@ -1,0 +1,135 @@
+module
+
+public import Tengoku.AisafetyAtlas.AISafetyAtlas.Verification
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Verification limits for reactive robot programs
+
+This module isolates the **computability core** of Theorem 1 and Corollary 1
+of van Leeuwen and Wiedermann, *Impossibility Results for the Online
+Verification of Ethical and Legal Behaviour of Robots* (UU-PCS-2021-02, 2021).
+Full extracted statements and a proof comparison live in
+`docs/guide/robot-verification-model.md`.
+
+## Which version, and a number collision
+
+The survey cites — and this module transcribes — the **Utrecht technical
+report**, which is unrefereed. A peer-reviewed version exists: Wiedermann and van
+Leeuwen, *Validating Non-trivial Semantic Properties of Autonomous Robots*, in
+*Philosophy and Theory of Artificial Intelligence 2021*, SAPERE vol. 63,
+pp. 91–104, Springer 2022 (`doi:10.1007/978-3-031-09153-7_8`).
+
+**The two reuse the same numbers for different statements.** Every number below
+is the technical report's:
+
+| technical report | published chapter |
+|---|---|
+| **Theorem 1** — non-trivial `P`: no algorithmic procedure tells whether a robot's actions always satisfy `P` | **Theorem 1** — for **regular** `P`: `P` is trivial **iff** `R_P` is recursive |
+| **Corollary 1** — the same for robots programmed by structured programs | **Corollary 1** — for regular `P`: `P` is non-trivial **iff** `R_P` is non-recursive |
+| **Theorem 2** — no feasible `P`-module decides correctly at runtime | **Theorem 2** — no `P`-verifier of whatever kind decides `P` for a given robot |
+| Definition 2, structured programs | Definition 3, **regularity**; Definition 4, non-triviality |
+
+So a reader who takes *"Theorem 1"* below to the published chapter gets a
+different theorem. The published Theorem 1 is also **strictly stronger** — an
+equivalence, strengthened in the following remark to *"not even recursively
+enumerable"* — and carries a **regularity** hypothesis the report's does not.
+`action_safety_unverifiable` matches the report's Theorem 1 and Corollary 1, and
+only the easy half of the published one.
+
+## Paper statements (extracted, technical-report numbering)
+
+**Theorem 1.** Let *P* be any non-trivial robot property. There does not exist
+an algorithmic procedure that will enable an observer to tell, given an
+arbitrary robot with potentially unbounded memory, whether the actions of the
+robot always satisfy *P*.
+
+**Corollary 1.** Let *P* be a non-trivial robot property. There does not exist
+an algorithmic procedure that will enable an observer to tell, given any robot
+(with potentially unbounded memory) that is programmed by a structured program,
+whether the actions of the robot always satisfy *P*.
+
+The paper proof builds an explicit Sense–Plan–Act program `τₓ` (Fig. 1) from
+non-triviality (Def. 3): pace a simulation of `Mₓ` on `x` across operational
+cycles; run like a base program `ρ` that always satisfies *P* until the
+simulation reports halt, then switch to alternative actions that violate *P*.
+That construction is longer than the reduction step because it has to stay
+inside their robotics programming model (hyper-commands, structured programs,
+paced finite cycles, unbounded memory for the TM configuration). Once `τₓ`
+exists, the remainder is a short reduction from the diagonal halting set.
+
+## What Lean checks
+
+This module does **not** mechanize Def. 3 or Fig. 1. It packages the effective
+existence of such a `τ` as `SwitchingConstruction` and proves: if that
+certificate exists, no total computable `Verifier` is sound and complete for
+`AlwaysSatisfies` on every `structured` program. That is the reduction half of
+Theorem 1 / Corollary 1; relationship to the paper is therefore `RELATED`.
+
+Interface (total action traces, not geometry):
+
+* `Scenario` can encode an environment, observation history, and scheduler;
+* `behavior program scenario cycle` is the action produced in that cycle; and
+* `acceptable scenario cycle action` is the property being checked.
+
+`SwitchingConstruction` is where potentially unbounded memory and the paper's
+program-composition assumptions enter. Consequently,
+`action_safety_unverifiable` does not apply automatically to finite-state or
+otherwise bounded program classes, and it does not rule out sound incomplete
+verification. Instantiating this interface for a concrete robotics or AI-system
+model remains a separate modeling and review task.
+-/
+
+open Nat.Partrec (Code)
+open Nat.Partrec.Code
+
+namespace AISafetyAtlas.Verification.Robot
+
+/-- A total action trace for each complete scenario.-/
+public abbrev Behavior (Scenario Action : Type*) := Scenario → ℕ → Action
+
+/-- Every action produced in every scenario and operational cycle is acceptable.-/
+public abbrev AlwaysSatisfies
+    {Program Scenario Action : Type*}
+    (behavior : Program → Behavior Scenario Action)
+    (acceptable : Scenario → ℕ → Action → Prop)
+    (program : Program) : Prop :=
+  ∀ scenario cycle, acceptable scenario cycle (behavior program scenario cycle)
+
+/--
+A total computable Boolean procedure that is correct on the designated class of
+structured programs.  Its behavior outside that class is intentionally
+unconstrained.-/
+public structure Verifier
+    {Program Scenario Action : Type*} [Primcodable Program]
+    (structured : Program → Prop)
+    (behavior : Program → Behavior Scenario Action)
+    (acceptable : Scenario → ℕ → Action → Prop) where
+  decide : Program → Bool
+  computable_decide : Computable decide
+  correct : ∀ program, structured program →
+    ((decide program : Prop) ↔ AlwaysSatisfies behavior acceptable program)
+
+/--
+An effective version of the paper's `τ` construction.  For a fixed input,
+`compile source` keeps producing acceptable actions exactly when the encoded
+source computation does not halt; if it halts, the compiled program switches
+to behavior that violates the universal action property.
+
+Requiring `compile` to be computable and its outputs to be structured prevents
+the reduction from being smuggled in as an arbitrary logical assumption.-/
+public structure SwitchingConstruction
+    {Program Scenario Action : Type*} [Primcodable Program]
+    (structured : Program → Prop)
+    (behavior : Program → Behavior Scenario Action)
+    (acceptable : Scenario → ℕ → Action → Prop) where
+  sourceInput : ℕ
+  compile : Code → Program
+  computable_compile : Computable compile
+  compiled_structured : ∀ source, structured (compile source)
+  satisfies_iff_nonhalting : ∀ source,
+    AlwaysSatisfies behavior acceptable (compile source) ↔
+      ¬(eval source sourceInput).Dom
+
+end AISafetyAtlas.Verification.Robot

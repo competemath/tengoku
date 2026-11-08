@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "234f272751be32802a5337a12f4fb4d839e535d89606a0098b595d9eb61399f4",
+ "factory_changes": {
+  "inert lines removed": 74,
+  "modules changed": 13
+ },
+ "gate2_unjudged": [],
+ "library": "aisafety-atlas",
+ "lint_mode": "proposed",
+ "modules": 249,
+ "part": 1,
+ "theorems": 554
+}

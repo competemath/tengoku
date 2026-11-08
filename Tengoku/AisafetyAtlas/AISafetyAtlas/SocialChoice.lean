@@ -1,0 +1,91 @@
+module
+
+public import Tengoku.AisafetyAtlas.AISafetyAtlas.Upstream.Arrow
+public import Tengoku.AisafetyAtlas.AISafetyAtlas.Upstream.GibbardSatterthwaite
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-!
+# Social choice
+
+Stable facades over pinned, vendored social-choice formalizations.
+
+## Primary surface
+
+| Role | Declaration | One-line |
+|---|---|---|
+| **Law** | `arrow` | Arrow impossibility (order form; BY-007) |
+| **Bridge** | `Utility.arrow` | Utility-representation packaging of Arrow |
+| **Law** | `gibbard_satterthwaite` | GS resolute form (landscape `LAND-GS-002`) |
+
+* **Arrow** — CC Liang Lean 4 SWF proof (`Upstream.Arrow`).
+* **GS** — SocialChoiceLean pin `74f491b` (`Upstream.GibbardSatterthwaite`).
+
+Different ballot models (weak orders vs linear orders) and rule shapes (SWF vs
+resolute choice). Isabelle AFP GS remains `LAND-GS-001` provenance. No AI-system
+bridge is asserted from these wrappers alone.
+-/
+
+open scoped AISafetyAtlas.Upstream.Arrow
+
+namespace AISafetyAtlas.SocialChoice
+
+/-- A complete and transitive weak preference relation, allowing ties.-/
+public abbrev Preference := AISafetyAtlas.Upstream.Arrow.Preorder'
+
+/-- A profile of `voterCount` preferences over `Alternative`.-/
+public abbrev Profile (Alternative : Type) (voterCount : ℕ) :=
+  AISafetyAtlas.Upstream.Arrow.Profile Alternative voterCount
+
+/-- A rule that aggregates a preference profile into a social preference.-/
+public abbrev SocialWelfareFunction (Alternative : Type) (voterCount : ℕ) :=
+  AISafetyAtlas.Upstream.Arrow.SWF Alternative voterCount
+
+/-- The Pareto/unanimity condition for a social welfare function.-/
+public abbrev Unanimity {Alternative : Type} {voterCount : ℕ}
+    (rule : SocialWelfareFunction Alternative voterCount) : Prop :=
+  AISafetyAtlas.Upstream.Arrow.Unanimity rule
+
+/-- Independence of irrelevant alternatives.-/
+public abbrev IndependenceOfIrrelevantAlternatives
+    {Alternative : Type} {voterCount : ℕ}
+    (rule : SocialWelfareFunction Alternative voterCount) : Prop :=
+  AISafetyAtlas.Upstream.Arrow.IIA rule
+
+/-- No voter dictates every pairwise social preference.-/
+public abbrev NonDictatorship {Alternative : Type} {voterCount : ℕ}
+    (rule : SocialWelfareFunction Alternative voterCount) : Prop :=
+  AISafetyAtlas.Upstream.Arrow.NonDictatorship rule
+
+/-! ## Gibbard–Satterthwaite (resolute voting rules)
+
+Linear-order ballots and resolute voting rules
+(`_root_.SocialChoice.VotingRule`). These abbreviations re-export the vendored
+SocialChoiceLean interface so downstream proofs need not import the Upstream
+path. Qualified via `_root_` because this namespace is also named `SocialChoice`.
+-/
+
+/-- Finite electorate × candidate linear-order profile (SocialChoiceLean).-/
+public abbrev VotingProfile (V A : Type) [Fintype V] [Fintype A] :=
+  _root_.SocialChoice.Profile V A
+
+/-- Polymorphic resolute-capable voting rule on finite electorates.-/
+public abbrev VotingRule := _root_.SocialChoice.VotingRule
+
+/-- Unique-winner (resolute) voting rules.-/
+public abbrev ResoluteVoting := _root_.SocialChoice.Resolute
+
+/-- Unanimity for resolute voting rules (SocialChoiceLean form).-/
+public abbrev VotingUnanimity := _root_.SocialChoice.Unanimity
+
+/-- Strategy-proofness for resolute voting rules.-/
+public abbrev ResoluteStrategyproofness :=
+  _root_.SocialChoice.ResoluteStrategyproofness
+
+/-- Top-ranked candidate under a linear-order ballot (SocialChoiceLean).-/
+public noncomputable abbrev topChoice {V A : Type}
+    [Fintype V] [Fintype A] [Nonempty A]
+    (P : VotingProfile V A) (v : V) : A :=
+  _root_.SocialChoice.topChoice P v
+
+end AISafetyAtlas.SocialChoice
