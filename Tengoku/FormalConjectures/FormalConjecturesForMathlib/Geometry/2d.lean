@@ -36,7 +36,9 @@ with an instance for modules satisfying `is_empty`.-/
 noncomputable instance Module.orientedEuclideanSpaceFinTwo : Module.Oriented ℝ ℝ² (Fin 2) :=
   ⟨Basis.orientation <| PiLp.basisFun 2 _ _⟩
 
-/-- Two dimensional euclidean space is two-dimensional.-/
+/-- Two dimensional euclidean space is two-dimensional.
+@isnad1 id=fact.0h0v.s7.c37f42c39efd from=translated src=- shape=2a1846ce vocab=78c039ea
+-/
 instance fact_finrank_euclideanSpace_fin_two : Fact (Module.finrank ℝ ℝ² = 2) :=
   ⟨finrank_euclideanSpace_fin⟩
 
@@ -63,6 +65,9 @@ def NonCollinearFor (n : ℕ) (S : Set P) : Prop :=
   ∀ (A : Set P), A ⊆ S → A.Finite → A.ncard = n → ¬ Collinear ℝ A
 
 omit [Module.Oriented ℝ V (Fin 2)] [Fact (Module.finrank ℝ V = 2)] in
+/--
+@isnad1 id=noncolli.2h5v.s5.399ad4efd861 from=translated src=- shape=eb71af5f vocab=903b6365
+-/
 lemma NonCollinearFor.subset {n : ℕ} {S T : Set P} (h : S ⊆ T) (hS : NonCollinearFor n T) :
     NonCollinearFor n S := by
   intro A hA hFin hCard
@@ -83,19 +88,31 @@ def HasConvexNGon (n : ℕ) (P : Set ℝ²) : Prop :=
 def IsCcwConvexPolygon (p : Fin n → P) : Prop :=
   ∀ ⦃i j k⦄, i < j → j < k → (∡ (p i) (p j) (p k)).sign = 1
 
+/--
+@isnad1 id=eq.3h7v.s7.6aff3aa333f1 from=translated src=- shape=7b883266 vocab=c33224d1
+-/
 theorem IsCcwConvexPolygon.sign_oangle (hp : IsCcwConvexPolygon p) {i j k : Fin n}
   (hij : i < j) (hjk : j < k) : (∡ (p i) (p j) (p k)).sign = 1 := hp hij hjk
 
+/--
+@isnad1 id=eq.3h7v.s7.14c6e94ffe7f from=translated src=- shape=5a56b6bd vocab=c33224d1
+-/
 theorem IsCcwConvexPolygon.sign_oangle' (hp : IsCcwConvexPolygon p) {i j k : Fin n}
     (hij : i < j) (hjk : j < k) : (∡ (p j) (p k) (p i)).sign = 1 := by
   rw [EuclideanGeometry.oangle_rotate_sign]
   exact hp hij hjk
 
+/--
+@isnad1 id=eq.3h7v.s7.bf899753006b from=translated src=- shape=57c14bd3 vocab=c33224d1
+-/
 theorem IsCcwConvexPolygon.sign_oangle'' (hp : IsCcwConvexPolygon p) {i j k : Fin n}
     (hij : i < j) (hjk : j < k) : (∡ (p k) (p i) (p j)).sign = 1 := by
   rw [← EuclideanGeometry.oangle_rotate_sign]
   exact hp hij hjk
 
+/--
+@isnad1 id=eq.2h5v.s7.df04bc16c185 from=translated src=- shape=e8f405d4 vocab=0e8a1115
+-/
 theorem IsCcwConvexPolygon.sign_oangle_finRotate (hp : IsCcwConvexPolygon p)
     (hn : 3 ≤ n) (i : Fin n) :
     (∡ (p i) (p <| finRotate _ i) (p <| finRotate _ (finRotate _ i))).sign = 1 := by
@@ -112,12 +129,24 @@ theorem IsCcwConvexPolygon.sign_oangle_finRotate (hp : IsCcwConvexPolygon p)
     exact Fin.one_lt_last.ne hi'
   apply hp.sign_oangle <;> apply lt_finRotate_of_ne_last <;> assumption
 
+/--
+@isnad1 id=isccwcon.0h3v.s6.74b5f852c8cd from=translated src=- shape=fd37f1cb vocab=65aa8482
+-/
 @[simp] theorem isCcwConvexPolygon_zero (p : Fin 0 → P) : IsCcwConvexPolygon p := finZeroElim
 
+/--
+@isnad1 id=isccwcon.0h3v.s6.3daf9e574e66 from=translated src=- shape=fd37f1cb vocab=65aa8482
+-/
 @[simp] theorem isCcwConvexPolygon_one (p : Fin 1 → P) : IsCcwConvexPolygon p := by intro; omega
 
+/--
+@isnad1 id=isccwcon.0h3v.s6.97a97449df46 from=translated src=- shape=fd37f1cb vocab=65aa8482
+-/
 @[simp] theorem isCcwConvexPolygon_two (p : Fin 2 → P) : IsCcwConvexPolygon p := by intro; omega
 
+/--
+@isnad1 id=iff.0h3v.s8.bf474041f5c5 from=translated src=- shape=8db5e497 vocab=911e66a1
+-/
 theorem isCcwConvexPolygon_four' {p : Fin 4 → P} :
     IsCcwConvexPolygon p ↔ (∡ (p 0) (p 1) (p 2)).sign = 1 ∧ (∡ (p 1) (p 2) (p 3)).sign = 1 ∧
     (∡ (p 2) (p 3) (p 0)).sign = 1 ∧ (∡ (p 3) (p 0) (p 1)).sign = 1 := by
@@ -137,6 +166,9 @@ theorem isCcwConvexPolygon_four' {p : Fin 4 → P} :
       exact h3
     · exact h2
 
+/--
+@isnad1 id=iff.0h6v.s7.7236fc5cc86f from=translated src=- shape=9d6bc5c9 vocab=a20939b7
+-/
 @[simp]
 theorem isCcwConvexPolygon_four (A B C D : P) :
     IsCcwConvexPolygon ![A, B, C, D] ↔
@@ -147,7 +179,9 @@ theorem isCcwConvexPolygon_four (A B C D : P) :
 def IsConvexPolygon {n : ℕ} (p : Fin n → P) : Prop :=
   IsCcwConvexPolygon p ∨ IsCcwConvexPolygon fun i => p (-i)
 
-/-- Three affine independent points always form a convex polygon.-/
+/-- Three affine independent points always form a convex polygon.
+@isnad1 id=isconvex.1h5v.s7.23f2c9fa7b2c from=translated src=- shape=010000af vocab=0c716393
+-/
 theorem isConvexPolygon_three_of_affineIndependent {A B C : P}
     (hABC : AffineIndependent ℝ ![A, B, C]) : IsConvexPolygon ![A, B, C] := by
   rw [← oangle_ne_zero_and_ne_pi_iff_affineIndependent, ← Real.Angle.sign_ne_zero_iff] at hABC
@@ -163,6 +197,9 @@ theorem isConvexPolygon_three_of_affineIndependent {A B C : P}
     fin_cases i <;> fin_cases j <;> fin_cases k <;> simp at hij hjk
     exact hsABC
 
+/--
+@isnad1 id=iff.0h5v.s7.2fbf4af6504e from=translated src=- shape=2da26f0f vocab=0c716393
+-/
 theorem isConvexPolygon_three_iff_affineIndependent {A B C : P} :
     IsConvexPolygon ![A, B, C] ↔ AffineIndependent ℝ ![A, B, C] := by
   refine ⟨fun h => ?_, isConvexPolygon_three_of_affineIndependent⟩
@@ -178,6 +215,9 @@ theorem isConvexPolygon_three_iff_affineIndependent {A B C : P} :
     suffices Real.Angle.sign (∡ (p 0) (p 2) (p 1)) = 1 by rw [← oangle_swap₂₃_sign, this]; rintro ⟨⟩
     exact h.sign_oangle (i := 0) (j := 1) (k := 2) (by simp) (by simp)
 
+/--
+@isnad1 id=isconvex.0h3v.s7.7e642f2d76e2 from=translated src=- shape=d0ab650b vocab=1123a46f
+-/
 theorem isConvexPolygon_triangle (t : Affine.Triangle ℝ P) : IsConvexPolygon t.points := by
   have : t.points = ![t.points 0, t.points 1, t.points 2] := by ext i; fin_cases i <;> rfl
   rw [this, isConvexPolygon_three_iff_affineIndependent, ← this]
@@ -186,6 +226,9 @@ theorem isConvexPolygon_triangle (t : Affine.Triangle ℝ P) : IsConvexPolygon t
 noncomputable def triangle_area (a b c : P) : ℝ :=
   positiveOrientation.areaForm (a -ᵥ c) (b -ᵥ c) / 2
 
+/--
+@isnad1 id=eq.0h3v.s10.fcdd6e977754 from=translated src=- shape=8804d1d5 vocab=3ff227ba
+-/
 lemma triangle_area_eq_det (a b c : ℝ²) :
     triangle_area a b c =
     Matrix.det !![a 0, b 0, c 0;
@@ -240,6 +283,9 @@ nonrec def Set.IsIsosceles {α : Type} [Dist α] (A : Set α) :=
 def Set.IsIsoscelesFree {α : Type*} [Dist α] (A : Set α) : Prop :=
   A.Triplewise fun x y z ↦ ¬ _root_.IsIsosceles x y z
 
+/--
+@isnad1 id=isisosce.2h3v.s4.782a0f82c721 from=translated src=- shape=8871f81f vocab=6e7c19ca
+-/
 theorem Set.IsIsoscelesFree.mono {α : Type*} [Dist α] {s t : Set α} (h : t ⊆ s)
     (hs : s.IsIsoscelesFree) : t.IsIsoscelesFree :=
   Set.Triplewise.mono h hs
