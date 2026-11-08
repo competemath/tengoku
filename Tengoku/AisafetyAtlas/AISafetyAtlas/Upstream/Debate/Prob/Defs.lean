@@ -74,13 +74,27 @@ def Prob.cexp (f : Prob α) (u : α → ℝ) (q : α → Prop) : ℝ :=
 namespace Prob
 
 -- Basics
+/--
+@isnad1 id=iff.0h3v.s5.5707679febaf from=translated src=- shape=19b03f69 vocab=900114d1
+-/
 lemma zero_iff {f : Prob α} {x : α} : f.prob x = 0 ↔ x ∉ f.supp := Finsupp.notMem_support_iff.symm
+/--
+@isnad1 id=eq.1h3v.s5.4ac95d696467 from=translated src=- shape=720579f7 vocab=900114d1
+-/
 lemma zero (f : Prob α) {x : α} (m : x ∉ f.supp) : f.prob x = 0 := Finsupp.notMem_support_iff.mp m
+/--
+@isnad1 id=iff.0h3v.s5.cb43cb2a2b14 from=translated src=- shape=02d70cac vocab=900114d1
+-/
 lemma mem_iff {f : Prob α} {x : α} : x ∈ f.supp ↔ f.prob x ≠ 0 := Finsupp.mem_support_iff
+/--
+@isnad1 id=iff.0h3v.s5.3af23656764b from=translated src=- shape=c94a7a31 vocab=7e2808b9
+-/
 lemma mem_iff_pos {f : Prob α} {x : α} : x ∈ f.supp ↔ 0 < f.prob x := by
   rw [f.mem_iff]; constructor; intro e; exact e.symm.lt_of_le f.prob_nonneg; exact ne_of_gt
 
-/-- Probs are equal if their probabilities are-/
+/-- Probs are equal if their probabilities are
+@isnad1 id=eq.1h3v.s5.a1eed676fcbe from=translated src=- shape=161bde95 vocab=ae9ab263
+-/
 @[ext] lemma ext {f g : Prob α} (h : ∀ x, f.prob x = g.prob x) : f = g := by
   induction' f with p _ _; induction' g with q _ _; simp only [mk.injEq]; ext x; apply h
 

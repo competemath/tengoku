@@ -34,62 +34,95 @@ variable {f g : Prob α}
 variable {p q r : α → Prop}
 variable {u : α → ℝ}
 
-/-- cexp and cond are related-/
+/-- cexp and cond are related
+@isnad1 id=eq.0h4v.s5.514d3f6ffab2 from=translated src=- shape=ff994f03 vocab=810387bc
+-/
 lemma cond_eq_cexp : f.cond p q = f.cexp (λ x ↦ if p x then 1 else 0) q := by
   simp only [cexp, cond]; rw [pr, exp_congr]
   intro x _; by_cases qx : q x
   repeat simp only [qx, and_true, if_true, if_false, and_false]
 
-/-- cexp is monotonic-/
+/-- cexp is monotonic
+@isnad1 id=le.1h5v.s6.bb2cfcabd316 from=translated src=- shape=42f53089 vocab=065d8421
+-/
 lemma cexp_mono {u v : α → ℝ} (uv : ∀ x, f.prob x ≠ 0 → q x → u x ≤ v x) :
     f.cexp u q ≤ f.cexp v q := by
   simp only [cexp]; refine div_le_div_of_nonneg_right (exp_mono ?_) pr_nonneg
   intro x m; by_cases qx : q x
   repeat simp only [qx, if_true, if_false, uv x m, le_refl]
 
-/-- cond is monotonic-/
+/-- cond is monotonic
+@isnad1 id=le.0h6v.s6.37a20ea7be77 from=translated src=- shape=d7fbed4f vocab=72bfaef3
+-/
 lemma cond_mono (pq : ∀ x, f.prob x ≠ 0 → r x → p x → q x) : f.cond p r ≤ f.cond q r := by
   simp only [cond_eq_cexp]; apply cexp_mono; intro x m; rw [ite_le_ite_iff]; exact pq x m
 
 -- cond is between 0 and 1
+/--
+@isnad1 id=le.0h4v.s4.4298ee401cfd from=translated src=- shape=c5c65b30 vocab=3b6e2398
+-/
 lemma cond_nonneg : 0 ≤ f.cond p q := div_nonneg pr_nonneg pr_nonneg
+/--
+@isnad1 id=le.0h4v.s4.366314134c74 from=translated src=- shape=f09e2d53 vocab=3b6e2398
+-/
 lemma cond_le_one : f.cond p q ≤ 1 := by
   refine div_le_one_of_le₀ (pr_mono ?_) pr_nonneg; intro x _; exact And.right
+/--
+@isnad1 id=mem.0h4v.s5.e5326f585a59 from=translated src=- shape=c603adcb vocab=504019f3
+-/
 lemma cond_mem_Icc : f.cond p q ∈ Icc 0 1 := ⟨cond_nonneg, cond_le_one⟩
 
-/-- cexp is nonneg if the inside is-/
+/-- cexp is nonneg if the inside is
+@isnad1 id=le.1h4v.s6.4b1f099afa59 from=translated src=- shape=3c9d6180 vocab=065d8421
+-/
 lemma cexp_nonneg (h : ∀ x, f.prob x ≠ 0 → q x → 0 ≤ u x) : 0 ≤ f.cexp u q := by
   simp only [cexp]; refine div_nonneg (exp_nonneg ?_) pr_nonneg
   intro x p; by_cases qx : q x
   · simp only [qx, if_true, h x p qx]
   · simp only [qx, if_false, le_refl]
 
-/-- If something is true with probability 1, conditioning on it does nothing-/
+/-- If something is true with probability 1, conditioning on it does nothing
+@isnad1 id=eq.1h4v.s5.4aa6ad781a0a from=translated src=- shape=caf4292e vocab=09d81c1c
+-/
 lemma cexp_eq_exp (q1 : f.pr q = 1) : f.cexp u q = f.exp u := by
   simp only [cexp, q1, div_one]; simp only [pr_eq_one] at q1
   apply exp_congr; intro x m; simp only [q1 x m, and_true, if_true]
 
-/-- If something is true with probability 1, conditioning on it does nothing-/
+/-- If something is true with probability 1, conditioning on it does nothing
+@isnad1 id=eq.1h4v.s5.e0973a1040b3 from=translated src=- shape=dfb8acb8 vocab=1e2c7ff6
+-/
 lemma cond_eq_pr (q1 : f.pr q = 1) : f.cond p q = f.pr p := by
   simp only [cond, q1, div_one]; simp only [pr_eq_one] at q1
   apply pr_congr; intro x m; simp only [q1 x m, and_true]
 
-/-- cexp = 0 if the event never occurs for nonzero `u`-/
+/-- cexp = 0 if the event never occurs for nonzero `u`
+@isnad1 id=eq.1h4v.s6.67935f184a86 from=translated src=- shape=69fd289e vocab=28ae1eda
+-/
 lemma cexp_eq_zero (h : ∀ x, f.prob x ≠ 0 → q x → u x = 0) : f.cexp u q = 0 := by
   have z : (f.exp fun x => if q x then u x else 0) = 0 := by
     apply exp_eq_zero; intro _ m; split_ifs; apply h _ m; assumption; rfl
   simp only [cexp, z, zero_div]
 
-/-- cond = 0 if the event never occurs-/
+/-- cond = 0 if the event never occurs
+@isnad1 id=eq.1h4v.s5.ddb6478ccd7a from=translated src=- shape=56441d94 vocab=d32fc62c
+-/
 lemma cond_eq_zero (h : ∀ x, f.prob x ≠ 0 → q x → ¬p x) : f.cond p q = 0 := by
   have z : f.pr (λ x ↦ p x ∧ q x) = 0 := by rw [pr_eq_zero]; simp only [ne_eq, not_and']; exact h
   rw [cond, z, zero_div]
 
 -- If the conditioning event has probability zero, cond and pr = 0
+/--
+@isnad1 id=eq.1h4v.s5.fd5862da7a84 from=translated src=- shape=63c81518 vocab=a2226362
+-/
 lemma cexp_on_zero (q0 : f.pr q = 0) : f.cexp u q = 0 := by simp only [cexp, q0, div_zero]
+/--
+@isnad1 id=eq.1h4v.s5.73acef5aeb1b from=translated src=- shape=e1f6b399 vocab=1e2c7ff6
+-/
 lemma cond_on_zero (q0 : f.pr q = 0) : f.cond p q = 0 := by simp only [cond, q0, div_zero]
 
-/-- cexp depends only on the conditional supp-/
+/-- cexp depends only on the conditional supp
+@isnad1 id=eq.1h5v.s6.52cdf7e5fb24 from=translated src=- shape=42f53089 vocab=28ae1eda
+-/
 lemma cexp_congr {u v : α → ℝ} (uv : ∀ x, f.prob x ≠ 0 → q x → u x = v x) :
     f.cexp u q = f.cexp v q := by
   have uvq : ∀ x, f.prob x ≠ 0 → (if q x then u x else 0) = (if q x then v x else 0) := by
@@ -98,7 +131,9 @@ lemma cexp_congr {u v : α → ℝ} (uv : ∀ x, f.prob x ≠ 0 → q x → u x 
     · simp only [qx, if_false]
   simp only [cexp, exp_congr uvq]
 
-/-- We can bound a cond bind uniformly in the first argument-/
+/-- We can bound a cond bind uniformly in the first argument
+@isnad1 id=le.2h7v.s6.45029d3b6aac from=translated src=- shape=b8a7abc3 vocab=38a346de
+-/
 lemma cond_bind_le_of_forall_le {f : Prob α} {g : α → Prob β} {p q : β → Prop} {b : ℝ}
     (b0 : 0 ≤ b) (le : ∀ x, f.prob x ≠ 0 → (g x).cond p q ≤ b) : (f >>= g).cond p q ≤ b := by
   simp only [cond]
@@ -113,7 +148,9 @@ lemma cond_bind_le_of_forall_le {f : Prob α} {g : α → Prob β} {p q : β →
   · replace fg0 := le_antisymm (not_lt.mp fg0) pr_nonneg
     simp only [fg0, div_zero, b0]
 
-/-- exp can be decomposed as positive and negative cexps, even if there are zeros-/
+/-- exp can be decomposed as positive and negative cexps, even if there are zeros
+@isnad1 id=eq.0h4v.s6.5f009ae49586 from=translated src=- shape=9f482ab2 vocab=75a9e0ce
+-/
 lemma exp_eq_cexp_add_cexp (q : α → Prop) :
     f.exp u = f.cexp u q * f.pr q + f.cexp u (λ x ↦ ¬q x) * (1 - f.pr q) := by
   by_cases q0 : f.pr q = 0
@@ -128,7 +165,9 @@ lemma exp_eq_cexp_add_cexp (q : α → Prop) :
   simp only [pr, ←exp_add]; apply exp_congr; intro x _
   by_cases qx : q x; repeat { simp only [qx, if_true, if_false]; norm_num }
 
-/-- exp can be decomposed as a expectation over cexp's w.r.t. a function-/
+/-- exp can be decomposed as a expectation over cexp's w.r.t. a function
+@isnad1 id=eq.0h5v.s5.b3dd69b3bd8d from=translated src=- shape=7fb57664 vocab=da47bef3
+-/
 lemma exp_eq_exp_cexp (g : α → β) :
     f.exp u = (g <$> f).exp (fun k ↦ f.cexp u (fun y ↦ g y = k)) := by
   simp only [map_eq, exp_bind, exp_pure, cexp, div_eq_mul_inv, ←exp_mul_const]
@@ -148,7 +187,9 @@ lemma exp_eq_exp_cexp (g : α → β) :
   · intro _ _ _; split_ifs; norm_num; rfl
   · norm_num
 
-/-- cexp can be decomposed as a expectation over cexp's w.r.t. a function-/
+/-- cexp can be decomposed as a expectation over cexp's w.r.t. a function
+@isnad1 id=eq.1h6v.s6.e69b6c65c2a1 from=translated src=- shape=2203ec45 vocab=f05ae965
+-/
 lemma cexp_eq_cexp_cexp (g : α → β) (h : ∀ x y, f.prob x ≠ 0 → g x = g y → (q x ↔ q y)) :
     f.cexp u q = (g <$> f).cexp (fun k ↦ f.cexp u (fun y ↦ g y = k))
       (fun k ↦ ∃ x, g x = k ∧ q x) := by
@@ -171,12 +212,16 @@ lemma cexp_eq_cexp_cexp (g : α → β) (h : ∀ x y, f.prob x ≠ 0 → g x = g
     · intro ⟨y,gyx,qy⟩; rwa [h x y m gyx.symm]
 
 /-- Probabilities can be decomposed as positive and negative conditional probabilities,
-    even if there are zeros-/
+    even if there are zeros
+@isnad1 id=eq.0h4v.s6.8e0caa9e40bd from=translated src=- shape=7358e119 vocab=2d17da97
+-/
 lemma pr_eq_cond_add_cond (q : α → Prop) :
     f.pr p = f.cond p q * f.pr q + f.cond p (λ x ↦ ¬q x) * (1 - f.pr q) := by
   rw [pr]; simp only [cond_eq_cexp, exp_eq_cexp_add_cexp q]
 
-/-- The no-ratio version of Bayes' theorem holds unconditionally-/
+/-- The no-ratio version of Bayes' theorem holds unconditionally
+@isnad1 id=eq.0h4v.s5.aa37d279a221 from=translated src=- shape=eda8af06 vocab=66b66e46
+-/
 lemma bayes' (f : Prob α) (a b : α → Prop) : f.cond a b * f.pr b = f.cond b a * f.pr a := by
   simp only [cond]
   by_cases a0 : f.pr a = 0
@@ -189,47 +234,71 @@ lemma bayes' (f : Prob α) (a b : α → Prop) : f.cond a b * f.pr b = f.cond b 
     simp only [b0, ab0, div_zero, mul_zero, zero_div, zero_mul]
   simp only [div_mul_cancel₀ _ a0, div_mul_cancel₀ _ b0, and_comm]
 
-/-- Bayes' theorem, ratio version-/
+/-- Bayes' theorem, ratio version
+@isnad1 id=eq.1h4v.s5.3bb3be30669a from=translated src=- shape=ad415f4c vocab=01279dd1
+-/
 theorem bayes (f : Prob α) (a b : α → Prop) (b0 : f.pr b ≠ 0) :
     f.cond a b = f.cond b a * f.pr a / f.pr b := by
   rw [←bayes']; field_simp [b0]
 
-/-- Pure cexps are simple-/
+/-- Pure cexps are simple
+@isnad1 id=eq.0h4v.s5.085b25379319 from=translated src=- shape=f1322e23 vocab=bf995bec
+-/
 lemma cexp_pure {x : α} : (pure x : Prob α).cexp u q = if q x then u x else 0 := by
   simp only [cexp, exp_pure]; by_cases qx : q x
   repeat simp only [qx, and_true, if_true, div_one, and_false, if_false, zero_div, pr_pure]
 
-/-- Pure conditional probabilities are just p ∧ q booleans-/
+/-- Pure conditional probabilities are just p ∧ q booleans
+@isnad1 id=eq.0h4v.s5.8ece2bdd3637 from=translated src=- shape=99359757 vocab=ea5ae0a2
+-/
 lemma cond_pure {x : α} : (pure x : Prob α).cond p q = if p x ∧ q x then 1 else 0 := by
   simp only [cond, pr_pure]; by_cases qx : q x
   repeat simp only [qx, and_true, if_true, div_one, and_false, if_false, zero_div]
 
 -- cexp is linear
+/--
+@isnad1 id=eq.0h3v.s4.9d03c20b3719 from=translated src=- shape=c2bcfde1 vocab=cb62ffe3
+-/
 lemma cexp_zero : f.cexp (λ _ ↦ 0) q = 0 := by
   simp only [cexp, ite_self, exp_const, zero_div]
+/--
+@isnad1 id=eq.0h5v.s5.03b022557952 from=translated src=- shape=e4bb877d vocab=e9805327
+-/
 lemma cexp_add {u v : α → ℝ} : f.cexp (λ x ↦ u x + v x) q = f.cexp u q + f.cexp v q := by
   simp only [cexp, ite_add_zero, exp_add, add_div]
+/--
+@isnad1 id=eq.0h6v.s5.bf358c960cec from=translated src=- shape=afe3562c vocab=1f76ded7
+-/
 lemma cexp_sum {s : Finset β} {u : β → α → ℝ} :
     f.cexp (λ y ↦ s.sum (λ x ↦ u x y)) q = s.sum (λ x ↦ f.cexp (u x) q) := by
   induction' s using Finset.induction with _ s m h
   · simp only [Finset.sum_empty, cexp_zero]
   · simp only [Finset.sum_insert m, cexp_add, h]
+/--
+@isnad1 id=eq.0h5v.s5.8b60fa816273 from=translated src=- shape=f1ab8a17 vocab=a80e9791
+-/
 lemma cexp_const_mul {s : ℝ} : f.cexp (λ x ↦ s * u x) q = s * f.cexp u q := by
   simp only [cexp, mul_ite_zero, ← exp_const_mul, mul_div]
 
-/-- cond depends only on the conditional supp-/
+/-- cond depends only on the conditional supp
+@isnad1 id=eq.1h5v.s6.c7a54e59656a from=translated src=- shape=0652aad1 vocab=d32fc62c
+-/
 lemma cond_congr {p q r : α → Prop} (pq : ∀ x, f.prob x ≠ 0 → r x → (p x ↔ q x)) :
     f.cond p r = f.cond q r := by
   simp only [cond_eq_cexp]; apply cexp_congr; simp only [ite_one_zero_congr]; exact pq
 
-/-- f.cond ¬p q = 1 - f.cond p q if f.pr q ≠ 0-/
+/-- f.cond ¬p q = 1 - f.cond p q if f.pr q ≠ 0
+@isnad1 id=eq.1h4v.s5.8e349a1eb90d from=translated src=- shape=b1400d86 vocab=36164203
+-/
 lemma cond_neg (q0 : f.pr q ≠ 0) : f.cond (λ x ↦ ¬p x) q = 1 - f.cond p q := by
   simp only [cond, eq_sub_iff_add_eq, ←add_div, div_eq_one_iff_eq q0]
   simp only [pr, ←exp_add]; apply exp_congr; intro x _
   by_cases qx : q x
   repeat { by_cases px : p x; repeat { simp only [px,qx, if_true, if_false]; norm_num }}
 
-/-- Rewrite cexp of an if into a more conditional cexp-/
+/-- Rewrite cexp of an if into a more conditional cexp
+@isnad1 id=eq.0h5v.s6.ea76432d1f73 from=translated src=- shape=56a11f07 vocab=e9b4c717
+-/
 lemma cexp_if :
     f.cexp (λ x ↦ if p x then u x else 0) q = f.cexp u (λ x ↦ p x ∧ q x) * f.cond p q := by
   simp only [cexp, cond, ←ite_and, @and_comm _ (p _)]
@@ -238,7 +307,9 @@ lemma cexp_if :
     intro x m; simp only [pr_eq_zero] at z; simp only [z x m, if_false]
   · field_simp [z]; refine congr_arg₂ _ (exp_congr ?_) rfl; intro x _; split_ifs; repeat rfl
 
-/-- cexp can be decomposed as positive and negative cexps, even if there are zeros-/
+/-- cexp can be decomposed as positive and negative cexps, even if there are zeros
+@isnad1 id=eq.0h5v.s6.fcb5e513e366 from=translated src=- shape=523ef544 vocab=688905e0
+-/
 lemma cexp_eq_cexp_add_cexp (r : α → Prop) :
     f.cexp u q = f.cexp u (λ x ↦ q x ∧ r x) * f.cond r q +
       f.cexp u (λ x ↦ q x ∧ ¬r x) * (1 - f.cond r q) := by
@@ -253,14 +324,18 @@ lemma cexp_eq_cexp_add_cexp (r : α → Prop) :
   · simp only [cexp_if, mul_div_right_comm, mul_assoc, ←pr_neg, bayes' f q (λ x ↦ ¬r x)]
     rw [mul_comm _ (f.pr q), ←mul_assoc, ←cond_neg q0, div_mul_cancel₀ _ q0]
 
-/-- Weighted averages are ≤ max-/
+/-- Weighted averages are ≤ max
+@isnad1 id=le.1h3v.s6.d0690f549f60 from=translated src=- shape=1b92ebed vocab=77d35aea
+-/
 lemma average_le_max {p x y : ℝ} (m : p ∈ Icc 0 1) : x*p + y*(1-p) ≤ max x y := by
   have p0 : 0 ≤ p := m.1; have p1 : p ≤ 1 := m.2
   by_cases xy : x ≤ y
   · rw [max_eq_right xy]; nlinarith
   · rw [max_eq_left (le_of_lt (not_le.mp xy))]; nlinarith
 
-/-- We can bound a cexp bind in terms of an intermediate event occuring or not-/
+/-- We can bound a cexp bind in terms of an intermediate event occuring or not
+@isnad1 id=le.0h7v.s7.ed80be8c1380 from=translated src=- shape=fd7d896d vocab=61fc2809
+-/
 lemma cexp_bind_le_of_cut {f : Prob α} {g : α → Prob β} {u : β → ℝ} {q : β → Prop} (i : α → Prop) :
     (f >>= g).cexp u q ≤
       max ((f >>= λ x ↦ Prod.mk x <$> g x).cexp (λ y ↦ u y.2) (λ y ↦ q y.2 ∧ i y.1))
@@ -270,14 +345,18 @@ lemma cexp_bind_le_of_cut {f : Prob α} {g : α → Prob β} {u : β → ℝ} {q
   have m : p ∈ Icc 0 1 := by rw [←hp]; exact cond_mem_Icc
   exact average_le_max m
 
-/-- We can bound a cond bind in terms of an intermediate event occuring or not-/
+/-- We can bound a cond bind in terms of an intermediate event occuring or not
+@isnad1 id=le.0h7v.s7.bc1343e9a8f9 from=translated src=- shape=b66485a4 vocab=4b989232
+-/
 lemma cond_bind_le_of_cut {f : Prob α} {g : α → Prob β} {p q : β → Prop} (i : α → Prop) :
     (f >>= g).cond p q ≤
       max ((f >>= λ x ↦ Prod.mk x <$> g x).cond (λ y ↦ p y.2) (λ y ↦ q y.2 ∧ i y.1))
           ((f >>= λ x ↦ Prod.mk x <$> g x).cond (λ y ↦ p y.2) (λ y ↦ q y.2 ∧ ¬i y.1)) := by
   simp only [cond_eq_cexp]; apply cexp_bind_le_of_cut
 
-/-- pr_mono when the left side is enriched-/
+/-- pr_mono when the left side is enriched
+@isnad1 id=le.0h7v.s7.173e8e4f0e18 from=translated src=- shape=9334c4be vocab=b5803708
+-/
 lemma pr_enrich_le_pr {f : Prob α} {g : α → Prob β} {p : α × β → Prop} {i : α → Prop}
     (pi : ∀ x y, f.prob x ≠ 0 → (g x).prob y ≠ 0 → p (x,y) → i x) :
     (f >>= λ x ↦ Prod.mk x <$> g x).pr p ≤ f.pr i := by
@@ -289,7 +368,9 @@ lemma pr_enrich_le_pr {f : Prob α} {g : α → Prob β} {p : α × β → Prop}
     simp only [Prod.mk.injEq, not_and, not_forall, not_not, exists_prop] at ix
     simp only [←ix.1, ix.2] at n pxy; exact pi x y fx n pxy
 
-/-- pr_mono when the right side is enriched-/
+/-- pr_mono when the right side is enriched
+@isnad1 id=le.0h7v.s7.ddb8f460bb9e from=translated src=- shape=273e941c vocab=b5803708
+-/
 lemma pr_le_pr_enrich {f : Prob α} {g : α → Prob β} {p : α × β → Prop} {i : α → Prop}
     (ip : ∀ x y, f.prob x ≠ 0 → (g x).prob y ≠ 0 → i x → p (x,y)) :
     f.pr i ≤ (f >>= λ x ↦ Prod.mk x <$> g x).pr p := by
@@ -301,7 +382,9 @@ lemma pr_le_pr_enrich {f : Prob α} {g : α → Prob β} {p : α × β → Prop}
   · simp only [ix, if_false]; exact pr_nonneg
 
 /-- Bound an enriched cond by bounding the first half
-    if first half props relate to second half props-/
+    if first half props relate to second half props
+@isnad1 id=le.0h10v.s7.164c6e391b66 from=translated src=- shape=db5c4074 vocab=a8c20a1d
+-/
 lemma cond_bind_le_first {f : Prob α} {g : α → Prob β} (p q : β → Prop) (i j : α → Prop)
     (pi : ∀ x y, f.prob x ≠ 0 → (g x).prob y ≠ 0 → j x → p y → q y → i x)
     (jq : ∀ x y, f.prob x ≠ 0 → (g x).prob y ≠ 0 → j x → q y) :
@@ -316,7 +399,9 @@ lemma cond_bind_le_first {f : Prob α} {g : α → Prob β} (p q : β → Prop) 
   · apply pr_enrich_le_pr; intro x y fx gy ⟨py,qy,jx⟩; exact ⟨pi x y fx gy jx py qy, jx⟩
   · apply pr_le_pr_enrich; intro x y fx gy jx; exact ⟨jq x y fx gy jx,jx⟩
 
-/-- Bound an enriched cond by bounding the second half uniformly in the first half-/
+/-- Bound an enriched cond by bounding the second half uniformly in the first half
+@isnad1 id=le.2h8v.s7.f77044cbe59b from=translated src=- shape=e62a8691 vocab=a8c20a1d
+-/
 lemma cond_bind_le_second {f : Prob α} {g : α → Prob β} (p q : β → Prop) (i : α → Prop) {b : ℝ}
     (b0 : 0 ≤ b) (gb : ∀ x, f.prob x ≠ 0 → i x → (g x).cond p q ≤ b) :
     (f >>= λ x ↦ Prod.mk x <$> g x).cond (λ y ↦ p y.snd) (λ y ↦ q y.snd ∧ i y.fst) ≤ b := by
@@ -337,7 +422,9 @@ lemma cond_bind_le_second {f : Prob α} {g : α → Prob β} (p q : β → Prop)
       simp only [pr, ←exp_const_mul] at gb; convert gb <;> rfl
   · simp only [ix, and_false, ite_false, mul_zero, le_refl]
 
-/-- Bound a cexp uniformly-/
+/-- Bound a cexp uniformly
+@isnad1 id=le.2h5v.s6.c9a1ed14fb03 from=translated src=- shape=13ad6e90 vocab=065d8421
+-/
 lemma cexp_le_of_forall {b : ℝ} (h : ∀ x, f.prob x ≠ 0 → q x → u x ≤ b) (b0 : 0 ≤ b) :
     f.cexp u q ≤ b := by
   simp only [cexp]

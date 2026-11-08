@@ -88,14 +88,20 @@ def PMF.toProb (f : PMF α) (finite : f.support.Finite) : Prob α where
           simpa only [Finsupp.mem_support_iff, Finsupp.ofSupportFinite_coe, ne_eq, not_not] using m
       · intro x _ m; exact (PMF.apply_eq_zero_iff f x).mpr (fun c ↦ m ((h x).mpr c))
 
-/-- `Prob.toPmf` has the expected coe-/
+/-- `Prob.toPmf` has the expected coe
+@isnad1 id=eq.0h3v.s5.effd1a8720ab from=translated src=- shape=3848d58c vocab=5854fb67
+-/
 @[simp] lemma Prob.toPmf_coe (f : Prob α) (x : α) : f.toPmf x = ENNReal.ofReal (f.prob x) := rfl
 
-/-- `PMF.toProb` has the expected prob-/
+/-- `PMF.toProb` has the expected prob
+@isnad1 id=eq.1h3v.s5.c654ca1ee882 from=translated src=- shape=cceffa12 vocab=c12da4d3
+-/
 @[simp] lemma PMF.prob_toProb (f : PMF α) (h : f.support.Finite) (x : α) :
     (f.toProb h).prob x = ENNReal.toReal (f x) := rfl
 
-/-- `Prob.toPmf` has finite support-/
+/-- `Prob.toPmf` has finite support
+@isnad1 id=finite.0h2v.s3.18f9a59d1279 from=translated src=- shape=3d086f6a vocab=eb007187
+-/
 lemma Prob.toPmf_support_finite (f : Prob α) : f.toPmf.support.Finite := by
   apply Set.Finite.ofFinset f.supp; intro x
   simp only [mem_iff, ne_eq, PMF.mem_support_iff, toPmf_coe, ENNReal.ofReal_eq_zero, not_le]
@@ -103,28 +109,40 @@ lemma Prob.toPmf_support_finite (f : Prob α) : f.toPmf.support.Finite := by
   · intro h; exact Ne.lt_of_le (Ne.symm h) (prob_nonneg _)
   · intro h; exact h.ne'
 
-/-- `Prob → PMF → Prob` is the identity-/
+/-- `Prob → PMF → Prob` is the identity
+@isnad1 id=eq.0h2v.s3.f17d5bc3e8c7 from=translated src=- shape=e6906362 vocab=4a49e486
+-/
 theorem Prob.toProb_toPmf (f : Prob α) : f.toPmf.toProb f.toPmf_support_finite = f := by
   ext; simp only [PMF.prob_toProb, toPmf_coe, ENNReal.toReal_ofReal_eq_iff]; apply prob_nonneg
 
-/-- `PMF → Prob → PMF` is the identity on finitely-supported `PMF`s.-/
+/-- `PMF → Prob → PMF` is the identity on finitely-supported `PMF`s.
+@isnad1 id=eq.1h2v.s4.2c1a06e28273 from=translated src=- shape=9c9c22c4 vocab=f9e24530
+-/
 theorem PMF.toPmf_toProb (f : PMF α) (hf : f.support.Finite) : (f.toProb hf).toPmf = f := by
   ext
   simp [ne_eq, ENNReal.ofReal_toReal_eq_iff, apply_ne_top]
 
-/-- `PMF.pure_apply` with `Pure.pure` rather than `PMF.pure`-/
+/-- `PMF.pure_apply` with `Pure.pure` rather than `PMF.pure`
+@isnad1 id=eq.0h3v.s5.b933d8fdae7c from=translated src=- shape=c8d042a9 vocab=80ef304c
+-/
 lemma PMF.pure_apply' (x y : α) : (Pure.pure x : PMF α) y = if y = x then 1 else 0 := rfl
 
-/-- `PMF.bind_apply` with `Bind.bind` rather than `PMF.bind`-/
+/-- `PMF.bind_apply` with `Bind.bind` rather than `PMF.bind`
+@isnad1 id=eq.0h5v.s6.5e0ee35f405e from=translated src=- shape=b4d91b35 vocab=044249a9
+-/
 lemma PMF.bind_apply' (p : PMF α) (f : α → PMF β) (y : β) :
     (Bind.bind p f) y = ∑' x : α, p x * f x y := rfl
 
-/-- `Prob.toPmf` commutes with pure-/
+/-- `Prob.toPmf` commutes with pure
+@isnad1 id=eq.0h2v.s4.89b8bae937ae from=translated src=- shape=64469822 vocab=897a2a98
+-/
 lemma Prob.pure_toPmf (x : α) : (pure x : Prob α).toPmf = pure x := by
   ext y; simp only [toPmf_coe, prob_pure, PMF.pure_apply']
   split_ifs; simp only [ENNReal.ofReal_one]; simp only [ENNReal.ofReal_zero]
 
-/-- `Prob.toPmf` commutes with bind-/
+/-- `Prob.toPmf` commutes with bind
+@isnad1 id=eq.0h4v.s5.760511f459aa from=translated src=- shape=90fedbae vocab=96374cf2
+-/
 lemma Prob.bind_toPmf (f : Prob α) (g : α → Prob β) :
     (f >>= g).toPmf = f.toPmf >>= (fun x ↦ (g x).toPmf) := by
   ext y
@@ -137,14 +155,18 @@ lemma Prob.bind_toPmf (f : Prob α) (g : α → Prob β) :
   simp only [Finsupp.mem_support_iff, not_not] at m
   simp only [m, zero_mul, ENNReal.ofReal_zero]
 
-/-- `Prob.exp` is tsum over `toPmf`-/
+/-- `Prob.exp` is tsum over `toPmf`
+@isnad1 id=eq.0h3v.s5.e33caeb92ebd from=translated src=- shape=7f7248e9 vocab=8bbe9cf4
+-/
 lemma Prob.tsum_toPmf_eq_exp (f : Prob α) (u : α → ℝ) :
     ∑' x, (f.toPmf x).toReal * u x = f.exp u := by
   apply HasSum.tsum_eq; simp only [Prob.toPmf_coe, ENNReal.toReal_ofReal (prob_nonneg _)]
   apply Finset.hasSum_sum; intro _ m
   simp only [Finsupp.mem_support_iff, ne_eq, not_not] at m; simp only [m, zero_mul]
 
-/-- Everything is integrable over `PMF`s with finite support-/
+/-- Everything is integrable over `PMF`s with finite support
+@isnad1 id=integrab.1h3v.s5.5b995a9bfe89 from=translated src=- shape=b05f44d5 vocab=7eefeedc
+-/
 lemma PMF.integrable_of_support_finite (f : PMF α) (u : α → ℝ) (hf : f.support.Finite)
     [MeasurableSpace α] [MeasurableSingletonClass α] :
     MeasureTheory.Integrable u f.toMeasure := by
@@ -159,12 +181,16 @@ lemma PMF.integrable_of_support_finite (f : PMF α) (u : α → ℝ) (hf : f.sup
   · right; apply f.apply_lt_top
   · apply MeasurableSet.singleton
 
-/-- Everything is integrable over `toPmf`, since it has finite support-/
+/-- Everything is integrable over `toPmf`, since it has finite support
+@isnad1 id=integrab.0h3v.s5.e3044e669fdd from=translated src=- shape=dcdd4233 vocab=be5c5f7b
+-/
 lemma Prob.integrable_toPmf (f : Prob α) (u : α → ℝ) [MeasurableSpace α]
     [MeasurableSingletonClass α] : MeasureTheory.Integrable u f.toPmf.toMeasure :=
   PMF.integrable_of_support_finite _ _ f.toPmf_support_finite
 
-/-- `Prob.exp` is integration over `toPmf`, if `α` is nice-/
+/-- `Prob.exp` is integration over `toPmf`, if `α` is nice
+@isnad1 id=eq.0h3v.s5.38f1c47005bf from=translated src=- shape=ff49ff94 vocab=da45163b
+-/
 lemma Prob.integral_toPmf_eq_exp (f : Prob α) (u : α → ℝ) [MeasurableSpace α]
     [MeasurableSingletonClass α] : ∫ x, u x ∂(f.toPmf.toMeasure) = f.exp u := by
   simp_rw [←Prob.tsum_toPmf_eq_exp, ←smul_eq_mul]
