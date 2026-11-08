@@ -1,0 +1,52 @@
+/-
+Copyright (c) 2025 Kenny Lau, Bhavik Mehta. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Kenny Lau, Bhavik Mehta
+-/
+
+module
+
+import Tengoku.Primecert.PrimeCert.PowMod
+import Tengoku.Seed.Algebra.Order.Monoid.Canonical.Defs
+import Tengoku.Seed.Tactic.Ring
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+/-! # A kernel-reducible bounded `Bool` quantifier
+
+`forallB f start len step` folds `f` over the `len`-term arithmetic progression
+`start, start + step, …`. `List.rec_and` does the same for a `List.rec` fold of `&&` over an
+explicit list.
+-/
+
+namespace PrimeCert
+
+/-- `f` holds at each of the `len` elements `start, start + step, …`, as a `Bool`.
+`forallB_iff` states this as an ordinary `∀`.-/
+@[expose] public noncomputable def forallB (f : ℕ → Bool) (start len : ℕ) (step : ℕ) : Bool :=
+  len.rec true fun n b ↦ (f ((n.mul step).add start)).and b
+
+@[simp, grind =] theorem forallB_zero (f : ℕ → Bool) (start step : ℕ) :
+    forallB f start 0 step = true :=
+  rfl
+
+@[simp, grind =] theorem forallB_succ (f : ℕ → Bool) (start len step : ℕ) :
+    forallB f start (len + 1) step =
+      (f ((len.mul step).add start)).and (forallB f start len step) :=
+  rfl
+
+/-- Read the fold as a statement about the indices `0` to `len`, whose elements are
+`n * step + start`.-/
+public theorem forallB_iff (f : ℕ → Bool) (start len step : ℕ) :
+    forallB f start len step ↔ ∀ n < len, f (n * step + start) := by
+  induction len with
+  | zero => simp
+  | succ n ih => simp [ih, Nat.forall_lt_succ_right, and_comm]
+
+/-- Read the fold over `start, start + step, …` as a statement about every `n` below `len * step`
+whose remainder mod `step` is `start`.-/
+public theorem forallB_of_mod (f : ℕ → Bool) {start len step : ℕ}
+    (h : forallB f start len step) : ∀ n < len * step, n % step = start → f n := by
+  grind [forallB_iff, Nat.div_lt_of_lt_mul, Nat.div_add_mod']
+
+end PrimeCert
