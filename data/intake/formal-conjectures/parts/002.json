@@ -1,0 +1,13 @@
+{
+ "bundle_sha256": "e797e4c398dfd730d0d636133f451f3e870888ed027af54ae5e250cc645f4e32",
+ "factory_changes": {
+  "inert lines removed": 3,
+  "modules changed": 1
+ },
+ "gate2_unjudged": [],
+ "library": "formal-conjectures",
+ "lint_mode": "proposed",
+ "modules": 1,
+ "part": 2,
+ "theorems": 15
+}
