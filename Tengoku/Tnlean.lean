@@ -116,3 +116,4 @@ import Tengoku.Tnlean.TNLean.QCA.BipartiteSupportAlgebra
 import Tengoku.Tnlean.TNLean.QCA.LocalAlgebra
 import Tengoku.Tnlean.TNLean.QCA.RegionSumset
 import Tengoku.Tnlean.TNLean.QCA.Translation
+import Tengoku.Tnlean.TNLean.Algebra.CommutingProjectionProduct
