@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "3788982d445029a82a9081161fb2e74fc6839ccf8c3f299b4ab0f784637d4e8a",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "sphere-packing-ext",
+ "lint_mode": "proposed",
+ "modules": 103,
+ "part": 1,
+ "theorems": 71
+}

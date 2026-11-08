@@ -75,6 +75,7 @@ import Tengoku.Aperiodicmonotiles
 import Tengoku
 import Tengoku.Ieantn
 import Tengoku.GroebnerProj
+import Tengoku.SpherePackingExt
 import Tengoku.Azurite
 import Tengoku.Compply
 import Tengoku.SpherePackingOrig
