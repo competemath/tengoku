@@ -58,13 +58,17 @@ def normalizer (P : ℕ) : ℝ :=
 def coefficient (P d : ℕ) : ℝ :=
   if d = 1 then 1 else -1 / (normalizer P * Real.log d)
 
-/-- A divisor other than one is greater than one.-/
+/-- A divisor other than one is greater than one.
+@isnad1 id=lt.1h2v.s5.7a241567870b from=translated src=- shape=445a92e8 vocab=194b429b
+-/
 lemma one_lt_of_mem_divisors_erase_one {P d : ℕ}
     (hd : d ∈ P.divisors.erase 1) : 1 < d := by
   exact lt_of_le_of_ne (Nat.pos_of_mem_divisors (Finset.mem_of_mem_erase hd))
     (Finset.ne_of_mem_erase hd).symm
 
-/-- The normalizer is positive when `P > 1`.-/
+/-- The normalizer is positive when `P > 1`.
+@isnad1 id=lt.1h1v.s4.9661ecfc7997 from=translated src=- shape=7f2e781e vocab=82000e7f
+-/
 lemma normalizer_pos {P : ℕ} (hP : 1 < P) : 0 < normalizer P := by
   unfold normalizer
   apply Finset.sum_pos
@@ -75,14 +79,18 @@ lemma normalizer_pos {P : ℕ} (hP : 1 < P) : 0 < normalizer P := by
     exact one_div_pos.mpr (mul_pos ht (Real.log_pos (by exact_mod_cast hd')))
   · exact ⟨P, Finset.mem_erase.mpr ⟨ne_of_gt hP, Nat.mem_divisors_self P (by omega)⟩⟩
 
-/-- For `P > 1`, coefficients at `d > 1` are negative.-/
+/-- For `P > 1`, coefficients at `d > 1` are negative.
+@isnad1 id=lt.2h2v.s5.39a3189e8f49 from=translated src=- shape=c96fe337 vocab=7c02fbca
+-/
 lemma coefficient_neg {P d : ℕ} (hP : 1 < P) (hd : 1 < d) :
     coefficient P d < 0 := by
   rw [coefficient, ite_eq_right (ne_of_gt hd)]
   exact div_neg_of_neg_of_pos (by norm_num)
     (mul_pos (normalizer_pos hP) (Real.log_pos (by exact_mod_cast hd)))
 
-/-- Exact cancellation, equations (3.2) and (3.5).-/
+/-- Exact cancellation, equations (3.2) and (3.5).
+@isnad1 id=eq.1h1v.s5.88b0eb35f0a6 from=translated src=- shape=96f07995 vocab=ee658b28
+-/
 theorem coefficient_cancellation {P : ℕ} (hP : 1 < P) :
     ∑ d ∈ P.divisors, coefficient P d / d.totient = 0 := by
   have hB : normalizer P ≠ 0 := ne_of_gt (normalizer_pos hP)
@@ -99,7 +107,9 @@ theorem coefficient_cancellation {P : ℕ} (hP : 1 < P) :
     hsum]
   simp [coefficient, hB]
 
-/-- The omitted terms in (3.11) have positive total mass.-/
+/-- The omitted terms in (3.11) have positive total mass.
+@isnad1 id=eq.3h2v.s6.725d924cd0bd from=translated src=- shape=e374ac40 vocab=e054f19a
+-/
 theorem partial_cancellation {P : ℕ} (hP : 1 < P)
     (E : Finset ℕ) (hE : E ⊆ P.divisors) (h1 : 1 ∈ E) :
     ∑ d ∈ E, coefficient P d / d.totient =
@@ -116,7 +126,9 @@ theorem partial_cancellation {P : ℕ} (hP : 1 < P)
   rw [abs_of_neg (coefficient_neg hP
     (one_lt_of_mem_divisors_erase_one (Finset.mem_erase.mpr ⟨hd1, hd⟩))), neg_div]
 
-/-- A divisor subsum containing one has nonnegative weighted coefficient sum.-/
+/-- A divisor subsum containing one has nonnegative weighted coefficient sum.
+@isnad1 id=le.3h2v.s6.54d4026d542d from=translated src=- shape=329a0bcf vocab=612aed78
+-/
 lemma partial_cancellation_nonneg {P : ℕ} (hP : 1 < P)
     (E : Finset ℕ) (hE : E ⊆ P.divisors) (h1 : 1 ∈ E) :
     0 ≤ ∑ d ∈ E, coefficient P d / d.totient := by
@@ -127,19 +139,25 @@ lemma partial_cancellation_nonneg {P : ℕ} (hP : 1 < P)
 def residueFactor {p : ℕ} (a t : Fin p) : ℝ :=
   if t = a then -1 else 1 / ((p : ℝ) - 1)
 
-/-- Sum a constant function with one exceptional value.-/
+/-- Sum a constant function with one exceptional value.
+@isnad1 id=eq.0h4v.s6.36eff21d5319 from=translated src=- shape=b9846d43 vocab=cb6d7081
+-/
 lemma sum_one_exception {p : ℕ} (a : Fin p) (c d : ℝ) :
     (∑ t : Fin p, if t = a then c else d) = c + ((p : ℝ) - 1) * d := by
   simp [Finset.sum_ite, Finset.filter_eq', Finset.filter_ne',
     Nat.cast_sub (Nat.succ_le_of_lt (Fin.pos a))]
 
-/-- The local mean is zero (Section 3.1).-/
+/-- The local mean is zero (Section 3.1).
+@isnad1 id=eq.1h2v.s5.94f91be2ede0 from=translated src=- shape=a6d1cd1c vocab=21ffc355
+-/
 theorem sum_residueFactor {p : ℕ} (hp : 1 < p) (a : Fin p) :
     ∑ t : Fin p, residueFactor a t = 0 := by
   have hp' : (p : ℝ) - 1 ≠ 0 := sub_ne_zero.mpr (by exact_mod_cast ne_of_gt hp)
   simp [residueFactor, sum_one_exception, hp']
 
-/-- The local square mean is 1/(p-1), before dividing the sum by p.-/
+/-- The local square mean is 1/(p-1), before dividing the sum by p.
+@isnad1 id=eq.1h2v.s6.ace192c0751d from=translated src=- shape=b145c1b8 vocab=e34d78ae
+-/
 theorem sum_residueFactor_sq {p : ℕ} (hp : 1 < p) (a : Fin p) :
     (∑ t : Fin p, (residueFactor a t) ^ 2) = (p : ℝ) / ((p : ℝ) - 1) := by
   have hp' : (p : ℝ) - 1 ≠ 0 := sub_ne_zero.mpr (by exact_mod_cast ne_of_gt hp)
@@ -147,7 +165,9 @@ theorem sum_residueFactor_sq {p : ℕ} (hp : 1 < p) (a : Fin p) :
   field_simp
   ring
 
-/-- Distinct roots have negative covariance, as used in (3.9).-/
+/-- Distinct roots have negative covariance, as used in (3.9).
+@isnad1 id=eq.2h3v.s6.9a099668c64a from=translated src=- shape=79accf15 vocab=54dc012b
+-/
 theorem sum_residueFactor_mul {p : ℕ} (hp : 1 < p) (a b : Fin p) (hab : a ≠ b) :
     (∑ t : Fin p, residueFactor a t * residueFactor b t) =
       -(p : ℝ) / ((p : ℝ) - 1) ^ 2 := by
@@ -165,7 +185,9 @@ theorem sum_residueFactor_mul {p : ℕ} (hp : 1 < p) (a b : Fin p) (hab : a ≠ 
   simp
   ring
 
-/-- For squarefree `d`, its totient is the product of `p - 1` over its prime factors.-/
+/-- For squarefree `d`, its totient is the product of `p - 1` over its prime factors.
+@isnad1 id=eq.1h1v.s5.7aa51817728c from=translated src=- shape=d88ca35c vocab=d441abba
+-/
 lemma totient_eq_prod_sub_one_of_squarefree {d : ℕ} (hd : Squarefree d) :
     d.totient = ∏ p ∈ d.primeFactors, (p - 1) := by
   have h := Nat.totient_mul_prod_primeFactors d
@@ -180,12 +202,16 @@ def coefficientMoment (P : ℕ) (γ : ℝ) : ℝ :=
 def coefficientAbsMoment (P : ℕ) (γ : ℝ) : ℝ :=
   ∑ d ∈ P.divisors.erase 1, |coefficient P d| * (d : ℝ) ^ γ / d.totient
 
-/-- Expand the coefficient moment at exponent zero.-/
+/-- Expand the coefficient moment at exponent zero.
+@isnad1 id=eq.0h1v.s5.0da4064a5dbd from=translated src=- shape=f34254e1 vocab=95cbb392
+-/
 lemma coefficientMoment_zero (P : ℕ) :
     coefficientMoment P 0 = ∑ d ∈ P.divisors, coefficient P d ^ 2 / d.totient := by
   simp [coefficientMoment]
 
-/-- The divisor one gives a lower bound of one for the coefficient moment.-/
+/-- The divisor one gives a lower bound of one for the coefficient moment.
+@isnad1 id=le.1h2v.s4.2d9e55b0245f from=translated src=- shape=a51225ff vocab=c8b1e77c
+-/
 lemma coefficientMoment_ge_one {P : ℕ} (hP : P ≠ 0) (γ : ℝ) :
     1 ≤ coefficientMoment P γ := by
   have h := Finset.single_le_sum
@@ -194,19 +220,25 @@ lemma coefficientMoment_ge_one {P : ℕ} (hP : P ≠ 0) (γ : ℝ) :
       (Nat.cast_nonneg _)) (Nat.one_mem_divisors.mpr hP)
   simpa [coefficientMoment, coefficient] using h
 
-/-- The exponential increment is at most `x * exp x`.-/
+/-- The exponential increment is at most `x * exp x`.
+@isnad1 id=le.0h1v.s4.df1e738e1c1f from=translated src=- shape=f3aecf1d vocab=0aa41bd4
+-/
 lemma exp_sub_one_le_mul_exp (x : ℝ) : Real.exp x - 1 ≤ x * Real.exp x := by
   have h := mul_le_mul_of_nonneg_right (Real.add_one_le_exp (-x)) (Real.exp_nonneg x)
   rw [← Real.exp_add, neg_add_cancel, Real.exp_zero] at h
   linarith
 
-/-- The power increment is at most `γ * v ^ γ * log v`.-/
+/-- The power increment is at most `γ * v ^ γ * log v`.
+@isnad1 id=le.1h2v.s6.27cac86dc167 from=translated src=- shape=a9cfafa8 vocab=173f195d
+-/
 lemma rpow_sub_one_le {v γ : ℝ} (hv : 0 < v) :
     v ^ γ - 1 ≤ γ * v ^ γ * Real.log v := by
   rw [Real.rpow_def_of_pos hv]
   nlinarith [exp_sub_one_le_mul_exp (Real.log v * γ)]
 
-/-- A squared coefficient times `log d` equals its normalized absolute value.-/
+/-- A squared coefficient times `log d` equals its normalized absolute value.
+@isnad1 id=eq.2h2v.s6.9b4618fa0a00 from=translated src=- shape=add28b0c vocab=618f00b5
+-/
 lemma coefficient_sq_mul_log {P d : ℕ} (hP : 1 < P) (hd : 1 < d) :
     coefficient P d ^ 2 * Real.log d = |coefficient P d| / normalizer P := by
   rw [abs_of_neg (coefficient_neg hP hd), coefficient, ite_eq_right (ne_of_gt hd)]
@@ -214,7 +246,9 @@ lemma coefficient_sq_mul_log {P d : ℕ} (hP : 1 < P) (hd : 1 < d) :
   have hlog := ne_of_gt (Real.log_pos (by exact_mod_cast hd : (1 : ℝ) < d))
   field_simp
 
-/-- Control the change in the squared moment by the absolute moment.-/
+/-- Control the change in the squared moment by the absolute moment.
+@isnad1 id=le.1h2v.s5.e30eb8a3cd85 from=translated src=- shape=02f14ed8 vocab=c2cf80db
+-/
 lemma coefficientMoment_sub_le {P : ℕ} (hP : 1 < P) (γ : ℝ) :
     coefficientMoment P γ - coefficientMoment P 0 ≤
       (γ / normalizer P) * coefficientAbsMoment P γ := by
@@ -241,7 +275,9 @@ lemma coefficientMoment_sub_le {P : ℕ} (hP : 1 < P) (γ : ℝ) :
       rw [coefficient_sq_mul_log hP hd']
       ring
 
-/-- Rankin's tail estimate, in the finite form needed for (3.10).-/
+/-- Rankin's tail estimate, in the finite form needed for (3.10).
+@isnad1 id=le.4h6v.s7.4c3269bbc1e8 from=translated src=- shape=961293d6 vocab=3b049dc7
+-/
 theorem moment_tail_le {α : Type*} (s : Finset α) (f v : α → ℝ) (D β : ℝ)
     (hD : 0 < D) (hβ : 0 ≤ β) (hf : ∀ a ∈ s, 0 ≤ f a)
     (hv : ∀ a ∈ s, 0 ≤ v a) :
@@ -279,17 +315,23 @@ def tupleRegion (P k : ℕ) (D : ℝ) : Finset (DivisorTuple P k) := by
 def tupleMass {P k : ℕ} (r : DivisorTuple P k) : ℝ :=
   ∏ i, coefficient P (r i).val ^ 2 / ((r i).val.totient : ℝ)
 
-/-- The diagonal mass of a divisor tuple is nonnegative.-/
+/-- The diagonal mass of a divisor tuple is nonnegative.
+@isnad1 id=le.0h3v.s4.1c4da1972edd from=translated src=- shape=d11c6b12 vocab=981dcc42
+-/
 lemma tupleMass_nonneg {P k : ℕ} (r : DivisorTuple P k) : 0 ≤ tupleMass r := by
   unfold tupleMass
   positivity
 
-/-- Rewrite a sum over divisor indices as a sum over the divisor finset.-/
+/-- Rewrite a sum over divisor indices as a sum over the divisor finset.
+@isnad1 id=eq.0h2v.s5.120efd3f0dcc from=translated src=- shape=aaa15573 vocab=bd1db67f
+-/
 lemma sum_divisorIndex (P : ℕ) (f : ℕ → ℝ) :
     (∑ d : DivisorIndex P, f d.val) = ∑ d ∈ P.divisors, f d := by
   exact Finset.sum_attach P.divisors f
 
-/-- The total tuple mass is the `k`th power of the zero coefficient moment.-/
+/-- The total tuple mass is the `k`th power of the zero coefficient moment.
+@isnad1 id=eq.0h2v.s6.ef8ee459d0cd from=translated src=- shape=3f570712 vocab=91722152
+-/
 lemma sum_tupleMass (P k : ℕ) :
     (∑ r : DivisorTuple P k, tupleMass r) = coefficientMoment P 0 ^ k := by
   classical
@@ -300,7 +342,9 @@ lemma sum_tupleMass (P k : ℕ) :
     ← coefficientMoment_zero]
   simp
 
-/-- The tilted tuple mass factors as a power of the coefficient moment.-/
+/-- The tilted tuple mass factors as a power of the coefficient moment.
+@isnad1 id=eq.0h3v.s6.7674ab4cee30 from=translated src=- shape=5c69f30c vocab=24c57b45
+-/
 lemma sum_tupleMass_mul_rpow (P k : ℕ) (γ : ℝ) :
     (∑ r : DivisorTuple P k, tupleMass r * (tupleProduct r : ℝ) ^ γ) =
       coefficientMoment P γ ^ k := by
@@ -314,7 +358,9 @@ lemma sum_tupleMass_mul_rpow (P k : ℕ) (γ : ℝ) :
   rw [sum_divisorIndex P (fun d => coefficient P d ^ 2 * (d : ℝ) ^ γ / d.totient)]
   simp [coefficientMoment]
 
-/-- The first inequality in (3.10), with no asymptotic assumptions.-/
+/-- The first inequality in (3.10), with no asymptotic assumptions.
+@isnad1 id=le.2h4v.s7.ae3180091a89 from=translated src=- shape=2c447e4f vocab=7ac58ef0
+-/
 theorem diagonal_tail_le (P k : ℕ) {D β : ℝ} (hD : 0 < D) (hβ : 0 ≤ β) :
     (∑ r ∈ (Finset.univ : Finset (DivisorTuple P k)).filter
         (fun r => D < (tupleProduct r : ℝ)), tupleMass r) ≤
@@ -324,7 +370,9 @@ theorem diagonal_tail_le (P k : ℕ) {D β : ℝ} (hD : 0 < D) (hβ : 0 ≤ β) 
     moment_tail_le Finset.univ tupleMass (fun r : DivisorTuple P k => (tupleProduct r : ℝ))
       D β hD hβ (fun r _ => tupleMass_nonneg r) (fun r _ => Nat.cast_nonneg _)
 
-/-- Convert an additive bound into an exponential bound on powers.-/
+/-- Convert an additive bound into an exponential bound on powers.
+@isnad1 id=le.4h4v.s6.c4ca795012d1 from=translated src=- shape=6ec6ae28 vocab=c6436769
+-/
 lemma pow_le_mul_exp {A B t : ℝ} (hA : 1 ≤ A) (hB : 0 ≤ B)
     (ht : 0 ≤ t) (hBA : B ≤ A + t) (k : ℕ) :
     B ^ k ≤ A ^ k * Real.exp ((k : ℝ) * t) := by
@@ -336,7 +384,9 @@ lemma pow_le_mul_exp {A B t : ℝ} (hA : 1 ≤ A) (hB : 0 ≤ B)
     B ^ k ≤ (A * Real.exp t) ^ k := pow_le_pow_left₀ hB hbase k
     _ = A ^ k * Real.exp ((k : ℝ) * t) := by rw [mul_pow, Real.exp_nat_mul]
 
-/-- Bound powers of a tilted coefficient moment relative to the zero moment.-/
+/-- Bound powers of a tilted coefficient moment relative to the zero moment.
+@isnad1 id=le.4h4v.s6.acd0923f7a88 from=translated src=- shape=8e546a4d vocab=d31e57ec
+-/
 lemma coefficientMoment_pow_le {P : ℕ} (hP : 1 < P) {C γ : ℝ}
     (hC : 0 ≤ C) (hγ : 0 ≤ γ)
     (hM : coefficientAbsMoment P γ ≤ C * normalizer P) (k : ℕ) :
@@ -355,7 +405,9 @@ lemma coefficientMoment_pow_le {P : ℕ} (hP : 1 < P) {C γ : ℝ}
     (by linarith : coefficientMoment P γ ≤ coefficientMoment P 0 + C * γ) k
 
 /-- The elementary passage from a prime-free interval to consecutive primes.
-Bertrand's postulate supplies the upper endpoint bound used in Section 2.-/
+Bertrand's postulate supplies the upper endpoint bound used in Section 2.
+@isnad1 id=ex.2h2v.s6.524b4b8a2f8c from=translated src=- shape=e4f1412f vocab=6e0821bf
+-/
 theorem consecutivePrimes_of_composite_interval {N H : ℕ} (hN : 2 ≤ N)
     (hcomposite : ∀ n : ℕ, N < n → n ≤ N + H → ¬n.Prime) :
     ∃ p q : ℕ, ConsecutivePrimes p q ∧ p ≤ N ∧ N + H < q ∧ q ≤ 2 * N ∧ H < q - p := by
@@ -374,7 +426,9 @@ theorem consecutivePrimes_of_composite_interval {N H : ℕ} (hN : 2 ≤ N)
   · exact Nat.findGreatest_is_greatest hpr hrN hr
   · exact Nat.find_min hex hrq ⟨hr, by omega, by omega⟩
 
-/-- The initial zero-residue sieve leaves only primes and z-smooth integers.-/
+/-- The initial zero-residue sieve leaves only primes and z-smooth integers.
+@isnad1 id=or.5h5v.s7.8abc523be573 from=translated src=- shape=678c95d7 vocab=038a89db
+-/
 theorem prime_or_smooth_of_survives {n H : ℕ} {x w z : ℝ}
     (hn : 1 ≤ n) (hnH : n ≤ H) (hx : 0 < x) (hsmall : 2 * (H : ℝ) < x * w)
     (hsurvives : ∀ p : ℕ, p.Prime → ((p : ℝ) ≤ w ∨ (z < p ∧ (p : ℝ) ≤ x / 2)) → ¬p ∣ n) :
@@ -409,7 +463,9 @@ theorem prime_or_smooth_of_survives {n H : ℕ} {x w z : ℝ}
 def survivors (S ps : Finset ℕ) (a : ℕ → ℕ) : Finset ℕ :=
   S.filter fun n => ∀ p ∈ ps, n % p ≠ a p
 
-/-- The greedy product bound in (2.1), before applying Mertens' estimate.-/
+/-- The greedy product bound in (2.1), before applying Mertens' estimate.
+@isnad1 id=ex.1h2v.s6.07e89b77953a from=translated src=- shape=a75467de vocab=22561548
+-/
 theorem greedy_residue_classes (S ps : Finset ℕ) (hpos : ∀ p ∈ ps, 0 < p) :
     ∃ a : ℕ → ℕ, (∀ p ∈ ps, a p < p) ∧
       ((survivors S ps a).card : ℝ) ≤ (S.card : ℝ) * ∏ p ∈ ps, (1 - 1 / (p : ℝ)) := by
@@ -466,7 +522,9 @@ theorem greedy_residue_classes (S ps : Finset ℕ) (hpos : ∀ p ∈ ps, 0 < p) 
           _ = _ := by ring
 
 /-- A symmetric matrix is controlled by its absolute row sums. This is the
-2|ab| ≤ a²+b² argument invoked in the proof of (3.9).-/
+2|ab| ≤ a²+b² argument invoked in the proof of (3.9).
+@isnad1 id=le.1h3v.s7.4f6c9677356f from=translated src=- shape=3fc74c4e vocab=6484f957
+-/
 theorem abs_quadratic_form_le_rows {ι : Type*} [Fintype ι]
     (c : ι → ℝ) (K : ι → ι → ℝ) (hK : ∀ i j, |K i j| = |K j i|) :
     |∑ i, ∑ j, c i * c j * K i j| ≤ ∑ i, c i ^ 2 * ∑ j, |K i j| := by
@@ -487,7 +545,9 @@ theorem abs_quadratic_form_le_rows {ι : Type*} [Fintype ι]
       rw [Finset.sum_comm (f := fun i j => c j ^ 2 / 2 * |K i j|)]
       simp_rw [← hK, ← Finset.mul_sum, ← Finset.sum_add_distrib, ← add_mul, add_halves]
 
-/-- Row sums away from the diagonal bound the quadratic error from the identity.-/
+/-- Row sums away from the diagonal bound the quadratic error from the identity.
+@isnad1 id=le.3h4v.s7.d53b0c1efae6 from=translated src=- shape=c98464e6 vocab=789cc301
+-/
 lemma quadratic_form_near_diagonal {ι : Type*} [Fintype ι] [DecidableEq ι]
     (c : ι → ℝ) (K : ι → ι → ℝ) (ε : ℝ)
     (hsym : ∀ i j, K i j = K j i) (hdiag : ∀ i, K i i = 1)
@@ -517,19 +577,25 @@ def productBasis {α : Type*} [Fintype α] {Ω J : α → Type*}
     (f : (p : α) → J p → Ω p → ℝ) (σ : (p : α) → J p) (t : (p : α) → Ω p) : ℝ :=
   ∏ p, f p (σ p) (t p)
 
-/-- The residue factor has mean zero.-/
+/-- The residue factor has mean zero.
+@isnad1 id=eq.1h2v.s5.4a299f57f70d from=translated src=- shape=cc34e5be vocab=da3ddfb4
+-/
 lemma average_residueFactor {p : ℕ} (hp : 1 < p) (a : Fin p) :
     Finset.expect Finset.univ (residueFactor a) = 0 := by
   simp [Finset.expect, sum_residueFactor hp]
 
-/-- The residue factor has second moment `1 / (p - 1)`.-/
+/-- The residue factor has second moment `1 / (p - 1)`.
+@isnad1 id=eq.1h2v.s6.bd291ed704e9 from=translated src=- shape=ecf4564f vocab=02cbb570
+-/
 lemma average_residueFactor_sq {p : ℕ} (hp : 1 < p) (a : Fin p) :
     Finset.expect Finset.univ (fun t => residueFactor a t ^ 2) = 1 / ((p : ℝ) - 1) := by
   have hp0 : p ≠ 0 := by omega
   simp [Finset.expect_eq_sum_div_card, sum_residueFactor_sq hp, div_eq_mul_inv,
     mul_right_comm, hp0]
 
-/-- Distinct residue factors have covariance `-1 / (p - 1)^2`.-/
+/-- Distinct residue factors have covariance `-1 / (p - 1)^2`.
+@isnad1 id=eq.2h3v.s6.a5a3b2cc7cce from=translated src=- shape=65bb674e vocab=11ab9d1b
+-/
 lemma average_residueFactor_mul {p : ℕ} (hp : 1 < p) (a b : Fin p) (hab : a ≠ b) :
     Finset.expect Finset.univ (fun t => residueFactor a t * residueFactor b t) =
       -1 / ((p : ℝ) - 1) ^ 2 := by
@@ -551,7 +617,9 @@ def localKernel (p : ℕ) {k : ℕ} (i j : Option (Fin k)) : ℝ :=
   | some _, none => 0
   | some a, some b => if a = b then 1 else -1 / ((p : ℝ) - 1)
 
-/-- The local Gram matrix, with the nonconstant factors normalized to variance one.-/
+/-- The local Gram matrix, with the nonconstant factors normalized to variance one.
+@isnad1 id=eq.2h5v.s6.8efc6565b9c2 from=translated src=- shape=3d99db90 vocab=48bdf149
+-/
 theorem average_localBasis_mul {p k : ℕ} (hp : 1 < p) (root : Fin k → Fin p)
     (hroot : Function.Injective root) (i j : Option (Fin k)) :
     Finset.expect Finset.univ (fun t => localBasis root i t * localBasis root j t) =
@@ -585,16 +653,22 @@ def localRow (p k : ℕ) (i : Option (Fin k)) : ℝ :=
   | none => 1
   | some _ => 1 + ((k : ℝ) - 1) / ((p : ℝ) - 1)
 
-/-- The local Gram kernel is symmetric.-/
+/-- The local Gram kernel is symmetric.
+@isnad1 id=eq.0h4v.s4.ca172dad064c from=translated src=- shape=3c2381c9 vocab=77c8f8d0
+-/
 lemma localKernel_symm (p : ℕ) {k : ℕ} (i j : Option (Fin k)) :
     localKernel p i j = localKernel p j i := by
   cases i <;> cases j <;> simp [localKernel, eq_comm]
 
-/-- The local Gram kernel has diagonal entries equal to one.-/
+/-- The local Gram kernel has diagonal entries equal to one.
+@isnad1 id=eq.0h3v.s4.3d4307e9815d from=translated src=- shape=5d494a79 vocab=77c8f8d0
+-/
 lemma localKernel_diag (p : ℕ) {k : ℕ} (i : Option (Fin k)) :
     localKernel p i i = 1 := by cases i <;> simp [localKernel]
 
-/-- Summing the absolute local kernel entries gives `localRow`.-/
+/-- Summing the absolute local kernel entries gives `localRow`.
+@isnad1 id=eq.1h3v.s5.13f2b4ae3516 from=translated src=- shape=0ffa4b65 vocab=ae9e310d
+-/
 lemma sum_abs_localKernel {p k : ℕ} (hp : 1 < p) (i : Option (Fin k)) :
     (∑ j, |localKernel p i j|) = localRow p k i := by
   have hpR : 0 ≤ (p : ℝ) - 1 := sub_nonneg.mpr (by exact_mod_cast hp.le)
@@ -610,17 +684,23 @@ lemma sum_abs_localKernel {p k : ℕ} (hp : 1 < p) (i : Option (Fin k)) :
 def productKernel {α : Type*} [Fintype α] (size : α → ℕ) {k : ℕ}
     (σ τ : α → Option (Fin k)) : ℝ := ∏ p, localKernel (size p) (σ p) (τ p)
 
-/-- The product Gram kernel is symmetric.-/
+/-- The product Gram kernel is symmetric.
+@isnad1 id=eq.0h5v.s5.f990eaa25a55 from=translated src=- shape=b5c21bfd vocab=549e22e2
+-/
 lemma productKernel_symm {α : Type*} [Fintype α] (size : α → ℕ) {k : ℕ}
     (σ τ : α → Option (Fin k)) : productKernel size σ τ = productKernel size τ σ := by
   exact Finset.prod_congr rfl fun p _ => localKernel_symm (size p) (σ p) (τ p)
 
-/-- The product Gram kernel has diagonal entries equal to one.-/
+/-- The product Gram kernel has diagonal entries equal to one.
+@isnad1 id=eq.0h4v.s5.3078366e03de from=translated src=- shape=03d979ee vocab=549e22e2
+-/
 lemma productKernel_diag {α : Type*} [Fintype α] (size : α → ℕ) {k : ℕ}
     (σ : α → Option (Fin k)) : productKernel size σ σ = 1 := by
   simp [productKernel, localKernel_diag]
 
-/-- The product of local row sums from the proof of (3.9).-/
+/-- The product of local row sums from the proof of (3.9).
+@isnad1 id=eq.1h4v.s6.296e9444bfb4 from=translated src=- shape=cf9ef9c6 vocab=55c419ab
+-/
 theorem sum_abs_productKernel {α : Type*} [Fintype α] [DecidableEq α]
     (size : α → ℕ) (hsize : ∀ p, 1 < size p) {k : ℕ} (σ : α → Option (Fin k)) :
     (∑ τ, |productKernel size σ τ|) = ∏ p, localRow (size p) k (σ p) := by
@@ -629,7 +709,9 @@ theorem sum_abs_productKernel {α : Type*} [Fintype α] [DecidableEq α]
     |localKernel (size p) (σ p) j|)]
   simp_rw [sum_abs_localKernel (hsize _)]
 
-/-- Products of local basis functions have Gram kernel `productKernel`.-/
+/-- Products of local basis functions have Gram kernel `productKernel`.
+@isnad1 id=eq.2h6v.s7.9ce5e627de5c from=translated src=- shape=b6362689 vocab=c09dd81b
+-/
 lemma average_productBasis_localBasis {α : Type*} [Fintype α] [DecidableEq α]
     (size : α → ℕ) (hsize : ∀ p, 1 < size p) {k : ℕ}
     (root : (p : α) → Fin k → Fin (size p)) (hroot : ∀ p, Function.Injective (root p))
@@ -655,7 +737,9 @@ def assignmentProduct {α : Type*} [Fintype α] (size : α → ℕ) {k : ℕ}
     (σ : α → Option (Fin k)) : ℕ := ∏ p ∈ assignmentSupport σ, size p
 
 /-- The cutoff controls the row sums uniformly, independently of the
-number of auxiliary primes in P.-/
+number of auxiliary primes in P.
+@isnad1 id=le.4h6v.s7.d6338a79e3c3 from=translated src=- shape=f88af091 vocab=cd805124
+-/
 theorem assignment_row_bound {α : Type*} [Fintype α]
     (size : α → ℕ) {k : ℕ} (hk : 1 ≤ k) (σ : α → Option (Fin k))
     {z D : ℝ} (hz : 1 < z) (hsize : ∀ p, z ≤ (size p : ℝ))
@@ -712,7 +796,9 @@ theorem assignment_row_bound {α : Type*} [Fintype α]
 /-- The indicator of the residue class `a` modulo `m`.-/
 def residueIndicator (m a n : ℕ) : ℝ := if n % m = a then 1 else 0
 
-/-- The error of counting one congruence class is at most one.-/
+/-- The error of counting one congruence class is at most one.
+@isnad1 id=le.1h3v.s5.d8a9b2d70eae from=translated src=- shape=8fa60d8a vocab=0c8460b4
+-/
 theorem residue_count_error_le_one {m a : ℕ} (ha : a < m) (T : ℕ) :
     |(∑ n ∈ Finset.range T, residueIndicator m a n) - (T : ℝ) / m| ≤ 1 := by
   have hlo : ((T / m : ℕ) : ℝ) ≤ (T : ℝ) / m := Nat.cast_div_le
@@ -726,7 +812,9 @@ theorem residue_count_error_le_one {m a : ℕ} (ha : a < m) (T : ℕ) :
   rw [hcount]
   split_ifs <;> rw [abs_le] <;> constructor <;> linarith
 
-/-- A residue class has frequency error at most `1 / T` on an interval of length `T`.-/
+/-- A residue class has frequency error at most `1 / T` on an interval of length `T`.
+@isnad1 id=le.2h3v.s6.2a4eafcd2e7c from=translated src=- shape=9443a742 vocab=0c8460b4
+-/
 lemma residue_average_error {m a T : ℕ} (ha : a < m) (hT : 0 < T) :
     |(∑ n ∈ Finset.range T, residueIndicator m a n) / (T : ℝ) - 1 / (m : ℝ)| ≤
       1 / (T : ℝ) := by
@@ -737,7 +825,9 @@ lemma residue_average_error {m a T : ℕ} (ha : a < m) (hT : 0 < T) :
   rw [he, abs_div, abs_of_pos hTr]
   exact div_le_div_of_nonneg_right (residue_count_error_le_one ha T) hTr.le
 
-/-- A weighted union bound, stated without a probability-space interface.-/
+/-- A weighted union bound, stated without a probability-space interface.
+@isnad1 id=le.1h4v.s7.b2a253f44887 from=translated src=- shape=91ed786e vocab=e613d44b
+-/
 theorem weighted_union_bound {Ω ι : Type*} [Fintype Ω] [Fintype ι]
     (w : Ω → ℝ) (event : ι → Ω → Prop) [∀ i, DecidablePred (event i)]
     (hw : ∀ t, 0 ≤ w t) :
@@ -755,7 +845,9 @@ theorem weighted_union_bound {Ω ι : Type*} [Fintype Ω] [Fintype ι]
         (fun j _ => by split_ifs <;> simp [hw]) (Finset.mem_univ i))
   · simp [not_exists.mp h]
 
-/-- Independence of two marked coordinates under a product of normalized masses.-/
+/-- Independence of two marked coordinates under a product of normalized masses.
+@isnad1 id=eq.2h6v.s7.e18ee30766b4 from=translated src=- shape=9440676c vocab=a022a341
+-/
 theorem sum_pair_marked_product {ι Ω : Type*} [Fintype ι] [DecidableEq ι]
     [Fintype Ω] (w : Ω → ℝ) (hw : ∑ d, w d = 1)
     (mark : Ω → Prop) [DecidablePred mark] (i j : ι) (hij : i ≠ j) :
@@ -779,7 +871,9 @@ theorem sum_pair_marked_product {ι Ω : Type*} [Fintype ι] [DecidableEq ι]
     _ = _ := by simp [Finset.prod_pair hij, pow_two]
 
 /-- The collision estimate for independently chosen divisors: a common mark
-in two coordinates costs at most the square of its one-coordinate mass.-/
+in two coordinates costs at most the square of its one-coordinate mass.
+@isnad1 id=le.2h5v.s8.c18f6c0d7b0e from=translated src=- shape=e498d75e vocab=d8686c01
+-/
 theorem product_collision_bound {α Ω : Type*} [Fintype α] [Fintype Ω]
     (w : Ω → ℝ) (hw : ∀ d, 0 ≤ w d) (hsum : ∑ d, w d = 1)
     (mark : α → Ω → Prop) [∀ p, DecidablePred (mark p)] (k : ℕ) :
@@ -811,7 +905,9 @@ theorem product_collision_bound {α Ω : Type*} [Fintype α] [Fintype Ω]
           (sum_pair_marked_product w hsum (mark p) i j hij).le
     _ = _ := by simp [Finset.mul_sum, pow_two, mul_assoc]
 
-/-- Divisors divisible by p are parametrized by the divisors of P/p.-/
+/-- Divisors divisible by p are parametrized by the divisors of P/p.
+@isnad1 id=eq.3h3v.s6.aa89eed57426 from=translated src=- shape=1be510e2 vocab=b53bf858
+-/
 theorem sum_divisors_dvd_eq {P p : ℕ} (hP : P ≠ 0) (hp : 0 < p) (hpP : p ∣ P)
     (f : ℕ → ℝ) :
     (∑ d ∈ P.divisors.filter (fun d => p ∣ d), f d) =
@@ -833,7 +929,9 @@ theorem sum_divisors_dvd_eq {P p : ℕ} (hP : P ≠ 0) (hp : 0 < p) (hpP : p ∣
       apply hP
       rw [← Nat.mul_div_cancel' hpP, h, mul_zero]
 
-/-- Multiplying a nontrivial divisor by a prime decreases the absolute coefficient.-/
+/-- Multiplying a nontrivial divisor by a prime decreases the absolute coefficient.
+@isnad1 id=le.3h3v.s5.84c51b6a95cf from=translated src=- shape=f78a1214 vocab=ac678e04
+-/
 theorem abs_coefficient_mul_le {P p e : ℕ} (hP : 1 < P) (hp : 1 ≤ p) (he : 1 < e) :
     |coefficient P (p * e)| ≤ |coefficient P e| := by
   have hpe : e ≤ p * e := by simpa using Nat.mul_le_mul_right e hp
@@ -847,13 +945,17 @@ theorem abs_coefficient_mul_le {P p e : ℕ} (hP : 1 < P) (hp : 1 ≤ p) (he : 1
       (Real.log_le_log (by exact_mod_cast (zero_lt_one.trans he))
         (by exact_mod_cast hpe)) (normalizer_pos hP).le
 
-/-- The absolute coefficient moment at exponent zero equals one.-/
+/-- The absolute coefficient moment at exponent zero equals one.
+@isnad1 id=eq.1h1v.s4.e7d89c82d7bf from=translated src=- shape=41c8c002 vocab=81d62d57
+-/
 lemma coefficientAbsMoment_zero {P : ℕ} (hP : 1 < P) : coefficientAbsMoment P 0 = 1 := by
   have h := partial_cancellation hP {1}
     (by simpa using Nat.one_mem_divisors.mpr (by omega : P ≠ 0)) (by simp)
   simpa [coefficientAbsMoment, coefficient, Finset.sdiff_singleton_eq_erase] using h.symm
 
-/-- The sum of absolute coefficients divided by totients equals two.-/
+/-- The sum of absolute coefficients divided by totients equals two.
+@isnad1 id=eq.1h1v.s5.1a013f0be91f from=translated src=- shape=3783fb1c vocab=87335f21
+-/
 lemma sum_abs_coefficient_div_totient {P : ℕ} (hP : 1 < P) :
     (∑ d ∈ P.divisors, |coefficient P d| / d.totient) = 2 := by
   rw [← Finset.sum_erase_add _ _ (Nat.one_mem_divisors.mpr (by omega : P ≠ 0))]
@@ -862,7 +964,9 @@ lemma sum_abs_coefficient_div_totient {P : ℕ} (hP : 1 < P) :
   rw [h]
   norm_num [coefficient]
 
-/-- The incidence bound (3.7), with an explicit constant once |a(p)| ≤ 1.-/
+/-- The incidence bound (3.7), with an explicit constant once |a(p)| ≤ 1.
+@isnad1 id=le.5h2v.s6.6e5a787ecb24 from=translated src=- shape=ea3026e1 vocab=2ef040e4
+-/
 theorem coefficient_prime_incidence {P p : ℕ} (hP : 1 < P) (hsq : Squarefree P)
     (hp : p.Prime) (hpP : p ∣ P) (hcoeff : |coefficient P p| ≤ 1) :
     (∑ d ∈ P.divisors.filter (fun d => p ∣ d), |coefficient P d| / d.totient) ≤
@@ -906,7 +1010,9 @@ theorem coefficient_prime_incidence {P p : ℕ} (hP : 1 < P) (hsq : Squarefree P
       have : (2 : ℝ) ≤ p := by exact_mod_cast hp.two_le
       linarith
 
-/-- The logarithms of distinct prime divisors sum to at most `log n`.-/
+/-- The logarithms of distinct prime divisors sum to at most `log n`.
+@isnad1 id=le.2h2v.s5.3c9a1c2d36f8 from=translated src=- shape=e7ce1533 vocab=142370b1
+-/
 lemma sum_log_prime_divisors_le_log {n N : ℕ} (hn : 0 < n) (hnN : n ≤ N) :
     (∑ p ∈ N.primesLE, if p ∣ n then Real.log p else 0) ≤ Real.log n := by
   have hfilter : N.primesLE.filter (fun p => p ∣ n) = n.primeFactors := by
@@ -922,7 +1028,9 @@ lemma sum_log_prime_divisors_le_log {n N : ℕ} (hn : 0 < n) (hnN : n ≤ N) :
   · rw [← Nat.cast_prod]
     exact_mod_cast Nat.le_of_dvd hn (Nat.prod_primeFactors_dvd n)
 
-/-- An elementary upper bound for the logarithmically weighted prime harmonic sum.-/
+/-- An elementary upper bound for the logarithmically weighted prime harmonic sum.
+@isnad1 id=le.1h1v.s5.61304fadbfee from=translated src=- shape=a7e20ff4 vocab=42003ee4
+-/
 theorem sum_prime_log_div_le {N : ℕ} (hN : 1 ≤ N) :
     (∑ p ∈ N.primesLE, Real.log p / p) ≤ Real.log N + Real.log 4 := by
   classical
@@ -977,7 +1085,9 @@ def natPowerHom (σ : ℝ) : ℕ →* ℝ where
     simp only [Nat.cast_mul]
     exact Real.mul_rpow (Nat.cast_nonneg _) (Nat.cast_nonneg _)
 
-/-- The weighted sum over smooth numbers is bounded by the finite Euler product.-/
+/-- The weighted sum over smooth numbers is bounded by the finite Euler product.
+@isnad1 id=le.2h3v.s6.f9bd9dd548cf from=translated src=- shape=e293c399 vocab=f6190f83
+-/
 lemma sum_smooth_le_eulerProduct {N : ℕ} {σ : ℝ} (hσ : 0 < σ)
     (S : Finset ℕ) (hS : ∀ n ∈ S, n ∈ (N + 1).smoothNumbers) :
     (∑ n ∈ S, (n : ℝ) ^ (-σ)) ≤ eulerProduct N σ := by
@@ -993,7 +1103,9 @@ lemma sum_smooth_le_eulerProduct {N : ℕ} {σ : ℝ} (hσ : 0 < σ)
   rw [← Finset.sum_subtype_of_mem _ hS]
   exact sum_le_hasSum _ (fun n _ => Real.rpow_nonneg (Nat.cast_nonneg _) _) hsum
 
-/-- The lower half of the weak Mertens product estimate.-/
+/-- The lower half of the weak Mertens product estimate.
+@isnad1 id=le.0h1v.s4.26e4efd00b8b from=translated src=- shape=b08b3217 vocab=aed5e3a6
+-/
 theorem log_le_eulerProduct_one (N : ℕ) : Real.log N ≤ eulerProduct N 1 := by
   have h := sum_smooth_le_eulerProduct (N := N) (by norm_num : (0 : ℝ) < 1)
     (Finset.Icc 1 N) (fun n hn => Nat.mem_smoothNumbers_of_lt
@@ -1005,7 +1117,9 @@ theorem log_le_eulerProduct_one (N : ℕ) : Real.log N ≤ eulerProduct N 1 := b
   simp only [Real.rpow_neg_one] at h
   exact hlog.trans h
 
-/-- The elementary zeta-function bound obtained by integrating t^(-σ).-/
+/-- The elementary zeta-function bound obtained by integrating t^(-σ).
+@isnad1 id=le.1h1v.s6.6855e4f0d1ff from=translated src=- shape=41d3ac44 vocab=576683b8
+-/
 theorem tsum_succ_rpow_le {σ : ℝ} (hσ : 1 < σ) :
     (∑' n : ℕ, ((n : ℝ) + 1) ^ (-σ)) ≤ 1 + 1 / (σ - 1) := by
   have hexp : -σ < -1 := neg_lt_neg hσ
@@ -1025,7 +1139,9 @@ theorem tsum_succ_rpow_le {σ : ℝ} (hσ : 1 < σ) :
   apply add_le_add le_rfl
   simpa only [Nat.cast_add, Nat.cast_one] using htail
 
-/-- For `σ > 1`, the finite Euler product is at most `1 + 1 / (σ - 1)`.-/
+/-- For `σ > 1`, the finite Euler product is at most `1 + 1 / (σ - 1)`.
+@isnad1 id=le.1h2v.s5.2dea82882810 from=translated src=- shape=32797461 vocab=586a2c84
+-/
 lemma eulerProduct_le_zeta_bound {σ : ℝ} (hσ : 1 < σ) (N : ℕ) :
     eulerProduct N σ ≤ 1 + 1 / (σ - 1) := by
   have hs : Summable (fun n : ℕ => (n : ℝ) ^ (-σ)) :=
@@ -1045,7 +1161,9 @@ lemma eulerProduct_le_zeta_bound {σ : ℝ} (hσ : 1 < σ) (N : ℕ) :
   simp only [Nat.cast_add, Nat.cast_one] at ht
   exact ht.trans (tsum_succ_rpow_le hσ)
 
-/-- Compare an Euler factor at exponent one with its shift by `r`.-/
+/-- Compare an Euler factor at exponent one with its shift by `r`.
+@isnad1 id=le.2h2v.s7.4991e4571583 from=translated src=- shape=1edd7d87 vocab=14b17c67
+-/
 lemma euler_factor_comparison {p r : ℝ} (hp : 2 ≤ p) (hr : 0 ≤ r) :
     (1 - p ^ (-(1 : ℝ)))⁻¹ ≤
       (1 - p ^ (-(1 + r)))⁻¹ * Real.exp (2 * r * Real.log p / p) := by
@@ -1077,7 +1195,9 @@ lemma euler_factor_comparison {p r : ℝ} (hp : 2 ≤ p) (hr : 0 ≤ r) :
     _ ≤ Real.exp (2 * r * Real.log p / p) := by
       simpa [add_comm] using Real.add_one_le_exp (2 * r * Real.log p / p)
 
-/-- Moving the Euler product to the right of its pole has bounded cost.-/
+/-- Moving the Euler product to the right of its pole has bounded cost.
+@isnad1 id=le.1h2v.s6.4f378ba1c6ea from=translated src=- shape=9e5c5677 vocab=08071715
+-/
 theorem eulerProduct_comparison (N : ℕ) {r : ℝ} (hr : 0 ≤ r) :
     eulerProduct N 1 ≤ eulerProduct N (1 + r) *
       Real.exp (2 * r * ∑ p ∈ N.primesLE, Real.log p / p) := by
@@ -1099,7 +1219,9 @@ theorem eulerProduct_comparison (N : ℕ) {r : ℝ} (hr : 0 ≤ r) :
       simp_rw [mul_div_assoc]
       rw [Finset.prod_mul_distrib, ← Real.exp_sum, ← Finset.mul_sum]
 
-/-- An explicit weak Mertens upper bound, sufficient throughout the proof.-/
+/-- An explicit weak Mertens upper bound, sufficient throughout the proof.
+@isnad1 id=le.1h1v.s5.7db182485f19 from=translated src=- shape=3f0ae733 vocab=1d85b6a2
+-/
 theorem eulerProduct_one_le {N : ℕ} (hN : 2 ≤ N) :
     eulerProduct N 1 ≤ Real.exp 6 * (1 + Real.log N) := by
   have hNr : (2 : ℝ) ≤ N := by exact_mod_cast hN
@@ -1130,7 +1252,9 @@ theorem eulerProduct_one_le {N : ℕ} (hN : 2 ≤ N) :
 def divisorEulerMoment (P : ℕ) (γ : ℝ) : ℝ :=
   ∑ d ∈ P.divisors, (d : ℝ) ^ γ / d.totient
 
-/-- Factor the divisor Euler moment of a product of distinct primes.-/
+/-- Factor the divisor Euler moment of a product of distinct primes.
+@isnad1 id=eq.1h2v.s6.c0a10f928eec from=translated src=- shape=91d583fd vocab=f1893310
+-/
 lemma divisorEulerMoment_primeProduct (ps : Finset ℕ) (hps : ∀ p ∈ ps, p.Prime) (γ : ℝ) :
     divisorEulerMoment (∏ p ∈ ps, p) γ =
       ∏ p ∈ ps, (1 + (p : ℝ) ^ γ / ((p : ℝ) - 1)) := by
@@ -1160,14 +1284,18 @@ lemma divisorEulerMoment_primeProduct (ps : Finset ℕ) (hps : ∀ p ∈ ps, p.P
       change 1 + (p : ℝ) ^ γ / p.totient = _
       rw [Nat.totient_prime (hps p hp), Nat.cast_sub (hps p hp).one_le, Nat.cast_one]
 
-/-- The finite Euler product is positive at every positive exponent.-/
+/-- The finite Euler product is positive at every positive exponent.
+@isnad1 id=lt.1h2v.s4.2205f5e0570d from=translated src=- shape=696abc3b vocab=0112418e
+-/
 lemma eulerProduct_pos (N : ℕ) {σ : ℝ} (hσ : 0 < σ) : 0 < eulerProduct N σ := by
   apply Finset.prod_pos
   intro p hp
   exact inv_pos.mpr (sub_pos.mpr (Real.rpow_lt_one_of_one_lt_of_neg
     (by exact_mod_cast (Nat.mem_primesLE.mp hp).2.one_lt) (by linarith)))
 
-/-- The finite Euler product decreases as its positive exponent increases.-/
+/-- The finite Euler product decreases as its positive exponent increases.
+@isnad1 id=le.2h3v.s5.6dfc4cbd04df from=translated src=- shape=5ce71e10 vocab=ecee18bd
+-/
 lemma eulerProduct_antitone (N : ℕ) {σ τ : ℝ} (hσ : 0 < σ) (hστ : σ ≤ τ) :
     eulerProduct N τ ≤ eulerProduct N σ := by
   apply Finset.prod_le_prod
@@ -1189,33 +1317,45 @@ def auxiliaryPrimes (Z Y : ℕ) : Finset ℕ := Y.primesLE \ Z.primesLE
 /-- The product of primes in the interval `(Z, Y]`.-/
 def auxiliaryProduct (Z Y : ℕ) : ℕ := ∏ p ∈ auxiliaryPrimes Z Y, p
 
-/-- Every auxiliary prime is prime.-/
+/-- Every auxiliary prime is prime.
+@isnad1 id=prime.1h3v.s4.c3ad5d661661 from=translated src=- shape=7cfd432b vocab=0f5c45b1
+-/
 lemma auxiliaryPrimes_prime {Z Y p : ℕ} (hp : p ∈ auxiliaryPrimes Z Y) : p.Prime :=
   (Nat.mem_primesLE.mp (Finset.mem_sdiff.mp hp).1).2
 
-/-- Membership in the auxiliary primes means primality and `Z < p ≤ Y`.-/
+/-- Membership in the auxiliary primes means primality and `Z < p ≤ Y`.
+@isnad1 id=iff.0h3v.s5.bd739499b443 from=translated src=- shape=79037f53 vocab=2efe1ab9
+-/
 lemma mem_auxiliaryPrimes {Z Y p : ℕ} :
     p ∈ auxiliaryPrimes Z Y ↔ p.Prime ∧ Z < p ∧ p ≤ Y := by
   simp only [auxiliaryPrimes, Finset.mem_sdiff, Nat.mem_primesLE, not_and_or, not_le]
   tauto
 
-/-- The auxiliary prime product is squarefree.-/
+/-- The auxiliary prime product is squarefree.
+@isnad1 id=squarefr.0h2v.s3.af960b38df61 from=translated src=- shape=80310a19 vocab=c72e1d50
+-/
 lemma auxiliaryProduct_squarefree (Z Y : ℕ) : Squarefree (auxiliaryProduct Z Y) := by
   exact Finset.squarefree_prod_of_pairwise_isCoprime
     (fun p hp q hq hpq => Nat.coprime_iff_isRelPrime.mp
       ((Nat.coprime_primes (auxiliaryPrimes_prime hp) (auxiliaryPrimes_prime hq)).mpr hpq))
     (fun p hp => (auxiliaryPrimes_prime hp).squarefree)
 
-/-- The auxiliary prime product is positive.-/
+/-- The auxiliary prime product is positive.
+@isnad1 id=lt.0h2v.s3.d343ea6ec7ab from=translated src=- shape=a120b2a8 vocab=9ecd7751
+-/
 lemma auxiliaryProduct_pos (Z Y : ℕ) : 0 < auxiliaryProduct Z Y :=
   Finset.prod_pos (fun _ hp => (auxiliaryPrimes_prime hp).pos)
 
-/-- Split the Euler product at the lower cutoff `Z`.-/
+/-- Split the Euler product at the lower cutoff `Z`.
+@isnad1 id=eq.1h3v.s6.cb64d45b575d from=translated src=- shape=6ab148cf vocab=06deeb27
+-/
 lemma auxiliary_euler_factorization {Z Y : ℕ} (hZY : Z ≤ Y) (σ : ℝ) :
     (∏ p ∈ auxiliaryPrimes Z Y, (1 - (p : ℝ) ^ (-σ))⁻¹) * eulerProduct Z σ =
       eulerProduct Y σ := Finset.prod_sdiff (Nat.primesLE_mono hZY)
 
-/-- A squarefree Euler factor dominates the corresponding shifted geometric factor.-/
+/-- A squarefree Euler factor dominates the corresponding shifted geometric factor.
+@isnad1 id=le.2h2v.s6.446f33ba6f2f from=translated src=- shape=6db1d0af vocab=f94bcad4
+-/
 lemma squarefree_euler_factor_ge {p t : ℝ} (hp : 1 < p) (ht : 0 < t) :
     (1 - p ^ (-(1 + t)))⁻¹ ≤ 1 + p ^ (-t) / (p - 1) := by
   have hp0 : 0 < p := zero_lt_one.trans hp
@@ -1228,7 +1368,9 @@ lemma squarefree_euler_factor_ge {p t : ℝ} (hp : 1 < p) (ht : 0 < t) :
   field_simp
   nlinarith [mul_nonneg (Real.rpow_nonneg hp0.le (-t)) (sub_nonneg.mpr hpow.le)]
 
-/-- A lower bound for the squarefree-divisor Euler product by a usual Euler product.-/
+/-- A lower bound for the squarefree-divisor Euler product by a usual Euler product.
+@isnad1 id=le.2h3v.s6.faf0bb05f892 from=translated src=- shape=925f5966 vocab=abafd14d
+-/
 theorem divisorEulerMoment_ge_eulerProduct {Z Y : ℕ} (hZY : Z ≤ Y) {t : ℝ} (ht : 0 < t) :
     eulerProduct Y (1 + t) ≤
       divisorEulerMoment (auxiliaryProduct Z Y) (-t) * eulerProduct Z (1 + t) := by
@@ -1245,7 +1387,9 @@ theorem divisorEulerMoment_ge_eulerProduct {Z Y : ℕ} (hZY : Z ≤ Y) {t : ℝ}
     exact squarefree_euler_factor_ge
       (by exact_mod_cast (auxiliaryPrimes_prime hp).one_lt) ht
 
-/-- Bound the Euler product below by an integral of a negative power.-/
+/-- Bound the Euler product below by an integral of a negative power.
+@isnad1 id=le.1h2v.s6.fb9c4af57a97 from=translated src=- shape=3be556d7 vocab=a2255704
+-/
 lemma eulerProduct_ge_power_integral (Y : ℕ) {t : ℝ} (ht : 0 < t) :
     (1 - ((Y : ℝ) + 1) ^ (-t)) / t ≤ eulerProduct Y (1 + t) := by
   calc
@@ -1266,7 +1410,9 @@ lemma eulerProduct_ge_power_integral (Y : ℕ) {t : ℝ} (ht : 0 < t) :
       (Finset.Ico 1 (Y + 1)) (fun n hn => Nat.mem_smoothNumbers_of_lt
         (by have := Finset.mem_Ico.mp hn; omega) (Finset.mem_Ico.mp hn).2)
 
-/-- The Euler product at `1 + t` is at least `1 / (2 * t)` when `t * log (Y + 1) ≥ 1`.-/
+/-- The Euler product at `1 + t` is at least `1 / (2 * t)` when `t * log (Y + 1) ≥ 1`.
+@isnad1 id=le.2h2v.s6.286cd21f8ab7 from=translated src=- shape=2b9ef8b0 vocab=f5baefeb
+-/
 lemma eulerProduct_ge_one_div_two_mul (Y : ℕ) {t : ℝ} (ht : 0 < t)
     (hscale : 1 ≤ t * Real.log ((Y : ℝ) + 1)) :
     1 / (2 * t) ≤ eulerProduct Y (1 + t) := by
@@ -1282,12 +1428,16 @@ lemma eulerProduct_ge_one_div_two_mul (Y : ℕ) {t : ℝ} (ht : 0 < t)
       div_le_div_of_nonneg_right (by linarith) ht.le
     _ ≤ eulerProduct Y (1 + t) := eulerProduct_ge_power_integral Y ht
 
-/-- The divisor Euler moment is nonnegative.-/
+/-- The divisor Euler moment is nonnegative.
+@isnad1 id=le.0h2v.s4.4d7f12279e8e from=translated src=- shape=787c1379 vocab=1e06e866
+-/
 lemma divisorEulerMoment_nonneg (P : ℕ) (γ : ℝ) : 0 ≤ divisorEulerMoment P γ :=
   Finset.sum_nonneg (fun _d _ => div_nonneg (Real.rpow_nonneg (Nat.cast_nonneg _) _)
     (Nat.cast_nonneg _))
 
-/-- The lower bound whose integral supplies a positive normalization B.-/
+/-- The lower bound whose integral supplies a positive normalization B.
+@isnad1 id=le.5h4v.s7.606b14879570 from=translated src=- shape=6594b62d vocab=0545c4f6
+-/
 theorem divisorEulerMoment_lower {Z Y : ℕ} (hZY : Z ≤ Y) {t A : ℝ}
     (ht : 0 < t) (hA : 0 < A) (hZA : eulerProduct Z 1 ≤ A)
     (hscale : 1 ≤ t * Real.log ((Y : ℝ) + 1)) :
@@ -1303,7 +1453,9 @@ theorem divisorEulerMoment_lower {Z Y : ℕ} (hZY : Z ≤ Y) {t A : ℝ}
       ring
     _ ≤ divisorEulerMoment (auxiliaryProduct Z Y) (-t) := (div_le_iff₀ hA).mpr h
 
-/-- The negatively tilted divisor Euler moment is continuous.-/
+/-- The negatively tilted divisor Euler moment is continuous.
+@isnad1 id=continuo.0h1v.s4.42e3fc92360e from=translated src=- shape=3cc74c8d vocab=28bab8fd
+-/
 lemma continuous_divisorEulerMoment (P : ℕ) :
     Continuous (fun t : ℝ => divisorEulerMoment P (-t)) := by
   unfold divisorEulerMoment
@@ -1313,7 +1465,9 @@ lemma continuous_divisorEulerMoment (P : ℕ) :
   simp only [Real.rpow_def_of_pos hdpos]
   fun_prop
 
-/-- An exponential decay integral starting at a nonnegative point is at most `1 / L`.-/
+/-- An exponential decay integral starting at a nonnegative point is at most `1 / L`.
+@isnad1 id=le.2h3v.s6.62af2c53afdd from=translated src=- shape=ca79f323 vocab=1fbb8847
+-/
 lemma integral_exp_decay_le {L a : ℝ} (hL : 0 < L) (ha : 0 ≤ a) (b : ℝ) :
     (∫ t : ℝ in a..b, Real.exp (-L * t)) ≤ 1 / L := by
   rw [intervalIntegral.integral_comp_mul_left Real.exp (neg_ne_zero.mpr hL.ne'),
@@ -1322,7 +1476,9 @@ lemma integral_exp_decay_le {L a : ℝ} (hL : 0 < L) (ha : 0 ≤ a) (b : ℝ) :
     ((sub_le_self _ (Real.exp_nonneg _)).trans
       (Real.exp_le_one_iff.mpr (by nlinarith))) hL.le
 
-/-- The normalizer dominates every positive-half-line integral of U_(-t)-1.-/
+/-- The normalizer dominates every positive-half-line integral of U_(-t)-1.
+@isnad1 id=le.2h3v.s6.9a679a6fb11e from=translated src=- shape=0da4efa8 vocab=ae71cdd2
+-/
 theorem normalizer_integral_le {P : ℕ} (hP : P ≠ 0) {a : ℝ} (ha : 0 ≤ a) (b : ℝ) :
     (∫ t : ℝ in a..b, divisorEulerMoment P (-t) - 1) ≤ normalizer P := by
   have hsum (t : ℝ) : divisorEulerMoment P (-t) - 1 =
@@ -1354,7 +1510,9 @@ theorem normalizer_integral_le {P : ℕ} (hP : P ≠ 0) {a : ℝ} (ha : 0 ≤ a)
     fun_prop
 
 /-- Integrating the lower Euler-product bound gives a completely finite
-lower bound for B; no sieve asymptotic is assumed.-/
+lower bound for B; no sieve asymptotic is assumed.
+@isnad1 id=le.6h5v.s7.5a7223b149cb from=translated src=- shape=dc405923 vocab=8f25c3f4
+-/
 theorem normalizer_lower_integral {Z Y : ℕ} (hZY : Z ≤ Y) {A a b : ℝ}
     (hA : 0 < A) (ha : 0 < a) (hab : a ≤ b) (hZA : eulerProduct Z 1 ≤ A)
     (hscale : 1 ≤ a * Real.log ((Y : ℝ) + 1)) :
@@ -1387,7 +1545,9 @@ theorem normalizer_lower_integral {Z Y : ℕ} (hZY : Z ≤ Y) {A a b : ℝ}
     _ ≤ normalizer (auxiliaryProduct Z Y) :=
       normalizer_integral_le (auxiliaryProduct_pos Z Y).ne' ha.le b
 
-/-- A logarithmic lower bound for the auxiliary normalizer.-/
+/-- A logarithmic lower bound for the auxiliary normalizer.
+@isnad1 id=le.4h3v.s7.d5b1412fd3b5 from=translated src=- shape=a935059a vocab=55322876
+-/
 lemma normalizer_lower_bound {Z Y : ℕ} (hZY : Z ≤ Y) {A : ℝ}
     (hA : 0 < A) (hZA : eulerProduct Z 1 ≤ A)
     (hAY : A ≤ Real.log ((Y : ℝ) + 1)) :
@@ -1403,13 +1563,17 @@ lemma normalizer_lower_bound {Z Y : ℕ} (hZY : Z ≤ Y) {A : ℝ}
   nlinarith [mul_inv_cancel₀ hA.ne',
     mul_nonneg hA.le (inv_nonneg.mpr hlog.le)]
 
-/-- A nontrivial coefficient has absolute value `1 / (normalizer P * log d)`.-/
+/-- A nontrivial coefficient has absolute value `1 / (normalizer P * log d)`.
+@isnad1 id=eq.2h2v.s5.5eb67fcbcc51 from=translated src=- shape=8e1a4f7f vocab=9b908365
+-/
 lemma abs_coefficient_eq {P d : ℕ} (hP : 1 < P) (hd : 1 < d) :
     |coefficient P d| = 1 / (normalizer P * Real.log d) := by
   rw [abs_of_neg (coefficient_neg hP hd), coefficient, ite_eq_right (ne_of_gt hd)]
   ring
 
-/-- Splitting at Y gives the tilted absolute-moment bound in (3.6).-/
+/-- Splitting at Y gives the tilted absolute-moment bound in (3.6).
+@isnad1 id=le.4h4v.s6.5eb3cebb1e5f from=translated src=- shape=ff55c86c vocab=3c1cd11e
+-/
 theorem coefficientAbsMoment_le {P Y : ℕ} (hP : 1 < P) (hY : 1 < Y)
     {γ E : ℝ} (hγ : 0 ≤ γ) (hYE : (Y : ℝ) ^ γ ≤ E) :
     coefficientAbsMoment P γ ≤ E + divisorEulerMoment P γ / (normalizer P * Real.log Y) := by
@@ -1461,7 +1625,9 @@ theorem coefficientAbsMoment_le {P Y : ℕ} (hP : 1 < P) (hY : 1 < Y)
       add_le_add le_rfl (mul_le_mul_of_nonneg_left hlarge (one_div_nonneg.mpr hden.le))
     _ = E + divisorEulerMoment P γ / (normalizer P * Real.log Y) := by ring
 
-/-- At exponent zero, the auxiliary divisor moment is an Euler-product ratio.-/
+/-- At exponent zero, the auxiliary divisor moment is an Euler-product ratio.
+@isnad1 id=eq.1h2v.s5.f649fdd3f172 from=translated src=- shape=a67e8732 vocab=d19cbd75
+-/
 lemma divisorEulerMoment_zero_factorization {Z Y : ℕ} (hZY : Z ≤ Y) :
     divisorEulerMoment (auxiliaryProduct Z Y) 0 * eulerProduct Z 1 = eulerProduct Y 1 := by
   rw [auxiliaryProduct, divisorEulerMoment_primeProduct _
@@ -1477,7 +1643,9 @@ lemma divisorEulerMoment_zero_factorization {Z Y : ℕ} (hZY : Z ≤ Y) :
   field_simp
   ring
 
-/-- Bound the auxiliary zero moment by a ratio of logarithms.-/
+/-- Bound the auxiliary zero moment by a ratio of logarithms.
+@isnad1 id=le.2h2v.s6.aa22aeeab7d8 from=translated src=- shape=2742221f vocab=53136f8a
+-/
 lemma divisorEulerMoment_zero_le {Z Y : ℕ} (hZY : Z ≤ Y) (hZ : 2 ≤ Z) :
     divisorEulerMoment (auxiliaryProduct Z Y) 0 ≤
       Real.exp 6 * (1 + Real.log Y) / Real.log Z := by
@@ -1489,7 +1657,9 @@ lemma divisorEulerMoment_zero_le {Z Y : ℕ} (hZY : Z ≤ Y) (hZ : 2 ≤ Z) :
     _ = eulerProduct Y 1 := divisorEulerMoment_zero_factorization hZY
     _ ≤ Real.exp 6 * (1 + Real.log Y) := eulerProduct_one_le (hZ.trans hZY)
 
-/-- An exponential bound for tilting a squarefree Euler factor.-/
+/-- An exponential bound for tilting a squarefree Euler factor.
+@isnad1 id=le.3h3v.s7.2bde67e0cc2f from=translated src=- shape=65eaf254 vocab=47302142
+-/
 lemma squarefree_euler_factor_tilt {p γ E : ℝ} (hp : 1 < p)
     (hγ : 0 ≤ γ) (hpE : p ^ γ ≤ E) :
     1 + p ^ γ / (p - 1) ≤
@@ -1512,7 +1682,9 @@ lemma squarefree_euler_factor_tilt {p γ E : ℝ} (hp : 1 < p)
   rw [he]
   exact mul_le_mul_of_nonneg_left hexp (by positivity)
 
-/-- Tilting a squarefree divisor moment costs an exponential factor.-/
+/-- Tilting a squarefree divisor moment costs an exponential factor.
+@isnad1 id=le.3h3v.s7.59caeab8513c from=translated src=- shape=571fc73c vocab=47e8b888
+-/
 lemma divisorEulerMoment_tilt (ps : Finset ℕ) (hps : ∀ p ∈ ps, p.Prime)
     {γ E : ℝ} (hγ : 0 ≤ γ) (hE : ∀ p ∈ ps, (p : ℝ) ^ γ ≤ E) :
     divisorEulerMoment (∏ p ∈ ps, p) γ ≤
@@ -1533,7 +1705,9 @@ lemma divisorEulerMoment_tilt (ps : Finset ℕ) (hps : ∀ p ∈ ps, p.Prime)
     ring
   simpa only [divisorEulerMoment_primeProduct ps hps, Real.rpow_zero, he] using h
 
-/-- Uniformly bound the cost of tilting the auxiliary divisor moment.-/
+/-- Uniformly bound the cost of tilting the auxiliary divisor moment.
+@isnad1 id=le.3h3v.s6.b14fed95b3ab from=translated src=- shape=093e4b09 vocab=6b7371bc
+-/
 lemma auxiliary_divisorEulerMoment_tilt {Z Y : ℕ} (hY : 2 ≤ Y)
     {γ : ℝ} (hγ : 0 ≤ γ) (hscale : γ * Real.log Y ≤ 2) :
     divisorEulerMoment (auxiliaryProduct Z Y) γ ≤
@@ -1567,13 +1741,17 @@ lemma auxiliary_divisorEulerMoment_tilt {Z Y : ℕ} (hY : 2 ≤ Y)
         nlinarith [mul_le_mul_of_nonneg_left hcost (Real.exp_nonneg 2)]))
       (divisorEulerMoment_nonneg _ _)
 
-/-- Every prime divisor of the auxiliary product is an auxiliary prime.-/
+/-- Every prime divisor of the auxiliary product is an auxiliary prime.
+@isnad1 id=mem.2h3v.s4.d44d46953338 from=translated src=- shape=0fdf7d84 vocab=3fbcf1f6
+-/
 lemma prime_dvd_auxiliaryProduct {Z Y p : ℕ} (hp : p.Prime)
     (hdvd : p ∣ auxiliaryProduct Z Y) : p ∈ auxiliaryPrimes Z Y := by
   obtain ⟨q, hq, hpq⟩ := ((Nat.prime_iff.mp hp).dvd_finsetProd_iff id).mp hdvd
   exact ((Nat.prime_dvd_prime_iff_eq hp (auxiliaryPrimes_prime hq)).mp hpq).symm ▸ hq
 
-/-- Every nontrivial auxiliary divisor exceeds the lower cutoff `Z`.-/
+/-- Every nontrivial auxiliary divisor exceeds the lower cutoff `Z`.
+@isnad1 id=lt.1h3v.s5.f4683349e66b from=translated src=- shape=5cb364eb vocab=b7e46e56
+-/
 lemma auxiliary_divisor_gt {Z Y d : ℕ} (hd : d ∈ (auxiliaryProduct Z Y).divisors.erase 1) :
     Z < d := by
   obtain ⟨hd1, hd⟩ := Finset.mem_erase.mp hd
@@ -1582,7 +1760,9 @@ lemma auxiliary_divisor_gt {Z Y d : ℕ} (hd : d ∈ (auxiliaryProduct Z Y).divi
   exact (mem_auxiliaryPrimes.mp hpP).2.1.trans_le
     (Nat.le_of_dvd (Nat.pos_of_mem_divisors hd) hpd)
 
-/-- A normalizer lower bound makes every auxiliary coefficient at most one in magnitude.-/
+/-- A normalizer lower bound makes every auxiliary coefficient at most one in magnitude.
+@isnad1 id=le.4h3v.s6.3f318ab591a7 from=translated src=- shape=60f4eace vocab=3cdd2516
+-/
 lemma auxiliary_coefficient_le_one {Z Y : ℕ} (hP : 1 < auxiliaryProduct Z Y)
     (hZ : 1 < Z) (hB : 1 ≤ normalizer (auxiliaryProduct Z Y) * Real.log Z)
     {d : ℕ} (hd : d ∈ (auxiliaryProduct Z Y).divisors) :
@@ -1604,16 +1784,22 @@ def absoluteMomentBound (b : ℝ) : ℝ :=
 /-- The absolute moment bound divided by the normalizer lower bound.-/
 def coefficientControl (b : ℝ) : ℝ := absoluteMomentBound b / b
 
-/-- The absolute moment bound is positive for positive `b`.-/
+/-- The absolute moment bound is positive for positive `b`.
+@isnad1 id=lt.1h1v.s4.50676342d89d from=translated src=- shape=35bd48ee vocab=1c3bff48
+-/
 lemma absoluteMomentBound_pos {b : ℝ} (hb : 0 < b) : 0 < absoluteMomentBound b := by
   unfold absoluteMomentBound
   positivity
 
-/-- The coefficient control constant is positive for positive `b`.-/
+/-- The coefficient control constant is positive for positive `b`.
+@isnad1 id=lt.1h1v.s4.1af47fa2d0d2 from=translated src=- shape=35bd48ee vocab=22103c99
+-/
 lemma coefficientControl_pos {b : ℝ} (hb : 0 < b) : 0 < coefficientControl b :=
   div_pos (absoluteMomentBound_pos hb) hb
 
-/-- Bound the auxiliary absolute moment by `absoluteMomentBound`.-/
+/-- Bound the auxiliary absolute moment by `absoluteMomentBound`.
+@isnad1 id=le.8h4v.s6.7bf414932b9a from=translated src=- shape=857022b5 vocab=ecbe1391
+-/
 lemma auxiliary_coefficientAbsMoment_le {Z Y : ℕ} (hZY : Z ≤ Y) (hZ : 2 ≤ Z)
     (hlogZ : 1 ≤ Real.log Z) (hP : 1 < auxiliaryProduct Z Y)
     {b γ : ℝ} (hb : 0 < b) (hB : b ≤ normalizer (auxiliaryProduct Z Y))
@@ -1654,7 +1840,9 @@ lemma auxiliary_coefficientAbsMoment_le {Z Y : ℕ} (hZY : Z ≤ Y) (hZ : 2 ≤ 
       unfold absoluteMomentBound
       rw [mul_div_mul_right _ _ hlogYpos.ne']
 
-/-- Bound the auxiliary absolute moment by a constant times the normalizer.-/
+/-- Bound the auxiliary absolute moment by a constant times the normalizer.
+@isnad1 id=le.8h4v.s7.75733f7b5568 from=translated src=- shape=a2348479 vocab=7446fcba
+-/
 lemma auxiliary_coefficientAbsMoment_control {Z Y : ℕ} (hZY : Z ≤ Y) (hZ : 2 ≤ Z)
     (hlogZ : 1 ≤ Real.log Z) (hP : 1 < auxiliaryProduct Z Y)
     {b γ : ℝ} (hb : 0 < b) (hB : b ≤ normalizer (auxiliaryProduct Z Y))
@@ -1682,12 +1870,16 @@ def sieveP (x : ℝ) : ℕ := auxiliaryProduct (sieveZ x) (sieveY x)
 /-- A fixed positive lower bound used for the sieve normalizer.-/
 def normalizerLower : ℝ := 1 / (100 * Real.exp 6)
 
-/-- The fixed normalizer lower bound is positive.-/
+/-- The fixed normalizer lower bound is positive.
+@isnad1 id=lt.0h0v.s3.e2a6a8341c02 from=translated src=- shape=ff3a10fc vocab=ea8b402f
+-/
 lemma normalizerLower_pos : 0 < normalizerLower := by
   unfold normalizerLower
   positivity
 
-/-- Explicit size bounds ensure ordered cutoffs and a uniform normalizer lower bound.-/
+/-- Explicit size bounds ensure ordered cutoffs and a uniform normalizer lower bound.
+@isnad1 id=and.5h1v.s7.c30166f68acc from=translated src=- shape=432c0bd5 vocab=7696d7af
+-/
 lemma sieve_normalizer_lower_of_bounds {x : ℝ} (hx : 0 < x)
     (hlx : 1 ≤ Real.log x) (hZ : 2 ≤ sieveZ x)
     (hlarge : 7 * Real.exp 6 * (Real.log x) ^ 6 ≤ x)
@@ -1745,16 +1937,22 @@ lemma sieve_normalizer_lower_of_bounds {x : ℝ} (hx : 0 < x)
   apply (div_le_iff₀ (by positivity : 0 < 100 * Real.exp 6)).mpr
   nlinarith
 
-/-- The lower sieve cutoff tends to infinity.-/
+/-- The lower sieve cutoff tends to infinity.
+@isnad1 id=tendsto.0h0v.s3.e22e1eec1880 from=translated src=- shape=57d238ad vocab=aec884a9
+-/
 lemma tendsto_sieveZ : Filter.Tendsto sieveZ Filter.atTop Filter.atTop :=
   tendsto_nat_floor_atTop.comp (Filter.tendsto_pow_atTop (by decide : (6 : ℕ) ≠ 0))
 
-/-- The logarithm of the lower sieve cutoff tends to infinity.-/
+/-- The logarithm of the lower sieve cutoff tends to infinity.
+@isnad1 id=tendsto.0h0v.s4.91ecdc9f7ad5 from=translated src=- shape=1c67e4bd vocab=ebad854f
+-/
 lemma tendsto_log_sieveZ :
     Filter.Tendsto (fun x : ℝ => Real.log (sieveZ x)) Filter.atTop Filter.atTop :=
   Real.tendsto_log_atTop.comp (tendsto_natCast_atTop_atTop.comp tendsto_sieveZ)
 
-/-- The unconditional positive lower bound for B for the paper's parameters.-/
+/-- The unconditional positive lower bound for B for the paper's parameters.
+@isnad1 id=eventual.0h0v.s4.3aaa54fe2ae6 from=translated src=- shape=20c1c68b vocab=b00fc006
+-/
 theorem eventually_sieve_normalizer_lower : ∀ᶠ x : ℝ in Filter.atTop,
     sieveZ x ≤ sieveY x ∧ normalizerLower ≤ normalizer (sieveP x) := by
   have hpow : Filter.Tendsto (fun x : ℝ => (Real.log x) ^ 6 / x)
@@ -1785,7 +1983,9 @@ def sieveBeta (x : ℝ) : ℝ := 1 / sieveUpperLog x
 def weightConstant : ℝ :=
   1 + absoluteMomentBound normalizerLower + coefficientControl normalizerLower
 
-/-- The common coefficient constant exceeds one.-/
+/-- The common coefficient constant exceeds one.
+@isnad1 id=lt.0h0v.s3.1b974a65de50 from=translated src=- shape=ff3a10fc vocab=11b2d43c
+-/
 lemma weightConstant_gt_one : 1 < weightConstant := by
   unfold weightConstant
   linarith [absoluteMomentBound_pos normalizerLower_pos,
@@ -1805,7 +2005,9 @@ structure CoefficientEstimates (P : ℕ) (β C : ℝ) : Prop where
   moment_control : ∀ γ : ℝ, 0 ≤ γ → γ ≤ 2 * β →
     coefficientAbsMoment P γ ≤ C * normalizer P
 
-/-- The sieve coefficients eventually satisfy all required uniform estimates.-/
+/-- The sieve coefficients eventually satisfy all required uniform estimates.
+@isnad1 id=eventual.0h0v.s4.75ec097e5437 from=translated src=- shape=7fa4c433 vocab=3d6b2e36
+-/
 lemma eventually_sieve_coefficient_estimates : ∀ᶠ x : ℝ in Filter.atTop,
     0 < sieveBeta x ∧ CoefficientEstimates (sieveP x) (sieveBeta x) weightConstant := by
   have hunit := (Filter.Tendsto.const_mul_atTop normalizerLower_pos tendsto_log_sieveZ).eventually
@@ -1861,13 +2063,17 @@ lemma eventually_sieve_coefficient_estimates : ∀ᶠ x : ℝ in Filter.atTop,
 def divisorProbability (P : ℕ) (d : DivisorIndex P) : ℝ :=
   (coefficient P d.val ^ 2 / d.val.totient) / coefficientMoment P 0
 
-/-- The normalized divisor mass is nonnegative.-/
+/-- The normalized divisor mass is nonnegative.
+@isnad1 id=le.1h2v.s4.3465f197f21e from=translated src=- shape=01b63f50 vocab=6a119bd8
+-/
 lemma divisorProbability_nonneg {P : ℕ} (hP : P ≠ 0) (d : DivisorIndex P) :
     0 ≤ divisorProbability P d := by
   exact div_nonneg (div_nonneg (sq_nonneg _) (Nat.cast_nonneg _))
     (zero_le_one.trans (coefficientMoment_ge_one hP 0))
 
-/-- The normalized divisor masses sum to one.-/
+/-- The normalized divisor masses sum to one.
+@isnad1 id=eq.1h1v.s5.22210a7ee7a1 from=translated src=- shape=a5d15ac5 vocab=fb7e3460
+-/
 lemma sum_divisorProbability {P : ℕ} (hP : P ≠ 0) :
     (∑ d : DivisorIndex P, divisorProbability P d) = 1 := by
   unfold divisorProbability
@@ -1876,7 +2082,9 @@ lemma sum_divisorProbability {P : ℕ} (hP : P ≠ 0) :
     ← coefficientMoment_zero]
   exact div_self (ne_of_gt (zero_lt_one.trans_le (coefficientMoment_ge_one hP 0)))
 
-/-- Tuple mass is a fixed scale times the product of the divisor probabilities.-/
+/-- Tuple mass is a fixed scale times the product of the divisor probabilities.
+@isnad1 id=eq.1h3v.s6.cdd7f56ee74e from=translated src=- shape=4dccef22 vocab=80defc4d
+-/
 lemma tupleMass_eq_probability {P k : ℕ} (hP : P ≠ 0) (r : DivisorTuple P k) :
     tupleMass r = coefficientMoment P 0 ^ k * ∏ i, divisorProbability P (r i) := by
   have hA : coefficientMoment P 0 ≠ 0 :=
@@ -1884,7 +2092,9 @@ lemma tupleMass_eq_probability {P k : ℕ} (hP : P ≠ 0) (r : DivisorTuple P k)
   rw [mul_comm, ← div_eq_iff (pow_ne_zero k hA)]
   simp [tupleMass, divisorProbability, Finset.prod_div_distrib]
 
-/-- A prime divides a random divisor with probability at most `4 / p`.-/
+/-- A prime divides a random divisor with probability at most `4 / p`.
+@isnad1 id=le.3h4v.s6.67e98e065863 from=translated src=- shape=a96240d5 vocab=3241ecd0
+-/
 lemma divisorProbability_prime_incidence {P p : ℕ} {β C : ℝ}
     (h : CoefficientEstimates P β C) (hp : p.Prime) (hpP : p ∣ P) :
     (∑ d : DivisorIndex P, divisorProbability P d * if p ∣ d.val then 1 else 0) ≤ 4 / (p : ℝ) := by
@@ -1910,7 +2120,9 @@ lemma divisorProbability_prime_incidence {P p : ℕ} {β C : ℝ}
     _ ≤ 4 / (p : ℝ) := coefficient_prime_incidence h.one_lt h.squarefree hp hpP
       (h.abs_le_one p (Nat.mem_divisors.mpr ⟨hpP, hP⟩))
 
-/-- Failure of pairwise coprimality is witnessed by a shared prime factor.-/
+/-- Failure of pairwise coprimality is witnessed by a shared prime factor.
+@isnad1 id=iff.1h3v.s7.5bac4fe7df25 from=translated src=- shape=8030b293 vocab=e2f3d745
+-/
 lemma noncoprime_pair_iff_common_prime {P k : ℕ} (hP : P ≠ 0) (r : DivisorTuple P k) :
     (¬∀ i j, i ≠ j → Nat.Coprime (r i).val (r j).val) ↔
       ∃ p : P.primeFactors, ∃ i j, i ≠ j ∧ p.val ∣ (r i).val ∧ p.val ∣ (r j).val := by
@@ -1923,7 +2135,9 @@ lemma noncoprime_pair_iff_common_prime {P k : ℕ} (hP : P ≠ 0) (r : DivisorTu
   · rintro ⟨p, i, j, hij, hpi, hpj⟩
     exact ⟨i, j, hij, p, Nat.prime_of_mem_primeFactors p.property, hpi, hpj⟩
 
-/-- The discarded mass from tuples sharing a prime, with an explicit constant.-/
+/-- The discarded mass from tuples sharing a prime, with an explicit constant.
+@isnad1 id=le.3h5v.s9.93bea17238ac from=translated src=- shape=02e47c82 vocab=18cb136e
+-/
 theorem diagonal_collision_le {P M k : ℕ} {β C : ℝ}
     (h : CoefficientEstimates P β C) (hM : 0 < M)
     (hmin : ∀ p ∈ P.primeFactors, M < p) :
@@ -1990,11 +2204,15 @@ theorem diagonal_collision_le {P M k : ℕ} {β C : ℝ}
 /-- The total diagonal mass over the truncated tuple region.-/
 def diagonalMass (P k : ℕ) (D : ℝ) : ℝ := ∑ r ∈ tupleRegion P k D, tupleMass r
 
-/-- The total diagonal mass is nonnegative.-/
+/-- The total diagonal mass is nonnegative.
+@isnad1 id=le.0h3v.s4.de6d004ff7bd from=translated src=- shape=242e3cc5 vocab=e16403df
+-/
 lemma diagonalMass_nonneg (P k : ℕ) (D : ℝ) : 0 ≤ diagonalMass P k D :=
   Finset.sum_nonneg (fun r _ => tupleMass_nonneg r)
 
-/-- The only losses in the diagonal are the product cutoff and shared primes.-/
+/-- The only losses in the diagonal are the product cutoff and shared primes.
+@isnad1 id=le.5h6v.s7.f479fed72338 from=translated src=- shape=f5cb33cc vocab=51785c11
+-/
 theorem diagonalMass_tail_collision {P M k : ℕ} {β C D : ℝ}
     (h : CoefficientEstimates P β C) (hM : 0 < M)
     (hmin : ∀ p ∈ P.primeFactors, M < p) (hD : 0 < D) (hβ : 0 ≤ β) :
@@ -2016,7 +2234,9 @@ theorem diagonalMass_tail_collision {P M k : ℕ} {β C D : ℝ}
       split_ifs <;> grind
     _ ≤ _ := add_le_add (diagonal_tail_le P k hD hβ) (diagonal_collision_le h hM hmin)
 
-/-- Injective indexing bounds the row sum away from the diagonal by the full sum minus one.-/
+/-- Injective indexing bounds the row sum away from the diagonal by the full sum minus one.
+@isnad1 id=le.2h5v.s6.021ac3b4243e from=translated src=- shape=975763ca vocab=8639156e
+-/
 lemma indexed_offdiag_sum_le {ι Λ : Type*} [Fintype ι] [Fintype Λ]
     [DecidableEq ι] (σ : ι → Λ) (hσ : Function.Injective σ)
     (K : Λ → Λ → ℝ) (hdiag : ∀ j, K j j = 1) (i : ι) :
@@ -2033,7 +2253,9 @@ lemma indexed_offdiag_sum_le {ι Λ : Type*} [Fintype ι] [Fintype Λ]
     _ ≤ _ := Finset.sum_le_sum_of_subset_of_nonneg (Finset.subset_univ _)
       (fun τ _ _ => abs_nonneg (K (σ i) τ))
 
-/-- Row bounds control the second moment of an indexed sum of product basis functions.-/
+/-- Row bounds control the second moment of an indexed sum of product basis functions.
+@isnad1 id=le.4h8v.s8.ecdd595fe040 from=translated src=- shape=04391938 vocab=39742a09
+-/
 lemma indexed_product_second_moment {α ι : Type*} [Fintype α] [DecidableEq α]
     [Fintype ι] (size : α → ℕ) (hsize : ∀ p, 1 < size p) {k : ℕ}
     (root : (p : α) → Fin k → Fin (size p)) (hroot : ∀ p, Function.Injective (root p))
@@ -2066,14 +2288,18 @@ def tupleAssignment {P k : ℕ} (r : DivisorTuple P k) : PrimeIndex P → Option
   classical
   exact fun p => if h : ∃ i, p.val ∣ (r i).val then some (Classical.choose h) else none
 
-/-- A prime divides at most one coordinate of a pairwise coprime tuple.-/
+/-- A prime divides at most one coordinate of a pairwise coprime tuple.
+@isnad1 id=eq.4h6v.s7.d3aa45ecfb06 from=translated src=- shape=bed9f1d3 vocab=2e529ad8
+-/
 lemma prime_coordinate_unique {P k p : ℕ} (hp : p.Prime) (r : DivisorTuple P k)
     (hpair : ∀ i j, i ≠ j → Nat.Coprime (r i).val (r j).val)
     {i j : Fin k} (hi : p ∣ (r i).val) (hj : p ∣ (r j).val) : i = j := by
   by_contra hij
   exact (Nat.Prime.not_coprime_iff_dvd.mpr ⟨p, hp, hi, hj⟩) (hpair i j hij)
 
-/-- In a pairwise coprime tuple, a prime is assigned exactly to the coordinate it divides.-/
+/-- In a pairwise coprime tuple, a prime is assigned exactly to the coordinate it divides.
+@isnad1 id=iff.1h5v.s6.66aa9b576649 from=translated src=- shape=65a0fadd vocab=35b585ac
+-/
 lemma tupleAssignment_eq_some {P k : ℕ} (r : DivisorTuple P k)
     (hpair : ∀ i j, i ≠ j → Nat.Coprime (r i).val (r j).val)
     (p : PrimeIndex P) (i : Fin k) : tupleAssignment r p = some i ↔ p.val ∣ (r i).val := by
@@ -2089,7 +2315,9 @@ lemma tupleAssignment_eq_some {P k : ℕ} (r : DivisorTuple P k)
   · simp only [false_iff]
     exact fun hi => h ⟨i, hi⟩
 
-/-- A truncated tuple is determined by its prime assignment when `P` is squarefree.-/
+/-- A truncated tuple is determined by its prime assignment when `P` is squarefree.
+@isnad1 id=injectiv.1h3v.s6.0e89759b3b46 from=translated src=- shape=901c8264 vocab=f36dd3dd
+-/
 lemma tupleAssignment_injective {P k : ℕ} (hP : Squarefree P) (D : ℝ) :
     Function.Injective (fun r : tupleRegion P k D => tupleAssignment r.val) := by
   classical
@@ -2110,7 +2338,9 @@ lemma tupleAssignment_injective {P k : ℕ} (hP : Squarefree P) (D : ℝ) :
     · exact (hpP (h.trans (Nat.dvd_of_mem_divisors (r.val i).property))).elim
     · exact (hpP (h.trans (Nat.dvd_of_mem_divisors (s.val i).property))).elim
 
-/-- Regroup a product over assigned primes by tuple coordinates.-/
+/-- Regroup a product over assigned primes by tuple coordinates.
+@isnad1 id=eq.1h5v.s8.5207288c00aa from=translated src=- shape=8eedf952 vocab=6a0f408f
+-/
 lemma tupleAssignment_prod {P k : ℕ} {M : Type*} [CommMonoid M]
     (r : DivisorTuple P k) (hpair : ∀ i j, i ≠ j → Nat.Coprime (r i).val (r j).val)
     (f : PrimeIndex P → Fin k → M) :
@@ -2123,7 +2353,9 @@ lemma tupleAssignment_prod {P k : ℕ} {M : Type*} [CommMonoid M]
   simp_rw [← tupleAssignment_eq_some r hpair p]
   cases tupleAssignment r p <;> simp
 
-/-- Restrict a product over primes dividing `P` to those dividing `d`.-/
+/-- Restrict a product over primes dividing `P` to those dividing `d`.
+@isnad1 id=eq.2h4v.s7.6c5a7130e62f from=translated src=- shape=fc6572d2 vocab=f742b5c3
+-/
 lemma prod_primeIndex_dvd {P d : ℕ} (hP : P ≠ 0) (hd : d ∣ P)
     {M : Type*} [CommMonoid M] (f : ℕ → M) :
     (∏ p : PrimeIndex P, if p.val ∣ d then f p.val else 1) = ∏ p ∈ d.primeFactors, f p := by
@@ -2132,21 +2364,27 @@ lemma prod_primeIndex_dvd {P d : ℕ} (hP : P ≠ 0) (hd : d ∣ P)
   simp only [Finset.attach_eq_univ] at h
   rw [h, ← Finset.prod_filter, Nat.primeFactors_filter_dvd_of_dvd hP hd]
 
-/-- The product of pairwise coprime divisors of `P` divides `P`.-/
+/-- The product of pairwise coprime divisors of `P` divides `P`.
+@isnad1 id=dvd.1h3v.s6.53a272f03d70 from=translated src=- shape=69b8ddab vocab=180ea2c3
+-/
 lemma tupleProduct_dvd {P k : ℕ} (r : DivisorTuple P k)
     (hpair : ∀ i j, i ≠ j → Nat.Coprime (r i).val (r j).val) : tupleProduct r ∣ P := by
   exact Fintype.prod_dvd_of_isRelPrime
     (fun i j hij => Nat.coprime_iff_isRelPrime.mp (hpair i j hij))
     (fun i => Nat.dvd_of_mem_divisors (r i).property)
 
-/-- A prime is assigned precisely when it divides the tuple product.-/
+/-- A prime is assigned precisely when it divides the tuple product.
+@isnad1 id=iff.0h4v.s5.0363f3101469 from=translated src=- shape=cc4da4e7 vocab=e7fd97c6
+-/
 lemma tupleAssignment_isSome {P k : ℕ} (r : DivisorTuple P k) (p : PrimeIndex P) :
     (tupleAssignment r p).isSome ↔ p.val ∣ tupleProduct r := by
   classical
   simp [tupleAssignment, tupleProduct,
     (Nat.prime_of_mem_primeFactors p.property).prime.dvd_finsetProd_iff]
 
-/-- The product of assigned primes equals the tuple product for squarefree `P`.-/
+/-- The product of assigned primes equals the tuple product for squarefree `P`.
+@isnad1 id=eq.2h3v.s6.55646c706163 from=translated src=- shape=66c18cf8 vocab=173d9571
+-/
 lemma assignmentProduct_tupleAssignment {P k : ℕ} (hP : Squarefree P) (r : DivisorTuple P k)
     (hpair : ∀ i j, i ≠ j → Nat.Coprime (r i).val (r j).val) :
     assignmentProduct (fun p : PrimeIndex P => p.val) (tupleAssignment r) = tupleProduct r := by
@@ -2173,7 +2411,9 @@ def assignmentVariance {α : Type*} [Fintype α] (size : α → ℕ) {k : ℕ}
     (σ : α → Option (Fin k)) : ℝ :=
   ∏ p, match σ p with | none => 1 | some _ => 1 / ((size p : ℝ) - 1)
 
-/-- The square of the assignment normalizer equals the assignment variance.-/
+/-- The square of the assignment normalizer equals the assignment variance.
+@isnad1 id=eq.1h4v.s5.e5860ecd1609 from=translated src=- shape=02e601f8 vocab=579ec45d
+-/
 lemma assignmentNormalizer_sq {α : Type*} [Fintype α] (size : α → ℕ)
     (hsize : ∀ p, 1 < size p) {k : ℕ} (σ : α → Option (Fin k)) :
     assignmentNormalizer size σ ^ 2 = assignmentVariance size σ := by
@@ -2184,7 +2424,9 @@ lemma assignmentNormalizer_sq {α : Type*} [Fintype α] (size : α → ℕ)
   have hp : (1 : ℝ) ≤ size p := by exact_mod_cast (hsize p).le
   cases σ p <;> simp [inv_pow, Real.sq_sqrt (sub_nonneg.mpr hp), one_div]
 
-/-- Multiplying by the assignment normalizer removes the local basis normalization.-/
+/-- Multiplying by the assignment normalizer removes the local basis normalization.
+@isnad1 id=eq.1h6v.s6.e1d884870119 from=translated src=- shape=42039788 vocab=4781d653
+-/
 lemma assignmentNormalizer_mul_basis {α : Type*} [Fintype α] (size : α → ℕ)
     (hsize : ∀ p, 1 < size p) {k : ℕ} (root : (p : α) → Fin k → Fin (size p))
     (σ : α → Option (Fin k)) (t : (p : α) → Fin (size p)) :
@@ -2198,7 +2440,9 @@ lemma assignmentNormalizer_mul_basis {α : Type*} [Fintype α] (size : α → �
     ne_of_gt (Real.sqrt_pos.mpr (sub_pos.mpr (by exact_mod_cast hsize p)))
   cases σ p <;> simp [localBasis, rawLocalBasis, hp]
 
-/-- For squarefree `d`, the product of `1 / (p - 1)` equals `1 / φ(d)`.-/
+/-- For squarefree `d`, the product of `1 / (p - 1)` equals `1 / φ(d)`.
+@isnad1 id=eq.1h1v.s6.6f37a5bf62da from=translated src=- shape=3146c6ed vocab=ca5d28ba
+-/
 lemma prod_primeFactors_inv_sub_one {d : ℕ} (hd : Squarefree d) :
     (∏ p ∈ d.primeFactors, 1 / ((p : ℝ) - 1)) = 1 / (d.totient : ℝ) := by
   rw [Finset.prod_div_distrib, Finset.prod_const_one,
@@ -2208,7 +2452,9 @@ lemma prod_primeFactors_inv_sub_one {d : ℕ} (hd : Squarefree d) :
   intro p hp
   rw [Nat.cast_sub (Nat.prime_of_mem_primeFactors hp).one_lt.le, Nat.cast_one]
 
-/-- A tuple's assignment variance is the product of its reciprocal totients.-/
+/-- A tuple's assignment variance is the product of its reciprocal totients.
+@isnad1 id=eq.2h3v.s7.10f5a80f78cd from=translated src=- shape=25e9f868 vocab=2333e534
+-/
 lemma assignmentVariance_tuple {P k : ℕ} (hP : Squarefree P) (r : DivisorTuple P k)
     (hpair : ∀ i j, i ≠ j → Nat.Coprime (r i).val (r j).val) :
     assignmentVariance (fun p : PrimeIndex P => p.val) (tupleAssignment r) =
@@ -2228,7 +2474,9 @@ def tupleAmplitude {P k : ℕ} (r : DivisorTuple P k) : ℝ := ∏ i, coefficien
 def tupleNormalizedCoefficient {P k : ℕ} (r : DivisorTuple P k) : ℝ :=
   tupleAmplitude r * assignmentNormalizer (fun p : PrimeIndex P => p.val) (tupleAssignment r)
 
-/-- A normalized tuple coefficient has square equal to its diagonal mass.-/
+/-- A normalized tuple coefficient has square equal to its diagonal mass.
+@isnad1 id=eq.2h3v.s6.fd3cc79a6771 from=translated src=- shape=5ec375b1 vocab=777befbd
+-/
 lemma tupleNormalizedCoefficient_sq {P k : ℕ} (hP : Squarefree P) (r : DivisorTuple P k)
     (hpair : ∀ i j, i ≠ j → Nat.Coprime (r i).val (r j).val) :
     tupleNormalizedCoefficient r ^ 2 = tupleMass r := by
@@ -2244,7 +2492,9 @@ def residueWeight (P k : ℕ) (D : ℝ) (root : (p : PrimeIndex P) → Fin k →
   ∑ r : tupleRegion P k D,
     tupleAmplitude r.val * productBasis (fun p => rawLocalBasis (root p)) (tupleAssignment r.val) t
 
-/-- The tuple weight has the diagonal second moment claimed in (3.9).-/
+/-- The tuple weight has the diagonal second moment claimed in (3.9).
+@isnad1 id=le.3h5v.s8.4d91ce1e78fe from=translated src=- shape=be4102ef vocab=6c749d7b
+-/
 theorem residueWeight_second_moment {P k : ℕ} (hP : Squarefree P) (D : ℝ)
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (hroot : ∀ p, Function.Injective (root p))
     (ε : ℝ) (hbound : ∀ r : tupleRegion P k D,
@@ -2271,7 +2521,9 @@ theorem residueWeight_second_moment {P k : ℕ} (hP : Squarefree P) (D : ℝ)
       (fun r : tupleRegion P k D => tupleAssignment r.val) (tupleAssignment_injective hP D)
       (fun r => tupleNormalizedCoefficient r.val) ε hbound
 
-/-- An explicit exponential bound for the second moment's deviation from the diagonal mass.-/
+/-- An explicit exponential bound for the second moment's deviation from the diagonal mass.
+@isnad1 id=le.5h5v.s8.fae723351e3d from=translated src=- shape=3da6e171 vocab=589aecfd
+-/
 lemma residueWeight_second_moment_bound {P k : ℕ} (hP : Squarefree P) (hk : 1 ≤ k)
     {M D : ℝ} (hM : 1 < M) (hmin : ∀ p ∈ P.primeFactors, M ≤ (p : ℝ))
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (hroot : ∀ p, Function.Injective (root p)) :
@@ -2288,13 +2540,17 @@ lemma residueWeight_second_moment_bound {P k : ℕ} (hP : Squarefree P) (hk : 1 
 /-- The average of `f` over the integers in `[0, T)`.-/
 def integerAverage (T : ℕ) (f : ℕ → ℝ) : ℝ := (∑ n ∈ Finset.range T, f n) / T
 
-/-- Expand a function of residues as a sum of residue indicators.-/
+/-- Expand a function of residues as a sum of residue indicators.
+@isnad1 id=eq.1h3v.s6.22199800468c from=translated src=- shape=726f6245 vocab=cd662d6a
+-/
 lemma residue_expansion {m : ℕ} (hm : 0 < m) (g : Fin m → ℝ) (n : ℕ) :
     g ⟨n % m, Nat.mod_lt n hm⟩ = ∑ a : Fin m, g a * residueIndicator m a.val n := by
   simpa [residueIndicator, Fin.ext_iff, mul_ite] using
     (Fintype.sum_ite_eq (⟨n % m, Nat.mod_lt n hm⟩ : Fin m) g).symm
 
-/-- Express a periodic average using the frequencies of its residue classes.-/
+/-- Express a periodic average using the frequencies of its residue classes.
+@isnad1 id=eq.1h3v.s6.910ace987277 from=translated src=- shape=12372c83 vocab=f63431a4
+-/
 lemma integerAverage_residue_expansion {m : ℕ} (hm : 0 < m) (g : Fin m → ℝ) (T : ℕ) :
     integerAverage T (fun n => g ⟨n % m, Nat.mod_lt n hm⟩) =
       ∑ a : Fin m, g a * ((∑ n ∈ Finset.range T, residueIndicator m a.val n) / T) := by
@@ -2304,7 +2560,9 @@ lemma integerAverage_residue_expansion {m : ℕ} (hm : 0 < m) (g : Fin m → ℝ
   rw [Finset.sum_comm, Finset.sum_div]
   simp_rw [← Finset.mul_sum, mul_div_assoc]
 
-/-- A bounded function of one residue class has interval-average error at most m/T.-/
+/-- A bounded function of one residue class has interval-average error at most m/T.
+@isnad1 id=le.3h3v.s6.af2f4c519761 from=translated src=- shape=93f9d4f1 vocab=4968d8c0
+-/
 theorem residue_average_bounded_error {m T : ℕ} (hm : 0 < m) (hT : 0 < T)
     (g : Fin m → ℝ) (hg : ∀ a, |g a| ≤ 1) :
     |integerAverage T (fun n => g ⟨n % m, Nat.mod_lt n hm⟩) - Finset.expect Finset.univ g| ≤
@@ -2323,7 +2581,9 @@ theorem residue_average_bounded_error {m T : ℕ} (hm : 0 < m) (hT : 0 < T)
       simpa only [one_mul] using h
     _ = (m : ℝ) / T := by simp; ring
 
-/-- Averaging over complete periods equals the uniform average over residues.-/
+/-- Averaging over complete periods equals the uniform average over residues.
+@isnad1 id=eq.3h3v.s6.f7706233623c from=translated src=- shape=cda7d45b vocab=ee83b057
+-/
 lemma integerAverage_complete_residues {m q : ℕ} (hm : 0 < m) (hq : 0 < q)
     (hmq : m ∣ q) (g : Fin m → ℝ) :
     integerAverage q (fun n => g ⟨n % m, Nat.mod_lt n hm⟩) = Finset.expect Finset.univ g := by
@@ -2338,14 +2598,18 @@ lemma integerAverage_complete_residues {m q : ℕ} (hm : 0 < m) (hq : 0 < q)
     Nat.cast_div hmq (by positivity : (m : ℝ) ≠ 0)]
   field_simp
 
-/-- The interval average of a bounded periodic function has error at most `m / T`.-/
+/-- The interval average of a bounded periodic function has error at most `m / T`.
+@isnad1 id=le.6h4v.s6.7b43b770da04 from=translated src=- shape=ea1c0375 vocab=25d572cd
+-/
 lemma integerAverage_period_error {m q T : ℕ} (hm : 0 < m) (hq : 0 < q) (hT : 0 < T)
     (hmq : m ∣ q) (f : ℕ → ℝ) (hperiod : ∀ n, f (n % m) = f n) (hf : ∀ n, |f n| ≤ 1) :
     |integerAverage T f - integerAverage q f| ≤ (m : ℝ) / T := by
   simpa only [← integerAverage_complete_residues hm hq hmq, hperiod] using
     residue_average_bounded_error hm hT (fun a => f a) (fun a => hf a)
 
-/-- Expand the average of a squared weighted sum into pairwise averages.-/
+/-- Expand the average of a squared weighted sum into pairwise averages.
+@isnad1 id=eq.0h4v.s6.e46b65c87c68 from=translated src=- shape=4719abbb vocab=dd5cc3b3
+-/
 lemma integerAverage_weight_sq {ι : Type*} [Fintype ι] (T : ℕ) (c : ι → ℝ) (f : ι → ℕ → ℝ) :
     integerAverage T (fun n => (∑ i, c i * f i n) ^ 2) =
       ∑ i, ∑ j, c i * c j * integerAverage T (fun n => f i n * f j n) := by
@@ -2354,7 +2618,9 @@ lemma integerAverage_weight_sq {ι : Type*} [Fintype ι] (T : ℕ) (c : ι → �
   simp_rw [Finset.sum_comm (s := Finset.range T), ← Finset.mul_sum]
   simp only [Finset.sum_div, mul_div_assoc]
 
-/-- Pairwise average errors give a quadratic error bound for a squared weighted sum.-/
+/-- Pairwise average errors give a quadratic error bound for a squared weighted sum.
+@isnad1 id=le.2h6v.s7.798e940b340e from=translated src=- shape=ce8fe62b vocab=155dfdf8
+-/
 lemma integerAverage_weight_error {ι : Type*} [Fintype ι] (q T : ℕ)
     (c : ι → ℝ) (hc : ∀ i, |c i| ≤ 1) (f : ι → ℕ → ℝ) (E : ℝ)
     (hpair : ∀ i j, |integerAverage T (fun n => f i n * f j n) -
@@ -2382,43 +2648,57 @@ lemma integerAverage_weight_error {ι : Type*} [Fintype ι] (q T : ℕ)
 def assignmentPrimes {P k : ℕ} (σ : PrimeIndex P → Option (Fin k)) : Finset ℕ :=
   (assignmentSupport σ).image Subtype.val
 
-/-- Every assigned prime divides `P`.-/
+/-- Every assigned prime divides `P`.
+@isnad1 id=le.0h3v.s4.cb1f45a78e86 from=translated src=- shape=600ac6ba vocab=048de94e
+-/
 lemma assignmentPrimes_subset {P k : ℕ} (σ : PrimeIndex P → Option (Fin k)) :
     assignmentPrimes σ ⊆ P.primeFactors := by
   intro p hp
   obtain ⟨q, _, rfl⟩ := Finset.mem_image.mp hp
   exact q.property
 
-/-- A prime belongs to the assigned set exactly when its assignment is nonempty.-/
+/-- A prime belongs to the assigned set exactly when its assignment is nonempty.
+@isnad1 id=iff.0h4v.s5.e048258a85a8 from=translated src=- shape=57aed20c vocab=d5112919
+-/
 lemma mem_assignmentPrimes {P k : ℕ} (σ : PrimeIndex P → Option (Fin k)) (p : PrimeIndex P) :
     p.val ∈ assignmentPrimes σ ↔ (σ p).isSome := by
   classical
   simp [assignmentPrimes, assignmentSupport]
 
-/-- Every element of the assigned prime set is prime.-/
+/-- Every element of the assigned prime set is prime.
+@isnad1 id=prime.1h4v.s4.751d5e2698e8 from=translated src=- shape=d69e6ed1 vocab=3a142bf0
+-/
 lemma assignmentPrimes_prime {P k : ℕ} (σ : PrimeIndex P → Option (Fin k))
     {p : ℕ} (hp : p ∈ assignmentPrimes σ) : p.Prime :=
   (Nat.mem_primeFactors.mp (assignmentPrimes_subset σ hp)).1
 
-/-- The product of the assigned primes equals the assignment product.-/
+/-- The product of the assigned primes equals the assignment product.
+@isnad1 id=eq.0h3v.s5.c72353caa31a from=translated src=- shape=70d5ed01 vocab=a800d52f
+-/
 lemma assignmentPrimes_product {P k : ℕ} (σ : PrimeIndex P → Option (Fin k)) :
     (∏ p ∈ assignmentPrimes σ, p) = assignmentProduct (fun p : PrimeIndex P => p.val) σ := by
   classical
   exact Finset.prod_image Subtype.val_injective.injOn
 
-/-- The product of the assigned primes is positive.-/
+/-- The product of the assigned primes is positive.
+@isnad1 id=lt.0h3v.s5.3de703bedbe6 from=translated src=- shape=e681f107 vocab=3ddf96e4
+-/
 lemma assignmentProduct_pos {P k : ℕ} (σ : PrimeIndex P → Option (Fin k)) :
     0 < assignmentProduct (fun p : PrimeIndex P => p.val) σ := by
   exact Finset.prod_pos fun p _ => (Nat.prime_of_mem_primeFactors p.property).pos
 
-/-- The product of the assigned primes divides `P`.-/
+/-- The product of the assigned primes divides `P`.
+@isnad1 id=dvd.0h3v.s5.f2e8f7ff2769 from=translated src=- shape=a8527fa3 vocab=f3719b06
+-/
 lemma assignmentProduct_dvd {P k : ℕ} (σ : PrimeIndex P → Option (Fin k)) :
     assignmentProduct (fun p : PrimeIndex P => p.val) σ ∣ P := by
   rw [← assignmentPrimes_product]
   exact (Finset.prod_dvd_prod_of_subset _ _ _ (assignmentPrimes_subset σ)).trans
     (Nat.prod_primeFactors_dvd P)
 
-/-- The prime factors of the assignment product are exactly the assigned primes.-/
+/-- The prime factors of the assignment product are exactly the assigned primes.
+@isnad1 id=eq.0h3v.s5.f43298a94d10 from=translated src=- shape=670d30a8 vocab=b337b7b5
+-/
 lemma assignmentProduct_primeFactors {P k : ℕ} (σ : PrimeIndex P → Option (Fin k)) :
     (assignmentProduct (fun p : PrimeIndex P => p.val) σ).primeFactors = assignmentPrimes σ := by
   rw [← assignmentPrimes_product]
@@ -2431,7 +2711,9 @@ def assignedRoot {P k : ℕ} (root : (p : PrimeIndex P) → Fin k → Fin p.val)
   | none => ⟨0, (Nat.mem_primeFactors.mp p.property).1.pos⟩
   | some i => root p i
 
-/-- The Chinese remainder theorem realizes all assigned roots in one residue.-/
+/-- The Chinese remainder theorem realizes all assigned roots in one residue.
+@isnad1 id=ex.0h4v.s7.1ae57ea569b8 from=translated src=- shape=dfd401ab vocab=b4c00b73
+-/
 lemma exists_assignment_residue {P k : ℕ} (root : (p : PrimeIndex P) → Fin k → Fin p.val)
     (σ : PrimeIndex P → Option (Fin k)) :
     ∃ a : ℕ, a < assignmentProduct (fun p : PrimeIndex P => p.val) σ ∧
@@ -2454,19 +2736,25 @@ lemma exists_assignment_residue {P k : ℕ} (root : (p : PrimeIndex P) → Fin k
 def assignmentCode {P k : ℕ} (root : (p : PrimeIndex P) → Fin k → Fin p.val)
     (σ : PrimeIndex P → Option (Fin k)) : ℕ := Classical.choose (exists_assignment_residue root σ)
 
-/-- The assignment code is smaller than its modulus.-/
+/-- The assignment code is smaller than its modulus.
+@isnad1 id=lt.0h4v.s6.6d3590bd13b4 from=translated src=- shape=f518a985 vocab=98b8f3cc
+-/
 lemma assignmentCode_lt {P k : ℕ} (root : (p : PrimeIndex P) → Fin k → Fin p.val)
     (σ : PrimeIndex P → Option (Fin k)) :
     assignmentCode root σ < assignmentProduct (fun p : PrimeIndex P => p.val) σ :=
   (Classical.choose_spec (exists_assignment_residue root σ)).1
 
-/-- The assignment code has the prescribed residue at each assigned prime.-/
+/-- The assignment code has the prescribed residue at each assigned prime.
+@isnad1 id=eq.1h5v.s6.e08aa32f83ff from=translated src=- shape=2d340b16 vocab=9e140aa1
+-/
 lemma assignmentCode_mod {P k : ℕ} (root : (p : PrimeIndex P) → Fin k → Fin p.val)
     (σ : PrimeIndex P → Option (Fin k)) (p : PrimeIndex P) (hp : (σ p).isSome) :
     assignmentCode root σ % p.val = (assignedRoot root σ p).val :=
   (Classical.choose_spec (exists_assignment_residue root σ)).2 p hp
 
-/-- Distinct local roots make the modulus and residue code determine the assignment.-/
+/-- Distinct local roots make the modulus and residue code determine the assignment.
+@isnad1 id=eq.3h5v.s7.b9b4470e809b from=translated src=- shape=e33fc574 vocab=d14701b1
+-/
 lemma assignmentCode_determines {P k : ℕ} (root : (p : PrimeIndex P) → Fin k → Fin p.val)
     (hroot : ∀ p, Function.Injective (root p)) (σ τ : PrimeIndex P → Option (Fin k))
     (hn : assignmentProduct (fun p : PrimeIndex P => p.val) σ =
@@ -2489,7 +2777,9 @@ lemma assignmentCode_determines {P k : ℕ} (root : (p : PrimeIndex P) → Fin k
     simpa [assignedRoot, hσ, hτ] using
       hs.symm.trans ((congrArg (· % p.val) ha).trans ht)
 
-/-- Encoding an assignment by its modulus and one CRT residue bounds its count.-/
+/-- Encoding an assignment by its modulus and one CRT residue bounds its count.
+@isnad1 id=le.4h6v.s7.2760d4090527 from=translated src=- shape=c0839e71 vocab=dbdeecaa
+-/
 theorem card_assignment_family_le {P k : ℕ} {ι : Type*} [Fintype ι]
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (hroot : ∀ p, Function.Injective (root p))
     (σ : ι → PrimeIndex P → Option (Fin k)) (hσ : Function.Injective σ)
@@ -2516,7 +2806,9 @@ theorem card_assignment_family_le {P k : ℕ} {ι : Type*} [Fintype ι]
       linarith [Nat.floor_le (show 0 ≤ D by linarith)]
     _ = 4 * D ^ 2 := by ring
 
-/-- The truncated tuple region has at most `4 * D ^ 2` elements.-/
+/-- The truncated tuple region has at most `4 * D ^ 2` elements.
+@isnad1 id=le.3h4v.s7.70ced095ed7a from=translated src=- shape=83cda53b vocab=24ffcfb2
+-/
 lemma tupleRegion_card_le {P k : ℕ} (hP : Squarefree P) {D : ℝ} (hD : 1 ≤ D)
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (hroot : ∀ p, Function.Injective (root p)) :
     (Fintype.card (tupleRegion P k D) : ℝ) ≤ 4 * D ^ 2 := by
@@ -2526,13 +2818,17 @@ lemma tupleRegion_card_le {P k : ℕ} (hP : Squarefree P) {D : ℝ} (hD : 1 ≤ 
   rw [assignmentProduct_tupleAssignment hP r.val (Finset.mem_filter.mp r.property).2.1]
   exact (Finset.mem_filter.mp r.property).2.2
 
-/-- Invariance modulo `m` implies invariance modulo every multiple of `m`.-/
+/-- Invariance modulo `m` implies invariance modulo every multiple of `m`.
+@isnad1 id=eq.2h4v.s5.37d399299853 from=translated src=- shape=214be063 vocab=00bd35c8
+-/
 lemma mod_invariant_of_dvd {m n : ℕ} (hmn : m ∣ n) (f : ℕ → ℝ)
     (hf : ∀ a, f (a % m) = f a) : ∀ a, f (a % n) = f a := by
   intro a
   rw [← hf (a % n), Nat.mod_mod_of_dvd a hmn, hf]
 
-/-- Bound the second-moment averaging error using the periods and number of summands.-/
+/-- Bound the second-moment averaging error using the periods and number of summands.
+@isnad1 id=le.9h7v.s8.2e652aa69f71 from=translated src=- shape=08633991 vocab=0397a4ad
+-/
 lemma integerAverage_bounded_periodic_weight {ι : Type*} [Fintype ι]
     {q T : ℕ} (hq : 0 < q) (hT : 0 < T) {D : ℝ} (hD : 0 ≤ D)
     (period : ι → ℕ) (hperiod_pos : ∀ i, 0 < period i) (hperiod_q : ∀ i, period i ∣ q)
@@ -2567,7 +2863,9 @@ def residueVector (P n : ℕ) : (p : PrimeIndex P) → Fin p.val :=
   fun p => ⟨n % p.val, Nat.mod_lt n (Nat.mem_primeFactors.mp p.property).1.pos⟩
 
 open scoped Fin.CommRing in
-/-- The Chinese remainder theorem identifies a full-period average with a product average.-/
+/-- The Chinese remainder theorem identifies a full-period average with a product average.
+@isnad1 id=eq.1h2v.s7.8380b23818be from=translated src=- shape=fed1b668 vocab=d8635f70
+-/
 lemma integerAverage_residues {P : ℕ} (hP : Squarefree P)
     (f : ((p : PrimeIndex P) → Fin p.val) → ℝ) :
     integerAverage P (fun n => f (residueVector P n)) = Finset.expect Finset.univ f := by
@@ -2596,7 +2894,9 @@ lemma integerAverage_residues {P : ℕ} (hP : Squarefree P)
   rw [Fin.sum_univ_eq_sum_range (fun n => f (residueVector P n)) P] at h
   simpa only [integerAverage, Fintype.expect_eq_sum_div_card] using h
 
-/-- Every residue factor has absolute value at most one.-/
+/-- Every residue factor has absolute value at most one.
+@isnad1 id=le.1h3v.s5.c95e21d188a6 from=translated src=- shape=29c102d1 vocab=2df68633
+-/
 lemma abs_residueFactor_le_one {p : ℕ} (hp : 1 < p) (a t : Fin p) :
     |residueFactor a t| ≤ 1 := by
   have hp' : (2 : ℝ) ≤ p := by exact_mod_cast Nat.succ_le_of_lt hp
@@ -2606,21 +2906,27 @@ lemma abs_residueFactor_le_one {p : ℕ} (hp : 1 < p) (a t : Fin p) :
   · rw [abs_of_nonneg (div_nonneg zero_le_one (by linarith))]
     exact (div_le_one (by linarith)).mpr (by linarith)
 
-/-- Every unnormalized local basis value has absolute value at most one.-/
+/-- Every unnormalized local basis value has absolute value at most one.
+@isnad1 id=le.1h5v.s5.22a047cdfec0 from=translated src=- shape=5c9dc017 vocab=d239115a
+-/
 lemma abs_rawLocalBasis_le_one {p k : ℕ} (hp : 1 < p) (root : Fin k → Fin p)
     (i : Option (Fin k)) (t : Fin p) : |rawLocalBasis root i t| ≤ 1 := by
   cases i with
   | none => simp [rawLocalBasis]
   | some j => exact abs_residueFactor_le_one hp _ _
 
-/-- A product of local basis values bounded by one is bounded by one.-/
+/-- A product of local basis values bounded by one is bounded by one.
+@isnad1 id=le.1h6v.s6.07bdda819bd1 from=translated src=- shape=234df78b vocab=13c03ecd
+-/
 lemma abs_productBasis_le_one {α : Type*} [Fintype α] {Ω J : α → Type*}
     (f : (p : α) → J p → Ω p → ℝ) (hf : ∀ p i t, |f p i t| ≤ 1)
     (σ : (p : α) → J p) (t : (p : α) → Ω p) : |productBasis f σ t| ≤ 1 := by
   rw [productBasis, Finset.abs_prod]
   exact Finset.prod_le_one (fun _ _ => abs_nonneg _) (fun p _ => hf p _ _)
 
-/-- Coefficients bounded by one give tuple amplitudes bounded by one.-/
+/-- Coefficients bounded by one give tuple amplitudes bounded by one.
+@isnad1 id=le.1h3v.s5.77b3b411686e from=translated src=- shape=93aa20c1 vocab=51070db0
+-/
 lemma tupleAmplitude_abs_le {P k : ℕ}
     (h : ∀ d ∈ P.divisors, |coefficient P d| ≤ 1) (r : DivisorTuple P k) :
     |tupleAmplitude r| ≤ 1 := by
@@ -2628,13 +2934,17 @@ lemma tupleAmplitude_abs_le {P k : ℕ}
   exact Finset.prod_le_one (fun _ _ => abs_nonneg _)
     (fun i _ => h _ (r i).property)
 
-/-- Every assigned prime divides the assignment product.-/
+/-- Every assigned prime divides the assignment product.
+@isnad1 id=dvd.1h4v.s6.9f46a682bd09 from=translated src=- shape=b4f89c1f vocab=afc51435
+-/
 lemma prime_dvd_assignmentProduct {P k : ℕ} (σ : PrimeIndex P → Option (Fin k))
     (p : PrimeIndex P) (hp : (σ p).isSome) :
     p.val ∣ assignmentProduct (fun p : PrimeIndex P => p.val) σ := by
   exact Finset.dvd_prod_of_mem _ (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hp⟩)
 
-/-- A product basis function depends only on the residue modulo its assignment product.-/
+/-- A product basis function depends only on the residue modulo its assignment product.
+@isnad1 id=eq.1h5v.s7.38e9e790ad67 from=translated src=- shape=ea196607 vocab=f87867d5
+-/
 lemma basisProduct_mod_invariant {P k : ℕ}
     (f : (p : PrimeIndex P) → Option (Fin k) → Fin p.val → ℝ)
     (hf : ∀ p t, f p none t = 1) (σ : PrimeIndex P → Option (Fin k)) (n : ℕ) :
@@ -2656,7 +2966,9 @@ def basisWeight (P k : ℕ) (D : ℝ)
     (t : (p : PrimeIndex P) → Fin p.val) : ℝ :=
   ∑ r : tupleRegion P k D, tupleAmplitude r.val * productBasis f (tupleAssignment r.val) t
 
-/-- A D^6/T error is sufficient after taking κ = 1/8 in the final parameter choice.-/
+/-- A D^6/T error is sufficient after taking κ = 1/8 in the final parameter choice.
+@isnad1 id=le.7h6v.s8.8b08fcaa2dbb from=translated src=- shape=f20039a2 vocab=4215b570
+-/
 theorem basisWeight_interval_error {P k T : ℕ} (hP : Squarefree P) (hT : 0 < T)
     {D : ℝ} (hD : 1 ≤ D)
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (hroot : ∀ p, Function.Injective (root p))
@@ -2686,7 +2998,9 @@ theorem basisWeight_interval_error {P k T : ℕ} (hP : Squarefree P) (hT : 0 < T
       exact tupleRegion_card_le hP hD root hroot
     _ = 16 * D ^ 6 / T := by ring
 
-/-- The residue weight's second-moment averaging error is at most `16 * D ^ 6 / T`.-/
+/-- The residue weight's second-moment averaging error is at most `16 * D ^ 6 / T`.
+@isnad1 id=le.5h5v.s8.46578f6858b0 from=translated src=- shape=2c69269b vocab=5b5258c7
+-/
 lemma residueWeight_interval_error {P k T : ℕ} (hP : Squarefree P) (hT : 0 < T)
     {D : ℝ} (hD : 1 ≤ D)
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (hroot : ∀ p, Function.Injective (root p))
@@ -2697,18 +3011,24 @@ lemma residueWeight_interval_error {P k T : ℕ} (hP : Squarefree P) (hT : 0 < T
     (fun _ _ => rfl) (fun p i t =>
       abs_rawLocalBasis_le_one (Nat.mem_primeFactors.mp p.property).1.one_lt _ i t)
 
-/-- Every divisor tuple has positive product.-/
+/-- Every divisor tuple has positive product.
+@isnad1 id=lt.0h3v.s4.403126223270 from=translated src=- shape=c799e463 vocab=5b0376d4
+-/
 lemma tupleProduct_pos {P k : ℕ} (r : DivisorTuple P k) : 0 < tupleProduct r := by
   exact Finset.prod_pos fun i _ => Nat.pos_of_mem_divisors (r i).property
 
-/-- Inserting a divisor multiplies the tuple product by that divisor.-/
+/-- Inserting a divisor multiplies the tuple product by that divisor.
+@isnad1 id=eq.0h5v.s6.21c0e52ce9b2 from=translated src=- shape=fae7ddf5 vocab=c5fbf029
+-/
 lemma tupleProduct_insertNth {P k : ℕ} (i : Fin (k + 1)) (d : DivisorIndex P)
     (r : DivisorTuple P k) : tupleProduct (i.insertNth d r) = d.val * tupleProduct r := by
   unfold tupleProduct
   rw [Fin.prod_univ_succAbove _ i]
   simp
 
-/-- Insertion preserves pairwise coprimality iff the new divisor is coprime to the rest.-/
+/-- Insertion preserves pairwise coprimality iff the new divisor is coprime to the rest.
+@isnad1 id=iff.0h5v.s7.dcae6a2093ff from=translated src=- shape=a7870b22 vocab=04d5235a
+-/
 lemma tuplePairwise_insertNth {P k : ℕ} (i : Fin (k + 1)) (d : DivisorIndex P)
     (r : DivisorTuple P k) :
     (∀ j l, j ≠ l →
@@ -2718,7 +3038,9 @@ lemma tuplePairwise_insertNth {P k : ℕ} (i : Fin (k + 1)) (d : DivisorIndex P)
   simp [Fin.forall_iff_succAbove i, tupleProduct, Nat.coprime_prod_right_iff,
     Nat.coprime_comm, forall_and, and_comm]
 
-/-- Characterize truncated-region membership after inserting one divisor.-/
+/-- Characterize truncated-region membership after inserting one divisor.
+@isnad1 id=iff.0h6v.s7.aee5bcf3d363 from=translated src=- shape=4fe9f6b4 vocab=90f11716
+-/
 lemma tupleRegion_insertNth {P k : ℕ} (i : Fin (k + 1)) (d : DivisorIndex P)
     (r : DivisorTuple P k) (D : ℝ) :
     i.insertNth d r ∈ tupleRegion P (k + 1) D ↔
@@ -2735,7 +3057,9 @@ lemma tupleRegion_insertNth {P k : ℕ} (i : Fin (k + 1)) (d : DivisorIndex P)
   · rintro ⟨⟨hpair, _⟩, hD, hcop⟩
     exact ⟨⟨hpair, hcop⟩, hD⟩
 
-/-- Split a truncated tuple sum by one coordinate.-/
+/-- Split a truncated tuple sum by one coordinate.
+@isnad1 id=eq.0h5v.s8.aef741efef99 from=translated src=- shape=c54aa1bd vocab=8c54cd50
+-/
 lemma tupleSum_split {P k : ℕ} (i : Fin (k + 1)) (D : ℝ)
     (G : Fin (k + 1) → DivisorIndex P → ℝ) :
     (∑ r ∈ tupleRegion P (k + 1) D, ∏ j, G j (r j)) =
@@ -2756,7 +3080,9 @@ lemma tupleSum_split {P k : ℕ} (i : Fin (k + 1)) (D : ℝ)
 def coefficientRemainder (P m : ℕ) (D : ℝ) : ℝ :=
   ∑ d ∈ P.divisors.filter (fun d : ℕ => (d : ℝ) ≤ D / m ∧ d.Coprime m), coefficient P d / d.totient
 
-/-- Express the coefficient remainder as a sum over divisor indices.-/
+/-- Express the coefficient remainder as a sum over divisor indices.
+@isnad1 id=eq.0h3v.s8.bb59d126b766 from=translated src=- shape=9ba043d4 vocab=ded4f57c
+-/
 lemma coefficientRemainder_eq_sum (P m : ℕ) (D : ℝ) :
     coefficientRemainder P m D =
       ∑ d : DivisorIndex P,
@@ -2771,7 +3097,9 @@ def coordinateBasis {P k : ℕ}
     (d : DivisorIndex P) (i : Fin k) (t : (p : PrimeIndex P) → Fin p.val) : ℝ :=
   ∏ p : PrimeIndex P, if p.val ∣ d.val then f p (some i) (t p) else 1
 
-/-- Factor a tuple's product basis function over its coordinates.-/
+/-- Factor a tuple's product basis function over its coordinates.
+@isnad1 id=eq.2h5v.s7.c8feed271ebc from=translated src=- shape=9a813ec3 vocab=47d32123
+-/
 lemma productBasis_tupleAssignment {P k : ℕ}
     (f : (p : PrimeIndex P) → Option (Fin k) → Fin p.val → ℝ)
     (hf : ∀ p t, f p none t = 1) (r : DivisorTuple P k)
@@ -2785,7 +3113,9 @@ lemma productBasis_tupleAssignment {P k : ℕ}
   intro p _
   cases tupleAssignment r p <;> simp [hf]
 
-/-- Expand a basis weight as a sum of products over tuple coordinates.-/
+/-- Expand a basis weight as a sum of products over tuple coordinates.
+@isnad1 id=eq.1h5v.s7.23a59521b8c0 from=translated src=- shape=9f0b2d2c vocab=3e52c87f
+-/
 lemma basisWeight_eq_tupleSum {P k : ℕ} (D : ℝ)
     (f : (p : PrimeIndex P) → Option (Fin k) → Fin p.val → ℝ)
     (hf : ∀ p t, f p none t = 1) (t : (p : PrimeIndex P) → Fin p.val) :
@@ -2805,7 +3135,9 @@ def replacedLocalBasis {p k : ℕ} (root : Fin k → Fin p) (i : Fin k)
   | none => 1
   | some j => if j = i then 1 / ((p : ℝ) - 1) else residueFactor (root j) t
 
-/-- Replacing a coordinate reduces its divisor basis factor to the reciprocal totient.-/
+/-- Replacing a coordinate reduces its divisor basis factor to the reciprocal totient.
+@isnad1 id=eq.1h7v.s7.6caf446d47b1 from=translated src=- shape=6e82d453 vocab=da3147e9
+-/
 lemma coordinateBasis_replaced {P k : ℕ} (hP : Squarefree P)
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (i j : Fin k)
     (d : DivisorIndex P) (t : (p : PrimeIndex P) → Fin p.val) :
@@ -2827,7 +3159,9 @@ def replacedResidueWeight (P k : ℕ) (D : ℝ)
     (t : (p : PrimeIndex P) → Fin p.val) : ℝ :=
   basisWeight P k D (fun p => replacedLocalBasis (root p) i) t
 
-/-- Split the replaced weight into smaller tuples and coefficient remainders.-/
+/-- Split the replaced weight into smaller tuples and coefficient remainders.
+@isnad1 id=eq.1h6v.s7.8e458793e8d2 from=translated src=- shape=e7af95ba vocab=6b988476
+-/
 lemma replacedResidueWeight_split {P k : ℕ} (hP : Squarefree P) (D : ℝ)
     (root : (p : PrimeIndex P) → Fin (k + 1) → Fin p.val) (i : Fin (k + 1))
     (t : (p : PrimeIndex P) → Fin p.val) :
@@ -2842,7 +3176,9 @@ lemma replacedResidueWeight_split {P k : ℕ} (hP : Squarefree P) (D : ℝ)
   simp_rw [coordinateBasis_replaced hP]
   simp [coefficientRemainder_eq_sum, coordinateBasis, rawLocalBasis, div_eq_mul_inv]
 
-/-- Bound the coefficient mass of divisors sharing a prime with `m` by a prime sum.-/
+/-- Bound the coefficient mass of divisors sharing a prime with `m` by a prime sum.
+@isnad1 id=le.4h2v.s7.f2bf6e9e18d9 from=translated src=- shape=87571460 vocab=80ed2979
+-/
 lemma coefficient_noncoprime_le {P m : ℕ} (hP : 1 < P) (hsq : Squarefree P)
     (hm : m ∣ P) (hcoeff : ∀ d ∈ P.divisors, |coefficient P d| ≤ 1) :
     (∑ d ∈ P.divisors.filter (fun d => ¬d.Coprime m), |coefficient P d| / d.totient) ≤
@@ -2877,7 +3213,9 @@ lemma coefficient_noncoprime_le {P m : ℕ} (hP : 1 < P) (hsq : Squarefree P)
       exact coefficient_prime_incidence hP hsq (Nat.prime_of_mem_primeFactors hp) hpP
         (hcoeff p (Nat.mem_divisors.mpr ⟨hpP, hsq.ne_zero⟩))
 
-/-- A lower bound on prime factors controls their reciprocal sum using `log m`.-/
+/-- A lower bound on prime factors controls their reciprocal sum using `log m`.
+@isnad1 id=le.4h3v.s7.c1131c1e395c from=translated src=- shape=cea145ef vocab=65be798e
+-/
 lemma sum_primeFactors_inv_le {P m : ℕ} (hP : Squarefree P) (hm : m ∣ P)
     {M : ℝ} (hM : 0 < M) (hmin : ∀ p ∈ P.primeFactors, M ≤ (p : ℝ)) :
     (∑ p ∈ m.primeFactors, 4 / (p : ℝ)) ≤ 4 * Real.log m / (M * Real.log 2) := by
@@ -2906,14 +3244,18 @@ lemma sum_primeFactors_inv_le {P m : ℕ} (hP : Squarefree P) (hm : m ∣ P)
       mul_le_mul_of_nonneg_left ((le_div_iff₀ hlog2).mpr hcard) (by positivity)
     _ = _ := by ring
 
-/-- The coefficient remainder is nonnegative when its cutoff includes one.-/
+/-- The coefficient remainder is nonnegative when its cutoff includes one.
+@isnad1 id=le.3h3v.s5.050e123a945b from=translated src=- shape=118d1eb5 vocab=26671691
+-/
 lemma coefficientRemainder_nonneg {P m : ℕ} (hP : 1 < P) (hm : 0 < m)
     {D : ℝ} (hcut : (m : ℝ) ≤ D) : 0 ≤ coefficientRemainder P m D := by
   apply partial_cancellation_nonneg hP _ (Finset.filter_subset _ _)
   refine Finset.mem_filter.mpr ⟨Nat.one_mem_divisors.mpr (by omega), ?_, by simp⟩
   exact (le_div_iff₀ (by exact_mod_cast hm : (0 : ℝ) < m)).mpr (by simpa using hcut)
 
-/-- Rankin's bound for the absolute coefficient tail.-/
+/-- Rankin's bound for the absolute coefficient tail.
+@isnad1 id=le.2h3v.s6.7629b3630291 from=translated src=- shape=8cde3e60 vocab=e4fde9d0
+-/
 lemma coefficient_tail_le {P : ℕ} {v β : ℝ} (hv : 1 ≤ v) (hβ : 0 ≤ β) :
     (∑ d ∈ P.divisors.filter (fun d : ℕ => v < (d : ℝ)), |coefficient P d| / d.totient) ≤
       v ^ (-β) * coefficientAbsMoment P β := by
@@ -2928,7 +3270,9 @@ lemma coefficient_tail_le {P : ℕ} {v β : ℝ} (hv : 1 ≤ v) (hβ : 0 ≤ β)
       (fun d _ => div_nonneg (abs_nonneg _) (Nat.cast_nonneg _))
       (fun d _ => Nat.cast_nonneg _)
 
-/-- Bound the coefficient remainder by the discarded tail and noncoprime mass.-/
+/-- Bound the coefficient remainder by the discarded tail and noncoprime mass.
+@isnad1 id=le.3h3v.s7.2fb3c9519fb6 from=translated src=- shape=0db11d52 vocab=ed2cd565
+-/
 lemma coefficientRemainder_le_tail_add_overlap {P m : ℕ} (hP : 1 < P)
     (hm : 0 < m) {D : ℝ} (hcut : (m : ℝ) ≤ D) :
     coefficientRemainder P m D ≤
@@ -2949,7 +3293,9 @@ lemma coefficientRemainder_le_tail_add_overlap {P m : ℕ} (hP : 1 < P)
   by_cases hd : (d : ℝ) ≤ D / m <;> by_cases hdm : d.Coprime m <;>
     simp [← not_le, hd, hdm, hnonneg]
 
-/-- Bound the coefficient remainder by a power tail and an error from shared primes.-/
+/-- Bound the coefficient remainder by a power tail and an error from shared primes.
+@isnad1 id=le.6h6v.s7.8946714e2090 from=translated src=- shape=11188ebe vocab=9bee1048
+-/
 lemma coefficientRemainder_le {P m : ℕ} {β C D M : ℝ}
     (h : CoefficientEstimates P β C) (hβ : 0 ≤ β) (hm : m ∣ P)
     (hcut : (m : ℝ) ≤ D) (hM : 0 < M)
@@ -2974,7 +3320,9 @@ lemma coefficientRemainder_le {P m : ℕ} {β C D M : ℝ}
     exact div_le_div_of_nonneg_right
       (mul_le_mul_of_nonneg_left (Real.log_le_log hmR hcut) (by norm_num)) (by positivity)
 
-/-- An exponential assignment row bound valid for every tuple length.-/
+/-- An exponential assignment row bound valid for every tuple length.
+@isnad1 id=le.3h6v.s6.a61d8bb59fd0 from=translated src=- shape=52429b65 vocab=cd805124
+-/
 lemma assignment_row_bound_all {α : Type*} [Fintype α]
     (size : α → ℕ) {k : ℕ} (σ : α → Option (Fin k))
     {M D : ℝ} (hM : 1 < M) (hsize : ∀ p, M ≤ (size p : ℝ))
@@ -2995,7 +3343,9 @@ def weightedResidueWeight (P k : ℕ) (D : ℝ)
   ∑ r : tupleRegion P k D, b r.val * tupleAmplitude r.val *
     productBasis (fun p => rawLocalBasis (root p)) (tupleAssignment r.val) t
 
-/-- Expand the weighted residue sum as a product over tuple coordinates.-/
+/-- Expand the weighted residue sum as a product over tuple coordinates.
+@isnad1 id=eq.0h6v.s7.0e2a58c0cf0b from=translated src=- shape=1fd3a3f1 vocab=557e0de3
+-/
 lemma weightedResidueWeight_eq_sum {P k : ℕ} (D : ℝ)
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (b : DivisorTuple P k → ℝ)
     (t : (p : PrimeIndex P) → Fin p.val) :
@@ -3011,7 +3361,9 @@ lemma weightedResidueWeight_eq_sum {P k : ℕ} (D : ℝ)
   rw [productBasis_tupleAssignment _ (fun _ _ => rfl) r (Finset.mem_filter.mp hr).2.1 t,
     tupleAmplitude, Finset.prod_mul_distrib, mul_assoc]
 
-/-- Bound the weighted second moment by the Gram factor times its diagonal mass.-/
+/-- Bound the weighted second moment by the Gram factor times its diagonal mass.
+@isnad1 id=le.4h6v.s8.4c478ed4db0f from=translated src=- shape=d7686e45 vocab=dcc9e592
+-/
 lemma weightedResidueWeight_second_moment_le {P k : ℕ} (hP : Squarefree P)
     {D M : ℝ} (hM : 1 < M) (hmin : ∀ p ∈ P.primeFactors, M ≤ (p : ℝ))
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (hroot : ∀ p, Function.Injective (root p))
@@ -3050,7 +3402,9 @@ lemma weightedResidueWeight_second_moment_le {P k : ℕ} (hP : Squarefree P)
   simp only [hweight, hmass] at h
   linarith [(abs_le.mp h).2]
 
-/-- A replaced weight is a weight on smaller tuples with coefficient-remainder factors.-/
+/-- A replaced weight is a weight on smaller tuples with coefficient-remainder factors.
+@isnad1 id=eq.1h6v.s7.4fc0e6724dec from=translated src=- shape=9059b0be vocab=e82d8eb4
+-/
 lemma replacedResidueWeight_eq_weighted {P k : ℕ} (hP : Squarefree P) (D : ℝ)
     (root : (p : PrimeIndex P) → Fin (k + 1) → Fin p.val) (i : Fin (k + 1))
     (t : (p : PrimeIndex P) → Fin p.val) :
@@ -3059,7 +3413,9 @@ lemma replacedResidueWeight_eq_weighted {P k : ℕ} (hP : Squarefree P) (D : ℝ
         (fun r => coefficientRemainder P (tupleProduct r) D) t := by
   rw [replacedResidueWeight_split hP, weightedResidueWeight_eq_sum]
 
-/-- Control weighted diagonal mass by tilted and zero coefficient moments.-/
+/-- Control weighted diagonal mass by tilted and zero coefficient moments.
+@isnad1 id=le.3h7v.s7.9ebe4f7dcefe from=translated src=- shape=eb48f04f vocab=3b2e7065
+-/
 lemma weighted_diagonal_le {P k : ℕ} {D a b γ : ℝ}
     (ha : 0 ≤ a) (hb : 0 ≤ b) (v : DivisorTuple P k → ℝ)
     (hv : ∀ r ∈ tupleRegion P k D, v r ^ 2 ≤ a * (tupleProduct r : ℝ) ^ γ + b) :
@@ -3085,7 +3441,9 @@ lemma weighted_diagonal_le {P k : ℕ} {D a b γ : ℝ}
       ring
     _ = _ := by rw [sum_tupleMass_mul_rpow, sum_tupleMass]
 
-/-- Bound the squared coefficient remainder by its tail and overlap contributions.-/
+/-- Bound the squared coefficient remainder by its tail and overlap contributions.
+@isnad1 id=le.6h6v.s8.7aa593bc1a6a from=translated src=- shape=8ab8ddd8 vocab=31d55e1e
+-/
 lemma coefficientRemainder_square_le {P m : ℕ} {β C D M : ℝ}
     (h : CoefficientEstimates P β C) (hβ : 0 ≤ β) (hm : m ∣ P)
     (hcut : (m : ℝ) ≤ D) (hM : 0 < M)
@@ -3107,7 +3465,9 @@ lemma coefficientRemainder_square_le {P m : ℕ} {β C D M : ℝ}
   have hsq := sq_nonneg (C * ((m : ℝ) / D) ^ β - 4 * Real.log D / (M * Real.log 2))
   nlinarith [hp]
 
-/-- Bound a replaced weight's second moment using tilted and zero coefficient moments.-/
+/-- Bound a replaced weight's second moment using tilted and zero coefficient moments.
+@isnad1 id=le.6h8v.s9.b5c0f07f117a from=translated src=- shape=e4ee749c vocab=f831f221
+-/
 lemma replacedResidueWeight_second_moment_le {P k : ℕ} {β C D M : ℝ}
     (h : CoefficientEstimates P β C) (hβ : 0 ≤ β) (hD : 0 < D)
     (hM : 1 < M) (hmin : ∀ p ∈ P.primeFactors, M ≤ (p : ℝ))
@@ -3130,7 +3490,9 @@ lemma replacedResidueWeight_second_moment_le {P k : ℕ} {β C D M : ℝ}
   exact coefficientRemainder_square_le h hβ (tupleProduct_dvd r hpair) hcut
     (zero_lt_one.trans hM) hmin
 
-/-- Avoiding one coordinate's roots makes the original and replaced weights equal.-/
+/-- Avoiding one coordinate's roots makes the original and replaced weights equal.
+@isnad1 id=eq.1h6v.s6.76b7b5c9d837 from=translated src=- shape=3c1616cd vocab=7e153d8a
+-/
 lemma residueWeight_eq_replaced_of_uncovered {P k : ℕ} (D : ℝ)
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (i : Fin k)
     (t : (p : PrimeIndex P) → Fin p.val) (hi : ∀ p, t p ≠ root p i) :
@@ -3144,7 +3506,9 @@ lemma residueWeight_eq_replaced_of_uncovered {P k : ℕ} (D : ℝ)
           simp [rawLocalBasis, replacedLocalBasis, h, residueFactor, hi]
   simp only [residueWeight, replacedResidueWeight, basisWeight, productBasis, hlocal]
 
-/-- Every replaced local basis value has absolute value at most one.-/
+/-- Every replaced local basis value has absolute value at most one.
+@isnad1 id=le.1h6v.s5.d086397b918d from=translated src=- shape=35d3e7f4 vocab=64da0fcf
+-/
 lemma abs_replacedLocalBasis_le_one {p k : ℕ} (hp : 1 < p)
     (root : Fin k → Fin p) (i : Fin k) (j : Option (Fin k)) (t : Fin p) :
     |replacedLocalBasis root i j t| ≤ 1 := by
@@ -3158,7 +3522,9 @@ lemma abs_replacedLocalBasis_le_one {p k : ℕ} (hp : 1 < p)
         exact (div_le_one (by linarith)).mpr (by linarith)
       · exact abs_residueFactor_le_one hp _ _
 
-/-- The replaced weight's second-moment averaging error is at most `16 * D ^ 6 / T`.-/
+/-- The replaced weight's second-moment averaging error is at most `16 * D ^ 6 / T`.
+@isnad1 id=le.5h6v.s8.9302b0c49d6a from=translated src=- shape=b86e71c3 vocab=39c0fc8f
+-/
 lemma replacedResidueWeight_interval_error {P k T : ℕ} (hP : Squarefree P) (hT : 0 < T)
     {D : ℝ} (hD : 1 ≤ D)
     (root : (p : PrimeIndex P) → Fin k → Fin p.val) (hroot : ∀ p, Function.Injective (root p))
@@ -3171,7 +3537,9 @@ lemma replacedResidueWeight_interval_error {P k T : ℕ} (hP : Squarefree P) (hT
     (fun p j t => abs_replacedLocalBasis_le_one
       (Nat.mem_primeFactors.mp p.property).1.one_lt _ i j t)
 
-/-- A second-moment gap yields an integer meeting a root in every coordinate.-/
+/-- A second-moment gap yields an integer meeting a root in every coordinate.
+@isnad1 id=ex.3h7v.s7.6457189c1a4c from=translated src=- shape=a87bc172 vocab=e9477ee4
+-/
 lemma exists_simultaneous_root_of_moments {P k T : ℕ} {D L U : ℝ}
     (root : (p : PrimeIndex P) → Fin k → Fin p.val)
     (hlower : L ≤ integerAverage T (fun n => residueWeight P k D root (residueVector P n) ^ 2))
@@ -3200,7 +3568,9 @@ lemma exists_simultaneous_root_of_moments {P k T : ℕ} {D L U : ℝ}
     _ ≤ ∑ _i : Fin k, U := Finset.sum_le_sum (fun i _ => hupper i)
     _ = (k : ℝ) * U := by simp
 
-/-- Any coefficient-estimate constant is at least one.-/
+/-- Any coefficient-estimate constant is at least one.
+@isnad1 id=le.2h3v.s5.fc7ef45f8adb from=translated src=- shape=fba56a6c vocab=8fd8c058
+-/
 lemma CoefficientEstimates.one_le_constant {P : ℕ} {β C : ℝ}
     (h : CoefficientEstimates P β C) (hβ : 0 ≤ β) : 1 ≤ C := by
   simpa [coefficientAbsMoment_zero h.one_lt] using h.absMoment_le 0 le_rfl (by positivity)
@@ -3214,11 +3584,15 @@ def uncoveredBound (k : ℕ) (β C M D : ℝ) : ℝ :=
   gramBound k M D * (2 * C ^ 2 * D ^ (-(2 * β)) * Real.exp ((k : ℝ) * C * (2 * β)) +
     2 * (4 * Real.log D / (M * Real.log 2)) ^ 2)
 
-/-- The normalized uncovered bound is nonnegative.-/
+/-- The normalized uncovered bound is nonnegative.
+@isnad1 id=le.1h5v.s5.dad278d40dae from=translated src=- shape=3524f749 vocab=7d85a634
+-/
 lemma uncoveredBound_nonneg (k : ℕ) (β C M : ℝ) {D : ℝ} (hD : 0 ≤ D) :
     0 ≤ uncoveredBound k β C M D := by unfold uncoveredBound gramBound; positivity
 
-/-- Bound a replaced weight's second moment by `uncoveredBound` times the zero moment.-/
+/-- Bound a replaced weight's second moment by `uncoveredBound` times the zero moment.
+@isnad1 id=le.6h8v.s8.a374b32b82e7 from=translated src=- shape=e1bf4625 vocab=f4f0c3f4
+-/
 lemma replacedResidueWeight_normalized_bound {P k : ℕ} {β C D M : ℝ}
     (h : CoefficientEstimates P β C) (hβ : 0 ≤ β) (hD : 0 < D)
     (hM : 1 < M) (hmin : ∀ p ∈ P.primeFactors, M ≤ (p : ℝ))
@@ -3240,7 +3614,9 @@ lemma replacedResidueWeight_normalized_bound {P k : ℕ} {β C D M : ℝ}
       gcongr
     _ = _ := by ring
 
-/-- The normalized diagonal mass loses only a power tail and prime collisions.-/
+/-- The normalized diagonal mass loses only a power tail and prime collisions.
+@isnad1 id=le.5h6v.s7.e80394f19990 from=translated src=- shape=2e89cb28 vocab=b23c189c
+-/
 lemma diagonalMass_normalized_lower {P M k : ℕ} {β C D : ℝ}
     (h : CoefficientEstimates P β C) (hβ : 0 ≤ β) (hD : 0 < D)
     (hM : 0 < M) (hmin : ∀ p ∈ P.primeFactors, M < p) :
@@ -3253,7 +3629,9 @@ lemma diagonalMass_normalized_lower {P M k : ℕ} {β C D : ℝ}
   have htail := mul_le_mul_of_nonneg_left hmoment (Real.rpow_nonneg hD.le (-β))
   nlinarith
 
-/-- The finite weighted sieve, with every numerical loss displayed explicitly.-/
+/-- The finite weighted sieve, with every numerical loss displayed explicitly.
+@isnad1 id=ex.11h8v.s9.6b824979fb3a from=translated src=- shape=d115a532 vocab=11e760d0
+-/
 theorem finite_simultaneous_roots {P M k T : ℕ} {β C D : ℝ}
     (h : CoefficientEstimates P β C) (hβ : 0 ≤ β) (hD : 1 ≤ D)
     (hM : 1 < M) (hT : 0 < T) (hmin : ∀ p ∈ P.primeFactors, M < p)
@@ -3304,12 +3682,16 @@ def sieveD (x : ℝ) : ℝ := Real.exp (x / 8)
 /-- The averaging interval length, given by the integer part of `exp x`.-/
 def sieveT (x : ℝ) : ℕ := ⌊Real.exp x⌋₊
 
-/-- Rewrite `exp (-n * log x)` as `1 / x ^ n`.-/
+/-- Rewrite `exp (-n * log x)` as `1 / x ^ n`.
+@isnad1 id=eq.1h2v.s5.1ffb672563c6 from=translated src=- shape=ff56d93c vocab=ea9f795d
+-/
 lemma exp_neg_nat_mul_log {x : ℝ} (hx : 0 < x) (n : ℕ) :
     Real.exp (-(n : ℝ) * Real.log x) = 1 / x ^ n := by
   rw [neg_mul, Real.exp_neg, Real.exp_nat_mul, Real.exp_log hx, one_div]
 
-/-- The truncation tail is at most `1 / x ^ 3` under the sieve size bounds.-/
+/-- The truncation tail is at most `1 / x ^ 3` under the sieve size bounds.
+@isnad1 id=le.4h4v.s7.8d7e682d22fe from=translated src=- shape=bd06a5c5 vocab=d5915bfd
+-/
 lemma truncated_exponential_le {n : ℕ} {x β C : ℝ} (hx : 0 < x) (hβ : 0 ≤ β)
     (hsize : (n : ℝ) * C ≤ x / 16) (hlog : 48 * Real.log x ≤ x * β) :
     sieveD x ^ (-β) * Real.exp ((n : ℝ) * C * β) ≤ 1 / x ^ 3 := by
@@ -3318,7 +3700,9 @@ lemma truncated_exponential_le {n : ℕ} {x β C : ℝ} (hx : 0 < x) (hβ : 0 �
   apply Real.exp_le_exp.mpr
   nlinarith [mul_le_mul_of_nonneg_right hsize hβ]
 
-/-- The truncation tail with doubled exponent is at most `1 / x ^ 6`.-/
+/-- The truncation tail with doubled exponent is at most `1 / x ^ 6`.
+@isnad1 id=le.4h4v.s7.18a9b8a74518 from=translated src=- shape=ad092594 vocab=d5915bfd
+-/
 lemma truncated_double_exponential_le {n : ℕ} {x β C : ℝ} (hx : 0 < x) (hβ : 0 ≤ β)
     (hsize : (n : ℝ) * C ≤ x / 16) (hlog : 48 * Real.log x ≤ x * β) :
     sieveD x ^ (-(2 * β)) * Real.exp ((n : ℝ) * C * (2 * β)) ≤ 1 / x ^ 6 := by
@@ -3327,7 +3711,9 @@ lemma truncated_double_exponential_le {n : ℕ} {x β C : ℝ} (hx : 0 < x) (hβ
   apply Real.exp_le_exp.mpr
   nlinarith [mul_le_mul_of_nonneg_right hsize hβ]
 
-/-- Bound the Gram factor by `exp (1 / x ^ 2)`.-/
+/-- Bound the Gram factor by `exp (1 / x ^ 2)`.
+@isnad1 id=le.4h3v.s6.b1633f77c622 from=translated src=- shape=5be0b14c vocab=1d73c151
+-/
 lemma gramBound_le_simple {n : ℕ} {M x : ℝ} (hx : 1 ≤ x) (hn : (n : ℝ) ≤ x)
     (hM : x ^ 4 ≤ M - 1) (hlog : 1 ≤ Real.log M) :
     gramBound n M (sieveD x) ≤ Real.exp (1 / x ^ 2) := by
@@ -3342,7 +3728,9 @@ lemma gramBound_le_simple {n : ℕ} {M x : ℝ} (hx : 1 ≤ x) (hn : (n : ℝ) �
       linarith
     _ = 1 / x ^ 2 := by field_simp
 
-/-- The collision contribution is at most `16 / x ^ 2`.-/
+/-- The collision contribution is at most `16 / x ^ 2`.
+@isnad1 id=le.3h3v.s7.28cb7710ebd4 from=translated src=- shape=0593e209 vocab=bbfbc6af
+-/
 lemma collisionBound_le_simple {n : ℕ} {M x : ℝ} (hx : 0 < x)
     (hn : (n : ℝ) ≤ x) (hM : x ^ 4 ≤ M) :
     16 * (n : ℝ) ^ 2 / M ≤ 16 / x ^ 2 := by
@@ -3350,7 +3738,9 @@ lemma collisionBound_le_simple {n : ℕ} {M x : ℝ} (hx : 0 < x)
     16 * (n : ℝ) ^ 2 / M ≤ 16 * x ^ 2 / x ^ 4 := by gcongr
     _ = 16 / x ^ 2 := by field_simp
 
-/-- The overlap contribution is at most `1 / (log 2 * x ^ 3)`.-/
+/-- The overlap contribution is at most `1 / (log 2 * x ^ 3)`.
+@isnad1 id=le.2h2v.s7.2ccb361fcfdc from=translated src=- shape=ef6a1933 vocab=9b0b4e9c
+-/
 lemma overlapBound_le_simple {M x : ℝ} (hx : 0 < x) (hM : x ^ 4 ≤ M) :
     4 * Real.log (sieveD x) / (M * Real.log 2) ≤ 1 / (Real.log 2 * x ^ 3) := by
   rw [sieveD, Real.log_exp]
@@ -3360,7 +3750,9 @@ lemma overlapBound_le_simple {M x : ℝ} (hx : 0 < x) (hM : x ^ 4 ≤ M) :
       linarith
     _ = 1 / (Real.log 2 * x ^ 3) := by field_simp
 
-/-- Bound the normalized uncovered contribution by an explicit multiple of `1 / x ^ 6`.-/
+/-- Bound the normalized uncovered contribution by an explicit multiple of `1 / x ^ 6`.
+@isnad1 id=le.8h5v.s8.d2e525ae6a1b from=translated src=- shape=cccef7d4 vocab=6457964d
+-/
 lemma uncoveredBound_le_simple {n : ℕ} {M x β C : ℝ} (hx : 1 ≤ x)
     (hβ : 0 ≤ β) (hn : (n : ℝ) ≤ x) (hsize : (n : ℝ) * C ≤ x / 16)
     (hlog : 48 * Real.log x ≤ x * β) (hM : x ^ 4 ≤ M - 1) (hlogM : 1 ≤ Real.log M)
@@ -3386,7 +3778,9 @@ lemma uncoveredBound_le_simple {n : ℕ} {M x β C : ℝ} (hx : 1 ≤ x)
       positivity
     _ = _ := by ring
 
-/-- For `x ≥ 2`, the lower sieve cutoff exceeds `x ^ 4` by at least one.-/
+/-- For `x ≥ 2`, the lower sieve cutoff exceeds `x ^ 4` by at least one.
+@isnad1 id=le.1h1v.s5.fb55d02575fe from=translated src=- shape=a7169869 vocab=b1837de1
+-/
 lemma sieveZ_lower {x : ℝ} (hx : 2 ≤ x) : x ^ 4 ≤ (sieveZ x : ℝ) - 1 := by
   have hx2 : 4 ≤ x ^ 2 := by nlinarith
   have hx4 : 16 ≤ x ^ 4 := by nlinarith [sq_nonneg (x ^ 2 - 4)]
@@ -3395,12 +3789,16 @@ lemma sieveZ_lower {x : ℝ} (hx : 2 ≤ x) : x ^ 4 ≤ (sieveZ x : ℝ) - 1 := 
   unfold sieveZ
   nlinarith [Nat.lt_floor_add_one (x ^ 6)]
 
-/-- The integer averaging length is at least half of `exp x`.-/
+/-- The integer averaging length is at least half of `exp x`.
+@isnad1 id=le.1h1v.s5.1c3b48af2014 from=translated src=- shape=5ec66c22 vocab=c169ff42
+-/
 lemma sieveT_lower {x : ℝ} (hx : 2 ≤ x) : Real.exp x / 2 ≤ (sieveT x : ℝ) := by
   unfold sieveT
   linarith [Real.add_one_le_exp x, Nat.lt_floor_add_one (Real.exp x)]
 
-/-- The interval averaging error is at most `32 / x ^ 3`.-/
+/-- The interval averaging error is at most `32 / x ^ 3`.
+@isnad1 id=le.2h1v.s6.cb4d6ad81ef2 from=translated src=- shape=b9723f71 vocab=dfb07be6
+-/
 lemma intervalError_le_simple {x : ℝ} (hx : 2 ≤ x) (hlog : 12 * Real.log x ≤ x) :
     16 * sieveD x ^ 6 / sieveT x ≤ 32 / x ^ 3 := by
   have hx0 : 0 < x := by linarith
@@ -3423,7 +3821,9 @@ lemma intervalError_le_simple {x : ℝ} (hx : 2 ≤ x) (hlog : 12 * Real.log x �
       rw [he]
       ring
 
-/-- The sieve tilt eventually satisfies `48 * log x ≤ x * sieveBeta x`.-/
+/-- The sieve tilt eventually satisfies `48 * log x ≤ x * sieveBeta x`.
+@isnad1 id=eventual.0h0v.s5.fd409c154f70 from=translated src=- shape=7f6e0f4c vocab=18c7e91f
+-/
 lemma eventually_sieve_beta_scale : ∀ᶠ x : ℝ in Filter.atTop,
     48 * Real.log x ≤ x * sieveBeta x := by
   filter_upwards [Filter.eventually_gt_atTop (0 : ℝ),
@@ -3439,7 +3839,9 @@ lemma eventually_sieve_beta_scale : ∀ᶠ x : ℝ in Filter.atTop,
       unfold sieveBeta sieveUpperLog
       field_simp
 
-/-- The numerical sieve error bounds hold for all sufficiently large `x`.-/
+/-- The numerical sieve error bounds hold for all sufficiently large `x`.
+@isnad1 id=eventual.0h1v.s8.eb8f0d7cd3b7 from=translated src=- shape=4c8265c8 vocab=35f5624f
+-/
 lemma eventually_simple_sieve_bounds (C : ℝ) : ∀ᶠ x : ℝ in Filter.atTop,
     Real.exp (1 / x ^ 2) ≤ 5 / 4 ∧
     1 / x ^ 3 + 16 / x ^ 2 ≤ 1 / 2 ∧
@@ -3469,17 +3871,23 @@ lemma eventually_simple_sieve_bounds (C : ℝ) : ∀ᶠ x : ℝ in Filter.atTop,
 /-- The density threshold for simultaneously hitting all root families.-/
 def sieveDelta : ℝ := 1 / (64 * weightConstant)
 
-/-- The simultaneous-root density threshold is positive.-/
+/-- The simultaneous-root density threshold is positive.
+@isnad1 id=lt.0h0v.s3.2acd2183e16b from=translated src=- shape=ff3a10fc vocab=fc6b8972
+-/
 lemma sieveDelta_pos : 0 < sieveDelta := by
   exact one_div_pos.mpr (mul_pos (by norm_num) (zero_lt_one.trans weightConstant_gt_one))
 
-/-- The simultaneous-root density threshold is less than one half.-/
+/-- The simultaneous-root density threshold is less than one half.
+@isnad1 id=lt.0h0v.s4.12e05e60bf9b from=translated src=- shape=0efb1284 vocab=8f5f1848
+-/
 lemma sieveDelta_lt_half : sieveDelta < 1 / 2 := by
   unfold sieveDelta
   apply one_div_lt_one_div_of_lt (by norm_num)
   linarith [weightConstant_gt_one]
 
-/-- For large `x`, sufficiently small families of distinct roots can be hit simultaneously.-/
+/-- For large `x`, sufficiently small families of distinct roots can be hit simultaneously.
+@isnad1 id=eventual.0h0v.s7.d151b8258ee1 from=translated src=- shape=7134b1e5 vocab=055f14bd
+-/
 lemma eventually_simultaneous_roots : ∀ᶠ x : ℝ in Filter.atTop,
     ∀ k : ℕ, (((k + 1 : ℕ) : ℝ)) ≤ sieveDelta * x →
     ∀ root : (p : PrimeIndex (sieveP x)) → Fin (k + 1) → Fin p.val,
@@ -3543,7 +3951,9 @@ lemma eventually_simultaneous_roots : ∀ᶠ x : ℝ in Filter.atTop,
           32 / x ^ 2 := by field_simp
       _ < 1 / 4 := hbad
 
-/-- The upper sieve cutoff is eventually below the primorial up to `x`.-/
+/-- The upper sieve cutoff is eventually below the primorial up to `x`.
+@isnad1 id=eventual.0h0v.s4.ac6f1e60901d from=translated src=- shape=999a2a3a vocab=4d2547fe
+-/
 lemma eventually_sieveY_lt_primorial : ∀ᶠ x : ℝ in Filter.atTop,
     sieveY x < primorial ⌊x⌋₊ := by
   obtain ⟨C, hC⟩ := Chebyshev.psi_sub_theta_le_mul_sqrt
@@ -3583,7 +3993,9 @@ lemma eventually_sieveY_lt_primorial : ∀ᶠ x : ℝ in Filter.atTop,
       rw [Chebyshev.theta_eq_log_primorial, Real.exp_log (by
         exact_mod_cast primorial_pos ⌊x⌋₊)]
 
-/-- Construct distinct modular roots forcing divisibility of the translated linear forms.-/
+/-- Construct distinct modular roots forcing divisibility of the translated linear forms.
+@isnad1 id=ex.4h5v.s6.b59c7d150011 from=translated src=- shape=76a87951 vocab=ce1deef6
+-/
 lemma exists_linear_roots {p k Q b : ℕ} (hp : p.Prime) (hQ : Q.Coprime p)
     (s : Fin k → ℕ) (hs : Function.Injective s) (hsmall : ∀ i, s i < p) :
     ∃ root : Fin k → Fin p, Function.Injective root ∧
@@ -3611,7 +4023,9 @@ lemma exists_linear_roots {p k Q b : ℕ} (hp : p.Prime) (hQ : Q.Coprime p)
     field_simp
     ring
 
-/-- Proposition 1.2, proved with the explicit coefficient construction above.-/
+/-- Proposition 1.2, proved with the explicit coefficient construction above.
+@isnad1 id=eventual.0h0v.s7.7a9ca9e12886 from=translated src=- shape=c2ed1f21 vocab=7269064c
+-/
 theorem short_translates_with_sieveDelta : ∀ᶠ x : ℝ in Filter.atTop,
     ∀ H : ℕ, x < H → (H : ℝ) ≤ x * (Real.log x) ^ 2 →
     ∀ S : Finset ℕ, S ⊆ Finset.Icc 1 H → (S.card : ℝ) ≤ sieveDelta * x →
@@ -3671,14 +4085,18 @@ theorem short_translates_with_sieveDelta : ∀ᶠ x : ℝ in Filter.atTop,
     have hlt : p.val < b + primorial ⌊x⌋₊ * (n + 1) + a := by omega
     exact (hprime.eq_one_or_self_of_dvd _ hdvd).elim hpprime.ne_one (ne_of_lt hlt)
 
-/-- The sparse-set translation bound of Proposition 1.2.-/
+/-- The sparse-set translation bound of Proposition 1.2.
+@isnad1 id=shorttra.0h0v.s0.7766e52330ba from=translated src=- shape=45709ebd vocab=7766e523
+-/
 lemma short_translates : ShortTranslates :=
   ⟨sieveDelta, sieveDelta_pos, sieveDelta_lt_half, short_translates_with_sieveDelta⟩
 
 /-- A uniform geometric factor for the smooth-number estimate.-/
 def smoothEulerConstant : ℝ := (1 - (2 : ℝ) ^ (-(1 / 2 : ℝ)))⁻¹
 
-/-- The smooth Euler constant is positive.-/
+/-- The smooth Euler constant is positive.
+@isnad1 id=lt.0h0v.s3.3d5926af6af4 from=translated src=- shape=ff3a10fc vocab=2eff0f3b
+-/
 lemma smoothEulerConstant_pos : 0 < smoothEulerConstant := by
   exact inv_pos.mpr (sub_pos.mpr
     (Real.rpow_lt_one_of_one_lt_of_neg (by norm_num) (by norm_num)))
@@ -3686,12 +4104,16 @@ lemma smoothEulerConstant_pos : 0 < smoothEulerConstant := by
 /-- The scale constant used to choose the smoothness cutoff and tilt.-/
 def smoothScaleConstant : ℝ := 3 * smoothEulerConstant + 10
 
-/-- The smoothness scale constant is positive.-/
+/-- The smoothness scale constant is positive.
+@isnad1 id=lt.0h0v.s3.612764a156fa from=translated src=- shape=ff3a10fc vocab=ad416def
+-/
 lemma smoothScaleConstant_pos : 0 < smoothScaleConstant := by
   unfold smoothScaleConstant
   linarith [smoothEulerConstant_pos]
 
-/-- Bound the cost of shifting an Euler factor to exponent `1 - t`.-/
+/-- Bound the cost of shifting an Euler factor to exponent `1 - t`.
+@isnad1 id=le.3h2v.s7.ae5cea7d7201 from=translated src=- shape=90142b4f vocab=d3c21be8
+-/
 lemma euler_factor_left_comparison {p t : ℝ} (hp : 2 ≤ p) (ht : 0 ≤ t) (ht' : t ≤ 1 / 2) :
     (1 - p ^ (-(1 - t)))⁻¹ ≤ (1 - p ^ (-(1 : ℝ)))⁻¹ *
       Real.exp (smoothEulerConstant * (p ^ t - 1) / p) := by
@@ -3732,7 +4154,9 @@ lemma euler_factor_left_comparison {p t : ℝ} (hp : 2 ≤ p) (ht : 0 ≤ t) (ht
     exact sub_pos.mpr (inv_lt_one_of_one_lt₀ (by linarith)))).mpr
   simpa only [mul_comm] using hratio
 
-/-- Bound the cost of shifting the Euler product to exponent `1 - t`.-/
+/-- Bound the cost of shifting the Euler product to exponent `1 - t`.
+@isnad1 id=le.2h2v.s7.964f614e6a91 from=translated src=- shape=2275efd4 vocab=8a46a2cf
+-/
 lemma eulerProduct_left_comparison (N : ℕ) {t : ℝ} (ht : 0 ≤ t) (ht' : t ≤ 1 / 2) :
     eulerProduct N (1 - t) ≤ eulerProduct N 1 *
       Real.exp (smoothEulerConstant * ∑ p ∈ N.primesLE, ((p : ℝ) ^ t - 1) / p) := by
@@ -3751,7 +4175,9 @@ lemma eulerProduct_left_comparison (N : ℕ) {t : ℝ} (ht : 0 ≤ t) (ht' : t �
       simp_rw [mul_div_assoc]
       rw [Finset.prod_mul_distrib, ← Real.exp_sum, ← Finset.mul_sum]
 
-/-- A secant bound controls `p ^ t - 1` using the ratio `log p / log z`.-/
+/-- A secant bound controls `p ^ t - 1` using the ratio `log p / log z`.
+@isnad1 id=le.4h3v.s6.197403e03296 from=translated src=- shape=e924a378 vocab=9d5d05fd
+-/
 lemma rpow_secant_log {p z t : ℝ} (hp : 1 ≤ p) (hpz : p ≤ z) (hz : 1 < z)
     (ht : 0 ≤ t) : p ^ t - 1 ≤ (Real.log p / Real.log z) * (Real.exp (t * Real.log z) - 1) := by
   rcases ht.eq_or_lt with rfl | _
@@ -3768,7 +4194,9 @@ lemma rpow_secant_log {p z t : ℝ} (hp : 1 ≤ p) (hpz : p ≤ z) (hz : 1 < z)
   rw [harg, ← Real.rpow_def_of_pos (zero_lt_one.trans_le hp)] at h
   linarith
 
-/-- Bound the shifted Euler product using the tilt and the largest prime cutoff.-/
+/-- Bound the shifted Euler product using the tilt and the largest prime cutoff.
+@isnad1 id=le.4h3v.s7.4e44cc2f1b18 from=translated src=- shape=31fddaf3 vocab=5faa6553
+-/
 lemma eulerProduct_left_bound {N : ℕ} {z t : ℝ} (hN : 2 ≤ N) (hNz : (N : ℝ) ≤ z)
     (ht : 0 ≤ t) (ht' : t ≤ 1 / 2) :
     eulerProduct N (1 - t) ≤ eulerProduct N 1 *
@@ -3813,7 +4241,9 @@ lemma eulerProduct_left_bound {N : ℕ} {z t : ℝ} (hN : 2 ≤ N) (hNz : (N : �
   simpa [mul_left_comm, mul_assoc] using
     mul_le_mul_of_nonneg_left hsum smoothEulerConstant_pos.le
 
-/-- A finite Euler-product bound for the count of smooth integers up to `H`.-/
+/-- A finite Euler-product bound for the count of smooth integers up to `H`.
+@isnad1 id=le.3h4v.s6.821bd839d270 from=translated src=- shape=9550febe vocab=4d7d3e23
+-/
 lemma smooth_count_rankin {N H : ℕ} {σ : ℝ} (hσ : 0 < σ)
     (S : Finset ℕ) (hS : S ⊆ Finset.Icc 1 H)
     (hsmooth : ∀ n ∈ S, n ∈ (N + 1).smoothNumbers) :
@@ -3850,12 +4280,16 @@ def coverTilt (x : ℝ) : ℝ := smoothScaleConstant * Real.log (Real.log x) / R
 def coverLength (η x : ℝ) : ℕ :=
   ⌊η * x * Real.log x ^ 2 * Real.log (Real.log (Real.log x)) / Real.log (Real.log x) ^ 2⌋₊
 
-/-- The smoothness scale constant exceeds ten.-/
+/-- The smoothness scale constant exceeds ten.
+@isnad1 id=lt.0h0v.s3.5e1899413181 from=translated src=- shape=ff3a10fc vocab=1ceabb73
+-/
 lemma smoothScaleConstant_gt_ten : 10 < smoothScaleConstant := by
   unfold smoothScaleConstant
   linarith [smoothEulerConstant_pos]
 
-/-- The covering tilt times the logarithmic cutoff equals the third iterated logarithm.-/
+/-- The covering tilt times the logarithmic cutoff equals the third iterated logarithm.
+@isnad1 id=eq.2h1v.s5.420171090493 from=translated src=- shape=735a2fa2 vocab=dacb30fd
+-/
 lemma coverTilt_mul_coverLogZ {x : ℝ} (hx : 1 < x) (hlog : 1 < Real.log x) :
     coverTilt x * coverLogZ x = Real.log (Real.log (Real.log x)) := by
   have hl1 : Real.log x ≠ 0 := (Real.log_pos hx).ne'
@@ -3863,7 +4297,9 @@ lemma coverTilt_mul_coverLogZ {x : ℝ} (hx : 1 < x) (hlog : 1 < Real.log x) :
   unfold coverTilt coverLogZ
   field_simp [hl1, hl2, smoothScaleConstant_pos.ne']
 
-/-- The size, ordering, and tilt bounds for the covering parameters hold eventually.-/
+/-- The size, ordering, and tilt bounds for the covering parameters hold eventually.
+@isnad1 id=eventual.0h0v.s7.3cd3997edc3e from=translated src=- shape=1e825780 vocab=83a2dd5e
+-/
 lemma eventually_cover_parameters : ∀ᶠ x : ℝ in Filter.atTop,
     2 ≤ x ∧ 2 ≤ Real.log x ∧ 1 ≤ Real.log (Real.log x) ∧ 1 ≤ Real.log (Real.log (Real.log x)) ∧
     4 * smoothScaleConstant * Real.log (Real.log x) ^ 2 ≤ Real.log x ∧
@@ -3913,7 +4349,9 @@ lemma eventually_cover_parameters : ∀ᶠ x : ℝ in Filter.atTop,
       _ ≤ smoothScaleConstant * Real.log (Real.log x) :=
         le_mul_of_one_le_left hll0.le (by linarith [smoothScaleConstant_gt_ten])
 
-/-- The small-prime cutoff does not exceed the smoothness cutoff.-/
+/-- The small-prime cutoff does not exceed the smoothness cutoff.
+@isnad1 id=le.2h1v.s5.c510b2924bab from=translated src=- shape=b3666caa vocab=24f88e28
+-/
 lemma coverW_le_coverZ {x : ℝ} (hx : 1 < x)
     (hz : 4 * Real.log (Real.log x) ≤ coverLogZ x) : coverW x ≤ coverZ x := by
   apply Nat.floor_mono
@@ -3922,17 +4360,23 @@ lemma coverW_le_coverZ {x : ℝ} (hx : 1 < x)
       rw [Real.exp_nat_mul, Real.exp_log (Real.log_pos hx)]
     _ ≤ Real.exp (coverLogZ x) := Real.exp_le_exp.mpr hz
 
-/-- The smoothness cutoff is at most the integer part of `x`.-/
+/-- The smoothness cutoff is at most the integer part of `x`.
+@isnad1 id=le.2h1v.s5.17a24a3add29 from=translated src=- shape=6490a41f vocab=b057e9b1
+-/
 lemma coverZ_le_floor {x : ℝ} (hx : 0 < x) (hz : coverLogZ x ≤ Real.log x) : coverZ x ≤ ⌊x⌋₊ := by
   exact Nat.floor_mono ((Real.exp_le_exp.mpr hz).trans_eq (Real.exp_log hx))
 
-/-- The small-prime cutoff is at least two when `log x ≥ 2`.-/
+/-- The small-prime cutoff is at least two when `log x ≥ 2`.
+@isnad1 id=le.1h1v.s4.d7faf4f7981d from=translated src=- shape=55c848e3 vocab=cfdd6ee3
+-/
 lemma coverW_ge_two {x : ℝ} (hL : 2 ≤ Real.log x) : 2 ≤ coverW x := by
   apply Nat.le_floor
   exact (by norm_num : (2 : ℝ) ≤ 2 ^ 4).trans
     (pow_le_pow_left₀ (by norm_num) hL 4)
 
-/-- Eventually, at most `H / (log x)^3` integers up to `H` are `coverZ x`-smooth.-/
+/-- Eventually, at most `H / (log x)^3` integers up to `H` are `coverZ x`-smooth.
+@isnad1 id=eventual.0h0v.s6.88d195db0521 from=translated src=- shape=96f35cba vocab=4edddf25
+-/
 lemma eventually_smooth_count : ∀ᶠ x : ℝ in Filter.atTop,
     ∀ H : ℕ, x ≤ H → ∀ S : Finset ℕ, S ⊆ Finset.Icc 1 H →
     (∀ n ∈ S, ∀ p : ℕ, p.Prime → p ∣ n → p ≤ coverZ x) →
@@ -4017,7 +4461,9 @@ lemma eventually_smooth_count : ∀ᶠ x : ℝ in Filter.atTop,
           simpa [Real.exp_log hl0] using Real.exp_nat_mul (Real.log (Real.log x)) 3,
         div_eq_mul_inv]
 
-/-- A logarithmic upper bound for the product of greedy survival factors.-/
+/-- A logarithmic upper bound for the product of greedy survival factors.
+@isnad1 id=le.2h2v.s6.d0e1107bed74 from=translated src=- shape=5a228c11 vocab=70a64b07
+-/
 lemma greedy_product_le {W Z : ℕ} (hW : 2 ≤ W) (hWZ : W ≤ Z) :
     (∏ p ∈ auxiliaryPrimes W Z, (1 - 1 / (p : ℝ))) ≤
       Real.exp 6 * (1 + Real.log W) / Real.log Z := by
@@ -4040,7 +4486,9 @@ lemma greedy_product_le {W Z : ℕ} (hW : 2 ≤ W) (hWZ : W ≤ Z) :
     _ = eulerProduct W 1 := (mul_comm _ _).trans hcancel.symm
     _ ≤ Real.exp 6 * (1 + Real.log W) := eulerProduct_one_le hW
 
-/-- The chosen cutoffs give an explicit bound for the greedy survival product.-/
+/-- The chosen cutoffs give an explicit bound for the greedy survival product.
+@isnad1 id=eventual.0h0v.s7.5fb108beb178 from=translated src=- shape=3845ac05 vocab=7ff79afd
+-/
 lemma eventually_greedy_product_bound : ∀ᶠ x : ℝ in Filter.atTop,
     (∏ p ∈ auxiliaryPrimes (coverW x) (coverZ x), (1 - 1 / (p : ℝ))) ≤
       10 * smoothScaleConstant * Real.exp 6 * Real.log (Real.log x) ^ 2 /
@@ -4090,7 +4538,9 @@ def zeroCoverPrimes (x : ℝ) : Finset ℕ :=
 def zeroSurvivors (x : ℝ) (H : ℕ) : Finset ℕ :=
   survivors (Finset.Icc 1 H) (zeroCoverPrimes x) (fun _ => 0)
 
-/-- Combine a zero-residue sieve with greedy choices on a disjoint set of moduli.-/
+/-- Combine a zero-residue sieve with greedy choices on a disjoint set of moduli.
+@isnad1 id=ex.4h4v.s7.4c762e279874 from=translated src=- shape=6e8079d9 vocab=62ff8de4
+-/
 lemma combine_greedy_residues (S ps₀ ps₁ ps : Finset ℕ)
     (h₀ : ps₀ ⊆ ps) (h₁ : ps₁ ⊆ ps) (hdisj : Disjoint ps₀ ps₁)
     (hpos : ∀ p ∈ ps, 0 < p) :
@@ -4118,7 +4568,9 @@ lemma combine_greedy_residues (S ps₀ ps₁ ps : Finset ℕ)
         simpa [a, hp] using hn p (h₁ hp)
     exact (Nat.cast_le.mpr (Finset.card_le_card hsubset)).trans hcard
 
-/-- A zero-sieve survivor is prime or has all prime factors at most the smoothness cutoff.-/
+/-- A zero-sieve survivor is prime or has all prime factors at most the smoothness cutoff.
+@isnad1 id=or.3h3v.s6.1e37b00c9231 from=translated src=- shape=ea08bc6e vocab=8161773e
+-/
 lemma zeroSurvivors_prime_or_smooth {x : ℝ} {H n : ℕ} (hx : 0 < x)
     (hsmall : 2 * (H : ℝ) < x * (coverW x : ℝ)) (hn : n ∈ zeroSurvivors x H) :
     n.Prime ∨ ∀ p : ℕ, p.Prime → p ∣ n → p ≤ coverZ x := by
@@ -4135,13 +4587,17 @@ lemma zeroSurvivors_prime_or_smooth {x : ℝ} {H n : ℕ} (hx : 0 < x)
     rintro ⟨hpZ', _⟩
     exact (not_le_of_gt hpZ) (by exact_mod_cast hpZ')
 
-/-- The small-prime cutoff exceeds `2 * (log x)^2`.-/
+/-- The small-prime cutoff exceeds `2 * (log x)^2`.
+@isnad1 id=lt.1h1v.s5.a0595aa7b3e7 from=translated src=- shape=449ba440 vocab=043bf0e8
+-/
 lemma coverW_large {x : ℝ} (hL : 2 ≤ Real.log x) :
     2 * Real.log x ^ 2 < (coverW x : ℝ) := by
   have hfloor : Real.log x ^ 4 < (coverW x : ℝ) + 1 := Nat.lt_floor_add_one _
   nlinarith [sq_nonneg (Real.log x ^ 2 - 2)]
 
-/-- An explicit `H / log x` bound for the initial sieve's survivors.-/
+/-- An explicit `H / log x` bound for the initial sieve's survivors.
+@isnad1 id=eventual.0h0v.s6.27c69cbf3576 from=translated src=- shape=76115c63 vocab=3484c62f
+-/
 lemma eventually_zeroSurvivors_bound : ∀ᶠ x : ℝ in Filter.atTop,
     ∀ H : ℕ, x ≤ H → (H : ℝ) ≤ x * Real.log x ^ 2 →
       ((zeroSurvivors x H).card : ℝ) ≤ (Real.log 4 + 2) * H / Real.log x := by
@@ -4192,7 +4648,9 @@ lemma eventually_zeroSurvivors_bound : ∀ᶠ x : ℝ in Filter.atTop,
 def coverScale (x : ℝ) : ℝ :=
   x * Real.log x ^ 2 * Real.log (Real.log (Real.log x)) / Real.log (Real.log x) ^ 2
 
-/-- The covering length is the integer part of `η * coverScale x`.-/
+/-- The covering length is the integer part of `η * coverScale x`.
+@isnad1 id=eq.0h2v.s4.5c0eab003946 from=translated src=- shape=9a8e3a08 vocab=77a9855e
+-/
 lemma coverLength_eq (η x : ℝ) : coverLength η x = ⌊η * coverScale x⌋₊ := by
   simp only [coverLength, coverScale, mul_div_assoc, mul_assoc]
 
@@ -4200,7 +4658,9 @@ lemma coverLength_eq (η x : ℝ) : coverLength η x = ⌊η * coverScale x⌋�
 def coveringConstant : ℝ :=
   10 * smoothScaleConstant * Real.exp 6 * (Real.log 4 + 2)
 
-/-- The combined covering constant is positive.-/
+/-- The combined covering constant is positive.
+@isnad1 id=lt.0h0v.s3.bbbb25e12fec from=translated src=- shape=ff3a10fc vocab=c0330ff3
+-/
 lemma coveringConstant_pos : 0 < coveringConstant := by
   have := smoothScaleConstant_pos
   unfold coveringConstant
@@ -4209,18 +4669,24 @@ lemma coveringConstant_pos : 0 < coveringConstant := by
 /-- A covering scale small enough to meet the short-translate density threshold.-/
 def coverEta : ℝ := sieveDelta / (2 * (1 + coveringConstant))
 
-/-- The chosen covering scale is positive.-/
+/-- The chosen covering scale is positive.
+@isnad1 id=lt.0h0v.s3.427ea586a9ed from=translated src=- shape=ff3a10fc vocab=9c8f7242
+-/
 lemma coverEta_pos : 0 < coverEta := by
   exact div_pos sieveDelta_pos
     (mul_pos (by norm_num) (add_pos zero_lt_one coveringConstant_pos))
 
-/-- The chosen covering scale is at most one.-/
+/-- The chosen covering scale is at most one.
+@isnad1 id=le.0h0v.s3.90acec4ba2a3 from=translated src=- shape=ffdda526 vocab=ff4453ba
+-/
 lemma coverEta_le_one : coverEta ≤ 1 := by
   unfold coverEta
   apply (div_le_one (by linarith [coveringConstant_pos])).mpr
   linarith [sieveDelta_lt_half, coveringConstant_pos]
 
-/-- The combined covering bound fits within the sieve density threshold.-/
+/-- The combined covering bound fits within the sieve density threshold.
+@isnad1 id=le.0h0v.s3.3c51499e4ea3 from=translated src=- shape=cc017972 vocab=03e93b14
+-/
 lemma coveringConstant_mul_eta_le : coveringConstant * coverEta ≤ sieveDelta := by
   have hC := coveringConstant_pos
   have hδ := sieveDelta_pos
@@ -4228,7 +4694,9 @@ lemma coveringConstant_mul_eta_le : coveringConstant * coverEta ≤ sieveDelta :
   rw [← mul_div_assoc, div_le_iff₀ (by positivity)]
   nlinarith [mul_pos hC hδ]
 
-/-- Eventually, the rounded covering length has the required size and retains half its scale.-/
+/-- Eventually, the rounded covering length has the required size and retains half its scale.
+@isnad1 id=eventual.2h1v.s6.aa071733e815 from=translated src=- shape=004d6849 vocab=a55a7d65
+-/
 lemma eventually_coverLength_bounds {η : ℝ} (hη : 0 < η) (hη1 : η ≤ 1) :
     ∀ᶠ x : ℝ in Filter.atTop, x < (coverLength η x : ℝ) ∧
       (coverLength η x : ℝ) ≤ x * Real.log x ^ 2 ∧
@@ -4269,7 +4737,9 @@ lemma eventually_coverLength_bounds {η : ℝ} (hη : 0 < η) (hη1 : η ≤ 1) 
   exact ⟨by linarith, (Nat.floor_le (mul_nonneg hη.le hscale0)).trans hupper,
     by linarith⟩
 
-/-- Every prime in the zero-residue sieve is at most `x`.-/
+/-- Every prime in the zero-residue sieve is at most `x`.
+@isnad1 id=le.2h1v.s5.b830056fcbb3 from=translated src=- shape=c546c5a3 vocab=1095b0e7
+-/
 lemma zeroCoverPrimes_subset {x : ℝ} (hx : 0 ≤ x) (hW : coverW x ≤ ⌊x⌋₊) :
     zeroCoverPrimes x ⊆ ⌊x⌋₊.primesLE := by
   intro p hp
@@ -4278,14 +4748,18 @@ lemma zeroCoverPrimes_subset {x : ℝ} (hx : 0 ≤ x) (hW : coverW x ≤ ⌊x⌋
   · have hm := Nat.mem_primesLE.mp (Finset.mem_sdiff.mp hp).1
     exact Nat.mem_primesLE.mpr ⟨hm.1.trans (Nat.floor_mono (by linarith : x / 2 ≤ x)), hm.2⟩
 
-/-- The zero-residue and greedy prime sets are disjoint.-/
+/-- The zero-residue and greedy prime sets are disjoint.
+@isnad1 id=disjoint.0h1v.s4.940d1c97ca69 from=translated src=- shape=6b83bd22 vocab=5a6d5cfa
+-/
 lemma zeroCoverPrimes_disjoint (x : ℝ) :
     Disjoint (zeroCoverPrimes x) (auxiliaryPrimes (coverW x) (coverZ x)) := by
   simp only [zeroCoverPrimes, auxiliaryPrimes, Finset.disjoint_left, Finset.mem_union,
     Finset.mem_sdiff]
   tauto
 
-/-- For large `x`, residue classes leave at most `sieveDelta * x` integers uncovered.-/
+/-- For large `x`, residue classes leave at most `sieveDelta * x` integers uncovered.
+@isnad1 id=eventual.0h0v.s6.1e7942fb5f46 from=translated src=- shape=7d8dd25d vocab=cc4d92a0
+-/
 lemma eventually_covering_residues : ∀ᶠ x : ℝ in Filter.atTop,
     ∃ a : ℕ → ℕ, (∀ p ∈ ⌊x⌋₊.primesLE, a p < p) ∧
       ((survivors (Finset.Icc 1 (coverLength coverEta x)) ⌊x⌋₊.primesLE a).card : ℝ) ≤
@@ -4336,7 +4810,9 @@ lemma eventually_covering_residues : ∀ᶠ x : ℝ in Filter.atTop,
       field_simp
     _ ≤ sieveDelta * x := mul_le_mul_of_nonneg_right coveringConstant_mul_eta_le hx0.le
 
-/-- Combining the covering with Proposition 1.2 produces the long prime gaps.-/
+/-- Combining the covering with Proposition 1.2 produces the long prime gaps.
+@isnad1 id=eventual.0h0v.s6.3a36138fdcc6 from=translated src=- shape=bbe21c44 vocab=f6d92895
+-/
 theorem eventually_prime_gaps_in_x : ∀ᶠ x : ℝ in Filter.atTop,
     ∃ p q : ℕ, ConsecutivePrimes p q ∧ (q : ℝ) ≤ Real.exp (8 * x) ∧
       (coverEta / 2) * coverScale x ≤ ((q - p : ℕ) : ℝ) := by
@@ -4424,13 +4900,17 @@ theorem eventually_prime_gaps_in_x : ∀ᶠ x : ℝ in Filter.atTop,
       linarith [Real.add_one_le_exp (4 * x)]
     _ = Real.exp (8 * x) := by rw [← Real.exp_add]; congr 1; ring
 
-/-- Dividing by `c` preserves at least half of `log u` when `log u ≥ 2 * log c`.-/
+/-- Dividing by `c` preserves at least half of `log u` when `log u ≥ 2 * log c`.
+@isnad1 id=le.3h2v.s6.e2c7fb478ad1 from=translated src=- shape=17a4c97f vocab=3910d10d
+-/
 lemma half_log_le_log_div {u c : ℝ} (hu : 0 < u) (hc : 0 < c)
     (h : 2 * Real.log c ≤ Real.log u) : Real.log u / 2 ≤ Real.log (u / c) := by
   rw [Real.log_div hu.ne' hc.ne']
   linarith
 
-/-- Rescaling by one eighth reduces `coverScale` by at most a factor of 64 eventually.-/
+/-- Rescaling by one eighth reduces `coverScale` by at most a factor of 64 eventually.
+@isnad1 id=eventual.0h0v.s5.e5d4ac6d6ee9 from=translated src=- shape=5722df02 vocab=b107ece6
+-/
 lemma eventually_coverScale_div_eight : ∀ᶠ y : ℝ in Filter.atTop,
     coverScale y / 64 ≤ coverScale (y / 8) := by
   have hlog := Real.tendsto_log_atTop
@@ -4463,11 +4943,15 @@ lemma eventually_coverScale_div_eight : ∀ᶠ y : ℝ in Filter.atTop,
         (Real.log (Real.log (Real.log y)) / 2) / Real.log (Real.log y) ^ 2 := by ring
     _ ≤ _ := by gcongr
 
-/-- The prime-gap scale is the covering scale evaluated at `log X`.-/
+/-- The prime-gap scale is the covering scale evaluated at `log X`.
+@isnad1 id=eq.0h1v.s3.fefd775ca70e from=translated src=- shape=5dad4736 vocab=7d683a0f
+-/
 lemma gapScale_eq_coverScale_log (X : ℝ) : gapScale X = coverScale (Real.log X) := by
   rfl
 
-/-- Theorem 1.1: the unconditional long-gap bound in the paper.-/
+/-- Theorem 1.1: the unconditional long-gap bound in the paper.
+@isnad1 id=longgapt.0h0v.s0.7851a320d305 from=translated src=- shape=45709ebd vocab=7851a320
+-/
 theorem long_gap_theorem : LongGapTheorem := by
   refine ⟨coverEta / 128, by have h := coverEta_pos; positivity, ?_⟩
   have hx : Filter.Tendsto (fun X : ℝ => Real.log X / 8) Filter.atTop Filter.atTop :=
@@ -4485,7 +4969,9 @@ theorem long_gap_theorem : LongGapTheorem := by
     have hm := mul_le_mul_of_nonneg_left hscale hη
     nlinarith
 
-/-- Consecutive primes occur at adjacent indices in the prime enumeration.-/
+/-- Consecutive primes occur at adjacent indices in the prime enumeration.
+@isnad1 id=ex.1h2v.s5.44025b8b1188 from=translated src=- shape=fcc9c4cb vocab=36b2c910
+-/
 lemma consecutivePrimes_eq_nth {p q : ℕ} (h : ConsecutivePrimes p q) :
     ∃ n : ℕ, Nat.nth Nat.Prime n = p ∧ Nat.nth Nat.Prime (n + 1) = q := by
   rcases h with ⟨hp, hq, hpq, hgap⟩
@@ -4501,7 +4987,9 @@ lemma consecutivePrimes_eq_nth {p q : ℕ} (h : ConsecutivePrimes p q) :
       (by simpa only [Nat.nth_count hp] using hmono (Nat.lt_succ_self (Nat.count Nat.Prime p)))
       hlt (Nat.nth_mem _ (fun hf => (Nat.infinite_setOfPred_prime hf).elim))
 
-/-- The long-prime-gap statement in the indexed form of `Challenge.lean`.-/
+/-- The long-prime-gap statement in the indexed form of `Challenge.lean`.
+@isnad1 id=ex.0h0v.s7.cc1b82bdbabe from=translated src=- shape=67d73d57 vocab=66011175
+-/
 theorem long_prime_gaps :
     ∃ c X₀ : ℝ, 0 < c ∧ ∀ X : ℝ, X₀ ≤ X → ∃ n : ℕ,
       (Nat.nth Nat.Prime (n + 1) : ℝ) < X ∧
