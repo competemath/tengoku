@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "dc18f9d6626cb2c6917d7680aee3af6c6651438925e5926efe59502c5feaea2a",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "long-gaps-between-primes",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 244
+}
