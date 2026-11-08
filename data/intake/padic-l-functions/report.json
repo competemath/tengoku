@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "4b7e7b2bf822b58c2579bb2b41714681a61b7689c25a67024312087f75c64784",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "padic-l-functions",
+ "lint_mode": "proposed",
+ "modules": 7,
+ "part": 1,
+ "theorems": 33
+}
