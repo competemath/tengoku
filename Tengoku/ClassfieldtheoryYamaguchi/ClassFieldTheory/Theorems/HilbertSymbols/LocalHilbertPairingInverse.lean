@@ -24,7 +24,9 @@ namespace ClassFieldTheory.HilbertPairing
 
 universe u
 
-/-- Inverting every value preserves the local Hilbert-pairing axioms.-/
+/-- Inverting every value preserves the local Hilbert-pairing axioms.
+@isnad1 id=islocalh.1h3v.s9.0bdb5560d4e0 from=translated src=- shape=82494772 vocab=783fa8fc
+-/
 theorem IsLocalHilbertPairing.inv
     {K : Type u} [Field K] {n : ℕ+}
     {B : HilbertPairing K n}

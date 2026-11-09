@@ -22,7 +22,9 @@ namespace ClassFieldTheory
 universe u
 
 /-- Two elements represent the same power class exactly when their ratio is
-an `n`-th power.-/
+an `n`-th power.
+@isnad1 id=iff.0h4v.s9.a6373ae9f446 from=translated src=- shape=87b3803f vocab=75258955
+-/
 theorem powerClass_eq_iff
     (K : Type u) [Field K] (n : ℕ+) (a b : Kˣ) :
     powerClass K n a = powerClass K n b ↔

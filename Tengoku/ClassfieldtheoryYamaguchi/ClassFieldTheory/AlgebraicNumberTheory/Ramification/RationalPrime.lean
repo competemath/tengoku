@@ -27,7 +27,9 @@ abbrev rationalPrimeIdeal (p : Nat.Primes) : Ideal ℤ :=
   (Rat.HeightOneSpectrum.primesEquiv.symm p).asIdeal
 
 /-- The height-one ideal represented by a positive rational prime is its
-usual principal ideal.-/
+usual principal ideal.
+@isnad1 id=eq.0h1v.s4.fb9493c640f3 from=translated src=- shape=92da18ff vocab=e8f5333b
+-/
 theorem rationalPrimeIdeal_eq_span (p : Nat.Primes) :
     rationalPrimeIdeal p = Ideal.span {(p.1 : ℤ)} := by
   let v : IsDedekindDomain.HeightOneSpectrum ℤ :=

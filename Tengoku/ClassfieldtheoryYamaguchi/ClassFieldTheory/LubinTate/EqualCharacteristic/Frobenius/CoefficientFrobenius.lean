@@ -42,7 +42,9 @@ noncomputable def equalCharacteristicCoefficientFrobenius :
   letI : Fintype k := Fintype.ofFinite k
   exact FiniteField.frobeniusAlgEquivOfAlgebraic k (AlgebraicClosure k)
 
-/-- States the theorem `equalCharacteristicCoefficientFrobenius_apply`.-/
+/-- States the theorem `equalCharacteristicCoefficientFrobenius_apply`.
+@isnad1 id=eq.0h2v.s7.439b04ec7466 from=translated src=- shape=3027e564 vocab=adba04c3
+-/
 @[simp]
 theorem equalCharacteristicCoefficientFrobenius_apply
     (x : AlgebraicClosure k) :
@@ -57,7 +59,9 @@ noncomputable def equalCharacteristicPowerSeriesFrobenius :
     (AlgebraicClosure k)⟦X⟧ →+* (AlgebraicClosure k)⟦X⟧ :=
   PowerSeries.map (equalCharacteristicCoefficientFrobenius k).toRingHom
 
-/-- States the theorem `equalCharacteristicPowerSeriesFrobenius_coeff`.-/
+/-- States the theorem `equalCharacteristicPowerSeriesFrobenius_coeff`.
+@isnad1 id=eq.0h3v.s10.83527a36f682 from=translated src=- shape=9a7abf1b vocab=81bab54e
+-/
 @[simp]
 theorem equalCharacteristicPowerSeriesFrobenius_coeff
     (f : (AlgebraicClosure k)⟦X⟧) (n : ℕ) :
@@ -66,7 +70,9 @@ theorem equalCharacteristicPowerSeriesFrobenius_coeff
   simp [equalCharacteristicPowerSeriesFrobenius,
     equalCharacteristicCoefficientFrobenius_apply]
 
-/-- States the theorem `equalCharacteristicPowerSeriesFrobenius_X`.-/
+/-- States the theorem `equalCharacteristicPowerSeriesFrobenius_X`.
+@isnad1 id=eq.0h1v.s7.a846b60a7772 from=translated src=- shape=ec6e6293 vocab=f0b869dc
+-/
 @[simp]
 theorem equalCharacteristicPowerSeriesFrobenius_X :
     equalCharacteristicPowerSeriesFrobenius k

@@ -56,7 +56,9 @@ def relativeCosetAction
     change A.ρ x.1 a.1 = A.ρ x.1 (A.ρ l.1 a.1)
     rw [a.2 l])
 
-/-- The relative coset action on a quotient representative is the corresponding group action.-/
+/-- The relative coset action on a quotient representative is the corresponding group action.
+@isnad1 id=eq.1h6v.s10.da081d0214bd from=translated src=- shape=1ea3aa14 vocab=8162bcfa
+-/
 @[simp]
 theorem relativeCosetAction_mk
     (A : Rep ℤ G) (K L : ClosedSubgroup G)
@@ -73,7 +75,9 @@ def leftMulCosetEquiv {G : Type*} [Group G]
   left_inv q := by simp
   right_inv q := by simp
 
-/-- Left multiplication sends the coset of `x` to the coset of `g * x`.-/
+/-- Left multiplication sends the coset of `x` to the coset of `g * x`.
+@isnad1 id=eq.0h4v.s7.2a2c98580998 from=translated src=- shape=b7c68778 vocab=df0f1ec5
+-/
 @[simp] theorem leftMulCosetEquiv_mk {G : Type*} [Group G]
     (H : Subgroup G) (g x : G) :
     leftMulCosetEquiv H g (QuotientGroup.mk x) = QuotientGroup.mk (g * x) :=
@@ -88,7 +92,9 @@ def relativeNormValue
   letI := Fintype.ofFinite (K.toSubgroup ⧸ extensionSubgroup K L hLK)
   exact ∑ q, relativeCosetAction A K L hLK a q
 
-/-- The relative coset action is additive in the represented fixed element.-/
+/-- The relative coset action is additive in the represented fixed element.
+@isnad1 id=eq.1h7v.s10.840437b0b6f0 from=translated src=- shape=0fbd132e vocab=c402bccf
+-/
 theorem relativeCosetAction_add
     (A : Rep ℤ G) (K L : ClosedSubgroup G)
     (hLK : L.toSubgroup ≤ K.toSubgroup)
@@ -102,7 +108,9 @@ theorem relativeCosetAction_add
   simp only [relativeCosetAction_mk]
   exact map_add (A.ρ k.1) a.1 b.1
 
-/-- Every relative coset acts trivially on the zero fixed element.-/
+/-- Every relative coset acts trivially on the zero fixed element.
+@isnad1 id=eq.1h5v.s9.fa8a02bd653c from=translated src=- shape=46baaa61 vocab=ef373a28
+-/
 @[simp]
 theorem relativeCosetAction_zero
     (A : Rep ℤ G) (K L : ClosedSubgroup G)
@@ -114,7 +122,9 @@ theorem relativeCosetAction_zero
   simp only [relativeCosetAction_mk]
   exact map_zero (A.ρ k.1)
 
-/-- The relative norm value is fixed by the base subgroup action.-/
+/-- The relative norm value is fixed by the base subgroup action.
+@isnad1 id=eq.1h6v.s10.b3fb5d77376a from=translated src=- shape=b75616b9 vocab=641b6c17
+-/
 theorem relativeNormValue_fixed
     (A : Rep ℤ G) (K L : ClosedSubgroup G)
     (hLK : L.toSubgroup ≤ K.toSubgroup)
@@ -164,7 +174,9 @@ def relativeNorm
     intro q _
     exact relativeCosetAction_add A K L hLK a b q
 
-/-- Coercing a relative norm gives the explicit sum over quotient representatives.-/
+/-- Coercing a relative norm gives the explicit sum over quotient representatives.
+@isnad1 id=eq.1h5v.s11.8df084c52b7a from=translated src=- shape=36cc9546 vocab=da820f44
+-/
 @[simp]
 theorem relativeNorm_apply_coe
     (A : Rep ℤ G) (K L : ClosedSubgroup G)

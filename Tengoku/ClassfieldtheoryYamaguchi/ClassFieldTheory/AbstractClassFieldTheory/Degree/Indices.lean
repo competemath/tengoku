@@ -91,7 +91,9 @@ noncomputable def kernelCosetEquivSaturation (d : G →* D) {L K : Subgroup G} (
       kernelCosetToSaturationCoset_surjective d hLK⟩
 
 /-- The index of `L` in the `ker d`-saturated part of `K` is the relative
-index of the corresponding kernel intersections.-/
+index of the corresponding kernel intersections.
+@isnad1 id=eq.1h5v.s7.409bde91c45f from=translated src=- shape=6f35de3b vocab=8e65ad62
+-/
 theorem relIndex_saturation_eq_inf_ker_relIndex (d : G →* D)
     {L K : Subgroup G} (hLK : L ≤ K) :
     L.relIndex (K ⊓ (L ⊔ d.ker)) =
@@ -100,7 +102,9 @@ theorem relIndex_saturation_eq_inf_ker_relIndex (d : G →* D)
   exact Nat.card_congr (kernelCosetEquivSaturation d hLK).symm
 
 /-- The mapped relative index is the index of the `ker d`-saturated part of
-`K`.-/
+`K`.
+@isnad1 id=eq.0h5v.s6.ccd17848e67d from=translated src=- shape=3508df69 vocab=6b31de59
+-/
 theorem map_relIndex_eq_saturation_relIndex (d : G →* D)
     (L K : Subgroup G) :
     (L.map d).relIndex (K.map d) =
@@ -112,7 +116,9 @@ theorem map_relIndex_eq_saturation_relIndex (d : G →* D)
 
 No finite-index assumption is needed: the proof is induced by equivalences
 of coset types, so the equality remains valid with Mathlib's convention that
-an infinite relative index is `0`.-/
+an infinite relative index is `0`.
+@isnad1 id=eq.1h5v.s7.ee365c0f08fa from=translated src=- shape=f60406d7 vocab=ba63c803
+-/
 theorem relIndex_eq_map_relIndex_mul_inf_ker_relIndex (d : G →* D) {L K : Subgroup G}
     (hLK : L ≤ K) :
     L.relIndex K =
@@ -143,14 +149,18 @@ noncomputable def relativeIndexCardinal {L K : Subgroup G} (_ : L ≤ K) : Cardi
   intersectionIndexCardinal L K
 
 /-- At an explicitly finite boundary, the cardinal relative index specializes
-to Mathlib's natural-valued relative index.-/
+to Mathlib's natural-valued relative index.
+@isnad1 id=eq.1h3v.s6.2747565e7609 from=translated src=- shape=6dbf7c18 vocab=64c4f4f0
+-/
 theorem relativeIndexCardinal_eq_index_of_finite {L K : Subgroup G} (hLK : L ≤ K)
     [Finite (K ⧸ L.subgroupOf K)] :
     relativeIndexCardinal hLK = (L.relIndex K : Cardinal) := by
   rw [relativeIndexCardinal, intersectionIndexCardinal, Subgroup.relIndex, Subgroup.index]
   exact Nat.cast_card.symm
 
-/-- Establishes the identity `relativeIndexCardinal (le_refl K) = 1`.-/
+/-- Establishes the identity `relativeIndexCardinal (le_refl K) = 1`.
+@isnad1 id=eq.0h2v.s4.5ad519a0f789 from=translated src=- shape=e7aa7d02 vocab=0f446afd
+-/
 @[simp] theorem relativeIndexCardinal_self (K : Subgroup G) :
     relativeIndexCardinal (le_refl K) = 1 := by
   let α := K ⧸ K.subgroupOf K
@@ -165,7 +175,9 @@ theorem relativeIndexCardinal_eq_index_of_finite {L K : Subgroup G} (hLK : L ≤
   change Cardinal.mk α = 1
   exact Cardinal.mk_eq_one α
 
-/-- Relative cardinal indices multiply in every subgroup tower.-/
+/-- Relative cardinal indices multiply in every subgroup tower.
+@isnad1 id=eq.2h4v.s6.d494bffd8faa from=translated src=- shape=3c23b19a vocab=1c478715
+-/
 theorem relativeIndexCardinal_mul {M L K : Subgroup G}
     (hML : M ≤ L) (hLK : L ≤ K) :
     relativeIndexCardinal hML * relativeIndexCardinal hLK =
@@ -247,7 +259,9 @@ private noncomputable def imageCosetEquivSaturation (d : G →* D)
     (relativeCosetComapEquiv d (L.map d) K)
 
 /-- Cardinal form of the image contribution: it is the intersection index of
-the kernel-saturated part of the upper subgroup.-/
+the kernel-saturated part of the upper subgroup.
+@isnad1 id=eq.0h5v.s6.fb7cf76ab385 from=translated src=- shape=11bdc9df vocab=e8179ef1
+-/
 theorem intersectionIndexCardinal_image_eq_saturation (d : G →* D)
     (L K : Subgroup G) :
     Cardinal.lift.{u} (intersectionIndexCardinal (L.map d) (K.map d)) =
@@ -256,7 +270,9 @@ theorem intersectionIndexCardinal_image_eq_saturation (d : G →* D)
   exact (imageCosetEquivSaturation d L K).lift_cardinal_eq.symm
 
 /-- Cardinal form of the kernel contribution: intersecting both subgroups
-with the kernel gives the saturated inner index.-/
+with the kernel gives the saturated inner index.
+@isnad1 id=eq.1h5v.s8.c2f20887d385 from=translated src=- shape=5b1cafb2 vocab=228ab37e
+-/
 theorem relativeIndexCardinal_kernel_eq_saturation (d : G →* D)
     {L K : Subgroup G} (hLK : L ≤ K) :
     relativeIndexCardinal
@@ -268,7 +284,9 @@ theorem relativeIndexCardinal_kernel_eq_saturation (d : G →* D)
 
 /-- The cardinal image--kernel identity for a subgroup inclusion.  It remains
 valid for infinite indices because it is induced by equivalences of the
-actual coset types.-/
+actual coset types.
+@isnad1 id=eq.1h5v.s7.bee3eaf7db56 from=translated src=- shape=d94a1d93 vocab=a6b1912c
+-/
 theorem relativeIndexCardinal_eq_map_mul_inf_ker (d : G →* D)
     {L K : Subgroup G} (hLK : L ≤ K) :
     Cardinal.lift.{v} (relativeIndexCardinal hLK) =

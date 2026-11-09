@@ -24,7 +24,9 @@ universe u
 
 open scoped ValuativeRel
 
-/-- A ring equivalence of a valuation integer ring preserves the maximal ideal.-/
+/-- A ring equivalence of a valuation integer ring preserves the maximal ideal.
+@isnad1 id=iff.0h3v.s13.a1ea8088f368 from=translated src=- shape=5053222a vocab=e604a281
+-/
 theorem integerRingEquiv_mem_maximalIdeal
     (K : Type u) [Field K] [ValuativeRel K]
     (e : 𝒪[K] ≃+* 𝒪[K]) (x : 𝒪[K]) :
@@ -32,7 +34,9 @@ theorem integerRingEquiv_mem_maximalIdeal
   rw [IsLocalRing.mem_maximalIdeal, map_mem_nonunits_iff e,
     ← IsLocalRing.mem_maximalIdeal]
 
-/-- A ring equivalence of a valuation integer ring maps the maximal ideal to itself.-/
+/-- A ring equivalence of a valuation integer ring maps the maximal ideal to itself.
+@isnad1 id=eq.0h2v.s11.e4f363af834a from=translated src=- shape=62a6d333 vocab=9c48d7b2
+-/
 theorem integerRingEquiv_map_maximalIdeal
     (K : Type u) [Field K] [ValuativeRel K]
     (e : 𝒪[K] ≃+* 𝒪[K]) :
@@ -50,7 +54,9 @@ theorem integerRingEquiv_map_maximalIdeal
       simpa using hy
     exact (integerRingEquiv_mem_maximalIdeal K e (e.symm y)).1 hy'
 
-/-- A ring equivalence of a valuation integer ring maps every maximal-ideal power to itself.-/
+/-- A ring equivalence of a valuation integer ring maps every maximal-ideal power to itself.
+@isnad1 id=eq.0h3v.s12.4070078ca1f9 from=translated src=- shape=6fdf78cb vocab=b6c5e1bd
+-/
 theorem integerRingEquiv_map_maximalIdeal_pow
     (K : Type u) [Field K] [ValuativeRel K]
     (e : 𝒪[K] ≃+* 𝒪[K]) (n : Nat) :
@@ -58,7 +64,9 @@ theorem integerRingEquiv_map_maximalIdeal_pow
       (𝓂[K] ^ n : Ideal 𝒪[K]) := by
   rw [Ideal.map_pow, integerRingEquiv_map_maximalIdeal]
 
-/-- Membership in every maximal-ideal power is invariant under an integer-ring equivalence.-/
+/-- Membership in every maximal-ideal power is invariant under an integer-ring equivalence.
+@isnad1 id=iff.0h4v.s13.88e06c83e243 from=translated src=- shape=a741a34b vocab=91cd8228
+-/
 theorem integerRingEquiv_mem_maximalIdeal_pow
     (K : Type u) [Field K] [ValuativeRel K]
     (e : 𝒪[K] ≃+* 𝒪[K]) (n : Nat) (x : 𝒪[K]) :
@@ -99,7 +107,9 @@ def maximalIdealPowMapEquivOfIntegerRingEquiv
     simp
 
 /-- An integer-ring equivalence transports an element of a maximal-ideal power by applying the
-underlying ring equivalence.-/
+underlying ring equivalence.
+@isnad1 id=eq.0h4v.s15.8c61d7c1277a from=translated src=- shape=0261c8ab vocab=a5ccd44c
+-/
 theorem maximalIdealPowMapEquivOfIntegerRingEquiv_apply
     (K : Type u) [Field K] [ValuativeRel K]
     (n : Nat) (e : 𝒪[K] ≃+* 𝒪[K])
@@ -155,7 +165,9 @@ def maximalIdealPowSuccQuotMapOfIntegerRingEquiv
       maximalIdealPowSuccQuotLift_mk, map_add, map_add]
 
 /-- The map on successive maximal-ideal quotients sends a representative to the class of its image
-under the ring equivalence.-/
+under the ring equivalence.
+@isnad1 id=eq.0h4v.s16.7e5c94c7459d from=translated src=- shape=45a41a23 vocab=b1f74bee
+-/
 theorem maximalIdealPowSuccQuotMapOfIntegerRingEquiv_mk
     (K : Type u) [Field K] [ValuativeRel K]
     (n : Nat) (e : 𝒪[K] ≃+* 𝒪[K])
@@ -209,7 +221,9 @@ def maximalIdealPowSuccQuotMapEquivOfIntegerRingEquiv
     exact map_add (maximalIdealPowSuccQuotMapOfIntegerRingEquiv K n e) x y
 
 /-- The equivalence of successive maximal-ideal quotients acts on classes by applying the
-integer-ring equivalence.-/
+integer-ring equivalence.
+@isnad1 id=eq.0h4v.s16.d773c921bf4c from=translated src=- shape=3b14f656 vocab=67431a0f
+-/
 theorem maximalIdealPowSuccQuotMapEquivOfIntegerRingEquiv_mk
     (K : Type u) [Field K] [ValuativeRel K]
     (n : Nat) (e : 𝒪[K] ≃+* 𝒪[K])
@@ -220,7 +234,9 @@ theorem maximalIdealPowSuccQuotMapEquivOfIntegerRingEquiv_mk
         (maximalIdealPowMapEquivOfIntegerRingEquiv K n e a) :=
   maximalIdealPowSuccQuotMapOfIntegerRingEquiv_mk K n e a
 
-/-- Principal units are preserved by every valuation-integer-ring equivalence.-/
+/-- Principal units are preserved by every valuation-integer-ring equivalence.
+@isnad1 id=mem.1h4v.s13.bcdfec955b75 from=translated src=- shape=ad38926e vocab=c6a65b5c
+-/
 theorem principalUnits_integerRingEquiv_mem_self
     (K : Type u) [Field K] [ValuativeRel K]
     (n : Nat) (e : 𝒪[K] ≃+* 𝒪[K]) (u : 𝒪[K]ˣ)
@@ -268,7 +284,9 @@ def principalUnitsSuccQuotMapOfIntegerRingEquiv
       exact principalUnits_integerRingEquiv_mem_self K (n + 1) e u.1 hu)
 
 /-- The map on successive principal-unit quotients sends each class to the class of its transported
-representative.-/
+representative.
+@isnad1 id=eq.0h4v.s16.d29757cd22de from=translated src=- shape=3022aafb vocab=2cee29a5
+-/
 theorem principalUnitsSuccQuotMapOfIntegerRingEquiv_apply
     (K : Type u) [Field K] [ValuativeRel K]
     (n : Nat) (e : 𝒪[K] ≃+* 𝒪[K]) (u : principalUnits K n) :
@@ -361,7 +379,9 @@ def principalUnitsSuccQuotAddEquivOfIntegerRingEquiv
     rw [map_mul]
 
 /-- The additive equivalence on successive principal-unit quotients agrees with transport of
-quotient representatives.-/
+quotient representatives.
+@isnad1 id=eq.0h4v.s11.37e6ffcb0999 from=translated src=- shape=8c7a836b vocab=ca7ea171
+-/
 @[simp]
 theorem principalUnitsSuccQuotAddEquivOfIntegerRingEquiv_apply
     (K : Type u) [Field K] [ValuativeRel K]
@@ -420,7 +440,9 @@ def maximalIdealPowSuccQuotMultiplicativeMapEquivOfIntegerRingEquiv
     rw [map_add]
 
 /-- The multiplicative encoding of a successive ideal-quotient equivalence applies the original
-additive transport map.-/
+additive transport map.
+@isnad1 id=eq.0h4v.s10.b517acf421d8 from=translated src=- shape=8c7a836b vocab=6af79880
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotMultiplicativeMapEquivOfIntegerRingEquiv_apply
     (K : Type u) [Field K] [ValuativeRel K]

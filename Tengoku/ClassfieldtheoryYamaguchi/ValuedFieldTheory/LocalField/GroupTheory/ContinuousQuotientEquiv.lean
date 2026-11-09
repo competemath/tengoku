@@ -54,7 +54,9 @@ noncomputable def continuousCongr
     exact continuous_quotient_mk'.comp e.symm.continuous_toFun
 
 /-- The descended equivalence acts on quotient classes through the original
-equivalence.-/
+equivalence.
+@isnad1 id=eq.1h6v.s9.118f152f40d5 from=translated src=- shape=ade41a85 vocab=996ce545
+-/
 @[simp] theorem continuousCongr_mk
     (N : Subgroup G) (M : Subgroup H) [N.Normal] [M.Normal]
     (e : G ≃ₜ* H) (h : N.map e.toMulEquiv.toMonoidHom = M) (g : G) :

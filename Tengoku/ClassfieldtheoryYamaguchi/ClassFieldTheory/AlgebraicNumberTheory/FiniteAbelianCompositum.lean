@@ -50,7 +50,9 @@ variable (K : Type u) [Field K]
 variable {Omega : Type v} [Field Omega] [Algebra K Omega]
 
 /-- The compositum, inside a common overfield, of two abelian Galois
-intermediate fields is again abelian Galois over the base.-/
+intermediate fields is again abelian Galois over the base.
+@isnad1 id=isabelia.0h4v.s9.9e0c3a4223d7 from=translated src=- shape=a2c1c42e vocab=d2f59e46
+-/
 theorem isAbelianGalois_sup
     (A B : IntermediateField K Omega)
     [FiniteDimensional K A] [FiniteDimensional K B]

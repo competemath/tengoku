@@ -32,7 +32,9 @@ universe u v w
 open Module
 
 /-- A component of a module-valued product is finite whenever the whole
-product is finite.  Evaluation is a surjective linear map.-/
+product is finite.  Evaluation is a surjective linear map.
+@isnad1 id=finite.0h4v.s6.079114571f95 from=translated src=- shape=74de98ef vocab=fe9acecf
+-/
 theorem moduleFiniteOfPi
     {R : Type u} [Semiring R]
     {ι : Type v} (M : ι → Type w)
@@ -45,7 +47,9 @@ theorem moduleFiniteOfPi
   exact ⟨Pi.single i x, by simp⟩
 
 /-- Multiplication on a binary product is the product of the two
-multiplication endomorphisms.-/
+multiplication endomorphisms.
+@isnad1 id=eq.0h4v.s10.6d8d54a87c56 from=translated src=- shape=3ee8733f vocab=fcd3c83e
+-/
 theorem algebra_lmul_prod_eq_prodMap
     {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]
     [Algebra R S] [Algebra R T] (x : S × T) :
@@ -57,7 +61,9 @@ theorem algebra_lmul_prod_eq_prodMap
   rfl
 
 /-- The algebra norm on a binary product is the product of the component
-norms.-/
+norms.
+@isnad1 id=eq.0h4v.s8.22d8a10cef66 from=translated src=- shape=dbdd93b2 vocab=c674f49d
+-/
 theorem algebra_norm_prod_apply
     {R S T : Type*} [CommRing R] [CommRing S] [CommRing T]
     [Algebra R S] [Algebra R T]
@@ -94,7 +100,9 @@ noncomputable def piOptionEquivProdAlgEquiv
   commutes' _ := rfl
 
 /-- The algebra norm of an element of a finite dependent product is the
-product of its component norms.-/
+product of its component norms.
+@isnad1 id=eq.0h4v.s8.48362b11c76c from=translated src=- shape=189b5cf7 vocab=e1ee7de0
+-/
 theorem algebra_norm_pi_apply
     {R : Type u} [CommRing R]
     {ι : Type v} [Fintype ι]
@@ -145,7 +153,9 @@ theorem algebra_norm_pi_apply
         rw [Fintype.prod_option]
 
 /-- The algebra trace of an element of a finite dependent product is the
-sum of its component traces.-/
+sum of its component traces.
+@isnad1 id=eq.0h4v.s9.c5e689b6561c from=translated src=- shape=d9e4a7e5 vocab=5c5772d1
+-/
 theorem algebra_trace_pi_apply
     {R : Type u} [CommRing R]
     {ι : Type v} [Fintype ι]

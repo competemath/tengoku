@@ -26,7 +26,9 @@ namespace AlgebraicNumberTheory
 universe u v
 
 /-- Conjugation by a field equivalence is continuous on automorphism
-groups equipped with the Krull topology.-/
+groups equipped with the Krull topology.
+@isnad1 id=continuo.0h4v.s10.083efe18eee3 from=translated src=- shape=f43c9173 vocab=e0619b77
+-/
 theorem continuous_algEquiv_autCongr
     {F E E' : Type*}
     [Field F] [Field E] [Field E']
@@ -81,6 +83,9 @@ def numberFieldInRationalSeparableClosure :
     IntermediateField ℚ (SeparableClosure ℚ) :=
   (numberFieldSeparableClosureEmbedding K).fieldRange
 
+/--
+@isnad1 id=finitedi.0h1v.s10.73604fcef9fe from=translated src=- shape=b3f8a451 vocab=4cfd8dd9
+-/
 noncomputable instance
     numberFieldInRationalSeparableClosure_finiteDimensional :
     FiniteDimensional ℚ

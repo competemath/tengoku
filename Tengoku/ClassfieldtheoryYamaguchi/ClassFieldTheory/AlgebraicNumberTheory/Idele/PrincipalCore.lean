@@ -34,7 +34,9 @@ def principalIdele : Kˣ →* IdeleGroup K :=
 variable {K}
 
 /-- The finite component of a principal idele is the image of the
-underlying field element in the corresponding completion.-/
+underlying field element in the corresponding completion.
+@isnad1 id=eq.0h3v.s12.377959c7834c from=translated src=- shape=67e18b20 vocab=e291cf36
+-/
 @[simp]
 theorem finiteComponent_principalIdele
     (x : Kˣ) (v : HeightOneSpectrum (𝓞 K)) :
@@ -43,7 +45,9 @@ theorem finiteComponent_principalIdele
   rfl
 
 /-- The infinite component of a principal idele is the image of the
-underlying field element in the corresponding completion.-/
+underlying field element in the corresponding completion.
+@isnad1 id=eq.0h3v.s12.a5ae651d41d1 from=translated src=- shape=1c39b0ff vocab=a491451b
+-/
 @[simp]
 theorem infiniteComponent_principalIdele
     (x : Kˣ) (w : InfinitePlace K) :
@@ -53,7 +57,9 @@ theorem infiniteComponent_principalIdele
 
 variable (K)
 
-/-- The diagonal map from field units to ideles is injective.-/
+/-- The diagonal map from field units to ideles is injective.
+@isnad1 id=injectiv.0h1v.s11.d48baa32b967 from=translated src=- shape=e937283c vocab=9abf096f
+-/
 theorem principalIdele_injective :
     Function.Injective (principalIdele K) := by
   apply (equivAdeleRingUnits (K := K)).symm.injective.comp
@@ -69,6 +75,9 @@ ideles.-/
 def principalEquiv : Kˣ ≃* principalSubgroup K :=
   MonoidHom.ofInjective (principalIdele_injective K)
 
+/--
+@isnad1 id=eq.0h2v.s14.52c7513c7fda from=translated src=- shape=100b035c vocab=1b4255fa
+-/
 @[simp]
 theorem coe_principalEquiv (x : Kˣ) :
     (principalEquiv K x : IdeleGroup K) = principalIdele K x :=

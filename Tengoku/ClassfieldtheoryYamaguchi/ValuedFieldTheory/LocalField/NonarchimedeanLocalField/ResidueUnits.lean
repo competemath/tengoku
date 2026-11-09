@@ -46,14 +46,18 @@ def residueUnitsConcreteEquiv
   exact MulEquiv.refl _
 
 /-- The concrete residue-unit comparison preserves the underlying residue
-unit.-/
+unit.
+@isnad1 id=eq.0h2v.s12.a66d57903c0f from=translated src=- shape=3906a6c0 vocab=eb219053
+-/
 @[simp]
 theorem residueUnitsConcreteEquiv_apply
     (K : Type u) [Field K] [ValuativeRel K] (u : ResidueUnits K) :
     residueUnitsConcreteEquiv K u = u :=
   rfl
 
-/-- The unit group of the finite residue field is finite.-/
+/-- The unit group of the finite residue field is finite.
+@isnad1 id=finite.0h1v.s7.38cabcfd81df from=translated src=- shape=7dbb90a6 vocab=3bac4619
+-/
 noncomputable instance residueUnitsFinite
     (K : Type u) [Field K] [ValuativeRel K] [Finite 𝓀[K]] :
     Finite (ResidueUnits K) := by
@@ -91,7 +95,9 @@ def integerUnitsModPrincipalUnitsMk
   exact QuotientGroup.mk' (principalUnits K 1)
 
 /-- The concrete quotient equivalence sends a valuation-ring unit to its class modulo first
-principal units.-/
+principal units.
+@isnad1 id=eq.0h2v.s15.c122acf3af3f from=translated src=- shape=660a8e98 vocab=a3e8d034
+-/
 @[simp]
 theorem integerUnitsModPrincipalUnitsConcreteEquiv_mk
     (K : Type u) [Field K] [ValuativeRel K] (x : 𝒪[K]ˣ) :
@@ -100,7 +106,9 @@ theorem integerUnitsModPrincipalUnitsConcreteEquiv_mk
       QuotientGroup.mk x :=
   rfl
 
-/-- Eliminate a quotient class through the canonical class map.-/
+/-- Eliminate a quotient class through the canonical class map.
+@isnad1 id=var.0h4v.s11.676bfa68e8cd from=translated src=- shape=956a8fc9 vocab=896fd8e9
+-/
 protected theorem IntegerUnitsModPrincipalUnits.inductionOn
     {K : Type u} [Field K] [ValuativeRel K]
     {motive : IntegerUnitsModPrincipalUnits K → Prop}
@@ -121,7 +129,9 @@ def integerUnitsModPrincipalUnitsLift
   exact QuotientGroup.lift (principalUnits K 1) f h
 
 /-- A map lifted from units modulo first principal units agrees with the original map on
-representatives.-/
+representatives.
+@isnad1 id=eq.1h4v.s13.47146dd031d2 from=translated src=- shape=a97a520a vocab=c34e83c2
+-/
 @[simp]
 theorem integerUnitsModPrincipalUnitsLift_mk
     {K : Type u} {M : Type*} [Field K] [ValuativeRel K] [Group M]
@@ -136,7 +146,9 @@ def integerUnitsToResidueUnits (K : Type u) [Field K] [ValuativeRel K] :
   Units.map (IsLocalRing.residue 𝒪[K]).toMonoidHom
 
 /-- Reduction of a valuation-ring unit has underlying residue equal to reduction of its underlying
-integer.-/
+integer.
+@isnad1 id=eq.0h2v.s13.08fac838fcc5 from=translated src=- shape=ee114ede vocab=af4367de
+-/
 theorem integerUnitsToResidueUnits_apply (K : Type u) [Field K] [ValuativeRel K]
     (x : 𝒪[K]ˣ) :
     ((residueUnitsConcreteEquiv K (integerUnitsToResidueUnits K x) : 𝓀[K]ˣ) :
@@ -144,7 +156,9 @@ theorem integerUnitsToResidueUnits_apply (K : Type u) [Field K] [ValuativeRel K]
       IsLocalRing.residue 𝒪[K] (x : 𝒪[K]) :=
   rfl
 
-/-- Kernel criterion for reduction on valuation-integer units.-/
+/-- Kernel criterion for reduction on valuation-integer units.
+@isnad1 id=iff.0h2v.s12.611dc6f30e40 from=translated src=- shape=8d044a93 vocab=50ddb5bc
+-/
 theorem mem_ker_integerUnitsToResidueUnits_iff (K : Type u) [Field K] [ValuativeRel K]
     (x : 𝒪[K]ˣ) :
     x ∈ (integerUnitsToResidueUnits K).ker ↔
@@ -160,7 +174,9 @@ theorem mem_ker_integerUnitsToResidueUnits_iff (K : Type u) [Field K] [Valuative
     apply Units.ext
     simpa only [integerUnitsToResidueUnits_apply, map_one, Units.val_one] using h
 
-/-- The first principal-unit group is the kernel of reduction to residue-field units.-/
+/-- The first principal-unit group is the kernel of reduction to residue-field units.
+@isnad1 id=eq.0h1v.s10.381a70a944f0 from=translated src=- shape=50235e1b vocab=3cb1ae2c
+-/
 theorem principalUnits_one_eq_ker_integerUnitsToResidueUnits
     (K : Type u) [Field K] [ValuativeRel K] :
     principalUnits K 1 = (integerUnitsToResidueUnits K).ker := by
@@ -171,13 +187,17 @@ theorem principalUnits_one_eq_ker_integerUnitsToResidueUnits
   rw [← map_one (IsLocalRing.residue 𝒪[K]), ← map_sub]
   exact Ideal.Quotient.eq_zero_iff_mem.symm
 
-/-- A valuation-ring unit reduces to one exactly when it is a first principal unit.-/
+/-- A valuation-ring unit reduces to one exactly when it is a first principal unit.
+@isnad1 id=iff.0h2v.s12.bfb8788c6a78 from=translated src=- shape=d6488080 vocab=b2122e9c
+-/
 theorem integerUnitsToResidueUnits_eq_one_iff_mem_principalUnits_one
     (K : Type u) [Field K] [ValuativeRel K] (x : 𝒪[K]ˣ) :
     integerUnitsToResidueUnits K x = 1 ↔ x ∈ principalUnits K 1 := by
   rw [principalUnits_one_eq_ker_integerUnitsToResidueUnits K, MonoidHom.mem_ker]
 
-/-- Every residue-field unit lifts to a valuation-ring unit.-/
+/-- Every residue-field unit lifts to a valuation-ring unit.
+@isnad1 id=surjecti.0h1v.s11.19f2acde9066 from=translated src=- shape=5618235d vocab=da35a559
+-/
 theorem integerUnitsToResidueUnits_surjective (K : Type u) [Field K] [ValuativeRel K] :
     Function.Surjective (integerUnitsToResidueUnits K) :=
   IsLocalRing.surjective_units_map_of_local_ringHom _ Ideal.Quotient.mk_surjective
@@ -194,7 +214,9 @@ def integerUnitsModPrincipalUnitsEquivResidueUnits
         (integerUnitsToResidueUnits_surjective K)))
 
 /-- The quotient-to-residue-unit equivalence sends a unit class to the reduction of its
-representative.-/
+representative.
+@isnad1 id=eq.0h2v.s12.05afa5b3ff64 from=translated src=- shape=19bb3a84 vocab=73d3b70e
+-/
 @[simp]
 theorem integerUnitsModPrincipalUnitsEquivResidueUnits_mk
     (K : Type u) [Field K] [ValuativeRel K] (x : 𝒪[K]ˣ) :
@@ -214,7 +236,9 @@ def integerUnitsModPrincipalUnitsAddEquivResidueUnits
     Additive (IntegerUnitsModPrincipalUnits K) ≃+ Additive (ResidueUnits K) :=
   additiveEquivOfMulEquiv (integerUnitsModPrincipalUnitsEquivResidueUnits K)
 
-/-- Equality in `𝒪[K]ˣ / U¹`, expressed by a first-principal-unit quotient.-/
+/-- Equality in `𝒪[K]ˣ / U¹`, expressed by a first-principal-unit quotient.
+@isnad1 id=iff.0h3v.s13.ad0f741f2335 from=translated src=- shape=be899f3c vocab=b7d11746
+-/
 theorem IntegerUnitsModPrincipalUnits_mk_eq_mk_iff
     (K : Type u) [Field K] [ValuativeRel K] (x y : 𝒪[K]ˣ) :
     integerUnitsModPrincipalUnitsMk K x =
@@ -225,7 +249,9 @@ theorem IntegerUnitsModPrincipalUnits_mk_eq_mk_iff
       QuotientGroup.mk y ↔ _
     exact QuotientGroup.eq_iff_div_mem (N := principalUnits K 1)
 
-/-- Triviality criterion in `𝒪[K]ˣ / U¹`.-/
+/-- Triviality criterion in `𝒪[K]ˣ / U¹`.
+@isnad1 id=iff.0h2v.s12.9bb15ce85190 from=translated src=- shape=d6488080 vocab=6813df1b
+-/
 theorem IntegerUnitsModPrincipalUnits_mk_eq_one_iff
     (K : Type u) [Field K] [ValuativeRel K] (x : 𝒪[K]ˣ) :
     integerUnitsModPrincipalUnitsMk K x = 1 ↔
@@ -234,7 +260,9 @@ theorem IntegerUnitsModPrincipalUnits_mk_eq_one_iff
     change (QuotientGroup.mk x : 𝒪[K]ˣ ⧸ principalUnits K 1) = 1 ↔ _
     exact QuotientGroup.eq_one_iff (N := principalUnits K 1) x
 
-/-- Additive version of the residue-unit quotient equivalence on quotient representatives.-/
+/-- Additive version of the residue-unit quotient equivalence on quotient representatives.
+@isnad1 id=eq.0h2v.s12.7aad18be497f from=translated src=- shape=f02b6fce vocab=9a531636
+-/
 @[simp]
 theorem integerUnitsModPrincipalUnitsAddEquivResidueUnits_mk
     (K : Type u) [Field K] [ValuativeRel K] (x : 𝒪[K]ˣ) :

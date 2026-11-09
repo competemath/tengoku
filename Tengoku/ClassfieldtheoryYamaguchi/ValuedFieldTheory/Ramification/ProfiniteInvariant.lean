@@ -43,7 +43,9 @@ include G
 
 Every element has a finite orbit because the action on `B` is continuous and
 `B` is discrete.  Passing to an open normal subgroup fixing a representative
-reduces the splitting calculation to the finite quotient action.-/
+reduces the splitting calculation to the finite quotient action.
+@isnad1 id=normal.0h5v.s8.53f5f2548478 from=translated src=- shape=00e2656b vocab=37e5b44c
+-/
 theorem normal_of_profinite
     (P : Ideal A) (Q : Ideal B) [P.IsMaximal] [Q.IsMaximal] [Q.LiesOver P] :
     Normal (A ⧸ P) (B ⧸ Q) := by

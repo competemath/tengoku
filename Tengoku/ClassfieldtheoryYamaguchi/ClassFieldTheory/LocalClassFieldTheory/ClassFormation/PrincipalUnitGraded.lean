@@ -33,7 +33,9 @@ omit [Valuation.HasExtension (ValuativeRel.valuation K) (ValuativeRel.valuation 
 
 /-- The map `u ↦ u - 1` on successive normal-basis principal-unit quotients
 is injective.  Its kernel calculation is exactly the statement that
-`u - 1 ∈ π_K^(n+1)M` if and only if `u ∈ V^(n+1)`.-/
+`u - 1 ∈ π_K^(n+1)M` if and only if `u ∈ V^(n+1)`.
+@isnad1 id=injectiv.4h5v.s13.811df489a2e2 from=translated src=- shape=a51296bd vocab=db01d958
+-/
 theorem chosenNormalBasisPrincipalUnitSuccQuotToLatticeSuccQuotHom_injective
     {n : Nat} {Vn Vsucc : Subgroup 𝒪[L]ˣ}
     (hVn : (Vn : Set 𝒪[L]ˣ) = chosenNormalBasisPrincipalUnitSet K L n)
@@ -90,7 +92,9 @@ theorem chosenNormalBasisPrincipalUnitSuccQuotToLatticeSuccQuotHom_injective
 
 /-- If the high normal-basis lattice lies in the maximal ideal, every additive
 successive-quotient class is represented by a unit `1 + x`; hence the
-map `u ↦ u - 1` is surjective.-/
+map `u ↦ u - 1` is surjective.
+@isnad1 id=surjecti.5h5v.s14.0a0041bb207b from=translated src=- shape=f4d421a2 vocab=d5b07839
+-/
 theorem chosenNormalBasisPrincipalUnitSuccQuotToLatticeSuccQuotHom_surjective_of_le_maximalIdeal
     {n : Nat} {Vn Vsucc : Subgroup 𝒪[L]ˣ}
     (hVn : (Vn : Set 𝒪[L]ˣ) = chosenNormalBasisPrincipalUnitSet K L n)
@@ -185,7 +189,9 @@ noncomputable def chosenNormalBasisPrincipalUnitSuccQuotMulEquivLatticeSuccQuot
       chosenNormalBasisPrincipalUnitSuccQuotToLatticeSuccQuotHom_surjective_of_le_maximalIdeal
         (K := K) (L := L) hVn hVsucc hV hmul_error hle⟩
 
-/-- States the theorem `chosenNormalBasisPrincipalUnitSuccQuotMulEquivLatticeSuccQuot_mk`.-/
+/-- States the theorem `chosenNormalBasisPrincipalUnitSuccQuotMulEquivLatticeSuccQuot_mk`.
+@isnad1 id=eq.5h6v.s15.22b985f05ff8 from=translated src=- shape=7a1cae87 vocab=b3a6dd81
+-/
 @[simp]
 theorem chosenNormalBasisPrincipalUnitSuccQuotMulEquivLatticeSuccQuot_mk
     {n : Nat} {Vn Vsucc : Subgroup 𝒪[L]ˣ}
@@ -214,7 +220,9 @@ theorem chosenNormalBasisPrincipalUnitSuccQuotMulEquivLatticeSuccQuot_mk
 
 /-- Existential high-degree boundary used in the proof of the local class-field-axiom theorem:
 for every sufficiently large `n`, the actual successive principal-unit
-quotient is isomorphic to the corresponding normal-basis lattice quotient.-/
+quotient is isomorphic to the corresponding normal-basis lattice quotient.
+@isnad1 id=ex.0h2v.s15.f7f012f02d13 from=translated src=- shape=bd3b749d vocab=67590ec0
+-/
 theorem exists_chosenNormalBasisPrincipalUnitSuccQuotMulEquivLatticeSuccQuot
     [TopologicalSpace L] [IsNonarchimedeanLocalField L]
     [Module.Finite 𝒪[K] 𝒪[L]] :

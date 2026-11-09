@@ -69,7 +69,9 @@ noncomputable def unitsH1IsoTateHminusOne (K L : Type) [Field K] [Field L]
 
 /-- Hilbert 90 transported through the cyclic `H¹ ≅ H^{-1}` comparison.
 This is low-degree cyclic Tate cohomology for the coefficient group `Lˣ`: the vanishing of
-`H¹(G,Lˣ)` gives the vanishing of `H^{-1}(G,Lˣ)`.-/
+`H¹(G,Lˣ)` gives the vanishing of `H^{-1}(G,Lˣ)`.
+@isnad1 id=iszero.1h3v.s8.5602ef2c9f9e from=translated src=- shape=424dbda7 vocab=578641e0
+-/
 theorem hilbert90_unitsTateHminusOne_isZero (K L : Type) [Field K]
     [Field L] [Algebra K L] [FiniteDimensional K L] (g : Gal(L / K))
     (hg : ∀ x : Gal(L / K), x ∈ Subgroup.zpowers g) :

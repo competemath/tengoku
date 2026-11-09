@@ -35,7 +35,9 @@ noncomputable local instance finiteSeparableAlgHomFintypeForNormProduct
   PowerBasis.AlgHom.fintype (Field.powerBasisOfFiniteOfSeparable k E)
 
 /-- The embeddings of a finite separable tower above a power-basis generator
-split into embeddings of the lower field and their extensions.-/
+split into embeddings of the lower field and their extensions.
+@isnad1 id=eq.0h5v.s9.a4da3523c88d from=translated src=- shape=e962a229 vocab=13f0a8fa
+-/
 theorem prod_embeddings_algebraMap_powerBasisGen_eq
     (k Ω : Type) [Field k] [Field Ω] [Algebra k Ω] [IsSepClosed Ω]
     {L E : Type} [Field L] [Field E]
@@ -67,7 +69,9 @@ theorem prod_embeddings_algebraMap_powerBasisGen_eq
     exact (AlgHom.comp_apply σ (IsScalarTower.toAlgHom k L E) pb.gen).symm
 
 /-- Mapping the norm of an element of a finite separable extension into a
-separably closed field gives the product of all base-field embeddings.-/
+separably closed field gives the product of all base-field embeddings.
+@isnad1 id=eq.0h4v.s8.9e20c8a73f90 from=translated src=- shape=cac92690 vocab=752c8d4e
+-/
 theorem algebraMap_norm_eq_prod_embeddings_of_isSepClosed
     (k Ω E : Type) [Field k] [Field Ω] [Field E]
     [Algebra k Ω] [IsSepClosed Ω] [Algebra k E]

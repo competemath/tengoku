@@ -28,7 +28,9 @@ universe u v w
 
 /-- The determinant norm on `A ⊗[K] L` of a globally defined element is the
 base change of its field norm. In particular, no Galois assumption or choice
-of a factor of the tensor algebra is required.-/
+of a factor of the tensor algebra is required.
+@isnad1 id=eq.0h4v.s10.5f1f9f32ad5a from=translated src=- shape=911a2678 vocab=119d8f20
+-/
 theorem tensorNorm_includeRight
     (K : Type u) (L : Type v) (A : Type w)
     [Field K] [Field L] [Algebra K L] [FiniteDimensional K L]

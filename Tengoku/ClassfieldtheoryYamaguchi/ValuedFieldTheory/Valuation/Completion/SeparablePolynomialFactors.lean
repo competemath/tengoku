@@ -30,7 +30,9 @@ namespace Completion
 universe u
 
 /-- A monic separable polynomial is the product of its distinct normalized
-irreducible factors.-/
+irreducible factors.
+@isnad1 id=eq.2h2v.s7.24300adadf06 from=translated src=- shape=74fcb94b vocab=5f913ee4
+-/
 theorem separable_monic_eq_prod_distinctNormalizedFactors
     {F : Type u} [Field F] (p : F[X])
     (hpmonic : p.Monic) (hpsep : p.Separable) :
@@ -55,7 +57,9 @@ theorem separable_monic_eq_prod_distinctNormalizedFactors
         ((normalizedFactors p).toFinset.1.map id).prod
       rw [Multiset.toFinset_val, hnodup.dedup, Multiset.map_id]
 
-/-- Distinct normalized irreducible factors are pairwise coprime.-/
+/-- Distinct normalized irreducible factors are pairwise coprime.
+@isnad1 id=iscoprim.1h4v.s7.3a3af0ce1b31 from=translated src=- shape=9e3ded25 vocab=59b6f47b
+-/
 theorem distinctNormalizedFactors_pairwise_coprime
     {F : Type u} [Field F] (p : F[X]) :
     ∀ i j : DistinctNormalizedFactors p, i ≠ j →

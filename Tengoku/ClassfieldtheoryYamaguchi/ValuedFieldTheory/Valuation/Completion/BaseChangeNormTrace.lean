@@ -31,7 +31,9 @@ universe u v w
 
 open scoped TensorProduct
 
-/-- Algebra norm commutes with scalar extension.-/
+/-- Algebra norm commutes with scalar extension.
+@isnad1 id=eq.0h4v.s10.36e30646e22d from=translated src=- shape=2dcbb18b vocab=c2497499
+-/
 theorem algebra_norm_baseChange_tmul
     {K A L : Type*} [Field K] [Field A] [CommRing L]
     [Algebra K A] [Algebra K L]
@@ -42,7 +44,9 @@ theorem algebra_norm_baseChange_tmul
   rw [Algebra.norm_apply, ← Algebra.baseChange_lmul,
     LinearMap.det_baseChange, ← Algebra.norm_apply]
 
-/-- Algebra trace commutes with scalar extension.-/
+/-- Algebra trace commutes with scalar extension.
+@isnad1 id=eq.0h4v.s10.d8637a4e3629 from=translated src=- shape=660e5574 vocab=b9dfb663
+-/
 theorem algebra_trace_baseChange_tmul
     {K A L : Type*} [Field K] [Field A] [CommRing L]
     [Algebra K A] [Algebra K L]

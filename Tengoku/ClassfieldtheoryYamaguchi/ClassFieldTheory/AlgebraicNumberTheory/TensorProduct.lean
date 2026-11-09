@@ -40,7 +40,9 @@ variable
     [hKL : FiniteDimensional K L]
 
 /-- Coprime finite field extensions are linearly disjoint, hence their
-tensor product is a field.-/
+tensor product is a field.
+@isnad1 id=isfield.1h3v.s8.7712f2a7ad8d from=translated src=- shape=88e5e355 vocab=74db6d4e
+-/
 theorem tensorProduct_isField_of_finrank_coprime
     (hcoprime :
       (Module.finrank K M).Coprime
@@ -84,6 +86,9 @@ def tensorBaseChangeAut
       simp [Algebra.TensorProduct.algebraMap_apply] }
 
 omit hKM hKL hGalois in
+/--
+@isnad1 id=eq.0h6v.s9.7e8d3e7a53bd from=translated src=- shape=e0b50f8d vocab=9e4454a9
+-/
 @[simp]
 theorem tensorBaseChangeAut_tmul
     (σ : L ≃ₐ[K] L)
@@ -93,7 +98,9 @@ theorem tensorBaseChangeAut_tmul
   simp [tensorBaseChangeAut]
 
 omit hKM hKL hGalois in
-/-- Distinct automorphisms remain distinct after tensor base change.-/
+/-- Distinct automorphisms remain distinct after tensor base change.
+@isnad1 id=injectiv.0h3v.s8.92432b8509da from=translated src=- shape=022d3e0e vocab=1f209dcb
+-/
 theorem tensorBaseChangeAut_injective :
     Function.Injective (tensorBaseChangeAut K M L) := by
   intro σ τ hστ
@@ -111,7 +118,9 @@ theorem tensorBaseChangeAut_injective :
       (R := K) (A := M) (B := L)).injective
       htensor
 
-/-- Galoisness survives the coprime tensor-product base change.-/
+/-- Galoisness survives the coprime tensor-product base change.
+@isnad1 id=isgalois.1h3v.s8.5c2c69a8b189 from=translated src=- shape=273440ab vocab=fe46671b
+-/
 theorem tensorProduct_isGalois_of_finrank_coprime
     (hcoprime :
       (Module.finrank K M).Coprime

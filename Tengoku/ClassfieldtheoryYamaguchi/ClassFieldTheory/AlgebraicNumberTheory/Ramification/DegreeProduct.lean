@@ -29,7 +29,9 @@ open RamificationTheory
 open scoped BigOperators IsMulCommutative
 
 /-- Euler's totient is multiplicative on a finite product of powers of
-distinct primes.-/
+distinct primes.
+@isnad1 id=eq.0h2v.s6.c12f77a04322 from=translated src=- shape=d9828717 vocab=03959ba5
+-/
 theorem totient_prod_primePowers
     (S : Finset Nat.Primes) (e : Nat.Primes → ℕ) :
     Nat.totient (∏ p ∈ S, p.1 ^ e p) =

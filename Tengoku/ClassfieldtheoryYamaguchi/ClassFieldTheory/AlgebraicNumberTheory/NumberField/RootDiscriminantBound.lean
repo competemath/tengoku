@@ -20,7 +20,9 @@ set_option autoImplicit false
 namespace AlgebraicNumberTheory.DiscriminantBounds
 
 /-- A degree-power bound on the absolute discriminant gives a uniform
-bound on the usual real root discriminant.-/
+bound on the usual real root discriminant.
+@isnad1 id=le.1h2v.s6.0d7d3e8fc6d3 from=translated src=- shape=8b65ce6a vocab=36338896
+-/
 theorem rootDiscr_le_of_natAbs_discr_le_pow
     (F : Type*) [Field F] [NumberField F] (C : ℕ)
     (h : (NumberField.discr F).natAbs ≤ C ^ Module.finrank ℚ F) :

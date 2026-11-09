@@ -124,7 +124,9 @@ private theorem eq_of_eq_add_of_maps_pow_succ
   exact hsub n
 
 /-- An additive endomorphism which raises the `I`-adic filtration by one
-has a unique affine fixed point on an `I`-adically complete ring.-/
+has a unique affine fixed point on an `I`-adically complete ring.
+@isnad1 id=existsun.1h4v.s8.c225adeb0d6e from=translated src=- shape=5b8a994f vocab=348c00f7
+-/
 theorem existsUnique_eq_add_of_maps_pow_succ
     (I : Ideal R) [IsAdicComplete I R]
     (T : R →+ R)

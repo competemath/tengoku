@@ -42,6 +42,9 @@ def augmentation : IntegralGroupRing G →+* ℤ :=
     (RingHom.id ℤ) (1 : G →* ℤ)
     (fun _ _ => mul_comm _ _)
 
+/--
+@isnad1 id=eq.0h3v.s6.84869d0193e7 from=translated src=- shape=383bca90 vocab=f1f1b441
+-/
 @[simp]
 theorem augmentation_single (g : G) (n : ℤ) :
     augmentation G (MonoidAlgebra.single g n) = n := by
@@ -51,7 +54,9 @@ theorem augmentation_single (g : G) (n : ℤ) :
   simp only [Pi.one_apply, mul_one]
   rfl
 
-/-- The augmentation is the sum of the coefficients.-/
+/-- The augmentation is the sum of the coefficients.
+@isnad1 id=eq.0h2v.s6.d8413facee11 from=translated src=- shape=c2a8e9e9 vocab=615bab3f
+-/
 theorem augmentation_apply (x : IntegralGroupRing G) :
     augmentation G x = x.coeff.sum (fun _ n => n) := by
   classical
@@ -63,6 +68,9 @@ theorem augmentation_apply (x : IntegralGroupRing G) :
 def ideal : TwoSidedIdeal (IntegralGroupRing G) :=
   TwoSidedIdeal.ker (augmentation G)
 
+/--
+@isnad1 id=iff.0h2v.s6.a36a45cc4a3c from=translated src=- shape=2edcdd38 vocab=898884a4
+-/
 theorem mem_ideal_iff (x : IntegralGroupRing G) :
     x ∈ ideal G ↔ augmentation G x = 0 := by
   rfl
@@ -82,6 +90,9 @@ def square : TwoSidedIdeal (IntegralGroupRing G) :=
   TwoSidedIdeal.span
     {z | ∃ x ∈ ideal G, ∃ y ∈ ideal G, z = x * y}
 
+/--
+@isnad1 id=le.0h1v.s6.411d99717794 from=translated src=- shape=686ed683 vocab=879a65b5
+-/
 theorem square_le_ideal :
     square G ≤ ideal G := by
   rw [square, TwoSidedIdeal.span_le]
@@ -96,7 +107,9 @@ def squareInIdeal : AddSubgroup (ideal G) where
   neg_mem' := (square G).neg_mem
 
 /-- Membership in `I_G²`, expressed after forgetting the ambient
-augmentation-ideal subtype.-/
+augmentation-ideal subtype.
+@isnad1 id=iff.0h2v.s9.fa96607cd35b from=translated src=- shape=72e83df1 vocab=e7cfed6f
+-/
 @[simp]
 theorem mem_squareInIdeal_iff (x : ideal G) :
     x ∈ squareInIdeal G ↔
@@ -114,6 +127,9 @@ def deltaElement (g : G) : ideal G :=
     rw [mem_ideal_iff, map_sub]
     simp⟩
 
+/--
+@isnad1 id=eq.0h2v.s7.4f43e4fa7cc3 from=translated src=- shape=1d5fd372 vocab=c6b1d74a
+-/
 @[simp]
 theorem deltaElement_val (g : G) :
     (deltaElement G g : IntegralGroupRing G) =
@@ -130,6 +146,9 @@ def deltaCombination (x : IntegralGroupRing G) :
       (MonoidAlgebra.single g 1 -
         MonoidAlgebra.single (1 : G) 1)
 
+/--
+@isnad1 id=eq.1h2v.s6.9e71906a6023 from=translated src=- shape=4158d098 vocab=b4fc6f7b
+-/
 theorem deltaCombination_eq_of_mem_ideal
     (x : IntegralGroupRing G) (hx : x ∈ ideal G) :
     deltaCombination G x = x := by
@@ -172,6 +191,9 @@ def deltaCombinationElement (x : IntegralGroupRing G) :
     ideal G :=
   ∑ g ∈ x.coeff.support, x.coeff g • deltaElement G g
 
+/--
+@isnad1 id=eq.0h2v.s6.b61f921669b5 from=translated src=- shape=078c2f42 vocab=0c0a0246
+-/
 @[simp]
 theorem deltaCombinationElement_val
     (x : IntegralGroupRing G) :
@@ -180,6 +202,9 @@ theorem deltaCombinationElement_val
   by
     simp [deltaCombinationElement, deltaCombination]
 
+/--
+@isnad1 id=eq.1h2v.s7.847f64d1115e from=translated src=- shape=44fbd23e vocab=1bdb5c5d
+-/
 theorem deltaCombinationElement_eq_of_mem_ideal
     (x : IntegralGroupRing G) (hx : x ∈ ideal G) :
     deltaCombinationElement G x = ⟨x, hx⟩ := by
@@ -191,6 +216,9 @@ theorem deltaCombinationElement_eq_of_mem_ideal
 def deltaClass (g : G) : Quotient G :=
   QuotientAddGroup.mk' (squareInIdeal G) (deltaElement G g)
 
+/--
+@isnad1 id=eq.0h1v.s7.846027b68593 from=translated src=- shape=be87aaac vocab=b0c6c621
+-/
 @[simp]
 theorem deltaClass_one :
     deltaClass G 1 = 0 := by
@@ -199,7 +227,9 @@ theorem deltaClass_one :
   simpa only [deltaElement_val, sub_self] using (square G).zero_mem
 
 /-- Modulo `I_G²`, the identity `δ(gh)=δg+δh` makes the augmentation
-class a homomorphism from `G` to the additive quotient.-/
+class a homomorphism from `G` to the additive quotient.
+@isnad1 id=eq.0h3v.s7.c9f10cd26b66 from=translated src=- shape=1c5b7bf3 vocab=10b38322
+-/
 theorem deltaClass_mul (g h : G) :
     deltaClass G (g * h) =
       deltaClass G g + deltaClass G h := by
@@ -248,6 +278,9 @@ def deltaAbelianization :
     Abelianization G →* Multiplicative (Quotient G) :=
   Abelianization.lift (deltaMonoidHom G)
 
+/--
+@isnad1 id=eq.0h2v.s9.a80ed7df5ea9 from=translated src=- shape=8b1fa4c7 vocab=d8ea6ec0
+-/
 @[simp]
 theorem deltaAbelianization_of (g : G) :
     deltaAbelianization G (Abelianization.of g) =
@@ -261,6 +294,9 @@ def deltaPreimage (x : IntegralGroupRing G) :
   ∏ g ∈ x.coeff.support,
     Abelianization.of g ^ x.coeff g
 
+/--
+@isnad1 id=eq.1h2v.s13.eed859a9bf7b from=translated src=- shape=2dfd6641 vocab=add6be89
+-/
 theorem deltaAbelianization_deltaPreimage
     (x : IntegralGroupRing G) (hx : x ∈ ideal G) :
     deltaAbelianization G (deltaPreimage G x) =
@@ -291,7 +327,9 @@ theorem deltaAbelianization_deltaPreimage
       QuotientAddGroup.mk' (squareInIdeal G) ⟨x, hx⟩
   rw [deltaCombinationElement_eq_of_mem_ideal G x hx]
 
-/-- The augmentation map `Gᵃᵇ → I_G/I_G²` is surjective.-/
+/-- The augmentation map `Gᵃᵇ → I_G/I_G²` is surjective.
+@isnad1 id=surjecti.0h1v.s8.852f1e9e972d from=translated src=- shape=b43579e9 vocab=711411ac
+-/
 theorem deltaAbelianization_surjective :
     Function.Surjective (deltaAbelianization G) := by
   intro q
@@ -325,12 +363,18 @@ def linearization :
       (coefficientToAbelianization G)).comp
     MonoidAlgebra.coeffAddEquiv.toAddMonoidHom
 
+/--
+@isnad1 id=eq.0h3v.s8.749b15ade0f3 from=translated src=- shape=359976b6 vocab=1112aa97
+-/
 @[simp]
 theorem linearization_single (g : G) (n : ℤ) :
     linearization G (MonoidAlgebra.single g n) =
       n • Additive.ofMul (Abelianization.of g) := by
   simp [linearization, coefficientToAbelianization]
 
+/--
+@isnad1 id=eq.0h2v.s8.6c95d774806a from=translated src=- shape=bb71079b vocab=b87fabee
+-/
 @[simp]
 theorem linearization_deltaElement (g : G) :
     linearization G (deltaElement G g) =
@@ -338,7 +382,9 @@ theorem linearization_deltaElement (g : G) :
   simp [deltaElement, linearization_single]
 
 /-- Products of two basic augmentation differences vanish after
-linearization.-/
+linearization.
+@isnad1 id=eq.0h3v.s8.743023d905f3 from=translated src=- shape=2e0f48b1 vocab=1ee53294
+-/
 theorem linearization_deltaElement_mul_deltaElement
     (g h : G) :
     linearization G
@@ -348,7 +394,9 @@ theorem linearization_deltaElement_mul_deltaElement
   simp [deltaElement, map_sub,
     MonoidAlgebra.single_mul_single, mul_sub, sub_mul]
 
-/-- Linearization kills a product of two augmentation-zero elements.-/
+/-- Linearization kills a product of two augmentation-zero elements.
+@isnad1 id=eq.2h3v.s8.631492498a51 from=translated src=- shape=ec610d4c vocab=ad232558
+-/
 theorem linearization_mul_eq_zero_of_mem_ideal
     (x y : IntegralGroupRing G)
     (hx : x ∈ ideal G) (hy : y ∈ ideal G) :
@@ -368,7 +416,9 @@ theorem linearization_mul_eq_zero_of_mem_ideal
     ← deltaElement_val, ← deltaElement_val,
     linearization_deltaElement_mul_deltaElement, smul_zero]
 
-/-- Linearization vanishes on the square of the augmentation ideal.-/
+/-- Linearization vanishes on the square of the augmentation ideal.
+@isnad1 id=eq.1h2v.s7.a6f619bb26f4 from=translated src=- shape=11ebd9ae vocab=b1507220
+-/
 theorem linearization_eq_zero_of_mem_square
     (z : IntegralGroupRing G) (hz : z ∈ square G) :
     linearization G z = 0 := by
@@ -420,6 +470,9 @@ def quotientLinearization :
       apply AddMonoidHom.mem_ker.2
       exact linearization_eq_zero_of_mem_square G x hx)
 
+/--
+@isnad1 id=eq.0h2v.s9.0439b4d65a58 from=translated src=- shape=5a14b95a vocab=dac9c1c8
+-/
 @[simp]
 theorem quotientLinearization_deltaClass (g : G) :
     quotientLinearization G (deltaClass G g) =
@@ -431,6 +484,9 @@ def quotientLinearizationMonoidHom :
     Multiplicative (Quotient G) →* Abelianization G :=
   (quotientLinearization G).toMultiplicativeLeft
 
+/--
+@isnad1 id=eq.0h2v.s9.2491f1c25f56 from=translated src=- shape=9ff228ef vocab=41f34195
+-/
 @[simp]
 theorem quotientLinearizationMonoidHom_deltaClass (g : G) :
     quotientLinearizationMonoidHom G
@@ -440,7 +496,9 @@ theorem quotientLinearizationMonoidHom_deltaClass (g : G) :
     (quotientLinearization_deltaClass G g)
 
 /-- Inverse linearization is a left inverse to the augmentation-class
-map.-/
+map.
+@isnad1 id=eq.0h2v.s9.30e1ef986ab8 from=translated src=- shape=724712a2 vocab=ff7e3e80
+-/
 theorem quotientLinearizationMonoidHom_deltaAbelianization
     (a : Abelianization G) :
     quotientLinearizationMonoidHom G
@@ -450,7 +508,9 @@ theorem quotientLinearizationMonoidHom_deltaAbelianization
   intro g
   exact quotientLinearizationMonoidHom_deltaClass G g
 
-/-- The canonical augmentation-class map is injective.-/
+/-- The canonical augmentation-class map is injective.
+@isnad1 id=injectiv.0h1v.s8.3e83584e7074 from=translated src=- shape=b43579e9 vocab=0f43959c
+-/
 theorem deltaAbelianization_injective :
     Function.Injective (deltaAbelianization G) := by
   intro a b hab
@@ -467,19 +527,27 @@ noncomputable def deltaAbelianizationEquiv :
     ⟨deltaAbelianization_injective G,
       deltaAbelianization_surjective G⟩
 
+/--
+@isnad1 id=eq.0h2v.s9.5ff7f5b2405d from=translated src=- shape=725e2148 vocab=3ce0b6fd
+-/
 @[simp]
 theorem deltaAbelianizationEquiv_apply (a : Abelianization G) :
     deltaAbelianizationEquiv G a =
       deltaAbelianization G a :=
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s9.9ffda97ccc21 from=translated src=- shape=97ff33c7 vocab=c209b32c
+-/
 @[simp]
 theorem deltaAbelianizationEquiv_of (g : G) :
     deltaAbelianizationEquiv G (Abelianization.of g) =
       Multiplicative.ofAdd (deltaClass G g) :=
   rfl
 
-/-- Every commutator has zero augmentation class modulo `I_G²`.-/
+/-- Every commutator has zero augmentation class modulo `I_G²`.
+@isnad1 id=eq.1h2v.s7.8e91da2bad87 from=translated src=- shape=000be2e3 vocab=21a47345
+-/
 theorem deltaClass_eq_zero_of_mem_commutator
     {g : G} (hg : g ∈ commutator G) :
     deltaClass G g = 0 := by

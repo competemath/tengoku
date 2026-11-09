@@ -271,7 +271,9 @@ noncomputable def moduleCatRangeEquivOfConjugate
     exact eY.inv_hom_id_apply y.1.toAdd
 
 /-- Conjugate `ModuleCat ℤ` morphisms have ranges of the same cardinality
-after multiplicatively tagging their underlying additive groups.-/
+after multiplicatively tagging their underlying additive groups.
+@isnad1 id=eq.1h8v.s11.9ea8a6722378 from=translated src=- shape=c55f6ee3 vocab=bb9887d5
+-/
 theorem moduleCatRangeCard_eq_of_conjugate
     {X Y X' Y' : ModuleCat.{0} ℤ}
     (f : X ⟶ Y) (g : X' ⟶ Y')
@@ -284,7 +286,9 @@ theorem moduleCatRangeCard_eq_of_conjugate
   Nat.card_congr (moduleCatRangeEquivOfConjugate f g eX eY h)
 
 /-- Function exactness of morphisms in `ModuleCat ℤ` gives multiplicative
-exactness after tagging the underlying additive groups as multiplicative.-/
+exactness after tagging the underlying additive groups as multiplicative.
+@isnad1 id=mulexact.1h5v.s11.176cd41f2ffa from=translated src=- shape=b4fa46bc vocab=025d3505
+-/
 theorem mulExact_of_moduleCat_exact
     {X Y Z : ModuleCat.{0} ℤ} (f : X ⟶ Y) (g : Y ⟶ Z)
     (hexact : Function.Exact f g) :
@@ -304,7 +308,9 @@ theorem mulExact_of_moduleCat_exact
     exact (hexact (f x.toAdd)).2 ⟨x.toAdd, rfl⟩
 
 /-- Exactness of a short complex in `ModuleCat ℤ` gives multiplicative
-exactness of its two underlying homomorphisms.-/
+exactness of its two underlying homomorphisms.
+@isnad1 id=mulexact.2h5v.s11.c5e3c011be6a from=translated src=- shape=5299c1c4 vocab=d2595a68
+-/
 theorem mulExact_of_moduleCat_shortComplex_exact
     {X Y Z : ModuleCat.{0} ℤ} (f : X ⟶ Y) (g : Y ⟶ Z)
     (hzero : f ≫ g = 0)
@@ -317,7 +323,9 @@ theorem mulExact_of_moduleCat_shortComplex_exact
 
 /-- For an exact pair of `ModuleCat ℤ` morphisms with finite middle term,
 the cardinality of the middle term is the product of the two range
-cardinalities.-/
+cardinalities.
+@isnad1 id=eq.1h5v.s11.1b277bf83107 from=translated src=- shape=2b12b114 vocab=818d902a
+-/
 theorem moduleCat_card_eq_card_range_mul_card_range_of_exact
     {X Y Z : ModuleCat.{0} ℤ} (f : X ⟶ Y) (g : Y ⟶ Z)
     (hexact : Function.Exact f g) [Finite Y] :
@@ -333,7 +341,9 @@ theorem moduleCat_card_eq_card_range_mul_card_range_of_exact
       (mulExact_of_moduleCat_exact f g hexact).monoidHom_ker_eq.symm
 
 /-- Finiteness transports from the target to the source of a
-`ModuleCat ℤ` isomorphism.-/
+`ModuleCat ℤ` isomorphism.
+@isnad1 id=finite.0h3v.s4.5eff640612dd from=translated src=- shape=cf93e50b vocab=a883c041
+-/
 theorem finite_source_of_moduleIso
     {X Y : ModuleCat.{0} ℤ} (e : X ≅ Y) [Finite Y] :
     Finite X := by
@@ -341,7 +351,9 @@ theorem finite_source_of_moduleIso
   exact Finite.of_injective e' e'.injective
 
 /-- Finiteness transports from the source to the target of a
-`ModuleCat ℤ` isomorphism.-/
+`ModuleCat ℤ` isomorphism.
+@isnad1 id=finite.0h3v.s4.ed507dc421e8 from=translated src=- shape=b7cf6bd0 vocab=a883c041
+-/
 theorem finite_target_of_moduleIso
     {X Y : ModuleCat.{0} ℤ} (e : X ≅ Y) [Finite X] :
     Finite Y := by
@@ -349,7 +361,9 @@ theorem finite_target_of_moduleIso
   exact Finite.of_injective e' e'.injective
 
 /-- A `ModuleCat ℤ` isomorphism with the additive form of a commutative
-group identifies their cardinalities.-/
+group identifies their cardinalities.
+@isnad1 id=eq.0h3v.s5.7c81fee50416 from=translated src=- shape=82076915 vocab=f59196f0
+-/
 theorem moduleCat_card_eq_of_iso
     {X : ModuleCat.{0} ℤ} {T : Type} [CommGroup T]
     (e : X ≅ ModuleCat.of ℤ (Additive T)) :
@@ -359,7 +373,9 @@ theorem moduleCat_card_eq_of_iso
 end
 
 /-- The finite-cardinality identity supplied directly by mathlib's standard
-two-periodic Tate exact sequence for a finite cyclic group.-/
+two-periodic Tate exact sequence for a finite cyclic group.
+@isnad1 id=eq.6h7v.s9.7e0cb098dec4 from=translated src=- shape=bd17052b vocab=72b9ff10
+-/
 theorem herbrand_exact_cardinality_identity
     [Group G] [Fintype G]
     [CommGroup A] [CommGroup B] [CommGroup C]

@@ -35,10 +35,16 @@ algebraic closure of `K`.-/
 abbrev finiteNormalClosure :=
   IntermediateField.normalClosure K L (AlgebraicClosure K)
 
+/--
+@isnad1 id=numberfi.0h2v.s7.cbe8620a8f4b from=translated src=- shape=30bdd4e5 vocab=96b33b28
+-/
 noncomputable instance finiteNormalClosure_numberField :
     NumberField (finiteNormalClosure K L) :=
   NumberField.of_module_finite K (finiteNormalClosure K L)
 
+/--
+@isnad1 id=isgalois.0h2v.s7.a13373d312e5 from=translated src=- shape=1c7b8051 vocab=d5d48be3
+-/
 noncomputable instance finiteNormalClosure_isGalois :
     IsGalois K (finiteNormalClosure K L) := by
   let f : L →ₐ[K] AlgebraicClosure K :=
@@ -74,7 +80,9 @@ noncomputable def finiteNormalClosureOriginalFieldEquiv :
 
 omit [NumberField K] [NumberField L] in
 /-- Normal closure is invariant under replacing its source by an
-isomorphic field.-/
+isomorphic field.
+@isnad1 id=eq.1h5v.s8.4519b2a67957 from=translated src=- shape=df6bd335 vocab=a9e3310b
+-/
 theorem normalClosure_eq_top_of_source_algEquiv
     {M E : Type*}
     [Field M] [Algebra K M]
@@ -103,7 +111,9 @@ theorem normalClosure_eq_top_of_source_algEquiv
   exact g.fieldRange_le_normalClosure
 
 /-- The distinguished copy of `L` generates its finite normal closure
-under its `K`-conjugates.-/
+under its `K`-conjugates.
+@isnad1 id=eq.0h2v.s12.33d81ba34aa2 from=translated src=- shape=9845bba4 vocab=7f449fef
+-/
 theorem finiteNormalClosureOriginalField_normalClosure_eq_top :
     IntermediateField.normalClosure K
         (finiteNormalClosureOriginalField K L)
@@ -125,7 +135,9 @@ theorem finiteNormalClosureOriginalField_normalClosure_eq_top :
       hAbstract
 
 /-- The degree of the original extension is bounded by the degree of
-its finite normal closure.-/
+its finite normal closure.
+@isnad1 id=le.0h2v.s9.c8201dbcf7bc from=translated src=- shape=4c7b863f vocab=6c1f92fe
+-/
 theorem finrank_le_finiteNormalClosure :
     Module.finrank K L ≤
       Module.finrank K (finiteNormalClosure K L) := by

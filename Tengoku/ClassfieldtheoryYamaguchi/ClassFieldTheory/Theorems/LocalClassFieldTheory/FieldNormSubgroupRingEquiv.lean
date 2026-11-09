@@ -26,7 +26,9 @@ namespace ClassFieldTheory
 universe u v w x
 
 /-- An element is a field norm exactly when its image under a compatible
-base-field equivalence is a field norm in the transported extension.-/
+base-field equivalence is a field norm in the transported extension.
+@isnad1 id=iff.1h7v.s9.50b031113927 from=translated src=- shape=c8d87680 vocab=ccc53039
+-/
 theorem mem_fieldNormSubgroup_iff_ringEquiv
     {F : Type u} {M : Type v} {F' : Type w} {M' : Type x}
     [Field F] [Field M] [Field F'] [Field M']

@@ -44,7 +44,9 @@ def iwasawaDegreeEmbedding (p : ℕ) (hp : 0 < p) : ℕ ↪ IwasawaDegree p wher
     apply Nat.mul_left_cancel hp
     exact Nat.add_left_cancel hv
 
-/-- The Iwasawa index is infinite as soon as the finite basis has a vector.-/
+/-- The Iwasawa index is infinite as soon as the finite basis has a vector.
+@isnad1 id=infinite.2h2v.s4.ae7bce6e9f33 from=translated src=- shape=784a6df9 vocab=b303c11a
+-/
 theorem infinite_iwasawaIndex (p f : ℕ) (hp : 0 < p) (hf : 0 < f) :
     Infinite (IwasawaIndex p f) := by
   let j : ℕ ↪ IwasawaIndex p f :=

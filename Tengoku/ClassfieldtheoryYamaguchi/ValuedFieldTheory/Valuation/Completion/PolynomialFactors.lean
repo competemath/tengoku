@@ -50,7 +50,9 @@ noncomputable def polynomialDistinctNormalizedFactors
   classical
   exact (polynomialNormalizedFactors p).toFinset
 
-/-- Associated polynomials have the same multiset of normalized irreducible factors.-/
+/-- Associated polynomials have the same multiset of normalized irreducible factors.
+@isnad1 id=eq.1h3v.s6.5ff9431e3999 from=translated src=- shape=b64cf411 vocab=ecd53af1
+-/
 theorem polynomialNormalizedFactors_eq_of_associated
     {F : Type u} [Field F] {p q : F[X]} (h : Associated p q) :
     polynomialNormalizedFactors p = polynomialNormalizedFactors q := by
@@ -58,7 +60,9 @@ theorem polynomialNormalizedFactors_eq_of_associated
   dsimp [polynomialNormalizedFactors]
   exact h.normalizedFactors_eq
 
-/-- Associated polynomials have the same set of distinct normalized factors.-/
+/-- Associated polynomials have the same set of distinct normalized factors.
+@isnad1 id=eq.1h3v.s6.d43fdf56b85f from=translated src=- shape=b64cf411 vocab=dd073d37
+-/
 theorem polynomialDistinctNormalizedFactors_eq_of_associated
     {F : Type u} [Field F] {p q : F[X]} (h : Associated p q) :
     polynomialDistinctNormalizedFactors p =
@@ -92,7 +96,9 @@ abbrev rootMinpolySetoid
     (p : F[X]) : Setoid (PolynomialRootsIn E p) :=
   Setoid.ker (rootMinpoly p)
 
-/-- The minimal polynomial of a root occurs among the normalized factors of the polynomial.-/
+/-- The minimal polynomial of a root occurs among the normalized factors of the polynomial.
+@isnad1 id=mem.1h4v.s7.388c0dd3d401 from=translated src=- shape=ed5db82c vocab=70d87e77
+-/
 theorem rootMinpoly_mem_normalizedFactors
     {F : Type u} [Field F] {E : Type v} [Field E] [Algebra F E]
     [Algebra.IsAlgebraic F E] {p : F[X]} (hp : p ≠ 0)
@@ -106,7 +112,9 @@ theorem rootMinpoly_mem_normalizedFactors
   refine ⟨minpoly.irreducible hxint, minpoly.monic hxint, ?_⟩
   exact minpoly.dvd F (x : E) (Polynomial.mem_rootSet.mp x.2).2
 
-/-- Minimal polynomials of roots exhaust the distinct normalized factors.-/
+/-- Minimal polynomials of roots exhaust the distinct normalized factors.
+@isnad1 id=eq.1h3v.s7.7a48716cf3f4 from=translated src=- shape=fc47fcf8 vocab=5768c469
+-/
 theorem range_rootMinpoly_eq_distinctNormalizedFactors
     {F : Type u} [Field F] {E : Type v} [Field E] [Algebra F E]
     [Algebra.IsAlgebraic F E] [IsAlgClosed E]
@@ -135,14 +143,18 @@ theorem range_rootMinpoly_eq_distinctNormalizedFactors
     refine ⟨⟨x, hxroot⟩, ?_⟩
     exact (minpoly.eq_of_irreducible_of_monic hgirred hx hgmonic).symm
 
-/-- Two roots are equivalent precisely when they are conjugate roots.-/
+/-- Two roots are equivalent precisely when they are conjugate roots.
+@isnad1 id=iff.0h5v.s7.426036588ed0 from=translated src=- shape=9e9b8aa0 vocab=a6b3b4cc
+-/
 theorem rootMinpolySetoid_rel_iff_isConjRoot
     {F : Type u} [Field F] {E : Type v} [Field E] [Algebra F E]
     {p : F[X]} (x y : PolynomialRootsIn E p) :
     (rootMinpolySetoid p).r x y ↔ IsConjRoot F (x : E) (y : E) :=
   Iff.rfl
 
-/-- Minimal-polynomial equivalence of roots agrees with the Galois orbit relation.-/
+/-- Minimal-polynomial equivalence of roots agrees with the Galois orbit relation.
+@isnad1 id=iff.0h5v.s8.25d93196a051 from=translated src=- shape=b4c554f2 vocab=96942010
+-/
 theorem rootMinpolySetoid_rel_iff_orbitRel
     {F : Type u} [Field F] {E : Type v} [Field E] [Algebra F E]
     [Normal F E] {p : F[X]} (x y : PolynomialRootsIn E p) :

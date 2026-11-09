@@ -36,7 +36,9 @@ noncomputable section
 namespace AlgebraicNumberTheory.Discriminant
 
 /-- The different divides a supported rational integer prime to the
-Galois degree.-/
+Galois degree.
+@isnad1 id=dvd.3h2v.s8.92c39664ef6b from=translated src=- shape=b815e7f0 vocab=5c4401f6
+-/
 theorem differentIdeal_dvd_span_of_coprime_support
     (L : Type*) [Field L] [NumberField L] [IsGalois ℚ L]
     (c : ℕ) (hc : 0 < c) (hcn : Nat.Coprime c (Module.finrank ℚ L))
@@ -99,7 +101,9 @@ theorem differentIdeal_dvd_span_of_coprime_support
     exact Nat.zero_le _
 
 /-- A supported integer prime to a finite Galois degree bounds the root
-scale of its absolute discriminant.-/
+scale of its absolute discriminant.
+@isnad1 id=le.3h2v.s7.0541f2301e11 from=translated src=- shape=6d2db1df vocab=45c87062
+-/
 theorem natAbs_discr_le_pow_of_coprime_support
     (L : Type*) [Field L] [NumberField L] [IsGalois ℚ L]
     (c : ℕ) (hc : 0 < c) (hcn : Nat.Coprime c (Module.finrank ℚ L))

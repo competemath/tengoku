@@ -33,7 +33,9 @@ variable {G : Type uG} {A : Type uA}
     [CommGroup A] [MulDistribMulAction G A]
 
 /-- Clearing the nonzero denominator in a Herbrand quotient whose value is
-a natural number.-/
+a natural number.
+@isnad1 id=eq.1h4v.s6.b1c5b39e7ec7 from=translated src=- shape=ca1c0c32 vocab=7346e1b5
+-/
 theorem herbrandH0_card_eq_mul_herbrandHMinusOne_card
     (σ : G) (n : ℕ)
     [Finite (HerbrandH0 G A)]
@@ -59,7 +61,9 @@ theorem herbrandH0_card_eq_mul_herbrandHMinusOne_card
   exact_mod_cast hrat
 
 /-- Cardinal-arithmetic step for low-degree Herbrand cohomology: a natural-valued Herbrand quotient
-is a lower bound for the degree-zero Tate quotient.-/
+is a lower bound for the degree-zero Tate quotient.
+@isnad1 id=le.1h4v.s6.8655d9050afb from=translated src=- shape=1ef786d6 vocab=d8d70dac
+-/
 theorem le_herbrandH0_card_of_herbrandQuotient_eq_nat
     (σ : G) (n : ℕ)
     [Finite (HerbrandH0 G A)]
@@ -80,7 +84,9 @@ theorem le_herbrandH0_card_of_herbrandQuotient_eq_nat
 
 /-- If the degree-zero cardinality is also bounded above by the natural
 value of the Herbrand quotient, both low-degree cardinalities are forced:
-`#H⁰ = n` and `#H⁻¹ = 1`.-/
+`#H⁰ = n` and `#H⁻¹ = 1`.
+@isnad1 id=and.3h4v.s6.11b9e6c4f290 from=translated src=- shape=d2e83fbd vocab=fe6ac452
+-/
 theorem lowDegree_card_eq_of_herbrandQuotient_eq_nat_of_le
     (σ : G) (n : ℕ) (hn : 0 < n)
     [Finite (HerbrandH0 G A)]
@@ -108,7 +114,9 @@ theorem lowDegree_card_eq_of_herbrandQuotient_eq_nat_of_le
     rw [← hmul, ha, mul_one]
   exact Nat.eq_of_mul_eq_mul_left hn hcancel
 
-/-- Subsingleton form of the negative-first conclusion.-/
+/-- Subsingleton form of the negative-first conclusion.
+@isnad1 id=subsingl.3h4v.s6.f666c4d59da2 from=translated src=- shape=938042a9 vocab=ed4c967d
+-/
 theorem herbrandHMinusOne_subsingleton_of_herbrandQuotient_eq_nat_of_le
     (σ : G) (n : ℕ) (hn : 0 < n)
     [Finite (HerbrandH0 G A)]

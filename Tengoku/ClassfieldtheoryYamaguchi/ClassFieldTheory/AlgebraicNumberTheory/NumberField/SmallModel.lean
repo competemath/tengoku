@@ -27,13 +27,17 @@ namespace ClassFieldTheory
 
 universe u
 
-/-- Every number field can be represented by a type in universe zero.-/
+/-- Every number field can be represented by a type in universe zero.
+@isnad1 id=small.0h1v.s3.5abdea3e405e from=translated src=- shape=c612a321 vocab=69012976
+-/
 theorem numberField_small (F : Type u) [Field F] [NumberField F] :
     Small.{0} F := by
   let : Countable F := Finsupp.Countable.of_moduleFinite (R := ℚ)
   infer_instance
 
-/-- The shrunk model of a number field remains a number field.-/
+/-- The shrunk model of a number field remains a number field.
+@isnad1 id=numberfi.0h1v.s4.2eb1d360b93e from=translated src=- shape=d96e9922 vocab=36b1f0ed
+-/
 theorem numberField_shrink (F : Type u) [Field F] [NumberField F] :
     letI : Small.{0} F := numberField_small F
     NumberField (Shrink.{0} F) := by

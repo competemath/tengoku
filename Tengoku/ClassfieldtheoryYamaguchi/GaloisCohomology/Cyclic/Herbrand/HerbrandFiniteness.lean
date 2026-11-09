@@ -104,7 +104,9 @@ private noncomputable def tateHMinusTwoIsoHerbrandH0
       tateH0IsoHerbrandH0
 
 /-- Herbrand-quotient multiplicativity, finiteness transfer from the first and third terms to
-the middle term.-/
+the middle term.
+@isnad1 id=herbrand.8h7v.s9.c6f844b89376 from=translated src=- shape=53182008 vocab=655a8166
+-/
 theorem herbrandQuotientDefined_middle_of_left_right
     (i : A →* B) (j : B →* C)
     (hi : ∀ (g : G) (a : A), i (g • a) = g • i a)
@@ -174,7 +176,9 @@ theorem herbrandQuotientDefined_middle_of_left_right
   exact ⟨hzero, hminus⟩
 
 /-- Herbrand-quotient multiplicativity, finiteness transfer from the first and middle terms to
-the third term.-/
+the third term.
+@isnad1 id=herbrand.8h7v.s9.91292018a393 from=translated src=- shape=b0be5aff vocab=655a8166
+-/
 theorem herbrandQuotientDefined_right_of_left_middle
     (i : A →* B) (j : B →* C)
     (hi : ∀ (g : G) (a : A), i (g • a) = g • i a)
@@ -248,7 +252,9 @@ theorem herbrandQuotientDefined_right_of_left_middle
   exact ⟨hzero, hminus⟩
 
 /-- Herbrand-quotient multiplicativity, finiteness transfer from the middle and third terms to
-the first term.-/
+the first term.
+@isnad1 id=herbrand.8h7v.s9.0577d5cc2dc0 from=translated src=- shape=59795a46 vocab=655a8166
+-/
 theorem herbrandQuotientDefined_left_of_middle_right
     (i : A →* B) (j : B →* C)
     (hi : ∀ (g : G) (a : A), i (g • a) = g • i a)
@@ -321,7 +327,9 @@ theorem herbrandQuotientDefined_left_of_middle_right
   exact ⟨hzero, hminus⟩
 
 /-- Herbrand-quotient multiplicativity, the complete "any two imply the third" finiteness
-statement for a short exact sequence.-/
+statement for a short exact sequence.
+@isnad1 id=and.6h7v.s9.8ca9f914b542 from=translated src=- shape=587a144a vocab=655a8166
+-/
 theorem herbrandQuotientDefined_anyTwo
     (i : A →* B) (j : B →* C)
     (hi : ∀ (g : G) (a : A), i (g • a) = g • i a)
@@ -348,7 +356,9 @@ theorem herbrandQuotientDefined_anyTwo
       i j hi hj hker hinj hsurj σ hgen hB hC
 
 /-- Herbrand-quotient multiplicativity, Herbrand-quotient multiplicativity once the three
-quotients are defined.-/
+quotients are defined.
+@isnad1 id=eq.6h7v.s9.57822734e30f from=translated src=- shape=3f6cf7e5 vocab=03931208
+-/
 theorem herbrandQuotient_multiplicative_of_shortExact
     (i : A →* B) (j : B →* C)
     (hi : ∀ (g : G) (a : A), i (g • a) = g • i a)
@@ -368,7 +378,9 @@ theorem herbrandQuotient_multiplicative_of_shortExact
 
 /-- Herbrand-quotient multiplicativity in its first two-defined form: if the quotients of `A`
 and `C` are defined, the quotient of `B` is defined and multiplicativity
-holds for that induced finiteness witness.-/
+holds for that induced finiteness witness.
+@isnad1 id=ex.6h7v.s9.177fb8998f29 from=translated src=- shape=b3eece73 vocab=c72e67d0
+-/
 theorem herbrandQuotient_multiplicative_of_left_right_defined
     (i : A →* B) (j : B →* C)
     (hi : ∀ (g : G) (a : A), i (g • a) = g • i a)
@@ -395,7 +407,9 @@ theorem herbrandQuotient_multiplicative_of_left_right_defined
 
 /-- Herbrand-quotient multiplicativity in its second two-defined form: if the quotients of `A`
 and `B` are defined, the quotient of `C` is defined and multiplicativity
-holds for that induced finiteness witness.-/
+holds for that induced finiteness witness.
+@isnad1 id=ex.6h7v.s9.ce798f76850a from=translated src=- shape=d6c83fda vocab=c72e67d0
+-/
 theorem herbrandQuotient_multiplicative_of_left_middle_defined
     (i : A →* B) (j : B →* C)
     (hi : ∀ (g : G) (a : A), i (g • a) = g • i a)
@@ -422,7 +436,9 @@ theorem herbrandQuotient_multiplicative_of_left_middle_defined
 
 /-- Herbrand-quotient multiplicativity in its third two-defined form: if the quotients of `B`
 and `C` are defined, the quotient of `A` is defined and multiplicativity
-holds for that induced finiteness witness.-/
+holds for that induced finiteness witness.
+@isnad1 id=ex.6h7v.s9.10445b195da5 from=translated src=- shape=9b2a5451 vocab=c72e67d0
+-/
 theorem herbrandQuotient_multiplicative_of_middle_right_defined
     (i : A →* B) (j : B →* C)
     (hi : ∀ (g : G) (a : A), i (g • a) = g • i a)
@@ -447,7 +463,9 @@ theorem herbrandQuotient_multiplicative_of_middle_right_defined
   exact herbrandQuotient_multiplicative_of_shortExact
     i j hi hj hker hinj hsurj σ hgen
 
-/-- Herbrand-quotient multiplicativity, the finite-module case.-/
+/-- Herbrand-quotient multiplicativity, the finite-module case.
+@isnad1 id=eq.1h3v.s6.3f1a325a7ce3 from=translated src=- shape=f9291901 vocab=97b3b625
+-/
 theorem herbrandQuotient_eq_one_of_finite_module
     (σ : G) (hgen : ∀ g : G, g ∈ Subgroup.zpowers σ) [Finite A] :
     herbrandQuotient (G := G) (A := A) σ = 1 :=

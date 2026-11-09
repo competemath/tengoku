@@ -44,6 +44,9 @@ def normPolynomial
   (-1 : MvPolynomial ι K) ^ Module.finrank K L *
     ((Algebra.lmul K L).toLinearMap.polyCharpoly b).coeff 0
 
+/--
+@isnad1 id=eq.0h5v.s9.0698232f8cee from=translated src=- shape=dfca2648 vocab=cb403e54
+-/
 @[simp]
 theorem eval_normPolynomial
     {ι : Type w} [Fintype ι] [DecidableEq ι]
@@ -65,6 +68,9 @@ def conjugatePolynomial
   ∑ i, MvPolynomial.X i * MvPolynomial.C (σ (b i))
 
 omit [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h6v.s9.1bbfcf7fb2f6 from=translated src=- shape=316ebe5c vocab=2aef0640
+-/
 @[simp]
 theorem eval_conjugatePolynomial
     {ι : Type w} [Fintype ι] [DecidableEq ι]
@@ -93,6 +99,9 @@ def galoisProductPolynomial
     MvPolynomial ι L :=
   ∏ σ : L ≃ₐ[K] L, conjugatePolynomial b σ
 
+/--
+@isnad1 id=eq.0h5v.s9.0abe878844f1 from=translated src=- shape=3aea663c vocab=cd212a65
+-/
 @[simp]
 theorem eval_galoisProductPolynomial
     {ι : Type w} [Fintype ι] [DecidableEq ι]
@@ -112,6 +121,9 @@ def scalarConjugation
   Algebra.TensorProduct.map (AlgHom.id A A) σ.toAlgHom
 
 omit [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h6v.s9.06f8c0b97531 from=translated src=- shape=1a3e1cb5 vocab=eedf5ec2
+-/
 @[simp]
 theorem scalarConjugation_tmul
     (A : Type*) [CommRing A] [Algebra K A]
@@ -122,7 +134,9 @@ theorem scalarConjugation_tmul
 
 omit [FiniteDimensional K L] in
 /-- Evaluating a universal conjugate polynomial at the coordinates of a
-base-changed element gives its actual scalar-extended conjugate.-/
+base-changed element gives its actual scalar-extended conjugate.
+@isnad1 id=eq.0h7v.s11.c968f4ec08d7 from=translated src=- shape=946a3854 vocab=7d4fe4f9
+-/
 theorem eval₂_conjugatePolynomial_baseChange
     (A : Type*) [CommRing A] [Algebra K A]
     {ι : Type w} [Fintype ι] [DecidableEq ι]
@@ -161,6 +175,9 @@ theorem eval₂_conjugatePolynomial_baseChange
       rw [(Algebra.TensorProduct.basis A b).sum_repr]
 
 omit [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h4v.s11.27815b7ca838 from=translated src=- shape=61a68a78 vocab=cc8c0a91
+-/
 @[simp]
 theorem scalarConjugation_baseAdele_apply
     [NumberField K]

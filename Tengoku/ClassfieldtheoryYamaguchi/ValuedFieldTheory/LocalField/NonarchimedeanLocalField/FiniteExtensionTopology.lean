@@ -48,7 +48,9 @@ noncomputable def localFieldNontriviallyNormedField
 /-- The native norm obtained from a nonarchimedean local field is
 ultrametric.  This is kept as a named companion to
 `localFieldNontriviallyNormedField` so that every use of the spectral norm
-starts from the same norm and the same ultrametric structure.-/
+starts from the same norm and the same ultrametric structure.
+@isnad1 id=isultram.0h1v.s5.711ca9c9ea4e from=translated src=- shape=a8da64ef vocab=a065c9dd
+-/
 theorem localFieldIsUltrametricDist
     (K : Type) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] :
@@ -78,7 +80,9 @@ noncomputable def finiteExtensionSpectralNormedField
   letI : IsUltrametricDist K := localFieldIsUltrametricDist K
   exact spectralNorm.nontriviallyNormedField K L
 
-/-- A finite extension is complete for its canonical spectral norm.-/
+/-- A finite extension is complete for its canonical spectral norm.
+@isnad1 id=complete.0h2v.s6.504a179d74dc from=translated src=- shape=3cb393d3 vocab=b75bcecc
+-/
 theorem finiteExtensionSpectralCompleteSpace
     (K L : Type) [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -92,7 +96,9 @@ theorem finiteExtensionSpectralCompleteSpace
   let : IsUltrametricDist K := localFieldIsUltrametricDist K
   exact spectralNorm.completeSpace K L
 
-/-- A finite extension is locally compact for its canonical spectral norm.-/
+/-- A finite extension is locally compact for its canonical spectral norm.
+@isnad1 id=locallyc.0h2v.s6.ae90c2a46a0d from=translated src=- shape=3cb393d3 vocab=269e85fe
+-/
 theorem finiteExtensionSpectralLocallyCompactSpace
     (K L : Type) [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -112,7 +118,9 @@ theorem finiteExtensionSpectralLocallyCompactSpace
       (spaceKV := spectralNorm.normedSpace K L)
 
 /-- The spectral norm on a finite extension of a nonarchimedean local field
-is ultrametric.-/
+is ultrametric.
+@isnad1 id=isultram.0h2v.s6.3bd2eac5223e from=translated src=- shape=3cb393d3 vocab=e9fdb72d
+-/
 theorem finiteExtensionSpectralIsUltrametricDist
     (K L : Type) [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -147,7 +155,9 @@ noncomputable def finiteExtensionSpectralValuativeRel
       (hK := (finiteExtensionSpectralNormedField K L).toNormedField))
 
 /-- A finite extension with the spectral norm is again a nonarchimedean
-local field.-/
+local field.
+@isnad1 id=isnonarc.0h2v.s6.d15164da1985 from=translated src=- shape=3cb393d3 vocab=55319ff9
+-/
 theorem finiteExtensionSpectralIsNonarchimedeanLocalField
     (K L : Type) [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -178,7 +188,9 @@ theorem finiteExtensionSpectralIsNonarchimedeanLocalField
       (hCompact := finiteExtensionSpectralLocallyCompactSpace K L)
 
 /-- The valuative relation coming from the spectral norm is the canonical
-extension of the native valuation on the local base field.-/
+extension of the native valuation on the local base field.
+@isnad1 id=hasexten.0h2v.s7.acecfa039795 from=translated src=- shape=1338488a vocab=edb34e0d
+-/
 theorem finiteExtensionSpectralValuation_hasExtension
     (K L : Type) [Field K] [Field L] [Algebra K L]
     [FiniteDimensional K L]
@@ -247,7 +259,9 @@ noncomputable def finiteExtensionSpectralNormedAlgebra
 
 /-- In a finite tower equipped throughout with the spectral norms over its
 local base, the upper spectral valuation extends the intermediate spectral
-valuation.-/
+valuation.
+@isnad1 id=hasexten.0h3v.s8.2dca5af6092f from=translated src=- shape=22f49176 vocab=6efd7e23
+-/
 theorem finiteExtensionSpectralValuation_hasExtension_of_tower
     (K E L : Type) [Field K] [Field E] [Field L]
     [Algebra K E] [Algebra E L] [Algebra K L] [IsScalarTower K E L]

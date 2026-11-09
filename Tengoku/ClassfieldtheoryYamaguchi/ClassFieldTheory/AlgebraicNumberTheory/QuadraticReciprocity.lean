@@ -24,7 +24,9 @@ namespace AlgebraicNumberTheory
 namespace PowerResidueSymbols
 
 /-- Positive form of Gauss reciprocity for arbitrary coprime odd natural
-numbers (not only primes).-/
+numbers (not only primes).
+@isnad1 id=eq.3h2v.s6.82803510fc2f from=translated src=- shape=c5b947d4 vocab=7afdb119
+-/
 theorem gaussReciprocity_nat
     {a b : ℕ} (ha : Odd a) (hb : Odd b) (hab : a.Coprime b) :
     J((a : ℤ) | b) * J((b : ℤ) | a) =
@@ -36,7 +38,9 @@ theorem gaussReciprocity_nat
   rw [← pow_two, hsq, mul_one]
 
 /-- **Gauss reciprocity.**  This signed formulation
-applies to all odd, relatively prime integers.-/
+applies to all odd, relatively prime integers.
+@isnad1 id=eq.3h2v.s7.29fef263b32e from=translated src=- shape=574e8978 vocab=4fd712f4
+-/
 theorem gaussReciprocity
     {a b : ℤ} (ha : Odd a) (hb : Odd b)
     (hab : a.natAbs.Coprime b.natAbs) :
@@ -129,7 +133,9 @@ theorem gaussReciprocity
       simp only [Int.natAbs_natCast, add_zero]
       exact hpos
 
-/-- The first supplementary law, expressed by its parity exponent.-/
+/-- The first supplementary law, expressed by its parity exponent.
+@isnad1 id=eq.1h1v.s6.dc44f2ce3f5f from=translated src=- shape=7051fb11 vocab=98469105
+-/
 theorem gaussSupplement_neg_one
     {b : ℕ} (hb : Odd b) :
     J((-1 : ℤ) | b) = (-1 : ℤ) ^ ((b - 1) / 2) := by
@@ -139,7 +145,9 @@ theorem gaussSupplement_neg_one
   obtain ⟨k, rfl⟩ := hb
   omega
 
-/-- The second supplementary law in residue-class form.-/
+/-- The second supplementary law in residue-class form.
+@isnad1 id=eq.1h1v.s7.9e8d7ef7d552 from=translated src=- shape=92bbecb8 vocab=db1849ef
+-/
 theorem gaussSupplement_two
     {b : ℕ} (hb : Odd b) :
     J((2 : ℤ) | b) =
@@ -151,7 +159,9 @@ theorem gaussSupplement_two
     ite_eq_right hbne]
 
 /-- For odd `b`, the mod-eight sign is the classical exponent
-`(-1)^((b²-1)/8)`.-/
+`(-1)^((b²-1)/8)`.
+@isnad1 id=eq.1h1v.s7.4bf099a513e4 from=translated src=- shape=5c4825c5 vocab=769571ee
+-/
 theorem twoSupplementSign_eq_neg_one_pow
     {b : ℕ} (hb : Odd b) :
     (if b % 8 = 1 ∨ b % 8 = 7 then (1 : ℤ) else -1) =
@@ -236,7 +246,9 @@ theorem twoSupplementSign_eq_neg_one_pow
       ring
     rw [ite_eq_left (Or.inr h7), hexponent, heven.neg_one_pow]
 
-/-- The second supplementary law, expressed by its parity exponent.-/
+/-- The second supplementary law, expressed by its parity exponent.
+@isnad1 id=eq.1h1v.s6.161b9fca2920 from=translated src=- shape=54661add vocab=98469105
+-/
 theorem gaussSupplement_two_pow
     {b : ℕ} (hb : Odd b) :
     J((2 : ℤ) | b) = (-1 : ℤ) ^ ((b ^ 2 - 1) / 8) := by

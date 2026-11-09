@@ -23,7 +23,9 @@ namespace ClassFieldTheory
 universe u
 
 /-- A power class is trivial exactly when its representative is an `n`-th
-power.-/
+power.
+@isnad1 id=iff.0h3v.s8.242d932feb3a from=translated src=- shape=642b9994 vocab=5905590d
+-/
 @[simp]
 theorem powerClass_eq_one_iff
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ) :

@@ -38,7 +38,9 @@ noncomputable def intermediateFieldRestrictNormalHom
   exact AlgEquiv.restrictNormalHom E
 
 /-- Evaluation of the canonical intermediate-field restriction after both
-sides are included in the common ambient field.-/
+sides are included in the common ambient field.
+@isnad1 id=eq.1h6v.s13.a10a971e99f0 from=translated src=- shape=0c51561d vocab=85fcd863
+-/
 theorem intermediateFieldRestrictNormalHom_apply_val
     (E F : IntermediateField K Omega) (hEF : E ≤ F) [Normal K E]
     (sigma : F ≃ₐ[K] F) (x : E) :

@@ -53,6 +53,9 @@ def factorization :
     (fun a b => by
       exact Finsupp.prod_hom_add_index (fun v => primePowerHom v))
 
+/--
+@isnad1 id=eq.0h2v.s10.3b2ba3c34795 from=translated src=- shape=5da17cf7 vocab=b9cb05fb
+-/
 @[simp]
 theorem factorization_val
     (exps : Multiplicative (HeightOneSpectrum (𝓞 K) →₀ ℤ)) :
@@ -64,7 +67,9 @@ theorem factorization_val
   simp [factorization, primePowerHom, finitePrimeFractionalIdeal, Finsupp.prod]
 
 /-- Only finitely many finite primes occur with nonzero exponent in a
-nonzero fractional ideal.-/
+nonzero fractional ideal.
+@isnad1 id=finite.0h2v.s7.274fdab556c3 from=translated src=- shape=f0a721d9 vocab=c8a7bc83
+-/
 theorem finite_count_support (I : NumberFieldFractionalIdealGroup K) :
     {v : HeightOneSpectrum (𝓞 K) |
       FractionalIdeal.count K v
@@ -84,6 +89,9 @@ def countVector (I : NumberFieldFractionalIdealGroup K) :
       rw [Set.Finite.mem_toFinset]
       exact hv)
 
+/--
+@isnad1 id=eq.0h3v.s7.5d50c6054863 from=translated src=- shape=e38e60a6 vocab=e73fb7dc
+-/
 @[simp]
 theorem countVector_apply (I : NumberFieldFractionalIdealGroup K)
     (v : HeightOneSpectrum (𝓞 K)) :
@@ -92,6 +100,9 @@ theorem countVector_apply (I : NumberFieldFractionalIdealGroup K)
         (I : FractionalIdeal (nonZeroDivisors (𝓞 K)) K) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.663c8424855c from=translated src=- shape=fe2bfd58 vocab=8d58d4b4
+-/
 @[simp]
 theorem count_factorization
     (exps : Multiplicative (HeightOneSpectrum (𝓞 K) →₀ ℤ))
@@ -103,6 +114,9 @@ theorem count_factorization
   rw [factorization_val]
   exact FractionalIdeal.count_finsuppProd K v exps.toAdd
 
+/--
+@isnad1 id=eq.1h3v.s8.b29d45830d60 from=translated src=- shape=1084a9a2 vocab=0bc9a4c9
+-/
 theorem ext_count {I J : NumberFieldFractionalIdealGroup K}
     (h : ∀ v : HeightOneSpectrum (𝓞 K),
       FractionalIdeal.count K v
@@ -119,6 +133,9 @@ theorem ext_count {I J : NumberFieldFractionalIdealGroup K}
     (fun n : ℤ =>
       (v.asIdeal : FractionalIdeal (nonZeroDivisors (𝓞 K)) K) ^ n) (h v)
 
+/--
+@isnad1 id=injectiv.0h1v.s8.f42657c8b520 from=translated src=- shape=91cb9817 vocab=9df8a8ec
+-/
 theorem factorization_injective :
     Function.Injective (factorization (K := K)) := by
   intro a b hab
@@ -126,6 +143,9 @@ theorem factorization_injective :
   ext v
   rw [← count_factorization a v, ← count_factorization b v, hab]
 
+/--
+@isnad1 id=surjecti.0h1v.s8.2ef58ffcff80 from=translated src=- shape=91cb9817 vocab=83158384
+-/
 theorem factorization_surjective :
     Function.Surjective (factorization (K := K)) := by
   intro I

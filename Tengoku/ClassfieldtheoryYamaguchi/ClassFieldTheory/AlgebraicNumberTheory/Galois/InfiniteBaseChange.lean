@@ -28,7 +28,9 @@ namespace IntermediateField
 variable {R U : Type*} [Field R] [Field U] [Algebra R U]
 
 /-- A Galois intermediate field is the union of the lifts of its finite
-Galois intermediate subfields.-/
+Galois intermediate subfields.
+@isnad1 id=le.0h3v.s8.e697141a1ad2 from=translated src=- shape=c23ddaff vocab=656e5a47
+-/
 theorem le_iSup_lift_finiteGalois
     (B : IntermediateField R U) [IsGalois R B] :
     B ≤ ⨆ E : FiniteGaloisIntermediateField R B,
@@ -48,7 +50,9 @@ theorem le_iSup_lift_finiteGalois
       ((IntermediateField.mem_lift xB).2 hxE)
 
 /-- A compositum with a Galois intermediate field is the supremum of the
-composita with its finite Galois intermediate layers.-/
+composita with its finite Galois intermediate layers.
+@isnad1 id=eq.0h4v.s8.45848816db59 from=translated src=- shape=8d241eef vocab=6e16289a
+-/
 theorem sup_eq_iSup_finiteGaloisComposita
     (A B : IntermediateField R U) [IsGalois R B] :
     A ⊔ B = ⨆ E : FiniteGaloisIntermediateField R B,
@@ -73,7 +77,9 @@ theorem sup_eq_iSup_finiteGaloisComposita
       sup_le le_sup_left
         ((IntermediateField.lift_le E.toIntermediateField).trans le_sup_right)
 
-/-- Base change commutes with the supremum of finite Galois composita.-/
+/-- Base change commutes with the supremum of finite Galois composita.
+@isnad1 id=eq.0h4v.s9.64b18d57443b from=translated src=- shape=d2f34264 vocab=e4adc61a
+-/
 theorem extendScalars_sup_eq_iSup_finiteGaloisComposita
     (A B : IntermediateField R U) [IsGalois R B] :
     IntermediateField.extendScalars (F := A) (E := A ⊔ B) le_sup_left =
@@ -101,7 +107,9 @@ theorem extendScalars_sup_eq_iSup_finiteGaloisComposita
         ((IntermediateField.lift_le E.toIntermediateField).trans le_sup_right)
 
 /-- If every finite Galois layer of a compositum remains Galois after base
-change, then so does the full compositum.-/
+change, then so does the full compositum.
+@isnad1 id=isgalois.1h4v.s10.d044fcb476d9 from=translated src=- shape=f2a41876 vocab=ada2634a
+-/
 theorem isGalois_extendScalars_sup_of_forall_finiteGalois
     (A B : IntermediateField R U) [IsGalois R B]
     (hG : ∀ E : FiniteGaloisIntermediateField R B,

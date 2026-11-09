@@ -34,7 +34,9 @@ open CategoryTheory
 universe u
 
 /-- A specified generator supplies the `IsCyclic` instance used throughout
-the cyclic cohomology constructions.-/
+the cyclic cohomology constructions.
+@isnad1 id=iscyclic.1h2v.s5.076bc48fcef7 from=translated src=- shape=2c7fc252 vocab=07933ba1
+-/
 theorem isCyclic_of_generator {G : Type} [Group G] (g : G)
     (hg : ∀ x : G, x ∈ Subgroup.zpowers g) : IsCyclic G := by
   rw [isCyclic_iff_exists_zpowers_eq_top]
@@ -121,7 +123,9 @@ noncomputable def finiteCyclicH1IsoTateHMinusOne {G : Type} [Group G] [Fintype G
 /-- Elementwise content of the vanishing condition in the cyclic norm-kernel vanishing condition: every
 norm-zero element is in the image of `ρ(g) - 1`.  This is the source used in
 the cyclic step of abstract Kummer theory; the conclusion is extracted from
-the actual homology object rather than assumed separately.-/
+the actual homology object rather than assumed separately.
+@isnad1 id=ex.3h4v.s10.2c4229f55aae from=translated src=- shape=ab7250ec vocab=adef1098
+-/
 theorem normKernel_le_sigmaMinusOneRange_of_tateHMinusOne_isZero
     {G : Type} [Group G] [Fintype G]
     (A : Rep.{0} ℤ G) (g : G) (hg : ∀ x, x ∈ Subgroup.zpowers g)

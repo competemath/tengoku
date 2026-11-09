@@ -23,7 +23,9 @@ open scoped Topology
 
 namespace PadicInt
 
-/-- A nonzero closed additive subgroup of the `p`-adic integers is open.-/
+/-- A nonzero closed additive subgroup of the `p`-adic integers is open.
+@isnad1 id=isopen.2h2v.s7.a39462b01d32 from=translated src=- shape=39328253 vocab=85a8ec48
+-/
 theorem addSubgroup_isOpen_of_isClosed_of_ne_bot
     (p : ℕ) [hp : Fact p.Prime]
     (H : AddSubgroup ℤ_[p])
@@ -89,7 +91,9 @@ theorem addSubgroup_isOpen_of_isClosed_of_ne_bot
 contains the cast of a positive natural number.
 
 The positive natural numbers are dense because they are the translate
-by one of the dense image of `ℕ` in `ℤ_[p]`.-/
+by one of the dense image of `ℕ` in `ℤ_[p]`.
+@isnad1 id=ex.1h3v.s7.6ff4990e853b from=translated src=- shape=bfd6d78a vocab=8bb8899d
+-/
 theorem exists_positive_natCast_sub_mem_of_isOpen_addSubgroup
     (p : ℕ) [Fact p.Prime]
     (H : AddSubgroup ℤ_[p])
@@ -118,7 +122,9 @@ theorem exists_positive_natCast_sub_mem_of_isOpen_addSubgroup
   simpa only [U, Set.mem_ofPred_eq, Nat.cast_add, Nat.cast_one] using hn
 
 /-- A positive integral degree is nontrivial in the multiplicative
-copy of the additive group of `ℤ_p`.-/
+copy of the additive group of `ℤ_p`.
+@isnad1 id=ne.1h2v.s7.a271eb7ff38d from=translated src=- shape=34a0f73a vocab=af21083a
+-/
 theorem multiplicative_positiveNatDegree_ne_one
     (p : ℕ) [Fact p.Prime]
     (n : ℕ) (hn : 0 < n) :

@@ -31,7 +31,9 @@ open NumberField
 The proof first shows that its different ideal is the unit ideal.  Its
 absolute discriminant therefore has absolute value one, while the
 Hermite--Minkowski bound says that every number field of degree greater than
-one has absolute discriminant greater than two.-/
+one has absolute discriminant greater than two.
+@isnad1 id=eq.1h1v.s6.f29044fcb6c5 from=translated src=- shape=f718b45f vocab=cb08e876
+-/
 theorem numberField_finrank_eq_one_of_forall_isUnramifiedAt
     (K : Type*) [Field K] [NumberField K]
     (hunramified : ∀ (P : Ideal (𝓞 K)) [P.IsPrime],

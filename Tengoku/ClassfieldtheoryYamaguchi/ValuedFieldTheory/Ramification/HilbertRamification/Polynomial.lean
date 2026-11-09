@@ -24,7 +24,9 @@ namespace RamificationTheory.HilbertRamification
 namespace Higher
 
 /-- If two evaluation points are congruent modulo an ideal, then evaluating
-any polynomial at them gives congruent results modulo the same ideal.-/
+any polynomial at them gives congruent results modulo the same ideal.
+@isnad1 id=mem.1h7v.s7.92c5e6b8f056 from=translated src=- shape=9f9799f2 vocab=1960adcd
+-/
 theorem polynomial_eval₂_sub_mem_of_sub_mem
     {R S : Type*} [CommRing R] [CommRing S]
     (f : R →+* S) (I : Ideal S) {x y : S} (hxy : x - y ∈ I)

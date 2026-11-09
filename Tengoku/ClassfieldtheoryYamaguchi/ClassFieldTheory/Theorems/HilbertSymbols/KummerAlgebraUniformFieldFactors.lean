@@ -59,7 +59,9 @@ private theorem isSplittingField_of_root_generated
     exact IntermediateField.subset_adjoin K _ hroot
 
 /-- When `K` contains the `n`-th roots of unity, the root-generated field
-factors of its Kummer algebra are pairwise isomorphic over `K`.-/
+factors of its Kummer algebra are pairwise isomorphic over `K`.
+@isnad1 id=ex.2h3v.s11.a30778db756d from=translated src=- shape=3f144d1e vocab=e6d0afe9
+-/
 theorem kummerAlgebra_exists_algEquiv_pi_isomorphicFields
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ)
     (hn : IsUnit ((n : ℕ) : K))

@@ -41,6 +41,9 @@ def localOrder (v : HeightOneSpectrum (𝓞 K)) :
       apply Multiplicative.ext
       simp [WithZero.log_mul, add_comm]
 
+/--
+@isnad1 id=eq.0h3v.s10.9a42d25c10c1 from=translated src=- shape=5eb21af0 vocab=0b792304
+-/
 @[simp]
 theorem localOrder_apply (v : HeightOneSpectrum (𝓞 K))
     (x : (v.adicCompletion K)ˣ) :
@@ -48,6 +51,9 @@ theorem localOrder_apply (v : HeightOneSpectrum (𝓞 K))
       -WithZero.log (Valued.v (x : v.adicCompletion K)) :=
   rfl
 
+/--
+@isnad1 id=iff.0h3v.s10.d9f39e195755 from=translated src=- shape=919543e2 vocab=08450301
+-/
 @[simp]
 theorem localOrder_eq_zero_iff (v : HeightOneSpectrum (𝓞 K))
     (x : (v.adicCompletion K)ˣ) :
@@ -75,7 +81,9 @@ theorem localOrder_eq_zero_iff (v : HeightOneSpectrum (𝓞 K))
     rfl
 
 /-- The set of finite places where a finite idele is not an integral unit is
-finite.-/
+finite.
+@isnad1 id=finite.0h2v.s11.922668ed42cb from=translated src=- shape=6db94c4c vocab=a2de853e
+-/
 theorem finite_nonLocalUnits (a : FiniteIdeleGroup K) :
     {v : HeightOneSpectrum (𝓞 K) |
       a v ∉ (v.adicCompletionIntegers K).units}.Finite :=
@@ -91,6 +99,9 @@ def valuationVectorAdd (a : FiniteIdeleGroup K) :
       intro hmem
       exact hv ((localOrder_eq_zero_iff v (a v)).2 hmem))
 
+/--
+@isnad1 id=eq.0h3v.s10.0e9e1b28bb3a from=translated src=- shape=f51df282 vocab=dcb4c567
+-/
 @[simp]
 theorem valuationVectorAdd_apply (a : FiniteIdeleGroup K)
     (v : HeightOneSpectrum (𝓞 K)) :
@@ -109,6 +120,9 @@ def valuationVector :
       exact congrArg Multiplicative.toAdd
         (map_mul (localOrder v) (a v) (b v))
 
+/--
+@isnad1 id=eq.0h3v.s12.9067dde80167 from=translated src=- shape=28d4a600 vocab=2a36f97e
+-/
 @[simp]
 theorem valuationVector_apply (a : FiniteIdeleGroup K)
     (v : HeightOneSpectrum (𝓞 K)) :
@@ -131,6 +145,9 @@ def chosenLocalOrderSection (v : HeightOneSpectrum (𝓞 K)) (n : ℤ) :
     rw [hx, map_zero] at hval
     exact WithZero.exp_ne_zero hval.symm)
 
+/--
+@isnad1 id=eq.0h3v.s9.32cd2ef1f3ad from=translated src=- shape=246b22f9 vocab=3c3ce504
+-/
 @[simp]
 theorem localOrder_chosenLocalOrderSection
     (v : HeightOneSpectrum (𝓞 K)) (n : ℤ) :
@@ -154,6 +171,9 @@ def valuationVectorSection
     apply (localOrder_eq_zero_iff v _).1
     rw [localOrder_chosenLocalOrderSection, Finsupp.notMem_support_iff.mp hv]⟩
 
+/--
+@isnad1 id=eq.0h2v.s11.1b1147c3b3a8 from=translated src=- shape=48d76c84 vocab=fee2908d
+-/
 @[simp]
 theorem valuationVector_valuationVectorSection
     (e : HeightOneSpectrum (𝓞 K) →₀ ℤ) :
@@ -165,6 +185,9 @@ theorem valuationVector_valuationVectorSection
   change (localOrder v (chosenLocalOrderSection v (e v))).toAdd = e v
   rw [localOrder_chosenLocalOrderSection]
 
+/--
+@isnad1 id=surjecti.0h1v.s11.dc6e7b40f88d from=translated src=- shape=a68863b0 vocab=7b0a278a
+-/
 theorem valuationVector_surjective :
     Function.Surjective (valuationVector (K := K)) := by
   intro e
@@ -202,6 +225,9 @@ def factorization :
     fun a b => by
       exact Finsupp.prod_hom_add_index (fun v => primePowerHom v)
 
+/--
+@isnad1 id=eq.0h2v.s10.657215a1630d from=translated src=- shape=5da17cf7 vocab=98df9f19
+-/
 @[simp]
 theorem factorization_val (exps :
     Multiplicative (HeightOneSpectrum (𝓞 K) →₀ ℤ)) :
@@ -212,6 +238,9 @@ theorem factorization_val (exps :
   classical
   simp [factorization, primePowerHom, prime, Finsupp.prod]
 
+/--
+@isnad1 id=finite.0h2v.s7.f69695efba23 from=translated src=- shape=f0a721d9 vocab=bfa58221
+-/
 theorem finite_count_support (I : FractionalIdealGroup K) :
     {v : HeightOneSpectrum (𝓞 K) |
       FractionalIdeal.count K v
@@ -231,6 +260,9 @@ def countVector (I : FractionalIdealGroup K) :
       rw [Set.Finite.mem_toFinset]
       exact hv)
 
+/--
+@isnad1 id=eq.0h3v.s7.c9f1d120f9e8 from=translated src=- shape=e38e60a6 vocab=9da4be1d
+-/
 @[simp]
 theorem countVector_apply (I : FractionalIdealGroup K)
     (v : HeightOneSpectrum (𝓞 K)) :
@@ -239,6 +271,9 @@ theorem countVector_apply (I : FractionalIdealGroup K)
         (I : FractionalIdeal (nonZeroDivisors (𝓞 K)) K) :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.35fccd87a397 from=translated src=- shape=fe2bfd58 vocab=ac9171b1
+-/
 @[simp]
 theorem count_factorization (exps :
     Multiplicative (HeightOneSpectrum (𝓞 K) →₀ ℤ))
@@ -250,6 +285,9 @@ theorem count_factorization (exps :
   rw [factorization_val]
   exact FractionalIdeal.count_finsuppProd K v exps.toAdd
 
+/--
+@isnad1 id=eq.1h3v.s8.cff587117833 from=translated src=- shape=1084a9a2 vocab=289edc13
+-/
 theorem ext_count {I J : FractionalIdealGroup K}
     (h : ∀ v : HeightOneSpectrum (𝓞 K),
       FractionalIdeal.count K v
@@ -266,6 +304,9 @@ theorem ext_count {I J : FractionalIdealGroup K}
     (fun n : ℤ =>
       (v.asIdeal : FractionalIdeal (nonZeroDivisors (𝓞 K)) K) ^ n) (h v)
 
+/--
+@isnad1 id=injectiv.0h1v.s8.72e56eaa11f9 from=translated src=- shape=91cb9817 vocab=6a4dfd55
+-/
 theorem factorization_injective :
     Function.Injective (factorization (K := K)) := by
   intro a b hab
@@ -273,6 +314,9 @@ theorem factorization_injective :
   ext v
   rw [← count_factorization a v, ← count_factorization b v, hab]
 
+/--
+@isnad1 id=surjecti.0h1v.s8.83bf758663c4 from=translated src=- shape=91cb9817 vocab=3755ef65
+-/
 theorem factorization_surjective :
     Function.Surjective (factorization (K := K)) := by
   intro I
@@ -303,6 +347,9 @@ def fractionalIdeal :
   (FractionalIdealGroup.factorizationEquiv (K := K)).toMonoidHom.comp
     (valuationVector (K := K))
 
+/--
+@isnad1 id=surjecti.0h1v.s11.2678cc187c79 from=translated src=- shape=e937283c vocab=1d5799e5
+-/
 theorem fractionalIdeal_surjective :
     Function.Surjective (fractionalIdeal (K := K)) :=
   (FractionalIdealGroup.factorizationEquiv (K := K)).surjective.comp
@@ -318,6 +365,9 @@ def integralSubgroup : Subgroup (FiniteIdeleGroup K) where
   inv_mem' ha v :=
     (v.adicCompletionIntegers K).units.inv_mem (ha v)
 
+/--
+@isnad1 id=iff.0h2v.s12.2343b9eeafd6 from=translated src=- shape=e98bfcf8 vocab=74b6cd30
+-/
 @[simp]
 theorem mem_integralSubgroup_iff (a : FiniteIdeleGroup K) :
     a ∈ integralSubgroup ↔
@@ -325,6 +375,9 @@ theorem mem_integralSubgroup_iff (a : FiniteIdeleGroup K) :
         a v ∈ (v.adicCompletionIntegers K).units :=
   Iff.rfl
 
+/--
+@isnad1 id=eq.0h1v.s11.3a5e12af5367 from=translated src=- shape=f12c9ad5 vocab=c7652b5c
+-/
 theorem fractionalIdeal_ker :
     (fractionalIdeal (K := K)).ker = integralSubgroup := by
   ext a
@@ -371,6 +424,9 @@ def fractionalIdeal :
   (FiniteIdeleGroup.fractionalIdeal (K := K)).comp
     (MonoidHom.snd _ _)
 
+/--
+@isnad1 id=surjecti.0h1v.s11.7b7b4ebf8266 from=translated src=- shape=e937283c vocab=a861ddbd
+-/
 theorem fractionalIdeal_surjective :
     Function.Surjective (fractionalIdeal (K := K)) := by
   intro I
@@ -384,6 +440,9 @@ def integralAtFinitePlaces : Subgroup (IdeleGroup K) :=
   Subgroup.comap (MonoidHom.snd _ _)
     (FiniteIdeleGroup.integralSubgroup (K := K))
 
+/--
+@isnad1 id=eq.0h1v.s11.529622c7e78a from=translated src=- shape=f12c9ad5 vocab=1c07d419
+-/
 theorem fractionalIdeal_ker :
     (fractionalIdeal (K := K)).ker = integralAtFinitePlaces := by
   ext a
@@ -407,6 +466,9 @@ def idealClass :
     IdeleGroup K →* ClassGroup (𝓞 K) :=
   (ClassGroup.mk K).comp (fractionalIdeal (K := K))
 
+/--
+@isnad1 id=surjecti.0h1v.s11.f8f3c57807e4 from=translated src=- shape=528421b4 vocab=cde7e3f8
+-/
 theorem idealClass_surjective :
     Function.Surjective (idealClass (K := K)) := by
   intro c

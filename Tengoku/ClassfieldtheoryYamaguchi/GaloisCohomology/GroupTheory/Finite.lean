@@ -43,7 +43,9 @@ contained in a subgroup of index `p`.
 
 This is the group-theoretic step in the prime-power subgroup reduction.  Mathlib's Sylow
 extension theorem proves the stronger result without a cyclicity
-assumption.-/
+assumption.
+@isnad1 id=ex.4h4v.s6.f624143d4b1e from=translated src=- shape=2c0890d5 vocab=60e50cd2
+-/
 theorem exists_index_prime_supergroup_of_card_prime_power
     {p v : ℕ}
     (hp : p.Prime)
@@ -94,7 +96,9 @@ theorem exists_index_prime_supergroup_of_card_prime_power
     Nat.mul_left_cancel (pow_pos hp.pos _) hmul
 
 /-- In a cyclic finite group of prime-power order, the index-`p`
-supergroup is normal and its quotient has order `p`.-/
+supergroup is normal and its quotient has order `p`.
+@isnad1 id=ex.4h4v.s6.4c40963d6aa7 from=translated src=- shape=04918d8b vocab=44970084
+-/
 theorem cyclic_exists_normal_index_prime_supergroup
     [IsCyclic G]
     {p v : ℕ}
@@ -120,7 +124,9 @@ theorem cyclic_exists_normal_index_prime_supergroup
 
 omit [Finite G] in
 /-- In a cyclic group of finite prime-power cardinality, every proper
-subgroup is contained in every subgroup of index `p`.-/
+subgroup is contained in every subgroup of index `p`.
+@isnad1 id=le.4h5v.s6.e5b4124af07e from=translated src=- shape=39b0924b vocab=0805ad8c
+-/
 theorem subgroup_le_index_prime_subgroup_of_ne_top_cyclic_prime_power
     [IsCyclic G]
     {p exponent : ℕ}
@@ -171,7 +177,9 @@ variable (G : Type uG) [Group G] [Finite G] [Nontrivial G]
 
 /-- Every nontrivial finite group contains an element of prime order.
 This supplies the cyclic prime-degree subgroup used after passing to a
-normal closure.-/
+normal closure.
+@isnad1 id=ex.0h1v.s5.2c10550910b8 from=translated src=- shape=1cb1c84f vocab=c55cf913
+-/
 theorem exists_element_of_prime_order :
     ∃ (p : ℕ) (g : G),
       p.Prime ∧ orderOf g = p := by
@@ -186,7 +194,9 @@ theorem exists_element_of_prime_order :
   exact ⟨p, g, hp, hg⟩
 
 /-- Every nontrivial finite group contains an actual cyclic subgroup
-of prime cardinality.-/
+of prime cardinality.
+@isnad1 id=ex.0h1v.s6.d88c54bb6ffe from=translated src=- shape=f93c2b59 vocab=20b07f4c
+-/
 theorem exists_cyclic_subgroup_of_prime_card :
     ∃ (p : ℕ) (P : Subgroup G),
       p.Prime ∧ Nat.card P = p ∧ IsCyclic P := by
@@ -218,6 +228,9 @@ def doubleCosetRightProjection
     exact
       ⟨h, hh, 1, D.one_mem, by simpa using hab⟩
 
+/--
+@isnad1 id=eq.0h4v.s5.9e218d6811ff from=translated src=- shape=26cb145b vocab=e9c48e54
+-/
 @[simp]
 theorem doubleCosetRightProjection_mk
     (H D : Subgroup G)
@@ -228,7 +241,9 @@ theorem doubleCosetRightProjection_mk
   Quotient.map'_mk'' _ _ _
 
 /-- If the left-coset to double-coset projection is injective, then
-the right subgroup lies in the normal core of the left subgroup.-/
+the right subgroup lies in the normal core of the left subgroup.
+@isnad1 id=le.1h3v.s6.b5ef6e9b0166 from=translated src=- shape=769f4ef5 vocab=fc1566f2
+-/
 theorem rightSubgroup_le_normalCore_of_doubleCoset_projection_injective
     (H D : Subgroup G)
     (hinj : Function.Injective

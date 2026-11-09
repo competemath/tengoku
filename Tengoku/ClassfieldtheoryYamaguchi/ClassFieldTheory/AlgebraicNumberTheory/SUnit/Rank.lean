@@ -70,6 +70,9 @@ noncomputable def fromNumberFieldUnits
     ext
     simp
 
+/--
+@isnad1 id=injectiv.0h2v.s10.c8e87f70ffd8 from=translated src=- shape=a6c1114d vocab=c3cd3d43
+-/
 theorem fromNumberFieldUnits_injective
     (S : Finset (HeightOneSpectrum (𝓞 K))) :
     Function.Injective (fromNumberFieldUnits (K := K) S) := by
@@ -79,7 +82,9 @@ theorem fromNumberFieldUnits_injective
   exact congrArg (fun x : SUnitGroup (K := K) S => ((x : Kˣ) : K)) huv
 
 /-- Torsion in an `S`-unit group consists exactly of the ordinary roots of
-unity.-/
+unity.
+@isnad1 id=eq.0h2v.s9.9d87728c87f5 from=translated src=- shape=d3148631 vocab=e94233dd
+-/
 theorem torsion_eq_rootsOfUnity_range
     (S : Finset (HeightOneSpectrum (𝓞 K))) :
     CommGroup.torsion (SUnitGroup (K := K) S) =
@@ -136,7 +141,9 @@ noncomputable def divisorCoordinate
     (FractionalIdeal.spanSingleton (𝓞 K)⁰ ((x : Kˣ) : K))
 
 /-- The valuation of a localization fraction is the exponential of the
-negative exponent of its principal fractional ideal.-/
+negative exponent of its principal fractional ideal.
+@isnad1 id=eq.1h4v.s8.931b6047602e from=translated src=- shape=f44446cc vocab=9b3c09ba
+-/
 theorem valuation_mk'_eq_exp_neg_count
     (v : HeightOneSpectrum (𝓞 K)) {n : 𝓞 K} (hn : n ≠ 0)
     (d : (𝓞 K)⁰) :
@@ -182,7 +189,9 @@ theorem valuation_mk'_eq_exp_neg_count
   simp [sub_eq_add_neg, add_comm]
 
 /-- The adic valuation of a field unit is the exponential of the
-negative exponent of its principal fractional ideal.-/
+negative exponent of its principal fractional ideal.
+@isnad1 id=eq.0h3v.s7.afa2dff2ee7a from=translated src=- shape=cfe8e6f2 vocab=f028dc75
+-/
 theorem valuation_eq_exp_neg_count
     (x : Kˣ) (v : HeightOneSpectrum (𝓞 K)) :
     v.valuation K (x : K) =
@@ -199,7 +208,9 @@ theorem valuation_eq_exp_neg_count
   exact valuation_mk'_eq_exp_neg_count (K := K) v hn d
 
 /-- A field unit has valuation one exactly when its principal fractional
-ideal has exponent zero at the place.-/
+ideal has exponent zero at the place.
+@isnad1 id=iff.0h3v.s7.0cdf261e4162 from=translated src=- shape=49da1f87 vocab=3b1c6a37
+-/
 theorem valuation_eq_one_iff_count_eq_zero
     (x : Kˣ) (v : HeightOneSpectrum (𝓞 K)) :
     v.valuation K (x : K) = 1 ↔
@@ -212,6 +223,9 @@ theorem valuation_eq_one_iff_count_eq_zero
   · intro h
     simp [h]
 
+/--
+@isnad1 id=iff.0h4v.s8.53c1e5551d63 from=translated src=- shape=653c171f vocab=25917e7d
+-/
 theorem divisorCoordinate_eq_zero_iff
     (x : SUnitGroup (K := K) S) (v : S) :
     divisorCoordinate (K := K) S x v = 0 ↔
@@ -219,6 +233,9 @@ theorem divisorCoordinate_eq_zero_iff
   exact (valuation_eq_one_iff_count_eq_zero
     (K := K) (x : Kˣ) (v : HeightOneSpectrum (𝓞 K))).symm
 
+/--
+@isnad1 id=eq.0h5v.s9.e9273b812b45 from=translated src=- shape=90541f80 vocab=6c793fac
+-/
 theorem divisorCoordinate_mul
     (x y : SUnitGroup (K := K) S) (v : S) :
     divisorCoordinate (K := K) S (x * y) v =
@@ -239,6 +256,9 @@ theorem divisorCoordinate_mul
   · exact FractionalIdeal.spanSingleton_ne_zero_iff.mpr
       (Units.ne_zero (y : Kˣ))
 
+/--
+@isnad1 id=eq.0h3v.s8.a8d1c8e217aa from=translated src=- shape=916c6954 vocab=b6b7d126
+-/
 theorem divisorCoordinate_one (v : S) :
     divisorCoordinate (K := K) S 1 v = 0 := by
   simp [divisorCoordinate, FractionalIdeal.count_one]
@@ -268,6 +288,9 @@ noncomputable def fromNumberFieldUnitsLinearMap :
   (MonoidHom.toAdditive
     (fromNumberFieldUnits (K := K) S)).toIntLinearMap
 
+/--
+@isnad1 id=injectiv.0h2v.s10.953a2edecae3 from=translated src=- shape=9dc83707 vocab=022df0f1
+-/
 theorem fromNumberFieldUnitsLinearMap_injective :
     Function.Injective (fromNumberFieldUnitsLinearMap (K := K) S) := by
   intro x y hxy
@@ -276,7 +299,9 @@ theorem fromNumberFieldUnitsLinearMap_injective :
     (congrArg Additive.toMul hxy)
 
 /-- An `S`-unit in the kernel of the divisor map has valuation one at every
-finite place.-/
+finite place.
+@isnad1 id=eq.1h4v.s12.6bee42076a50 from=translated src=- shape=9af1d509 vocab=1dbff7b8
+-/
 theorem valuation_eq_one_of_mem_ker_divisorLinearMap
     {x : Additive (SUnitGroup (K := K) S)}
     (hx : x ∈ LinearMap.ker (divisorLinearMap (K := K) S))
@@ -306,7 +331,9 @@ noncomputable def kerDivisorToEmptySUnits
       valuation_eq_one_of_mem_ker_divisorLinearMap
         (K := K) S x.property v⟩
 
-/-- Ordinary units are exactly the kernel of the `S`-unit divisor map.-/
+/-- Ordinary units are exactly the kernel of the `S`-unit divisor map.
+@isnad1 id=eq.0h2v.s11.ba1b20ff4dd1 from=translated src=- shape=7d62690d vocab=b1017477
+-/
 theorem range_fromNumberFieldUnitsLinearMap_eq_ker_divisorLinearMap :
     LinearMap.range (fromNumberFieldUnitsLinearMap (K := K) S) =
       LinearMap.ker (divisorLinearMap (K := K) S) := by
@@ -342,7 +369,9 @@ section PrimePowerSources
 
 variable (S : Finset (HeightOneSpectrum (𝓞 K)))
 
-/-- The class-number power of a prime ideal is principal.-/
+/-- The class-number power of a prime ideal is principal.
+@isnad1 id=isprinci.0h3v.s8.4163cfc2653a from=translated src=- shape=4a31ec3e vocab=2afebccc
+-/
 theorem primeIdealPower_classNumber_isPrincipal (v : S) :
     ((v : HeightOneSpectrum (𝓞 K)).asIdeal ^
       NumberField.classNumber K).IsPrincipal := by
@@ -506,7 +535,9 @@ private theorem divisorRangeVector_linearIndependent :
   exact hv.resolve_right (NumberField.classNumber_ne_zero K)
 
 /-- The divisor-map range on `S`-units has rank equal to the number of
-places in `S`.-/
+places in `S`.
+@isnad1 id=eq.0h2v.s13.4560460fc345 from=translated src=- shape=e6048ec9 vocab=be03b25c
+-/
 theorem finrank_divisor_range :
     Module.finrank ℤ
         (LinearMap.range (divisorLinearMap (K := K) S)) =
@@ -528,7 +559,9 @@ theorem finrank_divisor_range :
   · simpa using
       (divisorRangeVector_linearIndependent (K := K) S).fintype_card_le_finrank
 
-/-- The additive group of `S`-units is finitely generated over `ℤ`.-/
+/-- The additive group of `S`-units is finitely generated over `ℤ`.
+@isnad1 id=finite.0h2v.s9.cb57dbcb6128 from=translated src=- shape=6f25e356 vocab=b90fb0ab
+-/
 theorem moduleFinite :
     Module.Finite ℤ (Additive (SUnitGroup (K := K) S)) := by
   let : Module.Finite ℤ (S → ℤ) := inferInstance
@@ -549,7 +582,9 @@ theorem moduleFinite :
     exact Submodule.fg_range
       (fromNumberFieldUnitsLinearMap (K := K) S)
 
-/-- The kernel of the `S`-unit divisor map has the ordinary unit rank.-/
+/-- The kernel of the `S`-unit divisor map has the ordinary unit rank.
+@isnad1 id=eq.0h2v.s13.fd6f826748eb from=translated src=- shape=54e4e933 vocab=1b54dbdb
+-/
 theorem finrank_divisor_ker :
     Module.finrank ℤ
         (LinearMap.ker (divisorLinearMap (K := K) S)) =
@@ -571,7 +606,9 @@ theorem finrank_divisor_ker :
       NumberField.Units.finrank_eq K
 
 /-- The free rank of the `S`-unit group is the ordinary Dirichlet rank plus
-the number of finite places in `S`.-/
+the number of finite places in `S`.
+@isnad1 id=eq.0h2v.s9.d7ed1bbdd3bc from=translated src=- shape=3252d9a1 vocab=d4c63cb9
+-/
 theorem finrank :
     Module.finrank ℤ (Additive (SUnitGroup (K := K) S)) =
       NumberField.Units.rank K + S.card := by
@@ -627,7 +664,9 @@ theorem finrank :
     _ = (NumberField.Units.rank K : Cardinal) +
         (S.card : Cardinal) := by rw [add_comm]
 
-/-- The `S`-unit rank in quotient-by-torsion form.-/
+/-- The `S`-unit rank in quotient-by-torsion form.
+@isnad1 id=eq.0h2v.s12.b453f76a5b07 from=translated src=- shape=4f872ec9 vocab=4bbd1048
+-/
 theorem finrank_modTorsion :
     Module.finrank ℤ
         (Additive
@@ -647,7 +686,9 @@ theorem finrank_modTorsion :
       finrank (K := K) S
 
 /-- Cardinality form of the `S`-unit rank:
-`#S_infinite + #S_finite - 1`.-/
+`#S_infinite + #S_finite - 1`.
+@isnad1 id=eq.0h2v.s12.e01c689e533b from=translated src=- shape=cfa2532b vocab=94c0c75c
+-/
 theorem finrank_modTorsion_eq_card_infinitePlaces_add_card_sub_one :
     Module.finrank ℤ
         (Additive

@@ -141,7 +141,9 @@ noncomputable def invariantsUnitsEquivBaseUnits (K L : Type)
   (invariantsUnitsAddEquivBaseUnits K L).toIntLinearEquiv
 
 /-- Restricting an invariant unit and re-embedding its value recovers the
-underlying extension-field unit.-/
+underlying extension-field unit.
+@isnad1 id=eq.0h3v.s11.a4fe52bb36ee from=translated src=- shape=4782c875 vocab=3147a878
+-/
 lemma invariantsUnitsAddEquivBaseUnits_spec (K L : Type)
     [Field K] [Field L] [Algebra K L] [IsGalois K L] [FiniteDimensional K L]
     (x : unitsInvariantSubmodule K L) :

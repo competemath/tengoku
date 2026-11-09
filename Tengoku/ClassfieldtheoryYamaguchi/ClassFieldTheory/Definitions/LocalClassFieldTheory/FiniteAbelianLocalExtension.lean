@@ -33,12 +33,16 @@ namespace FiniteAbelianLocalExtension
 
 variable {K : Type u} [Field K]
 
-/-- The packaged intermediate field is finite-dimensional over the base.-/
+/-- The packaged intermediate field is finite-dimensional over the base.
+@isnad1 id=finitedi.0h2v.s14.32bcfce161e8 from=translated src=- shape=19d111fd vocab=a6b137cc
+-/
 instance finiteDimensional (E : FiniteAbelianLocalExtension K) :
     FiniteDimensional K E.1 :=
   E.2.1
 
-/-- The packaged intermediate field is abelian Galois over the base.-/
+/-- The packaged intermediate field is abelian Galois over the base.
+@isnad1 id=isabelia.0h2v.s13.0d9fa9be5a85 from=translated src=- shape=c1dba889 vocab=a6b137cc
+-/
 instance isAbelianGalois (E : FiniteAbelianLocalExtension K) :
     IsAbelianGalois K E.1 :=
   E.2.2

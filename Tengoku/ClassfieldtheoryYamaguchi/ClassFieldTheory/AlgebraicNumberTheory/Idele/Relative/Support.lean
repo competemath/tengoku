@@ -69,7 +69,9 @@ noncomputable def relativeAdeleCoefficient
   (relativeAdeleBasis (K := K) (L := L)).repr z i
 
 omit [NumberField L] in
-/-- Expansion of a relative adele in the chosen extension basis.-/
+/-- Expansion of a relative adele in the chosen extension basis.
+@isnad1 id=eq.0h3v.s9.1dac95e1a592 from=translated src=- shape=0ce2fc8b vocab=b85cb659
+-/
 theorem relativeAdele_eq_sum_tmul_coefficients
     (z : RelativeAdeleRing K L) :
     z =
@@ -86,7 +88,9 @@ theorem relativeAdele_eq_sum_tmul_coefficients
 
 omit [NumberField L] in
 /-- Evaluation at a finite place is coefficientwise in the chosen
-basis expansion.-/
+basis expansion.
+@isnad1 id=eq.0h4v.s11.9e42be2b1352 from=translated src=- shape=fd5eff89 vocab=0032110e
+-/
 theorem relativeAdeleFiniteComponent_eq_sum_tmul_coefficients
     (z : RelativeAdeleRing K L)
     (w : HeightOneSpectrum (𝓞 K)) :
@@ -107,7 +111,9 @@ theorem relativeAdeleFiniteComponent_eq_sum_tmul_coefficients
 
 omit [NumberField L] in
 /-- Evaluation at an infinite place is coefficientwise in the chosen
-basis expansion.-/
+basis expansion.
+@isnad1 id=eq.0h4v.s11.17bbcb83ad07 from=translated src=- shape=484a8466 vocab=733a4362
+-/
 theorem relativeAdeleInfiniteComponent_eq_sum_tmul_coefficients
     (z : RelativeAdeleRing K L)
     (w : InfinitePlace K) :
@@ -127,7 +133,9 @@ theorem relativeAdeleInfiniteComponent_eq_sum_tmul_coefficients
     relativeAdeleInfiniteComponent_tmul] using h
 
 /-- The set of places at which a base adele is not in the local
-valuation ring is finite.-/
+valuation ring is finite.
+@isnad1 id=finite.0h2v.s8.eee6aa549989 from=translated src=- shape=1b64264b vocab=4289095e
+-/
 theorem finite_adeleNonIntegralPlaces
     (a : NumberField.AdeleRing (𝓞 K) K) :
     {w : HeightOneSpectrum (𝓞 K) |
@@ -141,6 +149,9 @@ noncomputable def adeleNonIntegralPlaces
     Finset (HeightOneSpectrum (𝓞 K)) :=
   (finite_adeleNonIntegralPlaces (K := K) a).toFinset
 
+/--
+@isnad1 id=iff.0h3v.s8.cf777c22bd37 from=translated src=- shape=feff08c3 vocab=5136008a
+-/
 @[simp]
 theorem mem_adeleNonIntegralPlaces_iff
     (a : NumberField.AdeleRing (𝓞 K) K)
@@ -152,7 +163,9 @@ theorem mem_adeleNonIntegralPlaces_iff
       (finite_adeleNonIntegralPlaces (K := K) a)
 
 /-- Away from its exact exceptional finset, a base adele has integral
-finite component.-/
+finite component.
+@isnad1 id=mem.1h3v.s8.d290fa653764 from=translated src=- shape=f1e864b5 vocab=5136008a
+-/
 theorem adele_component_mem_integers_of_notMem
     (a : NumberField.AdeleRing (𝓞 K) K)
     (w : HeightOneSpectrum (𝓞 K))
@@ -176,6 +189,9 @@ noncomputable def relativeAdeleCoefficientSupport
         (K := K) (L := L) z i)
 
 omit [NumberField L] in
+/--
+@isnad1 id=iff.0h4v.s8.32a0fd07d8d1 from=translated src=- shape=ac08fb14 vocab=3ff13b19
+-/
 @[simp]
 theorem mem_relativeAdeleCoefficientSupport_iff
     (z : RelativeAdeleRing K L)
@@ -205,6 +221,9 @@ noncomputable def relativeIdeleCoefficientSupport
           RelativeAdeleRing K L)
 
 omit [NumberField L] in
+/--
+@isnad1 id=iff.0h4v.s9.573ca33559e8 from=translated src=- shape=d2e0bda8 vocab=7ccd56ca
+-/
 @[simp]
 theorem mem_relativeIdeleCoefficientSupport_iff
     (z : RelativeIdeleGroup K L)
@@ -228,7 +247,9 @@ theorem mem_relativeIdeleCoefficientSupport_iff
 omit [NumberField L] in
 /-- Outside the exact coefficient support, every coefficient of both
 the relative idele and its inverse is integral at the given finite
-place.-/
+place.
+@isnad1 id=and.1h4v.s9.3673b7e4ec26 from=translated src=- shape=97ab8ca4 vocab=7ccd56ca
+-/
 theorem relativeIdele_coefficients_integral_of_notMem
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K))
@@ -263,7 +284,9 @@ theorem relativeIdele_coefficients_integral_of_notMem
 
 omit [NumberField L] in
 /-- The exact support is the least finset outside which all
-coefficients of the idele and its inverse are integral.-/
+coefficients of the idele and its inverse are integral.
+@isnad1 id=le.1h4v.s9.db672dc1c7a0 from=translated src=- shape=02a3d83f vocab=fb3710a6
+-/
 theorem relativeIdeleCoefficientSupport_minimal
     (z : RelativeIdeleGroup K L)
     (S : Finset (HeightOneSpectrum (𝓞 K)))
@@ -324,7 +347,9 @@ def RelativeBasisIntegralUnitAt
 
 omit [NumberField L] in
 /-- The finite component of a relative idele is given by the evaluated
-base-adele coefficients.-/
+base-adele coefficients.
+@isnad1 id=eq.0h4v.s12.bbec2a8ba307 from=translated src=- shape=a8788a9c vocab=bae36cab
+-/
 theorem relativeIdele_finiteComponent_eq_sum_tmul_coefficients
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K)) :
@@ -345,7 +370,9 @@ theorem relativeIdele_finiteComponent_eq_sum_tmul_coefficients
 
 omit [NumberField L] in
 /-- Outside the coefficient support, the actual finite component lies
-in the local lattice spanned by the chosen extension basis.-/
+in the local lattice spanned by the chosen extension basis.
+@isnad1 id=relative.1h4v.s12.a57867e557db from=translated src=- shape=32d959c8 vocab=a83ad2a5
+-/
 theorem relativeIdele_finiteComponent_basisIntegral_of_notMem
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K))
@@ -373,7 +400,9 @@ theorem relativeIdele_finiteComponent_basisIntegral_of_notMem
 
 omit [NumberField L] in
 /-- Outside the same support, the actual finite component of the
-inverse lies in the same local basis lattice.-/
+inverse lies in the same local basis lattice.
+@isnad1 id=relative.1h4v.s12.379848b03152 from=translated src=- shape=b3cc7996 vocab=8de02758
+-/
 theorem relativeIdele_inverse_finiteComponent_basisIntegral_of_notMem
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K))
@@ -404,7 +433,9 @@ theorem relativeIdele_inverse_finiteComponent_basisIntegral_of_notMem
 
 omit [NumberField L] in
 /-- Equivalently, the inverse of the actual local unit component lies
-in the same basis lattice outside the coefficient support.-/
+in the same basis lattice outside the coefficient support.
+@isnad1 id=relative.1h4v.s12.043d0ba8eaaf from=translated src=- shape=fa6b8408 vocab=8de02758
+-/
 theorem relativeIdele_finiteComponent_inv_basisIntegral_of_notMem
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K))
@@ -422,7 +453,9 @@ theorem relativeIdele_finiteComponent_inv_basisIntegral_of_notMem
 
 omit [NumberField L] in
 /-- Thus the actual local unit component is basis-integral outside the
-explicit coefficient support.-/
+explicit coefficient support.
+@isnad1 id=relative.1h4v.s12.83d60ce4f091 from=translated src=- shape=1aebb2e0 vocab=fb4933f7
+-/
 theorem relativeIdele_finiteComponent_basisIntegralUnit_of_notMem
     (z : RelativeIdeleGroup K L)
     (w : HeightOneSpectrum (𝓞 K))
@@ -440,7 +473,9 @@ theorem relativeIdele_finiteComponent_basisIntegralUnit_of_notMem
 omit [NumberField L] in
 /-- A source-producing finite-support theorem: one explicit
 minimal finset simultaneously controls the local basis integrality of
-the relative idele and its inverse.-/
+the relative idele and its inverse.
+@isnad1 id=ex.0h3v.s13.03a674a328ca from=translated src=- shape=b7a35e0e vocab=0865a710
+-/
 theorem exists_relativeIdele_coefficientSupport
     (z : RelativeIdeleGroup K L) :
     ∃ S : Finset (HeightOneSpectrum (𝓞 K)),

@@ -52,7 +52,9 @@ def integerUnitsModPrincipalUnitsAtLevelMk
   change 𝒪[K]ˣ →* (𝒪[K]ˣ ⧸ principalUnits K n)
   exact QuotientGroup.mk' (principalUnits K n)
 
-/-- The concrete quotient equivalence sends a unit to its canonical class.-/
+/-- The concrete quotient equivalence sends a unit to its canonical class.
+@isnad1 id=eq.0h3v.s15.a2ddc407f49c from=translated src=- shape=a2aa43e3 vocab=c36fad0d
+-/
 @[simp]
 theorem integerUnitsModPrincipalUnitsAtLevelConcreteEquiv_mk
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (x : 𝒪[K]ˣ) :
@@ -61,14 +63,18 @@ theorem integerUnitsModPrincipalUnitsAtLevelConcreteEquiv_mk
       QuotientGroup.mk x :=
   rfl
 
-/-- Every integer-unit quotient class has a representative.-/
+/-- Every integer-unit quotient class has a representative.
+@isnad1 id=surjecti.0h2v.s11.7ecc378d72bc from=translated src=- shape=5eb022e2 vocab=b3267020
+-/
 theorem integerUnitsModPrincipalUnitsAtLevelMk_surjective
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) :
     Function.Surjective (integerUnitsModPrincipalUnitsAtLevelMk K n) := by
   change Function.Surjective (QuotientGroup.mk' (principalUnits K n))
   exact QuotientGroup.mk'_surjective (principalUnits K n)
 
-/-- Eliminate a level quotient through its canonical representatives.-/
+/-- Eliminate a level quotient through its canonical representatives.
+@isnad1 id=var.0h5v.s11.e9645117eb5b from=translated src=- shape=03675669 vocab=90004fe2
+-/
 protected theorem IntegerUnitsModPrincipalUnitsAtLevel.inductionOn
     {K : Type u} [Field K] [ValuativeRel K] (n : Nat)
     {motive : IntegerUnitsModPrincipalUnitsAtLevel K n → Prop}
@@ -89,7 +95,9 @@ def integerUnitsModPrincipalUnitsAtLevelLift
   change (𝒪[K]ˣ ⧸ principalUnits K n) →* M
   exact QuotientGroup.lift (principalUnits K n) f h
 
-/-- A map lifted from the integer-unit quotient agrees on representatives.-/
+/-- A map lifted from the integer-unit quotient agrees on representatives.
+@isnad1 id=eq.1h5v.s13.4ef3abb67320 from=translated src=- shape=13d9a368 vocab=3665013f
+-/
 @[simp]
 theorem integerUnitsModPrincipalUnitsAtLevelLift_mk
     {K : Type u} {M : Type*} [Field K] [ValuativeRel K] [Group M]
@@ -99,7 +107,9 @@ theorem integerUnitsModPrincipalUnitsAtLevelLift_mk
         (integerUnitsModPrincipalUnitsAtLevelMk K n x) = f x :=
   rfl
 
-/-- A unit represents the identity exactly when it lies in the level principal-unit subgroup.-/
+/-- A unit represents the identity exactly when it lies in the level principal-unit subgroup.
+@isnad1 id=iff.0h3v.s12.c3ba884e92fe from=translated src=- shape=c4e9abcf vocab=e6a44233
+-/
 theorem integerUnitsModPrincipalUnitsAtLevelMk_eq_one_iff
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (x : 𝒪[K]ˣ) :
     integerUnitsModPrincipalUnitsAtLevelMk K n x = 1 ↔
@@ -107,7 +117,9 @@ theorem integerUnitsModPrincipalUnitsAtLevelMk_eq_one_iff
   change (QuotientGroup.mk x : 𝒪[K]ˣ ⧸ principalUnits K n) = 1 ↔ _
   exact QuotientGroup.eq_one_iff x
 
-/-- Two units represent the same class exactly when their quotient is a level principal unit.-/
+/-- Two units represent the same class exactly when their quotient is a level principal unit.
+@isnad1 id=iff.0h4v.s13.56caa3e204f7 from=translated src=- shape=73effcd6 vocab=37eff984
+-/
 @[simp]
 theorem integerUnitsModPrincipalUnitsAtLevelMk_eq_iff_div_mem
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (x y : 𝒪[K]ˣ) :

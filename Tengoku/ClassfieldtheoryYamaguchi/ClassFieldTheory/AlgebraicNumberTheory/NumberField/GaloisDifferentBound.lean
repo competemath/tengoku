@@ -33,7 +33,9 @@ noncomputable section
 namespace AlgebraicNumberTheory.Discriminant
 
 /-- A full ramification power cannot divide the different at a rational
-prime that does not divide the finite Galois degree.-/
+prime that does not divide the finite Galois degree.
+@isnad1 id=not.2h3v.s8.7e47c5e6744a from=translated src=- shape=6ba71b60 vocab=18915d03
+-/
 theorem ramification_power_not_dvd_differentIdeal_of_not_dvd_degree
     (L : Type*) [Field L] [NumberField L] [IsGalois ℚ L]
     (q : ℕ) (hq : q.Prime) (P : Ideal (𝓞 L)) [P.IsMaximal]

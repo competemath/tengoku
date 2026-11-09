@@ -34,7 +34,9 @@ noncomputable section
 section FiniteAbelianCyclicFactors
 
 /-- Coordinate characters obtained from the structure theorem separate the
-elements of a finite commutative group.-/
+elements of a finite commutative group.
+@isnad1 id=ex.0h1v.s8.ffb87c66e958 from=translated src=- shape=743c9efb vocab=0602a70c
+-/
 theorem finiteCommGroup_exists_jointlyFaithful_cyclic_factors
     (Q : Type*) [CommGroup Q] [Finite Q] :
     ∃ (ι : Type 0) (_ : Fintype ι) (m : ι → ℕ),
@@ -68,12 +70,16 @@ variable {P C : Type*} [Group P] [Group C]
 def cyclicFactorSubgroup (f : (P ⧸ H) →* C) : Subgroup P :=
   MonoidHom.ker (f.comp (QuotientGroup.mk' H))
 
-/-- The kernel subgroup attached to a cyclic quotient factor is normal.-/
+/-- The kernel subgroup attached to a cyclic quotient factor is normal.
+@isnad1 id=normal.0h4v.s6.6cc98f6c41b8 from=translated src=- shape=7ea242ac vocab=534dc56b
+-/
 instance cyclicFactorSubgroup_normal (f : (P ⧸ H) →* C) :
     (cyclicFactorSubgroup H f).Normal :=
   MonoidHom.normal_ker _
 
-/-- The original normal subgroup lies in every pulled-back factor kernel.-/
+/-- The original normal subgroup lies in every pulled-back factor kernel.
+@isnad1 id=le.0h4v.s6.ba56f898e8e6 from=translated src=- shape=312fd160 vocab=fc31af11
+-/
 theorem le_cyclicFactorSubgroup (f : (P ⧸ H) →* C) :
     H ≤ cyclicFactorSubgroup H f := by
   intro x hx
@@ -83,7 +89,9 @@ theorem le_cyclicFactorSubgroup (f : (P ⧸ H) →* C) :
   exact (congrArg f hmk).trans (map_one f)
 
 /-- A surjective cyclic factor gives a cyclic quotient of the original
-group by its pulled-back kernel.-/
+group by its pulled-back kernel.
+@isnad1 id=iscyclic.1h4v.s8.2fb3f52f4007 from=translated src=- shape=3f8aefa1 vocab=902e7882
+-/
 theorem cyclic_cyclicFactorSubgroup_quotient
     [IsCyclic C] (f : (P ⧸ H) →* C) (hf : Function.Surjective f) :
     IsCyclic (P ⧸ cyclicFactorSubgroup H f) := by
@@ -95,7 +103,9 @@ theorem cyclic_cyclicFactorSubgroup_quotient
   change IsCyclic (P ⧸ MonoidHom.ker F)
   exact (e.isCyclic).2 inferInstance
 
-/-- If the cyclic factor is finite, so is the corresponding quotient.-/
+/-- If the cyclic factor is finite, so is the corresponding quotient.
+@isnad1 id=finite.1h4v.s8.d00b99bec5fc from=translated src=- shape=3f8aefa1 vocab=89048a17
+-/
 theorem finite_cyclicFactorSubgroup_quotient
     [Finite C] (f : (P ⧸ H) →* C) (hf : Function.Surjective f) :
     Finite (P ⧸ cyclicFactorSubgroup H f) := by
@@ -110,7 +120,9 @@ theorem finite_cyclicFactorSubgroup_quotient
 variable {ι : Type*} {Cι : ι → Type*} [∀ i, Group (Cι i)]
 
 /-- Jointly faithful quotient factors pull back to subgroups whose
-intersection is exactly the original normal subgroup.-/
+intersection is exactly the original normal subgroup.
+@isnad1 id=eq.1h5v.s7.b92e3ed876f1 from=translated src=- shape=82a3845e vocab=d4208131
+-/
 theorem iInf_cyclicFactorSubgroup_eq
     (f : ∀ i, (P ⧸ H) →* Cι i)
     (hfaithful : (⨅ i, MonoidHom.ker (f i)) = ⊥) :
@@ -134,7 +146,9 @@ section ClosedCyclicSubextensions
 variable {G : Type*} [Group G] [TopologicalSpace G]
 
 /-- A closed abstract field subgroup `G_L` remains closed when regarded as
-a subgroup of the larger abstract field subgroup `G_K`.-/
+a subgroup of the larger abstract field subgroup `G_K`.
+@isnad1 id=isclosed.1h3v.s7.e4a022924beb from=translated src=- shape=7ab7a2ab vocab=74a7b072
+-/
 theorem extensionSubgroup_isClosed
     {G : Type*} [Group G] [TopologicalSpace G]
     (K L : ClosedSubgroup G) (hLK : L.toSubgroup ≤ K.toSubgroup) :
@@ -146,7 +160,9 @@ variable [IsTopologicalGroup G]
 
 /-- A pulled-back cyclic factor kernel is closed inside `G_K`: the finite
 quotient by `G_L` is discrete, and the factor kernel is pulled back along the
-continuous quotient map.-/
+continuous quotient map.
+@isnad1 id=isclosed.1h5v.s9.5c253dd4a952 from=translated src=- shape=6453f46e vocab=08480d9e
+-/
 theorem cyclicFactorSubgroup_isClosed
     (K L : ClosedSubgroup G) (hLK : L.toSubgroup ≤ K.toSubgroup)
     [hnormal : (extensionSubgroup (G := G) K L hLK).Normal]
@@ -183,7 +199,9 @@ def closedCyclicFactorSubgroup
       (cyclicFactorSubgroup_isClosed K L hLK f)
 
 /-- The cyclic-factor intermediate subgroup lies below the base subgroup
-`G_K`.-/
+`G_K`.
+@isnad1 id=le.1h5v.s9.954a3e94a446 from=translated src=- shape=154758f0 vocab=124daedf
+-/
 theorem closedCyclicFactorSubgroup_le_base
     (K L : ClosedSubgroup G) (hLK : L.toSubgroup ≤ K.toSubgroup)
     [hnormal : (extensionSubgroup (G := G) K L hLK).Normal]
@@ -196,7 +214,9 @@ theorem closedCyclicFactorSubgroup_le_base
 
 /-- The original subgroup `G_L` lies below every cyclic-factor intermediate
 subgroup.  Finiteness is needed by the closed intermediate object itself:
-it makes the quotient discrete, hence its pulled-back kernel closed.-/
+it makes the quotient discrete, hence its pulled-back kernel closed.
+@isnad1 id=le.1h5v.s9.aa8ad3032525 from=translated src=- shape=3ce269e4 vocab=124daedf
+-/
 theorem le_closedCyclicFactorSubgroup
     (K L : ClosedSubgroup G) (hLK : L.toSubgroup ≤ K.toSubgroup)
     [hnormal : (extensionSubgroup (G := G) K L hLK).Normal]
@@ -214,7 +234,9 @@ theorem le_closedCyclicFactorSubgroup
   exact ⟨y, hyS, rfl⟩
 
 /-- Viewed inside `G_K`, the closed cyclic-factor subgroup has exactly the
-pulled-back coordinate kernel as its extension subgroup.-/
+pulled-back coordinate kernel as its extension subgroup.
+@isnad1 id=eq.1h5v.s9.7c8f8e66c9f5 from=translated src=- shape=9fb4494b vocab=78971fa6
+-/
 theorem extensionSubgroup_closedCyclicFactorSubgroup_eq
     (K L : ClosedSubgroup G) (hLK : L.toSubgroup ≤ K.toSubgroup)
     [hnormal : (extensionSubgroup (G := G) K L hLK).Normal]
@@ -234,7 +256,9 @@ theorem extensionSubgroup_closedCyclicFactorSubgroup_eq
   · intro hx
     exact ⟨x, hx, rfl⟩
 
-/-- The extension subgroup of a closed cyclic factor is normal in `G_K`.-/
+/-- The extension subgroup of a closed cyclic factor is normal in `G_K`.
+@isnad1 id=normal.1h5v.s9.4e6533302eea from=translated src=- shape=e22c4cba vocab=957085fc
+-/
 instance extensionSubgroup_closedCyclicFactorSubgroup_normal
     (K L : ClosedSubgroup G) (hLK : L.toSubgroup ≤ K.toSubgroup)
     [hnormal : (extensionSubgroup (G := G) K L hLK).Normal]
@@ -247,7 +271,9 @@ instance extensionSubgroup_closedCyclicFactorSubgroup_normal
   infer_instance
 
 /-- The quotient attached to a surjective finite cyclic coordinate is
-finite.-/
+finite.
+@isnad1 id=finite.2h5v.s11.8f546dbcf44d from=translated src=- shape=cb9fbb9a vocab=0f076b1d
+-/
 theorem finite_extensionSubgroup_closedCyclicFactorSubgroup_quotient
     (K L : ClosedSubgroup G) (hLK : L.toSubgroup ≤ K.toSubgroup)
     [hnormal : (extensionSubgroup (G := G) K L hLK).Normal]
@@ -263,7 +289,9 @@ theorem finite_extensionSubgroup_closedCyclicFactorSubgroup_quotient
   exact finite_cyclicFactorSubgroup_quotient
     (extensionSubgroup (G := G) K L hLK) f hf
 
-/-- The quotient attached to a surjective cyclic coordinate is cyclic.-/
+/-- The quotient attached to a surjective cyclic coordinate is cyclic.
+@isnad1 id=iscyclic.2h5v.s11.cfaaa0b4f316 from=translated src=- shape=c8b1fdf1 vocab=7b18318a
+-/
 theorem cyclic_extensionSubgroup_closedCyclicFactorSubgroup_quotient
     (K L : ClosedSubgroup G) (hLK : L.toSubgroup ≤ K.toSubgroup)
     [hnormal : (extensionSubgroup (G := G) K L hLK).Normal]
@@ -282,7 +310,9 @@ theorem cyclic_extensionSubgroup_closedCyclicFactorSubgroup_quotient
       (extensionSubgroup (G := G) K L hLK) f hf)
 
 /-- An exponent bound on `G_K/G_L` descends to the quotient attached to a
-closed cyclic coordinate.-/
+closed cyclic coordinate.
+@isnad1 id=eq.2h7v.s11.cdb0880a12d7 from=translated src=- shape=4c9ac539 vocab=5ea0c472
+-/
 theorem extensionSubgroup_closedCyclicFactorSubgroup_quotient_pow_eq_one
     (K L : ClosedSubgroup G) (hLK : L.toSubgroup ≤ K.toSubgroup)
     [hnormal : (extensionSubgroup (G := G) K L hLK).Normal]

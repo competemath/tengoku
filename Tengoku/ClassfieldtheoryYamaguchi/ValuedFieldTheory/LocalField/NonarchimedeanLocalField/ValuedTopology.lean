@@ -27,7 +27,9 @@ open scoped ValuativeRel
 universe u v
 
 /-- The topology of a nontrivially valued field is valuative for the
-valuative relation induced by its distinguished valuation.-/
+valuative relation induced by its distinguished valuation.
+@isnad1 id=isvaluat.0h2v.s6.00166be52719 from=translated src=- shape=ce129d15 vocab=1396e5d4
+-/
 theorem isValuativeTopology_of_valued_ofValuation
     (F : Type u) (Γ : Type v)
     [Field F] [LinearOrderedCommGroupWithZero Γ]

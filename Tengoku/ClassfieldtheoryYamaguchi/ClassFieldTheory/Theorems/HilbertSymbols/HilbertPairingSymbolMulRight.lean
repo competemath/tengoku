@@ -20,7 +20,9 @@ namespace ClassFieldTheory.HilbertPairing
 
 universe u
 
-/-- The symbol is multiplicative in its second representative.-/
+/-- The symbol is multiplicative in its second representative.
+@isnad1 id=eq.0h6v.s9.45699df6d81b from=translated src=- shape=4637a474 vocab=e431f7cb
+-/
 @[simp]
 theorem symbol_mul_right
     {K : Type u} [Field K] {n : ℕ+}

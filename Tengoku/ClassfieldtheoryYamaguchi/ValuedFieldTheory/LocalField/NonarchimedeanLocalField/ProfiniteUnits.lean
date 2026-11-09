@@ -30,7 +30,9 @@ namespace LocalFieldTheory
 
 open scoped ValuativeRel
 
-/-- A nonarchimedean local field is Hausdorff for its valuative topology.-/
+/-- A nonarchimedean local field is Hausdorff for its valuative topology.
+@isnad1 id=t2space.0h1v.s4.7e1ccb55d0cf from=translated src=- shape=7ddc04c7 vocab=d124730f
+-/
 theorem localFieldT2Space
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
   [IsNonarchimedeanLocalField K] : T2Space K := by
@@ -43,7 +45,9 @@ theorem localFieldT2Space
         simpa [r, zero_lt_iff, ValuativeRel.valuation_eq_zero_iff] using hx)
   · simp [r]
 
-/-- Distinct points of a nonarchimedean local field are separated by a clopen valuation ball.-/
+/-- Distinct points of a nonarchimedean local field are separated by a clopen valuation ball.
+@isnad1 id=totallys.0h1v.s4.22700574952e from=translated src=- shape=7ddc04c7 vocab=ddef51ee
+-/
 theorem localFieldTotallySeparatedSpace
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] : TotallySeparatedSpace K := by
@@ -60,7 +64,9 @@ theorem localFieldTotallySeparatedSpace
     simpa [r, zero_lt_iff, ValuativeRel.valuation_eq_zero_iff] using hyx
   · simp [r]
 
-/-- A nonarchimedean local field is totally disconnected for its valuative topology.-/
+/-- A nonarchimedean local field is totally disconnected for its valuative topology.
+@isnad1 id=totallyd.0h1v.s4.80fed28a4e70 from=translated src=- shape=7ddc04c7 vocab=4b5d8a24
+-/
 theorem localFieldTotallyDisconnectedSpace
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] : TotallyDisconnectedSpace K := by

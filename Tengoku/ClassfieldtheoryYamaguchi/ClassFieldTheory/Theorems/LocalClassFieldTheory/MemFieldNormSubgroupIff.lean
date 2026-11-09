@@ -27,7 +27,9 @@ namespace ClassFieldTheory
 universe u v
 
 /-- Membership in the norm subgroup is equivalent to being the algebra norm
-of a unit of the extension field.-/
+of a unit of the extension field.
+@isnad1 id=iff.0h3v.s7.c583fbbe91e4 from=translated src=- shape=2b971392 vocab=23bba175
+-/
 theorem mem_fieldNormSubgroup_iff
     (K : Type u) (L : Type v)
     [Field K] [Field L] [Algebra K L] [FiniteDimensional K L]

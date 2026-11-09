@@ -48,7 +48,9 @@ noncomputable def contractingFrobeniusEquationCoeff
         PowerSeries.coeff (k.1 + 1) γ *
           φ (previous (n - 1 - k.1) (by omega))
 
-/-- States the theorem `contractingFrobeniusEquationCoeff_eq`.-/
+/-- States the theorem `contractingFrobeniusEquationCoeff_eq`.
+@isnad1 id=eq.0h5v.s8.2ca21f1fc591 from=translated src=- shape=5b60a167 vocab=4e820956
+-/
 theorem contractingFrobeniusEquationCoeff_eq
     (φ : R →+* R) (γ β : R⟦X⟧) (n : ℕ) :
     contractingFrobeniusEquationCoeff φ γ β n =
@@ -64,7 +66,9 @@ noncomputable def contractingFrobeniusEquationSolution
     (φ : R →+* R) (γ β : R⟦X⟧) : R⟦X⟧ :=
   PowerSeries.mk (contractingFrobeniusEquationCoeff φ γ β)
 
-/-- States the theorem `contractingFrobeniusEquationSolution_coeff`.-/
+/-- States the theorem `contractingFrobeniusEquationSolution_coeff`.
+@isnad1 id=eq.0h5v.s7.80dd7a319d1e from=translated src=- shape=b562498f vocab=8add7703
+-/
 @[simp]
 theorem contractingFrobeniusEquationSolution_coeff
     (φ : R →+* R) (γ β : R⟦X⟧) (n : ℕ) :
@@ -89,7 +93,9 @@ private theorem sum_range_succ_convolution_of_constantCoeff_eq_zero
   rw [Nat.sub_sub, Nat.add_comm]
 
 /-- The recursively constructed series solves the contracting Frobenius
-equation from the contracting Frobenius equation.-/
+equation from the contracting Frobenius equation.
+@isnad1 id=eq.1h4v.s8.160329ee9f07 from=translated src=- shape=fcb858f6 vocab=a395de4e
+-/
 theorem contractingFrobeniusEquationSolution_spec
     (φ : R →+* R) (γ β : R⟦X⟧)
     (hγ : PowerSeries.coeff 0 γ = 0) :
@@ -108,7 +114,9 @@ theorem contractingFrobeniusEquationSolution_spec
   simp only [contractingFrobeniusEquationSolution_coeff]
 
 /-- Uniqueness of the contracting Frobenius equation.  This is the
-coefficientwise replacement for a global valuation argument.-/
+coefficientwise replacement for a global valuation argument.
+@isnad1 id=eq.2h5v.s8.1f1c7f5b6196 from=translated src=- shape=8dbcb33f vocab=a395de4e
+-/
 theorem contractingFrobeniusEquationSolution_unique
     (φ : R →+* R) (γ β α : R⟦X⟧)
     (hγ : PowerSeries.coeff 0 γ = 0)
@@ -134,7 +142,9 @@ theorem contractingFrobeniusEquationSolution_unique
       apply ih
       omega
 
-/-- traditional notation form: the unique solution of `α - γ φ(α) = β`.-/
+/-- traditional notation form: the unique solution of `α - γ φ(α) = β`.
+@isnad1 id=existsun.1h4v.s8.5c0a2b6209f7 from=translated src=- shape=1bf4b4ec vocab=1c3bcef4
+-/
 theorem existsUnique_contractingFrobeniusEquation
     (φ : R →+* R) (γ β : R⟦X⟧)
     (hγ : PowerSeries.coeff 0 γ = 0) :

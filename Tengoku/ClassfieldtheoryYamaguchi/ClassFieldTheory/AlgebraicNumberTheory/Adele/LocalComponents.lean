@@ -35,7 +35,9 @@ variable
 
 omit [NumberField L] in
 /-- A local tensor component has the expected chosen-basis
-coordinates at a finite place.-/
+coordinates at a finite place.
+@isnad1 id=eq.0h5v.s13.939899b0ee5c from=translated src=- shape=d8552688 vocab=d502deb2
+-/
 @[simp]
 theorem relativeAdeleFiniteComponent_basis_repr
     (z : RelativeAdeleRing K L)
@@ -55,7 +57,9 @@ theorem relativeAdeleFiniteComponent_basis_repr
 
 omit [NumberField L] in
 /-- A local tensor component has the expected chosen-basis
-coordinates at an infinite place.-/
+coordinates at an infinite place.
+@isnad1 id=eq.0h5v.s12.100377e38677 from=translated src=- shape=fa5a4ce2 vocab=2976dae5
+-/
 @[simp]
 theorem relativeAdeleInfiniteComponent_basis_repr
     (z : RelativeAdeleRing K L)
@@ -82,7 +86,9 @@ theorem relativeAdeleInfiniteComponent_basis_repr
 
 omit [NumberField L] in
 /-- Equality of every archimedean and finite tensor component implies
-equality of relative adeles.-/
+equality of relative adeles.
+@isnad1 id=eq.2h4v.s12.09b789b63063 from=translated src=- shape=a31ffc79 vocab=1cb9e748
+-/
 theorem relativeAdele_ext_of_components
     {x y : RelativeAdeleRing K L}
     (hinfinite :
@@ -170,6 +176,9 @@ def relativeIdeleLocalComponents :
           (K := K) (L := L) w) x y
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h4v.s13.afd591b932cd from=translated src=- shape=065d711f vocab=74fcd895
+-/
 @[simp]
 theorem relativeIdeleLocalComponents_infinite
     (z : RelativeIdeleGroup K L)
@@ -181,6 +190,9 @@ theorem relativeIdeleLocalComponents_infinite
   rfl
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h4v.s13.d1a0b42b7152 from=translated src=- shape=fabfd258 vocab=9b08e4f1
+-/
 @[simp]
 theorem relativeIdeleLocalComponents_finite
     (z : RelativeIdeleGroup K L)
@@ -192,7 +204,9 @@ theorem relativeIdeleLocalComponents_finite
   rfl
 
 omit [NumberField L] in
-/-- The complete local-component map is injective.-/
+/-- The complete local-component map is injective.
+@isnad1 id=injectiv.0h2v.s12.06e43cdfd921 from=translated src=- shape=7030abac vocab=d8f8d2a9
+-/
 theorem relativeIdeleLocalComponents_injective :
     Function.Injective
       (relativeIdeleLocalComponents

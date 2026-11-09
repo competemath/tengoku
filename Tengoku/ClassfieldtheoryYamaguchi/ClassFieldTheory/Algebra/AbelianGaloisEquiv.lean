@@ -24,7 +24,9 @@ noncomputable section
 namespace ClassFieldTheory
 
 /-- Abelian Galois extensions remain abelian Galois after compatible ring
-equivalences on both the base and extension fields.-/
+equivalences on both the base and extension fields.
+@isnad1 id=isabelia.1h6v.s8.f0987bf77d6b from=translated src=- shape=c9b5eea7 vocab=10dbf374
+-/
 theorem isAbelianGalois_of_equiv_equiv
     {K L M N : Type*}
     [Field K] [Field L] [Algebra K L] [IsAbelianGalois K L]

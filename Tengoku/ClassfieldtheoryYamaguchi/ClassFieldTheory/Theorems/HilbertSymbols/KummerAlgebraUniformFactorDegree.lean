@@ -29,7 +29,9 @@ namespace ClassFieldTheory
 universe u
 
 /-- The uniform finite separable factors have common positive degree `d`,
-and their number is `n / d`. This includes degree-one and reducible cases.-/
+and their number is `n / d`. This includes degree-one and reducible cases.
+@isnad1 id=ex.2h3v.s10.ea8a3ad0eb6c from=translated src=- shape=591f82e7 vocab=39a4b883
+-/
 theorem kummerAlgebra_exists_uniformFactorDegree
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ)
     (hn : IsUnit ((n : ℕ) : K))

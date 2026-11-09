@@ -30,7 +30,9 @@ noncomputable section
 variable {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]
 
 /-- Membership in `G_L`, regarded as a subgroup of `G_K`, is the same as
-ambient membership in the closed subgroup `G_L`.-/
+ambient membership in the closed subgroup `G_L`.
+@isnad1 id=iff.1h4v.s8.5e087f71460a from=translated src=- shape=3dbfac4d vocab=cfb093ad
+-/
 @[simp]
 theorem mem_extensionSubgroup_iff
     {G : Type*} [Group G] [TopologicalSpace G]
@@ -40,7 +42,9 @@ theorem mem_extensionSubgroup_iff
   Iff.rfl
 
 /-- The quotient action on an invariant subtype is the original ambient
-action after choosing a representative in `G_K`.-/
+action after choosing a representative in `G_K`.
+@isnad1 id=eq.1h6v.s15.91819b83e4b9 from=translated src=- shape=a633c5fe vocab=1fb5df09
+-/
 @[simp]
 theorem extensionFixedRepresentation_quotient_mk_apply_val
     (A : Rep ℤ G) (K M : ClosedSubgroup G)
@@ -53,7 +57,9 @@ theorem extensionFixedRepresentation_quotient_mk_apply_val
       A.ρ k.1 a.1 := rfl
 
 /-- If an element of `A_M` has trivial stabilizer under `G_K/G_M`, its
-ambient value is fixed by `k : G_K` exactly when `k` belongs to `G_M`.-/
+ambient value is fixed by `k : G_K` exactly when `k` belongs to `G_M`.
+@isnad1 id=iff.2h6v.s14.d5838fb5a124 from=translated src=- shape=3d1ee00f vocab=55114596
+-/
 theorem extensionFixedRepresentation_val_fixed_iff_mem
     (A : Rep ℤ G) (K M : ClosedSubgroup G)
     (hMK : M.toSubgroup ≤ K.toSubgroup)
@@ -84,7 +90,9 @@ theorem extensionFixedRepresentation_val_fixed_iff_mem
     exact a.2 ⟨k, hk⟩
 
 /-- Quotient-fixedness of the descended global operator says precisely that
-the ambient value `wp(a)` is fixed by `G_K`.-/
+the ambient value `wp(a)` is fixed by `G_K`.
+@isnad1 id=eq.2h7v.s16.b494d1de24e1 from=translated src=- shape=6759d675 vocab=2497effc
+-/
 theorem extensionFixedEndomorphism_fixed_val
     (A : Rep ℤ G) (K M : ClosedSubgroup G)
     (hMK : M.toSubgroup ≤ K.toSubgroup)
@@ -104,7 +112,9 @@ theorem extensionFixedEndomorphism_fixed_val
 
 /-- A family of faithful cyclic radicals generates `L` once the associated
 subgroups intersect in `G_L`.  The generation conclusion is derived from
-the radicals' stabilizers; it is not an input.-/
+the radicals' stabilizers; it is not an input.
+@isnad1 id=eq.6h7v.s13.5f6455f192b5 from=translated src=- shape=109f0e6e vocab=94678b4d
+-/
 theorem closedSetFixingSubgroup_range_extensionFixed_eq
     [IsTopologicalGroup G]
     (A : Rep ℤ G) (hcontinuous : IsContinuousDiscreteRepresentation A)
@@ -161,7 +171,9 @@ global cyclic-operator theorem produces one radical for each coordinate;
 their ambient values form a finite set `S`.  The conclusions say that
 `wp(S)` is fixed by `G_K` (the abstract `Delta` inclusion) and that the
 pointwise fixing subgroup of `S` is exactly `G_L` (the generation
-`L = K(S)`).-/
+`L = K(S)`).
+@isnad1 id=ex.7h7v.s12.0d2d6dbb1724 from=translated src=- shape=500b9f83 vocab=e351fef4
+-/
 theorem finiteAbelian_globalOperator_generators
     [IsTopologicalGroup G]
     (A : Rep ℤ G) (hAxiom : SatisfiesCyclicNormKernelVanishing A)

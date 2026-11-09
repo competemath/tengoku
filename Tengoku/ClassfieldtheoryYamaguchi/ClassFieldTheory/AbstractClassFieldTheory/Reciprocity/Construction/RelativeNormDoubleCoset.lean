@@ -40,7 +40,9 @@ variable {G : Type u} [Group G] [TopologicalSpace G]
 /-- Membership in the stabilizer of a left coset is the literal conjugate
 intersection condition.  For the representative `t⁻¹` this reads
 `k' ∈ K' ∩ t⁻¹ S t`, the subgroup occurring in the classical
-double-coset norm calculation.-/
+double-coset norm calculation.
+@isnad1 id=iff.2h6v.s11.f6a0ac05796b from=translated src=- shape=4148cadc vocab=574ea2a9
+-/
 theorem mem_relativeNormDoubleCoset_stabilizer_iff
     (K K' S : ClosedSubgroup G)
     (hSK : S.toSubgroup ≤ K.toSubgroup)
@@ -80,7 +82,9 @@ noncomputable def relativeNormDoubleCosetEquiv
     (K.toSubgroup ⧸ extensionSubgroup K S hSK)
 
 /-- The inverse class-formula map is left multiplication of the selected
-orbit representative by the selected stabilizer-coset representative.-/
+orbit representative by the selected stabilizer-coset representative.
+@isnad1 id=eq.2h6v.s14.6d19baa70ca2 from=translated src=- shape=25bd564c vocab=b0f55b90
+-/
 @[simp]
 theorem relativeNormDoubleCosetEquiv_symm_apply
     (K K' S : ClosedSubgroup G)
@@ -118,7 +122,9 @@ end doubleCosetEquivalences
 
 /-- The class-formula inverse for an arbitrary chosen representative of
 each orbit.  This form is used in transfer--norm naturality to choose the norm
-representative `t⁻¹` attached to a transfer representative `t`.-/
+representative `t⁻¹` attached to a transfer representative `t`.
+@isnad1 id=eq.1h5v.s8.26ac41c546bd from=translated src=- shape=838232a6 vocab=6a1a8bd4
+-/
 @[simp]
 theorem chosenOrbitClassEquiv_symm_apply
     {M : Type*} {X : Type*} [Group M] [MulAction M X]

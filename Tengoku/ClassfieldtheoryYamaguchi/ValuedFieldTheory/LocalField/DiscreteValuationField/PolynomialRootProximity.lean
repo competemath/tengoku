@@ -62,7 +62,9 @@ valuation ring.  For every `x`, some root `y` satisfies
 `v(p(x)) ≤ v(x - y) + v(p'(y))`.
 
 Choosing `y` with maximal `v(x-y)` makes every other factor `x-z` no deeper
-than `y-z`; multiplying those inequalities gives the result.-/
+than `y-z`; multiplying those inequalities gives the result.
+@isnad1 id=ex.3h3v.s8.c3093c07ee6f from=translated src=- shape=c96d16ff vocab=4382dc1d
+-/
 theorem exists_root_addVal_eval_le_sub_add_derivative
     {R : Type u} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (p : R[X]) (hs : p.Splits) (hm : p.Monic)

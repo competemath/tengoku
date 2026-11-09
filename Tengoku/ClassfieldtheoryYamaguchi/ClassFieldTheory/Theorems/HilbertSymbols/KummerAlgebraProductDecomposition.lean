@@ -28,7 +28,9 @@ universe u
 
 /-- A Kummer algebra with invertible exponent is a finite product of simple
 finite separable field extensions. In each factor, the image of the canonical
-root generates the field and has `n`-th power `a`.-/
+root generates the field and has `n`-th power `a`.
+@isnad1 id=ex.1h3v.s11.a6d692218853 from=translated src=- shape=4eb74ea6 vocab=ef88371d
+-/
 theorem kummerAlgebra_exists_algEquiv_pi_simpleFields
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ)
     (hn : IsUnit ((n : ℕ) : K)) :

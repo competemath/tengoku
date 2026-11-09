@@ -24,7 +24,9 @@ noncomputable section
 namespace KummerTheory
 
 /-- A concrete cyclotomic field has a primitive generator of its defining
-order.-/
+order.
+@isnad1 id=ex.1h2v.s9.5c6a59bd2549 from=translated src=- shape=99ed08d2 vocab=2728d116
+-/
 theorem exists_primitiveRoot_adjoin_eq_top_cyclotomicField
     (K : Type) [Field K] [CharZero K] (m : ℕ) (hm : 0 < m) :
     ∃ ζ : CyclotomicField m K,
@@ -37,7 +39,9 @@ theorem exists_primitiveRoot_adjoin_eq_top_cyclotomicField
     IsCyclotomicExtension.adjoin_primitive_root_eq_top hζ⟩
 
 /-- If `a` divides `b`, the concrete cyclotomic field of order `a` embeds in
-the concrete cyclotomic field of order `b`.-/
+the concrete cyclotomic field of order `b`.
+@isnad1 id=nonempty.3h3v.s6.62e3c7222570 from=translated src=- shape=365dcc6e vocab=73421467
+-/
 theorem nonempty_algHom_cyclotomicField_of_dvd
     (K : Type) [Field K] [CharZero K]
     (a b : ℕ) (ha : 0 < a) (hb : 0 < b) (hab : a ∣ b) :

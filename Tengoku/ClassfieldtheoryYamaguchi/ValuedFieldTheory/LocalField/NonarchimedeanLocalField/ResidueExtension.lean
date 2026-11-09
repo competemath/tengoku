@@ -43,7 +43,9 @@ def integerRingMapOfValuationExtension (K L : Type u) [Field K] [ValuativeRel K]
     𝒪[K] →+* 𝒪[L] :=
   algebraMap 𝒪[K] 𝒪[L]
 
-/-- The map of valuation rings induced by a valued-field extension is a local ring homomorphism.-/
+/-- The map of valuation rings induced by a valued-field extension is a local ring homomorphism.
+@isnad1 id=islocalh.0h2v.s10.455d95e29894 from=translated src=- shape=ab77e33c vocab=d53b29cc
+-/
 instance integerRingMapOfValuationExtension_isLocalHom (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
     [Valuation.HasExtension (ValuativeRel.valuation K) (ValuativeRel.valuation L)] :
@@ -51,7 +53,9 @@ instance integerRingMapOfValuationExtension_isLocalHom (K L : Type u)
   change IsLocalHom (algebraMap 𝒪[K] 𝒪[L])
   infer_instance
 
-/-- The valuation-ring map of an extension is the ambient algebra map on underlying elements.-/
+/-- The valuation-ring map of an extension is the ambient algebra map on underlying elements.
+@isnad1 id=eq.0h3v.s11.f2f734e4a28a from=translated src=- shape=3120632f vocab=9b42aaf2
+-/
 @[simp]
 theorem integerRingMapOfValuationExtension_apply (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
@@ -70,7 +74,9 @@ def residueFieldMapOfValuationExtension (K L : Type u) [Field K] [ValuativeRel K
   IsLocalRing.ResidueField.map (integerRingMapOfValuationExtension K L)
 
 /-- The map between residue fields induced by a valued extension agrees with the residue-field
-algebra map.-/
+algebra map.
+@isnad1 id=eq.0h2v.s11.eac4fd88f6e4 from=translated src=- shape=448aaf62 vocab=efd6e210
+-/
 theorem residueFieldMapOfValuationExtension_eq_algebraMap (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
     [Valuation.HasExtension (ValuativeRel.valuation K) (ValuativeRel.valuation L)] :
@@ -78,7 +84,9 @@ theorem residueFieldMapOfValuationExtension_eq_algebraMap (K L : Type u)
   rfl
 
 /-- The residue-field map sends the residue of a base integer to the residue of its image in the
-extension.-/
+extension.
+@isnad1 id=eq.0h3v.s13.dff186c41249 from=translated src=- shape=8cf5e260 vocab=666cb5fc
+-/
 @[simp]
 theorem residueFieldMapOfValuationExtension_residue (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
@@ -88,7 +96,9 @@ theorem residueFieldMapOfValuationExtension_residue (K L : Type u)
       IsLocalRing.residue 𝒪[L] (integerRingMapOfValuationExtension K L x) :=
   rfl
 
-/-- The residue-field algebra map commutes with reduction of valuation-ring elements.-/
+/-- The residue-field algebra map commutes with reduction of valuation-ring elements.
+@isnad1 id=eq.0h3v.s13.c3a288445723 from=translated src=- shape=5f8b5429 vocab=6ba36b09
+-/
 @[simp]
 theorem residueField_algebraMap_residue (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
@@ -106,7 +116,9 @@ def residueUnitsMapOfValuationExtension (K L : Type u) [Field K] [ValuativeRel K
   Units.map (residueFieldMapOfValuationExtension K L)
 
 /-- The induced map on residue-field units applies the residue-field extension map to the underlying
-residue.-/
+residue.
+@isnad1 id=eq.0h3v.s14.0437abc63c1f from=translated src=- shape=c4ec7c2b vocab=26539831
+-/
 @[simp]
 theorem residueUnitsMapOfValuationExtension_apply (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
@@ -116,7 +128,9 @@ theorem residueUnitsMapOfValuationExtension_apply (K L : Type u)
       algebraMap 𝓀[K] 𝓀[L] (u : 𝓀[K]) :=
   rfl
 
-/-- The induced map on residue-field unit groups is injective.-/
+/-- The induced map on residue-field unit groups is injective.
+@isnad1 id=injectiv.0h2v.s13.d9f15d7440fc from=translated src=- shape=93d607ee vocab=578e06c6
+-/
 theorem residueUnitsMapOfValuationExtension_injective (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
     [Valuation.HasExtension (ValuativeRel.valuation K) (ValuativeRel.valuation L)] :
@@ -131,7 +145,9 @@ def integerUnitsMapOfValuationExtension (K L : Type u) [Field K] [ValuativeRel K
   Units.map (integerRingMapOfValuationExtension K L).toMonoidHom
 
 /-- The induced map on valuation-ring units applies the extension's integer-ring map to the
-underlying unit.-/
+underlying unit.
+@isnad1 id=eq.0h3v.s12.6817df4cc304 from=translated src=- shape=b49f73e8 vocab=a1669855
+-/
 @[simp]
 theorem integerUnitsMapOfValuationExtension_apply (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
@@ -142,7 +158,9 @@ theorem integerUnitsMapOfValuationExtension_apply (K L : Type u)
   rfl
 
 /-- Mapping an integer unit to the extension and then reducing agrees with reducing first and
-mapping residue units.-/
+mapping residue units.
+@isnad1 id=eq.0h3v.s14.b64c241124b3 from=translated src=- shape=e09d6195 vocab=1064cff7
+-/
 @[simp]
 theorem residueUnitsMap_integerUnitsToResidueUnits (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
@@ -153,7 +171,9 @@ theorem residueUnitsMap_integerUnitsToResidueUnits (K L : Type u)
   ext
   rfl
 
-/-- A first principal unit remains a first principal unit after extension of valued fields.-/
+/-- A first principal unit remains a first principal unit after extension of valued fields.
+@isnad1 id=mem.1h3v.s13.fee8f19e468a from=translated src=- shape=c0dfc6df vocab=ed199a2b
+-/
 theorem integerUnitsMapOfValuationExtension_mem_principalUnits_one (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
     [Valuation.HasExtension (ValuativeRel.valuation K) (ValuativeRel.valuation L)]
@@ -178,7 +198,9 @@ def integerUnitsModPrincipalUnitsMapOfValuationExtension (K L : Type u)
         IntegerUnitsModPrincipalUnits_mk_eq_one_iff]
       exact integerUnitsMapOfValuationExtension_mem_principalUnits_one K L u hu)
 
-/-- The map modulo first principal units sends a class to the class of the extended integer unit.-/
+/-- The map modulo first principal units sends a class to the class of the extended integer unit.
+@isnad1 id=eq.0h3v.s13.3f846f195794 from=translated src=- shape=dfe46d7e vocab=4310fc36
+-/
 @[simp]
 theorem integerUnitsModPrincipalUnitsMapOfValuationExtension_mk (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
@@ -204,7 +226,9 @@ def integerUnitsModPrincipalUnitsResidueNormOfValuationExtension (K L : Type u)
       (integerUnitsModPrincipalUnitsEquivResidueUnits L).toMonoidHom)
 
 /-- The residue norm on classes modulo first principal units agrees with the finite residue-field
-norm.-/
+norm.
+@isnad1 id=eq.0h3v.s13.7b2e0f33a248 from=translated src=- shape=dc305e2e vocab=1dfcf3a6
+-/
 theorem integerUnitsModPrincipalUnitsResidueNorm_residue (K L : Type u)
     [Field K] [ValuativeRel K] [Field L] [ValuativeRel L] [Algebra K L]
     [Valuation.HasExtension (ValuativeRel.valuation K) (ValuativeRel.valuation L)]
@@ -223,7 +247,9 @@ theorem integerUnitsModPrincipalUnitsResidueNorm_residue (K L : Type u)
   exact (integerUnitsModPrincipalUnitsEquivResidueUnits K).apply_symm_apply _
 
 /-- The finite-field residue norm, after base extension to `𝓀[L]`, is the
-product over all residue-field automorphisms.-/
+product over all residue-field automorphisms.
+@isnad1 id=eq.0h3v.s15.ec6fa2bce626 from=translated src=- shape=f979e702 vocab=ce8bf745
+-/
 theorem residueUnitsMap_residueField_norm_eq_prod_algEquiv (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
     [Field L] [ValuativeRel L] [TopologicalSpace L] [IsNonarchimedeanLocalField L]
@@ -242,7 +268,9 @@ theorem residueUnitsMap_residueField_norm_eq_prod_algEquiv (K L : Type u)
   simp
 
 /-- Quotient-level form of
-`residueUnitsMap_residueField_norm_eq_prod_algEquiv`.-/
+`residueUnitsMap_residueField_norm_eq_prod_algEquiv`.
+@isnad1 id=eq.0h3v.s15.80cad6b30a78 from=translated src=- shape=08334bc7 vocab=11e73219
+-/
 theorem integerUnitsModPrincipalUnitsResidueNorm_base_extend_eq_prod_algEquiv
     (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
@@ -260,7 +288,9 @@ theorem integerUnitsModPrincipalUnitsResidueNorm_base_extend_eq_prod_algEquiv
     (integerUnitsModPrincipalUnitsEquivResidueUnits L x)
 
 /-- The residue-field automorphism group has order the finite residue-field
-extension degree.-/
+extension degree.
+@isnad1 id=eq.0h2v.s11.4fef358afb7e from=translated src=- shape=3b65c57c vocab=842ead89
+-/
 theorem residueAlgEquiv_card_eq_finrank (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
     [Field L] [ValuativeRel L] [TopologicalSpace L] [IsNonarchimedeanLocalField L]
@@ -271,7 +301,9 @@ theorem residueAlgEquiv_card_eq_finrank (K L : Type u)
 
 /-- The mathlib inertia degree of the maximal ideals agrees with the concrete
 degree of the canonical residue-field extension supplied by a valuation
-extension.-/
+extension.
+@isnad1 id=eq.0h2v.s11.c1413b5b46ab from=translated src=- shape=51a6e854 vocab=1065519a
+-/
 theorem maximalIdeal_inertiaDeg_eq_residue_finrank (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
     [Field L] [ValuativeRel L] [TopologicalSpace L] [IsNonarchimedeanLocalField L]
@@ -284,7 +316,9 @@ theorem maximalIdeal_inertiaDeg_eq_residue_finrank (K L : Type u)
 
 /-- Finite separable extensions whose valuation ring is the integral closure of
 the base valuation ring give a finite module extension of valuation integer
-rings.-/
+rings.
+@isnad1 id=finite.0h2v.s10.20c8b7c0a6b1 from=translated src=- shape=ce2b7731 vocab=0aa412ec
+-/
 theorem integerRing_moduleFinite_of_isIntegralClosure (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
     [Field L] [ValuativeRel L] [Algebra K L] [FiniteDimensional K L]
@@ -295,7 +329,9 @@ theorem integerRing_moduleFinite_of_isIntegralClosure (K L : Type u)
   IsIntegralClosure.finite 𝒪[K] K L 𝒪[L]
 
 /-- The actual ramification index and inertia degree of the valuation-integer
-ring extension satisfy the local ramification identity.-/
+ring extension satisfy the local ramification identity.
+@isnad1 id=eq.0h2v.s11.5dbbe02952bf from=translated src=- shape=1bd65c74 vocab=48d15afc
+-/
 theorem maximalIdeal_ramificationIdx_mul_inertiaDeg_eq_finrank (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
     [Field L] [ValuativeRel L] [TopologicalSpace L] [IsNonarchimedeanLocalField L]
@@ -321,7 +357,9 @@ theorem maximalIdeal_ramificationIdx_mul_inertiaDeg_eq_finrank (K L : Type u)
     (Ideal.sum_ramification_inertia_eq_finrank (𝓂[K] : Ideal 𝒪[K]) 𝒪[L])
 
 /-- The local ramification identity with the inertia degree rewritten as the
-finite-dimensional degree of the canonical residue-field extension.-/
+finite-dimensional degree of the canonical residue-field extension.
+@isnad1 id=eq.0h2v.s11.c6b4b0626441 from=translated src=- shape=7b866c45 vocab=de4bbe6c
+-/
 theorem maximalIdeal_ramificationIdx_mul_residue_finrank_eq_finrank
     (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
@@ -335,7 +373,9 @@ theorem maximalIdeal_ramificationIdx_mul_residue_finrank_eq_finrank
   rw [← maximalIdeal_inertiaDeg_eq_residue_finrank K L]
   exact maximalIdeal_ramificationIdx_mul_inertiaDeg_eq_finrank K L
 
-/-- The residue-field extension supplied by a local-field valuation extension is separable.-/
+/-- The residue-field extension supplied by a local-field valuation extension is separable.
+@isnad1 id=issepara.0h2v.s10.53280ece66f5 from=translated src=- shape=ec9c7c35 vocab=999b903e
+-/
 theorem residueFieldAlgebra_isSeparable_of_valuationExtension (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
     [Field L] [ValuativeRel L] [TopologicalSpace L] [IsNonarchimedeanLocalField L]
@@ -345,7 +385,9 @@ theorem residueFieldAlgebra_isSeparable_of_valuationExtension (K L : Type u)
   infer_instance
 
 /-- The trace map for the canonical residue-field extension supplied by a
-valuation extension is surjective.-/
+valuation extension is surjective.
+@isnad1 id=surjecti.0h2v.s13.497d58c7ee87 from=translated src=- shape=1a5fb673 vocab=fec60ae8
+-/
 theorem residueField_trace_surjective_of_valuationExtension (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
     [Field L] [ValuativeRel L] [TopologicalSpace L] [IsNonarchimedeanLocalField L]
@@ -357,7 +399,9 @@ theorem residueField_trace_surjective_of_valuationExtension (K L : Type u)
   exact Algebra.trace_surjective 𝓀[K] 𝓀[L]
 
 /-- The finite-field norm on residue-field units is surjective for the canonical
-residue extension induced by a valuation extension.-/
+residue extension induced by a valuation extension.
+@isnad1 id=surjecti.0h2v.s13.fc99882a0868 from=translated src=- shape=3f73df13 vocab=82301edc
+-/
 theorem residueField_units_norm_surjective_of_valuationExtension (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]
     [Field L] [ValuativeRel L] [TopologicalSpace L] [IsNonarchimedeanLocalField L]
@@ -367,7 +411,9 @@ theorem residueField_units_norm_surjective_of_valuationExtension (K L : Type u)
   let := Fintype.ofFinite 𝓀[K]
   exact FiniteField.unitsMap_norm_surjective 𝓀[K] 𝓀[L]
 
-/-- The residue norm on integer units modulo first principal units is surjective.-/
+/-- The residue norm on integer units modulo first principal units is surjective.
+@isnad1 id=surjecti.0h2v.s8.9f14802d76cc from=translated src=- shape=c1703e93 vocab=f7689c4e
+-/
 theorem integerUnitsModPrincipalUnitsResidueNorm_surjective_of_valuationExtension
     (K L : Type u)
     [Field K] [ValuativeRel K] [TopologicalSpace K] [IsNonarchimedeanLocalField K]

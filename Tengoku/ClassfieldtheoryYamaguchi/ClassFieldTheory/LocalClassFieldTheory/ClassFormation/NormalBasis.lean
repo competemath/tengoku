@@ -29,7 +29,9 @@ open scoped ValuativeRel
 variable (K L : Type u) [Field K] [ValuativeRel K] [Field L]
   [Algebra K L] [FiniteDimensional K L] [IsGalois K L]
 
-/-- The two descriptions of the standard lattice use the same normal-basis orbit.-/
+/-- The two descriptions of the standard lattice use the same normal-basis orbit.
+@isnad1 id=eq.0h2v.s10.7a0b8b548528 from=translated src=- shape=f955759b vocab=955ee54e
+-/
 theorem span_normalBasis_eq_chosenNormalBasisIntegerLattice :
     Submodule.span 𝒪[K] (Set.range (IsGalois.normalBasis K L)) =
       chosenNormalBasisIntegerLattice K L := by
@@ -51,7 +53,9 @@ noncomputable def chosenNormalBasisIntegerLatticeBasis :
     (LinearEquiv.ofEq _ _
       (span_normalBasis_eq_chosenNormalBasisIntegerLattice K L))
 
-/-- The integral lattice basis has the same underlying vectors as the chosen normal basis.-/
+/-- The integral lattice basis has the same underlying vectors as the chosen normal basis.
+@isnad1 id=eq.0h3v.s12.6367ecf92b4e from=translated src=- shape=2285f355 vocab=000d9529
+-/
 @[simp]
 theorem chosenNormalBasisIntegerLatticeBasis_apply (σ : Gal(L / K)) :
     ((chosenNormalBasisIntegerLatticeBasis K L σ :
@@ -81,7 +85,9 @@ def chosenNormalBasisIntegerLatticeMulPowLinearMap (n : Nat) :
     ext
     simp [Algebra.smul_def, mul_assoc, mul_comm, mul_left_comm]
 
-/-- Uniformizer-power scaling bijects the integral lattice with its scaled copy.-/
+/-- Uniformizer-power scaling bijects the integral lattice with its scaled copy.
+@isnad1 id=bijectiv.0h3v.s14.5ae401861f69 from=translated src=- shape=737b67d1 vocab=0f5bbab8
+-/
 theorem chosenNormalBasisIntegerLatticeMulPowLinearMap_bijective (n : Nat) :
     Function.Bijective (chosenNormalBasisIntegerLatticeMulPowLinearMap K L n) := by
   constructor
@@ -115,7 +121,9 @@ noncomputable def chosenNormalBasisIntegerLatticeMulPowLinearEquiv (n : Nat) :
   LinearEquiv.ofBijective (chosenNormalBasisIntegerLatticeMulPowLinearMap K L n)
     (chosenNormalBasisIntegerLatticeMulPowLinearMap_bijective K L n)
 
-/-- The scaling equivalence acts by multiplication by the chosen uniformizer power.-/
+/-- The scaling equivalence acts by multiplication by the chosen uniformizer power.
+@isnad1 id=eq.0h4v.s14.9b658db7c316 from=translated src=- shape=79799535 vocab=d440da6d
+-/
 @[simp]
 theorem chosenNormalBasisIntegerLatticeMulPowLinearEquiv_apply
     (n : Nat) (x : chosenNormalBasisIntegerLattice K L) :
@@ -132,7 +140,9 @@ def chosenNormalBasisIntegerLatticeUniformizerSubmodule :
       (chosenNormalBasisIntegerLattice K L)).comap
     (chosenNormalBasisIntegerLattice K L).subtype
 
-/-- Membership in the lattice uniformizer submodule is detected after coercion to the field.-/
+/-- Membership in the lattice uniformizer submodule is detected after coercion to the field.
+@isnad1 id=iff.0h3v.s13.6554bfc4507b from=translated src=- shape=4a834f3b vocab=a37716a1
+-/
 @[simp]
 theorem mem_chosenNormalBasisIntegerLatticeUniformizerSubmodule_iff
     (x : chosenNormalBasisIntegerLattice K L) :
@@ -141,7 +151,9 @@ theorem mem_chosenNormalBasisIntegerLatticeUniformizerSubmodule_iff
         (chosenNormalBasisIntegerLattice K L) :=
   Iff.rfl
 
-/-- Scaling maps the uniformizer submodule onto the next normal-basis lattice.-/
+/-- Scaling maps the uniformizer submodule onto the next normal-basis lattice.
+@isnad1 id=eq.0h3v.s13.7ed324d9e963 from=translated src=- shape=12a72b7d vocab=4d90805e
+-/
 theorem chosenNormalBasisIntegerLatticeUniformizerSubmodule_map_mulPow
     (n : Nat) :
     (chosenNormalBasisIntegerLatticeUniformizerSubmodule K L).map
@@ -203,7 +215,9 @@ noncomputable def chosenNormalBasisLatticeSuccQuotToIntegerLatticeQuotLinearEqui
       (chosenNormalBasisIntegerLatticeMulPowLinearEquiv K L n)
       (chosenNormalBasisIntegerLatticeUniformizerSubmodule_map_mulPow K L n)).symm
 
-/-- Removing the common uniformizer power sends a scaled representative to its integral class.-/
+/-- Removing the common uniformizer power sends a scaled representative to its integral class.
+@isnad1 id=eq.0h4v.s16.9af4ead667ce from=translated src=- shape=653d069e vocab=17e7d385
+-/
 @[simp]
 theorem chosenNormalBasisLatticeSuccQuotToIntegerLatticeQuotLinearEquiv_mk_mulPow
     (n : Nat) (x : chosenNormalBasisIntegerLattice K L) :
@@ -234,7 +248,9 @@ def chosenNormalBasisCoordinateMaximalSubmodule :
   Submodule.pi Set.univ (fun _ => (𝓂[K] : Ideal 𝒪[K]))
 
 omit [FiniteDimensional K L] [IsGalois K L] in
-/-- A coordinate function lies in the maximal submodule exactly when every value is nonunit.-/
+/-- A coordinate function lies in the maximal submodule exactly when every value is nonunit.
+@isnad1 id=iff.0h3v.s12.bfbb02a67e10 from=translated src=- shape=c9f9be8a vocab=0bc2772d
+-/
 @[simp]
 theorem mem_chosenNormalBasisCoordinateMaximalSubmodule_iff
     (f : Gal(L / K) → 𝒪[K]) :
@@ -242,7 +258,9 @@ theorem mem_chosenNormalBasisCoordinateMaximalSubmodule_iff
       ∀ σ : Gal(L / K), f σ ∈ (𝓂[K] : Ideal 𝒪[K]) := by
   simp [chosenNormalBasisCoordinateMaximalSubmodule]
 
-/-- Normal-basis coordinates identify the uniformizer submodule with pointwise maximal-ideal values.-/
+/-- Normal-basis coordinates identify the uniformizer submodule with pointwise maximal-ideal values.
+@isnad1 id=eq.0h2v.s13.36f249f4b442 from=translated src=- shape=f79867d0 vocab=07c73f10
+-/
 theorem chosenNormalBasisIntegerLatticeUniformizerSubmodule_map_equivFun :
     (chosenNormalBasisIntegerLatticeUniformizerSubmodule K L).map
         ((chosenNormalBasisIntegerLatticeBasis K L).equivFun :
@@ -320,7 +338,9 @@ noncomputable def chosenNormalBasisCoordinateQuotPiLinearEquiv :
   exact Submodule.quotientPi (fun _ : Gal(L / K) => (𝓂[K] : Ideal 𝒪[K]))
 
 omit [IsGalois K L] in
-/-- The coordinate quotient equivalence sends a representative to its pointwise residue classes.-/
+/-- The coordinate quotient equivalence sends a representative to its pointwise residue classes.
+@isnad1 id=eq.0h3v.s15.82a1651da127 from=translated src=- shape=5a621439 vocab=7c72fd30
+-/
 @[simp]
 theorem chosenNormalBasisCoordinateQuotPiLinearEquiv_mk
     (f : Gal(L / K) → 𝒪[K]) :
@@ -351,7 +371,9 @@ def chosenNormalBasisPiResidueInverseIndexAddEquiv :
     simp
 
 omit [FiniteDimensional K L] [IsGalois K L] in
-/-- The inverse-index equivalence evaluates a residue function at the inverse Galois element.-/
+/-- The inverse-index equivalence evaluates a residue function at the inverse Galois element.
+@isnad1 id=eq.0h4v.s14.bc6dea35f79c from=translated src=- shape=38e0cb55 vocab=238634cb
+-/
 @[simp]
 theorem chosenNormalBasisPiResidueInverseIndexAddEquiv_apply
     (f : Gal(L / K) → (𝒪[K] ⧸ (𝓂[K] : Ideal 𝒪[K])))
@@ -370,7 +392,9 @@ noncomputable def chosenNormalBasisLatticeSuccQuotRightRegularAddEquiv (n : Nat)
       ((chosenNormalBasisCoordinateQuotPiLinearEquiv K L).toAddEquiv.trans
         (chosenNormalBasisPiResidueInverseIndexAddEquiv K L)))
 
-/-- Computes right-regular residue coordinates of a scaled lattice representative.-/
+/-- Computes right-regular residue coordinates of a scaled lattice representative.
+@isnad1 id=eq.0h5v.s15.e96d36a10c9b from=translated src=- shape=9eb59f2a vocab=07c65403
+-/
 @[simp]
 theorem chosenNormalBasisLatticeSuccQuotRightRegularAddEquiv_mk_mulPow
     (n : Nat) (x : chosenNormalBasisIntegerLattice K L) (σ : Gal(L / K)) :
@@ -421,7 +445,9 @@ def galoisGroupChosenNormalBasisIntegerLatticeLinearEquiv (τ : Gal(L / K)) :
     rw [map_mul, ha]
 
 omit [TopologicalSpace K] [IsNonarchimedeanLocalField K] in
-/-- The restricted lattice equivalence agrees with the ambient Galois action.-/
+/-- The restricted lattice equivalence agrees with the ambient Galois action.
+@isnad1 id=eq.0h4v.s14.13826b1fec35 from=translated src=- shape=511085bc vocab=7bc052d6
+-/
 @[simp]
 theorem galoisGroupChosenNormalBasisIntegerLatticeLinearEquiv_apply_coe
     (τ : Gal(L / K)) (x : chosenNormalBasisIntegerLattice K L) :
@@ -430,7 +456,9 @@ theorem galoisGroupChosenNormalBasisIntegerLatticeLinearEquiv_apply_coe
   rfl
 
 omit [TopologicalSpace K] [IsNonarchimedeanLocalField K] in
-/-- The identity Galois element acts trivially on the normal-basis lattice.-/
+/-- The identity Galois element acts trivially on the normal-basis lattice.
+@isnad1 id=eq.0h3v.s14.efe2cb7e2803 from=translated src=- shape=34c15d1e vocab=24fd51cc
+-/
 @[simp]
 theorem galoisGroupChosenNormalBasisIntegerLatticeLinearEquiv_one_apply
     (x : chosenNormalBasisIntegerLattice K L) :
@@ -439,7 +467,9 @@ theorem galoisGroupChosenNormalBasisIntegerLatticeLinearEquiv_one_apply
   rfl
 
 omit [TopologicalSpace K] [IsNonarchimedeanLocalField K] in
-/-- Multiplication in the Galois group acts by composition on the normal-basis lattice.-/
+/-- Multiplication in the Galois group acts by composition on the normal-basis lattice.
+@isnad1 id=eq.0h5v.s16.ac47aaf540dd from=translated src=- shape=aa4fe8d0 vocab=b1e1e41e
+-/
 @[simp]
 theorem galoisGroupChosenNormalBasisIntegerLatticeLinearEquiv_mul_apply
     (τ υ : Gal(L / K)) (x : chosenNormalBasisIntegerLattice K L) :
@@ -452,7 +482,9 @@ theorem galoisGroupChosenNormalBasisIntegerLatticeLinearEquiv_mul_apply
 omit [TopologicalSpace K] [IsNonarchimedeanLocalField K] in
 
 /-- Normal-basis lattice coordinates obey the left-regular rule before the
-inverse-index reindexing.-/
+inverse-index reindexing.
+@isnad1 id=eq.0h5v.s15.6f77285fd69c from=translated src=- shape=6a3b1ff9 vocab=e7f5b9ff
+-/
 theorem chosenNormalBasisIntegerLatticeBasis_equivFun_galoisGroup
     (τ σ : Gal(L / K)) (x : chosenNormalBasisIntegerLattice K L) :
     (chosenNormalBasisIntegerLatticeBasis K L).equivFun
@@ -486,7 +518,9 @@ theorem chosenNormalBasisIntegerLatticeBasis_equivFun_galoisGroup
         simp [f]
   simpa using hcoord (τ⁻¹ * σ)
 
-/-- The lattice uniformizer submodule is stable under every Galois automorphism.-/
+/-- The lattice uniformizer submodule is stable under every Galois automorphism.
+@isnad1 id=eq.0h3v.s13.fa9d96bb492a from=translated src=- shape=cd5a6fa9 vocab=b88d898a
+-/
 theorem chosenNormalBasisIntegerLatticeUniformizerSubmodule_map_galoisGroup
     (τ : Gal(L / K)) :
     (chosenNormalBasisIntegerLatticeUniformizerSubmodule K L).map
@@ -548,7 +582,9 @@ noncomputable def galoisGroupChosenNormalBasisIntegerLatticeQuotLinearEquiv
     (galoisGroupChosenNormalBasisIntegerLatticeLinearEquiv K L τ)
     (chosenNormalBasisIntegerLatticeUniformizerSubmodule_map_galoisGroup K L τ)
 
-/-- The induced quotient action sends a class to the class of its Galois transform.-/
+/-- The induced quotient action sends a class to the class of its Galois transform.
+@isnad1 id=eq.0h4v.s16.5a78a63d12cd from=translated src=- shape=dc663d14 vocab=7f9c86ba
+-/
 @[simp]
 theorem galoisGroupChosenNormalBasisIntegerLatticeQuotLinearEquiv_mk
     (τ : Gal(L / K)) (x : chosenNormalBasisIntegerLattice K L) :
@@ -568,7 +604,9 @@ noncomputable def galoisGroupChosenNormalBasisLatticeSuccQuotAddEquiv
     ((galoisGroupChosenNormalBasisIntegerLatticeQuotLinearEquiv K L τ).toAddEquiv.trans
       (chosenNormalBasisLatticeSuccQuotToIntegerLatticeQuotLinearEquiv K L n).symm.toAddEquiv)
 
-/-- The transported Galois action transforms the integral part of a scaled representative.-/
+/-- The transported Galois action transforms the integral part of a scaled representative.
+@isnad1 id=eq.0h5v.s16.2dbfb8f67a48 from=translated src=- shape=aa3440b6 vocab=f7a5200d
+-/
 @[simp]
 theorem galoisGroupChosenNormalBasisLatticeSuccQuotAddEquiv_mk_mulPow
     (n : Nat) (τ : Gal(L / K)) (x : chosenNormalBasisIntegerLattice K L) :
@@ -589,7 +627,9 @@ theorem galoisGroupChosenNormalBasisLatticeSuccQuotAddEquiv_mk_mulPow
   rw [LinearEquiv.apply_symm_apply,
     chosenNormalBasisLatticeSuccQuotToIntegerLatticeQuotLinearEquiv_mk_mulPow]
 
-/-- Removing the common uniformizer power intertwines the two quotient Galois actions.-/
+/-- Removing the common uniformizer power intertwines the two quotient Galois actions.
+@isnad1 id=eq.0h5v.s17.bd269da7f23b from=translated src=- shape=80f48b53 vocab=8c7dda31
+-/
 @[simp]
 theorem chosenNormalBasisLatticeSuccQuotToIntegerLatticeQuotLinearEquiv_galoisGroup
     (n : Nat) (τ : Gal(L / K))
@@ -604,7 +644,9 @@ theorem chosenNormalBasisLatticeSuccQuotToIntegerLatticeQuotLinearEquiv_galoisGr
   exact e.apply_symm_apply _
 
 /-- On representatives, the transported action is multiplication by `π_K^n`
-followed by the actual field automorphism.-/
+followed by the actual field automorphism.
+@isnad1 id=eq.0h5v.s16.d46d76162eed from=translated src=- shape=f64f2473 vocab=b0f23170
+-/
 theorem chosenNormalBasisIntegerLatticeMulPowLinearEquiv_galoisGroup_apply_coe
     (n : Nat) (τ : Gal(L / K)) (x : chosenNormalBasisIntegerLattice K L) :
     ((chosenNormalBasisIntegerLatticeMulPowLinearEquiv K L n
@@ -664,7 +706,9 @@ noncomputable def galoisGroupChosenNormalBasisLatticeSuccQuotDistribMulAction
     intro τ q r
     exact (galoisGroupChosenNormalBasisLatticeSuccQuotAddEquiv K L n τ).map_add q r
 
-/-- The graded-piece scalar action applies the Galois automorphism to a scaled representative.-/
+/-- The graded-piece scalar action applies the Galois automorphism to a scaled representative.
+@isnad1 id=eq.0h5v.s16.0a7640a8f6b4 from=translated src=- shape=c97ce820 vocab=0675c7d7
+-/
 @[simp]
 theorem galoisGroupChosenNormalBasisLatticeSuccQuotDistribMulAction_smul_mk_mulPow
     (n : Nat) (τ : Gal(L / K)) (x : chosenNormalBasisIntegerLattice K L) :
@@ -677,7 +721,9 @@ theorem galoisGroupChosenNormalBasisLatticeSuccQuotDistribMulAction_smul_mk_mulP
   galoisGroupChosenNormalBasisLatticeSuccQuotAddEquiv_mk_mulPow K L n τ x
 
 /-- The inverse-indexed residue coordinates intertwine the Galois
-action with the pointwise right-regular action.-/
+action with the pointwise right-regular action.
+@isnad1 id=eq.0h6v.s13.a9d8f4b670b6 from=translated src=- shape=b703dc80 vocab=1d9e5712
+-/
 theorem chosenNormalBasisLatticeSuccQuotRightRegularAddEquiv_commutes
     (n : Nat) (τ : Gal(L / K))
     (q : chosenNormalBasisLatticeSuccQuot K L n) (σ : Gal(L / K)) :
@@ -703,7 +749,9 @@ theorem chosenNormalBasisLatticeSuccQuotRightRegularAddEquiv_commutes
   congr 1
 
 /-- Herbrand `H⁰` vanishes on every additive normal-basis lattice graded
-piece.-/
+piece.
+@isnad1 id=subsingl.0h3v.s7.7b7e51fd5f46 from=translated src=- shape=7f832bef vocab=02bcdffe
+-/
 theorem chosenNormalBasisLatticeSuccQuot_herbrandH0_subsingleton (n : Nat) :
     letI := galoisGroupChosenNormalBasisLatticeSuccQuotDistribMulAction K L n
     letI :=
@@ -719,7 +767,9 @@ theorem chosenNormalBasisLatticeSuccQuot_herbrandH0_subsingleton (n : Nat) :
       (chosenNormalBasisLatticeSuccQuotRightRegularAddEquiv_commutes K L n)
 
 /-- Cyclic Herbrand `H⁻¹` vanishes on every additive normal-basis lattice
-graded piece.-/
+graded piece.
+@isnad1 id=subsingl.1h4v.s9.597c5fda6e41 from=translated src=- shape=5d3a1d9f vocab=b19faaeb
+-/
 theorem chosenNormalBasisLatticeSuccQuot_herbrandHMinusOne_subsingleton
     (n : Nat) (τ : Gal(L / K))
     (hgen : ∀ g : Gal(L / K), g ∈ Subgroup.zpowers τ) :

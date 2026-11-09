@@ -43,6 +43,9 @@ noncomputable def relativeAdeleCoefficientLinearEquiv :
   (relativeAdeleBasis (K := K) (L := L)).equivFun
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h4v.s11.67657180c872 from=translated src=- shape=afa98fc7 vocab=482f5722
+-/
 @[simp]
 theorem relativeAdeleCoefficientLinearEquiv_apply
     (z : RelativeAdeleRing K L)
@@ -63,6 +66,9 @@ noncomputable def relativeAdeleOfCoefficients
     (K := K) (L := L)).symm a
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h4v.s6.af0190d2c831 from=translated src=- shape=110eac18 vocab=d5eba3cd
+-/
 @[simp]
 theorem relativeAdeleCoefficient_ofCoefficients
     (a :
@@ -83,6 +89,9 @@ theorem relativeAdeleCoefficient_ofCoefficients
   rw [LinearEquiv.apply_symm_apply]
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s6.d26ab643710d from=translated src=- shape=19b71f92 vocab=21e7379d
+-/
 @[simp]
 theorem relativeAdeleOfCoefficients_coefficients
     (z : RelativeAdeleRing K L) :
@@ -102,7 +111,9 @@ theorem relativeAdeleOfCoefficients_coefficients
 
 omit [NumberField L] in
 /-- Finite-place evaluation of an assembled relative adele is the
-corresponding tensor sum of its coefficient components.-/
+corresponding tensor sum of its coefficient components.
+@isnad1 id=eq.0h4v.s11.3780e473b812 from=translated src=- shape=abd6a38e vocab=00ebc1ef
+-/
 theorem relativeAdeleOfCoefficients_finiteComponent
     (a :
       RelativeAdeleBasisIndex (K := K) (L := L) →
@@ -123,7 +134,9 @@ theorem relativeAdeleOfCoefficients_finiteComponent
 
 omit [NumberField L] in
 /-- Infinite-place evaluation of an assembled relative adele is the
-corresponding tensor sum of its coefficient components.-/
+corresponding tensor sum of its coefficient components.
+@isnad1 id=eq.0h4v.s11.0a3aed66ae1c from=translated src=- shape=2dd88ac3 vocab=156e43d7
+-/
 theorem relativeAdeleOfCoefficients_infiniteComponent
     (a :
       RelativeAdeleBasisIndex (K := K) (L := L) →
@@ -163,6 +176,9 @@ noncomputable def relativeIdeleOfCoefficientFamilies
     hab
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.1h4v.s9.ae8a56d7f89b from=translated src=- shape=dbdef4ed vocab=062f092e
+-/
 @[simp]
 theorem relativeIdeleOfCoefficientFamilies_coe
     (a b :

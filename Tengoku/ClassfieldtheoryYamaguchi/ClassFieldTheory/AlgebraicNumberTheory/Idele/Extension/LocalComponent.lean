@@ -48,6 +48,9 @@ def infiniteAdeleComponentAlgHom
       (NumberField.InfiniteAdeleRing K)
       (FiniteAdeleRing (𝓞 K) K))
 
+/--
+@isnad1 id=eq.0h3v.s9.45607574d15c from=translated src=- shape=07cf9b88 vocab=bbbba3d6
+-/
 @[simp]
 theorem infiniteAdeleComponentAlgHom_apply
     (v : InfinitePlace K)
@@ -55,6 +58,9 @@ theorem infiniteAdeleComponentAlgHom_apply
     infiniteAdeleComponentAlgHom v a = a.1 v :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s9.df136c57a761 from=translated src=- shape=a72abcd8 vocab=37a0e62b
+-/
 @[simp]
 theorem infiniteAdeleComponentAlgHom_algebraMap
     (v : InfinitePlace K) (x : K) :
@@ -75,6 +81,9 @@ def relativeAdeleInfiniteComponent
     (AlgHom.id K L)
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h5v.s11.5064eeb91ae9 from=translated src=- shape=f20a83ff vocab=7239895f
+-/
 @[simp]
 theorem relativeAdeleInfiniteComponent_tmul
     (v : InfinitePlace K)
@@ -101,6 +110,9 @@ def finiteAdeleComponentAlgHom
       intro x
       rfl }
 
+/--
+@isnad1 id=eq.0h3v.s9.534f35348812 from=translated src=- shape=2c9cace6 vocab=5de559a0
+-/
 @[simp]
 theorem finiteAdeleComponentAlgHom_apply
     (v : HeightOneSpectrum (𝓞 K))
@@ -108,6 +120,9 @@ theorem finiteAdeleComponentAlgHom_apply
     finiteAdeleComponentAlgHom v a = a.2 v :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s10.606bf1ec9cdb from=translated src=- shape=baa3a180 vocab=ac10e221
+-/
 @[simp]
 theorem finiteAdeleComponentAlgHom_algebraMap
     (v : HeightOneSpectrum (𝓞 K)) (x : K) :
@@ -129,6 +144,9 @@ def relativeAdeleFiniteComponent
     (AlgHom.id K L)
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h5v.s11.907b86b10875 from=translated src=- shape=98aac0ef vocab=5be24ef8
+-/
 @[simp]
 theorem relativeAdeleFiniteComponent_tmul
     (v : HeightOneSpectrum (𝓞 K))
@@ -148,6 +166,9 @@ def RelativeIdeleGroup.infiniteComponent
       (K := K) (L := L) v).toRingHom
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h4v.s12.0e2cc9621359 from=translated src=- shape=89a2dbfa vocab=d5b31639
+-/
 @[simp]
 theorem RelativeIdeleGroup.infiniteComponent_coe
     (v : InfinitePlace K)
@@ -171,6 +192,9 @@ def RelativeIdeleGroup.finiteComponent
       (K := K) (L := L) v).toRingHom
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h4v.s12.43f9b981a08b from=translated src=- shape=e08da81b vocab=f61ae44b
+-/
 @[simp]
 theorem RelativeIdeleGroup.finiteComponent_coe
     (v : HeightOneSpectrum (𝓞 K))
@@ -214,7 +238,9 @@ def infiniteLocalFieldIdeleInclusion
 
 omit [NumberField L] [FiniteDimensional K L] in
 /-- The infinite component of a globally included idele is scalar
-extension of its ordinary infinite component.-/
+extension of its ordinary infinite component.
+@isnad1 id=eq.0h4v.s13.66409f59f33a from=translated src=- shape=bd06ef47 vocab=69f2b40e
+-/
 @[simp]
 theorem RelativeIdeleGroup.infiniteComponent_inclusion
     (v : InfinitePlace K)
@@ -230,7 +256,9 @@ theorem RelativeIdeleGroup.infiniteComponent_inclusion
 
 omit [NumberField L] [FiniteDimensional K L] in
 /-- The infinite component of a principal relative idele is the
-diagonal extension-field unit in the local tensor algebra.-/
+diagonal extension-field unit in the local tensor algebra.
+@isnad1 id=eq.0h4v.s13.43192c8fc003 from=translated src=- shape=f423c350 vocab=757d3fdc
+-/
 @[simp]
 theorem RelativeIdeleGroup.infiniteComponent_principalIdele
     (v : InfinitePlace K) (x : Lˣ) :
@@ -255,7 +283,9 @@ def localIdeleInclusion
 
 omit [NumberField L] [FiniteDimensional K L] in
 /-- The local component of the globally included idele is the scalar
-extension of its ordinary local component.-/
+extension of its ordinary local component.
+@isnad1 id=eq.0h4v.s13.afb70897792b from=translated src=- shape=a1a43062 vocab=dc16d6ef
+-/
 @[simp]
 theorem RelativeIdeleGroup.finiteComponent_inclusion
     (v : HeightOneSpectrum (𝓞 K))
@@ -280,7 +310,9 @@ def localFieldIdeleInclusion
 
 omit [NumberField L] [FiniteDimensional K L] in
 /-- The local component of a principal relative idele is the diagonal
-extension-field unit in the local tensor algebra.-/
+extension-field unit in the local tensor algebra.
+@isnad1 id=eq.0h4v.s13.e30667c3402e from=translated src=- shape=f64b1e9d vocab=410a04e7
+-/
 @[simp]
 theorem RelativeIdeleGroup.finiteComponent_principalIdele
     (v : HeightOneSpectrum (𝓞 K)) (x : Lˣ) :

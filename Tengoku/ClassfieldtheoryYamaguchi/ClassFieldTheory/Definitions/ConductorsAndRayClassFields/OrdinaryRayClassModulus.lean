@@ -25,7 +25,9 @@ def ordinaryRayClassModulus
   finitePart := 0
   infinitePart := ∅
 
-/-- The ordinary class-group modulus is below every ray modulus.-/
+/-- The ordinary class-group modulus is below every ray modulus.
+@isnad1 id=le.0h2v.s4.534cf713a1d7 from=translated src=- shape=1c74aab3 vocab=51b09540
+-/
 theorem ordinaryRayClassModulus_le
     (K : Type u) [Field K] [NumberField K]
     (m : RayClassModulus K) :

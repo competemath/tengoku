@@ -61,7 +61,9 @@ noncomputable def finiteNormalClosureMaximalAbelianSubfield :
       _root_.commutator Gal(finiteNormalClosure K L / K))
 
 /-- The maximal abelian subfield is contained in the distinguished copy of
-the original extension.-/
+the original extension.
+@isnad1 id=le.0h2v.s9.d944100fd170 from=translated src=- shape=2e09bba1 vocab=270252c9
+-/
 theorem finiteNormalClosureMaximalAbelianSubfield_le_originalField :
     finiteNormalClosureMaximalAbelianSubfield K L ≤
       finiteNormalClosureOriginalField K L := by
@@ -84,7 +86,9 @@ theorem finiteNormalClosureMaximalAbelianSubfield_le_originalField :
       exact IsGalois.fixedField_fixingSubgroup E
 
 /-- Every abelian Galois intermediate field contained in the distinguished
-original field is contained in the maximal abelian subfield.-/
+original field is contained in the maximal abelian subfield.
+@isnad1 id=le.1h3v.s11.d9c4e009e097 from=translated src=- shape=77fb5499 vocab=4e673007
+-/
 theorem finiteNormalClosureMaximalAbelianSubfield_greatest
     (F : IntermediateField K (finiteNormalClosure K L))
     [IsAbelianGalois K F]

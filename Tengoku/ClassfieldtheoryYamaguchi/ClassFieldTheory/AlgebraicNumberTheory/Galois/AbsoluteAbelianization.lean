@@ -36,7 +36,9 @@ def absoluteCommutatorClosure :
     (commutator Gal(SeparableClosure K / K)).topologicalClosure
   isClosed' := Subgroup.isClosed_topologicalClosure _
 
-/-- The topological closure of the absolute commutator subgroup is normal.-/
+/-- The topological closure of the absolute commutator subgroup is normal.
+@isnad1 id=normal.0h1v.s10.97bf806210c9 from=translated src=- shape=faacd8f5 vocab=5a801647
+-/
 instance absoluteCommutatorClosure_normal :
     (absoluteCommutatorClosure K).Normal := by
   change
@@ -48,7 +50,9 @@ def maximalAbelianExtension :
     IntermediateField K (SeparableClosure K) :=
   IntermediateField.fixedField (absoluteCommutatorClosure K).toSubgroup
 
-/-- The maximal abelian subextension is Galois over the base field.-/
+/-- The maximal abelian subextension is Galois over the base field.
+@isnad1 id=isgalois.0h1v.s9.2b4b6b6aff15 from=translated src=- shape=37b33571 vocab=c80ca2f2
+-/
 instance maximalAbelianExtension_isGalois :
     IsGalois K (maximalAbelianExtension K) := by
   apply (InfiniteGalois.normal_iff_isGalois
@@ -68,7 +72,9 @@ noncomputable def absoluteAbelianizationMulEquivMaximalAbelianGalois :
   InfiniteGalois.normalAutEquivQuotient (absoluteCommutatorClosure K)
 
 /-- The algebraic equivalence sends a quotient class to restriction to the
-maximal abelian extension.-/
+maximal abelian extension.
+@isnad1 id=eq.0h2v.s17.baa19a9258db from=translated src=- shape=b586675f vocab=d065ebe2
+-/
 @[simp]
 theorem absoluteAbelianizationMulEquivMaximalAbelianGalois_mk
     (sigma : Gal(SeparableClosure K / K)) :
@@ -77,7 +83,9 @@ theorem absoluteAbelianizationMulEquivMaximalAbelianGalois_mk
       AlgEquiv.restrictNormalHom (maximalAbelianExtension K) sigma :=
   rfl
 
-/-- The algebraic equivalence from the absolute abelianization is continuous.-/
+/-- The algebraic equivalence from the absolute abelianization is continuous.
+@isnad1 id=continuo.0h1v.s16.48d0f18d68a6 from=translated src=- shape=e7c4bf00 vocab=375b2937
+-/
 theorem absoluteAbelianizationMulEquivMaximalAbelianGalois_continuous :
     Continuous (absoluteAbelianizationMulEquivMaximalAbelianGalois K) := by
   apply (QuotientGroup.isQuotientMap_mk
@@ -106,7 +114,9 @@ noncomputable def absoluteTopologicalAbelianizationEquivMaximalAbelianGalois :
       map_mul' :=
         (absoluteAbelianizationMulEquivMaximalAbelianGalois K).map_mul }
 
-/-- The absolute topological abelianization is totally disconnected.-/
+/-- The absolute topological abelianization is totally disconnected.
+@isnad1 id=totallyd.0h1v.s11.36255af5bf52 from=translated src=- shape=7c5d9ad3 vocab=62f5cb76
+-/
 instance absoluteTopologicalAbelianization_totallyDisconnectedSpace :
     TotallyDisconnectedSpace
       (TopologicalAbelianization Gal(SeparableClosure K / K)) :=
@@ -114,7 +124,9 @@ instance absoluteTopologicalAbelianization_totallyDisconnectedSpace :
     (absoluteTopologicalAbelianizationEquivMaximalAbelianGalois K).symm.toHomeomorph
 
 /-- Every finite abelian intermediate field of the separable closure is
-contained in the maximal abelian extension.-/
+contained in the maximal abelian extension.
+@isnad1 id=le.0h2v.s11.1196561f7176 from=translated src=- shape=025fb784 vocab=8f6a4fd4
+-/
 theorem finiteAbelianIntermediateField_le_maximalAbelianExtension
     (E : IntermediateField K (SeparableClosure K))
     [FiniteDimensional K E] [IsAbelianGalois K E] :

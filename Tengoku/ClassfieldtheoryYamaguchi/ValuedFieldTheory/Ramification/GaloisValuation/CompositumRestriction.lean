@@ -30,7 +30,9 @@ universe u v
 variable (K : Type u) {P : Type v} [Field K] [Field P] [Algebra K P]
 
 /-- Restriction to two normal intermediate fields is jointly injective when
-the two fields generate the ambient field.-/
+the two fields generate the ambient field.
+@isnad1 id=injectiv.1h4v.s13.3768238297d1 from=translated src=- shape=701e7ae6 vocab=b23cb178
+-/
 theorem restrictNormalHom_prod_injective_of_sup_eq_top
     (E₁ E₂ : IntermediateField K P) [Normal K E₁] [Normal K E₂]
     (hsup : E₁ ⊔ E₂ = ⊤) :
@@ -59,7 +61,9 @@ universe w
 
 /-- If two normal intermediate fields generate a third intermediate field in
 a common ambient extension, restriction from the generated field to the two
-factors is jointly injective.-/
+factors is jointly injective.
+@isnad1 id=injectiv.3h5v.s14.f4a96dbd626d from=translated src=- shape=d13204f7 vocab=61045f81
+-/
 theorem intermediateFieldRestrictNormalHom_prod_injective_of_sup_eq
     {Omega : Type w} [Field Omega] [Algebra K Omega]
     (E₁ E₂ F : IntermediateField K Omega)
@@ -151,7 +155,9 @@ theorem intermediateFieldRestrictNormalHom_prod_injective_of_sup_eq
         (AlgEquiv.restrictNormal_commutes τ E₂F x).symm
 
 /-- Two subgroups are equal when one jointly injective pair of homomorphisms
-has equal right images and both left images are trivial.-/
+has equal right images and both left images are trivial.
+@isnad1 id=eq.4h7v.s7.26a86fbd53bd from=translated src=- shape=995b27c7 vocab=7e0505ea
+-/
 theorem subgroup_eq_of_prod_map_injective_of_left_maps_eq_bot
     {G G₁ G₂ : Type*} [Group G] [Group G₁] [Group G₂]
     (f₁ : G →* G₁) (f₂ : G →* G₂)

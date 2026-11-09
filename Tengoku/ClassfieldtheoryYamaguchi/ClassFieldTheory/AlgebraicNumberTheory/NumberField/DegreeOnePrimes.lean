@@ -21,7 +21,9 @@ open NumberField IsDedekindDomain Polynomial
 namespace AlgebraicNumberTheory.PrimeSelection
 
 /-- A good prime divisor of a primitive polynomial value gives an actual
-prime ideal whose residue degree is one.-/
+prime ideal whose residue degree is one.
+@isnad1 id=ex.2h4v.s7.9fdce8864148 from=translated src=- shape=78989b10 vocab=3adae0f2
+-/
 theorem exists_degreeOnePrime_of_dvd_minpoly_eval
     (K : Type*) [Field K] [NumberField K]
     (θ : 𝓞 K) (q : ℕ) [Fact q.Prime]
@@ -53,7 +55,9 @@ theorem exists_degreeOnePrime_of_dvd_minpoly_eval
       hGood hFactor
 
 /-- Every number field has an unramified prime of residue degree one above a
-new rational prime, outside an arbitrary finite set.-/
+new rational prime, outside an arbitrary finite set.
+@isnad1 id=ex.0h2v.s7.d13847859785 from=translated src=- shape=e6953e95 vocab=e77c92e4
+-/
 theorem exists_unramified_degreeOnePrime_not_mem
     (K : Type*) [Field K] [NumberField K] (bad : Finset ℕ) :
     ∃ q : ℕ, q.Prime ∧ q ∉ bad ∧

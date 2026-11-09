@@ -21,7 +21,9 @@ set_option autoImplicit false
 namespace Valuation
 
 /-- A nontrivial valuation stays nontrivial after passing to any valuation
-which extends it along an algebra map.-/
+which extends it along an algebra map.
+@isnad1 id=isnontri.0h6v.s6.d287066ed734 from=translated src=- shape=a0011154 vocab=0b827077
+-/
 theorem IsNontrivial.of_hasExtension
     {R A ΓR ΓA : Type*}
     [CommRing R] [Ring A]
@@ -72,7 +74,9 @@ class ValuativeExtension (K : Type u) (L : Type v) [Field K] [ValuativeRel K]
   integer_isIntegral : ∀ x : 𝒪[L], IsIntegral 𝒪[K] (x : L)
 
 /-- An integral-closure identification of valuation rings makes the target valuation an extension of
-the base valuation.-/
+the base valuation.
+@isnad1 id=valuativ.0h2v.s8.2feeb452c12e from=translated src=- shape=8f89e7a4 vocab=606662fd
+-/
 instance valuativeExtensionOfIsIntegralClosure
     (K : Type u) (L : Type v) [Field K] [ValuativeRel K]
     [Field L] [ValuativeRel L] [Algebra K L] [IsIntegralClosure 𝒪[L] 𝒪[K] L] :

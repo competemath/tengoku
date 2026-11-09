@@ -30,7 +30,9 @@ namespace AlgebraicNumberTheory
 universe u v
 
 /-- An extension with infinitely many base-field automorphisms contains
-finite Galois intermediate fields of arbitrarily large degree.-/
+finite Galois intermediate fields of arbitrarily large degree.
+@isnad1 id=ex.0h3v.s8.705257af3b4b from=translated src=- shape=515a589c vocab=fd231d82
+-/
 theorem exists_finiteGaloisIntermediateField_finrank_ge_of_infinite_aut
     (K : Type u) (L : Type v) [Field K] [Field L] [Algebra K L]
     [IsGalois K L] [Infinite (L ≃ₐ[K] L)] (N : ℕ) :
@@ -56,7 +58,9 @@ theorem exists_finiteGaloisIntermediateField_finrank_ge_of_infinite_aut
 
 /-- An infinite Galois intermediate extension contains ambient finite
 Galois intermediate fields of arbitrarily large degree. The actual lift
-keeps the field inclusion available to arithmetic consumers.-/
+keeps the field inclusion available to arithmetic consumers.
+@isnad1 id=ex.0h4v.s9.af93b25f6d66 from=translated src=- shape=abc6c256 vocab=fd231d82
+-/
 theorem exists_finiteGaloisIntermediateField_le_finrank_ge_of_infinite_aut
     (K : Type u) (Ω : Type v) [Field K] [Field Ω] [Algebra K Ω]
     (L : IntermediateField K Ω) [IsGalois K L] [Infinite (L ≃ₐ[K] L)]

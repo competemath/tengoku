@@ -20,7 +20,9 @@ namespace ClassFieldTheory
 
 universe u
 
-/-- The class of an inverse is the inverse class.-/
+/-- The class of an inverse is the inverse class.
+@isnad1 id=eq.0h3v.s8.c0d45094df0a from=translated src=- shape=88ded5df vocab=2c0bbeb1
+-/
 @[simp]
 theorem powerClass_inv
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ) :

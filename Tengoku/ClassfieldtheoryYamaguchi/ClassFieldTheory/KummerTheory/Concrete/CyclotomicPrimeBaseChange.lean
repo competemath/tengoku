@@ -40,7 +40,9 @@ variable
     [Algebra K L] [IsGalois K L]
 
 /-- Over a characteristic-zero field, the concrete cyclotomic field
-of order `m` has degree at most `φ(m)`.-/
+of order `m` has degree at most `φ(m)`.
+@isnad1 id=le.1h2v.s6.c3531a8df649 from=translated src=- shape=b398e13b vocab=f1539800
+-/
 theorem cyclotomicField_finrank_le_totient
     (F : Type*) [Field F] [CharZero F]
     (m : ℕ) (hm : 0 < m) :
@@ -100,12 +102,18 @@ degrees.-/
 abbrev PrimeCyclotomicPushout (p : ℕ) :=
   PrimeCyclotomicBase K p ⊗[K] L
 
+/--
+@isnad1 id=finitedi.0h2v.s6.44cf647a1dd2 from=translated src=- shape=4e98458c vocab=d3cdbc79
+-/
 noncomputable instance primeCyclotomicBaseFiniteDimensional
     (p : ℕ) [NeZero p] :
     FiniteDimensional K (PrimeCyclotomicBase K p) :=
   IsCyclotomicExtension.finiteDimensional
     {p} K (PrimeCyclotomicBase K p)
 
+/--
+@isnad1 id=numberfi.0h2v.s4.2ec920f64ea6 from=translated src=- shape=ab40980f vocab=37701325
+-/
 noncomputable instance primeCyclotomicBaseNumberField
     (p : ℕ) [NeZero p] :
     NumberField (PrimeCyclotomicBase K p) :=
@@ -113,7 +121,9 @@ noncomputable instance primeCyclotomicBaseNumberField
     (PrimeCyclotomicBase K p)
 
 /-- Over a characteristic-zero field, the degree of `K(μ_p)` is
-strictly smaller than the prime `p`.-/
+strictly smaller than the prime `p`.
+@isnad1 id=lt.1h2v.s6.b13c2bfb9ebf from=translated src=- shape=be5f3311 vocab=f2f7d0a8
+-/
 theorem primeCyclotomicBase_finrank_lt
     (p : ℕ) (hp : p.Prime) :
     Module.finrank K (PrimeCyclotomicBase K p) < p := by
@@ -127,7 +137,9 @@ theorem primeCyclotomicBase_finrank_lt
   exact hle.trans_lt (Nat.sub_one_lt hp.ne_zero)
 
 omit [NumberField L] [IsGalois K L] in
-/-- The cyclotomic degree is coprime to a prime-degree extension.-/
+/-- The cyclotomic degree is coprime to a prime-degree extension.
+@isnad1 id=coprime.2h3v.s7.d55b42a85d76 from=translated src=- shape=f9dcbf4f vocab=253dbd5c
+-/
 theorem primeCyclotomicBase_finrank_coprime
     (p : ℕ) (hp : p.Prime)
     (hdegree : Module.finrank K L = p) :
@@ -170,7 +182,9 @@ noncomputable def primeCyclotomicPushoutAlgebra
   exact Algebra.TensorProduct.leftAlgebra
 
 omit [IsGalois K L] in
-/-- The pushout has the expected degree over the cyclotomic base.-/
+/-- The pushout has the expected degree over the cyclotomic base.
+@isnad1 id=eq.2h3v.s8.f26bfa177653 from=translated src=- shape=17d86973 vocab=13d8f4d8
+-/
 theorem primeCyclotomicPushout_finrank
     (p : ℕ) (hp : p.Prime)
     (hdegree : Module.finrank K L = p) :
@@ -194,7 +208,9 @@ theorem primeCyclotomicPushout_finrank
     primeCyclotomicPushoutAlgebra K L p hp hdegree
   rw [Module.finrank_baseChange, hdegree]
 
-/-- The prime cyclotomic pushout is Galois over `K(μ_p)`.-/
+/-- The prime cyclotomic pushout is Galois over `K(μ_p)`.
+@isnad1 id=isgalois.2h3v.s6.3b900aef89ba from=translated src=- shape=422f06ba vocab=140d55a7
+-/
 theorem primeCyclotomicPushout_isGalois
     (p : ℕ) (hp : p.Prime)
     (hdegree : Module.finrank K L = p) :
@@ -222,7 +238,9 @@ theorem primeCyclotomicPushout_isGalois
         (K := K) (L := L) p hp hdegree)
 
 omit [IsGalois K L] in
-/-- The prime cyclotomic pushout is again a number field.-/
+/-- The prime cyclotomic pushout is again a number field.
+@isnad1 id=numberfi.2h3v.s6.24aea5688cd3 from=translated src=- shape=ddd32597 vocab=a7ace77c
+-/
 theorem primeCyclotomicPushout_numberField
     (p : ℕ) (hp : p.Prime)
     (hdegree : Module.finrank K L = p) :
@@ -246,7 +264,9 @@ theorem primeCyclotomicPushout_numberField
       (PrimeCyclotomicBase K p)
       (PrimeCyclotomicPushout K L p)
 
-/-- The cyclotomic base contains a primitive `p`-th root of unity.-/
+/-- The cyclotomic base contains a primitive `p`-th root of unity.
+@isnad1 id=nonempty.1h2v.s5.b9b353728d34 from=translated src=- shape=c4ee3a55 vocab=f96d7780
+-/
 theorem primeCyclotomicBase_primitiveRoots_nonempty
     (p : ℕ) (hp : p.Prime) :
     (primitiveRoots p (PrimeCyclotomicBase K p)).Nonempty := by
@@ -257,7 +277,9 @@ theorem primeCyclotomicBase_primitiveRoots_nonempty
   exact ⟨ζ, (mem_primitiveRoots hp.pos).2 hζ⟩
 
 /-- The Galois group after cyclotomic base change is cyclic of prime
-order.-/
+order.
+@isnad1 id=iscyclic.2h3v.s9.4fce43e663fc from=translated src=- shape=e02712c5 vocab=513c02f7
+-/
 theorem primeCyclotomicPushout_isCyclic
     (p : ℕ) (hp : p.Prime)
     (hdegree : Module.finrank K L = p) :

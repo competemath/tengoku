@@ -52,14 +52,18 @@ def principalUnits (K : Type u) [Field K] [ValuativeRel K] (n : Nat) :
     exact (𝓂[K] ^ n : Ideal 𝒪[K]).neg_mem (Ideal.mul_mem_left _ _ ha)
 
 /-- A valuation-ring unit lies in the `n`-th principal-unit group exactly when it is congruent to
-one modulo the `n`-th maximal-ideal power.-/
+one modulo the `n`-th maximal-ideal power.
+@isnad1 id=iff.0h3v.s12.d68ffe6ca326 from=translated src=- shape=42bbaba2 vocab=fd8da279
+-/
 theorem mem_principalUnits_iff (K : Type u) [Field K] [ValuativeRel K]
     (u : 𝒪[K]ˣ) (n : Nat) :
     u ∈ principalUnits K n ↔ ((u : 𝒪[K]) - 1) ∈ (𝓂[K] ^ n : Ideal 𝒪[K]) :=
   Iff.rfl
 
 /-- An automorphism of the valuation integer ring preserves the principal-unit
-filtration whenever it preserves the corresponding maximal-ideal power.-/
+filtration whenever it preserves the corresponding maximal-ideal power.
+@isnad1 id=mem.2h4v.s14.9e790ce6aebc from=translated src=- shape=b4884440 vocab=a937991f
+-/
 theorem principalUnits_integerRingEquiv_mem (K : Type u) [Field K] [ValuativeRel K]
     (n : Nat) (σ𝒪 : 𝒪[K] ≃+* 𝒪[K])
     (hpow : ∀ x : 𝒪[K],
@@ -71,20 +75,26 @@ theorem principalUnits_integerRingEquiv_mem (K : Type u) [Field K] [ValuativeRel
     hpow ((u : 𝒪[K]) - 1) hu
   simpa using hmem
 
-/-- The zeroth principal-unit group is the full unit group of the valuation ring.-/
+/-- The zeroth principal-unit group is the full unit group of the valuation ring.
+@isnad1 id=eq.0h1v.s10.48a656980c7a from=translated src=- shape=7c18c9c3 vocab=eb44b215
+-/
 @[simp] theorem principalUnits_zero (K : Type u) [Field K] [ValuativeRel K] :
     principalUnits K 0 = ⊤ := by
   ext u
   simp [principalUnits]
 
-/-- Principal-unit groups decrease as the filtration index increases.-/
+/-- Principal-unit groups decrease as the filtration index increases.
+@isnad1 id=le.1h3v.s11.8c3b61cc6e66 from=translated src=- shape=01896289 vocab=b7b1b8c7
+-/
 theorem principalUnits_antitone (K : Type u) [Field K] [ValuativeRel K]
     {m n : Nat} (h : m ≤ n) :
     principalUnits K n ≤ principalUnits K m := by
   intro u hu
   exact Ideal.pow_le_pow_right h hu
 
-/-- Each successor principal-unit group is contained in the preceding filtration step.-/
+/-- Each successor principal-unit group is contained in the preceding filtration step.
+@isnad1 id=le.0h2v.s11.77c40d891666 from=translated src=- shape=12692e30 vocab=df64578c
+-/
 theorem principalUnits_succ_le (K : Type u) [Field K] [ValuativeRel K] (n : Nat) :
     principalUnits K (n + 1) ≤ principalUnits K n :=
   principalUnits_antitone K (Nat.le_succ n)
@@ -118,7 +128,9 @@ def integerUnitsPrincipalQuotMk (K : Type u) [Field K] [ValuativeRel K]
   exact QuotientGroup.mk' (principalUnits K n)
 
 /-- The concrete quotient equivalence sends the class of a valuation-ring unit to its quotient-group
-class.-/
+class.
+@isnad1 id=eq.0h3v.s15.e27a574b33f6 from=translated src=- shape=a2aa43e3 vocab=9162964b
+-/
 @[simp]
 theorem integerUnitsPrincipalQuotConcreteEquiv_mk
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (u : 𝒪[K]ˣ) :
@@ -127,20 +139,26 @@ theorem integerUnitsPrincipalQuotConcreteEquiv_mk
       QuotientGroup.mk u :=
   rfl
 
-/-- Every principal-unit quotient class has a valuation-ring unit representative.-/
+/-- Every principal-unit quotient class has a valuation-ring unit representative.
+@isnad1 id=surjecti.0h2v.s11.d08ab5289c36 from=translated src=- shape=5eb022e2 vocab=4842dfe3
+-/
 theorem integerUnitsPrincipalQuotMk_surjective
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) :
     Function.Surjective (integerUnitsPrincipalQuotMk K n) :=
   QuotientGroup.mk'_surjective (principalUnits K n)
 
-/-- The kernel of the principal-unit quotient map is the `n`-th principal-unit subgroup.-/
+/-- The kernel of the principal-unit quotient map is the `n`-th principal-unit subgroup.
+@isnad1 id=eq.0h2v.s10.8dcb2c719955 from=translated src=- shape=b3d8fad3 vocab=055b4892
+-/
 theorem integerUnitsPrincipalQuotMk_ker
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) :
     MonoidHom.ker (integerUnitsPrincipalQuotMk K n) = principalUnits K n :=
   QuotientGroup.ker_mk' (N := principalUnits K n)
 
 /-- A unit maps to the identity quotient class exactly when it lies in the `n`-th principal-unit
-subgroup.-/
+subgroup.
+@isnad1 id=iff.0h3v.s12.47d46c776608 from=translated src=- shape=c4e9abcf vocab=664dee74
+-/
 @[simp]
 theorem integerUnitsPrincipalQuotMk_eq_one_iff
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (u : 𝒪[K]ˣ) :
@@ -149,7 +167,9 @@ theorem integerUnitsPrincipalQuotMk_eq_one_iff
   exact QuotientGroup.eq_one_iff (N := principalUnits K n) u
 
 /-- Two units determine the same quotient class exactly when their quotient lies in the `n`-th
-principal-unit subgroup.-/
+principal-unit subgroup.
+@isnad1 id=iff.0h4v.s13.df85fe07e897 from=translated src=- shape=73effcd6 vocab=2f4bef8b
+-/
 @[simp]
 theorem integerUnitsPrincipalQuotMk_eq_iff_div_mem
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (u v : 𝒪[K]ˣ) :
@@ -169,7 +189,9 @@ def integerUnitsPrincipalQuotLift
   exact QuotientGroup.lift (principalUnits K n) f h
 
 /-- A homomorphism lifted from the principal-unit quotient agrees with the original map on
-representatives.-/
+representatives.
+@isnad1 id=eq.1h5v.s13.5f8a31d884b4 from=translated src=- shape=13d9a368 vocab=9a2d274b
+-/
 @[simp]
 theorem integerUnitsPrincipalQuotLift_mk
     {K : Type u} {M : Type*} [Field K] [ValuativeRel K] [Group M]
@@ -179,7 +201,9 @@ theorem integerUnitsPrincipalQuotLift_mk
         (integerUnitsPrincipalQuotMk K n u) = f u :=
   rfl
 
-/-- Algebra identity used to prove multiplicative closure of principal units.-/
+/-- Algebra identity used to prove multiplicative closure of principal units.
+@isnad1 id=eq.0h3v.s12.c5fe52ea4a5c from=translated src=- shape=a3432299 vocab=3f7d3471
+-/
 lemma unit_mul_sub_one_eq (K : Type u) [Field K] [ValuativeRel K] (a b : 𝒪[K]ˣ) :
     ((a * b : 𝒪[K]ˣ) : 𝒪[K]) - 1 =
       ((a : 𝒪[K]) - 1) * ((b : 𝒪[K]) - 1) +

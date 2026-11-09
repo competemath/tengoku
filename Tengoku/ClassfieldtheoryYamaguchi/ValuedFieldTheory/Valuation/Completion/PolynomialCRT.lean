@@ -62,7 +62,9 @@ noncomputable def adjoinRootProdEquivPi
       (quotientInfAlgEquivPiQuotient I hI)
 
 /-- The product decomposition of an adjoined-root algebra evaluates
-representatives coordinatewise.-/
+representatives coordinatewise.
+@isnad1 id=eq.1h5v.s10.e62befce2bae from=translated src=- shape=c46ca734 vocab=3892cc40
+-/
 @[simp]
 theorem adjoinRootProdEquivPi_mk
     {F : Type u} [Field F] {ι : Type v} [Fintype ι]

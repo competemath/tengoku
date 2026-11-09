@@ -56,7 +56,9 @@ def setFixingSubgroup
           _ = a := Representation.inv_self_apply A.ρ σ a }
 
 /-- For a continuous discrete representation, the stabilizer of one
-coefficient element is closed.-/
+coefficient element is closed.
+@isnad1 id=isclosed.1h3v.s9.40267b65ede4 from=translated src=- shape=b1600b35 vocab=2c84242f
+-/
 theorem isClosed_setOf_representation_fixed
     {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]
     (A : Rep ℤ G) (hcontinuous : IsContinuousDiscreteRepresentation A)
@@ -69,7 +71,9 @@ theorem isClosed_setOf_representation_fixed
   change IsClosed ((fun σ : G => A.ρ σ a) ⁻¹' ({a} : Set A.V))
   exact hsingleton.preimage horbit
 
-/-- The subgroup defining `K(S)` is closed.-/
+/-- The subgroup defining `K(S)` is closed.
+@isnad1 id=isclosed.1h4v.s5.5c777ae7f060 from=translated src=- shape=2778b636 vocab=42f9431d
+-/
 theorem setFixingSubgroup_isClosed
     {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]
     (A : Rep ℤ G) (hcontinuous : IsContinuousDiscreteRepresentation A)
@@ -95,7 +99,9 @@ def closedSetFixingSubgroup
   ⟨setFixingSubgroup A K S, setFixingSubgroup_isClosed A hcontinuous K S⟩
 
 /-- An automorphism lies in the fixing subgroup exactly when it fixes every element
-of the closed set.-/
+of the closed set.
+@isnad1 id=iff.1h5v.s9.02be64509588 from=translated src=- shape=b78eb072 vocab=bffe4d16
+-/
 @[simp]
 theorem mem_closedSetFixingSubgroup_iff
     {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]

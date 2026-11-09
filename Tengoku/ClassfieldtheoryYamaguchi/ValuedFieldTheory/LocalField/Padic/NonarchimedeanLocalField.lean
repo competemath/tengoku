@@ -28,7 +28,9 @@ namespace LocalFieldTheory.Padic
 variable (p : ℕ) [Fact p.Prime]
 
 /-- The canonical multiplicative valuation of `ℚ_p` is at most one exactly
-when the p-adic norm is at most one.-/
+when the p-adic norm is at most one.
+@isnad1 id=iff.0h2v.s6.e0a67b7b857f from=translated src=- shape=99c43ea9 vocab=d9aa7dc7
+-/
 theorem mulValuation_le_one_iff_norm_le_one
     (x : ℚ_[p]) :
     Padic.mulValuation (p := p) x ≤ 1 ↔ ‖x‖ ≤ 1 := by
@@ -41,7 +43,9 @@ theorem mulValuation_le_one_iff_norm_le_one
     rw [ite_eq_right hx, ← WithZero.exp_zero, WithZero.exp_le_exp, neg_nonpos]
 
 /-- The integer ring defined by the canonical valuative relation on `ℚ_p`
-consists exactly of the elements of norm at most one.-/
+consists exactly of the elements of norm at most one.
+@isnad1 id=iff.0h2v.s6.98104e2b83b8 from=translated src=- shape=ffa2861b vocab=ef12438e
+-/
 theorem integer_mem_iff_norm_le_one (x : ℚ_[p]) :
     x ∈ (ValuativeRel.valuation ℚ_[p]).integer ↔ ‖x‖ ≤ 1 := by
   rw [Valuation.mem_integer_iff,
@@ -50,7 +54,9 @@ theorem integer_mem_iff_norm_le_one (x : ℚ_[p]) :
     mulValuation_le_one_iff_norm_le_one]
 
 /-- The norm-induced valuation on `ℚ_p` is compatible with the canonical
-p-adic valuation ordering.-/
+p-adic valuation ordering.
+@isnad1 id=compatib.0h1v.s5.d480aacdb682 from=translated src=- shape=7920a173 vocab=1884877b
+-/
 theorem normedFieldValuation_compatible_padic :
     (NormedField.valuation : Valuation ℚ_[p] NNReal).Compatible := by
   classical
@@ -74,7 +80,9 @@ theorem normedFieldValuation_compatible_padic :
     exact_mod_cast (Fact.out : Nat.Prime p).one_lt
   exact (zpow_right_strictMono₀ hpone).le_iff_le.symm
 
-/-- The usual topology on `ℚ_p` is induced by its canonical valuation.-/
+/-- The usual topology on `ℚ_p` is induced by its canonical valuation.
+@isnad1 id=isvaluat.0h1v.s5.63dc87c4f951 from=translated src=- shape=9ee3c16b vocab=a9303423
+-/
 theorem padicIsValuativeTopology : IsValuativeTopology ℚ_[p] := by
   let v : Valuation ℚ_[p] NNReal := NormedField.valuation
   let : Valued ℚ_[p] NNReal := NormedField.toValued
@@ -84,7 +92,9 @@ theorem padicIsValuativeTopology : IsValuativeTopology ℚ_[p] := by
   exact Valued.mem_nhds_zero
 
 /-- Mathlib's p-adic field is a nonarchimedean local field for the
-topology-first interface used by local class field theory.-/
+topology-first interface used by local class field theory.
+@isnad1 id=isnonarc.0h1v.s5.77189d92928c from=translated src=- shape=9ee3c16b vocab=eb4a1927
+-/
 noncomputable instance padicIsNonarchimedeanLocalField :
     IsNonarchimedeanLocalField ℚ_[p] where
   toIsValuativeTopology := padicIsValuativeTopology p

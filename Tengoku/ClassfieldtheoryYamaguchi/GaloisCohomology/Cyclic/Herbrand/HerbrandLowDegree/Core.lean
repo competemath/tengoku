@@ -42,7 +42,9 @@ noncomputable def herbrandQuotient (σ : G)
     [Finite (HerbrandH0 G A)] [Finite (HerbrandHMinusOne G A σ)] : ℚ :=
   (Nat.card (HerbrandH0 G A) : ℚ) / (Nat.card (HerbrandHMinusOne G A σ) : ℚ)
 
-/-- The Herbrand quotient is definitionally the ratio `#H⁰ / #H^{-1}`.-/
+/-- The Herbrand quotient is definitionally the ratio `#H⁰ / #H^{-1}`.
+@isnad1 id=eq.0h3v.s6.1677f4e33062 from=translated src=- shape=7a7037da vocab=79fb4e7c
+-/
 theorem herbrandQuotient_eq_card_ratio (σ : G)
     [Finite (HerbrandH0 G A)] [Finite (HerbrandHMinusOne G A σ)] :
     herbrandQuotient (G := G) (A := A) σ =
@@ -51,7 +53,9 @@ theorem herbrandQuotient_eq_card_ratio (σ : G)
   rfl
 
 /-- If the actual low-degree quotients have the same finite cardinality, then
-the Herbrand quotient is `1`.-/
+the Herbrand quotient is `1`.
+@isnad1 id=eq.1h3v.s6.876c2682cac0 from=translated src=- shape=8e73e7c1 vocab=191fdb99
+-/
 theorem herbrandQuotient_eq_one_of_card_eq (σ : G)
     [Finite (HerbrandH0 G A)] [Finite (HerbrandHMinusOne G A σ)]
     (hcard : Nat.card (HerbrandH0 G A) = Nat.card (HerbrandHMinusOne G A σ)) :
@@ -63,7 +67,9 @@ theorem herbrandQuotient_eq_one_of_card_eq (σ : G)
   exact div_self hden
 
 /-- Herbrand-quotient theory Herbrand-quotient multiplicativity: the Herbrand quotient of a finite
-cyclic module is `1`.-/
+cyclic module is `1`.
+@isnad1 id=eq.1h3v.s6.b487dfa52c72 from=translated src=- shape=caa5c01d vocab=97b3b625
+-/
 theorem herbrandQuotient_finite_module_eq_one
     (σ : G) (hgen : ∀ g : G, g ∈ Subgroup.zpowers σ) [Finite A] :
     herbrandQuotient (G := G) (A := A) σ = 1 := by
@@ -73,7 +79,9 @@ theorem herbrandQuotient_finite_module_eq_one
 /-- Herbrand-quotient theory Herbrand-quotient multiplicativity: Herbrand quotient multiplicativity
 for a short exact sequence of multiplicative `G`-modules, proved from the
 standard two-periodic Tate complex and mathlib's homology long exact
-sequence.-/
+sequence.
+@isnad1 id=eq.6h7v.s9.57822734e30f from=translated src=- shape=3f6cf7e5 vocab=03931208
+-/
 theorem herbrandQuotient_exact_multiplicative
     {G A B C : Type}
     [Group G] [Fintype G]

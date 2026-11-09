@@ -40,6 +40,9 @@ def supportedAt (S : Set (HeightOneSpectrum (𝓞 K))) :
   inv_mem' ha v hv := Subgroup.inv_mem _
     (ha v hv)
 
+/--
+@isnad1 id=iff.0h3v.s12.040ed7211cb0 from=translated src=- shape=da72d5d2 vocab=2d300e8a
+-/
 @[simp]
 theorem mem_supportedAt_iff
     (S : Set (HeightOneSpectrum (𝓞 K)))
@@ -49,12 +52,18 @@ theorem mem_supportedAt_iff
         a v ∈ (v.adicCompletionIntegers K).units :=
   Iff.rfl
 
+/--
+@isnad1 id=le.1h3v.s11.3b04a56f9815 from=translated src=- shape=9fbe3fda vocab=c2802b28
+-/
 theorem supportedAt_mono {S T : Set (HeightOneSpectrum (𝓞 K))}
     (hST : S ⊆ T) :
     supportedAt (K := K) S ≤ supportedAt (K := K) T := by
   intro a ha v hv
   exact ha v (fun h => hv (hST h))
 
+/--
+@isnad1 id=mem.0h2v.s12.e063624002af from=translated src=- shape=cb7bb7a2 vocab=26c58eb1
+-/
 theorem mem_supportedAt_nonLocalUnits
     (a : FiniteIdeleGroup K) :
     a ∈ supportedAt (K := K)
@@ -62,7 +71,9 @@ theorem mem_supportedAt_nonLocalUnits
   intro v hv
   simpa using hv
 
-/-- Every finite idele is supported at some finite set of finite places.-/
+/-- Every finite idele is supported at some finite set of finite places.
+@isnad1 id=ex.0h2v.s11.e1c00b96d15c from=translated src=- shape=d3474a53 vocab=91b05dcf
+-/
 theorem exists_finset_supportedAt (a : FiniteIdeleGroup K) :
     ∃ S : Finset (HeightOneSpectrum (𝓞 K)),
       a ∈ supportedAt (K := K) (S : Set _) := by
@@ -74,7 +85,9 @@ theorem exists_finset_supportedAt (a : FiniteIdeleGroup K) :
     exact mem_supportedAt_nonLocalUnits a⟩
 
 /-- The union of the finite-support subgroups is the full finite idele
-group.-/
+group.
+@isnad1 id=eq.0h1v.s13.8ba79b1f1002 from=translated src=- shape=92ba2d3b vocab=469f7f12
+-/
 theorem iSup_finset_supportedAt :
     ⨆ S : Finset (HeightOneSpectrum (𝓞 K)),
       supportedAt (K := K) (S : Set _) = ⊤ := by
@@ -84,7 +97,9 @@ theorem iSup_finset_supportedAt :
   exact Subgroup.mem_iSup_of_mem S ha
 
 /-- The everywhere-integral subgroup is the subgroup supported at the empty
-set.-/
+set.
+@isnad1 id=eq.0h1v.s9.52cb6e6c5040 from=translated src=- shape=f9b15631 vocab=abdfb2b0
+-/
 theorem supportedAt_empty :
     supportedAt (K := K)
       (∅ : Set (HeightOneSpectrum (𝓞 K))) =
@@ -94,7 +109,9 @@ theorem supportedAt_empty :
     simp only [mem_supportedAt_iff, Set.mem_empty_iff_false,
       not_false_eq_true, forall_const, mem_integralSubgroup_iff]
 
-/-- For a finite set `S`, the `S`-finite-ideles form an open subgroup.-/
+/-- For a finite set `S`, the `S`-finite-ideles form an open subgroup.
+@isnad1 id=isopen.0h2v.s11.a5a3ec93f3f1 from=translated src=- shape=9abac219 vocab=ec16ed54
+-/
 theorem isOpen_supportedAt (S : Finset (HeightOneSpectrum (𝓞 K))) :
     IsOpen
       ((supportedAt (K := K) (S : Set _) :
@@ -115,6 +132,9 @@ def supportedAt (S : Set (HeightOneSpectrum (𝓞 K))) :
   Subgroup.comap (MonoidHom.snd _ _)
     (FiniteIdeleGroup.supportedAt S)
 
+/--
+@isnad1 id=iff.0h3v.s12.b42aec063cfb from=translated src=- shape=e492bda4 vocab=a0d7495d
+-/
 @[simp]
 theorem mem_supportedAt_iff
     (S : Set (HeightOneSpectrum (𝓞 K)))
@@ -124,18 +144,26 @@ theorem mem_supportedAt_iff
         a.2 v ∈ (v.adicCompletionIntegers K).units :=
   Iff.rfl
 
+/--
+@isnad1 id=le.1h3v.s11.9ff1e6566b04 from=translated src=- shape=9fbe3fda vocab=69552f50
+-/
 theorem supportedAt_mono {S T : Set (HeightOneSpectrum (𝓞 K))}
     (hST : S ⊆ T) :
     supportedAt (K := K) S ≤ supportedAt (K := K) T :=
   Subgroup.comap_mono
     (FiniteIdeleGroup.supportedAt_mono hST)
 
-/-- Every idele lies in `I_K^S` for some finite set `S`.-/
+/-- Every idele lies in `I_K^S` for some finite set `S`.
+@isnad1 id=ex.0h2v.s11.f41ee3295fb8 from=translated src=- shape=d3474a53 vocab=a4a5a031
+-/
 theorem exists_finset_supportedAt (a : IdeleGroup K) :
     ∃ S : Finset (HeightOneSpectrum (𝓞 K)),
       a ∈ supportedAt (K := K) (S : Set _) :=
   FiniteIdeleGroup.exists_finset_supportedAt a.2
 
+/--
+@isnad1 id=eq.0h1v.s13.d4b55997fd10 from=translated src=- shape=92ba2d3b vocab=412c24f2
+-/
 theorem iSup_finset_supportedAt :
     ⨆ S : Finset (HeightOneSpectrum (𝓞 K)),
       supportedAt (K := K) (S : Set _) = ⊤ := by
@@ -144,6 +172,9 @@ theorem iSup_finset_supportedAt :
   obtain ⟨S, ha⟩ := exists_finset_supportedAt a
   exact Subgroup.mem_iSup_of_mem S ha
 
+/--
+@isnad1 id=eq.0h1v.s9.d487086a3bb2 from=translated src=- shape=f9b15631 vocab=00c96c64
+-/
 theorem supportedAt_empty :
     supportedAt (K := K)
       (∅ : Set (HeightOneSpectrum (𝓞 K))) =
@@ -154,6 +185,9 @@ theorem supportedAt_empty :
       not_false_eq_true, forall_const]
     rfl
 
+/--
+@isnad1 id=isopen.0h2v.s11.fc0998319d00 from=translated src=- shape=9abac219 vocab=05537a29
+-/
 theorem isOpen_supportedAt
     (S : Finset (HeightOneSpectrum (𝓞 K))) :
     IsOpen
@@ -169,6 +203,9 @@ abbrev SUnitGroup
     (S : Finset (HeightOneSpectrum (𝓞 K))) :=
   (S : Set (HeightOneSpectrum (𝓞 K))).unit K
 
+/--
+@isnad1 id=iff.0h3v.s8.fbe5f26134bc from=translated src=- shape=7cc6aa33 vocab=bc08d15a
+-/
 @[simp]
 theorem mem_SUnitGroup_iff
     (S : Finset (HeightOneSpectrum (𝓞 K))) (x : Kˣ) :

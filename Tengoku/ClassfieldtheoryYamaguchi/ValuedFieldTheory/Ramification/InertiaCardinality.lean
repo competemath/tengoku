@@ -31,7 +31,9 @@ open scoped BigOperators
 variable {G ι : Type*} [CommGroup G] [Finite G]
 
 /-- In a finite abelian group, the supremum of two subgroups has cardinality
-at most the product of their cardinalities.-/
+at most the product of their cardinalities.
+@isnad1 id=le.0h3v.s7.24313f2d29f6 from=translated src=- shape=c6bd5fda vocab=ab2f01ac
+-/
 theorem natCard_sup_le_mul_natCard (H J : Subgroup G) :
     Nat.card ↥(H ⊔ J : Subgroup G) ≤ Nat.card H * Nat.card J := by
   let : Finite H := Finite.of_injective (fun x : H ↦ (x : G))
@@ -52,7 +54,9 @@ theorem natCard_sup_le_mul_natCard (H J : Subgroup G) :
   simpa [Nat.card_prod] using Nat.card_le_card_of_surjective f hf
 
 /-- Finite-family form of the inertia-group cardinality bound used in the
-proof of the global cyclotomic inertia argument.-/
+proof of the global cyclotomic inertia argument.
+@isnad1 id=le.0h4v.s7.f80dc7520402 from=translated src=- shape=eff6759e vocab=9f29a7cc
+-/
 theorem natCard_finsetSup_le_prod_natCard
     (s : Finset ι) (I : ι → Subgroup G) :
     Nat.card ↥(s.sup I : Subgroup G) ≤ ∏ i ∈ s, Nat.card (I i) := by

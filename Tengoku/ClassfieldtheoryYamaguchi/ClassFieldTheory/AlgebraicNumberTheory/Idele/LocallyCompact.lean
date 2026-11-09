@@ -29,7 +29,9 @@ noncomputable section
 variable (K : Type*) [Field K] [NumberField K]
 
 /-- An element integral at a finite place can be approximated by an
-algebraic integer to positive valuation.-/
+algebraic integer to positive valuation.
+@isnad1 id=ex.1h3v.s8.442fafce27c4 from=translated src=- shape=664673bd vocab=b3c2b4c0
+-/
 theorem exists_ringOfIntegers_approximation
     (v : HeightOneSpectrum (𝓞 K)) (y : K)
     (hy : v.valuation K y ≤ 1) :
@@ -243,7 +245,9 @@ noncomputable def ringOfIntegersQuotientEquivAdicResidueField
 end GlobalClassFieldTheory.ClassFieldAxiom
 
 /-- The residue field of a number-field completion at a finite place is
-finite.-/
+finite.
+@isnad1 id=finite.0h2v.s6.a5d752fd98ce from=translated src=- shape=e9b77ac2 vocab=c841191c
+-/
 theorem finite_adicCompletion_residueField
     (v : HeightOneSpectrum (𝓞 K)) :
     Finite (Valued.ResidueField (v.adicCompletion K)) := by
@@ -254,7 +258,9 @@ theorem finite_adicCompletion_residueField
       (K := K) v).toEquiv
 
 /-- Every nonarchimedean completion of a number field is a proper metric
-space.-/
+space.
+@isnad1 id=propersp.0h2v.s6.bf1e9035c0d7 from=translated src=- shape=082f7236 vocab=3ecb08b1
+-/
 instance adicCompletionProperSpace
     (v : HeightOneSpectrum (𝓞 K)) :
     ProperSpace (v.adicCompletion K) := by
@@ -264,7 +270,9 @@ instance adicCompletionProperSpace
   change IsDiscreteValuationRing (v.adicCompletionIntegers K)
   infer_instance
 
-/-- The integral unit group in a finite completion is compact.-/
+/-- The integral unit group in a finite completion is compact.
+@isnad1 id=iscompac.0h2v.s10.da1e8818485c from=translated src=- shape=755de787 vocab=10def5d5
+-/
 theorem isCompact_finiteLocalUnits
     (v : HeightOneSpectrum (𝓞 K)) :
     IsCompact

@@ -29,7 +29,9 @@ namespace KummerTheory
 
 /-- A prime-power residue ring is local.  This instance is the algebraic
 input needed to turn the projective kernel in the finite S-unit preparation argument into a free
-`ZMod (p ^ v)`-module.-/
+`ZMod (p ^ v)`-module.
+@isnad1 id=islocalr.2h2v.s6.6884b286abe9 from=translated src=- shape=a9a44237 vocab=60263bd7
+-/
 theorem zmodPrimePower_isLocalRing
     (p v : ℕ) (hp : p.Prime) (hv : 0 < v) :
     IsLocalRing (ZMod (p ^ v)) := by
@@ -79,7 +81,9 @@ theorem zmodPrimePower_isLocalRing
 
 /-- Over a local ring, the kernel of a surjection between finite free
 modules is free.  The proof constructs the splitting explicitly and then
-uses finite projective modules over local rings.-/
+uses finite projective modules over local rings.
+@isnad1 id=free.1h4v.s8.ea5464920303 from=translated src=- shape=a49d727e vocab=3d4b496b
+-/
 theorem free_ker_of_surjective_linearMap_of_isLocalRing
     {R M N : Type*} [CommRing R] [IsLocalRing R]
     [AddCommGroup M] [AddCommGroup N]
@@ -120,7 +124,9 @@ theorem free_ker_of_surjective_linearMap_of_isLocalRing
   exact Module.free_of_flat_of_isLocalRing
 
 /-- The cardinality of a finite free module is the cardinality of the
-coefficient ring raised to the size of a chosen basis.-/
+coefficient ring raised to the size of a chosen basis.
+@isnad1 id=eq.0h2v.s5.a87f5e86a370 from=translated src=- shape=ddc61945 vocab=349b5f53
+-/
 theorem card_eq_card_pow_card_chooseBasisIndex
     {R M : Type*} [Semiring R]
     [AddCommMonoid M] [Module R M]
@@ -221,7 +227,9 @@ noncomputable def monoidKerEquivMultiplicativeLinearKer
 
 /-- A surjection between finite free `ZMod (p ^ v)`-modules has a
 kernel with genuine coordinates.  Its number of coordinates is read off
-from the cardinality of the kernel.-/
+from the cardinality of the kernel.
+@isnad1 id=nonempty.7h7v.s8.96ecb87c0c8c from=translated src=- shape=21929b64 vocab=17f471c0
+-/
 theorem exists_kernelMulEquiv_pi_zmod_of_primePower
     {G H : Type*} [CommGroup G] [CommGroup H]
     (n p v q : ℕ)
@@ -307,7 +315,9 @@ theorem exists_kernelMulEquiv_pi_zmod_of_primePower
           (MulEquiv.refl _)⟩
 
 /-- The exponent-`n` statement read directly from coordinates
-`Gal(E/K) ≃ (Z/nZ)^r`.-/
+`Gal(E/K) ≃ (Z/nZ)^r`.
+@isnad1 id=eq.0h7v.s12.496d9aab9ffa from=translated src=- shape=c4586513 vocab=b4491178
+-/
 theorem galois_pow_eq_one_of_equiv_pi_zmod
     {K Omega : Type*} [Field K] [Field Omega] [Algebra K Omega]
     (E : IntermediateField K Omega)

@@ -28,7 +28,9 @@ namespace ClassFieldTheory
 universe u v
 
 /-- The exponent at `v` of an ideal norm is the inertia-degree-weighted sum
-of the exponents at the primes lying above `v`.-/
+of the exponents at the primes lying above `v`.
+@isnad1 id=eq.0h4v.s9.e3c209569d08 from=translated src=- shape=1cc67328 vocab=5471213e
+-/
 theorem fractionalIdealNorm_primeExponent
     (K : Type u) (L : Type v)
     [Field K] [NumberField K]

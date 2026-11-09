@@ -32,7 +32,9 @@ variable {K : Type u} {M : Type v}
 variable [Field K] [Field M] [Algebra K M]
 
 /-- A pointwise stabilizer inclusion gives the reverse inclusion between
-the corresponding simple intermediate fields.-/
+the corresponding simple intermediate fields.
+@isnad1 id=le.1h4v.s8.cbe5e217eb11 from=translated src=- shape=6b9353ec vocab=69c42d5e
+-/
 theorem adjoin_le_adjoin_of_forall_fixed_imp_fixed
     [FiniteDimensional K M] [IsGalois K M]
     (a b : M)

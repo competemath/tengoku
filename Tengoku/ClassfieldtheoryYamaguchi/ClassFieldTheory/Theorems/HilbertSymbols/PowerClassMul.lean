@@ -20,7 +20,9 @@ namespace ClassFieldTheory
 
 universe u
 
-/-- The class of a product is the product of the classes.-/
+/-- The class of a product is the product of the classes.
+@isnad1 id=eq.0h4v.s9.b652f8c89da1 from=translated src=- shape=3a30e680 vocab=1a97f738
+-/
 @[simp]
 theorem powerClass_mul
     (K : Type u) [Field K] (n : ℕ+) (a b : Kˣ) :

@@ -46,7 +46,9 @@ def intermediateFieldUnitsToGaloisAmbient
     Additive Eˣ →+ Additive Ωˣ :=
   MonoidHom.toAdditive (Units.map E.val.toRingHom)
 
-/-- States the theorem `intermediateFieldUnitsToGaloisAmbient_apply`.-/
+/-- States the theorem `intermediateFieldUnitsToGaloisAmbient_apply`.
+@isnad1 id=eq.0h4v.s12.6496acf7cbb0 from=translated src=- shape=4877f958 vocab=6cfa5856
+-/
 @[simp]
 theorem intermediateFieldUnitsToGaloisAmbient_apply
     (E : IntermediateField K Ω) (x : Eˣ) :
@@ -57,7 +59,9 @@ theorem intermediateFieldUnitsToGaloisAmbient_apply
 variable [IsGalois K Ω]
 
 /-- An ambient unit is fixed by `Gal(Ω/E)` exactly when its underlying
-field element belongs to `E`.-/
+field element belongs to `E`.
+@isnad1 id=iff.0h4v.s10.77d8c69ee96a from=translated src=- shape=4b451c63 vocab=2875f34d
+-/
 theorem mem_galoisAmbientUnits_fixed_iff
     (E : IntermediateField K Ω)
     (x : Additive Ωˣ) :
@@ -107,7 +111,9 @@ theorem mem_galoisAmbientUnits_fixed_iff
     rfl
 
 /-- The image of `Eˣ` in `Ωˣ` is precisely the abstract fixed
-subgroup `A_E` used in the abstract class-formation framework.-/
+subgroup `A_E` used in the abstract class-formation framework.
+@isnad1 id=eq.0h3v.s9.70fc630b4b48 from=translated src=- shape=c49c980b vocab=b967207f
+-/
 theorem intermediateFieldUnitsToGaloisAmbient_range
     (E : IntermediateField K Ω) :
     (intermediateFieldUnitsToGaloisAmbient K Ω E).range =
@@ -163,7 +169,9 @@ def intermediateFieldUnitsEquivGaloisFixed
     (AddEquiv.addSubgroupCongr
       (intermediateFieldUnitsToGaloisAmbient_range K Ω E))
 
-/-- States the theorem `intermediateFieldUnitsEquivGaloisFixed_coe`.-/
+/-- States the theorem `intermediateFieldUnitsEquivGaloisFixed_coe`.
+@isnad1 id=eq.0h4v.s13.f5983667b462 from=translated src=- shape=2ee64d4f vocab=a93bae0b
+-/
 @[simp]
 theorem intermediateFieldUnitsEquivGaloisFixed_coe
     (E : IntermediateField K Ω) (x : Additive Eˣ) :
@@ -184,7 +192,9 @@ def embeddedFieldUnitsEquivGaloisFixed
     (Units.mapEquiv (AlgEquiv.ofInjectiveField i).toMulEquiv)).trans
       (intermediateFieldUnitsEquivGaloisFixed K Ω (AlgHom.fieldRange i))
 
-/-- States the theorem `embeddedFieldUnitsEquivGaloisFixed_coe`.-/
+/-- States the theorem `embeddedFieldUnitsEquivGaloisFixed_coe`.
+@isnad1 id=eq.0h5v.s13.c22a2869cbf2 from=translated src=- shape=abda37d9 vocab=75174a42
+-/
 @[simp]
 theorem embeddedFieldUnitsEquivGaloisFixed_coe
     (L : Type) [Field L] [Algebra K L]

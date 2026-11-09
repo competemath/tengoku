@@ -34,6 +34,9 @@ def relativeCommutatorClosure : ClosedSubgroup Gal(M / F) where
   toSubgroup := (commutator Gal(M / F)).topologicalClosure
   isClosed' := Subgroup.isClosed_topologicalClosure _
 
+/--
+@isnad1 id=normal.0h2v.s6.139b99f18ad3 from=translated src=- shape=0e1343b4 vocab=a1667501
+-/
 local instance relativeCommutatorClosure_normal :
     (relativeCommutatorClosure F M).Normal := by
   change ((commutator Gal(M / F)).topologicalClosure).Normal
@@ -43,7 +46,9 @@ local instance relativeCommutatorClosure_normal :
 def relativeMaximalAbelianSubextension : IntermediateField F M :=
   IntermediateField.fixedField (relativeCommutatorClosure F M).toSubgroup
 
-/-- The relative maximal abelian subextension is Galois.-/
+/-- The relative maximal abelian subextension is Galois.
+@isnad1 id=isgalois.0h2v.s6.d5edd66b5c17 from=translated src=- shape=17830135 vocab=f38b1036
+-/
 theorem relativeMaximalAbelianSubextension_isGalois :
     IsGalois F (relativeMaximalAbelianSubextension F M) := by
   apply (InfiniteGalois.normal_iff_isGalois
@@ -54,6 +59,9 @@ theorem relativeMaximalAbelianSubextension_isGalois :
     (relativeCommutatorClosure F M)]
   infer_instance
 
+/--
+@isnad1 id=isgalois.0h2v.s6.d5edd66b5c17 from=translated src=- shape=17830135 vocab=f38b1036
+-/
 local instance relativeMaximalAbelianSubextension.instIsGalois :
     IsGalois F (relativeMaximalAbelianSubextension F M) :=
   relativeMaximalAbelianSubextension_isGalois F M
@@ -64,14 +72,18 @@ noncomputable def relativeAbelianizationMulEquiv :
       Gal(relativeMaximalAbelianSubextension F M / F) :=
   InfiniteGalois.normalAutEquivQuotient (relativeCommutatorClosure F M)
 
-/-- The quotient equivalence sends a class to restriction.-/
+/-- The quotient equivalence sends a class to restriction.
+@isnad1 id=eq.0h3v.s13.95de0c5f4147 from=translated src=- shape=6b0201d6 vocab=5fe4889b
+-/
 @[simp]
 theorem relativeAbelianizationMulEquiv_mk (sigma : Gal(M / F)) :
     relativeAbelianizationMulEquiv F M (QuotientGroup.mk sigma) =
       AlgEquiv.restrictNormalHom (relativeMaximalAbelianSubextension F M) sigma :=
   rfl
 
-/-- The algebraic relative-abelianization equivalence is continuous.-/
+/-- The algebraic relative-abelianization equivalence is continuous.
+@isnad1 id=continuo.0h2v.s13.c77255b3722f from=translated src=- shape=68570a24 vocab=ea753b84
+-/
 theorem relativeAbelianizationMulEquiv_continuous :
     Continuous (relativeAbelianizationMulEquiv F M) := by
   apply (QuotientGroup.isQuotientMap_mk

@@ -87,7 +87,9 @@ noncomputable def reducedLog :
           (Additive.toMul x) (Additive.toMul y) v
 
 /-- The normalized finite absolute value is the norm of the prime
-raised to minus the corresponding principal-divisor exponent.-/
+raised to minus the corresponding principal-divisor exponent.
+@isnad1 id=eq.0h4v.s9.cf731e0aceff from=translated src=- shape=47fab1db vocab=00906f72
+-/
 theorem adicAbv_eq_zpow_neg_divisorCoordinate
     (x : SUnitGroup (K := K) S) (v : S) :
     NumberField.HeightOneSpectrum.adicAbv K
@@ -102,7 +104,9 @@ theorem adicAbv_eq_zpow_neg_divisorCoordinate
   · simp
 
 /-- The logarithm of a normalized finite absolute value is the divisor
-coordinate times `-log Nv`.-/
+coordinate times `-log Nv`.
+@isnad1 id=eq.0h4v.s9.4fb2ad069f87 from=translated src=- shape=a3fc9d90 vocab=4f18cf29
+-/
 theorem log_adicAbv_eq_neg_divisorCoordinate_mul_log_absNorm
     (x : SUnitGroup (K := K) S) (v : S) :
     Real.log
@@ -123,6 +127,9 @@ noncomputable def reducedLogLinearMap :
       ReducedLogSpace (K := K) S :=
   (reducedLog (K := K) S).toIntLinearMap
 
+/--
+@isnad1 id=eq.0h3v.s12.952eb5730e51 from=translated src=- shape=ca57d61e vocab=a173b246
+-/
 @[simp]
 theorem reducedLog_fst_fromNumberFieldUnits
     (u : (𝓞 K)ˣ) :
@@ -133,6 +140,9 @@ theorem reducedLog_fst_fromNumberFieldUnits
   ext w
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s12.ea0411a28187 from=translated src=- shape=93abb9f8 vocab=7b58d046
+-/
 @[simp]
 theorem reducedLog_snd_fromNumberFieldUnits
     (u : (𝓞 K)ˣ) :
@@ -158,7 +168,9 @@ theorem reducedLog_snd_fromNumberFieldUnits
   simpa [divisorLinearMap, divisor,
     fromNumberFieldUnitsLinearMap] using hzero
 
-/-- The reduced logarithm vanishes precisely on the roots of unity.-/
+/-- The reduced logarithm vanishes precisely on the roots of unity.
+@isnad1 id=iff.0h3v.s12.d4e3b8c5526c from=translated src=- shape=323c725a vocab=90320cac
+-/
 theorem reducedLog_eq_zero_iff
     (x : Additive (SUnitGroup (K := K) S)) :
     reducedLog (K := K) S x = 0 ↔
@@ -222,7 +234,9 @@ theorem reducedLog_eq_zero_iff
         (K := K) S u
 
 /-- The kernel of the reduced logarithmic map is the additive torsion
-submodule.-/
+submodule.
+@isnad1 id=eq.0h2v.s13.404dad3b40d3 from=translated src=- shape=8639e3ed vocab=a15beaa2
+-/
 theorem reducedLogLinearMap_ker :
     LinearMap.ker (reducedLogLinearMap (K := K) S) =
       (AddCommGroup.torsion
@@ -237,7 +251,9 @@ noncomputable def reducedLogLattice :
   LinearMap.range (reducedLogLinearMap (K := K) S)
 
 /-- A reduced logarithmic vector in the lattice vanishes when all of its
-finite coordinates have norm less than one.-/
+finite coordinates have norm less than one.
+@isnad1 id=eq.1h3v.s12.efa5766eed9f from=translated src=- shape=61da16cc vocab=ea2cbedb
+-/
 theorem norm_reducedLog_finite_lt_one_implies_zero
     {x : Additive (SUnitGroup (K := K) S)}
     (hx :
@@ -261,7 +277,9 @@ theorem norm_reducedLog_finite_lt_one_implies_zero
 
 /-- The reduced logarithmic image is discrete.  Near the origin the
 integral finite coordinates must vanish, reducing the assertion to the
-ordinary Dirichlet unit lattice.-/
+ordinary Dirichlet unit lattice.
+@isnad1 id=discrete.0h2v.s11.87f86d87a770 from=translated src=- shape=dc735c35 vocab=40529765
+-/
 instance instDiscreteTopology_reducedLogLattice :
     DiscreteTopology (reducedLogLattice (K := K) S) := by
   classical
@@ -359,7 +377,9 @@ instance instDiscreteTopology_reducedLogLattice :
     simp [Metric.mem_ball, hδpos]
 
 /-- The integral rank of the reduced logarithmic lattice is the
-Dirichlet unit rank plus the number of finite places in `S`.-/
+Dirichlet unit rank plus the number of finite places in `S`.
+@isnad1 id=eq.0h2v.s12.135c6837e519 from=translated src=- shape=7d73df72 vocab=c0eecf67
+-/
 theorem finrank_reducedLogLattice :
     Module.finrank ℤ (reducedLogLattice (K := K) S) =
       NumberField.Units.rank K + S.card := by
@@ -387,7 +407,9 @@ theorem finrank_reducedLogLattice :
       finrank (K := K) S
 
 /-- The reduced logarithmic space has dimension equal to the Dirichlet
-unit rank plus the number of finite places in `S`.-/
+unit rank plus the number of finite places in `S`.
+@isnad1 id=eq.0h2v.s9.74c5b839be99 from=translated src=- shape=ebc888fe vocab=5ec686df
+-/
 theorem finrank_reducedLogSpace :
     Module.finrank ℝ (ReducedLogSpace (K := K) S) =
       NumberField.Units.rank K + S.card := by
@@ -395,7 +417,9 @@ theorem finrank_reducedLogSpace :
   simp [NumberField.Units.rank]
 
 /-- The reduced logarithmic lattice spans its whole real ambient
-space.-/
+space.
+@isnad1 id=eq.0h2v.s11.a2be57a9aacb from=translated src=- shape=f7bd5971 vocab=90ae0f49
+-/
 theorem reducedLogLattice_span_eq_top :
     Submodule.span ℝ
       (reducedLogLattice (K := K) S :
@@ -432,7 +456,9 @@ theorem reducedLogLattice_span_eq_top :
       (finrank_reducedLogSpace (K := K) S).symm
 
 /-- The reduced logarithmic image of the `S`-units is a complete
-`ℤ`-lattice.-/
+`ℤ`-lattice.
+@isnad1 id=iszlatti.0h2v.s10.fdb1032df4e9 from=translated src=- shape=7e190f2c vocab=7bfcf4ac
+-/
 instance instIsZLattice_reducedLogLattice :
     IsZLattice ℝ (reducedLogLattice (K := K) S) where
   span_top := reducedLogLattice_span_eq_top (K := K) S
@@ -492,6 +518,9 @@ noncomputable def fullLogAmbient :
     ext p
     cases p <;> simp [Real.log_mul, mul_add]
 
+/--
+@isnad1 id=eq.0h4v.s11.966473348aee from=translated src=- shape=17ee43e4 vocab=4cc64d6a
+-/
 @[simp]
 theorem fullLogAmbient_infinite
     (x : Additive (SUnitGroup (K := K) S))
@@ -504,6 +533,9 @@ theorem fullLogAmbient_infinite
               SUnitGroup (K := K) S) : Kˣ) : K)) :=
   rfl
 
+/--
+@isnad1 id=eq.0h4v.s11.babf3e27c11d from=translated src=- shape=407ddc00 vocab=4ff60c4e
+-/
 @[simp]
 theorem fullLogAmbient_finite
     (x : Additive (SUnitGroup (K := K) S)) (v : S) :
@@ -516,7 +548,9 @@ theorem fullLogAmbient_finite
   rfl
 
 /-- For an `S`-unit the finite part of the global product formula is
-the product over the finite places in `S`.-/
+the product over the finite places in `S`.
+@isnad1 id=eq.0h3v.s9.55afee39f9a3 from=translated src=- shape=8d201ab0 vocab=d331f025
+-/
 theorem finprod_finitePlace_eq_prod_adicAbv
     (x : SUnitGroup (K := K) S) :
     (∏ᶠ w : NumberField.FinitePlace K,
@@ -545,7 +579,9 @@ theorem finprod_finitePlace_eq_prod_adicAbv
     simp [x.property v hnot]
 
 /-- Logarithmic form of the product formula, restricted to the places
-of the `S`-unit theorem.-/
+of the `S`-unit theorem.
+@isnad1 id=eq.0h3v.s9.08a26363eec1 from=translated src=- shape=3fe9062b vocab=9a44588d
+-/
 theorem sum_log_absoluteValues_eq_zero
     (x : SUnitGroup (K := K) S) :
     (∑ w : NumberField.InfinitePlace K,
@@ -604,6 +640,9 @@ theorem sum_log_absoluteValues_eq_zero
     _ = 0 := by
       rw [hprod, Real.log_one]
 
+/--
+@isnad1 id=mem.0h3v.s11.06a954dd52c1 from=translated src=- shape=2aeab123 vocab=7c2d51af
+-/
 theorem fullLogAmbient_mem_logHyperplane
     (x : Additive (SUnitGroup (K := K) S)) :
     fullLogAmbient (K := K) S x ∈
@@ -633,6 +672,9 @@ noncomputable def finiteLogWeight (v : S) : ℝ :=
     (Ideal.absNorm
       (v : HeightOneSpectrum (𝓞 K)).asIdeal : ℝ)
 
+/--
+@isnad1 id=ne.0h3v.s6.869fb64cc48a from=translated src=- shape=7959a5c1 vocab=343dda3e
+-/
 theorem finiteLogWeight_ne_zero (v : S) :
     finiteLogWeight (K := K) S v ≠ 0 := by
   have hNv :
@@ -675,7 +717,9 @@ noncomputable def forgetDistinguishedLog :
       ring
 
 /-- Forgetting the distinguished logarithmic coordinate is injective on
-the product-formula hyperplane.-/
+the product-formula hyperplane.
+@isnad1 id=injectiv.0h2v.s11.be8b6889a94c from=translated src=- shape=5929a2b8 vocab=2abd432d
+-/
 theorem forgetDistinguishedLog_injective :
     Function.Injective (forgetDistinguishedLog (K := K) S) := by
   intro x y hxy
@@ -778,7 +822,9 @@ theorem forgetDistinguishedLog_injective :
       · exact hinf ⟨w, hw⟩
 
 /-- Every reduced logarithmic vector has a lift to the product-formula
-hyperplane.-/
+hyperplane.
+@isnad1 id=surjecti.0h2v.s11.871102f05341 from=translated src=- shape=5929a2b8 vocab=4c69d0ac
+-/
 theorem forgetDistinguishedLog_surjective :
     Function.Surjective (forgetDistinguishedLog (K := K) S) := by
   intro z
@@ -862,7 +908,9 @@ noncomputable def logHyperplaneEquivReduced :
       forgetDistinguishedLog_surjective (K := K) S⟩
 
 /-- Under the coordinate equivalence, the normalized all-place
-logarithm is exactly the reduced logarithm.-/
+logarithm is exactly the reduced logarithm.
+@isnad1 id=eq.0h3v.s13.7cbe7e1e7f03 from=translated src=- shape=90e9efdc vocab=f7e13208
+-/
 theorem logHyperplaneEquivReduced_fullLog
     (x : Additive (SUnitGroup (K := K) S)) :
     logHyperplaneEquivReduced (K := K) S
@@ -893,7 +941,9 @@ theorem logHyperplaneEquivReduced_fullLog
     field_simp [hlog]
 
 /-- The kernel of the normalized all-place logarithm is the group of
-roots of unity.-/
+roots of unity.
+@isnad1 id=iff.0h3v.s12.f26321bcb7e2 from=translated src=- shape=d72176fe vocab=5dfe1b3a
+-/
 theorem fullLog_eq_zero_iff
     (x : Additive (SUnitGroup (K := K) S)) :
     fullLog (K := K) S x = 0 ↔
@@ -925,7 +975,9 @@ noncomputable def fullLogLattice :
       (K := K) S).toLinearMap
 
 /-- The complete lattice just defined is exactly the image of the
-normalized all-place logarithmic map.-/
+normalized all-place logarithmic map.
+@isnad1 id=eq.0h2v.s10.b24b74db1aa1 from=translated src=- shape=1d26afb7 vocab=347d254e
+-/
 theorem fullLogLattice_eq_range :
     fullLogLattice (K := K) S =
       LinearMap.range
@@ -953,6 +1005,9 @@ theorem fullLogLattice_eq_range :
     rw [logHyperplaneEquivReduced_fullLog]
     exact LinearMap.mem_range_self _ x
 
+/--
+@isnad1 id=discrete.0h2v.s11.4c4192b0fd68 from=translated src=- shape=ecdb0159 vocab=97b87847
+-/
 instance instDiscreteTopology_fullLogLattice :
     DiscreteTopology (fullLogLattice (K := K) S) :=
   by
@@ -965,7 +1020,9 @@ instance instDiscreteTopology_fullLogLattice :
     infer_instance
 
 /-- The image of the normalized all-place logarithmic embedding is a
-complete `ℤ`-lattice in the coordinate-sum-zero hyperplane.-/
+complete `ℤ`-lattice in the coordinate-sum-zero hyperplane.
+@isnad1 id=iszlatti.0h2v.s9.c127a3b58519 from=translated src=- shape=58b5c192 vocab=6cc5763e
+-/
 instance instIsZLattice_fullLogLattice :
     IsZLattice ℝ (fullLogLattice (K := K) S) :=
   by
@@ -995,6 +1052,9 @@ abbrev TorsionAdditive :=
   Submodule.torsion ℤ
     (Additive (SUnitGroup (K := K) S))
 
+/--
+@isnad1 id=eq.0h2v.s13.402894dead32 from=translated src=- shape=de87d53f vocab=316fa867
+-/
 theorem torsionAdditive_eq :
     TorsionAdditive (K := K) S =
       (AddCommGroup.torsion
@@ -1009,6 +1069,9 @@ abbrev FreeQuotient :=
   Additive (SUnitGroup (K := K) S) ⧸
     TorsionAdditive (K := K) S
 
+/--
+@isnad1 id=finite.0h2v.s9.cb57dbcb6128 from=translated src=- shape=6f25e356 vocab=b90fb0ab
+-/
 local instance instModuleFinite_additiveSUnit :
     Module.Finite ℤ (Additive (SUnitGroup (K := K) S)) :=
   moduleFinite (K := K) S
@@ -1018,17 +1081,25 @@ local instance instModule_freeQuotient :
   Submodule.Quotient.module
     (TorsionAdditive (K := K) S)
 
+/--
+@isnad1 id=finite.0h2v.s9.2490da2d07f5 from=translated src=- shape=53c23eae vocab=041d556d
+-/
 local instance instModuleFinite_freeQuotient :
     Module.Finite ℤ (FreeQuotient (K := K) S) :=
   Module.Finite.quotient ℤ
     (TorsionAdditive (K := K) S)
 
+/--
+@isnad1 id=free.0h2v.s9.7a09871d9e0f from=translated src=- shape=53c23eae vocab=80611a6d
+-/
 local instance instModuleFree_freeQuotient :
     Module.Free ℤ (FreeQuotient (K := K) S) :=
   Module.free_of_finite_type_torsion_free'
 
 /-- The free quotient has rank `#S - 1`, where `S` here includes all
-infinite places.-/
+infinite places.
+@isnad1 id=eq.0h2v.s9.64794bfc17f7 from=translated src=- shape=27c5de76 vocab=c0ad9ac5
+-/
 theorem finrank_freeQuotient :
     Module.finrank ℤ (FreeQuotient (K := K) S) =
       logRank (K := K) S := by

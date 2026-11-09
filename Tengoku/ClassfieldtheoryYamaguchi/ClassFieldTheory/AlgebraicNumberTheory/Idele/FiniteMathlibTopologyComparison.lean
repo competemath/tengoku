@@ -40,7 +40,9 @@ noncomputable def finiteEquivFiniteAdeleUnitsContinuousMulEquiv :
     (B := fun v : HeightOneSpectrum (𝓞 K) => v.adicCompletionIntegers K)
     (fun _ => Valued.isOpen_valuationSubring _)).symm
 
-/-- The topological and algebraic finite-idèle comparisons agree pointwise.-/
+/-- The topological and algebraic finite-idèle comparisons agree pointwise.
+@isnad1 id=eq.0h2v.s13.5c067c6596de from=translated src=- shape=be041992 vocab=2d517fef
+-/
 @[simp]
 theorem finiteEquivFiniteAdeleUnitsContinuousMulEquiv_apply
     (a : FiniteIdeleGroup K) :
@@ -49,7 +51,9 @@ theorem finiteEquivFiniteAdeleUnitsContinuousMulEquiv_apply
   rfl
 
 /-- The algebraic finite-idèle comparison is continuous in the forward
-direction.-/
+direction.
+@isnad1 id=continuo.0h1v.s12.fd7f340f3e69 from=translated src=- shape=45e5ef1f vocab=d16768b9
+-/
 theorem continuous_finiteEquivFiniteAdeleUnits :
     Continuous (finiteEquivFiniteAdeleUnits (K := K)) := by
   let hval : ∀ᶠ v : HeightOneSpectrum (𝓞 K) in Filter.cofinite,
@@ -104,7 +108,9 @@ theorem continuous_finiteEquivFiniteAdeleUnits :
       rfl)
 
 /-- The algebraic equivalence from restricted-product idèles to adele units
-is continuous in the forward direction.-/
+is continuous in the forward direction.
+@isnad1 id=continuo.0h1v.s12.8f953ae9d4a0 from=translated src=- shape=45e5ef1f vocab=08b5eb50
+-/
 theorem continuous_equivAdeleRingUnits :
     Continuous (equivAdeleRingUnits (K := K)) := by
   have hprod : Continuous (fun a : IdeleGroup K =>

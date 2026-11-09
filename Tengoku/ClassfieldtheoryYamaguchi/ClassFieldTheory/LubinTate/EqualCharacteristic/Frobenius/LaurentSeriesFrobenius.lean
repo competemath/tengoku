@@ -62,14 +62,18 @@ noncomputable def laurentSeriesCoefficientMap
       HahnSeries.map x f.toNonUnitalRingHom * HahnSeries.map y f.toNonUnitalRingHom
     exact HahnSeries.map_mul (Γ := ℤ) f.toNonUnitalRingHom
 
-/-- Mapping Laurent-series coefficients applies the ring homomorphism coefficientwise.-/
+/-- Mapping Laurent-series coefficients applies the ring homomorphism coefficientwise.
+@isnad1 id=eq.0h5v.s8.179d88c135ee from=translated src=- shape=91225d07 vocab=db4b36c3
+-/
 @[simp]
 theorem laurentSeriesCoefficientMap_coeff
     [Field k] [Field l] (f : k →+* l) (x : k⸨X⸩) (m : ℤ) :
     (laurentSeriesCoefficientMap f x).coeff m = f (x.coeff m) :=
   rfl
 
-/-- The coefficient map sends a constant series to the mapped constant series.-/
+/-- The coefficient map sends a constant series to the mapped constant series.
+@isnad1 id=eq.0h4v.s9.49507f4eb7f0 from=translated src=- shape=667b700b vocab=aa0d7d40
+-/
 @[simp]
 theorem laurentSeriesCoefficientMap_C
     [Field k] [Field l] (f : k →+* l) (a : k) :
@@ -78,7 +82,9 @@ theorem laurentSeriesCoefficientMap_C
   change HahnSeries.map (HahnSeries.C (Γ := ℤ) a) f = _
   exact HahnSeries.map_C a f
 
-/-- The coefficient map fixes the Laurent uniformizer monomial.-/
+/-- The coefficient map fixes the Laurent uniformizer monomial.
+@isnad1 id=eq.0h3v.s9.b55a6c020a5f from=translated src=- shape=fea8be53 vocab=62262e64
+-/
 @[simp]
 theorem laurentSeriesCoefficientMap_single_one
     [Field k] [Field l] (f : k →+* l) :
@@ -115,7 +121,9 @@ noncomputable def laurentSeriesCoefficientCoord
         HahnSeries.coeff_eq_zero_of_lt_order (not_le.mp hnot)
       exact hm (by simp [hxzero]))
 
-/-- A Laurent coordinate series records the corresponding basis coordinate coefficientwise.-/
+/-- A Laurent coordinate series records the corresponding basis coordinate coefficientwise.
+@isnad1 id=eq.0h7v.s9.bfb32063d720 from=translated src=- shape=88eaef9f vocab=5f71dad1
+-/
 @[simp]
 theorem laurentSeriesCoefficientCoord_coeff
     [Field k] [Field l] [Algebra k l]
@@ -201,7 +209,9 @@ noncomputable def laurentSeriesCoefficientBasis
     (laurentSeriesCoefficientBasis_linearIndependent b)
     (laurentSeriesCoefficientBasis_span b).ge
 
-/-- The induced Laurent-series basis consists of constant images of the coefficient basis.-/
+/-- The induced Laurent-series basis consists of constant images of the coefficient basis.
+@isnad1 id=eq.0h5v.s9.58943db173f9 from=translated src=- shape=122aacc1 vocab=17211b92
+-/
 @[simp]
 theorem laurentSeriesCoefficientBasis_apply
     (b : Module.Basis ι k l) (i : ι) :
@@ -228,7 +238,9 @@ noncomputable def laurentSeriesCoefficientRingEquiv
   map_add' := map_add (laurentSeriesCoefficientMap e.toRingHom)
   map_mul' := map_mul (laurentSeriesCoefficientMap e.toRingHom)
 
-/-- A coefficientwise ring equivalence applies the base equivalence at every exponent.-/
+/-- A coefficientwise ring equivalence applies the base equivalence at every exponent.
+@isnad1 id=eq.0h5v.s9.52d5cc38459e from=translated src=- shape=91225d07 vocab=0eac5d1b
+-/
 @[simp]
 theorem laurentSeriesCoefficientRingEquiv_coeff
     [Field k] [Field l] (e : k ≃+* l) (x : k⸨X⸩) (m : ℤ) :
@@ -252,7 +264,9 @@ noncomputable def laurentSeriesCoefficientAlgEquiv
   change e (algebraMap k l (x.coeff m)) = algebraMap k l (x.coeff m)
   exact e.commutes (x.coeff m)
 
-/-- A coefficientwise algebra equivalence applies the base automorphism at every exponent.-/
+/-- A coefficientwise algebra equivalence applies the base automorphism at every exponent.
+@isnad1 id=eq.0h5v.s8.c0d4260b81f0 from=translated src=- shape=c28a2133 vocab=a09760d4
+-/
 @[simp]
 theorem laurentSeriesCoefficientAlgEquiv_coeff
     [Field k] [Field l] [Algebra k l]
@@ -281,7 +295,9 @@ noncomputable def laurentSeriesCoefficientGalHom
         ext m
         simp }
 
-/-- The Galois homomorphism sends an automorphism to its coefficientwise Laurent action.-/
+/-- The Galois homomorphism sends an automorphism to its coefficientwise Laurent action.
+@isnad1 id=eq.0h3v.s10.7d6b96db4f67 from=translated src=- shape=2e5e0b0b vocab=235e4d27
+-/
 @[simp]
 theorem laurentSeriesCoefficientGalHom_apply
     [Field k] [Field l] [Algebra k l]
@@ -304,7 +320,9 @@ noncomputable def equalCharacteristicLaurentFrobenius :
     (k := k) (l := l)
     (FiniteField.frobeniusAlgEquivOfAlgebraic k l)
 
-/-- Laurent Frobenius raises each coefficient to the residue-field cardinality.-/
+/-- Laurent Frobenius raises each coefficient to the residue-field cardinality.
+@isnad1 id=eq.0h4v.s8.e310707f2e3c from=translated src=- shape=5175705a vocab=9c24c1e9
+-/
 @[simp]
 theorem equalCharacteristicLaurentFrobenius_coeff
     (x : l⸨X⸩) (m : ℤ) :
@@ -315,7 +333,9 @@ theorem equalCharacteristicLaurentFrobenius_coeff
   simp [equalCharacteristicLaurentFrobenius,
     Nat.card_eq_fintype_card]
 
-/-- Laurent Frobenius fixes the Laurent uniformizer.-/
+/-- Laurent Frobenius fixes the Laurent uniformizer.
+@isnad1 id=eq.0h2v.s9.a9fb7d1eb070 from=translated src=- shape=4524bf4d vocab=942574ba
+-/
 @[simp]
 theorem equalCharacteristicLaurentFrobenius_single_one :
     letI : Algebra k⸨X⸩ l⸨X⸩ := laurentSeriesCoefficientAlgebra
@@ -406,7 +426,9 @@ noncomputable def equalCharacteristicFiniteUnramifiedFrobenius :
     Gal(equalCharacteristicFiniteUnramifiedExtension k p n / k⸨X⸩) :=
   laurentSeriesCoefficientGalHom (FiniteField.Extension.frob k p n)
 
-/-- Finite unramified Frobenius applies finite-field Frobenius coefficientwise.-/
+/-- Finite unramified Frobenius applies finite-field Frobenius coefficientwise.
+@isnad1 id=eq.0h5v.s8.1643a0e2bcdb from=translated src=- shape=c1d41dbe vocab=6d588296
+-/
 @[simp]
 theorem equalCharacteristicFiniteUnramifiedFrobenius_coeff
     (x : equalCharacteristicFiniteUnramifiedExtension k p n) (m : ℤ) :

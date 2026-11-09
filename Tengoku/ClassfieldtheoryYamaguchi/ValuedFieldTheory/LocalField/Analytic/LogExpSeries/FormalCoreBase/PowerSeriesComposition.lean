@@ -25,7 +25,9 @@ attribute [local instance] Classical.propDecidable
 
 namespace PowerSeries
 
-/-- The alternating geometric series is the formal inverse of `1 + X`.-/
+/-- The alternating geometric series is the formal inverse of `1 + X`.
+@isnad1 id=eq.0h1v.s7.dc1d3e17600a from=translated src=- shape=3b4ea228 vocab=a01d1828
+-/
 theorem alternating_mul_one_add_X
     (A : Type*) [CommRing A] :
     (PowerSeries.mk fun n : ℕ => (-1 : A) ^ n) *

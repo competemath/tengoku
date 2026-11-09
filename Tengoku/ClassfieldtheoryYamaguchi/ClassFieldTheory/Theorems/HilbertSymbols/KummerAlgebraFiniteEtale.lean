@@ -28,7 +28,9 @@ open Polynomial
 universe u
 
 /-- The canonical Kummer algebra is finite étale when its exponent is a unit
-in the base field.-/
+in the base field.
+@isnad1 id=and.1h3v.s10.0a907cbb7a84 from=translated src=- shape=abd8a8b3 vocab=7e4c003d
+-/
 theorem kummerAlgebra_finiteEtale
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ)
     (hn : IsUnit ((n : ℕ) : K)) :

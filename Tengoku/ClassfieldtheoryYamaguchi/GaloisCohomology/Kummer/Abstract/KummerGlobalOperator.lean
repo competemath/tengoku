@@ -58,7 +58,9 @@ noncomputable def extensionFixedKernelElement
     change A.ρ s.1.1 xi = xi
     exact hxi_fixed s.1⟩
 
-/-- The underlying value of the fixed kernel element is the selected global kernel element.-/
+/-- The underlying value of the fixed kernel element is the selected global kernel element.
+@isnad1 id=eq.2h5v.s13.5006611e59fe from=translated src=- shape=1be330a4 vocab=df5a129f
+-/
 @[simp]
 theorem extensionFixedKernelElement_val
     {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]
@@ -68,7 +70,9 @@ theorem extensionFixedKernelElement_val
     (xi : A.V) (hxi_fixed : ∀ k : K.toSubgroup, A.ρ k.1 xi = xi) :
     (extensionFixedKernelElement A K L hLK xi hxi_fixed).1 = xi := rfl
 
-/-- The extension-fixed endomorphism acts on underlying values by the global operator.-/
+/-- The extension-fixed endomorphism acts on underlying values by the global operator.
+@isnad1 id=eq.1h6v.s15.da2ce0631604 from=translated src=- shape=789222bf vocab=4e8cf539
+-/
 @[simp]
 theorem extensionFixedEndomorphism_apply_val
     {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]
@@ -79,7 +83,9 @@ theorem extensionFixedEndomorphism_apply_val
     ((extensionFixedEndomorphism A K L hLK wp).hom x).1 = wp.hom x.1 := by
   rfl
 
-/-- The additive order of the fixed kernel element is inherited from its ambient value.-/
+/-- The additive order of the fixed kernel element is inherited from its ambient value.
+@isnad1 id=eq.2h5v.s11.e2318f6a5d35 from=translated src=- shape=1d7ad178 vocab=b2fe7722
+-/
 theorem extensionFixedKernelElement_addOrderOf
     {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]
     (A : Rep ℤ G) (K L : ClosedSubgroup G)
@@ -98,7 +104,9 @@ theorem extensionFixedKernelElement_addOrderOf
         (extensionFixedKernelElement A K L hLK xi hxi_fixed)).symm
     _ = addOrderOf xi := by rfl
 
-/-- The selected fixed element lies in the kernel of the extension-fixed endomorphism.-/
+/-- The selected fixed element lies in the kernel of the extension-fixed endomorphism.
+@isnad1 id=eq.3h6v.s13.1d278c128031 from=translated src=- shape=640e5db2 vocab=23ae98c3
+-/
 theorem extensionFixedKernelElement_in_kernel
     {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]
     (A : Rep ℤ G) (K L : ClosedSubgroup G)
@@ -113,7 +121,9 @@ theorem extensionFixedKernelElement_in_kernel
   change wp.hom xi = 0
   exact hxi_kernel
 
-/-- Every element of the extension subgroup fixes the selected kernel element.-/
+/-- Every element of the extension subgroup fixes the selected kernel element.
+@isnad1 id=eq.2h6v.s14.a26dc19d557c from=translated src=- shape=195c32d7 vocab=9536bb55
+-/
 theorem extensionFixedKernelElement_fixed
     {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]
     (A : Rep ℤ G) (K L : ClosedSubgroup G)
@@ -131,7 +141,9 @@ theorem extensionFixedKernelElement_fixed
 
 /-- The finite cyclic single-radical step with a genuinely global operator.
 The endomorphism on `A_L` and its distinguished kernel element are both
-constructed in the proof, not supplied as hypotheses.-/
+constructed in the proof, not supplied as hypotheses.
+@isnad1 id=ex.7h8v.s15.1fbbdbb1528b from=translated src=- shape=05c0bb80 vocab=391d18bd
+-/
 theorem cyclicGlobalOperator_singleRadical
     {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]
     (A : Rep ℤ G) (hAxiom : SatisfiesCyclicNormKernelVanishing A)

@@ -25,7 +25,9 @@ namespace LocalClassFieldTheory
 containing a value of the first also contains the corresponding value of the
 second, and if they agree after passage to a cyclic quotient whose generator
 order annihilates the target. In the local Artin application the cyclic
-quotient is supplied by an unramified extension.-/
+quotient is supplied by an unramified extension.
+@isnad1 id=eq.4h7v.s9.38d9e8a9b497 from=translated src=- shape=3d4222ce vocab=0d640caf
+-/
 theorem monoidHom_ext_of_cyclic_quotient_and_subgroups
     {A G C : Type*} [Group A] [Group G] [Group C]
     (f g : A →* G) (β : G →* C) (u : A)

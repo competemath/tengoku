@@ -61,6 +61,9 @@ structure RelativeLocalAdeleData where
           w.adicCompletionIntegers K
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.2h4v.s9.bc097def6ce1 from=translated src=- shape=39c07cb9 vocab=3554860e
+-/
 @[ext]
 theorem RelativeLocalAdeleData.ext
     {a b : RelativeLocalAdeleData (K := K) (L := L)}
@@ -92,6 +95,9 @@ noncomputable def relativeLocalAdeleCoefficient
       a.eventually_integral i⟩⟩
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h5v.s12.c686c2a2050c from=translated src=- shape=b87f0aec vocab=6944ceba
+-/
 @[simp]
 theorem relativeLocalAdeleCoefficient_infinite
     (a : RelativeLocalAdeleData (K := K) (L := L))
@@ -107,6 +113,9 @@ theorem relativeLocalAdeleCoefficient_infinite
   rfl
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h5v.s12.f3275589aff5 from=translated src=- shape=b32e3379 vocab=bb4abb84
+-/
 @[simp]
 theorem relativeLocalAdeleCoefficient_finite
     (a : RelativeLocalAdeleData (K := K) (L := L))
@@ -132,6 +141,9 @@ noncomputable def relativeAdeleOfLocalData
       (K := K) (L := L) a)
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h4v.s10.e26a72d81959 from=translated src=- shape=36f8cb6c vocab=19168cc1
+-/
 @[simp]
 theorem relativeAdeleOfLocalData_infiniteComponent
     (a : RelativeLocalAdeleData (K := K) (L := L))
@@ -159,6 +171,9 @@ theorem relativeAdeleOfLocalData_infiniteComponent
       q.1 w) h
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h4v.s10.a8984534bf74 from=translated src=- shape=23d160e3 vocab=6bb0b425
+-/
 @[simp]
 theorem relativeAdeleOfLocalData_finiteComponent
     (a : RelativeLocalAdeleData (K := K) (L := L))
@@ -208,6 +223,9 @@ noncomputable def relativeAdeleToLocalData
     exact hw
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s6.6d5202f5b431 from=translated src=- shape=19b71f92 vocab=8ee2f7c6
+-/
 @[simp]
 theorem relativeAdeleOfLocalData_toLocalData
     (z : RelativeAdeleRing K L) :
@@ -227,6 +245,9 @@ theorem relativeAdeleOfLocalData_toLocalData
     rfl
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s6.1e7150036871 from=translated src=- shape=19b71f92 vocab=5aed4e3e
+-/
 @[simp]
 theorem relativeAdeleToLocalData_ofLocalData
     (a : RelativeLocalAdeleData (K := K) (L := L)) :
@@ -307,6 +328,9 @@ structure RelativeLocalIdeleData where
           w.adicCompletionIntegers K
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.2h4v.s10.4de674e74b8a from=translated src=- shape=38cd18f2 vocab=b133e14e
+-/
 @[ext]
 theorem RelativeLocalIdeleData.ext
     {a b : RelativeLocalIdeleData (K := K) (L := L)}
@@ -415,6 +439,9 @@ noncomputable def relativeIdeleOfLocalData
   exact Units.mkOfMulEqOne x y hxy
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h4v.s12.95d4fa9aa9ea from=translated src=- shape=94e69d69 vocab=244cff80
+-/
 @[simp]
 theorem relativeIdeleOfLocalData_infiniteComponent
     (a : RelativeLocalIdeleData (K := K) (L := L))
@@ -441,6 +468,9 @@ theorem relativeIdeleOfLocalData_infiniteComponent
   rfl
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h4v.s12.95805718362a from=translated src=- shape=953d6ac8 vocab=c57aad37
+-/
 @[simp]
 theorem relativeIdeleOfLocalData_finiteComponent
     (a : RelativeLocalIdeleData (K := K) (L := L))
@@ -467,6 +497,9 @@ theorem relativeIdeleOfLocalData_finiteComponent
   rfl
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s6.af0ff49ad173 from=translated src=- shape=19b71f92 vocab=bd5859c4
+-/
 @[simp]
 theorem relativeIdeleOfLocalData_toLocalData
     (z : RelativeIdeleGroup K L) :
@@ -505,6 +538,9 @@ theorem relativeIdeleOfLocalData_toLocalData
     rfl
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s6.8b220d8f9102 from=translated src=- shape=19b71f92 vocab=0525ba9f
+-/
 @[simp]
 theorem relativeIdeleToLocalData_ofLocalData
     (a : RelativeLocalIdeleData (K := K) (L := L)) :
@@ -567,6 +603,9 @@ noncomputable def relativeIdeleMulEquivLocalData :
     (K := K) (L := L)).symm.mulEquiv).symm
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s9.bedf37a8162d from=translated src=- shape=46b05ec4 vocab=50b99b96
+-/
 @[simp]
 theorem relativeIdeleMulEquivLocalData_apply
     (z : RelativeIdeleGroup K L) :
@@ -577,6 +616,9 @@ theorem relativeIdeleMulEquivLocalData_apply
   rfl
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h5v.s11.77dae71c4a0d from=translated src=- shape=cb4ed69e vocab=9a609526
+-/
 @[simp]
 theorem RelativeLocalIdeleData.infinite_mul
     (a b : RelativeLocalIdeleData (K := K) (L := L))
@@ -604,6 +646,9 @@ theorem RelativeLocalIdeleData.infinite_mul
     relativeIdeleOfLocalData_infiniteComponent]
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h5v.s11.c8b9e03ca3a8 from=translated src=- shape=153adb34 vocab=854d74c9
+-/
 @[simp]
 theorem RelativeLocalIdeleData.finite_mul
     (a b : RelativeLocalIdeleData (K := K) (L := L))

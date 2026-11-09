@@ -36,7 +36,9 @@ variable
 namespace RelativeIdeleGroup
 
 omit [NumberField L] [FiniteDimensional K L] in
-/-- The diagonal copy of `Lˣ` in the relative ideles is injective.-/
+/-- The diagonal copy of `Lˣ` in the relative ideles is injective.
+@isnad1 id=injectiv.0h2v.s8.a9f27656793e from=translated src=- shape=007720a2 vocab=112d6985
+-/
 theorem principalIdele_injective :
     Function.Injective (principalIdele K L) := by
   exact Units.map_injective
@@ -47,7 +49,9 @@ theorem principalIdele_injective :
 
 omit [NumberField L] [FiniteDimensional K L] in
 /-- Galois conjugation preserves the principal-relative-idele
-congruence, so it acts on the quotient class group.-/
+congruence, so it acts on the quotient class group.
+@isnad1 id=quotient.0h2v.s7.68a268ff660d from=translated src=- shape=38a0764e vocab=bf99d180
+-/
 instance principalQuotientAction :
     MulAction.QuotientAction (L ≃ₐ[K] L)
       (principalSubgroup K L) where
@@ -59,6 +63,9 @@ instance principalQuotientAction :
     simp [smul_def]
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h4v.s13.c369dff49872 from=translated src=- shape=694c8ec2 vocab=e278c3b6
+-/
 @[simp]
 theorem smul_class_mk
     (σ : L ≃ₐ[K] L) (a : RelativeIdeleGroup K L) :
@@ -88,7 +95,9 @@ def galoisFixedClassSubgroup :
   exact FixedPoints.subgroup (L ≃ₐ[K] L) (ClassGroup K L)
 
 omit [NumberField L] [FiniteDimensional K L] in
-/-- Every class coming from `C_K` is Galois fixed.-/
+/-- Every class coming from `C_K` is Galois fixed.
+@isnad1 id=le.0h2v.s10.138926b500b2 from=translated src=- shape=b8e74f04 vocab=bbd51e41
+-/
 theorem classInclusion_range_le_galoisFixed :
     (classInclusion K L).range ≤
       galoisFixedClassSubgroup K L := by
@@ -108,7 +117,9 @@ theorem classInclusion_range_le_galoisFixed :
 
 omit [NumberField L] in
 /-- A Galois-fixed relative idele class has a Galois-fixed idele
-representative. This is the Noether–Hilbert-90 step in idele-class descent.-/
+representative. This is the Noether–Hilbert-90 step in idele-class descent.
+@isnad1 id=ex.1h3v.s13.5dae870bd450 from=translated src=- shape=17cd9bb5 vocab=7d301cc7
+-/
 theorem exists_fixed_representative_of_fixed_class
     [IsGalois K L]
     (a : RelativeIdeleGroup K L)

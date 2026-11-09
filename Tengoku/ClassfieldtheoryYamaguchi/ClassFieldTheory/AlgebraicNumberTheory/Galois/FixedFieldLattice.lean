@@ -21,7 +21,9 @@ infrastructure rather than a concrete reciprocity construction.
 namespace IntermediateField
 
 /-- Fixed fields turn a supremum of automorphism subgroups into the
-intersection of their fixed fields.-/
+intersection of their fixed fields.
+@isnad1 id=eq.0h4v.s8.934da28f353c from=translated src=- shape=a8fa6f57 vocab=8a4b8f7f
+-/
 theorem fixedField_sup_eq_inf
     {k Ω : Type*} [Field k] [Field Ω] [Algebra k Ω]
     (S T : Subgroup (Gal(Ω / k))) :

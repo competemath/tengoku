@@ -46,7 +46,9 @@ def IsNatCeilStepFiltrationJump
   natCeilStepFiltration F t ≠ natCeilStepFiltrationAfter F t
 
 /-- An antitone natural-number filtration remains antitone after extension by
-the natural-number ceiling.-/
+the natural-number ceiling.
+@isnad1 id=antitone.1h2v.s5.32bcdacbbacf from=translated src=- shape=0c759d9e vocab=f527360a
+-/
 theorem natCeilStepFiltration_antitone
     {F : ℕ → Subgroup G} (hF : Antitone F) :
     Antitone (natCeilStepFiltration F) := by
@@ -54,7 +56,9 @@ theorem natCeilStepFiltration_antitone
   exact hF (Nat.ceil_mono hst)
 
 /-- The right-limit subgroup of an antitone natural-ceiling filtration lies
-in the group at the limiting index.-/
+in the group at the limiting index.
+@isnad1 id=le.1h3v.s5.48ae751982d4 from=translated src=- shape=310b15e5 vocab=9e07da37
+-/
 theorem natCeilStepFiltrationAfter_le
     {F : ℕ → Subgroup G} (hF : Antitone F) (t : ℝ) :
     natCeilStepFiltrationAfter F t ≤ natCeilStepFiltration F t := by
@@ -63,7 +67,9 @@ theorem natCeilStepFiltrationAfter_le
   exact natCeilStepFiltration_antitone hF (le_of_lt s.property)
 
 /-- At a natural-number index, the right-limit of a ceiling-indexed
-antitone filtration is exactly the next group.-/
+antitone filtration is exactly the next group.
+@isnad1 id=eq.1h3v.s5.d21679e39541 from=translated src=- shape=ef3757c7 vocab=c90fd2a1
+-/
 theorem natCeilStepFiltrationAfter_natCast
     {F : ℕ → Subgroup G} (hF : Antitone F) (n : ℕ) :
     natCeilStepFiltrationAfter F (n : ℝ) = F (n + 1) := by
@@ -82,7 +88,9 @@ theorem natCeilStepFiltrationAfter_natCast
       rw [hs, hnat, Nat.ceil_natCast])
 
 /-- At a natural-number index, being a jump is equivalent to a strict change
-between two consecutive groups.-/
+between two consecutive groups.
+@isnad1 id=iff.1h3v.s5.9d7abd29503a from=translated src=- shape=74316203 vocab=9e37742f
+-/
 theorem isNatCeilStepFiltrationJump_natCast_iff
     {F : ℕ → Subgroup G} (hF : Antitone F) (n : ℕ) :
     IsNatCeilStepFiltrationJump F (n : ℝ) ↔
@@ -91,7 +99,9 @@ theorem isNatCeilStepFiltrationJump_natCast_iff
     natCeilStepFiltrationAfter_natCast hF n]
 
 /-- Every jump of an antitone natural-ceiling step filtration is a
-nonnegative rational integer.-/
+nonnegative rational integer.
+@isnad1 id=ex.2h3v.s5.93d890e1bb1c from=translated src=- shape=df18c9f5 vocab=2847d44b
+-/
 theorem isNatCeilStepFiltrationJump_integer
     {F : ℕ → Subgroup G} (hF : Antitone F) {t : ℝ}
     (ht : IsNatCeilStepFiltrationJump F t) :

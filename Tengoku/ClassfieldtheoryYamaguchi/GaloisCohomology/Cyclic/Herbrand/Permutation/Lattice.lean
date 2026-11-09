@@ -48,12 +48,18 @@ def coordinatePermutation (σ : Equiv.Perm ι) :
   map_add' _ _ := rfl
   map_smul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h4v.s7.3720a95a4e25 from=translated src=- shape=bd443c75 vocab=1d814f26
+-/
 @[simp]
 theorem coordinatePermutation_apply
     (σ : Equiv.Perm ι) (x : ι → ℝ) (i : ι) :
     coordinatePermutation σ x i = x (σ.symm i) :=
   rfl
 
+/--
+@isnad1 id=eq.0h1v.s6.3c73072fef0a from=translated src=- shape=f5f0d3ce vocab=6c048fbf
+-/
 @[simp]
 theorem coordinatePermutation_refl :
     coordinatePermutation (Equiv.refl ι) =
@@ -61,6 +67,9 @@ theorem coordinatePermutation_refl :
   ext x i
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.7b3b3dbd8a37 from=translated src=- shape=9c60a23e vocab=a7cd21fc
+-/
 theorem coordinatePermutation_mul
     (σ τ : Equiv.Perm ι) :
     coordinatePermutation (σ * τ) =
@@ -69,6 +78,9 @@ theorem coordinatePermutation_mul
   ext x i
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s7.1f7ff2469af3 from=translated src=- shape=97a0dcde vocab=948b3fa9
+-/
 @[simp]
 theorem coordinatePermutation_inv
     (σ : Equiv.Perm ι) :
@@ -78,6 +90,9 @@ theorem coordinatePermutation_inv
   ext x i
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s7.6c5e8b6ec07f from=translated src=- shape=62ac4c52 vocab=146f3090
+-/
 @[simp]
 theorem coordinatePermutation_single
     [DecidableEq ι] (σ : Equiv.Perm ι) (i : ι) :
@@ -119,6 +134,9 @@ def latticeApproximationRadius
   let bℝ : Basis ι ℝ (ι → ℝ) := b.ofZLatticeBasis ℝ L
   ∑ i, ‖bℝ i‖
 
+/--
+@isnad1 id=le.0h2v.s8.daac69b024df from=translated src=- shape=66a386a5 vocab=de2728f4
+-/
 theorem latticeApproximationRadius_nonneg
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
     [IsZLattice ℝ L] :
@@ -126,6 +144,9 @@ theorem latticeApproximationRadius_nonneg
   unfold latticeApproximationRadius
   exact Finset.sum_nonneg fun _ _ ↦ norm_nonneg _
 
+/--
+@isnad1 id=le.0h3v.s8.ef30c8182ff0 from=translated src=- shape=1fe92ce0 vocab=c375028c
+-/
 theorem norm_sub_latticeApproximation_le
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
     [IsZLattice ℝ L] (x : ι → ℝ) :
@@ -136,6 +157,9 @@ theorem norm_sub_latticeApproximation_le
   simpa only [latticeApproximation, latticeApproximationRadius,
     ZSpan.fract] using ZSpan.norm_fract_le bℝ x
 
+/--
+@isnad1 id=le.0h4v.s8.c5386da11db6 from=translated src=- shape=63428e02 vocab=776e13ab
+-/
 theorem abs_latticeApproximation_sub_apply_le
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
     [IsZLattice ℝ L] (x : ι → ℝ) (i : ι) :
@@ -162,6 +186,9 @@ def permutationRepresentation
   coordinatePermutation (ρ g)
 
 omit [Fintype G] [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h3v.s7.a0877247366e from=translated src=- shape=3f323056 vocab=45f606e7
+-/
 @[simp]
 theorem permutationRepresentation_one
     (ρ : G →* Equiv.Perm ι) :
@@ -173,6 +200,9 @@ theorem permutationRepresentation_one
   exact coordinatePermutation_refl
 
 omit [Fintype G] [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.0h5v.s7.49f6bbf355f5 from=translated src=- shape=7141c4a7 vocab=e7d6bd43
+-/
 theorem permutationRepresentation_mul
     (ρ : G →* Equiv.Perm ι) (g h : G) :
     permutationRepresentation ρ (g * h) =
@@ -215,6 +245,9 @@ def permutationLatticeEquiv
     exact map_zsmul _ _ _
 
 omit [Fintype G] [Fintype ι] [DecidableEq ι] in
+/--
+@isnad1 id=eq.1h6v.s11.07091b36fb1d from=translated src=- shape=40b2299d vocab=37a89aeb
+-/
 @[simp]
 theorem coe_permutationLatticeEquiv
     (ρ : G →* Equiv.Perm ι)
@@ -249,6 +282,9 @@ def permutationLatticeScale
       latticeApproximationRadius L + 1
 
 omit [DecidableEq ι] in
+/--
+@isnad1 id=lt.0h2v.s8.479b64e22457 from=translated src=- shape=66a386a5 vocab=7d035a25
+-/
 theorem permutationLatticeScale_pos
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
     [IsZLattice ℝ L] :
@@ -258,6 +294,9 @@ theorem permutationLatticeScale_pos
   unfold permutationLatticeScale
   nlinarith
 
+/--
+@isnad1 id=eq.1h7v.s10.30bdf385addb from=translated src=- shape=4639d9e1 vocab=bbe30756
+-/
 @[simp]
 theorem averagedLatticeVector_apply
     (ρ : G →* Equiv.Perm ι)
@@ -274,6 +313,9 @@ theorem averagedLatticeVector_apply
   simp [averagedLatticeVector, permutationRepresentation]
 
 omit [Fintype G] in
+/--
+@isnad1 id=le.0h7v.s9.7c70af78b399 from=translated src=- shape=d10b7628 vocab=bb54d63e
+-/
 theorem averagingSummand_diagonal_bound
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -289,6 +331,9 @@ theorem averagingSummand_diagonal_bound
   simpa using h
 
 omit [Fintype G] in
+/--
+@isnad1 id=le.1h8v.s9.800d9a2f866d from=translated src=- shape=d5454469 vocab=1c0c820e
+-/
 theorem averagingSummand_offDiagonal_bound
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -306,6 +351,9 @@ theorem averagingSummand_offDiagonal_bound
     (ρ g).symm.injective.ne hji
   simpa [hne] using h
 
+/--
+@isnad1 id=le.1h6v.s9.b137dc4a1e06 from=translated src=- shape=bba11f2a vocab=7b841079
+-/
 theorem averagedLatticeVector_diagonal_bound
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -346,6 +394,9 @@ theorem averagedLatticeVector_diagonal_bound
     _ = (Fintype.card G : ℝ) *
         latticeApproximationRadius L := by simp
 
+/--
+@isnad1 id=le.2h7v.s9.a401475f84b8 from=translated src=- shape=5c784f04 vocab=d026823d
+-/
 theorem averagedLatticeVector_offDiagonal_bound
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -390,6 +441,9 @@ def averagedLatticeMatrix
     (averagedLatticeVector ρ L hL t column :
       ι → ℝ) row
 
+/--
+@isnad1 id=lt.1h5v.s9.23c96e161788 from=translated src=- shape=6cfba5e3 vocab=9ea69b71
+-/
 theorem averagedLatticeMatrix_sum_col_lt_diag
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -469,6 +523,9 @@ theorem averagedLatticeMatrix_sum_col_lt_diag
         (permutationLatticeScale L) k k‖ := by
       rfl
 
+/--
+@isnad1 id=ne.1h4v.s9.5725207e05f9 from=translated src=- shape=fb9247ef vocab=e9e8a07a
+-/
 theorem averagedLatticeMatrix_det_ne_zero
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -480,6 +537,9 @@ theorem averagedLatticeMatrix_det_ne_zero
   det_ne_zero_of_sum_col_lt_diag
     (averagedLatticeMatrix_sum_col_lt_diag ρ L hL)
 
+/--
+@isnad1 id=linearin.1h4v.s9.567a80dc55f0 from=translated src=- shape=331f5102 vocab=ca59d65d
+-/
 theorem averagedLatticeVector_linearIndependent
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -500,6 +560,9 @@ theorem averagedLatticeVector_linearIndependent
         (permutationLatticeScale L) j i) at hcols
   simpa only [averagedLatticeMatrix] using hcols
 
+/--
+@isnad1 id=eq.1h7v.s11.b4568db8a2bc from=translated src=- shape=0ba7b7a6 vocab=6f3107c4
+-/
 theorem averagedLatticeVector_equivariant
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -558,6 +621,9 @@ def permutationSublattice
       (averagedLatticeVector ρ L hL
         (permutationLatticeScale L) i : ι → ℝ))
 
+/--
+@isnad1 id=le.1h4v.s9.5eafe9a98f50 from=translated src=- shape=f37d165e vocab=0c62518d
+-/
 theorem permutationSublattice_le
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -570,6 +636,9 @@ theorem permutationSublattice_le
   exact (averagedLatticeVector ρ L hL
     (permutationLatticeScale L) i).property
 
+/--
+@isnad1 id=discrete.1h4v.s9.49cc54cd4e3d from=translated src=- shape=9a85b5cb vocab=507e0ed2
+-/
 instance permutationSublattice_discreteTopology
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -586,6 +655,9 @@ instance permutationSublattice_discreteTopology
     apply Subtype.ext
     exact congrArg (fun z : L ↦ (z : ι → ℝ)) hxy
 
+/--
+@isnad1 id=eq.1h4v.s9.95131d1478fe from=translated src=- shape=826c1554 vocab=de4750ea
+-/
 theorem permutationSublattice_span_eq_top
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -610,6 +682,9 @@ theorem permutationSublattice_span_eq_top
   rintro _ ⟨i, rfl⟩
   exact Submodule.subset_span ⟨i, rfl⟩
 
+/--
+@isnad1 id=iszlatti.1h4v.s9.9aed03c4d7b2 from=translated src=- shape=c82368d3 vocab=507e0ed2
+-/
 instance permutationSublattice_isZLattice
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -630,6 +705,9 @@ def permutationSublatticeBasis
   Basis.span
     ((averagedLatticeVector_linearIndependent ρ L hL).restrict_scalars' ℤ)
 
+/--
+@isnad1 id=eq.1h5v.s10.2b5c71914604 from=translated src=- shape=8121f766 vocab=806b4b0a
+-/
 @[simp]
 theorem permutationSublatticeBasis_apply_coe
     (ρ : G →* Equiv.Perm ι)
@@ -652,6 +730,9 @@ theorem permutationSublatticeBasis_apply_coe
           (permutationLatticeScale L) i : ι → ℝ)
   exact Basis.coe_span_apply hli i
 
+/--
+@isnad1 id=eq.1h6v.s11.c7d942769ca9 from=translated src=- shape=3639e207 vocab=c1bffdde
+-/
 theorem permutationSublatticeBasis_permuted
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -673,7 +754,9 @@ theorem permutationSublatticeBasis_permuted
 
 /-- An invariant complete lattice in a real
 permutation representation contains a complete sublattice with a basis
-permuted in exactly the prescribed way.-/
+permuted in exactly the prescribed way.
+@isnad1 id=ex.1h4v.s11.8b9b674ef56f from=translated src=- shape=cbddcfd4 vocab=c6794169
+-/
 theorem exists_complete_permutationSublattice
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]
@@ -704,6 +787,9 @@ variable [Fintype G] [Group G] [Fintype ι] [DecidableEq ι]
 variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 omit [Fintype G] in
+/--
+@isnad1 id=eq.1h8v.s11.2ec7c3212239 from=translated src=- shape=97ed7c9f vocab=e02b084a
+-/
 theorem basisEquivFunL_symm_coordinatePermutation
     (b : Basis ι ℝ E)
     (ρ : G →* Equiv.Perm ι)
@@ -743,7 +829,9 @@ theorem basisEquivFunL_symm_coordinatePermutation
 /-- Invariant formulation: if a finite group acts on a
 finite-dimensional real vector space by permuting a specified basis, every
 invariant complete lattice contains a complete sublattice with a basis
-permuted in the same way.-/
+permuted in the same way.
+@isnad1 id=ex.2h7v.s12.201cb747cf8b from=translated src=- shape=cea3980e vocab=f52b874e
+-/
 theorem exists_complete_permutationSublattice_of_basis
     (b : Basis ι ℝ E)
     (ρ : G →* Equiv.Perm ι)
@@ -843,7 +931,9 @@ variable {E : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
 
 /-- Two complete integral lattices in the same real vector space are
 commensurable: if one is contained in the other, its quotient in the
-larger lattice is finite.-/
+larger lattice is finite.
+@isnad1 id=finite.1h3v.s9.7f3499c92a79 from=translated src=- shape=e111b73b vocab=60acbabd
+-/
 theorem finite_quotient_of_complete_sublattice
     (L L' : Submodule ℤ E)
     [DiscreteTopology L] [IsZLattice ℝ L]
@@ -876,7 +966,9 @@ section PermutationFiniteIndex
 variable [Fintype G] [Group G] [Fintype ι] [DecidableEq ι]
 
 /-- The canonical permutation sublattice has
-finite index in the original complete invariant lattice.-/
+finite index in the original complete invariant lattice.
+@isnad1 id=finite.1h4v.s10.e02b01e4b3e7 from=translated src=- shape=c46fbae6 vocab=67ded991
+-/
 theorem permutationSublattice_finite_quotient
     (ρ : G →* Equiv.Perm ι)
     (L : Submodule ℤ (ι → ℝ)) [DiscreteTopology L]

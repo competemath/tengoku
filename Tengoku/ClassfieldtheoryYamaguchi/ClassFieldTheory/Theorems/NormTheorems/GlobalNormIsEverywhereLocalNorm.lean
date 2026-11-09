@@ -28,7 +28,9 @@ namespace ClassFieldTheory
 
 universe u v
 
-/-- Every global field norm is a norm over every completion.-/
+/-- Every global field norm is a norm over every completion.
+@isnad1 id=iseveryw.1h3v.s6.2336ae1b8436 from=translated src=- shape=6702177e vocab=48f29ef4
+-/
 theorem globalNorm_isEverywhereLocalNorm
     (K : Type u) (L : Type v)
     [Field K] [NumberField K]

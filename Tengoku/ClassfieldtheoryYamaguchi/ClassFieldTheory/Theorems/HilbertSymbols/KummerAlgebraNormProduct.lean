@@ -28,7 +28,9 @@ universe u
 
 /-- For an invertible exponent, the canonical Kummer algebra has a finite
 separable field-product decomposition whose algebra norm is the product of
-the norms of its coordinates.-/
+the norms of its coordinates.
+@isnad1 id=ex.1h3v.s11.8bcbb42c3d13 from=translated src=- shape=234505bc vocab=d5babd4b
+-/
 theorem kummerAlgebra_exists_normProductDecomposition
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ)
     (hn : IsUnit ((n : ℕ) : K)) :

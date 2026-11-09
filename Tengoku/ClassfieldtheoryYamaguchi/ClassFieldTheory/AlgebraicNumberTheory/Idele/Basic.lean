@@ -63,6 +63,9 @@ def component (v : HeightOneSpectrum (𝓞 K)) :
   map_one' := rfl
   map_mul' _ _ := rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.300a67d07dfc from=translated src=- shape=5fabff8a vocab=b4a19dbe
+-/
 @[simp]
 theorem component_apply (a : FiniteIdeleGroup K)
     (v : HeightOneSpectrum (𝓞 K)) :
@@ -70,7 +73,9 @@ theorem component_apply (a : FiniteIdeleGroup K)
   rfl
 
 /-- A finite idele is a local integral unit at all but finitely many finite
-places.-/
+places.
+@isnad1 id=eventual.0h2v.s11.14224136d681 from=translated src=- shape=bc2c9a2b vocab=f683633b
+-/
 theorem eventually_mem_localUnits (a : FiniteIdeleGroup K) :
     ∀ᶠ v in Filter.cofinite,
       a v ∈ (v.adicCompletionIntegers K).units :=
@@ -89,6 +94,9 @@ def component (v : InfinitePlace K) :
     ContinuousMulEquiv.piUnits.toMonoidHom
 
 omit [NumberField K] in
+/--
+@isnad1 id=eq.0h3v.s10.c6e790e17c6c from=translated src=- shape=7760bc9d vocab=5ac0a822
+-/
 @[simp]
 theorem component_apply (a : InfiniteIdeleGroup K) (v : InfinitePlace K) :
     component v a = ContinuousMulEquiv.piUnits a v :=
@@ -124,11 +132,17 @@ def finiteComponent (v : HeightOneSpectrum (𝓞 K)) :
     IdeleGroup K →* (v.adicCompletion K)ˣ :=
   (FiniteIdeleGroup.component v).comp (MonoidHom.snd _ _)
 
+/--
+@isnad1 id=eq.0h3v.s11.b8e3ad2c9f7b from=translated src=- shape=b1a4d47a vocab=67cd5553
+-/
 @[simp]
 theorem infiniteComponent_apply (a : IdeleGroup K) (v : InfinitePlace K) :
     infiniteComponent v a = ContinuousMulEquiv.piUnits a.1 v :=
   rfl
 
+/--
+@isnad1 id=eq.0h3v.s11.830c64bb1751 from=translated src=- shape=3516b842 vocab=133674f6
+-/
 @[simp]
 theorem finiteComponent_apply (a : IdeleGroup K)
     (v : HeightOneSpectrum (𝓞 K)) :
@@ -154,11 +168,17 @@ def equivAdeleRingUnits :
       (finiteEquivFiniteAdeleUnits (K := K))).trans
     MulEquiv.prodUnits.symm
 
+/--
+@isnad1 id=eq.0h2v.s12.f9e4217a599d from=translated src=- shape=5bc05344 vocab=322ac22f
+-/
 @[simp]
 theorem equivAdeleRingUnits_fst (a : IdeleGroup K) :
     (MulEquiv.prodUnits (equivAdeleRingUnits a)).1 = a.1 := by
   rfl
 
+/--
+@isnad1 id=eq.0h2v.s13.cf5c1e7110c2 from=translated src=- shape=c3c8b6e1 vocab=e05b4c40
+-/
 @[simp]
 theorem equivAdeleRingUnits_snd (a : IdeleGroup K) :
     (MulEquiv.prodUnits (equivAdeleRingUnits a)).2 =

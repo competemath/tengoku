@@ -29,7 +29,9 @@ variable {F : Type u} {L : Type v} {L' : Type w}
   (e : L ≃ₐ[F] L') (E : IntermediateField F L)
 
 /-- The equivalence of intermediate fields commutes with their base-field
-embeddings.-/
+embeddings.
+@isnad1 id=eq.0h5v.s11.5420631d84c0 from=translated src=- shape=e0b67aa0 vocab=7b84f031
+-/
 theorem intermediateFieldMap_commutes :
     (algebraMap F (E.map e.toAlgHom)).comp (RingEquiv.refl F).toRingHom =
       (IntermediateField.intermediateFieldMap e E).toRingHom.comp
@@ -38,7 +40,9 @@ theorem intermediateFieldMap_commutes :
   simp
 
 /-- Mapping an intermediate field through an ambient algebra equivalence
-preserves its finite-dimensionality.-/
+preserves its finite-dimensionality.
+@isnad1 id=finitedi.0h5v.s9.ebb8a162548d from=translated src=- shape=01dd0c92 vocab=f0daf615
+-/
 theorem finiteDimensional_intermediateField_map_algEquiv
     [FiniteDimensional F E] :
     FiniteDimensional F (E.map e.toAlgHom) := by
@@ -47,7 +51,9 @@ theorem finiteDimensional_intermediateField_map_algEquiv
     (intermediateFieldMap_commutes e E)
 
 /-- Mapping an intermediate field through an ambient algebra equivalence
-preserves its abelian Galois property.-/
+preserves its abelian Galois property.
+@isnad1 id=isabelia.0h5v.s8.be90a301eee2 from=translated src=- shape=01dd0c92 vocab=20ebfd36
+-/
 theorem isAbelianGalois_intermediateField_map_algEquiv
     [IsAbelianGalois F E] :
     IsAbelianGalois F (E.map e.toAlgHom) := by

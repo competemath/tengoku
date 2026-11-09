@@ -33,7 +33,9 @@ def localBaseUnitSubgroup
   MonoidHom.range (integerUnitsToFieldUnits K)
 
 /-- A field unit lies in the image of valuation-ring units exactly when its
-valuation is one.-/
+valuation is one.
+@isnad1 id=iff.0h2v.s8.49767b5b7ea0 from=translated src=- shape=f74d11c1 vocab=413f87c8
+-/
 theorem mem_localBaseUnitSubgroup_iff_valuation_eq_one
     (K : Type u) [Field K] [ValuativeRel K] (x : Kˣ) :
     x ∈ localBaseUnitSubgroup K ↔ ValuativeRel.valuation K (x : K) = 1 := by
@@ -55,7 +57,9 @@ theorem mem_localBaseUnitSubgroup_iff_valuation_eq_one
     exact ⟨a, by ext; rfl⟩
 
 /-- The image of valuation-ring units is open in the native topology of a
-nonarchimedean local field.-/
+nonarchimedean local field.
+@isnad1 id=isopen.0h1v.s6.8c1bc389073d from=translated src=- shape=89519b57 vocab=57d48dd4
+-/
 theorem localBaseUnitSubgroup_isOpen
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] :

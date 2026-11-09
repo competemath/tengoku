@@ -30,7 +30,9 @@ variable {F : Type u} {M : Type v} {F' : Type w} {M' : Type x}
   [Algebra F M] [Algebra F' M']
   [FiniteDimensional F M] [FiniteDimensional F' M']
 
-/-- The field-norm homomorphisms commute with compatible field equivalences.-/
+/-- The field-norm homomorphisms commute with compatible field equivalences.
+@isnad1 id=eq.1h7v.s10.219d20e1d2d0 from=translated src=- shape=d5030ab2 vocab=54ae80ef
+-/
 theorem fieldNormHom_map_ringEquiv
     (eF : F ≃+* F') (eM : M ≃+* M')
     (he : (algebraMap F' M').comp eF.toRingHom =
@@ -45,7 +47,9 @@ theorem fieldNormHom_map_ringEquiv
   exact eF.apply_symm_apply _
 
 /-- The image of a field-norm subgroup under a base-field equivalence is
-exactly the norm subgroup of the transported extension.-/
+exactly the norm subgroup of the transported extension.
+@isnad1 id=eq.1h6v.s9.0eb1f2f6a610 from=translated src=- shape=225725fb vocab=668e1e8b
+-/
 theorem fieldNormSubgroup_map_ringEquiv
     (eF : F ≃+* F') (eM : M ≃+* M')
     (he : (algebraMap F' M').comp eF.toRingHom =

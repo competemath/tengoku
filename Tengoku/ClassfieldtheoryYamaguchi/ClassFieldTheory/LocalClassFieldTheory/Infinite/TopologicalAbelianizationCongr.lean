@@ -97,7 +97,9 @@ noncomputable def topologicalAbelianizationCongr (e : G ≃ₜ* H) :
     continuous_toFun := topologicalAbelianizationMap_continuous e
     continuous_invFun := topologicalAbelianizationMap_continuous e.symm }
 
-/-- States the theorem `topologicalAbelianizationCongr_mk`.-/
+/-- States the theorem `topologicalAbelianizationCongr_mk`.
+@isnad1 id=eq.0h4v.s9.76f0b33c41f0 from=translated src=- shape=4ed8a809 vocab=54344a45
+-/
 @[simp]
 theorem topologicalAbelianizationCongr_mk
     (e : G ≃ₜ* H) (x : G) :

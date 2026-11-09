@@ -26,7 +26,9 @@ namespace ClassFieldTheory
 
 universe u
 
-/-- A local Hilbert pairing evaluates to one exactly on Kummer norms.-/
+/-- A local Hilbert pairing evaluates to one exactly on Kummer norms.
+@isnad1 id=iff.1h5v.s8.f44229c0308c from=translated src=- shape=0f89834d vocab=ac714a09
+-/
 theorem localHilbertPairing_eq_one_iff_isKummerNorm
     (K : Type u) [Field K] (n : ℕ+)
     (B : HilbertPairing K n)

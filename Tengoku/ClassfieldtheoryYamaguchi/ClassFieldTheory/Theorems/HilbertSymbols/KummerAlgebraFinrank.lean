@@ -22,7 +22,9 @@ namespace ClassFieldTheory
 
 universe u
 
-/-- The Kummer algebra has the polynomial's degree as its dimension.-/
+/-- The Kummer algebra has the polynomial's degree as its dimension.
+@isnad1 id=eq.0h3v.s9.55ebe54f0c6e from=translated src=- shape=47ec5cca vocab=18430e63
+-/
 theorem kummerAlgebra_finrank
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ) :
     Module.finrank K (KummerAlgebra K n a) = (n : ℕ) := by

@@ -45,7 +45,9 @@ structure RayClassModulus
 
 namespace RayClassModulus
 
-/-- Ray moduli are equal when their finite exponents and real-place sets agree.-/
+/-- Ray moduli are equal when their finite exponents and real-place sets agree.
+@isnad1 id=eq.2h3v.s6.2f9aeb61689e from=translated src=- shape=20a7dc3e vocab=1ec91a09
+-/
 @[ext] theorem ext
     {K : Type u} [Field K] [NumberField K]
     {m n : RayClassModulus K}
@@ -82,7 +84,9 @@ instance {K : Type u} [Field K] [NumberField K] :
         rfl
 
 /-- Modulus divisibility is exponentwise at finite primes and inclusion at
-real places.-/
+real places.
+@isnad1 id=iff.0h3v.s7.c2108ac0342a from=translated src=- shape=4fd1f4cf vocab=1475b620
+-/
 @[simp] theorem le_iff
     {K : Type u} [Field K] [NumberField K]
     (m n : RayClassModulus K) :
@@ -111,11 +115,17 @@ instance {K : Type u} [Field K] [NumberField K] :
       ⟨sup_le hmp.1 hnp.1, Finset.union_subset hmp.2 hnp.2⟩
   }
 
+/--
+@isnad1 id=eq.0h3v.s6.e7778631b6f1 from=translated src=- shape=588cc558 vocab=47bccb9e
+-/
 @[simp] theorem finitePart_inf
     {K : Type u} [Field K] [NumberField K]
     (m n : RayClassModulus K) :
     (m ⊓ n).finitePart = m.finitePart ⊓ n.finitePart := rfl
 
+/--
+@isnad1 id=iff.0h4v.s7.9b254224af96 from=translated src=- shape=b0a3275b vocab=06c9a4e0
+-/
 @[simp] theorem mem_infinitePart_inf
     {K : Type u} [Field K] [NumberField K]
     (m n : RayClassModulus K) (v : RayClassRealPlace K) :
@@ -125,11 +135,17 @@ instance {K : Type u} [Field K] [NumberField K] :
   change v ∈ m.infinitePart ∩ n.infinitePart ↔ _
   exact Finset.mem_inter
 
+/--
+@isnad1 id=eq.0h3v.s6.969348c8c3ae from=translated src=- shape=588cc558 vocab=cfca91a1
+-/
 @[simp] theorem finitePart_sup
     {K : Type u} [Field K] [NumberField K]
     (m n : RayClassModulus K) :
     (m ⊔ n).finitePart = m.finitePart ⊔ n.finitePart := rfl
 
+/--
+@isnad1 id=iff.0h4v.s7.4d015487a47f from=translated src=- shape=b0a3275b vocab=56c9fb7d
+-/
 @[simp] theorem mem_infinitePart_sup
     {K : Type u} [Field K] [NumberField K]
     (m n : RayClassModulus K) (v : RayClassRealPlace K) :

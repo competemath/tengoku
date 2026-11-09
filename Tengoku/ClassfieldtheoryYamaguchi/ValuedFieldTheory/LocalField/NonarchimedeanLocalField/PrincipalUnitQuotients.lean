@@ -79,7 +79,9 @@ def principalUnitsSuccQuotLift
     ((principalUnits K (n + 1)).subgroupOf (principalUnits K n)) f h
 
 /-- The homomorphism descended from `U^n` agrees with the original homomorphism on quotient
-representatives.-/
+representatives.
+@isnad1 id=eq.1h5v.s16.6d4a1fa20d08 from=translated src=- shape=ae85715a vocab=7705e943
+-/
 @[simp]
 theorem principalUnitsSuccQuotLift_mk
     {K : Type u} {M : Type*} [Field K] [ValuativeRel K] [Group M]
@@ -90,7 +92,9 @@ theorem principalUnitsSuccQuotLift_mk
         (principalUnitsSuccQuotMk K n x) = f x :=
   rfl
 
-/-- Eliminate a successive principal-unit class through the canonical map.-/
+/-- Eliminate a successive principal-unit class through the canonical map.
+@isnad1 id=var.0h5v.s15.7a44040288dc from=translated src=- shape=8afd5de2 vocab=b892a9b0
+-/
 protected theorem PrincipalUnitsSuccQuot.inductionOn
     {K : Type u} [Field K] [ValuativeRel K] (n : Nat)
     {motive : PrincipalUnitsSuccQuot K n → Prop}
@@ -108,7 +112,9 @@ protected theorem PrincipalUnitsSuccQuot.inductionOn
 /-! ### Separatedness of the principal-unit filtration -/
 
 /-- Krull separatedness of the maximal-ideal filtration of the valuation integer
-ring of a nonarchimedean local field.-/
+ring of a nonarchimedean local field.
+@isnad1 id=eq.0h1v.s11.9f9229a78fb4 from=translated src=- shape=554f5203 vocab=5ae13444
+-/
 theorem maximalIdeal_iInf_pow_eq_bot
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] :
@@ -130,7 +136,9 @@ theorem eq_zero_of_mem_all_maximalIdeal_pow
   exact (Ideal.mem_bot.mp hxInf)
 
 /-- The principal-unit filtration is separated: a unit lying in every `U^n`
-is the unit `1`.-/
+is the unit `1`.
+@isnad1 id=eq.1h2v.s11.7474fff78d23 from=translated src=- shape=e3d58ce1 vocab=80599d09
+-/
 theorem principalUnits_eq_one_of_mem_all
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] (u : 𝒪[K]ˣ)
@@ -145,7 +153,9 @@ theorem principalUnits_eq_one_of_mem_all
   exact sub_eq_zero.mp hsub
 
 /-- Variant tailored to finite-depth approximation statements: if a unit lies
-in `U^(n+d)` for every `d`, then it is `1`.-/
+in `U^(n+d)` for every `d`, then it is `1`.
+@isnad1 id=eq.1h3v.s11.321f0692a30a from=translated src=- shape=6ab4c480 vocab=eeac87f6
+-/
 theorem principalUnits_eq_one_of_mem_add_all
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] (n : Nat) (u : 𝒪[K]ˣ)
@@ -162,7 +172,9 @@ theorem principalUnits_eq_one_of_mem_add_all
 /-! ### Maximal-ideal powers as local neighborhoods -/
 
 /-- Every neighborhood of zero in the valuation integer ring contains a
-sufficiently deep power of the maximal ideal.-/
+sufficiently deep power of the maximal ideal.
+@isnad1 id=ex.1h2v.s11.357fefb1b733 from=translated src=- shape=888b58f4 vocab=2a1c1587
+-/
 theorem exists_maximalIdeal_pow_subset_nhds_zero
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] (s : Set 𝒪[K])
@@ -189,7 +201,9 @@ theorem exists_maximalIdeal_pow_subset_nhds_zero
   exact hxset.trans_lt hN
 
 /-- Eventual form of `exists_maximalIdeal_pow_subset_nhds_zero`: all deeper
-powers of the maximal ideal lie in a fixed zero-neighborhood.-/
+powers of the maximal ideal lie in a fixed zero-neighborhood.
+@isnad1 id=ex.1h2v.s11.80a64d197a44 from=translated src=- shape=f9b76e45 vocab=2a1c1587
+-/
 theorem eventually_maximalIdeal_pow_subset_nhds_zero
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] (s : Set 𝒪[K])
@@ -200,7 +214,9 @@ theorem eventually_maximalIdeal_pow_subset_nhds_zero
   refine ⟨N, fun m hm x hx => hN ?_⟩
   exact Ideal.pow_le_pow_right hm hx
 
-/-- Each power of the maximal ideal is closed in the valuation integer ring.-/
+/-- Each power of the maximal ideal is closed in the valuation integer ring.
+@isnad1 id=isclosed.0h2v.s11.5e4db4f9cade from=translated src=- shape=dec52513 vocab=c83fe356
+-/
 theorem isClosed_maximalIdeal_pow
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] (n : Nat) :
@@ -222,7 +238,9 @@ theorem isClosed_maximalIdeal_pow
   rw [← map_pow, Valuation.restrict_le_iff, map_pow]
 
 /-- Each power of the maximal ideal is a zero-neighborhood in the valuation
-integer ring.-/
+integer ring.
+@isnad1 id=mem.0h2v.s11.15da3f24fa39 from=translated src=- shape=fe7be07e vocab=0a8950a9
+-/
 theorem maximalIdeal_pow_mem_nhds_zero
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] (n : Nat) :
@@ -247,7 +265,9 @@ theorem maximalIdeal_pow_mem_nhds_zero
     exact le_of_lt hxv
 
 /-- Powers of an element of the maximal ideal tend to zero in the valuation
-integer ring.-/
+integer ring.
+@isnad1 id=tendsto.1h2v.s11.96c677bf80d0 from=translated src=- shape=36cc02f3 vocab=78bb0bba
+-/
 theorem tendsto_pow_succ_of_mem_maximalIdeal
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] {x : 𝒪[K]}
@@ -260,7 +280,9 @@ theorem tendsto_pow_succ_of_mem_maximalIdeal
   exact hN (d + 1) (le_trans hd (Nat.le_succ d))
     (Ideal.pow_mem_pow hx (d + 1))
 
-/-- The signed version used by finite geometric inverse corrections.-/
+/-- The signed version used by finite geometric inverse corrections.
+@isnad1 id=tendsto.1h2v.s11.3b82b0e9c953 from=translated src=- shape=07c96ef6 vocab=6c48b713
+-/
 theorem tendsto_neg_pow_succ_of_mem_maximalIdeal
     (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
     [IsNonarchimedeanLocalField K] {x : 𝒪[K]}
@@ -269,7 +291,9 @@ theorem tendsto_neg_pow_succ_of_mem_maximalIdeal
   tendsto_pow_succ_of_mem_maximalIdeal K ((𝓂[K] : Ideal 𝒪[K]).neg_mem hx)
 
 /-- If a sequence of valuation integers converges, then its difference from
-the limit is eventually in any fixed power of the maximal ideal.-/
+the limit is eventually in any fixed power of the maximal ideal.
+@isnad1 id=eventual.1h4v.s11.254071fd1a85 from=translated src=- shape=9b9d1422 vocab=8241a70b
+-/
 theorem eventually_sub_mem_maximalIdeal_pow_of_tendsto
     (K : Type u) [Field K] [ValuativeRel K] [UniformSpace K] [IsUniformAddGroup K]
     [IsNonarchimedeanLocalField K] {f : Nat → 𝒪[K]} {x : 𝒪[K]} (n : Nat)
@@ -280,7 +304,9 @@ theorem eventually_sub_mem_maximalIdeal_pow_of_tendsto
   exact hdiff.eventually (maximalIdeal_pow_mem_nhds_zero K n)
 
 /-- If valuation-ring units converge in the valuation integer ring, then their
-quotient by the limit is eventually in every fixed principal-unit level.-/
+quotient by the limit is eventually in every fixed principal-unit level.
+@isnad1 id=eventual.1h4v.s12.6b4af09e7a27 from=translated src=- shape=296a9f78 vocab=2897d411
+-/
 theorem eventually_div_mem_principalUnits_of_tendsto_units
     (K : Type u) [Field K] [ValuativeRel K] [UniformSpace K] [IsUniformAddGroup K]
     [IsNonarchimedeanLocalField K] {f : Nat → 𝒪[K]ˣ} {x : 𝒪[K]ˣ} (n : Nat)
@@ -314,7 +340,9 @@ def principalUnitsCorrectionProduct (K : Type u) [Field K] [ValuativeRel K]
   | 0 => 1
   | d + 1 => principalUnitsCorrectionProduct K n z d * (z d : 𝒪[K]ˣ)
 
-/-- The correction product with no factors is the identity unit.-/
+/-- The correction product with no factors is the identity unit.
+@isnad1 id=eq.0h3v.s11.290f6a903d9a from=translated src=- shape=257b16b7 vocab=eba55375
+-/
 @[simp]
 theorem principalUnitsCorrectionProduct_zero
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
@@ -322,7 +350,9 @@ theorem principalUnitsCorrectionProduct_zero
     principalUnitsCorrectionProduct K n z 0 = 1 :=
   rfl
 
-/-- The next correction product appends the correction at the current filtration depth.-/
+/-- The next correction product appends the correction at the current filtration depth.
+@isnad1 id=eq.0h4v.s12.601d9a90767f from=translated src=- shape=f0f692cd vocab=d7a48b07
+-/
 @[simp]
 theorem principalUnitsCorrectionProduct_succ
     (K : Type u) [Field K] [ValuativeRel K] (n d : Nat)
@@ -332,7 +362,9 @@ theorem principalUnitsCorrectionProduct_succ
   rfl
 
 /-- Every finite correction product stays in the initial principal-unit level
-`U^n`.-/
+`U^n`.
+@isnad1 id=mem.0h4v.s12.fb15c1ecbb13 from=translated src=- shape=bd7e4a69 vocab=eba55375
+-/
 theorem principalUnitsCorrectionProduct_mem
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
     (z : ∀ d : Nat, principalUnits K (n + d)) (d : Nat) :
@@ -347,7 +379,9 @@ theorem principalUnitsCorrectionProduct_mem
 
 /-- The tail quotient of two finite correction products lies in the principal
 unit level controlled by the earlier index. This is the filtration input for
-the later Cauchy argument.-/
+the later Cauchy argument.
+@isnad1 id=mem.0h5v.s12.b8d56dda0f4d from=translated src=- shape=f78179eb vocab=63662eb5
+-/
 theorem principalUnitsCorrectionProduct_div_mem
     (K : Type u) [Field K] [ValuativeRel K] (n m d : Nat)
     (z : ∀ d : Nat, principalUnits K (n + d)) :
@@ -381,7 +415,9 @@ theorem principalUnitsCorrectionProduct_div_mem
       exact (principalUnits K (n + m)).mul_mem ih hz
 
 /-- Ring-valued form of the tail-control statement: the two finite correction
-products are congruent modulo `𝓂^(n+m)`.-/
+products are congruent modulo `𝓂^(n+m)`.
+@isnad1 id=mem.0h5v.s12.062981d6a08d from=translated src=- shape=0e43f009 vocab=9a5e51e5
+-/
 theorem principalUnitsCorrectionProduct_div_sub_one_mem
     (K : Type u) [Field K] [ValuativeRel K] (n m d : Nat)
     (z : ∀ d : Nat, principalUnits K (n + d)) :
@@ -395,7 +431,9 @@ theorem principalUnitsCorrectionProduct_div_sub_one_mem
 
 /-- Rewrites a difference of units as the earlier unit times a quotient error.
 This is the algebraic bridge from multiplicative tail control to additive
-uniformity control.-/
+uniformity control.
+@isnad1 id=eq.0h3v.s12.5ec6fa7d386e from=translated src=- shape=a2322354 vocab=23a9eeed
+-/
 lemma unit_sub_eq_mul_div_sub_one
     (K : Type u) [Field K] [ValuativeRel K] (a b : 𝒪[K]ˣ) :
     (a : 𝒪[K]) - (b : 𝒪[K]) =
@@ -410,7 +448,9 @@ lemma unit_sub_eq_mul_div_sub_one
       ring
 
 /-- Additive form of the correction-product tail control. This is the form
-needed by the additive uniformity on the valuation integer ring.-/
+needed by the additive uniformity on the valuation integer ring.
+@isnad1 id=mem.0h5v.s12.e5d879addb93 from=translated src=- shape=7d1bb2a5 vocab=d1626e19
+-/
 theorem principalUnitsCorrectionProduct_sub_mem
     (K : Type u) [Field K] [ValuativeRel K] (n m d : Nat)
     (z : ∀ d : Nat, principalUnits K (n + d)) :
@@ -426,7 +466,9 @@ theorem principalUnitsCorrectionProduct_sub_mem
   exact Ideal.mul_mem_left _ _ htail
 
 /-- Uniform-tail algebraic input: two sufficiently late correction products
-are congruent modulo any fixed earlier level of the maximal-ideal filtration.-/
+are congruent modulo any fixed earlier level of the maximal-ideal filtration.
+@isnad1 id=mem.2h6v.s12.5fb601c0d533 from=translated src=- shape=880a53a3 vocab=b552d99d
+-/
 theorem principalUnitsCorrectionProduct_sub_mem_of_le
     (K : Type u) [Field K] [ValuativeRel K] (n N i j : Nat)
     (z : ∀ d : Nat, principalUnits K (n + d))
@@ -456,7 +498,9 @@ theorem principalUnitsCorrectionProduct_sub_mem_of_le
     exact (𝓂[K] ^ (n + N) : Ideal 𝒪[K]).neg_mem hdiff
 
 /-- The finite correction products form a Cauchy sequence in the valuation
-integer ring. This is the first complete-side output of the tail estimates.-/
+integer ring. This is the first complete-side output of the tail estimates.
+@isnad1 id=cauchyse.0h3v.s11.aea752c03952 from=translated src=- shape=ee27e2f2 vocab=0ea0a80b
+-/
 theorem principalUnitsCorrectionProduct_cauchySeq
     (K : Type u) [Field K] [ValuativeRel K] [UniformSpace K] [IsUniformAddGroup K]
     [IsNonarchimedeanLocalField K] (n : Nat)
@@ -478,7 +522,9 @@ theorem principalUnitsCorrectionProduct_cauchySeq
 /-- Completeness of the valuation integer ring gives a limit for the finite
 correction products. The statement deliberately stops at an `𝒪[K]`-valued
 limit; proving that the limit is a unit and remains in the intended
-principal-unit level is the next frontier.-/
+principal-unit level is the next frontier.
+@isnad1 id=ex.0h3v.s11.55978495bbbb from=translated src=- shape=f4247cfa vocab=35274f7a
+-/
 theorem exists_tendsto_principalUnitsCorrectionProduct
     (K : Type u) [Field K] [ValuativeRel K] [UniformSpace K] [IsUniformAddGroup K]
     [IsNonarchimedeanLocalField K] (n : Nat)
@@ -490,7 +536,9 @@ theorem exists_tendsto_principalUnitsCorrectionProduct
     (principalUnitsCorrectionProduct_cauchySeq K n z)
 
 /-- Any limit of the correction-product sequence still satisfies the defining
-congruence of `U^n`, viewed inside the valuation integer ring.-/
+congruence of `U^n`, viewed inside the valuation integer ring.
+@isnad1 id=mem.1h4v.s12.11cff387daae from=translated src=- shape=d99fa48e vocab=981c9862
+-/
 theorem principalUnitsCorrectionProduct_limit_sub_one_mem
     (K : Type u) [Field K] [ValuativeRel K] [UniformSpace K] [IsUniformAddGroup K]
     [IsNonarchimedeanLocalField K] (n : Nat)
@@ -511,7 +559,9 @@ theorem principalUnitsCorrectionProduct_limit_sub_one_mem
 
 /-- Complete-side output with the retained principal-unit congruence: the
 finite correction products have an `𝒪[K]`-valued limit whose difference from
-`1` lies in `𝓂^n`.-/
+`1` lies in `𝓂^n`.
+@isnad1 id=ex.0h3v.s12.231b6f901790 from=translated src=- shape=7ab6110e vocab=981c9862
+-/
 theorem exists_tendsto_principalUnitsCorrectionProduct_sub_one_mem
     (K : Type u) [Field K] [ValuativeRel K] [UniformSpace K] [IsUniformAddGroup K]
     [IsNonarchimedeanLocalField K] (n : Nat)
@@ -524,7 +574,9 @@ theorem exists_tendsto_principalUnitsCorrectionProduct_sub_one_mem
   exact ⟨x, hx, principalUnitsCorrectionProduct_limit_sub_one_mem K n z x hx⟩
 
 /-- The concrete quotient equivalence sends a principal-unit class to the corresponding
-`QuotientGroup` class.-/
+`QuotientGroup` class.
+@isnad1 id=eq.0h3v.s18.00faae7b45ee from=translated src=- shape=f513057b vocab=f4e4e440
+-/
 @[simp]
 theorem principalUnitsSuccQuotConcreteEquiv_mk
     (K : Type u) [Field K] [ValuativeRel K]
@@ -544,7 +596,9 @@ def principalUnitsSuccIncl (K : Type u) [Field K] [ValuativeRel K] (n : Nat) :
     rfl
 
 /-- The range of `U^(n+1) → U^n` is the subgroup used to form
-`U^n/U^(n+1)`.-/
+`U^n/U^(n+1)`.
+@isnad1 id=eq.0h2v.s13.bdb03746f931 from=translated src=- shape=72fc2c1a vocab=0b49a49b
+-/
 theorem principalUnitsSuccIncl_range
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) :
     MonoidHom.range (principalUnitsSuccIncl K n) =
@@ -558,20 +612,26 @@ theorem principalUnitsSuccIncl_range
   · intro hu
     exact ⟨⟨u.1, hu⟩, by ext; rfl⟩
 
-/-- Every class in `U^n/U^(n+1)` has a representative in `U^n`.-/
+/-- Every class in `U^n/U^(n+1)` has a representative in `U^n`.
+@isnad1 id=surjecti.0h2v.s15.12a376dc849c from=translated src=- shape=b780969f vocab=0dbd706e
+-/
 theorem principalUnitsSuccQuotMk_surjective
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) :
     Function.Surjective (principalUnitsSuccQuotMk K n) :=
   QuotientGroup.mk'_surjective ((principalUnits K (n + 1)).subgroupOf (principalUnits K n))
 
-/-- The kernel of the canonical map `U^n → U^n/U^(n+1)` is the subgroup `U^(n+1)`.-/
+/-- The kernel of the canonical map `U^n → U^n/U^(n+1)` is the subgroup `U^(n+1)`.
+@isnad1 id=eq.0h2v.s12.84966deffb45 from=translated src=- shape=3ea097a0 vocab=b1e8d69f
+-/
 theorem principalUnitsSuccQuotMk_ker (K : Type u) [Field K] [ValuativeRel K] (n : Nat) :
     MonoidHom.ker (principalUnitsSuccQuotMk K n) =
       (principalUnits K (n + 1)).subgroupOf (principalUnits K n) :=
   QuotientGroup.ker_mk'
     (N := (principalUnits K (n + 1)).subgroupOf (principalUnits K n))
 
-/-- The class of a principal unit is trivial exactly when the unit belongs to `U^(n+1)`.-/
+/-- The class of a principal unit is trivial exactly when the unit belongs to `U^(n+1)`.
+@isnad1 id=iff.0h3v.s15.176ad7191e6c from=translated src=- shape=b4574563 vocab=aaecf254
+-/
 theorem principalUnitsSuccQuotMk_eq_one_iff
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
     (u : principalUnits K n) :
@@ -590,7 +650,9 @@ theorem principalUnitsSuccQuotMk_eq_one_iff
         (N := (principalUnits K (n + 1)).subgroupOf (principalUnits K n)) u).mpr h
 
 /-- Two principal units define the same successive-quotient class exactly when their quotient lies
-in `U^(n+1)`.-/
+in `U^(n+1)`.
+@isnad1 id=iff.0h4v.s16.3212081152b9 from=translated src=- shape=98b322c6 vocab=37cc9e16
+-/
 theorem principalUnitsSuccQuotMk_eq_iff_div_mem
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
     (u v : principalUnits K n) :
@@ -606,14 +668,18 @@ theorem principalUnitsSuccQuotMk_eq_iff_div_mem
     exact (QuotientGroup.eq_iff_div_mem
       (N := (principalUnits K (n + 1)).subgroupOf (principalUnits K n))).mpr h
 
-/-- Exactness of the concrete sequence `U^(n+1) → U^n → U^n/U^(n+1)`.-/
+/-- Exactness of the concrete sequence `U^(n+1) → U^n → U^n/U^(n+1)`.
+@isnad1 id=eq.0h2v.s13.7579abf187b2 from=translated src=- shape=2134d7b3 vocab=974152fc
+-/
 theorem principalUnitsSuccIncl_exact
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) :
     MonoidHom.range (principalUnitsSuccIncl K n) =
       MonoidHom.ker (principalUnitsSuccQuotMk K n) := by
   rw [principalUnitsSuccIncl_range, principalUnitsSuccQuotMk_ker]
 
-/-- Every element included from `U^(n+1)` lies in the kernel of the quotient map from `U^n`.-/
+/-- Every element included from `U^(n+1)` lies in the kernel of the quotient map from `U^n`.
+@isnad1 id=mem.0h3v.s16.505f6b22783d from=translated src=- shape=b4fd6b95 vocab=d2a70a65
+-/
 theorem principalUnitsSuccIncl_mem_ker
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
     (u : principalUnits K (n + 1)) :
@@ -621,7 +687,9 @@ theorem principalUnitsSuccIncl_mem_ker
   rw [← principalUnitsSuccIncl_exact K n]
   exact ⟨u, rfl⟩
 
-/-- Quotienting an element after including it from `U^(n+1)` produces the identity class.-/
+/-- Quotienting an element after including it from `U^(n+1)` produces the identity class.
+@isnad1 id=eq.0h3v.s16.b496769b111a from=translated src=- shape=0bda2815 vocab=4b914bd8
+-/
 @[simp]
 theorem principalUnitsSuccQuotMk_comp_incl_apply
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
@@ -630,7 +698,9 @@ theorem principalUnitsSuccQuotMk_comp_incl_apply
   exact principalUnitsSuccIncl_mem_ker K n u
 
 /-- Membership in the embedded subgroup `U^(n+1)` is equivalent to congruence to one modulo
-`𝓂^(n+1)`.-/
+`𝓂^(n+1)`.
+@isnad1 id=iff.0h3v.s14.d1ccbc735e9b from=translated src=- shape=f78dcb4e vocab=5d42a3d1
+-/
 theorem mem_principalUnits_succ_subgroupOf_iff
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
     (u : principalUnits K n) :
@@ -693,7 +763,9 @@ def maximalIdealPowSuccQuotMk
   exact Submodule.mkQ (maximalIdealPowSuccSubmodule K n)
 
 /-- The concrete linear equivalence sends an ideal-power class to the corresponding
-submodule-quotient class.-/
+submodule-quotient class.
+@isnad1 id=eq.0h3v.s17.a16820b8162a from=translated src=- shape=277a2e4a vocab=66bb2eca
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotConcreteLinearEquiv_mk
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
@@ -703,7 +775,9 @@ theorem maximalIdealPowSuccQuotConcreteLinearEquiv_mk
       Submodule.Quotient.mk a :=
   rfl
 
-/-- Eliminate an ideal-power quotient class through its canonical class map.-/
+/-- Eliminate an ideal-power quotient class through its canonical class map.
+@isnad1 id=var.0h5v.s14.5afcfe96b931 from=translated src=- shape=14ae1cf4 vocab=fff1c713
+-/
 protected theorem MaximalIdealPowSuccQuot.inductionOn
     {K : Type u} [Field K] [ValuativeRel K] (n : Nat)
     {motive : MaximalIdealPowSuccQuot K n → Prop}
@@ -718,7 +792,9 @@ protected theorem MaximalIdealPowSuccQuot.inductionOn
   intro a
   exact h a
 
-/-- Binary elimination through arbitrary ideal-power representatives.-/
+/-- Binary elimination through arbitrary ideal-power representatives.
+@isnad1 id=var.0h6v.s15.204a3757bf45 from=translated src=- shape=ef3db7eb vocab=fff1c713
+-/
 protected theorem MaximalIdealPowSuccQuot.inductionOn₂
     {K : Type u} [Field K] [ValuativeRel K] (n : Nat)
     {motive : MaximalIdealPowSuccQuot K n →
@@ -758,7 +834,9 @@ def maximalIdealPowSuccQuotLift
   exact h a b
     ((Submodule.Quotient.eq (maximalIdealPowSuccSubmodule K n)).1 hq)
 
-/-- A function descended to `𝓂^n/𝓂^(n+1)` agrees with the original function on representatives.-/
+/-- A function descended to `𝓂^n/𝓂^(n+1)` agrees with the original function on representatives.
+@isnad1 id=eq.1h5v.s16.a3d5d51a56b3 from=translated src=- shape=1822c984 vocab=d9ba586a
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotLift_mk
     {K : Type u} {P : Sort*} [Field K] [ValuativeRel K] (n : Nat)
@@ -783,7 +861,9 @@ def maximalIdealPowSuccQuotLinearLift
   exact (maximalIdealPowSuccSubmodule K n).liftQ f h
 
 /-- A linear map descended to `𝓂^n/𝓂^(n+1)` agrees with the original linear map on representatives.
-A linear map descended to `𝓂^n/𝓂^(n+1)` agrees with the original linear map on representatives.-/
+A linear map descended to `𝓂^n/𝓂^(n+1)` agrees with the original linear map on representatives.
+@isnad1 id=eq.1h5v.s16.8e7c469c59b6 from=translated src=- shape=ea4151b7 vocab=391a170c
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotLinearLift_mk
     {K : Type u} {M : Type*} [Field K] [ValuativeRel K]
@@ -796,7 +876,9 @@ theorem maximalIdealPowSuccQuotLinearLift_mk
   rfl
 
 /-- An element of `𝓂^n` belongs to the defining submodule exactly when its value lies in `𝓂^(n+1)`.
-An element of `𝓂^n` belongs to the defining submodule exactly when its value lies in `𝓂^(n+1)`.-/
+An element of `𝓂^n` belongs to the defining submodule exactly when its value lies in `𝓂^(n+1)`.
+@isnad1 id=iff.0h3v.s15.2b59da0d76d8 from=translated src=- shape=d2b11926 vocab=1fbc5f3f
+-/
 theorem mem_maximalIdealPowSuccSubmodule_iff
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
     (a : ((𝓂[K] ^ n : Ideal 𝒪[K]) : Type u)) :
@@ -804,7 +886,9 @@ theorem mem_maximalIdealPowSuccSubmodule_iff
       (a : 𝒪[K]) ∈ (𝓂[K] ^ (n + 1) : Ideal 𝒪[K]) :=
   Iff.rfl
 
-/-- The class of an element of `𝓂^n` is zero exactly when its value lies in `𝓂^(n+1)`.-/
+/-- The class of an element of `𝓂^n` is zero exactly when its value lies in `𝓂^(n+1)`.
+@isnad1 id=iff.0h3v.s14.7addc49f760f from=translated src=- shape=ef071d3c vocab=d16a3f40
+-/
 theorem maximalIdealPowSuccQuotMk_eq_zero_iff
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
     (a : ((𝓂[K] ^ n : Ideal 𝒪[K]) : Type u)) :
@@ -817,7 +901,9 @@ theorem maximalIdealPowSuccQuotMk_eq_zero_iff
   rfl
 
 /-- Two elements of `𝓂^n` define the same quotient class exactly when their difference lies in
-`𝓂^(n+1)`.-/
+`𝓂^(n+1)`.
+@isnad1 id=iff.0h4v.s16.5e193717882d from=translated src=- shape=2de9b9fc vocab=51936e13
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotMk_eq_iff
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat)
@@ -831,7 +917,9 @@ theorem maximalIdealPowSuccQuotMk_eq_iff
     Submodule.Quotient.mk b ↔ _
   exact Submodule.Quotient.eq (maximalIdealPowSuccSubmodule K n)
 
-/-- If `a ∈ 𝓂^n` with `n ≥ 1`, then `1 + a` is a unit of the valuation ring.-/
+/-- If `a ∈ 𝓂^n` with `n ≥ 1`, then `1 + a` is a unit of the valuation ring.
+@isnad1 id=isunit.2h3v.s11.337bc5fd1466 from=translated src=- shape=3d3d33c7 vocab=2d0a6a7f
+-/
 theorem isUnit_one_add_of_mem_maximalIdeal_pow
     (K : Type u) [Field K] [ValuativeRel K] {n : Nat} (hn : 1 ≤ n)
     (a : 𝒪[K]) (ha : a ∈ (𝓂[K] ^ n : Ideal 𝒪[K])) : IsUnit (1 + a) := by
@@ -852,7 +940,9 @@ noncomputable def principalUnitOneAddOfMemPow
     (a : 𝒪[K]) (ha : a ∈ (𝓂[K] ^ n : Ideal 𝒪[K])) : 𝒪[K]ˣ :=
   (isUnit_one_add_of_mem_maximalIdeal_pow K hn a ha).unit
 
-/-- The valuation-ring value of the unit constructed from `a ∈ 𝓂^n` is `1 + a`.-/
+/-- The valuation-ring value of the unit constructed from `a ∈ 𝓂^n` is `1 + a`.
+@isnad1 id=eq.2h3v.s11.5d3d34b55842 from=translated src=- shape=55b5b49e vocab=98fe1770
+-/
 @[simp]
 theorem principalUnitOneAddOfMemPow_val
     (K : Type u) [Field K] [ValuativeRel K] {n : Nat} (hn : 1 ≤ n)
@@ -869,7 +959,9 @@ noncomputable def principalUnitOneAddOfMemPowSubgroup
     simp [principalUnitOneAddOfMemPow_val, ha]
   ⟩
 
-/-- Viewing the unit `1 + a` in `U^n` preserves its underlying valuation-ring unit.-/
+/-- Viewing the unit `1 + a` in `U^n` preserves its underlying valuation-ring unit.
+@isnad1 id=eq.2h3v.s12.7db6baccca0d from=translated src=- shape=ebcec253 vocab=f34624f2
+-/
 @[simp]
 theorem principalUnitOneAddOfMemPowSubgroup_val
     (K : Type u) [Field K] [ValuativeRel K] {n : Nat} (hn : 1 ≤ n)
@@ -879,7 +971,9 @@ theorem principalUnitOneAddOfMemPowSubgroup_val
   rfl
 
 /-- For `n ≥ 1`, the complete limit of finite correction products can be
-viewed as an element of the principal-unit subgroup `U^n`.-/
+viewed as an element of the principal-unit subgroup `U^n`.
+@isnad1 id=ex.1h3v.s13.3ad4988281f1 from=translated src=- shape=7e0ca050 vocab=a80fc2f0
+-/
 theorem exists_tendsto_principalUnitsCorrectionProduct_principalUnit
     (K : Type u) [Field K] [ValuativeRel K] [UniformSpace K] [IsUniformAddGroup K]
     [IsNonarchimedeanLocalField K] (n : Nat) (hn : 1 ≤ n)
@@ -906,7 +1000,9 @@ noncomputable def principalUnitsSuccQuotOfIdealPow
     principalUnitsSuccQuotMk K n
       (principalUnitOneAddOfMemPowSubgroup K hn a.1 a.2)
 
-/-- The map from `𝓂^n` sends `a` to the successive principal-unit class represented by `1 + a`.-/
+/-- The map from `𝓂^n` sends `a` to the successive principal-unit class represented by `1 + a`.
+@isnad1 id=eq.1h3v.s15.74589ffab185 from=translated src=- shape=6d2dc48b vocab=11929593
+-/
 @[simp]
 theorem principalUnitsSuccQuotOfIdealPow_apply
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
@@ -917,7 +1013,9 @@ theorem principalUnitsSuccQuotOfIdealPow_apply
   rfl
 
 /-- If a principal unit has the same first-order term as `1 + a` modulo
-`𝓂^(n+1)`, then it has the same class in `U^n/U^(n+1)`.-/
+`𝓂^(n+1)`, then it has the same class in `U^n/U^(n+1)`.
+@isnad1 id=eq.2h4v.s15.bc9da7ec1705 from=translated src=- shape=73b4afbb vocab=8f468af3
+-/
 theorem principalUnitsSuccQuotMk_eq_oneAdd_of_sub_one_sub_mem_succ
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
     (u : principalUnits K n) (a : (𝓂[K] ^ n : Ideal 𝒪[K]))
@@ -954,7 +1052,9 @@ theorem principalUnitsSuccQuotMk_eq_oneAdd_of_sub_one_sub_mem_succ
         ring]
   exact (𝓂[K] ^ (n + 1) : Ideal 𝒪[K]).mul_mem_right _ h
 
-/-- Elements of `𝓂^(n+1)` map to the trivial class in `U^n/U^(n+1)`.-/
+/-- Elements of `𝓂^(n+1)` map to the trivial class in `U^n/U^(n+1)`.
+@isnad1 id=eq.2h3v.s13.08fda8c0108b from=translated src=- shape=800d6dac vocab=6f554ed6
+-/
 theorem principalUnitsSuccQuotOfIdealPow_eq_one_of_mem_succ
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
     (a : (𝓂[K] ^ n : Ideal 𝒪[K]))
@@ -964,7 +1064,9 @@ theorem principalUnitsSuccQuotOfIdealPow_eq_one_of_mem_succ
   rw [mem_principalUnits_succ_subgroupOf_iff]
   simp [principalUnitOneAddOfMemPowSubgroup, principalUnitOneAddOfMemPow_val, ha]
 
-/-- The map `a ↦ 1 + a` is insensitive to changing `a` modulo `𝓂^(n+1)`.-/
+/-- The map `a ↦ 1 + a` is insensitive to changing `a` modulo `𝓂^(n+1)`.
+@isnad1 id=eq.2h4v.s13.e98cf8e4778c from=translated src=- shape=a2f8a938 vocab=2bb0ec58
+-/
 theorem principalUnitsSuccQuotOfIdealPow_eq_of_sub_mem_succ
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
     (a b : (𝓂[K] ^ n : Ideal 𝒪[K]))
@@ -1013,7 +1115,9 @@ noncomputable def principalUnitsSuccQuotOfMaximalIdealPowSuccQuot
           (mem_maximalIdealPowSuccSubmodule_iff K n (a - b)).1 hab))
 
 /-- The descended map on `𝓂^n/𝓂^(n+1)` sends a representative class to the class represented by `1 +
-a`.-/
+a`.
+@isnad1 id=eq.1h3v.s14.720268746cf6 from=translated src=- shape=408f021c vocab=26ee6568
+-/
 @[simp]
 theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_mk
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
@@ -1023,7 +1127,9 @@ theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_mk
       principalUnitsSuccQuotOfIdealPow K n hn a :=
   rfl
 
-/-- Products of two elements of `𝓂^n`, for `n ≥ 1`, lie in `𝓂^(n+1)`.-/
+/-- Products of two elements of `𝓂^n`, for `n ≥ 1`, lie in `𝓂^(n+1)`.
+@isnad1 id=mem.1h4v.s13.c8af04356329 from=translated src=- shape=95ef53da vocab=fd79f7cf
+-/
 theorem maximalIdealPow_mul_mem_succ
     (K : Type u) [Field K] [ValuativeRel K] {n : Nat} (hn : 1 ≤ n)
     (a b : (𝓂[K] ^ n : Ideal 𝒪[K])) :
@@ -1036,7 +1142,9 @@ theorem maximalIdealPow_mul_mem_succ
   exact hle hmul
 
 /-- If every `aᵢ` lies in `𝓂^n` with `n ≥ 1`, then
-`∏ᵢ (1 + aᵢ) - 1` lies in the maximal ideal.-/
+`∏ᵢ (1 + aᵢ) - 1` lies in the maximal ideal.
+@isnad1 id=mem.2h5v.s12.1c8d1009a562 from=translated src=- shape=56ca294e vocab=6724f1d4
+-/
 theorem finset_prod_one_add_sub_one_mem_maximalIdeal_of_mem_pow
     (K : Type u) [Field K] [ValuativeRel K] {ι : Type*}
     (s : Finset ι) (n : Nat) (hn : 1 ≤ n) (a : ι → 𝒪[K])
@@ -1069,7 +1177,9 @@ theorem finset_prod_one_add_sub_one_mem_maximalIdeal_of_mem_pow
 
 /-- First-order expansion of products in the principal-unit filtration:
 if every `aᵢ ∈ 𝓂^n` and `n ≥ 1`, then
-`∏ᵢ (1 + aᵢ) ≡ 1 + Σᵢ aᵢ mod 𝓂^(n+1)`.-/
+`∏ᵢ (1 + aᵢ) ≡ 1 + Σᵢ aᵢ mod 𝓂^(n+1)`.
+@isnad1 id=mem.2h5v.s12.f332b6c8f626 from=translated src=- shape=785f271f vocab=20962d89
+-/
 theorem finset_prod_one_add_sub_one_sub_sum_mem_maximalIdeal_pow_succ
     (K : Type u) [Field K] [ValuativeRel K] {ι : Type*}
     (s : Finset ι) (n : Nat) (hn : 1 ≤ n) (a : ι → 𝒪[K])
@@ -1109,7 +1219,9 @@ theorem finset_prod_one_add_sub_one_sub_sum_mem_maximalIdeal_pow_succ
       ring]
     exact (𝓂[K] ^ (n + 1) : Ideal 𝒪[K]).add_mem hind hmul
 
-/-- The zero element of `𝓂^n` maps to the identity class in `U^n/U^(n+1)`.-/
+/-- The zero element of `𝓂^n` maps to the identity class in `U^n/U^(n+1)`.
+@isnad1 id=eq.1h2v.s12.901873d1b782 from=translated src=- shape=607d7a56 vocab=612806b6
+-/
 @[simp]
 theorem principalUnitsSuccQuotOfIdealPow_zero
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n) :
@@ -1118,7 +1230,9 @@ theorem principalUnitsSuccQuotOfIdealPow_zero
   simp
 
 /-- Modulo `U^(n+1)`, the class represented by `1 + (a+b)` is the product of the classes represented
-by `1+a` and `1+b`.-/
+by `1+a` and `1+b`.
+@isnad1 id=eq.1h4v.s14.c81bc2a94904 from=translated src=- shape=57428e5e vocab=d8bf0f37
+-/
 theorem principalUnitsSuccQuotOfIdealPow_add
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
     (a b : (𝓂[K] ^ n : Ideal 𝒪[K])) :
@@ -1186,7 +1300,9 @@ theorem principalUnitsSuccQuotOfIdealPow_add
   exact (𝓂[K] ^ (n + 1) : Ideal 𝒪[K]).mul_mem_right _
     (maximalIdealPow_mul_mem_succ K hn a b)
 
-/-- The descended map from `𝓂^n/𝓂^(n+1)` sends zero to the identity principal-unit class.-/
+/-- The descended map from `𝓂^n/𝓂^(n+1)` sends zero to the identity principal-unit class.
+@isnad1 id=eq.1h2v.s7.8336f72ef2e0 from=translated src=- shape=650da498 vocab=7dd7361c
+-/
 @[simp]
 theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_map_zero
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n) :
@@ -1197,7 +1313,9 @@ theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_map_zero
   rw [principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_mk]
   exact principalUnitsSuccQuotOfIdealPow_zero K n hn
 
-/-- The descended map sends addition in `𝓂^n/𝓂^(n+1)` to multiplication in `U^n/U^(n+1)`.-/
+/-- The descended map sends addition in `𝓂^n/𝓂^(n+1)` to multiplication in `U^n/U^(n+1)`.
+@isnad1 id=eq.1h4v.s7.91be40aa624b from=translated src=- shape=c9c57346 vocab=e1918ea1
+-/
 theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_map_add
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
     (x y : MaximalIdealPowSuccQuot K n) :
@@ -1252,7 +1370,9 @@ noncomputable def principalUnitsSuccQuotOfMaximalIdealPowSuccQuotAdd
     rw [principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_map_add]
 
 /-- The additive recoding of the descended map has the same underlying successive principal-unit
-class.-/
+class.
+@isnad1 id=eq.1h3v.s8.50540d467409 from=translated src=- shape=873453dc vocab=787cb1ad
+-/
 @[simp]
 theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuotAdd_apply
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
@@ -1261,7 +1381,9 @@ theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuotAdd_apply
       Additive.ofMul (principalUnitsSuccQuotOfMaximalIdealPowSuccQuot K n hn x) :=
   rfl
 
-/-- The class represented by `1 + a` is trivial exactly when `a` lies in `𝓂^(n+1)`.-/
+/-- The class represented by `1 + a` is trivial exactly when `a` lies in `𝓂^(n+1)`.
+@isnad1 id=iff.1h3v.s13.b34a27178203 from=translated src=- shape=1044da1c vocab=6f554ed6
+-/
 theorem principalUnitsSuccQuotOfIdealPow_eq_one_iff
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
     (a : (𝓂[K] ^ n : Ideal 𝒪[K])) :
@@ -1277,7 +1399,9 @@ theorem principalUnitsSuccQuotOfIdealPow_eq_one_iff
     exact principalUnitsSuccQuotOfIdealPow_eq_one_of_mem_succ K n hn a ha
 
 /-- The descended image of an ideal-power quotient class is trivial exactly when that class is zero.
-The descended image of an ideal-power quotient class is trivial exactly when that class is zero.-/
+The descended image of an ideal-power quotient class is trivial exactly when that class is zero.
+@isnad1 id=iff.1h3v.s7.6bfd9df183b6 from=translated src=- shape=279237f9 vocab=7dd7361c
+-/
 theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_eq_one_iff
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
     (x : MaximalIdealPowSuccQuot K n) :
@@ -1295,7 +1419,9 @@ theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_eq_one_iff
     maximalIdealPowSuccQuotMk_eq_zero_iff]
   exact principalUnitsSuccQuotOfIdealPow_eq_one_iff K n hn a
 
-/-- Every successive principal-unit class is represented by `1 + a` for some `a ∈ 𝓂^n`.-/
+/-- Every successive principal-unit class is represented by `1 + a` for some `a ∈ 𝓂^n`.
+@isnad1 id=surjecti.1h2v.s5.13c34639cae9 from=translated src=- shape=2fd3d9bb vocab=dafd4232
+-/
 theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_surjective
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n) :
     Function.Surjective (principalUnitsSuccQuotOfMaximalIdealPowSuccQuot K n hn) := by
@@ -1319,7 +1445,9 @@ theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuot_surjective
   ring
 
 /-- The additive map induced by `a ↦ 1 + a` onto the successive principal-unit quotient is
-surjective.-/
+surjective.
+@isnad1 id=surjecti.1h2v.s7.c17042edd2d5 from=translated src=- shape=02f16b98 vocab=f5c0f6a9
+-/
 theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuotAdd_surjective
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n) :
     Function.Surjective (principalUnitsSuccQuotOfMaximalIdealPowSuccQuotAdd K n hn) := by
@@ -1331,7 +1459,9 @@ theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuotAdd_surjective
   rw [hx]
   rfl
 
-/-- The additive map induced by `a ↦ 1 + a` on successive quotients is injective.-/
+/-- The additive map induced by `a ↦ 1 + a` on successive quotients is injective.
+@isnad1 id=injectiv.1h2v.s7.35800af2c285 from=translated src=- shape=02f16b98 vocab=bc647097
+-/
 theorem principalUnitsSuccQuotOfMaximalIdealPowSuccQuotAdd_injective
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n) :
     Function.Injective (principalUnitsSuccQuotOfMaximalIdealPowSuccQuotAdd K n hn) := by
@@ -1355,7 +1485,9 @@ noncomputable def maximalIdealPowSuccQuotAddEquivPrincipalUnitsSuccQuot
       principalUnitsSuccQuotOfMaximalIdealPowSuccQuotAdd_surjective K n hn⟩
 
 /-- The additive equivalence between successive ideal and principal-unit quotients agrees with the
-descended `a ↦ 1+a` map.-/
+descended `a ↦ 1+a` map.
+@isnad1 id=eq.1h3v.s9.1f8b2ead1a5b from=translated src=- shape=cdd9af2c vocab=173af30e
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotAddEquivPrincipalUnitsSuccQuot_apply
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)
@@ -1416,7 +1548,9 @@ noncomputable def maximalIdealPowSuccQuotMulEquivPrincipalUnitsSuccQuot
         (Multiplicative.toAdd x) (Multiplicative.toAdd y))
 
 /-- The multiplicative recoding of the successive-quotient equivalence sends `a` to the
-principal-unit class represented by `1+a`.-/
+principal-unit class represented by `1+a`.
+@isnad1 id=eq.1h3v.s8.f21742b55c58 from=translated src=- shape=5c03cfd9 vocab=6ebcc33b
+-/
 @[simp]
 theorem maximalIdealPowSuccQuotMulEquivPrincipalUnitsSuccQuot_apply
     (K : Type u) [Field K] [ValuativeRel K] (n : Nat) (hn : 1 ≤ n)

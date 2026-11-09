@@ -46,7 +46,9 @@ open GroupTheory.Transfer.RelativeAugmentation
 variable {G : Type*} [Group G]
 
 /-- Finite index of the commutator gives finiteness of the
-abelianization.-/
+abelianization.
+@isnad1 id=finite.0h1v.s4.da4598dc4afe from=translated src=- shape=bfa1dd92 vocab=0eca8523
+-/
 noncomputable instance finiteAbelianizationOfFiniteIndex
     [FiniteIndex (commutator G)] :
     Finite (Abelianization G) := by
@@ -64,6 +66,9 @@ noncomputable def commutatorTransfer
       (Abelianization.of :
         commutator G →* Abelianization (commutator G)))
 
+/--
+@isnad1 id=eq.0h2v.s10.6b493c407c5a from=translated src=- shape=1d4d5944 vocab=7a2b0f48
+-/
 @[simp]
 theorem commutatorTransfer_of
     [FiniteIndex (commutator G)] (g : G) :
@@ -78,11 +83,17 @@ def groupRingDelta (g : G) : IntegralGroupRing G :=
   MonoidAlgebra.single g 1 -
     MonoidAlgebra.single (1 : G) 1
 
+/--
+@isnad1 id=eq.0h1v.s5.d1f967f9d9cb from=translated src=- shape=be87aaac vocab=359b0b52
+-/
 @[simp]
 theorem groupRingDelta_one :
     groupRingDelta (1 : G) = 0 := by
   simp [groupRingDelta]
 
+/--
+@isnad1 id=eq.0h3v.s6.397a7fd5f992 from=translated src=- shape=d1ffcc1c vocab=598d22ac
+-/
 theorem groupRingDelta_mul (g h : G) :
     groupRingDelta (g * h) =
       groupRingDelta g * MonoidAlgebra.single h 1 +
@@ -96,6 +107,9 @@ theorem groupRingDelta_mul (g h : G) :
     ← MonoidAlgebra.one_def]
   noncomm_ring
 
+/--
+@isnad1 id=eq.0h3v.s6.1b80aa98cf63 from=translated src=- shape=3e38a067 vocab=598d22ac
+-/
 theorem groupRingDelta_mul_left (g h : G) :
     groupRingDelta (g * h) =
       MonoidAlgebra.single g 1 * groupRingDelta h +
@@ -109,6 +123,9 @@ theorem groupRingDelta_mul_left (g h : G) :
     ← MonoidAlgebra.one_def]
   noncomm_ring
 
+/--
+@isnad1 id=eq.0h2v.s6.9308333e39b9 from=translated src=- shape=5649c4aa vocab=91fc366c
+-/
 theorem groupRingDelta_inv (g : G) :
     groupRingDelta g⁻¹ =
       groupRingDelta g *
@@ -128,6 +145,9 @@ theorem groupRingDelta_inv (g : G) :
     _ = groupRingDelta g *
         (-MonoidAlgebra.single g⁻¹ 1) := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.2e0c2879cf72 from=translated src=- shape=9054d089 vocab=91fc366c
+-/
 theorem groupRingDelta_inv_left (g : G) :
     groupRingDelta g⁻¹ =
       (-MonoidAlgebra.single g⁻¹ 1) *
@@ -145,6 +165,9 @@ theorem groupRingDelta_inv_left (g : G) :
     _ = (-MonoidAlgebra.single g⁻¹ 1) *
         groupRingDelta g := rfl
 
+/--
+@isnad1 id=eq.0h2v.s6.9a4cba5571e1 from=translated src=- shape=fdbe5369 vocab=4a3a3e2d
+-/
 @[simp]
 theorem augmentation_groupRingDelta (g : G) :
     augmentation G (groupRingDelta g) = 0 := by
@@ -155,17 +178,26 @@ def wordExponent {X : Type*} (w : FreeGroup X) : X →₀ ℤ :=
   FreeAbelianGroup.toFinsupp
     (Additive.ofMul (Abelianization.of w))
 
+/--
+@isnad1 id=eq.0h1v.s5.b915cb13e500 from=translated src=- shape=ff2a7e38 vocab=b350a754
+-/
 @[simp]
 theorem wordExponent_one {X : Type*} :
     wordExponent (1 : FreeGroup X) = 0 := by
   exact map_zero FreeAbelianGroup.toFinsupp
 
+/--
+@isnad1 id=eq.0h2v.s5.fdc037f7722d from=translated src=- shape=b2d57611 vocab=b2ce0cd4
+-/
 @[simp]
 theorem wordExponent_of {X : Type*} (x : X) :
     wordExponent (FreeGroup.of x) =
       Finsupp.single x 1 := by
   exact FreeAbelianGroup.toFinsupp_of x
 
+/--
+@isnad1 id=eq.0h2v.s5.34b0c78f866a from=translated src=- shape=b969bb3a vocab=0b7ad3d9
+-/
 @[simp]
 theorem wordExponent_inv {X : Type*} (w : FreeGroup X) :
     wordExponent w⁻¹ = -wordExponent w := by
@@ -176,6 +208,9 @@ theorem wordExponent_inv {X : Type*} (w : FreeGroup X) :
         (Additive.ofMul (Abelianization.of w))
   exact map_neg FreeAbelianGroup.toFinsupp _
 
+/--
+@isnad1 id=eq.0h3v.s6.55c56504c96b from=translated src=- shape=7e4b7a89 vocab=aed85a54
+-/
 @[simp]
 theorem wordExponent_mul {X : Type*} (u v : FreeGroup X) :
     wordExponent (u * v) =
@@ -193,7 +228,9 @@ theorem wordExponent_mul {X : Type*} (u v : FreeGroup X) :
 /-- A right Fox expansion of a free word, together with the fact that the
 augmentation of each coefficient is the corresponding exponent sum.
 
-This is the source-producing form needed for Witt's relation matrix.-/
+This is the source-producing form needed for Witt's relation matrix.
+@isnad1 id=ex.0h4v.s8.437f623ac6f0 from=translated src=- shape=b94ea5c8 vocab=6fd86beb
+-/
 theorem exists_rightFoxExpansion
     {X : Type*} [Fintype X] [DecidableEq X]
     (φ : FreeGroup X →* G) (w : FreeGroup X) :
@@ -273,6 +310,9 @@ def presentationMap
       Additive (Abelianization G) :=
   (Abelianization.map φ).toAdditive
 
+/--
+@isnad1 id=eq.0h4v.s8.a34659f0e346 from=translated src=- shape=8b732f9f vocab=5bc86136
+-/
 @[simp]
 theorem presentationMap_of
     {X : Type*} (φ : FreeGroup X →* G) (x : X) :
@@ -281,6 +321,9 @@ theorem presentationMap_of
         (Abelianization.of (φ (FreeGroup.of x))) :=
   rfl
 
+/--
+@isnad1 id=surjecti.1h3v.s7.b7b2acdb62c5 from=translated src=- shape=f8b3048e vocab=051769ef
+-/
 theorem presentationMap_surjective
     {X : Type*} (φ : FreeGroup X →* G)
     (hφ : Function.Surjective φ) :
@@ -303,6 +346,9 @@ def presentationLinearMap
       Additive (Abelianization G) :=
   (presentationMap φ).toIntLinearMap
 
+/--
+@isnad1 id=eq.0h4v.s8.42b53dc2098a from=translated src=- shape=dbc20e6a vocab=014dbcd9
+-/
 @[simp]
 theorem presentationLinearMap_apply
     {X : Type*} (φ : FreeGroup X →* G)
@@ -312,7 +358,9 @@ theorem presentationLinearMap_apply
   rfl
 
 /-- Finite abelianization makes the relation lattice of a finite free
-presentation have full rank.-/
+presentation have full rank.
+@isnad1 id=eq.0h3v.s8.d437c1ee3d9c from=translated src=- shape=ccc28103 vocab=b422db32
+-/
 theorem presentationKernel_finrank_eq
     {X : Type*} [Fintype X]
     (φ : FreeGroup X →* G)
@@ -367,7 +415,9 @@ noncomputable def relationBasis
 /-- Every vector in the relation lattice is represented by an actual
 relation word.  The correction from a lift to a relation is made inside
 the commutator subgroup of the free group, so it does not change the
-free abelianization.-/
+free abelianization.
+@isnad1 id=ex.1h4v.s9.f0c09a015344 from=translated src=- shape=181fcaef vocab=3f7bae3b
+-/
 theorem exists_relationWord
     {X : Type*}
     (φ : FreeGroup X →* G)
@@ -431,6 +481,9 @@ def abelianizationRingMap :
       IntegralGroupRing (Abelianization G) :=
   MonoidAlgebra.mapDomainRingHom ℤ Abelianization.of
 
+/--
+@isnad1 id=eq.0h3v.s7.c3147cb89d77 from=translated src=- shape=b696d639 vocab=4f26f9e8
+-/
 @[simp]
 theorem abelianizationRingMap_single
     (g : G) (n : ℤ) :
@@ -439,6 +492,9 @@ theorem abelianizationRingMap_single
       MonoidAlgebra.single (Abelianization.of g) n := by
   simp [abelianizationRingMap]
 
+/--
+@isnad1 id=eq.0h2v.s7.c5ae407bae9f from=translated src=- shape=e88f88de vocab=36ef8ec7
+-/
 @[simp]
 theorem abelianizationRingMap_groupRingDelta
     (g : G) :
@@ -446,6 +502,9 @@ theorem abelianizationRingMap_groupRingDelta
       groupRingDelta (Abelianization.of g) := by
   simp [groupRingDelta]
 
+/--
+@isnad1 id=eq.0h2v.s7.df19ad952a3b from=translated src=- shape=727f8552 vocab=eb6ce5f9
+-/
 @[simp]
 theorem augmentation_abelianizationRingMap
     (x : IntegralGroupRing G) :
@@ -471,6 +530,9 @@ def abelianizationRingSection :
   map_zero' := MonoidAlgebra.mapDomain_zero _
   map_add' := MonoidAlgebra.mapDomain_add _
 
+/--
+@isnad1 id=eq.0h3v.s6.456631c81cb9 from=translated src=- shape=6d694fbf vocab=28d353d3
+-/
 @[simp]
 theorem abelianizationRingSection_single
     (a : Abelianization G) (n : ℤ) :
@@ -479,6 +541,9 @@ theorem abelianizationRingSection_single
       MonoidAlgebra.single a.out n := by
   simp [abelianizationRingSection]
 
+/--
+@isnad1 id=eq.0h2v.s7.4cca4c6e6663 from=translated src=- shape=56d022f4 vocab=eceb3dfc
+-/
 @[simp]
 theorem abelianizationRingMap_section
     (z : IntegralGroupRing (Abelianization G)) :
@@ -497,7 +562,9 @@ theorem abelianizationRingMap_section
       simp only [map_zsmul, hx]
 
 /-- Multiplying an element of `I_G` by an element killed by
-`ℤ[G] → ℤ[Gᵃᵇ]` lands in `I_G I_{G'}`.-/
+`ℤ[G] → ℤ[Gᵃᵇ]` lands in `I_G I_{G'}`.
+@isnad1 id=mem.2h3v.s8.c83c5691c6e0 from=translated src=- shape=1f36e7e4 vocab=f077c4fc
+-/
 theorem ideal_mul_mem_mixed_of_abelianizationRingMap_eq_zero
     (x y : IntegralGroupRing G)
     (hx : x ∈ ideal G)
@@ -575,7 +642,9 @@ theorem ideal_mul_mem_mixed_of_abelianizationRingMap_eq_zero
   simpa [hy] using h
 
 /-- The mixed product is stable under left multiplication by arbitrary
-group-ring elements.-/
+group-ring elements.
+@isnad1 id=mem.1h4v.s7.f4c57d230fd2 from=translated src=- shape=85392ec1 vocab=7db9b9a9
+-/
 theorem mul_mem_mixed
     (H : Subgroup G)
     (z m : IntegralGroupRing G)
@@ -600,7 +669,9 @@ theorem mul_mem_mixed
     exact (mixedAugmentationProduct H).neg_mem ha
 
 /-- A row vector annihilating a square matrix is annihilated by its
-determinant.-/
+determinant.
+@isnad1 id=eq.1h5v.s6.37f19c536693 from=translated src=- shape=54b1ece9 vocab=eb6dfba1
+-/
 theorem mul_det_eq_zero_of_vecMul_eq_zero
     {R : Type*} [CommRing R]
     {ι : Type*} [Fintype ι] [DecidableEq ι]
@@ -631,6 +702,9 @@ noncomputable def relationWord (j : X) :
   (exists_relationWord φ hφ (relationBasis φ j)).choose
 
 omit [DecidableEq X] in
+/--
+@isnad1 id=eq.1h4v.s7.6aec545f12ac from=translated src=- shape=396cb1a8 vocab=723b79af
+-/
 @[simp]
 theorem relationWord_map (j : X) :
     φ (relationWord φ hφ j) = 1 :=
@@ -638,6 +712,9 @@ theorem relationWord_map (j : X) :
     (relationBasis φ j)).choose_spec.1
 
 omit [DecidableEq X] in
+/--
+@isnad1 id=eq.1h4v.s10.c87a9c03a439 from=translated src=- shape=613b2bf1 vocab=32fc4332
+-/
 theorem relationWord_abelianization (j : X) :
     Additive.ofMul
         (Abelianization.of (relationWord φ hφ j)) =
@@ -654,6 +731,9 @@ noncomputable def foxCoefficient (i j : X) :
   ((exists_rightFoxExpansion φ
     (relationWord φ hφ j)).choose i)
 
+/--
+@isnad1 id=eq.1h4v.s8.445dc1abcf83 from=translated src=- shape=0f4a3091 vocab=181322a8
+-/
 theorem foxExpansion_relation (j : X) :
     ∑ i : X,
         groupRingDelta (φ (FreeGroup.of i)) *
@@ -669,12 +749,18 @@ theorem foxExpansion_relation (j : X) :
   exact h.symm.trans (by
     rw [relationWord_map, groupRingDelta_one])
 
+/--
+@isnad1 id=eq.1h5v.s7.3d891f84c749 from=translated src=- shape=283e802e vocab=0c5f69d2
+-/
 theorem augmentation_foxCoefficient (i j : X) :
     augmentation G (foxCoefficient φ hφ i j) =
       wordExponent (relationWord φ hφ j) i :=
   (exists_rightFoxExpansion φ
     (relationWord φ hφ j)).choose_spec.2 i
 
+/--
+@isnad1 id=eq.1h5v.s10.5e46f6f26012 from=translated src=- shape=805d2b8b vocab=7a41c324
+-/
 theorem augmentation_foxCoefficient_eq_repr
     (i j : X) :
     augmentation G (foxCoefficient φ hφ i j) =
@@ -702,6 +788,9 @@ noncomputable def adjugateCoefficientLift (j k : X) :
   abelianizationRingSection
     ((foxMatrix φ hφ).adjugate j k)
 
+/--
+@isnad1 id=eq.1h5v.s8.5f45a1201e3d from=translated src=- shape=e82cb453 vocab=2fd4e33f
+-/
 @[simp]
 theorem abelianizationRingMap_adjugateCoefficientLift
     (j k : X) :
@@ -715,6 +804,9 @@ noncomputable def foxDeterminantLift :
     IntegralGroupRing G :=
   abelianizationRingSection (foxMatrix φ hφ).det
 
+/--
+@isnad1 id=eq.1h3v.s8.e5692b27860c from=translated src=- shape=cf6f6fe5 vocab=47f98ff2
+-/
 @[simp]
 theorem abelianizationRingMap_foxDeterminantLift :
     abelianizationRingMap
@@ -730,6 +822,9 @@ noncomputable def foxAdjugateCoefficient (i k : X) :
     foxCoefficient φ hφ i j *
       adjugateCoefficientLift φ hφ j k
 
+/--
+@isnad1 id=eq.1h5v.s8.fdf86bc65efa from=translated src=- shape=2dde22a1 vocab=8a098ab7
+-/
 theorem abelianizationRingMap_foxAdjugateCoefficient
     (i k : X) :
     abelianizationRingMap
@@ -750,6 +845,9 @@ theorem abelianizationRingMap_foxAdjugateCoefficient
       rw [Matrix.mul_adjugate]
       simp [Matrix.one_apply]
 
+/--
+@isnad1 id=eq.1h4v.s8.9b69279b3825 from=translated src=- shape=0f4a3091 vocab=b3b43962
+-/
 theorem foxAdjugate_relation (k : X) :
     ∑ i : X,
         groupRingDelta (φ (FreeGroup.of i)) *
@@ -761,6 +859,9 @@ theorem foxAdjugate_relation (k : X) :
   simp_rw [← mul_assoc, ← Finset.sum_mul]
   simp [foxExpansion_relation]
 
+/--
+@isnad1 id=mem.1h4v.s8.17f086f59315 from=translated src=- shape=d2625536 vocab=1a7492a7
+-/
 theorem generator_mul_foxDeterminantLift_mem_mixed
     (k : X) :
     groupRingDelta (φ (FreeGroup.of k)) *
@@ -836,6 +937,9 @@ theorem generator_mul_foxDeterminantLift_mem_mixed
       (commutator G)).neg_mem hneg
   simpa using this
 
+/--
+@isnad1 id=eq.1h3v.s8.e449f3d4f58c from=translated src=- shape=064467a3 vocab=62fb99ce
+-/
 theorem delta_vecMul_foxMatrix :
     Matrix.vecMul
         (fun i : X =>
@@ -851,6 +955,9 @@ theorem delta_vecMul_foxMatrix :
   simpa [Matrix.vecMul, dotProduct, foxMatrix,
     map_sum] using h
 
+/--
+@isnad1 id=eq.1h4v.s8.091b0a7fc0ee from=translated src=- shape=43cd53d8 vocab=d64a6175
+-/
 theorem delta_generator_mul_foxMatrix_det (i : X) :
     groupRingDelta
           (Abelianization.of
@@ -865,6 +972,9 @@ theorem delta_generator_mul_foxMatrix_det (i : X) :
           (φ (FreeGroup.of k))))
     (delta_vecMul_foxMatrix φ hφ) i
 
+/--
+@isnad1 id=eq.1h4v.s8.a8b916ac209d from=translated src=- shape=0655807f vocab=8376fee2
+-/
 theorem delta_word_mul_foxMatrix_det
     (w : FreeGroup X) :
     groupRingDelta
@@ -919,6 +1029,9 @@ theorem delta_word_mul_foxMatrix_det
                   ac_rfl
         _ = 0 := by rw [hu, hv, zero_mul, zero_add]
 
+/--
+@isnad1 id=eq.1h4v.s8.cb01c3545e9e from=translated src=- shape=9bdd1b05 vocab=99482cef
+-/
 theorem delta_mul_foxMatrix_det
     (a : Abelianization G) :
     groupRingDelta a * (foxMatrix φ hφ).det =
@@ -928,6 +1041,9 @@ theorem delta_mul_foxMatrix_det
   obtain ⟨w, rfl⟩ := hφ g
   exact delta_word_mul_foxMatrix_det φ hφ w
 
+/--
+@isnad1 id=eq.1h4v.s7.8a8b77b981f7 from=translated src=- shape=9836a5c9 vocab=f92a7666
+-/
 theorem single_mul_foxMatrix_det
     (a : Abelianization G) :
     MonoidAlgebra.single a 1 *
@@ -938,6 +1054,9 @@ theorem single_mul_foxMatrix_det
     ← MonoidAlgebra.one_def, one_mul] at h
   exact sub_eq_zero.mp h
 
+/--
+@isnad1 id=eq.1h3v.s10.f676e5a5b29d from=translated src=- shape=f6a76582 vocab=0a1dadca
+-/
 theorem augmentation_foxMatrix_det :
     augmentation (Abelianization G)
         (foxMatrix φ hφ).det =
@@ -966,6 +1085,9 @@ theorem augmentation_foxMatrix_det :
       simp [foxMatrix, Module.Basis.toMatrix_apply,
         augmentation_foxCoefficient_eq_repr]
 
+/--
+@isnad1 id=eq.1h3v.s7.8407e78620bb from=translated src=- shape=e08c8d26 vocab=d2268657
+-/
 theorem natAbs_augmentation_foxMatrix_det :
     Int.natAbs
         (augmentation (Abelianization G)
@@ -1002,6 +1124,9 @@ def groupNormElement
   letI := Fintype.ofFinite Q
   ∑ q : Q, MonoidAlgebra.single q 1
 
+/--
+@isnad1 id=eq.0h1v.s6.1d7b63b4e0ff from=translated src=- shape=ce717c5b vocab=666acfa5
+-/
 @[simp]
 theorem augmentation_groupNormElement
     (Q : Type*) [Group Q] [Finite Q] :
@@ -1011,7 +1136,9 @@ theorem augmentation_groupNormElement
   simp [groupNormElement, Nat.card_eq_fintype_card]
 
 /-- The image in the abelianized group ring of the sum of any left
-transversal is the norm element of the abelianization.-/
+transversal is the norm element of the abelianization.
+@isnad1 id=eq.0h2v.s7.864e00fbd464 from=translated src=- shape=a291c88b vocab=e3ccaf18
+-/
 theorem abelianizationRingMap_transversalNormElement
     [FiniteIndex (commutator G)]
     (T : (commutator G).LeftTransversal) :
@@ -1056,7 +1183,9 @@ variable (hφ : Function.Surjective φ)
 variable [FiniteIndex (commutator G)]
 
 /-- Witt's determinant is a unit multiple of the norm element of the
-finite abelianization.-/
+finite abelianization.
+@isnad1 id=ex.1h3v.s7.36ae701aa888 from=translated src=- shape=cada3c87 vocab=50eebf55
+-/
 theorem exists_unit_foxMatrix_det_eq_smul_norm :
     ∃ u : ℤˣ,
       (foxMatrix φ hφ).det =
@@ -1113,6 +1242,9 @@ theorem exists_unit_foxMatrix_det_eq_smul_norm :
   refine ⟨u, ?_⟩
   simpa only [d, hu] using hd
 
+/--
+@isnad1 id=ex.1h3v.s8.4e29cf9b2a63 from=translated src=- shape=05b052ce vocab=83cd19c6
+-/
 theorem exists_unit_foxDeterminantLift_eq_smul_section_norm :
     ∃ u : ℤˣ,
       foxDeterminantLift φ hφ =
@@ -1126,6 +1258,9 @@ theorem exists_unit_foxDeterminantLift_eq_smul_section_norm :
   rw [hu, map_zsmul]
 
 include hφ in
+/--
+@isnad1 id=mem.1h4v.s8.669ba620b633 from=translated src=- shape=578b882c vocab=8ccef027
+-/
 theorem generator_mul_section_norm_mem_mixed
     (k : X) :
     groupRingDelta (φ (FreeGroup.of k)) *
@@ -1176,6 +1311,9 @@ theorem generator_mul_section_norm_mem_mixed
   exact hmTwice
 
 include hφ in
+/--
+@isnad1 id=mem.1h4v.s8.ec59e092797a from=translated src=- shape=0f60187e vocab=bdffb331
+-/
 theorem word_mul_section_norm_mem_mixed
     (w : FreeGroup X) :
     groupRingDelta (φ w) *
@@ -1213,6 +1351,9 @@ theorem word_mul_section_norm_mem_mixed
             hu
 
 include hφ in
+/--
+@isnad1 id=mem.1h4v.s8.585530cf0adc from=translated src=- shape=e429f087 vocab=bdffb331
+-/
 theorem delta_mul_section_norm_mem_mixed
     (g : G) :
     groupRingDelta g *
@@ -1223,6 +1364,9 @@ theorem delta_mul_section_norm_mem_mixed
   exact word_mul_section_norm_mem_mixed φ hφ w
 
 include hφ in
+/--
+@isnad1 id=mem.1h5v.s7.d71c1c5c7a3c from=translated src=- shape=bb48c25c vocab=f72205ee
+-/
 theorem delta_mul_transversalNormElement_mem_mixed
     (T : (commutator G).LeftTransversal) (g : G) :
     groupRingDelta g *

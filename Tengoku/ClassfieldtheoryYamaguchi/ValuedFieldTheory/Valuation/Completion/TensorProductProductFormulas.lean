@@ -31,7 +31,9 @@ universe u v w
 open scoped TensorProduct
 
 /-- Finite rank is the sum of the ranks of the factors in a finite
-dependent-product decomposition after scalar extension.-/
+dependent-product decomposition after scalar extension.
+@isnad1 id=eq.0h6v.s8.5b81d60279dc from=translated src=- shape=95f020b3 vocab=44434125
+-/
 theorem baseChange_pi_finrank_eq_sum
     {K : Type u} {A : Type v} {L : Type w}
     [Field K] [Field A] [Field L] [Algebra K A] [Algebra K L]
@@ -48,7 +50,9 @@ theorem baseChange_pi_finrank_eq_sum
     _ = ∑ i, Module.finrank A (B i) := Module.finrank_pi_fintype A
 
 /-- The base-changed global norm is the product of the norms of the
-components under a finite dependent-product decomposition.-/
+components under a finite dependent-product decomposition.
+@isnad1 id=eq.0h7v.s10.a15d27285b65 from=translated src=- shape=ac316c29 vocab=fc8bec33
+-/
 theorem baseChange_pi_norm_eq_prod
     {K : Type u} {A : Type v} {L : Type w}
     [Field K] [Field A] [Field L] [Algebra K A] [Algebra K L]
@@ -69,7 +73,9 @@ theorem baseChange_pi_norm_eq_prod
       algebra_norm_pi_apply B _
 
 /-- The base-changed global trace is the sum of the traces of the
-components under a finite dependent-product decomposition.-/
+components under a finite dependent-product decomposition.
+@isnad1 id=eq.0h7v.s10.ba83171179aa from=translated src=- shape=81a4720f vocab=8d910d05
+-/
 theorem baseChange_pi_trace_eq_sum
     {K : Type u} {A : Type v} {L : Type w}
     [Field K] [Field A] [Field L] [Algebra K A] [Algebra K L]

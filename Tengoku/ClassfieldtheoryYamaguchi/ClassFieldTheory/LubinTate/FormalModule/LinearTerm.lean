@@ -30,7 +30,9 @@ variable {σ : Type*} [Fintype σ]
 noncomputable def linearForm (L : σ → R) : MvPowerSeries σ R :=
   ∑ i, MvPowerSeries.C (L i) * MvPowerSeries.X i
 
-/-- States the theorem `constantCoeff_linearForm`.-/
+/-- States the theorem `constantCoeff_linearForm`.
+@isnad1 id=eq.0h3v.s6.397b48cc69a0 from=translated src=- shape=72ea3cfa vocab=62cd8571
+-/
 @[simp]
 theorem constantCoeff_linearForm (L : σ → R) :
     MvPowerSeries.constantCoeff (linearForm L) = 0 := by
@@ -46,7 +48,9 @@ namespace HasLinearTerm
 variable {H : MvPowerSeries σ R} {L : σ → R}
 
 /-- A series with a prescribed linear term has zero constant
-coefficient.-/
+coefficient.
+@isnad1 id=eq.1h4v.s6.1fba38d4d1b2 from=translated src=- shape=bff6294f vocab=6e23c721
+-/
 theorem constantCoeff_eq_zero (h : HasLinearTerm H L) :
     MvPowerSeries.constantCoeff H = 0 := by
   have horder : (1 : ℕ∞) ≤ (H - linearForm L).order :=
@@ -56,7 +60,9 @@ theorem constantCoeff_eq_zero (h : HasLinearTerm H L) :
   simpa using hconstant
 
 /-- Consequently the series can genuinely be substituted into a
-one-variable power series.-/
+one-variable power series.
+@isnad1 id=hassubst.1h4v.s4.da4de930b5bd from=translated src=- shape=8a18bdf1 vocab=17aae408
+-/
 theorem hasSubst (h : HasLinearTerm H L) :
     PowerSeries.HasSubst H :=
   PowerSeries.HasSubst.of_constantCoeff_zero h.constantCoeff_eq_zero

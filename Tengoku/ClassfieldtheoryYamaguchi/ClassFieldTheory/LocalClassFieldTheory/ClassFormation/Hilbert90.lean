@@ -23,7 +23,9 @@ noncomputable section
 
 /-- The `i = -1` half of the local class-field-axiom theorem on the actual field-unit
 representation.  This is Hilbert 90 transported through the cyclic
-`H¹ ≃ H⁻¹` comparison.-/
+`H¹ ≃ H⁻¹` comparison.
+@isnad1 id=eq.1h3v.s8.67deadba8d8c from=translated src=- shape=8ca25fb7 vocab=afb48a9a
+-/
 theorem unitsTateHminusOne_card_eq_one
     (K L : Type) [Field K] [Field L] [Algebra K L] [FiniteDimensional K L]
     (g : Gal(L / K)) (hg : ∀ σ : Gal(L / K), σ ∈ Subgroup.zpowers g) :

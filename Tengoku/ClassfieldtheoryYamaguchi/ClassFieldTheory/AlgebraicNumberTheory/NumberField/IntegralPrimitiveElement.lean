@@ -28,7 +28,9 @@ open NumberField Module Polynomial
 
 namespace AlgebraicNumberTheory.PrimeSelection
 
-/-- A number field has a primitive element in its actual ring of integers.-/
+/-- A number field has a primitive element in its actual ring of integers.
+@isnad1 id=ex.0h1v.s7.cf7ce8862319 from=translated src=- shape=eaf98c2c vocab=488744d1
+-/
 theorem exists_integral_primitive_element
     (K : Type*) [Field K] [NumberField K] :
     ∃ θ : 𝓞 K, IntermediateField.adjoin ℚ ({(θ : K)} : Set K) = ⊤ := by
@@ -51,7 +53,9 @@ theorem exists_integral_primitive_element
   change α = (m : ℚ)⁻¹ • (m • α)
   rw [← Int.cast_smul_eq_zsmul ℚ, smul_smul, inv_mul_cancel₀ hmQ, one_smul]
 
-/-- The order of an integral primitive element has full integer rank.-/
+/-- The order of an integral primitive element has full integer rank.
+@isnad1 id=eq.1h2v.s9.a06c4e565057 from=translated src=- shape=32a33a2c vocab=c012ed53
+-/
 theorem integralPrimitiveOrder_finrank
     (K : Type*) [Field K] [NumberField K]
     (θ : 𝓞 K)
@@ -73,7 +77,9 @@ theorem integralPrimitiveOrder_finrank
       exact IntermediateField.topEquiv.toLinearEquiv.finrank_eq
     _ = Module.finrank ℤ (𝓞 K) := (NumberField.RingOfIntegers.rank K).symm
 
-/-- The Kummer--Dedekind exponent of an integral primitive element is nonzero.-/
+/-- The Kummer--Dedekind exponent of an integral primitive element is nonzero.
+@isnad1 id=ne.1h2v.s8.474fe8a43ec1 from=translated src=- shape=70663f58 vocab=95fb0561
+-/
 theorem integralPrimitive_exponent_ne_zero
     (K : Type*) [Field K] [NumberField K]
     (θ : 𝓞 K)

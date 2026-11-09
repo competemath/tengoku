@@ -33,7 +33,9 @@ open scoped BigOperators
 namespace AlgebraicNumberTheory.PrimeSelection
 
 /-- A nonconstant integer polynomial has a nonzero value with a prime factor
-outside any prescribed finite set of natural numbers.-/
+outside any prescribed finite set of natural numbers.
+@isnad1 id=ex.1h2v.s6.135514893ebb from=translated src=- shape=f1774fdb vocab=9aefb079
+-/
 theorem exists_prime_not_mem_dvd_eval
     (f : Polynomial ℤ) (hf : f.natDegree ≠ 0) (S : Finset ℕ) :
     ∃ q : ℕ, q.Prime ∧ q ∉ S ∧
@@ -106,7 +108,9 @@ theorem exists_prime_not_mem_dvd_eval
   exact dvd_mul_of_dvd_right hqyInt A
 
 /-- The prime divisors of nonzero values of a nonconstant integer polynomial
-form an infinite set.-/
+form an infinite set.
+@isnad1 id=infinite.1h1v.s5.5e75c86b2ca7 from=translated src=- shape=67190e95 vocab=c2b1885f
+-/
 theorem infinite_primes_dvd_nonzero_eval
     (f : Polynomial ℤ) (hf : f.natDegree ≠ 0) :
     Set.Infinite {q : ℕ | q.Prime ∧ ∃ n : ℤ, f.eval n ≠ 0 ∧ (q : ℤ) ∣ f.eval n} := by

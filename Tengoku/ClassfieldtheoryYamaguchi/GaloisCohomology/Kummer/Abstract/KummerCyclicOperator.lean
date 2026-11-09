@@ -59,7 +59,9 @@ def representationStabilizer {Q : IntegralRepGroupType} [Group Q]
 
 The two conclusions say that `wp a` belongs to the base fixed module and
 that the orbit of `a` has the full size of `Q`.  No radical element or
-generation assertion is assumed.-/
+generation assertion is assumed.
+@isnad1 id=ex.6h6v.s11.b1d2430b5d90 from=translated src=- shape=c89dc6aa vocab=37de184a
+-/
 theorem cyclic_single_radical_of_tateHMinusOne_isZero
     {Q : IntegralRepGroupType} [Group Q] [Fintype Q]
     (B : Rep ℤ Q) (g : Q) (hg : ∀ q, q ∈ Subgroup.zpowers g)
@@ -158,7 +160,9 @@ Here `B` is the actual coefficient representation `A_L` attached to the
 abstract cyclic extension.  The operator is stated on `B`; constructing it
 functorially from a global operator on `A`, and assembling cyclic
 subextensions into the full abelian Kummer extension, are deliberately not
-claimed in this theorem.-/
+claimed in this theorem.
+@isnad1 id=ex.7h8v.s16.6fefa47eb440 from=translated src=- shape=283a6d00 vocab=908a2d2a
+-/
 theorem cyclicOperator_singleRadical_of_normKernelVanishing
     {G : IntegralRepGroupType} [Group G] [TopologicalSpace G]
     (A : Rep ℤ G) (hAxiom : SatisfiesCyclicNormKernelVanishing A)

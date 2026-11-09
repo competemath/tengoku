@@ -45,6 +45,9 @@ abbrev RelativeIdeleGroup :=
 
 namespace RelativeIdeleGroup
 
+/--
+@isnad1 id=nontrivi.0h1v.s4.3a66de080b6c from=translated src=- shape=5a2b787c vocab=eedd0616
+-/
 instance baseAdeleRingNontrivial :
     Nontrivial (NumberField.AdeleRing (𝓞 K) K) :=
   Function.Injective.nontrivial
@@ -73,6 +76,9 @@ def inclusion :
     (IdeleGroup.equivAdeleRingUnits (K := K)).toMonoidHom
 
 omit [NumberField L] in
+/--
+@isnad1 id=injectiv.0h2v.s11.b86c951bded6 from=translated src=- shape=afbc5f55 vocab=8131881b
+-/
 theorem inclusion_injective :
     Function.Injective (inclusion K L) := by
   exact
@@ -89,6 +95,9 @@ def principalIdele :
   Units.map (fieldInclusion K L)
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h3v.s12.97a47f07ee9d from=translated src=- shape=70f415ce vocab=5bd224dd
+-/
 @[simp]
 theorem inclusion_principalIdele
     (x : Kˣ) :
@@ -118,6 +127,9 @@ def norm :
         (NumberField.AdeleRing (𝓞 K) K)))
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s12.5c53742022c2 from=translated src=- shape=1ed93046 vocab=57349bb1
+-/
 @[simp]
 theorem norm_inclusion (a : IdeleGroup K) :
     norm K L (inclusion K L a) =
@@ -142,7 +154,9 @@ theorem norm_inclusion (a : IdeleGroup K) :
   rfl
 
 omit [NumberField L] in
-/-- Norm commutes with scalar extension from `K` to the base adele ring.-/
+/-- Norm commutes with scalar extension from `K` to the base adele ring.
+@isnad1 id=eq.0h3v.s10.654354429390 from=translated src=- shape=4082bd25 vocab=438199df
+-/
 theorem norm_fieldInclusion (x : L) :
     Algebra.norm (NumberField.AdeleRing (𝓞 K) K)
         (fieldInclusion K L x) =
@@ -165,7 +179,9 @@ theorem norm_fieldInclusion (x : L) :
 
 omit [NumberField L] in
 /-- The relative idele norm carries a principal idele to the
-principal idele of the field norm.-/
+principal idele of the field norm.
+@isnad1 id=eq.0h3v.s12.48974314c86e from=translated src=- shape=dd9d846a vocab=97ef5118
+-/
 @[simp]
 theorem norm_principalIdele (x : Lˣ) :
     norm K L (principalIdele K L x) =
@@ -189,6 +205,9 @@ def conjugation
   Algebra.TensorProduct.congr AlgEquiv.refl σ
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h5v.s10.ad79e62caf93 from=translated src=- shape=288e0bc8 vocab=46003a14
+-/
 @[simp]
 theorem conjugation_tmul
     (σ : L ≃ₐ[K] L)
@@ -205,6 +224,9 @@ def conjugationIdele
   Units.mapEquiv (conjugation K L σ).toMulEquiv
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h4v.s11.f37016ec96df from=translated src=- shape=ac9ad28d vocab=c84b7771
+-/
 @[simp]
 theorem conjugationIdele_coe
     (σ : L ≃ₐ[K] L) (a : RelativeIdeleGroup K L) :
@@ -214,6 +236,9 @@ theorem conjugationIdele_coe
   rfl
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h3v.s10.abcf1743844e from=translated src=- shape=04a5f3f9 vocab=6bdd8efd
+-/
 theorem conjugation_one
     (a : RelativeAdeleRing K L) :
     conjugation K L (1 : L ≃ₐ[K] L) a = a := by
@@ -229,6 +254,9 @@ theorem conjugation_one
   rfl
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h5v.s11.9c702d7257b9 from=translated src=- shape=a82f459c vocab=1746847e
+-/
 theorem conjugation_mul
     (σ τ : L ≃ₐ[K] L)
     (a : RelativeAdeleRing K L) :
@@ -280,6 +308,9 @@ noncomputable def relativeIdeleMulDistribMulAction :
   smul_mul σ a b := map_mul (conjugationIdele K L σ) a b
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h4v.s10.f99b18736570 from=translated src=- shape=7661cbb9 vocab=2f565dd5
+-/
 @[simp]
 theorem smul_def
     (σ : L ≃ₐ[K] L) (a : RelativeIdeleGroup K L) :
@@ -287,6 +318,9 @@ theorem smul_def
   rfl
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h4v.s12.f291ddd88f4c from=translated src=- shape=b74a66db vocab=9cdb6c40
+-/
 @[simp]
 theorem smul_inclusion
     (σ : L ≃ₐ[K] L) (a : IdeleGroup K) :
@@ -308,6 +342,9 @@ theorem smul_inclusion
   exact (conjugation K L σ).commutes _
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h4v.s10.ca76482e5735 from=translated src=- shape=f7d2d68f vocab=2f502b57
+-/
 @[simp]
 theorem smul_principalIdele
     (σ : L ≃ₐ[K] L) (x : Lˣ) :
@@ -329,6 +366,9 @@ def galoisAverage
     ∑ σ : L ≃ₐ[K] L, conjugation K L σ z
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.1h3v.s10.17b60983639c from=translated src=- shape=9741e987 vocab=82e31411
+-/
 theorem galoisAverage_eq_of_fixed
     [IsGalois K L]
     (z : RelativeAdeleRing K L)
@@ -344,6 +384,9 @@ theorem galoisAverage_eq_of_fixed
     one_smul]
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h4v.s10.cac8adb40291 from=translated src=- shape=6e9cb844 vocab=ac5fcf17
+-/
 theorem galoisAverage_tmul
     [IsGalois K L]
     (a : NumberField.AdeleRing (𝓞 K) K) (x : L) :

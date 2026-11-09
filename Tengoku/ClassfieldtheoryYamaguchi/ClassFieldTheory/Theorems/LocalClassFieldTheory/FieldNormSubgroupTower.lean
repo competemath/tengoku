@@ -26,7 +26,9 @@ namespace ClassFieldTheory
 universe u v w
 
 /-- In a finite tower `K ⊆ M ⊆ L`, every norm from `L` to `K` is a norm
-from `M` to `K`.-/
+from `M` to `K`.
+@isnad1 id=le.0h3v.s8.c4c8c99ea5c4 from=translated src=- shape=e57e095f vocab=ebff22d9
+-/
 theorem fieldNormSubgroup_le_of_tower
     (K : Type u) (M : Type v) (L : Type w)
     [Field K] [Field M] [Field L]

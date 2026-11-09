@@ -20,7 +20,9 @@ a subgroup with the kernel of a homomorphism after a surjective quotient.
 namespace Subgroup
 
 /-- Suppose `φ` is surjective, the kernel of `ψ.comp φ` is `Z ⊔ U`, and `Z`
-is already killed by `φ`. Then the image of `U` is exactly the kernel of `ψ`.-/
+is already killed by `φ`. Then the image of `U` is exactly the kernel of `ψ`.
+@isnad1 id=eq.3h7v.s7.7599868c6450 from=translated src=- shape=12ea5519 vocab=59184292
+-/
 theorem map_eq_ker_of_comp_ker_eq_sup_of_left_le_ker
     {A G H : Type*} [Group A] [Group G] [Group H]
     (φ : A →* G) (ψ : G →* H) (Z U : Subgroup A)

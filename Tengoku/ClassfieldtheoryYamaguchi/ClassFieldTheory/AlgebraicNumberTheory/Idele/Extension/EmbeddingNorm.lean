@@ -46,6 +46,9 @@ def embeddingToAlgebraicClosure :
       (AlgebraicClosure M)).comp f
 
 omit [Algebra L M] [IsScalarTower K L M] in
+/--
+@isnad1 id=injectiv.0h3v.s6.aa37e8170575 from=translated src=- shape=eb6fa97b vocab=4d2de544
+-/
 theorem embeddingToAlgebraicClosure_injective :
     Function.Injective
       (embeddingToAlgebraicClosure
@@ -56,6 +59,9 @@ theorem embeddingToAlgebraicClosure_injective :
     (algebraMap M (AlgebraicClosure M)).injective
       (DFunLike.congr_fun h x)
 
+/--
+@isnad1 id=surjecti.0h3v.s7.b3df47897dea from=translated src=- shape=38348be6 vocab=493d9384
+-/
 theorem embeddingToAlgebraicClosure_surjective
     [FiniteDimensional K M] [Normal K M] :
     Function.Surjective
@@ -104,6 +110,9 @@ noncomputable def liftSubextensionEmbedding
   AlgEquiv.ofBijective (f.liftNormal M)
     (AlgHom.normal_bijective K M M _)
 
+/--
+@isnad1 id=eq.0h4v.s7.a292878afc82 from=translated src=- shape=212a4ca9 vocab=64df6d3b
+-/
 theorem restrict_liftSubextensionEmbedding
     [Normal K M] (f : L →ₐ[K] M) :
     restrictToSubextension
@@ -184,7 +193,9 @@ noncomputable def cosetEquivEmbedding
           (algebraMap L M x)
 
 /-- The field norm of a subextension, computed in an ambient finite
-Galois extension, is the product over all embeddings into that extension.-/
+Galois extension, is the product over all embeddings into that extension.
+@isnad1 id=eq.0h4v.s8.ca403606c71c from=translated src=- shape=d93a5cf3 vocab=4bedbb57
+-/
 theorem norm_eq_prod_embeddings_in_galoisExtension
     [FiniteDimensional K L] [FiniteDimensional K M]
     [IsGalois K M] (x : L) :
@@ -242,6 +253,9 @@ def embeddingPolynomial
 omit [Algebra L M] [IsScalarTower K L M]
     [FiniteDimensional K L] [FiniteDimensional K M]
     [IsGalois K M] in
+/--
+@isnad1 id=eq.0h7v.s9.781af6affd64 from=translated src=- shape=f635fe53 vocab=916540ed
+-/
 @[simp]
 theorem eval_embeddingPolynomial
     {ι : Type z} [Fintype ι] [DecidableEq ι]
@@ -274,6 +288,9 @@ def embeddingProductPolynomial
 
 omit [Algebra L M] [IsScalarTower K L M]
     [FiniteDimensional K M] [IsGalois K M] in
+/--
+@isnad1 id=eq.0h6v.s9.f98f6dd641c4 from=translated src=- shape=d3280b48 vocab=71944c41
+-/
 @[simp]
 theorem eval_embeddingProductPolynomial
     {ι : Type z} [Fintype ι] [DecidableEq ι]
@@ -296,6 +313,9 @@ def scalarEmbedding
 omit [Algebra L M] [IsScalarTower K L M]
     [FiniteDimensional K L] [FiniteDimensional K M]
     [IsGalois K M] in
+/--
+@isnad1 id=eq.0h7v.s9.e2c27d22d52b from=translated src=- shape=efa3704c vocab=3a4e12da
+-/
 @[simp]
 theorem scalarEmbedding_tmul
     (A : Type*) [CommRing A] [Algebra K A]
@@ -308,7 +328,9 @@ omit [Algebra L M] [IsScalarTower K L M]
     [FiniteDimensional K L] [FiniteDimensional K M]
     [IsGalois K M] in
 /-- Evaluation of an embedding polynomial after arbitrary scalar extension
-is the corresponding tensor-algebra embedding.-/
+is the corresponding tensor-algebra embedding.
+@isnad1 id=eq.0h8v.s11.40feab593639 from=translated src=- shape=3bf1c329 vocab=26d0b7d8
+-/
 theorem eval₂_embeddingPolynomial_baseChange
     (A : Type*) [CommRing A] [Algebra K A]
     {ι : Type z} [Fintype ι] [DecidableEq ι]

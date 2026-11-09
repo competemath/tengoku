@@ -52,7 +52,9 @@ def rayClassPrimeToIdealNormDomain
       hI W hW, neg_zero]
 
 /-- The exponent of a relative fractional-ideal norm at a finite prime is
-the inertia-degree-weighted sum of the exponents at the primes above it.-/
+the inertia-degree-weighted sum of the exponents at the primes above it.
+@isnad1 id=eq.0h4v.s9.e3c209569d08 from=translated src=- shape=1cc67328 vocab=5471213e
+-/
 theorem fractionalIdealNorm_count
     (K : Type u) (L : Type v)
     [Field K] [NumberField K]

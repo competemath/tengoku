@@ -47,6 +47,9 @@ def equivariantRepHom (f : A →* B)
       exact hf g a.toMul
 
 omit [Fintype G] in
+/--
+@isnad1 id=eq.1h5v.s10.caff41b2df39 from=translated src=- shape=b5ef4eef vocab=e20395e4
+-/
 @[simp]
 theorem equivariantRepHom_apply (f : A →* B)
     (hf : ∀ (g : G) (a : A), f (g • a) = g • f a) (a : Additive A) :
@@ -69,6 +72,9 @@ def equivariantShortComplex
     exact (hker (i a.toMul)).2 ⟨a.toMul, rfl⟩
 
 omit [Fintype G] in
+/--
+@isnad1 id=shortexa.5h6v.s9.c70ed8aa4a39 from=translated src=- shape=8dd79000 vocab=acb5a875
+-/
 theorem equivariantShortComplex_shortExact
     (i : A →* B) (j : B →* C)
     (hi : ∀ (g : G) (a : A), i (g • a) = g • i a)

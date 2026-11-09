@@ -36,7 +36,9 @@ variable
 omit [NumberField K] [NumberField L] in
 /-- The field norm, regarded in `L`, is the product of all Galois
 conjugates.  This is the unit-valued form used for principal ideles in
-the Galois product norm formula.-/
+the Galois product norm formula.
+@isnad1 id=eq.0h3v.s9.e6e8d232b391 from=translated src=- shape=78873d70 vocab=4bd00916
+-/
 theorem fieldNormUnits_eq_prod_conjugates
     [IsGalois K L] (x : Lˣ) :
     Units.map (algebraMap K L)
@@ -52,7 +54,9 @@ theorem fieldNormUnits_eq_prod_conjugates
 omit [NumberField L] in
 /-- On the diagonal copy of `Lˣ`, after extending the norm
 back to `L`, the principal idele of the norm is the product of the
-Galois-conjugate principal ideles.-/
+Galois-conjugate principal ideles.
+@isnad1 id=eq.0h3v.s12.61785331b39b from=translated src=- shape=66c6ef75 vocab=80e903ed
+-/
 theorem inclusion_norm_principalIdele_eq_prod_conjugates
     [IsGalois K L] (x : Lˣ) :
     inclusion K L (norm K L (principalIdele K L x)) =

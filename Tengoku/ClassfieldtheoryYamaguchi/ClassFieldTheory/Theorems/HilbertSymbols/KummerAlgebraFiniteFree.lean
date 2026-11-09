@@ -24,7 +24,9 @@ namespace ClassFieldTheory
 universe u
 
 /-- A Kummer algebra is finite free over its base field, including reducible
-and degree-one cases.-/
+and degree-one cases.
+@isnad1 id=and.0h3v.s10.dac4d3f159c4 from=translated src=- shape=2966c1c0 vocab=68d417a3
+-/
 theorem kummerAlgebra_finiteFree
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ) :
     Module.Finite K (KummerAlgebra K n a) ∧

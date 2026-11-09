@@ -23,7 +23,9 @@ namespace ClassFieldTheory
 
 /-- Two roots with the same `n`-th power have the same Galois root quotient
 when the base field contains a primitive `n`-th root of unity. This also
-applies when `σ` is a local Artin automorphism.-/
+applies when `σ` is a local Artin automorphism.
+@isnad1 id=eq.2h6v.s10.2ddc596fe344 from=translated src=- shape=b81226c3 vocab=277512ad
+-/
 theorem rootQuotient_eq_of_pow_eq_pow
     {K L : Type*} [Field K] [Field L] [Algebra K L]
     (n : ℕ+) (hmu : (primitiveRoots (n : ℕ) K).Nonempty)

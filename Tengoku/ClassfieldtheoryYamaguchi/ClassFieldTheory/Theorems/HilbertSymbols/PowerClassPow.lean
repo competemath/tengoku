@@ -20,7 +20,9 @@ namespace ClassFieldTheory
 
 universe u
 
-/-- The class of a power is the corresponding power of the class.-/
+/-- The class of a power is the corresponding power of the class.
+@isnad1 id=eq.0h4v.s8.b8f638174f09 from=translated src=- shape=2c3be1ef vocab=7236d828
+-/
 @[simp]
 theorem powerClass_pow
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ) (m : ℕ) :

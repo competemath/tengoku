@@ -35,7 +35,9 @@ variable {A B}
 variable (A B)
 
 /-- Only finitely many height-one primes of a finite separable Dedekind
-extension ramify over the base.-/
+extension ramify over the base.
+@isnad1 id=finite.0h2v.s7.96cf56178186 from=translated src=- shape=a907143a vocab=73dd4452
+-/
 theorem finite_ramified_heightOne_primes :
     {v : IsDedekindDomain.HeightOneSpectrum B |
         ¬ Algebra.IsUnramifiedAt A v.asIdeal}.Finite := by

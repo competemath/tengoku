@@ -45,6 +45,9 @@ def finiteFieldPowerResidueSymbol
     apply Subtype.ext
     simp [mul_pow]
 
+/--
+@isnad1 id=eq.1h3v.s10.8ee6c245e331 from=translated src=- shape=4e01e35f vocab=49f46c1e
+-/
 @[simp]
 theorem finiteFieldPowerResidueSymbol_apply
     (n : ℕ+) (hn : (n : ℕ) ∣ Fintype.card k - 1) (u : kˣ) :

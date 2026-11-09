@@ -27,7 +27,9 @@ namespace IsDiscreteValuationRing
 variable {R : Type u} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
 
 /-- Membership in a power of the maximal ideal is detected by the normalized
-additive valuation.-/
+additive valuation.
+@isnad1 id=iff.0h3v.s7.fd3765277aaa from=translated src=- shape=70241460 vocab=695db633
+-/
 theorem mem_maximalIdeal_pow_iff_addVal_ge (a : R) (n : ℕ) :
     a ∈ IsLocalRing.maximalIdeal R ^ n ↔ (n : ℕ∞) ≤ addVal R a := by
   obtain ⟨ϖ, hϖ⟩ := exists_irreducible R
@@ -35,7 +37,9 @@ theorem mem_maximalIdeal_pow_iff_addVal_ge (a : R) (n : ℕ) :
     Ideal.mem_span_singleton, ← addVal_le_iff_dvd, hϖ.addVal_pow]
 
 /-- A ring automorphism of a discrete valuation ring preserves its normalized
-additive valuation.-/
+additive valuation.
+@isnad1 id=eq.0h3v.s7.7bc89936f545 from=translated src=- shape=8207c7d4 vocab=760d00d5
+-/
 @[simp] theorem addVal_ringEquiv (e : R ≃+* R) (a : R) :
     addVal R (e a) = addVal R a := by
   by_cases ha : a = 0

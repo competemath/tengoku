@@ -38,7 +38,9 @@ namespace RelativeIdeleGroup
 
 omit [NumberField L] [FiniteDimensional K L] in
 /-- If a base adele and an extension-field element define the same
-element of `𝔸_K ⊗_K L`, then they arise from one scalar of `K`.-/
+element of `𝔸_K ⊗_K L`, then they arise from one scalar of `K`.
+@isnad1 id=ex.1h4v.s10.f27aa0e55091 from=translated src=- shape=9ad9dc61 vocab=f16b4b51
+-/
 theorem exists_scalar_of_adeleInclusion_eq_fieldInclusion
     (a : NumberField.AdeleRing (𝓞 K) K) (x : L)
     (h : adeleInclusion K L a = fieldInclusion K L x) :
@@ -95,7 +97,9 @@ abbrev ClassGroup :=
 
 omit [NumberField L] [FiniteDimensional K L] in
 /-- The preimage of the principal relative ideles under `I_K → I_L` is
-exactly the subgroup of principal ideles of `K`.-/
+exactly the subgroup of principal ideles of `K`.
+@isnad1 id=eq.0h2v.s11.46b357f57bd3 from=translated src=- shape=91c646b6 vocab=da93ed10
+-/
 theorem comap_principalSubgroup :
     Subgroup.comap (inclusion K L)
         (principalSubgroup K L) =
@@ -144,6 +148,9 @@ def classInclusion :
       rw [← comap_principalSubgroup K L])
 
 omit [NumberField L] [FiniteDimensional K L] in
+/--
+@isnad1 id=eq.0h3v.s15.8153b7d20ac7 from=translated src=- shape=0f59da5f vocab=17b73390
+-/
 @[simp]
 theorem classInclusion_mk (a : IdeleGroup K) :
     classInclusion K L
@@ -169,6 +176,9 @@ noncomputable def classNorm :
           K L x).symm)
 
 omit [NumberField L] in
+/--
+@isnad1 id=eq.0h3v.s15.4e073913f486 from=translated src=- shape=188f1edb vocab=685bee7f
+-/
 @[simp]
 theorem classNorm_mk
     (a : RelativeIdeleGroup K L) :
@@ -184,7 +194,9 @@ abbrev ClassNormQuotient :=
   IdeleClassGroup K ⧸ (classNorm K L).range
 
 omit [NumberField L] [FiniteDimensional K L] in
-/-- The scalar-extension map `C_K → C_L` is injective.-/
+/-- The scalar-extension map `C_K → C_L` is injective.
+@isnad1 id=injectiv.0h2v.s11.1b1f28e94369 from=translated src=- shape=cd14c4be vocab=866f9313
+-/
 theorem classInclusion_injective :
     Function.Injective (classInclusion K L) := by
   rw [← MonoidHom.ker_eq_bot_iff]

@@ -58,7 +58,9 @@ noncomputable def leftCosetEquivMapOfSurjective
 
 /--
 Establishes the identity `leftCosetEquivMapOfSurjective f hf H hker (QuotientGroup.mk p) =
-QuotientGroup.mk (f p)`.-/
+QuotientGroup.mk (f p)`.
+@isnad1 id=eq.2h5v.s8.dc23fe43f986 from=translated src=- shape=e8d507f1 vocab=8f23ddb8
+-/
 @[simp]
 theorem leftCosetEquivMapOfSurjective_mk
     (f : P →* Q) (hf : Function.Surjective f)
@@ -69,7 +71,9 @@ theorem leftCosetEquivMapOfSurjective_mk
 
 /--
 Establishes the identity `leftCosetEquivMapOfSurjective f hf H hker (p • q) = f p •
-leftCosetEquivMapOfSurjective f hf H hker q`.-/
+leftCosetEquivMapOfSurjective f hf H hker q`.
+@isnad1 id=eq.2h6v.s9.ec4557d27a51 from=translated src=- shape=f8b2fcce vocab=2bc64854
+-/
 @[simp]
 theorem leftCosetEquivMapOfSurjective_smul
     (f : P →* Q) (hf : Function.Surjective f)
@@ -104,7 +108,9 @@ noncomputable def leftTransversalMapOfSurjective
 /--
 The defining evaluation formula for `leftTransversalMapOfSurjective` is
 `((leftTransversalMapOfSurjective f hf H hker T).2.leftQuotientEquiv q : Q) = f
-(T.2.leftQuotientEquiv ((leftCosetEquivMapOfSurjective f hf H hker).symm q) : P)`.-/
+(T.2.leftQuotientEquiv ((leftCosetEquivMapOfSurjective f hf H hker).symm q) : P)`.
+@isnad1 id=eq.2h6v.s9.13ccb7d78483 from=translated src=- shape=79eb0300 vocab=009cda50
+-/
 @[simp]
 theorem leftTransversalMapOfSurjective_apply
     (f : P →* Q) (hf : Function.Surjective f)

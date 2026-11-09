@@ -32,7 +32,9 @@ universe u v
 
 /-- Any specified continuous surjective homomorphism with the field-norm
 kernel induces one and only one continuous equivalence of the norm quotient.
-The equivalence evaluates to the specified map on every quotient class.-/
+The equivalence evaluates to the specified map on every quotient class.
+@isnad1 id=existsun.2h3v.s11.218cb408e642 from=translated src=- shape=b5d9dca1 vocab=fddc4dde
+-/
 theorem finiteAbelianLocalReciprocity_quotientEquiv_of_artin
     (K : Type u) (L : Type v)
     [Field K] [Field L] [Algebra K L]

@@ -40,7 +40,9 @@ variable {R : Type u} {A : Type v} [Field R] [Field A] [Algebra R A]
 
 /-- If the coefficient field extension `A/R` is finite-dimensional, then
 `A⟦X⟧` is finitely generated over `R⟦X⟧`.  A finite `R`-basis of `A` gives
-generators by embedding basis vectors as constant power series.-/
+generators by embedding basis vectors as constant power series.
+@isnad1 id=finite.0h2v.s6.26393eb6f752 from=translated src=- shape=f40ee9d6 vocab=da6599f3
+-/
 theorem powerSeries_moduleFinite_of_finiteDimensional
     [FiniteDimensional R A] :
     Module.Finite R⟦X⟧ A⟦X⟧ := by
@@ -82,7 +84,9 @@ end PowerSeriesFinite
 variable (p : ℕ) (k : Type u) [Fact p.Prime] [Field k] [CharP k p]
 
 /-- A finite field of characteristic `p` is finite-dimensional over its prime
-field `ZMod p`.-/
+field `ZMod p`.
+@isnad1 id=finitedi.0h2v.s6.f0c005ceb839 from=translated src=- shape=7d1419be vocab=0b35c26a
+-/
 theorem zmod_finiteDimensional_of_finite [Finite k] :
     letI : Algebra (ZMod p) k := ZMod.algebra k p
     FiniteDimensional (ZMod p) k := by
@@ -94,7 +98,9 @@ theorem zmod_finiteDimensional_of_finite [Finite k] :
       (s := Set.univ) (Set.finite_univ : (Set.univ : Set k).Finite))
 
 /-- Finite generation of `k⟦X⟧` over `F_p⟦X⟧`, for a finite coefficient
-field `k` of characteristic `p`.-/
+field `k` of characteristic `p`.
+@isnad1 id=finite.0h2v.s6.6b7c145ec60b from=translated src=- shape=a2a65413 vocab=b74dbc8e
+-/
 theorem zmodPowerSeries_moduleFinite [Finite k] :
     letI : Algebra (ZMod p) k := ZMod.algebra k p
     Module.Finite (ZMod p)⟦X⟧ k⟦X⟧ := by
@@ -112,7 +118,9 @@ noncomputable def zmodPowerSeriesCoeffMap :
 
 /--
 Establishes the identity `zmodPowerSeriesCoeffMap p k (PowerSeries.C a) = PowerSeries.C
-((ZMod.castHom (m := p) dvd_rfl k) a)`.-/
+((ZMod.castHom (m := p) dvd_rfl k) a)`.
+@isnad1 id=eq.0h3v.s8.6b03192cc995 from=translated src=- shape=8022fed6 vocab=b2afcdd0
+-/
 @[simp]
 theorem zmodPowerSeriesCoeffMap_C (a : ZMod p) :
     zmodPowerSeriesCoeffMap p k (PowerSeries.C a) =
@@ -123,7 +131,9 @@ theorem zmodPowerSeriesCoeffMap_C (a : ZMod p) :
     PowerSeries.C ((ZMod.castHom (m := p) dvd_rfl k) a)
   rfl
 
-/-- Establishes the identity `zmodPowerSeriesCoeffMap p k PowerSeries.X = PowerSeries.X`.-/
+/-- Establishes the identity `zmodPowerSeriesCoeffMap p k PowerSeries.X = PowerSeries.X`.
+@isnad1 id=eq.0h2v.s7.38bf410c7de3 from=translated src=- shape=15564890 vocab=4a219a8e
+-/
 @[simp]
 theorem zmodPowerSeriesCoeffMap_X :
     zmodPowerSeriesCoeffMap p k PowerSeries.X = PowerSeries.X := by
@@ -131,7 +141,9 @@ theorem zmodPowerSeriesCoeffMap_X :
   simp [zmodPowerSeriesCoeffMap]
 
 /-- The coefficientwise power-series map is finite when the coefficient field
-extension `k / F_p` is finite.-/
+extension `k / F_p` is finite.
+@isnad1 id=finite.0h2v.s5.77c67912ffb8 from=translated src=- shape=ae968523 vocab=283b33c9
+-/
 theorem zmodPowerSeriesCoeffMap_finite [Finite k] :
     (zmodPowerSeriesCoeffMap p k).Finite := by
   let : Algebra (ZMod p) k := ZMod.algebra k p
@@ -174,7 +186,9 @@ noncomputable def zmodLaurentCoeffMap :
 
 /--
 Establishes the identity `(zmodLaurentCoeffMap p k f).coeff n = (ZMod.castHom (m := p) dvd_rfl k)
-(f.coeff n)`.-/
+(f.coeff n)`.
+@isnad1 id=eq.0h4v.s8.cf23feba344c from=translated src=- shape=50c51a4d vocab=55d2672d
+-/
 @[simp]
 theorem zmodLaurentCoeffMap_coeff (f : (ZMod p)⸨X⸩) (n : ℤ) :
     (zmodLaurentCoeffMap p k f).coeff n =
@@ -189,7 +203,9 @@ theorem zmodLaurentCoeffMap_coeff (f : (ZMod p)⸨X⸩) (n : ℤ) :
 
 /--
 Establishes the identity `zmodLaurentCoeffMap p k (HahnSeries.C (Γ := ℤ) a : (ZMod p)⸨X⸩) =
-(HahnSeries.C (Γ := ℤ) ((ZMod.castHom (m := p) dvd_rfl k) a) : k⸨X⸩)`.-/
+(HahnSeries.C (Γ := ℤ) ((ZMod.castHom (m := p) dvd_rfl k) a) : k⸨X⸩)`.
+@isnad1 id=eq.0h3v.s9.5a190ee72e90 from=translated src=- shape=a1aca8b0 vocab=fc40c99d
+-/
 @[simp]
 theorem zmodLaurentCoeffMap_C (a : ZMod p) :
     zmodLaurentCoeffMap p k (HahnSeries.C (Γ := ℤ) a : (ZMod p)⸨X⸩) =
@@ -209,7 +225,9 @@ theorem zmodLaurentCoeffMap_C (a : ZMod p) :
 
 /--
 Establishes the identity `(zmodLaurentCoeffMap p k).comp (algebraMap (ZMod p)⟦X⟧ (ZMod p)⸨X⸩) =
-(algebraMap k⟦X⟧ k⸨X⸩).comp (zmodPowerSeriesCoeffMap p k)`.-/
+(algebraMap k⟦X⟧ k⸨X⸩).comp (zmodPowerSeriesCoeffMap p k)`.
+@isnad1 id=eq.0h2v.s8.cc47bee1577c from=translated src=- shape=16e1816a vocab=b521144d
+-/
 theorem zmodLaurentCoeffMap_comp_powerSeries :
     (zmodLaurentCoeffMap p k).comp
         (algebraMap (ZMod p)⟦X⟧ (ZMod p)⸨X⸩) =
@@ -227,7 +245,9 @@ theorem zmodLaurentCoeffMap_comp_powerSeries :
 
 /--
 Establishes the identity `zmodLaurentCoeffMap p k ((algebraMap (ZMod p)⟦X⟧ (ZMod p)⸨X⸩)
-(PowerSeries.X : (ZMod p)⟦X⟧)) = (algebraMap k⟦X⟧ k⸨X⸩) (PowerSeries.X : k⟦X⟧)`.-/
+(PowerSeries.X : (ZMod p)⟦X⟧)) = (algebraMap k⟦X⟧ k⸨X⸩) (PowerSeries.X : k⟦X⟧)`.
+@isnad1 id=eq.0h2v.s9.6ad5fd6f9f18 from=translated src=- shape=00d75b56 vocab=c79525c0
+-/
 @[simp]
 theorem zmodLaurentCoeffMap_powerSeries_X :
     zmodLaurentCoeffMap p k
@@ -266,7 +286,9 @@ noncomputable def zmodLaurentCoeffCoord {ι : Type*} [Algebra (ZMod p) k]
 omit [CharP k p] in
 /--
 Establishes the identity `(zmodLaurentCoeffCoord (p := p) (k := k) b f i).coeff n = b.repr
-(f.coeff n) i`.-/
+(f.coeff n) i`.
+@isnad1 id=eq.0h7v.s9.63adffde539f from=translated src=- shape=97b989e7 vocab=068f9f30
+-/
 @[simp]
 theorem zmodLaurentCoeffCoord_coeff {ι : Type*} [Algebra (ZMod p) k]
     (b : Module.Basis ι (ZMod p) k) (f : k⸨X⸩) (i : ι) (n : ℤ) :

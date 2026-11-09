@@ -57,7 +57,9 @@ def rootsOfUnityReduction
     apply Subtype.ext
     exact map_mul (Ideal.rootsOfUnityMapQuot P.asIdeal n) z w
 
-/-- Reduction on `μₙ` is injective away from `n`.-/
+/-- Reduction on `μₙ` is injective away from `n`.
+@isnad1 id=injectiv.1h3v.s14.f822f7481458 from=translated src=- shape=c8db94e9 vocab=1715c7e2
+-/
 theorem rootsOfUnityReduction_injective
     (P : HeightOneSpectrum (𝓞 K)) (n : ℕ+)
     (hcoprime : (Ideal.absNorm P.asIdeal).Coprime (n : ℕ)) :
@@ -72,7 +74,9 @@ theorem rootsOfUnityReduction_injective
       (congrArg Subtype.val hzw)
 
 /-- If `K` contains `μₙ`, then `n` divides `N(P)-1` at every prime
-`P ∤ n`.-/
+`P ∤ n`.
+@isnad1 id=dvd.2h3v.s8.4ae197fc2704 from=translated src=- shape=6988c16a vocab=518d335a
+-/
 theorem dvd_absNorm_sub_one_of_primitiveRoots
     (P : HeightOneSpectrum (𝓞 K)) (n : ℕ+)
     (hmu : (primitiveRoots (n : ℕ) K).Nonempty)
@@ -138,7 +142,9 @@ noncomputable def rootsOfUnityReductionEquiv
     ((Fintype.bijective_iff_injective_and_card f).2
       ⟨hinjective, hsource.trans htarget.symm⟩)
 
-/-- The reduction equivalence acts by the canonical reduction homomorphism.-/
+/-- The reduction equivalence acts by the canonical reduction homomorphism.
+@isnad1 id=eq.2h4v.s14.4c571bda0220 from=translated src=- shape=d3f9271b vocab=40bc272f
+-/
 @[simp]
 theorem rootsOfUnityReductionEquiv_apply
     (P : HeightOneSpectrum (𝓞 K)) (n : ℕ+)
@@ -150,7 +156,9 @@ theorem rootsOfUnityReductionEquiv_apply
   rfl
 
 /-- The cardinality of the residue field is the absolute norm of the
-prime ideal.-/
+prime ideal.
+@isnad1 id=eq.0h2v.s8.91f3269bab60 from=translated src=- shape=0b05b4e6 vocab=b6ada7ba
+-/
 theorem card_primeIdealResidueField
     (P : HeightOneSpectrum (𝓞 K)) :
     Fintype.card (𝓞 K ⧸ P.asIdeal) = Ideal.absNorm P.asIdeal := by
@@ -168,6 +176,9 @@ def primeIdealResidueUnit
       rw [ne_eq, Ideal.Quotient.eq_zero_iff_mem]
       exact ha)
 
+/--
+@isnad1 id=eq.3h4v.s9.9efb267be9f8 from=translated src=- shape=d73c3736 vocab=b6511d7f
+-/
 @[simp]
 theorem primeIdealResidueUnit_mul
     (P : HeightOneSpectrum (𝓞 K))
@@ -211,14 +222,18 @@ def idealPrimeDivisors (I : Ideal (𝓞 K)) :
   {P | P.asIdeal ∣ I}
 
 omit [NumberField K] in
-/-- Membership in the named prime-divisor set is ordinary ideal divisibility.-/
+/-- Membership in the named prime-divisor set is ordinary ideal divisibility.
+@isnad1 id=iff.0h3v.s7.952879c9032b from=translated src=- shape=c9e866d5 vocab=16db8331
+-/
 @[simp]
 theorem mem_idealPrimeDivisors
     (I : Ideal (𝓞 K)) (P : HeightOneSpectrum (𝓞 K)) :
     P ∈ idealPrimeDivisors K I ↔ P.asIdeal ∣ I :=
   Iff.rfl
 
-/-- The prime divisors of a nonzero ideal form a finite set.-/
+/-- The prime divisors of a nonzero ideal form a finite set.
+@isnad1 id=finite.1h2v.s7.4c90600f841c from=translated src=- shape=13bf6caa vocab=5417c3ff
+-/
 theorem idealPrimeDivisors_finite
     (I : Ideal (𝓞 K)) (hI : I ≠ 0) :
     (idealPrimeDivisors K I).Finite :=

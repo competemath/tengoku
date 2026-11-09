@@ -30,7 +30,9 @@ universe u
 
 /-- A Kummer algebra of exponent `n` is a product of exactly `n / d` copies
 of one finite separable field factor of degree `d`. The norm is the product
-of the coordinate field norms under this algebra equivalence.-/
+of the coordinate field norms under this algebra equivalence.
+@isnad1 id=ex.2h3v.s11.6e0ff0a766f2 from=translated src=- shape=8c32ed85 vocab=8fa7a24e
+-/
 theorem kummerAlgebra_exists_pi_copies_simpleFactor
     (K : Type u) [Field K] (n : ℕ+) (a : Kˣ)
     (hn : IsUnit ((n : ℕ) : K))

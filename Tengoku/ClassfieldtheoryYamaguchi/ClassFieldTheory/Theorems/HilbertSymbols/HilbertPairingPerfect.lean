@@ -53,7 +53,9 @@ private def characterUnitsEquiv
     rfl
 
 /-- A finite nondegenerate pairing on power classes is perfect: its adjoint
-map onto the full group of `μₙ`-valued characters is bijective.-/
+map onto the full group of `μₙ`-valued characters is bijective.
+@isnad1 id=bijectiv.2h3v.s12.0ebb39169dc5 from=translated src=- shape=d00b5582 vocab=cd9ae5a2
+-/
 theorem IsNondegenerate.bijective
     {K : Type u} [Field K] {n : ℕ+}
     [Finite (PowerClassGroup K n)]

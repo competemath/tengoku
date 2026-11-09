@@ -35,7 +35,9 @@ noncomputable section
 namespace AlgebraicNumberTheory.Discriminant
 
 /-- A primary factor whose residue dimension is prime to q cannot divide
-an entire additional power into the different.-/
+an entire additional power into the different.
+@isnad1 id=not.5h5v.s9.4951015805af from=translated src=- shape=9a6ac9a0 vocab=a899b458
+-/
 theorem not_dvd_differentIdeal_of_coprime_norm_exponent
     (L : Type*) [Field L] [NumberField L]
     (q m : ℕ) (hq : q.Prime)

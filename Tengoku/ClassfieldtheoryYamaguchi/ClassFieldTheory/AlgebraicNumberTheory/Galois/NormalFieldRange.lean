@@ -21,7 +21,9 @@ range.
 namespace AlgHom
 
 /-- Two embeddings of a normal extension into a common ambient field have the
-same intermediate-field range.-/
+same intermediate-field range.
+@isnad1 id=eq.0h5v.s7.b3c9e23132b3 from=translated src=- shape=efb646fe vocab=99fbe21e
+-/
 theorem fieldRange_eq_of_normal
     {F L Ω : Type*} [Field F] [Field L] [Field Ω]
     [Algebra F L] [Algebra F Ω] [Normal F L]
