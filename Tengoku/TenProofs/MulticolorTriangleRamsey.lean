@@ -11,6 +11,9 @@ def TriangleFree {n k : ℕ}
     (C : SimpleGraph.TopEdgeLabeling (Fin n) (Fin k)) : Prop :=
   ∀ colour : Fin k, (C.labelGraph colour).CliqueFree 3
 
+/--
+@isnad1 id=eq.0h6v.s6.0e64c4c3b2ad from=translated src=- shape=1c4ea52a vocab=cb1e35ae
+-/
 theorem labelGraph_pullback_embedding {U V K : Type*}
     (C : SimpleGraph.TopEdgeLabeling V K)
     (f : U ↪ V) (colour : K) :
@@ -35,6 +38,9 @@ theorem labelGraph_pullback_embedding {U V K : Type*}
     simpa [SimpleGraph.EdgeLabeling.get,
       SimpleGraph.EdgeLabeling.pullback, SimpleGraph.Hom.mapEdgeSet] using hcolour
 
+/--
+@isnad1 id=cliquefr.1h6v.s6.33724c3fbe2e from=translated src=- shape=0bda9df1 vocab=3de5252a
+-/
 theorem cliqueFree_pullback_embedding {U V K : Type*}
     (C : SimpleGraph.TopEdgeLabeling V K)
     (f : U ↪ V)
@@ -47,6 +53,9 @@ theorem cliqueFree_pullback_embedding {U V K : Type*}
     exact SimpleGraph.map_comap_le f (C.labelGraph colour)
   exact hC colour (T.map f) (hT.map.mono hmap)
 
+/--
+@isnad1 id=colorabl.1h7v.s6.da981eb55e83 from=translated src=- shape=44b8dc8d vocab=5fb64ed0
+-/
 theorem colorable_pullback_embedding {U V K : Type*} {j : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V K)
     (f : U ↪ V) (colour : K)
@@ -59,6 +68,9 @@ theorem colorable_pullback_embedding {U V K : Type*} {j : ℕ}
   rw [labelGraph_pullback_embedding] at hadj
   exact hadj
 
+/--
+@isnad1 id=cliquefr.1h6v.s6.6c7787c7b0b3 from=translated src=- shape=f47a31e6 vocab=0536ec82
+-/
 theorem cliqueFree_compRight_embedding {V K K' : Type*}
     (C : SimpleGraph.TopEdgeLabeling V K)
     (e : K ↪ K')
@@ -112,6 +124,9 @@ noncomputable def paletteRelabel {V : Type*} {N t : ℕ}
     SimpleGraph.TopEdgeLabeling V (Fin N) :=
   C.compRight (fun colour => (activeColourEquiv N t P hP colour).val)
 
+/--
+@isnad1 id=iff.2h8v.s6.069694cbcaa7 from=translated src=- shape=504806a0 vocab=25ec757e
+-/
 theorem paletteRelabel_adj_iff {V : Type*} {N t : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
     (P : Finset (Fin N)) (hP : P.card = t)
@@ -137,6 +152,9 @@ theorem paletteRelabel_adj_iff {V : Type*} {N t : ℕ}
       (fun old => (activeColourEquiv N t P hP old).val) hcolour
     simpa [activeColourPreimage] using heq
 
+/--
+@isnad1 id=not.2h8v.s6.d6c8b662c992 from=translated src=- shape=0cdeba2d vocab=94b467e0
+-/
 theorem paletteRelabel_missing_no_adj {V : Type*} {N t : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
     (P : Finset (Fin N)) (hP : P.card = t)
@@ -159,6 +177,9 @@ noncomputable def paletteBlockLabel {V : Type*} {N t j : ℕ}
     (Classical.choice
       (hC (activeColourPreimage N t P hP colour hactive))) v
 
+/--
+@isnad1 id=ne.4h9v.s7.c4a7f994572c from=translated src=- shape=840383ca vocab=0a7d4e55
+-/
 theorem paletteBlockLabel_valid {V : Type*} {N t j : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
     (hC : ∀ colour : Fin (N - t), (C.labelGraph colour).Colorable j)
@@ -171,6 +192,9 @@ theorem paletteBlockLabel_valid {V : Type*} {N t j : ℕ}
   exact (Classical.choice
     (hC (activeColourPreimage N t P hP colour hactive))).valid hold
 
+/--
+@isnad1 id=cliquefr.2h6v.s6.bb397b08f087 from=translated src=- shape=f37e65d4 vocab=7e212190
+-/
 theorem paletteRelabel_cliqueFree {V : Type*} {N t : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
     (hC : ∀ colour : Fin (N - t), (C.labelGraph colour).CliqueFree 3)
@@ -197,6 +221,9 @@ noncomputable def deleteUnusedColour {V : Type*} {k : ℕ}
     SimpleGraph.TopEdgeLabeling V (Fin k) :=
   fun edge => omittedColourEquiv k omitted ⟨C edge, hunused edge⟩
 
+/--
+@isnad1 id=triangle.2h4v.s6.a83d3c4b1ad4 from=translated src=- shape=1e7b0efd vocab=55780662
+-/
 theorem triangleFree_deleteUnusedColour {n k : ℕ}
     (C : SimpleGraph.TopEdgeLabeling (Fin n) (Fin (k + 1)))
     (omitted : Fin (k + 1))
@@ -228,6 +255,9 @@ theorem triangleFree_deleteUnusedColour {n k : ℕ}
 def ForcesMonochromaticTriangle (n k : ℕ) : Prop :=
   ∀ C : SimpleGraph.TopEdgeLabeling (Fin n) (Fin k), ¬ TriangleFree C
 
+/--
+@isnad1 id=forcesmo.2h3v.s4.6a43c27d18e9 from=translated src=- shape=23b093e7 vocab=bc0463ac
+-/
 theorem forcesMonochromaticTriangle_mono {m n k : ℕ}
     (hmn : m ≤ n) (hm : ForcesMonochromaticTriangle m k) :
     ForcesMonochromaticTriangle n k := by
@@ -235,11 +265,17 @@ theorem forcesMonochromaticTriangle_mono {m n k : ℕ}
   exact hm (C.pullback (Fin.castLEEmb hmn))
     (cliqueFree_pullback_embedding C (Fin.castLEEmb hmn) hC)
 
+/--
+@isnad1 id=forcesmo.0h0v.s3.33d04ff03391 from=translated src=- shape=6d6f5044 vocab=b76ab9a3
+-/
 theorem forcesMonochromaticTriangle_zero :
     ForcesMonochromaticTriangle 2 0 := by
   intro C _
   exact Fin.elim0 (C.get (0 : Fin 2) (1 : Fin 2) (by decide))
 
+/--
+@isnad1 id=forcesmo.1h2v.s5.3ef26c790041 from=translated src=- shape=1228d016 vocab=9fc19f63
+-/
 theorem forcesMonochromaticTriangle_succ {n k : ℕ}
     (hn : ForcesMonochromaticTriangle n k) :
     ForcesMonochromaticTriangle (1 + (k + 1) * n) (k + 1) := by
@@ -311,6 +347,9 @@ theorem forcesMonochromaticTriangle_succ {n k : ℕ}
   exact hn (deleteUnusedColour restricted omitted hunused)
     (triangleFree_deleteUnusedColour restricted omitted hunused hrestricted)
 
+/--
+@isnad1 id=ex.0h1v.s3.8ae646702af1 from=translated src=- shape=706c24a1 vocab=b76ab9a3
+-/
 theorem exists_forcesMonochromaticTriangle (k : ℕ) :
     ∃ n : ℕ, ForcesMonochromaticTriangle n k := by
   induction k with
@@ -323,16 +362,25 @@ theorem exists_forcesMonochromaticTriangle (k : ℕ) :
 noncomputable def triangleRamseyNumber (k : ℕ) : ℕ :=
   sInf {n : ℕ | ForcesMonochromaticTriangle n k}
 
+/--
+@isnad1 id=forcesmo.0h1v.s2.17923719dd08 from=translated src=- shape=b54cd39a vocab=17dc55e6
+-/
 theorem triangleRamseyNumber_forces (k : ℕ) :
     ForcesMonochromaticTriangle (triangleRamseyNumber k) k := by
   exact Nat.sInf_mem (exists_forcesMonochromaticTriangle k)
 
+/--
+@isnad1 id=le.0h1v.s5.a2964512f739 from=translated src=- shape=9814c5d5 vocab=acb7c746
+-/
 theorem triangleRamseyNumber_succ_le (k : ℕ) :
     triangleRamseyNumber (k + 1) ≤
       1 + (k + 1) * triangleRamseyNumber k := by
   apply Nat.sInf_le
   exact forcesMonochromaticTriangle_succ (triangleRamseyNumber_forces k)
 
+/--
+@isnad1 id=le.0h1v.s4.d928007a0813 from=translated src=- shape=ffd9fe76 vocab=46ab6e7f
+-/
 theorem triangleRamseyNumber_factorial_upper (k : ℕ) :
     triangleRamseyNumber k ≤ 4 * k.factorial := by
   have hzero : triangleRamseyNumber 0 ≤ 2 := by
@@ -363,6 +411,9 @@ theorem triangleRamseyNumber_factorial_upper (k : ℕ) :
   · have hbound := hstrict k (by omega)
     omega
 
+/--
+@isnad1 id=lt.1h3v.s4.e9b659adb10c from=translated src=- shape=76b1ba06 vocab=dda92c3c
+-/
 theorem triangleFree_lt_triangleRamseyNumber {n k : ℕ}
     (C : SimpleGraph.TopEdgeLabeling (Fin n) (Fin k))
     (hC : TriangleFree C) :
@@ -374,6 +425,9 @@ theorem triangleFree_lt_triangleRamseyNumber {n k : ℕ}
       (triangleRamseyNumber_forces k)
   exact hforcing C hC
 
+/--
+@isnad1 id=le.1h2v.s4.485b468b4070 from=translated src=- shape=6bee9d27 vocab=fc658c3e
+-/
 theorem triangleRamseyNumber_mono {k l : ℕ} (hkl : k ≤ l) :
     triangleRamseyNumber k ≤ triangleRamseyNumber l := by
   apply Nat.sInf_le
@@ -384,6 +438,9 @@ theorem triangleRamseyNumber_mono {k l : ℕ} (hkl : k ≤ l) :
   exact triangleRamseyNumber_forces l
     (C.compRight (Fin.castLEEmb hkl)) hlarge
 
+/--
+@isnad1 id=false.3h5v.s6.ec425e7ab016 from=translated src=- shape=7de906ac vocab=5102f8d5
+-/
 theorem no_three_pairwise_palette_disagreements {α : Type*}
     (P Q R : Finset α) (colour : α)
     (hPQ : (colour ∈ P) ≠ (colour ∈ Q))
@@ -404,6 +461,9 @@ noncomputable def differenceColourEmbedding {α : Type*} [DecidableEq α]
   exact ⟨fun i => (selection i).val,
     fun i j h => selection.injective (Subtype.ext h)⟩
 
+/--
+@isnad1 id=mem.1h5v.s6.aa0830093e29 from=translated src=- shape=36b6829e vocab=feb5d239
+-/
 theorem differenceColourEmbedding_mem {α : Type*} [DecidableEq α]
     (P Q : Finset α) {s : ℕ} (hcard : s ≤ (Q \ P).card)
     (i : Fin s) :
@@ -416,6 +476,9 @@ def IsPaletteSeparated {α : Type*} [DecidableEq α]
     (s : ℕ) (family : Finset (Finset α)) : Prop :=
   ∀ P ∈ family, ∀ Q ∈ family, P ≠ Q → s ≤ (P \ Q).card
 
+/--
+@isnad1 id=ispalett.3h4v.s6.1e267672842b from=translated src=- shape=f6730fcc vocab=af172061
+-/
 theorem paletteSeparated_insert {α : Type*} [DecidableEq α]
     {s : ℕ} {family : Finset (Finset α)} {P : Finset α}
     (hseparated : IsPaletteSeparated s family)
@@ -441,6 +504,9 @@ theorem paletteSeparated_insert {α : Type*} [DecidableEq α]
         (Finset.mem_insert.mp hY).resolve_left hYP
       exact hseparated X hXfamily Y hYfamily hXY
 
+/--
+@isnad1 id=ex.2h3v.s7.f60266c1bb72 from=translated src=- shape=1a76cc6b vocab=e9cd3786
+-/
 theorem exists_maximal_separated_palette_cover {α : Type*} [DecidableEq α]
     (ambient : Finset (Finset α)) (s : ℕ) (hs : 0 < s)
     (hequal : ∀ P ∈ ambient, ∀ Q ∈ ambient, P.card = Q.card) :
@@ -532,6 +598,9 @@ noncomputable def paletteShellEmbedding (N t d : ℕ)
     · have hmem := Finset.ext_iff.mp hright x
       simpa [hx] using hmem
 
+/--
+@isnad1 id=le.1h4v.s5.b9998d5c0501 from=translated src=- shape=04606e09 vocab=5db3cd55
+-/
 theorem paletteShell_card_le (N t d : ℕ)
     (Q : Finset (Fin N)) (hQ : Q.card = t) :
     (paletteShell N t Q d).card ≤
@@ -552,6 +621,9 @@ theorem paletteShell_card_le (N t d : ℕ)
         Finset.card_sdiff_of_subset (Finset.subset_univ Q)]
       simp [hQ]
 
+/--
+@isnad1 id=le.2h5v.s7.113b81f4adbb from=translated src=- shape=1b3b5098 vocab=ab944927
+-/
 theorem palette_packing_card_le {α : Type*} [DecidableEq α]
     (ambient family : Finset (Finset α)) (s ballBound : ℕ)
     (hcover : ∀ P ∈ ambient, ∃ Q ∈ family, (P \ Q).card < s)
@@ -571,6 +643,9 @@ theorem palette_packing_card_le {α : Type*} [DecidableEq α]
       Finset.sum_le_sum fun Q hQ => hball Q hQ
     _ = family.card * ballBound := by simp
 
+/--
+@isnad1 id=le.1h4v.s6.1d21a5dcb28e from=translated src=- shape=a05a9aae vocab=44769abe
+-/
 theorem paletteBall_card_le_binomial_sum (N t s : ℕ)
     (Q : Finset (Fin N)) (hQ : Q.card = t) :
     (paletteBall ((Finset.univ : Finset (Fin N)).powersetCard t) Q s).card ≤
@@ -596,6 +671,9 @@ theorem paletteBall_card_le_binomial_sum (N t s : ℕ)
     _ ≤ ∑ d ∈ Finset.range s, t.choose d * (N - t).choose d := by
       exact Finset.sum_le_sum fun d _ => paletteShell_card_le N t d Q hQ
 
+/--
+@isnad1 id=ex.1h3v.s6.6f2cdd7472a4 from=translated src=- shape=b6705c99 vocab=d5a81885
+-/
 theorem exists_separated_palette_packing (N t s : ℕ) (hs : 0 < s) :
     ∃ family : Finset (Finset (Fin N)),
       family ⊆ (Finset.univ : Finset (Fin N)).powersetCard t ∧
@@ -668,6 +746,9 @@ noncomputable def transversalPaletteEmbedding (j t : ℕ) :
     subst coordinate'
     exact (congrArg Prod.snd hpairs).symm
 
+/--
+@isnad1 id=le.0h2v.s5.7e68a281c9fd from=translated src=- shape=cee64978 vocab=fe4bc797
+-/
 theorem stage_palette_numerator_bound (j t : ℕ) :
     j ^ t ≤ (j * t).choose t := by
   have hcard := Fintype.card_le_of_injective
@@ -681,6 +762,9 @@ theorem stage_palette_numerator_bound (j t : ℕ) :
       rw [Fintype.card_coe, Finset.card_powersetCard]
       simp
 
+/--
+@isnad1 id=le.2h3v.s5.a5be2a5466b0 from=translated src=- shape=2449e43c vocab=e9bc67fb
+-/
 theorem choose_le_choose_of_le_half {N d s : ℕ}
     (hds : d ≤ s) (hhalf : 2 * s ≤ N) :
     N.choose d ≤ N.choose s := by
@@ -691,6 +775,9 @@ theorem choose_le_choose_of_le_half {N d s : ℕ}
       exact (ih hprevious).trans
         (Nat.choose_le_succ_of_lt_half_left (by omega))
 
+/--
+@isnad1 id=le.1h1v.s5.6fa7c0996a48 from=translated src=- shape=d14e38c7 vocab=74651e0a
+-/
 theorem factorial_exp_lower (s : ℕ) (hs : 0 < s) :
     ((s : ℝ) / Real.exp 1) ^ s ≤ (s.factorial : ℝ) := by
   have hsreal : (1 : ℝ) ≤ s := by
@@ -708,6 +795,9 @@ theorem factorial_exp_lower (s : ℕ) (hs : 0 < s) :
       nlinarith [mul_nonneg (sub_nonneg.mpr hsqrt) hpower]
     _ ≤ (s.factorial : ℝ) := Stirling.le_factorial_stirling s
 
+/--
+@isnad1 id=le.1h2v.s6.39f10e4fa838 from=translated src=- shape=79890fb0 vocab=8f505aed
+-/
 theorem choose_le_exp_mul_div_pow (N s : ℕ) (hs : 0 < s) :
     (N.choose s : ℝ) ≤
       (Real.exp 1 * (N : ℝ) / (s : ℝ)) ^ s := by
@@ -724,6 +814,9 @@ theorem choose_le_exp_mul_div_pow (N s : ℕ) (hs : 0 < s) :
       congr 1
       field_simp
 
+/--
+@isnad1 id=le.2h3v.s6.7007ff24f00c from=translated src=- shape=33942a82 vocab=7d33798e
+-/
 theorem palette_binomial_sum_le (N t s : ℕ)
     (hhalf : 2 * s ≤ t) (htN : t ≤ N) :
     (∑ d ∈ Finset.range s,
@@ -745,6 +838,9 @@ theorem palette_binomial_sum_le (N t s : ℕ)
           (choose_le_choose_of_le_half hds hNhalf)
     _ = s * t.choose s * N.choose s := by simp [mul_assoc]
 
+/--
+@isnad1 id=ex.3h3v.s7.c362b0fee683 from=translated src=- shape=59325886 vocab=5aa7cb30
+-/
 theorem exists_stage_palette_packing_binomial (j t s : ℕ)
     (hs : 0 < s) (hj : 0 < j) (hhalf : 2 * s ≤ t) :
     ∃ family : Finset (Finset (Fin (j * t))),
@@ -760,6 +856,9 @@ theorem exists_stage_palette_packing_binomial (j t s : ℕ)
     (palette_binomial_sum_le (j * t) t s hhalf
       (Nat.le_mul_of_pos_left t hj))
 
+/--
+@isnad1 id=ex.3h3v.s8.dcb751738435 from=translated src=- shape=0e7bcb4c vocab=2a30dde1
+-/
 theorem exists_stage_palette_packing_exp (j a s : ℕ)
     (hj : 0 < j) (ha : 2 ≤ a) (hs : 0 < s) :
     ∃ family : Finset (Finset (Fin (j * (a * s)))),
@@ -838,6 +937,9 @@ noncomputable def recursiveCrossColour {K : Type*} {H s : ℕ}
       b (Fin.find (fun d => y d = g x d)
         ((hcover x y).resolve_left hforward))
 
+/--
+@isnad1 id=or.1h9v.s7.4a72249ebe83 from=translated src=- shape=7ed23815 vocab=1479a027
+-/
 theorem recursiveCrossColour_spec {K : Type*} {H s : ℕ}
     (a b : Fin s ↪ K)
     (f g : (Fin s → Fin H) → (Fin s → Fin H))
@@ -860,6 +962,9 @@ theorem recursiveCrossColour_spec {K : Type*} {H s : ℕ}
     refine ⟨d, ?_, Fin.find_spec hbackward⟩
     simp [recursiveCrossColour, hforward, d]
 
+/--
+@isnad1 id=ne.3h11v.s7.1ef8707de783 from=translated src=- shape=7aeff1fb vocab=9da01b73
+-/
 theorem recursiveCrossColour_changes_membership {K : Type*} [DecidableEq K]
     {H s : ℕ} (P Q : Finset K)
     (a b : Fin s ↪ K)
@@ -879,6 +984,9 @@ theorem recursiveCrossColour_changes_membership {K : Type*} [DecidableEq K]
     have hmem := Finset.mem_sdiff.mp (hb d)
     simp [hmem.1, hmem.2]
 
+/--
+@isnad1 id=ex.6h13v.s7.175dd0f18670 from=translated src=- shape=a33acc5b vocab=9da01b73
+-/
 theorem recursiveCrossColour_same_left_coordinate
     {K : Type*} [DecidableEq K] {H s : ℕ}
     (P Q : Finset K) (a b : Fin s ↪ K)
@@ -907,6 +1015,9 @@ theorem recursiveCrossColour_same_left_coordinate
   have hindex : d = d' := a.injective (hd.symm.trans hd')
   exact ⟨d, hd, hforced.trans (by simpa [hindex] using hforced'.symm)⟩
 
+/--
+@isnad1 id=ex.6h13v.s7.aeff8660359c from=translated src=- shape=c8112de4 vocab=9da01b73
+-/
 theorem recursiveCrossColour_same_right_coordinate
     {K : Type*} [DecidableEq K] {H s : ℕ}
     (P Q : Finset K) (a b : Fin s ↪ K)
@@ -963,6 +1074,9 @@ noncomputable def paletteCrossColour {V : Type*} {N t j H s : ℕ}
     (paletteBlockVector C hC hj Q hQ b
       (fun d => (Finset.mem_sdiff.mp (hb d)).2) v)
 
+/--
+@isnad1 id=ne.7h15v.s8.efd9a77e3161 from=translated src=- shape=00132636 vocab=a5313220
+-/
 theorem paletteCrossColour_changes_membership
     {V : Type*} {N t j H s : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
@@ -983,6 +1097,9 @@ theorem paletteCrossColour_changes_membership
     (paletteBlockVector C hC hj Q hQ b
       (fun d => (Finset.mem_sdiff.mp (hb d)).2) v)
 
+/--
+@isnad1 id=eq.10h17v.s8.91d7a57f3fcf from=translated src=- shape=a1602f30 vocab=83f48ff1
+-/
 theorem paletteCrossColour_same_left_label
     {V : Type*} {N t j H s : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
@@ -1020,6 +1137,9 @@ theorem paletteCrossColour_same_left_label
   have hlabels := Fin.castLE_injective hj hequal
   simpa [hd] using hlabels
 
+/--
+@isnad1 id=eq.10h17v.s8.ac00e71d8427 from=translated src=- shape=c21fc146 vocab=83f48ff1
+-/
 theorem paletteCrossColour_same_right_label
     {V : Type*} {N t j H s : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
@@ -1087,6 +1207,9 @@ structure PaletteBlockCertificate {I V K : Type*} [DecidableEq K]
 
 namespace PaletteBlockCertificate
 
+/--
+@isnad1 id=cliquefr.0h7v.s6.05a0de60105d from=translated src=- shape=bda3c56e vocab=c1377ac5
+-/
 theorem noMonochromaticTriangle {I V K : Type*} [DecidableEq K]
     {C : SimpleGraph.TopEdgeLabeling (I × V) K} {j : ℕ}
     (certificate : PaletteBlockCertificate C j) :
@@ -1147,6 +1270,9 @@ noncomputable def globalLabel {I V K : Type*} [DecidableEq K]
     else
       (certificate.label x.1 colour h x.2).castSucc
 
+/--
+@isnad1 id=colorabl.0h7v.s6.09a1565051b4 from=translated src=- shape=a2f42e10 vocab=e033cbf5
+-/
 theorem colourGraph_colorable {I V K : Type*} [DecidableEq K]
     {C : SimpleGraph.TopEdgeLabeling (I × V) K} {j : ℕ}
     (certificate : PaletteBlockCertificate C j) (colour : K) :
@@ -1189,6 +1315,9 @@ noncomputable def paletteFamilyForwardList {N s : ℕ}
     (hseparated i'.val i'.property i.val i.property
       (fun heq => hne (Subtype.ext heq.symm)))
 
+/--
+@isnad1 id=mem.2h6v.s7.e56627ee0652 from=translated src=- shape=6dbf3eec vocab=2d8ab371
+-/
 theorem paletteFamilyForwardList_mem {N s : ℕ}
     (family : Finset (Finset (Fin N)))
     (hseparated : IsPaletteSeparated s family)
@@ -1217,6 +1346,9 @@ noncomputable def paletteFamilyCrossColour
     (paletteFamilyForwardList_mem family hseparated i' i hne.symm)
     f g hcover u v
 
+/--
+@isnad1 id=ne.6h14v.s8.ab95f470d98b from=translated src=- shape=16d403b6 vocab=142cc4f0
+-/
 theorem paletteFamilyCrossColour_changes_membership
     {V : Type*} {N t j H s : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
@@ -1240,6 +1372,9 @@ theorem paletteFamilyCrossColour_changes_membership
     (paletteFamilyForwardList_mem family hseparated i' i hne.symm)
     f g hcover u v
 
+/--
+@isnad1 id=eq.9h16v.s8.5e94eed48b68 from=translated src=- shape=f589553e vocab=56a9995b
+-/
 theorem paletteFamilyCrossColour_same_left_label
     {V : Type*} {N t j H s : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
@@ -1268,6 +1403,9 @@ theorem paletteFamilyCrossColour_same_left_label
     (paletteFamilyForwardList_mem family hseparated i' i hne.symm)
     f g hcover u u' v colour hactive hu hu'
 
+/--
+@isnad1 id=eq.9h16v.s8.74cfec994e68 from=translated src=- shape=4e8335e8 vocab=56a9995b
+-/
 theorem paletteFamilyCrossColour_same_right_label
     {V : Type*} {N t j H s : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
@@ -1320,6 +1458,9 @@ noncomputable def recursivePaletteEdgeColour
       paletteFamilyCrossColour C hC hj family hcard hseparated
         f g hcover y.1 x.1 (Ne.symm hsame) y.2 x.2
 
+/--
+@isnad1 id=eq.6h12v.s8.98f270658c97 from=translated src=- shape=dc76ec38 vocab=865c7358
+-/
 theorem recursivePaletteEdgeColour_symm
     {V : Type*} {N t j H s : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
@@ -1371,6 +1512,9 @@ noncomputable def recursivePaletteColouring
     (fun x y hne => recursivePaletteEdgeColour_symm C hC hj family hcard
       hseparated f g hcover x y hne)
 
+/--
+@isnad1 id=eq.6h12v.s8.09d61bb15524 from=translated src=- shape=067d36d3 vocab=31a9c98b
+-/
 theorem recursivePaletteColouring_get
     {V : Type*} {N t j H s : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
@@ -1388,6 +1532,9 @@ theorem recursivePaletteColouring_get
           f g hcover x y hne := by
   rfl
 
+/--
+@isnad1 id=iff.5h14v.s9.d5c097d633c6 from=translated src=- shape=94914c6e vocab=d747ee63
+-/
 theorem recursivePaletteColouring_internal_adj_iff
     {V : Type*} {N t j H s : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
@@ -1425,6 +1572,9 @@ theorem recursivePaletteColouring_internal_adj_iff
     rw [recursivePaletteColouring_get]
     simpa [recursivePaletteEdgeColour] using hcolour
 
+/--
+@isnad1 id=iff.7h15v.s10.07c7ff7f9e33 from=translated src=- shape=da73ab15 vocab=5cb9f15b
+-/
 theorem recursivePaletteColouring_cross_adj_iff_of_lt
     {V : Type*} {N t j H s : ℕ}
     (C : SimpleGraph.TopEdgeLabeling V (Fin (N - t)))
@@ -1457,6 +1607,9 @@ theorem recursivePaletteColouring_cross_adj_iff_of_lt
     rw [recursivePaletteColouring_get]
     simpa [recursivePaletteEdgeColour, hne, horder] using hcolour
 
+/--
+@isnad1 id=lt.2h4v.s9.f21e98887c9a from=translated src=- shape=7b742a62 vocab=27cd0b88
+-/
 theorem paletteFamily_reverse_rank_lt {N : ℕ}
     (family : Finset (Finset (Fin N)))
     (i i' : ↥family) (hne : i ≠ i')
@@ -1586,6 +1739,9 @@ noncomputable def missingSymbolRows (H m : ℕ)
     if column ∈ T then (Finset.univ : Finset (Fin H)).erase symbol
     else Finset.univ
 
+/--
+@isnad1 id=iff.0h5v.s6.0c11e8051466 from=translated src=- shape=bece193f vocab=1ec99b52
+-/
 theorem mem_missingSymbolRows (H m : ℕ)
     (T : Finset (Fin m → Fin H)) (symbol : Fin H)
     (row : (Fin m → Fin H) → Fin H) :
@@ -1601,6 +1757,9 @@ theorem mem_missingSymbolRows (H m : ℕ)
     · simpa [hcolumn] using hrow column hcolumn
     · simp [hcolumn]
 
+/--
+@isnad1 id=eq.0h4v.s6.77fdfbc3fbad from=translated src=- shape=6c5b9e40 vocab=fa776d43
+-/
 theorem card_missingSymbolRows (H m : ℕ)
     (T : Finset (Fin m → Fin H)) (symbol : Fin H) :
     (missingSymbolRows H m T symbol).card =
@@ -1618,6 +1777,9 @@ theorem card_missingSymbolRows (H m : ℕ)
       rw [Finset.prod_ite]
       simp [Finset.filter_notMem_eq_sdiff, Finset.card_sdiff_of_subset]
 
+/--
+@isnad1 id=le.0h3v.s6.79bc61b932bf from=translated src=- shape=62c7d7f0 vocab=771c4ac6
+-/
 theorem card_badSaturationRows_le (H m : ℕ)
     (T : Finset (Fin m → Fin H)) :
     (badSaturationRows H m T).card ≤
@@ -1645,6 +1807,9 @@ theorem card_badSaturationRows_le (H m : ℕ)
     _ = H * ((H - 1) ^ T.card * H ^ (H ^ m - T.card)) := by
       simp [card_missingSymbolRows]
 
+/--
+@isnad1 id=lt.2h2v.s7.3efec466b6d0 from=translated src=- shape=f4cac041 vocab=e232cfc1
+-/
 theorem missing_symbol_power_bound (H m : ℕ) (hH : 2 ≤ H)
     (hm : 2 * (H : ℝ) * Real.log (H : ℝ) ≤ (m : ℝ)) :
     (H : ℝ) ^ 2 * ((H : ℝ) - 1) ^ (m + 1) <
@@ -1688,6 +1853,9 @@ theorem missing_symbol_power_bound (H m : ℕ) (hH : 2 ≤ H)
         1 / (H : ℝ) ^ 2 by simpa [one_div] using hfrac_strict)
   simpa [mul_comm] using hcross
 
+/--
+@isnad1 id=lt.2h2v.s7.ed58e6fff334 from=translated src=- shape=67aaf4c4 vocab=e232cfc1
+-/
 theorem missing_symbol_power_bound_nat (H m : ℕ) (hH : 2 ≤ H)
     (hm : 2 * (H : ℝ) * Real.log (H : ℝ) ≤ (m : ℝ)) :
     H ^ 2 * (H - 1) ^ (m + 1) < H ^ (m + 1) := by
@@ -1698,6 +1866,9 @@ theorem missing_symbol_power_bound_nat (H m : ℕ) (hH : 2 ≤ H)
     simpa [Nat.cast_sub (show 1 ≤ H by omega)] using hreal
   exact_mod_cast hcast
 
+/--
+@isnad1 id=lt.3h3v.s7.4a5dd7f7bd26 from=translated src=- shape=a1a28370 vocab=43fd5613
+-/
 theorem card_badSaturationRows_mul_lt (H m : ℕ) (hH : 2 ≤ H)
     (hm : 2 * (H : ℝ) * Real.log (H : ℝ) ≤ (m : ℝ))
     (T : Finset (Fin m → Fin H)) (hT : T.card = m + 1) :
@@ -1723,6 +1894,9 @@ theorem card_badSaturationRows_mul_lt (H m : ℕ) (hH : 2 ≤ H)
       congr 1
       omega
 
+/--
+@isnad1 id=lt.3h3v.s7.9ef9f607c079 from=translated src=- shape=0a73131c vocab=bbe2567a
+-/
 theorem card_badSaturationRows_lt_pow (H m : ℕ) (hH : 2 ≤ H)
     (hm : 2 * (H : ℝ) * Real.log (H : ℝ) ≤ (m : ℝ))
     (T : Finset (Fin m → Fin H)) (hT : T.card = m + 1) :
@@ -1741,6 +1915,9 @@ noncomputable def badSaturationMatrices (H m s : ℕ)
     Finset (Fin s → (Fin m → Fin H) → Fin H) :=
   Fintype.piFinset fun _ : Fin s => badSaturationRows H m T
 
+/--
+@isnad1 id=eq.0h4v.s5.0689458ae427 from=translated src=- shape=4833bdca vocab=f20f5425
+-/
 theorem card_badSaturationMatrices (H m s : ℕ)
     (T : Finset (Fin m → Fin H)) :
     (badSaturationMatrices H m s T).card =
@@ -1748,6 +1925,9 @@ theorem card_badSaturationMatrices (H m s : ℕ)
   classical
   simp [badSaturationMatrices, Fintype.card_piFinset]
 
+/--
+@isnad1 id=ex.1h3v.s7.48b85edb3687 from=translated src=- shape=b12efb6d vocab=c71f352a
+-/
 theorem exists_saturated_of_bad_row_union_bound (H m s : ℕ)
     (hbound :
       (∑ T ∈
@@ -1799,6 +1979,9 @@ theorem exists_saturated_of_bad_row_union_bound (H m s : ℕ)
           (badSaturationRows H m T).card ^ s at hcard
   exact (Nat.not_lt_of_ge hcard) hbound
 
+/--
+@isnad1 id=ex.2h2v.s7.17935678db56 from=translated src=- shape=48cd5c48 vocab=086a540e
+-/
 theorem exists_saturated_matrix (H m : ℕ) (hH : 2 ≤ H)
     (hm : 2 * (H : ℝ) * Real.log (H : ℝ) ≤ (m : ℝ)) :
     ∃ A : Fin (m * (m + 1) + 1) → (Fin m → Fin H) → Fin H,
@@ -1857,6 +2040,9 @@ noncomputable def saturatedMatrixWidth (H : ℕ) : ℕ :=
 noncomputable def saturatedMatrixRows (H : ℕ) : ℕ :=
   saturatedMatrixWidth H * (saturatedMatrixWidth H + 1) + 1
 
+/--
+@isnad1 id=ex.1h1v.s5.aa4b82c3a0c5 from=translated src=- shape=4451e836 vocab=2d850319
+-/
 theorem exists_saturated_matrix_ceil (H : ℕ) (hH : 2 ≤ H) :
     ∃ A : Fin (saturatedMatrixRows H) →
         (Fin (saturatedMatrixWidth H) → Fin H) → Fin H,
@@ -1874,6 +2060,9 @@ noncomputable def exceptionalColumns {H m s : ℕ}
   classical
   exact Finset.univ.filter (fun z => ∀ row : Fin s, A row z ≠ y row)
 
+/--
+@isnad1 id=iff.0h6v.s6.d99798cb2a4f from=translated src=- shape=c706a704 vocab=1a8437d7
+-/
 theorem mem_exceptionalColumns {H m s : ℕ}
     (A : Fin s → (Fin m → Fin H) → Fin H)
     (y : Fin s → Fin H) (z : Fin m → Fin H) :
@@ -1882,6 +2071,9 @@ theorem mem_exceptionalColumns {H m s : ℕ}
   classical
   simp [exceptionalColumns]
 
+/--
+@isnad1 id=le.1h5v.s5.0f9aabbd9426 from=translated src=- shape=9c648567 vocab=743ec513
+-/
 theorem card_exceptionalColumns_le {H m s : ℕ}
     (A : Fin s → (Fin m → Fin H) → Fin H)
     (hA : IsSaturated A) (y : Fin s → Fin H) :
@@ -1921,6 +2113,9 @@ noncomputable def forwardGuess {H m s : ℕ}
     else
       ⟨0, hH⟩
 
+/--
+@isnad1 id=ex.3h4v.s7.43edf1619c7c from=translated src=- shape=5bbcaa64 vocab=a7a7e8c3
+-/
 theorem saturated_coordinate_covering {H m s : ℕ}
     (A : Fin s → (Fin m → Fin H) → Fin H)
     (hA : IsSaturated A) (hH : 0 < H) (hms : m ≤ s) :
@@ -1958,6 +2153,9 @@ theorem saturated_coordinate_covering {H m s : ℕ}
         ⟨0, hH⟩
     rw [dite_eq_left hexists, hchosen]
 
+/--
+@isnad1 id=ex.1h1v.s6.1105e15dc669 from=translated src=- shape=d7c9bcdd vocab=7461b9e9
+-/
 theorem exists_coordinate_covering (H : ℕ) (hH : 2 ≤ H) :
     ∃ f g : (Fin (saturatedMatrixRows H) → Fin H) →
         (Fin (saturatedMatrixRows H) → Fin H),
@@ -1968,6 +2166,9 @@ theorem exists_coordinate_covering (H : ℕ) (hH : 2 ≤ H) :
     nlinarith [sq_nonneg (saturatedMatrixWidth H : ℤ)]
   exact saturated_coordinate_covering A hA (by omega) hwidth
 
+/--
+@isnad1 id=ex.6h7v.s8.62cb25c5cc18 from=translated src=- shape=1c7ef16d vocab=d6438264
+-/
 theorem exists_recursivePaletteColouring_fin
     {n N t j H : ℕ}
     (C : SimpleGraph.TopEdgeLabeling (Fin n) (Fin (N - t)))
@@ -2014,6 +2215,9 @@ def PaletteGrowthBound (a s j n : ℕ) : Prop :=
       (Real.exp 1 ^ 2 * (a : ℝ) ^ 2) ^ (s * j) *
       (j.factorial : ℝ) ^ s
 
+/--
+@isnad1 id=paletteg.2h5v.s7.5c3cf6fd2906 from=translated src=- shape=384a0e7d vocab=95258965
+-/
 theorem paletteGrowthBound_succ {a s j n B : ℕ}
     (hstage : ((j + 1 : ℕ) : ℝ) ^ (a * s) ≤
       (B : ℝ) * (s : ℝ) *
@@ -2043,6 +2247,9 @@ theorem paletteGrowthBound_succ {a s j n B : ℕ}
         Nat.mul_succ, pow_add, pow_succ, mul_pow]
       ring
 
+/--
+@isnad1 id=ex.3h3v.s7.3988f1eca1e9 from=translated src=- shape=d5df436d vocab=383c2d5d
+-/
 theorem exists_recursivePaletteStage (H a j : ℕ)
     (hH : 2 ≤ H) (ha : 2 ≤ a) (hj : j ≤ H) :
     ∃ (n : ℕ)
@@ -2086,6 +2293,9 @@ theorem exists_recursivePaletteStage (H a j : ℕ)
       exact ⟨family.card * n, C', htriangle', hcolour',
         paletteGrowthBound_succ hstage hgrowth⟩
 
+/--
+@isnad1 id=le.4h3v.s8.e8314ae85872 from=translated src=- shape=c0e47eef vocab=26f3a338
+-/
 theorem palette_exp_loss_bound (H a s : ℕ)
     (hH : 2 ≤ H) (ha : 2 ≤ a) (hs : 0 < s)
     (hlogH : Real.log (H : ℝ) ≤ (a : ℝ)) :
@@ -2158,6 +2368,9 @@ theorem palette_exp_loss_bound (H a s : ℕ)
   rw [htargetlog, hsourcelog]
   nlinarith
 
+/--
+@isnad1 id=le.3h2v.s6.9d2d61de7d95 from=translated src=- shape=f9965204 vocab=96dcadad
+-/
 theorem recursivePaletteRamsey_exponential_bound (H a : ℕ)
     (hH : 2 ≤ H) (ha : 2 ≤ a)
     (hloga : Real.log (H : ℝ) ≤ (a : ℝ)) :
@@ -2246,9 +2459,15 @@ noncomputable def paletteLogWidth (H : ℕ) : ℕ :=
 noncomputable def paletteColourCount (H : ℕ) : ℕ :=
   H * (paletteLogWidth H * saturatedMatrixRows H)
 
+/--
+@isnad1 id=le.0h1v.s3.02b69bc5ce93 from=translated src=- shape=8a62b088 vocab=65d58e0f
+-/
 theorem paletteLogWidth_two_le (H : ℕ) : 2 ≤ paletteLogWidth H := by
   exact Nat.le_max_left _ _
 
+/--
+@isnad1 id=le.0h1v.s3.5f2d64568a84 from=translated src=- shape=37c1bc20 vocab=b8b2c8ab
+-/
 theorem log_le_paletteLogWidth (H : ℕ) :
     Real.log (H : ℝ) ≤ (paletteLogWidth H : ℝ) := by
   calc
@@ -2257,6 +2476,9 @@ theorem log_le_paletteLogWidth (H : ℕ) :
     _ ≤ (paletteLogWidth H : ℝ) := by
       exact_mod_cast (Nat.le_max_right 2 ⌈Real.log (H : ℝ)⌉₊)
 
+/--
+@isnad1 id=and.1h1v.s6.cec4acd39c6a from=translated src=- shape=44c874ea vocab=1f0256f1
+-/
 theorem stageWidths_succ_le (H : ℕ) (hH : 1 ≤ H) :
     paletteLogWidth (H + 1) ≤ paletteLogWidth H + 1 ∧
       saturatedMatrixWidth (H + 1) ≤
@@ -2326,6 +2548,9 @@ theorem stageWidths_succ_le (H : ℕ) (hH : 1 ≤ H) :
           2 * (paletteLogWidth H : ℝ) + 4 := by
             linarith [log_le_paletteLogWidth H]
 
+/--
+@isnad1 id=le.1h1v.s4.5420912dba7d from=translated src=- shape=d643ca81 vocab=a0466d8a
+-/
 theorem one_le_log_nat_of_three_le (H : ℕ) (hH : 3 ≤ H) :
     1 ≤ Real.log (H : ℝ) := by
   have hpos : (0 : ℝ) < H := by exact_mod_cast (by omega : 0 < H)
@@ -2334,6 +2559,9 @@ theorem one_le_log_nat_of_three_le (H : ℕ) (hH : 3 ≤ H) :
     Real.exp 1 ≤ (3 : ℝ) := Real.exp_one_lt_three.le
     _ ≤ (H : ℝ) := by exact_mod_cast hH
 
+/--
+@isnad1 id=le.1h1v.s5.f0b02e43f047 from=translated src=- shape=169da95b vocab=aa452594
+-/
 theorem paletteLogWidth_le_two_log (H : ℕ) (hH : 3 ≤ H) :
     (paletteLogWidth H : ℝ) ≤ 2 * Real.log (H : ℝ) := by
   have hlog : 1 ≤ Real.log (H : ℝ) :=
@@ -2349,6 +2577,9 @@ theorem paletteLogWidth_le_two_log (H : ℕ) (hH : 3 ≤ H) :
     norm_num
     linarith
 
+/--
+@isnad1 id=le.1h1v.s4.db743e71d4fd from=translated src=- shape=71fa8a4a vocab=65d58e0f
+-/
 theorem paletteLogWidth_le_stage (H : ℕ) (hH : 2 ≤ H) :
     paletteLogWidth H ≤ H := by
   unfold paletteLogWidth
@@ -2359,6 +2590,9 @@ theorem paletteLogWidth_le_stage (H : ℕ) (hH : 2 ≤ H) :
     have hlog := Real.log_le_sub_one_of_pos hpos
     exact hlog.trans (by linarith)
 
+/--
+@isnad1 id=le.2h2v.s4.132fa74d04f6 from=translated src=- shape=994278ac vocab=72a3f544
+-/
 theorem paletteColourCount_mono {H H' : ℕ}
     (hH : 1 ≤ H) (hHH' : H ≤ H') :
     paletteColourCount H ≤ paletteColourCount H' := by
@@ -2381,6 +2615,9 @@ theorem paletteColourCount_mono {H H' : ℕ}
   · unfold saturatedMatrixRows
     gcongr
 
+/--
+@isnad1 id=le.0h1v.s4.0231b53fb1a8 from=translated src=- shape=82643d74 vocab=b38c4bd0
+-/
 theorem two_mul_stage_le_paletteColourCount (H : ℕ) :
     2 * H ≤ paletteColourCount H := by
   have hrows : 1 ≤ saturatedMatrixRows H := by
@@ -2396,6 +2633,9 @@ theorem two_mul_stage_le_paletteColourCount (H : ℕ) :
     _ ≤ H * (paletteLogWidth H * saturatedMatrixRows H) :=
       Nat.mul_le_mul_left H hfactor
 
+/--
+@isnad1 id=ex.1h1v.s5.9e622cb4c393 from=translated src=- shape=b51ca7e9 vocab=8daf5b56
+-/
 theorem exists_paletteStage_bracket (k : ℕ)
     (hk : paletteColourCount 2 ≤ k) :
     ∃ H : ℕ, 2 ≤ H ∧
@@ -2423,6 +2663,9 @@ theorem exists_paletteStage_bracket (k : ℕ)
   · have hsucc : M - 1 + 1 = M := by omega
     simpa [hsucc] using hM
 
+/--
+@isnad1 id=le.1h1v.s4.eb6a023a8e21 from=translated src=- shape=48269320 vocab=dd2c6501
+-/
 theorem stage_mul_paletteWidth_le_matrixWidth_sharp (H : ℕ) (hH : 3 ≤ H) :
     H * paletteLogWidth H ≤ saturatedMatrixWidth H := by
   have hpalette := paletteLogWidth_le_two_log H hH
@@ -2443,6 +2686,9 @@ theorem stage_mul_paletteWidth_le_matrixWidth_sharp (H : ℕ) (hH : 3 ≤ H) :
       _ ≤ (saturatedMatrixWidth H : ℝ) := hmatrix
   exact_mod_cast hreal
 
+/--
+@isnad1 id=le.1h1v.s5.e53ae6de9e9e from=translated src=- shape=9a56705f vocab=f80a4d71
+-/
 theorem saturatedMatrixRows_adjacent_scaled_sharp (H : ℕ) (hH : 3 ≤ H) :
     H * saturatedMatrixRows (H + 1) ≤
       (H + 14) * saturatedMatrixRows H := by
@@ -2482,6 +2728,9 @@ theorem saturatedMatrixRows_adjacent_scaled_sharp (H : ℕ) (hH : 3 ≤ H) :
       simp [w, saturatedMatrixRows]
       ring
 
+/--
+@isnad1 id=le.1h1v.s5.75c8b934a0f1 from=translated src=- shape=fb1cee63 vocab=33d14c9c
+-/
 theorem paletteColourCount_adjacent_scaled_sharp (H : ℕ) (hH : 3 ≤ H) :
     paletteLogWidth H * paletteColourCount (H + 1) ≤
       (paletteLogWidth H + 34) * paletteColourCount H := by
@@ -2530,6 +2779,9 @@ theorem paletteColourCount_adjacent_scaled_sharp (H : ℕ) (hH : 3 ≤ H) :
       simp only [a, s, paletteColourCount]
       ring
 
+/--
+@isnad1 id=le.4h4v.s7.4e86cfee9db9 from=translated src=- shape=245ceb5c vocab=1e37dc5e
+-/
 theorem palette_exponential_adjacent_transfer_sharp
     (H a k₀ k : ℕ)
     (hH : 3 ≤ H)
@@ -2555,6 +2807,9 @@ theorem palette_exponential_adjacent_transfer_sharp
     Real.log_exp, Real.log_exp]
   nlinarith
 
+/--
+@isnad1 id=ex.1h1v.s6.dafeded5a775 from=translated src=- shape=5b08c3a1 vocab=70237f5d
+-/
 theorem allColourPaletteRamsey_exponential_bound_sharp (k : ℕ)
     (hk : paletteColourCount 3 ≤ k) :
     ∃ H : ℕ,
@@ -2593,6 +2848,9 @@ theorem allColourPaletteRamsey_exponential_bound_sharp (k : ℕ)
     _ ≤ (triangleRamseyNumber k : ℝ) := by
       exact_mod_cast triangleRamseyNumber_mono hlower
 
+/--
+@isnad1 id=le.1h1v.s6.9cd221363ebe from=translated src=- shape=ea914086 vocab=b44a17db
+-/
 theorem paletteColourCount_le_twenty_six_sharp (H : ℕ) (hH : 3 ≤ H) :
     (paletteColourCount H : ℝ) ≤
       26 * (H : ℝ) ^ 3 * Real.log (H : ℝ) ^ 3 := by
@@ -2642,6 +2900,9 @@ theorem paletteColourCount_le_twenty_six_sharp (H : ℕ) (hH : 3 ≤ H) :
       dsimp [y]
       ring
 
+/--
+@isnad1 id=le.3h2v.s6.d59b966612fb from=translated src=- shape=4253ea7e vocab=1f98743a
+-/
 theorem paletteStage_cube_root_control_six_sharp (H k : ℕ)
     (hH : 3 ≤ H)
     (hlower : paletteColourCount H ≤ k)
@@ -2696,6 +2957,9 @@ theorem paletteStage_cube_root_control_six_sharp (H k : ℕ)
   rw [hrootcube]
   exact hcube
 
+/--
+@isnad1 id=eq.0h0v.s3.2d70cf725057 from=translated src=- shape=3c26ae4f vocab=2b4312b1
+-/
 theorem paletteColourCount_three : paletteColourCount 3 = 342 := by
   have hlo : (1 : ℝ) < Real.log 3 := by
     nlinarith [Real.log_three_gt_d9]
@@ -2710,6 +2974,9 @@ theorem paletteColourCount_three : paletteColourCount 3 = 342 := by
   norm_num [paletteColourCount, paletteLogWidth,
     saturatedMatrixRows, saturatedMatrixWidth, ha, hm]
 
+/--
+@isnad1 id=le.2h1v.s7.43e7fdbdebec from=translated src=- shape=f764d383 vocab=ffa0d4bd
+-/
 theorem quantitativeLowerBound_explicit_small (k : ℕ)
     (hk : 2 ≤ k) (hsmall : k < 342) :
     (((1 : ℝ) / (6 * Real.exp 38)) *
@@ -2751,6 +3018,9 @@ theorem quantitativeLowerBound_explicit_small (k : ℕ)
       exact_mod_cast triangleFree_lt_triangleRamseyNumber C
         (fun _ => SimpleGraph.cliqueFree_of_card_lt (by simp))
 
+/--
+@isnad1 id=le.1h1v.s7.84148e0e48c1 from=translated src=- shape=82809f56 vocab=4509b569
+-/
 theorem quantitativeLowerBound_explicit_all :
     ∀ k : ℕ, 2 ≤ k →
       (((1 : ℝ) / (6 * Real.exp 38)) *
@@ -2791,6 +3061,9 @@ theorem quantitativeLowerBound_explicit_all :
     rw [paletteColourCount_three] at hlarge
     omega
 
+/--
+@isnad1 id=eventual.1h1v.s7.31e5ced19481 from=translated src=- shape=7a5a73e2 vocab=90ed0897
+-/
 theorem triangleRamseyNumber_log_sharp_coefficients :
     ∀ ε : ℝ, 0 < ε →
       ∀ᶠ k : ℕ in atTop,
@@ -2878,6 +3151,9 @@ theorem triangleRamseyNumber_log_sharp_coefficients :
         nlinarith [mul_nonneg (sub_nonneg.mpr hkreal)
           (mul_nonneg hε.le hlog.le)]
 
+/--
+@isnad1 id=eventual.0h0v.s6.8a1baf44ba7c from=translated src=- shape=a23cce1b vocab=d709953b
+-/
 theorem triangleRamseyNumber_log_eventually_bounds :
     ∀ᶠ k : ℕ in atTop,
       (1 / 6 : ℝ) * (k : ℝ) * Real.log (k : ℝ) ≤
@@ -2965,6 +3241,9 @@ theorem triangleRamseyNumber_log_eventually_bounds :
         rw [Real.log_pow, Real.log_pow]
         ring
 
+/--
+@isnad1 id=istheta.0h0v.s5.44b376c1520d from=translated src=- shape=aa0fe8bb vocab=f82a837a
+-/
 theorem triangleRamseyNumber_log_isTheta :
     (fun k : ℕ => Real.log (triangleRamseyNumber k : ℝ))
       =Θ[atTop] (fun k : ℕ => (k : ℝ) * Real.log (k : ℝ)) := by
@@ -2998,6 +3277,9 @@ theorem triangleRamseyNumber_log_isTheta :
     rw [abs_of_nonneg hscale, abs_of_nonneg hlog]
     exact hreverse
 
+/--
+@isnad1 id=tendsto.0h0v.s5.df446fa0d5c5 from=translated src=- shape=d2955424 vocab=0d6caefb
+-/
 theorem divergentRamseyRoot :
     Filter.Tendsto
       (fun k : ℕ =>
@@ -3034,6 +3316,9 @@ theorem divergentRamseyRoot :
           (by positivity) (by positivity) hkreal).mpr
             (by simpa [Real.rpow_natCast] using hramsey)
 
+/--
+@isnad1 id=tendsto.0h0v.s5.df446fa0d5c5 from=translated src=- shape=d2955424 vocab=0d6caefb
+-/
 theorem erdos_183 :
     Filter.Tendsto
       (fun k : ℕ =>
@@ -3041,6 +3326,9 @@ theorem erdos_183 :
       atTop atTop := by
   exact divergentRamseyRoot
 
+/--
+@isnad1 id=and.0h0v.s7.b67814a69e04 from=translated src=- shape=95427cd9 vocab=acfd11dc
+-/
 theorem erdos_problem_183_explicit :
     (∀ k : ℕ, 2 ≤ k →
       (((1 : ℝ) / (6 * Real.exp 38)) *
