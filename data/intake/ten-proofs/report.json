@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "375ccd06c4ee1ca273e61ab7e3fe3fe80ae7a88397567633cd6300f72e951007",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "ten-proofs",
+ "lint_mode": "proposed",
+ "modules": 2,
+ "part": 1,
+ "theorems": 96
+}
