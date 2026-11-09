@@ -1,0 +1,75 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.Seed.RingTheory.MvPowerSeries.Order
+import Tengoku.Seed.RingTheory.PowerSeries.Substitution
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+/-!
+# Prescribed linear terms for multivariable power series
+
+A multivariable power series has a prescribed linear term when its difference
+from the corresponding linear form has total order at least two.
+-/
+
+noncomputable section
+
+namespace LubinTate
+namespace SameUniformizer
+
+variable {R : Type*} [CommRing R]
+variable {σ : Type*} [Fintype σ]
+
+/-- The multivariable linear form `sum_i L_i X_i`.-/
+noncomputable def linearForm (L : σ → R) : MvPowerSeries σ R :=
+  ∑ i, MvPowerSeries.C (L i) * MvPowerSeries.X i
+
+/-- States the theorem `constantCoeff_linearForm`.
+@isnad1 id=eq.0h3v.s6.397b48cc69a0 from=translated src=- shape=72ea3cfa vocab=62cd8571
+-/
+@[simp]
+theorem constantCoeff_linearForm (L : σ → R) :
+    MvPowerSeries.constantCoeff (linearForm L) = 0 := by
+  simp [linearForm]
+
+/-- A series has prescribed linear term `L` when its difference from
+`sum_i L_i X_i` has total order at least two.-/
+def HasLinearTerm (H : MvPowerSeries σ R) (L : σ → R) : Prop :=
+  (2 : ℕ∞) ≤ (H - linearForm L).order
+
+namespace HasLinearTerm
+
+variable {H : MvPowerSeries σ R} {L : σ → R}
+
+/-- A series with a prescribed linear term has zero constant
+coefficient.
+@isnad1 id=eq.1h4v.s6.1fba38d4d1b2 from=translated src=- shape=bff6294f vocab=6e23c721
+-/
+theorem constantCoeff_eq_zero (h : HasLinearTerm H L) :
+    MvPowerSeries.constantCoeff H = 0 := by
+  have horder : (1 : ℕ∞) ≤ (H - linearForm L).order :=
+    (by norm_num : (1 : ℕ∞) ≤ 2).trans h
+  have hconstant :=
+    MvPowerSeries.one_le_order_iff_constCoeff_eq_zero.mp horder
+  simpa using hconstant
+
+/-- Consequently the series can genuinely be substituted into a
+one-variable power series.
+@isnad1 id=hassubst.1h4v.s4.da4de930b5bd from=translated src=- shape=8a18bdf1 vocab=17aae408
+-/
+theorem hasSubst (h : HasLinearTerm H L) :
+    PowerSeries.HasSubst H :=
+  PowerSeries.HasSubst.of_constantCoeff_zero h.constantCoeff_eq_zero
+
+end HasLinearTerm
+
+end SameUniformizer
+end LubinTate
+
+end

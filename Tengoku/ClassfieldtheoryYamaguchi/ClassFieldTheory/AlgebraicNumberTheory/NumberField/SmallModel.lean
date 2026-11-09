@@ -1,0 +1,47 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.Seed.Algebra.Field.Shrink
+import Tengoku.Seed.Algebra.Ring.Shrink
+import Tengoku
+import Tengoku.Seed.Data.Rat.Encodable
+import Tengoku.Seed.LinearAlgebra.Countable
+import Tengoku.Seed.NumberTheory.NumberField.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+/-!
+# Small models of number fields
+
+A number field has finite dimension over the countable field `ℚ`, so its
+underlying type has a representative in the lowest universe.  The ring
+equivalence to that representative preserves the number-field structure.
+-/
+
+namespace ClassFieldTheory
+
+universe u
+
+/-- Every number field can be represented by a type in universe zero.
+@isnad1 id=small.0h1v.s3.5abdea3e405e from=translated src=- shape=c612a321 vocab=69012976
+-/
+theorem numberField_small (F : Type u) [Field F] [NumberField F] :
+    Small.{0} F := by
+  let : Countable F := Finsupp.Countable.of_moduleFinite (R := ℚ)
+  infer_instance
+
+/-- The shrunk model of a number field remains a number field.
+@isnad1 id=numberfi.0h1v.s4.2eb1d360b93e from=translated src=- shape=d96e9922 vocab=36b1f0ed
+-/
+theorem numberField_shrink (F : Type u) [Field F] [NumberField F] :
+    letI : Small.{0} F := numberField_small F
+    NumberField (Shrink.{0} F) := by
+  let : Small.{0} F := numberField_small F
+  exact NumberField.of_ringEquiv F (Shrink.{0} F) (Shrink.ringEquiv F).symm
+
+end ClassFieldTheory

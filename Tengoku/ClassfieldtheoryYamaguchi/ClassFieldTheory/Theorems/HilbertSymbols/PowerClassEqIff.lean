@@ -1,0 +1,34 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.Definitions.HilbertSymbols.PowerClass
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+/-!
+# Equality of power classes
+
+Two representatives have the same power class precisely when their ratio
+is an `n`-th power.
+-/
+
+namespace ClassFieldTheory
+
+universe u
+
+/-- Two elements represent the same power class exactly when their ratio is
+an `n`-th power.
+@isnad1 id=iff.0h4v.s9.a6373ae9f446 from=translated src=- shape=87b3803f vocab=75258955
+-/
+theorem powerClass_eq_iff
+    (K : Type u) [Field K] (n : ℕ+) (a b : Kˣ) :
+    powerClass K n a = powerClass K n b ↔
+      a / b ∈ (powMonoidHom (n : ℕ) : Kˣ →* Kˣ).range := by
+  exact QuotientGroup.eq_iff_div_mem
+
+end ClassFieldTheory

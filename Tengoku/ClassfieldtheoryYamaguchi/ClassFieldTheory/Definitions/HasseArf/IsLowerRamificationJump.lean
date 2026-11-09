@@ -1,0 +1,26 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.Definitions.HasseArf.LowerRamificationGroup
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+/-!
+# Lower ramification jumps
+-/
+
+namespace ClassFieldTheory
+
+variable (K : Type*) {L : Type*} [Field K] [Field L] [Algebra K L]
+
+/-- A nonnegative integer `n` is a lower ramification jump when the lower
+ramification filtration strictly changes after index `n`.-/
+def IsLowerRamificationJump (A : ValuationSubring L) (n : ℕ) : Prop :=
+  lowerRamificationGroup K A n ≠ lowerRamificationGroup K A (n + 1)
+
+end ClassFieldTheory

@@ -1,0 +1,34 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.Definitions.HilbertSymbols.HilbertPairingSymbol
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+/-!
+# Multiplicativity of Hilbert-pairing symbols
+
+A Hilbert pairing is a homomorphism in each power-class argument.  These
+formulas expose that structure directly on representatives in `Kˣ`.
+-/
+
+namespace ClassFieldTheory.HilbertPairing
+
+universe u
+
+/-- The symbol is multiplicative in its first representative.
+@isnad1 id=eq.0h6v.s9.58aec7fc81c9 from=translated src=- shape=3f361f50 vocab=e431f7cb
+-/
+@[simp]
+theorem symbol_mul_left
+    {K : Type u} [Field K] {n : ℕ+}
+    (B : HilbertPairing K n) (a b c : Kˣ) :
+    B.symbol (a * b) c = B.symbol a c * B.symbol b c := by
+  simp only [symbol, map_mul, MonoidHom.mul_apply]
+
+end ClassFieldTheory.HilbertPairing

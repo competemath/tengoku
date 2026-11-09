@@ -1,0 +1,40 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.Definitions.ConductorsAndRayClassFields.RayClassModulus
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+/-!
+# The ordinary class-group modulus
+-/
+
+namespace ClassFieldTheory
+
+universe u
+
+/-- The modulus with no finite exponent and no positivity condition.  Its ray
+class group is the ordinary ideal class group.-/
+def ordinaryRayClassModulus
+    (K : Type u) [Field K] [NumberField K] : RayClassModulus K where
+  finitePart := 0
+  infinitePart := ∅
+
+/-- The ordinary class-group modulus is below every ray modulus.
+@isnad1 id=le.0h2v.s4.534cf713a1d7 from=translated src=- shape=1c74aab3 vocab=51b09540
+-/
+theorem ordinaryRayClassModulus_le
+    (K : Type u) [Field K] [NumberField K]
+    (m : RayClassModulus K) :
+    ordinaryRayClassModulus K ≤ m := by
+  constructor
+  · change ∀ v, 0 ≤ m.finitePart v
+    exact fun _ => Nat.zero_le _
+  · exact Finset.empty_subset _
+
+end ClassFieldTheory

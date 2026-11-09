@@ -1,0 +1,90 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.ClassfieldtheoryYamaguchi.ValuedFieldTheory.LocalField.NonarchimedeanLocalField.Basic
+import Tengoku.Seed.Topology.Algebra.Category.ProfiniteGrp.Basic
+import Tengoku.Seed.Topology.Algebra.ClopenNhdofOne
+import Tengoku.Seed.Topology.Algebra.Group.Units
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+/-!
+# Profinite valuation-ring units
+
+The topology of a nonarchimedean local field is Hausdorff and totally disconnected because
+valuation balls are clopen. This file records those structures as named results, without
+registering additional global instances, and packages the valuation-ring unit group as a
+profinite group.
+-/
+
+noncomputable section
+
+universe u
+
+namespace LocalFieldTheory
+
+open scoped ValuativeRel
+
+/-- A nonarchimedean local field is Hausdorff for its valuative topology.
+@isnad1 id=t2space.0h1v.s4.7e1ccb55d0cf from=translated src=- shape=7ddc04c7 vocab=d124730f
+-/
+theorem localFieldT2Space
+    (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
+  [IsNonarchimedeanLocalField K] : T2Space K := by
+  apply IsTopologicalAddGroup.t2Space_of_zero_sep
+  intro x hx
+  let r := (ValuativeRel.valuation K).restrict x
+  refine ⟨{y : K | (ValuativeRel.valuation K).restrict y < r}, ?_, ?_⟩
+  · exact ((ValuativeRel.valuation K).isOpen_ball r).mem_nhds
+      (by
+        simpa [r, zero_lt_iff, ValuativeRel.valuation_eq_zero_iff] using hx)
+  · simp [r]
+
+/-- Distinct points of a nonarchimedean local field are separated by a clopen valuation ball.
+@isnad1 id=totallys.0h1v.s4.22700574952e from=translated src=- shape=7ddc04c7 vocab=ddef51ee
+-/
+theorem localFieldTotallySeparatedSpace
+    (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
+    [IsNonarchimedeanLocalField K] : TotallySeparatedSpace K := by
+  rw [totallySeparatedSpace_iff_exists_isClopen]
+  intro x y hxy
+  let r := (ValuativeRel.valuation K).restrict (y - x)
+  refine ⟨{z : K | (ValuativeRel.valuation K).restrict (z - x) < r}, ?_, ?_, ?_⟩
+  · change IsClopen
+      ((fun z : K => z - x) ⁻¹'
+        {w : K | (ValuativeRel.valuation K).restrict w < r})
+    exact ((ValuativeRel.valuation K).isClopen_ball r).preimage
+      (continuous_id.sub continuous_const)
+  · have hyx : y - x ≠ 0 := sub_ne_zero.mpr hxy.symm
+    simpa [r, zero_lt_iff, ValuativeRel.valuation_eq_zero_iff] using hyx
+  · simp [r]
+
+/-- A nonarchimedean local field is totally disconnected for its valuative topology.
+@isnad1 id=totallyd.0h1v.s4.80fed28a4e70 from=translated src=- shape=7ddc04c7 vocab=4b5d8a24
+-/
+theorem localFieldTotallyDisconnectedSpace
+    (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
+    [IsNonarchimedeanLocalField K] : TotallyDisconnectedSpace K := by
+  let : TotallySeparatedSpace K := localFieldTotallySeparatedSpace K
+  infer_instance
+
+/-- The unit group of the valuation ring of a nonarchimedean local field, as a profinite group.-/
+noncomputable def localUnits_profinite
+    (K : Type u) [Field K] [ValuativeRel K] [TopologicalSpace K]
+    [IsNonarchimedeanLocalField K] : ProfiniteGrp := by
+  letI : T2Space K := localFieldT2Space K
+  letI : TotallyDisconnectedSpace K := localFieldTotallyDisconnectedSpace K
+  letI : TotallyDisconnectedSpace (𝒪[K])ᵐᵒᵖ :=
+    Homeomorph.totallyDisconnectedSpace
+      (MulOpposite.opHomeomorph : 𝒪[K] ≃ₜ (𝒪[K])ᵐᵒᵖ)
+  letI : TotallyDisconnectedSpace 𝒪[K]ˣ := by
+    rw [← (Units.isEmbedding_embedProduct (M := 𝒪[K])).isTotallyDisconnected_range]
+    exact isTotallyDisconnected_of_totallyDisconnectedSpace _
+  exact ProfiniteGrp.of 𝒪[K]ˣ
+
+end LocalFieldTheory
