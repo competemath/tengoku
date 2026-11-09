@@ -31,6 +31,7 @@ import Tengoku.AddCombi
 import Tengoku.LanaFormalSchemes
 import Tengoku.FltAnthropic
 import Tengoku.DescriptiveComplexity
+import Tengoku.TenProofs
 import Tengoku.Leanmodularforms
 import Tengoku.Foundation
 import Tengoku.Erdos1196
