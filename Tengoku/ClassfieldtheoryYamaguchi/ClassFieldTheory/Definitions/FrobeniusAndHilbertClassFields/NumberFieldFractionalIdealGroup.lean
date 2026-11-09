@@ -1,0 +1,30 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.Seed.NumberTheory.NumberField.Basic
+import Tengoku.Seed.RingTheory.ClassGroup.Basic
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+/-!
+# Fractional-ideal group of a number field
+-/
+
+open scoped NumberField
+open NumberField
+
+namespace ClassFieldTheory
+
+universe u
+
+/-- The group of nonzero fractional ideals of a number field.-/
+abbrev NumberFieldFractionalIdealGroup
+    (K : Type u) [Field K] [NumberField K] :=
+  (FractionalIdeal (nonZeroDivisors (𝓞 K)) K)ˣ
+
+end ClassFieldTheory

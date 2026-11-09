@@ -1,0 +1,30 @@
+/-
+Copyright (c) 2026 Naganori Yamaguchi (https://github.com/n-yamaguchi-0729). All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Naganori Yamaguchi (assisted by OpenAI Codex)
+-/
+
+import Tengoku.ClassfieldtheoryYamaguchi.ClassFieldTheory.Definitions.LocalClassFieldTheory.FieldNormHom
+
+/-! Tengoku: the imports are the original's, in the tree's names (the umbrella `Tengoku` made names ambiguous). -/
+
+set_option autoImplicit false
+
+/-!
+# The subgroup of field norms
+-/
+
+noncomputable section
+
+namespace ClassFieldTheory
+
+universe u v
+
+/-- The subgroup `N_{L/K}(Lˣ)` of nonzero field norms.-/
+def fieldNormSubgroup
+    (K : Type u) (L : Type v)
+    [Field K] [Field L] [Algebra K L] [FiniteDimensional K L] :
+    Subgroup Kˣ :=
+  (fieldNormHom K L).range
+
+end ClassFieldTheory

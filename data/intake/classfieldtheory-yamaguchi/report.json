@@ -1,0 +1,10 @@
+{
+ "bundle_sha256": "724dfb58371283b614996bb3f056bf18cd7d04be2607b76517ac13c2716dc16c",
+ "factory_changes": {},
+ "gate2_unjudged": [],
+ "library": "classfieldtheory-yamaguchi",
+ "lint_mode": "proposed",
+ "modules": 220,
+ "part": 1,
+ "theorems": 709
+}

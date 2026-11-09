@@ -1,0 +1,1 @@
+-- ClassfieldtheoryYamaguchi: a factory bundle (data/intake/classfieldtheory-yamaguchi). This file only marks the library for Tengoku/All.lean.
